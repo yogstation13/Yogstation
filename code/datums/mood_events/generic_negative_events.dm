@@ -47,9 +47,24 @@
 	mood_change = -2
 	timeout = 2400
 
-/datum/mood_event/depression
+/datum/mood_event/depression_minimal
+	description = "<span class='warning'>I feel a bit down.</span>\n"
+	mood_change = -10
+	timeout = 1200
+
+/datum/mood_event/depression_mild
 	description = "<span class='warning'>I feel sad for no particular reason.</span>\n"
 	mood_change = -9
+	timeout = 1200
+
+/datum/mood_event/depression_moderate
+	description = "<span class='warning'>I feel miserable.</span>\n"
+	mood_change = -14
+	timeout = 1200
+
+/datum/mood_event/depression_severe
+	description = "<span class='warning'>I've lost all hope.</span>\n"
+	mood_change = -16
 	timeout = 1200
 
 /datum/mood_event/shameful_suicide //suicide_acts that return SHAME, like sord
@@ -61,10 +76,6 @@
   description = "<span class='boldwarning'>AHH! I WAS USING THAT LIMB!</span>\n"
   mood_change = -8
   timeout = 2400
-
-/datum/mood_event/noshoes
-	 description = "<span class='warning'>I am a disgrace to comedy everywhere!</span>\n"
-	 mood_change = -5
 
 /datum/mood_event/tased
 	description = "<span class='warning'>There's no \"z\" in \"taser\". It's in the zap.</span>\n"
@@ -84,8 +95,8 @@
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		if(iscatperson(H))
-			H.startTailWag()
-			addtimer(CALLBACK(H, /mob/living/carbon/human.proc/endTailWag), 30)
+			H.dna.species.start_wagging_tail(H)
+			addtimer(CALLBACK(H.dna.species, /datum/species.proc/stop_wagging_tail, H), 30)
 			description =  "<span class='nicegreen'>They want to play on the table!</span>\n"
 			mood_change = 2
 
@@ -113,6 +124,95 @@
 	description = "<span class='warning'>I'm missing my family heirloom...</span>\n"
 	mood_change = -4
 
+/datum/mood_event/healsbadman
+	description = "<span class='warning'>I feel like I'm held together by flimsy string, and could fall apart at any moment!</span>\n"
+	mood_change = -4
+	timeout = 1200
+
+/datum/mood_event/jittery
+	description = "<span class='warning'>I'm nervous and on edge and I can't stand still!!</span>\n"
+	mood_change = -2
+
+/datum/mood_event/vomit
+	description = "<span class='warning'>I just threw up. Gross.</span>\n"
+	mood_change = -2
+	timeout = 1200
+
+/datum/mood_event/vomitself
+	description = "<span class='warning'>I just threw up all over myself. This is disgusting.</span>\n"
+	mood_change = -4
+	timeout = 1800
+
+/datum/mood_event/painful_medicine
+	description = "<span class='warning'>Medicine may be good for me but right now it stings like hell.</span>\n"
+	mood_change = -5
+	timeout = 600
+
+/datum/mood_event/spooked
+	description = "<span class='warning'>The rattling of those bones...It still haunts me.</span>\n"
+	mood_change = -4
+	timeout = 2400
+
+/datum/mood_event/loud_gong
+	description = "<span class='warning'>That loud gong noise really hurt my ears!</span>\n"
+	mood_change = -3
+	timeout = 1200
+
+/datum/mood_event/notcreeping
+	description = "<span class='warning'>The voices are not happy, and they painfully contort my thoughts into getting back on task.</span>\n"
+	mood_change = -6
+	timeout = 30
+	hidden = TRUE
+
+/datum/mood_event/notcreepingsevere//not hidden since it's so severe
+	description = "<span class='boldwarning'>THEY NEEEEEEED OBSESSIONNNN!!</span>\n"
+	mood_change = -30
+	timeout = 30
+
+/datum/mood_event/notcreepingsevere/add_effects(name)
+	var/list/unstable = list(name)
+	for(var/i in 1 to rand(3,5))
+		unstable += copytext_char(name, -1)
+	var/unhinged = uppertext(unstable.Join(""))//example Tinea Luxor > TINEA LUXORRRR (with randomness in how long that slur is)
+	description = "<span class='boldwarning'>THEY NEEEEEEED [unhinged]!!</span>\n"
+
+/datum/mood_event/idiot_shower
+	description = "<span class='warning'>I showered with my clothes on, I'm a fucking idiot.</span>\n"
+	mood_change = -3
+	timeout = 900
+
+/datum/mood_event/sapped
+	description = "<span class='boldwarning'>Some unexplainable sadness is consuming me...</span>\n"
+	mood_change = -15
+	timeout = 900
+
+/datum/mood_event/back_pain
+	description = "<span class='boldwarning'>Bags never sit right on my back, this hurts like hell!</span>\n"
+	mood_change = -15
+
+/datum/mood_event/sad_empath
+	description = "<span class='warning'>Someone seems upset...</span>\n"
+	mood_change = -2
+	timeout = 600
+
+/datum/mood_event/sad_empath/add_effects(mob/sadtarget)
+	description = "<span class='warning'>[sadtarget.name] seems upset...</span>\n"
+
+/datum/mood_event/sacrifice_bad
+	description ="<span class='warning'>Those darn savages!</span>\n"
+	mood_change = -5
+	timeout = 2 MINUTES
+
+/datum/mood_event/artbad
+	description = "<span class='warning'>I've produced better art than that from my ass.</span>\n"
+	mood_change = -2
+	timeout = 1200
+
+/datum/mood_event/gates_of_mansus
+	description = "<span class='boldwarning'>I CAN'T- I CAN'T- I CAN'T- SEE ME- MYSELF- WHERE- WHAT AM I?</span>\n"
+	mood_change = -25
+	timeout = 4 MINUTES
+
 //These are unused so far but I want to remember them to use them later
 /datum/mood_event/cloned_corpse
 	description = "<span class='boldwarning'>I recently saw my own corpse...</span>\n"
@@ -121,3 +221,4 @@
 /datum/mood_event/surgery
 	description = "<span class='boldwarning'>HE'S CUTTING ME OPEN!!</span>\n"
 	mood_change = -8
+

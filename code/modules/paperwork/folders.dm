@@ -44,20 +44,35 @@
 		if(!user.is_literate())
 			to_chat(user, "<span class='notice'>You scribble illegibly on the cover of [src]!</span>")
 			return
-		var/n_name = copytext(sanitize(input(user, "What would you like to label the folder?", "Folder Labelling", null) as text), 1, MAX_NAME_LEN)
+		var/inputvalue = stripped_input(user, "What would you like to label the folder?", "Folder Labelling", "", MAX_NAME_LEN)
+
+		if(!inputvalue)
+			return
+
 		if(user.canUseTopic(src, BE_CLOSE))
-			name = "folder[(n_name ? " - '[n_name]'" : null)]"
+			name = "folder[(inputvalue ? " - '[inputvalue]'" : null)]"
 
 
 /obj/item/folder/attack_self(mob/user)
-	var/dat = "<title>[name]</title>"
+	var/dat = "<HTML><HEAD><meta charset='UTF-8'><title>[name]</title></HEAD><BODY>"
 
 	for(var/obj/item/I in src)
 		dat += "<A href='?src=[REF(src)];remove=[REF(I)]'>Remove</A> - <A href='?src=[REF(src)];read=[REF(I)]'>[I.name]</A><BR>"
+	dat += "</BODY></HTML>"
 	user << browse(dat, "window=folder")
 	onclose(user, "folder")
 	add_fingerprint(usr)
 
+/obj/item/folder/AltClick(mob/living/user)
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
+	if(contents.len)
+		to_chat(user, "<span class='warning'>You can't fold this folder with something still inside!</span>")
+		return
+	to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
+	var/obj/item/I = new /obj/item/stack/sheet/cardboard
+	qdel(src)
+	user.put_in_hands(I)
 
 /obj/item/folder/Topic(href, href_list)
 	..()
@@ -67,14 +82,14 @@
 	if(usr.contents.Find(src))
 
 		if(href_list["remove"])
-			var/obj/item/I = locate(href_list["remove"])
-			if(istype(I) && I.loc == src)
+			var/obj/item/I = locate(href_list["remove"]) in src
+			if(istype(I))
 				I.forceMove(usr.loc)
 				usr.put_in_hands(I)
 
 		if(href_list["read"])
-			var/obj/item/I = locate(href_list["read"])
-			if(istype(I) && I.loc == src)
+			var/obj/item/I = locate(href_list["read"]) in src
+			if(istype(I))
 				usr.examinate(I)
 
 		//Update everything

@@ -1,12 +1,16 @@
+#define FLUKEOPS_TIME_DELAY 12000 // 20 minutes, how long before the credits stop calling the nukies flukeops
+
 /datum/game_mode/nuclear
 	name = "nuclear emergency"
 	config_tag = "nuclear"
+	report_type = "nuclear"
 	false_report_weight = 10
 	required_players = 30 // 30 players - 3 players to be the nuke ops = 27 players remaining
 	required_enemies = 2
 	recommended_enemies = 5
 	antag_flag = ROLE_OPERATIVE
 	enemy_minimum_age = 14
+	title_icon = "nukeops"
 
 	announce_span = "danger"
 	announce_text = "Syndicate forces are approaching the station in an attempt to destroy it!\n\
@@ -26,7 +30,7 @@
 	var/n_agents = min(round(num_players() / 10), antag_candidates.len, agents_possible)
 	if(n_agents >= required_enemies)
 		for(var/i = 0, i < n_agents, ++i)
-			var/datum/mind/new_op = pick_n_take(antag_candidates)
+			var/datum/mind/new_op = antag_pick(antag_candidates)
 			pre_nukeops += new_op
 			new_op.assigned_role = "Nuclear Operative"
 			new_op.special_role = "Nuclear Operative"
@@ -57,12 +61,6 @@
 	if (nukes_left == 0)
 		return TRUE
 	return ..()
-
-/datum/game_mode/proc/are_operatives_dead()
-	for(var/datum/mind/operative_mind in get_antag_minds(/datum/antagonist/nukeop))
-		if(ishuman(operative_mind.current) && (operative_mind.current.stat != DEAD))
-			return FALSE
-	return TRUE
 
 /datum/game_mode/nuclear/check_finished()
 	//Keep the round going if ops are dead but bomb is ticking.
@@ -113,7 +111,7 @@
 			can activate this explosive is on your station. Ensure that it is protected at all times, and remain alert for possible intruders."
 
 /proc/is_nuclear_operative(mob/M)
-	return M && istype(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/nukeop)
+	return M?.mind?.has_antag_datum(/datum/antagonist/nukeop)
 
 /datum/outfit/syndicate
 	name = "Syndicate Operative - Basic"
@@ -121,7 +119,7 @@
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/combat
-	back = /obj/item/storage/backpack
+	back = /obj/item/storage/backpack/fireproof
 	ears = /obj/item/radio/headset/syndicate/alt
 	l_pocket = /obj/item/pinpointer/nuke/syndicate
 	id = /obj/item/card/id/syndicate
@@ -137,10 +135,12 @@
 /datum/outfit/syndicate/leader
 	name = "Syndicate Leader - Basic"
 	id = /obj/item/card/id/syndicate/nuke_leader
+	gloves = /obj/item/clothing/gloves/krav_maga/combatglovesplus
 	r_hand = /obj/item/nuclear_challenge
 	command_radio = TRUE
 
 /datum/outfit/syndicate/no_crystals
+	name = "Syndicate Operative - Reinforcement"
 	tc = 0
 
 /datum/outfit/syndicate/post_equip(mob/living/carbon/human/H)
@@ -150,7 +150,7 @@
 	if(command_radio)
 		R.command = TRUE
 
-	if(tc)
+	if(ispath(uplink_type, /obj/item/uplink/nuclear) || tc) // /obj/item/uplink/nuclear understands 0 tc
 		var/obj/item/U = new uplink_type(H, H.key, tc)
 		H.equip_to_slot_or_del(U, SLOT_IN_BACKPACK)
 
@@ -170,8 +170,26 @@
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
 	internals_slot = SLOT_R_STORE
 	belt = /obj/item/storage/belt/military
-	r_hand = /obj/item/gun/ballistic/automatic/shotgun/bulldog
+	r_hand = /obj/item/gun/ballistic/shotgun/bulldog
 	backpack_contents = list(/obj/item/storage/box/syndie=1,\
 		/obj/item/tank/jetpack/oxygen/harness=1,\
 		/obj/item/gun/ballistic/automatic/pistol=1,\
 		/obj/item/kitchen/knife/combat/survival)
+
+/datum/game_mode/nuclear/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	if((world.time-SSticker.round_start_time) < (FLUKEOPS_TIME_DELAY)) // If the nukies died super early, they're basically a massive disappointment
+		title_icon = "flukeops"
+
+	round_credits += "<center><h1>The [syndicate_name()] Operatives:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/operative in nuke_team.members)
+		round_credits += "<center><h2>[operative.name] as a nuclear operative</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>The operatives blew themselves up!</h2>", "<center><h2>Their remains could not be identified!</h2>")
+		round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits

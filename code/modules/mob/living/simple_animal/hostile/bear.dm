@@ -39,6 +39,8 @@
 	faction = list("russian")
 	gold_core_spawnable = HOSTILE_SPAWN
 
+	do_footstep = TRUE
+
 //SPACE BEARS! SQUEEEEEEEE~     OW! FUCK! IT BIT MY HAND OFF!!
 /mob/living/simple_animal/hostile/bear/Hudson
 	name = "Hudson"
@@ -67,6 +69,9 @@
 	health = 120
 	maxHealth = 120
 	armored = TRUE
+
+/mob/living/simple_animal/hostile/bear/russian/sentience_act()
+	faction -= "russian"
 
 /mob/living/simple_animal/hostile/bear/update_icons()
 	..()

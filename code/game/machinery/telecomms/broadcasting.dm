@@ -82,9 +82,9 @@
 
 /datum/signal/subspace/proc/send_to_receivers()
 	for(var/obj/machinery/telecomms/receiver/R in GLOB.telecomms_list)
-		R.receive_signal(src)
+		R.receive_signal(src.copy(src))
 	for(var/obj/machinery/telecomms/allinone/R in GLOB.telecomms_list)
-		R.receive_signal(src)
+		R.receive_signal(src.copy(src))
 
 /datum/signal/subspace/proc/broadcast()
 	set waitfor = FALSE
@@ -100,9 +100,10 @@
 	obj/source,  // the originating radio
 	frequency,  // the frequency the signal is taking place on
 	atom/movable/virtualspeaker/speaker,  // representation of the method's speaker
-	datum/language/language,  // the langauge of the message
+	datum/language/language,  // the language of the message
 	message,  // the text content of the message
-	spans  // the list of spans applied to the message
+	spans,  // the list of spans applied to the message
+	lvls = null //Yogs -- For NTSL. It's the list of Z-levels that should hear this message.
 )
 	src.source = source
 	src.frequency = frequency
@@ -117,8 +118,13 @@
 		"language" = lang_instance.name,
 		"spans" = spans
 	)
-	var/turf/T = get_turf(source)
-	levels = list(T.z)
+	//Yogs start
+	if(lvls)
+		levels = lvls
+	else
+	//Yogs end, technically, I guess
+		var/turf/T = get_turf_global(source) // yogs - get_turf_global instead of get_turf
+		levels = list(T.z)
 
 /datum/signal/subspace/vocal/copy()
 	var/datum/signal/subspace/vocal/copy = new(source, frequency, virt, language)
@@ -132,7 +138,7 @@
 	set waitfor = FALSE
 
 	// Perform final composition steps on the message.
-	var/message = copytext(data["message"], 1, MAX_BROADCAST_LEN)
+	var/message = copytext_char(data["message"], 1, MAX_BROADCAST_LEN)
 	if(!message)
 		return
 	var/compression = data["compression"]
@@ -192,13 +198,18 @@
 
 	var/spans_part = ""
 	if(length(spans))
-		spans_part = "("
+		spans_part = "(spans:"
 		for(var/S in spans)
 			spans_part = "[spans_part] [S]"
 		spans_part = "[spans_part] ) "
 
 	var/lang_name = data["language"]
+	var/log_text = "\[[get_radio_name(frequency)]\] [spans_part]\"[message]\" (language: [lang_name])"
 
-	log_telecomms("[datum_info_line(virt.source)] : \[[get_radio_name(frequency)]\] [spans_part]\"[message]\" language: [lang_name] at [atom_loc_line(get_turf(src.source))]")
+	var/mob/source_mob = virt.source
+	if(istype(source_mob))
+		source_mob.log_message(log_text, LOG_TELECOMMS)
+	else
+		log_telecomms("[virt.source] [log_text] [loc_name(get_turf(virt.source))]")
 
 	QDEL_IN(virt, 50)  // Make extra sure the virtualspeaker gets qdeleted

@@ -51,9 +51,18 @@
 			to_chat(usr, "<span class='warning'>You've already escaped. Never going back to that place again!</span>")
 			return
 		if(no_destination_swap)
+			if(M.mode == SHUTTLE_RECHARGING)
+				to_chat(usr, "<span class='warning'>Shuttle engines are not ready for use.</span>")
+				return
 			if(M.mode != SHUTTLE_IDLE)
 				to_chat(usr, "<span class='warning'>Shuttle already in transit.</span>")
 				return
+
+		if(!(href_list["move"] in params2list(possible_destinations)))
+			log_admin("[usr] attempted to forge a target location through a href exploit on [src] with target location \"[href_list["move"]]\"")
+			message_admins("[ADMIN_FULLMONTY(usr)] attempted to forge a target location through a href exploit on [src]")
+			return
+			
 		switch(SSshuttle.moveShuttle(shuttleId, href_list["move"], 1))
 			if(0)
 				say("Shuttle departing. Please stand away from the doors.")
@@ -69,6 +78,6 @@
 	obj_flags |= EMAGGED
 	to_chat(user, "<span class='notice'>You fried the consoles ID checking system.</span>")
 
-/obj/machinery/computer/shuttle/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
+/obj/machinery/computer/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(port && (shuttleId == initial(shuttleId) || override))
 		shuttleId = port.id

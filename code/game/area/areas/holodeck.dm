@@ -7,6 +7,7 @@
 
 	var/obj/machinery/computer/holodeck/linked
 	var/restricted = 0 // if true, program goes on emag list
+	var/minimum_sec_level = SEC_LEVEL_GREEN //override this var if you want the program to be locked to a different alert-level (eg. SEC_LEVEL_BLUE, SEC_LEVEL_RED, SEC_LEVEL_DELTA)
 
 /*
 	Power tracking: Use the holodeck computer's power grid
@@ -77,6 +78,7 @@
 
 /area/holodeck/rec_center/medical
 	name = "Holodeck - Emergency Medical"
+	minimum_sec_level = SEC_LEVEL_RED
 
 /area/holodeck/rec_center/pet_lounge
 	name = "Holodeck - Pet Park"
@@ -99,10 +101,13 @@
 /area/holodeck/rec_center/winterwonderland
 	name = "Holodeck - Winter Wonderland"
 
+/area/holodeck/rec_center/photobooth
+	name = "Holodeck - Photobooth"
+
 // Bad programs
 
 /area/holodeck/rec_center/burn
-	name = "Holodeck - Atmospheric Burn Test"
+	name = "Holodeck - Incinerator"
 	restricted = 1
 
 /area/holodeck/rec_center/wildlife

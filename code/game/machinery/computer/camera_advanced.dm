@@ -12,6 +12,9 @@
 	var/datum/action/innate/camera_jump/jump_action = new
 	var/list/actions = list()
 
+	///Should we supress any view changes?
+	var/should_supress_view_changes  = TRUE
+
 	light_color = LIGHT_COLOR_RED
 
 /obj/machinery/computer/camera_advanced/Initialize()
@@ -47,7 +50,10 @@
 		jump_action.Grant(user)
 		actions += jump_action
 
-/obj/machinery/computer/camera_advanced/proc/remove_eye_control(mob/living/user)
+/obj/machinery/proc/remove_eye_control(mob/living/user)
+	CRASH("[type] does not implement ai eye handling")
+
+/obj/machinery/computer/camera_advanced/remove_eye_control(mob/living/user)
 	if(!user)
 		return
 	for(var/V in actions)
@@ -66,6 +72,7 @@
 
 	current_user = null
 	user.unset_machine()
+	user.client.view_size.unsupress()
 	playsound(src, 'sound/machines/terminal_off.ogg', 25, 0)
 
 /obj/machinery/computer/camera_advanced/check_eye(mob/user)
@@ -95,6 +102,8 @@
 /obj/machinery/computer/camera_advanced/attack_hand(mob/user)
 	. = ..()
 	if(.)
+		return
+	if(!is_operational()) //you cant use broken machine you chumbis
 		return
 	if(current_user)
 		to_chat(user, "The console is already in use!")
@@ -149,6 +158,8 @@
 	user.remote_control = eyeobj
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
+	if(should_supress_view_changes )
+		user.client.view_size.supress()
 
 /mob/camera/aiEye/remote
 	name = "Inactive Camera Eye"
@@ -157,7 +168,7 @@
 	var/cooldown = 0
 	var/acceleration = 1
 	var/mob/living/eye_user = null
-	var/obj/machinery/computer/camera_advanced/origin
+	var/obj/machinery/origin
 	var/eye_initialized = 0
 	var/visible_icon = 0
 	var/image/user_image = null
@@ -170,7 +181,7 @@
 
 /mob/camera/aiEye/remote/Destroy()
 	if(origin && eye_user)
-		origin.remove_eye_control(eye_user)
+		origin.remove_eye_control(eye_user, src)
 	origin = null
 	. = ..()
 	eye_user = null
@@ -287,9 +298,9 @@
 
 /obj/machinery/computer/camera_advanced/ratvar/CreateEye()
 	..()
-	eyeobj.visible_icon = 1
-	eyeobj.icon = 'icons/obj/abductor.dmi' //in case you still had any doubts
-	eyeobj.icon_state = "camera_target"
+	eyeobj.visible_icon = TRUE
+	eyeobj.icon = 'icons/mob/cameramob.dmi' //in case you still had any doubts
+	eyeobj.icon_state = "generic_camera"
 
 /obj/machinery/computer/camera_advanced/ratvar/GrantActions(mob/living/carbon/user)
 	..()
@@ -338,6 +349,9 @@
 		to_chat(user, "<span class='sevtug_small'>[prob(1) ? "Servant cannot into space." : "You can't teleport into space."]</span>")
 		return
 	else if(T.flags_1 & NOJAUNT_1)
+		to_chat(user, "<span class='sevtug_small'>This tile is blessed by strange energies and deflects the warp.</span>")
+		return
+	else if(locate(/obj/effect/blessing, T))
 		to_chat(user, "<span class='sevtug_small'>This tile is blessed by holy water and deflects the warp.</span>")
 		return
 	var/area/AR = get_area(T)

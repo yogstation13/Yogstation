@@ -1,0 +1,6 @@
+author: "Darkstick"
+delete-after: true 
+changes: 
+  - rscadd: "lava holodeck"
+  - rscdel: "plasmaflood holodeck"
+  - tweak: "changed name of program accordingly"

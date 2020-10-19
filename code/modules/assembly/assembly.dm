@@ -33,7 +33,8 @@
 
 /obj/item/assembly/proc/on_attach()
 
-/obj/item/assembly/proc/on_detach() //call this when detaching it from a device. handles any special functions that need to be updated ex post facto
+//Call this when detaching it from a device. handles any special functions that need to be updated ex post facto
+/obj/item/assembly/proc/on_detach()
 	if(!holder)
 		return FALSE
 	forceMove(holder.drop_location())
@@ -101,6 +102,8 @@
 	..()
 
 /obj/item/assembly/screwdriver_act(mob/living/user, obj/item/I)
+	if(..())
+		return TRUE
 	if(toggle_secure())
 		to_chat(user, "<span class='notice'>\The [src] is ready!</span>")
 	else
@@ -109,8 +112,8 @@
 	return TRUE
 
 /obj/item/assembly/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>\The [src] [secured? "is secured and ready to be used!" : "can be attached to other things."]</span>")
+	. = ..()
+	. += "<span class='notice'>\The [src] [secured? "is secured and ready to be used!" : "can be attached to other things."]</span>"
 
 
 /obj/item/assembly/attack_self(mob/user)
@@ -122,3 +125,8 @@
 
 /obj/item/assembly/interact(mob/user)
 	return ui_interact(user)
+
+/obj/item/assembly/ui_host(mob/user)
+	if(holder)
+		return holder
+	return src

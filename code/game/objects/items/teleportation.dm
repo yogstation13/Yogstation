@@ -29,12 +29,15 @@
 /obj/item/locator/attack_self(mob/user)
 	user.set_machine(src)
 	var/dat
+	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
+	
 	if (temp)
 		dat = "[temp]<BR><BR><A href='byond://?src=[REF(src)];temp=1'>Clear</A>"
 	else
 		dat = {"
 <B>Persistent Signal Locator</B><HR>
 <A href='?src=[REF(src)];refresh=1'>Refresh</A>"}
+	dat += "</BODY></HTML>"
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")
 	return
@@ -80,7 +83,7 @@
 					else
 						var/mob/living/M = W.loc
 						if (M.stat == DEAD)
-							if (M.timeofdeath + 6000 < world.time)
+							if (M.timeofdeath + W.lifespan_postmortem < world.time)
 								continue
 
 					var/turf/tr = get_turf(W)
@@ -131,6 +134,7 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/list/active_portal_pairs
 	var/max_portal_pairs = 3
+	var/atmos_link_override
 
 /obj/item/hand_tele/Initialize()
 	. = ..()
@@ -197,7 +201,7 @@
 		to_chat(user, "<span class='notice'>\The [src] is malfunctioning.</span>")
 		return
 	user.show_message("<span class='notice'>Locked In.</span>", 2)
-	var/list/obj/effect/portal/created = create_portal_pair(current_location, get_teleport_turf(get_turf(T)), src, 300, 1)
+	var/list/obj/effect/portal/created = create_portal_pair(current_location, get_teleport_turf(get_turf(T)), src, 300, 1, null, atmos_link_override)
 	if(!(LAZYLEN(created) == 2))
 		return
 	try_move_adjacent(created[1])

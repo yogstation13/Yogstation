@@ -17,9 +17,9 @@
 	var/mania_cost = 150
 
 /obj/structure/destructible/clockwork/powered/mania_motor/examine(mob/user)
-	..()
+	. = ..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
-		to_chat(user, "<span class='sevtug_small'>It requires <b>[DisplayPower(mania_cost)]</b> to run.</span>")
+		. += "<span class='sevtug_small'>It requires <b>[DisplayEnergy(mania_cost)]</b> to run.</span>"
 
 /obj/structure/destructible/clockwork/powered/mania_motor/forced_disable(bad_effects)
 	if(active)
@@ -63,4 +63,4 @@
 				break
 		if(!M)
 			M = H.apply_status_effect(STATUS_EFFECT_MANIAMOTOR, src)
-		M.severity = CLAMP(M.severity + ((11 - get_dist(src, H)) * efficiency * efficiency), 0, MAX_MANIA_SEVERITY)
+		M.severity = clamp(M.severity + ((11 - get_dist(src, H)) * efficiency * efficiency), 0, MAX_MANIA_SEVERITY)

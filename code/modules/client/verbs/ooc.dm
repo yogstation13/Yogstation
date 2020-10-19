@@ -1,3 +1,7 @@
+GLOBAL_VAR_INIT(OOC_COLOR, null)//If this is null, use the CSS for OOC. Otherwise, use a custom colour.
+GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
+GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc color
+
 /client/verb/ooc(msg as text)
 	set name = "OOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
 	set category = "OOC"
@@ -19,13 +23,13 @@
 		if(prefs.muted & MUTE_OOC)
 			to_chat(src, "<span class='danger'>You cannot use OOC (muted).</span>")
 			return
-	if(jobban_isbanned(src.mob, "OOC"))
+	if(is_banned_from(ckey, "OOC"))
 		to_chat(src, "<span class='danger'>You have been banned from OOC.</span>")
 		return
 	if(QDELETED(src))
 		return
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	var/raw_msg = msg
 
 	if(!msg)
@@ -34,7 +38,11 @@
 	msg = pretty_filter(msg) //yogs
 	msg = emoji_parse(msg)
 
-	if((copytext(msg, 1, 2) in list(".",";",":","#")) || (findtext(lowertext(copytext(msg, 1, 5)), "say")))
+	//yogs start -- smarter ick ock detection
+	var/regex/ickock = regex(@"^\s*(#.*|,.*|(:|;)(\w|\s|\d)|(say \x22)|\.\.?(?!\.))","i")
+	//captures a lot of accidental in character speech in ooc chat
+	if(length(msg) > 4 && ickock.Find(msg))
+	//yogs end
 		if(alert("Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", "No", "Yes") != "Yes")
 			return
 
@@ -51,36 +59,96 @@
 		to_chat(src, "<span class='danger'>You have OOC muted.</span>")
 		return
 
-
-	log_talk(mob,"[key_name(src)] : [raw_msg]",LOGOOC)
+	mob.log_talk(raw_msg, LOG_OOC)
 	if(holder && holder.fakekey) //YOGS start - webhook support
 		webhook_send_ooc(holder.fakekey, msg)
 	else
 		webhook_send_ooc(key, msg) //YOGS end - webhook support
-	mob.log_message("[key]: [raw_msg]", INDIVIDUAL_OOC_LOG)
 
 	var/keyname = key
 	if(prefs.unlock_content)
 		if(prefs.toggles & MEMBER_PUBLIC)
 			keyname = "<font color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
-	for(var/client/C in GLOB.clients)
-		if(C.prefs.chat_toggles & CHAT_OOC)
-			if(holder)
-				if(!holder.fakekey || C.holder)
-					if(check_rights_for(src, R_ADMIN))
-						to_chat(C, "<span class='adminooc'>[CONFIG_GET(flag/allow_admin_ooccolor) && prefs.ooccolor ? "<font color=[prefs.ooccolor]>" :"" ]<span class='prefix'>[find_admin_rank(src)] OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span></font>") //Yogs - Added the [find_admin_rank(src)] below, to get the rank of the admin. check yogstation\code\module\client\verbs\ooc for the proc
-					else
-						to_chat(C, "<span class='adminobserverooc'><span class='prefix'>OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span>")
-				else
-					to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></span></font>")
-			else if(!(key in C.prefs.ignoring))
-				// yogs start - Donor OOC tag
-				if(is_donator(src))
-					to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>\[Donator\] OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>")
-				else
-					to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>")
-				// yogs end
+	//YOG START - Yog OOC
+
+	//PINGS
+	var/regex/ping = regex(@"@+(((([\s]{0,1}[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})","g")//Now lets check if they pinged anyone
+	// Regex101 link to this specific regex, as of 3rd April 2019: https://regex101.com/r/YtmLDs/7
+	var/list/pinged = list()
+	while(ping.Find(msg))
+		for(var/x in ping.group)
+			pinged |= ckey(x)
+	var/list/clientkeys = list()
+	for(var/x in GLOB.clients)// If the "SENDING MESSAGES OUT" for-loop starts iterating over something else, make this GLOB *that* something else.
+		var/client/Y = x //God bless typeless for-loops
+		clientkeys += Y.ckey
+		if(Y.holder && Y.holder.fakekey)
+			clientkeys += Y.holder.fakekey
+	pinged &= clientkeys
+	if(pinged.len)
+		if((world.time - last_ping_time) < 30)
+			to_chat(src,"<span class='danger'>You are pinging too much! Please wait before pinging again.</span>")
+			return
+		last_ping_time = world.time
+
+	//MESSAGE CRAFTING -- This part handles actually making the messages that are to be displayed.
+	var/bussedcolor = GLOB.OOC_COLOR ? GLOB.OOC_COLOR : "" // So /TG/ decided to fuck up how OOC colours are handled.
+	// So we're sticking a weird <font color='[bussedcolor]'></font> into shit to handle their new system.
+	// Completely rewrote this OOC-handling code and /TG/ still manages to make it bad. Hate tg.
+	var/oocmsg = ""; // The message sent to normal people
+	var/oocmsg_toadmins = FALSE; // The message sent to admins.
+	if(holder) // If the speaker is an admin or something
+		if(check_rights_for(src, R_ADMIN)) // If they're supposed to have their own admin OOC colour
+			oocmsg += "<span class='adminooc'>[(CONFIG_GET(flag/allow_admin_ooccolor) && prefs.ooccolor) ? "<font color=[prefs.ooccolor]>" :"" ]<span class='prefix'>[find_admin_rank(src)]" // The header for an Admin's OOC.
+		else // Else if they're an AdminObserver
+			oocmsg += "<span class='adminobserverooc'><span class='prefix'>[find_admin_rank(src)]" // The header for an AO's OOC.
+		//Check yogstation\code\module\client\verbs\ooc for the find_admin_rank definition.
+
+		if(holder.fakekey) // If they're stealhminning
+			oocmsg_toadmins = oocmsg + "OOC:</span> <EM>[keyname]/([holder.fakekey]):</EM> <span class='message linkify'>[msg]</span></span></font>"
+			// ^ Message sent to people who should know when someone's stealthminning
+			oocmsg = "<span class='ooc'><font color='[bussedcolor]'><span class='prefix'>OOC:</span> <EM>[holder.fakekey]:</EM> <span class='message linkify'>[msg]</span></font></span>"
+			// ^ Message sent to normal people
+		else
+			oocmsg += "OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>" // Footer for an admin or AO's OOC.
+			oocmsg_toadmins = oocmsg
+	else
+		if(is_mentor()) // If the speaker is a mentor
+			oocmsg = "<span class='ooc'>\[Mentor]"
+			oocmsg += "<font color='[prefs.ooccolor]'>"
+		else
+			oocmsg = "<span class='ooc'>[(is_donator(src) && !CONFIG_GET(flag/everyone_is_donator)) ? "(Donator)" : ""]"
+			oocmsg += "<font color='[bussedcolor]'>"
+		oocmsg += "<span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></font></span>"
+		oocmsg_toadmins = oocmsg
+
+	//SENDING THE MESSAGES OUT
+	for(var/c in GLOB.clients)
+		var/client/C = c // God bless typeless for-loops
+		if( (C.prefs.chat_toggles & CHAT_OOC) && (holder || !(key in C.prefs.ignoring)) )
+			var/sentmsg // The message we're sending to this specific person
+			if(C.holder) // If they're an admin-ish
+				sentmsg = oocmsg_toadmins // Get the admin one
+			else
+				sentmsg = oocmsg
+			if( (ckey(C.key) in pinged) || (C.holder && C.holder.fakekey && (C.holder.fakekey in pinged)) )
+				var/sound/pingsound = sound('yogstation/sound/misc/bikehorn_alert.ogg')
+				pingsound.volume = 50
+				pingsound.pan = 80
+				SEND_SOUND(C,pingsound)
+				sentmsg = "<span style='background-color: #ccccdd'>" + sentmsg + "</span>"
+			to_chat(C,sentmsg)
+	//YOGS END
+	var/data = list()
+	data["normal"] = oocmsg
+	data["admin"] = oocmsg_toadmins
+	
+	var/source = list()
+	source["is_admin"] = !!holder
+	source["key"] = key
+	
+	send2otherserver(json_encode(source), json_encode(data), "ooc_relay")
 
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc
@@ -101,25 +169,23 @@
 	else
 		GLOB.dooc_allowed = !GLOB.dooc_allowed
 
-GLOBAL_VAR_INIT(normal_ooc_colour, OOC_COLOR)
-
 /client/proc/set_ooc(newColor as color)
 	set name = "Set Player OOC Color"
 	set desc = "Modifies player OOC Color"
 	set category = "Fun"
-	GLOB.normal_ooc_colour = sanitize_ooccolor(newColor)
+	GLOB.OOC_COLOR = sanitize_ooccolor(newColor)
 
 /client/proc/reset_ooc()
 	set name = "Reset Player OOC Color"
 	set desc = "Returns player OOC Color to default"
 	set category = "Fun"
-	GLOB.normal_ooc_colour = OOC_COLOR
+	GLOB.OOC_COLOR = null
 
 /client/verb/colorooc()
 	set name = "Set Your OOC Color"
 	set category = "Preferences"
 
-	if(!holder || check_rights_for(src, R_ADMIN))
+	if(!holder || !check_rights_for(src, R_ADMIN))
 		if(!is_content_unlocked())
 			return
 
@@ -135,7 +201,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, OOC_COLOR)
 	set desc = "Returns your OOC Color to default"
 	set category = "Preferences"
 
-	if(!holder || check_rights_for(src, R_ADMIN))
+	if(!holder || !check_rights_for(src, R_ADMIN))
 		if(!is_content_unlocked())
 			return
 
@@ -268,7 +334,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, OOC_COLOR)
 		return
 
 	var/list/body = list()
-	body += "<html><head><title>Playtime for [key]</title></head><BODY><BR>Playtime:"
+	body += "<html><head><meta charset='UTF-8'><title>Playtime for [key]</title></head><BODY><BR>Playtime:"
 	body += get_exp_report()
 	body += "</BODY></HTML>"
 	usr << browse(body.Join(), "window=playerplaytime[ckey];size=550x615")
@@ -357,3 +423,25 @@ GLOBAL_VAR_INIT(normal_ooc_colour, OOC_COLOR)
 
 		pct += delta
 		winset(src, "mainwindow.split", "splitter=[pct]")
+
+
+/client/verb/policy()
+	set name = "Show Policy"
+	set desc = "Show special server rules related to your current character."
+	set category = "OOC"
+
+	//Collect keywords
+	var/list/keywords = mob.get_policy_keywords()
+	var/header = get_policy(POLICY_VERB_HEADER)
+	var/list/policytext = list(header,"<hr>")
+	var/anything = FALSE
+	for(var/keyword in keywords)
+		var/p = get_policy(keyword)
+		if(p)
+			policytext += p
+			policytext += "<hr>"
+			anything = TRUE
+	if(!anything)
+		policytext += "No related rules found."
+
+	usr << browse(policytext.Join(""),"window=policy")

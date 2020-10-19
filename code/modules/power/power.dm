@@ -25,9 +25,16 @@
 //////////////////////////////
 
 // common helper procs for all power machines
+// All power generation handled in add_avail()
+// Machines should use add_load(), surplus(), avail()
+// Non-machines should use add_delayedload(), delayed_surplus(), newavail()
+
 /obj/machinery/power/proc/add_avail(amount)
 	if(powernet)
 		powernet.newavail += amount
+		return TRUE
+	else
+		return FALSE
 
 /obj/machinery/power/proc/add_load(amount)
 	if(powernet)
@@ -35,13 +42,29 @@
 
 /obj/machinery/power/proc/surplus()
 	if(powernet)
-		return powernet.avail - powernet.load
+		return clamp(powernet.avail-powernet.load, 0, powernet.avail)
 	else
 		return 0
 
 /obj/machinery/power/proc/avail()
 	if(powernet)
 		return powernet.avail
+	else
+		return 0
+
+/obj/machinery/power/proc/add_delayedload(amount)
+	if(powernet)
+		powernet.delayedload += amount
+
+/obj/machinery/power/proc/delayed_surplus()
+	if(powernet)
+		return clamp(powernet.newavail - powernet.delayedload, 0, powernet.newavail)
+	else
+		return 0
+
+/obj/machinery/power/proc/newavail()
+	if(powernet)
+		return powernet.newavail
 	else
 		return 0
 
@@ -52,13 +75,13 @@
 // defaults to power_channel
 /obj/machinery/proc/powered(var/chan = -1) // defaults to power_channel
 	if(!loc)
-		return 0
+		return FALSE
 	if(!use_power)
-		return 1
+		return TRUE
 
 	var/area/A = get_area(src)		// make sure it's in an area
 	if(!A)
-		return 0					// if not, then not powered
+		return FALSE					// if not, then not powered
 	if(chan == -1)
 		chan = power_channel
 	return A.powered(chan)	// return power status of the area
@@ -81,35 +104,47 @@
 /obj/machinery/proc/removeStaticPower(value, powerchannel)
 	addStaticPower(-value, powerchannel)
 
-/obj/machinery/proc/power_change()		// called whenever the power settings of the containing area change
-										// by default, check equipment channel & set flag
-										// can override if needed
+/**
+  * Called whenever the power settings of the containing area change
+  *
+  * by default, check equipment channel & set flag, can override if needed
+  *
+  * Returns TRUE if the NOPOWER flag was toggled
+  */
+/obj/machinery/proc/power_change()
+	if(stat & BROKEN)
+		return
 	if(powered(power_channel))
+		if(stat & NOPOWER)
+			SEND_SIGNAL(src, COMSIG_MACHINERY_POWER_RESTORED)
+			. = TRUE
 		stat &= ~NOPOWER
 	else
-
+		if(!(stat & NOPOWER))
+			SEND_SIGNAL(src, COMSIG_MACHINERY_POWER_LOST)
+			. = TRUE
 		stat |= NOPOWER
-	return
+	update_icon()
 
 // connect the machine to a powernet if a node cable is present on the turf
 /obj/machinery/power/proc/connect_to_network()
 	var/turf/T = src.loc
 	if(!T || !istype(T))
-		return 0
+		return FALSE
 
 	var/obj/structure/cable/C = T.get_cable_node() //check if we have a node cable on the machine turf, the first found is picked
 	if(!C || !C.powernet)
-		return 0
+		return FALSE
 
 	C.powernet.add_machine(src)
-	return 1
+	return TRUE
 
 // remove and disconnect the machine from its current powernet
 /obj/machinery/power/proc/disconnect_from_network()
 	if(!powernet)
-		return 0
+		return FALSE
 	powernet.remove_machine(src)
-	return 1
+	return TRUE
 
 // attach a wire to a power machine - leads from the turf you are standing on
 //almost never called, overwritten by all power machines but terminal and generator
@@ -330,7 +365,7 @@
 		power_source = cell
 		shock_damage = cell_damage
 	var/drained_hp = M.electrocute_act(shock_damage, source, siemens_coeff) //zzzzzzap!
-	add_logs(source, M, "electrocuted")
+	log_combat(source, M, "electrocuted")
 
 	var/drained_energy = drained_hp*20
 
@@ -338,7 +373,7 @@
 		source_area.use_power(drained_energy/GLOB.CELLRATE)
 	else if (istype(power_source, /datum/powernet))
 		var/drained_power = drained_energy/GLOB.CELLRATE //convert from "joules" to "watts"
-		PN.load+=drained_power
+		PN.delayedload += (min(drained_power, max(PN.newavail - PN.delayedload, 0)))
 	else if (istype(power_source, /obj/item/stock_parts/cell))
 		cell.use(drained_energy)
 	return drained_energy

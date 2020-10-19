@@ -1,7 +1,7 @@
 /datum/antagonist/traitor/internal_affairs/iaa_process()
-	if(owner && owner.current && owner.current.stat!=DEAD)
+	if(owner && owner.current && !iscyborg(owner.current) && owner.current.stat!=DEAD)
 		var/new_objective = TRUE
-		for(var/objective_ in owner.objectives)
+		for(var/objective_ in objectives)
 			if(istype(objective_, /datum/objective/hijack) || istype(objective_, /datum/objective/martyr) || istype(objective_, /datum/objective/block))
 				new_objective = FALSE
 				break
@@ -14,7 +14,7 @@
 
 		if(new_objective)
 			var/list/other_traitors = SSticker.mode.traitors - owner
-			for(var/objective_ in owner.objectives)
+			for(var/objective_ in objectives)
 				if(!is_internal_objective(objective_))
 					continue
 				var/datum/objective/assassinate/internal/objective = objective_
@@ -22,7 +22,7 @@
 					other_traitors -= objective.target
 			for(var/tator in other_traitors)
 				var/datum/mind/tatortottle = tator
-				if(!tatortottle.current || tatortottle.current.stat == DEAD)
+				if(!tatortottle.current || tatortottle.current.stat == DEAD || iscyborg(tatortottle.current))
 					other_traitors -= tatortottle
 
 			if(other_traitors.len)
@@ -40,7 +40,7 @@
 					kill_objective.update_explanation_text()
 					add_objective(kill_objective)
 			else
-				for(var/objective_ in owner.objectives)
+				for(var/objective_ in objectives)
 					remove_objective(objective_)
 
 				if(issilicon(owner))
@@ -54,8 +54,13 @@
 					add_objective(martyr_objective)
 				else
 					var/datum/objective/hijack/hijack_objective = new
-					hijack_objective.owner = owner.
+					hijack_objective.owner = owner
 					add_objective(hijack_objective)
+
+			if(uplink_holder && owner.current && ishuman(owner.current))
+				var/datum/component/uplink/uplink = uplink_holder.GetComponent(/datum/component/uplink)
+				uplink.telecrystals += 5
+				to_chat(owner, "<span class='notice'>You have been given 5 TC as a reward for completing your objective!</span>")
 
 			owner.announce_objectives()
 
@@ -99,7 +104,7 @@
 			add_objective(martyr_objective)
 		else
 			var/datum/objective/hijack/hijack_objective = new
-			hijack_objective.owner = owner.
+			hijack_objective.owner = owner
 			add_objective(hijack_objective)
 
 	owner.announce_objectives()

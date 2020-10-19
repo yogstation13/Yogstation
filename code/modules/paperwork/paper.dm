@@ -5,6 +5,15 @@
  * lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
  */
 
+#define PAPER_FIELD "<span class=\"paper_field\"></span>"
+
+/datum/langtext // A datum to describe a piece of writing that stores a language value with it.
+	var/text = "" // The text that is written.
+	var/datum/language/lang // the language it's written in.
+/datum/langtext/New(t,datum/language/l)
+	text = t
+	lang = l
+
 /obj/item/paper
 	name = "paper"
 	gender = NEUTER
@@ -22,8 +31,10 @@
 	max_integrity = 50
 	dog_fashion = /datum/dog_fashion/head
 
-	var/info		//What's actually written on the paper.
-	var/info_links	//A different version of the paper which includes html links at fields and EOF
+	var/info = "" // What's prewritten on the paper. Appears first and is a special snowflake callback to how paper used to work.
+	var/coloroverride // A hexadecimal as a string that, if set, overrides the font color of the whole document. Used by photocopiers
+	var/datum/language/infolang // The language info is written in. If left NULL, info will default to being omnilingual and readable by all.
+	var/list/written //What's written on the paper by people. Stores /datum/langtext values, plus plaintext values that mark where fields are.
 	var/stamps		//The (text for the) stamps on the paper.
 	var/fields = 0	//Amount of user created fields
 	var/list/stamped
@@ -31,6 +42,7 @@
 	var/spam_flag = 0
 	var/contact_poison // Reagent ID to transfer on contact
 	var/contact_poison_volume = 0
+	var/next_write_time = 0 // prevent crash exploit
 
 
 /obj/item/paper/pickup(user)
@@ -47,8 +59,8 @@
 	. = ..()
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
+	written = list()
 	update_icon()
-	updateinfolinks()
 
 
 /obj/item/paper/update_icon()
@@ -56,28 +68,26 @@
 	if(resistance_flags & ON_FIRE)
 		icon_state = "paper_onfire"
 		return
-	if(info)
+	if(info || length(written))
 		icon_state = "paper_words"
 		return
 	icon_state = "paper"
 
 
 /obj/item/paper/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Alt-click to fold it.</span>")
-
+	. = ..()
 	var/datum/asset/assets = get_asset_datum(/datum/asset/spritesheet/simple/paper)
 	assets.send(user)
 
 	if(in_range(user, src) || isobserver(user))
 		if(user.is_literate())
-			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info]<HR>[stamps]</BODY></HTML>", "window=[name]")
+			user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[render_body(user)]<HR>[stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 		else
-			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)]<HR>[stamps]</BODY></HTML>", "window=[name]")
+			user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[stars(render_body(user))]<HR>[stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 	else
-		to_chat(user, "<span class='warning'>You're too far away to read it!</span>")
+		. += "<span class='warning'>You're too far away to read it!</span>"
 
 
 /obj/item/paper/verb/rename()
@@ -89,7 +99,7 @@
 		return
 	if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
-		if(H.has_trait(TRAIT_CLUMSY) && prob(25))
+		if(HAS_TRAIT(H, TRAIT_CLUMSY) && prob(25))
 			to_chat(H, "<span class='warning'>You cut yourself on the paper! Ahhhh! Ahhhhh!</span>")
 			H.damageoverlaytemp = 9001
 			H.update_damage_hud()
@@ -123,64 +133,42 @@
 	else //cyborg or AI not seeing through a camera
 		dist = get_dist(src, user)
 	if(dist < 2)
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info]<HR>[stamps]</BODY></HTML>", "window=[name]")
+		usr << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[render_body(user)]<HR>[stamps]</BODY></HTML>", "window=[name]")
 		onclose(usr, "[name]")
 	else
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)]<HR>[stamps]</BODY></HTML>", "window=[name]")
+		usr << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[stars(render_body(user))]<HR>[stamps]</BODY></HTML>", "window=[name]")
 		onclose(usr, "[name]")
 
+/obj/item/paper/proc/render_body(mob/user,links = FALSE)
+	var/text = ""// The actual text displayed. Starts with & defaults to $info.
+	if(coloroverride)
+		text = "<font color='#[coloroverride]'>"
+	text += info
+	if(istype(infolang) && !user.has_language(infolang))
+		var/datum/language/paperlang = GLOB.language_datum_instances[infolang]
+		text = paperlang.scramble_HTML(text)
 
-/obj/item/paper/proc/addtofield(id, text, links = 0)
-	var/locid = 0
-	var/laststart = 1
-	var/textindex = 1
-	while(1)	//I know this can cause infinite loops and fuck up the whole server, but the if(istart==0) should be safe as fuck
-		var/istart = 0
-		if(links)
-			istart = findtext(info_links, "<span class=\"paper_field\">", laststart)
-		else
-			istart = findtext(info, "<span class=\"paper_field\">", laststart)
-
-		if(istart == 0)
-			return	//No field found with matching id
-
-		laststart = istart+1
-		locid++
-		if(locid == id)
-			var/iend = 1
-			if(links)
-				iend = findtext(info_links, "</span>", istart)
+	for(var/i=1,i<=written.len;++i) // Needs to be a normal for-loop because I need the indices.
+		var/x = written[i]
+		if(istype(x,/datum/langtext))
+			var/datum/langtext/X = x
+			if(user.has_language(X.lang))
+				text += X.text
 			else
-				iend = findtext(info, "</span>", istart)
-
-			//textindex = istart+26
-			textindex = iend
-			break
-
+				var/datum/language/paperlang = GLOB.language_datum_instances[X.lang]
+				text += paperlang.scramble_HTML(X.text)
+		else if(links)
+			text += "<span class=\"paper_field\">" + "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=[i]'>write</A></font>" + "</span>"
 	if(links)
-		var/before = copytext(info_links, 1, textindex)
-		var/after = copytext(info_links, textindex)
-		info_links = before + text + after
-	else
-		var/before = copytext(info, 1, textindex)
-		var/after = copytext(info, textindex)
-		info = before + text + after
-		updateinfolinks()
-
-
-/obj/item/paper/proc/updateinfolinks()
-	info_links = info
-	for(var/i in 1 to min(fields, 15))
-		addtofield(i, "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=[i]'>write</A></font>", 1)
-	info_links = info_links + "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=end'>write</A></font>"
-
+		text += "<span class=\"paper_field\">" + "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=end'>write</A></font>" + "</span>"
+	if(coloroverride)
+		text += "</font>"
+	return text
 
 /obj/item/paper/proc/clearpaper()
-	info = null
 	stamps = null
 	LAZYCLEARLIST(stamped)
 	cut_overlays()
-	updateinfolinks()
 	update_icon()
 
 
@@ -196,31 +184,23 @@
 		var/obj/item/toy/crayon/C = P
 		t = "<font face=\"[CRAYON_FONT]\" color=[C.paint_color]><b>[t]</b></font>"
 
-	// Count the fields
-	var/laststart = 1
-	while(1)
-		var/i = findtext(t, "<span class=\"paper_field\">", laststart)
-		if(i == 0)
-			break
-		laststart = i+1
-		fields++
-
-	return t
+	var/list/T = splittext(t,PAPER_FIELD,1,0,TRUE) // The list of subsections.. Splits the text on where paper fields have been created.
+	//The TRUE marks that we're keeping these "seperator" paper fields; they're included in this list.
+	return T // :) 
 
 /obj/item/paper/proc/reload_fields() // Useful if you made the paper programicly and want to include fields. Also runs updateinfolinks() for you.
 	fields = 0
 	var/laststart = 1
-	while(1)
+	while(fields < 15)
 		var/i = findtext(info, "<span class=\"paper_field\">", laststart)
 		if(i == 0)
 			break
 		laststart = i+1
 		fields++
-	updateinfolinks()
 
 
 /obj/item/paper/proc/openhelp(mob/user)
-	user << browse({"<HTML><HEAD><TITLE>Paper Help</TITLE></HEAD>
+	user << browse({"<HTML><HEAD><meta charset='UTF-8'><TITLE>Paper Help</TITLE></HEAD>
 	<BODY>
 		You can use backslash (\\) to escape special characters.<br>
 		<br>
@@ -243,16 +223,17 @@
 
 
 /obj/item/paper/Topic(href, href_list)
+	if(next_write_time > world.time) //Nsv13 possible paper exploit
+		return
 	..()
 	var/literate = usr.is_literate()
 	if(!usr.canUseTopic(src, BE_CLOSE, literate))
 		return
-
 	if(href_list["help"])
 		openhelp(usr)
 		return
 	if(href_list["write"])
-		var/id = href_list["write"]
+		next_write_time = world.time + 1 SECONDS //possible paper exploit		
 		var/t =  stripped_multiline_input("Enter what you want to write:", "Write", no_trim=TRUE)
 		if(!t || !usr.canUseTopic(src, BE_CLOSE, literate))
 			return
@@ -265,16 +246,23 @@
 
 		if(!in_range(src, usr) && loc != usr && !istype(loc, /obj/item/clipboard) && loc.loc != usr && usr.get_active_held_item() != i)	//Some check to see if he's allowed to write
 			return
+		log_paper("[key_name(usr)] writing to paper [t]")
+		var/list/T = parsepencode(t, i, usr, iscrayon) // Encode everything from pencode to html nibblets
 
-		t = parsepencode(t, i, usr, iscrayon) // Encode everything from pencode to html
-
-		if(t != null)	//No input from the user means nothing needs to be added
-			if(id!="end")
-				addtofield(text2num(id), t) // He wants to edit a field, let him.
+		if(T.len)	//No input from the user means nothing needs to be added
+			var/list/templist = list() // All the stuff we're adding to $written
+			for(var/text in T)
+				if(text == PAPER_FIELD)
+					templist += text
+				else
+					var/datum/langtext/L = new(text,usr.get_selected_language())
+					templist += L
+			var/id = href_list["write"]
+			if(id == "end")
+				written += templist
 			else
-				info += t // Oh, he wants to edit to the end of the file, let him.
-				updateinfolinks()
-			usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]") // Update the window
+				written.Insert(text2num(id),templist) // text2num, otherwise it writes to the hashtable index instead of into the array
+			usr << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[render_body(usr,TRUE)]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]") // Update the window
 			update_icon()
 
 
@@ -289,7 +277,7 @@
 
 	if(istype(P, /obj/item/pen) || istype(P, /obj/item/toy/crayon))
 		if(user.is_literate())
-			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]")
+			user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[render_body(user,TRUE)]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]")
 			return
 		else
 			to_chat(user, "<span class='notice'>You don't know how to read or write.</span>")
@@ -314,7 +302,7 @@
 		to_chat(user, "<span class='notice'>You stamp the paper with your rubber stamp.</span>")
 
 	if(P.is_hot())
-		if(user.has_trait(TRAIT_CLUMSY) && prob(10))
+		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))
 			user.visible_message("<span class='warning'>[user] accidentally ignites [user.p_them()]self!</span>", \
 								"<span class='userdanger'>You miss the paper and accidentally light yourself on fire!</span>")
 			user.dropItemToGround(P)
@@ -371,3 +359,6 @@
 
 /obj/item/paper/crumpled/bloody
 	icon_state = "scrap_bloodied"
+
+
+#undef PAPER_FIELD

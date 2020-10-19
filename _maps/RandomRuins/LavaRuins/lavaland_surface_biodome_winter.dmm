@@ -175,10 +175,6 @@
 	initial_gas_mix = "o2=22;n2=82;TEMP=180"
 	},
 /area/ruin/powered/snow_biodome)
-"aL" = (
-/obj/structure/displaycase/captain,
-/turf/open/floor/wood,
-/area/ruin/powered/snow_biodome)
 "aM" = (
 /turf/open/floor/carpet,
 /area/ruin/powered/snow_biodome)
@@ -332,6 +328,10 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/ruin/powered/snow_biodome)
+"As" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/wood,
+/area/ruin/powered/snow_biodome)
 "AM" = (
 /obj/structure/table,
 /obj/item/pen,
@@ -358,7 +358,7 @@
 /turf/open/floor/pod/dark,
 /area/ruin/powered/snow_biodome)
 "HR" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/structure/closet/secure_closet/freezer/fridge/open,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/snow_biodome)
 "JZ" = (
@@ -406,7 +406,7 @@
 /area/lavaland/surface/outdoors/explored)
 "QK" = (
 /obj/structure/table,
-/obj/item/storage/fancy/cigarettes/cigpack_carp,
+/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/snow_biodome)
 "QN" = (
@@ -792,7 +792,7 @@ bw
 at
 aD
 at
-aL
+As
 aq
 ak
 az

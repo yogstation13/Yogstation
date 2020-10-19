@@ -3,8 +3,11 @@
 /turf/closed/wall/mineral/wood,
 /area/shuttle/escape)
 "b" = (
-/obj/machinery/light_switch,
-/turf/closed/wall/mineral/wood,
+/obj/machinery/light_switch{
+	pixel_x = -4;
+	pixel_y = 24
+	},
+/turf/open/floor/wood,
 /area/shuttle/escape)
 "c" = (
 /obj/docking_port/mobile/emergency{
@@ -16,6 +19,12 @@
 	width = 12
 	},
 /obj/machinery/door/airlock/wood,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "d" = (
@@ -24,6 +33,9 @@
 "e" = (
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/carpet,
 /area/shuttle/escape)
@@ -42,20 +54,36 @@
 "i" = (
 /obj/structure/table/reinforced,
 /obj/item/kitchen/knife,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "j" = (
-/turf/open/floor/plasteel/bar,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "k" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/vending/boozeomat,
-/turf/open/floor/plasteel/bar,
+/obj/machinery/vending/boozeomat{
+	req_access = null
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "l" = (
 /obj/machinery/computer/security/wooden_tv,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "m" = (
@@ -71,15 +99,25 @@
 "o" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/snacks/store/cake/birthday,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "p" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/shaker,
-/turf/open/floor/plasteel/bar,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "q" = (
 /obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "r" = (
@@ -88,17 +126,32 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/turf/open/floor/plasteel/bar,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "s" = (
 /obj/machinery/door/window{
 	dir = 8
 	},
-/turf/open/floor/plasteel/bar,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "t" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/plasteel/bar,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "u" = (
 /obj/machinery/light{
@@ -126,6 +179,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/red,
 /obj/item/paper/fluff/shuttles/daniel,
+/obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "y" = (
@@ -135,6 +189,9 @@
 "z" = (
 /obj/structure/table/wood,
 /obj/item/papercutter,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "A" = (
@@ -151,6 +208,12 @@
 /area/shuttle/escape)
 "C" = (
 /obj/structure/mineral_door/wood,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "D" = (
@@ -160,8 +223,31 @@
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "E" = (
-/obj/machinery/status_display,
+/obj/machinery/status_display/evac,
 /turf/closed/wall/mineral/wood,
+/area/shuttle/escape)
+"J" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/shuttle/escape)
+"N" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"P" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/shuttle/escape)
+"Q" = (
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/carpet,
 /area/shuttle/escape)
 
 (1,1,1) = {"
@@ -176,8 +262,8 @@ a
 a
 "}
 (2,1,1) = {"
+a
 b
-d
 d
 d
 d
@@ -190,10 +276,10 @@ a
 a
 e
 l
-h
-h
-d
-d
+J
+P
+N
+N
 z
 a
 "}
@@ -202,7 +288,7 @@ a
 f
 m
 m
-h
+Q
 d
 v
 A
@@ -213,7 +299,7 @@ a
 g
 n
 n
-h
+Q
 d
 d
 B
@@ -224,7 +310,7 @@ a
 h
 h
 h
-h
+Q
 d
 d
 d

@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(machines)
 /datum/controller/subsystem/machines/Initialize()
 	makepowernets()
 	fire()
-	..()
+	return ..()
 
 /datum/controller/subsystem/machines/proc/makepowernets()
 	for(var/datum/powernet/PN in powernets)
@@ -18,12 +18,12 @@ SUBSYSTEM_DEF(machines)
 
 	for(var/obj/structure/cable/PC in GLOB.cable_list)
 		if(!PC.powernet)
-			var/datum/powernet/NewPN = new()
+			var/datum/powernet/NewPN = new(PC.loc.z)
 			NewPN.add_cable(PC)
 			propagate_network(PC,PC.powernet)
 
 /datum/controller/subsystem/machines/stat_entry()
-	..("M:[processing.len]|PN:[powernets.len]")
+	return ..("M:[processing.len]|PN:[powernets.len]")
 
 
 /datum/controller/subsystem/machines/fire(resumed = 0)
@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(machines)
 	for(var/A in cables)
 		var/obj/structure/cable/PC = A
 		if(!PC.powernet)
-			var/datum/powernet/NewPN = new()
+			var/datum/powernet/NewPN = new(PC.loc.z)
 			NewPN.add_cable(PC)
 			propagate_network(PC,PC.powernet)
 

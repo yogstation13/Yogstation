@@ -13,23 +13,24 @@
 	climb_time = 10 //real fast, because let's be honest stepping into or onto a crate is easy
 	climb_stun = 0 //climbing onto crates isn't hard, guys
 	delivery_icon = "deliverycrate"
+	door_anim_time = 0 // no animation
 	var/obj/item/paper/fluff/jobs/cargo/manifest/manifest
 
-/obj/structure/closet/crate/New()
-	..()
+/obj/structure/closet/crate/Initialize()
+	. = ..()
 	if(icon_state == "[initial(icon_state)]open")
 		opened = TRUE
 	update_icon()
 
-/obj/structure/closet/crate/CanPass(atom/movable/mover, turf/target)
+/obj/structure/closet/crate/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(!istype(mover, /obj/structure/closet))
 		var/obj/structure/closet/crate/locatedcrate = locate(/obj/structure/closet/crate) in get_turf(mover)
 		if(locatedcrate) //you can walk on it like tables, if you're not in an open crate trying to move to a closed crate
 			if(opened) //if we're open, allow entering regardless of located crate openness
-				return 1
+				return TRUE
 			if(!locatedcrate.opened) //otherwise, if the located crate is closed, allow entering
-				return 1
-	return !density
+				return TRUE
 
 /obj/structure/closet/crate/update_icon()
 	icon_state = "[initial(icon_state)][opened ? "open" : ""]"
@@ -93,6 +94,27 @@
 	name = "freezer"
 	icon_state = "freezer"
 
+//Snowflake organ freezer code
+//Order is important, since we check source, we need to do the check whenever we have all the organs in the crate
+
+/obj/structure/closet/crate/freezer/open()
+	recursive_organ_check(src)
+	..()
+
+/obj/structure/closet/crate/freezer/close()
+	..()
+	recursive_organ_check(src)
+
+/obj/structure/closet/crate/freezer/Destroy()
+	recursive_organ_check(src)
+	..()
+
+/obj/structure/closet/crate/freezer/Initialize()
+	..()
+	recursive_organ_check(src)
+
+
+
 /obj/structure/closet/crate/freezer/blood
 	name = "blood freezer"
 	desc = "A freezer containing packs of blood."
@@ -107,6 +129,8 @@
 	new /obj/item/reagent_containers/blood/OMinus(src)
 	new /obj/item/reagent_containers/blood/OPlus(src)
 	new /obj/item/reagent_containers/blood/lizard(src)
+	new /obj/item/reagent_containers/blood/gorilla(src) // yogs -- gorilla people
+	new /obj/item/reagent_containers/blood/ethereal(src)
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/blood/random(src)
 
@@ -186,3 +210,165 @@
 	..()
 	for(var/i in 1 to 5)
 		new /obj/item/coin/silver(src)
+
+/obj/structure/closet/crate/magic
+	name = "Rune Crate"
+	desc = "This crate glows with a weak glow, are you sure you want to open it?"
+
+
+/obj/structure/closet/crate/magic/PopulateContents()
+	var/table = rand(1,12) //12 customized surprise mechanics�  for you all
+	switch(table)
+		if(1)
+			new /obj/item/gun/magic/rune/icycle_rune(src)
+			new /obj/item/gun/magic/rune/tentacle_rune(src)
+			new /obj/item/gun/magic/rune/heal_rune(src)
+			new /obj/item/gun/magic/rune/fire_rune(src)
+		if(2)
+			new /obj/item/gun/magic/rune/honk_rune(src)
+			new /obj/item/gun/magic/rune/chaos_rune(src)
+			new /obj/item/gun/magic/rune/bomb_rune(src)
+			new /obj/item/gun/magic/rune/toxic_rune(src)
+		if(3)
+			new /obj/item/gun/magic/rune/death_rune(src)
+			new /obj/item/gun/magic/rune/bullet_rune(src)
+			new /obj/item/gun/magic/rune/mutation_rune(src)
+			new /obj/item/gun/magic/rune/resizement_rune(src)
+		if(4)
+			new /obj/item/gun/magic/rune/icycle_rune(src)
+			new /obj/item/gun/magic/rune/heal_rune(src)
+			new /obj/item/gun/magic/rune/honk_rune(src)
+			new /obj/item/gun/magic/rune/bomb_rune(src)
+		if(5)
+			new /obj/item/gun/magic/rune/death_rune(src)
+			new /obj/item/gun/magic/rune/mutation_rune(src)
+			new /obj/item/gun/magic/rune/tentacle_rune(src)
+			new /obj/item/gun/magic/rune/fire_rune(src)
+		if(6)
+			new	/obj/item/gun/magic/rune/chaos_rune(src)
+			new	/obj/item/gun/magic/rune/toxic_rune(src)
+			new /obj/item/gun/magic/rune/bullet_rune(src)
+			new /obj/item/gun/magic/rune/resizement_rune(src)
+		if(7)
+			new /obj/item/gun/magic/rune/icycle_rune(src)
+			new /obj/item/gun/magic/rune/fire_rune(src)
+			new /obj/item/gun/magic/rune/bomb_rune(src)
+			new /obj/item/gun/magic/rune/bullet_rune(src)
+		if(8)
+			new /obj/item/gun/magic/rune/tentacle_rune(src)
+			new /obj/item/gun/magic/rune/honk_rune(src)
+			new /obj/item/gun/magic/rune/toxic_rune(src)
+			new /obj/item/gun/magic/rune/mutation_rune(src)
+		if(9)
+			new /obj/item/gun/magic/rune/heal_rune(src)
+			new /obj/item/gun/magic/rune/chaos_rune(src)
+			new /obj/item/gun/magic/rune/death_rune(src)
+			new /obj/item/gun/magic/rune/resizement_rune(src)
+		if(10)
+			new /obj/item/gun/magic/rune/fire_rune(src)
+			new /obj/item/gun/magic/rune/bomb_rune(src)
+			new /obj/item/gun/magic/rune/bullet_rune(src)
+			new /obj/item/gun/magic/rune/icycle_rune(src)
+		if(11)
+			new /obj/item/gun/magic/rune/honk_rune(src)
+			new /obj/item/gun/magic/rune/toxic_rune(src)
+			new /obj/item/gun/magic/rune/mutation_rune(src)
+			new /obj/item/gun/magic/rune/tentacle_rune(src)
+		if(12)
+			new /obj/item/gun/magic/rune/chaos_rune(src)
+			new /obj/item/gun/magic/rune/death_rune(src)
+			new /obj/item/gun/magic/rune/resizement_rune(src)
+			new /obj/item/gun/magic/rune/heal_rune(src)
+
+/obj/structure/closet/crate/sphere
+	desc = "An Advanced Crate that defies all known cargo standards."
+	name = "Advanced Crate"
+	icon = 'yogstation/icons/obj/crates.dmi'
+	icon_state = "round"
+
+/obj/structure/closet/crate/critter/exoticgoats
+	name = "goat crate"
+	desc = "Contains a completly random goat from Goat Tech Industries that may or may not break the laws of science!"
+
+/obj/structure/closet/crate/critter/exoticgoats/Initialize()
+	. = ..()
+	var/loot = rand(1,39) //39 different goats!
+	switch(loot)
+		if(1)
+			new /mob/living/simple_animal/hostile/retaliate/goat(loc)
+		if(2)
+			new /mob/living/simple_animal/hostile/retaliate/goat/clown(loc)
+		if(3)
+			new /mob/living/simple_animal/hostile/retaliate/goat/ras(loc)
+		if(4)
+			new /mob/living/simple_animal/hostile/retaliate/goat/blue(loc)
+		if(5)
+			new /mob/living/simple_animal/hostile/retaliate/goat/chocolate(loc)
+		if(6)
+			new /mob/living/simple_animal/hostile/retaliate/goat/christmas(loc)
+		if(7)
+			new /mob/living/simple_animal/hostile/retaliate/goat/confetti(loc)
+		if(8)
+			new /mob/living/simple_animal/hostile/retaliate/goat/cottoncandy(loc)
+		if(9)
+			new /mob/living/simple_animal/hostile/retaliate/goat/glowing(loc)
+		if(10)
+			new /mob/living/simple_animal/hostile/retaliate/goat/goatgoat(loc)
+		if(11)
+			new /mob/living/simple_animal/hostile/retaliate/goat/horror(loc)
+		if(12)
+			new /mob/living/simple_animal/hostile/retaliate/goat/inverted(loc)
+		if(13)
+			new /mob/living/simple_animal/hostile/retaliate/goat/memory(loc)
+		if(14)
+			new /mob/living/simple_animal/hostile/retaliate/goat/mirrored(loc)
+		if(15)
+			new /mob/living/simple_animal/hostile/retaliate/goat/paper(loc)
+		if(16)
+			new /mob/living/simple_animal/hostile/retaliate/goat/pixel(loc)
+		if(17)
+			new /mob/living/simple_animal/hostile/retaliate/goat/radioactive(loc)
+		if(18)
+			new /mob/living/simple_animal/hostile/retaliate/goat/rainbow(loc)
+		if(19)
+			new /mob/living/simple_animal/hostile/retaliate/goat/cute(loc)
+		if(20)
+			new /mob/living/simple_animal/hostile/retaliate/goat/star(loc)
+		if(21)
+			new /mob/living/simple_animal/hostile/retaliate/goat/twisted(loc)
+		if(22)
+			new /mob/living/simple_animal/hostile/retaliate/goat/huge(loc)
+		if(23)
+			new /mob/living/simple_animal/hostile/retaliate/goat/tiny(loc)
+		if(24)
+			new /mob/living/simple_animal/hostile/retaliate/goat/ghost(loc)
+		if(25)
+			new /mob/living/simple_animal/hostile/retaliate/goat/brick(loc)
+		if(26)
+			new /mob/living/simple_animal/hostile/retaliate/goat/watercolor(loc)
+		if(27)
+			new /mob/living/simple_animal/hostile/retaliate/goat/brown(loc)
+		if(28)
+			new /mob/living/simple_animal/hostile/retaliate/goat/panda(loc)
+		if(29)
+			new /mob/living/simple_animal/hostile/retaliate/goat/black(loc)
+		if(30)
+			new /mob/living/simple_animal/hostile/retaliate/goat/green(loc)
+		if(31)
+			new /mob/living/simple_animal/hostile/retaliate/goat/orange(loc)
+		if(32)
+			new /mob/living/simple_animal/hostile/retaliate/goat/purple(loc)
+		if(33)
+			new /mob/living/simple_animal/hostile/retaliate/goat/red(loc)
+		if(34)
+			new /mob/living/simple_animal/hostile/retaliate/goat/yellow(loc)
+		if(35)
+			new /mob/living/simple_animal/hostile/retaliate/goat/legitgoat(loc)
+		if(36)
+			new /mob/living/simple_animal/hostile/retaliate/goat/skiddo(loc)
+		if(37)
+			new /mob/living/simple_animal/hostile/retaliate/goat/gogoat(loc)
+		if(38)
+			new /mob/living/simple_animal/hostile/retaliate/goat/sanic(loc)
+		if(39)
+			new /mob/living/simple_animal/hostile/retaliate/goat/plunger(loc)

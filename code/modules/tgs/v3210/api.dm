@@ -39,7 +39,7 @@
 	var/warned_custom_commands = FALSE
 
 /datum/tgs_api/v3210/ApiVersion()
-	return "3.2.1.0"
+	return new /datum/tgs_version("3.2.1.0")
 
 /datum/tgs_api/v3210/proc/trim_left(text)
 	for (var/i = 1 to length(text))
@@ -56,8 +56,9 @@
 /datum/tgs_api/v3210/proc/file2list(filename)
 	return splittext(trim_left(trim_right(file2text(filename))), "\n")
 
-/datum/tgs_api/v3210/OnWorldNew(datum/tgs_event_handler/event_handler)	//don't use event handling in this version
+/datum/tgs_api/v3210/OnWorldNew(minimum_required_security_level)
 	. = FALSE
+
 	comms_key = world.params[SERVICE_WORLD_PARAM]
 	instance_name = world.params[SERVICE_INSTANCE_PARAM]
 	if(!instance_name)
@@ -75,7 +76,8 @@
 		TGS_ERROR_LOG("This API version is only supported on Windows. Not running on Windows. Aborting initialization!")
 		return
 	ListServiceCustomCommands(TRUE)
-	ExportService("[SERVICE_REQUEST_API_VERSION] [ApiVersion()]", TRUE)
+	var/datum/tgs_version/api_version = ApiVersion()
+	ExportService("[SERVICE_REQUEST_API_VERSION] [api_version.deprefixed_parameter]", TRUE)
 	return TRUE
 
 //nothing to do for v3
@@ -165,11 +167,13 @@
 
 /datum/tgs_api/v3210/Revision()
 	if(!warned_revison)
-		TGS_ERROR_LOG("Use of TgsRevision on [ApiVersion()] origin_commit only points to master!")
+		var/datum/tgs_version/api_version = ApiVersion()
+		TGS_ERROR_LOG("Use of TgsRevision on [api_version.deprefixed_parameter] origin_commit only points to master!")
 		warned_revison = TRUE
 	var/datum/tgs_revision_information/ri = new
 	ri.commit = commit
 	ri.origin_commit = originmastercommit
+	return ri
 
 /datum/tgs_api/v3210/EndProcess()
 	sleep(world.tick_lag)	//flush the buffers
@@ -187,8 +191,11 @@
 /datum/tgs_api/v3210/ChatTargetedBroadcast(message, admin_only)
 	ExportService("[admin_only ? SERVICE_REQUEST_IRC_ADMIN_CHANNEL_MESSAGE : SERVICE_REQUEST_IRC_BROADCAST] [message]")
 
-/datum/tgs_api/v3210/ChatPrivateMessage(message, admin_only)
+/datum/tgs_api/v3210/ChatPrivateMessage(message, datum/tgs_chat_user/user)
 	return TGS_UNIMPLEMENTED
+
+/datum/tgs_api/v3210/SecurityLevel()
+	return TGS_SECURITY_TRUSTED
 
 #undef REBOOT_MODE_NORMAL
 #undef REBOOT_MODE_HARD

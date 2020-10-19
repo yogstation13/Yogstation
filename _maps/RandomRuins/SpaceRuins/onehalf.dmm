@@ -88,6 +88,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/onehalf/drone_bay)
 "ar" = (
@@ -139,8 +140,11 @@
 /area/template_noop)
 "ax" = (
 /obj/structure/lattice,
+/obj/item/shard{
+	icon_state = "medium"
+	},
 /turf/template_noop,
-/area/ruin/space/has_grav/onehalf/hallway)
+/area/space/nearstation)
 "ay" = (
 /obj/structure/table_frame,
 /turf/open/floor/plasteel/airless{
@@ -198,9 +202,12 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/onehalf/drone_bay)
 "aH" = (
-/obj/item/stack/rods,
+/obj/structure/lattice,
+/obj/item/stack/cable_coil/cut/red{
+	amount = 2
+	},
 /turf/template_noop,
-/area/ruin/space/has_grav/onehalf/hallway)
+/area/space/nearstation)
 "aI" = (
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg3"
@@ -233,7 +240,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Crew Quarters APC";
-	pixel_x = 26
+	pixel_x = 24
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/onehalf/dorms_med)
@@ -547,17 +554,15 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/plasteel{
-	icon_state = "floorgrime"
-	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/drone_bay)
 "bt" = (
 /obj/structure/disposalpipe/junction/yjunction{
 	dir = 1
 	},
-/turf/open/floor/plasteel{
-	icon_state = "floorgrime"
-	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/drone_bay)
 "bu" = (
 /obj/structure/disposalpipe/trunk{
@@ -655,22 +660,19 @@
 /area/ruin/space/has_grav/onehalf/drone_bay)
 "bH" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/open/floor/plasteel{
-	icon_state = "floorgrime"
-	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/drone_bay)
 "bI" = (
-/turf/open/floor/plasteel{
-	icon_state = "floorgrime"
-	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/drone_bay)
 "bJ" = (
 /obj/structure/chair/office{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	icon_state = "floorgrime"
-	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/drone_bay)
 "bK" = (
 /obj/structure/girder,
@@ -907,12 +909,15 @@
 /turf/template_noop,
 /area/space/nearstation)
 "ct" = (
-/obj/structure/lattice,
-/obj/item/shard{
-	icon_state = "medium"
+/obj/machinery/door/airlock/external,
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
-/turf/template_noop,
-/area/ruin/space/has_grav/onehalf/hallway)
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/onehalf/drone_bay)
 "cu" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/airless{
@@ -935,8 +940,11 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cy" = (
-/obj/machinery/power/solar_control,
 /obj/structure/cable,
+/obj/machinery/power/solar_control{
+	dir = 8;
+	icon_state = "computer"
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cz" = (
@@ -956,8 +964,27 @@
 /turf/template_noop,
 /area/template_noop)
 "cB" = (
-/turf/template_noop,
-/area/ruin/space/has_grav/onehalf/hallway)
+/obj/machinery/door/airlock/command/glass{
+	name = "Bridge"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/onehalf/bridge)
+"cC" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "bridge_onehalf";
+	name = "bridge blast door"
+	},
+/obj/machinery/door/airlock/command/glass{
+	name = "Bridge"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/onehalf/bridge)
 "cD" = (
 /obj/structure/lattice,
 /obj/structure/disposalpipe/broken{
@@ -969,8 +996,9 @@
 /turf/template_noop,
 /area/ruin/space/has_grav/onehalf/hallway)
 "cE" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+/obj/structure/frame/computer{
+	dir = 8;
+	icon_state = "0"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/bridge)
@@ -979,12 +1007,9 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cG" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "bridge_onehalf";
-	name = "bridge blast door"
-	},
-/obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
+/obj/structure/frame/computer{
+	dir = 1;
+	icon_state = "0"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/bridge)
@@ -1009,13 +1034,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/bridge)
-"cK" = (
-/obj/structure/lattice,
-/obj/item/stack/cable_coil/cut/red{
-	amount = 2
-	},
-/turf/template_noop,
-/area/ruin/space/has_grav/onehalf/hallway)
 "cL" = (
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg2"
@@ -1214,9 +1232,6 @@
 	},
 /turf/template_noop,
 /area/template_noop)
-"Ky" = (
-/turf/template_noop,
-/area/space/nearstation)
 "Me" = (
 /obj/structure/lattice,
 /turf/template_noop,
@@ -1249,8 +1264,8 @@ aa
 aa
 aa
 aj
-ax
-aH
+Me
+cr
 aj
 bf
 bv
@@ -1271,9 +1286,9 @@ aa
 aa
 ae
 ak
-ax
+Me
 aI
-ax
+Me
 bg
 bw
 aj
@@ -1294,7 +1309,7 @@ aa
 ac
 ak
 ay
-ax
+Me
 aT
 bh
 bw
@@ -1454,11 +1469,11 @@ bl
 bz
 bR
 bR
-ax
+Me
 aj
-cB
+aa
 aj
-ax
+Me
 bR
 bQ
 di
@@ -1476,11 +1491,11 @@ bj
 bA
 bS
 bW
+Me
 ax
-ct
-cK
-cK
-cK
+aH
+aH
+aH
 cX
 dc
 dj
@@ -1522,7 +1537,7 @@ bU
 bY
 ci
 cv
-cE
+cB
 bU
 cQ
 cQ
@@ -1536,18 +1551,18 @@ ad
 ai
 aq
 aD
-aq
+ct
 aX
 bo
 bp
 bU
-Ky
+aa
 cj
 bU
 cF
 bU
 Me
-Ky
+aa
 bU
 ac
 aa
@@ -1566,7 +1581,7 @@ bU
 bZ
 ck
 bU
-cG
+cC
 bU
 bZ
 bZ
@@ -1657,7 +1672,7 @@ cn
 cI
 cn
 cS
-ce
+cG
 df
 ac
 aa
@@ -1679,7 +1694,7 @@ cn
 cn
 cn
 cn
-ce
+cG
 df
 ac
 aa
@@ -1720,8 +1735,8 @@ bU
 cg
 cp
 cy
-ce
-ce
+cE
+cE
 cU
 db
 bU

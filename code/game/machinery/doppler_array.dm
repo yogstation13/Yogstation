@@ -6,6 +6,8 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "tdoppler"
 	density = TRUE
+	var/cooldown = 10
+	var/next_announce = 0
 	var/integrated = FALSE
 	var/max_dist = 150
 	verb_say = "states coldly"
@@ -29,7 +31,7 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	return PROCESS_KILL
 
 /obj/machinery/doppler_array/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/wrench))
+	if(I.tool_behaviour == TOOL_WRENCH)
 		if(!anchored && !isinspace())
 			anchored = TRUE
 			power_change()
@@ -51,9 +53,12 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	if(stat & NOPOWER)
 		return FALSE
 	var/turf/zone = get_turf(src)
-
 	if(zone.z != epicenter.z)
 		return FALSE
+
+	if(next_announce > world.time)
+		return
+	next_announce = world.time + cooldown
 
 	var/distance = get_dist(epicenter, zone)
 	var/direct = get_dir(zone, epicenter)
@@ -82,16 +87,18 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 			say(message)
 	return TRUE
 
-/obj/machinery/doppler_array/power_change()
+/obj/machinery/doppler_array/powered()
+	if(!anchored)
+		return FALSE
+	return ..()
+
+/obj/machinery/doppler_array/update_icon()
 	if(stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
+	else if(powered())
+		icon_state = initial(icon_state)
 	else
-		if(powered() && anchored)
-			icon_state = initial(icon_state)
-			stat &= ~NOPOWER
-		else
-			icon_state = "[initial(icon_state)]-off"
-			stat |= NOPOWER
+		icon_state = "[initial(icon_state)]-off"
 
 //Portable version, built into EOD equipment. It simply provides an explosion's three damage levels.
 /obj/machinery/doppler_array/integrated
@@ -111,22 +118,38 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 		return FALSE
 	if(!istype(linked_techweb))
 		say("Warning: No linked research system!")
-		return 
-	var/adjusted = orig_light - 10
-	if(adjusted <= 0)
+		return
+
+	var/point_gain = 0
+
+	/*****The Point Calculator*****/
+
+	if(orig_light < 10)
 		say("Explosion not large enough for research calculations.")
 		return
-	var/point_gain = techweb_scale_bomb(adjusted) - techweb_scale_bomb(linked_techweb.max_bomb_value)
-	if(point_gain <= 0)
-		say("Explosion not large enough for research calculations.")
+	else if(orig_light >= INFINITY) // Colton-proofs the doppler array
+		say("WARNING: INFINITE DENSITY OF TACHYONS DETECTED.")
+		point_gain = TOXINS_RESEARCH_MAX
+	else
+		point_gain = (TOXINS_RESEARCH_MAX * orig_light) / (orig_light + TOXINS_RESEARCH_LAMBDA)//New yogs function has the limit built into it because l'Hopital's rule
+
+
+	/*****The Point Capper*****/
+	if(point_gain > linked_techweb.largest_bomb_value)
+		var/old_tech_largest_bomb_value = linked_techweb.largest_bomb_value //held so we can pull old before we do math
+		linked_techweb.largest_bomb_value = point_gain
+		point_gain -= old_tech_largest_bomb_value
+		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+		if(D)
+			D.adjust_money(point_gain)
+			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, point_gain)
+			say("Explosion details and mixture analyzed and sold to the highest bidder for $[point_gain], with a reward of [point_gain] points.")
+
+	else //you've made smaller bombs
+		say("Data already captured. Aborting.")
 		return
-	linked_techweb.max_bomb_value = adjusted
-	linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, point_gain)
-	say("Gained [point_gain] points from explosion dataset.")
+
 
 /obj/machinery/doppler_array/research/science/Initialize()
 	. = ..()
 	linked_techweb = SSresearch.science_tech
-
-/proc/techweb_scale_bomb(lightradius)
-	return (lightradius ** 0.5) * 3000

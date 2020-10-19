@@ -19,6 +19,8 @@
 	var/starting_tape_type = /obj/item/tape/random
 	var/open_panel = 0
 	var/canprint = 1
+	var/list/icons_available = list()
+	var/icon_directory = 'icons/effects/icons.dmi'
 
 
 /obj/item/taperecorder/Initialize(mapload)
@@ -29,8 +31,29 @@
 
 
 /obj/item/taperecorder/examine(mob/user)
-	..()
-	to_chat(user, "The wire panel is [open_panel ? "opened" : "closed"].")
+	. = ..()
+	. += "The wire panel is [open_panel ? "opened" : "closed"]."
+
+/obj/item/taperecorder/AltClick(mob/user)
+	. = ..()
+	play()
+
+/obj/item/taperecorder/proc/update_available_icons()
+	icons_available = list()
+
+	if(recording)
+		icons_available += list("Stop Recording" = image(icon = icon_directory, icon_state = "record_stop"))
+
+	if(playing)
+		icons_available += list("Pause" = image(icon = icon_directory, icon_state = "pause"))
+
+	if(!playing && !recording)
+		icons_available += list("Record" = image(icon = icon_directory, icon_state = "record"))
+		icons_available += list("Play" = image(icon = icon_directory, icon_state = "play"))
+		if(canprint)
+			icons_available += list("Print Transcript" = image(icon = icon_directory, icon_state = "print"))
+	if(mytape)
+		icons_available += list("Eject" = image(icon = icon_directory, icon_state = "eject"))
 
 
 /obj/item/taperecorder/attackby(obj/item/I, mob/user, params)
@@ -54,13 +77,10 @@
 	mytape.ruin() //Fires destroy the tape
 	..()
 
-//ATTACK HAND IGNORING PARENT RETURN VALUE
+//ATTACK HAND IGNORING PARENT RETURN VALUE.
 /obj/item/taperecorder/attack_hand(mob/user)
-	if(loc == user)
-		if(mytape)
-			if(!user.is_holding(src))
-				return ..()
-			eject(user)
+	if(loc == user && mytape && user.is_holding(src))
+		eject(user)
 	else
 		return ..()
 
@@ -95,6 +115,7 @@
 
 
 /obj/item/taperecorder/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, spans, message_mode)
+	. = ..()
 	if(mytape && recording)
 		mytape.timestamp += mytape.used_capacity
 		mytape.storedinfo += "\[[time2text(mytape.used_capacity * 10,"mm:ss")]\] [message]"
@@ -120,9 +141,7 @@
 		mytape.storedinfo += "\[[time2text(mytape.used_capacity * 10,"mm:ss")]\] Recording started."
 		var/used = mytape.used_capacity	//to stop runtimes when you eject the tape
 		var/max = mytape.max_capacity
-		for(used, used < max)
-			if(recording == 0)
-				break
+		while(recording && used < max)
 			mytape.used_capacity++
 			used++
 			sleep(10)
@@ -195,12 +214,32 @@
 
 
 /obj/item/taperecorder/attack_self(mob/user)
-	if(!mytape || mytape.ruined)
+	if(!mytape)
+		to_chat(user, "<span class='notice'>The [src] does not have a tape inside.</span>")
 		return
-	if(recording)
-		stop()
-	else
-		record()
+	if(mytape.ruined)
+		to_chat(user, "<span class='notice'>The tape inside the [src] appears to be broken.</span>")
+		return
+		
+	update_available_icons()
+	if(icons_available)
+		var/selection = show_radial_menu(user, src, icons_available, radius = 38, require_near = TRUE, tooltips = TRUE)
+		if(!selection)
+			return
+		switch(selection)
+			if("Stop Recording")
+				stop()
+			if("Pause") // yes we actually need 2 seperate stops for the same proc- Hopek
+				stop()
+			if("Record")
+				record()
+			if("Play")
+				play()
+			if("Print Transcript")
+				print_transcript()
+			if("Eject")
+				eject(user)
+
 
 
 /obj/item/taperecorder/verb/print_transcript()
@@ -277,7 +316,7 @@
 
 
 /obj/item/tape/attackby(obj/item/I, mob/user, params)
-	if(ruined && istype(I, /obj/item/screwdriver) || istype(I, /obj/item/pen))
+	if(ruined && I.tool_behaviour == TOOL_SCREWDRIVER || istype(I, /obj/item/pen))
 		to_chat(user, "<span class='notice'>You start winding the tape back in...</span>")
 		if(I.use_tool(src, user, 120))
 			to_chat(user, "<span class='notice'>You wound the tape back in.</span>")
@@ -287,6 +326,6 @@
 /obj/item/tape/random
 	icon_state = "random_tape"
 
-/obj/item/tape/random/New()
+/obj/item/tape/random/Initialize()
+	. = ..()
 	icon_state = "tape_[pick("white", "blue", "red", "yellow", "purple")]"
-	..()

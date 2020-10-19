@@ -14,7 +14,7 @@
 
 /obj/structure/flora/tree/attackby(obj/item/W, mob/user, params)
 	if(log_amount && (!(flags_1 & NODECONSTRUCT_1)))
-		if(W.sharpness && W.force > 0)
+		if(W.is_sharp() && W.force > 0)
 			if(W.hitsound)
 				playsound(get_turf(src), W.hitsound, 100, 0, 0)
 			user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "You hear the sound of sawing.")
@@ -62,8 +62,14 @@
 /obj/structure/flora/tree/pine/xmas/presents
 	icon_state = "pinepresents"
 	desc = "A wondrous decorated Christmas tree. It has presents!"
-	var/gift_type = /obj/item/a_gift/anything
-	var/list/ckeys_that_took = list()
+	var/gift_type = /obj/item/a_gift //yogs - christmas presents shouldn't be pulse rifles.
+	var/unlimited = FALSE
+	var/static/list/took_presents //shared between all xmas trees
+
+/obj/structure/flora/tree/pine/xmas/presents/Initialize()
+	. = ..()
+	if(!took_presents)
+		took_presents = list()
 
 /obj/structure/flora/tree/pine/xmas/presents/attack_hand(mob/living/user)
 	. = ..()
@@ -72,13 +78,20 @@
 	if(!user.ckey)
 		return
 
-	if(ckeys_that_took[user.ckey])
+	if(took_presents[user.ckey] && !unlimited)
 		to_chat(user, "<span class='warning'>There are no presents with your name on.</span>")
 		return
 	to_chat(user, "<span class='warning'>After a bit of rummaging, you locate a gift with your name on it!</span>")
-	ckeys_that_took[user.ckey] = TRUE
+
+	if(!unlimited)
+		took_presents[user.ckey] = TRUE
+
 	var/obj/item/G = new gift_type(src)
 	user.put_in_hands(G)
+
+/obj/structure/flora/tree/pine/xmas/presents/unlimited
+	desc = "A wonderous decorated Christmas tree. It has a seemly endless supply of presents!"
+	unlimited = TRUE
 
 /obj/structure/flora/tree/dead
 	icon = 'icons/obj/flora/deadtrees.dmi'
@@ -100,6 +113,16 @@
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "festivus_pole"
 	desc = "During last year's Feats of Strength the Research Director was able to suplex this passing immobile rod into a planter."
+
+/obj/structure/festivus/anchored
+	name = "suplexed rod"
+	desc = "A true feat of strength, almost as good as last year."
+	icon_state = "anchored_rod"
+	anchored = TRUE
+
+/obj/structure/festivus/erp
+	name = "pole"
+	desc = "Don't think too hard about what it'll be used for."
 
 /obj/structure/flora/tree/dead/Initialize()
 	icon_state = "tree_[rand(1, 6)]"
@@ -294,18 +317,9 @@
 	throw_speed = 2
 	throw_range = 4
 
-
-/obj/item/twohanded/required/kirbyplants/equipped(mob/living/user)
-	var/image/I = image(icon = 'icons/obj/flora/plants.dmi' , icon_state = src.icon_state, loc = user)
-	I.copy_overlays(src)
-	I.override = 1
-	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/everyone, "sneaking_mission", I)
-	I.layer = ABOVE_MOB_LAYER
-	..()
-
-/obj/item/twohanded/required/kirbyplants/dropped(mob/living/user)
-	..()
-	user.remove_alt_appearance("sneaking_mission")
+/obj/item/twohanded/required/kirbyplants/Initialize()
+	. = ..()
+	AddComponent(/datum/component/tactical)
 
 /obj/item/twohanded/required/kirbyplants/random
 	icon = 'icons/obj/flora/_flora.dmi'
@@ -321,7 +335,7 @@
 
 /obj/item/twohanded/required/kirbyplants/random/proc/generate_states()
 	states = list()
-	for(var/i in 1 to 25)
+	for(var/i in 1 to 34) //yogs changed 25 plants to 34
 		var/number
 		if(i < 10)
 			number = "0[i]"
@@ -353,18 +367,27 @@
 	icon = 'icons/obj/flora/rocks.dmi'
 	resistance_flags = FIRE_PROOF
 	density = TRUE
+	var/obj/item/stack/mineResult = /obj/item/stack/ore/glass/basalt
 
 /obj/structure/flora/rock/Initialize()
 	. = ..()
 	icon_state = "[icon_state][rand(1,3)]"
 
+/obj/structure/flora/rock/attackby(obj/item/W, mob/user, params)
+	if(mineResult && (!(flags_1 & NODECONSTRUCT_1)))
+		if(W.tool_behaviour == TOOL_MINING)
+			to_chat(user, "<span class='notice'>You start mining...</span>")
+			if(W.use_tool(src, user, 40, volume=50))
+				to_chat(user, "<span class='notice'>You finish mining the rock.</span>")
+				new mineResult(get_turf(src), 20)
+				SSblackbox.record_feedback("tally", "pick_used_mining", 1, W.type)
+				qdel(src)
+			return
+	return ..()
+
 /obj/structure/flora/rock/pile
 	icon_state = "lavarocks"
 	desc = "A pile of rocks."
-
-/obj/structure/flora/rock/pile/Initialize()
-	. = ..()
-	icon_state = "[icon_state][rand(1,3)]"
 
 //Jungle grass
 

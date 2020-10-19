@@ -2,29 +2,32 @@
 	set category = "Special Verbs"
 	set name = "Dsay"
 	set hidden = 1
-	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+	if(!holder)
+		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
 		return
-	if(!src.mob)
+	if(!mob)
 		return
 	if(prefs.muted & MUTE_DEADCHAT)
-		to_chat(src, "<span class='danger'>You cannot send DSAY messages (muted).</span>")
+		to_chat(src, "<span class='danger'>You cannot send DSAY messages (muted).</span>", confidential=TRUE)
 		return
 
-	if (src.handle_spam_prevention(msg,MUTE_DEADCHAT))
+	if (handle_spam_prevention(msg,MUTE_DEADCHAT))
 		return
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
-	log_talk(mob,"[key_name(src)] : [msg]",LOGDSAY)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	mob.log_talk(msg, LOG_DSAY)
 
 	if (!msg)
 		return
-	var/static/nicknames = world.file2list("[global.config.directory]/admin_nicknames.txt")
-
-	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[uppertext(holder.rank)]([src.holder.fakekey ? pick(nicknames) : src.key])</span> says, <span class='message'>\"[emoji_parse(msg)]\"</span></span>"
+	var/rank_name = holder.rank
+	var/admin_name = key
+	if(holder.fakekey)
+		rank_name = pick(strings("admin_nicknames.json", "ranks", "config"))
+		admin_name = pick(strings("admin_nicknames.json", "names", "config"))
+	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[rank_name]([admin_name])</span> says, <span class='message'>\"[emoji_parse(msg)]\"</span></span>"
 
 	for (var/mob/M in GLOB.player_list)
-		if(isnewplayer(M))
+		if(isnewplayer(M) && !(M.client && M.client.holder)) // Yogs -- Allows admins to hear admin deadsay while in the lobby
 			continue
 		if (M.stat == DEAD || (M.client && M.client.holder && (M.client.prefs.chat_toggles & CHAT_DEAD))) //admins can toggle deadchat on and off. This is a proc in admin.dm and is only give to Administrators and above
 			to_chat(M, rendered)
@@ -35,5 +38,6 @@
 	// yogs start - Cancel button
 	var/msg = input(src, null, "dsay \"text\"") as text|null
 	if(msg)
+		msg = to_utf8(msg, src)
 		dsay(msg)
 	// yogs end

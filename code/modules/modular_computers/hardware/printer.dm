@@ -13,8 +13,8 @@
 	to_chat(user, "Paper level: [stored_paper]/[max_paper].")
 
 /obj/item/computer_hardware/printer/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Paper level: [stored_paper]/[max_paper].</span>")
+	. = ..()
+	. += "<span class='notice'>Paper level: [stored_paper]/[max_paper].</span>"
 
 
 /obj/item/computer_hardware/printer/proc/print_text(var/text_to_print, var/paper_title = "")
@@ -22,6 +22,9 @@
 		return FALSE
 	if(!check_functionality())
 		return FALSE
+	
+	text_to_print = html_encode(text_to_print)
+	paper_title = html_encode(paper_title)
 
 	var/obj/item/paper/P = new/obj/item/paper(holder.drop_location())
 

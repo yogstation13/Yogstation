@@ -5,12 +5,15 @@
 /datum/game_mode/traitor/internal_affairs
 	name = "Internal Affairs"
 	config_tag = "internal_affairs"
+	report_type = "internal_affairs"
 	false_report_weight = 10
 	required_players = 25
 	required_enemies = 5
 	recommended_enemies = 8
 	reroll_friendly = 0
 	traitor_name = "Nanotrasen Internal Affairs Agent"
+	antag_flag = ROLE_INTERNAL_AFFAIRS
+	title_icon = "traitor"
 
 	traitors_possible = 10 //hard limit on traitors if scaling is turned off
 	num_modifier = 4 // Four additional traitors
@@ -28,7 +31,7 @@
 		i++
 		if(i + 1 > pre_traitors.len)
 			i = 0
-		target_list[traitor] = pre_traitors[i+1]	
+		target_list[traitor] = pre_traitors[i+1]
 	..()
 
 
@@ -79,3 +82,18 @@
 /datum/game_mode/traitor/internal_affairs/generate_report()
 	return "Nanotrasen denies any accusations of placing internal affairs agents onboard your station to eliminate inconvenient employees.  Any further accusations against CentCom for such \
 			actions will be met with a conversation with an official internal affairs agent."
+
+/datum/game_mode/traitor/double_agents/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	round_credits += "<center><h1>The Internal Affairs Agents:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/traitor in traitors)
+		round_credits += "<center><h2>[traitor.name] as an Internal Affairs Agent</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>The Internal Affairs Agents have concealed their actions!</h2>", "<center><h2>We couldn't locate them!</h2>")
+	round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits

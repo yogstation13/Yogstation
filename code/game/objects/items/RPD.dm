@@ -6,6 +6,7 @@ RPD
 #define ATMOS_CATEGORY 0
 #define DISPOSALS_CATEGORY 1
 #define TRANSIT_CATEGORY 2
+#define PLUMBING_CATEGORY 3
 
 #define BUILD_MODE 1
 #define WRENCH_MODE 2
@@ -67,8 +68,18 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 	),
 	"Station Equipment" = list(
 		new /datum/pipe_info/transit("Through Tube Station",		/obj/structure/c_transit_tube/station, PIPE_STRAIGHT),
+		new /datum/pipe_info/transit("Through Tube Station (Flipped)",/obj/structure/c_transit_tube/station/flipped, PIPE_STRAIGHT),
 		new /datum/pipe_info/transit("Terminus Tube Station",		/obj/structure/c_transit_tube/station/reverse, PIPE_UNARY),
+		new /datum/pipe_info/transit("Terminus Tube Station (Flipped)",/obj/structure/c_transit_tube/station/reverse/flipped, PIPE_UNARY),
 		new /datum/pipe_info/transit("Transit Tube Pod",			/obj/structure/c_transit_tube_pod, PIPE_ONEDIR),
+		new /datum/pipe_info/transit("Transit Tube Cargo Pod",		/obj/structure/c_transit_tube_pod/cargo, PIPE_ONEDIR),
+	)
+))
+
+GLOBAL_LIST_INIT(fluid_duct_recipes, list(
+	"Fluid Ducts" = list(
+		new /datum/pipe_info/plumbing("Duct",				/obj/machinery/duct, PIPE_ONEDIR),
+		new /datum/pipe_info/plumbing/multilayer("Duct Layer-Manifold",/obj/machinery/duct/multilayered, PIPE_STRAIGHT)
 	)
 ))
 
@@ -172,10 +183,21 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 	if(dt == PIPE_UNARY_FLIPPABLE)
 		icon_state = "[icon_state]_preview"
 
+/datum/pipe_info/plumbing/New(label, obj/path, dt=PIPE_UNARY)
+	name = label
+	id = path
+	icon_state = initial(path.icon_state)
+	dirtype = dt
+
+/datum/pipe_info/plumbing/multilayer //exists as identifier so we can see the difference between multi_layer and just ducts properly later on
+
+
 /obj/item/pipe_dispenser
-	name = "Rapid Piping Device (RPD)"
+	name = "Rapid Pipe Dispenser (RPD)"
 	desc = "A device used to rapidly pipe things."
 	icon = 'icons/obj/tools.dmi'
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	icon_state = "rpd"
 	flags_1 = CONDUCT_1
 	force = 10
@@ -183,6 +205,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
+	slot_flags = ITEM_SLOT_BELT
 	materials = list(MAT_METAL=75000, MAT_GLASS=37500)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF
@@ -194,19 +217,23 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 	var/atmos_build_speed = 5 //deciseconds (500ms)
 	var/disposal_build_speed = 5
 	var/transit_build_speed = 5
+	var/plumbing_build_speed = 5
 	var/destroy_speed = 5
 	var/paint_speed = 5
 	var/category = ATMOS_CATEGORY
 	var/piping_layer = PIPING_LAYER_DEFAULT
+	var/ducting_layer = DUCT_LAYER_DEFAULT
 	var/datum/pipe_info/recipe
 	var/static/datum/pipe_info/first_atmos
 	var/static/datum/pipe_info/first_disposal
 	var/static/datum/pipe_info/first_transit
+	var/static/datum/pipe_info/first_plumbing
 	var/mode = BUILD_MODE | PAINT_MODE | DESTROY_MODE | WRENCH_MODE
+	var/locked = FALSE //wheter we can change categories. Useful for the plumber
 
-/obj/item/pipe_dispenser/New()
+/obj/item/pipe_dispenser/Initialize()
 	. = ..()
-	spark_system = new /datum/effect_system/spark_spread
+	spark_system = new
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	if(!first_atmos)
@@ -232,6 +259,10 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 	playsound(get_turf(user), 'sound/items/deconstruct.ogg', 50, 1)
 	return(BRUTELOSS)
 
+/obj/item/pipe_dispenser/ui_base_html(html)
+	var/datum/asset/spritesheet/assets = get_asset_datum(/datum/asset/spritesheet/pipes)
+	. = replacetext(html, "<!--customheadhtml-->", assets.css_tag())
+
 /obj/item/pipe_dispenser/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
@@ -239,18 +270,20 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 		var/datum/asset/assets = get_asset_datum(/datum/asset/spritesheet/pipes)
 		assets.send(user)
 
-		ui = new(user, src, ui_key, "rpd", name, 300, 550, master_ui, state)
+		ui = new(user, src, ui_key, "RapidPipeDispenser", name, 425, 472, master_ui, state)
 		ui.open()
 
 /obj/item/pipe_dispenser/ui_data(mob/user)
 	var/list/data = list(
 		"category" = category,
 		"piping_layer" = piping_layer,
+		"ducting_layer" = ducting_layer,
 		"preview_rows" = recipe.get_preview(p_dir),
 		"categories" = list(),
 		"selected_color" = paint_color,
 		"paint_colors" = GLOB.pipe_paint_colors,
-		"mode" = mode
+		"mode" = mode,
+		"locked" = locked
 	)
 
 	var/list/recipes
@@ -261,6 +294,8 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 			recipes = GLOB.disposal_pipe_recipes
 		if(TRANSIT_CATEGORY)
 			recipes = GLOB.transit_tube_recipes
+		if(PLUMBING_CATEGORY)
+			recipes = GLOB.fluid_duct_recipes
 	for(var/c in recipes)
 		var/list/cat = recipes[c]
 		var/list/r = list()
@@ -274,7 +309,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 /obj/item/pipe_dispenser/ui_act(action, params)
 	if(..())
 		return
-	if(!usr.canUseTopic(src))
+	if(!usr.canUseTopic(src, BE_CLOSE))
 		return
 	var/playeffect = TRUE
 	switch(action)
@@ -289,15 +324,20 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 					recipe = first_atmos
 				if(TRANSIT_CATEGORY)
 					recipe = first_transit
+				if(PLUMBING_CATEGORY)
+					recipe = first_plumbing
 			p_dir = NORTH
 			playeffect = FALSE
 		if("piping_layer")
 			piping_layer = text2num(params["piping_layer"])
 			playeffect = FALSE
+		if("ducting_layer")
+			ducting_layer = text2num(params["ducting_layer"])
+			playeffect = FALSE
 		if("pipe_type")
 			var/static/list/recipes
 			if(!recipes)
-				recipes = GLOB.disposal_pipe_recipes + GLOB.atmos_pipe_recipes + GLOB.transit_tube_recipes
+				recipes = GLOB.disposal_pipe_recipes + GLOB.atmos_pipe_recipes + GLOB.transit_tube_recipes + GLOB.fluid_duct_recipes
 			recipe = recipes[params["category"]][text2num(params["pipe_type"])]
 			p_dir = NORTH
 		if("setdir")
@@ -306,9 +346,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 			playeffect = FALSE
 		if("mode")
 			var/n = text2num(params["mode"])
-			if(n == 2 && !(mode&1) && !(mode&2))
-				mode |= 3
-			else if(mode&n)
+			if(mode & n)
 				mode &= ~n
 			else
 				mode |= n
@@ -316,6 +354,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 	if(playeffect)
 		spark_system.start()
 		playsound(get_turf(src), 'sound/effects/pop.ogg', 50, 0)
+	return TRUE
 
 /obj/item/pipe_dispenser/pre_attack(atom/A, mob/user)
 	if(!user.IsAdvancedToolUser() || istype(A, /turf/open/space/transit))
@@ -329,12 +368,19 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 	//make sure what we're clicking is valid for the current category
 	var/static/list/make_pipe_whitelist
 	if(!make_pipe_whitelist)
-		make_pipe_whitelist = typecacheof(list(/obj/structure/lattice, /obj/structure/girder, /obj/item/pipe))
+		make_pipe_whitelist = typecacheof(list(/obj/structure/lattice, /obj/structure/girder, /obj/item/pipe, /obj/structure/window, /obj/structure/grille))
 	var/can_make_pipe = (isturf(A) || is_type_in_typecache(A, make_pipe_whitelist))
 
 	. = FALSE
 
 	if((mode&DESTROY_MODE) && istype(A, /obj/item/pipe) || istype(A, /obj/structure/disposalconstruct) || istype(A, /obj/structure/c_transit_tube) || istype(A, /obj/structure/c_transit_tube_pod) || istype(A, /obj/item/pipe_meter))
+	// yogs start - disposable check
+		if(istype(A, /obj/item/pipe))
+			var/obj/item/pipe/P = A
+			if(!P.disposable)
+				to_chat(usr, "<span class='warning'>[src] is too valuable to dispose of!</span>")
+				return
+	// yogs end
 		to_chat(user, "<span class='notice'>You start destroying a pipe...</span>")
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
 		if(do_after(user, destroy_speed, target = A))
@@ -438,16 +484,37 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 
 					else
 						var/obj/structure/c_transit_tube/tube = new queued_p_type(A)
-						tube.dir = queued_p_dir
+						tube.setDir(queued_p_dir)
 
 						if(queued_p_flipped)
-							tube.dir = turn(queued_p_dir, 45)
+							tube.setDir(turn(queued_p_dir, 45))
 							tube.simple_rotate_flip()
 
 						tube.add_fingerprint(usr)
 						if(mode&WRENCH_MODE)
 							tube.wrench_act(user, src)
 					return
+			if(PLUMBING_CATEGORY) //Making pancakes
+				if(!can_make_pipe)
+					return ..()
+				A = get_turf(A)
+				if(isclosedturf(A))
+					to_chat(user, "<span class='warning'>[src]'s error light flickers; there's something in the way!</span>")
+					return
+				to_chat(user, "<span class='notice'>You start building a fluid duct...</span>")
+				playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
+				if(do_after(user, plumbing_build_speed, target = A))
+					var/obj/machinery/duct/D
+					if(recipe.type == /datum/pipe_info/plumbing/multilayer)
+						var/temp_connects = NORTH + SOUTH
+						if(queued_p_dir == EAST)
+							temp_connects = EAST + WEST
+						D = new queued_p_type (A, TRUE, GLOB.pipe_paint_colors[paint_color], ducting_layer, temp_connects)
+					else
+						D = new queued_p_type (A, TRUE, GLOB.pipe_paint_colors[paint_color], ducting_layer)
+					D.add_fingerprint(usr)
+					if(mode & WRENCH_MODE)
+						D.wrench_act(user, src)
 
 			else
 				return ..()
@@ -455,9 +522,27 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 /obj/item/pipe_dispenser/proc/activate()
 	playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
 
+/obj/item/pipe_dispenser/plumbing
+	name = "Plumberinator"
+	desc = "A crude device to rapidly plumb things."
+	icon_state = "plumberer"
+	category = PLUMBING_CATEGORY
+	locked = TRUE
+
+/obj/item/pipe_dispenser/plumbing/Initialize()
+	. = ..()
+	spark_system = new
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+	if(!first_plumbing)
+		first_plumbing = GLOB.fluid_duct_recipes[GLOB.fluid_duct_recipes[1]][1]
+
+	recipe = first_plumbing
+
 #undef ATMOS_CATEGORY
 #undef DISPOSALS_CATEGORY
 #undef TRANSIT_CATEGORY
+#undef PLUMBING_CATEGORY
 
 #undef BUILD_MODE
 #undef DESTROY_MODE

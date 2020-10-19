@@ -1,31 +1,32 @@
 /datum/species/jelly
 	// Entirely alien beings that seem to be made entirely out of gel. They have three eyes and a skeleton visible within them.
-	name = "Xenobiological Jelly Entity"
+	name = "Jellyperson"
 	id = "jelly"
 	default_color = "00FF90"
 	say_mod = "chirps"
 	species_traits = list(MUTCOLORS,EYECOLOR,NOBLOOD)
 	inherent_traits = list(TRAIT_TOXINLOVER)
+	mutantlungs = /obj/item/organ/lungs/slime
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/slime
-	exotic_blood = "slimejelly"
+	exotic_blood = /datum/reagent/toxin/slimejelly
 	damage_overlay_type = ""
 	var/datum/action/innate/regenerate_limbs/regenerate_limbs
 	liked_food = MEAT
 	coldmod = 6   // = 3x cold damage
 	heatmod = 0.5 // = 1/4x heat damage
 	burnmod = 0.5 // = 1/2x generic burn damage
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
+	species_language_holder = /datum/language_holder/jelly
 
 /datum/species/jelly/on_species_loss(mob/living/carbon/C)
 	if(regenerate_limbs)
 		regenerate_limbs.Remove(C)
-	C.remove_language(/datum/language/slime)
 	C.faction -= "slime"
 	..()
 	C.faction -= "slime"
 
 /datum/species/jelly/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
-	C.grant_language(/datum/language/slime)
 	if(ishuman(C))
 		regenerate_limbs = new
 		regenerate_limbs.Grant(C)
@@ -39,14 +40,14 @@
 		H.adjustBruteLoss(5)
 		to_chat(H, "<span class='danger'>You feel empty!</span>")
 
-	if(H.blood_volume < BLOOD_VOLUME_NORMAL)
+	if(H.blood_volume < BLOOD_VOLUME_NORMAL(H))
 		if(H.nutrition >= NUTRITION_LEVEL_STARVING)
 			H.blood_volume += 3
-			H.nutrition -= 2.5
-	if(H.blood_volume < BLOOD_VOLUME_OKAY)
+			H.adjust_nutrition(-2.5)
+	if(H.blood_volume < BLOOD_VOLUME_OKAY(H))
 		if(prob(5))
 			to_chat(H, "<span class='danger'>You feel drained!</span>")
-	if(H.blood_volume < BLOOD_VOLUME_BAD)
+	if(H.blood_volume < BLOOD_VOLUME_BAD(H))
 		Cannibalize_Body(H)
 	if(regenerate_limbs)
 		regenerate_limbs.UpdateButtonIcon()
@@ -78,7 +79,7 @@
 		var/list/limbs_to_heal = H.get_missing_limbs()
 		if(limbs_to_heal.len < 1)
 			return 0
-		if(H.blood_volume >= BLOOD_VOLUME_OKAY+40)
+		if(H.blood_volume >= BLOOD_VOLUME_OKAY(H) + REGEN_BLOOD_REQUIREMENT)
 			return 1
 		return 0
 
@@ -89,17 +90,17 @@
 		to_chat(H, "<span class='notice'>You feel intact enough as it is.</span>")
 		return
 	to_chat(H, "<span class='notice'>You focus intently on your missing [limbs_to_heal.len >= 2 ? "limbs" : "limb"]...</span>")
-	if(H.blood_volume >= 40*limbs_to_heal.len+BLOOD_VOLUME_OKAY)
+	if(H.blood_volume >= REGEN_BLOOD_REQUIREMENT*limbs_to_heal.len + BLOOD_VOLUME_OKAY(H))
 		H.regenerate_limbs()
-		H.blood_volume -= 40*limbs_to_heal.len
+		H.blood_volume -= REGEN_BLOOD_REQUIREMENT*limbs_to_heal.len
 		to_chat(H, "<span class='notice'>...and after a moment you finish reforming!</span>")
 		return
-	else if(H.blood_volume >= 40)//We can partially heal some limbs
-		while(H.blood_volume >= BLOOD_VOLUME_OKAY+40)
+	else if(H.blood_volume >= REGEN_BLOOD_REQUIREMENT)//We can partially heal some limbs
+		while(H.blood_volume >= BLOOD_VOLUME_OKAY(H) + REGEN_BLOOD_REQUIREMENT)
 			var/healed_limb = pick(limbs_to_heal)
 			H.regenerate_limb(healed_limb)
 			limbs_to_heal -= healed_limb
-			H.blood_volume -= 40
+			H.blood_volume -= REGEN_BLOOD_REQUIREMENT
 		to_chat(H, "<span class='warning'>...but there is not enough of you to fix everything! You must attain more mass to heal completely!</span>")
 		return
 	to_chat(H, "<span class='warning'>...but there is not enough of you to go around! You must attain more mass to heal!</span>")
@@ -129,7 +130,7 @@
 	bodies -= C // This means that the other bodies maintain a link
 	// so if someone mindswapped into them, they'd still be shared.
 	bodies = null
-	C.blood_volume = min(C.blood_volume, BLOOD_VOLUME_NORMAL)
+	C.blood_volume = min(C.blood_volume, BLOOD_VOLUME_NORMAL(C))
 	..()
 
 /datum/species/jelly/slime/on_species_gain(mob/living/carbon/C, datum/species/old_species)
@@ -170,7 +171,7 @@
 			to_chat(H, "<span class='notice'>You feel very bloated!</span>")
 	else if(H.nutrition >= NUTRITION_LEVEL_WELL_FED)
 		H.blood_volume += 3
-		H.nutrition -= 2.5
+		H.adjust_nutrition(-2.5)
 
 	..()
 
@@ -260,7 +261,7 @@
 
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "slime_swap_body", name, 400, 400, master_ui, state)
+		ui = new(user, src, ui_key, "SlimeBodySwapper", name, 400, 400, master_ui, state)
 		ui.open()
 
 /datum/action/innate/swap_body/ui_data(mob/user)
@@ -286,6 +287,10 @@
 		switch(body.stat)
 			if(CONSCIOUS)
 				stat = "Conscious"
+			//yogs start
+			if(SOFT_CRIT)
+				stat = "Barely Conscious"
+			//yogs end
 			if(UNCONSCIOUS)
 				stat = "Unconscious"
 			if(DEAD)
@@ -330,10 +335,11 @@
 		return
 	switch(action)
 		if("swap")
-			var/mob/living/carbon/human/selected = locate(params["ref"])
+			var/datum/species/jelly/slime/SS = H.dna.species
+			var/mob/living/carbon/human/selected = locate(params["ref"]) in SS.bodies
 			if(!can_swap(selected))
 				return
-			SStgui.close_uis(src)
+			// SStgui.close_uis(src) // yogs - don't.
 			swap_to_dupe(H.mind, selected)
 
 /datum/action/innate/swap_body/proc/can_swap(mob/living/carbon/human/dupe)
@@ -587,7 +593,9 @@
 /datum/species/jelly/stargazer/proc/link_mob(mob/living/M)
 	if(QDELETED(M) || M.stat == DEAD)
 		return FALSE
-	if(M.isloyal()) //mindshield implant, no dice
+	if(HAS_TRAIT(M, TRAIT_MINDSHIELD)) //mindshield implant, no dice
+		return FALSE
+	if(M.anti_magic_check(FALSE, FALSE, TRUE, 0))
 		return FALSE
 	if(M in linked_mobs)
 		return FALSE
@@ -627,7 +635,7 @@
 		Remove(H)
 		return
 
-	var/message = sanitize(input("Message:", "Slime Telepathy") as text|null)
+	var/message = sanitize(to_utf8(input("Message:", "Slime Telepathy") as text|null))
 
 	if(!species || !(H in species.linked_mobs))
 		to_chat(H, "<span class='warning'>The link seems to have been severed...</span>")
@@ -640,7 +648,7 @@
 
 	if(message)
 		var/msg = "<i><font color=#008CA2>\[[species.slimelink_owner.real_name]'s Slime Link\] <b>[H]:</b> [message]</font></i>"
-		log_talk(H,"SlimeLink: [key_name(H)] : [msg]",LOGSAY)
+		log_directed_talk(H, species.slimelink_owner, msg, LOG_SAY, "slime link")
 		for(var/X in species.linked_mobs)
 			var/mob/living/M = X
 			if(QDELETED(M) || M.stat == DEAD)
@@ -674,10 +682,15 @@
 	var/mob/living/M = input("Select who to send your message to:","Send thought to?",null) as null|mob in options
 	if(!M)
 		return
-
-	var/msg = sanitize(input("Message:", "Telepathy") as text|null)
+	if(M.anti_magic_check(FALSE, FALSE, TRUE, 0))
+		to_chat(H, "<span class='notice'>As you try to communicate with [M], you're suddenly stopped by a vision of a massive tinfoil wall that streches beyond visible range. It seems you've been foiled.</span>")
+		return
+	var/msg = sanitize(to_utf8(input("Message:", "Telepathy") as text|null))
 	if(msg)
-		log_talk(H,"SlimeTelepathy: [key_name(H)]->[key_name(M)] : [msg]",LOGSAY)
+		if(M.anti_magic_check(FALSE, FALSE, TRUE, 0))
+			to_chat(H, "<span class='notice'>As you try to communicate with [M], you're suddenly stopped by a vision of a massive tinfoil wall that streches beyond visible range. It seems you've been foiled.</span>")
+			return
+		log_directed_talk(H, M, msg, LOG_SAY, "slime telepathy")
 		to_chat(M, "<span class='notice'>You hear an alien voice in your head... </span><font color=#008CA2>[msg]</font>")
 		to_chat(H, "<span class='notice'>You telepathically said: \"[msg]\" to [M]</span>")
 		for(var/dead in GLOB.dead_mob_list)

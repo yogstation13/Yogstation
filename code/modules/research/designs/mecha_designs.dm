@@ -12,7 +12,7 @@
 
 /datum/design/board/ripley_peri
 	name = "APLU \"Ripley\" Peripherals Control module"
-	desc = "Allows for the construction of a  \"Ripley\" Peripheral Control module."
+	desc = "Allows for the construction of a \"Ripley\" Peripheral Control module."
 	id = "ripley_peri"
 	build_path = /obj/item/circuitboard/mecha/ripley/peripherals
 	category = list("Exosuit Modules")
@@ -20,7 +20,7 @@
 
 /datum/design/board/odysseus_main
 	name = "\"Odysseus\" Central Control module"
-	desc = "Allows for the construction of a \"Odysseus\" Central Control module."
+	desc = "Allows for the construction of an \"Odysseus\" Central Control module."
 	id = "odysseus_main"
 	build_path = /obj/item/circuitboard/mecha/odysseus/main
 	category = list("Exosuit Modules")
@@ -28,7 +28,7 @@
 
 /datum/design/board/odysseus_peri
 	name = "\"Odysseus\" Peripherals Control module"
-	desc = "Allows for the construction of a \"Odysseus\" Peripheral Control module."
+	desc = "Allows for the construction of an \"Odysseus\" Peripheral Control module."
 	id = "odysseus_peri"
 	build_path = /obj/item/circuitboard/mecha/odysseus/peripherals
 	category = list("Exosuit Modules")
@@ -139,7 +139,7 @@
 
 /datum/design/mech_scattershot
 	name = "Exosuit Weapon (LBX AC 10 \"Scattershot\")"
-	desc = "Allows for the construction of LBX AC 10."
+	desc = "Allows for the construction of the LBX AC 10."
 	id = "mech_scattershot"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
@@ -147,9 +147,20 @@
 	construction_time = 100
 	category = list("Exosuit Equipment")
 
+/datum/design/mech_scattershot_ammo
+	name = "LBX AC 10 Scattershot Ammunition"
+	desc = "Ammunition for the LBX AC 10 exosuit weapon."
+	id = "mech_scattershot_ammo"
+	build_type = PROTOLATHE | MECHFAB
+	build_path = /obj/item/mecha_ammo/scattershot
+	materials = list(MAT_METAL=6000)
+	construction_time = 20
+	category = list("Exosuit Ammunition", "Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/mech_carbine
 	name = "Exosuit Weapon (FNX-99 \"Hades\" Carbine)"
-	desc = "Allows for the construction of FNX-99 \"Hades\" Carbine."
+	desc = "Allows for the construction of the FNX-99 \"Hades\" Carbine."
 	id = "mech_carbine"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
@@ -157,9 +168,20 @@
 	construction_time = 100
 	category = list("Exosuit Equipment")
 
+/datum/design/mech_carbine_ammo
+	name = "FNX-99 Carbine Ammunition"
+	desc = "Ammunition for the FNX-99 \"Hades\" Carbine."
+	id = "mech_carbine_ammo"
+	build_type = PROTOLATHE | MECHFAB
+	build_path = /obj/item/mecha_ammo/incendiary
+	materials = list(MAT_METAL=6000)
+	construction_time = 20
+	category = list("Exosuit Ammunition", "Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/mech_ion
 	name = "Exosuit Weapon (MKIV Ion Heavy Cannon)"
-	desc = "Allows for the construction of MKIV Ion Heavy Cannon."
+	desc = "Allows for the construction of the MKIV Ion Heavy Cannon."
 	id = "mech_ion"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/ion
@@ -169,7 +191,7 @@
 
 /datum/design/mech_tesla
 	name = "Exosuit Weapon (MKI Tesla Cannon)"
-	desc = "Allows for the construction of MKI Tesla Cannon."
+	desc = "Allows for the construction of the MKI Tesla Cannon."
 	id = "mech_tesla"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/tesla
@@ -179,7 +201,7 @@
 
 /datum/design/mech_laser
 	name = "Exosuit Weapon (CH-PS \"Immolator\" Laser)"
-	desc = "Allows for the construction of CH-PS Laser."
+	desc = "Allows for the construction of the CH-PS Laser."
 	id = "mech_laser"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
@@ -189,7 +211,7 @@
 
 /datum/design/mech_laser_heavy
 	name = "Exosuit Weapon (CH-LC \"Solaris\" Laser Cannon)"
-	desc = "Allows for the construction of CH-LC Laser Cannon."
+	desc = "Allows for the construction of the CH-LC Laser Cannon."
 	id = "mech_laser_heavy"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
@@ -197,9 +219,29 @@
 	construction_time = 100
 	category = list("Exosuit Equipment")
 
+/datum/design/mech_xray
+	name = "Exosuit Weapon (CH-XC \"Transitum\" X-Ray Laser)"
+	desc = "Allows for the construction of the CH-XC X-Ray Laser."
+	id = "mech_xray"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/xray
+	materials = list(MAT_METAL=10000,MAT_GOLD = 6000,MAT_URANIUM = 5000,MAT_TITANIUM = 3000,MAT_BLUESPACE = 3000)
+	construction_time = 100
+	category = list("Exosuit Equipment")
+
+/datum/design/mech_disabler
+	name = "Exosuit Weapon (CH-DS \"Peacemaker\" Disabler)"
+	desc = "Allows for the construction of the CH-DS Disabler."
+	id = "mech_disabler"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/disabler
+	materials = list(MAT_METAL=10000)
+	construction_time = 100
+	category = list("Exosuit Equipment")
+
 /datum/design/mech_grenade_launcher
 	name = "Exosuit Weapon (SGL-6 Grenade Launcher)"
-	desc = "Allows for the construction of SGL-6 Grenade Launcher."
+	desc = "Allows for the construction of the SGL-6 Grenade Launcher."
 	id = "mech_grenade_launcher"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang
@@ -207,25 +249,58 @@
 	construction_time = 100
 	category = list("Exosuit Equipment")
 
+/datum/design/mech_grenade_launcher_ammo
+	name = "SGL-6 Grenade Launcher Ammunition"
+	desc = "Ammunition for the SGL-6 Grenade Launcher."
+	id = "mech_grenade_launcher_ammo"
+	build_type = PROTOLATHE | MECHFAB
+	build_path = /obj/item/mecha_ammo/flashbang
+	materials = list(MAT_METAL=4000,MAT_GOLD=500,MAT_SILVER=500)
+	construction_time = 20
+	category = list("Exosuit Ammunition", "Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/mech_missile_rack
-	name = "Exosuit Weapon (SRM-8 Missile Rack)"
-	desc = "Allows for the construction of SRM-8 Missile Rack."
+	name = "Exosuit Weapon (BRM-6 Missile Rack)"
+	desc = "Allows for the construction of a BRM-6 Breaching Missile Rack."
 	id = "mech_missile_rack"
 	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack
+	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/breaching
 	materials = list(MAT_METAL=22000,MAT_GOLD=6000,MAT_SILVER=8000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
 
+/datum/design/mech_missile_rack_ammo
+	name = "SRM-8 Missile Rack Ammunition"
+	desc = "Ammunition for the SRM-8 Missile Rack."
+	id = "mech_missile_rack_ammo"
+	build_type = PROTOLATHE | MECHFAB
+	build_path = /obj/item/mecha_ammo/missiles_br
+	materials = list(MAT_METAL=8000,MAT_GOLD=500,MAT_SILVER=500)
+	construction_time = 20
+	category = list("Exosuit Ammunition", "Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/clusterbang_launcher
 	name = "Exosuit Module (SOB-3 Clusterbang Launcher)"
-	desc = "A weapon that violates the Geneva Convention at 3 rounds per minute"
+	desc = "A weapon that violates the Geneva Convention at 3 rounds per minute."
 	id = "clusterbang_launcher"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang
 	materials = list(MAT_METAL=20000,MAT_GOLD=10000,MAT_URANIUM=10000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+
+/datum/design/clusterbang_launcher_ammo
+	name = "SOB-3 Clusterbang Launcher Ammunition"
+	desc = "Ammunition for the SOB-3 Clusterbang Launcher."
+	id = "clusterbang_launcher_ammo"
+	build_type = PROTOLATHE | MECHFAB
+	build_path = /obj/item/mecha_ammo/clusterbang
+	materials = list(MAT_METAL=6000,MAT_GOLD=1500,MAT_URANIUM=1500)
+	construction_time = 20
+	category = list("Exosuit Ammunition", "Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/mech_wormhole_gen
 	name = "Exosuit Module (Localized Wormhole Generator)"
@@ -269,7 +344,7 @@
 
 /datum/design/mech_repair_droid
 	name = "Exosuit Module (Repair Droid Module)"
-	desc = "Automated Repair Droid. BEEP BOOP"
+	desc = "Automated Repair Droid. BEEP BOOP!"
 	id = "mech_repair_droid"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/repair_droid
@@ -279,7 +354,7 @@
 
 /datum/design/mech_energy_relay
 	name = "Exosuit Module (Tesla Energy Relay)"
-	desc = "Tesla Energy Relay"
+	desc = "Tesla Energy Relay."
 	id = "mech_energy_relay"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay
@@ -337,16 +412,6 @@
 	construction_time = 100
 	category = list("Exosuit Equipment")
 
-/datum/design/mech_taser
-	name = "Exosuit Weapon (PBT \"Pacifier\" Mounted Taser)"
-	desc = "A weapon for combat exosuits. Shoots non-lethal stunning electrodes."
-	id = "mech_taser"
-	build_type = MECHFAB
-	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser
-	materials = list(MAT_METAL=10000)
-	construction_time = 100
-	category = list("Exosuit Equipment")
-
 /datum/design/mech_lmg
 	name = "Exosuit Weapon (\"Ultra AC 2\" LMG)"
 	desc = "A weapon for combat exosuits. Shoots a rapid, three shot burst."
@@ -356,6 +421,17 @@
 	materials = list(MAT_METAL=10000)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+
+/datum/design/mech_lmg_ammo
+	name = "Ultra AC 2 Ammunition"
+	desc = "Ammunition for the Ultra AC 2 LMG."
+	id = "mech_lmg_ammo"
+	build_type = PROTOLATHE | MECHFAB
+	build_path = /obj/item/mecha_ammo/lmg
+	materials = list(MAT_METAL=4000)
+	construction_time = 20
+	category = list("Exosuit Ammunition", "Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/mech_sleeper
 	name = "Exosuit Medical Equipment (Mounted Sleeper)"
@@ -369,7 +445,7 @@
 
 /datum/design/mech_syringe_gun
 	name = "Exosuit Medical Equipment (Syringe Gun)"
-	desc = "Equipment for medical exosuits. A chem synthesizer with syringe gun. Reagents inside are held in stasis, so no reactions will occur."
+	desc = "Equipment for medical exosuits. A chem synthesizer with a syringe gun. Reagents inside are held in stasis, so no reactions will occur."
 	id = "mech_syringe_gun"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun

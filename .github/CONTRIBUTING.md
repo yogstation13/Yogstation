@@ -50,9 +50,6 @@ datum
 		var
 			varname1 = 1
 			varname2
-			static
-				varname3
-				varname4
 		proc
 			proc1()
 				code
@@ -77,8 +74,6 @@ The previous code made compliant:
 /datum/datum1
 	var/varname1
 	var/varname2
-	var/static/varname3
-	var/static/varname4
 
 /datum/datum1/proc/proc1()
 	code
@@ -98,6 +93,9 @@ The use of the : operator to override type safety checks is not allowed. You mus
 
 ### Type paths must begin with a /
 eg: `/datum/thing`, not `datum/thing`
+
+### Type paths must be lowercase
+eg: `/datum/thing/blue`, not `datum/thing/BLUE` or `datum/thing/Blue`
 
 ### Datum type paths must began with "datum"
 In DM, this is optional, but omitting it makes finding definitions harder.
@@ -227,6 +225,8 @@ This prevents nesting levels from getting deeper then they need to be.
 * Any time the schema is changed the `schema_revision` table and `DB_MAJOR_VERSION` or `DB_MINOR_VERSION` defines must be incremented.
 
 * Queries must never specify the database, be it in code, or in text files in the repo.
+
+* Primary keys are inherently immutable and you must never do anything to change the primary key of a row or entity. This includes preserving auto increment numbers of rows when copying data to a table in a conversion script. No amount of bitching about gaps in ids or out of order ids will save you from this policy.
 
 ### Mapping Standards
 * TGM Format & Map Merge
@@ -377,20 +377,15 @@ There is no strict process when it comes to merging pull requests. Pull requests
 
 * Please explain why you are submitting the pull request, and how you think your change will be beneficial to the game. Failure to do so will be grounds for rejecting the PR.
 
+* If your pull request is not finished make sure it is at least testable in a live environment. Pull requests that do not at least meet this requirement will be closed. You may request a maintainer reopen the pull request when you're ready, or make a new one.
+
+* While we have no issue helping contributors (and especially new contributors) bring reasonably sized contributions up to standards via the pull request review process, larger contributions are expected to pass a higher bar of completeness and code quality *before* you open a pull request. Maintainers may close such pull requests that are deemed to be substantially flawed. You should take some time to discuss with maintainers or other contributors on how to improve the changes.
+
 ## Porting features/sprites/sounds/tools from other codebases
 
 If you are porting features/tools from other codebases, you must give them credit where it's due. Typically, crediting them in your pull request and the changelog is the recommended way of doing it. Take note of what license they use though, porting stuff from AGPLv3 and GPLv3 codebases are allowed.
 
 Regarding sprites & sounds, you must credit the artist and possibly the codebase. All yogstation assets including icons and sound are under a [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated. However if you are porting assets from GoonStation or usually any assets under the [Creative Commons 3.0 BY-NC-SA license](https://creativecommons.org/licenses/by-nc-sa/3.0/) are to go into the 'goon' folder of the yogstation codebase.
 
-## Banned content
-Do not add any of the following in a Pull Request or risk getting the PR closed:
-* National Socialist Party of Germany content, National Socialist Party of Germany related content, or National Socialist Party of Germany references
-* Code where one line of code is split across mutiple lines (except for multiple, separate strings and comments; in those cases, existing longer lines must not be split up)
-
-Just because something isn't on this list doesn't mean that it's acceptable. Use common sense above all else.
-
 ## A word on Git
-Yes, we know that the files have a tonne of mixed Windows and Linux line endings. Attempts to fix this have been met with less than stellar success, and as such we have decided to give up caring until there comes a time when it matters.
-
-Therefore, EOF settings of main repo are forbidden territory one must avoid wandering into, at risk of losing body and/or mind to the Git gods.
+All .dmm .dm .md .txt .html are required to end with CRLF(DOS/WINDOWS) line endings,git will enforce said line endings automatically. Other file types have non enforced line endings.

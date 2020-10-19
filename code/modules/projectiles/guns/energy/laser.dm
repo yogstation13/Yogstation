@@ -47,9 +47,11 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/scatter, /obj/item/ammo_casing/energy/laser)
 
 /obj/item/gun/energy/laser/cyborg
-	can_charge = 0
-	desc = "An energy-based laser gun that draws power from the cyborg's internal energy cell directly. So this is what freedom looks like?"
-	use_cyborg_cell = 1
+	can_charge = FALSE
+	desc = "An energy-based laser gun that self charges. So this is what freedom looks like?"
+	charge_delay = 5
+	selfcharge = TRUE
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/cyborg)
 
 /obj/item/gun/energy/laser/cyborg/emp_act()
 	return
@@ -64,10 +66,10 @@
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "cshotgun"
 	item_state = "shotgun"
-	desc = "A combat shotgun gutted and refitted with an internal laser system. Can switch between taser and scattered disabler shots."
+	desc = "A combat shotgun gutted and refitted with an internal disabler system."
 	shaded_charge = 0
 	pin = /obj/item/firing_pin/implant/mindshield
-	ammo_type = list(/obj/item/ammo_casing/energy/laser/scatter/disabler, /obj/item/ammo_casing/energy/electrode)
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/scatter/disabler)
 
 ///Laser Cannon
 
@@ -138,3 +140,37 @@
 
 /obj/item/gun/energy/laser/redtag/hitscan
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/redtag/hitscan)
+	
+/obj/item/gun/energy/laser/makeshiftlasrifle
+	name = "makeshift laser rifle"
+	desc = "A makeshift rifle that shoots lasers. Lacks factory precision, but the screwable bulb allows modulating the photonic output."
+	icon_state = "lasrifle"
+	item_state = "makeshiftlas"
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	w_class = WEIGHT_CLASS_NORMAL
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/makeshiftlasrifle, /obj/item/ammo_casing/energy/laser/makeshiftlasrifle/weak)
+	icon = 'icons/obj/guns/energy.dmi'
+	can_charge = TRUE
+	charge_sections = 1
+	ammo_x_offset = 2
+	shaded_charge = FALSE //if this gun uses a stateful charge bar for more detail
+
+/obj/item/ammo_casing/energy/laser/makeshiftlasrifle
+	e_cost = 1000 //The amount of energy a cell needs to expend to create this shot.
+	projectile_type = /obj/item/projectile/beam/laser/makeshiftlasrifle
+	select_name = "strong"
+	variance = 2
+
+/obj/item/projectile/beam/laser/makeshiftlasrifle
+	damage = 17
+
+/obj/item/ammo_casing/energy/laser/makeshiftlasrifle/weak
+	e_cost = 100 //The amount of energy a cell needs to expend to create this shot.
+	projectile_type = /obj/item/projectile/beam/laser/makeshiftlasrifle/weak
+	select_name = "weak"
+	fire_sound = 'sound/weapons/laser2.ogg'
+
+/obj/item/projectile/beam/laser/makeshiftlasrifle/weak
+	name = "weak laser"
+	damage = 5 

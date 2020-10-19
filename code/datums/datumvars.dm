@@ -1,3 +1,7 @@
+#define VV_MSG_MARKED "<br><font size='1' color='red'><b>Marked Object</b></font>"
+#define VV_MSG_EDITED "<br><font size='1' color='red'><b>Var Edited</b></font>"
+#define VV_MSG_DELETED "<br><font size='1' color='red'><b>Deleted</b></font>"
+
 /datum/proc/CanProcCall(procname)
 	return TRUE
 
@@ -9,6 +13,7 @@
 		return FALSE
 	vars[var_name] = var_value
 	datum_flags |= DF_VAR_EDITED
+	return TRUE
 
 /datum/proc/vv_get_var(var_name)
 	switch(var_name)
@@ -45,7 +50,8 @@
 		return
 
 	var/islist = islist(D)
-	if (!islist && !istype(D))
+	var/isappearance = isappearance(D)
+	if (!islist && !istype(D) && !isappearance)
 		return
 
 	var/title = ""
@@ -54,12 +60,14 @@
 	var/hash
 
 	var/type = /list
-	if (!islist)
+	if (isappearance)
+		type = /image
+	else if (!islist)
 		type = D.type
 
 
 
-	if(istype(D, /atom))
+	if(istype(D, /atom) || isappearance)
 		var/atom/AT = D
 		if(AT.icon && AT.icon_state)
 			sprite = new /icon(AT.icon, AT.icon_state)
@@ -68,6 +76,7 @@
 			src << browse_rsc(sprite, "vv[hash].png")
 
 	title = "[D] ([REF(D)]) = [type]"
+	var/formatted_type = replacetext("[type]", "/", "<wbr>/")
 
 	var/sprite_text
 	if(sprite)
@@ -77,36 +86,40 @@
 	if(istype(D, /atom))
 		var/atom/A = D
 		if(isliving(A))
-			atomsnowflake += "<a href='?_src_=vars;[HrefToken()];rename=[refid]'><b>[D]</b></a>"
-			if(A.dir)
-				atomsnowflake += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir'>[dir2text(A.dir)]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
+			atomsnowflake += "<a href='?_src_=vars;[HrefToken()];rename=[refid]'><b id='name'>[D]</b></a>"
+			atomsnowflake += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(A.dir) || A.dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
 			var/mob/living/M = A
+
 			atomsnowflake += {"
-				<br><font size='1'><a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=ckey'>[M.ckey ? M.ckey : "No ckey"]</a> / <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=real_name'>[M.real_name ? M.real_name : "No real name"]</a></font>
+				<br><font size='1'><a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=ckey' id='ckey'>[M.ckey || "No ckey"]</a> / <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=real_name' id='real_name'>[M.real_name || "No real name"]</a></font>
 				<br><font size='1'>
-					BRUTE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brute'>[M.getBruteLoss()]</a>
-					FIRE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=fire'>[M.getFireLoss()]</a>
-					TOXIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=toxin'>[M.getToxLoss()]</a>
-					OXY:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen'>[M.getOxyLoss()]</a>
-					CLONE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone'>[M.getCloneLoss()]</a>
-					BRAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain'>[M.getBrainLoss()]</a>
-					STAMINA:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina'>[M.getStaminaLoss()]</a>
+					BRUTE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brute' id='brute'>[M.getBruteLoss()]</a>
+					FIRE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=fire' id='fire'>[M.getFireLoss()]</a>
+					TOXIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=toxin' id='toxin'>[M.getToxLoss()]</a>
+					OXY:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[M.getOxyLoss()]</a>
+					CLONE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[M.getCloneLoss()]</a>
+					BRAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[M.getOrganLoss(ORGAN_SLOT_BRAIN)]</a>
+					STAMINA:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[M.getStaminaLoss()]</a>
 				</font>
 			"}
 		else
-			atomsnowflake += "<a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=name'><b>[D]</b></a>"
-			if(A.dir)
-				atomsnowflake += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir'>[dir2text(A.dir)]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
+			atomsnowflake += "<a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=name'><b id='name'>[D]</b></a>"
+			atomsnowflake += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(A.dir) || A.dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
+	else if(!isappearance && ("name" in D.vars))
+		atomsnowflake += "<a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=name'><b id='name'>[D]</b></a>"
 	else
-		atomsnowflake += "<b>[D]</b>"
+		atomsnowflake += "<b>[formatted_type]</b>"
+		formatted_type = null
 
-	var/formatted_type = replacetext("[type]", "/", "<wbr>/")
 	var/marked
 	if(holder && holder.marked_datum && holder.marked_datum == D)
-		marked = "<br><font size='1' color='red'><b>Marked Object</b></font>"
+		marked = VV_MSG_MARKED
 	var/varedited_line = ""
-	if(!islist && (D.datum_flags & DF_VAR_EDITED))
-		varedited_line = "<br><font size='1' color='red'><b>Var Edited</b></font>"
+	if(!isappearance && !islist && (D.datum_flags & DF_VAR_EDITED))
+		varedited_line = VV_MSG_EDITED
+	var/deleted_line
+	if(!isappearance && !islist && D.gc_destroyed)
+		deleted_line = VV_MSG_DELETED
 
 	var/list/dropdownoptions = list()
 	if (islist)
@@ -119,7 +132,7 @@
 			"Shuffle" = "?_src_=vars;[HrefToken()];listshuffle=[refid]",
 			"Show VV To Player" = "?_src_=vars;[HrefToken()];expose=[refid]"
 			)
-	else
+	else if (!isappearance)
 		dropdownoptions = D.vv_get_dropdown()
 	var/list/dropdownoptions_html = list()
 
@@ -131,7 +144,7 @@
 			dropdownoptions_html += "<option value>[name]</option>"
 
 	var/list/names = list()
-	if (!islist)
+	if (!islist && !isappearance)
 		for (var/V in D.vars)
 			names += V
 	sleep(1)//For some reason, without this sleep, VVing will cause client to disconnect on certain objects.
@@ -145,6 +158,56 @@
 			if (IS_NORMAL_LIST(L) && !isnum(key))
 				value = L[key]
 			variable_html += debug_variable(i, value, 0, D)
+	else if(isappearance(D))
+		variable_html += debug_variable("type", D:type, 0, D)
+		variable_html += debug_variable("name", D:name, 0, D)
+		variable_html += debug_variable("desc", D:desc, 0, D)
+		variable_html += debug_variable("suffix", D:suffix, 0, D)
+		variable_html += debug_variable("text", D:text, 0, D)
+		variable_html += debug_variable("icon", D:icon, 0, D)
+		variable_html += debug_variable("icon_state", D:icon_state, 0, D)
+		variable_html += debug_variable("visibility", D:visibility, 0, D)
+		variable_html += debug_variable("luminosity", D:luminosity, 0, D)
+		variable_html += debug_variable("opacity", D:opacity, 0, D)
+		variable_html += debug_variable("density", D:density, 0, D)
+		variable_html += debug_variable("verbs", D:verbs, 0, D)
+		variable_html += debug_variable("dir", D:dir, 0, D)
+		variable_html += debug_variable("gender", D:gender, 0, D)
+		variable_html += debug_variable("tag", D:tag, 0, D)
+		variable_html += debug_variable("overlays", D:overlays, 0, D)
+		variable_html += debug_variable("underlays", D:underlays, 0, D)
+		variable_html += debug_variable("layer", D:layer, 0, D)
+		variable_html += debug_variable("parent_type", D:parent_type, 0, D)
+		variable_html += debug_variable("mouse_over_pointer", D:mouse_over_pointer, 0, D)
+		variable_html += debug_variable("mouse_drag_pointer", D:mouse_drag_pointer, 0, D)
+		variable_html += debug_variable("mouse_drop_pointer", D:mouse_drop_pointer, 0, D)
+		variable_html += debug_variable("mouse_drop_zone", D:mouse_drop_zone, 0, D)
+		variable_html += debug_variable("animate_movement", D:animate_movement, 0, D)
+		variable_html += debug_variable("screen_loc", D:screen_loc, 0, D)
+		variable_html += debug_variable("infra_luminosity", D:infra_luminosity, 0, D)
+		variable_html += debug_variable("invisibility", D:invisibility, 0, D)
+		variable_html += debug_variable("mouse_opacity", D:mouse_opacity, 0, D)
+		variable_html += debug_variable("pixel_x", D:pixel_x, 0, D)
+		variable_html += debug_variable("pixel_y", D:pixel_y, 0, D)
+		variable_html += debug_variable("pixel_step_size", D:pixel_step_size, 0, D)
+		variable_html += debug_variable("pixel_z", D:pixel_z, 0, D)
+		variable_html += debug_variable("override", D:override, 0, D)
+		variable_html += debug_variable("glide_size", D:glide_size, 0, D)
+		variable_html += debug_variable("maptext", D:maptext, 0, D)
+		variable_html += debug_variable("maptext_width", D:maptext_width, 0, D)
+		variable_html += debug_variable("maptext_height", D:maptext_height, 0, D)
+		variable_html += debug_variable("transform", D:transform, 0, D)
+		variable_html += debug_variable("alpha", D:alpha, 0, D)
+		variable_html += debug_variable("color", D:color, 0, D)
+		variable_html += debug_variable("blend_mode", D:blend_mode, 0, D)
+		variable_html += debug_variable("appearance", D:appearance, 0, D)
+		variable_html += debug_variable("maptext_x", D:maptext_x, 0, D)
+		variable_html += debug_variable("maptext_y", D:maptext_y, 0, D)
+		variable_html += debug_variable("plane", D:plane, 0, D)
+		variable_html += debug_variable("appearance_flags", D:appearance_flags, 0, D)
+		variable_html += debug_variable("pixel_w", D:pixel_w, 0, D)
+		variable_html += debug_variable("render_source", D:render_source, 0, D)
+		variable_html += debug_variable("render_target", D:render_target, 0, D)
 	else
 
 		names = sortList(names)
@@ -155,119 +218,13 @@
 	var/html = {"
 <html>
 	<head>
+		<meta charset='UTF-8'>
 		<title>[title]</title>
-		<style>
-			body {
-				font-family: Verdana, sans-serif;
-				font-size: 9pt;
-			}
-			.value {
-				font-family: "Courier New", monospace;
-				font-size: 8pt;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="view_variables.css">
 	</head>
-	<body onload='selectTextField(); updateSearch()' onkeydown='return checkreload()' onkeyup='updateSearch()'>
+	<body onload='selectTextField()' onkeydown='return handle_keydown()' onkeyup='handle_keyup()'>
 		<script type="text/javascript">
-			function checkreload() {
-				if(event.keyCode == 116){	//F5 (to refresh properly)
-					document.getElementById("refresh_link").click();
-					event.preventDefault ? event.preventDefault() : (event.returnValue = false)
-					return false;
-				}
-				return true;
-			}
-			function updateSearch(){
-				var filter_text = document.getElementById('filter');
-				var filter = filter_text.value.toLowerCase();
-				if(event.keyCode == 13){	//Enter / return
-					var vars_ol = document.getElementById('vars');
-					var lis = vars_ol.getElementsByTagName("li");
-					for ( var i = 0; i < lis.length; ++i )
-					{
-						try{
-							var li = lis\[i\];
-							if ( li.style.backgroundColor == "#ffee88" )
-							{
-								alist = lis\[i\].getElementsByTagName("a")
-								if(alist.length > 0){
-									location.href=alist\[0\].href;
-								}
-							}
-						}catch(err) {   }
-					}
-					return
-				}
-				if(event.keyCode == 38){	//Up arrow
-					var vars_ol = document.getElementById('vars');
-					var lis = vars_ol.getElementsByTagName("li");
-					for ( var i = 0; i < lis.length; ++i )
-					{
-						try{
-							var li = lis\[i\];
-							if ( li.style.backgroundColor == "#ffee88" )
-							{
-								if( (i-1) >= 0){
-									var li_new = lis\[i-1\];
-									li.style.backgroundColor = "white";
-									li_new.style.backgroundColor = "#ffee88";
-									return
-								}
-							}
-						}catch(err) {  }
-					}
-					return
-				}
-				if(event.keyCode == 40){	//Down arrow
-					var vars_ol = document.getElementById('vars');
-					var lis = vars_ol.getElementsByTagName("li");
-					for ( var i = 0; i < lis.length; ++i )
-					{
-						try{
-							var li = lis\[i\];
-							if ( li.style.backgroundColor == "#ffee88" )
-							{
-								if( (i+1) < lis.length){
-									var li_new = lis\[i+1\];
-									li.style.backgroundColor = "white";
-									li_new.style.backgroundColor = "#ffee88";
-									return
-								}
-							}
-						}catch(err) {  }
-					}
-					return
-				}
-
-				//This part here resets everything to how it was at the start so the filter is applied to the complete list.
-				//>"Screw efficiency, it's client-side anyway and it only looks through 200 or so variables at maximum anyway (mobs)."
-				//>proceeds to put 600 variables on GLOB
-				var vars_ol = document.getElementById("vars");
-				while (vars_ol.hasChildNodes()) {
-					vars_ol.removeChild(vars_ol.lastChild);
-				}
-
-				document.cookie="[refid][cookieoffset]search="+encodeURIComponent(filter);
-				for (var i = 0; i < complete_list.length; ++i) {
-					try {
-						var li = complete_list\[i\];
-						if (!filter || li.innerText.toLowerCase().indexOf(filter) != -1)
-						{
-							vars_ol.appendChild(li);
-						}
-					} catch(err) {}
-				}
-				var lis_new = vars_ol.getElementsByTagName("li");
-				for ( var j = 0; j < lis_new.length; ++j )
-				{
-					var li1 = lis_new\[j\];
-					if (j == 0){
-						li1.style.backgroundColor = "#ffee88";
-					}else{
-						li1.style.backgroundColor = "white";
-					}
-				}
-			}
+			// onload
 			function selectTextField() {
 				var filter_text = document.getElementById('filter');
 				filter_text.focus();
@@ -278,23 +235,140 @@
 					updateSearch();
 				}
 			}
-			function loadPage(list) {
-				if(list.options\[list.selectedIndex\].value == ""){
-					return;
-				}
-				location.href=list.options\[list.selectedIndex\].value;
-			}
 			function getCookie(cname) {
 				var name = cname + "=";
 				var ca = document.cookie.split(';');
 				for(var i=0; i<ca.length; i++) {
-					var c = ca\[i\];
+					var c = ca\[i];
 					while (c.charAt(0)==' ') c = c.substring(1,c.length);
 					if (c.indexOf(name)==0) return c.substring(name.length,c.length);
 				}
 				return "";
 			}
 
+			// main search functionality
+			var last_filter = "";
+			function updateSearch() {
+				var filter = document.getElementById('filter').value.toLowerCase();
+				var vars_ol = document.getElementById("vars");
+
+				if (filter === last_filter) {
+					// An event triggered an update but nothing has changed.
+					return;
+				} else if (filter.indexOf(last_filter) === 0) {
+					// The new filter starts with the old filter, fast path by removing only.
+					var children = vars_ol.childNodes;
+					for (var i = children.length - 1; i >= 0; --i) {
+						try {
+							var li = children\[i];
+							if (li.innerText.toLowerCase().indexOf(filter) == -1) {
+								vars_ol.removeChild(li);
+							}
+						} catch(err) {}
+					}
+				} else {
+					// Remove everything and put back what matches.
+					while (vars_ol.hasChildNodes()) {
+						vars_ol.removeChild(vars_ol.lastChild);
+					}
+
+					for (var i = 0; i < complete_list.length; ++i) {
+						try {
+							var li = complete_list\[i];
+							if (!filter || li.innerText.toLowerCase().indexOf(filter) != -1) {
+								vars_ol.appendChild(li);
+							}
+						} catch(err) {}
+					}
+				}
+
+				last_filter = filter;
+				document.cookie="[refid][cookieoffset]search="+encodeURIComponent(filter);
+
+				var lis_new = vars_ol.getElementsByTagName("li");
+				for (var j = 0; j < lis_new.length; ++j) {
+					lis_new\[j].style.backgroundColor = (j == 0) ? "#ffee88" : "white";
+				}
+			}
+
+			// onkeydown
+			function handle_keydown() {
+				if(event.keyCode == 116) {  //F5 (to refresh properly)
+					document.getElementById("refresh_link").click();
+					event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+					return false;
+				}
+				return true;
+			}
+
+			// onkeyup
+			function handle_keyup() {
+				if (event.keyCode == 13) {  //Enter / return
+					var vars_ol = document.getElementById('vars');
+					var lis = vars_ol.getElementsByTagName("li");
+					for (var i = 0; i < lis.length; ++i) {
+						try {
+							var li = lis\[i];
+							if (li.style.backgroundColor == "#ffee88") {
+								alist = lis\[i].getElementsByTagName("a");
+								if(alist.length > 0) {
+									location.href=alist\[0].href;
+								}
+							}
+						} catch(err) {}
+					}
+				} else if(event.keyCode == 38){  //Up arrow
+					var vars_ol = document.getElementById('vars');
+					var lis = vars_ol.getElementsByTagName("li");
+					for (var i = 0; i < lis.length; ++i) {
+						try {
+							var li = lis\[i];
+							if (li.style.backgroundColor == "#ffee88") {
+								if (i > 0) {
+									var li_new = lis\[i-1];
+									li.style.backgroundColor = "white";
+									li_new.style.backgroundColor = "#ffee88";
+									return
+								}
+							}
+						} catch(err) {}
+					}
+				} else if(event.keyCode == 40) {  //Down arrow
+					var vars_ol = document.getElementById('vars');
+					var lis = vars_ol.getElementsByTagName("li");
+					for (var i = 0; i < lis.length; ++i) {
+						try {
+							var li = lis\[i];
+							if (li.style.backgroundColor == "#ffee88") {
+								if ((i+1) < lis.length) {
+									var li_new = lis\[i+1];
+									li.style.backgroundColor = "white";
+									li_new.style.backgroundColor = "#ffee88";
+									return
+								}
+							}
+						} catch(err) {}
+					}
+				} else {
+					updateSearch();
+				}
+			}
+
+			// onchange
+			function handle_dropdown(list) {
+				var value = list.options\[list.selectedIndex].value;
+				if (value !== "") {
+					location.href = value;
+				}
+				list.selectedIndex = 0;
+				document.getElementById('filter').focus();
+			}
+
+			// byjax
+			function replace_span(what) {
+				var idx = what.indexOf(':');
+				document.getElementById(what.substr(0, idx)).innerHTML = what.substr(idx + 1);
+			}
 		</script>
 		<div align='center'>
 			<table width='100%'>
@@ -312,8 +386,9 @@
 						</table>
 						<div align='center'>
 							<b><font size='1'>[formatted_type]</font></b>
-							[marked]
-							[varedited_line]
+							<span id='marked'>[marked]</span>
+							<span id='varedited'>[varedited_line]</span>
+							<span id='deleted'>[deleted_line]</span>
 						</div>
 					</td>
 					<td width='50%'>
@@ -321,8 +396,7 @@
 							<a id='refresh_link' href='?_src_=vars;[HrefToken()];datumrefresh=[refid]'>Refresh</a>
 							<form>
 								<select name="file" size="1"
-									onchange="loadPage(this.form.elements\[0\])"
-									target="_parent._top"
+									onchange="handle_dropdown(this)"
 									onmouseclick="this.focus()"
 									style="background-color:#ffffff">
 									<option value selected>Select option</option>
@@ -368,10 +442,15 @@
 	src << browse(html, "window=variables[refid];size=475x650")
 
 
+/client/proc/vv_update_display(datum/D, span, content)
+	src << output("[span]:[content]", "variables[REF(D)].browser:replace_span")
+
+
 #define VV_HTML_ENCODE(thing) ( sanitize ? html_encode(thing) : thing )
+/// Get displayed variable in VV variable list
 /proc/debug_variable(name, value, level, datum/DA = null, sanitize = TRUE)
 	var/header
-	if(DA)
+	if(DA && !isappearance(DA))
 		if (islist(DA))
 			var/index = name
 			if (value)
@@ -405,6 +484,22 @@
 	else if (isfile(value))
 		item = "[VV_HTML_ENCODE(name)] = <span class='value'>'[value]'</span>"
 
+	else if(istype(value,/matrix)) // Needs to be before datum
+		var/matrix/M = value
+		item = {"[VV_HTML_ENCODE(name)] = <span class='value'>
+			<table class='matrixbrak'><tbody><tr><td class='lbrak'>&nbsp;</td><td>
+			<table class='matrix'>
+			<tbody>
+				<tr><td>[M.a]</td><td>[M.d]</td><td>0</td></tr>
+				<tr><td>[M.b]</td><td>[M.e]</td><td>0</td></tr>
+				<tr><td>[M.c]</td><td>[M.f]</td><td>1</td></tr>
+			</tbody>
+			</table></td><td class='rbrak'>&nbsp;</td></tr></tbody></table></span>"} //TODO link to modify_transform wrapper for all matrices
+
+	else if(isappearance(value))
+		var/image/I = value
+		item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = appearance(<span class='value'>[I.icon]</span>, <span class='value'>\"[I.icon_state]\"</span>)"
+
 	else if (istype(value, /datum))
 		var/datum/D = value
 		if ("[D]" != "[D.type]") //if the thing as a name var, lets use it.
@@ -416,7 +511,7 @@
 		var/list/L = value
 		var/list/items = list()
 
-		if (L.len > 0 && !(name == "underlays" || name == "overlays" || L.len > (IS_NORMAL_LIST(L) ? 50 : 150)))
+		if (L.len > 0 && !(L.len > (IS_NORMAL_LIST(L) ? 50 : 150)))
 			for (var/i in 1 to L.len)
 				var/key = L[i]
 				var/val
@@ -467,7 +562,6 @@
 			return
 
 		src.holder.show_player_panel(M)
-		href_list["datumrefresh"] = href_list["mob_player_panel"]
 
 	else if(href_list["godmode"])
 		if(!check_rights(R_ADMIN))
@@ -479,7 +573,6 @@
 			return
 
 		src.cmd_admin_godmode(M)
-		href_list["datumrefresh"] = href_list["godmode"]
 
 	else if(href_list["mark_object"])
 		if(!check_rights(NONE))
@@ -490,8 +583,10 @@
 			to_chat(usr, "This can only be done to instances of type /datum")
 			return
 
-		src.holder.marked_datum = D
-		href_list["datumrefresh"] = href_list["mark_object"]
+		if(holder.marked_datum)
+			vv_update_display(holder.marked_datum, "marked", "")
+		holder.marked_datum = D
+		vv_update_display(D, "marked", VV_MSG_MARKED)
 
 	else if(href_list["proc_call"])
 		if(!check_rights(NONE))
@@ -510,7 +605,8 @@
 		if(!istype(D))
 			to_chat(usr, "Unable to locate item!")
 		admin_delete(D)
-		href_list["datumrefresh"] = href_list["delete"]
+		if (isturf(D))  // show the turf that took its place
+			debug_variables(D)
 
 	else if(href_list["osay"])
 		if(!check_rights(R_FUN, 0))
@@ -557,41 +653,57 @@
 		offer_control(M)
 	// yogs end
 
+	//~CARN: for renaming mobs (updates their name, real_name, mind.name, their ID/PDA and datacore records).
+
+	else if(href_list["rename"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/mob/M = locate(href_list["rename"]) in GLOB.mob_list
+		if(!istype(M))
+			to_chat(usr, "This can only be used on instances of type /mob")
+			return
+
+		var/new_name = stripped_input(usr,"What would you like to name this mob?","Input a name",M.real_name,MAX_NAME_LEN)
+		if( !new_name || !M )
+			return
+
+		message_admins("Admin [key_name_admin(usr)] renamed [key_name_admin(M)] to [new_name].")
+		M.fully_replace_character_name(M.real_name,new_name)
+		vv_update_display(M, "name", new_name)
+		vv_update_display(M, "real_name", M.real_name || "No real name")
 
 //Needs +VAREDIT past this point
 
+
 	else if(check_rights(R_VAREDIT))
 
-
-	//~CARN: for renaming mobs (updates their name, real_name, mind.name, their ID/PDA and datacore records).
-
-		if(href_list["rename"])
+		if(href_list["varnameedit"] && href_list["datumedit"])
 			if(!check_rights(NONE))
 				return
 
-			var/mob/M = locate(href_list["rename"]) in GLOB.mob_list
-			if(!istype(M))
-				to_chat(usr, "This can only be used on instances of type /mob")
-				return
-
-			var/new_name = stripped_input(usr,"What would you like to name this mob?","Input a name",M.real_name,MAX_NAME_LEN)
-			if( !new_name || !M )
-				return
-
-			message_admins("Admin [key_name_admin(usr)] renamed [key_name_admin(M)] to [new_name].")
-			M.fully_replace_character_name(M.real_name,new_name)
-			href_list["datumrefresh"] = href_list["rename"]
-
-		else if(href_list["varnameedit"] && href_list["datumedit"])
-			if(!check_rights(NONE))
-				return
-
-			var/D = locate(href_list["datumedit"])
+			var/datum/D = locate(href_list["datumedit"])
 			if(!istype(D, /datum))
 				to_chat(usr, "This can only be used on datums")
 				return
 
-			modify_variables(D, href_list["varnameedit"], 1)
+			if (!modify_variables(D, href_list["varnameedit"], 1))
+				return
+			switch(href_list["varnameedit"])
+				if("name")
+					vv_update_display(D, "name", "[D]")
+				if("dir")
+					var/atom/A = D
+					if(istype(A))
+						vv_update_display(D, "dir", dir2text(A.dir) || A.dir)
+				if("ckey")
+					var/mob/living/L = D
+					if(istype(L))
+						vv_update_display(D, "ckey", L.ckey || "No ckey")
+				if("real_name")
+					var/mob/living/L = D
+					if(istype(L))
+						vv_update_display(D, "real_name", L.real_name || "No real name")
 
 		else if(href_list["varnamechange"] && href_list["datumchange"])
 			if(!check_rights(NONE))
@@ -723,7 +835,6 @@
 				return
 
 			src.give_spell(M)
-			href_list["datumrefresh"] = href_list["give_spell"]
 
 		else if(href_list["remove_spell"])
 			if(!check_rights(NONE))
@@ -735,7 +846,6 @@
 				return
 
 			remove_spell(M)
-			href_list["datumrefresh"] = href_list["remove_spell"]
 
 		else if(href_list["give_disease"])
 			if(!check_rights(NONE))
@@ -747,7 +857,6 @@
 				return
 
 			src.give_disease(M)
-			href_list["datumrefresh"] = href_list["give_spell"]
 
 		else if(href_list["gib"])
 			if(!check_rights(R_FUN))
@@ -770,7 +879,6 @@
 				return
 
 			togglebuildmode(M)
-			href_list["datumrefresh"] = href_list["build_mode"]
 
 		else if(href_list["drop_everything"])
 			if(!check_rights(NONE))
@@ -795,7 +903,7 @@
 
 			if(usr.client)
 				usr.client.cmd_assume_direct_control(M)
-				
+
 		// yogs - offer control moved up
 
 		else if (href_list["modarmor"])
@@ -914,8 +1022,6 @@
 						log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]")
 						message_admins("<span class='notice'>[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]</span>")
 
-			href_list["datumrefresh"] = href_list["addreagent"]
-
 		else if(href_list["explode"])
 			if(!check_rights(R_FUN))
 				return
@@ -926,7 +1032,6 @@
 				return
 
 			src.cmd_admin_explosion(A)
-			href_list["datumrefresh"] = href_list["explode"]
 
 		else if(href_list["emp"])
 			if(!check_rights(R_FUN))
@@ -938,7 +1043,6 @@
 				return
 
 			src.cmd_admin_emp(A)
-			href_list["datumrefresh"] = href_list["emp"]
 
 		else if(href_list["modtransform"])
 			if(!check_rights(R_DEBUG))
@@ -967,8 +1071,6 @@
 					if(!isnull(angle))
 						A.transform = M.Turn(angle)
 
-			href_list["datumrefresh"] = href_list["modtransform"]
-
 		else if(href_list["rotatedatum"])
 			if(!check_rights(NONE))
 				return
@@ -983,7 +1085,7 @@
 					A.setDir(turn(A.dir, -45))
 				if("left")
 					A.setDir(turn(A.dir, 45))
-			href_list["datumrefresh"] = href_list["rotatedatum"]
+			vv_update_display(A, "dir", dir2text(A.dir))
 
 		else if(href_list["editorgans"])
 			if(!check_rights(NONE))
@@ -995,7 +1097,6 @@
 				return
 
 			manipulate_organs(C)
-			href_list["datumrefresh"] = href_list["editorgans"]
 
 		else if(href_list["givemartialart"])
 			if(!check_rights(NONE))
@@ -1023,6 +1124,8 @@
 				var/chosenart = artnames[result]
 				var/datum/martial_art/MA = new chosenart
 				MA.teach(C)
+				log_admin("[key_name(usr)] has taught [MA] to [key_name(C)].")
+				message_admins("<span class='notice'>[key_name_admin(usr)] has taught [MA] to [key_name_admin(C)].</span>")
 
 		else if(href_list["givetrauma"])
 			if(!check_rights(NONE))
@@ -1041,10 +1144,13 @@
 				to_chat(usr, "Mob doesn't exist anymore")
 				return
 
-			if(result)
-				C.gain_trauma(result)
+			if(!result)
+				return
 
-			href_list["datumrefresh"] = href_list["givetrauma"]
+			var/datum/brain_trauma/BT = C.gain_trauma(result)
+			if(BT)
+				log_admin("[key_name(usr)] has traumatized [key_name(C)] with [BT.name]")
+				message_admins("<span class='notice'>[key_name_admin(usr)] has traumatized [key_name_admin(C)] with [BT.name].</span>")
 
 		else if(href_list["curetraumas"])
 			if(!check_rights(NONE))
@@ -1056,8 +1162,8 @@
 				return
 
 			C.cure_all_traumas(TRAUMA_RESILIENCE_ABSOLUTE)
-
-			href_list["datumrefresh"] = href_list["curetraumas"]
+			log_admin("[key_name(usr)] has cured all traumas from [key_name(C)].")
+			message_admins("<span class='notice'>[key_name_admin(usr)] has cured all traumas from [key_name_admin(C)].</span>")
 
 		else if(href_list["hallucinate"])
 			if(!check_rights(NONE))
@@ -1207,9 +1313,17 @@
 			var/edit_action = input(usr, "What would you like to do?","Modify Body Part") as null|anything in list("add","remove", "augment")
 			if(!edit_action)
 				return
-			var/list/limb_list = list(BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-			if(edit_action == "augment")
-				limb_list += BODY_ZONE_CHEST
+			var/list/limb_list = list()
+			if(edit_action == "remove" || edit_action == "augment")
+				for(var/obj/item/bodypart/B in C.bodyparts)
+					limb_list += B.body_zone
+				if(edit_action == "remove")
+					limb_list -= BODY_ZONE_CHEST
+			else
+				limb_list = list(BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+				for(var/obj/item/bodypart/B in C.bodyparts)
+					limb_list -= B.body_zone
+
 			var/result = input(usr, "Please choose which body part to [edit_action]","[capitalize(edit_action)] Body Part") as null|anything in limb_list
 
 			if(!C)
@@ -1272,6 +1386,33 @@
 				message_admins(msg)
 				admin_ticket_log(H, msg)
 
+		else if(href_list["cluwneing"]) // yogs start -- adds cluwneify verb in VV
+			if(!check_rights(R_SPAWN))	return
+			var/mob/living/carbon/human/H = locate(href_list["cluwneing"])
+			if(!H)
+				to_chat(usr, "Mob doesn't exist anymore")
+				return
+			H.cluwneify()
+			message_admins("<span class='notice'>[key_name(usr)] has made [key_name(H)] into a Cluwne.</span>")
+			return // yogs end
+
+		else if(href_list["makepacman"])
+			if(!check_rights(R_SPAWN))
+				return
+
+			var/mob/living/carbon/human/H = locate(href_list["makepacman"]) in GLOB.mob_list
+			if(!istype(H))
+				to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+				return
+
+			if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
+				return
+			if(!H)
+				to_chat(usr, "Mob doesn't exist anymore")
+				return
+			holder.Topic(href, list("makepacman"=href_list["makepacman"]))
+
+
 		else if(href_list["adjustDamage"] && href_list["mobToDamage"])
 			if(!check_rights(NONE))
 				return
@@ -1288,28 +1429,92 @@
 				to_chat(usr, "Mob doesn't exist anymore")
 				return
 
+			var/newamt
 			switch(Text)
 				if("brute")
 					L.adjustBruteLoss(amount)
+					newamt = L.getBruteLoss()
 				if("fire")
 					L.adjustFireLoss(amount)
+					newamt = L.getFireLoss()
 				if("toxin")
 					L.adjustToxLoss(amount)
+					newamt = L.getToxLoss()
 				if("oxygen")
 					L.adjustOxyLoss(amount)
+					newamt = L.getOxyLoss()
 				if("brain")
-					L.adjustBrainLoss(amount)
+					L.adjustOrganLoss(ORGAN_SLOT_BRAIN, amount)
+					newamt = L.getOrganLoss(ORGAN_SLOT_BRAIN)
 				if("clone")
 					L.adjustCloneLoss(amount)
+					newamt = L.getCloneLoss()
 				if("stamina")
 					L.adjustStaminaLoss(amount)
+					newamt = L.getStaminaLoss()
 				else
 					to_chat(usr, "You caused an error. DEBUG: Text:[Text] Mob:[L]")
 					return
 
 			if(amount != 0)
-				log_admin("[key_name(usr)] dealt [amount] amount of [Text] damage to [L] ")
-				var/msg = "[key_name(usr)] dealt [amount] amount of [Text] damage to [L]" // yogs - Yog Tickets
-				message_admins(msg)
-				admin_ticket_log(L, msg)
-				href_list["datumrefresh"] = href_list["mobToDamage"]
+				var/log_msg = "[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]"
+				message_admins("[key_name(usr)] dealt [amount] amount of [Text] damage to [ADMIN_LOOKUPFLW(L)]")
+				log_admin(log_msg)
+				admin_ticket_log(L, "<font color='blue'>[log_msg]</font>")
+				vv_update_display(L, Text, "[newamt]")
+		else if(href_list["copyoutfit"])
+			if(!check_rights(R_SPAWN))
+				return
+			var/mob/living/carbon/human/H = locate(href_list["copyoutfit"]) in GLOB.carbon_list
+			if(istype(H))
+				H.copy_outfit()
+		else if(href_list["modquirks"])
+			if(!check_rights(R_SPAWN))
+				return
+
+			var/mob/living/carbon/human/H = locate(href_list["modquirks"]) in GLOB.mob_list
+			if(!istype(H))
+				to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+				return
+
+			var/list/options = list("Clear"="Clear")
+			for(var/x in subtypesof(/datum/quirk))
+				var/datum/quirk/T = x
+				var/qname = initial(T.name)
+				options[H.has_quirk(T) ? "[qname] (Remove)" : "[qname] (Add)"] = T
+
+			var/result = input(usr, "Choose quirk to add/remove","Quirk Mod") as null|anything in options
+			if(result)
+				if(result == "Clear")
+					for(var/datum/quirk/q in H.roundstart_quirks)
+						H.remove_quirk(q.type)
+				else
+					var/T = options[result]
+					if(H.has_quirk(T))
+						H.remove_quirk(T)
+					else
+						H.add_quirk(T,TRUE)
+		else if(href_list["delete_paint"])
+			if(!check_rights(R_ADMIN))
+				return
+
+			var/obj/structure/sign/painting/P = locate(href_list["delete_paint"])
+
+			var/mob/user = usr
+			if(!P.persistence_id || !P.C)
+				to_chat(user,"<span class='warning'>This is not a persistent painting.</span>")
+				return
+			var/md5 = md5(P.C.get_data_string())
+			var/author = P.C.author_ckey
+			var/list/current = SSpersistence.paintings[P.persistence_id]
+			if(current)
+				for(var/list/entry in current)
+					if(entry["md5"] == md5)
+						current -= entry
+				var/png = "data/paintings/[P.persistence_id]/[md5].png"
+				fdel(png)
+			for(var/obj/structure/sign/painting/PA in SSpersistence.painting_frames)
+				if(PA.C && md5(PA.C.get_data_string()) == md5)
+					QDEL_NULL(PA.C)
+			log_admin("[key_name(user)] has deleted a persistent painting made by [author].")
+			message_admins("<span class='notice'>[key_name_admin(user)] has deleted persistent painting made by [author].</span>")

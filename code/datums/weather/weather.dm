@@ -23,11 +23,13 @@
 	var/end_overlay
 
 	var/area_type = /area/space //Types of area to affect
+	var/protect_indoors = FALSE // set to TRUE to protect indoor areas
 	var/list/impacted_areas = list() //Areas to be affected by the weather, calculated when the weather begins
 	var/list/protected_areas = list()//Areas that are protected and excluded from the affected areas.
 	var/impacted_z_levels // The list of z-levels that this weather is actively affecting
 
 	var/overlay_layer = AREA_LAYER //Since it's above everything else, this is the layer used by default. TURF_LAYER is below mobs and walls if you need to use that.
+	var/overlay_plane = BLACKNESS_PLANE
 	var/aesthetic = FALSE //If the weather has no purpose other than looks
 	var/immunity_type = "storm" //Used by mobs to prevent them from being affected by the weather
 
@@ -55,6 +57,8 @@
 		affectareas -= get_areas(V)
 	for(var/V in affectareas)
 		var/area/A = V
+		if(protect_indoors && !A.outdoors)
+			continue
 		if(A.z in impacted_z_levels)
 			impacted_areas |= A
 	weather_duration = rand(weather_duration_lower, weather_duration_upper)
@@ -121,6 +125,7 @@
 	for(var/V in impacted_areas)
 		var/area/N = V
 		N.layer = overlay_layer
+		N.plane = overlay_plane
 		N.icon = 'icons/effects/weather_effects.dmi'
 		N.color = weather_color
 		switch(stage)
@@ -134,5 +139,6 @@
 				N.color = null
 				N.icon_state = ""
 				N.icon = 'icons/turf/areas.dmi'
-				N.layer = AREA_LAYER //Just default back to normal area stuff since I assume setting a var is faster than initial
+				N.layer = initial(N.layer)
+				N.plane = initial(N.plane)
 				N.set_opacity(FALSE)

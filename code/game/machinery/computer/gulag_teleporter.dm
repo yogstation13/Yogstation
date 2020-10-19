@@ -40,7 +40,7 @@
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "gulag_console", name, 455, 440, master_ui, state)
+		ui = new(user, src, ui_key, "GulagTeleporterConsole", name, 455, 440, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/gulag_teleporter_computer/ui_data(mob/user)
@@ -108,7 +108,7 @@
 				new_goal = default_goal
 			if (new_goal > 1000)
 				to_chat(usr, "The entered amount of points is too large. Points have instead been set to the maximum allowed amount.")
-			id.goal = CLAMP(new_goal, 0, 1000) //maximum 1000 points
+			id.goal = clamp(new_goal, 0, 1000) //maximum 1000 points
 		if("toggle_open")
 			if(teleporter.locked)
 				to_chat(usr, "The teleporter is locked")
@@ -152,7 +152,7 @@
 	teleporter.handle_prisoner(id, temporary_record)
 	playsound(src, 'sound/weapons/emitter.ogg', 50, 1)
 	prisoner.forceMove(get_turf(beacon))
-	prisoner.Knockdown(40) // small travel dizziness
+	prisoner.Paralyze(40) // small travel dizziness
 	to_chat(prisoner, "<span class='warning'>The teleportation makes you a little dizzy.</span>")
 	new /obj/effect/particle_effect/sparks(get_turf(prisoner))
 	playsound(src, "sparks", 50, 1)

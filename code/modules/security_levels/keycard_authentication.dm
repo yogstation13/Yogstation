@@ -20,6 +20,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	var/obj/machinery/keycard_auth/event_source
 	var/mob/triggerer = null
 	var/waiting = 0
+	var/triggerer_id = null
 
 /obj/machinery/keycard_auth/Initialize()
 	. = ..()
@@ -34,7 +35,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 					datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "keycard_auth", name, 375, 125, master_ui, state)
+		ui = new(user, src, ui_key, "KeycardAuth", name, 375, 125, master_ui, state)
 		ui.open()
 
 /obj/machinery/keycard_auth/ui_data()
@@ -52,10 +53,16 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 		if(!A.dextrous)
 			to_chat(user, "<span class='warning'>You are too primitive to use this device!</span>")
 			return UI_CLOSE
+	if(isdrone(user))
+		to_chat(user, "<span class='warning'>You are unable to interface with this device!</span>")
+		return UI_CLOSE
 	return ..()
 
 /obj/machinery/keycard_auth/ui_act(action, params)
 	if(..() || waiting || !allowed(usr))
+		return
+	if(!check_access(usr.get_active_held_item()))
+		to_chat(usr, "<span class='warning'>You need to swipe your ID!</span>")
 		return
 	switch(action)
 		if("red_alert")
@@ -77,6 +84,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 				. = TRUE
 
 /obj/machinery/keycard_auth/proc/sendEvent(event_type)
+	triggerer_id = usr.get_active_held_item()
 	triggerer = usr
 	event = event_type
 	waiting = 1
@@ -87,6 +95,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	triggerer = null
 	event = ""
 	waiting = 0
+	triggerer_id = null
 
 /obj/machinery/keycard_auth/proc/triggerEvent(source)
 	icon_state = "auth_on"
@@ -97,15 +106,21 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	icon_state = "auth_off"
 	event_source = null
 
-/obj/machinery/keycard_auth/proc/trigger_event(confirmer)
+/obj/machinery/keycard_auth/proc/trigger_event(mob/confirmer)
+	var/confirmer_id = confirmer.get_active_held_item() //we already know this has access to complete the action, so we don't bother checking if it's got required access
+	if(confirmer_id == triggerer_id)
+		return
+	else if(confirmer == triggerer) //good luck juggling two IDs while doing this lmao
+		SSachievements.unlock_achievement(/datum/achievement/keycard_auth, confirmer.client)
+
 	log_game("[key_name(triggerer)] triggered and [key_name(confirmer)] confirmed event [event]")
-	message_admins("[key_name(triggerer)] triggered and [key_name(confirmer)] confirmed event [event]")
+	message_admins("[ADMIN_LOOKUPFLW(triggerer)] triggered and [ADMIN_LOOKUPFLW(confirmer)] confirmed event [event]")
 
 	var/area/A1 = get_area(triggerer)
-	deadchat_broadcast("<span class='deadsay'><span class='name'>[triggerer]</span> triggered [event] at <span class='name'>[A1.name]</span>.</span>", triggerer)
+	deadchat_broadcast(" triggered [event] at <span class='name'>[A1.name]</span>.", "<span class='name'>[triggerer]</span>", triggerer)
 
 	var/area/A2 = get_area(confirmer)
-	deadchat_broadcast("<span class='deadsay'><span class='name'>[confirmer]</span> confirmed [event] at <span class='name'>[A2.name]</span>.</span>", confirmer)
+	deadchat_broadcast(" confirmed [event] at <span class='name'>[A2.name]</span>.", "<span class='name'>[confirmer]</span>", confirmer)
 	switch(event)
 		if(KEYCARD_RED_ALERT)
 			set_security_level(SEC_LEVEL_RED)

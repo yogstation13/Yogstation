@@ -6,37 +6,85 @@
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "c" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
-/turf/open/floor/plasteel,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "d" = (
 /turf/closed/wall/r_wall/rust,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "e" = (
-/obj/machinery/defibrillator_mount/loaded,
-/turf/closed/wall/r_wall,
+/obj/effect/decal/cleanable/vomit/old,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "f" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
-/turf/open/floor/plasteel/airless,
+/obj/machinery/door/airlock/research/glass,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "g" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp,
 /obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plasteel/whiteblue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "h" = (
 /obj/structure/table,
 /obj/item/pen,
 /obj/item/paper/fluff/ruins/exp_cloning/log,
-/turf/open/floor/plasteel/whiteblue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "i" = (
 /obj/machinery/dna_scannernew,
-/turf/open/floor/plasteel/whiteblue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "j" = (
 /obj/machinery/computer/prototype_cloning,
@@ -44,19 +92,56 @@
 	dir = 1
 	},
 /obj/item/paper/fluff/ruins/exp_cloning/manual,
-/turf/open/floor/plasteel/whiteblue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "k" = (
 /obj/machinery/clonepod/experimental,
-/turf/open/floor/plasteel/whiteblue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "l" = (
-/obj/effect/decal/cleanable/vomit/old,
-/turf/open/floor/plasteel/whiteblue,
+/obj/machinery/door/airlock/research/glass,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "m" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plasteel/whiteblue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "n" = (
 /obj/structure/sign/nanotrasen,
@@ -64,10 +149,12 @@
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "o" = (
 /obj/machinery/vending/snack/teal,
-/turf/open/floor/plasteel/airless/floorgrime,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "p" = (
-/turf/open/floor/plasteel/airless/floorgrime,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "q" = (
 /obj/structure/sign/directions/science{
@@ -102,36 +189,56 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "v" = (
-/turf/open/floor/plasteel/whiteblue/corner{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "w" = (
 /obj/structure/chair/office{
 	dir = 1
 	},
-/turf/open/floor/plasteel/whiteblue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "x" = (
-/turf/open/floor/plasteel/whiteblue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "y" = (
 /obj/structure/chair/office{
 	dir = 1
 	},
-/turf/open/floor/plasteel/whiteblue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "z" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/plasteel/whiteblue/corner{
+/obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "A" = (
 /obj/structure/sign/departments/science,
@@ -152,27 +259,11 @@
 "E" = (
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
-"F" = (
-/obj/machinery/door/airlock/research/glass,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/powered/ancient_shuttle)
 "G" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/powered/ancient_shuttle)
-"H" = (
-/obj/machinery/door/airlock/research/glass,
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "I" = (
@@ -319,7 +410,7 @@ a
 a
 d
 b
-F
+f
 d
 d
 a
@@ -341,7 +432,7 @@ a
 a
 d
 d
-H
+l
 b
 b
 a
@@ -415,8 +506,8 @@ a
 "}
 (16,1,1) = {"
 a
+b
 e
-l
 x
 J
 S
@@ -448,7 +539,7 @@ a
 "}
 (19,1,1) = {"
 a
-f
+c
 o
 B
 p
@@ -459,7 +550,7 @@ a
 "}
 (20,1,1) = {"
 a
-f
+c
 p
 p
 C
@@ -483,7 +574,7 @@ a
 a
 a
 b
-f
+c
 M
 a
 a

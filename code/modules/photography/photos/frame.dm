@@ -40,13 +40,14 @@
 /obj/item/wallframe/picture/examine(mob/user)
 	if(user.is_holding(src) && displayed)
 		displayed.show(user)
+		return list()
 	else
-		..()
+		return ..()
 
 /obj/item/wallframe/picture/update_icon()
 	cut_overlays()
 	if(displayed)
-		add_overlay(getFlatIcon(displayed))
+		add_overlay(image(displayed))
 
 /obj/item/wallframe/picture/after_attach(obj/O)
 	..()
@@ -75,6 +76,7 @@
 
 /obj/structure/sign/picture_frame/Initialize(mapload, dir, building)
 	. = ..()
+	AddComponent(/datum/component/art, 20)
 	LAZYADD(SSpersistence.photo_frames, src)
 	if(dir)
 		setDir(dir)
@@ -109,18 +111,19 @@
 /obj/structure/sign/picture_frame/examine(mob/user)
 	if(in_range(src, user) && framed)
 		framed.show(user)
+		return list()
 	else
-		..()
+		return ..()
 
 /obj/structure/sign/picture_frame/attackby(obj/item/I, mob/user, params)
-	if(can_decon && (istype(I, /obj/item/screwdriver) || istype(I, /obj/item/wrench)))
+	if(can_decon && (I.tool_behaviour == TOOL_SCREWDRIVER || I.tool_behaviour == TOOL_WRENCH))
 		to_chat(user, "<span class='notice'>You start unsecuring [name]...</span>")
 		if(I.use_tool(src, user, 30, volume=50))
 			playsound(loc, 'sound/items/deconstruct.ogg', 50, 1)
 			to_chat(user, "<span class='notice'>You unsecure [name].</span>")
 			deconstruct()
 
-	else if(istype(I, /obj/item/wirecutters) && framed)
+	else if(I.tool_behaviour == TOOL_WIRECUTTER && framed)
 		framed.forceMove(drop_location())
 		framed = null
 		user.visible_message("<span class='warning'>[user] cuts away [framed] from [src]!</span>")
@@ -148,7 +151,7 @@
 /obj/structure/sign/picture_frame/update_icon()
 	cut_overlays()
 	if(framed)
-		add_overlay(getFlatIcon(framed))
+		add_overlay(image(framed))
 
 /obj/structure/sign/picture_frame/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))

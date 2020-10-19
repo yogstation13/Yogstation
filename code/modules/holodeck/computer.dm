@@ -59,9 +59,7 @@
 		return
 	var/area/AS = get_area(src)
 	if(istype(AS, /area/holodeck))
-		log_world("### MAPPING ERROR")
-		log_world("Holodeck computer cannot be in a holodeck.")
-		log_world("This would cause circular power dependency.")
+		log_mapping("Holodeck computer cannot be in a holodeck, This would cause circular power dependency.")
 		qdel(src)
 		return
 	else
@@ -83,7 +81,7 @@
 /obj/machinery/computer/holodeck/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "holodeck", name, 400, 500, master_ui, state)
+		ui = new(user, src, ui_key, "Holodeck", name, 400, 500, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/holodeck/ui_data(mob/user)
@@ -107,10 +105,27 @@
 			var/program_to_load = text2path(params["type"])
 			if(!ispath(program_to_load))
 				return FALSE
+			var/valid = FALSE
+			var/list/checked = program_cache
+			if(obj_flags & EMAGGED)
+				checked |= emag_programs
+			for(var/prog in checked)
+				var/list/P = prog
+				if(P["type"] == program_to_load)
+					valid = TRUE
+					break
+			if(!valid)
+				return FALSE
+
 			var/area/A = locate(program_to_load) in GLOB.sortedAreas
 			if(A)
+				if(istype(A, /area/holodeck/rec_center/burn))
+					message_admins("[key_name(usr)] has used the [A.name].") //ADMIN LOG: Ckey/(Ic Name) has used the Holodeck - Atmospheric Burn Test.
+					log_admin("[key_name(usr)] has used the [A.name].")
 				load_program(A)
 		if("safety")
+			if(!issilicon(usr) && !IsAdminGhost(usr))
+				return
 			obj_flags ^= EMAGGED
 			if((obj_flags & EMAGGED) && program && emag_programs[program.name])
 				emergency_shutdown()
@@ -136,7 +151,7 @@
 			if(prob(30))
 				do_sparks(2, 1, T)
 			T.ex_act(EXPLODE_LIGHT)
-			T.hotspot_expose(700,25,1)
+			T.hotspot_expose(1000,500,1)
 
 	if(!(obj_flags & EMAGGED))
 		for(var/item in spawned)
@@ -157,7 +172,7 @@
 	playsound(src, "sparks", 75, 1)
 	obj_flags |= EMAGGED
 	to_chat(user, "<span class='warning'>You vastly increase projector power and override the safety and security protocols.</span>")
-	to_chat(user, "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call Nanotrasen maintenance and do not use the simulator.")
+	say("Warning. Automatic shutoff and derezzing protocols have been corrupted. Please call Nanotrasen maintenance and do not use the simulator.")
 	log_game("[key_name(user)] emagged the Holodeck Control Console")
 	nerf(!(obj_flags & EMAGGED))
 
@@ -177,7 +192,7 @@
 
 /obj/machinery/computer/holodeck/proc/generate_program_list()
 	for(var/typekey in subtypesof(program_type))
-		var/area/holodeck/A = locate(typekey) in GLOB.sortedAreas
+		var/area/holodeck/A = GLOB.areas_by_type[typekey]
 		if(!A || !A.contents.len)
 			continue
 		var/list/info_this = list()
@@ -219,11 +234,13 @@
 		var/obj/effect/holodeck_effect/HE = e
 		HE.safety(active)
 
-/obj/machinery/computer/holodeck/proc/load_program(area/A, force = FALSE, add_delay = TRUE)
+/obj/machinery/computer/holodeck/proc/load_program(area/holodeck/A, force = FALSE, add_delay = TRUE)
 	if(!is_operational())
 		A = offline_program
 		force = TRUE
-
+	if(A.minimum_sec_level > GLOB.security_level && !force && !(obj_flags & EMAGGED))
+		say("ERROR. Program currently unavailiable, the security level is not high enough.")
+		return
 	if(program == A)
 		return
 	if(current_cd > world.time && !force)

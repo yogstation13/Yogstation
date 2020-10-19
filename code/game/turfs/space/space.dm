@@ -8,6 +8,10 @@
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 700000
 
+	FASTDMM_PROP(\
+		pipe_astar_cost = 3\
+	)
+
 	var/destination_z
 	var/destination_x
 	var/destination_y
@@ -19,14 +23,17 @@
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	bullet_bounce_sound = null
 
-
 /turf/open/space/basic/New()	//Do not convert to Initialize
 	//This is used to optimize the map loader
 	return
 
 /turf/open/space/Initialize()
+	SHOULD_CALL_PARENT(FALSE)
 	icon_state = SPACE_ICON_STATE
 	air = space_gas
+	update_air_ref()
+	vis_contents.Cut() //removes inherited overlays
+	visibilityChanged()
 
 	if(flags_1 & INITIALIZED_1)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
@@ -123,7 +130,7 @@
 				qdel(L)
 				playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 				to_chat(user, "<span class='notice'>You build a floor.</span>")
-				PlaceOnTop(/turf/open/floor/plating)
+				PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 			else
 				to_chat(user, "<span class='warning'>You need one floor tile to build a floor!</span>")
 		else
@@ -134,7 +141,7 @@
 	if ((!(A) || src != A.loc))
 		return
 
-	if(destination_z && destination_x && destination_y)
+	if(destination_z && destination_x && destination_y && !(A.pulledby || !A.can_be_z_moved))
 		var/tx = destination_x
 		var/ty = destination_y
 		var/turf/DT = locate(tx, ty, destination_z)
@@ -157,8 +164,10 @@
 		A.forceMove(DT)
 		if(AM)
 			var/turf/T = get_step(A.loc,turn(A.dir, 180))
+			AM.can_be_z_moved = FALSE
 			AM.forceMove(T)
 			A.start_pulling(AM)
+			AM.can_be_z_moved = TRUE
 
 		//now we're on the new z_level, proceed the space drifting
 		stoplag()//Let a diagonal move finish, if necessary
@@ -208,7 +217,7 @@
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
 			to_chat(user, "<span class='notice'>You build a floor.</span>")
-			PlaceOnTop(/turf/open/floor/plating)
+			PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 			return TRUE
 	return FALSE
 

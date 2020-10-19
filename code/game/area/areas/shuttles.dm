@@ -1,4 +1,3 @@
-
 //These are shuttle areas; all subtypes are only used as teleportation markers, they have no actual function beyond that.
 //Multi area shuttles are a thing now, use subtypes! ~ninjanomnom
 
@@ -10,6 +9,8 @@
 	always_unpowered = FALSE
 	valid_territory = FALSE
 	icon_state = "shuttle"
+	// Loading the same shuttle map at a different time will produce distinct area instances.
+	unique = FALSE
 
 /area/shuttle/Initialize()
 	if(!canSmoothWithAreas)
@@ -58,9 +59,13 @@
 	requires_power = TRUE
 	canSmoothWithAreas = /area/shuttle/pirate
 
-/area/shuttle/pirate/vault
-	name = "Pirate Shuttle Vault"
-	requires_power = FALSE
+////////////////////////////Bounty Hunter Shuttles////////////////////////////
+
+/area/shuttle/hunter
+	name = "Hunter Shuttle"
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	blob_allowed = FALSE
+	canSmoothWithAreas = /area/shuttle/hunter
 
 ////////////////////////////White Ship////////////////////////////
 
@@ -103,6 +108,7 @@
 
 /area/shuttle/arrival
 	name = "Arrival Shuttle"
+	unique = TRUE  // SSjob refers to this area for latejoiners
 
 /area/shuttle/pod_1
 	name = "Escape Pod One"
@@ -136,7 +142,6 @@
 
 /area/shuttle/escape/luxury
 	name = "Luxurious Emergency Shuttle"
-	noteleport = TRUE
 
 /area/shuttle/escape/arena
 	name = "The Arena"

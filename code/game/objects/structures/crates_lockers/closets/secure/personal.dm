@@ -31,6 +31,12 @@
 	new /obj/item/instrument/piano_synth(src)
 	new /obj/item/radio/headset( src )
 
+/obj/structure/closet/secure_closet/personal/prisoner
+	desc = "It's a secure locker for prisoners. The first card swiped gains control."
+	name = "prisoner closet"
+
+/obj/structure/closet/secure_closet/personal/prisoner/PopulateContents() //empty intentionally
+
 /obj/structure/closet/secure_closet/personal/attackby(obj/item/W, mob/user, params)
 	var/obj/item/card/id/I = W.GetID()
 	if(istype(I))

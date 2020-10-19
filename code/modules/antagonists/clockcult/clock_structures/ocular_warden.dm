@@ -11,10 +11,12 @@
 	break_message = "<span class='warning'>The warden's eye gives a glare of utter hate before falling dark!</span>"
 	debris = list(/obj/item/clockwork/component/belligerent_eye/blind_eye = 1)
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	var/damage_per_tick = 3
+	var/damage_per_tick = 12 //yogs: increased damage to make up for slower attack speed
 	var/sight_range = 3
 	var/atom/movable/target
 	var/list/idle_messages = list(" sulkily glares around.", " lazily drifts from side to side.", " looks around for something to burn.", " slowly turns in circles.")
+	var/time_between_shots = 4 //yogs: slower attack speed
+	var/last_process = 0 //see above
 
 /obj/structure/destructible/clockwork/ocular_warden/Initialize()
 	. = ..()
@@ -25,8 +27,8 @@
 	return ..()
 
 /obj/structure/destructible/clockwork/ocular_warden/examine(mob/user)
-	..()
-	to_chat(user, "<span class='brass'>[target ? "<b>It's fixated on [target]!</b>" : "Its gaze is wandering aimlessly."]</span>")
+	. = ..()
+	. += "<span class='brass'>[target ? "<b>It's fixated on [target]!</b>" : "Its gaze is wandering aimlessly."]</span>"
 
 /obj/structure/destructible/clockwork/ocular_warden/hulk_damage()
 	return 25
@@ -43,7 +45,7 @@
 /obj/structure/destructible/clockwork/ocular_warden/ratvar_act()
 	..()
 	if(GLOB.ratvar_awakens)
-		damage_per_tick = 10
+		damage_per_tick = 40 //yogs: increased damage to make up for slower attack speed
 		sight_range = 6
 	else
 		damage_per_tick = initial(damage_per_tick)
@@ -57,27 +59,32 @@
 	if(target)
 		if(!(target in validtargets))
 			lose_target()
-		else
-			if(isliving(target))
-				var/mob/living/L = target
-				if(!L.anti_magic_check())
-					if(isrevenant(L))
-						var/mob/living/simple_animal/revenant/R = L
-						if(R.revealed)
-							R.unreveal_time += 2
+		else //yogs start: slows warden attack speed so it doesn't stop people from moving
+			if(last_process + time_between_shots < world.time)
+				if(isliving(target))
+					var/mob/living/L = target
+					if(!L.anti_magic_check(chargecost = 0))
+						if(isrevenant(L))
+							var/mob/living/simple_animal/revenant/R = L
+							if(R.revealed)
+								R.unreveal_time += 2
+							else
+								R.reveal(10)
+						if(prob(50))
+							L.playsound_local(null,'sound/machines/clockcult/ocularwarden-dot1.ogg',75 * get_efficiency_mod(),1)
 						else
-							R.reveal(10)
-					if(prob(50))
-						L.playsound_local(null,'sound/machines/clockcult/ocularwarden-dot1.ogg',75 * get_efficiency_mod(),1)
-					else
-						L.playsound_local(null,'sound/machines/clockcult/ocularwarden-dot2.ogg',75 * get_efficiency_mod(),1)
-					L.adjustFireLoss((!iscultist(L) ? damage_per_tick : damage_per_tick * 2) * get_efficiency_mod()) //Nar-Sian cultists take additional damage
-					if(GLOB.ratvar_awakens && L)
-						L.adjust_fire_stacks(damage_per_tick)
-						L.IgniteMob()
-			else if(ismecha(target))
-				var/obj/mecha/M = target
-				M.take_damage(damage_per_tick * get_efficiency_mod(), BURN, "melee", 1, get_dir(src, M))
+							L.playsound_local(null,'sound/machines/clockcult/ocularwarden-dot2.ogg',75 * get_efficiency_mod(),1)
+						L.adjustFireLoss((!iscultist(L) ? damage_per_tick : damage_per_tick * 2) * get_efficiency_mod()) //Nar-Sian cultists take additional damage
+						Beam(L, icon_state = "warden_beam", time = 10)		//yogs: gives a beam
+						last_process = world.time
+						if(GLOB.ratvar_awakens && L)
+							L.adjust_fire_stacks(damage_per_tick)
+							L.IgniteMob()
+				else if(ismecha(target))
+					var/obj/mecha/M = target
+					Beam(M, icon_state = "warden_beam", time = 10)		//yogs: gives a beam
+					M.take_damage(damage_per_tick * get_efficiency_mod(), BURN, "melee", 1, get_dir(src, M))
+					last_process = world.time //yogs end
 
 			new /obj/effect/temp_visual/ratvar/ocular_warden(get_turf(target))
 
@@ -110,9 +117,11 @@
 				if(!(BI.resistance_flags & ON_FIRE))
 					BI.fire_act()
 			continue
-		if(is_servant_of_ratvar(L) || (L.has_trait(TRAIT_BLIND)) || L.anti_magic_check(TRUE, TRUE))
+		if(is_servant_of_ratvar(L) || (HAS_TRAIT(L, TRAIT_BLIND)) || L.anti_magic_check(TRUE, TRUE))
 			continue
-		if(L.stat || L.lying)
+		if(L.stat || (L.IsStun())) //yogs: changes mobility flag to IsStun so people have to taze themselves to ignore warden attacks
+			continue
+		if(isslime(L)) //Ocular wardens heal slimes
 			continue
 		if (iscarbon(L))
 			var/mob/living/carbon/c = L
@@ -120,9 +129,9 @@
 				continue
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L
-			if(("ratvar" in H.faction) || (!H.mind && "neutral" in H.faction))
+			if(("ratvar" in H.faction) || (!H.mind && ("neutral" in H.faction)))
 				continue
-			if(ismegafauna(H) || (!H.mind && H.AIStatus == AI_OFF))
+			if(ismegafauna(H) || (H.status_flags & GODMODE) || (!H.mind && H.AIStatus == AI_OFF))
 				continue
 		else if(isrevenant(L))
 			var/mob/living/simple_animal/revenant/R = L

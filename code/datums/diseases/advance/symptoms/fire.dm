@@ -29,10 +29,12 @@ Bonus
 	symptom_delay_min = 20
 	symptom_delay_max = 75
 	var/infective = FALSE
-	threshold_desc = "<b>Stage Speed 4:</b> Increases the intensity of the flames.<br>\
-					  <b>Stage Speed 8:</b> Further increases flame intensity.<br>\
-					  <b>Transmission 8:</b> Host will spread the virus through skin flakes when bursting into flame.<br>\
-					  <b>Stealth 4:</b> The symptom remains hidden until active."
+	threshold_descs = list(
+		"Stage Speed 4" = "Increases the intensity of the flames.",
+		"Stage Speed 8" = "Further increases flame intensity.",
+		"Transmission 8" = "Host will spread the virus through skin flakes when bursting into flame.",
+		"Stealth 4" = "The symptom remains hidden until active.",
+	)
 
 /datum/symptom/fire/Start(datum/disease/advance/A)
 	if(!..())
@@ -67,14 +69,14 @@ Bonus
 
 /datum/symptom/fire/proc/Firestacks_stage_4(mob/living/M, datum/disease/advance/A)
 	M.adjust_fire_stacks(1 * power)
-	M.adjustFireLoss(3 * power)
+	M.take_overall_damage(burn = 3 * power, required_status = BODYPART_ORGANIC)
 	if(infective)
 		A.spread(2)
 	return 1
 
 /datum/symptom/fire/proc/Firestacks_stage_5(mob/living/M, datum/disease/advance/A)
 	M.adjust_fire_stacks(3 * power)
-	M.adjustFireLoss(5 * power)
+	M.take_overall_damage(burn = 5 * power, required_status = BODYPART_ORGANIC)
 	if(infective)
 		A.spread(4)
 	return 1
@@ -112,9 +114,11 @@ Bonus
 	symptom_delay_max = 90
 	var/chems = FALSE
 	var/explosion_power = 1
-	threshold_desc = "<b>Resistance 9:</b> Doubles the intensity of the effect, but reduces its frequency.<br>\
-					  <b>Stage Speed 8:</b> Increases explosion radius when the host is wet.<br>\
-					  <b>Transmission 8:</b> Additionally synthesizes chlorine trifluoride and napalm inside the host."
+	threshold_descs = list(
+		"Resistance 9" = "Doubles the intensity of the immolation effect, but reduces the frequency of all of this symptom's effects.",
+		"Stage Speed 8" = "Increases explosion radius and explosion damage to the host when the host is wet.",
+		"Transmission 8" = "Additionally synthesizes chlorine trifluoride and napalm inside the host. More chemicals are synthesized if the resistance 9 threshold has been met."
+	)
 
 /datum/symptom/alkali/Start(datum/disease/advance/A)
 	if(!..())
@@ -154,15 +158,15 @@ Bonus
 /datum/symptom/alkali/proc/Alkali_fire_stage_4(mob/living/M, datum/disease/advance/A)
 	var/get_stacks = 6 * power
 	M.adjust_fire_stacks(get_stacks)
-	M.adjustFireLoss(get_stacks/2)
+	M.take_overall_damage(burn = get_stacks / 2, required_status = BODYPART_ORGANIC)
 	if(chems)
-		M.reagents.add_reagent("clf3", 2 * power)
+		M.reagents.add_reagent(/datum/reagent/clf3, 2 * power)
 	return 1
 
 /datum/symptom/alkali/proc/Alkali_fire_stage_5(mob/living/M, datum/disease/advance/A)
 	var/get_stacks = 8 * power
 	M.adjust_fire_stacks(get_stacks)
-	M.adjustFireLoss(get_stacks)
+	M.take_overall_damage(burn = get_stacks, required_status = BODYPART_ORGANIC)
 	if(chems)
-		M.reagents.add_reagent_list(list("napalm" = 4 * power, "clf3" = 4 * power))
+		M.reagents.add_reagent_list(list(/datum/reagent/napalm = 4 * power, /datum/reagent/clf3 = 4 * power))
 	return 1

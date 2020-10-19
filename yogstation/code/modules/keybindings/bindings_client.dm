@@ -4,6 +4,12 @@
 	set instant = TRUE
 	set hidden = TRUE
 
+	if(length(_key) > MAX_KEYPRESS_COMMANDLENGTH)
+		log_admin("Client [ckey] just attempted to send an invalid keypress. Keymessage was over [MAX_KEYPRESS_COMMANDLENGTH] characters, autokicking due to likely abuse.")
+		message_admins("Client [ckey] just attempted to send an invalid keypress. Keymessage was over [MAX_KEYPRESS_COMMANDLENGTH] characters, autokicking due to likely abuse.")
+		QDEL_IN(src, 1)
+		return
+
 	var/datum/keybindings/bind = prefs.bindings
 
 	bind.set_key_down(_key)
@@ -31,7 +37,10 @@
 		if(ACTION_OOC)
 			get_ooc()
 			return
-			
+		if(ACTION_LOOC)
+			get_looc()
+			return
+
 	var/datum/keyinfo/I = bind.to_keyinfo(_key, A)
 
 	if(holder)
@@ -42,6 +51,12 @@
 /client/verb/keyUp(_key as text)
 	set instant = TRUE
 	set hidden = TRUE
+
+	if(length(_key) > MAX_KEYPRESS_COMMANDLENGTH)
+		log_admin("Client [ckey] just attempted to send an invalid keypress. Keymessage was over [MAX_KEYPRESS_COMMANDLENGTH] characters, autokicking due to likely abuse.")
+		message_admins("Client [ckey] just attempted to send an invalid keypress. Keymessage was over [MAX_KEYPRESS_COMMANDLENGTH] characters, autokicking due to likely abuse.")
+		QDEL_IN(src, 1)
+		return
 
 	var/datum/keybindings/bind = prefs.bindings
 

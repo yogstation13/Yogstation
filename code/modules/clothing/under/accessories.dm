@@ -10,9 +10,16 @@
 	var/above_suit = FALSE
 	var/minimize_when_attached = TRUE // TRUE if shown as a small icon in corner, FALSE if overlayed
 	var/datum/component/storage/detached_pockets
+	var/attachment_slot = CHEST
+
+/obj/item/clothing/accessory/proc/can_attach_accessory(obj/item/clothing/U, mob/user)
+	if(!attachment_slot || (U && U.body_parts_covered & attachment_slot))
+		return TRUE
+	if(user)
+		to_chat(user, "<span class='warning'>There doesn't seem to be anywhere to put [src]...</span>")
 
 /obj/item/clothing/accessory/proc/attach(obj/item/clothing/under/U, user)
-	GET_COMPONENT(storage, /datum/component/storage)
+	var/datum/component/storage/storage = GetComponent(/datum/component/storage)
 	if(storage)
 		if(SEND_SIGNAL(U, COMSIG_CONTAINS_STORAGE))
 			return FALSE
@@ -73,10 +80,10 @@
 			to_chat(user, "[src] will be worn [above_suit ? "above" : "below"] your suit.")
 
 /obj/item/clothing/accessory/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>\The [src] can be attached to a uniform. Alt-click to remove it once attached.</span>")
+	. = ..()
+	. += "<span class='notice'>\The [src] can be attached to a uniform. Alt-click to remove it once attached.</span>"
 	if(initial(above_suit))
-		to_chat(user, "<span class='notice'>\The [src] can be worn above or below your suit. Alt-click to toggle.</span>")
+		. += "<span class='notice'>\The [src] can be worn above or below your suit. Alt-click to toggle.</span>"
 
 /obj/item/clothing/accessory/waistcoat
 	name = "waistcoat"
@@ -85,6 +92,7 @@
 	item_state = "waistcoat"
 	item_color = "waistcoat"
 	minimize_when_attached = FALSE
+	attachment_slot = null
 
 /obj/item/clothing/accessory/maidapron
 	name = "maid apron"
@@ -93,6 +101,7 @@
 	item_state = "maidapron"
 	item_color = "maidapron"
 	minimize_when_attached = FALSE
+	attachment_slot = null
 
 //////////
 //Medals//
@@ -107,6 +116,7 @@
 	resistance_flags = FIRE_PROOF
 	var/medaltype = "medal" //Sprite used for medalbox
 	var/commended = FALSE
+	above_suit = TRUE
 
 //Pinning medals on people
 /obj/item/clothing/accessory/medal/attack(mob/living/carbon/human/M, mob/living/user)
@@ -139,9 +149,9 @@
 							SSblackbox.record_feedback("associative", "commendation", 1, list("commender" = "[user.real_name]", "commendee" = "[M.real_name]", "medal" = "[src]", "reason" = input))
 							GLOB.commendations += "[user.real_name] awarded <b>[M.real_name]</b> the <span class='medaltext'>[name]</span>! \n- [input]"
 							commended = TRUE
-							desc += "<br>The inscription reads: [input] - [user.real_name]" 
+							desc += "<br>The inscription reads: [input] - [user.real_name]"
 							log_game("<b>[key_name(M)]</b> was given the following commendation by <b>[key_name(user)]</b>: [input]")
-							message_admins("<b>[key_name(M)]</b> was given the following commendation by <b>[key_name(user)]</b>: [input]")
+							message_admins("<b>[key_name_admin(M)]</b> was given the following commendation by <b>[key_name_admin(user)]</b>: [input]")
 
 		else
 			to_chat(user, "<span class='warning'>Medals can only be pinned on jumpsuits!</span>")
@@ -182,6 +192,10 @@
 /obj/item/clothing/accessory/medal/silver/security
 	name = "robust security award"
 	desc = "An award for distinguished combat and sacrifice in defence of Nanotrasen's commercial interests. Often awarded to security staff."
+
+/obj/item/clothing/accessory/medal/silver/excellence
+	name = "head of personnel award for outstanding achievement in the field of excellence"
+	desc = "Nanotrasen's dictionary defines excellence as \"the quality or condition of being excellent\". This is awarded to those rare crewmembers who fit that definition."
 
 /obj/item/clothing/accessory/medal/gold
 	name = "gold medal"
@@ -230,6 +244,8 @@
 	desc = "An fancy red armband!"
 	icon_state = "redband"
 	item_color = "redband"
+	attachment_slot = null
+	above_suit = TRUE
 
 /obj/item/clothing/accessory/armband/deputy
 	name = "security deputy armband"
@@ -237,37 +253,43 @@
 
 /obj/item/clothing/accessory/armband/cargo
 	name = "cargo bay guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is brown."
+	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is brown."
 	icon_state = "cargoband"
 	item_color = "cargoband"
 
 /obj/item/clothing/accessory/armband/engine
 	name = "engineering guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is orange with a reflective strip!"
+	desc = "An armband, worn by security members to display which department they're assigned to. This one is orange with a reflective strip!"
 	icon_state = "engieband"
 	item_color = "engieband"
 
 /obj/item/clothing/accessory/armband/science
 	name = "science guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is purple."
+	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is purple."
 	icon_state = "rndband"
 	item_color = "rndband"
 
+/obj/item/clothing/accessory/armband/service
+	name = "service guard armband"
+	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is green."
+	icon_state = "serviceband"
+	item_color = "serviceband"
+
 /obj/item/clothing/accessory/armband/hydro
 	name = "hydroponics guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is green and blue."
+	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is green and blue."
 	icon_state = "hydroband"
 	item_color = "hydroband"
 
 /obj/item/clothing/accessory/armband/med
 	name = "medical guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is white."
+	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is white."
 	icon_state = "medband"
 	item_color = "medband"
 
 /obj/item/clothing/accessory/armband/medblue
 	name = "medical guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is white and blue."
+	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is white and blue."
 	icon_state = "medblueband"
 	item_color = "medblueband"
 
@@ -280,10 +302,10 @@
 	desc = "Fills you with the conviction of JUSTICE. Lawyers tend to want to show it to everyone they meet."
 	icon_state = "lawyerbadge"
 	item_color = "lawyerbadge"
-	
+
 /obj/item/clothing/accessory/lawyers_badge/attack_self(mob/user)
 	if(prob(1))
-		user.say("The testimony contradicts the evidence!")
+		user.say("The testimony contradicts the evidence!", forced = "attorney's badge")
 	user.visible_message("[user] shows [user.p_their()] attorney's badge.", "<span class='notice'>You show your attorney's badge.</span>")
 
 /obj/item/clothing/accessory/lawyers_badge/on_uniform_equip(obj/item/clothing/under/U, user)
@@ -327,6 +349,8 @@
 	icon_state = "talisman"
 	item_color = "talisman"
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
+	attachment_slot = null
+	above_suit = TRUE
 
 /obj/item/clothing/accessory/skullcodpiece
 	name = "skull codpiece"
@@ -335,3 +359,4 @@
 	item_color = "skull"
 	above_suit = TRUE
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
+	attachment_slot = GROIN

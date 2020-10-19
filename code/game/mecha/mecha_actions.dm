@@ -3,7 +3,8 @@
 /obj/mecha/proc/GrantActions(mob/living/user, human_occupant = 0)
 	if(human_occupant)
 		eject_action.Grant(user, src)
-	internals_action.Grant(user, src)
+	if(enclosed)
+		internals_action.Grant(user, src)
 	cycle_action.Grant(user, src)
 	lights_action.Grant(user, src)
 	stats_action.Grant(user, src)
@@ -43,8 +44,7 @@
 		return
 	if(!chassis || chassis.occupant != owner)
 		return
-	chassis.go_out()
-
+	chassis.container_resist(chassis.occupant)
 
 /datum/action/innate/mecha/mech_toggle_internals
 	name = "Toggle Internal Airtank Usage"
@@ -56,7 +56,7 @@
 	chassis.use_internal_tank = !chassis.use_internal_tank
 	button_icon_state = "mech_internals_[chassis.use_internal_tank ? "on" : "off"]"
 	chassis.occupant_message("Now taking air from [chassis.use_internal_tank?"internal airtank":"environment"].")
-	chassis.log_message("Now taking air from [chassis.use_internal_tank?"internal airtank":"environment"].")
+	chassis.log_message("Now taking air from [chassis.use_internal_tank?"internal airtank":"environment"].", LOG_MECHA)
 	UpdateButtonIcon()
 
 /datum/action/innate/mecha/mech_cycle_equip
@@ -114,7 +114,7 @@
 		chassis.set_light(-chassis.lights_power)
 		button_icon_state = "mech_lights_off"
 	chassis.occupant_message("Toggled lights [chassis.lights?"on":"off"].")
-	chassis.log_message("Toggled lights [chassis.lights?"on":"off"].")
+	chassis.log_message("Toggled lights [chassis.lights?"on":"off"].", LOG_MECHA)
 	UpdateButtonIcon()
 
 /datum/action/innate/mecha/mech_view_stats
@@ -128,7 +128,7 @@
 
 
 /datum/action/innate/mecha/strafe
-	name = "Toggle Strafing"
+	name = "Toggle Strafing. Disabled when Alt is held."
 	button_icon_state = "strafe"
 
 /datum/action/innate/mecha/strafe/Activate()
@@ -145,7 +145,7 @@
 	strafe = !strafe
 
 	occupant_message("Toggled strafing mode [strafe?"on":"off"].")
-	log_message("Toggled strafing mode [strafe?"on":"off"].")
+	log_message("Toggled strafing mode [strafe?"on":"off"].", LOG_MECHA)
 	strafing_action.UpdateButtonIcon()
 
 //////////////////////////////////////// Specific Ability Actions  ///////////////////////////////////////////////
@@ -161,7 +161,7 @@
 	if(chassis.get_charge() > 0)
 		chassis.thrusters_active = !chassis.thrusters_active
 		button_icon_state = "mech_thrusters_[chassis.thrusters_active ? "on" : "off"]"
-		chassis.log_message("Toggled thrusters.")
+		chassis.log_message("Toggled thrusters.", LOG_MECHA)
 		chassis.occupant_message("<font color='[chassis.thrusters_active ?"blue":"red"]'>Thrusters [chassis.thrusters_active ?"en":"dis"]abled.")
 
 
@@ -183,7 +183,7 @@
 	else
 		chassis.deflect_chance = initial(chassis.deflect_chance)
 		chassis.occupant_message("<span class='danger'>You disable [chassis] defence mode.</span>")
-	chassis.log_message("Toggled defence mode.")
+	chassis.log_message("Toggled defence mode.", LOG_MECHA)
 	UpdateButtonIcon()
 
 /datum/action/innate/mecha/mech_overload_mode
@@ -191,6 +191,8 @@
 	button_icon_state = "mech_overload_off"
 
 /datum/action/innate/mecha/mech_overload_mode/Activate(forced_state = null)
+	if(chassis.equipment_disabled)
+		return
 	if(!owner || !chassis || chassis.occupant != owner)
 		return
 	if(!isnull(forced_state))
@@ -198,7 +200,7 @@
 	else
 		chassis.leg_overload_mode = !chassis.leg_overload_mode
 	button_icon_state = "mech_overload_[chassis.leg_overload_mode ? "on" : "off"]"
-	chassis.log_message("Toggled leg actuators overload.")
+	chassis.log_message("Toggled leg actuators overload.", LOG_MECHA)
 	if(chassis.leg_overload_mode)
 		chassis.leg_overload_mode = 1
 		chassis.bumpsmash = 1
@@ -207,7 +209,7 @@
 		chassis.occupant_message("<span class='danger'>You enable leg actuators overload.</span>")
 	else
 		chassis.leg_overload_mode = 0
-		chassis.bumpsmash = 0
+		chassis.bumpsmash = initial(chassis.bumpsmash)
 		chassis.step_in = initial(chassis.step_in)
 		chassis.step_energy_drain = chassis.normal_step_energy_drain
 		chassis.occupant_message("<span class='notice'>You disable leg actuators overload.</span>")
@@ -238,13 +240,13 @@
 	if(owner.client)
 		chassis.zoom_mode = !chassis.zoom_mode
 		button_icon_state = "mech_zoom_[chassis.zoom_mode ? "on" : "off"]"
-		chassis.log_message("Toggled zoom mode.")
+		chassis.log_message("Toggled zoom mode.", LOG_MECHA)
 		chassis.occupant_message("<font color='[chassis.zoom_mode?"blue":"red"]'>Zoom mode [chassis.zoom_mode?"en":"dis"]abled.</font>")
 		if(chassis.zoom_mode)
-			owner.client.change_view(12)
+			owner.client.view_size.setTo(4.5)
 			SEND_SOUND(owner, sound('sound/mecha/imag_enh.ogg',volume=50))
 		else
-			owner.client.change_view(CONFIG_GET(string/default_view)) //world.view - default mob view size
+			owner.client.view_size.resetToDefault() //Let's not let this stack shall we?
 		UpdateButtonIcon()
 
 /datum/action/innate/mecha/mech_switch_damtype

@@ -63,8 +63,11 @@
 /obj/item/pickaxe/drill/cyborg
 	name = "cyborg mining drill"
 	desc = "An integrated electric mining drill."
-	item_flags = NODROP
 	flags_1 = NONE
+
+/obj/item/pickaxe/drill/cyborg/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, CYBORG_ITEM_TRAIT)
 
 /obj/item/pickaxe/drill/diamonddrill
 	name = "diamond-tipped mining drill"
@@ -81,10 +84,11 @@
 	name = "sonic jackhammer"
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
-	toolspeed = 0.1 //the epitome of powertools. extremely fast mining, laughs at puny walls
+	toolspeed = 0.1 //the epitome of powertools
+	w_class = WEIGHT_CLASS_HUGE //the epitome of powertools is CHUNCKY
 	usesound = 'sound/weapons/sonic_jackhammer.ogg'
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
-	desc = "Cracks rocks with sonic blasts, and doubles as a demolition power tool for smashing walls."
+	desc = "Cracks rocks with sonic blasts."
 
 /obj/item/shovel
 	name = "shovel"

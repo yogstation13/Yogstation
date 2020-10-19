@@ -37,6 +37,13 @@ require only minor tweaks.
 #define ZTRAIT_AWAY "Away Mission"
 #define ZTRAIT_SPACE_RUINS "Space Ruins"
 #define ZTRAIT_LAVA_RUINS "Lava Ruins"
+#define ZTRAIT_ICE_RUINS "Ice Ruins"
+#define ZTRAIT_ICE_RUINS_UNDERGROUND "Ice Ruins Underground"
+
+// boolean - weather types that occur on the level
+#define ZTRAIT_SNOWSTORM "Weather_Snowstorm"
+#define ZTRAIT_ASHSTORM "Weather_Ashstorm"
+#define ZTRAIT_ACIDRAIN "Weather_Acidrain"
 
 // number - bombcap is multiplied by this before being applied to bombs
 #define ZTRAIT_BOMBCAP_MULTIPLIER "Bombcap Multiplier"
@@ -57,12 +64,33 @@ require only minor tweaks.
     // CROSSLINKED - mixed in with the cross-linked space pool
     #define CROSSLINKED "Cross"
 
+// string - type path of the z-level's baseturf (defaults to space)
+#define ZTRAIT_BASETURF "Baseturf"
+
 // default trait definitions, used by SSmapping
 #define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE)
 #define ZTRAITS_STATION list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_STATION = TRUE)
 #define ZTRAITS_SPACE list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_SPACE_RUINS = TRUE)
-#define ZTRAITS_LAVALAND list(ZTRAIT_MINING = TRUE, ZTRAIT_LAVA_RUINS = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 2)
-#define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.5)
+#define ZTRAITS_LAVALAND list(\
+    ZTRAIT_MINING = TRUE, \
+    ZTRAIT_ASHSTORM = TRUE, \
+    ZTRAIT_LAVA_RUINS = TRUE, \
+    ZTRAIT_BOMBCAP_MULTIPLIER = 2.5, \
+    ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
+#define ZTRAITS_ICEMOON list(\
+    ZTRAIT_MINING = TRUE, \
+    ZTRAIT_ICE_RUINS = TRUE, \
+    ZTRAIT_BOMBCAP_MULTIPLIER = 2.5, \
+    ZTRAIT_UP = -1, \
+    ZTRAIT_DOWN = 1, \
+    ZTRAIT_BASETURF = /turf/open/floor/plating/asteroid/snow/icemoon)
+#define ZTRAITS_ICEMOON_UNDERGROUND list(\
+    ZTRAIT_MINING = TRUE, \
+    ZTRAIT_ICE_RUINS_UNDERGROUND = TRUE, \
+    ZTRAIT_BOMBCAP_MULTIPLIER = 2.5, \
+    ZTRAIT_UP = -1, \
+    ZTRAIT_BASETURF = /turf/open/lava/plasma/ice_moon)
+#define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.60)
 
 #define DL_NAME "name"
 #define DL_TRAITS "traits"
@@ -89,4 +117,7 @@ require only minor tweaks.
 #define PLACE_DEFAULT "random"
 #define PLACE_SAME_Z "same"
 #define PLACE_SPACE_RUIN "space"
+#define PLACE_BELOW "below" //On z levl below - centered on same tile
 #define PLACE_LAVA_RUIN "lavaland"
+#define PLACE_ICE_RUIN "icesurface"
+#define PLACE_ICE_UNDERGROUND_RUIN "iceunderground"

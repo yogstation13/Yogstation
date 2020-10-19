@@ -133,13 +133,11 @@
 		M.emote("cough")
 		return 1
 
-/obj/effect/particle_effect/smoke/bad/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover, /obj/item/projectile/beam))
-		var/obj/item/projectile/beam/B = mover
+/obj/effect/particle_effect/smoke/bad/Crossed(atom/movable/AM, oldloc)
+	. = ..()
+	if(istype(AM, /obj/item/projectile/beam))
+		var/obj/item/projectile/beam/B = AM
 		B.damage = (B.damage/2)
-	return 1
-
-
 
 /datum/effect_system/smoke_spread/bad
 	effect_type = /obj/effect/particle_effect/smoke/bad
@@ -166,16 +164,13 @@
 		if(T.air)
 			var/datum/gas_mixture/G = T.air
 			if(!distcheck || get_dist(T, location) < blast) // Otherwise we'll get silliness like people using Nanofrost to kill people through walls with cold air
-				G.temperature = temperature
+				G.set_temperature(temperature)
 			T.air_update_turf()
 			for(var/obj/effect/hotspot/H in T)
 				qdel(H)
-			var/list/G_gases = G.gases
-			if(G_gases[/datum/gas/plasma])
-				G.assert_gas(/datum/gas/nitrogen)
-				G_gases[/datum/gas/nitrogen][MOLES] += (G_gases[/datum/gas/plasma][MOLES])
-				G_gases[/datum/gas/plasma][MOLES] = 0
-				G.garbage_collect()
+			if(G.get_moles(/datum/gas/plasma))
+				G.adjust_moles(/datum/gas/nitrogen, G.get_moles(/datum/gas/plasma))
+				G.set_moles(/datum/gas/plasma, 0)
 		if (weldvents)
 			for(var/obj/machinery/atmospherics/components/unary/U in T)
 				if(!isnull(U.welded) && !U.welded) //must be an unwelded vent pump or vent scrubber.
@@ -327,3 +322,9 @@
 
 /obj/effect/particle_effect/smoke/transparent
 	opaque = FALSE
+
+/proc/do_smoke(range=0, location=null, smoke_type=/obj/effect/particle_effect/smoke)
+	var/datum/effect_system/smoke_spread/smoke = new
+	smoke.effect_type = smoke_type
+	smoke.set_up(range, location)
+	smoke.start()

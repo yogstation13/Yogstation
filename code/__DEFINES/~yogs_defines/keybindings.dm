@@ -87,6 +87,7 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 
 // Client
 #define ACTION_OOC "OOC"
+#define ACTION_LOOC "LOOC"
 #define ACTION_AHELP "Adminhelp"
 #define ACTION_SCREENSHOT "Screenshot"
 #define ACTION_MINHUD "Min Hud"
@@ -111,6 +112,7 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 #define ACTION_TARGETGROIN "Target Groin"
 #define ACTION_TARGETLLEG "Target LLeg"
 
+#define ACTION_GIVE "Give"
 #define ACTION_RESIST "Resist"
 
 #define ACTION_TOGGLETHROW "Toggle Throw"
@@ -121,6 +123,7 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 
 // Admin
 #define ACTION_ASAY "Adminchat"
+#define ACTION_MENTORCHAT "Mentorchat"
 #define ACTION_AGHOST "Admin Ghost"
 #define ACTION_PLAYERPANEL "Player Panel"
 #define ACTION_BUILDMODE "Build Mode"
@@ -135,6 +138,7 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_MOVEEAST = "D",
 
 	ACTION_OOC = "O",
+	ACTION_LOOC = "L",
 	ACTION_AHELP = "F1",
 	ACTION_SCREENSHOT = "F2",
 	ACTION_MINHUD = "F12",
@@ -158,9 +162,10 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_TARGETRLEG = "Numpad1",
 	ACTION_TARGETGROIN = "Numpad2",
 	ACTION_TARGETLLEG = "Numpad3",
-	
+
+	ACTION_GIVE = "C",
 	ACTION_RESIST = "B",
-	
+
 	ACTION_TOGGLETHROW = "R",
 	ACTION_INTENTHELP = "1",
 	ACTION_INTENTDISARM = "2",
@@ -169,6 +174,7 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 
 
 	ACTION_ASAY = "F3",
+	ACTION_MENTORCHAT = "F4",
 	ACTION_AGHOST = "F5",
 	ACTION_PLAYERPANEL = "F6",
 	ACTION_BUILDMODE = "F7",
@@ -186,3 +192,5 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 
 #define BUTTON_KEY(name, action) \
 BUTTON_KEY_MOVEMENT(name, action, 0);
+
+#define MAX_KEYPRESS_COMMANDLENGTH 32

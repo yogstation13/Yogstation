@@ -4,6 +4,9 @@
 /area/shuttle/mining)
 "b" = (
 /obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/shuttle/mining)
 "c" = (
@@ -15,7 +18,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/mining)
 "e" = (
-/turf/open/floor/mineral/titanium/blue,
+/turf/open/floor/mineral/titanium,
 /area/shuttle/mining)
 "f" = (
 /obj/structure/chair/comfy/shuttle{
@@ -27,7 +30,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/mineral/titanium/blue,
+/turf/open/floor/mineral/titanium,
 /area/shuttle/mining)
 "h" = (
 /obj/machinery/door/airlock/titanium{
@@ -42,6 +45,12 @@
 	port_direction = 4;
 	width = 7
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/shuttle/mining)
 "i" = (
@@ -50,7 +59,17 @@
 /area/shuttle/mining)
 "j" = (
 /obj/structure/shuttle/engine/heater,
-/turf/open/floor/plating,
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
 /area/shuttle/mining)
 "k" = (
 /obj/structure/ore_box,
@@ -58,19 +77,35 @@
 /area/shuttle/mining)
 "l" = (
 /obj/structure/shuttle/engine/propulsion/burst,
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.9
-	},
 /turf/open/floor/plating/airless,
+/area/shuttle/mining)
+"E" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"Q" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/mining)
+"T" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/shuttle/mining)
 
 (1,1,1) = {"
 a
 a
-b
+T
 a
-b
+T
 a
 a
 "}
@@ -86,7 +121,7 @@ a
 (3,1,1) = {"
 b
 d
-f
+Q
 e
 f
 j
@@ -104,9 +139,9 @@ a
 (5,1,1) = {"
 a
 a
-b
+E
 h
-b
+E
 a
 a
 "}

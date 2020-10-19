@@ -5,20 +5,15 @@
 	health = 125
 	icon_state = "aliend"
 
-
 /mob/living/carbon/alien/humanoid/drone/Initialize()
 	AddAbility(new/obj/effect/proc_holder/alien/evolve(null))
 	. = ..()
-
 
 /mob/living/carbon/alien/humanoid/drone/create_internal_organs()
 	internal_organs += new /obj/item/organ/alien/plasmavessel/large
 	internal_organs += new /obj/item/organ/alien/resinspinner
 	internal_organs += new /obj/item/organ/alien/acid
 	..()
-
-/mob/living/carbon/alien/humanoid/drone/movement_delay()
-	. = ..()
 
 /obj/effect/proc_holder/alien/evolve
 	name = "Evolve to Praetorian"
@@ -35,7 +30,9 @@
 	if(node.recent_queen_death)
 		to_chat(user, "<span class='danger'>Your thoughts are still too scattered to take up the position of leadership.</span>")
 		return 0
-
+	if(user.movement_type & (VENTCRAWLING))
+		to_chat(user, "<span class='danger'>You cannot evolve in a pipe.</span>")
+		return 0
 	if(!isturf(user.loc))
 		to_chat(user, "<span class='notice'>You can't evolve here!</span>")
 		return 0

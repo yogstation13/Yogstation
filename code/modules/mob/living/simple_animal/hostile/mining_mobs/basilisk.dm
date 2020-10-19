@@ -40,7 +40,7 @@
 	icon_state = "ice_2"
 	damage = 0
 	damage_type = BURN
-	nodamage = 1
+	nodamage = TRUE
 	flag = "energy"
 	temperature = 50
 
@@ -79,16 +79,14 @@
 	movement_type = FLYING
 	robust_searching = 1
 	crusher_loot = /obj/item/crusher_trophy/watcher_wing
+	crusher_drop_mod = 10
 	loot = list()
 	butcher_results = list(/obj/item/stack/ore/diamond = 2, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/bone = 1)
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random/Initialize()
 	. = ..()
 	if(prob(1))
-		if(prob(75))
-			new /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing(loc)
-		else
-			new /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing(loc)
+		new /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing(loc)
 		return INITIALIZE_HINT_QDEL
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing
@@ -98,14 +96,16 @@
 	icon_living = "watcher_magmawing"
 	icon_aggro = "watcher_magmawing"
 	icon_dead = "watcher_magmawing_dead"
-	maxHealth = 215 //Compensate for the lack of slowdown on projectiles with a bit of extra health
-	health = 215
+	maxHealth = 235 //Compensate for the lack of slowdown on projectiles with a bit of extra health
+	health = 235
 	light_range = 3
 	light_power = 2.5
 	light_color = LIGHT_COLOR_LAVA
 	projectiletype = /obj/item/projectile/temp/basilisk/magmawing
 	crusher_loot = /obj/item/crusher_trophy/blaster_tubes/magma_wing
-	crusher_drop_mod = 60
+	crusher_drop_mod = 10
+	loot = list()
+	butcher_results = list(/obj/item/stack/ore/diamond = 2, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/bone = 1)
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing
 	name = "icewing watcher"
@@ -119,12 +119,12 @@
 	projectiletype = /obj/item/projectile/temp/basilisk/icewing
 	butcher_results = list(/obj/item/stack/ore/diamond = 5, /obj/item/stack/sheet/bone = 1) //No sinew; the wings are too fragile to be usable
 	crusher_loot = /obj/item/crusher_trophy/watcher_wing/ice_wing
-	crusher_drop_mod = 30
+	crusher_drop_mod = 10
 
 /obj/item/projectile/temp/basilisk/magmawing
 	name = "scorching blast"
 	icon_state = "lava"
-	damage = 5
+	damage = 10
 	damage_type = BURN
 	nodamage = FALSE
 	temperature = 500 //Heats you up!
@@ -149,4 +149,7 @@
 		L.apply_status_effect(/datum/status_effect/freon/watcher)
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/tendril
+	fromtendril = TRUE
+
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing/tendril
 	fromtendril = TRUE

@@ -1,3 +1,8 @@
+
+#define BAD_ART 12.5
+#define GOOD_ART 25
+#define GREAT_ART 50
+
 /obj/structure/statue
 	name = "statue"
 	desc = "Placeholder. Yell at Firecage if you SOMEHOW see this."
@@ -8,16 +13,19 @@
 	max_integrity = 100
 	var/oreAmount = 5
 	var/material_drop_type = /obj/item/stack/sheet/metal
+	var/impressiveness = 15
 	CanAtmosPass = ATMOS_PASS_DENSITY
 
+/obj/structure/statue/Initialize()
+	. = ..()
+	AddComponent(/datum/component/art, impressiveness)
 
 /obj/structure/statue/attackby(obj/item/W, mob/living/user, params)
 	add_fingerprint(user)
-	user.changeNext_move(CLICK_CD_MELEE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		if(default_unfasten_wrench(user, W))
 			return
-		if(istype(W, /obj/item/weldingtool) || istype(W, /obj/item/gun/energy/plasmacutter))
+		if(W.tool_behaviour == TOOL_WELDER)
 			if(!W.tool_start_check(user, amount=0))
 				return FALSE
 
@@ -30,15 +38,6 @@
 			return
 	return ..()
 
-/obj/structure/statue/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	user.changeNext_move(CLICK_CD_MELEE)
-	add_fingerprint(user)
-	user.visible_message("[user] rubs some dust off from the [name]'s surface.", \
-						 "<span class='notice'>You rub some dust off from the [name]'s surface.</span>")
-
 /obj/structure/statue/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		if(material_drop_type)
@@ -47,6 +46,10 @@
 				drop_amt -= 2
 			if(drop_amt > 0)
 				new material_drop_type(get_turf(src), drop_amt)
+	qdel(src)
+
+/obj/structure/statue/honk_act()
+	new /obj/structure/statue/bananium/clown(src.loc)
 	qdel(src)
 
 //////////////////////////////////////STATUES/////////////////////////////////////////////////////////////
@@ -58,6 +61,8 @@
 	material_drop_type = /obj/item/stack/sheet/mineral/uranium
 	var/last_event = 0
 	var/active = null
+	impressiveness = 25 // radiation makes an impression
+
 
 /obj/structure/statue/uranium/nuke
 	name = "statue of a nuclear fission explosive"
@@ -65,7 +70,7 @@
 	icon_state = "nuke"
 
 /obj/structure/statue/uranium/eng
-	name = "Statue of an engineer"
+	name = "statue of an engineer"
 	desc = "This statue has a sickening green colour."
 	icon_state = "eng"
 
@@ -100,6 +105,7 @@
 /obj/structure/statue/plasma
 	max_integrity = 200
 	material_drop_type = /obj/item/stack/sheet/mineral/plasma
+	impressiveness = 20
 	desc = "This statue is suitably made from plasma."
 
 /obj/structure/statue/plasma/scientist
@@ -124,7 +130,7 @@
 			message_admins("Plasma statue ignited by [Proj]. No known firer, in [ADMIN_VERBOSEJMP(T)]")
 			log_game("Plasma statue ignited by [Proj] in [AREACOORD(T)]. No known firer.")
 		PlasmaBurn(2500)
-	..()
+	. = ..()
 
 /obj/structure/statue/plasma/attackby(obj/item/W, mob/user, params)
 	if(W.is_hot() > 300 && !QDELETED(src))//If the temperature of the object is over 300, then ignite
@@ -150,6 +156,7 @@
 /obj/structure/statue/gold
 	max_integrity = 300
 	material_drop_type = /obj/item/stack/sheet/mineral/gold
+	impressiveness = 25
 	desc = "This is a highly valuable statue made from gold."
 
 /obj/structure/statue/gold/hos
@@ -177,6 +184,7 @@
 /obj/structure/statue/silver
 	max_integrity = 300
 	material_drop_type = /obj/item/stack/sheet/mineral/silver
+	impressiveness = 25
 	desc = "This is a valuable statue made from silver."
 
 /obj/structure/statue/silver/md
@@ -204,18 +212,19 @@
 /obj/structure/statue/diamond
 	max_integrity = 1000
 	material_drop_type = /obj/item/stack/sheet/mineral/diamond
+	impressiveness = 50
 	desc = "This is a very expensive diamond statue."
 
 /obj/structure/statue/diamond/captain
-	name = "statue of THE captain."
+	name = "statue of THE captain"
 	icon_state = "cap"
 
 /obj/structure/statue/diamond/ai1
-	name = "statue of the AI hologram."
+	name = "statue of the AI hologram"
 	icon_state = "ai1"
 
 /obj/structure/statue/diamond/ai2
-	name = "statue of the AI core."
+	name = "statue of the AI core"
 	icon_state = "ai2"
 
 ////////////////////////bananium///////////////////////////////////////
@@ -223,6 +232,7 @@
 /obj/structure/statue/bananium
 	max_integrity = 300
 	material_drop_type = /obj/item/stack/sheet/mineral/bananium
+	impressiveness = 50
 	desc = "A bananium statue with a small engraving:'HOOOOOOONK'."
 	var/spam_flag = 0
 
@@ -253,11 +263,15 @@
 		spawn(20)
 			spam_flag = 0
 
+/obj/structure/statue/bananium/clown/honk_act()
+	return FALSE
+
 /////////////////////sandstone/////////////////////////////////////////
 
 /obj/structure/statue/sandstone
 	max_integrity = 50
 	material_drop_type = /obj/item/stack/sheet/mineral/sandstone
+	impressiveness = 15
 
 /obj/structure/statue/sandstone/assistant
 	name = "statue of an assistant"
@@ -281,3 +295,32 @@
 	name = "snowman"
 	desc = "Several lumps of snow put together to form a snowman."
 	icon_state = "snowman"
+
+/obj/structure/statue/snow/snowlegion
+	name = "snowlegion"
+	desc = "Looks like that weird kid with the tiger plushie has been round here again."
+	icon_state = "snowlegion"
+
+////////////////////cheese/////////////////////////////////////////
+
+/obj/structure/statue/cheese
+	max_integrity = 100
+	material_drop_type = /obj/item/stack/sheet/cheese
+	impressiveness = 20
+
+/obj/structure/statue/cheese/cheesus
+	name = "statue of cheesus"
+	desc = "Cheese expertly crafted into a representation of our mighty lord and saviour."
+	icon_state = "cheesus1"
+
+/obj/structure/statue/cheese/cheesus/attackby(obj/item/W, mob/user, params)
+	if(obj_integrity <= 20)
+		icon_state = "cheesus4"
+		return ..()
+	if(obj_integrity <= 40)
+		icon_state = "cheesus3"
+		return ..()
+	if(obj_integrity <= 60)
+		icon_state = "cheesus2"
+		return ..()
+	return ..()

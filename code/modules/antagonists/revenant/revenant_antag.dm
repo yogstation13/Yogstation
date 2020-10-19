@@ -2,6 +2,8 @@
 	name = "Revenant"
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
+	greentext_achieve = /datum/achievement/greentext/revenant
+	show_to_ghosts = TRUE
 
 /datum/antagonist/revenant/greet()
 	owner.announce_objectives()
@@ -13,8 +15,6 @@
 	var/datum/objective/revenantFluff/objective2 = new
 	objective2.owner = owner
 	objectives += objective2
-
-	owner.objectives |= objectives
 
 /datum/antagonist/revenant/on_gain()
 	forge_objectives()

@@ -39,11 +39,16 @@
 		for(var/i in baseturf_cache)
 			if(baseturf_to_replace[i])
 				baseturf_cache -= i
+		if(!baseturf_cache.len)
+			thing.assemble_baseturfs(baseturf)
+		else
+			thing.PlaceOnBottom(null, baseturf)
 	else if(baseturf_to_replace[thing.baseturfs])
 		thing.assemble_baseturfs(baseturf)
-		return
+	else
+		thing.PlaceOnBottom(null, baseturf)
 
-	thing.PlaceOnBottom(null, baseturf)
+
 
 /obj/effect/baseturf_helper/space
 	name = "space baseturf editor"
@@ -96,42 +101,74 @@
 /obj/effect/mapping_helpers/airlock
 	layer = DOOR_HELPER_LAYER
 
+/obj/effect/mapping_helpers/airlock/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_mapping("[src] spawned outside of mapload!")
+		return
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	if(!airlock)
+		log_mapping("[src] failed to find an airlock at [AREACOORD(src)]")
+	else
+		payload(airlock)
+
+/obj/effect/mapping_helpers/airlock/proc/payload(obj/machinery/door/airlock/payload)
+	return
+
 /obj/effect/mapping_helpers/airlock/cyclelink_helper
 	name = "airlock cyclelink helper"
 	icon_state = "airlock_cyclelink_helper"
 
-/obj/effect/mapping_helpers/airlock/cyclelink_helper/Initialize(mapload)
-	. = ..()
-	if(!mapload)
-		log_world("### MAP WARNING, [src] spawned outside of mapload!")
-		return
-	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
-	if(airlock)
-		if(airlock.cyclelinkeddir)
-			log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried to set [airlock] cyclelinkeddir, but it's already set!")
-		else
-			airlock.cyclelinkeddir = dir
+/obj/effect/mapping_helpers/airlock/cyclelink_helper/payload(obj/machinery/door/airlock/airlock)
+	if(airlock.cyclelinkeddir)
+		log_mapping("[src] at [AREACOORD(src)] tried to set [airlock] cyclelinkeddir, but it's already set!")
 	else
-		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+		airlock.cyclelinkeddir = dir
+
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target	//yogs start
+	name = "airlock cyclelink helper target"
+	icon_state = "airlock_cyclelink_helper_target"
+	var/dirx
+	var/diry
+
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target/payload(obj/machinery/door/airlock/airlock)
+	if(airlock.cyclelinkedx || airlock.cyclelinkedy)
+		log_mapping("[src] at [AREACOORD(src)] tried to set [airlock] cyclelinkedx and y, but they're already set")
+	else
+		if(!dirx && !diry)
+			log_mapping("[src] at [AREACOORD(src)] tried to set [airlock] cyclelinkedx and y, but has dirx and diry are uninitialized")
+			return
+		airlock.cyclelinkedx = dirx
+		airlock.cyclelinkedy = diry//yogs end
 
 
 /obj/effect/mapping_helpers/airlock/locked
 	name = "airlock lock helper"
 	icon_state = "airlock_locked_helper"
 
-/obj/effect/mapping_helpers/airlock/locked/Initialize(mapload)
-	. = ..()
-	if(!mapload)
-		log_world("### MAP WARNING, [src] spawned outside of mapload!")
-		return
-	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
-	if(airlock)
-		if(airlock.locked)
-			log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already locked!")
-		else
-			airlock.locked = TRUE
+/obj/effect/mapping_helpers/airlock/locked/payload(obj/machinery/door/airlock/airlock)
+	if(airlock.locked)
+		log_mapping("[src] at [AREACOORD(src)] tried to bolt [airlock] but it's already locked!")
 	else
-		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+		airlock.locked = TRUE
+
+
+/obj/effect/mapping_helpers/airlock/unres
+	name = "airlock unresctricted side helper"
+	icon_state = "airlock_unres_helper"
+
+/obj/effect/mapping_helpers/airlock/unres/payload(obj/machinery/door/airlock/airlock)
+	airlock.unres_sides ^= dir
+
+/obj/effect/mapping_helpers/airlock/abandoned
+	name = "airlock abandoned helper"
+	icon_state = "airlock_abandoned"
+
+/obj/effect/mapping_helpers/airlock/abandoned/payload(obj/machinery/door/airlock/airlock)
+	if(airlock.abandoned)
+		log_mapping("[src] at [AREACOORD(src)] tried to make [airlock] abandoned but it's already abandoned!")
+	else
+		airlock.abandoned = TRUE
 
 
 //needs to do its thing before spawn_rivers() is called
@@ -144,19 +181,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	. = ..()
 	var/turf/T = get_turf(src)
 	T.flags_1 |= NO_LAVA_GEN_1
-
-//Contains the list of planetary z-levels defined by the planet_z helper.
-GLOBAL_LIST_EMPTY(z_is_planet)
-
-/obj/effect/mapping_helpers/planet_z //adds the map it is on to the z_is_planet list
-	name = "planet z helper"
-	layer = POINT_LAYER
-
-/obj/effect/mapping_helpers/planet_z/Initialize()
-	. = ..()
-	var/turf/T = get_turf(src)
-	GLOB.z_is_planet["[T.z]"] = TRUE
-
 
 //This helper applies components to things on the map directly.
 /obj/effect/mapping_helpers/component_injector
@@ -197,3 +221,31 @@ GLOBAL_LIST_EMPTY(z_is_planet)
 		CRASH("Wrong disease type passed in.")
 	var/datum/disease/D = new disease_type()
 	return list(component_type,D)
+
+/obj/effect/mapping_helpers/dead_body_placer
+	name = "Dead Body placer"
+	late = TRUE
+	icon_state = "deadbodyplacer"
+	var/bodycount = 2 //number of bodies to spawn
+
+/obj/effect/mapping_helpers/dead_body_placer/LateInitialize()
+	var/area/a = get_area(src)
+	var/list/trays = list()
+	for (var/i in a.contents)
+		if (istype(i, /obj/structure/bodycontainer/morgue))
+			trays += i
+	if(!trays.len)
+		log_mapping("[src] at [x],[y] could not find any morgues.")
+		return
+	for (var/i = 1 to bodycount)
+		var/obj/structure/bodycontainer/morgue/j = pick(trays)
+		var/mob/living/carbon/human/h = new /mob/living/carbon/human(j, 1)
+		h.death()
+		for (var/part in h.internal_organs) //randomly remove organs from each body, set those we keep to be in stasis
+			if (prob(40))
+				qdel(part)
+			else
+				var/obj/item/organ/O = part
+				O.organ_flags |= ORGAN_FROZEN
+		j.update_icon()
+	qdel(src)

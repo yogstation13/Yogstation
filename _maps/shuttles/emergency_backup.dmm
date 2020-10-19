@@ -5,10 +5,32 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape/backup)
+"b" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/escape/backup)
 "c" = (
 /obj/machinery/door/airlock/titanium,
 /obj/docking_port/mobile/emergency/backup,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
+/area/shuttle/escape/backup)
+"e" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape/backup)
 "f" = (
 /obj/structure/table/wood,
@@ -18,14 +40,30 @@
 "g" = (
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape/backup)
+"h" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape/backup)
 "m" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape/backup)
+"o" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/escape/backup)
 "p" = (
-/turf/open/floor/mineral/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape/backup)
 "q" = (
-/obj/machinery/status_display,
+/obj/machinery/status_display/evac,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape/backup)
 "u" = (
@@ -40,6 +78,12 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape/backup)
+"E" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/escape/backup)
 "F" = (
 /obj/structure/table/wood,
 /obj/item/paper/fluff/stations/centcom/broken_evac,
@@ -49,6 +93,25 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape/backup)
+"R" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape/backup)
+"S" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/escape/backup)
+"Y" = (
+/obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape/backup)
 
@@ -87,19 +150,19 @@ m
 p
 p
 p
-p
-g
-p
+b
+R
+e
 m
 "}
 (5,1,1) = {"
 m
-p
-p
-p
-p
-g
-p
+E
+E
+E
+o
+h
+S
 m
 "}
 (6,1,1) = {"
@@ -119,7 +182,7 @@ F
 f
 P
 g
-g
+Y
 q
 "}
 (8,1,1) = {"

@@ -15,14 +15,14 @@
 
 /obj/machinery/mineral/mint/Initialize()
 	. = ..()
-	AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_PLASMA, MAT_SILVER, MAT_GOLD, MAT_URANIUM, MAT_DIAMOND, MAT_BANANIUM), MINERAL_MATERIAL_AMOUNT * 50, FALSE, list(/obj/item/stack))
+	AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_PLASMA, MAT_SILVER, MAT_GOLD, MAT_URANIUM, MAT_DIAMOND, MAT_BANANIUM), MINERAL_MATERIAL_AMOUNT * 50, FALSE, /obj/item/stack)
 
 /obj/machinery/mineral/mint/process()
 	var/turf/T = get_step(src, input_dir)
 	if(!T)
 		return
 
-	GET_COMPONENT(materials, /datum/component/material_container)
+	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	for(var/obj/item/stack/sheet/O in T)
 		materials.insert_stack(O, O.amount)
 
@@ -30,9 +30,9 @@
 	. = ..()
 	if(.)
 		return
-	var/dat = "<b>Coin Press</b><br>"
+	var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><b>Coin Press</b><br>"
 
-	GET_COMPONENT(materials, /datum/component/material_container)
+	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	for(var/mat_id in materials.materials)
 		var/datum/material/M = materials.materials[mat_id]
 		if(!M.amount && chosen != mat_id)
@@ -54,7 +54,7 @@
 	dat += "<A href='?src=[REF(src)];chooseAmt=10'>+10</A> "
 
 	dat += "<br><br>In total this machine produced <font color='green'><b>[newCoins]</b></font> coins."
-	dat += "<br><A href='?src=[REF(src)];makeCoins=[1]'>Make coins</A>"
+	dat += "<br><A href='?src=[REF(src)];makeCoins=[1]'>Make coins</A></BODY></HTML>"
 	user << browse(dat, "window=mint")
 
 /obj/machinery/mineral/mint/Topic(href, href_list)
@@ -65,12 +65,12 @@
 	if(processing==1)
 		to_chat(usr, "<span class='notice'>The machine is processing.</span>")
 		return
-	GET_COMPONENT(materials, /datum/component/material_container)
+	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	if(href_list["choose"])
 		if(materials.materials[href_list["choose"]])
 			chosen = href_list["choose"]
 	if(href_list["chooseAmt"])
-		coinsToProduce = CLAMP(coinsToProduce + text2num(href_list["chooseAmt"]), 0, 1000)
+		coinsToProduce = clamp(coinsToProduce + text2num(href_list["chooseAmt"]), 0, 1000)
 	if(href_list["makeCoins"])
 		var/temp_coins = coinsToProduce
 		processing = TRUE

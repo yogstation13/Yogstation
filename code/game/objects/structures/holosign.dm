@@ -15,6 +15,11 @@
 		projector.signs += src
 	..()
 
+/obj/structure/holosign/Initialize()
+	. = ..()
+	alpha = 0
+	SSvis_overlays.add_vis_overlay(src, icon, icon_state, ABOVE_MOB_LAYER, plane, dir, add_appearance_flags = RESET_ALPHA) //you see mobs under it, but you hit them like they are above it
+
 /obj/structure/holosign/Destroy()
 	if(projector)
 		projector.signs -= src
@@ -43,7 +48,7 @@
 	icon_state = "holosign"
 
 /obj/structure/holosign/barrier
-	name = "holo barrier"
+	name = "holobarrier"
 	desc = "A short holographic barrier which can only be passed by walking."
 	icon_state = "holosign_sec"
 	pass_flags = LETPASSTHROW
@@ -51,33 +56,53 @@
 	max_integrity = 20
 	var/allow_walk = 1 //can we pass through it on walk intent
 
-/obj/structure/holosign/barrier/CanPass(atom/movable/mover, turf/target)
-	if(!density)
-		return 1
+/obj/structure/holosign/barrier/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(.)
+		return
 	if(mover.pass_flags & (PASSGLASS|PASSTABLE|PASSGRILLE))
 		return 1
 	if(iscarbon(mover))
 		var/mob/living/carbon/C = mover
+		if(C.stat)	// Lets not prevent dragging unconscious/dead people.
+			return TRUE
 		if(allow_walk && C.m_intent == MOVE_INTENT_WALK)
 			return 1
 
+/obj/structure/holosign/barrier/wetsign
+	name = "wet floor holobarrier"
+	desc = "When it says walk it means walk."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "holosign"
+
+/obj/structure/holosign/barrier/wetsign/CanPass(atom/movable/mover, turf/target)
+	. = ..()
+	if(istype(mover, /obj/vehicle/ridden/janicart))
+		return TRUE
+	if(istype(mover, /obj/structure/janitorialcart))
+		return TRUE
+	if(istype(mover, /obj/structure/mopbucket))
+		return TRUE
+	if(ishuman(mover))
+		var/mob/living/carbon/human/janitor = mover
+		if(istype(janitor.shoes, /obj/item/clothing/shoes/galoshes))
+			return TRUE
+
 /obj/structure/holosign/barrier/engineering
 	icon_state = "holosign_engi"
-
-/obj/structure/holosign/barrier/engineering/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/rad_insulation, RAD_LIGHT_INSULATION)
+	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	rad_insulation = RAD_LIGHT_INSULATION
 
 /obj/structure/holosign/barrier/atmos
-	name = "holo firelock"
+	name = "holofirelock"
 	desc = "A holographic barrier resembling a firelock. Though it does not prevent solid objects from passing through, gas is kept out."
 	icon_state = "holo_firelock"
 	density = FALSE
-	layer = ABOVE_MOB_LAYER
 	anchored = TRUE
 	CanAtmosPass = ATMOS_PASS_NO
-	layer = ABOVE_MOB_LAYER
 	alpha = 150
+	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	rad_insulation = RAD_LIGHT_INSULATION
 
 /obj/structure/holosign/barrier/atmos/Initialize()
 	. = ..()
@@ -96,36 +121,40 @@
 		take_damage(10, BRUTE, "melee", 1)	//Tasers aren't harmful.
 	if(istype(P, /obj/item/projectile/beam/disabler))
 		take_damage(5, BRUTE, "melee", 1)	//Disablers aren't harmful.
+	return BULLET_ACT_HIT
 
 /obj/structure/holosign/barrier/medical
 	name = "\improper PENLITE holobarrier"
 	desc = "A holobarrier that uses biometrics to detect human viruses. Denies passing to personnel with easily-detected, malicious viruses. Good for quarantines."
 	icon_state = "holo_medical"
 	alpha = 125 //lazy :)
-	layer = ABOVE_MOB_LAYER
 	var/force_allaccess = FALSE
 	var/buzzcd = 0
 
 /obj/structure/holosign/barrier/medical/examine(mob/user)
-	..()
-	to_chat(user,"<span class='notice'>The biometric scanners are <b>[force_allaccess ? "off" : "on"]</b>.</span>")
+	. = ..()
+	. += "<span class='notice'>The biometric scanners are <b>[force_allaccess ? "off" : "on"]</b>.</span>"
 
-/obj/structure/holosign/barrier/medical/CanPass(atom/movable/mover, turf/target)
-	icon_state = "holo_medical"
+/obj/structure/holosign/barrier/medical/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(force_allaccess)
 		return TRUE
 	if(ishuman(mover))
-		var/mob/living/carbon/human/sickboi = mover
-		var/threat = sickboi.check_virus()
-		switch(threat)
-			if(DISEASE_SEVERITY_MINOR, DISEASE_SEVERITY_MEDIUM, DISEASE_SEVERITY_HARMFUL, DISEASE_SEVERITY_DANGEROUS, DISEASE_SEVERITY_BIOHAZARD)
-				if(buzzcd < world.time)
-					playsound(get_turf(src),'sound/machines/buzz-sigh.ogg',65,1,4)
-					buzzcd = (world.time + 60)
-				icon_state = "holo_medical-deny"
-				return FALSE
-			else
-				return TRUE //nice or benign diseases!
+		return CheckHuman(mover)
+
+/obj/structure/holosign/barrier/medical/Bumped(atom/movable/AM)
+	. = ..()
+	icon_state = "holo_medical"
+	if(ishuman(AM) && !CheckHuman(AM))
+		if(buzzcd < world.time)
+			playsound(get_turf(src),'sound/machines/buzz-sigh.ogg',65,TRUE,4)
+			buzzcd = (world.time + 60)
+		icon_state = "holo_medical-deny"
+
+/obj/structure/holosign/barrier/medical/proc/CheckHuman(mob/living/carbon/human/sickboi)
+	var/threat = sickboi.check_virus()
+	if(get_disease_severity_value(threat) > get_disease_severity_value(DISEASE_SEVERITY_MINOR))
+		return FALSE
 	return TRUE
 
 /obj/structure/holosign/barrier/medical/attack_hand(mob/living/user)
@@ -143,6 +172,7 @@
 
 /obj/structure/holosign/barrier/cyborg/hacked/bullet_act(obj/item/projectile/P)
 	take_damage(P.damage, BRUTE, "melee", 1)	//Yeah no this doesn't get projectile resistance.
+	return BULLET_ACT_HIT
 
 /obj/structure/holosign/barrier/cyborg/hacked/proc/cooldown()
 	shockcd = FALSE

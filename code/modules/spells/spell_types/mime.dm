@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_wall
 	name = "Invisible Wall"
-	desc = "The mime's performance transmutates into physical reality."
+	desc = "The mime's performance transmutates a wall into physical reality."
 	school = "mime"
 	panel = "Mime"
 	summon_type = list(/obj/effect/forcefield/mime)
@@ -8,11 +8,13 @@
 	invocation_emote_self = "<span class='notice'>You form a wall in front of yourself.</span>"
 	summon_lifespan = 300
 	charge_max = 300
-	clothes_req = 0
+	clothes_req = FALSE
+	antimagic_allowed = TRUE
 	range = 0
 	cast_sound = null
-	human_req = 1
+	human_req = TRUE
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mime"
 	action_background_icon_state = "bg_mime"
 
@@ -26,18 +28,97 @@
 		invocation_type ="none"
 	..()
 
+/obj/effect/proc_holder/spell/aoe_turf/conjure/mime_chair
+	name = "Invisible Chair"
+	desc = "The mime's performance transmutates a chair into physical reality."
+	school = "mime"
+	panel = "Mime"
+	summon_type = list(/obj/structure/chair/mime)
+	invocation_type = "emote"
+	invocation_emote_self = "<span class='notice'>You conjure an invisible chair and sit down.</span>"
+	summon_lifespan = 250
+	charge_max = 300
+	clothes_req = FALSE
+	antimagic_allowed = TRUE
+	range = 0
+	cast_sound = null
+	human_req = TRUE
+
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
+	action_icon_state = "mime"
+	action_background_icon_state = "bg_mime"
+
+/obj/effect/proc_holder/spell/aoe_turf/conjure/mime_chair/Click()
+	if(usr && usr.mind)
+		if(!usr.mind.miming)
+			to_chat(usr, "<span class='notice'>You must dedicate yourself to silence first.</span>")
+			return
+		invocation = "<B>[usr.real_name]</B> pulls out an invisible chair and sits down."
+	else
+		invocation_type ="none"
+	..()
+
+/obj/effect/proc_holder/spell/aoe_turf/conjure/mime_chair/cast(list/targets,mob/user = usr)
+	..()
+	var/turf/T = user.loc
+	for (var/obj/structure/chair/A in T)
+		if (is_type_in_list(A, summon_type))
+			A.setDir(user.dir)
+			A.buckle_mob(user)
+
+/obj/effect/proc_holder/spell/aoe_turf/conjure/mime_box
+	name = "Invisible Box"
+	desc = "The mime's performance transmutates a box into physical reality."
+	school = "mime"
+	panel = "Mime"
+	summon_type = list(/obj/item/storage/box/mime)
+	invocation_type = "emote"
+	invocation_emote_self = "<span class='notice'>You conjure up an invisible box, large enough to store a few things.</span>"
+	summon_lifespan = 250
+	charge_max = 300
+	clothes_req = FALSE
+	antimagic_allowed = TRUE
+	range = 0
+	cast_sound = null
+	human_req = TRUE
+
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
+	action_icon_state = "mime"
+	action_background_icon_state = "bg_mime"
+
+/obj/effect/proc_holder/spell/aoe_turf/conjure/mime_box/cast(list/targets,mob/user = usr)
+	..()
+	var/turf/T = user.loc
+	for (var/obj/item/storage/box/mime/B in T)
+		user.put_in_hands(B)
+		if(user.get_active_held_item() == B)
+			B.alpha = 255
+		addtimer(CALLBACK(B, /obj/item/storage/box/mime/.proc/emptyStorage, FALSE), (summon_lifespan - 1))
+
+/obj/effect/proc_holder/spell/aoe_turf/conjure/mime_box/Click()
+	if(usr && usr.mind)
+		if(!usr.mind.miming)
+			to_chat(usr, "<span class='notice'>You must dedicate yourself to silence first.</span>")
+			return
+		invocation = "<B>[usr.real_name]</B> moves [usr.p_their()] hands in the shape of a cube, pressing a box out of the air."
+	else
+		invocation_type ="none"
+	..()
+
 
 /obj/effect/proc_holder/spell/targeted/mime/speak
 	name = "Speech"
 	desc = "Make or break a vow of silence."
 	school = "mime"
 	panel = "Mime"
-	clothes_req = 0
-	human_req = 1
+	clothes_req = FALSE
+	human_req = TRUE
+	antimagic_allowed = TRUE
 	charge_max = 3000
 	range = -1
-	include_user = 1
+	include_user = TRUE
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mime"
 	action_background_icon_state = "bg_mime"
 
@@ -75,10 +156,12 @@
 	invocation_emote_self = "<span class='notice'>You form a blockade in front of yourself.</span>"
 	charge_max = 600
 	sound =  null
-	clothes_req = 0
+	clothes_req = FALSE
+	antimagic_allowed = TRUE
 	range = -1
-	include_user = 1
+	include_user = TRUE
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mime"
 	action_background_icon_state = "bg_mime"
 
@@ -94,11 +177,12 @@
 
 /obj/effect/proc_holder/spell/aimed/finger_guns
 	name = "Finger Guns"
-	desc = "Shoot a mimed bullet from your fingers that stuns and does some damage."
+	desc = "Shoot a mimed bullet from your fingers that silences and does some damage."
 	school = "mime"
 	panel = "Mime"
 	charge_max = 300
-	clothes_req = 0
+	clothes_req = FALSE
+	antimagic_allowed = TRUE
 	invocation_type = "emote"
 	invocation_emote_self = "<span class='dangers'>You fire your finger gun!</span>"
 	range = 20
@@ -109,6 +193,7 @@
 	deactive_msg = "You put your fingers at ease. Another time."
 	active = FALSE
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mime"
 	action_background_icon_state = "bg_mime"
 	base_icon_state = "mime"
@@ -138,7 +223,9 @@
 	remarks = list("...")
 
 /obj/item/book/granter/spell/mimery_blockade/attack_self(mob/user)
-	..()
+	. = ..()
+	if(!.)
+		return
 	if(!locate(/obj/effect/proc_holder/spell/targeted/mime/speak) in user.mind.spell_list)
 		user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/mime/speak)
 
@@ -151,6 +238,8 @@
 	remarks = list("...")
 
 /obj/item/book/granter/spell/mimery_guns/attack_self(mob/user)
-	..()
+	. = ..()
+	if(!.)
+		return
 	if(!locate(/obj/effect/proc_holder/spell/targeted/mime/speak) in user.mind.spell_list)
 		user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/mime/speak)

@@ -1,12 +1,15 @@
 ## Yogstation codebase
 
-[![Build Status](https://travis-ci.org/yogstation13/Yogstation-TG.png)](https://travis-ci.org/yogstation13/Yogstation-TG)  
+[![Build Status](https://github.com/yogstation13/Yogstation/workflows/Turdis/badge.svg?branch=master)](https://github.com/yogstation13/Yogstation/actions?query=workflow%3ATurdis+branch%3Amaster)
 [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
-**Website:** https://yogstation.net
-**Code:** https://github.com/yogstation13/yogstation
-**Wiki:** https://wiki.yogstation.net
-**Discord:** https://discord.gg/0keg6hQH05Ha8OfO
+[**Website**](https://yogstation.net)
+
+[**Code**](https://github.com/yogstation13/yogstation)
+
+[**Wiki**](https://wiki.yogstation.net)
+
+[**Discord**](https://discord.gg/0keg6hQH05Ha8OfO)
 
  
 ## DOWNLOADING
@@ -17,7 +20,7 @@ Option 1:
 Follow this: https://wiki.yogstation.net/wiki/Setting_up_git
 
 Option 2: Download the source code as a zip by clicking the ZIP button in the
-code tab of https://github.com/yogstation13/Yogstation-TG
+code tab of https://github.com/yogstation13/Yogstation
 (note: this will use a lot of bandwidth if you wish to update and is a lot of
 hassle if you want to make any changes at all, so it's not recommended.)
 
@@ -38,7 +41,7 @@ yogstation.dmb - 0 errors, 0 warnings
 
 If you see any errors or warnings, something has gone wrong - possibly a corrupt
 download or the files extracted wrong. If problems persist, ask for assistance
-in irc://irc.rizon.net/coderbus or in #coder-public on discord.
+in irc://irc.rizon.net/coderbus or in #development-public on discord.
 
 Once that's done, open up the config folder. You'll want to edit config.txt to
 set the probabilities for different gamemodes in Secret and to set your server
@@ -67,7 +70,7 @@ and install it themselves. Directions can be found at the [rust-g
 repo](https://github.com/tgstation/rust-g).
 
 Finally, to start the server, run Dream Daemon and enter the path to your
-compiled tgstation.dmb file. Make sure to set the port to the one you
+compiled yogstation.dmb file. Make sure to set the port to the one you
 specified in the config.txt, and set the Security box to 'Safe'. Then press GO
 and the server should start up and be ready to join. It is also recommended that
 you set up the SQL backend (see below).
@@ -86,18 +89,18 @@ the new version.
 ## HOSTING
 
 If you'd like a more robust server hosting option for tgstation and its
-derivatives. Check out our server tools suite at 
+derivatives. Check out /tg/station's server tools suite at 
 https://github.com/tgstation/tgstation-server
 
 ## MAPS
 
-/tg/station currently comes equipped with five maps.
+Yogstation currently comes equipped with the following maps.
 
-* [BoxStation (default)](https://tgstation13.org/wiki/Boxstation)
-* [MetaStation](https://tgstation13.org/wiki/MetaStation)
-* [DeltaStation](https://tgstation13.org/wiki/DeltaStation)
-* [OmegaStation](https://tgstation13.org/wiki/OmegaStation)
-* [PubbyStation](https://tgstation13.org/wiki/PubbyStation)
+* [BoxStation (default)](https://wiki.yogstation.net/wiki/BoxStation)
+* [DeltaStation](https://wiki.yogstation.net/wiki/DeltaStation)
+* [EclipseStation](https://wiki.yogstation.net/wiki/Maps)
+* [MetaStation](https://wiki.yogstation.net/wiki/MetaStation)
+* [OmegaStation](https://wiki.yogstation.net/wiki/OmegaStation)
 
 
 All maps have their own code file that is in the base of the _maps directory. Maps are loaded dynamically when the game starts. Follow this guideline when adding your own map, to your fork, for easy compatibility.
@@ -110,7 +113,7 @@ Anytime you want to make changes to a map it's imperative you use the [Map Mergi
 
 ## AWAY MISSIONS
 
-/tg/station supports loading away missions however they are disabled by default.
+Yogstation supports loading away missions however they are disabled by default.
 
 Map files for away missions are located in the _maps/RandomZLevels directory. Each away mission includes it's own code definitions located in /code/modules/awaymissions/mission_code. These files must be included and compiled with the server beforehand otherwise the server will crash upon trying to load away missions that lack their code.
 

@@ -7,11 +7,25 @@
 	if(. & EMP_PROTECT_SELF)
 		return
 	take_holo_damage(50/severity)
-	Knockdown(400/severity)
+	Paralyze(400/severity)
 	silent = max(30/severity, silent)
 	if(holoform)
 		fold_in(force = TRUE)
 	//Need more effects that aren't instadeath or permanent law corruption.
+	//Ask and you shall receive
+	switch(rand(1, 3))
+		if(1)
+			stuttering = 1
+			to_chat(src, "<span class='danger'>Warning: Feedback loop detected in speech module.</span>")
+		if(2)
+			slurring = 1
+			to_chat(src, "<span class='danger'>Warning: Audio synthesizer CPU stuck.</span>")
+		if(3)
+			derpspeech = 1
+			to_chat(src, "<span class='danger'>Warning: Vocabulary databank corrupted.</span>")
+	if(prob(40))
+		mind.language_holder.selected_language = get_random_spoken_language()
+
 
 /mob/living/silicon/pai/ex_act(severity, target)
 	take_holo_damage(severity * 50)
@@ -21,10 +35,10 @@
 			qdel(src)
 		if(2)
 			fold_in(force = 1)
-			Knockdown(400)
+			Paralyze(400)
 		if(3)
 			fold_in(force = 1)
-			Knockdown(200)
+			Paralyze(200)
 
 /mob/living/silicon/pai/attack_hand(mob/living/carbon/human/user)
 	switch(user.a_intent)
@@ -60,11 +74,10 @@
 	return FALSE //No we're not flammable
 
 /mob/living/silicon/pai/proc/take_holo_damage(amount)
-	emitterhealth = CLAMP((emitterhealth - amount), -50, emittermaxhealth)
+	emitterhealth = clamp((emitterhealth - amount), -50, emittermaxhealth)
 	if(emitterhealth < 0)
 		fold_in(force = TRUE)
 	to_chat(src, "<span class='userdanger'>The impact degrades your holochassis!</span>")
-	hit_slowdown += amount
 	return amount
 
 /mob/living/silicon/pai/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE)
@@ -82,11 +95,8 @@
 /mob/living/silicon/pai/adjustCloneLoss(amount, updating_health = TRUE, forced = FALSE)
 	return FALSE
 
-/mob/living/silicon/pai/adjustStaminaLoss(amount)
-	take_holo_damage(amount & 0.25)
-
-/mob/living/silicon/pai/adjustBrainLoss(amount)
-	Knockdown(amount * 0.2)
+/mob/living/silicon/pai/adjustStaminaLoss(amount, updating_health)
+	take_holo_damage(amount * 0.25)
 
 /mob/living/silicon/pai/getBruteLoss()
 	return emittermaxhealth - emitterhealth
@@ -103,19 +113,13 @@
 /mob/living/silicon/pai/getCloneLoss()
 	return FALSE
 
-/mob/living/silicon/pai/getBrainLoss()
-	return FALSE
-
 /mob/living/silicon/pai/getStaminaLoss()
 	return FALSE
 
 /mob/living/silicon/pai/setCloneLoss()
 	return FALSE
 
-/mob/living/silicon/pai/setBrainLoss()
-	return FALSE
-
-/mob/living/silicon/pai/setStaminaLoss()
+/mob/living/silicon/pai/setStaminaLoss(amount, updating_health = TRUE)
 	return FALSE
 
 /mob/living/silicon/pai/setToxLoss()

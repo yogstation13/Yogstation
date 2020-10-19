@@ -36,6 +36,10 @@
 	QDEL_NULL(cpu)
 	return ..()
 
+/obj/machinery/modular_computer/examine(mob/user)
+	. = ..()
+	. += get_modular_computer_parts_examine(user)
+
 /obj/machinery/modular_computer/attack_ghost(mob/dead/observer/user)
 	. = ..()
 	if(.)
@@ -126,8 +130,7 @@
 		stat &= ~NOPOWER
 		update_icon()
 		return
-	..()
-	update_icon()
+	. = ..()
 
 /obj/machinery/modular_computer/attackby(var/obj/item/W as obj, mob/user)
 	if(cpu && !(flags_1 & NODECONSTRUCT_1))

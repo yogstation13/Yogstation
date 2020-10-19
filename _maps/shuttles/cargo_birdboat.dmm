@@ -32,7 +32,7 @@
 	id = "cargoshuttle";
 	name = "cargo shuttle conveyor belt"
 	},
-/turf/open/floor/mineral/titanium/blue,
+/turf/open/floor/mineral/titanium,
 /area/shuttle/supply)
 "i" = (
 /obj/machinery/conveyor{
@@ -40,7 +40,7 @@
 	id = "cargoshuttle";
 	name = "cargo shuttle conveyor belt"
 	},
-/turf/open/floor/mineral/titanium/blue,
+/turf/open/floor/mineral/titanium,
 /area/shuttle/supply)
 "j" = (
 /obj/machinery/conveyor{
@@ -48,7 +48,7 @@
 	id = "cargoshuttle";
 	name = "cargo shuttle conveyor belt"
 	},
-/turf/open/floor/mineral/titanium/blue,
+/turf/open/floor/mineral/titanium,
 /area/shuttle/supply)
 "k" = (
 /obj/machinery/conveyor{
@@ -56,7 +56,7 @@
 	id = "cargoshuttle";
 	name = "cargo shuttle conveyor belt"
 	},
-/turf/open/floor/mineral/titanium/blue,
+/turf/open/floor/mineral/titanium,
 /area/shuttle/supply)
 "l" = (
 /obj/machinery/door/poddoor{
@@ -68,10 +68,13 @@
 	id = "cargoshuttle";
 	name = "cargo shuttle conveyor belt"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
-/area/shuttle/supply)
-"m" = (
-/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/supply)
 "n" = (
 /turf/open/floor/mineral/titanium,
@@ -80,6 +83,12 @@
 /obj/machinery/door/airlock/titanium{
 	name = "Supply Shuttle Airlock";
 	req_access_txt = "31"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/supply)
@@ -114,6 +123,12 @@
 	dwidth = 3;
 	width = 10
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/shuttle/supply)
 "r" = (
@@ -125,6 +140,12 @@
 	dir = 4;
 	id = "cargoshuttle";
 	name = "cargo shuttle conveyor belt"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/supply)
@@ -165,7 +186,31 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/mineral/titanium/blue,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/supply)
+"G" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "cargoshuttle";
+	name = "cargo shuttle conveyor belt"
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/supply)
+"P" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "cargoshuttle";
+	name = "cargo shuttle conveyor belt"
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/supply)
+"R" = (
+/obj/machinery/conveyor{
+	dir = 2;
+	id = "cargoshuttle";
+	name = "cargo shuttle conveyor belt"
+	},
+/turf/open/floor/mineral/titanium,
 /area/shuttle/supply)
 
 (1,1,1) = {"
@@ -183,11 +228,11 @@ w
 (2,1,1) = {"
 b
 e
-g
-e
-m
+P
+R
+n
 B
-m
+n
 g
 b
 x
@@ -195,11 +240,11 @@ x
 (3,1,1) = {"
 b
 f
-g
-f
-m
-m
-m
+P
+G
+n
+n
+n
 g
 u
 y
@@ -207,11 +252,11 @@ y
 (4,1,1) = {"
 b
 A
-g
-f
-m
-m
-m
+P
+G
+n
+n
+n
 g
 u
 y
@@ -219,11 +264,11 @@ y
 (5,1,1) = {"
 b
 f
-h
+k
 j
-m
-m
-m
+n
+n
+n
 g
 u
 y
@@ -232,7 +277,7 @@ y
 b
 f
 i
-k
+h
 n
 p
 n

@@ -1,6 +1,6 @@
-/mob/living/brain/say(message, language)
-	if(!(container && istype(container, /obj/item/mmi)))
-		return //No MMI, can't speak, bucko./N
+/mob/living/brain/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+	if(!istype(container, /obj/item/mmi) && !istype(loc, /obj/item/reagent_containers/food/snacks/egg))
+		return //No MMI, and no EGG RP, can't speak, bucko./N
 	else
 		if(prob(emp_damage*4))
 			if(prob(10))//10% chane to drop the message entirely
@@ -10,14 +10,11 @@
 
 		..()
 
-/mob/living/brain/get_spans()
-	return ..() | SPAN_ROBOT
-
 /mob/living/brain/radio(message, message_mode, list/spans, language)
 	if(message_mode == MODE_HEADSET && istype(container, /obj/item/mmi))
 		var/obj/item/mmi/R = container
 		if(R.radio)
-			R.radio.talk_into(src, message, , get_spans(), language)
+			R.radio.talk_into(src, message, language = language)
 			return ITALICS | REDUCE_RANGE
 	else
 		return ..()
@@ -29,7 +26,7 @@
 	message = capitalize(message)
 	return message
 
-/mob/living/brain/could_speak_in_language(datum/language/dt)
+/mob/living/brain/could_speak_language(datum/language/dt)
 	if(istype(container, /obj/item/mmi/posibrain/soul_vessel))
 		// soul vessels can only speak ratvarian.
 		. = ispath(dt, /datum/language/ratvar)

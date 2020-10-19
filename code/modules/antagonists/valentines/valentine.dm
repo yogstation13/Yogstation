@@ -2,6 +2,7 @@
 	name = "valentine"
 	roundend_category = "valentines" //there's going to be a ton of them so put them in separate category
 	show_in_antagpanel = FALSE
+	prevent_roundtype_conversion = FALSE
 	var/datum/mind/date
 
 /datum/antagonist/valentine/proc/forge_objectives()
@@ -12,7 +13,6 @@
 		protect_objective.human_check = FALSE
 	protect_objective.explanation_text = "Protect [date.name], your date."
 	objectives += protect_objective
-	owner.objectives += objectives
 
 /datum/antagonist/valentine/on_gain()
 	forge_objectives()
@@ -33,13 +33,13 @@
 //Squashed up a bit
 /datum/antagonist/valentine/roundend_report()
 	var/objectives_complete = TRUE
-	if(owner.objectives.len)
-		for(var/datum/objective/objective in owner.objectives)
+	if(objectives.len)
+		for(var/datum/objective/objective in objectives)
 			if(!objective.check_completion())
 				objectives_complete = FALSE
 				break
 
 	if(objectives_complete)
-		return "<span class='greentext big'>[owner.name] protected [owner.p_their()] date</span>"
+		return "<span class='greentext'>[owner.name] protected their date!</span>"
 	else
-		return "<span class='redtext big'>[owner.name] date failed!</span>"
+		return "<span class='redtext'>[owner.name] failed their date!</span>"

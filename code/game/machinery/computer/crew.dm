@@ -10,6 +10,7 @@
 	active_power_usage = 500
 	circuit = /obj/item/circuitboard/computer/crew
 
+
 	light_color = LIGHT_COLOR_BLUE
 
 /obj/machinery/computer/crew/syndie
@@ -79,7 +80,9 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 							datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "crew", "crew monitor", 800, 600 , master_ui, state)
+		for(var/datum/minimap/M in SSmapping.station_minimaps)
+			M.send(user)
+		ui = new(user, src, ui_key, "CrewConsole", "Crew Monitoring Console", 1325, 565 , master_ui, state)
 		ui.open()
 
 /datum/crewmonitor/proc/show(mob/M, source)
@@ -96,8 +99,14 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		z = T.z
 	var/list/zdata = update_data(z)
 	. = list()
+	var/datum/minimap/M = SSmapping.station_minimaps[1]
 	.["sensors"] = zdata
 	.["link_allowed"] = isAI(user)
+	.["z"] = z
+	.["minx"] = M.minx
+	.["miny"] = M.miny
+	.["maxx"] = M.maxx
+	.["maxy"] = M.maxy
 
 /datum/crewmonitor/proc/update_data(z)
 	if(data_by_z["[z]"] && last_update["[z]"] && world.time <= last_update["[z]"] + SENSORS_UPDATE_PERIOD)
@@ -120,14 +129,17 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/life_status
 
 	for(var/mob/living/carbon/human/H in GLOB.carbon_list)
+		var/nanite_sensors = FALSE
+		if(H in SSnanites.nanite_monitored_mobs)
+			nanite_sensors = TRUE
 		// Check if their z-level is correct and if they are wearing a uniform.
 		// Accept H.z==0 as well in case the mob is inside an object.
-		if ((H.z == 0 || H.z == z) && istype(H.w_uniform, /obj/item/clothing/under))
+		if ((H.z == 0 || H.z == z) && (istype(H.w_uniform, /obj/item/clothing/under) || nanite_sensors))
 			U = H.w_uniform
 
 			// Are the suit sensors on?
-			if ((U.has_sensor > 0) && U.sensor_mode)
-				pos = H.z == 0 || U.sensor_mode == SENSOR_COORDS ? get_turf(H) : null
+			if (nanite_sensors || ((U.has_sensor > 0) && U.sensor_mode))
+				pos = H.z == 0 || (nanite_sensors || U.sensor_mode == SENSOR_COORDS) ? get_turf(H) : null
 
 				// Special case: If the mob is inside an object confirm the z-level on turf level.
 				if (H.z == 0 && (!pos || pos.z != z))
@@ -144,12 +156,12 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					assignment = ""
 					ijob = 80
 
-				if (U.sensor_mode >= SENSOR_LIVING)
+				if (nanite_sensors || U.sensor_mode >= SENSOR_LIVING)
 					life_status = (!H.stat ? TRUE : FALSE)
 				else
 					life_status = null
 
-				if (U.sensor_mode >= SENSOR_VITALS)
+				if (nanite_sensors || U.sensor_mode >= SENSOR_VITALS)
 					oxydam = round(H.getOxyLoss(),1)
 					toxdam = round(H.getToxLoss(),1)
 					burndam = round(H.getFireLoss(),1)
@@ -160,7 +172,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					burndam = null
 					brutedam = null
 
-				if (U.sensor_mode >= SENSOR_COORDS)
+				if (nanite_sensors || U.sensor_mode >= SENSOR_COORDS)
 					if (!pos)
 						pos = get_turf(H)
 					area = get_area_name(H, TRUE)

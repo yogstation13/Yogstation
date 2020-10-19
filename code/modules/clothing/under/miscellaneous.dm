@@ -30,6 +30,16 @@
 	item_color = "scratch"
 	can_adjust = FALSE
 
+/obj/item/clothing/under/scratch/skirt
+	name = "white suitskirt"
+	desc = "A white suitskirt, suitable for an excellent host."
+	icon_state = "white_suit_skirt"
+	item_state = "scratch"
+	item_color = "white_suit_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS
+	can_adjust = FALSE
+	fitted = FEMALE_UNIFORM_TOP
+
 /obj/item/clothing/under/sl_suit
 	desc = "It's a very amish looking suit."
 	name = "amish suit"
@@ -49,7 +59,7 @@
 
 /obj/item/clothing/under/waiter
 	name = "waiter's outfit"
-	desc = "It's a very smart uniform with a special pocket for tip."
+	desc = "It's a very smart uniform with a special pocket for tips."
 	icon_state = "waiter"
 	item_state = "waiter"
 	item_color = "waiter"
@@ -64,6 +74,16 @@
 	has_sensor = LOCKED_SENSORS
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
+
+/obj/item/clothing/under/rank/prisoner/skirt
+	name = "prison jumpskirt"
+	desc = "It's standardised Nanotrasen prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
+	icon_state = "prisoner_skirt"
+	item_state = "o_suit"
+	item_color = "prisoner_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS
+	can_adjust = FALSE
+	fitted = FEMALE_UNIFORM_TOP
 
 /obj/item/clothing/under/rank/mailman
 	name = "mailman's jumpsuit"
@@ -112,11 +132,25 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/centcom_commander
-	desc = "It's a jumpsuit worn by CentCom's highest-tier Commanders."
+	desc = "It's a jumpsuit with gold markings worn by CentCom's highest-tier commanders."
 	name = "\improper CentCom officer's jumpsuit"
 	icon_state = "centcom"
 	item_state = "dg_suit"
 	item_color = "centcom"
+	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/rank/centcom_admiral
+	desc = "It's a jumpsuit with gold markings worn by CentCom High Command."
+	name = "\improper CentCom admiral's jumpsuit"
+	icon_state = "admiral"
+	item_state = "admiral"
+	can_adjust = FALSE //too important to look unimportant.
+
+/obj/item/clothing/under/rank/centcom_admiral/grand
+	desc = "It's a jumpsuit with gold markings worn by CentCom's highest-ranking officer."
+	name = "\improper CentCom grand admiral's jumpsuit"
+	icon_state = "grandadmiral"
+	item_state = "grandadmiral"
 
 /obj/item/clothing/under/space
 	name = "\improper NASA jumpsuit"
@@ -181,6 +215,16 @@
 	item_color = "green_suit"
 	can_adjust = FALSE
 
+/obj/item/clothing/under/gimmick/rank/captain/suit/skirt
+	name = "green suitskirt"
+	desc = "A green suitskirt and yellow necktie. Exemplifies authority."
+	icon_state = "green_suit_skirt"
+	item_state = "dg_suit"
+	item_color = "green_suit_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS
+	can_adjust = FALSE
+	fitted = FEMALE_UNIFORM_TOP
+
 /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit
 	name = "head of personnel's suit"
 	desc = "A teal suit and yellow necktie. An authoritative yet tacky ensemble."
@@ -188,6 +232,16 @@
 	item_state = "g_suit"
 	item_color = "teal_suit"
 	can_adjust = FALSE
+
+/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit/skirt
+	name = "teal suitskirt"
+	desc = "A teal suitskirt and yellow necktie. An authoritative yet tacky ensemble."
+	icon_state = "teal_suit_skirt"
+	item_state = "g_suit"
+	item_color = "teal_suit_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS
+	can_adjust = FALSE
+	fitted = FEMALE_UNIFORM_TOP
 
 /obj/item/clothing/under/suit_jacket
 	name = "black suit"
@@ -202,7 +256,7 @@
 	desc = "A formal black suit and red tie, intended for the station's finest."
 	icon_state = "really_black_suit"
 	item_state = "bl_suit"
-	item_color = "black_suit"
+	item_color = "really_black_suit"
 
 /obj/item/clothing/under/suit_jacket/female
 	name = "executive suit"
@@ -263,7 +317,7 @@
 
 /obj/item/clothing/under/suit_jacket/white
 	name = "white suit"
-	desc = "A white suit and jacket with a blue shirt. You wanna play rough? OKAY!."
+	desc = "A white suit and jacket with a blue shirt. You wanna play rough? OKAY!"
 	icon_state = "white_suit"
 	item_state = "white_suit"
 	item_color = "white_suit"
@@ -294,6 +348,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
+	custom_price = 25
 
 /obj/item/clothing/under/skirt/red
 	name = "red skirt"
@@ -304,6 +359,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
+	custom_price = 25
 
 /obj/item/clothing/under/skirt/purple
 	name = "purple skirt"
@@ -314,6 +370,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
+	custom_price = 25
 
 
 /obj/item/clothing/under/schoolgirl
@@ -351,6 +408,7 @@
 	item_state = "lb_suit"
 	item_color = "overalls"
 	can_adjust = FALSE
+	custom_price = 20
 
 /obj/item/clothing/under/pirate
 	name = "pirate outfit"
@@ -388,7 +446,10 @@
 
 /obj/item/clothing/under/kilt/highlander
 	desc = "You're the only one worthy of this kilt."
-	item_flags = NODROP
+
+/obj/item/clothing/under/kilt/highlander/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, HIGHLANDER)
 
 /obj/item/clothing/under/sexymime
 	name = "sexy mime outfit"
@@ -530,6 +591,7 @@
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = TRUE
 	alt_covers_chest = TRUE
+	custom_price = 25
 
 /obj/item/clothing/under/plaid_skirt/blue
 	name = "blue plaid skirt"
@@ -590,9 +652,6 @@
 	item_color = "jester"
 	can_adjust = FALSE
 
-/obj/item/clothing/under/jester/alt
-	icon_state = "jester2"
-
 /obj/item/clothing/under/geisha
 	name = "geisha suit"
 	desc = "Cute space ninja senpai not included."
@@ -610,14 +669,14 @@
 
 /obj/item/clothing/under/sailor
 	name = "sailor suit"
-	desc = "Skipper's in the wardroom drinkin gin'."
+	desc = "Skipper's in the wardroom drinkin' gin."
 	icon_state = "sailor"
 	item_state = "b_suit"
 	item_color = "sailor"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/plasmaman
-	name = "plasma envirosuit"
+	name = "envirosuit"
 	desc = "A special containment suit that allows plasma-based lifeforms to exist safely in an oxygenated environment, and automatically extinguishes them in a crisis. Despite being airtight, it's not spaceworthy."
 	icon_state = "plasmaman"
 	item_state = "plasmaman"
@@ -632,9 +691,8 @@
 
 
 /obj/item/clothing/under/plasmaman/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>There are [extinguishes_left] extinguisher charges left in this suit.</span>")
-
+	. = ..()
+	. += "<span class='notice'>There are [extinguishes_left] extinguisher charges left in this suit.</span>"
 
 /obj/item/clothing/under/plasmaman/proc/Extinguish(mob/living/carbon/human/H)
 	if(!istype(H))
@@ -656,14 +714,10 @@
 	if (istype(E, /obj/item/extinguisher_refill))
 		if (extinguishes_left == 5)
 			to_chat(user, "<span class='notice'>The inbuilt extinguisher is full.</span>")
-			return
 		else
 			extinguishes_left = 5
 			to_chat(user, "<span class='notice'>You refill the suit's built-in extinguisher, using up the cartridge.</span>")
 			qdel(E)
-			return
-		return
-	return
 
 /obj/item/extinguisher_refill
 	name = "envirosuit extinguisher cartridge"
@@ -673,7 +727,7 @@
 
 /obj/item/clothing/under/rank/security/navyblue/russian
 	name = "\improper Russian officer's uniform"
-	desc = "The latest in fashionable russian outfits."
+	desc = "The latest in fashionable Russian outfits."
 	icon_state = "hostanclothes"
 	item_state = "hostanclothes"
 	item_color = "hostanclothes"
@@ -727,6 +781,14 @@
 	fitted = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
 
+/obj/item/clothing/under/gondola
+	name = "gondola hide suit"
+	desc = "Now you're cooking."
+	icon_state = "gondola"
+	item_state = "lb_suit"
+	item_color = "gondola"
+	can_adjust = FALSE
+
 /obj/item/clothing/under/skeleton
 	name = "skeleton jumpsuit"
 	desc = "A black jumpsuit with a white bone pattern printed on it. Spooky!"
@@ -737,3 +799,71 @@
 	fitted = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
 	resistance_flags = NONE
+
+/obj/item/clothing/under/durathread
+	name = "durathread jumpsuit"
+	desc = "A jumpsuit made from durathread, its resilient fibres provide some protection to the wearer."
+	icon_state = "durathread"
+	item_state = "durathread"
+	item_color = "durathread"
+	can_adjust = FALSE
+	armor = list("melee" = 10, "laser" = 10, "fire" = 40, "acid" = 10, "bomb" = 5)
+
+/obj/item/clothing/under/mech_suit
+	name = "red mech pilot's suit"
+	desc = "A red mech pilot's suit. Might make your butt look big."
+	icon_state = "red_mech_suit"
+	item_state = "red_mech_suit"
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	fitted = NO_FEMALE_UNIFORM
+	alternate_worn_layer = GLOVES_LAYER //covers hands but gloves can go over it. This is how these things work in my head.
+	can_adjust = FALSE
+
+/obj/item/clothing/under/mech_suit/white
+	name = "white mech pilot's suit"
+	desc = "A white mech pilot's suit. Very fetching."
+	icon_state = "white_mech_suit"
+	item_state = "white_mech_suit"
+
+/obj/item/clothing/under/mech_suit/blue
+	name = "blue mech pilot's suit"
+	desc = "A blue mech pilot's suit. For the more reluctant mech pilots."
+	icon_state = "blue_mech_suit"
+	item_state = "blue_mech_suit"
+
+/obj/item/clothing/under/lampskirt
+	name = "lamp dress"
+	desc = "A peculier garment woven in silk; under the lower dress appears to be a lamp and a switch."
+	icon_state = "lampskirt_male"
+	item_state = "lampskirt_male"
+	item_color = "lampskirt_male"
+	body_parts_covered = CHEST|GROIN|LEGS|FEET
+	can_adjust = FALSE
+	var/brightness_on = 1 //luminosity when the light is on
+	var/on = FALSE
+	actions_types = list(/datum/action/item_action/toggle_helmet_light)
+
+/obj/item/clothing/under/lampskirt/attack_self(mob/user)
+	on = !on
+	icon_state = "[initial(icon_state)][on ? "-light":""]"
+	item_state = icon_state
+	user.update_inv_w_uniform() //So the mob overlay updates
+
+	if(on)
+		set_light(brightness_on)
+		user.visible_message("<span class='notice'>[user] discreetly pulls a cord for the bulbs under [user.p_their()] skirt, turning [user.p_them()] on.</span>")
+	else
+		set_light(0)
+
+	for(var/X in actions)
+		var/datum/action/A=X
+		A.UpdateButtonIcon()
+
+/obj/item/clothing/under/lampskirt/female
+	icon_state = "lampskirt_female"
+	item_state = "lampskirt_female"
+	item_color = "lampskirt_female"
+	body_parts_covered = CHEST|GROIN|LEGS|FEET
+	can_adjust = FALSE
+	fitted = FEMALE_UNIFORM_TOP

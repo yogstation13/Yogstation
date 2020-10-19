@@ -35,9 +35,9 @@
 	wielded = 0
 	if(force_unwielded)
 		force = force_unwielded
-	var/sf = findtext(name," (Wielded)")
+	var/sf = findtext(name, " (Wielded)", -10)//10 == length(" (Wielded)")
 	if(sf)
-		name = copytext(name,1,sf)
+		name = copytext(name, 1, sf)
 	else //something wrong
 		name = "[initial(name)]"
 	update_icon()
@@ -129,6 +129,7 @@
 	return ..()
 
 /obj/item/twohanded/offhand/dropped(mob/living/user, show_message = TRUE) //Only utilized by dismemberment since you can't normally switch to the offhand to drop it.
+	SHOULD_CALL_PARENT(FALSE)
 	var/obj/I = user.get_active_held_item()
 	if(I && istype(I, /obj/item/twohanded))
 		var/obj/item/twohanded/thw = I
@@ -297,7 +298,7 @@
 
 		var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)//stole from chainsaw code
 		var/obj/item/organ/brain/B = user.getorganslot(ORGAN_SLOT_BRAIN)
-		B.vital = FALSE//this cant possibly be a good idea
+		B.organ_flags &= ~ORGAN_VITAL	//this cant possibly be a good idea
 		var/randdir
 		for(var/i in 1 to 24)//like a headless chicken!
 			if(user.is_holding(src))
@@ -348,7 +349,7 @@
 			unwield()
 			return
 	..()
-	if(user.has_trait(TRAIT_CLUMSY) && (wielded) && prob(40))
+	if(HAS_TRAIT(user, TRAIT_CLUMSY) && (wielded) && prob(40))
 		impale(user)
 		return
 	if((wielded) && prob(50))
@@ -364,7 +365,7 @@
 /obj/item/twohanded/dualsaber/proc/impale(mob/living/user)
 	to_chat(user, "<span class='warning'>You twirl around a bit before losing your balance and impaling yourself on [src].</span>")
 	if (force_wielded)
-		user.take_bodypart_damage(20,25)
+		user.take_bodypart_damage(20,25,check_armor = TRUE)
 	else
 		user.adjustStaminaLoss(25)
 
@@ -439,7 +440,7 @@
 	possible_colors = list("purple")
 
 /obj/item/twohanded/dualsaber/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/multitool))
+	if(W.tool_behaviour == TOOL_MULTITOOL)
 		if(!hacked)
 			hacked = TRUE
 			to_chat(user, "<span class='warning'>2XRNBW_ENGAGE</span>")
@@ -472,8 +473,8 @@
 	sharpness = IS_SHARP
 	max_integrity = 200
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
-	var/obj/item/grenade/explosive = null
 	var/war_cry = "AAAAARGH!!!"
+	var/icon_prefix = "spearglass"
 
 /obj/item/twohanded/spear/Initialize()
 	. = ..()
@@ -481,75 +482,84 @@
 
 /obj/item/twohanded/spear/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins to sword-swallow \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
-	if(explosive)
-		user.say("[war_cry]")
-		explosive.forceMove(user)
-		explosive.prime()
-		user.gib()
-		qdel(src)
-		return BRUTELOSS
 	return BRUTELOSS
 
 /obj/item/twohanded/spear/Initialize()
 	. = ..()
 	AddComponent(/datum/component/jousting)
 
-/obj/item/twohanded/spear/examine(mob/user)
-	..()
-	if(explosive)
-		to_chat(user, "<span class='notice'>Alt-click to set your war cry.</span>")
-
 /obj/item/twohanded/spear/update_icon()
-	if(explosive)
-		icon_state = "spearbomb[wielded]"
-	else
-		icon_state = "spearglass[wielded]"
+	icon_state = "[icon_prefix][wielded]"
 
-/obj/item/twohanded/spear/afterattack(atom/movable/AM, mob/user, proximity)
-	. = ..()
-	if(!proximity)
-		return
-	if(isopenturf(AM)) //So you can actually melee with it
-		return
-	if(explosive && wielded)
-		user.say("[war_cry]")
-		explosive.forceMove(AM)
-		explosive.prime()
+/obj/item/twohanded/spear/CheckParts(list/parts_list)
+	var/obj/item/shard/tip = locate() in parts_list
+	if (istype(tip, /obj/item/shard/plasma))
+		force_wielded = 19
+		force_unwielded = 11
+		throwforce = 21
+		righthand_file = 'yogstation/icons/mob/inhands/weapons/polearms_righthand.dmi' //yogs
+		alternate_worn_icon = 'yogstation/icons/mob/back.dmi' //yogs
+		icon_prefix = "spearplasma"
+	update_icon()
+	qdel(tip)
+	var/obj/item/grenade/G = locate() in parts_list
+	if(G)
+		var/obj/item/twohanded/spear/explosive/lance = new /obj/item/twohanded/spear/explosive(src.loc, G)
+		lance.force_wielded = force_wielded
+		lance.force_unwielded = force_unwielded
+		lance.throwforce = throwforce
+		lance.icon_prefix = icon_prefix
+		parts_list -= G
 		qdel(src)
+	..()
 
- //THIS MIGHT BE UNBALANCED SO I DUNNO // it totally is.
-/obj/item/twohanded/spear/throw_impact(atom/target)
+
+/obj/item/twohanded/spear/explosive
+	name = "explosive lance"
+	var/obj/item/grenade/explosive = null
+
+/obj/item/twohanded/spear/explosive/Initialize(mapload, obj/item/grenade/G)
 	. = ..()
-	if(!.) //not caught
-		if(explosive)
-			explosive.prime()
-			qdel(src)
+	if (!G)
+		G = new /obj/item/grenade/iedcasing() //For admin-spawned explosive lances
+	G.forceMove(src)
+	explosive = G
+	desc = "A makeshift spear with [G] attached to it"
+	update_icon()
 
-/obj/item/twohanded/spear/AltClick(mob/user)
+/obj/item/twohanded/spear/explosive/suicide_act(mob/living/carbon/user)
+	user.visible_message("<span class='suicide'>[user] begins to sword-swallow \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.say("[war_cry]", forced="spear warcry")
+	explosive.forceMove(user)
+	explosive.prime()
+	user.gib()
+	qdel(src)
+	return BRUTELOSS
+
+/obj/item/twohanded/spear/explosive/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>Alt-click to set your war cry.</span>"
+
+/obj/item/twohanded/spear/explosive/update_icon()
+	icon_state = "spearbomb[wielded]"
+
+/obj/item/twohanded/spear/explosive/AltClick(mob/user)
 	if(user.canUseTopic(src, BE_CLOSE))
 		..()
-		if(!explosive)
-			return
 		if(istype(user) && loc == user)
 			var/input = stripped_input(user,"What do you want your war cry to be? You will shout it when you hit someone in melee.", ,"", 50)
 			if(input)
 				src.war_cry = input
 
-/obj/item/twohanded/spear/CheckParts(list/parts_list)
-	var/obj/item/twohanded/spear/S = locate() in parts_list
-	if(S)
-		if(S.explosive)
-			S.explosive.forceMove(get_turf(src))
-			S.explosive = null
-		parts_list -= S
-		qdel(S)
-	..()
-	var/obj/item/grenade/G = locate() in contents
-	if(G)
-		explosive = G
-		name = "explosive lance"
-		desc = "A makeshift spear with [G] attached to it."
-	update_icon()
+/obj/item/twohanded/spear/explosive/afterattack(atom/movable/AM, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	if(wielded)
+		user.say("[war_cry]", forced="spear warcry")
+		explosive.forceMove(AM)
+		explosive.prime()
+		qdel(src)
 
 // CHAINSAW
 /obj/item/twohanded/required/chainsaw
@@ -594,7 +604,7 @@
 	force = on ? force_on : initial(force)
 	throwforce = on ? force_on : initial(force)
 	icon_state = "chainsaw_[on ? "on" : "off"]"
-	GET_COMPONENT_FROM(butchering, /datum/component/butchering, src)
+	var/datum/component/butchering/butchering = src.GetComponent(/datum/component/butchering)
 	butchering.butchering_enabled = on
 
 	if(on)
@@ -669,6 +679,15 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 30)
 	resistance_flags = FIRE_PROOF
 
+/obj/item/twohanded/pitchfork/trident
+	icon_state = "trident"
+	name = "trident"
+	desc = "A trident recovered from the ruins of atlantis"
+	force = 14
+	throwforce = 23
+	force_unwielded = 14
+	force_wielded = 20
+
 /obj/item/twohanded/pitchfork/demonic
 	name = "demonic pitchfork"
 	desc = "A red pitchfork, it looks like the work of the devil."
@@ -701,6 +720,7 @@
 	return (BRUTELOSS)
 
 /obj/item/twohanded/pitchfork/demonic/pickup(mob/living/user)
+	. = ..()
 	if(isliving(user) && user.mind && user.owns_soul() && !is_devil(user))
 		var/mob/living/U = user
 		U.visible_message("<span class='warning'>As [U] picks [src] up, [U]'s arms briefly catch fire.</span>", \
@@ -726,7 +746,7 @@
 		user.visible_message("<span class='danger'>[user] blasts \the [target] with \the [src]!</span>")
 		playsound(target, 'sound/magic/disintegrate.ogg', 100, 1)
 		W.break_wall()
-		W.ScrapeAway()
+		W.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 		return
 
 //HF blade
@@ -806,3 +826,69 @@
 
 /obj/item/twohanded/bonespear/update_icon()
 	icon_state = "bone_spear[wielded]"
+
+/obj/item/twohanded/binoculars
+	name = "binoculars"
+	desc = "Used for long-distance surveillance."
+	item_state = "binoculars"
+	icon_state = "binoculars"
+	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+	slot_flags = ITEM_SLOT_BELT
+	w_class = WEIGHT_CLASS_SMALL
+	var/mob/listeningTo
+	var/zoom_out_amt = 6
+	var/zoom_amt = 10
+
+/obj/item/twohanded/binoculars/Destroy()
+	listeningTo = null
+	return ..()
+
+/obj/item/twohanded/binoculars/wield(mob/user)
+	. = ..()
+	if(!wielded)
+		return
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/unwield)
+	RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, .proc/rotate)
+	listeningTo = user
+	user.visible_message("[user] holds [src] up to [user.p_their()] eyes.","You hold [src] up to your eyes.")
+	item_state = "binoculars_wielded"
+	user.regenerate_icons()
+	user.client.view_size.zoomOut(zoom_out_amt, zoom_amt, user.dir)
+
+/obj/item/twohanded/binoculars/unwield(mob/user)
+	. = ..()
+	UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
+	listeningTo = null
+	item_state = "binoculars"
+	user.regenerate_icons()
+	user.client.view_size.zoomIn()
+
+/obj/item/twohanded/binoculars/proc/rotate(atom/thing, old_dir, new_dir)
+	if(ismob(thing))
+		var/mob/lad = thing
+		lad.regenerate_icons()
+		lad.client.view_size.zoomOut(zoom_out_amt, zoom_amt, new_dir)
+
+/obj/item/twohanded/bamboospear
+	icon_state = "bamboo_spear0"
+	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
+	name = "bamboo spear"
+	desc = "A haphazardly-constructed bamboo stick with a sharpened tip, ready to poke holes into unsuspecting people."
+	force = 10
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK
+	force_unwielded = 10
+	force_wielded = 18
+	throwforce = 22
+	throw_speed = 4
+	embedding = list("embedded_impact_pain_multiplier" = 2)
+	armour_penetration = 10
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
+	sharpness = IS_SHARP
+
+/obj/item/twohanded/bamboospear/update_icon()
+	icon_state = "bamboo_spear[wielded]"

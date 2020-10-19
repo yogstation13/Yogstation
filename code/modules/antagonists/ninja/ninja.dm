@@ -1,8 +1,11 @@
+GLOBAL_LIST_EMPTY(ninja_capture)
+
 /datum/antagonist/ninja
 	name = "Ninja"
 	antagpanel_category = "Ninja"
 	job_rank = ROLE_NINJA
 	show_name_in_check_antagonists = TRUE
+	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/focused
 	var/helping_station = FALSE
 	var/give_objectives = TRUE
@@ -15,10 +18,16 @@
 
 /datum/antagonist/ninja/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
+	for(var/obj/item/implant/explosive/E in M.implants)
+		if(E)
+			RegisterSignal(E, COMSIG_IMPLANT_ACTIVATED, .proc/on_death)
 	update_ninja_icons_added(M)
 
 /datum/antagonist/ninja/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
+	for(var/obj/item/implant/explosive/E in M.implants)
+		if(E)
+			UnregisterSignal(M, COMSIG_IMPLANT_ACTIVATED, .proc/on_death)
 	update_ninja_icons_removed(M)
 
 /datum/antagonist/ninja/proc/equip_space_ninja(mob/living/carbon/human/H = owner.current)
@@ -28,6 +37,7 @@
 	antag_memory += "I am an elite mercenary assassin of the mighty Spider Clan. A <font color='red'><B>SPACE NINJA</B></font>!<br>"
 	antag_memory += "Surprise is my weapon. Shadows are my armor. Without them, I am nothing. (//initialize your suit by clicking the initialize UI button, to use abilities like stealth)!<br>"
 	antag_memory += "Officially, [helping_station?"Nanotrasen":"The Syndicate"] are my employer.<br>"
+	name = "[helping_station?"Nanotrasen Ninja":"Syndicate Ninja"]" // yogs - ninja disposition
 
 /datum/antagonist/ninja/proc/addObjectives(quantity = 6)
 	var/list/possible_targets = list()
@@ -96,7 +106,6 @@
 	var/datum/objective/O = new /datum/objective/survive()
 	O.owner = owner
 	objectives += O
-	owner.objectives |= objectives
 
 /proc/remove_ninja(mob/living/L)
 	if(!L || !L.mind)
@@ -106,7 +115,7 @@
 	return TRUE
 
 /proc/is_ninja(mob/living/M)
-	return M && M.mind && M.mind.has_antag_datum(/datum/antagonist/ninja)
+	return M?.mind?.has_antag_datum(/datum/antagonist/ninja)
 
 
 /datum/antagonist/ninja/greet()
@@ -124,6 +133,24 @@
 	if(give_equipment)
 		equip_space_ninja(owner.current)
 	. = ..()
+
+/datum/antagonist/ninja/proc/on_death()
+	for(var/mob/L in GLOB.ninja_capture)
+		if(get_area(L) == GLOB.areas_by_type[/area/centcom/holding])
+			if(!L)
+				continue
+			var/atom/movable/target = L
+			if(isobj(L.loc))
+				target = L.loc
+			target.forceMove(get_turf(pick(GLOB.generic_event_spawns)))
+			if(isliving(L))
+				var/mob/living/LI = L
+				LI.Knockdown(120)
+				LI.blind_eyes(10)
+				to_chat(L, "<span class='danger'>You lose your footing as the dojo suddenly disappears. You're free!</span>")
+				playsound(L, 'sound/effects/phasein.ogg', 25, 1)
+				playsound(L, 'sound/effects/sparks2.ogg', 50, 1)
+		GLOB.ninja_capture -= L
 
 /datum/antagonist/ninja/admin_add(datum/mind/new_owner,mob/admin)
 	var/adj
@@ -147,8 +174,8 @@
 	new_owner.assigned_role = ROLE_NINJA
 	new_owner.special_role = ROLE_NINJA
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has [adj] ninja'ed [new_owner.current].")
-	log_admin("[key_name(admin)] has [adj] ninja'ed [new_owner.current].")
+	message_admins("[key_name_admin(admin)] has [adj] ninja'ed [key_name_admin(new_owner)].")
+	log_admin("[key_name(admin)] has [adj] ninja'ed [key_name(new_owner)].")
 
 /datum/antagonist/ninja/proc/update_ninja_icons_added(var/mob/living/carbon/human/ninja)
 	var/datum/atom_hud/antag/ninjahud = GLOB.huds[ANTAG_HUD_NINJA]

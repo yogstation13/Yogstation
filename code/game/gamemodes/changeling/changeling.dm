@@ -8,6 +8,7 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 /datum/game_mode/changeling
 	name = "changeling"
 	config_tag = "changeling"
+	report_type = "changeling"
 	antag_flag = ROLE_CHANGELING
 	false_report_weight = 10
 	restricted_jobs = list("AI", "Cyborg")
@@ -22,10 +23,15 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	<span class='green'>Changelings</span>: Accomplish the objectives assigned to you.\n\
 	<span class='notice'>Crew</span>: Root out and eliminate the changeling menace."
 
+	title_icon = "changeling"
 	var/const/changeling_amount = 4 //hard limit on changelings if scaling is turned off
 	var/list/changelings = list()
 
 /datum/game_mode/changeling/pre_setup()
+
+	if(num_players() <= lowpop_amount)
+		if(!prob((2*1.14**num_players())-2)) //exponential equation, chance of restriction goes up as pop goes down.
+			protected_jobs += GLOB.command_positions
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
@@ -72,7 +78,7 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	for(var/datum/mind/changeling in changelings)
 		//log_game("[key_name(changeling)] has been selected as a changeling") | yogs - redundant
 		var/datum/antagonist/changeling/new_antag = new()
-		new_antag.team_mode = TRUE
+		//new_antag.team_mode = TRUE //yogs - lol
 		changeling.add_antag_datum(new_antag)
 	..()
 
@@ -83,7 +89,7 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 		return
 	if(changelings.len <= (changelingcap - 2) || prob(100 - (csc * 2)))
 		if(ROLE_CHANGELING in character.client.prefs.be_special)
-			if(!jobban_isbanned(character, ROLE_CHANGELING) && !QDELETED(character) && !jobban_isbanned(character, ROLE_SYNDICATE) && !QDELETED(character))
+			if(!is_banned_from(character.ckey, list(ROLE_CHANGELING, ROLE_SYNDICATE)) && !QDELETED(character))
 				if(age_check(character.client))
 					if(!(character.job in restricted_jobs))
 						character.mind.make_Changeling()
@@ -95,12 +101,17 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 			of the Thing being sent to a station in this sector is highly likely. It may be in the guise of any crew member. Trust nobody - suspect everybody. Do not announce this to the crew, \
 			as paranoia may spread and inhibit workplace efficiency."
 
+/proc/is_changeling(mob/M) //Usefull check changeling
+	return M?.mind?.has_antag_datum(/datum/antagonist/changeling)
+
 /proc/changeling_transform(mob/living/carbon/human/user, datum/changelingprofile/chosen_prof)
 	var/datum/dna/chosen_dna = chosen_prof.dna
 	user.real_name = chosen_prof.name
 	user.underwear = chosen_prof.underwear
 	user.undershirt = chosen_prof.undershirt
 	user.socks = chosen_prof.socks
+	user.mind.accent_name = chosen_prof.accent
+	user.mind.RegisterSignal(user, COMSIG_MOB_SAY, /datum/mind/.proc/handle_speech)
 
 	chosen_dna.transfer_identity(user, 1)
 	user.updateappearance(mutcolor_update=1)
@@ -135,3 +146,20 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 			user.equip_to_slot_or_del(C, GLOB.slot2slot[slot])
 
 	user.regenerate_icons()
+
+/datum/game_mode/changeling/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	round_credits += "<center><h1>The Slippery Changelings:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/M in changelings)
+		var/datum/antagonist/changeling/cling = M.has_antag_datum(/datum/antagonist/changeling)
+		if(cling)
+			round_credits += "<center><h2>[cling.changelingID] in the body of [M.name]</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>Uh oh, we lost track of the shape shifters!</h2>", "<center><h2>Nobody move!</h2>")
+	round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits 

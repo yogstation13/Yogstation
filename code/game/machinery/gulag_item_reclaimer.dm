@@ -45,7 +45,7 @@
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "gulag_item_reclaimer", name, 455, 440, master_ui, state)
+		ui = new(user, src, ui_key, "GulagItemReclaimer", name, 325, 400, master_ui, state)
 		ui.open()
 
 /obj/machinery/gulag_item_reclaimer/ui_data(mob/user)
@@ -64,6 +64,10 @@
 	var/list/mobs = list()
 	for(var/i in stored_items)
 		var/mob/thismob = i
+		if(QDELETED(thismob))
+			say("Alert! Unable to locate vital signals of a previously processed prisoner. Ejecting equipment!")
+			drop_items(thismob)
+			continue
 		var/list/mob_info = list()
 		mob_info["name"] = thismob.real_name
 		mob_info["mob"] = "[REF(thismob)]"
@@ -76,24 +80,18 @@
 
 	return data
 
-/obj/machinery/gulag_item_reclaimer/ui_act(action, list/params)
+/obj/machinery/gulag_item_reclaimer/ui_act(action, params)
+	if(..())
+		return
+
 	switch(action)
-		if("handle_id")
-			if(inserted_id)
-				usr.put_in_hands(inserted_id)
-				inserted_id = null
-			else
-				var/obj/item/I = usr.is_holding_item_of_type(/obj/item/card/id/prisoner)
-				if(I)
-					if(!usr.transferItemToLoc(I, src))
-						return
-					inserted_id = I
 		if("release_items")
-			var/mob/M = locate(params["mobref"])
-			if(M == usr || allowed(usr))
-				drop_items(M)
-			else
-				to_chat(usr, "Access denied.")
+			var/mob/living/carbon/human/H = locate(params["mobref"]) in stored_items
+			if(H != usr && !allowed(usr))
+				to_chat(usr, "<span class='warning'>Access denied.</span>")
+				return
+			drop_items(H)
+			. = TRUE
 
 /obj/machinery/gulag_item_reclaimer/proc/drop_items(mob/user)
 	if(!stored_items[user])

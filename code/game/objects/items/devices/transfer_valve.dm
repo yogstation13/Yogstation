@@ -7,12 +7,14 @@
 	righthand_file = 'icons/mob/inhands/weapons/bombs_righthand.dmi'
 	desc = "Regulates the transfer of air between two tanks."
 	w_class = WEIGHT_CLASS_BULKY
+	var/ui_x = 310
+	var/ui_y = 320
 	var/obj/item/tank/tank_one
 	var/obj/item/tank/tank_two
 	var/obj/item/assembly/attached_device
 	var/mob/attacher = null
 	var/valve_open = FALSE
-	var/toggle = 1
+	var/toggle = TRUE
 
 /obj/item/transfer_valve/IsAssemblyHolder()
 	return TRUE
@@ -50,10 +52,7 @@
 		to_chat(user, "<span class='notice'>You attach the [item] to the valve controls and secure it.</span>")
 		A.holder = src
 		A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).
-
-		GLOB.bombers += "[key_name(user)] attached a [item] to a transfer valve."
-		message_admins("[ADMIN_LOOKUPFLW(user)] attached a [item] to a transfer valve.")
-		log_game("[key_name(user)] attached a [item] to a transfer valve.")
+		log_bomber(user, "attached a [item.name] to a ttv -", src, null, FALSE)
 		attacher = user
 	return
 
@@ -87,47 +86,7 @@
 //These keep attached devices synced up, for example a TTV with a mouse trap being found in a bag so it's triggered, or moving the TTV with an infrared beam sensor to update the beam's direction.
 
 
-/obj/item/transfer_valve/attack_self(mob/user)
-	user.set_machine(src)
-	var/dat = {"<B> Valve properties: </B>
-	<BR> <B> Attachment one:</B> [tank_one] [tank_one ? "<A href='?src=[REF(src)];tankone=1'>Remove</A>" : ""]
-	<BR> <B> Attachment two:</B> [tank_two] [tank_two ? "<A href='?src=[REF(src)];tanktwo=1'>Remove</A>" : ""]
-	<BR> <B> Valve attachment:</B> [attached_device ? "<A href='?src=[REF(src)];device=1'>[attached_device]</A>" : "None"] [attached_device ? "<A href='?src=[REF(src)];rem_device=1'>Remove</A>" : ""]
-	<BR> <B> Valve status: </B> [ valve_open ? "<A href='?src=[REF(src)];open=1'>Closed</A> <B>Open</B>" : "<B>Closed</B> <A href='?src=[REF(src)];open=1'>Open</A>"]"}
 
-	var/datum/browser/popup = new(user, "trans_valve", name)
-	popup.set_content(dat)
-	popup.open()
-	return
-
-/obj/item/transfer_valve/Topic(href, href_list)
-	..()
-	if(!usr.canUseTopic(src))
-		return
-	if(tank_one && href_list["tankone"])
-		split_gases()
-		valve_open = FALSE
-		tank_one.forceMove(drop_location())
-		tank_one = null
-		update_icon()
-	else if(tank_two && href_list["tanktwo"])
-		split_gases()
-		valve_open = FALSE
-		tank_two.forceMove(drop_location())
-		tank_two = null
-		update_icon()
-	else if(href_list["open"])
-		toggle_valve()
-	else if(attached_device)
-		if(href_list["rem_device"])
-			attached_device.on_detach()
-			attached_device = null
-			update_icon()
-		if(href_list["device"])
-			attached_device.attack_self(usr)
-
-	attack_self(usr)
-	add_fingerprint(usr)
 
 /obj/item/transfer_valve/proc/process_activation(obj/item/D)
 	if(toggle)
@@ -140,7 +99,6 @@
 
 /obj/item/transfer_valve/update_icon()
 	cut_overlays()
-	underlays = null
 
 	if(!tank_one && !tank_two && !attached_device)
 		icon_state = "valve_1"
@@ -150,9 +108,13 @@
 	if(tank_one)
 		add_overlay("[tank_one.icon_state]")
 	if(tank_two)
-		var/icon/J = new(icon, icon_state = "[tank_two.icon_state]")
-		J.Shift(WEST, 13)
-		underlays += J
+		var/mutable_appearance/J = mutable_appearance(icon, icon_state = "[tank_two.icon_state]")
+		var/matrix/T = matrix()
+		T.Translate(-13, 0)
+		J.transform = T
+		underlays = list(J)
+	else
+		underlays = null
 	if(attached_device)
 		add_overlay("device")
 		if(istype(attached_device, /obj/item/assembly/infra))
@@ -168,8 +130,8 @@
 		target_self = TRUE
 	if(change_volume)
 		if(!target_self)
-			target.volume += tank_two.volume
-		target.volume += tank_one.air_contents.volume
+			target.set_volume(target.return_volume() + tank_two.air_contents.return_volume())
+		target.set_volume(target.return_volume() + tank_one.air_contents.return_volume())
 	var/datum/gas_mixture/temp
 	temp = tank_one.air_contents.remove_ratio(1)
 	target.merge(temp)
@@ -180,11 +142,11 @@
 /obj/item/transfer_valve/proc/split_gases()
 	if (!valve_open || !tank_one || !tank_two)
 		return
-	var/ratio1 = tank_one.air_contents.volume/tank_two.air_contents.volume
+	var/ratio1 = tank_one.air_contents.return_volume()/tank_two.air_contents.return_volume()
 	var/datum/gas_mixture/temp
 	temp = tank_two.air_contents.remove_ratio(ratio1)
 	tank_one.air_contents.merge(temp)
-	tank_two.air_contents.volume -=  tank_one.air_contents.volume
+	tank_two.air_contents.set_volume(tank_two.air_contents.return_volume() - tank_one.air_contents.return_volume())
 
 	/*
 	Exadv1: I know this isn't how it's going to work, but this was just to check
@@ -219,7 +181,8 @@
 
 		var/admin_bomb_message = "Bomb valve opened in [ADMIN_VERBOSEJMP(bombturf)][admin_attachment_message][admin_bomber_message]"
 		GLOB.bombers += admin_bomb_message
-		message_admins(admin_bomb_message, 0, 1)
+		if(SSticker.current_state != GAME_STATE_FINISHED) //don't bother alerting admins after the game has ended, but we still log it in the game log
+			message_admins(admin_bomb_message)
 		log_game("Bomb valve opened in [AREACOORD(bombturf)][attachment_message][bomber_message]")
 
 		merge_gases()
@@ -235,3 +198,52 @@
 // eventually maybe have it update icon to show state (timer, prox etc.) like old bombs
 /obj/item/transfer_valve/proc/c_state()
 	return
+
+/obj/item/transfer_valve/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "TransferValve", name, ui_x, ui_y, master_ui, state)
+		ui.open()
+
+/obj/item/transfer_valve/ui_data(mob/user)
+	var/list/data = list()
+	data["tank_one"] = tank_one
+	data["tank_two"] = tank_two
+	data["attached_device"] = attached_device
+	data["valve"] = valve_open
+	return data
+
+/obj/item/transfer_valve/ui_act(action, params)
+	if(..())
+		return
+
+	switch(action)
+		if("tankone")
+			if(tank_one)
+				split_gases()
+				valve_open = FALSE
+				tank_one.forceMove(drop_location())
+				tank_one = null
+				. = TRUE
+		if("tanktwo")
+			if(tank_two)
+				split_gases()
+				valve_open = FALSE
+				tank_two.forceMove(drop_location())
+				tank_two = null
+				. = TRUE
+		if("toggle")
+			toggle_valve()
+			. = TRUE
+		if("device")
+			if(attached_device)
+				attached_device.attack_self(usr)
+				. = TRUE
+		if("remove_device")
+			if(attached_device)
+				attached_device.on_detach()
+				attached_device = null
+				. = TRUE
+
+	update_icon()

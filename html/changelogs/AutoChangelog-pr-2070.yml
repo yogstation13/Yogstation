@@ -1,4 +1,0 @@
-author: " Shdorsh"
-delete-after: true 
-changes: 
-  - bugfix: "The previously-added find-replace circuit now actually exists."

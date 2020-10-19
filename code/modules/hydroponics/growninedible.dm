@@ -31,6 +31,15 @@
 		transform *= TRANSFORM_USING_VARIABLE(seed.potency, 100) + 0.5
 		add_juice()
 
+/// Ghost attack proc
+/obj/item/grown/attack_ghost(mob/user)
+	..()
+	var/msg = "<span class='info'>*---------*\n This is \a <span class='name'>[src]</span>\n"
+	if(seed)
+		msg += seed.get_analyzer_text()
+	msg += "</span>"
+	to_chat(usr, msg)
+	return
 
 /obj/item/grown/attackby(obj/item/O, mob/user, params)
 	..()
@@ -47,13 +56,13 @@
 		return 1
 	return 0
 
-/obj/item/grown/throw_impact(atom/hit_atom)
+/obj/item/grown/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!..()) //was it caught by a mob?
 		if(seed)
 			for(var/datum/plant_gene/trait/T in seed.genes)
 				T.on_throw_impact(src, hit_atom)
 
-/obj/item/grown/microwave_act(obj/machine/microwave/M)
+/obj/item/grown/microwave_act(obj/machinery/microwave/M)
 	return
 
 /obj/item/grown/on_grind()

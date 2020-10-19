@@ -1,11 +1,28 @@
 
 /datum/surgery/amputation
-	name = "amputation"
+	name = "Amputation"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/saw, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/sever_limb)
-	species = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
+	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_HEAD)
 	requires_bodypart_type = 0
 
+/datum/surgery/amputation/mechanic
+	name = "Detach mechanical limb"
+	self_operable = TRUE
+	requires_bodypart_type = BODYPART_ROBOTIC
+	possible_locs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	target_mobtypes = list(/mob/living/carbon/human)
+	lying_required = FALSE
+	steps = list(
+		/datum/surgery_step/mechanic_open,
+		/datum/surgery_step/open_hatch,
+		/datum/surgery_step/mechanic_unwrench,
+		/datum/surgery_step/prepare_electronics,
+		/datum/surgery_step/sever_limb/mechanic
+		)
+
+/datum/surgery/amputation/mechanic/can_start(mob/user, mob/living/carbon/target)
+	return ispreternis(target)
 
 /datum/surgery_step/sever_limb
 	name = "sever limb"
@@ -13,11 +30,35 @@
 	time = 64
 
 /datum/surgery_step/sever_limb/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("[user] begins to sever [target]'s [parse_zone(target_zone)]!", "<span class='notice'>You begin to sever [target]'s [parse_zone(target_zone)]...</span>")
+	display_results(user, target, "<span class='notice'>You begin to sever [target]'s [parse_zone(target_zone)]...</span>",
+		"[user] begins to sever [target]'s [parse_zone(target_zone)]!",
+		"[user] begins to sever [target]'s [parse_zone(target_zone)]!")
 
 /datum/surgery_step/sever_limb/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/mob/living/carbon/human/L = target
-	user.visible_message("[user] severs [L]'s [parse_zone(target_zone)]!", "<span class='notice'>You sever [L]'s [parse_zone(target_zone)].</span>")
+	display_results(user, target, "<span class='notice'>You sever [L]'s [parse_zone(target_zone)].</span>",
+		"[user] severs [L]'s [parse_zone(target_zone)]!",
+		"[user] severs [L]'s [parse_zone(target_zone)]!")
+	if(surgery.operated_bodypart)
+		var/obj/item/bodypart/target_limb = surgery.operated_bodypart
+		target_limb.drop_limb()
+
+	return 1
+
+/datum/surgery_step/sever_limb/mechanic
+	name = "uninstall limb"
+	accept_hand = TRUE
+
+/datum/surgery_step/sever_limb/mechanic/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	display_results(user, target, "<span class='notice'>You begin to detach [target]'s [parse_zone(target_zone)]...</span>",
+		"[user] begins to detach [target]'s [parse_zone(target_zone)]!",
+		"[user] begins to detach [target]'s [parse_zone(target_zone)]!")
+
+/datum/surgery_step/sever_limb/mechanic/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	var/mob/living/carbon/human/L = target
+	display_results(user, target, "<span class='notice'>You detached [L]'s [parse_zone(target_zone)].</span>",
+		"[user] detached [L]'s [parse_zone(target_zone)]!",
+		"[user] detached [L]'s [parse_zone(target_zone)]!")
 	if(surgery.operated_bodypart)
 		var/obj/item/bodypart/target_limb = surgery.operated_bodypart
 		target_limb.drop_limb()

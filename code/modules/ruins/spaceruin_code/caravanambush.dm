@@ -1,29 +1,45 @@
 //caravan ambush
 
 /obj/item/wrench/caravan
-	color = "#ff0000"
-	desc = "A prototype of a new wrench design, allegedly the red color scheme makes it go faster."
 	name = "experimental wrench"
+	desc = "A prototype of a new wrench design, allegedly the orange color scheme makes it go faster."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "expwrench"
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	item_state = "expwrench"
 	toolspeed = 0.3
 
 /obj/item/screwdriver/caravan
-	color = "#ff0000"
-	desc = "A prototype of a new screwdriver design, allegedly the red color scheme makes it go faster."
 	name = "experimental screwdriver"
+	desc = "A prototype of a new screwdriver design, allegedly the orange color scheme makes it go faster."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "expscrewdriver"
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	item_state = "expscrewdriver"
 	toolspeed = 0.3
 	random_color = FALSE
 
 /obj/item/wirecutters/caravan
-	color = "#ff0000"
-	desc = "A prototype of a new wirecutter design, allegedly the red color scheme makes it go faster."
 	name = "experimental wirecutters"
+	desc = "A prototype of a new wirecutter design, allegedly the orange color scheme makes it go faster."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "expcutters"
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	item_state = "expcutters"
 	toolspeed = 0.3
 	random_color = FALSE
 
 /obj/item/crowbar/red/caravan
-	color = "#ff0000"
-	desc = "A prototype of a new crowbar design, allegedly the red color scheme makes it go faster."
 	name = "experimental crowbar"
+	desc = "A prototype of a new crowbar design, allegedly the orange color scheme makes it go faster."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "expcrowbar"
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	item_state = "expcrowbar"
 	toolspeed = 0.3
 
 /obj/machinery/computer/shuttle/caravan
@@ -67,9 +83,8 @@
 	shuttleId = "caravantrade1"
 	lock_override = NONE
 	shuttlePortId = "caravantrade1_custom"
-	shuttlePortName = "Custom Location"
 	jumpto_ports = list("whiteship_away" = 1, "whiteship_home" = 1, "whiteship_z4" = 1, "caravantrade1_ambush" = 1)
-	view_range = 14
+	view_range = 6.5
 	x_offset = -5
 	y_offset = -5
 	designate_time = 100
@@ -92,9 +107,8 @@
 	shuttleId = "caravanpirate"
 	lock_override = NONE
 	shuttlePortId = "caravanpirate_custom"
-	shuttlePortName = "Custom Location"
 	jumpto_ports = list("caravanpirate_ambush" = 1)
-	view_range = 14
+	view_range = 6.5
 	x_offset = 3
 	y_offset = -6
 
@@ -117,9 +131,8 @@
 	shuttleId = "caravansyndicate1"
 	lock_override = NONE
 	shuttlePortId = "caravansyndicate1_custom"
-	shuttlePortName = "Custom Location"
 	jumpto_ports = list("caravansyndicate1_ambush" = 1, "caravansyndicate1_listeningpost" = 1)
-	view_range = 7
+	view_range = 0
 	x_offset = 2
 	y_offset = 0
 
@@ -142,9 +155,8 @@
 	shuttleId = "caravansyndicate2"
 	lock_override = NONE
 	shuttlePortId = "caravansyndicate2_custom"
-	shuttlePortName = "Custom Location"
 	jumpto_ports = list("caravansyndicate2_ambush" = 1, "caravansyndicate1_listeningpost" = 1)
-	view_range = 7
+	view_range = 0
 	x_offset = 0
 	y_offset = 2
 
@@ -167,8 +179,10 @@
 	shuttleId = "caravansyndicate3"
 	lock_override = NONE
 	shuttlePortId = "caravansyndicate3_custom"
-	shuttlePortName = "Custom Location"
 	jumpto_ports = list("caravansyndicate3_ambush" = 1, "caravansyndicate3_listeningpost" = 1)
-	view_range = 10
+	view_range = 2.5
 	x_offset = -1
 	y_offset = -3
+	
+/obj/item/paper/fluff/ruins/caravanambush/admiral
+	info = "Please deliever these new sets of clothes to centcom as our admiral has lost theirs"

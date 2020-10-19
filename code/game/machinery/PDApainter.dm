@@ -78,7 +78,7 @@
 		O.add_fingerprint(user)
 		update_icon()
 
-	else if(istype(O, /obj/item/weldingtool) && user.a_intent != INTENT_HARM)
+	else if(O.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)
 		if(stat & BROKEN)
 			if(!O.tool_start_check(user, amount=0))
 				return
@@ -98,10 +98,7 @@
 		return ..()
 
 /obj/machinery/pdapainter/deconstruct(disassembled = TRUE)
-	if(!(flags_1 & NODECONSTRUCT_1))
-		if(!(stat & BROKEN))
-			stat |= BROKEN
-			update_icon()
+	obj_break()
 
 /obj/machinery/pdapainter/attack_hand(mob/user)
 	. = ..()
@@ -133,7 +130,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat || usr.restrained() || !usr.canmove)
+	if(usr.stat || usr.restrained())
 		return
 
 	if(storedpda)
@@ -141,9 +138,4 @@
 		storedpda = null
 		update_icon()
 	else
-		to_chat(usr, "<span class='notice'>[src] is empty.</span>")
-
-
-/obj/machinery/pdapainter/power_change()
-	..()
-	update_icon()
+		to_chat(usr, "<span class='warning'>[src] is empty!</span>")

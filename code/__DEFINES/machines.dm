@@ -29,7 +29,8 @@
 #define BIOGENERATOR	(1<<5) 	//Uses biomass
 #define LIMBGROWER		(1<<6) 	//Uses synthetic flesh
 #define SMELTER			(1<<7) 	//uses various minerals
-//Note: More then one of these can be added to a design but imprinter and lathe designs are incompatable.
+#define NANITE_COMPILER  (1<<8) //Prints nanite disks
+//Note: More than one of these can be added to a design but imprinter and lathe designs are incompatable.
 
 //Modular computer/NTNet defines
 
@@ -93,7 +94,22 @@
 #define NUKESTATE_CORE_EXPOSED	1
 #define NUKESTATE_CORE_REMOVED	0
 
+#define NUKEUI_AWAIT_DISK 0
+#define NUKEUI_AWAIT_CODE 1
+#define NUKEUI_AWAIT_TIMER 2
+#define NUKEUI_AWAIT_ARM 3
+#define NUKEUI_TIMING 4
+#define NUKEUI_EXPLODED 5
+
 #define NUKE_OFF_LOCKED		0
 #define NUKE_OFF_UNLOCKED	1
 #define NUKE_ON_TIMING		2
 #define NUKE_ON_EXPLODING	3
+
+#define MACHINE_NOT_ELECTRIFIED 0
+#define MACHINE_ELECTRIFIED_PERMANENT -1
+#define MACHINE_DEFAULT_ELECTRIFY_TIME 30
+
+//cloning defines. These are flags.
+#define CLONING_SUCCESS (1<<0)
+#define CLONING_DELETE_RECORD (1<<1)

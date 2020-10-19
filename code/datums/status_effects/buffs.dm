@@ -70,11 +70,13 @@
 	return ..()
 
 /datum/status_effect/vanguard_shield/on_apply()
-	owner.log_message("gained Vanguard stun immunity", INDIVIDUAL_ATTACK_LOG)
+	owner.log_message("gained Vanguard stun immunity", LOG_ATTACK)
 	owner.add_stun_absorption("vanguard", INFINITY, 1, "'s yellow aura momentarily intensifies!", "Your ward absorbs the stun!", " radiating with a soft yellow light!")
 	owner.visible_message("<span class='warning'>[owner] begins to faintly glow!</span>", "<span class='brass'>You will absorb all stuns for the next twenty seconds.</span>")
 	owner.SetStun(0, FALSE)
-	owner.SetKnockdown(0)
+	owner.SetKnockdown(0, FALSE)
+	owner.SetParalyzed(0, FALSE)
+	owner.SetImmobilized(0)
 	progbar = new(owner, duration, owner)
 	progbar.bar.color = list("#FAE48C", "#FAE48C", "#FAE48C", rgb(0,0,0))
 	progbar.update(duration - world.time)
@@ -96,7 +98,7 @@
 			if(owner.stun_absorption[i]["end_time"] > world.time && owner.stun_absorption[i]["priority"] > vanguard["priority"])
 				otheractiveabsorptions = TRUE
 		if(!GLOB.ratvar_awakens && stuns_blocked && !otheractiveabsorptions)
-			owner.Knockdown(stuns_blocked)
+			owner.Paralyze(stuns_blocked)
 			message_to_owner = "<span class='boldwarning'>The weight of the Vanguard's protection crashes down upon you!</span>"
 			if(stuns_blocked >= 300)
 				message_to_owner += "\n<span class='userdanger'>You faint from the exertion!</span>"
@@ -105,7 +107,7 @@
 		else
 			stuns_blocked = 0 //so logging is correct in cases where there were stuns blocked but we didn't stun for other reasons
 		owner.visible_message("<span class='warning'>[owner]'s glowing aura fades!</span>", message_to_owner)
-		owner.log_message("lost Vanguard stun immunity[stuns_blocked ? "and was stunned for [stuns_blocked]":""]", INDIVIDUAL_ATTACK_LOG)
+		owner.log_message("lost Vanguard stun immunity[stuns_blocked ? "and was stunned for [stuns_blocked]":""]", LOG_ATTACK)
 
 
 /datum/status_effect/inathneqs_endowment
@@ -120,7 +122,7 @@
 	alerttooltipstyle = "clockcult"
 
 /datum/status_effect/inathneqs_endowment/on_apply()
-	owner.log_message("gained Inath-neq's invulnerability", INDIVIDUAL_ATTACK_LOG)
+	owner.log_message("gained Inath-neq's invulnerability", LOG_ATTACK)
 	owner.visible_message("<span class='warning'>[owner] shines with azure light!</span>", "<span class='notice'>You feel Inath-neq's power flow through you! You're invincible!</span>")
 	var/oldcolor = owner.color
 	owner.color = "#1E8CE1"
@@ -133,7 +135,7 @@
 	return ..()
 
 /datum/status_effect/inathneqs_endowment/on_remove()
-	owner.log_message("lost Inath-neq's invulnerability", INDIVIDUAL_ATTACK_LOG)
+	owner.log_message("lost Inath-neq's invulnerability", LOG_ATTACK)
 	owner.visible_message("<span class='warning'>The light around [owner] flickers and dissipates!</span>", "<span class='boldwarning'>You feel Inath-neq's power fade from your body!</span>")
 	owner.status_flags &= ~GODMODE
 	playsound(owner, 'sound/magic/ethereal_exit.ogg', 50, 1)
@@ -185,7 +187,7 @@
 	..()
 
 /datum/status_effect/his_grace/on_apply()
-	owner.log_message("gained His Grace's stun immunity", INDIVIDUAL_ATTACK_LOG)
+	owner.log_message("gained His Grace's stun immunity", LOG_ATTACK)
 	owner.add_stun_absorption("hisgrace", INFINITY, 3, null, "His Grace protects you from the stun!")
 	return ..()
 
@@ -207,9 +209,10 @@
 	owner.adjustToxLoss(-grace_heal, TRUE, TRUE)
 	owner.adjustOxyLoss(-(grace_heal * 2))
 	owner.adjustCloneLoss(-grace_heal)
+	owner.adjustStaminaLoss(-200) //no stuns allowed sorry
 
 /datum/status_effect/his_grace/on_remove()
-	owner.log_message("lost His Grace's stun immunity", INDIVIDUAL_ATTACK_LOG)
+	owner.log_message("lost His Grace's stun immunity", LOG_ATTACK)
 	if(islist(owner.stun_absorption) && owner.stun_absorption["hisgrace"])
 		owner.stun_absorption -= "hisgrace"
 
@@ -224,9 +227,9 @@
 	return ..()
 
 /datum/status_effect/wish_granters_gift/on_remove()
-	owner.revive(full_heal = 1, admin_revive = 1)
+	owner.revive(full_heal = TRUE, admin_revive = TRUE)
 	owner.visible_message("<span class='warning'>[owner] appears to wake from the dead, having healed all wounds!</span>", "<span class='notice'>You have regenerated.</span>")
-	owner.update_canmove()
+	owner.update_mobility()
 
 /obj/screen/alert/status_effect/wish_granters_gift
 	name = "Wish Granter's Immortality"
@@ -267,13 +270,6 @@
 	duration = 10
 	tick_interval = 0
 	alert_type = /obj/screen/alert/status_effect/blooddrunk
-	var/last_health = 0
-	var/last_bruteloss = 0
-	var/last_fireloss = 0
-	var/last_toxloss = 0
-	var/last_oxyloss = 0
-	var/last_cloneloss = 0
-	var/last_staminaloss = 0
 
 /obj/screen/alert/status_effect/blooddrunk
 	name = "Blood-Drunk"
@@ -283,104 +279,28 @@
 /datum/status_effect/blooddrunk/on_apply()
 	. = ..()
 	if(.)
-		owner.maxHealth *= 10
-		owner.bruteloss *= 10
-		owner.fireloss *= 10
-		if(iscarbon(owner))
-			var/mob/living/carbon/C = owner
-			for(var/X in C.bodyparts)
-				var/obj/item/bodypart/BP = X
-				BP.brute_dam *= 10
-				BP.burn_dam *= 10
-		owner.toxloss *= 10
-		owner.oxyloss *= 10
-		owner.cloneloss *= 10
-		owner.staminaloss *= 10
-		owner.updatehealth()
-		last_health = owner.health
-		last_bruteloss = owner.getBruteLoss()
-		last_fireloss = owner.getFireLoss()
-		last_toxloss = owner.getToxLoss()
-		last_oxyloss = owner.getOxyLoss()
-		last_cloneloss = owner.getCloneLoss()
-		last_staminaloss = owner.getStaminaLoss()
-		owner.log_message("gained blood-drunk stun immunity", INDIVIDUAL_ATTACK_LOG)
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			H.physiology.brute_mod *= 0.1
+			H.physiology.burn_mod *= 0.1
+			H.physiology.tox_mod *= 0.1
+			H.physiology.oxy_mod *= 0.1
+			H.physiology.clone_mod *= 0.1
+			H.physiology.stamina_mod *= 0.1
+		owner.log_message("gained blood-drunk stun immunity", LOG_ATTACK)
 		owner.add_stun_absorption("blooddrunk", INFINITY, 4)
 		owner.playsound_local(get_turf(owner), 'sound/effects/singlebeat.ogg', 40, 1)
 
-/datum/status_effect/blooddrunk/tick() //multiply the effect of healing by 10
-	if(owner.health > last_health)
-		var/needs_health_update = FALSE
-		var/new_bruteloss = owner.getBruteLoss()
-		if(new_bruteloss < last_bruteloss)
-			var/heal_amount = (new_bruteloss - last_bruteloss) * 10
-			owner.adjustBruteLoss(heal_amount, updating_health = FALSE)
-			new_bruteloss = owner.getBruteLoss()
-			needs_health_update = TRUE
-		last_bruteloss = new_bruteloss
-
-		var/new_fireloss = owner.getFireLoss()
-		if(new_fireloss < last_fireloss)
-			var/heal_amount = (new_fireloss - last_fireloss) * 10
-			owner.adjustFireLoss(heal_amount, updating_health = FALSE)
-			new_fireloss = owner.getFireLoss()
-			needs_health_update = TRUE
-		last_fireloss = new_fireloss
-
-		var/new_toxloss = owner.getToxLoss()
-		if(new_toxloss < last_toxloss)
-			var/heal_amount = (new_toxloss - last_toxloss) * 10
-			owner.adjustToxLoss(heal_amount, updating_health = FALSE)
-			new_toxloss = owner.getToxLoss()
-			needs_health_update = TRUE
-		last_toxloss = new_toxloss
-
-		var/new_oxyloss = owner.getOxyLoss()
-		if(new_oxyloss < last_oxyloss)
-			var/heal_amount = (new_oxyloss - last_oxyloss) * 10
-			owner.adjustOxyLoss(heal_amount, updating_health = FALSE)
-			new_oxyloss = owner.getOxyLoss()
-			needs_health_update = TRUE
-		last_oxyloss = new_oxyloss
-
-		var/new_cloneloss = owner.getCloneLoss()
-		if(new_cloneloss < last_cloneloss)
-			var/heal_amount = (new_cloneloss - last_cloneloss) * 10
-			owner.adjustCloneLoss(heal_amount, updating_health = FALSE)
-			new_cloneloss = owner.getCloneLoss()
-			needs_health_update = TRUE
-		last_cloneloss = new_cloneloss
-
-		var/new_staminaloss = owner.getStaminaLoss()
-		if(new_staminaloss < last_staminaloss)
-			var/heal_amount = (new_staminaloss - last_staminaloss) * 10
-			owner.adjustStaminaLoss(heal_amount, updating_health = FALSE)
-			new_staminaloss = owner.getStaminaLoss()
-			needs_health_update = TRUE
-		last_staminaloss = new_staminaloss
-
-		if(needs_health_update)
-			owner.updatehealth()
-			owner.playsound_local(get_turf(owner), 'sound/effects/singlebeat.ogg', 40, 1)
-	last_health = owner.health
-
 /datum/status_effect/blooddrunk/on_remove()
-	tick()
-	owner.maxHealth *= 0.1
-	owner.bruteloss *= 0.1
-	owner.fireloss *= 0.1
-	if(iscarbon(owner))
-		var/mob/living/carbon/C = owner
-		for(var/X in C.bodyparts)
-			var/obj/item/bodypart/BP = X
-			BP.brute_dam *= 0.1
-			BP.burn_dam *= 0.1
-	owner.toxloss *= 0.1
-	owner.oxyloss *= 0.1
-	owner.cloneloss *= 0.1
-	owner.staminaloss *= 0.1
-	owner.updatehealth()
-	owner.log_message("lost blood-drunk stun immunity", INDIVIDUAL_ATTACK_LOG)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.brute_mod *= 10
+		H.physiology.burn_mod *= 10
+		H.physiology.tox_mod *= 10
+		H.physiology.oxy_mod *= 10
+		H.physiology.clone_mod *= 10
+		H.physiology.stamina_mod *= 10
+	owner.log_message("lost blood-drunk stun immunity", LOG_ATTACK)
 	if(islist(owner.stun_absorption) && owner.stun_absorption["blooddrunk"])
 		owner.stun_absorption -= "blooddrunk"
 
@@ -399,12 +319,12 @@
 	owner.spin(duration,1)
 	animate(owner, color = oldcolor, time = duration, easing = EASE_IN)
 	addtimer(CALLBACK(owner, /atom/proc/update_atom_colour), duration)
-	playsound(owner, 'sound/weapons/fwoosh.wav', 75, 0)
+	playsound(owner, 'sound/weapons/fwoosh.ogg', 75, 0)
 	return ..()
 
 
 /datum/status_effect/sword_spin/tick()
-	playsound(owner, 'sound/weapons/fwoosh.wav', 75, 0)
+	playsound(owner, 'sound/weapons/fwoosh.ogg', 75, 0)
 	var/obj/item/slashy
 	slashy = owner.get_active_held_item()
 	for(var/mob/living/M in orange(1,owner))
@@ -423,7 +343,13 @@
 	alert_type = /obj/screen/alert/status_effect/fleshmend
 
 /datum/status_effect/fleshmend/tick()
-	if(owner.on_fire)
+	var/prot = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		prot = H.get_thermal_protection()
+
+	
+	if(owner.on_fire && (prot < FIRE_IMMUNITY_MAX_TEMP_PROTECT))
 		linked_alert.icon_state = "fleshmend_fire"
 		return
 	else
@@ -464,13 +390,13 @@
 
 /datum/status_effect/hippocraticOath/on_apply()
 	//Makes the user passive, it's in their oath not to harm!
-	owner.add_trait(TRAIT_PACIFISM, "hippocraticOath")
+	ADD_TRAIT(owner, TRAIT_PACIFISM, "hippocraticOath")
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	H.add_hud_to(owner)
 	return ..()
 
 /datum/status_effect/hippocraticOath/on_remove()
-	owner.remove_trait(TRAIT_PACIFISM, "hippocraticOath")
+	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "hippocraticOath")
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	H.remove_hud_from(owner)
 
@@ -481,8 +407,7 @@
 		else
 			owner.visible_message("[owner]'s soul is absorbed into the rod, relieving the previous snake of its duty.")
 			var/mob/living/simple_animal/hostile/retaliate/poison/snake/healSnake = new(owner.loc)
-			var/list/chems = list("bicaridine", "salbutamol", "kelotane", "antitoxin")
-			healSnake.poison_type = pick(chems)
+			healSnake.poison_type = /datum/reagent/medicine/omnizine/godblood
 			healSnake.name = "Asclepius's Snake"
 			healSnake.real_name = "Asclepius's Snake"
 			healSnake.desc = "A mystical snake previously trapped upon the Rod of Asclepius, now freed of its burden. Unlike the average snake, its bites contain chemicals with minor healing properties."
@@ -519,7 +444,7 @@
 			itemUser.adjustToxLoss(-1.5, forced = TRUE) //Because Slime People are people too
 			itemUser.adjustOxyLoss(-1.5)
 			itemUser.adjustStaminaLoss(-1.5)
-			itemUser.adjustBrainLoss(-1.5)
+			itemUser.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1.5)
 			itemUser.adjustCloneLoss(-0.5) //Becasue apparently clone damage is the bastion of all health
 		//Heal all those around you, unbiased
 		for(var/mob/living/L in view(7, owner))
@@ -531,7 +456,7 @@
 				L.adjustToxLoss(-3.5, forced = TRUE) //Because Slime People are people too
 				L.adjustOxyLoss(-3.5)
 				L.adjustStaminaLoss(-3.5)
-				L.adjustBrainLoss(-3.5)
+				L.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3.5)
 				L.adjustCloneLoss(-1) //Becasue apparently clone damage is the bastion of all health
 			else if(issilicon(L))
 				L.adjustBruteLoss(-3.5)
@@ -539,3 +464,108 @@
 			else if(isanimal(L))
 				var/mob/living/simple_animal/SM = L
 				SM.adjustHealth(-3.5, forced = TRUE)
+
+/datum/status_effect/good_music
+	id = "Good Music"
+	alert_type = null
+	duration = 6 SECONDS
+	tick_interval = 1 SECONDS
+	status_type = STATUS_EFFECT_REFRESH
+
+/datum/status_effect/good_music/tick()
+	owner.dizziness = max(0, owner.dizziness - 2)
+	owner.jitteriness = max(0, owner.jitteriness - 2)
+	owner.confused = max(0, owner.confused - 1)
+	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "goodmusic", /datum/mood_event/goodmusic)
+
+/obj/screen/alert/status_effect/regenerative_core
+	name = "Reinforcing Tendrils"
+	desc = "You can move faster than your broken body could normally handle!"
+	icon_state = "regenerative_core"
+	name = "Regenerative Core Tendrils"
+
+/datum/status_effect/regenerative_core
+	id = "Regenerative Core"
+	duration = 1 MINUTES
+	status_type = STATUS_EFFECT_REPLACE
+	alert_type = /obj/screen/alert/status_effect/regenerative_core
+
+/datum/status_effect/regenerative_core/on_apply()
+	ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
+	owner.adjustBruteLoss(-25)
+	owner.adjustFireLoss(-25)
+	owner.remove_CC()
+	owner.bodytemperature = BODYTEMP_NORMAL
+	return TRUE
+
+/datum/status_effect/regenerative_core/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
+
+/datum/status_effect/antimagic
+	id = "antimagic"
+	duration = 10 SECONDS
+	examine_text = "<span class='notice'>They seem to be covered in a dull, grey aura.</span>"
+
+/datum/status_effect/antimagic/on_apply()
+	owner.visible_message("<span class='notice'>[owner] is coated with a dull aura!</span>")
+	ADD_TRAIT(owner, TRAIT_ANTIMAGIC, MAGIC_TRAIT)
+	//glowing wings overlay
+	playsound(owner, 'sound/weapons/fwoosh.ogg', 75, 0)
+	return ..()
+
+/datum/status_effect/antimagic/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC, MAGIC_TRAIT)
+	owner.visible_message("<span class='warning'>[owner]'s dull aura fades away...</span>")
+
+/datum/status_effect/creep //allows darkspawn to move through lights without lightburn damage //yogs start: darkspawn
+	id = "creep"
+	duration = -1
+	alert_type = /obj/screen/alert/status_effect/creep
+	examine_text = "<span class='warning'>SUBJECTPRONOUN is surrounded by velvety, gently-waving black shadows!</span>"
+	var/datum/antagonist/darkspawn/darkspawn
+
+/datum/status_effect/creep/on_creation(mob/living/owner, datum/antagonist/darkspawn)
+	. = ..()
+	if(!.)
+		return
+	src.darkspawn = darkspawn
+
+/datum/status_effect/creep/process()
+	if(!darkspawn)
+		qdel(src)
+		return
+	if(!darkspawn.has_psi(1)) //ticks 5 times per second, 5 Psi lost per second
+		to_chat(owner, "<span class='warning'>Without the Psi to maintain it, your protective aura vanishes!</span>")
+		qdel(src)
+		return
+	darkspawn.use_psi(1)
+
+/obj/screen/alert/status_effect/creep
+	name = "Creep"
+	desc = "You are immune to lightburn. Drains 1 Psi per second."
+	icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	icon_state = "creep"
+
+
+/datum/status_effect/time_dilation //used by darkspawn; greatly increases action times etc
+	id = "time_dilation"
+	duration = 600
+	alert_type = /obj/screen/alert/status_effect/time_dilation
+	examine_text = "<span class='warning'>SUBJECTPRONOUN is moving jerkily and unpredictably!</span>"
+
+/datum/status_effect/time_dilation/on_apply()
+	owner.next_move_modifier *= 0.5
+	owner.action_speed_modifier *= 0.5
+	owner.ignore_slowdown(id)
+	return TRUE
+
+/datum/status_effect/time_dilation/on_remove()
+	owner.next_move_modifier *= 2
+	owner.action_speed_modifier *= 2
+	owner.unignore_slowdown(id)
+
+/obj/screen/alert/status_effect/time_dilation
+	name = "Time Dilation"
+	desc = "Your actions are twice as fast, and the delay between them is halved. Additionally, you are immune to slowdown."
+	icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	icon_state = "time_dilation" //yogs end

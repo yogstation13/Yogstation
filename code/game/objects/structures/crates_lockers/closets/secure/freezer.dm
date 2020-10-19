@@ -1,15 +1,39 @@
 /obj/structure/closet/secure_closet/freezer
 	icon_state = "freezer"
 	var/jones = FALSE
+	door_anim_squish = 0.22
+	door_anim_angle = 123
+	door_anim_time = 4
+
+/obj/structure/closet/secure_closet/freezer/Destroy()
+	recursive_organ_check(src)
+	..()
+
+/obj/structure/closet/secure_closet/freezer/Initialize()
+	..()
+	recursive_organ_check(src)
+
+/obj/structure/closet/secure_closet/freezer/open(mob/living/user)
+	if(opened || !can_open(user))	//dupe check just so we don't let the organs decay when someone fails to open the locker
+		return FALSE
+	recursive_organ_check(src)
+	return ..()
+
+/obj/structure/closet/secure_closet/freezer/close(mob/living/user)
+	if(..())	//if we actually closed the locker
+		recursive_organ_check(src)
 
 /obj/structure/closet/secure_closet/freezer/ex_act()
 	if(!jones)
 		jones = TRUE
+		for(var/mob/I in contents)
+			if(I.client && I.stat != DEAD)
+				SSachievements.unlock_achievement(/datum/achievement/jones, I.client)
 	else
 		..()
 
 /obj/structure/closet/secure_closet/freezer/kitchen
-	name = "kitchen Cabinet"
+	name = "kitchen cabinet"
 	req_access = list(ACCESS_KITCHEN)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/PopulateContents()
@@ -18,6 +42,7 @@
 		new /obj/item/reagent_containers/food/condiment/flour(src)
 	new /obj/item/reagent_containers/food/condiment/rice(src)
 	new /obj/item/reagent_containers/food/condiment/sugar(src)
+	new /obj/item/storage/box/cheese(src)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/maintenance
 	name = "maintenance refrigerator"
@@ -31,20 +56,29 @@
 	for(var/i = 0, i < 5, i++)
 		new /obj/item/reagent_containers/food/condiment/soymilk(src)
 	for(var/i = 0, i < 2, i++)
-		new /obj/item/storage/fancy/egg_box(src)
+		new /obj/item/storage/box/fancy/egg_box(src)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/mining
 	req_access = list()
 
 /obj/structure/closet/secure_closet/freezer/meat
 	name = "meat fridge"
+	req_access = list(ACCESS_KITCHEN)
 
 /obj/structure/closet/secure_closet/freezer/meat/PopulateContents()
 	..()
 	for(var/i = 0, i < 4, i++)
 		new /obj/item/reagent_containers/food/snacks/meat/slab/monkey(src)
+	new /obj/item/storage/box/mixedcubes(src) // yogs change added mixed cubes to meat freezer
+
+/obj/structure/closet/secure_closet/freezer/meat/open
+	req_access = null
+	locked = FALSE
+
+
 /obj/structure/closet/secure_closet/freezer/fridge
 	name = "refrigerator"
+	req_access = list(ACCESS_KITCHEN)
 
 /obj/structure/closet/secure_closet/freezer/fridge/PopulateContents()
 	..()
@@ -53,7 +87,11 @@
 	for(var/i = 0, i < 5, i++)
 		new /obj/item/reagent_containers/food/condiment/soymilk(src)
 	for(var/i = 0, i < 2, i++)
-		new /obj/item/storage/fancy/egg_box(src)
+		new /obj/item/storage/box/fancy/egg_box(src)
+
+/obj/structure/closet/secure_closet/freezer/fridge/open
+	req_access = null
+	locked = FALSE
 
 /obj/structure/closet/secure_closet/freezer/money
 	name = "freezer"

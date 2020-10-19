@@ -23,8 +23,7 @@ GLOBAL_PROTECT(protected_ranks)
 	name = init_name
 	if(!name)
 		qdel(src)
-		throw EXCEPTION("Admin rank created without name.")
-		return
+		CRASH("Admin rank created without name.")
 	if(init_rights)
 		rights = init_rights
 	include_rights = rights
@@ -108,25 +107,23 @@ GLOBAL_PROTECT(protected_ranks)
 	var/flag = admin_keyword_to_flag(word)
 	if(flag)
 		return ((rank.rights & flag) == flag) //true only if right has everything in flag
+
 /proc/sync_ranks_with_db()
 	set waitfor = FALSE
 
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, "<span class='admin prefix'>Admin rank DB Sync blocked: Advanced ProcCall detected.</span>")
+		to_chat(usr, "<span class='admin prefix'>Admin rank DB Sync blocked: Advanced ProcCall detected.</span>", confidential=TRUE)
 		return
 
 	var/list/sql_ranks = list()
-	for(var/datum/admin_rank/R in GLOB.admin_ranks)
-		var/sql_rank = sanitizeSQL(R.name)
-		var/sql_flags = sanitizeSQL(R.include_rights)
-		var/sql_exclude_flags = sanitizeSQL(R.exclude_rights)
-		var/sql_can_edit_flags = sanitizeSQL(R.can_edit_rights)
-		sql_ranks += list(list("rank" = "'[sql_rank]'", "flags" = "[sql_flags]", "exclude_flags" = "[sql_exclude_flags]", "can_edit_flags" = "[sql_can_edit_flags]"))
+	for(var/datum/admin_rank/R in GLOB.protected_ranks)
+		sql_ranks += list(list("rank" = R.name, "flags" = R.include_rights, "exclude_flags" = R.exclude_rights, "can_edit_flags" = R.can_edit_rights))
 	SSdbcore.MassInsert(format_table_name("admin_ranks"), sql_ranks, duplicate_key = TRUE)
+
 //load our rank - > rights associations
 /proc/load_admin_ranks(dbfail, no_update)
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, "<span class='admin prefix'>Admin Reload blocked: Advanced ProcCall detected.</span>")
+		to_chat(usr, "<span class='admin prefix'>Admin Reload blocked: Advanced ProcCall detected.</span>", confidential=TRUE)
 		return
 	GLOB.admin_ranks.Cut()
 	GLOB.protected_ranks.Cut()

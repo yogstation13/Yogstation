@@ -33,6 +33,22 @@
 	return CINEMATIC_NUKE_FAKE
 
 /obj/machinery/nuclearbomb/syndicate/bananium/really_actually_explode(off_station)
+	//SHE LIVES
+	var/turf/center = SSmapping.get_station_center()
+	new /obj/structure/destructible/honkmother(center)
+	var/x0 = center.x
+	var/y0 = center.y
+	for(var/I in spiral_range_turfs(255, center, tick_checked = TRUE))
+		var/turf/T2 = I
+		if(!T2)
+			continue
+		var/dist = cheap_hypotenuse(T2.x, T2.y, x0, y0)
+		if(dist < 100)
+			dist = TRUE
+		else
+			dist = FALSE
+		center.honk_act(dist)
+		CHECK_TICK
 	Cinematic(get_cinematic_type(off_station), world)
 	for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 		var/turf/T = get_turf(H)
@@ -42,18 +58,18 @@
 		var/obj/item/clothing/C
 		if(!H.w_uniform || H.dropItemToGround(H.w_uniform))
 			C = new /obj/item/clothing/under/rank/clown(H)
-			C.item_flags |= NODROP //mwahaha
+			ADD_TRAIT(C, TRAIT_NODROP, CLOWN_NUKE_TRAIT)
 			H.equip_to_slot_or_del(C, SLOT_W_UNIFORM)
 
 		if(!H.shoes || H.dropItemToGround(H.shoes))
 			C = new /obj/item/clothing/shoes/clown_shoes(H)
-			C.item_flags |= NODROP
+			ADD_TRAIT(C, TRAIT_NODROP, CLOWN_NUKE_TRAIT)
 			H.equip_to_slot_or_del(C, SLOT_SHOES)
 
 		if(!H.wear_mask || H.dropItemToGround(H.wear_mask))
 			C = new /obj/item/clothing/mask/gas/clown_hat(H)
-			C.item_flags |= NODROP
+			ADD_TRAIT(C, TRAIT_NODROP, CLOWN_NUKE_TRAIT)
 			H.equip_to_slot_or_del(C, SLOT_WEAR_MASK)
 
 		H.dna.add_mutation(CLOWNMUT)
-		H.gain_trauma(/datum/brain_trauma/mild/phobia, TRAUMA_RESILIENCE_LOBOTOMY, "clowns") //MWA HA HA
+		H.gain_trauma(/datum/brain_trauma/mild/phobia/clowns, TRAUMA_RESILIENCE_LOBOTOMY) //MWA HA HA

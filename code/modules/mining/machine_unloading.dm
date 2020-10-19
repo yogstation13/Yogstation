@@ -23,6 +23,15 @@
 					return
 				CHECK_TICK
 			CHECK_TICK
+		for(var/obj/item/storage/bag/ore/OB in T)
+			for (var/obj/item/stack/ore/O in OB)
+				OB.contents -= O
+				unload_mineral(O)
+				limit++
+				if (limit>=10)
+					return
+				CHECK_TICK
+			CHECK_TICK
 		for(var/obj/item/I in T)
 			unload_mineral(I)
 			limit++

@@ -11,8 +11,9 @@
 
 
 /datum/surgery_step/replace/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("[user] begins to sever the muscles on [target]'s [parse_zone(user.zone_selected)].", "<span class ='notice'>You begin to sever the muscles on [target]'s [parse_zone(user.zone_selected)]...</span>")
-
+	display_results(user, target, "<span class ='notice'>You begin to sever the muscles on [target]'s [parse_zone(user.zone_selected)]...</span>",
+		"[user] begins to sever the muscles on [target]'s [parse_zone(user.zone_selected)].",
+		"[user] begins an incision on [target]'s [parse_zone(user.zone_selected)].")
 
 /datum/surgery_step/replace_limb
 	name = "replace limb"
@@ -33,7 +34,9 @@
 		return -1
 	L = surgery.operated_bodypart
 	if(L)
-		user.visible_message("[user] begins to augment [target]'s [parse_zone(user.zone_selected)].", "<span class ='notice'>You begin to augment [target]'s [parse_zone(user.zone_selected)]...</span>")
+		display_results(user, target, "<span class ='notice'>You begin to augment [target]'s [parse_zone(user.zone_selected)]...</span>",
+			"[user] begins to augment [target]'s [parse_zone(user.zone_selected)] with [aug].",
+			"[user] begins to augment [target]'s [parse_zone(user.zone_selected)].")
 	else
 		user.visible_message("[user] looks for [target]'s [parse_zone(user.zone_selected)].", "<span class ='notice'>You look for [target]'s [parse_zone(user.zone_selected)]...</span>")
 
@@ -41,9 +44,9 @@
 //ACTUAL SURGERIES
 
 /datum/surgery/augmentation
-	name = "augmentation"
+	name = "Augmentation"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/replace, /datum/surgery_step/saw, /datum/surgery_step/replace_limb)
-	species = list(/mob/living/carbon/human)
+	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)
 	requires_real_bodypart = TRUE
 
@@ -57,10 +60,11 @@
 			tool.cut_overlays()
 			tool = tool.contents[1]
 		if(istype(tool) && user.temporarilyRemoveItemFromInventory(tool))
-			L.drop_limb(TRUE) //The limb is augmented, not directly replaced, so keep the internal organs
-			tool.attach_limb(target)
-		user.visible_message("[user] successfully augments [target]'s [parse_zone(target_zone)]!", "<span class='notice'>You successfully augment [target]'s [parse_zone(target_zone)].</span>")
-		add_logs(user, target, "augmented", addition="by giving him new [parse_zone(target_zone)] INTENT: [uppertext(user.a_intent)]")
+			tool.replace_limb(target, TRUE)
+		display_results(user, target, "<span class='notice'>You successfully augment [target]'s [parse_zone(target_zone)].</span>",
+			"[user] successfully augments [target]'s [parse_zone(target_zone)] with [tool]!",
+			"[user] successfully augments [target]'s [parse_zone(target_zone)]!")
+		log_combat(user, target, "augmented", addition="by giving him new [parse_zone(target_zone)] INTENT: [uppertext(user.a_intent)]")
 	else
 		to_chat(user, "<span class='warning'>[target] has no organic [parse_zone(target_zone)] there!</span>")
 	return TRUE

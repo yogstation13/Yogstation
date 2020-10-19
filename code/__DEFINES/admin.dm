@@ -13,11 +13,13 @@
 #define BANTYPE_TEMP		2
 #define BANTYPE_JOB_PERMA	3
 #define BANTYPE_JOB_TEMP	4
-#define BANTYPE_ANY_FULLBAN	5 //used to locate stuff to unban.
+/// used to locate stuff to unban.
+#define BANTYPE_ANY_FULLBAN	5
 
 #define BANTYPE_ADMIN_PERMA	7
 #define BANTYPE_ADMIN_TEMP	8
-#define BANTYPE_ANY_JOB		9 //used to remove jobbans
+/// used to remove jobbans
+#define BANTYPE_ANY_JOB		9
 
 //Admin Permissions
 #define R_BUILDMODE		(1<<0)
@@ -69,14 +71,28 @@
 #define ADMIN_PUNISHMENT_BSA "Bluespace Artillery Device"
 #define ADMIN_PUNISHMENT_FIREBALL "Fireball"
 #define ADMIN_PUNISHMENT_ROD "Immovable Rod"
+#define ADMIN_PUNISHMENT_SUPPLYPOD_QUICK "Supply Pod (Quick)"
 #define ADMIN_PUNISHMENT_SUPPLYPOD "Supply Pod"
 #define ADMIN_PUNISHMENT_MAZING "Puzzle"
+#define ADMIN_PUNISHMENT_PIE "Pie"
 
 #define AHELP_ACTIVE 1
 #define AHELP_CLOSED 2
 #define AHELP_RESOLVED 3
 
-#define ROUNDSTART_LOGOUT_REPORT_TIME	6000 //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
+/// Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
+#define ROUNDSTART_LOGOUT_REPORT_TIME	6000
 
-#define SPAM_TRIGGER_WARNING	5	//Number of identical messages required before the spam-prevention will warn you to stfu
-#define SPAM_TRIGGER_AUTOMUTE	10	//Number of identical messages required before the spam-prevention will automute you
+/// Number of identical messages required before the spam-prevention will warn you to stfu
+#define SPAM_TRIGGER_WARNING	5
+/// Number of identical messages required before the spam-prevention will automute you
+#define SPAM_TRIGGER_AUTOMUTE	10
+
+#define STICKYBAN_DB_CACHE_TIME 10 SECONDS
+#define STICKYBAN_ROGUE_CHECK_TIME 5
+
+
+/// Shown to vicitm of staff of change and related effects.
+#define POLICY_POLYMORPH "polymorph"
+/// Shown on top of policy verb window
+#define POLICY_VERB_HEADER "policy_verb_header"

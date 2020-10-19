@@ -22,7 +22,7 @@
 	var/customname = "custom"
 
 /obj/item/reagent_containers/food/snacks/customizable/examine(mob/user)
-	..()
+	. = ..()
 	var/ingredients_listed = ""
 	for(var/obj/item/reagent_containers/food/snacks/ING in ingredients)
 		ingredients_listed += "[ING.name], "
@@ -33,7 +33,7 @@
 		size = "big"
 	if(ingredients.len>8)
 		size = "monster"
-	to_chat(user, "It contains [ingredients.len?"[ingredients_listed]":"no ingredient, "]making a [size]-sized [initial(name)].")
+	. += "It contains [ingredients.len?"[ingredients_listed]":"no ingredient, "]making a [size]-sized [initial(name)]."
 
 /obj/item/reagent_containers/food/snacks/customizable/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/reagent_containers/food/snacks/customizable) && istype(I, /obj/item/reagent_containers/food/snacks))
@@ -51,7 +51,7 @@
 				S.generate_trash(get_turf(user))
 			ingredients += S
 			mix_filling_color(S)
-			S.reagents.trans_to(src,min(S.reagents.total_volume, 15)) //limit of 15, we don't want our custom food to be completely filled by just one ingredient with large reagent volume.
+			S.reagents.trans_to(src,min(S.reagents.total_volume, 15), transfered_by = user) //limit of 15, we don't want our custom food to be completely filled by just one ingredient with large reagent volume.
 			foodtype |= S.foodtype
 			update_overlays(S)
 			to_chat(user, "<span class='notice'>You add the [I.name] to the [name].</span>")
@@ -81,7 +81,7 @@
 /obj/item/reagent_containers/food/snacks/customizable/proc/initialize_custom_food(obj/item/BASE, obj/item/I, mob/user)
 	if(istype(BASE, /obj/item/reagent_containers))
 		var/obj/item/reagent_containers/RC = BASE
-		RC.reagents.trans_to(src,RC.reagents.total_volume)
+		RC.reagents.trans_to(src,RC.reagents.total_volume, transfered_by = user)
 	for(var/obj/O in BASE.contents)
 		contents += O
 	if(I && user)
@@ -180,14 +180,23 @@
 	icon = 'icons/obj/food/piecake.dmi'
 	icon_state = "plaincake"
 	foodtype = GRAIN | DAIRY
-
+	
+/obj/item/reagent_containers/food/snacks/customizable/cheesewheel/cheddar
+	name = "cheese"
+	ingredients_placement = INGREDIENTS_SCATTER
+	ingMax = 6
+	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge/cheddar/custom
+	slices_num = 5
+	icon = 'icons/obj/food/cheese.dmi'
+	icon_state = "cheesewheel"
+	foodtype = DAIRY
 
 /obj/item/reagent_containers/food/snacks/customizable/kebab
 	name = "kebab"
 	desc = "Delicious food on a stick."
 	ingredients_placement = INGREDIENTS_LINE
 	trash = /obj/item/stack/rods
-	list_reagents = list("nutriment" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	ingMax = 6
 	icon_state = "rod"
 
@@ -251,7 +260,7 @@
 		to_chat(user, "<span class='notice'>You finish the [src.name].</span>")
 		finished = 1
 		name = "[customname] sandwich"
-		BS.reagents.trans_to(src, BS.reagents.total_volume)
+		BS.reagents.trans_to(src, BS.reagents.total_volume, transfered_by = user)
 		ingMax = ingredients.len //can't add more ingredients after that
 		var/mutable_appearance/TOP = mutable_appearance(icon, "[BS.icon_state]")
 		TOP.pixel_y = 2 * ingredients.len + 3
@@ -277,7 +286,7 @@
 
 /obj/item/reagent_containers/food/snacks/customizable/soup/Initialize()
 	. = ..()
-	eatverb = pick("slurp","sip","suck","inhale","drink")
+	eatverb = pick("slurp","sip","inhale","drink")
 
 
 
@@ -290,7 +299,7 @@
 	desc = "A simple bowl, used for soups and salads."
 	icon = 'icons/obj/food/soupsalad.dmi'
 	icon_state = "bowl"
-	container_type = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	materials = list(MAT_GLASS = 500)
 	w_class = WEIGHT_CLASS_NORMAL
 
@@ -302,7 +311,7 @@
 		else if(contents.len >= 20)
 			to_chat(user, "<span class='warning'>You can't add more ingredients to [src]!</span>")
 		else
-			if(reagents.has_reagent("water", 10)) //are we starting a soup or a salad?
+			if(reagents.has_reagent(/datum/reagent/water, 10)) //are we starting a soup or a salad?
 				var/obj/item/reagent_containers/food/snacks/customizable/A = new/obj/item/reagent_containers/food/snacks/customizable/soup(get_turf(src))
 				A.initialize_custom_food(src, S, user)
 			else

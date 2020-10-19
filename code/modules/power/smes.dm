@@ -21,17 +21,21 @@
 	density = TRUE
 	use_power = NO_POWER_USE
 	circuit = /obj/item/circuitboard/machine/smes
+
+	ui_x = 340
+	ui_y = 350
+
 	var/capacity = 5e6 // maximum charge
 	var/charge = 0 // actual charge
 
-	var/input_attempt = 1 // 1 = attempting to charge, 0 = not attempting to charge
-	var/inputting = 1 // 1 = actually inputting, 0 = not inputting
+	var/input_attempt = TRUE // TRUE = attempting to charge, FALSE = not attempting to charge
+	var/inputting = TRUE // TRUE = actually inputting, FALSE = not inputting
 	var/input_level = 50000 // amount of power the SMES attempts to charge by
 	var/input_level_max = 200000 // cap on input_level
 	var/input_available = 0 // amount of charge available from input last tick
 
-	var/output_attempt = 1 // 1 = attempting to output, 0 = not attempting to output
-	var/outputting = 1 // 1 = actually outputting, 0 = not outputting
+	var/output_attempt = TRUE // TRUE = attempting to output, FALSE = not attempting to output
+	var/outputting = TRUE // TRUE = actually outputting, FALSE = not outputting
 	var/output_level = 50000 // amount of power the SMES attempts to output
 	var/output_level_max = 200000 // cap on output_level
 	var/output_used = 0 // amount of power actually outputted. may be less than output_level if the powernet returns excess power
@@ -39,9 +43,9 @@
 	var/obj/machinery/power/terminal/terminal = null
 
 /obj/machinery/power/smes/examine(user)
-	..()
+	. = ..()
 	if(!terminal)
-		to_chat(user, "<span class='warning'>This SMES has no power terminal!</span>")
+		. += "<span class='warning'>This SMES has no power terminal!</span>"
 
 /obj/machinery/power/smes/Initialize()
 	. = ..()
@@ -54,7 +58,7 @@
 					break dir_loop
 
 	if(!terminal)
-		stat |= BROKEN
+		obj_break()
 		return
 	terminal.master = src
 	update_icon()
@@ -125,23 +129,23 @@
 		to_chat(user, "<span class='notice'>You start building the power terminal...</span>")
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 
-		if(do_after(user, 20, target = src) && C.get_amount() >= 10)
+		if(do_after(user, 20, target = src))
 			if(C.get_amount() < 10 || !C)
 				return
 			var/obj/structure/cable/N = T.get_cable_node() //get the connecting node cable, if there's one
 			if (prob(50) && electrocute_mob(usr, N, N, 1, TRUE)) //animate the electrocution if uncautious and unlucky
 				do_sparks(5, TRUE, src)
 				return
+			if(!terminal)
+				C.use(10)
+				user.visible_message(\
+					"[user.name] has built a power terminal.",\
+					"<span class='notice'>You build the power terminal.</span>")
 
-			C.use(10)
-			user.visible_message(\
-				"[user.name] has built a power terminal.",\
-				"<span class='notice'>You build the power terminal.</span>")
-
-			//build the terminal and link it to the network
-			make_terminal(T)
-			terminal.connect_to_network()
-			connect_to_network()
+				//build the terminal and link it to the network
+				make_terminal(T)
+				terminal.connect_to_network()
+				connect_to_network()
 		return
 
 	//crowbarring it !
@@ -150,8 +154,9 @@
 		message_admins("[src] has been deconstructed by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(T)]")
 		log_game("[src] has been deconstructed by [key_name(user)] at [AREACOORD(src)]")
 		investigate_log("SMES deconstructed by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_SINGULO)
+		investigate_log("SMES deconstructed by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 		return
-	else if(panel_open && istype(I, /obj/item/crowbar))
+	else if(panel_open && I.tool_behaviour == TOOL_CROWBAR)
 		return
 
 	return ..()
@@ -180,6 +185,7 @@
 		message_admins("SMES deleted at [ADMIN_VERBOSEJMP(T)]")
 		log_game("SMES deleted at [AREACOORD(T)]")
 		investigate_log("<font color='red'>deleted</font> at [AREACOORD(T)]", INVESTIGATE_SINGULO)
+		investigate_log("<font color='red'>deleted</font> at [AREACOORD(T)]", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 	if(terminal)
 		disconnect_terminal()
 	return ..()
@@ -196,7 +202,7 @@
 	if(terminal)
 		terminal.master = null
 		terminal = null
-		stat |= BROKEN
+		obj_break()
 
 
 /obj/machinery/power/smes/update_icon()
@@ -224,7 +230,7 @@
 
 
 /obj/machinery/power/smes/proc/chargedisplay()
-	return CLAMP(round(5.5*charge/capacity),0,5)
+	return clamp(round(5.5*charge/capacity),0,5)
 
 /obj/machinery/power/smes/process()
 	if(stat & BROKEN)
@@ -246,35 +252,37 @@
 
 				charge += load * SMESRATE	// increase the charge
 
-				add_load(load)		// add the load to the terminal side network
+				terminal.add_load(load) // add the load to the terminal side network
 
 			else					// if not enough capcity
-				inputting = 0		// stop inputting
+				inputting = FALSE		// stop inputting
 
 		else
 			if(input_attempt && input_available > 0)
-				inputting = 1
+				inputting = TRUE
 	else
-		inputting = 0
+		inputting = FALSE
 
 	//outputting
 	if(output_attempt)
 		if(outputting)
 			output_used = min( charge/SMESRATE, output_level)		//limit output to that stored
 
-			charge -= output_used*SMESRATE		// reduce the storage (may be recovered in /restore() if excessive)
-
-			add_avail(output_used)				// add output to powernet (smes side)
+			if (add_avail(output_used))				// add output to powernet if it exists (smes side)
+				charge -= output_used*SMESRATE		// reduce the storage (may be recovered in /restore() if excessive)
+			else
+				outputting = FALSE
 
 			if(output_used < 0.0001)		// either from no charge or set to 0
-				outputting = 0
-				investigate_log("lost power and turned <font color='red'>off</font>", INVESTIGATE_SINGULO)
+				outputting = FALSE
+				investigate_log("SMES lost power and turned <font color='red'>off</font>", INVESTIGATE_SINGULO)
+				investigate_log("SMES lost power and turned <font color='red'>off</font>", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 		else if(output_attempt && charge > output_level && output_level > 0)
-			outputting = 1
+			outputting = TRUE
 		else
 			output_used = 0
 	else
-		outputting = 0
+		outputting = FALSE
 
 	// only update icon if state changed
 	if(last_disp != chargedisplay() || last_chrg != inputting || last_onln != outputting)
@@ -312,36 +320,30 @@
 	return
 
 
-/obj/machinery/power/smes/add_load(amount)
-	if(terminal && terminal.powernet)
-		terminal.powernet.load += amount
-
 /obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "smes", name, 340, 440, master_ui, state)
+		ui = new(user, src, ui_key, "Smes", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/power/smes/ui_data()
 	var/list/data = list(
-		"capacityPercent" = round(100*charge/capacity, 0.1),
 		"capacity" = capacity,
+		"capacityPercent" = round(100*charge/capacity, 0.1),
 		"charge" = charge,
-
 		"inputAttempt" = input_attempt,
 		"inputting" = inputting,
 		"inputLevel" = input_level,
 		"inputLevel_text" = DisplayPower(input_level),
 		"inputLevelMax" = input_level_max,
-		"inputAvailable" = DisplayPower(input_available),
-
+		"inputAvailable" = input_available,
 		"outputAttempt" = output_attempt,
 		"outputting" = outputting,
 		"outputLevel" = output_level,
 		"outputLevel_text" = DisplayPower(output_level),
 		"outputLevelMax" = output_level_max,
-		"outputUsed" = DisplayPower(output_used)
+		"outputUsed" = output_used,
 	)
 	return data
 
@@ -379,7 +381,7 @@
 				target = text2num(target)
 				. = TRUE
 			if(.)
-				input_level = CLAMP(target, 0, input_level_max)
+				input_level = clamp(target, 0, input_level_max)
 				log_smes(usr)
 		if("output")
 			var/target = params["target"]
@@ -401,12 +403,12 @@
 				target = text2num(target)
 				. = TRUE
 			if(.)
-				output_level = CLAMP(target, 0, output_level_max)
+				output_level = clamp(target, 0, output_level_max)
 				log_smes(usr)
 
 /obj/machinery/power/smes/proc/log_smes(mob/user)
 	investigate_log("input/output; [input_level>output_level?"<font color='green'>":"<font color='red'>"][input_level]/[output_level]</font> | Charge: [charge] | Output-mode: [output_attempt?"<font color='green'>on</font>":"<font color='red'>off</font>"] | Input-mode: [input_attempt?"<font color='green'>auto</font>":"<font color='red'>off</font>"] by [user ? key_name(user) : "outside forces"]", INVESTIGATE_SINGULO)
-
+	investigate_log("input/output; [input_level>output_level?"<font color='green'>":"<font color='red'>"][input_level]/[output_level]</font> | Charge: [charge] | Output-mode: [output_attempt?"<font color='green'>on</font>":"<font color='red'>off</font>"] | Input-mode: [input_attempt?"<font color='green'>auto</font>":"<font color='red'>off</font>"] by [user ? key_name(user) : "outside forces"]", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 
 /obj/machinery/power/smes/emp_act(severity)
 	. = ..()
@@ -436,6 +438,12 @@
 	charge = INFINITY
 	..()
 
+/obj/machinery/power/smes/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	output_attempt = !output_attempt
+	log_smes(user)
+	update_icon()
 
 #undef SMESRATE
 

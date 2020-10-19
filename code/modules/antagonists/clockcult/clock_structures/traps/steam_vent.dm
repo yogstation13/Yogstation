@@ -7,7 +7,6 @@
 	break_message = "<span class='warning'>The vent snaps and collapses!</span>"
 	max_integrity = 100
 	density = FALSE
-	layer = BELOW_OBJ_LAYER
 
 /obj/structure/destructible/clockwork/trap/steam_vent/activate()
 	opacity = !opacity
@@ -19,6 +18,7 @@
 		playsound(src, 'sound/machines/clockcult/integration_cog_install.ogg', 50, TRUE)
 
 /obj/structure/destructible/clockwork/trap/steam_vent/Crossed(atom/movable/AM)
+	. = ..()
 	if(isliving(AM) && opacity)
 		var/mob/living/L = AM
 		L.adjust_fire_stacks(-1) //It's wet!

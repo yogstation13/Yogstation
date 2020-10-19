@@ -31,7 +31,7 @@ Mineral Sheets
 GLOBAL_LIST_INIT(sandstone_recipes, list ( \
 	new/datum/stack_recipe("pile of dirt", /obj/machinery/hydroponics/soil, 3, time = 10, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("sandstone door", /obj/structure/mineral_door/sandstone, 10, one_per_turf = 1, on_floor = 1), \
-	new/datum/stack_recipe("aesthetic volcanic floor tile", /obj/item/stack/tile/basalt, 2, 2, 4, 20), \
+	new/datum/stack_recipe("aesthetic volcanic floor tile", /obj/item/stack/tile/basalt, 1, 4, 20), \
 	new/datum/stack_recipe("Assistant Statue", /obj/structure/statue/sandstone/assistant, 5, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("Breakdown into sand", /obj/item/stack/ore/glass, 1, one_per_turf = 0, on_floor = 1) \
 	))
@@ -105,9 +105,12 @@ GLOBAL_LIST_INIT(sandbag_recipes, list ( \
 	sheettype = "diamond"
 	materials = list(MAT_DIAMOND=MINERAL_MATERIAL_AMOUNT)
 	novariants = TRUE
-	grind_results = list("carbon" = 20)
-	point_value = 25
+	grind_results = list(/datum/reagent/carbon = 30)
+	point_value = 50
 	merge_type = /obj/item/stack/sheet/mineral/diamond
+
+/obj/item/stack/sheet/mineral/diamond/fifty
+	amount = 50
 
 GLOBAL_LIST_INIT(diamond_recipes, list ( \
 	new/datum/stack_recipe("diamond door", /obj/structure/mineral_door/transparent/diamond, 10, one_per_turf = 1, on_floor = 1), \
@@ -132,8 +135,8 @@ GLOBAL_LIST_INIT(diamond_recipes, list ( \
 	sheettype = "uranium"
 	materials = list(MAT_URANIUM=MINERAL_MATERIAL_AMOUNT)
 	novariants = TRUE
-	grind_results = list("uranium" = 20)
-	point_value = 20
+	grind_results = list(/datum/reagent/uranium = 20)
+	point_value = 35
 	merge_type = /obj/item/stack/sheet/mineral/uranium
 
 GLOBAL_LIST_INIT(uranium_recipes, list ( \
@@ -142,6 +145,9 @@ GLOBAL_LIST_INIT(uranium_recipes, list ( \
 	new/datum/stack_recipe("Nuke Statue", /obj/structure/statue/uranium/nuke, 5, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("Engineer Statue", /obj/structure/statue/uranium/eng, 5, one_per_turf = 1, on_floor = 1), \
 	))
+
+/obj/item/stack/sheet/mineral/uranium/fifty
+	amount = 50
 
 /obj/item/stack/sheet/mineral/uranium/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.uranium_recipes
@@ -159,9 +165,12 @@ GLOBAL_LIST_INIT(uranium_recipes, list ( \
 	resistance_flags = FLAMMABLE
 	max_integrity = 100
 	materials = list(MAT_PLASMA=MINERAL_MATERIAL_AMOUNT)
-	grind_results = list("plasma" = 20)
-	point_value = 20
+	grind_results = list(/datum/reagent/toxin/plasma = 20)
+	point_value = 25
 	merge_type = /obj/item/stack/sheet/mineral/plasma
+
+/obj/item/stack/sheet/mineral/plasma/fifty
+	amount = 50
 
 /obj/item/stack/sheet/mineral/plasma/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins licking \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -200,9 +209,12 @@ GLOBAL_LIST_INIT(plasma_recipes, list ( \
 	singular_name = "gold bar"
 	sheettype = "gold"
 	materials = list(MAT_GOLD=MINERAL_MATERIAL_AMOUNT)
-	grind_results = list("gold" = 20)
-	point_value = 20
+	grind_results = list(/datum/reagent/gold = 20)
+	point_value = 30
 	merge_type = /obj/item/stack/sheet/mineral/gold
+
+/obj/item/stack/sheet/mineral/gold/fifty
+	amount = 50
 
 GLOBAL_LIST_INIT(gold_recipes, list ( \
 	new/datum/stack_recipe("golden door", /obj/structure/mineral_door/gold, 10, one_per_turf = 1, on_floor = 1), \
@@ -229,9 +241,13 @@ GLOBAL_LIST_INIT(gold_recipes, list ( \
 	singular_name = "silver bar"
 	sheettype = "silver"
 	materials = list(MAT_SILVER=MINERAL_MATERIAL_AMOUNT)
-	grind_results = list("silver" = 20)
-	point_value = 20
+	grind_results = list(/datum/reagent/silver = 20)
+	point_value = 25
 	merge_type = /obj/item/stack/sheet/mineral/silver
+	tableVariant = /obj/structure/table/optable
+
+/obj/item/stack/sheet/mineral/silver/fifty
+	amount = 50
 
 GLOBAL_LIST_INIT(silver_recipes, list ( \
 	new/datum/stack_recipe("silver door", /obj/structure/mineral_door/silver, 10, one_per_turf = 1, on_floor = 1), \
@@ -258,14 +274,20 @@ GLOBAL_LIST_INIT(silver_recipes, list ( \
 	sheettype = "bananium"
 	materials = list(MAT_BANANIUM=MINERAL_MATERIAL_AMOUNT)
 	novariants = TRUE
-	grind_results = list("banana" = 20)
+	grind_results = list(/datum/reagent/consumable/banana = 20)
 	point_value = 50
 	merge_type = /obj/item/stack/sheet/mineral/bananium
+
+/obj/item/stack/sheet/mineral/bananium/fifty
+	amount = 50
 
 GLOBAL_LIST_INIT(bananium_recipes, list ( \
 	new/datum/stack_recipe("bananium tile", /obj/item/stack/tile/mineral/bananium, 1, 4, 20), \
 	new/datum/stack_recipe("Clown Statue", /obj/structure/statue/bananium/clown, 5, one_per_turf = 1, on_floor = 1), \
-	))
+	new/datum/stack_recipe("Bananium Window", /obj/structure/window/bananium/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("Bananium Table Frame", /obj/structure/table_frame/bananium, 1, time = 15, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("Bananium Chair", /obj/structure/chair/bananium, 2, one_per_turf = TRUE, on_floor = TRUE), \
+	)) //Yogstation added bananium recipes
 
 /obj/item/stack/sheet/mineral/bananium/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.bananium_recipes
@@ -286,8 +308,11 @@ GLOBAL_LIST_INIT(bananium_recipes, list ( \
 	throw_range = 3
 	sheettype = "titanium"
 	materials = list(MAT_TITANIUM=MINERAL_MATERIAL_AMOUNT)
-	point_value = 20
+	point_value = 35
 	merge_type = /obj/item/stack/sheet/mineral/titanium
+
+/obj/item/stack/sheet/mineral/titanium/fifty
+	amount = 50
 
 GLOBAL_LIST_INIT(titanium_recipes, list ( \
 	new/datum/stack_recipe("titanium tile", /obj/item/stack/tile/mineral/titanium, 1, 4, 20), \
@@ -296,9 +321,6 @@ GLOBAL_LIST_INIT(titanium_recipes, list ( \
 /obj/item/stack/sheet/mineral/titanium/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.titanium_recipes
 	. = ..()
-
-/obj/item/stack/sheet/mineral/titanium/fifty
-	amount = 50
 
 
 /*
@@ -319,6 +341,9 @@ GLOBAL_LIST_INIT(titanium_recipes, list ( \
 	point_value = 45
 	merge_type = /obj/item/stack/sheet/mineral/plastitanium
 
+/obj/item/stack/sheet/mineral/plastitanium/fifty
+	amount = 50
+
 GLOBAL_LIST_INIT(plastitanium_recipes, list ( \
 	new/datum/stack_recipe("plastitanium tile", /obj/item/stack/tile/mineral/plastitanium, 1, 4, 20), \
 	))
@@ -338,13 +363,14 @@ GLOBAL_LIST_INIT(plastitanium_recipes, list ( \
 	singular_name = "snow block"
 	force = 1
 	throwforce = 2
-	grind_results = list("ice" = 20)
+	grind_results = list(/datum/reagent/consumable/ice = 20)
 	merge_type = /obj/item/stack/sheet/mineral/snow
 
 GLOBAL_LIST_INIT(snow_recipes, list ( \
-	new/datum/stack_recipe("Snow Wall", /turf/closed/wall/mineral/snow, 5, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("Snow wall", /turf/closed/wall/mineral/snow, 5, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("Snowman", /obj/structure/statue/snow/snowman, 5, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("Snowball", /obj/item/toy/snowball, 1), \
+	new/datum/stack_recipe("Snow tile", /obj/item/stack/tile/mineral/snow, 1, 4, 20), \
 	))
 
 /obj/item/stack/sheet/mineral/snow/Initialize(mapload, new_amount, merge = TRUE)

@@ -47,7 +47,7 @@
 	desc = "You could use it to cut limbs off of xenos! Or, you know, mine stuff."
 	id = "plasmacutter"
 	build_type = PROTOLATHE
-	materials = list(MAT_METAL = 1500, MAT_GLASS = 500, MAT_PLASMA = 400)
+	materials = list(MAT_METAL = 1500, MAT_GLASS = 500, MAT_PLASMA = 1000, MAT_SILVER = 1000, MAT_URANIUM = 800)
 	build_path = /obj/item/gun/energy/plasmacutter
 	category = list("Mining Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
@@ -57,7 +57,7 @@
 	desc = "It's an advanced plasma cutter, oh my god."
 	id = "plasmacutter_adv"
 	build_type = PROTOLATHE
-	materials = list(MAT_METAL = 3000, MAT_GLASS = 1000, MAT_PLASMA = 2000, MAT_GOLD = 500)
+	materials = list(MAT_METAL = 3000, MAT_GLASS = 1000, MAT_PLASMA = 2000, MAT_GOLD = 2000, MAT_URANIUM = 3000, MAT_DIAMOND = 2000)
 	build_path = /obj/item/gun/energy/plasmacutter/adv
 	category = list("Mining Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
@@ -130,4 +130,14 @@
 	materials = list(MAT_METAL = 8000, MAT_GLASS = 1500, MAT_SILVER = 2000, MAT_GOLD = 2000, MAT_DIAMOND = 2000)
 	build_path = /obj/item/borg/upgrade/modkit/aoe/turfs
 	category = list("Mining Designs", "Cyborg Upgrade Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_CARGO
+
+/datum/design/miner_body_camera
+	name = "Miner Bodycamera"
+	desc = "A camera worn around the neck, that can be viewed from a miner camera console."
+	id = "minercam"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 1000, MAT_GLASS = 1000, MAT_GOLD = 500)
+	build_path = /obj/item/clothing/neck/bodycam/miner
+	category = list("Mining Designs","Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO

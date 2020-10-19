@@ -21,12 +21,8 @@
 	var/currentSection = PRE_TITLE
 
 /obj/item/book/codex_gigas/attack_self(mob/user)
-	if(is_blind(user))
-		to_chat(user, "<span class='warning'>As you are trying to read, you suddenly feel very stupid.</span>")
-		return
-	if(!user.is_literate())
-		to_chat(user, "<span class='notice'>You skim through the book but can't comprehend any of it.</span>")
-		return
+	if(!user.can_read(src))
+		return FALSE
 	if(inUse)
 		to_chat(user, "<span class='notice'>Someone else is reading it.</span>")
 	if(ishuman(user))
@@ -50,8 +46,8 @@
 		if(U.job in list("Curator")) // the curator is both faster, and more accurate than normal crew members at research
 			speed = 100
 			correctness = 100
-		correctness -= U.getBrainLoss() *0.5 //Brain damage makes researching hard.
-		speed += U.getBrainLoss() * 3
+		correctness -= U.getOrganLoss(ORGAN_SLOT_BRAIN) * 0.5 //Brain damage makes researching hard.
+		speed += U.getOrganLoss(ORGAN_SLOT_BRAIN) * 3
 	if(do_after(user, speed, 0, user))
 		var/usedName = devilName
 		if(!prob(correctness))
@@ -63,7 +59,7 @@
 	inUse = FALSE
 
 /obj/item/book/codex_gigas/proc/display_devil(datum/antagonist/devil/devil, mob/reader, devilName)
-	reader << browse("Information on [devilName]<br><br><br>[GLOB.lawlorify[LORE][devil.ban]]<br>[GLOB.lawlorify[LORE][devil.bane]]<br>[GLOB.lawlorify[LORE][devil.obligation]]<br>[GLOB.lawlorify[LORE][devil.banish]]<br>[devil.ascendable?"This devil may ascend given enough souls.":""]", "window=book[window_size != null ? ";size=[window_size]" : ""]")
+	reader << browse("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>Information on [devilName]<br><br><br>[GLOB.lawlorify[LORE][devil.ban]]<br>[GLOB.lawlorify[LORE][devil.bane]]<br>[GLOB.lawlorify[LORE][devil.obligation]]<br>[GLOB.lawlorify[LORE][devil.banish]]<br>[devil.ascendable?"This devil may ascend given enough souls.":""]", "window=book[window_size != null ? ";size=[window_size]" : ""]</BODY></HTML>")
 
 /obj/item/book/codex_gigas/proc/ask_name(mob/reader)
 	ui_interact(reader)
@@ -99,7 +95,7 @@
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "codex_gigas", name, 450, 450, master_ui, state)
+		ui = new(user, src, ui_key, "CodexGigas", name, 450, 450, master_ui, state)
 		ui.open()
 
 /obj/item/book/codex_gigas/ui_data(mob/user)

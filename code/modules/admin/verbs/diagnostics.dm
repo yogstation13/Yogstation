@@ -1,18 +1,16 @@
 /proc/show_air_status_to(turf/target, mob/user)
 	var/datum/gas_mixture/env = target.return_air()
-	var/list/env_gases = env.gases
 	var/burning = FALSE
 	if(isopenturf(target))
 		var/turf/open/T = target
 		if(T.active_hotspot)
 			burning = TRUE
 
-	var/list/lines = list("<span class='adminnotice'>[AREACOORD(target)]: [env.temperature] K ([env.temperature - T0C] C), [env.return_pressure()] kPa[(burning)?(", <font color='red'>burning</font>"):(null)]</span>")
-	for(var/id in env_gases)
-		var/gas = env_gases[id]
-		var/moles = gas[MOLES]
-		if (moles >= 0.00001)
-			lines += "[gas[GAS_META][META_GAS_NAME]]: [moles] mol"
+	var/list/lines = list("<span class='adminnotice'>[AREACOORD(target)]: [env.return_temperature()] K ([env.return_temperature() - T0C] C), [env.return_pressure()] kPa[(burning)?(", <font color='red'>burning</font>"):(null)]</span>")
+	for(var/id in env.get_gases())
+		var/moles = env.get_moles(id)
+		if (abs(moles) >= 0.00001)
+			lines += "[GLOB.meta_gas_info[id][META_GAS_NAME]]: [moles] mol"
 	to_chat(usr, lines.Join("\n"))
 
 /client/proc/air_status(turf/target)
@@ -59,10 +57,10 @@
 	set category = "Debug"
 	set name = "Radio report"
 
-	var/output = "<b>Radio Report</b><hr>"
+	var/output = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><b>Radio Report</b><hr>"
 	for (var/fq in SSradio.frequencies)
 		output += "<b>Freq: [fq]</b><br>"
-		var/list/datum/radio_frequency/fqs = SSradio.frequencies[fq]
+		var/datum/radio_frequency/fqs = SSradio.frequencies[fq]
 		if (!fqs)
 			output += "&nbsp;&nbsp;<b>ERROR</b><br>"
 			continue
@@ -79,6 +77,7 @@
 				else
 					output += "&nbsp;&nbsp;&nbsp;&nbsp;[device]<br>"
 
+	output += "</BODY></HTML>"
 	usr << browse(output,"window=radioreport")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Show Radio Report") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -97,3 +96,18 @@
 	load_admins()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Reload All Admins") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	message_admins("[key_name_admin(usr)] manually reloaded admins")
+
+/client/proc/reload_mentors()
+	set name = "Reload Mentors"
+	set category = "Admin"
+
+	if(!src.holder)
+		return
+
+	var/confirm = alert(src, "Are you sure you want to reload all mentors?", "Confirm", "Yes", "No")
+	if(confirm !="Yes")
+		return
+
+	load_mentors()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Reload All Mentors") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	message_admins("[key_name_admin(usr)] manually reloaded mentors")

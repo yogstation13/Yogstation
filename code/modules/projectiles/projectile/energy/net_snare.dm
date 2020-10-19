@@ -5,6 +5,7 @@
 	damage_type = STAMINA
 	hitsound = 'sound/weapons/taserhit.ogg'
 	range = 10
+	var/obj/item/beacon/teletarget = null
 
 /obj/item/projectile/energy/net/Initialize()
 	. = ..()
@@ -14,7 +15,7 @@
 	if(isliving(target))
 		var/turf/Tloc = get_turf(target)
 		if(!locate(/obj/effect/nettingportal) in Tloc)
-			new /obj/effect/nettingportal(Tloc)
+			new /obj/effect/nettingportal(Tloc, destination = teletarget)
 	..()
 
 /obj/item/projectile/energy/net/on_range()
@@ -29,23 +30,17 @@
 	light_range = 3
 	anchored = TRUE
 
-/obj/effect/nettingportal/Initialize()
+/obj/effect/nettingportal/New(obj/item/beacon/destination)
 	. = ..()
-	var/obj/item/beacon/teletarget = null
-	for(var/obj/machinery/computer/teleporter/com in GLOB.machines)
-		if(com.target)
-			if(com.power_station && com.power_station.teleporter_hub && com.power_station.engaged)
-				teletarget = com.target
+	addtimer(CALLBACK(src, .proc/pop, destination), 30)
 
-	addtimer(CALLBACK(src, .proc/pop, teletarget), 30)
-
-/obj/effect/nettingportal/proc/pop(teletarget)
-	if(teletarget)
+/obj/effect/nettingportal/proc/pop(obj/item/beacon/destination)
+	if(destination)
 		for(var/mob/living/L in get_turf(src))
-			do_teleport(L, teletarget, 2)//teleport what's in the tile to the beacon
+			do_teleport(L, get_turf(destination), 2, channel = TELEPORT_CHANNEL_BLUESPACE)//teleport what's in the tile to the beacon
 	else
 		for(var/mob/living/L in get_turf(src))
-			do_teleport(L, L, 15) //Otherwise it just warps you off somewhere.
+			do_teleport(L, L, 15, channel = TELEPORT_CHANNEL_BLUESPACE) //Otherwise it just warps you off somewhere.
 
 	qdel(src)
 
@@ -58,8 +53,7 @@
 /obj/item/projectile/energy/trap
 	name = "energy snare"
 	icon_state = "e_snare"
-	nodamage = 1
-	knockdown = 20
+	nodamage = TRUE
 	hitsound = 'sound/weapons/taserhit.ogg'
 	range = 4
 
@@ -78,8 +72,8 @@
 /obj/item/projectile/energy/trap/cyborg
 	name = "Energy Bola"
 	icon_state = "e_snare"
-	nodamage = 1
-	knockdown = 0
+	nodamage = TRUE
+	paralyze = 0
 	hitsound = 'sound/weapons/taserhit.ogg'
 	range = 10
 

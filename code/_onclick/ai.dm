@@ -10,9 +10,6 @@
 	Note that AI have no need for the adjacency proc, and so this proc is a lot cleaner.
 */
 /mob/living/silicon/ai/DblClickOn(var/atom/A, params)
-	if(check_click_intercept(params,A))
-		return
-
 	if(control_disabled || incapacitated())
 		return
 
@@ -46,12 +43,11 @@
 	if(!can_see(A))
 		if(isturf(A)) //On unmodified clients clicking the static overlay clicks the turf underneath
 			return //So there's no point messaging admins
-		message_admins("[ADMIN_LOOKUPFLW(src)] might be running a modified client! (failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
-		var/message = "[key_name(src)] might be running a modified client! (failed can_see on AI click of [A] (Turf Loc: [AREACOORD(pixel_turf)]))"
-		log_admin(message)
-		if(REALTIMEOFDAY >= chnotify + 9000)
-			chnotify = REALTIMEOFDAY
-			send2irc_adminless_only("NOCHEAT", message)
+		message_admins("[ADMIN_LOOKUPFLW(src)] was kicked because they failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
+		log_admin("[key_name(src)] was kicked because they failed can_see on AI click of [A] (Turf Loc: [AREACOORD(pixel_turf)])")
+		to_chat(src, "<span class='reallybig'>You have been automatically kicked because you clicked a turf you shouldn't have been able to see as an AI. You should reconnect automatically. If you do not, you can reconnect using the File --> Reconnect button.</span>")
+		winset(usr, null, "command=.reconnect")
+		QDEL_IN(client, 3 SECONDS) //fallback if the reconnection doesnt work
 		return
 
 	var/list/modifiers = params2list(params)
@@ -61,8 +57,6 @@
 	if(modifiers["middle"])
 		if(controlled_mech) //Are we piloting a mech? Placed here so the modifiers are not overridden.
 			controlled_mech.click_action(A, src, params) //Override AI normal click behavior.
-		return
-
 		return
 	if(modifiers["shift"])
 		ShiftClickOn(A)
@@ -139,10 +133,8 @@
 	if(obj_flags & EMAGGED)
 		return
 
-	if(locked)
-		bolt_raise(usr)
-	else
-		bolt_drop(usr)
+	toggle_bolt(usr)
+	add_hiddenprint(usr)
 
 /obj/machinery/door/airlock/AIAltClick() // Eletrifies doors.
 	if(obj_flags & EMAGGED)
@@ -158,38 +150,35 @@
 		return
 
 	user_toggle_open(usr)
+	add_hiddenprint(usr)
 
 /obj/machinery/door/airlock/AICtrlShiftClick()  // Sets/Unsets Emergency Access Override
 	if(obj_flags & EMAGGED)
 		return
 
-	if(!emergency)
-		emergency_on(usr)
-	else
-		emergency_off(usr)
+	toggle_emergency(usr)
+	add_hiddenprint(usr)
 
 /* APC */
 /obj/machinery/power/apc/AICtrlClick() // turns off/on APCs.
 	if(can_use(usr, 1))
-		toggle_breaker()
-		add_fingerprint(usr)
+		toggle_breaker(usr)
 
 /* AI Turrets */
 /obj/machinery/turretid/AIAltClick() //toggles lethal on turrets
 	if(ailock)
 		return
-	toggle_lethal()
-	add_fingerprint(usr)
+	toggle_lethal(usr)
 
 /obj/machinery/turretid/AICtrlClick() //turns off/on Turrets
 	if(ailock)
 		return
-	toggle_on()
-	add_fingerprint(usr)
+	toggle_on(usr)
 
 /* Holopads */
 /obj/machinery/holopad/AIAltClick(mob/living/silicon/ai/user)
 	hangup_all_calls()
+	add_hiddenprint(usr)
 
 //
 // Override TurfAdjacent for AltClicking

@@ -5,22 +5,22 @@ SUBSYSTEM_DEF(input)
 	flags = SS_TICKER
 	priority = FIRE_PRIORITY_INPUT
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
-	
+
 	var/list/macro_sets
-	
+
 	var/list/movement_arrows
 
 /datum/controller/subsystem/input/Initialize()
 	setup_default_macro_sets()
 	setup_default_movement_keys()
-	
+
 	initialized = TRUE
 
 	return ..()
 
 /datum/controller/subsystem/input/proc/setup_default_macro_sets()
 	var/list/static/default_macro_sets
-	
+
 	if(default_macro_sets)
 		macro_sets = default_macro_sets
 		return
@@ -36,6 +36,7 @@ SUBSYSTEM_DEF(input)
 			"Tab" = "\".winset \\\"mainwindow.macro=old_hotkeys map.focus=true input.background-color=[COLOR_INPUT_DISABLED]\\\"\"",
 			"Ctrl+T" = "say",
 			"Ctrl+O" = "ooc",
+			"CTRL+L" = "looc",
 			),
 		"old_hotkeys" = list(
 			"Tab" = "\".winset \\\"mainwindow.macro=old_default input.focus=true input.background-color=[COLOR_INPUT_ENABLED]\\\"\"",
@@ -47,6 +48,8 @@ SUBSYSTEM_DEF(input)
 
 	// Because i'm lazy and don't want to type all these out twice
 	var/list/old_default = default_macro_sets["old_default"]
+	var/list/old_hotkeys = default_macro_sets["old_hotkeys"]
+	var/list/default = default_macro_sets["default"]
 
 	var/list/static/oldmode_keys = list(
 		"North", "East", "South", "West",
@@ -80,6 +83,18 @@ SUBSYSTEM_DEF(input)
 		var/override = oldmode_ctrl_override_keys[key]
 		old_default["Ctrl+[key]"] = "\"KeyDown [override]\""
 		old_default["Ctrl+[key]+UP"] = "\"KeyUp [override]\""
+
+	// basically when these keys are pressed, we want to make sure to clear/set ctrl's state if we need to.
+	var/list/static/ctrl_sensitive_keys = list(
+		"North", "East", "South", "West",
+		"W", "A", "S", "D"
+		)
+	for(var/i in 1 to ctrl_sensitive_keys.len)
+		var/key = ctrl_sensitive_keys[i]
+		old_hotkeys["Ctrl+[key]"] = "\"KeyDown Ctrl\""
+		old_hotkeys["[key]"] = "\"KeyUp Ctrl\""
+		default["Ctrl+[key]"] = "\"KeyDown Ctrl\""
+		default["[key]"] = "\"KeyUp Ctrl\""
 
 	macro_sets = default_macro_sets
 

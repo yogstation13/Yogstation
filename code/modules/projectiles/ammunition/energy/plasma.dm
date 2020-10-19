@@ -9,3 +9,8 @@
 	projectile_type = /obj/item/projectile/plasma/adv
 	delay = 10
 	e_cost = 10
+
+/obj/item/ammo_casing/energy/plasma/adv/cyborg
+	projectile_type = /obj/item/projectile/plasma/adv
+	delay = 10
+	e_cost = 15 // Might need nerfing

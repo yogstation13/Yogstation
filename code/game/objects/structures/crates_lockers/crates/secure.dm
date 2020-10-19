@@ -23,18 +23,16 @@
 		add_overlay("securecrateg")
 
 /obj/structure/closet/crate/secure/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
-	if(prob(tamperproof))
+	if(prob(tamperproof) && damage_amount >= DAMAGE_PRECISION)
 		boom()
-	..()
+	else
+		return ..()
 
 
 /obj/structure/closet/crate/secure/proc/boom(mob/user)
 	if(user)
 		to_chat(user, "<span class='danger'>The crate's anti-tamper system activates!</span>")
-		var/message = "[ADMIN_LOOKUPFLW(user)] has detonated [src.name]."
-		GLOB.bombers += message
-		message_admins(message)
-		log_game("[key_name(user)] has detonated [src.name].")
+		log_bomber(user, "has detonated a", src)
 	for(var/atom/movable/AM in src)
 		qdel(AM)
 	explosion(get_turf(src), 0, 1, 5, 5)
@@ -69,3 +67,42 @@
 	name = "secure science crate"
 	desc = "A crate with a lock on it, painted in the scheme of the station's scientists."
 	icon_state = "scisecurecrate"
+
+/obj/structure/closet/crate/secure/medical
+	name = "secure medical crate"
+	desc = "A crate with a lock on it, painted in the scheme of the station's doctors."
+	icon_state = "medsecurecrate"
+
+/obj/structure/closet/crate/secure/owned
+	name = "private crate"
+	desc = "A crate cover designed to only open for who purchased its contents."
+	icon_state = "privatecrate"
+	var/datum/bank_account/buyer_account
+	var/privacy_lock = TRUE
+
+/obj/structure/closet/crate/secure/owned/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>It's locked with a privacy lock, and can only be unlocked by the buyer's ID.</span>"
+
+/obj/structure/closet/crate/secure/owned/Initialize(mapload, datum/bank_account/_buyer_account)
+	. = ..()
+	buyer_account = _buyer_account
+
+/obj/structure/closet/crate/secure/owned/togglelock(mob/living/user, silent)
+	if(secure && !broken)
+		if(allowed(user))
+			if(privacy_lock)
+				var/obj/item/card/id/id_card = user.get_idcard(TRUE)
+				if(!id_card || !id_card.registered_account || (id_card.registered_account != buyer_account))
+					to_chat(user, "<span class='notice'>Bank account does not match with buyer!</span>")
+					return
+			if(iscarbon(user))
+				add_fingerprint(user)
+			locked = !locked
+			user.visible_message("<span class='notice'>[user] [locked ? null : "un"]locks [src].</span>",
+							"<span class='notice'>You [locked ? null : "un"]lock [src].</span>")
+			update_icon()
+		else if(!silent)
+			to_chat(user, "<span class='notice'>Access Denied</span>")
+	else if(secure && broken)
+		to_chat(user, "<span class='warning'>\The [src] is broken!</span>")

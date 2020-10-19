@@ -15,17 +15,18 @@
 	verb_exclaim = "beeps"
 	var/listening = FALSE
 	var/recorded = "" //the activation message
-	var/mode = 1
+	var/mode = 2 //yogs: starts on exclusive
 	var/static/list/modes = list("inclusive",
 								 "exclusive",
 								 "recognizer",
 								 "voice sensor")
 
 /obj/item/assembly/voice/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Use a multitool to swap between \"inclusive\", \"exclusive\", \"recognizer\", and \"voice sensor\" mode.</span>")
+	. = ..()
+	. += "<span class='notice'>Use a multitool to swap between \"inclusive\", \"exclusive\", \"recognizer\", and \"voice sensor\" mode.</span>"
 
 /obj/item/assembly/voice/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+	. = ..()
 	if(speaker == src)
 		return
 

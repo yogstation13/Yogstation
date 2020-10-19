@@ -1,9 +1,42 @@
 /datum/wires/airlock
 	holder_type = /obj/machinery/door/airlock
-	proper_name = "Airlock"
+	proper_name = "Generic Airlock"
 
 /datum/wires/airlock/secure
+	proper_name = "High Security Airlock"
 	randomize = TRUE
+
+/datum/wires/airlock/maint
+	dictionary_key = /datum/wires/airlock/maint
+	proper_name = "Maintenance Airlock"
+
+/datum/wires/airlock/command
+	dictionary_key = /datum/wires/airlock/command
+	proper_name = "Command Airlock"
+
+/datum/wires/airlock/service
+	dictionary_key = /datum/wires/airlock/service
+	proper_name = "Service Airlock"
+
+/datum/wires/airlock/security
+	dictionary_key = /datum/wires/airlock/security
+	proper_name = "Security Airlock"
+
+/datum/wires/airlock/engineering
+	dictionary_key = /datum/wires/airlock/engineering
+	proper_name = "Engineering Airlock"
+
+/datum/wires/airlock/medbay
+	dictionary_key = /datum/wires/airlock/medbay
+	proper_name = "Medbay Airlock"
+
+/datum/wires/airlock/science
+	dictionary_key = /datum/wires/airlock/science
+	proper_name = "Science Airlock"
+
+/datum/wires/airlock/ai
+	dictionary_key = /datum/wires/airlock/ai
+	proper_name = "AI Airlock"
 
 /datum/wires/airlock/New(atom/holder)
 	wires = list(
@@ -77,10 +110,7 @@
 					A.aiControlDisabled = -1
 		if(WIRE_SHOCK) // Pulse to shock the door for 10 ticks.
 			if(!A.secondsElectrified)
-				A.set_electrified(30)
-				if(usr)
-					LAZYADD(A.shockedby, text("\[[time_stamp()]\][usr](ckey:[usr.ckey])"))
-				add_logs(usr, A, "electrified")
+				A.set_electrified(MACHINE_DEFAULT_ELECTRIFY_TIME, usr)
 		if(WIRE_SAFETY)
 			A.safe = !A.safe
 			if(!A.density)
@@ -129,13 +159,10 @@
 		if(WIRE_SHOCK) // Cut to shock the door, mend to unshock.
 			if(mend)
 				if(A.secondsElectrified)
-					A.set_electrified(0)
+					A.set_electrified(MACHINE_NOT_ELECTRIFIED, usr)
 			else
-				if(A.secondsElectrified != -1)
-					A.set_electrified(-1)
-					if(usr)
-						LAZYADD(A.shockedby, text("\[[time_stamp()]\][usr](ckey:[usr.ckey])"))
-					add_logs(usr, A, "electrified")
+				if(A.secondsElectrified != MACHINE_ELECTRIFIED_PERMANENT)
+					A.set_electrified(MACHINE_ELECTRIFIED_PERMANENT, usr)
 		if(WIRE_SAFETY) // Cut to disable safeties, mend to re-enable.
 			A.safe = mend
 		if(WIRE_TIMING) // Cut to disable auto-close, mend to re-enable.

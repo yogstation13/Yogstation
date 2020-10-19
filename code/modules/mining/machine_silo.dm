@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	name = "ore silo"
 	desc = "An all-in-one bluespace storage and transmission system for the station's mineral distribution needs."
 	icon = 'icons/obj/mining.dmi'
-	icon_state = "bin"
+	icon_state = "silo"
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/ore_silo
 
@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 		list(MAT_METAL, MAT_GLASS, MAT_SILVER, MAT_GOLD, MAT_DIAMOND, MAT_PLASMA, MAT_URANIUM, MAT_BANANIUM, MAT_TITANIUM, MAT_BLUESPACE, MAT_PLASTIC),
 		INFINITY,
 		FALSE,
-		list(/obj/item/stack),
+		/obj/item/stack,
 		null,
 		null,
 		TRUE)
@@ -34,13 +34,13 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 		var/datum/component/remote_materials/mats = C
 		mats.disconnect_from(src)
 
-	GET_COMPONENT(materials, /datum/component/material_container)
+	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	materials.retrieve_all()
 
 	return ..()
 
 /obj/machinery/ore_silo/proc/remote_attackby(obj/machinery/M, mob/user, obj/item/stack/I)
-	GET_COMPONENT(materials, /datum/component/material_container)
+	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	// stolen from /datum/component/material_container/proc/OnAttackBy
 	if(user.a_intent != INTENT_HELP)
 		return
@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	popup.open()
 
 /obj/machinery/ore_silo/proc/generate_ui()
-	GET_COMPONENT(materials, /datum/component/material_container)
+	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	var/list/ui = list("<head><title>Ore Silo</title></head><body><div class='statusDisplay'><h2>Stored Material:</h2>")
 	var/any = FALSE
 	for(var/M in materials.materials)
@@ -106,7 +106,7 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	var/list/logs = GLOB.silo_access_logs[REF(src)]
 	var/len = LAZYLEN(logs)
 	var/num_pages = 1 + round((len - 1) / 30)
-	var/page = CLAMP(log_page, 1, num_pages)
+	var/page = clamp(log_page, 1, num_pages)
 	if(num_pages > 1)
 		for(var/i in 1 to num_pages)
 			if(i == page)
@@ -149,7 +149,7 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 		return TRUE
 	else if(href_list["ejectsheet"])
 		var/eject_sheet = href_list["ejectsheet"]
-		GET_COMPONENT(materials, /datum/component/material_container)
+		var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 		var/count = materials.retrieve_sheets(text2num(href_list["eject_amt"]), eject_sheet, drop_location())
 		var/list/matlist = list()
 		matlist[eject_sheet] = MINERAL_MATERIAL_AMOUNT
@@ -171,17 +171,18 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 		return
 	var/datum/ore_silo_log/entry = new(M, action, amount, noun, mats)
 
-	var/list/logs = GLOB.silo_access_logs[REF(src)]
+	var/list/datum/ore_silo_log/logs = GLOB.silo_access_logs[REF(src)]
 	if(!LAZYLEN(logs))
 		GLOB.silo_access_logs[REF(src)] = logs = list(entry)
 	else if(!logs[1].merge(entry))
 		logs.Insert(1, entry)
 
 	updateUsrDialog()
-	animate(src, icon_state = "bin_partial", time = 2)
-	animate(icon_state = "bin_full", time = 1)
-	animate(icon_state = "bin_partial", time = 2)
-	animate(icon_state = "bin")
+	flick("silo_active", src)
+
+/obj/machinery/ore_silo/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>[src] can be linked to techfabs, circuit printers and protolathes with a multitool.</span>"
 
 /datum/ore_silo_log
 	var/name  // for VV
@@ -229,5 +230,5 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 		var/val = round(materials[key]) / MINERAL_MATERIAL_AMOUNT
 		msg += sep
 		sep = ", "
-		msg += "[amount < 0 ? "-" : "+"][val] [copytext(key, 2)]"
+		msg += "[amount < 0 ? "-" : "+"][val] [copytext(key, length(key[1]) + 1)]"
 	formatted = msg.Join()

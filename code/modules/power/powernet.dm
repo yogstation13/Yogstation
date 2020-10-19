@@ -13,9 +13,12 @@
 	var/viewavail = 0			// the available power as it appears on the power console (gradually updated)
 	var/viewload = 0			// the load as it appears on the power console (gradually updated)
 	var/netexcess = 0			// excess power on the powernet (typically avail-load)///////
+	var/delayedload = 0			// load applied to powernet between power ticks.
+	var/z = 0 // the Z coordinate of this powernet. Only used by some random achievement, at the moment.
 
-/datum/powernet/New()
+/datum/powernet/New(newz)
 	SSmachines.powernets += src
+	z = newz
 
 /datum/powernet/Destroy()
 	//Go away references, you suck!
@@ -63,7 +66,7 @@
 
 
 //add a power machine to the current powernet
-//Warning : this proc DON'T check if the machine exists
+//Warning : this proc DOESN'T check if the machine exists
 /datum/powernet/proc/add_machine(obj/machinery/power/M)
 	if(M.powernet)// if M already has a powernet...
 		if(M.powernet == src)
@@ -74,7 +77,7 @@
 	nodes[M] = M
 
 //handles the power changes in the powernet
-//called every ticks by the powernet controller
+//called every tick by the powernet controller
 /datum/powernet/proc/reset()
 	//see if there's a surplus of power remaining in the powernet and stores unused power in the SMES
 	netexcess = avail - load
@@ -88,12 +91,13 @@
 	viewload = round(0.8 * viewload + 0.2 * load)
 
 	// reset the powernet
-	load = 0
+	load = delayedload
+	delayedload = 0
 	avail = newavail
 	newavail = 0
 
 /datum/powernet/proc/get_electrocute_damage()
 	if(avail >= 1000)
-		return CLAMP(round(avail/10000), 10, 90) + rand(-5,5)
+		return clamp(20 + round(avail/25000), 20, 195) + rand(-5,5)
 	else
 		return 0

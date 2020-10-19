@@ -1,0 +1,46 @@
+@use 'sass:color';
+@use 'sass:meta';
+
+
+@use '../colors.scss' with (
+  $fg-map-keys: (),
+  $bg-map-keys: (),
+);
+@use '../base.scss' with (
+  $color-bg: #B18B25,
+  $border-radius: 2px,
+);
+
+$nanotrasen: #384e68;
+
+.theme-clockwork {
+  // Components
+  @include meta.load-css('../components/Button.scss', $with: (
+    'color-default': #3d2307,
+    'color-disabled': #2D1400,
+    'color-selected': #CFBA47,
+    'color-caution': yellow,
+    'color-danger': yellow
+  ));
+  @include meta.load-css('../components/ProgressBar.scss', $with: (
+    'color-default': $nanotrasen,
+    'color-background': rgba(0, 0, 0, 0.5),
+  ));
+
+  // Layouts
+  @include meta.load-css('../layouts/Layout.scss');
+  @include meta.load-css('../layouts/Window.scss');
+  
+  .Layout__content {
+    background-image: none;
+  }
+  
+  
+  @include meta.load-css('../components/Section.scss', $with: (
+    'color-background': color.adjust(#120800, $alpha: -0.6),
+	'color-separator': color.adjust(#2D1400, $alpha: -0.7),
+  ));
+  @include meta.load-css('../layouts/TitleBar.scss', $with: (
+    'color-background': #8f6f1b,
+  ));
+}

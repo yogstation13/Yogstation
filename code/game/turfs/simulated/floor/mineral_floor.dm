@@ -13,14 +13,14 @@
 	name = "mineral floor"
 	icon_state = ""
 	var/list/icons
-
+	tiled_dirt = FALSE
 
 
 /turf/open/floor/mineral/Initialize()
-	broken_states = list("[initial(icon_state)]_dam")
+	if(!broken_states)
+		broken_states = list("[initial(icon_state)]_dam")
 	. = ..()
-	if (!icons)
-		icons = list()
+	icons = typelist("icons", icons)
 
 
 /turf/open/floor/mineral/update_icon()
@@ -77,48 +77,66 @@
 
 //TITANIUM (shuttle)
 
-/turf/open/floor/mineral/titanium/blue
-	icon_state = "shuttlefloor"
-	icons = list("shuttlefloor","shuttlefloor_dam")
-
-/turf/open/floor/mineral/titanium/blue/airless
-	initial_gas_mix = "TEMP=2.7"
-
-/turf/open/floor/mineral/titanium/yellow
-	icon_state = "shuttlefloor2"
-	icons = list("shuttlefloor2","shuttlefloor2_dam")
-
-/turf/open/floor/mineral/titanium/yellow/airless
-	initial_gas_mix = "TEMP=2.7"
-
 /turf/open/floor/mineral/titanium
 	name = "shuttle floor"
-	icon_state = "shuttlefloor3"
+	icon_state = "titanium"
 	floor_tile = /obj/item/stack/tile/mineral/titanium
-	icons = list("shuttlefloor3","shuttlefloor3_dam")
+	broken_states = list("titanium_dam1","titanium_dam2","titanium_dam3","titanium_dam4","titanium_dam5")
 
 /turf/open/floor/mineral/titanium/airless
-	initial_gas_mix = "TEMP=2.7"
+	initial_gas_mix = AIRLESS_ATMOS
+
+/turf/open/floor/mineral/titanium/yellow
+	icon_state = "titanium_yellow"
+
+/turf/open/floor/mineral/titanium/yellow/airless
+	initial_gas_mix = AIRLESS_ATMOS
+
+/turf/open/floor/mineral/titanium/blue
+	icon_state = "titanium_blue"
+
+/turf/open/floor/mineral/titanium/blue/airless
+	initial_gas_mix = AIRLESS_ATMOS
+
+/turf/open/floor/mineral/titanium/white
+	icon_state = "titanium_white"
+
+/turf/open/floor/mineral/titanium/white/airless
+	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/mineral/titanium/purple
-	icon_state = "shuttlefloor5"
-	icons = list("shuttlefloor5","shuttlefloor5_dam")
+	icon_state = "titanium_purple"
 
 /turf/open/floor/mineral/titanium/purple/airless
-	initial_gas_mix = "TEMP=2.7"
+	initial_gas_mix = AIRLESS_ATMOS
 
 //PLASTITANIUM (syndieshuttle)
 /turf/open/floor/mineral/plastitanium
 	name = "shuttle floor"
-	icon_state = "shuttlefloor4"
+	icon_state = "plastitanium"
 	floor_tile = /obj/item/stack/tile/mineral/plastitanium
-	icons = list("shuttlefloor4","shuttlefloor4_dam")
+	broken_states = list("plastitanium_dam1","plastitanium_dam2","plastitanium_dam3","plastitanium_dam4","plastitanium_dam5")
 
 /turf/open/floor/mineral/plastitanium/airless
-	initial_gas_mix = "TEMP=2.7"
+	initial_gas_mix = AIRLESS_ATMOS
 
-/turf/open/floor/mineral/plastitanium/brig
+/turf/open/floor/mineral/plastitanium/red
+	icon_state = "plastitanium_red"
+
+/turf/open/floor/mineral/plastitanium/red/airless
+	initial_gas_mix = AIRLESS_ATMOS
+
+/turf/open/floor/mineral/plastitanium/red/brig
 	name = "brig floor"
+
+/turf/open/floor/mineral/plastitanium/red/brig/fakepit
+	name = "brig chasm"
+	desc = "A place for very naughy criminals."
+	smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE
+	canSmoothWith = list(/turf/open/floor/mineral/plastitanium/red/brig/fakepit)
+	icon = 'icons/turf/floors/Chasms.dmi'
+	icon_state = "smooth"
+	tiled_dirt = FALSE
 
 //BANANIUM
 
@@ -129,10 +147,10 @@
 	icons = list("bananium","bananium_dam")
 	var/spam_flag = 0
 
-/turf/open/floor/mineral/bananium/Entered(var/mob/living/L)
+/turf/open/floor/mineral/bananium/Entered(atom/movable/AM)
 	.=..()
 	if(!.)
-		if(istype(L))
+		if(isliving(AM))
 			squeak()
 
 /turf/open/floor/mineral/bananium/attackby(obj/item/W, mob/user, params)
@@ -161,7 +179,10 @@
 		spam_flag = world.time + 10
 
 /turf/open/floor/mineral/bananium/airless
-	initial_gas_mix = "TEMP=2.7"
+	initial_gas_mix = AIRLESS_ATMOS
+
+/turf/open/floor/mineral/bananium/honk_act()
+	return FALSE
 
 //DIAMOND
 
@@ -182,10 +203,10 @@
 	var/last_event = 0
 	var/active = null
 
-/turf/open/floor/mineral/uranium/Entered(var/mob/AM)
+/turf/open/floor/mineral/uranium/Entered(atom/movable/AM)
 	.=..()
 	if(!.)
-		if(istype(AM))
+		if(ismob(AM))
 			radiate()
 
 /turf/open/floor/mineral/uranium/attackby(obj/item/W, mob/user, params)
@@ -205,7 +226,7 @@
 
 /turf/open/floor/mineral/uranium/proc/radiate()
 	if(!active)
-		if(world.time > last_event+15)
+		if((SSticker.current_state == GAME_STATE_PLAYING) && (world.time > last_event+15))
 			active = 1
 			radiation_pulse(src, 10)
 			for(var/turf/open/floor/mineral/uranium/T in orange(1,src))

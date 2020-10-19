@@ -20,12 +20,15 @@
 	var/bloodthirst = HIS_GRACE_SATIATED
 	var/prev_bloodthirst = HIS_GRACE_SATIATED
 	var/force_bonus = 0
+	var/ascended = FALSE
+	var/victims_needed = 25
+	var/ascend_bonus = 15
 
 /obj/item/his_grace/Initialize()
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	GLOB.poi_list += src
-	AddComponent(/datum/component/redirect, list(COMSIG_MOVABLE_POST_THROW = CALLBACK(src, .proc/move_gracefully)))
+	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, .proc/move_gracefully)
 
 /obj/item/his_grace/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
@@ -48,23 +51,23 @@
 	return
 
 /obj/item/his_grace/examine(mob/user)
-	..()
+	. = ..()
 	if(awakened)
 		switch(bloodthirst)
 			if(HIS_GRACE_SATIATED to HIS_GRACE_PECKISH)
-				to_chat(user, "<span class='his_grace'>[src] isn't very hungry. Not yet.</span>")
+				. += "<span class='his_grace'>[src] isn't very hungry. Not yet.</span>"
 			if(HIS_GRACE_PECKISH to HIS_GRACE_HUNGRY)
-				to_chat(user, "<span class='his_grace'>[src] would like a snack.</span>")
+				. += "<span class='his_grace'>[src] would like a snack.</span>"
 			if(HIS_GRACE_HUNGRY to HIS_GRACE_FAMISHED)
-				to_chat(user, "<span class='his_grace'>[src] is quite hungry now.</span>")
+				. += "<span class='his_grace'>[src] is quite hungry now.</span>"
 			if(HIS_GRACE_FAMISHED to HIS_GRACE_STARVING)
-				to_chat(user, "<span class='his_grace'>[src] is openly salivating at the sight of you. Be careful.</span>")
+				. += "<span class='his_grace'>[src] is openly salivating at the sight of you. Be careful.</span>"
 			if(HIS_GRACE_STARVING to HIS_GRACE_CONSUME_OWNER)
-				to_chat(user, "<span class='his_grace bold'>You walk a fine line. [src] is very close to devouring you.</span>")
+				. += "<span class='his_grace bold'>You walk a fine line. [src] is very close to devouring you.</span>"
 			if(HIS_GRACE_CONSUME_OWNER to HIS_GRACE_FALL_ASLEEP)
-				to_chat(user, "<span class='his_grace bold'>[src] is shaking violently and staring directly at you.</span>")
+				. += "<span class='his_grace bold'>[src] is shaking violently and staring directly at you.</span>"
 	else
-		to_chat(user, "<span class='his_grace'>[src] is latched closed.</span>")
+		. += "<span class='his_grace'>[src] is latched closed.</span>"
 
 /obj/item/his_grace/relaymove(mob/living/user) //Allows changelings, etc. to climb out of Him after they revive, provided He isn't active
 	if(!awakened)
@@ -75,7 +78,7 @@
 	if(!bloodthirst)
 		drowse()
 		return
-	if(bloodthirst < HIS_GRACE_CONSUME_OWNER)
+	if(bloodthirst < HIS_GRACE_CONSUME_OWNER && !ascended)
 		adjust_bloodthirst(1 + FLOOR(LAZYLEN(contents) * 0.5, 1)) //Maybe adjust this?
 	else
 		adjust_bloodthirst(1) //don't cool off rapidly once we're at the point where His Grace consumes all.
@@ -87,8 +90,8 @@
 				do_attack_animation(master, null, src)
 				master.emote("scream")
 				master.remove_status_effect(STATUS_EFFECT_HISGRACE)
-				item_flags &= ~NODROP
-				master.Knockdown(60)
+				REMOVE_TRAIT(src, TRAIT_NODROP, HIS_GRACE_TRAIT)
+				master.Paralyze(60)
 				master.adjustBruteLoss(master.maxHealth)
 				playsound(master, 'sound/effects/splat.ogg', 100, 0)
 			else
@@ -153,10 +156,10 @@
 	animate(transform=transforms[4], time=0.3)
 
 /obj/item/his_grace/proc/drowse() //Good night, Mr. Grace.
-	if(!awakened)
+	if(!awakened || ascended)
 		return
 	var/turf/T = get_turf(src)
-	T.visible_message("<span class='boldwarning'>[src] slowly stops rattling and falls still, His latch snapping closed.</span>")
+	T.visible_message("<span class='boldwarning'>[src] slowly stops rattling and falls still, His latch snapping shut.</span>")
 	playsound(loc, 'sound/weapons/batonextend.ogg', 100, 1)
 	name = initial(name)
 	desc = initial(desc)
@@ -171,6 +174,7 @@
 /obj/item/his_grace/proc/consume(mob/living/meal) //Here's your dinner, Mr. Grace.
 	if(!meal)
 		return
+	var/victims = 0
 	meal.visible_message("<span class='warning'>[src] swings open and devours [meal]!</span>", "<span class='his_grace big bold'>[src] consumes you!</span>")
 	meal.adjustBruteLoss(200)
 	playsound(meal, 'sound/misc/desceration-02.ogg', 75, 1)
@@ -182,31 +186,36 @@
 		bloodthirst = max(LAZYLEN(contents), 1) //Never fully sated, and His hunger will only grow.
 	else
 		bloodthirst = HIS_GRACE_CONSUME_OWNER
+	for(var/mob/living/C in contents)
+		if(C.mind)
+			victims++
+	if(victims >= victims_needed)
+		ascend()
 	update_stats()
 
 /obj/item/his_grace/proc/adjust_bloodthirst(amt)
 	prev_bloodthirst = bloodthirst
-	if(prev_bloodthirst < HIS_GRACE_CONSUME_OWNER)
-		bloodthirst = CLAMP(bloodthirst + amt, HIS_GRACE_SATIATED, HIS_GRACE_CONSUME_OWNER)
-	else
-		bloodthirst = CLAMP(bloodthirst + amt, HIS_GRACE_CONSUME_OWNER, HIS_GRACE_FALL_ASLEEP)
+	if(prev_bloodthirst < HIS_GRACE_CONSUME_OWNER && !ascended)
+		bloodthirst = clamp(bloodthirst + amt, HIS_GRACE_SATIATED, HIS_GRACE_CONSUME_OWNER)
+	else if(!ascended)
+		bloodthirst = clamp(bloodthirst + amt, HIS_GRACE_CONSUME_OWNER, HIS_GRACE_FALL_ASLEEP)
 	update_stats()
 
 /obj/item/his_grace/proc/update_stats()
-	item_flags &= ~NODROP
+	REMOVE_TRAIT(src, TRAIT_NODROP, HIS_GRACE_TRAIT)
 	var/mob/living/master = get_atom_on_turf(src, /mob/living)
 	switch(bloodthirst)
 		if(HIS_GRACE_CONSUME_OWNER to HIS_GRACE_FALL_ASLEEP)
 			if(HIS_GRACE_CONSUME_OWNER > prev_bloodthirst)
 				master.visible_message("<span class='userdanger'>[src] enters a frenzy!</span>")
 		if(HIS_GRACE_STARVING to HIS_GRACE_CONSUME_OWNER)
-			item_flags |= NODROP
+			ADD_TRAIT(src, TRAIT_NODROP, HIS_GRACE_TRAIT)
 			if(HIS_GRACE_STARVING > prev_bloodthirst)
 				master.visible_message("<span class='boldwarning'>[src] is starving!</span>", "<span class='his_grace big'>[src]'s bloodlust overcomes you. [src] must be fed, or you will become His meal.\
 				[force_bonus < 15 ? " And still, His power grows.":""]</span>")
 				force_bonus = max(force_bonus, 15)
 		if(HIS_GRACE_FAMISHED to HIS_GRACE_STARVING)
-			item_flags |= NODROP
+			ADD_TRAIT(src, TRAIT_NODROP, HIS_GRACE_TRAIT)
 			if(HIS_GRACE_FAMISHED > prev_bloodthirst)
 				master.visible_message("<span class='warning'>[src] is very hungry!</span>", "<span class='his_grace big'>Spines sink into your hand. [src] must feed immediately.\
 				[force_bonus < 10 ? " His power grows.":""]</span>")
@@ -229,3 +238,17 @@
 			if(prev_bloodthirst >= HIS_GRACE_PECKISH)
 				master.visible_message("<span class='warning'>[src] is satiated.</span>", "<span class='his_grace big'>[src]'s hunger recedes...</span>")
 	force = initial(force) + force_bonus
+
+/obj/item/his_grace/proc/ascend()
+	if(ascended)
+		return
+	var/mob/living/carbon/human/master = loc
+	force_bonus += ascend_bonus
+	desc = "A legendary toolbox and a distant artifact from The Age of Three Powers. On its three latches engraved are the words \"The Sun\", \"The Moon\", and \"The Stars\". The entire toolbox has the words \"The World\" engraved into its sides."
+	icon_state = "his_grace_ascended"
+	item_state = "toolbox_gold"
+	ascended = TRUE
+	playsound(src, 'sound/effects/his_grace_ascend.ogg', 100)
+	if(istype(master))
+		master.visible_message("<span class='his_grace big bold'>Gods will be watching.</span>")
+		name = "[master]'s mythical toolbox of three powers"

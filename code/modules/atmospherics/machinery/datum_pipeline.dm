@@ -15,7 +15,7 @@
 
 /datum/pipeline/Destroy()
 	SSair.networks -= src
-	if(air && air.volume)
+	if(air && air.return_volume())
 		temporarily_store_air()
 	for(var/obj/machinery/atmospherics/pipe/P in members)
 		P.parent = null
@@ -43,12 +43,10 @@
 	if(!air)
 		air = new
 	var/list/possible_expansions = list(base)
-	while(possible_expansions.len>0)
+	while(possible_expansions.len)
 		for(var/obj/machinery/atmospherics/borderline in possible_expansions)
-
 			var/list/result = borderline.pipeline_expansion(src)
-
-			if(result.len>0)
+			if(result && result.len)
 				for(var/obj/machinery/atmospherics/P in result)
 					if(istype(P, /obj/machinery/atmospherics/pipe))
 						var/obj/machinery/atmospherics/pipe/item = P
@@ -57,10 +55,10 @@
 							if(item.parent)
 								var/static/pipenetwarnings = 10
 								if(pipenetwarnings > 0)
-									warning("build_pipeline(): [item.type] added to a pipenet while still having one. (pipes leading to the same spot stacking in one turf) Nearby: ([item.x], [item.y], [item.z])")
-									pipenetwarnings -= 1
+									log_mapping("build_pipeline(): [item.type] added to a pipenet while still having one. (pipes leading to the same spot stacking in one turf) around [AREACOORD(item)].")
+									pipenetwarnings--
 									if(pipenetwarnings == 0)
-										warning("build_pipeline(): further messages about pipenets will be suppressed")
+										log_mapping("build_pipeline(): further messages about pipenets will be suppressed")
 							members += item
 							possible_expansions += item
 
@@ -76,7 +74,7 @@
 
 			possible_expansions -= borderline
 
-	air.volume = volume
+	air.set_volume(volume)
 
 /datum/pipeline/proc/addMachineryMember(obj/machinery/atmospherics/components/C)
 	other_atmosmch |= C
@@ -99,7 +97,7 @@
 			merge(E)
 		if(!members.Find(P))
 			members += P
-			air.volume += P.volume
+			air.set_volume(air.return_volume() + P.volume)
 	else
 		A.setPipenet(src, N)
 		addMachineryMember(A)
@@ -107,7 +105,7 @@
 /datum/pipeline/proc/merge(datum/pipeline/E)
 	if(E == src)
 		return
-	air.volume += E.air.volume
+	air.set_volume(air.return_volume() + E.air.return_volume())
 	members.Add(E.members)
 	for(var/obj/machinery/atmospherics/pipe/S in E.members)
 		S.parent = src
@@ -131,7 +129,6 @@
 	var/datum/pipeline/P = returnPipenet(A)
 	if(!P)
 		CRASH("null.addMember() called by [type] on [COORD(src)]")
-		return
 	P.addMember(A, src)
 
 
@@ -140,18 +137,16 @@
 
 	for(var/obj/machinery/atmospherics/pipe/member in members)
 		member.air_temporary = new
-		member.air_temporary.volume = member.volume
+		member.air_temporary.set_volume(member.volume)
 		member.air_temporary.copy_from(air)
-		var/member_gases = member.air_temporary.gases
 
-		for(var/id in member_gases)
-			member_gases[id][MOLES] *= member.volume/air.volume
+		member.air_temporary.multiply(member.volume/air.return_volume())
 
-		member.air_temporary.temperature = air.temperature
+		member.air_temporary.set_temperature(air.return_temperature())
 
 /datum/pipeline/proc/temperature_interact(turf/target, share_volume, thermal_conductivity)
 	var/total_heat_capacity = air.heat_capacity()
-	var/partial_heat_capacity = total_heat_capacity*(share_volume/air.volume)
+	var/partial_heat_capacity = total_heat_capacity*(share_volume/air.return_volume())
 	var/target_temperature
 	var/target_heat_capacity
 
@@ -164,19 +159,19 @@
 		if(modeled_location.blocks_air)
 
 			if((modeled_location.heat_capacity>0) && (partial_heat_capacity>0))
-				var/delta_temperature = air.temperature - target_temperature
+				var/delta_temperature = air.return_temperature() - target_temperature
 
 				var/heat = thermal_conductivity*delta_temperature* \
 					(partial_heat_capacity*target_heat_capacity/(partial_heat_capacity+target_heat_capacity))
 
-				air.temperature -= heat/total_heat_capacity
+				air.set_temperature(air.return_temperature() - heat/total_heat_capacity)
 				modeled_location.TakeTemperature(heat/target_heat_capacity)
 
 		else
 			var/delta_temperature = 0
 			var/sharer_heat_capacity = 0
 
-			delta_temperature = (air.temperature - target_temperature)
+			delta_temperature = (air.return_temperature() - target_temperature)
 			sharer_heat_capacity = target_heat_capacity
 
 			var/self_temperature_delta = 0
@@ -191,18 +186,18 @@
 			else
 				return 1
 
-			air.temperature += self_temperature_delta
+			air.set_temperature(air.return_temperature() + self_temperature_delta);
 			modeled_location.TakeTemperature(sharer_temperature_delta)
 
 
 	else
 		if((target.heat_capacity>0) && (partial_heat_capacity>0))
-			var/delta_temperature = air.temperature - target.temperature
+			var/delta_temperature = air.return_temperature() - target.temperature
 
 			var/heat = thermal_conductivity*delta_temperature* \
 				(partial_heat_capacity*target.heat_capacity/(partial_heat_capacity+target.heat_capacity))
 
-			air.temperature -= heat/total_heat_capacity
+			air.set_temperature(air.return_temperature() - heat/total_heat_capacity)
 	update = TRUE
 
 /datum/pipeline/proc/return_air()
@@ -220,35 +215,30 @@
 		var/datum/pipeline/P = PL[i]
 		if(!P)
 			continue
-		GL += P.return_air()
-		for(var/obj/machinery/atmospherics/components/binary/valve/V in P.other_atmosmch)
-			if(V.on)
-				PL |= V.parents[1]
-				PL |= V.parents[2]
-		for(var/obj/machinery/atmospherics/components/unary/portables_connector/C in P.other_atmosmch)
-			if(C.connected_device)
-				GL += C.portableConnectorReturnAir()
+		GL += P.other_airs
+		GL += P.air
+		for(var/atmosmch in P.other_atmosmch)
+			if (istype(atmosmch, /obj/machinery/atmospherics/components/binary/valve))
+				var/obj/machinery/atmospherics/components/binary/valve/V = atmosmch
+				if(V.on)
+					PL |= V.parents[1]
+					PL |= V.parents[2]
+			else if (istype(atmosmch, /obj/machinery/atmospherics/components/unary/portables_connector))
+				var/obj/machinery/atmospherics/components/unary/portables_connector/C = atmosmch
+				if(C.connected_device)
+					GL += C.connected_device.air_contents
 
-	var/total_thermal_energy = 0
-	var/total_heat_capacity = 0
 	var/datum/gas_mixture/total_gas_mixture = new(0)
+	var/total_volume = 0
 
 	for(var/i in GL)
 		var/datum/gas_mixture/G = i
-		total_gas_mixture.volume += G.volume
-
 		total_gas_mixture.merge(G)
+		total_volume += G.return_volume()
 
-		total_thermal_energy += THERMAL_ENERGY(G)
-		total_heat_capacity += G.heat_capacity()
-
-	total_gas_mixture.temperature = total_heat_capacity ? total_thermal_energy/total_heat_capacity : 0
-
-	if(total_gas_mixture.volume > 0)
+	if(total_volume > 0)
 		//Update individual gas_mixtures by volume ratio
 		for(var/i in GL)
 			var/datum/gas_mixture/G = i
 			G.copy_from(total_gas_mixture)
-			var/list/G_gases = G.gases
-			for(var/id in G_gases)
-				G_gases[id][MOLES] *= G.volume/total_gas_mixture.volume
+			G.multiply(G.return_volume()/total_volume)

@@ -11,6 +11,9 @@
 	weather_immunities = list("ash")
 	possible_a_intents = list(INTENT_HELP, INTENT_HARM)
 	mob_biotypes = list(MOB_ROBOTIC)
+	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	deathsound = 'sound/voice/borg_deathsound.ogg'
+	speech_span = SPAN_ROBOT
 
 	var/datum/ai_laws/laws = null//Now... THEY ALL CAN ALL HAVE LAWS
 	var/last_lawchange_announce = 0
@@ -21,7 +24,7 @@
 	var/obj/item/camera/siliconcam/aicamera = null //photography
 	hud_possible = list(ANTAG_HUD, DIAG_STAT_HUD, DIAG_HUD, DIAG_TRACK_HUD)
 
-	var/obj/item/radio/borg/radio = null //AIs dont use this but this is at the silicon level to advoid copypasta in say()
+	var/obj/item/radio/borg/radio = null //All silicons make use of this, with (p)AI's creating headsets
 
 	var/list/alarm_types_show = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
 	var/list/alarm_types_clear = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
@@ -42,6 +45,7 @@
 
 	var/hack_software = FALSE //Will be able to use hacking actions
 	var/interaction_range = 7			//wireless control range
+	var/obj/item/pda/aiPDA
 
 /mob/living/silicon/Initialize()
 	. = ..()
@@ -51,10 +55,6 @@
 		diag_hud.add_to_hud(src)
 	diag_hud_set_status()
 	diag_hud_set_health()
-
-/mob/living/silicon/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/rad_insulation, RAD_NO_INSULATION, TRUE, TRUE)
 
 /mob/living/silicon/med_hud_set_health()
 	return //we use a different hud
@@ -71,6 +71,9 @@
 
 /mob/living/silicon/contents_explosion(severity, target)
 	return
+
+/mob/living/silicon/prevent_content_explosion()
+	return TRUE
 
 /mob/living/silicon/proc/cancelAlarm()
 	return
@@ -269,7 +272,7 @@
 
 /mob/living/silicon/proc/checklaws() //Gives you a link-driven interface for deciding what laws the statelaws() proc will share with the crew. --NeoFite
 
-	var/list = "<b>Which laws do you want to include when stating them for the crew?</b><br><br>"
+	var/list = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><b>Which laws do you want to include when stating them for the crew?</b><br><br>"
 
 	if (laws.devillaws && laws.devillaws.len)
 		for(var/index = 1, index <= laws.devillaws.len, index++)
@@ -319,9 +322,20 @@
 				lawcheck[number+1] = "Yes"
 			list += {"<A href='byond://?src=[REF(src)];lawc=[number]'>[lawcheck[number+1]] [number]:</A> <font color='#990099'>[law]</font><BR>"}
 			number++
-	list += {"<br><br><A href='byond://?src=[REF(src)];laws=1'>State Laws</A>"}
+	list += {"<br><br><A href='byond://?src=[REF(src)];laws=1'>State Laws</A></BODY></HTML>"}
 
 	usr << browse(list, "window=laws")
+
+/mob/living/silicon/proc/ai_roster()
+	if(!client)
+		return
+	if(world.time < client.crew_manifest_delay)
+		return
+		
+	client.crew_manifest_delay = world.time + (1 SECONDS)
+	var/datum/browser/popup = new(src, "airoster", "Crew Manifest", 387, 420)
+	popup.set_content(GLOB.data_core.get_manifest_html())
+	popup.open()
 
 /mob/living/silicon/proc/set_autosay() //For allowing the AI and borgs to set the radio behavior of auto announcements (state laws, arrivals).
 	if(!radio)
@@ -402,10 +416,48 @@
 	return ..()
 
 /mob/living/silicon/is_literate()
-	return 1
+	return TRUE
 
 /mob/living/silicon/get_inactive_held_item()
 	return FALSE
 
 /mob/living/silicon/handle_high_gravity(gravity)
 	return
+
+/mob/living/silicon/get_status_tab_items()
+	.=..()
+	.+= ""
+	.+= "<h2>Current Silicon Laws:</h2>"
+	if (laws.devillaws && laws.devillaws.len)
+		for(var/index = 1, index <= laws.devillaws.len, index++)
+			.+= "[laws.devillaws[index]]"
+
+	if (laws.zeroth)
+		.+= "<b><font color='#ff0000'>0: [laws.zeroth]</font></b>"
+
+	for (var/index = 1, index <= laws.hacked.len, index++)
+		var/law = laws.hacked[index]
+		if (length(law) > 0)
+			.+= "<b><font color='#660000'>[ionnum()]:</b>	 [law]</font>"
+			hackedcheck.len += 1
+
+	for (var/index = 1, index <= laws.ion.len, index++)
+		var/law = laws.ion[index]
+		if (length(law) > 0)
+			.+= "<b><font color='#547DFE'>[ionnum()]:</b> 	[law]</font>"
+
+	var/number = 1
+	for (var/index = 1, index <= laws.inherent.len, index++)
+		var/law = laws.inherent[index]
+		if (length(law) > 0)
+			lawcheck.len += 1
+			.+= "<b>[number]:</b> [law]"
+			number++
+
+	for (var/index = 1, index <= laws.supplied.len, index++)
+		var/law = laws.supplied[index]
+		if (length(law) > 0)
+			lawcheck.len += 1
+			.+= "<b>[number]:</b> [law]"
+			number++
+	.+= ""

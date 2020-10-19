@@ -22,12 +22,18 @@
 	opacity = 0
 
 /obj/machinery/door/poddoor/ert
+	name = "ERT Armory door"
 	desc = "A heavy duty blast door that only opens for dire emergencies."
+	
+/obj/machinery/door/poddoor/deathsquad
+	name = "ERT Mech Bay door"
+	desc = "A heavy duty blast door that only opens for extreme emergencies."
 
 //special poddoors that open when emergency shuttle docks at centcom
 /obj/machinery/door/poddoor/shuttledock
 	var/checkdir = 4	//door won't open if turf in this dir is `turftype`
 	var/turftype = /turf/open/space
+	air_tight = 1
 
 /obj/machinery/door/poddoor/shuttledock/proc/check()
 	var/turf/T = get_step(src, checkdir)
@@ -82,9 +88,10 @@
 		icon_state = "closed"
 	else
 		icon_state = "open"
+	SSdemo.mark_dirty(src)
 
 /obj/machinery/door/poddoor/try_to_activate_door(mob/user)
- 	return
+	return
 
 /obj/machinery/door/poddoor/try_to_crowbar(obj/item/I, mob/user)
 	if(stat & NOPOWER)

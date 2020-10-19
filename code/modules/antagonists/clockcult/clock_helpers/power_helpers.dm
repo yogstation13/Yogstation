@@ -10,7 +10,7 @@
 	if(GLOB.ratvar_awakens)
 		current_power = GLOB.clockwork_power = INFINITY
 	else
-		current_power = GLOB.clockwork_power = CLAMP(GLOB.clockwork_power + amount, 0, MAX_CLOCKWORK_POWER)
+		current_power = GLOB.clockwork_power = clamp(GLOB.clockwork_power + amount, 0, MAX_CLOCKWORK_POWER)
 	for(var/obj/effect/clockwork/sigil/transmission/T in GLOB.all_clockwork_objects)
 		T.update_icon()
 	var/unlock_message
@@ -24,7 +24,7 @@
 		hierophant_message(unlock_message)
 	return TRUE
 
-/proc/can_access_clockwork_power(atom/movable/access_point, amount) //Returns true if the access point has access to clockwork power (and optionally, a number of watts for it)
+/proc/can_access_clockwork_power(atom/movable/access_point, amount) //Returns true if the access point has access to clockwork power (and optionally, a number of joules for it)
 	if(amount && !get_clockwork_power(amount)) //No point in trying if we don't have the power anyway
 		return
 	var/list/possible_conduits = view(5, access_point)

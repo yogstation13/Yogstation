@@ -12,6 +12,7 @@
 	max_integrity = 200
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30)
 	layer = DISPOSAL_PIPE_LAYER			// slightly lower than wires and other pipes
+	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	var/dpdir = NONE					// bitmask of pipe directions
 	var/initialize_dirs = NONE			// bitflags of pipe directions added on init, see \code\_DEFINES\pipe_construction.dm
 	var/flip_type						// If set, the pipe is flippable and becomes this type when flipped
@@ -41,10 +42,6 @@
 		if(initialize_dirs & DISP_DIR_FLIP)
 			dpdir |= turn(dir, 180)
 	update()
-
-/obj/structure/disposalpipe/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/rad_insulation, RAD_NO_INSULATION)
 
 // pipe is deleted
 // ensure if holder is present, it is expelled
@@ -102,9 +99,7 @@
 
 	if(isfloorturf(T)) //intact floor, pop the tile
 		floorturf = T
-		if(floorturf.floor_tile)
-			new floorturf.floor_tile(T)
-		floorturf.make_plating()
+		floorturf.remove_tile()
 
 	if(direction)		// direction is specified
 		if(isspaceturf(T)) // if ended in space, then range is unlimited
@@ -187,6 +182,11 @@
 /obj/structure/disposalpipe/segment
 	icon_state = "pipe"
 	initialize_dirs = DISP_DIR_FLIP
+	FASTDMM_PROP(\
+		pipe_interference_group = list("disposal"),\
+		pipe_group = "disposal",\
+		pipe_type = PIPE_TYPE_SIMPLE\
+	)
 
 
 // A three-way junction with dir being the dominant direction
@@ -233,6 +233,10 @@
 /obj/structure/disposalpipe/trunk
 	icon_state = "pipe-t"
 	var/obj/linked 	// the linked obj/machinery/disposal or obj/disposaloutlet
+	FASTDMM_PROP(\
+		pipe_interference_group = list("disposal"),\
+		pipe_type = PIPE_TYPE_NODE\
+	)
 
 /obj/structure/disposalpipe/trunk/Initialize()
 	. = ..()

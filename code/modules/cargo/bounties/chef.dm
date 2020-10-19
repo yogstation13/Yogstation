@@ -82,13 +82,6 @@
 	reward = 8000
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/hotdog)
 
-/datum/bounty/item/chef/lemon
-	name = "Lemons"
-	description = "A commander claims he can turn lemons into money. Ship him a few and he'll deposit the money into the station's account."
-	reward = 4444
-	required_count = 10
-	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/citrus/lemon)
-
 /datum/bounty/item/chef/eggplantparm
 	name = "Eggplant Parmigianas"
 	description = "A famous singer will be arriving at CentCom, and their contract demands that they only be served Eggplant Parmigiana. Ship some, please!"
@@ -135,4 +128,11 @@
 	reward = 4000
 	required_count = 6
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/nugget)
+	
+/datum/bounty/item/chef/parmesan
+	name = "Parmesan Wheel"
+	description = "We're having pasta for dinner, but we ran out of parmesan. Send us a wheel."
+	reward = 10000
+	required_count = 1
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/store/cheesewheel/parmesan)
 

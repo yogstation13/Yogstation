@@ -1,35 +1,47 @@
-
 #define CAMERA_PICTURE_SIZE_HARD_LIMIT 21
 
 /obj/item/camera
 	name = "camera"
 	icon = 'icons/obj/items_and_weapons.dmi'
-	desc = "A polaroid camera. <span class='boldnotice'>Alt click to change its focusing, allowing you to set how big of an area it will capture!</span>"
+	desc = "A polaroid camera."
 	icon_state = "camera"
 	item_state = "camera"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
+	light_color = LIGHT_COLOR_WHITE
+	light_power = FLASH_LIGHT_POWER
 	w_class = WEIGHT_CLASS_SMALL
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_NECK
 	materials = list(MAT_METAL = 50, MAT_GLASS = 150)
+	var/obj/item/disk/holodisk/disk
+	var/pictures_left = 0
+	var/default_picture_name
+	var/camera_mode = CAMERA_STANDARD
+	var/blending = FALSE		//lets not take pictures while the previous is still processing!
+	var/on = TRUE // used to toggle the state during use.
 	var/state_on = "camera"
 	var/state_off = "camera_off"
 	var/pictures_max = 10
-	var/pictures_left = 10
-	var/on = TRUE
 	var/cooldown = 64
-	var/blending = FALSE		//lets not take pictures while the previous is still processing!
 	var/see_ghosts = CAMERA_NO_GHOSTS //for the spoop of it
-	var/obj/item/disk/holodisk/disk
 	var/sound/custom_sound
-	var/silent = FALSE
-	var/picture_size_x = 2
-	var/picture_size_y = 2
+	var/picture_size_x = 2 // default x
+	var/picture_size_y = 2 // default y
 	var/picture_size_x_min = 1
 	var/picture_size_y_min = 1
 	var/picture_size_x_max = 4
 	var/picture_size_y_max = 4
+	var/silent = FALSE
+	var/can_customise = TRUE // can this camera use description mode?
+	var/can_switch_modes = TRUE // are you able to change the mode of this camera or is it stuck in default mode?
+	var/flash_enabled = TRUE
+	var/start_full = TRUE // does the camera spawn full of film
+
+/obj/item/camera/Initialize()
+	. = ..()
+	if(start_full)
+		pictures_left = pictures_max // future proofed if anyone ever creates a camera with a different max
 
 /obj/item/camera/attack_self(mob/user)
 	if(!disk)
@@ -38,14 +50,31 @@
 	user.put_in_hands(disk)
 	disk = null
 
-/obj/item/camera/AltClick(mob/user)
+/obj/item/camera/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>Alt-click to change its focusing, allowing you to set how big of an area it will capture.</span>"
+
+/obj/item/camera/proc/adjust_zoom(mob/user)
 	var/desired_x = input(user, "How high do you want the camera to shoot, between [picture_size_x_min] and [picture_size_x_max]?", "Zoom", picture_size_x) as num
 	var/desired_y = input(user, "How wide do you want the camera to shoot, between [picture_size_y_min] and [picture_size_y_max]?", "Zoom", picture_size_y) as num
-	desired_x = min(CLAMP(desired_x, picture_size_x_min, picture_size_x_max), CAMERA_PICTURE_SIZE_HARD_LIMIT)
-	desired_y = min(CLAMP(desired_y, picture_size_y_min, picture_size_y_max), CAMERA_PICTURE_SIZE_HARD_LIMIT)
-	if(user.canUseTopic(src))
-		picture_size_x = desired_x
-		picture_size_y = desired_y
+	picture_size_x = min(clamp(desired_x, picture_size_x_min, picture_size_x_max), CAMERA_PICTURE_SIZE_HARD_LIMIT)
+	picture_size_y = min(clamp(desired_y, picture_size_y_min, picture_size_y_max), CAMERA_PICTURE_SIZE_HARD_LIMIT)
+
+/obj/item/camera/AltClick(mob/user)
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
+	adjust_zoom(user)
+
+/obj/item/camera/attack_self(mob/user)
+	if(can_switch_modes)
+		if(camera_mode == CAMERA_STANDARD && can_customise)
+			camera_mode = CAMERA_DESCRIPTION
+		else if(camera_mode == CAMERA_DESCRIPTION)
+			camera_mode = CAMERA_STANDARD
+		to_chat(user, "<span class='notice'>You set the [src] to [camera_mode] mode.</span>")
+		return
+
+	to_chat(user, "<span class='notice'>This [src] can only be used in the [camera_mode] mode.</span>") // just in-case somone makes a camera that can only be descriptive
 
 /obj/item/camera/attack(mob/living/carbon/human/M, mob/user)
 	return
@@ -74,8 +103,30 @@
 	..()
 
 /obj/item/camera/examine(mob/user)
-	..()
-	to_chat(user, "It has [pictures_left] photos left.")
+	. = ..()
+	if(!user.canUseTopic(src, BE_CLOSE)) // so you're telling me you're able to see how many photo's are left inside the camera from a distance?
+		return
+	var/iscarbon = FALSE
+	var/photographer = FALSE
+	if(istype(user,/mob/living/carbon))
+		var/mob/living/carbon/human/H = user
+		iscarbon = TRUE
+		if (HAS_TRAIT(H, TRAIT_PHOTOGRAPHER))
+			photographer = TRUE
+
+	if(pictures_left == 0)
+		. += "[src] is empty."
+	else
+		if(iscarbon)
+			if (photographer)
+				. += "It has [pictures_left] photos left."
+			else
+				. += "It has photos left."
+		else
+			. += "It has [pictures_left] photos left." 
+	if(photographer)
+		. += "[src] lens is set for a [picture_size_x] by [picture_size_y] picture."
+		. += "[src] is set to the [camera_mode] mode."
 
 //user can be atom or mob
 /obj/item/camera/proc/can_target(atom/target, mob/user, prox_flag)
@@ -96,6 +147,16 @@
 			return FALSE
 	return TRUE
 
+/obj/item/camera/emp_act(severity)
+	if(on) // EMP will only work on cameras that are on as it has power going through it
+		icon_state = state_off
+		on = FALSE
+		addtimer(CALLBACK(src, .proc/emp_after), (600/severity))
+
+/obj/item/camera/proc/emp_after()
+	on = TRUE
+	icon_state = state_on
+
 /obj/item/camera/afterattack(atom/target, mob/user, flag)
 	if (disk)
 		if(ismob(target))
@@ -114,7 +175,13 @@
 		return
 
 	on = FALSE
-	addtimer(CALLBACK(src, .proc/cooldown), cooldown)
+
+	var/realcooldown = cooldown
+	var/mob/living/carbon/human/H = user
+	if (HAS_TRAIT(H, TRAIT_PHOTOGRAPHER))
+		realcooldown *= 0.5
+	addtimer(CALLBACK(src, .proc/cooldown), realcooldown)
+
 	icon_state = state_off
 
 	INVOKE_ASYNC(src, .proc/captureimage, target, user, flag, picture_size_x - 1, picture_size_y - 1)
@@ -132,14 +199,18 @@
 	qdel(P)
 
 /obj/item/camera/proc/captureimage(atom/target, mob/user, flag, size_x = 1, size_y = 1)
+	if(flash_enabled)
+		flash_lighting_fx(8, light_power, light_color)
 	blending = TRUE
 	var/turf/target_turf = get_turf(target)
 	if(!isturf(target_turf))
 		blending = FALSE
 		return FALSE
-	size_x = CLAMP(size_x, 0, CAMERA_PICTURE_SIZE_HARD_LIMIT)
-	size_y = CLAMP(size_y, 0, CAMERA_PICTURE_SIZE_HARD_LIMIT)
+	size_x = clamp(size_x, 0, CAMERA_PICTURE_SIZE_HARD_LIMIT)
+	size_y = clamp(size_y, 0, CAMERA_PICTURE_SIZE_HARD_LIMIT)
 	var/list/desc = list("This is a photo of an area of [size_x+1] meters by [size_y+1] meters.")
+	var/list/mobs_spotted = list()
+	var/list/dead_spotted = list()
 	var/ai_user = isAI(user)
 	var/list/seen
 	var/list/viewlist = (user && user.client)? getviewsize(user.client.view) : getviewsize(world.view)
@@ -151,7 +222,7 @@
 	var/blueprints = FALSE
 	var/clone_area = SSmapping.RequestBlockReservation(size_x * 2 + 1, size_y * 2 + 1)
 	for(var/turf/T in block(locate(target_turf.x - size_x, target_turf.y - size_y, target_turf.z), locate(target_turf.x + size_x, target_turf.y + size_y, target_turf.z)))
-		if((ai_user && GLOB.cameranet.checkTurfVis(T)) || T in seen)
+		if((ai_user && GLOB.cameranet.checkTurfVis(T)) || (T in seen))
 			turfs += T
 			for(var/mob/M in T)
 				mobs += M
@@ -159,6 +230,9 @@
 				blueprints = TRUE
 	for(var/i in mobs)
 		var/mob/M = i
+		mobs_spotted += M
+		if(M.stat == DEAD)
+			dead_spotted += M
 		desc += M.get_photo_description(src)
 
 	var/psize_x = (size_x * 2 + 1) * world.icon_size
@@ -170,7 +244,7 @@
 	temp.Scale(psize_x, psize_y)
 	temp.Blend(get_icon, ICON_OVERLAY)
 
-	var/datum/picture/P = new("picture", desc.Join(" "), temp, null, psize_x, psize_y, blueprints)
+	var/datum/picture/P = new("picture", desc.Join(" "), mobs_spotted, dead_spotted, temp, null, psize_x, psize_y, blueprints)
 	after_picture(user, P, flag)
 	blending = FALSE
 
@@ -183,20 +257,23 @@
 		user.put_in_hands(p)
 		pictures_left--
 		to_chat(user, "<span class='notice'>[pictures_left] photos left.</span>")
-		var/customize = alert(user, "Do you want to customize the photo?", "Customization", "Yes", "No")
-		if(customize == "Yes")
-			var/name1 = input(user, "Set a name for this photo, or leave blank. 32 characters max.", "Name") as text|null
-			var/desc1 = input(user, "Set a description to add to photo, or leave blank. 128 characters max.", "Caption") as text|null
-			var/caption = input(user, "Set a caption for this photo, or leave blank. 256 characters max.", "Caption") as text|null
-			if(name1)
-				name1 = copytext(name1, 1, 33)
-				picture.picture_name = name1
-			if(desc1)
-				desc1 = copytext(desc1, 1, 129)
-				picture.picture_desc = "[desc1] - [picture.picture_desc]"
-			if(caption)
-				caption = copytext(caption, 1, 257)
-				picture.caption = caption
+		if(can_customise && camera_mode == CAMERA_DESCRIPTION)
+			var/customise = "No"
+			customise = alert(user, "Do you want to customize the photo?", "Customization", "Yes", "No")
+			if(customise == "Yes")
+				var/name1 = stripped_input(user, "Set a name for this photo, or leave blank. 32 characters max.", "Name", max_length = 32)
+				var/desc1 = stripped_input(user, "Set a description to add to photo, or leave blank. 128 characters max.", "Caption", max_length = 128)
+				var/caption = stripped_input(user, "Set a caption for this photo, or leave blank. 256 characters max.", "Caption", max_length = 256)
+				if(name1)
+					picture.picture_name = name1
+				if(desc1)
+					picture.picture_desc = "[desc1] - [picture.picture_desc]"
+				if(caption)
+					picture.caption = caption
+			else
+				if(default_picture_name)
+					picture.picture_name = default_picture_name
+
 		p.set_picture(picture, TRUE, TRUE)
 		if(CONFIG_GET(flag/picture_logging_camera))
 			picture.log_to_file()

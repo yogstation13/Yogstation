@@ -46,6 +46,7 @@ Contents:
 	var/a_transfer = 20//How much radium is used per adrenaline boost.
 	var/a_maxamount = 7//Maximum number of adrenaline boosts.
 	var/s_maxamount = 20//Maximum number of smoke bombs.
+	var/do_gib = TRUE // yogs
 
 		//Support function variables.
 	var/stealth = FALSE//Stealth off.
@@ -97,7 +98,7 @@ Contents:
 /obj/item/clothing/suit/space/space_ninja/proc/lock_suit(mob/living/carbon/human/H)
 	if(!istype(H))
 		return FALSE
-	if(!is_ninja(H))
+	if(do_gib && !is_ninja(H)) // yogs
 		to_chat(H, "<span class='danger'><B>fÄTaL ÈÈRRoR</B>: 382200-*#00CÖDE <B>RED</B>\nUNAUHORIZED USÈ DETÈCeD\nCoMMÈNCING SUB-R0UIN3 13...\nTÈRMInATING U-U-USÈR...</span>")
 		H.gib()
 		return FALSE
@@ -111,15 +112,15 @@ Contents:
 		to_chat(H, "<span class='userdanger'>ERROR</span>: 110223 UNABLE TO LOCATE HAND GEAR\nABORTING...")
 		return FALSE
 	affecting = H
-	item_flags |= NODROP //colons make me go all |=
+	ADD_TRAIT(src, TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	slowdown = 0
 	n_hood = H.head
-	n_hood.item_flags |= NODROP
+	ADD_TRAIT(n_hood, TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	n_shoes = H.shoes
-	n_shoes.item_flags |= NODROP
+	ADD_TRAIT(n_shoes, TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	n_shoes.slowdown--
 	n_gloves = H.gloves
-	n_gloves.item_flags |= NODROP
+	ADD_TRAIT(n_gloves, TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	return TRUE
 
 /obj/item/clothing/suit/space/space_ninja/proc/lockIcons(mob/living/carbon/human/H)
@@ -131,30 +132,30 @@ Contents:
 //This proc allows the suit to be taken off.
 /obj/item/clothing/suit/space/space_ninja/proc/unlock_suit()
 	affecting = null
-	item_flags &= ~NODROP
+	REMOVE_TRAIT(src, TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	slowdown = 1
 	icon_state = "s-ninja"
 	if(n_hood)//Should be attached, might not be attached.
-		n_hood.item_flags &= ~NODROP
+		REMOVE_TRAIT(n_hood, TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	if(n_shoes)
-		n_shoes.item_flags &= ~NODROP
+		REMOVE_TRAIT(n_shoes, TRAIT_NODROP, NINJA_SUIT_TRAIT)
 		n_shoes.slowdown++
 	if(n_gloves)
 		n_gloves.icon_state = "s-ninja"
 		n_gloves.item_state = "s-ninja"
-		n_gloves.item_flags &= ~NODROP
-		n_gloves.candrain=0
-		n_gloves.draining=0
+		REMOVE_TRAIT(n_gloves, TRAIT_NODROP, NINJA_SUIT_TRAIT)
+		n_gloves.candrain = FALSE
+		n_gloves.draining = FALSE
 
 
 /obj/item/clothing/suit/space/space_ninja/examine(mob/user)
-	..()
+	. = .()
 	if(s_initialized)
 		if(user == affecting)
-			to_chat(user, "All systems operational. Current energy capacity: <B>[DisplayEnergy(cell.charge)]</B>.")
-			to_chat(user, "The CLOAK-tech device is <B>[stealth?"active":"inactive"]</B>.")
-			to_chat(user, "There are <B>[s_bombs]</B> smoke bomb\s remaining.")
-			to_chat(user, "There are <B>[a_boost]</B> adrenaline booster\s remaining.")
+			. += "All systems operational. Current energy capacity: <B>[DisplayEnergy(cell.charge)]</B>.\n"+\
+			"The CLOAK-tech device is <B>[stealth?"active":"inactive"]</B>.\n"+\
+			"There are <B>[s_bombs]</B> smoke bomb\s remaining.\n"+\
+			"There are <B>[a_boost]</B> adrenaline booster\s remaining."
 
 /obj/item/clothing/suit/space/space_ninja/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/initialize_ninja_suit))

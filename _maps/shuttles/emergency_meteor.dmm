@@ -28,6 +28,9 @@
 /area/shuttle/escape/meteor)
 "g" = (
 /obj/structure/mineral_door/iron,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating/asteroid,
 /area/shuttle/escape/meteor)
 "h" = (
@@ -57,6 +60,26 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape/meteor)
+"B" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid,
+/area/shuttle/escape/meteor)
+"E" = (
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating/asteroid,
+/area/shuttle/escape/meteor)
+"H" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid,
+/area/shuttle/escape/meteor)
+"K" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plating/asteroid,
+/area/shuttle/escape/meteor)
 "L" = (
 /obj/docking_port/mobile/emergency{
 	dwidth = 20;
@@ -64,6 +87,12 @@
 	movement_force = list("KNOCKDOWN" = 3, "THROW" = 6);
 	name = "\proper a meteor with engines strapped to it";
 	width = 40
+	},
+/turf/open/floor/plating/asteroid,
+/area/shuttle/escape/meteor)
+"S" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
 /turf/open/floor/plating/asteroid,
 /area/shuttle/escape/meteor)
@@ -159,7 +188,7 @@ b
 b
 b
 d
-d
+K
 d
 b
 b
@@ -453,7 +482,7 @@ b
 b
 b
 b
-d
+B
 b
 b
 b
@@ -495,22 +524,22 @@ b
 b
 b
 d
+E
 d
 d
 d
 d
-d
-d
-d
-d
-d
+E
+B
+B
+B
 b
 b
 b
 b
 b
 b
-d
+B
 b
 b
 b
@@ -537,6 +566,7 @@ b
 b
 b
 b
+E
 d
 d
 d
@@ -549,11 +579,10 @@ d
 d
 d
 d
+E
 d
 d
-d
-d
-d
+S
 d
 d
 b
@@ -594,7 +623,7 @@ b
 b
 b
 b
-d
+H
 b
 b
 b
@@ -829,11 +858,11 @@ a
 c
 d
 d
+S
 d
 d
 d
 d
-d
 b
 b
 b
@@ -846,7 +875,7 @@ b
 b
 b
 b
-d
+B
 b
 b
 b
@@ -869,18 +898,27 @@ n
 (20,1,1) = {"
 a
 c
-d
-d
-b
-b
-b
-b
+K
 d
 b
 b
 b
 b
 d
+b
+b
+b
+b
+B
+d
+d
+d
+d
+d
+d
+E
+d
+S
 d
 d
 d
@@ -892,16 +930,7 @@ d
 d
 d
 d
-d
-d
-d
-d
-d
-d
-d
-d
-d
-d
+E
 d
 d
 d
@@ -917,7 +946,7 @@ b
 b
 b
 b
-d
+B
 b
 b
 b
@@ -937,7 +966,7 @@ b
 b
 b
 b
-d
+H
 b
 b
 b
@@ -960,9 +989,9 @@ b
 b
 b
 d
+S
 d
-d
-d
+E
 d
 d
 b
@@ -1002,9 +1031,9 @@ b
 b
 d
 d
+S
 d
-d
-d
+E
 d
 d
 b
@@ -1048,7 +1077,7 @@ b
 b
 b
 d
-d
+K
 b
 b
 b
@@ -1230,7 +1259,7 @@ d
 d
 d
 d
-d
+E
 d
 b
 b
@@ -1267,7 +1296,7 @@ d
 b
 b
 b
-d
+H
 b
 b
 b
@@ -1357,7 +1386,7 @@ b
 b
 b
 b
-d
+B
 b
 b
 b
@@ -1526,7 +1555,7 @@ b
 l
 d
 d
-d
+K
 d
 d
 b

@@ -7,7 +7,7 @@
 	id = "milk"
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 20)
-	make_reagents = list("milk" = 10)
+	make_reagents = list(/datum/reagent/consumable/milk = 10)
 	category = list("initial","Food")
 
 /datum/design/cream
@@ -15,7 +15,7 @@
 	id = "cream"
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 30)
-	make_reagents = list("cream" = 10)
+	make_reagents = list(/datum/reagent/consumable/cream = 10)
 	category = list("initial","Food")
 
 /datum/design/milk_carton
@@ -39,7 +39,7 @@
 	id = "black_pepper"
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 25)
-	make_reagents = list("blackpepper" = 10)
+	make_reagents = list(/datum/reagent/consumable/blackpepper = 10)
 	category = list("initial","Food")
 
 /datum/design/pepper_mill
@@ -49,6 +49,22 @@
 	materials = list(MAT_BIOMASS = 50)
 	build_path = /obj/item/reagent_containers/food/condiment/peppermill
 	make_reagents = list()
+	category = list("initial","Food")
+
+/datum/design/enzyme
+	name = "10u Universal Enzyme"
+	id = "enzyme"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 30)
+	make_reagents = list(/datum/reagent/consumable/enzyme = 10)
+	category = list("initial","Food")
+
+/datum/design/flour_sack
+	name = "Flour Sack"
+	id = "flour_sack"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 150)
+	build_path = /obj/item/reagent_containers/food/condiment/flour
 	category = list("initial","Food")
 
 /datum/design/monkey_cube

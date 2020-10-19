@@ -9,21 +9,39 @@
 #/code/world.dm @GithubNameHere
 #/maps/ @GithubNameHere
 
-#Partheo
-#/yogstation/icons/ @Partheo
+#Teams
 
-#ThatLing
+/.github/ @yogstation13/head-coders
+/SQL/ @yogstation13/head-coders
+/_maps/ @yogstation13/map
+/config/ @yogstation13/head-coders
+/goon/ @yogstation13/art
+/icons/ @yogstation13/art
+/sound/ @yogstation13/art
+/yogstation/SQL/ @yogstation13/head-coders
+/yogstation/icons/ @yogstation13/art
+/yogstation/sound/ @yogstation13/art
 
-/code/__DEFINES/tick.dm @ThatLing
-/code/controllers/admin.dm @ThatLing
-/code/controllers/failsafe.dm @ThatLing
-/code/controllers/subsystem.dm @ThatLing
-/code/controllers/subsystem/ @ThatLing
-/code/modules/keybindings/ @ThatLing
-/yogstation/code/controllers/ @ThatLing
-/yogstation/code/modules/keybindings/ @ThatLing
+#AsV9
 
-#Multiple Owners
+/code/__DEFINES/MC.dm @AsV9
+/code/__DEFINES/tick.dm @AsV9
+/code/controllers/master.dm @AsV9
+/SQL/database_changelog.txt @AsV9
+/code/controllers/admin.dm @AsV9
+/code/controllers/failsafe.dm @AsV9
+/code/controllers/subsystem.dm @AsV9
+/code/controllers/subsystem/timer.dm @AsV9
 
-/code/__DEFINES/MC.dm @AsV9 @ThatLing
-/code/controllers/master.dm @AsV9 @ThatLing
+#monster860
+
+/code/modules/atmospherics/ @monster860
+/yogstation/code/modules/atmospherics/ @monster860
+
+#Art stuff
+
+/code/controllers/subsystem/ticker.dm @yogstation13/art
+/yogstation/code/controllers/subsystem/ticker.dm @yogstation13/art
+/code/modules/holidays/holidays.dm @yogstation13/art
+/yogstation/code/modules/holidays/holidays.dm @yogstation13/art
+

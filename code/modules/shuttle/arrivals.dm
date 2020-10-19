@@ -10,7 +10,7 @@
 
 	callTime = INFINITY
 	ignitionTime = 50
-	
+
 	movement_force = list("KNOCKDOWN" = 3, "THROW" = 0)
 
 	var/sound_played
@@ -20,6 +20,7 @@
 	var/obj/machinery/requests_console/console
 	var/force_depart = FALSE
 	var/perma_docked = FALSE	//highlander with RESPAWN??? OH GOD!!!
+	var/obj/docking_port/stationary/target_dock  // for badminry
 
 /obj/docking_port/mobile/arrivals/Initialize(mapload)
 	. = ..()
@@ -142,7 +143,7 @@
 		if(!force_depart)
 			var/cancel_reason
 			if(PersonCheck())
-				cancel_reason = "lifeform dectected on board"
+				cancel_reason = "lifeform detected on board" // yogs - typo fix
 			else if(NukeDiskCheck())
 				cancel_reason = "critical station device detected on board"
 			if(cancel_reason)
@@ -177,7 +178,10 @@
 	if(mode == SHUTTLE_IDLE)
 		if(console)
 			console.say(pickingup ? "Departing immediately for new employee pickup." : "Shuttle departing.")
-		request(SSshuttle.getDock("arrivals_stationary"))		//we will intentionally never return SHUTTLE_ALREADY_DOCKED
+		var/obj/docking_port/stationary/target = target_dock
+		if(QDELETED(target))
+			target = SSshuttle.getDock("arrivals_stationary")
+		request(target)		//we will intentionally never return SHUTTLE_ALREADY_DOCKED
 
 /obj/docking_port/mobile/arrivals/proc/RequireUndocked(mob/user)
 	if(mode == SHUTTLE_CALL || damaged)

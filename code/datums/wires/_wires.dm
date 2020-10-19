@@ -23,33 +23,46 @@
 	return WIRE_INTERACTION_BLOCK
 
 /datum/wires
-	var/atom/holder = null // The holder (atom that contains these wires).
-	var/holder_type = null // The holder's typepath (used to make wire colors common to all holders).
-	var/proper_name = "Unknown" // The display name for the wire set shown in station blueprints. Not used if randomize is true or it's an item NT wouldn't know about (Explosives/Nuke)
+	/// The holder (atom that contains these wires).
+	var/atom/holder = null
+	/// The holder's typepath (used for sanity checks to make sure the holder is the appropriate type for these wire sets).
+	var/holder_type = null
+	/// Key that enables wire assignments to be common across different holders. If null, will use the holder_type as a key.
+	var/dictionary_key = null
+	/// The display name for the wire set shown in station blueprints. Not shown in blueprints if randomize is TRUE or it's an item NT wouldn't know about (Explosives/Nuke). Also used in the hacking interface.
+	var/proper_name = "Unknown"
 
-	var/list/wires = list() // List of wires.
+	/// List of all wires.
+	var/list/wires = list()
+	/// List of cut wires.
 	var/list/cut_wires = list() // List of wires that have been cut.
-	var/list/colors = list() // Dictionary of colors to wire.
-	var/list/assemblies = list() // List of attached assemblies.
-	var/randomize = 0 // If every instance of these wires should be random.
-					  // Prevents wires from showing up in station blueprints
+	/// Dictionary of colours to wire.
+	var/list/colors = list()
+	/// List of attached assemblies.
+	var/list/assemblies = list()
+
+	/// If every instance of these wires should be random. Prevents wires from showing up in station blueprints.
+	var/randomize = FALSE
 
 /datum/wires/New(atom/holder)
 	..()
 	if(!istype(holder, holder_type))
 		CRASH("Wire holder is not of the expected type!")
-		return
 
 	src.holder = holder
+
+	// If there is a dictionary key set, we'll want to use that. Otherwise, use the holder type.
+	var/key = dictionary_key ? dictionary_key : holder_type
+
 	if(randomize)
 		randomize()
 	else
-		if(!GLOB.wire_color_directory[holder_type])
+		if(!GLOB.wire_color_directory[key])
 			randomize()
-			GLOB.wire_color_directory[holder_type] = colors
-			GLOB.wire_name_directory[holder_type] = proper_name
+			GLOB.wire_color_directory[key] = colors
+			GLOB.wire_name_directory[key] = proper_name
 		else
-			colors = GLOB.wire_color_directory[holder_type]
+			colors = GLOB.wire_color_directory[key]
 
 /datum/wires/Destroy()
 	holder = null
@@ -98,6 +111,12 @@
 /datum/wires/proc/get_wire(color)
 	return colors[color]
 
+/datum/wires/proc/get_color_of_wire(wire_type)
+	for(var/color in colors)
+		var/other_type = colors[color]
+		if(wire_type == other_type)
+			return color
+
 /datum/wires/proc/get_attached(color)
 	if(assemblies[color])
 		return assemblies[color]
@@ -118,7 +137,7 @@
 		return TRUE
 
 /datum/wires/proc/is_dud(wire)
-	return dd_hasprefix(wire, WIRE_DUD_PREFIX)
+	return findtext(wire, WIRE_DUD_PREFIX, 1, length(WIRE_DUD_PREFIX) + 1)
 
 /datum/wires/proc/is_dud_color(color)
 	return is_dud(get_wire(color))
@@ -216,7 +235,7 @@
 							datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "wires", "[holder.name] wires", 350, 150 + wires.len * 30, master_ui, state)
+		ui = new(user, src, ui_key, "Wires", "[holder.name] Wires", 350, 150 + wires.len * 30, master_ui, state)
 		ui.open()
 
 /datum/wires/ui_data(mob/user)
@@ -245,6 +264,7 @@
 		)))
 	data["wires"] = payload
 	data["status"] = get_status()
+	data["proper_name"] = (proper_name != "Unknown") ? proper_name : null
 	return data
 
 /datum/wires/ui_act(action, params)

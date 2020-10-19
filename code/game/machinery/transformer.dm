@@ -9,7 +9,7 @@
 	density = FALSE
 	var/transform_dead = 0
 	var/transform_standing = 0
-	var/cooldown_duration = 600 // 1 minute
+	var/cooldown_duration = 30 SECONDS
 	var/cooldown = 0
 	var/cooldown_timer
 	var/robot_cell_charge = 5000
@@ -28,15 +28,11 @@
 /obj/machinery/transformer/examine(mob/user)
 	. = ..()
 	if(cooldown && (issilicon(user) || isobserver(user)))
-		to_chat(user, "It will be ready in [DisplayTimeText(cooldown_timer - world.time)].")
+		. += "It will be ready in [DisplayTimeText(cooldown_timer - world.time)]."
 
 /obj/machinery/transformer/Destroy()
 	QDEL_NULL(countdown)
 	. = ..()
-
-/obj/machinery/transformer/power_change()
-	..()
-	update_icon()
 
 /obj/machinery/transformer/update_icon()
 	..()
@@ -54,18 +50,18 @@
 		// Only humans can enter from the west side, while lying down.
 		var/move_dir = get_dir(loc, AM.loc)
 		var/mob/living/carbon/human/H = AM
-		if((transform_standing || H.lying) && move_dir == EAST)// || move_dir == WEST)
+		if((transform_standing || !(H.mobility_flags & MOBILITY_STAND)) && move_dir == EAST)// || move_dir == WEST)
 			AM.forceMove(drop_location())
 			do_transform(AM)
 
-/obj/machinery/transformer/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/transformer/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	// Allows items to go through,
 	// to stop them from blocking the conveyor belt.
 	if(!ishuman(mover))
-		var/dir = get_dir(src, mover)
-		if(dir == EAST)
-			return ..()
-	return 0
+		if(get_dir(src, mover) == EAST)
+			return
+	return FALSE
 
 /obj/machinery/transformer/process()
 	if(cooldown && (cooldown_timer <= world.time))

@@ -13,12 +13,13 @@
 	var/outfit_type = /datum/outfit/wizard
 	var/wiz_age = WIZARD_AGE_MIN /* Wizards by nature cannot be too young. */
 	can_hijack = HIJACK_HIJACKER
+	show_to_ghosts = TRUE
 
 /datum/antagonist/wizard/on_gain()
 	register()
+	equip_wizard()
 	if(give_objectives)
 		create_objectives()
-	equip_wizard()
 	if(move_to_lair)
 		send_to_lair()
 	. = ..()
@@ -67,7 +68,7 @@
 			kill_objective.find_target()
 			objectives += kill_objective
 
-			if (!(locate(/datum/objective/escape) in owner.objectives))
+			if (!(locate(/datum/objective/escape) in objectives))
 				var/datum/objective/escape/escape_objective = new
 				escape_objective.owner = owner
 				objectives += escape_objective
@@ -78,7 +79,7 @@
 			steal_objective.find_target()
 			objectives += steal_objective
 
-			if (!(locate(/datum/objective/escape) in owner.objectives))
+			if (!(locate(/datum/objective/escape) in objectives))
 				var/datum/objective/escape/escape_objective = new
 				escape_objective.owner = owner
 				objectives += escape_objective
@@ -94,19 +95,16 @@
 			steal_objective.find_target()
 			objectives += steal_objective
 
-			if (!(locate(/datum/objective/survive) in owner.objectives))
+			if (!(locate(/datum/objective/survive) in objectives))
 				var/datum/objective/survive/survive_objective = new
 				survive_objective.owner = owner
 				objectives += survive_objective
 
 		else
-			if (!(locate(/datum/objective/hijack) in owner.objectives))
+			if (!(locate(/datum/objective/hijack) in objectives))
 				var/datum/objective/hijack/hijack_objective = new
 				hijack_objective.owner = owner
 				objectives += hijack_objective
-
-	for(var/datum/objective/O in objectives)
-		owner.objectives += O
 
 /datum/antagonist/wizard/on_removal()
 	unregister()
@@ -146,7 +144,7 @@
 	var/wizard_name_second = pick(GLOB.wizard_second)
 	var/randomname = "[wizard_name_first] [wizard_name_second]"
 	var/mob/living/wiz_mob = owner.current
-	var/newname = copytext(sanitize(input(wiz_mob, "You are the [name]. Would you like to change your name to something else?", "Name change", randomname) as null|text),1,MAX_NAME_LEN)
+	var/newname = sanitize_name(reject_bad_text(stripped_input(wiz_mob, "You are the [name]. Would you like to change your name to something else?", "Name change", randomname, MAX_NAME_LEN)))
 
 	if (!newname)
 		newname = randomname
@@ -220,7 +218,6 @@
 	new_objective.owner = owner
 	new_objective.target = master
 	new_objective.explanation_text = "Protect [master.current.real_name], the wizard."
-	owner.objectives += new_objective
 	objectives += new_objective
 
 //Random event wizard
@@ -288,7 +285,6 @@
 /datum/antagonist/wizard/academy/create_objectives()
 	var/datum/objective/new_objective = new("Protect Wizard Academy from the intruders")
 	new_objective.owner = owner
-	owner.objectives += new_objective
 	objectives += new_objective
 
 //Solo wizard report
@@ -309,9 +305,10 @@
 
 	if(wizardwin)
 		parts += "<span class='greentext'>The wizard was successful!</span>"
+		SSachievements.unlock_achievement(/datum/achievement/greentext/wizwin, owner.current.client) //wizard wins, give achievement
 	else
 		parts += "<span class='redtext'>The wizard has failed!</span>"
-
+		SSachievements.unlock_achievement(/datum/achievement/redtext/winlost, owner.current.client) //wizard loses, still give achievement lol
 	if(owner.spell_list.len>0)
 		parts += "<B>[owner.name] used the following spells: </B>"
 		var/list/spell_names = list()

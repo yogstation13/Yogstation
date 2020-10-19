@@ -8,8 +8,44 @@
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+/datum/design/c38_trac
+	name = "Speed Loader (.38 TRAC)"
+	desc = "Designed to quickly reload revolvers. TRAC bullets embed a tracking implant within the target's body."
+	id = "c38_trac"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 20000, MAT_SILVER = 5000, MAT_GOLD = 1000)
+	build_path = /obj/item/ammo_box/c38/trac
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/c38_hotshot
+	name = "Speed Loader (.38 Hot Shot)"
+	desc = "Designed to quickly reload revolvers. Hot Shot bullets contain an incendiary payload."
+	id = "c38_hotshot"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 20000, MAT_PLASMA = 5000)
+	build_path = /obj/item/ammo_box/c38/hotshot
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/c38_iceblox
+	name = "Speed Loader (.38 Iceblox)"
+	desc = "Designed to quickly reload revolvers. Iceblox bullets contain a cryogenic payload."
+	id = "c38_iceblox"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 20000, MAT_PLASMA = 5000)
+	build_path = /obj/item/ammo_box/c38/iceblox
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/rubbershot/sec
 	id = "sec_rshot"
+	build_type = PROTOLATHE
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/beanbag_slug/sec
+	id = "sec_beanbag_slug"
 	build_type = PROTOLATHE
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
@@ -38,6 +74,16 @@
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+/datum/design/breaching_slug/sec
+	name = "Breaching Slug"
+	desc = "A 12 gauge anti-material slug. Great for breaching airlocks and windows with minimal shots."
+	id = "sec_Brslug"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 4000)
+	build_path = /obj/item/ammo_casing/shotgun/breacher
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/pin_testing
 	name = "Test-Range Firing Pin"
 	desc = "This safety firing pin allows firearms to be operated within proximity to a firing range."
@@ -57,6 +103,56 @@
 	build_path = /obj/item/firing_pin/implant/mindshield
 	category = list("Firing Pins")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/stunmine/sec //mines ported from BeeStation
+	name = "Stun Mine"
+	desc = "A basic non-lethal stunning mine. Stuns anyone who walks over it."
+	id = "stunmine"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 4000, MAT_GLASS = 1000)
+	build_path = /obj/item/deployablemine/stun
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/adv_stunmine/sec
+	name = "Smart Stun Mine"
+	desc = "An advanced non-lethal stunning mine. Uses advanced detection software to only trigger when activated by someone without a mindshield implant."
+	id = "stunmine_adv"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 8000, MAT_GLASS = 3000, MAT_SILVER = 200)
+	build_path = /obj/item/deployablemine/smartstun
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/lm6_stunmine/sec
+	name = "Rapid Deployment Smartmine"
+	desc = "An advanced non-lethal stunning mine. Uses advanced detection software to only trigger when activated by someone without a mindshield implant. Can be rapidly placed and disarmed."
+	id = "stunmine_rapid"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 10000, MAT_GLASS = 4000, MAT_SILVER = 500, MAT_URANIUM = 200)
+	build_path = /obj/item/deployablemine/rapid
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/lm12_stunmine/sec
+	name = "Sledgehammer Smartmine"
+	desc = "An advanced non-lethal stunning mine. Uses advanced detection software to only trigger when activated by someone without a mindshield implant. Very powerful and hard to disarm."
+	id = "stunmine_heavy"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 10000, MAT_GLASS = 4000, MAT_SILVER = 500, MAT_URANIUM = 200)
+	build_path = /obj/item/deployablemine/heavy
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/honkmine
+	name = "Honkblaster 1000"
+	desc = "An advanced pressure activated pranking mine, honk!"
+	id = "clown_mine"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 4000, MAT_GLASS = 1000, MAT_BANANIUM = 500)
+	build_path = /obj/item/deployablemine/honk
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/stunrevolver
 	name = "Tesla Revolver"
@@ -104,7 +200,7 @@
 	id = "decloner"
 	build_type = PROTOLATHE
 	materials = list(MAT_GOLD = 5000,MAT_URANIUM = 10000)
-	reagents_list = list("mutagen" = 40)
+	reagents_list = list(/datum/reagent/toxin/mutagen = 40)
 	build_path = /obj/item/gun/energy/decloner
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
@@ -121,7 +217,7 @@
 
 /datum/design/temp_gun
 	name = "Temperature Gun"
-	desc = "A gun that shoots temperature bullet energythings to change temperature."//Change it if you want
+	desc = "A gun that shoots temperature energy beams to change temperature."
 	id = "temp_gun"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 5000, MAT_GLASS = 500, MAT_SILVER = 3000)
@@ -135,14 +231,14 @@
 	id = "flora_gun"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 2000, MAT_GLASS = 500)
-	reagents_list = list("radium" = 20)
+	reagents_list = list(/datum/reagent/uranium/radium = 20)
 	build_path = /obj/item/gun/energy/floragun
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/large_grenade
 	name = "Large Grenade"
-	desc = "A grenade that affects a larger area and use larger containers."
+	desc = "A grenade that affects a larger area and uses larger containers."
 	id = "large_Grenade"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 3000)
@@ -182,7 +278,7 @@
 
 /datum/design/xray
 	name = "X-ray Laser Gun"
-	desc = "Not quite as menacing as it sounds"
+	desc = "Not quite as menacing as it sounds."
 	id = "xray_laser"
 	build_type = PROTOLATHE
 	materials = list(MAT_GOLD = 5000, MAT_URANIUM = 4000, MAT_METAL = 5000, MAT_TITANIUM = 2000, MAT_BLUESPACE = 2000)
@@ -192,7 +288,7 @@
 
 /datum/design/ioncarbine
 	name = "Ion Carbine"
-	desc = "How to dismantle a cyborg : The gun."
+	desc = "How to dismantle a cyborg: The gun."
 	id = "ioncarbine"
 	build_type = PROTOLATHE
 	materials = list(MAT_SILVER = 6000, MAT_METAL = 8000, MAT_URANIUM = 2000)
@@ -214,7 +310,7 @@
 
 /datum/design/mag_oldsmg
 	name = "WT-550 Auto Gun Magazine (4.6x30mm)"
-	desc = "A 20 round magazine for the out of date security WT-550 Auto Rifle"
+	desc = "A 20 round magazine for the out of date security WT-550 Auto Rifle."
 	id = "mag_oldsmg"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 4000)
@@ -224,7 +320,7 @@
 
 /datum/design/mag_oldsmg/ap_mag
 	name = "WT-550 Auto Gun Armour Piercing Magazine (4.6x30mm AP)"
-	desc = "A 20 round armour piercing magazine for the out of date security WT-550 Auto Rifle"
+	desc = "A 20 round armour piercing magazine for the out of date security WT-550 Auto Rifle."
 	id = "mag_oldsmg_ap"
 	materials = list(MAT_METAL = 6000, MAT_SILVER = 600)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtap
@@ -232,10 +328,18 @@
 
 /datum/design/mag_oldsmg/ic_mag
 	name = "WT-550 Auto Gun Incendiary Magazine (4.6x30mm IC)"
-	desc = "A 20 round armour piercing magazine for the out of date security WT-550 Auto Rifle"
+	desc = "A 20 round armour piercing magazine for the out of date security WT-550 Auto Rifle."
 	id = "mag_oldsmg_ic"
 	materials = list(MAT_METAL = 6000, MAT_SILVER = 600, MAT_GLASS = 1000)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtic
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/mag_oldsmg/rubber_mag
+	name = "WT-550 Auto Gun Rubber Bullet Magazine (4.6x30mm Rubber)"
+	desc = "A 20 round rubber bullet magazine for the out of date security WT-550 Auto Rifle."
+	id = "mag_oldsmg_rubber"
+	materials = list(MAT_METAL = 4000)
+	build_path = /obj/item/ammo_box/magazine/wt550m9/wtr
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/stunshell
@@ -259,8 +363,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/suppressor
-	name = "Universal Suppressor"
-	desc = "A reverse-engineered universal suppressor that fits on most small arms with threaded barrels."
+	name = "Suppressor"
+	desc = "A reverse-engineered suppressor that fits on most small arms with threaded barrels."
 	id = "suppressor"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 2000, MAT_SILVER = 500)
