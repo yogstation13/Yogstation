@@ -1,0 +1,19 @@
+"a" = (/obj/structure/chair/office/dark{dir = 1},/turf/open/floor/plating,/area/template_noop)
+"c" = (/obj/effect/decal/cleanable/dirt/dust,/turf/open/floor/plating,/area/template_noop)
+"d" = (/obj/machinery/conveyor_switch{id = "maintcheck"},/turf/open/floor/plating,/area/template_noop)
+"j" = (/turf/open/floor/plating,/area/template_noop)
+"m" = (/obj/structure/window/reinforced/spawner,/turf/open/floor/plating,/area/template_noop)
+"v" = (/obj/effect/spawner/structure/window/reinforced,/turf/open/floor/plating,/area/template_noop)
+"z" = (/obj/machinery/door/airlock/security/glass,/turf/open/floor/plating,/area/template_noop)
+"A" = (/obj/machinery/conveyor{dir = 4; id = "maintcheck"},/obj/structure/plasticflaps,/turf/open/floor/plating,/area/template_noop)
+"M" = (/obj/structure/table/reinforced,/obj/structure/windoor_assembly,/turf/open/floor/plating,/area/template_noop)
+"V" = (/obj/machinery/scanner_gate{scangate_mode = "Wanted"},/turf/open/floor/plating,/area/template_noop)
+"W" = (/obj/structure/window/reinforced/spawner{dir = 1},/turf/open/floor/plating,/area/template_noop)
+
+(1,1,1) = {"
+cmm
+cAW
+jVj
+Mvz
+adj
+"}
