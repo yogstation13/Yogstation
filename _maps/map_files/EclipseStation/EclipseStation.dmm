@@ -72461,6 +72461,12 @@
 	dir = 4;
 	light_color = "#e8eaff"
 	},
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Quartermaster's Desk";
+	departmentType = 2;
+	pixel_x = 30
+	},
 /turf/open/floor/carpet/orange,
 /area/quartermaster/qm)
 "cQp" = (
@@ -79048,10 +79054,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
 	},
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
 /obj/structure/table,
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -79163,6 +79165,10 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/brown,
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "deS" = (
