@@ -96,9 +96,6 @@
 "aq" = (
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/offline)
-"ar" = (
-/turf/open/floor/holofloor/plating/burnmix,
-/area/holodeck/rec_center/burn)
 "as" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -181,10 +178,6 @@
 /obj/effect/holodeck_effect/mobspawner,
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/wildlife)
-"aC" = (
-/obj/effect/holodeck_effect/sparks,
-/turf/open/floor/holofloor/plating/burnmix,
-/area/holodeck/rec_center/burn)
 "aD" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -6911,9 +6904,6 @@
 	smooth = 1
 	},
 /area/centcom/holding)
-"pz" = (
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/burn)
 "pB" = (
 /obj/machinery/firealarm,
 /turf/closed/indestructible/riveted,
@@ -23071,6 +23061,9 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/centcom/testchamber)
+"ZP" = (
+/turf/open/lava/smooth,
+/area/holodeck/rec_center/burn)
 "ZQ" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -85601,16 +85594,16 @@ aa
 "}
 (244,1,1) = {"
 ac
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 bx
 bN
@@ -85858,16 +85851,16 @@ aa
 "}
 (245,1,1) = {"
 ac
-pz
-aC
-pz
-ar
-pz
-pz
-ar
-pz
-aC
-pz
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 by
 bN
@@ -86115,16 +86108,16 @@ aa
 "}
 (246,1,1) = {"
 ac
-pz
-ar
-pz
-aC
-pz
-pz
-aC
-pz
-ar
-pz
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 by
 bN
@@ -86372,16 +86365,16 @@ aa
 "}
 (247,1,1) = {"
 ac
-pz
-aC
-pz
-ar
-pz
-pz
-ar
-pz
-aC
-pz
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 by
 bN
@@ -86629,16 +86622,16 @@ aa
 "}
 (248,1,1) = {"
 ac
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 bz
 bN
