@@ -6904,9 +6904,6 @@
 	smooth = 1
 	},
 /area/centcom/holding)
-"pz" = (
-/turf/open/lava,
-/area/holodeck/rec_center/burn)
 "pB" = (
 /obj/machinery/firealarm,
 /turf/closed/indestructible/riveted,
@@ -23064,6 +23061,9 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/centcom/testchamber)
+"ZP" = (
+/turf/open/lava/smooth,
+/area/holodeck/rec_center/burn)
 "ZQ" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -85594,16 +85594,16 @@ aa
 "}
 (244,1,1) = {"
 ac
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 bx
 bN
@@ -85851,16 +85851,16 @@ aa
 "}
 (245,1,1) = {"
 ac
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 by
 bN
@@ -86108,16 +86108,16 @@ aa
 "}
 (246,1,1) = {"
 ac
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 by
 bN
@@ -86365,16 +86365,16 @@ aa
 "}
 (247,1,1) = {"
 ac
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 by
 bN
@@ -86622,16 +86622,16 @@ aa
 "}
 (248,1,1) = {"
 ac
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
-pz
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 bz
 bN
