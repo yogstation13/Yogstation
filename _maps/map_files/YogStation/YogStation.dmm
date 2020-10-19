@@ -56772,6 +56772,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
+"sQI" = (
+/turf/closed/wall,
+/area/security/execution/transfer)
 "sQT" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 5;
@@ -88840,7 +88843,7 @@ dxV
 uNu
 aat
 aUg
-afA
+sQI
 qQV
 qQV
 qQV
@@ -89097,7 +89100,7 @@ aat
 aat
 aat
 olh
-afA
+sQI
 qQV
 qQV
 qQV
@@ -89354,7 +89357,7 @@ aat
 aat
 aat
 sIN
-afA
+sQI
 qQV
 qQV
 qQV
@@ -89611,16 +89614,16 @@ aat
 aat
 hEn
 bab
-afA
-afA
-afA
-afA
-afA
-afA
-afA
+sQI
+sQI
+sQI
+sQI
+sQI
+sQI
+sQI
 aeT
-afA
-afA
+sQI
+sQI
 afA
 aaf
 aaa
@@ -89877,7 +89880,7 @@ acd
 aef
 aeU
 afz
-aai
+acd
 aai
 aai
 aai
