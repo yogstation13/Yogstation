@@ -1,0 +1,15 @@
+"a" = (/turf/open/floor/plating/ice/colder,/area/template_noop)
+"i" = (/obj/machinery/atmospherics/components/unary/outlet_injector/on{dir = 8},/obj/item/clothing/suit/snowman,/obj/item/clothing/head/snowman{pixel_x = -1; pixel_y = 12},/turf/open/floor/plating/snowed/smoothed,/area/template_noop)
+"q" = (/obj/machinery/atmospherics/components/unary/vent_pump/on{dir = 4; external_pressure_bound = 140; name = "killroom vent"; pressure_checks = 0},/obj/structure/statue/snow/snowman,/turf/open/floor/plating/snowed/smoothed,/area/template_noop)
+"s" = (/turf/open/floor/plating/snowed/colder,/area/template_noop)
+"t" = (/turf/open/floor/plating/snowed/smoothed,/area/template_noop)
+"B" = (/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,/turf/open/floor/plating/snowed/smoothed,/area/template_noop)
+"Q" = (/obj/machinery/atmospherics/pipe/manifold/general/visible,/turf/open/floor/plating/snowed/smoothed,/area/template_noop)
+"W" = (/turf/open/floor/plating/asteroid/snow/atmosphere,/area/template_noop)
+
+(1,1,1) = {"
+sstaa
+stBtt
+tqQiW
+attWW
+"}
