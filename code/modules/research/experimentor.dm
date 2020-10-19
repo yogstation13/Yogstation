@@ -534,7 +534,7 @@
 		visible_message("<span class='warning'>[src] melts [exp_on], ian-izing the air around it!</span>")
 		throwSmoke(loc)
 		new /mob/living/simple_animal/pet/dog/corgi(loc)
-		investigate_log("Experimentor has spawned a fake Ian.", INVESTIGATE_EXPERIMENTOR)
+		investigate_log("Experimentor has spawned a corgi.", INVESTIGATE_EXPERIMENTOR)
 		ejectItem(TRUE)
 	if(prob(EFFECT_PROB_VERYLOW-badThingCoeff) && prob(14) && loaded_item)
 		autoexperiment = 0
