@@ -1,69 +1,499 @@
-"aj" = (/obj/structure/bed,/obj/item/bedsheet/medical/virology,/obj/effect/decal/cleanable/cobweb,/turf/open/floor/plating,/area/template_noop)
-"bc" = (/obj/structure/sink{dir = 8; pixel_x = -12; pixel_y = 2},/turf/open/floor/plating,/area/template_noop)
-"bL" = (/obj/structure/curtain,/obj/structure/window/fulltile,/turf/open/floor/plating,/area/template_noop)
-"dd" = (/turf/open/floor/plasteel/white,/area/template_noop)
-"dr" = (/obj/structure/bed,/obj/item/bedsheet/medical/virology,/obj/effect/decal/cleanable/dirt/dust,/obj/effect/mob_spawn/human/corpse/assistant/brainrot_infection,/turf/open/floor/plating,/area/template_noop)
-"dU" = (/obj/effect/decal/cleanable/blood/tracks{dir = 4},/turf/open/floor/plating,/area/template_noop)
-"eq" = (/obj/effect/spawner/structure/window,/turf/open/floor/plating,/area/template_noop)
-"gf" = (/obj/effect/spawner/lootdrop/crate_spawner,/obj/effect/spawner/lootdrop/maintenance{lootcount = 2; name = "2maintenance loot spawner"},/turf/open/floor/plating,/area/template_noop)
-"gl" = (/obj/effect/decal/cleanable/dirt/dust,/turf/open/floor/plasteel/white,/area/template_noop)
-"jv" = (/obj/structure/barricade/wooden/crude,/obj/machinery/door/airlock/glass,/obj/machinery/door/firedoor/closed,/turf/open/floor/plating,/area/template_noop)
-"mk" = (/obj/effect/decal/cleanable/blood/gibs/old,/turf/open/floor/plating{icon_state = "platingdmg3"},/area/template_noop)
-"mm" = (/obj/structure/sign/warning/fire,/turf/closed/wall,/area/template_noop)
-"mD" = (/obj/machinery/button/door{id = "MaintIncin"; name = "Shutters Control"; pixel_x = -4; pixel_y = -26},/obj/effect/decal/cleanable/blood/drip,/obj/machinery/light/broken,/turf/open/floor/plating,/area/template_noop)
-"nc" = (/obj/structure/closet/crate/bin,/obj/item/organ/brain,/turf/open/floor/plating,/area/template_noop)
-"pS" = (/obj/effect/turf_decal/tile/green{dir = 4},/obj/effect/turf_decal/tile/green,/turf/open/floor/plasteel/white,/area/template_noop)
-"qP" = (/obj/effect/decal/cleanable/blood/old,/obj/effect/decal/remains/human,/turf/open/floor/plating,/area/template_noop)
-"ru" = (/turf/closed/wall,/area/template_noop)
-"rC" = (/obj/structure/closet/l3closet/virology,/obj/effect/turf_decal/tile/green,/obj/effect/turf_decal/tile/green{dir = 4},/turf/open/floor/plasteel/white,/area/template_noop)
-"rL" = (/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 1},/turf/open/floor/plating,/area/template_noop)
-"sH" = (/obj/effect/decal/cleanable/blood/drip,/turf/open/floor/plating,/area/template_noop)
-"sX" = (/obj/item/chair,/obj/item/reagent_containers/glass/bottle{desc = "A small bottle. It's labeled "Vaccine prototype-6". You are not sure it worked..."; name = "vaccine prototype-6"},/turf/open/floor/plasteel/white,/area/template_noop)
-"tf" = (/obj/structure/bed,/obj/item/bedsheet/medical/virology,/obj/machinery/light{dir = 1; light_color = "#c1caff"},/obj/effect/mob_spawn/human/corpse/assistant,/turf/open/floor/plating,/area/template_noop)
-"uR" = (/obj/item/clothing/head/helmet/space/plasmaman/viro,/obj/effect/decal/cleanable/dirt/dust,/turf/open/floor/plasteel/white,/area/template_noop)
-"uX" = (/obj/machinery/computer/pandemic,/obj/effect/turf_decal/tile/green{dir = 1},/obj/effect/turf_decal/tile/green{dir = 4},/obj/item/reagent_containers/glass/bottle{desc = "A small bottle. It's labeled "Vaccine prototype-5". You are not sure it worked..."; name = "vaccine prototype-5"},/turf/open/floor/plasteel/white,/area/template_noop)
-"vt" = (/obj/structure/bed,/obj/item/bedsheet/medical/virology,/obj/machinery/light{dir = 8; light_color = "#c1caff"},/turf/open/floor/plating,/area/template_noop)
-"xx" = (/obj/structure/rack,/obj/item/grown/log,/obj/item/grown/log,/obj/item/grown/log,/obj/item/grown/log,/obj/item/grown/log,/obj/item/grown/log,/obj/item/grown/log,/obj/item/grown/log,/obj/item/grown/log,/obj/item/grown/log,/obj/item/flashlight/flare,/obj/item/flashlight/flare,/turf/open/floor/plating,/area/template_noop)
-"ym" = (/obj/effect/decal/cleanable/dirt/dust,/turf/open/floor/plating,/area/template_noop)
-"zg" = (/obj/effect/decal/cleanable/blood,/turf/open/floor/plating,/area/template_noop)
-"zq" = (/obj/effect/decal/cleanable/dirt/dust,/obj/effect/decal/remains/human,/turf/open/floor/plating,/area/template_noop)
-"Aa" = (/obj/structure/table/glass,/obj/item/storage/box/syringes,/obj/item/reagent_containers/glass/bottle{desc = "A small bottle. It's labeled "Vaccine prototype-7". You are not sure it worked..."; name = "vaccine prototype-7"},/turf/open/floor/plating,/area/template_noop)
-"Af" = (/obj/effect/spawner/lootdrop/crate_spawner,/obj/effect/spawner/lootdrop/maintenance{lootcount = 4; name = "4maintenance loot spawner"},/turf/open/floor/plating,/area/template_noop)
-"EK" = (/obj/machinery/smartfridge/chemistry/virology,/obj/effect/turf_decal/tile/green{dir = 4},/obj/effect/turf_decal/tile/green{dir = 1},/turf/open/floor/plasteel/white,/area/template_noop)
-"Fk" = (/obj/effect/mob_spawn/human/corpse/charredskeleton,/obj/effect/mob_spawn/human/corpse/charredskeleton,/turf/open/floor/engine,/area/template_noop)
-"Fm" = (/obj/effect/decal/cleanable/ash/large,/obj/effect/mob_spawn/human/corpse/charredskeleton,/obj/effect/mob_spawn/human/corpse/charredskeleton,/turf/open/floor/plating{icon_state = "panelscorched"},/area/template_noop)
-"Fu" = (/obj/structure/door_assembly/door_assembly_viro,/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/plating,/area/template_noop)
-"GY" = (/obj/structure/bed,/obj/item/bedsheet/medical/virology,/turf/open/floor/plating,/area/template_noop)
-"He" = (/turf/open/floor/plating,/area/template_noop)
-"HL" = (/obj/effect/decal/cleanable/ash,/turf/open/floor/engine,/area/template_noop)
-"Jd" = (/obj/effect/spawner/lootdrop/crate_spawner,/obj/effect/spawner/lootdrop/crate_spawner,/turf/open/floor/plating,/area/template_noop)
-"Jp" = (/obj/structure/table/optable,/obj/item/surgical_drapes,/obj/item/clothing/mask/breath/medical,/turf/open/floor/plating,/area/template_noop)
-"KY" = (/obj/structure/closet{desc = "It's a storage unit for level 3 biohazard gear."; icon_state = "bio_viro"; name = "level 3 biohazard gear closet"},/obj/effect/turf_decal/tile/green,/obj/effect/turf_decal/tile/green{dir = 4},/turf/open/floor/plasteel/white,/area/template_noop)
-"Le" = (/obj/structure/bed,/obj/item/bedsheet/medical/virology,/obj/effect/decal/cleanable/blood/splatter,/obj/effect/mob_spawn/human/corpse/cargo_tech,/turf/open/floor/plating,/area/template_noop)
-"LY" = (/obj/item/reagent_containers/glass/bottle{desc = "A small bottle. It's labeled "Vaccine prototype-6". You are not sure it worked..."; name = "vaccine prototype-6"},/turf/open/floor/plating,/area/template_noop)
-"Mh" = (/obj/machinery/door/airlock/virology/glass{name = "Isolation A"; req_access_txt = "39"},/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/plating,/area/template_noop)
-"MO" = (/obj/effect/spawner/structure/window/reinforced,/obj/machinery/door/poddoor/shutters/preopen{id = "MaintIncin"},/obj/machinery/door/firedoor,/turf/open/floor/plating,/area/template_noop)
-"PZ" = (/obj/structure/reagent_dispensers/watertank,/turf/open/floor/plating,/area/template_noop)
-"Rz" = (/obj/structure/closet/l3closet/virology,/obj/effect/turf_decal/tile/green,/obj/effect/turf_decal/tile/green{dir = 4},/obj/effect/turf_decal/tile/green{dir = 1},/turf/open/floor/plasteel/white,/area/template_noop)
-"Tq" = (/obj/machinery/iv_drip,/turf/open/floor/plating,/area/template_noop)
-"TB" = (/obj/effect/mob_spawn/human/corpse/charredskeleton,/turf/open/floor/plating{icon_state = "panelscorched"},/area/template_noop)
-"TL" = (/obj/effect/turf_decal/tile/green{dir = 1},/obj/effect/turf_decal/tile/green{dir = 4},/turf/open/floor/plasteel/white,/area/template_noop)
-"Uk" = (/obj/structure/sign/warning/biohazard,/turf/closed/wall,/area/template_noop)
-"Wi" = (/obj/item/reagent_containers/syringe/antiviral,/turf/open/floor/plasteel/white,/area/template_noop)
-"WQ" = (/obj/structure/grille,/turf/open/floor/plating,/area/template_noop)
-"Yc" = (/turf/open/floor/engine,/area/template_noop)
-"YG" = (/obj/structure/door_assembly/door_assembly_viro,/obj/structure/barricade/wooden,/obj/machinery/door/firedoor/border_only{dir = 8},/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/plating,/area/template_noop)
-"ZX" = (/obj/machinery/iv_drip,/obj/item/reagent_containers/blood/random,/turf/open/floor/plating,/area/template_noop)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ah" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/template_noop)
+"aY" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical/virology,
+/turf/open/floor/plating,
+/area/template_noop)
+"dj" = (
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/turf/open/floor/engine,
+/area/template_noop)
+"dL" = (
+/obj/machinery/button/door{
+	id = "MaintIncin";
+	name = "Shutters Control";
+	pixel_x = -4;
+	pixel_y = -26
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/light/broken,
+/turf/open/floor/plating,
+/area/template_noop)
+"hN" = (
+/turf/open/floor/engine,
+/area/template_noop)
+"iY" = (
+/obj/structure/door_assembly/door_assembly_viro,
+/obj/structure/barricade/wooden,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"or" = (
+/obj/effect/decal/cleanable/ash/large,
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"oA" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical/virology,
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#c1caff"
+	},
+/obj/effect/mob_spawn/human/corpse/assistant,
+/turf/open/floor/plating,
+/area/template_noop)
+"qF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating,
+/area/template_noop)
+"rb" = (
+/obj/item/clothing/head/helmet/space/plasmaman/viro,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"sg" = (
+/obj/machinery/door/airlock/virology/glass{
+	name = "Isolation A";
+	req_access_txt = "39"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"sl" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical/virology,
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#c1caff"
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"tg" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating,
+/area/template_noop)
+"tq" = (
+/obj/machinery/computer/pandemic,
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/item/reagent_containers/glass/bottle{
+	desc = "A small bottle. It's labeled "Vaccine prototype-5". You are not sure it worked...";
+	name = "vaccine prototype-5"
+	},
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"uK" = (
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"we" = (
+/obj/structure/closet{
+	desc = "It's a storage unit for level 3 biohazard gear.";
+	icon_state = "bio_viro";
+	name = "level 3 biohazard gear closet"
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"wP" = (
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/template_noop)
+"yy" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"yJ" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "MaintIncin"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/plating,
+/area/template_noop)
+"yU" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical/virology,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plating,
+/area/template_noop)
+"zo" = (
+/obj/structure/sign/warning/fire,
+/turf/closed/wall,
+/area/template_noop)
+"BL" = (
+/obj/effect/spawner/lootdrop/crate_spawner,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 4;
+	name = "4maintenance loot spawner"
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"Cc" = (
+/obj/structure/curtain,
+/obj/structure/window/fulltile,
+/turf/open/floor/plating,
+/area/template_noop)
+"Dn" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical/virology,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/corpse/assistant/brainrot_infection,
+/turf/open/floor/plating,
+/area/template_noop)
+"Dx" = (
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"Eo" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plating,
+/area/template_noop)
+"EW" = (
+/obj/item/chair,
+/obj/item/reagent_containers/glass/bottle{
+	desc = "A small bottle. It's labeled "Vaccine prototype-6". You are not sure it worked...";
+	name = "vaccine prototype-6"
+	},
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"Fk" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/syringes,
+/obj/item/reagent_containers/glass/bottle{
+	desc = "A small bottle. It's labeled "Vaccine prototype-7". You are not sure it worked...";
+	name = "vaccine prototype-7"
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"FH" = (
+/obj/machinery/iv_drip,
+/obj/item/reagent_containers/blood/random,
+/turf/open/floor/plating,
+/area/template_noop)
+"HA" = (
+/obj/structure/door_assembly/door_assembly_viro,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"Jv" = (
+/obj/effect/spawner/lootdrop/crate_spawner,
+/obj/effect/spawner/lootdrop/crate_spawner,
+/turf/open/floor/plating,
+/area/template_noop)
+"JK" = (
+/obj/structure/sign/warning/biohazard,
+/turf/closed/wall,
+/area/template_noop)
+"Kf" = (
+/obj/machinery/smartfridge/chemistry/virology,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"Kq" = (
+/obj/structure/closet/l3closet/virology,
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"KD" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"KX" = (
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"Ms" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green,
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"Nq" = (
+/obj/structure/table/optable,
+/obj/item/surgical_drapes,
+/obj/item/clothing/mask/breath/medical,
+/turf/open/floor/plating,
+/area/template_noop)
+"Pn" = (
+/turf/closed/wall,
+/area/template_noop)
+"PE" = (
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/engine,
+/area/template_noop)
+"PO" = (
+/obj/structure/barricade/wooden/crude,
+/obj/machinery/door/airlock/glass,
+/obj/machinery/door/firedoor/closed,
+/turf/open/floor/plating,
+/area/template_noop)
+"Rr" = (
+/obj/item/reagent_containers/glass/bottle{
+	desc = "A small bottle. It's labeled "Vaccine prototype-6". You are not sure it worked...";
+	name = "vaccine prototype-6"
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"RF" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"SF" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plating,
+/area/template_noop)
+"Ti" = (
+/obj/effect/spawner/lootdrop/crate_spawner,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
+	name = "2maintenance loot spawner"
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"Tq" = (
+/obj/structure/closet/l3closet/virology,
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"Ts" = (
+/obj/structure/closet/crate/bin,
+/obj/item/organ/brain,
+/turf/open/floor/plating,
+/area/template_noop)
+"TQ" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/template_noop)
+"Un" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating,
+/area/template_noop)
+"UV" = (
+/obj/machinery/iv_drip,
+/turf/open/floor/plating,
+/area/template_noop)
+"Vz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"Wk" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"Xv" = (
+/obj/item/reagent_containers/syringe/antiviral,
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"XE" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"XG" = (
+/obj/structure/rack,
+/obj/item/grown/log,
+/obj/item/grown/log,
+/obj/item/grown/log,
+/obj/item/grown/log,
+/obj/item/grown/log,
+/obj/item/grown/log,
+/obj/item/grown/log,
+/obj/item/grown/log,
+/obj/item/grown/log,
+/obj/item/grown/log,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
+/turf/open/floor/plating,
+/area/template_noop)
+"ZX" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical/virology,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/mob_spawn/human/corpse/cargo_tech,
+/turf/open/floor/plating,
+/area/template_noop)
 
 (1,1,1) = {"
-LetfdrruHeHeTLuXEKRz
-ZXzgymMhHeddLYsXWirC
-bLbLbLUkbcAfHeAauRKY
-HeHeJdWQHeglddgfHepS
-HeJpHeFuHeHegfglHepS
-HemknceqPZHeHemDddHe
-bLbLbLUkeqrLeqruMOMO
-ajqPHeYGHedUdUjvYcHL
-vtTqzqruHeHexxmmFmFk
-GYTqymruHeHesHruTBTB
+ZX
+FH
+Cc
+Wk
+Wk
+Wk
+Cc
+yU
+sl
+aY
+"}
+(2,1,1) = {"
+oA
+tg
+Cc
+Wk
+Nq
+uK
+Cc
+Un
+UV
+UV
+"}
+(3,1,1) = {"
+Dn
+ah
+Cc
+Jv
+Wk
+Ts
+Cc
+Wk
+qF
+ah
+"}
+(4,1,1) = {"
+Pn
+sg
+JK
+wP
+HA
+TQ
+JK
+iY
+Pn
+Pn
+"}
+(5,1,1) = {"
+Wk
+Wk
+RF
+Wk
+Wk
+Eo
+TQ
+Wk
+Wk
+Wk
+"}
+(6,1,1) = {"
+Wk
+KX
+BL
+Vz
+Wk
+Wk
+KD
+yy
+Wk
+Wk
+"}
+(7,1,1) = {"
+XE
+Rr
+Wk
+KX
+Ti
+Wk
+TQ
+yy
+XG
+SF
+"}
+(8,1,1) = {"
+tq
+EW
+Fk
+Ti
+Vz
+dL
+Pn
+PO
+zo
+Pn
+"}
+(9,1,1) = {"
+Kf
+Xv
+rb
+Wk
+Wk
+KX
+yJ
+hN
+or
+Dx
+"}
+(10,1,1) = {"
+Kq
+Tq
+we
+Ms
+Ms
+Wk
+yJ
+PE
+dj
+Dx
 "}
