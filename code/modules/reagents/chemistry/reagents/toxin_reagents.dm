@@ -485,7 +485,7 @@
 	toxpwr = 0.5
 	taste_description = "bad cooking"
 
-/datum/reagent/toxin/itching_powder
+/datum/reagent/itching_powder
 	name = "Itching Powder"
 	description = "A powder that induces itching upon contact with the skin. Causes the victim to scratch at their itches and has a very low chance to decay into Histamine."
 	silent_toxin = TRUE

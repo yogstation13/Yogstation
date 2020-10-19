@@ -20,11 +20,6 @@
 	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/ammonia = 1, /datum/reagent/oxygen = 1)
 	required_temp = 380
 
-/datum/chemical_reaction/itching_powder
-	name = "Itching Powder"
-	id = /datum/reagent/toxin/itching_powder
-	results = list(/datum/reagent/toxin/itching_powder = 3)
-	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/ammonia = 1, /datum/reagent/medicine/charcoal = 1)
 
 /datum/chemical_reaction/facid
 	name = "Fluorosulfuric acid"
