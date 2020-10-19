@@ -1231,9 +1231,15 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		log_admin("[key_name(usr)] has [newstate ? "activated" : "deactivated"] job exp exempt status on [key_name(C)]")
 
 /mob/living/carbon/proc/adminpie(mob/user)
-	var/obj/item/reagent_containers/food/snacks/pie/cream/p = new (get_turf(pick(oview(3,user))))
-	p.pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSBLOB | PASSCLOSEDTURF | LETPASSTHROW | PASSMACHINES | PASSCOMPUTER
+	var/obj/item/reagent_containers/food/snacks/pie/cream/admin/p = new (get_turf(pick(oview(3,user))))
+	p.item_flags = UNCATCHABLE
 	p.throw_at(user, 10, 0.5, usr)
+	sleep(5)
+	var/mob/living/carbon/human/T = user
+	if(!T.IsParalyzed())
+		var/obj/item/reagent_containers/food/snacks/pie/cream/admin/pie = new (get_turf(pick(oview(1,user))))
+		pie.item_flags = UNCATCHABLE
+		pie.throw_at(user, 10, 0.5, usr)
 
 /client/proc/admincryo(mob/living/carbon/human/target as mob)
 	set category = "Admin"

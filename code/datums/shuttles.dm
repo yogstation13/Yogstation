@@ -278,10 +278,9 @@
 	name = "Snappop(tm)!"
 	description = "Hey kids and grownups! \
 	Are you bored of DULL and TEDIOUS shuttle journeys after you're evacuating for probably BORING reasons. Well then order the Snappop(tm) today! \
-	We've got fun activities for everyone, an all access cockpit, and no boring security brig! Boo! Play dress up with your friends! \
-	Collect all the bedsheets before your neighbour does! Check if the AI is watching you with our patent pending \"Peeping Tom AI Multitool Detector\" or PEEEEEETUR for short. \
-	Have a fun ride!"
-	admin_notes = "Brig is replaced by anchored greentext book surrounded by lavaland chasms, stationside door has been removed to prevent accidental dropping. No brig."
+	We've got fun activities for everyone and an all access cockpit! Play dress up with your friends! Collect all the bedsheets before your neighbour does! \
+	Check if the AI is watching you with our patent pending \"Peeping Tom AI Multitool Detector\" or PEEEEEETUR for short. Have a fun ride!"
+	admin_notes = "Brig contains a single chair surrounded by fake lavaland chasms. Main seating is replaced with beds."
 	credit_cost = 8000
 
 /datum/map_template/shuttle/emergency/cramped
@@ -410,29 +409,25 @@
 	name = "fancy transport ferry"
 	description = "At some point, someone upgraded the ferry to have fancier flooring... and fewer seats."
 
-/datum/map_template/shuttle/whiteship/box
-	suffix = "box"
+/datum/map_template/shuttle/whiteship/hospital
+	suffix = "hospital"
 	name = "Hospital Ship"
 
-/datum/map_template/shuttle/whiteship/meta
-	suffix = "meta"
+/datum/map_template/shuttle/whiteship/salvage
+	suffix = "salvage"
 	name = "Salvage Ship"
 
-/datum/map_template/shuttle/whiteship/pubby
-	suffix = "pubby"
+/datum/map_template/shuttle/whiteship/ufo
+	suffix = "ufo"
 	name = "NT White UFO"
 
-/datum/map_template/shuttle/whiteship/cere
-	suffix = "cere"
+/datum/map_template/shuttle/whiteship/construction
+	suffix = "construction"
 	name = "NT Construction Vessel"
 
-/datum/map_template/shuttle/whiteship/delta
-	suffix = "delta"
+/datum/map_template/shuttle/whiteship/frigate
+	suffix = "frigate"
 	name = "NT Frigate"
-
-/datum/map_template/shuttle/whiteship/pod
-	suffix = "whiteship_pod"
-	name = "Salvage Pod"
 
 /datum/map_template/shuttle/cargo/box
 	suffix = "box"

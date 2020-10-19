@@ -12,7 +12,7 @@
 	var/making_mage = 0
 	var/mages_made = 1
 	var/time_checked = 0
-	var/bullshit_mode = 0 // requested by hornygranny
+	var/bullshit_mode = FALSE // requested by hornygranny
 	var/time_check = 1500
 	var/spawn_delay_min = 500
 	var/spawn_delay_max = 700
@@ -75,15 +75,16 @@
 	spawn(rand(spawn_delay_min, spawn_delay_max))
 		message_admins("SWF is still pissed, sending another wizard - [max_mages - mages_made] left.")
 		for(var/mob/dead/observer/G in GLOB.player_list)
-			if(G.client && !G.client.holder && !G.client.is_afk() && (ROLE_WIZARD in G.client.prefs.be_special))
-				if(!is_banned_from(G.ckey, list(ROLE_WIZARD, ROLE_SYNDICATE)))
-					if(age_check(G.client))
-						candidates += G
+			if(G.client && !G.client.holder && !G.client.is_afk()) // If they're active and available
+				if((!bullshit_mode && (ROLE_RAGINMAGES in G.client.prefs.be_special)) || (bullshit_mode && (ROLE_BULLSHITMAGES in G.client.prefs.be_special))) // If they have preference towards this
+					if(!is_banned_from(G.ckey, list(ROLE_WIZARD, ROLE_SYNDICATE, ROLE_RAGINMAGES, ROLE_BULLSHITMAGES))) // If they're not banned
+						if(age_check(G.client))
+							candidates += G
 		if(!candidates.len)
 			message_admins("No applicable ghosts for the next ragin' mage, asking ghosts instead.")
 			var/time_passed = world.time
 			for(var/mob/dead/observer/G in GLOB.player_list)
-				if(!is_banned_from(G.ckey, list(ROLE_WIZARD, ROLE_SYNDICATE)))
+				if(!is_banned_from(G.ckey, list(ROLE_WIZARD, ROLE_SYNDICATE, ROLE_RAGINMAGES, ROLE_BULLSHITMAGES)))
 					if(age_check(G.client))
 						spawn(0)
 							switch(alert(G, "Do you wish to be considered for the position of Space Wizard Foundation 'diplomat'?","Please answer in 30 seconds!","Yes","No"))
@@ -94,9 +95,10 @@
 								if("No")
 									continue
 
-			sleep(300)
+			sleep(310) // Slightly longer so as to ensure late-senders still get counted in
 		if(!candidates.len)
 			message_admins("This is awkward, sleeping until another mage check...")
+			notify_ghosts("There was an attempt to spawn in another ragin' mage, but none of you qualified!")
 			making_mage = 0
 			mages_made--
 			return
@@ -135,7 +137,7 @@
 	antag_datum = /datum/antagonist/wizard/
 	antag_flag = ROLE_BULLSHITMAGES
 	required_players = 40
-	bullshit_mode = 1
+	bullshit_mode = TRUE
 	time_check = 250
 	spawn_delay_min = 50
 	spawn_delay_max = 150

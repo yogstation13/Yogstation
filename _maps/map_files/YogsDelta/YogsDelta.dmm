@@ -15535,25 +15535,6 @@
 "aAb" = (
 /turf/closed/wall,
 /area/hydroponics/garden/abandoned)
-"aAc" = (
-/obj/machinery/requests_console{
-	department = "Quartermaster's Desk";
-	name = "Quartermaster RC";
-	pixel_x = 32;
-	pixel_y = -32
-	},
-/obj/machinery/light_switch{
-	pixel_x = 23
-	},
-/obj/machinery/computer/bounty{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "aAd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral{
@@ -20422,7 +20403,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
 "aHA" = (
-/obj/structure/piano{
+/obj/structure/musician/piano{
 	icon_state = "piano"
 	},
 /obj/machinery/airalarm{
@@ -121026,7 +121007,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/crew_quarters/theatre/abandoned)
@@ -126936,6 +126917,26 @@
 /obj/machinery/vending/gifts,
 /turf/open/floor/wood,
 /area/clerk)
+"oUR" = (
+/obj/machinery/light_switch{
+	pixel_x = 23
+	},
+/obj/machinery/computer/bounty{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Quartermaster's Desk";
+	departmentType = 2;
+	pixel_x = 32;
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "oYI" = (
 /obj/machinery/igniter/incinerator_toxmix,
 /turf/open/floor/engine/vacuum,
@@ -174450,7 +174451,7 @@ aQV
 aSy
 axU
 doI
-aAc
+oUR
 cbK
 aQV
 aad

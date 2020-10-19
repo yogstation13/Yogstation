@@ -116,6 +116,7 @@
 	resistance_flags = FIRE_PROOF
 	var/medaltype = "medal" //Sprite used for medalbox
 	var/commended = FALSE
+	above_suit = TRUE
 
 //Pinning medals on people
 /obj/item/clothing/accessory/medal/attack(mob/living/carbon/human/M, mob/living/user)
@@ -244,6 +245,7 @@
 	icon_state = "redband"
 	item_color = "redband"
 	attachment_slot = null
+	above_suit = TRUE
 
 /obj/item/clothing/accessory/armband/deputy
 	name = "security deputy armband"
@@ -348,6 +350,7 @@
 	item_color = "talisman"
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
 	attachment_slot = null
+	above_suit = TRUE
 
 /obj/item/clothing/accessory/skullcodpiece
 	name = "skull codpiece"

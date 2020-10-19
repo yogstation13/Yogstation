@@ -213,7 +213,7 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/assassinate/internal/update_explanation_text()
 	..()
 	if(target && !target.current)
-		explanation_text = "Assassinate [target.name], who was obliterated"
+		explanation_text = "Assassinate [target.name], who was obliterated."
 
 /datum/objective/mutiny
 	name = "mutiny"
@@ -863,7 +863,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		var/mob/new_target = input(admin,"Select target:", "Objective target") as null|anything in possible_targets
 		target = new_target.mind
 	else
-		to_chat(admin, "No active AIs with minds")
+		to_chat(admin, "<span class='warning'>No active AIs with minds!</span>")
 	update_explanation_text()
 
 /datum/objective/destroy/internal
@@ -900,7 +900,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 //Picks as many people as it can from a department (Security,Engineer,Medical,Science)
 //and tasks the lings with killing and replacing them
 /datum/objective/changeling_team_objective/impersonate_department
-	explanation_text = "Ensure X department are killed, impersonated, and replaced by Changelings"
+	explanation_text = "Ensure X department are killed, impersonated, and replaced by Changelings."
 	var/command_staff_only = FALSE //if this is true, it picks command staff instead
 	var/list/department_minds = list()
 	var/list/department_real_names = list()
@@ -1050,7 +1050,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 //This subtype always picks as many command staff as it can (HoS,HoP,Cap,CE,CMO,RD)
 //and tasks the lings with killing and replacing them
 /datum/objective/changeling_team_objective/impersonate_department/impersonate_heads
-	explanation_text = "Have X or more heads of staff escape on the shuttle disguised as heads, while the real heads are dead"
+	explanation_text = "Have X or more heads of staff escape on the shuttle disguised as heads, while the real heads are dead."
 	command_staff_only = TRUE
 
 ////////////////////////////////
@@ -1082,7 +1082,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/datum/data/record/record
 
 /**
-  * Search through all the security records, and find ours. 
+  * Search through all the security records, and find ours.
   */
 /datum/objective/minor/secrecords/finalize()
 	for(var/datum/data/record/s in GLOB.data_core.security)
@@ -1174,7 +1174,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	if(!A)
 		return FALSE
 	target = A.target
-	explanation_text = "Escape with a photo of the dead body of [target.name]."	
+	explanation_text = "Escape with a photo of the dead body of [target.name]."
 	return TRUE
 
 /**
@@ -1190,7 +1190,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /**
   * # Mindshielding
-  * 
+  *
   * get mindshielded
   */
 /datum/objective/minor/mindshield
@@ -1219,11 +1219,11 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/list/datum/mind/heads = SSjob.get_living_heads()
 	if(!heads.len || (owner in heads))
 		return FALSE
-	
+
 	target = pick(heads)
 	name = "Photograph [target.name]."
-	explanation_text = "Extract with a photograph [target.name], the [target.assigned_role]."
-	return TRUE 
+	explanation_text = "Extract with a photograph of [target.name], the [target.assigned_role]."
+	return TRUE
 
 /**
   * return true if we escape with a picture of the head of staff

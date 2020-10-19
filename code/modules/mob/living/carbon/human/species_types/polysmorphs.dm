@@ -2,7 +2,6 @@
 	//Human xenopmorph hybrid
 	name = "Polysmorph"
 	id = "polysmorph"
-	sexes = 0
 	exotic_blood = /datum/reagent/polysmorphblood
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
 	liked_food = GROSS | MEAT
@@ -16,14 +15,15 @@
 	damage_overlay_type = "polysmorph"
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'
-	species_traits = list(NOEYESPRITES, AGENDER)
+	species_traits = list(NOEYESPRITES, FGENDER, MUTCOLORS, NOCOLORCHANGE)
 	inherent_traits = list(TRAIT_THERMAL_VISION)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
-	mutant_bodyparts = list("tail_polysmorph", "plasma_vessels", "dome", "dorsal_tubes", "teeth")
-	default_features = list("tail_polysmorph" = "Polys", "plasma_vessels" = "None", "dome" = "None", "dorsal_tubes" = "No", "teeth" = "None")
+	fixed_mut_color = "444466" //don't mess with this if you don't feel like manually adjusting the mutant bodypart sprites
+	mutant_bodyparts = list("tail_polysmorph", "plasma_vessels", "dome", "dorsal_tubes", "teeth", "legs")
+	default_features = list("tail_polysmorph" = "Polys", "plasma_vessels" = "None", "dome" = "None", "dorsal_tubes" = "No", "teeth" = "None", "legs" = "Normal Legs")
 	mutanttongue = /obj/item/organ/tongue/polysmorph
 	mutanttail = /obj/item/organ/tail/polysmorph
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
