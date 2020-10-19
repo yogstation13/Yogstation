@@ -85,7 +85,7 @@
 	channels = list(RADIO_CHANNEL_SCIENCE = 1, RADIO_CHANNEL_COMMAND = 1)
 	
 /obj/item/encryptionkey/heads/blueshield
-	name = "Blueshield's Encryption Key"
+	name = "\improper Blueshield encryption key"
 	icon_state = "com_cypherkey"
 	channels = list("Command" = 1)
 
