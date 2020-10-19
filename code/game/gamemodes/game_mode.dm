@@ -641,7 +641,7 @@
   * Given a list of minds, returns TRUE if they completed all their objectives, FALSE otherwise
   *
   * Arguments:
-  * * antags - list of minds that we're checking 
+  * * antags - list of minds that we're checking
   * * antagonist_datum - The type we're checking for, is optional
   */
 /datum/game_mode/proc/didAntagsWin(list/antags, datum/antagonist/antagonist_datum)
