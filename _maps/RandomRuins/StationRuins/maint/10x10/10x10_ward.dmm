@@ -24,6 +24,10 @@
 /obj/machinery/light/broken,
 /turf/open/floor/plating,
 /area/template_noop)
+"dY" = (
+/obj/effect/decal/cleanable/food/egg_smudge,
+/turf/open/floor/plating,
+/area/template_noop)
 "hN" = (
 /turf/open/floor/engine,
 /area/template_noop)
@@ -442,7 +446,7 @@ Wk
 KX
 BL
 Vz
-Wk
+dY
 Wk
 KD
 yy
