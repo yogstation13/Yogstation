@@ -411,9 +411,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"abc" = (
-/turf/closed/wall,
-/area/security/execution/transfer)
 "abd" = (
 /obj/machinery/bounty_board,
 /turf/closed/wall,
@@ -57346,6 +57343,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"tpl" = (
+/turf/closed/wall{
+	icon = 'icons/turf/walls/reinforced_wall.dmi';
+	icon_state = "r_wall"
+	},
+/area/security/execution/transfer)
 "tpq" = (
 /obj/item/coin/silver{
 	pixel_x = 7;
@@ -88590,7 +88593,7 @@ qQV
 qQV
 qQV
 qQV
-abc
+tpl
 aaf
 aaa
 aaf
@@ -88847,7 +88850,7 @@ qQV
 qQV
 qQV
 qQV
-abc
+tpl
 aaf
 aaa
 aaa
@@ -89104,7 +89107,7 @@ qQV
 qQV
 qQV
 qQV
-abc
+tpl
 aaf
 aaa
 aaf
@@ -89361,7 +89364,7 @@ qQV
 qQV
 qQV
 qQV
-abc
+tpl
 aaf
 aaa
 aaa
