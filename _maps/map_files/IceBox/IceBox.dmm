@@ -13005,7 +13005,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "azK" = (
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /turf/open/floor/plating,
 /area/clerk)
 "azL" = (
@@ -37358,26 +37358,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"bvF" = (
-/obj/machinery/requests_console{
-	department = "Cargo Bay";
-	departmentType = 2;
-	pixel_x = -30
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/machinery/computer/bounty{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "bvG" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -51940,7 +51920,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "caQ" = (
-/obj/structure/piano{
+/obj/structure/musician/piano{
 	icon_state = "piano"
 	},
 /turf/open/floor/wood,
@@ -58174,6 +58154,27 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"fpk" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/computer/bounty{
+	dir = 4
+	},
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Quartermaster's Desk";
+	departmentType = 2;
+	pixel_x = -30
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "fql" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer/cryopod{
@@ -86216,7 +86217,7 @@ bjr
 bjr
 bub
 bxu
-bvF
+fpk
 bzP
 bAS
 bxu

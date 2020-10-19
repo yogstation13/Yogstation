@@ -72878,15 +72878,6 @@
 "cQn" = (
 /turf/open/floor/carpet/orange,
 /area/quartermaster/qm)
-"cQo" = (
-/obj/structure/table,
-/obj/item/clipboard,
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/turf/open/floor/carpet/orange,
-/area/quartermaster/qm)
 "cQp" = (
 /obj/machinery/light,
 /obj/machinery/status_display/supply{
@@ -79468,23 +79459,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"deI" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 4
-	},
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/structure/table,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "deJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -79575,18 +79549,6 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
-"deR" = (
-/obj/machinery/camera{
-	c_tag = "Cargo Fabrication";
-	dir = 1;
-	network = list("ss13","Cargo")
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "deS" = (
@@ -82648,6 +82610,22 @@
 /obj/machinery/status_display/evac,
 /turf/closed/wall/r_wall,
 /area/teleporter/hub/security)
+"dXO" = (
+/obj/machinery/camera{
+	c_tag = "Cargo Fabrication";
+	dir = 1;
+	network = list("ss13","Cargo")
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "dYX" = (
 /turf/closed/wall,
 /area/solar/port/aft)
@@ -83399,6 +83377,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
+"ggq" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "gje" = (
 /turf/open/floor/plating,
 /area/hallway/primary/starboard)
@@ -89279,6 +89270,21 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"wBh" = (
+/obj/structure/table,
+/obj/item/clipboard,
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Quartermaster's Desk";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/turf/open/floor/carpet/orange,
+/area/quartermaster/qm)
 "wCA" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -118964,7 +118970,7 @@ cIx
 cIO
 ags
 cJd
-cQo
+wBh
 bYX
 cQu
 ags
@@ -119478,7 +119484,7 @@ cHo
 bVy
 agb
 dey
-deI
+ggq
 bPK
 deQ
 agb
@@ -119737,7 +119743,7 @@ agb
 dez
 bOI
 agh
-deR
+dXO
 agb
 bUm
 bSl

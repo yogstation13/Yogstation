@@ -125,6 +125,12 @@
 	radio_key = /obj/item/encryptionkey/syndicate
 	subspace_transmission = TRUE
 
+/obj/item/implant/radio/antenna
+	name = "internal antenna"
+	desc = "The internal organ part of the antenna. Science has not yet given it a good name."
+	radio_key = /obj/item/encryptionkey/heads/captain
+	subspace_transmission = TRUE
+
 /obj/item/implant/radio/slime
 	name = "slime radio"
 	icon = 'icons/obj/surgery.dmi'

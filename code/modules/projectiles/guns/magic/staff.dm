@@ -115,8 +115,8 @@
 	ammo_type = /obj/item/ammo_casing/magic/locker
 	icon_state = "locker"
 	item_state = "locker"
-	max_charges = 6
-	recharge_rate = 4
+	max_charges = 2
+	recharge_rate = 12
 
 //yes, they don't have sounds. they're admin staves, and their projectiles will play the chaos bolt sound anyway so why bother?
 
