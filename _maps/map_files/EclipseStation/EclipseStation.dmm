@@ -12653,9 +12653,7 @@
 	dir = 8
 	},
 /obj/structure/table,
-/obj/item/statuebust{
-	pixel_y = 10
-	},
+/obj/item/statuebust,
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aAF" = (
@@ -17687,7 +17685,7 @@
 	pixel_x = 30
 	},
 /obj/structure/sign/poster/contraband/sun_kist{
-	pixel_y = -31
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
@@ -24970,7 +24968,7 @@
 	network = list("ss13")
 	},
 /obj/structure/sign/poster/official/anniversary_vintage_reprint{
-	pixel_y = -31
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
@@ -84031,6 +84029,7 @@
 /area/hallway/primary/fore)
 "hTd" = (
 /obj/structure/easel,
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "hTZ" = (
@@ -84852,6 +84851,12 @@
 /obj/effect/spawner/lootdrop/costume,
 /turf/open/floor/plating,
 /area/maintenance/department/science)
+"klx" = (
+/obj/structure/chair/office/dark{
+	dir = 4
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/storage/art)
 "kmL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -87035,8 +87040,12 @@
 /obj/structure/table,
 /obj/item/camera,
 /obj/structure/sign/poster/official/marvin{
-	pixel_x = 28
+	pixel_x = 32
 	},
+/turf/open/floor/plasteel/vaporwave,
+/area/storage/art)
+"qzE" = (
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "qAo" = (
@@ -87677,7 +87686,7 @@
 /obj/item/camera_film,
 /obj/item/camera_film,
 /obj/structure/sign/poster/contraband/have_a_puff{
-	pixel_x = 33
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
@@ -89711,6 +89720,9 @@
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -24
+	},
+/obj/machinery/newscaster{
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
@@ -117338,7 +117350,7 @@ ayD
 acn
 aBN
 aAD
-aAB
+qzE
 aCr
 bfz
 aEa
@@ -118109,7 +118121,7 @@ ayE
 acn
 aBN
 aAB
-aAB
+klx
 aLZ
 bfz
 acJ

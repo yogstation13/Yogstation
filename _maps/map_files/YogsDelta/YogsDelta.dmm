@@ -93555,11 +93555,11 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
@@ -126094,6 +126094,10 @@
 /obj/item/storage/crayons,
 /obj/item/storage/crayons,
 /obj/item/storage/crayons,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -26
+	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "exE" = (
@@ -126151,6 +126155,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
+"ePL" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/storage/art)
 "eTv" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -126242,6 +126254,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
+"fLZ" = (
+/obj/structure/chair/stool,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness/recreation)
 "fOJ" = (
 /obj/structure/cable/white{
 	icon_state = "0-4"
@@ -126300,11 +126328,23 @@
 /obj/structure/cable/white{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "gCK" = (
 /turf/closed/wall,
 /area/maintenance/department/science)
+"gFG" = (
+/turf/open/space/basic,
+/area/space/nearstation)
 "gFZ" = (
 /obj/machinery/nanite_program_hub,
 /obj/effect/turf_decal/bot,
@@ -126507,8 +126547,9 @@
 /obj/structure/table,
 /obj/item/hand_labeler,
 /obj/item/statuebust{
-	pixel_y = 10
+	pixel_y = -1
 	},
+/obj/machinery/airalarm/directional/west,
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "iQh" = (
@@ -126706,7 +126747,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/storage/art";
 	dir = 8;
-	name = "Art Storage APC";
+	name = "Artist's Coven APC";
 	pixel_x = -24
 	},
 /obj/item/paper_bin,
@@ -126717,6 +126758,10 @@
 /obj/item/stack/cable_coil/random,
 /obj/structure/cable/white{
 	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
@@ -126986,6 +127031,8 @@
 /obj/structure/cable/white{
 	icon_state = "2-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
 "nYG" = (
@@ -127198,9 +127245,24 @@
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
 "pHh" = (
-/obj/structure/grille,
-/turf/closed/wall/r_wall,
-/area/space)
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness/recreation)
 "pKo" = (
 /turf/closed/wall,
 /area/aisat)
@@ -127281,6 +127343,9 @@
 /obj/structure/cable/white{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "qUc" = (
@@ -127441,7 +127506,11 @@
 /obj/item/paper_bin/construction,
 /obj/item/airlock_painter,
 /obj/structure/sign/poster/official/marvin{
-	pixel_x = 28
+	pixel_x = 32
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 8;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
@@ -127473,6 +127542,13 @@
 /obj/structure/cable/white{
 	icon_state = "1-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/obj/structure/chair/office/dark,
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "sJw" = (
@@ -127488,12 +127564,23 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "ttt" = (
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space)
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "tvq" = (
 /obj/structure/table,
 /obj/item/camera,
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "tCh" = (
@@ -180554,7 +180641,7 @@ cun
 cVa
 cAw
 bXJ
-bNf
+ttt
 cIW
 cHW
 cHW
@@ -182357,14 +182444,14 @@ bZd
 dbH
 ddx
 kJb
-gIK
 kJb
-gIK
+kJb
+kJb
 kJb
 ajr
 ajr
 ajr
-ttt
+qYo
 ajr
 aaa
 ajr
@@ -182613,15 +182700,15 @@ cSF
 bZe
 dbI
 fDz
-gIK
+ePL
 iNs
 kPW
 esr
 gIK
-ttt
-pHh
+qYo
+ajr
 aaa
-ttt
+qYo
 aaa
 aaa
 aaa
@@ -182865,20 +182952,20 @@ cPY
 cxy
 cTe
 cTe
-cNw
-cxy
-cTe
-cTe
+pHh
+bNF
+fLZ
+fLZ
 nYn
 gzW
 qtb
 sFX
 tvq
-gIK
-ttt
+kJb
+qYo
+gFG
 aaa
-aaa
-ttt
+qYo
 aaa
 aaa
 aaa
@@ -183127,15 +183214,15 @@ cxy
 cxy
 cxy
 dbJ
-gIK
+ePL
 nTo
 siM
 nHc
 gIK
-ttt
-pHh
-ttt
-ttt
+qYo
+ajr
+qYo
+qYo
 aaa
 aaa
 aaa
@@ -183388,9 +183475,9 @@ kJb
 gIK
 kJb
 gIK
-kJb
+gIK
 aaa
-pHh
+ajr
 aaa
 aaa
 aaa
@@ -183644,10 +183731,10 @@ ddz
 dtE
 aad
 qYo
-ttt
-ttt
-ttt
-pHh
+qYo
+qYo
+qYo
+ajr
 aaa
 aaa
 aaa
@@ -183902,9 +183989,9 @@ dtE
 aad
 ajr
 aaa
-pHh
-pHh
-pHh
+ajr
+ajr
+ajr
 aaa
 aaa
 aaa
@@ -184159,7 +184246,7 @@ cuL
 aad
 aaa
 aaa
-pHh
+ajr
 aaa
 aaa
 aaa
@@ -184415,8 +184502,8 @@ aad
 aad
 aad
 ajr
-ttt
-ttt
+qYo
+qYo
 aaa
 aaa
 aaa

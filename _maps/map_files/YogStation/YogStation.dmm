@@ -14782,10 +14782,10 @@
 /obj/item/camera_film,
 /obj/item/camera,
 /obj/structure/sign/poster/official/space_cops{
-	pixel_y = -31
+	pixel_y = -32
 	},
-/obj/structure/sign/poster/official/marvin{
-	pixel_x = 28
+/obj/machinery/newscaster{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
@@ -16258,11 +16258,9 @@
 /obj/structure/table,
 /obj/item/stack/cable_coil/random,
 /obj/item/stack/cable_coil/random,
-/obj/item/statuebust{
-	pixel_y = 10
-	},
+/obj/item/statuebust,
 /obj/structure/sign/poster/official/high_class_martini{
-	pixel_x = -29
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
@@ -16274,9 +16272,13 @@
 	pixel_x = 27
 	},
 /obj/item/twohanded/required/kirbyplants/random,
+/obj/structure/sign/poster/official/pda_ad{
+	pixel_x = 32
+	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aRa" = (
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aRb" = (
@@ -32773,6 +32775,7 @@
 	dir = 8;
 	pixel_x = 24
 	},
+/obj/structure/chair/office/dark,
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "bQz" = (

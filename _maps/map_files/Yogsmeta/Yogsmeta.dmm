@@ -26488,9 +26488,7 @@
 "aYf" = (
 /obj/structure/table,
 /obj/item/hand_labeler,
-/obj/item/statuebust{
-	pixel_y = 10
-	},
+/obj/item/statuebust,
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aYg" = (
@@ -26523,7 +26521,7 @@
 	icon_state = "scrub_map_on-3"
 	},
 /obj/structure/sign/poster/official/high_class_martini{
-	pixel_x = 29
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
@@ -28054,6 +28052,7 @@
 	icon_state = "vent_map_on-1"
 	},
 /obj/effect/landmark/start/artist,
+/obj/structure/chair/office/dark,
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "baJ" = (
@@ -31155,7 +31154,7 @@
 	pixel_x = 26
 	},
 /obj/structure/sign/poster/official/space_cops{
-	pixel_y = -31
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
@@ -35101,6 +35100,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 5
 	},
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "bmY" = (
@@ -37322,7 +37322,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/storage/art";
 	dir = 8;
-	name = "Art Storage APC";
+	name = "Artist's Coven APC";
 	pixel_x = -24
 	},
 /obj/structure/cable/yellow{
@@ -38567,6 +38567,9 @@
 "btm" = (
 /obj/structure/table,
 /obj/item/camera,
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "btn" = (
