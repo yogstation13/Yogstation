@@ -8,7 +8,7 @@
 /area/space)
 "p" = (
 /obj/structure/sign/plaques/kiddie/badger{
-	desc = "This plaque seems to memorialize those who fell while constructing the station. The names have been redacted, and they cover the entire plaque";
+	desc = "This plaque seems to memorialize those who fell while constructing the station. The names have been redacted, and they cover the entire plaque.";
 	pixel_y = 32
 	},
 /obj/item/twohanded/required/kirbyplants/dead{
