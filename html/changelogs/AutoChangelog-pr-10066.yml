@@ -1,0 +1,4 @@
+author: "MrHorizons"
+delete-after: true 
+changes: 
+  - tweak: "Certain bar variants on BoxStation now have properly-equipped kitchens."
