@@ -102,6 +102,10 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating,
 /area/template_noop)
+"z" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/carpet,
+/area/template_noop)
 "B" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet,
@@ -213,7 +217,7 @@ N
 (3,1,1) = {"
 Z
 p
-K
+z
 W
 J
 "}

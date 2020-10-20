@@ -220,8 +220,7 @@
 /area/template_noop)
 "O" = (
 /obj/machinery/door/airlock/research/glass{
-	name = "Low-threat Lifeform Containment";
-	req_access_txt = "47"
+	name = "Low-threat Lifeform Containment"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1

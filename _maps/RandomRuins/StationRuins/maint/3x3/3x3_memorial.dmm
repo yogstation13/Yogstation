@@ -2,10 +2,10 @@
 "a" = (
 /obj/item/reagent_containers/food/snacks/grown/harebell,
 /turf/open/floor/plating,
-/area/space)
+/area/template_noop)
 "o" = (
 /turf/open/floor/plating,
-/area/space)
+/area/template_noop)
 "p" = (
 /obj/structure/sign/plaques/kiddie/badger{
 	desc = "This plaque seems to memorialize those who fell while constructing the station. The names have been redacted, and they cover the entire plaque.";
@@ -17,19 +17,19 @@
 	pixel_y = 19
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/template_noop)
 "H" = (
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
-/area/space)
+/area/template_noop)
 "I" = (
 /turf/closed/wall/rust,
-/area/space)
+/area/template_noop)
 "X" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/space)
+/area/template_noop)
 
 (1,1,1) = {"
 o

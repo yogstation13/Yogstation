@@ -66,8 +66,7 @@
 "K" = (
 /obj/machinery/door/airlock/security/glass{
 	id_tag = "outerbrig";
-	name = "Checkpoint";
-	req_access_txt = "63"
+	name = "Checkpoint"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1

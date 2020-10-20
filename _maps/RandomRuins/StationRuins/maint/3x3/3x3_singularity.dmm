@@ -1,10 +1,36 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+"b" = (
+/obj/item/stack/rods,
+/turf/open/floor/fakespace,
+/area/template_noop)
+"g" = (
+/obj/structure/lattice/catwalk,
+/turf/open/floor/fakespace,
+/area/template_noop)
+"h" = (
+/obj/structure/lattice,
 /turf/open/floor/fakespace,
 /area/template_noop)
 "H" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/field/generator,
+/turf/open/floor/fakespace,
+/area/template_noop)
+"I" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/frame/machine,
+/turf/open/floor/fakespace,
+/area/template_noop)
+"M" = (
+/obj/structure/lattice/catwalk,
+/obj/item/wrench,
+/obj/structure/sign/warning/radiation{
+	pixel_y = 32
+	},
+/turf/open/floor/fakespace,
+/area/template_noop)
+"S" = (
+/obj/item/stack/cable_coil/cut,
 /turf/open/floor/fakespace,
 /area/template_noop)
 "Z" = (
@@ -14,16 +40,16 @@
 
 (1,1,1) = {"
 H
-a
-a
+h
+g
 "}
 (2,1,1) = {"
-a
+h
 Z
-a
+b
 "}
 (3,1,1) = {"
-a
-a
-a
+M
+S
+I
 "}

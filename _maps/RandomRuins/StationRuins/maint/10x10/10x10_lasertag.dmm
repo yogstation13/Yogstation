@@ -47,6 +47,12 @@
 /area/template_noop)
 "g" = (
 /obj/structure/mineral_door/iron,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "h" = (
@@ -92,10 +98,6 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"o" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "r" = (
@@ -316,8 +318,8 @@ Q
 W
 Q
 g
-o
-o
+Q
+Q
 g
 Q
 W
