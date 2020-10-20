@@ -772,6 +772,12 @@
 	suffix = "5x4_kilosurgery.dmm"
 	name = "Maint kilosurgery"
 
+///Medusa- some nerds got turned to stone. Or is it just an artpiece? Author: Jcat
+/datum/map_template/ruin/station/maint/fivexfour/medusa
+	id= "medusa"
+	suffix = "5x4_medusa.dmm"
+	name = "Maint medusa"
+
 /datum/map_template/ruin/station/maint/fivexfour/metakitchen
 	id= "metakitchen"
 	suffix = "5x4_metakitchen.dmm"
