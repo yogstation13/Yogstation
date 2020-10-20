@@ -50,7 +50,6 @@
 	time = 120
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-	always_availible = FALSE
 
 /datum/crafting_recipe/knifeboxing
 	name = "Knife-boxing Gloves"
