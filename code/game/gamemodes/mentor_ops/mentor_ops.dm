@@ -5,8 +5,8 @@
 	config_tag = "mentor ops"
 	report_type = "mentor ops"
 	false_report_weight = 10
-	required_players = 1 // 30 players - 3 players to be the nuke ops = 27 players remaining
-	required_enemies = 1
+	required_players = 0 // 30 players - 3 players to be the nuke ops = 27 players remaining
+	required_enemies = 0
 	recommended_enemies = 0
 	antag_flag = ROLE_OPERATIVE
 	enemy_minimum_age = 0
@@ -16,6 +16,8 @@
 	announce_text = "Syndicate forces are approaching the station in an attempt to destroy it!\n\
 	<span class='danger'>Operatives</span>: Secure the nuclear authentication disk and use your nuke to destroy the station.\n\
 	<span class='notice'>Crew</span>: Defend the nuclear authentication disk and ensure that it leaves with you on the emergency shuttle."
+/datum/game_mode/nuclear/mentor/can_start()
+	return TRUE
 
 /datum/game_mode/nuclear/mentor/pre_setup()
 	for(var/client/findtheos in GLOB.mentors)
@@ -27,14 +29,15 @@
 	for(var/client/mentor in GLOB.mentors)
 		if(mentor.ckey == "theos")
 			continue
-		var/are_you_sure = alert(mentor, "Do you want to play as mentor op?", "Mentor Op?", "Yes", "No")
-		if(are_you_sure == "No")
-			continue
-		var/datum/mind/new_op = mentor.mob.mind
-		pre_nukeops += new_op
-		new_op.assigned_role = "Nuclear Operative"
-		new_op.special_role = "Nuclear Operative"
-		//log_game("[key_name(new_op)] has been selected as a nuclear operative") | yogs - redundant
+		spawn(0)
+			var/are_you_sure = alert(mentor, "Do you want to play as mentor op?", "Mentor Op?", "Yes", "No")
+			if(are_you_sure == "No")
+				continue
+			var/datum/mind/new_op = mentor.mob.mind
+			pre_nukeops += new_op
+			new_op.assigned_role = "Nuclear Operative"
+			new_op.special_role = "Nuclear Operative"
+			//log_game("[key_name(new_op)] has been selected as a nuclear operative") | yogs - redundant
 	return TRUE
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////

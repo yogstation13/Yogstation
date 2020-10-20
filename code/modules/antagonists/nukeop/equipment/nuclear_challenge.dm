@@ -93,14 +93,14 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 		var/TC = new /obj/item/stack/telecrystal(user.drop_location(), tc_per_nukie)
 		to_chat(L, "<span class='warning'>Your uplink could not be found so your share of the team's bonus telecrystals has been bluespaced to your [L.put_in_hands(TC) ? "hands" : "feet"].</span>")
 		tc_to_distribute -= tc_per_nukie
-
-	if (tc_to_distribute > 0) // What shall we do with the remainder...
-		for (var/mob/living/simple_animal/hostile/carp/cayenne/C in GLOB.mob_living_list)
-			if (C.stat != DEAD)
-				var/obj/item/stack/telecrystal/TC = new(C.drop_location(), tc_to_distribute)
-				TC.throw_at(get_step(C, C.dir), 3, 3)
-				C.visible_message("<span class='notice'>[C] coughs up a half-digested telecrystal</span>","<span class='usernotice'>You cough up a half-digested telecrystal!</span>")
-				break
+	if(mentor == 0)
+		if (tc_to_distribute > 0) // What shall we do with the remainder...
+			for (var/mob/living/simple_animal/hostile/carp/cayenne/C in GLOB.mob_living_list)
+				if (C.stat != DEAD)
+					var/obj/item/stack/telecrystal/TC = new(C.drop_location(), tc_to_distribute)
+					TC.throw_at(get_step(C, C.dir), 3, 3)
+					C.visible_message("<span class='notice'>[C] coughs up a half-digested telecrystal</span>","<span class='usernotice'>You cough up a half-digested telecrystal!</span>")
+					break
 
 	CONFIG_SET(number/shuttle_refuel_delay, max(CONFIG_GET(number/shuttle_refuel_delay), CHALLENGE_SHUTTLE_DELAY))
 	SSblackbox.record_feedback("amount", "nuclear_challenge_mode", 1)
@@ -108,6 +108,8 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 	qdel(src)
 
 /obj/item/nuclear_challenge/proc/check_allowed(mob/living/user)
+	if(mentor == 1)
+		return TRUE
 	if(declaring_war)
 		to_chat(user, "You are already in the process of declaring war! Make your mind up.")
 		return FALSE
