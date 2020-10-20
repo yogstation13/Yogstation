@@ -164,7 +164,7 @@ Difficulty: Medium
 		if(last_legion)
 			loot = list(/obj/item/staff/storm)
 			elimination = FALSE
-		else if(prob(5))
+		else if(prob(10))
 			loot = list(/obj/structure/closet/crate/necropolis/tendril)
 		if(!true_spawn)
 			loot = null
