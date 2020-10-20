@@ -2026,8 +2026,10 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"Jj" = (
-/mob/living/simple_animal/opossum/poppy,
+"IP" = (
+/mob/living/simple_animal/opossum/poppy{
+	damage_coeff = list("brute" = 1, "fire" = 1, "tox" = 1, "clone" = 1, "stamina" = 0, "oxy" = 1, "laser" = 0)
+	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "Pb" = (
@@ -2401,7 +2403,7 @@ dl
 dB
 ad
 dT
-Jj
+IP
 eg
 bN
 ev
