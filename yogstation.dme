@@ -999,6 +999,7 @@
 #include "code\game\objects\items\implants\implant_freedom.dm"
 #include "code\game\objects\items\implants\implant_greytide.dm"
 #include "code\game\objects\items\implants\implant_krav_maga.dm"
+#include "code\game\objects\items\implants\implant_mentor.dm"
 #include "code\game\objects\items\implants\implant_mindshield.dm"
 #include "code\game\objects\items\implants\implant_mindshieldtot.dm"
 #include "code\game\objects\items\implants\implant_misc.dm"

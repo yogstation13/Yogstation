@@ -236,6 +236,9 @@
 /turf/closed/wall/r_wall/syndicate/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	return FALSE
 
+/turf/closed/wall/r_wall/syndicate/Initialize()
+	color = "#96ffec"
+
 /turf/closed/wall/r_wall/syndicate/nodiagonal
 	smooth = SMOOTH_MORE
 	icon_state = "map-shuttle_nd"

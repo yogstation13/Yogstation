@@ -7,7 +7,7 @@
 
 /datum/antagonist/nukeop/leader/mentor
 	name = "Mentor Operative Leader"
-	nukeop_outfit = /datum/outfit/syndicate/leader/mentor
+	nukeop_outfit = /datum/outfit/syndicate/mentor/leader
 
 /datum/antagonist/nukeop/leader/mentor/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/misc/nootnoot.ogg', 100, FALSE, pressure_affected = FALSE)

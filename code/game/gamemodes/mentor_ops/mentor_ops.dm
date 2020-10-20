@@ -13,7 +13,7 @@
 	title_icon = "nukeops"
 
 	announce_span = "danger"
-	announce_text = "Syndicate forces are approaching the station in an attempt to destroy it!\n\
+	announce_text = "Mentor forces are approaching the station in an attempt to destroy it!\n\
 	<span class='danger'>Operatives</span>: Secure the nuclear authentication disk and use your nuke to destroy the station.\n\
 	<span class='notice'>Crew</span>: Defend the nuclear authentication disk and ensure that it leaves with you on the emergency shuttle."
 /datum/game_mode/nuclear/mentor/can_start()
@@ -72,11 +72,9 @@
 	return ..()
 
 /datum/game_mode/nuclear/mentor/generate_report()
-	return "One of Central Command's trading routes was recently disrupted by a raid carried out by the Gorlex Marauders. They seemed to only be after one ship - a highly-sensitive \
-			transport containing a nuclear fission explosive, although it is useless without the proper code and authorization disk. While the code was likely found in minutes, the only disk that \
-			can activate this explosive is on your station. Ensure that it is protected at all times, and remain alert for possible intruders."
+	return "The Syndicate Corporations have struck a deal with a clan of mercenaries known as the Mentors. They are scantily armed, but are hailed in their sector as some of the most robust infiltrators around. They have been given a retrofitted Nuclear Operative vessel and are bombing stations in NanoTrasen sectors. We believe your station my be next."
 
-/datum/outfit/syndicate/leader/mentor
+/datum/outfit/syndicate/mentor/leader
 	name = "Mentor Operative - Leader"
 	id = /obj/item/card/id/syndicate/nuke_leader
 	gloves = /obj/item/clothing/gloves/krav_maga/combatglovesplus
@@ -93,6 +91,7 @@
 	l_pocket = /obj/item/pinpointer/nuke/syndicate
 	id = /obj/item/card/id/syndicate
 	belt = /obj/item/gun/ballistic/automatic/pistol
+	implants = list(/obj/item/implant/mentor)
 	backpack_contents = list(/obj/item/storage/box/syndie=1,\
 		/obj/item/kitchen/knife/combat/survival)
 
