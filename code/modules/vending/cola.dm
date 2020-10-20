@@ -19,6 +19,7 @@
 		              /obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry = 2)
 	premium = list(/obj/item/reagent_containers/food/drinks/bottle/nukacola = 1,
 		           /obj/item/reagent_containers/food/drinks/soda_cans/air = 1,
+		           /obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy = 1,
 		           /obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 1)
 	refill_canister = /obj/item/vending_refill/cola
 	default_price = 2
