@@ -31,7 +31,7 @@
 			continue
 		spawn(0)
 			var/are_you_sure = alert(mentor, "Do you want to play as mentor op?", "Mentor Op?", "Yes", "No")
-			if(!(are_you_sure == "Yes"))
+			if(are_you_sure == "No")
 				continue
 			var/datum/mind/new_op = mentor.mob.mind
 			pre_nukeops += new_op
@@ -96,9 +96,9 @@
 	backpack_contents = list(/obj/item/storage/box/syndie=1,\
 		/obj/item/kitchen/knife/combat/survival)
 
-	var/tc = 0
-	var/command_radio = FALSE
-	var/uplink_type = null
+	tc = 0
+	command_radio = FALSE
+	uplink_type = null
 
 /datum/outfit/syndicate/mentor/post_equip(mob/living/carbon/human/H)
 	var/obj/item/radio/R = H.ears

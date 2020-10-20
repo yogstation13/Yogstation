@@ -165,6 +165,9 @@
 	item_state = "banner_mentor"
 	warcry = "HARM INTENT THE HEAD!"
 
+/obj/item/banner/mentor/attack_self(mob/living/carbon/human/user)
+	return
+
 /obj/item/banner/cargo/mundane
 	inspiration_available = FALSE
 
