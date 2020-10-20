@@ -77,8 +77,9 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "k" = (
-/obj/machinery/recharger,
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack,
+/obj/item/gun/energy/laser/redtag,
+/obj/item/gun/energy/laser/redtag,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "l" = (
@@ -118,10 +119,6 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"y" = (
-/obj/machinery/recharger,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
 "z" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light,
@@ -129,6 +126,9 @@
 /area/template_noop)
 "A" = (
 /obj/effect/decal/cleanable/cobweb,
+/obj/structure/rack,
+/obj/item/gun/energy/laser/bluetag,
+/obj/item/gun/energy/laser/bluetag,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "B" = (
@@ -279,7 +279,7 @@
 
 (1,1,1) = {"
 D
-i
+k
 Q
 H
 i
@@ -291,14 +291,14 @@ r
 "}
 (2,1,1) = {"
 D
-k
+C
 Q
 i
 l
 b
 i
 E
-y
+i
 r
 "}
 (3,1,1) = {"
