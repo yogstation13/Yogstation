@@ -275,7 +275,7 @@
 	description = "A chemical agent used for self-defense and in police work."
 	color = "#B31008" // rgb: 179, 16, 8
 	taste_description = "scorching agony"
-	metabolization_rate = 4 * REAGENTS_METABOLISM
+	metabolization_rate = 6 * REAGENTS_METABOLISM
 
 /datum/reagent/consumable/condensedcapsaicin/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(!ishuman(M) && !ismonkey(M))
@@ -301,9 +301,12 @@
 			M.adjustStaminaLoss(3)
 			return
 		else if ( eyes_covered ) // Eye cover is better than mouth cover
+			if(prob(20))
+				M.emote("cough")
 			victim.blur_eyes(4)
-			victim.confused = max(M.confused, 4)
-			victim.damageoverlaytemp = 30
+			victim.confused = max(M.confused, 6)
+			victim.damageoverlaytemp = 50
+			M.adjustStaminaLoss(3)
 			return
 		else // Oh dear :D
 			if(prob(50))
