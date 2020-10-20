@@ -20,20 +20,20 @@
 /datum/game_mode/nuclear/mentor/pre_setup()
 	for(var/client/findtheos in GLOB.mentors)
 		if(findtheos.ckey == "theos")
-			var/datum/mind/new_op = findtheos
+			var/datum/mind/new_op = findtheos.mob.mind
 			pre_nukeops += new_op
-			//new_op.assigned_role = "Nuclear Operative"
-			//new_op.special_role = "Nuclear Operative"
+			new_op.assigned_role = "Nuclear Operative"
+			new_op.special_role = "Nuclear Operative"
 	for(var/client/mentor in GLOB.mentors)
 		if(mentor.ckey == "theos")
 			continue
 		var/are_you_sure = alert(mentor, "Do you want to play as mentor op?", "Mentor Op?", "Yes", "No")
 		if(are_you_sure == "No")
 			continue
-		var/datum/mind/new_op = mentor
+		var/datum/mind/new_op = mentor.mob.mind
 		pre_nukeops += new_op
-		//new_op.assigned_role = "Nuclear Operative"
-		//new_op.special_role = "Nuclear Operative"
+		new_op.assigned_role = "Nuclear Operative"
+		new_op.special_role = "Nuclear Operative"
 		//log_game("[key_name(new_op)] has been selected as a nuclear operative") | yogs - redundant
 	return TRUE
 ////////////////////////////////////////////////////////////////////////////////////////
