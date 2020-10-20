@@ -1,0 +1,79 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"k" = (
+/obj/structure/window,
+/obj/structure/sign/warning/fire{
+	pixel_y = 28
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"w" = (
+/obj/structure/window{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"F" = (
+/obj/structure/window{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"G" = (
+/mob/living/simple_animal/bot/firebot,
+/turf/open/floor/plating,
+/area/template_noop)
+"M" = (
+/obj/structure/window{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"T" = (
+/obj/structure/window{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "firebotz";
+	pixel_y = -24
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"U" = (
+/obj/structure/window,
+/turf/open/floor/plating,
+/area/template_noop)
+"Y" = (
+/obj/machinery/door/poddoor{
+	id = "firebotz"
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+a
+w
+a
+"}
+(2,1,1) = {"
+k
+G
+M
+"}
+(3,1,1) = {"
+a
+Y
+a
+"}
+(4,1,1) = {"
+U
+G
+T
+"}
+(5,1,1) = {"
+a
+F
+a
+"}
