@@ -125,7 +125,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/toy/mballoon
-	name = "toy mbaloon"
+	name = "toy mballoon"
 	desc = "A blue baloon, it looks.. mentory?"
 	throwforce = 0
 	throw_speed = 3
