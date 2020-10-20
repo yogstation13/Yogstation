@@ -80285,13 +80285,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit/departure_lounge)
-"itz" = (
-/obj/machinery/door/airlock/external{
-	name = "Escape Pod Two"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/turf/open/space/basic,
-/area/security/prison)
 "itO" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = -32
@@ -83598,6 +83591,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"qYf" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod Two"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/plating,
+/area/security/prison)
 "raK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 10
@@ -111703,7 +111703,7 @@ aaa
 aaa
 aaa
 abu
-itz
+qYf
 qBw
 hyP
 ePO
