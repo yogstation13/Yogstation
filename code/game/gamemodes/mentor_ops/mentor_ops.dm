@@ -31,7 +31,7 @@
 			continue
 		spawn(0)
 			var/are_you_sure = alert(mentor, "Do you want to play as mentor op?", "Mentor Op?", "Yes", "No")
-			if(are_you_sure == "No")
+			if(!(are_you_sure == "Yes"))
 				continue
 			var/datum/mind/new_op = mentor.mob.mind
 			pre_nukeops += new_op
