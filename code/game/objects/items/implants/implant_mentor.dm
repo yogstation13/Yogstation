@@ -11,7 +11,8 @@
 
 /obj/item/implant/mentor/trigger(emote, mob/source)
 	var/message = "Fuck..."
-	if(emote == "deathgasp")
+	var/mob/living/L = source
+	if(emote == "deathgasp" && L?.stat == DEAD)
 		switch(source.ckey)
 			if("theos")
 				message = "should've played better"
