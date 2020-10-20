@@ -115,9 +115,10 @@
 	pixel_x = -4;
 	pixel_y = -26
 	},
-/obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/light/broken,
-/turf/open/floor/plating,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
 /area/template_noop)
 "oL" = (
 /obj/effect/decal/cleanable/ash/large,
