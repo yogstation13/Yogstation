@@ -63,10 +63,7 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "hV" = (
-/obj/item/reagent_containers/glass/bottle{
-	desc = "A small bottle. It's labeled "Vaccine prototype-6". You are not sure it worked...";
-	name = "vaccine prototype-6"
-	},
+/obj/item/reagent_containers/glass/bottle,
 /turf/open/floor/plating,
 /area/template_noop)
 "iD" = (
@@ -99,7 +96,6 @@
 "mq" = (
 /obj/item/chair,
 /obj/item/reagent_containers/glass/bottle{
-	desc = "A small bottle. It's labeled "Vaccine prototype-6". You are not sure it worked...";
 	name = "vaccine prototype-6"
 	},
 /turf/open/floor/plasteel/white,
@@ -259,7 +255,6 @@
 	dir = 4
 	},
 /obj/item/reagent_containers/glass/bottle{
-	desc = "A small bottle. It's labeled "Vaccine prototype-5". You are not sure it worked...";
 	name = "vaccine prototype-5"
 	},
 /turf/open/floor/plasteel/white,
@@ -342,7 +337,6 @@
 /obj/structure/table/glass,
 /obj/item/storage/box/syringes,
 /obj/item/reagent_containers/glass/bottle{
-	desc = "A small bottle. It's labeled "Vaccine prototype-7". You are not sure it worked...";
 	name = "vaccine prototype-7"
 	},
 /turf/open/floor/plating,
