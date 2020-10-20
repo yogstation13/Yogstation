@@ -1,6 +1,6 @@
 /datum/antagonist/nukeop/mentor
 	name = "Mentor Operative"
-	nukeop_outfit = /datum/outfit/syndicate
+	nukeop_outfit = /datum/outfit/syndicate/mentor
 
 /datum/antagonist/nukeop/mentor/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/misc/nootnoot.ogg', 100, FALSE, pressure_affected = FALSE)

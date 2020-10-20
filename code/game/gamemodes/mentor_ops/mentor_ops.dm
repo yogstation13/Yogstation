@@ -83,6 +83,23 @@
 	r_hand = /obj/item/nuclear_challenge/mentor
 	command_radio = TRUE
 
+/datum/outfit/syndicate/mentor
+	name = "Mentor Operative - Basic"
+	uniform = /obj/item/clothing/under/syndicate
+	shoes = /obj/item/clothing/shoes/combat
+	gloves = /obj/item/clothing/gloves/combat
+	back = /obj/item/storage/backpack/fireproof
+	ears = /obj/item/radio/headset/syndicate/alt
+	l_pocket = /obj/item/pinpointer/nuke/syndicate
+	id = /obj/item/card/id/syndicate
+	belt = /obj/item/gun/ballistic/automatic/pistol
+	backpack_contents = list(/obj/item/storage/box/syndie=1,\
+		/obj/item/kitchen/knife/combat/survival)
+
+	var/tc = 0
+	var/command_radio = FALSE
+	var/uplink_type = null
+
 /datum/outfit/syndicate/mentor/post_equip(mob/living/carbon/human/H)
 	var/obj/item/radio/R = H.ears
 	R.set_frequency(FREQ_SYNDICATE)
