@@ -214,6 +214,7 @@ GLOBAL_PROTECT(exp_to_update)
 		if(announce_changes)
 			to_chat(src,"<span class='notice'>You got: [minutes] Admin EXP!</span>")
 
+	//This doesn't use is_mentor(), thats intentional, we don't want admins to rack up mentor playtime because theyre admins not mentors
 	if(mentor_datum)
 		play_records[EXP_TYPE_MENTOR] += minutes
 		if(announce_changes)
