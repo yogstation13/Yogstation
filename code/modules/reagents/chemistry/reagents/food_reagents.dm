@@ -294,10 +294,10 @@
 			if(prob(30))
 				victim.emote("scream")
 			victim.blur_eyes(12)
-			victim.blind_eyes(6)
+			victim.blind_eyes(8)
 			victim.confused = max(M.confused, 10)
 			victim.damageoverlaytemp = 75
-			victim.Paralyze(75)
+			victim.Paralyze(80)
 			M.adjustStaminaLoss(3)
 			return
 		else if ( eyes_covered ) // Eye cover is better than mouth cover
@@ -309,10 +309,10 @@
 			if(prob(50))
 				victim.emote("scream")
 			victim.blur_eyes(12)
-			victim.blind_eyes(6)
+			victim.blind_eyes(8)
 			victim.confused = max(M.confused, 12)
 			victim.damageoverlaytemp = 100
-			victim.Paralyze(100)
+			victim.Paralyze(120)
 			M.adjustStaminaLoss(5)
 		victim.update_damage_hud()
 
