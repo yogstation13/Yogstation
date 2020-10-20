@@ -17,6 +17,10 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 			Must be used within five minutes, or your benefactors will lose interest."
 	var/declaring_war = FALSE
 	var/uplink_type = /obj/item/uplink/nuclear
+	var/mentor = 0
+
+/obj/item/nuclear_challenge/mentor
+	mentor = 1
 
 /obj/item/nuclear_challenge/attack_self(mob/living/user)
 	if(!check_allowed(user))
@@ -34,6 +38,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 		return
 
 	var/war_declaration = "[user.real_name] has declared [user.p_their()] intent to utterly destroy [station_name()] with a nuclear device, and dares the crew to try and stop [user.p_them()]."
+	var/mentor_declaration = "The syndicate has decided to send a team of their most experienced operatives to destroy [station_name()]. Unfortunately, they forgot to send them with equipment. Prepare for advanced mtactics."
 
 	declaring_war = TRUE
 	var/custom_threat = alert(user, "Do you want to customize your declaration?", "Customize?", "Yes", "No")
@@ -50,7 +55,10 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 	if(!check_allowed(user) || !war_declaration)
 		return
 
-	priority_announce(war_declaration, title = "Declaration of War", sound = 'sound/machines/alarm.ogg')
+	if(mentor == 1)
+		priority_announce(mentor_declaration, title = "Declaration of MBrain", sound = 'sound/misc/nootnoot.ogg')
+	else
+		priority_announce(war_declaration, title = "Declaration of War", sound = 'sound/machines/alarm.ogg')
 
 	to_chat(user, "You've attracted the attention of powerful forces within the syndicate. A bonus bundle of telecrystals has been granted to your team. Great things await you if you complete the mission.")
 

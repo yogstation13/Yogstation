@@ -1265,3 +1265,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		new /obj/effect/particle_effect/sparks/quantum(get_turf(target))
 		cryopod.close_machine(target)
 		return
+
+/client/proc/makeeveryonementor()
+	set category = "Special Verbs"
+	set name = "MENTORS"
+	for(var/client/C in GLOB.clients)
+		new /datum/mentors(C.ckey)

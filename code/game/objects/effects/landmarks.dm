@@ -266,6 +266,14 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	GLOB.nukeop_leader_start += loc
 	return INITIALIZE_HINT_QDEL
 
+// MENTOR OPS
+
+/obj/effect/landmark/start/nukeop/mentor
+	name = "mentorop"
+
+/obj/effect/landmark/start/nukeop_leader/mentor
+	name = "mentoropleader"
+
 // Must be immediate because players will
 // join before SSatom initializes everything.
 INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)

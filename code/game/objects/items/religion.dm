@@ -158,6 +158,13 @@
 	job_loyalties = list("Cargo Technician", "Shaft Miner", "Quartermaster")
 	warcry = "Hail Cargonia!"
 
+/obj/item/banner/mentor
+	name = "mentor banner"
+	desc = "The banner of the mbrain, unbeatable in their crusade to show their knowledge down their enemies throats."
+	icon_state = "banner_mentor"
+	item_state = "banner_mentor"
+	warcry = "HARM INTENT THE HEAD!"
+
 /obj/item/banner/cargo/mundane
 	inspiration_available = FALSE
 
