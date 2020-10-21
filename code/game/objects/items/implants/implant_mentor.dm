@@ -9,7 +9,12 @@
 				"}
 	return dat
 
-/obj/item/implant/mentor/trigger(emote, mob/source)
+/obj/item/implant/explosive/on_mob_death(mob/living/L, gibbed)
+	activate("death")
+
+/obj/item/implant/explosive/activate(cause)
+	if(!cause || !imp_in)
+		return FALSE
 	var/message = "Fuck..."
 	var/mob/living/L = source
 	if(emote == "deathgasp" && L?.stat == DEAD)
