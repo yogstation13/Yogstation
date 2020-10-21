@@ -510,7 +510,7 @@
 	if(mind)
 		if(mind.assigned_role)
 			var/datum/job/J = SSjob.GetJob(mind.assigned_role)
-			if(H.age < J.minimal_character_age)
+			if(H.age < J?.minimal_character_age)
 				to_chat(client,"<span class='warning'>Your character is too young to play your assigned job. Their age has been corrected to the minimum possible.</span>")
 				H.age = J.minimal_character_age
 		if(transfer_after)

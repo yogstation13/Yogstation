@@ -1088,6 +1088,7 @@
 	dir = 8;
 	pixel_x = 26
 	},
+/obj/machinery/processor,
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)
 "co" = (
@@ -1136,7 +1137,10 @@
 	dir = 4;
 	icon_state = "warningline"
 	},
-/obj/machinery/processor,
+/obj/structure/table,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 8
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)
 "ct" = (
@@ -1469,13 +1473,6 @@
 /obj/item/twohanded/required/kirbyplants/photosynthetic,
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
-"ST" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 8
-	},
-/turf/open/floor/mineral/titanium,
-/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
@@ -1807,7 +1804,7 @@ al
 bH
 bT
 MN
-ST
+cm
 bQ
 cy
 cK
