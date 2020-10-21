@@ -381,7 +381,7 @@
 	reinf = TRUE
 	heat_resistance = 1600
 	armor = list("melee" = 80, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 25, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 100)
-	max_integrity = 100
+	max_integrity = 50
 	explosion_block = 1
 	damage_deflection = 11
 	state = RWINDOW_SECURE
@@ -403,7 +403,7 @@
 			if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HARM)
 				user.visible_message("<span class='notice'>[user] holds \the [I] to the security screws on \the [src]...</span>",
 										"<span class='notice'>You begin heating the security screws on \the [src]...</span>")
-				if(I.use_tool(src, user, 180, volume = 100))
+				if(I.use_tool(src, user, 120, volume = 100))
 					to_chat(user, "<span class='notice'>The security bolts are glowing white hot and look ready to be removed.</span>")
 					state = RWINDOW_BOLTS_HEATED
 					addtimer(CALLBACK(src, .proc/cool_bolts), 300)
