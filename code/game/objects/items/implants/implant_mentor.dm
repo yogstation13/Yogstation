@@ -16,27 +16,26 @@
 	if(!cause || !imp_in)
 		return FALSE
 	var/message = "Fuck..."
-	var/mob/living/L = source
-	if(emote == "deathgasp" && L?.stat == DEAD)
-		switch(source.ckey)
-			if("theos")
-				message = "should've played better"
-			if("mqiib")
-				message = "Fucking sinks..."
-			if("jarod1200")
-				message = "EMINENCE RECALL!!"
-			if("reed0506")
-				message = "imagine not taking double damage from lasers. this post was made by plant gang."
-			if("fireclaw787")
-				message = "Reality is often disappointing."
-			if("takahiru")
-				message = "shouldve thrown that toolbox..."
-			if("mesalikepie")
+	switch(imp_in.ckey)
+		if("theos")
+			message = "should've played better"
+		if("mqiib")
+			message = "Fucking sinks..."
+		if("jarod1200")
+			message = "EMINENCE RECALL!!"
+		if("reed0506")
+			message = "imagine not taking double damage from lasers. this post was made by plant gang."
+		if("fireclaw787")
+			message = "Reality is often disappointing."
+		if("takahiru")
+			message = "shouldve thrown that toolbox..."
+		if("mesalikepie")
 				message = "Fucking catgirls.... Not again."
-			if("lynxJynx")
-				message = "We are detecting an eerie signal fleeing your sector... we believe you have released an eldritch horror from his mortal coil"
-			if("princeKirze")
-				message = "Snake? SNAKE? SNAAAAAAAAAAAAAAAKE!"
-			if("tatax")
-				message = "O"
-		priority_announce("[source.ckey] has kicked the bucket, their last words were \n\ \n\ [message]", "MBrain Hive Mind", 'sound/creatures/legion_death.ogg')
+		if("lynxJynx")
+			message = "We are detecting an eerie signal fleeing your sector... we believe you have released an eldritch horror from his mortal coil"
+		if("princeKirze")
+			message = "Snake? SNAKE? SNAAAAAAAAAAAAAAAKE!"
+		if("tatax")
+			message = "O"
+	priority_announce("[source.ckey] has kicked the bucket, their last words were \n\ \n\ [message]", "MBrain Hive Mind", 'sound/creatures/legion_death.ogg')
+	
