@@ -237,7 +237,7 @@
 	return FALSE
 
 /turf/closed/wall/r_wall/syndicate/Initialize()
-	..()
+	.=..()
 	color = "#96ffec"
 
 /turf/closed/wall/r_wall/syndicate/nodiagonal

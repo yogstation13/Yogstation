@@ -1,8 +1,8 @@
 "aa" = (/turf/template_noop,/area/template_noop)
-"ab" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 9},/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/bridge)
+"ab" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 9},/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/bridge)
 "ac" = (/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/bridge)
 "ad" = (/obj/machinery/door/poddoor/shutters{id = "syndieshutters"; name = "blast shutters"},/obj/structure/grille,/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only,/obj/structure/window/plastitanium{color = "#96ffec"},/turf/open/space/basic,/area/shuttle/syndicate/bridge)
-"ae" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 5},/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/bridge)
+"ae" = (/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/bridge)
 "af" = (/obj/machinery/computer/med_data/syndie,/obj/effect/turf_decal/bot_white,/turf/open/floor/carpet/cyan,/area/shuttle/syndicate/bridge)
 "ag" = (/obj/machinery/computer/crew/syndie,/obj/effect/turf_decal/bot_white,/turf/open/floor/carpet/cyan,/area/shuttle/syndicate/bridge)
 "ah" = (/obj/machinery/computer/camera_advanced/shuttle_docker/syndicate,/obj/effect/turf_decal/bot_white,/turf/open/floor/carpet/cyan,/area/shuttle/syndicate/bridge)
@@ -22,28 +22,28 @@
 "av" = (/obj/machinery/door/airlock/hatch{name = "Cockpit"; req_access_txt = "150"},/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only,/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/bridge)
 "aw" = (/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/machinery/photocopier,/turf/open/floor/carpet/cyan,/area/shuttle/syndicate/bridge)
 "ax" = (/obj/machinery/status_display/evac,/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/bridge)
-"ay" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 10},/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/hallway)
+"ay" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 5},/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/bridge)
 "az" = (/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/hallway)
-"aA" = (/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/hallway)
+"aA" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 10},/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/hallway)
 "aB" = (/obj/structure/table/reinforced,/obj/item/stack/cable_coil/white,/obj/item/stack/cable_coil/white,/obj/item/crowbar/red,/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/effect/turf_decal/stripes/line{dir = 4},/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/hallway)
 "aC" = (/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/turf/open/floor/carpet/cyan,/area/shuttle/syndicate/hallway)
 "aD" = (/obj/structure/table/reinforced,/obj/item/storage/box/handcuffs{pixel_x = 3; pixel_y = 3},/obj/item/storage/box/zipties,/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/effect/turf_decal/stripes/line{dir = 8},/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/hallway)
-"aE" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 6},/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/hallway)
+"aE" = (/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/hallway)
 "aF" = (/obj/structure/chair/comfy/shuttle{dir = 4; name = "tactical chair"},/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/effect/turf_decal/stripes/line{dir = 4},/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/hallway)
 "aG" = (/turf/open/floor/carpet/cyan,/area/shuttle/syndicate/hallway)
 "aH" = (/obj/structure/chair/comfy/shuttle{dir = 8; name = "tactical chair"},/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/effect/turf_decal/stripes/line{dir = 8},/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/hallway)
-"aI" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 9},/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/eva)
-"aJ" = (/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/eva)
+"aI" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 6},/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/hallway)
+"aJ" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 9},/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/eva)
 "aK" = (/obj/structure/chair/comfy/shuttle{dir = 4; name = "tactical chair"},/obj/machinery/light{dir = 8},/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/effect/turf_decal/stripes/line{dir = 4},/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/hallway)
 "aL" = (/obj/structure/chair/comfy/shuttle{dir = 8; name = "tactical chair"},/obj/machinery/light{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/effect/turf_decal/stripes/line{dir = 8},/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/hallway)
-"aM" = (/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/airlock)
-"aN" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 5},/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/armory)
+"aM" = (/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/eva)
+"aN" = (/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/airlock)
 "aO" = (/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/effect/turf_decal/stripes/line{dir = 1},/turf/open/floor/carpet/cyan,/area/shuttle/syndicate/eva)
 "aP" = (/obj/machinery/portable_atmospherics/canister/oxygen,/obj/effect/turf_decal/bot_white,/obj/effect/turf_decal/stripes/line{dir = 8},/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/eva)
 "aQ" = (/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/turf/open/floor/carpet/cyan,/area/shuttle/syndicate/eva)
 "aR" = (/obj/machinery/suit_storage_unit/syndicate,/obj/effect/turf_decal/stripes/line{dir = 4},/turf/open/floor/mineral/plastitanium,/area/shuttle/syndicate/eva)
 "aS" = (/obj/structure/tank_dispenser/oxygen,/obj/effect/turf_decal/bot_white,/obj/effect/turf_decal/stripes/line{dir = 8},/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/eva)
-"aT" = (/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/airlock)
+"aT" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 5},/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/armory)
 "aU" = (/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/structure/window/reinforced{dir = 1},/obj/effect/turf_decal/stripes/line{dir = 9},/turf/open/floor/carpet/cyan,/area/shuttle/syndicate/airlock)
 "aV" = (/obj/structure/window/reinforced{dir = 1},/obj/effect/turf_decal/stripes/line{dir = 1},/obj/item/banner/mentor,/turf/open/floor/carpet/cyan,/area/shuttle/syndicate/airlock)
 "aW" = (/obj/machinery/portable_atmospherics/canister/oxygen,/obj/machinery/light{dir = 4},/obj/effect/turf_decal/bot_white,/obj/effect/turf_decal/stripes/line{dir = 10},/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/eva)
@@ -88,14 +88,14 @@
 "bJ" = (/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/effect/turf_decal/stripes/line{dir = 1},/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/airlock)
 "bK" = (/obj/structure/table/reinforced,/obj/item/storage/toolbox/syndicate,/obj/item/crowbar/red,/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/effect/turf_decal/stripes/line{dir = 1},/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/airlock)
 "bL" = (/obj/structure/rack,/obj/effect/turf_decal/bot_white,/obj/effect/turf_decal/stripes/line{dir = 10},/obj/item/clothing/suit/space/syndicate,/obj/item/clothing/head/helmet/space/syndicate,/turf/open/floor/carpet/cyan,/area/shuttle/syndicate/airlock)
-"bM" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 9},/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/medical)
-"bN" = (/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/medical)
-"bO" = (/obj/machinery/status_display/ai,/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/medical)
+"bM" = (/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/airlock)
+"bN" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 9},/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/medical)
+"bO" = (/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/medical)
 "bP" = (/obj/machinery/light{dir = 1},/obj/item/toy/mballoon,/obj/item/toy/mballoon,/obj/item/toy/mballoon,/obj/item/toy/mballoon,/obj/item/toy/mballoon,/obj/item/toy/mballoon,/obj/item/toy/mballoon,/obj/item/toy/mballoon,/obj/item/toy/mballoon,/obj/item/toy/mballoon,/obj/item/toy/mballoon,/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/medical)
 "bQ" = (/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/structure/extinguisher_cabinet{pixel_x = -30},/obj/effect/turf_decal/stripes/line{dir = 4},/obj/item/banner/mentor,/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/hallway)
 "bR" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/glass/beaker/large,/obj/item/reagent_containers/glass/beaker,/obj/item/reagent_containers/dropper,/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 8},/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/medical)
-"bS" = (/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/armory)
-"bT" = (/obj/machinery/status_display/evac,/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/armory)
+"bS" = (/obj/machinery/status_display/ai,/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/medical)
+"bT" = (/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/armory)
 "bU" = (/obj/structure/window/plastitanium{color = "#96ffec"},/turf/open/floor/plating,/area/shuttle/syndicate/medical)
 "bV" = (/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/effect/turf_decal/stripes/line{dir = 8},/obj/item/banner/mentor,/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/hallway)
 "bW" = (/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/effect/turf_decal/stripes/line{dir = 4},/obj/effect/turf_decal/stripes/line{dir = 4},/obj/item/toy/plush/lizardplushie,/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/hallway)
@@ -151,39 +151,40 @@
 "cU" = (/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/effect/turf_decal/stripes/line,/obj/effect/turf_decal/stripes/line,/turf/open/floor/carpet/cyan,/area/shuttle/syndicate/armory)
 "cV" = (/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/item/toy/mballoon,/obj/item/toy/mballoon,/obj/item/toy/mballoon,/obj/item/toy/mballoon,/obj/item/toy/mballoon,/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/armory)
 "cW" = (/obj/machinery/light{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/effect/turf_decal/stripes/line{dir = 8},/obj/item/toy/plush/snakeplushie,/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/hallway)
-"cX" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 6},/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/medical)
-"cY" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 10},/turf/closed/wall/r_wall/syndicate{color = "#96ffec"},/area/shuttle/syndicate/armory)
+"cX" = (/obj/machinery/status_display/evac,/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/armory)
+"cY" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 6},/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/medical)
 "cZ" = (/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/item/banner/mentor,/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/armory)
 "da" = (/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/item/banner/mentor,/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/hallway)
 "db" = (/obj/item/banner/mentor,/turf/open/floor/circuit/red,/area/shuttle/syndicate/armory)
 "dc" = (/obj/effect/turf_decal/stripes/line{dir = 1},/mob/living/simple_animal/moonrat{color = "#96ffec"; faction = list("Syndicate"); health = 100000; maxHealth = 100000; name = "MRat"; resize = 2},/turf/open/floor/carpet/cyan,/area/shuttle/syndicate/medical)
 "dd" = (/obj/effect/turf_decal/stripes/line,/obj/item/reagent_containers/food/snacks/onion_slice,/turf/open/floor/carpet/cyan,/area/shuttle/syndicate/hallway)
 "de" = (/obj/machinery/light{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/effect/turf_decal/stripes/line{dir = 4},/obj/effect/turf_decal/stripes/line,/obj/item/toy/mballoon,/obj/item/toy/mballoon,/obj/item/toy/mballoon,/obj/item/toy/mballoon,/turf/open/floor/carpet/cyan,/area/shuttle/syndicate/armory)
+"df" = (/obj/machinery/porta_turret/syndicate/shuttle{dir = 10},/turf/closed/wall/r_wall/syndicate,/area/shuttle/syndicate/armory)
 "Eh" = (/obj/structure/fans/tiny,/obj/machinery/door/poddoor{id = "syndiedriver"; name = "outer blast door"},/turf/open/floor/plating,/area/shuttle/syndicate/airlock)
 "Mw" = (/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/obj/machinery/door/window/brigdoor{dir = 1; name = "Mass Driver"; req_access_txt = "150"},/obj/machinery/computer/pod/old{density = 0; icon = 'icons/obj/airlock_machines.dmi'; icon_state = "airlock_control_standby"; id = "syndiedriver"; name = "Mass Driver Controller"; pixel_x = -41; pixel_y = 8},/turf/open/floor/plasteel/dark,/area/shuttle/syndicate/airlock)
 
 (1,1,1) = {"
-aaaaaaaaabacadadadadadacaeaaaaaaaa
-aaaaaaaaacafagahaiajakalacaaaaaaaa
-aaaaaaaaacamanaoapaoaqaracaaaaaaaa
-aaaaaaaaacasatauatauatawacaaaaaaaa
-aaaaaaaaacacacaxavacacacacaaaaaaaa
-aaaaaaaaaaayaAaBaCaDaAaEaaaaaaaaaa
-aaaaaaaaaaaaaAaFaGaHaAaaaaaaaaaaaa
-aaaIaJaJaJaJaJaKaGaLaAaMaMaMaMaNaa
-aaaJaRaOaOaPaJaFaGaHaAaMbvbwbwEhaa
-aaaJaRaQaQaSaJaFaCaHaMaTMwaUaVaMaa
-aaaJaRaQaQaWaJaXaZaXaMbabbbcbdaYaa
-aaaJaRaQaQbfbgaCaCaCbhbdbibibjaMaa
-aaaJbebkbsbmbnbEaGbFbHbIbJbKbLaMaa
-bMbNbNbObNbNbNbQaGbVbSbSbSbTbSbSaN
-bNbqbrbPbtbubUbWaGbZbXbxbybzbAbBbS
-bNbCbDbDbDcabUcNaGcWbXcZbGbGbGcVbS
-bNbqcdcgcgdcblchaGchbpcicicickcmbS
-bNbRcncscCcCbUcDddcDbXcHcHcIcJcKbS
-bNbYcLcMcbccbNdaazdabScecfcOcPcQbS
-bNcjcRcSbNbNbNclboclbSbSbScTcUdebS
-bNcocpcqbNaaaAcrcrcraAaabSdbctdbbS
-bNcucucubNaaaAcvcwcxaAaabScycycybS
-bNczcAcBcXaaaaaaaaaaaaaacYcEcFcGbS
+aaaaaaaaabaeadadadadadaeayaaaaaaaa
+aaaaaaaaaeafagahaiajakalaeaaaaaaaa
+aaaaaaaaaeamanaoapaoaqaraeaaaaaaaa
+aaaaaaaaaeasatauatauatawaeaaaaaaaa
+aaaaaaaaaeaeaeaxavacacaeaeaaaaaaaa
+aaaaaaaaaaaAaEaBaCaDaEaIaaaaaaaaaa
+aaaaaaaaaaaaaEaFaGaHaEaaaaaaaaaaaa
+aaaJaMaMaMaMaMaKaGaLaEaNaNaNaNaTaa
+aaaMaRaOaOaPaMaFaGaHaEaNbvbwbwEhaa
+aaaMaRaQaQaSaMaFaCaHaNbMMwaUaVaNaa
+aaaMaRaQaQaWaMaXaZaXaNbabbbcbdaYaa
+aaaMaRaQaQbfbgaCaCaCbhbdbibibjaNaa
+aaaMbebkbsbmbnbEaGbFbHbIbJbKbLaNaa
+bNbObObSbObObObQaGbVbTbTbTcXbTbTaT
+bObqbrbPbtbubUbWaGbZbXbxbybzbAbBbT
+bObCbDbDbDcabUcNaGcWbXcZbGbGbGcVbT
+bObqcdcgcgdcblchaGchbpcicicickcmbT
+bObRcncscCcCbUcDddcDbXcHcHcIcJcKbT
+bObYcLcMcbccbOdaazdabTcecfcOcPcQbT
+bOcjcRcSbObObOclboclbTbTbTcTcUdebT
+bOcocpcqbOaaaEcrcrcraEaabTdbctdbbT
+bOcucucubOaaaEcvcwcxaEaabTcycycybT
+bOczcAcBcYaaaaaaaaaaaaaadfcEcFcGbT
 "}
