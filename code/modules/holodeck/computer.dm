@@ -92,7 +92,7 @@
 		data["emagged"] = TRUE
 		data["emag_programs"] = emag_programs
 	data["program"] = program
-	data["can_toggle_safety"] = issilicon(user) || IsAdminGhost(user)
+	data["can_toggle_safety"] = IsAdminGhost(user)
 
 	return data
 
@@ -119,12 +119,9 @@
 
 			var/area/A = locate(program_to_load) in GLOB.sortedAreas
 			if(A)
-				if(istype(A, /area/holodeck/rec_center/burn))
-					message_admins("[key_name(usr)] has used the [A.name].") //ADMIN LOG: Ckey/(Ic Name) has used the Holodeck - Atmospheric Burn Test.
-					log_admin("[key_name(usr)] has used the [A.name].")
 				load_program(A)
 		if("safety")
-			if(!issilicon(usr) && !IsAdminGhost(usr))
+			if(!IsAdminGhost(usr))
 				return
 			obj_flags ^= EMAGGED
 			if((obj_flags & EMAGGED) && program && emag_programs[program.name])
