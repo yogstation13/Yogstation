@@ -34,5 +34,4 @@
 				message = "Snake? SNAKE? SNAAAAAAAAAAAAAAAKE!"
 			if("tatax")
 				message = "O"
-
-	priority_announce("[source.ckey] has kicked the bucket, their last words were \n\ \n\ [message]", "MBrain Hive Mind", 'sound/creatures/legion_death.ogg')
+		priority_announce("[source.ckey] has kicked the bucket, their last words were \n\ \n\ [message]", "MBrain Hive Mind", 'sound/creatures/legion_death.ogg')
