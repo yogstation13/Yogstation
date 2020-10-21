@@ -9,10 +9,10 @@
 				"}
 	return dat
 
-/obj/item/implant/explosive/on_mob_death(mob/living/L, gibbed)
+/obj/item/implant/mentor/on_mob_death(mob/living/L, gibbed)
 	activate("death")
 
-/obj/item/implant/explosive/activate(cause)
+/obj/item/implant/mentor/activate(cause)
 	if(!cause || !imp_in)
 		return FALSE
 	var/message = "Fuck..."
