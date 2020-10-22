@@ -9,7 +9,8 @@
 	circuit = /obj/item/circuitboard/machine/chem_heater
 	var/obj/item/reagent_containers/beaker = null
 	var/target_temperature = 300
-	var/heater_coefficient = 0.1
+	var/currentspeed = 10
+	var/heater_speed = 10
 	var/on = FALSE
 
 /obj/machinery/chem_heater/Destroy()
@@ -50,23 +51,27 @@
 	return TRUE
 
 /obj/machinery/chem_heater/RefreshParts()
-	heater_coefficient = 0.1
+	heater_speed = 10
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
-		heater_coefficient *= M.rating
+		heater_speed *= M.rating
 
 /obj/machinery/chem_heater/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Heating reagents at <b>[heater_coefficient*1000]%</b> speed.<span>"
+		. += "<span class='notice'>The status display reads: Heating reagents at <b>[heater_speed]K</b> per cycle.<span>"
 
 /obj/machinery/chem_heater/process()
 	..()
 	if(stat & NOPOWER)
 		return
-	if(on)
-		if(beaker && beaker.reagents.total_volume)
-			beaker.reagents.adjust_thermal_energy((target_temperature - beaker.reagents.chem_temp) * heater_coefficient * SPECIFIC_HEAT_DEFAULT * beaker.reagents.total_volume)
-			beaker.reagents.handle_reactions()
+		
+	if(on && beaker && beaker.reagents.total_volume)
+		if((beaker.reagents.chem_temp + heater_speed) >= target_temperature)
+			currentspeed = target_temperature - beaker.reagents.chem_temp
+		else
+			currentspeed = heater_speed
+		beaker.reagents.adjust_thermal_energy(currentspeed * SPECIFIC_HEAT_DEFAULT * beaker.reagents.total_volume)
+		beaker.reagents.handle_reactions()
 
 /obj/machinery/chem_heater/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "mixer0b", "mixer0b", I))
