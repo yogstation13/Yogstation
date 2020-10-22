@@ -38,10 +38,10 @@ GLOBAL_LIST_EMPTY(donators)
 
 	//BASIC SHIT
 	var/s = ""
+	s += "<img src=\"https://i.imgur.com/gNgarRJ.gif\">" //Banner image
 	var/server_name = CONFIG_GET(string/servername)
 	if (server_name)
-		s += "<b>[server_name]</b> &#8212; "
-	s += "<img src=\"https://i.imgur.com/gNgarRJ.gif\">" //Banner image
+		s += "<br><b>[server_name]</b> &#8212; "
 	s += "<br>(<a href=\"https://forums.yogstation.net/index.php\">Forums</a>|<a href=\"https://discord.gg/0keg6hQH05Ha8OfO\">Discord</a>)<br>" // The Forum & Discord links line
 	s += "<br><i>[pick(world.file2list("yogstation/strings/taglines.txt"))]</i><br>"
 
