@@ -717,12 +717,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"abG" = (
-/obj/structure/table,
-/obj/item/toy/cards/deck,
-/obj/item/toy/cards/deck,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "abH" = (
 /obj/structure/table,
 /obj/structure/cable/yellow{
@@ -84065,6 +84059,13 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
+"scU" = (
+/obj/structure/table,
+/obj/item/toy/cards/deck,
+/obj/item/toy/cards/deck,
+/obj/item/instrument/harmonica,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "siF" = (
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
@@ -109900,7 +109901,7 @@ aaH
 aaQ
 aba
 abF
-abG
+scU
 acb
 acu
 aaR
