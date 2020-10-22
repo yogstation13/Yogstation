@@ -2,6 +2,12 @@
 "a" = (
 /turf/template_noop,
 /area/space)
+"b" = (
+/turf/closed/wall{
+	icon = 'icons/turf/walls/reinforced_wall.dmi';
+	icon_state = "r_wall"
+	},
+/area/security/execution/transfer)
 "c" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -308,9 +314,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
-"M" = (
-/turf/closed/wall,
-/area/security/execution/transfer)
 "N" = (
 /obj/machinery/power/apc{
 	areastring = "/area/security/execution/transfer";
@@ -411,33 +414,33 @@ a
 a
 a
 a
-M
-M
-M
-M
-M
+b
+b
+b
+b
+b
 "}
 (2,1,1) = {"
 a
 a
 a
 a
-M
+b
 s
 t
 W
-M
+b
 "}
 (3,1,1) = {"
-M
-M
-M
+b
+b
+b
 d
-M
+b
 J
 l
 K
-M
+b
 "}
 (4,1,1) = {"
 O

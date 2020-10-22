@@ -231,6 +231,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
+"w" = (
+/turf/closed/wall{
+	icon = 'icons/turf/walls/reinforced_wall.dmi';
+	icon_state = "r_wall"
+	},
+/area/security/execution/transfer)
 "y" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "executionfireblast";
@@ -333,9 +339,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
-/area/security/execution/transfer)
-"M" = (
-/turf/closed/wall,
 /area/security/execution/transfer)
 "N" = (
 /obj/machinery/power/apc{
@@ -441,33 +444,33 @@ a
 a
 a
 a
-M
-M
-M
-M
-M
+w
+w
+w
+w
+w
 "}
 (2,1,1) = {"
 a
 a
 a
 a
-M
+w
 s
 g
 l
-M
+w
 "}
 (3,1,1) = {"
-M
-M
-M
+w
+w
+w
 d
-M
+w
 F
 b
 u
-M
+w
 "}
 (4,1,1) = {"
 Z

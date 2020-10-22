@@ -308,15 +308,18 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
+"J" = (
+/turf/closed/wall{
+	icon = 'icons/turf/walls/reinforced_wall.dmi';
+	icon_state = "r_wall"
+	},
+/area/security/execution/transfer)
 "L" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
 /obj/item/reagent_containers/glass/bucket/wooden,
 /turf/open/floor/plasteel/showroomfloor,
-/area/security/execution/transfer)
-"M" = (
-/turf/closed/wall,
 /area/security/execution/transfer)
 "N" = (
 /obj/machinery/power/apc{
@@ -417,33 +420,33 @@ a
 a
 a
 a
-M
-M
-M
-M
-M
+J
+J
+J
+J
+J
 "}
 (2,1,1) = {"
 a
 a
 a
 a
-M
+J
 s
 i
 Z
-M
+J
 "}
 (3,1,1) = {"
-M
-M
-M
+J
+J
+J
 d
-M
+J
 x
 w
 k
-M
+J
 "}
 (4,1,1) = {"
 u
