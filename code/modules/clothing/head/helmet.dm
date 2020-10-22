@@ -409,7 +409,7 @@
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
-		
+
 /obj/item/clothing/head/helmet/stormtrooper
 	name = "Storm Trooper Helmet"
 	desc = "Battle Helmet from a long lost empire"
@@ -423,3 +423,10 @@
 	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
 	strip_delay = 60
 	flags_cover = HEADCOVERSEYES
+
+/obj/item/clothing/head/helmet/shaman
+	name = "ritual headress"
+	desc = "Hand carved skull headress, uniquely suited for the harsh lavaland hellscapes."
+	icon_state = "shamanhat"
+	item_state = "shamanhat"
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 10, "bomb" = 10, "bio" = 5, "rad" = 20, "fire" = 40, "acid" = 20)
