@@ -2,7 +2,7 @@ param(
 	$game_path
 )
 
-Set-Location $game_path
+cd $game_path
 
 Write-Host "Installing pip dependencies..."
 pip3 install PyYaml beautifulsoup4
