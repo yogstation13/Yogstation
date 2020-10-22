@@ -89,6 +89,7 @@
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	to_chat(M, "<span class='danger'>You feel weakened as the necropolis' blessing leaves your body.</span>")
+	M.remove_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN)
 	M.dna.species.punchdamagelow = initial(M.dna.species.punchdamagelow)
 	M.dna.species.punchdamagehigh = initial(M.dna.species.punchdamagehigh)
 	M.dna.species.punchstunthreshold = initial(M.dna.species.punchstunthreshold)
