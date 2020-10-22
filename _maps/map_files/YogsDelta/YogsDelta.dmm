@@ -25488,24 +25488,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"aPm" = (
-/obj/structure/table,
-/obj/structure/cable/white{
-	icon_state = "1-2"
-	},
-/obj/item/toy/cards/deck,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aPn" = (
 /obj/structure/chair/stool,
 /turf/open/floor/plating,
@@ -127666,6 +127648,25 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/nanite)
+"wYn" = (
+/obj/structure/table,
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/item/toy/cards/deck,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/instrument/harmonica,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "xdD" = (
 /turf/closed/wall/r_wall,
 /area/science/mixing/chamber)
@@ -181128,7 +181129,7 @@ aSU
 dnz
 dol
 ayO
-aPm
+wYn
 aJA
 aSG
 aHR
