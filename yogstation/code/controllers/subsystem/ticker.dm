@@ -25,6 +25,7 @@
 		"https://www.youtube.com/watch?v=w5hBQDepXOE",						// Michael Giacchino - Main Theme (STAR TREK Beyond)
 		"https://www.youtube.com/watch?v=orT5RN3Zwak",						// Kirk Franklin - Revolution
 		"https://www.youtube.com/watch?v=d2xkpz-26jM",						// Admiral Hippie - Clown.wmv
+		"https://www.youtube.com/watch?v=Qr0WT-3TiZ4",						// Batzorig Vaanchig - In Praise of Genghis Khan
 		"https://www.youtube.com/watch?v=UlHGGKgzgzI",						// Elbow - Leaders of the Free World
 		"https://www.youtube.com/watch?v=ysPtBjY8o_A",						// Chris Christodoulou - Risk of Rain Coalescence
 		"https://www.youtube.com/watch?v=SQOdPQQf2Uo",						// Star Trek The Motion Picture: Main Theme Album Style Edit
