@@ -22,10 +22,13 @@
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	gold_core_spawnable = FRIENDLY_SPAWN
 
+
 /mob/living/simple_animal/opossum/poppy
 	name = "Poppy the Safety Possum"
 	desc = "Safety first!"
 	icon_state = "poppypossum"
 	icon_living = "poppypossum"
 	icon_dead = "poppypossum_dead"
-	butcher_results = list(/obj/item/clothing/head/hardhat = 1)
+	loot = list(/obj/item/clothing/head/hardhat)
+	
+	
