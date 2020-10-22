@@ -12,7 +12,7 @@
 	mouse_opacity = MOUSE_OPACITY_ICON
 	move_to_delay = 40
 	ranged = 1
-	ranged_cooldown_time = 120
+	ranged_cooldown_time = 150
 	friendly = "wails at"
 	speak_emote = list("bellows")
 	vision_range = 4
