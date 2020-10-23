@@ -312,6 +312,6 @@
 	name = "Cap Mix"
 	id = /datum/reagent/medicine/tribaldetox
 	required_temp = 420
-	mix_message = "The solution binds together from the heat, releasing a disgusting smelling smoke."
+	mix_message = "The mixture binds together from the heat, releasing a disgusting smelling smoke."
 	results = list(/datum/reagent/medicine/tribaldetox = 10)
 	required_reagents = list(/datum/reagent/ash = 10, /datum/reagent/consumable/entpoly = 1)
