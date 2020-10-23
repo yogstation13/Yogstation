@@ -39426,6 +39426,10 @@
 	},
 /turf/open/floor/plating,
 /area/science/xenobiology)
+"eWm" = (
+/obj/item/soap/nanotrasen,
+/turf/template_noop,
+/area/template_noop)
 "eWH" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = 32
@@ -103245,7 +103249,7 @@ qQV
 qQV
 qQV
 qQV
-qQV
+eWm
 qQV
 qQV
 qQV
