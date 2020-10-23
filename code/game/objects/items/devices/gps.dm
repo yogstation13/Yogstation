@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		tracking = TRUE
 
 
-/obj/item/gps/ui_interact(mob/user, datum/tgui/ui)) // Remember to use the appropriate state.
+/obj/item/gps/ui_interact(mob/user, datum/tgui/ui) // Remember to use the appropriate state.
 	if(emped)
 		to_chat(user, "[src] fizzles weakly.")
 		return

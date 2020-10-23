@@ -20,7 +20,7 @@ export const SecurityConsole = (props, context) => {
 
   if (data.z > 6) {
     return (
-      <Window resizable theme={theme}>
+      <Window width={775} height={500} resizable theme={theme}>
         <Window.Content scrollable>
           <NoticeBox>
             Unable to establish connection. You are too far away from the station!

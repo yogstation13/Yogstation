@@ -25,8 +25,20 @@ export const Radio = (props, context) => {
     name: key,
     status: !!value,
   }))(data.channels);
+  // Calculate window height
+  let height = 106;
+  if (subspace) {
+    if (channels.length > 0) {
+      height += channels.length * 21 + 6;
+    }
+    else {
+      height += 24;
+    }
+  }
   return (
-    <Window>
+    <Window
+      width={360}
+      height={height}>
       <Window.Content>
         <Section>
           <LabeledList>
@@ -46,7 +58,7 @@ export const Radio = (props, context) => {
                   value={frequency / 10}
                   format={value => toFixed(value, 1)}
                   onDrag={(e, value) => act('frequency', {
-                    adjust: value,
+                    adjust: (value - frequency / 10),
                   })} />
               )}
               {tunedChannel && (

@@ -10,9 +10,7 @@
 	network_destination = "tracking program"
 	size = 5
 	tgui_id = "NtosRadar"
-	special_assets = list(
-		/datum/asset/simple/radar_assets,
-	)
+
 	///List of trackable entities. Updated by the scan() proc.
 	var/list/objects
 	///Ref of the last trackable object selected by the user in the tgui window. Updated in the ui_act() proc.

@@ -1,6 +1,6 @@
-import { Grid, NumberInput, Button, Section } from '../components';
-import { useBackend } from '../backend';
 import { toFixed } from 'common/math';
+import { useBackend } from '../backend';
+import { Button, Grid, NumberInput, Section } from '../components';
 import { Window } from '../layouts';
 
 export const Signaler = (props, context) => {
@@ -10,11 +10,11 @@ export const Signaler = (props, context) => {
     frequency,
     minFrequency,
     maxFrequency,
-    color,
   } = data;
-
   return (
-    <Window>
+    <Window
+      width={280}
+      height={132}>
       <Window.Content>
         <Section>
           <Grid>
@@ -71,19 +71,6 @@ export const Signaler = (props, context) => {
                 onClick={() => act('reset', {
                   reset: "code",
                 })} />
-            </Grid.Column>
-          </Grid>
-          <Grid mt={0.6}>
-            <Grid.Column size={1.4} color="label">
-              Color:
-            </Grid.Column>
-            <Grid.Column>
-              <Button
-                icon="sync"
-                width={25.75}
-                color={color}
-                content={color}
-                onClick={() => act('color')} />
             </Grid.Column>
           </Grid>
           <Grid mt={0.8}>

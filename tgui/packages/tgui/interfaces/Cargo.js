@@ -1,11 +1,24 @@
 import { toArray } from 'common/collections';
 import { Fragment } from 'inferno';
-import { useBackend, useSharedState, useLocalState } from '../backend';
+import { useBackend, useSharedState } from '../backend';
 import { AnimatedNumber, Box, Button, Flex, LabeledList, Section, Table, Tabs } from '../components';
 import { formatMoney } from '../format';
 import { Window } from '../layouts';
 
 export const Cargo = (props, context) => {
+  return (
+    <Window
+      width={780}
+      height={750}
+      resizable>
+      <Window.Content scrollable>
+        <CargoContent />
+      </Window.Content>
+    </Window>
+  );
+};
+
+export const CargoContent = (props, context) => {
   const { act, data } = useBackend(context);
   const [tab, setTab] = useSharedState(context, 'tab', 'catalog');
   const {
@@ -14,9 +27,9 @@ export const Cargo = (props, context) => {
   const cart = data.cart || [];
   const requests = data.requests || [];
   return (
-    <Window resizable>
-      <Window.Content scrollable>
-        <CargoStatus />
+    <Box>
+      <CargoStatus />
+      <Section fitted>
         <Tabs>
           <Tabs.Tab
             icon="list"
@@ -45,17 +58,17 @@ export const Cargo = (props, context) => {
             </Tabs.Tab>
           )}
         </Tabs>
-        {tab === 'catalog' && (
-          <CargoCatalog />
-        )}
-        {tab === 'requests' && (
-          <CargoRequests />
-        )}
-        {tab === 'cart' && (
-          <CargoCart />
-        )}
-      </Window.Content>
-    </Window>
+      </Section>
+      {tab === 'catalog' && (
+        <CargoCatalog />
+      )}
+      {tab === 'requests' && (
+        <CargoRequests />
+      )}
+      {tab === 'cart' && (
+        <CargoCart />
+      )}
+    </Box>
   );
 };
 
@@ -70,6 +83,7 @@ const CargoStatus = (props, context) => {
     message,
     points,
     requestonly,
+    can_send,
   } = data;
   return (
     <Section
@@ -84,7 +98,7 @@ const CargoStatus = (props, context) => {
       )}>
       <LabeledList>
         <LabeledList.Item label="Shuttle">
-          {docked && !requestonly && (
+          {docked && !requestonly && can_send &&(
             <Button
               content={location}
               onClick={() => act('send')} />
@@ -115,10 +129,10 @@ const CargoStatus = (props, context) => {
 export const CargoCatalog = (props, context) => {
   const { express } = props;
   const { act, data } = useBackend(context);
-  const [
+  const {
     self_paid,
-    set_self_paid,
-  ] = useLocalState(context, 'self_paid', 0);
+    app_cost,
+  } = data;
   const supplies = toArray(data.supplies);
   const [
     activeSupplyName,
@@ -137,11 +151,11 @@ export const CargoCatalog = (props, context) => {
             ml={2}
             content="Buy Privately"
             checked={self_paid}
-            onClick={self_paid ? () => set_self_paid(0) : () => set_self_paid(1)} />
+            onClick={() => act('toggleprivate')} />
         </Fragment>
       )}>
       <Flex>
-        <Flex.Item>
+        <Flex.Item ml={-1} mr={1}>
           <Tabs vertical>
             {supplies.map(supply => (
               <Tabs.Tab
@@ -185,9 +199,8 @@ export const CargoCatalog = (props, context) => {
                       tooltipPosition="left"
                       onClick={() => act('add', {
                         id: pack.id,
-                        self_paid: self_paid,
                       })}>
-                      {formatMoney(self_paid
+                      {formatMoney((self_paid && !pack.goody) || app_cost
                         ? Math.round(pack.cost * 1.1)
                         : pack.cost)}
                       {' cr'}
@@ -207,6 +220,8 @@ const CargoRequests = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     requestonly,
+    can_send,
+    can_approve_requests,
   } = data;
   const requests = data.requests || [];
   // Labeled list reimplementation to squeeze extra columns out of it
@@ -246,7 +261,7 @@ const CargoRequests = (props, context) => {
               <Table.Cell collapsing textAlign="right">
                 {formatMoney(request.cost)} cr
               </Table.Cell>
-              {!requestonly && (
+              {(!requestonly || can_send)&& can_approve_requests &&(
                 <Table.Cell collapsing>
                   <Button
                     icon="check"
@@ -274,10 +289,12 @@ const CargoCartButtons = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     requestonly,
+    can_send,
+    can_approve_requests,
   } = data;
   const cart = data.cart || [];
   const total = cart.reduce((total, entry) => total + entry.cost, 0);
-  if (requestonly) {
+  if (requestonly || !can_send || !can_approve_requests) {
     return null;
   }
   return (
@@ -305,6 +322,7 @@ const CargoCart = (props, context) => {
     away,
     docked,
     location,
+    can_send,
   } = data;
   const cart = data.cart || [];
   return (
@@ -339,11 +357,13 @@ const CargoCart = (props, context) => {
                 {formatMoney(entry.cost)} cr
               </Table.Cell>
               <Table.Cell collapsing>
-                <Button
-                  icon="minus"
-                  onClick={() => act('remove', {
-                    id: entry.id,
-                  })} />
+                {can_send &&(
+                  <Button
+                    icon="minus"
+                    onClick={() => act('remove', {
+                      id: entry.id,
+                    })} />
+                )}
               </Table.Cell>
             </Table.Row>
           ))}

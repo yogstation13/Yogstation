@@ -1,7 +1,7 @@
 import { toFixed } from 'common/math';
 import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
-import { AnimatedNumber, Box, Button, Icon, Knob, LabeledControls, LabeledList, Section, Tooltip, Slider } from '../components';
+import { AnimatedNumber, Box, Button, Icon, Knob, LabeledControls, LabeledList, Section, Tooltip } from '../components';
 import { formatSiUnit } from '../format';
 import { Window } from '../layouts';
 
@@ -21,7 +21,9 @@ export const Canister = (props, context) => {
     restricted,
   } = data;
   return (
-    <Window resizable>
+    <Window
+      width={300}
+      height={232}>
       <Window.Content>
         <Section
           title="Canister"
@@ -56,19 +58,19 @@ export const Canister = (props, context) => {
                   return formatSiUnit(value * 1000, 1, 'Pa');
                 }} />
             </LabeledControls.Item>
-            <LabeledControls.Item label="Regulator" mr={2}>
+            <LabeledControls.Item label="Regulator">
               <Box
-                position="relative">
-                <Slider
-                  value={releasePressure}
+                position="relative"
+                left="-8px">
+                <Knob
+                  size={1.25}
                   color={!!valveOpen && 'yellow'}
-                  fillValue={releasePressure}
+                  value={releasePressure}
+                  unit="kPa"
                   minValue={minReleasePressure}
                   maxValue={maxReleasePressure}
                   step={5}
-                  stepPixelSize={0.75}
-                  width={10}
-                  format={value => value + "kPa"}
+                  stepPixelSize={1}
                   onDrag={(e, value) => act('pressure', {
                     pressure: value,
                   })} />
@@ -76,7 +78,7 @@ export const Canister = (props, context) => {
                   fluid
                   position="absolute"
                   top="-2px"
-                  right="-22px"
+                  right="-20px"
                   color="transparent"
                   icon="fast-forward"
                   onClick={() => act('pressure', {
@@ -86,7 +88,7 @@ export const Canister = (props, context) => {
                   fluid
                   position="absolute"
                   top="16px"
-                  right="-22px"
+                  right="-20px"
                   color="transparent"
                   icon="undo"
                   onClick={() => act('pressure', {
@@ -97,7 +99,7 @@ export const Canister = (props, context) => {
             <LabeledControls.Item label="Valve">
               <Button
                 my={0.5}
-                width="75px"
+                width="50px"
                 lineHeight={2}
                 fontSize="11px"
                 color={valveOpen
