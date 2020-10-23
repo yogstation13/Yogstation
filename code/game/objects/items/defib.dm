@@ -552,7 +552,7 @@
 		var/obj/item/organ/heart = H.getorgan(/obj/item/organ/heart)
 		if(do_after(user, 15, target = H))
 			if(user.job == "Medical Doctor" || user.job == "Paramedic" || user.job == "Chief Medical Officer")
-				user.say("Clear!")
+				user.say("Clear!", forced = "defib")
 			else
 				return
 		if(do_after(user, 5, target = H)) //Counting the delay for "Clear", revive time is 5sec total
