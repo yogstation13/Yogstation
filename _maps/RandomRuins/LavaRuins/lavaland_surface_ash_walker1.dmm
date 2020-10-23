@@ -1387,7 +1387,7 @@
 	},
 /turf/closed/mineral/volcanic/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"qk" = (
+"uD" = (
 /obj/structure/stone_tile/block,
 /obj/effect/mapping_helpers/no_lava,
 /obj/item/seeds/bamboo,
@@ -1608,7 +1608,7 @@ cg
 cb
 di
 dn
-qk
+uD
 dx
 cK
 dE
