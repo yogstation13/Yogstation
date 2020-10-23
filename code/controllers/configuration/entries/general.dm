@@ -212,6 +212,9 @@
 /datum/config_entry/string/githuburl
 	config_entry_value = "https://github.com/yogstation13/Yogstation" // yogs - Old Tickets
 
+/datum/config_entry/string/apiurl
+	config_entry_value = "https://forums.yogstation.net/api"
+
 /datum/config_entry/string/roundstatsurl
 
 /datum/config_entry/string/gamelogurl

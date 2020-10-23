@@ -26,7 +26,7 @@
 "f" = (
 /obj/machinery/suit_storage_unit/standard_unit{
 	helmet_type = null;
-	suit_type = /obj/item/clothing/suit/space/hardsuit/ert/sec
+	suit_type = /obj/item/clothing/suit/space/hardsuit/security
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb,

@@ -353,4 +353,10 @@
 	suffix = "bigape.dmm"
 	name = "Big Ape"
 	description = "A gorilla? Out here? But why."
+
+/datum/map_template/ruin/space/cozy_apartment
+	id = "nicelittlenest"
+	suffix = "nicelittlenest.dmm"
+	name = "Cozy Home"
+	description = "A nice little place for travellers to rest. There is even a mint under the pillow!"
 	

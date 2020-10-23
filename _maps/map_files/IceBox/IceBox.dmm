@@ -13005,7 +13005,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "azK" = (
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /turf/open/floor/plating,
 /area/clerk)
 "azL" = (
@@ -16819,11 +16819,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
-"aHi" = (
-/obj/structure/table,
-/obj/item/pen,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aHj" = (
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -22219,15 +22214,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
-"aSV" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/pen,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aSW" = (
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/light/small{
@@ -37344,26 +37330,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"bvF" = (
-/obj/machinery/requests_console{
-	department = "Cargo Bay";
-	departmentType = 2;
-	pixel_x = -30
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/machinery/computer/bounty{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "bvG" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -51925,7 +51891,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "caQ" = (
-/obj/structure/piano{
+/obj/structure/musician/piano{
 	icon_state = "piano"
 	},
 /turf/open/floor/wood,
@@ -58159,6 +58125,27 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"fpk" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/computer/bounty{
+	dir = 4
+	},
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Quartermaster's Desk";
+	departmentType = 2;
+	pixel_x = -30
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "fql" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer/cryopod{
@@ -58822,6 +58809,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"hrX" = (
+/obj/structure/table,
+/obj/item/instrument/harmonica,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "htC" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -61165,6 +61157,16 @@
 	dir = 1
 	},
 /area/hallway/secondary/entry)
+"pkA" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/obj/item/pen,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "pkS" = (
 /turf/closed/wall,
 /area/ai_monitored/turret_protected/ai)
@@ -86197,7 +86199,7 @@ bjr
 bjr
 bub
 bxu
-bvF
+fpk
 bzP
 bAS
 bxu
@@ -91005,8 +91007,8 @@ aat
 tKc
 axm
 aat
-aHi
-aSV
+hrX
+pkA
 aat
 aat
 aat

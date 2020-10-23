@@ -150,7 +150,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/structure/piano{
+/obj/structure/musician/piano{
 	icon_state = "piano"
 	},
 /turf/open/floor/mineral/gold{
@@ -571,6 +571,13 @@
 "Kp" = (
 /obj/item/reagent_containers/food/snacks/salad/validsalad{
 	pixel_y = 3
+},
+/obj/structure/table/wood/fancy/black,
+/turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
+"ci" = (
+/obj/structure/musician/piano{
+	icon_state = "piano"
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
