@@ -374,6 +374,7 @@ rules:
     ignorePattern: '^(import\s.+\sfrom\s|.*require\()',
     ignoreUrls: true,
     ignoreRegExpLiterals: true,
+    ignoreStrings: true,
   }]
   ## Enforce a maximum number of lines per file
   # max-lines: error
@@ -390,7 +391,7 @@ rules:
   ## Enforce a particular style for multiline comments
   # multiline-comment-style: error
   ## Enforce newlines between operands of ternary expressions
-  #multiline-ternary: [error, always-multiline]
+  # multiline-ternary: [error, always-multiline]
   ## Require constructor names to begin with a capital letter
   # new-cap: error
   ## Enforce or disallow parentheses when invoking a constructor with no

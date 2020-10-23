@@ -304,7 +304,8 @@ const PackagingControls = (props, context) => {
       {!!condi && (
         <LabeledList.Item label="Bottle type">
           <Button.Checkbox
-            onClick={() => act('condiStyle', { id: autoCondiStyleChosen ? condiStyles[0].id : autoCondiStyle })}
+            onClick={() => act('condiStyle', 
+              { id: autoCondiStyleChosen ? condiStyles[0].id : autoCondiStyle })}
             checked={autoCondiStyleChosen}
             disabled={!condiStyles.length}>
             Guess from contents

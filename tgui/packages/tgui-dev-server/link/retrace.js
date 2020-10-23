@@ -8,7 +8,7 @@ import { createLogger } from 'common/logging.js';
 import fs from 'fs';
 import { basename } from 'path';
 import SourceMap from 'source-map';
-import { parse as parseStackTrace } from 'stacktrace-parser';
+import StackTraceParser from 'stacktrace-parser';
 import { resolveGlob } from '../util.js';
 
 const logger = createLogger('retrace');
@@ -39,12 +39,8 @@ export const loadSourceMaps = async bundleDir => {
 };
 
 export const retrace = stack => {
-  if (typeof stack !== 'string') {
-    logger.log('ERROR: Stack is not a string!', stack);
-    return stack;
-  }
   const header = stack.split(/\n\s.*at/)[0];
-  const mappedStack = parseStackTrace(stack)
+  const mappedStack = StackTraceParser.parse(stack)
     .map(frame => {
       if (!frame.file) {
         return frame;
