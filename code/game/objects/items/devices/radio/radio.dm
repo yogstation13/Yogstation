@@ -118,13 +118,6 @@
 /obj/item/radio/ui_interact(mob/user, datum/tgui/ui, datum/ui_state/state)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		var/ui_width = 360
-		var/ui_height = 106
-		if(subspace_transmission)
-			if (channels.len > 0)
-				ui_height += 6 + channels.len * 21
-			else
-				ui_height += 24
 		ui = new(user, src, "Radio", name)
 		if(state)
 			ui.set_state(state)

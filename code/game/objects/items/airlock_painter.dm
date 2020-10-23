@@ -87,7 +87,7 @@
 		// make some colorful reagent, and apply it to the lungs
 		L.create_reagents(10)
 		L.reagents.add_reagent(/datum/reagent/colorful_reagent, 10)
-		L.reagents.expose(L, TOUCH, 1)
+		L.reagents.reaction(L, TOUCH, 1)
 
 		// TODO maybe add some colorful vomit?
 

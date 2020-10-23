@@ -14,6 +14,7 @@
 	var/icon_screen = "generic"
 	var/clockwork = FALSE
 	var/time_to_scewdrive = 20
+	var/authenticated = 0
 
 /obj/machinery/computer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
