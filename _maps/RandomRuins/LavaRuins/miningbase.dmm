@@ -239,14 +239,6 @@
 /obj/effect/turf_decal/tile/purple,
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"aO" = (
-/obj/machinery/atmospherics/components/unary/tank/nitrogen,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
-"aQ" = (
-/obj/machinery/atmospherics/components/unary/tank/oxygen,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "aS" = (
 /obj/item/beacon,
 /obj/effect/turf_decal/tile/purple{
@@ -286,12 +278,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/mine/living_quarters)
-"bb" = (
-/obj/machinery/atmospherics/pipe/manifold{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "bd" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -327,12 +313,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"bl" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 10
-	},
-/turf/closed/wall,
-/area/mine/living_quarters)
 "bp" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -468,22 +448,6 @@
 	on = 1
 	},
 /turf/open/floor/plating,
-/area/mine/living_quarters)
-"bZ" = (
-/obj/machinery/atmospherics/pipe/simple,
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
-"ca" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Mining Station Port Wing APC";
-	pixel_y = 24
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "cb" = (
 /obj/machinery/atmospherics/pipe/simple{
@@ -1355,6 +1319,12 @@
 	},
 /turf/open/floor/plating,
 /area/mine/eva)
+"ge" = (
+/obj/machinery/atmospherics/pipe/simple{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "gh" = (
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -1493,6 +1463,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
+"jz" = (
+/obj/machinery/atmospherics/pipe/simple{
+	dir = 10
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "jQ" = (
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
@@ -1534,6 +1513,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/production)
+"kj" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "Mining Station Port Wing APC";
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/mob/living/simple_animal/turtle,
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "kM" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Mining Station Communications";
@@ -1833,18 +1824,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"rk" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
-	dir = 4
-	},
-/obj/machinery/mineral/mint{
-	input_dir = 4
-	},
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "rD" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
@@ -1854,6 +1833,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"rP" = (
+/obj/machinery/atmospherics/components/unary/tank/oxygen,
+/turf/open/floor/plating,
 /area/mine/living_quarters)
 "rU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -2016,10 +1999,6 @@
 /obj/structure/ore_box,
 /turf/open/floor/plasteel,
 /area/mine/production)
-"yM" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/mine/living_quarters)
 "yW" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -2098,6 +2077,12 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"Bm" = (
+/obj/machinery/mineral/mint{
+	input_dir = 4
+	},
+/turf/open/floor/plating,
 /area/mine/living_quarters)
 "Bn" = (
 /obj/machinery/door/firedoor/border_only{
@@ -2604,13 +2589,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
-"Kc" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector{
-	on = 1;
-	volume_rate = 200
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/mine/living_quarters)
 "KB" = (
 /obj/machinery/airalarm/tcomms{
 	pixel_y = 24
@@ -2662,6 +2640,12 @@
 "Mo" = (
 /obj/machinery/mineral/processing_unit_console,
 /turf/closed/wall,
+/area/mine/living_quarters)
+"MR" = (
+/obj/machinery/atmospherics/pipe/manifold{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/mine/living_quarters)
 "Nl" = (
 /obj/effect/turf_decal/tile/bar,
@@ -2821,6 +2805,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"Ro" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	on = 1;
+	volume_rate = 200
+	},
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	on = 1;
+	volume_rate = 200
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/mine/living_quarters)
 "Ru" = (
 /obj/structure/sign/warning/docking,
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -2903,6 +2898,15 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"TO" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple{
+	dir = 10
+	},
+/turf/open/floor/plating,
 /area/mine/living_quarters)
 "Ub" = (
 /obj/machinery/door/airlock/mining{
@@ -3041,15 +3045,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"WW" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 10
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "Xc" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/tile/purple{
@@ -3073,6 +3068,10 @@
 	},
 /obj/structure/chair/stool/bar,
 /turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"XC" = (
+/obj/machinery/atmospherics/components/unary/tank/nitrogen,
+/turf/open/floor/plating,
 /area/mine/living_quarters)
 "Ya" = (
 /obj/machinery/camera{
@@ -3655,7 +3654,7 @@ ac
 ac
 ac
 ak
-Kc
+Ro
 bF
 Ew
 ht
@@ -3693,7 +3692,7 @@ bQ
 bQ
 bQ
 bQ
-ca
+kj
 dm
 bL
 ub
@@ -3718,8 +3717,8 @@ ac
 ac
 ac
 bQ
-aO
-bb
+XC
+MR
 bX
 bV
 dp
@@ -3751,7 +3750,7 @@ ac
 ac
 bQ
 bQ
-WW
+jz
 cb
 HH
 eG
@@ -3782,8 +3781,8 @@ ac
 ac
 ac
 bQ
-aQ
-bb
+rP
+MR
 eU
 dt
 eH
@@ -3812,10 +3811,10 @@ ab
 ac
 ac
 ac
-ak
+ac
 bQ
 bQ
-bl
+ge
 cs
 eF
 eQ
@@ -3844,11 +3843,11 @@ ab
 ab
 ac
 ac
-ak
-ak
-yM
-bZ
-rk
+ac
+ac
+bQ
+Bm
+TO
 mI
 kT
 cr
@@ -3877,9 +3876,9 @@ ab
 ac
 ac
 ac
-ak
-ak
+ac
 bQ
+ba
 bQ
 bQ
 bQ

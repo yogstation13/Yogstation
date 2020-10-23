@@ -83205,6 +83205,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
+"cxe" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/science/misc_lab)
 "cxf" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -126032,14 +126039,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/science/research)
-"gfb" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/machinery/sci_bombardment,
-/turf/open/floor/plasteel,
-/area/science/misc_lab)
 "gCK" = (
 /turf/closed/wall,
 /area/maintenance/department/science)
@@ -156552,7 +156551,7 @@ dtk
 dFA
 dGZ
 cBT
-gfb
+cxe
 dKA
 dLK
 gSi

@@ -96,9 +96,6 @@
 "aq" = (
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/offline)
-"ar" = (
-/turf/open/floor/holofloor/plating/burnmix,
-/area/holodeck/rec_center/burn)
 "as" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -181,10 +178,6 @@
 /obj/effect/holodeck_effect/mobspawner,
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/wildlife)
-"aC" = (
-/obj/effect/holodeck_effect/sparks,
-/turf/open/floor/holofloor/plating/burnmix,
-/area/holodeck/rec_center/burn)
 "aD" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -14263,7 +14256,7 @@
 /area/centcom/control)
 "Eh" = (
 /obj/structure/closet/cardboard,
-/obj/item/banhammer,
+/obj/item/bikehorn,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/wizard_station)
@@ -14651,7 +14644,7 @@
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
 "Fb" = (
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -23082,6 +23075,9 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/centcom/testchamber)
+"ZP" = (
+/turf/open/lava/smooth,
+/area/holodeck/rec_center/burn)
 "ZQ" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -85612,16 +85608,16 @@ aa
 "}
 (244,1,1) = {"
 ac
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 bx
 bN
@@ -85869,16 +85865,16 @@ aa
 "}
 (245,1,1) = {"
 ac
-ar
-aC
-ar
-ar
-ar
-ar
-ar
-ar
-aC
-ar
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 by
 bN
@@ -86126,16 +86122,16 @@ aa
 "}
 (246,1,1) = {"
 ac
-ar
-ar
-ar
-aC
-ar
-ar
-aC
-ar
-ar
-ar
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 by
 bN
@@ -86383,16 +86379,16 @@ aa
 "}
 (247,1,1) = {"
 ac
-ar
-aC
-ar
-ar
-ar
-ar
-ar
-ar
-aC
-ar
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 by
 bN
@@ -86640,16 +86636,16 @@ aa
 "}
 (248,1,1) = {"
 ac
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 bz
 bN

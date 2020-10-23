@@ -70,7 +70,6 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/bikehorn,
 		/obj/item/toy/beach_ball,
 		/obj/item/toy/beach_ball/holoball,
-		/obj/item/banhammer,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosia/deus,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosia/vulgaris,
 		/obj/item/paicard,

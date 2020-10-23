@@ -1,5 +1,0 @@
-author: "  Hopek"
-delete-after: true 
-changes: 
-  - rscadd: "Ballistic weapons can now be fully animated. All automatic ballistic weapons now have a firing animation."
-  - rscadd: "Sketchin fully animated as proof of concept"

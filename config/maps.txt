@@ -38,7 +38,6 @@ map icebox
 endmap
 
 map eclipsestation
-	votable
 	minplayers 60
 endmap
 

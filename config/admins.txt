@@ -10,72 +10,15 @@
 # and will override any duplicate entries in the database.									  #
 ###############################################################################################
 
-Qwerty	=	Host
 AshCorr	=	Host
 Xantam	=	Host
  
 TehLadyK	=	Council Member
 Yogurtshrimp69	=	Council Member
-oakboscage	=	Council Member
-zxmongoose	=	Council Member
+Mordrehel	=	Council Member
+Lyis	=	Council Member
+
  
-jamied12	=	Head Coder
 alexkar598	=	Head Coder
+jamied12	=	Head Coder
  
-ktlwjec	=	Senior Admin
-SwissLoaf	=	Senior Admin
-Alexandria404	=	Senior Admin
-Mordrehel	=	Senior Admin
- 
-Spl99	=	Community Manager
- 
-Rayisken	=	Primary Admin
-Master Penguin5	=	Primary Admin
- 
-Monster860	=	Administrator-Mainterino
-wejengin2	=	Administrator-Mainterino
- 
-thatoneguywiththeface	=	Administrator
-jasiopl123	=	Administrator
-superguy113	=	Administrator
-lyis	=	Administrator
-dr.derp3635	=	Administrator
-SLRaptor	=	Administrator
-Takahiru	=	Administrator
-ynot01	=	Administrator
-supertealove	=	Administrator
-genericdm	=	Administrator
-TheGamer01	=	Administrator
- 
-readystorm546	=	Moderator
-xoxeyos	=	Moderator
-lactos	=	Moderator
-Athena413	=	Moderator
- 
-PenguinFisher	=	Retired Admin
-lewdelf	=	Retired Admin
-simonset55	=	Retired Admin
-kmc2000	=	Retired Admin
-halueryphi	=	Retired Admin
-Colburn3000	=	Retired Admin
-ASV9	=	Retired Admin
-Qe	=	Retired Admin
-BayBee	=	Retired Admin
-Altoids0	=	Retired Admin
-BritishGrace	=	Retired Admin
-Menacingmanatee	=	Retired Admin
-Fataleyes	=	Retired Admin
-Slovenian	=	Retired Admin
-Nightshadow1055	=	Retired Admin
-Mrspace	=	Retired Admin
- 
-Observer	=	Admin Observer
- 
-McDonald072	=	Maintainer
-Theos	=	Maintainer
-Partheo	=	Maintainer
- 
-#Enkaa	=	#Forum Mod
-#Crazyhyperway	=	#Forum Mod
- 
-Yogstation13-Bot	=	Bot

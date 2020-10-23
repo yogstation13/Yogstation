@@ -30678,6 +30678,12 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"bIW" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "bJa" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -41813,13 +41819,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"hgJ" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/machinery/sci_bombardment,
-/turf/open/floor/plasteel,
-/area/science/mixing)
 "hgK" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -116383,7 +116382,7 @@ cmz
 bky
 bGd
 bHv
-hgJ
+bIW
 bKe
 bLm
 bEs

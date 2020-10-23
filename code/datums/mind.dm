@@ -89,11 +89,6 @@
 /datum/mind/proc/transfer_to(mob/new_character, var/force_key_move = 0)
 	var/mood_was_enabled = FALSE//Yogs -- Mood Preferences
 	if(current)	// remove ourself from our old body's mind variable
-		if(isliving(new_character))
-			var/mob/living/L = new_character
-			for(var/datum/quirk/Q in current.roundstart_quirks)
-				L.add_quirk(Q.type)
-				current.remove_quirk(Q.type)
 		// Yogs start -- Mood preferences
 		if(current.client && current.client.prefs.yogtoggles & PREF_MOOD)
 			mood_was_enabled = TRUE
@@ -737,6 +732,21 @@
 		for(var/O in A.objectives)
 			if(istype(O,objective_type))
 				return TRUE
+
+/datum/mind/proc/add_employee(company)
+	for(var/datum/corporation/c in GLOB.corporations)
+		if(istype(c, company))
+			c.employees += src
+
+/datum/mind/proc/remove_employee(company)
+	for(var/datum/corporation/c in GLOB.corporations)
+		if(istype(c, company))
+			c.employees -= src
+
+/datum/mind/proc/is_employee(company)
+	for(var/datum/corporation/c in GLOB.corporations)
+		if(istype(c, company))
+			return src in c.employees
 
 /mob/proc/sync_mind()
 	mind_initialize()	//updates the mind (or creates and initializes one if one doesn't exist)

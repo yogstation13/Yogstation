@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "holy water will now block tiles from being teleported onto by clock cultists via observation consoles"
