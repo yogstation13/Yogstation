@@ -2,6 +2,11 @@
 "a" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"b" = (
+/obj/structure/table/wood,
+/obj/item/toy/plush/carpplushie/dehy_carp,
+/turf/open/floor/wood,
+/area/ruin/powered)
 "d" = (
 /obj/structure/table/wood,
 /obj/item/clothing/suit/space/hardsuit/wizard,
@@ -103,11 +108,6 @@
 /obj/structure/table/wood,
 /obj/item/clothing/suit/wizrobe/magusred,
 /obj/item/clothing/head/magus,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"q" = (
-/obj/structure/table/wood,
-/obj/item/toy/plush/carpplushie,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "r" = (
@@ -244,7 +244,7 @@ a
 x
 f
 h
-q
+b
 x
 U
 U
