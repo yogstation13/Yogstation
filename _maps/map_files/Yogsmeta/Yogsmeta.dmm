@@ -717,12 +717,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"abG" = (
-/obj/structure/table,
-/obj/item/toy/cards/deck,
-/obj/item/toy/cards/deck,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "abH" = (
 /obj/structure/table,
 /obj/structure/cable/yellow{
@@ -50032,23 +50026,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter)
-"bQc" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk,
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
-"bQd" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "bQe" = (
 /obj/machinery/shieldwallgen,
 /obj/structure/window/reinforced{
@@ -54376,15 +54353,6 @@
 "bYo" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
-	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
-"bYp" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
-/obj/structure/disposalpipe/junction/flip{
-	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
@@ -66913,45 +66881,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"ctv" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/junction{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
-"ctw" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "ctx" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -69531,33 +69460,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"cyl" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
-"cym" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "cyn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -69592,20 +69494,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
-"cyq" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "cyr" = (
@@ -72492,6 +72380,21 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"cJp" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 2;
+	sortType = 28
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "cJH" = (
 /obj/structure/table,
 /obj/item/retractor,
@@ -78696,6 +78599,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"ery" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "esC" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -79357,6 +79269,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"gfz" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/structure/disposalpipe/sorting/mail{
+	dir = 8;
+	sortType = 27
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "gfL" = (
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance";
@@ -79416,6 +79347,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"gpT" = (
+/obj/machinery/disposal/bin,
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "gqA" = (
 /obj/machinery/button/door{
 	dir = 2;
@@ -80348,13 +80292,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit/departure_lounge)
-"itz" = (
-/obj/machinery/door/airlock/external{
-	name = "Escape Pod Two"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/turf/open/space/basic,
-/area/security/prison)
 "itO" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = -32
@@ -83661,6 +83598,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"qYf" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod Two"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/plating,
+/area/security/prison)
 "raK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 10
@@ -83799,6 +83743,27 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"rny" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "roP" = (
 /obj/structure/closet/emcloset,
 /obj/structure/sign/warning/vacuum/external{
@@ -84107,6 +84072,13 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
+"scU" = (
+/obj/structure/table,
+/obj/item/toy/cards/deck,
+/obj/item/toy/cards/deck,
+/obj/item/instrument/harmonica,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "siF" = (
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
@@ -84688,6 +84660,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"tpC" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "tuk" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -84969,6 +84950,21 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"uaL" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
@@ -104370,8 +104366,8 @@ aaa
 cBR
 cDF
 cEI
-bQc
-ctv
+gpT
+rny
 bRW
 cyN
 cEE
@@ -104627,8 +104623,8 @@ aaf
 czX
 cDG
 cEJ
-bQd
-ctw
+tpC
+gfz
 bRX
 bTd
 cEE
@@ -109918,7 +109914,7 @@ aaH
 aaQ
 aba
 abF
-abG
+scU
 acb
 acu
 aaR
@@ -111721,7 +111717,7 @@ aaa
 aaa
 aaa
 abu
-itz
+qYf
 qBw
 hyP
 ePO
@@ -120324,8 +120320,8 @@ cqs
 cRS
 bXl
 dcw
-cyl
-cyq
+uaL
+cJp
 cyu
 cyv
 cyw
@@ -120581,8 +120577,8 @@ cqs
 cRS
 gwI
 bXP
-cym
-bYp
+cyn
+ery
 bYr
 bYs
 cSt

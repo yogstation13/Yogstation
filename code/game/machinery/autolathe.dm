@@ -183,7 +183,6 @@
 			if(printdirection > 8)  // Simple Sanity Check
 				printdirection = 0
 
-	ui_interact(usr)
 	update_icon()
 
 /obj/machinery/autolathe/on_deconstruction()

@@ -16819,11 +16819,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
-"aHi" = (
-/obj/structure/table,
-/obj/item/pen,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aHj" = (
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -22230,15 +22225,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
-"aSV" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/pen,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aSW" = (
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/light/small{
@@ -58838,6 +58824,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"hrX" = (
+/obj/structure/table,
+/obj/item/instrument/harmonica,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "htC" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -61181,6 +61172,16 @@
 	dir = 1
 	},
 /area/hallway/secondary/entry)
+"pkA" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/obj/item/pen,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "pkS" = (
 /turf/closed/wall,
 /area/ai_monitored/turret_protected/ai)
@@ -91025,8 +91026,8 @@ aat
 tKc
 axm
 aat
-aHi
-aSV
+hrX
+pkA
 aat
 aat
 aat
