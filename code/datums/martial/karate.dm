@@ -3,7 +3,7 @@
 #define JUMPING_KNEE_COMBO "HDH" //Jumping Knee - knockdown and stamina damage
 #define KARATE_CHOP_COMBO "GHD" //Karate Chop - short confusion and blurred eyes
 
-/datum/martial_art/karate
+/datum/martial_art/karate // karate a cheaper traitor martial art
 	name = "Karate"
 	id = MARTIALART_KARATE
 	allow_temp_override = FALSE
