@@ -1110,6 +1110,19 @@
 	..()
 	. = 1
 
+/datum/reagent/medicine/tribaldetox
+	name = "Cap Mix"
+	description = "Heals toxin damage and removes toxins in the bloodstream via vomit. Can't overdose."
+	reagent_state = LIQUID
+	color = "#C8A5DC"
+	taste_description = "poison"
+
+/datum/reagent/medicine/tribaldetox/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(-2*REM, 0)
+	if(prob(10))
+		M.vomit(20)
+	. = 1
+
 
 /datum/reagent/medicine/syndicate_nanites //Used exclusively by Syndicate medical cyborgs
 	name = "Restorative Nanites"

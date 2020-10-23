@@ -303,7 +303,15 @@
 /datum/chemical_reaction/tribalordrazine // Mushroom stem + ash from an ash pile + cactus fruit + heat the bowl with a welder
 	name = "Tribalordrazine"
 	id = /datum/reagent/medicine/tribalordrazine
-	required_temp = 350
-	mix_message = "The mixture binds together from the heat, releasing a pleasent smelling smoke."
+	required_temp = 420
+	mix_message = "The solution binds together from the heat, releasing a pleasent smelling smoke."
 	results = list(/datum/reagent/medicine/tribalordrazine = 10) // Pretty intensive to get this, so this amount is fair. That and this chem isn't very good.
 	required_reagents = list(/datum/reagent/ash = 5, /datum/reagent/consumable/vitfro = 2, /datum/reagent/consumable/tinlux = 1)
+
+/datum/chemical_reaction/tribaldetox // Mushroom cap + ash from an ash pile + heat the bowl with a welder
+	name = "Cap Mix"
+	id = /datum/reagent/medicine/tribaldetox
+	required_temp = 420
+	mix_message = "The solution binds together from the heat, releasing a disgusting smelling smoke."
+	results = list(/datum/reagent/medicine/tribaldetox = 10)
+	required_reagents = list(/datum/reagent/ash = 10, /datum/reagent/consumable/entpoly = 1)
