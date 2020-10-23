@@ -304,6 +304,6 @@
 	name = "Tribalordrazine"
 	id = /datum/reagent/medicine/tribalordrazine
 	required_temp = 350
-	mix_message = "The solution binds together from the heat, releasing a pleasent smelling smoke."
+	mix_message = "The mixture binds together from the heat, releasing a pleasent smelling smoke."
 	results = list(/datum/reagent/medicine/tribalordrazine = 10) // Pretty intensive to get this, so this amount is fair. That and this chem isn't very good.
 	required_reagents = list(/datum/reagent/ash = 5, /datum/reagent/consumable/vitfro = 2, /datum/reagent/consumable/tinlux = 1)
