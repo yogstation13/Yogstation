@@ -70207,14 +70207,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"czF" = (
-/obj/effect/turf_decal/bot{
-	dir = 1
-	},
-/turf/open/floor/plasteel{
-	dir = 1
-	},
-/area/science/mixing)
 "czG" = (
 /obj/item/stack/rods/fifty,
 /obj/item/stack/sheet/glass/fifty,
@@ -84245,6 +84237,15 @@
 	},
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
+"sAQ" = (
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
+/obj/machinery/sci_bombardment,
+/turf/open/floor/plasteel{
+	dir = 1
+	},
+/area/science/mixing)
 "sBs" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -122595,7 +122596,7 @@ krD
 crY
 cyX
 vNW
-czF
+sAQ
 cAN
 cBJ
 cAP
