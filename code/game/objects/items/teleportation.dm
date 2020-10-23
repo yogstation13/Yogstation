@@ -18,12 +18,12 @@
 	var/temp = null
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_SMALL
-	inhand_icon_state = "electronic"
+	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	throw_speed = 3
 	throw_range = 7
-	custom_materials = list(/datum/material/iron=400)
+	materials = list(MAT_METAL=400)
 	var/tracking_range = 20
 
 /obj/item/locator/ui_interact(mob/user, datum/tgui/ui)
@@ -102,15 +102,14 @@
 	desc = "A portable item using blue-space technology."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hand_tele"
-	inhand_icon_state = "electronic"
-	worn_icon_state = "electronic"
+	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
 	throw_range = 5
-	custom_materials = list(/datum/material/iron=10000)
+	materials = list(MAT_METAL=10000)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/list/active_portal_pairs
@@ -181,7 +180,7 @@
 	if(!current_location || current_area.noteleport || is_away_level(current_location.z) || !isturf(user.loc))//If turf was not found or they're on z level 2 or >7 which does not currently exist. or if user is not located on a turf
 		to_chat(user, "<span class='notice'>\The [src] is malfunctioning.</span>")
 		return
-	user.show_message("<span class='notice'>Locked In.</span>", MSG_AUDIBLE)
+	user.show_message("<span class='notice'>Locked In.</span>", 2)
 	var/list/obj/effect/portal/created = create_portal_pair(current_location, get_teleport_turf(get_turf(T)), 300, 1, null, atmos_link_override)
 	if(!(LAZYLEN(created) == 2))
 		return

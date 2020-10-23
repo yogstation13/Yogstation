@@ -19,7 +19,6 @@
 
 /obj/machinery/doppler_array/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION, .proc/sense_explosion)
 	printer_ready = world.time + PRINTER_TIMEOUT
 
 /obj/machinery/doppler_array/ComponentInitialize()
@@ -131,7 +130,7 @@
 
 /obj/machinery/doppler_array/proc/sense_explosion(datum/source, turf/epicenter, devastation_range, heavy_impact_range, light_impact_range,
 			took, orig_dev_range, orig_heavy_range, orig_light_range)
-	if(machine_stat & NOPOWER)
+	if(stat & NOPOWER)
 		return FALSE
 	var/turf/zone = get_turf(src)
 	if(zone.z != epicenter.z)
@@ -181,8 +180,8 @@
 		return FALSE
 	return ..()
 
-/obj/machinery/doppler_array/update_icon_state()
-	if(machine_stat & BROKEN)
+/obj/machinery/doppler_array/update_icon()
+	if(stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
 	else if(powered())
 		icon_state = initial(icon_state)

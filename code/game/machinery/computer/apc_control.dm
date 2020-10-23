@@ -18,7 +18,7 @@
 	logs = list()
 
 /obj/machinery/computer/apc_control/process()
-	if(operator && (!operator.Adjacent(src) || machine_stat))
+	if(operator && (!operator.Adjacent(src) || stat))
 		operator = null
 		if(active_apc)
 			if(!active_apc.locked)
@@ -37,7 +37,7 @@
 	..()
 
 /obj/machinery/computer/apc_control/proc/check_apc(obj/machinery/power/apc/APC)
-	return APC.z == z && !APC.malfhack && !APC.aidisabled && !(APC.obj_flags & EMAGGED) && !APC.machine_stat && !istype(APC.area, /area/ai_monitored) && !APC.area.outdoors
+	return APC.z == z && !APC.malfhack && !APC.aidisabled && !(APC.obj_flags & EMAGGED) && !APC.stat && !istype(APC.area, /area/ai_monitored) && !APC.area.outdoors
 
 /obj/machinery/computer/apc_control/ui_interact(mob/user, datum/tgui/ui)
 	operator = user
@@ -49,7 +49,7 @@
 /obj/machinery/computer/apc_control/ui_data(mob/user)
 	var/list/data = list()
 	data["auth_id"] = auth_id
-	data["authenticated"] = authenticated
+	data["authenticated"] = src.authenticated
 	data["emagged"] = obj_flags & EMAGGED
 	data["logging"] = should_log
 	data["restoring"] = restoring
@@ -85,14 +85,14 @@
 	switch(action)
 		if("log-in")
 			if(obj_flags & EMAGGED)
-				authenticated = TRUE
+				src.authenticated = TRUE
 				auth_id = "Unknown (Unknown):"
 				log_activity("[auth_id] logged in to the terminal")
 				return
 			var/obj/item/card/id/ID = operator.get_idcard(TRUE)
 			if(ID && istype(ID))
 				if(check_access(ID))
-					authenticated = TRUE
+					src.authenticated = TRUE
 					auth_id = "[ID.registered_name] ([ID.assignment]):"
 					log_activity("[auth_id] logged in to the terminal")
 					playsound(src, 'sound/machines/terminal_on.ogg', 50, FALSE)
@@ -105,7 +105,7 @@
 		if("log-out")
 			log_activity("[auth_id] logged out of the terminal")
 			playsound(src, 'sound/machines/terminal_off.ogg', 50, FALSE)
-			authenticated = FALSE
+			src.authenticated = FALSE
 			auth_id = "\[NULL\]"
 		if("toggle-logs")
 			should_log = !should_log

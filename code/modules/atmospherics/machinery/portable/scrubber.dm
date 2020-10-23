@@ -16,9 +16,7 @@
 		/datum/gas/nitryl,
 		/datum/gas/tritium,
 		/datum/gas/hypernoblium,
-		/datum/gas/water_vapor,
-		/datum/gas/freon,
-		/datum/gas/hydrogen,
+		/datum/gas/water_vapor
 	)
 
 /obj/machinery/portable_atmospherics/scrubber/Destroy()
