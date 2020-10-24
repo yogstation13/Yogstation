@@ -131,7 +131,6 @@
 	build_path = /obj/item/storage/box/fancy/rollingpapers
 	category = list("initial", "Organic Materials")
 	
-
 /datum/design/cloth
 	name = "Roll of Cloth"
 	id = "cloth"
