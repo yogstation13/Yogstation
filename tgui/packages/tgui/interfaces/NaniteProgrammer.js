@@ -5,6 +5,7 @@ import { Window } from '../layouts';
 
 export const NaniteCodes = (props, context) => {
   const { act, data } = useBackend(context);
+
   return (
     <Section
       title="Codes"
@@ -71,60 +72,31 @@ export const NaniteDelays = (props, context) => {
       level={3}
       ml={1}>
       <LabeledList>
-        <LabeledList.Item label="Restart Timer">
-          <NumberInput
-            value={data.timer_restart}
-            unit="s"
-            width="57px"
+        <LabeledList.Item label="Set Timer">
+          <Button
+            content={data.timer_type}
             minValue={0}
             maxValue={3600}
-            onChange={(e, value) => act('set_restart_timer', {
-              delay: value,
-            })} />
+            onClick={(e, value) => act('set_timer_type')} />
         </LabeledList.Item>
-        <LabeledList.Item label="Shutdown Timer">
+        <LabeledList.Item label="Timer">
           <NumberInput
-            value={data.timer_shutdown}
+            value={data.timer}
             unit="s"
             width="57px"
-            minValue={0}
+            minValue={10}
             maxValue={3600}
-            onChange={(e, value) => act('set_shutdown_timer', {
-              delay: value,
+            onChange={(e, value) => act('set_timer', {
+              timer: value,
             })} />
         </LabeledList.Item>
-        {!!data.can_trigger && (
-          <Fragment>
-            <LabeledList.Item label="Trigger Repeat Timer">
-              <NumberInput
-                value={data.timer_trigger}
-                unit="s"
-                width="57px"
-                minValue={0}
-                maxValue={3600}
-                onChange={(e, value) => act('set_trigger_timer', {
-                  delay: value,
-                })} />
-            </LabeledList.Item>
-            <LabeledList.Item label="Trigger Delay">
-              <NumberInput
-                value={data.timer_trigger_delay}
-                unit="s"
-                width="57px"
-                minValue={0}
-                maxValue={3600}
-                onChange={(e, value) => act('set_timer_trigger_delay', {
-                  delay: value,
-                })} />
-            </LabeledList.Item>
-          </Fragment>
-        )}
       </LabeledList>
     </Section>
   );
 };
 
 export const NaniteExtraEntry = (props, context) => {
+  const { act } = useBackend(context);
   const { extra_setting } = props;
   const {
     name,
@@ -132,13 +104,19 @@ export const NaniteExtraEntry = (props, context) => {
   } = extra_setting;
   const typeComponentMap = {
     number: <NaniteExtraNumber extra_setting={extra_setting} />,
-    text: <NaniteExtraText extra_setting={extra_setting} />,
+    string: <NaniteExtraText extra_setting={extra_setting} />,
     type: <NaniteExtraType extra_setting={extra_setting} />,
     boolean: <NaniteExtraBoolean extra_setting={extra_setting} />,
   };
   return (
     <LabeledList.Item label={name}>
-      {typeComponentMap[type]}
+      <Button
+        content={"Current: " + extra_setting.value}
+        onClick={(e, val) => act('set_extra_setting', {
+          target_setting: name,
+          value: val,
+        })}
+      />
     </LabeledList.Item>
   );
 };
@@ -227,10 +205,7 @@ export const NaniteExtraBoolean = (props, context) => {
 
 export const NaniteProgrammer = (props, context) => {
   return (
-    <Window
-      width={420}
-      height={550}
-      resizable>
+    <Window width={300} height={232} resizable>
       <Window.Content scrollable>
         <NaniteProgrammerContent />
       </Window.Content>
@@ -253,6 +228,7 @@ export const NaniteProgrammerContent = (props, context) => {
     has_extra_settings,
     extra_settings = {},
   } = data;
+
   if (!has_disk) {
     return (
       <NoticeBox textAlign="center">
@@ -260,6 +236,7 @@ export const NaniteProgrammerContent = (props, context) => {
       </NoticeBox>
     );
   }
+
   if (!has_program) {
     return (
       <Section
@@ -272,6 +249,7 @@ export const NaniteProgrammerContent = (props, context) => {
         )} />
     );
   }
+
   return (
     <Section
       title={name}

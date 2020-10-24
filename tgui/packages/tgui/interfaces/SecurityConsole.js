@@ -32,7 +32,7 @@ export const SecurityConsole = (props, context) => {
 
   if (!logged_in) {
     return (
-      <Window resizable theme={theme}>
+      <Window width={775} height={500} resizable theme={theme}>
         <Window.Content scrollable>
           <Section title="Welcome">
             <Flex align="center" justify="center" mt="0.5rem">
@@ -79,7 +79,7 @@ export const SecurityConsole = (props, context) => {
 
   if (screen === "maint") {
     return (
-      <Window resizable theme={theme}>
+      <Window resizable width={775} height={500} theme={theme}>
         <Window.Content scrollable>
           <Section title="Records Maintenance" buttons={(
             <Button icon="backward" onClick={() => act("back")}>
@@ -97,7 +97,7 @@ export const SecurityConsole = (props, context) => {
 
   if (screen === "record_view") {
     return (
-      <Window resizable theme={theme}>
+      <Window resizable width={775} height={500} theme={theme}>
         <Window.Content scrollable>
           {data.special_message && (
             <NoticeBox>
@@ -414,7 +414,7 @@ export const SecurityConsole = (props, context) => {
   }
 
   return (
-    <Window resizable theme={theme}>
+    <Window resizable width={775} height={500} theme={theme}>
       <Window.Content scrollable>
         {data.special_message && (
           <NoticeBox>
