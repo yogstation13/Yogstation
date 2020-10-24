@@ -23,6 +23,6 @@
 
 /datum/department_goal/car/tesla/check_complete()
 	for(var/obj/singularity/energy_ball/e in GLOB.singularities)
-		if(get_area(e) == /area/quartermaster/storage)
+		if(istype(get_area(e), /area/quartermaster/storage))
 			return TRUE
 	return FALSE
