@@ -223,7 +223,8 @@
 /datum/component/riding/human/vehicle_mob_buckle(datum/source, mob/living/M, force = FALSE)
 	. = ..()
 	var/mob/living/carbon/human/AM = parent
-	AM.add_movespeed_modifier(MOVESPEED_ID_HUMAN_CARRYING, multiplicative_slowdown = HUMAN_CARRY_SLOWDOWN)
+	var/slowdown = HUMAN_CARRY_SLOWDOWN - (AM.dna.check_mutation(STRONG) ? 0.2 : 0)
+	AM.add_movespeed_modifier(MOVESPEED_ID_HUMAN_CARRYING, multiplicative_slowdown = slowdown)
 
 /datum/component/riding/human/proc/on_host_unarmed_melee(atom/target)
 	var/mob/living/carbon/human/AM = parent
