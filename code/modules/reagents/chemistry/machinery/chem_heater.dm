@@ -65,10 +65,9 @@
 	if(stat & NOPOWER)
 		return
 	if(on && beaker?.reagents.total_volume)
+		currentspeed = heater_speed
 		if((beaker.reagents.chem_temp + heater_speed) >= target_temperature)
 			currentspeed = target_temperature - beaker.reagents.chem_temp
-		else
-			currentspeed = heater_speed
 		beaker.reagents.adjust_thermal_energy(currentspeed * SPECIFIC_HEAT_DEFAULT * beaker.reagents.total_volume)
 		beaker.reagents.handle_reactions()
 
