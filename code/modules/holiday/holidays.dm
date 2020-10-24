@@ -397,7 +397,7 @@
 		"https://www.youtube.com/watch?v=xIx_HbmRnQY", // Thriller
 		"https://www.youtube.com/watch?v=7-D83f33pAE", // Spooky Scary Skeletons
 		"https://www.youtube.com/watch?v=bebUeWgNkAM", // Halloween Theme Michael Myers
-		"https://www.youtube.com/watch?v=sDY9fVZRn-4" // Lucifer My Love - Twin Temple
+		"https://www.youtube.com/watch?v=qaQ6oJL1qQA" // Lucifer My Love - Twin Temple
 		)
 
 /datum/holiday/halloween/greet()
