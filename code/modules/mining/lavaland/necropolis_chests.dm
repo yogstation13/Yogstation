@@ -41,7 +41,7 @@
 		if(11)
 			new /obj/item/ship_in_a_bottle(src)
 		if(12)
-			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker(src)
+			new /obj/item/reagent_containers/glass/bottle/necropolis_seed(src)
 		if(13)
 			new /obj/item/jacobs_ladder(src)
 		if(14)
@@ -73,9 +73,6 @@
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
 		if(25)
 			new /obj/item/rune_scimmy(src)
-		if(26)
-			new /obj/item/reagent_containers/glass/bottle/necropolis_seed(src)
-
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
 	name = "KA Mod Disk"
