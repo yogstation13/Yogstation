@@ -64,8 +64,7 @@
 	..()
 	if(stat & NOPOWER)
 		return
-		
-	if(on && beaker && beaker.reagents.total_volume)
+	if(on && beaker?.reagents.total_volume)
 		if((beaker.reagents.chem_temp + heater_speed) >= target_temperature)
 			currentspeed = target_temperature - beaker.reagents.chem_temp
 		else
