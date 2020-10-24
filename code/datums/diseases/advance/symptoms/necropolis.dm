@@ -53,7 +53,7 @@
 			M.dna.species.brutemod = 0.6
 			M.dna.species.burnmod = 0.6
 			M.dna.species.heatmod = 0.6
-			M.add_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN, update=TRUE, priority=100, multiplicative_slowdown=1)
+			M.add_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN, update=TRUE, priority=100, multiplicative_slowdown=0.5)
 			ADD_TRAIT(M, TRAIT_PIERCEIMMUNE, DISEASE_TRAIT)
 			if(fireproof)
 				ADD_TRAIT(M, TRAIT_RESISTHEAT, DISEASE_TRAIT)
