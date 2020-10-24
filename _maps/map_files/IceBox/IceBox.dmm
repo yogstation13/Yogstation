@@ -19170,7 +19170,10 @@
 /obj/structure/table,
 /obj/item/camera_film,
 /obj/item/camera,
-/turf/open/floor/plasteel,
+/obj/structure/sign/poster/official/space_cops{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aMr" = (
 /obj/structure/cable{
@@ -20663,13 +20666,13 @@
 /area/storage/art)
 "aPH" = (
 /obj/machinery/door/airlock/public/glass{
-	name = "Art Storage"
+	name = "Artist's Coven"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aPI" = (
 /obj/structure/cable{
@@ -21305,7 +21308,11 @@
 /obj/structure/table,
 /obj/item/stack/cable_coil/random,
 /obj/item/stack/cable_coil/random,
-/turf/open/floor/plasteel,
+/obj/item/statuebust,
+/obj/structure/sign/poster/official/high_class_martini{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aQZ" = (
 /obj/machinery/light/small{
@@ -21315,10 +21322,14 @@
 	pixel_x = 27
 	},
 /obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel,
+/obj/structure/sign/poster/official/pda_ad{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aRa" = (
-/turf/open/floor/plasteel,
+/obj/machinery/holopad,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aRb" = (
 /obj/structure/cable{
@@ -21936,7 +21947,7 @@
 /obj/item/stack/cable_coil,
 /obj/item/paper_bin/construction,
 /obj/item/stack/cable_coil,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aSl" = (
 /obj/machinery/space_heater,
@@ -22400,7 +22411,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/storage/art";
 	dir = 1;
-	name = "Art Storage";
+	name = "Artist's Coven";
 	pixel_y = 24
 	},
 /obj/structure/cable{
@@ -22543,7 +22554,10 @@
 "aTE" = (
 /obj/structure/table,
 /obj/item/hand_labeler,
-/turf/open/floor/plasteel,
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aTF" = (
 /obj/structure/lattice,
@@ -22553,7 +22567,7 @@
 /obj/structure/table,
 /obj/item/storage/crayons,
 /obj/item/storage/crayons,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aTH" = (
 /obj/structure/disposalpipe/segment{
@@ -46942,7 +46956,8 @@
 	dir = 8;
 	pixel_x = 24
 	},
-/turf/open/floor/plasteel,
+/obj/structure/chair/office/dark,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "bQz" = (
 /obj/effect/decal/cleanable/dirt,
@@ -61252,6 +61267,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"pzT" = (
+/obj/effect/landmark/start/artist,
+/turf/open/floor/plasteel/vaporwave,
+/area/storage/art)
 "pBI" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall,
@@ -86432,7 +86451,7 @@ aLE
 aOl
 aPH
 aRa
-aRa
+pzT
 aTG
 aPG
 aTq
