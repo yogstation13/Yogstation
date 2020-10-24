@@ -15,7 +15,7 @@ export const LaborClaimConsole = (props, context) => {
   return (
     <Window
       width={315}
-      height={440}>
+      height={430}>
       <Window.Content>
         <Section>
           <LabeledList>

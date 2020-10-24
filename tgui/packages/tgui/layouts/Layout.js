@@ -5,15 +5,29 @@
  */
 
 import { classes } from 'common/react';
-import { computeBoxClassName, computeBoxProps } from '../components/Box';
-import { addScrollableNode, removeScrollableNode } from '../events';
+import { computeBoxProps, computeBoxClassName } from '../components/Box';
+
+/**
+ * Brings Layout__content DOM element back to focus.
+ *
+ * Commonly used to keep the content scrollable in IE.
+ */
+export const refocusLayout = () => {
+  // IE8: Focus method is seemingly fucked.
+  if (Byond.IS_LTE_IE8) {
+    return;
+  }
+  const element = document.getElementById('Layout__content');
+  if (element) {
+    element.focus();
+  }
+};
 
 export const Layout = props => {
   const {
     className,
     theme = 'nanotrasen',
     children,
-    ...rest
   } = props;
   return (
     <div className={'theme-' + theme}>
@@ -21,9 +35,7 @@ export const Layout = props => {
         className={classes([
           'Layout',
           className,
-          ...computeBoxClassName(rest),
-        ])}
-        {...computeBoxProps(rest)}>
+        ])}>
         {children}
       </div>
     </div>
@@ -39,6 +51,7 @@ const LayoutContent = props => {
   } = props;
   return (
     <div
+      id="Layout__content"
       className={classes([
         'Layout__content',
         scrollable && 'Layout__content--scrollable',
@@ -49,11 +62,6 @@ const LayoutContent = props => {
       {children}
     </div>
   );
-};
-
-LayoutContent.defaultHooks = {
-  onComponentDidMount: node => addScrollableNode(node),
-  onComponentWillUnmount: node => removeScrollableNode(node),
 };
 
 Layout.Content = LayoutContent;

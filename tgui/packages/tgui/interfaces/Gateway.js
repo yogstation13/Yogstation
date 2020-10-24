@@ -66,7 +66,7 @@ const GatewayContent = (props, context) => {
         <Section
           key={dest.ref}
           title={dest.name}>
-          {dest.available && (
+          {dest.availible && (
             <Button
               fluid
               onClick={() => act('activate', {

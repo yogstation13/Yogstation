@@ -15,15 +15,15 @@ export const PortableTurret = (props, context) => {
     neutralize_unidentified,
     neutralize_nonmindshielded,
     neutralize_cyborgs,
-    neutralize_heads,
+    ignore_heads,
     manual_control,
     allow_manual_control,
     lasertag_turret,
   } = data;
   return (
     <Window
-      width={310}
-      height={lasertag_turret ? 110 : 292}>
+      width={305}
+      height={lasertag_turret ? 110 : 300}>
       <Window.Content>
         <NoticeBox>
           Swipe an ID card to {locked ? 'unlock' : 'lock'} this interface.
@@ -58,8 +58,8 @@ export const PortableTurret = (props, context) => {
               title="Target Settings"
               buttons={(
                 <Button.Checkbox
-                  checked={!neutralize_heads}
-                  content="Ignore Command"
+                  checked={ignore_heads}
+                  content="Ignore Heads"
                   disabled={locked}
                   onClick={() => act('shootheads')} />
               )}>

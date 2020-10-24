@@ -28,7 +28,6 @@ Make sure to add new items to this list if you document new components.
   - [`Grid`](#grid)
   - [`Grid.Column`](#gridcolumn)
   - [`Icon`](#icon)
-  - [`Icon.Stack`](#iconstack)
   - [`Input`](#input)
   - [`Knob`](#knob)
   - [`LabeledControls`](#labeledcontrols)
@@ -228,7 +227,7 @@ be truncated with an ellipsis. Be careful however, because this prop breaks
 the baseline alignment.
 - `title: string` - A native browser tooltip, which appears when hovering
 over the button.
-- `children: any` - Content to render inside the button.
+- `content/children: any` - Content to render inside the button.
 - `onClick: function` - Called when element is clicked.
 
 ### `Button.Checkbox`
@@ -247,7 +246,7 @@ A button with an extra confirmation step, using native button component.
 **Props:**
 
 - See inherited props: [Button](#button)
-- `confirmContent: string` - Text to display after first click; defaults to "Confirm?"
+- `confirmMessage: string` - Text to display after first click; defaults to "Confirm?"
 - `confirmColor: string` - Color to display after first click; defaults to "bad"
 
 ### `Button.Input`
@@ -259,7 +258,7 @@ commit, while escape cancels.
 **Props:**
 
 - See inherited props: [Box](#box)
-- `fluid`: fill available horizontal space
+- `fluid`: fill availible horizontal space
 - `onCommit: (e, value) => void`: function that is called after the user
 defocuses the input or presses enter
 - `currentValue: string`: default string to display when the input is shown
@@ -390,9 +389,7 @@ to the left, and certain elements to the right:
   </Flex.Item>
   <Flex.Item grow={1} />
   <Flex.Item>
-    <Button>
-      Perform an action
-    </Button>
+    <Button content="Perform an action" />
   </Flex.Item>
 </Flex>
 ```
@@ -530,22 +527,6 @@ Fractional numbers are supported.
 - `spin: boolean` - Whether an icon should be spinning. Good for load
 indicators.
 
-### `Icon.Stack`
-
-Renders children icons on top of each other in order to make your own icon.
-
-```jsx
-<Icon.Stack>
-  <Icon name="pen" />
-  <Icon name="slash" />
-</Icon.Stack>
-```
-
-**Props:**
-
-- See inherited props: [Box](#box)
-- `children: Icon` - Icons to stack.
-
 ### `Input`
 
 A basic text input, which allow users to enter text into a UI.
@@ -644,9 +625,7 @@ to perform some sort of action), there is a way to do that:
   <LabeledList.Item
     label="Item"
     buttons={(
-      <Button>
-        Click me!
-      </Button>
+      <Button content="Click me!" />
     )}>
     Content
   </LabeledList.Item>
@@ -664,7 +643,7 @@ to perform some sort of action), there is a way to do that:
 - `label: string` - Item label.
 - `color: string` - Sets the color of the text.
 - `buttons: any` - Buttons to render aside the content.
-- `children: any` - Content of this labeled item.
+- `content/children: any` - Content of this labeled item.
 
 ### `LabeledList.Divider`
 
@@ -769,7 +748,7 @@ percentage and how filled the bar is.
 - `ranges: { color: [from, to] }` - Applies a `color` to the progress bar
 based on whether the value lands in the range between `from` and `to`.
 - `color: string` - Color of the progress bar.
-- `children: any` - Content to render inside the progress bar.
+- `content/children: any` - Content to render inside the progress bar.
 
 ### `Section`
 
@@ -794,9 +773,7 @@ If you want to have a button on the right side of an section title
 <Section
   title="Cargo"
   buttons={(
-    <Button>
-      Send shuttle
-    </Button>
+    <Button content="Send shuttle" />
   )}>
   Here you can order supply crates.
 </Section>
@@ -807,10 +784,7 @@ If you want to have a button on the right side of an section title
 - `level: number` - Section level in hierarchy. Default is 1, higher number
 means deeper level of nesting. Must be an integer number.
 - `buttons: any` - Buttons to render aside the section title.
-- `fill: boolean` - If true, fills all available vertical space.
-- `fitted: boolean` - If true, removes all section padding.
-- `scrollable: boolean` - Shows or hides the scrollbar.
-- `children: any` - Content of this section.
+- `content/children: any` - Content of this section.
 
 ### `Slider`
 
@@ -979,7 +953,7 @@ Usage:
 **Props:**
 
 - `position: string` - Tooltip position.
-- `content: string` - Content of the tooltip. Must be a plain string.
+- `content/children: string` - Content of the tooltip. Must be a plain string.
 Fragments or other elements are **not** supported.
 
 ## `tgui/layouts`
@@ -1004,7 +978,6 @@ Example:
 
 **Props:**
 
-- See inherited props: [Box](#box)
 - `className: string` - Applies a CSS class to the element.
 - `theme: string` - A name of the theme.
   - For a list of themes, see `packages/tgui/styles/themes`.
@@ -1022,8 +995,6 @@ Can be scrollable.
 
 **Props:**
 
-- See inherited props: [Box](#box)
 - `className: string` - Applies a CSS class to the element.
-- `fitted: boolean` - If true, removes all padding.
 - `scrollable: boolean` - Shows or hides the scrollbar.
 - `children: any` - Main content of your window.
