@@ -48653,9 +48653,13 @@
 /area/medical/morgue)
 "mDD" = (
 /obj/structure/table,
-/obj/item/book/manual/hydroponics_pod_people,
-/obj/item/paper/guides/jobs/hydroponics,
-/obj/item/clothing/accessory/armband/hydro,
+/obj/item/book/manual/wiki/hydroponicsplants{
+	pixel_x = -3
+	},
+/obj/item/book/manual/wiki/hydroponicsguide{
+	pixel_x = 3;
+	pixel_y = 2
+	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "mDN" = (

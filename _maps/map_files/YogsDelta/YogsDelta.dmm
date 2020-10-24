@@ -37794,9 +37794,14 @@
 /obj/machinery/newscaster{
 	pixel_y = 32
 	},
-/obj/item/clipboard,
-/obj/item/toy/figure/botanist,
 /obj/effect/turf_decal/bot,
+/obj/item/book/manual/wiki/hydroponicsplants{
+	pixel_x = -3
+	},
+/obj/item/book/manual/wiki/hydroponicsguide{
+	pixel_x = 3;
+	pixel_y = 2
+	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bhF" = (
@@ -46487,9 +46492,10 @@
 	dir = 4
 	},
 /obj/item/stack/packageWrap,
-/obj/item/book/manual/hydroponics_pod_people,
 /obj/item/hand_labeler,
 /obj/effect/turf_decal/bot,
+/obj/item/clipboard,
+/obj/item/toy/figure/botanist,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bun" = (
