@@ -327,8 +327,6 @@
 		ui = new(user, src, "LaunchpadRemote")
 		ui.open()
 
-	ui.set_autoupdate(TRUE)
-
 /obj/item/launchpad_remote/ui_data(mob/user)
 	var/list/data = list()
 	data["has_pad"] = pad ? TRUE : FALSE

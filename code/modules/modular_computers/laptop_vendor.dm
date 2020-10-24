@@ -231,7 +231,6 @@
 	if (!ui)
 		ui = new(user, src, "ComputerFabricator")
 		ui.open()
-		ui.set_autoupdate(1)
 
 /obj/machinery/lapvend/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/spacecash))

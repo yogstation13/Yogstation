@@ -28,7 +28,6 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Guardian", "Build-A-Guardian")
-		ui.set_autoupdate(TRUE)
 		ui.open()
 
 /datum/guardianbuilder/ui_data(mob/user)

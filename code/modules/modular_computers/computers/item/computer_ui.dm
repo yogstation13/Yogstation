@@ -37,7 +37,6 @@
 	if (!ui)
 		ui = new(user, src, "NtosMain")
 		ui.send_asset(get_asset_datum(/datum/asset/simple/headers))
-		ui.set_autoupdate(TRUE)
 		ui.open()
 
 
