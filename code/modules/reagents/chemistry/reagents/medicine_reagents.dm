@@ -1086,8 +1086,8 @@
 	..()
 
 /datum/reagent/medicine/tribalordrazine
-	name = "Tribalordrazine" //tribal version of tricord. Slightly less effective than the real stuff.
-	description = "Has a high chance to heal all types of damage. Overdose instead causes it."
+	name = "Tribalordrazine" //tribal version of tricord. Slightly less effective than the real stuff, and doesn't heal toxins. Doesn't heal toxins since capmix should do that.
+	description = "Has a high chance to heal brute, burn, and oxygen damage. Overdose instead causes it."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	overdose_threshold = 30
@@ -1098,12 +1098,10 @@
 		M.adjustBruteLoss(-1*REM, 0)
 		M.adjustFireLoss(-1*REM, 0)
 		M.adjustOxyLoss(-1*REM, 0)
-		M.adjustToxLoss(-1*REM, 0)
 		. = 1
 	..()
 
 /datum/reagent/medicine/tribalordrazine/overdose_process(mob/living/M)
-	M.adjustToxLoss(2*REM, 0)
 	M.adjustOxyLoss(2*REM, 0)
 	M.adjustBruteLoss(2*REM, FALSE, FALSE, BODYPART_ORGANIC)
 	M.adjustFireLoss(2*REM, FALSE, FALSE, BODYPART_ORGANIC)
