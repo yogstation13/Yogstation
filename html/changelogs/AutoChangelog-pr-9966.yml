@@ -1,6 +1,0 @@
-author: "EdgeLordExe"
-delete-after: true 
-changes: 
-  - rscadd: "Added a new Tourist/Assistant tier role: Artist! He spawns with a few art supplies already in his backpack."
-  - rscadd: "Added a new suit for the artist: Post-modern suit, exclusive to artist spawn"
-  - rscadd: "Added a new scard for the artist: Post-modern scard exclusive to artist spawn"
