@@ -115,16 +115,21 @@
 
 	///Should only be a key-value list of north/south/east/west = obj/screen.
 	var/list/char_render_holders
-	
+
 	///LibVG encoding
-	var/encoding = "1252" 
+	var/encoding = "1252"
 
 	///Messages currently seen by this client
 	var/list/seen_messages
-	
+
 	var/list/spell_tabs = list()
 
 	///rate limiting for the crew manifest
 	var/crew_manifest_delay
-	
+
 	var/datum/viewData/view_size
+
+	var/list/sent_assets = list()
+	var/list/completed_asset_jobs = list()
+	var/last_asset_job = 0
+	var/last_completed_asset_job = 0
