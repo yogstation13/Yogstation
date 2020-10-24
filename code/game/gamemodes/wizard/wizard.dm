@@ -8,7 +8,7 @@
 	report_type = "wizard"
 	antag_flag = ROLE_WIZARD
 	false_report_weight = 10
-	required_players = 20
+	required_players = 27
 	required_enemies = 1
 	recommended_enemies = 1
 	enemy_minimum_age = 14
@@ -64,18 +64,9 @@
 
 /datum/game_mode/wizard/set_round_result()
 	..()
-	var/didEscape = TRUE
-	var/datum/objective/O
-	for(var/datum/mind/wizard in wizards)
-		if(O.considered_escaped(wizard))
-			didEscape = FALSE
-	if(didEscape)
-		SSticker.mode_result = "win - wizard escaped the station"
-	else if(are_special_antags_dead())
+	if(finished)
 		SSticker.mode_result = "loss - wizard killed"
 		SSticker.news_report = WIZARD_KILLED
-	else 
-		SSticker.mode_result = "halfwin - evacuation - wizard marooned"
 
 /datum/game_mode/wizard/special_report()
 	if(finished)
