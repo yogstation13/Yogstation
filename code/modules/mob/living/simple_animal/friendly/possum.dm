@@ -28,6 +28,4 @@
 	icon_state = "poppypossum"
 	icon_living = "poppypossum"
 	icon_dead = "poppypossum_dead"
-	loot = list(/obj/item/clothing/head/hardhat)
-	
-	
+	loot = list(/obj/item/clothing/head/hardhat) 
