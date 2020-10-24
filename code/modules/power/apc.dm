@@ -816,7 +816,7 @@
 		ui = new(user, src, "Apc", name)
 		ui.open()
 	if(ui)
-		ui.set_autoupdate(state = (failure_timer ? 1 : 0))
+		ui.set_autoupdate((failure_timer ? 1 : 0))
 
 /obj/machinery/power/apc/ui_data(mob/user)
 	var/list/data = list(
