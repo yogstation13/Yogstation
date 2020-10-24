@@ -8,25 +8,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/template_noop)
-"bK" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical/virology,
-/obj/machinery/light{
-	dir = 1;
-	light_color = "#c1caff"
-	},
-/obj/effect/mob_spawn/human/corpse/assistant,
-/turf/open/floor/plating,
-/area/template_noop)
 "ct" = (
 /obj/structure/sign/warning/biohazard,
 /turf/closed/wall,
-/area/template_noop)
-"er" = (
-/obj/effect/mob_spawn/human/corpse/charredskeleton,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
 /area/template_noop)
 "eD" = (
 /obj/structure/closet/l3closet/virology,
@@ -82,6 +66,16 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating,
 /area/template_noop)
+"jx" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/engine,
+/area/template_noop)
+"kb" = (
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
 "lU" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
@@ -104,6 +98,16 @@
 /obj/structure/sign/warning/fire,
 /turf/closed/wall,
 /area/template_noop)
+"na" = (
+/obj/effect/decal/cleanable/ash/large,
+/turf/open/floor/engine,
+/area/template_noop)
+"nW" = (
+/obj/effect/decal/cleanable/ash/large,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
 "of" = (
 /obj/machinery/button/door{
 	id = "MaintIncin";
@@ -114,13 +118,6 @@
 /obj/machinery/light/broken,
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
-	},
-/area/template_noop)
-"oL" = (
-/obj/effect/decal/cleanable/ash/large,
-/obj/effect/mob_spawn/human/corpse/charredskeleton,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
 	},
 /area/template_noop)
 "pn" = (
@@ -134,13 +131,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/template_noop)
-"py" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical/virology,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/mob_spawn/human/corpse/assistant/brainrot_infection,
-/turf/open/floor/plating,
 /area/template_noop)
 "pU" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -176,6 +166,12 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
+"tK" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
 "tY" = (
 /obj/structure/curtain,
 /obj/effect/spawner/structure/window,
@@ -205,9 +201,14 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/template_noop)
-"wK" = (
-/obj/effect/mob_spawn/human/corpse/charredskeleton,
-/turf/open/floor/engine,
+"xu" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical/virology,
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#c1caff"
+	},
+/turf/open/floor/plating,
 /area/template_noop)
 "xx" = (
 /turf/open/floor/plasteel/white,
@@ -219,6 +220,12 @@
 	dir = 8;
 	light_color = "#c1caff"
 	},
+/turf/open/floor/plating,
+/area/template_noop)
+"xI" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical/virology,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/template_noop)
 "Au" = (
@@ -289,14 +296,17 @@
 /obj/item/clothing/mask/breath/medical,
 /turf/open/floor/plating,
 /area/template_noop)
+"LD" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical/virology,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plating,
+/area/template_noop)
 "NA" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical/virology,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating,
-/area/template_noop)
-"Qx" = (
-/turf/open/floor/engine,
 /area/template_noop)
 "Sl" = (
 /obj/effect/decal/cleanable/blood/gibs/old,
@@ -355,16 +365,9 @@
 "ZE" = (
 /turf/closed/wall,
 /area/template_noop)
-"ZX" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical/virology,
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/mob_spawn/human/corpse/cargo_tech,
-/turf/open/floor/plating,
-/area/template_noop)
 
 (1,1,1) = {"
-ZX
+LD
 hi
 tY
 CI
@@ -376,7 +379,7 @@ xF
 Xm
 "}
 (2,1,1) = {"
-bK
+xu
 lU
 tY
 CI
@@ -388,7 +391,7 @@ Wy
 Wy
 "}
 (3,1,1) = {"
-py
+xI
 rp
 tY
 TE
@@ -467,9 +470,9 @@ CI
 CI
 xx
 wv
-Qx
-oL
-er
+na
+kb
+nW
 "}
 (10,1,1) = {"
 eD
@@ -479,7 +482,7 @@ gM
 gM
 CI
 wv
+jx
 vS
-wK
-er
+tK
 "}
