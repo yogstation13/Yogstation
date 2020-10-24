@@ -382,6 +382,7 @@
 // Psi Web code //
 
 /datum/antagonist/darkspawn/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PsiWeb", "Psi Web")
 		ui.open()
