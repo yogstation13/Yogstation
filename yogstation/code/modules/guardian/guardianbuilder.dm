@@ -25,9 +25,9 @@
 	src.debug_mode = debug_mode
 
 /datum/guardianbuilder/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "Guardian", "Build-A-Guardian")
-		ui.set_autoupdate(TRUE)
+		ui = new(user, src,"Guardian", "Build-A-Guardian")
 		ui.open()
 
 /datum/guardianbuilder/ui_data(mob/user)
