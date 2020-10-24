@@ -806,7 +806,7 @@
 	color = "#75553a"
 	taste_mult = 1.5
 	taste_description = "gravy"
- 
+
 /datum/reagent/consumable/char
 	name = "Char"
 	description = "Essence of the grill. Has strange properties when overdosed."
@@ -821,3 +821,11 @@
 	if(prob(10))
 		M.say(pick("I hate my wife.", "I just want to grill for God's sake.", "I wish I could just go on my lawnmower and cut the grass.", "Yep, Quake. That was a good game...", "Yeah, my PDA has wi-fi. A wife I hate."), forced = /datum/reagent/consumable/char)
 	..()
+
+/datum/reagent/consumable/laughsyrup
+	name = "Laughin' Syrup"
+	description = "The product of juicing Laughin' Peas. Fizzy, and seems to change flavour based on what it's used with!"
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	color = "#803280"
+	taste_mult = 2
+	taste_description = "fizzy sweetness"

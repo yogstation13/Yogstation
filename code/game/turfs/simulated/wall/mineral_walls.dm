@@ -30,7 +30,7 @@
 	icon = 'icons/turf/walls/diamond_wall.dmi'
 	icon_state = "diamond"
 	sheet_type = /obj/item/stack/sheet/mineral/diamond
-	slicing_duration = 200   //diamond wall takes twice as much time to slice
+	slicing_duration = 400   //diamond wall takes twice as much time to slice
 	explosion_block = 3
 	canSmoothWith = list(/turf/closed/wall/mineral/diamond, /obj/structure/falsewall/diamond)
 
@@ -180,7 +180,7 @@
 	icon_state = "abductor"
 	smooth = SMOOTH_TRUE|SMOOTH_DIAGONAL
 	sheet_type = /obj/item/stack/sheet/mineral/abductor
-	slicing_duration = 200   //alien wall takes twice as much time to slice
+	slicing_duration = 400   //alien wall takes twice as much time to slice
 	explosion_block = 3
 	canSmoothWith = list(/turf/closed/wall/mineral/abductor, /obj/structure/falsewall/abductor)
 
