@@ -1941,6 +1941,7 @@
 #include "code\modules\jobs\jobs.dm"
 #include "code\modules\jobs\job_types\_job.dm"
 #include "code\modules\jobs\job_types\ai.dm"
+#include "code\modules\jobs\job_types\artist.dm"
 #include "code\modules\jobs\job_types\assistant.dm"
 #include "code\modules\jobs\job_types\atmospheric_technician.dm"
 #include "code\modules\jobs\job_types\bartender.dm"
