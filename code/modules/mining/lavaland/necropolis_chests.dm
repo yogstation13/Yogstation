@@ -73,9 +73,6 @@
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
 		if(25)
 			new /obj/item/rune_scimmy(src)
-
-			
-
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
 	name = "KA Mod Disk"
