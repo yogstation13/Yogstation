@@ -717,12 +717,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"abG" = (
-/obj/structure/table,
-/obj/item/toy/cards/deck,
-/obj/item/toy/cards/deck,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "abH" = (
 /obj/structure/table,
 /obj/structure/cable/yellow{
@@ -80285,13 +80279,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit/departure_lounge)
-"itz" = (
-/obj/machinery/door/airlock/external{
-	name = "Escape Pod Two"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/turf/open/space/basic,
-/area/security/prison)
 "itO" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = -32
@@ -83598,6 +83585,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"qYf" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod Two"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/plating,
+/area/security/prison)
 "raK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 10
@@ -84065,6 +84059,13 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
+"scU" = (
+/obj/structure/table,
+/obj/item/toy/cards/deck,
+/obj/item/toy/cards/deck,
+/obj/item/instrument/harmonica,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "siF" = (
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
@@ -109900,7 +109901,7 @@ aaH
 aaQ
 aba
 abF
-abG
+scU
 acb
 acu
 aaR
@@ -111703,7 +111704,7 @@ aaa
 aaa
 aaa
 abu
-itz
+qYf
 qBw
 hyP
 ePO

@@ -411,9 +411,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"abc" = (
-/turf/closed/wall,
-/area/security/execution/transfer)
 "abd" = (
 /obj/machinery/bounty_board,
 /turf/closed/wall,
@@ -37484,6 +37481,12 @@
 /obj/item/flashlight/lantern,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
+"dvj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/instrument/harmonica,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "dvH" = (
 /obj/effect/turf_decal/tile/slightlydarkerblue{
 	dir = 8
@@ -39910,12 +39913,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"fqe" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/pen,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "fqv" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -42518,6 +42515,17 @@
 /obj/machinery/chem_master,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"hIw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/obj/item/pen,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "hIx" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
 	dir = 1
@@ -56309,16 +56317,6 @@
 /obj/structure/closet/wardrobe/pjs,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"sAW" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/pen,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "sAY" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -56611,6 +56609,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
+"sQI" = (
+/turf/closed/wall,
+/area/security/execution/transfer)
 "sQT" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 5;
@@ -57198,6 +57199,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"tpl" = (
+/turf/closed/wall{
+	icon = 'icons/turf/walls/reinforced_wall.dmi';
+	icon_state = "r_wall"
+	},
+/area/security/execution/transfer)
 "tpq" = (
 /obj/item/coin/silver{
 	pixel_x = 7;
@@ -88550,7 +88557,7 @@ qQV
 qQV
 qQV
 qQV
-abc
+tpl
 aaf
 aaa
 aaf
@@ -88797,7 +88804,7 @@ dxV
 uNu
 aat
 aUg
-afA
+sQI
 qQV
 qQV
 qQV
@@ -88807,7 +88814,7 @@ qQV
 qQV
 qQV
 qQV
-abc
+tpl
 aaf
 aaa
 aaa
@@ -89054,7 +89061,7 @@ aat
 aat
 aat
 olh
-afA
+sQI
 qQV
 qQV
 qQV
@@ -89064,7 +89071,7 @@ qQV
 qQV
 qQV
 qQV
-abc
+tpl
 aaf
 aaa
 aaf
@@ -89311,7 +89318,7 @@ aat
 aat
 aat
 sIN
-afA
+sQI
 qQV
 qQV
 qQV
@@ -89321,7 +89328,7 @@ qQV
 qQV
 qQV
 qQV
-abc
+tpl
 aaf
 aaa
 aaa
@@ -89568,16 +89575,16 @@ aat
 aat
 hEn
 bab
-afA
-afA
-afA
-afA
-afA
-afA
-afA
+sQI
+sQI
+sQI
+sQI
+sQI
+sQI
+sQI
 aeT
-afA
-afA
+sQI
+sQI
 afA
 aaf
 aaa
@@ -89834,7 +89841,7 @@ acd
 aef
 aeU
 afz
-aai
+acd
 aai
 aai
 aai
@@ -90079,8 +90086,8 @@ csA
 aat
 aat
 aat
-fqe
-sAW
+dvj
+hIw
 aat
 aat
 aat
@@ -90863,7 +90870,7 @@ aej
 afy
 afD
 acd
-agJ
+agK
 ahp
 amb
 aiE
@@ -91120,7 +91127,7 @@ aei
 aeO
 afG
 acd
-agK
+agJ
 agK
 ail
 ajv

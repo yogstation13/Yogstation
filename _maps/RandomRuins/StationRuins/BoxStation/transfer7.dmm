@@ -399,8 +399,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
-"M" = (
-/turf/closed/wall,
+"N" = (
+/turf/closed/wall{
+	icon = 'icons/turf/walls/reinforced_wall.dmi';
+	icon_state = "r_wall"
+	},
 /area/security/execution/transfer)
 "O" = (
 /obj/structure/cable{
@@ -475,33 +478,33 @@ a
 a
 a
 a
-M
-M
-M
-M
-M
+N
+N
+N
+N
+N
 "}
 (2,1,1) = {"
 a
 a
 a
 a
-M
+N
 s
 b
 S
-M
+N
 "}
 (3,1,1) = {"
 u
 u
-M
+N
 d
-M
+N
 L
 k
 j
-M
+N
 "}
 (4,1,1) = {"
 P
