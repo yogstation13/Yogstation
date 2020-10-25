@@ -148,6 +148,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if("chat")
 			return chatOutput.Topic(href, href_list)
 
+	//Linking process
+	if(href_list["discordlink"])
+		do_discord_link(href_list["discordlink"])
+
 	switch(href_list["action"])
 		if("openLink")
 			src << link(href_list["link"])
@@ -157,6 +161,52 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			return
 
 	..()	//redirect to hsrc.Topic()
+
+/client/proc/do_discord_link(hash)
+	if(!CONFIG_GET(flag/sql_enabled))
+		alert("Discord account linking requires the SQL backend to be running.")
+		return
+
+	if(!SSdiscord)
+		alert("The server is still starting, please try again later.")
+
+	var/stored_id = SSdiscord.lookup_id(ckey)
+	if(stored_id)
+		alert("You already have the Discord Account [stored_id] linked to [ckey]. If you need to have this reset, please contact an admin!","Already Linked")
+
+	//The hash is directly appended to the request URL, this is to prevent exploits in URL parsing with funny urls
+	// such as http://localhost/stuff:user@google.com/ so we restrict the valid characters to all numbers and the letters from a to f
+	if(regex(@"[^\da-fA-F]").Find(hash))
+		return
+		
+	//Since this action is passive as in its executed as you login, we need to make sure the user didnt just click on some random link and he actually wants to link
+	var/res = input("You are about to link your BYOND and Discord account. Do not proceed if you did not initiate the linking process. Input 'proceed' and press ok to proceed") as text|null
+	if(lowertext(res) != "proceed")
+		alert("Linking process aborted")
+		//Reconnecting clears out the connection parameters, this is so the user doesn't get the prompt to link their account if they later click replay
+		winset(usr, null, "command=.reconnect")
+		return
+		
+	var/datum/http_request/request = new()
+	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/webhook_address)]?key=[CONFIG_GET(string/webhook_key)]&method=verify&data=[json_encode(list("ckey" = ckey, "hash" = hash))]")
+	request.begin_async()
+	UNTIL(request.is_complete() || !usr)
+	if(!usr)
+		return
+	var/datum/http_response/response = request.into_response()
+	var/data = json_decode(response.body)
+	if(istext(data["response"]))
+		alert("Internal Server Error")
+		winset(usr, null, "command=.reconnect")
+		return
+	
+	if(data["response"]["status"] == "err")
+		alert("Could not link account: [data["response"]["message"]]")
+	else
+		SSdiscord.link_account(ckey, data["response"]["message"])
+		alert("Linked to account [data["response"]["message"]]")
+	winset(usr, null, "command=.reconnect")
+
 
 /client/proc/is_content_unlocked()
 	if(!is_donator(src)) // yogs - changed this to is_donator so admins get donor perks
