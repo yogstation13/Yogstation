@@ -16,18 +16,18 @@
 <h1>Achievement browser <aside>/<a href="datum.html">datum</a>/<a href="datum/achievement_browser.html">achievement_browser</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/datums/achievements/viewer.dm#L9">
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/datums/achievements/viewer.dm#L9">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;achievements&#x2F;viewer.dm 9"/></a></h1>
 
 <p>One is created for every person who wants to view their achievements.
 See: <a href="datum/controller/subsystem/achievements.html" title="/datum/controller/subsystem/achievements">/datum/controller/subsystem/achievements</a> and [/client/verb/checkachievements()]</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
             <tr><th><a href="datum/achievement_browser.html#proc/New">New</a></th><td>Instanciates the achievement browser</td></tr>
             <tr><th><a href="datum/achievement_browser.html#proc/get_achievements">get_achievements</a></th><td>Fetches all the achievements for the client from SSachievements</td></tr>
-            <tr><th><a href="datum/achievement_browser.html#proc/ui_data">ui_data</a></th><td>Supplies the data for the TGUI window. </td></tr>
-            <tr><th><a href="datum/achievement_browser.html#proc/ui_interact">ui_interact</a></th><td>Opens the UI for the given user. </td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/New">New<aside>(/<a href="client.html">client</a>/C) 
+            <tr><th><a href="datum/achievement_browser.html#proc/ui_data">ui_data</a></th><td>Supplies the data for the TGUI window.</td></tr>
+            <tr><th><a href="datum/achievement_browser.html#proc/ui_interact">ui_interact</a></th><td>Opens the UI for the given user.</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/New">New<aside>(/<a href="client.html">client</a>/C) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/datums/achievements/viewer.dm#L19">
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/datums/achievements/viewer.dm#L19">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;achievements&#x2F;viewer.dm 19"/></a></aside>
         </h3>
         <p>Instanciates the achievement browser</p>
@@ -38,32 +38,32 @@ See: <a href="datum/controller/subsystem/achievements.html" title="/datum/contro
 </ul><h3 id="proc/get_achievements"><aside class="declaration">proc </aside>get_achievements<aside>(/<a href="client.html">client</a>/C) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/datums/achievements/viewer.dm#L30">
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/datums/achievements/viewer.dm#L30">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;achievements&#x2F;viewer.dm 30"/></a></aside>
         </h3>
         <p>Fetches all the achievements for the client from SSachievements</p>
 <p>Returns a dictionary with each key being the achievement, and each value a boolean representing whether it's been unlocked</p>
-<p>Arguments: </p>
+<p>Arguments:</p>
 <ul>
 <li>C - The client we're fetching achievements for. See <a href="client.html" title="/client">/client</a></li>
 </ul><h3 id="proc/ui_data"><aside class="parent"><a title="/datum" href="datum.html#proc/ui_data">&uarr;</a></aside>ui_data<aside>(/<a href="mob.html">mob</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/datums/achievements/viewer.dm#L59">
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/datums/achievements/viewer.dm#L59">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;achievements&#x2F;viewer.dm 59"/></a></aside>
         </h3>
-        <p>Supplies the data for the TGUI window. </p>
+        <p>Supplies the data for the TGUI window.</p>
 <p>Gives all the data necessary for the TGUI Window, including names, unlocked status, and descriptions</p>
 <p>Arguments:</p>
 <ul>
 <li>user - The mob we're opening the UI for. See <a href="mob.html" title="/mob">/mob</a></li>
-</ul><h3 id="proc/ui_interact"><aside class="parent"><a title="/datum" href="datum.html#proc/ui_interact">&uarr;</a></aside>ui_interact<aside>(/<a href="mob.html">mob</a>/user, ui_key, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui, force_open, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/master_ui, /<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/state) 
+</ul><h3 id="proc/ui_interact"><aside class="parent"><a title="/datum" href="datum.html#proc/ui_interact">&uarr;</a></aside>ui_interact<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/datums/achievements/viewer.dm#L45">
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/datums/achievements/viewer.dm#L45">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;achievements&#x2F;viewer.dm 45"/></a></aside>
         </h3>
-        <p>Opens the UI for the given user. </p>
+        <p>Opens the UI for the given user.</p>
 <p>Opens the TGUI for the given user. Called by <a href="client.html#proc/checkachievements" title="/client">/client/verb/checkachievements</a></p>
 <p>Arguments:</p>
 <ul>
@@ -71,7 +71,7 @@ See: <a href="datum/controller/subsystem/achievements.html" title="/datum/contro
 </ul></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/f92434de5ab58fa16fcb94dfd1a20b5877b0f577">f92434d</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/97a02e73e73bd54113287e4d7c09a2b3512c17cb">97a02e7</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
 </body>
 </html>

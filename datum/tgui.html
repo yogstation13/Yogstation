@@ -16,267 +16,220 @@
 <h1>/<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L13">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 13"/></a></h1>
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 9"/></a></h1>
 
-<p>tgui</p>
-<p>/tg/station user interface library</p>
 <p>Copyright (c) 2020 Aleksej Komarov
 SPDX-License-Identifier: MIT</p>
 <p>tgui datum (represents a UI).</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
-            <tr><th><a href="datum/tgui.html#var/_initial_update">_initial_update</a></th><td>Holder for the json string, that is sent during the initial update</td></tr>
             <tr><th><a href="datum/tgui.html#var/autoupdate">autoupdate</a></th><td>Update the UI every MC tick.</td></tr>
-            <tr><th><a href="datum/tgui.html#var/children">children</a></th><td>Children of this UI.</td></tr>
-            <tr><th><a href="datum/tgui.html#var/height">height</a></th><td>The window height</td></tr>
-            <tr><th><a href="datum/tgui.html#var/initial_data">initial_data</a></th><td>The data (and datastructure) used to initialize the UI.</td></tr>
-            <tr><th><a href="datum/tgui.html#var/initial_static_data">initial_static_data</a></th><td>The static data used to initialize the UI.</td></tr>
+            <tr><th><a href="datum/tgui.html#var/closing">closing</a></th><td>Stops further updates when close() was called.</td></tr>
             <tr><th><a href="datum/tgui.html#var/initialized">initialized</a></th><td>If the UI has been initialized yet.</td></tr>
             <tr><th><a href="datum/tgui.html#var/interface">interface</a></th><td>The interface (template) to be used for this UI.</td></tr>
-            <tr><th><a href="datum/tgui.html#var/master_ui">master_ui</a></th><td>The parent UI.</td></tr>
+            <tr><th><a href="datum/tgui.html#var/opened_at">opened_at</a></th><td>Time of opening the window.</td></tr>
             <tr><th><a href="datum/tgui.html#var/src_object">src_object</a></th><td>The object which owns the UI.</td></tr>
             <tr><th><a href="datum/tgui.html#var/state">state</a></th><td>Topic state used to determine status/interactability.</td></tr>
             <tr><th><a href="datum/tgui.html#var/status">status</a></th><td>The status/visibility of the UI.</td></tr>
-            <tr><th><a href="datum/tgui.html#var/style">style</a></th><td>The style to be used for this UI.</td></tr>
             <tr><th><a href="datum/tgui.html#var/title">title</a></th><td>The title of te UI.</td></tr>
-            <tr><th><a href="datum/tgui.html#var/ui_key">ui_key</a></th><td>The ui_key of the UI. This allows multiple UIs for one src_object.</td></tr>
             <tr><th><a href="datum/tgui.html#var/user">user</a></th><td>The mob who opened/is using the UI.</td></tr>
-            <tr><th><a href="datum/tgui.html#var/width">width</a></th><td>The window width.</td></tr>
-            <tr><th><a href="datum/tgui.html#var/window_id">window_id</a></th><td>The window_id for browse() and onclose().</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/tgui.html#var/window">window</a></th><td>The window_id for browse() and onclose().</td></tr>
+            <tr><th><a href="datum/tgui.html#var/window_key">window_key</a></th><td>Key that is used for remembering the window geometry.</td></tr>
+            <tr><th><a href="datum/tgui.html#var/window_size">window_size</a></th><td>Deprecated: Window size.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
             <tr><th><a href="datum/tgui.html#proc/New">New</a></th><td>public</td></tr>
-            <tr><th><a href="datum/tgui.html#proc/Topic">Topic</a></th><td>private</td></tr>
             <tr><th><a href="datum/tgui.html#proc/close">close</a></th><td>public</td></tr>
-            <tr><th><a href="datum/tgui.html#proc/get_json">get_json</a></th><td>private</td></tr>
+            <tr><th><a href="datum/tgui.html#proc/get_payload">get_payload</a></th><td>private</td></tr>
+            <tr><th><a href="datum/tgui.html#proc/on_message">on_message</a></th><td>private</td></tr>
             <tr><th><a href="datum/tgui.html#proc/open">open</a></th><td>public</td></tr>
             <tr><th><a href="datum/tgui.html#proc/process">process</a></th><td>private</td></tr>
-            <tr><th><a href="datum/tgui.html#proc/push_data">push_data</a></th><td>private</td></tr>
-            <tr><th><a href="datum/tgui.html#proc/reinitialize">reinitialize</a></th><td>public</td></tr>
+            <tr><th><a href="datum/tgui.html#proc/process_status">process_status</a></th><td>private</td></tr>
+            <tr><th><a href="datum/tgui.html#proc/send_asset">send_asset</a></th><td>public</td></tr>
+            <tr><th><a href="datum/tgui.html#proc/send_full_update">send_full_update</a></th><td>public</td></tr>
+            <tr><th><a href="datum/tgui.html#proc/send_update">send_update</a></th><td>public</td></tr>
             <tr><th><a href="datum/tgui.html#proc/set_autoupdate">set_autoupdate</a></th><td>public</td></tr>
-            <tr><th><a href="datum/tgui.html#proc/set_status">set_status</a></th><td>private</td></tr>
-            <tr><th><a href="datum/tgui.html#proc/update">update</a></th><td>private</td></tr>
-            <tr><th><a href="datum/tgui.html#proc/update_status">update_status</a></th><td>private</td></tr></table>
-    <h2 id="var">Var Details</h2><h3 id="var/_initial_update"><aside class="declaration">var </aside>_initial_update
+            <tr><th><a href="datum/tgui.html#proc/set_state">set_state</a></th><td>public</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/autoupdate"><aside class="declaration">var </aside>autoupdate
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L41">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 41"/></a></h3>
-        <p>Holder for the json string, that is sent during the initial update</p><h3 id="var/autoupdate"><aside class="declaration">var </aside>autoupdate
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 25"/></a></h3>
+        <p>Update the UI every MC tick.</p><h3 id="var/closing"><aside class="declaration">var </aside>closing
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L33">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 33"/></a></h3>
-        <p>Update the UI every MC tick.</p><h3 id="var/children"><aside class="declaration">var </aside>children
-            <aside>&ndash; /list/datum/tgui</aside>
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L49">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 49"/></a></h3>
-        <p>Children of this UI.</p><h3 id="var/height"><aside class="declaration">var </aside>height
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 31"/></a></h3>
+        <p>Stops further updates when close() was called.</p><h3 id="var/initialized"><aside class="declaration">var </aside>initialized
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L27">
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L27">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 27"/></a></h3>
-        <p>The window height</p><h3 id="var/initial_data"><aside class="declaration">var </aside>initial_data
-            <aside>&ndash; /list</aside>
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L37">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 37"/></a></h3>
-        <p>The data (and datastructure) used to initialize the UI.</p><h3 id="var/initial_static_data"><aside class="declaration">var </aside>initial_static_data
-            <aside>&ndash; /list</aside>
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L39">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 39"/></a></h3>
-        <p>The static data used to initialize the UI.</p><h3 id="var/initialized"><aside class="declaration">var </aside>initialized
-            <aside>&ndash; </aside>
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L35">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 35"/></a></h3>
         <p>If the UI has been initialized yet.</p><h3 id="var/interface"><aside class="declaration">var </aside>interface
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L31">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 31"/></a></h3>
-        <p>The interface (template) to be used for this UI.</p><h3 id="var/master_ui"><aside class="declaration">var </aside>master_ui
-            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 23"/></a></h3>
+        <p>The interface (template) to be used for this UI.</p><h3 id="var/opened_at"><aside class="declaration">var </aside>opened_at
+            <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L47">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 47"/></a></h3>
-        <p>The parent UI.</p><h3 id="var/src_object"><aside class="declaration">var </aside>src_object
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 29"/></a></h3>
+        <p>Time of opening the window.</p><h3 id="var/src_object"><aside class="declaration">var </aside>src_object
             <aside>&ndash; /<a href="datum.html">datum</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L17">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 17"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 13"/></a></h3>
         <p>The object which owns the UI.</p><h3 id="var/state"><aside class="declaration">var </aside>state
             <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L45">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 45"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 35"/></a></h3>
         <p>Topic state used to determine status/interactability.</p><h3 id="var/status"><aside class="declaration">var </aside>status
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L43">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 43"/></a></h3>
-        <p>The status/visibility of the UI.</p><h3 id="var/style"><aside class="declaration">var </aside>style
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 33"/></a></h3>
+        <p>The status/visibility of the UI.</p><h3 id="var/title"><aside class="declaration">var </aside>title
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L29">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 29"/></a></h3>
-        <p>The style to be used for this UI.</p><h3 id="var/title"><aside class="declaration">var </aside>title
-            <aside>&ndash; </aside>
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L19">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 19"/></a></h3>
-        <p>The title of te UI.</p><h3 id="var/ui_key"><aside class="declaration">var </aside>ui_key
-            <aside>&ndash; </aside>
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L21">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 21"/></a></h3>
-        <p>The ui_key of the UI. This allows multiple UIs for one src_object.</p><h3 id="var/user"><aside class="declaration">var </aside>user
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 15"/></a></h3>
+        <p>The title of te UI.</p><h3 id="var/user"><aside class="declaration">var </aside>user
             <aside>&ndash; /<a href="mob.html">mob</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L15">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 15"/></a></h3>
-        <p>The mob who opened/is using the UI.</p><h3 id="var/width"><aside class="declaration">var </aside>width
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 11"/></a></h3>
+        <p>The mob who opened/is using the UI.</p><h3 id="var/window"><aside class="declaration">var </aside>window
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/tgui_window.html">tgui_window</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 17"/></a></h3>
+        <p>The window_id for browse() and onclose().</p><h3 id="var/window_key"><aside class="declaration">var </aside>window_key
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L25">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 25"/></a></h3>
-        <p>The window width.</p><h3 id="var/window_id"><aside class="declaration">var </aside>window_id
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 19"/></a></h3>
+        <p>Key that is used for remembering the window geometry.</p><h3 id="var/window_size"><aside class="declaration">var </aside>window_size
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L23">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 23"/></a></h3>
-        <p>The window_id for browse() and onclose().</p><h2 id="proc">Proc Details</h2><h3 id="proc/New">New<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/src_object, ui_key, interface, title, width, height, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/master_ui, /<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/state) 
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 21"/></a></h3>
+        <p>Deprecated: Window size.</p><h2 id="proc">Proc Details</h2><h3 id="proc/New">New<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/src_object, interface, title, ui_x, ui_y) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L70">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 70"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 51"/></a></aside>
         </h3>
         <p>public</p>
 <p>Create a new UI.</p>
 <p>required user mob The mob who opened/is using the UI.
 required src_object datum The object or datum which owns the UI.
-required ui_key string The ui_key of the UI.
 required interface string The interface used to render the UI.
 optional title string The title of the UI.
-optional width int The window width.
-optional height int The window height.
-optional master_ui datum/tgui The parent UI.
-optional state datum/ui_state The state used to determine status.</p>
-<p>return datum/tgui The requested UI.</p><h3 id="proc/Topic"><aside class="parent"><a title="/datum" href="datum.html#proc/Topic">&uarr;</a></aside>Topic<aside>(href, href_list) 
+optional ui_x int Deprecated: Window width.
+optional ui_y int Deprecated: Window height.</p>
+<p>return datum/tgui The requested UI.</p><h3 id="proc/close"><aside class="declaration">proc </aside>close<aside>(can_be_suspended) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L241">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 241"/></a></aside>
-        </h3>
-        <p>private</p>
-<p>Handle clicks from the UI.
-Call the src_object's ui_act() if status is UI_INTERACTIVE.
-If the src_object's ui_act() returns 1, update all UIs attacked to it.</p><h3 id="proc/close"><aside class="declaration">proc </aside>close<aside>() 
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L171">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 171"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 103"/></a></aside>
         </h3>
         <p>public</p>
-<p>Close the UI, and all its children.</p><h3 id="proc/get_json"><aside class="declaration">proc </aside>get_json<aside>(/list/data, /list/static_data) 
+<p>Close the UI.</p>
+<p>optional can_be_suspended bool</p><h3 id="proc/get_payload"><aside class="declaration">proc </aside>get_payload<aside>(custom_data, with_data, with_static_data) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L202">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 202"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 192"/></a></aside>
         </h3>
         <p>private</p>
-<p>Package the data to send to the UI, as JSON.
-This includes the UI data and config_data.</p>
-<p>return string The packaged JSON.</p><h3 id="proc/open"><aside class="declaration">proc </aside>open<aside>() 
+<p>Package the data to send to the UI, as JSON.</p>
+<p>return list</p><h3 id="proc/on_message"><aside class="declaration">proc </aside>on_message<aside>(type, /list/payload, /list/href_list) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L99">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 99"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L270">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 270"/></a></aside>
+        </h3>
+        <p>private</p>
+<p>Callback for handling incoming tgui messages.</p><h3 id="proc/open"><aside class="declaration">proc </aside>open<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 69"/></a></aside>
         </h3>
         <p>public</p>
 <p>Open this UI (and initialize it with data).</p><h3 id="proc/process">process<aside>(force) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L291">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 291"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L226">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 226"/></a></aside>
         </h3>
         <p>private</p>
-<p>Update the UI.
-Only updates the data if update is true, otherwise only updates the status.</p>
-<p>optional force bool If the UI should be forced to update.</p><h3 id="proc/push_data"><aside class="declaration">proc </aside>push_data<aside>(data, static_data, force) 
+<p>Run an update cycle for this UI. Called internally by SStgui
+every second or so.</p><h3 id="proc/process_status"><aside class="declaration">proc </aside>process_status<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L310">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 310"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L260">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 260"/></a></aside>
         </h3>
         <p>private</p>
-<p>Push data to an already open UI.</p>
-<p>required data list The data to send.
-optional force bool If the update should be sent regardless of state.</p><h3 id="proc/reinitialize"><aside class="declaration">proc </aside>reinitialize<aside>(interface, /list/data, /list/static_data) 
+<p>Updates the status, and returns TRUE if status has changed.</p><h3 id="proc/send_asset"><aside class="declaration">proc </aside>send_asset<aside>(/<a href="datum.html">datum</a>/asset/asset) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L157">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 157"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L147">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 147"/></a></aside>
         </h3>
         <p>public</p>
-<p>Reinitialize the UI.
-(Possibly with a new interface and/or data).</p>
-<p>optional template string The name of the new interface.
-optional data list The new initial data.</p><h3 id="proc/set_autoupdate"><aside class="declaration">proc </aside>set_autoupdate<aside>(state) 
+<p>Makes an asset available to use in tgui.</p>
+<p>required asset datum/asset</p><h3 id="proc/send_full_update"><aside class="declaration">proc </aside>send_full_update<aside>(custom_data, force) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L191">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 191"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L160">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 160"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Send a full update to the client (includes static data).</p>
+<p>optional custom_data list Custom data to send instead of ui_data.
+optional force bool Send an update even if UI is not interactive.</p><h3 id="proc/send_update"><aside class="declaration">proc </aside>send_update<aside>(custom_data, force) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L177">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 177"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Send a partial update to the client (excludes static data).</p>
+<p>optional custom_data list Custom data to send instead of ui_data.
+optional force bool Send an update even if UI is not interactive.</p><h3 id="proc/set_autoupdate"><aside class="declaration">proc </aside>set_autoupdate<aside>(autoupdate) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 127"/></a></aside>
         </h3>
         <p>public</p>
 <p>Enable/disable auto-updating of the UI.</p>
-<p>required state bool Enable/disable auto-updating.</p><h3 id="proc/set_status"><aside class="declaration">proc </aside>set_status<aside>(status, push) 
+<p>required value bool Enable/disable auto-updating.</p><h3 id="proc/set_state"><aside class="declaration">proc </aside>set_state<aside>(/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/state) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L359">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 359"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/97a02e73e73bd54113287e4d7c09a2b3512c17cb/code/modules/tgui/tgui.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 137"/></a></aside>
         </h3>
-        <p>private</p>
-<p>Set the status/visibility of the UI.</p>
-<p>required status int The status to set (UI_CLOSE/UI_DISABLED/UI_UPDATE/UI_INTERACTIVE).
-optional push bool Push an update to the UI (an update is always sent for UI_DISABLED).</p><h3 id="proc/update"><aside class="declaration">proc </aside>update<aside>(force_open) 
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L332">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 332"/></a></aside>
-        </h3>
-        <p>private</p>
-<p>Updates the UI by interacting with the src_object again, which will hopefully
-call try_ui_update on it.</p>
-<p>optional force_open bool If force_open should be passed to ui_interact.</p><h3 id="proc/update_status"><aside class="declaration">proc </aside>update_status<aside>(push) 
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/f92434de5ab58fa16fcb94dfd1a20b5877b0f577/code/modules/tgui/tgui.dm#L342">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;tgui.dm 342"/></a></aside>
-        </h3>
-        <p>private</p>
-<p>Update the status/visibility of the UI for its user.</p>
-<p>optional push bool Push an update to the UI (an update is always sent for UI_DISABLED).</p></main>
+        <p>public</p>
+<p>Replace current ui.state with a new one.</p>
+<p>required state datum/ui_state/state Next state</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/f92434de5ab58fa16fcb94dfd1a20b5877b0f577">f92434d</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/97a02e73e73bd54113287e4d7c09a2b3512c17cb">97a02e7</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
 </body>
 </html>

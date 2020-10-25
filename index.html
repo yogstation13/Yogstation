@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(53 modules,
-    447/6130 macros, 7.3%)</aside></h3>
+<aside>(54 modules,
+    460/6140 macros, 7.5%)</aside></h3>
 <ul class="index-tree">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -64,6 +64,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/reactions.html" title="code&#x2F;__DEFINES&#x2F;reactions.dm">reactions</a></li>
     <li><a href="code/__DEFINES/research.html" title="code&#x2F;__DEFINES&#x2F;research.dm">research</a></li>
     <li><a href="code/__DEFINES/subsystems.html" title="code&#x2F;__DEFINES&#x2F;subsystems.dm">subsystems</a> - Defines for subsystems and overlays</li>
+    <li><a href="code/__DEFINES/tgui.html" title="code&#x2F;__DEFINES&#x2F;tgui.dm">tgui</a></li>
     <li><span class="no-substance">~yogs_defines&#x2F;</span><a href="code/__DEFINES/~yogs_defines/reactions.html" title="code&#x2F;__DEFINES&#x2F;~yogs_defines&#x2F;reactions.dm">reactions</a></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;datums">datums</span><ul class="index-tree">
@@ -114,7 +115,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(238 detailed/723 documented/22379 total, 3.2%)</aside></h3>
+<aside>(246 detailed/730 documented/22388 total, 3.3%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -163,6 +164,7 @@ Syndicate infiltrator</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;AI_Module&#x2F;utility&#x2F;reactivate_cameras">Reactivate Camera Network</span> - Reactivate Camera Network: Reactivates up to 30 cameras across the station.</li>
     </ul></li>
     </ul></li>
+    <li><a href="datum/abductor_gear.html" title="&#x2F;datum&#x2F;abductor_gear">Generic Abductor Gear</a></li>
     <li><a href="datum/achievement.html" title="&#x2F;datum&#x2F;achievement">achievement</a> - Achievement datums</li>
     <li><a href="datum/achievement_browser.html" title="&#x2F;datum&#x2F;achievement_browser">Achievement browser</a> - One is created for every person who wants to view their achievements.
 See: <a href="datum/controller/subsystem/achievements.html" title="/datum/controller/subsystem/achievements">/datum/controller/subsystem/achievements</a> and [/client/verb/checkachievements()]</li>
@@ -556,7 +558,10 @@ All of this is passed to the Request Console UI in order to present in organized
     <li><span class="no-substance" title="&#x2F;datum&#x2F;techweb_node&#x2F;nanite_base">nanite_base</span> - Nanites</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;techweb_node&#x2F;robotics">robotics</span> - robotics tech</li>
     </ul></li>
-    <li><a href="datum/tgui.html" title="&#x2F;datum&#x2F;tgui">tgui</a> - tgui</li>
+    <li><a href="datum/tgui.html" title="&#x2F;datum&#x2F;tgui">tgui</a> - Copyright (c) 2020 Aleksej Komarov
+SPDX-License-Identifier: MIT</li>
+    <li><a href="datum/tgui_window.html" title="&#x2F;datum&#x2F;tgui_window">tgui_window</a> - Copyright (c) 2020 Aleksej Komarov
+SPDX-License-Identifier: MIT</li>
     <li><a href="datum/timedevent.html" title="&#x2F;datum&#x2F;timedevent">timedevent</a></li>
     <li><a href="datum/ui_state.html" title="&#x2F;datum&#x2F;ui_state">ui_state</a></li>
     <li class="has-children"><a href="datum/uplink_item.html" title="&#x2F;datum&#x2F;uplink_item">item name</a> - Uplink Items<ul class="index-tree">
@@ -577,6 +582,7 @@ All of this is passed to the Request Console UI in order to present in organized
     <li class="has-children"><span title="&#x2F;mob&#x2F;living&#x2F;simple_animal">simple_animal</span><ul class="index-tree">
     <li class="has-children"><a href="mob/living/simple_animal/bot.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;bot">bot</a><ul class="index-tree">
     <li><a href="mob/living/simple_animal/bot/medbot.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;bot&#x2F;medbot">\improper Medibot</a></li>
+    <li><a href="mob/living/simple_animal/bot/mulebot.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;bot&#x2F;mulebot">\improper MULEbot</a></li>
     </ul></li>
     <li><a href="mob/living/simple_animal/drone.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;drone">Drone</a></li>
     <li class="has-children"><a href="mob/living/simple_animal/hostile.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile">hostile</a><ul class="index-tree">
@@ -714,6 +720,7 @@ It's attacks are as follows:</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;toyAI">toy AI</span> - Ion Module</li>
     <li><span class="no-substance">zeroth&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;zeroth&#x2F;oneHuman">&#x27;OneHuman&#x27; AI Module</span> - OneHuman</li>
     </ul></li>
+    <li><a href="obj/item/airlock_painter.html" title="&#x2F;obj&#x2F;item&#x2F;airlock_painter">airlock painter</a></li>
     <li class="has-children"><a href="obj/item/ammo_box.html" title="&#x2F;obj&#x2F;item&#x2F;ammo_box">ammo box (null_reference_exception)</a><ul class="index-tree">
     <li><a href="obj/item/ammo_box/magazine.html" title="&#x2F;obj&#x2F;item&#x2F;ammo_box&#x2F;magazine">magazine</a></li>
     </ul></li>
@@ -982,6 +989,10 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;wormhole_jaunter">wormhole jaunter</span> - Jaunter</li>
     </ul></li>
     <li class="has-children"><a href="obj/machinery.html" title="&#x2F;obj&#x2F;machinery">machinery</a><ul class="index-tree">
+    <li class="has-children"><span title="&#x2F;obj&#x2F;machinery&#x2F;abductor">abductor</span><ul class="index-tree">
+    <li><a href="obj/machinery/abductor/console.html" title="&#x2F;obj&#x2F;machinery&#x2F;abductor&#x2F;console">abductor console</a></li>
+    <li><a href="obj/machinery/abductor/experiment.html" title="&#x2F;obj&#x2F;machinery&#x2F;abductor&#x2F;experiment">experimentation machine</a></li>
+    </ul></li>
     <li class="has-children"><a href="obj/machinery/atmospherics.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics">atmospherics</a><ul class="index-tree">
     <li><span class="no-substance">components&#x2F;unary&#x2F;</span><a href="obj/machinery/atmospherics/components/unary/cryo_cell.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;unary&#x2F;cryo_cell">cryo cell</a></li>
     </ul></li>
@@ -1001,14 +1012,15 @@ Enables crew to create requests, crew can sign up to perform the request, and th
     <li><span class="no-substance">gateway&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;gateway&#x2F;centeraway">centeraway</span> - Away</li>
     <li><a href="obj/machinery/holopad.html" title="&#x2F;obj&#x2F;machinery&#x2F;holopad">holopad</a></li>
     <li><a href="obj/machinery/hydroponics.html" title="&#x2F;obj&#x2F;machinery&#x2F;hydroponics">hydroponics tray</a></li>
+    <li><a href="obj/machinery/jukebox.html" title="&#x2F;obj&#x2F;machinery&#x2F;jukebox">jukebox</a></li>
     <li><a href="obj/machinery/light_switch.html" title="&#x2F;obj&#x2F;machinery&#x2F;light_switch">light switch</a> - The light switch. Can have multiple per area.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;manned_turret">machine gun turret</span> - MANNED TURRET</li>
-    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;mineral">mineral</span> - Mineral processing unit console<ul class="index-tree">
+    <li class="has-children"><span title="&#x2F;obj&#x2F;machinery&#x2F;mineral">mineral</span> - Mineral processing unit console<ul class="index-tree">
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;mineral&#x2F;equipment_vendor">mining equipment vendor</span> - Mining Equipment Vendor<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;mineral&#x2F;equipment_vendor&#x2F;free_miner">free miner ship equipment vendor</span> - Free Miner Vendor</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;mineral&#x2F;equipment_vendor&#x2F;golem">golem ship equipment vendor</span> - Golem Point Vendor</li>
     </ul></li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;mineral&#x2F;labor_claim_console">point claim console</span> - Prisoners' Console</li>
+    <li><a href="obj/machinery/mineral/labor_claim_console.html" title="&#x2F;obj&#x2F;machinery&#x2F;mineral&#x2F;labor_claim_console">point claim console</a> - Prisoners' Console</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;mineral&#x2F;labor_points_checker">points checking console</span> - Point Lookup Console</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;mineral&#x2F;mint">coin press</span> - Mint</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;mineral&#x2F;ore_redemption">ore redemption machine</span> - Ore Redemption Unit</li>
@@ -1132,7 +1144,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/f92434de5ab58fa16fcb94dfd1a20b5877b0f577">f92434d</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/97a02e73e73bd54113287e4d7c09a2b3512c17cb">97a02e7</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
 </body>
 </html>
