@@ -18453,9 +18453,9 @@
 /area/centcom/holding)
 "NJ" = (
 /obj/structure/table,
-/obj/item/book/manual/hydroponics_pod_people,
+/obj/item/book/manual/wiki/hydroponicsplants,
 /obj/item/seeds/pumpkin/blumpkin,
-/obj/item/paper/guides/jobs/hydroponics,
+/obj/item/book/manual/wiki/hydroponicsguide,
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
