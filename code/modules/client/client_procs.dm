@@ -532,8 +532,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	Master.UpdateTickRate()
 
 	//Linking process
-	if(tdata["discordlink"])
-		do_discord_link(tdata["discordlink"])
+	var/list/params = params2list(tdata)
+	if(params["discordlink"])
+		do_discord_link(params["discordlink"])
 
 
 //////////////
