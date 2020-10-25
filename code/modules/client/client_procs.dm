@@ -533,7 +533,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 	//Linking process
 	if(tdata["discordlink"])
-		do_discord_link(href_list["discordlink"])
+		do_discord_link(tdata["discordlink"])
 
 
 //////////////
