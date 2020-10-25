@@ -14,23 +14,10 @@
 /obj/structure/table,
 /turf/open/floor/plating,
 /area/template_noop)
-"f" = (
-/turf/open/floor/plasteel,
-/area/template_noop)
 "h" = (
 /obj/effect/decal/cleanable/glass,
 /obj/item/shard,
 /obj/structure/grille,
-/turf/open/floor/plating,
-/area/template_noop)
-"i" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
 /turf/open/floor/plating,
 /area/template_noop)
 "j" = (
@@ -81,6 +68,14 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
+"B" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/circuitboard/machine/recharger,
+/turf/open/floor/plating,
+/area/template_noop)
 "C" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -129,6 +124,10 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
+"N" = (
+/obj/structure/frame/machine,
+/turf/open/floor/plasteel,
+/area/template_noop)
 "P" = (
 /obj/item/chair,
 /turf/open/floor/plating{
@@ -151,6 +150,10 @@
 "T" = (
 /obj/effect/decal/cleanable/glass,
 /obj/structure/grille/broken,
+/turf/open/floor/plating,
+/area/template_noop)
+"V" = (
+/obj/item/stack/cable_coil/cut,
 /turf/open/floor/plating,
 /area/template_noop)
 "X" = (
@@ -203,15 +206,15 @@ x
 j
 "}
 (6,1,1) = {"
-f
+N
 y
-R
+V
 x
 j
 "}
 (7,1,1) = {"
 C
-i
+B
 n
 J
 b
