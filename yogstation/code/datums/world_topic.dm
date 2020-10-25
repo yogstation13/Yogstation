@@ -88,23 +88,6 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 			to_chat(X, "<B><font color='green'>Mentor PM: [discord_mentor_link(from, from_id)]-&gt;[key_name_mentor(C, X, 0, 0, show_char_recip)]:</B> <font color ='blue'> [msg]</font>")
 	return 1
 
-/datum/world_topic/verify
-	keyword = "verify"
-	require_comms_key = TRUE
-
-/datum/world_topic/verify/Run(list/input)
-	var/id = input["verify"]
-	var/ckey = input["ckey"]
-	var/lowerparams = ckey(ckey) // Fuck spaces
-	if(SSdiscord.account_link_cache[lowerparams]) // First if they are in the list, then if the ckey matches
-		if(SSdiscord.account_link_cache[lowerparams] == "[SSdiscord.id_clean(id)]") // If the associated ID is the correct one
-			SSdiscord.link_account(lowerparams)
-			return "Successfully linked accounts"
-		else
-			return "That ckey is not associated to this discord account. If someone has used your ID, please inform an administrator"
-	else
-		return "Failure! Have you initiated the linking process on the server (Link Discord Account in the Admin tab)? If you did, double check your ckey!"
-
 /datum/world_topic/unlink
 	keyword = "unlink"
 	require_comms_key = TRUE
@@ -117,3 +100,56 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 		return "[ckey] has been unlinked!"
 	else
 		return "Account not unlinked! Please contact a coder."
+
+/datum/world_topic/discordlink
+	keyword = "discordlink"
+
+/datum/world_topic/discordlink/Run(list/input)
+	//We can't run this without a usr
+	if(!usr)
+		return
+
+	var/hash = input["discordlink"]
+
+	if(!CONFIG_GET(flag/sql_enabled))
+		alert("Discord account linking requires the SQL backend to be running.")
+		return
+
+	if(!SSdiscord)
+		alert("The server is still starting, please try again later.")
+
+	var/stored_id = SSdiscord.lookup_id(usr.ckey)
+	if(stored_id)
+		alert("You already have the Discord Account [stored_id] linked to [usr.ckey]. If you need to have this reset, please contact an admin!","Already Linked")
+
+	//The hash is directly appended to the request URL, this is to prevent exploits in URL parsing with funny urls
+	// such as http://localhost/stuff:user@google.com/ so we restrict the valid characters to all numbers and the letters from a to f
+	if(regex(@"[^\da-fA-F]").Find(hash))
+		return
+		
+	//Since this action is passive as in its executed as you login, we need to make sure the user didnt just click on some random link and he actually wants to link
+	var/res = input("You are about to link your BYOND and Discord account. Do not proceed if you did not initiate the linking process. Input 'proceed' and press ok to proceed") as text|null
+	if(lowertext(res) != "proceed")
+		alert("Linking process aborted")
+		//Reconnecting clears out the connection parameters, this is so the user doesn't get the prompt to link their account if they later click replay
+		winset(usr, null, "command=.reconnect")
+		return
+		
+	var/datum/http_request/request = new()
+	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/webhook_address)]?key=[CONFIG_GET(string/webhook_key)]&method=verify&data=[json_encode(list("ckey" = usr.ckey, "hash" = hash))]")
+	request.begin_async()
+	UNTIL(request.is_complete() || !usr)
+	if(!usr)
+		return
+	var/datum/http_response/response = request.into_response()
+	var/data = json_decode(response.body)
+	if(istext(data["response"]))
+		alert("Internal Server Error")
+		winset(usr, null, "command=.reconnect")
+		return
+	
+	if(data["response"]["status"] == "err")
+		alert("Could not link account: [data["response"]["message"]]")
+	else
+		alert("Linked to account [data["response"]["message"]]")
+	winset(usr, null, "command=.reconnect")

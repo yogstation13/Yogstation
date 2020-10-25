@@ -1711,7 +1711,6 @@
 #include "code\modules\detectivework\evidence.dm"
 #include "code\modules\detectivework\footprints_and_rag.dm"
 #include "code\modules\detectivework\scanner.dm"
-#include "code\modules\discord\accountlink.dm"
 #include "code\modules\discord\manipulation.dm"
 #include "code\modules\economy\_economy.dm"
 #include "code\modules\economy\account.dm"
