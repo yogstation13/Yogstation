@@ -8,7 +8,6 @@ export const ShuttleManipulator = (props, context) => {
   const [tab, setTab] = useLocalState(context, 'tab', 1);
   return (
     <Window
-      title="Shuttle Manipulator"
       width={800}
       height={600}
       resizable>

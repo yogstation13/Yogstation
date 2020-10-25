@@ -736,6 +736,8 @@ SUBSYSTEM_DEF(shuttle)
 		preview_shuttle.jumpToNullSpace()
 	preview_shuttle = null
 
+/datum/controller/subsystem/shuttle/ui_state(mob/user)
+	return GLOB.admin_state
 
 /datum/controller/subsystem/shuttle/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
