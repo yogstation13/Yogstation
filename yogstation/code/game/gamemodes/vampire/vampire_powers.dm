@@ -233,7 +233,7 @@
 	to_chat(target, "<span class='boldwarning'>Your knees suddenly feel heavy. Your body begins to sink to the floor.</span>")
 	to_chat(user, "<span class='notice'>[target] is now under your spell. In four seconds they will be rendered unconscious as long as they are within close range.</span>")
 	if(do_mob(user, target, 40, TRUE)) // 4 seconds...
-		if(get_dist(user, T) <= 3) // 3 range
+		if(get_dist(user, T) <= 3)
 			flash_color(T, flash_color="#472040", flash_time=30) // it's the vampires color!
 			T.SetSleeping(300)
 			to_chat(user, "<span class='warning'>[T] has fallen asleep!</span>")
