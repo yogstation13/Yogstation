@@ -148,10 +148,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if("chat")
 			return chatOutput.Topic(href, href_list)
 
-	//Linking process
-	if(href_list["discordlink"])
-		do_discord_link(href_list["discordlink"])
-
 	switch(href_list["action"])
 		if("openLink")
 			src << link(href_list["link"])
@@ -164,48 +160,50 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 /client/proc/do_discord_link(hash)
 	if(!CONFIG_GET(flag/sql_enabled))
-		alert("Discord account linking requires the SQL backend to be running.")
+		alert(src, "Discord account linking requires the SQL backend to be running.")
 		return
 
 	if(!SSdiscord)
-		alert("The server is still starting, please try again later.")
+		alert(src, "The server is still starting, please try again later.")
+		return
 
 	var/stored_id = SSdiscord.lookup_id(ckey)
 	if(stored_id)
-		alert("You already have the Discord Account [stored_id] linked to [ckey]. If you need to have this reset, please contact an admin!","Already Linked")
+		alert(src, "You already have the Discord Account [stored_id] linked to [ckey]. If you need to have this reset, please contact an admin!","Already Linked")
 
 	//The hash is directly appended to the request URL, this is to prevent exploits in URL parsing with funny urls
 	// such as http://localhost/stuff:user@google.com/ so we restrict the valid characters to all numbers and the letters from a to f
 	if(regex(@"[^\da-fA-F]").Find(hash))
+		alert(src, "Invalid hash \"[hash]\"")
 		return
 		
 	//Since this action is passive as in its executed as you login, we need to make sure the user didnt just click on some random link and he actually wants to link
-	var/res = input("You are about to link your BYOND and Discord account. Do not proceed if you did not initiate the linking process. Input 'proceed' and press ok to proceed") as text|null
+	var/res = input(src, "You are about to link your BYOND and Discord account. Do not proceed if you did not initiate the linking process. Input 'proceed' and press ok to proceed") as text|null
 	if(lowertext(res) != "proceed")
-		alert("Linking process aborted")
+		alert(src, "Linking process aborted")
 		//Reconnecting clears out the connection parameters, this is so the user doesn't get the prompt to link their account if they later click replay
-		winset(usr, null, "command=.reconnect")
+		winset(src, null, "command=.reconnect")
 		return
 		
 	var/datum/http_request/request = new()
 	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/webhook_address)]?key=[CONFIG_GET(string/webhook_key)]&method=verify&data=[json_encode(list("ckey" = ckey, "hash" = hash))]")
 	request.begin_async()
-	UNTIL(request.is_complete() || !usr)
-	if(!usr)
+	UNTIL(request.is_complete() || !src)
+	if(!src)
 		return
 	var/datum/http_response/response = request.into_response()
 	var/data = json_decode(response.body)
 	if(istext(data["response"]))
-		alert("Internal Server Error")
-		winset(usr, null, "command=.reconnect")
+		alert(src,"Internal Server Error")
+		winset(src, null, "command=.reconnect")
 		return
 	
 	if(data["response"]["status"] == "err")
-		alert("Could not link account: [data["response"]["message"]]")
+		alert(src, "Could not link account: [data["response"]["message"]]")
 	else
 		SSdiscord.link_account(ckey, data["response"]["message"])
-		alert("Linked to account [data["response"]["message"]]")
-	winset(usr, null, "command=.reconnect")
+		alert(src, "Linked to account [data["response"]["message"]]")
+	winset(src, null, "command=.reconnect")
 
 
 /client/proc/is_content_unlocked()
@@ -271,6 +269,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 /client/New(TopicData)
 	var/tdata = TopicData //save this for later use
+	//this is a scam, so sometimes the topicdata is set to /?key=value instead of key=value, this is a hack around that
+	if(copytext(tdata, 1, 3) == "/?")
+		tdata = copytext(tdata, 3)
 	chatOutput = new /datum/chatOutput(src)
 	TopicData = null							//Prevent calls to client.Topic from connect
 
@@ -534,6 +535,15 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	view_size.setZoomMode()
 	fit_viewport()
 	Master.UpdateTickRate()
+
+	//Client needs to exists for what follows
+	. = ..()
+
+	//Linking process
+	var/list/params = params2list(tdata)
+	if(params["discordlink"])
+		do_discord_link(params["discordlink"])
+
 
 //////////////
 //DISCONNECT//
@@ -1068,3 +1078,4 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		screen -= S
 		qdel(S)
 	char_render_holders = null
+
