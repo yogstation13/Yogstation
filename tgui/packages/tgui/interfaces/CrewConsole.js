@@ -63,7 +63,11 @@ export const CrewConsole = (props, context) => {
   const sensors = data.sensors || [];
 
   return (
-    <Window resizable>
+    <Window
+      title="Crew Monitor"
+      width={800}
+      height={600}
+      resizable>
       <Window.Content scrollable>
         <Flex>
           <Flex.Item>

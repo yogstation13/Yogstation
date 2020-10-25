@@ -14,9 +14,6 @@
 	var/code = 2
 	var/frequency = FREQ_ELECTROPACK
 	var/shock_cooldown = FALSE
-	var/ui_x = 260
-	var/ui_y = 137
-
 
 /obj/item/electropack/Initialize()
 	. = ..()
@@ -95,11 +92,13 @@
 		return UI_CLOSE
 	return ..()
 
-/obj/item/electropack/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/electropack/ui_state(mob/user)
+	return GLOB.hands_state
+
+/obj/item/electropack/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Electropack", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "Electropack", name)
 		ui.open()
 
 /obj/item/electropack/ui_data(mob/user)

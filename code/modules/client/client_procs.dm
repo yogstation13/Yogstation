@@ -71,6 +71,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			keyUp(keyup)
 		return
 
+	//Rate limiting
 	var/mtl = CONFIG_GET(number/minute_topic_limit)
 	if (!holder && mtl)
 		var/minute = round(world.time, 600)
@@ -114,6 +115,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return
 	if (href_list["asset_cache_preload_data"])
 		asset_cache_preload_data(href_list["asset_cache_preload_data"])
+		return
+
+	// Tgui Topic middleware
+	if(!tgui_Topic(href_list))
 		return
 
 	// Admin PM
