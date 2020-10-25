@@ -2127,11 +2127,10 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "The byproduct of fermenting a cactus. For those wanting a refreshing drink in a barren wasteland."
 
 /datum/reagent/consumable/ethanol/cactuscooler/on_mob_life(mob/living/carbon/M)
-	if(prob(80))
-		M.adjustBruteLoss(-1*REM, 0)
-		M.adjustFireLoss(-1*REM, 0)
-		. = TRUE
-	return ..()
+	if(M.getFireLoss() && prob(10))
+		M.heal_bodypart_damage(0, 1)
+		. = 1
+	return ..() || .
 
 /datum/reagent/consumable/ethanol/polyporepop
 	name = "Polypore Pop"
