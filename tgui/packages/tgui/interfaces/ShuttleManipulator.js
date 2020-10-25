@@ -7,11 +7,7 @@ import { Window } from '../layouts';
 export const ShuttleManipulator = (props, context) => {
   const [tab, setTab] = useLocalState(context, 'tab', 1);
   return (
-    <Window
-      title="Shuttle Manipulator"
-      width={800}
-      height={600}
-      resizable>
+    <Window resizable>
       <Window.Content scrollable>
         <Tabs>
           <Tabs.Tab
