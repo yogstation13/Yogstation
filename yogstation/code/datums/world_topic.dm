@@ -151,5 +151,6 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 	if(data["response"]["status"] == "err")
 		alert("Could not link account: [data["response"]["message"]]")
 	else
+		SSdiscord.link_account(usr.ckey, data["response"]["message"])
 		alert("Linked to account [data["response"]["message"]]")
 	winset(usr, null, "command=.reconnect")
