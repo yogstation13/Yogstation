@@ -2,14 +2,14 @@
 * A machine used for Toxins scientists. Accepts tank transfer valves (TTVs),
 * then shoots (and detonates) them at Lavaland Z-level GPS coordinates provided.
 *
-* Five primary variables are used to operate the machine: 
+* Five primary variables are used to operate the machine:
 *		lavaland - setup during Init(), defines Z-level of lavaland for GPS checks
 *		locked - Locks/Unlocks all interactions w/ LAM, except for loading a TTV into it.
 *		dest - Turf that is selected as a target for the TTV to be shot at. Does not change unless a new target is chosen.
 *		targetdest - Name of the GPS selected at the same time as var/dest.
 *		tcoords - X, Y, Z coordinates selected at the same time as var/dest.
 *		scibomb - Variable that stores the TTV.
-* 
+*
 * Additional secondary variables:
 *		radio_freq - Restricts machine to only speak on Science radio channel. This allows Miners to hear the LAM
 *			announcements as well.
@@ -35,14 +35,14 @@
 	var/mincount = 15
 	var/target_delay = FALSE
 	var/locked = TRUE
-	var/stopcount = TRUE 
+	var/stopcount = TRUE
 	var/tick = 0
 	var/obj/item/transfer_valve/scibomb //Right here, JC
 	var/turf/dest
 	var/obj/item/radio/radio
 	var/radio_freq = FREQ_SCIENCE
 	var/lavaland
-	var/tcoords 
+	var/tcoords
 	var/targetdest = "None"
 
 /obj/machinery/sci_bombardment/Initialize()
@@ -89,10 +89,10 @@
 
 /**
 * Starts countdown sequence for firing the TTV
-* 
+*
 * Subtracts 1 from var/tick every second silently until reaching
 * the last 5 seconds. Spawn(10) loops back to the beginning by
-* triggering the proc again after 10 deciseconds. 
+* triggering the proc again after 10 deciseconds.
 */
 /obj/machinery/sci_bombardment/proc/countdown()
 	if(stopcount) //Abort launch
@@ -115,7 +115,7 @@
 
 /**
 * Launches TTV from LAM to turf
-* 
+*
 * Triggered after being called in the last step of countdown().
 * Sends the loaded TTV to the Turf selected during ui_act("target"),
 * triggers toggle_valve(), and last resets variables to initial state.
@@ -137,12 +137,12 @@
 
 /**
 * Visual proc, temporarily disables interacting
-* 
+*
 * Triggered after the ui_act's "target" and "abort" to
-* add a delay between selecting GPS coordinates and 
+* add a delay between selecting GPS coordinates and
 * cancelling a TTV launch.
 */
-/obj/machinery/sci_bombardment/proc/reset_lam() 
+/obj/machinery/sci_bombardment/proc/reset_lam()
 	target_delay = !target_delay
 	update_icon()
 	if(target_delay)
@@ -152,11 +152,10 @@
 		playsound(src, 'sound/items/scanner_match.ogg', 100, 1)
 		return
 
-/obj/machinery/sci_bombardment/ui_interact(mob/user, ui_key = "lam", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/sci_bombardment/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		var/lam_window_height = clamp(325 + GLOB.GPS_list.len * 24, 325, 700)
-		ui = new(user, src, ui_key, "Lam", name, 470, lam_window_height, master_ui, state)
+		ui = new(user, src, "Lam", name)
 		ui.open()
 
 /obj/machinery/sci_bombardment/ui_data(mob/user)
@@ -195,7 +194,7 @@
 			if(iscyborg(usr) || isAI(usr))
 				locked = !locked
 				radio.talk_into(src, "Controls [locked ? "locked" : "unlocked"] by [usr].",)
-			else 
+			else
 				var/mob/M = usr
 				var/obj/item/card/id/I = M.get_idcard(TRUE)
 				if(check_access(I) && (30 in I.access))
