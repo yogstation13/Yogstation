@@ -299,3 +299,19 @@
 	mix_message = "The solution partially dissolves, binding the remaining ingredients."
 	results = list(/datum/reagent/medicine/burnmix = 3) // fuel and most ethenol burns away to form BurnMix from remaining ethenol and ash
 	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/consumable/ethanol/beer = 3, /datum/reagent/ash = 2) // Take a booze bottle, drink some , add welding fuel and ash. Heat up with lighter
+
+/datum/chemical_reaction/tribalordrazine // Mushroom stem + ash from an ash pile + cactus fruit + heat the bowl with a welder
+	name = "Tribalordrazine"
+	id = /datum/reagent/medicine/tribalordrazine
+	required_temp = 420
+	mix_message = "The mixture binds together from the heat, releasing a pleasant smelling smoke."
+	results = list(/datum/reagent/medicine/tribalordrazine = 10) // Pretty intensive to get this, so this amount is fair. That and this chem isn't very good.
+	required_reagents = list(/datum/reagent/ash = 5, /datum/reagent/consumable/vitfro = 2, /datum/reagent/consumable/tinlux = 1)
+
+/datum/chemical_reaction/tribaldetox // Mushroom cap + ash from an ash pile + heat the bowl with a welder
+	name = "Cap Mix"
+	id = /datum/reagent/medicine/tribaldetox
+	required_temp = 420
+	mix_message = "The mixture binds together from the heat, releasing a disgusting smelling smoke."
+	results = list(/datum/reagent/medicine/tribaldetox = 10)
+	required_reagents = list(/datum/reagent/ash = 10, /datum/reagent/consumable/entpoly = 1)

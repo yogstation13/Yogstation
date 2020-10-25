@@ -37,7 +37,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 	always_availible = FALSE
-	
+
 /datum/crafting_recipe/makeshiftlasrifle
 	name = "makeshift laser rifle"
 	result = /obj/item/gun/energy/laser/makeshiftlasrifle
@@ -580,6 +580,13 @@
 	reqs = list(/obj/item/stack/sheet/bone = 4)
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/shamanhat
+	name = "Shaman Headdress"
+	result = /obj/item/clothing/head/helmet/shaman
+	time = 30
+	reqs = list(/obj/item/stack/sheet/bone = 4)
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/goliathcloak
 	name = "Goliath Cloak"
 	result = /obj/item/clothing/suit/hooded/cloak/goliath
@@ -775,7 +782,7 @@
 	reqs = 	list(/obj/item/stack/sheet/metal = 4 , /obj/item/pipe = 2)
 	result = /obj/structure/urinal
 	category = CAT_MISC
-	
+
 /datum/crafting_recipe/paint/crayon
 	name = "Paint"
 	result = /obj/item/paint/anycolor
@@ -797,7 +804,7 @@
 	tools = list(TOOL_CROWBAR)
 	category = CAT_MISC
 	time = 30
-	
+
 /datum/crafting_recipe/woodenmug
 	name = "Wooden Mug"
 	result = /obj/item/reagent_containers/glass/woodmug
@@ -806,4 +813,4 @@
 	category = CAT_PRIMAL
 
 
-	
+
