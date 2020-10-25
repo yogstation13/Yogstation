@@ -83214,13 +83214,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
-"cxe" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/science/misc_lab)
 "cxf" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -126302,6 +126295,14 @@
 /obj/machinery/bounty_board,
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/captain)
+"ied" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/sci_bombardment,
+/turf/open/floor/plasteel,
+/area/science/misc_lab)
 "iiu" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -156763,7 +156764,7 @@ dtk
 dFA
 dGZ
 cBT
-cxe
+ied
 dKA
 dLK
 gSi

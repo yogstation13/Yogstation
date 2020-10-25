@@ -43638,12 +43638,6 @@
 /obj/machinery/atmospherics/pipe/simple/general/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"bIW" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/science/mixing)
 "bIX" = (
 /obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'BOMB RANGE";
@@ -61210,6 +61204,13 @@
 /obj/machinery/rnd/production/techfab/department/medical,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"ppx" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/sci_bombardment,
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "prz" = (
 /obj/structure/sink{
 	dir = 8;
@@ -117327,7 +117328,7 @@ bDh
 bEs
 bGd
 bHv
-bIW
+ppx
 bKe
 bLm
 bEs
