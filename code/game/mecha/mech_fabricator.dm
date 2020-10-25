@@ -189,16 +189,15 @@
 
 	if(materials)
 		for(var/mat_id in materials.materials)
-			var/datum/material/M = mat_id
+			var/datum/material/M = materials.materials[mat_id]
 			var/list/material_info = list()
-			var/amount = materials.materials[mat_id]
 
 			material_info = list(
 				"name" = M.name,
 				"ref" = REF(M),
-				"amount" = amount,
-				"sheets" = round(amount / MINERAL_MATERIAL_AMOUNT),
-				"removable" = amount >= MINERAL_MATERIAL_AMOUNT
+				"amount" = M,
+				"sheets" = round(M / MINERAL_MATERIAL_AMOUNT),
+				"removable" = M >= MINERAL_MATERIAL_AMOUNT
 			)
 
 			material_data += list(material_info)
