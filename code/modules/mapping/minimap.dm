@@ -79,8 +79,7 @@
 	max_integrity = 50
 	var/list/minimaps = list()
 
-/obj/item/paper/attackby(obj/item/P, mob/living/carbon/human/user, params)
-	..()
+/obj/item/map/attackby(obj/item/P, mob/living/carbon/human/user, params)
 	if(P.is_hot())
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))
 			user.visible_message("<span class='warning'>[user] accidentally ignites [user.p_them()]self!</span>", \
