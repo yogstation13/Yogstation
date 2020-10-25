@@ -159,8 +159,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	..()	//redirect to hsrc.Topic()
 
 /client/proc/do_discord_link(hash)
-	log_game("test2inproc")
-	log_game(hash)
 	if(!CONFIG_GET(flag/sql_enabled))
 		alert(src, "Discord account linking requires the SQL backend to be running.")
 		return
@@ -271,7 +269,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 /client/New(TopicData)
 	var/tdata = TopicData //save this for later use
-	//this is a scam
+	//this is a scam, so sometimes the topicdata is set to /?key=value instead of key=value, this is a hack around that
 	if(copytext(tdata, 1, 3) == "/?")
 		tdata = copytext(tdata, 3)
 	chatOutput = new /datum/chatOutput(src)
@@ -538,20 +536,12 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	fit_viewport()
 	Master.UpdateTickRate()
 
-	log_game("test")
-	log_game(tdata)
-	//Linking process
-	var/list/params = params2list(tdata)
-	log_game("thing")
-	log_game(params["discordlink"])
-	log_game("len")
-	log_game(params.len)
-
 	//Client needs to exists for what follows
 	. = ..()
 
+	//Linking process
+	var/list/params = params2list(tdata)
 	if(params["discordlink"])
-		log_game("success")
 		do_discord_link(params["discordlink"])
 
 
