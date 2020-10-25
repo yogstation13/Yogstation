@@ -1119,7 +1119,8 @@
 	M.adjustToxLoss(-2*REM, 0)
 	if(prob(10))
 		M.vomit(20)
-	. = 1
+		. = 1
+	..()
 
 
 /datum/reagent/medicine/syndicate_nanites //Used exclusively by Syndicate medical cyborgs
