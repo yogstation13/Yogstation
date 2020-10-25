@@ -1085,6 +1085,43 @@
 	. = 1
 	..()
 
+/datum/reagent/medicine/tribalordrazine
+	name = "Tribalordrazine" //tribal version of tricord. Slightly less effective than the real stuff, and doesn't heal toxins. Doesn't heal toxins since capmix should do that.
+	description = "Has a high chance to heal brute, burn, and oxygen damage. Overdose instead causes it."
+	reagent_state = LIQUID
+	color = "#C8A5DC"
+	overdose_threshold = 30
+	taste_description = "bland gel"
+
+/datum/reagent/medicine/tribalordrazine/on_mob_life(mob/living/carbon/M)
+	if(prob(60))
+		M.adjustBruteLoss(-1*REM, 0)
+		M.adjustFireLoss(-1*REM, 0)
+		M.adjustOxyLoss(-1*REM, 0)
+		. = 1
+	..()
+
+/datum/reagent/medicine/tribalordrazine/overdose_process(mob/living/M)
+	M.adjustOxyLoss(2*REM, 0)
+	M.adjustBruteLoss(2*REM, FALSE, FALSE, BODYPART_ORGANIC)
+	M.adjustFireLoss(2*REM, FALSE, FALSE, BODYPART_ORGANIC)
+	..()
+	. = 1
+
+/datum/reagent/medicine/tribaldetox
+	name = "Cap Mix"
+	description = "Heals toxin damage and removes toxins in the bloodstream via vomit. Can't overdose."
+	reagent_state = LIQUID
+	color = "#C8A5DC"
+	taste_description = "poison"
+
+/datum/reagent/medicine/tribaldetox/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(-2*REM, 0)
+	if(prob(10))
+		M.vomit(20)
+	. = 1
+
+
 /datum/reagent/medicine/syndicate_nanites //Used exclusively by Syndicate medical cyborgs
 	name = "Restorative Nanites"
 	description = "Miniature medical robots that swiftly restore bodily damage."
@@ -1343,14 +1380,14 @@
 	name = "BurnMix"
 	description = "Take in moderation. Initially heals damage at a snail's pace until overdosed. Effects increase when used with Epinephrine or Perfluorodecalin. You don't want this in your body for longer than needed."
 	reagent_state = LIQUID
-	color = "#BD328A" //  R 189 G 50 B 138 , Medium Red Violet , Hue of Violet 
+	color = "#BD328A" //  R 189 G 50 B 138 , Medium Red Violet , Hue of Violet
 	overdose_threshold = 15
 	taste_description = "a chunky mess"
 	glass_name = "glass of ...red?"
 	glass_desc = "Looks like some chunky dark red mix."
 	reagent_weight = 4
 	addiction_threshold = 40
-	// Max healing non OD with best rolls + buffs: 0.2 + 0.15 + 0.2 = 0.55 
+	// Max healing non OD with best rolls + buffs: 0.2 + 0.15 + 0.2 = 0.55
 	// Max healing with OD + best rolls and all buffs: 0.4 + 0.35 + 0.4 = 1.15
 
 /datum/reagent/medicine/burnmix/on_mob_life(mob/living/carbon/M)
@@ -1372,7 +1409,7 @@
 	perfluorodecalin_effect(M, heal_roll, slur, jitter)
 	epinephrine_effect(M, heal_roll, slur, jitter)
 	combined_effect(M, heal_roll, slur, jitter) // OD allows for the combined effect
-	base_effect(M, heal_roll, slur, jitter) 
+	base_effect(M, heal_roll, slur, jitter)
 	..()
 	. = 1
 
@@ -1409,9 +1446,9 @@
 			M.Dizzy(jitter)
 			M.apply_effect(slur, EFFECT_SLUR) // End of base probability effects
 		if(heal_roll < 0) // Healing payload after calculations
-			M.adjustFireLoss(heal_roll*REM, 0) 
-			M.adjustBruteLoss(heal_roll*REM, 0) 
-	
+			M.adjustFireLoss(heal_roll*REM, 0)
+			M.adjustBruteLoss(heal_roll*REM, 0)
+
 	else if(overdosed)
 		if(prob(40)) // start last set of OD probability effects
 			M.emote(pick("twitch","drool","moan","giggle","spin"))
@@ -1420,7 +1457,7 @@
 		if(prob(15))
 			M.set_drugginess(rand(2,6))
 		M.Jitter(jitter)
-		if(prob(40))	
+		if(prob(40))
 			M.adjustToxLoss(pick(1,-1)*REM, 0)
 		if(prob(1))
 			M.Dizzy(jitter) // end last set of OD probability effects
