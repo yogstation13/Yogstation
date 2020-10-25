@@ -1,0 +1,7 @@
+author: "MonsWTF"
+delete-after: true 
+changes: 
+  - rscadd: "Adds the L.A.M. to Toxins."
+  - rscdel: "A table was removed to make way for one of the L.A.M.'s"
+  - tweak: "Lavaland's Mining Base GPSes now start Off by default, for safety reasons."
+  - imageadd: "L.A.M. sprites created by Tipy"

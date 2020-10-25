@@ -17278,7 +17278,7 @@
 /obj/item/seeds/wheat,
 /obj/item/reagent_containers/food/snacks/grown/tomato,
 /obj/effect/turf_decal/bot,
-/obj/item/paper/guides/jobs/hydroponics,
+/obj/item/book/manual/wiki/hydroponicsplants,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -17300,7 +17300,7 @@
 	},
 /obj/item/seeds/tower,
 /obj/effect/turf_decal/bot,
-/obj/item/book/manual/hydroponics_pod_people,
+/obj/item/book/manual/wiki/hydroponicsguide,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -19615,6 +19615,7 @@
 /area/crew_quarters/lounge)
 "aTz" = (
 /obj/structure/chair/comfy/brown,
+/obj/effect/landmark/start/artist,
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/lounge)
 "aTA" = (
