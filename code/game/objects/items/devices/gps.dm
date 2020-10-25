@@ -21,7 +21,8 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	. = ..()
 	GLOB.GPS_list += src
 	name = "global positioning system ([gpstag])"
-	add_overlay("working")
+	if(tracking) //Some roundstart GPS are off.
+		add_overlay("working")
 
 /obj/item/gps/Destroy()
 	GLOB.GPS_list -= src

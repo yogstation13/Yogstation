@@ -79,6 +79,24 @@
 	max_integrity = 50
 	var/list/minimaps = list()
 
+/obj/item/paper/attackby(obj/item/P, mob/living/carbon/human/user, params)
+	..()
+	if(P.is_hot())
+		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))
+			user.visible_message("<span class='warning'>[user] accidentally ignites [user.p_them()]self!</span>", \
+								"<span class='userdanger'>You miss the map and accidentally light yourself on fire!</span>")
+			user.dropItemToGround(P)
+			user.adjust_fire_stacks(1)
+			user.IgniteMob()
+			return
+
+		if(!(in_range(user, src))) //to prevent issues as a result of telepathically lighting a paper
+			return
+
+		user.dropItemToGround(src)
+		user.visible_message("<span class='danger'>[user] lights [src] ablaze with [P]!</span>", "<span class='danger'>You light [src] on fire!</span>")
+		fire_act()
+
 /obj/item/map/station
 	name = "station map"
 	desc = "A handy map showing the locations of all the departments on the station so you don't get lost"
