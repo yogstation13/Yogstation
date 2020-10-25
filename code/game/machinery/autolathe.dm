@@ -40,9 +40,6 @@
 	var/queuelength = 0
 	var/list/categories = list("Tools","Electronics","Construction","T-Comm","Security","Machinery","Medical","Misc","Dinnerware","Imported", "Search")
 
-	ui_x = 1116
-	ui_y = 703
-
 /obj/machinery/autolathe/Initialize()
 	AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_GLASS), 0, TRUE, null, null, CALLBACK(src, .proc/AfterMaterialInsert))
 	. = ..()
@@ -55,14 +52,14 @@
 	QDEL_NULL(wires)
 	return ..()
 
-/obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/autolathe/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!is_operational())
 		return
 	if(shocked && !(stat & NOPOWER))
 		shock(user,50)
 	if(!ui)
-		ui = new(user, src, ui_key, "Autolathe", name, ui_x, ui_y, master_ui, state)  //Create the TGUI from autolathe.js
+		ui = new(user, src, "Autolathe", name)
 		ui.open()
 
 /obj/machinery/autolathe/proc/wallcheck(direction) //Check for nasty walls and update ui

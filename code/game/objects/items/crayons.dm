@@ -137,13 +137,13 @@
 		to_chat(user, "<span class='warning'>There is not enough of [src] left!</span>")
 		. = TRUE
 
-/obj/item/toy/crayon/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.hands_state)
-	// tgui is a plague upon this codebase
+/obj/item/toy/crayon/ui_state(mob/user)
+	return GLOB.hands_state
 
-	SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/toy/crayon/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.hands_state)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Crayon", name, 600, 600,
-			master_ui, state)
+		ui = new(user, src, "Crayon", name)
 		ui.open()
 
 /obj/item/toy/crayon/spraycan/AltClick(mob/user)
@@ -311,7 +311,7 @@
 	else if(drawing in graffiti|oriented)
 		temp = "graffiti"
 	var/gang_check = hippie_gang_check(user,target) // yogs start -- gang check and temp setting
-	if(!gang_check) 
+	if(!gang_check)
 		return
 	else if(gang_check == "gang graffiti")
 		temp = gang_check // yogs end

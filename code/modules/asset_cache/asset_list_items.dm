@@ -6,12 +6,6 @@
 		"tgui.bundle.css" = 'tgui/packages/tgui/public/tgui.bundle.css',
 	)
 
-/datum/asset/group/tgui
-	children = list(
-		/datum/asset/simple/tgui,
-		/datum/asset/simple/fontawesome
-	)
-
 /datum/asset/simple/headers
 	assets = list(
 		"alarm_green.gif" 			= 'icons/program_icons/alarm_green.gif',
@@ -79,7 +73,7 @@
 		"scanner"		= 'icons/pda_icons/pda_scanner.png',
 		"signaler"		= 'icons/pda_icons/pda_signaler.png',
 		"status"		= 'icons/pda_icons/pda_status.png',
-		"dronephone"	= 'icons/pda_icons/pda_dronephone.png'
+		"dronephone"	= 'icons/pda_icons/pda_dronephone.png',
 	)
 
 /datum/asset/spritesheet/simple/paper
@@ -95,19 +89,19 @@
 		"stamp-rd" = 'icons/stamp_icons/large_stamp-rd.png',
 		"stamp-cap" = 'icons/stamp_icons/large_stamp-cap.png',
 		"stamp-qm" = 'icons/stamp_icons/large_stamp-qm.png',
-		"stamp-law" = 'icons/stamp_icons/large_stamp-law.png'
+		"stamp-law" = 'icons/stamp_icons/large_stamp-law.png',
 	)
 
 
-/datum/asset/simple/IRV
+/datum/asset/simple/irv
 	assets = list(
 		"jquery-ui.custom-core-widgit-mouse-sortable-min.js" = 'html/IRV/jquery-ui.custom-core-widgit-mouse-sortable-min.js',
 	)
 
-/datum/asset/group/IRV
+/datum/asset/group/irv
 	children = list(
 		/datum/asset/simple/jquery,
-		/datum/asset/simple/IRV
+		/datum/asset/simple/irv
 	)
 
 /datum/asset/simple/changelog
@@ -133,11 +127,6 @@
 		"changelog.css" = 'html/changelog.css'
 	)
 
-/datum/asset/simple/scanlines
-	assets = list(
-		"scanlines.png" = 'html/scanlines.png'
-	)
-
 /datum/asset/group/goonchat
 	children = list(
 		/datum/asset/simple/jquery,
@@ -156,7 +145,7 @@
 		"json2.min.js"             = 'code/modules/goonchat/browserassets/js/json2.min.js',
 		"browserOutput.js"         = 'code/modules/goonchat/browserassets/js/browserOutput.js',
 		"browserOutput.css"	       = 'code/modules/goonchat/browserassets/css/browserOutput.css',
-		"browserOutput_white.css"  = 'code/modules/goonchat/browserassets/css/browserOutput_white.css'
+		"browserOutput_white.css"  = 'code/modules/goonchat/browserassets/css/browserOutput_white.css',
 	)
 
 /datum/asset/simple/fontawesome
@@ -350,24 +339,24 @@
 		"dna_discovered.gif"	= 'html/dna_discovered.gif',
 		"dna_undiscovered.gif"	= 'html/dna_undiscovered.gif',
 		"dna_extra.gif" 		= 'html/dna_extra.gif'
-)
+	)
 
 /datum/asset/simple/orbit
 	assets = list(
 		"ghost.png"	= 'html/ghost.png'
 	)
 
-/datum/asset/simple/mapimage // Returns an image of the current map
-	assets = list(
-		//Initialized in New()
-	)
-/datum/asset/simple/mapimage/New()
-	..()
-	assets = list(
-		"map.png" = fcopy_rsc(file("icons/mapimages/[SSmapping.config.map_name].png")) //AFAIK this doesn't race with SSmapping loading up.
-	)
-
 /datum/asset/simple/vv
 	assets = list(
 		"view_variables.css" = 'html/admin/view_variables.css'
 	)
+
+/datum/asset/spritesheet/sheetmaterials
+	name = "sheetmaterials"
+
+/datum/asset/spritesheet/sheetmaterials/register()
+	InsertAll("", 'icons/obj/stack_objects.dmi')
+
+	// Special case to handle Bluespace Crystals
+	Insert("polycrystal", 'icons/obj/telescience.dmi', "polycrystal")
+	..()
