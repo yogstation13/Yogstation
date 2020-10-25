@@ -148,10 +148,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if("chat")
 			return chatOutput.Topic(href, href_list)
 
-	//Linking process
-	if(href_list["discordlink"])
-		do_discord_link(href_list["discordlink"])
-
 	switch(href_list["action"])
 		if("openLink")
 			src << link(href_list["link"])
@@ -534,6 +530,11 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	view_size.setZoomMode()
 	fit_viewport()
 	Master.UpdateTickRate()
+
+	//Linking process
+	if(tdata["discordlink"])
+		do_discord_link(href_list["discordlink"])
+
 
 //////////////
 //DISCONNECT//
