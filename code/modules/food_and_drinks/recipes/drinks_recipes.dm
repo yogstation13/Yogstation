@@ -845,4 +845,15 @@
 	id = /datum/reagent/consumable/tea/green
 	results = list(/datum/reagent/consumable/tea/green = 3)
 	required_reagents = list(/datum/reagent/colorful_reagent/crayonpowder/green = 1, /datum/reagent/consumable/tea = 3)
- 
+
+/datum/chemical_reaction/redtea2
+	name = "Red Tea"
+	id = /datum/reagent/consumable/tea/red
+	results = list(/datum/reagent/consumable/tea/red = 3)
+	required_reagents = list(/datum/reagent/toxin/teapowder/red = 1, /datum/reagent/water = 3)
+
+/datum/chemical_reaction/greentea2
+	name = "Green Tea"
+	id = /datum/reagent/consumable/tea/green
+	results = list(/datum/reagent/consumable/tea/green = 3)
+	required_reagents = list(/datum/reagent/toxin/teapowder/green = 1, /datum/reagent/water = 3)
