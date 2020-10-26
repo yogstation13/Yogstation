@@ -577,7 +577,7 @@
 	name = "chocolate"
 	desc = "A tiny and sweet chocolate. Has a 'strawberry' filling!"
 	icon_state = "tiny_chocolate"
-	list_reagents = list("nutriment" = 1, "sugar" = 1, "cocoa" = 1, "aphro" = 1)
+	list_reagents = list("nutriment" = 1, "sugar" = 1, "cocoa" = 1)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 1)
 	foodtype = JUNKFOOD | SUGAR
