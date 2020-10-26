@@ -1,4 +1,0 @@
-author: "wejengin2"
-delete-after: true 
-changes: 
-  - bugfix: "connects piping to the artist coven on delta"
