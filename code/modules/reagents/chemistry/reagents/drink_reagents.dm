@@ -925,3 +925,38 @@
 /datum/reagent/consumable/graveyard/on_mob_life(mob/living/carbon/M)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
+
+/datum/reagent/consumable/strawberryjuice
+	name = "Strawberry Juice"
+	description = "Refreshing seasonal summer drink."
+	color = "#E50D31"
+	taste_description = "strawberry"
+	glass_name = "glass of strawberry juice"
+	glass_desc = "Refreshing seasonal summer drink."
+	
+/datum/reagent/consumable/pinkmilk
+	name = "Strawberry Milk"
+	description = "A drink of a bygone era of milk and artificial sweetener back on a rock."
+	color = "#f76aeb"//rgb(247, 106, 235)
+	glass_icon_state = "pinkmilk"
+	quality = DRINK_VERYGOOD
+	taste_description = "sweet strawberry and milk cream"
+	glass_name = "tall glass of strawberry milk"
+	glass_desc = "Delicious flavored strawberry syrup mixed with milk."
+	value = REAGENT_VALUE_VERY_COMMON
+	
+/datum/reagent/consumable/pinktea //Tiny Tim song
+	name = "Strawberry Tea"
+	description = "A timeless classic!"
+	color = "#f76aeb"//rgb(247, 106, 235)
+	glass_icon_state = "pinktea"
+	quality = DRINK_VERYGOOD
+	taste_description = "sweet tea with a hint of strawberry"
+	glass_name = "mug of strawberry tea"
+	glass_desc = "Delicious traditional tea flavored with strawberries."
+
+/datum/reagent/consumable/tea/pinktea/on_mob_life(mob/living/carbon/M)
+	if(prob(10))
+		to_chat(M, "<span class = 'notice'>[pick("Diamond skies where white deer fly.","Sipping strawberry tea.","Silver raindrops drift through timeless, Neverending June.","Crystal ... pearls free, with love!","Beaming love into me.")]</span>")
+	..()
+	. = 1
