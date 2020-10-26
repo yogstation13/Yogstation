@@ -815,4 +815,34 @@
 	id = /datum/reagent/consumable/ethanol/flaming_moe
 	results = list(/datum/reagent/consumable/ethanol/flaming_moe = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol/tequila = 1, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/medicine/synaptizine = 1)
+	
+/datum/chemical_reaction/mush
+	name = "Mush Tea"
+	id = /datum/reagent/consumable/tea/mush
+	results = list(/datum/reagent/consumable/tea/mush = 3)
+	required_reagents = list(/datum/reagent/drug/mushroomhallucinogen = 3, /datum/reagent/consumable/tea = 3)
+
+/datum/chemical_reaction/foresttea1
+	name = "Forest Tea"
+	id = /datum/reagent/consumable/tea/forest
+	results = list(/datum/reagent/consumable/tea/forest = 3)
+	required_reagents = list(/datum/reagent/consumable/buzz_fuzz= 3, /datum/reagent/consumable/tea = 3)
+
+/datum/chemical_reaction/foresttea2
+	name = "Forest Tea"
+	id = /datum/reagent/consumable/tea/forest
+	results = list(/datum/reagent/consumable/tea/forest = 3)
+	required_reagents = list(/datum/reagent/consumable/honey = 1, /datum/reagent/consumable/tea = 3)
+
+/datum/chemical_reaction/redtea1
+	name = "Red Tea"
+	id = /datum/reagent/consumable/tea/red
+	results = list(/datum/reagent/consumable/tea/red = 3)
+	required_reagents = list(/datum/reagent/colorful_reagent/crayonpowder/red = 1, /datum/reagent/consumable/tea = 3)
+
+/datum/chemical_reaction/greentea1
+	name = "Green Tea"
+	id = /datum/reagent/consumable/tea/green
+	results = list(/datum/reagent/consumable/tea/green = 3)
+	required_reagents = list(/datum/reagent/colorful_reagent/crayonpowder/green = 1, /datum/reagent/consumable/tea = 3)
  
