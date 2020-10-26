@@ -31,7 +31,7 @@
 		coldmod = 0.5
 		heatmod = 1
 		speedmod = 0
-		stunmod = 0.9
+		stunmod = 1
 	else
 		coldmod = initial(coldmod)
 		heatmod = initial(heatmod)

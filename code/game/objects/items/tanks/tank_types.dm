@@ -191,5 +191,5 @@
 	w_class = WEIGHT_CLASS_SMALL 
 
 /obj/item/tank/internals/piscis/populate_gas()
-	air_contents.set_moles(/datum/gas/oxygen, (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
-	air_contents.set_moles(/datum/gas/water_vapor, (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+	air_contents.set_moles(/datum/gas/oxygen, (5*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+	air_contents.set_moles(/datum/gas/water_vapor, (5*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
