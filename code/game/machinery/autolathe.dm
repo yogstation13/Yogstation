@@ -74,8 +74,8 @@
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	data["total_amount"] = materials.total_amount
 	data["max_amount"] = materials.max_amount
-	data["metal_amount"] = materials.amount(/datum/material/iron)
-	data["glass_amount"] = materials.amount(/datum/material/glass)
+	data["metal_amount"] = materials.get_material_amount(/datum/material/iron)
+	data["glass_amount"] = materials.get_material_amount(/datum/material/glass)
 	data["rightwall"] = wallcheck(4) // Wall data for ui
 	data["leftwall"] = wallcheck(8)
 	data["abovewall"] = wallcheck(1)
@@ -340,9 +340,8 @@
 	var/is_stack = ispath(request.build_path, /obj/item/stack)
 	var/coeff = (is_stack ? 1 : prod_coeff) //stacks are unaffected by production coefficient
 	var/total_amount = 0
-
-	for(var/MAT in being_built.materials)
-		total_amount += being_built.materials[MAT]
+	for(var/MAT in request.materials)
+		total_amount += request.materials[MAT]
 	var/power = max(2000, (total_amount)*multiplier/5) //Change this to use all materials
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	if (!materials)
@@ -350,11 +349,11 @@
 		return FALSE
 	if(can_build(D, multiplier))  // Check if we can build if not, return
 		var/list/materials_used = list()
+		var/list/picked_materials
 		var/list/custom_materials = list() //These will apply their material effect, This should usually only be one.
-
-		for(var/MAT in being_built.materials)
+		for(var/MAT in request.materials)
 			var/datum/material/used_material = MAT
-			var/amount_needed = being_built.materials[MAT] * coeff * multiplier
+			var/amount_needed = request.materials[MAT] * coeff * multiplier
 			if(istext(used_material)) //This means its a category
 				var/list/list_to_show = list()
 				for(var/i in SSmaterials.materials_by_category[used_material])

@@ -87,7 +87,6 @@
 
 /datum/material/plasma/on_removed(atom/source, material_flags)
 	. = ..()
-	source.RemoveElement(/datum/element/firestacker)
 	qdel(source.GetComponent(/datum/component/explodable))
 
 ///Can cause bluespace effects on use. (Teleportation) (Not yet implemented)

@@ -111,14 +111,14 @@
 	if(materials)
 		for(var/mat_id in materials.materials)
 			var/datum/material/M = mat_id
-		var/amount = materials.materials[mat_id]
-		output += "<span class=\"res_name\">[M.name]: </span>[amount] cm&sup3;"
-		if(amount >= MINERAL_MATERIAL_AMOUNT)
-			output += "<span style='font-size:80%;'>- Remove \[<a href='?src=[REF(src)];remove_mat=1;material=[REF(mat_id)]'>1</a>\]"
-			if(amount >= (MINERAL_MATERIAL_AMOUNT * 10))
-				output += " | \[<a href='?src=[REF(src)];remove_mat=10;material=[REF(M)]'>10</a>\]"
-			output += " | \[<a href='?src=[REF(src)];remove_mat=50;material=[REF(M)]'>All</a>\]</span>"
-			output += "<br>"
+			var/amount = materials.materials[mat_id]
+			output += "<span class=\"res_name\">[M.name]: </span>[amount] cm&sup3;"
+			if(amount >= MINERAL_MATERIAL_AMOUNT)
+				output += "<span style='font-size:80%;'>- Remove \[<a href='?src=[REF(src)];remove_mat=1;material=[REF(mat_id)]'>1</a>\]"
+				if(amount >= (MINERAL_MATERIAL_AMOUNT * 10))
+					output += " | \[<a href='?src=[REF(src)];remove_mat=10;material=[REF(M)]'>10</a>\]"
+				output += " | \[<a href='?src=[REF(src)];remove_mat=50;material=[REF(M)]'>All</a>\]</span>"
+				output += "<br>"
 	else
 		output += "<font color='red'>No material storage connected, please contact the quartermaster.</font><br>"
 	return output
