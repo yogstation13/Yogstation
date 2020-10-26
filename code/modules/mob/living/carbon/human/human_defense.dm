@@ -800,6 +800,10 @@
 				to_chat(src, "<span class='info'>You feel quite hungry.</span>")
 			if(0 to NUTRITION_LEVEL_STARVING)
 				to_chat(src, "<span class='danger'>You're starving!</span>")
+	if(dna.species.id == "skeleton")
+		var/obj/item/clothing/under/under = w_uniform
+		if((!under || under.adjusted) && (!wear_suit))
+			play_xylophone()
 
 	//Compiles then shows the list of damaged organs and broken organs
 	var/list/broken = list()
