@@ -118,7 +118,7 @@
 				if(amount >= (MINERAL_MATERIAL_AMOUNT * 10))
 					output += " | \[<a href='?src=[REF(src)];remove_mat=10;material=[REF(M)]'>10</a>\]"
 				output += " | \[<a href='?src=[REF(src)];remove_mat=50;material=[REF(M)]'>All</a>\]</span>"
-				output += "<br>"
+			output += "<br>"
 	else
 		output += "<font color='red'>No material storage connected, please contact the quartermaster.</font><br>"
 	return output
@@ -126,7 +126,8 @@
 /obj/machinery/mecha_part_fabricator/proc/get_resources_w_coeff(datum/design/D)
 	var/list/resources = list()
 	for(var/R in D.materials)
-		resources[R] = get_resource_cost_w_coeff(D, R)
+		var/datum/material/M = R
+		resources[M] = get_resource_cost_w_coeff(D, M)
 	return resources
 
 /obj/machinery/mecha_part_fabricator/proc/check_resources(datum/design/D)
@@ -139,7 +140,6 @@
 
 /obj/machinery/mecha_part_fabricator/proc/build_part(datum/design/D)
 	var/list/res_coef = get_resources_w_coeff(D)
-
 	var/datum/component/material_container/materials = rmat.mat_container
 	if (!materials)
 		say("No access to material storage, please contact the quartermaster.")
@@ -397,8 +397,9 @@
 					break
 
 	if(href_list["remove_mat"] && href_list["material"])
-		eject_sheets(href_list["material"], href_list["remove_mat"])
-
+		var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+		var/datum/material/Mat = locate(href_list["material"])
+		materials.retrieve_sheets(text2num(href_list["remove_mat"]), Mat)
 	updateUsrDialog()
 	return
 
