@@ -237,7 +237,7 @@
 
 /obj/item/twohanded/fireaxe/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/butchering, 100, 80, 0 , hitsound) //axes are not known for being precision butchering tools
+	AddComponent(/datum/component/butchering, 100, 80, 0 , hitsound) //axes are not known for being precision butchering tools
 
 /obj/item/twohanded/fireaxe/update_icon()  //Currently only here to fuck with the on-mob icons.
 	icon_state = "fireaxe[wielded]"
@@ -478,7 +478,7 @@
 
 /obj/item/twohanded/spear/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/butchering, 100, 70) //decent in a pinch, but pretty bad.
+	AddComponent(/datum/component/butchering, 100, 70) //decent in a pinch, but pretty bad.
 
 /obj/item/twohanded/spear/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins to sword-swallow \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -486,7 +486,7 @@
 
 /obj/item/twohanded/spear/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/jousting)
+	AddComponent(/datum/component/jousting)
 
 /obj/item/twohanded/spear/update_icon()
 	icon_state = "[icon_prefix][wielded]"
@@ -584,7 +584,7 @@
 
 /obj/item/twohanded/required/chainsaw/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/butchering, 30, 100, 0, 'sound/weapons/chainsawhit.ogg', TRUE)
+	AddComponent(/datum/component/butchering, 30, 100, 0, 'sound/weapons/chainsawhit.ogg', TRUE)
 
 /obj/item/twohanded/required/chainsaw/suicide_act(mob/living/carbon/user)
 	if(on)
@@ -771,7 +771,7 @@
 
 /obj/item/twohanded/vibro_weapon/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/butchering, 20, 105)
+	AddComponent(/datum/component/butchering, 20, 105)
 
 /obj/item/twohanded/vibro_weapon/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(wielded)

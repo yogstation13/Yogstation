@@ -110,7 +110,7 @@
 /datum/component/construction/proc/spawn_result()
 	// Some constructions result in new components being added.
 	if(ispath(result, /datum/component))
-		parent._AddComponent(result)
+		parent.AddComponent(result)
 		qdel(src)
 
 	else if(ispath(result, /atom))

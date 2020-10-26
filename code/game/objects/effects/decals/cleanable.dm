@@ -23,7 +23,7 @@
 			if(D.spread_flags & DISEASE_SPREAD_CONTACT_FLUIDS)
 				diseases_to_add += D
 		if(LAZYLEN(diseases_to_add))
-			_AddComponent(/datum/component/infective, diseases_to_add)
+			AddComponent(/datum/component/infective, diseases_to_add)
 
 /obj/effect/decal/cleanable/proc/replace_decal(obj/effect/decal/cleanable/C) // Returns true if we should give up in favor of the pre-existing decal
 	if(mergeable_decal)

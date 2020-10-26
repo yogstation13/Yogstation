@@ -129,7 +129,7 @@
 		// Yogs start -- Mood preferences
 		if(ishuman(new_character) && mood_was_enabled && !new_character.GetComponent(/datum/component/mood))
 			var/mob/living/carbon/human/H = C
-			H._AddComponent(/datum/component/mood)
+			H.AddComponent(/datum/component/mood)
 		// Yogs End
 	transfer_antag_huds(hud_to_transfer)				//inherit the antag HUD
 	transfer_actions(new_character)
@@ -319,7 +319,7 @@
 		. = 0
 	else
 		. = uplink_loc
-		var/datum/component/uplink/U = uplink_loc._AddComponent(/datum/component/uplink, traitor_mob.key)
+		var/datum/component/uplink/U = uplink_loc.AddComponent(/datum/component/uplink, traitor_mob.key)
 		if(!U)
 			CRASH("Uplink creation failed.")
 		U.setup_unlock_code()

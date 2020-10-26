@@ -299,7 +299,7 @@
 		var/mob/living/infectee = pick(target_hosts)
 		if(prob(100 - (infectee.get_permeability_protection() * 100)))
 			//this will potentially take over existing nanites!
-			infectee._AddComponent(/datum/component/nanites, 10)
+			infectee.AddComponent(/datum/component/nanites, 10)
 			SEND_SIGNAL(infectee, COMSIG_NANITE_SYNC, nanites)
 			infectee.investigate_log("was infected by spreading nanites by [key_name(host_mob)] at [AREACOORD(infectee)].", INVESTIGATE_NANITES)
 

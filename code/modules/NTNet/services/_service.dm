@@ -4,7 +4,7 @@
 	var/list/networks_by_id = list()			//Yes we support multinetwork services!
 
 /datum/ntnet_service/New()
-	var/datum/component/ntnet_interface/N = _AddComponent(/datum/component/ntnet_interface, id, name, FALSE)
+	var/datum/component/ntnet_interface/N = AddComponent(/datum/component/ntnet_interface, id, name, FALSE)
 	id = N.hardware_id
 
 /datum/ntnet_service/Destroy()

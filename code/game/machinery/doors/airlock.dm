@@ -177,7 +177,7 @@
 
 /obj/machinery/door/airlock/ComponentInitialize()
 	. = ..()
-	_AddComponent(/datum/component/ntnet_interface)
+	AddComponent(/datum/component/ntnet_interface)
 
 /obj/machinery/door/airlock/proc/rebuild_parts()
 	if(part_overlays)

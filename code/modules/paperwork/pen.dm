@@ -91,7 +91,7 @@
 
 /obj/item/pen/fountain/captain/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/butchering, 200, 115) //the pen is mightier than the sword
+	AddComponent(/datum/component/butchering, 200, 115) //the pen is mightier than the sword
 
 /obj/item/pen/fountain/captain/reskin_obj(mob/M)
 	..()
@@ -178,7 +178,7 @@
 
 /obj/item/pen/edagger/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/butchering, 60, 100, 0, 'sound/weapons/blade1.ogg', TRUE)
+	AddComponent(/datum/component/butchering, 60, 100, 0, 'sound/weapons/blade1.ogg', TRUE)
 	
 /obj/item/pen/edagger/suicide_act(mob/user)
 	. = BRUTELOSS

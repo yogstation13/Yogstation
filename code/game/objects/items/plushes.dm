@@ -33,7 +33,7 @@
 
 /obj/item/toy/plush/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/squeak, squeak_override)
+	AddComponent(/datum/component/squeak, squeak_override)
 
 	//have we decided if Pinocchio goes in the blue or pink aisle yet?
 	if(gender == NEUTER)
@@ -515,7 +515,7 @@
 
 /obj/item/toy/plush/awakenedplushie/ComponentInitialize()
 	. = ..()
-	_AddComponent(/datum/component/edit_complainer)
+	AddComponent(/datum/component/edit_complainer)
 
 /obj/item/toy/plush/beeplushie
 	name = "bee plushie"

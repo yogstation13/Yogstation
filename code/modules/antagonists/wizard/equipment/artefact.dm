@@ -24,7 +24,7 @@
 
 /obj/item/veilrender/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/butchering, 80, 100)
+	AddComponent(/datum/component/butchering, 80, 100)
 
 /obj/item/veilrender/attack_self(mob/user)
 	if(charges > 0)

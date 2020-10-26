@@ -82,7 +82,7 @@
 
 /obj/item/kitchen/knife/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/butchering, 80 - force, 100, force - 10) //bonus chance increases depending on force
+	AddComponent(/datum/component/butchering, 80 - force, 100, force - 10) //bonus chance increases depending on force
 
 /obj/item/kitchen/knife/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(user.zone_selected == BODY_ZONE_PRECISE_EYES)

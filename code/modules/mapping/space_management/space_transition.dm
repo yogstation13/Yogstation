@@ -140,4 +140,4 @@
 					continue
 
 				var/turf/place = locate(S.destination_x, S.destination_y, S.destination_z)
-				S._AddComponent(/datum/component/mirage_border, place, mirage_dir)
+				S.AddComponent(/datum/component/mirage_border, place, mirage_dir)

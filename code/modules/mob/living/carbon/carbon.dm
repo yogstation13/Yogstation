@@ -22,7 +22,7 @@
 	GLOB.carbon_list -= src
 
 /mob/living/carbon/initialize_footstep()
-	_AddComponent(/datum/component/footstep, 1, 2)
+	AddComponent(/datum/component/footstep, 1, 2)
 
 /mob/living/carbon/swap_hand(held_index)
 	if(!held_index)

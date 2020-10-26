@@ -10,8 +10,8 @@
 
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/material_container, list(/datum/material/bananium), 200000, TRUE, /obj/item/stack)
-	_AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 75)
+	AddComponent(/datum/component/material_container, list(/datum/material/bananium), 200000, TRUE, /obj/item/stack)
+	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 75)
 	if(always_noslip)
 		clothing_flags |= NOSLIP
 

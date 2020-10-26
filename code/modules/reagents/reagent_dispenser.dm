@@ -206,7 +206,7 @@
 			CP.disable()
 
 /obj/structure/reagent_dispensers/plumbed/ComponentInitialize()
-	_AddComponent(/datum/component/plumbing/simple_supply)
+	AddComponent(/datum/component/plumbing/simple_supply)
 
 /obj/structure/reagent_dispensers/plumbed/storage
 	name = "stationairy storage tank"
@@ -214,4 +214,4 @@
 	reagent_id = null //start empty
 
 /obj/structure/reagent_dispensers/plumbed/storage/ComponentInitialize()
-	_AddComponent(/datum/component/plumbing/tank)
+	AddComponent(/datum/component/plumbing/tank)

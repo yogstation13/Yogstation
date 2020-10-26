@@ -38,7 +38,7 @@
 
 /obj/item/melee/fryingpan/bananium/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/randomcrits, force)
+	AddComponent(/datum/component/randomcrits, force)
 
 /obj/item/melee/fryingpan/afterattack(atom/target, mob/living/carbon/user, proximity)
 	if(!proximity || !isliving(target) || !iscarbon(user))

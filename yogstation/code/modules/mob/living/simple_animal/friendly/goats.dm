@@ -362,7 +362,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/legitgoat/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/waddling)
+	AddComponent(/datum/component/waddling)
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(6, 8, MOB_LAYER), TEXT_SOUTH = list(6, 8, MOB_LAYER), TEXT_EAST = list(4, 8, MOB_LAYER), TEXT_WEST = list( 6, 8, MOB_LAYER)))
 	D.set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)

@@ -43,8 +43,8 @@ Difficulty: Extremely Hard
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/knockback, 7, FALSE)
-	_AddComponent(/datum/component/lifesteal, 50)
+	AddComponent(/datum/component/knockback, 7, FALSE)
+	AddComponent(/datum/component/lifesteal, 50)
 
 /datum/action/innate/megafauna_attack/frost_orbs
 	name = "Fire Frost Orbs"
@@ -293,8 +293,8 @@ Difficulty: Extremely Hard
 
 /obj/item/pickaxe/drill/jackhammer/demonic/Initialize()
 	..()
-	_AddComponent(/datum/component/knockback, 4, FALSE)
-	_AddComponent(/datum/component/lifesteal, 5)
+	AddComponent(/datum/component/knockback, 4, FALSE)
+	AddComponent(/datum/component/lifesteal, 5)
 
 /obj/item/crusher_trophy/ice_block_talisman
 	name = "ice block talisman"

@@ -52,7 +52,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 
 /mob/living/simple_animal/mouse/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/squeak, list('sound/effects/mousesqueek.ogg'=1), 100)
+	AddComponent(/datum/component/squeak, list('sound/effects/mousesqueek.ogg'=1), 100)
 	if(!body_color)
 		body_color = pick( list("brown","gray","white") )
 	icon_state = "mouse_[body_color]"

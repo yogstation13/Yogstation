@@ -45,7 +45,7 @@
 
 /obj/item/melee/cultblade/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/butchering, 40, 100)
+	AddComponent(/datum/component/butchering, 40, 100)
 
 /obj/item/melee/cultblade/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!iscultist(user))
@@ -116,7 +116,7 @@
 	set_light(4)
 	jaunt = new(src)
 	linked_action = new(src)
-	_AddComponent(/datum/component/butchering, 50, 80)
+	AddComponent(/datum/component/butchering, 50, 80)
 
 /obj/item/twohanded/required/cult_bastard/examine(mob/user)
 	. = ..()
@@ -672,7 +672,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 
 /obj/item/twohanded/cult_spear/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/butchering, 100, 90)
+	AddComponent(/datum/component/butchering, 100, 90)
 
 /obj/item/twohanded/cult_spear/Destroy()
 	if(spear_act)

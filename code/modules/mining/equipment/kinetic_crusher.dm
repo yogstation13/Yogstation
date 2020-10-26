@@ -31,7 +31,7 @@
 
 /obj/item/twohanded/required/kinetic_crusher/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/butchering, 60, 110) //technically it's huge and bulky, but this provides an incentive to use it
+	AddComponent(/datum/component/butchering, 60, 110) //technically it's huge and bulky, but this provides an incentive to use it
 
 /obj/item/twohanded/required/kinetic_crusher/Destroy()
 	QDEL_LIST(trophies)

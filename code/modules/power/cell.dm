@@ -332,7 +332,7 @@
 
 /obj/item/stock_parts/cell/emproof/empty/ComponentInitialize()
 	. = ..()
-	_AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
 
 /obj/item/stock_parts/cell/emproof/corrupt()
 	return

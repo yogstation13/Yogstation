@@ -7,7 +7,7 @@
 
 /datum/proximity_monitor/advanced/gravity/setup_field_turf(turf/T)
 	. = ..()
-	grav_components[T] = T._AddComponent(/datum/component/forced_gravity,gravity_value)
+	grav_components[T] = T.AddComponent(/datum/component/forced_gravity,gravity_value)
 
 /datum/proximity_monitor/advanced/gravity/cleanup_field_turf(turf/T)
 	. = ..()

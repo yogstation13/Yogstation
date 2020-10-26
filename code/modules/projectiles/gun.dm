@@ -195,7 +195,7 @@
 			for(var/datum/component/gunpoint/G in user.GetComponents(/datum/component/gunpoint))
 				if(G && G.weapon == src) //spam check
 					return
-			user._AddComponent(/datum/component/gunpoint, target, src)
+			user.AddComponent(/datum/component/gunpoint, target, src)
 			return
 
 	if(istype(user))//Check if the user can use the gun, if the user isn't alive(turrets) assume it can.

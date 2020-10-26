@@ -102,7 +102,7 @@
 	spark_system.attach(src)
 
 	wires = new /datum/wires/robot(src)
-	_AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
+	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
 
 	RegisterSignal(src, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, .proc/charge)
 
@@ -1048,7 +1048,7 @@
 		status_flags &= ~CANPUSH
 
 	if(module.clean_on_move)
-		_AddComponent(/datum/component/cleaning)
+		AddComponent(/datum/component/cleaning)
 	else
 		qdel(GetComponent(/datum/component/cleaning))
 

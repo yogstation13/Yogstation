@@ -26,7 +26,7 @@
 	. = ..()
 
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_blood)
-	_AddComponent(/datum/component/personal_crafting)
+	AddComponent(/datum/component/personal_crafting)
 
 /mob/living/carbon/human/proc/setup_human_dna()
 	//initialize dna. for spawned humans; overwritten by other code
@@ -37,7 +37,7 @@
 /mob/living/carbon/human/ComponentInitialize()
 	. = ..()
 	if(!(CONFIG_GET(flag/disable_human_mood)))
-		_AddComponent(/datum/component/mood)
+		AddComponent(/datum/component/mood)
 
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)

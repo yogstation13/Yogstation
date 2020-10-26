@@ -104,7 +104,7 @@
 		stack_trace("Simple animal being instantiated in nullspace")
 	update_simplemob_varspeed()
 	if(dextrous)
-		_AddComponent(/datum/component/personal_crafting)
+		AddComponent(/datum/component/personal_crafting)
 
 /mob/living/simple_animal/Destroy()
 	GLOB.simple_animals[AIStatus] -= src

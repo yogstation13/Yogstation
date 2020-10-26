@@ -21,7 +21,7 @@
 
 /obj/item/uplink/Initialize(mapload, owner, tc_amount = 20)
 	. = ..()
-	_AddComponent(/datum/component/uplink, owner, FALSE, TRUE, null, tc_amount)
+	AddComponent(/datum/component/uplink, owner, FALSE, TRUE, null, tc_amount)
 
 /obj/item/uplink/debug
 	name = "debug uplink"
@@ -68,9 +68,9 @@
 // Multitool uplink
 /obj/item/multitool/uplink/Initialize(mapload, owner, tc_amount = 20)
 	. = ..()
-	_AddComponent(/datum/component/uplink, owner, FALSE, TRUE, null, tc_amount)
+	AddComponent(/datum/component/uplink, owner, FALSE, TRUE, null, tc_amount)
 
 // Pen uplink
 /obj/item/pen/uplink/Initialize(mapload, owner, tc_amount = 20)
 	. = ..()
-	_AddComponent(/datum/component/uplink, owner, TRUE, FALSE, null, tc_amount)
+	AddComponent(/datum/component/uplink, owner, TRUE, FALSE, null, tc_amount)

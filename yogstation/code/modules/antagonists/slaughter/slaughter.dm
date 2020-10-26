@@ -45,7 +45,7 @@
 
 /mob/living/simple_animal/slaughter/Initialize()
 	..()
-	var/datum/component/crawl/blood/demonic/bloodcrawl = _AddComponent(/datum/component/crawl/blood/demonic)
+	var/datum/component/crawl/blood/demonic/bloodcrawl = AddComponent(/datum/component/crawl/blood/demonic)
 	if(bloodcrawl && istype(loc, /obj/effect/dummy/crawling))
 		bloodcrawl.holder = loc
 
@@ -84,7 +84,7 @@
 
 /obj/item/organ/heart/demon/Insert(mob/living/carbon/M, special = 0)
 	..()
-	M._AddComponent(/datum/component/crawl/blood)
+	M.AddComponent(/datum/component/crawl/blood)
 
 /obj/item/organ/heart/demon/Remove(mob/living/carbon/M, special = 0)
 	..()
@@ -135,7 +135,7 @@
 	var/datum/component/crawl/blood/demonic/scary = GetComponent(/datum/component/crawl/blood/demonic)
 	if(scary)
 		scary.RemoveComponent(del_holder=FALSE)
-	var/datum/component/crawl/blood/demonic/hilarious/bloodcrawl = _AddComponent(/datum/component/crawl/blood/demonic/hilarious)
+	var/datum/component/crawl/blood/demonic/hilarious/bloodcrawl = AddComponent(/datum/component/crawl/blood/demonic/hilarious)
 	if(bloodcrawl && istype(loc, /obj/effect/dummy/crawling))
 		bloodcrawl.holder = loc
 

@@ -64,7 +64,7 @@
 
 /mob/living/simple_animal/bot/mulebot/ComponentInitialize()
 	. = ..()
-	_AddComponent(/datum/component/ntnet_interface)
+	AddComponent(/datum/component/ntnet_interface)
 
 /mob/living/simple_animal/bot/mulebot/Destroy()
 	unload(0)

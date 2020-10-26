@@ -181,7 +181,7 @@
 /atom/proc/LateInitialize()
 	return
 
-/// Put your _AddComponent() calls here
+/// Put your AddComponent() calls here
 /atom/proc/ComponentInitialize()
 	return
 

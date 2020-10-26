@@ -26,7 +26,7 @@
 	stored_research = new
 	host_research = SSresearch.science_tech
 	update_research()
-	materials = _AddComponent(/datum/component/remote_materials, "lathe", mapload)
+	materials = AddComponent(/datum/component/remote_materials, "lathe", mapload)
 	RefreshParts()
 
 /obj/machinery/rnd/production/proc/update_research()

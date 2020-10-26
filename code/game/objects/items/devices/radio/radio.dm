@@ -103,7 +103,7 @@
 
 /obj/item/radio/ComponentInitialize()
 	. = ..()
-	_AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
+	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
 
 /obj/item/radio/interact(mob/user)
 	if(unscrewed && !isAI(user))

@@ -18,7 +18,7 @@
 
 /obj/item/assembly/infra/ComponentInitialize()
 	. = ..()
-	_AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS, null, null, CALLBACK(src,.proc/after_rotation))
+	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS, null, null, CALLBACK(src,.proc/after_rotation))
 
 /obj/item/assembly/infra/proc/after_rotation()
 	refreshBeam()

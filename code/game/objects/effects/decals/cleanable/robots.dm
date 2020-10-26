@@ -77,4 +77,4 @@
 
 /obj/effect/decal/cleanable/oil/slippery/ComponentInitialize()
 	. = ..()
-	_AddComponent(/datum/component/slippery, 80, (NO_SLIP_WHEN_WALKING | SLIDE))
+	AddComponent(/datum/component/slippery, 80, (NO_SLIP_WHEN_WALKING | SLIDE))

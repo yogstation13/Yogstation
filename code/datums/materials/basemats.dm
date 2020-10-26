@@ -63,7 +63,7 @@
 
 /datum/material/uranium/on_applied(atom/source, amount, material_flags)
 	. = ..()
-	source._AddComponent(/datum/component/radioactive, amount / 10, source, 0) //half-life of 0 because we keep on going.
+	source.AddComponent(/datum/component/radioactive, amount / 10, source, 0) //half-life of 0 because we keep on going.
 
 /datum/material/uranium/on_removed(atom/source, material_flags)
 	. = ..()
@@ -84,7 +84,7 @@
 	. = ..()
 	if(ismovable(source))
 		source.AddElement(/datum/element/firestacker)
-		source._AddComponent(/datum/component/explodable, 0, 0, amount / 1000, amount / 500)
+		source.AddComponent(/datum/component/explodable, 0, 0, amount / 1000, amount / 500)
 
 /datum/material/plasma/on_removed(atom/source, material_flags)
 	. = ..()
@@ -112,8 +112,8 @@
 
 /datum/material/bananium/on_applied(atom/source, amount, material_flags)
 	. = ..()
-	source._AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
-	source._AddComponent(/datum/component/slippery, min(amount / 10, 80))
+	source.AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
+	source.AddComponent(/datum/component/slippery, min(amount / 10, 80))
 
 /datum/material/bananium/on_removed(atom/source, amount, material_flags)
 	. = ..()

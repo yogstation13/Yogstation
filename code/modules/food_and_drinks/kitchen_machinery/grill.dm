@@ -86,7 +86,7 @@
 		grill_time++
 		grilled_item.reagents.add_reagent(/datum/reagent/consumable/char, 0.2)
 		grill_fuel -= GRILL_FUELUSAGE_ACTIVE
-		grilled_item._AddComponent(/datum/component/sizzle)
+		grilled_item.AddComponent(/datum/component/sizzle)
 
 /obj/machinery/grill/Exited(atom/movable/AM)
 	if(AM == grilled_item)

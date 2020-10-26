@@ -654,7 +654,7 @@
 
 /obj/machinery/porta_turret/syndicate/ComponentInitialize()
 	. = ..()
-	_AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
+	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
 
 /obj/machinery/porta_turret/syndicate/setup()
 	return
@@ -762,7 +762,7 @@
 
 /obj/machinery/porta_turret/centcom_shuttle/ComponentInitialize()
 	. = ..()
-	_AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
+	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
 
 /obj/machinery/porta_turret/centcom_shuttle/assess_perp(mob/living/carbon/human/perp)
 	return 0

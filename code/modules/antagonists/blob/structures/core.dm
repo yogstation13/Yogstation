@@ -72,7 +72,7 @@
 
 /obj/structure/blob/core/ComponentInitialize()
 	. = ..()
-	_AddComponent(/datum/component/stationloving, FALSE, TRUE)
+	AddComponent(/datum/component/stationloving, FALSE, TRUE)
 
 /obj/structure/blob/core/onTransitZ(old_z, new_z)
 	if(overmind && is_station_level(new_z))

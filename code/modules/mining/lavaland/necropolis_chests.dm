@@ -454,7 +454,7 @@
 
 /obj/item/immortality_talisman/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/anti_magic, TRUE, TRUE, TRUE)
+	AddComponent(/datum/component/anti_magic, TRUE, TRUE, TRUE)
 
 /datum/action/item_action/immortality
 	name = "Immortality"
@@ -537,7 +537,7 @@
 
 /obj/item/shared_storage/red/Initialize()
 	. = ..()
-	var/datum/component/storage/STR = _AddComponent(/datum/component/storage/concrete)
+	var/datum/component/storage/STR = AddComponent(/datum/component/storage/concrete)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_combined_w_class = 60
 	STR.max_items = 21
@@ -547,7 +547,7 @@
 	. = ..()
 	if(!istype(master))
 		return INITIALIZE_HINT_QDEL
-	var/datum/component/storage/STR = _AddComponent(/datum/component/storage, master)
+	var/datum/component/storage/STR = AddComponent(/datum/component/storage, master)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_combined_w_class = 60
 	STR.max_items = 21
@@ -801,7 +801,7 @@
 	spirits = list()
 	START_PROCESSING(SSobj, src)
 	GLOB.poi_list |= src
-	_AddComponent(/datum/component/butchering, 150, 90)
+	AddComponent(/datum/component/butchering, 150, 90)
 
 /obj/item/melee/ghost_sword/Destroy()
 	for(var/mob/dead/observer/G in spirits)

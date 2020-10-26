@@ -252,19 +252,19 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 		return FALSE
 	for(var/V in H.get_equipped_items(FALSE))
 		var/obj/O = V
-		O._AddComponent(/datum/component/infective, D.disease_template, 300)
+		O.AddComponent(/datum/component/infective, D.disease_template, 300)
 	//no shoes? infect the floor.
 	if(!H.shoes)
 		var/turf/T = get_turf(H)
 		if(T && !isspaceturf(T))
-			T._AddComponent(/datum/component/infective, D.disease_template, 300)
+			T.AddComponent(/datum/component/infective, D.disease_template, 300)
 	//no gloves? infect whatever we are holding.
 	if(!H.gloves)
 		for(var/V in H.held_items)
 			if(!V)
 				continue
 			var/obj/O = V
-			O._AddComponent(/datum/component/infective, D.disease_template, 300)
+			O.AddComponent(/datum/component/infective, D.disease_template, 300)
 	StartCooldown()
 	return TRUE
 

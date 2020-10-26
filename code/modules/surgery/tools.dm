@@ -134,7 +134,7 @@
 
 /obj/item/scalpel/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/butchering, 80 * toolspeed, 100, 0)
+	AddComponent(/datum/component/butchering, 80 * toolspeed, 100, 0)
 
 /obj/item/scalpel/augment
 	name = "scalpel"
@@ -179,7 +179,7 @@
 
 /obj/item/circular_saw/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/butchering, 40 * toolspeed, 100, 5, 'sound/weapons/circsawhit.ogg') //saws are very accurate and fast at butchering
+	AddComponent(/datum/component/butchering, 40 * toolspeed, 100, 5, 'sound/weapons/circsawhit.ogg') //saws are very accurate and fast at butchering
 
 /obj/item/circular_saw/augment
 	name = "circular saw"

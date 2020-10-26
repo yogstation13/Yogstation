@@ -851,7 +851,7 @@
 
 /obj/item/light/ComponentInitialize()
 	. = ..()
-	_AddComponent(/datum/component/caltrop, force)
+	AddComponent(/datum/component/caltrop, force)
 
 /obj/item/light/Crossed(atom/movable/AM)
 	. = ..()

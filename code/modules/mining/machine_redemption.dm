@@ -28,7 +28,7 @@
 /obj/machinery/mineral/ore_redemption/Initialize(mapload)
 	. = ..()
 	stored_research = new /datum/techweb/specialized/autounlocking/smelter
-	materials = _AddComponent(/datum/component/remote_materials, "orm", mapload)
+	materials = AddComponent(/datum/component/remote_materials, "orm", mapload)
 
 /obj/machinery/mineral/ore_redemption/Destroy()
 	QDEL_NULL(stored_research)

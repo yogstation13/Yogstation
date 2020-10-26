@@ -78,7 +78,7 @@
 
 /obj/item/dice/d4/Initialize(mapload)
 	. = ..()
-	_AddComponent(/datum/component/caltrop, 4)
+	AddComponent(/datum/component/caltrop, 4)
 
 /obj/item/dice/d6
 	name = "d6"

@@ -140,7 +140,7 @@
 
 /obj/item/gun/energy/plasmacutter/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/butchering, 25, 105, 0, 'sound/weapons/plasma_cutter.ogg')
+	AddComponent(/datum/component/butchering, 25, 105, 0, 'sound/weapons/plasma_cutter.ogg')
 
 /obj/item/gun/energy/plasmacutter/examine(mob/user)
 	. = ..()

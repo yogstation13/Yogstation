@@ -11,7 +11,7 @@
 	update_mob()
 	
 	for(var/turf/T in view(range,src))
-		var/datum/component/C = T._AddComponent(/datum/component/forced_gravity,forced_value)
+		var/datum/component/C = T.AddComponent(/datum/component/forced_gravity,forced_value)
 		QDEL_IN(C,duration)
 		
 	qdel(src)

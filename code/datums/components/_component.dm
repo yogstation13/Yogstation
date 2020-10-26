@@ -505,7 +505,7 @@
 			qdel(target)
 			CRASH("Incompatible [c_type] transfer attempt to a [type]!")
 
-	if(target == _AddComponent(target))
+	if(target == AddComponent(target))
 		target._JoinParent()
 
 /**

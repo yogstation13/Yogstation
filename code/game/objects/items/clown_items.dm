@@ -30,7 +30,7 @@
 
 /obj/item/soap/ComponentInitialize()
 	. = ..()
-	_AddComponent(/datum/component/slippery, 80)
+	AddComponent(/datum/component/slippery, 80)
 
 /obj/item/soap/examine(mob/user)
 	. = ..()
@@ -149,7 +149,7 @@
 
 /obj/item/bikehorn/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
+	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 
 /obj/item/bikehorn/attack(mob/living/carbon/M, mob/living/carbon/user)
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "honk", /datum/mood_event/honk)
@@ -168,7 +168,7 @@
 
 /obj/item/bikehorn/airhorn/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/squeak, list('sound/items/airhorn2.ogg'=1), 50)
+	AddComponent(/datum/component/squeak, list('sound/items/airhorn2.ogg'=1), 50)
 
 //golden bikehorn
 /obj/item/bikehorn/golden

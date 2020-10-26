@@ -20,4 +20,4 @@
 #define RemoveElement(arguments...) _RemoveElement(list(##arguments))
 
 /// A wrapper for __AddComponent that allows us to pretend we're using normal named arguments
-#define _AddComponent(arguments...) __AddComponent(list(##arguments))
+#define AddComponent(arguments...) __AddComponent(list(##arguments))

@@ -112,7 +112,7 @@
 
 /obj/item/shovel/Initialize()
 	. = ..()
-	_AddComponent(/datum/component/butchering, 150, 40) //it's sharp, so it works, but barely.
+	AddComponent(/datum/component/butchering, 150, 40) //it's sharp, so it works, but barely.
 
 /obj/item/shovel/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] begins digging their own grave!  It looks like [user.p_theyre()] trying to commit suicide!</span>")

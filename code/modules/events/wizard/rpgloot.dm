@@ -13,7 +13,7 @@
 		if(!(I.flags_1 & INITIALIZED_1))
 			continue
 
-		I._AddComponent(/datum/component/fantasy)
+		I.AddComponent(/datum/component/fantasy)
 
 		if(istype(I, /obj/item/storage))
 			var/obj/item/storage/S = I
@@ -45,7 +45,7 @@
 	if(!proximity || !istype(target))
 		return
 
-	target._AddComponent(/datum/component/fantasy, upgrade_amount, null, null, can_backfire, TRUE)
+	target.AddComponent(/datum/component/fantasy, upgrade_amount, null, null, can_backfire, TRUE)
 
 	if(--uses <= 0)
 		qdel(src)
