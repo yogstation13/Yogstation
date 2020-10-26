@@ -179,7 +179,7 @@
 
 	var/cooldown_check = 0 // Used interally, you don't want to modify
 
-	var/cooldown = 40 // Default wait time until can stun again.
+	var/cooldown = 3 SECONDS // Default wait time until can stun again.
 	var/knockdown_time_carbon = 1.5 SECONDS // Knockdown length for carbons.
 	var/stun_time_silicon = 5 SECONDS // If enabled, how long do we stun silicons.
 	var/stamina_damage = 55 // Do we deal stamina damage.

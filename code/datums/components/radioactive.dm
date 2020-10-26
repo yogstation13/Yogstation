@@ -29,10 +29,17 @@
 	if(strength > RAD_MINIMUM_CONTAMINATION)
 		SSradiation.warn(src)
 
+	//Let's make er glow
+	//This relies on parent not being a turf or something. IF YOU CHANGE THAT, CHANGE THIS
+	var/atom/movable/master = parent
+	master.add_filter("rad_glow", 2, list("type" = "outline", "color" = "#39ff1430", "size" = 2))
+	addtimer(CALLBACK(src, .proc/glow_loop, master), rand(1,19))//Things should look uneven
 	START_PROCESSING(SSradiation, src)
 
 /datum/component/radioactive/Destroy()
 	STOP_PROCESSING(SSradiation, src)
+	var/atom/movable/master = parent
+	master.remove_filter("rad_glow")
 	return ..()
 
 /datum/component/radioactive/process()
@@ -45,6 +52,12 @@
 	strength -= strength / hl3_release_date
 	if(strength <= RAD_BACKGROUND_RADIATION)
 		return PROCESS_KILL
+
+/datum/component/radioactive/proc/glow_loop(atom/movable/master)
+	var/filter = master.get_filter("rad_glow")
+	if(filter)
+		animate(filter, alpha = 110, time = 15, loop = -1)
+		animate(alpha = 40, time = 25)
 
 /datum/component/radioactive/InheritComponent(datum/component/C, i_am_original, list/arguments)
 	if(!i_am_original)

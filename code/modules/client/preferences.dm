@@ -29,7 +29,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/buttons_locked = FALSE
 	var/hotkeys = TRUE // yogs - Rebindable Keybindings
 	var/tgui_fancy = TRUE
-	var/tgui_lock = TRUE
+	var/tgui_lock = FALSE
 	var/windowflashing = TRUE
 	var/toggles = TOGGLES_DEFAULT
 	var/db_flags
@@ -105,6 +105,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/scaling_method = "normal"
 
 	var/uplink_spawn_loc = UPLINK_PDA
+
+	var/skillcape = 1
+
+	var/map = 1
+	var/flare = 1
 
 	var/list/exp = list()
 	var/list/menuoptions
@@ -535,8 +540,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>General Settings</h2>"
 			dat += "<b>UI Style:</b> <a href='?_src_=prefs;task=input;preference=ui'>[UI_style]</a><br>"
-			dat += "<b>tgui Monitors:</b> <a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Primary" : "All"]</a><br>"
-			dat += "<b>tgui Style:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy" : "No Frills"]</a><br>"
+			dat += "<b>tgui Window Mode:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy (default)" : "Compatible (slower)"]</a><br>"
+			dat += "<b>tgui Window Placement:</b> <a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Primary monitor" : "Free (default)"]</a><br>"
 			dat += "<b>Show Runechat Chat Bubbles:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Runechat message char limit:</b> <a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a><br>"
 			dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a><br>"
@@ -547,6 +552,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
+			dat += "<b>Skillcape:</b> <a href='?_src_=prefs;task=input;preference=skillcape'>[(skillcape != 1) ? "[GLOB.skillcapes[skillcape]]" : "none"] </a><br>"
+			dat += "<b>Flare:</b> <a href='?_src_=prefs;task=input;preference=flare'>[flare ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>Map:</b> <a href='?_src_=prefs;task=input;preference=map'>[map ? "Enabled" : "Disabled"]</a><br>"
+
 			dat += "<br>"
 			dat += "<b>Ghost Ears:</b> <a href='?_src_=prefs;preference=ghost_ears'>[(chat_toggles & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</a><br>"
 			dat += "<b>Ghost Radio:</b> <a href='?_src_=prefs;preference=ghost_radio'>[(chat_toggles & CHAT_GHOSTRADIO) ? "All Messages":"No Messages"]</a><br>"
@@ -748,19 +757,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(is_donator(user.client))
 				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.yogtoggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
 				dat += "<b>Fancy Hat:</b> "
-				var/typehat = donor_hat ? donor_start_items[donor_hat] : null
+				///This is the typepath of the donor's hat that they may choose to spawn with.
+				var/typehat = donor_hat
 				var/temp_hat = donor_hat ? (new typehat()) : "None selected"
 				dat += "<a href='?_src_=prefs;preference=donor;task=hat'>Pick</a> [temp_hat]<BR>"
 				if(donor_hat)
 					qdel(temp_hat)
 				dat += "<b>Fancy Item:</b> "
-				var/typeitem = donor_item ? donor_start_tools[donor_item] : null
+				///Whatever item the donator has chosen to apply.
+				var/typeitem = donor_item
 				var/temp_item = donor_item ? (new typeitem()) : "None selected"
 				dat += "<a href='?_src_=prefs;preference=donor;task=item'>Pick</a> [temp_item]<BR>"
 				if(donor_item)
 					qdel(temp_item)
 				dat += "<b>Fancy PDA:</b> "
-				dat += "<a href='?_src_=prefs;preference=donor;task=pda'>[donor_pdas[donor_pda]]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=donor;task=pda'>[GLOB.donor_pdas[donor_pda]]</a><BR>"
 				dat += "<b>Purrbation (Humans only)</b> "
 				dat += "<a href='?_src_=prefs;preference=donor;task=purrbation'>[purrbation ? "Yes" : "No"]</a><BR>"
 			else
@@ -855,7 +866,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 #undef APPEARANCE_CATEGORY_COLUMN
 #undef MAX_MUTANT_ROWS
 
-/datum/preferences/proc/SetChoices(mob/user, limit = 17, list/splitJobs = list("Chief Engineer"), widthPerColumn = 295, height = 620)
+/datum/preferences/proc/SetChoices(mob/user, limit = 17, list/splitJobs = list("Research Director", "Head of Personnel"), widthPerColumn = 295, height = 620)
 	if(!SSjob)
 		return
 
@@ -1124,23 +1135,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// yogs start - Donor features
 	if(href_list["preference"] == "donor")
 		if(is_donator(user))
+			var/client/C = (istype(user, /client)) ? user : user.client
 			switch(href_list["task"])
 				if("hat")
-					var/item = input(usr, "What would you like to start with?","Donator fun","Nothing") as null|anything in donor_start_items
-					if(item)
-						donor_hat = donor_start_items.Find(item)
-					else
-						donor_hat = 0
+					C.custom_donator_item()
 				if("item")
-					var/item = input(usr, "What would you like to start with?","Donator fun","Nothing") as null|anything in donor_start_tools
-					if(item)
-						donor_item = donor_start_tools.Find(item)
-					else
-						donor_item = 0
+					C.custom_donator_item()
 				if("quiet_round")
 					yogtoggles ^= QUIET_ROUND
 				if("pda")
-					donor_pda = donor_pda % donor_pdas.len + 1
+					donor_pda = donor_pda % ++GLOB.donor_pdas.len
 				if("purrbation")
 					purrbation = !purrbation
 		else
@@ -1613,7 +1617,31 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/pickedPDAColor = input(user, "Choose your PDA Interface color.", "Character Preference",pda_color) as color|null
 					if(pickedPDAColor)
 						pda_color = pickedPDAColor
-
+				if("skillcape")
+					var/list/selectablecapes = list()
+					for(var/datum/skillcape/A in GLOB.skillcapes)
+						if(user.client.prefs.exp[A.job] >= A.minutes)
+							if(!A.special)
+								selectablecapes += A
+						if(A.special) //check for special capes
+							if(A.capetype == "max")
+								if(selectablecapes.len >= 72) //72 is the amount of job skillcapes, including trimmed.
+									selectablecapes += A
+					if(!selectablecapes.len)
+						to_chat(user, "You have no availiable skillcapes!")
+						return
+					var/pickedskillcape = input(user, "Choose your Skillcape.", "Character Preference", skillcape) as null|anything in selectablecapes
+					var/count = 1
+					for(var/A in GLOB.skillcapes)
+						if(A == pickedskillcape)
+							break
+						count++
+					if(pickedskillcape)
+						skillcape = count //im saving it as an int
+				if("flare")
+					flare = !flare
+				if("map")
+					map = !map
 				if ("max_chat_length")
 					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
 					if (!isnull(desiredlength))

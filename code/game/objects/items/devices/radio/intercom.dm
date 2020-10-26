@@ -91,9 +91,8 @@
 		return
 	interact(user)
 
-/obj/item/radio/intercom/interact(mob/user)
-	..()
-	ui_interact(user, state = GLOB.default_state)
+/obj/item/radio/intercom/ui_state(mob/user)
+	return GLOB.default_state
 
 /obj/item/radio/intercom/can_receive(freq, level)
 	if(!on)
@@ -137,7 +136,7 @@
 
 /obj/item/radio/intercom/add_blood_DNA(list/blood_dna)
 	return FALSE
-	
+
 /obj/item/radio/intercom/end_emp_effect(curremp)
 	. = ..()
 	if(!.)

@@ -96,9 +96,6 @@
 "aq" = (
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/offline)
-"ar" = (
-/turf/open/floor/holofloor/plating/burnmix,
-/area/holodeck/rec_center/burn)
 "as" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -181,10 +178,6 @@
 /obj/effect/holodeck_effect/mobspawner,
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/wildlife)
-"aC" = (
-/obj/effect/holodeck_effect/sparks,
-/turf/open/floor/holofloor/plating/burnmix,
-/area/holodeck/rec_center/burn)
 "aD" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -13868,6 +13861,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"Dw" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/sci_bombardment,
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
 "Dx" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/neutral{
@@ -14637,7 +14644,7 @@
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
 "Fb" = (
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -18460,9 +18467,9 @@
 /area/centcom/holding)
 "NJ" = (
 /obj/structure/table,
-/obj/item/book/manual/hydroponics_pod_people,
+/obj/item/book/manual/wiki/hydroponicsplants,
 /obj/item/seeds/pumpkin/blumpkin,
-/obj/item/paper/guides/jobs/hydroponics,
+/obj/item/book/manual/wiki/hydroponicsguide,
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
@@ -23068,6 +23075,9 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/centcom/testchamber)
+"ZP" = (
+/turf/open/lava/smooth,
+/area/holodeck/rec_center/burn)
 "ZQ" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -62956,7 +62966,7 @@ Nt
 QN
 Zy
 Qa
-RT
+Dw
 Bt
 AD
 Ol
@@ -63213,7 +63223,7 @@ Nt
 SY
 NR
 TN
-zv
+RT
 Bt
 WL
 Pi
@@ -63470,7 +63480,7 @@ Nt
 ZF
 Zr
 ZF
-Zr
+zv
 Bt
 TJ
 Uu
@@ -85598,16 +85608,16 @@ aa
 "}
 (244,1,1) = {"
 ac
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 bx
 bN
@@ -85855,16 +85865,16 @@ aa
 "}
 (245,1,1) = {"
 ac
-ar
-aC
-ar
-ar
-ar
-ar
-ar
-ar
-aC
-ar
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 by
 bN
@@ -86112,16 +86122,16 @@ aa
 "}
 (246,1,1) = {"
 ac
-ar
-ar
-ar
-aC
-ar
-ar
-aC
-ar
-ar
-ar
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 by
 bN
@@ -86369,16 +86379,16 @@ aa
 "}
 (247,1,1) = {"
 ac
-ar
-aC
-ar
-ar
-ar
-ar
-ar
-ar
-aC
-ar
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 by
 bN
@@ -86626,16 +86636,16 @@ aa
 "}
 (248,1,1) = {"
 ac
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
 bj
 bz
 bN
