@@ -24,7 +24,7 @@
 	var/list/valid_shuttle_templates = list()
 	for(var/shuttle_id in SSmapping.shuttle_templates)
 		var/datum/map_template/shuttle/template = SSmapping.shuttle_templates[shuttle_id]
-		if(template.can_be_bought && template.credit_cost < INFINITY) //if we could get it from the communications console, it's cool for us to get it here
+		if(!template.emag_buy && template.credit_cost < INFINITY) //if we could get it from the communications console, it's cool for us to get it here
 			valid_shuttle_templates += template
 	new_shuttle = pick(valid_shuttle_templates)
 
@@ -34,4 +34,4 @@
 	SSshuttle.load_template(new_shuttle)
 	SSshuttle.existing_shuttle = SSshuttle.emergency
 	SSshuttle.action_load(new_shuttle)
-	log_shuttle("Shuttle Catastrophe set a new shuttle, [new_shuttle.name].")
+	log_game("Shuttle Catastrophe set a new shuttle, [new_shuttle.name].")
