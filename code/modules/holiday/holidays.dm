@@ -406,7 +406,7 @@
 	return "Have a spooky Halloween!"
 
 /datum/holiday/halloween/getStationPrefix()
-	return pick("Bone-Rattling","Mr. Bones' Own","2SPOOKY","Spooky","Scary","Skeletons","The Haunted","Abominable","Gibbering","Squamous","Ghoul","Zombie","Forbidden","Bloody","Horrific","Infernal","Star Spawned","Hellish","Forgotten","Eldritch","Sleeping","Eternal")
+	return pick("Bone-Rattling","Mr. Bones' Own","2SPOOKY","Spooky","Scary","Skeletons","The Haunted","Abominable","Gibbering","Squamous","Ghoul","Zombie","Forbidden","Bloody","Horrific","Infernal","Star Spawned","Hellish","Forgotten","Eldritch","Sleeping","Eternal","Abhorrence","Plague","Dread","Apprehension","Crawling Chaos","Blot","Cold Sweat","Unholy","Jitters","Unknown","Darkness")
 
 /datum/holiday/vegan
 	name = "Vegan Day"
