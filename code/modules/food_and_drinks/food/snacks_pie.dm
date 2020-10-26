@@ -260,3 +260,11 @@
 	filling_color = "#D2691E"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("cinnamon" = 1, "determination" = 1)
+
+/obj/item/reagent_containers/food/snacks/pie/strawberrypie
+	name = "strawberry pie"
+	desc = "A strawberry pie."
+	icon_state = "strawberrypie"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 6)
+	tastes = list("strawberry" = 1, "pie" = 1)
+	foodtype = GRAIN | FRUIT | SUGAR
