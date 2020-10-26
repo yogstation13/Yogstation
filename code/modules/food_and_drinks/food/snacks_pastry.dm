@@ -547,3 +547,13 @@
 	update_icon()
 
 #undef PANCAKE_MAX_STACK
+
+/obj/item/reagent_containers/food/snacks/strawberrycupcake
+	name = "strawberry cupcake"
+	desc = "Strawberry inside a delicious cupcake."
+	icon_state = "strawberrycupcake"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
+	filling_color = "#F0E68C"
+	tastes = list("cake" = 2, "strawberry" = 1)
+	foodtype = GRAIN | FRUIT | SUGAR
