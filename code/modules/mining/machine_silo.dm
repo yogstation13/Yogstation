@@ -224,13 +224,13 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	return TRUE
 
 /datum/ore_silo_log/proc/format()
-	name = "[machine_name]: [action] [amount]x [noun]"
-
-	var/list/msg = list("([timestamp]) <b>[machine_name]</b> in [area_name]<br>[action] [abs(amount)]x [noun]<br>")
-	var/sep = ""
-	for(var/key in materials)
-		var/val = round(materials[key]) / MINERAL_MATERIAL_AMOUNT
-		msg += sep
-		sep = ", "
-		msg += "[amount < 0 ? "-" : "+"][val] [copytext(key, length(key[1]) + 1)]"
-	formatted = msg.Join()
+    name = "[machine_name]: [action] [amount]x [noun]"
+    var/list/msg = list("([timestamp]) <b>[machine_name]</b> in [area_name]<br>[action] [abs(amount)]x [noun]<br>")
+    var/sep = ""
+    for(var/key in materials)
+        var/datum/material/M = key
+        var/val = round(materials[key]) / MINERAL_MATERIAL_AMOUNT
+        msg += sep
+        sep = ", "
+        msg += "[amount < 0 ? "-" : "+"][val] [M.name]"
+    formatted = msg.Join()
