@@ -346,10 +346,10 @@
 		say("No access to material storage, please contact the quartermaster.")
 		return FALSE
 	if(can_build(D, multiplier))  // Check if we can build if not, return
-		if((materials.amount(/datum/material/iron) >= metal_cost * multiplier * coeff) && (materials.amount(/datum/material/glass) >= glass_cost * multiplier * coeff))
+		if((materials.get_material_amount(/datum/material/iron) >= metal_cost * multiplier * coeff) && (materials.get_material_amount(/datum/material/glass) >= glass_cost * multiplier * coeff))
 			use_power(power)
 			var/list/materials_used = list(/datum/material/iron=metal_cost * coeff * multiplier, /datum/material/glass=glass_cost * coeff*multiplier)
-			materials.use_amount(materials_used)
+			materials.use_amount_mat(materials_used)
 			being_built = list(D, multiplier)
 			desc = "It's building \a [initial(D.name)]."
 			icon_state = "autolathe_n"

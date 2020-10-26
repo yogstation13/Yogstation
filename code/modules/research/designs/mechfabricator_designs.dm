@@ -656,7 +656,7 @@
 	id = "borg_upgrade_plasmacutter"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/plasmacutter
-	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1000, MAT_PLASMA = 2000, MAT_GOLD = 500)
+	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1000, /datum/material/plasma = 2000, /datum/material/uranium = 500)
 	construction_time = 80
 	category = list("Cyborg Upgrade Modules")
 

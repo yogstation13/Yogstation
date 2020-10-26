@@ -119,7 +119,7 @@
 	desc = "An advanced non-lethal stunning mine. Uses advanced detection software to only trigger when activated by someone without a mindshield implant."
 	id = "stunmine_adv"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 8000, /datum/material/glass = 3000, MAT_SILVER = 200)
+	materials = list(/datum/material/iron = 8000, /datum/material/glass = 3000, /datum/material/silver = 200)
 	build_path = /obj/item/deployablemine/smartstun
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
@@ -129,7 +129,7 @@
 	desc = "An advanced non-lethal stunning mine. Uses advanced detection software to only trigger when activated by someone without a mindshield implant. Can be rapidly placed and disarmed."
 	id = "stunmine_rapid"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 10000, /datum/material/glass = 4000, MAT_SILVER = 500, /datum/material/uranium = 200)
+	materials = list(/datum/material/iron = 10000, /datum/material/glass = 4000, /datum/material/silver = 500, /datum/material/uranium = 200)
 	build_path = /obj/item/deployablemine/rapid
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
@@ -139,7 +139,7 @@
 	desc = "An advanced non-lethal stunning mine. Uses advanced detection software to only trigger when activated by someone without a mindshield implant. Very powerful and hard to disarm."
 	id = "stunmine_heavy"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 10000, /datum/material/glass = 4000, MAT_SILVER = 500, /datum/material/uranium = 200)
+	materials = list(/datum/material/iron = 10000, /datum/material/glass = 4000, /datum/material/silver = 500, /datum/material/uranium = 200)
 	build_path = /obj/item/deployablemine/heavy
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
@@ -149,7 +149,7 @@
 	desc = "An advanced pressure activated pranking mine, honk!"
 	id = "clown_mine"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 4000, /datum/material/glass = 1000, MAT_BANANIUM = 500)
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 1000, /datum/material/bananium = 500)
 	build_path = /obj/item/deployablemine/honk
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE

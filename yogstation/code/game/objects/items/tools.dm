@@ -3,7 +3,7 @@
 /obj/item/jawsoflife
 	name = "jaws of life"
 	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a prying head."
-	materials = list(/datum/material/iron=150,MAT_SILVER=50,MAT_TITANIUM=25)
+	materials = list(/datum/material/iron=150,/datum/material/silver=50,/datum/material/titanium=25)
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "jaws_pry"
 	item_state = "jawsoflife"
@@ -87,7 +87,7 @@
 	item_state = "drill"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
-	materials = list(/datum/material/iron=150,MAT_SILVER=50,MAT_TITANIUM=25) //done for balance reasons, making them high value for research, but harder to get
+	materials = list(/datum/material/iron=150,/datum/material/silver=50,/datum/material/titanium=25) //done for balance reasons, making them high value for research, but harder to get
 	force = 8 //might or might not be too high, subject to change
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 8

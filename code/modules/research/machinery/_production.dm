@@ -96,7 +96,7 @@
 		return 0
 	var/list/all_materials = being_built.reagents_list + being_built.materials
 
-	var/A = materials.mat_container.amount(M)
+	var/A = materials.mat_container.get_item_material_amount(M)
 	if(!A)
 		A = reagents.get_reagent_amount(M)
 

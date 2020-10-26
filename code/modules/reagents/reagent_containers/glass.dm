@@ -172,7 +172,7 @@
 	name = "x-large beaker"
 	desc = "An extra-large beaker. Can hold up to 120 units."
 	icon_state = "beakerwhite"
-	materials = list(/datum/material/glass=2500, MAT_PLASTIC=3000)
+	materials = list(/datum/material/glass=2500, /datum/material/plastic=3000)
 	volume = 120
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,60,120)
@@ -186,7 +186,7 @@
 	name = "metamaterial beaker"
 	desc = "A large beaker. Can hold up to 180 units."
 	icon_state = "beakergold"
-	materials = list(/datum/material/glass=2500, MAT_PLASTIC=3000, MAT_GOLD=1000, MAT_TITANIUM=1000)
+	materials = list(/datum/material/glass=2500, /datum/material/plastic=3000, /datum/material/uranium=1000, /datum/material/titanium=1000)
 	volume = 180
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,60,120,180)
@@ -207,7 +207,7 @@
 		and Element Cuban combined with the Compound Pete. Can hold up to \
 		300 units."
 	icon_state = "beakerbluespace"
-	materials = list(/datum/material/glass = 5000, MAT_PLASMA = 3000, MAT_DIAMOND = 1000, MAT_BLUESPACE = 1000)
+	materials = list(/datum/material/glass = 5000, /datum/material/plasma = 3000, /datum/material/diamond = 1000, /datum/material/bluespace = 1000)
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,50,100,300)

@@ -315,6 +315,7 @@
 
 /obj/structure/windoor_assembly/ComponentInitialize()
 	. = ..()
+	// Dont question the direct call I dont either --Moogle
 	__AddComponent(
 		/datum/component/simple_rotation,
 		ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS,

@@ -18,7 +18,7 @@
 	var/ore_pickup_rate = 15
 	var/sheet_per_ore = 1
 	var/point_upgrade = 1
-	var/list/ore_values = list(/datum/material/glass = 1, /datum/material/iron = 1, MAT_PLASMA = 15, MAT_SILVER = 16, MAT_GOLD = 18, MAT_TITANIUM = 30, /datum/material/uranium = 30, MAT_DIAMOND = 50, MAT_BLUESPACE = 50, MAT_BANANIUM = 60)
+	var/list/ore_values = list(/datum/material/glass = 1, /datum/material/iron = 1, /datum/material/plasma = 15, /datum/material/silver = 16, /datum/material/uranium = 18, /datum/material/titanium = 30, /datum/material/uranium = 30, /datum/material/diamond = 50, /datum/material/bluespace = 50, /datum/material/bananium = 60)
 	var/message_sent = FALSE
 	var/list/ore_buffer = list()
 	var/datum/techweb/stored_research
@@ -244,7 +244,8 @@
 	return data
 
 /obj/machinery/mineral/ore_redemption/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	var/datum/component/material_container/mat_container = materials.mat_container
 	switch(action)
@@ -265,14 +266,16 @@
 				return
 			if(materials.on_hold())
 				to_chat(usr, "<span class='warning'>Mineral access is on hold, please contact the quartermaster.</span>")
-			else if(!allowed(usr)) //check the user
+			else if(!allowed(usr)) //Check the ID inside, otherwise check the user
 				to_chat(usr, "<span class='warning'>Required access not found.</span>")
 			else
-				var/mat_id = params["id"]
-				if(!mat_container.materials[mat_id])
+				var/datum/material/mat = locate(params["id"])
+
+				var/amount = mat_container.materials[mat]
+				if(!amount)
 					return
-				var/datum/material/mat = mat_container.materials[mat_id]
-				var/stored_amount = mat.get_material_amount / MINERAL_MATERIAL_AMOUNT
+
+				var/stored_amount = CEILING(amount / MINERAL_MATERIAL_AMOUNT, 0.1)
 
 				if(!stored_amount)
 					return
@@ -284,10 +287,12 @@
 					desired = input("How many sheets?", "How many sheets would you like to smelt?", 1) as null|num
 
 				var/sheets_to_remove = round(min(desired,50,stored_amount))
-				var/count = mat_container.retrieve_sheets(sheets_to_remove, mat_id, get_step(src, output_dir))
+
+				var/count = mat_container.retrieve_sheets(sheets_to_remove, mat, get_step(src, output_dir))
 				var/list/mats = list()
-				mats[mat_id] = MINERAL_MATERIAL_AMOUNT
+				mats[mat] = MINERAL_MATERIAL_AMOUNT
 				materials.silo_log(src, "released", -count, "sheets", mats)
+				//Logging deleted for quick coding
 			return TRUE
 		if("diskInsert")
 			var/obj/item/disk/design_disk/disk = usr.get_active_held_item()
@@ -316,7 +321,8 @@
 				return
 			var/alloy_id = params["id"]
 			var/datum/design/alloy = stored_research.isDesignResearchedID(alloy_id)
-			var/obj/item/card/id/I = usr.get_idcard(TRUE)
+			var/mob/M = usr
+			var/obj/item/card/id/I = M.get_idcard(TRUE)
 			if((check_access(I) || allowed(usr)) && alloy)
 				var/smelt_amount = can_smelt_alloy(alloy)
 				var/desired = 0
@@ -325,7 +331,7 @@
 				else
 					desired = input("How many sheets?", "How many sheets would you like to smelt?", 1) as null|num
 				var/amount = round(min(desired,50,smelt_amount))
-				mat_container.use_amount(alloy.materials, amount)
+				mat_container.use_materials(alloy.materials, amount)
 				materials.silo_log(src, "released", -amount, "sheets", alloy.materials)
 				var/output
 				if(ispath(alloy.build_path, /obj/item/stack/sheet))

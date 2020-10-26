@@ -203,9 +203,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 		if(target_type && !istype(A,target_type))
 			continue
 		var/cargs = build_args()
-		A.AddComponent(arglist(cargs))
-		qdel(src)
-		return
+		A.AddComponent(cargs)
 
 /obj/effect/mapping_helpers/component_injector/proc/build_args()
 	return list(component_type)
