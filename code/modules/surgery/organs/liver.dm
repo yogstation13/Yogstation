@@ -47,11 +47,11 @@
 			if(reagents)
 				reagents.end_metabolization(C, keep_liverless = TRUE) //Stops trait-based effects on reagents, to prevent permanent buffs
 				reagents.metabolize(C, can_overdose=FALSE, liverless = TRUE)
-				if(HAS_TRAIT(C, TRAIT_STABLELIVER))
-					return
-				C.adjustToxLoss(4, TRUE,  TRUE)
-				if(prob(30))
-					to_chat(C, "<span class='warning'>You feel a stabbing pain in your abdomen!</span>")
+			if(HAS_TRAIT(C, TRAIT_STABLELIVER))
+				return
+			C.adjustToxLoss(4, TRUE,  TRUE)
+			if(prob(30))
+				to_chat(C, "<span class='warning'>You feel a stabbing pain in your abdomen!</span>")
 
 	if(damage > maxHealth)//cap liver damage
 		damage = maxHealth
