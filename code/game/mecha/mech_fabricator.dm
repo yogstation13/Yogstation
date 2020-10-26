@@ -642,7 +642,6 @@
 	if(being_built)
 		to_chat(user, "<span class='warning'>\The [src] is currently processing! Please wait until completion.</span>")
 		return FALSE
-
 	return TRUE
 
 /obj/machinery/mecha_part_fabricator/maint
