@@ -215,3 +215,26 @@
 	filling_color = "#7FFF00"
 	tastes = list("green grape" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/cognac
+
+/obj/item/seeds/strawberry
+	name = "pack of strawberry seeds"
+	desc = "These seeds grow into strawberry vines."
+	icon_state = "seed-strawberry"
+	species = "strawberry"
+	plantname = "Strawberry Vine"
+	product = /obj/item/reagent_containers/food/snacks/grown/strawberry
+	growthstages = 6
+	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
+	icon_grow = "strawberry-grow"
+	icon_dead = "berry-dead"
+	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.07, /datum/reagent/consumable/nutriment = 0.1, /datum/reagent/consumable/sugar = 0.2)
+	mutatelist = list()
+
+/obj/item/reagent_containers/food/snacks/grown/strawberry
+	seed = /obj/item/seeds/strawberry
+	name = "strawberry"
+	icon_state = "strawberry"
+	filling_color = "#E50D31"
+	juice_results = list(/datum/reagent/consumable/strawberryjuice = 0)
+	tastes = list("strawberries" = 1)
+	wine_power = 20
