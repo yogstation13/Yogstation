@@ -681,7 +681,7 @@
 	var/being_used = FALSE
 	var/sentience_type = SENTIENCE_ORGANIC
 	var/intel_timer = 0
-	var/intel_cooldown = 150 // in deciseconds, the cooldown in between uses
+	var/intel_cooldown = 200 // in deciseconds, the cooldown in between uses
 
 /obj/item/slimepotion/slime/sentience/attack(mob/living/M, mob/user)
 	if(being_used || !ismob(M))
