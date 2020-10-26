@@ -55,7 +55,6 @@
 
 /// Proc that allows players to fill the parent with mats
 /datum/component/material_container/proc/OnAttackBy(datum/source, obj/item/I, mob/living/user)
-	to_chat(world, "<font color='red'>Item: [I], Datum Source: [source]")
 	var/list/tc = allowed_typecache
 	if(disable_attackby)
 		return
@@ -71,7 +70,6 @@
 	if(pc && !pc.Invoke(user))
 		return
 	var/material_amount = get_item_material_amount(I)
-	to_chat(world, "<font color='red'>get_item_material_amount returned: [material_amount]")
 	if(!material_amount)
 		to_chat(user, "<span class='warning'>[I] does not contain sufficient materials to be accepted by [parent].</span>")
 		return
@@ -313,7 +311,6 @@
 	var/material_amount = 0
 	for(var/MAT in I.materials)
 		material_amount += I.custom_materials[MAT]
-	to_chat(world, "<font color='red'>get_item_material_amount proc: [material_amount], Item: [I]")
 	return material_amount
 
 /// Returns the amount of a specific material in this container.

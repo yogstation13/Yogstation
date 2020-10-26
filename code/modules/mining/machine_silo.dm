@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 		/datum/material/bluespace,
 		/datum/material/plastic,
 		)
-	AddComponent(/datum/component/material_container,materials_list,INFINITY,TRUE,allowed_types=/obj/item/stack)
+	AddComponent(/datum/component/material_container,materials_list,INFINITY,allowed_types=/obj/item/stack,_disable_attackby=TRUE)
 	if (!GLOB.ore_silo_default && mapload && is_station_level(z))
 		GLOB.ore_silo_default = src
 
@@ -58,11 +58,7 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	if(!istype(I) || (I.flags_1 & HOLOGRAM_1) || (I.item_flags & NO_MAT_REDEMPTION))
 		to_chat(user, "<span class='warning'>[M] won't accept [I]!</span>")
 		return
-	var/item_mats = I.materials
-	to_chat(world, "<font color='red'>materials.materials & I.materials: [item_mats]")
-	to_chat(world, "<font color='red'>I.materials: [I.materials]")
-	to_chat(world, "<font color='red'>materials.materials: [materials.materials]")
-	to_chat(world, "<font color='red'>I: [I]")
+	var/item_mats = I.custom_materials & I.materials
 	if(!length(item_mats))
 		to_chat(user, "<span class='warning'>[I] does not contain sufficient materials to be accepted by [M].</span>")
 		return
