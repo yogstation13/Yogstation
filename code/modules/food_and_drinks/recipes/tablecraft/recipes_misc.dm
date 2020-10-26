@@ -328,3 +328,12 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/stuffedlegion
 	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/chocolatestrawberry
+	name = "Chocolate Strawberry"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/chocolatebar = 1,
+		/obj/item/reagent_containers/food/snacks/grown/strawberries  = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/chocolatestrawberry
+	subcategory = CAT_MISCFOOD
