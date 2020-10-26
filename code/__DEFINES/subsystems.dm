@@ -1,12 +1,12 @@
 //! Defines for subsystems and overlays
-//!   
+//!
 //! Lots of important stuff in here, make sure you have your brain switched on
 //! when editing this file
 
 //! ## DB defines
 /**
   * DB major schema version
-  * 
+  *
   * Update this whenever the db schema changes
   *
   * make sure you add an update to the schema_version stable in the db changelog
@@ -15,7 +15,7 @@
 
 /**
   * DB minor schema version
-  * 
+  *
   * Update this whenever the db schema changes
   *
   * make sure you add an update to the schema_version stable in the db changelog
@@ -108,6 +108,7 @@
 #define INIT_ORDER_SOUNDS			83
 #define INIT_ORDER_INSTRUMENTS		82
 #define INIT_ORDER_VIS				80
+#define INIT_ORDER_MATERIALS		76
 #define INIT_ORDER_RESEARCH			75
 #define INIT_ORDER_EVENTS			70
 #define INIT_ORDER_MAPPING			65

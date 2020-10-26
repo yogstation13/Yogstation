@@ -13,8 +13,10 @@
 /datum/department_goal/car/uranium/check_complete()
 	var/obj/machinery/ore_silo/O = GLOB.ore_silo_default
 	var/datum/component/material_container/materials = O.GetComponent(/datum/component/material_container)
-	return materials.can_use_amount(500*MINERAL_MATERIAL_AMOUNT, MAT_URANIUM)
-		
+	return materials.can_use_amount(500*MINERAL_MATERIAL_AMOUNT, /datum/material/uranium)
+
+get_material_amount
+
 // Setup a tesla in cargo
 /datum/department_goal/car/tesla
 	name = "Create a tesla"

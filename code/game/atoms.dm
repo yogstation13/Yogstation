@@ -69,6 +69,11 @@
 	/// Radiation insulation types
 	var/rad_insulation = RAD_NO_INSULATION
 
+	///The custom materials this atom is made of, used by a lot of things like furniture, walls, and floors (if I finish the functionality, that is.)
+	var/list/custom_materials
+	///Bitfield for how the atom handles materials.
+	var/material_flags = NONE
+
 	var/chat_color_name // Last name used to calculate a color for the chatmessage overlays
 
 	var/chat_color // Last color calculated for the the chatmessage overlays
@@ -155,6 +160,15 @@
 
 	if (canSmoothWith)
 		canSmoothWith = typelist("canSmoothWith", canSmoothWith)
+
+	if(custom_materials && custom_materials.len)
+		var/temp_list = list()
+		for(var/i in custom_materials)
+			var/datum/material/material = getmaterialref(i) || i
+			temp_list[material] = custom_materials[material] //Get the proper instanced version
+
+		custom_materials = null //Null the list to prepare for applying the materials properly
+		set_custom_materials(temp_list)
 
 	ComponentInitialize()
 
@@ -447,6 +461,11 @@
 
 	if(desc)
 		. += desc
+
+	if(custom_materials)
+		for(var/i in custom_materials)
+			var/datum/material/M = i
+			. += "<u>It is made out of [M.name]</u>."
 
 	if(reagents)
 		if(reagents.flags & TRANSPARENT)
@@ -1111,7 +1130,7 @@
 
 /**
   * Recursive getter method to return a list of all ghosts orbitting this atom
-  * 
+  *
   * This will work fine without manually passing arguments.
   */
 /atom/proc/get_all_orbiters(list/processed, source = TRUE)
@@ -1127,3 +1146,18 @@
 		var/atom/atom_orbiter = o
 		output += atom_orbiter.get_all_orbiters(processed, source = FALSE)
 	return output
+
+///Sets the custom materials for an item.
+/atom/proc/set_custom_materials(var/list/materials, multiplier = 1)
+	if(custom_materials) //Only runs if custom materials existed at first. Should usually be the case but check anyways
+		for(var/i in custom_materials)
+			var/datum/material/custom_material = i
+			custom_material.on_removed(src, material_flags) //Remove the current materials
+
+	custom_materials = list() //Reset the list
+
+	for(var/x in materials)
+		var/datum/material/custom_material = x
+
+		custom_material.on_applied(src, materials[custom_material] * multiplier, material_flags)
+		custom_materials[custom_material] += materials[x] * multiplier
