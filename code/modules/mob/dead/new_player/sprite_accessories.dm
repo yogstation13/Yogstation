@@ -1775,6 +1775,10 @@
 	name = "Aquatic"
 	icon_state = "aqua"
 
+/datum/sprite_accessory/frills/full
+	name = "Full"
+	icon_state = "full"
+
 /datum/sprite_accessory/frills/long
 	name = "Long"
 	icon_state = "long"
