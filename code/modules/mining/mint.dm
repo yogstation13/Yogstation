@@ -33,15 +33,15 @@
 	var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><b>Coin Press</b><br>"
 
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-		for(var/datum/material/M in materials.materials)
-			var/amount = materials.get_material_amount(M)
-			if(!amount && chosen != M)
-				continue
-			dat += "<br><b>[M.name] amount:</b> [amount] cm<sup>3</sup> "
-			if (chosen == M)
-				dat += "<b>Chosen</b>"
-			else
-				dat += "<A href='?src=[REF(src)];choose=[REF(M)]'>Choose</A>"
+	for(var/datum/material/M in materials.materials)
+		var/amount = materials.get_material_amount(M)
+		if(!amount && chosen != M)
+			continue
+		dat += "<br><b>[M.name] amount:</b> [amount] cm<sup>3</sup> "
+		if (chosen == M)
+			dat += "<b>Chosen</b>"
+		else
+			dat += "<A href='?src=[REF(src)];choose=[REF(M)]'>Choose</A>"
 
 	var/datum/material/M = chosen
 
