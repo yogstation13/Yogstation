@@ -42,7 +42,7 @@
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/OnExamine)
 
 	for(var/mat in mat_list) //Make the assoc list ref | amount
-		var/datum/material/M = SSmaterials.GetMaterialRef(mat)
+		var/datum/material/M = getmaterialref(mat)
 		materials[M] = 0
 
 /datum/component/material_container/proc/OnExamine(datum/source, mob/user)
@@ -130,7 +130,7 @@
 /// For inserting an amount of material
 /datum/component/material_container/proc/insert_amount_mat(amt, datum/material/mat)
 	if(!istype(mat))
-		mat = SSmaterials.GetMaterialRef(mat)
+		mat = getmaterialref(mat)
 	if(amt > 0 && has_space(amt))
 		var/total_amount_saved = total_amount
 		if(mat)
@@ -145,7 +145,7 @@
 /// Uses an amount of a specific material, effectively removing it.
 /datum/component/material_container/proc/use_amount_mat(amt, datum/material/mat)
 	if(!istype(mat))
-		mat = SSmaterials.GetMaterialRef(mat)
+		mat = getmaterialref(mat)
 	var/amount = materials[mat]
 	if(mat)
 		if(amount >= amt)
@@ -157,7 +157,7 @@
 /// Proc for transfering materials to another container.
 /datum/component/material_container/proc/transer_amt_to(datum/component/material_container/T, amt, datum/material/mat)
 	if(!istype(mat))
-		mat = SSmaterials.GetMaterialRef(mat)
+		mat = getmaterialref(mat)
 	if((amt==0)||(!T)||(!mat))
 		return FALSE
 	if(amt<0)
@@ -190,7 +190,7 @@
 	for(var/x in mats) //Loop through all required materials
 		var/datum/material/req_mat = x
 		if(!istype(req_mat))
-			req_mat = SSmaterials.GetMaterialRef(req_mat) //Get the ref if necesary
+			req_mat = getmaterialref(req_mat) //Get the ref if necesary
 		if(!materials[req_mat]) //Do we have the resource?
 			return FALSE //Can't afford it
 		var/amount_required = mats[x] * multiplier
@@ -251,7 +251,7 @@
 		var/datum/material/req_mat = x
 		if(!istype(req_mat))
 			if(ispath(req_mat)) //Is this an actual material, or is it a category?
-				req_mat = SSmaterials.GetMaterialRef(req_mat) //Get the ref
+				req_mat = getmaterialref(req_mat) //Get the ref
 
 			else // Its a category. (For example MAT_CATEGORY_RIGID)
 				if(!has_enough_of_category(req_mat, mats[x], multiplier)) //Do we have enough of this category?
@@ -316,5 +316,5 @@
 /// Returns the amount of a specific material in this container.
 /datum/component/material_container/proc/get_material_amount(datum/material/mat)
 	if(!istype(mat))
-		mat = SSmaterials.GetMaterialRef(mat)
+		mat = getmaterialref(mat)
 	return(materials[mat])

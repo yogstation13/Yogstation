@@ -109,6 +109,14 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/Initialize()
 
 	materials =	typelist("materials", materials)
+	
+	if(materials) //Otherwise, use the instances already provided.
+		var/list/temp_list = list() 
+		for(var/i in materials) //Go through all of our materials, get the subsystem instance, and then replace the list.
+			var/amount = materials[i]
+			var/datum/material/M = getmaterialref(i)
+			temp_list[M] = amount
+		materials = temp_list
 
 	if (attack_verb)
 		attack_verb = typelist("attack_verb", attack_verb)
