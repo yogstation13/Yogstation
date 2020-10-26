@@ -110,6 +110,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/map = 1
 	var/flare = 1
+	var/mulligan = FALSE
 
 	var/list/exp = list()
 	var/list/menuoptions
@@ -555,6 +556,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Skillcape:</b> <a href='?_src_=prefs;task=input;preference=skillcape'>[(skillcape != 1) ? "[GLOB.skillcapes[skillcape]]" : "none"] </a><br>"
 			dat += "<b>Flare:</b> <a href='?_src_=prefs;task=input;preference=flare'>[flare ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Map:</b> <a href='?_src_=prefs;task=input;preference=map'>[map ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>Mulligan on Antag:</b> <a href='?_src_=prefs;task=input;preference=mulligan'>[mulligan ? "Enabled" : "Disabled"]</a><br>"
 
 			dat += "<br>"
 			dat += "<b>Ghost Ears:</b> <a href='?_src_=prefs;preference=ghost_ears'>[(chat_toggles & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</a><br>"
@@ -1642,6 +1644,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					flare = !flare
 				if("map")
 					map = !map
+				if("mulligan")
+					mulligan = !mulligan
 				if ("max_chat_length")
 					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
 					if (!isnull(desiredlength))
