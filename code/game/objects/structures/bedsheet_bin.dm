@@ -34,6 +34,7 @@ LINEN BINS
 		var/newbedpath = "/obj/item/bedsheet/adjusted/" + suffix
 		var/obj/item/bedsheet/sheet = new newbedpath(drop_location())
 		if(sheet)
+			sheet.name = name
 			sheet.icon_state = icon_state
 			sheet.item_state = item_state
 			sheet.item_color = item_color
