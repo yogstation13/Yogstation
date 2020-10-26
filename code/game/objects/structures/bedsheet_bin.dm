@@ -20,6 +20,7 @@ LINEN BINS
 	w_class = WEIGHT_CLASS_TINY
 	item_color = "white"
 	resistance_flags = FLAMMABLE
+	var/suffic = null
 
 	dog_fashion = /datum/dog_fashion/head/ghost
 	var/list/dream_messages = list("white")
@@ -29,6 +30,21 @@ LINEN BINS
 		..()
 
 /obj/item/bedsheet/attack_self(mob/user)
+	if(suffix)
+		var/newbedpath = "/obj/item/bedsheet/adjusted/" + suffix
+		var/obj/item/bedsheet/sheet = new newbedpath(drop_location())
+		if(sheet)
+			sheet.icon_state = icon_state
+			sheet.item_state = item_state
+			sheet.item_color = item_color
+			sheet.dream_messages = dream_messages
+			qdel(src)
+			user.put_in_active_hand(sheet)
+			to_chat(user, "<span class='notice'>You adjust the bedsheet to be worn on your head!</span>")
+	else
+		to_chat(user, "<span class='notice'>You cannot adjust this bedsheet!</span>")
+
+/obj/item/bedsheet/AltClick(mob/user)
 	if(!user.CanReach(src))		//No telekenetic grabbing.
 		return
 	if(!user.dropItemToGround(src))
@@ -62,12 +78,14 @@ LINEN BINS
 	item_state = "sheetblue"
 	item_color = "blue"
 	dream_messages = list("blue")
+	suffix = "blue"
 
 /obj/item/bedsheet/green
 	icon_state = "sheetgreen"
 	item_state = "sheetgreen"
 	item_color = "green"
 	dream_messages = list("green")
+	suffix = "green"
 
 /obj/item/bedsheet/grey
 	icon_state = "sheetgrey"
@@ -80,12 +98,14 @@ LINEN BINS
 	item_state = "sheetorange"
 	item_color = "orange"
 	dream_messages = list("orange")
+	suffix = "orange"
 
 /obj/item/bedsheet/purple
 	icon_state = "sheetpurple"
 	item_state = "sheetpurple"
 	item_color = "purple"
 	dream_messages = list("purple")
+	suffix = "purple"
 
 /obj/item/bedsheet/patriot
 	name = "patriotic bedsheet"
@@ -102,18 +122,21 @@ LINEN BINS
 	item_state = "sheetrainbow"
 	item_color = "rainbow"
 	dream_messages = list("red", "orange", "yellow", "green", "blue", "purple", "a rainbow")
+	suffix = "rainbow"
 
 /obj/item/bedsheet/red
 	icon_state = "sheetred"
 	item_state = "sheetred"
 	item_color = "red"
 	dream_messages = list("red")
+	suffix = "red"
 
 /obj/item/bedsheet/yellow
 	icon_state = "sheetyellow"
 	item_state = "sheetyellow"
 	item_color = "yellow"
 	dream_messages = list("yellow")
+	suffix = "yellow"
 
 /obj/item/bedsheet/mime
 	name = "mime's blanket"
@@ -122,6 +145,7 @@ LINEN BINS
 	item_state = "sheetmime"
 	item_color = "mime"
 	dream_messages = list("silence", "gestures", "a pale face", "a gaping mouth", "the mime")
+	suffix = "mime"
 
 /obj/item/bedsheet/clown
 	name = "clown's blanket"
@@ -130,6 +154,7 @@ LINEN BINS
 	item_state = "sheetrainbow"
 	item_color = "clown"
 	dream_messages = list("honk", "laughter", "a prank", "a joke", "a smiling face", "the clown")
+	suffix = "clown"
 
 /obj/item/bedsheet/captain
 	name = "captain's bedsheet"
@@ -138,6 +163,7 @@ LINEN BINS
 	item_state = "sheetcaptain"
 	item_color = "captain"
 	dream_messages = list("authority", "a golden ID", "sunglasses", "a green disc", "an antique gun", "the captain")
+	suffix = "captain"
 
 /obj/item/bedsheet/rd
 	name = "research director's bedsheet"
@@ -146,6 +172,7 @@ LINEN BINS
 	item_state = "sheetrd"
 	item_color = "director"
 	dream_messages = list("authority", "a silvery ID", "a bomb", "a mech", "a facehugger", "maniacal laughter", "the research director")
+	suffix = "rd"
 
 // for Free Golems.
 /obj/item/bedsheet/rd/royal_cape
@@ -160,6 +187,7 @@ LINEN BINS
 	item_state = "sheetmedical"
 	item_color = "medical"
 	dream_messages = list("healing", "life", "surgery", "a doctor")
+	suffix = "medical"
 
 /obj/item/bedsheet/cmo
 	name = "chief medical officer's bedsheet"
@@ -176,6 +204,7 @@ LINEN BINS
 	item_state = "sheethos"
 	item_color = "hosred"
 	dream_messages = list("authority", "a silvery ID", "handcuffs", "a baton", "a flashbang", "sunglasses", "the head of security")
+	suffix = "hos"
 
 /obj/item/bedsheet/hop
 	name = "head of personnel's bedsheet"
@@ -184,6 +213,7 @@ LINEN BINS
 	item_state = "sheethop"
 	item_color = "hop"
 	dream_messages = list("authority", "a silvery ID", "obligation", "a computer", "an ID", "a corgi", "the head of personnel")
+	suffix = "hop"
 
 /obj/item/bedsheet/ce
 	name = "chief engineer's bedsheet"
@@ -192,6 +222,7 @@ LINEN BINS
 	item_state = "sheetce"
 	item_color = "chief"
 	dream_messages = list("authority", "a silvery ID", "the engine", "power tools", "an APC", "a parrot", "the chief engineer")
+	suffix = "ce"
 
 /obj/item/bedsheet/qm
 	name = "quartermaster's bedsheet"
@@ -206,6 +237,7 @@ LINEN BINS
 	item_state = "sheetbrown"
 	item_color = "cargo"
 	dream_messages = list("brown")
+	suffix = "brown"
 
 /obj/item/bedsheet/black
 	icon_state = "sheetblack"
@@ -441,3 +473,71 @@ LINEN BINS
 
 
 	add_fingerprint(user)
+
+/obj/item/bedsheet/adjusted
+	slot_flags = ITEM_SLOT_HEAD
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEGLOVES|HIDEJUMPSUIT|HIDENECK|HIDEFACIALHAIR|HIDESUITSTORAGE
+	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS|HEAD
+	flags_cover = MASKCOVERSEYES|MASKCOVERSMOUTH|HEADCOVERSMOUTH
+
+/obj/item/bedsheet/adjusted/attack_self(mob/user)
+	if(suffix)
+		var/newbedpath = "/obj/item/bedsheet/" + suffix
+		var/obj/item/bedsheet/sheet = new newbedpath(drop_location())
+		if(sheet)
+			qdel(src)
+			user.put_in_active_hand(sheet)
+			to_chat(user, "<span class='notice'>You adjust the bedsheet to be worn on your neck!</span>")
+	else
+		to_chat(user, "<span class='notice'>You cannot adjust this bedsheet!</span>")
+
+/obj/item/bedsheet/adjusted/blue
+	suffix = "blue"
+
+/obj/item/bedsheet/adjusted/green
+	suffix = "green"
+
+/obj/item/bedsheet/adjusted/grey
+	suffix = "grey"
+
+/obj/item/bedsheet/adjusted/orange
+	suffix = "orange"
+
+/obj/item/bedsheet/adjusted/purple
+	suffix = "purple"
+
+/obj/item/bedsheet/adjusted/rainbow
+	suffix = "rainbow"
+
+/obj/item/bedsheet/adjusted/red
+	suffix = "red"
+
+/obj/item/bedsheet/adjusted/yellow
+	suffix = "yellow"
+
+/obj/item/bedsheet/adjusted/mime
+	suffix = "mime"
+
+/obj/item/bedsheet/adjusted/clown
+	suffix = "clown"
+
+/obj/item/bedsheet/adjusted/captain
+	suffix = "captain"
+
+/obj/item/bedsheet/adjusted/rd
+	suffix = "rd"
+
+/obj/item/bedsheet/adjusted/medical
+	suffix = "medical"
+
+/obj/item/bedsheet/adjusted/hos
+	suffix = "hos"
+
+/obj/item/bedsheet/adjusted/hop
+	suffix = "hop"
+
+/obj/item/bedsheet/adjusted/ce
+	suffix = "ce"
+
+/obj/item/bedsheet/adjusted/brown
+	suffix = "brown"
