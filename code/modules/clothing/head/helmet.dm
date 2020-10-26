@@ -425,8 +425,8 @@
 	flags_cover = HEADCOVERSEYES
 
 /obj/item/clothing/head/helmet/shaman
-	name = "ritual headress"
-	desc = "Hand carved skull headress, uniquely suited for the harsh lavaland hellscapes."
+	name = "ritual headdress"
+	desc = "Hand carved skull headdress, uniquely suited for the harsh lavaland hellscapes."
 	icon_state = "shamanhat"
 	item_state = "shamanhat"
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 10, "bomb" = 10, "bio" = 5, "rad" = 20, "fire" = 40, "acid" = 20)
