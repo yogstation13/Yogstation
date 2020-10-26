@@ -41,7 +41,6 @@
 #include "code\__DEFINES\DNA.dm"
 #include "code\__DEFINES\economy.dm"
 #include "code\__DEFINES\events.dm"
-#include "code\__DEFINES\exosuit_fab.dm"
 #include "code\__DEFINES\exports.dm"
 #include "code\__DEFINES\extools.dm"
 #include "code\__DEFINES\fantasy_affixes.dm"
