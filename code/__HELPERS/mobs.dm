@@ -52,6 +52,8 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/human, GLOB.tails_list_human)
 	if(!GLOB.tails_list_lizard.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/lizard, GLOB.tails_list_lizard)
+	if(!GLOB.tails_list_piscis.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/piscis, GLOB.tails_list_piscis)
 	if(!GLOB.tails_list_polysmorph.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/polysmorph, GLOB.tails_list_polysmorph)
 	if(!GLOB.snouts_list.len)

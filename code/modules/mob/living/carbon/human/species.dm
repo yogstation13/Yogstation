@@ -1,6 +1,7 @@
 // This code handles different species in the game.
 
 GLOBAL_LIST_EMPTY(roundstart_races)
+GLOBAL_LIST_EMPTY(donator_races)
 
 /datum/species
 	/// if the game needs to manually check your race to do something not included in a proc here, it will use this
@@ -162,11 +163,21 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(S.check_roundstart_eligible())
 			GLOB.roundstart_races += S.id
 			qdel(S)
+			//It can be one or the other not both.
+		else if(S.check_donator())
+			GLOB.donator_races += S.id
+			qdel(S)
+
 	if(!GLOB.roundstart_races.len)
 		GLOB.roundstart_races += "human"
 
 /datum/species/proc/check_roundstart_eligible()
 	if(id in (CONFIG_GET(keyed_list/roundstart_races)))
+		return TRUE
+	return FALSE
+
+/datum/species/proc/check_donator()
+	if(id in (CONFIG_GET(keyed_list/donator_races)))
 		return TRUE
 	return FALSE
 
@@ -281,6 +292,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			var/obj/item/organ/tail/lizard/T = tail
 			T.tail_type = C.dna.features["tail_lizard"]
 			T.spines = C.dna.features["spines"]
+		if(ispiscis(C))
+			tail.tail_type = C.dna.features["tail_piscis"]
 		tail.Insert(C)
 
 	if(C.get_bodypart(BODY_ZONE_HEAD))
@@ -641,7 +654,16 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if("tail_human" in mutant_bodyparts)
 		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
 			bodyparts_to_add -= "tail_human"
+	
+	if("tail_piscis" in mutant_bodyparts)
+		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
+			bodyparts_to_add -= "tail_piscis"
 
+	if("waggingtail_piscis" in mutant_bodyparts)
+		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
+			bodyparts_to_add -= "waggingtail_piscis"
+		else if ("tail_piscis" in mutant_bodyparts)
+			bodyparts_to_add -= "waggingtail_piscis"
 
 	if("waggingtail_human" in mutant_bodyparts)
 		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
@@ -774,15 +796,19 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.dome_list[H.dna.features["dome"]]
 				if("dorsal_tubes")
 					S = GLOB.dorsal_tubes_list[H.dna.features["dorsal_tubes"]]
+				if("waggingtail_piscis")
+					S = GLOB.animated_tails_list_piscis[H.dna.features["tail_piscis"]]
+				if("tail_piscis")
+					S = GLOB.tails_list_piscis[H.dna.features["tail_piscis"]]
 			if(!S || S.icon_state == "none")
 				continue
 
 			var/mutable_appearance/accessory_overlay = mutable_appearance(S.icon, layer = -layer)
 
 			//A little rename so we don't have to use tail_lizard or tail_human when naming the sprites.
-			if(bodypart == "tail_lizard" || bodypart == "tail_human" || bodypart == "tail_polysmorph")
+			if(bodypart == "tail_lizard" || bodypart == "tail_human" || bodypart == "tail_polysmorph" || bodypart == "tail_piscis")
 				bodypart = "tail"
-			else if(bodypart == "waggingtail_lizard" || bodypart == "waggingtail_human")
+			else if(bodypart == "waggingtail_lizard" || bodypart == "waggingtail_human" || bodypart == "waggingtail_piscis")
 				bodypart = "waggingtail"
 
 			if(S.gender_specific)
@@ -1894,6 +1920,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		mutant_bodyparts -= "spines"
 		mutant_bodyparts |= "waggingtail_lizard"
 		mutant_bodyparts |= "waggingspines"
+	if("tail_piscis" in mutant_bodyparts)
+		mutant_bodyparts -= "tail_piscis"
+		mutant_bodyparts |= "waggingtail_piscis"
 	H.update_body()
 
 /datum/species/proc/stop_wagging_tail(mob/living/carbon/human/H)
@@ -1905,6 +1934,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		mutant_bodyparts -= "waggingspines"
 		mutant_bodyparts |= "tail_lizard"
 		mutant_bodyparts |= "spines"
+	if("tail_piscis" in mutant_bodyparts)
+		mutant_bodyparts -= "waggingtail_piscis"
+		mutant_bodyparts |= "tail_piscis"
 	H.update_body()
 
 ///////////////

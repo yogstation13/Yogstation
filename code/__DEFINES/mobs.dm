@@ -69,6 +69,7 @@
 #define MOB_BEAST		"beast"
 #define MOB_EPIC		"epic" //megafauna
 #define MOB_REPTILE		"reptile"
+#define MOB_AQUATIC		"aquatic"
 #define MOB_SPIRIT		"spirit"
 
 //Organ defines for carbon mobs

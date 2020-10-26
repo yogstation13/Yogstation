@@ -109,6 +109,8 @@
 			throw_alert("not_enough_co2", /obj/screen/alert/not_enough_co2)
 		else if(S.breathid == "n2")
 			throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_nitro)
+		else if(S.breathid == "h2o")
+			throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_water)
 
 		return FALSE
 	else

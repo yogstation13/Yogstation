@@ -83,6 +83,23 @@
 		message = fly_buZZ.Replace(message, "ZZZ")
 	speech_args[SPEECH_MESSAGE] = message
 
+/obj/item/organ/tongue/piscis
+	name = "bloated tongue"
+	desc = "Bloated tongue, it is all swollen and nasty!"
+	icon_state = "tonguebloated"
+	say_mod = "blubbers"
+	taste_sensitivity = 20 // not very sensitive due to derpressurization 
+	modifies_speech = TRUE
+
+/obj/item/organ/tongue/piscis/handle_speech(datum/source, list/speech_args)
+	var/static/regex/pisciss_oo = new("o+", "g")
+	var/static/regex/pisciss_OO = new("O+", "g")
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message[1] != "*")
+		message = pisciss_oo.Replace(message, "oo")
+		message = pisciss_OO.Replace(message, "OO")
+	speech_args[SPEECH_MESSAGE] = message
+
 /obj/item/organ/tongue/abductor
 	name = "superlingual matrix"
 	desc = "A mysterious structure that allows for instant communication between users. Pretty impressive until you need to eat something."

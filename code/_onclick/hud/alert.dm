@@ -125,6 +125,7 @@
 	desc = "You're not getting enough nitrogen. Find some good air before you pass out!"
 	icon_state = "not_enough_nitro"
 
+
 /obj/screen/alert/too_much_nitro
 	name = "Choking (N2)"
 	desc = "There's too much nitrogen in the air, and you're breathing it in! Find some good air before you pass out!"
@@ -149,6 +150,12 @@
 	name = "Choking (Plasma)"
 	desc = "There's highly flammable, toxic plasma in the air and you're breathing it in. Find some fresh air. The box in your backpack has an oxygen tank and gas mask in it."
 	icon_state = "too_much_tox"
+
+/obj/screen/alert/not_enough_water
+	name = "Choking (No Water Vapour)"
+	desc = "You're not getting enough water vapour. Find some good air before you pass out!"
+	icon_state = "not_enough_h2o"
+
 //End gas alerts
 
 

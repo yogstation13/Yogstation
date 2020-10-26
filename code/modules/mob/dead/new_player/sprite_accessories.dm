@@ -1597,6 +1597,14 @@
 /datum/sprite_accessory/tails_animated
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 
+/datum/sprite_accessory/tails/piscis/piscis
+	name = "Piscis"
+	icon_state = "piscis"
+
+/datum/sprite_accessory/tails_animated/piscis/piscis
+	name = "Piscis"
+	icon_state = "piscis"
+
 /datum/sprite_accessory/tails/lizard/smooth
 	name = "Smooth"
 	icon_state = "smooth"

@@ -83,3 +83,26 @@
 		H.dna.species.mutant_bodyparts -= "tail_polysmorph"
 		tail_type = H.dna.features["tail_polysmorph"]
 		H.update_body()
+
+/obj/item/organ/tail/piscis
+	name = "piscis surftail"
+	desc = "Piscis surftail, it is a short tail with a pair of fins on the end. Quite a rarity"
+	color = "#3700ff"
+	tail_type = "Piscis"
+	icon_state = "piscistail"
+
+/obj/item/organ/tail/piscis/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
+	..()
+	if(istype(H))
+		if(!("tail_piscis" in H.dna.species.mutant_bodyparts))
+			H.dna.species.mutant_bodyparts |= "tail_piscis"
+			H.dna.features["tail_piscis"] = tail_type
+			H.update_body()
+
+/obj/item/organ/tail/piscis/Remove(mob/living/carbon/human/H,  special = 0)
+	..()
+	if(istype(H))
+		H.dna.features["tail_piscis"] = "None"
+		H.dna.species.mutant_bodyparts -= "tail_piscis"
+		color = H.hair_color
+		H.update_body()

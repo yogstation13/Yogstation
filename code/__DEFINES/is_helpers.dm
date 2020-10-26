@@ -58,6 +58,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isabductor(A) (is_species(A, /datum/species/abductor))
 #define isgolem(A) (is_species(A, /datum/species/golem))
 #define islizard(A) (is_species(A, /datum/species/lizard))
+#define ispiscis(A) (is_species(A, /datum/species/piscis))
 #define isplasmaman(A) (is_species(A, /datum/species/plasmaman))
 #define ispolysmorph(A) (is_species(A, /datum/species/polysmorph))
 #define ispodperson(A) (is_species(A, /datum/species/pod))

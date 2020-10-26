@@ -38,6 +38,7 @@
 	H.dna.features["teeth"] = pick(GLOB.teeth_list)
 	H.dna.features["dome"] = pick(GLOB.dome_list)
 	H.dna.features["dorsal_tubes"] = pick(GLOB.dorsal_tubes_list)
+	H.dna.features["tail_piscis"] = pick(GLOB.tails_list_piscis)
 
 	H.update_body()
 	H.update_hair()

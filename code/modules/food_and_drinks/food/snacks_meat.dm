@@ -85,6 +85,12 @@
 	name = "imitation carp fillet"
 	desc = "Almost just like the real thing, kinda."
 
+/obj/item/reagent_containers/food/snacks/carpmeat/piscis
+	icon_state = "piscis fillet"
+	desc = "Delicious deepwater fillet"
+	filling_color = "#ecb5e8"
+	tastes = list("fish" = 4, "sea water" = 1)
+
 /obj/item/reagent_containers/food/snacks/fishfingers
 	name = "fish fingers"
 	desc = "A finger of fish."
