@@ -163,6 +163,6 @@
 
 /obj/item/udder/gutlunch/generateMilk()
 	if(prob(60))
-		reagents.add_reagent(/datum/reagent/consumable/cream, rand(2, 5))
+		reagents.add_reagent(/datum/reagent/consumable/cream/bug, rand(2, 5))
 	if(prob(45))
 		reagents.add_reagent(/datum/reagent/medicine/salglu_solution, rand(2,5))
