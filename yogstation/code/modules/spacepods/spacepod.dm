@@ -660,7 +660,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		M.client.pixel_y = 0
 	return TRUE
 
-/obj/spacepod/onMouseMove(params)
+/obj/spacepod/onMouseMove()
 	if(!pilot || !pilot.client || pilot.incapacitated())
 		return // I don't know what's going on.
 	var/list/params_list = params2list(pilot.client.mouseParams)
