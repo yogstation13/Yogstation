@@ -1,4 +1,7 @@
 /obj/spacepod/process(time)
+	if(pilot.client)
+		onMouseMove(pilot.client.mouseParams)
+		
 	time /= 10 // fuck off with your deciseconds
 
 	if(world.time > last_slowprocess + 15)
