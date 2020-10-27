@@ -313,6 +313,16 @@
 		. = 1
 	..()
 
+/datum/reagent/consumable/cream/bug
+	name = "Bug Cream"
+	description = "The very fatty, still liquid part of bug milk. It looks pretty gross."
+	color = "#800000"
+	nutriment_factor = 2
+	taste_description = "creamy bug milk"
+	glass_icon_state  = "chocolateglass"
+	glass_name = "glass of bug cream"
+	glass_desc = "Ewwwww!"
+
 /datum/reagent/consumable/coffee
 	name = "Coffee"
 	description = "Coffee is a brewed drink prepared from roasted seeds, commonly called coffee beans, of the coffee plant."
