@@ -8,6 +8,9 @@
 	var/climbable = FALSE
 	var/mob/living/structureclimber
 	var/broken = 0 //similar to machinery's stat BROKEN
+	var/list/debris = list() //Parts left behind when a structure breaks
+	var/break_message //The message shown when a structure breaks
+	var/break_sound //The sound played when a structure breaks
 	layer = BELOW_OBJ_LAYER
 
 
@@ -26,6 +29,20 @@
 	if(smooth)
 		queue_smooth_neighbors(src)
 	return ..()
+
+/obj/structure/deconstruct(disassembled = TRUE)
+	if(!disassembled)
+		if(!(flags_1 & NODECONSTRUCT_1))
+			if(islist(debris))
+				for(var/I in debris)
+					for(var/i in 1 to debris[I])
+						new I (get_turf(src))
+		if(break_message)
+			visible_message(break_message)
+		if(break_sound)
+			playsound(src, break_sound, 50, 1)
+	qdel(src)
+	return 1
 
 /obj/structure/attack_hand(mob/user)
 	. = ..()

@@ -4,10 +4,10 @@
 	icon = 'icons/obj/cult.dmi'
 	light_power = 2
 	var/cooldowntime = 0
-	var/debris = list(/obj/item/stack/sheet/runed_metal = 1)
+	debris = list(/obj/item/stack/sheet/runed_metal = 1)
 	var/is_endgame = FALSE //is the structure part of the endgame? stuff that can't be healed/moved have this set to TRUE
-	var/break_message = "<span class='warning'>The strange, admin-y structure breaks!</span>"
-	var/break_sound = 'sound/magic/clockwork/invoke_general.ogg'
+	break_message = "<span class='warning'>The strange, admin-y structure breaks!</span>"
+	break_sound = 'sound/magic/clockwork/invoke_general.ogg'
 	max_integrity = 100
 
 /obj/structure/cult/proc/conceal() //for spells that hide cult presence
@@ -29,19 +29,6 @@
 	light_power = initial(light_power)
 	update_light()
 	START_PROCESSING(SSfastprocess, src)
-
-/obj/structure/cult/Destroy()
-	if(!(flags_1 & NODECONSTRUCT_1))
-		if(islist(debris))
-			for(var/I in debris)
-				for(var/i in 1 to debris[I])
-					new I (get_turf(src))
-	if(break_message)
-		visible_message(break_message)
-	if(break_sound)
-		playsound(src, break_sound, 50, 1)
-	return ..()
-
 
 /obj/structure/cult/examine(mob/user)
 	. = ..()

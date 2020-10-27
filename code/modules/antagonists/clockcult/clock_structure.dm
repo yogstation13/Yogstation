@@ -10,9 +10,9 @@
 	density = TRUE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	var/can_be_repaired = TRUE //if a fabricator can repair it
-	var/break_message = "<span class='warning'>The frog isn't a meme after all!</span>" //The message shown when a structure breaks
-	var/break_sound = 'sound/magic/clockwork/anima_fragment_death.ogg' //The sound played when a structure breaks
-	var/debris = list(/obj/item/clockwork/alloy_shards/large = 1, \
+	break_message = "<span class='warning'>The frog isn't a meme after all!</span>" //The message shown when a structure breaks
+	break_sound = 'sound/magic/clockwork/anima_fragment_death.ogg' //The sound played when a structure breaks
+	debris = list(/obj/item/clockwork/alloy_shards/large = 1, \
 	/obj/item/clockwork/alloy_shards/medium = 2, \
 	/obj/item/clockwork/alloy_shards/small = 3) //Parts left behind when a structure breaks
 	var/construction_value = 0 //How much value the structure contributes to the overall "power" of the structures on the station
@@ -25,15 +25,6 @@
 	GLOB.all_clockwork_objects += src
 
 /obj/structure/clockwork/Destroy()
-	if(!(flags_1 & NODECONSTRUCT_1))
-		if(islist(debris))
-			for(var/I in debris)
-				for(var/i in 1 to debris[I])
-					new I (get_turf(src))
-	if(break_message)
-		visible_message(break_message)
-	if(break_sound)
-		playsound(src, break_sound, 50, 1)
 	change_construction_value(-construction_value)
 	GLOB.all_clockwork_objects -= src
 	return ..()
