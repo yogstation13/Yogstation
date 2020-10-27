@@ -38,8 +38,6 @@
 
 ///whisper a message
 /mob/proc/whisper(message, datum/language/language=null)
-	if(!message)
-		return
 	say(message, language) //only living mobs actually whisper, everything else just talks
 
 ///The me emote verb
