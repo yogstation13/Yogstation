@@ -7,7 +7,7 @@
 /datum/antagonist/nightmare/proc/forge_objectives()
 	var/datum/objective/nightmare/new_objective = new /datum/objective/nightmare
 	objectives += new_objective
-	new_objective.explanation_text = "Make this burning domain yours." // you can do whatever
+	new_objective.explanation_text = "<span class='userdanger'>Kill.</span>" // you can do whatever
 	objectives += survival // just dont die doing it
 
 /datum/antagonist/nightmare/on_gain()
