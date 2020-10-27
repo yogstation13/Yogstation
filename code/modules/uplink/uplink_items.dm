@@ -517,6 +517,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 50
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/dangerous/deserteagle
+	name = "Desert Eagle"
+	desc = "A marvel of firearm engineering that fires .50AE rounds. The ammo is only available from the uplink."
+	item = /obj/item/gun/ballistic/automatic/pistol/deagle
+	cost = 12
+	surplus = 50
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+
 /datum/uplink_item/dangerous/foamsmg
 	name = "Toy Submachine Gun"
 	desc = "A fully-loaded Donksoft bullpup submachine gun that fires riot grade darts with a 20-round magazine."
@@ -728,6 +736,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 	illegal_tech = FALSE
+
+/datum/uplink_item/ammo/deagle
+	name = ".50 AE Magazine"
+	desc = "A magazine that contains seven rounds of .50AE ammunition, usable with the Desert Eagle. This ammo cannot be found on the station."
+	item = /obj/item/ammo_box/magazine/m50
+	cost = 2
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/ammo/a40mm
 	name = "40mm Grenade"
@@ -1926,7 +1941,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	cant_discount = TRUE
 	illegal_tech = FALSE
-	
+
 /datum/uplink_item/badass/syndiefedora
 	name = "Syndicate Fedora"
 	desc = "This Syndicate Fedora of micro-woven adamantium silk is sure to prove your style!"
