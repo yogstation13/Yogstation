@@ -78,7 +78,7 @@ datum/crafting_recipe/food/donut/meat
 	result = /obj/item/reagent_containers/food/snacks/donut/jelly/laugh
 	subcategory = CAT_PASTRY
 	
-	/datum/crafting_recipe/food/donut/slimejelly/laugh
+/datum/crafting_recipe/food/donut/slimejelly/laugh
 	name = "Sweet Pea Jelly Donut"
 	reqs = list(
 		/datum/reagent/consumable/laughsyrup = 3,
