@@ -219,11 +219,13 @@
 	icon_state = "control_boxp"
 	var/area_aim = FALSE //should also show areas for targeting
 
-/obj/machinery/computer/bsa_control/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/bsa_control/ui_state(mob/user)
+	return GLOB.physical_state
+
+/obj/machinery/computer/bsa_control/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "BluespaceArtillery", name, 400, 220, master_ui, state)
+		ui = new(user, src, "BluespaceArtillery", name)
 		ui.open()
 
 /obj/machinery/computer/bsa_control/ui_data()
@@ -281,7 +283,7 @@
 
 /**
   * Fires the BSA (duh) if it has power
-  * 
+  *
   * If its target is the [pirate gps] [/obj/item/gps/pirate], it'll just fire at the edge of the map then call the [GPS' on_shoot proc] [/obj/item/gps/pirate/proc/on_shoot]
   *
   * Arguments:

@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Intelligence potion now has a cooldown of 20 seconds"

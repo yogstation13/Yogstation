@@ -64,6 +64,7 @@
 	tastes = list ("a prancing rabbit" = 1) //Vib Ribbon sends her regards.. wherever she is.
 	wine_power = 90
 	wine_flavor = "a vector-graphic rabbit dancing on your tongue"
+	juice_results = list(/datum/reagent/consumable/laughsyrup = 0)
 
 
 // World Peas - Peace at last, peace at last...

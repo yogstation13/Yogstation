@@ -151,7 +151,7 @@
 		temp = {"<span class='alert'>Not enough resources to build next part.</span><br>
 					<a href='?src=[REF(src)];process_queue=1'>Try again</a> | <a href='?src=[REF(src)];clear_temp=1'>Return</a><a>"}
 		return FALSE
-		
+
 	being_built = D
 	desc = "It's building \a [initial(D.name)]."
 	materials.use_amount(res_coef)
@@ -263,7 +263,7 @@
 /obj/machinery/mecha_part_fabricator/proc/get_construction_time_w_coeff(datum/design/D, roundto = 1) //aran
 	return round(initial(D.construction_time)*time_coeff, roundto)
 
-/obj/machinery/mecha_part_fabricator/ui_interact(mob/user as mob)
+/obj/machinery/mecha_part_fabricator/ui_interact(mob/user)
 	. = ..()
 	var/dat, left_part
 	user.set_machine(src)

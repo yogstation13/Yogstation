@@ -680,6 +680,8 @@
 	var/list/not_interested = list()
 	var/being_used = FALSE
 	var/sentience_type = SENTIENCE_ORGANIC
+	var/intel_timer = 0
+	var/intel_cooldown = 200 // in deciseconds, the cooldown in between uses
 
 /obj/item/slimepotion/slime/sentience/attack(mob/living/M, mob/user)
 	if(being_used || !ismob(M))
@@ -693,6 +695,11 @@
 	var/mob/living/simple_animal/SM = M
 	if(SM.sentience_type != sentience_type)
 		to_chat(user, "<span class='warning'>[src] won't work on [SM].</span>")
+		return
+	if(intel_timer <= world.time)
+		intel_timer = world.time + intel_cooldown
+	else
+		to_chat(src, "<span class='danger'>The [src] is on cooldown! You must wait " + ((intel_timer - world.time) / 10) + " seconds before using it again.</span>")
 		return
 
 	to_chat(user, "<span class='notice'>You offer [src] to [SM]...</span>")

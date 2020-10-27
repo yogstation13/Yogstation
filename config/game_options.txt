@@ -147,6 +147,7 @@ CONTINUOUS WIZARD
 CONTINUOUS HIVEMIND
 CONTINUOUS MALF
 CONTINUOUS SHADOWLING
+CONTINUOUS VAMPIRE
 
 ##Note: do not toggle continuous off for these modes, as they have no antagonists and would thus end immediately!
 

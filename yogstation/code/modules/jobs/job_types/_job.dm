@@ -68,12 +68,17 @@
 	var/SM = C.prefs.map
 	var/F = C.prefs.flare
 	var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
-
-	if(SM == 1)
-		var/obj/item/map/station/map = new get_turf(H)
-		if(BP)
-			map.forceMove(BP)
-	if(F == 1)
-		var/obj/item/flashlight/flare/emergency/flare = new get_turf(H)
-		if(BP)
-			flare.forceMove(BP)
+	if(BP)
+		var/obj/item/storage/box/box = locate(/obj/item/storage/box) in BP
+		if(SM == 1)
+			var/obj/item/map/station/map = new get_turf(H)
+			if(box)
+				map.forceMove(box)
+			else
+				map.forceMove(BP)
+		if(F == 1)
+			var/obj/item/flashlight/flare/emergency/flare = new get_turf(H)
+			if(box)
+				flare.forceMove(box)
+			else
+				flare.forceMove(BP)
