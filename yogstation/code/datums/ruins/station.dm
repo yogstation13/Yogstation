@@ -59,7 +59,7 @@
 	id = "bar_cheese"
 	suffix = "bar_cheese.dmm"
 	name = "Bar Cheese"
-	
+
 /datum/map_template/ruin/station/box/bar/clock
 	id = "bar_clock"
 	suffix = "bar_clock.dmm"
@@ -124,7 +124,7 @@
 	id = "medbay_morgue5"
 	suffix = "medbay_morgue5.dmm"
 	name = "Morgue 5"
-	
+
 /datum/map_template/ruin/station/box/dorms_edoor
 	id = "dorms_edoor1"
 	suffix = "dorms_edoor1.dmm"
@@ -209,7 +209,7 @@
 	id = "transfer2"
 	suffix = "transfer2.dmm"
 	name = "Transfer 2"
-	
+
 /datum/map_template/ruin/station/box/transfer/transfer3
 	id = "transfer3"
 	suffix = "transfer3.dmm"
@@ -278,9 +278,12 @@
 	suffix = "ebar_casino.dmm"
 	name = "Eclipse Bar Casino"
 
+//The following are maint templates. See https://github.com/yogstation13/Yogstation/pull/9806
+///Base for all station ruins.
 /datum/map_template/ruin/station/maint
 	prefix = "_maps/RandomRuins/StationRuins/maint/"
 
+///Base for the 3x3 rooms.
 /datum/map_template/ruin/station/maint/threexthree
 	prefix = "_maps/RandomRuins/StationRuins/maint/3x3/"
 
@@ -409,6 +412,12 @@
 	suffix = "3x3_medicloset.dmm"
 	name = "Maint medicloset"
 
+///Memorial- a memorial to those who died when constructing ss13. Author: Jcat
+/datum/map_template/ruin/station/maint/threexthree/memorial
+	id= "memorial"
+	suffix = "3x3_memorial.dmm"
+	name = "Maint memorial"
+
 /datum/map_template/ruin/station/maint/threexthree/metaclutter2
 	id= "metaclutter2"
 	suffix = "3x3_metaclutter2.dmm"
@@ -464,6 +473,12 @@
 	suffix = "3x3_shrine.dmm"
 	name = "Maint shrine"
 
+///Singularity- A fake singularity surrounded by space tiles and some sing-themed equipment. Author: Jcat
+/datum/map_template/ruin/station/maint/threexthree/singularity
+	id= "singularity"
+	suffix = "3x3_singularity.dmm"
+	name = "Maint singularity"
+
 /datum/map_template/ruin/station/maint/threexthree/tanning
 	id= "tanning"
 	suffix = "3x3_tanning.dmm"
@@ -484,8 +499,15 @@
 	suffix = "3x3_dronehole.dmm"
 	name = "Maint dronehole"
 
+///The base for the 3x5 rooms.
 /datum/map_template/ruin/station/maint/threexfive
 	prefix = "_maps/RandomRuins/StationRuins/maint/3x5/"
+
+///Airlockstorage- A room that stores a few airlock assemblies and related equipment. Author: Jcat
+/datum/map_template/ruin/station/maint/threexfive/airlockstorage
+	id= "airlockstorage"
+	suffix = "3x5_airlockstorage.dmm"
+	name = "Maint airlockstorage"
 
 /datum/map_template/ruin/station/maint/threexfive/boxclutter7
 	id= "boxclutter7"
@@ -501,6 +523,12 @@
 	id= "canisterroom"
 	suffix = "3x5_canisterroom.dmm"
 	name = "Maint canisterroom"
+
+///Checkpoint- A security checkpoint. Glory to NT! Author: Jcat
+/datum/map_template/ruin/station/maint/threexfive/checkpoint
+	id= "checkpoint"
+	suffix = "3x5_checkpoint.dmm"
+	name = "Maint checkpoint"
 
 /datum/map_template/ruin/station/maint/threexfive/hank
 	id= "hank"
@@ -527,6 +555,12 @@
 	suffix = "3x5_monky.dmm"
 	name = "Maint monky"
 
+///Onioncult- Fake clock cult walls, and an onion. Author: Ezhan
+/datum/map_template/ruin/station/maint/threexfive/onioncult
+	id= "onioncult"
+	suffix = "3x5_onioncult.dmm"
+	name = "Maint onioncult"
+
 /datum/map_template/ruin/station/maint/threexfive/pubbyclutter5
 	id= "pubbyclutter5"
 	suffix = "3x5_pubbyclutter5.dmm"
@@ -552,6 +586,7 @@
 	suffix = "3x5_boxmaintfreezers.dmm"
 	name = "Maint boxmaintfreezers"
 
+///The base for the 5x3 rooms.
 /datum/map_template/ruin/station/maint/fivexthree
 	prefix = "_maps/RandomRuins/StationRuins/maint/5x3/"
 
@@ -559,6 +594,12 @@
 	id= "boxclutter1"
 	suffix = "5x3_boxclutter1.dmm"
 	name = "Maint boxclutter1"
+
+///Breach- a room with metal foam floors and walls. Author: Jcat
+/datum/map_template/ruin/station/maint/fivexthree/breach
+	id= "breach"
+	suffix = "5x3_breach.dmm"
+	name = "Maint breach"
 
 /datum/map_template/ruin/station/maint/fivexthree/cloner
 	id= "cloner"
@@ -645,8 +686,27 @@
 	suffix = "5x3_yogsmaintrpg.dmm"
 	name = "Maint yogsmaintrpg"
 
+///Author: Veeblefetzer
+/datum/map_template/ruin/station/maint/fivexthree/podmin
+	id= "podmin"
+	suffix = "5x3_podmin.dmm"
+	name = "Maint podmin"
+
+///Author: Veeblefetzer
+/datum/map_template/ruin/station/maint/fivexthree/waitingroom
+	id= "waitingroom"
+	suffix = "5x3_waitingroom.dmm"
+	name = "Maint waitingroom"
+
+///The base for the 5x4 rooms.
 /datum/map_template/ruin/station/maint/fivexfour
 	prefix = "_maps/RandomRuins/StationRuins/maint/5x4/"
+
+///Blasted-the aftermath of smoking gone wrong. Author: Jcat
+/datum/map_template/ruin/station/maint/fivexfour/blasted
+	id= "blasted"
+	suffix = "5x4_blasted.dmm"
+	name = "Maint blasted"
 
 /datum/map_template/ruin/station/maint/fivexfour/boxbar
 	id= "boxbar"
@@ -708,6 +768,24 @@
 	suffix = "5x4_firemanroom.dmm"
 	name = "Maint firemanroom"
 
+///Author: Veeblefetzer
+/datum/map_template/ruin/station/maint/fivexfour/pass
+	id= "pass"
+	suffix = "5x4_pass.dmm"
+	name = "Maint pass"
+
+///Author: Veeblefetzer
+/datum/map_template/ruin/station/maint/fivexfour/laundromat
+	id= "laundromat"
+	suffix = "5x4_laundromat.dmm"
+	name = "Maint laundromat"
+
+///Icicle-brrr its cold! Author: Jcat
+/datum/map_template/ruin/station/maint/fivexfour/icicle
+	id= "icicle"
+	suffix = "5x4_icicle.dmm"
+	name = "Maint icicle"
+
 /datum/map_template/ruin/station/maint/fivexfour/kilohauntedlibrary
 	id= "kilohauntedlibrary"
 	suffix = "5x4_kilohauntedlibrary.dmm"
@@ -717,6 +795,12 @@
 	id= "kilosurgery"
 	suffix = "5x4_kilosurgery.dmm"
 	name = "Maint kilosurgery"
+
+///Medusa- some nerds got turned to stone. Or is it just an artpiece? Author: Jcat
+/datum/map_template/ruin/station/maint/fivexfour/medusa
+	id= "medusa"
+	suffix = "5x4_medusa.dmm"
+	name = "Maint medusa"
 
 /datum/map_template/ruin/station/maint/fivexfour/metakitchen
 	id= "metakitchen"
@@ -748,6 +832,7 @@
 	suffix = "5x4_tinybarbershop.dmm"
 	name = "Maint tinybarbershop"
 
+///The base for the 10x5 rooms
 /datum/map_template/ruin/station/maint/tenxfive
 	prefix = "_maps/RandomRuins/StationRuins/maint/10x5/"
 
@@ -781,6 +866,18 @@
 	suffix = "10x5_deltarobotics.dmm"
 	name = "Maint deltarobotics"
 
+///Factory-this is how they made crowbars before autolathes. Author: Jcat
+/datum/map_template/ruin/station/maint/tenxfive/factory
+	id= "factory"
+	suffix = "10x5_factory.dmm"
+	name = "Maint factory"
+
+///Insomina-The den of an NTnet conspiracy theorist. He's right, you know. Author: Jcat
+/datum/map_template/ruin/station/maint/tenxfive/insomnia
+	id= "insomnia"
+	suffix = "10x5_insomnia.dmm"
+	name = "Maint insomnia"
+
 /datum/map_template/ruin/station/maint/tenxfive/maintmedical
 	id= "maintmedical"
 	suffix = "10x5_maintmedical.dmm"
@@ -801,8 +898,39 @@
 	suffix = "10x5_skidrow.dmm"
 	name = "Maint skidrow"
 
+///Transit: a super pointless transit tube journey. Everyone loves waiting! Author: Jcat
+/datum/map_template/ruin/station/maint/tenxfive/transit
+	id= "transit"
+	suffix = "10x5_transit.dmm"
+	name = "Maint transit"
+
+///Author: Veeblefetzer
+/datum/map_template/ruin/station/maint/tenxfive/ballpit
+	id= "ballpit"
+	suffix = "10x5_ballpit.dmm"
+	name = "Maint ballpit"
+
+///Author: Veeblefetzer
+/datum/map_template/ruin/station/maint/tenxfive/commie
+	id= "commie"
+	suffix = "10x5_commie.dmm"
+	name = "Maint commie"
+
+///Author: Veeblefetzer
+/datum/map_template/ruin/station/maint/tenxfive/firingrange
+	id= "firingrange"
+	suffix = "10x5_firingrange.dmm"
+	name = "Maint firingrange"
+
+///The base for the 10x10 rooms.
 /datum/map_template/ruin/station/maint/tenxten
 	prefix = "_maps/RandomRuins/StationRuins/maint/10x10/"
+
+///Aquarium-NT scientists study space marine life. Author: Jcat
+/datum/map_template/ruin/station/maint/tenxten/aquarium
+	id= "aquarium"
+	suffix = "10x10_aquarium.dmm"
+	name = "Maint aquarium"
 
 /datum/map_template/ruin/station/maint/tenxten/bigconstruction
 	id= "bigconstruction"
@@ -823,6 +951,18 @@
 	id= "graffitiroom"
 	suffix = "10x10_graffitiroom.dmm"
 	name = "Maint graffitiroom"
+
+///Junction- sometimes in life, you can only go forward. Author: Jcat
+/datum/map_template/ruin/station/maint/tenxten/junction
+	id= "junction"
+	suffix = "10x10_junction.dmm"
+	name = "Maint junction"
+
+///Lasertag-Author: Jcat
+/datum/map_template/ruin/station/maint/tenxten/lasertag
+	id= "lasertag"
+	suffix = "10x10_lasertag.dmm"
+	name = "Maint lasertag"
 
 /datum/map_template/ruin/station/maint/tenxten/podrepairbay
 	id= "podrepairbay"
@@ -848,3 +988,33 @@
 	id= "snakefighter"
 	suffix = "10x10_snakefighter.dmm"
 	name = "Maint snakefighter"
+
+///Vault- A 'heavily guarded' vault. Author: Jcat
+/datum/map_template/ruin/station/maint/tenxten/vault
+	id= "vault"
+	suffix = "10x10_vault.dmm"
+	name = "Maint vault"
+
+///Ward-outbreak gone wrong. Author: Jcat
+/datum/map_template/ruin/station/maint/tenxten/ward
+	id= "ward"
+	suffix = "10x10_ward.dmm"
+	name = "Maint ward"
+
+///Author: Veeblefetzer
+/datum/map_template/ruin/station/maint/tenxten/assaultpod
+	id= "assaultpod"
+	suffix = "10x10_assaultpod.dmm"
+	name = "Maint assaultpod"
+
+///Author: Veeblefetzer
+/datum/map_template/ruin/station/maint/tenxten/maze
+	id= "maze"
+	suffix = "10x10_maze.dmm"
+	name = "Maint maze"
+
+///Author: Veeblefetzer
+/datum/map_template/ruin/station/maint/tenxten/maze2
+	id= "maze2"
+	suffix = "10x10_maze2.dmm"
+	name = "Maint maze2"

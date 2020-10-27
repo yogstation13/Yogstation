@@ -4182,9 +4182,6 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/port/fore)
-"agc" = (
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain/private)
 "age" = (
 /obj/structure/cable/white,
 /obj/effect/spawner/structure/window/reinforced,
@@ -10742,18 +10739,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"apR" = (
-/obj/structure/sign/warning/nosmoking{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/morgue)
 "apY" = (
 /turf/open/floor/plating,
 /area/maintenance/starboard/central)
@@ -17278,7 +17263,7 @@
 /obj/item/seeds/wheat,
 /obj/item/reagent_containers/food/snacks/grown/tomato,
 /obj/effect/turf_decal/bot,
-/obj/item/paper/guides/jobs/hydroponics,
+/obj/item/book/manual/wiki/hydroponicsplants,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -17300,7 +17285,7 @@
 	},
 /obj/item/seeds/tower,
 /obj/effect/turf_decal/bot,
-/obj/item/book/manual/hydroponics_pod_people,
+/obj/item/book/manual/wiki/hydroponicsguide,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -19615,6 +19600,7 @@
 /area/crew_quarters/lounge)
 "aTz" = (
 /obj/structure/chair/comfy/brown,
+/obj/effect/landmark/start/artist,
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/lounge)
 "aTA" = (
@@ -21231,20 +21217,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint)
-"baR" = (
-/obj/item/radio/intercom{
-	name = "Station Intercom";
-	pixel_y = -24
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 1;
-	icon_state = "scrub_map_on-3"
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/mechbay)
 "baT" = (
 /obj/structure/table,
 /obj/item/stock_parts/cell/high,
@@ -24576,6 +24548,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"bUf" = (
+/obj/effect/turf_decal/sand/plating,
+/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/obj/structure/bed/dogbed/birdboat,
+/turf/open/floor/plating/airless,
+/area/maintenance/port)
 "bWU" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -34099,6 +34077,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"msP" = (
+/obj/structure/bed/dogbed/renault,
+/mob/living/simple_animal/pet/fox/Renault,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "mtk" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -34178,6 +34161,21 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/central)
+"mDi" = (
+/obj/item/radio/intercom{
+	name = "Station Intercom";
+	pixel_y = -24
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 1;
+	icon_state = "scrub_map_on-3"
+	},
+/mob/living/simple_animal/pet/dog/corgi/borgi,
+/turf/open/floor/plasteel,
+/area/science/robotics/mechbay)
 "mDL" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/advanced_airlock_controller{
@@ -37559,6 +37557,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"qka" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/mouse/brown/Tom,
+/turf/open/floor/plating,
+/area/security/prison)
 "qkm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 2;
@@ -37978,6 +37981,20 @@
 /obj/machinery/disposal/bin,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/fore)
+"qJl" = (
+/obj/structure/sign/warning/nosmoking{
+	pixel_x = 32
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/bed/dogbed/runtime,
+/mob/living/simple_animal/pet/cat/Runtime,
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
 "qJO" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -79644,7 +79661,7 @@ aEt
 cwv
 sna
 sna
-ouy
+bUf
 ouy
 bIG
 ehE
@@ -81648,7 +81665,7 @@ aac
 aac
 bNT
 aeo
-ajb
+qka
 ahz
 aAc
 arD
@@ -84521,7 +84538,7 @@ aHM
 akw
 kEs
 aHa
-apR
+qJl
 aqj
 aqk
 alj
@@ -86538,7 +86555,7 @@ acS
 adL
 aer
 afo
-agc
+msP
 abH
 uPM
 abw
@@ -90189,7 +90206,7 @@ aZc
 eed
 wQO
 gAo
-baR
+mDi
 aZa
 fVA
 bfP

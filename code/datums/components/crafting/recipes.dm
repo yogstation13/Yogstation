@@ -50,7 +50,6 @@
 	time = 120
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-	always_availible = FALSE
 
 /datum/crafting_recipe/knifeboxing
 	name = "Knife-boxing Gloves"
@@ -577,6 +576,13 @@
 /datum/crafting_recipe/skullhelm
 	name = "Skull Helmet"
 	result = /obj/item/clothing/head/helmet/skull
+	time = 30
+	reqs = list(/obj/item/stack/sheet/bone = 4)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/shamanhat
+	name = "Shaman Headdress"
+	result = /obj/item/clothing/head/helmet/shaman
 	time = 30
 	reqs = list(/obj/item/stack/sheet/bone = 4)
 	category = CAT_PRIMAL

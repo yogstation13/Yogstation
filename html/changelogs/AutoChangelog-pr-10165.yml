@@ -1,0 +1,6 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - rscadd: "New customization options for lizards and polysmorphs!"
+  - imageadd: "Plus sprites by yours truly!"
+  - spellcheck: "Angeler -> Angler"

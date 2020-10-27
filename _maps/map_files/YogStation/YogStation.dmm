@@ -411,9 +411,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"abc" = (
-/turf/closed/wall,
-/area/security/execution/transfer)
 "abd" = (
 /obj/machinery/bounty_board,
 /turf/closed/wall,
@@ -14755,7 +14752,13 @@
 /obj/structure/table,
 /obj/item/camera_film,
 /obj/item/camera,
-/turf/open/floor/plasteel,
+/obj/structure/sign/poster/official/space_cops{
+	pixel_y = -32
+	},
+/obj/machinery/newscaster{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aMs" = (
 /obj/structure/cable{
@@ -15841,13 +15844,13 @@
 /area/storage/art)
 "aPH" = (
 /obj/machinery/door/airlock/public/glass{
-	name = "Art Storage"
+	name = "Artist's Coven"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aPI" = (
 /obj/structure/cable{
@@ -16226,7 +16229,11 @@
 /obj/structure/table,
 /obj/item/stack/cable_coil/random,
 /obj/item/stack/cable_coil/random,
-/turf/open/floor/plasteel,
+/obj/item/statuebust,
+/obj/structure/sign/poster/official/high_class_martini{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aQZ" = (
 /obj/machinery/light/small{
@@ -16236,10 +16243,14 @@
 	pixel_x = 27
 	},
 /obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel,
+/obj/structure/sign/poster/official/pda_ad{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aRa" = (
-/turf/open/floor/plasteel,
+/obj/machinery/holopad,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aRb" = (
 /obj/structure/cable{
@@ -16620,7 +16631,7 @@
 /obj/item/stack/cable_coil,
 /obj/item/paper_bin/construction,
 /obj/item/stack/cable_coil,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aSl" = (
 /obj/machinery/space_heater,
@@ -16887,7 +16898,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/storage/art";
 	dir = 1;
-	name = "Art Storage";
+	name = "Artist's Coven";
 	pixel_y = 24
 	},
 /obj/structure/cable{
@@ -17015,13 +17026,13 @@
 "aTE" = (
 /obj/structure/table,
 /obj/item/hand_labeler,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aTG" = (
 /obj/structure/table,
 /obj/item/storage/crayons,
 /obj/item/storage/crayons,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aTH" = (
 /obj/structure/disposalpipe/segment{
@@ -30681,12 +30692,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"bIW" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/science/mixing)
 "bJa" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -32560,7 +32565,8 @@
 	dir = 8;
 	pixel_x = 24
 	},
-/turf/open/floor/plasteel,
+/obj/structure/chair/office/dark,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "bQz" = (
 /obj/effect/decal/cleanable/dirt,
@@ -37484,6 +37490,12 @@
 /obj/item/flashlight/lantern,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
+"dvj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/instrument/harmonica,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "dvH" = (
 /obj/effect/turf_decal/tile/slightlydarkerblue{
 	dir = 8
@@ -39910,12 +39922,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"fqe" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/pen,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "fqv" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -42518,6 +42524,17 @@
 /obj/machinery/chem_master,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"hIw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/obj/item/pen,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "hIx" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
 	dir = 1
@@ -43267,6 +43284,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"ioi" = (
+/obj/effect/landmark/start/artist,
+/turf/open/floor/plasteel/vaporwave,
+/area/storage/art)
 "iok" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -48645,9 +48666,13 @@
 /area/medical/morgue)
 "mDD" = (
 /obj/structure/table,
-/obj/item/book/manual/hydroponics_pod_people,
-/obj/item/paper/guides/jobs/hydroponics,
-/obj/item/clothing/accessory/armband/hydro,
+/obj/item/book/manual/wiki/hydroponicsplants{
+	pixel_x = -3
+	},
+/obj/item/book/manual/wiki/hydroponicsguide{
+	pixel_x = 3;
+	pixel_y = 2
+	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "mDN" = (
@@ -48722,6 +48747,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"mGG" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/sci_bombardment,
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "mGO" = (
 /obj/machinery/smartfridge/extract/preloaded,
 /obj/structure/sign/poster/contraband/lusty_xenomorph{
@@ -56309,16 +56341,6 @@
 /obj/structure/closet/wardrobe/pjs,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"sAW" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/pen,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "sAY" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -56611,6 +56633,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
+"sQI" = (
+/turf/closed/wall,
+/area/security/execution/transfer)
 "sQT" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 5;
@@ -57198,6 +57223,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"tpl" = (
+/turf/closed/wall{
+	icon = 'icons/turf/walls/reinforced_wall.dmi';
+	icon_state = "r_wall"
+	},
+/area/security/execution/transfer)
 "tpq" = (
 /obj/item/coin/silver{
 	pixel_x = 7;
@@ -85504,7 +85535,7 @@ aLE
 aOl
 aPH
 aRa
-aRa
+ioi
 aTG
 aPG
 aTq
@@ -88550,7 +88581,7 @@ qQV
 qQV
 qQV
 qQV
-abc
+tpl
 aaf
 aaa
 aaf
@@ -88797,7 +88828,7 @@ dxV
 uNu
 aat
 aUg
-afA
+sQI
 qQV
 qQV
 qQV
@@ -88807,7 +88838,7 @@ qQV
 qQV
 qQV
 qQV
-abc
+tpl
 aaf
 aaa
 aaa
@@ -89054,7 +89085,7 @@ aat
 aat
 aat
 olh
-afA
+sQI
 qQV
 qQV
 qQV
@@ -89064,7 +89095,7 @@ qQV
 qQV
 qQV
 qQV
-abc
+tpl
 aaf
 aaa
 aaf
@@ -89311,7 +89342,7 @@ aat
 aat
 aat
 sIN
-afA
+sQI
 qQV
 qQV
 qQV
@@ -89321,7 +89352,7 @@ qQV
 qQV
 qQV
 qQV
-abc
+tpl
 aaf
 aaa
 aaa
@@ -89568,16 +89599,16 @@ aat
 aat
 hEn
 bab
-afA
-afA
-afA
-afA
-afA
-afA
-afA
+sQI
+sQI
+sQI
+sQI
+sQI
+sQI
+sQI
 aeT
-afA
-afA
+sQI
+sQI
 afA
 aaf
 aaa
@@ -89834,7 +89865,7 @@ acd
 aef
 aeU
 afz
-aai
+acd
 aai
 aai
 aai
@@ -90079,8 +90110,8 @@ csA
 aat
 aat
 aat
-fqe
-sAW
+dvj
+hIw
 aat
 aat
 aat
@@ -90863,7 +90894,7 @@ aej
 afy
 afD
 acd
-agJ
+agK
 ahp
 amb
 aiE
@@ -91120,7 +91151,7 @@ aei
 aeO
 afG
 acd
-agK
+agJ
 agK
 ail
 ajv
@@ -116375,7 +116406,7 @@ cmz
 bky
 bGd
 bHv
-bIW
+mGG
 bKe
 bLm
 bEs

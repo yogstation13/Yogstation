@@ -293,9 +293,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"M" = (
-/turf/closed/wall,
-/area/security/execution/transfer)
 "N" = (
 /obj/machinery/power/apc{
 	areastring = "/area/security/execution/transfer";
@@ -319,6 +316,12 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/white,
+/area/security/execution/transfer)
+"P" = (
+/turf/closed/wall{
+	icon = 'icons/turf/walls/reinforced_wall.dmi';
+	icon_state = "r_wall"
+	},
 /area/security/execution/transfer)
 "Q" = (
 /obj/structure/cable{
@@ -402,33 +405,33 @@ a
 a
 a
 a
-M
-M
-M
-M
-M
+P
+P
+P
+P
+P
 "}
 (2,1,1) = {"
 a
 a
 a
 a
-M
+P
 s
 U
 O
-M
+P
 "}
 (3,1,1) = {"
-M
-M
-M
+P
+P
+P
 d
-M
+P
 H
 z
 k
-M
+P
 "}
 (4,1,1) = {"
 Z
