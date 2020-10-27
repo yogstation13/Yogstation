@@ -20,7 +20,7 @@ LINEN BINS
 	w_class = WEIGHT_CLASS_TINY
 	item_color = "white"
 	resistance_flags = FLAMMABLE
-	var/bedsuffix = null
+	var/newbedpath = null
 
 	dog_fashion = /datum/dog_fashion/head/ghost
 	var/list/dream_messages = list("white")
@@ -30,8 +30,7 @@ LINEN BINS
 		..()
 
 /obj/item/bedsheet/attack_self(mob/user)
-	if(bedsuffix)
-		var/newbedpath = "/obj/item/bedsheet/adjusted/" + bedsuffix
+	if(newbedpath)
 		var/obj/item/bedsheet/sheet = new newbedpath(drop_location())
 		if(sheet)
 			sheet.name = name
@@ -79,14 +78,14 @@ LINEN BINS
 	item_state = "sheetblue"
 	item_color = "blue"
 	dream_messages = list("blue")
-	bedsuffix = "blue"
+	newbedpath = /obj/item/bedsheet/adjusted/blue
 
 /obj/item/bedsheet/green
 	icon_state = "sheetgreen"
 	item_state = "sheetgreen"
 	item_color = "green"
 	dream_messages = list("green")
-	bedsuffix = "green"
+	newbedpath = /obj/item/bedsheet/adjusted/green
 
 /obj/item/bedsheet/grey
 	icon_state = "sheetgrey"
@@ -99,14 +98,14 @@ LINEN BINS
 	item_state = "sheetorange"
 	item_color = "orange"
 	dream_messages = list("orange")
-	bedsuffix = "orange"
+	newbedpath = /obj/item/bedsheet/adjusted/orange
 
 /obj/item/bedsheet/purple
 	icon_state = "sheetpurple"
 	item_state = "sheetpurple"
 	item_color = "purple"
 	dream_messages = list("purple")
-	bedsuffix = "purple"
+	newbedpath = /obj/item/bedsheet/adjusted/purple
 
 /obj/item/bedsheet/patriot
 	name = "patriotic bedsheet"
@@ -123,21 +122,21 @@ LINEN BINS
 	item_state = "sheetrainbow"
 	item_color = "rainbow"
 	dream_messages = list("red", "orange", "yellow", "green", "blue", "purple", "a rainbow")
-	bedsuffix = "rainbow"
+	newbedpath = /obj/item/bedsheet/adjusted/rainbow
 
 /obj/item/bedsheet/red
 	icon_state = "sheetred"
 	item_state = "sheetred"
 	item_color = "red"
 	dream_messages = list("red")
-	bedsuffix = "red"
+	newbedpath = /obj/item/bedsheet/adjusted/red
 
 /obj/item/bedsheet/yellow
 	icon_state = "sheetyellow"
 	item_state = "sheetyellow"
 	item_color = "yellow"
 	dream_messages = list("yellow")
-	bedsuffix = "yellow"
+	newbedpath = /obj/item/bedsheet/adjusted/yellow
 
 /obj/item/bedsheet/mime
 	name = "mime's blanket"
@@ -146,7 +145,7 @@ LINEN BINS
 	item_state = "sheetmime"
 	item_color = "mime"
 	dream_messages = list("silence", "gestures", "a pale face", "a gaping mouth", "the mime")
-	bedsuffix = "mime"
+	newbedpath = /obj/item/bedsheet/adjusted/mime
 
 /obj/item/bedsheet/clown
 	name = "clown's blanket"
@@ -155,7 +154,7 @@ LINEN BINS
 	item_state = "sheetrainbow"
 	item_color = "clown"
 	dream_messages = list("honk", "laughter", "a prank", "a joke", "a smiling face", "the clown")
-	bedsuffix = "clown"
+	newbedpath = /obj/item/bedsheet/adjusted/clown
 
 /obj/item/bedsheet/captain
 	name = "captain's bedsheet"
@@ -164,7 +163,7 @@ LINEN BINS
 	item_state = "sheetcaptain"
 	item_color = "captain"
 	dream_messages = list("authority", "a golden ID", "sunglasses", "a green disc", "an antique gun", "the captain")
-	bedsuffix = "captain"
+	newbedpath = /obj/item/bedsheet/adjusted/captain
 
 /obj/item/bedsheet/rd
 	name = "research director's bedsheet"
@@ -173,7 +172,7 @@ LINEN BINS
 	item_state = "sheetrd"
 	item_color = "director"
 	dream_messages = list("authority", "a silvery ID", "a bomb", "a mech", "a facehugger", "maniacal laughter", "the research director")
-	bedsuffix = "rd"
+	newbedpath = /obj/item/bedsheet/adjusted/rd
 
 // for Free Golems.
 /obj/item/bedsheet/rd/royal_cape
@@ -188,7 +187,7 @@ LINEN BINS
 	item_state = "sheetmedical"
 	item_color = "medical"
 	dream_messages = list("healing", "life", "surgery", "a doctor")
-	bedsuffix = "medical"
+	newbedpath = /obj/item/bedsheet/adjusted/medical
 
 /obj/item/bedsheet/cmo
 	name = "chief medical officer's bedsheet"
@@ -205,7 +204,7 @@ LINEN BINS
 	item_state = "sheethos"
 	item_color = "hosred"
 	dream_messages = list("authority", "a silvery ID", "handcuffs", "a baton", "a flashbang", "sunglasses", "the head of security")
-	bedsuffix = "hos"
+	newbedpath = /obj/item/bedsheet/adjusted/hos
 
 /obj/item/bedsheet/hop
 	name = "head of personnel's bedsheet"
@@ -214,7 +213,7 @@ LINEN BINS
 	item_state = "sheethop"
 	item_color = "hop"
 	dream_messages = list("authority", "a silvery ID", "obligation", "a computer", "an ID", "a corgi", "the head of personnel")
-	bedsuffix = "hop"
+	newbedpath = /obj/item/bedsheet/adjusted/hop
 
 /obj/item/bedsheet/ce
 	name = "chief engineer's bedsheet"
@@ -223,7 +222,7 @@ LINEN BINS
 	item_state = "sheetce"
 	item_color = "chief"
 	dream_messages = list("authority", "a silvery ID", "the engine", "power tools", "an APC", "a parrot", "the chief engineer")
-	bedsuffix = "ce"
+	newbedpath = /obj/item/bedsheet/adjusted/ce
 
 /obj/item/bedsheet/qm
 	name = "quartermaster's bedsheet"
@@ -238,7 +237,7 @@ LINEN BINS
 	item_state = "sheetbrown"
 	item_color = "cargo"
 	dream_messages = list("brown")
-	bedsuffix = "brown"
+	newbedpath = /obj/item/bedsheet/adjusted/brown
 
 /obj/item/bedsheet/black
 	icon_state = "sheetblack"
@@ -480,11 +479,11 @@ LINEN BINS
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEGLOVES|HIDEJUMPSUIT|HIDENECK|HIDEFACIALHAIR|HIDESUITSTORAGE
 	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS|HEAD
 	flags_cover = MASKCOVERSEYES|MASKCOVERSMOUTH|HEADCOVERSMOUTH
+	var/oldbedpath = null
 
 /obj/item/bedsheet/adjusted/attack_self(mob/user)
-	if(bedsuffix)
-		var/newbedpath = "/obj/item/bedsheet/" + bedsuffix
-		var/obj/item/bedsheet/sheet = new newbedpath(drop_location())
+	if(oldbedpath)
+		var/obj/item/bedsheet/sheet = new oldbedpath(drop_location())
 		if(sheet)
 			qdel(src)
 			user.put_in_active_hand(sheet)
@@ -493,52 +492,52 @@ LINEN BINS
 		to_chat(user, "<span class='notice'>You cannot adjust this bedsheet!</span>")
 
 /obj/item/bedsheet/adjusted/blue
-	bedsuffix = "blue"
+	oldbedpath = /obj/item/bedsheet/blue
 
 /obj/item/bedsheet/adjusted/green
-	bedsuffix = "green"
+	oldbedpath = /obj/item/bedsheet/green
 
 /obj/item/bedsheet/adjusted/grey
-	bedsuffix = "grey"
+	oldbedpath = /obj/item/bedsheet/grey
 
 /obj/item/bedsheet/adjusted/orange
-	bedsuffix = "orange"
+	oldbedpath = /obj/item/bedsheet/orange
 
 /obj/item/bedsheet/adjusted/purple
-	bedsuffix = "purple"
+	oldbedpath = /obj/item/bedsheet/purple
 
 /obj/item/bedsheet/adjusted/rainbow
-	bedsuffix = "rainbow"
+	oldbedpath = /obj/item/bedsheet/rainbow
 
 /obj/item/bedsheet/adjusted/red
-	bedsuffix = "red"
+	oldbedpath = /obj/item/bedsheet/red
 
 /obj/item/bedsheet/adjusted/yellow
-	bedsuffix = "yellow"
+	oldbedpath = /obj/item/bedsheet/yellow
 
 /obj/item/bedsheet/adjusted/mime
-	bedsuffix = "mime"
+	oldbedpath = /obj/item/bedsheet/mime
 
 /obj/item/bedsheet/adjusted/clown
-	bedsuffix = "clown"
+	oldbedpath = /obj/item/bedsheet/clown
 
 /obj/item/bedsheet/adjusted/captain
-	bedsuffix = "captain"
+	oldbedpath = /obj/item/bedsheet/captain
 
 /obj/item/bedsheet/adjusted/rd
-	bedsuffix = "rd"
+	oldbedpath = /obj/item/bedsheet/rd
 
 /obj/item/bedsheet/adjusted/medical
-	bedsuffix = "medical"
+	oldbedpath = /obj/item/bedsheet/medical
 
 /obj/item/bedsheet/adjusted/hos
-	bedsuffix = "hos"
+	oldbedpath = /obj/item/bedsheet/hos
 
 /obj/item/bedsheet/adjusted/hop
-	bedsuffix = "hop"
+	oldbedpath = /obj/item/bedsheet/hop
 
 /obj/item/bedsheet/adjusted/ce
-	bedsuffix = "ce"
+	oldbedpath = /obj/item/bedsheet/ce
 
 /obj/item/bedsheet/adjusted/brown
-	bedsuffix = "brown"
+	oldbedpath = /obj/item/bedsheet/brown
