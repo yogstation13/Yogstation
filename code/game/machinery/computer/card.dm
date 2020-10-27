@@ -415,10 +415,6 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 						to_chat(usr, "<span class='warning'>No log exists for this job.</span>")
 						updateUsrDialog()
 						return
-					if(!isnull(modify.registered_age) && modify.registered_age < jobdatum.minimal_character_age)
-						to_chat(usr, "<span class='warning'>This individual is too young to hold that Job, per Nanotrasen guidelines. Job assignment aborted!</span>")
-						updateUsrDialog()
-						return
 					if(modify.registered_account)
 						modify.registered_account.account_job = jobdatum // this is a terrible idea and people will grief but sure whatever
 
