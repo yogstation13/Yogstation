@@ -63,6 +63,9 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		nullifyNode(i)
 
 	SSair.atmos_machinery -= src
+	if(SSair.currentpart == SSAIR_ATMOSMACHINERY)
+		SSair.currentrun -= src
+	SSair.pipenets_needing_rebuilt -= src
 
 	dropContents()
 	if(pipe_vision_img)

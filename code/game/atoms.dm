@@ -482,10 +482,6 @@
 		to_chat(user, "<span class='warning'>You can't move while buckled to [src]!</span>")
 	return
 
-/// Return true if this atoms contents should not have ex_act called on ex_act
-/atom/proc/prevent_content_explosion()
-	return FALSE
-
 /// Handle what happens when your contents are exploded by a bomb
 /atom/proc/contents_explosion(severity, target)
 	return //For handling the effects of explosions on contents that would not normally be effected
@@ -1111,7 +1107,7 @@
 
 /**
   * Recursive getter method to return a list of all ghosts orbitting this atom
-  * 
+  *
   * This will work fine without manually passing arguments.
   */
 /atom/proc/get_all_orbiters(list/processed, source = TRUE)

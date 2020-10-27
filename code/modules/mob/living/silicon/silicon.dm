@@ -14,6 +14,7 @@
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	deathsound = 'sound/voice/borg_deathsound.ogg'
 	speech_span = SPAN_ROBOT
+	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
 
 	var/datum/ai_laws/laws = null//Now... THEY ALL CAN ALL HAVE LAWS
 	var/last_lawchange_announce = 0
@@ -71,9 +72,6 @@
 
 /mob/living/silicon/contents_explosion(severity, target)
 	return
-
-/mob/living/silicon/prevent_content_explosion()
-	return TRUE
 
 /mob/living/silicon/proc/cancelAlarm()
 	return
@@ -331,7 +329,7 @@
 		return
 	if(world.time < client.crew_manifest_delay)
 		return
-		
+
 	client.crew_manifest_delay = world.time + (1 SECONDS)
 	var/datum/browser/popup = new(src, "airoster", "Crew Manifest", 387, 420)
 	popup.set_content(GLOB.data_core.get_manifest_html())

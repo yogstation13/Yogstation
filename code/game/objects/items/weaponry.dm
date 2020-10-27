@@ -17,7 +17,7 @@
 /obj/item/banhammer/suicide_act(mob/user)
 		user.visible_message("<span class='suicide'>[user] is hitting [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to ban [user.p_them()]self from life.</span>")
 		return (BRUTELOSS|FIRELOSS|TOXLOSS|OXYLOSS)
-/* 
+/*
 oranges says: This is a meme relating to the english translation of the ss13 russian wiki page on lurkmore.
 mrdoombringer sez: and remember kids, if you try and PR a fix for this item's grammar, you are admitting that you are, indeed, a newfriend.
 for further reading, please see: https://github.com/tgstation/tgstation/pull/30173 and https://translate.google.com/translate?sl=auto&tl=en&js=y&prev=_t&hl=en&ie=UTF-8&u=%2F%2Flurkmore.to%2FSS13&edit-text=&act=url
@@ -358,7 +358,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	else
 		user.visible_message("<span class='suicide'>[user] is strangling [user.p_them()]self with [src]'s cord! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return(OXYLOSS)
-	
+
 /obj/item/phone/real
 	desc = "A bluespace last resort negotiation tool connected directly to the enemy should anything ever go wrong. Misuse will likely lead to the line being cut or anything else they're capable of. All communication is monitored by Nanotrasen Officials."
 
@@ -371,7 +371,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	to_chat(usr, "<span class='danger'>Message sent. Pray you made the right choice.</span>")
 	usr.log_talk(input, LOG_SAY, tag="Syndicate announcement")
 	deadchat_broadcast(" has messaged the Syndicate using the red phone, \"[input]\" at <span class='name'>[get_area_name(usr, TRUE)]</span>.", "<span class='name'>[usr.real_name]</span>", usr)
-	
+
 /obj/item/phone/banana
 	name = "banana phone"
 	desc = "Direct telecommunications line to the Clown Planet. Use for emergencies only!"
@@ -384,7 +384,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/items/bikehorn.ogg'
-	
+
 /obj/item/phone/banana/attack_self(mob/user)
 	var/input = stripped_input(usr, "Please choose a message to send. If you are unsure, you can still turn back.", "Send a message to the Clown Planet.", "")
 	if(!input || !(usr in view(1,src)))
@@ -394,7 +394,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	to_chat(usr, "<span class='danger'>Message sent. The Clown Planet will judge your message.</span>")
 	usr.log_talk(input, LOG_SAY, tag="Clown Planet announcement")
 	deadchat_broadcast(" has messaged the Clown Planet using the banana phone, \"[input]\" at <span class='name'>[get_area_name(usr, TRUE)]</span>.", "<span class='name'>[usr.real_name]</span>", usr)
-	
+
 /obj/item/cane
 	name = "cane"
 	desc = "A cane used by a true gentleman. Or a clown."
@@ -617,7 +617,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	if(homerun_ready)
 		user.visible_message("<span class='userdanger'>It's a home run!</span>")
 		target.throw_at(throw_target, rand(8,10), 14, user)
-		target.ex_act(EXPLODE_HEAVY)
+		SSexplosions.medturf += throw_target
 		playsound(get_turf(src), 'sound/weapons/homerun.ogg', 100, 1)
 		homerun_ready = 0
 		return
