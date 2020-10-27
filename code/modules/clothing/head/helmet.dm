@@ -294,6 +294,23 @@
 	item_state = "skull"
 	strip_delay = 100
 
+/obj/item/clothing/head/helmet/kasa
+	name = "pathfinder kasa"
+	desc = "A helmet crafted from bones and sinew meant to protect its wearer from hazardous weather."
+	icon_state = "pathhead"
+	item_state = "pathhead"
+	flags_cover = HEAD
+	resistance_flags = FIRE_PROOF
+	cold_protection = HEAD
+	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	heat_protection = HEAD
+	armor = list("melee" = 35, "bullet" = 20, "laser" = 20, "energy" = 10, "bomb" = 50, "bio" = 5, "rad" = 10, "fire" = 50, "acid" = 50)
+
+/obj/item/clothing/head/helmet/kasa/Initialize()
+	. = ..()
+	AddComponent(/datum/component/armor_plate, null, null, list("melee" = 10, "bullet" = 5, "laser" = 5, "energy" = 5)) //maximum armor 65/35/35/25
+
 /obj/item/clothing/head/helmet/durathread
 	name = "durathread helmet"
 	desc = "A helmet made from durathread and leather."
@@ -425,8 +442,8 @@
 	flags_cover = HEADCOVERSEYES
 
 /obj/item/clothing/head/helmet/shaman
-	name = "ritual headress"
-	desc = "Hand carved skull headress, uniquely suited for the harsh lavaland hellscapes."
+	name = "ritual headdress"
+	desc = "Hand carved skull headdress, uniquely suited for the harsh lavaland hellscapes."
 	icon_state = "shamanhat"
 	item_state = "shamanhat"
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 10, "bomb" = 10, "bio" = 5, "rad" = 20, "fire" = 40, "acid" = 20)

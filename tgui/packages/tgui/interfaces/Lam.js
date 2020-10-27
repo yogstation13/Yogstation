@@ -39,7 +39,7 @@ export const Lam = (props, context) => {
       signal => signal.entrytag),
   ])(data.signals || []);
   return (
-    <Window resizable>
+    <Window resizable width={470} height={700}>
       <Window.Content>
         <Section
           title="Targetting Panel"
