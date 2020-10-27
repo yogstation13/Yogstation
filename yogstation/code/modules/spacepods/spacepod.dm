@@ -663,7 +663,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 /obj/spacepod/onMouseMove(params)
 	if(!pilot || !pilot.client || pilot.incapacitated())
 		return // I don't know what's going on.
-	var/list/params_list = params2list(params)
+	var/list/params_list = params2list(pilot.client.mouseParams)
 	var/sl_list = splittext(params_list["screen-loc"],",")
 	var/sl_x_list = splittext(sl_list[1], ":")
 	var/sl_y_list = splittext(sl_list[2], ":")
