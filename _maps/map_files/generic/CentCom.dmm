@@ -13861,6 +13861,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"Dw" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/sci_bombardment,
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
 "Dx" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/neutral{
@@ -18453,9 +18467,9 @@
 /area/centcom/holding)
 "NJ" = (
 /obj/structure/table,
-/obj/item/book/manual/hydroponics_pod_people,
+/obj/item/book/manual/wiki/hydroponicsplants,
 /obj/item/seeds/pumpkin/blumpkin,
-/obj/item/paper/guides/jobs/hydroponics,
+/obj/item/book/manual/wiki/hydroponicsguide,
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
@@ -62952,7 +62966,7 @@ Nt
 QN
 Zy
 Qa
-RT
+Dw
 Bt
 AD
 Ol
@@ -63209,7 +63223,7 @@ Nt
 SY
 NR
 TN
-zv
+RT
 Bt
 WL
 Pi
@@ -63466,7 +63480,7 @@ Nt
 ZF
 Zr
 ZF
-Zr
+zv
 Bt
 TJ
 Uu

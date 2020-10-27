@@ -1,6 +1,6 @@
 import { toArray } from 'common/collections';
 import { Fragment } from 'inferno';
-import { useBackend, useSharedState, useLocalState } from '../backend';
+import { useBackend, useSharedState } from '../backend';
 import { AnimatedNumber, Box, Button, Flex, LabeledList, Section, Table, Tabs } from '../components';
 import { formatMoney } from '../format';
 import { Window } from '../layouts';
@@ -14,7 +14,10 @@ export const Cargo = (props, context) => {
   const cart = data.cart || [];
   const requests = data.requests || [];
   return (
-    <Window resizable>
+    <Window
+      width={780}
+      height={750}
+      resizable>
       <Window.Content scrollable>
         <CargoStatus />
         <Tabs>
@@ -115,10 +118,9 @@ const CargoStatus = (props, context) => {
 export const CargoCatalog = (props, context) => {
   const { express } = props;
   const { act, data } = useBackend(context);
-  const [
+  const {
     self_paid,
-    set_self_paid,
-  ] = useLocalState(context, 'self_paid', 0);
+  } = data;
   const supplies = toArray(data.supplies);
   const [
     activeSupplyName,
@@ -137,7 +139,7 @@ export const CargoCatalog = (props, context) => {
             ml={2}
             content="Buy Privately"
             checked={self_paid}
-            onClick={self_paid ? () => set_self_paid(0) : () => set_self_paid(1)} />
+            onClick={() => act('toggleprivate')} />
         </Fragment>
       )}>
       <Flex>
@@ -185,9 +187,8 @@ export const CargoCatalog = (props, context) => {
                       tooltipPosition="left"
                       onClick={() => act('add', {
                         id: pack.id,
-                        self_paid: self_paid,
                       })}>
-                      {formatMoney(self_paid
+                      {formatMoney(self_paid && !pack.goody
                         ? Math.round(pack.cost * 1.1)
                         : pack.cost)}
                       {' cr'}

@@ -1690,8 +1690,16 @@
 	icon_state = "ram"
 
 /datum/sprite_accessory/horns/angler
-	name = "Angeler"
+	name = "Angler"
 	icon_state = "angler"
+
+/datum/sprite_accessory/horns/tiny
+	name = "Tiny"
+	icon_state = "tiny"
+
+/datum/sprite_accessory/horns/long
+	name = "Long"
+	icon_state = "long"
 
 /datum/sprite_accessory/ears
 	icon = 'icons/mob/mutant_bodyparts.dmi'
@@ -1766,6 +1774,14 @@
 /datum/sprite_accessory/frills/aquatic
 	name = "Aquatic"
 	icon_state = "aqua"
+
+/datum/sprite_accessory/frills/full
+	name = "Full"
+	icon_state = "full"
+
+/datum/sprite_accessory/frills/long
+	name = "Long"
+	icon_state = "long"
 
 /datum/sprite_accessory/spines
 	icon = 'icons/mob/mutant_bodyparts.dmi'
@@ -1964,14 +1980,26 @@
 	name = "Praetorian"
 	icon_state = "praetorian"
 
+/datum/sprite_accessory/dome/drone
+	name = "Drone"
+	icon_state = "drone"
+
+/datum/sprite_accessory/dome/hunter
+	name = "Hunter"
+	icon_state = "hunter"
+
 /datum/sprite_accessory/dorsal_tubes
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 	color_src = null
 
 /datum/sprite_accessory/dorsal_tubes/none
-	name = "No"
+	name = "None"
 	icon_state = "none"
 
-/datum/sprite_accessory/dorsal_tubes/dtyes
-	name = "Yes"
-	icon_state = "dtyes"
+/datum/sprite_accessory/dorsal_tubes/dtsingle
+	name = "Single"
+	icon_state = "dtsingle"
+
+/datum/sprite_accessory/dorsal_tubes/dtdouble
+	name = "Double"
+	icon_state = "dtdouble"

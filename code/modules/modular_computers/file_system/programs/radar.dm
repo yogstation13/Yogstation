@@ -10,11 +10,7 @@
 	network_destination = "tracking program"
 	size = 5
 	tgui_id = "NtosRadar"
-	ui_x = 800
-	ui_y = 600
-	special_assets = list(
-		/datum/asset/simple/radar_assets,
-	)
+
 	///List of trackable entities. Updated by the scan() proc.
 	var/list/objects
 	///Ref of the last trackable object selected by the user in the tgui window. Updated in the ui_act() proc.
@@ -26,6 +22,15 @@
 	objects = list()
 	selected = null
 	return ..()
+
+/datum/computer_file/program/radar/Destroy()
+	STOP_PROCESSING(SSfastprocess, src)
+	return ..()
+
+/datum/computer_file/program/radar/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/radar_assets),
+	)
 
 /datum/computer_file/program/radar/ui_data(mob/user)
 	var/list/data = get_header_data()
@@ -81,7 +86,7 @@
 		return FALSE
 	var/turf/here = get_turf(computer)
 	var/turf/there = get_turf(signal)
-	return (there.z == here.z) || (is_station_level(here.z) && is_station_level(there.z))
+	return (there?.z == here?.z) || (is_station_level(here?.z) && is_station_level(there?.z))
 
 /**
   *

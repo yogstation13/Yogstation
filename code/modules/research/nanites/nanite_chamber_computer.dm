@@ -48,10 +48,10 @@
 		find_chamber()
 	..()
 
-/obj/machinery/computer/nanite_chamber_control/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/nanite_chamber_control/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "NaniteChamberControl", name, 550, 800, master_ui, state)
+		ui = new(user, src, "NaniteChamberControl", name)
 		ui.open()
 
 /obj/machinery/computer/nanite_chamber_control/ui_data()

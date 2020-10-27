@@ -23,11 +23,13 @@
 
 ///returns the damage value of the attack after processing the obj's various armor protections
 /obj/proc/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penetration = 0)
+	if(damage_flag == "melee" && damage_amount < damage_deflection)
+		return FALSE
 	switch(damage_type)
 		if(BRUTE)
 		if(BURN)
 		else
-			return 0
+			return FALSE
 	var/armor_protection = 0
 	if(damage_flag)
 		armor_protection = armor.getRating(damage_flag)
@@ -57,7 +59,7 @@
 /obj/ex_act(severity, target)
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
-	..() //contents 
+	..() //contents
 	if(QDELETED(src))
 		return
 	if(target == src)

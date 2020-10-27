@@ -246,7 +246,7 @@
 //Makes strong actually useful. Somewhat.
 /datum/mutation/human/strong
 	name = "Strength"
-	desc = "The user's muscles slightly expand."
+	desc = "The user's muscles slightly expand, allowing them to move faster while carrying people."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>You feel strong!</span>"
 	text_lose_indication = "<span class='notice'>You feel fairly weak.</span>"
