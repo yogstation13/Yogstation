@@ -26,7 +26,7 @@ SUBSYSTEM_DEF(statpanels)
 			if(ETA)
 				global_data += "[ETA] [SSshuttle.emergency.getTimerStr()]"
 		encoded_global_data = url_encode(json_encode(global_data))
-		
+
 		var/list/mc_data = list(
 			list("CPU:", world.cpu),
 			list("Instances:", "[num2text(world.contents.len, 10)]"),
@@ -43,11 +43,11 @@ SUBSYSTEM_DEF(statpanels)
 		mc_data[++mc_data.len] = list("Camera Net", "Cameras: [GLOB.cameranet.cameras.len] | Chunks: [GLOB.cameranet.chunks.len]", "\ref[GLOB.cameranet]")
 		mc_data_encoded = url_encode(json_encode(mc_data))
 		src.currentrun = GLOB.clients.Copy()
-	
+
 	var/list/currentrun = src.currentrun
 	while(currentrun.len)
 		var/client/C = currentrun[currentrun.len]
-		C << output(url_encode(C.statpanel), "statbrowser:tab_change") // work around desyncs
+		C << output(url_encode(C?.statpanel), "statbrowser:tab_change") // work around desyncs
 		currentrun.len--
 		var/ping_str = url_encode("Ping: [round(C.lastping, 1)]ms (Average: [round(C.avgping, 1)]ms)")
 		var/other_str = url_encode(json_encode(C.mob.get_status_tab_items()))

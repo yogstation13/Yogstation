@@ -512,7 +512,7 @@
 "abk" = (
 /obj/structure/table,
 /obj/item/folder,
-/obj/item/paper/guides/jobs/hydroponics,
+/obj/item/book/manual/wiki/hydroponicsplants,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -23031,7 +23031,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
 	},
-/obj/item/paper/guides/jobs/hydroponics,
+/obj/item/book/manual/wiki/hydroponicsplants,
 /obj/item/coin/silver,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -42596,8 +42596,6 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/obj/item/book/manual/hydroponics_pod_people,
-/obj/item/paper/guides/jobs/hydroponics,
 /obj/machinery/requests_console{
 	department = "Hydroponics";
 	departmentType = 2;
@@ -42618,6 +42616,13 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4;
 	icon_state = "vent_map_on-1"
+	},
+/obj/item/book/manual/wiki/hydroponicsplants{
+	pixel_x = -3
+	},
+/obj/item/book/manual/wiki/hydroponicsguide{
+	pixel_x = 3;
+	pixel_y = 2
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
@@ -56714,9 +56719,9 @@
 /area/hallway/primary/central)
 "ccq" = (
 /obj/structure/table,
-/obj/item/book/manual/hydroponics_pod_people,
+/obj/item/book/manual/wiki/hydroponicsguide,
 /obj/machinery/light,
-/obj/item/paper/guides/jobs/hydroponics,
+/obj/item/book/manual/wiki/hydroponicsplants,
 /obj/machinery/camera{
 	c_tag = "Hydroponics - Foyer";
 	dir = 1
@@ -70220,14 +70225,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"czF" = (
-/obj/effect/turf_decal/bot{
-	dir = 1
-	},
-/turf/open/floor/plasteel{
-	dir = 1
-	},
-/area/science/mixing)
 "czG" = (
 /obj/item/stack/rods/fifty,
 /obj/item/stack/sheet/glass/fifty,
@@ -84258,6 +84255,15 @@
 	},
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
+"sAQ" = (
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
+/obj/machinery/sci_bombardment,
+/turf/open/floor/plasteel{
+	dir = 1
+	},
+/area/science/mixing)
 "sBs" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -122608,7 +122614,7 @@ krD
 crY
 cyX
 vNW
-czF
+sAQ
 cAN
 cBJ
 cAP
