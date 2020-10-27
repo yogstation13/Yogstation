@@ -18,6 +18,15 @@
 	liked_food = MEAT | RAW | VEGETABLES 
 	species_language_holder = /datum/language_holder/piscis
 
-
+/datum/species/piscis/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
+	. = ..()
+	var/obj/item/tank/internals/piscis/tank = new /obj/item/tank/internals/piscis()
+	C.put_in_hands(tank)
+	C.internal = tank
+	var/obj/item/clothing/mask/breath/mask = new()
+	var/obj/item/clothing/mask/mask
+	if(!C.equip_to_appropriate_slot(mask))
+		qdel(mask)
+	C.update_internals_hud_icon(TRUE)
 	
 
