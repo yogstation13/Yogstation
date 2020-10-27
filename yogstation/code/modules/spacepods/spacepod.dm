@@ -631,7 +631,6 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		return FALSE
 	if(!pilot && allow_pilot)
 		pilot = M
-		LAZYOR(M.mousemove_intercept_objects, src)
 		M.click_intercept = src
 	else if(passengers.len < max_passengers)
 		passengers += M
@@ -647,7 +646,6 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		return
 	if(M == pilot)
 		pilot = null
-		LAZYREMOVE(M.mousemove_intercept_objects, src)
 		if(M.click_intercept == src)
 			M.click_intercept = null
 		desired_angle = null // since there's no pilot there's no one aiming it.
@@ -662,7 +660,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		M.client.pixel_y = 0
 	return TRUE
 
-/obj/spacepod/onMouseMove(object,location,control,params)
+/obj/spacepod/onMouseMove(params)
 	if(!pilot || !pilot.client || pilot.incapacitated())
 		return // I don't know what's going on.
 	var/list/params_list = params2list(params)
