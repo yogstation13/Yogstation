@@ -377,7 +377,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		M.heal_bodypart_damage(1,1)
 		. = 1
 	M.radiation = max(M.radiation-2, 0)
-	return ..()  || . 
+	return ..()  || .
 
 /datum/reagent/consumable/ethanol/ale
 	name = "Ale"
@@ -2132,6 +2132,68 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		. = 1
 	return ..() || .
 
+/datum/reagent/consumable/ethanol/polyporepop
+	name = "Polypore Pop"
+	description = "A strong and fizzy alcoholic beverage made by fermenting polypore mushrooms."
+	color = "#664300" // rgb: 102, 67, 0
+	nutriment_factor = 2 * REAGENTS_METABOLISM
+	boozepwr = 50
+	taste_description = "fizzy alcohol"
+	glass_icon_state = "glass_brown2"
+	glass_name = "glass of polypore pop"
+	glass_desc = "Fizzy alcohol made from fermenting polypore mushrooms. Surprisingly good for being from a mushroom, and surprisingly strong."
+
+/datum/reagent/consumable/ethanol/porcinisap
+	name = "Porcini Sap"
+	description = "A soothing sap fermented from porcini leaves."
+	color = "#664300" // rgb: 102, 67, 0
+	nutriment_factor = 2 * REAGENTS_METABOLISM
+	boozepwr = 5
+	taste_description = "cough syrup"
+	glass_icon_state = "glass_brown2"
+	glass_name = "glass of porcini sap"
+	glass_desc = "Very weak alcohol that feels soothing as it goes down your throat and makes your stomach feel better."
+
+/datum/reagent/consumable/porcinisap/on_mob_life(mob/living/carbon/M)
+	M.adjust_disgust(-3)
+	..()
+
+/datum/reagent/consumable/ethanol/inocybeshine
+	name = "Inocybe Shine"
+	description = "A very strong, slightly toxic alcohol from fermented inocybe mycelium."
+	color = "#664300" // rgb: 102, 67, 0
+	nutriment_factor = 2 * REAGENTS_METABOLISM
+	boozepwr = 75
+	taste_description = "terrible bitterness"
+	glass_icon_state = "glass_brown2"
+	glass_name = "glass of inocybe shine"
+	glass_desc = "Very strong alcohol that tastes like shit and makes your liver feel weak."
+
+/datum/reagent/consumable/ethanol/inocybeshine/on_mob_life(mob/living/carbon/M)
+	if(prob(10))
+		M.adjustStaminaLoss(10,0)
+		M.blur_eyes(3)
+		M.adjust_disgust(1)
+		. = TRUE
+	return ..()
+
+/datum/reagent/consumable/ethanol/embershroomcream
+	name = "Embershroom Cream"
+	description = "Slightly bioluminescent smelly cream from fermented embershroom stems."
+	color = "#8CFF8C" // rgb: 140, 255, 140
+	nutriment_factor = 2 * REAGENTS_METABOLISM
+	boozepwr = 20
+	taste_description = "gross cream"
+	glass_icon_state = "booger"
+	glass_name = "glass of embershroom cream"
+	glass_desc = "Weak alcohol that makes your stomach feel like a disco party."
+
+/datum/reagent/consumable/embershroomcream/on_mob_metabolize(mob/living/M)
+	M.set_light(2)
+
+/datum/reagent/consumable/embershroomcream/on_mob_end_metabolize(mob/living/M)
+	M.set_light(-2)
+
 /datum/reagent/consumable/ethanol/painkiller
 	name = "Painkiller"
 	description = "Dulls your pain. Your emotional pain, that is."
@@ -2164,7 +2226,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "flaming_moe2"
 	glass_name = "Flaming Moe"
 	glass_desc = "an amazing concoction of various different bar drinks and a secret ingredient"
-	
+
 /datum/reagent/consumable/ethanol/flaming_moe/on_mob_life(mob/living/carbon/M)
 	M.drowsyness = max(M.drowsyness-5, 0)
 	M.AdjustStun(-20, FALSE)
