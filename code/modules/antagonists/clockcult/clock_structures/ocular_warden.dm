@@ -1,5 +1,5 @@
 //Ocular warden: Low-damage, low-range turret. Deals constant damage to whoever it makes eye contact with.
-/obj/structure/destructible/clockwork/ocular_warden
+/obj/structure/clockwork/ocular_warden
 	name = "ocular warden"
 	desc = "A large brass eye with tendrils trailing below it and a wide red iris."
 	clockwork_desc = "A fragile turret which will automatically attack nearby unrestrained non-Servants that can see it."
@@ -18,31 +18,31 @@
 	var/time_between_shots = 4 //yogs: slower attack speed
 	var/last_process = 0 //see above
 
-/obj/structure/destructible/clockwork/ocular_warden/Initialize()
+/obj/structure/clockwork/ocular_warden/Initialize()
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 
-/obj/structure/destructible/clockwork/ocular_warden/Destroy()
+/obj/structure/clockwork/ocular_warden/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
-/obj/structure/destructible/clockwork/ocular_warden/examine(mob/user)
+/obj/structure/clockwork/ocular_warden/examine(mob/user)
 	. = ..()
 	. += "<span class='brass'>[target ? "<b>It's fixated on [target]!</b>" : "Its gaze is wandering aimlessly."]</span>"
 
-/obj/structure/destructible/clockwork/ocular_warden/hulk_damage()
+/obj/structure/clockwork/ocular_warden/hulk_damage()
 	return 25
 
-/obj/structure/destructible/clockwork/ocular_warden/can_be_unfasten_wrench(mob/user, silent)
+/obj/structure/clockwork/ocular_warden/can_be_unfasten_wrench(mob/user, silent)
 	if(!anchored)
-		for(var/obj/structure/destructible/clockwork/ocular_warden/W in orange(OCULAR_WARDEN_EXCLUSION_RANGE, src))
+		for(var/obj/structure/clockwork/ocular_warden/W in orange(OCULAR_WARDEN_EXCLUSION_RANGE, src))
 			if(W.anchored)
 				if(!silent)
 					to_chat(user, "<span class='neovgre'>You sense another ocular warden too near this location. Activating this one this close would cause them to fight.</span>")
 				return FAILED_UNFASTEN
 	return SUCCESSFUL_UNFASTEN
 
-/obj/structure/destructible/clockwork/ocular_warden/ratvar_act()
+/obj/structure/clockwork/ocular_warden/ratvar_act()
 	..()
 	if(GLOB.ratvar_awakens)
 		damage_per_tick = 40 //yogs: increased damage to make up for slower attack speed
@@ -51,7 +51,7 @@
 		damage_per_tick = initial(damage_per_tick)
 		sight_range = initial(sight_range)
 
-/obj/structure/destructible/clockwork/ocular_warden/process()
+/obj/structure/clockwork/ocular_warden/process()
 	if(!anchored)
 		lose_target()
 		return
@@ -106,7 +106,7 @@
 			else
 				setDir(pick(GLOB.cardinals))//Random rotation
 
-/obj/structure/destructible/clockwork/ocular_warden/proc/acquire_nearby_targets()
+/obj/structure/clockwork/ocular_warden/proc/acquire_nearby_targets()
 	. = list()
 	for(var/mob/living/L in viewers(sight_range, src)) //Doesn't attack the blind
 		var/obj/item/storage/book/bible/B = L.bible_check()
@@ -150,14 +150,14 @@
 			if (M in viewcache)
 				. += M
 
-/obj/structure/destructible/clockwork/ocular_warden/proc/lose_target()
+/obj/structure/clockwork/ocular_warden/proc/lose_target()
 	if(!target)
 		return 0
 	target = null
 	visible_message("<span class='warning'>[src] settles and seems almost disappointed.</span>")
 	return 1
 
-/obj/structure/destructible/clockwork/ocular_warden/get_efficiency_mod()
+/obj/structure/clockwork/ocular_warden/get_efficiency_mod()
 	if(GLOB.ratvar_awakens)
 		return 2
 	. = 1

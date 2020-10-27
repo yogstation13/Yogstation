@@ -110,7 +110,7 @@
 	layer = POINT_LAYER
 
 /obj/effect/countdown/clockworkgate/get_value()
-	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = attached_to
+	var/obj/structure/clockwork/massive/celestial_gateway/G = attached_to
 	if(!istype(G))
 		return
 	else if(G.obj_integrity && !G.purpose_fulfilled)

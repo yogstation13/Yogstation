@@ -340,7 +340,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	mineral_amount = 1
 	canSmoothWith = list(/obj/effect/clockwork/overlay/wall, /obj/structure/falsewall/brass)
-	girder_type = /obj/structure/destructible/clockwork/wall_gear/displaced
+	girder_type = /obj/structure/clockwork/wall_gear/displaced
 	walltype = /turf/closed/wall/clockwork
 	mineral = /obj/item/stack/tile/brass
 

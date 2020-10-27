@@ -54,7 +54,7 @@
 	slicing_duration = 100
 	sheet_type = /obj/item/stack/tile/brass
 	sheet_amount = 1
-	girder_type = /obj/structure/destructible/clockwork/wall_gear
+	girder_type = /obj/structure/clockwork/wall_gear
 	baseturfs = /turf/open/floor/clockwork/reebe
 	var/heated
 	var/obj/effect/clockwork/overlay/wall/realappearance

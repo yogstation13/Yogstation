@@ -3388,7 +3388,7 @@
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/garage)
 "hF" = (
-/obj/structure/destructible/cult/pylon,
+/obj/structure/cult/pylon,
 /turf/open/floor/engine/cult{
 	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120";
 	temperature = 120

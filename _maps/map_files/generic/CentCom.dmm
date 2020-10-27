@@ -6503,7 +6503,7 @@
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeobserve)
 "oU" = (
-/obj/structure/destructible/cult/forge,
+/obj/structure/cult/forge,
 /obj/item/tome,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -6921,7 +6921,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/centcom/evac)
 "pD" = (
-/obj/structure/destructible/cult/tome,
+/obj/structure/cult/tome,
 /obj/item/shuttle_curse,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -7034,7 +7034,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
 "pO" = (
-/obj/structure/destructible/cult/tome,
+/obj/structure/cult/tome,
 /obj/item/book/codex_gigas,
 /obj/machinery/airalarm{
 	dir = 8;
@@ -11710,7 +11710,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "zo" = (
-/obj/structure/destructible/cult/tome,
+/obj/structure/cult/tome,
 /turf/open/floor/engine/cult,
 /area/wizard_station)
 "zp" = (
@@ -11966,7 +11966,7 @@
 /turf/open/floor/engine/cult,
 /area/wizard_station)
 "zO" = (
-/obj/structure/destructible/cult/talisman{
+/obj/structure/cult/talisman{
 	desc = "An altar dedicated to the Wizards' Federation"
 	},
 /obj/item/kitchen/knife/ritual,
@@ -14986,7 +14986,7 @@
 /turf/open/floor/plasteel/white,
 /area/tdome/tdomeobserve)
 "FT" = (
-/obj/structure/destructible/cult/forge{
+/obj/structure/cult/forge{
 	desc = "An engine used in powering the wizard's ship";
 	name = "magma engine"
 	},
@@ -21235,7 +21235,7 @@
 /turf/open/floor/grass,
 /area/centcom/testchamber)
 "Vi" = (
-/obj/structure/destructible/cult/pylon,
+/obj/structure/cult/pylon,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -22643,7 +22643,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/evac)
 "YS" = (
-/obj/structure/destructible/cult/talisman,
+/obj/structure/cult/talisman,
 /obj/item/sharpener/cult,
 /obj/item/cult_shift,
 /obj/effect/turf_decal/tile/neutral,

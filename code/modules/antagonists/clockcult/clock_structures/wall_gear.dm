@@ -1,5 +1,5 @@
 //A massive gear, effectively a girder for clocks.
-/obj/structure/destructible/clockwork/wall_gear
+/obj/structure/clockwork/wall_gear
 	name = "massive gear"
 	icon_state = "wall_gear"
 	unanchored_icon = "wall_gear"
@@ -12,17 +12,17 @@
 	/obj/item/clockwork/alloy_shards/medium = 4, \
 	/obj/item/clockwork/alloy_shards/small = 2) //slightly more debris than the default, totals 26 alloy
 
-/obj/structure/destructible/clockwork/wall_gear/displaced
+/obj/structure/clockwork/wall_gear/displaced
 	anchored = FALSE
 
-/obj/structure/destructible/clockwork/wall_gear/Initialize()
+/obj/structure/clockwork/wall_gear/Initialize()
 	. = ..()
 	new /obj/effect/temp_visual/ratvar/gear(get_turf(src))
 
-/obj/structure/destructible/clockwork/wall_gear/emp_act(severity)
+/obj/structure/clockwork/wall_gear/emp_act(severity)
 	return
 
-/obj/structure/destructible/clockwork/wall_gear/attackby(obj/item/I, mob/user, params)
+/obj/structure/clockwork/wall_gear/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_WRENCH)
 		default_unfasten_wrench(user, I, 10)
 		return 1
@@ -67,7 +67,7 @@
 		return 1
 	return ..()
 
-/obj/structure/destructible/clockwork/wall_gear/deconstruct(disassembled = TRUE)
+/obj/structure/clockwork/wall_gear/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1) && disassembled)
 		new /obj/item/stack/tile/brass(loc, 3)
 	return ..()

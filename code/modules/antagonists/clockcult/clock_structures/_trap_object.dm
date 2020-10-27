@@ -1,21 +1,21 @@
 //No, not that kind.
-/obj/structure/destructible/clockwork/trap
+/obj/structure/clockwork/trap
 	name = "base clockwork trap"
 	desc = "You shouldn't see this. File a bug report!"
 	clockwork_desc = "A trap that shouldn't exist, and you should report this as a bug."
 	var/list/wired_to
 
-/obj/structure/destructible/clockwork/trap/Initialize()
+/obj/structure/clockwork/trap/Initialize()
 	. = ..()
 	wired_to = list()
 
-/obj/structure/destructible/clockwork/trap/Destroy()
+/obj/structure/clockwork/trap/Destroy()
 	for(var/V in wired_to)
-		var/obj/structure/destructible/clockwork/trap/T = V
+		var/obj/structure/clockwork/trap/T = V
 		T.wired_to -= src
 	return ..()
 
-/obj/structure/destructible/clockwork/trap/examine(mob/user)
+/obj/structure/clockwork/trap/examine(mob/user)
 	. = ..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
 		. += "It's wired to:"
@@ -27,7 +27,7 @@
 				var/distance = get_dist(src, O)
 				. += "[O] ([distance == 0 ? "same tile" : "[distance] tiles [dir2text(get_dir(src, O))]"])"
 
-/obj/structure/destructible/clockwork/trap/wrench_act(mob/living/user, obj/item/I)
+/obj/structure/clockwork/trap/wrench_act(mob/living/user, obj/item/I)
 	if(!is_servant_of_ratvar(user))
 		return ..()
 	to_chat(user, "<span class='notice'>You break down the delicate components of [src] into brass.</span>")
@@ -36,7 +36,7 @@
 	qdel(src)
 	return TRUE
 
-/obj/structure/destructible/clockwork/trap/attackby(obj/item/I, mob/living/user, params)
+/obj/structure/clockwork/trap/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/clockwork/slab) && is_servant_of_ratvar(user))
 		var/obj/item/clockwork/slab/F = I
 		if(!F.linking)
@@ -56,7 +56,7 @@
 		return
 	..()
 
-/obj/structure/destructible/clockwork/trap/wirecutter_act(mob/living/user, obj/item/I)
+/obj/structure/clockwork/trap/wirecutter_act(mob/living/user, obj/item/I)
 	if(!is_servant_of_ratvar(user))
 		return
 	if(!wired_to.len)
@@ -65,22 +65,22 @@
 	to_chat(user, "<span class='notice'>You sever all connections to [src].</span>")
 	I.play_tool_sound(src)
 	for(var/V in wired_to)
-		var/obj/structure/destructible/clockwork/trap/T = V
+		var/obj/structure/clockwork/trap/T = V
 		T.wired_to -= src
 		wired_to -= T
 	return TRUE
 
-/obj/structure/destructible/clockwork/trap/proc/activate()
+/obj/structure/clockwork/trap/proc/activate()
 
 //These objects send signals to normal traps to activate
-/obj/structure/destructible/clockwork/trap/trigger
+/obj/structure/clockwork/trap/trigger
 	name = "base trap trigger"
 	max_integrity = 5
 	break_message = "<span class='warning'>The trigger breaks apart!</span>"
 	density = FALSE
 
-/obj/structure/destructible/clockwork/trap/trigger/activate()
-	for(var/obj/structure/destructible/clockwork/trap/T in wired_to)
-		if(istype(T, /obj/structure/destructible/clockwork/trap/trigger)) //Triggers don't go off multiple times
+/obj/structure/clockwork/trap/trigger/activate()
+	for(var/obj/structure/clockwork/trap/T in wired_to)
+		if(istype(T, /obj/structure/clockwork/trap/trigger)) //Triggers don't go off multiple times
 			continue
 		T.activate()

@@ -135,7 +135,7 @@
 	},
 /area/ruin/powered)
 "E" = (
-/obj/structure/destructible/cult/pylon,
+/obj/structure/cult/pylon,
 /turf/open/floor/engine/cult,
 /area/ruin/powered)
 "F" = (

@@ -1,13 +1,13 @@
 #define ARK_GRACE_PERIOD 300 //In seconds, how long the crew has before the Ark truly "begins"
 
 /proc/clockwork_ark_active() //A helper proc so the Ark doesn't have to be typecast every time it's checked; returns null if there is no Ark and its active var otherwise
-	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
+	var/obj/structure/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
 	if(!G)
 		return
 	return G.active
 
 //The gateway to Reebe, from which Ratvar emerges.
-/obj/structure/destructible/clockwork/massive/celestial_gateway
+/obj/structure/clockwork/massive/celestial_gateway
 	name = "\improper Ark of the Clockwork Justicar"
 	desc = "A massive, hulking amalgamation of parts. It seems to be maintaining a very unstable bluespace anomaly."
 	clockwork_desc = "Nezbere's magnum opus: a hulking clockwork machine capable of combining bluespace and steam power to summon Ratvar. Once activated, \
@@ -38,14 +38,14 @@
 	var/next_spaghetti = 0
 	var/spaghetti_cooldown = 50
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/Initialize()
+/obj/structure/clockwork/massive/celestial_gateway/Initialize()
 	. = ..()
 	glow = new(get_turf(src))
 	if(!GLOB.ark_of_the_clockwork_justiciar)
 		GLOB.ark_of_the_clockwork_justiciar = src
 	START_PROCESSING(SSprocessing, src)
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/structure/clockwork/massive/celestial_gateway/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
 	if(.)
 		flick("clockwork_gateway_damaged", glow)
@@ -60,7 +60,7 @@
 			hierophant_message("<span class='big boldwarning'>The Ark is taking damage!</span>")
 	last_scream = world.time + ARK_SCREAM_COOLDOWN
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/attackby(obj/item/I, mob/user, params)
+/obj/structure/clockwork/massive/celestial_gateway/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/fork))
 		if(world.time < next_spaghetti)
 			return
@@ -69,7 +69,7 @@
 		next_spaghetti = world.time + spaghetti_cooldown
 	. = ..()
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/final_countdown(ark_time) //WE'RE LEAVING TOGETHEEEEEEEEER
+/obj/structure/clockwork/massive/celestial_gateway/proc/final_countdown(ark_time) //WE'RE LEAVING TOGETHEEEEEEEEER
 	if(!ark_time)
 		ark_time = 30 //minutes
 	initial_activation_delay = ark_time * 60
@@ -79,7 +79,7 @@
 	GLOB.servants_active = TRUE
 	SSshuttle.registerHostileEnvironment(src)
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/cry_havoc()
+/obj/structure/clockwork/massive/celestial_gateway/proc/cry_havoc()
 	visible_message("<span class='boldwarning'>[src] shudders and roars to life, its parts beginning to whirr and screech!</span>")
 	hierophant_message("<span class='bold large_brass'>The Ark is activating! You will be transported there soon!</span>")
 	for(var/mob/M in GLOB.player_list)
@@ -88,7 +88,7 @@
 			M.playsound_local(M, 'sound/magic/clockwork/ark_activation_sequence.ogg', 30, FALSE, pressure_affected = FALSE)
 	addtimer(CALLBACK(src, .proc/let_slip_the_dogs), 300)
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/let_slip_the_dogs()
+/obj/structure/clockwork/massive/celestial_gateway/proc/let_slip_the_dogs()
 	spawn_animation()
 	first_sound_played = TRUE
 	active = TRUE
@@ -121,22 +121,22 @@
 		for(var/mob/living/L in T)
 			L.forceMove(pick(open_turfs))
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/open_portal(turf/T)
+/obj/structure/clockwork/massive/celestial_gateway/proc/open_portal(turf/T)
 	new/obj/effect/clockwork/city_of_cogs_rift(T)
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/spawn_animation()
+/obj/structure/clockwork/massive/celestial_gateway/proc/spawn_animation()
 	hierophant_message("<span class='bold large_brass'>The Ark has activated! [grace_period ? "You have [round(grace_period / 60)] minutes until the crew invades! " : ""]Defend it at all costs!</span>", FALSE, src)
 	sound_to_playing_players(volume = 10, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/clockcult_gateway_charging.ogg', TRUE))
 	seconds_until_activation = 0
 	SSshuttle.registerHostileEnvironment(src)
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/initiate_mass_recall()
+/obj/structure/clockwork/massive/celestial_gateway/proc/initiate_mass_recall()
 	recalling = TRUE
 	sound_to_playing_players('sound/machines/clockcult/ark_recall.ogg', 75, FALSE)
 	hierophant_message("<span class='bold large_brass'>The Eminence has initiated a mass recall! You are being transported to the Ark!</span>")
 	addtimer(CALLBACK(src, .proc/mass_recall), 100)
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/mass_recall()
+/obj/structure/clockwork/massive/celestial_gateway/proc/mass_recall()
 	for(var/V in SSticker.mode.servants_of_ratvar)
 		var/datum/mind/M = V
 		if(!M || !M.current)
@@ -154,7 +154,7 @@
 	transform = matrix() * 2
 	animate(src, transform = matrix() * 0.5, time = 30, flags = ANIMATION_END_NOW)
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/Destroy()
+/obj/structure/clockwork/massive/celestial_gateway/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	SSshuttle.clearHostileEnvironment(src)
 	if(!purpose_fulfilled && istype(SSticker.mode, /datum/game_mode/clockwork_cult))
@@ -185,7 +185,7 @@
 		GLOB.ark_of_the_clockwork_justiciar = null
 	. = ..()
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/deconstruct(disassembled = TRUE)
+/obj/structure/clockwork/massive/celestial_gateway/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		if(!disassembled)
 			resistance_flags |= INDESTRUCTIBLE
@@ -204,16 +204,16 @@
 			sound_to_playing_players('sound/effects/explosion_distant.ogg', volume = 50)
 	qdel(src)
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/make_glow()
+/obj/structure/clockwork/massive/celestial_gateway/proc/make_glow()
 	if(!glow)
 		glow = new /obj/effect/clockwork/overlay/gateway_glow(get_turf(src))
 		glow.linked = src
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/ex_act(severity)
+/obj/structure/clockwork/massive/celestial_gateway/ex_act(severity)
 	var/damage = max((obj_integrity * 0.7) / severity, 100) //requires multiple bombs to take down
 	take_damage(damage, BRUTE, "bomb", 0)
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/get_arrival_time(var/deciseconds = TRUE)
+/obj/structure/clockwork/massive/celestial_gateway/proc/get_arrival_time(var/deciseconds = TRUE)
 	if(seconds_until_activation)
 		. = seconds_until_activation
 	else if(grace_period)
@@ -223,7 +223,7 @@
 	if(deciseconds)
 		. *= 10
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/get_arrival_text(s_on_time)
+/obj/structure/clockwork/massive/celestial_gateway/proc/get_arrival_text(s_on_time)
 	if(seconds_until_activation)
 		return "[get_arrival_time()][s_on_time ? "S" : ""]"
 	if(grace_period)
@@ -234,7 +234,7 @@
 	else if(GATEWAY_RATVAR_ARRIVAL - progress_in_seconds > 0)
 		. = "[round(max((GATEWAY_RATVAR_ARRIVAL - progress_in_seconds) / (GATEWAY_SUMMON_RATE), 0), 1)][s_on_time ? "S":""]"
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/examine(mob/user)
+/obj/structure/clockwork/massive/celestial_gateway/examine(mob/user)
 	icon_state = "spatial_gateway" //cheat wildly by pretending to have an icon
 	..()
 	icon_state = initial(icon_state)
@@ -265,7 +265,7 @@
 				if(GATEWAY_RATVAR_COMING to INFINITY)
 					to_chat(user, "<span class='boldwarning'>The anomaly is stable! Something is coming through!</span>")
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/process()
+/obj/structure/clockwork/massive/celestial_gateway/process()
 	if(seconds_until_activation == -1) //we never do anything
 		return
 	adjust_clockwork_power(2.5) //Provides weak power generation on its own
@@ -346,7 +346,7 @@
 				sleep(3)
 				GLOB.clockwork_gateway_activated = TRUE
 				var/turf/T = SSmapping.get_station_center()
-				new /obj/structure/destructible/clockwork/massive/ratvar(T)
+				new /obj/structure/clockwork/massive/ratvar(T)
 				SSticker.force_ending = TRUE
 				var/x0 = T.x
 				var/y0 = T.y
@@ -363,7 +363,7 @@
 					CHECK_TICK
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
-/obj/structure/destructible/clockwork/massive/celestial_gateway/attack_ghost(mob/user)
+/obj/structure/clockwork/massive/celestial_gateway/attack_ghost(mob/user)
 	if(!IsAdminGhost(user))
 		return ..()
 	if(GLOB.servants_active)

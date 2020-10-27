@@ -1,5 +1,5 @@
 //Mania Motor: A pair of antenna that, while active, cause a variety of negative mental effects in nearby human mobs.
-/obj/structure/destructible/clockwork/powered/mania_motor
+/obj/structure/clockwork/powered/mania_motor
 	name = "mania motor"
 	desc = "A pair of antenna with what appear to be sockets around the base. It reminds you of an antlion."
 	clockwork_desc = "A transmitter that allows Sevtug to whisper into the minds of nearby non-servants, causing a variety of negative mental effects, up to and including conversion."
@@ -16,12 +16,12 @@
 	/obj/item/clockwork/component/geis_capacitor/antennae = 1)
 	var/mania_cost = 150
 
-/obj/structure/destructible/clockwork/powered/mania_motor/examine(mob/user)
+/obj/structure/clockwork/powered/mania_motor/examine(mob/user)
 	. = ..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
 		. += "<span class='sevtug_small'>It requires <b>[DisplayEnergy(mania_cost)]</b> to run.</span>"
 
-/obj/structure/destructible/clockwork/powered/mania_motor/forced_disable(bad_effects)
+/obj/structure/clockwork/powered/mania_motor/forced_disable(bad_effects)
 	if(active)
 		if(bad_effects)
 			try_use_power(MIN_CLOCKCULT_POWER*4)
@@ -30,7 +30,7 @@
 		toggle()
 		return TRUE
 
-/obj/structure/destructible/clockwork/powered/mania_motor/attack_hand(mob/living/user)
+/obj/structure/clockwork/powered/mania_motor/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -40,14 +40,14 @@
 			return 0
 		toggle(0, user)
 
-/obj/structure/destructible/clockwork/powered/mania_motor/toggle(fast_process, mob/living/user)
+/obj/structure/clockwork/powered/mania_motor/toggle(fast_process, mob/living/user)
 	. = ..()
 	if(active)
 		set_light(2, 0.9)
 	else
 		set_light(0)
 
-/obj/structure/destructible/clockwork/powered/mania_motor/process()
+/obj/structure/clockwork/powered/mania_motor/process()
 	if(!try_use_power(mania_cost))
 		forced_disable(FALSE)
 		return

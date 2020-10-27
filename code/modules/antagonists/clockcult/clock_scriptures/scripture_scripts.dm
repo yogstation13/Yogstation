@@ -32,7 +32,7 @@
 	invocations = list("Guardians of Engine...", "...judge those who would harm us!")
 	channel_time = 100
 	power_cost = 250
-	object_path = /obj/structure/destructible/clockwork/ocular_warden
+	object_path = /obj/structure/clockwork/ocular_warden
 	creator_message = "<span class='brass'>You form an ocular warden, which will automatically attack nearby unrestrained non-Servants that can see it.</span>"
 	observer_message = "<span class='warning'>A brass eye takes shape and slowly rises into the air, its red iris glaring!</span>"
 	usage_tip = "Although powerful, the warden is very fragile and should optimally be placed behind barricades."
@@ -45,7 +45,7 @@
 	quickbind_desc = "Creates an Ocular Warden, which will automatically attack nearby unrestrained non-Servants that can see it."
 
 /datum/clockwork_scripture/create_object/ocular_warden/check_special_requirements()
-	for(var/obj/structure/destructible/clockwork/ocular_warden/W in range(OCULAR_WARDEN_EXCLUSION_RANGE, invoker))
+	for(var/obj/structure/clockwork/ocular_warden/W in range(OCULAR_WARDEN_EXCLUSION_RANGE, invoker))
 		to_chat(invoker, "<span class='neovgre'>You sense another ocular warden too near this location. Placing another this close would cause them to fight.</span>" )
 		return FALSE
 	return ..()
@@ -222,7 +222,7 @@
 	for(var/mob/living/L in GLOB.alive_mob_list)
 		if(is_servant_of_ratvar(L) && !L.stat && L != invoker)
 			other_servants++
-	for(var/obj/structure/destructible/clockwork/powered/clockwork_obelisk/O in GLOB.all_clockwork_objects)
+	for(var/obj/structure/clockwork/powered/clockwork_obelisk/O in GLOB.all_clockwork_objects)
 		if(O.anchored)
 			other_servants++
 	if(!other_servants)

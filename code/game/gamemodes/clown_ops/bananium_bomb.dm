@@ -35,7 +35,7 @@
 /obj/machinery/nuclearbomb/syndicate/bananium/really_actually_explode(off_station)
 	//SHE LIVES
 	var/turf/center = SSmapping.get_station_center()
-	new /obj/structure/destructible/honkmother(center)
+	new /obj/structure/honkmother(center)
 	var/x0 = center.x
 	var/y0 = center.y
 	for(var/I in spiral_range_turfs(255, center, tick_checked = TRUE))

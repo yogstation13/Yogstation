@@ -291,7 +291,7 @@
 		owner.whisper(invocation, language = /datum/language/common)
 		for(var/obj/effect/rune/R in range(5,owner))
 			R.conceal()
-		for(var/obj/structure/destructible/cult/S in range(5,owner))
+		for(var/obj/structure/cult/S in range(5,owner))
 			S.conceal()
 		for(var/turf/open/floor/engine/cult/T  in range(5,owner))
 			T.realappearance.alpha = 0
@@ -308,7 +308,7 @@
 		SEND_SOUND(owner, sound('sound/magic/enter_blood.ogg',0,1,25))
 		for(var/obj/effect/rune/R in range(7,owner)) //More range in case you weren't standing in exactly the same spot
 			R.reveal()
-		for(var/obj/structure/destructible/cult/S in range(6,owner))
+		for(var/obj/structure/cult/S in range(6,owner))
 			S.reveal()
 		for(var/turf/open/floor/engine/cult/T  in range(6,owner))
 			T.realappearance.alpha = initial(T.realappearance.alpha)

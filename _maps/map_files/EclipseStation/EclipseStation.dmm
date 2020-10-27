@@ -17536,7 +17536,7 @@
 	},
 /area/library)
 "aLP" = (
-/obj/structure/destructible/cult/tome,
+/obj/structure/cult/tome,
 /obj/item/clothing/under/suit_jacket/red,
 /obj/item/book/codex_gigas,
 /turf/open/floor/plasteel{

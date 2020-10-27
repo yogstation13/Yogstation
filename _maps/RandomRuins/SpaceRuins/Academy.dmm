@@ -20,7 +20,7 @@
 /turf/open/space,
 /area/space)
 "al" = (
-/obj/structure/destructible/cult/tome,
+/obj/structure/cult/tome,
 /turf/open/floor/wood,
 /area/awaymission/academy/academyfore)
 "am" = (
@@ -711,7 +711,7 @@
 /turf/open/floor/plating,
 /area/awaymission/academy/academyaft)
 "jR" = (
-/obj/structure/destructible/cult/pylon,
+/obj/structure/cult/pylon,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1;
 	icon_state = "tile_corner"
@@ -780,7 +780,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
 "ke" = (
-/obj/structure/destructible/cult/pylon,
+/obj/structure/cult/pylon,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4;
 	icon_state = "tile_corner"

@@ -197,8 +197,8 @@
 			return FALSE
 		repair_values["amount_to_heal"] = L.maxHealth - L.health
 	else if(isobj(target))
-		if(istype(target, /obj/structure/destructible/clockwork))
-			var/obj/structure/destructible/clockwork/C = target
+		if(istype(target, /obj/structure/clockwork))
+			var/obj/structure/clockwork/C = target
 			if(!C.can_be_repaired)
 				if(!silent)
 					to_chat(user, "<span class='warning'>[C] cannot be repaired!</span>")

@@ -1,5 +1,5 @@
 //Used to nominate oneself or ghosts for the role of Eminence.
-/obj/structure/destructible/clockwork/eminence_spire
+/obj/structure/clockwork/eminence_spire
 	name = "eminence spire"
 	desc = "A hulking machine made of powerful alloy, with three small obelisks and a huge plate in the center."
 	clockwork_desc = "This spire is used to become the Eminence, who functions as an invisible leader of the cult. Activate it to nominate yourself or propose that the Eminence should be \
@@ -11,7 +11,7 @@
 	var/selection_timer //Timer ID; this is canceled if the vote is canceled
 	var/kingmaking
 
-/obj/structure/destructible/clockwork/eminence_spire/attack_hand(mob/living/user)
+/obj/structure/clockwork/eminence_spire/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -38,7 +38,7 @@
 	else
 		nomination(user)
 
-/obj/structure/destructible/clockwork/eminence_spire/attack_drone(mob/living/simple_animal/drone/user)
+/obj/structure/clockwork/eminence_spire/attack_drone(mob/living/simple_animal/drone/user)
 	if(!is_servant_of_ratvar(user))
 		..()
 	else
@@ -46,7 +46,7 @@
 		return
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
-/obj/structure/destructible/clockwork/eminence_spire/attack_ghost(mob/user)
+/obj/structure/clockwork/eminence_spire/attack_ghost(mob/user)
 	if(!IsAdminGhost(user))
 		return
 
@@ -69,7 +69,7 @@
 	for(var/mob/M in servants_and_ghosts())
 		M.playsound_local(M, 'sound/machines/clockcult/eminence_selected.ogg', 50, FALSE)
 
-/obj/structure/destructible/clockwork/eminence_spire/proc/nomination(mob/living/nominee) //A user is nominating themselves or ghosts to become Eminence
+/obj/structure/clockwork/eminence_spire/proc/nomination(mob/living/nominee) //A user is nominating themselves or ghosts to become Eminence
 	var/nomination_choice = alert(nominee, "Who would you like to nominate?", "Eminence Nomination", "Nominate Yourself", "Nominate Ghosts", "Cancel")
 	if(!is_servant_of_ratvar(nominee) || !nominee.canUseTopic(src) || eminence_nominee)
 		return
@@ -86,7 +86,7 @@
 		M.playsound_local(M, 'sound/machines/clockcult/ocularwarden-target.ogg', 50, FALSE)
 	selection_timer = addtimer(CALLBACK(src, .proc/kingmaker), 300, TIMER_STOPPABLE)
 
-/obj/structure/destructible/clockwork/eminence_spire/proc/objection(mob/living/wright)
+/obj/structure/clockwork/eminence_spire/proc/objection(mob/living/wright)
 	if(alert(wright, "Object to the selection of [eminence_nominee] as Eminence?", "Objection!", "Object", "Cancel") == "Cancel" || !is_servant_of_ratvar(wright) || !wright.canUseTopic(src) || !eminence_nominee)
 		return
 	hierophant_message("<span class='brass'><b>[wright] objects to the nomination of [eminence_nominee]!</b> The eminence spire has been reset.</span>")
@@ -95,7 +95,7 @@
 	eminence_nominee = null
 	deltimer(selection_timer)
 
-/obj/structure/destructible/clockwork/eminence_spire/proc/cancelation(mob/living/cold_feet)
+/obj/structure/clockwork/eminence_spire/proc/cancelation(mob/living/cold_feet)
 	if(alert(cold_feet, "Cancel your nomination?", "Cancel Nomination", "Withdraw Nomination", "Cancel") == "Cancel" || !is_servant_of_ratvar(cold_feet) || !cold_feet.canUseTopic(src) || !eminence_nominee)
 		return
 	hierophant_message("<span class='brass'><b>[eminence_nominee] has withdrawn their nomination!</b> The eminence spire has been reset.</span>")
@@ -104,7 +104,7 @@
 	eminence_nominee = null
 	deltimer(selection_timer)
 
-/obj/structure/destructible/clockwork/eminence_spire/proc/kingmaker()
+/obj/structure/clockwork/eminence_spire/proc/kingmaker()
 	if(!eminence_nominee)
 		return
 	if(ismob(eminence_nominee))

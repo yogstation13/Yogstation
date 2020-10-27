@@ -187,7 +187,7 @@ Credit where due:
 	var/list/cog_spawns = GLOB.servant_spawns_scarabs.Copy()
 	for(var/turf/T in cog_spawns)
 		new /obj/item/clockwork/construct_chassis/cogscarab(T)
-	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar //that's a mouthful
+	var/obj/structure/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar //that's a mouthful
 	G.final_countdown(ark_time)
 	..()
 	return 1
@@ -359,7 +359,7 @@ Credit where due:
 				/obj/item/clockwork/component/geis_capacitor/fallen_armor = 4,
 				/obj/item/clockwork/alloy_shards/clockgolem_remains = 12,
 				/obj/item/clockwork/alloy_shards/large = 15,
-				/obj/structure/destructible/clockwork/wall_gear = 20,
+				/obj/structure/clockwork/wall_gear = 20,
 				/obj/structure/table_frame/brass = 20,
 				/obj/item/stack/tile/brass/ten = 23)
 

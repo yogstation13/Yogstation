@@ -18,7 +18,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "f" = (
-/obj/structure/destructible/cult/pylon,
+/obj/structure/cult/pylon,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "g" = (

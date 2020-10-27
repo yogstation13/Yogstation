@@ -1,5 +1,5 @@
 //Ratvar himself. Impossible to damage by most standard means, and converts nearby objects and players into clockwork variants and Servants.
-/obj/structure/destructible/clockwork/massive/ratvar
+/obj/structure/clockwork/massive/ratvar
 	name = "Ratvar, the Clockwork Justiciar"
 	desc = "..."
 	clockwork_desc = "<span class='large_brass bold italics'>Ratvar, free at last!</span>"
@@ -17,7 +17,7 @@
 	var/convert_range = 10
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 
-/obj/structure/destructible/clockwork/massive/ratvar/Initialize()
+/obj/structure/clockwork/massive/ratvar/Initialize()
 	. = ..()
 	GLOB.ratvar_awakens++
 	for(var/obj/O in GLOB.all_clockwork_objects)
@@ -35,7 +35,7 @@
 	notify_ghosts("The Justiciar's light calls to you! Reach out to Ratvar in [get_area_name(src)] to be granted a shell to spread his glory!", null, source = src, alert_overlay = alert_overlay)
 	INVOKE_ASYNC(SSshuttle.emergency, /obj/docking_port/mobile/emergency.proc/request, null, 10, null, FALSE, 0)
 
-/obj/structure/destructible/clockwork/massive/ratvar/Destroy()
+/obj/structure/clockwork/massive/ratvar/Destroy()
 	GLOB.ratvar_awakens--
 	for(var/obj/O in GLOB.all_clockwork_objects)
 		O.ratvar_act()
@@ -43,7 +43,7 @@
 	return ..()
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
-/obj/structure/destructible/clockwork/massive/ratvar/attack_ghost(mob/dead/observer/O)
+/obj/structure/clockwork/massive/ratvar/attack_ghost(mob/dead/observer/O)
 	var/alertresult = alert(O, "Embrace the Justiciar's light? You can no longer be cloned!",,"Yes", "No")
 	if(alertresult == "No" || QDELETED(O) || !istype(O) || !O.key)
 		return FALSE
@@ -51,16 +51,16 @@
 	R.visible_message("<span class='heavy_brass'>[R] forms, and its eyes blink open, glowing bright red!</span>")
 	R.key = O.key
 
-/obj/structure/destructible/clockwork/massive/ratvar/Bump(atom/A)
+/obj/structure/clockwork/massive/ratvar/Bump(atom/A)
 	var/turf/T = get_turf(A)
 	if(T == loc)
 		T = get_step(T, dir) //please don't run into a window like a bird, ratvar
 	forceMove(T)
 
-/obj/structure/destructible/clockwork/massive/ratvar/Process_Spacemove()
+/obj/structure/clockwork/massive/ratvar/Process_Spacemove()
 	return clashing
 
-/obj/structure/destructible/clockwork/massive/ratvar/process()
+/obj/structure/clockwork/massive/ratvar/process()
 	if(clashing) //I'm a bit occupied right now, thanks
 		return
 	for(var/I in circlerangeturfs(src, convert_range))
@@ -100,7 +100,7 @@
 			dir_to_step_in = get_dir(src, prey) //Unlike Nar-Sie, Ratvar ruthlessly chases down his target
 	step(src, dir_to_step_in)
 
-/obj/structure/destructible/clockwork/massive/ratvar/proc/clash()
+/obj/structure/clockwork/massive/ratvar/proc/clash()
 	if(clashing || prey != GLOB.cult_narsie)
 		return
 	clashing = TRUE
@@ -111,7 +111,7 @@
 	return TRUE
 
 //Put me in Reebe, will you? Ratvar has found and is going to do a hecking murder on Nar-Sie
-/obj/structure/destructible/clockwork/massive/ratvar/proc/clash_of_the_titans(obj/singularity/narsie/narsie)
+/obj/structure/clockwork/massive/ratvar/proc/clash_of_the_titans(obj/singularity/narsie/narsie)
 	var/winner = "Undeclared"
 	var/base_victory_chance = 1
 	while(src && narsie)

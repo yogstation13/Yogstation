@@ -1,14 +1,16 @@
-/obj/structure/destructible/cult
+/obj/structure/cult
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/cult.dmi'
 	light_power = 2
 	var/cooldowntime = 0
-	break_sound = 'sound/hallucinations/veryfar_noise.ogg'
-	debris = list(/obj/item/stack/sheet/runed_metal = 1)
+	var/debris = list(/obj/item/stack/sheet/runed_metal = 1)
 	var/is_endgame = FALSE //is the structure part of the endgame? stuff that can't be healed/moved have this set to TRUE
+	var/break_message = "<span class='warning'>The strange, admin-y structure breaks!</span>"
+	var/break_sound = 'sound/magic/clockwork/invoke_general.ogg'
+	max_integrity = 100
 
-/obj/structure/destructible/cult/proc/conceal() //for spells that hide cult presence
+/obj/structure/cult/proc/conceal() //for spells that hide cult presence
 	density = FALSE
 	visible_message("<span class='danger'>[src] fades away.</span>")
 	invisibility = INVISIBILITY_OBSERVER
@@ -18,7 +20,7 @@
 	update_light()
 	STOP_PROCESSING(SSfastprocess, src)
 
-/obj/structure/destructible/cult/proc/reveal() //for spells that reveal cult presence
+/obj/structure/cult/proc/reveal() //for spells that reveal cult presence
 	density = initial(density)
 	invisibility = 0
 	visible_message("<span class='danger'>[src] suddenly appears!</span>")
@@ -28,21 +30,33 @@
 	update_light()
 	START_PROCESSING(SSfastprocess, src)
 
+/obj/structure/cult/Destroy()
+	if(!(flags_1 & NODECONSTRUCT_1))
+		if(islist(debris))
+			for(var/I in debris)
+				for(var/i in 1 to debris[I])
+					new I (get_turf(src))
+	if(break_message)
+		visible_message(break_message)
+	if(break_sound)
+		playsound(src, break_sound, 50, 1)
+	return ..()
 
-/obj/structure/destructible/cult/examine(mob/user)
+
+/obj/structure/cult/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>\The [src] is [anchored ? "":"not "]secured to the floor.</span>"
 	if((iscultist(user) || isobserver(user)) && cooldowntime > world.time)
 		. += "<span class='cult italic'>The magic in [src] is too weak, [p_they()] will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>"
 
-/obj/structure/destructible/cult/examine_status(mob/user)
+/obj/structure/cult/examine_status(mob/user)
 	if(iscultist(user) || isobserver(user))
 		var/t_It = p_they(TRUE)
 		var/t_is = p_are()
 		return "<span class='cult'>[t_It] [t_is] at <b>[round(obj_integrity * 100 / max_integrity)]%</b> stability.</span>"
 	return ..()
 
-/obj/structure/destructible/cult/attack_animal(mob/living/simple_animal/M)
+/obj/structure/cult/attack_animal(mob/living/simple_animal/M)
 	if(is_endgame && iscultist(M))
 		return FALSE //no smash or healing
 	if(istype(M, /mob/living/simple_animal/hostile/construct/builder))
@@ -57,12 +71,12 @@
 	else
 		..()
 
-/obj/structure/destructible/cult/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
+/obj/structure/cult/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
 	if(iscultist(user) && is_endgame)
 		return FALSE
 	return ..()
 
-/obj/structure/destructible/cult/attackby(obj/I, mob/user, params)
+/obj/structure/cult/attackby(obj/I, mob/user, params)
 	if(is_endgame && iscultist(user))
 		return FALSE
 	if(istype(I, /obj/item/melee/cultblade/dagger) && iscultist(user))
@@ -75,7 +89,7 @@
 	else
 		return ..()
 
-/obj/structure/destructible/cult/ratvar_act()
+/obj/structure/cult/ratvar_act()
 	if(take_damage(rand(25, 50), BURN) && src) //if we still exist
 		var/previouscolor = color
 		color = "#FAE48C"
@@ -83,13 +97,13 @@
 		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
 
 
-/obj/structure/destructible/cult/talisman
+/obj/structure/cult/talisman
 	name = "altar"
 	desc = "A bloodstained altar dedicated to Nar-Sie."
 	icon_state = "talismanaltar"
 	break_message = "<span class='warning'>The altar shatters, leaving only the wailing of the damned!</span>"
 
-/obj/structure/destructible/cult/talisman/attack_hand(mob/living/user)
+/obj/structure/cult/talisman/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -117,7 +131,7 @@
 			new N(get_turf(src))
 			to_chat(user, "<span class='cultitalic'>You kneel before the altar and your faith is rewarded with the [choice]!</span>")
 
-/obj/structure/destructible/cult/forge
+/obj/structure/cult/forge
 	name = "daemon forge"
 	desc = "A forge used in crafting the unholy weapons used by the armies of Nar-Sie."
 	icon_state = "forge"
@@ -125,7 +139,7 @@
 	light_color = LIGHT_COLOR_LAVA
 	break_message = "<span class='warning'>The force breaks apart into shards with a howling scream!</span>"
 
-/obj/structure/destructible/cult/forge/attack_hand(mob/living/user)
+/obj/structure/cult/forge/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -159,7 +173,7 @@
 
 
 
-/obj/structure/destructible/cult/pylon
+/obj/structure/cult/pylon
 	name = "pylon"
 	desc = "A floating crystal that slowly heals those faithful to Nar'Sie."
 	icon_state = "pylon"
@@ -172,15 +186,15 @@
 	var/corrupt_delay = 50
 	var/last_corrupt = 0
 
-/obj/structure/destructible/cult/pylon/New()
+/obj/structure/cult/pylon/New()
 	START_PROCESSING(SSfastprocess, src)
 	..()
 
-/obj/structure/destructible/cult/pylon/Destroy()
+/obj/structure/cult/pylon/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
-/obj/structure/destructible/cult/pylon/process()
+/obj/structure/cult/pylon/process()
 	if(!anchored)
 		return
 	if(last_heal <= world.time)
@@ -235,7 +249,7 @@
 				// convertable turfs?
 				last_corrupt = world.time + corrupt_delay*2
 
-/obj/structure/destructible/cult/tome
+/obj/structure/cult/tome
 	name = "archives"
 	desc = "A desk covered in arcane manuscripts and tomes in unknown languages. Looking at the text makes your skin crawl."
 	icon_state = "tomealtar"
@@ -243,7 +257,7 @@
 	light_color = LIGHT_COLOR_FIRE
 	break_message = "<span class='warning'>The books and tomes of the archives burn into ash as the desk shatters!</span>"
 
-/obj/structure/destructible/cult/tome/attack_hand(mob/living/user)
+/obj/structure/cult/tome/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -273,7 +287,7 @@
 			to_chat(user, "<span class='cultitalic'>You summon the [choice] from the archives!</span>")
 
 /////////////////////////////WE'RE IN THE ENDGAME NOW/////////////////////////////
-/obj/structure/destructible/cult/pillar
+/obj/structure/cult/pillar
 	name = "obsidian pillar"
 	icon_state = "pillar-enter"
 	icon = 'icons/obj/cult_64x64.dmi'
@@ -286,11 +300,11 @@
 	var/alt = 0
 	is_endgame = TRUE
 
-/obj/structure/destructible/cult/pillar/alt
+/obj/structure/cult/pillar/alt
 	icon_state = "pillaralt-enter"
 	alt = 1
 
-/obj/structure/destructible/cult/pillar/Initialize()
+/obj/structure/cult/pillar/Initialize()
 	..()
 	var/turf/T = loc
 	if (!T)
@@ -304,25 +318,25 @@
 			qdel(O)
 	T.narsie_act()
 
-/obj/structure/destructible/cult/pillar/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
+/obj/structure/cult/pillar/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
 	..()
 	update_icon()
 
-/obj/structure/destructible/cult/pillar/Destroy()
+/obj/structure/cult/pillar/Destroy()
 	new /obj/effect/decal/cleanable/ash(loc)
 	..()
 
-/obj/structure/destructible/cult/pillar/update_icon()
+/obj/structure/cult/pillar/update_icon()
 	icon_state = "pillar[alt ? "alt": ""]2"
 	if (obj_integrity < max_integrity/3)
 		icon_state = "pillar[alt ? "alt": ""]0"
 	else if (obj_integrity < 2*max_integrity/3)
 		icon_state = "pillar[alt ? "alt": ""]1"
 
-/obj/structure/destructible/cult/pillar/conceal()
+/obj/structure/cult/pillar/conceal()
 	return
 
-/obj/structure/destructible/cult/pillar/ex_act(var/severity)
+/obj/structure/cult/pillar/ex_act(var/severity)
 	switch(severity)
 		if (EXPLODE_DEVASTATE)
 			take_damage(200)
@@ -331,7 +345,7 @@
 		if (EXPLODE_LIGHT)
 			take_damage(20)
 
-/obj/structure/destructible/cult/bloodstone
+/obj/structure/cult/bloodstone
 	name = "bloodstone"
 	desc = "A large, red stone filling with... something. You get a headache even being near it."
 	icon_state = "bloodstone-enter1"
@@ -347,7 +361,7 @@
 	var/anchor = FALSE //are we the bloodstone used to summon nar-sie? used in the final part of the summoning
 	is_endgame = TRUE
 
-/obj/structure/destructible/cult/bloodstone/Initialize()
+/obj/structure/cult/bloodstone/Initialize()
 	..()
 	if (!src.loc)
 		message_admins("Blood Cult: A blood stone was somehow spawned in nullspace. It has been destroyed.")
@@ -380,13 +394,13 @@
 					M.playsound_local(src, 'sound/effects/explosionfar.ogg', 50, 1)
 					shake_camera(M, 1, 1)
 		var/turf/T1 = locate(x-2,y-2,z)
-		pillars += new /obj/structure/destructible/cult/pillar(T1)
+		pillars += new /obj/structure/cult/pillar(T1)
 		var/turf/T2 = locate(x+2,y-2,z)
-		pillars += new /obj/structure/destructible/cult/pillar/alt(T2)
+		pillars += new /obj/structure/cult/pillar/alt(T2)
 		var/turf/T3 = locate(x-2,y+2,z)
-		pillars += new /obj/structure/destructible/cult/pillar(T3)
+		pillars += new /obj/structure/cult/pillar(T3)
 		var/turf/T4 = locate(x+2,y+2,z)
-		pillars += new /obj/structure/destructible/cult/pillar/alt(T4)
+		pillars += new /obj/structure/cult/pillar/alt(T4)
 		sleep(10)
 		icon_state = "bloodstone-enter3"
 		for(var/mob/M in GLOB.player_list)
@@ -397,20 +411,20 @@
 				else
 					M.playsound_local(src, 'sound/effects/explosionfar.ogg', 50, 1)
 					shake_camera(M, 1, 1)
-		for (var/obj/structure/destructible/cult/pillar/P in pillars)
+		for (var/obj/structure/cult/pillar/P in pillars)
 			P.update_icon()
 
-/obj/structure/destructible/cult/bloodstone/proc/summon()
+/obj/structure/cult/bloodstone/proc/summon()
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF //should stop the stone from being destroyed by damage
 	sound_to_playing_players('sound/effects/dimensional_rend.ogg')
 	sleep(40)
 	new /obj/singularity/narsie/large/cult(loc)
 
-/obj/structure/destructible/cult/bloodstone/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
+/obj/structure/cult/bloodstone/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
 	..()
 	update_icon()
 
-/obj/structure/destructible/cult/bloodstone/ex_act(var/severity)
+/obj/structure/cult/bloodstone/ex_act(var/severity)
 	switch(severity)
 		if (EXPLODE_DEVASTATE)
 			take_damage(200)
@@ -419,7 +433,7 @@
 		if (EXPLODE_LIGHT)
 			take_damage(20)
 
-/obj/structure/destructible/cult/bloodstone/Destroy()
+/obj/structure/cult/bloodstone/Destroy()
 	for(var/mob/M in range(7, loc))
 		M.playsound_local(M, 'sound/creatures/legion_death.ogg', 75, FALSE) //make it suitably loud
 	SSticker.mode.bloodstone_list.Remove(src)
@@ -431,7 +445,7 @@
 				to_chat(B.current, "<span class='cultlarge'>The Bloodstone in [get_area(src)] has been destroyed! There are [SSticker.mode.bloodstone_list.len] Bloodstones remaining!.</span>")
 	new /obj/effect/decal/cleanable/ash(loc)
 	new /obj/item/ectoplasm(loc)
-	new /obj/structure/destructible/dead_bloodstone(loc)
+	new /obj/structure/dead_bloodstone(loc)
 
 	if(!(locate(/obj/singularity/narsie) in GLOB.poi_list) && (!SSticker.mode.bloodstone_cooldown && SSticker.mode.bloodstone_list.len <= 0 || anchor))
 		if(anchor)
@@ -441,21 +455,21 @@
 			SSticker.mode.cult_loss_bloodstones()
 	..()
 
-/obj/structure/destructible/cult/bloodstone/mech_melee_attack(obj/mecha/M)
+/obj/structure/cult/bloodstone/mech_melee_attack(obj/mecha/M)
 	M.force = round(M.force/6, 1) //damage is reduced since mechs deal triple damage to objects, this sets gygaxes to 15 (5*3) damage and durands to 21 (7*3) damage
 	. = ..()
 	M.force = initial(M.force)
 
-/obj/structure/destructible/cult/bloodstone/hulk_damage()
+/obj/structure/cult/bloodstone/hulk_damage()
 	return 15 //no
 
-/obj/structure/destructible/cult/bloodstone/proc/safe_space()
+/obj/structure/cult/bloodstone/proc/safe_space()
 	for(var/turf/T in range(5,src))
 		var/dist = get_dist(src, T)
 		if (dist <= 2)
 			T.ChangeTurf(/turf/open/floor/engine/cult)
 			for (var/obj/structure/S in T)
-				if(!istype(S,/obj/structure/destructible/cult))
+				if(!istype(S,/obj/structure/cult))
 					S.ex_act(EXPLODE_DEVASTATE)
 			for (var/obj/machinery/M in T)
 				qdel(M)
@@ -470,7 +484,7 @@
 			else
 				T.narsie_act(TRUE, TRUE)
 
-/obj/structure/destructible/cult/bloodstone/update_icon()
+/obj/structure/cult/bloodstone/update_icon()
 	icon_state = "bloodstone-[current_fullness]"
 	cut_overlays()
 	var/image/I_base = image('icons/obj/cult_64x64.dmi',"bloodstone-base")
@@ -482,7 +496,7 @@
 		add_overlay("bloodstone_damage1")
 	set_light(3+current_fullness, 2+current_fullness)
 
-/obj/structure/destructible/cult/bloodstone/proc/set_animate()
+/obj/structure/cult/bloodstone/proc/set_animate()
 	animate(src, color = list(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0), time = 10, loop = -1)
 	animate(color = list(1.125,0.06,0,0,0,1.125,0.06,0,0.06,0,1.125,0,0,0,0,1,0,0,0,0), time = 2)
 	animate(color = list(1.25,0.12,0,0,0,1.25,0.12,0,0.12,0,1.25,0,0,0,0,1,0,0,0,0), time = 2)
@@ -502,13 +516,13 @@
 	set_light(20, 20)
 	update_icon()
 
-/obj/structure/destructible/cult/bloodstone/conceal() //lol
+/obj/structure/cult/bloodstone/conceal() //lol
 	return
 
-/obj/structure/destructible/cult/bloodstone/reveal()
+/obj/structure/cult/bloodstone/reveal()
 	return
 
-/obj/structure/destructible/dead_bloodstone
+/obj/structure/dead_bloodstone
 	name = "shattered bloodstone"
 	desc = "The base of a destroyed bloodstone."
 	icon = 'icons/obj/cult_64x64.dmi'

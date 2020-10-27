@@ -259,7 +259,7 @@
 	tick_interval = 10
 	status_type = STATUS_EFFECT_MULTIPLE
 	alert_type = null
-	var/obj/structure/destructible/clockwork/powered/mania_motor/motor
+	var/obj/structure/clockwork/powered/mania_motor/motor
 	var/severity = 0 //goes up to a maximum of MAX_MANIA_SEVERITY
 	var/warned_turnoff = FALSE //if we've warned that the motor is off
 	var/warned_outofsight = FALSE //if we've warned that the target is out of sight of the motor
@@ -271,7 +271,7 @@
 	var/static/list/powerloss_messages = list("\"Oh, the id**ts di***t s***e en**** pow**...\"" = TRUE, "\"D*dn't **ey mak* an **te***c*i*n le**?\"" = TRUE, "\"The** f**ls for**t t* make a ***** *f-\"" = TRUE, \
 	"\"No, *O, you **re so cl***-\"" = TRUE, "You hear a yell of frustration, cut off by static." = FALSE)
 
-/datum/status_effect/maniamotor/on_creation(mob/living/new_owner, obj/structure/destructible/clockwork/powered/mania_motor/new_motor)
+/datum/status_effect/maniamotor/on_creation(mob/living/new_owner, obj/structure/clockwork/powered/mania_motor/new_motor)
 	. = ..()
 	if(.)
 		motor = new_motor

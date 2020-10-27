@@ -1,5 +1,5 @@
 //I am honkadias clown of clowns look upon my pranks and despair!
-/obj/structure/destructible/honkmother
+/obj/structure/honkmother
 	name = "The Honkmother"
 	desc = "HONK!"
 	icon = 'icons/effects/288x288.dmi'
@@ -22,7 +22,7 @@
 	movement_type = UNSTOPPABLE
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 
-/obj/structure/destructible/honkmother/Initialize()
+/obj/structure/honkmother/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	send_to_playing_players("<span class='clown'>HONK!</span>")
@@ -31,11 +31,11 @@
 	var/mutable_appearance/alert_overlay = mutable_appearance('icons/obj/items_and_weapons.dmi', "bike_horn")
 	notify_ghosts("Pranks must be spread to the people! Touch The Honkmother at [get_area_name(src)] and become one of her glorious creations!", null, source = src, alert_overlay = alert_overlay)
 
-/obj/structure/destructible/honkmother/Destroy()
+/obj/structure/honkmother/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/structure/destructible/honkmother/attack_ghost(mob/dead/observer/O)
+/obj/structure/honkmother/attack_ghost(mob/dead/observer/O)
 	var/alertresult = alert(O, "Become a honking abomination? You can no longer be cloned!",,"Yes", "No")
 	if(alertresult == "No" || QDELETED(O) || !istype(O) || !O.key)
 		return FALSE
@@ -45,7 +45,7 @@
 	R.key = O.key
 
 //moves and turns things into BANANIUM
-/obj/structure/destructible/honkmother/process()
+/obj/structure/honkmother/process()
 	for(var/I in circlerangeturfs(src, convert_range))
 		var/turf/T = I
 		if(prob(20))

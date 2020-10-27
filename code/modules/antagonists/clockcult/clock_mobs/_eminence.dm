@@ -118,7 +118,7 @@
 		issue_command(A)
 		return
 	if(GLOB.ark_of_the_clockwork_justiciar == A)
-		var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
+		var/obj/structure/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
 		if(G.recalling)
 			return
 		if(!G.recalls_remaining)
@@ -127,8 +127,8 @@
 		if(alert(src, "Initiate mass recall?", "Mass Recall", "Yes", "No") != "Yes" || QDELETED(src) || QDELETED(G) || !G.obj_integrity)
 			return
 		G.initiate_mass_recall() //wHOOPS LOOKS LIKE A HULK GOT THROUGH
-	else if(istype(A, /obj/structure/destructible/clockwork/trap/trigger))
-		var/obj/structure/destructible/clockwork/trap/trigger/T = A
+	else if(istype(A, /obj/structure/clockwork/trap/trigger))
+		var/obj/structure/clockwork/trap/trigger/T = A
 		T.visible_message("<span class='danger'>[T] clunks as it's activated remotely.</span>")
 		to_chat(src, "<span class='brass'>You activate [T].</span>")
 		T.activate()
@@ -148,8 +148,8 @@
 	else
 		command_location = A
 		commands = list("Rally Here", "Regroup Here", "Avoid This Area", "Reinforce This Area")
-		if(istype(A, /obj/structure/destructible/clockwork/powered))
-			var/obj/structure/destructible/clockwork/powered/P = A
+		if(istype(A, /obj/structure/clockwork/powered))
+			var/obj/structure/clockwork/powered/P = A
 			if(!can_access_clockwork_power(P))
 				commands += "Power This Structure"
 			if(P.obj_integrity < P.max_integrity)
@@ -256,7 +256,7 @@
 	button_icon_state = "Abscond"
 
 /datum/action/innate/eminence/ark_jump/Activate()
-	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
+	var/obj/structure/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
 	if(G)
 		owner.forceMove(get_turf(G))
 		owner.playsound_local(owner, 'sound/magic/magic_missile.ogg', 50, TRUE)
@@ -287,13 +287,13 @@
 /datum/action/innate/eminence/mass_recall/IsAvailable()
 	. = ..()
 	if(.)
-		var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
+		var/obj/structure/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
 		if(G)
 			return G.recalls_remaining && !G.recalling
 		return FALSE
 
 /datum/action/innate/eminence/mass_recall/Activate()
-	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
+	var/obj/structure/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
 	if(G && !G.recalling && G.recalls_remaining)
 		if(alert(owner, "Initiate mass recall?", "Mass Recall", "Yes", "No") != "Yes" || QDELETED(owner) || QDELETED(G) || !G.obj_integrity)
 			return

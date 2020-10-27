@@ -172,7 +172,7 @@
 	var/list/possible_targets = list()
 	var/list/teleportnames = list()
 
-	for(var/obj/structure/destructible/clockwork/powered/clockwork_obelisk/O in GLOB.all_clockwork_objects)
+	for(var/obj/structure/clockwork/powered/clockwork_obelisk/O in GLOB.all_clockwork_objects)
 		if(!O.Adjacent(invoker) && O != src && !is_away_level(O.z) && O.anchored) //don't list obelisks that we're next to
 			var/area/A = get_area(O)
 			var/locname = initial(A.name)
@@ -200,13 +200,13 @@
 		if(L.stat != CONSCIOUS)
 			to_chat(invoker, "<span class='warning'>That Servant is no longer conscious!</span>")
 			return procure_gateway(invoker, time_duration, gateway_uses, two_way)
-	var/istargetobelisk = istype(target, /obj/structure/destructible/clockwork/powered/clockwork_obelisk)
-	var/issrcobelisk = istype(src, /obj/structure/destructible/clockwork/powered/clockwork_obelisk)
+	var/istargetobelisk = istype(target, /obj/structure/clockwork/powered/clockwork_obelisk)
+	var/issrcobelisk = istype(src, /obj/structure/clockwork/powered/clockwork_obelisk)
 	if(issrcobelisk)
 		if(!anchored)
 			to_chat(invoker, "<span class='warning'>[src] is no longer secured!</span>")
 			return FALSE
-		var/obj/structure/destructible/clockwork/powered/clockwork_obelisk/CO = src //foolish as I am, how I set this proc up makes substypes unfeasible
+		var/obj/structure/clockwork/powered/clockwork_obelisk/CO = src //foolish as I am, how I set this proc up makes substypes unfeasible
 		if(CO.active)
 			to_chat(invoker, "<span class='warning'>[src] is now sustaining a gateway!</span>")
 			return FALSE
@@ -214,7 +214,7 @@
 		if(!target.anchored)
 			to_chat(invoker, "<span class='warning'>That [target.name] is no longer secured!</span>")
 			return procure_gateway(invoker, time_duration, gateway_uses, two_way)
-		var/obj/structure/destructible/clockwork/powered/clockwork_obelisk/CO = target
+		var/obj/structure/clockwork/powered/clockwork_obelisk/CO = target
 		if(CO.active)
 			to_chat(invoker, "<span class='warning'>That [target.name] is sustaining a gateway, and cannot receive another!</span>")
 			return procure_gateway(invoker, time_duration, gateway_uses, two_way)

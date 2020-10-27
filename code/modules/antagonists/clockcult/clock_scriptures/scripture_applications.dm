@@ -32,7 +32,7 @@
 	invocations = list("May this transmitter...", "...break the will of all who oppose us!")
 	channel_time = 80
 	power_cost = 750
-	object_path = /obj/structure/destructible/clockwork/powered/mania_motor
+	object_path = /obj/structure/clockwork/powered/mania_motor
 	creator_message = "<span class='brass'>You form a mania motor, which causes minor damage and negative mental effects in non-Servants.</span>"
 	observer_message = "<span class='warning'>A two-pronged machine rises from the ground!</span>"
 	invokers_required = 2
@@ -54,7 +54,7 @@
 	invocations = list("May this obelisk...", "...take us to all places!")
 	channel_time = 80
 	power_cost = 300
-	object_path = /obj/structure/destructible/clockwork/powered/clockwork_obelisk
+	object_path = /obj/structure/clockwork/powered/clockwork_obelisk
 	creator_message = "<span class='brass'>You form a clockwork obelisk which can broadcast messages or produce Spatial Gateways.</span>"
 	observer_message = "<span class='warning'>A brass obelisk appears hanging in midair!</span>"
 	invokers_required = 2

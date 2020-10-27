@@ -194,7 +194,7 @@
 	. = ..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
 		var/structure_number = 0
-		for(var/obj/structure/destructible/clockwork/powered/P in range(SIGIL_ACCESS_RANGE, src))
+		for(var/obj/structure/clockwork/powered/P in range(SIGIL_ACCESS_RANGE, src))
 			structure_number++
 		. += {"<span class='[get_clockwork_power() ? "brass":"alloy"]'>It is storing <b>[DisplayEnergy(get_clockwork_power())]</b> of shared power,
 		and <b>[structure_number]</b> clockwork structure[structure_number == 1 ? " is":"s are"] in range.</span>"}

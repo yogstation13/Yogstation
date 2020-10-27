@@ -16,7 +16,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/effect/hierophant,
 		/obj/structure/receiving_pad,
 		/obj/effect/clockwork/spatial_gateway,
-		/obj/structure/destructible/clockwork/powered/clockwork_obelisk,
+		/obj/structure/clockwork/powered/clockwork_obelisk,
 		/obj/item/warp_cube,
 		/obj/machinery/rnd/production, //print tracking beacons, send shuttle
 		/obj/machinery/autolathe, //same

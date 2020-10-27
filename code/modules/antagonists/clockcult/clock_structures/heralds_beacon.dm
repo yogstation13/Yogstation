@@ -1,6 +1,6 @@
 //Used to "declare war" against the station. The servants' equipment will be permanently supercharged, and the Ark given extra time to prepare.
 //This will send an announcement to the station, meaning that they will be warned very early in advance about the impending attack.
-/obj/structure/destructible/clockwork/heralds_beacon
+/obj/structure/clockwork/heralds_beacon
 	name = "herald's beacon"
 	desc = "An imposing spire formed of brass, with a thrumming gemstone at its peak."
 	clockwork_desc = "A massively-powerful beacon. If enough servants decide to activate it, it will send an incredibly large energy pulse to the Ark, \
@@ -15,16 +15,16 @@
 	var/votes_needed = 0 //How many votes are needed to activate the beacon
 	var/available = FALSE //If the beacon can be used
 
-/obj/structure/destructible/clockwork/heralds_beacon/Initialize()
+/obj/structure/clockwork/heralds_beacon/Initialize()
 	. = ..()
 	voters = list()
 	START_PROCESSING(SSprocessing, src)
 
-/obj/structure/destructible/clockwork/heralds_beacon/Destroy()
+/obj/structure/clockwork/heralds_beacon/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	. = ..()
 
-/obj/structure/destructible/clockwork/heralds_beacon/process()
+/obj/structure/clockwork/heralds_beacon/process()
 	if(!available)
 		if(istype(SSticker.mode, /datum/game_mode/clockwork_cult))
 			available = TRUE
@@ -46,7 +46,7 @@
 		icon_state = "interdiction_lens_unwrenched"
 		STOP_PROCESSING(SSprocessing, src)
 
-/obj/structure/destructible/clockwork/heralds_beacon/examine(mob/user)
+/obj/structure/clockwork/heralds_beacon/examine(mob/user)
 	. = ..()
 	if(isobserver(user) || is_servant_of_ratvar(user))
 		if(!available)
@@ -58,7 +58,7 @@
 			. += "<span class='brass'>There are <b>[time_remaining]</b> second[time_remaining != 1 ? "s" : ""] remaining to vote.</span>"
 			. += "<span class='big brass'>There are <b>[voters.len]/[votes_needed]</b> votes to activate the beacon!</span>"
 
-/obj/structure/destructible/clockwork/heralds_beacon/attack_hand(mob/living/user)
+/obj/structure/clockwork/heralds_beacon/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -90,7 +90,7 @@
 	if(!votes_left)
 		herald_the_justiciar()
 
-/obj/structure/destructible/clockwork/heralds_beacon/proc/herald_the_justiciar()
+/obj/structure/clockwork/heralds_beacon/proc/herald_the_justiciar()
 	priority_announce("A powerful group of fanatical zealots following the cause of Ratvar have brazenly sacrificed stealth for power, and dare anyone \
 	to try and stop them.", title = "The Justiciar Comes", sound = 'sound/magic/clockwork/ark_activation.ogg')
 	GLOB.ratvar_approaches = TRUE
@@ -107,6 +107,6 @@
 		if(is_servant_of_ratvar(H))
 			to_chat(H, "<span class='bold alloy'>The beacon's power warps your body into a clockwork form! You are now immune to many hazards, and your body is more robust against damage!</span>")
 			H.set_species(/datum/species/golem/clockwork/no_scrap)
-	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
+	var/obj/structure/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
 	G.grace_period = FALSE //no grace period if we've declared war
 	G.recalls_remaining++

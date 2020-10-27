@@ -9,7 +9,7 @@
 /turf/open/floor/engine/cult,
 /area/awaymission/wildwest/vault)
 "ad" = (
-/obj/structure/destructible/cult/pylon,
+/obj/structure/cult/pylon,
 /turf/open/floor/engine/cult,
 /area/awaymission/wildwest/vault)
 "ae" = (
@@ -62,7 +62,7 @@
 /turf/open/floor/circuit/green/off,
 /area/awaymission/wildwest/vault)
 "aq" = (
-/obj/structure/destructible/cult/pylon,
+/obj/structure/cult/pylon,
 /turf/open/floor/circuit/green/off,
 /area/awaymission/wildwest/vault)
 "ar" = (
@@ -122,7 +122,7 @@
 /turf/open/floor/circuit/green/off,
 /area/awaymission/wildwest/vault)
 "aB" = (
-/obj/structure/destructible/cult/pylon,
+/obj/structure/cult/pylon,
 /turf/open/floor/circuit/off,
 /area/awaymission/wildwest/vault)
 "aC" = (

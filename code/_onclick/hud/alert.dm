@@ -464,7 +464,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 		for(var/i in GLOB.scripture_states)
 			if(i != SCRIPTURE_DRIVER) //ignore the always-unlocked stuff
 				textlist += "[i] Scripture: <b>[GLOB.scripture_states[i] ? "UNLOCKED":"LOCKED"]</b><br>"
-		var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
+		var/obj/structure/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
 		if(G)
 			var/time_info = G.get_arrival_time(FALSE)
 			var/time_name

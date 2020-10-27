@@ -31296,7 +31296,7 @@
 /obj/machinery/light_switch{
 	pixel_y = 24
 	},
-/obj/structure/destructible/cult/tome,
+/obj/structure/cult/tome,
 /obj/item/book/codex_gigas,
 /turf/open/floor/wood,
 /area/library)

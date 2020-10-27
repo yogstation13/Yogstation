@@ -1327,7 +1327,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered)
 "qU" = (
-/obj/structure/destructible/cult/tome,
+/obj/structure/cult/tome,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered)
 "qY" = (

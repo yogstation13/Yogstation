@@ -1,12 +1,12 @@
 //Lever: Do I really need to explain this?
-/obj/structure/destructible/clockwork/trap/trigger/lever
+/obj/structure/clockwork/trap/trigger/lever
 	name = "lever"
 	desc = "A fancy lever made of wood and capped with brass."
 	clockwork_desc = "A fancy lever.that activates when pulled."
 	max_integrity = 75
 	icon_state = "lever"
 
-/obj/structure/destructible/clockwork/trap/trigger/lever/attack_hand(mob/living/user)
+/obj/structure/clockwork/trap/trigger/lever/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

@@ -37,7 +37,7 @@
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 "ak" = (
-/obj/structure/destructible/clockwork/massive/celestial_gateway,
+/obj/structure/clockwork/massive/celestial_gateway,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 "al" = (
@@ -114,7 +114,7 @@
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 "az" = (
-/obj/structure/destructible/clockwork/heralds_beacon,
+/obj/structure/clockwork/heralds_beacon,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 "aA" = (
@@ -210,7 +210,7 @@
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 "bj" = (
-/obj/structure/destructible/clockwork/eminence_spire,
+/obj/structure/clockwork/eminence_spire,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 "bG" = (

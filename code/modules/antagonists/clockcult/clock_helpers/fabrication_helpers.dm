@@ -224,10 +224,10 @@
 	var/fabrication_cost = POWER_GEAR - (POWER_METAL * 2)
 	if(state == GIRDER_REINF_STRUTS || state == GIRDER_REINF)
 		fabrication_cost -= POWER_PLASTEEL
-	return list("operation_time" = 20, "new_obj_type" = /obj/structure/destructible/clockwork/wall_gear, "power_cost" = fabrication_cost, "spawn_dir" = SOUTH)
+	return list("operation_time" = 20, "new_obj_type" = /obj/structure/clockwork/wall_gear, "power_cost" = fabrication_cost, "spawn_dir" = SOUTH)
 
 //Hitting a clockwork structure will try to repair it.
-/obj/structure/destructible/clockwork/fabrication_vals(mob/living/user, obj/item/clockwork/replica_fabricator/fabricator, silent)
+/obj/structure/clockwork/fabrication_vals(mob/living/user, obj/item/clockwork/replica_fabricator/fabricator, silent)
 	. = TRUE
 	var/list/repair_values = list()
 	if(!fabricator.fabricator_repair_checks(repair_values, src, user))

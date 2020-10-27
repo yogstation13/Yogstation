@@ -25,7 +25,7 @@
 	/datum/clockwork_scripture/ranged_ability/kindle, /datum/clockwork_scripture/ranged_ability/hateful_manacles, /datum/clockwork_scripture/ranged_ability/sentinels_compromise) //quickbound scripture, accessed by index
 	var/maximum_quickbound = 5 //how many quickbound scriptures we can have
 
-	var/obj/structure/destructible/clockwork/trap/linking //If we're linking traps together, which ones we're doing
+	var/obj/structure/clockwork/trap/linking //If we're linking traps together, which ones we're doing
 
 /obj/item/clockwork/slab/internal //an internal motor for mobs running scripture
 	name = "scripture motor"

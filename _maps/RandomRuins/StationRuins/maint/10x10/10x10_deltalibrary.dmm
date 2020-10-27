@@ -141,7 +141,7 @@
 /turf/open/floor/wood,
 /area/template_noop)
 "aG" = (
-/obj/structure/destructible/cult/tome,
+/obj/structure/cult/tome,
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/old,
