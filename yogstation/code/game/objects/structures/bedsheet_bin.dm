@@ -13,7 +13,7 @@ LINEN BINS
 	icon_state = "sheetvirology"
 	item_color = "virologywhite"
 	dream_messages = list("plague", "green", "sneezing", "a virologist")
-	bedsuffix = null
+	newbedpath = null
 
 /obj/item/bedsheet/prisoner
 	name = "prisoner's blanket"
