@@ -7,6 +7,7 @@
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID, MOB_AQUATIC)
 	mutant_bodyparts = list("tail_piscis")
 	default_features = list("tail_piscis" = "Piscis")
+	mutantlungs = /obj/item/organ/lungs/piscis
 	mutanttongue = /obj/item/organ/tongue/piscis
 	mutanttail = /obj/item/organ/tail/piscis
 	breathid = "o2"

@@ -419,6 +419,25 @@
 	if (breath)
 		var/plasma_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/plasma))
 		owner.blood_volume += (0.2 * plasma_pp) // 10/s when breathing literally nothing but plasma, which will suffocate you.
+		
+/obj/item/organ/lungs/piscis
+	name = "halfgills"
+	desc = "A large organ that functions as both lungs and gills."
+
+/obj/item/organ/lungs/piscis/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
+	. = ..()
+	if(breath)
+		var/turf/current_turf = get_turf(H)
+		var/datum/gas_mixture/gas = current_turf.return_air()
+		if(gas.return_pressure() >= WARNING_HIGH_PRESSURE)
+			owner.clear_alert("not_enough_h2o")
+			return
+		var/water_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/water_vapor))
+		if(water_pp >= 16)
+			owner.clear_alert("not_enough_h2o")
+			return
+		owner.losebreath += 5
+		owner.throw_alert("not_enough_h2o", /obj/screen/alert/not_enough_water)
 
 /obj/item/organ/lungs/cybernetic
 	name = "cybernetic lungs"
