@@ -699,7 +699,7 @@
 	if(intel_timer <= world.time)
 		intel_timer = world.time + intel_cooldown
 	else
-		to_chat(src, "<span class='danger'>The [src] is on cooldown! You must wait " + ((intel_timer - world.time) / 10) + " seconds before using it again.</span>")
+		to_chat(src, "<span class='danger'>The [src] is on cooldown! You must wait [((intel_timer - world.time) / 10)] seconds before using it again.</span>")
 		return
 
 	to_chat(user, "<span class='notice'>You offer [src] to [SM]...</span>")
