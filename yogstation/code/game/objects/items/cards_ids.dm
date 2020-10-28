@@ -39,7 +39,6 @@
 	"Chaplain" = list("civillian","black"),
 	"Clown" = list("clown","rainbow"),
 	"Mime" = list("mime","white"),
-	"Artist" = list("civillian","yellow"),
 	"Clerk" = list("civillian","blue"),
 	"Tourist" = list("civillian","yellow"),
 	"Warden" = list("security","black"),
