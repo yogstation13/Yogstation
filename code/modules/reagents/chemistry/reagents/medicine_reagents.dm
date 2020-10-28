@@ -1129,6 +1129,7 @@
 	color = "#43bf1d"
 	taste_description = "bug intestines"
 	overdose_threshold = 10
+	can_synth = FALSE
 
 /datum/reagent/medicine/grubjuice/on_mob_life(mob/living/carbon/M)
 	M.heal_bodypart_damage(7,7)
