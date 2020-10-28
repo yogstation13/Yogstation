@@ -40,9 +40,9 @@
 		if(break_message)
 			visible_message(break_message)
 		if(break_sound)
-			playsound(src, break_sound, 50, 1)
+			playsound(src, break_sound, 50, TRUE)
 	qdel(src)
-	return 1
+	return TRUE
 
 /obj/structure/attack_hand(mob/user)
 	. = ..()
