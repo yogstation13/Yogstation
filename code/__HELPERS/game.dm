@@ -174,11 +174,11 @@
 /proc/recursive_hear_check(O)
 	var/list/processing_list = list(O)
 	. = list()
-	while(processing_list.len)
-		var/atom/A = processing_list[1]
+	var/i = 0
+	while(i < length(processing_list))
+		var/atom/A = processing_list[++i]
 		if(A.flags_1 & HEAR_1)
 			. += A
-		processing_list.Cut(1, 2)
 		processing_list += A.contents
 
 /** recursive_organ_check
@@ -264,10 +264,8 @@
 	// Returns a list of hearers in view(R) from source (ignoring luminosity). Used in saycode.
 	var/turf/T = get_turf(source)
 	. = list()
-
 	if(!T)
 		return
-
 	var/list/processing_list = list()
 	if (R == 0) // if the range is zero, we know exactly where to look for, we can skip view
 		processing_list += T.contents // We can shave off one iteration by assuming turfs cannot hear
@@ -280,11 +278,11 @@
 			processing_list += O
 		T.luminosity = lum
 
-	while(processing_list.len) // recursive_hear_check inlined here
-		var/atom/A = processing_list[1]
+	var/i = 0
+	while(i < length(processing_list)) // recursive_hear_check inlined here
+		var/atom/A = processing_list[++i]
 		if(A.flags_1 & HEAR_1)
 			. += A
-		processing_list.Cut(1, 2)
 		processing_list += A.contents
 
 /proc/get_mobs_in_radio_ranges(list/obj/item/radio/radios)
@@ -601,7 +599,7 @@
 	for(var/turf/found_turf in turfs)
 		var/area/turf_area = get_area(found_turf)
 
-		// We check if both the turf is a floor, and that it's actually in the area. 
+		// We check if both the turf is a floor, and that it's actually in the area.
 		// We also want a location that's clear of any obstructions.
 		if (specific_area)
 			if (!istype(turf_area, specific_area))
