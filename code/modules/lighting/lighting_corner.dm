@@ -12,6 +12,7 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 
 	var/x     = 0
 	var/y     = 0
+	var/z     = 0
 
 	var/lum_r = 0
 	var/lum_g = 0
@@ -28,6 +29,7 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 	. = ..()
 	masters = list()
 	masters[new_turf] = turn(diagonal, 180)
+	z = new_turf.z
 
 	var/vertical   = diagonal & ~(diagonal - 1) // The horizontal directions (4 and 8) are bigger than the vertical ones (1 and 2), so we can reliably say the lsb is the horizontal direction.
 	var/horizontal = diagonal & ~vertical       // Now that we know the horizontal one we can get the vertical one.
@@ -81,11 +83,11 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 		T = thing
 		if (T.lighting_object)
 			active = TRUE
-			return
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
-/datum/lighting_corner/proc/update_lumcount(delta_r, delta_g, delta_b)
-	if (!(delta_r || delta_g || delta_b)) // 0 is falsey ok
+/datum/lighting_corner/proc/update_lumcount(var/delta_r, var/delta_g, var/delta_b)
+
+	if ((abs(delta_r)+abs(delta_g)+abs(delta_b)) == 0)
 		return
 
 	lum_r += delta_r
@@ -97,7 +99,7 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 		GLOB.lighting_update_corners += src
 
 /datum/lighting_corner/proc/update_objects()
-	// Cache these values ahead of time so 4 individual lighting objects don't all calculate them individually.
+	// Cache these values a head of time so 4 individual lighting objects don't all calculate them individually.
 	var/lum_r = src.lum_r
 	var/lum_g = src.lum_g
 	var/lum_b = src.lum_b
@@ -122,15 +124,17 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 
 	for (var/TT in masters)
 		var/turf/T = TT
-		if (T.lighting_object && !T.lighting_object.needs_update)
-			T.lighting_object.needs_update = TRUE
-			GLOB.lighting_update_objects += T.lighting_object
+		if (T.lighting_object)
+			if (!T.lighting_object.needs_update)
+				T.lighting_object.needs_update = TRUE
+				GLOB.lighting_update_objects += T.lighting_object
 
 
 /datum/lighting_corner/dummy/New()
 	return
 
-/datum/lighting_corner/Destroy(force)
+
+/datum/lighting_corner/Destroy(var/force)
 	if (!force)
 		return QDEL_HINT_LETMELIVE
 
