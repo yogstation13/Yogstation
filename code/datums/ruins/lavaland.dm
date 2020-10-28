@@ -107,14 +107,6 @@
 	description = "Wormhole lifebelts are for LOSERS, whom you are better than."
 	suffix = "lavaland_surface_pride.dmm"
 
-/datum/map_template/ruin/lavaland/sin/sloth
-	name = "Ruin of Sloth"
-	id = "sloth"
-	description = "..."
-	suffix = "lavaland_surface_sloth.dmm"
-	// Generates nothing but atmos runtimes and salt
-	cost = 0
-
 /datum/map_template/ruin/lavaland/ratvar
 	name = "Dead God"
 	id = "ratvar"

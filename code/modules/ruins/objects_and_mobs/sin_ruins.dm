@@ -121,8 +121,6 @@
 	C.set_target(dest)
 	C.drop(user)
 
-//can't be bothered to do sloth right now, will make later
-
 /obj/item/kitchen/knife/envy //Envy's knife: Found in the Envy ruin. Attackers take on the appearance of whoever they strike.
 	name = "envy's knife"
 	desc = "Their success will be yours."

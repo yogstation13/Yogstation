@@ -20,7 +20,6 @@ _maps/RandomRuins/LavaRuins/lavaland_surface_cube.dmm
 #_maps/RandomRuins/LavaRuins/lavaland_surface_gluttony.dmm
 #_maps/RandomRuins/LavaRuins/lavaland_surface_greed.dmm
 #_maps/RandomRuins/LavaRuins/lavaland_surface_pride.dmm
-#_maps/RandomRuins/LavaRuins/lavaland_surface_sloth.dmm
 
 ##MISC
 #_maps/RandomRuins/LavaRuins/lavaland_surface_automated_trade_outpost.dmm
