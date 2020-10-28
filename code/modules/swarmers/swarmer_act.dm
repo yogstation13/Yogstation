@@ -28,7 +28,7 @@
 	return 0
 
 /obj/item/integrate_amount() //returns the amount of resources gained when eating this item
-	if(materials[MAT_METAL] || materials[MAT_GLASS])
+	if(materials[/datum/material/iron] || materials[/datum/material/glass])
 		return 1
 	return ..()
 
@@ -57,7 +57,7 @@
 /obj/structure/swarmer_beacon/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
 	to_chat(actor, "<span class='warning'>This machine is required for further reproduction of swarmers. Aborting.</span>")
 	return FALSE
-	
+
 /obj/structure/flora/swarmer_act()
 	return FALSE
 
