@@ -182,7 +182,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["skillcape"]          >> skillcape
 	S["map"]        	 	>> map
 	S["flare"]				>> flare
-	S["mulligan"]           >> mulligan
 	S["skillcape"]          >> skillcape
 	S["show_credits"] 		>> show_credits
 
@@ -233,7 +232,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	skillcape       = sanitize_integer(skillcape, 1, 82, initial(skillcape))
 	map				= sanitize_integer(map, 0, 1, initial(map))
 	flare			= sanitize_integer(flare, 0, 1, initial(flare))
-	mulligan        = sanitize_integer(mulligan, 0, 1, initial(mulligan))
 	show_credits	= sanitize_integer(show_credits, 0, 1, initial(show_credits))
 
 	// yogs start - Donor features & yogtoggles
@@ -299,7 +297,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
 	WRITE_FILE(S["skillcape"], skillcape)
-	WRITE_FILE(S["mulligan"], mulligan)
 	WRITE_FILE(S["show_credits"], show_credits)
 
 	// yogs start - Donor features & Yogstoggle
