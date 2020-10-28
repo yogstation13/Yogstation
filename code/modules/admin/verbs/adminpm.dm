@@ -97,7 +97,7 @@
 			type = MESSAGE_TYPE_ADMINPM,
 			html = "<span class='notice'>Message: [msg]</span>",
 			confidential = TRUE)
-		
+
 		return
 
 	if(!holder && !current_ticket)	//no ticket? https://www.youtube.com/watch?v=iHSPf6x1Fdo
@@ -191,15 +191,15 @@
 				to_chat(recipient,
 					type = MESSAGE_TYPE_ADMINPM,
 					html = "<span class='danger'>Admin PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>",
-					confidential = TRUE)				
-					to_chat(src,
+					confidential = TRUE)
+				to_chat(src,
 					type = MESSAGE_TYPE_ADMINPM,
 					html = "<span class='notice'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>",
 					confidential = TRUE)
 
 				//omg this is dumb, just fill in both their tickets
 				// yogs start - Yog Tickets
-				admin_ticket_log(src, msg, FALSE) 
+				admin_ticket_log(src, msg, FALSE)
 				if(recipient.current_ticket && !recipient.current_ticket.handling_admin)
 					recipient.current_ticket.Administer(src)
 				// yogs end - Yog Tickets
@@ -215,7 +215,7 @@
 				to_chat(recipient, "<span class='danger'>Reply PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>", confidential=TRUE)
 				to_chat(src, "<span class='notice'>-- [key_name(src, null, 0)] -> <b>Admins</b>: <span class='linkify'>[msg]</span></span>", confidential=TRUE)
 				//YOGS END
-			
+
 			//play the receiving admin the adminhelp sound (if they have them enabled)
 			if(recipient.prefs.toggles & SOUND_ADMINHELP)
 				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
@@ -274,7 +274,7 @@
 					type = MESSAGE_TYPE_ADMINPM,
 					html = "<span class='notice'><B>PM: [key_name(src, X, 0)]-&gt;[key_name(recipient, X, 0)]:</B> [keywordparsedmsg]</span>" ,
 					confidential = TRUE)
-	
+
 
 
 #define IRC_AHELP_USAGE "Usage: ticket <close|resolve|icissue|reject|reopen \[ticket #\]|list>"
