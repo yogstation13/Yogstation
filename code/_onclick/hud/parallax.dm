@@ -53,8 +53,7 @@
 	if(screenmob != mymob)
 		C.screen -= locate(/obj/screen/plane_master/parallax_white) in C.screen
 		C.screen += PM
-	if(PM)
-		PM.color = initial(PM.color)
+	PM.color = initial(PM.color)
 	C.parallax_layers = null
 
 /datum/hud/proc/apply_parallax_pref(mob/viewmob)
