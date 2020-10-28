@@ -659,15 +659,15 @@
 		spawnplant()
 	
 	// Honey, Pests are dieing of sugar, so is the plant
-	if(S.has_reagent("honey", 1))
+	if(S.has_reagent(/datum/reagent/consumable/honey, 1))
 		adjustPests(-rand(2,5))
-		adjustHealth(-round(S.get_reagent_amount("honey") * 1))
+		adjustHealth(-round(S.get_reagent_amount(/datum/reagent/consumable/honey) * 1))
 
 	// Buzz Fuzz, a drink seemingly made for plants...
-	if(S.has_reagent("buzz_fuzz", 1))
+	if(S.has_reagent(/datum/reagent/consumable/buzz_fuzz, 1))
 		adjustPests(-rand(2,5))
-		adjustHealth(round(S.get_reagent_amount("buzz_fuzz") * 0.1))
-		adjustNutri(round(S.get_reagent_amount("buzz_fuzz") * 0.5))
+		adjustHealth(round(S.get_reagent_amount(/datum/reagent/consumable/buzz_fuzz) * 0.1))
+		adjustNutri(round(S.get_reagent_amount(/datum/reagent/consumable/buzz_fuzz) * 0.5))
 
 	// The best stuff there is. For testing/debugging.
 	if(S.has_reagent(/datum/reagent/medicine/adminordrazine, 1))
