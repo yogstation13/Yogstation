@@ -31,11 +31,11 @@ export const MESSAGE_TYPE_OOC = 'ooc';
 export const MESSAGE_TYPE_ADMINPM = 'adminpm';
 export const MESSAGE_TYPE_COMBAT = 'combat';
 export const MESSAGE_TYPE_ADMINCHAT = 'adminchat';
-export const MESSAGE_TYPE_MODCHAT = 'modchat';
 export const MESSAGE_TYPE_EVENTCHAT = 'eventchat';
 export const MESSAGE_TYPE_ADMINLOG = 'adminlog';
 export const MESSAGE_TYPE_ATTACKLOG = 'attacklog';
 export const MESSAGE_TYPE_DEBUG = 'debug';
+export const MESSAEG_TYPE_MENTORPM = 'mentorpm';
 
 // Metadata for each message type
 export const MESSAGE_TYPES = [
@@ -58,7 +58,7 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_RADIO,
     name: 'Radio',
     description: 'All departments of radio messages',
-    selector: '.alert, .syndradio, .centradio, .airadio, .entradio, .comradio, .secradio, .engradio, .medradio, .sciradio, .supradio, .srvradio, .expradio, .radio, .deptradio, .newscaster',
+    selector: '.alert, .syndradio, .centradio, .airadio, .entradio, .comradio, .secradio, .engradio, .medradio, .sciradio, .supradio, .srvradio, .expradio, .radio, .deptradio, .newscaster, .commonradio, .aiprivradio',
   },
   {
     type: MESSAGE_TYPE_INFO,
@@ -91,6 +91,12 @@ export const MESSAGE_TYPES = [
     selector: '.pm, .adminhelp',
   },
   {
+    type: MESSAEG_TYPE_MENTORPM,
+    name: 'Mentor PMs',
+    description: 'Messages to/from mentors (mentorhelp)',
+    selector: '.mentor',
+  },
+  {
     type: MESSAGE_TYPE_COMBAT,
     name: 'Combat Log',
     description: 'Urist McTraitor has stabbed you with a knife!',
@@ -107,13 +113,6 @@ export const MESSAGE_TYPES = [
     name: 'Admin Chat',
     description: 'ASAY messages',
     selector: '.admin_channel, .adminsay',
-    admin: true,
-  },
-  {
-    type: MESSAGE_TYPE_MODCHAT,
-    name: 'Mod Chat',
-    description: 'MSAY messages',
-    selector: '.mod_channel',
     admin: true,
   },
   {

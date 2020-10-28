@@ -287,6 +287,11 @@ em {
   font-weight: bold;
 }
 
+.looc {
+  color: #63b2f2;
+  font-weight: bold;
+}
+
 .adminobserverooc {
   color: #0099cc;
   font-weight: bold;
@@ -298,9 +303,11 @@ em {
 }
 
 .adminsay {
-  color: #ff4500;
+  color: #996600;
   font-weight: bold;
 }
+
+.mentor	{}
 
 .admin {
   color: #5975da;
@@ -319,7 +326,9 @@ em {
 }
 
 .binarysay {
-  color: #1e90ff;
+  color: #20c20e;
+  background-color: #000000; 
+  display: block;
 }
 
 .binarysay a {
@@ -334,12 +343,16 @@ em {
   color: #1ecc43;
 }
 
+.commonradio {
+  color: #008000;
+}
+
 .sciradio {
   color: #c68cfa;
 }
 
 .comradio {
-  color: #fcdf03;
+  color: #204090;
 }
 
 .secradio {
@@ -359,7 +372,7 @@ em {
 }
 
 .servradio {
-  color: #6ca729;
+  color: #109987;
 }
 
 .syndradio {

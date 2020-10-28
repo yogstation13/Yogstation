@@ -302,7 +302,12 @@ em {
 }
 
 .ooc {
-  color: #002eb8;
+  color: #0000d1;
+  font-weight: bold;
+}
+
+.looc {
+  color: #63b2f2;
   font-weight: bold;
 }
 
@@ -317,9 +322,11 @@ em {
 }
 
 .adminsay {
-  color: #ff4500;
+  color: #996600;
   font-weight: bold;
 }
+
+.mentor	{}
 
 .admin {
   color: #4473ff;
@@ -356,12 +363,16 @@ em {
   color: #008000;
 }
 
+.commonradio {
+  color: #008000;
+}
+
 .sciradio {
   color: #993399;
 }
 
 .comradio {
-  color: #948f02;
+  color: #204090;
 }
 
 .secradio {
@@ -381,7 +392,7 @@ em {
 }
 
 .servradio {
-  color: #6eaa2c;
+  color: #109987;
 }
 
 .syndradio {

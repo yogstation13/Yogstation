@@ -35,6 +35,8 @@ em						{font-style: normal;	font-weight: bold;}
 .admin					{color: #386aff;	font-weight: bold;}
 
 .name					{					font-weight: bold;}
+.mentor					{}
+
 
 .say					{}
 .deadsay				{color: #5c00e6;}
