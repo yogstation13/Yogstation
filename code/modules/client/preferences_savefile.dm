@@ -383,6 +383,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["feature_polysmorph_teeth"]			>> features["teeth"]
 	S["feature_polysmorph_dome"]			>> features["dome"]
 	S["feature_polysmorph_dorsal_tubes"]			>> features["dorsal_tubes"]
+	S["feature_piscis_tail"]				>> features["tail_piscis"]
 	if(!CONFIG_GET(flag/join_with_mutant_humans))
 		features["tail_human"] = "none"
 		features["ears"] = "none"
@@ -532,6 +533,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_polysmorph_teeth"]			, features["teeth"])
 	WRITE_FILE(S["feature_polysmorph_dome"]			, features["dome"])
 	WRITE_FILE(S["feature_polysmorph_dorsal_tubes"]			, features["dorsal_tubes"])
+	WRITE_FILE(S["feature_piscis_tail"]			, features["tail_piscis"])
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)

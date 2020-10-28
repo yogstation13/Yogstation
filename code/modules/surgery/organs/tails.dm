@@ -97,7 +97,7 @@
 		if(!("tail_piscis" in H.dna.species.mutant_bodyparts))
 			H.dna.species.mutant_bodyparts |= "tail_piscis"
 			H.dna.features["tail_piscis"] = tail_type
-			H.update_body()
+		H.update_body()
 
 /obj/item/organ/tail/piscis/Remove(mob/living/carbon/human/H,  special = 0)
 	..()

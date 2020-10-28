@@ -11,6 +11,9 @@
 	mutanttongue = /obj/item/organ/tongue/piscis
 	mutanttail = /obj/item/organ/tail/piscis
 	breathid = "o2"
+	coldmod = 0.67
+	heatmod = 1.5
+	stunmod = 1.1
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	meat = /obj/item/reagent_containers/food/snacks/carpmeat/piscis
 	skinned_type = /obj/item/stack/sheet/animalhide/piscis

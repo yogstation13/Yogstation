@@ -650,10 +650,6 @@ GLOBAL_LIST_EMPTY(donator_races)
 			bodyparts_to_add -= "waggingtail_lizard"
 		else if ("tail_lizard" in mutant_bodyparts)
 			bodyparts_to_add -= "waggingtail_lizard"
-
-	if("tail_human" in mutant_bodyparts)
-		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "tail_human"
 	
 	if("tail_piscis" in mutant_bodyparts)
 		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
@@ -664,6 +660,10 @@ GLOBAL_LIST_EMPTY(donator_races)
 			bodyparts_to_add -= "waggingtail_piscis"
 		else if ("tail_piscis" in mutant_bodyparts)
 			bodyparts_to_add -= "waggingtail_piscis"
+
+	if("tail_human" in mutant_bodyparts)
+		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
+			bodyparts_to_add -= "tail_human"
 
 	if("waggingtail_human" in mutant_bodyparts)
 		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
