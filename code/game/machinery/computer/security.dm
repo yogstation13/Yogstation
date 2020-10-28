@@ -82,8 +82,8 @@
 					var/md5 = md5(fcopy_rsc(picture))
 
 					if(!SSassets.cache["photo_[md5]_cropped.png"])
-						register_asset("photo_[md5]_cropped.png", picture)
-					send_asset_list(user, list("photo_[md5]_cropped.png" = picture))
+						SSassets.transport.register_asset("photo_[md5]_cropped.png", picture)
+					SSassets.transport.send_assets(user, list("photo_[md5]_cropped.png" = picture))
 
 					data["user_image"] = md5
 		data["has_access"] = check_access(user.get_idcard())
@@ -154,16 +154,16 @@
 		if(istype(active_general_record.fields["photo_front"], /obj/item/photo))
 			var/obj/item/photo/P1 = active_general_record.fields["photo_front"]
 			if(!SSassets.cache["photo_front_[active_general_record.fields["id"]].png"])
-				register_asset("photo_front_[active_general_record.fields["id"]].png", P1.picture.picture_image)
+				SSassets.transport.register_asset("photo_front_[active_general_record.fields["id"]].png", P1.picture.picture_image)
 			assets["photo_front_[active_general_record.fields["id"]].png"] = P1.picture.picture_image
 
 		if(istype(active_general_record.fields["photo_side"], /obj/item/photo))
 			var/obj/item/photo/P2 = active_general_record.fields["photo_side"]
 			if(!SSassets.cache["photo_side_[active_general_record.fields["id"]].png"])
-				register_asset("photo_side_[active_general_record.fields["id"]].png", P2.picture.picture_image)
+				SSassets.transport.register_asset("photo_side_[active_general_record.fields["id"]].png", P2.picture.picture_image)
 			assets["photo_side_[active_general_record.fields["id"]].png"] = P2.picture.picture_image
 
-		send_asset_list(user, assets)
+		SSassets.transport.send_assets(user, assets)
 
 
 		record["name"] = active_general_record.fields["name"]
