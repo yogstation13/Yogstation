@@ -7,6 +7,7 @@
 /datum/antagonist/nightmare/proc/forge_objectives()
 	var/datum/objective/new_objective = new
 	new_objective.owner = owner
+	new_objective.completed = TRUE
 	objectives += new_objective
 	new_objective.explanation_text = "<span class='userdanger'>Kill.</span>" // you can do whatever
 	var/datum/objective/survive/survival = new
