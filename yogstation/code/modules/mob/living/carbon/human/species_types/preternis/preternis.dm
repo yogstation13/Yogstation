@@ -10,19 +10,18 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	id = "preternis"
 	default_color = "FFFFFF"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
-	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
+	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_MEDICALIGNORE, TRAIT_PIERCEIMMUNE, TRAIT_RESISTLOWPRESSURE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
 	species_traits = list(EYECOLOR,HAIR,LIPS)
 	say_mod = "intones"
 	attack_verb = "assault"
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
 	toxic_food = NONE
-	brutemod = 1.25
 	burnmod = 1.5
+	heatmod = 1.25 //Unlike other creatures, they only have simple fans in their system to cool them down.
 	yogs_draw_robot_hair = TRUE
 	mutanteyes = /obj/item/organ/eyes/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
 	yogs_virus_infect_chance = 20
-	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
 	var/charge = PRETERNIS_LEVEL_FULL
 	var/eating_msg_cooldown = FALSE
 	var/emag_lvl = 0
@@ -58,15 +57,13 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	. = ..()
 	switch(severity)
 		if(EMP_HEAVY)
-			H.adjustBruteLoss(20)
-			H.adjustFireLoss(20)
+			H.adjustFireLoss(50)
 			H.Paralyze(50)
 			charge *= 0.4
 			H.visible_message("<span class='danger'>Electricity ripples over [H]'s subdermal implants, smoking profusely.</span>", \
 							"<span class='userdanger'>A surge of searing pain erupts throughout your very being! As the pain subsides, a terrible sensation of emptiness is left in its wake.</span>")
 		if(EMP_LIGHT)
-			H.adjustBruteLoss(10)
-			H.adjustFireLoss(10)
+			H.adjustFireLoss(25)
 			H.Paralyze(20)
 			charge *= 0.6
 			H.visible_message("<span class='danger'>A faint fizzling emanates from [H].</span>", \
