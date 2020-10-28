@@ -121,8 +121,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		map = TRUE
 		flare = TRUE
 	if(current_version < 28)
-	    if(!job_preferences)
-	        job_preferences = list()
+		if(!job_preferences)
+			job_preferences = list()
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
