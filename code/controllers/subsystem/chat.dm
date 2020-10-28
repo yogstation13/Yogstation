@@ -28,7 +28,7 @@ SUBSYSTEM_DEF(chat)
 
 /datum/controller/subsystem/chat/proc/queue(target, message, confidential = FALSE)
 	if(!confidential)
-		SSdemo.write_chat(target, message)
+		SSdemo.write_chat(target, message["html"])
 		
 	if(islist(target))
 		for(var/_target in target)
