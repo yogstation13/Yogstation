@@ -406,6 +406,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Jobs
 	S["joblessrole"]		>> joblessrole
 	//Load prefs
+	if(!job_preferences)
+		job_preferences = list()
 	S["job_preferences"] >> job_preferences
 
 	//Quirks
