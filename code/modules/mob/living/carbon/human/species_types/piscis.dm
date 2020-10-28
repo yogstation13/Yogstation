@@ -26,11 +26,13 @@
 	var/obj/item/tank/internals/piscis/tank = new /obj/item/tank/internals/piscis()
 	C.put_in_hands(tank)
 	C.internal = tank
-	var/obj/item/clothing/mask/breath/mask = new()
+	
 	var/obj/item/clothing/mask/mask1 = C.get_item_by_slot(SLOT_WEAR_MASK)
-	C.doUnEquip(mask1,TRUE,get_turf(C))
-	if(!C.equip_to_appropriate_slot(mask))
-		qdel(mask)
-	C.update_internals_hud_icon(TRUE)
+	if(!mask1 || !istype(mask1,/obj/item/clothing/mask/breath))
+		var/obj/item/clothing/mask/breath/mask = new()
+		C.dropItemToGround(mask1,TRUE)
+		if(!C.equip_to_appropriate_slot(mask))
+			qdel(mask)
+		C.update_internals_hud_icon(TRUE)
 	
 
