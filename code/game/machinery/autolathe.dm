@@ -357,7 +357,7 @@
 			if(istext(used_material)) //This means its a category
 				var/list/list_to_show = list()
 				for(var/i in SSmaterials.materials_by_category[used_material])
-					if(materials.materials[i] > 0)
+					if(materials.materials[i])
 						list_to_show += i
 
 				used_material = input("Choose [used_material]", "Custom Material") as null|anything in list_to_show
