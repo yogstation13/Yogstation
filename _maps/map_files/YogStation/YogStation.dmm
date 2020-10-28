@@ -34882,6 +34882,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"clV" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/structure/barricade/wooden{
+	layer = 3.3;
+	name = "wooden barricade (CLOSED)"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "clZ" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -44693,10 +44707,6 @@
 /obj/item/clothing/mask/gas,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"joK" = (
-/obj/machinery/light/small,
-/turf/template_noop,
-/area/maintenance/port/aft)
 "jpb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4;
@@ -58561,20 +58571,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
-"upO" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/structure/barricade/wooden{
-	layer = 3.3;
-	name = "wooden barricade (CLOSED)"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "uqD" = (
 /obj/machinery/door/airlock/external{
 	name = "Atmospherics External Airlock";
@@ -84807,7 +84803,7 @@ aaa
 aaa
 aaa
 aaa
-bCq
+aaa
 bCq
 bPr
 bPr
@@ -85064,11 +85060,11 @@ aaa
 aaa
 aaa
 aaa
+aaa
 bCq
 gZD
 gZD
-gZD
-ocv
+wXV
 bCq
 bCq
 bCq
@@ -85321,8 +85317,8 @@ aaa
 aaa
 aaa
 aaa
+aaa
 bCq
-gZD
 gZD
 gZD
 gZD
@@ -85578,8 +85574,8 @@ aaa
 aaa
 aaa
 aaa
+aaa
 bCq
-gZD
 gZD
 gZD
 gZD
@@ -85835,11 +85831,11 @@ aaa
 aaa
 aaa
 aaa
+aaa
 bCq
 gZD
 gZD
 gZD
-joK
 bCq
 cAA
 bHE
@@ -86092,8 +86088,8 @@ aaa
 aaa
 aaa
 aaa
+aaa
 bCq
-gZD
 gZD
 gZD
 gZD
@@ -86599,11 +86595,11 @@ iQY
 bKm
 bxy
 aaf
-aaf
-bCq
-bCq
-bCq
-bCq
+gXs
+aaa
+aaa
+aaa
+aaa
 bCq
 gZD
 gZD
@@ -86856,11 +86852,11 @@ wqI
 bKl
 bxy
 aaH
-aaH
 bCq
-gZD
-gZD
-wXV
+bCq
+bCq
+bCq
+bCq
 bCq
 gZD
 gZD
@@ -87113,11 +87109,11 @@ eSR
 eCn
 bGi
 aaf
-aaf
 bPr
 gZD
 gZD
 gZD
+ocv
 bCq
 gZD
 gZD
@@ -87370,8 +87366,8 @@ eSR
 bKn
 bGi
 aoV
-aoV
 bPr
+gZD
 gZD
 gZD
 gZD
@@ -87627,8 +87623,8 @@ pSY
 bKp
 bGi
 aaf
-aaf
 bPr
+gZD
 gZD
 gZD
 gZD
@@ -87884,8 +87880,8 @@ byE
 bKo
 bxy
 aaH
-aaH
 bCq
+gZD
 gZD
 gZD
 gZD
@@ -88141,11 +88137,11 @@ bGn
 bKq
 bxy
 aaf
-aaf
 bCq
-upO
-bCq
-bCq
+gZD
+gZD
+gZD
+gZD
 bCq
 gZD
 gZD
@@ -88398,12 +88394,12 @@ bxy
 bxy
 bxy
 bPr
-bPr
 bCq
-bHE
-bPr
-aaa
-bPr
+bCq
+clV
+bCq
+bCq
+bCq
 gZD
 gZD
 gZD
