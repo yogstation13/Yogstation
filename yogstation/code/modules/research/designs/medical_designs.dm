@@ -4,7 +4,7 @@
 	id = "nanite_heart"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 80
-	materials = list(MAT_METAL = 200, MAT_GLASS = 500, MAT_SILVER=300, MAT_GOLD=300)
+	materials = list(/datum/material/iron = 200, /datum/material/glass = 500, /datum/material/silver=300, /datum/material/gold=300)
 	build_path = /obj/item/organ/heart/nanite
 	category = list("Misc", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
