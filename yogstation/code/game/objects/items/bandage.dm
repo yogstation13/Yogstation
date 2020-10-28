@@ -95,18 +95,7 @@
 		to_chat(user, "This doesn't look like it'll work.")
 		return FALSE
 
-/obj/item/medical/bandage/proc/wash(obj/O, mob/user)
-	if (src.used)
-		to_chat(user, "You clean [src] fastidiously washing away as much of the detritus and residue as you can. The bandage can probably be used again now.")
-		name = "reused bandages"
-		desc = "Whatever quality these bandages once were, there's no sign of it any more. Not like the wounds you put this stuff over care, though."
-		healamount = src.healamount * 0.85
-		duration = src.duration * 1.15
-		activefor = 1
-		color = 0
-		used = FALSE
-	else
-		to_chat(user, "There's no real need to wash this - it's perfectly clean!")
+
 
 /obj/item/medical/bandage/attack(mob/living/carbon/human/T, mob/living/carbon/human/U)
 	if (used)
