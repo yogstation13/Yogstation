@@ -188,18 +188,6 @@
 /obj/item/storage/toolbox/syndicate,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
-"aE" = (
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/closet/crate/medical,
-/obj/item/storage/firstaid/regular,
-/obj/item/reagent_containers/blood/random,
-/obj/item/reagent_containers/blood/lizard,
-/obj/item/reagent_containers/blood/lizard,
-/obj/item/stack/sheet/cloth/ten,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered/ash_walkers)
 "aF" = (
 /obj/structure/stone_tile/block{
 	dir = 8
@@ -1387,6 +1375,17 @@
 	},
 /turf/closed/mineral/volcanic/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"ng" = (
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/closet/crate/medical,
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/lizard,
+/obj/item/reagent_containers/blood/lizard,
+/obj/item/stack/sheet/cloth/ten,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/ash_walkers)
 "uD" = (
 /obj/structure/stone_tile/block,
 /obj/effect/mapping_helpers/no_lava,
@@ -1553,7 +1552,7 @@ aa
 aa
 ae
 as
-aE
+ng
 aQ
 am
 bn
