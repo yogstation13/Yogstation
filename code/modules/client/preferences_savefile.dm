@@ -1,11 +1,11 @@
 //This is the lowest supported version, anything below this is completely obsolete and the entire savefile will be wiped.
-#define SAVEFILE_VERSION_MIN	27
+#define SAVEFILE_VERSION_MIN	18
 
 //This is the current version, anything below this will attempt to update (if it's not obsolete)
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	27
+#define SAVEFILE_VERSION_MAX	28
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -120,6 +120,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(current_version < 27)
 		map = TRUE
 		flare = TRUE
+	if(current_version < 28)
+	    if(!job_preferences)
+	        job_preferences = list()
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
