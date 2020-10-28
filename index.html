@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(55 modules,
-    465/6153 macros, 7.6%)</aside></h3>
+<aside>(60 modules,
+    488/6181 macros, 7.9%)</aside></h3>
 <ul class="index-tree">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -53,12 +53,14 @@ General Public License version 3.
     <li><a href="code/__DEFINES/cooldowns.html" title="code&#x2F;__DEFINES&#x2F;cooldowns.dm">cooldowns</a></li>
     <li><a href="code/__DEFINES/cult.html" title="code&#x2F;__DEFINES&#x2F;cult.dm">cult</a></li>
     <li><a href="code/__DEFINES/diseases.html" title="code&#x2F;__DEFINES&#x2F;diseases.dm">diseases</a></li>
+    <li><a href="code/__DEFINES/exosuit_fab.html" title="code&#x2F;__DEFINES&#x2F;exosuit_fab.dm">exosuit_fab</a></li>
     <li><a href="code/__DEFINES/flags.html" title="code&#x2F;__DEFINES&#x2F;flags.dm">flags</a></li>
     <li><a href="code/__DEFINES/hud.html" title="code&#x2F;__DEFINES&#x2F;hud.dm">hud</a></li>
     <li><a href="code/__DEFINES/instruments.html" title="code&#x2F;__DEFINES&#x2F;instruments.dm">instruments</a></li>
     <li><a href="code/__DEFINES/interaction_flags.html" title="code&#x2F;__DEFINES&#x2F;interaction_flags.dm">interaction_flags</a></li>
     <li><a href="code/__DEFINES/inventory.html" title="code&#x2F;__DEFINES&#x2F;inventory.dm">inventory</a></li>
     <li><a href="code/__DEFINES/lighting.html" title="code&#x2F;__DEFINES&#x2F;lighting.dm">lighting</a></li>
+    <li><a href="code/__DEFINES/materials.html" title="code&#x2F;__DEFINES&#x2F;materials.dm">materials</a></li>
     <li><a href="code/__DEFINES/maths.html" title="code&#x2F;__DEFINES&#x2F;maths.dm">maths</a></li>
     <li><a href="code/__DEFINES/movement.html" title="code&#x2F;__DEFINES&#x2F;movement.dm">movement</a></li>
     <li><a href="code/__DEFINES/obj_flags.html" title="code&#x2F;__DEFINES&#x2F;obj_flags.dm">obj_flags</a></li>
@@ -68,9 +70,16 @@ General Public License version 3.
     <li><a href="code/__DEFINES/tgui.html" title="code&#x2F;__DEFINES&#x2F;tgui.dm">tgui</a></li>
     <li><span class="no-substance">~yogs_defines&#x2F;</span><a href="code/__DEFINES/~yogs_defines/reactions.html" title="code&#x2F;__DEFINES&#x2F;~yogs_defines&#x2F;reactions.dm">reactions</a></li>
     </ul></li>
+    <li><span class="no-substance">controllers&#x2F;subsystem&#x2F;</span><a href="code/controllers/subsystem/materials.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;materials.dm">materials</a> - How material datums work
+Materials are now instanced datums, with an associative list of them being kept in SSmaterials. We only instance the materials once and then re-use these instances for everything.
+These materials call on_applied() on whatever item they are applied to, common effects are adding components, changing color and changing description. This allows us to differentiate items based on the material they are made out of.area</li>
     <li class="has-children"><span title="code&#x2F;datums">datums</span><ul class="index-tree">
-    <li><span class="no-substance">components&#x2F;</span><a href="code/datums/components/README.html" title="code&#x2F;datums&#x2F;components&#x2F;README.md">Datum Component System (DCS)</a></li>
+    <li class="has-children"><span title="code&#x2F;datums&#x2F;components">components</span><ul class="index-tree">
+    <li><a href="code/datums/components/README.html" title="code&#x2F;datums&#x2F;components&#x2F;README.md">Datum Component System (DCS)</a></li>
+    <li><a href="code/datums/components/material_container.html" title="code&#x2F;datums&#x2F;components&#x2F;material_container.dm">material_container</a> - This datum should be used for handling mineral contents of machines and whatever else is supposed to hold minerals and make use of them.</li>
+    </ul></li>
     <li><span class="no-substance">martial&#x2F;</span><a href="code/datums/martial/cqc.html" title="code&#x2F;datums&#x2F;martial&#x2F;cqc.dm">cqc</a></li>
+    <li><span class="no-substance">materials&#x2F;</span><a href="code/datums/materials/_material.html" title="code&#x2F;datums&#x2F;materials&#x2F;_material.dm">_material</a> - Material datum</li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;game">game</span><ul class="index-tree">
     <li><a href="code/game/atoms.html" title="code&#x2F;game&#x2F;atoms.dm">atoms</a> - Tool-specific behavior procs. To be overridden in subtypes.</li>
@@ -116,7 +125,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(246 detailed/730 documented/22412 total, 3.3%)</aside></h3>
+<aside>(254 detailed/750 documented/22414 total, 3.3%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -234,6 +243,8 @@ On client, created on Client/New()</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;crawl&#x2F;blood">blood</span> - BLOODCRAWL</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;crawl&#x2F;locker">locker</span> - LOCKERCRAWL</li>
     </ul></li>
+    <li><a href="datum/component/explodable.html" title="&#x2F;datum&#x2F;component&#x2F;explodable">explodable</a> - Component specifically for explosion sensetive things, currently only applies to heat based explosions but can later perhaps be used for things that are dangerous to handle carelessly like nitroglycerin.</li>
+    <li><a href="datum/component/material_container.html" title="&#x2F;datum&#x2F;component&#x2F;material_container">material_container</a></li>
     <li><a href="datum/component/religious_tool.html" title="&#x2F;datum&#x2F;component&#x2F;religious_tool">religious_tool</a> - Allows the parent to act similarly to the Altar of Gods with modularity. Invoke and Sect Selection is done via attacking with a bible. This means you cannot sacrifice Bibles (you shouldn't want to do this anyways although now that I mentioned it you probably will want to).</li>
     <li><span class="no-substance">riding&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;riding&#x2F;human">human</span> - Yes, I said humans. No, this won't end well...</li>
     <li><a href="datum/component/uplink.html" title="&#x2F;datum&#x2F;component&#x2F;uplink">syndicate uplink</a> - Uplinks</li>
@@ -259,11 +270,13 @@ Set our target list with the new set we've generated.</li>
     </ul></li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;controller">controller</span><ul class="index-tree">
     <li><a href="datum/controller/global_vars.html" title="&#x2F;datum&#x2F;controller&#x2F;global_vars">Global Variables</a></li>
+    <li><a href="datum/controller/master.html" title="&#x2F;datum&#x2F;controller&#x2F;master">Master</a></li>
     <li class="has-children"><a href="datum/controller/subsystem.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem">fire coderbus</a><ul class="index-tree">
     <li><a href="datum/controller/subsystem/Yogs.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;Yogs">Yog Features</a></li>
     <li><a href="datum/controller/subsystem/achievements.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;achievements">Achievements</a></li>
     <li><a href="datum/controller/subsystem/economy.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;economy">Economy</a></li>
     <li><a href="datum/controller/subsystem/job.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;job">Jobs</a></li>
+    <li><a href="datum/controller/subsystem/materials.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;materials">Materials</a></li>
     <li><span class="no-substance">processing&#x2F;</span><a href="datum/controller/subsystem/processing/instruments.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;processing&#x2F;instruments">Instruments</a></li>
     <li><a href="datum/controller/subsystem/sounds.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;sounds">Sounds</a></li>
     <li><a href="datum/controller/subsystem/sun.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;sun">Sun</a></li>
@@ -441,6 +454,20 @@ note of an instrument.*</li>
     </ul></li>
     <li class="has-children"><a href="datum/martial_art.html" title="&#x2F;datum&#x2F;martial_art">Martial Art</a> - Martial Arts<ul class="index-tree">
     <li><a href="datum/martial_art/cqc.html" title="&#x2F;datum&#x2F;martial_art&#x2F;cqc">CQC</a></li>
+    </ul></li>
+    <li class="has-children"><a href="datum/material.html" title="&#x2F;datum&#x2F;material">material</a><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;material&#x2F;bananium">bananium</span> - Honks and slips</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;material&#x2F;biomass">biomass</span> - Force decrease and mushy sound effect. (Not yet implemented)</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;material&#x2F;bluespace">bluespace crystal</span> - Can cause bluespace effects on use. (Teleportation) (Not yet implemented)</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;material&#x2F;diamond">diamond</span> - Has no special properties</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;material&#x2F;glass">glass</span> - Breaks extremely easily but is transparent.</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;material&#x2F;gold">gold</span> - Slight force increase</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;material&#x2F;iron">iron</span> - Has no special properties.</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;material&#x2F;plasma">plasma</span> - Adds firestacks on hit (Still needs support to turn into gas on destruction)</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;material&#x2F;plastic">plastic</span> - Force decrease</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;material&#x2F;silver">silver</span> - Has no special properties. Could be good against vampires in the future perhaps.</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;material&#x2F;titanium">titanium</span> - Mediocre force increase</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;material&#x2F;uranium">uranium</span> - Is slightly radioactive</li>
     </ul></li>
     <li><a href="datum/module_picker.html" title="&#x2F;datum&#x2F;module_picker">Malfunction Modules Menu</a> - The datum and interface for the malf unlock menu, which lets them choose actions to unlock.</li>
     <li><a href="datum/mood_event.html" title="&#x2F;datum&#x2F;mood_event">mood_event</a></li>
@@ -745,8 +772,9 @@ It's attacks are as follows:</li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;book&#x2F;manual">manual</span> - MANUALS (BOOKS)</li>
     </ul></li>
-    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;borg">borg</span> - Cyborg Spec Items<ul class="index-tree">
+    <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;borg">borg</span> - Cyborg Spec Items<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;sight">sight</span> - HUD/SIGHT things</li>
+    <li><a href="obj/item/borg/upgrade.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade">borg upgrade module.</a></li>
     </ul></li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;card">card</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;card&#x2F;mining_access_card">mining access card</span> - Conscript kit</li>
@@ -812,7 +840,7 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;lazarus_injector">lazarus injector</span> - Lazarus Injector</li>
     <li><a href="obj/item/living_heart.html" title="&#x2F;obj&#x2F;item&#x2F;living_heart">Living Heart</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;malf_upgrade">combat software upgrade</span> - AI Upgrades</li>
-    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts">mecha part</span> - Mecha Parts<ul class="index-tree">
+    <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;mecha_parts">mecha part</span> - Mecha Parts<ul class="index-tree">
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;chassis">chassis</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;chassis&#x2F;durand">\improper Durand chassis</span> - Durand</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;chassis&#x2F;firefighter">\improper Firefighter chassis</span> - Firefighter</li>
@@ -822,7 +850,7 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;chassis&#x2F;phazon">\improper Phazon chassis</span> - Phazon</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;chassis&#x2F;ripley">\improper Ripley chassis</span> - Ripley</li>
     </ul></li>
-    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment">mecha_equipment</span><ul class="index-tree">
+    <li class="has-children"><a href="obj/item/mecha_parts/mecha_equipment.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment">mecha equipment</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;anticcw_armor_booster">armor booster module (Close Combat Weaponry)</span> - ARMOR BOOSTER MODULES</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;generator">exosuit plasma converter</span> - GENERATOR</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;gravcatapult">mounted gravitational catapult</span> - GRAVITATIONAL CATAPULT</li>
@@ -1016,6 +1044,7 @@ Enables crew to create requests, crew can sign up to perform the request, and th
     <li><a href="obj/machinery/jukebox.html" title="&#x2F;obj&#x2F;machinery&#x2F;jukebox">jukebox</a></li>
     <li><a href="obj/machinery/light_switch.html" title="&#x2F;obj&#x2F;machinery&#x2F;light_switch">light switch</a> - The light switch. Can have multiple per area.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;manned_turret">machine gun turret</span> - MANNED TURRET</li>
+    <li><a href="obj/machinery/mecha_part_fabricator.html" title="&#x2F;obj&#x2F;machinery&#x2F;mecha_part_fabricator">exosuit fabricator</a></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;machinery&#x2F;mineral">mineral</span> - Mineral processing unit console<ul class="index-tree">
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;mineral&#x2F;equipment_vendor">mining equipment vendor</span> - Mining Equipment Vendor<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;mineral&#x2F;equipment_vendor&#x2F;free_miner">free miner ship equipment vendor</span> - Free Miner Vendor</li>
@@ -1145,7 +1174,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/2094d37c892a181ac50537b15ffa5a7d590ed1c0">2094d37</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/e64406eb0e5937f3d8a637020868815ca382a26a">e64406e</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
 </body>
 </html>
