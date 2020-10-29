@@ -133,5 +133,4 @@
 	if(trigger_item && istype(AM, specific_item) && !claimed)
 		claimed = TRUE
 		flick("laserbox_burn", AM)
-		sleep(15)
-		qdel(AM)
+		QDEL_IN(AM, 15)
