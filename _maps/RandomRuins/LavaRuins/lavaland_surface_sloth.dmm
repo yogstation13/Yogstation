@@ -23,6 +23,10 @@
 "g" = (
 /turf/closed/wall/mineral/wood,
 /area/ruin/powered)
+"n" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/ruin/powered)
 "q" = (
 /obj/item/coin/iron,
 /turf/open/floor/sepia{
@@ -54,8 +58,11 @@
 	},
 /area/ruin/powered)
 "M" = (
-/obj/structure/mineral_door/wood,
-/obj/structure/fans,
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/wood.dmi';
+	name = "sloth's house"
+	},
 /turf/open/floor/sepia{
 	blocks_air = 0;
 	slowdown = 10
@@ -65,7 +72,7 @@
 (1,1,1) = {"
 g
 g
-g
+n
 g
 g
 "}
@@ -93,7 +100,7 @@ g
 (5,1,1) = {"
 g
 g
-g
+n
 g
 g
 "}
