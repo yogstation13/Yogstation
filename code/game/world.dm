@@ -19,18 +19,12 @@ GLOBAL_VAR(restart_counter)
   *
   * Note this happens after the Master subsystem is created (as that is a global datum), this means all the subsystems exist,
   * but they have not been Initialized at this point, only their New proc has run
-  *
-  * Nothing happens until something moves. ~Albert Einstein
-  *
+  * 
+  * Nothing happens until something moves. ~Albert Einstein 
+  * 
   */
 /world/New()
 	enable_debugger() //This does nothing if you aren't trying to debug
-
-	//Early profile for auto-profiler - will be stopped on profiler init if necessary.
-#if DM_VERSION >= 513 && DM_BUILD >= 1506
-	world.Profile(PROFILE_START)
-#endif
-
 	log_world("World loaded at [time_stamp()]!")
 
 	SetupExternalRSC()

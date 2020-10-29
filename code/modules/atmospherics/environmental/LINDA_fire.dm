@@ -164,9 +164,13 @@
 	if((temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST) || (volume <= 1))
 		qdel(src)
 		return
-
-	//Not enough / nothing to burn
 	if(!location.air || (INSUFFICIENT(/datum/gas/plasma) && INSUFFICIENT(/datum/gas/tritium)) || INSUFFICIENT(/datum/gas/oxygen))
+		qdel(src)
+		return
+
+	//Not enough to burn
+	// god damn it previous coder you made the INSUFFICIENT macro for a fucking reason why didn't you use it here smh
+	if((INSUFFICIENT(/datum/gas/plasma) && INSUFFICIENT(/datum/gas/tritium)) || INSUFFICIENT(/datum/gas/oxygen))
 		qdel(src)
 		return
 

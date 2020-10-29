@@ -98,7 +98,7 @@
 	if(losebreath >= 1) //You've missed a breath, take oxy damage
 		losebreath--
 		if(prob(10))
-			INVOKE_ASYNC(src, .proc/emote, "gasp")
+			emote("gasp")
 		if(istype(loc, /obj/))
 			var/obj/loc_as_obj = loc
 			loc_as_obj.handle_internal_lifeform(src,0)
@@ -172,7 +172,7 @@
 	//OXYGEN
 	if(O2_partialpressure < safe_oxy_min) //Not enough oxygen
 		if(prob(20))
-			INVOKE_ASYNC(src, .proc/emote, "gasp")
+			emote("gasp")
 		if(O2_partialpressure > 0)
 			var/ratio = 1 - O2_partialpressure/safe_oxy_min
 			adjustOxyLoss(min(5*ratio, 3))
