@@ -560,19 +560,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/pirate)
-"bF" = (
-/obj/effect/spawner/structure/window/plastitanium,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "piratebridge"
-	},
-/turf/open/floor/plating,
-/area/template_noop)
 "bH" = (
 /obj/machinery/airalarm/all_access{
 	dir = 8;
@@ -1186,7 +1173,7 @@
 	},
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
-/area/template_noop)
+/area/shuttle/pirate)
 "Oe" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
@@ -1696,7 +1683,7 @@ af
 af
 af
 af
-bF
+ey
 Td
 er
 Td
