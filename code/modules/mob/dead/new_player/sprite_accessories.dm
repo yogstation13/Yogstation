@@ -1932,22 +1932,6 @@
 	icon_state = "polys"
 	color_src = null
 
-/datum/sprite_accessory/plasma_vessels
-	icon = 'icons/mob/mutant_bodyparts.dmi'
-	color_src = null
-
-/datum/sprite_accessory/plasma_vessels/none
-	name = "None"
-	icon_state = "none"
-
-/datum/sprite_accessory/plasma_vessels/small
-	name = "Small"
-	icon_state = "small"
-
-/datum/sprite_accessory/plasma_vessels/medium
-	name = "Medium"
-	icon_state = "medium"
-
 /datum/sprite_accessory/teeth
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 	color_src = null

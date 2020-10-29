@@ -766,8 +766,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
 				if("caps")
 					S = GLOB.caps_list[H.dna.features["caps"]]
-				if("plasma_vessels")
-					S = GLOB.plasma_vessels_list[H.dna.features["plasma_vessels"]]
 				if("teeth")
 					S = GLOB.teeth_list[H.dna.features["teeth"]]
 				if("dome")
