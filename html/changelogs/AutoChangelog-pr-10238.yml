@@ -1,0 +1,4 @@
+author: "fluffe9911"
+delete-after: true 
+changes: 
+  - bugfix: "slimes now put more weight behind there body slaps"
