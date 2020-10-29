@@ -699,7 +699,7 @@
 	if(intel_timer <= world.time)
 		intel_timer = world.time + intel_cooldown
 	else
-		to_chat(src, "<span class='danger'>The [src] is on cooldown! You must wait " + ((intel_timer - world.time) / 10) + " seconds before using it again.</span>")
+		to_chat(src, "<span class='danger'>The [src] is on cooldown! You must wait [((intel_timer - world.time) / 10)] seconds before using it again.</span>")
 		return
 
 	to_chat(user, "<span class='notice'>You offer [src] to [SM]...</span>")
@@ -1027,7 +1027,7 @@
 	item_state = "tile-bluespace"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
-	materials = list(MAT_METAL=500)
+	materials = list(/datum/material/iron=500)
 	throwforce = 10
 	throw_speed = 3
 	throw_range = 7
@@ -1044,7 +1044,7 @@
 	item_state = "tile-sepia"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
-	materials = list(MAT_METAL=500)
+	materials = list(/datum/material/iron=500)
 	throwforce = 10
 	throw_speed = 0.1
 	throw_range = 28

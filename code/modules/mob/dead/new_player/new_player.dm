@@ -506,14 +506,6 @@
 		client.prefs.random_character()
 		client.prefs.real_name = client.prefs.pref_species.random_name(gender,1)
 	client.prefs.copy_to(H)
-
-	if(client.prefs.mulligan && mind.special_role) // Handle roundstart traitor mulligan
-		var/datum/preferences/mulligan_prefs = new /datum/preferences
-		mulligan_prefs.random_character()
-		mulligan_prefs.real_name = mulligan_prefs.pref_species.random_name(gender,1)
-		mulligan_prefs.copy_to(H)
-		qdel(mulligan_prefs)
-	
 	H.dna.update_dna_identity()
 	if(mind)
 		if(mind.assigned_role)

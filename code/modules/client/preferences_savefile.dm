@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	27
+#define SAVEFILE_VERSION_MAX	28
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -117,7 +117,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(current_version < 26) //The new donator hats system obsolesces the old one entirely, we need to update.
 		donor_hat = null
 		donor_item = null
-
+	if(current_version < 27)
+		map = TRUE
+		flare = TRUE
+	if(current_version < 28)
+		if(!job_preferences)
+			job_preferences = list()
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -182,7 +187,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["skillcape"]          >> skillcape
 	S["map"]        	 	>> map
 	S["flare"]				>> flare
-	S["mulligan"]           >> mulligan
 	S["skillcape"]          >> skillcape
 	S["show_credits"] 		>> show_credits
 
@@ -233,7 +237,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	skillcape       = sanitize_integer(skillcape, 1, 82, initial(skillcape))
 	map				= sanitize_integer(map, 0, 1, initial(map))
 	flare			= sanitize_integer(flare, 0, 1, initial(flare))
-	mulligan        = sanitize_integer(mulligan, 0, 1, initial(mulligan))
 	show_credits	= sanitize_integer(show_credits, 0, 1, initial(show_credits))
 
 	// yogs start - Donor features & yogtoggles
@@ -299,8 +302,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
 	WRITE_FILE(S["skillcape"], skillcape)
-	WRITE_FILE(S["mulligan"], mulligan)
 	WRITE_FILE(S["show_credits"], show_credits)
+	WRITE_FILE(S["map"], map)
+	WRITE_FILE(S["flare"], flare)
 
 	// yogs start - Donor features & Yogstoggle
 	WRITE_FILE(S["yogtoggles"], yogtoggles)
@@ -402,7 +406,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Jobs
 	S["joblessrole"]		>> joblessrole
 	//Load prefs
+
 	S["job_preferences"] >> job_preferences
+
+	if(!job_preferences)
+		job_preferences = list()
 
 	//Quirks
 	S["all_quirks"]			>> all_quirks

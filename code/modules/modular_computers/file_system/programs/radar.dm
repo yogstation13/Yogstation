@@ -86,7 +86,7 @@
 		return FALSE
 	var/turf/here = get_turf(computer)
 	var/turf/there = get_turf(signal)
-	return (there?.z == here?.z) || (is_station_level(here?.z) && is_station_level(there?.z))
+	return (there.z == here.z) || (is_station_level(here.z) && is_station_level(there.z))
 
 /**
   *

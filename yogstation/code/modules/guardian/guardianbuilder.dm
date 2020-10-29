@@ -24,6 +24,9 @@
 	src.allow_special = allow_special
 	src.debug_mode = debug_mode
 
+/datum/guardianbuilder/ui_state(mob/user)
+	return GLOB.always_state
+
 /datum/guardianbuilder/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)

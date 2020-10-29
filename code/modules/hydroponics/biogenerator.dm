@@ -33,6 +33,17 @@
 		beaker = null
 		update_icon()
 
+/obj/machinery/biogenerator/contents_explosion(severity, target)
+	..()
+	if(beaker)
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.high_mov_atom += beaker
+			if(EXPLODE_HEAVY)
+				SSexplosions.med_mov_atom += beaker
+			if(EXPLODE_LIGHT)
+				SSexplosions.low_mov_atom += beaker
+
 /obj/machinery/biogenerator/RefreshParts()
 	var/E = 0
 	var/P = 0
@@ -181,13 +192,13 @@
 		update_icon()
 
 /obj/machinery/biogenerator/proc/check_cost(list/materials, multiplier = 1, remove_points = TRUE)
-	if(materials.len != 1 || materials[1] != MAT_BIOMASS)
+	if(materials.len != 1 || materials[1] != getmaterialref(/datum/material/biomass))
 		return FALSE
-	if (materials[MAT_BIOMASS]*multiplier/efficiency > points)
+	if (materials[getmaterialref(/datum/material/biomass)]*multiplier/efficiency > points)
 		return FALSE
 	else
 		if(remove_points)
-			points -= materials[MAT_BIOMASS]*multiplier/efficiency
+			points -= materials[getmaterialref(/datum/material/biomass)]*multiplier/efficiency
 		update_icon()
 		return TRUE
 
@@ -290,7 +301,7 @@
 			cat["items"] += list(list(
 				"id" = D.id,
 				"name" = D.name,
-				"cost" = D.materials[MAT_BIOMASS]/efficiency,
+				"cost" = D.materials[getmaterialref(/datum/material/biomass)]/efficiency,
 			))
 		data["categories"] += list(cat)
 

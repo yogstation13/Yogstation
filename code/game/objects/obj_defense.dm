@@ -144,7 +144,7 @@
 /obj/attack_slime(mob/living/simple_animal/slime/user)
 	if(!user.is_adult)
 		return
-	attack_generic(user, rand(10, 15), "melee", 1)
+	attack_generic(user, rand(10, 15), BRUTE, "melee", 1)
 
 /obj/mech_melee_attack(obj/mecha/M)
 	M.do_attack_animation(src)
@@ -168,7 +168,7 @@
 	return take_damage(M.force*3, mech_damtype, "melee", play_soundeffect, get_dir(src, M)) // multiplied by 3 so we can hit objs hard but not be overpowered against mobs.
 
 /obj/singularity_act()
-	ex_act(EXPLODE_DEVASTATE)
+	SSexplosions.high_mov_atom += src
 	if(src && !QDELETED(src))
 		qdel(src)
 	return 2

@@ -164,7 +164,7 @@ GLOBAL_LIST_EMPTY(request_list)
 	name = "disassembled bounty board"
 	desc = "Used to build a new bounty board, just secure to the wall."
 	icon_state = "request_kiosk"
-	materials = list(MAT_METAL = 14000, MAT_GLASS = 8000)
+	materials = list(/datum/material/iron = 14000, /datum/material/glass = 8000)
 	result_path = /obj/machinery/bounty_board
 
 /**
