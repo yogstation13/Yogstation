@@ -1,0 +1,8 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - rscadd: "Added objectives for morph"
+  - soundadd: "Added greeting sound for morph"
+  - rscadd: "Added objectives for nightmare"
+  - soundadd: "Added greeting sound for nightmare"
+  - tweak: "Morphs now show_to_ghosts"
