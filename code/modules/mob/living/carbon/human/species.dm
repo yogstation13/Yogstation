@@ -1,6 +1,7 @@
 // This code handles different species in the game.
 
 GLOBAL_LIST_EMPTY(roundstart_races)
+GLOBAL_LIST_EMPTY(mentor_races)
 
 /datum/species
 	/// if the game needs to manually check your race to do something not included in a proc here, it will use this
@@ -162,11 +163,19 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(S.check_roundstart_eligible())
 			GLOB.roundstart_races += S.id
 			qdel(S)
+		else if(S.check_mentor())
+			GLOB.mentor_races += S.id
+			qdel(S)
 	if(!GLOB.roundstart_races.len)
 		GLOB.roundstart_races += "human"
 
 /datum/species/proc/check_roundstart_eligible()
 	if(id in (CONFIG_GET(keyed_list/roundstart_races)))
+		return TRUE
+	return FALSE
+	
+/datum/species/proc/check_mentor()
+	if(id in (CONFIG_GET(keyed_list/mentor_races)))
 		return TRUE
 	return FALSE
 
