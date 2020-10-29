@@ -10,7 +10,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	id = "preternis"
 	default_color = "FFFFFF"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
-	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_MEDICALIGNORE, TRAIT_PIERCEIMMUNE, TRAIT_RESISTLOWPRESSURE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
+	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_MEDICALIGNORE, TRAIT_PIERCEIMMUNE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
 	species_traits = list(EYECOLOR,HAIR,LIPS)
 	say_mod = "intones"
 	attack_verb = "assault"
