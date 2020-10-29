@@ -173,7 +173,7 @@ SUBSYSTEM_DEF(air)
 			return
 		cost_superconductivity = MC_AVERAGE(cost_superconductivity, TICK_DELTA_TO_MS(cached_cost))
 		resumed = FALSE
-    currentpart = SSAIR_REBUILD_PIPENETS
+	currentpart = SSAIR_REBUILD_PIPENETS
 
 
 
