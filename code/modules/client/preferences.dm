@@ -1426,7 +1426,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("species")
 
-					var/result = input(user, "Select a species", "Species Selection") as null|anything in (is_donator(user) ? (GLOB.roundstart_races + GLOB.donator_races) : GLOB.donator_races)
+					var/result = input(user, "Select a species", "Species Selection") as null|anything in (is_donator(user) ? (GLOB.roundstart_races + GLOB.donator_races) : GLOB.roundstart_races)
 
 					if(result)
 						var/newtype = GLOB.species_list[result]

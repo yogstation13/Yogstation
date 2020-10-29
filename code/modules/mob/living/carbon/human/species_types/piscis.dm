@@ -30,9 +30,10 @@
 	var/obj/item/clothing/mask/mask1 = C.get_item_by_slot(SLOT_WEAR_MASK)
 	if(!mask1 || !istype(mask1,/obj/item/clothing/mask/breath))
 		var/obj/item/clothing/mask/breath/mask = new()
-		C.dropItemToGround(mask1,TRUE)
+		if(mask1)
+			C.dropItemToGround(mask1,TRUE)
 		if(!C.equip_to_appropriate_slot(mask))
 			qdel(mask)
-		C.update_internals_hud_icon(TRUE)
+	C.update_internals_hud_icon(TRUE)
 	
 
