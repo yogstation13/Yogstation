@@ -406,7 +406,7 @@
 	return "Have a spooky Halloween!"
 
 /datum/holiday/halloween/getStationPrefix()
-	return pick("Bone-Rattling","Mr. Bones' Own","2SPOOKY","Spooky","Scary","Skeletons")
+	return pick("Bone-Rattling","Mr. Bones' Own","2SPOOKY","Spooky","Scary","Skeletons","The Haunted","Abominable","Gibbering","Squamous","Ghoul","Zombie","Forbidden","Bloody","Horrific","Infernal","Star Spawned","Hellish","Forgotten","Eldritch","Sleeping","Eternal","Abhorrence","Plague","Dread","Apprehension","Crawling Chaos","Blot","Cold Sweat","Unholy","Jitters","Unknown","Darkness","Festering","Fetid","Vile","Lurker","Scorn","Apocalypse","The Last","Lasting","Corruption","Blasphemous","The Corruption on","The Blasphemous")
 
 /datum/holiday/vegan
 	name = "Vegan Day"
@@ -595,7 +595,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	return (dd == 13 && ddd == FRIDAY)
 
 /datum/holiday/friday_thirteenth/getStationPrefix()
-	return pick("Mike","Friday","Evil","Myers","Murder","Deathly","Stabby")
+	return pick("Mike","Friday","Evil","Myers","Murder","Deathly","Stabby","Voorhees","Jason","Mother","Krueger","Telephone","Slasher","Flick","Hockey","Chevron")
 
 /datum/holiday/easter
 	name = EASTER

@@ -23,11 +23,13 @@
 
 ///returns the damage value of the attack after processing the obj's various armor protections
 /obj/proc/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penetration = 0)
+	if(damage_flag == "melee" && damage_amount < damage_deflection)
+		return FALSE
 	switch(damage_type)
 		if(BRUTE)
 		if(BURN)
 		else
-			return 0
+			return FALSE
 	var/armor_protection = 0
 	if(damage_flag)
 		armor_protection = armor.getRating(damage_flag)
@@ -57,7 +59,7 @@
 /obj/ex_act(severity, target)
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
-	..() //contents 
+	..() //contents
 	if(QDELETED(src))
 		return
 	if(target == src)
@@ -166,7 +168,7 @@
 	return take_damage(M.force*3, mech_damtype, "melee", play_soundeffect, get_dir(src, M)) // multiplied by 3 so we can hit objs hard but not be overpowered against mobs.
 
 /obj/singularity_act()
-	ex_act(EXPLODE_DEVASTATE)
+	SSexplosions.high_mov_atom += src
 	if(src && !QDELETED(src))
 		qdel(src)
 	return 2
