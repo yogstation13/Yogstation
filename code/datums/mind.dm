@@ -78,8 +78,6 @@
 	SSticker.minds -= src
 	if(islist(antag_datums))
 		QDEL_LIST(antag_datums)
-	current = null
-	soulOwner = null
 	return ..()
 
 /datum/mind/proc/get_language_holder()
