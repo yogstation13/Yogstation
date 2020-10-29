@@ -81,9 +81,7 @@ GLOBAL_LIST_EMPTY(request_list)
 				formatted_applicants += list(list("name" = j.account_holder, "request_id" = request.owner_account.account_id, "requestee_id" = j.account_id))
 	var/obj/item/card/id/id_card = user.get_idcard()
 	if(id_card?.registered_account)
-		current_user = id_card.registered_account
-	if(current_user)
-		data["accountName"] = current_user.account_holder
+		data["accountName"] = id_card.registered_account.account_holder
 	data["requests"] = formatted_requests
 	data["applicants"] = formatted_applicants
 	data["bountyValue"] = bounty_value
@@ -164,7 +162,7 @@ GLOBAL_LIST_EMPTY(request_list)
 	name = "disassembled bounty board"
 	desc = "Used to build a new bounty board, just secure to the wall."
 	icon_state = "request_kiosk"
-	materials = list(MAT_METAL = 14000, MAT_GLASS = 8000)
+	materials = list(/datum/material/iron = 14000, /datum/material/glass = 8000)
 	result_path = /obj/machinery/bounty_board
 
 /**
