@@ -27,7 +27,7 @@
 	var/message_html = message_to_html(message)
 	
 	if(!confidential)
-		SSdemo.write_chat(target, message["html"])
+		SSdemo.write_chat(target, message)
 	
 	if(islist(target))
 		for(var/_target in target)
