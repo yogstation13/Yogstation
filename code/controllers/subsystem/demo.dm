@@ -57,8 +57,10 @@ SUBSYSTEM_DEF(demo)
 			target_text = C.ckey
 		else
 			return
-	write_event_line("chat [target_text] [last_chat_message == text ? "=" : json_encode(text)]")
-	last_chat_message = text
+			
+	var/json_encoded = json_encode(text)
+	write_event_line("chat [target_text] [last_chat_message == json_encoded ? "=" : json_encoded]")
+	last_chat_message = json_encoded
 
 /datum/controller/subsystem/demo/Initialize()
 	WRITE_LOG_NO_FORMAT(GLOB.demo_log, "demo version 1\n") // increment this if you change the format
