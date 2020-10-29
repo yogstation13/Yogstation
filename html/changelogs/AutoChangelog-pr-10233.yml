@@ -1,4 +1,4 @@
 author: "JamieD1"
 delete-after: true 
 changes: 
-  - bugfix: "Reverts Runtimes"
+  - bugfix: "Fixes Hand teleporter"

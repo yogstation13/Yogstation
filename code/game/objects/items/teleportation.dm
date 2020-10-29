@@ -1,3 +1,4 @@
+
 #define SOURCE_PORTAL 1
 #define DESTINATION_PORTAL 2
 
@@ -23,76 +24,95 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	throw_speed = 3
 	throw_range = 7
-	materials = list(/datum/material/iron=400)
-	var/tracking_range = 20
+	materials = list(MAT_METAL=400)
 
-/obj/item/locator/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "BluespaceLocator", name)
-		ui.open()
+/obj/item/locator/attack_self(mob/user)
+	user.set_machine(src)
+	var/dat
+	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
+	
+	if (temp)
+		dat = "[temp]<BR><BR><A href='byond://?src=[REF(src)];temp=1'>Clear</A>"
+	else
+		dat = {"
+<B>Persistent Signal Locator</B><HR>
+<A href='?src=[REF(src)];refresh=1'>Refresh</A>"}
+	dat += "</BODY></HTML>"
+	user << browse(dat, "window=radio")
+	onclose(user, "radio")
+	return
 
-/obj/item/locator/ui_data(mob/user)
-	var/list/data = list()
+/obj/item/locator/Topic(href, href_list)
+	..()
+	if (usr.stat || usr.restrained())
+		return
+	var/turf/current_location = get_turf(usr)//What turf is the user on?
+	if(!current_location || is_centcom_level(current_location.z))//If turf was not found or they're on CentCom
+		to_chat(usr, "[src] is malfunctioning.")
+		return
+	if(usr.contents.Find(src) || (in_range(src, usr) && isturf(loc)))
+		usr.set_machine(src)
+		if (href_list["refresh"])
+			temp = "<B>Persistent Signal Locator</B><HR>"
+			var/turf/sr = get_turf(src)
 
-	data["trackingrange"] = tracking_range;
-
-	// Get our current turf location.
-	var/turf/sr = get_turf(src)
-
-	if (sr)
-		// Check every teleport beacon.
-		var/list/tele_beacons = list()
-		for(var/obj/item/beacon/W in GLOB.teleportbeacons)
-
-			// Get the tracking beacon's turf location.
-			var/turf/tr = get_turf(W)
-
-			// Make sure it's on a turf and that its Z-level matches the tracker's Z-level
-			if (tr && tr.z == sr.z)
-				// Get the distance between the beacon's turf and our turf
-				var/distance = max(abs(tr.x - sr.x), abs(tr.y - sr.y))
-
-				// If the target is too far away, skip over this beacon.
-				if(distance > tracking_range)
-					continue
-
-				var/beacon_name
-
-				if(W.renamed)
-					beacon_name = W.name
-				else
-					var/area/A = get_area(W)
-					beacon_name = A.name
-
-				var/D =  dir2text(get_dir(sr, tr))
-				tele_beacons += list(list(name = beacon_name, direction = D, distance = distance))
-
-		data["telebeacons"] = tele_beacons
-
-		var/list/track_implants = list()
-
-		for (var/obj/item/implant/tracking/W in GLOB.tracked_implants)
-			if (!W.imp_in || !isliving(W.loc))
-				continue
-			else
-				var/mob/living/M = W.loc
-				if (M.stat == DEAD)
-					if (M.timeofdeath + W.lifespan_postmortem < world.time)
+			if (sr)
+				temp += "<B>Beacon Signals:</B><BR>"
+				for(var/obj/item/beacon/W in GLOB.teleportbeacons)
+					if (!W.renamed)
 						continue
-			var/turf/tr = get_turf(W)
-			var/distance = max(abs(tr.x - sr.x), abs(tr.y - sr.y))
+					var/turf/tr = get_turf(W)
+					if (tr.z == sr.z && tr)
+						var/direct = max(abs(tr.x - sr.x), abs(tr.y - sr.y))
+						if (direct < 5)
+							direct = "very strong"
+						else
+							if (direct < 10)
+								direct = "strong"
+							else
+								if (direct < 20)
+									direct = "weak"
+								else
+									direct = "very weak"
+						temp += "[W.name]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
 
-			if(distance > tracking_range)
-				continue
+				temp += "<B>Implant Signals:</B><BR>"
+				for (var/obj/item/implant/tracking/W in GLOB.tracked_implants)
+					if (!W.imp_in || !isliving(W.loc))
+						continue
+					else
+						var/mob/living/M = W.loc
+						if (M.stat == DEAD)
+							if (M.timeofdeath + W.lifespan_postmortem < world.time)
+								continue
 
-			var/D =  dir2text(get_dir(sr, tr))
-			track_implants += list(list(name = W.imp_in.name, direction = D, distance = distance))
-		data["trackimplants"] = track_implants
-	return data
+					var/turf/tr = get_turf(W)
+					if (tr.z == sr.z && tr)
+						var/direct = max(abs(tr.x - sr.x), abs(tr.y - sr.y))
+						if (direct < 20)
+							if (direct < 5)
+								direct = "very strong"
+							else
+								if (direct < 10)
+									direct = "strong"
+								else
+									direct = "weak"
+							temp += "[W.imp_in.name]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
 
-/obj/machinery/my_machine/ui_act(action, params)
-  	if(..()) return
+				temp += "<B>You are at \[[sr.x],[sr.y],[sr.z]\]</B> in orbital coordinates.<BR><BR><A href='byond://?src=[REF(src)];refresh=1'>Refresh</A><BR>"
+			else
+				temp += "<B><FONT color='red'>Processing Error:</FONT></B> Unable to locate orbital position.<BR>"
+		else
+			if (href_list["temp"])
+				temp = null
+		if (ismob(src.loc))
+			attack_self(src.loc)
+		else
+			for(var/mob/M in viewers(1, src))
+				if (M.client)
+					src.attack_self(M)
+	return
+
 
 /*
  * Hand-tele
@@ -109,7 +129,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
 	throw_range = 5
-	materials = list(/datum/material/iron=10000)
+	materials = list(MAT_METAL=10000)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/list/active_portal_pairs
@@ -122,7 +142,7 @@
 
 /obj/item/hand_tele/pre_attack(atom/target, mob/user, params)
 	if(try_dispel_portal(target, user))
-		return TRUE
+		return FALSE
 	return ..()
 
 /obj/item/hand_tele/proc/try_dispel_portal(atom/target, mob/user)
@@ -181,12 +201,10 @@
 		to_chat(user, "<span class='notice'>\The [src] is malfunctioning.</span>")
 		return
 	user.show_message("<span class='notice'>Locked In.</span>", 2)
-	var/list/obj/effect/portal/created = create_portal_pair(current_location, get_teleport_turf(get_turf(T)), 300, 1, null, atmos_link_override)
+	var/list/obj/effect/portal/created = create_portal_pair(current_location, get_teleport_turf(get_turf(T)), src, 300, 1, null, atmos_link_override)
 	if(!(LAZYLEN(created) == 2))
 		return
-	RegisterSignal(created[1], COMSIG_PARENT_QDELETING, .proc/on_portal_destroy) //Gosh darn it kevinz.
-	RegisterSignal(created[2], COMSIG_PARENT_QDELETING, .proc/on_portal_destroy)
-	try_move_adjacent(created[1], user.dir)
+	try_move_adjacent(created[1])
 	active_portal_pairs[created[1]] = created[2]
 	var/obj/effect/portal/c1 = created[1]
 	var/obj/effect/portal/c2 = created[2]

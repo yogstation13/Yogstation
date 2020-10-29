@@ -980,6 +980,12 @@
 /datum/component/construction/mecha/phazon/get_stockpart_steps()
 	return list(
 		list(
+			"key" = /obj/item/stock_parts/scanning_module,
+			"action" = ITEM_MOVE_INSIDE,
+			"back_key" = TOOL_SCREWDRIVER,
+			"desc" = "Weapon control module is secured."
+		),
+		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
 			"desc" = "Scanner module is installed."

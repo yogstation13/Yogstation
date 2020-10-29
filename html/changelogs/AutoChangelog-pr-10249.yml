@@ -1,4 +1,4 @@
 author: "JamieD1"
 delete-after: true 
 changes: 
-  - rscadd: "Explosions Subsystems"
+  - bugfix: "Should fix auto reconnect"
