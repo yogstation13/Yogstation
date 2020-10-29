@@ -19,18 +19,12 @@ GLOBAL_VAR(restart_counter)
   *
   * Note this happens after the Master subsystem is created (as that is a global datum), this means all the subsystems exist,
   * but they have not been Initialized at this point, only their New proc has run
-  *
-  * Nothing happens until something moves. ~Albert Einstein
-  *
+  * 
+  * Nothing happens until something moves. ~Albert Einstein 
+  * 
   */
 /world/New()
 	enable_debugger() //This does nothing if you aren't trying to debug
-
-	//Early profile for auto-profiler - will be stopped on profiler init if necessary.
-#if DM_VERSION >= 513 && DM_BUILD >= 1506
-	world.Profile(PROFILE_START)
-#endif
-
 	log_world("World loaded at [time_stamp()]!")
 
 	GLOB.config_error_log = GLOB.world_manifest_log = GLOB.world_pda_log = GLOB.world_job_debug_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl

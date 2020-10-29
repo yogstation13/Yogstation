@@ -33,7 +33,7 @@
 /mob/living/simple_animal/bot/secbot/grievous/Initialize()
 	. = ..()
 	weapon = new baton_type(src)
-	INVOKE_ASYNC(weapon, /obj/item.proc/attack_self, src)
+	weapon.attack_self(src)
 
 /mob/living/simple_animal/bot/secbot/grievous/Destroy()
 	QDEL_NULL(weapon)
