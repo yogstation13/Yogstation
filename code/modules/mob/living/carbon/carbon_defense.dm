@@ -245,7 +245,7 @@
 		if(!illusion && (shock_damage * siemens_coeff >= 1) && prob(25))
 			set_heartattack(FALSE)
 			revive()
-			emote("gasp")
+			INVOKE_ASYNC(src, .proc/emote, "gasp")
 			Jitter(100)
 			SEND_SIGNAL(src, COMSIG_LIVING_MINOR_SHOCK)
 			adjustOrganLoss(ORGAN_SLOT_BRAIN, 100, 199) //yogs end
