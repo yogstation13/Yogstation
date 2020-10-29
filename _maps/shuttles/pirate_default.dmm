@@ -440,6 +440,9 @@
 /obj/item/gun/ballistic/shotgun/automatic/combat{
 	pixel_y = 1
 	},
+/obj/item/storage/backpack/duffelbag/syndie/x4{
+	pixel_y = 13
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/pirate)
 "aV" = (
@@ -474,6 +477,9 @@
 	dir = 4
 	},
 /obj/machinery/shuttle_scrambler,
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/pirate)
 "bg" = (
@@ -898,17 +904,17 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/item/gun/energy/laser{
+/obj/item/gun/energy/laser/retro{
 	pixel_y = -6
 	},
-/obj/item/gun/energy/laser{
-	pixel_y = -1
+/obj/item/gun/energy/laser/retro{
+	pixel_y = -2
 	},
-/obj/item/gun/energy/laser{
-	pixel_y = 4
+/obj/item/gun/energy/laser/retro{
+	pixel_y = 2
 	},
-/obj/item/gun/energy/laser{
-	pixel_y = 9
+/obj/item/gun/energy/laser/retro{
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/pirate)
@@ -929,11 +935,8 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/item/storage/backpack/duffelbag/syndie/x4{
-	pixel_y = 13
-	},
 /obj/item/melee/transforming/energy/sword/pirate{
-	pixel_x = -2;
+	pixel_x = -3;
 	pixel_y = 1
 	},
 /obj/item/melee/transforming/energy/sword/pirate{
@@ -943,6 +946,10 @@
 /obj/item/melee/transforming/energy/sword/pirate{
 	pixel_x = 13;
 	pixel_y = 1
+	},
+/obj/item/storage/box/zipties{
+	pixel_x = -4;
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/pirate)
@@ -1082,6 +1089,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
 /obj/effect/turf_decal/tile/red,
+/obj/machinery/light/small,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/pirate)
 "vB" = (
