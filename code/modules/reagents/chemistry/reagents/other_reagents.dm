@@ -981,9 +981,11 @@
 	..()
 
 /datum/reagent/fuel/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(1, 0)
-	..()
-	return TRUE
+	if(M!= /mob/living/carbon/human/species_types/preternis/preternis)
+		M.adjustToxLoss(1, 0)
+		return
+		..()
+	return
 
 /datum/reagent/space_cleaner
 	name = "Space cleaner"
@@ -1380,10 +1382,17 @@
 
 /datum/reagent/oil
 	name = "Oil"
-	description = "Burns in a small smoky fire, mostly used to get Ash."
+	description = "Burns in a small smoky fire, mostly used to get Ash, or to top off a Preternis."
 	reagent_state = LIQUID
-	color = "#C8A5DC"
+	color = "#e39000"
 	taste_description = "oil"
+
+/datum/reagent/oil/reaction_turf(turf/T, reac_volume)//splash oil all over
+	if(!istype(T))
+		return
+	if(reac_volume < 3)
+		return
+	new/obj/effect/decal/cleanable/oil(T)
 
 /datum/reagent/stable_plasma
 	name = "Stable Plasma"

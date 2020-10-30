@@ -60,3 +60,8 @@
 	heat_level_1_threshold = 320
 	heat_level_2_threshold = 400
 	heat_level_3_threshold = 600 //HALP MY LUNGS ARE ON FIRE
+
+/obj/item/organ/stomach/preternis
+	name = "robotic stomach"
+	icon_state = "implant-power"
+	desc = "A robotic stomach capable of inefficiently digesting food, and efficiently processing fuel."
