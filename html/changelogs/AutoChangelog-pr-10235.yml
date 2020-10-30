@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "things with negative flash protection will no longer  block vampiric gaze and hypnosis"
