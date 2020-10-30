@@ -47,11 +47,6 @@
 	for(var/path in subtypesof(/datum/surgery))
 		GLOB.surgeries_list += new path()
 
-	//Materials
-	for(var/path in subtypesof(/datum/material))
-		var/datum/material/D = new path()
-		GLOB.materials_list[D.id] = D
-
 	GLOB.emote_list = init_emote_list()
 	//Skillcapes
 	for(var/path in subtypesof(/datum/skillcape))

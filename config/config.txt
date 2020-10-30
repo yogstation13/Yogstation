@@ -106,7 +106,7 @@ LOG_LAW
 LOG_MANIFEST
 
 ## log job divide debugging information
-#LOG_JOB_DEBUG
+LOG_JOB_DEBUG
 
 ## log all world.Topic() calls
 # LOG_WORLD_TOPIC
@@ -435,3 +435,5 @@ DEFAULT_VIEW_SQUARE 15x15
 ## Uncomment to enable global ban DB using the provided URL. The API should expect to receive a ckey at the end of the URL.
 ## More API details can be found here: https://centcom.melonmesa.com
 CENTCOM_BAN_DB https://centcom.melonmesa.com/ban/search
+
+AUTO_PROFILE

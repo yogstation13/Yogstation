@@ -100,7 +100,7 @@
 		var/obj/item/tool = user.get_active_held_item()
 		if(S.try_op(user, target, user.zone_selected, tool, src, try_to_fail))
 			return TRUE
-		if(tool?.item_flags & SURGICAL_TOOL) //Just because you used the wrong tool it doesn't mean you meant to whack the patient with it
+		if(tool.item_flags & SURGICAL_TOOL) //Just because you used the wrong tool it doesn't mean you meant to whack the patient with it
 			to_chat(user, "<span class='warning'>This step requires a different tool!</span>")
 			return TRUE
 	return FALSE
@@ -141,14 +141,14 @@
 	name = "Surgery Procedure Disk"
 	desc = "A disk that contains advanced surgery procedures, must be loaded into an Operating Console."
 	icon_state = "datadisk1"
-	materials = list(MAT_METAL=300, MAT_GLASS=100)
+	materials = list(/datum/material/iron=300, /datum/material/glass=100)
 	var/list/surgeries
 
 /obj/item/disk/surgery/debug
 	name = "Debug Surgery Disk"
 	desc = "A disk that contains all existing surgery procedures."
 	icon_state = "datadisk1"
-	materials = list(MAT_METAL=300, MAT_GLASS=100)
+	materials = list(/datum/material/iron=300, /datum/material/glass=100)
 
 /obj/item/disk/surgery/debug/Initialize()
 	. = ..()

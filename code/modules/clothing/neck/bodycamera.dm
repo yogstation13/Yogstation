@@ -112,7 +112,7 @@
 
 /obj/item/clothing/neck/bodycam/dropped(mob/wearer)
 	..()
-	if (bodcam?.status)//if it's on
+	if (bodcam.status)//if it's on
 		attack_self(wearer) //turn it off
 	GLOB.cameranet.updatePortableCamera(bodcam)
 	UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)

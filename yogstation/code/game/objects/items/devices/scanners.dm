@@ -28,7 +28,7 @@ TRICORDER
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 7
-	materials = list(MAT_METAL=500,MAT_SILVER=300,MAT_GOLD=300)
+	materials = list(/datum/material/iron=500,/datum/material/silver=300,/datum/material/gold=300)
 
 	var/medicalTricorder = FALSE	//Set to TRUE for normal medical scanner, set to FALSE for a gutted version
 
@@ -42,7 +42,7 @@ obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
 /obj/item/multitool/tricorder/attack(mob/living/M, mob/living/user, obj/item/I)
 	add_fingerprint(user)
 	var/turf/U = get_turf(I)
-	atmosanalyzer_scan(U?.return_air(), user, I)
+	atmosanalyzer_scan(U.return_air(), user, I)
 	if(user.stat || user.eye_blind)
 		return
 	if (isslime(M))

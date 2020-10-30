@@ -483,4 +483,3 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define ALIGNMENT_GOOD "good"
 #define ALIGNMENT_NEUT "neutral"
 #define ALIGNMENT_EVIL "evil"
-

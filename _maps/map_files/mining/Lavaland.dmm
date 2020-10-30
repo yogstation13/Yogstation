@@ -524,12 +524,6 @@
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"hE" = (
-/obj/structure/table,
-/obj/item/toy/cards/deck,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/mine/laborcamp)
 "hH" = (
 /obj/structure/stone_tile/block{
 	dir = 1
@@ -1695,6 +1689,13 @@
 	},
 /turf/open/floor/plating,
 /area/mine/laborcamp)
+"qE" = (
+/obj/structure/table,
+/obj/item/toy/cards/deck,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/instrument/harmonica,
+/turf/open/floor/plasteel,
+/area/mine/laborcamp)
 "qL" = (
 /obj/structure/table,
 /obj/item/paper,
@@ -2262,14 +2263,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"En" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/mine/laborcamp/security)
 "Ez" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/seeds/onion,
@@ -2772,6 +2765,17 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/laborcamp)
+"TM" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 6
+	},
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel,
+/area/mine/laborcamp/security)
 "Ub" = (
 /turf/closed/wall/r_wall,
 /area/lavaland/surface/outdoors/explored)
@@ -8332,7 +8336,7 @@ EI
 EI
 if
 QC
-hE
+qE
 iv
 pJ
 BW
@@ -9115,7 +9119,7 @@ vE
 if
 Lq
 td
-En
+TM
 QU
 BH
 aj
