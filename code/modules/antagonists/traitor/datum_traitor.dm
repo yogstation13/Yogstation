@@ -362,9 +362,14 @@
 
 	var/objectives_text = ""
 	if(objectives.len)//If the traitor had no objectives, don't need to process this.
+		var/count = 1
 		for(var/datum/objective/objective in objectives)
-			if(!objective.check_completion())
+			if(objective.check_completion())
+				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text]"
+			else
+				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text]"
 				traitorwin = FALSE
+			count++
 
 	if(uplink_true)
 		var/uplink_text = "(used [TC_uses] TC) [purchases]"
