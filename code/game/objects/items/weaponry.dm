@@ -514,6 +514,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	name = "hippocrates bust"
 	desc = "A bust of the famous Greek physician Hippocrates of Kos, often referred to as the father of western medicine."
 	icon_state = "hippocratic"
+	force = 25
 	impressiveness = 50
 
 /obj/item/tailclub
