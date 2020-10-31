@@ -30,7 +30,7 @@
 /client/verb/demoview(roundnumber as num)
 	set name = "demoview"
 	set desc = "Enter Round Number you wish to see the replay of"
-	set hidden = TRUE
+	set hidden = 1
 	var/roundurl = CONFIG_GET(string/demourl)
 	if(roundnumber < 26360)
 		roundnumber == 26360
@@ -38,7 +38,7 @@
 		if(!roundnumber)
 			roundnumber = text2num(GLOB.round_id-1)
 		if(alert("This will open the demo in your browser. Are you sure?",,"Yes","No")!="Yes")
-				return
+			return
 		src << link("[roundurl][roundnumber]")
 	else
 		to_chat(src, "<span class='danger'>The demo URL is not set in the server configuration.</span>")
