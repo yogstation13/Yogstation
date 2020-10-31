@@ -147,7 +147,7 @@
 				here.PlaceOnTop(/turf/closed/wall)
 				qdel(src)
 				return
-			if(9 to 11)
+			if(10 to 11)
 				lights = FALSE
 				locked = TRUE
 			if(12 to 15)
