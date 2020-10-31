@@ -407,6 +407,18 @@
 	implants = list(/obj/item/implant/teleporter/ghost_role)
 	id = /obj/item/card/id
 
+/obj/effect/mob_spawn/human/bartender/alive/space
+	name = "space bartender sleeper"
+	flavour_text = "<span class='big bold'>You are a space bartender!</span><b> Time to mix drinks and change lives. Do not leave your post under any circumstances!</b>"
+	outfit = /datum/outfit/spacebartender/space
+
+/datum/outfit/spacebartender/space
+	ears = /obj/item/radio/headset/headset_srv
+	backpack_contents = list(/obj/item/storage/box/beanbag=1)
+	suit_store = /obj/item/gun/ballistic/shotgun/doublebarrel
+	mask = /obj/item/clothing/mask/breath
+	l_pocket = /obj/item/tank/internals/emergency_oxygen/double
+
 /obj/effect/mob_spawn/human/beach
 	outfit = /datum/outfit/beachbum
 
