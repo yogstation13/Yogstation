@@ -136,7 +136,8 @@
 		return
 	if(!A.Adjacent(src))
 		return
-	prepare_target(src)
+	if(isliving(A))
+		prepare_target(A)
 
 ////END CTRL CLICK FOR SWARMERS////
 
