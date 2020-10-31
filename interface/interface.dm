@@ -30,7 +30,7 @@
 /client/verb/demoview(roundnumber as num)
 	set name = "demoview"
 	set desc = "Enter Round Number you wish to see the replay of"
-	set hidden = 1
+	set hidden = TRUE
 	var/roundurl = CONFIG_GET(string/demourl)
 	if(roundurl)
 		if(roundnumber)
