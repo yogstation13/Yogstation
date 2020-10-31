@@ -8,6 +8,7 @@
 	var/blood_overlay_type = "suit"
 	var/togglename = null
 	var/suittoggled = FALSE
+	var/mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 
 /obj/item/clothing/suit/worn_overlays(isinhands = FALSE)
