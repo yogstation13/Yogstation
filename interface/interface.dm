@@ -33,7 +33,7 @@
 	set hidden = 1
 	var/roundurl = CONFIG_GET(string/demourl)
 	if(roundnumber < 26360)
-		roundnumber == 26360
+		roundnumber = 26360
 	if(roundurl)
 		if(!roundnumber)
 			roundnumber = text2num(GLOB.round_id-1)
@@ -46,7 +46,7 @@
 /client/verb/rules()
 	set name = "rules"
 	set desc = "Show Server Rules."
-	set hidden = 1
+	set hidden = 1s
 	var/rulesurl = CONFIG_GET(string/rulesurl)
 	if(rulesurl)
 		if(alert("This will open the rules in your browser. Are you sure?",,"Yes","No")!="Yes")
