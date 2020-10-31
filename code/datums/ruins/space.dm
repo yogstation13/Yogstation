@@ -311,10 +311,8 @@
 /datum/map_template/ruin/space/spacebar
 	id = "spacebar"
 	suffix = "spacebar.dmm"
-	name = "The Rampant Golem and Yellow Hound"
-	description = "No questions asked. No shoes/foot protection, no service. \
-		No tabs. No violence in the inside areas. That's it. Welcome to the \
-		Rampant Golem and Yellow Hound. Can I take your order?"
+	name = "The Space Bar"
+	description = "Technically a Space Bar & Grill, but do you really care about that? No, just about getting drunk and a good (enough) meal."
 
 /datum/map_template/ruin/space/goat_transport
 	id = "goatresearch"
