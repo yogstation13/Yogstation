@@ -79665,14 +79665,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"crC" = (
-/obj/structure/closet/secure_closet/security/sec,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/turf_decal/stripes/end{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/starboard)
 "crD" = (
 /obj/structure/sign/warning/electricshock{
 	pixel_x = -32;
@@ -127136,6 +127128,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/research/abandoned)
+"pVZ" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/turf_decal/stripes/end{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/starboard)
 "qdJ" = (
 /obj/machinery/nanite_programmer,
 /obj/effect/turf_decal/bot,
@@ -180379,7 +180378,7 @@ btY
 dmx
 bBr
 clA
-crC
+pVZ
 cth
 cuK
 bHq
