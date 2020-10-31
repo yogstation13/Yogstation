@@ -54,24 +54,6 @@
 "ao" = (
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/powered/spacebar)
-"ap" = (
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks/beer{
-	dispensable_reagents = list(/datum/reagent/consumable/ethanol/beer,/datum/reagent/consumable/ethanol/kahlua,/datum/reagent/consumable/ethanol/whiskey,/datum/reagent/consumable/ethanol/wine,/datum/reagent/consumable/ethanol/vodka,/datum/reagent/consumable/ethanol/gin,/datum/reagent/consumable/ethanol/rum,/datum/reagent/consumable/ethanol/tequila,/datum/reagent/consumable/ethanol/vermouth,/datum/reagent/consumable/ethanol/cognac,/datum/reagent/consumable/ethanol/ale,/datum/reagent/consumable/ethanol/absinthe,/datum/reagent/consumable/ethanol/hcider,/datum/reagent/consumable/ethanol/creme_de_menthe,/datum/reagent/consumable/ethanol/creme_de_cacao,/datum/reagent/consumable/ethanol/triple_sec,/datum/reagent/consumable/ethanol/sake,/datum/reagent/consumable/ethanol,/datum/reagent/iron,/datum/reagent/toxin/minttoxin,/datum/reagent/consumable/ethanol/atomicbomb,/datum/reagent/consumable/ethanol/fernet);
-	emagged_reagents = null;
-	name = "Exotic booze dispenser"
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/spacebar)
-"aq" = (
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks{
-	dispensable_reagents = list(/datum/reagent/water,/datum/reagent/consumable/ice,/datum/reagent/consumable/coffee,/datum/reagent/consumable/cream,/datum/reagent/consumable/tea,/datum/reagent/consumable/icetea,/datum/reagent/consumable/space_cola,/datum/reagent/consumable/spacemountainwind,/datum/reagent/consumable/dr_gibb,/datum/reagent/consumable/space_up,/datum/reagent/consumable/tonic,/datum/reagent/consumable/sodawater,/datum/reagent/consumable/lemon_lime,/datum/reagent/consumable/pwr_game,/datum/reagent/consumable/shamblers,/datum/reagent/consumable/sugar,/datum/reagent/consumable/orangejuice,/datum/reagent/consumable/grenadine,/datum/reagent/consumable/limejuice,/datum/reagent/consumable/tomatojuice,/datum/reagent/consumable/lemonjuice,/datum/reagent/consumable/menthol,/datum/reagent/consumable/ethanol/thirteenloko,/datum/reagent/consumable/ethanol/whiskey_cola,/datum/reagent/toxin/mindbreaker,/datum/reagent/toxin/staminatoxin);
-	emagged_reagents = null;
-	name = "Exotic soda dispenser"
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/spacebar)
 "ar" = (
 /obj/structure/table,
 /obj/machinery/light/small{
@@ -529,6 +511,13 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
+"rq" = (
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks{
+	dir = 0
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/spacebar)
 "zJ" = (
 /obj/machinery/button/door{
 	id = "spacebardock";
@@ -567,6 +556,13 @@
 	icon_state = "tube"
 	},
 /turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"LV" = (
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks/beer{
+	dir = 0
+	},
+/turf/open/floor/wood,
 /area/ruin/powered/spacebar)
 "Qy" = (
 /obj/effect/turf_decal/box/corners{
@@ -1457,7 +1453,7 @@ ad
 ac
 ab
 ae
-ap
+LV
 aw
 aw
 hw
@@ -1499,7 +1495,7 @@ ad
 ad
 ac
 ae
-aq
+rq
 aw
 aw
 SD
