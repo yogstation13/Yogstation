@@ -5,6 +5,9 @@
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/sheet/glass/fifty,
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
 "al" = (
@@ -245,9 +248,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
 /obj/machinery/door/airlock/grunge{
 	name = "Storage";
 	req_access_txt = "25"
@@ -423,10 +423,11 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/spacebar)
 "uD" = (
-/mob/living/simple_animal/bot/cleanbot{
-	on = 0
-	},
 /obj/machinery/light/small/broken,
+/obj/structure/table,
+/obj/machinery/reagentgrinder{
+	pixel_y = 6
+	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
 "uV" = (
@@ -474,20 +475,12 @@
 /area/ruin/powered/spacebar)
 "yt" = (
 /obj/machinery/vending/dinnerware,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/spacebar)
 "yK" = (
 /obj/machinery/light/small{
 	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
-"zr" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -499,11 +492,12 @@
 /turf/open/floor/carpet,
 /area/ruin/powered/spacebar)
 "zQ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
+/obj/machinery/light/small{
+	dir = 4
 	},
-/turf/open/floor/plating,
-/area/template_noop)
+/obj/machinery/telecomms/relay/preset/ruskie,
+/turf/open/floor/circuit/telecomms,
+/area/ruin/powered/spacebar)
 "Ay" = (
 /obj/structure/toilet{
 	dir = 8
@@ -567,6 +561,7 @@
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/item/beacon,
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
 "Fs" = (
@@ -589,11 +584,11 @@
 "GD" = (
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/spacebar)
-"GI" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+"GH" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/line,
+/mob/living/carbon/monkey/punpun,
+/turf/open/floor/wood,
 /area/ruin/powered/spacebar)
 "GM" = (
 /obj/structure/table/reinforced,
@@ -618,7 +613,10 @@
 "II" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
-	dir = 2
+	dir = 1
+	},
+/obj/structure/sign/warning/deathsposal{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -627,6 +625,7 @@
 	req_access = null;
 	req_access_txt = "25"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/spacebar)
 "JG" = (
@@ -704,13 +703,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
-"Nf" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered/spacebar)
 "NQ" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -727,7 +719,12 @@
 	req_access = null;
 	req_access_txt = "25"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/spacebar)
+"Ow" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall,
 /area/ruin/powered/spacebar)
 "OB" = (
 /obj/effect/turf_decal/tile/bar{
@@ -754,6 +751,10 @@
 	pixel_x = 32
 	},
 /turf/open/floor/carpet,
+/area/ruin/powered/spacebar)
+"OV" = (
+/obj/machinery/processor,
+/turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/spacebar)
 "PE" = (
 /obj/effect/turf_decal/tile/bar{
@@ -796,13 +797,8 @@
 	req_access = null;
 	req_access_txt = "25"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered/spacebar)
-"Ra" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
 "Rp" = (
 /obj/structure/chair/stool,
@@ -833,10 +829,9 @@
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "UI" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/turf/closed/wall,
+/obj/structure/fans/tiny,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
 "UZ" = (
 /obj/structure/table/reinforced,
@@ -844,6 +839,9 @@
 	dir = 1
 	},
 /obj/machinery/chem_dispenser/drinks/beer/fullupgrade,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
 "VE" = (
@@ -1377,7 +1375,7 @@ UZ
 JO
 JO
 JO
-sZ
+GH
 pS
 yg
 gX
@@ -1454,8 +1452,8 @@ YH
 YH
 FB
 pP
+OV
 Ee
-Nf
 Qx
 FB
 yK
@@ -1507,15 +1505,15 @@ YH
 YH
 YH
 YH
-YH
-FB
+mZ
+Ow
 yt
 Jc
 Oo
 Qz
-FB
+Ow
 II
-Ra
+tH
 uD
 FB
 uZ
@@ -1571,7 +1569,7 @@ zE
 zE
 Fs
 tH
-GI
+tH
 tH
 jY
 wz
@@ -1599,7 +1597,7 @@ zE
 Rp
 FB
 BD
-GI
+tH
 JK
 FB
 wz
@@ -1627,7 +1625,7 @@ OF
 VN
 FB
 ab
-GI
+tH
 IB
 FB
 Us
@@ -1655,7 +1653,7 @@ FB
 FB
 FB
 eo
-zr
+tH
 YY
 FB
 wz
@@ -1710,9 +1708,9 @@ YH
 YH
 YH
 YH
-mZ
+FB
 zQ
-YH
+FB
 zA
 XM
 zA
@@ -1738,9 +1736,9 @@ YH
 YH
 YH
 YH
-YH
-YH
-YH
+FB
+FB
+FB
 zA
 XM
 zA
