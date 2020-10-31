@@ -48,9 +48,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
+"ch" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
 "eo" = (
 /obj/machinery/autolathe,
 /turf/open/floor/plasteel,
+/area/ruin/powered/spacebar)
+"eC" = (
+/obj/machinery/door/airlock/external{
+	name = "Teleporter"
+	},
+/turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "eX" = (
 /obj/structure/table/reinforced,
@@ -107,9 +119,11 @@
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
 "id" = (
-/obj/machinery/computer/teleporter{
-	id = null
+/obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
 	},
+/obj/machinery/door/airlock/external,
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "if" = (
@@ -132,6 +146,12 @@
 /obj/effect/turf_decal/tile/bar,
 /obj/machinery/jukebox,
 /turf/open/floor/plasteel,
+/area/ruin/powered/spacebar)
+"iN" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "iP" = (
 /obj/effect/turf_decal/tile/bar{
@@ -156,6 +176,10 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
+"jy" = (
+/obj/machinery/light,
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
 "jA" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/line{
@@ -176,6 +200,13 @@
 	name = "Solars";
 	req_access_txt = "25"
 	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"lH" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/machinery/teleport/hub,
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "lS" = (
@@ -208,7 +239,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/item/reagent_containers/glass/rag,
+/obj/item/reagent_containers/food/drinks/bottle/lizardwine{
+	pixel_y = 6
+	},
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
 "mQ" = (
@@ -271,6 +304,7 @@
 	dir = 8
 	},
 /obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/reagent_containers/glass/rag,
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
 "oh" = (
@@ -301,6 +335,13 @@
 	pixel_x = -28
 	},
 /turf/open/floor/plasteel/freezer,
+/area/ruin/powered/spacebar)
+"oX" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/teleport/station,
+/turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "pc" = (
 /obj/machinery/door/firedoor/border_only,
@@ -356,14 +397,11 @@
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
 "qR" = (
-/obj/structure/fans/tiny,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
 	},
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
+/obj/machinery/light/small{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
@@ -459,10 +497,34 @@
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
 "vw" = (
-/obj/structure/rack,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/structure/tank_dispenser/oxygen,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"vQ" = (
+/obj/structure/falsewall,
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "wz" = (
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"wM" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/structure/fans/tiny,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "yg" = (
@@ -533,6 +595,29 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/spacebar)
+"Cl" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"Cz" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/bar,
+/turf/open/floor/plasteel,
+/area/ruin/powered/spacebar)
+"CP" = (
+/obj/effect/turf_decal/box/corners,
+/turf/open/floor/engine,
+/area/ruin/powered/spacebar)
 "Dz" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -544,6 +629,12 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/ruin/powered/spacebar)
+"DO" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "Ee" = (
 /obj/structure/table,
@@ -584,6 +675,12 @@
 "GD" = (
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/spacebar)
+"GG" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
 "GH" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/line,
@@ -596,6 +693,16 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
+/area/ruin/powered/spacebar)
+"Hf" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/computer/teleporter{
+	dir = 4;
+	id = null
+	},
+/turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "Hk" = (
 /obj/effect/turf_decal/tile/bar{
@@ -620,6 +727,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
+"IJ" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/ruin/powered/spacebar)
 "Jc" = (
 /obj/structure/closet/secure_closet/freezer/meat{
 	req_access = null;
@@ -627,6 +740,12 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/spacebar)
+"Jq" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/turf/open/floor/engine,
 /area/ruin/powered/spacebar)
 "JG" = (
 /obj/structure/bed,
@@ -650,6 +769,12 @@
 /area/ruin/powered/spacebar)
 "JO" = (
 /turf/open/floor/wood,
+/area/ruin/powered/spacebar)
+"JU" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "KO" = (
 /obj/structure/urinal{
@@ -804,11 +929,36 @@
 /obj/structure/chair/stool,
 /turf/open/floor/carpet,
 /area/ruin/powered/spacebar)
+"RJ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"Tp" = (
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
 "Ts" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"TU" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
 "Us" = (
 /obj/structure/fans/tiny,
@@ -833,6 +983,10 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
+"UN" = (
+/obj/item/toy/figure/bartender,
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
 "UZ" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/line{
@@ -848,13 +1002,26 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
+"VM" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/item/clothing/suit/space/fragile,
+/obj/item/clothing/head/helmet/space/fragile,
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
 "VN" = (
 /obj/structure/table,
-/obj/item/toy/figure/bartender,
 /turf/open/floor/carpet,
 /area/ruin/powered/spacebar)
-"WH" = (
-/obj/machinery/teleport/station,
+"VV" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "WO" = (
@@ -895,20 +1062,25 @@
 /obj/item/storage/box/dishdrive,
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
-"Zo" = (
-/obj/machinery/teleport/hub,
+"ZJ" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/ruin/powered/spacebar)
+"ZK" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "ZN" = (
-/obj/structure/chair{
-	dir = 8
-	},
+/obj/machinery/light,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
 	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/bar,
-/obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
 
@@ -975,14 +1147,14 @@ YH
 YH
 YH
 YH
-YH
-YH
-YH
-YH
-YH
-YH
-YH
-YH
+FB
+Tp
+Tp
+Tp
+Tp
+Tp
+Tp
+FB
 YH
 YH
 FB
@@ -1003,24 +1175,24 @@ YH
 YH
 YH
 YH
-YH
-YH
-YH
-YH
-YH
-YH
-YH
-YH
+FB
+wz
+wz
+wz
+wz
+wz
+wz
+FB
 FB
 FB
 FB
 UE
 FB
 FB
-YH
-YH
-YH
-YH
+FB
+FB
+FB
+FB
 YH
 YH
 "}
@@ -1031,24 +1203,24 @@ YH
 YH
 YH
 YH
-YH
-YH
-YH
-YH
-YH
-YH
-YH
-YH
-VE
+FB
+wz
+wz
+wz
+wz
+wz
+wz
+Ts
+pT
 id
-wz
-wz
+GG
+JU
 vw
 FB
-YH
-YH
-YH
-YH
+lH
+oX
+Hf
+FB
 YH
 YH
 "}
@@ -1059,24 +1231,24 @@ YH
 YH
 YH
 YH
-YH
-YH
-YH
-YH
-YH
-YH
-YH
-YH
-VE
-WH
-wz
-wz
-wz
+FB
+RJ
+IJ
+Jq
+IJ
+Jq
+jy
 FB
 FB
 FB
-YH
-YH
+DO
+wz
+ZK
+FB
+DO
+wz
+ZK
+FB
 YH
 YH
 "}
@@ -1087,24 +1259,24 @@ YH
 YH
 YH
 YH
-YH
-YH
-YH
-YH
-YH
-YH
-YH
-YH
-VE
-Zo
-pT
+FB
 wz
+ZJ
+CP
+ZJ
+CP
 wz
-Ts
-pT
+FB
+UN
+FB
+VM
+VV
+ch
+eC
+iN
 qR
-YH
-YH
+ch
+FB
 YH
 YH
 "}
@@ -1123,7 +1295,7 @@ VE
 VE
 VE
 FB
-FB
+vQ
 FB
 FB
 nl
@@ -1131,8 +1303,8 @@ FB
 FB
 FB
 FB
-YH
-YH
+Cl
+FB
 YH
 YH
 "}
@@ -1149,7 +1321,7 @@ yg
 yg
 yg
 yg
-yg
+TU
 yg
 PR
 Na
@@ -1157,10 +1329,10 @@ mh
 nN
 fy
 yg
-sX
+yg
 FB
-YH
-YH
+MS
+FB
 YH
 YH
 "}
@@ -1185,16 +1357,16 @@ yg
 yg
 yg
 yg
-Hk
-VE
-YH
-YH
+sX
+FB
+wM
+FB
 YH
 YH
 "}
 (11,1,1) = {"
 YH
-ar
+YH
 YH
 YH
 FB
@@ -1213,10 +1385,10 @@ yg
 ta
 bD
 yg
-WO
+Hk
 VE
-YH
-ar
+wz
+wz
 YH
 YH
 "}
@@ -1241,16 +1413,16 @@ yg
 Hk
 Hk
 yg
-yg
+WO
 VE
-YH
-YH
+wz
+wz
 YH
 YH
 "}
 (13,1,1) = {"
 YH
-YH
+ar
 YH
 YH
 VE
@@ -1353,7 +1525,7 @@ yg
 Hk
 Hk
 yg
-yg
+bD
 VE
 YH
 YH
@@ -1381,7 +1553,7 @@ yg
 gX
 gX
 yg
-bD
+Hk
 VE
 YH
 YH
@@ -1409,7 +1581,7 @@ yg
 yg
 yg
 yg
-Hk
+Cz
 VE
 YH
 YH
