@@ -254,7 +254,7 @@
 		newstruct.master = stoner
 		var/datum/action/innate/seek_master/SM = new()
 		SM.Grant(newstruct)
-	newstruct.key = target.key
+	target.mind.transfer_to(newstruct)
 	var/obj/screen/alert/bloodsense/BS
 	if(newstruct.mind && ((stoner && iscultist(stoner)) || cultoverride) && SSticker && SSticker.mode)
 		SSticker.mode.add_cultist(newstruct.mind, 0)
@@ -279,7 +279,7 @@
 	S.mobility_flags = NONE //Can't move out of the soul stone
 	S.name = "Shade of [T.real_name]"
 	S.real_name = "Shade of [T.real_name]"
-	S.key = T.key
+	T.mind.transfer_to(S)
 	S.copy_languages(T, LANGUAGE_MIND)//Copies the old mobs languages into the new mob holder.
 	S.copy_languages(U, LANGUAGE_MASTER)
 	S.update_atom_languages()
