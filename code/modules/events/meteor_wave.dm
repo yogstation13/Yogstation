@@ -13,10 +13,6 @@
 	endWhen			= 66
 	announceWhen	= 1
 	var/list/wave_type
-	var/list/possible_waves = (list(
-			"normal" = 50,
-			"threatening" = 40,
-			"catastrophic" = 10))
 	var/wave_name = "normal"
 
 /datum/round_event/meteor_wave/New()
@@ -26,7 +22,10 @@
 
 /datum/round_event/meteor_wave/proc/determine_wave_type()
 	if(!wave_name)
-		wave_name = pickweight(possible_waves)
+		wave_name = pickweight(list(
+			"normal" = 50,
+			"threatening" = 40,
+			"catastrophic" = 10))
 	switch(wave_name)
 		if("normal")
 			wave_type = GLOB.meteors_normal
@@ -38,9 +37,7 @@
 			else
 				wave_type = GLOB.meteors_catastrophic
 		if("meaty")
-			wave_type = GLOB.meteors_meaty_normal
-		if("meatball")
-			wave_type = GLOB.meteors_meaty_ball
+			wave_type = GLOB.meteorsB
 		if("space dust")
 			wave_type = GLOB.meteorsC
 		if("halloween")

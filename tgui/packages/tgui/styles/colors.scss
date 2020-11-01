@@ -22,9 +22,6 @@ $purple: #a333c8 !default;
 $pink: #e03997 !default;
 $brown: #a5673f !default;
 $grey: #767676 !default;
-$cyan: #00FFFF !default;
-$magenta: #ff00ff !default;
-
 
 $primary: #4972a1 !default;
 $good: #5baa27 !default;
@@ -65,8 +62,6 @@ $_gen_map: (
   'average': $average,
   'bad': $bad,
   'label': $label,
-  'cyan': $cyan,
-  'magenta': $magenta,
 );
 
 // Foreground color names for which to generate a color map

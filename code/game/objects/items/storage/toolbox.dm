@@ -1,8 +1,8 @@
 /obj/item/storage/toolbox
 	name = "toolbox"
 	desc = "Danger. Very robust."
-	icon_state = "red"
-	item_state = "toolbox_red"
+	icon_state = "toolbox_default"
+	item_state = "toolbox_default"
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/toolbox_righthand.dmi'
 	flags_1 = CONDUCT_1
@@ -11,9 +11,10 @@
 	throw_speed = 2
 	throw_range = 7
 	w_class = WEIGHT_CLASS_BULKY
-	materials = list(MAT_METAL = 500)
+	materials = list(/datum/material/iron = 500)
 	attack_verb = list("robusted")
 	hitsound = 'sound/weapons/smash.ogg'
+	custom_materials = list(/datum/material/iron = 500) //Toolboxes by default use iron as their core, custom material.
 	var/latches = "single_latch"
 	var/has_latches = TRUE
 
@@ -41,6 +42,7 @@
 	name = "emergency toolbox"
 	icon_state = "red"
 	item_state = "toolbox_red"
+	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/emergency/PopulateContents()
 	new /obj/item/crowbar/red(src)
@@ -63,11 +65,13 @@
 	name = "rusty red toolbox"
 	icon_state = "toolbox_red_old"
 	has_latches = FALSE
+	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/mechanical
 	name = "mechanical toolbox"
 	icon_state = "blue"
 	item_state = "toolbox_blue"
+	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/mechanical/PopulateContents()
 	new /obj/item/screwdriver(src)
@@ -81,6 +85,7 @@
 	name = "rusty blue toolbox"
 	icon_state = "toolbox_blue_old"
 	has_latches = FALSE
+	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/mechanical/old/heirloom
 	name = "toolbox" //this will be named "X family toolbox"
@@ -128,6 +133,7 @@
 	name = "electrical toolbox"
 	icon_state = "yellow"
 	item_state = "toolbox_yellow"
+	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/electrical/PopulateContents()
 	var/pickedcolor = pick("red","yellow","green","blue","pink","orange","cyan","white")
@@ -137,8 +143,8 @@
 	new /obj/item/crowbar(src)
 	new /obj/item/stack/cable_coil(src,MAXCOIL,pickedcolor)
 	new /obj/item/stack/cable_coil(src,MAXCOIL,pickedcolor)
-	if(prob(5))
-		new /obj/item/clothing/gloves/color/yellow(src)
+	if(prob(50))
+		new /obj/item/clothing/gloves/color/fyellow(src)
 	else
 		new /obj/item/stack/cable_coil(src,MAXCOIL,pickedcolor)
 
@@ -149,6 +155,7 @@
 	force = 15
 	throwforce = 18
 	w_class = WEIGHT_CLASS_NORMAL
+	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/syndicate/ComponentInitialize()
 	. = ..()
@@ -176,6 +183,7 @@
 	name = "mechanical toolbox"
 	icon_state = "blue"
 	item_state = "toolbox_blue"
+	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/drone/PopulateContents()
 	var/pickedcolor = pick("red","yellow","green","blue","pink","orange","cyan","white")
@@ -197,6 +205,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	attack_verb = list("robusted", "crushed", "smashed")
 	var/fabricator_type = /obj/item/clockwork/replica_fabricator/scarab
+	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/brass/ComponentInitialize()
 	. = ..()

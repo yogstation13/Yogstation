@@ -78,6 +78,8 @@
 	SSticker.minds -= src
 	if(islist(antag_datums))
 		QDEL_LIST(antag_datums)
+	current = null
+	soulOwner = null
 	return ..()
 
 /datum/mind/proc/get_language_holder()
@@ -732,6 +734,21 @@
 		for(var/O in A.objectives)
 			if(istype(O,objective_type))
 				return TRUE
+
+/datum/mind/proc/add_employee(company)
+	for(var/datum/corporation/c in GLOB.corporations)
+		if(istype(c, company))
+			c.employees += src
+
+/datum/mind/proc/remove_employee(company)
+	for(var/datum/corporation/c in GLOB.corporations)
+		if(istype(c, company))
+			c.employees -= src
+
+/datum/mind/proc/is_employee(company)
+	for(var/datum/corporation/c in GLOB.corporations)
+		if(istype(c, company))
+			return src in c.employees
 
 /mob/proc/sync_mind()
 	mind_initialize()	//updates the mind (or creates and initializes one if one doesn't exist)

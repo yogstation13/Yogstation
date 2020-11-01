@@ -244,6 +244,28 @@
 		reserved_area = null
 	return ..()
 
+/obj/docking_port/stationary/picked
+	///Holds a list of map name strings for the port to pick from
+	var/list/shuttlekeys
+
+/obj/docking_port/stationary/picked/Initialize(mapload)
+	. = ..()
+	if(!LAZYLEN(shuttlekeys))
+		WARNING("Random docking port [id] loaded with no shuttle keys")
+		return
+	var/selectedid = pick(shuttlekeys)
+	roundstart_template = SSmapping.shuttle_templates[selectedid]
+
+/obj/docking_port/stationary/picked/whiteship
+	name = "Deep Space"
+	id = "whiteship_away"
+	dheight = 0
+	dir = 2
+	dwidth = 11
+	height = 22
+	width = 35
+	shuttlekeys = list("whiteship_salvage", "whiteship_construction", "whiteship_hospital", "whiteship_ufo", "whiteship_frigate")
+
 /obj/docking_port/mobile
 	name = "shuttle"
 	icon_state = "pinonclose"

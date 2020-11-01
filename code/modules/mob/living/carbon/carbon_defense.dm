@@ -54,12 +54,14 @@
 		if(can_catch_item())
 			if(istype(AM, /obj/item))
 				var/obj/item/I = AM
+				if(I.item_flags & UNCATCHABLE)
+					return FALSE
 				if(isturf(I.loc))
 					I.attack_hand(src)
 					if(get_active_held_item() == I) //if our attack_hand() picks up the item...
 						visible_message("<span class='warning'>[src] catches [I]!</span>") //catch that sucker!
 						throw_mode_off()
-						return 1
+						return TRUE
 	..()
 
 
@@ -243,7 +245,7 @@
 		if(!illusion && (shock_damage * siemens_coeff >= 1) && prob(25))
 			set_heartattack(FALSE)
 			revive()
-			emote("gasp")
+			INVOKE_ASYNC(src, .proc/emote, "gasp")
 			Jitter(100)
 			SEND_SIGNAL(src, COMSIG_LIVING_MINOR_SHOCK)
 			adjustOrganLoss(ORGAN_SLOT_BRAIN, 100, 199) //yogs end
@@ -273,7 +275,7 @@
 				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/besthug, M)
 			else if (mood.sanity >= SANITY_DISTURBED)
 				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/betterhug, M)
-			
+
 			if(isethereal(src) && ismoth(M))
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/lamphug, src)
 		for(var/datum/brain_trauma/trauma in M.get_traumas())

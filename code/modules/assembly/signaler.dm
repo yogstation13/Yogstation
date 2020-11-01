@@ -5,11 +5,9 @@
 	item_state = "signaler"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	materials = list(MAT_METAL=400, MAT_GLASS=120)
+	materials = list(/datum/material/iron=400, /datum/material/glass=120)
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
 	attachable = TRUE
-	var/ui_x = 280
-	var/ui_y = 280
 	var/code = DEFAULT_SIGNALER_CODE
 	var/frequency = FREQ_SIGNALER
 	var/delay = 0
@@ -56,13 +54,11 @@
 		return ..()
 	return UI_CLOSE
 
-/obj/item/assembly/signaler/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/assembly/signaler/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Signaler", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "Signaler", name)
 		ui.open()
-
 
 /obj/item/assembly/signaler/ui_data(mob/user)
 	var/list/data = list()
@@ -70,7 +66,6 @@
 	data["code"] = code
 	data["minFrequency"] = MIN_FREE_FREQ
 	data["maxFrequency"] = MAX_FREE_FREQ
-
 	data["color"] = label_color
 
 	return data

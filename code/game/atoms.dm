@@ -69,13 +69,18 @@
 	/// Radiation insulation types
 	var/rad_insulation = RAD_NO_INSULATION
 
+	///The custom materials this atom is made of, used by a lot of things like furniture, walls, and floors (if I finish the functionality, that is.)
+	var/list/custom_materials
+	///Bitfield for how the atom handles materials.
+	var/material_flags = NONE
+
 	var/chat_color_name // Last name used to calculate a color for the chatmessage overlays
 
 	var/chat_color // Last color calculated for the the chatmessage overlays
 
 	var/chat_color_darkened // A luminescence-shifted value of the last color calculated for chatmessage overlays
 
-
+	var/atom/orbit_target //Reference to atom being orbited
 /**
   * Called when an atom is created in byond (built in engine proc)
   *
@@ -155,6 +160,15 @@
 
 	if (canSmoothWith)
 		canSmoothWith = typelist("canSmoothWith", canSmoothWith)
+
+	if(custom_materials && custom_materials.len)
+		var/temp_list = list()
+		for(var/i in custom_materials)
+			var/datum/material/material = getmaterialref(i) || i
+			temp_list[material] = custom_materials[material] //Get the proper instanced version
+
+		custom_materials = null //Null the list to prepare for applying the materials properly
+		set_custom_materials(temp_list)
 
 	ComponentInitialize()
 
@@ -448,6 +462,11 @@
 	if(desc)
 		. += desc
 
+	if(custom_materials)
+		for(var/i in custom_materials)
+			var/datum/material/M = i
+			. += "<u>It is made out of [M.name]</u>."
+
 	if(reagents)
 		if(reagents.flags & TRANSPARENT)
 			. += "It contains:"
@@ -481,10 +500,6 @@
 		buckle_message_cooldown = world.time + 50
 		to_chat(user, "<span class='warning'>You can't move while buckled to [src]!</span>")
 	return
-
-/// Return true if this atoms contents should not have ex_act called on ex_act
-/atom/proc/prevent_content_explosion()
-	return FALSE
 
 /// Handle what happens when your contents are exploded by a bomb
 /atom/proc/contents_explosion(severity, target)
@@ -1092,6 +1107,12 @@
 	if(filter_data && filter_data[name])
 		return filters[filter_data.Find(name)]
 
+/atom/movable/proc/remove_filter(name)
+	if(filter_data && filter_data[name])
+		filter_data -= name
+		update_filters()
+
+
 /atom/proc/intercept_zImpact(atom/movable/AM, levels = 1)
 	return FALSE
 
@@ -1102,3 +1123,37 @@
   */
 /atom/proc/rust_heretic_act()
 	return
+
+/**
+  * Recursive getter method to return a list of all ghosts orbitting this atom
+  *
+  * This will work fine without manually passing arguments.
+  */
+/atom/proc/get_all_orbiters(list/processed, source = TRUE)
+	var/list/output = list()
+	if (!processed)
+		processed = list()
+	if (src in processed)
+		return output
+	if (!source)
+		output += src
+	processed += src
+	for (var/o in orbiters?.orbiters)
+		var/atom/atom_orbiter = o
+		output += atom_orbiter.get_all_orbiters(processed, source = FALSE)
+	return output
+
+///Sets the custom materials for an item.
+/atom/proc/set_custom_materials(var/list/materials, multiplier = 1)
+	if(custom_materials) //Only runs if custom materials existed at first. Should usually be the case but check anyways
+		for(var/i in custom_materials)
+			var/datum/material/custom_material = i
+			custom_material.on_removed(src, material_flags) //Remove the current materials
+
+	custom_materials = list() //Reset the list
+
+	for(var/x in materials)
+		var/datum/material/custom_material = x
+
+		custom_material.on_applied(src, materials[custom_material] * multiplier, material_flags)
+		custom_materials[custom_material] += materials[x] * multiplier

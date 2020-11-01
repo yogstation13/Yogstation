@@ -12,7 +12,7 @@
 	icon_state = ""
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_SMALL
-	materials = list(MAT_METAL=100)
+	materials = list(/datum/material/iron=100)
 	throwforce = 2
 	throw_speed = 3
 	throw_range = 7
@@ -130,3 +130,6 @@
 	if(holder)
 		return holder
 	return src
+
+/obj/item/assembly/ui_state(mob/user)
+	return GLOB.hands_state

@@ -1,12 +1,12 @@
 //! Defines for subsystems and overlays
-//!   
+//!
 //! Lots of important stuff in here, make sure you have your brain switched on
 //! when editing this file
 
 //! ## DB defines
 /**
   * DB major schema version
-  * 
+  *
   * Update this whenever the db schema changes
   *
   * make sure you add an update to the schema_version stable in the db changelog
@@ -15,7 +15,7 @@
 
 /**
   * DB minor schema version
-  * 
+  *
   * Update this whenever the db schema changes
   *
   * make sure you add an update to the schema_version stable in the db changelog
@@ -98,6 +98,7 @@
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
 
+#define INIT_ORDER_PROFILER			101
 #define INIT_ORDER_TITLE			100
 #define INIT_ORDER_GARBAGE			99
 #define INIT_ORDER_STATPANELS		98
@@ -105,7 +106,10 @@
 #define INIT_ORDER_BLACKBOX			94
 #define INIT_ORDER_SERVER_MAINT		93
 #define INIT_ORDER_INPUT			85
+#define INIT_ORDER_SOUNDS			83
+#define INIT_ORDER_INSTRUMENTS		82
 #define INIT_ORDER_VIS				80
+#define INIT_ORDER_MATERIALS		76
 #define INIT_ORDER_RESEARCH			75
 #define INIT_ORDER_EVENTS			70
 #define INIT_ORDER_MAPPING			65
@@ -132,6 +136,7 @@
 #define INIT_ORDER_MINOR_MAPPING	-40
 #define INIT_ORDER_PATH				-50
 #define INIT_ORDER_DISCORD			-60
+#define INIT_ORDER_EXPLOSIONS		-69
 #define INIT_ORDER_PERSISTENCE		-95
 #define INIT_ORDER_DEMO				-99 // To avoid a bunch of changes related to initialization being written, do this last
 #define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
@@ -159,12 +164,14 @@
 #define FIRE_PRIOTITY_BURNING		40
 #define FIRE_PRIORITY_DEFAULT		50
 #define FIRE_PRIORITY_PARALLAX		65
+#define FIRE_PRIORITY_INSTRUMENTS	80
 #define FIRE_PRIORITY_MOBS			100
 #define FIRE_PRIORITY_TGUI			110
 #define FIRE_PRIORITY_TICKER		200
 #define FIRE_PRIORITY_ATMOS_ADJACENCY	300
 #define FIRE_PRIORITY_CHAT			400
 #define FIRE_PRIORITY_OVERLAYS		500
+#define FIRE_PRIORITY_EXPLOSIONS	666
 #define FIRE_PRIORITY_INPUT			1000 // This must always always be the max highest priority. Player input must never be lost.
 
 // SS runlevels
@@ -208,3 +215,21 @@
 		if(isturf(A)){SSdemo.mark_turf(A);}\
 		if(isobj(A) || ismob(A)){SSdemo.mark_dirty(A);}\
 	}
+
+
+// Air subsystem subtasks
+#define SSAIR_PIPENETS 1
+#define SSAIR_ATMOSMACHINERY 2
+#define SSAIR_EQUALIZE 3
+#define SSAIR_ACTIVETURFS 4
+#define SSAIR_EXCITEDGROUPS 5
+#define SSAIR_HIGHPRESSURE 6
+#define SSAIR_HOTSPOTS 7
+#define SSAIR_SUPERCONDUCTIVITY 8
+#define SSAIR_REBUILD_PIPENETS 9
+
+
+// Explosion Subsystem subtasks
+#define SSEXPLOSIONS_MOVABLES 1
+#define SSEXPLOSIONS_TURFS 2
+#define SSEXPLOSIONS_THROWS 3

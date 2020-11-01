@@ -6,7 +6,6 @@
 	icon_keyboard = "tech_key"
 	req_access = list(ACCESS_HEADS)
 	circuit = /obj/item/circuitboard/computer/communications
-	var/authenticated = 0
 	var/auth_id = "Unknown" //Who is currently logged in?
 	var/list/datum/comm_message/messages = list()
 	var/datum/comm_message/currmsg
@@ -153,8 +152,10 @@
 					if(SSshuttle.emergency.mode != SHUTTLE_RECALL && SSshuttle.emergency.mode != SHUTTLE_IDLE)
 						to_chat(usr, "It's a bit late to buy a new shuttle, don't you think?")
 						return
-					if(SSshuttle.shuttle_purchased && (SSshuttle.emag_shuttle_purchased || !(obj_flags & EMAGGED)))
+					if(SSshuttle.shuttle_purchased == SHUTTLEPURCHASE_PURCHASED && (SSshuttle.emag_shuttle_purchased || !(obj_flags & EMAGGED)))
 						to_chat(usr, "A replacement shuttle has already been purchased.")
+					else if(SSshuttle.shuttle_purchased == SHUTTLEPURCHASE_FORCED)
+						to_chat(usr, "<span class='alert'>Due to unforseen circumstances, shuttle purchasing is no longer available.</span>")
 					else if(!S.prerequisites_met())
 						to_chat(usr, "You have not met the requirements for purchasing this shuttle.")
 					else if(S.emag_buy && !(obj_flags & EMAGGED))
@@ -167,7 +168,7 @@
 						if(points_to_check >= S.credit_cost)
 							SSshuttle.shuttle_purchased = TRUE
 							if(obj_flags & EMAGGED)
-								SSshuttle.emag_shuttle_purchased = TRUE
+								SSshuttle.emag_shuttle_purchased = SHUTTLEPURCHASE_PURCHASED
 							SSshuttle.unload_preview()
 							SSshuttle.load_template(S)
 							SSshuttle.existing_shuttle = SSshuttle.emergency

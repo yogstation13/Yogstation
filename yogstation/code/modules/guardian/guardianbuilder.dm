@@ -24,11 +24,13 @@
 	src.allow_special = allow_special
 	src.debug_mode = debug_mode
 
-/datum/guardianbuilder/ui_interact(mob/user, ui_key, datum/tgui/ui = null, force_open, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/guardianbuilder/ui_state(mob/user)
+	return GLOB.always_state
+
+/datum/guardianbuilder/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Guardian", "Build-A-Guardian", 500, 600, master_ui, state)
-		ui.set_autoupdate(TRUE)
+		ui = new(user, src,"Guardian", "Build-A-Guardian")
 		ui.open()
 
 /datum/guardianbuilder/ui_data(mob/user)
