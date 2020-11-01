@@ -195,7 +195,7 @@
 	icon = 'yogstation/icons/mob/widedonorrobots.dmi'
 	icon_state = "medihound"
 	module_locked = "Medical"
-	owner = null
+	owner = "jamied12"
 
 //Oldyogs stuff, I didn't sprite this ~Kmc//
 
