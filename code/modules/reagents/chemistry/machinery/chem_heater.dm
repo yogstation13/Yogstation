@@ -57,7 +57,7 @@
 
 /obj/machinery/chem_heater/examine(mob/user)
 	. = ..()
-	if(in_range(user, src) || isobserver(user))
+	if(in_range(user, src) || isobserver(user)) // x5 for maximum coil power
 		. += "<span class='notice'>The status display reads: Heating reagents up to <b>[heater_speed*5]K</b> per cycle.<span>"
 
 /obj/machinery/chem_heater/process()
