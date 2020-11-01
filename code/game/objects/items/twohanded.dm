@@ -827,6 +827,28 @@
 /obj/item/twohanded/bonespear/update_icon()
 	icon_state = "bone_spear[wielded]"
 
+/obj/item/twohanded/chitinspear //like a mix of a bone spear and bone axe, but more like a bone spear. And better.
+	icon_state = "chitin_spear0"
+	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
+	name = "chitin spear"
+	desc = "A well constructed spear with a sharpened edge akin to a naginata, making it equally great for slicing and throwing."
+	force = 13
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK
+	force_unwielded = 13
+	force_wielded = 23
+	throwforce = 25
+	throw_speed = 4
+	embedding = list("embedded_impact_pain_multiplier" = 3)
+	armour_penetration = 15
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored", "sliced", "ripped", "cut")
+	sharpness = IS_SHARP
+
+/obj/item/twohanded/chitinspear/update_icon()
+	icon_state = "chitin_spear[wielded]"
+
 /obj/item/twohanded/binoculars
 	name = "binoculars"
 	desc = "Used for long-distance surveillance."
