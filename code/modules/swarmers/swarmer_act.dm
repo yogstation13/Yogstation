@@ -28,7 +28,8 @@
 	return 0
 
 /obj/item/integrate_amount() //returns the amount of resources gained when eating this item
-	if(materials[/datum/material/iron] || materials[/datum/material/glass])
+	var/list/mats = get_material_composition(ALL) // Ensures that items made from plasteel, and plas/titanium/plastitaniumglass get integrated correctly.
+	if(length(mats) && (mats[SSmaterials.GetMaterialRef(/datum/material/iron)] || mats[SSmaterials.GetMaterialRef(/datum/material/glass)]))
 		return 1
 	return ..()
 
