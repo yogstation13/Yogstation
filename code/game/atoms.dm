@@ -1130,7 +1130,7 @@
 	. = list()
 	var/list/cached_materials = custom_materials
 	for(var/mat in cached_materials)
-		var/datum/material/material = SSmaterials.GetMaterialRef(mat)
+		var/datum/material/material = getmaterialref(mat)
 		var/list/material_comp = material.return_composition(cached_materials[material], breakdown_flags)
 		for(var/comp_mat in material_comp)
 			.[comp_mat] += material_comp[comp_mat]
