@@ -32,23 +32,28 @@ export const ChemHeater = (props, context) => {
               onClick={() => act('power')} />
           )}>
           <LabeledList>
-            <LabeledList.Item label="Target">
-              <NumberInput
-                width="65px"
-                unit="K"
-                step={10}
-                stepPixelSize={3}
-                value={round(targetTemp)}
-                minValue={0}
-                maxValue={1000}
-                onDrag={(e, value) => act('temperature', {
-                  target: value,
-                })} />
+            <LabeledList.Item label="Heating">
+              {data.coilheating}K
+            </LabeledList.Item>
+            <LabeledList.Item label="Coil Power">
+              {data.coil}x
+            </LabeledList.Item>
+            <LabeledList.Item label="Adjust coil">
+              <Button
+                icon="minus"
+                onClick={() => act('lower_coil')}>
+                1
+              </Button>
+              <Button
+                icon="plus"
+                onClick={() => act('higher_coil')}>
+                1
+              </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Reading">
               <Box
                 width="60px"
-                textAlign="right">
+                textAlign="left">
                 {isBeakerLoaded && (
                   <AnimatedNumber
                     value={currentTemp}

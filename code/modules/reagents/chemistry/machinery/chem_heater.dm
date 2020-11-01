@@ -8,9 +8,9 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	circuit = /obj/item/circuitboard/machine/chem_heater
 	var/obj/item/reagent_containers/beaker = null
-	var/target_temperature = 300
-	var/currentspeed = 10
-	var/heater_speed = 10
+	var/currentspeed = 2
+	var/heater_speed = 2
+	var/coil = 1
 	var/on = FALSE
 
 /obj/machinery/chem_heater/Destroy()
@@ -51,23 +51,21 @@
 	return TRUE
 
 /obj/machinery/chem_heater/RefreshParts()
-	heater_speed = 10
+	heater_speed = 2
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
 		heater_speed *= M.rating
 
 /obj/machinery/chem_heater/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Heating reagents at <b>[heater_speed]K</b> per cycle.<span>"
+		. += "<span class='notice'>The status display reads: Heating reagents up to <b>[heater_speed*5]K</b> per cycle.<span>"
 
 /obj/machinery/chem_heater/process()
 	..()
 	if(stat & NOPOWER)
 		return
 	if(on && beaker?.reagents.total_volume)
-		currentspeed = heater_speed
-		if((beaker.reagents.chem_temp + heater_speed) >= target_temperature)
-			currentspeed = target_temperature - beaker.reagents.chem_temp
+		currentspeed = heater_speed * coil
 		beaker.reagents.adjust_thermal_energy(currentspeed * SPECIFIC_HEAT_DEFAULT * beaker.reagents.total_volume)
 		beaker.reagents.handle_reactions()
 
@@ -102,7 +100,6 @@
 
 /obj/machinery/chem_heater/ui_data()
 	var/data = list()
-	data["targetTemp"] = target_temperature
 	data["isActive"] = on
 	data["isBeakerLoaded"] = beaker ? 1 : 0
 
@@ -110,7 +107,10 @@
 	data["beakerCurrentVolume"] = beaker ? beaker.reagents.total_volume : null
 	data["beakerMaxVolume"] = beaker ? beaker.volume : null
 
-	var beakerContents[0]
+	data["coil"] = coil
+	data["coilheating"] = heater_speed
+
+	var/beakerContents[0]
 	if(beaker)
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beakerContents.Add(list(list("name" = R.name, "volume" = R.volume))) // list in a list because Byond merges the first list...
@@ -125,21 +125,11 @@
 			on = !on
 			. = TRUE
 			update_icon()
-		if("temperature")
-			var/target = params["target"]
-			var/adjust = text2num(params["adjust"])
-			if(target == "input")
-				target = input("New target temperature:", name, target_temperature) as num|null
-				if(!isnull(target) && !..())
-					. = TRUE
-			else if(adjust)
-				target = target_temperature + adjust
-			else if(text2num(target) != null)
-				target = text2num(target)
-				. = TRUE
-			if(.)
-				target_temperature = clamp(target, 0, 1000)
 		if("eject")
 			on = FALSE
 			replace_beaker(usr)
 			. = TRUE
+		if("lower_coil")
+			coil = clamp(coil-1, -5, 5)
+		if("higher_coil")
+			coil = clamp(coil+1, -5, 5)
