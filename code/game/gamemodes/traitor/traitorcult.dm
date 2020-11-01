@@ -35,33 +35,37 @@
 		agent_scaling = max(round(num_players() / asc), 1)
 	clock_agent_team = new
 	GLOB.servants_active = TRUE //needed for scripture alerts, doesn't do much else aside from reebe stuff so :shrug:
-	for(var/j = 1 to agent_scaling)
-		if(!possible_clocks.len)
-			break
-		var/datum/mind/clock = antag_pick(possible_clocks)
-		possible_clocks -= clock
-		possible_bloods -= clock
-		antag_candidates -= clock
-		clock_agent_team.add_member(clock)
-		clock.special_role = ROLE_CLOCK_AGENT
-		clock.restricted_roles = restricted_jobs
-		coggers_to_cog += clock
-	blood_agent_team = new
-	for(var/k = 1 to agent_scaling)
-		if(!possible_bloods.len)
-			break
-		var/datum/mind/blood = antag_pick(possible_bloods)
-		possible_bloods -= blood
-		antag_candidates -= blood
-		blood_agent_team.add_member(blood)
-		blood.special_role = ROLE_BLOOD_AGENT
-		blood.restricted_roles = restricted_jobs
-		bloods_to_blood += blood
+	if(possible_clocks.len)
+		for(var/j = 1 to agent_scaling)
+			if(!possible_clocks.len)
+				break
+			var/datum/mind/clock = antag_pick(possible_clocks)
+			possible_clocks -= clock
+			possible_bloods -= clock
+			antag_candidates -= clock
+			clock_agent_team.add_member(clock)
+			clock.special_role = ROLE_CLOCK_AGENT
+			clock.restricted_roles = restricted_jobs
+			coggers_to_cog += clock
+	if(possible_bloods.len)
+		blood_agent_team = new
+		for(var/k = 1 to agent_scaling)
+			if(!possible_bloods.len)
+				break
+			var/datum/mind/blood = antag_pick(possible_bloods)
+			possible_bloods -= blood
+			antag_candidates -= blood
+			blood_agent_team.add_member(blood)
+			blood.special_role = ROLE_BLOOD_AGENT
+			blood.restricted_roles = restricted_jobs
+			bloods_to_blood += blood
 	return ..()
 
 /datum/game_mode/traitor/traitorcult/post_setup()
-	clock_agent_team.forge_clock_objectives()
-	blood_agent_team.forge_blood_objectives()
+	if(clock_agent_team)
+		clock_agent_team.forge_clock_objectives()
+	if(blood_agent_team)
+		blood_agent_team.forge_blood_objectives()
 	for(var/datum/mind/M in bloods_to_blood)
 		M.add_antag_datum(/datum/antagonist/cult/agent)
 	for(var/datum/mind/M in coggers_to_cog)
