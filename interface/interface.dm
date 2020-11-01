@@ -46,7 +46,7 @@
 /client/verb/rules()
 	set name = "rules"
 	set desc = "Show Server Rules."
-	set hidden = 1s
+	set hidden = 1
 	var/rulesurl = CONFIG_GET(string/rulesurl)
 	if(rulesurl)
 		if(alert("This will open the rules in your browser. Are you sure?",,"Yes","No")!="Yes")
