@@ -215,6 +215,9 @@
 /datum/config_entry/string/apiurl
 	config_entry_value = "https://forums.yogstation.net/api"
 
+/datum/config_entry/string/demourl
+	config_entry_value = "https://yogstation13.github.io/demo-viewer/?roundid="
+
 /datum/config_entry/string/roundstatsurl
 
 /datum/config_entry/string/gamelogurl

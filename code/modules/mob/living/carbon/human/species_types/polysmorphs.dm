@@ -22,8 +22,8 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	fixed_mut_color = "444466" //don't mess with this if you don't feel like manually adjusting the mutant bodypart sprites
-	mutant_bodyparts = list("tail_polysmorph", "plasma_vessels", "dome", "dorsal_tubes", "teeth", "legs")
-	default_features = list("tail_polysmorph" = "Polys", "plasma_vessels" = "None", "dome" = "None", "dorsal_tubes" = "No", "teeth" = "None", "legs" = "Normal Legs")
+	mutant_bodyparts = list("tail_polysmorph", "dome", "dorsal_tubes", "teeth", "legs")
+	default_features = list("tail_polysmorph" = "Polys", "dome" = "None", "dorsal_tubes" = "No", "teeth" = "None", "legs" = "Normal Legs")
 	mutanttongue = /obj/item/organ/tongue/polysmorph
 	mutanttail = /obj/item/organ/tail/polysmorph
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT

@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - rscdel: "Removed plasma vessels from polysmorph"
+  - imagedel: "Removed plasma vessels from polysmorph"

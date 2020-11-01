@@ -37661,10 +37661,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"dBH" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/turf/closed/wall,
-/area/maintenance/starboard/aft)
 "dBV" = (
 /obj/machinery/camera{
 	c_tag = "Central Hallway West";
@@ -39845,6 +39841,17 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"fmF" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "fmN" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -40223,6 +40230,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/storage/tech)
+"fIy" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "fIH" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -44338,20 +44354,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"jaW" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/structure/barricade/wooden{
-	layer = 3.3;
-	name = "wooden barricade (CLOSED)"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "jbq" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
@@ -44693,10 +44695,6 @@
 /obj/item/clothing/mask/gas,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"joK" = (
-/obj/machinery/light/small,
-/turf/template_noop,
-/area/maintenance/port/aft)
 "jpb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4;
@@ -46923,18 +46921,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"ldx" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/structure/barricade/wooden{
-	layer = 3.3;
-	name = "wooden barricade (CLOSED)"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "ldH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -52127,6 +52113,15 @@
 /obj/effect/spawner/lootdrop/aimodule_harmful,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
+"phB" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "phT" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -58561,20 +58556,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
-"upO" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/structure/barricade/wooden{
-	layer = 3.3;
-	name = "wooden barricade (CLOSED)"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "uqD" = (
 /obj/machinery/door/airlock/external{
 	name = "Atmospherics External Airlock";
@@ -84807,7 +84788,7 @@ aaa
 aaa
 aaa
 aaa
-bCq
+aaa
 bCq
 bPr
 bPr
@@ -85064,11 +85045,11 @@ aaa
 aaa
 aaa
 aaa
+aaa
 bCq
 gZD
 gZD
-gZD
-ocv
+wXV
 bCq
 bCq
 bCq
@@ -85321,8 +85302,8 @@ aaa
 aaa
 aaa
 aaa
+aaa
 bCq
-gZD
 gZD
 gZD
 gZD
@@ -85578,8 +85559,8 @@ aaa
 aaa
 aaa
 aaa
+aaa
 bCq
-gZD
 gZD
 gZD
 gZD
@@ -85835,11 +85816,11 @@ aaa
 aaa
 aaa
 aaa
+aaa
 bCq
 gZD
 gZD
 gZD
-joK
 bCq
 cAA
 bHE
@@ -86092,8 +86073,8 @@ aaa
 aaa
 aaa
 aaa
+aaa
 bCq
-gZD
 gZD
 gZD
 gZD
@@ -86352,7 +86333,7 @@ bCq
 bCq
 bCq
 bCq
-jaW
+fmF
 bCq
 bCq
 bCq
@@ -86599,11 +86580,11 @@ iQY
 bKm
 bxy
 aaf
-aaf
-bCq
-bCq
-bCq
-bCq
+gXs
+aaa
+aaa
+aaa
+aaa
 bCq
 gZD
 gZD
@@ -86856,11 +86837,11 @@ wqI
 bKl
 bxy
 aaH
-aaH
 bCq
-gZD
-gZD
-wXV
+bCq
+bCq
+bCq
+bCq
 bCq
 gZD
 gZD
@@ -87113,11 +87094,11 @@ eSR
 eCn
 bGi
 aaf
-aaf
 bPr
 gZD
 gZD
 gZD
+ocv
 bCq
 gZD
 gZD
@@ -87370,8 +87351,8 @@ eSR
 bKn
 bGi
 aoV
-aoV
 bPr
+gZD
 gZD
 gZD
 gZD
@@ -87627,12 +87608,12 @@ pSY
 bKp
 bGi
 aaf
-aaf
 bPr
 gZD
 gZD
 gZD
-ldx
+gZD
+fIy
 gZD
 gZD
 gZD
@@ -87884,8 +87865,8 @@ byE
 bKo
 bxy
 aaH
-aaH
 bCq
+gZD
 gZD
 gZD
 gZD
@@ -88141,11 +88122,11 @@ bGn
 bKq
 bxy
 aaf
-aaf
 bCq
-upO
-bCq
-bCq
+gZD
+gZD
+gZD
+gZD
 bCq
 gZD
 gZD
@@ -88398,12 +88379,12 @@ bxy
 bxy
 bxy
 bPr
-bPr
 bCq
-bHE
-bPr
-aaa
-bPr
+bCq
+fmF
+bCq
+bCq
+bCq
 gZD
 gZD
 gZD
@@ -113344,8 +113325,8 @@ iKq
 iKq
 iKq
 cNW
-bNA
-cOe
+cOT
+cOT
 vJS
 cNW
 aaa
@@ -113600,9 +113581,9 @@ iKq
 iKq
 iKq
 iKq
-cNW
-cOT
-cOT
+phB
+axl
+uxT
 vJS
 cNW
 cNW
@@ -113857,12 +113838,12 @@ iKq
 iKq
 iKq
 iKq
-dBH
-axl
-uxT
+cNW
+cOe
+cNW
 vJS
 ciL
-cOe
+bNA
 cOe
 cae
 bPp

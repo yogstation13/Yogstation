@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "soulstones will no longer create duplicate minds for the same person on  being used > turned into constructs"

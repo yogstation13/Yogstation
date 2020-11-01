@@ -77,7 +77,7 @@
 	var/depressurization_margin = 10 // use a lower value to reduce cross-contamination
 	var/depressurization_target = 0 // What to target - should be lower than the depressurization margin
 	var/overlays_hash = null
-	var/skip_delay = 300
+	var/skip_delay = 100
 	var/skip_timer = 0
 	var/is_skipping = FALSE
 
