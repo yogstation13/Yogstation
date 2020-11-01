@@ -27,6 +27,11 @@
 		to_chat(src, "<span class='danger'>The forum URL is not set in the server configuration.</span>")
 	return
 
+/client/verb/reconnect()
+	set name = "reconnect"
+	set desc = "Reconnects to the server"
+	winset(usr, null, "command=.reconnect")
+
 /client/verb/rules()
 	set name = "rules"
 	set desc = "Show Server Rules."
