@@ -26,6 +26,16 @@ const createStats = verbose => ({
 module.exports = (env = {}, argv) => {
   const config = {
     mode: argv.mode === 'production' ? 'production' : 'development',
+    context: path.resolve(__dirname),
+    entry: {
+      'tgui': [
+        './packages/tgui-polyfill',
+        './packages/tgui',
+      ],
+      'tgui-panel': [
+        './packages/tgui-polyfill',
+        './packages/tgui-panel',
+      ],
     },
     output: {
       path: argv.useTmpFolder
