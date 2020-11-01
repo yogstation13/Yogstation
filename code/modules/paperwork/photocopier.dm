@@ -126,7 +126,7 @@
 			say("BANNED!")
 			if(ass.client)
 				QDEL_IN(ass.client, 10)
-			gib(ass)
+			ass.gib()
 			return
 		updateUsrDialog()
 	else if(href_list["remove"])
