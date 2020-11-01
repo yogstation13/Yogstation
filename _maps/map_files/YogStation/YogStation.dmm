@@ -34882,20 +34882,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"clV" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/structure/barricade/wooden{
-	layer = 3.3;
-	name = "wooden barricade (CLOSED)"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "clZ" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -39859,6 +39845,17 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"fmF" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "fmN" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -40237,6 +40234,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/storage/tech)
+"fIy" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "fIH" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -44352,20 +44358,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"jaW" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/structure/barricade/wooden{
-	layer = 3.3;
-	name = "wooden barricade (CLOSED)"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "jbq" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
@@ -46933,18 +46925,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"ldx" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/structure/barricade/wooden{
-	layer = 3.3;
-	name = "wooden barricade (CLOSED)"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "ldH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -86348,7 +86328,7 @@ bCq
 bCq
 bCq
 bCq
-jaW
+fmF
 bCq
 bCq
 bCq
@@ -87628,7 +87608,7 @@ gZD
 gZD
 gZD
 gZD
-ldx
+fIy
 gZD
 gZD
 gZD
@@ -88396,7 +88376,7 @@ bxy
 bPr
 bCq
 bCq
-clV
+fmF
 bCq
 bCq
 bCq
