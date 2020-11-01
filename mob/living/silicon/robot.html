@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="mob/living/silicon/robot.html#var">Var Details</a> - <a href="mob/living/silicon/robot.html#proc">Proc Details</a></header>
+<main>
+<h1>Cyborg <aside>/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/silicon/robot.html">silicon/robot</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/robot.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;robot.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#var/disabled_modules">disabled_modules</a></th><td>For checking which modules are disabled or not.</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#var/previous_health">previous_health</a></th><td>the last health before updating - to check net change in health</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/activate_module">activate_module</a></th><td>Finds the first available slot and attemps to put item item_module in it.</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/activated">activated</a></th><td>Checks if the item is currently in a slot.</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/break_all_cyborg_slots">break_all_cyborg_slots</a></th><td>Breaks all of a cyborg's slots.</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/break_cyborg_slot">break_cyborg_slot</a></th><td>Breaks the slot number, changing the icon.</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/cycle_modules">cycle_modules</a></th><td>Cycles through the list of enabled modules, deselecting the current one and selecting the next one.</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/deselect_module">deselect_module</a></th><td>Deselects the module in the slot module_num.
+Arguments</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/equip_module_to_slot">equip_module_to_slot</a></th><td>What's the first free slot for the borg?
+Is passed an item and a module slot. Equips the item to that borg slot.</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/get_active_held_item">get_active_held_item</a></th><td>Returns the thing in our active hand (whatever is in our active module-slot, in this case)</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/get_selected_module">get_selected_module</a></th><td>The number of module slots we're checking
+Returns the slot number of the selected module, or zero if no modules are selected.</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/is_invalid_module_number">is_invalid_module_number</a></th><td>Checks if the provided module number is a valid number.</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/movement_delay">movement_delay</a></th><td>the current percent health of the robot (-1 to 1)</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/observer_screen_update">observer_screen_update</a></th><td>Updates the observers's screens with cyborg itemss.
+Arguments</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/repair_all_cyborg_slots">repair_all_cyborg_slots</a></th><td>Repairs all slots. Unbroken slots are unaffected.</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/repair_cyborg_slot">repair_cyborg_slot</a></th><td>Repairs the slot number, updating the icon.</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/select_module">select_module</a></th><td>Selects the module in the slot module_num.
+Arguments</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/toggle_module">toggle_module</a></th><td>Toggles selection of the module in the slot module_num.
+Arguments</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/uneq_active">uneq_active</a></th><td>Unequips the active held item, if there is one.</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/uneq_all">uneq_all</a></th><td>Unequips all held items.</td></tr>
+            <tr><th><a href="mob/living/silicon/robot.html#proc/unequip_module_from_slot">unequip_module_from_slot</a></th><td>Unequips item item_module from slot module_num. Deletes it if delete_after = TRUE.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/disabled_modules"><aside class="declaration">var </aside>disabled_modules
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/robot.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;robot.dm 44"/></a></h3>
+        <p>For checking which modules are disabled or not.</p><h3 id="var/previous_health"><aside class="declaration">var </aside>previous_health
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/robot.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;robot.dm 25"/></a></h3>
+        <p>the last health before updating - to check net change in health</p><h2 id="proc">Proc Details</h2><h3 id="proc/activate_module"><aside class="declaration">proc </aside>activate_module<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item_module) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 22"/></a></aside>
+        </h3>
+        <p>Finds the first available slot and attemps to put item item_module in it.</p>
+<p>Arguments</p>
+<ul>
+<li>item_module - the item being equipped to a slot.</li>
+</ul><h3 id="proc/activated"><aside class="declaration">proc </aside>activated<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item_module) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L271">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 271"/></a></aside>
+        </h3>
+        <p>Checks if the item is currently in a slot.</p>
+<p>If the item is found in a slot, this returns TRUE. Otherwise, it returns FALSE
+Arguments</p>
+<ul>
+<li>item_module - the item being checked</li>
+</ul><h3 id="proc/break_all_cyborg_slots"><aside class="declaration">proc </aside>break_all_cyborg_slots<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L182">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 182"/></a></aside>
+        </h3>
+        <p>Breaks all of a cyborg's slots.</p><h3 id="proc/break_cyborg_slot"><aside class="declaration">proc </aside>break_cyborg_slot<aside>(module_num) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 134"/></a></aside>
+        </h3>
+        <p>Breaks the slot number, changing the icon.</p>
+<p>Arguments</p>
+<ul>
+<li>module_num - the slot number being repaired.</li>
+</ul><h3 id="proc/cycle_modules"><aside class="declaration">proc </aside>cycle_modules<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L372">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 372"/></a></aside>
+        </h3>
+        <p>Cycles through the list of enabled modules, deselecting the current one and selecting the next one.</p><h3 id="proc/deselect_module"><aside class="declaration">proc </aside>deselect_module<aside>(module_num) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L337">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 337"/></a></aside>
+        </h3>
+        <p>Deselects the module in the slot module_num.
+Arguments</p>
+<ul>
+<li>module_num - the slot number being de-selected</li>
+</ul><h3 id="proc/equip_module_to_slot"><aside class="declaration">proc </aside>equip_module_to_slot<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item_module, module_num) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 53"/></a></aside>
+        </h3>
+        <p>What's the first free slot for the borg?
+Is passed an item and a module slot. Equips the item to that borg slot.</p>
+<p>Arguments</p>
+<ul>
+<li>item_module - the item being equipped to a slot</li>
+<li>module_num - the slot number being equipped to.</li>
+</ul><h3 id="proc/get_active_held_item">get_active_held_item<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 7"/></a></aside>
+        </h3>
+        <p>Returns the thing in our active hand (whatever is in our active module-slot, in this case)</p><h3 id="proc/get_selected_module"><aside class="declaration">proc </aside>get_selected_module<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L304">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 304"/></a></aside>
+        </h3>
+        <p>The number of module slots we're checking
+Returns the slot number of the selected module, or zero if no modules are selected.</p><h3 id="proc/is_invalid_module_number"><aside class="declaration">proc </aside>is_invalid_module_number<aside>(module_num, check_all_slots) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L285">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 285"/></a></aside>
+        </h3>
+        <p>Checks if the provided module number is a valid number.</p>
+<p>If the number is between 1 and 3 (if check_all_slots is true) or between 1 and the number of disabled
+modules (if check_all_slots is false), then it returns FALSE. Otherwise, it returns TRUE.
+Arguments</p>
+<ul>
+<li>module_num - the passed module num that is checked for validity.</li>
+<li>check_all_slots - TRUE = the proc checks all slots | FALSE = the proc only checks un-disabled slots</li>
+</ul><h3 id="proc/movement_delay"><aside class="parent"><a title="/mob" href="mob.html#proc/movement_delay">&uarr;</a></aside>movement_delay<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/robot.dm#L929">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;robot.dm 929"/></a></aside>
+        </h3>
+        <p>the current percent health of the robot (-1 to 1)</p><h3 id="proc/observer_screen_update"><aside class="declaration">proc </aside>observer_screen_update<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item_module, add) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L233">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 233"/></a></aside>
+        </h3>
+        <p>Updates the observers's screens with cyborg itemss.
+Arguments</p>
+<ul>
+<li>item_module - the item being added or removed from the screen</li>
+<li>add - whether or not the item is being added, or removed.</li>
+</ul><h3 id="proc/repair_all_cyborg_slots"><aside class="declaration">proc </aside>repair_all_cyborg_slots<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L223">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 223"/></a></aside>
+        </h3>
+        <p>Repairs all slots. Unbroken slots are unaffected.</p><h3 id="proc/repair_cyborg_slot"><aside class="declaration">proc </aside>repair_cyborg_slot<aside>(module_num) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 192"/></a></aside>
+        </h3>
+        <p>Repairs the slot number, updating the icon.</p>
+<p>Arguments</p>
+<ul>
+<li>module_num - the module number being repaired.</li>
+</ul><h3 id="proc/select_module"><aside class="declaration">proc </aside>select_module<aside>(module_num) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L315">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 315"/></a></aside>
+        </h3>
+        <p>Selects the module in the slot module_num.
+Arguments</p>
+<ul>
+<li>module_num - the slot number being selected</li>
+</ul><h3 id="proc/toggle_module"><aside class="declaration">proc </aside>toggle_module<aside>(module_num) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L356">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 356"/></a></aside>
+        </h3>
+        <p>Toggles selection of the module in the slot module_num.
+Arguments</p>
+<ul>
+<li>module_num - the slot number being toggled</li>
+</ul><h3 id="proc/uneq_active"><aside class="declaration">proc </aside>uneq_active<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L251">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 251"/></a></aside>
+        </h3>
+        <p>Unequips the active held item, if there is one.</p><h3 id="proc/uneq_all"><aside class="declaration">proc </aside>uneq_all<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L258">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 258"/></a></aside>
+        </h3>
+        <p>Unequips all held items.</p><h3 id="proc/unequip_module_from_slot"><aside class="declaration">proc </aside>unequip_module_from_slot<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item_module, module_num) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/38ed904b00b9852f6602af50f97f6d75babbaa1b/code/modules/mob/living/silicon/robot/inventory.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;robot&#x2F;inventory.dm 84"/></a></aside>
+        </h3>
+        <p>Unequips item item_module from slot module_num. Deletes it if delete_after = TRUE.</p>
+<p>Arguments</p>
+<ul>
+<li>item_module - the item being unequipped</li>
+<li>module_num - the slot number being unequipped.</li>
+</ul></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/38ed904b00b9852f6602af50f97f6d75babbaa1b">38ed904</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
+</body>
+</html>
