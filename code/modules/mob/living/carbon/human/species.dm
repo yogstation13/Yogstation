@@ -717,8 +717,14 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		if(!(DIGITIGRADE in species_traits)) //Someone cut off a digitigrade leg and tacked it on
 			species_traits += DIGITIGRADE
 		var/should_be_squished = FALSE
-		if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) || (H.wear_suit.body_parts_covered & LEGS)) || (H.w_uniform && (H.w_uniform.body_parts_covered & LEGS)))
-			should_be_squished = TRUE
+		if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) || (H.wear_suit.body_parts_covered & LEGS))) //Check for snowflake suit
+			var/obj/item/clothing/suit/A = H.wear_suit
+			if(A.mutantrace_variation != MUTANTRACE_VARIATION)
+				should_be_squished = TRUE
+		if(H.w_uniform && (H.w_uniform.body_parts_covered & LEGS)) //Check for snowflake jumpsuit
+			var/obj/item/clothing/under/U = H.w_uniform
+			if(U.mutantrace_variation != MUTANTRACE_VARIATION)
+				should_be_squished = TRUE
 		if(O.use_digitigrade == FULL_DIGITIGRADE && should_be_squished)
 			O.use_digitigrade = SQUISHED_DIGITIGRADE
 			update_needed = TRUE

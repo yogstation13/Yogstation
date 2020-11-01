@@ -51,9 +51,9 @@
 	return TRUE
 
 /obj/machinery/chem_heater/RefreshParts()
-	heater_speed = 2
+  heater_speed = 2
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
-		heater_speed *= M.rating
+		heater_coefficient *= M.rating
 
 /obj/machinery/chem_heater/examine(mob/user)
 	. = ..()

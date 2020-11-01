@@ -1,0 +1,5 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - rscadd: "Adds support for showing digitigrade legs on suits that cover the legs/jumpsuit."
+  - tweak: "Updates sprites for pathfinder lavaland gear."
