@@ -48,7 +48,13 @@ Credit where due:
 	if(!istype(M) || isobserver(M))
 		return FALSE
 	var/datum/antagonist/clockcult/D = M?.mind?.has_antag_datum(/datum/antagonist/clockcult)
-	return D && (!require_cult || !D.agent) && (!holy_water_check || !D.ignore_holy_water)
+	if(!D)
+		return FALSE
+	if(!require_cult || !D.agent)
+		return FALSE
+	if(!holy_water_check || !D.ignore_holy_water)
+		return FALSE
+	return TRUE
 
 /proc/is_eligible_servant(mob/M)
 	if(!istype(M))
@@ -380,4 +386,4 @@ Credit where due:
 	round_credits += "<br>"
 
 	round_credits += ..()
-	return round_credits 
+	return round_credits

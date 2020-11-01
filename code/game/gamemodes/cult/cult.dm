@@ -11,7 +11,13 @@
 	if(!istype(M))
 		return FALSE
 	var/datum/antagonist/cult/D = M?.mind?.has_antag_datum(/datum/antagonist/cult)
-	return D && (!require_cult || !D.agent) && (!holy_water_check || !D.ignore_holy_water)
+	if(!D)
+		return FALSE
+	if(!require_cult || !D.agent)
+		return FALSE
+	if(!holy_water_check || !D.ignore_holy_water)
+		return FALSE
+	return TRUE
 
 /datum/team/cult/proc/is_sacrifice_target(datum/mind/mind)
 	for(var/datum/objective/sacrifice/sac_objective in objectives)

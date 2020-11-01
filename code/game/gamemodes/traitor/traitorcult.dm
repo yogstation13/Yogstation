@@ -17,7 +17,7 @@
 	<span class='danger'>Traitors</span>: Accomplish your objectives.\n\
 	<span class='danger'>Cult Agents</span>: Accomplish your objectives.\n\
 	<span class='notice'>Crew</span>: Do not let the traitors or cult agents succeed!"
-	
+
 	var/list/datum/mind/coggers_to_cog = list()
 	var/list/datum/mind/bloods_to_blood = list()
 
@@ -36,6 +36,8 @@
 	clock_agent_team = new
 	GLOB.servants_active = TRUE //needed for scripture alerts, doesn't do much else aside from reebe stuff so :shrug:
 	for(var/j = 1 to agent_scaling)
+		if(!possible_clocks.len)
+			break
 		var/datum/mind/clock = antag_pick(possible_clocks)
 		possible_clocks -= clock
 		possible_bloods -= clock
@@ -46,6 +48,8 @@
 		coggers_to_cog += clock
 	blood_agent_team = new
 	for(var/k = 1 to agent_scaling)
+		if(!possible_bloods.len)
+			break
 		var/datum/mind/blood = antag_pick(possible_bloods)
 		possible_bloods -= blood
 		antag_candidates -= blood

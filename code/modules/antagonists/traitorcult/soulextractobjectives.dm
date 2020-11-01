@@ -61,6 +61,9 @@
 		if(O.target == target)
 			linked_objective = O
 			break
+	if(!linked_objective)
+		to_chat(user, "<span class='nezbere'>This is not the mind we are looking for.</span>")
+		return
 	var/mob/living/carbon/human/H = target
 	if(H.stat == CONSCIOUS)
 		to_chat(user, "<span class='warning'>[H] must be dead or unconscious for you to claim [H.p_their()] mind!</span>")
@@ -88,21 +91,37 @@
 	H.fakedeath("soul_vessel") //we want to make sure they don't deathgasp and maybe possibly explode
 	H.death()
 	H.cure_fakedeath("soul_vessel")
-	H.apply_status_effect(STATUS_EFFECT_SIGILMARK) //let them be affected by vitality matrices not like it matters lol
+	H.apply_status_effect(STATUS_EFFECT_SIGILMARK)
 	picked_name = "Slave"
 	braintype = picked_name
 	brainmob.timeofhostdeath = H.timeofdeath
 	user.visible_message("<span class='warning'>[user] presses [src] to [H]'s head, ripping through the skull and carefully extracting the brain!</span>", \
 	"<span class='brass'>You extract [H]'s consciousness from [H.p_their()] body, trapping it in the soul vessel.</span>")
+	to_chat(user, "<span class='nezbere'>That will do. Do not lose it.</span>")
 	transfer_personality(H)
 	brainmob.fully_replace_character_name(null, "[braintype] [H.real_name]")
 	name = "[initial(name)] ([brainmob.name])"
 	B.Remove(H)
 	qdel(B)
 	H.update_hair()
-	linked_objective?.linked_vessel = src //we did it boys we saved the universe
+	linked_objective.linked_vessel = src //we did it boys we saved the universe
 	icon_state = "soul_vessel-occupied" //stuff here in case the captured person goes catatonic
 	dead_message = "<span class='brass'>Its cogwheel struggles to keep turning, but refuses to stop</span>"
+
+
+/obj/item/mmi/posibrain/soul_vessel/agent/attacked_by(obj/item/I, mob/user)
+	. = ..()
+	if(user.mind.has_antag_datum(/datum/antagonist/cult/agent) && istype(I, /obj/item/soulstone))
+		var/obj/item/soulstone/S = I
+		var/datum/team/T = SSticker.mode.blood_agent_team
+		for(var/datum/objective/soulshard/O in T?.objectives)
+			if(O.target == brainmob.mind)
+				O.linked_stone = S
+				to_chat(user, "<span class='cultlarge'>\"Perfect. This is the one we need. Do not lose it.\"</span>")
+				log_combat(user, brainmob, "captured [brainmob.name]'s soul", src)
+				S.transfer_soul("VICTIM", brainmob, user)
+				qdel(src)
+				break
 
 /datum/objective/soulshard
 	name = "soulshard"
