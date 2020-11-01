@@ -92,10 +92,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"q" = (
-/obj/effect/landmark/blobstart,
-/turf/open/floor/plasteel,
-/area/template_noop)
 "r" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -214,7 +210,7 @@ i
 l
 l
 v
-q
+l
 l
 l
 s

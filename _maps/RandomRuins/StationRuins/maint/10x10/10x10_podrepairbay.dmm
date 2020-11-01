@@ -34,11 +34,6 @@
 	},
 /turf/closed/wall/mineral/titanium,
 /area/template_noop)
-"k" = (
-/obj/effect/decal/cleanable/oil/streak,
-/obj/effect/landmark/blobstart,
-/turf/open/floor/plating,
-/area/template_noop)
 "l" = (
 /obj/item/clothing/glasses/welding,
 /turf/open/floor/plating,
@@ -97,10 +92,6 @@
 /obj/effect/decal/remains/robot,
 /turf/open/floor/plating,
 /area/template_noop)
-"C" = (
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/plating,
-/area/template_noop)
 "E" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/old,
@@ -148,6 +139,10 @@
 /area/template_noop)
 "S" = (
 /obj/structure/girder,
+/turf/open/floor/plating,
+/area/template_noop)
+"T" = (
+/obj/effect/decal/cleanable/oil/streak,
 /turf/open/floor/plating,
 /area/template_noop)
 "U" = (
@@ -217,7 +212,7 @@ f
 b
 u
 g
-C
+a
 B
 b
 "}
@@ -236,7 +231,7 @@ b
 (7,1,1) = {"
 c
 a
-k
+T
 b
 i
 S

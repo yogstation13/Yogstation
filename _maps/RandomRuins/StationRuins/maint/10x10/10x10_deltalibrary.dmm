@@ -113,11 +113,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/template_noop)
-"az" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/blobstart,
-/turf/open/floor/plating,
-/area/template_noop)
 "aA" = (
 /obj/structure/chair/office{
 	dir = 1
@@ -299,6 +294,10 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/grimy,
 /area/template_noop)
+"Gz" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/template_noop)
 "GX" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/lootdrop/maintenance/two,
@@ -410,7 +409,7 @@ aE
 ae
 aq
 av
-az
+Gz
 Ob
 ap
 aI

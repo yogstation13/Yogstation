@@ -57,10 +57,6 @@
 /obj/item/reagent_containers/blood/random,
 /turf/open/floor/plating,
 /area/template_noop)
-"v" = (
-/obj/effect/landmark/blobstart,
-/turf/open/floor/plating,
-/area/template_noop)
 "y" = (
 /obj/machinery/sleeper{
 	dir = 4
@@ -98,7 +94,7 @@ f
 (3,1,1) = {"
 c
 h
-v
+f
 f
 "}
 (4,1,1) = {"
