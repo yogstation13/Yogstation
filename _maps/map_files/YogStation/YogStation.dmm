@@ -50253,11 +50253,6 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/fitness)
-"nHa" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/abandoned,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "nHr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -52128,6 +52123,15 @@
 /obj/effect/spawner/lootdrop/aimodule_harmful,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
+"phB" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "phT" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -113601,7 +113605,7 @@ iKq
 iKq
 iKq
 iKq
-nHa
+phB
 axl
 uxT
 vJS
