@@ -37661,10 +37661,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"dBH" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/turf/closed/wall,
-/area/maintenance/starboard/aft)
 "dBV" = (
 /obj/machinery/camera{
 	c_tag = "Central Hallway West";
@@ -52117,6 +52113,15 @@
 /obj/effect/spawner/lootdrop/aimodule_harmful,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
+"phB" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "phT" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -113320,8 +113325,8 @@ iKq
 iKq
 iKq
 cNW
-bNA
-cOe
+cOT
+cOT
 vJS
 cNW
 aaa
@@ -113576,9 +113581,9 @@ iKq
 iKq
 iKq
 iKq
-cNW
-cOT
-cOT
+phB
+axl
+uxT
 vJS
 cNW
 cNW
@@ -113833,12 +113838,12 @@ iKq
 iKq
 iKq
 iKq
-dBH
-axl
-uxT
+cNW
+cOe
+cNW
 vJS
 ciL
-cOe
+bNA
 cOe
 cae
 bPp
