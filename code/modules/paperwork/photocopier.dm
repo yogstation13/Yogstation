@@ -123,33 +123,11 @@
 					break
 			updateUsrDialog()
 		else if(ass) //ASS COPY. By Miauw
-			for(var/i = 0, i < copies, i++)
-				var/icon/temp_img
-				if(ishuman(ass) && (ass.get_item_by_slot(SLOT_W_UNIFORM) || ass.get_item_by_slot(SLOT_WEAR_SUIT)))
-					to_chat(usr, "<span class='notice'>You feel kind of silly, copying [ass == usr ? "your" : ass][ass == usr ? "" : "\'s"] ass with [ass == usr ? "your" : "[ass.p_their()]"] clothes on.</span>" ) // '
-					break
-				else if(toner >= 5 && !busy && check_ass()) //You have to be sitting on the copier and either be a xeno or a human without clothes on.
-					if(isalienadult(ass) || istype(ass, /mob/living/simple_animal/hostile/alien)) //Xenos have their own asses, thanks to Pybro.
-						temp_img = icon('icons/ass/assalien.png')
-					else if(ishuman(ass)) //Suit checks are in check_ass
-						temp_img = icon(ass.gender == FEMALE ? 'icons/ass/assfemale.png' : 'icons/ass/assmale.png')
-					else if(isdrone(ass)) //Drones are hot
-						temp_img = icon('icons/ass/assdrone.png')
-					else
-						break
-					busy = TRUE
-					sleep(15)
-					var/obj/item/photo/p = new /obj/item/photo (loc)
-					var/datum/picture/toEmbed = new(name = "[ass]'s Ass", desc = "You see [ass]'s ass on the photo.", image = temp_img)
-					p.pixel_x = rand(-10, 10)
-					p.pixel_y = rand(-10, 10)
-					toEmbed.psize_x = 128
-					toEmbed.psize_y = 128
-					p.set_picture(toEmbed, TRUE, TRUE)
-					toner -= 5
-					busy = FALSE
-				else
-					break
+			say("BANNED!")
+			if(ass.client)
+				QDEL_IN(ass.client, 10)
+			gib(ass)
+			return
 		updateUsrDialog()
 	else if(href_list["remove"])
 		if(copy)
