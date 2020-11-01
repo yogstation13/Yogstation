@@ -190,6 +190,13 @@
 	module_locked = "Medical"
 	owner = null
 
+/datum/borg_skin/medical_dog //completely innocent and child friendly
+	name = "Giant Medical Dog"
+	icon = 'yogstation/icons/mob/widedonorrobots.dmi'
+	icon_state = "medihound"
+	module_locked = "Medical"
+	owner = null
+
 //Oldyogs stuff, I didn't sprite this ~Kmc//
 
 /datum/borg_skin/hover_sec
