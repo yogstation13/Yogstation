@@ -20,8 +20,8 @@ Prefix the PR title with [s] if you are fixing an exploit so it is not announced
 ### Why is this good for the game?
 
 Explain why each change in your pr is beneficial to the server.
-This is less necessary for bugfixes and such, but is always welcome.
-Remember: something that is self evident to you might not be to others. Explain your rationale even if you feel it goes without saying.
+This is less necessary for bugfixes and such, but it is always welcome.
+Remember: something that is self evident to you might not be to others. Explain your rationale, even if you feel it goes without saying.
 
 #### Changelog
 
