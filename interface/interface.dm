@@ -30,6 +30,7 @@
 /client/verb/reconnect()
 	set name = "reconnect"
 	set desc = "Reconnects to the server"
+	set hidden = 1
 	winset(usr, null, "command=.reconnect")
 
 /client/verb/demoview(roundnumber as num)
