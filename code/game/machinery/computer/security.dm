@@ -166,7 +166,7 @@
 		SSassets.transport.send_assets(user, assets)
 		
 		record["front_image"] = SSassets.transport.get_asset_url("photo_front_[active_general_record.fields["id"]].png")
-		record["side_image] = SSassets.transport.get_asset_url("photo_side_[active_general_record.fields["id"]].png")
+		record["side_image"] = SSassets.transport.get_asset_url("photo_side_[active_general_record.fields["id"]].png")
 
 
 		record["name"] = active_general_record.fields["name"]
