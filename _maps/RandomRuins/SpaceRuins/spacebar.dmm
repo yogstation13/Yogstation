@@ -176,6 +176,11 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
+"jk" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/powered/spacebar)
 "jy" = (
 /obj/machinery/light,
 /turf/open/floor/plating,
@@ -188,6 +193,9 @@
 /obj/machinery/chem_dispenser/drinks/fullupgrade,
 /obj/machinery/light/small{
 	dir = 4
+	},
+/obj/structure/sign/poster/random{
+	pixel_x = 32
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
@@ -202,6 +210,16 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
+"lC" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/template_noop,
+/area/solar/starboard)
 "lH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -286,6 +304,10 @@
 	req_access_txt = "25"
 	},
 /turf/open/floor/plasteel,
+/area/ruin/powered/spacebar)
+"nL" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/wall,
 /area/ruin/powered/spacebar)
 "nN" = (
 /obj/effect/turf_decal/tile/bar{
@@ -387,6 +409,9 @@
 /obj/machinery/door/airlock/external{
 	req_access_txt = "25"
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "qz" = (
@@ -420,7 +445,7 @@
 /area/ruin/powered/spacebar)
 "rZ" = (
 /obj/machinery/light/small,
-/obj/machinery/power/smes,
+/obj/machinery/power/smes/engineering,
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "sX" = (
@@ -451,6 +476,27 @@
 /obj/effect/turf_decal/tile/bar,
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
+"tt" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/structure/sign/poster/random{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/spacebar)
+"ty" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/template_noop,
+/area/solar/starboard)
 "tH" = (
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -460,12 +506,19 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/spacebar)
+"uy" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
 "uD" = (
 /obj/machinery/light/small/broken,
 /obj/structure/table,
 /obj/machinery/reagentgrinder{
 	pixel_y = 6
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
 "uV" = (
@@ -527,6 +580,10 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
+"xu" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/powered/spacebar)
 "yg" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -544,21 +601,15 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
 "zA" = (
 /obj/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
+/area/solar/starboard)
 "zE" = (
 /turf/open/floor/carpet,
-/area/ruin/powered/spacebar)
-"zQ" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/telecomms/relay/preset/ruskie,
-/turf/open/floor/circuit/telecomms,
 /area/ruin/powered/spacebar)
 "Ay" = (
 /obj/structure/toilet{
@@ -672,6 +723,16 @@
 "FD" = (
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/spacebar)
+"FN" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/template_noop,
+/area/solar/starboard)
 "GD" = (
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/spacebar)
@@ -755,18 +816,6 @@
 	},
 /turf/open/floor/carpet,
 /area/ruin/powered/spacebar)
-"JK" = (
-/obj/structure/closet,
-/obj/item/vending_refill/cigarette,
-/obj/item/vending_refill/boozeomat,
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/obj/item/mop,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/soap,
-/obj/item/storage/bag/trash,
-/turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
 "JO" = (
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
@@ -807,8 +856,9 @@
 /area/ruin/powered/spacebar)
 "MQ" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/space/syndicate/black,
-/obj/item/clothing/head/helmet/space/syndicate/black,
+/obj/item/clothing/suit/space,
+/obj/item/clothing/head/helmet/space,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "MS" = (
@@ -816,6 +866,19 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"MZ" = (
+/obj/structure/closet,
+/obj/item/vending_refill/cigarette,
+/obj/item/vending_refill/boozeomat,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/soap,
+/obj/item/storage/bag/trash,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
 "Na" = (
 /obj/effect/turf_decal/tile/bar{
@@ -877,6 +940,19 @@
 	},
 /turf/open/floor/carpet,
 /area/ruin/powered/spacebar)
+"OK" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/template_noop,
+/area/solar/starboard)
 "OV" = (
 /obj/machinery/processor,
 /turf/open/floor/plasteel/cafeteria,
@@ -901,6 +977,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
+"Qk" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/template_noop,
+/area/solar/starboard)
 "Qo" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -968,6 +1057,9 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "UE" = (
@@ -979,12 +1071,25 @@
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "UI" = (
-/obj/structure/fans/tiny,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plasteel,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/telecomms/relay/preset/ruskie{
+	generates_heat = 0
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/circuit/telecomms,
 /area/ruin/powered/spacebar)
 "UN" = (
-/obj/item/toy/figure/bartender,
+/obj/structure/chair/stool,
+/obj/item/toy/figure/bartender{
+	pixel_x = -1
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/cola{
+	pixel_y = -4
+	},
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "UZ" = (
@@ -998,6 +1103,13 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
+"VD" = (
+/obj/machinery/power/solar/fake,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating,
+/area/solar/starboard)
 "VE" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -1024,6 +1136,17 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
+"WA" = (
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/solar/starboard)
+"WH" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/template_noop,
+/area/solar/starboard)
 "WO" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -1045,12 +1168,29 @@
 /area/ruin/powered/spacebar)
 "XF" = (
 /obj/machinery/power/solar/fake,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
 /turf/open/floor/plating,
-/area/template_noop)
+/area/solar/starboard)
 "XM" = (
 /obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
 /turf/template_noop,
-/area/template_noop)
+/area/solar/starboard)
+"Yr" = (
+/obj/machinery/power/terminal,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
 "YH" = (
 /turf/template_noop,
 /area/template_noop)
@@ -1060,6 +1200,7 @@
 	},
 /obj/item/gun/ballistic/revolver/russian,
 /obj/item/storage/box/dishdrive,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
 "ZJ" = (
@@ -1329,7 +1470,7 @@ mh
 nN
 fy
 yg
-yg
+PR
 FB
 MS
 FB
@@ -1399,7 +1540,7 @@ YH
 YH
 FB
 ax
-bD
+tt
 yg
 yg
 yg
@@ -1582,7 +1723,7 @@ yg
 yg
 yg
 Cz
-VE
+FB
 YH
 YH
 YH
@@ -1630,7 +1771,7 @@ Qx
 FB
 yK
 tH
-tH
+jk
 FB
 yg
 yg
@@ -1657,7 +1798,7 @@ FD
 FD
 BT
 tH
-tH
+xu
 tH
 pc
 yg
@@ -1685,7 +1826,7 @@ Oo
 Qz
 Ow
 II
-tH
+xu
 uD
 FB
 uZ
@@ -1740,11 +1881,11 @@ mR
 zE
 zE
 Fs
+xu
 tH
-tH
-tH
+xu
 jY
-wz
+Yr
 rZ
 FB
 if
@@ -1769,10 +1910,10 @@ zE
 Rp
 FB
 BD
-tH
-JK
+xu
+IB
 FB
-wz
+uy
 MQ
 FB
 Ay
@@ -1797,8 +1938,8 @@ OF
 VN
 FB
 ab
-tH
-IB
+xu
+MZ
 FB
 Us
 FB
@@ -1828,7 +1969,7 @@ eo
 tH
 YY
 FB
-wz
+uy
 FB
 YH
 YH
@@ -1855,7 +1996,7 @@ FB
 FB
 UI
 FB
-FB
+nL
 qc
 FB
 YH
@@ -1881,10 +2022,10 @@ YH
 YH
 YH
 FB
-zQ
+FB
 FB
 zA
-XM
+WH
 zA
 YH
 YH
@@ -1908,11 +2049,11 @@ YH
 YH
 YH
 YH
-FB
-FB
-FB
+YH
+YH
+YH
 zA
-XM
+WH
 zA
 YH
 YH
@@ -1940,7 +2081,7 @@ YH
 YH
 YH
 zA
-XM
+WH
 zA
 YH
 YH
@@ -1968,7 +2109,7 @@ zA
 XF
 XF
 XF
-XM
+WH
 XF
 XF
 XF
@@ -1990,20 +2131,20 @@ YH
 YH
 YH
 XM
-XM
-XM
-XM
-XM
-XM
-XM
-XM
-XM
-XM
-XM
-XM
-XM
-XM
-XM
+OK
+OK
+ty
+OK
+OK
+OK
+FN
+Qk
+Qk
+Qk
+ty
+Qk
+Qk
+lC
 YH
 YH
 YH
@@ -2017,21 +2158,21 @@ YH
 YH
 YH
 YH
-XF
-XF
-XF
+VD
+VD
+VD
 zA
-XF
-XF
-XF
-XM
-XF
-XF
-XF
+VD
+VD
+VD
+WA
+VD
+VD
+VD
 zA
-XF
-XF
-XF
+VD
+VD
+VD
 YH
 YH
 YH
