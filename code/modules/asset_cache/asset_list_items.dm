@@ -143,6 +143,11 @@
 	parents = list("changelog.html" = 'html/changelog.html')
 
 
+/datum/asset/simple/scanlines
+	assets = list(
+		"scanlines.png" = 'html/scanlines.png'
+	)
+	
 /datum/asset/simple/jquery
 	legacy = TRUE
 	assets = list(

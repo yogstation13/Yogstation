@@ -85,7 +85,7 @@
 						SSassets.transport.register_asset("photo_[md5]_cropped.png", picture)
 					SSassets.transport.send_assets(user, list("photo_[md5]_cropped.png" = picture))
 
-					data["user_image"] = md5
+					data["user_image"] = SSassets.transport.get_asset_url("photo_[md5]_cropped.png")
 		data["has_access"] = check_access(user.get_idcard())
 
 
@@ -164,6 +164,9 @@
 			assets["photo_side_[active_general_record.fields["id"]].png"] = P2.picture.picture_image
 
 		SSassets.transport.send_assets(user, assets)
+		
+		record["front_image"] = SSassets.transport.get_asset_url("photo_front_[active_general_record.fields["id"]].png")
+		record["side_image] = SSassets.transport.get_asset_url("photo_side_[active_general_record.fields["id"]].png")
 
 
 		record["name"] = active_general_record.fields["name"]

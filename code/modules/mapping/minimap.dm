@@ -129,7 +129,9 @@
 	for(var/I in 1 to minimaps.len)
 		var/datum/minimap/map = minimaps[I]
 		map.send(user)
-		info += "<img src='minimap-[map.id].png' id='map-[I]'><img src='minimap-[map.id]-meta.png' style='display: none' id='map-[I]-meta'><div id='label-[I]'></div>"
+		var/map_filename = SSassets.transport.get_asset_url("minimap-[map.id].png")
+		var/map_meta_filename = SSassets.transport.get_asset_url("minimap-[map.id]-meta.png")
+		info += "<img src='[map_filename]' id='map-[I]'><img src='[map_meta_filename]' style='display: none' id='map-[I]-meta'><div id='label-[I]'></div>"
 		datas += json_encode(map.color_area_names);
 	user << browse({"
 <!DOCTYPE html>
