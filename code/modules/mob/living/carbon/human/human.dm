@@ -1132,6 +1132,9 @@
 /mob/living/carbon/human/species/skeleton
 	race = /datum/species/skeleton
 
+/mob/living/carbon/human/species/skeleton/lowcalcium
+	race = /datum/species/skeleton/lowcalcium
+
 /mob/living/carbon/human/species/synth
 	race = /datum/species/synth
 
