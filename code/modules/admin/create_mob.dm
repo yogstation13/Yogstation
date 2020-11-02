@@ -34,7 +34,6 @@
 	H.dna.features["spines"] = pick(GLOB.spines_list)
 	H.dna.features["body_markings"] = pick(GLOB.body_markings_list)
 	H.dna.features["moth_wings"] = pick(GLOB.moth_wings_list)
-	H.dna.features["plasma_vessels"] = pick(GLOB.plasma_vessels_list)
 	H.dna.features["teeth"] = pick(GLOB.teeth_list)
 	H.dna.features["dome"] = pick(GLOB.dome_list)
 	H.dna.features["dorsal_tubes"] = pick(GLOB.dorsal_tubes_list)

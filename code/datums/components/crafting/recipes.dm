@@ -685,6 +685,15 @@
 				 /obj/item/stack/sheet/sinew = 3)
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/chitinspear
+	name = "Chitin Spear"
+	result = /obj/item/twohanded/chitinspear //take a bonespear, reinforce it with some chitin, profit?
+	time = 75
+	reqs = list(/obj/item/twohanded/bonespear = 1,
+				/obj/item/stack/sheet/sinew = 4,
+				/obj/item/stack/sheet/animalhide/weaver_chitin = 6)
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/bonfire
 	name = "Bonfire"
 	time = 60
