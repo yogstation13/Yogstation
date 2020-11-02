@@ -1,6 +1,0 @@
-author: "  Malbert, Redmoogle"
-delete-after: true 
-changes: 
-  - bugfix: "You can no longer use broken cyborg slots by being fast at clicking"
-  - tweak: "Removed a bunch of deprecated cyborg code involving taking toxin and oxygen damage"
-  - tweak: "Refactored part of cyborg inventory code"
