@@ -27,6 +27,11 @@
 		to_chat(src, "<span class='danger'>The forum URL is not set in the server configuration.</span>")
 	return
 
+/client/verb/reconnect()
+	set name = "reconnect"
+	set desc = "Reconnects to the server"
+	winset(usr, null, "command=.reconnect")
+
 /client/verb/demoview(roundnumber as num)
 	set name = "demoview"
 	set desc = "Enter Round Number you wish to see the replay of"
@@ -114,9 +119,9 @@ Admin:
 /client/verb/changelog()
 	set name = "Changelog"
 	set category = "OOC"
-	var/datum/asset/changelog = get_asset_datum(/datum/asset/simple/changelog)
+	var/datum/asset/simple/namespaced/changelog = get_asset_datum(/datum/asset/simple/namespaced/changelog)
 	changelog.send(src)
-	src << browse('html/changelog.html', "window=changes;size=675x650")
+	src << browse(changelog.get_htmlloader("changelog.html"), "window=changes;size=675x650")
 	if(prefs.lastchangelog != GLOB.changelog_hash)
 		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()

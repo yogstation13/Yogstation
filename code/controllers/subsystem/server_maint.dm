@@ -82,11 +82,11 @@ SUBSYSTEM_DEF(server_maint)
 		if(!thing)
 			continue
 		var/client/C = thing
-		var/datum/chatOutput/co = C.chatOutput
-		if(co)
-			co.ehjax_send(data = "roundrestart")
+		C?.tgui_panel?.send_roundrestart()
+		winset(C, null, "command=.reconnect")
 		if(server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[server]")
+		C.reconnect() //KITCHEN SINK
 	var/datum/tgs_version/tgsversion = world.TgsVersion()
 	if(tgsversion)
 		SSblackbox.record_feedback("text", "server_tools", 1, tgsversion.raw_parameter)
