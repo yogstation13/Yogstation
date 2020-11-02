@@ -237,7 +237,9 @@ GLOBAL_VAR(restart_counter)
 		var/client/C = boi
 		if(!istype(C)) continue //yes so this is useful to prevent nulls from preventing the server from rebooting...
 		sync_logout_with_db(C.connection_number)
-
+		C?.tgui_panel?.send_roundrestart()
+		winset(C, null, "command=.reconnect")
+		C?.reconnect() // KITCHEN SINK
 	TgsReboot()
 
 	if(TEST_RUN_PARAMETER in params)

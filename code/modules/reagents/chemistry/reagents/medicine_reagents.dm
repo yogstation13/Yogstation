@@ -1122,6 +1122,27 @@
 		. = 1
 	..()
 
+/datum/reagent/medicine/grubjuice
+	name = "Grub Juice"
+	description = "A potent medicinal product that can have dangerous side effects if used too much."
+	reagent_state = LIQUID
+	color = "#43bf1d"
+	taste_description = "bug intestines"
+	overdose_threshold = 10
+	can_synth = FALSE
+
+/datum/reagent/medicine/grubjuice/on_mob_life(mob/living/carbon/M)
+	M.heal_bodypart_damage(7,7)
+	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 2*REM)
+	..()
+	return TRUE
+
+/datum/reagent/medicine/grubjuice/overdose_process(mob/living/M)
+	M.adjustBruteLoss(2*REM, 0, FALSE, BODYPART_ORGANIC)
+	M.adjustFireLoss(2*REM, 0, FALSE, BODYPART_ORGANIC)
+	M.adjustToxLoss(5*REM, 0)
+	..()
+	return TRUE
 
 /datum/reagent/medicine/syndicate_nanites //Used exclusively by Syndicate medical cyborgs
 	name = "Restorative Nanites"

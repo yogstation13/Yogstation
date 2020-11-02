@@ -11,7 +11,7 @@ GLOBAL_LIST_EMPTY(corporations)
 	var/list/datum/mind/employees = list()
 	/// How much are employees paid per round of paydays as a modifier of their nanotrasen wage (nanotrasen is exempt, since that's integrated with budgets already)
 	var/paymodifier = 1
-	/// Whether we should instantiate it or not (only used on subtypes that are parents, like [/datum/corporation/syndicate])
+	/// Whether we should instantiate it or not (only used on subtypes that are parents, like [/datum/corporation/traitor])
 	var/instantiate = TRUE
 
 /datum/corporation/New()
@@ -25,27 +25,27 @@ GLOBAL_LIST_EMPTY(corporations)
 	/// Nanotrasen's paying is handled by payday itself
 	paymodifier = 0
 
-/datum/corporation/syndicate
+/datum/corporation/traitor
 	instantiate = FALSE
 
-/datum/corporation/syndicate/donkco
+/datum/corporation/traitor/donkco
 	name = "Donk Co."
 	paymodifier = 2
 	instantiate = TRUE
 
-/datum/corporation/syndicate/waffleco
+/datum/corporation/traitor/waffleco
 	name = "Waffle co."
 	paymodifier = 1.5
 	instantiate = TRUE
 
-/datum/corporation/syndicate/cybersun
+/datum/corporation/traitor/cybersun
 	name = "Cybersun Industries"
 	paymodifier = 1.5
 	instantiate = TRUE
 
 // Still syndicate, but doesn't send traitors so untill my syndicate rework they'll not be a subtype
 /datum/corporation/bolsynpowell
-	name = "Bolsyn-Powell Front"
+	name = "Bosyn-Powell Front"
 	paymodifier = 1.5
 
 // Shouldn't really pay anyone, 

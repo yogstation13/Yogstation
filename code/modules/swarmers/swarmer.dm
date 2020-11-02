@@ -200,7 +200,7 @@
 	new /obj/effect/temp_visual/swarmer/disintegration(get_turf(target))
 	do_attack_animation(target)
 	changeNext_move(CLICK_CD_MELEE)
-	SSexplosions.low_mov_atom += target
+	SSexplosions.med_mov_atom += target
 
 /**
   * Called when a swarmer attempts to teleport a living entity away

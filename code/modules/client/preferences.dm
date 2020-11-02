@@ -65,7 +65,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/skin_tone = "caucasian1"		//Skin color
 	var/eye_color = "000"				//Eye color
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
-	var/list/features = list("mcolor" = "FFF", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "plasma_vessels" = "None", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No")
+	var/list/features = list("mcolor" = "FFF", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No")
 	var/list/genders = list(MALE, FEMALE, PLURAL)
 	var/list/friendlyGenders = list("Male" = "male", "Female" = "female", "Other" = "plural")
 
@@ -431,19 +431,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<h3>Moth wings</h3>"
 
 				dat += "<a href='?_src_=prefs;preference=moth_wings;task=input'>[features["moth_wings"]]</a><BR>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
-
-			if("plasma_vessels" in pref_species.default_features)
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
-
-				dat += "<h3>Plasma Vessels</h3>"
-
-				dat += "<a href='?_src_=prefs;preference=plasma_vessels;task=input'>[features["plasma_vessels"]]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -1411,7 +1398,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("species")
 
-					var/result = input(user, "Select a species", "Species Selection") as null|anything in GLOB.roundstart_races
+					var/result = input(user, "Select a species", "Species Selection") as null|anything in (is_mentor(user) ? (GLOB.roundstart_races + GLOB.mentor_races) : GLOB.roundstart_races)
 
 					if(result)
 						var/newtype = GLOB.species_list[result]
@@ -1508,12 +1495,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					new_moth_wings = input(user, "Choose your character's wings:", "Character Preference") as null|anything in GLOB.moth_wings_list
 					if(new_moth_wings)
 						features["moth_wings"] = new_moth_wings
-
-				if("plasma_vessels")
-					var/new_plasma_vessels
-					new_plasma_vessels = input(user, "Choose your character's plasma vessels:", "Character Preference") as null|anything in GLOB.plasma_vessels_list
-					if(new_plasma_vessels)
-						features["plasma_vessels"] = new_plasma_vessels
 
 				if("teeth")
 					var/new_teeth
@@ -1882,7 +1863,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/datum/species/chosen_species
 	chosen_species = pref_species.type
-	if(roundstart_checks && !(pref_species.id in GLOB.roundstart_races) && !(pref_species.id in (CONFIG_GET(keyed_list/roundstart_no_hard_check))))
+	if(roundstart_checks && !(pref_species.id in GLOB.roundstart_races) &&  (!(pref_species.id in GLOB.mentor_races) && !is_mentor(character))  && !(pref_species.id in (CONFIG_GET(keyed_list/roundstart_no_hard_check))))
 		chosen_species = /datum/species/human
 		pref_species = new /datum/species/human
 		save_character()

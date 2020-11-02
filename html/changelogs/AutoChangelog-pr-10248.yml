@@ -1,4 +1,4 @@
 author: "boodaliboo"
 delete-after: true 
 changes: 
-  - rscdel: "Removed ashwalkers medical kit"
+  - tweak: "changed seeds"

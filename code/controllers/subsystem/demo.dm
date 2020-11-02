@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(demo)
 	name = "Demo"
 	wait = 1
-	flags = SS_TICKER | SS_BACKGROUND 
+	flags = SS_TICKER | SS_BACKGROUND
 	init_order = INIT_ORDER_DEMO
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 
@@ -57,7 +57,6 @@ SUBSYSTEM_DEF(demo)
 			target_text = C.ckey
 		else
 			return
-			
 	var/json_encoded = json_encode(text)
 	write_event_line("chat [target_text] [last_chat_message == json_encoded ? "=" : json_encoded]")
 	last_chat_message = json_encoded

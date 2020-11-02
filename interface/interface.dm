@@ -27,6 +27,27 @@
 		to_chat(src, "<span class='danger'>The forum URL is not set in the server configuration.</span>")
 	return
 
+/client/verb/reconnect()
+	set name = "reconnect"
+	set desc = "Reconnects to the server"
+	winset(usr, null, "command=.reconnect")
+
+/client/verb/demoview(roundnumber as num)
+	set name = "demoview"
+	set desc = "Enter Round Number you wish to see the replay of"
+	set hidden = 1
+	var/roundurl = CONFIG_GET(string/demourl)
+	if(roundnumber < 26360)
+		roundnumber = 26360
+	if(roundurl)
+		if(!roundnumber)
+			roundnumber = text2num(GLOB.round_id-1)
+		if(alert("This will open the demo in your browser. Are you sure?",,"Yes","No")!="Yes")
+			return
+		src << link("[roundurl][roundnumber]")
+	else
+		to_chat(src, "<span class='danger'>The demo URL is not set in the server configuration.</span>")
+
 /client/verb/rules()
 	set name = "rules"
 	set desc = "Show Server Rules."
