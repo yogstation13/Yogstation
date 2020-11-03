@@ -69,3 +69,26 @@ GLOBAL_PROTECT(mentor_verbs)
 		msg += "<span class='info'>Mentorhelps are also seen by admins. If no mentors are available in game adminhelp instead and an admin will see it and respond.</span>"
 	to_chat(src, msg, confidential=TRUE)
 
+/client/proc/dementor()
+	set name = "Dementor"
+	set category = "Mentor"
+	set desc = "Shed your mentor powers."
+	if(GLOB.mentors.len <= 2)
+		to_chat(src, "<span class='notice'>There are not enough mentors on for you to De-Mentor yourself!</span>", confidential=TRUE)
+		return
+	remove_mentor_verbs()
+	mentor_datum = null
+	GLOB.mentors -= src
+	verbs += /client/proc/rementor
+	to_chat(src, "<span class='interface'>You are now a normal player.</span>", confidential=TRUE)
+	log_admin("[src] dementored themself.")
+	message_admins("[src] dementored themself.")
+
+/client/proc/rementor()
+	set name = "Rementor"
+	set category = "Mentor"
+	set desc = "Gain your mentor powers."
+	new /datum/mentors(ckey)
+	to_chat(src, "<span class='interface'>You are now a Mentor again.</span>", confidential=TRUE)
+	log_admin("[src] rementored themself.")
+	message_admins("[src] rementored themself.")
