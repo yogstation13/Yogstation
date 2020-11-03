@@ -89,8 +89,9 @@ GLOBAL_PROTECT(mentor_verbs)
 	set name = "Rementor"
 	set category = "Mentor"
 	set desc = "Gain your mentor powers."
-	new /datum/mentors(ckey)
-	to_chat(src, "<span class='interface'>You are now a Mentor again.</span>", confidential=TRUE)
-	log_admin("[src] rementored themself.")
-	message_admins("[src] rementored themself.")
 	verbs -= /client/proc/rementor // Fucking Theos and his spam shit.
+	spawn(20) // Now UselessTheremin being a shit too.
+		new /datum/mentors(ckey)
+		to_chat(src, "<span class='interface'>You are now a Mentor again.</span>", confidential=TRUE)
+		log_admin("[src] rementored themself.")
+		message_admins("[src] rementored themself.")
