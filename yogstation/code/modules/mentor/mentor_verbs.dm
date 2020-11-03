@@ -93,3 +93,4 @@ GLOBAL_PROTECT(mentor_verbs)
 	to_chat(src, "<span class='interface'>You are now a Mentor again.</span>", confidential=TRUE)
 	log_admin("[src] rementored themself.")
 	message_admins("[src] rementored themself.")
+	verbs -= /client/proc/rementor // Fucking Theos and his spam shit.
