@@ -1669,6 +1669,7 @@
 #include "code\modules\clothing\neck\skillcapes\skillcape_datums.dm"
 #include "code\modules\clothing\neck\skillcapes\skillcapes.dm"
 #include "code\modules\clothing\outfits\amber.dm"
+#include "code\modules\clothing\outfits\occupying.dm"
 #include "code\modules\clothing\outfits\ert.dm"
 #include "code\modules\clothing\outfits\event.dm"
 #include "code\modules\clothing\outfits\plasmaman.dm"
