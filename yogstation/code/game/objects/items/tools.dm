@@ -14,6 +14,7 @@
 	force = 15
 	toolspeed = 0.7
 	tool_behaviour = TOOL_CROWBAR
+	var/pryforce = 1 // the speed at which airlocks are pried open. Default is 1 .
 
 //jaws of life changing jaw code
 /obj/item/jawsoflife/attack_self(mob/user)
@@ -131,3 +132,71 @@
 		to_chat(user, "<span class='notice'>You attach the screw driver bit to [src].</span>")
 	update_icon()
 
+/obj/item/jawsoflife/jimmy
+	name = "airlock jimmy"
+	desc = "An pump assisted airlock prying jimmy."
+	icon_state = "jimmy"
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	materials = list(MAT_METAL=400,MAT_SILVER=10,MAT_TITANIUM=80)
+	toolspeed = 0.3 // Starting minimum value. Pump it up by using it up to the max
+	tool_behaviour = TOOL_CROWBAR
+	pryforce = 0.4
+	var/is_pumping = FALSE // are we charging at the moment?
+	var/pryforce_max
+	var/pryforce_min
+
+/obj/item/jawsoflife/jimmy/Initialize()
+	. = ..()
+	pryforce_min = pryforce
+	pryforce_max = (pryforce * 3)
+	
+
+/obj/item/jawsoflife/jimmy/attack_self(mob/user) // airlock jimmy can't switch tool modes back to cutters.
+	pump(user)
+	
+/obj/item/jawsoflife/jimmy/proc/pump(mob/user)
+	if(pryforce > pryforce_max && user)
+		to_chat(user,"[src] is fully pumped.")
+	else
+		if(!is_pumping)
+			is_pumping = TRUE
+			pryforce = pryforce + 0.1
+			show_gage(user)
+			playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE)
+			addtimer(CALLBACK(src, .proc/pump_cooldown), 5) // cooldown between pumps
+			addtimer(CALLBACK(src, .proc/pump_powerdown), 300) // lose gained power after 30 seconds
+	return
+
+/obj/item/jawsoflife/jimmy/proc/pump_powerdown(mob/user)
+	if(src.pryforce > src.pryforce_min)
+		src.pryforce = (src.pryforce - 0.1)
+		if(pryforce == (pryforce_min + 0.1))
+			show_gage(user)
+	return
+
+/obj/item/jawsoflife/jimmy/proc/show_gage(mob/user)
+	if(user) // just in-case this is a proccall instead of being used by a mob
+		var/pressure_gage = (pryforce * 100) - 20
+		var/emag_givaway_flavor = ""
+		if(pressure_gage < 101)
+			emag_givaway_flavor = pick("somehow ","unironically ","ironically ","actually ","maybe ")
+		to_chat(user,"[src]'s pressure gage [emag_givaway_flavor]reads [pressure_gage]%.")
+	return
+
+/obj/item/jawsoflife/jimmy/proc/pump_cooldown()
+	is_pumping = FALSE
+
+/obj/item/jawsoflife/jimmy/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		to_chat(user, "<span class='warning'>Nothing new seems to happen when you swipe the emag.</span>")
+		return
+	to_chat(user, "<span class='notice'>You swipe the emag on [src]'s pressure gage'. </span>")
+	obj_flags |= EMAGGED
+	pryforce_max = (pryforce_max * 1.25) // 1.5 at default values
+	. = ..()
+
+/obj/item/jawsoflife/jimmy/examine(mob/user)
+	. = ..()
+	if(obj_flags & EMAGGED)
+		. += "<span class='danger'>The pressure gage has been tampered with.</span>"

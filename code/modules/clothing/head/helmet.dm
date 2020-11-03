@@ -80,7 +80,7 @@
 /obj/item/clothing/head/helmet/sec/occupying/Initialize()
 	attached_light = /obj/item/flashlight/seclite
 	update_helmlight()
-    . = ..()
+	. = ..()
 
 /obj/item/clothing/head/helmet/alt
 	name = "bulletproof helmet"
