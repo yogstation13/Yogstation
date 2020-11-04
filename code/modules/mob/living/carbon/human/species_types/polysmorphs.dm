@@ -2,7 +2,7 @@
 	//Human xenopmorph hybrid
 	name = "Polysmorph"
 	id = "polysmorph"
-	exotic_blood = /datum/reagent/polysmorphblood
+	exotic_blood = /datum/reagent/toxin/acid //Hell yeah sulphuric acid blood
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
 	liked_food = GROSS | MEAT
 	disliked_food = GRAIN | DAIRY | VEGETABLES | FRUIT
@@ -11,7 +11,8 @@
 	species_language_holder = /datum/language_holder/polysmorph
 	coldmod = 0.75
 	heatmod = 2
-	acidmod = 0.90
+	acidmod = 0.2 //Their blood is literally acid
+	burnmod = 1.5
 	damage_overlay_type = "polysmorph"
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'
