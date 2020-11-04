@@ -133,14 +133,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"t" = (
-/obj/effect/decal/remains/human,
-/turf/open/floor/mineral/uranium,
-/area/template_noop)
 "u" = (
 /obj/effect/decal/cleanable/ash,
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"x" = (
+/obj/item/stack/tile/mineral/uranium,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
 	},
 /area/template_noop)
 "y" = (
@@ -189,6 +191,17 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/template_noop)
+"I" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"L" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
 "M" = (
 /turf/open/floor/plasteel,
 /area/template_noop)
@@ -226,6 +239,9 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
+/area/template_noop)
+"T" = (
+/turf/open/floor/plating,
 /area/template_noop)
 "U" = (
 /obj/effect/decal/cleanable/dirt,
@@ -292,23 +308,23 @@ e
 "}
 (7,1,1) = {"
 X
-t
+I
 n
-n
+x
 O
 "}
 (8,1,1) = {"
 h
-n
-n
-n
+p
+p
+T
 H
 "}
 (9,1,1) = {"
 i
 n
-n
-n
+L
+L
 S
 "}
 (10,1,1) = {"

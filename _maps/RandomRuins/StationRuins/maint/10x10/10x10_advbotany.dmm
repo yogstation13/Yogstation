@@ -21,11 +21,6 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"f" = (
-/obj/structure/table/wood,
-/obj/item/storage/box/drinkingglasses,
-/turf/open/floor/plating,
-/area/template_noop)
 "g" = (
 /obj/effect/spawner/lootdrop/maintenance/eight,
 /obj/structure/rack,
@@ -52,17 +47,16 @@
 "p" = (
 /turf/closed/wall,
 /area/template_noop)
+"q" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/frame/machine,
+/turf/open/floor/plating,
+/area/template_noop)
 "r" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/corner,
-/turf/open/floor/plating,
-/area/template_noop)
-"s" = (
-/obj/machinery/vending/hydroseeds{
-	slogan_delay = 700
-	},
 /turf/open/floor/plating,
 /area/template_noop)
 "t" = (
@@ -83,10 +77,19 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
+"y" = (
+/obj/item/vending_refill/hydroseeds,
+/turf/open/floor/plating,
+/area/template_noop)
 "z" = (
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
+/area/template_noop)
+"A" = (
+/obj/item/storage/toolbox/mechanical,
+/obj/structure/table_frame/wood,
+/turf/open/floor/plating,
 /area/template_noop)
 "C" = (
 /obj/effect/spawner/structure/window,
@@ -98,6 +101,16 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/turf/open/floor/plating,
+/area/template_noop)
+"E" = (
+/obj/structure/frame/machine,
+/obj/item/stack/cable_coil,
+/turf/open/floor/plating,
+/area/template_noop)
+"F" = (
+/obj/item/storage/box/drinkingglasses,
+/obj/structure/table_frame/wood,
 /turf/open/floor/plating,
 /area/template_noop)
 "G" = (
@@ -121,11 +134,6 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/plating,
-/area/template_noop)
-"K" = (
-/obj/structure/table/wood,
-/obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating,
 /area/template_noop)
 "L" = (
@@ -172,8 +180,19 @@
 "U" = (
 /turf/open/floor/plating,
 /area/template_noop)
+"W" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
 "X" = (
 /obj/machinery/light/small,
+/turf/open/floor/plating,
+/area/template_noop)
+"Y" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/hydroponics/constructable,
 /turf/open/floor/plating,
 /area/template_noop)
 "Z" = (
@@ -185,8 +204,8 @@
 U
 p
 D
-f
-K
+F
+A
 U
 X
 p
@@ -208,7 +227,7 @@ U
 (3,1,1) = {"
 U
 n
-t
+W
 O
 t
 L
@@ -220,9 +239,9 @@ U
 (4,1,1) = {"
 z
 n
-t
+Y
 O
-t
+q
 L
 z
 p
@@ -246,7 +265,7 @@ U
 p
 U
 U
-U
+y
 p
 U
 o
@@ -258,7 +277,7 @@ U
 p
 I
 h
-s
+E
 p
 U
 p
@@ -293,7 +312,7 @@ U
 U
 o
 U
-p
+U
 z
 b
 U
