@@ -34,7 +34,7 @@
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni(src)
-	new /obj/item/jawsoflife(src)
+	new /obj/item/jawsoflife/jimmy(src)
 
 
 /obj/item/storage/belt/military/occupying_commander/ComponentInitialize() // Occupying force Commander
@@ -45,7 +45,7 @@
 	new /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni(src)
 	new /obj/item/megaphone(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
-	new /obj/item/jawsoflife(src)
+	new /obj/item/jawsoflife/jimmy(src)
 
 /obj/item/storage/belt/military/occupying_heavy
     color = "#55ff9b"
@@ -58,7 +58,7 @@
 	new /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni(src)
 	new /obj/item/reagent_containers/hypospray/medipen/survival(src)
 	new /obj/item/flashlight/flare(src)
-	new /obj/item/jawsoflife(src)
+	new /obj/item/jawsoflife/jimmy(src)
 
 
 /datum/outfit/occupying
