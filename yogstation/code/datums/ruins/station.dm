@@ -1178,10 +1178,10 @@
 	suffix = "10x10_boxfactory.dmm"
 	name = "Maint boxfactory"
 
-/datum/map_template/ruin/station/maint/tenxten/6sectorsdown
-	id= "6sectorsdown"
-	suffix = "10x10_6sectorsdown.dmm"
-	name = "Maint 6sectorsdown"
+/datum/map_template/ruin/station/maint/tenxten/sixsectorsdown
+	id= "sixsectorsdown"
+	suffix = "10x10_sixsectorsdown.dmm"
+	name = "Maint sixsectorsdown"
 
 /datum/map_template/ruin/station/maint/tenxten/advbotany
 	id= "advbotany"
