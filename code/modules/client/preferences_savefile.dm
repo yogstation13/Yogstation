@@ -368,7 +368,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["facial_hair_color"], facial_hair_color)
 	READ_FILE(S["eye_color"], eye_color)
 	READ_FILE(S["skin_tone"], skin_tone)
-	READ_FILE(S["hairstyle_name"], hair_style)
+	READ_FILE(S["hair_style_name"], hair_style)
 	READ_FILE(S["facial_style_name"], facial_hair_style)
 	READ_FILE(S["underwear"], underwear)
 	READ_FILE(S["undershirt"], undershirt)
