@@ -148,6 +148,7 @@
 #define TRAIT_MEDICALIGNORE     "medical_ignore"
 #define TRAIT_PASSTABLE			"passtable"
 #define TRAIT_SLIME_EMPATHY		"slime-empathy"
+#define TRAIT_ACIDBLOOD         "acid_blood"
 
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
