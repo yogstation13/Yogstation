@@ -151,6 +151,7 @@
 	
 /obj/item/jawsoflife/jimmy/attack_self(mob/user) // airlock jimmy can't switch tool modes back to cutters.
 	pump(user)
+	show_gage(user)
 	
 /obj/item/jawsoflife/jimmy/proc/pump(mob/user)
 	if(pump_charge >= pump_max && user)
@@ -160,7 +161,6 @@
 			var/old_value = pump_charge
 			is_pumping = TRUE
 			pump_charge = (pump_charge + pump_rate) > pump_max ? pump_max : pump_charge + pump_rate
-			show_gage(user)
 			if(old_value != pump_charge)
 				playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE) // no need you pump; didn't pump but instead looked at the gage
 				addtimer(CALLBACK(src, .proc/pump_cooldown), 5) // cooldown between pumps
@@ -170,17 +170,17 @@
 /obj/item/jawsoflife/jimmy/proc/pump_powerdown(mob/user)
 	if((pump_charge - 25) >= 0)
 		pump_charge = pump_charge - 25
-		if(user)
-			show_gage(user)
 	return
 
 /obj/item/jawsoflife/jimmy/proc/show_gage(mob/user)
+	message_admins("I made it to start")
 	if(user) // just in-case this is a proccall instead of being used by a mob
+		message_admins("I am now in")
 		var/pressure_gage = "[src.pump_charge]%"
 		var/emag_givaway_flavor = ""
 		if(pressure_gage < 101)
 			emag_givaway_flavor = pick("somehow ","unironically ","ironically ","actually ","maybe ")
-		to_chat(user,"[src]'s pressure gage [emag_givaway_flavor]reads [pressure_gage].")
+		to_chat(user,"[src]'s pressure gage [emag_givaway_flavor] reads [pressure_gage].")
 	return
 
 /obj/item/jawsoflife/jimmy/proc/pump_cooldown()
@@ -200,3 +200,5 @@
 	. = ..()
 	if(obj_flags & EMAGGED)
 		. += "<span class='danger'>The pressure gage has been tampered with.</span>"
+	if(user)
+		show_gage(user)
