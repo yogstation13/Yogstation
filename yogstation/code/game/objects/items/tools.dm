@@ -150,8 +150,9 @@
 	var/is_pumping = FALSE // are we charging at the moment?
 	
 /obj/item/jawsoflife/jimmy/attack_self(mob/user) // airlock jimmy can't switch tool modes back to cutters.
-	pump(user)
-	show_gage(user)
+	if(user)
+		pump(user)
+		show_gage(user)
 	
 /obj/item/jawsoflife/jimmy/proc/pump(mob/user)
 	if(pump_charge >= pump_max && user)
@@ -173,15 +174,11 @@
 	return
 
 /obj/item/jawsoflife/jimmy/proc/show_gage(mob/user)
-	message_admins("I made it to start")
-	if(user) // just in-case this is a proccall instead of being used by a mob
-		message_admins("I am now in")
-		var/pressure_gage = "[src.pump_charge]%"
-		var/emag_givaway_flavor = ""
-		if(pressure_gage < 101)
-			emag_givaway_flavor = pick("somehow ","unironically ","ironically ","actually ","maybe ")
-		to_chat(user,"[src]'s pressure gage [emag_givaway_flavor] reads [pressure_gage].")
-	return
+	var/emag_givaway_flavor = ""
+	message_admins("pump charge is [pump_charge]")
+	if(pump_charge > 101)
+		emag_givaway_flavor = pick("somehow ","unironically ","ironically ","actually ","maybe ")
+	to_chat(user,"[src]'s pressure gage [emag_givaway_flavor]reads [pump_charge]%")
 
 /obj/item/jawsoflife/jimmy/proc/pump_cooldown()
 	is_pumping = FALSE

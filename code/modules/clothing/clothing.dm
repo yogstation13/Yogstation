@@ -244,8 +244,15 @@ BLIND     // can't see anything
 	set src in usr
 	rolldown()
 
-/obj/item/clothing/under/proc/rolldown()
-	if(!can_use(usr))
+/obj/item/clothing/under/proc/rolldown(bypass = FALSE)
+	if(bypass)
+        toggle_jumpsuit_adjust()
+        if(usr)
+            var/mob/living/carbon/human/H = usr
+		    H.update_inv_w_uniform()
+		    H.update_body()
+        return
+    if(!can_use(usr))
 		return
 	if(!can_adjust)
 		to_chat(usr, "<span class='warning'>You cannot wear this suit any differently!</span>")

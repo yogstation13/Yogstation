@@ -6,7 +6,7 @@
 /obj/item/clothing/under/rank/security/grey/amber/occupying/Initialize(mob/user)
 	. = ..()
 	if(prob(50)) // Adds variation to the uniform. 50% will be worn casually.
-		rolldown()
+		rolldown(TRUE)
 
 /obj/item/clothing/head/beret/sec/centcom/occupying
 	name = "occupying force beret"
@@ -48,15 +48,15 @@
 	new /obj/item/jawsoflife/jimmy(src)
 
 /obj/item/storage/belt/military/occupying_heavy
-    color = "#55ff9b"
+	color = "#55ff9b"
 
 /obj/item/storage/belt/military/occupying_heavy/ComponentInitialize() // Occupying Riot Officer
 	. = ..()
-	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
-	new /obj/item/melee/classic_baton/telescopic(src)
+	new /obj/item/restraints/legcuffs/bola(src)
+	new /obj/item/restraints/legcuffs/bola(src)
 	new /obj/item/restraints/handcuffs(src)
 	new /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni(src)
-	new /obj/item/reagent_containers/hypospray/medipen/survival(src)
+	new /obj/item/reagent_containers/hypospray/medipen(src)
 	new /obj/item/flashlight/flare(src)
 	new /obj/item/jawsoflife/jimmy(src)
 
@@ -115,3 +115,6 @@
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
 	head = /obj/item/clothing/head/helmet/riot/raised/occupying
 	suit = /obj/item/clothing/suit/armor/riot/occupying
+	mask = /obj/item/clothing/mask/breath/tactical
+	suit_store = /obj/item/melee/baton/loaded 
+	glasses = /obj/item/clothing/glasses/sunglasses 
