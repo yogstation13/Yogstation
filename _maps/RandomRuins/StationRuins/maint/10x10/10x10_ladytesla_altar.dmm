@@ -15,12 +15,6 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"c" = (
-/obj/structure/table/wood,
-/obj/item/storage/fancy/candle_box,
-/obj/machinery/light/small/built,
-/turf/open/floor/carpet/royalblue,
-/area/template_noop)
 "d" = (
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
@@ -182,6 +176,11 @@
 /obj/item/radio/intercom{
 	pixel_y = 26
 	},
+/turf/open/floor/carpet/royalblue,
+/area/template_noop)
+"L" = (
+/obj/structure/table/wood,
+/obj/machinery/light/small/built,
 /turf/open/floor/carpet/royalblue,
 /area/template_noop)
 "M" = (
@@ -348,7 +347,7 @@ h
 f
 o
 Z
-c
+L
 z
 z
 x

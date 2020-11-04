@@ -7,6 +7,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/template_noop)
+"e" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
 "g" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -19,24 +23,12 @@
 /obj/item/wrench,
 /turf/open/floor/plating,
 /area/template_noop)
-"r" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/trap/nexus/trickyspawner/zombie{
-	mobs = 3
-	},
-/turf/open/floor/plating,
-/area/template_noop)
 "u" = (
 /obj/structure/table/glass,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
 "v" = (
-/turf/open/floor/plasteel/showroomfloor,
-/area/template_noop)
-"x" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/lootdrop/trap/reusable,
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
 "z" = (
@@ -59,6 +51,9 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
+"E" = (
+/turf/open/floor/plating,
+/area/template_noop)
 "F" = (
 /obj/machinery/light/broken{
 	dir = 4
@@ -71,10 +66,6 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
-/area/template_noop)
-"I" = (
-/obj/effect/spawner/lootdrop/trap/reusable,
-/turf/open/floor/plating,
 /area/template_noop)
 "K" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -117,8 +108,7 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
-"V" = (
-/obj/effect/spawner/lootdrop/trap/reusable,
+"W" = (
 /obj/effect/decal/cleanable/greenglow,
 /obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/plasteel/showroomfloor,
@@ -126,7 +116,7 @@
 
 (1,1,1) = {"
 u
-V
+W
 z
 M
 "}
@@ -138,14 +128,14 @@ K
 "}
 (3,1,1) = {"
 T
-r
+c
 v
-x
+e
 "}
 (4,1,1) = {"
 c
 k
-I
+E
 b
 "}
 (5,1,1) = {"

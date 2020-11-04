@@ -29,12 +29,6 @@
 /obj/structure/frame/machine,
 /turf/open/floor/plating,
 /area/template_noop)
-"i" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/trap/nexus/trickyspawner/zombie,
-/obj/effect/spawner/lootdrop/trap,
-/turf/open/floor/plating,
-/area/template_noop)
 "z" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/built{
@@ -77,7 +71,7 @@ e
 (2,1,1) = {"
 a
 A
-i
+a
 b
 a
 "}
