@@ -47,6 +47,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)
+"d" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/minor/bowler_or_that{
+	loot = list(/obj/item/clothing/shoes/laceup = 1, /obj/item/clothing/shoes/sneakers/black = 1, /obj/item/clothing/shoes/sneakers/brown = 1, /obj/item/clothing/shoes/sneakers/green = 1, /obj/item/clothing/shoes/orange = 1, /obj/item/clothing/shoes/sneakers/purple = 1, /obj/item/clothing/shoes/sneakers/rainbow = 1, /obj/item/clothing/shoes/sneakers/red = 1, /obj/item/clothing/shoes/sneakers/white = 1, /obj/item/clothing/shoes/sneakers/yellow = 1);
+	name = "random shoe spawner do not excessively reuse"
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
 "e" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -64,24 +82,6 @@
 	},
 /obj/effect/turf_decal/tile/green,
 /obj/effect/spawner/lootdrop/costume,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"g" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/spawner/lootdrop/minor/bowler_or_that{
-	loot = list(/obj/item/clothing/shoes/laceup = 1, /obj/item/clothing/shoes/sneakers/black = 1, /obj/item/clothing/shoes/sneakers/brown = 1, /obj/item/clothing/shoes/sneakers/green = 1, /obj/item/clothing/shoes/mime = 1, /obj/item/clothing/shoes/orange = 1, /obj/item/clothing/shoes/sneakers/purple = 1, /obj/item/clothing/shoes/rainbow = 1, /obj/item/clothing/shoes/sneakers/red = 1, /obj/item/clothing/shoes/white = 1, /obj/item/clothing/shoes/sneakers/yellow = 1);
-	name = "random shoe spawner do not excessively reuse"
-	},
 /turf/open/floor/plasteel,
 /area/template_noop)
 "i" = (
@@ -406,7 +406,7 @@ T
 X
 V
 q
-g
+d
 s
 "}
 (9,1,1) = {"
