@@ -3,10 +3,10 @@
 	name = "occupying force jumpsuit"
 	color = "#55ff9b"
 
-/obj/item/clothing/under/rank/security/grey/amber/occupying/Initialize()
+/obj/item/clothing/under/rank/security/grey/amber/occupying/Initialize(mob/user)
 	. = ..()
 	if(prob(50)) // Adds variation to the uniform. 50% will be worn casually.
-		src.AltClick()
+		rolldown()
 
 /obj/item/clothing/head/beret/sec/centcom/occupying
 	name = "occupying force beret"

@@ -77,9 +77,8 @@
 	name = "occupying force helmet"
 	desc = "Standard deployment gear. Protects the head from impacts and has a built in mounted light."
 
-/obj/item/clothing/head/helmet/sec/occupying/Initialize()
-	var/obj/item/flashlight/seclite/S = new /obj/item/flashlight/seclite(src)
-	src.attackby(S) // This is the only way that I found to make it work without bypassing checks - Hopek
+/obj/item/clothing/head/helmet/sec/occupying/Initialize(mob/user)
+	attached_light = new /obj/item/flashlight/seclite(null)
 	. = ..()
 
 /obj/item/clothing/head/helmet/alt
