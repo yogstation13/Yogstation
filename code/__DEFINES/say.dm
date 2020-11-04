@@ -58,9 +58,9 @@
 #define SPAN_CLOWN "clown"
 
 //bitflag #defines for return value of the radio() proc.
-#define ITALICS 1
-#define REDUCE_RANGE 2
-#define NOPASS 4
+#define ITALICS			(1<<0)
+#define REDUCE_RANGE	(1<<1)
+#define NOPASS			(1<<2)
 
 //Eavesdropping
 #define EAVESDROP_EXTRA_RANGE 1 //how much past the specified message_range does the message get starred, whispering only
@@ -80,3 +80,10 @@
 #define MAX_NAME_LEN			42
 #define MAX_BROADCAST_LEN		512
 #define MAX_CHARTER_LEN			80
+
+// Audio/Visual Flags. Used to determine what sense are required to notice a message.
+#define MSG_VISUAL (1<<0)
+#define MSG_AUDIBLE (1<<1)
+
+//Used in visible_message_flags, audible_message_flags and runechat_flags
+#define EMOTE_MESSAGE (1<<0)

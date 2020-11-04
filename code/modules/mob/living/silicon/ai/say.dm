@@ -49,7 +49,9 @@
 			padloc = AREACOORD(padturf)
 		else
 			padloc = "(UNKNOWN)"
+		var/obj/effect/overlay/hologram = T.masters[src]
 		src.log_talk(message, LOG_SAY, tag="HOLOPAD in [padloc]")
+		hologram.say("[message]")
 		send_speech(message, 7, T, "robot", message_language = language)
 		to_chat(src, "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> <span class='message robot'>\"[message]\"</span></span></i>")
 	else
