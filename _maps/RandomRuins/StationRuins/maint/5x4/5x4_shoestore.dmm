@@ -1,0 +1,65 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"d" = (
+/obj/structure/table/wood,
+/obj/item/clothing/shoes/sneakers/white,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"g" = (
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"y" = (
+/obj/structure/table/wood,
+/obj/item/clothing/shoes/cowboy/white,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"C" = (
+/obj/structure/table/wood,
+/obj/item/clothing/shoes/sneakers/rainbow,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"I" = (
+/obj/structure/table/wood,
+/obj/item/clothing/shoes/yogs/fuzzy_slippers,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"N" = (
+/obj/structure/table/wood,
+/obj/item/clothing/shoes/sneakers/yellow,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"Z" = (
+/obj/structure/table/wood,
+/obj/item/clothing/shoes/winterboots,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+
+(1,1,1) = {"
+g
+g
+g
+g
+"}
+(2,1,1) = {"
+g
+y
+d
+g
+"}
+(3,1,1) = {"
+g
+N
+I
+g
+"}
+(4,1,1) = {"
+g
+C
+Z
+g
+"}
+(5,1,1) = {"
+g
+g
+g
+g
+"}
