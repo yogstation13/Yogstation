@@ -60,7 +60,7 @@
 	dir = 4
 	},
 /obj/effect/spawner/lootdrop/minor/bowler_or_that{
-	loot = list(/obj/item/clothing/shoes/laceup = 1, /obj/item/clothing/shoes/sneakers/black = 1, /obj/item/clothing/shoes/sneakers/brown = 1, /obj/item/clothing/shoes/sneakers/green = 1, /obj/item/clothing/shoes/orange = 1, /obj/item/clothing/shoes/sneakers/purple = 1, /obj/item/clothing/shoes/sneakers/rainbow = 1, /obj/item/clothing/shoes/sneakers/red = 1, /obj/item/clothing/shoes/sneakers/white = 1, /obj/item/clothing/shoes/sneakers/yellow = 1);
+	loot = list(/obj/item/clothing/shoes/laceup = 1, /obj/item/clothing/shoes/sneakers/black = 1, /obj/item/clothing/shoes/sneakers/brown = 1, /obj/item/clothing/shoes/sneakers/green = 1, /obj/item/clothing/shoes/sneaker/orange = 1, /obj/item/clothing/shoes/sneakers/purple = 1, /obj/item/clothing/shoes/sneakers/rainbow = 1, /obj/item/clothing/shoes/sneakers/red = 1, /obj/item/clothing/shoes/sneakers/white = 1, /obj/item/clothing/shoes/sneakers/yellow = 1);
 	name = "random shoe spawner do not excessively reuse"
 	},
 /turf/open/floor/plasteel,
