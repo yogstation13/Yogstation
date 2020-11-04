@@ -1,0 +1,4 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - bugfix: "fixed a gulag stacking machine exploit that would let you farm points with minimal or no ores mined."
