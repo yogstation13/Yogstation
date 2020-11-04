@@ -168,9 +168,9 @@
 	return
 
 /obj/item/jawsoflife/jimmy/proc/pump_powerdown(mob/user)
-	if(src.pump_charge - 25)
-		src.pump_charge - 25
-		if(src.pump)
+	if((pump_charge - 25) >= 0)
+		pump_charge = pump_charge - 25
+		if(user)
 			show_gage(user)
 	return
 

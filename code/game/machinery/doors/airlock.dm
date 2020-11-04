@@ -1238,17 +1238,17 @@
 				time_to_open = 50
 				if(istype(I,/obj/item/jawsoflife/jimmy))
 					time_to_open = 40
-					var/obj/item/jawsoflife/jimbo = I
-					if(jimbo.pump_charge >= jimbo.pump_cost)
-						jimbo.pump_charge = jimbo.pump_charge - jimbo.pump_cost
-						if(jimbo.pump_charge < 0)
-							jimbo.pump_charge = 0
+					var/obj/item/jawsoflife/jimmy/J = I
+					if(J.pump_charge >= J.pump_cost)
+						J.pump_charge = J.pump_charge - J.pump_cost
+						if(J.pump_charge < 0)
+							J.pump_charge = 0
 						playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE)
-						if(jimbo.obj_flags & jimbo.EMAGGED)
+						if(J.obj_flags & EMAGGED)
 							time_to_open = 25
 					else
 						if(user)
-							to_chat(user, "<span class='warning'>You do not have enough charge in the [jimbo] for this. You need at least [jimbo.pump_cost]% </span>")
+							to_chat(user, "<span class='warning'>You do not have enough charge in the [J] for this. You need at least [J.pump_cost]% </span>")
 
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
 				prying_so_hard = TRUE
