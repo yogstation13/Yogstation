@@ -829,6 +829,9 @@
 	var/hrefpart = "<a href='?src=[REF(src)];track=[html_encode(namepart)]'>"
 	var/jobpart = "Unknown"
 
+	if(istype(speaker, /obj/effect/overlay/holo_pad_hologram))
+		return
+
 	if (iscarbon(speaker))
 		var/mob/living/carbon/S = speaker
 		if(S.job)
