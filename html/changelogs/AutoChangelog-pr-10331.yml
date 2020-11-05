@@ -1,0 +1,4 @@
+author: "FatalEYES"
+delete-after: true 
+changes: 
+  - tweak: "[box] Makes robotics entry airlock cycle"
