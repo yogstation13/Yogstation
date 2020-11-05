@@ -87,7 +87,6 @@ GENE SCANNER
 	throw_speed = 3
 	throw_range = 7
 	materials = list(/datum/material/iron=200)
-	var/mode = 1
 	var/scanmode = 0
 	var/advanced = FALSE
 
@@ -119,7 +118,7 @@ GENE SCANNER
 	user.visible_message("<span class='notice'>[user] has analyzed [M]'s vitals.</span>")
 
 	if(scanmode == 0)
-		healthscan(user, M, mode, advanced)
+		healthscan(user, M, advanced)
 	else if(scanmode == 1)
 		chemscan(user, M)
 
@@ -127,7 +126,7 @@ GENE SCANNER
 
 
 // Used by the PDA medical scanner too
-/proc/healthscan(mob/user, mob/living/M, mode = 1, advanced = FALSE)
+/proc/healthscan(mob/user, mob/living/M, advanced = FALSE)
 	if(isliving(user) && (user.incapacitated() || user.eye_blind))
 		return
 	//Damage specifics
@@ -249,7 +248,7 @@ GENE SCANNER
 
 
 	// Body part damage report
-	if(iscarbon(M) && mode == 1)
+	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		var/list/damaged = C.get_damaged_bodyparts(1,1)
 		if(length(damaged)>0 || oxy_loss>0 || tox_loss>0 || fire_loss>0)
@@ -404,20 +403,6 @@ GENE SCANNER
 					to_chat(user, "<span class='danger'>[R.name]</span>")
 			else
 				to_chat(user, "<span class='notice'>Subject is not addicted to any reagents.</span>")
-
-/obj/item/healthanalyzer/verb/toggle_mode()
-	set name = "Switch Verbosity"
-	set category = "Object"
-
-	if(usr.incapacitated())
-		return
-
-	mode = !mode
-	switch (mode)
-		if(1)
-			to_chat(usr, "The scanner now shows specific limb damage.")
-		if(0)
-			to_chat(usr, "The scanner no longer shows limb damage.")
 
 /obj/item/healthanalyzer/advanced
 	name = "advanced health analyzer"
