@@ -55,6 +55,7 @@ em						{font-style: normal;	font-weight: bold;}
 .aiprivradio			{color: #ff00ff;}
 .redteamradio           {color: #ff0000;}
 .blueteamradio          {color: #0000ff;}
+.singing				{font-family: "Trebuchet MS", cursive, sans-serif; font-style: italic;}
 
 .yell					{					font-weight: bold;}
 

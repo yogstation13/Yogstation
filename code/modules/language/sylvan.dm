@@ -7,6 +7,7 @@
 	exclaim_verb = "declares"
 	key = "h"
 	space_chance = 20
+	sing_verb = "serenades"
 	syllables = list(
 		"fii", "sii", "rii", "rel", "maa", "ala", "san", "tol", "tok", "dia", "eres",
     	"fal", "tis", "bis", "qel", "aras", "losk", "rasa", "eob", "hil", "tanl", "aere",
