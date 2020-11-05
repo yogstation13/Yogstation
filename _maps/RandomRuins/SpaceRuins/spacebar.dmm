@@ -107,6 +107,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
+"eL" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/powered/spacebar)
 "eX" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -234,33 +240,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
-"kq" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating/airless,
-/area/solar/starboard)
 "lq" = (
 /obj/machinery/processor,
 /obj/effect/decal/cleanable/food/flour,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/spacebar)
-"lF" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/plating/airless,
-/area/solar/starboard)
-"lG" = (
+"lz" = (
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
@@ -271,7 +256,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/airless,
-/area/solar/starboard)
+/area/ruin/powered/spacebar)
 "lH" = (
 /obj/structure/closet/secure_closet/freezer/meat{
 	req_access = null;
@@ -309,6 +294,13 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"mK" = (
+/obj/machinery/power/solar/fake,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plasteel/airless/solarpanel,
 /area/ruin/powered/spacebar)
 "mL" = (
 /obj/effect/turf_decal/box/corners{
@@ -356,22 +348,6 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
-"nL" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/turf/open/floor/plating/airless,
-/area/solar/starboard)
-"nN" = (
-/obj/machinery/power/solar/fake,
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plating/airless,
-/area/solar/starboard)
 "og" = (
 /obj/effect/turf_decal/box/corners,
 /turf/open/floor/engine,
@@ -412,6 +388,13 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/spacebar)
+"oZ" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/tracker,
+/turf/open/floor/plasteel/airless/solarpanel,
 /area/ruin/powered/spacebar)
 "pc" = (
 /obj/structure/table,
@@ -462,6 +445,12 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/freezer,
+/area/ruin/powered/spacebar)
+"qw" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/airless,
 /area/ruin/powered/spacebar)
 "qy" = (
 /obj/effect/turf_decal/stripes/line{
@@ -531,6 +520,18 @@
 "sM" = (
 /turf/closed/mineral,
 /area/ruin/unpowered/no_grav)
+"sU" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/powered/spacebar)
 "sX" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -622,12 +623,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
-"vw" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating/airless,
-/area/solar/starboard)
 "vQ" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -643,6 +638,10 @@
 "wz" = (
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
+"xi" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/ruin/unpowered/no_grav)
 "xu" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -702,6 +701,27 @@
 	req_access_txt = "25"
 	},
 /turf/open/floor/wood,
+/area/ruin/powered/spacebar)
+"By" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/powered/spacebar)
+"Cr" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/airless,
 /area/ruin/powered/spacebar)
 "CP" = (
 /obj/effect/turf_decal/box/corners{
@@ -900,10 +920,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
-"LN" = (
-/obj/structure/lattice,
-/turf/template_noop,
-/area/template_noop)
 "My" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/space,
@@ -935,6 +951,15 @@
 	},
 /obj/machinery/door/airlock/glass,
 /turf/open/floor/plasteel,
+/area/ruin/powered/spacebar)
+"Nj" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating/airless,
 /area/ruin/powered/spacebar)
 "Nn" = (
 /obj/structure/table/reinforced,
@@ -980,9 +1005,6 @@
 /obj/effect/turf_decal/tile/bar,
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
-"OF" = (
-/turf/open/floor/plating/asteroid/airless,
-/area/solar/starboard)
 "OV" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -1129,38 +1151,13 @@
 /obj/item/rcd_ammo/large,
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
-"VV" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating/airless,
-/area/solar/starboard)
-"Wm" = (
+"Yo" = (
 /obj/machinery/power/solar/fake,
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/turf/open/floor/plating/airless,
-/area/solar/starboard)
-"WO" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating/airless,
-/area/solar/starboard)
-"WQ" = (
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/tracker,
-/turf/open/floor/plating/airless,
-/area/solar/starboard)
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/ruin/powered/spacebar)
 "YH" = (
 /turf/template_noop,
 /area/template_noop)
@@ -1280,9 +1277,9 @@ YH
 YH
 YH
 YH
-sM
-YH
-YH
+ZN
+xi
+xi
 YH
 YH
 YH
@@ -1312,8 +1309,8 @@ YH
 YH
 YH
 YH
-YH
-sM
+ZN
+ZN
 FB
 iP
 iP
@@ -1606,8 +1603,8 @@ YH
 YH
 YH
 ZN
-sM
-sM
+ZN
+ZN
 sM
 FB
 aH
@@ -1836,7 +1833,7 @@ YH
 YH
 YH
 YH
-sM
+ZN
 sM
 sM
 sM
@@ -1992,7 +1989,7 @@ if
 if
 if
 FB
-sM
+ZN
 YH
 YH
 YH
@@ -2002,7 +1999,7 @@ YH
 YH
 YH
 YH
-YH
+ZN
 sM
 sM
 sM
@@ -2035,8 +2032,8 @@ YH
 YH
 YH
 YH
-YH
-YH
+ZN
+ZN
 ZN
 ZN
 ZN
@@ -2069,9 +2066,9 @@ YH
 YH
 YH
 YH
-YH
-sM
-sM
+ZN
+ZN
+ZN
 sM
 FB
 mh
@@ -2102,9 +2099,9 @@ YH
 YH
 YH
 YH
-YH
-sM
-sM
+ZN
+ZN
+ZN
 sM
 FB
 FB
@@ -2135,7 +2132,7 @@ YH
 YH
 YH
 YH
-YH
+ZN
 sM
 sM
 sM
@@ -2168,8 +2165,8 @@ YH
 YH
 YH
 YH
-YH
-YH
+ZN
+ZN
 sM
 sM
 sM
@@ -2180,13 +2177,13 @@ sM
 FB
 FB
 FB
-OF
-VV
-OF
+ZN
+qw
+ZN
 sM
 sM
 sM
-sM
+ZN
 sM
 sM
 YH
@@ -2213,13 +2210,13 @@ sM
 sM
 sM
 sM
-OF
-VV
-OF
+ZN
+qw
+ZN
+ZN
 sM
 sM
-sM
-sM
+ZN
 sM
 YH
 YH
@@ -2246,9 +2243,9 @@ ZN
 ZN
 ZN
 ZN
-OF
-VV
-OF
+ZN
+qw
+ZN
 ZN
 ZN
 ZN
@@ -2273,21 +2270,21 @@ YH
 sM
 sM
 ZN
-Wm
-Wm
-Wm
+Yo
+Yo
+Yo
 ZN
-Wm
-Wm
-Wm
-VV
-Wm
-Wm
-Wm
+Yo
+Yo
+Yo
+qw
+Yo
+Yo
+Yo
 ZN
-Wm
-Wm
-Wm
+Yo
+Yo
+Yo
 YH
 YH
 YH
@@ -2306,21 +2303,21 @@ YH
 YH
 sM
 ZN
-nL
-kq
-kq
-vw
-kq
-kq
-kq
-WO
-lG
-lG
-lG
-vw
-lG
-lG
-lF
+By
+Cr
+Cr
+eL
+Cr
+Cr
+Cr
+sU
+lz
+lz
+lz
+eL
+lz
+lz
+Nj
 YH
 YH
 YH
@@ -2339,21 +2336,21 @@ YH
 YH
 YH
 ZN
-nN
-nN
-nN
+mK
+mK
+mK
 ZN
-nN
-nN
-nN
-VV
-nN
-nN
-nN
-LN
-nN
-nN
-nN
+mK
+mK
+mK
+qw
+mK
+mK
+mK
+xi
+mK
+mK
+mK
 YH
 YH
 YH
@@ -2379,7 +2376,7 @@ ZN
 ZN
 ZN
 ZN
-WQ
+oZ
 ZN
 ZN
 YH
