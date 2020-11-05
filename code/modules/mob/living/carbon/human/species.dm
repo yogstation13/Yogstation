@@ -85,7 +85,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	///to use MUTCOLOR with a fixed color that's independent of dna.feature["mcolor"]
 	var/fixed_mut_color = ""
 	///special mutation that can be found in the genepool. Dont leave empty or changing species will be a headache
-	var/inert_mutation 	= GIGANTISM
+	var/inert_mutation 	= DWARFISM
 	///used to set the mobs deathsound on species change
 	var/deathsound
 	///Sounds to override barefeet walkng
