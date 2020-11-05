@@ -485,6 +485,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/ert/occupying/Initialize()
     access = list(ACCESS_SECURITY,ACCESS_BRIG,ACCESS_WEAPONS,ACCESS_SEC_DOORS,ACCESS_MAINT_TUNNELS)+get_ert_access("sec")
+    . = ..()
     
 /obj/item/card/id/ert/Initialize()
 	access = get_all_accesses()+get_ert_access("commander")-ACCESS_CHANGE_IDS
