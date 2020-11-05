@@ -138,7 +138,7 @@
 
 /datum/antagonist/ert/occupying
 	name = "Occupying Officer"
-	outfit = /datum/outfit/amber
+	outfit = /datum/outfit/occupying
 	role = "Officer"
 
 /datum/antagonist/ert/occupying/heavy
