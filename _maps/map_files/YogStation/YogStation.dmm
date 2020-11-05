@@ -31643,6 +31643,7 @@
 	dir = 4
 	},
 /obj/machinery/airalarm{
+	dir = 2;
 	pixel_y = 24
 	},
 /obj/structure/cable{
@@ -41995,7 +41996,9 @@
 	id = "commissaryshutter";
 	name = "Vacant Commissary Shutter"
 	},
-/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -43244,7 +43247,7 @@
 /obj/structure/lattice/catwalk,
 /obj/machinery/camera{
 	c_tag = "MiniSat Exterior - Aft";
-	dir = 2
+	dir = 2;
 	network = list("minisat","ss13")
 	},
 /turf/open/space/basic,
@@ -45604,7 +45607,6 @@
 	pixel_y = -13
 	},
 /obj/item/radio/intercom{
-	anyai = 1;
 	freerange = 1;
 	name = "Common Channel";
 	pixel_y = -27
@@ -49417,6 +49419,7 @@
 	},
 /obj/machinery/power/apc{
 	areastring = "/area/ai_monitored/storage/satellite";
+	dir = 2;
 	name = "MiniSat Maint APC";
 	pixel_y = -24
 	},
@@ -56438,7 +56441,9 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
