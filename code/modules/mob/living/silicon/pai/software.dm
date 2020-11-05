@@ -269,9 +269,6 @@
 				if(href_list["toggle"])
 					var/mob/living/silicon/pai/pAI = usr
 					pAI.hostscan.attack_self(usr)
-				if(href_list["toggle2"])
-					var/mob/living/silicon/pai/pAI = usr
-					pAI.hostscan.toggle_mode()
 
 			if("encryptionkeys")
 				if(href_list["toggle"])
@@ -544,7 +541,6 @@
 
 			<a href='byond://?src=[REF(src)];software=hostscan;sub=0;toggle=1'>Change Scan Type</a><br>
 
-			<a href='byond://?src=[REF(src)];software=hostscan;sub=0;toggle2=1'>Toggle Verbosity</a><br>
 			"}
 	return dat
 // Atmospheric Scanner

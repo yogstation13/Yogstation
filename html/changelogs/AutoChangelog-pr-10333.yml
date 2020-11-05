@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - rscadd: "Added Meson Health Scanner HUD to mining rewards vendor for 1000 points"
