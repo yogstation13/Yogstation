@@ -1,0 +1,6 @@
+author: "PrinceKirze"
+delete-after: true 
+changes: 
+  - rscadd: "Added random maintenance to Yogsmeta"
+  - tweak: "Had to push all of xenobio down by 1 turf to make room for a template"
+  - tweak: "Moved some xenospawn markers and blobspawn markers around because they can't coexist with the templates reliably"
