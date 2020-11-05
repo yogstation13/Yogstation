@@ -21,7 +21,7 @@
 	var/list/spans = list()
 	var/list/scramble_cache = list()
 	var/default_priority = 0          // the language that an atom knows with the highest "default_priority" is selected by default.
-
+	var/sing_verb = "sings"			  // Used for singing.
 	// if you are seeing someone speak popcorn language, then something is wrong.
 	var/icon = 'icons/misc/language.dmi'
 	var/icon_state = "popcorn"
