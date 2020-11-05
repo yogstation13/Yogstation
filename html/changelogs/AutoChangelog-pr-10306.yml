@@ -1,5 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - rscadd: "Add Chemical Scan for Ghosts"
-  - tweak: "Minor Ghost Refactor"

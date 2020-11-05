@@ -1,6 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - rscadd: "TRAIT_ACIDBLOOD for all you acid-blood-ers is now here!"
-  - bugfix: "Polysmorphs no longer take damage from trying to refill their blood with what they just pulled out of themselves."
-  - bugfix: "acidmod now actually affects acid damage taken."
