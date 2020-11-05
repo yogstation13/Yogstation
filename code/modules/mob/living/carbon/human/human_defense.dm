@@ -650,11 +650,11 @@
 	//DAMAGE//
 	var/damagemod = (dna && dna.species) ? dna.species.acidmod : 1 // yogs - Old Plant People
 	for(var/obj/item/bodypart/affecting in damaged)
-		affecting.receive_damage(acidity, 2*acidity)
+		affecting.receive_damage(acidity*damagemod, 2*acidity*damagemod)
 
 		if(affecting.name == BODY_ZONE_HEAD)
-			if(prob(min(acidpwr*acid_volume/10, 90))) //Applies disfigurement
-				affecting.receive_damage(acidity, 2*acidity*damagemod) // yogs - Old Plant People
+			if(prob(min(acidpwr*acid_volume*damagemod/10, 90))) //Applies disfigurement
+				affecting.receive_damage(acidity*damagemod, 2*acidity*damagemod) // yogs - Old Plant People
 				emote("scream")
 				facial_hair_style = "Shaved"
 				hair_style = "Bald"
