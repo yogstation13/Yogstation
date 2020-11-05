@@ -37205,6 +37205,7 @@
 	req_access_txt = "16"
 	},
 /obj/item/radio/intercom{
+	anyai = 1;
 	freerange = 1;
 	listening = 0;
 	name = "Custom Channel";
@@ -37217,6 +37218,7 @@
 	pixel_y = 21
 	},
 /obj/item/radio/intercom{
+	anyai = 1;
 	freerange = 1;
 	frequency = 1447;
 	name = "Private Channel";
@@ -37439,7 +37441,9 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "dzD" = (
-/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
 /turf/open/floor/plating,
 /area/storage/tech)
 "dzR" = (
@@ -41996,9 +42000,7 @@
 	id = "commissaryshutter";
 	name = "Vacant Commissary Shutter"
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -56304,9 +56306,7 @@
 	id = "commissaryshutter";
 	name = "Vacant Commissary Shutter"
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
