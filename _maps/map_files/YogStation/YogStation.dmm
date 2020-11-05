@@ -21152,6 +21152,10 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -1;
+	diry = 1
+	},
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "bgn" = (
@@ -21496,6 +21500,10 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = 1;
+	diry = -1
+	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "bhu" = (
@@ -31635,7 +31643,6 @@
 	dir = 4
 	},
 /obj/machinery/airalarm{
-	dir = 2;
 	pixel_y = 24
 	},
 /obj/structure/cable{
@@ -37197,7 +37204,6 @@
 	req_access_txt = "16"
 	},
 /obj/item/radio/intercom{
-	anyai = 1;
 	freerange = 1;
 	listening = 0;
 	name = "Custom Channel";
@@ -37210,7 +37216,6 @@
 	pixel_y = 21
 	},
 /obj/item/radio/intercom{
-	anyai = 1;
 	freerange = 1;
 	frequency = 1447;
 	name = "Private Channel";
@@ -37433,9 +37438,7 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "dzD" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/storage/tech)
 "dzR" = (
@@ -40343,9 +40346,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/obj/machinery/vending/autodrobe{
-	req_access_txt = "0"
-	},
+/obj/machinery/vending/autodrobe,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -42926,9 +42927,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/storage/tech)
 "ias" = (
@@ -43241,7 +43240,6 @@
 /obj/structure/lattice/catwalk,
 /obj/machinery/camera{
 	c_tag = "MiniSat Exterior - Aft";
-	dir = 2;
 	network = list("minisat","ss13")
 	},
 /turf/open/space/basic,
@@ -44873,11 +44871,8 @@
 	},
 /obj/machinery/turretid{
 	control_area = "/area/ai_monitored/turret_protected/aisat_interior";
-	enabled = 1;
-	icon_state = "control_standby";
 	name = "Antechamber Turret Control";
 	pixel_x = 32;
-	pixel_y = 0;
 	req_access_txt = "19"
 	},
 /obj/effect/turf_decal/tile/darkblue{
@@ -45545,9 +45540,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
@@ -45593,7 +45586,6 @@
 	req_access_txt = "16"
 	},
 /obj/item/radio/intercom{
-	anyai = 1;
 	freerange = 1;
 	frequency = 1447;
 	name = "Private Channel";
@@ -45606,7 +45598,6 @@
 	pixel_y = -27
 	},
 /obj/item/radio/intercom{
-	anyai = 1;
 	freerange = 1;
 	listening = 0;
 	name = "Custom Channel";
@@ -46023,7 +46014,6 @@
 	},
 /obj/effect/landmark/start/ai,
 /obj/item/radio/intercom{
-	anyai = 1;
 	freerange = 1;
 	listening = 0;
 	name = "Custom Channel";
@@ -46037,7 +46027,6 @@
 	pixel_y = -27
 	},
 /obj/item/radio/intercom{
-	anyai = 1;
 	freerange = 1;
 	frequency = 1447;
 	name = "Private Channel";
@@ -46400,9 +46389,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/storage/tech)
 "kMZ" = (
@@ -49413,7 +49400,6 @@
 	},
 /obj/machinery/power/apc{
 	areastring = "/area/ai_monitored/storage/satellite";
-	dir = 2;
 	name = "MiniSat Maint APC";
 	pixel_y = -24
 	},
@@ -51271,9 +51257,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /obj/structure/sign/warning/radiation/rad_area{
 	pixel_y = -32
 	},
@@ -51580,9 +51564,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/westleft{
-	base_state = "left";
 	dir = 1;
-	icon_state = "left";
 	layer = 3.1;
 	name = "Cyborg Upload Console Window";
 	req_access_txt = "16"
@@ -55334,9 +55316,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
 	},
@@ -55919,9 +55899,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /obj/structure/sign/warning/radiation/rad_area{
 	pixel_y = -32
 	},
@@ -56433,9 +56411,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
@@ -57852,9 +57828,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plasteel{
-	name = "floor"
-	},
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "tSz" = (
 /turf/open/floor/plasteel,
@@ -62320,7 +62294,6 @@
 "xHn" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/beakers{
-	pixel_x = 0;
 	pixel_y = 2
 	},
 /obj/item/storage/box/syringes{
