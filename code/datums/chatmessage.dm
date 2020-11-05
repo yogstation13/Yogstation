@@ -47,6 +47,7 @@
 	var/datum/chatmessage/prev
 	/// The current index used for adjusting the layer of each sequential chat message such that recent messages will overlay older ones
 	var/static/current_z_idx = 0
+
 /**
   * Constructs a chat message overlay
   *
@@ -91,7 +92,7 @@
   * Arguments:
   * * text - The text content of the overlay
   * * target - The target atom to display the overlay at
-  * * owner - The mob that owns this overlay, only this mob will be able to view it#
+  * * owner - The mob that owns this overlay, only this mob will be able to view it
   * * language - The language this message was spoken in
   * * extra_classes - Extra classes to apply to the span that holds the text
   * * lifespan - The lifespan of the message in deciseconds
@@ -224,7 +225,6 @@
   * * message_language - The language that the message is said in
   * * raw_message - The text content of the message
   * * spans - Additional classes to be added to the message
-  * * message_mode - Bitflags relating to the mode of the message
   */
 /mob/proc/create_chat_message(atom/movable/speaker, datum/language/message_language, raw_message, list/spans, runechat_flags = NONE)
 	// Ensure the list we are using, if present, is a copy so we don't modify the list provided to us
