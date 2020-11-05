@@ -52,8 +52,8 @@
 
 /obj/item/storage/belt/military/occupying_heavy/ComponentInitialize() // Occupying Riot Officer
 	. = ..()
-	new /obj/item/restraints/legcuffs/bola(src)
-	new /obj/item/restraints/legcuffs/bola(src)
+	new /obj/item/restraints/legcuffs/bola/energy(src)
+	new /obj/item/restraints/legcuffs/bola/energy(src)
 	new /obj/item/restraints/handcuffs(src)
 	new /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
