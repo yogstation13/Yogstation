@@ -195,8 +195,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		spans |= SPAN_ITALICS
 	if(radio_return & REDUCE_RANGE)
 		message_range = 1
-	if(!message_mods[WHISPER_MODE])
-		message_mods[WHISPER_MODE] = MODE_WHISPER
+		if(!message_mods[WHISPER_MODE])
+			message_mods[WHISPER_MODE] = MODE_WHISPER
 	if(radio_return & NOPASS)
 		return 1
 
