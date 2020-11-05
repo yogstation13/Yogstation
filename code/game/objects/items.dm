@@ -434,6 +434,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	set category = "Object"
 	set name = "Pick up"
 
+	if(HAS_TRAIT(src, TRAIT_NODROP))
+		return
+
 	if(usr.incapacitated() || !Adjacent(usr))
 		return
 
