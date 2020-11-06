@@ -17623,6 +17623,19 @@
 /obj/effect/spawner/structure/window/reinforced/indestructable,
 /turf/open/floor/plating,
 /area/centcom/testchamber)
+"KK" = (
+/obj/structure/glowshroom/single,
+/obj/structure/table/wood,
+/obj/item/gun/magic/wand/death,
+/obj/item/gun/magic/wand/door,
+/obj/item/gun/magic/wand/fireball,
+/obj/item/gun/magic/wand/polymorph,
+/obj/item/gun/magic/wand/resurrection/debug,
+/obj/item/gun/magic/wand/safety,
+/obj/item/gun/magic/wand/teleport,
+/obj/item/gun/magic/staff/cheese,
+/turf/open/floor/wood,
+/area/centcom/testchamber)
 "KL" = (
 /obj/item/storage/box/donkpockets,
 /obj/effect/turf_decal/tile/bar{
@@ -19445,18 +19458,6 @@
 /obj/singularity/wizard/mapped,
 /turf/open/indestructible/binary,
 /area/fabric_of_reality)
-"Qn" = (
-/obj/structure/glowshroom/single,
-/obj/structure/table/wood,
-/obj/item/gun/magic/wand/death,
-/obj/item/gun/magic/wand/door,
-/obj/item/gun/magic/wand/fireball,
-/obj/item/gun/magic/wand/polymorph,
-/obj/item/gun/magic/wand/resurrection/debug,
-/obj/item/gun/magic/wand/safety,
-/obj/item/gun/magic/wand/teleport,
-/turf/open/floor/wood,
-/area/centcom/testchamber)
 "Qo" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -70136,7 +70137,7 @@ Wx
 Vi
 wS
 Tv
-Qn
+KK
 ND
 vq
 wS
