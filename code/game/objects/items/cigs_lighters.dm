@@ -929,6 +929,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		hand_reagents()
 
 /obj/item/clothing/mask/cigarette/lit/Initialize()
-    light() // These cigarettes start lit.
     . = ..()
+    light() // These cigarettes start lit.
     
