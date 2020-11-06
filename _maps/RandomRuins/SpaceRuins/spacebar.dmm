@@ -20,15 +20,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
-"aw" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 2
+"as" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
 	},
-/obj/structure/disposaloutlet{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/unpowered/no_grav)
+/turf/open/floor/plating/airless,
+/area/ruin/powered/spacebar)
 "ax" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -71,6 +69,13 @@
 	dir = 4
 	},
 /obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/ruin/powered/spacebar)
+"co" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/chem_dispenser,
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
 "dG" = (
@@ -126,6 +131,15 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/ruin/powered/spacebar)
+"eZ" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/turf/open/floor/carpet,
 /area/ruin/powered/spacebar)
 "ff" = (
 /obj/structure/disposalpipe/segment,
@@ -396,24 +410,6 @@
 /obj/machinery/power/tracker,
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/ruin/powered/spacebar)
-"pc" = (
-/obj/structure/table,
-/turf/open/floor/carpet,
-/area/ruin/powered/spacebar)
-"ps" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/spacebar)
-"pF" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/spacebar)
 "pP" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/line{
@@ -479,16 +475,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
-"rp" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/item/book/manual/wiki/barman_recipes{
-	pixel_y = 5
-	},
-/turf/open/floor/wood,
 /area/ruin/powered/spacebar)
 "rE" = (
 /obj/effect/turf_decal/stripes/line{
@@ -563,6 +549,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
+"tG" = (
+/turf/open/floor/plating/airless,
+/area/ruin/powered/spacebar)
 "tH" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/decal/cleanable/dirt,
@@ -579,6 +568,15 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/spacebar)
+"uu" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/sign/barsign,
+/obj/structure/table/reinforced,
+/turf/open/floor/wood,
+/area/ruin/powered/spacebar)
 "uD" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -587,22 +585,6 @@
 /obj/structure/sign/warning/deathsposal{
 	pixel_y = 32
 	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
-"uV" = (
-/obj/structure/table,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
-"uZ" = (
-/obj/machinery/autolathe,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
 "vd" = (
@@ -797,6 +779,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
+"GA" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/item/book/manual/wiki/barman_recipes{
+	pixel_y = -4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/spacebar)
 "GD" = (
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/spacebar)
@@ -836,6 +828,13 @@
 	pixel_y = -4
 	},
 /turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"Hi" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/wood,
 /area/ruin/powered/spacebar)
 "Hk" = (
 /obj/effect/turf_decal/tile/bar{
@@ -920,6 +919,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
+"Mk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/wallmed{
+	name = "Emergency NanoMed";
+	pixel_x = -32;
+	req_access_txt = "0";
+	use_power = 0
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/spacebar)
 "My" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/space,
@@ -981,6 +990,15 @@
 "NQ" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
+/area/ruin/powered/spacebar)
+"Ok" = (
+/obj/machinery/autolathe,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
 "Oo" = (
 /obj/machinery/door/firedoor/border_only,
@@ -1056,6 +1074,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
+"RH" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 2
+	},
+/obj/structure/disposaloutlet{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered/no_grav)
 "RJ" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -1558,7 +1585,7 @@ yg
 yg
 bD
 FB
-hh
+as
 FB
 YH
 YH
@@ -1591,8 +1618,8 @@ eC
 yg
 Hk
 KO
-wz
-wz
+tG
+tG
 YH
 YH
 YH
@@ -1624,8 +1651,8 @@ Hk
 yg
 gX
 KO
-wz
-wz
+tG
+tG
 YH
 YH
 YH
@@ -1657,7 +1684,7 @@ Ej
 yg
 eC
 KO
-wz
+tG
 ZN
 YH
 YH
@@ -1678,7 +1705,7 @@ Ej
 yg
 yg
 yg
-pS
+yg
 pS
 pS
 pS
@@ -1710,9 +1737,9 @@ aX
 yg
 yg
 yg
-pS
-ps
-rp
+yg
+uu
+GA
 GM
 Ee
 Jw
@@ -1743,8 +1770,8 @@ eC
 eC
 yg
 yg
-pS
-pF
+yg
+Hi
 JO
 JO
 JO
@@ -1809,7 +1836,7 @@ eX
 fy
 yg
 mQ
-yg
+ta
 pP
 JO
 JO
@@ -1850,7 +1877,7 @@ yK
 FB
 jk
 yg
-yg
+ta
 yg
 yg
 OB
@@ -1936,7 +1963,7 @@ YH
 YH
 ZN
 ZN
-aw
+RH
 ff
 is
 lH
@@ -2011,7 +2038,7 @@ zE
 qz
 Rp
 Qz
-Rp
+Mk
 NH
 IB
 YP
@@ -2073,9 +2100,9 @@ sM
 FB
 mh
 nf
-pc
+eZ
 FB
-uV
+co
 Rp
 eo
 FB
@@ -2108,7 +2135,7 @@ FB
 FB
 FB
 FB
-uZ
+Ok
 Qz
 GH
 FB

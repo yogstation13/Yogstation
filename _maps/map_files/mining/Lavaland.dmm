@@ -1659,6 +1659,13 @@
 "pl" = (
 /turf/open/floor/plasteel/freezer,
 /area/mine/laborcamp)
+"pw" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
+	dir = 1;
+	name = "Waste Ejector"
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/mine/laborcamp)
 "py" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple{
@@ -2124,13 +2131,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"BH" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
-	dir = 1;
-	name = "Waste Ejector"
-	},
-/turf/open/floor/plating,
-/area/mine/laborcamp)
 "BW" = (
 /obj/structure/sign/poster/official/safety_report{
 	pixel_x = -32
@@ -2469,6 +2469,14 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
+/area/mine/laborcamp)
+"Md" = (
+/obj/machinery/door/airlock/external{
+	glass = 1;
+	name = "Labor Camp External Airlock";
+	opacity = 0
+	},
+/turf/open/floor/plating/lavaland_baseturf,
 /area/mine/laborcamp)
 "Mk" = (
 /obj/effect/decal/cleanable/dirt,
@@ -9121,7 +9129,7 @@ Lq
 td
 TM
 QU
-BH
+pw
 aj
 aj
 aj
@@ -11410,7 +11418,7 @@ aD
 aD
 aD
 aD
-Cu
+Md
 FV
 Cu
 wI
