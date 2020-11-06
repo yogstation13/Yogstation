@@ -488,7 +488,7 @@ SUBSYSTEM_DEF(job)
 			to_chat(M, "<FONT color='red'><b>Space Law has been updated! </font><a href='https://wiki.yogstation.net/wiki/Space_Law'>Click here to view the updates.</a></b>")
 		//YOGS end
 		if(CONFIG_GET(number/minimal_access_threshold))
-			to_chat(M, "<span class='notice'><B>As this station was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] have been added to your ID card.</B></span>")
+			to_chat(M, "<span calass='notice'><B>As this station was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] have been added to your ID card.</B></span>")
 	var/related_policy = get_policy(rank)
 	if(related_policy)
 		to_chat(M,related_policy)
@@ -497,11 +497,11 @@ SUBSYSTEM_DEF(job)
 		living_mob.add_memory("Your account ID is [wageslave.account_id].")
 	if(job && living_mob)
 		job.after_spawn(living_mob, M, joined_late) // note: this happens before the mob has a key! M will always have a client, H might not.
-
+	if(living_mob?.client)
+		job.give_donor_stuff(living_mob, M) // yogs - Donor Features
+		job.give_cape(living_mob, M)
+		job.give_map_flare(living_mob, M)
 	log_game("[living_mob.real_name]/[M.client.ckey] joined the round as [living_mob.job].") //yogs - Job logging
-	job.give_donor_stuff(living_mob, M) // yogs - Donor Features
-	job.give_cape(living_mob, M)
-	job.give_map_flare(living_mob, M)
 
 	return living_mob
 
