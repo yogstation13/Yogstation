@@ -10421,6 +10421,21 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"aBi" = (
+/obj/structure/table/glass,
+/obj/item/book/manual/wiki/medical_cloning{
+	pixel_y = 6
+	},
+/obj/item/pen,
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = -23;
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "aBj" = (
 /obj/structure/rack,
 /obj/machinery/light{
@@ -41030,6 +41045,22 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"gxA" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/purple/filled/corner{
+	dir = 8
+	},
+/obj/machinery/airalarm{
+	dir = 2;
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "gxK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -52121,18 +52152,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"pqq" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/purple/filled/corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "pqK" = (
 /turf/closed/wall,
 /area/maintenance/department/medical/morgue)
@@ -60048,21 +60067,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"vKx" = (
-/obj/structure/table/glass,
-/obj/item/book/manual/wiki/medical_cloning{
-	pixel_y = 6
-	},
-/obj/item/pen,
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 8
-	},
-/obj/machinery/light_switch{
-	pixel_x = -24;
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "vKC" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -105222,7 +105226,7 @@ bpE
 kYK
 fQz
 ruc
-pqq
+gxA
 giB
 pSS
 kYK
@@ -105478,7 +105482,7 @@ dsG
 rkx
 kYK
 qXs
-vKx
+aBi
 oMM
 wXJ
 oob
