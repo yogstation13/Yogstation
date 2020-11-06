@@ -68,7 +68,7 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/color/black
 	ears = /obj/item/radio/headset/headset_cent/alt
-	mask = /obj/item/clothing/mask/cigarette
+	mask = /obj/item/clothing/mask/cigarette/lit
 	belt = /obj/item/storage/belt/military/occupying_officer
 	suit_store = /obj/item/gun/ballistic/automatic/wt550/occupying
 	back = /obj/item/melee/baton/cattleprod/tactical
