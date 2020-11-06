@@ -468,6 +468,9 @@
 	else if (href_list["clone"])
 		var/datum/data/record/C = find_record("id", href_list["clone"], records)
 		var/empty = href_list["empty"]
+		var/datum/mind/M = C.fields["mindref"]
+		if(M?.has_antag_datum(/datum/antagonist/changeling) && HAS_TRAIT(M, TRAIT_FAKEDEATH))
+			empty = TRUE
 		//Look for that player! They better be dead!
 		if(C)
 			if(C.fields["body_only"] && !empty)
