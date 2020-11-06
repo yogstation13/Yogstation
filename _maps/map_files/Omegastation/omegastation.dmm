@@ -33478,6 +33478,16 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"lOA" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/obj/effect/landmark/start/bartender,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "lOZ" = (
 /obj/structure/sign/nanotrasen{
 	pixel_y = 32
@@ -34251,13 +34261,6 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
-"mKt" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/holopad,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "mKK" = (
 /obj/structure/filingcabinet/chestdrawer,
 /obj/effect/turf_decal/tile/neutral{
@@ -40164,6 +40167,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/starboard)
+"sBA" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/holopad,
+/obj/effect/landmark/start/bartender,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "sBW" = (
 /obj/structure/sign/warning/vacuum,
 /turf/closed/wall/rust,
@@ -44184,6 +44195,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"vtU" = (
+/obj/effect/landmark/start/cook,
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "vtZ" = (
 /obj/machinery/door/airlock/command{
 	name = "Captain's Quarters";
@@ -46405,15 +46422,6 @@
 	},
 /turf/open/floor/plasteel/dark/corner,
 /area/engine/atmos)
-"xSb" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "xTn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 1
@@ -89928,7 +89936,7 @@ lxq
 fPe
 dRZ
 bXm
-mKt
+sBA
 try
 xXO
 apd
@@ -90177,7 +90185,7 @@ jTO
 cSP
 jTO
 jTO
-jTO
+vtU
 mYt
 ihJ
 wqV
@@ -90943,7 +90951,7 @@ oMi
 qvD
 aCe
 nLA
-jTO
+vtU
 uOk
 agf
 oDF
@@ -90958,7 +90966,7 @@ xXO
 giT
 tTl
 vSI
-xSb
+lOA
 sqz
 acY
 wDh
