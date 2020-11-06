@@ -23,12 +23,30 @@
 /obj/item/wrench,
 /turf/open/floor/plating,
 /area/template_noop)
+"l" = (
+/obj/item/circuitboard/machine/thermomachine/freezer,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"n" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/effect/turf_decal/delivery/red,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
+"o" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
 "u" = (
 /obj/structure/table/glass,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/showroomfloor,
-/area/template_noop)
-"v" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
 "z" = (
@@ -36,13 +54,10 @@
 	dir = 4;
 	icon_state = "warn_end"
 	},
-/obj/machinery/light{
-	dir = 8
+/obj/structure/frame,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
 	},
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 4
-	},
-/turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
 "C" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
@@ -52,12 +67,6 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
 "E" = (
-/turf/open/floor/plating,
-/area/template_noop)
-"F" = (
-/obj/machinery/light/broken{
-	dir = 4
-	},
 /turf/open/floor/plating,
 /area/template_noop)
 "G" = (
@@ -73,19 +82,13 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
-"L" = (
+"O" = (
 /obj/machinery/computer/med_data{
 	dir = 8
 	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/template_noop)
-"M" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+/obj/machinery/light/broken{
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/effect/turf_decal/delivery/red,
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
 "P" = (
@@ -118,7 +121,7 @@
 u
 W
 z
-M
+n
 "}
 (2,1,1) = {"
 P
@@ -129,18 +132,18 @@ K
 (3,1,1) = {"
 T
 c
-v
+l
 e
 "}
 (4,1,1) = {"
 c
 k
-E
+o
 b
 "}
 (5,1,1) = {"
 S
 g
-F
-L
+E
+O
 "}

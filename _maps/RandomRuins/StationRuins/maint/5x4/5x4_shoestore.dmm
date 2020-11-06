@@ -1,10 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"d" = (
-/obj/structure/table/wood,
-/obj/item/clothing/shoes/sneakers/white,
+"g" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
-"g" = (
+"w" = (
+/obj/structure/table/wood,
+/obj/item/clothing/shoes/winterboots{
+	pixel_y = 3
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
 "y" = (
@@ -12,24 +14,45 @@
 /obj/item/clothing/shoes/cowboy/white,
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
+"B" = (
+/obj/structure/table/wood,
+/obj/item/clothing/shoes/yogs/fuzzy_slippers{
+	pixel_x = 1;
+	pixel_y = 6
+	},
+/obj/item/shoe_protector/ultra{
+	pixel_x = 15;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
 "C" = (
 /obj/structure/table/wood,
 /obj/item/clothing/shoes/sneakers/rainbow,
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
-"I" = (
+"G" = (
 /obj/structure/table/wood,
-/obj/item/clothing/shoes/yogs/fuzzy_slippers,
+/obj/item/clothing/shoes/sneakers/white,
+/obj/item/clothing/shoes/yogs/trainers/zebra{
+	pixel_x = 12;
+	pixel_y = 7
+	},
+/obj/item/clothing/shoes/yogs/fire_crocs{
+	pixel_x = 30;
+	pixel_y = 13
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
-"N" = (
+"R" = (
 /obj/structure/table/wood,
-/obj/item/clothing/shoes/sneakers/yellow,
-/turf/open/floor/plasteel/showroomfloor,
-/area/template_noop)
-"Z" = (
-/obj/structure/table/wood,
-/obj/item/clothing/shoes/winterboots,
+/obj/item/clothing/shoes/sneakers/yellow{
+	pixel_x = -9;
+	pixel_y = -1
+	},
+/obj/item/clothing/shoes/yogs/trainers{
+	pixel_x = 13
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
 
@@ -42,19 +65,19 @@ g
 (2,1,1) = {"
 g
 y
-d
+G
 g
 "}
 (3,1,1) = {"
 g
-N
-I
+R
+B
 g
 "}
 (4,1,1) = {"
 g
 C
-Z
+w
 g
 "}
 (5,1,1) = {"

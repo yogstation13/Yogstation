@@ -3,13 +3,6 @@
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/template_noop)
-"c" = (
-/obj/item/seeds/glowshroom,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/template_noop)
 "d" = (
 /obj/effect/spawner/lootdrop/grille_or_trash,
 /turf/open/floor/plating,
@@ -89,6 +82,13 @@
 "A" = (
 /obj/item/storage/toolbox/mechanical,
 /obj/structure/table_frame/wood,
+/turf/open/floor/plating,
+/area/template_noop)
+"B" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/seeds/tower,
 /turf/open/floor/plating,
 /area/template_noop)
 "C" = (
@@ -305,7 +305,7 @@ u
 o
 X
 p
-c
+B
 U
 "}
 (10,1,1) = {"

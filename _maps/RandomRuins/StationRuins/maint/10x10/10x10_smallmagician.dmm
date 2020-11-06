@@ -20,12 +20,6 @@
 	icon_state = "platingdmg1"
 	},
 /area/template_noop)
-"e" = (
-/obj/structure/table/wood,
-/obj/structure/window/reinforced/spawner/west,
-/obj/effect/spawner/lootdrop/gambling,
-/turf/open/floor/plasteel/cafeteria,
-/area/template_noop)
 "f" = (
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks/beer,
@@ -269,6 +263,12 @@
 	},
 /turf/open/floor/carpet/red,
 /area/template_noop)
+"X" = (
+/obj/structure/table/wood,
+/obj/structure/window/reinforced/spawner/west,
+/obj/item/toy/cards/deck,
+/turf/open/floor/plasteel/cafeteria,
+/area/template_noop)
 "Y" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
@@ -359,7 +359,7 @@ A
 v
 v
 Z
-e
+X
 u
 z
 "}
