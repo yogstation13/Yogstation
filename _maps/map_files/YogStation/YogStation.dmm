@@ -10538,6 +10538,21 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"aBi" = (
+/obj/structure/table/glass,
+/obj/item/book/manual/wiki/medical_cloning{
+	pixel_y = 6
+	},
+/obj/item/pen,
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = -23;
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "aBj" = (
 /obj/structure/rack,
 /obj/machinery/light{
@@ -60196,21 +60211,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"vKx" = (
-/obj/structure/table/glass,
-/obj/item/book/manual/wiki/medical_cloning{
-	pixel_y = 6
-	},
-/obj/item/pen,
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 8
-	},
-/obj/machinery/light_switch{
-	pixel_x = -24;
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "vKC" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -105613,7 +105613,7 @@ dsG
 rkx
 kYK
 qXs
-vKx
+aBi
 oMM
 wXJ
 oob
