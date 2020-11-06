@@ -264,7 +264,7 @@
 	dwidth = 11
 	height = 22
 	width = 35
-	shuttlekeys = list("whiteship_salvage", "whiteship_construction", "whiteship_hospital", "whiteship_ufo", "whiteship_frigate")
+	shuttlekeys = list("whiteship_salvage", "whiteship_construction", "whiteship_hospital", "whiteship_ufo", "whiteship_frigate", "whiteship_miner")
 
 /obj/docking_port/mobile
 	name = "shuttle"

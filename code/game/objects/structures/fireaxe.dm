@@ -200,7 +200,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(!isliving(src))
+	if(!isliving(usr))
 		return
 
 	if(locked)
