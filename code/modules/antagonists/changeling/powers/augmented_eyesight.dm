@@ -55,5 +55,3 @@
 			E.flash_protect = 0
 		user.update_sight()
 	..()
-
-/datum/action/changeling/augmented_eyesight/on_purchase(mob/user)
