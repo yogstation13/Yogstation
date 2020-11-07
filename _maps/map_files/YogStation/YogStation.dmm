@@ -24350,16 +24350,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/supply)
-"bpj" = (
-/obj/structure/chair/comfy/brown{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Captain's Quarters";
-	dir = 1
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "bpk" = (
 /obj/structure/closet/secure_closet/captains,
 /turf/open/floor/carpet/blue,
@@ -36999,6 +36989,16 @@
 /obj/machinery/chem_master,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"dkE" = (
+/obj/structure/fireaxecabinet/spare{
+	pixel_y = 30;
+	req_access = list(20)
+	},
+/turf/open/floor/carpet/blue{
+	pixel_x = 0;
+	pixel_y = 25
+	},
+/area/crew_quarters/heads/captain)
 "dlq" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 8
@@ -47837,6 +47837,16 @@
 	},
 /turf/open/floor/carpet,
 /area/medical/psych)
+"lXs" = (
+/obj/structure/chair/comfy/brown{
+	dir = 4
+	},
+/obj/machinery/camera/motion{
+	c_tag = "Captains Office";
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "lYh" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -60348,9 +60358,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"vVj" = (
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "vVZ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -95962,7 +95969,7 @@ bhG
 blb
 bmy
 bkh
-bpj
+lXs
 bqH
 bsi
 blZ
@@ -96217,7 +96224,7 @@ bfl
 bim
 bjG
 aZV
-vVj
+dkE
 qWH
 kSk
 bqH
