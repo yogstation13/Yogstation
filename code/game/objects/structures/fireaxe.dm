@@ -13,6 +13,7 @@
 	var/obj/item/twohanded/fireaxe/fireaxe
 	var/obj/item/card/id/captains_spare/spareid
 	var/alert = TRUE
+	var/axe = TRUE
 
 //yogs NOTICE - Initialize() function MIRRORED to yogstation/code/game/objects/structure/fireaxe.dm
 //changes made to the below function will have no effect
@@ -39,7 +40,6 @@
 		if(obj_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=2))
 				return
-
 			to_chat(user, "<span class='notice'>You begin repairing [src].</span>")
 			if(I.use_tool(src, user, 40, volume=50, amount=2))
 				obj_integrity = max_integrity
@@ -65,7 +65,7 @@
 	//yogs end
 	else if(open || broken)
 		//Fireaxe cabinet is open or broken, so we can access it's axe slot
-		if(istype(I, /obj/item/twohanded/fireaxe) && !fireaxe)
+		if(istype(I, /obj/item/twohanded/fireaxe) && !fireaxe && axe)
 			var/obj/item/twohanded/fireaxe/F = I
 			if(F.wielded)
 				to_chat(user, "<span class='warning'>Unwield the [F.name] first.</span>")
@@ -76,7 +76,7 @@
 			to_chat(user, "<span class='caution'>You place the [F.name] back in the [name].</span>")
 			update_icon()
 			return
-		else if(istype(I, /obj/item/card/id/captains_spare) && !spareid)
+		else if(istype(I, /obj/item/card/id/captains_spare) && !spareid && !axe)
 			var/obj/item/card/id/captains_spare/S = I
 			if(!user.transferItemToLoc(S, src))
 				return
@@ -247,6 +247,7 @@
 	icon_state = "spareid"
 	alert = TRUE
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 0, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
+	axe = FALSE
 
 /obj/structure/fireaxecabinet/spare/Initialize()
 	. = ..()
