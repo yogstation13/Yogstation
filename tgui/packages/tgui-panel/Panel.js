@@ -8,7 +8,7 @@ import { Button, Flex, Section } from 'tgui/components';
 import { Pane } from 'tgui/layouts';
 import { NowPlayingWidget, useAudio } from './audio';
 import { ChatPanel, ChatTabs } from './chat';
-import { useGame } from './game';
+import { gameReducer, useGame } from './game';
 import { Notifications } from './Notifications';
 import { PingIndicator } from './ping';
 import { SettingsPanel, useSettings } from './settings';
@@ -96,13 +96,15 @@ export const Panel = (props, context) => {
                     </Button>
                   )}>
                   You are either AFK, experiencing lag or the connection
-                  has closed.
+                  has closed. If the server has been nuked, you..
+                  are just lagging, you should be fine in a moment.
                 </Notifications.Item>
               )}
-              {game.roundRestartedAt && (
+              {game.reconnectTimer > 0 && (
                 <Notifications.Item>
                   The connection has been closed because the server is
-                  restarting. Please wait while you automatically reconnect.
+                  restarting. Please wait while you automatically reconnected
+                  in {game.reconnectTimer} Seconds.
                 </Notifications.Item>
               )}
             </Notifications>
