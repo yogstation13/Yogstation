@@ -702,7 +702,7 @@
 	name = "Void Jaunt"
 	desc = "Move through the void for a time, avoiding mortal eyes and lights."
 	panel = "Shadowling Abilities"
-	charge_max = 800
+	charge_max = 150
 	clothes_req = FALSE
 	antimagic_allowed = TRUE
 	phase_allowed = TRUE
@@ -742,7 +742,7 @@
 
 //Both have to be high to cancel out natural regeneration
 #define VOIDJAUNT_STAM_PENALTY_DARK 10
-#define VOIDJAUNT_STAM_PENALTY_LIGHT 35
+#define VOIDJAUNT_STAM_PENALTY_LIGHT 40
 
 /obj/effect/dummy/phased_mob/shadowling
 	name = "darkness"
