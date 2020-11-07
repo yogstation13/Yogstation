@@ -58,6 +58,7 @@ HELPER(brown, rgb(178, 100, 56))
 HELPER(violet, rgb(64, 0, 128))
 
 HELPER_NAMED(scrubbers, "scrubbers pipe", rgb(255, 0, 0))
+HELPER_NAMED(scrubbersmain, "main scrubbers pipe", rgb(255, 45, 3))
 HELPER_NAMED(supply, "air supply pipe", rgb(0, 0, 255))
 HELPER_NAMED(supplymain, "main air supply pipe", rgb(130, 43, 255))
 
