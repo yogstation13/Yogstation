@@ -36989,16 +36989,6 @@
 /obj/machinery/chem_master,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
-"dkE" = (
-/obj/structure/fireaxecabinet/spare{
-	pixel_y = 30;
-	req_access = list(20)
-	},
-/turf/open/floor/carpet/blue{
-	pixel_x = 0;
-	pixel_y = 25
-	},
-/area/crew_quarters/heads/captain)
 "dlq" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 8
@@ -42784,6 +42774,16 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
+"hSy" = (
+/obj/structure/chair/comfy/brown{
+	dir = 4
+	},
+/obj/machinery/camera/motion{
+	c_tag = "Captains Office";
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "hSA" = (
 /obj/machinery/camera/motion{
 	c_tag = "Telecomms Maintenance";
@@ -47837,16 +47837,6 @@
 	},
 /turf/open/floor/carpet,
 /area/medical/psych)
-"lXs" = (
-/obj/structure/chair/comfy/brown{
-	dir = 4
-	},
-/obj/machinery/camera/motion{
-	c_tag = "Captains Office";
-	dir = 1
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "lYh" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -50657,6 +50647,14 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"ofG" = (
+/obj/structure/fireaxecabinet/spare{
+	pixel_x = 2;
+	pixel_y = 30;
+	req_access = list(20)
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "ogk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -55212,6 +55210,14 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plasteel,
 /area/medical/storage)
+"rLs" = (
+/obj/structure/dresser,
+/obj/structure/dresser,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "rLw" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
@@ -55904,14 +55910,6 @@
 /obj/item/book/random,
 /turf/open/floor/plasteel,
 /area/clerk)
-"slb" = (
-/obj/structure/dresser,
-/obj/structure/dresser,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "slk" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -95710,7 +95708,7 @@ ihF
 bdk
 bhv
 aZV
-slb
+rLs
 aMV
 bpk
 bqH
@@ -95969,7 +95967,7 @@ bhG
 blb
 bmy
 bkh
-lXs
+hSy
 bqH
 bsi
 blZ
@@ -96224,7 +96222,7 @@ bfl
 bim
 bjG
 aZV
-dkE
+ofG
 qWH
 kSk
 bqH

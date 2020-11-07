@@ -246,12 +246,10 @@
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "spareid"
 	alert = TRUE
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 0, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
 
 /obj/structure/fireaxecabinet/spare/Initialize()
 	. = ..()
 	fireaxe = null
 	spareid = new
 	update_icon()
-
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 0, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
-	max_integrity = 200//yogs - increase durability to 200
