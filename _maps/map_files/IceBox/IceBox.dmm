@@ -10863,10 +10863,6 @@
 /obj/structure/closet,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
-"avF" = (
-/obj/machinery/light/small,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "avG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
@@ -16006,10 +16002,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
-"aFC" = (
-/mob/living/simple_animal/hostile/retaliate/goose/vomit,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "aFD" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -16069,15 +16061,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
-"aFJ" = (
-/obj/machinery/meter{
-	target_layer = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer1{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "aFK" = (
 /obj/item/paper_bin{
 	pixel_x = 1;
@@ -58828,6 +58811,11 @@
 /obj/item/instrument/harmonica,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"hrY" = (
+/obj/structure/lattice,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/crew_quarters/fitness)
 "htC" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -59442,6 +59430,11 @@
 /obj/item/clothing/mask/gas,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"jrL" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "jsp" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -59706,6 +59699,11 @@
 /obj/machinery/computer/med_data,
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
+"knb" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "knx" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -61570,6 +61568,16 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/plating,
 /area/tcommsat/entrance)
+"qHn" = (
+/obj/machinery/meter{
+	target_layer = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer1{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "qIU" = (
 /obj/item/storage/secure/safe{
 	pixel_x = 5;
@@ -103654,17 +103662,17 @@ aae
 aae
 aae
 aDf
-aDf
-auB
-auB
-atZ
-auB
-auB
-aya
-azp
-azp
-aTJ
-bOJ
+aro
+aro
+aro
+aro
+aro
+aro
+aro
+aro
+aro
+aro
+bkD
 apU
 alQ
 aIb
@@ -103910,18 +103918,18 @@ aae
 aae
 aag
 aag
-aag
-arj
-arj
-arj
-auA
-awi
-aER
-ayb
-arj
-alQ
-alQ
-aae
+aDf
+aro
+aro
+aro
+aro
+aro
+aro
+aro
+aro
+aro
+aro
+bkD
 aae
 alQ
 aIb
@@ -104167,18 +104175,18 @@ aae
 aag
 aag
 aag
-aag
-aag
-aag
-arj
-auz
-auu
-awx
-ayc
-arj
-aqR
-alQ
-alQ
+aDf
+aro
+aro
+aro
+aro
+aro
+aro
+aro
+aro
+aro
+aro
+bkD
 alQ
 alQ
 bSS
@@ -104422,20 +104430,20 @@ aae
 aae
 aag
 aag
+apU
 aae
-aae
-aae
-aae
-aag
-arj
 aDf
-aDf
-arj
-arj
-arj
-ani
-aFC
-ani
+aro
+aro
+aro
+aro
+aro
+aro
+aro
+aro
+aro
+aro
+bkD
 auw
 alQ
 bSU
@@ -104681,18 +104689,18 @@ aag
 aae
 aae
 aae
-aae
-aae
-aag
-aae
-aae
-apU
-aae
-aae
-alQ
-ani
-ani
-ani
+aDf
+aDf
+aDf
+auB
+atZ
+hrY
+auB
+aya
+azp
+azp
+azp
+bOJ
 ani
 alQ
 bSV
@@ -104941,14 +104949,14 @@ aae
 aae
 aae
 aag
-aae
-aae
-apU
-aae
-aae
-alQ
+arj
+auA
+awi
+aER
+ayb
+arj
 aDK
-aFJ
+qHn
 aGL
 aGW
 alQ
@@ -105197,16 +105205,16 @@ aae
 aae
 aag
 aag
-alR
-alR
-alR
-alQ
-alQ
-alQ
-alQ
+aae
+arj
+auz
+auu
+awx
+ayc
+arj
 aEe
 aFV
-alQ
+ani
 aGX
 bSE
 bSX
@@ -105451,16 +105459,16 @@ abY
 aae
 aae
 aae
-aaf
-alR
-arH
-alR
-auw
-ani
-aqz
-auw
-ani
-alQ
+aae
+aae
+aae
+aae
+arj
+aDf
+aDf
+arj
+arj
+arj
 alQ
 cVb
 cVb
@@ -105709,14 +105717,14 @@ aae
 aae
 aae
 aaf
-aqM
-dym
-asR
-tda
-tda
-hbp
-fZW
-nqk
+alR
+arH
+alR
+auw
+ani
+ani
+ani
+ani
 ani
 apB
 cVb
@@ -105966,14 +105974,14 @@ aae
 aae
 aae
 aaf
-alR
-alR
-alR
-ani
-avF
-alQ
-ani
-ibl
+aqM
+dym
+asR
+tda
+jrL
+hbp
+fZW
+nqk
 ani
 ani
 cVb
@@ -106222,13 +106230,13 @@ abY
 aae
 aae
 aae
-aae
-aae
-aae
+aaf
 alR
+alR
+knb
 aqQ
 ani
-alQ
+ani
 ani
 ibl
 ani
