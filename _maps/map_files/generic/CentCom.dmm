@@ -1123,10 +1123,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
-/obj/item/training_toolbox{
+/obj/item/storage/toolbox{
 	pixel_y = 4
 	},
-/obj/item/training_toolbox,
+/obj/item/storage/toolbox,
 /obj/machinery/magnetic_controller{
 	autolink = 1
 	},

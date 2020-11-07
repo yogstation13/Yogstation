@@ -37662,11 +37662,6 @@
 /obj/effect/turf_decal/trimline/purple/filled/corner,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
-"dFM" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness)
 "dGx" = (
 /obj/machinery/door/airlock/virology/glass{
 	name = "Isolation B";
@@ -41882,6 +41877,14 @@
 /obj/structure/bed/roller,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"hoR" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/engine{
+	name = "Holodeck Projector Floor"
+	},
+/area/holodeck/rec_center)
 "hoZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -46535,15 +46538,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"kTe" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 5
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "kTQ" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
@@ -47186,15 +47180,6 @@
 /obj/item/stock_parts/subspace/filter,
 /turf/open/floor/plasteel/white,
 /area/storage/tech)
-"lrQ" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Holodeck Maintenance";
-	req_access_txt = "12"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "lsn" = (
 /obj/machinery/light,
 /turf/open/floor/engine,
@@ -51564,15 +51549,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/mixing/chamber)
-"oOm" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "oOH" = (
 /obj/machinery/computer/upload/borg{
 	dir = 1
@@ -53460,6 +53436,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
+"qnZ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "qof" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -55460,6 +55445,15 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"rXm" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "rXD" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -55589,6 +55583,11 @@
 	},
 /turf/open/floor/plating,
 /area/teleporter)
+"scv" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness)
 "scE" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 1
@@ -56570,10 +56569,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"sTy" = (
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness)
 "sUD" = (
 /obj/structure/table,
 /obj/item/phone,
@@ -56752,6 +56747,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"taZ" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Holodeck Maintenance";
+	req_access_txt = "12"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "tbz" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1
@@ -62678,6 +62682,12 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
+"xYb" = (
+/obj/machinery/light,
+/turf/open/floor/engine{
+	name = "Holodeck Projector Floor"
+	},
+/area/holodeck/rec_center)
 "xYi" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
@@ -102813,6 +102823,7 @@ aaa
 aaa
 aaa
 aDf
+hoR
 aro
 aro
 aro
@@ -102821,8 +102832,7 @@ aro
 aro
 aro
 aro
-aro
-aro
+xYb
 arj
 uBx
 nnZ
@@ -104361,7 +104371,7 @@ arj
 asN
 awi
 aER
-sTy
+asN
 arj
 arx
 arx
@@ -104618,10 +104628,10 @@ arj
 noU
 auu
 awx
-dFM
-lrQ
+scv
+taZ
 osz
-kTe
+qnZ
 anf
 oyA
 syq
@@ -104877,8 +104887,8 @@ arj
 arj
 arj
 arj
-anf
-oOm
+jhp
+rXm
 asA
 alP
 syq
