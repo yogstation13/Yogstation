@@ -111,10 +111,11 @@
 	getMobhook(user)
 
 /obj/item/clothing/neck/bodycam/dropped(mob/wearer)
-	if(bodcam.status)//if it's on
-		attack_self(wearer) //turn it off
-	GLOB.cameranet.updatePortableCamera(bodcam)
-	UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+	if(bodcam)
+		if(bodcam.status)//if it's on
+			attack_self(wearer) //turn it off
+		GLOB.cameranet.updatePortableCamera(bodcam)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 	..()
 
 /obj/item/clothing/neck/bodycam/proc/getMobhook(mob/to_hook) //This stuff is basically copypasta from RCL.dm, look there if you are confused
