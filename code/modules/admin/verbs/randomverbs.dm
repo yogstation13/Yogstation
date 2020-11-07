@@ -1249,9 +1249,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/confirm = alert(usr, "Are you Sure you want to offer them?", "Are you Sure", "Yes", "No")
 	if(confirm == "No")
 		return
-	var/offer = alert(usr, "Do you want to try to offer to ghosts first?", "Ghost Offer", "Yes", "No")
-	if(offer == "Yes" && offer_control(target))
-		return
 	for(var/obj/machinery/cryopod/cryopod in GLOB.cryopods)
 		if(cryopod.occupant)
 			continue
