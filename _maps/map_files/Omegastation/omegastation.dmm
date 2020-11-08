@@ -2449,22 +2449,6 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/fore)
-"adG" = (
-/obj/structure/toilet{
-	dir = 4
-	},
-/obj/machinery/light,
-/obj/machinery/newscaster{
-	pixel_x = 32
-	},
-/obj/machinery/vending/wallmed{
-	name = "Emergency NanoMed";
-	pixel_x = -26;
-	use_power = 0
-	},
-/obj/effect/landmark/start/captain,
-/turf/open/floor/plasteel/white,
-/area/crew_quarters/heads/captain/private)
 "adH" = (
 /turf/closed/wall,
 /area/crew_quarters/heads/captain/private)
@@ -2529,20 +2513,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
-"adL" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/cable/white{
-	icon_state = "2-8"
-	},
-/obj/structure/sign/plaques/golden/captain{
-	pixel_x = 32
-	},
-/obj/structure/table/wood,
-/obj/item/phone/real,
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain/private)
 "adM" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Maintenance Hatch";
@@ -3004,10 +2974,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/fore)
-"aeu" = (
-/obj/structure/sign/nanotrasen,
-/turf/closed/wall,
-/area/crew_quarters/heads/captain/private)
 "aev" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -20614,6 +20580,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint)
+"aXF" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/cable/white{
+	icon_state = "2-8"
+	},
+/obj/structure/table/wood,
+/obj/item/phone/real,
+/obj/structure/fireaxecabinet/spare{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "aXK" = (
 /obj/structure/closet/firecloset,
 /obj/machinery/light/small{
@@ -31891,6 +31871,26 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/starboard/aft)
+"jXu" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/machinery/light,
+/obj/machinery/newscaster{
+	pixel_x = 32
+	},
+/obj/machinery/vending/wallmed{
+	name = "Emergency NanoMed";
+	pixel_x = -26;
+	use_power = 0
+	},
+/obj/effect/landmark/start/captain,
+/obj/structure/sign/plaques/golden/captain{
+	pixel_x = 0;
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/heads/captain/private)
 "jXM" = (
 /obj/structure/table/wood/fancy,
 /obj/item/storage/book/bible,
@@ -85275,8 +85275,8 @@ aad
 swC
 abX
 ace
-adG
-aeu
+jXu
+adH
 afk
 afX
 agO
@@ -86560,7 +86560,7 @@ aae
 abw
 acc
 acS
-adL
+aXF
 aer
 afo
 msP
