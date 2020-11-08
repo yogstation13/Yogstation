@@ -498,6 +498,33 @@
 	id= "dronehole"
 	suffix = "3x3_dronehole.dmm"
 	name = "Maint dronehole"
+///Author: SergeyMeyer
+/datum/map_template/ruin/station/maint/threexthree/command
+	id= "command"
+	suffix = "3x3_command.dmm"
+	name = "Maint command"
+
+///Author: SergeyMeyer
+/datum/map_template/ruin/station/maint/threexthree/dummy
+	id= "dummy"
+	suffix = "3x3_dummy.dmm"
+	name = "Maint dummy"
+
+///Author: SergeyMeyer
+/datum/map_template/ruin/station/maint/threexthree/spaceart
+	id= "spaceart"
+	suffix = "3x3_spaceart.dmm"
+	name = "Maint spaceart"
+
+/datum/map_template/ruin/station/maint/threexthree/containmentcell
+	id= "containmentcell"
+	suffix = "3x3_containmentcell.dmm"
+	name = "Maint containmentcell"
+
+/datum/map_template/ruin/station/maint/threexthree/naughtyroom
+	id= "naughtyroom"
+	suffix = "3x3_naughtyroom.dmm"
+	name = "Maint naughtyroom"
 
 ///The base for the 3x5 rooms.
 /datum/map_template/ruin/station/maint/threexfive
@@ -585,6 +612,43 @@
 	id= "boxmaintfreezers"
 	suffix = "3x5_boxmaintfreezers.dmm"
 	name = "Maint boxmaintfreezers"
+
+///Author: SergeyMeyer
+/datum/map_template/ruin/station/maint/threexfive/churchroach
+	id= "churchroach"
+	suffix = "3x5_churchroach.dmm"
+	name = "Maint churchroach"
+
+///Author: SergeyMeyer
+/datum/map_template/ruin/station/maint/threexfive/mirror
+	id= "mirror"
+	suffix = "3x5_mirror.dmm"
+	name = "Maint mirror"
+
+/datum/map_template/ruin/station/maint/threexfive/chromosomes
+	id= "chromosomes"
+	suffix = "3x5_chromosomes.dmm"
+	name = "Maint chromosomes"
+
+/datum/map_template/ruin/station/maint/threexfive/clutter
+	id= "clutter"
+	suffix = "3x5_clutter.dmm"
+	name = "Maint clutter"
+
+/datum/map_template/ruin/station/maint/threexfive/dissection
+	id= "dissection"
+	suffix = "3x5_dissection.dmm"
+	name = "Maint dissection"
+
+/datum/map_template/ruin/station/maint/threexfive/emergencyoxy
+	id= "emergencyoxy"
+	suffix = "3x5_emergencyoxy.dmm"
+	name = "Maint emergencyoxy"
+
+/datum/map_template/ruin/station/maint/threexfive/oreboxes
+	id= "oreboxes"
+	suffix = "3x5_oreboxes.dmm"
+	name = "Maint oreboxes"
 
 ///The base for the 5x3 rooms.
 /datum/map_template/ruin/station/maint/fivexthree
@@ -697,6 +761,32 @@
 	id= "waitingroom"
 	suffix = "5x3_waitingroom.dmm"
 	name = "Maint waitingroom"
+
+///Author: SergeyMeyer
+/datum/map_template/ruin/station/maint/fivexthree/highqualitysurgery
+	id= "highqualitysurgery"
+	suffix = "5x3_highqualitysurgery.dmm"
+	name = "Maint highqualitysurgery"
+
+/datum/map_template/ruin/station/maint/fivexthree/chestburst
+	id= "chestburst"
+	suffix = "5x3_chestburst.dmm"
+	name = "Maint chestburst"
+
+/datum/map_template/ruin/station/maint/fivexthree/gloveroom
+	id= "gloveroom"
+	suffix = "5x3_gloveroom.dmm"
+	name = "Maint gloveroom"
+
+/datum/map_template/ruin/station/maint/fivexthree/magicroom
+	id= "magicroom"
+	suffix = "5x3_magicroom.dmm"
+	name = "Maint magicroom"
+
+/datum/map_template/ruin/station/maint/fivexthree/spareparts
+	id= "spareparts"
+	suffix = "5x3_spareparts.dmm"
+	name = "Maint spareparts"
 
 ///The base for the 5x4 rooms.
 /datum/map_template/ruin/station/maint/fivexfour
@@ -832,6 +922,33 @@
 	suffix = "5x4_tinybarbershop.dmm"
 	name = "Maint tinybarbershop"
 
+///Author: VeebleFetzer
+/datum/map_template/ruin/station/maint/fivexfour/boxclutter
+	id= "boxclutter"
+	suffix = "5x4_boxclutter.dmm"
+	name = "Maint boxclutter"
+///Author: VeebleFetzer
+/datum/map_template/ruin/station/maint/fivexfour/posterstore
+	id= "posterstore"
+	suffix = "5x4_posterstore.dmm"
+	name = "Maint posterstore"
+
+///Author: SergeyMeyer
+/datum/map_template/ruin/station/maint/fivexfour/shoestore
+	id= "shoestore"
+	suffix = "5x4_shoestore.dmm"
+	name = "Maint shoestore"
+
+/datum/map_template/ruin/station/maint/fivexfour/nanitechamber
+	id= "nanitechamber"
+	suffix = "5x4_nanitechamber.dmm"
+	name = "Maint nanitechamber"
+
+/datum/map_template/ruin/station/maint/fivexfour/oldcryoroom
+	id= "oldcryoroom"
+	suffix = "5x4_oldcryoroom.dmm"
+	name = "Maint oldcryoroom"
+
 ///The base for the 10x5 rooms
 /datum/map_template/ruin/station/maint/tenxfive
 	prefix = "_maps/RandomRuins/StationRuins/maint/10x5/"
@@ -921,6 +1038,42 @@
 	id= "firingrange"
 	suffix = "10x5_firingrange.dmm"
 	name = "Maint firingrange"
+
+///Author: Veeblefetzer
+/datum/map_template/ruin/station/maint/tenxfive/clothingstore
+	id= "clothingstore"
+	suffix = "10x5_clothingstore.dmm"
+	name = "Maint clothingstore"
+
+/datum/map_template/ruin/station/maint/tenxfive/butchersden
+	id= "butchersden"
+	suffix = "10x5_butchersden.dmm"
+	name = "Maint butchersden"
+
+/datum/map_template/ruin/station/maint/tenxfive/courtroom
+	id= "courtroom"
+	suffix = "10x5_courtroom.dmm"
+	name = "Maint courtroom"
+
+/datum/map_template/ruin/station/maint/tenxfive/gaschamber
+	id= "gaschamber"
+	suffix = "10x5_gaschamber.dmm"
+	name = "Maint gaschamber"
+
+/datum/map_template/ruin/station/maint/tenxfive/oldaichamber
+	id= "oldaichamber"
+	suffix = "10x5_oldaichamber.dmm"
+	name = "Maint oldaichamber"
+
+/datum/map_template/ruin/station/maint/tenxfive/radiationtherapy
+	id= "radiationtherapy"
+	suffix = "10x5_radiationtherapy.dmm"
+	name = "Maint radiationtherapy"
+
+/datum/map_template/ruin/station/maint/tenxfive/ratburger
+	id= "ratburger"
+	suffix = "10x5_ratburger.dmm"
+	name = "Maint ratburger"
 
 ///The base for the 10x10 rooms.
 /datum/map_template/ruin/station/maint/tenxten
@@ -1018,3 +1171,49 @@
 	id= "maze2"
 	suffix = "10x10_maze2.dmm"
 	name = "Maint maze2"
+
+///Author: Veeblefetzer
+/datum/map_template/ruin/station/maint/tenxten/boxfactory
+	id= "boxfactory"
+	suffix = "10x10_boxfactory.dmm"
+	name = "Maint boxfactory"
+
+/datum/map_template/ruin/station/maint/tenxten/sixsectorsdown
+	id= "sixsectorsdown"
+	suffix = "10x10_sixsectorsdown.dmm"
+	name = "Maint sixsectorsdown"
+
+/datum/map_template/ruin/station/maint/tenxten/advbotany
+	id= "advbotany"
+	suffix = "10x10_advbotany.dmm"
+	name = "Maint advbotany"
+
+/datum/map_template/ruin/station/maint/tenxten/beach
+	id= "beach"
+	suffix = "10x10_beach.dmm"
+	name = "Maint beach"
+
+/datum/map_template/ruin/station/maint/tenxten/botany_apiary
+	id= "botany_apiary"
+	suffix = "10x10_botany_apiary.dmm"
+	name = "Maint botany_apiary"
+
+/datum/map_template/ruin/station/maint/tenxten/gamercave
+	id= "gamercave"
+	suffix = "10x10_gamercave.dmm"
+	name = "Maint gamercave"
+
+/datum/map_template/ruin/station/maint/tenxten/ladytesla_altar
+	id= "ladytesla_altar"
+	suffix = "10x10_ladytesla_altar.dmm"
+	name = "Maint ladytesla_altar"
+
+/datum/map_template/ruin/station/maint/tenxten/olddiner
+	id= "olddiner"
+	suffix = "10x10_olddiner.dmm"
+	name = "Maint olddiner"
+
+/datum/map_template/ruin/station/maint/tenxten/smallmagician
+	id= "smallmagician"
+	suffix = "10x10_smallmagician.dmm"
+	name = "Maint smallmagician"

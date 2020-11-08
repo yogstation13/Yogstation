@@ -55897,14 +55897,6 @@
 /obj/item/book/random,
 /turf/open/floor/plasteel,
 /area/clerk)
-"slb" = (
-/obj/structure/dresser,
-/obj/structure/dresser,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "slk" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -56731,6 +56723,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"sYn" = (
+/obj/structure/dresser,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "sYv" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -95752,7 +95751,7 @@ ihF
 bdk
 bhv
 aZV
-slb
+sYn
 aMV
 bpk
 bqH

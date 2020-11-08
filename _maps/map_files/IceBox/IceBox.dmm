@@ -32203,13 +32203,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/captain)
-"bmz" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/dresser,
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "bmA" = (
 /obj/machinery/door/airlock{
 	name = "Private Restroom"
@@ -32221,12 +32214,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/freezer,
-/area/crew_quarters/heads/captain)
-"bmB" = (
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
-/turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/captain)
 "bmC" = (
 /obj/structure/sink{
@@ -59579,6 +59566,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"jUy" = (
+/obj/machinery/light_switch{
+	pixel_y = 28
+	},
+/obj/structure/fireaxecabinet/spare{
+	pixel_x = 2;
+	pixel_y = 30
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "jWz" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Central Access"
@@ -63108,6 +63105,17 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"uJO" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/dresser,
+/obj/machinery/light_switch{
+	pixel_x = 10;
+	pixel_y = 28
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "uNF" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -96760,7 +96768,7 @@ aWt
 bdk
 bhv
 aZV
-bmz
+uJO
 aMV
 bpk
 bqH
@@ -97274,7 +97282,7 @@ bfl
 bim
 bjG
 aZV
-bmB
+jUy
 aCd
 bpl
 bqH

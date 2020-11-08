@@ -30005,16 +30005,6 @@
 /obj/machinery/door/window/westright,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
-"bfD" = (
-/obj/structure/bed,
-/obj/item/bedsheet/captain,
-/obj/effect/landmark/start/captain,
-/obj/machinery/camera{
-	c_tag = "Captain's Quarters";
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain/private)
 "bfE" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
@@ -31102,13 +31092,6 @@
 	dir = 8
 	},
 /obj/machinery/holopad,
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain/private)
-"bhz" = (
-/obj/structure/table/wood,
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
 "bhA" = (
@@ -78958,6 +78941,16 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"jYH" = (
+/obj/structure/table/wood,
+/obj/machinery/recharger{
+	pixel_y = 4
+	},
+/obj/structure/fireaxecabinet/spare{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "kay" = (
 /obj/machinery/camera{
 	c_tag = "Cryogenics";
@@ -80440,6 +80433,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"oeU" = (
+/obj/structure/bed,
+/obj/item/bedsheet/captain,
+/obj/effect/landmark/start/captain,
+/obj/machinery/camera{
+	c_tag = "Captain's Quarters";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "ofX" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -115974,8 +115977,8 @@ aVE
 aMw
 bcj
 bdN
-bfD
-bhz
+oeU
+jYH
 bjk
 bkP
 bjg
