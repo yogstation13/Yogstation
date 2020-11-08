@@ -1557,9 +1557,6 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
-"eL" = (
-/turf/open/floor/holofloor/carpet,
-/area/holodeck/rec_center/spacechess)
 "eM" = (
 /obj/structure/chair{
 	dir = 1
@@ -23955,6 +23952,12 @@
 "Zi" = (
 /turf/open/floor/plasteel/dark,
 /area)
+"Zj" = (
+/turf/open/floor/holofloor{
+	dir = 9;
+	icon_state = "wood"
+	},
+/area/holodeck/rec_center/spacechess)
 "Zk" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -87330,16 +87333,16 @@ bk
 bk
 bk
 bj
-eL
-eL
-eL
-eL
-eL
-eL
-eL
-eL
-eL
-eL
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
 bj
 We
 We
