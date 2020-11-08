@@ -5073,15 +5073,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/brig)
-"ajX" = (
-/obj/structure/table,
-/obj/item/paper/fluff/holodeck/disclaimer,
-/obj/item/storage/firstaid/regular{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness/recreation)
 "ajZ" = (
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
@@ -76735,6 +76726,18 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
+"eTl" = (
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "eUw" = (
 /obj/machinery/camera{
 	c_tag = "Engineering - Transit Tube Access";
@@ -76954,10 +76957,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/fore)
-"fDf" = (
-/obj/effect/landmark/event_spawn,
-/turf/closed/wall,
-/area/maintenance/starboard/fore)
 "fEQ" = (
 /turf/closed/wall,
 /area/science/nanite)
@@ -77639,14 +77638,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"gYI" = (
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "gZY" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -78011,12 +78002,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/crew_quarters/fitness/recreation)
-"hLe" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Holodeck Door"
-	},
-/turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
 "hLU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -79167,6 +79152,11 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel/dark,
+/area/crew_quarters/fitness/recreation)
+"kCO" = (
+/obj/structure/table,
+/obj/item/paper/fluff/holodeck/disclaimer,
+/turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
 "kDh" = (
 /obj/structure/cable/yellow{
@@ -81453,6 +81443,17 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/fore)
+"qQu" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness/recreation)
 "qUL" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/closet/emcloset,
@@ -81739,11 +81740,6 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/starboard/aft)
-"rvW" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/space/basic,
-/area/crew_quarters/fitness/recreation)
 "rwu" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
@@ -82019,10 +82015,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"sqy" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/space/basic,
-/area/crew_quarters/fitness/recreation)
 "srO" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/abandoned,
@@ -82619,16 +82611,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"tvN" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness/recreation)
 "tvW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -83547,6 +83529,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"vEy" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Holodeck Door"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness/recreation)
 "vHB" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 1
@@ -84404,6 +84396,16 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
+"xMe" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Holodeck Door"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness/recreation)
 "xNl" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -122885,10 +122887,10 @@ afD
 afD
 afD
 afD
+acP
+acP
 aee
-sqy
-sqy
-rvW
+aee
 lMJ
 dnh
 asY
@@ -123142,10 +123144,10 @@ afD
 afD
 afD
 afD
-hLe
+vEy
 kNI
 xjg
-sqy
+aee
 lMJ
 dnh
 uiv
@@ -123399,10 +123401,10 @@ afD
 afD
 afD
 afD
-aee
+acQ
 ahg
 oXu
-sqy
+aee
 lMJ
 dnh
 ate
@@ -123656,10 +123658,10 @@ afD
 afD
 afD
 afD
-aee
-ajX
+acQ
+kCO
 qji
-sqy
+aee
 lMJ
 dnh
 gIT
@@ -123913,7 +123915,7 @@ afD
 afD
 afD
 afD
-aee
+acQ
 tVQ
 fKC
 dnh
@@ -124170,10 +124172,10 @@ afD
 afD
 afD
 afD
-hLe
+xMe
 oKk
 xoy
-gYI
+eTl
 gpd
 ubC
 qhr
@@ -124427,10 +124429,10 @@ afD
 afD
 afD
 afD
-aee
+acQ
 pep
-tvN
-fDf
+qQu
+dnh
 arJ
 gaG
 bcI
@@ -124684,7 +124686,7 @@ afD
 afD
 afD
 afD
-aee
+acP
 acP
 acP
 dnh
