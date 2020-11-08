@@ -83677,7 +83677,9 @@
 /area/hallway/primary/fore)
 "hTd" = (
 /obj/structure/easel,
-/obj/machinery/airalarm/directional/south,
+/obj/machinery/airalarm/directional/south{
+	pixel_y = -24
+	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "hTP" = (
@@ -84197,6 +84199,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"jfR" = (
+/obj/structure/fireaxecabinet/spare{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "jiO" = (
 /obj/structure/closet/firecloset,
 /obj/effect/turf_decal/tile/red{
@@ -126483,7 +126491,7 @@ aTa
 aTY
 aVe
 aif
-aVh
+jfR
 aZz
 ceY
 aTa

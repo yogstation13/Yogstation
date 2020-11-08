@@ -42145,13 +42145,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
-"boa" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/item/storage/secure/safe{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel/grimy,
-/area/crew_quarters/heads/captain/private)
 "bob" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -126738,6 +126731,16 @@
 /obj/machinery/bounty_board,
 /turf/closed/wall,
 /area/hallway/secondary/service)
+"mro" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/storage/secure/safe{
+	pixel_x = 32
+	},
+/obj/structure/fireaxecabinet/spare{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/grimy,
+/area/crew_quarters/heads/captain/private)
 "mvm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/white{
@@ -170860,7 +170863,7 @@ bUQ
 bVT
 dkH
 cbg
-boa
+mro
 ceL
 cgy
 bUQ
