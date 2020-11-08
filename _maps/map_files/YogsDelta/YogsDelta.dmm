@@ -108254,17 +108254,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
-"dhY" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 8;
-	icon_state = "scrub_map_on-3"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness/recreation)
 "dhZ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -126053,6 +126042,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/science/research)
+"geo" = (
+/obj/machinery/light,
+/turf/open/floor/engine{
+	name = "Holodeck Projector Floor"
+	},
+/area/holodeck/rec_center)
 "gCK" = (
 /turf/closed/wall,
 /area/maintenance/department/science)
@@ -127692,6 +127687,14 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"vMH" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/engine{
+	name = "Holodeck Projector Floor"
+	},
+/area/holodeck/rec_center)
 "vNF" = (
 /obj/machinery/light{
 	dir = 4
@@ -127948,6 +127951,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"xzX" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 8;
+	icon_state = "scrub_map_on-3"
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness/recreation)
 "xDZ" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1
@@ -185321,7 +185336,7 @@ cFF
 cFF
 cFF
 cFF
-cFF
+geo
 dtE
 cwQ
 dtE
@@ -186083,7 +186098,7 @@ aad
 dtE
 cox
 dtE
-cFF
+vMH
 cFF
 cFF
 cFF
@@ -187888,7 +187903,7 @@ cIo
 dhT
 cLp
 cMK
-dhY
+xzX
 cIo
 aad
 aaa
