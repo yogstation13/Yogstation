@@ -702,7 +702,7 @@
 	name = "Void Jaunt"
 	desc = "Move through the void for a time, avoiding mortal eyes and lights."
 	panel = "Shadowling Abilities"
-	charge_max = 150
+	charge_max = 250
 	clothes_req = FALSE
 	antimagic_allowed = TRUE
 	phase_allowed = TRUE
