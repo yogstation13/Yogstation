@@ -544,6 +544,17 @@
 	category = list("Cybernetics", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/synthetic_plasmavessel
+	name = "Synthetic Plasma Vessel"
+	desc = "A complex snythetic construct meant to replicate the effects of a plasma vessel"
+	id = "synthetic_plasmavessel"
+	build_type = PROTOLATHE
+	construction_time = 50
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500, /datum/material/gold = 1250, /datum/material/plasma = 10000, /datum/material/diamond = 1000, /datum/material/bluespace = 2000)
+	build_path = /obj/item/organ/alien/plasmavessel/synthetic
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
 /////////////////////
 ///Surgery Designs///
 /////////////////////
