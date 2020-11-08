@@ -1,4 +1,4 @@
-#define EMPOWERED_THRALL_LIMIT 5
+#define EMPOWERED_THRALL_LIMIT 3
 
 /obj/effect/proc_holder/spell/proc/shadowling_check(var/mob/living/carbon/human/H)
 	if(!H || !istype(H)) return
@@ -601,6 +601,7 @@
 				thrallToRevive.set_species(/datum/species/shadow/ling/lesser)
 				thrallToRevive.mind.RemoveSpell(/obj/effect/proc_holder/spell/targeted/lesser_glare)
 				thrallToRevive.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/glare(null))
+				thrallToRevive.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/veil(null))
 			if("Revive")
 				if(!is_thrall(thrallToRevive))
 					to_chat(user, "<span class='warning'>[thrallToRevive] is not a thrall.</span>")
