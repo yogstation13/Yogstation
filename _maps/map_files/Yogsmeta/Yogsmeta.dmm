@@ -31206,13 +31206,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
-"bhz" = (
-/obj/structure/table/wood,
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain/private)
 "bhA" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -79031,6 +79024,16 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"jYH" = (
+/obj/structure/table/wood,
+/obj/machinery/recharger{
+	pixel_y = 4
+	},
+/obj/structure/fireaxecabinet/spare{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "kay" = (
 /obj/machinery/camera{
 	c_tag = "Cryogenics";
@@ -80088,19 +80091,6 @@
 /obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
 /area/maintenance/fore)
-"mUw" = (
-/obj/structure/bed,
-/obj/item/bedsheet/captain,
-/obj/effect/landmark/start/captain,
-/obj/machinery/camera{
-	c_tag = "Captain's Quarters";
-	dir = 8
-	},
-/obj/structure/fireaxecabinet/spare{
-	pixel_x = 32
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain/private)
 "mVL" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -80517,6 +80507,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"oeU" = (
+/obj/structure/bed,
+/obj/item/bedsheet/captain,
+/obj/effect/landmark/start/captain,
+/obj/machinery/camera{
+	c_tag = "Captain's Quarters";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "ofX" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -115997,8 +115997,8 @@ aVE
 aMw
 bcj
 bdN
-mUw
-bhz
+oeU
+jYH
 bjk
 bkP
 bjg

@@ -40722,6 +40722,16 @@
 /obj/effect/spawner/structure/solars/solar_96,
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/starboard/aft)
+"gnt" = (
+/obj/structure/chair/comfy/brown{
+	dir = 4
+	},
+/obj/machinery/camera/motion{
+	c_tag = "Captains Quarters";
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "gnH" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -42774,16 +42784,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
-"hSy" = (
-/obj/structure/chair/comfy/brown{
-	dir = 4
-	},
-/obj/machinery/camera/motion{
-	c_tag = "Captains Office";
-	dir = 1
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "hSA" = (
 /obj/machinery/camera/motion{
 	c_tag = "Telecomms Maintenance";
@@ -43787,6 +43787,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
+"iFK" = (
+/obj/structure/fireaxecabinet/spare{
+	pixel_x = 2;
+	pixel_y = 32;
+	req_access = list(20)
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "iGc" = (
 /obj/machinery/door/airlock/medical{
 	name = "Operating Theatre";
@@ -50647,14 +50655,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"ofG" = (
-/obj/structure/fireaxecabinet/spare{
-	pixel_x = 2;
-	pixel_y = 30;
-	req_access = list(20)
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "ogk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -51459,6 +51459,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"oFj" = (
+/obj/structure/dresser,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "oGy" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/border_only{
@@ -55210,14 +55217,6 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plasteel,
 /area/medical/storage)
-"rLs" = (
-/obj/structure/dresser,
-/obj/structure/dresser,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "rLw" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
@@ -95708,7 +95707,7 @@ ihF
 bdk
 bhv
 aZV
-rLs
+oFj
 aMV
 bpk
 bqH
@@ -95967,7 +95966,7 @@ bhG
 blb
 bmy
 bkh
-hSy
+gnt
 bqH
 bsi
 blZ
@@ -96222,7 +96221,7 @@ bfl
 bim
 bjG
 aZV
-ofG
+iFK
 qWH
 kSk
 bqH
