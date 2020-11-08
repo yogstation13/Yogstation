@@ -1054,16 +1054,18 @@
 	taste_description = "acid"
 
 /datum/reagent/space_cleaner/ez_clean/on_mob_life(mob/living/carbon/M)
-	M.adjustBruteLoss(3.33)
-	M.adjustFireLoss(3.33)
-	M.adjustToxLoss(3.33)
+	M.adjustBruteLoss(6.33)
+	M.adjustFireLoss(6.33)
+	M.adjustToxLoss(6.33)
 	..()
 
 /datum/reagent/space_cleaner/ez_clean/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	..()
 	if((method == TOUCH || method == VAPOR) && !issilicon(M))
-		M.adjustBruteLoss(1.5)
-		M.adjustFireLoss(1.5)
+		M.reagents.add_reagent(/datum/reagent/space_cleaner/ez_clean, reac_volume)
+		M.adjustBruteLoss(1.5 * reac_volume)
+		M.adjustFireLoss(1.5 * reac_volume)
+		M.emote("scream")
 
 /datum/reagent/cryptobiolin
 	name = "Cryptobiolin"
