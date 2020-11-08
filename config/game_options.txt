@@ -148,11 +148,7 @@ CONTINUOUS HIVEMIND
 CONTINUOUS MALF
 CONTINUOUS SHADOWLING
 CONTINUOUS VAMPIRE
-
-##Prevents the death of round-ending antagonist rulesets ending the round immediately.
-
 CONTINUOUS DYNAMIC
-
 ##Note: do not toggle continuous off for these modes, as they have no antagonists and would thus end immediately!
 
 CONTINUOUS METEOR
