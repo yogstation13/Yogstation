@@ -148,7 +148,7 @@ CONTINUOUS HIVEMIND
 CONTINUOUS MALF
 CONTINUOUS SHADOWLING
 CONTINUOUS VAMPIRE
-
+CONTINUOUS DYNAMIC
 ##Note: do not toggle continuous off for these modes, as they have no antagonists and would thus end immediately!
 
 CONTINUOUS METEOR
