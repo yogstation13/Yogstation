@@ -266,7 +266,7 @@
 		M.visible_message("<span class='notice'>[M] shakes [src] trying to get [p_them()] up!</span>", \
 						"<span class='notice'>You shake [src] trying to get [p_them()] up!</span>")
 						
-	if(check_zone(M.zone_selected) == BODY_ZONE_HEAD) //Headpats are too extreme, we have to pat shoulders on yogs
+	if(check_zone(M.zone_selected) == BODY_ZONE_L_ARM || BODY_ZONE_R_ARM) //Headpats are too extreme, we have to pat shoulders on yogs
 		M.visible_message("<span class='notice'>[M] gives [src] a pat on the shoulder to make [p_them()] feel better!</span>", \
 					"<span class='notice'>You give [src] a pat on the shoulder to make [p_them()] feel better!</span>")
 
