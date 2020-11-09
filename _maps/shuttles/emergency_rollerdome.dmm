@@ -1,4 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bX" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/soda_cans/space_up,
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "cc" = (
 /obj/structure/railing{
 	dir = 1
@@ -24,11 +29,26 @@
 /obj/item/storage/box/drinkingglasses,
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"fK" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/soda_cans/shamblers,
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "fX" = (
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks/beer{
 	dir = 1
 	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"gv" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/soda_cans/sol_dry,
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"hx" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "hD" = (
@@ -44,8 +64,24 @@
 /obj/machinery/computer/emergency_shuttle,
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"kg" = (
+/obj/structure/table/wood/bar,
+/obj/item/storage/bag/tray,
+/obj/item/kitchen/knife,
+/obj/item/reagent_containers/food/snacks/store/cake/birthday,
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"kN" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/soda_cans/sodawater,
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "ln" = (
 /obj/machinery/vending/games,
+/turf/open/floor/eighties,
+/area/shuttle/escape)
+"ms" = (
+/obj/machinery/computer/arcade/battle,
 /turf/open/floor/eighties,
 /area/shuttle/escape)
 "ns" = (
@@ -81,13 +117,14 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
-"pa" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "pj" = (
 /turf/template_noop,
 /area/template_noop)
+"pp" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game,
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "pI" = (
 /obj/machinery/light{
 	dir = 8
@@ -99,11 +136,6 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/shuttle/escape)
-"rh" = (
-/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
-/obj/effect/spawner/structure/window/plastitanium,
-/turf/open/floor/plasteel/elevatorshaft,
 /area/shuttle/escape)
 "ss" = (
 /obj/docking_port/mobile/emergency{
@@ -175,16 +207,16 @@
 /obj/structure/etherealball,
 /turf/open/floor/light,
 /area/shuttle/escape)
+"BD" = (
+/obj/machinery/computer/arcade/minesweeper,
+/turf/open/floor/eighties,
+/area/shuttle/escape)
 "Cg" = (
 /turf/open/floor/eighties,
 /area/shuttle/escape)
 "Dh" = (
 /obj/machinery/vending/snack/random,
 /turf/open/floor/wood,
-/area/shuttle/escape)
-"Dm" = (
-/obj/machinery/computer/arcade/minesweeper,
-/turf/open/floor/eighties,
 /area/shuttle/escape)
 "DR" = (
 /obj/structure/railing{
@@ -195,18 +227,29 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"Hf" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind,
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "Hi" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"Hu" = (
-/obj/machinery/computer/arcade/battle,
-/turf/open/floor/eighties,
+"Hx" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry,
+/turf/open/floor/wood,
 /area/shuttle/escape)
 "HA" = (
 /obj/machinery/vending/cola/random,
 /turf/open/floor/wood,
+/area/shuttle/escape)
+"HN" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plasteel/elevatorshaft,
 /area/shuttle/escape)
 "HS" = (
 /turf/open/floor/light,
@@ -216,6 +259,10 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
+/area/shuttle/escape)
+"Jy" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plasteel/elevatorshaft,
 /area/shuttle/escape)
 "JR" = (
 /obj/machinery/vending/boozeomat,
@@ -228,10 +275,6 @@
 /obj/structure/shuttle/engine/heater,
 /obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/plating/airless,
-/area/shuttle/escape)
-"Na" = (
-/obj/effect/spawner/structure/window/plastitanium,
-/turf/open/floor/plasteel/elevatorshaft,
 /area/shuttle/escape)
 "Ow" = (
 /obj/structure/table,
@@ -259,6 +302,11 @@
 /obj/machinery/vending/donksofttoyvendor,
 /turf/open/floor/eighties,
 /area/shuttle/escape)
+"OY" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb,
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "Qf" = (
 /obj/machinery/computer/crew{
 	dir = 4
@@ -282,6 +330,11 @@
 /obj/machinery/jukebox/disco/indestructible,
 /turf/open/floor/light,
 /area/shuttle/escape)
+"Su" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime,
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "TU" = (
 /obj/structure/railing{
 	dir = 10
@@ -291,16 +344,9 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"Ut" = (
+"Uf" = (
 /obj/machinery/computer/arcade/orion_trail,
 /turf/open/floor/eighties,
-/area/shuttle/escape)
-"VU" = (
-/obj/structure/table/wood/bar,
-/obj/item/storage/bag/tray,
-/obj/item/kitchen/knife,
-/obj/item/reagent_containers/food/snacks/store/cake/birthday,
-/turf/open/floor/wood,
 /area/shuttle/escape)
 "We" = (
 /obj/structure/chair/comfy/brown{
@@ -337,19 +383,19 @@ pj
 tG
 tG
 tG
-rh
+HN
 tG
 ss
 tG
-Na
-Na
-Na
+Jy
+Jy
+Jy
 tG
 hF
 tG
 QO
 tG
-Na
+Jy
 tG
 pj
 "}
@@ -397,24 +443,24 @@ Cg
 ce
 uN
 Ox
-VU
+kg
 KJ
 od
 "}
 (4,1,1) = {"
-Na
+Jy
 Hi
 We
 We
 zx
-Hu
+ms
 Cg
 cc
-pa
+Su
 Ky
 Ky
 Ky
-pa
+kN
 ze
 Cg
 Cg
@@ -426,19 +472,19 @@ KJ
 od
 "}
 (5,1,1) = {"
-Na
+Jy
 wn
 Ky
 Ky
 zx
-Dm
+BD
 Cg
 ZN
-pa
+hx
 HS
 HS
 HS
-pa
+gv
 Ry
 Cg
 Cg
@@ -450,19 +496,19 @@ KJ
 od
 "}
 (6,1,1) = {"
-Na
+Jy
 im
 Ky
 Yr
 zx
-Ut
+Uf
 Cg
 ce
-pa
+OY
 HS
 RN
 HS
-pa
+Hf
 dJ
 Cg
 Cg
@@ -474,7 +520,7 @@ KJ
 od
 "}
 (7,1,1) = {"
-Na
+Jy
 wn
 Ky
 Ky
@@ -482,11 +528,11 @@ hD
 Cg
 Cg
 ZN
-pa
+pp
 HS
 HS
 HS
-pa
+bX
 Ry
 Cg
 Cg
@@ -498,7 +544,7 @@ KJ
 od
 "}
 (8,1,1) = {"
-Na
+Jy
 zt
 xK
 xK
@@ -506,11 +552,11 @@ zx
 ON
 Cg
 cc
-pa
+fK
 Ky
 Ky
 Ky
-pa
+Hx
 ze
 Cg
 Cg
@@ -577,19 +623,19 @@ pj
 tG
 tG
 tG
-Na
+Jy
 tG
 tG
 tG
-Na
-Na
-Na
+Jy
+Jy
+Jy
 tG
 tG
 tG
-Na
+Jy
 tG
-Na
+Jy
 tG
 pj
 "}
