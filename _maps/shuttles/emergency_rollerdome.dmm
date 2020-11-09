@@ -161,6 +161,15 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"vJ" = (
+/obj/structure/table/wood,
+/obj/item/lighter{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/storage/box/fancy/cigarettes/cigars/havana,
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "wn" = (
 /obj/structure/chair/comfy/brown{
 	dir = 1
@@ -181,15 +190,6 @@
 "zs" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
-	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
-"zt" = (
-/obj/structure/table/wood,
-/obj/item/storage/fancy/cigarettes/cigars/havana,
-/obj/item/lighter{
-	pixel_x = -4;
-	pixel_y = 6
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
@@ -245,11 +245,6 @@
 "HA" = (
 /obj/machinery/vending/cola/random,
 /turf/open/floor/wood,
-/area/shuttle/escape)
-"HN" = (
-/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
-/obj/effect/spawner/structure/window/plastitanium,
-/turf/open/floor/plasteel/elevatorshaft,
 /area/shuttle/escape)
 "HS" = (
 /turf/open/floor/light,
@@ -383,7 +378,7 @@ pj
 tG
 tG
 tG
-HN
+Jy
 tG
 ss
 tG
@@ -545,7 +540,7 @@ od
 "}
 (8,1,1) = {"
 Jy
-zt
+vJ
 xK
 xK
 zx
