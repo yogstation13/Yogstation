@@ -464,20 +464,6 @@
 /obj/item/construction/rcd/loaded,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
-"bn" = (
-/obj/structure/closet/crate/radiation,
-/obj/item/flashlight/lantern,
-/obj/item/flashlight/lantern,
-/obj/item/flashlight/lantern,
-/obj/item/flashlight/flare,
-/obj/structure/stone_tile/block/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered/ash_walkers)
 "bo" = (
 /obj/structure/stone_tile/block{
 	dir = 8
@@ -1381,7 +1367,7 @@
 /obj/item/seeds/bamboo,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"ZT" = (
+"ST" = (
 /obj/structure/stone_tile{
 	dir = 4
 	},
@@ -1391,6 +1377,23 @@
 /obj/item/reagent_containers/blood/lizard,
 /obj/item/stack/sheet/cloth/ten,
 /obj/item/healthanalyzer,
+/obj/item/clothing/glasses/science,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/ash_walkers)
+"Vq" = (
+/obj/structure/closet/crate/radiation,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/flare,
+/obj/structure/stone_tile/block/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/obj/item/hand_labeler,
+/obj/item/hand_labeler_refill,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 
@@ -1553,10 +1556,10 @@ aa
 aa
 ae
 as
-ZT
+ST
 aQ
 am
-bn
+Vq
 bz
 ak
 cb
