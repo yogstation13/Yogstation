@@ -69762,12 +69762,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"cFW" = (
-/obj/machinery/advanced_airlock_controller{
-	pixel_y = 24
-	},
-/turf/closed/wall,
-/area/maintenance/starboard/fore)
 "cFX" = (
 /obj/machinery/disposal/bin,
 /obj/machinery/light_switch{
@@ -77014,9 +77008,6 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"gaG" = (
-/turf/open/floor/plating,
-/area/space)
 "gcR" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -124432,7 +124423,7 @@ pep
 qQu
 dnh
 arJ
-gaG
+dnS
 bcI
 dnS
 axY
@@ -130597,7 +130588,7 @@ aaa
 aaa
 ack
 ack
-cFW
+dnh
 oOU
 wCn
 dqT
