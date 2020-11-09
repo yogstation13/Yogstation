@@ -546,7 +546,7 @@
 
 /datum/design/synthetic_plasmavessel
 	name = "Synthetic Plasma Vessel"
-	desc = "A complex snythetic construct meant to replicate the effects of a plasma vessel"
+	desc = "A complex synthetic construct meant to replicate the effects of a plasma vessel"
 	id = "synthetic_plasmavessel"
 	build_type = PROTOLATHE
 	construction_time = 50
