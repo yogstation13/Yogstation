@@ -138,8 +138,6 @@
 	/// list of all tabs
 	var/list/panel_tabs = list()
 
-	/// list of all tabs
-	var/list/panel_tabs = list()
 	/// list of tabs containing spells and abilities
 	var/list/spell_tabs = list()
 

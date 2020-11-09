@@ -57,7 +57,7 @@ SUBSYSTEM_DEF(statpanels)
 				sdql2A[++sdql2A.len] = list("", "Access Global SDQL2 List", REF(GLOB.sdql2_vv_statobj))
 				var/list/sdql2B = list()
 				for(var/i in GLOB.sdql2_queries)
-					var/datum/sdql2_query/Q = i
+					var/datum/SDQL2_query/Q = i
 					sdql2B = Q.generate_stat()
 				sdql2A += sdql2B
 				target << output(url_encode(json_encode(sdql2A)), "statbrowser:update_sdql2")
