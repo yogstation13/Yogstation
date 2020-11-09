@@ -20148,6 +20148,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"bdS" = (
+/obj/structure/closet/crate/internals,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/quartermaster/warehouse)
 "bdT" = (
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/disposal";
@@ -20160,6 +20165,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"bdU" = (
+/obj/structure/closet/crate/medical,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/quartermaster/warehouse)
 "bdX" = (
 /obj/item/storage/box/fancy/donut_box,
 /obj/structure/table,
@@ -40902,6 +40912,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"gvw" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "Mix Pump"
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "gws" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
@@ -45183,15 +45199,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"jQb" = (
-/obj/structure/closet/crate/medical,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/camera{
-	c_tag = "Security Escape Pod";
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/warehouse)
 "jQg" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/firedoor/border_only{
@@ -48150,13 +48157,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"msd" = (
-/obj/machinery/camera{
-	c_tag = "Security Escape Pod";
-	dir = 4
-	},
-/turf/closed/wall/r_wall,
-/area/security/execution/transfer)
 "msz" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = 32
@@ -49588,16 +49588,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"ntB" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	name = "Mix Pump"
-	},
-/obj/machinery/camera{
-	c_tag = "Incinerator";
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "ntD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 10
@@ -50427,13 +50417,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"nZa" = (
-/obj/structure/fireaxecabinet/spare{
-	pixel_x = 2;
-	pixel_y = 32
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "oaa" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
@@ -56542,15 +56525,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"sQb" = (
-/obj/structure/closet/crate/internals,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/camera{
-	c_tag = "Security Escape Pod";
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/warehouse)
 "sQI" = (
 /turf/closed/wall,
 /area/security/execution/transfer)
@@ -60386,6 +60360,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"vVj" = (
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "vVZ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -85745,8 +85722,8 @@ baS
 aZI
 baS
 baS
-sQb
-jQb
+bdS
+bdU
 ckQ
 gjl
 bjq
@@ -88782,7 +88759,7 @@ qQV
 qQV
 qQV
 qQV
-msd
+afA
 aaf
 aaa
 aaa
@@ -96288,7 +96265,7 @@ bfl
 bim
 bjG
 aZV
-nZa
+vVj
 qWH
 kSk
 bqH
@@ -101992,7 +101969,7 @@ bvA
 aaf
 gEo
 kHp
-ntB
+gvw
 mNF
 gLr
 xvC
