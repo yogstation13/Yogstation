@@ -1,0 +1,5 @@
+author: "JamieD1"
+delete-after: true 
+changes: 
+  - bugfix: "Wiki link not working"
+  - bugfix: "Changeling hivemind maybe"
