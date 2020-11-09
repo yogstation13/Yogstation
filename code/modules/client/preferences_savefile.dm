@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	28
+#define SAVEFILE_VERSION_MAX	29
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -123,6 +123,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(current_version < 28)
 		if(!job_preferences)
 			job_preferences = list()
+	if(current_version < 29)
+		purrbation = FALSE
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
