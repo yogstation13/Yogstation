@@ -710,8 +710,8 @@
 	range = -1
 	include_user = TRUE
 	overlay = null
-	action_icon = 'yogstation/icons/mob/actions.dmi'
-	action_icon_state = "shadow_walk"
+	action_icon = 'icons/mob/actions/actions_spells.dmi'
+	action_icon_state = "jaunt"
 
 	var/apply_damage = TRUE
 
