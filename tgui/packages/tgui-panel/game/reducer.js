@@ -13,6 +13,8 @@ const initialState = {
   roundTime: null,
   roundRestartedAt: null,
   connectionLostAt: null,
+  rebooting: false,
+  reconnectTimer: 0,
 };
 
 export const gameReducer = (state = initialState, action) => {
@@ -21,7 +23,13 @@ export const gameReducer = (state = initialState, action) => {
     return {
       ...state,
       roundRestartedAt: meta.now,
+      rebooting: true,
+      reconnectTimer: 15,
     };
+  }
+  if (state.rebooting === true) {
+    state.rebooting = false;
+    setTimeout(() => { Byond.command('.reconnect'); }, 15000);
   }
   if (type === connectionLost.type) {
     return {

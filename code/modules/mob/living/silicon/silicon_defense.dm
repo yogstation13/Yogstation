@@ -61,10 +61,10 @@
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, M) & COMPONENT_NO_ATTACK_HAND)
 		. = TRUE
 	switch(M.a_intent)
-		if ("help")
+		if (INTENT_HELP)
 			M.visible_message("[M] pets [src].", \
 							"<span class='notice'>You pet [src].</span>")
-		if("grab")
+		if(INTENT_GRAB)
 			grabbedby(M)
 		else
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)

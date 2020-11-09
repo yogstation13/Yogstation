@@ -12023,6 +12023,24 @@
 /obj/item/reagent_containers/food/snacks/carpmeat,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
+"zW" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/airalarm/mixingchamber{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
 "zX" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -19476,21 +19494,6 @@
 /obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/space/basic,
 /area/centcom/testchamber)
-"Qr" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/syndicatebomb,
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
 "Qt" = (
 /obj/structure/sign/warning/biohazard,
 /turf/closed/indestructible/riveted,
@@ -21403,6 +21406,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
+"VC" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
 "VD" = (
 /obj/machinery/vending/snack/blue,
 /turf/open/floor/mineral/titanium/blue,
@@ -21595,21 +21612,6 @@
 /obj/machinery/vending/liberationstation,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"We" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/syndicatebomb/self_destruct,
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
 "Wh" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -21751,25 +21753,6 @@
 /obj/item/clothing/gloves/rapid,
 /obj/item/clothing/gloves/krav_maga/sec,
 /turf/open/floor/wood,
-/area/centcom/testchamber)
-"WF" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/syndicatebomb/badmin/clown,
-/obj/machinery/airalarm/mixingchamber{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "WG" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -61939,7 +61922,7 @@ ZO
 yh
 Xq
 Wa
-WF
+zW
 Zr
 Nr
 Qy
@@ -63734,7 +63717,7 @@ wS
 Ov
 Kf
 Nt
-Qr
+VC
 ZH
 Zr
 Zr
@@ -63991,7 +63974,7 @@ wS
 wS
 Zv
 Nt
-Qr
+VC
 QG
 Zr
 Zr
@@ -64248,7 +64231,7 @@ wS
 XS
 Zk
 Nt
-We
+VC
 FZ
 Zr
 WH

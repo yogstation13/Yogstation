@@ -54,6 +54,7 @@
 	..()
 	if(!QDELETED(src))
 		empty_pod()
+		contents_explosion(severity, target)
 
 /obj/structure/transit_tube_pod/contents_explosion(severity, target)
 	for(var/thing in contents)
