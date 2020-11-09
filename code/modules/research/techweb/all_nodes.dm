@@ -76,7 +76,7 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
-.datum/techweb_node/xenology
+/datum/techweb_node/xenology
 	id = "xenology"
 	display_name = "Basic Xenology"
 	description = "Experimental research into replicating organs from the exotic species known commonly as \"xenos\""
