@@ -1,4 +1,0 @@
-author: "JamieD1"
-delete-after: true 
-changes: 
-  - rscadd: "Adds replays to all past notes and future ones, Adds view replay button for clients"

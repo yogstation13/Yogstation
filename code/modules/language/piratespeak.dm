@@ -13,3 +13,4 @@
 	"shiver","timbers","matey","swashbuckler"
 	)
 	icon_state = "pirate"
+	sing_verb = "shanties"

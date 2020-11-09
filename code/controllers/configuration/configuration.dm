@@ -49,6 +49,9 @@
 	loadmaplist(CONFIG_MAPS_FILE)
 	LoadMOTD()
 	LoadPolicy()
+	
+	if (Master)
+		Master.OnConfigLoad()
 
 	if (Master)
 		Master.OnConfigLoad()

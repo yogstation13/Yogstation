@@ -200,6 +200,9 @@
 	set category = "Object"
 	set src in oview(1)
 
+	if(!isliving(src))
+		return
+
 	if(locked)
 		to_chat(usr, "<span class='warning'>The [name] won't budge!</span>")
 		return

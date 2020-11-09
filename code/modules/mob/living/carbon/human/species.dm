@@ -173,7 +173,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(id in (CONFIG_GET(keyed_list/roundstart_races)))
 		return TRUE
 	return FALSE
-	
+
 /datum/species/proc/check_mentor()
 	if(id in (CONFIG_GET(keyed_list/mentor_races)))
 		return TRUE
@@ -1506,16 +1506,16 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		return 0
 	SEND_SIGNAL(M, COMSIG_MOB_ATTACK_HAND, M, H, attacker_style)
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			help(M, H, attacker_style)
 
-		if("grab")
+		if(INTENT_GRAB)
 			grab(M, H, attacker_style)
 
-		if("harm")
+		if(INTENT_HARM)
 			harm(M, H, attacker_style)
 
-		if("disarm")
+		if(INTENT_DISARM)
 			disarm(M, H, attacker_style)
 
 /datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
