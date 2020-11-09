@@ -601,10 +601,11 @@
 	GLOB.enter_allowed = !( GLOB.enter_allowed )
 	if (!( GLOB.enter_allowed ))
 		to_chat(world, "<B>New players may no longer enter the game.</B>")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] toggled new player game entering, no players may enter.</span>")
 	else
 		to_chat(world, "<B>New players may now enter the game.</B>")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] toggled new player game entering, players can now enter the game freely.</span>")
 	log_admin("[key_name(usr)] toggled new player game entering.")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] toggled new player game entering.</span>")
 	world.update_status()
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Entering", "[GLOB.enter_allowed ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
