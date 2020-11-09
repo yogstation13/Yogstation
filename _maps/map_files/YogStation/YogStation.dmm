@@ -48865,6 +48865,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"mTz" = (
+/obj/structure/fireaxecabinet/spare{
+	pixel_x = 2;
+	pixel_y = 32
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "mUg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -56160,6 +56167,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"sxJ" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "Mix Pump"
+	},
+/obj/machinery/camera{
+	c_tag = "Incinerator";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "syq" = (
 /turf/template_noop,
 /area/maintenance/starboard/fore)
@@ -57995,16 +58012,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
-"tYP" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	name = "Mix Pump"
-	},
-/obj/machinery/camera{
-	c_tag = "Incinerator";
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "tYQ" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -58184,13 +58191,6 @@
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"ufT" = (
-/obj/structure/fireaxecabinet/spare{
-	pixel_x = 2;
-	pixel_y = 32
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "ugv" = (
 /obj/item/radio/intercom{
 	pixel_x = 30
@@ -96273,7 +96273,7 @@ bfl
 bim
 bjG
 aZV
-ufT
+mTz
 qWH
 kSk
 bqH
@@ -101977,7 +101977,7 @@ bvA
 aaf
 gEo
 kHp
-tYP
+sxJ
 mNF
 gLr
 xvC
