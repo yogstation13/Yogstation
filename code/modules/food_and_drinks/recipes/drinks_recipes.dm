@@ -820,5 +820,5 @@
 	name = "COG-Nac"
 	id = /datum/reagent/consumable/ethanol/coggernac
 	results = list(/datum/reagent/consumable/ethanol/coggernac = 4)
-	required_reagents = list(datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/ethanol/cognac = 1, /datum/reagent/iron = 1, /datum/reagent/consumable/ethanol/tequila_sunrise = 1)
+	required_reagents = list(/datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/ethanol/cognac = 1, /datum/reagent/iron = 1, /datum/reagent/consumable/ethanol/tequila_sunrise = 1)
  
