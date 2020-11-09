@@ -1,0 +1,4 @@
+author: "Xoxeyos"
+delete-after: true 
+changes: 
+  - tweak: "Made player entering logger more descriptive."
