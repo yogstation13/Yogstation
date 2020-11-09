@@ -14,10 +14,6 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"cP" = (
-/obj/effect/spawner/randomarcade,
-/turf/open/floor/eighties,
-/area/shuttle/escape)
 "dJ" = (
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
@@ -104,6 +100,11 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"rh" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/escape)
 "ss" = (
 /obj/docking_port/mobile/emergency{
 	name = "Uncle Pete's Rollerdome"
@@ -127,10 +128,6 @@
 	dir = 9
 	},
 /turf/open/floor/wood,
-/area/shuttle/escape)
-"wf" = (
-/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
-/turf/open/floor/plasteel/elevatorshaft,
 /area/shuttle/escape)
 "wn" = (
 /obj/structure/chair/comfy/brown{
@@ -185,6 +182,10 @@
 /obj/machinery/vending/snack/random,
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"Dm" = (
+/obj/machinery/computer/arcade/minesweeper,
+/turf/open/floor/eighties,
+/area/shuttle/escape)
 "DR" = (
 /obj/structure/railing{
 	dir = 6
@@ -198,6 +199,10 @@
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/wood,
+/area/shuttle/escape)
+"Hu" = (
+/obj/machinery/computer/arcade/battle,
+/turf/open/floor/eighties,
 /area/shuttle/escape)
 "HA" = (
 /obj/machinery/vending/cola/random,
@@ -223,6 +228,10 @@
 /obj/structure/shuttle/engine/heater,
 /obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/plating/airless,
+/area/shuttle/escape)
+"Na" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plasteel/elevatorshaft,
 /area/shuttle/escape)
 "Ow" = (
 /obj/structure/table,
@@ -282,17 +291,21 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"Ut" = (
+/obj/machinery/computer/arcade/orion_trail,
+/turf/open/floor/eighties,
+/area/shuttle/escape)
+"VU" = (
+/obj/structure/table/wood/bar,
+/obj/item/storage/bag/tray,
+/obj/item/kitchen/knife,
+/obj/item/reagent_containers/food/snacks/store/cake/birthday,
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "We" = (
 /obj/structure/chair/comfy/brown{
 	dir = 8
 	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
-"Wg" = (
-/obj/structure/table/wood/bar,
-/obj/item/storage/bag/tray,
-/obj/item/food/cake/birthday,
-/obj/item/kitchen/knife,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "Yr" = (
@@ -324,19 +337,19 @@ pj
 tG
 tG
 tG
-wf
+rh
 tG
 ss
 tG
-wf
-wf
-wf
+Na
+Na
+Na
 tG
 hF
 tG
 QO
 tG
-wf
+Na
 tG
 pj
 "}
@@ -384,17 +397,17 @@ Cg
 ce
 uN
 Ox
-Wg
+VU
 KJ
 od
 "}
 (4,1,1) = {"
-wf
+Na
 Hi
 We
 We
 zx
-cP
+Hu
 Cg
 cc
 pa
@@ -413,12 +426,12 @@ KJ
 od
 "}
 (5,1,1) = {"
-wf
+Na
 wn
 Ky
 Ky
 zx
-cP
+Dm
 Cg
 ZN
 pa
@@ -437,12 +450,12 @@ KJ
 od
 "}
 (6,1,1) = {"
-wf
+Na
 im
 Ky
 Yr
 zx
-cP
+Ut
 Cg
 ce
 pa
@@ -461,7 +474,7 @@ KJ
 od
 "}
 (7,1,1) = {"
-wf
+Na
 wn
 Ky
 Ky
@@ -485,7 +498,7 @@ KJ
 od
 "}
 (8,1,1) = {"
-wf
+Na
 zt
 xK
 xK
@@ -564,19 +577,19 @@ pj
 tG
 tG
 tG
-wf
+Na
 tG
 tG
 tG
-wf
-wf
-wf
+Na
+Na
+Na
 tG
 tG
 tG
-wf
+Na
 tG
-wf
+Na
 tG
 pj
 "}
