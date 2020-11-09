@@ -112,7 +112,7 @@
 	name = "Occupying Riot Officer"
 	belt = /obj/item/storage/belt/military/occupying_heavy
 	back = /obj/item/shield/riot
-    l_pocket = /obj/item/clothing/ears/earmuffs
+	l_pocket = /obj/item/clothing/ears/earmuffs
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
 	head = /obj/item/clothing/head/helmet/riot/raised/occupying
 	suit = /obj/item/clothing/suit/armor/riot/occupying
