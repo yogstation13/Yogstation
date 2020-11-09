@@ -40912,12 +40912,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"gvw" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	name = "Mix Pump"
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "gws" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
@@ -58001,6 +57995,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
+"tYP" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "Mix Pump"
+	},
+/obj/machinery/camera{
+	c_tag = "Incinerator";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "tYQ" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -58180,6 +58184,13 @@
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"ufT" = (
+/obj/structure/fireaxecabinet/spare{
+	pixel_x = 2;
+	pixel_y = 32
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "ugv" = (
 /obj/item/radio/intercom{
 	pixel_x = 30
@@ -60360,9 +60371,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"vVj" = (
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "vVZ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -96265,7 +96273,7 @@ bfl
 bim
 bjG
 aZV
-vVj
+ufT
 qWH
 kSk
 bqH
@@ -101969,7 +101977,7 @@ bvA
 aaf
 gEo
 kHp
-gvw
+tYP
 mNF
 gLr
 xvC
