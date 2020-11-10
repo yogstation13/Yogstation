@@ -335,15 +335,6 @@ window "statwindow"
 		anchor2 = 100,100
 		is-visible = false
 		saved-params = ""
-		on-tab = ".output statbrowser:tab_change [[*]]"
-	elem "statbrowser"
-		type = BROWSER
-		pos = 6,24
-		size = 628x450
-		anchor1 = 0,0
-		anchor2 = 100,100
-		is-visible = false
-		saved-params = ""
 
 window "Telecomms IDE"
 	elem "Telecomms IDE"
