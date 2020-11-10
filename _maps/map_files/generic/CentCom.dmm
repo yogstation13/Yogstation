@@ -48,6 +48,20 @@
 	},
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/bunker)
+"al" = (
+/obj/structure/closet{
+	name = "Extra Pieces"
+	},
+/obj/item/cardboard_cutout/chess/black/pawn,
+/obj/item/cardboard_cutout/chess/black/pawn,
+/obj/item/cardboard_cutout/chess/black/pawn,
+/obj/item/cardboard_cutout/chess/black/pawn,
+/obj/item/cardboard_cutout/chess/black/pawn,
+/obj/item/cardboard_cutout/chess/black/pawn,
+/obj/item/cardboard_cutout/chess/black/pawn,
+/obj/item/cardboard_cutout/chess/black/pawn,
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "am" = (
 /obj/structure/closet/crate/bin,
 /turf/open/floor/holofloor{
@@ -277,6 +291,12 @@
 	icon_state = "wood"
 	},
 /area/holodeck/rec_center/lounge)
+"aS" = (
+/obj/item/cardboard_cutout/chess/white/king,
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/holodeck/rec_center/spacechess)
 "aT" = (
 /obj/structure/table/wood/bar,
 /obj/item/reagent_containers/food/drinks/beer{
@@ -347,6 +367,20 @@
 "aZ" = (
 /turf/open/floor/holofloor/carpet,
 /area/holodeck/rec_center/lounge)
+"ba" = (
+/obj/structure/closet{
+	name = "Extra Pieces"
+	},
+/obj/item/cardboard_cutout/chess/black/rook,
+/obj/item/cardboard_cutout/chess/black/knight,
+/obj/item/cardboard_cutout/chess/black/bishop,
+/obj/item/cardboard_cutout/chess/black/king,
+/obj/item/cardboard_cutout/chess/black/queen,
+/obj/item/cardboard_cutout/chess/black/bishop,
+/obj/item/cardboard_cutout/chess/black/knight,
+/obj/item/cardboard_cutout/chess/black/rook,
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "bb" = (
 /obj/structure/chair/comfy/brown{
 	dir = 8
@@ -599,6 +633,12 @@
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/pet_lounge)
+"bS" = (
+/obj/item/cardboard_cutout/chess/black/king,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/holodeck/rec_center/spacechess)
 "bT" = (
 /obj/item/trash/plate,
 /obj/effect/turf_decal/tile/red,
@@ -950,6 +990,12 @@
 	icon_state = "wood"
 	},
 /area/holodeck/rec_center/lounge)
+"cO" = (
+/obj/item/cardboard_cutout/chess/black/pawn,
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/holodeck/rec_center/spacechess)
 "cP" = (
 /obj/structure/window/reinforced,
 /obj/item/banner/blue,
@@ -1313,6 +1359,12 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/firingrange)
+"ec" = (
+/obj/item/cardboard_cutout/chess/white/queen,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/holodeck/rec_center/spacechess)
 "ee" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -1360,6 +1412,12 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
+"ek" = (
+/obj/item/cardboard_cutout/chess/white/pawn,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/holodeck/rec_center/spacechess)
 "el" = (
 /obj/structure/table/wood/bar,
 /obj/item/reagent_containers/food/drinks/bottle/vodka{
@@ -1442,16 +1500,6 @@
 /obj/item/weldingtool,
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/refuel)
-"ev" = (
-/obj/item/cardboard_cutout/adaptive{
-	color = "#9999BB";
-	icon_state = "cutout_mime";
-	name = "Black Queen"
-	},
-/turf/open/floor/holofloor{
-	icon_state = "black"
-	},
-/area/holodeck/rec_center/spacechess)
 "ew" = (
 /obj/machinery/shower{
 	dir = 4
@@ -1466,6 +1514,20 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
+"ex" = (
+/obj/structure/closet{
+	name = "Extra Pieces"
+	},
+/obj/item/cardboard_cutout/chess/white/pawn,
+/obj/item/cardboard_cutout/chess/white/pawn,
+/obj/item/cardboard_cutout/chess/white/pawn,
+/obj/item/cardboard_cutout/chess/white/pawn,
+/obj/item/cardboard_cutout/chess/white/pawn,
+/obj/item/cardboard_cutout/chess/white/pawn,
+/obj/item/cardboard_cutout/chess/white/pawn,
+/obj/item/cardboard_cutout/chess/white/pawn,
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "ey" = (
 /obj/structure/table/wood,
 /obj/item/melee/chainofcommand{
@@ -1581,6 +1643,12 @@
 	},
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/school)
+"eP" = (
+/obj/item/cardboard_cutout/chess/white/rook,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/holodeck/rec_center/spacechess)
 "eR" = (
 /obj/structure/chair{
 	dir = 1
@@ -1729,15 +1797,6 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
-"ft" = (
-/obj/item/cardboard_cutout/adaptive{
-	icon_state = "cutout_viva";
-	name = "White Rook"
-	},
-/turf/open/floor/holofloor{
-	icon_state = "pure_white"
-	},
-/area/holodeck/rec_center/spacechess)
 "fu" = (
 /obj/item/target,
 /obj/item/target/clown,
@@ -8490,6 +8549,12 @@
 /obj/item/prisoncube,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
+"tk" = (
+/obj/item/cardboard_cutout/chess/white/knight,
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/holodeck/rec_center/spacechess)
 "tl" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -11240,11 +11305,6 @@
 /obj/effect/turf_decal/loading_area,
 /turf/open/floor/plasteel,
 /area)
-"yO" = (
-/turf/open/floor/holofloor{
-	icon_state = "black"
-	},
-/area/holodeck/rec_center/spacechess)
 "yQ" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -12826,16 +12886,6 @@
 	opacity = 0
 	},
 /area/bluespace_locker)
-"BU" = (
-/obj/item/cardboard_cutout/adaptive{
-	color = "#9999BB";
-	icon_state = "cutout_viva";
-	name = "Black Rook"
-	},
-/turf/open/floor/holofloor{
-	icon_state = "pure_white"
-	},
-/area/holodeck/rec_center/spacechess)
 "BV" = (
 /obj/machinery/chem_dispenser/drinks/beer,
 /turf/closed/indestructible{
@@ -14814,14 +14864,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/tdome/tdomeobserve)
-"FA" = (
-/obj/item/cardboard_cutout/adaptive{
-	color = "#9999BB";
-	icon_state = "cutout_ian";
-	name = "Black Knight"
-	},
+"FB" = (
+/obj/item/cardboard_cutout/chess/white/bishop,
 /turf/open/floor/holofloor{
-	icon_state = "black"
+	icon_state = "reebe"
 	},
 /area/holodeck/rec_center/spacechess)
 "FD" = (
@@ -17212,11 +17258,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
-"Kd" = (
-/turf/open/floor/holofloor{
-	icon_state = "pure_white"
-	},
-/area/holodeck/rec_center/spacechess)
 "Ke" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -17788,15 +17829,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/evac)
-"KZ" = (
-/obj/item/cardboard_cutout/adaptive{
-	icon_state = "cutout_greytide";
-	name = "White Pawn"
-	},
-/turf/open/floor/holofloor{
-	icon_state = "black"
-	},
-/area/holodeck/rec_center/spacechess)
 "La" = (
 /obj/machinery/stasis{
 	dir = 4
@@ -17826,16 +17858,6 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
-"Le" = (
-/obj/item/cardboard_cutout/adaptive{
-	color = "#9999BB";
-	icon_state = "cutout_greytide";
-	name = "Black Pawn"
-	},
-/turf/open/floor/holofloor{
-	icon_state = "black"
-	},
-/area/holodeck/rec_center/spacechess)
 "Lh" = (
 /obj/structure/table/wood/bar,
 /obj/item/reagent_containers/food/drinks/bottle/champagne{
@@ -17962,15 +17984,6 @@
 	},
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/firingrange)
-"Lz" = (
-/obj/item/cardboard_cutout/adaptive{
-	icon_state = "cutout_free_antag";
-	name = "White Bishop"
-	},
-/turf/open/floor/holofloor{
-	icon_state = "black"
-	},
-/area/holodeck/rec_center/spacechess)
 "LE" = (
 /obj/structure/table,
 /obj/item/radio/off,
@@ -18279,6 +18292,20 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"Mq" = (
+/obj/structure/closet{
+	name = "Extra Pieces"
+	},
+/obj/item/cardboard_cutout/chess/white/rook,
+/obj/item/cardboard_cutout/chess/white/knight,
+/obj/item/cardboard_cutout/chess/white/bishop,
+/obj/item/cardboard_cutout/chess/white/king,
+/obj/item/cardboard_cutout/chess/white/queen,
+/obj/item/cardboard_cutout/chess/white/bishop,
+/obj/item/cardboard_cutout/chess/white/knight,
+/obj/item/cardboard_cutout/chess/white/rook,
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "Mr" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/neutral{
@@ -18673,6 +18700,11 @@
 /obj/item/kitchen/knife/envy,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
+"Nj" = (
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/holodeck/rec_center/spacechess)
 "Nk" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Thunderdome";
@@ -18986,6 +19018,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"NW" = (
+/obj/item/cardboard_cutout/chess/black/bishop,
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/holodeck/rec_center/spacechess)
 "NX" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -19616,16 +19654,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
-"Pn" = (
-/obj/item/cardboard_cutout/adaptive{
-	color = "#9999BB";
-	icon_state = "cutout_clown";
-	name = "Black King"
-	},
-/turf/open/floor/holofloor{
-	icon_state = "pure_white"
-	},
-/area/holodeck/rec_center/spacechess)
 "Po" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -19686,6 +19714,12 @@
 /obj/machinery/vr_sleeper,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Py" = (
+/obj/item/cardboard_cutout/chess/white/knight,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/holodeck/rec_center/spacechess)
 "Pz" = (
 /obj/structure/table/reinforced,
 /obj/item/paper/pamphlet/centcom/visitor_info,
@@ -19902,6 +19936,12 @@
 /obj/item/rod_of_asclepius,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
+"Qd" = (
+/obj/item/cardboard_cutout/chess/black/bishop,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/holodeck/rec_center/spacechess)
 "Qe" = (
 /turf/open/ai_visible,
 /area/ai_multicam_room)
@@ -19944,6 +19984,12 @@
 /mob/living/simple_animal/pet/gondola,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"Qi" = (
+/obj/item/cardboard_cutout/chess/white/rook,
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/holodeck/rec_center/spacechess)
 "Qj" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/sake,
@@ -20011,15 +20057,6 @@
 /obj/item/ammo_box/magazine/tommygunm45,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"Qp" = (
-/obj/item/cardboard_cutout/adaptive{
-	icon_state = "cutout_ian";
-	name = "White Knight"
-	},
-/turf/open/floor/holofloor{
-	icon_state = "pure_white"
-	},
-/area/holodeck/rec_center/spacechess)
 "Qq" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/blood/gibs/old,
@@ -20543,12 +20580,9 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/supplypod)
 "Rv" = (
-/obj/item/cardboard_cutout/adaptive{
-	icon_state = "cutout_mime";
-	name = "White Queen"
-	},
+/obj/item/cardboard_cutout/chess/black/knight,
 /turf/open/floor/holofloor{
-	icon_state = "pure_white"
+	icon_state = "reebe"
 	},
 /area/holodeck/rec_center/spacechess)
 "Rw" = (
@@ -20784,6 +20818,12 @@
 /obj/machinery/portable_atmospherics/canister/stimulum,
 /turf/open/floor/plasteel/dark,
 /area/centcom/testchamber)
+"RQ" = (
+/obj/item/cardboard_cutout/chess/black/rook,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/holodeck/rec_center/spacechess)
 "RR" = (
 /obj/structure/flora/tree/pine/xmas,
 /turf/open/floor/holofloor/snow,
@@ -20813,16 +20853,6 @@
 /obj/structure/reagent_dispensers/watertank/high,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"RU" = (
-/obj/item/cardboard_cutout/adaptive{
-	color = "#9999BB";
-	icon_state = "cutout_free_antag";
-	name = "Black Bishop"
-	},
-/turf/open/floor/holofloor{
-	icon_state = "pure_white"
-	},
-/area/holodeck/rec_center/spacechess)
 "RV" = (
 /turf/open/floor/holofloor{
 	icon_state = "darkfull"
@@ -20912,19 +20942,15 @@
 	},
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
-"Sh" = (
-/obj/item/cardboard_cutout/adaptive{
-	color = "#9999BB";
-	icon_state = "cutout_viva";
-	name = "Black Rook"
-	},
-/turf/open/floor/holofloor{
-	icon_state = "black"
-	},
-/area/holodeck/rec_center/spacechess)
 "Si" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+"Sj" = (
+/obj/item/cardboard_cutout/chess/white/bishop,
+/turf/open/floor/holofloor{
+	icon_state = "whiteboard"
+	},
+/area/holodeck/rec_center/spacechess)
 "Sk" = (
 /obj/mecha/combat/marauder/seraph,
 /turf/open/floor/mech_bay_recharge_floor/dark,
@@ -20958,15 +20984,6 @@
 /obj/effect/decal/cleanable/blood/gibs/body,
 /turf/open/space/basic,
 /area/centcom/testchamber)
-"Sp" = (
-/obj/item/cardboard_cutout/adaptive{
-	icon_state = "cutout_ian";
-	name = "White Knight"
-	},
-/turf/open/floor/holofloor{
-	icon_state = "black"
-	},
-/area/holodeck/rec_center/spacechess)
 "Sq" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -21118,15 +21135,6 @@
 /obj/structure/closet/secure_closet/personal,
 /turf/open/floor/plasteel/dark,
 /area/centcom/supplypod)
-"SI" = (
-/obj/item/cardboard_cutout/adaptive{
-	icon_state = "cutout_greytide";
-	name = "White Pawn"
-	},
-/turf/open/floor/holofloor{
-	icon_state = "pure_white"
-	},
-/area/holodeck/rec_center/spacechess)
 "SJ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -21539,6 +21547,12 @@
 /obj/machinery/door/window/eastright,
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
+"TD" = (
+/obj/item/cardboard_cutout/chess/black/queen,
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/holodeck/rec_center/spacechess)
 "TE" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -21738,15 +21752,6 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/testchamber)
-"TZ" = (
-/obj/item/cardboard_cutout/adaptive{
-	icon_state = "cutout_free_antag";
-	name = "White Bishop"
-	},
-/turf/open/floor/holofloor{
-	icon_state = "pure_white"
-	},
-/area/holodeck/rec_center/spacechess)
 "Ua" = (
 /obj/structure/window/reinforced{
 	dir = 4;
@@ -22145,13 +22150,9 @@
 /turf/closed/indestructible/riveted,
 /area)
 "Vd" = (
-/obj/item/cardboard_cutout/adaptive{
-	color = "#9999BB";
-	icon_state = "cutout_greytide";
-	name = "Black Pawn"
-	},
+/obj/item/cardboard_cutout/chess/white/pawn,
 /turf/open/floor/holofloor{
-	icon_state = "pure_white"
+	icon_state = "reebe"
 	},
 /area/holodeck/rec_center/spacechess)
 "Ve" = (
@@ -22344,6 +22345,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
+"VB" = (
+/turf/open/floor/carpet/black,
+/area/holodeck/rec_center/spacechess)
 "VC" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -22530,16 +22534,6 @@
 /obj/effect/landmark/shuttle_import,
 /turf/open/space/basic,
 /area/space)
-"VY" = (
-/obj/item/cardboard_cutout/adaptive{
-	color = "#9999BB";
-	icon_state = "cutout_ian";
-	name = "Black Knight"
-	},
-/turf/open/floor/holofloor{
-	icon_state = "pure_white"
-	},
-/area/holodeck/rec_center/spacechess)
 "Wa" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -22793,15 +22787,6 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
-"WF" = (
-/obj/item/cardboard_cutout/adaptive{
-	icon_state = "cutout_viva";
-	name = "White Rook"
-	},
-/turf/open/floor/holofloor{
-	icon_state = "black"
-	},
-/area/holodeck/rec_center/spacechess)
 "WG" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -23085,13 +23070,10 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"Xn" = (
-/obj/item/cardboard_cutout/adaptive{
-	icon_state = "cutout_clown";
-	name = "White King"
-	},
+"Xm" = (
+/obj/item/cardboard_cutout/chess/black/pawn,
 /turf/open/floor/holofloor{
-	icon_state = "black"
+	icon_state = "whiteboard"
 	},
 /area/holodeck/rec_center/spacechess)
 "Xo" = (
@@ -23646,6 +23628,11 @@
 	opacity = 0
 	},
 /area/bluespace_locker)
+"Yy" = (
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/holodeck/rec_center/spacechess)
 "Yz" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -23760,16 +23747,6 @@
 	icon_state = "wood"
 	},
 /area/holodeck/rec_center/lounge)
-"YP" = (
-/obj/item/cardboard_cutout/adaptive{
-	color = "#9999BB";
-	icon_state = "cutout_free_antag";
-	name = "Black Bishop"
-	},
-/turf/open/floor/holofloor{
-	icon_state = "black"
-	},
-/area/holodeck/rec_center/spacechess)
 "YQ" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/beaker,
@@ -23953,9 +23930,9 @@
 /turf/open/floor/plasteel/dark,
 /area)
 "Zj" = (
+/obj/item/cardboard_cutout/chess/black/knight,
 /turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
+	icon_state = "whiteboard"
 	},
 /area/holodeck/rec_center/spacechess)
 "Zk" = (
@@ -24208,6 +24185,12 @@
 /obj/item/reagent_containers/glass/beaker/noreact,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"ZI" = (
+/obj/item/cardboard_cutout/chess/black/rook,
+/turf/open/floor/holofloor{
+	icon_state = "reebe"
+	},
+/area/holodeck/rec_center/spacechess)
 "ZJ" = (
 /obj/machinery/door/airlock/centcom{
 	name = "CentCom Security";
@@ -87333,16 +87316,16 @@ bk
 bk
 bk
 bj
-Zj
-Zj
-Zj
-Zj
-Zj
-Zj
-Zj
-Zj
-Zj
-Zj
+VB
+VB
+VB
+VB
+VB
+VB
+VB
+VB
+VB
+VB
 bj
 We
 We
@@ -87591,14 +87574,14 @@ bk
 bk
 bj
 dn
-BU
-Le
-Kd
-yO
-Kd
-yO
-SI
-WF
+RQ
+cO
+Nj
+Yy
+Nj
+Yy
+ek
+Qi
 dn
 bj
 eF
@@ -87848,14 +87831,14 @@ bk
 bk
 bj
 dn
-FA
+Rv
+Xm
+Yy
+Nj
+Yy
+Nj
 Vd
-yO
-Kd
-yO
-Kd
-KZ
-Qp
+Py
 dn
 bj
 Bu
@@ -88105,14 +88088,14 @@ bk
 bk
 bj
 dn
-RU
-Le
-Kd
-yO
-Kd
-yO
-SI
-Lz
+Qd
+cO
+Nj
+Yy
+Nj
+Yy
+ek
+FB
 dn
 bj
 dC
@@ -88362,14 +88345,14 @@ bk
 bk
 bj
 dn
-ev
+TD
+Xm
+Yy
+Nj
+Yy
+Nj
 Vd
-yO
-Kd
-yO
-Kd
-KZ
-Rv
+ec
 dn
 bj
 dD
@@ -88619,14 +88602,14 @@ bk
 bk
 bj
 dn
-Pn
-Le
-Kd
-yO
-Kd
-yO
-SI
-Xn
+bS
+cO
+Nj
+Yy
+Nj
+Yy
+ek
+aS
 dn
 bj
 dE
@@ -88876,14 +88859,14 @@ bk
 bk
 bj
 dn
-YP
+NW
+Xm
+Yy
+Nj
+Yy
+Nj
 Vd
-yO
-Kd
-yO
-Kd
-KZ
-TZ
+Sj
 dn
 bj
 Ad
@@ -89132,16 +89115,16 @@ bk
 bk
 bk
 bj
-dn
-VY
-Le
-Kd
-yO
-Kd
-yO
-SI
-Sp
-dn
+al
+Zj
+cO
+Nj
+Yy
+Nj
+Yy
+ek
+tk
+ex
 bj
 eF
 eF
@@ -89389,16 +89372,16 @@ bk
 bk
 bk
 bj
-dn
-Sh
+ba
+ZI
+Xm
+Yy
+Nj
+Yy
+Nj
 Vd
-yO
-Kd
-yO
-Kd
-KZ
-ft
-dn
+eP
+Mq
 bj
 dF
 dF
