@@ -48,20 +48,6 @@
 	},
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/bunker)
-"al" = (
-/obj/structure/closet{
-	name = "Extra Pieces"
-	},
-/obj/item/cardboard_cutout/chess/black/pawn,
-/obj/item/cardboard_cutout/chess/black/pawn,
-/obj/item/cardboard_cutout/chess/black/pawn,
-/obj/item/cardboard_cutout/chess/black/pawn,
-/obj/item/cardboard_cutout/chess/black/pawn,
-/obj/item/cardboard_cutout/chess/black/pawn,
-/obj/item/cardboard_cutout/chess/black/pawn,
-/obj/item/cardboard_cutout/chess/black/pawn,
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "am" = (
 /obj/structure/closet/crate/bin,
 /turf/open/floor/holofloor{
@@ -367,20 +353,6 @@
 "aZ" = (
 /turf/open/floor/holofloor/carpet,
 /area/holodeck/rec_center/lounge)
-"ba" = (
-/obj/structure/closet{
-	name = "Extra Pieces"
-	},
-/obj/item/cardboard_cutout/chess/black/rook,
-/obj/item/cardboard_cutout/chess/black/knight,
-/obj/item/cardboard_cutout/chess/black/bishop,
-/obj/item/cardboard_cutout/chess/black/king,
-/obj/item/cardboard_cutout/chess/black/queen,
-/obj/item/cardboard_cutout/chess/black/bishop,
-/obj/item/cardboard_cutout/chess/black/knight,
-/obj/item/cardboard_cutout/chess/black/rook,
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "bb" = (
 /obj/structure/chair/comfy/brown{
 	dir = 8
@@ -1141,6 +1113,9 @@
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/refuel)
 "dn" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "8"
+	},
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/spacechess)
 "dp" = (
@@ -1461,6 +1436,12 @@
 	icon_state = "chapel"
 	},
 /area/holodeck/rec_center/chapelcourt)
+"eo" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "h"
+	},
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "ep" = (
 /turf/open/floor/holofloor{
 	dir = 8;
@@ -1514,20 +1495,6 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
-"ex" = (
-/obj/structure/closet{
-	name = "Extra Pieces"
-	},
-/obj/item/cardboard_cutout/chess/white/pawn,
-/obj/item/cardboard_cutout/chess/white/pawn,
-/obj/item/cardboard_cutout/chess/white/pawn,
-/obj/item/cardboard_cutout/chess/white/pawn,
-/obj/item/cardboard_cutout/chess/white/pawn,
-/obj/item/cardboard_cutout/chess/white/pawn,
-/obj/item/cardboard_cutout/chess/white/pawn,
-/obj/item/cardboard_cutout/chess/white/pawn,
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "ey" = (
 /obj/structure/table/wood,
 /obj/item/melee/chainofcommand{
@@ -7380,6 +7347,28 @@
 /obj/mecha/combat/durand,
 /turf/open/floor/engine,
 /area/centcom/testchamber)
+"rc" = (
+/obj/item/cardboard_cutout/chess/black/pawn,
+/obj/item/cardboard_cutout/chess/black/pawn,
+/obj/item/cardboard_cutout/chess/black/pawn,
+/obj/item/cardboard_cutout/chess/black/pawn,
+/obj/item/cardboard_cutout/chess/black/pawn,
+/obj/item/cardboard_cutout/chess/black/pawn,
+/obj/item/cardboard_cutout/chess/black/pawn,
+/obj/item/cardboard_cutout/chess/black/pawn,
+/obj/item/cardboard_cutout/chess/black/rook,
+/obj/item/cardboard_cutout/chess/black/knight,
+/obj/item/cardboard_cutout/chess/black/bishop,
+/obj/item/cardboard_cutout/chess/black/king,
+/obj/item/cardboard_cutout/chess/black/queen,
+/obj/item/cardboard_cutout/chess/black/bishop,
+/obj/item/cardboard_cutout/chess/black/knight,
+/obj/item/cardboard_cutout/chess/black/rook,
+/obj/structure/closet{
+	name = "Extra Pieces"
+	},
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "rd" = (
 /obj/structure/flora/grass/brown,
 /obj/effect/light_emitter{
@@ -13494,6 +13483,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
+"CS" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "4"
+	},
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "CT" = (
 /obj/machinery/vr_sleeper{
 	dir = 4
@@ -15232,6 +15227,12 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Gt" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "c"
+	},
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "Gu" = (
 /obj/machinery/door/airlock/silver{
 	name = "Shower"
@@ -17618,6 +17619,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
+"Kz" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "2"
+	},
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "KA" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -17984,6 +17991,12 @@
 	},
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/firingrange)
+"LA" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "1"
+	},
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "LE" = (
 /obj/structure/table,
 /obj/item/radio/off,
@@ -18293,17 +18306,9 @@
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "Mq" = (
-/obj/structure/closet{
-	name = "Extra Pieces"
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "7"
 	},
-/obj/item/cardboard_cutout/chess/white/rook,
-/obj/item/cardboard_cutout/chess/white/knight,
-/obj/item/cardboard_cutout/chess/white/bishop,
-/obj/item/cardboard_cutout/chess/white/king,
-/obj/item/cardboard_cutout/chess/white/queen,
-/obj/item/cardboard_cutout/chess/white/bishop,
-/obj/item/cardboard_cutout/chess/white/knight,
-/obj/item/cardboard_cutout/chess/white/rook,
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/spacechess)
 "Mr" = (
@@ -19823,6 +19828,12 @@
 /obj/structure/closet/lasertag/blue,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"PN" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "6"
+	},
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "PO" = (
 /obj/machinery/hydroponics/constructable,
 /obj/effect/turf_decal/tile/green{
@@ -20391,6 +20402,12 @@
 /obj/item/storage/secure/briefcase,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"QZ" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "5"
+	},
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "Ra" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -20984,6 +21001,12 @@
 /obj/effect/decal/cleanable/blood/gibs/body,
 /turf/open/space/basic,
 /area/centcom/testchamber)
+"Sp" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "b"
+	},
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "Sq" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -21064,6 +21087,28 @@
 	},
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/basketball)
+"Sy" = (
+/obj/item/cardboard_cutout/chess/white/rook,
+/obj/item/cardboard_cutout/chess/white/knight,
+/obj/item/cardboard_cutout/chess/white/bishop,
+/obj/item/cardboard_cutout/chess/white/king,
+/obj/item/cardboard_cutout/chess/white/queen,
+/obj/item/cardboard_cutout/chess/white/bishop,
+/obj/item/cardboard_cutout/chess/white/knight,
+/obj/item/cardboard_cutout/chess/white/rook,
+/obj/item/cardboard_cutout/chess/white/pawn,
+/obj/item/cardboard_cutout/chess/white/pawn,
+/obj/item/cardboard_cutout/chess/white/pawn,
+/obj/item/cardboard_cutout/chess/white/pawn,
+/obj/item/cardboard_cutout/chess/white/pawn,
+/obj/item/cardboard_cutout/chess/white/pawn,
+/obj/item/cardboard_cutout/chess/white/pawn,
+/obj/item/cardboard_cutout/chess/white/pawn,
+/obj/structure/closet{
+	name = "Extra Pieces"
+	},
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "Sz" = (
 /obj/effect/holodeck_effect/mobspawner/pet,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -21171,6 +21216,12 @@
 /obj/structure/table,
 /turf/open/floor/plasteel,
 /area/centcom/evac)
+"SP" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "d"
+	},
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "SQ" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -21685,6 +21736,12 @@
 /obj/machinery/door/window/westright,
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/basketball)
+"TR" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "e"
+	},
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "TS" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -22086,6 +22143,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
+"UP" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "g"
+	},
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
+"UQ" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "f"
+	},
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "US" = (
 /obj/structure/table/wood/poker,
 /turf/open/floor/holofloor{
@@ -22345,9 +22414,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"VB" = (
-/turf/open/floor/carpet/black,
-/area/holodeck/rec_center/spacechess)
 "VC" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -22923,6 +22989,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
+"WR" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "a"
+	},
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "WS" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -22985,6 +23057,12 @@
 	opacity = 0
 	},
 /area/bluespace_locker)
+"Xb" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "3"
+	},
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "Xc" = (
 /obj/structure/table/wood,
 /obj/item/twohanded/required/adamantineshield,
@@ -87316,16 +87394,16 @@ bk
 bk
 bk
 bj
-VB
-VB
-VB
-VB
-VB
-VB
-VB
-VB
-VB
-VB
+rc
+dn
+Mq
+PN
+QZ
+CS
+Xb
+Kz
+LA
+Sy
 bj
 We
 We
@@ -87573,7 +87651,7 @@ bk
 bk
 bk
 bj
-dn
+WR
 RQ
 cO
 Nj
@@ -87582,7 +87660,7 @@ Nj
 Yy
 ek
 Qi
-dn
+WR
 bj
 eF
 eF
@@ -87830,7 +87908,7 @@ bk
 bk
 bk
 bj
-dn
+Sp
 Rv
 Xm
 Yy
@@ -87839,7 +87917,7 @@ Yy
 Nj
 Vd
 Py
-dn
+Sp
 bj
 Bu
 Bu
@@ -88087,7 +88165,7 @@ bk
 bk
 bk
 bj
-dn
+Gt
 Qd
 cO
 Nj
@@ -88096,7 +88174,7 @@ Nj
 Yy
 ek
 FB
-dn
+Gt
 bj
 dC
 ea
@@ -88344,7 +88422,7 @@ bk
 bk
 bk
 bj
-dn
+SP
 TD
 Xm
 Yy
@@ -88353,7 +88431,7 @@ Yy
 Nj
 Vd
 ec
-dn
+SP
 bj
 dD
 eb
@@ -88601,7 +88679,7 @@ bk
 bk
 bk
 bj
-dn
+TR
 bS
 cO
 Nj
@@ -88610,7 +88688,7 @@ Nj
 Yy
 ek
 aS
-dn
+TR
 bj
 dE
 LF
@@ -88858,7 +88936,7 @@ bk
 bk
 bk
 bj
-dn
+UQ
 NW
 Xm
 Yy
@@ -88867,7 +88945,7 @@ Yy
 Nj
 Vd
 Sj
-dn
+UQ
 bj
 Ad
 Ad
@@ -89115,7 +89193,7 @@ bk
 bk
 bk
 bj
-al
+UP
 Zj
 cO
 Nj
@@ -89124,7 +89202,7 @@ Nj
 Yy
 ek
 tk
-ex
+UP
 bj
 eF
 eF
@@ -89372,7 +89450,7 @@ bk
 bk
 bk
 bj
-ba
+eo
 ZI
 Xm
 Yy
@@ -89381,7 +89459,7 @@ Yy
 Nj
 Vd
 eP
-Mq
+eo
 bj
 dF
 dF
