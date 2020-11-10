@@ -1,5 +1,0 @@
-author: "Marmio64"
-delete-after: true 
-changes: 
-  - rscadd: "Empowered thralls now get the veil (lights) ability."
-  - tweak: "max amount of empowered thralls is now 3 rather than 5"
