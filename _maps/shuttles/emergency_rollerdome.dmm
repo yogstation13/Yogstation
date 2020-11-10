@@ -51,24 +51,11 @@
 /obj/item/reagent_containers/food/drinks/soda_cans/cola,
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"hD" = (
-/obj/machinery/door/airlock/gold/glass{
-	req_access_txt = "19"
-	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "hF" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/escape)
 "im" = (
 /obj/machinery/computer/emergency_shuttle,
-/turf/open/floor/wood,
-/area/shuttle/escape)
-"kg" = (
-/obj/structure/table/wood/bar,
-/obj/item/storage/bag/tray,
-/obj/item/kitchen/knife,
-/obj/item/reagent_containers/food/snacks/store/cake/birthday,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "kN" = (
@@ -84,13 +71,6 @@
 /obj/machinery/computer/arcade/battle,
 /turf/open/floor/eighties,
 /area/shuttle/escape)
-"ns" = (
-/obj/structure/table/wood/bar,
-/obj/effect/fun_balloon/sentience/emergency_shuttle{
-	group_name = "snack bar drone at Uncle Pete's Rollerdome"
-	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "nw" = (
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks{
@@ -104,12 +84,6 @@
 	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
-	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
-"nT" = (
-/obj/machinery/computer/atmos_alert{
-	dir = 4
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
@@ -137,19 +111,44 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"ss" = (
-/obj/docking_port/mobile/emergency{
-	name = "Uncle Pete's Rollerdome"
-	},
+"sR" = (
 /obj/machinery/door/airlock/gold/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/wood,
+/area/shuttle/escape)
+"sW" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/eighties,
+/area/shuttle/escape)
+"ty" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/eighties,
 /area/shuttle/escape)
 "tG" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/shuttle/escape)
-"uN" = (
-/obj/structure/table/wood/bar,
-/obj/item/storage/bag/tray,
+"uv" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"uS" = (
+/obj/machinery/door/airlock/gold/glass{
+	req_access_txt = "19"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "vq" = (
@@ -182,6 +181,10 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"yI" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "ze" = (
 /obj/structure/railing,
 /obj/effect/turf_decal/siding/wood,
@@ -191,10 +194,6 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
-"zx" = (
-/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "zZ" = (
@@ -214,6 +213,22 @@
 "Cg" = (
 /turf/open/floor/eighties,
 /area/shuttle/escape)
+"CH" = (
+/obj/item/storage/bag/tray,
+/obj/structure/table/wood/bar{
+	boot_dir = 9
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"CL" = (
+/obj/machinery/computer/atmos_alert{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "Dh" = (
 /obj/machinery/vending/snack/random,
 /turf/open/floor/wood,
@@ -225,6 +240,41 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"DZ" = (
+/obj/effect/fun_balloon/sentience/emergency_shuttle{
+	group_name = "snack bar drone at Uncle Pete's Rollerdome"
+	},
+/obj/structure/table/wood/bar{
+	boot_dir = 1
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"ET" = (
+/obj/item/pizzabox/meat,
+/obj/item/pizzabox/meat,
+/obj/item/pizzabox/meat,
+/obj/item/pizzabox/mushroom,
+/obj/item/pizzabox/margherita,
+/obj/item/pizzabox/pineapple,
+/obj/item/pizzabox/vegetable,
+/obj/structure/table/wood/bar{
+	boot_dir = 8
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"Fo" = (
+/obj/item/storage/bag/tray,
+/obj/structure/table/wood/bar{
+	boot_dir = 1
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"FC" = (
+/obj/structure/table/wood/poker,
+/obj/item/storage/box/drinkingglasses,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "Hf" = (
@@ -255,12 +305,17 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"Jy" = (
-/obj/effect/spawner/structure/window/plastitanium,
-/turf/open/floor/plasteel/elevatorshaft,
-/area/shuttle/escape)
 "JR" = (
 /obj/machinery/vending/boozeomat,
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"Kv" = (
+/obj/machinery/computer/communications{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "Ky" = (
@@ -274,23 +329,6 @@
 "Ow" = (
 /obj/structure/table,
 /obj/item/storage/box/drinkingglasses,
-/turf/open/floor/wood,
-/area/shuttle/escape)
-"Ox" = (
-/obj/structure/table/wood/bar,
-/obj/item/pizzabox/meat,
-/obj/item/pizzabox/meat,
-/obj/item/pizzabox/meat,
-/obj/item/pizzabox/mushroom,
-/obj/item/pizzabox/margherita,
-/obj/item/pizzabox/pineapple,
-/obj/item/pizzabox/vegetable,
-/turf/open/floor/wood,
-/area/shuttle/escape)
-"OG" = (
-/obj/machinery/computer/communications{
-	dir = 8
-	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "ON" = (
@@ -312,10 +350,6 @@
 /mob/living/simple_animal/drone/snowflake/bardrone,
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"QO" = (
-/obj/machinery/door/airlock/gold/glass,
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "Ry" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/railing,
@@ -329,6 +363,35 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime,
 /turf/open/floor/wood,
+/area/shuttle/escape)
+"Tc" = (
+/obj/docking_port/mobile/emergency{
+	name = "Uncle Pete's Rollerdome"
+	},
+/obj/machinery/door/airlock/gold/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"Td" = (
+/obj/item/storage/bag/tray,
+/obj/item/kitchen/knife,
+/obj/item/reagent_containers/food/snacks/store/cake/birthday,
+/obj/structure/table/wood/bar{
+	boot_dir = 8
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"TA" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "TU" = (
 /obj/structure/railing{
@@ -349,15 +412,17 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"Yr" = (
-/obj/structure/table/wood/poker,
-/obj/item/storage/box/drinkingglasses,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-/obj/machinery/light,
-/turf/open/floor/wood,
+"Wr" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/shuttle/escape)
-"Zo" = (
-/obj/structure/table/wood/bar,
+"WN" = (
+/obj/structure/table/wood/bar{
+	boot_dir = 1
+	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "ZN" = (
@@ -378,19 +443,19 @@ pj
 tG
 tG
 tG
-Jy
+TA
 tG
-ss
+Tc
 tG
-Jy
-Jy
-Jy
+TA
+TA
+TA
 tG
 hF
 tG
-QO
+sR
 tG
-Jy
+TA
 tG
 pj
 "}
@@ -401,11 +466,11 @@ tG
 tG
 hF
 AT
+sW
 Cg
 Cg
 Cg
-Cg
-Cg
+sW
 Cg
 Cg
 Cg
@@ -421,9 +486,9 @@ tG
 (3,1,1) = {"
 tG
 tG
-nT
+CL
 Qf
-zx
+uv
 ln
 Cg
 vq
@@ -436,18 +501,18 @@ TU
 Cg
 Cg
 ce
-uN
-Ox
-kg
+CH
+ET
+Td
 KJ
 od
 "}
 (4,1,1) = {"
-Jy
+yI
 Hi
 We
 We
-zx
+uv
 ms
 Cg
 cc
@@ -460,18 +525,18 @@ ze
 Cg
 Cg
 ce
-Zo
+WN
 Ky
 eR
 KJ
 od
 "}
 (5,1,1) = {"
-Jy
+yI
 wn
 Ky
 Ky
-zx
+uv
 BD
 Cg
 ZN
@@ -484,18 +549,18 @@ Ry
 Cg
 Cg
 ce
-uN
+Fo
 Ky
 fX
 KJ
 od
 "}
 (6,1,1) = {"
-Jy
+yI
 im
 Ky
-Yr
-zx
+FC
+uv
 Uf
 Cg
 ce
@@ -508,18 +573,18 @@ dJ
 Cg
 Cg
 ce
-ns
+DZ
 Qv
 JR
 KJ
 od
 "}
 (7,1,1) = {"
-Jy
+yI
 wn
 Ky
 Ky
-hD
+uS
 Cg
 Cg
 ZN
@@ -532,18 +597,18 @@ Ry
 Cg
 Cg
 ce
-Zo
+WN
 Ky
 nw
 KJ
 od
 "}
 (8,1,1) = {"
-Jy
+yI
 vJ
 xK
 xK
-zx
+uv
 ON
 Cg
 cc
@@ -556,7 +621,7 @@ ze
 Cg
 Cg
 ce
-uN
+Fo
 Ky
 Ow
 KJ
@@ -566,8 +631,8 @@ od
 tG
 tG
 Jq
-OG
-zx
+Kv
+uv
 ln
 Cg
 nN
@@ -580,7 +645,7 @@ DR
 Cg
 Cg
 ce
-Zo
+WN
 Dh
 HA
 KJ
@@ -593,11 +658,11 @@ tG
 tG
 hF
 AT
+ty
 Cg
 Cg
 Cg
-Cg
-Cg
+ty
 Cg
 Cg
 Cg
@@ -618,19 +683,19 @@ pj
 tG
 tG
 tG
-Jy
+Wr
 tG
 tG
 tG
-Jy
-Jy
-Jy
+Wr
+Wr
+Wr
 tG
 tG
 tG
-Jy
+Wr
 tG
-Jy
+Wr
 tG
 pj
 "}
