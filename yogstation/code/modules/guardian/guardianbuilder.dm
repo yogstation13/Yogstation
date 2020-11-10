@@ -217,9 +217,7 @@
 				to_chat(user, "<span class='holoparasite'><font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> has been summoned!</span>")
 			if("carp")
 				to_chat(user, "<span class='holoparasite'><font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> has been caught!</span>")
-		user.verbs += /mob/living/proc/guardian_comm
-		user.verbs += /mob/living/proc/guardian_recall
-		user.verbs += /mob/living/proc/guardian_reset
+		add_verb(user, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset))
 		//surprise another check in case you tried to get around the first one and now you have no holoparasite :)
 		for(var/obj/H in all_items)
 			if(istype(H, /obj/item/clothing/neck/necklace/memento_mori))

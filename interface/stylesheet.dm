@@ -35,6 +35,8 @@ em						{font-style: normal;	font-weight: bold;}
 .admin					{color: #386aff;	font-weight: bold;}
 
 .name					{					font-weight: bold;}
+.mentor					{}
+
 
 .say					{}
 .deadsay				{color: #5c00e6;}
@@ -88,10 +90,10 @@ h1.alert, h2.alert		{color: #000000;}
 .nicegreen					{color: #14a833;}
 .shadowling				{color: #3b2769;}
 .velvet					{color: #21007F;}
-.cult					{color: #960000;}
-.cultlarge				{color: #960000; font-weight: bold; font-size: 3;}
-.narsie					{color: #960000; font-weight: bold; font-size: 15;}
-.narsiesmall			{color: #960000; font-weight: bold; font-size: 6;}
+.cult					{color: #973e3b;}
+.cultlarge				{color: #973e3b; font-weight: bold; font-size: 3;}
+.narsie					{color: #973e3b; font-weight: bold; font-size: 15;}
+.narsiesmall			{color: #973e3b; font-weight: bold; font-size: 6;}
 .colossus				{color: #7F282A; font-size: 5;}
 .hierophant				{color: #660099; font-weight: bold; font-style: italic;}
 .hierophant_warning		{color: #660099; font-style: italic;}
