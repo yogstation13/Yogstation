@@ -2,7 +2,7 @@
 /client/verb/wiki(query as text)
 	set name = "wiki"
 	set desc = "Type what you want to know about.  This will open the wiki in your web browser. Type nothing to go to the main page."
-	set hidden = 1
+	set hidden = TRUE
 	var/wikiurl = CONFIG_GET(string/wikiurl)
 	if(wikiurl)
 		if(query)
@@ -17,7 +17,7 @@
 /client/verb/forum()
 	set name = "forum"
 	set desc = "Visit the forum."
-	set hidden = 1
+	set hidden = TRUE
 	var/forumurl = CONFIG_GET(string/forumurl)
 	if(forumurl)
 		if(alert("This will open the forum in your browser. Are you sure?",,"Yes","No")!="Yes")
@@ -26,6 +26,7 @@
 	else
 		to_chat(src, "<span class='danger'>The forum URL is not set in the server configuration.</span>")
 	return
+
 
 /client/verb/demoview(roundnumber as num)
 	set name = "demoview"
@@ -46,7 +47,7 @@
 /client/verb/rules()
 	set name = "rules"
 	set desc = "Show Server Rules."
-	set hidden = 1
+	set hidden = TRUE
 	var/rulesurl = CONFIG_GET(string/rulesurl)
 	if(rulesurl)
 		if(alert("This will open the rules in your browser. Are you sure?",,"Yes","No")!="Yes")
@@ -59,7 +60,7 @@
 /client/verb/github()
 	set name = "github"
 	set desc = "Visit Github"
-	set hidden = 1
+	set hidden = TRUE
 	var/githuburl = CONFIG_GET(string/githuburl)
 	if(githuburl)
 		if(alert("This will open the Github repository in your browser. Are you sure?",,"Yes","No")!="Yes")
@@ -72,7 +73,7 @@
 /client/verb/reportissue()
 	set name = "report-issue"
 	set desc = "Report an issue"
-	set hidden = 1
+	set hidden = TRUE
 	var/githuburl = CONFIG_GET(string/githuburl)
 	if(githuburl)
 		var/message = "This will open the Github issue reporter in your browser. Are you sure?"
@@ -114,9 +115,9 @@ Admin:
 /client/verb/changelog()
 	set name = "Changelog"
 	set category = "OOC"
-	var/datum/asset/changelog = get_asset_datum(/datum/asset/simple/changelog)
+	var/datum/asset/simple/namespaced/changelog = get_asset_datum(/datum/asset/simple/namespaced/changelog)
 	changelog.send(src)
-	src << browse('html/changelog.html', "window=changes;size=675x650")
+	src << browse(changelog.get_htmlloader("changelog.html"), "window=changes;size=675x650")
 	if(prefs.lastchangelog != GLOB.changelog_hash)
 		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()

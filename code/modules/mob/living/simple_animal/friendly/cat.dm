@@ -36,7 +36,8 @@
 
 /mob/living/simple_animal/pet/cat/Initialize()
 	. = ..()
-	verbs += /mob/living/proc/lay_down
+	add_verb(src, /mob/living/proc/lay_down)
+
 
 /mob/living/simple_animal/pet/cat/update_mobility()
 	..()
