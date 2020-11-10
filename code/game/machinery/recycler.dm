@@ -112,7 +112,7 @@
 			if(istype(AM, /obj/item/organ/brain) || (istype(as_head) && as_head.brain) || (istype(as_mmi) && as_mmi.brain) || istype(AM, /obj/item/dullahan_relay))
 				living_detected = TRUE
 			nom += AM
-		else if(isliving(AM) && !istype(AM, /mob/living/simple_animal/hostile/megafauna))
+		else if(isliving(AM))
 			living_detected = TRUE
 			crunchy_nom += AM
 	var/not_eaten = to_eat.len - nom.len - crunchy_nom.len
