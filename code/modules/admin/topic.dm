@@ -35,7 +35,7 @@
 			M.client.show_popup_menus = TRUE
 			M.client.show_verb_panel = TRUE
 			M.notransform = FALSE
-			M.verbs += M.client.afreeze_stored_verbs
+			add_verb(M, M.client.afreeze_stored_verbs)
 			message = "[key_name(usr)] has unfrozen [key_name(M)]."
 		else
 			to_chat(M, "<span class='userdanger'>You have been frozen by an administrator.</span>")
@@ -44,7 +44,7 @@
 			M.client.show_verb_panel = FALSE
 			M.notransform = TRUE
 			M.client.afreeze_stored_verbs = M.verbs.Copy()
-			M.verbs.Cut()
+			remove_verb(M, M.verbs.Copy())
 			message = "[key_name(usr)] has frozen [key_name(M)]."
 		log_admin(message)
 		message_admins(message) //yogs end
