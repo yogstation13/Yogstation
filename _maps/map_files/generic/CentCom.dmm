@@ -7347,28 +7347,6 @@
 /obj/mecha/combat/durand,
 /turf/open/floor/engine,
 /area/centcom/testchamber)
-"rc" = (
-/obj/item/cardboard_cutout/chess/black/pawn,
-/obj/item/cardboard_cutout/chess/black/pawn,
-/obj/item/cardboard_cutout/chess/black/pawn,
-/obj/item/cardboard_cutout/chess/black/pawn,
-/obj/item/cardboard_cutout/chess/black/pawn,
-/obj/item/cardboard_cutout/chess/black/pawn,
-/obj/item/cardboard_cutout/chess/black/pawn,
-/obj/item/cardboard_cutout/chess/black/pawn,
-/obj/item/cardboard_cutout/chess/black/rook,
-/obj/item/cardboard_cutout/chess/black/knight,
-/obj/item/cardboard_cutout/chess/black/bishop,
-/obj/item/cardboard_cutout/chess/black/king,
-/obj/item/cardboard_cutout/chess/black/queen,
-/obj/item/cardboard_cutout/chess/black/bishop,
-/obj/item/cardboard_cutout/chess/black/knight,
-/obj/item/cardboard_cutout/chess/black/rook,
-/obj/structure/closet{
-	name = "Extra Pieces"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "rd" = (
 /obj/structure/flora/grass/brown,
 /obj/effect/light_emitter{
@@ -8475,6 +8453,10 @@
 "ta" = (
 /turf/open/floor/carpet/blue,
 /area/centcom/evac)
+"tb" = (
+/obj/structure/closet/chesspieces/black,
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "tc" = (
 /obj/structure/table/wood,
 /obj/item/storage/box/fancy/cigarettes/cigars/havana,
@@ -11294,6 +11276,10 @@
 /obj/effect/turf_decal/loading_area,
 /turf/open/floor/plasteel,
 /area)
+"yO" = (
+/obj/structure/closet/chesspieces/white,
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/spacechess)
 "yQ" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -21087,28 +21073,6 @@
 	},
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/basketball)
-"Sy" = (
-/obj/item/cardboard_cutout/chess/white/rook,
-/obj/item/cardboard_cutout/chess/white/knight,
-/obj/item/cardboard_cutout/chess/white/bishop,
-/obj/item/cardboard_cutout/chess/white/king,
-/obj/item/cardboard_cutout/chess/white/queen,
-/obj/item/cardboard_cutout/chess/white/bishop,
-/obj/item/cardboard_cutout/chess/white/knight,
-/obj/item/cardboard_cutout/chess/white/rook,
-/obj/item/cardboard_cutout/chess/white/pawn,
-/obj/item/cardboard_cutout/chess/white/pawn,
-/obj/item/cardboard_cutout/chess/white/pawn,
-/obj/item/cardboard_cutout/chess/white/pawn,
-/obj/item/cardboard_cutout/chess/white/pawn,
-/obj/item/cardboard_cutout/chess/white/pawn,
-/obj/item/cardboard_cutout/chess/white/pawn,
-/obj/item/cardboard_cutout/chess/white/pawn,
-/obj/structure/closet{
-	name = "Extra Pieces"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "Sz" = (
 /obj/effect/holodeck_effect/mobspawner/pet,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -87394,7 +87358,7 @@ bk
 bk
 bk
 bj
-rc
+tb
 dn
 Mq
 PN
@@ -87403,7 +87367,7 @@ CS
 Xb
 Kz
 LA
-Sy
+yO
 bj
 We
 We
