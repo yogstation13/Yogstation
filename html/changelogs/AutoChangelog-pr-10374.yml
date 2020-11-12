@@ -1,0 +1,6 @@
+author: "swissloaf"
+delete-after: true 
+changes: 
+  - rscadd: "Adds Pete's Rollerdome, 90s style rollerdome escape ship"
+  - rscadd: "Adds siding tiles, hopefully they can be used beyong the rollerdom"
+  - rscadd: "Adds retro tiles, the carpet you see in the rollerdome"
