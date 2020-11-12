@@ -63,3 +63,27 @@
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/suit/bluetag(src)
 	new /obj/item/clothing/head/helmet/bluetaghelm(src)
+
+/obj/structure/closet/chesspieces/white
+	name = "Spare White Chess Pieces"
+	anchored = TRUE
+
+/obj/structure/closet/chesspieces/black
+	name = "Spare Black Chess Pieces"
+	anchored = TRUE
+
+/obj/structure/closet/chesspieces/white/PopulateContents()
+	new /obj/item/cardboard_cutout/chess/white/pawn(src)
+	new /obj/item/cardboard_cutout/chess/white/rook(src)
+	new /obj/item/cardboard_cutout/chess/white/knight(src)
+	new /obj/item/cardboard_cutout/chess/white/bishop(src)
+	new /obj/item/cardboard_cutout/chess/white/queen(src)
+	new /obj/item/cardboard_cutout/chess/white/king(src)
+
+/obj/structure/closet/chesspieces/black/PopulateContents()
+	new /obj/item/cardboard_cutout/chess/black/pawn(src)
+	new /obj/item/cardboard_cutout/chess/black/rook(src)
+	new /obj/item/cardboard_cutout/chess/black/knight(src)
+	new /obj/item/cardboard_cutout/chess/black/bishop(src)
+	new /obj/item/cardboard_cutout/chess/black/queen(src)
+	new /obj/item/cardboard_cutout/chess/black/king(src)
