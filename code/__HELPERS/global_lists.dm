@@ -32,7 +32,6 @@
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/wings, GLOB.r_wings_list,roundstart = TRUE)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/caps, GLOB.caps_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wings, GLOB.moth_wings_list)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/plasma_vessels, GLOB.plasma_vessels_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/teeth, GLOB.teeth_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/dome, GLOB.dome_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/dorsal_tubes, GLOB.dorsal_tubes_list)
@@ -46,11 +45,6 @@
 	//Surgeries
 	for(var/path in subtypesof(/datum/surgery))
 		GLOB.surgeries_list += new path()
-
-	//Materials
-	for(var/path in subtypesof(/datum/material))
-		var/datum/material/D = new path()
-		GLOB.materials_list[D.id] = D
 
 	GLOB.emote_list = init_emote_list()
 	//Skillcapes

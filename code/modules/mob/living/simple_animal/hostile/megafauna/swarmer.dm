@@ -204,6 +204,10 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 
 
 /mob/living/simple_animal/hostile/swarmer/ai/resource/AttackingTarget()
+	if(isliving(target))
+		StartAction(30)
+		prepare_target(target)
+		return TRUE
 	if(target.swarmer_act(src))
 		add_type_to_wanted(target.type)
 		return TRUE

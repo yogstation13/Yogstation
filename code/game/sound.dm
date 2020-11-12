@@ -97,8 +97,8 @@
 /mob/proc/stop_sound_channel(chan)
 	SEND_SOUND(src, sound(null, repeat = 0, wait = 0, channel = chan))
 	if(chan == CHANNEL_LOBBYMUSIC) //yogs start
-		if(client && client.chatOutput)
-			client.chatOutput.stopLobbyMusic() //yogs end
+		if(client && client.tgui_panel)
+			client.tgui_panel?.stop_music() //yogs end
 
 /mob/proc/set_sound_channel_volume(channel, volume)
 	var/sound/S = sound(null, FALSE, FALSE, channel, volume)
@@ -108,10 +108,10 @@
 /client/proc/playtitlemusic(vol = 85)
 	set waitfor = FALSE
 	UNTIL(SSticker.login_music) //wait for SSticker init to set the login music
-	UNTIL(chatOutput.loaded)
+	UNTIL(tgui_panel)
 
 	if(prefs && (prefs.toggles & SOUND_LOBBY))
-		chatOutput.sendLobbyMusic(SSticker.login_music)
+		tgui_panel?.play_music(SSticker.login_music)
 		to_chat(src, "<span class='notice'>Currently playing: </span>[SSticker.selected_lobby_music]")
 
 /proc/get_rand_frequency()
@@ -124,6 +124,10 @@
 				soundin = pick('sound/effects/glassbr1.ogg','sound/effects/glassbr2.ogg','sound/effects/glassbr3.ogg')
 			if ("explosion")
 				soundin = pick('sound/effects/explosion1.ogg','sound/effects/explosion2.ogg')
+			if ("explosion_creaking")
+				soundin = pick('sound/effects/explosioncreak1.ogg', 'sound/effects/explosioncreak2.ogg')
+			if ("hull_creaking")
+				soundin = pick('sound/effects/creak1.ogg', 'sound/effects/creak2.ogg', 'sound/effects/creak3.ogg')
 			if ("sparks")
 				soundin = pick('sound/effects/sparks1.ogg','sound/effects/sparks2.ogg','sound/effects/sparks3.ogg','sound/effects/sparks4.ogg')
 			if ("rustle")

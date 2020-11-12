@@ -4,7 +4,7 @@
 	icon_state = "laser"
 	item_state = "laser"
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(MAT_METAL=2000)
+	materials = list(/datum/material/iron=2000)
 	ammo_type = list(/obj/item/ammo_casing/energy/lasergun)
 	ammo_x_offset = 1
 	shaded_charge = 1
@@ -140,7 +140,7 @@
 
 /obj/item/gun/energy/laser/redtag/hitscan
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/redtag/hitscan)
-	
+
 /obj/item/gun/energy/laser/makeshiftlasrifle
 	name = "makeshift laser rifle"
 	desc = "A makeshift rifle that shoots lasers. Lacks factory precision, but the screwable bulb allows modulating the photonic output."
@@ -173,4 +173,4 @@
 
 /obj/item/projectile/beam/laser/makeshiftlasrifle/weak
 	name = "weak laser"
-	damage = 5 
+	damage = 5

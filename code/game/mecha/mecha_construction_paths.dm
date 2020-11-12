@@ -980,6 +980,12 @@
 	return list(
 		list(
 			"key" = /obj/item/stock_parts/scanning_module,
+			"action" = ITEM_MOVE_INSIDE,
+			"back_key" = TOOL_SCREWDRIVER,
+			"desc" = "Weapon control module is secured."
+		),
+		list(
+			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
 			"action" = ITEM_MOVE_INSIDE,
 			"desc" = "Scanner module is installed."

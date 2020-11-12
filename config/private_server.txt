@@ -33,7 +33,8 @@ HOSTEDBY Yogstation13-Bot
 
 ## set a server location for world reboot. Don't include the byond://, just give the address and port.
 ## Don't set this to the same server, BYOND will automatically restart players to the server when it has restarted.
-# SERVER game.yogstation.net:4133
+
+#SERVER game.yogstation.net:4133
 
 ## forum address
 FORUMURL http://yogstation.net
@@ -49,6 +50,9 @@ GITHUBURL https://www.github.com/yogstation13/yogstation
 
 ## API address
 APIURL https://forums.yogstation.net/api
+
+## Demo address with args
+DEMOURL https://yogstation13.github.io/demo-viewer/?roundid=
 
 ## Github repo id
 ##This can be found by going to https://api.github.com/users/<user name here>/repos

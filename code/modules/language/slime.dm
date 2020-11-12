@@ -7,5 +7,5 @@
 	key = "k"
 	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix","*","!")
 	default_priority = 70
-
+	sing_verb = "warbles"
 	icon_state = "slime"

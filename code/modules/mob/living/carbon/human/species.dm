@@ -1,6 +1,7 @@
 // This code handles different species in the game.
 
 GLOBAL_LIST_EMPTY(roundstart_races)
+GLOBAL_LIST_EMPTY(mentor_races)
 
 /datum/species
 	/// if the game needs to manually check your race to do something not included in a proc here, it will use this
@@ -162,11 +163,19 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(S.check_roundstart_eligible())
 			GLOB.roundstart_races += S.id
 			qdel(S)
+		else if(S.check_mentor())
+			GLOB.mentor_races += S.id
+			qdel(S)
 	if(!GLOB.roundstart_races.len)
 		GLOB.roundstart_races += "human"
 
 /datum/species/proc/check_roundstart_eligible()
 	if(id in (CONFIG_GET(keyed_list/roundstart_races)))
+		return TRUE
+	return FALSE
+
+/datum/species/proc/check_mentor()
+	if(id in (CONFIG_GET(keyed_list/mentor_races)))
 		return TRUE
 	return FALSE
 
@@ -708,8 +717,14 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(!(DIGITIGRADE in species_traits)) //Someone cut off a digitigrade leg and tacked it on
 			species_traits += DIGITIGRADE
 		var/should_be_squished = FALSE
-		if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) || (H.wear_suit.body_parts_covered & LEGS)) || (H.w_uniform && (H.w_uniform.body_parts_covered & LEGS)))
-			should_be_squished = TRUE
+		if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) || (H.wear_suit.body_parts_covered & LEGS))) //Check for snowflake suit
+			var/obj/item/clothing/suit/A = H.wear_suit
+			if(A.mutantrace_variation != MUTANTRACE_VARIATION)
+				should_be_squished = TRUE
+		if(H.w_uniform && (H.w_uniform.body_parts_covered & LEGS)) //Check for snowflake jumpsuit
+			var/obj/item/clothing/under/U = H.w_uniform
+			if(U.mutantrace_variation != MUTANTRACE_VARIATION)
+				should_be_squished = TRUE
 		if(O.use_digitigrade == FULL_DIGITIGRADE && should_be_squished)
 			O.use_digitigrade = SQUISHED_DIGITIGRADE
 			update_needed = TRUE
@@ -766,8 +781,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
 				if("caps")
 					S = GLOB.caps_list[H.dna.features["caps"]]
-				if("plasma_vessels")
-					S = GLOB.plasma_vessels_list[H.dna.features["plasma_vessels"]]
 				if("teeth")
 					S = GLOB.teeth_list[H.dna.features["teeth"]]
 				if("dome")
@@ -1493,16 +1506,16 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return 0
 	SEND_SIGNAL(M, COMSIG_MOB_ATTACK_HAND, M, H, attacker_style)
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			help(M, H, attacker_style)
 
-		if("grab")
+		if(INTENT_GRAB)
 			grab(M, H, attacker_style)
 
-		if("harm")
+		if(INTENT_HARM)
 			harm(M, H, attacker_style)
 
-		if("disarm")
+		if(INTENT_DISARM)
 			disarm(M, H, attacker_style)
 
 /datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)

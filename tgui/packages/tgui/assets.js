@@ -47,23 +47,12 @@ export const loadStyleSheet = (url, attempt = 1) => {
  * and is not empty.
  */
 const isStyleSheetReallyLoaded = (node, url) => {
-  // Method #1 (works on IE10+)
   const styleSheet = node.sheet;
-  if (styleSheet) {
-    return styleSheet.rules.length > 0;
+  if (!styleSheet) {
+    logger.warn(`Warning: stylesheet '${url}' was not found in the DOM`);
+    return false;
   }
-  // Method #2
-  const styleSheets = document.styleSheets;
-  const len = styleSheets.length;
-  for (let i = 0; i < len; i++) {
-    const styleSheet = styleSheets[i];
-    if (styleSheet.href.includes(url)) {
-      return styleSheet.rules.length > 0;
-    }
-  }
-  // All methods failed
-  logger.warn(`Warning: stylesheet '${url}' was not found in the DOM`);
-  return false;
+  return styleSheet.rules.length !== 0;
 };
 
 export const resolveAsset = name => (

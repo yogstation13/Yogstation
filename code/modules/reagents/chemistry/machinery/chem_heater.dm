@@ -9,8 +9,7 @@
 	circuit = /obj/item/circuitboard/machine/chem_heater
 	var/obj/item/reagent_containers/beaker = null
 	var/target_temperature = 300
-	var/currentspeed = 10
-	var/heater_speed = 10
+	var/heater_coefficient = 0.1
 	var/on = FALSE
 
 /obj/machinery/chem_heater/Destroy()
@@ -51,25 +50,23 @@
 	return TRUE
 
 /obj/machinery/chem_heater/RefreshParts()
-	heater_speed = 10
+	heater_coefficient = 0.1
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
-		heater_speed *= M.rating
+		heater_coefficient *= M.rating
 
 /obj/machinery/chem_heater/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Heating reagents at <b>[heater_speed]K</b> per cycle.<span>"
+		. += "<span class='notice'>The status display reads: Heating reagents at <b>[heater_coefficient*1000]%</b> speed.<span>"
 
 /obj/machinery/chem_heater/process()
 	..()
 	if(stat & NOPOWER)
 		return
-	if(on && beaker?.reagents.total_volume)
-		currentspeed = heater_speed
-		if((beaker.reagents.chem_temp + heater_speed) >= target_temperature)
-			currentspeed = target_temperature - beaker.reagents.chem_temp
-		beaker.reagents.adjust_thermal_energy(currentspeed * SPECIFIC_HEAT_DEFAULT * beaker.reagents.total_volume)
-		beaker.reagents.handle_reactions()
+	if(on)
+		if(beaker && beaker.reagents.total_volume)
+			beaker.reagents.adjust_thermal_energy((target_temperature - beaker.reagents.chem_temp) * heater_coefficient * SPECIFIC_HEAT_DEFAULT * beaker.reagents.total_volume)
+			beaker.reagents.handle_reactions()
 
 /obj/machinery/chem_heater/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "mixer0b", "mixer0b", I))
@@ -94,11 +91,10 @@
 	replace_beaker()
 	return ..()
 
-/obj/machinery/chem_heater/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/chem_heater/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "ChemHeater", name, 275, 320, master_ui, state)
+		ui = new(user, src, "ChemHeater", name)
 		ui.open()
 
 /obj/machinery/chem_heater/ui_data()
