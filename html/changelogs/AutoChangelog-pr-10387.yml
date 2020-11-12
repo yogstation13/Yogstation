@@ -1,5 +1,0 @@
-author: "MrHorizons"
-delete-after: true 
-changes: 
-  - bugfix: "Crafted personal closets no longer spawn with bags and a radio."
-  - tweak: "Rebranded the personal closet recipe as a secure closet."
