@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(events)
 
 	var/scheduled = 0			//The next world.time that a naturally occuring random event can be selected.
 	var/frequency_lower = 1200	//2 minutes lower bound.
-	var/frequency_upper = 5400	//9 minutes upper bound. Basically an event will happen every 2 to 9 minutes.
+	var/frequency_upper = 9 MINUTES //9 minutes upper bound. Basically an event will happen every 2 to 9 minutes.
 
 	var/list/holidays			//List of all holidays occuring today or null if no holidays
 	var/wizardmode = FALSE
