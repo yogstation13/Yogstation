@@ -1249,3 +1249,7 @@
 		old_ai.connected_robots -= src
 	if(connected_ai)
 		connected_ai.connected_robots |= src
+
+
+/mob/living/silicon/robot/shell
+	shell = TRUE
