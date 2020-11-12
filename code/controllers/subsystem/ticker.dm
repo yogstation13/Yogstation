@@ -363,26 +363,24 @@ SUBSYSTEM_DEF(ticker)
 			SSticker.minds += P.new_character.mind
 		CHECK_TICK
 
-
 /**
   * Equips people that are readied up when the round starts
   *
   * In addition, responsible for spawning the cyborg shell if there are no roundstart cyborgs and announcing if there ISN'T a Captain present
   */
 /datum/controller/subsystem/ticker/proc/equip_characters()
-	var/captainless=1
-
+	var/captainless = TRUE
 	var/no_cyborgs = TRUE
 
 	for(var/mob/dead/new_player/N in GLOB.player_list)
 		var/mob/living/carbon/human/player = N.new_character
 		if(istype(player) && player.mind && player.mind.assigned_role)
 			if(player.mind.assigned_role == "Captain")
-				captainless=0
+				captainless = FALSE
 			if(player.mind.assigned_role == "Cyborg")
 				no_cyborgs = FALSE
 			if(player.mind.assigned_role != player.mind.special_role)
-				SSjob.EquipRank(N, player.mind.assigned_role, 0)
+				SSjob.EquipRank(N, player.mind.assigned_role, FALSE)
 				if(CONFIG_GET(flag/roundstart_traits) && ishuman(N.new_character))
 					SSquirks.AssignQuirks(N.new_character, N.client, TRUE)
 		CHECK_TICK
