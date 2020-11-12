@@ -497,10 +497,10 @@ SUBSYSTEM_DEF(job)
 		living_mob.add_memory("Your account ID is [wageslave.account_id].")
 	if(job && living_mob)
 		job.after_spawn(living_mob, M, joined_late) // note: this happens before the mob has a key! M will always have a client, H might not.
-	if(living_mob?.client)
-		job.give_donor_stuff(living_mob, M) // yogs - Donor Features
-		job.give_cape(living_mob, M)
-		job.give_map_flare(living_mob, M)
+
+	job.give_donor_stuff(living_mob, M) // yogs - Donor Features
+	job.give_cape(living_mob, M)
+	job.give_map_flare(living_mob, M)
 	log_game("[living_mob.real_name]/[M.client.ckey] joined the round as [living_mob.job].") //yogs - Job logging
 
 	return living_mob
