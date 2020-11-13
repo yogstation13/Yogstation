@@ -312,7 +312,10 @@
 				rev.promote()
 
 	addtimer(CALLBACK(src,.proc/update_heads),HEAD_UPDATE_PERIOD,TIMER_UNIQUE)
-
+	
+/datum/team/revolution/proc/save_members()
+	ex_headrevs = get_antag_minds(/datum/antagonist/rev/head, TRUE)
+	ex_revs = get_antag_minds(/datum/antagonist/rev, TRUE)
 
 /datum/team/revolution/proc/check_victory()
 	for(var/datum/objective/O in objectives)
