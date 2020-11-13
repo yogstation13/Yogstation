@@ -2,22 +2,13 @@
 
 /proc/init_gas_reactions()
 	. = list()
-	for(var/type in subtypesof(/datum/gas))
-		.[type] = list()
 
 	for(var/r in subtypesof(/datum/gas_reaction))
 		var/datum/gas_reaction/reaction = r
 		if(initial(reaction.exclude))
 			continue
-		reaction = new r
-		var/datum/gas/reaction_key
-		for (var/req in reaction.min_requirements)
-			if (ispath(req))
-				var/datum/gas/req_gas = req
-				if (!reaction_key || initial(reaction_key.rarity) > initial(req_gas.rarity))
-					reaction_key = req_gas
-		.[reaction_key] += list(reaction)
-		sortTim(., /proc/cmp_gas_reactions, TRUE)
+		. += new r
+	sortTim(., /proc/cmp_gas_reactions, TRUE)
 
 /proc/cmp_gas_reactions(list/datum/gas_reaction/a, list/datum/gas_reaction/b) // compares lists of reactions by the maximum priority contained within the list
 	if (!length(a) || !length(b))
@@ -257,7 +248,7 @@
 	for (var/gas_id in air.get_gases())
 		gas_power += (GLOB.meta_gas_info[gas_id][META_GAS_FUSION_POWER]*air.get_moles(gas_id))
 	var/instability = MODULUS((gas_power*INSTABILITY_GAS_POWER_FACTOR)**2,toroidal_size) //Instability effects how chaotic the behavior of the reaction is
-	cached_scan_results[id] = instability//used for analyzer feedback
+	cached_scan_results["fusion"] = instability//used for analyzer feedback
 
 	var/plasma = (initial_plasma-FUSION_MOLE_THRESHOLD)/(scale_factor) //We have to scale the amounts of carbon and plasma down a significant amount in order to show the chaotic dynamics we want
 	var/carbon = (initial_carbon-FUSION_MOLE_THRESHOLD)/(scale_factor) //We also subtract out the threshold amount to make it harder for fusion to burn itself out.

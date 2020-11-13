@@ -301,7 +301,7 @@
 		if(!get_excited() && air.compare(enemy_air))
 			//testing("Active turf found. Return value of compare(): [is_active]")
 			set_excited(TRUE)
-			SSair.active_turfs |= src
+			SSair.add_to_active_extools(src)
 
 /turf/open/proc/GetHeatCapacity()
 	. = air.heat_capacity()
