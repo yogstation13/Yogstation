@@ -33341,6 +33341,14 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"cdT" = (
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible,
+/obj/structure/sign/warning/nosmoking{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "cdW" = (
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/port/aft";
@@ -35636,14 +35644,6 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
-"cGY" = (
-/obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible,
-/obj/structure/sign/warning/nosmoking{
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "cHk" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -36973,6 +36973,15 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"dom" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/atmos_distro)
 "doF" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -37234,13 +37243,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
-"dxF" = (
-/obj/machinery/portable_atmospherics/scrubber/huge,
-/obj/structure/sign/warning/radiation/rad_area{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/atmos_distro)
 "dxH" = (
 /obj/structure/table,
 /obj/structure/mirror{
@@ -39647,6 +39649,19 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"fqz" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/structure/sign/warning/vacuum/external{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "fqI" = (
 /obj/machinery/power/apc{
 	areastring = "/area/engine/gravity_generator";
@@ -43091,12 +43106,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"ikN" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/engine/atmos_distro)
 "ild" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -49683,15 +49692,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"nws" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/atmos_distro)
 "nwZ" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -51439,6 +51439,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
+"oHT" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/engine/atmos_distro)
 "oIp" = (
 /obj/structure/table/glass,
 /obj/machinery/door/window/northright{
@@ -54216,19 +54222,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"qSI" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/obj/structure/sign/warning/vacuum/external{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "qSU" = (
 /obj/machinery/door/airlock/glass_large{
 	doorOpen = 'sound/machines/defib_success.ogg';
@@ -54991,6 +54984,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"rCf" = (
+/obj/machinery/portable_atmospherics/scrubber/huge,
+/obj/structure/sign/warning/radiation/rad_area{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/atmos_distro)
 "rCG" = (
 /obj/machinery/camera/motion{
 	c_tag = "AI Upload Chamber - Starboard";
@@ -100021,7 +100021,7 @@ bmg
 bbG
 bFD
 blf
-qSI
+fqz
 avy
 avy
 avy
@@ -100281,7 +100281,7 @@ mpf
 uVQ
 waO
 nrx
-ikN
+oHT
 jdE
 jGL
 aaa
@@ -101052,7 +101052,7 @@ bNn
 avy
 avy
 avy
-nws
+dom
 oJL
 mcP
 wsS
@@ -101569,7 +101569,7 @@ bGf
 iLR
 qzr
 mcP
-dxF
+rCf
 bGf
 huB
 gXs
@@ -102085,7 +102085,7 @@ sNh
 vvW
 reu
 tDz
-cGY
+cdT
 bPq
 aaa
 aaa
