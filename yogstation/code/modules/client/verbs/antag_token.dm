@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 	to_chat(usr, "<span class='userdanger'>Your request has been denied! Your antag token has NOT been used.</span>")
 
 /datum/admins/proc/accept_antag_token_usage(client/C)
-	var/token = FALSE
+	var/token = FALSE // Weather or not the token was used, changed slightly later in the code
 	if(SSticker.current_state > GAME_STATE_PREGAME)
 		return
 
