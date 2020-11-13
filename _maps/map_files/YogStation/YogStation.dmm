@@ -43929,6 +43929,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"iQA" = (
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/hidden,
+/turf/open/floor/plasteel/dark,
+/area/engine/atmos_distro)
 "iQC" = (
 /obj/machinery/atmospherics/pipe/simple/purple/hidden{
 	dir = 4
@@ -44075,12 +44083,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/engine/engineering)
-"iUi" = (
-/obj/structure/disposalpipe/junction{
-	dir = 2
-	},
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "iUt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -46331,6 +46333,11 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
+"kKw" = (
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible,
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "kLy" = (
 /obj/structure/toilet{
 	dir = 1
@@ -60793,6 +60800,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"wiZ" = (
+/obj/structure/disposalpipe/junction{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/hidden,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "wjG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -61416,14 +61430,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"wIG" = (
-/obj/machinery/meter,
-/obj/item/radio/intercom{
-	pixel_y = -27
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "wII" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -62183,13 +62189,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"xvC" = (
-/obj/machinery/atmospherics/components/binary/valve{
-	dir = 1;
-	name = "Mix to Space"
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "xvY" = (
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -62232,6 +62231,18 @@
 /obj/structure/alien/weeds,
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"xxR" = (
+/obj/machinery/atmospherics/components/binary/valve{
+	dir = 1;
+	name = "Mix to Space"
+	},
+/obj/item/radio/intercom{
+	dir = 8;
+	name = "Station Intercom (General)";
+	pixel_x = -28
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "xyU" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -62379,14 +62390,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
-"xCw" = (
-/obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/simple/purple/visible,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/atmos_distro)
 "xCV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -100799,7 +100802,7 @@ wCv
 iin
 qOd
 kAG
-xCw
+iQA
 fJH
 bGf
 bGf
@@ -101830,7 +101833,7 @@ cfj
 cfj
 jrT
 cfj
-bPq
+cfj
 aRB
 cfj
 aaa
@@ -102087,9 +102090,9 @@ njd
 sNh
 vvW
 reu
-xvC
-wIG
-cfj
+xxR
+kKw
+bPq
 aaa
 aaa
 aaa
@@ -102860,7 +102863,7 @@ rVk
 nMi
 mCo
 wuM
-cfj
+bPq
 aaa
 aaa
 aaa
@@ -104644,7 +104647,7 @@ vTi
 ceI
 cfo
 bFr
-iUi
+wiZ
 vTi
 bzs
 ldW
