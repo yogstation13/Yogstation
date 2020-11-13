@@ -973,15 +973,13 @@
 	required_candidates = 3
 	weight = 1
 	cost = 30
-	var/darkspawn_cap = list(3,3,3,3,3,3,3,3,4,5)
+	scaling_cost = 20
+	antag_cap = list(3,3,3,3,3,3,3,3,4,5)
 	requirements = list(80,75,70,65,50,30,30,30,25,20)
 
 /datum/dynamic_ruleset/roundstart/darkspawn/pre_execute()
-	var/indice_pop = min(30,round(mode.roundstart_pop_ready/pop_per_requirement)+1)
-	var/darkspawns = darkspawn_cap[indice_pop]
-	for(var/darkspawn_number = 1 to darkspawns)
-		if(candidates.len <= 0)
-			break
+	var/num_darkspawn = antag_cap[indice_pop] * (scaled_times + 1)
+	for (var/i = 1 to num_darkspawn)
 		var/mob/M = pick_n_take(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_DARKSPAWN
