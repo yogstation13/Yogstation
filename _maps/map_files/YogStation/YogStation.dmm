@@ -35636,6 +35636,14 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"cGY" = (
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible,
+/obj/structure/sign/warning/nosmoking{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "cHk" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -37226,6 +37234,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
+"dxF" = (
+/obj/machinery/portable_atmospherics/scrubber/huge,
+/obj/structure/sign/warning/radiation/rad_area{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/atmos_distro)
 "dxH" = (
 /obj/structure/table,
 /obj/structure/mirror{
@@ -39729,12 +39744,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"fuD" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/engine/atmos_distro)
 "fuI" = (
 /obj/machinery/newscaster{
 	pixel_y = -27
@@ -41605,16 +41614,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
-"heu" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "hfy" = (
 /obj/structure/sign/departments/minsky/command/charge{
 	pixel_y = -32
@@ -43092,6 +43091,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"ikN" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/engine/atmos_distro)
 "ild" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -44362,11 +44367,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/tcoms)
-"jgR" = (
-/obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "jhe" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Medbay Maintenance";
@@ -54216,6 +54216,19 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"qSI" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/structure/sign/warning/vacuum/external{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "qSU" = (
 /obj/machinery/door/airlock/glass_large{
 	doorOpen = 'sound/machines/defib_success.ogg';
@@ -60588,10 +60601,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"wae" = (
-/obj/machinery/portable_atmospherics/scrubber/huge,
-/turf/open/floor/plasteel/dark,
-/area/engine/atmos_distro)
 "wag" = (
 /obj/structure/sink{
 	dir = 8;
@@ -100012,11 +100021,11 @@ bmg
 bbG
 bFD
 blf
-heu
+qSI
 avy
 avy
 avy
-avy
+aCV
 kWw
 gtZ
 pXS
@@ -100272,7 +100281,7 @@ mpf
 uVQ
 waO
 nrx
-fuD
+ikN
 jdE
 jGL
 aaa
@@ -101560,7 +101569,7 @@ bGf
 iLR
 qzr
 mcP
-wae
+dxF
 bGf
 huB
 gXs
@@ -102076,7 +102085,7 @@ sNh
 vvW
 reu
 tDz
-jgR
+cGY
 bPq
 aaa
 aaa
