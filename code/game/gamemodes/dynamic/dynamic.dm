@@ -485,8 +485,8 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 		else if(!starting_rule.ready())	// Should already be filtered out, but making sure. Check filtering at end of proc if reported.
 			drafted_rules -= starting_rule
 			if(drafted_rules.len <= 0)
-				return FALSE
 				log_game("DYNAMIC: Picking [starting_rule.name] failed because there were not enough candidates and no more rulesets available. Report this.")
+				return FALSE
 			starting_rule = pickweight(drafted_rules)
 
 	message_admins("Picking a ruleset [starting_rule.name]")
