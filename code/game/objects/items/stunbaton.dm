@@ -41,7 +41,8 @@
 	update_icon()
 
 /obj/item/melee/baton/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	..()
+	if(..())
+		return
 	//Only mob/living types have stun handling
 	if(status && prob(throw_hit_chance) && iscarbon(hit_atom))
 		baton_stun(hit_atom)
@@ -152,7 +153,9 @@
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/L = M
-		if(check_martial_counter(L, user))
+		var/datum/martial_art/A = L.check_block()
+		if(A)
+			A.handle_counter(L, user)
 			return
 
 	if(user.a_intent != INTENT_HARM)

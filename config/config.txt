@@ -4,6 +4,7 @@ $include game_options.txt
 $include secret.txt
 $include dbconfig.txt
 $include antag_rep.txt
+$include resources.txt
 
 # You can use the @ character at the beginning of a config option to lock it from being edited in-game
 # Example usage:
@@ -95,12 +96,6 @@ LOG_ATTACK
 ## log pda messages
 LOG_PDA
 
-## log telecomms messages
-LOG_TELECOMMS
-
-## log ntsl compilations
-LOG_NTSL
-
 ## log prayers
 LOG_PRAYER
 
@@ -111,7 +106,7 @@ LOG_LAW
 LOG_MANIFEST
 
 ## log job divide debugging information
-#LOG_JOB_DEBUG
+LOG_JOB_DEBUG
 
 ## log all world.Topic() calls
 # LOG_WORLD_TOPIC
@@ -350,7 +345,7 @@ CLIENT_ERROR_BUILD 1421
 ## Set to 0 or comment out to disable.
 SECOND_TOPIC_LIMIT 10
 
-MINUTE_TOPIC_LIMIT 100
+MINUTE_TOPIC_LIMIT 200
 
 
 ## CLICK RATE LIMITING
@@ -440,3 +435,5 @@ DEFAULT_VIEW_SQUARE 15x15
 ## Uncomment to enable global ban DB using the provided URL. The API should expect to receive a ckey at the end of the URL.
 ## More API details can be found here: https://centcom.melonmesa.com
 CENTCOM_BAN_DB https://centcom.melonmesa.com/ban/search
+
+AUTO_PROFILE

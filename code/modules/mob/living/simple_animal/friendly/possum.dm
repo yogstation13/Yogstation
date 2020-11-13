@@ -28,4 +28,4 @@
 	icon_state = "poppypossum"
 	icon_living = "poppypossum"
 	icon_dead = "poppypossum_dead"
-	butcher_results = list(/obj/item/clothing/head/hardhat = 1)
+	loot = list(/obj/item/clothing/head/hardhat) 

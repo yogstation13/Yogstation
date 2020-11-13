@@ -1,89 +1,149 @@
 // This code handles different species in the game.
 
 GLOBAL_LIST_EMPTY(roundstart_races)
+GLOBAL_LIST_EMPTY(mentor_races)
 
 /datum/species
-	var/id	// if the game needs to manually check your race to do something not included in a proc here, it will use this
-	var/limbs_id		//this is used if you want to use a different species limb sprites. Mainly used for angels as they look like humans.
-	var/name	// this is the fluff name. these will be left generic (such as 'Lizardperson' for the lizard race) so servers can change them to whatever
-	var/default_color = "#FFF"	// if alien colors are disabled, this is the color that will be used by that race
+	/// if the game needs to manually check your race to do something not included in a proc here, it will use this
+	var/id
+	///this is used if you want to use a different species limb sprites. Mainly used for angels as they look like humans.
+	var/limbs_id
+	/// this is the fluff name. these will be left generic (such as 'Lizardperson' for the lizard race) so servers can change them to whatever
+	var/name
+	/// if alien colors are disabled, this is the color that will be used by that race
+	var/default_color = "#FFF"
+	/// whether or not the race has sexual characteristics. at the moment this is only FALSE for skeletons and shadows
+	var/sexes = TRUE
 
-	var/sexes = 1		// whether or not the race has sexual characteristics. at the moment this is only 0 for skeletons and shadows
-
+	///A list that contains pixel offsets for various clothing features, if your species is a different shape
 	var/list/offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
 
-	var/hair_color	// this allows races to have specific hair colors... if null, it uses the H's hair/facial hair colors. if "mutcolor", it uses the H's mutant_color
-	var/hair_alpha = 255	// the alpha used by the hair. 255 is completely solid, 0 is transparent.
+	/// this allows races to have specific hair colors... if null, it uses the H's hair/facial hair colors. if "mutcolor", it uses the H's mutant_color
+	var/hair_color
+	/// the alpha used by the hair. 255 is completely solid, 0 is transparent.
+	var/hair_alpha = 255
 
-	var/use_skintones = 0	// does it use skintones or not? (spoiler alert this is only used by humans)
-	var/exotic_blood = ""	// If your race wants to bleed something other than bog standard blood, change this to reagent id.
-	var/exotic_bloodtype = "" //If your race uses a non standard bloodtype (A+, O-, AB-, etc)
-	var/meat = /obj/item/reagent_containers/food/snacks/meat/slab/human //What the species drops on gibbing
+	/// does it use skintones or not? (spoiler alert this is only used by humans)
+	var/use_skintones = FALSE
+
+	/// If your race wants to bleed something other than bog standard blood, change this to reagent id.
+	var/exotic_blood = ""
+	///If your race uses a non standard bloodtype (A+, O-, AB-, etc)
+	var/exotic_bloodtype = ""
+	///What the species drops on gibbing
+	var/meat = /obj/item/reagent_containers/food/snacks/meat/slab/human
+	///What, if any, leather will be dropped
 	var/skinned_type
+	///What kind of foods the species loves
 	var/liked_food = NONE
+	///What kind of foods the species dislikes!
 	var/disliked_food = GROSS
+	///What kind of foods cause harm to the species
 	var/toxic_food = TOXIC
-	var/list/no_equip = list()	// slots the race can't equip stuff to
-	var/nojumpsuit = 0	// this is sorta... weird. it basically lets you equip stuff that usually needs jumpsuits without one, like belts and pockets and ids
-	var/say_mod = "says"	// affects the speech message
+	/// slots the race can't equip stuff to
+	var/list/no_equip = list()
+	/// this is sorta... weird. it basically lets you equip stuff that usually needs jumpsuits without one, like belts and pockets and ids
+	var/nojumpsuit = FALSE
+	/// affects the speech message
+	var/say_mod = "says"
+	///Used if you want to give your species thier own language
 	var/species_language_holder = /datum/language_holder
-	var/list/default_features = list() // Default mutant bodyparts for this species. Don't forget to set one for every mutant bodypart you allow this species to have.
-	var/list/mutant_bodyparts = list() 	// Visible CURRENT bodyparts that are unique to a species. DO NOT USE THIS AS A LIST OF ALL POSSIBLE BODYPARTS AS IT WILL FUCK SHIT UP! Changes to this list for non-species specific bodyparts (ie cat ears and tails) should be assigned at organ level if possible. Layer hiding is handled by handle_mutant_bodyparts() below.
-	var/list/mutant_organs = list()		//Internal organs that are unique to this race.
-	var/speedmod = 0	// this affects the race's speed. positive numbers make it move slower, negative numbers make it move faster
-	var/armor = 0		// overall defense for the race... or less defense, if it's negative.
-	var/brutemod = 1	// multiplier for brute damage
-	var/burnmod = 1		// multiplier for burn damage
-	var/coldmod = 1		// multiplier for cold damage
-	var/heatmod = 1		// multiplier for heat damage
-	var/acidmod = 1     // multiplier for acid damage // yogs - Old Plant People
-	var/stunmod = 1		// multiplier for stun duration
-	var/attack_type = BRUTE //Type of damage attack does
-	var/punchdamagelow = 1       //lowest possible punch damage. if this is set to 0, punches will always miss
-	var/punchdamagehigh = 10      //highest possible punch damage
-	var/punchstunthreshold = 10//damage at which punches from this race will stun //yes it should be to the attacked race but it's not useful that way even if it's logical
-	var/siemens_coeff = 1 //base electrocution coefficient
-	var/damage_overlay_type = "human" //what kind of damage overlays (if any) appear on our species when wounded?
-	var/fixed_mut_color = "" //to use MUTCOLOR with a fixed color that's independent of dna.feature["mcolor"]
-	var/inert_mutation 	= DWARFISM //special mutation that can be found in the genepool. Dont leave empty or changing species will be a headache
-	var/deathsound //used to set the mobs deathsound on species change
-	var/list/special_step_sounds //Sounds to override barefeet walkng
-	var/grab_sound //Special sound for grabbing
-	var/screamsound //yogs - audio of a species' scream
-	var/flying_species = FALSE //is a flying species, just a check for some things
-	var/datum/action/innate/flight/fly //the actual flying ability given to flying species
-	var/wings_icon = "Angel" //the icon used for the wings
+	/// Default mutant bodyparts for this species. Don't forget to set one for every mutant bodypart you allow this species to have.
+	var/list/default_features = list()
+	/// Visible CURRENT bodyparts that are unique to a species. DO NOT USE THIS AS A LIST OF ALL POSSIBLE BODYPARTS AS IT WILL FUCK SHIT UP! Changes to this list for non-species specific bodyparts (ie cat ears and tails) should be assigned at organ level if possible. Layer hiding is handled by handle_mutant_bodyparts() below.
+	var/list/mutant_bodyparts = list()
+	///Internal organs that are unique to this race.
+	var/list/mutant_organs = list()
+	/// this affects the race's speed. positive numbers make it move slower, negative numbers make it move faster
+	var/speedmod = 0
+	///overall defense for the race... or less defense, if it's negative.
+	var/armor = 0
+	/// multiplier for brute damage
+	var/brutemod = 1
+	/// multiplier for burn damage
+	var/burnmod = 1
+	/// multiplier for cold damage
+	var/coldmod = 1
+	/// multiplier for heat damage
+	var/heatmod = 1
+	/// multiplier for acid damage // yogs - Old Plant People
+	var/acidmod = 1
+	/// multiplier for stun duration
+	var/stunmod = 1
+	///Type of damage attack does
+	var/attack_type = BRUTE
+	///lowest possible punch damage. if this is set to 0, punches will always miss
+	var/punchdamagelow = 1
+	///highest possible punch damage
+	var/punchdamagehigh = 10
+	///damage at which punches from this race will stun //yes it should be to the attacked race but it's not useful that way even if it's logical
+	var/punchstunthreshold = 10
+	///base electrocution coefficient
+	var/siemens_coeff = 1
+	///what kind of damage overlays (if any) appear on our species when wounded?
+	var/damage_overlay_type = "human"
+	///to use MUTCOLOR with a fixed color that's independent of dna.feature["mcolor"]
+	var/fixed_mut_color = ""
+	///special mutation that can be found in the genepool. Dont leave empty or changing species will be a headache
+	var/inert_mutation 	= DWARFISM
+	///used to set the mobs deathsound on species change
+	var/deathsound
+	///Sounds to override barefeet walkng
+	var/list/special_step_sounds
+	///Special sound for grabbing
+	var/grab_sound
+	///yogs - audio of a species' scream
+	var/screamsound
+	///is a flying species, just a check for some things
+	var/flying_species = FALSE
+	///the actual flying ability given to flying species
+	var/datum/action/innate/flight/fly
+	///the icon used for the wings
+	var/wings_icon = "Angel"
 
-	// species-only traits. Can be found in DNA.dm
+	/// species-only traits. Can be found in DNA.dm
 	var/list/species_traits = list()
-	// generic traits tied to having the species
+	/// generic traits tied to having the species
 	var/list/inherent_traits = list()
+	///biotypes, used for viruses and the like
 	var/list/inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
-
-	var/attack_verb = "punch"	// punch-specific attack verb
+	/// punch-specific attack verb
+	var/attack_verb = "punch"
+	///the melee attack sound
 	var/sound/attack_sound = 'sound/weapons/punch1.ogg'
+	///the swing and miss sound
 	var/sound/miss_sound = 'sound/weapons/punchmiss.ogg'
 
-	var/list/mob/living/ignored_by = list()	// list of mobs that will ignore this species
+	/// list of mobs that will ignore this species
+	var/list/mob/living/ignored_by = list()
 	//Breathing!
+	///the mutant lungs, if different to the normal
 	var/obj/item/organ/lungs/mutantlungs = null
+	///what type of gas is breathed
 	var/breathid = "o2"
 
+	///the brain, if any
 	var/obj/item/organ/brain/mutant_brain = /obj/item/organ/brain
+	///the heart
 	var/obj/item/organ/heart/mutant_heart = /obj/item/organ/heart
+	///the eyes
 	var/obj/item/organ/eyes/mutanteyes = /obj/item/organ/eyes
+	///the ears
 	var/obj/item/organ/ears/mutantears = /obj/item/organ/ears
+	///the special hands, if any, for example the zombie has those claw hands
 	var/obj/item/mutanthands
+	///the tongue, used for ssssssssssssss and other such speech impediments
 	var/obj/item/organ/tongue/mutanttongue = /obj/item/organ/tongue
+	///the tail, if any
 	var/obj/item/organ/tail/mutanttail = null
 
+	///The special liver, if any
 	var/obj/item/organ/liver/mutantliver
+	///the special stomach, if any
 	var/obj/item/organ/stomach/mutantstomach
 	var/override_float = FALSE
 
-	//Bitflag that controls what in game ways can select this species as a spawnable source
-	//Think magic mirror and pride mirror, slime extract, ERT etc, see defines
-	//in __DEFINES/mobs.dm, defaults to NONE, so people actually have to think about it
+	///Bitflag that controls what in game ways can select this species as a spawnable source. Think magic mirror and pride mirror, slime extract, ERT etc, see defines in __DEFINES/mobs.dm, defaults to NONE, so people actually have to think about it
 	var/changesource_flags = NONE
 ///////////
 // PROCS //
@@ -103,11 +163,19 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(S.check_roundstart_eligible())
 			GLOB.roundstart_races += S.id
 			qdel(S)
+		else if(S.check_mentor())
+			GLOB.mentor_races += S.id
+			qdel(S)
 	if(!GLOB.roundstart_races.len)
 		GLOB.roundstart_races += "human"
 
 /datum/species/proc/check_roundstart_eligible()
 	if(id in (CONFIG_GET(keyed_list/roundstart_races)))
+		return TRUE
+	return FALSE
+
+/datum/species/proc/check_mentor()
+	if(id in (CONFIG_GET(keyed_list/mentor_races)))
 		return TRUE
 	return FALSE
 
@@ -269,6 +337,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	// Drop the items the new species can't wear
 	if((AGENDER in species_traits))
 		C.gender = PLURAL
+	if((FGENDER in species_traits))
+		C.gender = FEMALE
+	if((MGENDER in species_traits))
+		C.gender = MALE
 	for(var/slot_id in no_equip)
 		var/obj/item/thing = C.get_item_by_slot(slot_id)
 		if(thing && (!thing.species_exception || !is_type_in_list(src,thing.species_exception)))
@@ -579,6 +651,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
 			bodyparts_to_add -= "tail_human"
 
+
 	if("waggingtail_human" in mutant_bodyparts)
 		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
 			bodyparts_to_add -= "waggingtail_human"
@@ -633,10 +706,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(!H.dna.features["dome"] || H.dna.features["dome"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "dome"
 
-	//if("dorsal_tubes" in mutant_bodyparts)
-		//if(!H.dna.features["dorsal_tubes"] || H.dna.features["dorsal_tubes"] == "No" || (H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT) && (!H.wear_suit.species_exception || !is_type_in_list(src, H.wear_suit.species_exception))))
-			//bodyparts_to_add -= "dorsal_tubes"
-
 	//Digitigrade legs are stuck in the phantom zone between true limbs and mutant bodyparts. Mainly it just needs more agressive updating than most limbs.
 	var/update_needed = FALSE
 	var/not_digitigrade = TRUE
@@ -648,8 +717,14 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(!(DIGITIGRADE in species_traits)) //Someone cut off a digitigrade leg and tacked it on
 			species_traits += DIGITIGRADE
 		var/should_be_squished = FALSE
-		if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) || (H.wear_suit.body_parts_covered & LEGS)) || (H.w_uniform && (H.w_uniform.body_parts_covered & LEGS)))
-			should_be_squished = TRUE
+		if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) || (H.wear_suit.body_parts_covered & LEGS))) //Check for snowflake suit
+			var/obj/item/clothing/suit/A = H.wear_suit
+			if(A.mutantrace_variation != MUTANTRACE_VARIATION)
+				should_be_squished = TRUE
+		if(H.w_uniform && (H.w_uniform.body_parts_covered & LEGS)) //Check for snowflake jumpsuit
+			var/obj/item/clothing/under/U = H.w_uniform
+			if(U.mutantrace_variation != MUTANTRACE_VARIATION)
+				should_be_squished = TRUE
 		if(O.use_digitigrade == FULL_DIGITIGRADE && should_be_squished)
 			O.use_digitigrade = SQUISHED_DIGITIGRADE
 			update_needed = TRUE
@@ -706,8 +781,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
 				if("caps")
 					S = GLOB.caps_list[H.dna.features["caps"]]
-				if("plasma_vessels")
-					S = GLOB.plasma_vessels_list[H.dna.features["plasma_vessels"]]
 				if("teeth")
 					S = GLOB.teeth_list[H.dna.features["teeth"]]
 				if("dome")
@@ -1227,21 +1300,23 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			to_chat(user, "<span class='notice'>You do not breathe, so you cannot perform CPR.</span>")
 
 /datum/species/proc/grab(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
-	if(target.check_block())
-		target.visible_message("<span class='warning'>[target] blocks [user]'s grab attempt!</span>")
-		return 0
+	var/datum/martial_art/M = target.check_block()
+	if(M)
+		M.handle_counter(target, user)
+		return FALSE
 	if(attacker_style && attacker_style.grab_act(user,target))
-		return 1
+		return TRUE
 	else
 		target.grabbedby(user)
-		return 1
+		return TRUE
 
 /datum/species/proc/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
-	if(HAS_TRAIT(user, TRAIT_PACIFISM))
+	if(!attacker_style?.nonlethal && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, "<span class='warning'>You don't want to harm [target]!</span>")
 		return FALSE
-	if(target.check_block())
-		target.visible_message("<span class='warning'>[target] blocks [user]'s attack!</span>")
+	var/datum/martial_art/M = target.check_block()
+	if(M)
+		M.handle_counter(target, user)
 		return FALSE
 	if(attacker_style && attacker_style.harm_act(user,target))
 		return TRUE
@@ -1431,26 +1506,27 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return 0
 	SEND_SIGNAL(M, COMSIG_MOB_ATTACK_HAND, M, H, attacker_style)
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			help(M, H, attacker_style)
 
-		if("grab")
+		if(INTENT_GRAB)
 			grab(M, H, attacker_style)
 
-		if("harm")
+		if(INTENT_HARM)
 			harm(M, H, attacker_style)
 
-		if("disarm")
+		if(INTENT_DISARM)
 			disarm(M, H, attacker_style)
 
 /datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
 	// Allows you to put in item-specific reactions based on species
 	if(user != H)
 		if(H.check_shields(I, I.force, "the [I.name]", MELEE_ATTACK, I.armour_penetration))
-			return 0
-	if(H.check_block())
-		H.visible_message("<span class='warning'>[H] blocks [I]!</span>")
-		return 0
+			return FALSE
+	var/datum/martial_art/M = H.check_block()
+	if(M)
+		M.handle_counter(H, user)
+		return FALSE
 
 	var/hit_area
 	if(!affecting) //Something went wrong. Maybe the limb is missing?
@@ -1469,7 +1545,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	H.send_item_attack_message(I, user, hit_area)
 
 	if(!I.force)
-		return 0 //item force is zero
+		return FALSE //item force is zero
 
 	//dismemberment
 	var/probability = I.get_dismemberment_chance(affecting)

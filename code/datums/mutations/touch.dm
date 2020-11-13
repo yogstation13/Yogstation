@@ -7,7 +7,7 @@
 	text_gain_indication = "<span class='notice'>You feel power flow through your hands.</span>"
 	text_lose_indication = "<span class='notice'>The energy in your hands subsides.</span>"
 	power = /obj/effect/proc_holder/spell/targeted/touch/shock
-	instability = 30
+	instability = 20
 	locked = TRUE
 
 /obj/effect/proc_holder/spell/targeted/touch/shock

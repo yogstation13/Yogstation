@@ -7,7 +7,7 @@
 		/obj/item/storage/toolbox/mechanical,
 		/obj/item/twohanded/spear,
 		/obj/item/gun/ballistic/automatic/surplus,
-		/obj/item/melee/baton/cattleprod	
+		/obj/item/melee/baton/cattleprod
 		) //Prisoners get a random item from this list
 
 /datum/outfit/prisoner/post_equip(mob/living/carbon/human/H, visualsOnly=FALSE)

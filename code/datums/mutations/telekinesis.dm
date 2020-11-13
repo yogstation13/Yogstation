@@ -6,7 +6,7 @@
 	difficulty = 18
 	text_gain_indication = "<span class='notice'>You feel smarter!</span>"
 	limb_req = BODY_ZONE_HEAD
-	instability = 30
+	instability = 40
 
 /datum/mutation/human/telekinesis/New(class_ = MUT_OTHER, timer, datum/mutation/human/copymut)
 	..()
@@ -17,4 +17,4 @@
 	return visual_indicators[type][1]
 
 /datum/mutation/human/telekinesis/on_ranged_attack(atom/target)
-	target.attack_tk(owner)
+	INVOKE_ASYNC(target, /atom.proc/attack_tk, owner)

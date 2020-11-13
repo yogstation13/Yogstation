@@ -63,10 +63,17 @@ SUBSYSTEM_DEF(economy)
 	secmedsrv_payout() // Payout based on crew safety, health, and mood.
 	civ_payout() // Payout based on ??? Profit
 	car_payout() // Cargo's natural gain in the cash moneys.
+	var/list/dictionary = list()
+	for(var/datum/corporation/c in GLOB.corporations)
+		dictionary[c] = list()
+		for(var/datum/mind/m in c.employees)
+			dictionary[c] += m.name
 	for(var/A in bank_accounts)
 		var/datum/bank_account/B = A
-		B.payday(1)
-
+		for(var/datum/corporation/c in dictionary)
+			if(B.account_holder in dictionary[c])
+				B.payday(c.paymodifier, TRUE)
+		B.payday(1)	
 
 /datum/controller/subsystem/economy/proc/get_dep_account(dep_id)
 	for(var/datum/bank_account/department/D in generated_accounts)
@@ -84,7 +91,7 @@ SUBSYSTEM_DEF(economy)
 	engineering_cash *= station_integrity
 	if(moneysink)
 		engineering_cash += moneysink.payout()
-	var/datum/bank_account/D = get_dep_account(ACCOUNT_ENG)
+	var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
 	if(D)
 		D.adjust_money(engineering_cash)
 

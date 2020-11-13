@@ -199,11 +199,7 @@
 	//  already discovered mutations
 	stored_research = SSresearch.science_tech
 
-/obj/machinery/computer/scan_consolenew/examine(mob/user)
-	. = ..()
-
-/obj/machinery/computer/scan_consolenew/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	. = ..()
+/obj/machinery/computer/scan_consolenew/ui_interact(mob/user, datum/tgui/ui)
 
 	// Most of ui_interact is spent setting variables for passing to the tgui
 	//  interface.
@@ -246,11 +242,15 @@
 	time_to_pulse = round((rad_pulse_timer - world.time)/10)
 
 	// Attempt to update tgui ui, open and update if needed.
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "DnaConsole", name, 515, 710, master_ui, state)
+		ui = new(user, src, "DnaConsole")
 		ui.open()
+		
+/obj/machinery/computer/scan_consolenew/ui_assets()
+	. = ..() || list()
+	. += get_asset_datum(/datum/asset/simple/genetics)
 
 /obj/machinery/computer/scan_consolenew/ui_data(mob/user)
 	var/list/data = list()

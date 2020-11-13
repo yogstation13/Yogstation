@@ -24,9 +24,6 @@
 
 	var/special_message
 
-	ui_x = 775
-	ui_y = 500
-
 	light_color = LIGHT_COLOR_RED
 
 /obj/machinery/computer/secure_data/syndie
@@ -41,11 +38,10 @@
 	clockwork = TRUE //it'd look weird
 	pass_flags = PASSTABLE
 
-/obj/machinery/computer/secure_data/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/secure_data/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "SecurityConsole", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "SecurityConsole", name)
 		ui.open()
 
 /obj/machinery/computer/secure_data/ui_data(mob/living/carbon/human/user)
@@ -86,13 +82,13 @@
 					var/md5 = md5(fcopy_rsc(picture))
 
 					if(!SSassets.cache["photo_[md5]_cropped.png"])
-						register_asset("photo_[md5]_cropped.png", picture)
-					send_asset_list(user, list("photo_[md5]_cropped.png" = picture))
+						SSassets.transport.register_asset("photo_[md5]_cropped.png", picture)
+					SSassets.transport.send_assets(user, list("photo_[md5]_cropped.png" = picture))
 
-					data["user_image"] = md5
+					data["user_image"] = SSassets.transport.get_asset_url("photo_[md5]_cropped.png")
 		data["has_access"] = check_access(user.get_idcard())
 
-	
+
 
 	if(!logged_in)
 		return data
@@ -137,7 +133,7 @@
 					record["recordColor"] = "#4F7529"
 				if("")
 					crime_status = "No Record."
-			
+
 			record["name"] = R.fields["name"]
 			record["id"] = R.fields["id"]
 			record["rank"] = R.fields["rank"]
@@ -146,36 +142,39 @@
 			record["reference"] = REF(R)
 
 			data["records"] += list(record)
-	
+
 	if(screen == RECORD_VIEW)
 		var/list/record = list()
 
 		if(!istype(active_general_record, /datum/data/record) || !GLOB.data_core.general.Find(active_general_record))
 			screen = MAIN_SCREEN
-			return 
+			return
 		var/list/assets = list()
 		data["active_general_record"] = TRUE
 		if(istype(active_general_record.fields["photo_front"], /obj/item/photo))
 			var/obj/item/photo/P1 = active_general_record.fields["photo_front"]
 			if(!SSassets.cache["photo_front_[active_general_record.fields["id"]].png"])
-				register_asset("photo_front_[active_general_record.fields["id"]].png", P1.picture.picture_image)
+				SSassets.transport.register_asset("photo_front_[active_general_record.fields["id"]].png", P1.picture.picture_image)
 			assets["photo_front_[active_general_record.fields["id"]].png"] = P1.picture.picture_image
 
 		if(istype(active_general_record.fields["photo_side"], /obj/item/photo))
 			var/obj/item/photo/P2 = active_general_record.fields["photo_side"]
 			if(!SSassets.cache["photo_side_[active_general_record.fields["id"]].png"])
-				register_asset("photo_side_[active_general_record.fields["id"]].png", P2.picture.picture_image)
+				SSassets.transport.register_asset("photo_side_[active_general_record.fields["id"]].png", P2.picture.picture_image)
 			assets["photo_side_[active_general_record.fields["id"]].png"] = P2.picture.picture_image
-			
-		send_asset_list(user, assets)
+
+		SSassets.transport.send_assets(user, assets)
 		
+		record["front_image"] = SSassets.transport.get_asset_url("photo_front_[active_general_record.fields["id"]].png")
+		record["side_image"] = SSassets.transport.get_asset_url("photo_side_[active_general_record.fields["id"]].png")
+
 
 		record["name"] = active_general_record.fields["name"]
 		record["id"] = active_general_record.fields["id"]
 		record["gender"] = active_general_record.fields["gender"]
 		record["age"] = active_general_record.fields["age"]
 
-		
+
 
 		record["species"] = active_general_record.fields["species"]
 		record["rank"] = active_general_record.fields["rank"]
@@ -224,7 +223,7 @@
 				var/list/minor_crime = list()
 				minor_crime["name"] = C.crimeName
 				minor_crime["details"] = C.crimeDetails
-				minor_crime["author"] = C.author 
+				minor_crime["author"] = C.author
 				minor_crime["time"] = C.time
 				minor_crime["id"] = C.dataId
 
@@ -236,12 +235,12 @@
 				var/list/major_crime = list()
 				major_crime["name"] = C.crimeName
 				major_crime["details"] = C.crimeDetails
-				major_crime["author"] = C.author 
+				major_crime["author"] = C.author
 				major_crime["time"] = C.time
 				major_crime["id"] = C.dataId
 
 				record["major_crimes"] += list(major_crime)
-			
+
 			record["notes"] = active_security_record.fields["notes"]
 
 		data["active_record"] = record
@@ -260,7 +259,7 @@
 /obj/machinery/computer/secure_data/ui_act(action, list/params)
 	if(..())
 		return
-	
+
 	switch(action)
 		if("back")
 			if(!logged_in)
@@ -284,7 +283,7 @@
 				logged_in = usr.client.holder.admin_signature
 				rank = "Central Command Officer"
 
-			
+
 
 
 			var/mob/living/carbon/human/H = usr
@@ -302,7 +301,7 @@
 			screen = MAIN_SCREEN
 			active_general_record = null
 			active_security_record = null
-		
+
 		if("record_maint")
 			if(!logged_in)
 				return
@@ -322,7 +321,7 @@
 					if((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 						active_security_record = E
 				screen = RECORD_VIEW
-			
+
 		if("print_record")
 			if(!logged_in)
 				return
@@ -423,7 +422,7 @@
 							var/obj/item/photo/photo = active_general_record.fields["photo_front"]
 							new /obj/item/poster/wanted(loc, photo.picture.picture_image, wanted_name, info, headerText)
 						printing = FALSE
-		
+
 		if("print_missing")
 			if(!logged_in)
 				return
@@ -456,7 +455,7 @@
 			GLOB.data_core.security.Cut()
 			special_message = "All Security Records Deleted."
 			screen = MAIN_SCREEN
-		
+
 		if("new_record")
 			if(!logged_in)
 				return
@@ -518,7 +517,7 @@
 			M.fields["cdi"]			= "None"
 			M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
 			M.fields["notes"]		= "No notes."
-			GLOB.data_core.medical += M		
+			GLOB.data_core.medical += M
 
 		if("delete_general_record_and_security")
 			if(!logged_in)
@@ -539,7 +538,7 @@
 					active_security_record = null
 				screen = MAIN_SCREEN
 				ui_interact(usr)
-			
+
 
 		if("delete_security_record")
 			if(!logged_in)
@@ -554,7 +553,7 @@
 				active_security_record = null
 				special_message = "Record Deleted"
 				ui_interact(usr)
-				
+
 
 
 		if("edit_field")
@@ -562,7 +561,7 @@
 				return
 			var/general_record = active_general_record
 			var/security_record = active_security_record
-			
+
 			switch(params["field"])
 				if("name")
 					if(istype(general_record, /datum/data/record) || istype(security_record, /datum/data/record))
@@ -644,7 +643,7 @@
 							if(!valid_record_change(usr, "delete", null, active_security_record))
 								return
 							GLOB.data_core.removeMinorCrime(active_general_record.fields["id"], params["id"])
-				
+
 				if("major_crime_add")
 					if(istype(active_general_record, /datum/data/record))
 						var/name = stripped_input(usr, "Please input major crime names:", "Security Records", "", null)
@@ -747,8 +746,8 @@
 			if(!record1 || record1 == active_general_record)
 				if(!record2 || record2 == active_security_record)
 					return TRUE
-	return FALSE			
-		
+	return FALSE
+
 /obj/machinery/computer/secure_data/proc/get_photo(mob/user)
 	var/obj/item/photo/P = null
 	if(issilicon(user))

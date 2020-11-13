@@ -81,3 +81,16 @@ GLOBAL_LIST_EMPTY(gangs)
 
 	round_credits += ..()
 	return round_credits
+
+/datum/game_mode/gang/set_round_result()
+	..()
+	var/didGangsWin = FALSE
+	for(var/datum/team/gang/G in GLOB.gangs)
+		if(G.winner)
+			didGangsWin = TRUE
+			break
+
+	if(didGangsWin)
+		SSticker.mode_result = "win - gangs dominated the station"
+	else
+		SSticker.mode_result = "loss - security stopped gangs from dominating the station"

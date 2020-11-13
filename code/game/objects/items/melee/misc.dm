@@ -1,14 +1,6 @@
 /obj/item/melee
 	item_flags = NEEDS_PERMIT
 
-/obj/item/melee/proc/check_martial_counter(mob/living/carbon/human/target, mob/living/carbon/human/user)
-	if(target.check_block())
-		target.visible_message("<span class='danger'>[target.name] blocks [src] and twists [user]'s arm behind [user.p_their()] back!</span>",
-					"<span class='userdanger'>You block the attack!</span>")
-		user.Stun(40)
-		return TRUE
-
-
 /obj/item/melee/chainofcommand
 	name = "chain of command"
 	desc = "A tool used by great men to placate the frothing masses."
@@ -23,7 +15,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 	hitsound = 'sound/weapons/chainhit.ogg'
-	materials = list(MAT_METAL = 1000)
+	materials = list(/datum/material/iron = 1000)
 
 /obj/item/melee/chainofcommand/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is strangling [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -65,7 +57,7 @@
 	sharpness = IS_SHARP
 	attack_verb = list("slashed", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
-	materials = list(MAT_METAL = 1000)
+	materials = list(/datum/material/iron = 1000)
 
 /obj/item/melee/cutlass
 	name = "cutlass"
@@ -79,7 +71,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("slashed", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
-	materials = list(MAT_METAL = 1000)
+	materials = list(/datum/material/iron = 1000)
 
 /obj/item/melee/sabre/Initialize()
 	. = ..()
@@ -187,7 +179,7 @@
 
 	var/cooldown_check = 0 // Used interally, you don't want to modify
 
-	var/cooldown = 40 // Default wait time until can stun again.
+	var/cooldown = 3 SECONDS // Default wait time until can stun again.
 	var/knockdown_time_carbon = 1.5 SECONDS // Knockdown length for carbons.
 	var/stun_time_silicon = 5 SECONDS // If enabled, how long do we stun silicons.
 	var/stamina_damage = 55 // Do we deal stamina damage.
@@ -292,7 +284,9 @@
 				var/mob/living/carbon/human/H = target
 				if (H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK))
 					return
-				if(check_martial_counter(H, user))
+				var/datum/martial_art/M = H.check_block()
+				if(M)
+					M.handle_counter(target, user)
 					return
 
 			var/list/desc = get_stun_description(target, user)

@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(blackbox)
 							"testmerged_prs" = 2) //associative list of any feedback variables that have had their format changed since creation and their current version, remember to update this
 
 /datum/controller/subsystem/blackbox/Initialize()
-	triggertime = world.time
+	triggertime = REALTIMEOFDAY
 	record_feedback("amount", "random_seed", Master.random_seed)
 	record_feedback("amount", "dm_version", DM_VERSION)
 	record_feedback("amount", "byond_version", world.byond_version)
@@ -32,8 +32,8 @@ SUBSYSTEM_DEF(blackbox)
 	CheckPlayerCount()
 
 	if(CONFIG_GET(flag/use_exp_tracking))
-		if((triggertime < 0) || (world.time > (triggertime +3000)))	//subsystem fires once at roundstart then once every 10 minutes. a 5 min check skips the first fire. The <0 is midnight rollover check
-			update_exp(10,FALSE)
+		update_exp(round((REALTIMEOFDAY-triggertime)/(60 SECONDS)), FALSE)
+	triggertime = REALTIMEOFDAY
 
 /datum/controller/subsystem/blackbox/proc/CheckPlayerCount()
 	set waitfor = FALSE
