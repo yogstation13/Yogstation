@@ -838,14 +838,14 @@
 	required_candidates = 3
 	weight = 1
 	cost = 10
+	scaling_cost = 10
 	requirements = list(80,70,60,50,50,45,30,30,25,20)
 	minimum_players = 30
 	var/autovamp_cooldown = 450 // 15 minutes (ticks once per 2 sec)
 
 /datum/dynamic_ruleset/roundstart/vampire/pre_execute()
-	var/traitor_scaling_coeff = 10 - max(0,round(mode.threat_level/10)-5) // Above 50 threat level, coeff goes down by 1 for every 10 levels
-	var/num_traitors = min(round(mode.candidates.len / traitor_scaling_coeff) + 1, candidates.len)
-	for (var/i = 1 to num_traitors)
+	var/num_vampires = antag_cap[indice_pop] * (scaled_times + 1)
+	for (var/i = 1 to num_vampires)
 		var/mob/M = pick_n_take(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_VAMPIRE
@@ -892,6 +892,7 @@
 	if(GLOB.wizardstart.len == 0)
 		return FALSE
 
+	mode.antags_rolled += 1
 	var/mob/M = pick_n_take(candidates)
 	if (M)
 		assigned += M.mind
@@ -940,6 +941,7 @@
 	if(GLOB.wizardstart.len == 0)
 		return FALSE
 
+	mode.antags_rolled += 1
 	var/mob/M = pick_n_take(candidates)
 	if (M)
 		assigned += M.mind
