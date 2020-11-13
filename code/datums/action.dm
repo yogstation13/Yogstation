@@ -48,8 +48,9 @@
 				return
 			Remove(owner)
 		owner = M
-		if(syndicate && !is_syndicate(M)) // if a syndicate check is failed; don't generate button on the hud at all. - Hopek
-			return
+		if(syndicate)
+			if(!is_syndicate(M) && !is_clockcult(M)) // if a syndicate check is failed; don't generate button on the hud at all unless you are a clock cultist as well. - Hopek
+				return
 
 		//button id generation
 		var/counter = 0
