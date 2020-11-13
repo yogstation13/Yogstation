@@ -244,4 +244,4 @@
 #define VR_ZONE_TRAIT "vr_zone_trait"
 #define GUARDIAN_TRAIT "guardian_trait"
 #define RANDOM_BLACKOUTS "random_blackouts"
-#define MADE_UNCLONEABLE "made-uncloneable" 
+#define MADE_UNCLONEABLE "made-uncloneable"
