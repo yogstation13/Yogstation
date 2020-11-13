@@ -805,8 +805,8 @@
 	var/datum/team/shadowling/shadowling
 
 /datum/dynamic_ruleset/roundstart/shadowling/pre_execute()
-	var/indice_pop = min(60,round(mode.roundstart_pop_ready/pop_per_requirement)+1)
-	var/shadowlings = shadowling_cap[indice_pop]
+	var/shadowlings = antag_cap[indice_pop]
+	mode.antags_rolled += shadowlings
 	for(var/shadowling_number = 1 to shadowlings)
 		if(candidates.len <= 0)
 			break
