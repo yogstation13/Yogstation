@@ -504,7 +504,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 		else if(starting_rule.flags & ONLY_RULESET)
 			only_ruleset_executed = TRUE
 		executed_rules += starting_rule
-				for(var/datum/dynamic_ruleset/roundstart/rule in drafted_rules)
+			for(var/datum/dynamic_ruleset/roundstart/rule in drafted_rules)
 			if(check_blocking(rule.blocking_rules, executed_rules))
 				drafted_rules -= rule
 			if(highlander_executed && rule.flags & HIGHLANDER_RULESET)
