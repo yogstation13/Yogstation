@@ -39729,6 +39729,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"fuD" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/engine/atmos_distro)
 "fuI" = (
 /obj/machinery/newscaster{
 	pixel_y = -27
@@ -62016,15 +62022,6 @@
 "xoc" = (
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
-"xoq" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/engine/atmos_distro)
 "xoA" = (
 /obj/machinery/power/compressor{
 	comp_id = "incineratorturbine";
@@ -100275,7 +100272,7 @@ mpf
 uVQ
 waO
 nrx
-xoq
+fuD
 jdE
 jGL
 aaa
