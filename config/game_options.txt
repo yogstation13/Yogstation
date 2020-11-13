@@ -595,6 +595,3 @@ DISABLE_HUMAN_MOOD
 
 ## Enable the capitalist agenda on your server.
 ECONOMY
-
-## Uncomment to enable dynamic ruleset config file.
-DYNAMIC_CONFIG_ENABLED
