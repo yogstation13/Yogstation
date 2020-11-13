@@ -56,11 +56,11 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 		return
 
 	
-	if(C in GLOB.antag_token_users)
+	if(C in GLOB.antag_token_users) // If they're in the list take them out
 		GLOB.antag_token_users -= C
 		token = FALSE // Redundency if you clowns figure out how to break it
 	else
-		GLOB.antag_token_users += C // Put person into list then check if they're in said list
+		GLOB.antag_token_users += C // Put person into list upon accepting
 		token = TRUE
 
 	message_admins("[C.ckey]'s antag token request has been [token ? "approved" : "rejected"] by [usr.ckey]")
