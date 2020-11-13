@@ -12,14 +12,15 @@
 	type_of_meat = /obj/item/reagent_containers/food/snacks/meat/slab/monkey
 	gib_type = /obj/effect/decal/cleanable/blood/gibs
 	unique_name = TRUE
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	bodyparts = list(/obj/item/bodypart/chest/monkey, /obj/item/bodypart/head/monkey, /obj/item/bodypart/l_arm/monkey,
 					 /obj/item/bodypart/r_arm/monkey, /obj/item/bodypart/r_leg/monkey, /obj/item/bodypart/l_leg/monkey)
 	hud_type = /datum/hud/monkey
 	blood_volume = BLOOD_VOLUME_MONKEY // Yogs -- Makes monkeys/xenos have different amounts of blood from normal carbonbois
 
 /mob/living/carbon/monkey/Initialize(mapload, cubespawned=FALSE, mob/spawner)
-	verbs += /mob/living/proc/mob_sleep
-	verbs += /mob/living/proc/lay_down
+	add_verb(src, /mob/living/proc/mob_sleep)
+	add_verb(src, /mob/living/proc/lay_down)
 
 	if(unique_name) //used to exclude pun pun
 		gender = pick(MALE, FEMALE)

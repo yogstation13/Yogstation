@@ -30,6 +30,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/coin/antagtoken = 2,
 		/obj/item/stack/tile/fakespace/loaded = 2,
 		/obj/item/stack/tile/fakepit/loaded = 2,
+		/obj/item/stack/tile/eighties/loaded = 2,
 		/obj/item/toy/toy_xeno = 2,
 		/obj/item/storage/box/actionfigure = 1,
 		/obj/item/restraints/handcuffs/fake = 2,
@@ -181,7 +182,6 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	dat += "</b></center>"
 	var/datum/browser/popup = new(user, "arcade", "Space Villain 2000")
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
 	popup.open()
 
 /obj/machinery/computer/arcade/battle/Topic(href, href_list)
@@ -499,7 +499,6 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		dat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Close</a></P>"
 	var/datum/browser/popup = new(user, "arcade", "The Orion Trail",400,700)
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
 	popup.open()
 	return
 
@@ -735,7 +734,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 					//this makes higher % failures hurt more, don't get cocky space cowboy!
 					if(prob(success*5))
 						var/lost_crew = remove_crewmember()
-						last_spaceport_action = "You failed to raid the spaceport! You lost [FU*-1] Fuel and [FO*-1] Food, AND [lost_crew] in your scramble to escape! ([FU]FI,[FO]FO,-Crew)"
+						last_spaceport_action = "You failed to raid the spaceport! You lost [FU*-1] Fuel and [FO*-1] Food, AND [lost_crew] in your scramble to escape! ([FU]FU,[FO]FO,-Crew)"
 						if(obj_flags & EMAGGED)
 							say("WEEWOO! WEEWOO! Spaceport security en route!")
 							playsound(src, 'sound/items/weeoo1.ogg', 100, FALSE)

@@ -6,6 +6,7 @@
 	description = "Some space miners still cling to the old way of getting that \
 		sweet, sweet plasma - painstakingly digging it out of free-floating asteroids\
 		instead of flying down to the hellscape of lavaland."
+	placement_weight = 2
 	allow_duplicates = FALSE
 	always_spawn_with = list(/datum/map_template/ruin/space/whiteshipdock = PLACE_SPACE_RUIN)
 
@@ -88,11 +89,11 @@
 	prompt_name = "a free miner engineer"
 
 /datum/outfit/freeminer/engi
+	uniform = /obj/item/clothing/under/overalls
 	l_pocket = null
 	r_pocket = null
 	gloves = /obj/item/clothing/gloves/color/yellow
 	belt = /obj/item/storage/belt/utility/full
-
 
 /obj/effect/mob_spawn/human/free_miner/captain
 	name = "Free Miner Captain"

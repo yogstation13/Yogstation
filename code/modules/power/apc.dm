@@ -328,12 +328,17 @@
 	if(update & 2)
 		SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 		if(!(stat & (BROKEN|MAINT)) && update_state & UPSTATE_ALLGOOD)
-			SSvis_overlays.add_vis_overlay(src, icon, "apcox-[locked]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
-			SSvis_overlays.add_vis_overlay(src, icon, "apco3-[charging]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+			SSvis_overlays.add_vis_overlay(src, icon, "apcox-[locked]", layer, plane, dir)
+			SSvis_overlays.add_vis_overlay(src, icon, "apcox-[locked]", layer, EMISSIVE_PLANE, dir)
+			SSvis_overlays.add_vis_overlay(src, icon, "apco3-[charging]", layer, plane, dir)
+			SSvis_overlays.add_vis_overlay(src, icon, "apco3-[charging]", layer, EMISSIVE_PLANE, dir)
 			if(operating)
-				SSvis_overlays.add_vis_overlay(src, icon, "apco0-[equipment]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
-				SSvis_overlays.add_vis_overlay(src, icon, "apco1-[lighting]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
-				SSvis_overlays.add_vis_overlay(src, icon, "apco2-[environ]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco0-[equipment]", layer, plane, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco0-[equipment]", layer, EMISSIVE_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco1-[lighting]", layer, plane, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco1-[lighting]", layer, EMISSIVE_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco2-[environ]", layer, plane, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco2-[environ]", layer, EMISSIVE_PLANE, dir)
 
 	// And now, separately for cleanness, the lighting changing
 	if(update_state & UPSTATE_ALLGOOD)
@@ -756,7 +761,8 @@
 
 
 /obj/machinery/power/apc/obj_break(damage_flag)
-	if(!(flags_1 & NODECONSTRUCT_1))
+	. = ..()
+	if(.)
 		set_broken()
 
 /obj/machinery/power/apc/deconstruct(disassembled = TRUE)
@@ -804,15 +810,11 @@
 	if((stat & MAINT) && !opened) //no board; no interface
 		return
 
-/obj/machinery/power/apc/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-
+/obj/machinery/power/apc/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "apc", name, 535, 515, master_ui, state)
+		ui = new(user, src, "Apc", name)
 		ui.open()
-	if(ui)
-		ui.set_autoupdate(state = (failure_timer ? 1 : 0))
 
 /obj/machinery/power/apc/ui_data(mob/user)
 	var/list/data = list(
@@ -924,7 +926,7 @@
 		. = UI_INTERACTIVE
 
 /obj/machinery/power/apc/ui_act(action, params)
-	if(..() || !can_use(usr, 1) || (locked && !usr.has_unlimited_silicon_privilege && !failure_timer && !(integration_cog && (is_servant_of_ratvar(usr)))))
+	if(..() || !can_use(usr, 1) || (locked && !usr.has_unlimited_silicon_privilege && !failure_timer && action != "toggle_nightshift" && !(integration_cog && (is_servant_of_ratvar(usr)))))
 		return
 	switch(action)
 		if("lock")
@@ -1026,6 +1028,8 @@
 		return
 	if(!is_station_level(z))
 		return
+	if(alert("Are you sure you want to shunt into this APC?", "Confirm Shunt", "Yes", "No") != "Yes")
+		return
 	occupier = new /mob/living/silicon/ai(src, malf.laws, malf) //DEAR GOD WHY?	//IKR????
 	occupier.adjustOxyLoss(malf.getOxyLoss())
 	if(!findtext(occupier.name, "APC Copy"))
@@ -1038,7 +1042,7 @@
 	occupier.eyeobj.name = "[occupier.name] (AI Eye)"
 	if(malf.parent)
 		qdel(malf)
-	occupier.verbs += /mob/living/silicon/ai/proc/corereturn
+	add_verb(occupier, /mob/living/silicon/ai/proc/corereturn)
 	occupier.cancel_camera()
 
 
@@ -1050,7 +1054,7 @@
 		occupier.parent.shunted = 0
 		occupier.parent.setOxyLoss(occupier.getOxyLoss())
 		occupier.parent.cancel_camera()
-		occupier.parent.verbs -= /mob/living/silicon/ai/proc/corereturn
+		remove_verb(occupier.parent, /mob/living/silicon/ai/proc/corereturn)
 		qdel(occupier)
 	else
 		to_chat(occupier, "<span class='danger'>Primary core damaged, unable to return core processes.</span>")
@@ -1340,11 +1344,10 @@
 /obj/machinery/power/apc/proc/set_broken()
 	if(malfai && operating)
 		malfai.malf_picker.processing_time = clamp(malfai.malf_picker.processing_time - 10,0,1000)
-	stat |= BROKEN
 	operating = FALSE
+	obj_break()
 	if(occupier)
 		malfvacate(1)
-	update_icon()
 	update()
 
 // overload all the lights in this APC area

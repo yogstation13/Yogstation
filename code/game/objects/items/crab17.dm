@@ -22,6 +22,7 @@
 			return FALSE
 		new /obj/effect/dumpeetTarget(targetturf, user)
 		dumped = TRUE
+		log_admin("[user] activated a CRAB-17 phone.")
 
 /obj/structure/checkoutmachine
 	name = "Nanotrasen Space-Coin Market"

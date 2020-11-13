@@ -88,3 +88,38 @@
 			if(O.zone == "chest")
 				return TRUE
 	return FALSE
+
+/mob/living/simple_animal/hostile/asteroid/marrowweaver/clown
+	name = "Clown Spider"
+	desc = "A big, angry, poisonous clown spider. It likes to snack on noses. Its preferred food source is you."
+	icon = 'goon/icons/mob/clownspider.dmi'
+	icon_state = "clownspider_queen"
+	icon_living = "clownspider_queen"
+	icon_aggro = "clownspider_queen"
+	icon_gib = "clown_gib"
+	throw_message = "bounces harmlessly off the"
+	loot = list(/obj/item/clothing/mask/gas/clown_hat)
+	attacktext = "bites"
+	del_on_death = TRUE
+	gold_core_spawnable = HOSTILE_SPAWN
+	health = 250
+	maxHealth = 250
+	poison_type = /datum/reagent/consumable/ethanol/bananahonk
+
+/mob/living/simple_animal/hostile/asteroid/marrowweaver/cluwne
+	name = "Cluwne Spider"
+	desc = "A big, angry, poisonous... something It likes to snack on souls. Its preferred food source is you probably."
+	icon = 'goon/icons/mob/cluwnespider.dmi'
+	icon_state = "cluwnespider_queen"
+	icon_living = "cluwnespider_queen"
+	icon_aggro = "cluwnespider_queen"
+	icon_gib = "clown_gib"
+	throw_message = "bounces harmlessly off the"
+	loot = list(/obj/item/clothing/mask/yogs/cluwne/happy_cluwne)
+	attacktext = "bites"
+	del_on_death = TRUE
+	gold_core_spawnable = NO_SPAWN
+	health = 450
+	maxHealth = 450
+	poison_type = /datum/reagent/cluwnification
+

@@ -62,7 +62,7 @@
 	back = /obj/item/tank/internals/oxygen/tactical
 	head = /obj/item/clothing/head/helmet/riot/raised
 	l_pocket = /obj/item/flashlight/seclite
-	id = /obj/item/card/id/centcom
+	id = /obj/item/card/id/ert/amber
 	implants = list(/obj/item/implant/mindshield)
 	
 

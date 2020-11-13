@@ -98,7 +98,7 @@
 	if(losebreath >= 1) //You've missed a breath, take oxy damage
 		losebreath--
 		if(prob(10))
-			emote("gasp")
+			INVOKE_ASYNC(src, .proc/emote, "gasp")
 		if(istype(loc, /obj/))
 			var/obj/loc_as_obj = loc
 			loc_as_obj.handle_internal_lifeform(src,0)
@@ -172,7 +172,7 @@
 	//OXYGEN
 	if(O2_partialpressure < safe_oxy_min) //Not enough oxygen
 		if(prob(20))
-			emote("gasp")
+			INVOKE_ASYNC(src, .proc/emote, "gasp")
 		if(O2_partialpressure > 0)
 			var/ratio = 1 - O2_partialpressure/safe_oxy_min
 			adjustOxyLoss(min(5*ratio, 3))
@@ -514,11 +514,13 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			if(prob(25))
 				slurring += 2
 			jitteriness = max(jitteriness - 3, 0)
+			throw_alert("drunk", /obj/screen/alert/drunk)
 			if(HAS_TRAIT(src, TRAIT_DRUNK_HEALING))
 				adjustBruteLoss(-0.12, FALSE)
 				adjustFireLoss(-0.06, FALSE)
 		else
 			SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "drunk")
+			clear_alert("drunk")
 
 		if(drunkenness >= 11 && slurring < 5)
 			slurring += 1.2

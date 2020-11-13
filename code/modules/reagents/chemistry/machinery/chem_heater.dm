@@ -23,10 +23,13 @@
 		update_icon()
 
 /obj/machinery/chem_heater/update_icon()
-	if(beaker)
-		icon_state = "mixer1b"
-	else
-		icon_state = "mixer0b"
+	icon_state = "mixer[beaker ? 1 : 0][on ? "a" : "b"]"
+
+/obj/machinery/chem_heater/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	on = !on
+	update_icon()
 
 /obj/machinery/chem_heater/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
@@ -88,11 +91,10 @@
 	replace_beaker()
 	return ..()
 
-/obj/machinery/chem_heater/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/chem_heater/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "chem_heater", name, 275, 320, master_ui, state)
+		ui = new(user, src, "ChemHeater", name)
 		ui.open()
 
 /obj/machinery/chem_heater/ui_data()
@@ -119,6 +121,7 @@
 		if("power")
 			on = !on
 			. = TRUE
+			update_icon()
 		if("temperature")
 			var/target = params["target"]
 			var/adjust = text2num(params["adjust"])

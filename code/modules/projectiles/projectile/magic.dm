@@ -289,6 +289,35 @@
 	qdel(M)
 	return new_mob
 
+/obj/item/projectile/magic/cheese
+	name = "bolt of cheese"
+	icon_state = "cheese"
+	damage = 0
+	damage_type = BURN
+	nodamage = TRUE
+
+/obj/item/projectile/magic/cheese/on_hit(mob/living/target)
+	. = ..()
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] fizzles on contact with [target]!</span>")
+			return BULLET_ACT_BLOCK
+	if(!istype(target) || target.stat == DEAD || target.notransform || (GODMODE & target.status_flags))
+		return
+	if(istype(target) && target.mind)
+		var/obj/item/reagent_containers/food/snacks/store/cheesewheel/parmesan/P = new(target.loc)
+		var/mob/living/B = new(P)
+		P.desc = "What appears to be [target.real_name] reformed into a wheel of delicious parmesan... recovery is unlikely."
+		P.name = "[target.name] Parmesan"
+		B.real_name = "[target.name] Parmesan"
+		B.name = "[target.name] Parmesan"
+		B.stat = CONSCIOUS
+		target.transfer_observers_to(B)
+		target.mind.transfer_to(B)
+		qdel(target)
+
+
 /obj/item/projectile/magic/animate
 	name = "bolt of animation"
 	icon_state = "red_1"
@@ -564,9 +593,9 @@
 /obj/item/projectile/magic/wipe/proc/possession_test(var/mob/living/carbon/M)
 	var/datum/brain_trauma/special/imaginary_friend/trapped_owner/trauma = M.gain_trauma(/datum/brain_trauma/special/imaginary_friend/trapped_owner)
 	var/poll_message = "Do you want to play as [M.real_name]?"
-	if(M.mind && M.mind.assigned_role)
+	if(M?.mind?.assigned_role)
 		poll_message = "[poll_message] Job:[M.mind.assigned_role]."
-	if(M.mind && M.mind.special_role)
+	if(M?.mind?.special_role)
 		poll_message = "[poll_message] Status:[M.mind.special_role]."
 	else if(M.mind)
 		var/datum/antagonist/A = M.mind.has_antag_datum(/datum/antagonist/)

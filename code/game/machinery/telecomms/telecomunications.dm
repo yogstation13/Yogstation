@@ -188,5 +188,5 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 /obj/machinery/telecomms/emag_act()
 	obj_flags |= EMAGGED
-	visible_message("<span class='notice'>Sparks fly out of the[src]!</span>")
+	visible_message("<span class='notice'>Sparks fly out of the [src]!</span>")
 	traffic += 50

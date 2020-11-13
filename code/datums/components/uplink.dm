@@ -108,12 +108,18 @@ GLOBAL_LIST_EMPTY(uplinks)
 			var/path = UI.refund_path || UI.item
 			var/cost = UI.refund_amount || UI.cost
 			if(I.type == path && UI.refundable && I.check_uplink_validity())
-				telecrystals += cost
-				if(purchase_log)
-					purchase_log.total_spent -= cost
-				to_chat(user, "<span class='notice'>[I] refunded.</span>")
-				qdel(I)
+				var/obj/item/antag_spawner/S = I
+				refundAntagSpawner(cost, S, user)
 				return
+
+/datum/component/uplink/proc/refundAntagSpawner(cost, obj/item/antag_spawner/I, mob/user)
+	if (I.discountPrice)
+		cost = I.discountPrice
+	telecrystals += cost
+	if(purchase_log)
+		purchase_log.total_spent -= cost
+		to_chat(user, "<span class='notice'>[I] refunded.</span>")
+	qdel(I)
 
 /datum/component/uplink/proc/interact(datum/source, mob/user)
 	if(locked)
@@ -124,14 +130,17 @@ GLOBAL_LIST_EMPTY(uplinks)
 	// an unlocked uplink blocks also opening the PDA or headset menu
 	return COMPONENT_NO_INTERACT
 
-/datum/component/uplink/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.inventory_state)
+/datum/component/uplink/ui_state(mob/user)
+	return GLOB.inventory_state
+
+/datum/component/uplink/ui_interact(mob/user, datum/tgui/ui)
 	active = TRUE
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "uplink", name, 620, 580, master_ui, state)
-		ui.set_autoupdate(FALSE) // This UI is only ever opened by one person, and never is updated outside of user input.
-		ui.set_style("syndicate")
+		ui = new(user, src, "Uplink", name)
+		// This UI is only ever opened by one person,
+		// and never is updated outside of user input.
+		ui.set_autoupdate(FALSE)
 		ui.open()
 
 /datum/component/uplink/ui_data(mob/user)
@@ -140,8 +149,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	var/list/data = list()
 	data["telecrystals"] = telecrystals
 	data["lockable"] = lockable
-	data["compact_mode"] = compact_mode
-
+	data["compactMode"] = compact_mode
 	return data
 
 /datum/component/uplink/ui_static_data(mob/user)
@@ -174,8 +182,9 @@ GLOBAL_LIST_EMPTY(uplinks)
 						continue
 			cat["items"] += list(list(
 				"name" = I.name,
-				"cost" = I.cost,
+				"cost" = I.manufacturer && user.mind.is_employee(I.manufacturer) ? CEILING(I.cost * 0.8, 1) : I.cost,
 				"desc" = I.desc,
+				"manufacturer" = I.manufacturer ? initial(I.manufacturer.name) : null,
 			))
 		data["categories"] += list(cat)
 	return data
@@ -183,19 +192,16 @@ GLOBAL_LIST_EMPTY(uplinks)
 /datum/component/uplink/ui_act(action, params)
 	if(!active)
 		return
-
 	switch(action)
 		if("buy")
-			var/item = params["item"]
-
+			var/item_name = params["name"]
 			var/list/buyable_items = list()
 			for(var/category in uplink_items)
 				buyable_items += uplink_items[category]
-
-			if(item in buyable_items)
-				var/datum/uplink_item/I = buyable_items[item]
+			if(item_name in buyable_items)
+				var/datum/uplink_item/I = buyable_items[item_name]
 				MakePurchase(usr, I)
-				. = TRUE
+				return TRUE
 		if("lock")
 			active = FALSE
 			locked = TRUE
@@ -204,19 +210,24 @@ GLOBAL_LIST_EMPTY(uplinks)
 			SStgui.close_uis(src)
 		if("select")
 			selected_cat = params["category"]
+			return TRUE
 		if("compact_toggle")
 			compact_mode = !compact_mode
-	return TRUE
+			return TRUE
 
 /datum/component/uplink/proc/MakePurchase(mob/user, datum/uplink_item/U)
 	if(!istype(U))
 		return
 	if (!user || user.incapacitated())
 		return
-
-	if(telecrystals < U.cost || U.limited_stock == 0)
-		return
-	telecrystals -= U.cost
+	if(U.manufacturer && user.mind.is_employee(U.manufacturer))
+		if(telecrystals < CEILING(U.cost*0.8, 1) || U.limited_stock == 0)
+			return
+		telecrystals -= CEILING(U.cost*0.8, 1)
+	else 
+		if(telecrystals < U.cost || U.limited_stock == 0)
+			return
+		telecrystals -= U.cost
 
 	U.purchase(user, src)
 

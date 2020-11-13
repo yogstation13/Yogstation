@@ -120,6 +120,10 @@
 	icon_state = "anchored_rod"
 	anchored = TRUE
 
+/obj/structure/festivus/erp
+	name = "pole"
+	desc = "Don't think too hard about what it'll be used for."
+
 /obj/structure/flora/tree/dead/Initialize()
 	icon_state = "tree_[rand(1, 6)]"
 	. = ..()
@@ -353,6 +357,14 @@
 	light_color = "#2cb2e8"
 	light_range = 3
 
+/obj/item/twohanded/required/kirbyplants/Initialize()
+	. = ..()
+	AddComponent(/datum/component/storage/concrete/kirbyplants)
+
+/datum/component/storage/concrete/kirbyplants
+	max_items = 1
+	max_w_class = WEIGHT_CLASS_NORMAL
+
 
 //a rock is flora according to where the icon file is
 //and now these defines
@@ -451,3 +463,5 @@
 /obj/structure/flora/rock/pile/largejungle/Initialize()
 	. = ..()
 	icon_state = "[initial(icon_state)][rand(1,3)]"
+
+

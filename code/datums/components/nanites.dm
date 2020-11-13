@@ -32,6 +32,8 @@
 
 		if(cloud_id)
 			cloud_sync()
+/datum/component/nanites/proc/delete_nanites()
+	qdel(src)
 
 /datum/component/nanites/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_HAS_NANITES, .proc/confirm_nanites)
@@ -46,6 +48,7 @@
 	RegisterSignal(parent, COMSIG_NANITE_ADD_PROGRAM, .proc/add_program)
 	RegisterSignal(parent, COMSIG_NANITE_SCAN, .proc/nanite_scan)
 	RegisterSignal(parent, COMSIG_NANITE_SYNC, .proc/sync)
+	RegisterSignal(parent, COMSIG_NANITE_DELETE, .proc/delete_nanites)
 
 	if(isliving(parent))
 		RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, .proc/on_emp)
@@ -78,7 +81,8 @@
 								COMSIG_MOVABLE_HEAR,
 								COMSIG_SPECIES_GAIN,
 								COMSIG_NANITE_SIGNAL,
-								COMSIG_NANITE_COMM_SIGNAL))
+								COMSIG_NANITE_COMM_SIGNAL,
+								COMSIG_NANITE_DELETE))
 
 /datum/component/nanites/Destroy()
 	STOP_PROCESSING(SSnanites, src)

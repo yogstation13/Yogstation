@@ -22,7 +22,11 @@
 
 	display_order = JOB_DISPLAY_ORDER_STATION_ENGINEER
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("EclipseStation", "OmegaStation")
+
+/datum/job/engineer/proc/EclipseStationChanges()
+	total_positions = 6
+	spawn_positions = 5
 
 /datum/job/engineer/proc/OmegaStationChanges()
 	total_positions = 2

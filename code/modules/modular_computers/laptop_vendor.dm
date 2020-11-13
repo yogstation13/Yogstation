@@ -221,17 +221,16 @@
 			return 1
 	return 0
 
-/obj/machinery/lapvend/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+/obj/machinery/lapvend/ui_interact(mob/user, datum/tgui/ui)
 	if(stat & (BROKEN | NOPOWER | MAINT))
 		if(ui)
 			ui.close()
 		return 0
 
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, ui_key, "computer_fabricator", "Personal Computer Vendor", 500, 400, state = state)
+		ui = new(user, src, "ComputerFabricator")
 		ui.open()
-		ui.set_autoupdate(state = 1)
 
 /obj/machinery/lapvend/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/spacecash))
@@ -248,7 +247,7 @@
 		credits += HC.credits
 		visible_message("<span class='info'>[user] inserts a $[HC.credits] holocredit chip into [src].</span>")
 		qdel(HC)
-		return		
+		return
 	else if(istype(I, /obj/item/card/id))
 		if(state != 2)
 			return

@@ -9,6 +9,7 @@
 	designation = "Default" //used for displaying the prefix & getting the current module of cyborg
 	has_limbs = 1
 	hud_type = /datum/hud/robot
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 	var/custom_name = ""
 	var/braintype = "Cyborg"
@@ -20,6 +21,8 @@
 	var/mob/living/silicon/ai/mainframe = null
 	var/datum/action/innate/undeployment/undeployment_action = new
 
+	/// the last health before updating - to check net change in health
+	var/previous_health
 //Hud stuff
 
 	var/obj/screen/inv1 = null
@@ -36,6 +39,9 @@
 	var/obj/item/robot_module/module = null
 	var/obj/item/module_active = null
 	held_items = list(null, null, null) //we use held_items for the module holding, because that makes sense to do!
+
+	/// For checking which modules are disabled or not.
+	var/disabled_modules
 
 	var/mutable_appearance/eye_lights
 
@@ -85,7 +91,7 @@
 	/obj/item/clothing/head/helmet/space/santahat,
 	/obj/item/clothing/head/welding,
 	/obj/item/clothing/head/mob_holder, //I am so very upset that this breaks things
-	/obj/item/clothing/head/helmet/space/eva,
+	/obj/item/clothing/head/helmet/space,
 	)
 
 	can_buckle = TRUE
@@ -128,6 +134,7 @@
 		builtInCamera.c_tag = real_name
 		builtInCamera.network = list("ss13")
 		builtInCamera.internal_light = FALSE
+		builtInCamera.built_in = src
 		if(wires.is_cut(WIRE_CAMERA))
 			builtInCamera.status = 0
 	module = new /obj/item/robot_module(src)
@@ -179,7 +186,7 @@
 			stack_trace("Borg MMI lacked a brainmob")
 		mmi = null
 	if(connected_ai)
-		connected_ai.connected_robots -= src
+		set_connected_ai(null)
 	if(shell)
 		GLOB.available_ai_shells -= src
 	else
@@ -223,7 +230,6 @@
 		return
 
 	module.transform_to(modulelist[input_module])
-
 
 /mob/living/silicon/robot/proc/updatename(client/C)
 	if(shell)
@@ -388,7 +394,7 @@
 				return
 			if(health > 0)
 				return //safety check to prevent spam clciking and queing
-		
+
 		adjustBruteLoss(-30)
 		updatehealth()
 		add_fingerprint(user)
@@ -506,6 +512,7 @@
 			if(allowed(usr))
 				locked = !locked
 				to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] [src]'s cover.</span>")
+				to_chat(src, "<span class='notice'>[usr] [locked ? "locks" : "unlocks"] your cover.</span>")
 				update_icons()
 				if(emagged)
 					to_chat(user, "<span class='notice'>The cover interface glitches out for a split second.</span>")
@@ -649,9 +656,7 @@
 	gib()
 
 /mob/living/silicon/robot/proc/UnlinkSelf()
-	if(src.connected_ai)
-		connected_ai.connected_robots -= src
-		src.connected_ai = null
+	set_connected_ai(null)
 	lawupdate = FALSE
 	lockcharge = FALSE
 	mobility_flags |= MOBILITY_FLAGS_DEFAULT
@@ -894,21 +899,30 @@
 
 /mob/living/silicon/robot/updatehealth()
 	..()
-	if(health < maxHealth*0.5) //Gradual break down of modules as more damage is sustained
-		if(uneq_module(held_items[3]))
-			playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, 1, 1)
-			audible_message("<span class='warning'>[src] sounds an alarm! \"SYSTEM ERROR: Module 3 OFFLINE.\"</span>")
-			to_chat(src, "<span class='userdanger'>SYSTEM ERROR: Module 3 OFFLINE.</span>")
-		if(health < 0)
-			if(uneq_module(held_items[2]))
-				audible_message("<span class='warning'>[src] sounds an alarm! \"SYSTEM ERROR: Module 2 OFFLINE.\"</span>")
-				to_chat(src, "<span class='userdanger'>SYSTEM ERROR: Module 2 OFFLINE.</span>")
-				playsound(loc, 'sound/machines/warning-buzzer.ogg', 60, 1, 1)
-			if(health < -maxHealth*0.5)
-				if(uneq_module(held_items[1]))
-					audible_message("<span class='warning'>[src] sounds an alarm! \"CRITICAL ERROR: All modules OFFLINE.\"</span>")
-					to_chat(src, "<span class='userdanger'>CRITICAL ERROR: All modules OFFLINE.</span>")
-					playsound(loc, 'sound/machines/warning-buzzer.ogg', 75, 1, 1)
+
+	/// the current percent health of the robot (-1 to 1)
+	var/percent_hp = health/maxHealth
+	if(health <= previous_health) //if change in health is negative (we're losing hp)
+		if(percent_hp <= 0.5)
+			break_cyborg_slot(3)
+
+		if(percent_hp <= 0)
+			break_cyborg_slot(2)
+
+		if(percent_hp <= -0.5)
+			break_cyborg_slot(1)
+
+	else //if change in health is positive (we're gaining hp)
+		if(percent_hp >= 0.5)
+			repair_cyborg_slot(3)
+
+		if(percent_hp >= 0)
+			repair_cyborg_slot(2)
+
+		if(percent_hp >= -0.5)
+			repair_cyborg_slot(1)
+
+	previous_health = health
 
 /mob/living/silicon/robot/movement_delay()
 	. = ..()
@@ -1097,7 +1111,7 @@
 		builtInCamera.c_tag = real_name	//update the camera name too
 	mainframe = AI
 	deployed = TRUE
-	connected_ai = mainframe
+	set_connected_ai(mainframe)
 	mainframe.connected_robots |= src
 	lawupdate = TRUE
 	lawsync()
@@ -1174,14 +1188,12 @@
 		return
 	if(incapacitated())
 		return
-	if(M.incapacitated())
-		return
 	if(module)
 		if(!module.allow_riding)
 			M.visible_message("<span class='boldwarning'>Unfortunately, [M] just can't seem to hold onto [src]!</span>")
 			return
-	if(iscarbon(M) && (!riding_datum.equip_buckle_inhands(M, 1)))
-		if (M.get_num_arms() <= 0)
+	if(iscarbon(M) && !M.incapacitated() && !riding_datum.equip_buckle_inhands(M, 1))
+		if(M.get_num_arms() <= 0)
 			M.visible_message("<span class='boldwarning'>[M] can't climb onto [src] because [M.p_they()] don't have any usable arms!</span>")
 		else
 			M.visible_message("<span class='boldwarning'>[M] can't climb onto [src] because [M.p_their()] hands are full!</span>")
@@ -1196,10 +1208,16 @@
 			riding_datum.restore_position(user)
 	. = ..(user)
 
+/mob/living/silicon/robot/resist() // for unbuckling people
+	. = ..()
+	if(!buckled_mobs.len)
+		return
+	for(var/i in buckled_mobs)
+		var/mob/unbuckle_me_now = i
+		unbuckle_mob(unbuckle_me_now, FALSE)
 /mob/living/silicon/robot/proc/TryConnectToAI()
-	connected_ai = select_active_ai_with_fewest_borgs()
+	set_connected_ai(select_active_ai_with_fewest_borgs())
 	if(connected_ai)
-		connected_ai.connected_robots += src
 		lawsync()
 		lawupdate = 1
 		return TRUE
@@ -1220,3 +1238,17 @@
 		cell.charge = min(cell.charge + amount, cell.maxcharge)
 	if(repairs)
 		heal_bodypart_damage(repairs, repairs - 1)
+
+/mob/living/silicon/robot/proc/set_connected_ai(new_ai)
+	if(connected_ai == new_ai)
+		return
+	. = connected_ai
+	connected_ai = new_ai
+	if(.)
+		var/mob/living/silicon/ai/old_ai = .
+		old_ai.connected_robots -= src
+	if(connected_ai)
+		connected_ai.connected_robots |= src
+
+/mob/living/silicon/robot/shell
+	shell = TRUE

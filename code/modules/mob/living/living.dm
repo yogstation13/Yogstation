@@ -10,6 +10,8 @@
 	faction += "[REF(src)]"
 	GLOB.mob_living_list += src
 	initialize_footstep()
+	if(startDead)
+		death(FALSE)
 
 /mob/living/proc/initialize_footstep()
 	AddComponent(/datum/component/footstep)
@@ -168,9 +170,9 @@
 		var/mob/living/L = M
 		if(HAS_TRAIT(L, TRAIT_PUSHIMMUNE))
 			return TRUE
-	/*//If they're a human, and they're not in help intent, block pushing //yogs start: disarmn't rework
+	//If they're a human, and they're not in help intent, block pushing
 	if(ishuman(M) && (M.a_intent != INTENT_HELP))
-		return TRUE*/ //yogs end
+		return TRUE
 	//anti-riot equipment is also anti-push
 	for(var/obj/item/I in M.held_items)
 		if(!istype(M, /obj/item/clothing))
@@ -300,6 +302,8 @@
 				if(HAS_TRAIT(src, TRAIT_STRONG_GRABBER))
 					C.grippedby(src)
 
+				update_pull_movespeed()
+
 		set_pull_offsets(M, state)
 
 /mob/living/proc/set_pull_offsets(mob/living/M, grab_state = GRAB_PASSIVE)
@@ -354,6 +358,7 @@
 	if(ismob(pulling))
 		reset_pull_offsets(pulling)
 	..()
+	update_pull_movespeed()
 	update_pull_hud_icon()
 
 /mob/living/verb/stop_pulling1()
@@ -562,6 +567,8 @@
 		mood.remove_temp_moods(admin_revive)
 	update_mobility()
 	stop_sound_channel(CHANNEL_HEARTBEAT)
+	if(admin_revive)
+		cure_fakedeath()
 
 //proc called by revive(), to check if we can actually ressuscitate the mob (we don't want to revive him and have him instantly die again)
 /mob/living/proc/can_be_revived()
@@ -581,6 +588,10 @@
 
 	var/old_direction = dir
 	var/turf/T = loc
+
+	if(pulling)
+		update_pull_movespeed()
+
 	. = ..()
 
 	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.
@@ -949,7 +960,7 @@
 		return TRUE
 	return FALSE
 
-/mob/living/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback)
+/mob/living/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, quickstart = TRUE)
 	stop_pulling()
 	. = ..()
 
@@ -1066,11 +1077,6 @@
 						"[C] leaps out of [src]'s way!")]</span>")
 	C.Paralyze(40)
 
-/mob/living/ConveyorMove()
-	if((movement_type & FLYING) && !stat)
-		return
-	..()
-
 /mob/living/can_be_pulled()
 	return ..() && !(buckled && buckled.buckle_prevents_pull)
 
@@ -1166,7 +1172,7 @@
 /mob/living/proc/add_abilities_to_panel()
 	var/list/L = list()
 	for(var/obj/effect/proc_holder/A in abilities)
-		L[++L.len] = list("[A.panel]",A.get_panel_text(),A.name,"\ref[A]")
+		L[++L.len] = list("[A.panel]",A.get_panel_text(),A.name,"[REF(A)]")
 	return L
 
 /mob/living/lingcheck()

@@ -11,6 +11,9 @@
 	set waitfor = FALSE
 	var/mob/living/carbon/human/user = usr
 	var/turf/spot = get_turf(user)
+	if(!ishuman(user))
+		to_chat(user, "<span class='warning'>You need to be human-er to do that!</span>")
+		return
 	if(spot.get_lumcount() > DARKSPAWN_DIM_LIGHT)
 		to_chat(user, "<span class='warning'>You are only able to divulge in darkness!</span>")
 		return

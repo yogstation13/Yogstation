@@ -237,6 +237,17 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		. = 1
 	return ..() || .
 
+/datum/reagent/consumable/ethanol/bilk/soy
+	name = "Soy Bilk"
+	description = "This appears to be beer mixed with soy milk. Disgusting."
+	color = "#895C4C" // rgb: 137, 92, 76
+	nutriment_factor = 2 * REAGENTS_METABOLISM
+	boozepwr = 15
+	taste_description = "desperation and lactate free milk"
+	glass_icon_state = "glass_brown"
+	glass_name = "glass of soy bilk"
+	glass_desc = "A brew of soy milk and beer. For those alcoholics who fear soy osteoporosis."
+
 /datum/reagent/consumable/ethanol/threemileisland
 	name = "Three Mile Island Iced Tea"
 	description = "Made for a woman, strong enough for a man."
@@ -362,10 +373,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 
 /datum/reagent/consumable/ethanol/hooch/on_mob_life(mob/living/carbon/M)
-	if(M.mind && M.mind.assigned_role == "Assistant")
+	if(M.mind?.assigned_role == "Assistant")
 		M.heal_bodypart_damage(1,1)
 		. = 1
-	return ..() || .
+	M.radiation = max(M.radiation-2, 0)
+	return ..()  || .
 
 /datum/reagent/consumable/ethanol/ale
 	name = "Ale"
@@ -435,7 +447,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A classic mix of rum, cola, and lime. A favorite of revolutionaries everywhere!"
 
 /datum/reagent/consumable/ethanol/cuba_libre/on_mob_life(mob/living/carbon/M)
-	if(M.mind && M.mind.has_antag_datum(/datum/antagonist/rev)) //Cuba Libre, the traditional drink of revolutions! Heals revolutionaries.
+	if(M.mind?.has_antag_datum(/datum/antagonist/rev))  //Cuba Libre, the traditional drink of revolutions! Heals revolutionaries.
 		M.adjustBruteLoss(-1, 0)
 		M.adjustFireLoss(-1, 0)
 		M.adjustToxLoss(-1, 0)
@@ -692,7 +704,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/moonshine
 	name = "Moonshine"
 	description = "You've really hit rock bottom now... your liver packed its bags and left last night."
-	color = "#664300" // rgb: 102, 67, 0
+	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha) (like water)
 	boozepwr = 95
 	taste_description = "bitterness"
 	glass_icon_state = "glass_clear"
@@ -880,14 +892,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/bahama_mama
 	name = "Bahama Mama"
-	description = "Tropical cocktail."
+	description = "A tropical cocktail with a complex blend of flavors."
 	color = "#FF7F3B" // rgb: 255, 127, 59
 	boozepwr = 35
 	quality = DRINK_GOOD
-	taste_description = "lime and orange"
+	taste_description = "pineapple, coconut, and a hint of coffee"
 	glass_icon_state = "bahama_mama"
 	glass_name = "Bahama Mama"
-	glass_desc = "Tropical cocktail."
+	glass_desc = "A tropical cocktail with a complex blend of flavors."
 
 /datum/reagent/consumable/ethanol/singulo
 	name = "Singulo"
@@ -1419,6 +1431,16 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Creme de Cacao"
 	glass_desc = "A million hazing lawsuits and alcohol poisonings have started with this humble ingredient."
 
+/datum/reagent/consumable/ethanol/creme_de_coconut
+	name = "Creme de Coconut"
+	description = "A coconut liqueur for smooth, creamy, tropical drinks."
+	color = "#F7F0D0"
+	boozepwr = 20
+	taste_description = "a sweet milky flavor with notes of toasted sugar"
+	glass_icon_state = "glass_white"
+	glass_name = "Creme de Coconut"
+	glass_desc = "An unintimidating glass of coconut liqueur."
+
 /datum/reagent/consumable/ethanol/quadruple_sec
 	name = "Quadruple Sec"
 	description = "Kicks just as hard as licking the powercell on a baton, but tastier."
@@ -1921,7 +1943,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/wizz_fizz/on_mob_life(mob/living/carbon/M)
 	//A healing drink similar to Quadruple Sec, Ling Stings, and Screwdrivers for the Wizznerds; the check is consistent with the changeling sting
-	if(M?.mind?.has_antag_datum(/datum/antagonist/wizard))
+	if(M.mind?.has_antag_datum(/datum/antagonist/wizard))
 		M.heal_bodypart_damage(1,1,1)
 		M.adjustOxyLoss(-1,0)
 		M.adjustToxLoss(-1,0)
@@ -2054,7 +2076,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "boozy Catholicism in a glass."
 
 /datum/reagent/consumable/ethanol/trappist/on_mob_life(mob/living/carbon/M)
-	if(M.mind.isholy)
+	if(M.mind.holy_role)
 		M.adjustFireLoss(-2.5, 0)
 		M.jitteriness = max(0, M.jitteriness-1)
 		M.stuttering = max(0, M.stuttering-1)
@@ -2092,3 +2114,138 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "planet_cracker"
 	glass_name = "Planet Cracker"
 	glass_desc = "Although historians believe the drink was originally created to commemorate the end of an important conflict in man's past, its origins have largely been forgotten and it is today seen more as a general symbol of human supremacy."
+
+/datum/reagent/consumable/ethanol/cactuscooler
+	name = "Cactus Cooler"
+	description = "An alcoholic drink created by fermenting cactus, its color is odd looking."
+	color = "#78b477" // rgb: 120, 180, 119
+	nutriment_factor = 2 * REAGENTS_METABOLISM
+	boozepwr = 25
+	taste_description = "refreshing and cooling"
+	glass_icon_state = "glass_green"
+	glass_name = "glass of cactus cooler"
+	glass_desc = "The byproduct of fermenting a cactus. For those wanting a refreshing drink in a barren wasteland."
+
+/datum/reagent/consumable/ethanol/cactuscooler/on_mob_life(mob/living/carbon/M)
+	if(M.getFireLoss() && prob(10))
+		M.heal_bodypart_damage(0, 1)
+		. = 1
+	return ..() || .
+
+/datum/reagent/consumable/ethanol/polyporepop
+	name = "Polypore Pop"
+	description = "A strong and fizzy alcoholic beverage made by fermenting polypore mushrooms."
+	color = "#664300" // rgb: 102, 67, 0
+	nutriment_factor = 2 * REAGENTS_METABOLISM
+	boozepwr = 50
+	taste_description = "fizzy alcohol"
+	glass_icon_state = "glass_brown2"
+	glass_name = "glass of polypore pop"
+	glass_desc = "Fizzy alcohol made from fermenting polypore mushrooms. Surprisingly good for being from a mushroom, and surprisingly strong."
+
+/datum/reagent/consumable/ethanol/porcinisap
+	name = "Porcini Sap"
+	description = "A soothing sap fermented from porcini leaves."
+	color = "#664300" // rgb: 102, 67, 0
+	nutriment_factor = 2 * REAGENTS_METABOLISM
+	boozepwr = 5
+	taste_description = "cough syrup"
+	glass_icon_state = "glass_brown2"
+	glass_name = "glass of porcini sap"
+	glass_desc = "Very weak alcohol that feels soothing as it goes down your throat and makes your stomach feel better."
+
+/datum/reagent/consumable/porcinisap/on_mob_life(mob/living/carbon/M)
+	M.adjust_disgust(-3)
+	..()
+
+/datum/reagent/consumable/ethanol/inocybeshine
+	name = "Inocybe Shine"
+	description = "A very strong, slightly toxic alcohol from fermented inocybe mycelium."
+	color = "#664300" // rgb: 102, 67, 0
+	nutriment_factor = 2 * REAGENTS_METABOLISM
+	boozepwr = 75
+	taste_description = "terrible bitterness"
+	glass_icon_state = "glass_brown2"
+	glass_name = "glass of inocybe shine"
+	glass_desc = "Very strong alcohol that tastes like shit and makes your liver feel weak."
+
+/datum/reagent/consumable/ethanol/inocybeshine/on_mob_life(mob/living/carbon/M)
+	if(prob(10))
+		M.adjustStaminaLoss(10,0)
+		M.blur_eyes(3)
+		M.adjust_disgust(1)
+		. = TRUE
+	return ..()
+
+/datum/reagent/consumable/ethanol/embershroomcream
+	name = "Embershroom Cream"
+	description = "Slightly bioluminescent smelly cream from fermented embershroom stems."
+	color = "#8CFF8C" // rgb: 140, 255, 140
+	nutriment_factor = 2 * REAGENTS_METABOLISM
+	boozepwr = 20
+	taste_description = "gross cream"
+	glass_icon_state = "booger"
+	glass_name = "glass of embershroom cream"
+	glass_desc = "Weak alcohol that makes your stomach feel like a disco party."
+
+/datum/reagent/consumable/embershroomcream/on_mob_metabolize(mob/living/M)
+	M.set_light(2)
+
+/datum/reagent/consumable/embershroomcream/on_mob_end_metabolize(mob/living/M)
+	M.set_light(-2)
+
+/datum/reagent/consumable/ethanol/painkiller
+	name = "Painkiller"
+	description = "Dulls your pain. Your emotional pain, that is."
+	boozepwr = 20
+	color = "#EAD677"
+	quality = DRINK_NICE
+	taste_description = "sugary tartness"
+	glass_icon_state = "painkiller"
+	glass_name = "Painkiller"
+	glass_desc = "A combination of tropical juices and rum. Surely this will make you feel better."
+
+/datum/reagent/consumable/ethanol/pina_colada
+	name = "Pina Colada"
+	description = "A fresh pineapple drink with coconut rum. Yum."
+	boozepwr = 40
+	color = "#FFF1B2"
+	quality = DRINK_FANTASTIC
+	taste_description = "pineapple, coconut, and a hint of the ocean"
+	glass_icon_state = "pina_colada"
+	glass_name = "Pina Colada"
+	glass_desc = "If you like pina coladas, and getting caught in the rain... well, you'll like this drink."
+
+/datum/reagent/consumable/ethanol/flaming_moe
+	name = "Flaming Moe"
+	description = "The drink that always keeps you coming back for Moe."
+	boozepwr = 38
+	color = "#FFF1B2"
+	quality = DRINK_FANTASTIC
+	taste_description = "tequila, creme de menthe, and a hint of medicine?"
+	glass_icon_state = "flaming_moe2"
+	glass_name = "Flaming Moe"
+	glass_desc = "an amazing concoction of various different bar drinks and a secret ingredient"
+
+/datum/reagent/consumable/ethanol/flaming_moe/on_mob_life(mob/living/carbon/M)
+	M.drowsyness = max(M.drowsyness-5, 0)
+	M.AdjustStun(-20, FALSE)
+	M.AdjustKnockdown(-20, FALSE)
+	M.AdjustUnconscious(-20, FALSE)
+	M.AdjustImmobilized(-20, FALSE)
+	M.AdjustParalyzed(-20, FALSE)
+	if(holder.has_reagent(/datum/reagent/toxin/mindbreaker))
+		holder.remove_reagent(/datum/reagent/toxin/mindbreaker, 5)
+	M.hallucination = max(0, M.hallucination - 10)
+	if(prob(30))
+		M.adjustToxLoss(1, 0)
+		. = 1
+	M.adjust_bodytemperature(5 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
+
+/datum/reagent/consumable/ethanol/beer/maltliquor
+	name = "Malt Liquor"
+	description = "An alcoholic beverage brewed since ancient times on Old Earth. This variety is stronger than usual, super cheap, and super terrible."
+	boozepwr = 35
+	taste_description = "sweet corn beer and the hood life"
+	glass_name = "glass of malt liquor"
+	glass_desc = "A freezing pint of malt liquor."

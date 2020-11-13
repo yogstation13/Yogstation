@@ -38,14 +38,34 @@
 /obj/machinery/atmospherics/components/unary/tank/carbon_dioxide
 	gas_type = /datum/gas/carbon_dioxide
 
+/obj/machinery/atmospherics/components/unary/tank/carbon_dioxide/New()
+	..()
+	var/datum/gas_mixture/air_contents = airs[1]
+	air_contents.set_moles(/datum/gas/carbon_dioxide, AIR_CONTENTS)
+
 /obj/machinery/atmospherics/components/unary/tank/toxins
 	icon_state = "orange"
 	gas_type = /datum/gas/plasma
+
+/obj/machinery/atmospherics/components/unary/tank/toxins/New()
+	..()
+	var/datum/gas_mixture/air_contents = airs[1]
+	air_contents.set_moles(/datum/gas/plasma, AIR_CONTENTS)
 
 /obj/machinery/atmospherics/components/unary/tank/oxygen
 	icon_state = "blue"
 	gas_type = /datum/gas/oxygen
 
+/obj/machinery/atmospherics/components/unary/tank/oxygen/New()
+	..()
+	var/datum/gas_mixture/air_contents = airs[1]
+	air_contents.set_moles(/datum/gas/oxygen, AIR_CONTENTS)
+
 /obj/machinery/atmospherics/components/unary/tank/nitrogen
 	icon_state = "red"
 	gas_type = /datum/gas/nitrogen
+
+/obj/machinery/atmospherics/components/unary/tank/nitrogen/New()
+	..()
+	var/datum/gas_mixture/air_contents = airs[1]
+	air_contents.set_moles(/datum/gas/nitrogen, AIR_CONTENTS)

@@ -402,7 +402,7 @@
 
 	switch(rand(1,100)+modifier) //91-100=Nothing special happens
 		if(-INFINITY to 0) //attack yourself
-			I.attack(src,src)
+			INVOKE_ASYNC(I, /obj/item.proc/attack, src, src)
 		if(1 to 30) //throw it at yourself
 			I.throw_impact(src)
 		if(31 to 60) //Throw object in facing direction
@@ -833,7 +833,7 @@
 	if(!getorgan(/obj/item/organ/brain) && (!mind || !mind.has_antag_datum(/datum/antagonist/changeling)))
 		return 0
 
-/mob/living/carbon/proc/can_defib() //yogs start
+/mob/living/carbon/proc/can_defib(careAboutGhost = TRUE) //yogs start
 	if(suiciding || hellbound || HAS_TRAIT(src, TRAIT_HUSK)) //can't revive
 		return FALSE
 	if((world.time - timeofdeath) > DEFIB_TIME_LIMIT * 10) //too late
@@ -845,7 +845,7 @@
 	var/obj/item/organ/brain/BR = getorgan(/obj/item/organ/brain)
 	if(QDELETED(BR) || BR.brain_death || BR.organ_flags & ORGAN_FAILING || BR.suicided)
 		return FALSE
-	if(get_ghost())
+	if(careAboutGhost && get_ghost())
 		return FALSE
 	return TRUE //yogs end
 
@@ -942,3 +942,13 @@
 	if(mood)
 		if(mood.sanity < SANITY_UNSTABLE)
 			return TRUE
+
+/mob/living/carbon/verb/giveitem(mob/living/carbon/A as mob in range(1))
+	set name = "Give"
+	set category = "IC"
+	if(!iscarbon(src))
+		to_chat(src, "<span class='warning'>You can't give items!</span>")
+		return
+	if(A && A != src && get_dist(src, A) < 2)
+		var/mob/living/carbon/C = src
+		C.give()

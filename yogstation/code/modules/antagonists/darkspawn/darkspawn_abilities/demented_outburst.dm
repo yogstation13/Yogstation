@@ -17,6 +17,11 @@
 	addtimer(CALLBACK(src, .proc/reset), 50)
 	return TRUE
 
+/datum/action/innate/darkspawn/demented_outburst/IsAvailable()
+	if(istype(owner, /mob/living/simple_animal/hostile/crawling_shadows))
+		return
+	return ..()
+
 /datum/action/innate/darkspawn/demented_outburst/proc/outburst()
 	in_use = FALSE
 	if(!owner || owner.stat)

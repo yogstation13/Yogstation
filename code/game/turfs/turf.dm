@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(station_turfs)
+
 /turf
 	icon = 'icons/turf/floors.dmi'
 	level = 1
@@ -23,6 +25,7 @@
 
 	var/explosion_level = 0	//for preventing explosion dodging
 	var/explosion_id = 0
+	var/list/explosion_throw_details
 
 	var/requires_activation	//add to air processing after initialize?
 	var/changing_turf = FALSE
@@ -40,6 +43,7 @@
 	. = ..()
 
 /turf/Initialize(mapload)
+	SHOULD_CALL_PARENT(FALSE)
 	if(flags_1 & INITIALIZED_1)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_1 |= INITIALIZED_1
@@ -153,6 +157,7 @@
 	return TRUE
 
 /turf/proc/can_zFall(atom/movable/A, levels = 1, turf/target)
+	SHOULD_BE_PURE(TRUE)
 	return zPassOut(A, DOWN, target) && target.zPassIn(A, DOWN, src)
 
 /turf/proc/zFall(atom/movable/A, levels = 1, force = FALSE)
@@ -194,16 +199,6 @@
 	else if(istype(C, /obj/item/twohanded/rcl))
 		handleRCL(C, user)
 
-	return FALSE
-
-/turf/CanPass(atom/movable/mover, turf/target)
-	if(!target)
-		return FALSE
-
-	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
-		return !density
-
-	stack_trace("Non movable passed to turf CanPass : [mover]")
 	return FALSE
 
 //There's a lot of QDELETED() calls here if someone can figure out how to optimize this but not runtime when something gets deleted by a Bump/CanPass/Cross call, lemme know or go ahead and fix this mess - kevinz000
@@ -257,8 +252,6 @@
 
 /turf/Entered(atom/movable/AM)
 	..()
-	if(explosion_level && AM.ex_check(explosion_id))
-		AM.ex_act(explosion_level)
 
 	// If an opaque movable atom moves around we need to potentially update visibility.
 	if (AM.opacity)
@@ -423,25 +416,19 @@
 /turf/proc/is_shielded()
 
 /turf/contents_explosion(severity, target)
-	var/affecting_level
-	if(severity == 1)
-		affecting_level = 1
-	else if(is_shielded())
-		affecting_level = 3
-	else if(intact)
-		affecting_level = 2
-	else
-		affecting_level = 1
-
-	for(var/V in contents)
-		var/atom/A = V
-		if(!QDELETED(A) && A.level >= affecting_level)
-			if(ismovable(A))
-				var/atom/movable/AM = A
-				if(!AM.ex_check(explosion_id))
-					continue
-			A.ex_act(severity, target)
-			CHECK_TICK
+	for(var/thing in contents)
+		var/atom/movable/movable_thing = thing
+		if(QDELETED(movable_thing))
+			continue
+		if(!movable_thing.ex_check(explosion_id))
+			continue
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.high_mov_atom += movable_thing
+			if(EXPLODE_HEAVY)
+				SSexplosions.med_mov_atom += movable_thing
+			if(EXPLODE_LIGHT)
+				SSexplosions.low_mov_atom += movable_thing
 
 /turf/narsie_act(force, ignore_mobs, probability = 20)
 	. = (prob(probability) || force)

@@ -1,9 +1,11 @@
+GLOBAL_VAR_INIT(mentornoot, FALSE)
+
 /datum/world_topic/asay
 	keyword = "asay"
 	require_comms_key = TRUE
 
 /datum/world_topic/asay/Run(list/input)
-	to_chat(GLOB.admins, "<span class='adminsay'><span class='prefix'>DISCORD:</span> <EM>[input["admin"]]</EM>: <span class='message'>[input["asay"]]</span></span>")
+	to_chat(GLOB.admins, "<span class='adminsay'><span class='prefix'>DISCORD:</span> <EM>[input["admin"]]</EM>: <span class='message'>[input["asay"]]</span></span>", confidential=TRUE)
 
 /datum/world_topic/ooc
 	keyword = "ooc"
@@ -43,7 +45,7 @@
 	var/msgTitle = input["announce"]
 	var/author = input["author"]
 	var/id = input["id"]
-	var/link = "https://github.com/yogstation13/Yogstation-TG/pull/[id]"
+	var/link = "https://github.com/yogstation13/Yogstation/pull/[id]"
 
 	var/final_composed = "<span class='announce'>PR: <a href=[link]>[msgTitle]</a> by [author]</span>"
 	for(var/client/C in GLOB.clients)
@@ -75,31 +77,16 @@
 	var/client/C = GLOB.directory[ckey(whom)]
 	if(!C)
 		return 0
-
-	SEND_SOUND(C, sound('sound/items/bikehorn.ogg'))
+	if(GLOB.mentornoot)
+		SEND_SOUND(C, sound('sound/misc/nootnoot.ogg'))
+	else
+		SEND_SOUND(C, sound('sound/items/bikehorn.ogg'))
 	to_chat(C, "<font color='purple'>Mentor PM from-<b>[discord_mentor_link(from, from_id)]</b>: [msg]</font>")
 	var/show_char_recip = !C.is_mentor() && CONFIG_GET(flag/mentors_mobname_only)
 	for(var/client/X in GLOB.mentors | GLOB.admins)
 		if(X != C)
 			to_chat(X, "<B><font color='green'>Mentor PM: [discord_mentor_link(from, from_id)]-&gt;[key_name_mentor(C, X, 0, 0, show_char_recip)]:</B> <font color ='blue'> [msg]</font>")
 	return 1
-
-/datum/world_topic/verify
-	keyword = "verify"
-	require_comms_key = TRUE
-
-/datum/world_topic/verify/Run(list/input)
-	var/id = input["verify"]
-	var/ckey = input["ckey"]
-	var/lowerparams = ckey(ckey) // Fuck spaces
-	if(SSdiscord.account_link_cache[lowerparams]) // First if they are in the list, then if the ckey matches
-		if(SSdiscord.account_link_cache[lowerparams] == "[SSdiscord.id_clean(id)]") // If the associated ID is the correct one
-			SSdiscord.link_account(lowerparams)
-			return "Successfully linked accounts"
-		else
-			return "That ckey is not associated to this discord account. If someone has used your ID, please inform an administrator"
-	else
-		return "Failure! Have you initiated the linking process on the server (Link Discord Account in the Admin tab)? If you did, double check your ckey!"
 
 /datum/world_topic/unlink
 	keyword = "unlink"

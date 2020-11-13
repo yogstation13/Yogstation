@@ -8,6 +8,8 @@
 
 #define isappearance(A) (copytext("\ref[A]", 4, 6) == "3a")
 
+#define isnan(x) ( isnum((x)) && ((x) != (x)) )
+
 //Turfs
 //#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake.
 
@@ -57,6 +59,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isgolem(A) (is_species(A, /datum/species/golem))
 #define islizard(A) (is_species(A, /datum/species/lizard))
 #define isplasmaman(A) (is_species(A, /datum/species/plasmaman))
+#define ispolysmorph(A) (is_species(A, /datum/species/polysmorph))
 #define ispodperson(A) (is_species(A, /datum/species/pod))
 #define isflyperson(A) (is_species(A, /datum/species/fly))
 #define isjellyperson(A) (is_species(A, /datum/species/jelly))
@@ -217,6 +220,8 @@ GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
 
 #define isclothing(A) (istype(A, /obj/item/clothing))
 
+#define iscash(A) (istype(A, /obj/item/coin) || istype(A, /obj/item/stack/spacecash) || istype(A, /obj/item/holochip))
+
 GLOBAL_LIST_INIT(pointed_types, typecacheof(list(
 	/obj/item/pen,
 	/obj/item/screwdriver,
@@ -255,3 +260,6 @@ GLOBAL_LIST_INIT(glass_sheet_types, typecacheof(list(
 #define isblobmonster(O) (istype(O, /mob/living/simple_animal/hostile/blob))
 
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))
+
+//Fugitive
+#define isfugitive(M) (istype(M) && M.mind?.has_antag_datum(/datum/antagonist/fugitive))

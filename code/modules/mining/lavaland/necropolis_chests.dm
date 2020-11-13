@@ -13,7 +13,7 @@
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,29)
+	var/loot = rand(1,25)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -41,7 +41,7 @@
 		if(11)
 			new /obj/item/ship_in_a_bottle(src)
 		if(12)
-			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker(src)
+			new /obj/item/reagent_containers/glass/bottle/necropolis_seed(src)
 		if(13)
 			new /obj/item/jacobs_ladder(src)
 		if(14)
@@ -49,39 +49,30 @@
 		if(15)
 			new /obj/item/nullrod/armblade(src)
 		if(16)
-			new /obj/item/guardiancreator/random(src)
-		if(17)
 			if(prob(50))
 				new /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
 			else
 				new /obj/item/disk/design_disk/modkit_disc/bounty(src)
-		if(18)
+		if(17)
 			new /obj/item/warp_cube/red(src)
+		if(18)
+			new /obj/item/organ/heart/gland/heals(src)
 		if(19)
-			new /obj/item/wisp_lantern(src)
-		if(20)
 			new /obj/item/immortality_talisman(src)
-		if(21)
-			new /obj/item/gun/magic/hook(src)
-		if(22)
+		if(20)
 			new /obj/item/voodoo(src)
-		if(23)
-			new /obj/item/grenade/clusterbuster/inferno(src)
-		if(24)
+		if(21)
 			new /obj/item/reagent_containers/food/drinks/bottle/holywater/hell(src)
 			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor(src)
-		if(25)
-			new /obj/item/book/granter/spell/summonitem(src)
-		if(26)
+		if(22)
 			new /obj/item/book_of_babel(src)
-		if(27)
+		if(23)
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
 			new /obj/item/bedsheet/cult(src)
-		if(28)
+		if(24)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
-		if(29)
+		if(25)
 			new /obj/item/rune_scimmy(src)
-
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
 	name = "KA Mod Disk"
@@ -118,28 +109,28 @@
 	name = "Kinetic Accelerator Offensive Mining Explosion Mod"
 	desc = "A device which causes kinetic accelerators to fire AoE blasts that destroy rock and damage creatures."
 	id = "hyperaoemod"
-	materials = list(MAT_METAL = 7000, MAT_GLASS = 3000, MAT_SILVER = 3000, MAT_GOLD = 3000, MAT_DIAMOND = 4000)
+	materials = list(/datum/material/iron = 7000, /datum/material/glass = 3000, /datum/material/silver = 3000, /datum/material/gold = 3000, /datum/material/diamond = 4000)
 	build_path = /obj/item/borg/upgrade/modkit/aoe/turfs/andmobs
 
 /datum/design/unique_modkit/rapid_repeater
 	name = "Kinetic Accelerator Rapid Repeater Mod"
 	desc = "A device which greatly reduces a kinetic accelerator's cooldown on striking a living target or rock, but greatly increases its base cooldown."
 	id = "repeatermod"
-	materials = list(MAT_METAL = 5000, MAT_GLASS = 5000, MAT_URANIUM = 8000, MAT_BLUESPACE = 2000)
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/uranium = 8000, /datum/material/bluespace = 2000)
 	build_path = /obj/item/borg/upgrade/modkit/cooldown/repeater
 
 /datum/design/unique_modkit/resonator_blast
 	name = "Kinetic Accelerator Resonator Blast Mod"
 	desc = "A device which causes kinetic accelerators to fire shots that leave and detonate resonator blasts."
 	id = "resonatormod"
-	materials = list(MAT_METAL = 5000, MAT_GLASS = 5000, MAT_SILVER = 5000, MAT_URANIUM = 5000)
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/silver = 5000, /datum/material/uranium = 5000)
 	build_path = /obj/item/borg/upgrade/modkit/resonator_blasts
 
 /datum/design/unique_modkit/bounty
 	name = "Kinetic Accelerator Death Syphon Mod"
 	desc = "A device which causes kinetic accelerators to permanently gain damage against creature types killed with it."
 	id = "bountymod"
-	materials = list(MAT_METAL = 4000, MAT_SILVER = 4000, MAT_GOLD = 4000, MAT_BLUESPACE = 4000)
+	materials = list(/datum/material/iron = 4000, /datum/material/silver = 4000, /datum/material/gold = 4000, /datum/material/bluespace = 4000)
 	reagents_list = list(/datum/reagent/blood = 40)
 	build_path = /obj/item/borg/upgrade/modkit/bounty
 
@@ -224,6 +215,10 @@
 	return ..()
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/memento(mob/living/carbon/human/user)
+	var/list/hasholos = user.hasparasites()
+	if(hasholos.len)
+		to_chat(user, "<span class='warning'>The pendant refuses to work with a guardian spirit...</span>")
+		return
 	to_chat(user, "<span class='warning'>You feel your life being drained by the pendant...</span>")
 	if(do_after(user, 40, target = user))
 		to_chat(user, "<span class='notice'>Your lifeforce is now linked to the pendant! You feel like removing it would kill you, and yet you instinctively know that until then, you won't die.</span>")
@@ -422,7 +417,7 @@
 	armour_penetration = 100
 	damage_type = BRUTE
 	hitsound = 'sound/effects/splat.ogg'
-	paralyze = 30
+	knockdown = 30
 	var/chain
 
 /obj/item/projectile/hook/fire(setAngle)
@@ -811,6 +806,7 @@
 /obj/item/melee/ghost_sword/Destroy()
 	for(var/mob/dead/observer/G in spirits)
 		G.invisibility = GLOB.observer_default_invisibility
+		G.mouse_opacity = initial(G.mouse_opacity)
 	spirits.Cut()
 	STOP_PROCESSING(SSobj, src)
 	GLOB.poi_list -= src
@@ -853,10 +849,12 @@
 	for(var/i in spirits - current_spirits)
 		var/mob/dead/observer/G = i
 		G.invisibility = GLOB.observer_default_invisibility
+		G.mouse_opacity = initial(G.mouse_opacity)
 
 	for(var/i in current_spirits)
 		var/mob/dead/observer/G = i
 		G.invisibility = 0
+		G.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 	spirits = current_spirits
 	return length(spirits)
@@ -1374,7 +1372,7 @@
 
 /obj/item/hierophant_antenna
 	name = "hierophant's antenna"
-	icon = 'icons/obj/lavaland/artefacts.dmi' 
+	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "hierophant_antenna"
 	item_state = "hierophant_antenna"
 	desc = "Extends the range of the herald's power."

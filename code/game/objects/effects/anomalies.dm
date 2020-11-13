@@ -103,10 +103,11 @@
 			if(target && !target.stat)
 				O.throw_at(target, 5, 10)
 
-/obj/effect/anomaly/grav/Crossed(mob/A)
-	gravShock(A)
+/obj/effect/anomaly/grav/Crossed(atom/movable/AM)
+	. = ..()
+	gravShock(AM)
 
-/obj/effect/anomaly/grav/Bump(mob/A)
+/obj/effect/anomaly/grav/Bump(atom/A)
 	gravShock(A)
 
 /obj/effect/anomaly/grav/Bumped(atom/movable/AM)
@@ -149,11 +150,12 @@
 	for(var/mob/living/M in range(0, src))
 		mobShock(M)
 
-/obj/effect/anomaly/flux/Crossed(mob/living/M)
-	mobShock(M)
+/obj/effect/anomaly/flux/Crossed(atom/movable/AM)
+	. = ..()
+	mobShock(AM)
 
-/obj/effect/anomaly/flux/Bump(mob/living/M)
-	mobShock(M)
+/obj/effect/anomaly/flux/Bump(atom/A)
+	mobShock(A)
 
 /obj/effect/anomaly/flux/Bumped(atom/movable/AM)
 	mobShock(AM)
@@ -314,7 +316,7 @@
 			if(target && !target.stat)
 				O.throw_at(target, 7, 5)
 		else
-			O.ex_act(EXPLODE_HEAVY)
+			SSexplosions.med_mov_atom += O
 
 /obj/effect/anomaly/bhole/proc/grav(r, ex_act_force, pull_chance, turf_removal_chance)
 	for(var/t = -r, t < r, t++)
@@ -333,7 +335,13 @@
 	if(prob(pull_chance))
 		for(var/obj/O in T.contents)
 			if(O.anchored)
-				O.ex_act(ex_act_force)
+				switch(ex_act_force)
+					if(EXPLODE_DEVASTATE)
+						SSexplosions.high_mov_atom += O
+					if(EXPLODE_HEAVY)
+						SSexplosions.med_mov_atom += O
+					if(EXPLODE_LIGHT)
+						SSexplosions.low_mov_atom += O
 			else
 				step_towards(O,src)
 		for(var/mob/living/M in T.contents)
@@ -341,4 +349,10 @@
 
 	//Damaging the turf
 	if( T && prob(turf_removal_chance) )
-		T.ex_act(ex_act_force)
+		switch(ex_act_force)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.highturf += T
+			if(EXPLODE_HEAVY)
+				SSexplosions.medturf += T
+			if(EXPLODE_LIGHT)
+				SSexplosions.lowturf += T

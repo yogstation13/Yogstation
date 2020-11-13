@@ -212,10 +212,16 @@
 	if(the_rcd.canRturf)
 		return ..()
 
-
 /turf/closed/wall/r_wall/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
 	if(the_rcd.canRturf)
 		return ..()
+
+/turf/closed/wall/r_wall/rust_heretic_act()
+	if(prob(50))
+		return
+	if(prob(70))
+		new /obj/effect/glowing_rune(src)
+	ChangeTurf(/turf/closed/wall/r_wall/rust)
 
 /turf/closed/wall/r_wall/syndicate
 	name = "hull"

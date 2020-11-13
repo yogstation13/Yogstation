@@ -1,5 +1,3 @@
-
-
 /obj/item/projectile/magic/spell
 	name = "custom spell projectile"
 	var/list/ignored_factions //Do not hit these

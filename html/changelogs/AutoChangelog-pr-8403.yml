@@ -1,7 +1,0 @@
-author: "swissloaf"
-delete-after: true 
-changes: 
-  - rscadd: "Adds some new taglines"
-  - rscdel: "Removes some old taglines"
-  - tweak: "Tweaks some taglines"
-  - rscadd: "Adds highlight to taglines"

@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "mechs can no longer attain negative integrity and become immune to all damage"

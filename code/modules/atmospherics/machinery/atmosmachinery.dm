@@ -10,6 +10,9 @@
 #define PIPE_VISIBLE_LEVEL 2
 #define PIPE_HIDDEN_LEVEL 1
 
+GLOBAL_LIST_EMPTY(iconsetids)
+GLOBAL_LIST_EMPTY(pipeimages)
+
 /obj/machinery/atmospherics
 	anchored = TRUE
 	move_resist = INFINITY				//Moving a connected machine without actually doing the normal (dis)connection things will probably cause a LOT of issues.
@@ -25,9 +28,6 @@
 	var/pipe_color
 	var/piping_layer = PIPING_LAYER_DEFAULT
 	var/pipe_flags = NONE
-
-	GLOBAL_LIST_EMPTY(iconsetids)
-	GLOBAL_LIST_EMPTY(pipeimages)
 
 	var/image/pipe_vision_img = null
 
@@ -63,6 +63,9 @@
 		nullifyNode(i)
 
 	SSair.atmos_machinery -= src
+	if(SSair.currentpart == SSAIR_ATMOSMACHINERY)
+		SSair.currentrun -= src
+	SSair.pipenets_needing_rebuilt -= src
 
 	dropContents()
 	if(pipe_vision_img)

@@ -61,12 +61,10 @@
 		SSnetworks.station_network.add_log("Quantum relay switched from overload recovery mode to normal operation mode.")
 	..()
 
-/obj/machinery/ntnet_relay/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-
+/obj/machinery/ntnet_relay/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "ntnet_relay", "NTNet Quantum Relay", 500, 300, master_ui, state)
+		ui = new(user, src, "NtnetRelay")
 		ui.open()
 
 
@@ -88,10 +86,12 @@
 			dos_failure = 0
 			update_icon()
 			SSnetworks.station_network.add_log("Quantum relay manually restarted from overload recovery mode to normal operation mode.")
+			return TRUE
 		if("toggle")
 			enabled = !enabled
 			SSnetworks.station_network.add_log("Quantum relay manually [enabled ? "enabled" : "disabled"].")
 			update_icon()
+			return TRUE
 
 /obj/machinery/ntnet_relay/Initialize()
 	uid = gl_uid++

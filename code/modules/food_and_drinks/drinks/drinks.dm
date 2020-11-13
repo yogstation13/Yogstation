@@ -16,6 +16,7 @@
 	var/isGlass = TRUE //Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it
 
 /obj/item/reagent_containers/food/drinks/on_reagent_change(changetype)
+	. = ..()
 	if (gulp_size < 5)
 		gulp_size = 5
 	else
@@ -144,7 +145,7 @@
 	force = 1
 	throwforce = 1
 	amount_per_transfer_from_this = 5
-	materials = list(MAT_METAL=100)
+	materials = list(/datum/material/iron=100)
 	possible_transfer_amounts = list()
 	volume = 5
 	flags_1 = CONDUCT_1
@@ -160,7 +161,7 @@
 	force = 14
 	throwforce = 10
 	amount_per_transfer_from_this = 20
-	materials = list(MAT_GOLD=1000)
+	materials = list(/datum/material/gold=1000)
 	volume = 150
 
 /obj/item/reagent_containers/food/drinks/trophy/silver_cup
@@ -171,7 +172,7 @@
 	force = 10
 	throwforce = 8
 	amount_per_transfer_from_this = 15
-	materials = list(MAT_SILVER=800)
+	materials = list(/datum/material/silver=800)
 	volume = 100
 
 
@@ -183,7 +184,7 @@
 	force = 5
 	throwforce = 4
 	amount_per_transfer_from_this = 10
-	materials = list(MAT_METAL=400)
+	materials = list(/datum/material/iron=400)
 	volume = 25
 
 ///////////////////////////////////////////////Drinks
@@ -256,6 +257,7 @@
 	icon_state = "beer"
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 30)
 	foodtype = GRAIN | ALCOHOL
+	age_restricted = TRUE
 
 /obj/item/reagent_containers/food/drinks/beer/light
 	name = "Carp Lite"
@@ -331,6 +333,11 @@
 				name = "grape juice box"
 				desc = "Tasty grape juice in a fun little container. Non-alcoholic!"
 				foodtype = FRUIT
+			if(/datum/reagent/consumable/pineapplejuice)
+				icon_state = "pineapplebox"
+				name = "pineapple juice box"
+				desc = "Why would you even want this?"
+				foodtype = FRUIT | PINEAPPLE
 			if(/datum/reagent/consumable/milk/chocolate_milk)
 				icon_state = "chocolatebox"
 				name = "carton of chocolate milk"
@@ -357,7 +364,7 @@
 	name = "shaker"
 	desc = "A metal shaker to mix drinks in."
 	icon_state = "shaker"
-	materials = list(MAT_METAL=1500)
+	materials = list(/datum/material/iron=1500)
 	amount_per_transfer_from_this = 10
 	volume = 100
 	isGlass = FALSE
@@ -367,7 +374,7 @@
 	desc = "Every good spaceman knows it's a good idea to bring along a couple of pints of whiskey wherever they go."
 	custom_price = 30
 	icon_state = "flask"
-	materials = list(MAT_METAL=250)
+	materials = list(/datum/material/iron=250)
 	volume = 60
 	isGlass = FALSE
 
@@ -375,7 +382,7 @@
 	name = "captain's flask"
 	desc = "A gold flask belonging to the captain."
 	icon_state = "flask_gold"
-	materials = list(MAT_GOLD=500)
+	materials = list(/datum/material/gold=500)
 
 /obj/item/reagent_containers/food/drinks/flask/det
 	name = "detective's flask"
@@ -476,6 +483,13 @@
 	. = ..()
 	name = "lemon-lime soda"
 
+/obj/item/reagent_containers/food/drinks/soda_cans/sol_dry
+	name = "Sol Dry"
+	desc = "Maybe this will help your tummy feel better. Maybe not."
+	icon_state = "sol_dry"
+	list_reagents = list(/datum/reagent/consumable/sol_dry = 30)
+	foodtype = SUGAR
+
 /obj/item/reagent_containers/food/drinks/soda_cans/space_up
 	name = "Space-Up!"
 	desc = "Tastes like a hull breach in your mouth."
@@ -529,6 +543,13 @@
 	desc = "Grey Bull, it gives you gloves!"
 	icon_state = "energy_drink"
 	list_reagents = list(/datum/reagent/consumable/grey_bull = 20)
+	foodtype = SUGAR | JUNKFOOD
+
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy
+	name = "Monkey Energy"
+	desc = "Unleash the ape!"
+	icon_state = "monkey_energy"
+	list_reagents = list(/datum/reagent/consumable/monkey_energy = 50)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry

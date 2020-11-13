@@ -3,6 +3,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	new/datum/stack_recipe("table frame", /obj/structure/table_frame, 2, time = 10, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("scooter frame", /obj/item/scooter_frame, 10, time = 25, one_per_turf = 0), \
 	new/datum/stack_recipe("linen bin", /obj/structure/bedsheetbin/empty, 2, time = 5, one_per_turf = 0), \
+	new/datum/stack_recipe("railing", /obj/structure/railing, 3, time = 18, window_checks = TRUE), \
 	// yogs start
 	null, \
 	new/datum/stack_recipe("fore port spacepod frame", /obj/item/pod_parts/pod_frame/fore_port, 15, time = 30, one_per_turf = 0), \
@@ -24,7 +25,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	throwforce = 10
 	throw_speed = 3
 	throw_range = 7
-	materials = list(MAT_METAL=1000)
+	materials = list(/datum/material/iron=1000)
 	max_amount = 50
 	attack_verb = list("hit", "bludgeoned", "whacked")
 	hitsound = 'sound/weapons/grenadelaunch.ogg'

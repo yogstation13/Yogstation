@@ -42,7 +42,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		if(istype(BP,/obj/item/bodypart/chest) || istype(BP,/obj/item/bodypart/head))
 			continue
 		BP.max_damage = 35
-	C.grant_language(/datum/language/machine) //learn it once,learn it forever i guess,this isnt removed on species loss to prevent curators from forgetting machine language
 
 /datum/species/preternis/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()

@@ -116,6 +116,16 @@
 	result = /obj/item/reagent_containers/food/snacks/cheesyfries
 	subcategory = CAT_MISCFOOD
 
+/datum/crafting_recipe/food/poutine
+	name = "Poutine"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/fries = 1,
+		/obj/item/reagent_containers/food/snacks/cheesewedge/cheddar = 1,
+		/datum/reagent/consumable/gravy = 10
+	)
+	result = /obj/item/reagent_containers/food/snacks/poutine
+	subcategory = CAT_MISCFOOD
+
 /datum/crafting_recipe/food/cheesynachos
 	name ="Cheesy Nachos"
 	reqs = list(
@@ -165,7 +175,7 @@
 	result = /obj/item/reagent_containers/food/snacks/cubannachos
 	subcategory = CAT_MISCFOOD
 
-/datum/crafting_recipe/dolphinandchips
+/datum/crafting_recipe/food/dolphinandchips
 	name = "Dolphin and Chips"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/dolphinmeat = 3,
@@ -174,7 +184,7 @@
 	result = /obj/item/reagent_containers/food/snacks/dolphinandchips
 	subcategory = CAT_MISCFOOD
 
-/datum/crafting_recipe/dolphincereal
+/datum/crafting_recipe/food/dolphincereal
 	name = "Dolphin Cereal"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/dolphinmeat = 2,
@@ -219,28 +229,6 @@
 		/datum/reagent/consumable/honey = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/honeybar
-	subcategory = CAT_MISCFOOD
-
-/datum/crafting_recipe/food/honkdae
-	name ="Honkdae"
-	reqs = list(
-		/datum/reagent/consumable/cream = 5,
-		/obj/item/clothing/mask/gas/clown_hat = 1,
-		/obj/item/reagent_containers/food/snacks/grown/cherries = 1,
-		/obj/item/reagent_containers/food/snacks/grown/banana = 2,
-		/obj/item/reagent_containers/food/snacks/icecream = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/honkdae
-	subcategory = CAT_MISCFOOD
-
-/datum/crafting_recipe/food/lizardwine
-	name = "Lizard Wine"
-	time = 40
-	reqs = list(
-		/obj/item/organ/tail/lizard = 1,
-		/datum/reagent/consumable/ethanol = 100
-	)
-	result = /obj/item/reagent_containers/food/drinks/bottle/lizardwine
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/loadedbakedpotato
@@ -319,16 +307,6 @@
 	result = /obj/item/reagent_containers/food/snacks/salad/ricepudding
 	subcategory = CAT_MISCFOOD
 
-/datum/crafting_recipe/food/spacefreezy
-	name ="Space Freezy"
-	reqs = list(
-		/datum/reagent/consumable/bluecherryjelly = 5,
-		/datum/reagent/consumable/spacemountainwind = 15,
-		/obj/item/reagent_containers/food/snacks/icecream = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/spacefreezy
-	subcategory = CAT_MISCFOOD
-
 /datum/crafting_recipe/food/spiderlollipop
 	name = "Spider Lollipop"
 	reqs = list(/obj/item/stack/rods = 1,
@@ -349,15 +327,4 @@
 		/datum/reagent/consumable/capsaicin = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/stuffedlegion
-	subcategory = CAT_MISCFOOD
-
-/datum/crafting_recipe/food/sundae
-	name ="Sundae"
-	reqs = list(
-		/datum/reagent/consumable/cream = 5,
-		/obj/item/reagent_containers/food/snacks/grown/cherries = 1,
-		/obj/item/reagent_containers/food/snacks/grown/banana = 1,
-		/obj/item/reagent_containers/food/snacks/icecream = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/sundae
 	subcategory = CAT_MISCFOOD

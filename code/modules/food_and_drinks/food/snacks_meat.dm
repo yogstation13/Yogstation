@@ -106,6 +106,15 @@
 	tastes = list("fish" = 1, "chips" = 1)
 	foodtype = MEAT | VEGETABLES | FRIED
 
+/obj/item/reagent_containers/food/snacks/fishfry
+	name = "fish fry"
+	desc = "All that and no bag of chips..."
+	icon_state = "fish_fry"
+	list_reagents = list (/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
+	filling_color = "#ee7676"
+	tastes = list("fish" = 1, "pan seared vegtables" = 1)
+	foodtype = MEAT | VEGETABLES | FRIED
+
 /obj/item/reagent_containers/food/snacks/sashimi
 	name = "carp sashimi"
 	desc = "Celebrate surviving an attack from hostile alien lifeforms by hospitalising yourself."
@@ -279,6 +288,19 @@
 /obj/item/reagent_containers/food/snacks/dolphinmeat/Initialize()
   . = ..()
   eatverb = pick("bite","chew","choke down","gnaw","swallow","chomp")
+  
+/obj/item/reagent_containers/food/snacks/meatclown
+	name = "meat clown"
+	desc = "A delicious, round piece of meat clown. How horrifying."
+	icon_state = "meatclown"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/banana = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	tastes = list("meat" = 5, "clowns" = 3, "sixteen teslas" = 1)
+	foodtype = MEAT
+
+/obj/item/reagent_containers/food/snacks/meatclown/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/slippery, 30)
 
 ////////////////////////////////////////////ANIMAL CUBES////////////////////////////////////////////
 

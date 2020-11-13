@@ -20,7 +20,7 @@ Option 1:
 Follow this: https://wiki.yogstation.net/wiki/Setting_up_git
 
 Option 2: Download the source code as a zip by clicking the ZIP button in the
-code tab of https://github.com/yogstation13/Yogstation-TG
+code tab of https://github.com/yogstation13/Yogstation
 (note: this will use a lot of bandwidth if you wish to update and is a lot of
 hassle if you want to make any changes at all, so it's not recommended.)
 
@@ -94,13 +94,13 @@ https://github.com/tgstation/tgstation-server
 
 ## MAPS
 
-Yogstation currently comes equipped with five maps.
+Yogstation currently comes equipped with the following maps.
 
-* [BoxStation (default)](https://wiki.yogstation.net/wiki/Maps#Boxstation_.28YogBox.29)
-* [MetaStation](https://wiki.yogstation.net/wiki/Maps#MetaStation_.28YogsMeta.29)
-* [DeltaStation](https://wiki.yogstation.net/wiki/Maps#DeltaStation_.28YogsDelta.29)
-* [PubbyStation](https://wiki.yogstation.net/wiki/Maps#PubbyStation_.28YogsPubby.29)
-* [MinskyStation](https://wiki.yogstation.net/wiki/Maps#MinskyStation)
+* [BoxStation (default)](https://wiki.yogstation.net/wiki/BoxStation)
+* [DeltaStation](https://wiki.yogstation.net/wiki/DeltaStation)
+* [EclipseStation](https://wiki.yogstation.net/wiki/Maps)
+* [MetaStation](https://wiki.yogstation.net/wiki/MetaStation)
+* [OmegaStation](https://wiki.yogstation.net/wiki/OmegaStation)
 
 
 All maps have their own code file that is in the base of the _maps directory. Maps are loaded dynamically when the game starts. Follow this guideline when adding your own map, to your fork, for easy compatibility.

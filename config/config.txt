@@ -1,9 +1,10 @@
 # You can use the "$include" directive to split your configs however you want
 
 $include game_options.txt
+$include secret.txt
 $include dbconfig.txt
-$include comms.txt
 $include antag_rep.txt
+$include resources.txt
 
 # You can use the @ character at the beginning of a config option to lock it from being edited in-game
 # Example usage:
@@ -13,17 +14,8 @@ $include antag_rep.txt
 # Which explicitly disables LOG_TWITTER, as well as locking it.
 # There are various options which are hard-locked for security reasons.
 
-## Server name: This appears at the top of the screen in-game and in the BYOND hub. Uncomment and replace 'tgstation' with the name of your choice.
-# SERVERNAME Yogstation 13
-
-## Server SQL name: This is the name used to identify the server to the SQL DB, distinct from SERVERNAME as it must be at most 32 characters.
-# SERVERSQLNAME yogstation
-
 ## Station name: The name of the station as it is referred to in-game. If commented out, the game will generate a random name instead.
 # STATIONNAME Space Station 13
-
-## Put on byond hub: Uncomment this to put your server on the byond hub.
-#HUB
 
 ## Lobby time: This is the amount of time between rounds that players have to setup their characters and be ready.
 LOBBY_COUNTDOWN 210
@@ -31,23 +23,12 @@ LOBBY_COUNTDOWN 210
 ## Round End Time: This is the amount of time after the round ends that players have to murder death kill each other.
 ROUND_END_COUNTDOWN 90
 
-## Comment this out if you want to use the SQL based admin system, the legacy system uses admins.txt.
-## You need to set up your database to use the SQL based system.
-## This flag is automatically enabled if SQL_ENABLED isn't
-ADMIN_LEGACY_SYSTEM
-
 ##Uncomment this to stop any admins loaded by the legacy system from having their rank edited by the permissions panel
 PROTECT_LEGACY_ADMINS
-
-##Uncomment this to stop any ranks loaded by the legacy system from having their flags edited by the permissions panel
-#PROTECT_LEGACY_RANKS
 
 ##Uncomment this to have admin ranks only loaded from the legacy admin_ranks.txt
 ##If enabled, each time admins are loaded ranks the database will be updated with the current ranks and their flags
 #LOAD_LEGACY_RANKS_ONLY
-
-## Comment this out to stop locally connected clients from being given the almost full access !localhost! admin rank
-ENABLE_LOCALHOST_RANK
 
 ## Uncomment this entry to have certain jobs require your account to be at least a certain number of days old to select. You can configure the exact age requirement for different jobs by editing
 ## the minimal_player_age variable in the files in folder /code/game/jobs/job/.. for the job you want to edit. Set minimal_player_age to 0 to disable age requirement for that job.
@@ -115,12 +96,6 @@ LOG_ATTACK
 ## log pda messages
 LOG_PDA
 
-## log telecomms messages
-LOG_TELECOMMS
-
-## log ntsl compilations
-LOG_NTSL
-
 ## log prayers
 LOG_PRAYER
 
@@ -131,7 +106,7 @@ LOG_LAW
 LOG_MANIFEST
 
 ## log job divide debugging information
-#LOG_JOB_DEBUG
+LOG_JOB_DEBUG
 
 ## log all world.Topic() calls
 # LOG_WORLD_TOPIC
@@ -180,7 +155,7 @@ ID_CONSOLE_JOBSLOT_DELAY 30
 #ALLOW_VOTE_MODE
 
 ## allow players to initiate a map-change vote
-#ALLOW_VOTE_MAP
+ALLOW_VOTE_MAP
 
 ## min delay (deciseconds) between voting sessions (default 10 minutes)
 VOTE_DELAY 6000
@@ -200,9 +175,6 @@ NORESPAWN
 ## disables calling del(src) on newmobs if they logout before spawnin in
 # DONT_DEL_NEWMOB
 
-## set a hosted by name for unix platforms
-HOSTEDBY Yournamehere
-
 ## Set to jobban "Guest-" accounts from Captain, HoS, HoP, CE, RD, CMO, Warden, Security, Detective, and AI positions.
 ## Set to 1 to jobban them from those positions, set to 0 to allow them.
 # GUEST_JOBBAN
@@ -212,19 +184,6 @@ GUEST_BAN
 
 ## Comment this out to disable checking for the cid randomizer dll. (disabled if database isn't enabled or connected)
 CHECK_RANDOMIZER
-
-## IPINTEL:
-## This allows you to detect likely proxies by checking ips against getipintel.net
-## Rating to warn at: (0.9 is good, 1 is 100% likely to be a spammer/proxy, 0.8 is 80%, etc) anything equal to or higher then this number triggers an admin warning
-# IPINTEL_RATING_BAD 0.8
-## Contact email, (required to use the service, leaving blank or default disables IPINTEL)
-# IPINTEL_EMAIL ch@nge.me
-## How long to save good matches (ipintel rate limits to 15 per minute and 500 per day. so this shouldn't be too low, getipintel.net suggests 6 hours, time is in hours) (Your ip will get banned if you go over 500 a day too many times)
-# IPINTEL_SAVE_GOOD 12
-## How long to save bad matches (these numbers can change as ips change hands, best not to save these for too long in case somebody gets a new ip used by a spammer/proxy before.)
-# IPINTEL_SAVE_BAD 1
-## Domain name to query (leave commented out for the default, only needed if you pay getipintel.net for more querys)
-#IPINTEL_DOMAIN check.getipintel.net
 
 ## Uncomment to allow web client connections
 #ALLOW_WEBCLIENT
@@ -236,38 +195,6 @@ CHECK_RANDOMIZER
 
 ## Set to prevent anyone but those ckeys listed in config/whitelist.txt and config/admins.txt from joining your server
 #USEWHITELIST
-
-## set a server location for world reboot. Don't include the byond://, just give the address and port.
-## Don't set this to the same server, BYOND will automatically restart players to the server when it has restarted.
-# SERVER ss13.example.com:2506
-
-## forum address
-# FORUMURL http://yogstation.net
-
-## Wiki address
-# WIKIURL https://wiki.yogstation.net/wiki
-
-##Rules address
-# RULESURL http://forums.yogstation.net/index.php?pages/rules/
-
-##Github address
-# GITHUBURL https://www.github.com/yogstation13/yogstation
-
-## Github repo id
-##This can be found by going to https://api.github.com/users/<user name here>/repos
-##Or https://api.github.com/orgs/<org name here>/repos if the repo owner is an organization
-# GITHUBREPOID 120966336
-
-## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-# BANAPPEALS http://justanotherday.example.com
-
-## System command that invokes youtube-dl, used by Play Internet Sound.
-## You can install youtube-dl with
-## "pip install youtube-dl" if you have pip installed
-## from https://github.com/rg3/youtube-dl/releases
-## or your package manager
-## The default value assumes youtube-dl is in your system PATH
-# INVOKE_YOUTUBEDL youtube-dl
 
 ## In-game features
 ##Toggle for having jobs load up from the .txt
@@ -285,10 +212,6 @@ ALLOW_HOLIDAYS
 
 ## Uncomment to show the names of the admin sending a pm from IRC instead of showing as a stealthmin.
 #SHOW_IRC_NAME
-
-## Defines the ticklimit for subsystem initialization (In percents of a byond tick). Lower makes world start smoother. Higher makes it faster.
-##This is currently a testing optimized setting. A good value for production would be 98.
-TICK_LIMIT_MC_INIT 500
 
 ##Defines the ticklag for the world. Ticklag is the amount of time between game ticks (aka byond ticks) (in 1/10ths of a second).
 ##	This also controls the client network update rate, as well as the default client fps
@@ -380,7 +303,7 @@ PREFERENCE_MAP_VOTING 1
 ## This is the chance of map rotation factored to the round length.
 ## A value of 1 would mean the map rotation chance is the round length in minutes (hour long round == 60% rotation chance)
 ## A value of 0.5 would mean the map rotation chance is half of the round length in minutes (hour long round == 30% rotation chance)
-#MAPROTATIONCHANCEDELTA 0.25
+MAPROTATIONCHANCEDELTA 0
 
 ## AUTOADMIN
 ## The default admin rank
@@ -422,7 +345,7 @@ CLIENT_ERROR_BUILD 1421
 ## Set to 0 or comment out to disable.
 SECOND_TOPIC_LIMIT 10
 
-MINUTE_TOPIC_LIMIT 100
+MINUTE_TOPIC_LIMIT 200
 
 
 ## CLICK RATE LIMITING
@@ -457,7 +380,7 @@ MINUTE_CLICK_LIMIT 400
 
 
 ## Allow admin hrefs that don't use the new token system, will eventually be removed
-DEBUG_ADMIN_HREFS
+#DEBUG_ADMIN_HREFS
 
 ###Master Controller High Pop Mode###
 
@@ -483,7 +406,7 @@ DISABLE_HIGH_POP_MC_MODE_AMOUNT 50
 #RESUME_AFTER_INITIALIZATIONS
 
 ## Uncomment to set the number of /world/Reboot()s before the DreamDaemon restarts itself. 0 means restart every round. Requires tgstation server tools.
-ROUNDS_UNTIL_HARD_RESTART 5
+ROUNDS_UNTIL_HARD_RESTART 0
 
 
 ##Default view size, in tiles.
@@ -491,16 +414,12 @@ ROUNDS_UNTIL_HARD_RESTART 5
 ##  15x15 would be the standard square view. 21x15 is what goonstation uses for widescreen.
 ##  Setting this to something different from DEFAULT_VIEW_SQUARE will enable widescreen toggles
 ##	Do note that changing this value will affect the title screen. The title screen will have to be updated manually if this is changed.
-DEFAULT_VIEW 15x15
+DEFAULT_VIEW 19x15
 
 ##Default view size, in tiles. Should *always* be square.
 ## The alternative square viewport size if you're using a widescreen view size
 ## You probably shouldn't ever be changing this, but it's here if you want to.
 DEFAULT_VIEW_SQUARE 15x15
-
-##Used to send round data to a webhook. Address must use HTTP without SSL because byond is horrible.
-#WEBHOOK_ADDRESS http://example.com
-#WEBHOOK_KEY webkey
 
 ## Comment this out if you want to use the SQL based mentor system, the legacy system uses mentors.txt.
 ## You need to set up your database to use the SQL based system.
@@ -512,3 +431,9 @@ DEFAULT_VIEW_SQUARE 15x15
 
 ## Uncomment below to make everyone a donator
 #EVERYONE_IS_DONATOR
+
+## Uncomment to enable global ban DB using the provided URL. The API should expect to receive a ckey at the end of the URL.
+## More API details can be found here: https://centcom.melonmesa.com
+CENTCOM_BAN_DB https://centcom.melonmesa.com/ban/search
+
+AUTO_PROFILE

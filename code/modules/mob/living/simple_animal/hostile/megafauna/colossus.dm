@@ -211,6 +211,11 @@ Difficulty: Very Hard
 			shake_camera(M, 4, 3)
 	playsound(src, 'sound/magic/clockwork/narsie_attack.ogg', 200, 1)
 
+/mob/living/simple_animal/hostile/megafauna/colossus/death()
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+	if(D)
+		D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
+	. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/colossus/devour(mob/living/L)
 	visible_message("<span class='colossus'>[src] disintegrates [L]!</span>")
@@ -254,8 +259,10 @@ Difficulty: Very Hard
 /obj/item/projectile/colossus/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	if(isturf(target) || isobj(target))
-		target.ex_act(EXPLODE_HEAVY)
-
+		if(isobj(target))
+			SSexplosions.med_mov_atom += target
+		else
+			SSexplosions.medturf += target
 
 /obj/item/gps/internal/colossus
 	icon_state = null
@@ -417,7 +424,7 @@ Difficulty: Very Hard
 		. += observer_desc
 		. += "It is activated by [activation_method]."
 
-/obj/machinery/anomalous_crystal/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, spans, message_mode)
+/obj/machinery/anomalous_crystal/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, spans, list/message_mods = list())
 	..()
 	if(isliving(speaker))
 		ActivationReaction(speaker, ACTIVATE_SPEECH)
@@ -613,7 +620,7 @@ Difficulty: Very Hard
 	if(..() && !ready_to_deploy)
 		GLOB.poi_list |= src
 		ready_to_deploy = TRUE
-		notify_ghosts("An anomalous crystal has been activated in [get_area(src)]! This crystal can always be used by ghosts hereafter.", enter_link = "<a href=?src=[REF(src)];ghostjoin=1>(Click to enter)</a>", ghost_sound = 'sound/effects/ghost2.ogg', source = src, action = NOTIFY_ATTACK)
+		notify_ghosts("An anomalous crystal has been activated in [get_area(src)]! This crystal can always be used by ghosts hereafter.", enter_link = "<a href=?src=[REF(src)];ghostjoin=1>(Click to enter)</a>", ghost_sound = 'sound/effects/ghost2.ogg', source = src, action = NOTIFY_ATTACKORBIT)
 
 /obj/machinery/anomalous_crystal/helpers/attack_ghost(mob/dead/observer/user)
 	. = ..()
@@ -649,7 +656,7 @@ Difficulty: Very Hard
 	friendly = "mends"
 	density = FALSE
 	movement_type = FLYING
-	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
+	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB | PASSCOMPUTER
 	ventcrawler = VENTCRAWLER_ALWAYS
 	mob_size = MOB_SIZE_TINY
 	gold_core_spawnable = HOSTILE_SPAWN
@@ -674,8 +681,8 @@ Difficulty: Very Hard
 
 /mob/living/simple_animal/hostile/lightgeist/Initialize()
 	. = ..()
-	verbs -= /mob/living/verb/pulled
-	verbs -= /mob/verb/me_verb
+	remove_verb(src, /mob/living/verb/pulled)
+	remove_verb(src, /mob/verb/me_verb)
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medsensor.add_hud_to(src)
 
@@ -764,7 +771,7 @@ Difficulty: Very Hard
 		L.mind.transfer_to(holder_animal)
 		var/obj/effect/proc_holder/spell/targeted/exit_possession/P = new /obj/effect/proc_holder/spell/targeted/exit_possession
 		holder_animal.mind.AddSpell(P)
-		holder_animal.verbs -= /mob/living/verb/pulled
+		remove_verb(holder_animal, /mob/living/verb/pulled)
 
 /obj/structure/closet/stasis/dump_contents(var/kill = 1)
 	STOP_PROCESSING(SSobj, src)

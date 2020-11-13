@@ -12,7 +12,7 @@
 	owner = "asv9"
 	module_locked = "Security"
 */
-// And finally, if you want to lock your skin to any specific module, just put module_locked as the name of any of these modules: https://github.com/yogstation13/Yogstation-TG/blob/c3a439daa6b6f8496f47ce55235d30b513334749/code/modules/mob/living/silicon/robot/robot_modules.dm"
+// And finally, if you want to lock your skin to any specific module, just put module_locked as the name of any of these modules: https://github.com/yogstation13/Yogstation/blob/c3a439daa6b6f8496f47ce55235d30b513334749/code/modules/mob/living/silicon/robot/robot_modules.dm"
 
 /datum/borg_skin //Give it a unique type
 	var/name = "A borg skin" //Give it a name! This will be visible when it's being picked
@@ -27,7 +27,7 @@
 	owner = "kmc2000"
 	module_locked = "Security"
 
-/*							PENDING SPRITE!
+/*						PENDING SPRITE!
 /datum/borg_skin/snail
 	name = "Snailborg"
 	icon_state = "snail"
@@ -317,3 +317,13 @@
 	name = "War Doge"
 	icon_state = "wardoge"
 	owner = "fluffe9911"
+
+/datum/ai_skin/carrion
+	name = "Carrion"
+	icon_state = "carrion"
+	owner = "xoxeyos"
+
+/datum/ai_skin/flukie
+	name = "Flukie"
+	icon_state = "flukie"
+	owner = "uselesstheremin"

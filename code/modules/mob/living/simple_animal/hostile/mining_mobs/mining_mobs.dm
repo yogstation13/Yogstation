@@ -22,10 +22,6 @@
 	var/icon_aggro = null
 	var/crusher_drop_mod = 25
 
-/mob/living/simple_animal/hostile/asteroid/Initialize(mapload)
-	. = ..()
-	apply_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
-
 /mob/living/simple_animal/hostile/asteroid/Aggro()
 	..()
 	if(vision_range == aggro_vision_range && icon_aggro)
@@ -54,6 +50,9 @@
 			visible_message("<span class='notice'>The [T.name] [throw_message] [src.name]!</span>")
 			return
 	..()
+
+/mob/living/simple_animal/hostile/asteroid/sentience_act()
+	faction -= "mining"
 
 /mob/living/simple_animal/hostile/asteroid/death(gibbed)
 	SSblackbox.record_feedback("tally", "mobs_killed_mining", 1, type)

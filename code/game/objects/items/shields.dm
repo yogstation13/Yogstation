@@ -20,7 +20,7 @@
 	throw_speed = 2
 	throw_range = 3
 	w_class = WEIGHT_CLASS_BULKY
-	materials = list(MAT_GLASS=7500, MAT_METAL=1000)
+	materials = list(/datum/material/glass=7500, /datum/material/iron=1000)
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 	transparent = TRUE
@@ -87,7 +87,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 	transparent = FALSE
-	materials = list(MAT_METAL=8500)
+	materials = list(/datum/material/iron=8500)
 	max_integrity = 65
 
 /obj/item/shield/riot/roman/fake
@@ -117,6 +117,25 @@
 /obj/item/shield/riot/buckler/shatter(mob/living/carbon/human/owner)
 	playsound(owner, 'sound/effects/bang.ogg', 50)
 	new /obj/item/stack/sheet/mineral/wood(get_turf(src))
+
+/obj/item/shield/riot/goliath
+	name = "Goliath shield"
+	desc = "A shield made from interwoven plates of goliath hide."
+	icon_state = "goliath_shield"
+	item_state = "goliath_shield"
+	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
+	materials = list ()
+	transparent = FALSE
+	block_chance = 25
+	max_integrity = 70
+	w_class = WEIGHT_CLASS_BULKY
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 30, "energy" = 20, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70)
+
+/obj/item/shield/riot/goliath/shatter(mob/living/carbon/human/owner)
+	playsound(owner, 'sound/effects/bang.ogg', 50)
+	new /obj/item/stack/sheet/animalhide/goliath_hide(get_turf(src))
+	qdel(src)
 
 /obj/item/shield/riot/flash
 	name = "strobe shield"
@@ -232,6 +251,10 @@
 		playsound(user, 'sound/weapons/saberoff.ogg', 35, 1)
 		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
 	add_fingerprint(user)
+
+/obj/item/shield/energy/honk_act()
+	new /obj/item/shield/energy/bananium(src.loc)
+	qdel(src)
 
 /obj/item/shield/riot/tele
 	name = "telescopic shield"

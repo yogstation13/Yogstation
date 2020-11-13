@@ -40,6 +40,7 @@
 	var/assigned_role
 	var/special_role
 	var/list/restricted_roles = list()
+	var/list/datum/objective/objectives = list()
 
 	var/list/spell_list = list() // Wizard mode & "Give Spell" badmin button.
 
@@ -53,7 +54,7 @@
 	var/damnation_type = 0
 	var/datum/mind/soulOwner //who owns the soul.  Under normal circumstances, this will point to src
 	var/hasSoul = TRUE // If false, renders the character unable to sell their soul.
-	var/isholy = FALSE //is this person a chaplain or admin role allowed to use bibles
+	var/holy_role = NONE //is this person a chaplain or admin role allowed to use bibles, Any rank besides 'NONE' allows for this.
 
 	var/mob/living/enslaved_to //If this mind's master is another mob (i.e. adamantine golems)
 	var/datum/language_holder/language_holder
@@ -77,6 +78,8 @@
 	SSticker.minds -= src
 	if(islist(antag_datums))
 		QDEL_LIST(antag_datums)
+	current = null
+	soulOwner = null
 	return ..()
 
 /datum/mind/proc/get_language_holder()
@@ -138,6 +141,8 @@
 		RegisterSignal(new_character, COMSIG_MOB_SAY, .proc/handle_speech)
 	if(active || force_key_move)
 		new_character.key = key		//now transfer the key to link the client to our new body
+	if(new_character.client)
+		new_character.client.init_verbs() // re-initialize character specific verbs
 	current.update_atom_languages()
 
 /datum/mind/proc/set_death_time()
@@ -147,6 +152,7 @@
 	var/newlength = length_char(memory) + length_char(new_text)
 	if (newlength > MAX_MESSAGE_LEN * 100)
 		memory = copytext_char(memory, -newlength-MAX_MESSAGE_LEN * 100)
+	memory += "[new_text]<BR>"
 
 /datum/mind/proc/wipe_memory()
 	memory = null
@@ -612,6 +618,10 @@
 	if(!(has_antag_datum(/datum/antagonist/traitor)))
 		add_antag_datum(/datum/antagonist/traitor)
 
+/datum/mind/proc/make_Contractor_Support()
+	if(!(has_antag_datum(/datum/antagonist/traitor/contractor_support)))
+		add_antag_datum(/datum/antagonist/traitor/contractor_support)
+
 /datum/mind/proc/make_Changeling()
 	// yogs start - Donor features, quiet round
 	if(quiet_round)
@@ -672,6 +682,7 @@
 		if(istype(S, spell))
 			spell_list -= S
 			qdel(S)
+	current?.client << output(null, "statbrowser:check_spells")
 
 /datum/mind/proc/RemoveAllSpells()
 	for(var/obj/effect/proc_holder/S in spell_list)
@@ -726,6 +737,21 @@
 		for(var/O in A.objectives)
 			if(istype(O,objective_type))
 				return TRUE
+
+/datum/mind/proc/add_employee(company)
+	for(var/datum/corporation/c in GLOB.corporations)
+		if(istype(c, company))
+			c.employees += src
+
+/datum/mind/proc/remove_employee(company)
+	for(var/datum/corporation/c in GLOB.corporations)
+		if(istype(c, company))
+			c.employees -= src
+
+/datum/mind/proc/is_employee(company)
+	for(var/datum/corporation/c in GLOB.corporations)
+		if(istype(c, company))
+			return src in c.employees
 
 /mob/proc/sync_mind()
 	mind_initialize()	//updates the mind (or creates and initializes one if one doesn't exist)

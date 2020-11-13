@@ -249,9 +249,10 @@
 	var/atom/A = src.loc
 	if(isturf(A))
 		var/areatemp = get_temperature(environment)
+		var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())
 		if( abs(areatemp - bodytemperature) > 5)
 			var/diff = areatemp - bodytemperature
-			diff = diff / 5
+			diff = diff / 5 * heat_capacity_factor
 			adjust_bodytemperature(diff)
 
 	if(!environment_is_safe(environment))
@@ -275,7 +276,7 @@
 	if(icon_gib)
 		new /obj/effect/temp_visual/gib_animation/animal(loc, icon_gib)
 
-/mob/living/simple_animal/say_mod(input, message_mode)
+/mob/living/simple_animal/say_mod(input, list/message_mods = list())
 	if(speak_emote && speak_emote.len)
 		verb_say = pick(speak_emote)
 	. = ..()

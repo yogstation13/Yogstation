@@ -50,6 +50,7 @@
 					/obj/item/reagent_containers/glass/beaker/large = 2,
 					/obj/item/flashlight = 3,
 					/obj/item/flashlight/flare = 1,
+					/obj/item/flashlight/flare/signal = 1,
 					/obj/item/storage/toolbox/mechanical = 1,
 					/obj/item/stack/cable_coil/random = 4,
 					/obj/item/pda = 8,

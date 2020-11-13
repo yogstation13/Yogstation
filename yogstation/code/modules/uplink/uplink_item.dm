@@ -95,11 +95,19 @@
 	cost = 25
 	restricted_roles = list("Clown", "Cook")
 
+/datum/uplink_item/role_restricted/syndicate_basket
+	name = "Syndicate Frying Basket"
+	desc = "A syndicate basket which allows the deep frying of dead corpses, ejects anything which the corpse is wearing."
+	item = /obj/item/syndicate_basket
+	cost = 7
+	restricted_roles = list("Cook")
+
 /datum/uplink_item/implants/mindslave
 	name = "Mindslave Implant"
 	desc = "An implant injected into another body, forcing the victim to obey any command by the user."
 	item = /obj/item/storage/box/syndie_kit/imp_mindslave
 	cost = 7
+	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 20
 
 /datum/uplink_item/implants/greytide

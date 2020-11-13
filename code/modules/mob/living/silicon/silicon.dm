@@ -14,6 +14,7 @@
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	deathsound = 'sound/voice/borg_deathsound.ogg'
 	speech_span = SPAN_ROBOT
+	flags_1 = PREVENT_CONTENTS_EXPLOSION_1 | HEAR_1
 
 	var/datum/ai_laws/laws = null//Now... THEY ALL CAN ALL HAVE LAWS
 	var/last_lawchange_announce = 0
@@ -71,9 +72,6 @@
 
 /mob/living/silicon/contents_explosion(severity, target)
 	return
-
-/mob/living/silicon/prevent_content_explosion()
-	return TRUE
 
 /mob/living/silicon/proc/cancelAlarm()
 	return
@@ -327,8 +325,14 @@
 	usr << browse(list, "window=laws")
 
 /mob/living/silicon/proc/ai_roster()
+	if(!client)
+		return
+	if(world.time < client.crew_manifest_delay)
+		return
+
+	client.crew_manifest_delay = world.time + (1 SECONDS)
 	var/datum/browser/popup = new(src, "airoster", "Crew Manifest", 387, 420)
-	popup.set_content(GLOB.data_core.get_manifest())
+	popup.set_content(GLOB.data_core.get_manifest_html())
 	popup.open()
 
 /mob/living/silicon/proc/set_autosay() //For allowing the AI and borgs to set the radio behavior of auto announcements (state laws, arrivals).
@@ -417,3 +421,41 @@
 
 /mob/living/silicon/handle_high_gravity(gravity)
 	return
+
+/mob/living/silicon/get_status_tab_items()
+	.=..()
+	.+= ""
+	.+= "<h2>Current Silicon Laws:</h2>"
+	if (laws.devillaws && laws.devillaws.len)
+		for(var/index = 1, index <= laws.devillaws.len, index++)
+			.+= "[laws.devillaws[index]]"
+
+	if (laws.zeroth)
+		.+= "<b><font color='#ff0000'>0: [laws.zeroth]</font></b>"
+
+	for (var/index = 1, index <= laws.hacked.len, index++)
+		var/law = laws.hacked[index]
+		if (length(law) > 0)
+			.+= "<b><font color='#660000'>[ionnum()]:</b>	 [law]</font>"
+			hackedcheck.len += 1
+
+	for (var/index = 1, index <= laws.ion.len, index++)
+		var/law = laws.ion[index]
+		if (length(law) > 0)
+			.+= "<b><font color='#547DFE'>[ionnum()]:</b> 	[law]</font>"
+
+	var/number = 1
+	for (var/index = 1, index <= laws.inherent.len, index++)
+		var/law = laws.inherent[index]
+		if (length(law) > 0)
+			lawcheck.len += 1
+			.+= "<b>[number]:</b> [law]"
+			number++
+
+	for (var/index = 1, index <= laws.supplied.len, index++)
+		var/law = laws.supplied[index]
+		if (length(law) > 0)
+			lawcheck.len += 1
+			.+= "<b>[number]:</b> [law]"
+			number++
+	.+= ""

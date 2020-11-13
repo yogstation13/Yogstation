@@ -154,6 +154,7 @@
 			new /obj/item/clothing/suit/space/hardsuit/carp(src)
 			new /obj/item/clothing/mask/gas/carp(src)
 			new /obj/item/grenade/spawnergrenade/spesscarp(src)
+			new /obj/item/twohanded/pitchfork/trident(src)
 
 		if("mad_scientist")
 			new /obj/item/clothing/suit/toggle/labcoat/mad(src) // 0 tc
@@ -231,7 +232,7 @@
 /obj/item/stand_arrow/boss/Initialize()
 	. = ..()
 	for(var/mob/living/M in range(0,src)) //this is probably a bad way of doing this help
-		if(M && M.mind && M.mind.has_antag_datum(/datum/antagonist/traitor)) //don't think I have a better way of checking
+		if(M?.mind?.has_antag_datum(/datum/antagonist/traitor)) //don't think I have a better way of checking
 			owner = M.mind
 
 /obj/item/stand_arrow/boss/attack(mob/living/M, mob/living/user)
@@ -273,6 +274,9 @@
 			<p>Your standard issue contractor baton hits harder than the ones you might be used to, and likely be your go to weapon for kidnapping your
 			targets. The three additional items have been randomly selected from what we had available. We hope they're useful to you for your mission.</p>
 
+			<p>The contractor hub, available at the top right of the uplink, will provide you unique items and abilities. These are bought using Contractor Rep,
+			with two Rep being provided each time you complete a contract.</p>
+
 			<h3>Using the tablet</h3>
 			<ol>
 				<li>Open the Syndicate Contract Uplink program.</li>
@@ -297,8 +301,8 @@
 			<p>We need your target for our own reasons, but we ransom them back to your mission area once their use is served. They will return back
 			from where you sent them off from in several minutes time. Don't worry, we give you a cut of what we get paid. We pay this into whatever
 			ID card you have equipped, on top of the TC payment we give.</p>
-
-			<p>Good luck agent.</p>"}
+			
+			<p>Good luck agent. You can burn this document with the supplied lighter.</p>"}
 
 	return ..()
 
@@ -327,7 +331,6 @@
 		/obj/item/reagent_containers/syringe/mulligan,
 		/obj/item/clothing/shoes/chameleon/noslip/syndicate,
 		/obj/item/storage/firstaid/tactical,
-		/obj/item/storage/backpack/duffelbag/syndie/surgery,
 		/obj/item/encryptionkey/syndicate,
 		/obj/item/clothing/glasses/thermal/syndi,
 		/obj/item/slimepotion/slime/sentience/nuclear,
@@ -336,7 +339,8 @@
 		/obj/item/clothing/gloves/krav_maga/combatglovesplus,
 		/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot,
 		/obj/item/reagent_containers/syringe/stimulants,
-		/obj/item/storage/box/syndie_kit/imp_freedom
+		/obj/item/storage/box/syndie_kit/imp_freedom,
+		/obj/item/toy/eightball/haunted
 	)
 
 	var/obj/item1 = pick_n_take(item_list)
@@ -420,6 +424,12 @@
 
 /obj/item/storage/box/syndie_kit/imp_radio/PopulateContents()
 	new /obj/item/implanter/radio/syndicate(src)
+	
+/obj/item/storage/box/syndie_kit/imp_mindshield
+	name = "mindshield implant box"
+
+/obj/item/storage/box/syndie_kit/imp_mindshield/PopulateContents()
+	new /obj/item/implanter/mindshield/tot(src)
 
 /obj/item/storage/box/syndie_kit/space
 	name = "boxed space suit and helmet"
@@ -487,6 +497,16 @@
 	new /obj/item/hemostat/supermatter(src)
 	new /obj/item/nuke_core_container/supermatter(src)
 	new /obj/item/paper/guides/antag/supermatter_sliver(src)
+	
+/obj/item/storage/box/syndie_kit/supermatter_delaminator
+	name = "box"
+
+/obj/item/storage/box/syndie_kit/supermatter_delaminator/PopulateContents()
+	new /obj/item/hemostat/antinoblium(src)
+	new /obj/item/antinoblium_container(src)
+	new /obj/item/supermatter_corruptor(src)
+	new /obj/item/paper/guides/antag/antinoblium_guide(src)
+
 
 /obj/item/storage/box/syndie_kit/tuberculosisgrenade
 	name = "virus grenade kit"

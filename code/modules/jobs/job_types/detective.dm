@@ -23,7 +23,11 @@
 
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("EclipseStation", "OmegaStation")
+
+/datum/job/detective/proc/EclipseStationChanges()
+	total_positions = 2
+	spawn_positions = 2
 
 /datum/job/detective/proc/OmegaStationChanges()
 	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
@@ -40,7 +44,7 @@
 	neck = /obj/item/clothing/neck/tie/detective
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	suit = /obj/item/clothing/suit/det_suit
-	gloves = /obj/item/clothing/gloves/color/black
+	gloves = /obj/item/clothing/gloves/color/black/forensic
 	head = /obj/item/clothing/head/fedora/det_hat
 	l_pocket = /obj/item/toy/crayon/white
 	r_pocket = /obj/item/lighter

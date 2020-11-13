@@ -1,4 +1,0 @@
-author: "Hopekz"
-delete-after: true 
-changes: 
-  - bugfix: "Medical sprays and patches now look for exposed flesh or thin material."

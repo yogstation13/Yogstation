@@ -5,15 +5,6 @@
 "ab" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"ac" = (
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
-"ad" = (
-/obj/effect/turf_decal/sand,
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
 "af" = (
 /turf/closed/wall/r_wall/rust,
 /area/lavaland/surface/outdoors)
@@ -37,29 +28,6 @@
 	icon_state = "wood-broken6"
 	},
 /area/ruin/powered)
-"ak" = (
-/obj/item/crowbar,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
-"al" = (
-/obj/structure/grille{
-	density = 0;
-	icon_state = "brokengrille"
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
-"am" = (
-/obj/structure/grille/broken,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
-"an" = (
-/obj/vehicle/ridden/atv,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
 "ao" = (
 /obj/structure/table/wood/bar,
 /obj/item/toy/cards/deck/cas,
@@ -80,13 +48,6 @@
 /obj/structure/table/wood/bar,
 /obj/item/toy/cards/deck/cas/black,
 /turf/open/floor/wood,
-/area/ruin/powered)
-"as" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
 /area/ruin/powered)
 "at" = (
 /mob/living/simple_animal/hostile/asteroid/goliath/beast,
@@ -114,13 +75,6 @@
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"az" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/powered)
 "aA" = (
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating{
@@ -132,13 +86,6 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/ruin/powered)
-"aC" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
 /area/ruin/powered)
 "aD" = (
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion,
@@ -158,11 +105,6 @@
 "aG" = (
 /obj/structure/closet/cardboard,
 /turf/open/floor/wood,
-/area/ruin/powered)
-"aH" = (
-/obj/machinery/light/small,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
 /area/ruin/powered)
 "aI" = (
 /obj/structure/bookcase/random,
@@ -207,18 +149,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/powered)
-"aQ" = (
-/obj/item/reagent_containers/glass/bottle/potass_iodide,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
-"aR" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
 "aS" = (
 /obj/structure/dresser,
 /turf/open/floor/wood,
@@ -248,11 +178,6 @@
 "aW" = (
 /turf/closed/wall/r_wall/rust,
 /area/ruin/powered)
-"aX" = (
-/obj/item/wrench,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
 "aY" = (
 /obj/item/clothing/suit/jacket/leather,
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion,
@@ -310,8 +235,8 @@
 /area/ruin/powered)
 "bi" = (
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 8
+	dir = 8;
+	icon_state = "tube"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -357,13 +282,6 @@
 /obj/item/toy/cards/cardhand,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"br" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
 "bs" = (
 /obj/structure/ladder,
 /turf/open/floor/wood,
@@ -372,11 +290,6 @@
 /obj/structure/table/wood/poker,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"bu" = (
-/obj/vehicle/ridden/scooter,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
 "bv" = (
 /obj/structure/chair/comfy/beige{
 	dir = 4;
@@ -389,11 +302,6 @@
 /obj/item/reagent_containers/food/drinks/beer,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"bx" = (
-/obj/structure/barricade/wooden,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
 "by" = (
 /mob/living/simple_animal/pet/dog/corgi/Ian{
 	atmos_requirements = list("min_oxy" = 4, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 3, "min_co2" = 0, "max_co2" = 7, "min_n2" = 0, "max_n2" = 1);
@@ -410,21 +318,13 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
-"bA" = (
-/obj/structure/closet/crate/bin,
-/obj/item/reagent_containers/food/snacks/deadmouse,
-/obj/item/trash/can,
-/obj/item/trash/can,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
 "bC" = (
 /obj/structure/chair/comfy/brown{
 	dir = 4
 	},
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 8
+	dir = 8;
+	icon_state = "tube"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -435,8 +335,8 @@
 /area/ruin/powered)
 "bE" = (
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 4
+	dir = 4;
+	icon_state = "tube"
 	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken4"
@@ -471,8 +371,8 @@
 "bR" = (
 /obj/structure/table/wood,
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 8
+	dir = 8;
+	icon_state = "tube"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -484,16 +384,65 @@
 /mob/living/simple_animal/hostile/asteroid/marrowweaver,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"iU" = (
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"ka" = (
+/obj/effect/turf_decal/sand,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"lc" = (
+/obj/item/crowbar,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"rP" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"st" = (
+/obj/structure/closet/crate/bin,
+/obj/item/reagent_containers/food/snacks/deadmouse,
+/obj/item/trash/can,
+/obj/item/trash/can,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"tD" = (
+/obj/item/wrench,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"vc" = (
+/obj/structure/grille{
+	density = 0;
+	icon_state = "brokengrille"
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
 "xf" = (
 /obj/item/clothing/suit/space/hardsuit/powerarmor_t45b,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "zW" = (
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 1
+	dir = 1;
+	icon_state = "tube"
 	},
 /turf/open/floor/wood,
+/area/ruin/powered)
+"Dx" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
 "FQ" = (
 /obj/structure/sign/barsign{
@@ -501,10 +450,61 @@
 	},
 /turf/closed/wall/r_wall/rust,
 /area/ruin/powered)
+"Gm" = (
+/obj/item/reagent_containers/glass/bottle/potass_iodide,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"Jg" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
+"Jk" = (
+/obj/structure/barricade/wooden,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"ML" = (
+/obj/vehicle/ridden/scooter,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"Pr" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
+"RS" = (
+/obj/vehicle/ridden/atv,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"Si" = (
+/obj/machinery/light/small,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
+"Sz" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
 "Vo" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/ruin/powered)
+"VZ" = (
+/obj/structure/grille/broken,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
 
 (1,1,1) = {"
 aa
@@ -534,7 +534,7 @@ ab
 ab
 ab
 ab
-ac
+iU
 aa
 aa
 aa
@@ -577,12 +577,12 @@ aa
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
+iU
 aa
 aa
 aa
@@ -624,14 +624,14 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 ab
 ab
-ac
-ac
+iU
+iU
 aa
 aa
 aa
@@ -672,15 +672,15 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 ab
 ab
-ac
-ac
-ac
+iU
+iU
+iU
 aa
 aa
 aa
@@ -720,16 +720,16 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
 ab
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 aa
 aa
 aa
@@ -769,16 +769,16 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 ab
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
 aa
 aa
 aa
@@ -808,9 +808,9 @@ aa
 ab
 ab
 ab
-ac
-ac
-ac
+iU
+iU
+iU
 ab
 ab
 ab
@@ -818,11 +818,11 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
+iU
+iU
+iU
 ab
-ac
+iU
 ab
 ab
 ab
@@ -856,26 +856,26 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 ab
 ab
 ab
 ab
 ab
 ab
-ac
-ac
-ac
+iU
+iU
+iU
 ab
-ac
-ab
-ab
+iU
 ab
 ab
-ac
+ab
+ab
+iU
 aa
 aa
 aa
@@ -903,9 +903,9 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
+iU
+iU
+iU
 aW
 aW
 ap
@@ -923,7 +923,7 @@ aW
 ap
 aq
 aq
-ac
+iU
 aa
 aa
 aa
@@ -950,10 +950,10 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 aW
 ai
 ai
@@ -971,8 +971,8 @@ ai
 bj
 ai
 ap
-ac
-ac
+iU
+iU
 aa
 aa
 aa
@@ -993,15 +993,15 @@ aa
 aa
 ab
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
-ac
+iU
 ap
 ai
 bl
@@ -1019,9 +1019,9 @@ ai
 ai
 ai
 ap
-ac
-ac
-ac
+iU
+iU
+iU
 aa
 aa
 aa
@@ -1041,15 +1041,15 @@ aa
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
-ac
+iU
 aq
 bk
 bl
@@ -1067,9 +1067,9 @@ ai
 aW
 aW
 aW
-ac
-ac
-ac
+iU
+iU
+iU
 aa
 aa
 aa
@@ -1089,15 +1089,15 @@ ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
-ac
+iU
 ap
 ai
 av
@@ -1115,10 +1115,10 @@ ai
 ai
 aS
 aW
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 aa
 aa
 aa
@@ -1133,19 +1133,19 @@ aa
 (14,1,1) = {"
 aa
 ab
-ac
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
-an
-ac
+iU
+iU
+RS
+iU
 aW
 ai
 ai
@@ -1163,11 +1163,11 @@ ai
 bk
 bU
 aW
-aX
-ac
-ac
-ac
-ac
+tD
+iU
+iU
+iU
+iU
 aa
 aa
 aa
@@ -1180,20 +1180,20 @@ aa
 "}
 (15,1,1) = {"
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 aW
 aW
 ay
@@ -1214,8 +1214,8 @@ aW
 aW
 aW
 aW
-ac
-ac
+iU
+iU
 aa
 aa
 aa
@@ -1228,28 +1228,28 @@ aa
 "}
 (16,1,1) = {"
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
 ab
 ab
-ac
-ac
-as
-ac
-ac
-ac
-ac
-ac
-as
-ac
+iU
+iU
+Jg
+iU
+iU
+iU
+iU
+iU
+Jg
+iU
 ab
 ab
 aW
@@ -1262,9 +1262,9 @@ aW
 xf
 aY
 aW
-ac
-ac
-ac
+iU
+iU
+iU
 aa
 aa
 aa
@@ -1275,28 +1275,28 @@ aa
 aa
 "}
 (17,1,1) = {"
-ac
-ac
-ad
+iU
+iU
+ka
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
 ab
 ab
 ab
@@ -1310,8 +1310,8 @@ bo
 ai
 ai
 aU
-ac
-ac
+iU
+iU
 ab
 ab
 aa
@@ -1358,8 +1358,8 @@ aW
 aB
 aZ
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1406,8 +1406,8 @@ aW
 aW
 aW
 aW
-am
-ac
+VZ
+iU
 ab
 ab
 ab
@@ -1443,7 +1443,7 @@ ab
 ab
 ab
 ab
-ac
+iU
 aW
 aK
 ai
@@ -1454,8 +1454,8 @@ aW
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1470,28 +1470,28 @@ aa
 aa
 aa
 aa
-ac
-ac
-ac
+iU
+iU
+iU
 ab
 ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aU
 ai
 ai
@@ -1502,8 +1502,8 @@ bo
 ai
 ai
 aU
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1519,27 +1519,27 @@ aa
 aa
 aa
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-az
-ac
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+Pr
+iU
 ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 aM
 aB
@@ -1550,8 +1550,8 @@ aW
 aB
 ba
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1567,11 +1567,11 @@ aa
 aa
 aa
 aa
-ac
-ac
-ac
+iU
+iU
+iU
 ab
-ac
+iU
 aW
 aW
 aU
@@ -1586,8 +1586,8 @@ ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 aW
 aW
@@ -1598,8 +1598,8 @@ aW
 aW
 aW
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1618,8 +1618,8 @@ aa
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 ai
 ai
@@ -1634,8 +1634,8 @@ ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 ai
 aO
@@ -1646,8 +1646,8 @@ aW
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1666,8 +1666,8 @@ aa
 aa
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 ai
 ao
@@ -1677,13 +1677,13 @@ ai
 ai
 at
 aU
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aU
 ai
 bj
@@ -1694,8 +1694,8 @@ bo
 bj
 ai
 aU
-ac
-bu
+iU
+ML
 ab
 ab
 ab
@@ -1715,7 +1715,7 @@ aa
 aa
 ab
 ab
-ac
+iU
 aW
 ai
 ai
@@ -1725,13 +1725,13 @@ ai
 bj
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 aN
 aB
@@ -1742,8 +1742,8 @@ aW
 aB
 bg
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1773,13 +1773,13 @@ bv
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-aH
+iU
+Si
 aW
 aW
 aW
@@ -1790,8 +1790,8 @@ aW
 aW
 aW
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1799,7 +1799,7 @@ ab
 ab
 ab
 ab
-ac
+iU
 aa
 "}
 (28,1,1) = {"
@@ -1821,13 +1821,13 @@ bl
 ai
 ai
 ay
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 ai
 bi
@@ -1838,8 +1838,8 @@ ai
 bC
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1847,8 +1847,8 @@ ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 "}
 (29,1,1) = {"
 aa
@@ -1869,13 +1869,13 @@ ai
 ai
 ai
 aW
-aC
-ac
+Dx
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aU
 ai
 ai
@@ -1886,16 +1886,16 @@ bk
 bl
 ai
 aU
-ac
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
+iU
 ab
 ab
 ab
-ac
+iU
 ab
 "}
 (30,1,1) = {"
@@ -1917,13 +1917,13 @@ ai
 at
 bk
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 bb
 ai
@@ -1934,16 +1934,16 @@ ai
 bD
 ai
 aW
-ac
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
+iU
 ab
 ab
 ab
-ac
+iU
 ab
 "}
 (31,1,1) = {"
@@ -1965,13 +1965,13 @@ ai
 ai
 ai
 aU
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 bc
 ai
@@ -1986,8 +1986,8 @@ aW
 aU
 aW
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -2013,13 +2013,13 @@ ai
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 bb
 bj
@@ -2034,8 +2034,8 @@ bR
 bl
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -2061,13 +2061,13 @@ aW
 aW
 aW
 aW
-ac
+iU
 ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aU
 ai
 ai
@@ -2082,8 +2082,8 @@ bN
 ai
 ai
 aU
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -2101,21 +2101,21 @@ aa
 aa
 ab
 ab
-ak
-al
-am
-ac
-ac
-ac
-ac
-ac
+lc
+vc
+VZ
+iU
+iU
+iU
+iU
+iU
 ab
 ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 FQ
 ai
 ai
@@ -2130,8 +2130,8 @@ bl
 ai
 bk
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -2152,18 +2152,18 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
 ab
 ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 aW
 bk
@@ -2178,8 +2178,8 @@ ai
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -2205,7 +2205,7 @@ af
 ag
 af
 af
-ac
+iU
 ab
 ab
 ab
@@ -2226,8 +2226,8 @@ ai
 ai
 Vo
 aW
-aC
-ac
+Dx
+iU
 ab
 ab
 ab
@@ -2253,8 +2253,8 @@ ab
 ab
 aF
 af
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -2274,12 +2274,12 @@ bz
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
+iU
 ab
 "}
 (38,1,1) = {"
@@ -2301,12 +2301,12 @@ ab
 ab
 ab
 ag
-ac
+iU
 ab
 ab
 ab
 ab
-ac
+iU
 ab
 ab
 bd
@@ -2322,12 +2322,12 @@ ai
 ai
 ai
 aW
-bA
-ac
+st
+iU
 ab
 ab
 ab
-ac
+iU
 aa
 "}
 (39,1,1) = {"
@@ -2354,8 +2354,8 @@ ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 aW
 ai
@@ -2370,12 +2370,12 @@ ai
 ai
 ai
 aU
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
+iU
 aa
 "}
 (40,1,1) = {"
@@ -2397,13 +2397,13 @@ ab
 ab
 ab
 af
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 ai
 ai
@@ -2418,8 +2418,8 @@ ai
 bk
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -2445,13 +2445,13 @@ ab
 ab
 ab
 af
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aU
 ai
 ai
@@ -2466,8 +2466,8 @@ ai
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -2493,13 +2493,13 @@ aa
 ab
 ab
 ag
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 be
 bl
@@ -2514,8 +2514,8 @@ be
 bl
 Vo
 aW
-aC
-ac
+Dx
+iU
 ab
 ab
 ab
@@ -2542,12 +2542,12 @@ ab
 ab
 af
 aL
-ac
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 zW
 bm
@@ -2562,8 +2562,8 @@ ai
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 aa
@@ -2590,12 +2590,12 @@ aa
 ab
 aA
 ab
-ac
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 ai
 ai
@@ -2610,8 +2610,8 @@ ai
 bk
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 aa
@@ -2638,12 +2638,12 @@ aa
 ab
 au
 ab
-ac
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aU
 ai
 bj
@@ -2658,8 +2658,8 @@ ai
 ai
 ai
 aU
-ac
-ac
+iU
+iU
 ab
 ab
 aa
@@ -2686,12 +2686,12 @@ aa
 aa
 ab
 ab
-ac
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 ai
 ai
@@ -2706,8 +2706,8 @@ ai
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 aa
 aa
@@ -2738,8 +2738,8 @@ ab
 ab
 ab
 ab
-ac
-aH
+iU
+Si
 aW
 aW
 aU
@@ -2754,8 +2754,8 @@ aW
 aU
 aW
 aW
-ac
-ac
+iU
+iU
 ab
 aa
 aa
@@ -2786,11 +2786,11 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-aQ
+iU
+iU
+iU
+iU
+Gm
 aW
 bk
 ai
@@ -2799,10 +2799,10 @@ ai
 bh
 bs
 aW
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 ab
 ab
 aa
@@ -2834,11 +2834,11 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
 aW
 zW
 ai
@@ -2847,9 +2847,9 @@ ai
 bn
 bh
 aW
-bx
-ac
-ac
+Jk
+iU
+iU
 ab
 ab
 aa
@@ -2884,9 +2884,9 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
+iU
+iU
+iU
 aW
 aW
 aU
@@ -2895,7 +2895,7 @@ aW
 aU
 aW
 aW
-ac
+iU
 ab
 ab
 ab
@@ -2930,20 +2930,20 @@ aa
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-aR
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
+rP
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
 ab
 ab
 ab
@@ -3127,17 +3127,17 @@ aa
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
 aa
 aa
 aa
@@ -3176,14 +3176,14 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-br
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+Sz
+iU
+iU
+iU
 aa
 aa
 aa
@@ -3230,7 +3230,7 @@ af
 af
 af
 aA
-ac
+iU
 aa
 aa
 aa

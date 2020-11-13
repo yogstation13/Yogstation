@@ -163,10 +163,6 @@
 /obj/structure/closet/crate/secure/loot,
 /turf/open/floor/mineral/silver,
 /area/ruin/unpowered)
-"aH" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/turf/open/floor/plating,
-/area/template_noop)
 "aI" = (
 /obj/machinery/door/airlock/security,
 /turf/open/floor/plasteel,
@@ -182,9 +178,6 @@
 /area/template_noop)
 "aL" = (
 /turf/open/lava/smooth,
-/area/template_noop)
-"aM" = (
-/turf/open/floor/plating,
 /area/template_noop)
 "aN" = (
 /obj/machinery/door/airlock/hatch,
@@ -227,10 +220,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
-"aW" = (
-/obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/plating,
-/area/template_noop)
 "aX" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
 /turf/open/floor/plasteel,
@@ -248,10 +237,6 @@
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
-"bb" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating,
-/area/template_noop)
 "bc" = (
 /obj/machinery/door/airlock,
 /turf/open/floor/plasteel,
@@ -454,6 +439,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
+"mz" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/template_noop)
+"nf" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/template_noop)
+"qC" = (
+/turf/open/floor/plating/lavaland_baseturf,
+/area/template_noop)
+"tV" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/template_noop)
 
 (1,1,1) = {"
 aa
@@ -547,7 +547,7 @@ ak
 ab
 ab
 ab
-aH
+nf
 aL
 aL
 ab
@@ -575,9 +575,9 @@ ac
 ab
 ab
 ab
-aM
-aW
-bb
+qC
+tV
+mz
 ab
 ab
 ab

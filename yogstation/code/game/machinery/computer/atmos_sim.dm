@@ -70,7 +70,6 @@
 
 	var/datum/browser/popup = new(user, "atmos_sim", name, 700, 550)
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
 	popup.open()
 
 /obj/machinery/computer/atmos_sim/proc/gas_html(datum/gas_mixture/mix, name, mix_id)

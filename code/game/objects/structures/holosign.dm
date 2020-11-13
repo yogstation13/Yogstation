@@ -56,13 +56,16 @@
 	max_integrity = 20
 	var/allow_walk = 1 //can we pass through it on walk intent
 
-/obj/structure/holosign/barrier/CanPass(atom/movable/mover, turf/target)
-	if(!density)
-		return 1
+/obj/structure/holosign/barrier/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(.)
+		return
 	if(mover.pass_flags & (PASSGLASS|PASSTABLE|PASSGRILLE))
 		return 1
 	if(iscarbon(mover))
 		var/mob/living/carbon/C = mover
+		if(C.stat)	// Lets not prevent dragging unconscious/dead people.
+			return TRUE
 		if(allow_walk && C.m_intent == MOVE_INTENT_WALK)
 			return 1
 
@@ -73,6 +76,7 @@
 	icon_state = "holosign"
 
 /obj/structure/holosign/barrier/wetsign/CanPass(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover, /obj/vehicle/ridden/janicart))
 		return TRUE
 	if(istype(mover, /obj/structure/janitorialcart))
@@ -83,7 +87,6 @@
 		var/mob/living/carbon/human/janitor = mover
 		if(istype(janitor.shoes, /obj/item/clothing/shoes/galoshes))
 			return TRUE
-	return ..()
 
 /obj/structure/holosign/barrier/engineering
 	icon_state = "holosign_engi"
@@ -132,21 +135,26 @@
 	. = ..()
 	. += "<span class='notice'>The biometric scanners are <b>[force_allaccess ? "off" : "on"]</b>.</span>"
 
-/obj/structure/holosign/barrier/medical/CanPass(atom/movable/mover, turf/target)
-	icon_state = "holo_medical"
+/obj/structure/holosign/barrier/medical/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(force_allaccess)
 		return TRUE
 	if(ishuman(mover))
-		var/mob/living/carbon/human/sickboi = mover
-		var/threat = sickboi.check_virus()
-		if(get_disease_severity_value(threat) > get_disease_severity_value(DISEASE_SEVERITY_MINOR))
-			if(buzzcd < world.time)
-				playsound(get_turf(src),'sound/machines/buzz-sigh.ogg',65,1,4)
-				buzzcd = (world.time + 60)
-			icon_state = "holo_medical-deny"
-			return FALSE
-		else
-			return TRUE //nice or benign diseases!
+		return CheckHuman(mover)
+
+/obj/structure/holosign/barrier/medical/Bumped(atom/movable/AM)
+	. = ..()
+	icon_state = "holo_medical"
+	if(ishuman(AM) && !CheckHuman(AM))
+		if(buzzcd < world.time)
+			playsound(get_turf(src),'sound/machines/buzz-sigh.ogg',65,TRUE,4)
+			buzzcd = (world.time + 60)
+		icon_state = "holo_medical-deny"
+
+/obj/structure/holosign/barrier/medical/proc/CheckHuman(mob/living/carbon/human/sickboi)
+	var/threat = sickboi.check_virus()
+	if(get_disease_severity_value(threat) > get_disease_severity_value(DISEASE_SEVERITY_MINOR))
+		return FALSE
 	return TRUE
 
 /obj/structure/holosign/barrier/medical/attack_hand(mob/living/user)

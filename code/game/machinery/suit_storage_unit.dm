@@ -30,8 +30,8 @@
 	var/breakout_time = 300
 
 /obj/machinery/suit_storage_unit/standard_unit
-	suit_type = /obj/item/clothing/suit/space/eva
-	helmet_type = /obj/item/clothing/head/helmet/space/eva
+	suit_type = /obj/item/clothing/suit/space
+	helmet_type = /obj/item/clothing/head/helmet/space
 	mask_type = /obj/item/clothing/mask/breath
 
 /obj/machinery/suit_storage_unit/captain
@@ -165,7 +165,7 @@
 		add_overlay("human")
 
 /obj/machinery/suit_storage_unit/power_change()
-	..()
+	. = ..()
 	if(!is_operational() && state_open)
 		open_machine()
 		dump_contents()
@@ -385,11 +385,10 @@
 		visible_message("<span class='notice'>[usr] pries open \the [src].</span>", "<span class='notice'>You pry open \the [src].</span>")
 		open_machine()
 
-/obj/machinery/suit_storage_unit/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.notcontained_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/suit_storage_unit/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "suit_storage_unit", name, 400, 305, master_ui, state)
+		ui = new(user, src, "SuitStorageUnit", name)
 		ui.open()
 
 /obj/machinery/suit_storage_unit/ui_data()
@@ -461,4 +460,20 @@
 				if(I)
 					I.forceMove(loc)
 			. = TRUE
+	update_icon()
+
+/obj/machinery/suit_storage_unit/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	if(state_open)
+		close_machine()
+	else
+		open_machine(0)
+		if(occupant)
+			dump_contents() // Dump out contents if someone is in there.
+
+/obj/machinery/suit_storage_unit/AltClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)) || state_open)
+		return
+	locked = !locked
 	update_icon()

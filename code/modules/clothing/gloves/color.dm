@@ -43,6 +43,12 @@
 	resistance_flags = NONE
 	var/can_be_cut = 1
 
+/obj/item/clothing/gloves/color/black/forensic
+	desc = "Specially made gloves for detectives. The luminescent threads woven into the material stand out under scrutiny."
+	name = "forensic gloves"
+	icon_state = "forensic"
+	can_be_cut = 0
+
 /obj/item/clothing/gloves/color/black/hos
 	item_color = "hosred"	//Exists for washing machines. Is not different from black gloves in any way.
 
@@ -170,7 +176,7 @@
 
 /obj/item/clothing/gloves/color/latex
 	name = "latex gloves"
-	desc = "Cheap sterile gloves made from latex."
+	desc = "Cheap sterile gloves made from latex. Transfers minor paramedic knowledge to the user via budget nanochips."
 	icon_state = "latex"
 	item_state = "lgloves"
 	siemens_coefficient = 0.3
@@ -178,14 +184,25 @@
 	item_color="mime"
 	transfer_prints = TRUE
 	resistance_flags = NONE
+	var/carrytrait = TRAIT_QUICK_CARRY
 
 /obj/item/clothing/gloves/color/latex/nitrile
 	name = "nitrile gloves"
-	desc = "Pricey sterile gloves that are stronger than latex."
+	desc = "Pricey sterile gloves that are stronger than latex. Transfers intimate paramedic knowledge into the user via nanochips."
 	icon_state = "nitrile"
 	item_state = "nitrilegloves"
 	item_color = "cmo"
 	transfer_prints = FALSE
+	carrytrait = TRAIT_QUICKER_CARRY
+
+/obj/item/clothing/gloves/color/latex/equipped(mob/user, slot)
+	..()
+	if(slot == SLOT_GLOVES)
+		ADD_TRAIT(user, carrytrait, CLOTHING_TRAIT)
+
+/obj/item/clothing/gloves/color/latex/dropped(mob/user)
+	..()
+	REMOVE_TRAIT(user, carrytrait, CLOTHING_TRAIT)
 
 /obj/item/clothing/gloves/color/white
 	name = "white gloves"

@@ -88,6 +88,12 @@
 	taste_description = "gross iron"
 	shot_glass_icon_state = "shotglassred"
 
+/datum/reagent/polysmorphblood
+	name = "Polysmorph blood"
+	color = "#96BB00"
+	description = "The blood of a polysmorph"
+	taste_description = "acidic"
+
 /datum/reagent/vaccine
 	//data must contain virus type
 	name = "Vaccine"
@@ -309,6 +315,32 @@
 	M.adjustFireLoss(1, 0)		//Hence the other damages... ain't I a bastard?
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5, 150)
 	holder.remove_reagent(type, 1)
+
+/datum/reagent/eldritch
+	name = "Eldritch Essence"
+	description = "Strange liquid that defies the laws of physics"
+	taste_description = "glass"
+	color = "#1f8016"
+
+/datum/reagent/eldritch/on_mob_life(mob/living/carbon/M)
+	if(IS_HERETIC(M) || IS_HERETIC_MONSTER(M))
+		M.drowsyness = max(M.drowsyness-5, 0)
+		M.AdjustAllImmobility(-40, FALSE)
+		M.adjustStaminaLoss(-10, FALSE)
+		M.adjustToxLoss(-2, FALSE)
+		M.adjustOxyLoss(-2, FALSE)
+		M.adjustBruteLoss(-2, FALSE)
+		M.adjustFireLoss(-2, FALSE)
+		if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL(M))
+			M.blood_volume += 3
+	else
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
+		M.adjustToxLoss(2, FALSE)
+		M.adjustFireLoss(2, FALSE)
+		M.adjustOxyLoss(2, FALSE)
+		M.adjustBruteLoss(2, FALSE)
+	holder.remove_reagent(type, 1)
+	return TRUE
 
 /datum/reagent/medicine/omnizine/godblood
 	name = "Godblood"
@@ -635,6 +667,16 @@
 /datum/reagent/gluttonytoxin/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
 	L.ForceContractDisease(new /datum/disease/transformation/morph(), FALSE, TRUE)
 
+/datum/reagent/ghosttoxin
+	name = "Ghost's Curse"
+	description = "An advanced corruptive toxin produced by something otherwordly."
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	can_synth = FALSE
+	taste_description = "decay"
+
+/datum/reagent/ghosttoxin/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+	L.ForceContractDisease(new /datum/disease/transformation/ghost(), FALSE, TRUE)
+
 /datum/reagent/serotrotium
 	name = "Serotrotium"
 	description = "A chemical compound that promotes concentrated production of the serotonin neurotransmitter in humans."
@@ -947,6 +989,7 @@
 	name = "Space cleaner"
 	description = "A compound used to clean things. Now with 50% more sodium hypochlorite!"
 	color = "#A5F0EE" // rgb: 165, 240, 238
+	var/toxpwr = 1
 	taste_description = "sourness"
 	reagent_weight = 0.6 //so it sprays further
 
@@ -1000,23 +1043,30 @@
 				H.wash_cream()
 			SEND_SIGNAL(M, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
 
+/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(toxpwr*REM, 0)
+	..()
+
 /datum/reagent/space_cleaner/ez_clean
 	name = "EZ Clean"
 	description = "A powerful, acidic cleaner sold by Waffle Co. Affects organic matter while leaving other objects unaffected."
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	taste_description = "acid"
+	can_synth = FALSE
 
 /datum/reagent/space_cleaner/ez_clean/on_mob_life(mob/living/carbon/M)
-	M.adjustBruteLoss(3.33)
-	M.adjustFireLoss(3.33)
-	M.adjustToxLoss(3.33)
+	M.adjustBruteLoss(6.33)
+	M.adjustFireLoss(6.33)
+	M.adjustToxLoss(6.33)
 	..()
 
 /datum/reagent/space_cleaner/ez_clean/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	..()
 	if((method == TOUCH || method == VAPOR) && !issilicon(M))
-		M.adjustBruteLoss(1.5)
-		M.adjustFireLoss(1.5)
+		M.reagents.add_reagent(/datum/reagent/space_cleaner/ez_clean, reac_volume)
+		M.adjustBruteLoss(1 * reac_volume)
+		M.adjustFireLoss(1 * reac_volume)
+		M.emote("scream")
 
 /datum/reagent/cryptobiolin
 	name = "Cryptobiolin"
@@ -1081,7 +1131,7 @@
 	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
 		L.ForceContractDisease(new /datum/disease/tuberculosis(), FALSE, TRUE)
 
-/* YOGS /datum/reagent/snail
+/datum/reagent/snail
 	name = "Agent-S"
 	description = "Virological agent that infects the subject with Gastrolosis."
 	color = "#003300" // rgb(0, 51, 0)
@@ -1090,7 +1140,7 @@
 
 /datum/reagent/snail/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
 	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
-		L.ForceContractDisease(new /datum/disease/gastrolosis(), FALSE, TRUE) YOGS */
+		L.ForceContractDisease(new /datum/disease/gastrolosis(), FALSE, TRUE)
 
 /datum/reagent/fluorosurfactant//foam precursor
 	name = "Fluorosurfactant"
@@ -1511,15 +1561,29 @@
 	color = "#A3C00F" // rgb: 163,192,15
 	taste_description = "sourness"
 
+/datum/reagent/toxin/mutagen/mutagenvirusfood/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(1.5*REM, 0)
+	..()
+
 /datum/reagent/toxin/mutagen/mutagenvirusfood/sugar
 	name = "sucrose agar"
 	color = "#41B0C0" // rgb: 65,176,192
 	taste_description = "sweetness"
 
+/datum/reagent/toxin/mutagen/mutagenvirusfood/sugar/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(0.5*REM, 0)
+	..()
+
+
 /datum/reagent/medicine/synaptizine/synaptizinevirusfood
 	name = "virus rations"
 	color = "#D18AA5" // rgb: 209,138,165
 	taste_description = "bitterness"
+
+/datum/reagent/medicine/synaptizine/synaptizinevirusfood/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(0.25*REM, 0)
+	..()
+
 
 /datum/reagent/toxin/plasma/plasmavirusfood
 	name = "virus plasma"
@@ -1527,26 +1591,47 @@
 	taste_description = "bitterness"
 	taste_mult = 1.5
 
+/datum/reagent/toxin/plasma/plasmavirusfood/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(REM, 0)
+	..()
+
+
 /datum/reagent/toxin/plasma/plasmavirusfood/weak
 	name = "weakened virus plasma"
 	color = "#CEC3C6" // rgb: 206,195,198
 	taste_description = "bitterness"
 	taste_mult = 1.5
 
+/datum/reagent/toxin/plasma/plasmavirusfood/weak/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(0.5*REM, 0)
+	..()
+
 /datum/reagent/uranium/uraniumvirusfood
 	name = "decaying uranium gel"
 	color = "#67ADBA" // rgb: 103,173,186
 	taste_description = "the inside of a reactor"
+
+/datum/reagent/uranium/uraniumvirusfood/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(2.5*REM, 0)
+	..()
 
 /datum/reagent/uranium/uraniumvirusfood/unstable
 	name = "unstable uranium gel"
 	color = "#2FF2CB" // rgb: 47,242,203
 	taste_description = "the inside of a reactor"
 
+/datum/reagent/uranium/uraniumvirusfood/unstable/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(2*REM, 0)
+	..()
+
 /datum/reagent/uranium/uraniumvirusfood/stable
 	name = "stable uranium gel"
 	color = "#04506C" // rgb: 4,80,108
 	taste_description = "the inside of a reactor"
+
+/datum/reagent/uranium/uraniumvirusfood/stable/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(1.5*REM, 0)
+	..()
 
 // Bee chemicals
 

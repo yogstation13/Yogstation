@@ -21,6 +21,9 @@
 
 // Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
 /obj/item/proc/attack_self(mob/user)
+	if(HAS_TRAIT(user, TRAIT_NOINTERACT)) //sorry no using grenades
+		to_chat(user, "<span class='notice'>You can't use things!</span>")
+		return
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
 		return
 	interact(user)

@@ -63,7 +63,7 @@
 				. = pod
 
 /proc/grow_clone_from_record(obj/machinery/clonepod/pod, datum/data/record/R, empty)
-	return pod.growclone(R.fields["name"], R.fields["UI"], R.fields["SE"], R.fields["mindref"], R.fields["last_death"], R.fields["mrace"], R.fields["features"], R.fields["factions"], R.fields["quirks"], R.fields["bank_account"], R.fields["traumas"], empty)
+	return pod.growclone(R.fields["name"], R.fields["UI"], R.fields["SE"], R.fields["makeup"], R.fields["mindref"], R.fields["last_death"], R.fields["mrace"], R.fields["features"], R.fields["factions"], R.fields["quirks"], R.fields["bank_account"], R.fields["traumas"], empty)
 
 /obj/machinery/computer/cloning/process()
 	if(!(scanner && LAZYLEN(pods) && autoprocess))
@@ -315,7 +315,6 @@
 
 	var/datum/browser/popup = new(user, "cloning", "Cloning System Control")
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
 	popup.open()
 
 /obj/machinery/computer/cloning/Topic(href, href_list)
@@ -583,6 +582,7 @@
 	R.fields["SE"] = dna.mutation_index
 	R.fields["blood_type"] = dna.blood_type
 	R.fields["features"] = dna.features
+	R.fields["makeup"] = dna.default_mutation_genes
 	R.fields["factions"] = mob_occupant.faction
 	R.fields["quirks"] = list()
 	for(var/V in mob_occupant.roundstart_quirks)

@@ -56,7 +56,7 @@
 #define HAS_TRAIT(target, trait) (target.status_traits ? (target.status_traits[trait] ? TRUE : FALSE) : FALSE)
 #define HAS_TRAIT_FROM(target, trait, source) (target.status_traits ? (target.status_traits[trait] ? (source in target.status_traits[trait]) : FALSE) : FALSE)
 
-//Remember to update _globalvars/traits.dm if you're adding/removing/renaming traits.
+//Remember to update code/datums/traits/ folder if you're adding/removing/renaming traits.
 
 //mob traits
 #define TRAIT_BLIND 			"blind"
@@ -78,6 +78,7 @@
 #define TRAIT_DISFIGURED		"disfigured"
 #define TRAIT_XENO_HOST			"xeno_host"	//Tracks whether we're gonna be a baby alien's mummy.
 #define TRAIT_STUNIMMUNE		"stun_immunity"
+#define TRAIT_STUNRESISTANCE    "stun_resistance"
 #define TRAIT_SLEEPIMMUNE		"sleep_immunity"
 #define TRAIT_PUSHIMMUNE		"push_immunity"
 #define TRAIT_SHOCKIMMUNE		"shock_immunity"
@@ -88,12 +89,14 @@
 #define TRAIT_RESISTCOLD		"resist_cold"
 #define TRAIT_RESISTHIGHPRESSURE	"resist_high_pressure"
 #define TRAIT_RESISTLOWPRESSURE	"resist_low_pressure"
+#define TRAIT_BOMBIMMUNE		"bomb_immunity"
 #define TRAIT_RADIMMUNE			"rad_immunity"
 #define TRAIT_VIRUSIMMUNE		"virus_immunity"
 #define TRAIT_PIERCEIMMUNE		"pierce_immunity"
 #define TRAIT_NODISMEMBER		"dismember_immunity"
 #define TRAIT_NOFIRE			"nonflammable"
 #define TRAIT_NOGUNS			"no_guns"
+#define TRAIT_NOINTERACT		"no_interact" //Not allowed to touch anything (even with TK) or use things in hand
 #define TRAIT_NOHUNGER			"no_hunger"
 #define TRAIT_EASYDISMEMBER		"easy_dismember"
 #define TRAIT_LIMBATTACHMENT 	"limb_attach"
@@ -135,6 +138,8 @@
 #define TRAIT_LAW_ENFORCEMENT_METABOLISM "law-enforcement-metabolism"
 #define TRAIT_ALWAYS_CLEAN      "always-clean"
 #define TRAIT_BOOZE_SLIDER      "booze-slider"
+#define TRAIT_QUICK_CARRY		"quick-carry"
+#define TRAIT_QUICKER_CARRY		"quicker-carry"
 #define TRAIT_UNINTELLIGIBLE_SPEECH "unintelligible-speech"
 #define TRAIT_UNSTABLE			"unstable"
 #define TRAIT_OIL_FRIED			"oil_fried"
@@ -142,6 +147,8 @@
 #define TRAIT_RANDOM_ACCENT		"random_accent"
 #define TRAIT_MEDICALIGNORE     "medical_ignore"
 #define TRAIT_PASSTABLE			"passtable"
+#define TRAIT_SLIME_EMPATHY		"slime-empathy"
+#define TRAIT_ACIDBLOOD         "acid_blood"
 
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
@@ -150,6 +157,7 @@
 #define TRAIT_NODROP            "nodrop"
 #define TRAIT_T_RAY_VISIBLE     "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
 #define TRAIT_NO_TELEPORT		"no-teleport" //you just can't
+#define TRAIT_NO_STORAGE		"no-storage" //you cannot put this in any container, backpack, box etc
 
 #define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"
 #define TRAIT_AGEUSIA			"ageusia"
@@ -171,6 +179,7 @@
 #define TRAIT_EMPATH			"empath"
 #define TRAIT_FRIENDLY			"friendly"
 #define TRAIT_ALLERGIC			"allergic"
+#define TRAIT_KLEPTOMANIAC		"kleptomaniac"
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
@@ -234,3 +243,4 @@
 #define HIVEMIND_ONE_MIND_TRAIT "one_mind"
 #define VR_ZONE_TRAIT "vr_zone_trait"
 #define GUARDIAN_TRAIT "guardian_trait"
+#define RANDOM_BLACKOUTS "random_blackouts"

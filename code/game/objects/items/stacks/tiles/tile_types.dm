@@ -11,6 +11,7 @@
 	throw_speed = 3
 	throw_range = 7
 	max_amount = 60
+	mats_per_stack = 500
 	var/turf_type = null
 	var/mineralType = null
 	novariants = TRUE
@@ -303,7 +304,7 @@
 	icon_state = "tile"
 	item_state = "tile"
 	force = 6
-	materials = list(MAT_METAL=500)
+	materials = list(/datum/material/iron=500)
 	throwforce = 10
 	flags_1 = CONDUCT_1
 	turf_type = /turf/open/floor/plasteel
@@ -316,3 +317,13 @@
 	materials = list() // All other Borg versions of items have no Metal or Glass - RR
 	is_cyborg = 1
 	cost = 125
+	
+/obj/item/stack/tile/eighties
+	name = "retro tile"
+	singular_name = "retro floor tile"
+	desc = "A stack of floor tiles that remind you of an age of funk."
+	icon_state = "tile_eighties"
+	turf_type = /turf/open/floor/eighties
+	
+/obj/item/stack/tile/eighties/loaded
+	amount = 15

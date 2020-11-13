@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	name = "newscaster frame"
 	desc = "Used to build newscasters, just secure to the wall."
 	icon_state = "newscaster"
-	materials = list(MAT_METAL=14000, MAT_GLASS=8000)
+	materials = list(/datum/material/iron=14000, /datum/material/glass=8000)
 	result_path = /obj/machinery/newscaster
 
 
@@ -245,18 +245,6 @@ GLOBAL_LIST_EMPTY(allCasters)
 			add_overlay("crack2")
 		else
 			add_overlay("crack3")
-
-
-/obj/machinery/newscaster/power_change()
-	if(stat & BROKEN)
-		return
-	if(powered())
-		stat &= ~NOPOWER
-		update_icon()
-	else
-		spawn(rand(0, 15))
-			stat |= NOPOWER
-			update_icon()
 
 /obj/machinery/newscaster/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
@@ -503,7 +491,6 @@ GLOBAL_LIST_EMPTY(allCasters)
 				dat+="<A href='?src=[REF(src)];setScreen=[0]'>Return</A>"
 		var/datum/browser/popup = new(human_or_robot_user, "newscaster_main", "Newscaster Unit #[unit_no]", 400, 600)
 		popup.set_content(dat)
-		popup.set_title_image(human_or_robot_user.browse_rsc_icon(icon, icon_state))
 		popup.open()
 
 /obj/machinery/newscaster/Topic(href, href_list)
@@ -767,11 +754,10 @@ GLOBAL_LIST_EMPTY(allCasters)
 		new /obj/item/shard(loc)
 	qdel(src)
 
-/obj/machinery/newscaster/obj_break()
-	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
-		stat |= BROKEN
-		playsound(loc, 'sound/effects/glassbr3.ogg', 100, 1)
-		update_icon()
+/obj/machinery/newscaster/obj_break(damage_flag)
+	. = ..()
+	if(.)
+		playsound(loc, 'sound/effects/glassbr3.ogg', 100, TRUE)
 
 
 /obj/machinery/newscaster/attack_paw(mob/user)

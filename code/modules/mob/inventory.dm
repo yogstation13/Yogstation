@@ -309,6 +309,7 @@
 /mob/proc/doUnEquip(obj/item/I, force, newloc, no_move, invdrop = TRUE) //Force overrides TRAIT_NODROP for things like wizarditis and admin undress.
 													//Use no_move if the item is just gonna be immediately moved afterward
 													//Invdrop is used to prevent stuff in pockets dropping. only set to false if it's going to immediately be replaced
+	PROTECTED_PROC(TRUE)
 	if(!I) //If there's nothing to drop, the drop is automatically succesfull. If(unEquip) should generally be used to check for TRAIT_NODROP.
 		return TRUE
 
@@ -443,7 +444,7 @@
 
 /mob/verb/quick_equip()
 	set name = "quick-equip"
-	set hidden = 1
+	set hidden = TRUE
 
 	var/obj/item/I = get_active_held_item()
 	if (I)
@@ -495,3 +496,16 @@
 			bodyparts += BP
 			hand_bodyparts[i] = BP
 	..() //Don't redraw hands until we have organs for them
+
+//GetAllContents that is reasonable and not stupid
+/mob/living/carbon/proc/get_all_gear()
+	var/list/processing_list = get_equipped_items(TRUE) + held_items
+	listclearnulls(processing_list) // handles empty hands
+	var/i = 0
+	while(i < length(processing_list) )
+		var/atom/A = processing_list[++i]
+		if(SEND_SIGNAL(A, COMSIG_CONTAINS_STORAGE))
+			var/list/item_stuff = list()
+			SEND_SIGNAL(A, COMSIG_TRY_STORAGE_RETURN_INVENTORY, item_stuff)
+			processing_list += item_stuff
+	return processing_list

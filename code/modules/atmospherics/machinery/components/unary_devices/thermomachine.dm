@@ -78,10 +78,6 @@
 		active_power_usage = idle_power_usage
 	return 1
 
-/obj/machinery/atmospherics/components/unary/thermomachine/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/atmospherics/components/unary/thermomachine/attackby(obj/item/I, mob/user, params)
 	if(!on)
 		if(default_deconstruction_screwdriver(user, icon_state_open, icon_state_off, I))
@@ -107,7 +103,7 @@
 	if(node)
 		node.atmosinit()
 		node.addMember(src)
-	build_network()
+	SSair.add_to_rebuild_queue(src)
 	return TRUE
 
 /obj/machinery/atmospherics/components/unary/thermomachine/ui_status(mob/user)
@@ -115,11 +111,10 @@
 		return ..()
 	return UI_CLOSE
 
-/obj/machinery/atmospherics/components/unary/thermomachine/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-																	datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/atmospherics/components/unary/thermomachine/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "thermomachine", name, 300, 230, master_ui, state)
+		ui = new(user, src, "ThermoMachine", name)
 		ui.open()
 
 /obj/machinery/atmospherics/components/unary/thermomachine/ui_data(mob/user)

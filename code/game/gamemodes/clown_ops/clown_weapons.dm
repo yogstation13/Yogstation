@@ -40,14 +40,14 @@
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/combat/Initialize()
 	. = ..()
 	var/datum/component/material_container/bananium = GetComponent(/datum/component/material_container)
-	bananium.insert_amount(max_recharge, MAT_BANANIUM)
+	bananium.insert_amount_mat(max_recharge, /datum/material/bananium)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/combat/process()
 	var/datum/component/material_container/bananium = GetComponent(/datum/component/material_container)
-	var/bananium_amount = bananium.amount(MAT_BANANIUM)
+	var/bananium_amount = bananium.get_material_amount(/datum/material/bananium)
 	if(bananium_amount < max_recharge)
-		bananium.insert_amount(min(recharge_rate, max_recharge - bananium_amount), MAT_BANANIUM)
+		bananium.insert_amount_mat(min(recharge_rate, max_recharge - bananium_amount), /datum/material/bananium)
 
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/combat/attack_self(mob/user)
 	ui_action_click(user)
@@ -138,7 +138,7 @@
 	var/datum/component/slippery/slipper = GetComponent(/datum/component/slippery)
 	slipper.signal_enabled = active
 
-/obj/item/shield/energy/bananium/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force)
+/obj/item/shield/energy/bananium/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force, quickstart = TRUE)
 	if(active)
 		if(iscarbon(thrower))
 			var/mob/living/carbon/C = thrower
@@ -152,11 +152,12 @@
 			var/datum/component/slippery/slipper = GetComponent(/datum/component/slippery)
 			slipper.Slip(src, hit_atom)
 		if(thrownby && !caught)
-			sleep(1)
-			throw_at(thrownby, throw_range+2, throw_speed, null, TRUE)
+			addtimer(CALLBACK(src, /atom/movable.proc/throw_at, thrownby, throw_range+2, throw_speed, null, TRUE), 1)
 	else
 		return ..()
 
+/obj/item/shield/energy/bananium/honk_act()
+	return FALSE
 
 //BOMBANANA
 

@@ -37,6 +37,7 @@
 	var/square6
 	var/square7
 	var/square8
+	var/sameboard = FALSE
 
 /obj/machinery/computer/arcade/minesweeper/Initialize()
 	squareflag = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_flag")]"
@@ -86,8 +87,8 @@
 	var/prizevended = TRUE
 	var/mob/living/user = usr	//To identify who the hell is using this window, this should also make things like aliens and monkeys able to use the machine!!
 	var/web_difficulty_menu = "<font size='2'> Reveal all the squares without hitting a mine!<br>What difficulty do you want to play?<br><br><br><br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font>"
-	var/web = "<head><title>Minesweeper</title></head><div align='center'><b>Minesweeper</b><br>"
-	var/static_web = "<head><title>Minesweeper</title></head><div align='center'><b>Minesweeper</b><br>"	//When we need to revert to the main menu we set web as this
+	var/web = "<head><meta charset='UTF-8'><title>Minesweeper</title></head><div align='center'><b>Minesweeper</b><br>"
+	var/static_web = "<head><meta charset='UTF-8'><title>Minesweeper</title></head><div align='center'><b>Minesweeper</b><br>"	//When we need to revert to the main menu we set web as this
 	web = static_web
 
 	if(obj_flags & EMAGGED)
@@ -203,6 +204,7 @@
 							else if(table[y1][x1] < 0)	//If flagged, remove the flag
 								table[y1][x1] += 10
 				if(href_list["same_board"])	//Reset the board... kinda
+					sameboard = TRUE
 					if(game_status != MINESWEEPER_GAME_PLAYING)
 						game_status = MINESWEEPER_GAME_PLAYING
 					if(table[y1][x1] >= 10)	//If revealed, become unrevealed!
@@ -267,6 +269,11 @@
 		game_status = MINESWEEPER_GAME_WON
 
 	if(game_status == MINESWEEPER_GAME_WON)
+		if(sameboard) //sucks to be you, you fucking cheater!
+			playsound(loc, 'yogstation/sound/arcade/minesweeper_winfail.ogg', 50, 0, extrarange = -3, falloff = 10)
+			say("You cleared the board of all mines, but you played the same board twice! Try again with a new board!")
+			prizevended = TRUE
+			web += "<font size='4'>You won, but you played the same board twice! Try again with a new board!<br><font size='3'>Want to play again?<br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font></a></b><br><a href='byond://?src=[REF(src)];same_board=1'><font color='#cc66ff'>Play on the same board</font></a><br><a href='byond://?src=[REF(src)];Main_Menu=1'><font color='#cc66ff'>Return to Main Menu</font></a></b><br>"
 		if(rows < 10 || columns < 10)	//If less than easy difficulty
 			if(!prizevended)
 				playsound(loc, 'yogstation/sound/arcade/minesweeper_winfail.ogg', 50, 0, extrarange = -3, falloff = 10)
@@ -357,6 +364,9 @@
 		custom_generation()
 
 /obj/machinery/computer/arcade/minesweeper/proc/make_mines(var/reset_everything)
+	if(reset_everything)
+		sameboard = FALSE
+		
 	if(mine_placed < mine_limit)
 		for(var/y1=1;y1<rows;y1++)	//Board resetting and mine building
 			for(var/x1=1;x1<columns;x1++)

@@ -47,13 +47,19 @@ Nothing else in the console has ID requirements.
 
 	var/research_control = TRUE
 
+	// VV this to TRUE in order to be able to drag techweb nodes around.
+	// In addition it displays the coordinates of the node in the tooltip.
+	// Use this when making new techweb nodes to determine a good position for it.
+	// It will also prevent clicking on nodes.
+	var/do_node_drag = FALSE
+
 /obj/machinery/computer/rdconsole/production
 	circuit = /obj/item/circuitboard/computer/rdconsole/production
 	research_control = FALSE
 
 /proc/CallMaterialName(ID)
-	if (copytext(ID, 1, 2) == "$" && GLOB.materials_list[ID])
-		var/datum/material/material = GLOB.materials_list[ID]
+	if (istype(ID, /datum/material))
+		var/datum/material/material = ID
 		return material.name
 
 	else if(GLOB.chemical_reagents_list[ID])
@@ -383,11 +389,12 @@ Nothing else in the console has ID requirements.
 	l += ui_protolathe_header()
 	l += "<div class='statusDisplay'><h3>Material Storage:</h3>"
 	for(var/mat_id in mat_container.materials)
-		var/datum/material/M = mat_container.materials[mat_id]
-		l += "* [num2text(M.amount, 8)] of [M.name]: " // yogs - num2text
-		if(M.amount >= MINERAL_MATERIAL_AMOUNT) l += "<A href='?src=[REF(src)];ejectsheet=[M.id];eject_amt=1'>Eject</A> [RDSCREEN_NOBREAK]"
-		if(M.amount >= MINERAL_MATERIAL_AMOUNT*5) l += "<A href='?src=[REF(src)];ejectsheet=[M.id];eject_amt=5'>5x</A> [RDSCREEN_NOBREAK]"
-		if(M.amount >= MINERAL_MATERIAL_AMOUNT) l += "<A href='?src=[REF(src)];ejectsheet=[M.id];eject_amt=50'>All</A>[RDSCREEN_NOBREAK]"
+		var/datum/material/M = mat_id
+		var/amount = mat_container.materials[mat_id]
+		l += "* [amount] of [M.name]: "
+		if(amount >= MINERAL_MATERIAL_AMOUNT) l += "<A href='?src=[REF(src)];ejectsheet=[M.id];eject_amt=1'>Eject</A> [RDSCREEN_NOBREAK]"
+		if(amount >= MINERAL_MATERIAL_AMOUNT*5) l += "<A href='?src=[REF(src)];ejectsheet=[M.id];eject_amt=5'>5x</A> [RDSCREEN_NOBREAK]"
+		if(amount >= MINERAL_MATERIAL_AMOUNT) l += "<A href='?src=[REF(src)];ejectsheet=[M.id];eject_amt=50'>All</A>[RDSCREEN_NOBREAK]"
 		l += ""
 	l += "</div>[RDSCREEN_NOBREAK]"
 	return l
@@ -516,11 +523,12 @@ Nothing else in the console has ID requirements.
 	l += ui_circuit_header()
 	l += "<h3><div class='statusDisplay'>Material Storage:</h3>"
 	for(var/mat_id in mat_container.materials)
-		var/datum/material/M = mat_container.materials[mat_id]
-		l += "* [M.amount] of [M.name]: "
-		if(M.amount >= MINERAL_MATERIAL_AMOUNT) l += "<A href='?src=[REF(src)];imprinter_ejectsheet=[M.id];eject_amt=1'>Eject</A> [RDSCREEN_NOBREAK]"
-		if(M.amount >= MINERAL_MATERIAL_AMOUNT*5) l += "<A href='?src=[REF(src)];imprinter_ejectsheet=[M.id];eject_amt=5'>5x</A> [RDSCREEN_NOBREAK]"
-		if(M.amount >= MINERAL_MATERIAL_AMOUNT) l += "<A href='?src=[REF(src)];imprinter_ejectsheet=[M.id];eject_amt=50'>All</A>[RDSCREEN_NOBREAK]</div>"
+		var/datum/material/M = mat_id
+		var/amount = mat_container.materials[mat_id]
+		l += "* [amount] of [M.name]: "
+		if(amount >= MINERAL_MATERIAL_AMOUNT) l += "<A href='?src=[REF(src)];imprinter_ejectsheet=[M.id];eject_amt=1'>Eject</A> [RDSCREEN_NOBREAK]"
+		if(amount >= MINERAL_MATERIAL_AMOUNT*5) l += "<A href='?src=[REF(src)];imprinter_ejectsheet=[M.id];eject_amt=5'>5x</A> [RDSCREEN_NOBREAK]"
+		if(amount >= MINERAL_MATERIAL_AMOUNT) l += "<A href='?src=[REF(src)];imprinter_ejectsheet=[M.id];eject_amt=50'>All</A>[RDSCREEN_NOBREAK]</div>"
 	return l
 
 /obj/machinery/computer/rdconsole/proc/ui_techdisk()		//Legacy code
@@ -1020,7 +1028,7 @@ Nothing else in the console has ID requirements.
 				D.category -= "Imported"
 			else
 				for(var/x in D.materials)
-					if( !(x in list(MAT_METAL, MAT_GLASS)))
+					if( !(x in list(/datum/material/iron, /datum/material/glass)))
 						autolathe_friendly = FALSE
 						D.category -= "Imported"
 
@@ -1041,6 +1049,10 @@ Nothing else in the console has ID requirements.
 	if(ls["view_node"])
 		selected_node_id = ls["view_node"]
 		screen = RDSCREEN_TECHWEB_NODEVIEW
+	if(ls["move_node"] && do_node_drag)
+		var/datum/techweb_node/node = SSresearch.techweb_node_by_id(ls["move_node"])
+		node.ui_x = round(text2num(ls["ui_x"]),32)
+		node.ui_y = round(text2num(ls["ui_y"]),32)
 	if(ls["view_design"])
 		selected_design_id = ls["view_design"]
 		screen = RDSCREEN_TECHWEB_DESIGNVIEW

@@ -1,26 +1,95 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
+"ab" = (
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
+"ac" = (
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
+"ad" = (
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
+"ae" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/caravan/syndicate3)
+"af" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/caravan/syndicate3)
+"ag" = (
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
+"ah" = (
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
+"ai" = (
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
 "al" = (
 /obj/machinery/airalarm/syndicate{
 	dir = 4;
 	pixel_x = -24
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/caravan/syndicate3)
-"aI" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravansyndicate3_bridge"
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/caravan/syndicate3)
-"bo" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
-	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/syndicate3)
 "bB" = (
@@ -70,18 +139,6 @@
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
-/area/shuttle/caravan/syndicate3)
-"eH" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravansyndicate3_bridge"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
 /area/shuttle/caravan/syndicate3)
 "gl" = (
 /obj/machinery/door/airlock/hatch{
@@ -191,20 +248,6 @@
 /obj/item/clothing/shoes/sneakers/black,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/caravan/syndicate3)
-"qT" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravansyndicate3_bridge"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/caravan/syndicate3)
 "rz" = (
 /obj/machinery/computer/shuttle/caravan/syndicate3{
 	dir = 8
@@ -216,18 +259,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/shuttle/caravan/syndicate3)
-"rU" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravansyndicate3_bridge"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
 /area/shuttle/caravan/syndicate3)
 "rV" = (
 /obj/structure/chair/comfy/shuttle{
@@ -279,20 +310,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/syndicate3)
-"uY" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravansyndicate3_bridge"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/caravan/syndicate3)
 "vw" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/regular,
@@ -321,17 +338,6 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/shuttle/caravan/syndicate3)
-"wR" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravansyndicate3_bridge"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
 /area/shuttle/caravan/syndicate3)
 "xC" = (
 /obj/machinery/light/small{
@@ -544,17 +550,6 @@
 /obj/item/clothing/glasses/night,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/caravan/syndicate3)
-"Op" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravansyndicate3_bridge"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/caravan/syndicate3)
 "Pt" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -717,14 +712,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/syndicate3)
-"ZZ" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/caravan/syndicate3)
 
 (1,1,1) = {"
 Jv
@@ -803,7 +790,7 @@ gl
 xC
 al
 cB
-bo
+ae
 bB
 KS
 "}
@@ -830,34 +817,34 @@ Tn
 uy
 Gx
 cB
-ZZ
+af
 Sl
 Tn
 "}
 (13,1,1) = {"
-rU
+aa
 ns
 Ij
 HM
 Wr
 vw
-rU
+ah
 "}
 (14,1,1) = {"
-wR
-eH
+ab
+ac
 sb
 rz
 ZK
-uY
-aI
+ac
+ai
 "}
 (15,1,1) = {"
 Jv
-Op
-qT
-qT
-qT
-Op
+ab
+ad
+ad
+ad
+ag
 Jv
 "}

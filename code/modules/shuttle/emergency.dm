@@ -20,12 +20,13 @@
 	if(istype(user, /mob/living/carbon/alien/humanoid/royal/queen))
 		SSshuttle.clearHostileEnvironment(user)
 
-/obj/machinery/computer/emergency_shuttle/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.human_adjacent_state)
+/obj/machinery/computer/emergency_shuttle/ui_state(mob/user)
+	return GLOB.human_adjacent_state
 
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/emergency_shuttle/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "emergency_shuttle_console", name,
-			400, 400, master_ui, state)
+		ui = new(user, src, "EmergencyShuttleConsole", name)
 		ui.open()
 
 /obj/machinery/computer/emergency_shuttle/ui_data()
@@ -41,8 +42,8 @@
 		var/job = ID.assignment
 
 		if(obj_flags & EMAGGED)
-			name = Gibberish(name, 0)
-			job = Gibberish(job, 0)
+			name = Gibberish(name)
+			job = Gibberish(job)
 		A += list(list("name" = name, "job" = job))
 	data["authorizations"] = A
 
@@ -317,7 +318,9 @@
 	set waitfor = FALSE
 	if(!SSdbcore.Connect())
 		return
-	var/datum/DBQuery/query_round_shuttle_name = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET shuttle_name = '[name]' WHERE id = [GLOB.round_id]")
+	var/datum/DBQuery/query_round_shuttle_name = SSdbcore.NewQuery({"
+		UPDATE [format_table_name("round")] SET shuttle_name = :name WHERE id = :round_id
+	"}, list("name" = name, "round_id" = GLOB.round_id))
 	query_round_shuttle_name.Execute()
 	qdel(query_round_shuttle_name)
 
@@ -350,7 +353,7 @@
 				mode = SHUTTLE_DOCKED
 				setTimer(SSshuttle.emergencyDockTime)
 				send2irc("Server", "The Emergency Shuttle ([name]) has docked with the station.") // yogs - make it say the name of the shuttle
-				priority_announce("The Emergency Shuttle has docked with the station. You have [timeLeft(600)] minutes to board the Emergency Shuttle.", null, 'sound/ai/shuttledock.ogg', "Priority")
+				priority_announce("[SSshuttle.emergency] has docked with the station. You have [timeLeft(600)] minutes to board the Emergency Shuttle.", null, 'sound/ai/shuttledock.ogg', "Priority")
 				ShuttleDBStuff()
 
 
@@ -540,13 +543,13 @@
 
 /obj/item/clothing/head/helmet/space/orange
 	name = "emergency space helmet"
-	icon_state = "syndicate-helm-orange"
-	item_state = "syndicate-helm-orange"
+	icon_state = "emergency"
+	item_state = "emergency"
 
 /obj/item/clothing/suit/space/orange
 	name = "emergency space suit"
-	icon_state = "syndicate-orange"
-	item_state = "syndicate-orange"
+	icon_state = "emergency"
+	item_state = "emergency"
 	slowdown = 3
 
 /obj/item/pickaxe/emergency

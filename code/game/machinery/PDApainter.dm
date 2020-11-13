@@ -98,10 +98,7 @@
 		return ..()
 
 /obj/machinery/pdapainter/deconstruct(disassembled = TRUE)
-	if(!(flags_1 & NODECONSTRUCT_1))
-		if(!(stat & BROKEN))
-			stat |= BROKEN
-			update_icon()
+	obj_break()
 
 /obj/machinery/pdapainter/attack_hand(mob/user)
 	. = ..()
@@ -141,9 +138,4 @@
 		storedpda = null
 		update_icon()
 	else
-		to_chat(usr, "<span class='notice'>[src] is empty.</span>")
-
-
-/obj/machinery/pdapainter/power_change()
-	..()
-	update_icon()
+		to_chat(usr, "<span class='warning'>[src] is empty!</span>")

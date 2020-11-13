@@ -46,7 +46,7 @@ SUBSYSTEM_DEF(shuttle)
 
 	var/datum/round_event/shuttle_loan/shuttle_loan
 
-	var/shuttle_purchased = FALSE //If the station has purchased a replacement escape shuttle this round
+	var/shuttle_purchased = SHUTTLEPURCHASE_PURCHASABLE //If the station has purchased a replacement escape shuttle this round
 	var/emag_shuttle_purchased = FALSE //If the traitors have purchased a replacement escape shuttle this round
 
 	var/lockdown = FALSE	//disallow transit after nuke goes off
@@ -216,7 +216,7 @@ SUBSYSTEM_DEF(shuttle)
 	var/emergency_reason = "\nNature of emergency:\n\n[call_reason]"
 	var/security_num = seclevel2num(get_security_level())
 	switch(security_num)
-		if(SEC_LEVEL_RED,SEC_LEVEL_DELTA)
+		if(SEC_LEVEL_RED,SEC_LEVEL_GAMMA,SEC_LEVEL_EPSILON,SEC_LEVEL_DELTA)
 			emergency.request(null, signal_origin, html_decode(emergency_reason), 1) //There is a serious threat we gotta move no time to give them five minutes.
 		else
 			emergency.request(null, signal_origin, html_decode(emergency_reason), 0)
@@ -736,11 +736,13 @@ SUBSYSTEM_DEF(shuttle)
 		preview_shuttle.jumpToNullSpace()
 	preview_shuttle = null
 
+/datum/controller/subsystem/shuttle/ui_state(mob/user)
+	return GLOB.admin_state
 
-/datum/controller/subsystem/shuttle/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.admin_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/controller/subsystem/shuttle/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "shuttle_manipulator", name, 800, 600, master_ui, state)
+		ui = new(user, src, "ShuttleManipulator")
 		ui.open()
 
 /proc/shuttlemode2str(mode)

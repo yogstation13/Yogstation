@@ -27,6 +27,8 @@ GLOBAL_LIST_INIT(simple_animals, list(list(),list(),list(),list())) // One for e
 GLOBAL_LIST_EMPTY(spidermobs)				//all sentient spider mobs
 GLOBAL_LIST_EMPTY(bots_list)
 GLOBAL_LIST_EMPTY(aiEyes)
+///underages who have been reported to security for trying to buy things they shouldn't, so they can't spam
+GLOBAL_LIST_EMPTY(narcd_underages)
 
 GLOBAL_LIST_EMPTY(language_datum_instances)
 GLOBAL_LIST_EMPTY(all_languages)
@@ -41,6 +43,8 @@ GLOBAL_LIST_EMPTY(emote_list)
 
 GLOBAL_LIST_INIT(accents_name2file,strings("accents.json", "accent_file_names", directory = "strings/accents")) // Keys are the names of the accents, values are the name of their .json file.
 GLOBAL_LIST_EMPTY(accents_name2regexes) // Holds some complex data regarding accents
+
+GLOBAL_LIST_EMPTY(walkingmushroom)
 
 /proc/update_config_movespeed_type_lookup(update_mobs = TRUE)
 	var/list/mob_types = list()

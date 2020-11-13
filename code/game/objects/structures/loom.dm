@@ -12,10 +12,10 @@
 	if(istype(I, /obj/item/stack/sheet))
 		var/obj/item/stack/sheet/W = I
 		if(W.is_fabric && W.amount > 1)
-			user.show_message("<span class='notice'>You start weaving the [W.name] through the loom..</span>", 1)
+			user.show_message("<span class='notice'>You start weaving the [W.name] through the loom..</span>", MSG_VISUAL)
 			if(W.use_tool(src, user, W.pull_effort))
 				new W.loom_result(drop_location())
-				user.show_message("<span class='notice'>You weave the [W.name] into a workable fabric.</span>", 1)
+				user.show_message("<span class='notice'>You weave the [W.name] into a workable fabric.</span>", MSG_VISUAL)
 				W.amount = (W.amount - FABRIC_PER_SHEET)
 				if(W.amount < 1)
 					qdel(W)

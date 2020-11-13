@@ -7,9 +7,9 @@
 	closingLayer = ABOVE_WINDOW_LAYER
 	resistance_flags = ACID_PROOF
 	var/base_state = "left"
-	max_integrity = 150 //If you change this, consider changing ../door/window/brigdoor/ max_integrity at the bottom of this .dm file
+	max_integrity = 200 //If you change this, consider changing ../door/window/brigdoor/ max_integrity at the bottom of this .dm file
 	integrity_failure = 0
-	armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
+	armor = list("melee" = 60, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
 	visible = FALSE
 	flags_1 = ON_BORDER_1
 	opacity = 0
@@ -97,11 +97,12 @@
 		do_animate("deny")
 	return
 
-/obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/door/window/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
-		return 1
+		return TRUE
 	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
-		return !density
+		return
 	if(istype(mover, /obj/structure/window))
 		var/obj/structure/window/W = mover
 		if(!valid_window_location(loc, W.ini_dir))
@@ -113,7 +114,7 @@
 	else if(istype(mover, /obj/machinery/door/window) && !valid_window_location(loc, mover.dir))
 		return FALSE
 	else
-		return 1
+		return TRUE
 
 /obj/machinery/door/window/CanAtmosPass(turf/T)
 	if(get_dir(loc, T) == dir)
@@ -348,7 +349,7 @@
 	icon_state = "leftsecure"
 	base_state = "leftsecure"
 	var/id = null
-	max_integrity = 300 //Stronger doors for prison (regular window door health is 200)
+	max_integrity = 350 //Stronger doors for prison (regular window door health is 200)
 	reinf = 1
 	explosion_block = 1
 

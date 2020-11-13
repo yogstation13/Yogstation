@@ -1690,8 +1690,16 @@
 	icon_state = "ram"
 
 /datum/sprite_accessory/horns/angler
-	name = "Angeler"
+	name = "Angler"
 	icon_state = "angler"
+
+/datum/sprite_accessory/horns/tiny
+	name = "Tiny"
+	icon_state = "tiny"
+
+/datum/sprite_accessory/horns/long
+	name = "Long"
+	icon_state = "long"
 
 /datum/sprite_accessory/ears
 	icon = 'icons/mob/mutant_bodyparts.dmi'
@@ -1766,6 +1774,14 @@
 /datum/sprite_accessory/frills/aquatic
 	name = "Aquatic"
 	icon_state = "aqua"
+
+/datum/sprite_accessory/frills/full
+	name = "Full"
+	icon_state = "full"
+
+/datum/sprite_accessory/frills/long
+	name = "Long"
+	icon_state = "long"
 
 /datum/sprite_accessory/spines
 	icon = 'icons/mob/mutant_bodyparts.dmi'
@@ -1906,3 +1922,68 @@
 /datum/sprite_accessory/moth_wings/snow
 	name = "Snow"
 	icon_state = "snow"
+
+/datum/sprite_accessory/tails/polysmorph/none
+	name = "None"
+	icon_state = "none"
+
+/datum/sprite_accessory/tails/polysmorph/polys
+	name = "Polys"
+	icon_state = "polys"
+	color_src = null
+
+/datum/sprite_accessory/teeth
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	color_src = null
+
+/datum/sprite_accessory/teeth/none
+	name = "None"
+	icon_state = "none"
+
+/datum/sprite_accessory/teeth/short
+	name = "Short"
+	icon_state = "short"
+
+/datum/sprite_accessory/teeth/long
+	name = "Long"
+	icon_state = "long"
+
+/datum/sprite_accessory/dome
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	color_src = null
+
+/datum/sprite_accessory/dome/none
+	name = "None"
+	icon_state = "none"
+
+/datum/sprite_accessory/dome/queen
+	name = "Queen"
+	icon_state = "queen"
+
+/datum/sprite_accessory/dome/praetorian
+	name = "Praetorian"
+	icon_state = "praetorian"
+
+/datum/sprite_accessory/dome/drone
+	name = "Drone"
+	icon_state = "drone"
+
+/datum/sprite_accessory/dome/hunter
+	name = "Hunter"
+	icon_state = "hunter"
+
+/datum/sprite_accessory/dorsal_tubes
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	color_src = null
+
+/datum/sprite_accessory/dorsal_tubes/none
+	name = "None"
+	icon_state = "none"
+
+/datum/sprite_accessory/dorsal_tubes/dtsingle
+	name = "Single"
+	icon_state = "dtsingle"
+
+/datum/sprite_accessory/dorsal_tubes/dtdouble
+	name = "Double"
+	icon_state = "dtdouble"

@@ -4,7 +4,7 @@
 	var/crit_rate = 5
 	var/crit_rate_max = 70 //max % crit rate
 	var/crit_rate_increase = 10 //% crit chance per hit
-	var/crit_dropoff_coeff = 0.6 //% of crit chance remaining after dropoff
+	var/crit_dropoff_coeff = 0.85 //% of crit chance remaining after dropoff
 
 /datum/component/randomcrits/Initialize(force)
 	crit_force = force

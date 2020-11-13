@@ -55,7 +55,7 @@
 	integrity_failure = 80
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30)
 	resistance_flags = FIRE_PROOF
-	
+
 	FASTDMM_PROP(\
 		set_instance_vars(\
 			pixel_x = (dir & 3)? INSTANCE_VAR_DEFAULT : (dir == 4 ? -24 : 24),\
@@ -75,8 +75,9 @@
 	var/config_error_str = "Needs Scan"
 	var/scan_on_late_init = FALSE
 	var/depressurization_margin = 10 // use a lower value to reduce cross-contamination
+	var/depressurization_target = 0 // What to target - should be lower than the depressurization margin
 	var/overlays_hash = null
-	var/skip_delay = 300
+	var/skip_delay = 100
 	var/skip_timer = 0
 	var/is_skipping = FALSE
 
@@ -89,6 +90,7 @@
 	// lavaland isn't exactly a contaminant so I'll let it have a high depressurization margin
 	// (also miners dont appreciate vacuum)
 	depressurization_margin = 36.896
+	depressurization_target = 20
 
 /obj/machinery/advanced_airlock_controller/mix_chamber
 	depressurization_margin = 0.15 // The minimum - We really don't want contamination.
@@ -336,7 +338,7 @@
 					if(vents[vent] & AIRLOCK_CYCLEROLE_INT_DEPRESSURIZE)
 						vent.pump_direction = 0
 						vent.pressure_checks = 1
-						vent.external_pressure_bound = 0
+						vent.external_pressure_bound = depressurization_target
 						vents_valid = FALSE
 						vent.on = TRUE
 						vent.update_icon()
@@ -357,7 +359,7 @@
 					if(vents[vent] & AIRLOCK_CYCLEROLE_EXT_DEPRESSURIZE)
 						vent.pump_direction = 0
 						vent.pressure_checks = 1
-						vent.external_pressure_bound = 0
+						vent.external_pressure_bound = depressurization_target
 						vents_valid = FALSE
 						vent.on = TRUE
 						vent.update_icon()
@@ -430,7 +432,7 @@
 				vent.on = FALSE
 				vent.update_icon()
 	update_icon(TRUE)
-	
+
 /obj/machinery/advanced_airlock_controller/attackby(obj/item/W, mob/user, params)
 	switch(buildstage)
 		if(2)
@@ -588,11 +590,10 @@
 		return ..()
 	return UI_CLOSE
 
-/obj/machinery/advanced_airlock_controller/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/advanced_airlock_controller/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "advanced_airlock_controller", name, 440, 650, master_ui, state)
+		ui = new(user, src, "AdvancedAirlockController", name)
 		ui.open()
 
 /obj/machinery/advanced_airlock_controller/ui_data(mob/user)
@@ -624,6 +625,7 @@
 	data["interior_pressure"] = interior_pressure
 	data["exterior_pressure"] = exterior_pressure
 	data["depressurization_margin"] = depressurization_margin
+	data["depressurization_target"] = depressurization_target
 
 	for(var/V in vents)
 		// it could also be a dpvent.
@@ -649,7 +651,7 @@
 				if(I != 1)
 					access_str += ", "
 				access_str += get_access_desc(airlock.req_one_access[I])
-			
+
 		data["airlocks"] += list(list(
 			"role" = airlocks[airlock],
 			"airlock_id" = "\ref[airlock]",
@@ -725,6 +727,10 @@
 			exterior_pressure = clamp(text2num(params["pressure"]), 0, ONE_ATMOSPHERE)
 		if("depressurization_margin")
 			depressurization_margin = clamp(text2num(params["pressure"]), 0.15, 40)
+			if(depressurization_target > depressurization_margin - 0.15)
+				depressurization_target = depressurization_margin - 0.15
+		if("depressurization_target")
+			depressurization_target = clamp(text2num(params["pressure"]), 0, depressurization_target - 0.15)
 		if("skip_delay")
 			skip_delay = clamp(text2num(params["skip_delay"]), 0, 1200)
 	update_icon(TRUE)

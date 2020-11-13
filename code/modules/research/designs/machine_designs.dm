@@ -430,7 +430,7 @@
 	name = "Machine Design (Weapon Recharger Board)"
 	desc = "The circuit board for a Weapon Recharger."
 	id = "recharger"
-	materials = list(MAT_GLASS = 1000, MAT_GOLD = 2000)
+	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
 	build_path = /obj/item/circuitboard/machine/recharger
 	category = list("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
@@ -546,6 +546,14 @@
 	build_path = /obj/item/circuitboard/machine/dish_drive
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
+/datum/design/board/ticket_machine
+	name = "Machine Design (Ticket Machine)"
+	desc = "The circuit board for a dish drive."
+	id = "ticket_machine"
+	build_path = /obj/item/circuitboard/machine/ticketmachine
+	category = list ("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SERVICE | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/board/stacking_unit_console
 	name = "Machine Design (Stacking Machine Console)"

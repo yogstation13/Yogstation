@@ -461,21 +461,25 @@ structure_check() searches for nearby cultist structures required for the invoca
 //Ritual of Dimensional Rending: Calls forth the avatar of Nar-Sie upon the station.
 /obj/effect/rune/narsie
 	cultist_name = "Nar-Sie"
-	cultist_desc = "tears apart dimensional barriers, calling forth the Geometer. Requires 9 invokers."
+	cultist_desc = "tears apart dimensional barriers, beginning the Red Harvest. You will need to protect 4 Bloodstones around the station, then the Anchor Bloodstone after invoking this rune or the summoning will backfire and need to be restarted. Requires 9 invokers, with the cult leader counting as half of this if they invoke the rune."
 	invocation = "TOK-LYR RQA-NAP G'OLT-ULOFT!!"
 	req_cultists = 9
+	req_cultists_text = "9 cultists, with the cult leader counting as 5 if they are the invoker"
 	icon = 'icons/effects/96x96.dmi'
 	color = RUNE_COLOR_DARKRED
 	icon_state = "rune_large"
 	pixel_x = -32 //So the big ol' 96x96 sprite shows up right
 	pixel_y = -32
-	scribe_delay = 500 //how long the rune takes to create
-	scribe_damage = 40.1 //how much damage you take doing it
+	scribe_delay = 300 //how long the rune takes to create
+	scribe_damage = 20 //how much damage you take doing it
 	var/used = FALSE
 
 /obj/effect/rune/narsie/Initialize(mapload, set_keyword)
 	. = ..()
 	GLOB.poi_list |= src
+	var/area/A = get_area(src)
+	priority_announce("An anomaly in veil physics has appeared in your station according to our scanners, the source being in [A.map_name]. It appears the anomaly is being stabilized by the cult of Nar-Sie!","Central Command Higher Dimensional Affairs", 'sound/ai/spanomalies.ogg')
+
 
 /obj/effect/rune/narsie/Destroy()
 	GLOB.poi_list -= src
@@ -483,6 +487,12 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 /obj/effect/rune/narsie/conceal() //can't hide this, and you wouldn't want to
 	return
+
+/obj/effect/rune/narsie/attack_hand(mob/living/user)
+	if(user.mind?.has_antag_datum(/datum/antagonist/cult/master))
+		req_cultists -= 4 //leader counts as 5 cultists if they are the invoker
+	..()
+	req_cultists = initial(req_cultists)
 
 /obj/effect/rune/narsie/invoke(var/list/invokers)
 	if(used)
@@ -501,15 +511,24 @@ structure_check() searches for nearby cultist structures required for the invoca
 			to_chat(M, "<span class='warning'>Nar-Sie is already on this plane!</span>")
 		log_game("Nar-Sie rune failed - already summoned")
 		return
+	if(SSticker.mode.bloodstone_cooldown)
+		for(var/M in invokers)
+			to_chat(M, "<span class='warning'>The summoning was recently disrupted! you will need to wait before the cult can manage another attempt!</span>")
+		return
+	if(SSticker.mode.bloodstone_list.len)
+		for(var/M in invokers)
+			to_chat(M, "<span class='warning'>The Red Harvest is already in progress! Protect the bloodstones!</span>")
+		log_game("Nar-Sie rune failed - bloodstones present")
+		return
 	//BEGIN THE SUMMONING
 	used = TRUE
 	..()
-	sound_to_playing_players('sound/effects/dimensional_rend.ogg')
-	var/turf/T = get_turf(src)
-	sleep(40)
+	sound_to_playing_players('sound/magic/clockwork/narsie_attack.ogg', volume = 100)
+	sleep(20)
 	if(src)
 		color = RUNE_COLOR_RED
-	new /obj/singularity/narsie/large/cult(T) //Causes Nar-Sie to spawn even if the rune has been removed
+	SSticker.mode.begin_bloodstone_phase() //activate the FINAL STAGE
+	used = FALSE
 
 /obj/effect/rune/narsie/attackby(obj/I, mob/user, params)	//Since the narsie rune takes a long time to make, add logging to removal.
 	if((istype(I, /obj/item/melee/cultblade/dagger) && iscultist(user)))
@@ -524,10 +543,10 @@ structure_check() searches for nearby cultist structures required for the invoca
 			message_admins("[ADMIN_LOOKUPFLW(user)] erased a Narsie rune with a null rod")
 			..()
 
-//Rite of Resurrection: Requires a dead or inactive cultist. When reviving the dead, you can only perform one revival for every sacrifice your cult has carried out.
+//Rite of Resurrection: Requires a dead or inactive cultist. When reviving the dead, you can only perform one revival for every three sacrifices your cult has carried out.
 /obj/effect/rune/raise_dead
 	cultist_name = "Revive"
-	cultist_desc = "requires a dead, mindless, or inactive cultist placed upon the rune. Provided there have been sufficient sacrifices, they will be given a new life."
+	cultist_desc = "requires a dead, mindless, or inactive cultist placed upon the rune. Provided there have been sufficient sacrifices, they will be given a new life. This will cause large amounts of damage to the invoker and the revived corpse."
 	invocation = "Pasnar val'keriam usinar. Savrae ines amutan. Yam'toth remium il'tarat!" //Depends on the name of the user - see below
 	icon_state = "1"
 	color = RUNE_COLOR_MEDIUMRED
@@ -537,7 +556,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	. = ..()
 	if(iscultist(user) || user.stat == DEAD)
 		var/revive_number = LAZYLEN(GLOB.sacrificed) - revives_used
-		. += "<b>Revives Remaining:</b> [revive_number]"
+		. += "<b>Revives Remaining:</b> [round(revive_number/SOULS_TO_REVIVE)]"
 
 /obj/effect/rune/raise_dead/invoke(var/list/invokers)
 	var/turf/T = get_turf(src)
@@ -576,6 +595,9 @@ structure_check() searches for nearby cultist structures required for the invoca
 		revives_used += SOULS_TO_REVIVE
 		mob_to_revive.revive(1, 1) //This does remove traits and such, but the rune might actually see some use because of it!
 		mob_to_revive.grab_ghost()
+		mob_to_revive.adjustBruteLoss(60)
+		var/damage4invoker = abs(user.health * 0.4)
+		user.adjustBruteLoss(damage4invoker)
 	if(!mob_to_revive.client || mob_to_revive.client.is_afk())
 		set waitfor = FALSE
 		var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [mob_to_revive.name], an inactive blood cultist?", ROLE_CULTIST, null, ROLE_CULTIST, 50, mob_to_revive)

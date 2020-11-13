@@ -1,5 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - rscadd: "Cargo now has a couple achievements of their own!"
-  - bugfix: "Fixed bug that caused achievements to not load nor save."

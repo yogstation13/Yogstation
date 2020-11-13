@@ -41,7 +41,7 @@
 		if(S)
 			S.update_icon()
 
-/obj/structure/stairs/Uncross(atom/movable/AM, turf/newloc)
+/obj/structure/stairs/Uncross(atom/movable/AM, atom/newloc)
 	if(!newloc || !AM)
 		return ..()
 	if(isliving(AM) && isTerminator() && (get_dir(src, newloc) == dir))

@@ -60,6 +60,33 @@ datum/crafting_recipe/food/donut/meat
 	result = /obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly
 	subcategory = CAT_PASTRY
 
+/datum/crafting_recipe/food/donut/laugh
+	name = "Sweet Pea Donut"
+	reqs = list(
+		/datum/reagent/consumable/laughsyrup = 3,
+		/obj/item/reagent_containers/food/snacks/donut = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/donut/laugh
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/donut/jelly/laugh
+	name = "Sweet Pea Jelly Donut"
+	reqs = list(
+		/datum/reagent/consumable/laughsyrup = 3,
+		/obj/item/reagent_containers/food/snacks/donut/jelly = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/donut/jelly/laugh
+	subcategory = CAT_PASTRY
+	
+/datum/crafting_recipe/food/donut/slimejelly/laugh
+	name = "Sweet Pea Jelly Donut"
+	reqs = list(
+		/datum/reagent/consumable/laughsyrup = 3,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/laugh
+	subcategory = CAT_PASTRY
+	
 ////////////////////////////////////////////////WAFFLES AND PANCAKES////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/bbpancakes
@@ -100,7 +127,7 @@ datum/crafting_recipe/food/donut/meat
 /datum/crafting_recipe/food/rofflewaffles
 	name = "Roffle Waffles"
 	reqs = list(
-		/datum/reagent/mushroomhallucinogen = 5,
+		/datum/reagent/drug/mushroomhallucinogen = 5,
 		/obj/item/reagent_containers/food/snacks/pastrybase = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/rofflewaffles
@@ -359,4 +386,14 @@ datum/crafting_recipe/food/donut/meat
 		/obj/item/reagent_containers/food/snacks/pastrybase = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/sugarcookie
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/jaffacake
+	name = "Jaffa Cake"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
+		/obj/item/reagent_containers/food/snacks/chocolatebar = 1,
+		/datum/reagent/consumable/orangejuice = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/jaffacake
 	subcategory = CAT_PASTRY

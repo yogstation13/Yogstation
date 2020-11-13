@@ -187,7 +187,7 @@
 
 /datum/reagent/drug/methamphetamine
 	name = "Methamphetamine"
-	description = "Reduces stun times by about 300%, speeds the user up, and allows the user to quickly recover stamina while dealing a small amount of Brain damage. If overdosed the subject will move randomly, laugh randomly, drop items and suffer from Toxin and Brain damage. If addicted the subject will constantly jitter and drool, before becoming dizzy and losing motor control and eventually suffer heavy toxin damage."
+	description = "Neutralizes mannitol. Reduces stun times by about 300%, speeds the user up, and allows the user to quickly recover stamina while dealing a small amount of Brain damage. If overdosed the subject will move randomly, laugh randomly, drop items and suffer from Toxin and Brain damage. If addicted the subject will constantly jitter and drool, before becoming dizzy and losing motor control and eventually suffer heavy toxin damage."
 	reagent_state = LIQUID
 	color = "#FAFAFA"
 	overdose_threshold = 20
@@ -196,7 +196,7 @@
 
 /datum/reagent/drug/methamphetamine/on_mob_metabolize(mob/living/L)
 	..()
-	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-1.6, blacklisted_movetypes=(FLYING|FLOATING))
 
 /datum/reagent/drug/methamphetamine/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_modifier(type)
@@ -460,3 +460,45 @@
 		M.emote(pick("twitch","laugh","frown"))
 	..()
 	. = 1
+/datum/reagent/drug/pumpup
+	name = "Pump-Up"
+	description = "Take on the world! A fast acting, hard hitting drug that pushes the limit on what you can handle."
+	reagent_state = LIQUID
+	color = "#e38e44"
+	metabolization_rate = 2 * REAGENTS_METABOLISM
+	overdose_threshold = 30
+
+/datum/reagent/drug/pumpup/on_mob_metabolize(mob/living/L)
+	..()
+	ADD_TRAIT(L, TRAIT_STUNRESISTANCE, type)
+
+/datum/reagent/drug/pumpup/on_mob_end_metabolize(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_STUNRESISTANCE, type)
+	..()
+
+/datum/reagent/drug/pumpup/on_mob_life(mob/living/carbon/M)
+	M.Jitter(5)
+
+	if(prob(5))
+		to_chat(M, "<span class='notice'>[pick("Go! Go! GO!", "You feel ready...", "You feel invincible...")]</span>")
+	if(prob(15))
+		M.losebreath++
+		M.adjustToxLoss(2, 0)
+	..()
+	. = 1
+
+/datum/reagent/drug/pumpup/overdose_start(mob/living/M)
+	to_chat(M, "<span class='userdanger'>You can't stop shaking, your heart beats faster and faster...</span>")
+
+/datum/reagent/drug/pumpup/overdose_process(mob/living/M)
+	M.Jitter(5)
+	if(prob(5))
+		M.drop_all_held_items()
+	if(prob(15))
+		M.emote(pick("twitch","drool"))
+	if(prob(20))
+		M.losebreath++
+		M.adjustStaminaLoss(4, 0)
+	if(prob(15))
+		M.adjustToxLoss(2, 0)
+	..()

@@ -32,22 +32,20 @@ GLOBAL_LIST_EMPTY(donators)
 		P = GLOB.preferences_datums[ckey]
 		if(P)
 			P.unlock_content |= 2
-	
+
 
 /world/update_status()
 
 	//BASIC SHIT
 	var/s = ""
+	s += "<img src=\"https://i.imgur.com/gNgarRJ.gif\">" //Banner image
 	var/server_name = CONFIG_GET(string/servername)
 	if (server_name)
-		s += "<b>[server_name]</b> &#8212; "
-	
-	s += "<b>[station_name()]] -- 99% LAG FREE</b><br>"; // The station & server name line
-	s += "(<a href=\"https://forums.yogstation.net/index.php\">Forums</a>|<a href=\"https://discord.gg/0keg6hQH05Ha8OfO\">Discord</a>)<br>" // The Forum & Discord links line
+		s += "<br><b>[server_name]</b> &#8212; 99% Lag Free!!"
+	s += "<br>(<a href=\"https://tinyurl.com/yogsfo\">Forums</a>|<a href=\"https://tinyurl.com/yogsdis\">Discord</a>)<br>" // The Forum & Discord links line
 	s += "<br><i>[pick(world.file2list("yogstation/strings/taglines.txt"))]</i><br>"
-	
-	
-	
+
+
 	//PLAYER COUNT
 	var/players = GLOB.clients.len
 	var/popcaptext = ""
@@ -56,14 +54,14 @@ GLOBAL_LIST_EMPTY(donators)
 	var/queuetext = ""
 	if(SSticker && SSticker.queued_players.len)
 		queuetext = ", [SSticker.queued_players.len] in queue"
-	
+
 	s += "\[[popcaptext][queuetext]"
-	
+
 	//HOST
 	var/hostedby = CONFIG_GET(string/hostedby)
 	if (!host && hostedby)
 		s += " hosted by <b>[hostedby]</b>"
-	
+
 	//RETURN
 	status = s
 	game_state = (CONFIG_GET(number/extreme_popcap) && players >= CONFIG_GET(number/extreme_popcap)) //tells the hub if we are full

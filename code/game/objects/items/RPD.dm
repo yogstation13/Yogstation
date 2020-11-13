@@ -68,8 +68,11 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 	),
 	"Station Equipment" = list(
 		new /datum/pipe_info/transit("Through Tube Station",		/obj/structure/c_transit_tube/station, PIPE_STRAIGHT),
+		new /datum/pipe_info/transit("Through Tube Station (Flipped)",/obj/structure/c_transit_tube/station/flipped, PIPE_STRAIGHT),
 		new /datum/pipe_info/transit("Terminus Tube Station",		/obj/structure/c_transit_tube/station/reverse, PIPE_UNARY),
+		new /datum/pipe_info/transit("Terminus Tube Station (Flipped)",/obj/structure/c_transit_tube/station/reverse/flipped, PIPE_UNARY),
 		new /datum/pipe_info/transit("Transit Tube Pod",			/obj/structure/c_transit_tube_pod, PIPE_ONEDIR),
+		new /datum/pipe_info/transit("Transit Tube Cargo Pod",		/obj/structure/c_transit_tube_pod/cargo, PIPE_ONEDIR),
 	)
 ))
 
@@ -193,6 +196,8 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	name = "Rapid Pipe Dispenser (RPD)"
 	desc = "A device used to rapidly pipe things."
 	icon = 'icons/obj/tools.dmi'
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	icon_state = "rpd"
 	flags_1 = CONDUCT_1
 	force = 10
@@ -200,7 +205,8 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(MAT_METAL=75000, MAT_GLASS=37500)
+	slot_flags = ITEM_SLOT_BELT
+	materials = list(/datum/material/iron=75000, /datum/material/glass=37500)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF
 	var/datum/effect_system/spark_spread/spark_system
@@ -253,18 +259,18 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	playsound(get_turf(user), 'sound/items/deconstruct.ogg', 50, 1)
 	return(BRUTELOSS)
 
-/obj/item/pipe_dispenser/ui_base_html(html)
-	var/datum/asset/spritesheet/assets = get_asset_datum(/datum/asset/spritesheet/pipes)
-	. = replacetext(html, "<!--customheadhtml-->", assets.css_tag())
+/obj/item/pipe_dispenser/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/pipes),
+	)
 
-/obj/item/pipe_dispenser/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/pipe_dispenser/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		var/datum/asset/assets = get_asset_datum(/datum/asset/spritesheet/pipes)
 		assets.send(user)
 
-		ui = new(user, src, ui_key, "rpd", name, 425, 472, master_ui, state)
+		ui = new(user, src, "RapidPipeDispenser", name)
 		ui.open()
 
 /obj/item/pipe_dispenser/ui_data(mob/user)

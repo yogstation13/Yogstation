@@ -462,11 +462,11 @@
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
 	return
 
-/obj/mecha/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+/obj/mecha/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
 	. = ..()
 	if(speaker == occupant)
 		if(radio?.broadcasting)
-			radio.talk_into(speaker, text, , spans, message_language)
+			radio.talk_into(speaker, text, , spans, message_language, message_mods)
 		//flick speech bubble
 		var/list/speech_bubble_recipients = list()
 		for(var/mob/M in get_hearers_in_view(7,src))
@@ -526,6 +526,8 @@
 		if(internal_damage & MECHA_INT_CONTROL_LOST)
 			target = safepick(oview(1,src))
 		if(!melee_can_hit || !istype(target, /atom))
+			return
+		if(equipment_disabled)
 			return
 		target.mech_melee_attack(src)
 		melee_can_hit = 0
@@ -669,11 +671,12 @@
 		if(..()) //mech was thrown
 			return
 		if(bumpsmash && occupant) //Need a pilot to push the PUNCH button.
-			if(nextsmash < world.time)
-				obstacle.mech_melee_attack(src)
-				nextsmash = world.time + smashcooldown
-				if(!obstacle || obstacle.CanPass(src,newloc))
-					step(src,dir)
+			if(!equipment_disabled)
+				if(nextsmash < world.time)
+					obstacle.mech_melee_attack(src)
+					nextsmash = world.time + smashcooldown
+					if(!obstacle || obstacle.CanPass(src,newloc))
+						step(src,dir)
 		if(isobj(obstacle))
 			var/obj/O = obstacle
 			if(!O.anchored)
@@ -1098,7 +1101,7 @@
 
 	if(L && L.client)
 		L.update_mouse_pointer()
-		L.client.change_view(CONFIG_GET(string/default_view))
+		L.client.view_size.resetToDefault()
 		zoom_mode = 0
 
 /////////////////////////
