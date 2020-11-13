@@ -672,7 +672,7 @@
 
 /obj/structure/sign/poster/official/keep_calm
 	name = "Keep Calm"
-	desc = "This sign reminds employees to not panic in the unlikely event of an emergency."
+	desc = "This poster reminds employees to not panic in the unlikely event of an emergency."
 	icon_state = "poster37_legit" //36 is taken
 
 /obj/item/wantedposterposter
