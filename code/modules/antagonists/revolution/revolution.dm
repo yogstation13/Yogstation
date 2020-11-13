@@ -209,7 +209,7 @@
 
 //blunt trauma deconversions call this through species.dm spec_attacked_by()
 /datum/antagonist/rev/proc/remove_revolutionary(borged, deconverter)
-	log_attack("[key_name(owner.current)] has been deconverted from the revolution by [key_name(deconverter)]!")
+	log_attack("[key_name(owner.current)] has been deconverted from the revolution by [ismob(deconverter) ? key_name(deconverter) : deconverter]!")
 	if(borged)
 		message_admins("[ADMIN_LOOKUPFLW(owner.current)] has been borged while being a [name]")
 	owner.special_role = null
@@ -219,9 +219,8 @@
 	owner.remove_antag_datum(type)
 
 /datum/antagonist/rev/head/remove_revolutionary(borged,deconverter)
-	if(!borged)
-		return
-	. = ..()
+	if(borged || deconverter == "gamemode")
+		. = ..()
 
 /datum/antagonist/rev/head/equip_rev()
 	var/mob/living/carbon/H = owner.current
@@ -263,6 +262,8 @@
 /datum/team/revolution
 	name = "Revolution"
 	var/max_headrevs = 3
+	var/list/ex_headrevs = list() // Dynamic removes revs on loss, used to keep a list for the roundend report.
+	var/list/ex_revs = list()
 
 /datum/team/revolution/proc/update_objectives(initial = FALSE)
 	var/untracked_heads = SSjob.get_all_heads()
@@ -320,7 +321,7 @@
 	return TRUE
 
 /datum/team/revolution/roundend_report()
-	if(!members.len)
+	if(!members.len && !ex_headrevs.len)
 		return
 
 	var/list/result = list()
@@ -340,8 +341,18 @@
 
 
 	var/list/targets = list()
-	var/list/datum/mind/headrevs = get_antag_minds(/datum/antagonist/rev/head)
-	var/list/datum/mind/revs = get_antag_minds(/datum/antagonist/rev,TRUE)
+	var/list/datum/mind/headrevs
+	var/list/datum/mind/revs
+	if(ex_headrevs.len)
+		headrevs = ex_headrevs
+	else
+		headrevs = get_antag_minds(/datum/antagonist/rev/head, TRUE)
+
+	if(ex_revs.len)
+		revs = ex_revs
+	else
+		revs = get_antag_minds(/datum/antagonist/rev, TRUE)
+		
 	if(check_victory())
 		for(var/H in revs)
 			var/datum/mind/M = H
