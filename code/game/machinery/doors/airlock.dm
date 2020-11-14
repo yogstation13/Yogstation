@@ -739,8 +739,6 @@
 
 /obj/machinery/door/airlock/examine(mob/user)
 	. = ..()
-	if(obj_flags & EMAGGED)
-		. += "<span class='warning'>Its access panel is smoking slightly.</span>"
 	if(charge && !panel_open && in_range(user, src))
 		. += "<span class='warning'>The maintenance panel seems haphazardly fastened.</span>"
 	if(charge && panel_open)
@@ -788,7 +786,6 @@
 		else
 			to_chat(user, "<span class='warning'>Airlock AI control has been blocked with a firewall. Unable to hack.</span>")
 	if(obj_flags & EMAGGED)
-		to_chat(user, "<span class='warning'>Unable to interface: Airlock is unresponsive.</span>")
 		return
 	if(detonated)
 		to_chat(user, "<span class='warning'>Unable to interface. Airlock control panel damaged.</span>")
