@@ -164,10 +164,12 @@
 
 /obj/item/pen/sleepy/Initialize()
 	. = ..()
-	create_reagents(45, OPENCONTAINER)
+	create_reagents(75)
 	reagents.add_reagent(/datum/reagent/toxin/chloralhydrate, 20)
 	reagents.add_reagent(/datum/reagent/toxin/mutetoxin, 15)
 	reagents.add_reagent(/datum/reagent/toxin/staminatoxin, 10)
+	reagents.add_reagent(/reagent/toxin/pancuronium, 15)
+	reagents.add_reagent(/reagent/toxin/sodium_thiopental, 15)
 
 /*
  * (Alan) Edaggers
