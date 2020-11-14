@@ -500,11 +500,11 @@
 /mob/dead/observer/MouseWheelOn(atom/A, delta_x, delta_y, params)
 	var/list/modifier = params2list(params)
 	if(modifier["shift"])
-		var/view = 0
 		if(delta_y > 0)
-			view = -1
+			view -= 1
 		else
-			view = 1
+			view += 1
+		view = clamp(view, 0, 5) // Allows you to scale up 5 times
 		add_view_range(view)
 
 /mob/proc/check_click_intercept(params,A)
