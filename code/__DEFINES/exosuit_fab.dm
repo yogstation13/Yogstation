@@ -13,7 +13,7 @@
 #define EXOSUIT_MODULE_RIPLEY		(1<<0)
 /// Module is compatible with Odyseeus Exosuit models
 #define EXOSUIT_MODULE_ODYSSEUS		(1<<1)
-/// Module is compatible with Ctrl+v Exosuit models
+/// Module is compatible with Firefighter Exosuit models
 #define EXOSUIT_MODULE_FIREFIGHTER	(1<<2)
 /// Module is compatible with Gygax Exosuit models
 #define EXOSUIT_MODULE_GYGAX		(1<<3)
