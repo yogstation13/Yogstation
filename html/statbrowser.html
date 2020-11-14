@@ -699,7 +699,7 @@ function draw_status() {
 			document.getElementById("statcontent").appendChild(document.createElement("br"));
 		} else {
 			var div = document.createElement("div");
-			div[textContentKey] = status_tab_parts[i];
+			div["innerHTML"] = status_tab_parts[i];
 			document.getElementById("statcontent").appendChild(div);
 		}
 	}
