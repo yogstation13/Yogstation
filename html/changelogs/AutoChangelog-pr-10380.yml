@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "damage slowdown now starts at 40% damage rather than 40 damage"
