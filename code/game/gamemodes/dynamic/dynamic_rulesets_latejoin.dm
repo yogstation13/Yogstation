@@ -85,7 +85,7 @@
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 1
-	cost = 20
+	cost = 101
 	requirements = list(80,75,60,60,55,50,40,30,20,20)
 	high_population_requirement = 50
 	flags = HIGHLANDER_RULESET
