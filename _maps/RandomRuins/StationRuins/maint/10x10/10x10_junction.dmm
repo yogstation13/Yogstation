@@ -51,8 +51,7 @@
 /area/template_noop)
 "v" = (
 /obj/machinery/door/poddoor/shutters/preopen{
-	id = "junctionshutter";
-	state_open = 1
+	id = "junctionshutter"
 	},
 /turf/open/floor/plating,
 /area/template_noop)
