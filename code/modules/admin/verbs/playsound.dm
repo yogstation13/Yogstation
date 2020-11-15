@@ -1,5 +1,5 @@
 /client/proc/play_sound(S as sound)
-	set category = "Admin.Fun"
+	set category = "Server.Global Messages"
 	set name = "Play Global Sound"
 	if(!check_rights(R_SOUNDS))
 		return
@@ -47,7 +47,7 @@
 
 
 /client/proc/play_local_sound(S as sound)
-	set category = "Admin.Fun"
+	set category = "Server.Global Messages"
 	set name = "Play Local Sound"
 	if(!check_rights(R_SOUNDS))
 		return
@@ -58,7 +58,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Local Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/play_web_sound()
-	set category = "Admin.Fun"
+	set category = "Server.Global Messages"
 	set name = "Play Internet Sound"
 	if(!check_rights(R_SOUNDS))
 		return
@@ -142,7 +142,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Internet Sound")
 
 /client/proc/set_round_end_sound(S as sound)
-	set category = "Admin.Fun"
+	set category = "Server.Global Messages"
 	set name = "Set Round End Sound"
 	if(!check_rights(R_SOUNDS))
 		return
@@ -150,7 +150,7 @@
 	//Yogs start -- Adds confirm for whenever an admin has already set the roundend sound.
 	var/static/lastadmin
 	var/static/lastsound
-	
+
 	if(lastadmin && src.ckey != lastadmin)
 		if(alert("Warning: Another Admin, [lastadmin], already set the roundendsound to [lastsound]. Overwrite?",,"Yes","Cancel") != "Yes")
 			return
@@ -164,7 +164,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Set Round End Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/stop_sounds()
-	set category = "Debug"
+	set category = "Server.Global Messages"
 	set name = "Stop All Playing Sounds"
 	if(!src.holder)
 		return
