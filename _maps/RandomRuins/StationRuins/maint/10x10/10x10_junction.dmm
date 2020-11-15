@@ -12,8 +12,7 @@
 	id = "junctionshutter";
 	name = "Shutters Control";
 	pixel_x = 26;
-	pixel_y = 4;
-	sync_doors = 0
+	pixel_y = 4
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -27,8 +26,7 @@
 	id = "junctionshutter";
 	name = "Shutters Control";
 	pixel_x = -4;
-	pixel_y = 26;
-	sync_doors = 0
+	pixel_y = 26
 	},
 /obj/machinery/light{
 	dir = 2
@@ -53,7 +51,8 @@
 /area/template_noop)
 "v" = (
 /obj/machinery/door/poddoor/shutters/preopen{
-	id = "junctionshutter"
+	id = "junctionshutter";
+	state_open = 1
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -62,8 +61,7 @@
 	id = "junctionshutter";
 	name = "Shutters Control";
 	pixel_x = -4;
-	pixel_y = -26;
-	sync_doors = 0
+	pixel_y = -26
 	},
 /obj/machinery/light{
 	dir = 1
@@ -96,8 +94,7 @@
 	id = "junctionshutter";
 	name = "Shutters Control";
 	pixel_x = -26;
-	pixel_y = 4;
-	sync_doors = 0
+	pixel_y = 4
 	},
 /obj/machinery/light{
 	dir = 4;
