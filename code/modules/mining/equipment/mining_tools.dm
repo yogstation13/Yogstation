@@ -50,6 +50,17 @@
 	desc = "A pickaxe with a diamond pick head. Extremely robust at cracking rock walls and digging up dirt."
 	force = 19
 
+obj/item/pickaxe/bonepickaxe
+	name = "bone pickaxe"
+	desc = "A spine and ribcage tied tightly with weaver sinew...atleast its better than your bare hands at digging up dirt."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "bonepickaxe"
+	item_state = "bonepickaxe"
+	toolspeed = 1.5
+	force = 9
+	throwforce = 6
+	slot_flags = ITEM_SLOT_BELT
+
 /obj/item/pickaxe/drill
 	name = "mining drill"
 	icon_state = "handdrill"

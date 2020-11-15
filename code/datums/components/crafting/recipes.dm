@@ -606,6 +606,14 @@
 				/obj/item/stack/sheet/sinew = 2)
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/bonepickaxe
+	name = "Bone Pickaxe"
+	result = /obj/item/pickaxe/bonepickaxe
+	time = 50
+	reqs = list(/obj/item/stack/sheet/bone = 3,
+				/obj/item/stack/sheet/sinew = 4)
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/drakecloak
 	name = "Ash Drake Armour"
 	result = /obj/item/clothing/suit/hooded/cloak/drake
