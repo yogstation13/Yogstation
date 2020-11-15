@@ -280,6 +280,7 @@
 	var/A = display_names[choice] // This needs to be on a separate var as list member access is not allowed for new
 	var/obj/item/nullrod/holy_weapon = new A
 
+	GLOB.holy_weapon_type = holy_weapon.type
 	SSblackbox.record_feedback("tally", "chaplain_weapon", 1, "[choice]")
 
 	if(holy_weapon)
