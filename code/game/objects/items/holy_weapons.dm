@@ -264,8 +264,6 @@
   M : The mob choosing a nullrod reskin
   */
 /obj/item/nullrod/proc/reskin_holy_weapon(mob/M)
-	if(GLOB.holy_weapon_type)
-		return
 	var/list/display_names = list()
 	var/list/nullrod_icons = list()
 	for(var/V in typesof(/obj/item/nullrod))
@@ -281,8 +279,6 @@
 
 	var/A = display_names[choice] // This needs to be on a separate var as list member access is not allowed for new
 	var/obj/item/nullrod/holy_weapon = new A
-
-	GLOB.holy_weapon_type = holy_weapon.type
 
 	SSblackbox.record_feedback("tally", "chaplain_weapon", 1, "[choice]")
 
