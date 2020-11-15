@@ -267,7 +267,7 @@
 		return //we're tied with the dark, so we don't get scared of it; don't cleanse outright to avoid cheese
 	var/turf/T = get_turf(quirk_holder)
 	var/lums = T.get_lumcount()
-	if(istype(T.loc, /area/shuttle)
+	if(istype(T.loc, /area/shuttle))
 		return
 	if(lums <= 0.2)
 		if(quirk_holder.m_intent == MOVE_INTENT_RUN)

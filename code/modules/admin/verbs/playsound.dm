@@ -74,7 +74,6 @@
 		var/stop_web_sounds = FALSE
 		var/list/music_extra_data = list()
 		if(length(web_sound_input))
-
 			web_sound_input = trim(web_sound_input)
 			if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
 				to_chat(src, "<span class='boldwarning'>Non-http(s) URIs are not allowed.</span>", confidential=TRUE)
