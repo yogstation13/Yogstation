@@ -111,7 +111,7 @@
   * Some kind of debug verb that gives atmosphere environment details
   */
 /mob/proc/Cell()
-	set category = "Admin"
+	set category = "Misc.Server Debug"
 	set hidden = 1
 
 	if(!loc)
