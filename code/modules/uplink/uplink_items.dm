@@ -1891,12 +1891,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/hierophant_antenna
 	restricted_roles = list("Shaft Miner")
 
-/datum/uplink_item/role_restricted/king_goat_plushie
-	name = "King Goat Plushie"
-	desc = "This plushie contains an inkling of the King Goat's Power."
-	item = /obj/item/toy/plush/goatplushie/angry/kinggoat
-	cost = 10
-	restricted_roles = list("Clerk")
 // Pointless
 /datum/uplink_item/badass
 	category = "(Pointless) Badassery"
