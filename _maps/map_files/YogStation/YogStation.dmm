@@ -44264,17 +44264,6 @@
 /obj/item/clothing/gloves/color/fyellow,
 /turf/open/floor/plasteel,
 /area/storage/tools)
-"jdE" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/door/airlock/external{
-	name = "Atmospherics External Airlock";
-	req_access_txt = "24"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/space/basic,
-/area/engine/atmos_distro)
 "jdH" = (
 /obj/structure/rack,
 /obj/item/tank/internals/oxygen,
@@ -45009,10 +44998,6 @@
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
-"jGL" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space)
 "jGO" = (
 /obj/machinery/light{
 	dir = 1
@@ -46587,13 +46572,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"kWw" = (
-/obj/machinery/camera{
-	c_tag = "Atmospherics Exterior Airlock"
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space)
 "kXj" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only{
@@ -47873,6 +47851,16 @@
 /obj/structure/spirit_board,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
+"mey" = (
+/obj/machinery/door/airlock/external{
+	name = "Atmospherics External Airlock";
+	req_access_txt = "24"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/engine/atmos_distro)
 "mgH" = (
 /obj/effect/turf_decal/arrows/white{
 	color = "#99ccff"
@@ -49387,11 +49375,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"njd" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plasteel,
-/area/space)
 "njh" = (
 /obj/structure/sink{
 	dir = 4;
@@ -50889,6 +50872,16 @@
 /obj/structure/sign/warning/pods,
 /turf/closed/wall,
 /area/engine/engineering)
+"oqL" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Incinerator";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "ord" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -51655,13 +51648,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"oQA" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/space/basic,
-/area/space)
 "oQG" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -54184,6 +54170,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"qQi" = (
+/obj/structure/reagent_dispensers/watertank,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "qQw" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
@@ -56565,13 +56556,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"sNh" = (
-/obj/machinery/camera{
-	c_tag = "Incinerator";
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "sOm" = (
 /obj/machinery/portable_atmospherics/scrubber/huge,
 /turf/open/floor/plasteel/dark,
@@ -56666,6 +56650,9 @@
 /obj/item/phone,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"sVj" = (
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "sVz" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/machinery/atmospherics/miner/nitrogen,
@@ -59055,6 +59042,13 @@
 /obj/item/stock_parts/subspace/amplifier,
 /turf/open/floor/plasteel/white,
 /area/storage/tech)
+"uOs" = (
+/obj/machinery/camera{
+	c_tag = "Atmospherics Exterior Airlock"
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
 "uQe" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
@@ -100026,7 +100020,7 @@ avy
 avy
 avy
 aCV
-kWw
+uOs
 gtZ
 pXS
 pXS
@@ -100282,8 +100276,8 @@ uVQ
 waO
 nrx
 oHT
-jdE
-jGL
+mey
+pEf
 aaa
 gXs
 aaa
@@ -102080,8 +102074,8 @@ bMA
 bvA
 aaf
 cfj
-njd
-sNh
+qQi
+sVj
 vvW
 reu
 tDz
@@ -103109,7 +103103,7 @@ cfj
 cfj
 cfj
 irr
-nvh
+oqL
 cmd
 bHm
 oiE
@@ -104651,7 +104645,7 @@ ldW
 ldW
 bzs
 dJr
-goy
+aoV
 gXs
 rkQ
 kzb
@@ -104907,7 +104901,7 @@ ldW
 ldW
 ldW
 bzs
-oQA
+dJr
 aaa
 aaa
 aaa
