@@ -18029,17 +18029,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"aYB" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/window/southleft{
-	name = "Virology";
-	req_access_txt = "39;24"
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "aYC" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -60553,6 +60542,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"vLb" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/window/southleft{
+	name = "Virology";
+	req_one_access_txt = "39;24"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "vLx" = (
 /obj/machinery/recharge_station,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
@@ -105913,7 +105913,7 @@ aZO
 mhb
 mdx
 bwQ
-aYB
+vLb
 dRN
 bZQ
 aNG
