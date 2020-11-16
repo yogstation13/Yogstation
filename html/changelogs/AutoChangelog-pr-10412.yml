@@ -1,5 +1,0 @@
-author: "FatalEYES"
-delete-after: true 
-changes: 
-  - bugfix: "fixed plating under an airlock in atmos"
-  - tweak: "moved a camera in atmos"
