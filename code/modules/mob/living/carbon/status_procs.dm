@@ -13,7 +13,7 @@
 		return
 	if(!IsParalyzed())
 		to_chat(src, "<span class='notice'>You're too exhausted to keep going...</span>")
-	SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STAMCRIT)
+	SEND_SIGNAL(src, COMSIG_CARBON_STATUS_STAMCRIT)
 	stam_paralyzed = TRUE
 
 /mob/living/carbon/adjust_drugginess(amount)
