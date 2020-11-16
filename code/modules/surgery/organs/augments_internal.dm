@@ -123,10 +123,7 @@
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/clear_stuns()
 	if(owner || !(organ_flags & ORGAN_FAILING))
-		owner.SetStun(0)
-		owner.SetKnockdown(0)
-		owner.SetImmobilized(0)
-		owner.SetParalyzed(0)
+		owner.remove_CC()
 
 /obj/item/organ/cyberimp/brain/anti_stun/emp_act(severity)
 	. = ..()
