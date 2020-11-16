@@ -58,6 +58,12 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	"ù" = RADIO_CHANNEL_AI_PRIVATE,
 	"÷" = MODE_VOCALCORDS
 ))
+///This is the list of all keys that are not techincially "radios" but use radio prefixes like :g and .b
+GLOBAL_LIST_INIT(special_radio_keys, list(
+	MODE_KEY_BINARY = MODE_TOKEN_BINARY,
+	MODE_KEY_CHANGELING = MODE_TOKEN_CHANGELING
+))
+
 
 /mob/living/proc/Ellipsis(original_msg, chance = 50, keep_words)
 	if(chance <= 0)
