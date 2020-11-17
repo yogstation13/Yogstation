@@ -39827,6 +39827,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"gja" = (
+/obj/structure/table,
+/obj/item/storage/box/bodybags,
+/turf/open/floor/plasteel/dark,
+/area/science/robotics/lab)
 "gjl" = (
 /turf/closed/wall,
 /area/quartermaster/warehouse)
@@ -49544,14 +49549,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"nJj" = (
-/obj/structure/table/optable{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/storage/box/bodybags,
-/turf/open/floor/plasteel/dark,
-/area/science/robotics/lab)
 "nJu" = (
 /obj/machinery/smartfridge/drying_rack,
 /obj/effect/decal/cleanable/cobweb,
@@ -110462,7 +110459,7 @@ pir
 bfV
 kZM
 wQQ
-nJj
+gja
 rCu
 qCc
 rBv
