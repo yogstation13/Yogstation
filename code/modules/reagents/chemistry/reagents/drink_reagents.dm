@@ -475,6 +475,7 @@
 	M.drowsyness = 0
 	M.AdjustSleeping(-40, FALSE)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
+	M.apply_effect(5,EFFECT_IRRADIATE,0)
 	..()
 	. = 1
 
