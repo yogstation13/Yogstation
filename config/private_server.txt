@@ -1,5 +1,7 @@
 #This file contains configuration options specific to yogstation that should not be used on downstreams or testing servers. You may edit this file and submit a PR if you wish to suggest changes to the server configuration of the yogstation server
 
+$include resources_private.txt
+
 ## World address and port for server receiving cross server messages
 ## Use '+' to denote spaces in ServerName
 ## Repeat this entry to add more servers
