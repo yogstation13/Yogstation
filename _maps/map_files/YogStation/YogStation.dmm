@@ -23155,12 +23155,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"bnj" = (
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "bnl" = (
 /obj/item/stack/sheet/glass,
 /obj/structure/table/glass,
@@ -42043,6 +42037,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+"hTk" = (
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/machinery/vending/modularpc,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "hTI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/white,
@@ -49604,23 +49605,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"nCn" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/structure/rack,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "nCq" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 10
@@ -53605,6 +53589,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"qxj" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/vending/modularpc,
+/turf/open/floor/plasteel,
+/area/clerk)
 "qxr" = (
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer1{
 	dir = 8
@@ -60530,6 +60531,10 @@
 /obj/machinery/atmospherics/pipe/simple/purple/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"vJf" = (
+/obj/machinery/lapvend,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "vJk" = (
 /obj/effect/landmark/stationroom/maint/threexthree,
 /turf/template_noop,
@@ -89500,7 +89505,7 @@ cNG
 bgV
 bpG
 aZK
-bbR
+vJf
 bbR
 bqt
 cBq
@@ -89757,7 +89762,7 @@ bfR
 bgW
 bNH
 aZK
-bnj
+hTk
 bbR
 bbR
 bbR
@@ -98727,7 +98732,7 @@ ayG
 sXT
 ayG
 ayG
-nCn
+qxj
 ibc
 aDw
 iMM
