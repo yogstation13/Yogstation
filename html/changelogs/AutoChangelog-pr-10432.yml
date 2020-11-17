@@ -1,0 +1,4 @@
+author: "wejengin2"
+delete-after: true 
+changes: 
+  - bugfix: "removes a duplicate injector on mining base"
