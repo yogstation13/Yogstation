@@ -39827,11 +39827,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"gja" = (
-/obj/structure/table,
-/obj/item/storage/box/bodybags,
-/turf/open/floor/plasteel/dark,
-/area/science/robotics/lab)
 "gjl" = (
 /turf/closed/wall,
 /area/quartermaster/warehouse)
@@ -49732,6 +49727,14 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"nPQ" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/robotics/lab)
 "nPR" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -52371,6 +52374,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"pKv" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/color/latex,
+/obj/item/storage/box/bodybags,
+/turf/open/floor/plasteel/dark,
+/area/science/robotics/lab)
 "pKE" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
@@ -109945,7 +109954,7 @@ bfW
 bfV
 mDk
 bsQ
-bsQ
+nPQ
 ctm
 eto
 blC
@@ -110459,7 +110468,7 @@ pir
 bfV
 kZM
 wQQ
-gja
+pKv
 rCu
 qCc
 rBv
