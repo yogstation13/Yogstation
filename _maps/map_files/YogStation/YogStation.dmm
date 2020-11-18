@@ -27632,9 +27632,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"bCs" = (
-/turf/closed/wall,
-/area/storage/tech)
 "bCu" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/public/glass{
@@ -44605,6 +44602,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"kfR" = (
+/turf/closed/wall/r_wall,
+/area/storage/tech)
 "kgS" = (
 /obj/structure/closet/crate{
 	icon_state = "crateopen"
@@ -91856,15 +91856,15 @@ bNI
 bNI
 bNI
 bHE
-bCs
-bCs
+kfR
+kfR
 ccA
 bGu
 gDG
 bJi
 ccA
-bCs
-bCs
+kfR
+kfR
 cay
 ccw
 ciZ
@@ -92113,7 +92113,7 @@ mMH
 cCf
 bNI
 bHE
-bCs
+kfR
 eVJ
 hcN
 jld
@@ -92121,7 +92121,7 @@ kMi
 uOe
 fQR
 lql
-bCs
+kfR
 cay
 ccw
 ccw
@@ -92370,7 +92370,7 @@ cCd
 cCe
 bNI
 bHE
-bCs
+kfR
 ojh
 mJy
 iWV
@@ -92378,7 +92378,7 @@ wPL
 wxB
 vsP
 qLd
-bCs
+kfR
 cay
 ccw
 bRq
@@ -92627,7 +92627,7 @@ bNJ
 cCe
 bNI
 bHE
-bCs
+kfR
 tzL
 ocD
 pfl
@@ -92635,7 +92635,7 @@ weR
 dzD
 sfV
 lwC
-bCs
+kfR
 lkF
 ccw
 pHO
@@ -92884,7 +92884,7 @@ xtS
 svR
 bNI
 bHE
-bCs
+kfR
 cMh
 eCt
 kie
@@ -92892,7 +92892,7 @@ cIZ
 hqB
 gmQ
 vHw
-bCs
+kfR
 cay
 ccw
 mqz
@@ -93141,7 +93141,7 @@ xPt
 juw
 bNI
 xLY
-bCs
+kfR
 juo
 kaj
 exY
@@ -93149,7 +93149,7 @@ rPP
 leu
 hZA
 xZE
-bCs
+kfR
 cay
 ccw
 hha
@@ -93398,7 +93398,7 @@ bNJ
 cCc
 bNI
 bHE
-bCs
+kfR
 gIE
 vHq
 mSs
@@ -93406,7 +93406,7 @@ qRN
 mSs
 vzc
 kCd
-bCs
+kfR
 cay
 ccw
 wTx
@@ -93655,7 +93655,7 @@ bNJ
 cCb
 bNI
 bHE
-bCs
+kfR
 cRi
 sKA
 lyB
@@ -93663,7 +93663,7 @@ fyA
 gRh
 hZA
 tVM
-bCs
+kfR
 cay
 ccw
 yly
@@ -93912,15 +93912,15 @@ bNJ
 bSz
 bNI
 bHE
-bCs
+kfR
 xLZ
 wMs
-bCs
-bCs
-bCs
-bCs
-bCs
-bCs
+kfR
+kfR
+kfR
+kfR
+kfR
+kfR
 cay
 ccw
 cig
@@ -94169,10 +94169,10 @@ bNI
 bNI
 bNI
 bTz
-bCs
-bCs
+kfR
+kfR
 bYZ
-bCs
+kfR
 pNb
 pIF
 huU
