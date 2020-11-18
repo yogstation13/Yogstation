@@ -63,7 +63,7 @@
 		dat += concatenated_logs.Join("<br>")
 		dat += "</font>"
 
-	var/datum/browser/popup = new(usr, "invidual_logging_[key_name(M)]", "Individual Logs", 600, 650)
+	var/datum/browser/popup = new(usr, "invidual_logging_[key_name(M)]", "Individual Logs", 650, 600)
 	popup.set_content(dat.Join())
 	popup.open()
 
