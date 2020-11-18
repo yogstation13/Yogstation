@@ -52,7 +52,7 @@
 
 obj/item/pickaxe/bonepickaxe
 	name = "bone pickaxe"
-	desc = "A spine and ribcage tied tightly with weaver sinew...atleast its better than your bare hands at digging up dirt."
+	desc = "A spine and ribcage tied tightly with weaver sinew...at least it's better than your bare hands at digging up dirt."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "bonepickaxe"
 	item_state = "bonepickaxe"
