@@ -56,7 +56,7 @@ obj/item/pickaxe/bonepickaxe
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "bonepickaxe"
 	item_state = "bonepickaxe"
-	toolspeed = 1.5
+	toolspeed = 1
 	force = 9
 	throwforce = 6
 	slot_flags = ITEM_SLOT_BELT
