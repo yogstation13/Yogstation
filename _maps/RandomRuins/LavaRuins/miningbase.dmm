@@ -2577,6 +2577,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"Jq" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	on = 1;
+	volume_rate = 200
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/mine/living_quarters)
 "Jz" = (
 /obj/machinery/advanced_airlock_controller/lavaland{
 	pixel_y = 24
@@ -2804,17 +2811,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"Ro" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector{
-	on = 1;
-	volume_rate = 200
-	},
-/obj/machinery/atmospherics/components/unary/outlet_injector{
-	on = 1;
-	volume_rate = 200
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/mine/living_quarters)
 "Ru" = (
 /obj/structure/sign/warning/docking,
@@ -3654,7 +3650,7 @@ ac
 ac
 ac
 ak
-Ro
+Jq
 bF
 Ew
 ht

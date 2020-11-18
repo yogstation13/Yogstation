@@ -101,7 +101,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	force = 8
 	tool_behaviour = TOOL_SHOVEL
-	toolspeed = 1
+	toolspeed = 0.7
 	usesound = 'sound/effects/shovel_dig.ogg'
 	throwforce = 4
 	item_state = "shovel"
