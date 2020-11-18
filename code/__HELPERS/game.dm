@@ -468,7 +468,7 @@
   * Arguments:
   * * Question: String, what do you want to ask them
   * * jobbanType: List, Which roles/jobs to exclude from being asked
-  * * gametypeCheck: Datum, Check if they have the time requirement for that role
+  * * gametypeCheck: Datum, Check if they have the time required for that role
   * * be_special_flag: Bool, Only notify ghosts with special antag on
   * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
   * * ignore_category: Define, ignore_category: People with this category(defined in poll_ignore.dm) turned off dont get the message
@@ -490,7 +490,7 @@
   * Arguments:
   * * Question: String, what do you want to ask them
   * * jobbanType: List, Which roles/jobs to exclude from being asked
-  * * gametypeCheck: Datum, Check if they have the time requirement for that role
+  * * gametypeCheck: Datum, Check if they have the time required for that role
   * * be_special_flag: Bool, Only notify ghosts with special antag on
   * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
   * * ignore_category: Define, ignore_category: People with this category(defined in poll_ignore.dm) turned off dont get the message
@@ -536,7 +536,7 @@
   * Arguments:
   * * Question: String, what do you want to ask them
   * * jobbanType: List, Which roles/jobs to exclude from being asked
-  * * gametypeCheck: Datum, Check if they have the time requirement for that role
+  * * gametypeCheck: Datum, Check if they have the time required for that role
   * * be_special_flag: Bool, Only notify ghosts with special antag on
   * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
   * * M: Mob, /mob to offer
@@ -556,7 +556,7 @@
   * Arguments:
   * * Question: String, what do you want to ask them
   * * jobbanType: List, Which roles/jobs to exclude from being asked
-  * * gametypeCheck: Datum, Check if they have the time requirement for that role
+  * * gametypeCheck: Datum, Check if they have the time required for that role
   * * be_special_flag: Bool, Only notify ghosts with special antag on
   * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
   * * mobs: List, list of mobs to offer up
