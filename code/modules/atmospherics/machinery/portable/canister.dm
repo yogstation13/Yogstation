@@ -55,7 +55,14 @@
 		"pluoxium" = /obj/machinery/portable_atmospherics/canister/pluoxium,
 		"caution" = /obj/machinery/portable_atmospherics/canister,
 		"miasma" = /obj/machinery/portable_atmospherics/canister/miasma,
-		"dilithium" = /obj/machinery/portable_atmospherics/canister/dilithium
+		"dilithium" = /obj/machinery/portable_atmospherics/canister/dilithium,
+		"freon" = /obj/machinery/portable_atmospherics/canister/freon,
+		"hydrogen" = /obj/machinery/portable_atmospherics/canister/hydrogen,
+		"healium" = /obj/machinery/portable_atmospherics/canister/healium,
+		"proto_nitrate" = /obj/machinery/portable_atmospherics/canister/proto_nitrate,
+		"cyrion_b" = /obj/machinery/portable_atmospherics/canister/cyrion_b,
+		"halon" = /obj/machinery/portable_atmospherics/canister/halon,
+		"hexane" = /obj/machinery/portable_atmospherics/canister/hexane
 	)
 
 /obj/machinery/portable_atmospherics/canister/interact(mob/user)
@@ -75,25 +82,25 @@
 	icon_state = "generic-hazard"
 
 /obj/machinery/portable_atmospherics/canister/nitrogen
-	name = "n2 canister"
+	name = "Nitrogen canister"
 	desc = "Nitrogen gas. Reportedly useful for something."
 	icon_state = "nitrogen"
 	gas_type = /datum/gas/nitrogen
 
 /obj/machinery/portable_atmospherics/canister/oxygen
-	name = "o2 canister"
+	name = "Oxygen canister"
 	desc = "Oxygen. Necessary for human life."
 	icon_state = "oxygen"
 	gas_type = /datum/gas/oxygen
 
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide
-	name = "co2 canister"
+	name = "Carbon dioxide canister"
 	desc = "Carbon dioxide. What the fuck is carbon dioxide?"
 	icon_state = "carbon"
 	gas_type = /datum/gas/carbon_dioxide
 
 /obj/machinery/portable_atmospherics/canister/toxins
-	name = "plasma canister"
+	name = "Plasma canister"
 	desc = "Plasma gas. The reason YOU are here. Highly toxic."
 	icon_state = "plasma"
 	gas_type = /datum/gas/plasma
@@ -105,66 +112,114 @@
 	gas_type = /datum/gas/bz
 
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide
-	name = "n2o canister"
+	name = "Nitrous oxide canister"
 	desc = "Nitrous oxide gas. Known to cause drowsiness."
 	icon_state = "nitrous"
 	gas_type = /datum/gas/nitrous_oxide
 
 /obj/machinery/portable_atmospherics/canister/air
-	name = "air canister"
+	name = "Air canister"
 	desc = "Pre-mixed air."
 	icon_state = "air"
 
 /obj/machinery/portable_atmospherics/canister/tritium
-	name = "tritium canister"
+	name = "Tritium canister"
 	desc = "Tritium. Inhalation might cause irradiation."
 	icon_state = "tritium"
 	gas_type = /datum/gas/tritium
 
 /obj/machinery/portable_atmospherics/canister/nob
-	name = "hyper-noblium canister"
+	name = "Hyper-noblium canister"
 	desc = "Hyper-Noblium. More noble than all other gases."
 	icon_state = "hypno"
 	gas_type = /datum/gas/hypernoblium
 
 /obj/machinery/portable_atmospherics/canister/nitryl
-	name = "nitryl canister"
+	name = "Nitryl canister"
 	desc = "Nitryl gas. Feels great 'til the acid eats your lungs."
 	icon_state = "nitryl"
 	gas_type = /datum/gas/nitryl
 
 /obj/machinery/portable_atmospherics/canister/stimulum
-	name = "stimulum canister"
+	name = "Stimulum canister"
 	desc = "Stimulum. High energy gas, high energy people."
 	icon_state = "stimulum"
 	gas_type = /datum/gas/stimulum
 
 /obj/machinery/portable_atmospherics/canister/pluoxium
-	name = "pluoxium canister"
+	name = "Pluoxium canister"
 	desc = "Pluoxium. Like oxygen, but more bang for your buck."
 	icon_state = "pluoxium"
 	gas_type = /datum/gas/pluoxium
 
 /obj/machinery/portable_atmospherics/canister/water_vapor
-	name = "water vapor canister"
+	name = "Water vapor canister"
 	desc = "Water vapor. We get it, you vape."
 	icon_state = "water"
 	gas_type = /datum/gas/water_vapor
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/miasma
-	name = "miasma canister"
+	name = "Miasma canister"
 	desc = "Foul miasma. Even the canister reeks of fetid refuse."
 	icon_state = "miasma"
 	gas_type = /datum/gas/miasma
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/dilithium
-	name = "dilithium canister"
+	name = "Dilithium canister"
 	desc = "A gas produced from dilithium crystal."
 	icon_state = "dilithium"
 	gas_type = /datum/gas/dilithium
 
+/obj/machinery/portable_atmospherics/canister/freon
+	name = "Freon canister"
+	desc = "Freon. Can absorb heat"
+	icon_state = "freon"
+	gas_type = /datum/gas/freon
+	filled = 1
+
+/obj/machinery/portable_atmospherics/canister/hydrogen
+	name = "Hydrogen canister"
+	desc = "Hydrogen, highly flammable"
+	icon_state = "h2"
+	gas_type = /datum/gas/hydrogen
+	filled = 1
+
+/obj/machinery/portable_atmospherics/canister/healium
+	name = "Healium canister"
+	desc = "Healium, causes deep sleep"
+	icon_state = "healium"
+	gas_type = /datum/gas/healium
+	filled = 1
+
+/obj/machinery/portable_atmospherics/canister/proto_nitrate
+	name = "Proto Nitrate canister"
+	desc = "Proto Nitrate, react differently with various gases"
+	icon_state = "proto_nitrate"
+	gas_type = /datum/gas/proto_nitrate
+	filled = 1
+
+/obj/machinery/portable_atmospherics/canister/cyrion_b
+	name = "Cyrion B canister"
+	desc = "Cyrion B, highly toxic"
+	icon_state = "cyrion_b"
+	gas_type = /datum/gas/cyrion_b
+	filled = 1
+
+/obj/machinery/portable_atmospherics/canister/halon
+	name = "Halon canister"
+	desc = "Halon, remove oxygen from high temperature fires and cool down the area"
+	icon_state = "halon"
+	gas_type = /datum/gas/halon
+	filled = 1
+
+/obj/machinery/portable_atmospherics/canister/hexane
+	name = "Hexane canister"
+	desc = "hexane, highly flammable"
+	icon_state = "hexane"
+	gas_type = /datum/gas/hexane
+	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/proc/get_time_left()
 	if(timing)
@@ -574,7 +629,7 @@
 	air_contents.set_moles(/datum/gas/plasma, 500)
 	air_contents.set_moles(/datum/gas/carbon_dioxide, 500)
 	air_contents.set_moles(/datum/gas/nitrous_oxide, 100)
-	air_contents.set_temperature(9999)
+	air_contents.set_temperature(10000)
 
 /// Canister 1 Kelvin below the fusion point. Contains far too much plasma. Only good for adding more fuel to ongoing fusion reactions.
  /obj/machinery/portable_atmospherics/canister/fusion_test_2

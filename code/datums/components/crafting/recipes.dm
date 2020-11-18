@@ -848,5 +848,3 @@
 	time = 20
 	category = CAT_PRIMAL
 
-
-
