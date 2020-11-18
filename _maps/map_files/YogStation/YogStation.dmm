@@ -33464,6 +33464,25 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/starboard/aft)
+"cpE" = (
+/obj/machinery/mech_bay_recharge_port{
+	dir = 2
+	},
+/obj/machinery/button/door{
+	id = "Skynet_launch";
+	name = "Mech Bay Door Control";
+	pixel_x = 6;
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/light_switch{
+	pixel_x = -6;
+	pixel_y = 24
+	},
+/turf/open/floor/plating,
+/area/science/robotics/mechbay)
 "cpU" = (
 /obj/machinery/camera{
 	c_tag = "Fore Starboard Solar Access"
@@ -55809,25 +55828,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
-"spf" = (
-/obj/machinery/mech_bay_recharge_port{
-	dir = 2
-	},
-/obj/machinery/button/door{
-	id = "Skynet_launch";
-	name = "Mech Bay Door Control";
-	pixel_x = 6;
-	pixel_y = 24
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/light_switch{
-	pixel_x = 10;
-	pixel_y = 28
-	},
-/turf/open/floor/plating,
-/area/science/robotics/mechbay)
 "sqg" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
@@ -107865,7 +107865,7 @@ baT
 bdP
 beC
 bnc
-spf
+cpE
 cHL
 blw
 blu
