@@ -471,7 +471,7 @@
   * * gametypeCheck: Datum, Check if they have the time requirement for that role
   * * be_special_flag: Bool, Only notify ghosts with special antag on
   * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
-  * * ignore_category: Unknown
+  * * ignore_category: Define, ignore_category: People with this category(defined in poll_ignore.dm) turned off dont get the message
   * * flashwindow: Bool, Flash their window to grab their attention
   */
 /proc/pollGhostCandidates(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, ignore_category = null, flashwindow = TRUE)
@@ -493,7 +493,7 @@
   * * gametypeCheck: Datum, Check if they have the time requirement for that role
   * * be_special_flag: Bool, Only notify ghosts with special antag on
   * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
-  * * ignore_category: Unknown
+  * * ignore_category: Define, ignore_category: People with this category(defined in poll_ignore.dm) turned off dont get the message
   * * flashwindow: Bool, Flash their window to grab their attention
   * * group: List, Group of people to poll. list of datum/minds
   */
