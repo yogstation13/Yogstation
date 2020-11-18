@@ -7,7 +7,7 @@
 
 	w_class = WEIGHT_CLASS_SMALL
 
-	materials = list(MAT_METAL=50, MAT_GLASS=50)
+	materials = list(/datum/material/iron=50, /datum/material/glass=50)
 
 	flags_1 = CONDUCT_1
 	item_flags = NOBLUDGEON
@@ -15,6 +15,24 @@
 	usesound = 'sound/effects/spray2.ogg'
 
 	var/obj/item/toner/ink = null
+	/// Associate list of all paint jobs the airlock painter can apply. The key is the name of the airlock the user will see. The value is the type path of the airlock
+	var/list/available_paint_jobs = list(
+		"Public" = /obj/machinery/door/airlock/public,
+		"Engineering" = /obj/machinery/door/airlock/engineering,
+		"Atmospherics" = /obj/machinery/door/airlock/atmos,
+		"Security" = /obj/machinery/door/airlock/security,
+		"Command" = /obj/machinery/door/airlock/command,
+		"Medical" = /obj/machinery/door/airlock/medical,
+		"Research" = /obj/machinery/door/airlock/research,
+		"Freezer" = /obj/machinery/door/airlock/freezer,
+		"Science" = /obj/machinery/door/airlock/science,
+		"Mining" = /obj/machinery/door/airlock/mining,
+		"Maintenance" = /obj/machinery/door/airlock/maintenance,
+		"External" = /obj/machinery/door/airlock/external,
+		"External Maintenance"= /obj/machinery/door/airlock/maintenance/external,
+		"Virology" = /obj/machinery/door/airlock/virology,
+		"Standard" = /obj/machinery/door/airlock
+	)
 
 /obj/item/airlock_painter/Initialize()
 	. = ..()
@@ -25,7 +43,7 @@
 /obj/item/airlock_painter/proc/use_paint(mob/user)
 	if(can_use(user))
 		ink.charges--
-		playsound(src.loc, 'sound/effects/spray2.ogg', 50, 1)
+		playsound(src.loc, 'sound/effects/spray2.ogg', 50, TRUE)
 		return 1
 	else
 		return 0
@@ -35,10 +53,10 @@
 //because you're expecting user input.
 /obj/item/airlock_painter/proc/can_use(mob/user)
 	if(!ink)
-		to_chat(user, "<span class='notice'>There is no toner cartridge installed in [src]!</span>")
+		to_chat(user, "<span class='warning'>There is no toner cartridge installed in [src]!</span>")
 		return 0
 	else if(ink.charges < 1)
-		to_chat(user, "<span class='notice'>[src] is out of ink!</span>")
+		to_chat(user, "<span class='warning'>[src] is out of ink!</span>")
 		return 0
 	else
 		return 1
@@ -74,7 +92,7 @@
 		// TODO maybe add some colorful vomit?
 
 		user.visible_message("<span class='suicide'>[user] vomits out [user.p_their()] [L]!</span>")
-		playsound(user.loc, 'sound/effects/splat.ogg', 50, 1)
+		playsound(user.loc, 'sound/effects/splat.ogg', 50, TRUE)
 
 		L.forceMove(T)
 
@@ -108,19 +126,19 @@
 /obj/item/airlock_painter/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/toner))
 		if(ink)
-			to_chat(user, "<span class='notice'>[src] already contains \a [ink].</span>")
+			to_chat(user, "<span class='warning'>[src] already contains \a [ink]!</span>")
 			return
 		if(!user.transferItemToLoc(W, src))
 			return
 		to_chat(user, "<span class='notice'>You install [W] into [src].</span>")
 		ink = W
-		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 	else
 		return ..()
 
 /obj/item/airlock_painter/attack_self(mob/user)
 	if(ink)
-		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 		ink.forceMove(user.drop_location())
 		user.put_in_hands(ink)
 		to_chat(user, "<span class='notice'>You remove [ink] from [src].</span>")

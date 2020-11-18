@@ -232,9 +232,8 @@
 			src << browse(null ,"window=playerpolllist")
 			src << browse(output,"window=playerpoll;size=500x250")
 		if(POLLTYPE_IRV)
-			var/datum/asset/irv_assets = get_asset_datum(/datum/asset/group/IRV)
+			var/datum/asset/irv_assets = get_asset_datum(/datum/asset/group/irv)
 			irv_assets.send(src)
-
 			var/datum/DBQuery/query_irv_get_votes = SSdbcore.NewQuery("SELECT optionid FROM [format_table_name("poll_vote")] WHERE pollid = :pollid AND ckey = :ckey", list("pollid" = pollid, "ckey" = ckey))
 			if(!query_irv_get_votes.warn_execute())
 				qdel(query_irv_get_votes)
@@ -293,8 +292,8 @@
 				<head>
 				<meta charset='UTF-8'>
 				<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-				<script src="jquery.min.js"></script>
-				<script src="jquery-ui.custom-core-widgit-mouse-sortable-min.js"></script>
+				<script src="[SSassets.transport.get_asset_url("jquery.min.js")]"></script>
+				<script src="[SSassets.transport.get_asset_url("jquery-ui.custom-core-widgit-mouse-sortable-min.js")]"></script>
 				<style>
 					#sortable { list-style-type: none; margin: 0; padding: 2em; }
 					#sortable li { min-height: 1em; margin: 0px 1px 1px 1px; padding: 1px; border: 1px solid black; border-radius: 5px; background-color: white; cursor:move;}

@@ -483,7 +483,7 @@
 		if(linked_console.linked_lathe)
 			var/datum/component/material_container/linked_materials = linked_console.linked_lathe.GetComponent(/datum/component/material_container)
 			for(var/material in exp_on.materials)
-				linked_materials.insert_amount( min((linked_materials.max_amount - linked_materials.total_amount), (exp_on.materials[material])), material)
+				linked_materials.insert_amount_mat( min((linked_materials.max_amount - linked_materials.total_amount), (exp_on.materials[material])), material)
 		if(prob(EFFECT_PROB_LOW) && criticalReaction)
 			visible_message("<span class='warning'>[src]'s crushing mechanism slowly and smoothly descends, flattening the [exp_on]!</span>")
 			new /obj/item/stack/sheet/plasteel(get_turf(pick(oview(1,src))))
@@ -533,13 +533,8 @@
 		autoexperiment = 0
 		visible_message("<span class='warning'>[src] melts [exp_on], ian-izing the air around it!</span>")
 		throwSmoke(loc)
-		if(trackedIan)
-			throwSmoke(trackedIan.loc)
-			trackedIan.forceMove(loc)
-			investigate_log("Experimentor has stolen Ian!", INVESTIGATE_EXPERIMENTOR) //...if anyone ever fixes it...
-		else
-			new /mob/living/simple_animal/pet/dog/corgi(loc)
-			investigate_log("Experimentor has spawned a new corgi.", INVESTIGATE_EXPERIMENTOR)
+		new /mob/living/simple_animal/pet/dog/corgi(loc)
+		investigate_log("Experimentor has spawned a corgi.", INVESTIGATE_EXPERIMENTOR)
 		ejectItem(TRUE)
 	if(prob(EFFECT_PROB_VERYLOW-badThingCoeff) && prob(14) && loaded_item)
 		autoexperiment = 0

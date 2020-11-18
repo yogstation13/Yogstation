@@ -55,3 +55,4 @@
 	var/lastpuke = 0
 	var/last_fire_update
 	var/account_id
+	var/xylophone = 0 //For the spoooooooky xylophone cooldown

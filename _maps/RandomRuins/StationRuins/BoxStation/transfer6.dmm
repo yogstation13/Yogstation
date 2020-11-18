@@ -282,9 +282,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/execution/transfer)
-"M" = (
-/turf/closed/wall,
-/area/security/execution/transfer)
 "N" = (
 /obj/machinery/power/apc{
 	areastring = "/area/security/execution/transfer";
@@ -324,6 +321,12 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel/dark,
+/area/security/execution/transfer)
+"R" = (
+/turf/closed/wall{
+	icon = 'icons/turf/walls/reinforced_wall.dmi';
+	icon_state = "r_wall"
+	},
 /area/security/execution/transfer)
 "S" = (
 /obj/structure/cable{
@@ -420,33 +423,33 @@ a
 a
 a
 a
-M
-M
-M
-M
-M
+R
+R
+R
+R
+R
 "}
 (2,1,1) = {"
 a
 a
 a
 a
-M
+R
 s
 H
 Z
-M
+R
 "}
 (3,1,1) = {"
-M
-M
-M
+R
+R
+R
 d
-M
+R
 P
 n
 j
-M
+R
 "}
 (4,1,1) = {"
 w

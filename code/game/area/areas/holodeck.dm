@@ -107,7 +107,7 @@
 // Bad programs
 
 /area/holodeck/rec_center/burn
-	name = "Holodeck - Atmospheric Burn Test"
+	name = "Holodeck - Incinerator"
 	restricted = 1
 
 /area/holodeck/rec_center/wildlife

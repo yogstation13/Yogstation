@@ -681,6 +681,7 @@
 	dir = 4;
 	icon_state = "scrub_map_on-3"
 	},
+/obj/effect/landmark/start/cook,
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
 	},
@@ -774,8 +775,10 @@
 /area/crew_quarters/bar)
 "bO" = (
 /obj/structure/table,
-/obj/item/stack/packageWrap,
-/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 3
+	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
 	},
@@ -999,7 +1002,7 @@
 /obj/machinery/newscaster{
 	pixel_y = -28
 	},
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -1058,15 +1061,11 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"ko" = (
+"if" = (
 /obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
 /obj/item/reagent_containers/food/snacks/burger/baseball{
-	pixel_x = 7;
 	pixel_y = 6
-	},
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = -10;
-	pixel_y = 3
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -1102,6 +1101,24 @@
 /obj/effect/spawner/xmastree,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"vo" = (
+/obj/structure/table,
+/obj/item/kitchen/rollingpin{
+	pixel_x = 4;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
 "vO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -1184,6 +1201,26 @@
 	name = "kitchen shutters"
 	},
 /obj/item/reagent_containers/food/snacks/burger/plain,
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
+"Up" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/item/stack/packageWrap,
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
+"Vc" = (
+/obj/structure/table,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
 	},
@@ -1492,8 +1529,8 @@ bi
 aj
 bn
 bE
-bM
-bU
+if
+Up
 bD
 bD
 di
@@ -1509,8 +1546,8 @@ bs
 bp
 bF
 bO
-bD
-bD
+Vc
+bU
 bD
 pQ
 aa
@@ -1524,8 +1561,8 @@ lT
 aj
 br
 bG
-bB
-bU
+vo
+bM
 bD
 ck
 Dn
@@ -1540,8 +1577,8 @@ aZ
 aj
 bt
 bH
-ko
-bD
+bB
+bM
 bD
 bD
 Tm

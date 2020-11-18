@@ -12,7 +12,7 @@
 	var/making_mage = 0
 	var/mages_made = 1
 	var/time_checked = 0
-	var/bullshit_mode = 0 // requested by hornygranny
+	var/bullshit_mode = FALSE // requested by hornygranny
 	var/time_check = 1500
 	var/spawn_delay_min = 500
 	var/spawn_delay_max = 700
@@ -74,29 +74,11 @@
 	var/mob/dead/observer/theghost = null
 	spawn(rand(spawn_delay_min, spawn_delay_max))
 		message_admins("SWF is still pissed, sending another wizard - [max_mages - mages_made] left.")
-		for(var/mob/dead/observer/G in GLOB.player_list)
-			if(G.client && !G.client.holder && !G.client.is_afk() && (ROLE_WIZARD in G.client.prefs.be_special))
-				if(!is_banned_from(G.ckey, list(ROLE_WIZARD, ROLE_SYNDICATE)))
-					if(age_check(G.client))
-						candidates += G
-		if(!candidates.len)
-			message_admins("No applicable ghosts for the next ragin' mage, asking ghosts instead.")
-			var/time_passed = world.time
-			for(var/mob/dead/observer/G in GLOB.player_list)
-				if(!is_banned_from(G.ckey, list(ROLE_WIZARD, ROLE_SYNDICATE)))
-					if(age_check(G.client))
-						spawn(0)
-							switch(alert(G, "Do you wish to be considered for the position of Space Wizard Foundation 'diplomat'?","Please answer in 30 seconds!","Yes","No"))
-								if("Yes")
-									if((world.time-time_passed)>300)//If more than 30 game seconds passed.
-										continue
-									candidates += G
-								if("No")
-									continue
-
-			sleep(300)
+		var/banlist = list(ROLE_WIZARD, ROLE_SYNDICATE, ROLE_RAGINMAGES, ROLE_BULLSHITMAGES)
+		candidates = pollGhostCandidates("Do you wish to be considered for the position of Space Wizard Foundation 'diplomat'?", banlist, ROLE_WIZARD, TRUE)
 		if(!candidates.len)
 			message_admins("This is awkward, sleeping until another mage check...")
+			notify_ghosts("There was an attempt to spawn in another ragin' mage, but none of you qualified!")
 			making_mage = 0
 			mages_made--
 			return
@@ -135,7 +117,7 @@
 	antag_datum = /datum/antagonist/wizard/
 	antag_flag = ROLE_BULLSHITMAGES
 	required_players = 40
-	bullshit_mode = 1
+	bullshit_mode = TRUE
 	time_check = 250
 	spawn_delay_min = 50
 	spawn_delay_max = 150

@@ -231,7 +231,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "aB" = (
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "aD" = (
@@ -1088,6 +1088,7 @@
 	dir = 4;
 	icon_state = "scrub_map_on-3"
 	},
+/obj/effect/landmark/start/cook,
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/kitchen)
 "co" = (
@@ -1140,8 +1141,10 @@
 /area/crew_quarters/kitchen)
 "cE" = (
 /obj/structure/table,
-/obj/item/stack/packageWrap,
-/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 3
+	},
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/kitchen)
 "cJ" = (
@@ -1376,10 +1379,19 @@
 /obj/item/toy/cards/deck,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"rs" = (
+"vD" = (
 /obj/structure/table,
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_y = 2
+/obj/item/kitchen/rollingpin{
+	pixel_x = 4;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -8;
+	pixel_y = 4
 	},
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/kitchen)
@@ -1417,6 +1429,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"DJ" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/item/stack/packageWrap,
+/turf/open/floor/mineral/titanium/purple,
+/area/crew_quarters/kitchen)
 "Eq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8;
@@ -1456,6 +1476,14 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
+"Hw" = (
+/obj/structure/table,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/mineral/titanium/purple,
+/area/crew_quarters/kitchen)
 "IV" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1;
@@ -1464,6 +1492,11 @@
 /obj/machinery/smartfridge/drinks,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"Jf" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/turf/open/floor/mineral/titanium/purple,
+/area/crew_quarters/kitchen)
 "Px" = (
 /obj/effect/landmark/blobstart,
 /obj/item/toy/crayon/purple,
@@ -1803,8 +1836,8 @@ br
 ak
 bR
 cm
-cD
-cP
+Jf
+DJ
 db
 do
 bN
@@ -1820,8 +1853,8 @@ bG
 bS
 bc
 cE
-db
-db
+Hw
+cP
 do
 bX
 aa
@@ -1835,8 +1868,8 @@ Eq
 ak
 bT
 co
-cc
-cP
+vD
+cD
 db
 dp
 bY
@@ -1851,8 +1884,8 @@ bf
 ak
 bU
 cp
-rs
-db
+cc
+cD
 db
 do
 bN

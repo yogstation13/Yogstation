@@ -1,5 +1,5 @@
 /datum/admins/proc/spawn_objasmob(object as text)
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set desc = "(obj path) Spawn object-mob"
 	set name = "Spawn object-mob"
 
