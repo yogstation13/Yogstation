@@ -539,6 +539,7 @@
   * * gametypeCheck: Datum, Check if they have the time requirement for that role
   * * be_special_flag: Bool, Only notify ghosts with special antag on
   * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
+  * * M: Mob, /mob to offer
   * * ignore_category: Unknown
   */
 /proc/pollCandidatesForMob(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, mob/M, ignore_category = null)
