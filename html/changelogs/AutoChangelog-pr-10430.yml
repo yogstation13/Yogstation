@@ -1,0 +1,4 @@
+author: "uomo91"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes and improves some things with logging, to help out admins."
