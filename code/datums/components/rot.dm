@@ -16,8 +16,8 @@
 	var/turf/open/T = get_turf(A)
 	if(!istype(T) || T.return_air().return_pressure() > (WARNING_HIGH_PRESSURE - 10))
 		return
-	var/area/A = get_area(T)
-	if(A.outdoors)
+	var/area/area = get_area(T)
+	if(area.outdoors)
 		return
 
 	var/datum/gas_mixture/turf_air = T.return_air()
