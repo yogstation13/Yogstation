@@ -267,7 +267,7 @@ get_true_breath_pressure(pp) --> gas_pp = pp/breath_pp*total_moles()
 */
 
 
-/// Pumps gas from src to output_air. Amount depends on target_pressure
+/// Pumps gas from src to output_air. The amount depends on target_pressure
 /datum/gas_mixture/proc/pump_gas_to(datum/gas_mixture/output_air, target_pressure)
 	var/output_starting_pressure = output_air.return_pressure()
 
