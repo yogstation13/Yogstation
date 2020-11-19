@@ -230,7 +230,8 @@
 /obj/mecha/proc/update_part_values() ///Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
 	if(scanmod)
 		normal_step_energy_drain = 20 - (5 * scanmod.rating) //10 is normal, so on lowest part its worse, on second its ok and on higher its real good up to 0 on best
-		step_energy_drain = normal_step_energy_drain
+		if(!leg_overload_mode)
+			step_energy_drain = normal_step_energy_drain
 	else
 		normal_step_energy_drain = 500
 		step_energy_drain = normal_step_energy_drain
