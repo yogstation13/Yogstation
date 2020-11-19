@@ -20,7 +20,7 @@
 	config_tag = "vampire"
 	antag_flag = ROLE_VAMPIRE
 	false_report_weight = 1
-	restricted_jobs = list("AI", "Cyborg")
+	restricted_jobs = list("AI", "Cyborg", "Chaplain")
 	protected_jobs = list("Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Security Officer", "Chaplain", "Detective", "Warden")
 	required_players = 15
 	required_enemies = 1
