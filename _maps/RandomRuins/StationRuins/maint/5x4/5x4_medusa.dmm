@@ -85,7 +85,7 @@
 	block_chance = 10;
 	color = "#808080";
 	desc = "A sword of ancient design. Strangely, the blade is made of stone....";
-	force = 6;
+	force = 10;
 	materials = list("$metal" = 1);
 	name = "ancient sabre";
 	pixel_x = 8;
