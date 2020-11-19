@@ -1296,7 +1296,7 @@
 
 /datum/reagent/healium
 	name = "Healium"
-	description = "A Powerful sleeping agent with healing properties"
+	description = "A Powerful sleeping agent with healing properties."
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	color = "90560B"
