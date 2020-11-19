@@ -1330,7 +1330,7 @@
 
 /datum/reagent/hexane
 	name = "Hexane"
-	description = "A filtering gas, don't breathe it if you suffer from brain conditions"
+	description = "A filtering gas, don't breathe it if you suffer from brain conditions."
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	color = "90560B"
