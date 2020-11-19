@@ -1,5 +1,5 @@
 /obj/item/grenade/gas_crystal
-	desc = "Some kind of crystal, this shouldn't spawn"
+	desc = "Some kind of crystal, this shouldn't spawn."
 	name = "Gas Crystal"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "bluefrag"
