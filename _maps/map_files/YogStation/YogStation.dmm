@@ -36511,13 +36511,6 @@
 	},
 /turf/open/floor/plating,
 /area/science/xenobiology)
-"dXz" = (
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/techstorage/rnd{
-	loot = list(/obj/item/circuitboard/computer/aifixer,/obj/item/circuitboard/machine/rdserver,/obj/item/circuitboard/machine/mechfab,/obj/item/circuitboard/machine/circuit_imprinter/department,/obj/item/circuitboard/machine/destructive_analyzer,/obj/item/circuitboard/computer/rdconsole,/obj/item/circuitboard/computer/nanite_chamber_control,/obj/item/circuitboard/computer/nanite_cloud_controller,/obj/item/circuitboard/machine/nanite_chamber,/obj/item/circuitboard/machine/nanite_programmer,/obj/item/circuitboard/machine/nanite_program_hub)
-	},
-/turf/open/floor/plasteel/white,
-/area/storage/tech)
 "dXW" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/effect/turf_decal/trimline/blue/filled/line,
@@ -38803,6 +38796,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
+"fPN" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/techstorage/service{
+	loot = list(/obj/item/circuitboard/computer/arcade/battle,/obj/item/circuitboard/computer/arcade/orion_trail,/obj/item/circuitboard/machine/autolathe,/obj/item/circuitboard/computer/mining,/obj/item/circuitboard/machine/ore_redemption,/obj/item/circuitboard/machine/mining_equipment_vendor,/obj/item/circuitboard/machine/microwave,/obj/item/circuitboard/machine/chem_dispenser/drinks,/obj/item/circuitboard/machine/chem_dispenser/drinks/beer,/obj/item/circuitboard/computer/slot_machine)
+	},
+/turf/open/floor/plasteel/white,
+/area/storage/tech)
 "fQz" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cloth_curtain{
@@ -46037,6 +46037,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"lks" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/techstorage/rnd{
+	loot = list(/obj/item/circuitboard/computer/aifixer,/obj/item/circuitboard/machine/rdserver,/obj/item/circuitboard/machine/mechfab,/obj/item/circuitboard/machine/circuit_imprinter/department,/obj/item/circuitboard/machine/destructive_analyzer,/obj/item/circuitboard/computer/rdconsole,/obj/item/circuitboard/machine/monkey_recycler)
+	},
+/turf/open/floor/plasteel/white,
+/area/storage/tech)
 "lkF" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -46578,6 +46585,38 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+"lGI" = (
+/obj/structure/rack,
+/obj/item/circuitboard/computer/med_data{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/circuitboard/computer/teleporter{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/circuitboard/machine/nanite_program_hub{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/circuitboard/machine/nanite_chamber{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/obj/item/circuitboard/computer/nanite_chamber_control{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/circuitboard/machine/nanite_programmer{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/obj/item/circuitboard/computer/nanite_cloud_controller{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/turf/open/floor/plasteel/white,
+/area/storage/tech)
 "lIg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -46892,15 +46931,6 @@
 	},
 /turf/open/floor/carpet,
 /area/medical/psych)
-"lWC" = (
-/obj/structure/rack,
-/obj/item/circuitboard/computer/med_data{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/circuitboard/computer/teleporter,
-/turf/open/floor/plasteel/white,
-/area/storage/tech)
 "lYh" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -58078,11 +58108,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"tVM" = (
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/techstorage/service,
-/turf/open/floor/plasteel/white,
-/area/storage/tech)
 "tVZ" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "robotics";
@@ -91096,7 +91121,7 @@ aaf
 oZY
 iJL
 irW
-lWC
+lGI
 oZY
 aaf
 bCq
@@ -93151,7 +93176,7 @@ bCs
 juo
 oYv
 dzD
-dXz
+lks
 pfl
 dzD
 xZE
@@ -93668,7 +93693,7 @@ wYJ
 fyA
 gRh
 hZA
-tVM
+fPN
 bCs
 cay
 ccw
