@@ -1,9 +1,7 @@
 /client/proc/cmd_mentor_say(msg as text)
 	set category = "Mentor"
 	set name = "Msay" //Gave this shit a shorter name so you only have to time out "msay" rather than "mentor say" to use it --NeoFite
-	if(prefs.muted & MUTE_MENTORHELP)
-		to_chat(src,"<span class='danger'>Error: MSAY: You are unable to use MSAY-s (muted).</span>", confidential = TRUE)
-		return
+
 	if(!is_mentor())
 		return
 	
