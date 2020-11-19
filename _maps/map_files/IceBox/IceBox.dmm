@@ -37480,8 +37480,7 @@
 /area/engine/atmos_distro)
 "bxb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -41385,7 +41384,6 @@
 /area/engine/atmos_distro)
 "bFk" = (
 /obj/item/mop,
-/obj/item/reagent_containers/glass/bucket,
 /obj/item/storage/box/lights/mixed,
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/plasteel,
@@ -42025,6 +42023,7 @@
 	pixel_y = -29
 	},
 /obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plasteel,
 /area/janitor)
 "bGC" = (
@@ -48971,7 +48970,6 @@
 "bVw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/binary/pump{
-	dir = 2;
 	name = "Gas to Chamber"
 	},
 /turf/open/floor/engine,
@@ -49283,7 +49281,6 @@
 "bWk" = (
 /obj/machinery/camera{
 	c_tag = "Supermatter Chamber";
-	dir = 2;
 	network = list("engine");
 	pixel_x = 23
 	},
@@ -49572,8 +49569,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 1;
-	icon_state = "scrub_map_on-3"
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -49650,8 +49646,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 1;
-	icon_state = "vent_map_on-1"
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -49731,7 +49726,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/components/binary/pump{
-	dir = 2;
 	name = "Cooling Loop Bypass"
 	},
 /turf/open/floor/engine,
@@ -50097,7 +50091,6 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Engineering Supermatter Aft";
-	dir = 2;
 	network = list("ss13","engine");
 	pixel_x = 23
 	},
@@ -50847,8 +50840,7 @@
 /area/engine/break_room)
 "bZF" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
@@ -50898,8 +50890,7 @@
 /area/engine/engineering)
 "bZK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
@@ -51123,9 +51114,6 @@
 /area/crew_quarters/bar)
 "car" = (
 /obj/machinery/door/window/southleft{
-	base_state = "left";
-	dir = 2;
-	icon_state = "left";
 	name = "Bar Delivery";
 	req_access_txt = "25"
 	},
@@ -51155,12 +51143,8 @@
 /obj/structure/plasticflaps{
 	opacity = 1
 	},
-/obj/effect/turf_decal/bot{
-	dir = 2
-	},
-/turf/open/floor/plasteel{
-	dir = 2
-	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "cau" = (
 /obj/machinery/light_switch{
@@ -51209,7 +51193,6 @@
 /area/security/checkpoint/engineering)
 "caB" = (
 /obj/machinery/airalarm{
-	dir = 2;
 	pixel_y = 24
 	},
 /turf/open/floor/wood,
@@ -51228,8 +51211,7 @@
 	pixel_y = 25
 	},
 /obj/machinery/camera{
-	c_tag = "Theatre Stage";
-	dir = 2
+	c_tag = "Theatre Stage"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -51266,7 +51248,6 @@
 	dir = 8
 	},
 /obj/machinery/firealarm{
-	dir = 2;
 	pixel_y = 26
 	},
 /obj/effect/turf_decal/tile/bar,
@@ -51314,9 +51295,6 @@
 /area/crew_quarters/kitchen)
 "caP" = (
 /obj/machinery/door/window/southleft{
-	base_state = "left";
-	dir = 2;
-	icon_state = "left";
 	name = "Kitchen Delivery";
 	req_access_txt = "28"
 	},
@@ -51350,8 +51328,7 @@
 /area/crew_quarters/theatre)
 "caT" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -51398,8 +51375,7 @@
 /area/science/xenobiology)
 "caX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -51443,8 +51419,7 @@
 	},
 /obj/structure/reagent_dispensers/beerkeg,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -51466,8 +51441,7 @@
 /area/maintenance/starboard/aft)
 "cbg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -51768,8 +51742,7 @@
 /area/crew_quarters/kitchen)
 "cbL" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 8;
-	icon_state = "scrub_map_on-3"
+	dir = 8
 	},
 /obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
@@ -51916,8 +51889,7 @@
 /area/crew_quarters/kitchen)
 "ccc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
+	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
@@ -52170,8 +52142,7 @@
 	pixel_y = 25
 	},
 /obj/machinery/camera{
-	c_tag = "Kitchen";
-	dir = 2
+	c_tag = "Kitchen"
 	},
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/plasteel/cafeteria,
@@ -52295,8 +52266,7 @@
 "ccS" = (
 /obj/effect/landmark/start/cook,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
+	dir = 4
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -52317,8 +52287,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
+	dir = 8
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -52471,9 +52440,7 @@
 /area/engine/engineering)
 "cdo" = (
 /obj/structure/table/reinforced,
-/obj/item/clothing/head/that{
-	throwforce = 1
-	},
+/obj/item/clothing/head/that,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -52699,8 +52666,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 1;
-	icon_state = "vent_map_on-1"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -54293,12 +54259,6 @@
 /area/engine/engineering)
 "ciZ" = (
 /turf/open/floor/plating,
-/area/engine/engineering)
-"cjb" = (
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel{
-	name = "floor"
-	},
 /area/engine/engineering)
 "cjd" = (
 /obj/structure/cable{
@@ -92420,8 +92380,8 @@ bPr
 cay
 ccw
 cig
-cjb
-cjb
+cSV
+cSV
 cig
 cig
 bNf

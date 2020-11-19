@@ -4229,8 +4229,7 @@
 /area/security/processing)
 "ajw" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer3{
-	dir = 4;
-	icon_state = "vent_map-3"
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/security/processing)
@@ -4846,12 +4845,10 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment{
@@ -4886,8 +4883,7 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/machinery/camera{
 	c_tag = "Special Equipment Room";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -6581,12 +6577,10 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/structure/sign/poster/contraband/random{
 	pixel_x = -32
@@ -6851,12 +6845,10 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
@@ -7293,8 +7285,7 @@
 	dir = 4
 	},
 /obj/machinery/camera{
-	c_tag = "Security Intake North";
-	network = list("ss13")
+	c_tag = "Security Intake North"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
@@ -7418,18 +7409,14 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 2
-	},
+/obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
 "apN" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 2
-	},
+/obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
@@ -7442,9 +7429,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 2
-	},
+/obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
@@ -7816,8 +7801,7 @@
 "aqD" = (
 /obj/machinery/vending/cigarette,
 /obj/machinery/camera{
-	c_tag = "North Dorm Cabins West";
-	network = list("ss13")
+	c_tag = "North Dorm Cabins West"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms/a)
@@ -10885,7 +10869,6 @@
 /area/crew_quarters/dorms/a)
 "axL" = (
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
@@ -11566,7 +11549,6 @@
 /area/hallway/primary/port)
 "aza" = (
 /obj/structure/sign/directions/supply{
-	dir = 2;
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/evac{
@@ -13069,7 +13051,6 @@
 	dir = 8
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
@@ -13116,7 +13097,6 @@
 	},
 /obj/structure/table,
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
@@ -13465,7 +13445,6 @@
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/science{
-	dir = 2;
 	pixel_y = -6
 	},
 /obj/effect/turf_decal/bot_white,
@@ -13864,8 +13843,7 @@
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
 /obj/structure/disposalpipe/junction{
-	dir = 1;
-	icon_state = "pipe-j1"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
@@ -13954,7 +13932,6 @@
 	pixel_y = 8
 	},
 /obj/structure/sign/directions/engineering{
-	dir = 2;
 	pixel_y = -8
 	},
 /obj/effect/turf_decal/bot_white,
@@ -14306,8 +14283,7 @@
 "aFg" = (
 /obj/machinery/camera{
 	c_tag = "Port Hall East 11";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
@@ -14346,8 +14322,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter/hub/security)
@@ -14583,7 +14558,6 @@
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/evac{
-	dir = 2;
 	pixel_y = -6
 	},
 /obj/effect/turf_decal/bot_white,
@@ -14954,8 +14928,7 @@
 /area/construction)
 "aGL" = (
 /obj/structure/window/spawner{
-	dir = 1;
-	icon_state = "window"
+	dir = 1
 	},
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/tile/green{
@@ -14969,8 +14942,7 @@
 "aGM" = (
 /obj/structure/table/glass,
 /obj/structure/window/spawner{
-	dir = 1;
-	icon_state = "window"
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -14985,8 +14957,7 @@
 	dir = 1
 	},
 /obj/structure/window/spawner{
-	dir = 1;
-	icon_state = "window"
+	dir = 1
 	},
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/tile/green{
@@ -15608,8 +15579,7 @@
 /area/hallway/primary/fore)
 "aIz" = (
 /obj/structure/window/spawner{
-	dir = 1;
-	icon_state = "window"
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -15686,12 +15656,10 @@
 /area/maintenance/department/security)
 "aIG" = (
 /obj/structure/window/spawner{
-	dir = 1;
-	icon_state = "window"
+	dir = 1
 	},
 /obj/structure/window/spawner{
-	dir = 4;
-	icon_state = "window"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -15887,8 +15855,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Aux Base Construction";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
@@ -16191,8 +16158,7 @@
 /area/construction/mining/aux_base)
 "aJK" = (
 /obj/machinery/camera{
-	c_tag = "Port Hall East 12";
-	network = list("ss13")
+	c_tag = "Port Hall East 12"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
@@ -16397,7 +16363,6 @@
 	dir = 4
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
@@ -16478,8 +16443,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Docking Lounge South";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -16925,8 +16889,7 @@
 "aLu" = (
 /obj/machinery/camera{
 	c_tag = "Port Hall West 1";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
@@ -17445,8 +17408,7 @@
 	pixel_y = 30
 	},
 /obj/machinery/camera{
-	c_tag = "Podbay 1";
-	network = list("ss13")
+	c_tag = "Podbay 1"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
@@ -18341,8 +18303,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Security Hub South";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /obj/structure/sign/departments/minsky/command{
 	pixel_x = 32
@@ -18515,8 +18476,7 @@
 /area/hallway/secondary/exit)
 "aOU" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -18525,8 +18485,7 @@
 /area/hallway/secondary/exit)
 "aOV" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -18537,8 +18496,7 @@
 /area/hallway/secondary/exit)
 "aOW" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -18627,9 +18585,7 @@
 /area/hallway/secondary/exit)
 "aPg" = (
 /obj/machinery/camera{
-	c_tag = "Escape Waiting Area North";
-	dir = 2;
-	network = list("ss13")
+	c_tag = "Escape Waiting Area North"
 	},
 /obj/item/radio/intercom{
 	freerange = 1;
@@ -18710,8 +18666,7 @@
 /area/ai_monitored/storage/eva)
 "aPo" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
@@ -18719,8 +18674,7 @@
 "aPp" = (
 /obj/machinery/camera{
 	c_tag = "Escape Security Transfer Center";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -19018,8 +18972,7 @@
 	light_color = "#e8eaff"
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
@@ -19258,8 +19211,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit)
@@ -19277,8 +19229,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -19289,8 +19240,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -19305,8 +19255,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -19330,8 +19279,7 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -19700,8 +19648,7 @@
 "aRh" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit)
@@ -19716,8 +19663,7 @@
 	dir = 4
 	},
 /obj/structure/window/spawner{
-	dir = 4;
-	icon_state = "window"
+	dir = 4
 	},
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/tile/green{
@@ -20118,8 +20064,7 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit)
@@ -20496,8 +20441,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
@@ -20508,8 +20452,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
@@ -20522,8 +20465,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
@@ -20537,12 +20479,10 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit)
@@ -21060,7 +21000,6 @@
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/science{
-	dir = 2;
 	pixel_y = -6
 	},
 /obj/effect/turf_decal/bot_white,
@@ -21184,8 +21123,7 @@
 /obj/machinery/vending/snack/random,
 /obj/machinery/camera{
 	c_tag = "Escape Waiting Area South";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit)
@@ -21301,8 +21239,7 @@
 "aUk" = (
 /obj/machinery/hydroponics/soil,
 /obj/machinery/camera{
-	c_tag = "Community Garden North";
-	network = list("ss13")
+	c_tag = "Community Garden North"
 	},
 /turf/open/floor/grass,
 /area/hallway/primary/fore)
@@ -21312,8 +21249,7 @@
 	pixel_y = -26
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
@@ -21322,8 +21258,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
@@ -21344,12 +21279,10 @@
 /area/security/brig)
 "aUo" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
@@ -21566,8 +21499,7 @@
 "aUH" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/window/spawner{
-	dir = 4;
-	icon_state = "window"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -21842,13 +21774,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/captain)
-"aVo" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 1;
-	icon_state = "vent_map_on-1"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/port)
 "aVp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 1
@@ -22046,7 +21971,6 @@
 	dir = 1
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
@@ -22489,8 +22413,7 @@
 "aWv" = (
 /obj/machinery/camera{
 	c_tag = "North Custodial Closet";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/janitor/a)
@@ -22624,8 +22547,7 @@
 /area/maintenance/department/engine)
 "aWL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 1;
-	icon_state = "vent_map_on-1"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/construction)
@@ -22648,7 +22570,6 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/science{
-	dir = 2;
 	pixel_y = -6
 	},
 /obj/structure/sign/directions/medical{
@@ -22838,7 +22759,6 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/engineering{
-	dir = 2;
 	pixel_y = -8
 	},
 /obj/effect/turf_decal/bot_white,
@@ -23284,7 +23204,6 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/command{
-	dir = 2;
 	pixel_y = 8
 	},
 /obj/structure/sign/directions/engineering{
@@ -23447,8 +23366,7 @@
 	},
 /obj/machinery/disposal/bin,
 /obj/structure/window/spawner{
-	dir = 4;
-	icon_state = "window"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -23621,8 +23539,7 @@
 	dir = 1
 	},
 /obj/machinery/camera{
-	c_tag = "Security Office Hall Northeast";
-	network = list("ss13")
+	c_tag = "Security Office Hall Northeast"
 	},
 /obj/structure/closet/emcloset,
 /obj/item/radio/intercom{
@@ -23730,8 +23647,7 @@
 /area/maintenance/disposal)
 "aYX" = (
 /obj/machinery/disposal/deliveryChute{
-	dir = 1;
-	icon_state = "intake"
+	dir = 1
 	},
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -24039,8 +23955,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/command)
@@ -24114,8 +24029,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/command)
@@ -24260,8 +24174,7 @@
 	},
 /obj/effect/turf_decal/tile/darkblue,
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/command)
@@ -24371,8 +24284,7 @@
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal/bin,
 /obj/machinery/camera{
-	c_tag = "Secondary Paramedic Staging Area";
-	network = list("ss13")
+	c_tag = "Secondary Paramedic Staging Area"
 	},
 /turf/open/floor/plasteel,
 /area/medical/paramedic/b)
@@ -24516,8 +24428,7 @@
 /obj/item/hand_labeler,
 /obj/machinery/camera{
 	c_tag = "Artist's Coven";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /obj/structure/sign/poster/official/anniversary_vintage_reprint{
 	pixel_y = -32
@@ -24632,8 +24543,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/command)
@@ -25777,8 +25687,7 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/junction{
-	dir = 1;
-	icon_state = "pipe-j1"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -25860,8 +25769,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Security Office Hall Southwest";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
@@ -26464,8 +26372,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/command)
@@ -27114,8 +27021,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/command)
@@ -27382,8 +27288,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/command)
@@ -28391,8 +28296,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/command)
@@ -28430,8 +28334,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -29038,7 +28941,6 @@
 	},
 /obj/machinery/door/window/eastright{
 	base_state = "left";
-	dir = 4;
 	icon_state = "left";
 	name = "Chemistry Desk";
 	req_access_txt = "33"
@@ -29076,8 +28978,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
@@ -29182,8 +29083,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/command)
@@ -29438,8 +29338,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/command)
@@ -29649,7 +29548,6 @@
 /area/storage/tech)
 "bkE" = (
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = 27
 	},
 /turf/open/floor/plating,
@@ -29850,8 +29748,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Chapel Office";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel{
 	icon_state = "grimy"
@@ -29920,8 +29817,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/command)
@@ -30045,8 +29941,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/command)
@@ -30623,7 +30518,6 @@
 /obj/machinery/light/small,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = 27
 	},
 /turf/open/floor/plasteel,
@@ -31067,8 +30961,7 @@
 "bnh" = (
 /obj/machinery/camera{
 	c_tag = "Tech Storage East";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/storage/tech)
@@ -31264,8 +31157,7 @@
 "bnE" = (
 /obj/machinery/camera{
 	c_tag = "Library South";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/library)
@@ -31646,8 +31538,7 @@
 	},
 /obj/structure/closet/emcloset,
 /obj/machinery/camera{
-	c_tag = "Medical Entry Hall North";
-	network = list("ss13")
+	c_tag = "Medical Entry Hall North"
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -32093,8 +31984,7 @@
 	},
 /obj/machinery/vending/engivend,
 /obj/machinery/camera{
-	c_tag = "Tech Storage South";
-	network = list("ss13")
+	c_tag = "Tech Storage South"
 	},
 /turf/open/floor/plating,
 /area/storage/tech)
@@ -32917,7 +32807,6 @@
 	},
 /obj/item/wirecutters,
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plating,
@@ -33249,7 +33138,6 @@
 	network = list("ss13","Eng")
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = 27
 	},
 /turf/open/floor/plasteel,
@@ -35425,7 +35313,6 @@
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -35458,7 +35345,6 @@
 	pixel_x = 30
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel/white,
@@ -35746,7 +35632,6 @@
 	dir = 1
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel/white,
@@ -37535,7 +37420,6 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Engineering Entry Hall North";
-	dir = 2;
 	network = list("test")
 	},
 /turf/open/floor/plasteel/dark,
@@ -37612,7 +37496,6 @@
 /area/engine/engineering)
 "bAl" = (
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -38469,7 +38352,6 @@
 	dir = 4
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = 27
 	},
 /turf/open/floor/carpet/black,
@@ -39351,8 +39233,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Bridge Hub East";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /obj/structure/sign/departments/minsky/research/research{
 	pixel_y = -32
@@ -39467,7 +39348,6 @@
 	network = list("ss13","Eng")
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = 27
 	},
 /turf/open/floor/plasteel,
@@ -40842,7 +40722,6 @@
 /area/crew_quarters/heads/hop)
 "bGD" = (
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel/dark,
@@ -41952,7 +41831,6 @@
 	dir = 9
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
@@ -42238,8 +42116,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -42269,8 +42146,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -42799,8 +42675,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -43182,7 +43057,6 @@
 	pixel_x = 30
 	},
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel/dark,
@@ -43247,8 +43121,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -43402,8 +43275,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -43525,8 +43397,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -43539,7 +43410,6 @@
 	},
 /obj/machinery/suit_storage_unit/cmo,
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel/cafeteria,
@@ -43591,8 +43461,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -43775,7 +43644,6 @@
 /obj/item/tank/internals/emergency_oxygen,
 /obj/structure/table,
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = 27
 	},
 /turf/open/floor/plasteel,
@@ -43792,8 +43660,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/darkblue{
 	dir = 8
@@ -43807,8 +43674,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -43826,8 +43692,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -43841,8 +43706,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -43862,8 +43726,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -43876,8 +43739,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -43893,8 +43755,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -43910,8 +43771,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -43933,8 +43793,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -43965,8 +43824,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -44927,8 +44785,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -45858,8 +45715,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -46769,7 +46625,6 @@
 	dir = 1
 	},
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -46868,15 +46723,13 @@
 	dir = 8
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = 27
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -47269,8 +47122,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -47687,8 +47539,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -47941,8 +47792,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -48585,7 +48435,6 @@
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/science{
-	dir = 2;
 	pixel_y = -6
 	},
 /obj/structure/disposalpipe/segment{
@@ -48644,8 +48493,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -50117,8 +49965,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -50356,8 +50203,7 @@
 /obj/item/stack/sheet/cardboard,
 /obj/machinery/camera{
 	c_tag = "Gift Shop";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
@@ -51096,11 +50942,9 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/command{
-	dir = 2;
 	pixel_y = 8
 	},
 /obj/structure/sign/directions/engineering{
-	dir = 2;
 	pixel_y = -8
 	},
 /obj/effect/turf_decal/bot_white,
@@ -52452,8 +52296,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -52522,7 +52365,6 @@
 	network = list("ss13","Medbay")
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel,
@@ -52701,7 +52543,6 @@
 /obj/structure/janitorialcart,
 /obj/item/mop,
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -53925,8 +53766,7 @@
 /area/quartermaster/sorting)
 "chf" = (
 /obj/structure/chair/comfy/lime{
-	dir = 8;
-	icon_state = "comfychair"
+	dir = 8
 	},
 /turf/open/floor/carpet/orange,
 /area/hallway/secondary/entry)
@@ -54388,8 +54228,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Aft Pod Access";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
@@ -57039,8 +56878,7 @@
 /area/science/explab)
 "cnI" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
@@ -57051,8 +56889,7 @@
 	pixel_y = -26
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
@@ -57064,8 +56901,7 @@
 "cnM" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
@@ -57830,8 +57666,7 @@
 "cpq" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
+	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -59639,8 +59474,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -60040,7 +59874,6 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = -27
 	},
 /turf/open/floor/plasteel/dark,
@@ -60146,8 +59979,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -60339,8 +60171,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/machinery/light{
 	dir = 8
@@ -60707,7 +60538,6 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Atmospherics Asteroid Input";
-	dir = 2;
 	network = list("ss13","Eng")
 	},
 /turf/open/floor/plasteel,
@@ -61828,7 +61658,6 @@
 	network = list("ss13","Medbay")
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel/white,
@@ -63642,7 +63471,6 @@
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/science{
-	dir = 2;
 	pixel_y = -6
 	},
 /obj/effect/turf_decal/bot_white,
@@ -63659,7 +63487,6 @@
 	},
 /obj/machinery/computer/security/telescreen/turbine{
 	dir = 1;
-	icon_state = "telescreen";
 	name = "burn chamber monitor";
 	pixel_y = -30
 	},
@@ -64177,7 +64004,6 @@
 	desc = "A remote control switch for the medbay shutters.";
 	id = "medpriv";
 	name = "Medbay Shutters Control";
-	normaldoorcontrol = 0;
 	pixel_x = -26;
 	pixel_y = 4;
 	req_access_txt = "5"
@@ -64334,8 +64160,7 @@
 /area/engine/atmospherics_engine)
 "cCx" = (
 /obj/structure/transit_tube/crossing{
-	dir = 1;
-	icon_state = "crossing"
+	dir = 1
 	},
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -64605,8 +64430,7 @@
 /obj/machinery/vending/cola/random,
 /obj/machinery/camera{
 	c_tag = "Security Briefing Room";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
@@ -64969,8 +64793,7 @@
 /area/engine/atmospherics_engine)
 "cDR" = (
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -64986,8 +64809,7 @@
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -64996,8 +64818,7 @@
 /area/hallway/primary/starboard)
 "cDT" = (
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -65007,8 +64828,7 @@
 "cDU" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -65069,8 +64889,7 @@
 "cEa" = (
 /obj/machinery/camera{
 	c_tag = "Chapel South";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel)
@@ -65105,8 +64924,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Security Entry Hall North";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/port)
@@ -65118,8 +64936,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Brig Control";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/security/warden)
@@ -65293,8 +65110,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Labor Prisoner Transfer Center";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/processing)
@@ -65544,7 +65360,6 @@
 /area/hallway/secondary/command)
 "cEU" = (
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = 27
 	},
 /turf/open/floor/wood,
@@ -65613,8 +65428,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Security Office Hall Southeast";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
@@ -65720,7 +65534,6 @@
 	tag = ""
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = -27
 	},
 /turf/open/floor/plating,
@@ -65966,9 +65779,7 @@
 /obj/item/multitool,
 /obj/item/assembly/signaler,
 /obj/machinery/camera{
-	c_tag = "Primary Tool East";
-	dir = 2;
-	network = list("ss13")
+	c_tag = "Primary Tool East"
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
@@ -66244,8 +66055,7 @@
 /area/tcommsat/lounge)
 "cGv" = (
 /obj/machinery/computer/telecomms/server{
-	dir = 4;
-	icon_state = "computer"
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/lounge)
@@ -66264,8 +66074,7 @@
 /obj/structure/table,
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/machinery/button/door{
 	id = "tele";
@@ -66320,8 +66129,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/camera{
@@ -66394,8 +66202,7 @@
 /obj/structure/table,
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/lounge)
@@ -66649,7 +66456,6 @@
 	tag = ""
 	},
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -67818,8 +67624,7 @@
 /area/space/nearstation)
 "cJm" = (
 /obj/structure/transit_tube/crossing{
-	dir = 1;
-	icon_state = "crossing"
+	dir = 1
 	},
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -68525,7 +68330,6 @@
 /area/maintenance/starboard/fore)
 "cKt" = (
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = 27
 	},
 /obj/structure/fireaxecabinet{
@@ -68941,8 +68745,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/machinery/light,
 /obj/structure/disposalpipe/segment{
@@ -69179,8 +68982,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/entrance)
@@ -69247,8 +69049,7 @@
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/entrance)
@@ -69356,7 +69157,6 @@
 /area/hallway/primary/starboard)
 "cLO" = (
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = -27
 	},
 /turf/open/floor/wood,
@@ -69370,7 +69170,6 @@
 /obj/item/pen,
 /obj/item/book/manual/wiki/security_space_law,
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel/dark,
@@ -69517,8 +69316,7 @@
 "cMe" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -69707,8 +69505,7 @@
 /area/engine/atmospherics_engine)
 "cMt" = (
 /obj/structure/transit_tube/junction{
-	dir = 1;
-	icon_state = "junction0"
+	dir = 1
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
@@ -69998,8 +69795,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/entrance)
@@ -70035,8 +69831,7 @@
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/entrance)
@@ -70375,8 +70170,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/entrance)
@@ -70413,8 +70207,7 @@
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/entrance)
@@ -70850,8 +70643,7 @@
 "cOt" = (
 /obj/machinery/camera{
 	c_tag = "Arrivals South";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -70935,8 +70727,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/entrance)
@@ -70964,8 +70755,7 @@
 "cOE" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/entrance)
@@ -71129,8 +70919,7 @@
 "cOV" = (
 /obj/machinery/camera{
 	c_tag = "Aft Pod Hall";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
@@ -71142,8 +70931,7 @@
 	dir = 1
 	},
 /obj/machinery/camera{
-	c_tag = "Security Office Hall South";
-	network = list("ss13")
+	c_tag = "Security Office Hall South"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
@@ -71157,8 +70945,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Security Foyer";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
@@ -71192,8 +70979,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera{
 	c_tag = "Holodeck Control West";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
@@ -71227,15 +71013,13 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Holodeck Observation South";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
 "cPg" = (
 /obj/machinery/camera{
-	c_tag = "Recreation Deck";
-	network = list("ss13")
+	c_tag = "Recreation Deck"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
@@ -71258,8 +71042,7 @@
 /obj/effect/turf_decal/tile/red,
 /obj/machinery/camera{
 	c_tag = "Parole Release South";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
@@ -71281,8 +71064,7 @@
 /obj/structure/table/wood,
 /obj/machinery/camera{
 	c_tag = "Arcade Bay";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
@@ -71304,8 +71086,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Lazer Tag Arena Red Team";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
@@ -71318,8 +71099,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Lazer Tag Arena Blue Team";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
@@ -71414,8 +71194,7 @@
 "cPy" = (
 /obj/machinery/camera{
 	c_tag = "Port Hall West 3";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
@@ -71435,8 +71214,7 @@
 "cPA" = (
 /obj/machinery/camera{
 	c_tag = "Port Hall East 5";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -71481,8 +71259,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Security Front Desk";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
@@ -71570,8 +71347,7 @@
 "cPQ" = (
 /obj/machinery/camera{
 	c_tag = "Aft Hall North 6";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
@@ -71680,8 +71456,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Aft Hall North 1";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
@@ -71722,8 +71497,7 @@
 "cQh" = (
 /obj/machinery/camera{
 	c_tag = "Protective Custody";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
@@ -72213,8 +71987,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
@@ -72237,8 +72010,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
@@ -72247,8 +72019,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/darkgreen,
 /turf/open/floor/plasteel,
@@ -72312,8 +72083,7 @@
 "cRq" = (
 /obj/machinery/camera{
 	c_tag = "Boxing Arena";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
@@ -72326,8 +72096,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -73023,8 +72792,7 @@
 "cTg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -73211,8 +72979,7 @@
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/lounge)
@@ -73574,8 +73341,7 @@
 /area/maintenance/starboard/aft)
 "cUr" = (
 /obj/machinery/atmospherics/components/binary/pump{
-	dir = 1;
-	on = 0
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/science/mixing)
@@ -73694,8 +73460,7 @@
 /area/maintenance/department/security)
 "cUC" = (
 /obj/structure/chair/comfy/beige{
-	dir = 4;
-	icon_state = "comfychair"
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/security)
@@ -73722,8 +73487,7 @@
 /area/engine/atmos_distro)
 "cUH" = (
 /obj/structure/transit_tube/crossing{
-	dir = 1;
-	icon_state = "crossing"
+	dir = 1
 	},
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -73826,7 +73590,6 @@
 	},
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = -27
 	},
 /turf/open/floor/plasteel/dark,
@@ -74004,7 +73767,6 @@
 /area/engine/atmospherics_engine)
 "cVB" = (
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -74352,7 +74114,6 @@
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/science{
-	dir = 2;
 	pixel_y = -6
 	},
 /obj/effect/turf_decal/bot_white,
@@ -74404,8 +74165,7 @@
 "cWC" = (
 /obj/machinery/camera{
 	c_tag = "Starboard East 4";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
@@ -74479,8 +74239,7 @@
 /area/tcommsat/entrance)
 "cWL" = (
 /obj/machinery/computer/camera_advanced/xenobio{
-	dir = 8;
-	icon_state = "computer"
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -74878,8 +74637,7 @@
 /obj/structure/closet/wardrobe/pjs,
 /obj/machinery/camera{
 	c_tag = "Rec Deck Cabins North";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms/b)
@@ -75056,8 +74814,7 @@
 "cXQ" = (
 /obj/machinery/camera{
 	c_tag = "Rec Deck Cabins South";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms/b)
@@ -75173,8 +74930,7 @@
 /area/crew_quarters/dorms/b)
 "cYd" = (
 /obj/machinery/camera{
-	c_tag = "Rec Deck Showers";
-	network = list("ss13")
+	c_tag = "Rec Deck Showers"
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/dorms/b)
@@ -75602,7 +75358,6 @@
 /obj/item/circuitboard/machine/telecomms/server,
 /obj/item/circuitboard/machine/telecomms/server,
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = -27
 	},
 /turf/open/floor/plasteel/dark,
@@ -75883,8 +75638,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/machinery/light_switch{
 	pixel_y = 27
@@ -75898,8 +75652,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
@@ -75915,8 +75668,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
@@ -75941,8 +75693,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/machinery/light{
 	dir = 1
@@ -75963,8 +75714,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
@@ -75991,8 +75741,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
@@ -76041,8 +75790,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
@@ -76255,8 +76003,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
@@ -76306,16 +76053,14 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "daB" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
@@ -76328,8 +76073,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
@@ -76359,8 +76103,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
@@ -76369,8 +76112,7 @@
 /obj/structure/chair/office/light,
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
@@ -76379,8 +76121,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/darkgreen,
 /turf/open/floor/plasteel,
@@ -76404,22 +76145,19 @@
 /area/tcommsat/computer)
 "daI" = (
 /obj/machinery/computer/telecomms/traffic{
-	dir = 1;
-	icon_state = "computer"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
 "daJ" = (
 /obj/machinery/computer/telecomms/server{
-	dir = 1;
-	icon_state = "computer"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
 "daK" = (
 /obj/machinery/computer/message_monitor{
-	dir = 1;
-	icon_state = "computer"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
@@ -76439,8 +76177,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
@@ -76455,8 +76192,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
@@ -76472,8 +76208,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
@@ -76537,8 +76272,7 @@
 /obj/structure/closet/wardrobe/tcomms,
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
@@ -76546,8 +76280,7 @@
 /obj/structure/table,
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
@@ -76648,11 +76381,9 @@
 /area/hallway/secondary/command)
 "dbl" = (
 /obj/structure/sign/directions/medical{
-	dir = 2;
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/science{
-	dir = 2;
 	pixel_y = -6
 	},
 /obj/structure/disposalpipe/segment{
@@ -76691,11 +76422,9 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/command{
-	dir = 2;
 	pixel_y = 8
 	},
 /obj/structure/sign/directions/engineering{
-	dir = 2;
 	pixel_y = -8
 	},
 /obj/effect/turf_decal/bot_white,
@@ -76887,7 +76616,6 @@
 	pixel_y = 8
 	},
 /obj/structure/sign/directions/engineering{
-	dir = 2;
 	pixel_y = -8
 	},
 /obj/structure/disposalpipe/segment{
@@ -76935,14 +76663,12 @@
 	dir = 4
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel,
 /area/medical/genetics)
 "dbQ" = (
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel,
@@ -76989,7 +76715,6 @@
 	pixel_y = 3
 	},
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -77018,7 +76743,6 @@
 "dbZ" = (
 /obj/machinery/power/apc/tcomms{
 	areastring = "/area/tcommsat/server";
-	dir = 2;
 	name = "Telecomms Server APC";
 	pixel_y = -24
 	},
@@ -77065,7 +76789,6 @@
 	network = list("ss13","rd","Medbay")
 	},
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -77164,8 +76887,7 @@
 /area/medical/paramedic/a)
 "dcp" = (
 /obj/machinery/camera{
-	c_tag = "Docking Lounge North";
-	network = list("ss13")
+	c_tag = "Docking Lounge North"
 	},
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -77249,8 +76971,7 @@
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/item/radio/intercom{
@@ -77264,16 +76985,14 @@
 "dcy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "dcz" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
@@ -77292,8 +77011,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
@@ -77302,8 +77020,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
@@ -77311,8 +77028,7 @@
 "dcF" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
@@ -77325,16 +77041,14 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "dcI" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -77390,8 +77104,7 @@
 /area/maintenance/port/fore)
 "dcQ" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -77470,8 +77183,7 @@
 /area/hallway/secondary/exit)
 "dcZ" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -77620,12 +77332,10 @@
 /area/teleporter/hub/evac)
 "ddp" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -77637,7 +77347,6 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/science{
-	dir = 2;
 	pixel_y = -6
 	},
 /obj/structure/sign/directions/medical{
@@ -77735,7 +77444,6 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/engineering{
-	dir = 2;
 	pixel_y = -8
 	},
 /obj/effect/turf_decal/bot_white,
@@ -78071,7 +77779,6 @@
 /area/hallway/secondary/command)
 "deg" = (
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -78082,7 +77789,6 @@
 	dir = 8
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -78408,7 +78114,6 @@
 /area/hallway/secondary/command)
 "deM" = (
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = -27
 	},
 /turf/open/floor/plasteel/dark,
@@ -78416,8 +78121,7 @@
 "deN" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/machinery/door/airlock/public/glass{
 	name = "Central Access"
@@ -78449,7 +78153,6 @@
 	pixel_x = -24
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/wood,
@@ -78554,7 +78257,6 @@
 "deZ" = (
 /obj/machinery/vending/autodrobe,
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel,
@@ -78602,7 +78304,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
@@ -78658,14 +78359,12 @@
 	network = list("ss13","Cargo")
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "dfi" = (
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -78689,7 +78388,6 @@
 "dfl" = (
 /obj/structure/closet/emcloset,
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -78742,12 +78440,10 @@
 "dfs" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/structure/sign/departments/minsky/command/evac{
 	pixel_x = 32
@@ -78763,7 +78459,6 @@
 	dir = 1
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = -27
 	},
 /turf/open/floor/plasteel/dark,
@@ -78778,7 +78473,6 @@
 	dir = 8
 	},
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel/dark,
@@ -78848,8 +78542,7 @@
 "dfC" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -79018,7 +78711,6 @@
 /area/hallway/primary/starboard)
 "dfS" = (
 /obj/structure/sign/directions/supply{
-	dir = 2;
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/evac{
@@ -79097,7 +78789,6 @@
 	},
 /obj/machinery/light,
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -79143,7 +78834,6 @@
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/science{
-	dir = 2;
 	pixel_y = -6
 	},
 /obj/effect/turf_decal/bot_white,
@@ -79205,8 +78895,7 @@
 "dgi" = (
 /obj/machinery/camera{
 	c_tag = "Starboard East 2";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
 /turf/open/floor/plasteel,
@@ -79245,7 +78934,6 @@
 	dir = 1
 	},
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -79284,14 +78972,12 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = -27
 	},
 /turf/open/floor/plasteel/dark,
@@ -79305,7 +78991,6 @@
 	dir = 8
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel/white,
@@ -79347,7 +79032,6 @@
 	pixel_x = -24
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -79376,7 +79060,6 @@
 	dir = 4
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel{
@@ -79491,7 +79174,6 @@
 	dir = 8
 	},
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel/cafeteria,
@@ -79538,7 +79220,6 @@
 	dir = 8
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = -27
 	},
 /turf/open/floor/plasteel,
@@ -79559,8 +79240,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -79577,20 +79257,17 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "dgL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -79612,11 +79289,9 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = -27
 	},
 /turf/open/floor/plasteel,
@@ -79638,8 +79313,7 @@
 "dgP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -79666,8 +79340,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -79693,8 +79366,7 @@
 /area/maintenance/department/tcoms)
 "dgU" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -79704,8 +79376,7 @@
 "dgV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -79715,8 +79386,7 @@
 "dgW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -79804,8 +79474,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -79883,8 +79552,7 @@
 	pixel_y = 28
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -79894,8 +79562,7 @@
 "dho" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -79911,14 +79578,12 @@
 	dir = 5
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/machinery/camera{
 	c_tag = "Docking Bay 4";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -79934,8 +79599,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
@@ -79946,8 +79610,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
@@ -79960,8 +79623,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
@@ -79972,8 +79634,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
@@ -79986,8 +79647,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
@@ -80002,8 +79662,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
@@ -80075,8 +79734,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
@@ -80093,8 +79751,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
@@ -80202,8 +79859,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -80238,8 +79894,7 @@
 	pixel_y = 30
 	},
 /obj/machinery/camera{
-	c_tag = "Podbay 2";
-	network = list("ss13")
+	c_tag = "Podbay 2"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -80290,7 +79945,6 @@
 /area/maintenance/starboard/aft)
 "did" = (
 /obj/machinery/button/door{
-	dir = 2;
 	id = "abandoned_kitchen";
 	name = "Shutters Control";
 	pixel_x = 26;
@@ -80369,8 +80023,7 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -80403,8 +80056,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -80448,8 +80100,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -80519,14 +80170,12 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "diE" = (
 /obj/structure/sign/directions/supply{
-	dir = 2;
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/evac{
@@ -80556,8 +80205,7 @@
 	dir = 5
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -80570,8 +80218,7 @@
 	},
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -80586,8 +80233,7 @@
 	dir = 5
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -80602,8 +80248,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -80630,8 +80275,7 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -80639,8 +80283,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -80652,16 +80295,14 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "diO" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -80674,13 +80315,11 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/machinery/camera{
 	c_tag = "Docking Bay South Arm";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -80688,8 +80327,7 @@
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -80702,20 +80340,17 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "diT" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -80853,11 +80488,9 @@
 /area/hallway/primary/fore)
 "djj" = (
 /obj/structure/sign/directions/medical{
-	dir = 2;
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/science{
-	dir = 2;
 	pixel_y = -6
 	},
 /obj/machinery/firealarm{
@@ -80868,11 +80501,9 @@
 /area/teleporter/hub/engineering)
 "djk" = (
 /obj/structure/sign/directions/medical{
-	dir = 2;
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/science{
-	dir = 2;
 	pixel_y = -6
 	},
 /obj/effect/turf_decal/bot_white,
@@ -80883,7 +80514,6 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/command{
-	dir = 2;
 	pixel_y = 8
 	},
 /obj/structure/sign/directions/engineering{
@@ -80904,7 +80534,6 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/command{
-	dir = 2;
 	pixel_y = 8
 	},
 /obj/structure/sign/directions/engineering{
@@ -80922,7 +80551,6 @@
 /area/hallway/primary/fore)
 "djn" = (
 /obj/structure/sign/directions/supply{
-	dir = 2;
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/evac{
@@ -80934,7 +80562,6 @@
 /area/teleporter/hub/engineering)
 "djo" = (
 /obj/structure/sign/directions/supply{
-	dir = 2;
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/evac{
@@ -80952,8 +80579,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/structure/closet/emcloset,
 /turf/open/floor/plasteel,
@@ -80963,8 +80589,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -80976,8 +80601,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -80987,8 +80611,7 @@
 	},
 /obj/effect/turf_decal/tile/darkblue,
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -80997,8 +80620,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
@@ -81008,21 +80630,17 @@
 	},
 /obj/effect/turf_decal/tile/darkblue,
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/camera{
-	c_tag = "Starboard East 5";
-	dir = 2;
-	network = list("ss13")
+	c_tag = "Starboard East 5"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "djv" = (
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -81045,8 +80663,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/machinery/light{
 	dir = 1
@@ -81100,8 +80717,7 @@
 /area/hallway/primary/fore)
 "djB" = (
 /obj/structure/disposalpipe/junction/yjunction{
-	dir = 8;
-	icon_state = "pipe-y"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 4
@@ -81177,8 +80793,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -81203,8 +80818,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -81223,8 +80837,7 @@
 	},
 /obj/effect/turf_decal/tile/darkblue,
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/item/radio/intercom{
 	freerange = 1;
@@ -81254,8 +80867,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Crew Dorm Laundry";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms/a)
@@ -81327,8 +80939,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Fore Hall North 1";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -81444,16 +81055,14 @@
 /area/hallway/primary/aft)
 "dRS" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/machinery/camera{
 	c_tag = "Fore Hall North 6";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -81739,8 +81348,7 @@
 /area/maintenance/department/bridge)
 "eNP" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -81889,8 +81497,7 @@
 "fcN" = (
 /obj/machinery/camera{
 	c_tag = "Fore Hall North 8";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -82027,8 +81634,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Aft South Hall 7";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
@@ -82263,8 +81869,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -82321,12 +81926,10 @@
 "gaC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -82483,8 +82086,7 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/camera{
 	c_tag = "Docking Bay 3";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -82501,8 +82103,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -82550,9 +82151,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 2
-	},
+/obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
@@ -82724,8 +82323,7 @@
 /obj/effect/turf_decal/tile/darkblue,
 /obj/machinery/camera{
 	c_tag = "Fore Hall South 1";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -82827,8 +82425,7 @@
 /area/maintenance/department/crew_quarters/bar)
 "hcI" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -82879,8 +82476,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
@@ -82955,8 +82551,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Fore Hall North 2";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -83105,7 +82700,6 @@
 	dir = 1
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel,
@@ -83127,8 +82721,7 @@
 "hMY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/window/spawner{
-	dir = 1;
-	icon_state = "window"
+	dir = 1
 	},
 /obj/structure/window/spawner,
 /obj/structure/flora/ausbushes/lavendergrass,
@@ -83181,8 +82774,7 @@
 /area/maintenance/port/aft)
 "hQQ" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/machinery/light,
@@ -83190,9 +82782,7 @@
 /area/hallway/primary/fore)
 "hTd" = (
 /obj/structure/easel,
-/obj/machinery/airalarm/directional/south{
-	pixel_y = -24
-	},
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "hTP" = (
@@ -83482,12 +83072,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 2
-	},
+/obj/effect/turf_decal/tile/red,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -83626,8 +83213,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/machinery/firealarm{
 	pixel_y = 24
@@ -83644,16 +83230,14 @@
 /area/maintenance/starboard/central)
 "iYe" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/machinery/camera{
 	c_tag = "Fore Hall North 3";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -83681,7 +83265,6 @@
 	dir = 8
 	},
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -83754,8 +83337,7 @@
 /area/hallway/primary/port)
 "jkP" = (
 /obj/structure/window/spawner{
-	dir = 1;
-	icon_state = "window"
+	dir = 1
 	},
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/tile/green{
@@ -83850,8 +83432,7 @@
 "jqF" = (
 /obj/machinery/camera{
 	c_tag = "Rec Deck Bathrooms";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /obj/machinery/cryopod{
 	dir = 1
@@ -83901,8 +83482,7 @@
 /area/security/prison)
 "jCj" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/black{
 	dir = 1
@@ -83947,8 +83527,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/command)
@@ -83958,12 +83537,10 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/structure/table/wood/fancy/black,
 /obj/item/reagent_containers/food/snacks/baguette,
@@ -84402,8 +83979,7 @@
 /area/security/prison)
 "kIv" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -84724,7 +84300,6 @@
 "lzN" = (
 /obj/machinery/camera{
 	c_tag = "Gravity Generator";
-	dir = 2;
 	network = list("ss13","Eng")
 	},
 /turf/open/floor/plasteel/dark,
@@ -84735,7 +84310,6 @@
 	light_color = "#e8eaff"
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = 27
 	},
 /obj/structure/disposalpipe/junction,
@@ -84834,8 +84408,7 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/camera{
 	c_tag = "Fore Hall North 7";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -84905,7 +84478,6 @@
 	light_color = "#e8eaff"
 	},
 /obj/machinery/light_switch{
-	dir = 2;
 	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
@@ -85039,13 +84611,11 @@
 "mdt" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/machinery/camera{
 	c_tag = "Fore Hall North 4";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
@@ -85175,9 +84745,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 2
-	},
+/obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
@@ -85218,8 +84786,7 @@
 /area/security/main)
 "myc" = (
 /obj/machinery/computer/camera_advanced/xenobio{
-	dir = 8;
-	icon_state = "computer"
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -85309,8 +84876,7 @@
 /area/science/xenobiology)
 "mNu" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/machinery/firealarm{
@@ -85558,9 +85124,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 2
-	},
+/obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
@@ -85611,8 +85175,7 @@
 /area/science/mixing)
 "nrg" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -85844,7 +85407,6 @@
 "nSi" = (
 /obj/machinery/camera{
 	c_tag = "Prison Holodeck";
-	dir = 2;
 	network = list("ss13","prison")
 	},
 /turf/open/floor/engine{
@@ -86026,8 +85588,7 @@
 /area/ai_monitored/nuke_storage)
 "osx" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/machinery/door/firedoor/border_only{
@@ -86210,8 +85771,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/machinery/door/firedoor/border_only{
@@ -86229,8 +85789,7 @@
 /area/security/main)
 "oWl" = (
 /obj/structure/window/spawner{
-	dir = 1;
-	icon_state = "window"
+	dir = 1
 	},
 /obj/structure/window/spawner,
 /obj/structure/flora/ausbushes/lavendergrass,
@@ -86363,8 +85922,7 @@
 "pjC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 1;
-	icon_state = "vent_map-1"
+	dir = 1
 	},
 /obj/machinery/advanced_airlock_controller{
 	dir = 1;
@@ -86531,8 +86089,7 @@
 /area/maintenance/department/chapel)
 "pER" = (
 /obj/structure/window/spawner{
-	dir = 1;
-	icon_state = "window"
+	dir = 1
 	},
 /obj/structure/window/spawner{
 	dir = 8
@@ -86625,9 +86182,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 2
-	},
+/obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
@@ -86682,8 +86237,7 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/camera{
 	c_tag = "Port Hall East 10";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /obj/machinery/light{
 	dir = 4
@@ -86750,8 +86304,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/machinery/firealarm{
 	dir = 8;
@@ -86856,7 +86409,6 @@
 /area/vacant_room/commissary)
 "qGB" = (
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plating,
@@ -86923,8 +86475,7 @@
 "qTe" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -87052,8 +86603,7 @@
 /area/maintenance/department/science)
 "rev" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -87223,8 +86773,7 @@
 "rtt" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/window/spawner{
-	dir = 1;
-	icon_state = "window"
+	dir = 1
 	},
 /obj/structure/window/spawner,
 /obj/structure/flora/ausbushes/lavendergrass,
@@ -87421,8 +86970,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/black{
 	dir = 1
@@ -87603,8 +87151,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/machinery/vending/cola/random,
 /turf/open/floor/plasteel,
@@ -87991,8 +87538,7 @@
 /obj/machinery/vending/cola/random,
 /obj/machinery/camera{
 	c_tag = "Docking Lounge West";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -88157,16 +87703,14 @@
 /area/maintenance/department/engine/atmos)
 "tCk" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -88351,8 +87895,7 @@
 /area/medical/sleeper)
 "ufR" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue,
 /obj/structure/disposalpipe/segment{
@@ -88411,8 +87954,7 @@
 /area/teleporter/hub/bridge)
 "ukr" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/structure/sign/departments/minsky/command/evac{
@@ -88635,8 +88177,7 @@
 /area/hallway/primary/fore)
 "uJo" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -88669,12 +88210,10 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/effect/landmark/start/mime,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -88876,9 +88415,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 2
-	},
+/obj/effect/turf_decal/tile/red,
 /obj/structure/table/wood/fancy/royalblue,
 /obj/item/toy/crayon/spraycan/lubecan{
 	charges = 5
@@ -88938,7 +88475,6 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Fusion Chamber Access";
-	dir = 2;
 	network = list("ss13","Eng")
 	},
 /turf/open/floor/plasteel,
@@ -88954,8 +88490,7 @@
 /area/hallway/primary/port)
 "vpK" = (
 /obj/structure/window/spawner{
-	dir = 1;
-	icon_state = "window"
+	dir = 1
 	},
 /obj/structure/window/spawner,
 /obj/structure/flora/ausbushes/lavendergrass,
@@ -89231,7 +88766,6 @@
 	c_tag = "Theatre Backstage"
 	},
 /obj/machinery/airalarm{
-	dir = 2;
 	pixel_y = 24
 	},
 /obj/structure/disposalpipe/trunk{
@@ -89582,13 +89116,11 @@
 /area/security/main)
 "wDN" = (
 /obj/structure/window/spawner{
-	dir = 1;
-	icon_state = "window"
+	dir = 1
 	},
 /obj/structure/window/spawner,
 /obj/structure/window/spawner{
-	dir = 4;
-	icon_state = "window"
+	dir = 4
 	},
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/grass,
@@ -89661,13 +89193,11 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/darkblue{
-	dir = 1;
-	icon_state = "tile_corner"
+	dir = 1
 	},
 /obj/machinery/camera{
 	c_tag = "Fore Hall South 2";
-	dir = 4;
-	network = list("ss13")
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -89697,8 +89227,7 @@
 /area/hallway/primary/aft)
 "wUP" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/black{
 	dir = 1
@@ -89815,8 +89344,7 @@
 /obj/effect/turf_decal/tile/white,
 /obj/machinery/camera{
 	c_tag = "Fore Hall North 5";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -89843,14 +89371,12 @@
 /area/security/prison)
 "xom" = (
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/machinery/camera{
 	c_tag = "Docking Lounge East";
-	dir = 1;
-	network = list("ss13")
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -89874,8 +89400,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Holodeck Observation North";
-	dir = 8;
-	network = list("ss13")
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
@@ -89885,7 +89410,6 @@
 	},
 /obj/effect/turf_decal/tile/darkblue,
 /obj/structure/extinguisher_cabinet{
-	dir = 2;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -90177,12 +89701,10 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
+	dir = 4
 	},
 /obj/structure/table/wood/fancy/black,
 /obj/item/lipstick/random{
@@ -138185,7 +137707,7 @@ cio
 tMf
 hXy
 qxt
-tMf
+vkq
 bVE
 bWQ
 cae
@@ -140919,7 +140441,7 @@ azB
 hMY
 aRF
 aUP
-aVo
+aye
 axD
 aWW
 bas
@@ -146058,7 +145580,7 @@ aBj
 aBj
 aJK
 aRX
-aVo
+aye
 ach
 aFk
 aFk
