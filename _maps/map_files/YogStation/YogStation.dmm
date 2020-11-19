@@ -38042,6 +38042,13 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
+"fhw" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/techstorage/service{
+	loot = list(/obj/item/circuitboard/computer/arcade/battle,/obj/item/circuitboard/computer/arcade/orion_trail,/obj/item/circuitboard/machine/autolathe,/obj/item/circuitboard/computer/mining,/obj/item/circuitboard/machine/ore_redemption,/obj/item/circuitboard/machine/mining_equipment_vendor,/obj/item/circuitboard/machine/microwave,/obj/item/circuitboard/machine/chem_dispenser/drinks,/obj/item/circuitboard/machine/chem_dispenser/drinks/beer,/obj/item/circuitboard/computer/slot_machine)
+	},
+/turf/open/floor/plasteel/white,
+/area/storage/tech)
 "fib" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/effect/turf_decal/bot,
@@ -38619,6 +38626,13 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"fKg" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/techstorage/rnd{
+	loot = list(/obj/item/circuitboard/computer/aifixer,/obj/item/circuitboard/machine/rdserver,/obj/item/circuitboard/machine/mechfab,/obj/item/circuitboard/machine/circuit_imprinter/department,/obj/item/circuitboard/machine/destructive_analyzer,/obj/item/circuitboard/computer/rdconsole,/obj/item/circuitboard/machine/monkey_recycler)
+	},
+/turf/open/floor/plasteel/white,
+/area/storage/tech)
 "fKl" = (
 /obj/machinery/computer/nanite_chamber_control{
 	dir = 8
@@ -38796,13 +38810,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
-"fPN" = (
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/techstorage/service{
-	loot = list(/obj/item/circuitboard/computer/arcade/battle,/obj/item/circuitboard/computer/arcade/orion_trail,/obj/item/circuitboard/machine/autolathe,/obj/item/circuitboard/computer/mining,/obj/item/circuitboard/machine/ore_redemption,/obj/item/circuitboard/machine/mining_equipment_vendor,/obj/item/circuitboard/machine/microwave,/obj/item/circuitboard/machine/chem_dispenser/drinks,/obj/item/circuitboard/machine/chem_dispenser/drinks/beer,/obj/item/circuitboard/computer/slot_machine)
-	},
-/turf/open/floor/plasteel/white,
-/area/storage/tech)
 "fQz" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cloth_curtain{
@@ -45892,11 +45899,6 @@
 "ldW" = (
 /turf/template_noop,
 /area/maintenance/aft)
-"leu" = (
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/techstorage/security,
-/turf/open/floor/plasteel/white,
-/area/storage/tech)
 "leK" = (
 /mob/living/carbon/monkey,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -46037,13 +46039,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"lks" = (
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/techstorage/rnd{
-	loot = list(/obj/item/circuitboard/computer/aifixer,/obj/item/circuitboard/machine/rdserver,/obj/item/circuitboard/machine/mechfab,/obj/item/circuitboard/machine/circuit_imprinter/department,/obj/item/circuitboard/machine/destructive_analyzer,/obj/item/circuitboard/computer/rdconsole,/obj/item/circuitboard/machine/monkey_recycler)
-	},
-/turf/open/floor/plasteel/white,
-/area/storage/tech)
 "lkF" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -46585,7 +46580,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
-"lGI" = (
+"lGH" = (
 /obj/structure/rack,
 /obj/item/circuitboard/computer/med_data{
 	pixel_x = 6;
@@ -59181,6 +59176,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"uJX" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/techstorage/security{
+	loot = list(/obj/item/circuitboard/computer/secure_data,/obj/item/circuitboard/computer/security,/obj/item/circuitboard/computer/prisoner,/obj/item/circuitboard/computer/warrant)
+	},
+/turf/open/floor/plasteel/white,
+/area/storage/tech)
 "uKK" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -91121,7 +91123,7 @@ aaf
 oZY
 iJL
 irW
-lGI
+lGH
 oZY
 aaf
 bCq
@@ -91378,7 +91380,7 @@ gXs
 oZY
 fMU
 gjq
-leu
+uJX
 oZY
 aaa
 bCq
@@ -93176,7 +93178,7 @@ bCs
 juo
 oYv
 dzD
-lks
+fKg
 pfl
 dzD
 xZE
@@ -93693,7 +93695,7 @@ wYJ
 fyA
 gRh
 hZA
-fPN
+fhw
 bCs
 cay
 ccw
