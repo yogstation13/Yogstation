@@ -37,10 +37,11 @@
 		to_chat(user, "<span class='warning'>[src] is empty!</span>")
 		return
 
-	var/mob/living/carbon/human/H = user
-	if(H.wear_suit?.item_flags & MEDRESIST && !get_location_accessible(H, H.zone_selected))
-		to_chat(H, "<span class='warning'>[src] cannot be applied through [H.wear_suit]!</span>")
-		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/L = M
+		if(L.wear_suit?.item_flags & MEDRESIST  && !get_location_accessible(L, user.zone_selected))
+			to_chat(user, "<span class='warning'>[src] cannot be applied through [L.wear_suit]!</span>")
+			return
 
 	if(M == user)
 		M.visible_message("<span class='notice'>[user] attempts to [apply_method] [src] on [user.p_them()]self.</span>")
