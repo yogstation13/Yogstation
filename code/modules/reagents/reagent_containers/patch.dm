@@ -18,6 +18,9 @@
 			to_chat(H, "<span class='warning'>[src] cannot be applied through [H.wear_suit]!</span>")
 			return
 		var/obj/item/bodypart/affecting = L.get_bodypart(check_zone(user.zone_selected))
+		if(!affecting)
+			to_chat(user, "<span class='warning'>The limb is missing!</span>")
+			return
 		if(affecting.status != BODYPART_ORGANIC)
 			to_chat(user, "<span class='notice'>Medicine won't work on a robotic limb!</span>")
 			return
