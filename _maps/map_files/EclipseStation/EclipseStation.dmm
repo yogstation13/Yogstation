@@ -706,8 +706,20 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "abN" = (
-/turf/closed/wall,
-/area/space/nearstation)
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/central/secondary)
 "abO" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/camera{
@@ -776,6 +788,22 @@
 "abT" = (
 /turf/closed/wall/r_wall,
 /area/security/courtroom)
+"abU" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	tag = ""
+	},
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/cargo)
 "abV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/brown,
@@ -25290,21 +25318,6 @@
 	},
 /turf/open/floor/plating,
 /area/storage/primary)
-"bbK" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
 "bbL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -27509,22 +27522,6 @@
 "bgb" = (
 /turf/open/floor/plating,
 /area/storage/tech)
-"bgc" = (
-/obj/structure/cable{
-	icon_state = "4-8";
-	tag = ""
-	},
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
 "bgd" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -108954,7 +108951,7 @@ aaa
 aaa
 aaa
 awy
-abN
+atW
 atW
 qXq
 bJw
@@ -109210,7 +109207,7 @@ aaa
 aaa
 aaa
 aaa
-aao
+awy
 awy
 atW
 bDC
@@ -113304,7 +113301,7 @@ aaa
 aaa
 adH
 aWw
-bbK
+abN
 bDF
 bIx
 aaL
@@ -113834,7 +113831,7 @@ boL
 bAK
 aaS
 afi
-bgc
+abU
 afi
 afi
 aku
