@@ -38,7 +38,7 @@
 		return
 
 	var/mob/living/carbon/human/H = user
-	if(H.wear_suit?.item_flags & MEDRESIST)
+	if(H.wear_suit?.item_flags & MEDRESIST && !get_location_accessible(H, H.zone_selected))
 		to_chat(H, "<span class='warning'>[src] cannot be applied through [H.wear_suit]!</span>")
 		return
 
