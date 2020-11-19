@@ -1236,6 +1236,21 @@
 		if(hasPower() && !prying_so_hard)
 			if (I.tool_behaviour == TOOL_CROWBAR) //we need another check, futureproofing for if/when bettertools actually completely replaces the old jaws
 				time_to_open = 50
+				if(istype(I,/obj/item/jawsoflife/jimmy))
+					time_to_open = 30
+					var/obj/item/jawsoflife/jimmy/J = I
+					if(J.pump_charge >= J.pump_cost)
+						J.pump_charge = J.pump_charge - J.pump_cost
+						if(J.pump_charge < 0)
+							J.pump_charge = 0
+						playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE)
+						if(J.obj_flags & EMAGGED)
+							time_to_open = 15
+					else
+						if(user)
+							to_chat(user, "<span class='warning'>You do not have enough charge in the [J] for this. You need at least [J.pump_cost]% </span>")
+							return
+
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
 				prying_so_hard = TRUE
 				if(do_after(user, time_to_open, TRUE, src))

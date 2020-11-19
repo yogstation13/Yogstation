@@ -255,3 +255,9 @@
 /obj/item/melee/baton/cattleprod/baton_stun()
 	if(sparkler.activate())
 		..()
+
+/obj/item/melee/baton/cattleprod/tactical
+	name = "tactical stunprod"
+	desc = "A cost-effective, mass-produced, tactical stun prod."
+	preload_cell_type = /obj/item/stock_parts/cell/high/plus // comes with a cell
+	color = "#aeb08c" // super tactical
