@@ -289,7 +289,8 @@
 		"https://www.youtube.com/watch?v=9Cyokaj3BJU", // alabama
 		"https://www.youtube.com/watch?v=1vrEljMfXYo", // country roads
 		"https://www.youtube.com/watch?v=FqxJ_iuBPCs", // Star Spangled Banner
-		"https://www.youtube.com/watch?v=H0bhSGfKTs4" // Surfin' USA
+		"https://www.youtube.com/watch?v=H0bhSGfKTs4", // Surfin' USA
+		"https://www.youtube.com/watch?v=FAVQsnr4uYg"  // Lone Star - Tony Marcus
 	)
 /datum/holiday/USA/getStationPrefix()
 	return pick("Independent","American","Burger","Bald Eagle","Star-Spangled", "Fireworks")
