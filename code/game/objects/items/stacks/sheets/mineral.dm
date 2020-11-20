@@ -477,7 +477,7 @@ GLOBAL_LIST_INIT(metalhydrogen_recipes, list(
 /obj/item/stack/sheet/mineral/metal_hydrogen
 	name = "metal hydrogen"
 	icon_state = "sheet-metalhydrogen"
-	inhand_icon_state = "sheet-metalhydrogen"
+	item_state = "sheet-metalhydrogen"
 	singular_name = "metal hydrogen sheet"
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF | INDESTRUCTIBLE
@@ -485,6 +485,6 @@ GLOBAL_LIST_INIT(metalhydrogen_recipes, list(
 	materials = list(/datum/material/metalhydrogen=MINERAL_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/mineral/metal_hydrogen
 
-/obj/item/stack/sheet/mineral/metal_hydrogen/get_main_recipes()
+/obj/item/stack/sheet/mineral/metal_hydrogen/Initialize(mapload, new_amount, merge = TRUE)
+	recipes = GLOB.metalhydrogen_recipes
 	. = ..()
-	. += GLOB.metalhydrogen_recipes

@@ -34,12 +34,6 @@
 	var/obj/singularity/energy_ball/T = O
 	return !T.miniball
 
-/datum/bounty/item/engineering/gas/cyrion_b_tank
-	name = "Full Tank of Cyrion-B"
-	description = "The main planet of \[REDACTED] has been chosen as testing grounds for the new weapon that uses the Cyrion-B gas. Ship us a tank full of it. (20 Moles)"
-	reward = 10000
-	gas_type = /datum/gas/cyrion_b
-
 /datum/bounty/item/engineering/gas/freon_tank
 	name = "Full Tank of Freon"
 	description = "The Supermatter of station 33 has started the delamination process. Deliver a tank of Freon gas to help them stop it! (20 Moles)"

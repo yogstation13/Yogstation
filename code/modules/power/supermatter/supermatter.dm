@@ -12,11 +12,6 @@
 #define BZ_HEAT_PENALTY 5
 #define NITROGEN_HEAT_PENALTY -1.5
 #define H2O_HEAT_PENALTY 12 //This'll get made slowly over time, I want my spice rock spicy god damnit
-#define FREON_HEAT_PENALTY -10 //very good heat absorbtion and less plasma and o2 generation
-#define HYDROGEN_HEAT_PENALTY 10 // similar heat penalty as tritium (dangerous)
-#define HEALIUM_HEAT_PENALTY 4
-#define PROTO_NITRATE_HEAT_PENALTY -3
-#define CYRION_B_HEAT_PENALTY 8
 
 //All of these get divided by 10-bzcomp * 5 before having 1 added and being multiplied with power to determine rads
 //Keep the negative values here above -10 and we won't get negative rads
@@ -29,7 +24,6 @@
 #define HYDROGEN_TRANSMIT_MODIFIER 25 //increase the radiation emission, but less than the trit (2.5)
 #define HEALIUM_TRANSMIT_MODIFIER 2.4
 #define PROTO_NITRATE_TRANSMIT_MODIFIER 15
-#define CYRION_B_TRANSMIT_MODIFIER 20
 
 #define BZ_RADIOACTIVITY_MODIFIER 5 //Improves the effect of transmit modifiers
 

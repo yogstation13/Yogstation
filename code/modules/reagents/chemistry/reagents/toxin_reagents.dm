@@ -98,7 +98,6 @@
 	taste_description = "thick and smokey"
 	specific_heat = SPECIFIC_HEAT_PLASMA
 	toxpwr = 3
-	material = /datum/material/hot_ice
 
 /datum/reagent/toxin/hot_ice/on_mob_life(mob/living/carbon/M)
 	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))

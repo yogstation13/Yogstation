@@ -401,12 +401,6 @@
 			return TRUE
 	return FALSE
 
-
-///////////////////////////////// FROZEN /////////////////////////////////////
-
-/mob/living/proc/IsFrozen()
-	return has_status_effect(/datum/status_effect/freon)
-
 /////////////////////////////////// TRAIT PROCS ////////////////////////////////////
 
 /mob/living/proc/cure_blind(list/sources)

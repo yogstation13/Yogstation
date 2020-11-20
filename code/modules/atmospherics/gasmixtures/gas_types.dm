@@ -165,6 +165,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	moles_visible = MOLES_GAS_VISIBLE *30
 	fusion_power = -5
 	rarity = 10
+
 /datum/gas/hydrogen
 	id = "hydrogen"
 	specific_heat = 15
@@ -190,15 +191,6 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	moles_visible = MOLES_GAS_VISIBLE
 	rarity = 100
 
-/datum/gas/cyrion_b
-	id = "cyrion_b"
-	specific_heat = 350
-	name = "Cyrion B"
-	dangerous = TRUE
-	gas_overlay = "cyrion_b"
-	moles_visible = MOLES_GAS_VISIBLE
-	rarity = 100
-
 /datum/gas/halon
 	id = "halon"
 	specific_heat = 175
@@ -208,6 +200,14 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	moles_visible = MOLES_GAS_VISIBLE
 	rarity = 100
 
+/datum/gas/zauker
+	id = "zauker"
+	specific_heat = 350
+	name = "Zauker"
+	dangerous = TRUE
+	gas_overlay = "zauker"
+	moles_visible = MOLES_GAS_VISIBLE
+	rarity = 1
 /datum/gas/hexane
 	id = "hexane"
 	specific_heat = 5
