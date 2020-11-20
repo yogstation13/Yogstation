@@ -243,3 +243,32 @@
 /obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped/inverse
 	node1_concentration = O2STANDARD
 	node2_concentration = N2STANDARD
+
+/obj/machinery/atmospherics/components/trinary/mixer/t_mixer
+	icon_state = "t_mixer-0"
+	dir = SOUTH
+	initialize_directions = SOUTH|EAST|WEST
+
+/obj/machinery/atmospherics/components/trinary/mixer/t_mixer/SetInitDirections()
+	switch(dir)
+		if(NORTH)
+			initialize_directions = EAST|NORTH|WEST
+		if(SOUTH)
+			initialize_directions = SOUTH|WEST|EAST
+		if(EAST)
+			initialize_directions = EAST|NORTH|SOUTH
+		if(WEST)
+			initialize_directions = WEST|NORTH|SOUTH
+
+/obj/machinery/atmospherics/components/trinary/mixer/t_mixer/getNodeConnects()
+	var/node1_connect = turn(dir, -90)
+	var/node2_connect = turn(dir, 90)
+	var/node3_connect = dir
+	if(flipped)
+		node1_connect = turn(node1_connect, 180)
+		node3_connect = turn(node3_connect, 180)
+	return list(node1_connect, node2_connect, node3_connect)
+
+/obj/machinery/atmospherics/components/trinary/mixer/t_mixer/flipped
+	flipped = TRUE
+	icon_state = t_mixer-0_f
