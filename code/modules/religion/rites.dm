@@ -212,7 +212,7 @@
 
 /datum/religion_rites/burning_sacrifice
 	name = "Candle Fuel"
-	desc = "Sacrifice a buckled burning corpse for favor, the more burn damage the corpse has the more favor you will receive."
+	desc = "Sacrifice a buckled burning corpse for favor; the more burn damage the corpse has, the more favor you will receive."
 	ritual_length = 20 SECONDS
 	ritual_invocations = list("To feed the fire of the one true flame ...",
 	"... to make it burn brighter ...",
