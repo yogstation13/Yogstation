@@ -154,8 +154,6 @@
 	alpha = 150
 	categories = list(MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/hot_ice
-	value_per_unit = 0.2
-	beauty_modifier = 0.2
 
 /datum/material/hot_ice/on_applied(atom/source, amount, material_flags)
 	. = ..()
@@ -181,10 +179,7 @@
 	alpha = 150
 	categories = list(MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/metal_hydrogen
-	value_per_unit = 0.35
-	beauty_modifier = 0.35
 	strength_modifier = 1.2
-	armor_modifiers = list(MELEE = 1.35, BULLET = 1.3, LASER = 1.3, ENERGY = 1.25, BOMB = 0.7, BIO = 1, RAD = 1, FIRE = 1.3, ACID = 1)
 
 /datum/material/metalhydrogen/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
 	M.apply_damage(15, BRUTE, BODY_ZONE_HEAD, wound_bonus = 7)
