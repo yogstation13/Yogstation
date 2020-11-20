@@ -245,9 +245,13 @@
 	node2_concentration = N2STANDARD
 
 /obj/machinery/atmospherics/components/trinary/mixer/t_mixer
-	icon_state = "t_mixer-0"
+	icon_state = "t_mixer_off-0"
 	dir = SOUTH
 	initialize_directions = SOUTH|EAST|WEST
+
+/obj/machinery/atmospherics/components/trinary/mixer/t_mixer
+	on = TRUE
+	icon_state = "t_mixer_on-0"
 
 /obj/machinery/atmospherics/components/trinary/mixer/t_mixer/SetInitDirections()
 	switch(dir)
@@ -271,4 +275,9 @@
 
 /obj/machinery/atmospherics/components/trinary/mixer/t_mixer/flipped
 	flipped = TRUE
-	icon_state = t_mixer-0_f
+	icon_state = t_mixer_off-0_f
+
+/obj/machinery/atmospherics/components/trinary/mixer/t_mixer/flipped/on
+	flipped = TRUE
+	on = TRUE
+	icon_state = t_mixer_on-0_f
