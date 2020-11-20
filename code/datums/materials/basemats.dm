@@ -145,3 +145,47 @@
 	desc = "Organic matter"
 	color = "#735b4d"
 	strength_modifier = 0.8
+
+//formed when freon react with o2, emits a lot of plasma when heated
+/datum/material/hot_ice
+	name = "hot ice"
+	desc = "A weird kind of ice, feels warm to the touch"
+	color = "#88cdf1"
+	alpha = 150
+	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	sheet_type = /obj/item/stack/sheet/hot_ice
+	value_per_unit = 0.2
+	beauty_modifier = 0.2
+
+/datum/material/hot_ice/on_applied(atom/source, amount, material_flags)
+	. = ..()
+	source.AddComponent(/datum/component/hot_ice, "plasma", amount*150, amount*20+300)
+
+/datum/material/hot_ice/on_removed(atom/source, amount, material_flags)
+	qdel(source.GetComponent(/datum/component/hot_ice, "plasma", amount*150, amount*20+300))
+	return ..()
+
+/datum/material/hot_ice/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
+	M.reagents.add_reagent(/datum/reagent/toxin/plasma, rand(5, 6))
+	S?.reagents?.add_reagent(/datum/reagent/toxin/plasma, S.reagents.total_volume*(3/5))
+	var/obj/item/reagent_containers/food/snacks/food_S = S
+	if(istype(food_S) && food_S?.tastes?.len)
+		food_S.tastes += "salt"
+		food_S.tastes["salt"] = 3
+	return TRUE
+
+/datum/material/metalhydrogen
+	name = "Metal Hydrogen"
+	desc = "Solid metallic hydrogen. Some say it should be impossible"
+	color = "#f2d5d7"
+	alpha = 150
+	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	sheet_type = /obj/item/stack/sheet/mineral/metal_hydrogen
+	value_per_unit = 0.35
+	beauty_modifier = 0.35
+	strength_modifier = 1.2
+	armor_modifiers = list(MELEE = 1.35, BULLET = 1.3, LASER = 1.3, ENERGY = 1.25, BOMB = 0.7, BIO = 1, RAD = 1, FIRE = 1.3, ACID = 1)
+
+/datum/material/metalhydrogen/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
+	M.apply_damage(15, BRUTE, BODY_ZONE_HEAD, wound_bonus = 7)
+	return TRUE

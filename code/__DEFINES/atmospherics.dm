@@ -84,6 +84,18 @@
 #define PLASMA_MINIMUM_BURN_TEMPERATURE		(100+T0C)
 #define PLASMA_UPPER_TEMPERATURE			(1370+T0C)
 #define PLASMA_OXYGEN_FULLBURN				10
+#define HYDROGEN_MINIMUM_BURN_TEMPERATURE	(100+T0C)
+#define HYDROGEN_UPPER_TEMPERATURE			(1370+T0C)
+#define HYDROGEN_OXYGEN_FULLBURN			10
+
+//COLD FIRE (this is used only for the freon-o2 reaction, there is no fire still)
+#define COLD_FIRE_MAXIMUM_TEMPERATURE_TO_SPREAD	263 //fire will spread if the temperature is -10 °C
+#define COLD_FIRE_MAXIMUM_TEMPERATURE_TO_EXIST	273 //fire will start if the temperature is 0 °C
+#define COLD_FIRE_SPREAD_RADIOSITY_SCALE		0.95
+#define COLD_FIRE_GROWTH_RATE					40000
+#define FREON_MAXIMUM_BURN_TEMPERATURE			283
+#define FREON_LOWER_TEMPERATURE					60 //minimum temperature allowed for the burn to go, we would have negative pressure otherwise
+#define FREON_OXYGEN_FULLBURN					10
 
 //GASES
 #define MIN_TOXIC_GAS_DAMAGE				1
@@ -243,6 +255,22 @@
 #define ATMOS_TANK_PLASMA			"plasma=70000;TEMP=293.15"
 #define ATMOS_TANK_O2				"o2=100000;TEMP=293.15"
 #define ATMOS_TANK_N2				"n2=100000;TEMP=293.15"
+#define ATMOS_TANK_BZ				"bz=100000;TEMP=293.15"
+#define ATMOS_TANK_FREON			"freon=100000;TEMP=293.15"
+#define ATMOS_TANK_HALON			"halon=100000;TEMP=293.15"
+#define ATMOS_TANK_HEALIUM			"healium=100000;TEMP=293.15"
+#define ATMOS_TANK_H2				"hydrogen=100000;TEMP=293.15"
+#define ATMOS_TANK_HYPERNOBLIUM		"nob=100000;TEMP=293.15"
+#define ATMOS_TANK_MIASMA			"miasma=100000;TEMP=293.15"
+#define ATMOS_TANK_NO2				"no2=100000;TEMP=293.15"
+#define ATMOS_TANK_PLUOXIUM			"pluox=100000;TEMP=293.15"
+#define ATMOS_TANK_PROTO_NITRATE	"proto_nitrate=100000;TEMP=293.15"
+#define ATMOS_TANK_STIMULUM			"stim=100000;TEMP=293.15"
+#define ATMOS_TANK_TRITIUM			"tritium=100000;TEMP=293.15"
+#define ATMOS_TANK_H2O				"water_vapor=100000;TEMP=293.15"
+#define ATMOS_TANK_ZAUKER			"zauker=100000;TEMP=293.15"
+#define ATMOS_TANK_HELIUM			"helium=100000;TEMP=293.15"
+#define ATMOS_TANK_ANTINOBLIUM		"antinoblium=100000;TEMP=293.15"
 #define ATMOS_TANK_AIRMIX			"o2=2644;n2=10580;TEMP=293.15"
 
 //LAVALAND
@@ -281,6 +309,70 @@
 #define ATMOS_GAS_MONITOR_INPUT_CO2 "co2_in"
 #define ATMOS_GAS_MONITOR_OUTPUT_CO2 "co2_out"
 #define ATMOS_GAS_MONITOR_SENSOR_CO2 "co2_sensor"
+
+#define ATMOS_GAS_MONITOR_INPUT_BZ "bz_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_BZ "bz_out"
+#define ATMOS_GAS_MONITOR_SENSOR_BZ "bz_sensor"
+
+#define ATMOS_GAS_MONITOR_INPUT_FREON "freon_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_FREON "freon_out"
+#define ATMOS_GAS_MONITOR_SENSOR_FREON "freon_sensor"
+
+#define ATMOS_GAS_MONITOR_INPUT_HALON "halon_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_HALON "halon_out"
+#define ATMOS_GAS_MONITOR_SENSOR_HALON "halon_sensor"
+
+#define ATMOS_GAS_MONITOR_INPUT_HEALIUM "healium_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_HEALIUM "healium_out"
+#define ATMOS_GAS_MONITOR_SENSOR_HEALIUM "healium_sensor"
+
+#define ATMOS_GAS_MONITOR_INPUT_H2 "h2_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_H2 "h2_out"
+#define ATMOS_GAS_MONITOR_SENSOR_H2 "h2_sensor"
+
+#define ATMOS_GAS_MONITOR_INPUT_HYPERNOBLIUM "hypernoblium_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_HYPERNOBLIUM "hypernoblium_out"
+#define ATMOS_GAS_MONITOR_SENSOR_HYPERNOBLIUM "hypernoblium_sensor"
+
+#define ATMOS_GAS_MONITOR_INPUT_MIASMA "miasma_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_MIASMA "miasma_out"
+#define ATMOS_GAS_MONITOR_SENSOR_MIASMA "miasma_sensor"
+
+#define ATMOS_GAS_MONITOR_INPUT_NO2 "no2_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_NO2 "no2_out"
+#define ATMOS_GAS_MONITOR_SENSOR_NO2 "no2_sensor"
+
+#define ATMOS_GAS_MONITOR_INPUT_PLUOXIUM "pluoxium_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_PLUOXIUM "pluoxium_out"
+#define ATMOS_GAS_MONITOR_SENSOR_PLUOXIUM "pluoxium_sensor"
+
+#define ATMOS_GAS_MONITOR_INPUT_PROTO_NITRATE "proto-nitrate_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_PROTO_NITRATE "proto-nitrate_out"
+#define ATMOS_GAS_MONITOR_SENSOR_PROTO_NITRATE "proto-nitrate_sensor"
+
+#define ATMOS_GAS_MONITOR_INPUT_STIMULUM "stimulum_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_STIMULUM "stimulum_out"
+#define ATMOS_GAS_MONITOR_SENSOR_STIMULUM "stimulum_sensor"
+
+#define ATMOS_GAS_MONITOR_INPUT_TRITIUM "tritium_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_TRITIUM "tritium_out"
+#define ATMOS_GAS_MONITOR_SENSOR_TRITIUM "tritium_sensor"
+
+#define ATMOS_GAS_MONITOR_INPUT_H2O "h2o_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_H2O "h2o_out"
+#define ATMOS_GAS_MONITOR_SENSOR_H2O "h2o_sensor"
+
+#define ATMOS_GAS_MONITOR_INPUT_ZAUKER "zauker_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_ZAUKER "zauker_out"
+#define ATMOS_GAS_MONITOR_SENSOR_ZAUKER "zauker_sensor"
+
+#define ATMOS_GAS_MONITOR_INPUT_HELIUM "helium_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_HELIUM "helium_out"
+#define ATMOS_GAS_MONITOR_SENSOR_HELIUM "helium_sensor"
+
+#define ATMOS_GAS_MONITOR_INPUT_ANTINOBLIUM "antinoblium_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_ANTINOBLIUM "antinoblium_out"
+#define ATMOS_GAS_MONITOR_SENSOR_ANTINOBLIUM "antinoblium_sensor"
 
 #define ATMOS_GAS_MONITOR_INPUT_INCINERATOR "incinerator_in"
 #define ATMOS_GAS_MONITOR_OUTPUT_INCINERATOR "incinerator_out"

@@ -16,6 +16,8 @@
 		/datum/gas/nitryl,
 		/datum/gas/tritium,
 		/datum/gas/hypernoblium,
+		/datum/gas/freon,
+		/datum/gas/hydrogen,
 		/datum/gas/water_vapor,
 		/datum/gas/healium,
 		/datum/gas/proto_nitrate,

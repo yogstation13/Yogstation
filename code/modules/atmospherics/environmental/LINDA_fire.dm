@@ -18,6 +18,7 @@
 		return
 	var/tox = air.get_moles(/datum/gas/plasma)
 	var/trit = air.get_moles(/datum/gas/tritium)
+	var/h2 = air.get_moles(/datum/gas/hydrogen)
 	if(active_hotspot)
 		if(soh)
 			if(tox > 0.5 || trit > 0.5)
