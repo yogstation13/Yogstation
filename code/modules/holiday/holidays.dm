@@ -275,9 +275,18 @@
 	begin_day = 2
 	begin_month = JULY
 	drone_hat = /obj/item/clothing/mask/facehugger/dead
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=X8cmbmwFAl8", // Clutch - X-Ray Visions
+		"https://www.youtube.com/watch?v=sYkvpNR8BGU", // Blue Oyster Cult: E.T.I. (Extra Terraestrial Intelligence)
+		"https://www.youtube.com/watch?v=Pyu89NHSniU", // Blood And Rockets: Movement I, Saga Of Jack Parsons - Movement II, Too The Moon
+		"https://www.youtube.com/watch?v=BYDd0TTx4nE", // Nyctophilliac - Blunted Session
+		"https://www.youtube.com/watch?v=n8cCDoDYgc0", // Ballad of a Spaceman - Julia Ecklar
+		"https://www.youtube.com/watch?v=I1VLuZ9Smf0", // Elektronik Supersonik - ZLAD
+		"https://www.youtube.com/watch?v=KvQ0zWHtnN4"  // The Mechanisms - Once Upon a Time - 06 Pump Shanty
+	)
 
 /datum/holiday/UFO/getStationPrefix() //Is such a thing even possible?
-	return pick("Ayy","Truth","Tsoukalos","Mulder","Scully") //Yes it is!
+	return pick("Ayy","Truth","Tsoukalos","Mulder","Scully","Greys") //Yes it is!
 
 /datum/holiday/USA
 	name = "Independence Day"
