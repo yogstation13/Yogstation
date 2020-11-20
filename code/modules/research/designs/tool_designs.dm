@@ -45,7 +45,7 @@
 
 /datum/design/rcd_upgrade/simple_circuits
 	name = "RCD simple circuits designs upgrade"
-	desc = "Adds the simple circuits to the RCD."
+	desc = "Adds simple circuits to the RCD."
 	id = "rcd_upgrade_simple_circuits"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500, /datum/material/silver = 1500, /datum/material/titanium = 2000)
@@ -65,7 +65,7 @@
 
 /datum/design/rcd_upgrade/silo_link
 	name = "Advanced RCD silo link upgrade"
-	desc = "Adds the silo dirrect link to the RCD."
+	desc = "Adds the silo direct link to the RCD."
 	id = "rcd_upgrade_silo_link"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2500, /datum/material/glass = 2500, /datum/material/silver = 2500, /datum/material/titanium = 2500, /datum/material/bluespace = 2500)
