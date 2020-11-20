@@ -49,7 +49,8 @@
 		icon_state = "pvalve_off-[set_overlay_offset(piping_layer)]"
 
 /obj/machinery/atmospherics/components/binary/pressure_valve/process_atmos()
-
+	..()
+	visible_message("IM ALIVE")
 	if(!on || is_operational())
 		return
 

@@ -32,7 +32,7 @@
 	icon_state = "tpump_[on && is_operational() ? "on" : "off"]-[set_overlay_offset(piping_layer)]"
 
 /obj/machinery/atmospherics/components/binary/temperature_pump/process_atmos()
-
+	..()
 	if(!on || !is_operational())
 		return
 
