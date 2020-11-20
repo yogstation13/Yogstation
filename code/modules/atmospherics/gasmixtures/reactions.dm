@@ -575,12 +575,12 @@
 		air.adjust_moles(/datum/gas/hydrogen, -burned_fuel)
 	else
 		burned_fuel = (air.get_moles(/datum/gas/hydrogen) * HYDROGEN_BURN_H2_FACTOR)
-		air.adjust_moles(/datum/gas/hydrogen, -(air.get_moles(/datum/gas/hydrogen) / HYDROGEN_BURN_H2_FACTOR)
-		air.adjust_moles(/datum/gas/oxygen, -air.get_moles(/datum/gas/hydrogen)
+		air.adjust_moles(/datum/gas/hydrogen, -(air.get_moles(/datum/gas/hydrogen) / HYDROGEN_BURN_H2_FACTOR))
+		air.adjust_moles(/datum/gas/oxygen, -air.get_moles(/datum/gas/hydrogen))
 
 	if(burned_fuel)
 		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_fuel)
-		air.adjust_moles(/datum/gas/water_vapor, +(burned_fuel / HYDROGEN_BURN_OXY_FACTOR)
+		air.adjust_moles(/datum/gas/water_vapor, (burned_fuel / HYDROGEN_BURN_OXY_FACTOR))
 
 		cached_results["fire"] += burned_fuel
 
@@ -624,7 +624,7 @@
 		return NO_REACTION
 	air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 5))
 	air.adjust_moles(/datum/gas/bz, -(heat_efficency * 0.25))
-	air.adjust_moles(/datum/gas/hexane, +(heat_efficency * 5.25))
+	air.adjust_moles(/datum/gas/hexane, (heat_efficency * 5.25))
 
 	if(energy_used)
 		var/new_heat_capacity = air.heat_capacity()
@@ -660,7 +660,7 @@
 	if(pressure >= METAL_HYDROGEN_MINIMUM_PRESSURE && temperature >= METAL_HYDROGEN_MINIMUM_HEAT)
 		air.adjust_moles(/datum/gas/bz, -(heat_efficency * 0.01))
 		if (prob(20 * increase_factor))
-			air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 3.5)
+			air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 3.5))
 			if (prob(100 / increase_factor))
 				new /obj/item/stack/sheet/mineral/metal_hydrogen(location)
 				SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min((heat_efficency * increase_factor * 0.5), METAL_HYDROGEN_RESEARCH_MAX_AMOUNT))
@@ -719,12 +719,12 @@
 /datum/gas_reaction/halon_formation/react(datum/gas_mixture/air, datum/holder)
 	var/temperature = air.return_temperature()
 	var/old_heat_capacity = air.heat_capacity()
-	var/heat_efficency = min(temperature * 0.01, air.get_moles(datum/gas/tritium), air.get_moles(/datum/gas/bz))
+	var/heat_efficency = min(temperature * 0.01, air.get_moles(/datum/gas/tritium), air.get_moles(/datum/gas/bz))
 	var/energy_used = heat_efficency * 300
 	if ((air.get_moles(/datum/gas/tritium) - heat_efficency * 4 < 0 ) || (air.get_moles(/datum/gas/bz) - heat_efficency * 0.25 < 0)) //Shouldn't produce gas from nothing.
 		return NO_REACTION
-	air.adjust_moles(/datum/gas/tritium, -(heat_efficency * 4)
-	air.adjust_moles(/datum/gas/bz, -(heat_efficency * 0.25)
+	air.adjust_moles(/datum/gas/tritium, -(heat_efficency * 4))
+	air.adjust_moles(/datum/gas/bz, -(heat_efficency * 0.25))
 	air.adjust_moles(/datum/gas/halon, (heat_efficency * 4.25))
 
 	if(energy_used)
@@ -749,7 +749,7 @@
 /datum/gas_reaction/healium_formation/react(datum/gas_mixture/air, datum/holder)
 	var/temperature = air.return_temperature()
 	var/old_heat_capacity = air.heat_capacity()
-	var/heat_efficency = min(temperature * 0.3, air.get_moles(/datum/gas/freon), air.get_moles(/datum/gas/bz)
+	var/heat_efficency = min(temperature * 0.3, air.get_moles(/datum/gas/freon), air.get_moles(/datum/gas/bz))
 	var/energy_used = heat_efficency * 9000
 	if ((air.get_moles(/datum/gas/freon) - heat_efficency * 2.75 < 0 ) || (air.get_moles(/datum/gas/bz) - heat_efficency * 0.25 < 0)) //Shouldn't produce gas from nothing.
 		return NO_REACTION
