@@ -216,7 +216,7 @@
 
 /obj/machinery/portable_atmospherics/canister/hexane
 	name = "Hexane canister"
-	desc = "hexane, highly flammable"
+	desc = "hexane, highly flammable."
 	icon_state = "hexane"
 	gas_type = /datum/gas/hexane
 	filled = 1

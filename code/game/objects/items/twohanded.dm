@@ -265,7 +265,7 @@
 /obj/item/twohanded/fireaxe/metal_h2_axe  // Blatant imitation of the fireaxe, but made out of metallic hydrogen
 	icon_state = "metalh2_axe0"
 	name = "metallic hydrogen axe"
-	desc = "A large, menacing axe made of an unkown substance that the most elder atmosians calls Metallic Hydrogen. Truly an otherwordly weapon."
+	desc = "A large, menacing axe made of an unknown substance that the most elder atmosians call Metallic Hydrogen. Truly an otherwordly weapon."
 	force_unwielded = 5
 	force_wielded = 23
 
