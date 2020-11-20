@@ -57,10 +57,13 @@
 	var/datum/gas_mixture/air2 = airs[2]
 
 	if(air1.return_pressure() > target_pressure)
+		visible_message("I should be sending gas..")
 		if(air1.release_gas_to(air2, air1.return_pressure()))
+			visible_message("IM SENDING MAI GASSSSS!!!!")
 			update_parents()
 			is_gas_flowing = TRUE
 	else
+		visible_message("I dont want to send gas...")
 		is_gas_flowing = FALSE
 	update_icon_nopipes()
 
