@@ -5,13 +5,6 @@
 "ab" = (
 /turf/closed/wall/mineral/iron,
 /area/ruin/unpowered)
-"ah" = (
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered)
-"ax" = (
-/obj/item/slimecross/industrial/silver,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered)
 "ay" = (
 /obj/structure/closet/crate/coffin,
 /obj/item/immortality_talisman,
@@ -483,7 +476,7 @@ ab
 ab
 ab
 aU
-ax
+Zf
 AP
 ab
 lA
@@ -513,7 +506,7 @@ aU
 Xo
 ab
 Hm
-ah
+aU
 aU
 aU
 SY
