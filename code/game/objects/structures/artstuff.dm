@@ -46,7 +46,7 @@
 	var/list/grid
 	var/canvas_color = "#ffffff" //empty canvas color
 	var/used = FALSE
-	var/painting_name //Painting name, this is set after framing.
+	var/painting_name = "Untitled Artwork" //Painting name, this is set after framing.
 	var/finalized = FALSE //Blocks edits
 	var/author_ckey
 	var/icon_generated = FALSE
@@ -186,7 +186,7 @@
 
 /obj/item/canvas/proc/try_rename(mob/user)
 	var/new_name = stripped_input(user,"What do you want to name the painting?")
-	if(!painting_name && new_name && user.canUseTopic(src,BE_CLOSE))
+	if(painting_name != initial(painting_name) && new_name && user.canUseTopic(src,BE_CLOSE))
 		painting_name = new_name
 		SStgui.update_uis(src)
 
@@ -216,6 +216,17 @@
 	pixel_y = 9
 	framed_offset_x = 5
 	framed_offset_y = 6
+
+/obj/item/canvas/twentyfour_twentyfour
+	name = "ai universal standard canvas"
+	desc = "Besides being very large, the AI can accept these as a display from their internal database after you've hung it up."
+	icon_state = "24x24"
+	width = 24
+	height = 24
+	pixel_x = 2
+	pixel_y = 1
+	framed_offset_x = 4
+	framed_offset_y = 5
 
 /obj/item/wallframe/painting
 	name = "painting frame"
@@ -251,7 +262,7 @@
 /obj/structure/sign/painting/attackby(obj/item/I, mob/user, params)
 	if(!C && istype(I, /obj/item/canvas))
 		frame_canvas(user,I)
-	else if(C && !C.painting_name && istype(I,/obj/item/pen))
+	else if(C && C.painting_name == initial(C.painting_name) && istype(I,/obj/item/pen))
 		try_rename(user)
 	else
 		return ..()
@@ -279,7 +290,7 @@
 	update_icon()
 
 /obj/structure/sign/painting/proc/try_rename(mob/user)
-	if(!C.painting_name)
+	if(C.painting_name == initial(C.painting_name))
 		C.try_rename(user)
 
 /obj/structure/sign/painting/update_icon()
@@ -310,6 +321,8 @@
 	var/title = chosen["title"]
 	var/author = chosen["ckey"]
 	var/png = "data/paintings/[persistence_id]/[chosen["md5"]].png"
+	if(!title)
+		message_admins("<span class='notice'>Painting with NO TITLE loaded on a [persistence_id] frame in [get_area(src)]. Please delete it, it is saved in the database with no name and will create bad assets.</span>")
 	if(!fexists(png))
 		stack_trace("Persistent painting [chosen["md5"]].png was not found in [persistence_id] directory.")
 		return
@@ -336,6 +349,8 @@
 		return
 	if(sanitize_filename(persistence_id) != persistence_id)
 		stack_trace("Invalid persistence_id - [persistence_id]")
+		return
+	if(!C.painting_name)
 		return
 	var/data = C.get_data_string()
 	var/md5 = md5(data)
