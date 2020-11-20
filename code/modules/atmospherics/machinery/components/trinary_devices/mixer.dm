@@ -275,9 +275,9 @@
 
 /obj/machinery/atmospherics/components/trinary/mixer/t_mixer/flipped
 	flipped = TRUE
-	icon_state = t_mixer_off-0_f
+	icon_state = "t_mixer_off-0_f"
 
 /obj/machinery/atmospherics/components/trinary/mixer/t_mixer/flipped/on
 	flipped = TRUE
 	on = TRUE
-	icon_state = t_mixer_on-0_f
+	icon_state = "t_mixer_on-0_f"
