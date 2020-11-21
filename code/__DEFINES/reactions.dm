@@ -52,7 +52,6 @@
 #define STIM_BALL_PLASMA_ENERGY				20000000//amount of energy released when plasma is consumed (into radballs) by stimball 
 #define STIM_BALL_PLASMA_COEFFICIENT		0.2		//fraction of plasma consumed during stim ball reaction	
 //Research point amounts
-#define NOBLIUM_RESEARCH_AMOUNT				30
 #define BZ_RESEARCH_SCALE					4
 #define METAL_HYDROGEN_RESEARCH_MAX_AMOUNT	3000
 #define NOBLIUM_RESEARCH_AMOUNT				200

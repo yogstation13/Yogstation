@@ -549,7 +549,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
 
 /obj/item/pipe_dispenser/proc/mouse_wheeled(mob/source, atom/A, delta_x, delta_y, params)
-	if(source.incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
+	if(source.incapacitated(ignore_restraints = TRUE, ignore_wheel_stasis = TRUE))
 		return
 
 	if(delta_y > 0)

@@ -182,5 +182,5 @@
 	strength_modifier = 1.2
 
 /datum/material/metalhydrogen/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
-	M.apply_damage(15, BRUTE, BODY_ZONE_HEAD, wound_bonus = 7)
+	M.apply_damage(15, BRUTE, BODY_ZONE_HEAD, bonus = 7)
 	return TRUE
