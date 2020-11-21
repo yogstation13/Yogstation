@@ -54,7 +54,7 @@
 
 /obj/machinery/atmospherics/components/binary/temperature_gate/process_atmos()
 	..()
-	if(!on || !is_operational())
+	if(!on)
 		return
 
 	var/datum/gas_mixture/air1 = airs[1]

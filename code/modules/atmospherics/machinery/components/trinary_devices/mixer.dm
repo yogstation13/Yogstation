@@ -244,6 +244,9 @@
 	node1_concentration = O2STANDARD
 	node2_concentration = N2STANDARD
 
+/obj/machinery/atmospherics/components/trinary/mixer/update_icon()
+	return
+
 /obj/machinery/atmospherics/components/trinary/mixer/t_mixer
 	icon_state = "t_mixer_off-0"
 	dir = SOUTH

@@ -51,7 +51,7 @@
 /obj/machinery/atmospherics/components/binary/pressure_valve/process_atmos()
 	..()
 	visible_message("IM ALIVE")
-	if(!on || is_operational())
+	if(!on)
 		return
 
 	var/datum/gas_mixture/air1 = airs[1]
