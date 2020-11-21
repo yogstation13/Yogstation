@@ -252,7 +252,7 @@
 	dir = SOUTH
 	initialize_directions = SOUTH|EAST|WEST
 
-/obj/machinery/atmospherics/components/trinary/mixer/t_mixer
+/obj/machinery/atmospherics/components/trinary/mixer/t_mixer/on
 	on = TRUE
 	icon_state = "t_mixer_on-0"
 
