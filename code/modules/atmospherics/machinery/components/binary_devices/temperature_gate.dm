@@ -53,7 +53,6 @@
 
 
 /obj/machinery/atmospherics/components/binary/temperature_gate/process_atmos()
-	..()
 	if(!on || !is_operational())
 		return
 
