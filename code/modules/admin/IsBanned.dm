@@ -7,7 +7,6 @@
 #define STICKYBAN_MAX_ADMIN_MATCHES 1
 
 /world/IsBanned(key, address, computer_id, type, real_bans_only=FALSE)
-	
 	var/static/key_cache = list()
 	if(!real_bans_only)
 		if(key_cache[key])
@@ -62,12 +61,6 @@
 			log_access("Failed Login: [key] - Guests not allowed during panic bunker")
 			key_cache[key] = 0
 			return list("reason"="guest", "desc"="\nReason: Sorry but the server is currently not accepting connections from never before seen players or guests. If you have played on this server with a byond account before, please log in to the byond account you have played from.")
-
-	//New Account Checking
-	if(daysSince(C.account_join_date) < 4)
-		message_admins("[C.key] tried to join with an account less then 4 days old")
-		log_admin("[C.key] tried to join with an account less then 4 days old")
-		return list("reason"="guest", "desc"="\nReason: Connection Failed - Account Error")
 
 	//Population Cap Checking
 	var/extreme_popcap = CONFIG_GET(number/extreme_popcap)
