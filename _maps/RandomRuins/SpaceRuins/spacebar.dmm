@@ -621,6 +621,10 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
+"BT" = (
+/obj/machinery/smartfridge/food,
+/turf/closed/wall,
+/area/ruin/space/has_grav/powered/spacebar)
 "CP" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 8
@@ -1013,6 +1017,9 @@
 /obj/effect/turf_decal/tile/bar,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"Sy" = (
+/turf/open/floor/plating,
+/area/ruin/unpowered/no_grav)
 "Tp" = (
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
@@ -1082,10 +1089,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/spacebar)
-"ZD" = (
-/obj/machinery/smartfridge/food,
-/turf/closed/wall,
-/area/ruin/space/has_grav/powered/spacebar)
 "ZE" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -1129,9 +1132,9 @@ YH
 YH
 YH
 YH
+xi
 YH
-YH
-YH
+xi
 YH
 YH
 YH
@@ -1162,9 +1165,9 @@ YH
 YH
 YH
 YH
-YH
-YH
-YH
+xi
+Sy
+xi
 YH
 YH
 YH
@@ -1226,8 +1229,8 @@ iP
 iP
 iP
 FB
-YH
-YH
+xi
+xi
 FB
 sX
 FB
@@ -1751,7 +1754,7 @@ FB
 FB
 FB
 FB
-ZD
+BT
 AZ
 yK
 FB
@@ -1762,8 +1765,8 @@ yg
 yg
 OB
 FB
-ZN
-ZN
+sM
+sM
 sM
 YH
 YH
