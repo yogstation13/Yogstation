@@ -42045,6 +42045,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"iph" = (
+/obj/item/radio/intercom{
+	pixel_y = 27
+	},
+/obj/machinery/electrolyzer,
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "ipN" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -46606,15 +46613,6 @@
 	},
 /turf/open/floor/wood,
 /area/medical/psych)
-"lFC" = (
-/obj/structure/table,
-/obj/item/storage/belt/utility,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/radio/intercom{
-	pixel_y = 27
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "lFG" = (
 /obj/structure/bed/roller,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -52639,6 +52637,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"pYm" = (
+/obj/structure/table,
+/obj/item/wrench,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/belt/utility,
+/obj/item/pipe_dispenser,
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "pYt" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/structure/window/reinforced{
@@ -60540,12 +60546,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
-"vLF" = (
-/obj/structure/table,
-/obj/item/wrench,
-/obj/item/pipe_dispenser,
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "vMh" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -102135,7 +102135,7 @@ ldW
 ldW
 ldW
 tQD
-lFC
+iph
 aSJ
 bvv
 byO
@@ -102392,7 +102392,7 @@ ldW
 ldW
 ldW
 tQD
-vLF
+pYm
 aSJ
 bvv
 byO

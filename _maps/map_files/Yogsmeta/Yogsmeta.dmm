@@ -12990,25 +12990,6 @@
 	dir = 1
 	},
 /area/engine/engineering)
-"aBH" = (
-/obj/item/stack/sheet/plasteel{
-	amount = 10;
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/structure/table,
-/obj/item/stack/sheet/rglass{
-	amount = 30;
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/effect/turf_decal/bot{
-	dir = 1
-	},
-/turf/open/floor/plasteel{
-	dir = 1
-	},
-/area/engine/engineering)
 "aBI" = (
 /turf/closed/wall,
 /area/engine/engineering)
@@ -15712,24 +15693,6 @@
 /obj/item/stack/rods/fifty,
 /obj/item/wrench,
 /obj/item/storage/box/lights/mixed,
-/obj/effect/turf_decal/bot{
-	dir = 1
-	},
-/turf/open/floor/plasteel{
-	dir = 1
-	},
-/area/engine/engineering)
-"aGR" = (
-/obj/structure/table,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/crowbar,
-/obj/item/grenade/chem_grenade/smart_metal_foam,
-/obj/item/grenade/chem_grenade/smart_metal_foam,
 /obj/effect/turf_decal/bot{
 	dir = 1
 	},
@@ -55322,7 +55285,9 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
 "cdV" = (
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -75565,6 +75530,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"fdD" = (
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
+/obj/machinery/electrolyzer,
+/turf/open/floor/plasteel{
+	dir = 1
+	},
+/area/engine/engineering)
 "feq" = (
 /obj/machinery/light{
 	dir = 8
@@ -81498,6 +81472,34 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
+"tEA" = (
+/obj/structure/table,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/crowbar,
+/obj/item/grenade/chem_grenade/smart_metal_foam,
+/obj/item/grenade/chem_grenade/smart_metal_foam,
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
+/obj/item/stack/sheet/rglass{
+	amount = 30;
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/stack/sheet/plasteel{
+	amount = 10;
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel{
+	dir = 1
+	},
+/area/engine/engineering)
 "tEX" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -122540,7 +122542,7 @@ aBE
 aCO
 aCi
 aFq
-aGR
+tEA
 axY
 aJk
 aJk
@@ -123307,7 +123309,7 @@ dnS
 bcI
 dnS
 axY
-aBH
+fdD
 aCQ
 aEO
 axw

@@ -15680,15 +15680,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmospherics_engine)
-"aAv" = (
-/obj/structure/table/reinforced,
-/obj/item/folder/yellow,
-/obj/item/lightreplacer,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "aAw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/disposal/bin,
@@ -23347,19 +23338,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/security/execution/transfer)
-"aMc" = (
-/obj/structure/table/reinforced,
-/obj/item/analyzer{
-	pixel_x = 7;
-	pixel_y = 3
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/item/circuitboard/machine/thermomachine/heater,
-/obj/item/circuitboard/machine/thermomachine/freezer,
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "aMd" = (
 /obj/structure/table,
 /obj/item/storage/crayons,
@@ -125458,6 +125436,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
+"eSx" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/electrolyzer,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "eTv" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -127105,6 +127090,21 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
+"qYh" = (
+/obj/structure/table/reinforced,
+/obj/item/analyzer{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/item/circuitboard/machine/thermomachine/heater,
+/obj/item/circuitboard/machine/thermomachine/freezer,
+/obj/item/lightreplacer,
+/obj/item/folder/yellow,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "qYo" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -152345,11 +152345,11 @@ aRv
 aGs
 aUQ
 aWG
-aAv
+eSx
 aZZ
 aZZ
 aZZ
-aMc
+qYh
 aWK
 bhi
 aHt

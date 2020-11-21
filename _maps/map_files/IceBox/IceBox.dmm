@@ -25305,23 +25305,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"bag" = (
-/obj/structure/table,
-/obj/item/storage/belt/utility,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/radio/intercom{
-	pixel_y = 27
-	},
-/obj/item/book/manual/wiki/atmospherics,
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
-"bah" = (
-/obj/structure/table,
-/obj/item/storage/box/lights/mixed,
-/obj/item/wrench,
-/obj/item/poster/neverforget,
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "bai" = (
 /obj/machinery/portable_atmospherics/pump,
 /obj/effect/turf_decal/tile/blue{
@@ -57228,6 +57211,16 @@
 /obj/item/clothing/neck/stethoscope,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"emV" = (
+/obj/structure/table,
+/obj/item/storage/box/lights/mixed,
+/obj/item/wrench,
+/obj/item/poster/neverforget,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/book/manual/wiki/atmospherics,
+/obj/item/storage/belt/utility,
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "erz" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -63782,6 +63775,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/entrance)
+"xPO" = (
+/obj/item/radio/intercom{
+	pixel_y = 27
+	},
+/obj/machinery/electrolyzer,
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "xQA" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plasteel/dark,
@@ -102168,7 +102168,7 @@ tNL
 xFn
 pdk
 avy
-bag
+xPO
 aSJ
 bvv
 byO
@@ -102425,7 +102425,7 @@ iXo
 vlo
 evv
 avy
-bah
+emV
 aSJ
 bvv
 byO

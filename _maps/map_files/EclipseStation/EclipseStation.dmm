@@ -82345,6 +82345,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"gdu" = (
+/obj/machinery/electrolyzer,
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "gdI" = (
 /obj/structure/table,
 /turf/open/floor/plating,
@@ -144103,7 +144107,7 @@ caR
 cdL
 cfF
 chW
-bTg
+gdu
 cpb
 crG
 csW
