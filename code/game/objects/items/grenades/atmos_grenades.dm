@@ -18,10 +18,10 @@
 	///Amount of gas released if the state is optimal
 	var/gas_amount = 250
 
-/obj/item/grenade/gas_crystal/proto_nitrate_crystal
-	name = "Proto Nitrate crystal"
-	desc = "A crystal made from the Proto Nitrate gas, you can see the liquid gases inside."
-	icon_state = "proto_nitrate_crystal"
+/obj/item/grenade/gas_crystal/pluonium_crystal
+	name = "Pluonium crystal"
+	desc = "A crystal made from the Pluonium gas, you can see the liquid gases inside."
+	icon_state = "pluonium_crystal"
 	///Range of the grenade air refilling
 	var/refill_range = 5
 	///Amount of Nitrogen gas released (close to the grenade)
@@ -76,7 +76,7 @@
 			live_mob.adjust_bodytemperature(-150 / distance_from_center)
 	qdel(src)
 
-/obj/item/grenade/gas_crystal/proto_nitrate_crystal/prime(mob/living/lanced_by)
+/obj/item/grenade/gas_crystal/pluonium_crystal/prime(mob/living/lanced_by)
 	. = ..()
 	update_mob()
 	playsound(src, 'sound/effects/spray2.ogg', 100, TRUE)

@@ -264,7 +264,7 @@
 #define ATMOS_TANK_MIASMA			"miasma=100000;TEMP=293.15"
 #define ATMOS_TANK_NO2				"no2=100000;TEMP=293.15"
 #define ATMOS_TANK_PLUOXIUM			"pluox=100000;TEMP=293.15"
-#define ATMOS_TANK_PROTO_NITRATE	"proto_nitrate=100000;TEMP=293.15"
+#define ATMOS_TANK_pluonium	"pluonium=100000;TEMP=293.15"
 #define ATMOS_TANK_STIMULUM			"stim=100000;TEMP=293.15"
 #define ATMOS_TANK_TRITIUM			"tritium=100000;TEMP=293.15"
 #define ATMOS_TANK_H2O				"water_vapor=100000;TEMP=293.15"
@@ -346,9 +346,9 @@
 #define ATMOS_GAS_MONITOR_OUTPUT_PLUOXIUM "pluoxium_out"
 #define ATMOS_GAS_MONITOR_SENSOR_PLUOXIUM "pluoxium_sensor"
 
-#define ATMOS_GAS_MONITOR_INPUT_PROTO_NITRATE "proto-nitrate_in"
-#define ATMOS_GAS_MONITOR_OUTPUT_PROTO_NITRATE "proto-nitrate_out"
-#define ATMOS_GAS_MONITOR_SENSOR_PROTO_NITRATE "proto-nitrate_sensor"
+#define ATMOS_GAS_MONITOR_INPUT_pluonium "proto-nitrate_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_pluonium "proto-nitrate_out"
+#define ATMOS_GAS_MONITOR_SENSOR_pluonium "proto-nitrate_sensor"
 
 #define ATMOS_GAS_MONITOR_INPUT_STIMULUM "stimulum_in"
 #define ATMOS_GAS_MONITOR_OUTPUT_STIMULUM "stimulum_out"

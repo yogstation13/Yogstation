@@ -763,12 +763,12 @@
 			air.set_temperature(max(((temperature * old_heat_capacity + energy_used) / new_heat_capacity), TCMB))
 	return REACTING
 
-/datum/gas_reaction/proto_nitrate_formation
+/datum/gas_reaction/pluonium_formation
 	priority = 10
-	name = "Proto Nitrate formation"
-	id = "proto_nitrate_formation"
+	name = "Pluonium formation"
+	id = "pluonium_formation"
 
-/datum/gas_reaction/proto_nitrate_formation/init_reqs()
+/datum/gas_reaction/pluonium_formation/init_reqs()
 	min_requirements = list(
 		/datum/gas/pluoxium = MINIMUM_MOLE_COUNT,
 		/datum/gas/hydrogen = MINIMUM_MOLE_COUNT,
@@ -776,7 +776,7 @@
 		"MAX_TEMP" = 10000
 	)
 
-/datum/gas_reaction/proto_nitrate_formation/react(datum/gas_mixture/air, datum/holder)
+/datum/gas_reaction/pluonium_formation/react(datum/gas_mixture/air, datum/holder)
 	var/temperature = air.return_temperature()
 	var/old_heat_capacity = air.heat_capacity()
 	var/heat_efficency = min(temperature * 0.005, air.get_moles(/datum/gas/pluoxium), air.get_moles(/datum/gas/hydrogen))
@@ -785,7 +785,7 @@
 		return NO_REACTION
 	air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 2))
 	air.adjust_moles(/datum/gas/pluoxium, -(heat_efficency * 0.2))
-	air.adjust_moles(/datum/gas/proto_nitrate, (heat_efficency * 2.2))
+	air.adjust_moles(/datum/gas/pluonium, (heat_efficency * 2.2))
 
 	if(energy_used > 0)
 		var/new_heat_capacity = air.heat_capacity()
@@ -885,20 +885,20 @@
 		return REACTING
 	return NO_REACTION
 
-/datum/gas_reaction/proto_nitrate_bz_response
+/datum/gas_reaction/pluonium_bz_response
 	priority = 13
-	name = "Proto Nitrate bz response"
-	id = "proto_nitrate_bz_response"
+	name = "Pluonium bz response"
+	id = "pluonium_bz_response"
 
-/datum/gas_reaction/proto_nitrate_bz_response/init_reqs()
+/datum/gas_reaction/pluonium_bz_response/init_reqs()
 	min_requirements = list(
-		/datum/gas/proto_nitrate = MINIMUM_MOLE_COUNT,
+		/datum/gas/pluonium = MINIMUM_MOLE_COUNT,
 		/datum/gas/bz = MINIMUM_MOLE_COUNT,
 		"TEMP" = 260,
 		"MAX_TEMP" = 280
 	)
 
-/datum/gas_reaction/proto_nitrate_bz_response/react(datum/gas_mixture/air, datum/holder)
+/datum/gas_reaction/pluonium_bz_response/react(datum/gas_mixture/air, datum/holder)
 	var/energy_released = 0
 	var/old_heat_capacity = air.heat_capacity()
 
@@ -909,7 +909,7 @@
 		location = get_turf(pick(pipenet.members))
 	else
 		location = get_turf(holder)
-	var consumed_amount = min(5, air.get_moles(/datum/gas/bz), air.get_moles(/datum/gas/proto_nitrate))
+	var consumed_amount = min(5, air.get_moles(/datum/gas/bz), air.get_moles(/datum/gas/pluonium))
 	if(air.get_moles(/datum/gas/bz) - consumed_amount < 0)
 		return NO_REACTION
 	if(air.get_moles(/datum/gas/bz) < 30)
@@ -925,31 +925,31 @@
 			air.set_temperature(max((temperature * old_heat_capacity + energy_released) / new_heat_capacity, TCMB))
 	return REACTING
 
-/datum/gas_reaction/proto_nitrate_tritium_response
+/datum/gas_reaction/pluonium_tritium_response
 	priority = 16
-	name = "Proto Nitrate tritium response"
-	id = "proto_nitrate_tritium_response"
+	name = "Pluonium tritium response"
+	id = "pluonium_tritium_response"
 
-/datum/gas_reaction/proto_nitrate_tritium_response/init_reqs()
+/datum/gas_reaction/pluonium_tritium_response/init_reqs()
 	min_requirements = list(
-		/datum/gas/proto_nitrate = MINIMUM_MOLE_COUNT,
+		/datum/gas/pluonium = MINIMUM_MOLE_COUNT,
 		/datum/gas/tritium = MINIMUM_MOLE_COUNT,
 		"TEMP" = 150,
 		"MAX_TEMP" = 340
 	)
 
-/datum/gas_reaction/proto_nitrate_tritium_response/react(datum/gas_mixture/air, datum/holder)
+/datum/gas_reaction/pluonium_tritium_response/react(datum/gas_mixture/air, datum/holder)
 	var/energy_released = 0
 	var/old_heat_capacity = air.heat_capacity()
 	var/temperature = air.return_temperature()
 	var/turf/open/location = isturf(holder) ? holder : null
-	var produced_amount = min(5, air.get_moles(/datum/gas/tritium), air.get_moles(/datum/gas/proto_nitrate))
-	if(air.get_moles(/datum/gas/tritium) - produced_amount < 0 || air.get_moles(/datum/gas/proto_nitrate) - produced_amount * 0.01 < 0)
+	var produced_amount = min(5, air.get_moles(/datum/gas/tritium), air.get_moles(/datum/gas/pluonium))
+	if(air.get_moles(/datum/gas/tritium) - produced_amount < 0 || air.get_moles(/datum/gas/pluonium) - produced_amount * 0.01 < 0)
 		return NO_REACTION
 	location.rad_act(produced_amount * 2.4)
 	air.adjust_moles(/datum/gas/tritium, -produced_amount)
 	air.adjust_moles(/datum/gas/hydrogen, produced_amount)
-	air.adjust_moles(/datum/gas/proto_nitrate, -(produced_amount * 0.01))
+	air.adjust_moles(/datum/gas/pluonium, -(produced_amount * 0.01))
 	energy_released += 50
 	if(energy_released)
 		var/new_heat_capacity = air.heat_capacity()
@@ -957,26 +957,26 @@
 			air.set_temperature(max((temperature * old_heat_capacity + energy_released) / new_heat_capacity, TCMB))
 	return REACTING
 
-/datum/gas_reaction/proto_nitrate_hydrogen_response
+/datum/gas_reaction/pluonium_hydrogen_response
 	priority = 17
-	name = "Proto Nitrate hydrogen response"
-	id = "proto_nitrate_hydrogen_response"
+	name = "Pluonium hydrogen response"
+	id = "pluonium_hydrogen_response"
 
-/datum/gas_reaction/proto_nitrate_hydrogen_response/init_reqs()
+/datum/gas_reaction/pluonium_hydrogen_response/init_reqs()
 	min_requirements = list(
-		/datum/gas/proto_nitrate = MINIMUM_MOLE_COUNT,
+		/datum/gas/pluonium = MINIMUM_MOLE_COUNT,
 		/datum/gas/hydrogen = 150,
 	)
 
-/datum/gas_reaction/proto_nitrate_hydrogen_response/react(datum/gas_mixture/air, datum/holder)
+/datum/gas_reaction/pluonium_hydrogen_response/react(datum/gas_mixture/air, datum/holder)
 	var/energy_released = 0
 	var/old_heat_capacity = air.heat_capacity()
 	var/temperature = air.return_temperature()
-	var produced_amount = min(5, air.get_moles(/datum/gas/hydrogen), air.adjust_moles(/datum/gas/proto_nitrate))
+	var produced_amount = min(5, air.get_moles(/datum/gas/hydrogen), air.adjust_moles(/datum/gas/pluonium))
 	if(air.get_moles(/datum/gas/hydrogen) - produced_amount < 0)
 		return NO_REACTION
 	air.adjust_moles(/datum/gas/hydrogen, -produced_amount)
-	air.adjust_moles(/datum/gas/proto_nitrate, (produced_amount * 0.5))
+	air.adjust_moles(/datum/gas/pluonium, (produced_amount * 0.5))
 	energy_released = produced_amount * 2500
 	if(energy_released)
 		var/new_heat_capacity = air.heat_capacity()

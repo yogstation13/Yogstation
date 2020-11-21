@@ -269,6 +269,10 @@
 	force_unwielded = 5
 	force_wielded = 23
 
+/obj/item/twohanded/fireaxe/update_icon()  //Currently only here to fuck with the on-mob icons.
+	icon_state = "metalh2_axe[wielded]"
+	return
+
 /*
  * Double-Bladed Energy Swords - Cheridan
  */

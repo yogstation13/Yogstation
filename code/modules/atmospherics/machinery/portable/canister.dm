@@ -59,7 +59,7 @@
 		"freon" = /obj/machinery/portable_atmospherics/canister/freon,
 		"hydrogen" = /obj/machinery/portable_atmospherics/canister/hydrogen,
 		"healium" = /obj/machinery/portable_atmospherics/canister/healium,
-		"proto_nitrate" = /obj/machinery/portable_atmospherics/canister/proto_nitrate,
+		"pluonium" = /obj/machinery/portable_atmospherics/canister/pluonium,
 		"zauker" = /obj/machinery/portable_atmospherics/canister/zauker,
 		"halon" = /obj/machinery/portable_atmospherics/canister/halon,
 		"hexane" = /obj/machinery/portable_atmospherics/canister/hexane
@@ -193,11 +193,11 @@
 	gas_type = /datum/gas/healium
 	filled = 1
 
-/obj/machinery/portable_atmospherics/canister/proto_nitrate
-	name = "Proto Nitrate canister"
-	desc = "Proto Nitrate, react differently with various gases"
-	icon_state = "proto_nitrate"
-	gas_type = /datum/gas/proto_nitrate
+/obj/machinery/portable_atmospherics/canister/pluonium
+	name = "Pluonium canister"
+	desc = "Pluonium, react differently with various gases"
+	icon_state = "pluonium"
+	gas_type = /datum/gas/pluonium
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/halon
@@ -627,7 +627,7 @@
 /obj/machinery/portable_atmospherics/canister/fusion_test/create_gas()
 	air_contents.set_moles(/datum/gas/tritium, 10)
 	air_contents.set_moles(/datum/gas/plasma, 500)
-	air_contents.set_moles(/datum/gas/carbon_dioxide, 500)
+	air_contents.set_moles(/datum/gas/hydrogen, 500)
 	air_contents.set_moles(/datum/gas/nitrous_oxide, 100)
 	air_contents.set_temperature(10000)
 

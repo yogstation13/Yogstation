@@ -182,12 +182,12 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	moles_visible = MOLES_GAS_VISIBLE
 	rarity = 100
 
-/datum/gas/proto_nitrate
-	id = "proto_nitrate"
+/datum/gas/pluonium
+	id = "pluonium"
 	specific_heat = 30
-	name = "Proto Nitrate"
+	name = "Pluonium"
 	dangerous = TRUE
-	gas_overlay = "proto_nitrate"
+	gas_overlay = "pluonium"
 	moles_visible = MOLES_GAS_VISIBLE
 	rarity = 100
 

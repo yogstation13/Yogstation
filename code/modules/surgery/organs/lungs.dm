@@ -310,7 +310,7 @@
 		gas_breathed = breath.get_moles(/datum/gas/healium)
 		breath.adjust_moles(/datum/gas/healium, -gas_breathed)
 
-	// Proto Nitrate
+	// Pluonium
 		// Inert
 
 	// Zauker
