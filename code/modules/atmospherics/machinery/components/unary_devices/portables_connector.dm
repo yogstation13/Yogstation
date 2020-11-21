@@ -57,6 +57,6 @@
 	piping_layer = 2
 	icon_state = "connector_map-2"
 
-/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer2
+/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer4
 	piping_layer = 4
 	icon_state = "connector_map-4"
