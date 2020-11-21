@@ -557,8 +557,8 @@
 	desc = "A plushie depicting a peacekeeper cyborg. Only you can prevent human harm!"
 	icon_state = "pkplush"
 	item_state = "pkplush"
-	attack_verb = list("hugged", "squeezed")
-	squeak_override = list('sound/weapons/thudswoosh.ogg'= 1)
+	attack_verb = list("hugged", "squeezed", "protected", "pacified")
+	squeak_override = list('sound/ai/harmalarm.ogg'= 1)
 
 /obj/item/toy/plush/foxplushie
 	name = "fox plushie"
