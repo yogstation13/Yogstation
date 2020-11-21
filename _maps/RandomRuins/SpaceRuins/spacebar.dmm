@@ -112,14 +112,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
-"eL" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/airalarm/all_access{
-	dir = 4;
-	pixel_x = -24
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/powered/spacebar)
 "eX" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -962,10 +954,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/spacebar)
-"Qx" = (
-/obj/machinery/smartfridge,
-/turf/closed/wall,
-/area/ruin/space/has_grav/powered/spacebar)
 "Qz" = (
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
@@ -1093,6 +1081,10 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/spacebar)
+"ZD" = (
+/obj/machinery/smartfridge/food,
+/turf/closed/wall,
 /area/ruin/space/has_grav/powered/spacebar)
 "ZE" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1621,7 +1613,7 @@ ZN
 ZN
 ZN
 KO
-aX
+yg
 yg
 yg
 yg
@@ -1691,7 +1683,7 @@ Hk
 Hk
 yg
 yg
-yg
+aX
 oo
 JO
 JO
@@ -1759,7 +1751,7 @@ FB
 FB
 FB
 FB
-Qx
+ZD
 AZ
 yK
 FB
@@ -1924,7 +1916,7 @@ lS
 zE
 zE
 qz
-eL
+Rp
 Qz
 Mk
 NH
@@ -2098,7 +2090,7 @@ ZN
 sM
 sM
 sM
-ZN
+sM
 sM
 sM
 YH
@@ -2131,7 +2123,7 @@ ZN
 ZN
 sM
 sM
-ZN
+sM
 sM
 YH
 YH
@@ -2151,20 +2143,20 @@ YH
 YH
 sM
 sM
+sM
+sM
+sM
+sM
+sM
+sM
+sM
+sM
 ZN
 ZN
 ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
+sM
+sM
+sM
 YH
 YH
 YH
@@ -2184,20 +2176,20 @@ YH
 YH
 sM
 sM
+sM
+sM
+sM
+sM
+sM
+sM
+sM
+sM
 ZN
 ZN
 ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
+sM
+sM
+sM
 YH
 YH
 YH
@@ -2217,19 +2209,19 @@ YH
 YH
 YH
 sM
+sM
+sM
+sM
+sM
+sM
+sM
+sM
+sM
 ZN
 ZN
 ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
+sM
+sM
 YH
 YH
 YH
@@ -2250,19 +2242,19 @@ YH
 YH
 YH
 YH
+sM
+sM
+sM
+sM
+sM
+sM
+sM
+sM
 ZN
 ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
+sM
+sM
+sM
 YH
 YH
 YH
@@ -2284,16 +2276,16 @@ YH
 YH
 YH
 YH
+sM
+sM
+sM
+sM
+sM
+sM
+sM
 ZN
 ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
+sM
 YH
 YH
 YH
