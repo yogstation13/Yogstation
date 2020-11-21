@@ -244,9 +244,6 @@
 	node1_concentration = O2STANDARD
 	node2_concentration = N2STANDARD
 
-/obj/machinery/atmospherics/components/trinary/mixer/update_icon()
-	return
-
 /obj/machinery/atmospherics/components/trinary/mixer/t_mixer
 	icon_state = "t_mixer_off-0"
 	dir = SOUTH
@@ -284,3 +281,7 @@
 	flipped = TRUE
 	on = TRUE
 	icon_state = "t_mixer_on-0_f"
+
+/obj/machinery/atmospherics/components/trinary/mixer/t_mixer/update_icon_nopipes()
+	var/on_state = on && nodes[1] && nodes[2] && nodes[3] && is_operational()
+	icon_state = "t_mixer_[on_state ? "on" : "off"]-[set_overlay_offset(piping_layer)][flipped ? "_f" : ""]"
