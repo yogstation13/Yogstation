@@ -49,9 +49,8 @@
 		icon_state = "pvalve_off-[set_overlay_offset(piping_layer)]"
 
 /obj/machinery/atmospherics/components/binary/pressure_valve/process_atmos()
-	..()
 	if(!on || is_operational())
-        return
+		return
 
 	var/datum/gas_mixture/air1 = airs[1]
 	var/datum/gas_mixture/air2 = airs[2]
