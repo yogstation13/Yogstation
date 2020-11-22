@@ -46,7 +46,7 @@
 		add_overlay(cap)
 
 	if(!on || !is_operational())
-		icon_state = "vent_off-3"
+		icon_state = "vent_off"
 	else
 		icon_state = pump_direction ? "vent_out" : "vent_in"
 
