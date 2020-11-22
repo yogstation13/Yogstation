@@ -1,0 +1,5 @@
+author: "wejengin2"
+delete-after: true 
+changes: 
+  - rscadd: "3 new plushies"
+  - tweak: "bee plushie has 2 more attack verbs"
