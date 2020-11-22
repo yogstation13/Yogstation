@@ -61,7 +61,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 ///This is the list of all keys that are not techincially "radios" but use radio prefixes like :g and .b
 GLOBAL_LIST_INIT(special_radio_keys, list(
 	MODE_KEY_BINARY = MODE_TOKEN_BINARY,
-	MODE_KEY_CHANGELING = MODE_TOKEN_CHANGELING
+	MODE_KEY_CHANGELING = MODE_TOKEN_CHANGELING,
+	MODE_KEY_ALIEN = MODE_TOKEN_ALIEN
 ))
 
 
