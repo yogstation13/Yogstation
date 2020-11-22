@@ -44,7 +44,7 @@
 
 /obj/machinery/sci_probe/examine(mob/user)
 	. = ..()
-	. += "It is using [active_power_usage/1000]kW and producing [SCIENCE_AMOUNT] research points per minute.\n"
+	. += "It is using [active_power_usage/1000]kW of power and producing [round(SCIENCE_AMOUNT*calibration)] research points per minute.\n"
 	if(panel_open)
 		. += "The panel is open.\n"
 
