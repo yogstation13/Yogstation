@@ -90,6 +90,8 @@
 
 /obj/machinery/sci_probe/proc/findmobs()
 	foundmobs = 0
+	if(!canoperate()) // Shows detected mobs as 0 if not on lavaland
+		return
 	for(var/mob/living/simple_animal/hostile/megafauna/S in GLOB.mob_list)
 		if(S.stat == DEAD)
 			continue
@@ -100,7 +102,9 @@
 
 /obj/machinery/sci_probe/proc/canoperate() // Code simplification
 	var/turf/T = src
-	if(!is_mining_level(T.z))
-		say("Warning: L.P.M is not on lavaland!")
+	if(!is_mining_level(T.z)) // If it somehow moves
+		if(setup) // Anti-Spam
+			say("Warning: L.P.M is not on lavaland!")
 		setup = FALSE // Turn machine off
-		return
+		return FALSE
+	return TRUE

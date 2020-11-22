@@ -16,15 +16,6 @@ export const SciProbe = (props, context) => {
       height={320}
       resizable>
       <Window.Content scrollable>
-        <Section title="Calibration Status">
-          <ProgressBar
-            ranges={{
-              good: [0.5, Infinity],
-              average: [0.25, 0.5],
-              bad: [-Infinity, 0.25],
-            }}
-            value={calibration} />
-        </Section>
         <Section title="Power and Calibration">
           <Button
             icon={status ? 'power-off' : 'times'}
@@ -35,12 +26,22 @@ export const SciProbe = (props, context) => {
             icon={'power-off'}
             content={"Calibrate"}
             onClick={() => act('calibrate')} />
+        </Section>
+        <Section title="Statistics">
+          <ProgressBar
+            ranges={{
+              good: [0.5, Infinity],
+              average: [0.25, 0.5],
+              bad: [-Infinity, 0.25],
+            }}
+            value={calibration} />
+          <Box mb={1} />
           <LabeledList>
             <LabeledList.Item label="Detected Megafauna">
               {foundmobs} Megafauna Detected
             </LabeledList.Item>
             <LabeledList.Item label="Science Generation">
-              {science*calibration} points per minute
+              {Math.round(science*calibration)} points per minute
             </LabeledList.Item>
           </LabeledList>
         </Section>
