@@ -366,6 +366,14 @@
 	description = "The Nanotrasen Emergency Shuttle Port(NES Port for short) is a shuttle used at other less known Nanotrasen facilities and has a more open inside for larger crowds, but fewer onboard shuttle facilities."
 	credit_cost = 500
 
+/datum/map_template/shuttle/emergency/rollerdome
+	suffix = "rollerdome"
+	name = "Uncle Pete's Rollerdome"
+	description = "Created by a freak accident in which a member of the NT Temporal Discovery Division accidently warped a building from the past into our second Disco Inferno shuttle. \
+	It resembles a 1990s era rollerdome all the way down to the carpet texture."
+	admin_notes = "ONLY NINETIES KIDS REMEMBER. Uses the fun balloon and drone from the Emergency Bar."
+	credit_cost = 2500
+
 /datum/map_template/shuttle/emergency/wabbajack
 	suffix = "wabbajack"
 	name = "NT Lepton Violet"

@@ -59,6 +59,7 @@
 	desc = "Absolutely disgusting... almost as horrid as that one green clown."
 	icon_state = "clowngoblin"
 	icon_dead = "clowngoblin"
+	gold_core_spawnable = HOSTILE_SPAWN
 	verb_say = "honks"
 	verb_ask = "honks inquisitively"
 	verb_exclaim = "honks loudly"

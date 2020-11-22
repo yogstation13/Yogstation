@@ -30,6 +30,16 @@
 	leader_role = /datum/antagonist/ert/amber/commander
 	roles = list(/datum/antagonist/ert/amber,/datum/antagonist/ert/amber,/datum/antagonist/ert/amber/medic) // entered duplicate here to increase change of soldiers
 
+/datum/ert/occupying
+	opendoors = FALSE
+	code = "Blue"
+	rename_team = "Occupying Force"
+	mission = "Occupy the station. Minimize crew casulties. Enforce space law."
+	polldesc = "the Occupying Force"
+	teamsize = 5 // redundant but keeping this here for clarity
+	leader_role = /datum/antagonist/ert/occupying/commander
+	roles = list(/datum/antagonist/ert/occupying,/datum/antagonist/ert/occupying/heavy,/datum/antagonist/ert/occupying,/datum/antagonist/ert/occupying) 
+
 /datum/ert/red
 	leader_role = /datum/antagonist/ert/commander/red
 	roles = list(/datum/antagonist/ert/security/red, /datum/antagonist/ert/medic/red, /datum/antagonist/ert/engineer/red)

@@ -485,20 +485,18 @@
 	toxpwr = 0.5
 	taste_description = "bad cooking"
 
-/datum/reagent/toxin/itching_powder
+/datum/reagent/itching_powder
 	name = "Itching Powder"
 	description = "A powder that induces itching upon contact with the skin. Causes the victim to scratch at their itches and has a very low chance to decay into Histamine."
-	silent_toxin = TRUE
 	reagent_state = LIQUID
 	color = "#C8C8C8"
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
-	toxpwr = 0
 
-/datum/reagent/toxin/itching_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/itching_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == TOUCH || method == VAPOR)
-		M.reagents.add_reagent(/datum/reagent/toxin/itching_powder, reac_volume)
+		M.reagents.add_reagent(/datum/reagent/itching_powder, reac_volume)
 
-/datum/reagent/toxin/itching_powder/on_mob_life(mob/living/carbon/M)
+/datum/reagent/itching_powder/on_mob_life(mob/living/carbon/M)
 	if(prob(15))
 		to_chat(M, "You scratch at your head.")
 		M.adjustBruteLoss(0.2*REM, 0)
@@ -513,7 +511,7 @@
 		. = 1
 	if(prob(3))
 		M.reagents.add_reagent(/datum/reagent/toxin/histamine,rand(1,3))
-		M.reagents.remove_reagent(/datum/reagent/toxin/itching_powder,1.2)
+		M.reagents.remove_reagent(/datum/reagent/itching_powder,1.2)
 		return
 	..()
 
@@ -794,12 +792,20 @@
 		return
 	reac_volume = round(reac_volume,0.1)
 	if(method == INGEST)
-		C.adjustBruteLoss(min(6*toxpwr, reac_volume * toxpwr))
+		if(!HAS_TRAIT(C, TRAIT_ACIDBLOOD))
+			C.adjustBruteLoss(min(6*toxpwr, reac_volume * toxpwr))
 		return
 	if(method == INJECT)
-		C.adjustBruteLoss(1.5 * min(6*toxpwr, reac_volume * toxpwr))
+		if(!HAS_TRAIT(C, TRAIT_ACIDBLOOD))
+			C.adjustBruteLoss(1.5 * min(6*toxpwr, reac_volume * toxpwr))
 		return
 	C.acid_act(acidpwr, reac_volume)
+
+/datum/reagent/toxin/acid/on_mob_life(mob/living/carbon/M)
+	if(HAS_TRAIT(M, TRAIT_ACIDBLOOD))
+		M.adjustToxLoss(clamp((toxpwr-2)*REM, -toxpwr*REM, 0))  //Counteracts toxin damage from parent, stronger acids will still do toxin damage to those with acidic blood but weaker acids will not
+	. = 1
+	..()
 
 /datum/reagent/toxin/acid/reaction_obj(obj/O, reac_volume)
 	if(ismob(O.loc)) //handled in human acid_act()

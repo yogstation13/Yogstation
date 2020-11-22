@@ -13,7 +13,7 @@ export const Guardian = (props, context) => {
     5: "A",
   };
   return (
-    <Window resizable>
+    <Window resizable width={500} height={600}>
       <Window.Content scrollable>
         <LabeledList>
           <LabeledList.Item

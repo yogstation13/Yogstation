@@ -15,7 +15,15 @@
 	//They can technically be in an ERT
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
 
-/datum/species/skeleton/check_roundstart_eligible()
+/datum/species/skeleton/lowcalcium
+	// these are the ones players can be roundstart during halloween
+	name = "Lesser Spooky Scary Skeleton"
+	id = "weakskeleton"
+	brutemod = 1.5 // Their low calcium bones are much weaker to being smashed.
+	punchdamagehigh = 5 // their weak bones don't let them punch very well.
+	limbs_id = "skeleton" //they are just normal skeletons but weaker
+
+/datum/species/skeleton/lowcalcium/check_roundstart_eligible()
 	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
 		return TRUE
 	return ..()

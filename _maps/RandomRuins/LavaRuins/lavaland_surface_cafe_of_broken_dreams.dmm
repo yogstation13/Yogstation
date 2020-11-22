@@ -33,17 +33,6 @@
 /obj/item/toy/cards/deck/cas,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"ap" = (
-/obj/structure/girder/reinforced,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/ruin/powered)
-"aq" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/ruin/powered)
 "ar" = (
 /obj/structure/table/wood/bar,
 /obj/item/toy/cards/deck/cas/black,
@@ -53,11 +42,6 @@
 /mob/living/simple_animal/hostile/asteroid/goliath/beast,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"au" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/lavaland/surface/outdoors)
 "av" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/glass/bottle/potass_iodide{
@@ -75,12 +59,6 @@
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"aA" = (
-/obj/structure/girder/reinforced,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/lavaland/surface/outdoors)
 "aB" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -398,6 +376,18 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/lavaland,
 /area/lavaland/surface/outdoors)
+"lR" = (
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "platingdmg3"
+	},
+/area/lavaland/surface/outdoors)
+"mq" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "platingdmg3"
+	},
+/area/lavaland/surface/outdoors)
 "rP" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -455,6 +445,12 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/lavaland,
 /area/lavaland/surface/outdoors)
+"Hc" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/powered)
 "Jg" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -496,6 +492,11 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/lavaland,
 /area/lavaland/surface/outdoors)
+"Tz" = (
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/powered)
 "Vo" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
@@ -504,6 +505,12 @@
 /obj/structure/grille/broken,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"XC" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "platingdmg3"
+	},
 /area/lavaland/surface/outdoors)
 
 (1,1,1) = {"
@@ -908,9 +915,9 @@ iU
 iU
 aW
 aW
-ap
-aq
-ap
+Hc
+Tz
+Hc
 aW
 aW
 aW
@@ -920,9 +927,9 @@ aW
 aW
 aW
 aW
-ap
-aq
-aq
+Hc
+Tz
+Tz
 iU
 aa
 aa
@@ -970,7 +977,7 @@ ai
 ai
 bj
 ai
-ap
+Hc
 iU
 iU
 aa
@@ -1002,7 +1009,7 @@ iU
 iU
 ab
 iU
-ap
+Hc
 ai
 bl
 ai
@@ -1018,7 +1025,7 @@ ai
 ai
 ai
 ai
-ap
+Hc
 iU
 iU
 iU
@@ -1050,7 +1057,7 @@ iU
 iU
 ab
 iU
-aq
+Tz
 bk
 bl
 ai
@@ -1098,7 +1105,7 @@ iU
 iU
 ab
 iU
-ap
+Hc
 ai
 av
 ai
@@ -2199,8 +2206,8 @@ aa
 aa
 ab
 ab
-au
-aA
+lR
+XC
 af
 ag
 af
@@ -2588,7 +2595,7 @@ aa
 aa
 aa
 ab
-aA
+XC
 ab
 iU
 ab
@@ -2636,7 +2643,7 @@ aa
 aa
 aa
 ab
-au
+lR
 ab
 iU
 ab
@@ -3222,14 +3229,14 @@ aa
 aa
 aa
 ab
-au
-aA
+lR
+XC
 af
-ag
+mq
 af
 af
 af
-aA
+XC
 iU
 aa
 aa
@@ -3277,7 +3284,7 @@ ab
 ab
 ab
 ab
-au
+lR
 aa
 aa
 aa

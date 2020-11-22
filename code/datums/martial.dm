@@ -160,7 +160,7 @@
 	else if(make_temporary)
 		base = H.mind.default_martial_art
 	if(help_verb)
-		H.verbs += help_verb
+		add_verb(H, help_verb)
 	H.mind.martial_art = src
 	return TRUE
 
@@ -197,5 +197,5 @@
   */
 /datum/martial_art/proc/on_remove(mob/living/carbon/human/H)
 	if(help_verb)
-		H.verbs -= help_verb
+		remove_verb(H, help_verb)
 	return

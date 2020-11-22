@@ -1,6 +1,6 @@
 /**
 *
-*This file contains any "special" / unique donator items which are ckey locked. 
+*This file contains any "special" / unique donator items which are ckey locked.
 *
 *To create a new unique donator item, create a new datum/donator_item
 *
@@ -23,13 +23,14 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 	var/name = "Unique Donator Items Controller"
 	var/list/donor_items = list()
 
-//We allow any state here because a dead person can set their donator hat and it won't really change a whole lot.
-/datum/donator_gear_resources/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, \
-force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)//ui_interact is called when the client verb is called.
+/datum/donator_gear_resources/ui_state(mob/user)
+	return GLOB.always_state
 
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+//We allow any state here because a dead person can set their donator hat and it won't really change a whole lot.
+/datum/donator_gear_resources/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "DonorGear", "Donator Gear Setup", 300, 300, master_ui, state)
+		ui = new(user, src, "DonorGear", "Donator Gear Setup")
 		ui.open()
 
 /datum/donator_gear_resources/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -71,7 +72,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.alw
 		if(!S.unlock_path)
 			message_admins("WARNING: [S] has no unlock path, clearing it out.")
 			qdel(S)
-			continue 
+			continue
 		donor_items += S
 
 /datum/donator_gear
@@ -195,7 +196,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	name = "Chef Hat"
 	unlock_path = /obj/item/clothing/head/collectable/chef
 	slot = SLOT_HEAD
-				
+
 /datum/donator_gear/paper
 	name = "Paper Hat"
 	unlock_path = /obj/item/clothing/head/collectable/paper
@@ -304,17 +305,17 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/hasturhood
 	name = "Hastur Hood"
 	unlock_path = /obj/item/clothing/head/hasturhood
-	slot = SLOT_HEAD		
-		
+	slot = SLOT_HEAD
+
 /datum/donator_gear/nursehat
 	name = "Nurse Hat"
 	unlock_path = /obj/item/clothing/head/nursehat
-	slot = SLOT_HEAD	
+	slot = SLOT_HEAD
 
 /datum/donator_gear/cardborg
 	name = "Cardboard Helmet"
 	unlock_path = /obj/item/clothing/head/cardborg
-	slot = SLOT_HEAD	
+	slot = SLOT_HEAD
 
 /datum/donator_gear/justice
 	name = "Justice Helmet"
@@ -324,7 +325,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/bowler
 	name = "Bowler Hat"
 	unlock_path = /obj/item/clothing/head/bowler
-	slot = SLOT_HEAD	
+	slot = SLOT_HEAD
 
 /datum/donator_gear/witchwig
 	name = "Witch's Wig"

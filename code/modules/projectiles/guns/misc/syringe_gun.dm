@@ -7,7 +7,7 @@
 	throw_speed = 3
 	throw_range = 7
 	force = 4
-	materials = list(MAT_METAL=2000)
+	materials = list(/datum/material/iron=2000)
 	clumsy_check = 0
 	fire_sound = 'sound/items/syringeproj.ogg'
 	var/list/syringes = list()
@@ -114,6 +114,7 @@
 	icon_state = "blowgun"
 	item_state = "blowgun"
 	fire_sound = 'sound/items/syringeproj.ogg'
+	trigger_guard = TRIGGER_GUARD_ALLOW_ALL //it's a fucking blowgun it shouldn't even have a triggerguard
 
 /obj/item/gun/syringe/blowgun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	visible_message("<span class='danger'>[user] starts aiming with a blowgun!</span>")

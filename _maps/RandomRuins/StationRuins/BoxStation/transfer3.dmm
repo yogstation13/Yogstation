@@ -72,6 +72,12 @@
 	},
 /turf/open/floor/plating,
 /area/security/execution/transfer)
+"o" = (
+/turf/closed/wall{
+	icon = 'icons/turf/walls/reinforced_wall.dmi';
+	icon_state = "r_wall"
+	},
+/area/security/execution/transfer)
 "p" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -327,9 +333,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/execution/transfer)
-"M" = (
-/turf/closed/wall,
-/area/security/execution/transfer)
 "N" = (
 /obj/machinery/power/apc{
 	areastring = "/area/security/execution/transfer";
@@ -437,33 +440,33 @@ a
 a
 a
 a
-M
-M
-M
-M
-M
+o
+o
+o
+o
+o
 "}
 (2,1,1) = {"
 a
 a
 a
 a
-M
+o
 s
 W
 V
-M
+o
 "}
 (3,1,1) = {"
 n
 n
-M
+o
 d
-M
+o
 p
 A
 J
-M
+o
 "}
 (4,1,1) = {"
 b

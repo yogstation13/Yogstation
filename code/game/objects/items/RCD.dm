@@ -23,7 +23,7 @@ RLD
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BELT
-	materials = list(MAT_METAL=100000)
+	materials = list(/datum/material/iron=100000)
 	req_access_txt = "11"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF
@@ -225,7 +225,6 @@ RLD
 
 	var/datum/browser/popup = new(user, "rcd_access", "Access Control", 900, 500)
 	popup.set_content(t1)
-	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
 	popup.open()
 	onclose(user, "rcd_access")
 
@@ -599,11 +598,11 @@ RLD
 	w_class = WEIGHT_CLASS_TINY
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
-	materials = list(MAT_METAL=12000, MAT_GLASS=8000)
+	materials = list(/datum/material/iron=12000, /datum/material/glass=8000)
 	var/ammoamt = 40
 
 /obj/item/rcd_ammo/large
-	materials = list(MAT_METAL=48000, MAT_GLASS=32000)
+	materials = list(/datum/material/iron=48000, /datum/material/glass=32000)
 	ammoamt = 160
 
 

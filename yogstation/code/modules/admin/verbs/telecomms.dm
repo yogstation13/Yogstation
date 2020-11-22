@@ -1,11 +1,11 @@
 /client/proc/reset_all_tcs()
-	set category = "Admin"
+	set category = "Admin.Round Interaction"
 	set name = "Reset Telecomms Scripts"
 	set desc = "Blanks all telecomms scripts from all telecomms servers"
 	if(!holder)
 		to_chat(usr, "Admin only.", confidential=TRUE)
 		return
-	
+
 	if(check_rights(R_ADMIN,1))
 		var/confirm = alert(src, "You sure you want to blank all NTSL scripts?", "Confirm", "Yes", "No")
 		if(confirm !="Yes") return

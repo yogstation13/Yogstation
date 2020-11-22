@@ -37,7 +37,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 	always_availible = FALSE
-	
+
 /datum/crafting_recipe/makeshiftlasrifle
 	name = "makeshift laser rifle"
 	result = /obj/item/gun/energy/laser/makeshiftlasrifle
@@ -50,7 +50,6 @@
 	time = 120
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-	always_availible = FALSE
 
 /datum/crafting_recipe/knifeboxing
 	name = "Knife-boxing Gloves"
@@ -511,10 +510,11 @@
 	reqs = 	list(/obj/item/stack/sheet/cloth = 2, /obj/item/stack/rods = 1)
 	result = /obj/structure/cloth_curtain
 	category = CAT_MISC
-/datum/crafting_recipe/personal_closet
-	name = "Personal Closet"
+	
+/datum/crafting_recipe/secure_closet
+	name = "Secure Closet"
 	reqs = list(/obj/item/stack/sheet/metal = 5, /obj/item/stack/cable_coil = 10, /obj/item/electronics/airlock = 1)
-	result = /obj/structure/closet/secure_closet/personal
+	result = /obj/structure/closet/secure_closet
 	category = CAT_MISC
 
 /datum/crafting_recipe/chemical_payload
@@ -581,6 +581,13 @@
 	reqs = list(/obj/item/stack/sheet/bone = 4)
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/shamanhat
+	name = "Shaman Headdress"
+	result = /obj/item/clothing/head/helmet/shaman
+	time = 30
+	reqs = list(/obj/item/stack/sheet/bone = 4)
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/goliathcloak
 	name = "Goliath Cloak"
 	result = /obj/item/clothing/suit/hooded/cloak/goliath
@@ -596,6 +603,32 @@
 	time = 60
 	reqs = list(/obj/item/stack/sheet/bone = 4,
 				/obj/item/stack/sheet/animalhide/goliath_hide = 3)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/pathkasa
+	name = "Pathfinder Kasa"
+	result = /obj/item/clothing/head/helmet/kasa
+	time = 50
+	reqs = list(/obj/item/stack/sheet/bone = 12,
+				/obj/item/stack/sheet/sinew = 12,
+				/obj/item/stack/sheet/animalhide/weaver_chitin = 12)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/pathcloak
+	name = "Pathfinder Cloak"
+	result = /obj/item/clothing/suit/armor/pathfinder
+	time = 50
+	reqs = list(/obj/item/clothing/suit/hooded/cloak/goliath = 1,
+				/obj/item/stack/sheet/animalhide/goliath_hide = 4, //2 plates for the cloak plus 4 here plus 3 for plating the armor = 9 total
+				/obj/item/stack/sheet/sinew = 6)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/pathtreads
+	name = "Pathfinder Treads"
+	result = /obj/item/clothing/shoes/pathtreads
+	time = 50
+	reqs = list(/obj/item/stack/sheet/sinew = 12,
+				/obj/item/stack/sheet/animalhide/weaver_chitin = 16)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/bonesword
@@ -651,6 +684,15 @@
 	time = 50
 	reqs = list(/obj/item/stack/sheet/bone = 6,
 				 /obj/item/stack/sheet/sinew = 3)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/chitinspear
+	name = "Chitin Spear"
+	result = /obj/item/twohanded/chitinspear //take a bonespear, reinforce it with some chitin, profit?
+	time = 75
+	reqs = list(/obj/item/twohanded/bonespear = 1,
+				/obj/item/stack/sheet/sinew = 4,
+				/obj/item/stack/sheet/animalhide/weaver_chitin = 6)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/bonfire
@@ -776,7 +818,7 @@
 	reqs = 	list(/obj/item/stack/sheet/metal = 4 , /obj/item/pipe = 2)
 	result = /obj/structure/urinal
 	category = CAT_MISC
-	
+
 /datum/crafting_recipe/paint/crayon
 	name = "Paint"
 	result = /obj/item/paint/anycolor
@@ -798,7 +840,7 @@
 	tools = list(TOOL_CROWBAR)
 	category = CAT_MISC
 	time = 30
-	
+
 /datum/crafting_recipe/woodenmug
 	name = "Wooden Mug"
 	result = /obj/item/reagent_containers/glass/woodmug
@@ -807,4 +849,4 @@
 	category = CAT_PRIMAL
 
 
-	
+

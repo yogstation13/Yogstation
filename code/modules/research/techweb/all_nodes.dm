@@ -76,6 +76,21 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
+/datum/techweb_node/xenology
+	id = "xenology"
+	display_name = "Basic Xenology"
+	description = "Experimental research into replicating organs from the exotic species known commonly as \"xenos\""
+	prereq_ids = list("cyber_organs_upgraded", "exp_surgery")
+	design_ids = list("synthetic_plasmavessel")
+	boost_item_paths = list(/obj/item/weed_extract, /obj/item/xenos_claw, /obj/item/stack/sheet/xenochitin, /obj/item/organ/alien, /obj/item/organ/brain/alien)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	export_price = 20000
+	hidden = TRUE
+
+/datum/techweb_node/xenology/New() //this is faster and more readable than putting them all in
+	. = ..()
+	boost_item_paths |= typesof(/obj/item/organ/alien)
+
 /////////////////////////Advanced Surgery/////////////////////////
 /datum/techweb_node/imp_wt_surgery
 	id = "imp_wt_surgery"

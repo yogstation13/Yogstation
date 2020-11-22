@@ -78,6 +78,8 @@
 	SSticker.minds -= src
 	if(islist(antag_datums))
 		QDEL_LIST(antag_datums)
+	current = null
+	soulOwner = null
 	return ..()
 
 /datum/mind/proc/get_language_holder()
@@ -139,6 +141,8 @@
 		RegisterSignal(new_character, COMSIG_MOB_SAY, .proc/handle_speech)
 	if(active || force_key_move)
 		new_character.key = key		//now transfer the key to link the client to our new body
+	if(new_character.client)
+		new_character.client.init_verbs() // re-initialize character specific verbs
 	current.update_atom_languages()
 
 /datum/mind/proc/set_death_time()
@@ -678,6 +682,7 @@
 		if(istype(S, spell))
 			spell_list -= S
 			qdel(S)
+	current?.client << output(null, "statbrowser:check_spells")
 
 /datum/mind/proc/RemoveAllSpells()
 	for(var/obj/effect/proc_holder/S in spell_list)

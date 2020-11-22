@@ -18,7 +18,7 @@
 	hl3_release_date = _half_life
 	can_contaminate = _can_contaminate
 
-	if(istype(parent, /atom)) 
+	if(istype(parent, /atom))
 		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/rad_examine)
 		if(istype(parent, /obj/item))
 			RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/rad_attack)
@@ -29,10 +29,17 @@
 	if(strength > RAD_MINIMUM_CONTAMINATION)
 		SSradiation.warn(src)
 
+	//Let's make er glow
+	//This relies on parent not being a turf or something. IF YOU CHANGE THAT, CHANGE THIS
+	var/atom/movable/master = parent
+	master.add_filter("rad_glow", 2, list("type" = "outline", "color" = "#39ff1430", "size" = 2))
+	addtimer(CALLBACK(src, .proc/glow_loop, master), rand(1,19))//Things should look uneven
 	START_PROCESSING(SSradiation, src)
 
 /datum/component/radioactive/Destroy()
 	STOP_PROCESSING(SSradiation, src)
+	var/atom/movable/master = parent
+	master.remove_filter("rad_glow")
 	return ..()
 
 /datum/component/radioactive/process()
@@ -45,6 +52,12 @@
 	strength -= strength / hl3_release_date
 	if(strength <= RAD_BACKGROUND_RADIATION)
 		return PROCESS_KILL
+
+/datum/component/radioactive/proc/glow_loop(atom/movable/master)
+	var/filter = master.get_filter("rad_glow")
+	if(filter)
+		animate(filter, alpha = 110, time = 15, loop = -1)
+		animate(alpha = 40, time = 25)
 
 /datum/component/radioactive/InheritComponent(datum/component/C, i_am_original, list/arguments)
 	if(!i_am_original)
@@ -76,6 +89,8 @@
 /datum/component/radioactive/proc/rad_attack(datum/source, atom/movable/target, mob/living/user)
 	radiation_pulse(parent, strength/20)
 	target.rad_act(strength/2)
+	if(!hl3_release_date)
+		return
 	strength -= strength / hl3_release_date
 
 #undef RAD_AMOUNT_LOW

@@ -107,6 +107,7 @@
 
 //the define for visible message range in combat
 #define COMBAT_MESSAGE_RANGE 3
+#define DEFAULT_MESSAGE_RANGE 7
 
 //Shove knockdown lengths (deciseconds)
 #define SHOVE_KNOCKDOWN_HUMAN 10
@@ -117,8 +118,6 @@
 //Shove disarming item list
 GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 	/obj/item/gun)))
-
-//Combat object defines
 
 //Embedded objects
 #define EMBEDDED_PAIN_CHANCE 					15	//Chance for embedded objects to cause pain (damage user)
