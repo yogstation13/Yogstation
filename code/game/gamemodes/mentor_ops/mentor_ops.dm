@@ -45,7 +45,6 @@
 	//Assign leader
 	var/datum/mind/leader_mind = pre_nukeops[1]
 	var/datum/antagonist/nukeop/L = leader_mind.add_antag_datum(/datum/antagonist/nukeop/leader/mentor)
-	nuke_team = L.nuke_team
 	//Assign the remaining operatives
 	for(var/i = 2 to pre_nukeops.len)
 		var/datum/mind/nuke_mind = pre_nukeops[i]
