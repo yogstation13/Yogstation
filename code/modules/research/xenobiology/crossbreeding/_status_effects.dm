@@ -918,6 +918,9 @@ datum/status_effect/stabilized/blue/on_remove()
 				H.reagents.add_reagent(/datum/reagent/medicine/regen_jelly, 10)
 	return ..()
 
+/datum/status_effect/stabilized/lightpink/on_remove()
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/status_effect/lightpink)
+
 /datum/status_effect/stabilized/adamantine
 	id = "stabilizedadamantine"
 	colour = "adamantine"
