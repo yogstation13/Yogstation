@@ -2,9 +2,6 @@
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
-"ac" = (
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/bridge)
 "ad" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "syndieshutters";
@@ -1676,6 +1673,15 @@
 /obj/item/toy/mballoon,
 /turf/open/floor/carpet/cyan,
 /area/shuttle/syndicate/armory)
+"eV" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 9
+	},
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/eva)
 "fu" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1693,14 +1699,12 @@
 /obj/machinery/grill,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/hallway)
-"fN" = (
-/obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 6
-	},
+"hw" = (
 /turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
 	color = "#96ffec"
 	},
-/area/shuttle/syndicate/medical)
+/area/shuttle/syndicate/hallway)
 "iN" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1795,66 +1799,87 @@
 /obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/hallway)
-"jW" = (
-/obj/machinery/status_display/evac,
-/turf/closed/wall/r_wall/syndicate{
-	color = "#96ffec"
-	},
-/area/shuttle/syndicate/armory)
-"lV" = (
+"jC" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 10
+	dir = 6
 	},
 /turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
 	color = "#96ffec"
 	},
-/area/shuttle/syndicate/armory)
-"pC" = (
+/area/shuttle/syndicate/hallway)
+"kL" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 5
+	dir = 6
 	},
 /turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
 	color = "#96ffec"
 	},
-/area/shuttle/syndicate/bridge)
+/area/shuttle/syndicate/medical)
+"kN" = (
+/obj/machinery/status_display/ai,
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/medical)
+"mX" = (
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/eva)
 "ql" = (
 /obj/item/radio/headset/syndicate{
 	command = 1
 	},
 /turf/open/floor/carpet/cyan,
 /area/shuttle/syndicate/bridge)
-"uj" = (
+"rx" = (
+/obj/machinery/status_display/evac,
 /turf/closed/wall/r_wall/syndicate{
-	color = "#96ffec"
-	},
-/area/shuttle/syndicate/medical)
-"xm" = (
-/obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 6
-	},
-/turf/closed/wall/r_wall/syndicate{
-	color = "#96ffec"
-	},
-/area/shuttle/syndicate/hallway)
-"Eh" = (
-/obj/structure/fans/tiny,
-/obj/machinery/door/poddoor{
-	id = "syndiedriver";
-	name = "outer blast door"
-	},
-/turf/open/floor/plating,
-/area/shuttle/syndicate/airlock)
-"Gy" = (
-/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
 	color = "#96ffec"
 	},
 /area/shuttle/syndicate/armory)
-"It" = (
+"rU" = (
 /turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
 	color = "#96ffec"
 	},
-/area/shuttle/syndicate/eva)
-"IL" = (
+/area/shuttle/syndicate/bridge)
+"tZ" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 9
+	},
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/medical)
+"wM" = (
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/armory)
+"yR" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 9
+	},
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/bridge)
+"zs" = (
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/medical)
+"Dg" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
@@ -1866,28 +1891,27 @@
 	},
 /obj/effect/turf_decal/tile/neutral,
 /turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
 	color = "#96ffec"
 	},
 /area/shuttle/syndicate/airlock)
-"Jj" = (
+"Eh" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/poddoor{
+	id = "syndiedriver";
+	name = "outer blast door"
+	},
+/turf/open/floor/plating,
+/area/shuttle/syndicate/airlock)
+"Fb" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 9
+	dir = 10
 	},
 /turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
 	color = "#96ffec"
 	},
-/area/shuttle/syndicate/bridge)
-"Jz" = (
-/obj/machinery/status_display/ai,
-/turf/closed/wall/r_wall/syndicate{
-	color = "#96ffec"
-	},
-/area/shuttle/syndicate/medical)
-"LY" = (
-/turf/closed/wall/r_wall/syndicate{
-	color = "#96ffec"
-	},
-/area/shuttle/syndicate/bridge)
+/area/shuttle/syndicate/hallway)
 "Mw" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1932,22 +1956,24 @@
 	},
 /turf/open/floor/carpet/cyan,
 /area/shuttle/syndicate/bridge)
-"RU" = (
+"RM" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 5
 	},
 /turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
 	color = "#96ffec"
 	},
-/area/shuttle/syndicate/armory)
-"SO" = (
+/area/shuttle/syndicate/bridge)
+"Sv" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 10
 	},
 /turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
 	color = "#96ffec"
 	},
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/armory)
 "Wu" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall/r_wall/syndicate{
@@ -1959,27 +1985,21 @@
 	color = "#96ffec"
 	},
 /area/shuttle/syndicate/airlock)
-"XF" = (
+"YO" = (
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/airlock)
+"ZI" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 9
+	dir = 5
 	},
 /turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
 	color = "#96ffec"
 	},
-/area/shuttle/syndicate/eva)
-"Yo" = (
-/obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 9
-	},
-/turf/closed/wall/r_wall/syndicate{
-	color = "#96ffec"
-	},
-/area/shuttle/syndicate/medical)
-"ZJ" = (
-/turf/closed/wall/r_wall/syndicate{
-	color = "#96ffec"
-	},
-/area/shuttle/syndicate/hallway)
+/area/shuttle/syndicate/armory)
 
 (1,1,1) = {"
 aa
@@ -1995,16 +2015,16 @@ aa
 aa
 aa
 aa
-Yo
-uj
-uj
-uj
-uj
-uj
-uj
-uj
-uj
-uj
+tZ
+zs
+zs
+zs
+zs
+zs
+zs
+zs
+zs
+zs
 "}
 (2,1,1) = {"
 aa
@@ -2014,13 +2034,13 @@ aa
 aa
 aa
 aa
-XF
-It
-It
-It
-It
-It
-uj
+eV
+mX
+mX
+mX
+mX
+mX
+zs
 bq
 bC
 bq
@@ -2039,13 +2059,13 @@ aa
 aa
 aa
 aa
-It
+mX
 aR
 aR
 aR
 aR
 be
-uj
+zs
 br
 bD
 cd
@@ -2064,13 +2084,13 @@ aa
 aa
 aa
 aa
-It
+mX
 aO
 aQ
 aQ
 aQ
 bk
-Jz
+kN
 bP
 bD
 cg
@@ -2082,51 +2102,51 @@ cu
 cB
 "}
 (5,1,1) = {"
-Jj
-LY
-LY
-LY
-LY
+yR
+rU
+rU
+rU
+rU
 aa
 aa
-It
+mX
 aO
 aQ
 aQ
 aQ
 bs
-uj
+zs
 bt
 bD
 cg
 cC
 cb
-uj
-uj
-uj
-fN
+zs
+zs
+zs
+kL
 "}
 (6,1,1) = {"
-LY
+rU
 af
 am
 as
-LY
-SO
+rU
+Fb
 aa
-It
+mX
 aP
 aS
 aW
 bf
 bm
-uj
+zs
 bu
 ca
 dc
 cC
 cc
-uj
+zs
 aa
 aa
 aa
@@ -2136,24 +2156,24 @@ ad
 ag
 an
 at
-LY
-ZJ
-ZJ
-It
-It
-It
-It
+rU
+hw
+hw
+mX
+mX
+mX
+mX
 bg
 bn
-uj
+zs
 bU
 bU
 bl
 bU
-uj
-uj
-ZJ
-ZJ
+zs
+zs
+hw
+hw
 aa
 "}
 (8,1,1) = {"
@@ -2211,7 +2231,7 @@ ad
 aj
 ql
 au
-LY
+rU
 aD
 aH
 aL
@@ -2236,75 +2256,75 @@ ad
 ak
 aq
 at
-LY
-ZJ
-ZJ
-ZJ
-ZJ
-Xz
-Xz
+rU
+hw
+hw
+hw
+hw
+YO
+YO
 bh
 bH
-Gy
+wM
 bX
 bX
 bp
 bX
-Gy
-Gy
-ZJ
-ZJ
+wM
+wM
+hw
+hw
 aa
 "}
 (12,1,1) = {"
-LY
+rU
 al
 ar
 aw
-LY
-xm
+rU
+jC
 aa
-Xz
-Xz
-IL
+YO
+YO
+Dg
 ba
 bd
 bI
-Gy
+wM
 bx
 cZ
 ci
 cH
 ce
-Gy
+wM
 aa
 aa
 aa
 "}
 (13,1,1) = {"
-pC
-LY
-ac
-LY
-LY
+RM
+rU
+rU
+rU
+rU
 aa
 aa
-Xz
+YO
 bv
 Mw
 bb
 bi
 bJ
-Gy
+wM
 by
 bG
 ci
 cH
 cf
-Gy
-Gy
-Gy
-lV
+wM
+wM
+wM
+Sv
 "}
 (14,1,1) = {"
 aa
@@ -2314,13 +2334,13 @@ aa
 aa
 aa
 aa
-Xz
+YO
 bw
 aU
 bc
 bi
 bK
-jW
+rx
 bz
 bG
 ci
@@ -2339,13 +2359,13 @@ aa
 aa
 aa
 aa
-Xz
+YO
 bw
 aV
 bd
 bj
 bL
-Gy
+wM
 bA
 bG
 ck
@@ -2364,13 +2384,13 @@ aa
 aa
 aa
 aa
-RU
+ZI
 Eh
-Xz
+YO
 aY
 Xz
-Xz
-Gy
+YO
+wM
 bB
 cV
 cm
@@ -2395,14 +2415,14 @@ aa
 aa
 aa
 aa
-RU
-Gy
-Gy
-Gy
-Gy
-Gy
-Gy
-Gy
-Gy
-Gy
+ZI
+wM
+wM
+wM
+wM
+wM
+wM
+wM
+wM
+wM
 "}
