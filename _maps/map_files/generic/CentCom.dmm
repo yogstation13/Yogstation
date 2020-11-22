@@ -1162,22 +1162,20 @@
 	},
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/thunderdome1218)
-"du" = (
-/obj/structure/toilet{
-	dir = 8
-	},
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
-/obj/machinery/door/window{
+"ds" = (
+/obj/docking_port/stationary{
+	area_type = /area/syndicate_mothership;
+	dheight = 1;
 	dir = 8;
-	icon_state = "right";
-	name = "Tactical Toilet";
-	opacity = 1
+	dwidth = 12;
+	height = 17;
+	id = "syndicate_away";
+	name = "syndicate recon outpost";
+	roundstart_template = /datum/map_template/shuttle/infiltrator/mentor;
+	width = 23
 	},
-/obj/effect/landmark/start/nukeop_leader,
-/turf/open/floor/plasteel/freezer,
-/area/syndicate_mothership/control)
+/turf/open/floor/plating/asteroid/snow/airless,
+/area/syndicate_mothership)
 "dx" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -1641,25 +1639,6 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
-"eL" = (
-/obj/machinery/door/airlock/centcom{
-	name = "Restroom";
-	req_access_txt = "150"
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/machinery/door/airlock/centcom{
-	name = "Restroom";
-	req_access_txt = "150"
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
 "eM" = (
 /obj/structure/chair{
 	dir = 1
@@ -7431,20 +7410,6 @@
 /obj/mecha/combat/durand,
 /turf/open/floor/engine,
 /area/centcom/testchamber)
-"rc" = (
-/obj/docking_port/stationary{
-	area_type = /area/syndicate_mothership;
-	dheight = 1;
-	dir = 8;
-	dwidth = 12;
-	height = 17;
-	id = "syndicate_away";
-	name = "syndicate recon outpost";
-	roundstart_template = /datum/map_template/shuttle/infiltrator/mentor;
-	width = 23
-	},
-/turf/open/floor/plating/asteroid/snow/airless,
-/area/syndicate_mothership)
 "rd" = (
 /obj/structure/flora/grass/brown,
 /obj/effect/light_emitter{
@@ -10148,10 +10113,6 @@
 /area/centcom/supplypod)
 "wl" = (
 /obj/machinery/light,
-/turf/open/floor/wood,
-/area/syndicate_mothership/control)
-"wm" = (
-/obj/effect/landmark/start/nukeop_leader,
 /turf/open/floor/wood,
 /area/syndicate_mothership/control)
 "wn" = (
@@ -19180,6 +19141,21 @@
 /obj/item/encryptionkey/syndicate,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"Oh" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/door/airlock/centcom{
+	name = "Restroom";
+	req_access_txt = "150"
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "Oi" = (
 /obj/machinery/portable_atmospherics/canister/miasma,
 /turf/open/floor/bluespace,
@@ -20672,6 +20648,23 @@
 /obj/machinery/door/window/westleft,
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
+"Rx" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/machinery/door/window{
+	dir = 8;
+	icon_state = "right";
+	name = "Tactical Toilet";
+	opacity = 1
+	},
+/obj/effect/landmark/start/nukeop_leader,
+/obj/effect/landmark/start/nukeop_leader,
+/turf/open/floor/plasteel/freezer,
+/area/syndicate_mothership/control)
 "Ry" = (
 /obj/item/clothing/suit/hooded/wintercoat,
 /turf/open/floor/holofloor/snow,
@@ -40597,7 +40590,7 @@ kt
 hl
 hl
 hl
-rc
+ds
 hl
 hl
 hl
@@ -42142,7 +42135,7 @@ rf
 pZ
 rf
 vv
-wm
+wn
 si
 ku
 kt
@@ -43678,7 +43671,7 @@ mz
 ma
 ku
 ku
-eL
+Oh
 ku
 ku
 ku
@@ -44194,7 +44187,7 @@ ku
 Wu
 Lc
 Lc
-du
+Rx
 ku
 nz
 ll
