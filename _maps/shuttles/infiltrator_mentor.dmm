@@ -1673,15 +1673,15 @@
 /obj/item/toy/mballoon,
 /turf/open/floor/carpet/cyan,
 /area/shuttle/syndicate/armory)
-"eV" = (
+"dm" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 9
+	dir = 5
 	},
 /turf/closed/wall/r_wall/syndicate{
 	atom_colours = list(null,null,"#96ffec",null);
 	color = "#96ffec"
 	},
-/area/shuttle/syndicate/eva)
+/area/shuttle/syndicate/airlock)
 "fu" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1698,12 +1698,6 @@
 	},
 /obj/machinery/grill,
 /turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/hallway)
-"hw" = (
-/turf/closed/wall/r_wall/syndicate{
-	atom_colours = list(null,null,"#96ffec",null);
-	color = "#96ffec"
-	},
 /area/shuttle/syndicate/hallway)
 "iN" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -1799,7 +1793,25 @@
 /obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/hallway)
-"jC" = (
+"kt" = (
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/hallway)
+"kv" = (
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/bridge)
+"ql" = (
+/obj/item/radio/headset/syndicate{
+	command = 1
+	},
+/turf/open/floor/carpet/cyan,
+/area/shuttle/syndicate/bridge)
+"rY" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 6
 	},
@@ -1808,93 +1820,50 @@
 	color = "#96ffec"
 	},
 /area/shuttle/syndicate/hallway)
-"kL" = (
-/obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 6
-	},
-/turf/closed/wall/r_wall/syndicate{
-	atom_colours = list(null,null,"#96ffec",null);
-	color = "#96ffec"
-	},
-/area/shuttle/syndicate/medical)
-"kN" = (
-/obj/machinery/status_display/ai,
-/turf/closed/wall/r_wall/syndicate{
-	atom_colours = list(null,null,"#96ffec",null);
-	color = "#96ffec"
-	},
-/area/shuttle/syndicate/medical)
-"mX" = (
+"wZ" = (
 /turf/closed/wall/r_wall/syndicate{
 	atom_colours = list(null,null,"#96ffec",null);
 	color = "#96ffec"
 	},
 /area/shuttle/syndicate/eva)
-"ql" = (
-/obj/item/radio/headset/syndicate{
-	command = 1
-	},
-/turf/open/floor/carpet/cyan,
-/area/shuttle/syndicate/bridge)
-"rx" = (
+"xc" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall/r_wall/syndicate{
 	atom_colours = list(null,null,"#96ffec",null);
 	color = "#96ffec"
 	},
 /area/shuttle/syndicate/armory)
-"rU" = (
-/turf/closed/wall/r_wall/syndicate{
-	atom_colours = list(null,null,"#96ffec",null);
-	color = "#96ffec"
-	},
-/area/shuttle/syndicate/bridge)
-"tZ" = (
+"xu" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 9
+	dir = 5
 	},
-/turf/closed/wall/r_wall/syndicate{
-	atom_colours = list(null,null,"#96ffec",null);
-	color = "#96ffec"
-	},
-/area/shuttle/syndicate/medical)
-"wM" = (
 /turf/closed/wall/r_wall/syndicate{
 	atom_colours = list(null,null,"#96ffec",null);
 	color = "#96ffec"
 	},
 /area/shuttle/syndicate/armory)
-"yR" = (
+"Cc" = (
+/obj/machinery/status_display/ai,
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/medical)
+"DP" = (
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/medical)
+"DS" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 9
+	dir = 5
 	},
 /turf/closed/wall/r_wall/syndicate{
 	atom_colours = list(null,null,"#96ffec",null);
 	color = "#96ffec"
 	},
 /area/shuttle/syndicate/bridge)
-"zs" = (
-/turf/closed/wall/r_wall/syndicate{
-	atom_colours = list(null,null,"#96ffec",null);
-	color = "#96ffec"
-	},
-/area/shuttle/syndicate/medical)
-"Dg" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/closed/wall/r_wall/syndicate{
-	atom_colours = list(null,null,"#96ffec",null);
-	color = "#96ffec"
-	},
-/area/shuttle/syndicate/airlock)
 "Eh" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/poddoor{
@@ -1903,7 +1872,34 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/syndicate/airlock)
-"Fb" = (
+"Fs" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 6
+	},
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/medical)
+"GA" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 10
+	},
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/armory)
+"Le" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 9
+	},
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/bridge)
+"LS" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 10
 	},
@@ -1939,6 +1935,30 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
+"Nc" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 9
+	},
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/eva)
+"Nf" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 9
+	},
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/medical)
+"PI" = (
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/armory)
 "PZ" = (
 /obj/structure/chair/office/dark{
 	dir = 1;
@@ -1956,50 +1976,39 @@
 	},
 /turf/open/floor/carpet/cyan,
 /area/shuttle/syndicate/bridge)
-"RM" = (
-/obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 5
-	},
-/turf/closed/wall/r_wall/syndicate{
-	atom_colours = list(null,null,"#96ffec",null);
-	color = "#96ffec"
-	},
-/area/shuttle/syndicate/bridge)
-"Sv" = (
-/obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 10
-	},
-/turf/closed/wall/r_wall/syndicate{
-	atom_colours = list(null,null,"#96ffec",null);
-	color = "#96ffec"
-	},
-/area/shuttle/syndicate/armory)
 "Wu" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall/r_wall/syndicate{
 	color = "#96ffec"
 	},
 /area/shuttle/syndicate/bridge)
+"WM" = (
+/turf/closed/wall/r_wall/syndicate{
+	atom_colours = list(null,null,"#96ffec",null);
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/airlock)
 "Xz" = (
 /turf/closed/wall/r_wall/syndicate{
 	color = "#96ffec"
 	},
 /area/shuttle/syndicate/airlock)
-"YO" = (
+"XV" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
 /turf/closed/wall/r_wall/syndicate{
 	atom_colours = list(null,null,"#96ffec",null);
 	color = "#96ffec"
 	},
 /area/shuttle/syndicate/airlock)
-"ZI" = (
-/obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 5
-	},
-/turf/closed/wall/r_wall/syndicate{
-	atom_colours = list(null,null,"#96ffec",null);
-	color = "#96ffec"
-	},
-/area/shuttle/syndicate/armory)
 
 (1,1,1) = {"
 aa
@@ -2015,16 +2024,16 @@ aa
 aa
 aa
 aa
-tZ
-zs
-zs
-zs
-zs
-zs
-zs
-zs
-zs
-zs
+Nf
+DP
+DP
+DP
+DP
+DP
+DP
+DP
+DP
+DP
 "}
 (2,1,1) = {"
 aa
@@ -2034,13 +2043,13 @@ aa
 aa
 aa
 aa
-eV
-mX
-mX
-mX
-mX
-mX
-zs
+Nc
+wZ
+wZ
+wZ
+wZ
+wZ
+DP
 bq
 bC
 bq
@@ -2059,13 +2068,13 @@ aa
 aa
 aa
 aa
-mX
+wZ
 aR
 aR
 aR
 aR
 be
-zs
+DP
 br
 bD
 cd
@@ -2084,13 +2093,13 @@ aa
 aa
 aa
 aa
-mX
+wZ
 aO
 aQ
 aQ
 aQ
 bk
-kN
+Cc
 bP
 bD
 cg
@@ -2102,51 +2111,51 @@ cu
 cB
 "}
 (5,1,1) = {"
-yR
-rU
-rU
-rU
-rU
+Le
+kv
+kv
+kv
+kv
 aa
 aa
-mX
+wZ
 aO
 aQ
 aQ
 aQ
 bs
-zs
+DP
 bt
 bD
 cg
 cC
 cb
-zs
-zs
-zs
-kL
+DP
+DP
+DP
+Fs
 "}
 (6,1,1) = {"
-rU
+kv
 af
 am
 as
-rU
-Fb
+kv
+LS
 aa
-mX
+wZ
 aP
 aS
 aW
 bf
 bm
-zs
+DP
 bu
 ca
 dc
 cC
 cc
-zs
+DP
 aa
 aa
 aa
@@ -2156,24 +2165,24 @@ ad
 ag
 an
 at
-rU
-hw
-hw
-mX
-mX
-mX
-mX
+kv
+kt
+kt
+wZ
+wZ
+wZ
+wZ
 bg
 bn
-zs
+DP
 bU
 bU
 bl
 bU
-zs
-zs
-hw
-hw
+DP
+DP
+kt
+kt
 aa
 "}
 (8,1,1) = {"
@@ -2231,7 +2240,7 @@ ad
 aj
 ql
 au
-rU
+kv
 aD
 aH
 aL
@@ -2256,75 +2265,75 @@ ad
 ak
 aq
 at
-rU
-hw
-hw
-hw
-hw
-YO
-YO
+kv
+kt
+kt
+kt
+kt
+WM
+WM
 bh
 bH
-wM
+PI
 bX
 bX
 bp
 bX
-wM
-wM
-hw
-hw
+PI
+PI
+kt
+kt
 aa
 "}
 (12,1,1) = {"
-rU
+kv
 al
 ar
 aw
-rU
-jC
+kv
+rY
 aa
-YO
-YO
-Dg
+WM
+WM
+XV
 ba
 bd
 bI
-wM
+PI
 bx
 cZ
 ci
 cH
 ce
-wM
+PI
 aa
 aa
 aa
 "}
 (13,1,1) = {"
-RM
-rU
-rU
-rU
-rU
+DS
+kv
+kv
+kv
+kv
 aa
 aa
-YO
+WM
 bv
 Mw
 bb
 bi
 bJ
-wM
+PI
 by
 bG
 ci
 cH
 cf
-wM
-wM
-wM
-Sv
+PI
+PI
+PI
+GA
 "}
 (14,1,1) = {"
 aa
@@ -2334,13 +2343,13 @@ aa
 aa
 aa
 aa
-YO
+WM
 bw
 aU
 bc
 bi
 bK
-rx
+xc
 bz
 bG
 ci
@@ -2359,13 +2368,13 @@ aa
 aa
 aa
 aa
-YO
+WM
 bw
 aV
 bd
 bj
 bL
-wM
+PI
 bA
 bG
 ck
@@ -2384,13 +2393,13 @@ aa
 aa
 aa
 aa
-ZI
+dm
 Eh
-YO
+WM
 aY
 Xz
-YO
-wM
+WM
+PI
 bB
 cV
 cm
@@ -2415,14 +2424,14 @@ aa
 aa
 aa
 aa
-ZI
-wM
-wM
-wM
-wM
-wM
-wM
-wM
-wM
-wM
+xu
+PI
+PI
+PI
+PI
+PI
+PI
+PI
+PI
+PI
 "}
