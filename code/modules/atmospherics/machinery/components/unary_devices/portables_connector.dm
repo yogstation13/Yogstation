@@ -1,17 +1,15 @@
 /obj/machinery/atmospherics/components/unary/portables_connector
 	icon_state = "connector_map-3"
-
 	name = "connector port"
 	desc = "For connecting portables devices related to atmospherics control."
-
 	can_unwrench = TRUE
-
 	use_power = NO_POWER_USE
 	level = 0
 	layer = GAS_FILTER_LAYER
 	shift_underlay_only = FALSE
 	pipe_flags = PIPING_ONE_PER_TURF
 	pipe_state = "connector"
+	piping_layer = 3
 
 	var/obj/machinery/portable_atmospherics/connected_device
 
@@ -20,13 +18,18 @@
 	var/datum/gas_mixture/air_contents = airs[1]
 	air_contents.set_volume(0)
 
+/obj/machinery/atmospherics/components/unary/portables_connector/Initialize()
+	. = ..()
+	update_icon()
+	update_icon_nopipes()
+
 /obj/machinery/atmospherics/components/unary/portables_connector/Destroy()
 	if(connected_device)
 		connected_device.disconnect()
 	return ..()
 
 /obj/machinery/atmospherics/components/unary/portables_connector/update_icon_nopipes()
-	icon_state = "connector"
+	icon_state = "connector_map-[pipinglayer]"
 	if(showpipe)
 		var/image/cap = getpipeimage(icon, "connector_cap", initialize_directions)
 		add_overlay(cap)
@@ -52,6 +55,7 @@
 
 /obj/machinery/atmospherics/components/unary/portables_connector/visible
 	level = 3
+	piping_layer = 3
 
 /obj/machinery/atmospherics/components/unary/portables_connector/visible/layer2
 	piping_layer = 2
