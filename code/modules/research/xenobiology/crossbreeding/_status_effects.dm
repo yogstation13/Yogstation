@@ -904,6 +904,10 @@ datum/status_effect/stabilized/blue/on_remove()
 	id = "stabilizedlightpink"
 	colour = "light pink"
 
+/datum/status_effect/stabilized/lightpink/on_apply()
+	owner.add_movespeed_modifier(/datum/movespeed_modifier/status_effect/lightpink)
+	return ..()
+
 /datum/status_effect/stabilized/lightpink/tick()
 	for(var/mob/living/carbon/human/H in range(1, get_turf(owner)))
 		if(H != owner && H.stat != DEAD && H.health <= 0 && !H.reagents.has_reagent(/datum/reagent/medicine/epinephrine))
