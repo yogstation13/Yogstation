@@ -918,7 +918,7 @@
 
 /obj/machinery/door/airlock/attackby(obj/item/C, mob/user, params)
 	if(!issilicon(user) && !IsAdminGhost(user))
-		if(isElectrified() && !user.incapacitated())
+		if(isElectrified())
 			if(shock(user, 75))
 				return
 	add_fingerprint(user)
