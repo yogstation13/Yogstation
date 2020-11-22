@@ -90,7 +90,6 @@
 
 	if(!air)
 		return
-
 	var/proportion = min(air.get_moles(/datum/gas/water_vapor), (1.5 * delta_time * workingPower))//Works to max 12 moles at a time.
 	air.adjust_moles(/datum/gas/water_vapor, -(proportion * 2 * workingPower))
 	air.adjust_moles(/datum/gas/oxygen, (proportion * workingPower))
