@@ -87,17 +87,15 @@
 	if(mode == ELECTROLYZER_MODE_STANDBY)
 		return
 
-	var/datum/gas_mixture/env = L.return_air() //get air from the turf
-	var/datum/gas_mixture/removed = env.remove(0.1 * env.total_moles())
+	var/datum/gas_mixture/air = L.return_air() //get air from the turf
 
-	if(!removed)
+	if(!air)
 		return
 
-	var/proportion = min(removed.get_moles(/datum/gas/water_vapor), (1.5 * delta_time * workingPower))//Works to max 12 moles at a time.
-	removed.adjust_moles(/datum/gas/water_vapor, -(proportion * 2 * workingPower))
-	removed.adjust_moles(/datum/gas/oxygen, (proportion * workingPower))
-	removed.adjust_moles(/datum/gas/hydrogen, (proportion * 2 * workingPower))
-	env.merge(removed) //put back the new gases in the turf
+	var/proportion = min(air.get_moles(/datum/gas/water_vapor), (1.5 * delta_time * workingPower))//Works to max 12 moles at a time.
+	air.adjust_moles(/datum/gas/water_vapor, -(proportion * 2 * workingPower))
+	air.adjust_moles(/datum/gas/oxygen, (proportion * workingPower))
+	air.adjust_moles(/datum/gas/hydrogen, (proportion * 2 * workingPower))
 	air_update_turf()
 	cell.use((5 * proportion * workingPower) / (efficiency + workingPower))
 
