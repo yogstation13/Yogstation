@@ -126869,13 +126869,6 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"piM" = (
-/obj/machinery/door/airlock/grunge{
-	name = "Morgue";
-	req_access_txt = "6"
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/morgue)
 "pmQ" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
@@ -127447,6 +127440,25 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
+/area/medical/morgue)
+"tLu" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Morgue";
+	req_access_txt = "6"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/medical/morgue)
 "tNc" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -170721,7 +170733,7 @@ dgS
 dzY
 dBb
 dCB
-piM
+tLu
 dCy
 dCy
 dCy
