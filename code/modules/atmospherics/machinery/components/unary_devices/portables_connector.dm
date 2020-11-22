@@ -29,7 +29,7 @@
 	return ..()
 
 /obj/machinery/atmospherics/components/unary/portables_connector/update_icon_nopipes()
-	icon_state = "connector_map-[pipinglayer]"
+	icon_state = "connector_map-[piping_layer]"
 	if(showpipe)
 		var/image/cap = getpipeimage(icon, "connector_cap", initialize_directions)
 		add_overlay(cap)
