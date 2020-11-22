@@ -5,6 +5,13 @@
 	//clean the input msg
 	if(!msg)	return
 
+	//handle muting and automuting
+	if(prefs.muted & MUTE_MENTORHELP)
+		to_chat(src, "<span class='danger'>Error: Mentorhelp: You cannot send mentorhelps (Muted).</span>", confidential=TRUE)
+		return
+	if(handle_spam_prevention(msg,MUTE_MENTORHELP))
+		return
+
 	//remove out mentorhelp verb temporarily to prevent spamming of mentors.
 	remove_verb(src, /client/verb/mentorhelp)
 	spawn(300)
