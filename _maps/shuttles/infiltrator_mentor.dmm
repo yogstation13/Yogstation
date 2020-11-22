@@ -2,12 +2,6 @@
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
-"ab" = (
-/obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 9
-	},
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/bridge)
 "ac" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/bridge)
@@ -25,12 +19,6 @@
 	color = "#96ffec"
 	},
 /turf/open/space/basic,
-/area/shuttle/syndicate/bridge)
-"ae" = (
-/obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 5
-	},
-/turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/bridge)
 "af" = (
 /obj/machinery/computer/med_data/syndie,
@@ -94,23 +82,6 @@
 /obj/structure/chair/office/dark{
 	dir = 8;
 	name = "tactical swivel chair"
-	},
-/turf/open/floor/carpet/cyan,
-/area/shuttle/syndicate/bridge)
-"ao" = (
-/turf/open/floor/carpet/cyan,
-/area/shuttle/syndicate/bridge)
-"ap" = (
-/obj/structure/chair/office/dark{
-	dir = 1;
-	name = "tactical swivel chair"
-	},
-/obj/machinery/button/door{
-	id = "syndieshutters";
-	name = "Cockpit View Control";
-	pixel_x = 32;
-	pixel_y = 32;
-	req_access_txt = "150"
 	},
 /turf/open/floor/carpet/cyan,
 /area/shuttle/syndicate/bridge)
@@ -199,16 +170,6 @@
 /obj/machinery/photocopier,
 /turf/open/floor/carpet/cyan,
 /area/shuttle/syndicate/bridge)
-"ax" = (
-/obj/machinery/status_display/evac,
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/bridge)
-"ay" = (
-/obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 10
-	},
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/hallway)
 "az" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -221,9 +182,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/hallway)
-"aA" = (
-/turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/hallway)
 "aB" = (
 /obj/structure/table/reinforced,
@@ -280,12 +238,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/hallway)
-"aE" = (
-/obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 6
-	},
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/hallway)
 "aF" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4;
@@ -329,15 +281,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/hallway)
-"aI" = (
-/obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 9
-	},
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/eva)
-"aJ" = (
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/eva)
 "aK" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4;
@@ -384,15 +327,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/hallway)
-"aM" = (
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/airlock)
-"aN" = (
-/obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 5
-	},
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/armory)
 "aO" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -445,19 +379,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/eva)
-"aT" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/airlock)
 "aU" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1033,19 +954,6 @@
 /obj/item/clothing/head/helmet/space/syndicate,
 /turf/open/floor/carpet/cyan,
 /area/shuttle/syndicate/airlock)
-"bM" = (
-/obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 9
-	},
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/medical)
-"bN" = (
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/medical)
-"bO" = (
-/obj/machinery/status_display/ai,
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/medical)
 "bP" = (
 /obj/machinery/light{
 	dir = 1
@@ -1094,13 +1002,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/medical)
-"bS" = (
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/armory)
-"bT" = (
-/obj/machinery/status_display/evac,
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/armory)
 "bU" = (
 /obj/structure/window/plastitanium{
 	color = "#96ffec"
@@ -1706,18 +1607,6 @@
 /obj/item/toy/plush/snakeplushie,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/hallway)
-"cX" = (
-/obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 6
-	},
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/medical)
-"cY" = (
-/obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 10
-	},
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/armory)
 "cZ" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -1787,6 +1676,166 @@
 /obj/item/toy/mballoon,
 /turf/open/floor/carpet/cyan,
 /area/shuttle/syndicate/armory)
+"fu" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/grill,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/hallway)
+"fN" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 6
+	},
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/medical)
+"iN" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/structure/chair/comfy/shuttle{
+	dir = 8;
+	name = "tactical chair"
+	},
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/hallway)
+"jA" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4;
+	name = "tactical chair"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/hallway)
+"jW" = (
+/obj/machinery/status_display/evac,
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/armory)
+"lV" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 10
+	},
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/armory)
+"pC" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 5
+	},
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/bridge)
+"ql" = (
+/obj/item/radio/headset/syndicate{
+	command = 1
+	},
+/turf/open/floor/carpet/cyan,
+/area/shuttle/syndicate/bridge)
+"uj" = (
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/medical)
+"xm" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 6
+	},
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/hallway)
 "Eh" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/poddoor{
@@ -1795,6 +1844,50 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/syndicate/airlock)
+"Gy" = (
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/armory)
+"It" = (
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/eva)
+"IL" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/airlock)
+"Jj" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 9
+	},
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/bridge)
+"Jz" = (
+/obj/machinery/status_display/ai,
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/medical)
+"LY" = (
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/bridge)
 "Mw" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1822,6 +1915,71 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
+"PZ" = (
+/obj/structure/chair/office/dark{
+	dir = 1;
+	name = "tactical swivel chair"
+	},
+/obj/machinery/button/door{
+	id = "syndieshutters";
+	name = "Cockpit View Control";
+	pixel_x = 32;
+	pixel_y = 32;
+	req_access_txt = "150"
+	},
+/obj/item/radio/headset/syndicate{
+	command = 1
+	},
+/turf/open/floor/carpet/cyan,
+/area/shuttle/syndicate/bridge)
+"RU" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 5
+	},
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/armory)
+"SO" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 10
+	},
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/hallway)
+"Wu" = (
+/obj/machinery/status_display/evac,
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/bridge)
+"Xz" = (
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/airlock)
+"XF" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 9
+	},
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/eva)
+"Yo" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 9
+	},
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/medical)
+"ZJ" = (
+/turf/closed/wall/r_wall/syndicate{
+	color = "#96ffec"
+	},
+/area/shuttle/syndicate/hallway)
 
 (1,1,1) = {"
 aa
@@ -1837,16 +1995,16 @@ aa
 aa
 aa
 aa
-bM
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
+Yo
+uj
+uj
+uj
+uj
+uj
+uj
+uj
+uj
+uj
 "}
 (2,1,1) = {"
 aa
@@ -1856,13 +2014,13 @@ aa
 aa
 aa
 aa
-aI
-aJ
-aJ
-aJ
-aJ
-aJ
-bN
+XF
+It
+It
+It
+It
+It
+uj
 bq
 bC
 bq
@@ -1881,13 +2039,13 @@ aa
 aa
 aa
 aa
-aJ
+It
 aR
 aR
 aR
 aR
 be
-bN
+uj
 br
 bD
 cd
@@ -1906,13 +2064,13 @@ aa
 aa
 aa
 aa
-aJ
+It
 aO
 aQ
 aQ
 aQ
 bk
-bO
+Jz
 bP
 bD
 cg
@@ -1924,51 +2082,51 @@ cu
 cB
 "}
 (5,1,1) = {"
-ab
-ac
-ac
-ac
-ac
+Jj
+LY
+LY
+LY
+LY
 aa
 aa
-aJ
+It
 aO
 aQ
 aQ
 aQ
 bs
-bN
+uj
 bt
 bD
 cg
 cC
 cb
-bN
-bN
-bN
-cX
+uj
+uj
+uj
+fN
 "}
 (6,1,1) = {"
-ac
+LY
 af
 am
 as
-ac
-ay
+LY
+SO
 aa
-aJ
+It
 aP
 aS
 aW
 bf
 bm
-bN
+uj
 bu
 ca
 dc
 cC
 cc
-bN
+uj
 aa
 aa
 aa
@@ -1978,37 +2136,37 @@ ad
 ag
 an
 at
-ac
-aA
-aA
-aJ
-aJ
-aJ
-aJ
+LY
+ZJ
+ZJ
+It
+It
+It
+It
 bg
 bn
-bN
+uj
 bU
 bU
 bl
 bU
-bN
-bN
-aA
-aA
+uj
+uj
+ZJ
+ZJ
 aa
 "}
 (8,1,1) = {"
 ad
 ah
-ao
+ql
 au
-ax
+Wu
 aB
 aF
 aK
-aF
-aF
+jA
+fu
 aX
 aC
 bE
@@ -2026,7 +2184,7 @@ aa
 (9,1,1) = {"
 ad
 ai
-ap
+PZ
 at
 av
 aC
@@ -2051,14 +2209,14 @@ aa
 (10,1,1) = {"
 ad
 aj
-ao
+ql
 au
-ac
+LY
 aD
 aH
 aL
 aH
-aH
+iN
 aX
 aC
 bF
@@ -2078,75 +2236,75 @@ ad
 ak
 aq
 at
-ac
-aA
-aA
-aA
-aA
-aM
-aM
+LY
+ZJ
+ZJ
+ZJ
+ZJ
+Xz
+Xz
 bh
 bH
-bS
+Gy
 bX
 bX
 bp
 bX
-bS
-bS
-aA
-aA
+Gy
+Gy
+ZJ
+ZJ
 aa
 "}
 (12,1,1) = {"
-ac
+LY
 al
 ar
 aw
-ac
-aE
+LY
+xm
 aa
-aM
-aM
-aT
+Xz
+Xz
+IL
 ba
 bd
 bI
-bS
+Gy
 bx
 cZ
 ci
 cH
 ce
-bS
+Gy
 aa
 aa
 aa
 "}
 (13,1,1) = {"
-ae
+pC
+LY
 ac
-ac
-ac
-ac
+LY
+LY
 aa
 aa
-aM
+Xz
 bv
 Mw
 bb
 bi
 bJ
-bS
+Gy
 by
 bG
 ci
 cH
 cf
-bS
-bS
-bS
-cY
+Gy
+Gy
+Gy
+lV
 "}
 (14,1,1) = {"
 aa
@@ -2156,13 +2314,13 @@ aa
 aa
 aa
 aa
-aM
+Xz
 bw
 aU
 bc
 bi
 bK
-bT
+jW
 bz
 bG
 ci
@@ -2181,13 +2339,13 @@ aa
 aa
 aa
 aa
-aM
+Xz
 bw
 aV
 bd
 bj
 bL
-bS
+Gy
 bA
 bG
 ck
@@ -2206,13 +2364,13 @@ aa
 aa
 aa
 aa
-aN
+RU
 Eh
-aM
+Xz
 aY
-aM
-aM
-bS
+Xz
+Xz
+Gy
 bB
 cV
 cm
@@ -2237,14 +2395,14 @@ aa
 aa
 aa
 aa
-aN
-bS
-bS
-bS
-bS
-bS
-bS
-bS
-bS
-bS
+RU
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
 "}

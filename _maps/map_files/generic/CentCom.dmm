@@ -712,6 +712,17 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
+"ch" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/landmark/start/nukeop/mentor,
+/obj/effect/landmark/start/nukeop/mentor,
+/turf/open/floor/plasteel/freezer,
+/area/syndicate_mothership/control)
 "ci" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -1029,6 +1040,25 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
+"da" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "db" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/effect/holodeck_effect/mobspawner/pet,
@@ -1132,6 +1162,22 @@
 	},
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/thunderdome1218)
+"du" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/machinery/door/window{
+	dir = 8;
+	icon_state = "right";
+	name = "Tactical Toilet";
+	opacity = 1
+	},
+/obj/effect/landmark/start/nukeop_leader,
+/turf/open/floor/plasteel/freezer,
+/area/syndicate_mothership/control)
 "dx" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -1262,6 +1308,15 @@
 "dL" = (
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/thunderdome1218)
+"dM" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/machinery/vending/cigarette/syndicate,
+/obj/item/reagent_containers/food/snacks/sandwich,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "dN" = (
 /obj/structure/table/wood,
 /obj/item/melee/chainofcommand{
@@ -1586,6 +1641,25 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
+"eL" = (
+/obj/machinery/door/airlock/centcom{
+	name = "Restroom";
+	req_access_txt = "150"
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/door/airlock/centcom{
+	name = "Restroom";
+	req_access_txt = "150"
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "eM" = (
 /obj/structure/chair{
 	dir = 1
@@ -1764,6 +1838,26 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
+"ft" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/structure/noticeboard{
+	dir = 4;
+	pixel_x = -32
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "fu" = (
 /obj/item/target,
 /obj/item/target/clown,
@@ -6609,6 +6703,25 @@
 	smooth = 1
 	},
 /area/centcom/holding)
+"pz" = (
+/obj/structure/urinal{
+	pixel_y = 28
+	},
+/obj/effect/landmark/start/nukeop/mentor,
+/obj/effect/landmark/start/nukeop/mentor,
+/obj/effect/landmark/start/nukeop/mentor,
+/turf/open/floor/plasteel/freezer,
+/area/syndicate_mothership/control)
+"pA" = (
+/obj/item/mop,
+/obj/structure/mirror{
+	pixel_x = 28
+	},
+/obj/effect/landmark/start/nukeop/mentor,
+/obj/effect/landmark/start/nukeop/mentor,
+/obj/effect/landmark/start/nukeop/mentor,
+/turf/open/floor/plasteel/freezer,
+/area/syndicate_mothership/control)
 "pB" = (
 /obj/machinery/firealarm,
 /turf/closed/indestructible/riveted,
@@ -6828,14 +6941,6 @@
 /obj/effect/landmark/ai_multicam_room,
 /turf/open/ai_visible,
 /area/ai_multicam_room)
-"pX" = (
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/machinery/vending/cigarette/syndicate,
-/turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
 "pY" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/freezer,
@@ -7249,27 +7354,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
-"qN" = (
-/obj/structure/urinal{
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/freezer,
-/area/syndicate_mothership/control)
-"qO" = (
-/obj/item/soap/syndie,
-/obj/structure/mopbucket,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plasteel/freezer,
-/area/syndicate_mothership/control)
-"qP" = (
-/obj/structure/mirror{
-	pixel_x = 28
-	},
-/obj/item/mop,
-/turf/open/floor/plasteel/freezer,
-/area/syndicate_mothership/control)
 "qQ" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Administrative Office";
@@ -7355,17 +7439,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
-"re" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/structure/noticeboard{
-	dir = 4;
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
 "rf" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/tile/bar,
@@ -7381,30 +7454,6 @@
 	},
 /mob/living/simple_animal/hostile/carp/cayenne,
 /turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
-"rh" = (
-/obj/machinery/door/airlock/centcom{
-	name = "Restroom";
-	req_access_txt = "150"
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
-"ri" = (
-/turf/open/floor/plasteel/freezer,
-/area/syndicate_mothership/control)
-"rj" = (
-/obj/structure/mirror{
-	pixel_x = 28
-	},
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11
-	},
-/turf/open/floor/plasteel/freezer,
 /area/syndicate_mothership/control)
 "rk" = (
 /obj/structure/table/reinforced,
@@ -7929,16 +7978,6 @@
 	},
 /turf/closed/indestructible/riveted,
 /area/centcom/ferry)
-"se" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
 "sf" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/bar,
@@ -7962,21 +8001,6 @@
 /obj/structure/table/wood,
 /obj/item/paper/fluff/stations/centcom/disk_memo,
 /turf/open/floor/wood,
-/area/syndicate_mothership/control)
-"sj" = (
-/obj/structure/toilet{
-	dir = 8
-	},
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
-/obj/machinery/door/window{
-	dir = 8;
-	icon_state = "right";
-	name = "Tactical Toilet";
-	opacity = 1
-	},
-/turf/open/floor/plasteel/freezer,
 /area/syndicate_mothership/control)
 "sk" = (
 /turf/open/floor/plating/airless,
@@ -16632,6 +16656,26 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena)
+"IK" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "IL" = (
 /obj/effect/landmark/thunderdome/one,
 /obj/effect/turf_decal/stripes/line{
@@ -17838,6 +17882,12 @@
 "Lb" = (
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
+"Lc" = (
+/obj/effect/landmark/start/nukeop/mentor,
+/obj/effect/landmark/start/nukeop/mentor,
+/obj/effect/landmark/start/nukeop/mentor,
+/turf/open/floor/plasteel/freezer,
+/area/syndicate_mothership/control)
 "Ld" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -18708,12 +18758,11 @@
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
 "Nl" = (
-/obj/structure/chair/stool,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
-/obj/effect/landmark/start/nukeop,
+/obj/machinery/grill,
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
 "Nm" = (
@@ -20054,6 +20103,21 @@
 /obj/item/ammo_box/magazine/tommygunm45,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"Qp" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/item/reagent_containers/food/snacks/dolphinmeat,
+/obj/item/reagent_containers/food/snacks/dolphinmeat,
+/obj/item/reagent_containers/food/snacks/dolphinmeat,
+/obj/item/reagent_containers/food/snacks/dolphinmeat,
+/obj/item/reagent_containers/food/snacks/dolphinmeat,
+/obj/item/reagent_containers/food/snacks/dolphinmeat,
+/obj/item/reagent_containers/food/snacks/dolphinmeat,
+/obj/item/reagent_containers/food/snacks/dolphinmeat,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "Qq" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/blood/gibs/old,
@@ -20388,6 +20452,22 @@
 /obj/item/storage/secure/briefcase,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"QY" = (
+/obj/structure/mirror{
+	pixel_x = 28
+	},
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/effect/landmark/start/nukeop/mentor,
+/obj/effect/landmark/start/nukeop/mentor,
+/turf/open/floor/plasteel/freezer,
+/area/syndicate_mothership/control)
 "QZ" = (
 /obj/effect/decal/cleanable/crayon{
 	icon_state = "5"
@@ -21325,6 +21405,17 @@
 /obj/item/reagent_containers/glass/bottle/potion/flight,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
+"Te" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/grill,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "Tf" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien4";
@@ -21788,12 +21879,6 @@
 /obj/item/storage/pill_bottle/stimulant,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"Uc" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plasteel/freezer,
-/area/syndicate_mothership/control)
 "Ud" = (
 /obj/effect/landmark/holding_facility,
 /turf/open/floor/wood,
@@ -21851,6 +21936,22 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
+"Uj" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwich,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "Uk" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/holofloor/snow,
@@ -22757,6 +22858,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
+"Wu" = (
+/obj/item/soap/syndie,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/soap/syndie,
+/obj/structure/mopbucket,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
+/area/syndicate_mothership/control)
 "Ww" = (
 /obj/machinery/chem_master,
 /obj/effect/turf_decal/tile/yellow{
@@ -41766,9 +41879,9 @@ oW
 ku
 ng
 qJ
-re
-se
-pZ
+ft
+Te
+Nl
 pZ
 pZ
 vu
@@ -42021,13 +42134,13 @@ hl
 hl
 kt
 ku
-pX
-pZ
+dM
+IK
+da
+rf
+rf
 pZ
 rf
-Nl
-pZ
-Nl
 vv
 wm
 si
@@ -42278,13 +42391,13 @@ kt
 kt
 kt
 nz
-Vf
-pZ
+Uj
+Qp
 rf
 sf
 te
 pZ
-Nl
+rf
 vw
 wn
 wV
@@ -42541,7 +42654,7 @@ rf
 sg
 tf
 pZ
-Nl
+rf
 vv
 wn
 wW
@@ -43565,7 +43678,7 @@ mz
 ma
 ku
 ku
-rh
+eL
 ku
 ku
 ku
@@ -43822,9 +43935,9 @@ hl
 pG
 ku
 ku
-qN
-ri
-Uc
+pz
+Lc
+ch
 ku
 nz
 uJ
@@ -44078,10 +44191,10 @@ hl
 mz
 kt
 ku
-qO
-ri
-ri
-sj
+Wu
+Lc
+Lc
+du
 ku
 nz
 ll
@@ -44336,8 +44449,8 @@ mz
 ma
 nz
 pY
-qP
-rj
+pA
+QY
 ku
 ku
 nz
