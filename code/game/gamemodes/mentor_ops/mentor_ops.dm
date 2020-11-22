@@ -1,5 +1,3 @@
-#define FLUKEOPS_TIME_DELAY 12000 // 20 minutes, how long before the credits stop calling the nukies flukeops
-
 /datum/game_mode/nuclear/mentor
 	name = "mentor ops"
 	config_tag = "mentor ops"
@@ -114,7 +112,7 @@
 	var/list/round_credits = list()
 	var/len_before_addition
 
-	if((world.time-SSticker.round_start_time) < (FLUKEOPS_TIME_DELAY)) // If the nukies died super early, they're basically a massive disappointment
+	if((world.time-SSticker.round_start_time) < (12000)) // If the nukies died super early, they're basically a massive disappointment
 		title_icon = "flukeops"
 
 	round_credits += "<center><h1>The [syndicate_name()] Operatives:</h1>"
