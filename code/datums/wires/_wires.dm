@@ -232,7 +232,7 @@
 	return UI_CLOSE
 
 /datum/wires/ui_state(mob/user)
-	return GLOB.physical_state
+	return GLOB.no_incapacitated_state
 
 /datum/wires/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
