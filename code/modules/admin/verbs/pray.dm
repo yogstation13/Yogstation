@@ -82,4 +82,4 @@
 	msg = "<span class='adminnotice'><b><font color=violet>CLOWN PLANET:</font>[ADMIN_FULLMONTY(Sender)] [ADMIN_SYNDICATE_REPLY(Sender)]:</b> [msg]</span>"
 	to_chat(GLOB.admins, msg, confidential=TRUE)
 	for(var/obj/machinery/computer/communications/C in GLOB.machines)
-		C.overrideCooldown()
+		C.override_cooldown()
