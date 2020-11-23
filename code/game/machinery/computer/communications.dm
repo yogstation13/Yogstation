@@ -240,10 +240,9 @@
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 
 			var/destination = params["destination"]
-			var/list/payload = list()
 
 
-			send2otherserver(station_name(), message, "Comms_Console", destination == "all" ? null : list(destination), additional_data = payload)
+			send2otherserver(station_name(), message, "Comms_Console", destination == "all" ? null : list(destination))
 			minor_announce(message, title = "Outgoing message to allied station")
 			usr.log_talk(message, LOG_SAY, tag = "message to the other server")
 			message_admins("[ADMIN_LOOKUPFLW(usr)] has sent a message to the other server\[s].")
