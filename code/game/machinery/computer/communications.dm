@@ -241,7 +241,6 @@
 
 			var/destination = params["destination"]
 
-
 			send2otherserver(station_name(), message, "Comms_Console", destination == "all" ? null : list(destination))
 			minor_announce(message, title = "Outgoing message to allied station")
 			usr.log_talk(message, LOG_SAY, tag = "message to the other server")
