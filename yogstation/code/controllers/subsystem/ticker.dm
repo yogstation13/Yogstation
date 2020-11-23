@@ -36,7 +36,8 @@
 		"https://www.youtube.com/watch?v=Ld6TfpgJg7g",						// Tom Kane - Freeway Jazz
 		"https://www.youtube.com/watch?v=ZhhQrFfzFM4",						// Carpenter Brut - Escape from Midwich Valley
 		"https://www.youtube.com/watch?v=dLrdSC9MVb4",						// Tally Hall - Turn the Lights Off
-		"https://www.youtube.com/watch?v=YGulLVWu-s0")							// God Hand "Rock a Bay"
+		"https://www.youtube.com/watch?v=YGulLVWu-s0",						// God Hand "Rock a Bay"
+		"https://www.youtube.com/watch?v=AumYP6Np1eI")						// Ataraxia - Deja Vu
 
 	selected_lobby_music = pick(songs)
 
