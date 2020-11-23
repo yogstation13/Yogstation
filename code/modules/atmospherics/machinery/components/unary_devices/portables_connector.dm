@@ -33,6 +33,12 @@
 	if(showpipe)
 		var/image/cap = getpipeimage(icon, "connector_cap", initialize_directions)
 		add_overlay(cap)
+	if(piping_layer == 1)
+		icon_state = "connector_map-2"
+			pixel_x = initial(pixel_x - 5)
+	if(piping_layer == 5)
+		icon_state = "connector_map-4"
+			pixel_x = initial(pixel_x + 5)
 
 /obj/machinery/atmospherics/components/unary/portables_connector/process_atmos()
 	if(!connected_device)
