@@ -12,7 +12,7 @@
 	var/obj/item/radio/radio
 	var/radio_freq = FREQ_SCIENCE
 	var/setup = FALSE // Machine Status
-	var/foundmobs = 0 // Decorational UI Var. used by findmobs()
+	var/mobs = 0 // Decorational UI Var. used by findmobs()
 	var/calibration = 1 // In percentage so 100%
 	var/icon_state_on = "RD-server-on"
 	var/icon_state_open = "server_t"
@@ -31,7 +31,7 @@
 	if(panel_open)
 		icon_state = "server_t"
 		return
-	if (stat & EMPED || stat & NOPOWER)
+	if (stat & EMPED || stat & NOPOWER || !setup)
 		icon_state = "RD-server-off"
 		return
 	icon_state = "RD-server-on"
@@ -60,7 +60,7 @@
 /obj/machinery/sci_probe/ui_data(mob/user)
 	var/list/data = list()
 	data["status"] = setup
-	data["foundmobs"] = foundmobs
+	data["foundmobs"] = mobs
 	data["science"] = SCIENCE_AMOUNT
 	data["calibration"] = calibration
 	return data
@@ -84,12 +84,12 @@
 	canoperate() // Check if it can operate
 	if(setup) // Avoid needless processing
 		var/ssadjust = 1 MINUTES/SSmachines.wait // This is the science adjustment factor. This allows science generation to stay the same if the subsystem firerate changes
-		findmobs() // Decorational Display
+		mobs = findmobs() // Decorational Display
 		calibration = clamp((calibration -= 0.0005), 0, initial(calibration)) // Can't just be a cheap science generator
 		SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, (SCIENCE_AMOUNT/ssadjust)*calibration) // Add Science
 
 /obj/machinery/sci_probe/proc/findmobs()
-	foundmobs = 0
+	var/foundmobs = 0
 	if(!canoperate()) // Shows detected mobs as 0 if not on lavaland
 		return
 	for(var/mob/living/simple_animal/hostile/megafauna/S in GLOB.mob_list)
@@ -98,7 +98,7 @@
 		if(!is_mining_level(S.z))
 			continue
 		foundmobs += 1
-	return foundmobs // incase this ever gets called an external function
+	return foundmobs
 
 /obj/machinery/sci_probe/proc/canoperate() // Code simplification
 	var/turf/T = src
@@ -106,5 +106,6 @@
 		if(setup) // Anti-Spam
 			say("Warning: L.P.M is not on lavaland!")
 		setup = FALSE // Turn machine off
+		mobs = 0
 		return FALSE
 	return TRUE
