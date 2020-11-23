@@ -27,7 +27,7 @@ GLOBAL_LIST_INIT(atmos_pipe_recipes, list(
 		new /datum/pipe_info/pipe("Volume Pump",		/obj/machinery/atmospherics/components/binary/volume_pump, TRUE),
 		new /datum/pipe_info/pipe("Gas Filter",			/obj/machinery/atmospherics/components/trinary/filter, TRUE),
 		new /datum/pipe_info/pipe("Gas Mixer (M)",		/obj/machinery/atmospherics/components/trinary/mixer, TRUE),
-		new /datum/pipe_info/pipe("Gas Mixer (T)",		/obj/machinery/atmospherics/components/trinary/mixer/t_mixer, TRUE),
+		new /datum/pipe_info/pipe("Gas Mixer (T)",		/obj/machinery/atmospherics/components/trinary/mixer/t_mixer, TRUE, PIPE_UNARY),
 		new /datum/pipe_info/pipe("Passive Gate",		/obj/machinery/atmospherics/components/binary/passive_gate, TRUE),
 		new /datum/pipe_info/pipe("Injector",			/obj/machinery/atmospherics/components/unary/outlet_injector, TRUE),
 		new /datum/pipe_info/pipe("Scrubber",			/obj/machinery/atmospherics/components/unary/vent_scrubber, TRUE),
@@ -148,13 +148,15 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 
 	return rows
 
-/datum/pipe_info/pipe/New(label, obj/machinery/atmospherics/path, use_five_layers)
+/datum/pipe_info/pipe/New(label, obj/machinery/atmospherics/path, use_five_layers, difdirtype)
 	name = label
 	id = path
 	all_layers = use_five_layers
 	icon_state = initial(path.pipe_state)
 	var/obj/item/pipe/c = initial(path.construction_type)
 	dirtype = initial(c.RPD_type)
+	if(difdirtype)
+		dirtype = difdirtype
 
 /datum/pipe_info/pipe/Params()
 	return "makepipe=[id]&type=[dirtype]"
