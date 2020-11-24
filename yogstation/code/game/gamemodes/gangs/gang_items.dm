@@ -266,6 +266,13 @@
 	item_path = /obj/item/sharpener
 
 
+
+/datum/gang_item/equipment/Gangweed
+	name = "Joint"
+	id = "Joint"
+	cost = 3
+	item_path = /obj/item/clothing/mask/cigarette/rollie/cannabis
+
 /datum/gang_item/equipment/emp
 	name = "EMP Grenade"
 	id = "EMP"
