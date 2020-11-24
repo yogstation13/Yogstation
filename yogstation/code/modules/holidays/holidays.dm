@@ -5,7 +5,7 @@
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=U06jlgpMtQs", // the USSR anthem
 		"https://www.youtube.com/watch?v=x2YlbiyiuMc", // Polyushka Polye
-		"https://www.youtube.com/watch?v=cW38y4AFGyI", // Let's Go
+		"https://www.youtube.com/watch?v=2Z5hUa56_C4", // Let's Go
 		"https://www.youtube.com/watch?v=zgKazTrhXmI", // Red Army is the Strongest
 		"https://www.youtube.com/watch?v=Q_iIeFWJszY", // Shchors' Song
 		"https://www.youtube.com/watch?v=8iAoibAgAvM", // Swallowing Dust

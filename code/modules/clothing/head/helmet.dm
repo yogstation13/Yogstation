@@ -73,6 +73,14 @@
 			return
 	return ..()
 
+/obj/item/clothing/head/helmet/sec/occupying
+	name = "occupying force helmet"
+	desc = "Standard deployment gear. Protects the head from impacts and has a built in mounted light."
+
+/obj/item/clothing/head/helmet/sec/occupying/Initialize(mob/user)
+	attached_light = new /obj/item/flashlight/seclite(null)
+	. = ..()
+
 /obj/item/clothing/head/helmet/alt
 	name = "bulletproof helmet"
 	desc = "A bulletproof combat helmet that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
@@ -294,6 +302,23 @@
 	item_state = "skull"
 	strip_delay = 100
 
+/obj/item/clothing/head/helmet/kasa
+	name = "pathfinder kasa"
+	desc = "A helmet crafted from bones and sinew meant to protect its wearer from hazardous weather."
+	icon_state = "pathhead"
+	item_state = "pathhead"
+	flags_cover = HEAD
+	resistance_flags = FIRE_PROOF
+	cold_protection = HEAD
+	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	heat_protection = HEAD
+	armor = list("melee" = 35, "bullet" = 20, "laser" = 20, "energy" = 10, "bomb" = 50, "bio" = 5, "rad" = 10, "fire" = 50, "acid" = 50)
+
+/obj/item/clothing/head/helmet/kasa/Initialize()
+	. = ..()
+	AddComponent(/datum/component/armor_plate, null, null, list("melee" = 10, "bullet" = 5, "laser" = 5, "energy" = 5)) //maximum armor 65/35/35/25
+
 /obj/item/clothing/head/helmet/durathread
 	name = "durathread helmet"
 	desc = "A helmet made from durathread and leather."
@@ -409,7 +434,7 @@
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
-		
+
 /obj/item/clothing/head/helmet/stormtrooper
 	name = "Storm Trooper Helmet"
 	desc = "Battle Helmet from a long lost empire"
@@ -423,3 +448,10 @@
 	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
 	strip_delay = 60
 	flags_cover = HEADCOVERSEYES
+
+/obj/item/clothing/head/helmet/shaman
+	name = "ritual headdress"
+	desc = "Hand carved skull headdress, uniquely suited for the harsh lavaland hellscapes."
+	icon_state = "shamanhat"
+	item_state = "shamanhat"
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 10, "bomb" = 10, "bio" = 5, "rad" = 20, "fire" = 40, "acid" = 20)

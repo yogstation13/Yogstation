@@ -70,7 +70,7 @@
 
 /mob/living/simple_animal/hostile/swarmer/Initialize()
 	. = ..()
-	verbs -= /mob/living/verb/pulled
+	remove_verb(src, /mob/living/verb/pulled)
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
 		diag_hud.add_to_hud(src)
 
@@ -86,10 +86,9 @@
 	holder.pixel_y = I.Height() - world.icon_size
 	holder.icon_state = "hudstat"
 
-/mob/living/simple_animal/hostile/swarmer/Stat()
-	..()
-	if(statpanel("Status"))
-		stat("Resources:",resources)
+/mob/living/simple_animal/hostile/swarmer/get_status_tab_items()
+	. = ..()
+	. += "Resources: [resources]"
 
 /mob/living/simple_animal/hostile/swarmer/emp_act()
 	. = ..()
@@ -115,7 +114,7 @@
 		var/mob/living/silicon/borg = target
 		borg.adjustBruteLoss(melee_damage_lower)
 	return ..()
-		
+
 /mob/living/simple_animal/hostile/swarmer/MiddleClickOn(atom/A)
 	. = ..()
 	if(!LAZYLEN(dronelist))
@@ -136,7 +135,8 @@
 		return
 	if(!A.Adjacent(src))
 		return
-	prepare_target(src)
+	if(isliving(A))
+		prepare_target(A)
 
 ////END CTRL CLICK FOR SWARMERS////
 
@@ -199,7 +199,7 @@
 	new /obj/effect/temp_visual/swarmer/disintegration(get_turf(target))
 	do_attack_animation(target)
 	changeNext_move(CLICK_CD_MELEE)
-	target.ex_act(EXPLODE_LIGHT)
+	SSexplosions.med_mov_atom += target
 
 /**
   * Called when a swarmer attempts to teleport a living entity away
@@ -220,13 +220,13 @@
 
 	if(!do_mob(src, target, 30))
 		return
-		
+
 	teleport_target(target)
-		
+
 /mob/living/simple_animal/hostile/swarmer/proc/teleport_target(mob/living/target)
 	var/turf/open/floor/safe_turf = find_safe_turf(zlevels = z, extended_safety_checks = TRUE)
 
-	if(!safe_turf )
+	if(!safe_turf)
 		return
 	// If we're getting rid of a human, slap some energy cuffs on
 	// them to keep them away from us a little longer
@@ -416,7 +416,7 @@
 	// TODO get swarmers their own colour rather than just boldtext
 	if(message)
 		swarmer_chat(message)
-		
+
 /**
   * Removes a drone from the swarmer's list.
   *
@@ -440,7 +440,7 @@ mob/living/simple_animal/hostile/swarmer/proc/remove_drone(mob/drone, force)
 	AIStatus = AI_ON
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-	
+
 /obj/item/projectile/beam/disabler/swarmer/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	if(!.)

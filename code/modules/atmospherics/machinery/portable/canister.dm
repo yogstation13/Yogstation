@@ -6,10 +6,6 @@
 	icon = 'icons/obj/atmospherics/canister.dmi'
 	icon_state = "hazard"
 	density = TRUE
-
-	ui_x = 405
-	ui_y = 230
-
 	var/valve_open = FALSE
 	var/obj/machinery/atmospherics/components/binary/passive_gate/pump
 	var/release_log = ""
@@ -214,7 +210,7 @@
 	pump = new(src, FALSE)
 	pump.on = TRUE
 	pump.stat = 0
-	pump.build_network()
+	SSair.add_to_rebuild_queue(pump)
 
 /obj/machinery/portable_atmospherics/canister/Initialize()
 	. = ..()
@@ -429,11 +425,13 @@
 
 	update_icon()
 
-/obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-															datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/portable_atmospherics/canister/ui_state(mob/user)
+	return GLOB.physical_state
+
+/obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Canister", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "Canister", name)
 		ui.open()
 
 /obj/machinery/portable_atmospherics/canister/ui_data()
@@ -567,11 +565,11 @@
 /* yog- ADMEME CANISTERS */
 
 /// Canister 1 Kelvin below the fusion point. Is highly unoptimal, do not spawn to start fusion, only good for testing low instability mixes.
-/obj/machinery/portable_atmospherics/canister/fusion_test	
+/obj/machinery/portable_atmospherics/canister/fusion_test
 	name = "Fusion Test Canister"
 	desc = "This should never be spawned in game."
 	icon_state = "danger"
-/obj/machinery/portable_atmospherics/canister/fusion_test/create_gas()	
+/obj/machinery/portable_atmospherics/canister/fusion_test/create_gas()
 	air_contents.set_moles(/datum/gas/tritium, 10)
 	air_contents.set_moles(/datum/gas/plasma, 500)
 	air_contents.set_moles(/datum/gas/carbon_dioxide, 500)
@@ -579,11 +577,11 @@
 	air_contents.set_temperature(9999)
 
 /// Canister 1 Kelvin below the fusion point. Contains far too much plasma. Only good for adding more fuel to ongoing fusion reactions.
- /obj/machinery/portable_atmospherics/canister/fusion_test_2	
+ /obj/machinery/portable_atmospherics/canister/fusion_test_2
 	name = "Fusion Test Canister"
 	desc = "This should never be spawned in game."
 	icon_state = "danger"
-/obj/machinery/portable_atmospherics/canister/fusion_test_2/create_gas()	
+/obj/machinery/portable_atmospherics/canister/fusion_test_2/create_gas()
 	air_contents.set_moles(/datum/gas/tritium, 10)
 	air_contents.set_moles(/datum/gas/plasma, 15000)
 	air_contents.set_moles(/datum/gas/carbon_dioxide, 1500)
@@ -595,7 +593,7 @@
 	name = "Fusion Test Canister"
 	desc = "This should never be spawned in game."
 	icon_state = "danger"
-/obj/machinery/portable_atmospherics/canister/fusion_test_3/create_gas()	
+/obj/machinery/portable_atmospherics/canister/fusion_test_3/create_gas()
 	air_contents.set_moles(/datum/gas/tritium, 1000)
 	air_contents.set_moles(/datum/gas/plasma, 4500)
 	air_contents.set_moles(/datum/gas/carbon_dioxide, 1500)
@@ -607,13 +605,13 @@
 	name = "Cold Fusion Test Canister"
 	desc = "This should never be spawned in game. Contains dilithium for cold fusion."
 	icon_state = "danger"
-/obj/machinery/portable_atmospherics/canister/fusion_test_4/create_gas()	
+/obj/machinery/portable_atmospherics/canister/fusion_test_4/create_gas()
 	air_contents.set_moles(/datum/gas/tritium, 1000)
 	air_contents.set_moles(/datum/gas/plasma, 4500)
 	air_contents.set_moles(/datum/gas/carbon_dioxide, 1500)
 	air_contents.set_moles(/datum/gas/dilithium, 2000)
 	air_contents.set_temperature(10000)
-  
+
 /// A canister that is 1 Kelvin away from doing the stimball reaction.
 /obj/machinery/portable_atmospherics/canister/stimball_test
 	name = "Stimball Test Canister"

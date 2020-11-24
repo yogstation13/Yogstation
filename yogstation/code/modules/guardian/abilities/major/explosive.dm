@@ -13,11 +13,11 @@
 
 /datum/guardian_ability/major/explosive/Apply()
 	. = ..()
-	guardian.verbs += /mob/living/simple_animal/hostile/guardian/proc/DetonateBomb
+	add_verb(guardian, /mob/living/simple_animal/hostile/guardian/proc/DetonateBomb)
 
 /datum/guardian_ability/major/explosive/Remove()
 	. = ..()
-	guardian.verbs -= /mob/living/simple_animal/hostile/guardian/proc/DetonateBomb
+	remove_verb(guardian, /mob/living/simple_animal/hostile/guardian/proc/DetonateBomb)
 
 /datum/guardian_ability/major/explosive/Attack(atom/target)
 	if(prob(40) && isliving(target))

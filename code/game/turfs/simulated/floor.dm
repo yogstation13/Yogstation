@@ -56,6 +56,14 @@
 		icon_regular_floor = icon_state
 	if(mapload && prob(33))
 		MakeDirty()
+	if(is_station_level(z))
+		GLOB.station_turfs += src
+
+
+/turf/open/floor/Destroy()
+	if(is_station_level(z))
+		GLOB.station_turfs -= src
+	..()
 
 /turf/open/floor/ex_act(severity, target)
 	var/shielded = is_shielded()
@@ -161,6 +169,9 @@
 	return 0
 
 /turf/open/floor/crowbar_act(mob/living/user, obj/item/I)
+	if(istype(I,/obj/item/jawsoflife/jimmy))
+		to_chat(user,"The [I] cannot pry tiles.")
+		return
 	return intact ? pry_tile(I, user) : FALSE
 
 /turf/open/floor/proc/try_replace_tile(obj/item/stack/tile/T, mob/user, params)

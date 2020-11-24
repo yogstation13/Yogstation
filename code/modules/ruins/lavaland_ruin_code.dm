@@ -34,7 +34,7 @@
 	desc = "Allows for the construction of a Golem Shell."
 	id = "golem"
 	build_type = AUTOLATHE
-	materials = list(MAT_METAL = 40000)
+	materials = list(/datum/material/iron = 40000)
 	build_path = /obj/item/golem_shell
 	category = list("Imported")
 
@@ -86,6 +86,12 @@
 		var/obj/item/stack/O = I
 		var/species = golem_shell_species_types[O.merge_type]
 		if(species)
+			if(istype(O, /obj/item/stack/sheet/runed_metal) && !iscultist(user))
+				to_chat(user, "<span class='warning'>Only one with forbidden knowledge could hope to work this metal...</span>")
+				return
+			if(istype(O, /obj/item/stack/tile/brass) && !is_servant_of_ratvar(user))
+				to_chat(user, "<span class='danger'>[src] seems far too fragile and rigid to build with.</span>")
+				return
 			if(O.use(10))
 				to_chat(user, "You finish up the golem shell with ten sheets of [O].")
 				new shell_type(get_turf(src), species, user)
