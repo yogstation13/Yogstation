@@ -8,7 +8,9 @@ GLOBAL_LIST_EMPTY(custom_portals)
 	icon_state = "portal"
 	color = "#8b008b"
 	anchored = TRUE
+	///The portal ID we are linked to
 	var/linked_to
+	///Our ID
 	var/portal_id
 	///Can mechs walk through?
 	var/mech_sized = FALSE
