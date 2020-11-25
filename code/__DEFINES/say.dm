@@ -39,6 +39,9 @@
 #define MODE_KEY_DEADMIN "d"
 
 #define MODE_ALIEN "alientalk"
+#define MODE_KEY_ALIEN "a"
+#define MODE_TOKEN_ALIEN ":a"
+
 #define MODE_HOLOPAD "holopad"
 
 #define MODE_CHANGELING "changeling"

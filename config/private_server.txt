@@ -1,5 +1,7 @@
 #This file contains configuration options specific to yogstation that should not be used on downstreams or testing servers. You may edit this file and submit a PR if you wish to suggest changes to the server configuration of the yogstation server
 
+$include resources_private.txt
+
 ## World address and port for server receiving cross server messages
 ## Use '+' to denote spaces in ServerName
 ## Repeat this entry to add more servers
@@ -9,7 +11,7 @@ CROSS_SERVER Atlas byond://149.56.18.231:5133
 CROSS_COMMS_NAME Main
 
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Replace 'Space station 13' with the name of your choice.
-SERVERNAME Yogstation 13 (Main)
+SERVERNAME Yogstation 13 RP
 
 ## Server SQL name: This is the name used to identify the server to the SQL DB, distinct from SERVERNAME as it must be at most 32 characters.
 SERVERSQLNAME yogstation
