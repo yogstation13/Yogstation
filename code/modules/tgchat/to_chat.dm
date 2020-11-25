@@ -61,7 +61,7 @@
 		trailing_newline = TRUE,
 		confidential = FALSE)
 	if(Master.current_runlevel == RUNLEVEL_INIT || !SSchat?.initialized)
-		to_chat_immediate(target, html, type, text)
+		to_chat_immediate(target, html, type, text, confidential=confidential)
 		return
 	if(!target || (!html && !text))
 		return
