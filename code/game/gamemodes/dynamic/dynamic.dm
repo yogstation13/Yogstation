@@ -826,5 +826,3 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 			ruleset.restricted_roles |= ruleset.protected_roles
 		if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 			ruleset.restricted_roles |= "Assistant"
-		if(CONFIG_GET(flag/protect_heads_from_antagonist))
-			ruleset.restricted_roles |= GLOB.command_positions
