@@ -211,6 +211,17 @@
 		else if(A.type == datum_type)
 			return A
 
+/datum/mind/proc/has_datum(datum_type, check_subtypes = TRUE)
+	if(!datum_type)
+		return
+	. = FALSE
+	for(var/a in antag_datums)
+		var/datum/A = a
+		if(check_subtypes && istype(A, datum_type))
+			return A
+		else if(A.type == datum_type)
+			return A
+
 /*
 	Removes antag type's references from a mind.
 	objectives, uplinks, powers etc are all handled.

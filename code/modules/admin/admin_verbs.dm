@@ -162,7 +162,10 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/cmd_debug_del_all,
 	/client/proc/SDQL2_query,
 	/client/proc/pump_random_event,
-	/client/proc/enable_debug_verbs
+	/client/proc/enable_debug_verbs,
+	/client/proc/callproc,
+	/client/proc/callproc_datum,
+	/client/proc/cmd_admin_list_open_jobs
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/release))
 GLOBAL_PROTECT(admin_verbs_possess)

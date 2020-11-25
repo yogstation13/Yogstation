@@ -56,6 +56,13 @@
 
 /obj/item/organ/brain/Remove(mob/living/carbon/C, special = 0, no_id_transfer = FALSE)
 	..()
+	if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling))
+		var/datum/antagonist/changeling/bruh = C.mind.has_antag_datum(/datum/antagonist/changeling)
+		for(var/d in bruh.purchasedpowers)
+			var/datum/e = d
+			if(istype(e, /datum/action/changeling/fakedeath))
+				e.sting_action(C)
+
 	for(var/X in traumas)
 		var/datum/brain_trauma/BT = X
 		BT.on_lose(TRUE)
