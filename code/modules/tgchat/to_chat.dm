@@ -72,4 +72,4 @@
 	if(type) message["type"] = type
 	if(text) message["text"] = text
 	if(html) message["html"] = html
-	SSchat.queue(target, message)
+	SSchat.queue(target, message, confidential)
