@@ -269,7 +269,6 @@
 	suffix = "whiteshipdock.dmm"
 	name = "Whiteship Dock"
 	description = "An abandoned but functional vessel parked in deep space, ripe for the taking."
-	// always_place = TRUE - For debugging, remove JUST before merge
 
 /datum/map_template/ruin/space/cat_experiments
 	id = "meow"
