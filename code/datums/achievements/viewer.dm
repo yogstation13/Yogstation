@@ -42,6 +42,9 @@
   * Arguments:
   * * user - The mob we're opening it for
   */
+/datum/achievement_browser/ui_state(mob/user)
+	return GLOB.always_state
+
 /datum/achievement_browser/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)

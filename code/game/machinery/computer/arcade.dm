@@ -78,6 +78,13 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		return INITIALIZE_HINT_QDEL
 	Reset()
 
+/obj/machinery/computer/arcade/update_icon()
+	if(dir == 2)
+		icon_screen = "invaders"
+	else
+		icon_screen = ""
+	. = ..()
+
 /obj/machinery/computer/arcade/proc/prizevend(mob/user)
 	SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "arcade", /datum/mood_event/arcade)
 	if(prob(0.0001)) //1 in a million
