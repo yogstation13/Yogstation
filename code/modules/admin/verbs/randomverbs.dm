@@ -1267,10 +1267,15 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 	var/list/turfs = list()
-	for(var/turf/T in /area/centcom/evac)
-		if(T.density)
-			continue
-		turfs.Add(T)
+	for(var/a in GLOB.sortedAreas)
+		if(istype(a, /area/centcom/evac))
+			var/area/centcomarea = a
+			if(!centcomarea)
+				return
+			for(var/turf/T in centcomarea)
+				if(T.density)
+					continue
+				turfs.Add(T)
 	var/turf/T = safepick(turfs)
 	if(!T)
 		to_chat(src, "Nowhere to jump to!", confidential=TRUE)
