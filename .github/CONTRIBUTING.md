@@ -114,6 +114,15 @@ var/path_type = "/obj/item/baseball_bat"
 ### Use var/name format when declaring variables
 While DM allows other ways of declaring variables, this one should be used for consistency.
 
+### Variable names must not be the same as a proc name
+```DM
+//Don't do this
+/obj
+    var/block_attack = TRUE
+
+/obj/proc/block_attack()
+    return density
+```
 ### Tabs, not spaces
 You must use tabs to indent your code, NOT SPACES.
 
