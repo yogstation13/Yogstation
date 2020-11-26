@@ -346,17 +346,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 			if ("Midround")
 				if (ruleset.weight)
 					midround_rules += ruleset
-		if(configuration)
-			if(!configuration[ruleset.ruletype])
-				continue
-			if(!configuration[ruleset.ruletype][ruleset.name])
-				continue
-			var/rule_conf = configuration[ruleset.ruletype][ruleset.name]
-			for(var/variable in rule_conf)
-				if(isnull(ruleset.vars[variable]))
-					stack_trace("Invalid dynamic configuration variable [variable] in [ruleset.ruletype] [ruleset.name].")
-					continue
-				ruleset.vars[variable] = rule_conf[variable]
+		configure_ruleset(ruleset)
 
 
 	for(var/mob/dead/new_player/player in GLOB.player_list)
@@ -570,6 +560,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	var/datum/dynamic_ruleset/midround/new_rule
 	if(ispath(ruletype))
 		new_rule = new ruletype() // You should only use it to call midround rules though.
+		configure_ruleset(new_rule)
 	else if(istype(ruletype, /datum/dynamic_ruleset))
 		new_rule = ruletype
 	else
@@ -818,3 +809,20 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 			return RULE_OF_THREE(40, 20, x) + 50
 		if (20 to INFINITY)
 			return rand(90, 100)
+			
+/datum/game_mode/dynamic/proc/configure_ruleset(datum/dynamic_ruleset/ruleset)
+	if(configuration)
+		if(!configuration[ruleset.ruletype])
+			return
+		if(!configuration[ruleset.ruletype][ruleset.name])
+			return
+		var/rule_conf = configuration[ruleset.ruletype][ruleset.name]
+		for(var/variable in rule_conf)
+			if(isnull(ruleset.vars[variable]))
+				stack_trace("Invalid dynamic configuration variable [variable] in [ruleset.ruletype] [ruleset.name].")
+				continue
+			ruleset.vars[variable] = rule_conf[variable]
+		if(CONFIG_GET(flag/protect_roles_from_antagonist))
+			ruleset.restricted_roles |= ruleset.protected_roles
+		if(CONFIG_GET(flag/protect_assistant_from_antagonist))
+			ruleset.restricted_roles |= "Assistant"
