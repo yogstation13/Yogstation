@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(68 modules,
-    515/6254 macros, 8.2%)</aside></h3>
+<aside>(67 modules,
+    514/6358 macros, 8.1%)</aside></h3>
 <ul class="index-tree">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -65,7 +65,6 @@ General Public License version 3.
     <li><a href="code/__DEFINES/maths.html" title="code&#x2F;__DEFINES&#x2F;maths.dm">maths</a></li>
     <li><a href="code/__DEFINES/movement.html" title="code&#x2F;__DEFINES&#x2F;movement.dm">movement</a></li>
     <li><a href="code/__DEFINES/obj_flags.html" title="code&#x2F;__DEFINES&#x2F;obj_flags.dm">obj_flags</a></li>
-    <li><a href="code/__DEFINES/reactions.html" title="code&#x2F;__DEFINES&#x2F;reactions.dm">reactions</a></li>
     <li><a href="code/__DEFINES/research.html" title="code&#x2F;__DEFINES&#x2F;research.dm">research</a></li>
     <li><a href="code/__DEFINES/robots.html" title="code&#x2F;__DEFINES&#x2F;robots.dm">robots</a></li>
     <li><a href="code/__DEFINES/subsystems.html" title="code&#x2F;__DEFINES&#x2F;subsystems.dm">subsystems</a> - Defines for subsystems and overlays</li>
@@ -137,7 +136,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(268 detailed/774 documented/22603 total, 3.4%)</aside></h3>
+<aside>(276 detailed/783 documented/22676 total, 3.5%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -430,7 +429,12 @@ and don't call start() in a loop that will be repeated otherwise it'll get spamm
     <li class="has-children"><a href="datum/game_mode.html" title="&#x2F;datum&#x2F;game_mode">invalid</a><ul class="index-tree">
     <li><a href="datum/game_mode/dynamic.html" title="&#x2F;datum&#x2F;game_mode&#x2F;dynamic">dynamic mode</a></li>
     </ul></li>
-    <li><span class="no-substance">gas_reaction&#x2F;</span><a href="datum/gas_reaction/stim_ball.html" title="&#x2F;datum&#x2F;gas_reaction&#x2F;stim_ball">Stimulum Energy Ball</a></li>
+    <li><a href="datum/gas_mixture.html" title="&#x2F;datum&#x2F;gas_mixture">gas_mixture</a></li>
+    <li class="has-children"><span title="&#x2F;datum&#x2F;gas_reaction">gas_reaction</span><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;gas_reaction&#x2F;freonformation">Freon formation</span> - the more heat you use the higher is this factor
+the more moles you use and the higher the heat, the higher is the efficiency</li>
+    <li><a href="datum/gas_reaction/stim_ball.html" title="&#x2F;datum&#x2F;gas_reaction&#x2F;stim_ball">Stimulum Energy Ball</a></li>
+    </ul></li>
     <li><a href="datum/instrument.html" title="&#x2F;datum&#x2F;instrument">Instrument Datums</a> - Instrument datums hold the data for any given instrument, as well as data on how to play it and what bounds there are to playing it.</li>
     <li><a href="datum/instrument_key.html" title="&#x2F;datum&#x2F;instrument_key">instrument_key</a> - Instrument key datums contain everything needed to know how to play a specific
 note of an instrument.*</li>
@@ -857,8 +861,12 @@ It's attacks are as follows:</li>
     <li><a href="obj/item/energy_harvester.html" title="&#x2F;obj&#x2F;item&#x2F;energy_harvester">Energy Harvesting Module</a></li>
     <li><a href="obj/item/forbidden_book.html" title="&#x2F;obj&#x2F;item&#x2F;forbidden_book">Codex Cicatrix</a></li>
     <li><span class="no-substance">gps&#x2F;</span><a href="obj/item/gps/pirate.html" title="&#x2F;obj&#x2F;item&#x2F;gps&#x2F;pirate">Pirate GPS</a></li>
-    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;grenade">grenade</span><ul class="index-tree">
+    <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;grenade">grenade</span><ul class="index-tree">
     <li><span class="no-substance">chem_grenade&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;grenade&#x2F;chem_grenade&#x2F;metalfoam">metal foam grenade</span> - PREMADE GRENADES</li>
+    <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;grenade&#x2F;gas_crystal">gas_crystal</span><ul class="index-tree">
+    <li><a href="obj/item/grenade/gas_crystal/healium_crystal.html" title="&#x2F;obj&#x2F;item&#x2F;grenade&#x2F;gas_crystal&#x2F;healium_crystal">Healium crystal</a></li>
+    <li><a href="obj/item/grenade/gas_crystal/pluonium_crystal.html" title="&#x2F;obj&#x2F;item&#x2F;grenade&#x2F;gas_crystal&#x2F;pluonium_crystal">Pluonium crystal</a></li>
+    </ul></li>
     <li><span class="no-substance">plastic&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;grenade&#x2F;plastic&#x2F;c4">C4</span> - The Explosives</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;grenade&#x2F;syndieminibomb">syndicate minibomb</span> - Own proc for this because the regular one would flash people which was dumb.</li>
     </ul></li>
@@ -1066,7 +1074,14 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     <li><a href="obj/machinery/abductor/experiment.html" title="&#x2F;obj&#x2F;machinery&#x2F;abductor&#x2F;experiment">experimentation machine</a></li>
     </ul></li>
     <li class="has-children"><a href="obj/machinery/atmospherics.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics">atmospherics</a><ul class="index-tree">
-    <li><span class="no-substance">components&#x2F;unary&#x2F;</span><a href="obj/machinery/atmospherics/components/unary/cryo_cell.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;unary&#x2F;cryo_cell">cryo cell</a></li>
+    <li class="has-children"><span title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components">components</span><ul class="index-tree">
+    <li class="has-children"><a href="obj/machinery/atmospherics/components/binary.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;binary">binary</a><ul class="index-tree">
+    <li><a href="obj/machinery/atmospherics/components/binary/pressure_valve.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;binary&#x2F;pressure_valve">pressure valve</a></li>
+    <li><a href="obj/machinery/atmospherics/components/binary/temperature_gate.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;binary&#x2F;temperature_gate">temperature gate</a></li>
+    <li><a href="obj/machinery/atmospherics/components/binary/temperature_pump.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;binary&#x2F;temperature_pump">temperature pump</a></li>
+    </ul></li>
+    <li><span class="no-substance">unary&#x2F;</span><a href="obj/machinery/atmospherics/components/unary/cryo_cell.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;unary&#x2F;cryo_cell">cryo cell</a></li>
+    </ul></li>
     </ul></li>
     <li><a href="obj/machinery/biogenerator.html" title="&#x2F;obj&#x2F;machinery&#x2F;biogenerator">biogenerator</a></li>
     <li><a href="obj/machinery/bounty_board.html" title="&#x2F;obj&#x2F;machinery&#x2F;bounty_board">bounty board</a> - A machine that acts basically like a quest board.
@@ -1082,6 +1097,7 @@ Enables crew to create requests, crew can sign up to perform the request, and th
     </ul></li>
     <li><span class="no-substance">door&#x2F;</span><a href="obj/machinery/door/airlock.html" title="&#x2F;obj&#x2F;machinery&#x2F;door&#x2F;airlock">airlock</a></li>
     <li><span class="no-substance">doppler_array&#x2F;research&#x2F;</span><a href="obj/machinery/doppler_array/research/science.html" title="&#x2F;obj&#x2F;machinery&#x2F;doppler_array&#x2F;research&#x2F;science">science</a></li>
+    <li><a href="obj/machinery/electrolyzer.html" title="&#x2F;obj&#x2F;machinery&#x2F;electrolyzer">space electrolyzer</a></li>
     <li><span class="no-substance">gateway&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;gateway&#x2F;centeraway">centeraway</span> - Away</li>
     <li><a href="obj/machinery/holopad.html" title="&#x2F;obj&#x2F;machinery&#x2F;holopad">holopad</a></li>
     <li><a href="obj/machinery/hydroponics.html" title="&#x2F;obj&#x2F;machinery&#x2F;hydroponics">hydroponics tray</a></li>
@@ -1218,7 +1234,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/a0de0e1b1cc613babcbed384cb3ae49f069506f1">a0de0e1</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/72efb667d26f9589563169299c97e353a27b2ec5">72efb66</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
 </body>
 </html>
