@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "the mirror shield will now be destroyed if it blocks an attack without having any hallucinations ready"
+  - tweak: "the mirror shield now has 5 hallucination charges up from 2"
