@@ -94,6 +94,20 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	template_names = list("Engine SM", "Engine Singulo And Tesla")
 	icon = 'yogstation/icons/rooms/box/engine.dmi'
 
+/obj/effect/landmark/stationroom/box/engine/choose()
+	. = ..()
+	var/enginepicked = CONFIG_GET(number/engine_type)
+	switch(enginepicked)
+		if(1)
+			return "Engine SM"
+		if(2)
+			return "Engine Singulo And Tesla"
+		if(3)
+			if(prob(50))
+				return "Engine SM"
+			else
+				return "Engine Singulo And Tesla"
+
 /obj/effect/landmark/stationroom/box/xenobridge
 	template_names = list("Xenobiology Bridge", "Xenobiology Lattice")
 
