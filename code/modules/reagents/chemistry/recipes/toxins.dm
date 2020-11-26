@@ -121,3 +121,8 @@
 	results = list(/datum/reagent/toxin/bonehurtingjuice = 5)
 	required_reagents = list(/datum/reagent/toxin/mutagen = 1, /datum/reagent/itching_powder = 3, /datum/reagent/consumable/milk = 1)
 	mix_message = "<span class='danger'>The mixture suddenly becomes clear and looks a lot like water. You feel a strong urge to drink it.</span>"
+
+/datum/chemical_reaction/hot_ice_melt
+	results = list(/datum/reagent/toxin/plasma = 12) //One sheet of hot ice makes 200m of plasma
+	required_reagents = list(/datum/reagent/toxin/hot_ice = 1)
+	required_temp = T0C + 30 //Don't burst into flames when you melt
