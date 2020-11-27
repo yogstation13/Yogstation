@@ -394,15 +394,11 @@
 	if(iscarbon(M))
 		if (M.stat == DEAD && !overdosed)
 			can_heal = TRUE
-			show_message = FALSE
 		if(method in list(PATCH, TOUCH) && can_heal)
 			if(ishuman(M))
 				M.reagents.add_reagent(/datum/reagent/medicine/synthflesh, reac_volume)
 			M.adjustBruteLoss(-1.25 * reac_volume * healmod)
 			M.adjustFireLoss(-1.25 * reac_volume * healmod)
-			if(show_message)
-				to_chat(M, "<span class='danger'>You feel your burns and bruises healing! It stings like hell!</span>")
-			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
 	..()
 
 /datum/reagent/medicine/charcoal
