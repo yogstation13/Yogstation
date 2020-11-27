@@ -629,7 +629,7 @@
 	if(move_result || loc != oldloc)// halfway done diagonal move still returns false
 		use_power(step_energy_drain)
 		if(leg_overload_mode)
-			take_damage(4, BRUTE)
+			take_damage(2, BRUTE)
 		can_move = world.time + step_in
 		return TRUE
 	return FALSE
