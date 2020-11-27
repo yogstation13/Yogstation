@@ -94,7 +94,7 @@
 	if(!has_space())
 		return "Not enough free space!"
 	if(is_reebe(z))
-		return "[text2ratvar("Location Unavailable)]
+		return "[text2ratvar("Location Unavailable)]"
 
 /obj/machinery/bsa/middle/proc/has_space()
 	var/cannon_dir = get_cannon_direction()
