@@ -1,0 +1,4 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - rscadd: "Add the ability to reinforce windows with wood"
