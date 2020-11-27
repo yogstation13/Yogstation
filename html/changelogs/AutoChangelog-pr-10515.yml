@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "the dragnet's targetted teleport setting now has a potential offset of 1 tile down from 2"
