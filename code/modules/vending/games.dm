@@ -9,7 +9,8 @@
 		            /obj/item/toy/cards/deck/cas = 3,
 		            /obj/item/toy/cards/deck/cas/black = 3,
 					/obj/item/hourglass = 2,
-					/obj/item/toy/turn_tracker = 6)
+					/obj/item/toy/turn_tracker = 6,
+					/obj/item/instrument/musicalmoth = 1)
 	contraband = list(/obj/item/dice/fudge = 9)
 	premium = list(/obj/item/melee/skateboard/pro = 3,
 					/obj/item/melee/skateboard/hoverboard = 1)

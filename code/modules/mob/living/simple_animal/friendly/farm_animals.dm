@@ -461,6 +461,8 @@
 
 /obj/effect/spawner/lootdrop/mob/kitchen_animal
 	name = "kitchen animal"
+	icon = 'icons/mob/animal.dmi'
+	icon_state = "random_kitchen"
 	lootdoubles = 0
 	lootcount = 1
 	loot = list(/mob/living/simple_animal/hostile/retaliate/goat/pete = 1,

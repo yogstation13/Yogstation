@@ -11,6 +11,7 @@
 #define TRITIUM_HEAT_PENALTY 10
 #define BZ_HEAT_PENALTY 5
 #define NITROGEN_HEAT_PENALTY -1.5
+#define H2O_HEAT_PENALTY 12 //This'll get made slowly over time, I want my spice rock spicy god damnit
 
 //All of these get divided by 10-bzcomp * 5 before having 1 added and being multiplied with power to determine rads
 //Keep the negative values here above -10 and we won't get negative rads
@@ -19,11 +20,17 @@
 #define BZ_TRANSMIT_MODIFIER -2
 #define TRITIUM_TRANSMIT_MODIFIER 30 //We divide by 10, so this works out to 3
 #define PLUOXIUM_TRANSMIT_MODIFIER -5 //Should halve the power output
+#define H2O_TRANSMIT_MODIFIER 2
+#define HYDROGEN_TRANSMIT_MODIFIER 25 //increase the radiation emission, but less than the trit (2.5)
+#define HEALIUM_TRANSMIT_MODIFIER 2.4
+#define PLUONIUM_TRANSMIT_MODIFIER 15
 
 #define BZ_RADIOACTIVITY_MODIFIER 5 //Improves the effect of transmit modifiers
 
 #define N2O_HEAT_RESISTANCE 6          //Higher == Gas makes the crystal more resistant against heat damage.
 #define PLUOXIUM_HEAT_RESISTANCE 12
+#define HYDROGEN_HEAT_RESISTANCE 2 // just a bit of heat resistance to spice it up
+#define PLUONIUM_HEAT_RESISTANCE 5
 
 #define POWERLOSS_INHIBITION_GAS_THRESHOLD 0.20         //Higher == Higher percentage of inhibitor gas needed before the charge inertia chain reaction effect starts.
 #define POWERLOSS_INHIBITION_MOLE_THRESHOLD 20        //Higher == More moles of the gas are needed before the charge inertia chain reaction effect starts.        //Scales powerloss inhibition down until this amount of moles is reached
@@ -216,6 +223,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	if(get_integrity() < SUPERMATTER_DELAM_PERCENT)
 		return SUPERMATTER_DELAMINATING
+
 
 	if(get_integrity() < SUPERMATTER_EMERGENCY_PERCENT)
 		return SUPERMATTER_EMERGENCY

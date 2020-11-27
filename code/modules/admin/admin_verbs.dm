@@ -93,7 +93,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/antag_token_panel, //Yogs -- Access Antag Token Panel
 	/client/proc/give_antag_token,
 	/client/proc/show_redeemable_antag_tokens,
-  /client/proc/admincryo
+	/datum/admins/proc/cmd_create_centcom,
+  	/client/proc/admincryo
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -162,7 +163,10 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/cmd_debug_del_all,
 	/client/proc/SDQL2_query,
 	/client/proc/pump_random_event,
-	/client/proc/enable_debug_verbs
+	/client/proc/enable_debug_verbs,
+	/client/proc/callproc,
+	/client/proc/callproc_datum,
+	/client/proc/cmd_admin_list_open_jobs
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/release))
 GLOBAL_PROTECT(admin_verbs_possess)

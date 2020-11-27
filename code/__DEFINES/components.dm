@@ -118,8 +118,10 @@
 #define COMSIG_CLICK_ALT "alt_click"							//from base of atom/AltClick(): (/mob)
 #define COMSIG_CLICK_CTRL_SHIFT "ctrl_shift_click"				//from base of atom/CtrlShiftClick(/mob)
 #define COMSIG_MOUSEDROP_ONTO "mousedrop_onto"					//from base of atom/MouseDrop(): (/atom/over, /mob/user)
-	#define COMPONENT_NO_MOUSEDROP 1
+#define COMPONENT_NO_MOUSEDROP 1
 #define COMSIG_MOUSEDROPPED_ONTO "mousedropped_onto"			//from base of atom/MouseDrop_T: (/atom/from, /mob/user)
+///from base of mob/MouseWheelOn(): (/atom, delta_x, delta_y, params)
+#define COMSIG_MOUSE_SCROLL_ON "mousescroll_on"
 
 // /area signals
 #define COMSIG_AREA_ENTERED "area_entered" 						//from base of area/Entered(): (atom/movable/M)
@@ -208,6 +210,7 @@
 #define COMSIG_LIVING_MINOR_SHOCK "living_minor_shock"			//sent by stuff like stunbatons and tasers: ()
 #define COMSIG_PROCESS_BORGCHARGER_OCCUPANT "living_charge"		//sent from borg recharge stations: (amount, repairs)
 #define COMSIG_MOB_CLIENT_LOGIN "comsig_mob_client_login"		//sent when a mob/login() finishes: (client)
+#define COMSIG_LIVING_SHOCK_PREVENTED "living_shock_prevented"	///sent when items with siemen coeff. of 0 block a shock: (power_source, source, siemens_coeff, dist_check)
 
 //ALL OF THESE DO NOT TAKE INTO ACCOUNT WHETHER AMOUNT IS 0 OR LOWER AND ARE SENT REGARDLESS!
 #define COMSIG_LIVING_STATUS_STUN "living_stun"					//from base of mob/living/Stun() (amount, update, ignore)

@@ -1,3 +1,5 @@
+$include ext_rsc_urls_config.txt
+
 ########################
 # Browser Asset Config #
 ########################

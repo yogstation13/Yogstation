@@ -259,6 +259,19 @@
 			var/obj/structure/grille/G = A
 			G.take_damage(G.max_integrity*2, BRUTE, "melee", 0)
 
+/*
+ * Metal Hydrogen Axe
+ */
+/obj/item/twohanded/fireaxe/metal_h2_axe  // Blatant imitation of the fireaxe, but made out of metallic hydrogen
+	icon_state = "metalh2_axe0"
+	name = "metallic hydrogen axe"
+	desc = "A large, menacing axe made of an unknown substance that the most elder atmosians call Metallic Hydrogen. Truly an otherwordly weapon."
+	force_unwielded = 5
+	force_wielded = 23
+
+/obj/item/twohanded/fireaxe/metal_h2_axe/update_icon()  //Currently only here to fuck with the on-mob icons.
+	icon_state = "metalh2_axe[wielded]"
+	return
 
 /*
  * Double-Bladed Energy Swords - Cheridan

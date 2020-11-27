@@ -367,7 +367,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	if(!input || !(usr in view(1,src)))
 		return
 	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
-	Syndicate_announce(input, usr)
+	message_syndicate(input, usr)
 	to_chat(usr, "<span class='danger'>Message sent. Pray you made the right choice.</span>")
 	usr.log_talk(input, LOG_SAY, tag="Syndicate announcement")
 	deadchat_broadcast(" has messaged the Syndicate using the red phone, \"[input]\" at <span class='name'>[get_area_name(usr, TRUE)]</span>.", "<span class='name'>[usr.real_name]</span>", usr)

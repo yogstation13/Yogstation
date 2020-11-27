@@ -107,7 +107,14 @@
 		/datum/gas/stimulum			= new/datum/tlv(-1, -1, 1000, 1000), // Stimulum has only positive effects
 		/datum/gas/nitryl			= new/datum/tlv/dangerous,
 		/datum/gas/dilithium		= new/datum/tlv/dangerous,//Yogs -- Dilithium
-		/datum/gas/pluoxium			= new/datum/tlv(-1, -1, 1000, 1000) // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		/datum/gas/pluoxium			= new/datum/tlv(-1, -1, 1000, 1000), // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		/datum/gas/freon			= new/datum/tlv/dangerous,
+		/datum/gas/hydrogen			= new/datum/tlv/dangerous,
+		/datum/gas/healium			= new/datum/tlv/dangerous,
+		/datum/gas/pluonium	= new/datum/tlv/dangerous,
+		/datum/gas/zauker			= new/datum/tlv/dangerous,	
+		/datum/gas/halon			= new/datum/tlv/dangerous,
+		/datum/gas/hexane			= new/datum/tlv/dangerous
 	)
 
 /obj/machinery/airalarm/server // No checks here.
@@ -127,7 +134,13 @@
 		/datum/gas/stimulum			= new/datum/tlv/no_checks,
 		/datum/gas/nitryl			= new/datum/tlv/no_checks,
 		/datum/gas/dilithium		= new/datum/tlv/no_checks,//Yogs -- Dilithium
-		/datum/gas/pluoxium			= new/datum/tlv/no_checks
+		/datum/gas/pluoxium			= new/datum/tlv/no_checks,
+		/datum/gas/freon			= new/datum/tlv/no_checks,
+		/datum/gas/hydrogen			= new/datum/tlv/no_checks,
+		/datum/gas/healium			= new/datum/tlv/dangerous,
+		/datum/gas/pluonium	= new/datum/tlv/dangerous,
+		/datum/gas/halon			= new/datum/tlv/dangerous,
+		/datum/gas/hexane			= new/datum/tlv/dangerous
 	)
 
 /obj/machinery/airalarm/kitchen_cold_room // Kitchen cold rooms start off at -80°C or 193.15°K.
@@ -147,7 +160,14 @@
 		/datum/gas/stimulum			= new/datum/tlv(-1, -1, 1000, 1000), // Stimulum has only positive effects
 		/datum/gas/nitryl			= new/datum/tlv/dangerous,
 		/datum/gas/dilithium		= new/datum/tlv/dangerous,//Yogs -- Dilithium
-		/datum/gas/pluoxium			= new/datum/tlv(-1, -1, 1000, 1000) // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		/datum/gas/pluoxium			= new/datum/tlv(-1, -1, 1000, 1000), // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		/datum/gas/freon			= new/datum/tlv/dangerous,
+		/datum/gas/hydrogen			= new/datum/tlv/dangerous,
+		/datum/gas/healium			= new/datum/tlv/dangerous,
+		/datum/gas/pluonium	= new/datum/tlv/dangerous,
+		/datum/gas/zauker			= new/datum/tlv/dangerous,
+		/datum/gas/halon			= new/datum/tlv/dangerous,
+		/datum/gas/hexane			= new/datum/tlv/dangerous
 	)
 
 /obj/machinery/airalarm/unlocked
@@ -534,7 +554,14 @@
 						/datum/gas/bz,
 						/datum/gas/stimulum,
 						/datum/gas/pluoxium,//yogs comma
-						/datum/gas/dilithium//Yogs -- Adds Dilithium
+						/datum/gas/dilithium,//Yogs -- Adds Dilithium
+						/datum/gas/freon,
+						/datum/gas/hydrogen,
+						/datum/gas/healium,
+						/datum/gas/pluonium,
+						/datum/gas/zauker,
+						/datum/gas/halon,
+						/datum/gas/hexane
 					),
 					"scrubbing" = 1,
 					"widenet" = 1

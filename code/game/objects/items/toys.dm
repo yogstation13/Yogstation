@@ -1182,6 +1182,9 @@
 /obj/item/toy/snowball/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!..())
 		playsound(src, 'sound/effects/pop.ogg', 20, 1)
+		if(isliving(hit_atom))
+			var/mob/living/L = hit_atom
+			L.apply_damage(20, STAMINA)
 		qdel(src)
 
 /*
