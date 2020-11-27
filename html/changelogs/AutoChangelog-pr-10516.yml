@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "synthflesh now no longer works on living people"
+  - tweak: "synthflesh will now overdose at 50 units applied, preventing the application of more synthflesh (doesn't effect xenos since they can't be healed otherwise)"
