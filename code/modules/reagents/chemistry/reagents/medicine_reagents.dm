@@ -397,8 +397,8 @@
 		if(method in list(PATCH, TOUCH) && can_heal)
 			if(ishuman(M))
 				M.reagents.add_reagent(/datum/reagent/medicine/synthflesh, reac_volume)
-			M.adjustBruteLoss(-1.25 * reac_volume * healmod)
-			M.adjustFireLoss(-1.25 * reac_volume * healmod)
+			M.adjustBruteLoss(-1.25 * reac_volume)
+			M.adjustFireLoss(-1.25 * reac_volume)
 	..()
 
 /datum/reagent/medicine/charcoal
