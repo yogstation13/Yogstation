@@ -19,6 +19,9 @@
 			return FALSE
 		if(new_owner.current && HAS_TRAIT(new_owner.current, TRAIT_MINDSHIELD))
 			return FALSE
+		var/list/no_team_antag = list("Shadowling","Thrall","Darkspawn","ROLE_CULTIST","ROLE_SERVANT_OF_RATVAR")
+		if(new_owner.current && new_owner.special_role in no_team_antag)
+			return FALSE
 
 /datum/antagonist/rev/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
