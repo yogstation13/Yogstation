@@ -1,6 +1,0 @@
-author: "JamieD1"
-delete-after: true 
-changes: 
-  - rscadd: "Five layer piping"
-  - rscadd: "Temp Gate, Temp Pump, Pressure Valve, Passive Vent"
-  - rscadd: "Healium, Proto Nitrate, Cyrion B, Halon, Hexane"
