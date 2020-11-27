@@ -22,7 +22,7 @@ RLD
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
-	custom_materials = list(/datum/material/iron=100000)
+	materials = list(/datum/material/iron=100000)
 	req_access_txt = "11"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF
@@ -255,58 +255,6 @@ RLD
 
 	toggle_window_size(usr)
 
-/obj/item/construction/rcd/proc/change_airlock_access(mob/user)
-	if (!ishuman(user) && !user.has_unlimited_silicon_privilege)
-		return
-
-	var/t1 = ""
-
-	if(use_one_access)
-		t1 += "Restriction Type: <a href='?src=[REF(src)];access=one'>At least one access required</a><br>"
-	else
-		t1 += "Restriction Type: <a href='?src=[REF(src)];access=one'>All accesses required</a><br>"
-
-	t1 += "<a href='?src=[REF(src)];access=all'>Remove All</a><br>"
-
-	var/accesses = ""
-	accesses += "<div align='center'><b>Access</b></div>"
-	accesses += "<table style='width:100%'>"
-	accesses += "<tr>"
-	for(var/i = 1; i <= 7; i++)
-		accesses += "<td style='width:14%'><b>[get_region_accesses_name(i)]:</b></td>"
-	accesses += "</tr><tr>"
-	for(var/i = 1; i <= 7; i++)
-		accesses += "<td style='width:14%' valign='top'>"
-		for(var/A in get_region_accesses(i))
-			if(A in conf_access)
-				accesses += "<a href='?src=[REF(src)];access=[A]'><font color=\"red\">[replacetext(get_access_desc(A), " ", "&nbsp")]</font></a> "
-			else
-				accesses += "<a href='?src=[REF(src)];access=[A]'>[replacetext(get_access_desc(A), " ", "&nbsp")]</a> "
-			accesses += "<br>"
-		accesses += "</td>"
-	accesses += "</tr></table>"
-	t1 += "<tt>[accesses]</tt>"
-
-	t1 += "<p><a href='?src=[REF(src)];close=1'>Close</a></p>\n"
-
-	var/datum/browser/popup = new(user, "rcd_access", "Access Control", 900, 500)
-	popup.set_content(t1)
-	popup.open()
-	onclose(user, "rcd_access")
-
-/obj/item/construction/rcd/Topic(href, href_list)
-	..()
-	if (usr.stat || usr.restrained())
-		return
-
-	if (href_list["close"])
-		usr << browse(null, "window=rcd_access")
-		return
-
-	if (href_list["access"])
-		toggle_access(href_list["access"])
-		change_airlock_access(usr)
-
 /obj/item/construction/rcd/proc/toggle_access(acc)
 	if (acc == "all")
 		conf_access = null
@@ -325,7 +273,6 @@ RLD
 			if (!conf_access.len)
 				conf_access = null
 
-	
 /// Toggles the usage of reinforced or normal glass
 /obj/item/construction/rcd/proc/toggle_window_glass(mob/user)
 	if (window_glass != RCD_WINDOW_REINFORCED)
@@ -655,7 +602,7 @@ RLD
 			change_computer_dir(user)
 			return
 		if("Change Access")
-			change_airlock_access(user)
+			airlock_electronics.ui_interact(user)
 			return
 		if("Change Airlock Type")
 			change_airlock_setting(user)
