@@ -16,7 +16,14 @@
 		/datum/gas/nitryl,
 		/datum/gas/tritium,
 		/datum/gas/hypernoblium,
-		/datum/gas/water_vapor
+		/datum/gas/freon,
+		/datum/gas/hydrogen,
+		/datum/gas/water_vapor,
+		/datum/gas/healium,
+		/datum/gas/pluonium,
+		/datum/gas/halon,
+		/datum/gas/zauker,
+		/datum/gas/hexane,
 	)
 
 /obj/machinery/portable_atmospherics/scrubber/Destroy()

@@ -465,3 +465,26 @@ GLOBAL_LIST_INIT(abductor_recipes, list ( \
 
 /obj/item/stack/sheet/mineral/coal/ten
 	amount = 10
+
+//Metal Hydrogen
+GLOBAL_LIST_INIT(metalhydrogen_recipes, list(
+	new /datum/stack_recipe("incomplete servant golem shell", /obj/item/golem_shell/servant, req_amount=20, res_amount=1),
+	//new /datum/stack_recipe("ancient armor", /obj/item/clothing/suit/armor/elder_atmosian, req_amount = 8, res_amount = 1),
+	//new /datum/stack_recipe("ancient helmet", /obj/item/clothing/head/helmet/elder_atmosian, req_amount = 5, res_amount = 1),
+	new /datum/stack_recipe("metallic hydrogen axe", /obj/item/twohanded/fireaxe/metal_h2_axe, req_amount = 15, res_amount = 1),
+	))
+
+/obj/item/stack/sheet/mineral/metal_hydrogen
+	name = "metal hydrogen"
+	icon_state = "sheet-metalhydrogen"
+	item_state = "sheet-metalhydrogen"
+	singular_name = "metal hydrogen sheet"
+	w_class = WEIGHT_CLASS_NORMAL
+	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF | INDESTRUCTIBLE
+	point_value = 100
+	materials = list(/datum/material/metalhydrogen=MINERAL_MATERIAL_AMOUNT)
+	merge_type = /obj/item/stack/sheet/mineral/metal_hydrogen
+
+/obj/item/stack/sheet/mineral/metal_hydrogen/Initialize(mapload, new_amount, merge = TRUE)
+	recipes = GLOB.metalhydrogen_recipes
+	. = ..()

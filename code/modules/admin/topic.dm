@@ -1582,6 +1582,10 @@
 		var/atom/movable/AM = locate(href_list["admingetmovable"])
 		if(QDELETED(AM))
 			return
+		if(!check_rights(R_FUN))
+			if(is_centcom_level(AM.z) && !is_centcom_level(usr.z))
+				to_chat(usr, "You cannot get things from the Centcom Z-Level", confidential=TRUE)
+				return
 		AM.forceMove(get_turf(usr))
 
 	else if(href_list["adminplayerobservecoodjump"])

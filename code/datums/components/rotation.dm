@@ -64,9 +64,9 @@
 /datum/component/simple_rotation/proc/remove_verbs()
 	if(parent)
 		var/atom/movable/AM = parent
-		AM.verbs -= /atom/movable/proc/simple_rotate_flip
-		AM.verbs -= /atom/movable/proc/simple_rotate_clockwise
-		AM.verbs -= /atom/movable/proc/simple_rotate_counterclockwise
+		remove_verb(AM, /atom/movable/proc/simple_rotate_flip)
+		remove_verb(AM, /atom/movable/proc/simple_rotate_clockwise)
+		remove_verb(AM, /atom/movable/proc/simple_rotate_counterclockwise)
 
 /datum/component/simple_rotation/proc/remove_signals()
 	UnregisterSignal(parent, list(COMSIG_CLICK_ALT, COMSIG_PARENT_EXAMINE, COMSIG_PARENT_ATTACKBY))

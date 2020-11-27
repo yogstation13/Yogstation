@@ -602,3 +602,11 @@
 	build_path = /obj/item/circuitboard/machine/stasis
 	category = list("Medical Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/board/electrolyzer
+	name = "Machine Design (Electrolyzer Board)"
+	desc = "The circuit board for an electrolyzer."
+	id = "electrolyzer"
+	build_path = /obj/item/circuitboard/machine/electrolyzer
+	category = list ("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
