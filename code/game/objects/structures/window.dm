@@ -177,7 +177,7 @@
 	if(istype(I,/obj/item/stack/sheet/mineral/wood))
 		var/obj/item/stack/sheet/mineral/wood/W = I
 		if(W.amount < 5)
-			to_chat(user, "<span class='warning'>You need at least five wooden planks to reinforce the window!</span>")
+			to_chat(user, "<span class='warning'>You need at least five wooden planks to barricade the window!</span>")
 			return
 		else
 			to_chat(user, "<span class='notice'>You start adding [I] to [src]...</span>")
