@@ -82,7 +82,10 @@
 
 /datum/dynamic_ruleset/New()
 	..()
-
+	if (istype(SSticker.mode, /datum/game_mode/dynamic))
+		mode = SSticker.mode
+	else if (GLOB.master_mode != "dynamic") // This is here to make roundstart forced ruleset function.
+		qdel(src)
 /datum/dynamic_ruleset/roundstart // One or more of those drafted at roundstart
 	ruletype = "Roundstart"
 
