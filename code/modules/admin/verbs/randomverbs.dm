@@ -1260,3 +1260,27 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		new /obj/effect/particle_effect/sparks/quantum(get_turf(target))
 		cryopod.close_machine(target)
 		return
+
+/datum/admins/proc/cmd_create_centcom()
+	set category = "Misc"
+	set name = "Spawn on Centcom"
+	if(!check_rights(R_ADMIN))
+		return
+	var/list/turfs = list()
+	for(var/turf/T in /area/centcom/evac)
+		if(T.density)
+			continue
+		turfs.Add(T)
+	var/turf/T = safepick(turfs)
+	if(!T)
+		to_chat(src, "Nowhere to jump to!", confidential=TRUE)
+		return
+	if(ismob(usr))
+		var/mob/M = usr
+		if(isobserver(M))
+			M.forceMove(T)
+			var/mob/living/carbon/human/newmob = M.change_mob_type( /mob/living/carbon/human , null, null, TRUE)
+			newmob.equipOutfit(/datum/outfit/centcom/official)
+			var/msg = "[key_name_admin(usr)] has spawned in at centcom [ADMIN_VERBOSEJMP(usr)]."
+			message_admins(msg)
+			log_admin(msg)
