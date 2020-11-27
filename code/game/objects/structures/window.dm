@@ -174,6 +174,18 @@
 
 	add_fingerprint(user)
 
+	if(istype(I,/obj/item/stack/sheet/mineral/wood))
+		var/obj/item/stack/sheet/mineral/wood/W = I
+		if(W.amount < 5)
+			to_chat(user, "<span class='warning'>You need at least five wooden planks to reinforce the window!</span>")
+			return
+		else
+			to_chat(user, "<span class='notice'>You start adding [I] to [src]...</span>")
+			if(do_after(user, 50, target=src))
+				W.use(5)
+				new /obj/structure/barricade/wooden/crude(get_turf(src))
+				return
+
 	if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP)
 		if(obj_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=0))
