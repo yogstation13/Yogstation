@@ -972,7 +972,7 @@
 	restricted_roles = list("AI", "Cyborg")
 	required_candidates = 3
 	weight = 1
-	cost = 30
+	cost = 101
 	scaling_cost = 20
 	antag_cap = list(3,3,3,3,3,3,3,3,4,5)
 	requirements = list(80,75,70,65,50,30,30,30,25,20)
