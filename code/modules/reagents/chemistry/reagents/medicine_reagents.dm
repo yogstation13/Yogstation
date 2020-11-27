@@ -384,19 +384,22 @@
 
 /datum/reagent/medicine/synthflesh
 	name = "Synthflesh"
-	description = "Has a 100% chance of instantly healing brute and burn damage. One unit of the chemical will heal one point of damage. Touch application only."
+	description = "Has a 100% chance of instantly healing brute and burn damage on corpses. One unit of the chemical will heal 1.25 points of damage. Touch application only. Overdose will completely negate the effect of any additional synthflesh"
 	reagent_state = LIQUID
 	color = "#FFEBEB"
+	overdose_threshold = 50
 
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume,show_message = 1)
-	var/healmod = 1
+	var/can_heal = FALSE
 	if(iscarbon(M))
-		if (M.stat == DEAD)
-			healmod = 2
-			show_message = 0
-		if(method in list(PATCH, TOUCH))
-			M.adjustBruteLoss(-0.75 * reac_volume * healmod)
-			M.adjustFireLoss(-0.75 * reac_volume * healmod)
+		if (M.stat == DEAD && !overdosed)
+			can_heal = TRUE
+			show_message = FALSE
+		if(method in list(PATCH, TOUCH) && can_heal)
+			if(ishuman(M))
+				M.reagents.add_reagent(/datum/reagent/medicine/synthflesh, reac_volume)
+			M.adjustBruteLoss(-1.25 * reac_volume * healmod)
+			M.adjustFireLoss(-1.25 * reac_volume * healmod)
 			if(show_message)
 				to_chat(M, "<span class='danger'>You feel your burns and bruises healing! It stings like hell!</span>")
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
