@@ -41,7 +41,7 @@
 		. = is_eligible_servant(new_owner.current)
 		var/list/no_team_antag = list("Shadowling","Shadowling Thrall","Darkspawn","Cultist","Revolutionary")
 		for(var/datum in new_owner.antag_datums)
-			if(datum.name in badantags)
+			if(datum.name in no_team_antag)
 				return FALSE
 
 /datum/antagonist/clockcult/greet()
