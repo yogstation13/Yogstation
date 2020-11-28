@@ -392,10 +392,10 @@
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume,show_message = 1)
 	var/can_heal = FALSE
 	if(iscarbon(M))
-		if (M.stat == DEAD && !overdosed)
+		if ((M.stat == DEAD) && !overdosed)
 			can_heal = TRUE
-		if(method in list(PATCH, TOUCH) && can_heal)
-			if(ishuman(M) && method == TOUCH)
+		if((method in list(PATCH, TOUCH)) && can_heal)
+			if(ishuman(M) && (method == TOUCH))
 				M.reagents.add_reagent(/datum/reagent/medicine/synthflesh, reac_volume)
 			M.adjustBruteLoss(-1.25 * reac_volume)
 			M.adjustFireLoss(-1.25 * reac_volume)
