@@ -1,6 +1,6 @@
-// occupying force clothing
+// Peacekeeping force clothing
 /obj/item/clothing/under/rank/security/grey/amber/occupying
-	name = "occupying force jumpsuit"
+	name = "peacekeeping force jumpsuit"
 	color = "#55ff9b"
 
 /obj/item/clothing/under/rank/security/grey/amber/occupying/Initialize(mob/user)
@@ -9,22 +9,22 @@
 		rolldown(TRUE)
 
 /obj/item/clothing/head/beret/sec/centcom/occupying
-	name = "occupying force beret"
-	desc = "A special green beret for the mundane life of an Occupying Force commander."
+	name = "peacekeeping force beret"
+	desc = "A special green beret for the mundane life of an Peacekeeper force commander."
 	color = "#55ff9b"
 
 /obj/item/clothing/suit/armor/riot/occupying
 	armor = list("melee" = 40, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 40)
-	name = "occupying force riot suit"
+	name = "peacekeeping force riot suit"
 	desc = "A mass produced semi-flexible polycarbonate body armor with decent padding to protect against melee attacks. Not as strong as riot suits typically issued to NT stations."
 	color = "#55ff9b"
 
 /obj/item/clothing/head/helmet/riot/raised/occupying
-	name = "occupying force riot helmet"
-	desc = "It's a helmet specifically designed for the Occupying force to protect against close range attacks."
+	name = "peacekeeping force riot helmet"
+	desc = "It's a helmet specifically designed for the Peacekeeping force to protect against close range attacks."
 	color = "#55ff9b"
 
-// occupying force vest loadouts
+// Peacekeeping force vest loadouts
 // To note: each vest has 7 normal slots - Hopek
 /obj/item/storage/belt/military/occupying_officer/ComponentInitialize() // Occupying Officer
 	. = ..()
@@ -62,7 +62,7 @@
 
 
 /datum/outfit/occupying
-	name = "Occupying Officer"
+	name = "Peacekeeping Officer"
 	uniform = /obj/item/clothing/under/rank/security/grey/amber/occupying
 	suit = /obj/item/clothing/suit/armor/vest/alt
 	shoes = /obj/item/clothing/shoes/jackboots
@@ -83,7 +83,7 @@
 	if(visualsOnly)
 		return
 
-	H.facial_hair_style = "None" // Everyone in the Occupying force is bald and has no facial hair
+	H.facial_hair_style = "None" // Everyone in the Peacekeeping force is bald and has no facial hair
 	H.hair_style = "None"
 	
 	var/obj/item/radio/R = H.ears
@@ -93,14 +93,14 @@
 	var/obj/item/card/id/W = H.wear_id
 	W.icon_state = "centcom"
 	W.registered_name = "Unknown" // continuing the tradition of these ID's not being assigned to a particular person
-	W.assignment = "Occupying Force"
+	W.assignment = "Peacekeeping Force"
 	W.update_label(W.registered_name, W.assignment)
 
-	H.ignores_capitalism = TRUE // Yogs -- Lets the Occupying force buy a damned smoke for christ's sake
+	H.ignores_capitalism = TRUE // Yogs -- Lets the Peacekeeping force buy a damned smoke for christ's sake
 
 
 /datum/outfit/occupying/commander
-	name = "Occupying force Commander"
+	name = "Peacekeeping force Commander"
 	head = /obj/item/clothing/head/beret/sec/centcom/occupying
 	belt = /obj/item/storage/belt/military/occupying_commander
 	l_pocket = /obj/item/pinpointer/nuke
@@ -109,7 +109,7 @@
 	glasses = /obj/item/clothing/glasses/hud/security
 
 /datum/outfit/occupying/heavy
-	name = "Occupying Riot Officer"
+	name = "Peacekeeping Riot Officer"
 	belt = /obj/item/storage/belt/military/occupying_heavy
 	back = /obj/item/shield/riot
 	l_pocket = /obj/item/clothing/ears/earmuffs
