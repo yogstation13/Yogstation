@@ -384,14 +384,14 @@
 
 /datum/reagent/medicine/synthflesh
 	name = "Synthflesh"
-	description = "Has a 100% chance of instantly healing brute and burn damage on corpses. The chemical wil heal up to 100 points of damage at 60 units applied. Touch application only. Overdose will completely negate the effect of any additional synthflesh"
+	description = "Has a 100% chance of instantly healing brute and burn damage on corpses. The chemical will heal up to 120 points of damage at 60 units applied. Touch application only."
 	reagent_state = LIQUID
 	color = "#FFEBEB"
 
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume,show_message = 1)
 	var/can_heal = FALSE
 	if(iscarbon(M))
-		if ((M.stat == DEAD))
+		if (M.stat == DEAD)
 			can_heal = TRUE
 		if((method in list(PATCH, TOUCH)) && can_heal)
 			if(!ishuman(M))
