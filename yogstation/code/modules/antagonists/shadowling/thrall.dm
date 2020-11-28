@@ -10,9 +10,10 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/sp
 /datum/antagonist/thrall/can_be_owned(datum/mind/new_owner)
 	. = ..()
 	if(.)
-		var/list/no_team_antag = list("ROLE_REV","Darkspawn","ROLE_CULTIST","ROLE_SERVANT_OF_RATVAR")
-		if(new_owner.current && new_owner.special_role in no_team_antag)
-			return FALSE
+		var/list/no_team_antag = list("Shadowling","Shadowling Thrall","Darkspawn","Cultist","Revolutionary")
+		for(var/datum in new_owner.antag_datums)
+			if(datum.name in badantags)
+				return FALSE
 
 /datum/antagonist/thrall/on_gain()
 	. = ..()
