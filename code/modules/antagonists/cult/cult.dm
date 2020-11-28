@@ -45,7 +45,7 @@
 	. = ..()
 	if(. && !ignore_implant)
 		. = is_convertable_to_cult(new_owner.current,cult_team)
-		var/list/no_team_antag = list("Shadowling","Thrall","Darkspawn","ROLE_REV","ROLE_SERVANT_OF_RATVAR")
+		var/list/no_team_antag = list("Shadowling","Thrall","Darkspawn","ROLE_REV","ROLE_SERVANT_OF_RATVAR","ROLE_BROTHER"))
 		if(new_owner.current && new_owner.special_role in no_team_antag)
 			return FALSE
 
