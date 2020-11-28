@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "synthflesh now works"
+  - tweak: "synthflesh now has a healing cap at 60 units and heals 2 points of health up from 1.25 per unit"
