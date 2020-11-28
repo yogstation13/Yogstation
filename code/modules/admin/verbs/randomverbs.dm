@@ -1266,15 +1266,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Spawn on Centcom"
 	if(!check_rights(R_ADMIN))
 		return
-	var/list/turfs = list()
-	for(var/turf/T in /area/centcom/evac)
-		if(T.density)
-			continue
-		turfs.Add(T)
-	var/turf/T = safepick(turfs)
-	if(!T)
-		to_chat(src, "Nowhere to jump to!", confidential=TRUE)
-		return
+	var/turf/T = locate(196,82,1)
 	if(ismob(usr))
 		var/mob/M = usr
 		if(isobserver(M))
