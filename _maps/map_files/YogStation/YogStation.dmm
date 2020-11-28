@@ -28659,13 +28659,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/science/storage)
-"bHf" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector{
-	dir = 8;
-	on = 1
-	},
-/turf/open/floor/plating/airless,
-/area/engine/atmos_distro)
 "bHi" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /obj/effect/spawner/structure/window/reinforced,
@@ -33812,6 +33805,26 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"cAg" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/purple/visible,
+/obj/machinery/door/airlock/atmos/glass{
+	name = "Incinerator Access";
+	req_access_txt = "24"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "atmos";
+	name = "atmos blast door"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "cAs" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -36644,6 +36657,14 @@
 /obj/machinery/teleport/station,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
+"egc" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/door/poddoor/preopen{
+	id = "atmos";
+	name = "atmos blast door"
+	},
+/turf/open/floor/plating,
+/area/engine/atmos_distro)
 "egh" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 1
@@ -37643,6 +37664,14 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
+"eRb" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	dir = 8;
+	on = 1;
+	volume_rate = 200
+	},
+/turf/open/floor/plating/airless,
+/area/engine/atmos_distro)
 "eRz" = (
 /obj/structure/lattice,
 /obj/structure/grille,
@@ -53023,22 +53052,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"qnQ" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/simple/purple/visible,
-/obj/machinery/door/airlock/atmos/glass{
-	name = "Incinerator Access";
-	req_access_txt = "24"
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "qnR" = (
 /obj/machinery/door/airlock/research{
 	id_tag = "RoboticsFoyer";
@@ -99846,7 +99859,7 @@ art
 bYa
 sGW
 stn
-bGf
+egc
 aaa
 aaa
 ibZ
@@ -100103,7 +100116,7 @@ aSJ
 fUR
 tax
 bNe
-bGf
+egc
 gXs
 gXs
 eQx
@@ -100360,7 +100373,7 @@ aSJ
 fUR
 ozF
 aSJ
-bGf
+egc
 aaa
 goy
 cTB
@@ -101387,7 +101400,7 @@ sAs
 cNy
 mZO
 xfG
-qnQ
+cAg
 bbG
 vIj
 jQy
@@ -103171,7 +103184,7 @@ avy
 avy
 avy
 avy
-bHf
+eRb
 aaf
 bvA
 bvA

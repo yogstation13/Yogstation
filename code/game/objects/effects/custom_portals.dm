@@ -69,11 +69,9 @@ GLOBAL_LIST_EMPTY(custom_portals)
 			matching_portals += P
 
 	var/obj/effect/custom_portal/picked = pick(matching_portals)
-
-	real_target = get_turf(picked)
-
-	return real_target
-
+	if(picked)
+		real_target = get_turf(picked)
+		return real_target
 
 /obj/effect/custom_portal/Move(newloc)
 	for(var/T in newloc)
