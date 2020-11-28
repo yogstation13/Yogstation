@@ -243,6 +243,7 @@
 	return //we use a different hud
 
 /mob/living/simple_animal/bot/handle_automated_action() //Master process which handles code common across most bots.
+	power_use()
 	diag_hud_set_botmode()
 
 	if (ignorelistcleanuptimer % 300 == 0) // Every 300 actions, clean up the ignore list from old junk
@@ -856,6 +857,18 @@ Pass a positive integer as an argument to override a bot's default speed.
 
 /mob/living/simple_animal/bot/proc/update_icon()
 	icon_state = "[initial(icon_state)][on]"
+
+/mob/living/simple_animal/bot/proc/power_use()
+	var/area/E = get_area(src)
+	var/power = check_power(E)
+	if(!power)
+		turn_off()
+
+/mob/living/simple_animal/bot/proc/check_power(var/area/G)
+	var/power
+	if(G.powered(TRUE))
+		power = TRUE
+	return power
 
 // Machinery to simplify topic and access calls
 /obj/machinery/bot_core
