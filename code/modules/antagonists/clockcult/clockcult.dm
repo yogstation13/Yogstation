@@ -39,9 +39,10 @@
 	. = ..()
 	if(.)
 		. = is_eligible_servant(new_owner.current)
-		var/list/no_team_antag = list("Shadowling","Thrall","Darkspawn","ROLE_CULTIST","ROLE_REV")
-		if(new_owner.current && new_owner.special_role in no_team_antag)
-			return FALSE
+		var/list/no_team_antag = list("Shadowling","Shadowling Thrall","Darkspawn","Cultist","Revolutionary")
+		for(var/datum in new_owner.antag_datums)
+			if(datum.name in badantags)
+				return FALSE
 
 /datum/antagonist/clockcult/greet()
 	if(!owner.current || silent)
