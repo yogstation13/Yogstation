@@ -26,7 +26,7 @@
 	switch(wire)
 		if(WIRE_SAFETY) // Stop it from being turned on
 			A.safety = !A.safety
-			if(safety)
+			if(A.safety)
 				A.on = FALSE
 			A.update_icon()
 		if(WIRE_POWER) // Toggle power
