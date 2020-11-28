@@ -384,21 +384,26 @@
 
 /datum/reagent/medicine/synthflesh
 	name = "Synthflesh"
-	description = "Has a 100% chance of instantly healing brute and burn damage on corpses. One unit of the chemical will heal 1.25 points of damage. Touch application only. Overdose will completely negate the effect of any additional synthflesh"
+	description = "Has a 100% chance of instantly healing brute and burn damage on corpses. The chemical will heal up to 120 points of damage at 60 units applied. Touch application only."
 	reagent_state = LIQUID
 	color = "#FFEBEB"
-	overdose_threshold = 50
 
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume,show_message = 1)
 	var/can_heal = FALSE
 	if(iscarbon(M))
-		if (M.stat == DEAD && !overdosed)
+		if (M.stat == DEAD)
 			can_heal = TRUE
-		if(method in list(PATCH, TOUCH) && can_heal)
-			if(ishuman(M) && method == TOUCH)
-				M.reagents.add_reagent(/datum/reagent/medicine/synthflesh, reac_volume)
-			M.adjustBruteLoss(-1.25 * reac_volume)
-			M.adjustFireLoss(-1.25 * reac_volume)
+		if((method in list(PATCH, TOUCH)) && can_heal)
+			if(!ishuman(M))
+				M.adjustBruteLoss(-1.25 * reac_volume)
+				M.adjustFireLoss(-1.25 * reac_volume)
+			else
+				var/datum/reagent/S = M.reagents.get_reagent(/datum/reagent/medicine/synthflesh)
+				var/heal_amt = clamp(reac_volume, 0, 60 - S?.volume)
+				M.adjustBruteLoss(-2*heal_amt)
+				M.adjustFireLoss(-2*heal_amt)
+				if(method == TOUCH)
+					M.reagents.add_reagent(/datum/reagent/medicine/synthflesh, reac_volume)
 	..()
 
 /datum/reagent/medicine/charcoal
