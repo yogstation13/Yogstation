@@ -46,8 +46,8 @@
 	if(. && !ignore_implant)
 		. = is_convertable_to_cult(new_owner.current,cult_team)
 		var/list/no_team_antag = list("Shadowling","Shadowling Thrall","Darkspawn","Clock Cultist","Revolutionary")
-		for(var/datum in new_owner.antag_datums)
-			if(datum.name in no_team_antag)
+		for(var/datum/NTA in new_owner.antag_datums)
+			if(NTA.name in no_team_antag)
 				return FALSE
 
 /datum/antagonist/cult/greet()
