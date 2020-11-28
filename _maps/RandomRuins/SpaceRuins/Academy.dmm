@@ -1576,8 +1576,8 @@
 "rD" = (
 /mob/living/simple_animal/slaughter{
 	desc = "A radioactive being made of condensed fusion material";
-	name = "Radioactive Prat Demon";
-	loot = list(/obj/effect/decal/cleanable/blood, /obj/effect/decal/cleanable/blood/innards)
+	loot = list(/obj/effect/decal/cleanable/blood,/obj/effect/decal/cleanable/blood/innards);
+	name = "Radioactive Prat Demon"
 	},
 /turf/open/floor/plating,
 /area/awaymission/academy/academycellar)
@@ -6207,7 +6207,7 @@ aa
 aa
 ac
 lN
-lR
+mh
 lR
 mh
 lR
