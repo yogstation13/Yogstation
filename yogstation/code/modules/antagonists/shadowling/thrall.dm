@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/sp
 	if(.)
 		var/list/no_team_antag = list("Clock Cultist","Darkspawn","Cultist","Revolutionary")
 		for(var/datum in new_owner.antag_datums)
-			if(datum.name in badantags)
+			if(datum.name in no_team_antag)
 				return FALSE
 
 /datum/antagonist/thrall/on_gain()
