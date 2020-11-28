@@ -1,14 +1,14 @@
 {
-	"map_name": "Ice BoxStation",
-	"map_path": "map_files/IceBox",
-	"map_file": "IceBox.dmm",
+	"map_name": "Ice MetaStation",
+	"map_path": "map_files/IceMeta",
+	"map_file": "IceMeta.dmm",
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,
 	"shuttles": {
 		"cargo": "cargo_box",
 		"ferry": "ferry_fancy",
-		"whiteship": "whiteship_box",
-		"emergency": "emergency_box"
+		"whiteship": "whiteship_meta",
+		"emergency": "emergency_meta"
 	},
 	"traits": [
 		{

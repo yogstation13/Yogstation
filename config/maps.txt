@@ -22,7 +22,7 @@ map omegastation
 	votable
 endmap
 
-map yogsmeta
+map icemeta
 	minplayers 25
 	voteweight 1.3
 	votable
@@ -31,10 +31,6 @@ endmap
 map yogsdelta
 	minplayers 50
 	votable
-endmap
-
-map icebox
-	minplayers 25
 endmap
 
 map eclipsestation
