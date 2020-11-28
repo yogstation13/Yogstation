@@ -50121,6 +50121,22 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"ohT" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/maintenance{
+	name = "Incinerator Access";
+	req_access_txt = "24"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "oiA" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /obj/effect/turf_decal/stripes/line{
@@ -62397,22 +62413,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos_distro)
-"xgx" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/maintenance{
-	name = "Incinerator Access";
-	req_access_txt = "12"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "xgD" = (
 /obj/structure/table,
 /obj/item/hand_labeler,
@@ -104226,7 +104226,7 @@ caB
 bxd
 kyM
 wwD
-xgx
+ohT
 umj
 xbl
 ieD
