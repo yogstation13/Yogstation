@@ -263,7 +263,8 @@
 			PlaceOnTop(/turf/closed/wall)
 			return TRUE
 		if(RCD_AIRLOCK)
-			if(locate(/obj/machinery/door) in src)
+			if((locate(/obj/machinery/door/airlock) in src) || (locate(/obj/machinery/door/window) in src)) // Have to ignore firelocks
+				to_chat(user, "<span class='notice'>There is already a door here</span>")
 				return FALSE
 			if(ispath(the_rcd.airlock_type, /obj/machinery/door/window))
 				to_chat(user, "<span class='notice'>You build a windoor.</span>")
