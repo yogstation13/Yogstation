@@ -295,6 +295,19 @@
 	name= "Hippie Shuttle"
 	description = "These hippies went a little too far out..."
 
+/datum/map_template/ruin/space/wizard_academy
+	id = "wizard-academy"
+	suffix = "Academy.dmm"
+	name = "Wizard Academy"
+	description = "The Wizard Federation has designated a hectic but \
+		well-isolated space station to house wizards in training. \
+		Given the plethora of valuable, magical equipment hidden within, \
+		it is incredibly well-hidden, to the point where no documentation \
+		of the area exists in any records. After all, it's not like \
+		some doofus with an EVA suit and jetpack can just waltz around \
+		in space and find it..."
+	unpickable = TRUE
+
 /datum/map_template/ruin/space/spacebar
 	id = "spacebar"
 	suffix = "spacebar.dmm"
