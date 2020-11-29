@@ -1276,3 +1276,15 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/msg = "[key_name_admin(usr)] has spawned in at centcom [ADMIN_VERBOSEJMP(usr)]."
 			message_admins(msg)
 			log_admin(msg)
+
+/datum/admins/proc/cmd_admin_fuckrads()
+	set category = "Admin.Round Interaction"
+	set name = "Delete All Rads"
+	if(!check_rights(R_ADMIN))
+		return
+	for(var/datum/a in SSradiation.processing)
+		qdel(a)
+	message_admins"[key_name_admin(usr)] has cleared all radiation.")
+	log_admin("[key_name_admin(usr)] has cleared all radiation.")
+	
+	
