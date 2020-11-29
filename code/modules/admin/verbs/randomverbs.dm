@@ -1284,7 +1284,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 	for(var/datum/a in SSradiation.processing)
 		qdel(a)
-	message_admins"[key_name_admin(usr)] has cleared all radiation.")
+	message_admins("[key_name_admin(usr)] has cleared all radiation.")
 	log_admin("[key_name_admin(usr)] has cleared all radiation.")
 	
 	
