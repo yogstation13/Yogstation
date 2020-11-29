@@ -1037,7 +1037,7 @@
 			var/atom/A = locate(href_list["radiate"])
 			var/strength = input(usr, "Choose the radiation strength.", "Choose the strength.") as num|null
 			if(!isnull(strength))
-				AddComponent(/datum/component/radioactive, strength, A)
+				A.AddComponent(/datum/component/radioactive, strength, src)
 
 		else if(href_list["emp"])
 			if(!check_rights(R_FUN))
