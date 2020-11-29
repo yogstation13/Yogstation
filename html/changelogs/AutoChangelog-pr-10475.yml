@@ -1,0 +1,4 @@
+author: "MrHorizons"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed some problems with the space bar."
