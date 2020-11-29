@@ -745,6 +745,7 @@
 		blood_in_hands = 0
 		update_inv_gloves()
 		. = TRUE
+	wash_cream()
 
 /mob/living/carbon/human/wash_cream()
 	if(creamed) //clean both to prevent a rare bug
