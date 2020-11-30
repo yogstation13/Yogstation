@@ -14,7 +14,6 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/sp
 			/datum/antagonist/rev,
 			/datum/antagonist/clockcult,
 			/datum/antagonist/darkspawn,
-			/datum/antagonist/shadowling,
 			/datum/antagonist/cult    
 			)
 		for(var/datum/antagonist/NTA in new_owner.antag_datums)
