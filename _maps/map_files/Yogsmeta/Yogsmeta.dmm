@@ -63850,20 +63850,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/storage)
-"cti" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/machinery/power/apc/highcap/five_k{
-	areastring = "/area/science/storage";
-	dir = 1;
-	name = "Toxins Storage APC";
-	pixel_y = 24
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/science/storage)
 "ctj" = (
 /obj/machinery/portable_atmospherics/scrubber/huge,
 /obj/effect/turf_decal/delivery,
@@ -64368,15 +64354,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
-"ctW" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/science/storage)
 "ctX" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -64902,24 +64879,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/storage)
-"cuV" = (
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/science/storage)
-"cuW" = (
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Toxins Storage";
-	dir = 8;
-	network = list("ss13","rd")
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/science/storage)
 "cuY" = (
 /obj/structure/rack,
 /obj/item/extinguisher,
@@ -65369,14 +65328,6 @@
 /area/hallway/secondary/exit/departure_lounge)
 "cvX" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/science/storage)
-"cvY" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
-/obj/item/radio/intercom{
-	pixel_x = 29
-	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/science/storage)
@@ -75494,6 +75445,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"eZs" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "faH" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = -32
@@ -76064,6 +76020,15 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
+"gsM" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister/water_vapor,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "gsN" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -80599,6 +80564,20 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/fore)
+"rGO" = (
+/obj/machinery/power/apc/highcap/five_k{
+	areastring = "/area/science/storage";
+	dir = 1;
+	name = "Toxins Storage APC";
+	pixel_y = 24
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/electrolyzer,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "rHB" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -81223,6 +81202,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"sYS" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "taY" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -82566,6 +82550,19 @@
 	},
 /turf/open/floor/plating,
 /area/medical/paramedic)
+"wiy" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Toxins Storage";
+	dir = 8;
+	network = list("ss13","rd")
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "wiZ" = (
 /obj/machinery/door/airlock/external{
 	name = "Security External Airlock";
@@ -83218,6 +83215,14 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"xBV" = (
+/obj/item/radio/intercom{
+	pixel_x = 29
+	},
+/obj/effect/turf_decal/delivery,
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "xDl" = (
 /obj/structure/chair{
 	dir = 8
@@ -116693,7 +116698,7 @@ bTW
 bEV
 crS
 ctf
-ctW
+gsM
 cuS
 cvV
 cwV
@@ -117463,10 +117468,10 @@ caE
 bUb
 bEX
 cgq
-cti
+rGO
 bDZ
-cuV
-cvX
+eZs
+sYS
 cqD
 crR
 cyJ
@@ -117722,8 +117727,8 @@ cpt
 cgq
 ctj
 bFp
-cuW
-cvY
+wiy
+xBV
 cvX
 crR
 cyK
