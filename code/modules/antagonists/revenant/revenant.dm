@@ -46,7 +46,6 @@
 	move_resist = MOVE_FORCE_OVERPOWERING
 	mob_size = MOB_SIZE_TINY
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	speed = 1
 	unique_name = TRUE
 	hud_possible = list(ANTAG_HUD)
