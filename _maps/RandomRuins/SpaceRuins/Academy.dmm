@@ -968,12 +968,6 @@
 	},
 /turf/open/space,
 /area/awaymission/academy/academyaft)
-"kV" = (
-/mob/living/simple_animal/hostile/wizard{
-	name = "Rotciv The Dented"
-	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyaft)
 "kX" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -1154,6 +1148,12 @@
 	},
 /turf/open/floor/vault,
 /area/awaymission/academy/academycellar)
+"ma" = (
+/mob/living/simple_animal/hostile/wizard{
+	name = "Colton The Afterburner"
+	},
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyaft)
 "mc" = (
 /obj/structure/table/wood,
 /obj/item/dice/d20,
@@ -2509,6 +2509,13 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
+/area/awaymission/academy/academyaft)
+"HA" = (
+/obj/structure/table/wood,
+/obj/item/clothing/head/wizard/fake{
+	name = "dented wizard hat"
+	},
+/turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
 "HD" = (
 /obj/structure/filingcabinet/filingcabinet,
@@ -8744,7 +8751,7 @@ vO
 um
 NE
 um
-um
+HA
 vO
 vO
 aa
@@ -9415,7 +9422,7 @@ jH
 jH
 oq
 hs
-kV
+ma
 vO
 eI
 jT
