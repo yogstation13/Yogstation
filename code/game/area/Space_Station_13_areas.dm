@@ -50,6 +50,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "storage"
 
 //YOGS: BREAKROOMS
+/area/breakroom/engine
+	name = "Engineer Breakroom"
+	icon_state = "storage"
 /area/breakroom/supply
 	name = "Cargo Bay Breakroom"
 	icon_state = "storage"
