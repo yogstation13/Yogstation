@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "healium now heals 0 oxygen damage down from 5, 5 toxin damage down from 7, and 5 brute damage down from 10"
