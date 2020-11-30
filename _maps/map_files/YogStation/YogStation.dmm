@@ -50363,12 +50363,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"opj" = (
-/mob/living/simple_animal/moonrat{
-	name = "Joe"
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics/garden)
 "oqv" = (
 /obj/structure/sign/warning/pods,
 /turf/closed/wall,
@@ -51667,6 +51661,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/security/main)
+"ppt" = (
+/mob/living/simple_animal/moonrat{
+	name = "Joe"
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "ppF" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
@@ -81281,7 +81281,7 @@ axu
 azi
 aAY
 axS
-opj
+aAQ
 aAQ
 aAQ
 azF
@@ -106738,7 +106738,7 @@ aRJ
 aRJ
 aRJ
 aRJ
-aRJ
+ppt
 aRJ
 bam
 aYV
