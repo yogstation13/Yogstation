@@ -35,6 +35,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 /// item has priority to check when entering or leaving
 #define ON_BORDER_1					(1<<9)
 /// Prevent clicking things below it on the same turf eg. doors/ fulltile windows
+
 #define PREVENT_CLICK_UNDER_1		(1<<11)
 #define HOLOGRAM_1					(1<<12)
 /// TESLA_IGNORE grants immunity from being targeted by tesla-style electricity
@@ -45,6 +46,10 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define ADMIN_SPAWNED_1			    (1<<15)
 /// should not get harmed if this gets caught by an explosion?
 #define PREVENT_CONTENTS_EXPLOSION_1 (1<<16)
+/// should the contents of this atom be acted upon
+#define RAD_PROTECT_CONTENTS_1 (1 << 17)
+/// should this object be allowed to be contaminated
+#define RAD_NO_CONTAMINATE_1 (1 << 18)
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
