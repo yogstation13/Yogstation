@@ -718,4 +718,3 @@
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/corgi = 3) // Would feel redundant to add more new dog meats.
 	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_type = "bullterrier"
-	held_state = "bullterrier"
