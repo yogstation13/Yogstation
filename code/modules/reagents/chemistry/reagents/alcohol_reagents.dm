@@ -2304,3 +2304,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "godmother"
 	glass_name = "Godmother"
 	glass_desc = "A lovely fresh smelling cocktail, a true Sicilian delight."
+
+/datum/reagent/consumable/ethanol/peewine
+	name = "Pea Wine"
+	description = "An alcoholic beverage That is created through distilling pees."
+	color = "#008000" // rgb: 0, 128, 0
+	nutriment_factor = 1 * REAGENTS_METABOLISM
+	boozepwr = 25
+	taste_description = "rotting vegatables"
+	glass_name = "glass of pea wine"
+	glass_desc = "A freezing glass of pea wine."
