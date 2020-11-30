@@ -20,7 +20,6 @@
 		if(new_owner.current && HAS_TRAIT(new_owner.current, TRAIT_MINDSHIELD))
 			return FALSE
 		var/list/no_team_antag = list(
-			/datum/antagonist/rev,
 			/datum/antagonist/clockcult,
 			/datum/antagonist/darkspawn,
 			/datum/antagonist/shadowling,
