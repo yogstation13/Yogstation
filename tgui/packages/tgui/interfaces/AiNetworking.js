@@ -29,7 +29,6 @@ export const AiNetworking = (props, context) => {
     )
   }
 
-
   return (
     <Window
       width={500}
