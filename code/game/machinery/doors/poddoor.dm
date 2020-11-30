@@ -16,6 +16,7 @@
 	damage_deflection = 70
 	poddoor = TRUE
 	var/special = FALSE // Prevents ERT or whatever from breaking into their shutters
+	var/constructionstate = "intact" // Decounstruction Stuff
 
 /obj/machinery/door/poddoor/preopen
 	icon_state = "open"
@@ -103,32 +104,79 @@
 
 /obj/machinery/door/poddoor/attackby(obj/item/W, mob/user, params)
 	if(special) // No Cheesing
-		to_chat(user, "<span class='notice'>This door appears to have a different screw.</span>")
+		to_chat(user, "<span class='warning'>This door appears to have a different screw.</span>")
 		return
 
-	if(default_deconstruction_screwdriver(user, icon_state, icon_state, W))
-		to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of [src].</span>")
-		return TRUE
-	
-	if(W.tool_behaviour == TOOL_MULTITOOL)
-		if(id != null)
-			to_chat(user, "<span class='notice'>This door is already linked. Unlink it first!</span>")
+
+	if(W.tool_behaviour == TOOL_SCREWDRIVER)
+		if(density)
+			to_chat(user, "<span class='warning'>You need to open [src] before opening its maintenence panel.</span>")
+			return
+		else if(default_deconstruction_screwdriver(user, icon_state, icon_state, W))
+			to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of [src].</span>")
+			return TRUE
+
+	if(panel_open)
+		if(W.tool_behaviour == TOOL_MULTITOOL && constructionstate == "intact")
+			if(id != null)
+				to_chat(user, "<span class='warning'>This door is already linked. Unlink it first!</span>")
+				return
+
+			if(!multitool_check_buffer(user, W))
+				return
+				
+			var/obj/item/multitool/P = W	
+			id = P.buffer
+			to_chat(user, "<span class='notice'>You link the button to the [src].</span>")
 			return
 
-		if(!multitool_check_buffer(user, W))
+		if(W.tool_behaviour == TOOL_WIRECUTTER)
+			if(id != null)
+				to_chat(user, "<span class='notice'>You start to unlink the door.</span>")
+				if(do_after(user, 10 SECONDS, target = src))
+					to_chat(user, "<span class='notice'>You unlink the door.</span>")
+					id = null
+			else
+				to_chat(user, "<span class='warning'>This door is already unlinked.</span>")
+
 			return
+
+		if(W.tool_behaviour == TOOL_WELDER)
+			to_chat(user, "<span class='notice'>You start to remove the outer plasteel cover.</span>")
+			playsound(src.loc, 'sound/items/welder.ogg', 50, 1)
+			if(do_after(user, 10 SECONDS, target = src))
+				to_chat(user, "<span class='notice'>You remove the outer plasteel cover.</span>")
+				constructionstate = "welded"
+				id = null // Effectivley breaks the door
+				new /obj/item/stack/sheet/plasteel(loc, 5)
+				return
+		
+		if(W.tool_behaviour == TOOL_CROWBAR && constructionstate == "welded")
+			to_chat(user, "<span class='notice'>You start to remove all of the internal components</span>")
+			if(do_after(user, 15 SECONDS, target = src))
+				if(istype(src, /obj/machinery/door/poddoor/shutters)) // Simplified Code 
+					new /obj/item/stack/sheet/plasteel(loc, 5)
+					new /obj/item/electronics/airlock(loc)
+					new /obj/item/stack/cable_coil/red(loc, 5)
+				else
+					new /obj/item/stack/sheet/plasteel(loc, 15)
+					new /obj/item/electronics/airlock(loc)
+					new /obj/item/stack/cable_coil/red(loc, 10)
+
+				qdel(src)
+
+		if(istype(W, /obj/item/stack/sheet/plasteel))
+			var/obj/item/stack/sheet/plasteel/P = W
+			if(P.amount < 5)
+				to_chat(user, "<span class='warning'>You need 5 plasteel sheets to put the plating back on</span>")
+				return
 			
-		var/obj/item/multitool/P = W	
-		id = P.buffer
-		to_chat(user, "<span class='notice'>You link the button to the [src].</span>")
-		return
+			P.use(5)
+			constructionstate = "intact"
+			return
 
-	to_chat(user, "<span class='notice'>You start to unlink the door.</span>")
-	if(W.tool_behaviour == TOOL_WIRECUTTER)
-		if(do_after(user, 10 SECONDS, target = src))
-			to_chat(user, "<span class='notice'>You unlink the door.</span>")
-			id = null
-		return
+	else
+		to_chat(user, "<span class='warning'>You need to open the panel.</span>")
 
 /obj/machinery/door/poddoor/examine(mob/user)
 	. = ..()
