@@ -15,6 +15,7 @@
 	resistance_flags = FIRE_PROOF
 	damage_deflection = 70
 	poddoor = TRUE
+	var/special = FALSE
 
 /obj/machinery/door/poddoor/preopen
 	icon_state = "open"
@@ -24,13 +25,16 @@
 /obj/machinery/door/poddoor/ert
 	name = "ERT Armory door"
 	desc = "A heavy duty blast door that only opens for dire emergencies."
+	special = TRUE
 	
 /obj/machinery/door/poddoor/deathsquad
 	name = "ERT Mech Bay door"
 	desc = "A heavy duty blast door that only opens for extreme emergencies."
+	special = TRUE
 
 //special poddoors that open when emergency shuttle docks at centcom
 /obj/machinery/door/poddoor/shuttledock
+	special = TRUE
 	var/checkdir = 4	//door won't open if turf in this dir is `turftype`
 	var/turftype = /turf/open/space
 	air_tight = 1
@@ -96,3 +100,26 @@
 /obj/machinery/door/poddoor/try_to_crowbar(obj/item/I, mob/user)
 	if(stat & NOPOWER)
 		open(1)
+
+/obj/machinery/door/poddoor/attackby(obj/item/W, mob/user, params)
+	if(special) // No Cheesing
+		to_chat(user, "<span class='notice'>This door appears to have a different screw.</span>")
+		return
+
+	if(default_deconstruction_screwdriver(user, icon_state, icon_state, W))
+		to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of [src].</span>")
+		return TRUE
+	
+	if(W.tool_behaviour == TOOL_MULTITOOL)
+		if(!multitool_check_buffer(user, W))
+			return
+			
+		var/obj/item/multitool/P = W	
+		id = P.buffer
+		to_chat(user, "<span class='notice'>You link the button to the [src].</span>")
+
+/obj/machinery/door/poddoor/examine(mob/user)
+	. = ..()
+	if(panel_open)
+		. += "<span class='<span class='notice'>The maintenance panel is [panel_open ? "opened" : "closed"].</span>"
+		
