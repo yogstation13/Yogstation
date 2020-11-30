@@ -1,5 +1,0 @@
-author: "alao3alao3"
-delete-after: true 
-changes: 
-  - rscadd: "Added Atmos permissions to incinerator maint door"
-  - rscdel: "Maintenance Permission from incinerator maint door"
