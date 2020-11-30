@@ -49,30 +49,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Test Room"
 	icon_state = "storage"
 
-//YOGS: BREAKROOMS
-/area/breakroom/engine
-	name = "Engineer Breakroom"
-	icon_state = "storage"
-/area/breakroom/supply
-	name = "Cargo Bay Breakroom"
-	icon_state = "storage"
-	
-/area/breakroom/medical
-	name = "Medbay Breakroom"
-	icon_state = "storage"
-	
-/area/breakroom/sci
-	name = "Science Breakroom"
-	icon_state = "storage"
-	
-///area/breakroom/service
-//	name = "Service Breakroom"
-//	icon_state = "storage"
-// wait this is literally the bar
-
-/area/breakroom/security
-	name = "Security Breakroom"
-	icon_state = "storage"
 //EXTRA
 
 /area/asteroid
