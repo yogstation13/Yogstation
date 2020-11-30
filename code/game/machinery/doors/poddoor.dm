@@ -3,7 +3,7 @@
 	desc = "A heavy duty blast door that opens mechanically."
 	icon = 'icons/obj/doors/blastdoor.dmi'
 	icon_state = "closed"
-	var/id = 1
+	var/id = null
 	layer = BLASTDOOR_LAYER
 	closingLayer = CLOSED_BLASTDOOR_LAYER
 	sub_door = TRUE
@@ -15,7 +15,7 @@
 	resistance_flags = FIRE_PROOF
 	damage_deflection = 70
 	poddoor = TRUE
-	var/special = FALSE
+	var/special = FALSE // Prevents ERT or whatever from breaking into their shutters
 
 /obj/machinery/door/poddoor/preopen
 	icon_state = "open"
@@ -111,12 +111,24 @@
 		return TRUE
 	
 	if(W.tool_behaviour == TOOL_MULTITOOL)
+		if(id != null)
+			to_chat(user, "<span class='notice'>This door is already linked. Unlink it first!</span>")
+			return
+
 		if(!multitool_check_buffer(user, W))
 			return
 			
 		var/obj/item/multitool/P = W	
 		id = P.buffer
 		to_chat(user, "<span class='notice'>You link the button to the [src].</span>")
+		return
+
+	to_chat(user, "<span class='notice'>You start to unlink the door.</span>")
+	if(W.tool_behaviour == TOOL_WIRECUTTER)
+		if(do_after(user, 10 SECONDS, target = src))
+			to_chat(user, "<span class='notice'>You unlink the door.</span>")
+			id = null
+		return
 
 /obj/machinery/door/poddoor/examine(mob/user)
 	. = ..()
