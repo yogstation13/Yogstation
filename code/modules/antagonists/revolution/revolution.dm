@@ -19,9 +19,15 @@
 			return FALSE
 		if(new_owner.current && HAS_TRAIT(new_owner.current, TRAIT_MINDSHIELD))
 			return FALSE
-		var/list/no_team_antag = list("Shadowling","Shadowling Thrall","Darkspawn","Cultist","Clock Cultist")
+		var/list/no_team_antag = list(
+			/datum/antagonist/rev,
+			/datum/antagonist/clockcult,
+			/datum/antagonist/darkspawn,
+			/datum/antagonist/shadowling,
+			/datum/antagonist/cult    
+			)
 		for(var/datum/antagonist/NTA in new_owner.antag_datums)
-			if(NTA.name in no_team_antag)
+			if(NTA.type in no_team_antag)
 				return FALSE
 
 /datum/antagonist/rev/apply_innate_effects(mob/living/mob_override)
