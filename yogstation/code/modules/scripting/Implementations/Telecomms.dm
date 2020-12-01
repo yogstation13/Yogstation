@@ -7,10 +7,10 @@
 #define HUMAN 1
 #define MONKEY 2
 #define ROBOT 4
-#define DRONE 8
-#define DRACONIC 16
-#define BEACHTONGUE 32
+#define DRACONIC 8
+#define BEACHTONGUE 16
 GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND,SPAN_CLOWN))//Span classes that players are allowed to set in a radio transmission.
+//WHY DOESNT THIS LIST WORK AAAAAA
 GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/language/machine,/datum/language/draconic))// language datums that players are allowed to translate to in a radio transmission.
 
 /n_Interpreter/TCS_Interpreter
@@ -112,7 +112,6 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		"human" = HUMAN,
 		"monkey" = MONKEY,
 		"robot" = ROBOT,
-		"drone" = DRONE,
 		"draconic" = DRACONIC,
 		"beachtounge" = BEACHTONGUE
 	)))
@@ -146,8 +145,6 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		oldlang = MONKEY
 	else if(oldlang == /datum/language/machine)
 		oldlang = ROBOT
-	else if(oldlang == /datum/language/drone)
-		oldlang = DRONE
 	else if(oldlang == /datum/language/draconic)
 		oldlang = DRACONIC
 	else if(oldlang == /datum/language/beachbum)
@@ -272,8 +269,6 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 			return /datum/language/monkey
 		if(ROBOT)
 			return /datum/language/machine
-		if(DRONE)
-			return /datum/language/drone
 		if(DRACONIC)
 			return /datum/language/draconic
 		if(BEACHTONGUE)
@@ -442,6 +437,5 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 #undef HUMAN
 #undef MONKEY
 #undef ROBOT
-#undef DRONE
 #undef DRACONIC
 #undef BEACHTONGUE
