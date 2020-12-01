@@ -61502,14 +61502,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
-"ctf" = (
-/obj/machinery/portable_atmospherics/scrubber/huge,
-/obj/machinery/light_switch{
-	pixel_x = -23
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/science/storage)
 "ctg" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -61532,25 +61524,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
-/turf/open/floor/plasteel,
-/area/science/storage)
-"cti" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/machinery/power/apc/highcap/five_k{
-	areastring = "/area/science/storage";
-	dir = 1;
-	name = "Toxins Storage APC";
-	pixel_y = 24
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/science/storage)
-"ctj" = (
-/obj/machinery/portable_atmospherics/scrubber/huge,
-/obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/science/storage)
 "ctp" = (
@@ -62038,15 +62011,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
-"ctW" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/science/storage)
 "ctX" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -62548,36 +62512,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"cuS" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/science/storage)
 "cuT" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
-/area/science/storage)
-"cuV" = (
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/science/storage)
-"cuW" = (
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Toxins Storage";
-	dir = 8;
-	network = list("ss13","rd")
-	},
-/obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/science/storage)
 "cuY" = (
@@ -62944,14 +62882,6 @@
 	dir = 5
 	},
 /area/crew_quarters/heads/hor)
-"cvV" = (
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/science/storage)
 "cvW" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -62969,14 +62899,6 @@
 /area/hallway/secondary/exit/departure_lounge)
 "cvX" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/science/storage)
-"cvY" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
-/obj/item/radio/intercom{
-	pixel_x = 29
-	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/science/storage)
@@ -63399,11 +63321,6 @@
 	dir = 5
 	},
 /area/crew_quarters/heads/hor)
-"cwV" = (
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/science/storage)
 "cwW" = (
 /obj/item/cigbutt,
 /obj/machinery/light_switch{
@@ -71266,6 +71183,11 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"dsu" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "dsN" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/plating,
@@ -72854,6 +72776,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"fOb" = (
+/obj/item/radio/intercom{
+	pixel_x = 29
+	},
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "fOs" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -73089,6 +73019,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
+"giC" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister/water_vapor,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "gjD" = (
 /obj/docking_port/stationary/random{
 	dir = 4;
@@ -73229,6 +73168,11 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/solar/starboard/fore)
+"gvC" = (
+/obj/machinery/portable_atmospherics/scrubber/huge,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "gwd" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -75972,6 +75916,14 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
+"lEZ" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "lGS" = (
 /obj/docking_port/stationary/public_mining_dock,
 /turf/open/floor/plating,
@@ -78403,6 +78355,11 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
+"qRa" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "qUL" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/closet/emcloset,
@@ -78453,6 +78410,14 @@
 "rad" = (
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/solar/starboard/fore)
+"raj" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "rbA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -80218,6 +80183,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"ubK" = (
+/obj/machinery/light_switch{
+	pixel_x = -23
+	},
+/obj/effect/turf_decal/delivery,
+/obj/machinery/electrolyzer,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "ucD" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -81140,6 +81113,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"vPe" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "vPl" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -81786,6 +81764,20 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/science/test_area)
+"wVs" = (
+/obj/machinery/power/apc/highcap/five_k{
+	areastring = "/area/science/storage";
+	dir = 1;
+	name = "Toxins Storage APC";
+	pixel_y = 24
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/scrubber/huge,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "wWY" = (
 /obj/machinery/power/tracker,
 /obj/structure/cable{
@@ -82123,6 +82115,19 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/medical/virology)
+"xJs" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Toxins Storage";
+	dir = 8;
+	network = list("ss13","rd")
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "xJw" = (
 /obj/item/pickaxe/mini,
 /turf/open/floor/plating/asteroid/snow/icemoon,
@@ -115620,11 +115625,11 @@ ccd
 bTW
 bEV
 crS
-ctf
-ctW
-cuS
-cvV
-cwV
+ubK
+giC
+raj
+lEZ
+dsu
 crR
 cyG
 czz
@@ -116391,10 +116396,10 @@ caE
 bUb
 bEX
 cgq
-cti
+wVs
 bDZ
-cuV
-cvX
+vPe
+qRa
 cqD
 crR
 cyJ
@@ -116648,10 +116653,10 @@ ccE
 bUv
 cpt
 cgq
-ctj
+gvC
 bFp
-cuW
-cvY
+xJs
+fOb
 cvX
 crR
 cyK
