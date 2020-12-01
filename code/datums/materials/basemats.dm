@@ -98,7 +98,7 @@
 	categories = list(MAT_CATEGORY_ORE = TRUE)
 	sheet_type = /obj/item/stack/sheet/bluespace_crystal
 
-/datum/material/dilithium
+/datum/material/dilithium_crystal
 	name = "dilithium crystal"
 	id = "dilithium_crystal"
 	desc = "A glowing dilithium crystal. It looks very delicate."
