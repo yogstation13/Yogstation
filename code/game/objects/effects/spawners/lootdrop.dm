@@ -412,7 +412,7 @@
 /obj/effect/spawner/lootdrop/teratoma/major/clown
 	name = "funny teratoma spawner"
 	loot = list(
-		/mob/living/simple_animal/cluwne = 1,
+		/mob/living/simple_animal/hostile/retaliate/clown = 1,
 		/mob/living/simple_animal/hostile/retaliate/clown/lube = 1,
 		/mob/living/simple_animal/hostile/retaliate/clown/fleshclown = 1,
 		/mob/living/simple_animal/hostile/retaliate/clown/mutant = 1,
