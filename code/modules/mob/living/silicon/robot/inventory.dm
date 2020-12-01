@@ -377,13 +377,13 @@
 		slot_num = slot_start + 1
 	else
 		slot_num = 1
-		slot_start = 4
+		slot_start = 3
 
 	while(slot_num != slot_start) //If we wrap around without finding any free slots, just give up.
 		if(select_module(slot_num))
 			return
 		slot_num++
-		if(slot_num > 4) // not >3 otherwise cycling with just one item on module 3 wouldn't work
+		if(slot_num == 3) // not >3 otherwise cycling with just one item on module 3 wouldn't work
 			slot_num = 1 //Wrap around.
 
 /mob/living/silicon/robot/swap_hand()
