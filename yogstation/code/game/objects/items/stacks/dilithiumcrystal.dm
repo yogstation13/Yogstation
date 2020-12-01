@@ -8,6 +8,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	points = 50
 	grind_results = list(/datum/reagent/dilithium = 20)
+	materials = list(/datum/material/dilithium_crystal=MINERAL_MATERIAL_AMOUNT)
 
 /obj/item/stack/ore/dilithium_crystal/Initialize()
 	. = ..()
