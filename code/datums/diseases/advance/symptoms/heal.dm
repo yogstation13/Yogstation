@@ -481,3 +481,106 @@
 		if(L.heal_damage(heal_amt/parts.len, heal_amt/parts.len, null, BODYPART_ORGANIC))
 			M.update_damage_overlays()
 	return 1
+
+/datum/symptom/growth
+	name = "Pituitary Disruption"
+	desc = "Causes uncontrolled growth in the subject"
+	stealth = -3
+	resistance = -2
+	stage_speed = 1
+	transmittable = -2
+	level = 7
+	symptom_delay_min = 1
+	symptom_delay_max = 1
+	var/current_size = 1
+	var/tetsuo = FALSE
+	var/bruteheal = FALSE
+	threshold_descs = list ("Stage Speed 8" = "The disease heals brute damage at a fast rate, but causes expulsion of benign tumors"
+					"Stage Speed 12" = "The disease heals brute damage incredibly fast, but deteriorates cell health and causes tumors to become more advanced.")
+
+/datum/symptom/growth/Start(datum/disease/advance/A)
+	if(!..())
+		return
+	if(A.properties["stage_rate"] >= 8)
+		bruteheal = TRUE
+	if(A.properties["stage_rate"] >= 12)
+		tetsuo = TRUE
+
+/datum/symptom/growth/Activate(datum/disease/advance/A)
+	if(!..())
+		return
+	var/mob/living/carbon/M = A.affected_mob
+	var/newsize = current_size
+	switch(A.stage)
+		if(4, 5)
+			switch(A.properties["stage_rate"])
+				if(5 to 8)
+					newsize = 1.25
+				if(9 to 12)
+					newsize = 1.5
+				if(13 to 16)
+					newsize = 1.75
+				if(17 to INFINITY)
+					newsize = 2
+			M.resize = newsize/current_size
+			current_size = newsize
+			M.update_transform()
+			if(prob(5) && bruteheal)
+				to_chat(M, "<span class='userdanger'>You retch, and a splatter of gore escapes your gullet</span>")
+				M.Knockdown(40)
+				new /obj/effect/gibspawner/human/bodypartless(M.loc)
+				if(prob(80))
+					new /obj/effect/spawner/lootdrop/teratoma/minor(M.loc)
+				if(tetsuo && prob(30))
+					new /obj/effect/spawner/lootdrop/teratoma/major(M.loc)
+				if(tetsuo && prob(10) && A.affected_mob.job == "Clown")
+					new /obj/effect/spawner/lootdrop/teratoma/major/clown(M.loc)
+			if(tetsuo)
+				M.adjustBruteLoss(-4)
+				if(prob(20))
+					M.adjustCloneLoss(1)
+			else if(bruteheal)
+				M.adjustBruteLoss(-1)
+		else
+			if(prob(5))
+				to_chat(M, "<span class='notice'>[pick("You feel bloated.", "The station seems small", "You are the strongest")]</span>")
+	return
+
+/obj/effect/mob_spawn/teratomamonkey //spawning these is one of the downsides of overclocking the symptom
+	name = "fleshy mass"
+	desc = "A writhing mass of flesh."
+	icon = 'icons/mob/blob.dmi'
+	icon_state = "blob_spore_temp"
+	density = FALSE
+	anchored = FALSE
+
+	mob_type = /mob/living/carbon/monkey/tumor
+	mob_name = "a living tumor"
+	death = FALSE
+	roundstart = FALSE
+	short_desc = "You are a living tumor. By all accounts, you should not exist."
+	flavour_text = {"
+	<b>You are a living teratoma, and your existence is misery. You feel the need to spread woe about the station- but not to kill.
+	"}
+
+/obj/effect/mob_spawn/teratomamonkey/Initialize()
+	. = ..()
+	var/area/A = get_area(src)
+	if(A)
+		notify_ghosts("A living tumor has been born in [A.name].", 'sound/effects/splat.ogg', source = src, action = NOTIFY_ATTACK, flashwindow = FALSE)
+
+/obj/effect/mob_spawn/teratomamonkey/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	to_chat(user, "<span class='notice'>Ew... It would be a bad idea to touch this. It could probably be destroyed with the extreme heat of a welder.</span>")
+
+/obj/effect/mob_spawn/teratomamonkey/attackby(obj/item/W, mob/user, params)
+	if(W.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)
+		user.visible_message("<span class='warning'>[usr.name] destroys [src].</span>",
+			"<span class='notice'>You hold the welder to [src], and it violently bursts!</span>",
+			"<span class='italics'>You hear a gurgling noise</span>")
+		new /obj/effect/gibspawner/human(get_turf(src))
+		qdel(src)
+	else
+		..()
