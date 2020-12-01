@@ -109,10 +109,10 @@
 				to_chat(user, "[device ? "" : "<span class='notice'>No blast door controller found</span>"]")
 
 		if(board && W.tool_behaviour == TOOL_WIRECUTTER)
-			to_chat(user, "<span class='notice'>You start wiping the button ID...</span>")
+			to_chat(user, "<span class='notice'>You start wiping the button's ID...</span>")
 			W.play_tool_sound(src)
 			if(W.use_tool(src, user, 4 SECONDS)) // To make sure they're not doing this unintentionally
-				to_chat(user, "<span class='notice'>You wipe the buttons ID.</span>")
+				to_chat(user, "<span class='notice'>You wipe the button's ID.</span>")
 				id = null
 
 		update_icon()
