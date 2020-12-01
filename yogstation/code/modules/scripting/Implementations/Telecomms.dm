@@ -441,9 +441,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 #undef MAX_MEM_VARS
 #undef HUMAN
 #undef MONKEY
-#undef ALIEN
 #undef ROBOT
-#undef SLIME
 #undef DRONE
 #undef DRACONIC
 #undef BEACHTONGUE
