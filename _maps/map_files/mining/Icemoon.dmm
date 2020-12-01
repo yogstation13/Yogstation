@@ -650,6 +650,9 @@
 	},
 /turf/closed/mineral/random/snow,
 /area/icemoon/surface/outdoors/unexplored/danger)
+"eY" = (
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors/explored)
 "fa" = (
 /turf/closed/wall/r_wall,
 /area/mine/maintenance)
@@ -2050,12 +2053,6 @@
 /obj/machinery/mineral/processing_unit_console,
 /turf/closed/wall,
 /area/mine/laborcamp)
-"pH" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/mine/eva)
 "pN" = (
 /obj/machinery/airalarm/tcomms{
 	pixel_y = 24
@@ -2347,10 +2344,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"tE" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/lavaland/surface/outdoors)
 "tJ" = (
 /obj/structure/ore_box,
 /obj/effect/decal/cleanable/dirt,
@@ -2862,6 +2855,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"Bb" = (
+/obj/vehicle/ridden/atv,
+/obj/effect/turf_decal/delivery,
+/obj/item/key,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors/explored)
 "Bd" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -3986,9 +3985,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
-"Oo" = (
-/turf/closed/wall,
-/area/lavaland/surface/outdoors)
 "Ow" = (
 /obj/machinery/biogenerator,
 /obj/effect/turf_decal/tile/green{
@@ -4490,6 +4486,12 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/mine/production)
+"Vd" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/mine/eva)
 "Vf" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -20429,11 +20431,11 @@ Aq
 Aq
 Aq
 Aq
-Oo
-Oo
-Oo
-Oo
-Oo
+dh
+dh
+dh
+dh
+dh
 Aq
 Aq
 Aq
@@ -20686,11 +20688,11 @@ Aq
 Aq
 Aq
 Aq
-tE
+EL
 ye
 aL
 YB
-tE
+EL
 Aq
 Aq
 Aq
@@ -20943,11 +20945,11 @@ Aq
 Aq
 Aq
 Aq
-tE
+EL
 GA
 HC
 FD
-tE
+EL
 Aq
 Aq
 Aq
@@ -24024,8 +24026,8 @@ ah
 BN
 BN
 Aq
-Aq
-Aq
+eY
+Bb
 ci
 Zo
 dS
@@ -24281,8 +24283,8 @@ BN
 ah
 BN
 Aq
-Aq
-Aq
+eY
+Bb
 ci
 dB
 Hl
@@ -24514,14 +24516,14 @@ ah
 ah
 ah
 ah
+Gd
+ah
+Gd
 ah
 ah
 ah
 ah
-ah
-ah
-ah
-ah
+Gd
 ah
 ah
 ah
@@ -24538,14 +24540,14 @@ ah
 BN
 ah
 Aq
-Aq
-Aq
+eY
+Bb
 uo
 hY
 aA
 hY
 uo
-RJ
+eY
 dh
 dh
 dh
@@ -24771,14 +24773,14 @@ ah
 ah
 ah
 ah
+Gd
 ah
 ah
+Gd
 ah
+Gd
 ah
-ah
-ah
-ah
-ah
+Gd
 ah
 ah
 ah
@@ -24795,15 +24797,15 @@ BN
 BN
 BN
 Aq
-Aq
-Aq
-pH
-Aq
-Aq
-Aq
-pH
-Aq
-Aq
+eY
+eY
+Vd
+eY
+eY
+eY
+Vd
+eY
+eY
 Aq
 Aq
 Aq
@@ -25029,12 +25031,12 @@ ah
 ah
 ah
 ah
-ah
-ah
-ah
-ah
-ah
-ah
+Gd
+Gd
+Gd
+Gd
+Gd
+Gd
 ah
 ah
 ah
@@ -25052,15 +25054,15 @@ BN
 BN
 BN
 Aq
-Aq
-Aq
-Aq
-Aq
-Aq
-Aq
-Aq
-Aq
-Aq
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
 Aq
 Aq
 Aq
@@ -25285,16 +25287,16 @@ ah
 ah
 ah
 ah
-ah
 Gd
 Gd
 Gd
 Gd
 Gd
+Gd
+Gd
+Gd
 ah
-ah
-ah
-ah
+Gd
 ah
 ah
 ah
@@ -25310,11 +25312,11 @@ BN
 BN
 Aq
 Aq
-Aq
-Aq
-Aq
-Aq
-Aq
+eY
+eY
+eY
+eY
+eY
 Aq
 Aq
 Aq
@@ -25541,17 +25543,17 @@ ah
 ah
 ah
 ah
-ah
-ah
 Gd
 Gd
 Gd
 Gd
 Gd
-ah
-ah
-ah
-ah
+Gd
+Gd
+Gd
+Gd
+Gd
+Gd
 ah
 ah
 ah
@@ -25799,14 +25801,14 @@ ah
 ah
 ah
 ah
-ah
 Gd
 Gd
 Gd
 Gd
 Gd
-ah
-ah
+Gd
+Gd
+Gd
 ah
 ah
 ah
@@ -26055,14 +26057,14 @@ ah
 ah
 ah
 ah
+Gd
+Gd
+Gd
+Gd
+Gd
+Gd
 ah
-ah
-ah
-ah
-ah
-ah
-ah
-ah
+Gd
 ah
 ah
 ah
@@ -26313,15 +26315,15 @@ ah
 ah
 ah
 ah
+Gd
 ah
-ah
-ah
-ah
-ah
-ah
-ah
-ah
-ah
+Gd
+Gd
+Gd
+Gd
+Gd
+Gd
+Gd
 ah
 ah
 ah
@@ -26570,15 +26572,15 @@ ah
 ah
 ah
 ah
+Gd
 ah
+Gd
+Gd
+Gd
+Gd
+Gd
 ah
-ah
-ah
-ah
-ah
-ah
-ah
-ah
+Gd
 ah
 ah
 ah
@@ -26830,10 +26832,10 @@ ah
 ah
 ah
 ah
+Gd
 ah
-ah
-ah
-ah
+Gd
+Gd
 ah
 ah
 ah

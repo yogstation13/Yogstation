@@ -49565,14 +49565,6 @@
 	dir = 8
 	},
 /area/chapel/main)
-"bWZ" = (
-/obj/structure/chair/comfy/black{
-	dir = 4
-	},
-/turf/open/floor/plasteel/chapel{
-	dir = 1
-	},
-/area/chapel/main)
 "bXa" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -67786,18 +67778,6 @@
 "cRi" = (
 /turf/closed/wall/r_wall,
 /area/science/xenobiology)
-"cRn" = (
-/obj/machinery/camera{
-	c_tag = "Chapel - Port";
-	dir = 4
-	},
-/obj/structure/chair/comfy/black{
-	dir = 4
-	},
-/turf/open/floor/plasteel/chapel{
-	dir = 8
-	},
-/area/chapel/main)
 "cRo" = (
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/chapel{
@@ -71752,6 +71732,16 @@
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"dQD" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
+	dir = 1;
+	icon_state = "inje_map-2"
+	},
+/turf/open/space/basic{
+	icon = 'icons/turf/snow.dmi';
+	icon_state = "snow"
+	},
+/area/medical/virology)
 "dQK" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -72848,6 +72838,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit/departure_lounge)
+"fSm" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 1
+	},
+/turf/open/space/basic{
+	icon = 'icons/turf/snow.dmi';
+	icon_state = "snow"
+	},
+/area/engine/atmos)
 "fTk" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -73517,6 +73516,12 @@
 "gZx" = (
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
+"gZO" = (
+/turf/open/space/basic{
+	icon = 'icons/turf/snow.dmi';
+	icon_state = "snow"
+	},
+/area/science/mixing/chamber)
 "gZY" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -74804,12 +74809,6 @@
 	},
 /turf/open/openspace/icemoon,
 /area/maintenance/disposal)
-"jBu" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/openspace/icemoon,
-/area/security/execution/education)
 "jCl" = (
 /obj/item/wrench,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
@@ -75290,10 +75289,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
-"kBi" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/engine_waste,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/engine/engineering)
 "kCO" = (
 /obj/structure/table,
 /obj/item/paper/fluff/holodeck/disclaimer,
@@ -75793,22 +75788,6 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/solar/starboard/aft)
-"lvR" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/fans/tiny/invisible,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/execution/education)
 "lwm" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -76093,6 +76072,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"lWY" = (
+/obj/machinery/camera{
+	c_tag = "Chapel - Port";
+	dir = 4
+	},
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
 "lXh" = (
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/plating,
@@ -76286,18 +76277,6 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/surface/outdoors)
-"muA" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on{
-	dir = 8
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/maintenance/disposal/incinerator)
-"mvx" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/atmos_waste{
-	dir = 1
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/engine/atmos)
 "mxF" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/machinery/door/firedoor/border_only{
@@ -76684,6 +76663,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"nvU" = (
+/turf/open/space/basic{
+	icon = 'icons/turf/snow.dmi';
+	icon_state = "snow"
+	},
+/area/icemoon/surface/outdoors)
 "nwb" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -76692,6 +76677,23 @@
 	dir = 8
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/engine/atmos)
+"nww" = (
+/obj/structure/chair/comfy/black{
+	dir = 8
+	},
+/turf/open/floor/plasteel/chapel{
+	dir = 8
+	},
+/area/chapel/main)
+"nwM" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/atmos_waste{
+	dir = 1
+	},
+/turf/open/space/basic{
+	icon = 'icons/turf/snow.dmi';
+	icon_state = "snow"
+	},
 /area/engine/atmos)
 "nwS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -77520,9 +77522,6 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/surface/outdoors)
-"pby" = (
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/science/mixing/chamber)
 "pdf" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -77612,12 +77611,6 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
-"pqR" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/openspace/icemoon,
-/area/security/execution/education)
 "prx" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -77788,6 +77781,25 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"pLD" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/fans/tiny/invisible,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/execution/education)
 "pMb" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -78489,12 +78501,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
-"rkG" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/engine/atmos)
 "rkM" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -78685,20 +78691,6 @@
 /obj/item/cigbutt,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"ryS" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/fans/tiny/invisible,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/plasteel/dark,
-/area/security/execution/education)
 "rzx" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -79423,12 +79415,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit/departure_lounge)
-"sPJ" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/openspace/icemoon,
-/area/security/execution/education)
 "sQV" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -79626,6 +79612,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
+"tii" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 8
+	},
+/turf/open/space/basic{
+	icon = 'icons/turf/snow.dmi';
+	icon_state = "snow"
+	},
+/area/maintenance/disposal/incinerator)
 "tiB" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
@@ -80051,13 +80046,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
-"tQy" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
-	dir = 1;
-	icon_state = "inje_map-2"
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/medical/virology)
 "tRe" = (
 /obj/effect/turf_decal/stripes{
 	dir = 1
@@ -80357,6 +80345,23 @@
 	},
 /turf/open/floor/engine,
 /area/escapepodbay)
+"uAO" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/fans/tiny/invisible,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/execution/education)
 "uFv" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -80479,6 +80484,14 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/starboard/secondary)
+"uKq" = (
+/obj/structure/window/reinforced,
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4,
+/turf/open/space/basic{
+	icon = 'icons/turf/snow.dmi';
+	icon_state = "snow"
+	},
+/area/aisat)
 "uMv" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -81170,11 +81183,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"vSR" = (
-/obj/structure/window/reinforced,
-/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/aisat)
 "vWF" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -81521,6 +81529,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
+"wEd" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/engine_waste,
+/turf/open/space/basic{
+	icon = 'icons/turf/snow.dmi';
+	icon_state = "snow"
+	},
+/area/engine/engineering)
 "wEj" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -99714,7 +99729,7 @@ cac
 cKS
 cBR
 xGG
-tQy
+dQD
 hWS
 gtn
 gtn
@@ -102683,10 +102698,10 @@ hWS
 aaZ
 nRT
 nRT
-jBu
 nRT
 nRT
-lvR
+nRT
+pLD
 uMM
 xlO
 wCU
@@ -102938,7 +102953,7 @@ gtn
 gtn
 hWS
 aaZ
-pqR
+nRT
 nRT
 eRn
 sdB
@@ -103197,10 +103212,10 @@ hWS
 aaZ
 nRT
 nRT
-sPJ
 nRT
 nRT
-ryS
+nRT
+uAO
 rJW
 hSq
 hUR
@@ -104604,7 +104619,7 @@ cLa
 cMI
 cxM
 cMI
-cMI
+lWY
 dbF
 cMI
 fhB
@@ -104860,8 +104875,8 @@ cLa
 cLa
 cPJ
 cxP
-bWZ
-cRn
+cOS
+nww
 cOS
 cMI
 fhB
@@ -113838,9 +113853,9 @@ crA
 cFr
 cCt
 wQA
-pby
-pby
-pby
+gZO
+gZO
+gZO
 cIg
 cIa
 cIU
@@ -121790,7 +121805,7 @@ cgz
 cgz
 cgz
 cgz
-muA
+tii
 lsJ
 gtn
 hWS
@@ -122306,7 +122321,7 @@ vIo
 cNw
 cOa
 crf
-hWS
+nvU
 hWS
 gtn
 gtn
@@ -123073,7 +123088,7 @@ hWS
 hWS
 hWS
 hWS
-hWS
+nvU
 gtn
 hWS
 hWS
@@ -123324,7 +123339,7 @@ bZG
 cbc
 cUR
 czK
-mvx
+nwM
 bAR
 bAR
 bAR
@@ -126611,7 +126626,7 @@ dqT
 fhB
 fhB
 gtn
-kBi
+wEd
 aFT
 den
 aUE
@@ -127954,7 +127969,7 @@ hLF
 nwb
 rFV
 cjl
-rkG
+fSm
 rcb
 nfu
 rpu
@@ -135117,7 +135132,7 @@ qwT
 qwT
 gtn
 gtn
-vSR
+uKq
 bmb
 bny
 beQ
