@@ -96,7 +96,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/datum/admins/proc/cmd_create_centcom,
 	/datum/admins/proc/cmd_admin_fuckrads,
   	/client/proc/admincryo,
-	/datum/admins/proc/cmd_admin_dress
+	/client/proc/cmd_admin_dress
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
