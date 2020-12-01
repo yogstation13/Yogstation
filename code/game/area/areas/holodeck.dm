@@ -104,6 +104,9 @@
 /area/holodeck/rec_center/photobooth
 	name = "Holodeck - Photobooth"
 
+/area/holodeck/rec_center/gym
+	name = "Holodeck - Gym"
+	
 // Bad programs
 
 /area/holodeck/rec_center/burn
