@@ -16,7 +16,7 @@
 	damage_deflection = 70
 	poddoor = TRUE
 	var/special = FALSE // Prevents ERT or whatever from breaking into their shutters
-	var/constructionstate = "intact" // Decounstruction Stuff
+	var/constructionstate = INTACT // Decounstruction Stuff
 
 /obj/machinery/door/poddoor/preopen
 	icon_state = "open"
@@ -117,7 +117,7 @@
 			return TRUE
 
 	if(panel_open)
-		if(W.tool_behaviour == TOOL_MULTITOOL && constructionstate == "intact")
+		if(W.tool_behaviour == TOOL_MULTITOOL && constructionstate == INTACT)
 			if(id != null)
 				to_chat(user, "<span class='warning'>This door is already linked. Unlink it first!</span>")
 				return
@@ -141,17 +141,19 @@
 
 			return
 
-		if(W.tool_behaviour == TOOL_WELDER)
+		if(W.tool_behaviour == TOOL_WELDER && constructionstate != CUT_COVER)
 			to_chat(user, "<span class='notice'>You start to remove the outer plasteel cover.</span>")
 			playsound(src.loc, 'sound/items/welder.ogg', 50, 1)
 			if(do_after(user, 10 SECONDS, target = src))
 				to_chat(user, "<span class='notice'>You remove the outer plasteel cover.</span>")
-				constructionstate = "welded"
+				constructionstate = CUT_COVER
 				id = null // Effectivley breaks the door
 				new /obj/item/stack/sheet/plasteel(loc, 5)
 				return
+		else
+			to_chat(user, "<span class='warning'>The cover is already off.</span>")
 		
-		if(W.tool_behaviour == TOOL_CROWBAR && constructionstate == "welded")
+		if(W.tool_behaviour == TOOL_CROWBAR && constructionstate == CUT_COVER)
 			to_chat(user, "<span class='notice'>You start to remove all of the internal components</span>")
 			if(do_after(user, 15 SECONDS, target = src))
 				if(istype(src, /obj/machinery/door/poddoor/shutters)) // Simplified Code 
@@ -172,7 +174,7 @@
 				return
 			
 			P.use(5)
-			constructionstate = "intact"
+			constructionstate = INTACT
 			return
 
 	else
