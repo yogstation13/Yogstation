@@ -2311,6 +2311,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	color = "#008000" // rgb: 0, 128, 0
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	boozepwr = 25
-	taste_description = "rotting vegatables"
+	taste_description = "rotting vegetables"
 	glass_name = "glass of pea wine"
 	glass_desc = "A freezing glass of pea wine."
