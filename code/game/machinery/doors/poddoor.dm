@@ -110,7 +110,7 @@
 
 	if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(density)
-			to_chat(user, "<span class='warning'>You need to open [src] before opening its maintenence panel.</span>")
+			to_chat(user, "<span class='warning'>You need to open [src] before opening its maintenance panel.</span>")
 			return
 		else if(default_deconstruction_screwdriver(user, icon_state, icon_state, W))
 			to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of [src].</span>")
@@ -141,7 +141,7 @@
 
 			return
 
-		if(W.tool_behaviour == TOOL_WELDER && constructionstate != CUT_COVER)
+		if(W.tool_behaviour == TOOL_WELDER && constructionstate == INTACT)
 			to_chat(user, "<span class='notice'>You start to remove the outer plasteel cover.</span>")
 			playsound(src.loc, 'sound/items/welder.ogg', 50, 1)
 			if(do_after(user, 10 SECONDS, target = src))
@@ -169,16 +169,15 @@
 
 		if(istype(W, /obj/item/stack/sheet/plasteel))
 			var/obj/item/stack/sheet/plasteel/P = W
-			if(P.amount < 5)
-				to_chat(user, "<span class='warning'>You need 5 plasteel sheets to put the plating back on</span>")
+			if(P.use(5))
+				to_chat(user, "<span class='warning'>You need 5 plasteel sheets to put the plating back on.</span>")
 				return
 			
-			P.use(5)
 			constructionstate = INTACT
 			return
 
 	else
-		to_chat(user, "<span class='warning'>You need to open the panel.</span>")
+		to_chat(user, "<span class='warning'>You need to open the panel first.</span>")
 
 /obj/machinery/door/poddoor/examine(mob/user)
 	. = ..()
