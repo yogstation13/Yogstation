@@ -168,3 +168,16 @@
 		var/obj/item/clothing/head/helmet/justice/escape/helmet = new(src)
 		equip_to_slot_or_del(helmet,SLOT_HEAD)
 		helmet.attack_self(src) // todo encapsulate toggle
+
+/mob/living/carbon/monkey/tumor
+	name = "living teratoma"
+	verb_say = "blabbers"
+	initial_language_holder = /datum/language_holder/monkey
+	icon = 'icons/mob/monkey.dmi'
+	icon_state = null
+	butcher_results = list(/obj/effect/spawner/lootdrop/teratoma/minor = 5, /obj/effect/spawner/lootdrop/teratoma/major = 1)
+	type_of_meat = /obj/effect/spawner/lootdrop/teratoma/minor
+	aggressive = TRUE
+	bodyparts = list(/obj/item/bodypart/chest/monkey/teratoma, /obj/item/bodypart/head/monkey/teratoma, /obj/item/bodypart/l_arm/monkey/teratoma,
+					 /obj/item/bodypart/r_arm/monkey/teratoma, /obj/item/bodypart/r_leg/monkey/teratoma, /obj/item/bodypart/l_leg/monkey/teratoma)
+
