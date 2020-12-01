@@ -495,8 +495,10 @@
 	var/current_size = 1
 	var/tetsuo = FALSE
 	var/bruteheal = FALSE
-	threshold_descs = list ("Stage Speed 8" = "The disease heals brute damage at a fast rate, but causes expulsion of benign tumors"
-					"Stage Speed 12" = "The disease heals brute damage incredibly fast, but deteriorates cell health and causes tumors to become more advanced.")
+	threshold_descs = list(
+		"Stage Speed 8" = "The disease heals brute damage at a fast rate, but causes expulsion of benign tumors.",
+		"Stage Speed 12" = "The disease heals brute damage incredibly fast, but deteriorates cell health and causes tumors to become more advanced.",
+	)
 
 /datum/symptom/growth/Start(datum/disease/advance/A)
 	if(!..())
