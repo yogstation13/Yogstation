@@ -592,6 +592,11 @@
 		//if they are holding or wearing a card that has access, that works
 		if(check_access(H.get_active_held_item()) || check_access(H.wear_id))
 			return TRUE
+	else if(ismonkey(M))
+		var/mob/living/carbon/monkey/george = M
+		//they can only hold things :(
+		if(isitem(george.get_active_held_item()))
+			return check_access(george.get_active_held_item())
 	return FALSE
 
 /mob/living/silicon/robot/proc/check_access(obj/item/card/id/I)
