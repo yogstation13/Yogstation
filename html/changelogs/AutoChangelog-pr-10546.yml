@@ -1,4 +1,0 @@
-author: "MrHorizons"
-delete-after: true 
-changes: 
-  - tweak: "Free miner placement weight has been reduced to 1, from 2. I don't know what exactly it means, but it should mean they show up less."

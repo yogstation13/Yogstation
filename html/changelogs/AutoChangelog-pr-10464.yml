@@ -1,8 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - rscadd: "Simple circuits RCD upgrade."
-  - rscadd: "Silo link RCD upgrade"
-  - rscadd: "The RCD's functionality for directional windows has been enabled."
-  - rscadd: "Cyborgs can now install RCD upgrades."
-  - rscadd: "The RCD's functionality for windowed doors has been enabled."
