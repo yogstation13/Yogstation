@@ -17,11 +17,6 @@ map yogstation
 	votable
 endmap
 
-map omegastation
-	maxplayers 35
-	votable
-endmap
-
 map yogsmeta
 	minplayers 25
 	voteweight 1.3
