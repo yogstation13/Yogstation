@@ -117456,45 +117456,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
-"dBb" = (
-/obj/machinery/newscaster{
-	pixel_y = -32
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
-"dBc" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/medical/genetics)
-"dBd" = (
-/obj/structure/cable/white,
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "geneticslab";
-	name = "Genetics Lab Shutters"
-	},
-/obj/structure/sign/warning/electricshock{
-	pixel_y = -32
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/medical/genetics)
 "dBm" = (
 /obj/machinery/computer/med_data/laptop,
 /obj/structure/table/glass,
@@ -118399,12 +118360,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"dER" = (
-/obj/structure/table,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/clothing/gloves/color/latex,
-/turf/open/floor/plating,
-/area/medical/morgue)
 "dEW" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -125098,19 +125053,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/science/research)
-"gdY" = (
-/obj/structure/bodycontainer/morgue{
-	dir = 2
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/morgue)
 "geo" = (
 /obj/machinery/light,
 /turf/open/floor/engine{
@@ -126052,6 +125994,22 @@
 /obj/item/paper_bin,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"mgU" = (
+/obj/structure/bodycontainer/morgue{
+	dir = 2
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
 "mjc" = (
 /obj/structure/table,
 /obj/item/paper_bin,
@@ -126686,6 +126644,21 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"pwJ" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/color/latex,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
 "pCm" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/disposalpipe/segment{
@@ -126784,6 +126757,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/starboard)
+"qdu" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/structure/sign/warning/electricshock{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "qdJ" = (
 /obj/machinery/nanite_programmer,
 /obj/effect/turf_decal/bot,
@@ -127155,6 +127137,21 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
+"rZJ" = (
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal/bin,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "saw" = (
 /turf/closed/wall/r_wall,
 /area/science/misc_lab/range)
@@ -167879,7 +167876,7 @@ dzN
 dAQ
 dCy
 jyZ
-dER
+pwJ
 kyA
 dpJ
 eLZ
@@ -168906,7 +168903,7 @@ dfb
 dzR
 dAU
 dCA
-gdY
+mgU
 dEW
 lEZ
 dEW
@@ -170703,7 +170700,7 @@ cmK
 coG
 dgS
 dzY
-dBb
+rZJ
 dCB
 nUw
 dCy
@@ -170960,7 +170957,7 @@ dvp
 cgx
 dnt
 dzZ
-dBc
+dtC
 abc
 lTJ
 uWB
@@ -171216,9 +171213,9 @@ dtC
 dvq
 dwU
 dyu
-dwU
-dBd
-abc
+dzS
+dtC
+cXI
 lTJ
 uWB
 wQQ
@@ -171474,7 +171471,7 @@ dbo
 ckQ
 cin
 ckQ
-ckQ
+qdu
 cXI
 wTy
 uWB
