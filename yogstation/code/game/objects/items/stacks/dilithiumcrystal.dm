@@ -9,6 +9,7 @@
 	points = 50
 	grind_results = list(/datum/reagent/dilithium = 20)
 	materials = list(/datum/material/dilithium_crystal=MINERAL_MATERIAL_AMOUNT)
+	refined_type = /obj/item/stack/sheet/dilithium_crystal
 
 /obj/item/stack/ore/dilithium_crystal/Initialize()
 	. = ..()
@@ -20,3 +21,13 @@
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, "sparks", 50, 1)
 	use(1)
+
+/obj/item/stack/sheet/dilithium_crystal
+	name = "dilithium crystal"
+	desc = "A glowing dilithium crystal. It looks very delicate."
+	icon = 'yogstation/icons/obj/telescience.dmi'
+	icon_state = "dilithium_crystal"
+	singular_name = "dilithium crystal"
+	w_class = WEIGHT_CLASS_TINY
+	grind_results = list(/datum/reagent/dilithium = 20)
+	materials = list(/datum/material/dilithium_crystal=MINERAL_MATERIAL_AMOUNT)

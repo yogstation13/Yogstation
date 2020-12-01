@@ -104,7 +104,7 @@
 	desc = "A glowing dilithium crystal. It looks very delicate."
 	color = "#740083"
 	categories = list(MAT_CATEGORY_ORE = TRUE)
-	sheet_type = /obj/item/stack/ore/dilithium_crystal
+	sheet_type = /obj/item/stack/sheet/dilithium_crystal
 
 ///Honks and slips
 /datum/material/bananium
