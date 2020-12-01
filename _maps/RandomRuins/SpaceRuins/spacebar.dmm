@@ -620,6 +620,20 @@
 /obj/machinery/smartfridge/food,
 /turf/closed/wall,
 /area/ruin/space/has_grav/powered/spacebar)
+"Co" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/structure/sign/poster/random{
+	pixel_x = -32
+	},
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
 "CP" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 8
@@ -875,6 +889,17 @@
 /obj/machinery/door/airlock/glass,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"Nk" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/machinery/computer/arcade{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
 "Nn" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/line,
@@ -925,25 +950,6 @@
 	},
 /obj/machinery/door/airlock/external,
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/powered/spacebar)
-"Pl" = (
-/obj/effect/turf_decal/tile/bar{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/structure/sign/poster/random{
-	pixel_x = -32
-	},
-/obj/effect/turf_decal/tile/bar{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/structure/chair{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "PE" = (
 /obj/effect/turf_decal/tile/bar{
@@ -1003,15 +1009,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered/no_grav)
-"RJ" = (
-/obj/effect/turf_decal/tile/bar{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/machinery/computer/arcade,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/powered/spacebar)
 "RY" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -1461,7 +1458,7 @@ FQ
 Ly
 RY
 yg
-Pl
+Co
 FB
 sX
 FB
@@ -1885,8 +1882,8 @@ uD
 Rp
 GG
 FB
-RJ
-RJ
+Nk
+Nk
 FB
 DV
 GD
