@@ -64,6 +64,9 @@
 	S.on_reagent_change(ADD_REAGENT)
 	..()
 
+/mob/living/simple_animal/bot/secbot/beepsky/power_use()
+	return // he has a potato battery!
+
 /mob/living/simple_animal/bot/secbot/pingsky
 	name = "Officer Pingsky"
 	desc = "It's Officer Pingsky! Delegated to satellite guard duty for harbouring anti-human sentiment."
