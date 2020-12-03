@@ -1281,7 +1281,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			Mind.active = 1
 			Mind.transfer_to(H)
 			
-			var/msg = "[key_name_admin(usr)] has spawned in at centcom [ADMIN_VERBOSEJMP(usr)]."
+			var/msg = "[key_name_admin(H)] has spawned in at centcom [ADMIN_VERBOSEJMP(H)]."
 			message_admins(msg)
 			log_admin(msg)
 			return
