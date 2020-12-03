@@ -662,8 +662,6 @@
 	temperature = 80
 
 /obj/item/projectile/temp/runic_icycle/on_hit(target)
-	if(ismob(target))
-		var/mob/M = target
 	.=..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
@@ -678,7 +676,6 @@
 
 /obj/item/projectile/magic/runic_tentacle/on_hit(target)
 	if(ismob(target))
-		var/mob/M = target
 		new /obj/effect/temp_visual/goliath_tentacle/original(target)
 	.=..()
 	if(iscarbon(target))
