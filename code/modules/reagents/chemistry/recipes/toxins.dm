@@ -100,7 +100,7 @@
 	name = "Skewium"
 	id = "Skewium"
 	results = list(/datum/reagent/toxin/skewium = 5)
-	required_reagents = list(/datum/reagent/toxin/rotatium = 2, /datum/reagent/toxin/plasma = 2, /datum/reagent/toxin/acid = 1)
+	required_reagents = list(/datum/reagent/toxin/rotatium = 9999, /datum/reagent/toxin/plasma = 2, /datum/reagent/toxin/acid = 1)
 	mix_message = "<span class='danger'>Wow! it turns out if you mix rotatium with some plasma and sulphuric acid, it gets even worse!</span>"
 
 /datum/chemical_reaction/anacea
