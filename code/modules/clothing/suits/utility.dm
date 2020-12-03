@@ -127,7 +127,7 @@
 	equip_delay_other = 60
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	resistance_flags = NONE
-	rad_flags = RAD_PROTECT_CONTENTS
+	flags_1 = RAD_PROTECT_CONTENTS_1
 
 /obj/item/clothing/suit/radiation
 	name = "radiation suit"
@@ -146,4 +146,4 @@
 	equip_delay_other = 60
 	flags_inv = HIDEJUMPSUIT
 	resistance_flags = NONE
-	rad_flags = RAD_PROTECT_CONTENTS
+	flags_1 = RAD_PROTECT_CONTENTS_1

@@ -78,6 +78,14 @@
 	result = /obj/item/reagent_containers/food/snacks/burrito
 	subcategory = CAT_MISCFOOD
 
+/datum/crafting_recipe/food/fivelayerburrito
+	name ="Five Layer Burrito"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/burrito = 5
+	)
+	result = /obj/item/reagent_containers/food/snacks/fivelayerburrito
+	subcategory = CAT_MISCFOOD
+
 /datum/crafting_recipe/food/candiedapple
 	name = "Candied Apple"
 	reqs = list(
