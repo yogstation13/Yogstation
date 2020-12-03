@@ -260,7 +260,7 @@
 
 /obj/item/reagent_containers/food/snacks/fivelayerburrito
 	name = "five layer burrito"
-	desc = "5 burritos stacked on top of each other, looks suspiciously like a layer manifold."
+	desc = "Five burritos stacked on top of each other, looks suspiciously like a layer manifold."
 	icon_state = "fivelayerburrito"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 12)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5)
