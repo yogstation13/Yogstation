@@ -1270,7 +1270,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(ismob(usr))
 		var/mob/M = usr
 		if(isobserver(M))
-			var/mob/living/carbon/human/H = new(pick(spawn_locs))
+			var/mob/living/carbon/human/H = new(T)
 			var/datum/preferences/A = new
 			A.copy_to(H)
 			H.dna.update_dna_identity()
