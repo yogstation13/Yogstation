@@ -73,6 +73,8 @@
 	var/nearest_beacon			// the nearest beacon's tag
 	var/turf/nearest_beacon_loc	// the nearest beacon's location
 
+	var/power_stored = BOT_MAX_POWER // steps it can take in a no-power environment before running out of power
+
 	var/beacon_freq = FREQ_NAV_BEACON
 	var/model = "" //The type of bot it is.
 	var/bot_type = 0 //The type of bot it is, for radio control.
@@ -243,7 +245,6 @@
 	return //we use a different hud
 
 /mob/living/simple_animal/bot/handle_automated_action() //Master process which handles code common across most bots.
-	power_use()
 	diag_hud_set_botmode()
 
 	if (ignorelistcleanuptimer % 300 == 0) // Every 300 actions, clean up the ignore list from old junk
@@ -512,6 +513,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 	if(path.len > 1)
 		step_towards(src, path[1])
 		if(get_turf(src) == path[1]) //Successful move
+			power_use() // Use power if we moved
 			increment_path()
 			tries = 0
 		else
@@ -858,12 +860,18 @@ Pass a positive integer as an argument to override a bot's default speed.
 /mob/living/simple_animal/bot/proc/update_icon()
 	icon_state = "[initial(icon_state)][on]"
 
+/// Check if the area is powered, and if not, lose some power
 /mob/living/simple_animal/bot/proc/power_use()
 	var/area/E = get_area(src)
 	var/power = check_power(E)
-	if(!power)
-		turn_off()
+	if(power)
+		power_stored = BOT_MAX_POWER
+	else
+		power_stored--
+		if(!power_stored)
+			turn_off()
 
+/// Is the area powered?
 /mob/living/simple_animal/bot/proc/check_power(var/area/G)
 	var/power
 	if(G.powered(TRUE))
