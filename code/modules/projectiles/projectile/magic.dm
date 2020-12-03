@@ -751,9 +751,6 @@
 	var/boom = 1
 
 /obj/item/projectile/magic/runic_bomb/on_hit(target)
-	if(ismob(target))
-		var/mob/M = target
-		explosion(M, -1, 0, boom, 0, 0)
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
 		ADD_TRAIT(X, TRAIT_NODISMEMBER, type)
@@ -764,7 +761,9 @@
 			REMOVE_TRAIT(X, TRAIT_SLEEPIMMUNE, type)
 			REMOVE_TRAIT(X, TRAIT_STUNIMMUNE, type)
 			X.adjustBruteLoss(-120)
-		explosion(X, -1, 0, boom, 0, 0)
+	if(ismob(target))
+		var/mob/M = target
+		explosion(M, -1, 0, boom, 0, 0)
 
 /obj/item/projectile/magic/runic_toxin
 	name = "Runic Toxin"
