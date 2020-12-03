@@ -77,7 +77,7 @@
 	var/depressurization_margin = 10 // use a lower value to reduce cross-contamination
 	var/depressurization_target = 0 // What to target - should be lower than the depressurization margin
 	var/overlays_hash = null
-	var/skip_delay = 300
+	var/skip_delay = 100
 	var/skip_timer = 0
 	var/is_skipping = FALSE
 
@@ -288,7 +288,6 @@
 		door.unbolt()
 
 /obj/machinery/advanced_airlock_controller/process()
-	. = ..()
 	process_atmos()
 
 /obj/machinery/advanced_airlock_controller/process_atmos()
@@ -590,11 +589,10 @@
 		return ..()
 	return UI_CLOSE
 
-/obj/machinery/advanced_airlock_controller/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/advanced_airlock_controller/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "AdvancedAirlockController", name, 440, 650, master_ui, state)
+		ui = new(user, src, "AdvancedAirlockController", name)
 		ui.open()
 
 /obj/machinery/advanced_airlock_controller/ui_data(mob/user)

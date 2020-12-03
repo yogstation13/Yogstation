@@ -61,7 +61,6 @@
 
 ///Removes runes from the selected turf
 /obj/item/forbidden_book/proc/remove_rune(atom/target,mob/user)
-
 	to_chat(user, "<span class='danger'>You start removing a rune...</span>")
 	if(do_after(user,2 SECONDS, target = target))
 		qdel(target)
@@ -74,7 +73,7 @@
 	if(!ui)
 		icon_state = "book_open"
 		flick("book_opening", src)
-		ui = new(user, src, interface = "ForbiddenLore", title = name)
+		ui = new(user, src, "ForbiddenLore", name)
 		ui.open()
 
 /obj/item/forbidden_book/ui_data(mob/user)

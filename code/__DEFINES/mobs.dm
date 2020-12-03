@@ -162,6 +162,9 @@
 #define MOOD_LEVEL_SAD3 -18
 #define MOOD_LEVEL_SAD4 -25
 
+// Mob Caps
+#define MAX_WALKINGMUSHROOM 50
+
 //Sanity levels for humans
 #define SANITY_GREAT 125
 #define SANITY_NEUTRAL 100
@@ -277,7 +280,7 @@
 #define OFFSET_NECK "neck"
 
 //MINOR TWEAKS/MISC
-#define AGE_MIN				17	//youngest a character can be
+#define AGE_MIN				18	//youngest a character can be
 #define AGE_MAX				85	//oldest a character can be
 #define AGE_MINOR			21  //legal age of space drinking and smoking
 #define WIZARD_AGE_MIN		30	//youngest a wizard can be

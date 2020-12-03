@@ -108,7 +108,9 @@
 		var/y = rand(1, world.maxy)
 		var/z = pick(zlevels)
 		var/random_location = locate(x,y,z)
-
+		
+		if(istype(get_area(random_location), /area/mine/laborcamp))
+			continue
 		if(!isfloorturf(random_location))
 			continue
 		var/turf/open/floor/F = random_location

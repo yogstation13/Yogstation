@@ -280,6 +280,65 @@
 
 		breath.adjust_moles(/datum/gas/nitryl, -gas_breathed)
 
+// Freon
+		var/freon_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/freon))
+		if (prob(freon_pp))
+			to_chat(H, "<span class='alert'>Your mouth feels like it's burning!</span>")
+		if (freon_pp >40)
+			H.emote("gasp")
+			H.adjustFireLoss(15)
+			if (prob(freon_pp/2))
+				to_chat(H, "<span class='alert'>Your throat closes up!</span>")
+				H.silent = max(H.silent, 3)
+		else
+			H.adjustFireLoss(freon_pp/4)
+		gas_breathed = breath.get_moles(/datum/gas/freon)
+		if (gas_breathed > gas_stimulation_min)
+			H.reagents.add_reagent(/datum/reagent/freon,1)
+
+		breath.adjust_moles(/datum/gas/freon, -gas_breathed)
+
+	// Healium
+		var/healium_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/healium))
+		if(healium_pp > gas_stimulation_min)
+			var/existing = H.reagents.get_reagent_amount(/datum/reagent/healium)
+			H.reagents.add_reagent(/datum/reagent/healium,max(0, 1 - existing))
+			H.adjustFireLoss(-7)
+			H.adjustToxLoss(-5)
+			H.adjustBruteLoss(-5)
+		gas_breathed = breath.get_moles(/datum/gas/healium)
+		breath.adjust_moles(/datum/gas/healium, -gas_breathed)
+
+	// Pluonium
+		// Inert
+
+	// Zauker
+		var/zauker_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/zauker))
+		if(zauker_pp > gas_stimulation_min)
+			H.adjustBruteLoss(25)
+			H.adjustOxyLoss(5)
+			H.adjustFireLoss(8)
+			H.adjustToxLoss(8)
+		gas_breathed = breath.get_moles(/datum/gas/zauker)
+		breath.adjust_moles(/datum/gas/zauker, -gas_breathed)
+
+	// Halon
+		var/halon_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/halon))
+		if(halon_pp > gas_stimulation_min)
+			H.adjustOxyLoss(5)
+			var/existing = H.reagents.get_reagent_amount(/datum/reagent/halon)
+			H.reagents.add_reagent(/datum/reagent/halon,max(0, 1 - existing))
+		gas_breathed = breath.get_moles(/datum/gas/halon)
+		breath.adjust_moles(/datum/gas/halon, -gas_breathed)
+
+	// Hexane
+		var/hexane_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/hexane))
+		if(hexane_pp > gas_stimulation_min)
+			H.hallucination += 50
+			H.reagents.add_reagent(/datum/reagent/hexane,5)
+			if(prob(33))
+				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
+
 	// Stimulum
 		gas_breathed = breath.get_moles(/datum/gas/stimulum)
 		if (gas_breathed > gas_stimulation_min)

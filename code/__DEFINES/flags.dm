@@ -43,6 +43,12 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define INITIALIZED_1				(1<<14)
 /// was this spawned by an admin? used for stat tracking stuff.
 #define ADMIN_SPAWNED_1			    (1<<15)
+/// should not get harmed if this gets caught by an explosion?
+#define PREVENT_CONTENTS_EXPLOSION_1 (1<<16)
+/// should the contents of this atom be acted upon
+#define RAD_PROTECT_CONTENTS_1 (1 << 17)
+/// should this object be allowed to be contaminated
+#define RAD_NO_CONTAMINATE_1 (1 << 18)
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
@@ -99,7 +105,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define TESLA_MOB_DAMAGE			(1<<3)
 #define TESLA_MOB_STUN				(1<<4)
 
-#define TESLA_DEFAULT_FLAGS ALL
+#define TESLA_DEFAULT_FLAGS TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_MOB_STUN | TESLA_MACHINE_EXPLOSIVE
 #define TESLA_FUSION_FLAGS TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_MOB_STUN
 
 //EMP protection
@@ -126,10 +132,6 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define MOBILITY_FLAGS_DEFAULT (MOBILITY_MOVE | MOBILITY_STAND | MOBILITY_PICKUP | MOBILITY_USE | MOBILITY_UI | MOBILITY_STORAGE | MOBILITY_PULL)
 #define MOBILITY_FLAGS_INTERACTION (MOBILITY_USE | MOBILITY_PICKUP | MOBILITY_UI | MOBILITY_STORAGE)
 
-// radiation
-#define RAD_PROTECT_CONTENTS 	(1<<0)
-#define RAD_NO_CONTAMINATE 		(1<<1)
-
 //alternate appearance flags
 #define AA_TARGET_SEE_APPEARANCE 	(1<<0)
 #define AA_MATCH_TARGET_OVERLAYS 	(1<<1)
@@ -138,3 +140,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define RELIGION_TOOL_INVOKE 		(1<<0)
 #define RELIGION_TOOL_SACRIFICE 	(1<<1)
 #define RELIGION_TOOL_SECTSELECT 	(1<<2)
+
+#define NSCOMPONENT(d)   (d&(NORTH|SOUTH))
+
+/// 33554431 (2^24 - 1) is the maximum value our bitflags can reach.
+#define MAX_BITFLAG_DIGITS 8

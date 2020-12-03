@@ -7,9 +7,9 @@
 	closingLayer = ABOVE_WINDOW_LAYER
 	resistance_flags = ACID_PROOF
 	var/base_state = "left"
-	max_integrity = 150 //If you change this, consider changing ../door/window/brigdoor/ max_integrity at the bottom of this .dm file
+	max_integrity = 200 //If you change this, consider changing ../door/window/brigdoor/ max_integrity at the bottom of this .dm file
 	integrity_failure = 0
-	armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
+	armor = list("melee" = 60, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
 	visible = FALSE
 	flags_1 = ON_BORDER_1
 	opacity = 0
@@ -344,12 +344,26 @@
 		if("touch")
 			INVOKE_ASYNC(src, .proc/open_and_close)
 
+/obj/machinery/door/window/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
+	switch(the_rcd.mode)
+		if(RCD_DECONSTRUCT)
+			return list("mode" = RCD_DECONSTRUCT, "delay" = 50, "cost" = 32)
+	return FALSE
+
+/obj/machinery/door/window/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
+	switch(passed_mode)
+		if(RCD_DECONSTRUCT)
+			to_chat(user, "<span class='notice'>You deconstruct the windoor.</span>")
+			qdel(src)
+			return TRUE
+	return FALSE
+
 /obj/machinery/door/window/brigdoor
 	name = "secure door"
 	icon_state = "leftsecure"
 	base_state = "leftsecure"
 	var/id = null
-	max_integrity = 300 //Stronger doors for prison (regular window door health is 200)
+	max_integrity = 350 //Stronger doors for prison (regular window door health is 200)
 	reinf = 1
 	explosion_block = 1
 

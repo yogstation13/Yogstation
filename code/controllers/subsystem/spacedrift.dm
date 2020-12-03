@@ -8,8 +8,9 @@ SUBSYSTEM_DEF(spacedrift)
 	var/list/currentrun = list()
 	var/list/processing = list()
 
-/datum/controller/subsystem/spacedrift/stat_entry()
-	return ..("P:[processing.len]")
+/datum/controller/subsystem/spacedrift/stat_entry(msg)
+	msg = "P:[length(processing)]"
+	return ..()
 
 
 /datum/controller/subsystem/spacedrift/fire(resumed = 0)
@@ -57,4 +58,3 @@ SUBSYSTEM_DEF(spacedrift)
 		AM.inertia_last_loc = AM.loc
 		if (MC_TICK_CHECK)
 			return
-

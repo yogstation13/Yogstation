@@ -70,7 +70,7 @@
 	integrity_failure = 80
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30)
 	resistance_flags = FIRE_PROOF
-	
+
 	FASTDMM_PROP(\
 		set_instance_vars(\
 			pixel_x = (dir & 3)? INSTANCE_VAR_DEFAULT : (dir == 4 ? -24 : 24),\
@@ -107,7 +107,14 @@
 		/datum/gas/stimulum			= new/datum/tlv(-1, -1, 1000, 1000), // Stimulum has only positive effects
 		/datum/gas/nitryl			= new/datum/tlv/dangerous,
 		/datum/gas/dilithium		= new/datum/tlv/dangerous,//Yogs -- Dilithium
-		/datum/gas/pluoxium			= new/datum/tlv(-1, -1, 1000, 1000) // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		/datum/gas/pluoxium			= new/datum/tlv(-1, -1, 1000, 1000), // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		/datum/gas/freon			= new/datum/tlv/dangerous,
+		/datum/gas/hydrogen			= new/datum/tlv/dangerous,
+		/datum/gas/healium			= new/datum/tlv/dangerous,
+		/datum/gas/pluonium	= new/datum/tlv/dangerous,
+		/datum/gas/zauker			= new/datum/tlv/dangerous,	
+		/datum/gas/halon			= new/datum/tlv/dangerous,
+		/datum/gas/hexane			= new/datum/tlv/dangerous
 	)
 
 /obj/machinery/airalarm/server // No checks here.
@@ -127,7 +134,13 @@
 		/datum/gas/stimulum			= new/datum/tlv/no_checks,
 		/datum/gas/nitryl			= new/datum/tlv/no_checks,
 		/datum/gas/dilithium		= new/datum/tlv/no_checks,//Yogs -- Dilithium
-		/datum/gas/pluoxium			= new/datum/tlv/no_checks
+		/datum/gas/pluoxium			= new/datum/tlv/no_checks,
+		/datum/gas/freon			= new/datum/tlv/no_checks,
+		/datum/gas/hydrogen			= new/datum/tlv/no_checks,
+		/datum/gas/healium			= new/datum/tlv/dangerous,
+		/datum/gas/pluonium	= new/datum/tlv/dangerous,
+		/datum/gas/halon			= new/datum/tlv/dangerous,
+		/datum/gas/hexane			= new/datum/tlv/dangerous
 	)
 
 /obj/machinery/airalarm/kitchen_cold_room // Kitchen cold rooms start off at -80°C or 193.15°K.
@@ -147,7 +160,14 @@
 		/datum/gas/stimulum			= new/datum/tlv(-1, -1, 1000, 1000), // Stimulum has only positive effects
 		/datum/gas/nitryl			= new/datum/tlv/dangerous,
 		/datum/gas/dilithium		= new/datum/tlv/dangerous,//Yogs -- Dilithium
-		/datum/gas/pluoxium			= new/datum/tlv(-1, -1, 1000, 1000) // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		/datum/gas/pluoxium			= new/datum/tlv(-1, -1, 1000, 1000), // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		/datum/gas/freon			= new/datum/tlv/dangerous,
+		/datum/gas/hydrogen			= new/datum/tlv/dangerous,
+		/datum/gas/healium			= new/datum/tlv/dangerous,
+		/datum/gas/pluonium	= new/datum/tlv/dangerous,
+		/datum/gas/zauker			= new/datum/tlv/dangerous,
+		/datum/gas/halon			= new/datum/tlv/dangerous,
+		/datum/gas/hexane			= new/datum/tlv/dangerous
 	)
 
 /obj/machinery/airalarm/unlocked
@@ -245,11 +265,10 @@
 		return ..()
 	return UI_CLOSE
 
-/obj/machinery/airalarm/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/airalarm/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "AirAlarm", name, 440, 650, master_ui, state)
+		ui = new(user, src, "AirAlarm", name)
 		ui.open()
 
 /obj/machinery/airalarm/ui_data(mob/user)
@@ -535,7 +554,14 @@
 						/datum/gas/bz,
 						/datum/gas/stimulum,
 						/datum/gas/pluoxium,//yogs comma
-						/datum/gas/dilithium//Yogs -- Adds Dilithium
+						/datum/gas/dilithium,//Yogs -- Adds Dilithium
+						/datum/gas/freon,
+						/datum/gas/hydrogen,
+						/datum/gas/healium,
+						/datum/gas/pluonium,
+						/datum/gas/zauker,
+						/datum/gas/halon,
+						/datum/gas/hexane
 					),
 					"scrubbing" = 1,
 					"widenet" = 1
@@ -790,6 +816,21 @@
 		return
 	else
 		togglelock(user)
+
+/obj/machinery/airalarm/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
+	if((buildstage == 0) && (the_rcd.upgrade & RCD_UPGRADE_SIMPLE_CIRCUITS))
+		return list("mode" = RCD_UPGRADE_SIMPLE_CIRCUITS, "delay" = 20, "cost" = 1)	
+	return FALSE
+
+/obj/machinery/airalarm/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
+	switch(passed_mode)
+		if(RCD_UPGRADE_SIMPLE_CIRCUITS)
+			user.visible_message("<span class='notice'>[user] fabricates a circuit and places it into [src].</span>", \
+			"<span class='notice'>You adapt an air alarm circuit and slot it into the assembly.</span>")
+			buildstage = 1
+			update_icon()
+			return TRUE
+	return FALSE
 
 /obj/machinery/airalarm/proc/togglelock(mob/living/user)
 	if(stat & (NOPOWER|BROKEN))

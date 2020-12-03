@@ -11,7 +11,7 @@
 //     but overall network volume is also increased as this increases...
 
 /obj/machinery/atmospherics/components/binary/volume_pump
-	icon_state = "volpump_map-2"
+	icon_state = "volpump_map-3"
 	name = "volumetric gas pump"
 	desc = "A pump that moves gas by volume."
 
@@ -45,7 +45,7 @@
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/volume_pump/update_icon_nopipes()
-	icon_state = on && is_operational() ? "volpump_on" : "volpump_off"
+	icon_state = on && is_operational() ? "volpump_on-[set_overlay_offset(piping_layer)]" : "volpump_off-[set_overlay_offset(piping_layer)]"
 
 /obj/machinery/atmospherics/components/binary/volume_pump/process_atmos()
 //	..()
@@ -106,11 +106,10 @@
 	))
 	radio_connection.post_signal(src, signal)
 
-/obj/machinery/atmospherics/components/binary/volume_pump/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-																		datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/atmospherics/components/binary/volume_pump/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "AtmosPump", name, 310, 115, master_ui, state)
+		ui = new(user, src, "AtmosPump", name)
 		ui.open()
 
 /obj/machinery/atmospherics/components/binary/volume_pump/ui_data()
@@ -196,22 +195,22 @@
 
 // mapping
 
-/obj/machinery/atmospherics/components/binary/volume_pump/layer1
-	piping_layer = 1
-	icon_state = "volpump_map-1"
+/obj/machinery/atmospherics/components/binary/volume_pump/layer2
+	piping_layer = 2
+	icon_state = "volpump_map-2"
 
-/obj/machinery/atmospherics/components/binary/volume_pump/layer3
-	piping_layer = 3
-	icon_state = "volpump_map-3"
+/obj/machinery/atmospherics/components/binary/volume_pump/layer4
+	piping_layer = 4
+	icon_state = "volpump_map-4"
 
 /obj/machinery/atmospherics/components/binary/volume_pump/on
 	on = TRUE
 	icon_state = "volpump_on_map"
 
-/obj/machinery/atmospherics/components/binary/volume_pump/on/layer1
-	piping_layer = 1
-	icon_state = "volpump_map-1"
+/obj/machinery/atmospherics/components/binary/volume_pump/on/layer2
+	piping_layer = 2
+	icon_state = "volpump_map-2"
 
-/obj/machinery/atmospherics/components/binary/volume_pump/on/layer3
-	piping_layer = 3
-	icon_state = "volpump_map-3"
+/obj/machinery/atmospherics/components/binary/volume_pump/on/layer4
+	piping_layer = 4
+	icon_state = "volpump_map-4"

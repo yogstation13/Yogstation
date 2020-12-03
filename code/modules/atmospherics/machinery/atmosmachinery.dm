@@ -63,6 +63,9 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		nullifyNode(i)
 
 	SSair.atmos_machinery -= src
+	if(SSair.currentpart == SSAIR_ATMOSMACHINERY)
+		SSair.currentrun -= src
+	SSair.pipenets_needing_rebuilt -= src
 
 	dropContents()
 	if(pipe_vision_img)
@@ -119,6 +122,10 @@ GLOBAL_LIST_EMPTY(pipeimages)
 /obj/machinery/atmospherics/proc/setPipingLayer(new_layer)
 	piping_layer = (pipe_flags & PIPING_DEFAULT_LAYER_ONLY) ? PIPING_LAYER_DEFAULT : new_layer
 	update_icon()
+
+/obj/machinery/atmospherics/update_icon()
+	layer = initial(layer) + piping_layer / 1000
+	return ..()
 
 /obj/machinery/atmospherics/proc/can_be_node(obj/machinery/atmospherics/target, iteration)
 	return connection_check(target, piping_layer)
@@ -244,7 +251,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 			transfer_fingerprints_to(stored)
 	..()
 
-/obj/machinery/atmospherics/proc/getpipeimage(iconset, iconstate, direction, col=rgb(255,255,255), piping_layer=2)
+/obj/machinery/atmospherics/proc/getpipeimage(iconset, iconstate, direction, col=rgb(255,255,255), piping_layer=3, trinary = FALSE)
 
 	//Add identifiers for the iconset
 	if(GLOB.iconsetids[iconset] == null)
@@ -258,6 +265,8 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		pipe_overlay = . = GLOB.pipeimages[identifier] = image(iconset, iconstate, dir = direction)
 		pipe_overlay.color = col
 		PIPING_LAYER_SHIFT(pipe_overlay, piping_layer)
+		if(trinary == TRUE && (piping_layer == 1 || piping_layer == 5))
+			PIPING_FORWARD_SHIFT(pipe_overlay, piping_layer, 2)
 
 /obj/machinery/atmospherics/on_construction(obj_color, set_layer)
 	if(can_unwrench)

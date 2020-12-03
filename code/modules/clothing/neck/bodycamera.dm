@@ -57,7 +57,7 @@
 /obj/item/clothing/neck/bodycam/update_icon()
 	..()
 	var/suffix = "off"
-	if (bodcam.status)
+	if(bodcam.status)
 		suffix = "on"
 	icon_state = "[prefix]_bodycam_[suffix]"
 	item_state = "[prefix]_bodycam_[suffix]"
@@ -102,7 +102,7 @@
 /obj/item/clothing/neck/bodycam/proc/Disconnect()//this handles what happens when your camera disconnects
 	bodcam.status = FALSE
 	bodcam.built_in = null
-	if (listeningTo)
+	if(listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 		listeningTo = null
 
@@ -111,11 +111,12 @@
 	getMobhook(user)
 
 /obj/item/clothing/neck/bodycam/dropped(mob/wearer)
+	if(bodcam)
+		if(bodcam.status)//if it's on
+			attack_self(wearer) //turn it off
+		GLOB.cameranet.updatePortableCamera(bodcam)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 	..()
-	if (bodcam.status)//if it's on
-		attack_self(wearer) //turn it off
-	GLOB.cameranet.updatePortableCamera(bodcam)
-	UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 
 /obj/item/clothing/neck/bodycam/proc/getMobhook(mob/to_hook) //This stuff is basically copypasta from RCL.dm, look there if you are confused
 	bodcam.built_in = to_hook
@@ -127,7 +128,7 @@
 	RegisterSignal(listeningTo, COMSIG_MOVABLE_MOVED, .proc/trigger)
 
 /obj/item/clothing/neck/bodycam/proc/trigger(mob/user)
-	if (!bodcam.status)//this is a safety in case of some fucky wucky shit. This SHOULD not ever be true but sometimes it is anyway :(
+	if(!bodcam.status)//this is a safety in case of some fucky wucky shit. This SHOULD not ever be true but sometimes it is anyway :(
 		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 		listeningTo = null
 	GLOB.cameranet.updatePortableCamera(bodcam)
