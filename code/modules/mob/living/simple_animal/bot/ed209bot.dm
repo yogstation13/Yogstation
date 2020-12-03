@@ -448,6 +448,7 @@ Auto Patrol[]"},
 	if(!projectile)
 		return
 
+	power_use(2) // power_use in bot.dm
 	var/obj/item/projectile/A = new projectile (loc)
 	playsound(src, shoot_sound, 50, TRUE)
 	A.preparePixelProjectile(target, src)

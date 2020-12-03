@@ -169,12 +169,14 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 		if (!spam_flag)
 			playsound(src, honksound, 50, TRUE, -1)
 			spam_flag = TRUE //prevent spam
+			power_use(1) // power_use in bot.dm
 			sensor_blink()
 			addtimer(CALLBACK(src, .proc/spam_flag_false), cooldowntimehorn)
 	else if (emagged == 2) //emagged honkbots will spam short and memorable sounds.
 		if (!spam_flag)
 			playsound(src, "honkbot_e", 50, 0)
 			spam_flag = TRUE // prevent spam
+			power_use(1) // power_use in bot.dm
 			icon_state = "honkbot-e"
 			addtimer(CALLBACK(src, .proc/update_icon), 30, TIMER_OVERRIDE|TIMER_UNIQUE)
 		addtimer(CALLBACK(src, .proc/spam_flag_false), cooldowntimehorn)
@@ -182,6 +184,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 /mob/living/simple_animal/bot/honkbot/proc/honk_attack(mob/living/carbon/C) // horn attack
 	if(!spam_flag)
 		playsound(loc, honksound, 50, TRUE, -1)
+		power_use(1) // power_use in bot.dm
 		spam_flag = TRUE // prevent spam
 		sensor_blink()
 		addtimer(CALLBACK(src, .proc/spam_flag_false), cooldowntimehorn)
@@ -189,6 +192,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 /mob/living/simple_animal/bot/honkbot/proc/stun_attack(mob/living/carbon/C) // airhorn stun
 	if(!spam_flag)
 		playsound(src, 'sound/items/AirHorn.ogg', 100, TRUE, -1) //HEEEEEEEEEEEENK!!
+		power_use(3) // power_use in bot.dm
 		sensor_blink()
 	if(spam_flag == 0)
 		if(ishuman(C))

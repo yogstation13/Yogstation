@@ -227,6 +227,7 @@ Auto Patrol: []"},
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
 		if((!C.IsParalyzed() || arrest_type) && stuncount < 30)
+			power_use(2) // power_use in bot.dm
 			stun_attack(A)
 			if(lastStunned && lastStunned == A)
 				stuncount++
@@ -235,6 +236,7 @@ Auto Patrol: []"},
 			lastStunned = A
 		else if(C.canBeHandcuffed() && !C.handcuffed)
 			stuncount = 0
+			power_use(1) // power_use in bot.dm
 			cuff(A)
 	else
 		..()

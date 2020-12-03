@@ -278,6 +278,9 @@
 	..()
 
 /mob/living/simple_animal/bot/firebot/proc/spray_water(atom/target, mob/user)
+
+	power_use(1) // power_use in bot.dm
+
 	if(stationary_mode)
 		flick("firebots_use", user)
 	else

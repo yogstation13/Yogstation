@@ -209,6 +209,7 @@
 	target_types = typecacheof(target_types)
 
 /mob/living/simple_animal/bot/cleanbot/UnarmedAttack(atom/A)
+	power_use(1) // power_use in bot.dm
 	if(is_cleanable(A))
 		icon_state = "cleanbot-c"
 		mode = BOT_CLEANING

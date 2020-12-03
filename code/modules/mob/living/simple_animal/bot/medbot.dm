@@ -632,6 +632,7 @@
 					log_combat(src, patient, "injected", "internal synthesizer", "[reagent_id]:[injection_amount]")
 				C.visible_message("<span class='danger'>[src] injects [patient] with its syringe!</span>", \
 					"<span class='userdanger'>[src] injects you with its syringe!</span>")
+				power_use(5) // power_use in bot.dm
 			else
 				failed = TRUE
 		else
@@ -678,6 +679,7 @@
 		return
 	var/area/location = get_area(src)
 	speak("Medical emergency! [crit_patient || "A patient"] is in critical condition at [location]!",radio_channel)
+	power_use(1) // power_use in bot.dm
 	declare_cooldown = world.time + 200
 
 /obj/machinery/bot_core/medbot

@@ -308,6 +308,8 @@
 
 /mob/living/simple_animal/bot/floorbot/proc/repair(turf/target_turf)
 
+	power_use(1) // power_use in bot.dm
+	
 	if(isspaceturf(target_turf))
 		 //Must be a hull breach or in line mode to continue.
 		if(!is_hull_breach(target_turf) && !targetdirection)

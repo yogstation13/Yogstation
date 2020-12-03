@@ -513,7 +513,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 	if(path.len > 1)
 		step_towards(src, path[1])
 		if(get_turf(src) == path[1]) //Successful move
-			power_use() // Use power if we moved
+			power_use(1) // Use power if we moved
 			increment_path()
 			tries = 0
 		else
@@ -861,14 +861,14 @@ Pass a positive integer as an argument to override a bot's default speed.
 	icon_state = "[initial(icon_state)][on]"
 
 /// Check if the area is powered, and if not, lose some power
-/mob/living/simple_animal/bot/proc/power_use()
+/mob/living/simple_animal/bot/proc/power_use(var/energy) // e.g. power_use(5) if you want to remove 5 power on an unsuccessful power check
 	var/area/E = get_area(src)
 	var/power = check_power(E)
 	if(power)
 		power_stored = BOT_MAX_POWER
 	else
-		power_stored--
-		if(!power_stored)
+		power_stored -= energy
+		if(power_stored <= 0)
 			turn_off()
 
 /// Is the area powered?
