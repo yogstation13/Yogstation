@@ -44,9 +44,9 @@
 /mob/living/simple_animal/hostile/asteroid/goldgrub/GiveTarget(new_target)
 	target = new_target
 	if(target != null)
-		else if(isliving(target))
 		if(istype(target, /obj/item/stack/ore) && loot.len < max_loot)
 			visible_message("<span class='notice'>\The [name] looks at \the [target.name] with hungry eyes.</span>")
+		else if(iscarbon(target) || issilicon(target))
 			Aggro()
 			visible_message("<span class='danger'>\The [name] tries to flee from \the [target.name]!</span>")
 			retreat_distance = 10
