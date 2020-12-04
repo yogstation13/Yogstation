@@ -1,0 +1,5 @@
+author: " Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Anti-magic now works correctly against arcane barrage, spellblade, and more!"
+  - bugfix: "Runic bombs no longer double-explode when the target is a carbon."
