@@ -32,6 +32,7 @@
 
 	var/chase_time = 100
 	var/will_burrow = TRUE
+	var/max_loot = 15 // The maximum amount of ore that can be stored in this thing's gut
 
 /mob/living/simple_animal/hostile/asteroid/goldgrub/Initialize()
 	. = ..()
@@ -43,7 +44,6 @@
 /mob/living/simple_animal/hostile/asteroid/goldgrub/GiveTarget(new_target)
 	target = new_target
 	if(target != null)
-		if(istype(target, /obj/item/stack/ore) && loot.len < 10)
 			visible_message("<span class='notice'>The [name] looks at [target.name] with hungry eyes.</span>")
 		else if(isliving(target))
 			Aggro()
@@ -61,7 +61,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/goldgrub/proc/EatOre(atom/targeted_ore)
 	for(var/obj/item/stack/ore/O in get_turf(targeted_ore))
-		if(length(loot) < 10)
+		if(length(loot) < max_loot)
 			var/using = min(10 - length(loot), O.amount)
 			for(var/i in 1 to using)
 				loot += O.type
