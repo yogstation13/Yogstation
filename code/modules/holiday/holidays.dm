@@ -561,7 +561,8 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=nytpYtLtHpE", // Youre a Mean One, Mr. Grinch
 		"https://www.youtube.com/watch?v=jCjrcjFGQCA", // Frosty The Snowman
 		"https://www.youtube.com/watch?v=oyEyMjdD2uk", // Twelve Days of Christmas
-		"https://www.youtube.com/watch?v=Dkq3LD-4pmM", // Michael Bublé - Holly Jolly Christmas
+		"https://www.youtube.com/watch?v=Dkq3LD-4pmM",  // Michael Bublé - Holly Jolly Christmas
+		"https://www.youtube.com/watch?v=noMhM1CjM78",	// Christopher Lee - Silent Night
 		"https://www.youtube.com/watch?v=kfZtNVEqsBs"  // Christopher Lee - Jingle Hell
 		)
 
