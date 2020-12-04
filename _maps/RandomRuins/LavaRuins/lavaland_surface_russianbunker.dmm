@@ -991,14 +991,6 @@
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
-"MC" = (
-/obj/effect/mine/gas/plasma,
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/pod,
-/area/ruin/unpowered{
-	name = "\improper Russian Bunker";
-	noteleport = 1
-	})
 "MU" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
@@ -1762,11 +1754,11 @@ hU
 ZP
 hU
 GM
-js
+aY
 YQ
 aY
 GM
-MC
+QJ
 Sw
 pP
 DQ
