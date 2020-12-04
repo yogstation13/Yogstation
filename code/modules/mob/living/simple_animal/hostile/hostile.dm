@@ -137,7 +137,7 @@
 			if(can_see(targets_from, HM, vision_range))
 				. += HM
 	else
-		. = list() // The following code is only very slightly slower than just returning oview(vision_range, targets_from), but it saves us much more work down the line, particularly when bees are involved
+		. = list()
 		for (var/atom/movable/A in oview(vision_range, targets_from))
 			. += A
 
