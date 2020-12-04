@@ -162,6 +162,9 @@
 #define MOOD_LEVEL_SAD3 -18
 #define MOOD_LEVEL_SAD4 -25
 
+// Mob Caps
+#define MAX_WALKINGMUSHROOM 50
+
 //Sanity levels for humans
 #define SANITY_GREAT 125
 #define SANITY_NEUTRAL 100

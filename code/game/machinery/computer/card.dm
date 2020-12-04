@@ -323,7 +323,6 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		dat = list("<tt>", header.Join(), body, "<hr><br></tt>")
 	var/datum/browser/popup = new(user, "id_com", src.name, 900, 620)
 	popup.set_content(dat.Join())
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/computer/card/Topic(href, href_list)
@@ -416,9 +415,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 						updateUsrDialog()
 						return
 					if(!isnull(modify.registered_age) && modify.registered_age < jobdatum.minimal_character_age)
-						to_chat(usr, "<span class='warning'>This individual is too young to hold that Job, per Nanotrasen guidelines. Job assignment aborted!</span>")
-						updateUsrDialog()
-						return
+						to_chat(usr, "<span class='warning'>This individual is too young to hold that Job, per Nanotrasen guidelines. Suggest aborting Job Assignment!</span>")
 					if(modify.registered_account)
 						modify.registered_account.account_job = jobdatum // this is a terrible idea and people will grief but sure whatever
 

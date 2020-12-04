@@ -94,7 +94,7 @@
 
   /*
   change_appearance: Changes a skin of the cardboard cutout based on a user's choice
-  
+
   Arguments:
   crayon : The crayon used to change and recolor the cardboard cutout
   user : The mob choosing a skin of the cardboard cutout
@@ -202,7 +202,7 @@
 
   /*
   check_menu: Checks if we are allowed to interact with a radial menu
-  
+
   Arguments:
   user : The mob interacting with a menu
   crayon : The crayon used to interact with a menu
@@ -230,3 +230,63 @@
 
 /obj/item/cardboard_cutout/adaptive //Purchased by Syndicate agents, these cutouts are indistinguishable from normal cutouts but aren't discolored when their appearance is changed
 	deceptive = TRUE
+
+/obj/item/cardboard_cutout/chess
+	color = null
+	var/team = ""
+	icon = 'icons/obj/chess.dmi'
+	pixel_y = 5
+
+/obj/item/cardboard_cutout/chess/white
+	team = "white"
+
+/obj/item/cardboard_cutout/chess/white/pawn
+	icon_state = "white_pawn"
+	name = "White Pawn"
+
+/obj/item/cardboard_cutout/chess/white/rook
+	icon_state = "white_rook"
+	name = "White Rook"
+
+/obj/item/cardboard_cutout/chess/white/knight
+	icon_state = "white_knight"
+	name = "White Knight"
+
+/obj/item/cardboard_cutout/chess/white/bishop
+	icon_state = "white_bishop"
+	name = "White Bishop"
+
+/obj/item/cardboard_cutout/chess/white/queen
+	icon_state = "white_queen"
+	name = "White Queen"
+
+/obj/item/cardboard_cutout/chess/white/king
+	icon_state = "white_king"
+	name = "White King"
+
+/obj/item/cardboard_cutout/chess/black
+	team = "black"
+
+/obj/item/cardboard_cutout/chess/black/pawn
+	icon_state = "black_pawn"
+	name = "Black Pawn"
+
+/obj/item/cardboard_cutout/chess/black/rook
+	icon_state = "black_rook"
+	name = "Black Rook"
+
+/obj/item/cardboard_cutout/chess/black/knight
+	icon_state = "black_knight"
+	name = "Black Knight"
+
+/obj/item/cardboard_cutout/chess/black/bishop
+	icon_state = "black_bishop"
+	name = "Black Bishop"
+
+/obj/item/cardboard_cutout/chess/black/queen
+	icon_state = "black_queen"
+	name = "Black Queen"
+
+/obj/item/cardboard_cutout/chess/black/king
+	icon_state = "black_king"
+	name = "Black King"

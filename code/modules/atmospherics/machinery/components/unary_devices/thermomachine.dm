@@ -94,16 +94,18 @@
 	SetInitDirections()
 	var/obj/machinery/atmospherics/node = nodes[1]
 	if(node)
-		node.disconnect(src)
+		if(src in node.nodes) //Only if it's actually connected. On-pipe version would is one-sided.
+			node.disconnect(src)
 		nodes[1] = null
-	nullifyPipenet(parents[1])
+	if(parents[1])
+		nullifyPipenet(parents[1])
 
 	atmosinit()
 	node = nodes[1]
 	if(node)
 		node.atmosinit()
 		node.addMember(src)
-	build_network()
+	SSair.add_to_rebuild_queue(src)
 	return TRUE
 
 /obj/machinery/atmospherics/components/unary/thermomachine/ui_status(mob/user)

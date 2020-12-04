@@ -18,7 +18,7 @@
 	throwforce = 1
 	throw_speed = 1
 	throw_range = 1
-	materials = list(MAT_METAL=750)
+	materials = list(/datum/material/iron=750)
 	///amount of power consumed by the harvester, incremented every tick and reset every budget cycle
 	var/accumulated_power = 0
 	///stores last REALTIMEOFDAY tick. SSEconomy runs off of that, don't see why this one shouldn't too

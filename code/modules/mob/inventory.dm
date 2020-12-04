@@ -444,7 +444,7 @@
 
 /mob/verb/quick_equip()
 	set name = "quick-equip"
-	set hidden = 1
+	set hidden = TRUE
 
 	var/obj/item/I = get_active_held_item()
 	if (I)

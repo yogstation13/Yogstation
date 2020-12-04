@@ -69,3 +69,9 @@
 	reward = 4500
 	required_count = 3
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_leaf)
+
+/datum/bounty/item/mining/goldgrubguts
+	name = "Gold Grub Guts"
+	description = "Guts from the elusive species known as 'Gold Grubs' are rumored to have very potent healing effects. Ship a pile of them over for study."
+	reward = 7500
+	wanted_types = list(/obj/item/goldgrubguts)

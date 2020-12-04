@@ -34,6 +34,8 @@
 	return
 
 /mob/dead/new_player/proc/new_player_panel()
+	var/datum/asset/asset_datum = get_asset_datum(/datum/asset/simple/lobby)
+	asset_datum.send(client)
 	var/output = "<center><p><a href='byond://?src=[REF(src)];show_preferences=1'>Setup Character</a></p>"
 
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
@@ -83,7 +85,6 @@
 
 	output += "</center>"
 
-	//src << browse(output,"window=playersetup;size=210x240;can_close=0")
 	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>New Player Options</div>", 250, 265)
 	popup.set_window_options("can_close=0")
 	popup.set_content(output)
@@ -304,6 +305,7 @@
 	if(observer.client && observer.client.prefs)
 		observer.real_name = observer.client.prefs.real_name
 		observer.name = observer.real_name
+		observer.client.init_verbs()
 	observer.update_icon()
 	observer.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 	QDEL_NULL(mind)
@@ -396,7 +398,7 @@
 		character.update_parallax_teleport()
 
 	SSticker.minds += character.mind
-
+	character.client.init_verbs() // init verbs for the late join
 	var/mob/living/carbon/human/humanc
 	if(ishuman(character))
 		humanc = character	//Let's retypecast the var to be human,
@@ -506,14 +508,6 @@
 		client.prefs.random_character()
 		client.prefs.real_name = client.prefs.pref_species.random_name(gender,1)
 	client.prefs.copy_to(H)
-
-	if(client.prefs.mulligan && mind.special_role) // Handle roundstart traitor mulligan
-		var/datum/preferences/mulligan_prefs = new /datum/preferences
-		mulligan_prefs.random_character()
-		mulligan_prefs.real_name = mulligan_prefs.pref_species.random_name(gender,1)
-		mulligan_prefs.copy_to(H)
-		qdel(mulligan_prefs)
-	
 	H.dna.update_dna_identity()
 	if(mind)
 		if(mind.assigned_role)
@@ -529,7 +523,7 @@
 		mind.transfer_to(H)					//won't transfer key since the mind is not active
 
 	H.name = real_name
-
+	client.init_verbs()
 	. = H
 	new_character = .
 	if(transfer_after)

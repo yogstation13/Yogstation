@@ -12,7 +12,7 @@
 /client/proc/centcom_podlauncher() //Creates a verb for admins to open up the ui
 	set name = "Config/Launch Supplypod"
 	set desc = "Configure and launch a Centcom supplypod full of whatever your heart desires!"
-	set category = "Fun"
+	set category = "Misc"
 	if(!check_rights(R_FUN))
 		return
 	var/datum/centcom_podlauncher/plaunch  = new(usr)//create the datum
