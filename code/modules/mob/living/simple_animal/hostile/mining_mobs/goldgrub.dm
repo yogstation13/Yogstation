@@ -36,9 +36,9 @@
 
 /mob/living/simple_animal/hostile/asteroid/goldgrub/Initialize()
 	. = ..()
-	var/i = rand(1,3)
+	var/i = rand(1,length(initial(wanted_objects)) - 1)
 	while(i)
-		loot += pick(/obj/item/stack/ore/silver, /obj/item/stack/ore/gold, /obj/item/stack/ore/uranium, /obj/item/stack/ore/diamond)
+		loot += pick(initial(wanted_objects))
 		i--
 
 /mob/living/simple_animal/hostile/asteroid/goldgrub/GiveTarget(new_target)
@@ -68,9 +68,9 @@
 			O.use(using)
 	visible_message("<span class='notice'>The ore was swallowed whole!</span>")
 
-/mob/living/simple_animal/hostile/asteroid/goldgrub/proc/Burrow()//Begin the chase to kill the goldgrub in time
-	if(!stat)
 		visible_message("<span class='danger'>The [name] buries into the ground, vanishing from sight!</span>")
+/mob/living/simple_animal/hostile/asteroid/goldgrub/proc/Burrow()//You failed the chase to kill the goldgrub in time!
+	if(stat == CONSCIOUS)
 		qdel(src)
 
 /mob/living/simple_animal/hostile/asteroid/goldgrub/bullet_act(obj/item/projectile/P)
