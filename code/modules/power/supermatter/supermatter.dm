@@ -501,10 +501,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		if(antinoblium_attached)
 			removed.adjust_moles(/datum/gas/plasma, max(((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER) * (1+(100-support_integrity)/25), 0))
-			removed.adjust_moles(/datum/gas/oxygen, max((((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / (OXYGEN_RELEASE_MODIFIER/(TRITIUM_OXYGEN_MODIFIER*tritiumcomp))) * (1+(100-support_integrity)/25), 0))
+			removed.adjust_moles(/datum/gas/oxygen, max((((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / (OXYGEN_RELEASE_MODIFIER/max(TRITIUM_OXYGEN_MODIFIER*tritiumcomp), 1)) * (1+(100-support_integrity)/25), 0))
 		else
 			removed.adjust_moles(/datum/gas/plasma, max((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER, 0))
-			removed.adjust_moles(/datum/gas/oxygen, max(((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / (OXYGEN_RELEASE_MODIFIER/(TRITIUM_OXYGEN_MODIFIER*tritiumcomp)), 0))
+			removed.adjust_moles(/datum/gas/oxygen, max(((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / (OXYGEN_RELEASE_MODIFIER/max(TRITIUM_OXYGEN_MODIFIER*tritiumcomp), 1), 0))
 
 		if(produces_gas)
 			env.merge(removed)
