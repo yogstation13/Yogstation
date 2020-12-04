@@ -36,9 +36,9 @@
 
 /mob/living/simple_animal/hostile/asteroid/goldgrub/Initialize()
 	. = ..()
-	var/i = rand(1,length(initial(wanted_objects)) - 1)
+	var/i = rand(1,3)
 	while(i)
-		loot += pick(initial(wanted_objects))
+		loot += pick(wanted_objects)
 		i--
 
 /mob/living/simple_animal/hostile/asteroid/goldgrub/GiveTarget(new_target)
