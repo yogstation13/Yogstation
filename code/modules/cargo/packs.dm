@@ -668,7 +668,7 @@
 	crate_name = "auto rifle crate"
 
 /datum/supply_pack/security/armory/wt550ammo
-	name = Surplus Security Auto Rifle Ammo Crate"
+	name = "Surplus Security Autorifle Ammo Crate"
 	desc = "Contains four 20-round magazines for the surplus security autorifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 3000
 	contains = list(/obj/item/ammo_box/magazine/wt550m9,
