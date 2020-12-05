@@ -385,4 +385,4 @@
 /obj/item/organ/eyes/polysmorph
 	name = "polysmorph eyes"
 	desc = "Eyes from a polysmorph, capable of retaining slightly more vision in low light environments"
-	lighting_aplha = LIGHTING_PLANE_ALPHA_NV_TRAIT
+	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
