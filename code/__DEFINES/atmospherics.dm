@@ -166,7 +166,7 @@
 #define FIRE_HELM_MAX_TEMP_PROTECT			30000
 
 /// what max_heat_protection_temperature is set to for firesuit quality suits and helmets. MUST NOT BE 0.
-#define FIRE_IMMUNITY_MAX_TEMP_PROTECT	35000
+#define FIRE_IMMUNITY_MAX_TEMP_PROTECT	999999999999999999999
 
 /// For normal helmets
 #define HELMET_MIN_TEMP_PROTECT				160
