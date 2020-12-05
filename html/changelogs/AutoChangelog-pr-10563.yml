@@ -1,0 +1,4 @@
+author: "TheReddDragon"
+delete-after: true 
+changes: 
+  - rscdel: "Removes slimes and drones from translation"
