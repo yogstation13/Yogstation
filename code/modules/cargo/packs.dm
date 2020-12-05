@@ -656,7 +656,7 @@
 	name = "Surplus Security Autorifle Single-Pack"
 	desc = "Contains one high-powered, semiautomatic rifles chambered in 4.6x30mm rubber rounds. Requires Armory access to open."
 	cost = 2000
-	contains = list(/obj/item/gun/ballistic/automatic/wt550)
+	contains = list(/obj/item/gun/ballistic/automatic/wt550/occupying)
 	small_item = TRUE
 
 /datum/supply_pack/security/armory/wt550
