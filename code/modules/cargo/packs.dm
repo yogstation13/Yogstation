@@ -463,7 +463,7 @@
 /datum/supply_pack/security/armory/ballistic_single
 	name = "Combat Shotgun Single-Pack"
 	desc = "For when the enemy absolutely needs to be replaced with lead. Contains one Aussec-designed Combat Shotgun, and one Shotgun Bandolier. Requires Armory access to open."
-	cost = 3200
+	cost = 10000
 	small_item = TRUE
 	contains = list(/obj/item/gun/ballistic/shotgun/automatic/combat,
 					/obj/item/storage/belt/bandolier)
@@ -471,7 +471,7 @@
 /datum/supply_pack/security/armory/ballistic
 	name = "Combat Shotguns Crate"
 	desc = "For when the enemy absolutely needs to be replaced with lead. Contains three Aussec-designed Combat Shotguns, and three Shotgun Bandoliers. Requires Armory access to open."
-	cost = 8000
+	cost = 30000
 	contains = list(/obj/item/gun/ballistic/shotgun/automatic/combat,
 					/obj/item/gun/ballistic/shotgun/automatic/combat,
 					/obj/item/gun/ballistic/shotgun/automatic/combat,
@@ -483,7 +483,7 @@
 /datum/supply_pack/security/armory/riotshotgun
 	name = "Riot Shotguns Crate"
 	desc = "Tip: techically, it counts as non-lethally subduing a target as long as they don't die before Medbay can get to them. Contains three security-grade riot shotguns. Requires Armory access to open."
-	cost = 6000
+	cost = 8000
 	contains = list(/obj/item/gun/ballistic/shotgun/riot,
 					/obj/item/gun/ballistic/shotgun/riot,
 					/obj/item/gun/ballistic/shotgun/riot)
@@ -492,7 +492,7 @@
 /datum/supply_pack/security/armory/riotshotgun_single
 	name = "Riot Shotgun Single-Pack"
 	desc = "Stop that Clown in his tracks with this magic stick of non-lethal subduction! Contains one security-grade riot shotgun. Requires Armory access to open."
-	cost = 2500
+	cost = 3200
 	small_item = TRUE
 	contains = list(/obj/item/gun/ballistic/shotgun/riot)
 
@@ -653,23 +653,23 @@
 	crate_name = "swat crate"
 
 /datum/supply_pack/security/armory/wt550_single
-	name = "WT-550 Auto Rifle Single-Pack"
-	desc = "Contains one high-powered, semiautomatic rifles chambered in 4.6x30mm. Requires Armory access to open."
+	name = "Surplus Security Autorifle Single-Pack"
+	desc = "Contains one high-powered, semiautomatic rifles chambered in 4.6x30mm rubber rounds. Requires Armory access to open."
 	cost = 2000
 	contains = list(/obj/item/gun/ballistic/automatic/wt550)
 	small_item = TRUE
 
 /datum/supply_pack/security/armory/wt550
-	name = "WT-550 Auto Rifle Crate"
-	desc = "Contains two high-powered, semiautomatic rifles chambered in 4.6x30mm. Requires Armory access to open."
+	name = "Surplus Security Autorifle Crate"
+	desc = "Contains two high-powered, semiautomatic rifles chambered in 4.6x30mm rubber rounds. Requires Armory access to open."
 	cost = 3500
-	contains = list(/obj/item/gun/ballistic/automatic/wt550,
-					/obj/item/gun/ballistic/automatic/wt550)
+	contains = list(/obj/item/gun/ballistic/automatic/wt550/occupying,
+					/obj/item/gun/ballistic/automatic/wt550/occupying)
 	crate_name = "auto rifle crate"
 
 /datum/supply_pack/security/armory/wt550ammo
-	name = "WT-550 Auto Rifle Ammo Crate"
-	desc = "Contains four 20-round magazines for the WT-550 Auto Rifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	name = Surplus Security Auto Rifle Ammo Crate"
+	desc = "Contains four 20-round magazines for the surplus security autorifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 3000
 	contains = list(/obj/item/ammo_box/magazine/wt550m9,
 					/obj/item/ammo_box/magazine/wt550m9,
@@ -677,8 +677,8 @@
 					/obj/item/ammo_box/magazine/wt550m9)
 
 /datum/supply_pack/security/armory/wt550ammo_rubber
-	name = "WT-550 Auto Rifle Rubber Bullet Ammo Crate"
-	desc = "Contains four 20-round less than lethal magazines for the WT-550 Auto Rifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	name = "Surplus Security Autorifle Ammo Crate"
+	desc = "Contains four 20-round less than lethal magazines for the surplus security autorifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 2500
 	contains = list(/obj/item/ammo_box/magazine/wt550m9/wtr,
 					/obj/item/ammo_box/magazine/wt550m9/wtr,
@@ -686,8 +686,8 @@
 					/obj/item/ammo_box/magazine/wt550m9/wtr)
 
 /datum/supply_pack/security/armory/wt550ammo_single
-	name = "WT-550 Auto Rifle Ammo Single-Pack"
-	desc = "Contains a 20-round magazine for the WT-550 Auto Rifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	name = "Surplus Security Autorifle Ammo Crate Single-Pack"
+	desc = "Contains a 20-round magazine for the surplus security autorifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 750 //one of the few single-pack items that who's price per unit is the exact same as the bulk
 	contains = list(/obj/item/ammo_box/magazine/wt550m9)
 	small_item = TRUE
