@@ -32,7 +32,7 @@
 #define HYDROGEN_HEAT_RESISTANCE 2 // just a bit of heat resistance to spice it up
 #define PLUONIUM_HEAT_RESISTANCE 5
 
-#define TRITIUM_OXYGEN_MODIFIER 5 // How much to divide oxygen output
+#define TRITIUM_OXYGEN_MODIFIER 10 // How much to divide oxygen output
 
 #define POWERLOSS_INHIBITION_GAS_THRESHOLD 0.20         //Higher == Higher percentage of inhibitor gas needed before the charge inertia chain reaction effect starts.
 #define POWERLOSS_INHIBITION_MOLE_THRESHOLD 20        //Higher == More moles of the gas are needed before the charge inertia chain reaction effect starts.        //Scales powerloss inhibition down until this amount of moles is reached
