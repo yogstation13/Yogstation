@@ -1,4 +1,0 @@
-author: " Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "The Spawn On Centcom command no longer causes assassination objectives targeting the user to redtext."

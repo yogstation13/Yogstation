@@ -1,5 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - rscadd: "Add the ability to link blastdoors/shutters"
-  - rscadd: "Add the ability to create blastdoors/shutters"
