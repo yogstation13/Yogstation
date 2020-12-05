@@ -1,6 +1,0 @@
-author: "maxion12345"
-delete-after: true 
-changes: 
-  - rscadd: "Drones are now fitted with beacons that announce their location when connecting and disconnecting from the drone network. Go greet your drone comrades!"
-  - rscadd: "Drones have been fitted with a wireless data feed, enabling them to remotely view station alarms and act accordingly."
-  - wip: "This will not work until the status tabs are fixed to include the \"Drone\" tab!"
