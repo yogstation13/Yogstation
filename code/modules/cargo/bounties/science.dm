@@ -26,6 +26,7 @@
 	name = "Night Vision Goggles"
 	description = "An electrical storm has busted all the lights at CentCom. While management is waiting for replacements, perhaps some night vision goggles can be shipped?"
 	reward = 10000
+	required_count = 3
 	wanted_types = list(/obj/item/clothing/glasses/night, /obj/item/clothing/glasses/meson/night, /obj/item/clothing/glasses/hud/health/night, /obj/item/clothing/glasses/hud/security/night, /obj/item/clothing/glasses/hud/diagnostic/night)
 
 /datum/bounty/item/science/experimental_welding_tool
@@ -56,7 +57,7 @@
 /datum/bounty/item/science/advanced_mop
 	name = "Advanced Mop"
 	description = "Excuse me. I'd like to request $17 for a push broom rebristling. Either that, or an advanced mop."
-	reward = 10000
+	reward = 9000
 	wanted_types = list(/obj/item/mop/advanced)
 
 /datum/bounty/item/science/advanced_egun
