@@ -140,26 +140,26 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	///How much hallucination should it produce per unit of power?
 	var/config_hallucination_power = 0.1
 
-	/// Antinobilium related variables
+	// Antinobilium related variables
 	var/support_integrity = 100			// Current support integrity. Provides *fun* effects
 	var/antinoblium_attached = FALSE	// The thing that makes it explode more
 	var/corruptor_attached = FALSE		// The thing that reduces support integrity
 
-	/// Radio related variables
+	// Radio related variables
 	var/obj/item/radio/radio
 	var/radio_key = /obj/item/encryptionkey/headset_eng
 	var/engineering_channel = RADIO_CHANNEL_ENGINEERING
 	var/common_channel = null
 
-	/// Logging
+	// Logging
 	var/has_been_powered = FALSE
 	var/has_reached_emergency = FALSE
 
-	/// Hugbox Supermatter Variables
+	// Hugbox Supermatter Variables
 	var/takes_damage = TRUE		// Does the SM take integrity damage
 	var/produces_gas = TRUE		// Does it make gas
 
-	/// Holder variables
+	// Holder variables
 	var/obj/effect/countdown/supermatter/countdown
 	var/datum/looping_sound/supermatter/soundloop
 
