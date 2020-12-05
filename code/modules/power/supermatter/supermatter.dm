@@ -2,13 +2,13 @@
 //Please do not bother them with bugs from this port, however, as it has been modified quite a bit.
 //Modifications include removing the world-ending full supermatter variation, and leaving only the shard.
 
-// How much heat before SM prints warnings
+/// How much heat before SM prints warnings
 #define CRITICAL_TEMPERATURE 10000
 
-// How much energy before SM prints tesla warnings
+/// How much energy before SM prints tesla warnings
 #define SUPERMATTER_MAXIMUM_ENERGY 1e6
 
-// Higher == Bigger heat and waste penalty from having the crystal surrounded by this gas. Negative numbers reduce penalty.
+/// Higher == Bigger heat and waste penalty from having the crystal surrounded by this gas. Negative numbers reduce penalty.
 #define PLASMA_HEAT_PENALTY 15
 #define OXYGEN_HEAT_PENALTY 1
 #define CO2_HEAT_PENALTY 0.1
@@ -18,8 +18,8 @@
 #define NITROGEN_HEAT_PENALTY -1.5
 #define H2O_HEAT_PENALTY 12 //This'll get made slowly over time, I want my spice rock spicy god damnit
 
-// Higher == Bigger bonus to power generation. 
-// All of these get divided by 10-bzcomp * 5 before having 1 added and being multiplied with power to determine rads
+/// Higher == Bigger bonus to power generation. 
+/// All of these get divided by 10-bzcomp * 5 before having 1 added and being multiplied with power to determine rads
 #define OXYGEN_TRANSMIT_MODIFIER 1.5
 #define PLASMA_TRANSMIT_MODIFIER 4
 #define BZ_TRANSMIT_MODIFIER -2
@@ -30,10 +30,10 @@
 #define HEALIUM_TRANSMIT_MODIFIER 2.4
 #define PLUONIUM_TRANSMIT_MODIFIER 15
 
-// How much extra radioactivity to emit
+/// How much extra radioactivity to emit
 #define BZ_RADIOACTIVITY_MODIFIER 5 // Up to 500% rads
 
-//Higher == Gas makes the crystal more resistant against heat damage.
+/// Higher == Gas makes the crystal more resistant against heat damage.
 #define N2O_HEAT_RESISTANCE 6
 #define PLUOXIUM_HEAT_RESISTANCE 12
 #define HYDROGEN_HEAT_RESISTANCE 2 // just a bit of heat resistance to spice it up
