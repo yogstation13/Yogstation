@@ -34,6 +34,14 @@
 	category = list("Subspace Telecomms")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
+/datum/design/board/igniter
+	name = "Machine Design (Floor Igniter)"
+	desc = "The circuit board for a floor igniter."
+	id = "floorigniter"
+	build_path = /obj/item/circuitboard/machine/igniter
+	category = list("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/board/turbine_computer
 	name = "Computer Design (Power Turbine Console Board)"
 	desc = "The circuit board for a power turbine console."

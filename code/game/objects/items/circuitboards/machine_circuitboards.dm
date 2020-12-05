@@ -43,6 +43,14 @@
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/stack/sheet/glass = 1)
 
+/obj/item/circuitboard/machine/igniter
+	name = "Floor Igniter (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/igniter
+	req_components = list(
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/assembly/igniter = 1)
+
 /obj/item/circuitboard/machine/autolathe
 	name = "Autolathe (Machine Board)"
 	icon_state = "engineering"
