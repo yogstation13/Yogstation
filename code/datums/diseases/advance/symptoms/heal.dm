@@ -560,16 +560,7 @@
 	mob_name = "a living tumor"
 	death = FALSE
 	roundstart = FALSE
-	short_desc = "You are a living tumor. By all accounts, you should not exist."
-	flavour_text = {"
-	<b>You are a living teratoma, and your existence is misery. You feel the need to spread woe about the station- but not to kill.
-	"}
 
-/obj/effect/mob_spawn/teratomamonkey/Initialize()
-	. = ..()
-	var/area/A = get_area(src)
-	if(A)
-		notify_ghosts("A living tumor has been born in [A.name].", 'sound/effects/splat.ogg', source = src, action = NOTIFY_ATTACK, flashwindow = FALSE)
 
 /obj/effect/mob_spawn/teratomamonkey/attack_hand(mob/living/user)
 	. = ..()
