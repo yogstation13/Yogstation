@@ -110,13 +110,13 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/damage = 0
 	var/damage_archived = 0
 
-	/// Variables for calculating SM Health
+	// Variables for calculating SM Health
 	var/warning_point = 50
 	var/damage_penalty_point = 550
 	var/emergency_point = 700
 	var/explosion_point = 900
 
-	/// Strings for radio
+	// Strings for radio
 	var/safe_alert = "Crystalline hyperstructure returning to safe operating parameters."
 	var/warning_alert = "Danger! Crystal hyperstructure integrity faltering!"
 	var/emergency_alert = "CRYSTAL DELAMINATION IMMINENT."
