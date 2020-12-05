@@ -89,7 +89,6 @@
 	mag_type = /obj/item/ammo_box/magazine/wt550m9
 	fire_delay = 2
 	can_suppress = FALSE
-	burst_size = 2
 	can_bayonet = TRUE
 	knife_x_offset = 25
 	knife_y_offset = 12
@@ -98,9 +97,6 @@
 	empty_indicator = TRUE
 
 /obj/item/gun/ballistic/automatic/wt550/occupying
-	name = "surplus security auto rifle"
-	desc = "Crude surplus variant of the WT-550 Automatic Rifle meant for mass deployment. Does not come with the benefits of a two round burst."
-	burst_size = 1
 	mag_type = /obj/item/ammo_box/magazine/wt550m9/wtr
 
 /obj/item/gun/ballistic/automatic/mini_uzi
