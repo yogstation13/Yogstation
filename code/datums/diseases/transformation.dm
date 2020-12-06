@@ -289,7 +289,7 @@
 	
 /datum/disease/transformation/ghost
 	name = "Spectral Curse"
-	cure_text = Holy Water
+	cure_text = "Holy Water"
 	cures = list(/datum/reagent/water/holywater)
 	agent = "Spectral Curse"
 	desc = "A 'gift' from the spectral realm"
