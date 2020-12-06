@@ -11,7 +11,6 @@
 /area/template_noop)
 "c" = (
 /obj/machinery/atmospherics/pipe/simple/general{
-	icon_state = "pipe11-2";
 	dir = 8
 	},
 /obj/machinery/meter,
@@ -22,8 +21,8 @@
 	dir = 8
 	},
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 4
+	dir = 4;
+	icon_state = "tube"
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -33,7 +32,6 @@
 /area/template_noop)
 "f" = (
 /obj/machinery/atmospherics/pipe/simple/general{
-	icon_state = "pipe11-2";
 	dir = 5
 	},
 /turf/open/floor/plating,

@@ -22,16 +22,16 @@
 /area/template_noop)
 "e" = (
 /obj/machinery/shower{
-	icon_state = "shower";
-	dir = 4
+	dir = 4;
+	icon_state = "shower"
 	},
 /turf/open/floor/plating,
 /area/template_noop)
 "f" = (
 /obj/machinery/washing_machine,
 /obj/machinery/light/small{
-	icon_state = "bulb";
-	dir = 4
+	dir = 4;
+	icon_state = "bulb"
 	},
 /obj/effect/decal/cleanable/glitter/white,
 /obj/effect/decal/cleanable/blood/gibs/old,

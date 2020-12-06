@@ -119,13 +119,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel/airless,
 /area/awaymission/challenge/start)
-"az" = (
-/obj/item/clothing/suit/space/syndicate/black,
-/obj/item/clothing/head/helmet/space/syndicate/black,
-/turf/open/floor/plasteel/airless{
-	icon_state = "damaged2"
-	},
-/area/awaymission/challenge/start)
 "aA" = (
 /turf/closed/indestructible{
 	icon_state = "iron0"
@@ -240,8 +233,8 @@
 "aX" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	installation = /obj/item/gun/energy/lasercannon;
+	set_obj_flags = "EMAGGED"
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
@@ -382,8 +375,8 @@
 "bq" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	installation = /obj/item/gun/energy/lasercannon;
+	set_obj_flags = "EMAGGED"
 	},
 /turf/open/floor/plating,
 /area/awaymission/challenge/main)
@@ -29537,7 +29530,7 @@ ah
 aq
 at
 an
-az
+am
 aE
 aH
 aM

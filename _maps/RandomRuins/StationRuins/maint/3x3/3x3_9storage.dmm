@@ -8,8 +8,8 @@
 "b" = (
 /obj/structure/closet/crate,
 /obj/machinery/light/small{
-	icon_state = "bulb";
-	dir = 1
+	dir = 1;
+	icon_state = "bulb"
 	},
 /obj/effect/spawner/lootdrop/maintenance/two,
 /obj/effect/turf_decal/box,

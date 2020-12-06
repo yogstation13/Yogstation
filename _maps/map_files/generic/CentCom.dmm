@@ -13117,7 +13117,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "Briefing Room APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
