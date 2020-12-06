@@ -4272,7 +4272,7 @@
 /area/security/brig)
 "aiP" = (
 /obj/machinery/meter{
-	target_layer = 1
+	target_layer = 2
 	},
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer2{
 	dir = 8
@@ -7152,7 +7152,7 @@
 	dir = 6
 	},
 /obj/machinery/meter{
-	target_layer = 3
+	target_layer = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
@@ -7386,7 +7386,7 @@
 	dir = 8
 	},
 /obj/machinery/meter{
-	target_layer = 1
+	target_layer = 2
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
@@ -15491,7 +15491,7 @@
 /area/chapel/office)
 "aFx" = (
 /obj/machinery/meter{
-	target_layer = 1
+	target_layer = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -16040,7 +16040,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/meter{
-	target_layer = 1
+	target_layer = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -16252,7 +16252,7 @@
 	dir = 5
 	},
 /obj/machinery/meter{
-	target_layer = 1
+	target_layer = 2
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
@@ -19872,7 +19872,7 @@
 	dir = 4
 	},
 /obj/machinery/meter{
-	target_layer = 1
+	target_layer = 2
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
@@ -25209,7 +25209,7 @@
 /area/crew_quarters/heads/captain)
 "aZW" = (
 /obj/machinery/meter{
-	target_layer = 3
+	target_layer = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
@@ -26241,7 +26241,7 @@
 /area/bridge/meeting_room)
 "bce" = (
 /obj/machinery/meter{
-	target_layer = 3
+	target_layer = 4
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -36068,7 +36068,7 @@
 	dir = 4
 	},
 /obj/machinery/meter{
-	target_layer = 1
+	target_layer = 2
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -40813,7 +40813,7 @@
 	dir = 9
 	},
 /obj/machinery/meter{
-	target_layer = 1
+	target_layer = 2
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/tcoms)
@@ -61218,7 +61218,7 @@
 /area/tcommsat/entrance)
 "qHn" = (
 /obj/machinery/meter{
-	target_layer = 1
+	target_layer = 2
 	},
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer2{
 	dir = 8

@@ -66974,7 +66974,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/visible/layer2,
 /obj/machinery/meter{
-	target_layer = 1
+	target_layer = 2
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/department/electrical)
@@ -76363,7 +76363,7 @@
 	dir = 1
 	},
 /obj/machinery/meter{
-	target_layer = 3
+	target_layer = 4
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/department/electrical)
