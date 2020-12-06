@@ -1180,6 +1180,21 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/gym)
+"dw" = (
+/obj/structure/rack,
+/obj/item/clothing/mask/luchador{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/clothing/mask/luchador/rudos,
+/obj/item/clothing/mask/luchador/tecnicos{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "dx" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -6667,12 +6682,6 @@
 	smooth = 1
 	},
 /area/centcom/holding)
-"pA" = (
-/obj/structure/closet/athletic_mixed,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "pB" = (
 /obj/machinery/firealarm,
 /turf/closed/indestructible/riveted,
@@ -20233,6 +20242,29 @@
 /obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/space/basic,
 /area/centcom/testchamber)
+"Qs" = (
+/obj/item/clothing/under/shorts/red{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/clothing/under/shorts/blue{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/clothing/under/shorts/green,
+/obj/item/clothing/under/shorts/grey{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/clothing/under/jabroni{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/structure/rack,
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "Qt" = (
 /obj/structure/sign/warning/biohazard,
 /turf/closed/indestructible/riveted,
@@ -21247,6 +21279,25 @@
 	},
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/basketball)
+"Sy" = (
+/obj/item/clothing/gloves/boxing{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/clothing/gloves/boxing/blue{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/clothing/gloves/boxing/green,
+/obj/item/clothing/gloves/boxing/yellow{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/structure/rack,
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "Sz" = (
 /obj/effect/holodeck_effect/mobspawner/pet,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -22797,12 +22848,6 @@
 /obj/effect/landmark/shuttle_import,
 /turf/open/space/basic,
 /area/space)
-"VZ" = (
-/obj/structure/closet/masks,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "Wa" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -23004,12 +23049,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
-"Wu" = (
-/obj/structure/closet/boxinggloves,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "Ww" = (
 /obj/machinery/chem_master,
 /obj/effect/turf_decal/tile/yellow{
@@ -69142,9 +69181,9 @@ YI
 YI
 Vc
 YI
-Wu
-pA
-VZ
+Sy
+Qs
+dw
 bj
 aa
 aa
