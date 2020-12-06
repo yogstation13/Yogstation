@@ -18,11 +18,6 @@
 	var/datum/gas_mixture/air_contents = airs[1]
 	air_contents.set_volume(0)
 
-/obj/machinery/atmospherics/components/unary/portables_connector/Initialize()
-	. = ..()
-	update_icon()
-	update_icon_nopipes()
-
 /obj/machinery/atmospherics/components/unary/portables_connector/Destroy()
 	if(connected_device)
 		connected_device.disconnect()

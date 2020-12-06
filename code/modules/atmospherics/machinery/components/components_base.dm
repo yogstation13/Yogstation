@@ -3,7 +3,7 @@
 
 /obj/machinery/atmospherics/components
 	var/welded = FALSE //Used on pumps and scrubbers
-	var/showpipe = FALSE
+	var/showpipe = TRUE
 	var/shift_underlay_only = TRUE //Layering only shifts underlay?
 
 	var/list/datum/pipeline/parents
@@ -29,16 +29,10 @@
 
 	underlays.Cut()
 
-	var/turf/T = loc
-	if(level == 2 || (istype(T) && !T.intact))
-		showpipe = TRUE
-		plane = GAME_PLANE
-	else
-		showpipe = FALSE
-		plane = FLOOR_PLANE
+	plane = showpipe ? GAME_PLANE : FLOOR_PLANE
 
 	if(!showpipe)
-		return ..()//no need to update the pipes if they aren't showing
+		return ..()
 
 	var/connected = 0 //Direction bitset
 
