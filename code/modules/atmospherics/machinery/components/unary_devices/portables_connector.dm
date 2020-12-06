@@ -1,5 +1,5 @@
 /obj/machinery/atmospherics/components/unary/portables_connector
-	icon_state = "connector_map-3"
+	icon_state = "connector"
 	name = "connector port"
 	desc = "For connecting portables devices related to atmospherics control."
 	can_unwrench = TRUE
@@ -29,13 +29,11 @@
 	return ..()
 
 /obj/machinery/atmospherics/components/unary/portables_connector/update_icon_nopipes()
-	icon_state = "connector_map-[piping_layer]"
+	icon_state = "connector"
 	if(showpipe)
+		cut_overlays()
 		var/image/cap = getpipeimage(icon, "connector_cap", initialize_directions)
-		if(piping_layer == 1 || piping_layer == 5)
-			icon_state ="connector_map-[piping_layer+1]"
-		else
-			add_overlay(cap)
+		add_overlay(cap)
 
 /obj/machinery/atmospherics/components/unary/portables_connector/process_atmos()
 	if(!connected_device)
