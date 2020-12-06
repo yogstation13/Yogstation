@@ -30393,7 +30393,7 @@
 /obj/machinery/meter{
 	pixel_x = -5;
 	pixel_y = -3;
-	target_layer = 1
+	target_layer = 2
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)

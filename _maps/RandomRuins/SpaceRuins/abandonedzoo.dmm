@@ -97,10 +97,6 @@
 /mob/living/simple_animal/hostile/poison/bees,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/abandonedzoo)
-"ao" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/grass,
-/area/ruin/space/has_grav/abandonedzoo)
 "ap" = (
 /mob/living/simple_animal/hostile/asteroid/goldgrub{
 	will_burrow = 0
@@ -166,10 +162,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark/side,
-/area/ruin/space/has_grav/abandonedzoo)
-"aA" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/grass,
 /area/ruin/space/has_grav/abandonedzoo)
 "aB" = (
 /obj/machinery/light,
@@ -785,6 +777,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/abandonedzoo)
+"mc" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/mob/living/simple_animal/hostile/jungle/seedling,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/abandonedzoo)
+"ro" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/mob/living/simple_animal/hostile/jungle/seedling,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/abandonedzoo)
 "rI" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /mob/living/simple_animal/butterfly,
@@ -1085,7 +1087,7 @@ ac
 al
 an
 an
-aA
+ro
 ac
 at
 aZ
@@ -1145,7 +1147,7 @@ bW
 "}
 (17,1,1) = {"
 ac
-ao
+mc
 an
 Rw
 rI

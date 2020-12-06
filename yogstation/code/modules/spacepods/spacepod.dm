@@ -633,6 +633,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		pilot = M
 		LAZYOR(M.mousemove_intercept_objects, src)
 		M.click_intercept = src
+		addverbs(M)
 	else if(passengers.len < max_passengers)
 		passengers += M
 	else
@@ -647,6 +648,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		return
 	if(M == pilot)
 		pilot = null
+		removeverbs(M)
 		LAZYREMOVE(M.mousemove_intercept_objects, src)
 		if(M.click_intercept == src)
 			M.click_intercept = null
@@ -686,3 +688,17 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	. = ..()
 /obj/spacepod/Exited()
 	. = ..()
+
+/obj/spacepod/proc/addverbs(mob/user)
+	add_verb(user, /obj/spacepod/verb/toggleDoors)
+	add_verb(user, /obj/spacepod/verb/toggleLights)
+	add_verb(user, /obj/spacepod/verb/toggle_brakes)
+	add_verb(user, /obj/spacepod/verb/lock_pod)
+	add_verb(user, /obj/spacepod/verb/exit_pod)
+
+/obj/spacepod/proc/removeverbs(mob/user)
+	remove_verb(user, /obj/spacepod/verb/toggleDoors)
+	remove_verb(user, /obj/spacepod/verb/toggleLights)
+	remove_verb(user, /obj/spacepod/verb/toggle_brakes)
+	remove_verb(user, /obj/spacepod/verb/lock_pod)
+	remove_verb(user, /obj/spacepod/verb/exit_pod)
