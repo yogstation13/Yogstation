@@ -92,20 +92,6 @@
 "aq" = (
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/offline)
-"ar" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/table/wood/bar,
-/obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = -12;
-	pixel_y = 1
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "as" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -137,21 +123,6 @@
 	},
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/court)
-"av" = (
-/obj/structure/rack,
-/obj/item/clothing/mask/luchador{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/clothing/mask/luchador/rudos,
-/obj/item/clothing/mask/luchador/tecnicos{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "aw" = (
 /obj/structure/flora/bush,
 /turf/open/floor/holofloor/snow,
@@ -407,6 +378,14 @@
 	},
 /turf/open/floor/holofloor/carpet,
 /area/holodeck/rec_center/lounge)
+"bf" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/lockbox/loyalty,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/centcom/ferry)
 "bg" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -464,6 +443,25 @@
 	icon_state = "wood"
 	},
 /area/holodeck/rec_center/lounge)
+"bp" = (
+/obj/item/clothing/gloves/boxing{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/clothing/gloves/boxing/blue{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/clothing/gloves/boxing/green,
+/obj/item/clothing/gloves/boxing/yellow{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/structure/rack,
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "bs" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1374,6 +1372,20 @@
 	icon_state = "chapel"
 	},
 /area/holodeck/rec_center/chapelcourt)
+"dW" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table/wood/bar,
+/obj/item/reagent_containers/food/drinks/shaker{
+	pixel_x = -12;
+	pixel_y = 1
+	},
+/turf/open/floor/holofloor{
+	dir = 9;
+	icon_state = "wood"
+	},
+/area/holodeck/rec_center/lounge)
 "dX" = (
 /obj/structure/table/wood,
 /obj/item/folder,
@@ -1612,25 +1624,6 @@
 "eH" = (
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/thunderdome1218)
-"eI" = (
-/obj/item/clothing/gloves/boxing{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/clothing/gloves/boxing/blue{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/clothing/gloves/boxing/green,
-/obj/item/clothing/gloves/boxing/yellow{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/structure/rack,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "eJ" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -11366,10 +11359,6 @@
 /obj/item/seeds/cherry/bomb,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"yN" = (
-/obj/effect/turf_decal/loading_area,
-/turf/open/floor/plasteel,
-/area)
 "yO" = (
 /obj/structure/closet/chesspieces/white,
 /turf/open/floor/holofloor/plating,
@@ -12970,13 +12959,6 @@
 	opacity = 0
 	},
 /area/bluespace_locker)
-"BU" = (
-/obj/structure/table/wood/bar,
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "BV" = (
 /obj/machinery/chem_dispenser/drinks/beer,
 /turf/closed/indestructible{
@@ -18282,10 +18264,6 @@
 	planetary_atmos = 0
 	},
 /area/awaymission/errorroom)
-"Mc" = (
-/obj/structure/lattice,
-/turf/open/space,
-/area/space)
 "Md" = (
 /obj/machinery/computer/secure_data{
 	dir = 4
@@ -19050,6 +19028,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
+"NK" = (
+/obj/structure/rack,
+/obj/item/clothing/mask/luchador{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/clothing/mask/luchador/rudos,
+/obj/item/clothing/mask/luchador/tecnicos{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "NL" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -19202,11 +19195,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"Oa" = (
-/obj/machinery/door/poddoor/deathsquad,
-/obj/effect/turf_decal/delivery/red,
-/turf/open/floor/plasteel/dark,
-/area)
 "Ob" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -19642,13 +19630,6 @@
 "OQ" = (
 /turf/open/space/bluespace_locker_mirage,
 /area/bluespace_locker)
-"OT" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area)
 "OU" = (
 /obj/item/clothing/under/jabroni,
 /obj/item/clothing/under/geisha,
@@ -21240,6 +21221,13 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/pet_lounge)
+"SA" = (
+/obj/structure/table/wood/bar,
+/turf/open/floor/holofloor{
+	dir = 9;
+	icon_state = "wood"
+	},
+/area/holodeck/rec_center/lounge)
 "SB" = (
 /obj/structure/curtain,
 /obj/structure/window/reinforced/tinted{
@@ -21409,6 +21397,13 @@
 /obj/item/pen/fountain,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"SV" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/centcom/control)
 "SW" = (
 /obj/machinery/seed_extractor,
 /obj/effect/turf_decal/tile/green{
@@ -21477,6 +21472,29 @@
 /obj/item/reagent_containers/glass/bottle/potion/flight,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
+"Te" = (
+/obj/item/clothing/under/shorts/red{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/clothing/under/shorts/blue{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/clothing/under/shorts/green,
+/obj/item/clothing/under/shorts/grey{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/clothing/under/jabroni{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/structure/rack,
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "Tf" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien4";
@@ -22324,29 +22342,6 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"UW" = (
-/obj/item/clothing/under/shorts/red{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/clothing/under/shorts/blue{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/clothing/under/shorts/green,
-/obj/item/clothing/under/shorts/grey{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/clothing/under/jabroni{
-	pixel_x = 4;
-	pixel_y = 2
-	},
-/obj/structure/rack,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "UX" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -22369,14 +22364,6 @@
 /obj/item/gun/ballistic/automatic/sniper_rifle,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"UY" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/lockbox/loyalty,
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area)
 "UZ" = (
 /obj/structure/flora/grass/both,
 /turf/open/floor/holofloor/snow,
@@ -22384,9 +22371,6 @@
 "Va" = (
 /turf/open/floor/plasteel/dark,
 /area/bluespace_locker)
-"Vb" = (
-/turf/closed/indestructible/riveted,
-/area)
 "Vc" = (
 /obj/structure/punching_bag,
 /turf/open/floor/holofloor{
@@ -24229,9 +24213,6 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/firingrange)
-"Zi" = (
-/turf/open/floor/plasteel/dark,
-/area)
 "Zj" = (
 /obj/item/cardboard_cutout/chess/black/knight,
 /turf/open/floor/holofloor{
@@ -60812,7 +60793,7 @@ wu
 mD
 mD
 rz
-Oa
+yc
 yc
 yc
 yc
@@ -62098,7 +62079,7 @@ rz
 uV
 zA
 sw
-Zi
+zA
 sw
 zA
 Cu
@@ -64669,7 +64650,7 @@ zg
 sw
 Aj
 AQ
-UY
+bf
 sw
 CD
 mD
@@ -66469,7 +66450,7 @@ zF
 Am
 tP
 iu
-Vb
+io
 rN
 CX
 iC
@@ -68012,7 +67993,7 @@ nq
 qT
 BE
 NU
-yN
+wH
 nq
 np
 nq
@@ -68269,7 +68250,7 @@ xo
 mk
 BE
 iu
-OT
+SV
 nq
 nq
 nq
@@ -69123,9 +69104,9 @@ YI
 YI
 Vc
 YI
-eI
-UW
-av
+bp
+Te
+NK
 bj
 aa
 aa
@@ -74779,7 +74760,7 @@ an
 dU
 bo
 SE
-BU
+SA
 bj
 ZK
 zR
@@ -75034,9 +75015,9 @@ an
 an
 an
 dU
-BU
+SA
 an
-BU
+SA
 bj
 CK
 aP
@@ -75293,7 +75274,7 @@ Ua
 RN
 eq
 cN
-ar
+dW
 bj
 bt
 bI
@@ -77288,7 +77269,7 @@ Yn
 XK
 XK
 Yn
-aa
+Yn
 aa
 aa
 aa
@@ -90185,6 +90166,6 @@ aa
 aa
 aa
 aa
-Mc
-Mc
+ad
+ad
 "}
