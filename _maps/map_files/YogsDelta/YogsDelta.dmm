@@ -66921,7 +66921,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/visible/layer2,
 /obj/machinery/meter{
-	target_layer = 1
+	target_layer = 2
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/department/electrical)
@@ -76310,7 +76310,7 @@
 	dir = 1
 	},
 /obj/machinery/meter{
-	target_layer = 3
+	target_layer = 4
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/department/electrical)
@@ -118225,15 +118225,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"dEv" = (
-/obj/structure/filingcabinet/chestdrawer,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/science/storage)
 "dEw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
@@ -126033,6 +126024,15 @@
 /obj/machinery/bounty_board,
 /turf/closed/wall,
 /area/hallway/secondary/service)
+"mnc" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/bot,
+/obj/machinery/electrolyzer,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "mnB" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 1
@@ -127759,6 +127759,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"wsq" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister/water_vapor,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "wsF" = (
 /obj/structure/cable/white{
 	icon_state = "0-2"
@@ -160937,7 +160942,7 @@ rUD
 lti
 xDZ
 drQ
-dEv
+mnc
 cuk
 cvu
 cDt
@@ -161714,7 +161719,7 @@ cAD
 dID
 dKc
 dKG
-dMa
+wsq
 dNC
 dNC
 dOT
@@ -161971,7 +161976,7 @@ dHp
 dIE
 dKd
 dKH
-dMa
+wsq
 dMa
 rzc
 dOT
