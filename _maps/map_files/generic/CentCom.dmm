@@ -92,6 +92,20 @@
 "aq" = (
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/offline)
+"ar" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table/wood/bar,
+/obj/item/reagent_containers/food/drinks/shaker{
+	pixel_x = -12;
+	pixel_y = 1
+	},
+/turf/open/floor/holofloor{
+	dir = 9;
+	icon_state = "wood"
+	},
+/area/holodeck/rec_center/lounge)
 "as" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -123,6 +137,21 @@
 	},
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/court)
+"av" = (
+/obj/structure/rack,
+/obj/item/clothing/mask/luchador{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/clothing/mask/luchador/rudos,
+/obj/item/clothing/mask/luchador/tecnicos{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "aw" = (
 /obj/structure/flora/bush,
 /turf/open/floor/holofloor/snow,
@@ -298,21 +327,6 @@
 	icon_state = "reebe"
 	},
 /area/holodeck/rec_center/spacechess)
-"aT" = (
-/obj/structure/table/wood/bar,
-/obj/item/reagent_containers/food/drinks/beer{
-	pixel_x = 9;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/food/drinks/beer{
-	pixel_x = -5;
-	pixel_y = 2
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "aU" = (
 /obj/structure/table/wood/fancy,
 /obj/item/book/manual/wiki/security_space_law,
@@ -1180,21 +1194,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/gym)
-"dw" = (
-/obj/structure/rack,
-/obj/item/clothing/mask/luchador{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/clothing/mask/luchador/rudos,
-/obj/item/clothing/mask/luchador/tecnicos{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "dx" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -1466,33 +1465,6 @@
 	icon_state = "whiteboard"
 	},
 /area/holodeck/rec_center/spacechess)
-"el" = (
-/obj/structure/table/wood/bar,
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = -2;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = 9;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/food/drinks/bottle/orangejuice{
-	pixel_x = 7;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/food/drinks/bottle/gin{
-	pixel_x = -9;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/bottle/absinthe{
-	pixel_x = 13;
-	pixel_y = 6
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "em" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -1640,6 +1612,25 @@
 "eH" = (
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/thunderdome1218)
+"eI" = (
+/obj/item/clothing/gloves/boxing{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/clothing/gloves/boxing/blue{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/clothing/gloves/boxing/green,
+/obj/item/clothing/gloves/boxing/yellow{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/structure/rack,
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "eJ" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -12979,6 +12970,13 @@
 	opacity = 0
 	},
 /area/bluespace_locker)
+"BU" = (
+/obj/structure/table/wood/bar,
+/turf/open/floor/holofloor{
+	dir = 9;
+	icon_state = "wood"
+	},
+/area/holodeck/rec_center/lounge)
 "BV" = (
 /obj/machinery/chem_dispenser/drinks/beer,
 /turf/closed/indestructible{
@@ -17991,25 +17989,6 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/gym)
-"Lh" = (
-/obj/structure/table/wood/bar,
-/obj/item/reagent_containers/food/drinks/bottle/champagne{
-	pixel_x = -1;
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/food/drinks/bottle/cream{
-	pixel_x = -10;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/food/drinks/bottle/kahlua{
-	pixel_x = 7;
-	pixel_y = 3
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "Li" = (
 /obj/structure/window/reinforced,
 /obj/machinery/computer/secure_data/laptop{
@@ -20242,29 +20221,6 @@
 /obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/space/basic,
 /area/centcom/testchamber)
-"Qs" = (
-/obj/item/clothing/under/shorts/red{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/clothing/under/shorts/blue{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/clothing/under/shorts/green,
-/obj/item/clothing/under/shorts/grey{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/clothing/under/jabroni{
-	pixel_x = 4;
-	pixel_y = 2
-	},
-/obj/structure/rack,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "Qt" = (
 /obj/structure/sign/warning/biohazard,
 /turf/closed/indestructible/riveted,
@@ -21279,25 +21235,6 @@
 	},
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/basketball)
-"Sy" = (
-/obj/item/clothing/gloves/boxing{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/clothing/gloves/boxing/blue{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/clothing/gloves/boxing/green,
-/obj/item/clothing/gloves/boxing/yellow{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/structure/rack,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "Sz" = (
 /obj/effect/holodeck_effect/mobspawner/pet,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -21313,24 +21250,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"SC" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/table/wood/bar,
-/obj/item/storage/box/cups{
-	pixel_x = 4;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = -12;
-	pixel_y = 1
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "SD" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -22405,6 +22324,29 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"UW" = (
+/obj/item/clothing/under/shorts/red{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/clothing/under/shorts/blue{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/clothing/under/shorts/green,
+/obj/item/clothing/under/shorts/grey{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/clothing/under/jabroni{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/structure/rack,
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "UX" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -69181,9 +69123,9 @@ YI
 YI
 Vc
 YI
-Sy
-Qs
-dw
+eI
+UW
+av
 bj
 aa
 aa
@@ -74837,7 +74779,7 @@ an
 dU
 bo
 SE
-el
+BU
 bj
 ZK
 zR
@@ -75092,9 +75034,9 @@ an
 an
 an
 dU
-aT
+BU
 an
-Lh
+BU
 bj
 CK
 aP
@@ -75351,7 +75293,7 @@ Ua
 RN
 eq
 cN
-SC
+ar
 bj
 bt
 bI
