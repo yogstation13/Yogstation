@@ -283,21 +283,6 @@
 	icon_state = "reebe"
 	},
 /area/holodeck/rec_center/spacechess)
-"aT" = (
-/obj/structure/table/wood/bar,
-/obj/item/reagent_containers/food/drinks/beer{
-	pixel_x = 9;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/food/drinks/beer{
-	pixel_x = -5;
-	pixel_y = 2
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "aU" = (
 /obj/structure/table/wood/fancy,
 /obj/item/book/manual/wiki/security_space_law,
@@ -712,6 +697,13 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
+"ch" = (
+/obj/structure/table/wood/bar,
+/turf/open/floor/holofloor{
+	dir = 9;
+	icon_state = "wood"
+	},
+/area/holodeck/rec_center/lounge)
 "ci" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -1393,33 +1385,6 @@
 	icon_state = "whiteboard"
 	},
 /area/holodeck/rec_center/spacechess)
-"el" = (
-/obj/structure/table/wood/bar,
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = -2;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = 9;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/food/drinks/bottle/orangejuice{
-	pixel_x = 7;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/food/drinks/bottle/gin{
-	pixel_x = -9;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/bottle/absinthe{
-	pixel_x = 13;
-	pixel_y = 6
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "em" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -16632,6 +16597,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena)
+"IK" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table/wood/bar,
+/obj/item/reagent_containers/food/drinks/shaker{
+	pixel_x = -12;
+	pixel_y = 1
+	},
+/turf/open/floor/holofloor{
+	dir = 9;
+	icon_state = "wood"
+	},
+/area/holodeck/rec_center/lounge)
 "IL" = (
 /obj/effect/landmark/thunderdome/one,
 /obj/effect/turf_decal/stripes/line{
@@ -17851,25 +17830,6 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
-"Lh" = (
-/obj/structure/table/wood/bar,
-/obj/item/reagent_containers/food/drinks/bottle/champagne{
-	pixel_x = -1;
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/food/drinks/bottle/cream{
-	pixel_x = -10;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/food/drinks/bottle/kahlua{
-	pixel_x = 7;
-	pixel_y = 3
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "Li" = (
 /obj/structure/window/reinforced,
 /obj/machinery/computer/secure_data/laptop{
@@ -21088,24 +21048,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"SC" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/table/wood/bar,
-/obj/item/storage/box/cups{
-	pixel_x = 4;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = -12;
-	pixel_y = 1
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "SD" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -74506,7 +74448,7 @@ an
 dU
 bo
 SE
-el
+ch
 bj
 ZK
 zR
@@ -74761,9 +74703,9 @@ an
 an
 an
 dU
-aT
+ch
 an
-Lh
+ch
 bj
 CK
 aP
@@ -75020,7 +74962,7 @@ Ua
 RN
 eq
 cN
-SC
+IK
 bj
 bt
 bI

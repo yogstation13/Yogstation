@@ -59955,13 +59955,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos_distro)
-"ctL" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/obj/machinery/portable_atmospherics/canister/toxins,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/science/storage)
 "ctM" = (
 /obj/machinery/power/apc{
 	areastring = "/area/science/mixing";
@@ -60435,28 +60428,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/checkpoint/science/research)
-"cuM" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/science/storage)
-"cuN" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/science/storage)
 "cuO" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /obj/effect/decal/cleanable/dirt,
@@ -81702,6 +81673,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter/hub/bridge)
+"eIu" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "eIS" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -83305,6 +83283,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"icn" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister/water_vapor,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "icP" = (
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/quantumpad{
@@ -87577,6 +87571,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/port)
+"skS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "sni" = (
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/quantumpad{
@@ -89203,6 +89203,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"vOr" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister/water_vapor,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "vRb" = (
 /obj/structure/rack,
 /turf/open/floor/plating,
@@ -89979,6 +89985,11 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/hallway/primary/fore)
+"xHj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/electrolyzer,
+/turf/open/floor/plasteel,
+/area/science/storage)
 "xLx" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck,
@@ -121245,7 +121256,7 @@ aoR
 cte
 ctJ
 cun
-cuM
+xHj
 apG
 auN
 avc
@@ -121502,7 +121513,7 @@ aoR
 ctf
 ctf
 cuo
-cuM
+vOr
 apG
 cFC
 cMv
@@ -121759,7 +121770,7 @@ aoR
 ctg
 ctg
 cup
-cuN
+icn
 apG
 cMS
 auN
@@ -122013,8 +122024,8 @@ bvI
 crQ
 csm
 aoR
-ctj
-ctL
+skS
+eIu
 cuq
 cuO
 apG

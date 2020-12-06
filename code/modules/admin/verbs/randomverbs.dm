@@ -1266,13 +1266,35 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Spawn on Centcom"
 	if(!check_rights(R_ADMIN))
 		return
-	var/turf/T = locate(196,82,1)
+	var/turf/T = locate(196,82,1) // Magic number alert!
 	if(ismob(usr))
 		var/mob/M = usr
 		if(isobserver(M))
-			M.forceMove(T)
-			var/mob/living/carbon/human/newmob = M.change_mob_type( /mob/living/carbon/human , null, null, TRUE)
-			newmob.equipOutfit(/datum/outfit/centcom/official)
-			var/msg = "[key_name_admin(usr)] has spawned in at centcom [ADMIN_VERBOSEJMP(usr)]."
+			var/mob/living/carbon/human/H = new(T)
+			var/datum/preferences/A = new
+			A.copy_to(H)
+			H.dna.update_dna_identity()
+			H.equipOutfit(/datum/outfit/centcom/official)
+			
+			var/datum/mind/Mind = new /datum/mind(M.key) // Reusing the mob's original mind actually breaks objectives for any antag who had this person as their target.
+			// For that reason, we're making a new one. This mimics the behavior of, say, lone operatives, and I believe other ghostroles.
+			Mind.active = 1
+			Mind.transfer_to(H)
+			
+			var/msg = "[key_name_admin(H)] has spawned in at centcom [ADMIN_VERBOSEJMP(H)]."
 			message_admins(msg)
 			log_admin(msg)
+			return
+	to_chat(usr,"<span class='warning'>Only observers can use this command!</span>")
+
+/datum/admins/proc/cmd_admin_fuckrads()
+	set category = "Admin.Round Interaction"
+	set name = "Delete All Rads"
+	if(!check_rights(R_ADMIN))
+		return
+	for(var/datum/a in SSradiation.processing)
+		qdel(a)
+	message_admins("[key_name_admin(usr)] has cleared all radiation.")
+	log_admin("[key_name_admin(usr)] has cleared all radiation.")
+	
+	

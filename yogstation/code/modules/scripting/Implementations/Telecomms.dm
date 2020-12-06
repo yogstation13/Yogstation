@@ -9,10 +9,11 @@
 #define ALIEN 4
 #define ROBOT 8
 #define SLIME 16
-#define DRONE 32
+#define POLYSMORPH 32
 #define DRACONIC 64
 #define BEACHTONGUE 128
 GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND,SPAN_CLOWN))//Span classes that players are allowed to set in a radio transmission.
+//this is fucking broken
 GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/language/machine,/datum/language/draconic))// language datums that players are allowed to translate to in a radio transmission.
 
 /n_Interpreter/TCS_Interpreter
@@ -116,7 +117,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		"alien" = ALIEN,
 		"robot" = ROBOT,
 		"slime" = SLIME,
-		"drone" = DRONE,
+		"polysmorph" = POLYSMORPH,
 		"draconic" = DRACONIC,
 		"beachtounge" = BEACHTONGUE
 	)))
@@ -154,8 +155,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		oldlang = ROBOT
 	else if(oldlang == /datum/language/slime)
 		oldlang = SLIME
-	else if(oldlang == /datum/language/drone)
-		oldlang = DRONE
+	else if(oldlang == /datum/language/polysmorph)
+		oldlang = POLYSMORPH
 	else if(oldlang == /datum/language/draconic)
 		oldlang = DRACONIC
 	else if(oldlang == /datum/language/beachbum)
@@ -284,8 +285,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 			return /datum/language/machine
 		if(SLIME)
 			return /datum/language/slime
-		if(DRONE)
-			return /datum/language/drone
+		if(POLYSMORPH)
+			return /datum/language/polysmorph
 		if(DRACONIC)
 			return /datum/language/draconic
 		if(BEACHTONGUE)
@@ -456,6 +457,6 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 #undef ALIEN
 #undef ROBOT
 #undef SLIME
-#undef DRONE
+#undef POLYSMORPH
 #undef DRACONIC
 #undef BEACHTONGUE
