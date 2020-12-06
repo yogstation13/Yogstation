@@ -306,6 +306,7 @@
 		of the area exists in any records. After all, it's not like \
 		some doofus with an EVA suit and jetpack can just waltz around \
 		in space and find it..."
+	unpickable = TRUE
 
 /datum/map_template/ruin/space/spacebar
 	id = "spacebar"

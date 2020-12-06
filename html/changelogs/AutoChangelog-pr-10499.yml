@@ -1,5 +1,0 @@
-author: "  Xoxeyos"
-delete-after: true 
-changes: 
-  - bugfix: "Dynamic midround traitor triggered by roundstart traitor ruleset no longer ignores protected roles."
-  - tweak: "Presumably since our codes are similar, we may still have the same problems as they have."
