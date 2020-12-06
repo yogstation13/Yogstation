@@ -28,6 +28,8 @@
 			return FALSE
 		if(M.mind.unconvertable)
 			return FALSE
+		if(M.is_convert_antag())
+			return FALSE
 	else
 		return FALSE
 	if(HAS_TRAIT(M, TRAIT_MINDSHIELD) || issilicon(M) || isbot(M) || isdrone(M) || ismouse(M) || is_servant_of_ratvar(M) || !M.client)
