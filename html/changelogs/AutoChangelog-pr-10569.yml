@@ -1,0 +1,10 @@
+author: "JamieD1"
+delete-after: true 
+changes: 
+  - bugfix: " Comms console showing emag ships"
+  - bugfix: " Space pods not having verbs"
+  - bugfix: "Holoparasite creator UI"
+  - bugfix: " Disease Stat panel being weird"
+  - bugfix: " Achievement ui not working"
+  - bugfix: " Select equipment not showing unless you have R_FUN"
+  - bugfix: " Dilithium Crystals"
