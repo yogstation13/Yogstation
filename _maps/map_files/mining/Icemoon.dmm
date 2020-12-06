@@ -800,7 +800,7 @@
 	dir = 6
 	},
 /obj/machinery/meter{
-	target_layer = 1
+	target_layer = 2
 	},
 /turf/open/floor/plating,
 /area/mine/living_quarters)

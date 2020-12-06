@@ -4,6 +4,7 @@
 	item_state = "hot-ice"
 	singular_name = "hot ice piece"
 	icon = 'icons/obj/stack_objects.dmi'
+	materials = list(/datum/material/hot_ice=MINERAL_MATERIAL_AMOUNT)
 	grind_results = list(/datum/reagent/toxin/hot_ice = 25)
 
 /obj/item/stack/sheet/hot_ice/suicide_act(mob/living/carbon/user)
