@@ -28,7 +28,7 @@
 	tastes = list ("peas" = 1, "chalky saltiness" = 1)
 	wine_power = 50
 	wine_flavor = "what is, distressingly, fermented peas."
-	distill_reagent = /datum/reagent/consumable/ethanol/peewine
+	distill_reagent = /datum/reagent/consumable/ethanol/peawine
 
 
 // Laughin' Peas
