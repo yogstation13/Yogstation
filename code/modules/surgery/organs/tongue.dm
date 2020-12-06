@@ -247,7 +247,8 @@
 	say_mod = "hisses"
 	modifies_speech = TRUE
 	var/static/list/languages_possible_polysmorph = typecacheof(list(
-		/datum/language/xenocommon))
+		/datum/language/common,
+		/datum/language/polysmorph))
 
 /obj/item/organ/tongue/polysmorph/handle_speech(datum/source, list/speech_args)
 	var/static/regex/polysmorph_hiss = new("s+", "g")
