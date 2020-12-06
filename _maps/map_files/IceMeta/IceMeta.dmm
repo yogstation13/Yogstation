@@ -69146,6 +69146,12 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hop)
+"dbi" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/atmos_waste{
+	dir = 1
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/engine/atmos)
 "dbl" = (
 /obj/structure/easel,
 /turf/open/floor/plating,
@@ -71249,6 +71255,12 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"dvK" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/maintenance/disposal/incinerator)
 "dvY" = (
 /turf/closed/wall,
 /area/maintenance/starboard/aft)
@@ -71732,16 +71744,6 @@
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"dQD" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
-	dir = 1;
-	icon_state = "inje_map-2"
-	},
-/turf/open/space/basic{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow"
-	},
-/area/medical/virology)
 "dQK" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -72838,15 +72840,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit/departure_lounge)
-"fSm" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on{
-	dir = 1
-	},
-/turf/open/space/basic{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow"
-	},
-/area/engine/atmos)
 "fTk" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -73134,6 +73127,11 @@
 "gtn" = (
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
+"gtP" = (
+/obj/structure/window/reinforced,
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/aisat)
 "gut" = (
 /obj/structure/closet,
 /obj/item/extinguisher,
@@ -73516,12 +73514,6 @@
 "gZx" = (
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
-"gZO" = (
-/turf/open/space/basic{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow"
-	},
-/area/science/mixing/chamber)
 "gZY" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -74053,6 +74045,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
+"hSu" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/engine_waste,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/engine/engineering)
 "hUo" = (
 /obj/machinery/shower{
 	dir = 8
@@ -74554,6 +74550,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"iTz" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "iUV" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -74697,6 +74697,9 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"jfi" = (
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/science/mixing/chamber)
 "jfx" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/structure/cable/yellow{
@@ -76686,15 +76689,6 @@
 	dir = 8
 	},
 /area/chapel/main)
-"nwM" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/atmos_waste{
-	dir = 1
-	},
-/turf/open/space/basic{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow"
-	},
-/area/engine/atmos)
 "nwS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -79488,6 +79482,13 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/solar/port/fore)
+"sVv" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
+	dir = 1;
+	icon_state = "inje_map-2"
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/medical/virology)
 "sWc" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -79612,15 +79613,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
-"tii" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on{
-	dir = 8
-	},
-/turf/open/space/basic{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow"
-	},
-/area/maintenance/disposal/incinerator)
 "tiB" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
@@ -79629,6 +79621,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/solar/starboard/fore)
+"tjq" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 1
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/engine/atmos)
 "tkH" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -80484,14 +80482,6 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/starboard/secondary)
-"uKq" = (
-/obj/structure/window/reinforced,
-/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4,
-/turf/open/space/basic{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow"
-	},
-/area/aisat)
 "uMv" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -80951,6 +80941,10 @@
 	name = "MetaStation emergency evac bay";
 	width = 29
 	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
+"vyw" = (
+/obj/structure/girder/reinforced,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/surface/outdoors)
 "vzb" = (
@@ -81529,13 +81523,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
-"wEd" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/engine_waste,
-/turf/open/space/basic{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow"
-	},
-/area/engine/engineering)
 "wEj" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -81599,6 +81586,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"wJB" = (
+/obj/structure/grille,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "wKk" = (
 /obj/machinery/door/airlock/external{
 	name = "Transport Airlock"
@@ -99729,7 +99720,7 @@ cac
 cKS
 cBR
 xGG
-dQD
+sVv
 hWS
 gtn
 gtn
@@ -101017,10 +101008,10 @@ cMA
 cBR
 hWS
 hWS
-gtn
-gtn
-gtn
-gtn
+hWS
+hWS
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -101276,10 +101267,10 @@ hWS
 gtn
 gtn
 gtn
-gtn
-gtn
-gtn
-gtn
+hWS
+hWS
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -102567,7 +102558,7 @@ cMI
 cRF
 cMI
 gtn
-gtn
+hWS
 gtn
 fhB
 fhB
@@ -102824,7 +102815,7 @@ cOP
 cbs
 cMI
 gtn
-gtn
+hWS
 fhB
 gtn
 gtn
@@ -103081,7 +103072,7 @@ cbp
 cRH
 cPA
 gtn
-gtn
+hWS
 gtn
 gtn
 gtn
@@ -103338,7 +103329,7 @@ cOP
 cRI
 cPA
 gtn
-gtn
+hWS
 gtn
 gtn
 gtn
@@ -103595,8 +103586,8 @@ cya
 cRq
 cPA
 gtn
-gtn
-gtn
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -103852,8 +103843,8 @@ cyb
 cRJ
 cMI
 gtn
-gtn
-gtn
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -104109,8 +104100,8 @@ cyc
 cbt
 cRP
 gtn
-gtn
-gtn
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -104366,8 +104357,8 @@ cMI
 cMI
 cMI
 fhB
-gtn
-gtn
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -104623,8 +104614,8 @@ lWY
 dbF
 cMI
 fhB
-gtn
-gtn
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -104881,7 +104872,7 @@ cOS
 cMI
 fhB
 gtn
-gtn
+hWS
 gtn
 gtn
 gtn
@@ -105138,7 +105129,7 @@ cRo
 cMI
 gtn
 gtn
-gtn
+hWS
 gtn
 gtn
 gtn
@@ -105395,7 +105386,7 @@ cRp
 cRL
 gtn
 hWS
-gtn
+hWS
 gtn
 gtn
 gtn
@@ -105652,8 +105643,8 @@ cRp
 cRL
 gtn
 hWS
-gtn
-gtn
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -105909,7 +105900,7 @@ cRq
 cRL
 gtn
 gtn
-gtn
+hWS
 gtn
 gtn
 gtn
@@ -106166,7 +106157,7 @@ cRp
 cRL
 gtn
 gtn
-gtn
+hWS
 gtn
 gtn
 gtn
@@ -106424,7 +106415,7 @@ cRL
 gtn
 gtn
 gtn
-gtn
+hWS
 gtn
 gtn
 gtn
@@ -107201,18 +107192,18 @@ hWS
 gtn
 gtn
 gtn
+hWS
+hWS
 gtn
+hWS
+hWS
 gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
+hWS
+hWS
+hWS
+hWS
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -107455,22 +107446,22 @@ nSt
 hWS
 hWS
 hWS
+hWS
+hWS
+hWS
+hWS
+hWS
+hWS
+gtn
+hWS
+hWS
+hWS
+hWS
+hWS
 gtn
 gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
+hWS
+hWS
 gtn
 gtn
 fhB
@@ -107713,6 +107704,8 @@ hWS
 hWS
 hWS
 gtn
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -107725,9 +107718,7 @@ gtn
 gtn
 gtn
 gtn
-gtn
-gtn
-gtn
+hWS
 fhB
 fhB
 fhB
@@ -107984,8 +107975,8 @@ gtn
 gtn
 gtn
 gtn
-gtn
-gtn
+hWS
+hWS
 fhB
 fhB
 rgC
@@ -108242,7 +108233,7 @@ gtn
 gtn
 fhB
 gtn
-gtn
+hWS
 fhB
 fhB
 rgC
@@ -111051,7 +111042,7 @@ gtn
 gtn
 gtn
 hWS
-gtn
+hWS
 gtn
 gtn
 gtn
@@ -111306,9 +111297,9 @@ gtn
 gtn
 gtn
 gtn
-gtn
-gtn
-gtn
+hWS
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -111563,11 +111554,11 @@ gtn
 gtn
 gtn
 gtn
-gtn
-gtn
-gtn
-gtn
-gtn
+hWS
+hWS
+hWS
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -111822,9 +111813,9 @@ gtn
 gtn
 gtn
 gtn
-gtn
-gtn
-gtn
+hWS
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -112077,12 +112068,12 @@ gtn
 gtn
 gtn
 gtn
+hWS
 gtn
-gtn
-gtn
-gtn
-gtn
-gtn
+hWS
+hWS
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -112334,13 +112325,13 @@ gtn
 gtn
 gtn
 gtn
+hWS
 gtn
 gtn
+hWS
 gtn
-gtn
-gtn
-gtn
-gtn
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -112591,13 +112582,13 @@ gtn
 gtn
 gtn
 gtn
+hWS
 gtn
 gtn
+hWS
+hWS
 gtn
-gtn
-gtn
-gtn
-gtn
+hWS
 gtn
 gtn
 gtn
@@ -112849,12 +112840,12 @@ gtn
 gtn
 gtn
 gtn
+hWS
+hWS
+hWS
+hWS
 gtn
-gtn
-gtn
-gtn
-gtn
-gtn
+hWS
 gtn
 gtn
 gtn
@@ -113108,10 +113099,10 @@ gtn
 gtn
 gtn
 gtn
-gtn
-gtn
-gtn
-gtn
+hWS
+hWS
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -113365,10 +113356,10 @@ gtn
 gtn
 gtn
 gtn
-gtn
-gtn
-gtn
-gtn
+hWS
+hWS
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -113623,6 +113614,10 @@ gtn
 gtn
 gtn
 gtn
+hWS
+hWS
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -113631,11 +113626,7 @@ gtn
 gtn
 gtn
 gtn
-gtn
-gtn
-gtn
-gtn
-gtn
+hWS
 gtn
 gtn
 gtn
@@ -113853,9 +113844,9 @@ crA
 cFr
 cCt
 wQA
-gZO
-gZO
-gZO
+jfi
+jfi
+jfi
 cIg
 cIa
 cIU
@@ -113881,20 +113872,20 @@ hWS
 hWS
 gtn
 gtn
+hWS
+hWS
+hWS
+hWS
+hWS
+gtn
+hWS
 gtn
 gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
+hWS
+hWS
+hWS
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -114141,19 +114132,19 @@ gtn
 gtn
 gtn
 gtn
+hWS
+hWS
+hWS
+hWS
+hWS
+hWS
+hWS
 gtn
+hWS
+hWS
 gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
-gtn
+hWS
+hWS
 gtn
 gtn
 gtn
@@ -114410,7 +114401,7 @@ dlV
 dlV
 dlV
 hWS
-gtn
+hWS
 gtn
 gtn
 gtn
@@ -121805,7 +121796,7 @@ cgz
 cgz
 cgz
 cgz
-tii
+dvK
 lsJ
 gtn
 hWS
@@ -123088,8 +123079,8 @@ hWS
 hWS
 hWS
 hWS
-nvU
-gtn
+hWS
+hWS
 hWS
 hWS
 gtn
@@ -123339,7 +123330,7 @@ bZG
 cbc
 cUR
 czK
-nwM
+dbi
 bAR
 bAR
 bAR
@@ -126626,7 +126617,7 @@ dqT
 fhB
 fhB
 gtn
-wEd
+hSu
 aFT
 den
 aUE
@@ -127969,7 +127960,7 @@ hLF
 nwb
 rFV
 cjl
-fSm
+tjq
 rcb
 nfu
 rpu
@@ -128704,7 +128695,7 @@ hWS
 hWS
 hWS
 hWS
-gtn
+hWS
 fhB
 gtn
 gtn
@@ -128940,7 +128931,7 @@ hWS
 hWS
 hWS
 gtn
-gtn
+hWS
 gtn
 gKN
 gKN
@@ -128952,7 +128943,7 @@ ewn
 gKN
 gKN
 gKN
-gKN
+wJB
 gKN
 ewn
 gKN
@@ -128961,7 +128952,7 @@ gKN
 gtn
 gtn
 gtn
-gtn
+hWS
 fhB
 fhB
 gtn
@@ -129197,7 +129188,7 @@ gtn
 hWS
 hWS
 gtn
-gtn
+hWS
 gtn
 vcG
 vcG
@@ -129208,7 +129199,8 @@ vcG
 vcG
 vcG
 vcG
-tCu
+vyw
+hWS
 gtn
 gtn
 gtn
@@ -129217,9 +129209,8 @@ gtn
 gtn
 gtn
 gtn
-gtn
-gtn
-gtn
+hWS
+hWS
 fhB
 gtn
 gtn
@@ -129462,23 +129453,23 @@ gKN
 gKN
 ewn
 gKN
+wJB
+wJB
+wJB
+iTz
+wJB
 gKN
 gKN
-gKN
-ewn
-gKN
-gKN
-gKN
 gtn
 gtn
 gtn
 gtn
 gtn
 gtn
-fhB
-gtn
-gtn
-gtn
+hWS
+hWS
+hWS
+hWS
 gtn
 qnL
 hWS
@@ -129721,7 +129712,7 @@ gtn
 gtn
 gtn
 gtn
-gtn
+hWS
 gtn
 gtn
 gtn
@@ -129735,8 +129726,8 @@ gtn
 gtn
 fhB
 gtn
-gtn
-gtn
+hWS
+hWS
 qnL
 hWS
 gtn
@@ -129992,8 +129983,8 @@ gtn
 gtn
 gtn
 gtn
-gtn
-gtn
+hWS
+hWS
 hXP
 hWS
 gtn
@@ -131024,11 +131015,11 @@ gtn
 gtn
 qnL
 hWS
+hWS
 gtn
 gtn
-gtn
-gtn
-gtn
+hWS
+hWS
 ewn
 gtn
 gKN
@@ -131281,11 +131272,11 @@ gtn
 gtn
 qnL
 hWS
-gtn
-gtn
-gtn
-gtn
-gtn
+hWS
+hWS
+hWS
+hWS
+hWS
 gKN
 gtn
 gKN
@@ -131539,10 +131530,10 @@ gtn
 qnL
 hWS
 gtn
-gtn
-gtn
-gtn
-gtn
+hWS
+hWS
+hWS
+hWS
 gKN
 gtn
 ewn
@@ -131798,8 +131789,8 @@ hWS
 gtn
 gtn
 fhB
-gtn
-gtn
+hWS
+hWS
 ewn
 gtn
 gKN
@@ -135132,7 +135123,7 @@ qwT
 qwT
 gtn
 gtn
-uKq
+gtP
 bmb
 bny
 beQ
