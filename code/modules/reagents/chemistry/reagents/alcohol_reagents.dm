@@ -2305,7 +2305,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Godmother"
 	glass_desc = "A lovely fresh smelling cocktail, a true Sicilian delight."
 
-/datum/reagent/consumable/ethanol/peewine
+/datum/reagent/consumable/ethanol/peawine
 	name = "Pea Wine"
 	description = "An alcoholic beverage That is created through distilling peas."
 	color = "#008000" // rgb: 0, 128, 0
