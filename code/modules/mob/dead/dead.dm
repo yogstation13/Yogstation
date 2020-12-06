@@ -64,7 +64,6 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	set category = "OOC"
 	set name = "Server Hop!"
 	set desc= "Jump to the other server"
-	set hidden = TRUE
 	if(notransform)
 		return
 	var/list/csa = CONFIG_GET(keyed_list/cross_server)
