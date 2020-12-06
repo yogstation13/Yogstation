@@ -386,3 +386,4 @@
 	name = "polysmorph eyes"
 	desc = "Eyes from a polysmorph, capable of retaining slightly more vision in low light environments"
 	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
+	see_in_dark = 5
