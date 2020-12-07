@@ -3,7 +3,7 @@
 
 /obj/machinery/atmospherics/components
 	var/welded = FALSE //Used on pumps and scrubbers
-	var/showpipe = TRUE
+	var/showpipe = FALSE
 	var/shift_underlay_only = TRUE //Layering only shifts underlay?
 
 	var/list/datum/pipeline/parents
