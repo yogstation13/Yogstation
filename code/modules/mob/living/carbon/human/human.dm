@@ -81,9 +81,9 @@
 			. += "Chemical Storage: [changeling.chem_charges]/[changeling.chem_storage]"
 			. += "Absorbed DNA: [changeling.absorbedcount]"
 		var/datum/antagonist/zombie/zombie = mind.has_antag_datum(/datum/antagonist/zombie)
-			if(zombie)
-				if((zombie.evolutionTime - world.time) > 0)
-					stat("Time to Tier 2 Evolution: [(zombie.evolutionTime - world.time) / 10] seconds")
+		if(zombie)
+			if((zombie.evolutionTime - world.time) > 0)
+				. += "Time to Tier 2 Evolution: [(zombie.evolutionTime - world.time) / 10] seconds"
 
 
 	//NINJACODE

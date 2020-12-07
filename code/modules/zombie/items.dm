@@ -49,7 +49,7 @@
 
 				var/infect_modifier = (total_damage ** 2) / 100
 
-				infect_modifier = CLAMP(infect_modifier, 0, 100)
+				infect_modifier = clamp(infect_modifier, 0, 100)
 
 				if(prob(infect_modifier))
 					if(prob(infect_chance - H.getarmor(flesh_wound, "melee")))
