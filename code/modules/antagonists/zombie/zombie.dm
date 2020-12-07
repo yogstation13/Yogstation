@@ -214,7 +214,7 @@
 	H.death()
 	Z.zombify.Remove(H)
 	Z.zombified = TRUE
-	uncuff.Grant(H)
+	Z.uncuff.Grant(H)
 	Z.evolutionTime = TIER_2_TIME + world.time
 	Z.start_evolution_2()
 
