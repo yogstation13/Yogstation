@@ -483,6 +483,12 @@
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
 	toxpwr = 1.25
 
+/datum/reagent/toxin/cyanide/reaction_turf(turf/T, reac_volume)
+	if(istype(T, /turf/open/floor/carpet))
+		var/turf/open/floor/F = T
+		F.ChangeTurf(/turf/open/floor/carpet/cyan, flags = CHANGETURF_INHERIT_AIR)
+	..()
+
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/carbon/M)
 	if(prob(5))
 		M.losebreath += 1
