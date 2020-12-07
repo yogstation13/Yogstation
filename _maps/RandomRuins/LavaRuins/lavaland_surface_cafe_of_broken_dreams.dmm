@@ -42,14 +42,6 @@
 /mob/living/simple_animal/hostile/asteroid/goliath/beast,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"av" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/glass/bottle/potass_iodide{
-	desc = "Fixes your radiation problems. Doesn't come with a vault.";
-	name = "rad-away"
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
 "aw" = (
 /obj/structure/table/wood/bar,
 /turf/open/floor/wood,
@@ -65,14 +57,6 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
-"aD" = (
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aE" = (
-/obj/structure/bookcase/random,
-/turf/open/floor/wood,
-/area/ruin/powered)
 "aF" = (
 /obj/item/reagent_containers/glass/bottle/potass_iodide{
 	desc = "War. War never changes. But this can take away your radiation problems!";
@@ -80,10 +64,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"aG" = (
-/obj/structure/closet/cardboard,
-/turf/open/floor/wood,
-/area/ruin/powered)
 "aI" = (
 /obj/structure/bookcase/random,
 /turf/open/floor/plating{
@@ -126,10 +106,6 @@
 "aP" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/powered)
-"aS" = (
-/obj/structure/dresser,
-/turf/open/floor/wood,
 /area/ruin/powered)
 "aT" = (
 /obj/structure/table/wood/bar,
@@ -354,14 +330,42 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
-"bU" = (
-/obj/machinery/light/small,
-/turf/open/floor/wood,
-/area/ruin/powered)
 "bW" = (
 /mob/living/simple_animal/hostile/asteroid/marrowweaver,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"cw" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"dJ" = (
+/turf/open/floor/wood/lavaland{
+	icon_state = "wood-broken6"
+	},
+/area/ruin/powered)
+"dU" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bottle/potass_iodide{
+	desc = "Fixes your radiation problems. Doesn't come with a vault.";
+	name = "rad-away"
+	},
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"er" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"fO" = (
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"gO" = (
+/turf/open/floor/wood/lavaland{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/powered)
 "iU" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/lavaland,
@@ -388,6 +392,10 @@
 	icon_state = "platingdmg3"
 	},
 /area/lavaland/surface/outdoors)
+"mP" = (
+/obj/machinery/light/small,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
 "rP" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -463,6 +471,22 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/lavaland,
 /area/lavaland/surface/outdoors)
+"Ju" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"JH" = (
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"Kv" = (
+/obj/structure/closet/cardboard,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"Ln" = (
+/obj/machinery/door/airlock,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
 "ML" = (
 /obj/vehicle/ridden/scooter,
 /obj/effect/turf_decal/sand,
@@ -492,6 +516,10 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/lavaland,
 /area/lavaland/surface/outdoors)
+"Tx" = (
+/obj/structure/dresser,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
 "Tz" = (
 /turf/open/floor/plating/lavaland_baseturf{
 	icon_state = "platingdmg3"
@@ -962,21 +990,21 @@ iU
 iU
 iU
 aW
-ai
-ai
-bk
-ai
-ai
+JH
+JH
+gO
+JH
+JH
 aW
-aE
-ai
-aG
-aG
-ai
-ai
-ai
-bj
-ai
+Ju
+JH
+Kv
+Kv
+JH
+JH
+JH
+dJ
+JH
 Hc
 iU
 iU
@@ -1010,21 +1038,21 @@ iU
 ab
 iU
 Hc
-ai
-bl
-ai
-ai
-ai
+JH
+er
+JH
+JH
+JH
 aW
-ai
-bk
-ai
-ai
-ai
-ai
-ai
-ai
-ai
+JH
+gO
+JH
+JH
+JH
+JH
+JH
+JH
+JH
 Hc
 iU
 iU
@@ -1058,19 +1086,19 @@ iU
 ab
 iU
 Tz
-bk
-bl
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-bU
+gO
+er
+JH
+JH
+JH
+JH
+JH
+JH
+JH
+mP
 aW
 aW
-ai
+JH
 aW
 aW
 aW
@@ -1106,21 +1134,21 @@ iU
 ab
 iU
 Hc
-ai
-av
-ai
-ai
-ai
+JH
+dU
+JH
+JH
+JH
 aW
-bj
-ai
-ai
-ai
+dJ
+JH
+JH
+JH
 aW
-ai
-ai
-ai
-aS
+JH
+JH
+JH
+Tx
 aW
 iU
 iU
@@ -1154,21 +1182,21 @@ iU
 RS
 iU
 aW
-ai
-ai
-aB
-ai
-aD
+JH
+JH
+cw
+JH
+fO
 aW
-ai
-ai
-ai
-ai
+JH
+JH
+JH
+JH
 aW
-aD
-ai
-bk
-bU
+fO
+JH
+gO
+mP
 aW
 tD
 iU
@@ -1203,7 +1231,7 @@ iU
 iU
 aW
 aW
-ay
+Ln
 aW
 aU
 aW

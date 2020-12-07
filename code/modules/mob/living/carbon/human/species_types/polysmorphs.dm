@@ -17,8 +17,9 @@
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'
 	species_traits = list(NOEYESPRITES, FGENDER, MUTCOLORS, NOCOLORCHANGE)
-	inherent_traits = list(TRAIT_NIGHT_VISION, TRAIT_ACIDBLOOD)
+	inherent_traits = list(TRAIT_ACIDBLOOD)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mutanteyes = /obj/item/organ/eyes/polysmorph
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'

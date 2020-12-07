@@ -5,7 +5,7 @@ $include resources_private.txt
 ## World address and port for server receiving cross server messages
 ## Use '+' to denote spaces in ServerName
 ## Repeat this entry to add more servers
-CROSS_SERVER Atlas byond://149.56.18.231:5133
+#CROSS_SERVER Atlas byond://149.56.18.231:5133
 
 ## Name that the server calls itself in communications
 CROSS_COMMS_NAME Main

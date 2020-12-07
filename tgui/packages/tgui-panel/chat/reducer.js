@@ -10,7 +10,7 @@ import { canPageAcceptType, createMainPage } from './model';
 const mainPage = createMainPage();
 
 export const initialState = {
-  version: 5,
+  version: 6,
   currentPageId: mainPage.id,
   scrollTracking: true,
   pages: [

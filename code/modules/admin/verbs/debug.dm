@@ -730,8 +730,11 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 /client/proc/cmd_admin_dress(mob/M in GLOB.mob_list)
 	set category = "Misc"
-
 	set name = "Select equipment"
+
+	if(!check_rights(R_SPAWN))
+		return
+
 	if(!(ishuman(M) || isobserver(M)))
 		alert("Invalid mob")
 		return
