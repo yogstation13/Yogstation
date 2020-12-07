@@ -65,7 +65,7 @@
 		if(world.time < next_spaghetti)
 			return
 		visible_message("<span class='brass'>[user] spins a serving of spaghetti out of [src].", "<span class='brass'>You reach your [I] into [src], pulling out a plateful of spaghetti!</span>")
-		new /obj/item/reagent_containers/food/snacks/spaghetti/pastatomato(user.loc)
+		new /obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti(user.loc)
 		next_spaghetti = world.time + spaghetti_cooldown
 	. = ..()
 
