@@ -17,7 +17,7 @@
 	var/evolutionTime = 0 //When can we evolve?
 
 	//GENERAL ABILITIES
-	var/obj/effect/proc_holder/zombie/uncuff/uncuff
+	var/obj/effect/proc_holder/zombie/uncuff/uncuff = new
 
 	//SPITTER ABILITIES
 	var/obj/effect/proc_holder/zombie/spit/spit
@@ -214,8 +214,7 @@
 	H.death()
 	Z.zombify.Remove(H)
 	Z.zombified = TRUE
-	Z.uncuff = new()
-	H.AddAbility(Z.uncuff)
+	uncuff.Grant(H)
 	Z.evolutionTime = TIER_2_TIME + world.time
 	Z.start_evolution_2()
 

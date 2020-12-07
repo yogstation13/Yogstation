@@ -1498,6 +1498,7 @@
 #include "code\modules\antagonists\zombie\abilities\necromance.dm"
 #include "code\modules\antagonists\zombie\abilities\spit.dm"
 #include "code\modules\antagonists\zombie\abilities\tank.dm"
+#include "code\modules\antagonists\zombie\abilities\uncuff.dm"
 #include "code\modules\assembly\assembly.dm"
 #include "code\modules\assembly\bomb.dm"
 #include "code\modules\assembly\doorcontrol.dm"
