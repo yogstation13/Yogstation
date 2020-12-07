@@ -16,6 +16,8 @@
 	var/export_price = 0					//Cargo export price.
 	var/list/research_costs = list()					//Point cost to research. type = amount
 	var/category = "Misc"				//Category
+	var/ui_x = 805 // It's location - override this in techweb_layout.dm
+	var/ui_y = 805
 
 /datum/techweb_node/error_node
 	id = "ERROR"

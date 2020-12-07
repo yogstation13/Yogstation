@@ -70,7 +70,7 @@
 	integrity_failure = 80
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30)
 	resistance_flags = FIRE_PROOF
-	
+
 	FASTDMM_PROP(\
 		set_instance_vars(\
 			pixel_x = (dir & 3)? INSTANCE_VAR_DEFAULT : (dir == 4 ? -24 : 24),\
@@ -107,7 +107,14 @@
 		/datum/gas/stimulum			= new/datum/tlv(-1, -1, 1000, 1000), // Stimulum has only positive effects
 		/datum/gas/nitryl			= new/datum/tlv/dangerous,
 		/datum/gas/dilithium		= new/datum/tlv/dangerous,//Yogs -- Dilithium
-		/datum/gas/pluoxium			= new/datum/tlv(-1, -1, 1000, 1000) // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		/datum/gas/pluoxium			= new/datum/tlv(-1, -1, 1000, 1000), // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		/datum/gas/freon			= new/datum/tlv/dangerous,
+		/datum/gas/hydrogen			= new/datum/tlv/dangerous,
+		/datum/gas/healium			= new/datum/tlv/dangerous,
+		/datum/gas/pluonium	= new/datum/tlv/dangerous,
+		/datum/gas/zauker			= new/datum/tlv/dangerous,	
+		/datum/gas/halon			= new/datum/tlv/dangerous,
+		/datum/gas/hexane			= new/datum/tlv/dangerous
 	)
 
 /obj/machinery/airalarm/server // No checks here.
@@ -127,7 +134,13 @@
 		/datum/gas/stimulum			= new/datum/tlv/no_checks,
 		/datum/gas/nitryl			= new/datum/tlv/no_checks,
 		/datum/gas/dilithium		= new/datum/tlv/no_checks,//Yogs -- Dilithium
-		/datum/gas/pluoxium			= new/datum/tlv/no_checks
+		/datum/gas/pluoxium			= new/datum/tlv/no_checks,
+		/datum/gas/freon			= new/datum/tlv/no_checks,
+		/datum/gas/hydrogen			= new/datum/tlv/no_checks,
+		/datum/gas/healium			= new/datum/tlv/dangerous,
+		/datum/gas/pluonium	= new/datum/tlv/dangerous,
+		/datum/gas/halon			= new/datum/tlv/dangerous,
+		/datum/gas/hexane			= new/datum/tlv/dangerous
 	)
 
 /obj/machinery/airalarm/kitchen_cold_room // Kitchen cold rooms start off at -80°C or 193.15°K.
@@ -147,7 +160,14 @@
 		/datum/gas/stimulum			= new/datum/tlv(-1, -1, 1000, 1000), // Stimulum has only positive effects
 		/datum/gas/nitryl			= new/datum/tlv/dangerous,
 		/datum/gas/dilithium		= new/datum/tlv/dangerous,//Yogs -- Dilithium
-		/datum/gas/pluoxium			= new/datum/tlv(-1, -1, 1000, 1000) // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		/datum/gas/pluoxium			= new/datum/tlv(-1, -1, 1000, 1000), // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		/datum/gas/freon			= new/datum/tlv/dangerous,
+		/datum/gas/hydrogen			= new/datum/tlv/dangerous,
+		/datum/gas/healium			= new/datum/tlv/dangerous,
+		/datum/gas/pluonium	= new/datum/tlv/dangerous,
+		/datum/gas/zauker			= new/datum/tlv/dangerous,
+		/datum/gas/halon			= new/datum/tlv/dangerous,
+		/datum/gas/hexane			= new/datum/tlv/dangerous
 	)
 
 /obj/machinery/airalarm/unlocked
@@ -245,11 +265,10 @@
 		return ..()
 	return UI_CLOSE
 
-/obj/machinery/airalarm/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/airalarm/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "airalarm", name, 440, 650, master_ui, state)
+		ui = new(user, src, "AirAlarm", name)
 		ui.open()
 
 /obj/machinery/airalarm/ui_data(mob/user)
@@ -277,7 +296,7 @@
 							"unit" = "kPa",
 							"danger_level" = cur_tlv.get_danger_level(pressure)
 	))
-	var/temperature = environment.temperature
+	var/temperature = environment.return_temperature()
 	cur_tlv = TLV["temperature"]
 	data["environment_data"] += list(list(
 							"name" = "Temperature",
@@ -286,16 +305,16 @@
 							"danger_level" = cur_tlv.get_danger_level(temperature)
 	))
 	var/total_moles = environment.total_moles()
-	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.temperature / environment.volume
-	for(var/gas_id in environment.gases)
+	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.return_temperature() / environment.return_volume()
+	for(var/gas_id in environment.get_gases())
 		if(!(gas_id in TLV)) // We're not interested in this gas, it seems.
 			continue
 		cur_tlv = TLV[gas_id]
 		data["environment_data"] += list(list(
-								"name" = environment.gases[gas_id][GAS_META][META_GAS_NAME],
-								"value" = environment.gases[gas_id][MOLES] / total_moles * 100,
+								"name" = GLOB.meta_gas_info[gas_id][META_GAS_NAME],
+								"value" = environment.get_moles(gas_id) / total_moles * 100,
 								"unit" = "%",
-								"danger_level" = cur_tlv.get_danger_level(environment.gases[gas_id][MOLES] * partial_pressure)
+								"danger_level" = cur_tlv.get_danger_level(environment.get_moles(gas_id) * partial_pressure)
 		))
 
 	if(!locked || user.has_unlimited_silicon_privilege)
@@ -535,7 +554,14 @@
 						/datum/gas/bz,
 						/datum/gas/stimulum,
 						/datum/gas/pluoxium,//yogs comma
-						/datum/gas/dilithium//Yogs -- Adds Dilithium
+						/datum/gas/dilithium,//Yogs -- Adds Dilithium
+						/datum/gas/freon,
+						/datum/gas/hydrogen,
+						/datum/gas/healium,
+						/datum/gas/pluonium,
+						/datum/gas/zauker,
+						/datum/gas/halon,
+						/datum/gas/hexane
 					),
 					"scrubbing" = 1,
 					"widenet" = 1
@@ -639,24 +665,22 @@
 	var/datum/tlv/cur_tlv
 
 	var/datum/gas_mixture/environment = location.return_air()
-	var/list/env_gases = environment.gases
-	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.temperature / environment.volume
+	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.return_temperature() / environment.return_volume()
 
 	cur_tlv = TLV["pressure"]
 	var/environment_pressure = environment.return_pressure()
 	var/pressure_dangerlevel = cur_tlv.get_danger_level(environment_pressure)
 
 	cur_tlv = TLV["temperature"]
-	var/temperature_dangerlevel = cur_tlv.get_danger_level(environment.temperature)
+	var/temperature_dangerlevel = cur_tlv.get_danger_level(environment.return_temperature())
 
 	var/gas_dangerlevel = 0
-	for(var/gas_id in env_gases)
+	for(var/gas_id in environment.get_gases())
 		if(!(gas_id in TLV)) // We're not interested in this gas, it seems.
 			continue
 		cur_tlv = TLV[gas_id]
-		gas_dangerlevel = max(gas_dangerlevel, cur_tlv.get_danger_level(env_gases[gas_id][MOLES] * partial_pressure))
+		gas_dangerlevel = max(gas_dangerlevel, cur_tlv.get_danger_level(environment.get_moles(gas_id) * partial_pressure))
 
-	environment.garbage_collect()
 
 	var/old_danger_level = danger_level
 	danger_level = max(pressure_dangerlevel, temperature_dangerlevel, gas_dangerlevel)
@@ -793,6 +817,21 @@
 	else
 		togglelock(user)
 
+/obj/machinery/airalarm/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
+	if((buildstage == 0) && (the_rcd.upgrade & RCD_UPGRADE_SIMPLE_CIRCUITS))
+		return list("mode" = RCD_UPGRADE_SIMPLE_CIRCUITS, "delay" = 20, "cost" = 1)	
+	return FALSE
+
+/obj/machinery/airalarm/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
+	switch(passed_mode)
+		if(RCD_UPGRADE_SIMPLE_CIRCUITS)
+			user.visible_message("<span class='notice'>[user] fabricates a circuit and places it into [src].</span>", \
+			"<span class='notice'>You adapt an air alarm circuit and slot it into the assembly.</span>")
+			buildstage = 1
+			update_icon()
+			return TRUE
+	return FALSE
+
 /obj/machinery/airalarm/proc/togglelock(mob/living/user)
 	if(stat & (NOPOWER|BROKEN))
 		to_chat(user, "<span class='warning'>It does nothing!</span>")
@@ -805,20 +844,12 @@
 			to_chat(user, "<span class='danger'>Access denied.</span>")
 	return
 
-/obj/machinery/airalarm/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/airalarm/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
 	obj_flags |= EMAGGED
 	visible_message("<span class='warning'>Sparks fly out of [src]!</span>", "<span class='notice'>You emag [src], disabling its safeties.</span>")
 	playsound(src, "sparks", 50, 1)
-
-/obj/machinery/airalarm/obj_break(damage_flag)
-	..()
-	update_icon()
 
 /obj/machinery/airalarm/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))

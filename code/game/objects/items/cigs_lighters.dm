@@ -222,7 +222,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/cigarette/extinguish()
 	if(!lit)
 		return
-	name = copytext(name,5,length(name)+1)
+	name = copytext_char(name, 5) //5 == length_char("lit ") + 1
 	attack_verb = null
 	hitsound = null
 	damtype = BRUTE
@@ -330,7 +330,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/xeno
 	desc = "A Xeno Filtered brand cigarette."
-	list_reagents = list (/datum/reagent/drug/nicotine = 20, /datum/reagent/medicine/regen_jelly = 15, /datum/reagent/drug/krokodil = 4)
+	list_reagents = list(/datum/reagent/drug/nicotine = 20, /datum/reagent/medicine/regen_jelly = 15, /datum/reagent/drug/krokodil = 4)
+
+/obj/item/clothing/mask/cigarette/nonico
+	desc = "A nicotine-free cigarette."
+	list_reagents = list(/datum/reagent/carbon = 15)
 
 // Rollies.
 
@@ -753,7 +757,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "\improper E-Cigarette"
 	desc = "A classy and highly sophisticated electronic cigarette, for classy and dignified gentlemen. A warning label reads \"Warning: Do not fill with flammable materials.\""//<<< i'd vape to that.
 	icon = 'icons/obj/clothing/masks.dmi'
-	icon_state = null
+	icon_state = "red_vape"
 	item_state = null
 	w_class = WEIGHT_CLASS_TINY
 	var/chem_volume = 100
@@ -770,11 +774,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	. = ..()
 	create_reagents(chem_volume, NO_REACT)
 	reagents.add_reagent(/datum/reagent/drug/nicotine, 50)
-	if(!icon_state)
-		if(!param_color)
-			param_color = pick("red","blue","black","white","green","purple","yellow","orange")
-		icon_state = "[param_color]_vape"
-		item_state = "[param_color]_vape"
+	if(!param_color)
+		param_color = pick("red","blue","black","white","green","purple","yellow","orange")
+	icon_state = "[param_color]_vape"
+	item_state = "[param_color]_vape"
 
 /obj/item/clothing/mask/vape/attackby(obj/item/O, mob/user, params)
 	if(O.tool_behaviour == TOOL_SCREWDRIVER)
@@ -835,6 +838,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		reagents.clear_reagents()
 
 /obj/item/clothing/mask/vape/equipped(mob/user, slot)
+	. = ..()
 	if(slot == SLOT_WEAR_MASK)
 		if(!screw)
 			to_chat(user, "<span class='notice'>You start puffing on the vape.</span>")
@@ -844,8 +848,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			to_chat(user, "<span class='warning'>You need to close the cap first!</span>")
 
 /obj/item/clothing/mask/vape/dropped(mob/user)
-	var/mob/living/carbon/C = user
-	if(C.get_item_by_slot(SLOT_WEAR_MASK) == src)
+	. = ..()
+	if(user.get_item_by_slot(SLOT_WEAR_MASK) == src)
 		ENABLE_BITFIELD(reagents.flags, NO_REACT)
 		STOP_PROCESSING(SSobj, src)
 
@@ -923,3 +927,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	if(reagents && reagents.total_volume)
 		hand_reagents()
+
+/obj/item/clothing/mask/cigarette/lit/Initialize()
+    . = ..()
+    light() // These cigarettes start lit.
+    

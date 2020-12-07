@@ -82,6 +82,7 @@
 
 /turf/open/floor/plating/lavaland_baseturf
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
+	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
 /turf/open/floor/plating/asteroid/basalt
 	name = "volcanic floor"
@@ -152,19 +153,37 @@
 /turf/open/floor/plating/asteroid/airless/cave/has_data //subtype for producing a tunnel with given data
 	has_data = TRUE
 
+/turf/open/floor/plating/asteroid/airless/cave/icemoon
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+	baseturfs = /turf/open/floor/plating/asteroid/icemoon
+	turf_type = /turf/open/floor/plating/asteroid/icemoon
+	data_having_type = /turf/open/floor/plating/asteroid/airless/cave/icemoon/has_data
+
+/turf/open/floor/plating/asteroid/airless/cave/icemoon/has_data //subtype for producing a tunnel with given data
+	has_data = TRUE
+
 /turf/open/floor/plating/asteroid/airless/cave/volcanic
 	mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast/random = 50, /obj/structure/spawner/lavaland/goliath = 3, \
 		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random = 40, /obj/structure/spawner/lavaland = 2, \
 		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing = 20, /obj/structure/spawner/lavaland/magmawing = 1, \
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random = 30, /obj/structure/spawner/lavaland/legion = 3, \
-		/mob/living/simple_animal/slime/random = 50, \
-		SPAWN_MEGAFAUNA = 6, /mob/living/simple_animal/hostile/asteroid/goldgrub = 10, /mob/living/simple_animal/hostile/asteroid/marrowweaver = 35) // yogs change added marrowweaver
+		SPAWN_MEGAFAUNA = 6, /mob/living/simple_animal/hostile/asteroid/goldgrub = 10, /mob/living/simple_animal/hostile/asteroid/marrowweaver = 35, \
+		/mob/living/simple_animal/hostile/asteroid/gutlunch/gubbuck = 1, /mob/living/simple_animal/hostile/asteroid/gutlunch/guthen = 1) // yogs change added marrowweaver and gubbuck/gutlunch
 
 	data_having_type = /turf/open/floor/plating/asteroid/airless/cave/volcanic/has_data
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
 /turf/open/floor/plating/asteroid/airless/cave/volcanic/has_data //subtype for producing a tunnel with given data
+	has_data = TRUE
+
+/turf/open/floor/plating/asteroid/airless/cave/volcanic/icemoon
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/icemoon
+	turf_type = /turf/open/floor/plating/asteroid/basalt/icemoon
+	data_having_type = /turf/open/floor/plating/asteroid/airless/cave/volcanic/icemoon/has_data
+
+/turf/open/floor/plating/asteroid/airless/cave/volcanic/icemoon/has_data //subtype for producing a tunnel with given data
 	has_data = TRUE
 
 /turf/open/floor/plating/asteroid/airless/cave/snow
@@ -383,6 +402,10 @@
 	bullet_bounce_sound = null
 	digResult = /obj/item/stack/sheet/mineral/snow
 
+/turf/open/floor/plating/asteroid/snow/getDug()
+	..()
+	slowdown = 0
+
 /turf/open/floor/plating/asteroid/snow/burn_tile()
 	if(!burnt)
 		visible_message("<span class='danger'>[src] melts away!.</span>")
@@ -399,6 +422,16 @@
 /turf/open/lava/plasma/ice_moon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 	baseturfs = /turf/open/lava/plasma/ice_moon
+	planetary_atmos = TRUE
+
+/turf/open/floor/plating/asteroid/icemoon
+	baseturfs = /turf/open/floor/plating/asteroid/icemoon
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+	planetary_atmos = TRUE
+
+/turf/open/floor/plating/asteroid/basalt/icemoon
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/icemoon
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 
 /turf/open/floor/plating/asteroid/snow/ice

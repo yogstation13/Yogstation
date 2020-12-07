@@ -162,7 +162,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 		NEWSCASTER.update_icon()
 
 /datum/newscaster/feed_network/proc/save_photo(icon/photo)
-	var/photo_file = copytext(md5("\icon[photo]"), 1, 6)
+	var/photo_file = copytext_char(md5("\icon[photo]"), 1, 6)
 	if(!fexists("[GLOB.log_directory]/photos/[photo_file].png"))
 		//Clean up repeated frames
 		var/icon/clean = new /icon()
@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	name = "newscaster frame"
 	desc = "Used to build newscasters, just secure to the wall."
 	icon_state = "newscaster"
-	materials = list(MAT_METAL=14000, MAT_GLASS=8000)
+	materials = list(/datum/material/iron=14000, /datum/material/glass=8000)
 	result_path = /obj/machinery/newscaster
 
 
@@ -245,18 +245,6 @@ GLOBAL_LIST_EMPTY(allCasters)
 			add_overlay("crack2")
 		else
 			add_overlay("crack3")
-
-
-/obj/machinery/newscaster/power_change()
-	if(stat & BROKEN)
-		return
-	if(powered())
-		stat &= ~NOPOWER
-		update_icon()
-	else
-		spawn(rand(0, 15))
-			stat |= NOPOWER
-			update_icon()
 
 /obj/machinery/newscaster/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
@@ -503,7 +491,6 @@ GLOBAL_LIST_EMPTY(allCasters)
 				dat+="<A href='?src=[REF(src)];setScreen=[0]'>Return</A>"
 		var/datum/browser/popup = new(human_or_robot_user, "newscaster_main", "Newscaster Unit #[unit_no]", 400, 600)
 		popup.set_content(dat)
-		popup.set_title_image(human_or_robot_user.browse_rsc_icon(icon, icon_state))
 		popup.open()
 
 /obj/machinery/newscaster/Topic(href, href_list)
@@ -514,8 +501,6 @@ GLOBAL_LIST_EMPTY(allCasters)
 		scan_user(usr)
 		if(href_list["set_channel_name"])
 			channel_name = stripped_input(usr, "Provide a Feed Channel Name", "Network Channel Handler", "", MAX_NAME_LEN)
-			while (findtext(channel_name," ") == 1)
-				channel_name = copytext(channel_name,2,length(channel_name)+1)
 			updateUsrDialog()
 		else if(href_list["set_channel_lock"])
 			c_locked = !c_locked
@@ -690,7 +675,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 			updateUsrDialog()
 		else if(href_list["new_comment"])
 			var/datum/newscaster/feed_message/FM = locate(href_list["new_comment"]) in viewing_channel.messages
-			var/cominput = copytext(stripped_input(usr, "Write your message:", "New comment", null),1,141)
+			var/cominput = stripped_input(usr, "Write your message:", "New comment", null, 140)
 			if(cominput)
 				scan_user(usr)
 				var/datum/newscaster/feed_comment/FC = new/datum/newscaster/feed_comment
@@ -769,11 +754,10 @@ GLOBAL_LIST_EMPTY(allCasters)
 		new /obj/item/shard(loc)
 	qdel(src)
 
-/obj/machinery/newscaster/obj_break()
-	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
-		stat |= BROKEN
-		playsound(loc, 'sound/effects/glassbr3.ogg', 100, 1)
-		update_icon()
+/obj/machinery/newscaster/obj_break(damage_flag)
+	. = ..()
+	if(.)
+		playsound(loc, 'sound/effects/glassbr3.ogg', 100, TRUE)
 
 
 /obj/machinery/newscaster/attack_paw(mob/user)
@@ -831,7 +815,6 @@ GLOBAL_LIST_EMPTY(allCasters)
 		scanned_user = "[ai_user.name] ([ai_user.job])"
 	else
 		CRASH("Invalid user for this proc")
-		return
 
 /obj/machinery/newscaster/proc/print_paper()
 	SSblackbox.record_feedback("amount", "newspapers_printed", 1)
@@ -901,6 +884,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		var/dat
+		dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 		pages = 0
 		switch(screen)
 			if(0) //Cover
@@ -973,6 +957,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 					dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[scribble]\"</I>"
 				dat+= "<HR><DIV STYLE='float:left;'><A href='?src=[REF(src)];prev_page=1'>Previous Page</A></DIV>"
 		dat+="<BR><HR><div align='center'>[curr_page+1]</div>"
+		dat += "</BODY></HTML>"
 		human_user << browse(dat, "window=newspaper_main;size=300x400")
 		onclose(human_user, "newspaper_main")
 	else

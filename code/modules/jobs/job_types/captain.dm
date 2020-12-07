@@ -7,7 +7,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "Nanotrasen officials and Space law"
+	supervisors = "NanoTrasen officers and Space law" //Changed to officer to separate from CentCom officials being their superior.
 	selection_color = "#ccccff"
 	req_admin_notify = 1
 	space_law_notify = 1 //Yogs

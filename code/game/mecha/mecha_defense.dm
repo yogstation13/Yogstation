@@ -107,6 +107,9 @@
 /obj/mecha/attack_tk()
 	return
 
+/obj/mecha/rust_heretic_act()
+	take_damage(500,  BRUTE)
+
 /obj/mecha/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum) //wrapper
 	log_message("Hit by [AM].", LOG_MECHA, color="red")
 	. = ..()
@@ -130,10 +133,22 @@
 	severity++
 	for(var/X in equipment)
 		var/obj/item/mecha_parts/mecha_equipment/ME = X
-		ME.ex_act(severity,target)
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.high_mov_atom += ME
+			if(EXPLODE_HEAVY)
+				SSexplosions.med_mov_atom += ME
+			if(EXPLODE_LIGHT)
+				SSexplosions.low_mov_atom += ME
 	for(var/Y in trackers)
 		var/obj/item/mecha_parts/mecha_tracking/MT = Y
-		MT.ex_act(severity, target)
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.high_mov_atom += MT
+			if(EXPLODE_HEAVY)
+				SSexplosions.med_mov_atom += MT
+			if(EXPLODE_LIGHT)
+				SSexplosions.low_mov_atom += MT
 	if(occupant)
 		occupant.ex_act(severity,target)
 
@@ -157,6 +172,7 @@
 		occupant?.update_mouse_pointer()
 	if(!equipment_disabled && occupant) //prevent spamming this message with back-to-back EMPs
 		to_chat(occupant, "<span=danger>Error -- Connection to equipment control unit has been lost.</span>")
+	overload_action.Activate(0)
 	addtimer(CALLBACK(src, /obj/mecha/proc/restore_equipment), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	equipment_disabled = 1
 
@@ -218,32 +234,47 @@
 			else
 				to_chat(user, "<span class='warning'>You need two lengths of cable to fix this mech!</span>")
 		return
-	else if(W.tool_behaviour == TOOL_SCREWDRIVER && user.a_intent != INTENT_HARM)
-		if(internal_damage & MECHA_INT_TEMP_CONTROL)
-			clearInternalDamage(MECHA_INT_TEMP_CONTROL)
-			to_chat(user, "<span class='notice'>You repair the damaged temperature controller.</span>")
-		else if(state==3 && cell)
-			cell.forceMove(loc)
-			cell = null
-			state = 4
-			to_chat(user, "<span class='notice'>You unscrew and pry out the powercell.</span>")
-			log_message("Powercell removed", LOG_MECHA)
-		else if(state==4 && cell)
-			state=3
-			to_chat(user, "<span class='notice'>You screw the cell in place.</span>")
-		return
 
 	else if(istype(W, /obj/item/stock_parts/cell))
-		if(state==4)
+		if(state==3)
 			if(!cell)
 				if(!user.transferItemToLoc(W, src))
 					return
 				var/obj/item/stock_parts/cell/C = W
-				to_chat(user, "<span class='notice'>You install the powercell.</span>")
+				to_chat(user, "<span class='notice'>You install the power cell.</span>")
+				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
 				cell = C
 				log_message("Powercell installed", LOG_MECHA)
 			else
-				to_chat(user, "<span class='notice'>There's already a powercell installed.</span>")
+				to_chat(user, "<span class='notice'>There's already a power cell installed.</span>")
+		return
+
+	if(istype(W, /obj/item/stock_parts/scanning_module))
+		if(state == 3)
+			if(!scanmod)
+				if(!user.transferItemToLoc(W, src))
+					return
+				to_chat(user, "<span class='notice'>You install the scanning module.</span>")
+				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
+				scanmod = W
+				log_message("[W] installed", LOG_MECHA)
+				update_part_values()
+			else
+				to_chat(user, "<span class='notice'>There's already a scanning module installed.</span>")
+		return
+
+	if(istype(W, /obj/item/stock_parts/capacitor))
+		if(state == 3)
+			if(!capacitor)
+				if(!user.transferItemToLoc(W, src))
+					return
+				to_chat(user, "<span class='notice'>You install the capacitor.</span>")
+				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
+				capacitor = W
+				log_message("[W] installed", LOG_MECHA)
+				update_part_values()
+			else
+				to_chat(user, "<span class='notice'>There's already a capacitor installed.</span>")
 		return
 
 	else if(W.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)
@@ -335,3 +366,29 @@
 			else if(damtype == TOX)
 				visual_effect_icon = ATTACK_EFFECT_MECHTOXIN
 	..()
+
+/obj/mecha/obj_destruction()
+	if(wreckage)
+		var/mob/living/silicon/ai/AI
+		if(isAI(occupant))
+			AI = occupant
+			occupant = null
+		var/obj/structure/mecha_wreckage/WR = new wreckage(loc, AI)
+		for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
+			if(E.salvageable && prob(30))
+				WR.crowbar_salvage += E
+				E.detach(WR) //detaches from src into WR
+				E.equip_ready = 1
+			else
+				E.detach(loc)
+				qdel(E)
+		if(cell)
+			WR.crowbar_salvage += cell
+			cell.forceMove(WR)
+			cell.charge = rand(0, cell.charge)
+			cell = null
+		if(internal_tank)
+			WR.crowbar_salvage += internal_tank
+			internal_tank.forceMove(WR)
+			cell = null
+	. = ..()

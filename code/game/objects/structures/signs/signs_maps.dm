@@ -45,3 +45,41 @@
 	name = "command department"
 	desc = "A direction sign, pointing out which way the Command department is."
 	icon_state = "direction_bridge"
+
+//minsky variant direction signs
+
+
+/obj/structure/sign/directions/minsky/science
+	name = "science department"
+	desc = "A direction sign, pointing out which way the Science department is."
+	icon_state = "minskydirection_sci"
+
+/obj/structure/sign/directions/minsky/engineering
+	name = "engineering department"
+	desc = "A direction sign, pointing out which way the Engineering department is."
+	icon_state = "minskydirection_eng"
+
+/obj/structure/sign/directions/minsky/security
+	name = "security department"
+	desc = "A direction sign, pointing out which way the Security department is."
+	icon_state = "minskydirection_sec"
+
+/obj/structure/sign/directions/minsky/medical
+	name = "medical bay"
+	desc = "A direction sign, pointing out which way the Medical Bay is."
+	icon_state = "minskydirection_med"
+
+/obj/structure/sign/directions/minsky/evac
+	name = "escape arm"
+	desc = "A direction sign, pointing out which way the escape shuttle dock is."
+	icon_state = "minskydirection_evac"
+
+/obj/structure/sign/directions/minsky/supply
+	name = "cargo bay"
+	desc = "A direction sign, pointing out which way the Cargo Bay is."
+	icon_state = "minskydirection_supply"
+
+/obj/structure/sign/directions/minsky/command
+	name = "command department"
+	desc = "A direction sign, pointing out which way the Command department is."
+	icon_state = "minskydirection_bridge"

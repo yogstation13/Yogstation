@@ -36,7 +36,7 @@
 		to_chat(holder, "<span class='warning'>[target] seems to resist the implant!</span>")
 		return FALSE
 
-	to_chat(target, "<span class='userdanger'><FONT size = 3>You feel a strange urge to serve [holder.real_name]. A simple thought about disobeying his/her commands makes your head feel like it is going to explode. You feel like you dont want to know what will happen if you actually disobey your new master.</FONT></span>")
+	to_chat(target, "<span class='hypnophrase'><FONT size = 3>You feel a strange urge to serve [holder.real_name]. A simple thought about disobeying his/her commands makes your head feel like it is going to explode. You feel like you dont want to know what will happen if you actually disobey your new master.</FONT></span>")
 
 	var/datum/antagonist/mindslave/MS = new
 	target.mind.add_antag_datum(MS)

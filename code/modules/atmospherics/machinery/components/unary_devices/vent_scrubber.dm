@@ -2,7 +2,7 @@
 #define SCRUBBING	1
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber
-	icon_state = "scrub_map-2"
+	icon_state = "scrub_map-3"
 
 	name = "air scrubber"
 	desc = "Has a valve and pump attached to it."
@@ -13,6 +13,7 @@
 	welded = FALSE
 	level = 1
 	layer = GAS_SCRUBBER_LAYER
+	shift_underlay_only = FALSE
 
 	var/id_tag = null
 	var/scrubbing = SCRUBBING //0 = siphoning, 1 = scrubbing
@@ -69,8 +70,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/update_icon_nopipes()
 	cut_overlays()
 	if(showpipe)
-		var/image/cap = getpipeimage(icon, "scrub_cap", initialize_directions, piping_layer = piping_layer)
+		var/image/cap = getpipeimage(icon, "scrub_cap", initialize_directions)
 		add_overlay(cap)
+	else
+		PIPING_LAYER_SHIFT(src, PIPING_LAYER_DEFAULT)
 
 	if(welded)
 		icon_state = "scrub_welded"
@@ -151,44 +154,29 @@
 		return FALSE
 	var/datum/gas_mixture/environment = tile.return_air()
 	var/datum/gas_mixture/air_contents = airs[1]
-	var/list/env_gases = environment.gases
 
 	if(air_contents.return_pressure() >= 50*ONE_ATMOSPHERE)
 		return FALSE
 
 	if(scrubbing & SCRUBBING)
-		if(length(env_gases & filter_types))
-			var/transfer_moles = min(1, volume_rate/environment.volume)*environment.total_moles()
+		var/transfer_moles = min(1, volume_rate/environment.return_volume())*environment.total_moles()
 
-			//Take a gas sample
-			var/datum/gas_mixture/removed = tile.remove_air(transfer_moles)
+		//Take a gas sample
+		var/datum/gas_mixture/removed = tile.remove_air(transfer_moles)
 
-			//Nothing left to remove from the tile
-			if(isnull(removed))
-				return FALSE
+		//Nothing left to remove from the tile
+		if(isnull(removed))
+			return FALSE
 
-			var/list/removed_gases = removed.gases
+		removed.scrub_into(air_contents, filter_types)
 
-			//Filter it
-			var/datum/gas_mixture/filtered_out = new
-			var/list/filtered_gases = filtered_out.gases
-			filtered_out.temperature = removed.temperature
-
-			for(var/gas in filter_types & removed_gases)
-				filtered_out.add_gas(gas)
-				filtered_gases[gas][MOLES] = removed_gases[gas][MOLES]
-				removed_gases[gas][MOLES] = 0
-
-			removed.garbage_collect()
-
-			//Remix the resulting gases
-			air_contents.merge(filtered_out)
-			tile.assume_air(removed)
-			tile.air_update_turf()
+		//Remix the resulting gases
+		tile.assume_air(removed)
+		tile.air_update_turf()
 
 	else //Just siphoning all air
 
-		var/transfer_moles = environment.total_moles()*(volume_rate/environment.volume)
+		var/transfer_moles = environment.total_moles()*(volume_rate/environment.return_volume())
 
 		var/datum/gas_mixture/removed = tile.remove_air(transfer_moles)
 
@@ -259,7 +247,7 @@
 	return
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/power_change()
-	..()
+	. = ..()
 	update_icon_nopipes()
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/welder_act(mob/living/user, obj/item/I)
@@ -305,25 +293,25 @@
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 100, 1)
 
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/layer1
-	piping_layer = 1
-	icon_state = "scrub_map-1"
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2
+	piping_layer = 2
+	icon_state = "scrub_map-2"
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/layer3
-	piping_layer = 3
-	icon_state = "scrub_map-3"
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer4
+	piping_layer = 4
+	icon_state = "scrub_map-4"
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on
 	on = TRUE
+	icon_state = "scrub_map_on-3"
+
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2
+	piping_layer = 2
 	icon_state = "scrub_map_on-2"
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1
-	piping_layer = 1
-	icon_state = "scrub_map_on-1"
-
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3
-	piping_layer = 3
-	icon_state = "scrub_map_on-3"
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4
+	piping_layer = 4
+	icon_state = "scrub_map_on-4"
 
 #undef SIPHONING
 #undef SCRUBBING

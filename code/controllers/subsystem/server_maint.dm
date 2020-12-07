@@ -55,6 +55,7 @@ SUBSYSTEM_DEF(server_maint)
 
 	var/kick_inactive = CONFIG_GET(flag/kick_inactive)
 	var/afk_period
+
 	if(kick_inactive)
 		afk_period = CONFIG_GET(number/afk_period)
 	for(var/I in currentrun)
@@ -81,9 +82,7 @@ SUBSYSTEM_DEF(server_maint)
 		if(!thing)
 			continue
 		var/client/C = thing
-		var/datum/chatOutput/co = C.chatOutput
-		if(co)
-			co.ehjax_send(data = "roundrestart")
+		C?.tgui_panel?.send_roundrestart()
 		if(server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[server]")
 	var/datum/tgs_version/tgsversion = world.TgsVersion()

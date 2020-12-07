@@ -91,8 +91,8 @@ SUBSYSTEM_DEF(traumas)
 												 /obj/item/clothing/suit/space/hardsuit/ert/engi, /obj/item/clothing/suit/space/hardsuit/ert/med,
 												 /obj/item/clothing/suit/space/hardsuit/deathsquad, /obj/item/clothing/head/helmet/space/hardsuit/deathsquad,
 												 /obj/machinery/door/airlock/centcom)),
-						"robots"   = typecacheof(list(/obj/machinery/computer/upload, /obj/item/aiModule/, /obj/machinery/recharge_station,
-						/obj/item/aicard, /obj/item/deactivated_swarmer, /obj/effect/mob_spawn/swarmer)),
+						"robots"   = typecacheof(list(/obj/machinery/computer/upload, /obj/item/aiModule, /obj/machinery/recharge_station,
+						           /obj/item/aicard, /obj/structure/swarmer_beacon)),
 
 						"doctors"   = typecacheof(list(/obj/item/clothing/under/rank/medical, /obj/item/clothing/under/rank/chemist,
 						/obj/item/clothing/under/rank/nursesuit, /obj/item/clothing/under/rank/chief_medical_officer,
@@ -160,7 +160,7 @@ SUBSYSTEM_DEF(traumas)
 						  "robots" = typecacheof(list(/datum/species/android)),
 						  "the supernatural" = typecacheof(list(/datum/species/golem/clockwork, /datum/species/golem/runic)),
 						  "aliens" = typecacheof(list(/datum/species/abductor, /datum/species/jelly, /datum/species/pod,
-						  /datum/species/shadow)),
+						  /datum/species/shadow, /datum/species/polysmorph)),
 						  "anime" = typecacheof(list(/datum/species/human/felinid))
 						 )
 

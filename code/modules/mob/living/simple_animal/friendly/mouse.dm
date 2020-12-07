@@ -191,10 +191,10 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	SSminor_mapping.trigger_migration(mice)
 
 /mob/living/simple_animal/mouse/proc/cheese_up()
+	regen_health(15)
 	if(cheesed)
 		return
 	cheesed = TRUE
-	regen_health(15)
 	resize = 2
 	update_transform()
 	add_movespeed_modifier(MOVESPEED_ID_MOUSE_CHEESE, TRUE, 100, multiplicative_slowdown = -1)

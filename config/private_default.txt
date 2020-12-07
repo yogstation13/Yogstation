@@ -1,0 +1,81 @@
+#This file contains the deafult values of private_server.txt that should be used in testing senarios. If you are a downstream, you should instead edit private_server.txt with your custom config options and include it from secret.txt. If you are looking to suggest changes to the server configuration used on yogstation, you should instead edit private_server.txt
+
+$include resources.txt
+
+## World address and port for server receiving cross server messages
+## Use '+' to denote spaces in ServerName
+## Repeat this entry to add more servers
+# CROSS_SERVER ServerName byond:\\address:port
+
+## Name that the server calls itself in communications
+# CROSS_COMMS_NAME
+
+## Server name: This appears at the top of the screen in-game and in the BYOND hub. Replace 'Space station 13' with the name of your choice.
+SERVERNAME Space station 13
+
+## Server SQL name: This is the name used to identify the server to the SQL DB, distinct from SERVERNAME as it must be at most 32 characters.
+#SERVERSQLNAME
+
+## Put on byond hub: Uncomment this to put your server on the byond hub.
+#HUB
+
+## Comment this out if you want to use the SQL based admin system, the legacy system uses admins.txt.
+## You need to set up your database to use the SQL based system.
+## This flag is automatically enabled if SQL_ENABLED isn't
+ADMIN_LEGACY_SYSTEM
+
+##Uncomment this to stop any ranks loaded by the legacy system from having their flags edited by the permissions panel
+# PROTECT_LEGACY_RANKS
+
+## Comment this out to stop locally connected clients from being given the almost full access !localhost! admin rank
+ENABLE_LOCALHOST_RANK
+
+## set a hosted by name for unix platforms
+# HOSTEDBY Yournamehere
+
+## set a server location for world reboot. Don't include the byond://, just give the address and port.
+## Don't set this to the same server, BYOND will automatically restart players to the server when it has restarted.
+# SERVER ss13.example.com:2506
+
+## forum address
+# FORUMURL http://yogstation.net
+
+## Wiki address
+# WIKIURL https://wiki.yogstation.net/wiki
+
+##Rules address
+# RULESURL http://forums.yogstation.net/index.php?pages/rules/
+
+##Github address
+# GITHUBURL https://www.github.com/yogstation13/yogstation
+
+## Github repo id
+##This can be found by going to https://api.github.com/users/<user name here>/repos
+##Or https://api.github.com/orgs/<org name here>/repos if the repo owner is an organization
+# GITHUBREPOID 120966336
+
+## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
+# BANAPPEALS http://justanotherday.example.com
+
+## System command that invokes youtube-dl, used by Play Internet Sound.
+## You can install youtube-dl with
+## "pip install youtube-dl" if you have pip installed
+## from https://github.com/rg3/youtube-dl/releases
+## or your package manager
+## The default value assumes youtube-dl is in your system PATH
+# INVOKE_YOUTUBEDL youtube-dl
+
+## Defines the ticklimit for subsystem initialization (In percents of a byond tick). Lower makes world start smoother. Higher makes it faster.
+##This is currently a testing optimized setting. A good value for production would be 98.
+TICK_LIMIT_MC_INIT 500
+
+## Should SQL be enabled? Uncomment to enable
+#SQL_ENABLED
+
+## Prefix to be added to the name of every table, older databases will require this be set to erro_
+## Note, this does not change the table names in the database, you will have to do that yourself.
+##IE:
+##	FEEDBACK_TABLEPREFIX
+##	FEEDBACK_TABLEPREFIX SS13_
+## Remove "SS13_" if you are using the standard schema file.
+FEEDBACK_TABLEPREFIX SS13_

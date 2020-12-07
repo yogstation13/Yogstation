@@ -1,12 +1,12 @@
 /datum/game_mode
 	var/list/datum/mind/vampires = list()
 
-/mob/living/carbon/human/Stat()
+/mob/living/carbon/human/get_status_tab_items()
 	. = ..()
 	var/datum/antagonist/vampire/vamp = mind.has_antag_datum(/datum/antagonist/vampire)
-	if(vamp && statpanel("Status"))
-		stat("Total Blood", vamp.total_blood)
-		stat("Usable Blood", vamp.usable_blood)
+	if(vamp)
+		. += "Total Blood: [vamp.total_blood]"
+		. += "Usable Blood: [vamp.usable_blood]"
 
 /mob/living/carbon/human/Life()
 	. = ..()
@@ -21,11 +21,12 @@
 	antag_flag = ROLE_VAMPIRE
 	false_report_weight = 1
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel")
+	protected_jobs = list("Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Security Officer", "Chaplain", "Detective", "Warden")
 	required_players = 15
 	required_enemies = 1
 	recommended_enemies = 3
 	enemy_minimum_age = 0
+	title_icon = "vampires"
 
 	announce_text = "There are vampires onboard the station!\n\
 		+	<span class='danger'>Vampires</span>: Suck the blood of the crew and complete your objectives!\n\
@@ -70,11 +71,15 @@
 	..()
 	return TRUE
 
-/proc/add_vampire(mob/living/L)
-	if(!L || !L.mind || is_vampire(L))
-		return FALSE
-	var/datum/antagonist/vampire/vamp = L.mind.add_antag_datum(/datum/antagonist/vampire)
-	return vamp
+/proc/add_vampire(mob/living/L, full_vampire = TRUE)
+    if(!L || !L.mind || is_vampire(L))
+        return FALSE
+    var/datum/antagonist/vampire/vamp
+    if(full_vampire == TRUE)
+        vamp = L.mind.add_antag_datum(/datum/antagonist/vampire)
+    else
+        vamp = L.mind.add_antag_datum(/datum/antagonist/vampire/new_blood)
+    return vamp
 
 /proc/remove_vampire(mob/living/L)
 	if(!L || !L.mind || !is_vampire(L))
@@ -84,7 +89,7 @@
 	return TRUE
 
 /proc/is_vampire(mob/living/M)
-	return M && M.mind && M.mind.has_antag_datum(/datum/antagonist/vampire)
+	return M?.mind?.has_antag_datum(/datum/antagonist/vampire)
 
 /datum/game_mode/proc/update_vampire_icons_added(datum/mind/traitor_mind)
 	var/datum/atom_hud/antag/vamphud = GLOB.huds[ANTAG_HUD_VAMPIRE]
@@ -101,3 +106,18 @@
 	return "The Wizard Federation has created a new being based off ancient mythology. \
 	These beings are known as vampires and are capable of sucking blood from crew members. \
 	No further information is known at this time."
+
+/datum/game_mode/vampire/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	round_credits += "<center><h1>The Vampires:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/vamp in pre_vamps)
+		round_credits += "<center><h2>[vamp.name] as a Vampire</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>The Vampires have fled to Transylvania!</h2>", "<center><h2>We couldn't locate them!</h2>")
+	round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits

@@ -15,6 +15,7 @@
 	armor = list("melee" = 30, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 80)
 	anchored = TRUE //So it cant slide around after landing
 	anchorable = FALSE
+	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
 	//*****NOTE*****: Many of these comments are similarly described in centcom_podlauncher.dm. If you change them here, please consider doing so in the centcom podlauncher code as well!
 	var/adminNamed = FALSE //Determines whether or not the pod has been named by an admin. If true, the pod's name will not get overridden when the style of the pod changes (changing the style of the pod normally also changes the name+desc)
 	var/bluespace = FALSE //If true, the pod deletes (in a shower of sparks) after landing
@@ -66,7 +67,7 @@
 	landingDelay = 20 //Very speedy!
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
-	
+
 /obj/structure/closet/supplypod/proc/specialisedPod()
 	return 1
 
@@ -82,7 +83,7 @@
 	cut_overlays()
 	if (style == STYLE_SEETHROUGH || style == STYLE_INVISIBLE) //If we're invisible, we dont bother adding any overlays
 		return
-	else 
+	else
 		if (opened)
 			add_overlay("[icon_state]_open")
 		else
@@ -111,9 +112,6 @@
 /obj/structure/closet/supplypod/contents_explosion() //Supplypods also protect their contents from the harmful effects of fucking exploding.
 	return
 
-/obj/structure/closet/supplypod/prevent_content_explosion() //Useful for preventing epicenter explosions from damaging contents
-	return TRUE
-
 /obj/structure/closet/supplypod/toggle(mob/living/user) //Supplypods shouldn't be able to be manually opened under any circumstances, as the open() proc generates supply order datums
 	return
 
@@ -139,7 +137,7 @@
 
 		QDEL_IN(risingPod, 10)
 		audible_message("<span class='notice'>The pod hisses, closing quickly and launching itself away from the station.</span>", "<span class='notice'>The ground vibrates, the nearby pod launching away from the station.</span>")
-		
+
 		stay_after_drop = FALSE
 		specialisedPod(holder) // Do special actions for specialised pods - this is likely if we were already doing manual launches
 
@@ -184,6 +182,7 @@
 	if (effectMissile) //If we are acting like a missile, then right after we land and finish fucking shit up w explosions, we should delete
 		opened = TRUE //We set opened to TRUE to avoid spending time trying to open (due to being deleted) during the Destroy() proc
 		qdel(src)
+		return
 	if (style == STYLE_GONDOLA) //Checks if we are supposed to be a gondola pod. If so, create a gondolapod mob, and move this pod to nullspace. I'd like to give a shout out, to my man oranges
 		var/mob/living/simple_animal/pet/gondola/gondolapod/benis = new(get_turf(src), src)
 		benis.contents |= contents //Move the contents of this supplypod into the gondolapod mob.
@@ -199,7 +198,7 @@
 		return
 	if (opened) //This is to ensure we don't open something that has already been opened
 		return
-	opened = TRUE 
+	opened = TRUE
 	var/turf/T = get_turf(holder) //Get the turf of whoever's contents we're talking about
 	var/mob/M
 	if (istype(holder, /mob)) //Allows mobs to assume the role of the holder, meaning we look at the mob's contents rather than the supplypod's contents. Typically by this point the supplypod's contents have already been moved over to the mob's contents

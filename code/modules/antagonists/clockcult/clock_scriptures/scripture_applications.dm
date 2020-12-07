@@ -98,7 +98,7 @@
 		var/mob/living/L = M.current
 		if(ishuman(L) && L.stat != DEAD)
 			human_servants++
-	construct_limit = round(CLAMP((human_servants / 4), 1, 3)) - recent_marauders //1 per 4 human servants, maximum of 3, reduced by recent marauder creation
+	construct_limit = round(clamp((human_servants / 4), 1, 3)) - recent_marauders //1 per 4 human servants, maximum of 3, reduced by recent marauder creation
 	if(recent_marauders)
 		to_chat(invoker, "<span class='warning'>The Hierophant Network is depleted by a summoning in the last [DisplayTimeText(MARAUDER_SCRIPTURE_SCALING_THRESHOLD, TRUE)] - limiting the number of available marauders by [recent_marauders]!</span>")
 

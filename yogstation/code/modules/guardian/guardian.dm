@@ -215,9 +215,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		UnregisterSignal(summoner.current, COMSIG_MOVABLE_MOVED)
 	cut_barriers()
 	var/mob/living/carbon/H = summoner.current
-	H.verbs -= /mob/living/proc/guardian_comm
-	H.verbs -= /mob/living/proc/guardian_recall
-	H.verbs -= /mob/living/proc/guardian_reset
+	remove_verb(H, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset))
 	berserk = TRUE
 	summoner = null
 	maxHealth = 750
@@ -235,20 +233,19 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if(stats.ability)
 		stats.ability.Berserk()
 
-/mob/living/simple_animal/hostile/guardian/Stat()
-	..()
-	if(statpanel("Status"))
-		if(summoner?.current)
-			var/resulthealth
-			if(iscarbon(summoner.current))
-				resulthealth = round((abs(HEALTH_THRESHOLD_DEAD - summoner.current.health) / abs(HEALTH_THRESHOLD_DEAD - summoner.current.maxHealth)) * 100)
-			else
-				resulthealth = round((summoner.current.health / summoner.current.maxHealth) * 100, 0.5)
-			stat(null, "Summoner Health: [resulthealth]%")
-		if(cooldown >= world.time)
-			stat(null, "Manifest/Recall Cooldown Remaining: [DisplayTimeText(cooldown - world.time)]")
-		if(stats.ability)
-			stats.ability.Stat()
+/mob/living/simple_animal/hostile/guardian/get_status_tab_items()
+	. = ..()
+	if(summoner?.current)
+		var/resulthealth
+		if(iscarbon(summoner.current))
+			resulthealth = round((abs(HEALTH_THRESHOLD_DEAD - summoner.current.health) / abs(HEALTH_THRESHOLD_DEAD - summoner.current.maxHealth)) * 100)
+		else
+			resulthealth = round((summoner.current.health / summoner.current.maxHealth) * 100, 0.5)
+		. += "Summoner Health: [resulthealth]%"
+	if(cooldown >= world.time)
+		. += "Manifest/Recall Cooldown Remaining: [DisplayTimeText(cooldown - world.time)]"
+	if(stats.ability)
+		. += stats.ability.StatusTab()
 
 /mob/living/simple_animal/hostile/guardian/Move() //Returns to summoner if they move out of range
 	pixel_x = initial(pixel_x)
@@ -645,13 +642,13 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 						to_chat(src, "<span class='holoparasite'><font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> has been summoned!</span>")
 				guardians -= G
 				if(!guardians.len)
-					verbs -= /mob/living/proc/guardian_reset
+					remove_verb(src, /mob/living/proc/guardian_reset)
 			else
 				to_chat(src, "<span class='holoparasite'>There were no ghosts willing to take control of <font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font>. Looks like you're stuck with it for now.</span>")
 		else
 			to_chat(src, "<span class='holoparasite'>You decide not to reset [guardians.len > 1 ? "any of your guardians":"your guardian"].</span>")
 	else
-		verbs -= /mob/living/proc/guardian_reset
+		remove_verb(src, /mob/living/proc/guardian_reset)
 
 ////////parasite tracking/finding procs
 

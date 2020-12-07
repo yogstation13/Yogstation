@@ -122,10 +122,10 @@
 /datum/component/storage/proc/set_holdable(can_hold_list, cant_hold_list)
 	can_hold_description = generate_hold_desc(can_hold_list)
 
-	if (can_hold_list != null)
+	if (can_hold_list)
 		can_hold = typecacheof(can_hold_list)
 
-	if (cant_hold_list != null)	
+	if (cant_hold_list)
 		cant_hold = typecacheof(cant_hold_list)
 
 /datum/component/storage/proc/generate_hold_desc(can_hold_list)
@@ -333,8 +333,8 @@
 		numbered_contents = _process_numerical_display()
 		adjusted_contents = numbered_contents.len
 
-	var/columns = CLAMP(max_items, 1, screen_max_columns)
-	var/rows = CLAMP(CEILING(adjusted_contents / columns, 1), 1, screen_max_rows)
+	var/columns = clamp(max_items, 1, screen_max_columns)
+	var/rows = clamp(CEILING(adjusted_contents / columns, 1), 1, screen_max_rows)
 	standard_orient_objs(rows, columns, numbered_contents)
 
 //This proc draws out the inventory and places the items on it. It uses the standard position.
@@ -624,6 +624,10 @@
 			if(!stop_messages)
 				to_chat(M, "<span class='warning'>[IP] cannot hold [I] as it's a storage item of the same size!</span>")
 			return FALSE //To prevent the stacking of same sized storage items.
+	if(HAS_TRAIT(I, TRAIT_NO_STORAGE))
+		if(!stop_messages)
+			to_chat(M, "<span class='warning'>\the [I] can't seem to fit in \the [host]!</span>")
+		return FALSE
 	if(HAS_TRAIT(I, TRAIT_NODROP)) //SHOULD be handled in unEquip, but better safe than sorry.
 		if(!stop_messages)
 			to_chat(M, "<span class='warning'>\the [I] is stuck to your hand, you can't put it in \the [host]!</span>")
@@ -659,9 +663,9 @@
 		if(M == viewing)
 			to_chat(usr, "<span class='notice'>You put [I] [insert_preposition]to [parent].</span>")
 		else if(in_range(M, viewing)) //If someone is standing close enough, they can tell what it is...
-			viewing.show_message("<span class='notice'>[M] puts [I] [insert_preposition]to [parent].</span>", 1)
+			viewing.show_message("<span class='notice'>[M] puts [I] [insert_preposition]to [parent].</span>", MSG_VISUAL)
 		else if(I && I.w_class >= 3) //Otherwise they can only see large or normal items from a distance...
-			viewing.show_message("<span class='notice'>[M] puts [I] [insert_preposition]to [parent].</span>", 1)
+			viewing.show_message("<span class='notice'>[M] puts [I] [insert_preposition]to [parent].</span>", MSG_VISUAL)
 
 /datum/component/storage/proc/update_icon()
 	if(isobj(parent))
@@ -772,7 +776,10 @@
 /datum/component/storage/proc/on_alt_click(datum/source, mob/user)
 	if(!isliving(user) || !user.CanReach(parent))
 		return
+
 	if(locked)
+		if(istype(parent, /obj/item/storage/lockbox))
+			return
 		to_chat(user, "<span class='warning'>[parent] seems to be locked!</span>")
 		return
 

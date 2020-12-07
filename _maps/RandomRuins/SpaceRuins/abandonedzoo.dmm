@@ -97,10 +97,6 @@
 /mob/living/simple_animal/hostile/poison/bees,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/abandonedzoo)
-"ao" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/grass,
-/area/ruin/space/has_grav/abandonedzoo)
 "ap" = (
 /mob/living/simple_animal/hostile/asteroid/goldgrub{
 	will_burrow = 0
@@ -125,10 +121,6 @@
 "au" = (
 /obj/structure/flora/ausbushes/leafybush,
 /mob/living/simple_animal/hostile/poison/bees,
-/turf/open/floor/grass,
-/area/ruin/space/has_grav/abandonedzoo)
-"av" = (
-/obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/abandonedzoo)
 "aw" = (
@@ -171,17 +163,9 @@
 	},
 /turf/open/floor/plasteel/dark/side,
 /area/ruin/space/has_grav/abandonedzoo)
-"aA" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/grass,
-/area/ruin/space/has_grav/abandonedzoo)
 "aB" = (
 /obj/machinery/light,
 /mob/living/simple_animal/hostile/poison/bees,
-/turf/open/floor/grass,
-/area/ruin/space/has_grav/abandonedzoo)
-"aC" = (
-/obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/abandonedzoo)
 "aD" = (
@@ -484,12 +468,6 @@
 "bh" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
-/turf/open/floor/plasteel/dark/side,
-/area/ruin/space/has_grav/abandonedzoo)
-"bi" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/hypospray/medipen/stimpack,
-/obj/item/reagent_containers/glass/bottle/mutagen,
 /turf/open/floor/plasteel/dark/side,
 /area/ruin/space/has_grav/abandonedzoo)
 "bj" = (
@@ -799,6 +777,37 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/abandonedzoo)
+"mc" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/mob/living/simple_animal/hostile/jungle/seedling,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/abandonedzoo)
+"ro" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/mob/living/simple_animal/hostile/jungle/seedling,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/abandonedzoo)
+"rI" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/mob/living/simple_animal/butterfly,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/abandonedzoo)
+"Qz" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/mob/living/simple_animal/butterfly,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/abandonedzoo)
+"Rw" = (
+/obj/structure/flora/ausbushes/brflowers,
+/mob/living/simple_animal/butterfly,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/abandonedzoo)
+"Sy" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/bottle/mutagen,
+/obj/item/reagent_containers/hypospray/medipen/survival,
+/turf/open/floor/plasteel/dark/side,
+/area/ruin/space/has_grav/abandonedzoo)
 
 (1,1,1) = {"
 ab
@@ -1021,7 +1030,7 @@ aP
 aW
 ay
 ay
-bi
+Sy
 bn
 br
 bA
@@ -1078,7 +1087,7 @@ ac
 al
 an
 an
-aA
+ro
 ac
 at
 aZ
@@ -1098,7 +1107,7 @@ aa
 ac
 am
 am
-ao
+Qz
 aB
 ac
 at
@@ -1138,10 +1147,10 @@ bW
 "}
 (17,1,1) = {"
 ac
-ao
+mc
 an
-av
-aC
+Rw
+rI
 ac
 aQ
 aQ

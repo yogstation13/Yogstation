@@ -261,6 +261,12 @@
 	icon_state = "clockwork_floor"
 	floor_tile = /obj/item/stack/tile/bronze
 
+/turf/open/floor/bronze/reebe
+	name = "bronze cogplate"
+	desc = "Bronze plating."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "reebe"
+
 /turf/open/floor/white
 	name = "white floor"
 	desc = "A tile in a pure white color."
@@ -269,3 +275,18 @@
 /turf/open/floor/black
 	name = "black floor"
 	icon_state = "black"
+
+/turf/open/floor/plating/rust
+	name = "rusted plating"
+	desc = "Corrupted steel."
+	icon_state = "plating_rust"
+
+/turf/open/floor/plating/rust/rust_heretic_act()
+	return
+	
+/turf/open/floor/eighties
+	name = "retro floor"
+	desc = "This one takes you back."
+	icon_state = "eighties"
+	floor_tile = /obj/item/stack/tile/eighties
+	broken_states = list("eighties_damaged")

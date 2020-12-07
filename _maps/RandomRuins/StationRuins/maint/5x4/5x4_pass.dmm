@@ -1,0 +1,72 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"e" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
+	name = "2maintenance loot spawner"
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"f" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"i" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/template_noop)
+"r" = (
+/turf/open/space/basic,
+/area/space)
+"w" = (
+/obj/structure/chair,
+/turf/open/floor/plating,
+/area/template_noop)
+"x" = (
+/obj/structure/closet/emcloset,
+/turf/open/floor/plating,
+/area/template_noop)
+"M" = (
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"R" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/template_noop)
+"T" = (
+/obj/structure/chair,
+/obj/item/storage/box/fancy/cigarettes/cigpack_uplift,
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+x
+f
+R
+r
+"}
+(2,1,1) = {"
+e
+M
+R
+R
+"}
+(3,1,1) = {"
+f
+f
+f
+i
+"}
+(4,1,1) = {"
+f
+w
+R
+R
+"}
+(5,1,1) = {"
+f
+T
+R
+r
+"}

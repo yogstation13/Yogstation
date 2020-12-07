@@ -88,6 +88,12 @@
 	taste_description = "gross iron"
 	shot_glass_icon_state = "shotglassred"
 
+/datum/reagent/polysmorphblood
+	name = "Polysmorph blood"
+	color = "#96BB00"
+	description = "The blood of a polysmorph"
+	taste_description = "acidic"
+
 /datum/reagent/vaccine
 	//data must contain virus type
 	name = "Vaccine"
@@ -136,7 +142,7 @@
 	if(hotspot && !isspaceturf(T))
 		if(T.air)
 			var/datum/gas_mixture/G = T.air
-			G.temperature = max(min(G.temperature-(CT*1000),G.temperature/CT),TCMB)
+			G.set_temperature(max(min(G.return_temperature()-(CT*1000),G.return_temperature()/CT),TCMB))
 			G.react(src)
 			qdel(hotspot)
 	var/obj/effect/acid/A = (locate(/obj/effect/acid) in T)
@@ -201,21 +207,21 @@
 
 /datum/reagent/water/holywater/on_mob_life(mob/living/carbon/M)
 	if(!data)
-		data = 1
-	data++
+		data = list("misc" = 1)
+	data["misc"]++
 	M.jitteriness = min(M.jitteriness+4,10)
 	if(iscultist(M))
 		for(var/datum/action/innate/cult/blood_magic/BM in M.actions)
 			to_chat(M, "<span class='cultlarge'>Your blood rites falter as holy water scours your body!</span>")
 			for(var/datum/action/innate/cult/blood_spell/BS in BM.spells)
 				qdel(BS)
-	if(data >= 25)		// 10 units, 45 seconds @ metabolism 0.4 units & tick rate 1.8 sec
+	if(data["misc"] >= 25)		// 10 units, 45 seconds @ metabolism 0.4 units & tick rate 1.8 sec
 		if(!M.stuttering)
 			M.stuttering = 1
 		M.stuttering = min(M.stuttering+4, 10)
 		M.Dizzy(5)
 		if(iscultist(M) && prob(20))
-			M.say(pick("Av'te Nar'sie","Pa'lid Mors","INO INO ORA ANA","SAT ANA!","Daim'niodeis Arc'iai Le'eones","R'ge Na'sie","Diabo us Vo'iscum","Eld' Mon Nobis"), forced = "holy water")
+			M.say(pick("Av'te Nar'Sie","Pa'lid Mors","INO INO ORA ANA","SAT ANA!","Daim'niodeis Arc'iai Le'eones","R'ge Na'sie","Diabo us Vo'iscum","Eld' Mon Nobis"), forced = "holy water")
 			if(prob(10))
 				M.visible_message("<span class='danger'>[M] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
 				M.Unconscious(120)
@@ -230,7 +236,7 @@
 					"You can't save him. Nothing can save him now", "It seems that Nar-Sie will triumph after all")].</span>")
 				if("emote")
 					M.visible_message("<span class='warning'>[M] [pick("whimpers quietly", "shivers as though cold", "glances around in paranoia")].</span>")
-	if(data >= 60)	// 30 units, 135 seconds
+	if(data["misc"] >= 60)	// 30 units, 135 seconds
 		if(iscultist(M) || is_servant_of_ratvar(M))
 			if(iscultist(M))
 				SSticker.mode.remove_cultist(M.mind, FALSE, TRUE)
@@ -310,6 +316,32 @@
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5, 150)
 	holder.remove_reagent(type, 1)
 
+/datum/reagent/eldritch
+	name = "Eldritch Essence"
+	description = "Strange liquid that defies the laws of physics"
+	taste_description = "glass"
+	color = "#1f8016"
+
+/datum/reagent/eldritch/on_mob_life(mob/living/carbon/M)
+	if(IS_HERETIC(M) || IS_HERETIC_MONSTER(M))
+		M.drowsyness = max(M.drowsyness-5, 0)
+		M.AdjustAllImmobility(-40, FALSE)
+		M.adjustStaminaLoss(-10, FALSE)
+		M.adjustToxLoss(-2, FALSE)
+		M.adjustOxyLoss(-2, FALSE)
+		M.adjustBruteLoss(-2, FALSE)
+		M.adjustFireLoss(-2, FALSE)
+		if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL(M))
+			M.blood_volume += 3
+	else
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
+		M.adjustToxLoss(2, FALSE)
+		M.adjustFireLoss(2, FALSE)
+		M.adjustOxyLoss(2, FALSE)
+		M.adjustBruteLoss(2, FALSE)
+	holder.remove_reagent(type, 1)
+	return TRUE
+
 /datum/reagent/medicine/omnizine/godblood
 	name = "Godblood"
 	description = "Slowly heals all damage types. Has a rather high overdose threshold. Glows with mysterious power."
@@ -366,9 +398,13 @@
 
 			if(MUTCOLORS in N.dna.species.species_traits) //take current alien color and darken it slightly
 				var/newcolor = ""
-				var/len = length(N.dna.features["mcolor"])
-				for(var/i=1, i<=len, i+=1)
-					var/ascii = text2ascii(N.dna.features["mcolor"],i)
+				var/string = N.dna.features["mcolor"]
+				var/len = length(string)
+				var/char = ""
+				var/ascii = 0
+				for(var/i=1, i<=len, i += length(char))
+					char = string[i]
+					ascii = text2ascii(char)
 					switch(ascii)
 						if(48)
 							newcolor += "0"
@@ -630,6 +666,16 @@
 
 /datum/reagent/gluttonytoxin/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
 	L.ForceContractDisease(new /datum/disease/transformation/morph(), FALSE, TRUE)
+
+/datum/reagent/ghosttoxin
+	name = "Ghost's Curse"
+	description = "An advanced corruptive toxin produced by something otherwordly."
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	can_synth = FALSE
+	taste_description = "decay"
+
+/datum/reagent/ghosttoxin/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+	L.ForceContractDisease(new /datum/disease/transformation/ghost(), FALSE, TRUE)
 
 /datum/reagent/serotrotium
 	name = "Serotrotium"
@@ -943,76 +989,54 @@
 	name = "Space cleaner"
 	description = "A compound used to clean things. Now with 50% more sodium hypochlorite!"
 	color = "#A5F0EE" // rgb: 165, 240, 238
+	var/toxpwr = 1
 	taste_description = "sourness"
 	reagent_weight = 0.6 //so it sprays further
+	var/clean_types = CLEAN_WASH
 
 /datum/reagent/space_cleaner/reaction_obj(obj/O, reac_volume)
-	if(istype(O, /obj/effect/decal/cleanable))
-		qdel(O)
-	else
-		if(O)
-			O.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-			SEND_SIGNAL(O, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
+	O?.wash(clean_types)
 
 /datum/reagent/space_cleaner/reaction_turf(turf/T, reac_volume)
 	if(reac_volume >= 1)
-		T.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-		SEND_SIGNAL(T, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
-		for(var/obj/effect/decal/cleanable/C in T)
-			qdel(C)
+		T.wash(clean_types)
+		for(var/am in T)
+			var/atom/movable/movable_content = am
+			if(ismopable(movable_content)) // Mopables will be cleaned anyways by the turf wash
+				continue
+			movable_content.wash(clean_types)
 
 		for(var/mob/living/simple_animal/slime/M in T)
 			M.adjustToxLoss(rand(5,10))
 
 /datum/reagent/space_cleaner/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == TOUCH || method == VAPOR)
-		M.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-		if(iscarbon(M))
-			var/mob/living/carbon/C = M
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(H.lip_style)
-					H.lip_style = null
-					H.update_body()
-			for(var/obj/item/I in C.held_items)
-				SEND_SIGNAL(I, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
-			if(C.wear_mask)
-				if(SEND_SIGNAL(C.wear_mask, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-					C.update_inv_wear_mask()
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = C
-				if(H.head)
-					if(SEND_SIGNAL(H.head, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-						H.update_inv_head()
-				if(H.wear_suit)
-					if(SEND_SIGNAL(H.wear_suit, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-						H.update_inv_wear_suit()
-				else if(H.w_uniform)
-					if(SEND_SIGNAL(H.w_uniform, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-						H.update_inv_w_uniform()
-				if(H.shoes)
-					if(SEND_SIGNAL(H.shoes, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-						H.update_inv_shoes()
-				H.wash_cream()
-			SEND_SIGNAL(M, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
+		M.wash(clean_types)
+
+/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(toxpwr*REM, 0)
+	..()
 
 /datum/reagent/space_cleaner/ez_clean
 	name = "EZ Clean"
 	description = "A powerful, acidic cleaner sold by Waffle Co. Affects organic matter while leaving other objects unaffected."
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	taste_description = "acid"
+	can_synth = FALSE
 
 /datum/reagent/space_cleaner/ez_clean/on_mob_life(mob/living/carbon/M)
-	M.adjustBruteLoss(3.33)
-	M.adjustFireLoss(3.33)
-	M.adjustToxLoss(3.33)
+	M.adjustBruteLoss(6.33)
+	M.adjustFireLoss(6.33)
+	M.adjustToxLoss(6.33)
 	..()
 
 /datum/reagent/space_cleaner/ez_clean/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	..()
 	if((method == TOUCH || method == VAPOR) && !issilicon(M))
-		M.adjustBruteLoss(1.5)
-		M.adjustFireLoss(1.5)
+		M.reagents.add_reagent(/datum/reagent/space_cleaner/ez_clean, reac_volume)
+		M.adjustBruteLoss(1 * reac_volume)
+		M.adjustFireLoss(1 * reac_volume)
+		M.emote("scream")
 
 /datum/reagent/cryptobiolin
 	name = "Cryptobiolin"
@@ -1077,7 +1101,7 @@
 	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
 		L.ForceContractDisease(new /datum/disease/tuberculosis(), FALSE, TRUE)
 
-/* YOGS /datum/reagent/snail
+/datum/reagent/snail
 	name = "Agent-S"
 	description = "Virological agent that infects the subject with Gastrolosis."
 	color = "#003300" // rgb(0, 51, 0)
@@ -1086,7 +1110,7 @@
 
 /datum/reagent/snail/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
 	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
-		L.ForceContractDisease(new /datum/disease/gastrolosis(), FALSE, TRUE) YOGS */
+		L.ForceContractDisease(new /datum/disease/gastrolosis(), FALSE, TRUE)
 
 /datum/reagent/fluorosurfactant//foam precursor
 	name = "Fluorosurfactant"
@@ -1210,6 +1234,89 @@
 /datum/reagent/nitryl/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_modifier(type)
 	..()
+
+/datum/reagent/freon
+	name = "Freon"
+	description = "A powerful heat adsorbant."
+	reagent_state = GAS
+	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl/freon/hypernoblium are handled through gas breathing, metabolism must be lower for breathcode to keep up
+	color = "90560B"
+	taste_description = "burning"
+/datum/reagent/freon/on_mob_metabolize(mob/living/L)
+	. = ..()
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=1.6, blacklisted_movetypes=(FLYING|FLOATING))
+/datum/reagent/freon/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	return ..()
+/datum/reagent/hypernoblium
+	name = "Hyper-Noblium"
+	description = "A suppressive gas that stops gas reactions on those who inhale it."
+	reagent_state = GAS
+	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl/freon/hyper-nob are handled through gas breathing, metabolism must be lower for breathcode to keep up
+	color = "90560B"
+	taste_description = "searingly cold"
+/datum/reagent/hypernoblium/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(isplasmaman(L))
+		ADD_TRAIT(L, TRAIT_NOFIRE, type)
+/datum/reagent/hypernoblium/on_mob_end_metabolize(mob/living/L)
+	if(isplasmaman(L))
+		REMOVE_TRAIT(L, TRAIT_NOFIRE, type)
+	return ..()
+
+/datum/reagent/healium
+	name = "Healium"
+	description = "A Powerful sleeping agent with healing properties."
+	reagent_state = GAS
+	metabolization_rate = REAGENTS_METABOLISM * 0.5
+	color = "90560B"
+	taste_description = "rubbery"
+
+/datum/reagent/healium/on_mob_metabolize(mob/living/L)
+	. = ..()
+	L.SetSleeping(1000)
+
+/datum/reagent/healium/on_mob_end_metabolize(mob/living/L)
+	L.SetSleeping(10)
+	return ..()
+
+/datum/reagent/halon
+	name = "Halon"
+	description = "A firefighter gas that removes oxygen and cools down an area."
+	reagent_state = GAS
+	metabolization_rate = REAGENTS_METABOLISM * 0.5
+	color = "90560B"
+	taste_description = "minty"
+
+/datum/reagent/halon/on_mob_metabolize(mob/living/L)
+	. = ..()
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=1.8, blacklisted_movetypes=(FLYING|FLOATING))
+	ADD_TRAIT(L, TRAIT_RESISTHEAT, type)
+
+/datum/reagent/halon/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	REMOVE_TRAIT(L, TRAIT_RESISTHEAT, type)
+	return ..()
+
+/datum/reagent/hexane
+	name = "Hexane"
+	description = "A filtering gas, don't breathe it if you suffer from brain conditions."
+	reagent_state = GAS
+	metabolization_rate = REAGENTS_METABOLISM * 0.5
+	color = "90560B"
+	taste_description = "fresh"
+
+/datum/reagent/hexane/on_mob_metabolize(mob/living/L)
+	. = ..()
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=1.8, blacklisted_movetypes=(FLYING|FLOATING))
+	ADD_TRAIT(L, CHANGELING_HIVEMIND_MUTE, type)
+	ADD_TRAIT(L, TRAIT_SIXTHSENSE, type)
+
+/datum/reagent/hexane/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	REMOVE_TRAIT(L, CHANGELING_HIVEMIND_MUTE, type)
+	REMOVE_TRAIT(L, TRAIT_SIXTHSENSE, type)
+	return ..()
 
 /////////////////////////Coloured Crayon Powder////////////////////////////
 //For colouring in /proc/mix_color_from_reagents
@@ -1507,15 +1614,29 @@
 	color = "#A3C00F" // rgb: 163,192,15
 	taste_description = "sourness"
 
+/datum/reagent/toxin/mutagen/mutagenvirusfood/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(1.5*REM, 0)
+	..()
+
 /datum/reagent/toxin/mutagen/mutagenvirusfood/sugar
 	name = "sucrose agar"
 	color = "#41B0C0" // rgb: 65,176,192
 	taste_description = "sweetness"
 
+/datum/reagent/toxin/mutagen/mutagenvirusfood/sugar/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(0.5*REM, 0)
+	..()
+
+
 /datum/reagent/medicine/synaptizine/synaptizinevirusfood
 	name = "virus rations"
 	color = "#D18AA5" // rgb: 209,138,165
 	taste_description = "bitterness"
+
+/datum/reagent/medicine/synaptizine/synaptizinevirusfood/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(0.25*REM, 0)
+	..()
+
 
 /datum/reagent/toxin/plasma/plasmavirusfood
 	name = "virus plasma"
@@ -1523,26 +1644,47 @@
 	taste_description = "bitterness"
 	taste_mult = 1.5
 
+/datum/reagent/toxin/plasma/plasmavirusfood/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(REM, 0)
+	..()
+
+
 /datum/reagent/toxin/plasma/plasmavirusfood/weak
 	name = "weakened virus plasma"
 	color = "#CEC3C6" // rgb: 206,195,198
 	taste_description = "bitterness"
 	taste_mult = 1.5
 
+/datum/reagent/toxin/plasma/plasmavirusfood/weak/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(0.5*REM, 0)
+	..()
+
 /datum/reagent/uranium/uraniumvirusfood
 	name = "decaying uranium gel"
 	color = "#67ADBA" // rgb: 103,173,186
 	taste_description = "the inside of a reactor"
+
+/datum/reagent/uranium/uraniumvirusfood/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(2.5*REM, 0)
+	..()
 
 /datum/reagent/uranium/uraniumvirusfood/unstable
 	name = "unstable uranium gel"
 	color = "#2FF2CB" // rgb: 47,242,203
 	taste_description = "the inside of a reactor"
 
+/datum/reagent/uranium/uraniumvirusfood/unstable/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(2*REM, 0)
+	..()
+
 /datum/reagent/uranium/uraniumvirusfood/stable
 	name = "stable uranium gel"
 	color = "#04506C" // rgb: 4,80,108
 	taste_description = "the inside of a reactor"
+
+/datum/reagent/uranium/uraniumvirusfood/stable/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(1.5*REM, 0)
+	..()
 
 // Bee chemicals
 
@@ -1711,9 +1853,9 @@
 
 /datum/reagent/peaceborg/confuse/on_mob_life(mob/living/carbon/M)
 	if(M.confused < 6)
-		M.confused = CLAMP(M.confused + 3, 0, 5)
+		M.confused = clamp(M.confused + 3, 0, 5)
 	if(M.dizziness < 6)
-		M.dizziness = CLAMP(M.dizziness + 3, 0, 5)
+		M.dizziness = clamp(M.dizziness + 3, 0, 5)
 	if(prob(20))
 		to_chat(M, "You feel confused and disorientated.")
 	..()
@@ -1755,5 +1897,12 @@
 	name = "Monkey Powder"
 	description = "Just add water!"
 	color = "#9C5A19"
+	taste_description = "bananas"
+	can_synth = TRUE
+
+/datum/reagent/gorilla_powder //modified monkey powder
+	name = "Gorilla Powder"
+	description = "Just add water!"
+	color = "#020202"
 	taste_description = "bananas"
 	can_synth = TRUE

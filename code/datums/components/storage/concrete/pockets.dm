@@ -50,7 +50,7 @@
 		/obj/item/implanter, /obj/item/screwdriver, /obj/item/weldingtool/mini,
 		/obj/item/firing_pin
 		),
-		list(/obj/item/screwdriver/power)
+		list(/obj/item/handdrill)
 		)
 
 /datum/component/storage/concrete/pockets/shoes/clown/Initialize()
@@ -61,7 +61,7 @@
 		/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/dropper,
 		/obj/item/implanter, /obj/item/screwdriver, /obj/item/weldingtool/mini,
 		/obj/item/firing_pin, /obj/item/bikehorn),
-		list(/obj/item/screwdriver/power)
+		list(/obj/item/handdrill)
 		)
 
 /datum/component/storage/concrete/pockets/pocketprotector

@@ -1,8 +1,3 @@
 /obj/item/powersink/examine(mob/user)
 	. = ..()
-	if(isobserver(user))
-		. += "The power dial reads [power_drained] J."
-
-/obj/item/powersink/multitool_act(mob/user)
-	to_chat(user, "The power dial reads [power_drained] J.")
-	return TRUE
+	. += "The power dial reads [num2text(power_drained)]J/[num2text(max_power)]J."

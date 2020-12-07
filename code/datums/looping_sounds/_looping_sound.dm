@@ -25,6 +25,7 @@
 	var/volume = 100
 	var/max_loops
 	var/direct
+	var/extra_range
 
 	var/timerid
 
@@ -73,14 +74,14 @@
 	var/list/atoms_cache = output_atoms
 	var/sound/S = sound(soundfile)
 	if(direct)
-		S.channel = open_sound_channel()
+		S.channel = SSsounds.random_available_channel()
 		S.volume = volume
 	for(var/i in 1 to atoms_cache.len)
 		var/atom/thing = atoms_cache[i]
 		if(direct)
 			SEND_SOUND(thing, S)
 		else
-			playsound(thing, S, volume)
+			playsound(thing, S, volume, extra_range)
 
 /datum/looping_sound/proc/get_sound(starttime, _mid_sounds)
 	. = _mid_sounds || mid_sounds

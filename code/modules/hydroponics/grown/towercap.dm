@@ -16,6 +16,7 @@
 	icon_dead = "towercap-dead"
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
 	mutatelist = list(/obj/item/seeds/tower/steel)
+	reagents_add = list(/datum/reagent/carbon = 0.5)
 
 /obj/item/seeds/tower/steel
 	name = "pack of steel-cap mycelium"
@@ -25,6 +26,7 @@
 	plantname = "Steel Caps"
 	product = /obj/item/grown/log/steel
 	mutatelist = list()
+	reagents_add = list(/datum/reagent/iron = 0.5)
 	rarity = 20
 
 
@@ -51,7 +53,7 @@
 
 /obj/item/grown/log/attackby(obj/item/W, mob/user, params)
 	if(W.is_sharp())
-		user.show_message("<span class='notice'>You make [plank_name] out of \the [src]!</span>", 1)
+		user.show_message("<span class='notice'>You make [plank_name] out of \the [src]!</span>", MSG_VISUAL)
 		var/seed_modifier = 0
 		if(seed)
 			seed_modifier = round(seed.potency / 25)
@@ -119,7 +121,7 @@
 /obj/item/grown/log/bamboo
 	seed = /obj/item/seeds/bamboo
 	name = "bamboo log"
-	desc = "An long and resistant bamboo log."
+	desc = "A long and resistant bamboo log."
 	icon_state = "bamboo"
 	plank_type = /obj/item/stack/sheet/mineral/bamboo
 	plank_name = "bamboo sticks"
@@ -129,7 +131,7 @@
 
 /obj/structure/punji_sticks
 	name = "punji sticks"
-	desc = "Dont step on this."
+	desc = "Don't step on this."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "punji"
 	resistance_flags = FLAMMABLE
@@ -164,12 +166,12 @@
 	. = ..()
 	StartBurning()
 
-/obj/structure/bonfire/CanPass(atom/movable/mover, turf/target)
+/obj/structure/bonfire/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSTABLE))
 		return TRUE
 	if(mover.throwing)
 		return TRUE
-	return ..()
 
 /obj/structure/bonfire/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/stack/rods) && !can_buckle && !grill)
@@ -202,8 +204,8 @@
 				if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
 					return
 				//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
-				W.pixel_x = CLAMP(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
-				W.pixel_y = CLAMP(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
+				W.pixel_x = clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
+				W.pixel_y = clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 		else
 			return ..()
 
@@ -229,8 +231,7 @@
 	if(isopenturf(loc))
 		var/turf/open/O = loc
 		if(O.air)
-			var/loc_gases = O.air.gases
-			if(loc_gases[/datum/gas/oxygen][MOLES] > 13)
+			if(O.air.get_moles(/datum/gas/oxygen) > 13)
 				return TRUE
 	return FALSE
 
@@ -246,6 +247,7 @@
 	StartBurning()
 
 /obj/structure/bonfire/Crossed(atom/movable/AM)
+	. = ..()
 	if(burning & !grill)
 		Burn()
 

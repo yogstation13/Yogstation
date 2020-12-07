@@ -36,7 +36,7 @@
 		/obj/item/reagent_containers/syringe,
 		/obj/item/screwdriver,
 		/obj/item/stamp),
-		list(/obj/item/screwdriver/power))
+		list(/obj/item/handdrill))
 
 /obj/item/storage/wallet/Exited(atom/movable/AM)
 	. = ..()

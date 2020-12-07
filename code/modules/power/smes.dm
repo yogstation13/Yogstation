@@ -21,6 +21,7 @@
 	density = TRUE
 	use_power = NO_POWER_USE
 	circuit = /obj/item/circuitboard/machine/smes
+
 	var/capacity = 5e6 // maximum charge
 	var/charge = 0 // actual charge
 
@@ -54,7 +55,7 @@
 					break dir_loop
 
 	if(!terminal)
-		stat |= BROKEN
+		obj_break()
 		return
 	terminal.master = src
 	update_icon()
@@ -198,7 +199,7 @@
 	if(terminal)
 		terminal.master = null
 		terminal = null
-		stat |= BROKEN
+		obj_break()
 
 
 /obj/machinery/power/smes/update_icon()
@@ -226,7 +227,7 @@
 
 
 /obj/machinery/power/smes/proc/chargedisplay()
-	return CLAMP(round(5.5*charge/capacity),0,5)
+	return clamp(round(5.5*charge/capacity),0,5)
 
 /obj/machinery/power/smes/process()
 	if(stat & BROKEN)
@@ -316,32 +317,29 @@
 	return
 
 
-/obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/power/smes/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "smes", name, 340, 440, master_ui, state)
+		ui = new(user, src, "Smes", name)
 		ui.open()
 
 /obj/machinery/power/smes/ui_data()
 	var/list/data = list(
-		"capacityPercent" = round(100*charge/capacity, 0.1),
 		"capacity" = capacity,
+		"capacityPercent" = round(100*charge/capacity, 0.1),
 		"charge" = charge,
-
 		"inputAttempt" = input_attempt,
 		"inputting" = inputting,
 		"inputLevel" = input_level,
 		"inputLevel_text" = DisplayPower(input_level),
 		"inputLevelMax" = input_level_max,
-		"inputAvailable" = DisplayPower(input_available),
-
+		"inputAvailable" = input_available,
 		"outputAttempt" = output_attempt,
 		"outputting" = outputting,
 		"outputLevel" = output_level,
 		"outputLevel_text" = DisplayPower(output_level),
 		"outputLevelMax" = output_level_max,
-		"outputUsed" = DisplayPower(output_used)
+		"outputUsed" = output_used,
 	)
 	return data
 
@@ -379,7 +377,7 @@
 				target = text2num(target)
 				. = TRUE
 			if(.)
-				input_level = CLAMP(target, 0, input_level_max)
+				input_level = clamp(target, 0, input_level_max)
 				log_smes(usr)
 		if("output")
 			var/target = params["target"]
@@ -401,7 +399,7 @@
 				target = text2num(target)
 				. = TRUE
 			if(.)
-				output_level = CLAMP(target, 0, output_level_max)
+				output_level = clamp(target, 0, output_level_max)
 				log_smes(usr)
 
 /obj/machinery/power/smes/proc/log_smes(mob/user)
@@ -436,6 +434,12 @@
 	charge = INFINITY
 	..()
 
+/obj/machinery/power/smes/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	output_attempt = !output_attempt
+	log_smes(user)
+	update_icon()
 
 #undef SMESRATE
 

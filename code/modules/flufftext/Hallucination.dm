@@ -134,6 +134,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	Show()
 
 /obj/effect/hallucination/simple/Moved(atom/OldLoc, Dir)
+	. = ..()
 	Show()
 
 /obj/effect/hallucination/simple/Destroy()
@@ -649,10 +650,10 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		target.playsound_local(get_turf(airlock), 'sound/machines/boltsup.ogg',30,0,3)
 	qdel(src)
 
-/obj/effect/hallucination/fake_door_lock/CanPass(atom/movable/mover, turf/_target)
+/obj/effect/hallucination/fake_door_lock/CanAllowThrough(atom/movable/mover, turf/_target)
+	. = ..()
 	if(mover == target && airlock.density)
 		return FALSE
-	return TRUE
 
 /datum/hallucination/chat
 
@@ -689,31 +690,29 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		else
 			if(get_dist(target,H)<get_dist(target,person))
 				person = H
-	if(person && !force_radio) //Basic talk
-		var/chosen = specific_message
-		if(!chosen)
-			chosen = capitalize(pick(speak_messages))
-		chosen = replacetext(chosen, "%TARGETNAME%", target_name)
-		var/image/speech_overlay = image('icons/mob/talk.dmi', person, "default0", layer = ABOVE_MOB_LAYER)
-		var/message = target.compose_message(person,understood_language,chosen,null,list(person.speech_span),face_name = TRUE)
-		feedback_details += "Type: Talk, Source: [person.real_name], Message: [message]"
-		to_chat(target, message)
-		if(target.client)
-			target.client.images |= speech_overlay
-			sleep(30)
-			target.client.images.Remove(speech_overlay)
-	else // Radio talk
-		var/chosen = specific_message
-		if(!chosen)
-			chosen = capitalize(pick(radio_messages))
-		chosen = replacetext(chosen, "%TARGETNAME%", target_name)
+
+	// Get person to affect if radio hallucination
+	var/is_radio = !person || force_radio
+	if (is_radio)
 		var/list/humans = list()
 		for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 			humans += H
 		person = pick(humans)
-		var/message = target.compose_message(person,understood_language,chosen,"[FREQ_COMMON]",list(person.speech_span),face_name = TRUE)
-		feedback_details += "Type: Radio, Source: [person.real_name], Message: [message]"
-		to_chat(target, message)
+
+	// Generate message
+	var/spans = list(person.speech_span)
+	var/chosen = !specific_message ? capitalize(pick(is_radio ? speak_messages : radio_messages)) : specific_message
+	chosen = replacetext(chosen, "%TARGETNAME%", target_name)
+	var/message = target.compose_message(person, understood_language, chosen, is_radio ? "[FREQ_COMMON]" : null, spans, face_name = TRUE)
+	feedback_details += "Type: [is_radio ? "Radio" : "Talk"], Source: [person.real_name], Message: [message]"
+
+	// Display message
+	if (!is_radio && !target.client?.prefs.chat_on_map)
+		var/image/speech_overlay = image('icons/mob/talk.dmi', person, "default0", layer = ABOVE_MOB_LAYER)
+		INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay, speech_overlay, list(target.client), 30)
+	if (target.client?.prefs.chat_on_map)
+		target.create_chat_message(person, understood_language, chosen, spans)
+	to_chat(target, message)
 	qdel(src)
 
 /datum/hallucination/message
@@ -1088,6 +1087,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		target.client.images += image
 
 /obj/effect/hallucination/danger/lava/Crossed(atom/movable/AM)
+	. = ..()
 	if(AM == target)
 		target.adjustStaminaLoss(20)
 		new /datum/hallucination/fire(target)
@@ -1101,6 +1101,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		target.client.images += image
 
 /obj/effect/hallucination/danger/chasm/Crossed(atom/movable/AM)
+	. = ..()
 	if(AM == target)
 		if(istype(target, /obj/effect/dummy/phased_mob) || istype(target, /obj/effect/dummy/crawling))
 			return
@@ -1130,6 +1131,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		target.client.images += image
 
 /obj/effect/hallucination/danger/anomaly/Crossed(atom/movable/AM)
+	. = ..()
 	if(AM == target)
 		new /datum/hallucination/shock(target)
 

@@ -11,11 +11,19 @@
 
 	outfit = /datum/outfit/job/miningmedic
 
+	minimal_character_age = 24 // "According to age statistics published by the Association of American Medical Colleges, the average age among medical students who matriculated at U.S. medical schools in the 2017-2018 school year was 24"
+
 	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CARGO, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM, ACCESS_MECH_MINING, ACCESS_MECH_MEDICAL)
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM, ACCESS_MECH_MINING, ACCESS_MECH_MEDICAL)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_MINING_MEDIC
+
+	changed_maps = list("EclipseStation")
+
+/datum/job/miningmedic/proc/EclipseStationChanges()
+	total_positions = 2
+	spawn_positions = 1
 
 /datum/outfit/job/miningmedic
 	name = "Mining Medic"

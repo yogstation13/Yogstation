@@ -106,6 +106,9 @@ Difficulty: Hard
 /mob/living/simple_animal/hostile/megafauna/bubblegum/death(gibbed, var/list/force_grant)
 	.=..()
 	if(!(flags_1 & ADMIN_SPAWNED_1))
+		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+		if(D)
+			D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
 		for(var/mob/living/L in view(7,src))
 			if(L.client)
 				SSachievements.unlock_achievement(/datum/achievement/bubblegum, L.client)
@@ -116,8 +119,8 @@ Difficulty: Hard
 	if(charging)
 		return
 
-	anger_modifier = CLAMP(((maxHealth - health)/60),0,20)
-	enrage_time = initial(enrage_time) * CLAMP(anger_modifier / 20, 0.5, 1)
+	anger_modifier = clamp(((maxHealth - health)/60),0,20)
+	enrage_time = initial(enrage_time) * clamp(anger_modifier / 20, 0.5, 1)
 	ranged_cooldown = world.time + 50
 
 	if(client)
@@ -438,10 +441,10 @@ Difficulty: Hard
 	severity = EXPLODE_LIGHT // puny mortals
 	return ..()
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/CanPass(atom/movable/mover, turf/target)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover, /mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination))
 		return TRUE
-	return ..()
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/Goto(target, delay, minimum_distance)
 	if(!charging)
@@ -471,7 +474,10 @@ Difficulty: Hard
 /mob/living/simple_animal/hostile/megafauna/bubblegum/Bump(atom/A)
 	if(charging)
 		if(isturf(A) || isobj(A) && A.density)
-			A.ex_act(EXPLODE_HEAVY)
+			if(isobj(A))
+				SSexplosions.med_mov_atom += A
+			else
+				SSexplosions.medturf += A
 		DestroySurroundings()
 		if(isliving(A))
 			var/mob/living/L = A
@@ -534,10 +540,10 @@ Difficulty: Hard
 	new /obj/effect/decal/cleanable/blood(get_turf(src))
 	. = ..()
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/CanPass(atom/movable/mover, turf/target)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover, /mob/living/simple_animal/hostile/megafauna/bubblegum)) // hallucinations should not be stopping bubblegum or eachother
 		return TRUE
-	return ..()
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/Life()
 	return

@@ -11,10 +11,10 @@
 	throw_speed = 3
 	throw_range = 6
 	grind_results = list()
-	var/Uses = 1 // uses before it goes inert
-	var/qdel_timer = null // deletion timer, for delayed reactions
-	var/effectmod
-	var/list/activate_reagents = list() //Reagents required for activation
+	var/Uses = 1 ///uses before it goes inert
+	var/qdel_timer = null ///deletion timer, for delayed reactions
+	var/effectmod ///Which type of crossbred
+	var/list/activate_reagents = list() ///Reagents required for activation
 	var/recurring = FALSE
 
 /obj/item/slime_extract/examine(mob/user)
@@ -44,12 +44,24 @@
 	if(Uses)
 		grind_results[/datum/reagent/toxin/slimejelly] = 20
 
-//Effect when activated by a Luminescent. Separated into a minor and major effect. Returns cooldown in deciseconds.
+/**
+* Effect when activated by a Luminescent.
+*
+* This proc is called whenever a Luminescent consumes a slime extract. Each one is separated into major and minor effects depending on the extract. Cooldown is measured in deciseconds.
+*
+* * arg1 - The mob absorbing the slime extract.
+* * arg2 - The valid species for the absorbtion. Should always be a Luminescent unless something very major has changed.
+* * arg3 - Whether or not the activation is major or minor. Major activations have large, complex effects, minor are simple.
+*/
 /obj/item/slime_extract/proc/activate(mob/living/carbon/human/user, datum/species/jelly/luminescent/species, activation_type)
 	to_chat(user, "<span class='notice'>Nothing happened... This slime extract cannot be activated this way.</span>")
 	return 0
 
-//Core-crossing: Feeding adult slimes extracts to obtain a much more powerful, single extract.
+/**
+* Core-crossing: Feeding adult slimes extracts to obtain a much more powerful, single extract.
+*
+* By using a valid core on a living adult slime, then feeding it nine more of the same type, you can mutate it into more useful items. Not every slime type has an implemented core cross.
+*/
 /obj/item/slime_extract/attack(mob/living/simple_animal/slime/M, mob/user)
 	if(!isslime(M))
 		return ..()
@@ -608,6 +620,16 @@
 
 ////Slime-derived potions///
 
+/**
+* #Slime potions
+*
+* Feed slimes potions either by hand or using the slime console.
+*
+* Slime potions either augment the slime's behavior, its extract output, or its intelligence. These all come either from extract effects or cross cores.
+* A few of the more powerful ones can modify someone's equipment or gender.
+* New ones should probably be accessible only through cross cores as all the normal core types already have uses. Rule of thumb is 'stronger effects go in cross cores'.
+*/
+
 /obj/item/slimepotion
 	name = "slime potion"
 	desc = "A hard yet gelatinous capsule excreted by a slime, containing mysterious substances."
@@ -642,7 +664,7 @@
 	M.set_nutrition(700)
 	to_chat(M, "<span class='warning'>You absorb the potion and feel your intense desire to feed melt away.</span>")
 	to_chat(user, "<span class='notice'>You feed the slime the potion, removing its hunger and calming it.</span>")
-	var/newname = copytext(sanitize(input(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime") as null|text),1,MAX_NAME_LEN)
+	var/newname = sanitize_name(stripped_input(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime", MAX_NAME_LEN))
 
 	if (!newname)
 		newname = "pet slime"
@@ -658,6 +680,8 @@
 	var/list/not_interested = list()
 	var/being_used = FALSE
 	var/sentience_type = SENTIENCE_ORGANIC
+	var/intel_timer = 0
+	var/intel_cooldown = 200 // in deciseconds, the cooldown in between uses
 
 /obj/item/slimepotion/slime/sentience/attack(mob/living/M, mob/user)
 	if(being_used || !ismob(M))
@@ -672,6 +696,11 @@
 	if(SM.sentience_type != sentience_type)
 		to_chat(user, "<span class='warning'>[src] won't work on [SM].</span>")
 		return
+	if(intel_timer <= world.time)
+		intel_timer = world.time + intel_cooldown
+	else
+		to_chat(src, "<span class='danger'>The [src] is on cooldown! You must wait [((intel_timer - world.time) / 10)] seconds before using it again.</span>")
+		return
 
 	to_chat(user, "<span class='notice'>You offer [src] to [SM]...</span>")
 	being_used = TRUE
@@ -680,8 +709,8 @@
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		SM.key = C.key
-		SM.mind.enslave_mind_to_creator(user)
 		SM.sentience_act()
+		SM.mind.enslave_mind_to_creator(user)
 		to_chat(SM, "<span class='warning'>All at once it makes sense: you know what you are and who you are! Self awareness is yours!</span>")
 		to_chat(SM, "<span class='userdanger'>You are grateful to be self aware and owe [user.real_name] a great debt. Serve [user.real_name], and assist [user.p_them()] in completing [user.p_their()] goals at any cost.</span>")
 		if(SM.flags_1 & HOLOGRAM_1) //Check to see if it's a holodeck creature
@@ -803,7 +832,7 @@
 		return
 
 	to_chat(user, "<span class='notice'>You feed the slime the stabilizer. It is now less likely to mutate.</span>")
-	M.mutation_chance = CLAMP(M.mutation_chance-15,0,100)
+	M.mutation_chance = clamp(M.mutation_chance-15,0,100)
 	qdel(src)
 
 /obj/item/slimepotion/slime/mutator
@@ -827,7 +856,7 @@
 		return
 
 	to_chat(user, "<span class='notice'>You feed the slime the mutator. It is now more likely to mutate.</span>")
-	M.mutation_chance = CLAMP(M.mutation_chance+12,0,100)
+	M.mutation_chance = clamp(M.mutation_chance+12,0,100)
 	M.mutator_used = TRUE
 	qdel(src)
 
@@ -911,14 +940,26 @@
 	if(L.gender != MALE && L.gender != FEMALE)
 		to_chat(user, "<span class='warning'>The potion can only be used on gendered things!</span>")
 		return
-
-	if(L.gender == MALE)
-		L.gender = FEMALE
-		L.visible_message("<span class='boldnotice'>[L] suddenly looks more feminine!</span>", "<span class='boldwarning'>You suddenly feel more feminine!</span>")
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		if(C.dna && !(MGENDER in C.dna.species.species_traits) && !(FGENDER in C.dna.species.species_traits) && !(AGENDER in C.dna.species.species_traits))
+			if(C.gender == MALE)
+				C.gender = FEMALE
+				C.visible_message("<span class='boldnotice'>[C] suddenly looks more feminine!</span>", "<span class='boldwarning'>You suddenly feel more feminine!</span>")
+			else
+				C.gender = MALE
+				C.visible_message("<span class='boldnotice'>[C] suddenly looks more masculine!</span>", "<span class='boldwarning'>You suddenly feel more masculine!</span>")
+			C.regenerate_icons()
+		else
+			C.visible_message("<span class='boldnotice'>[C]'s physiology fails to change!</span>", "<span class='boldwarning'>The potion fails to meaningfully effect you!</span>")
 	else
-		L.gender = MALE
-		L.visible_message("<span class='boldnotice'>[L] suddenly looks more masculine!</span>", "<span class='boldwarning'>You suddenly feel more masculine!</span>")
-	L.regenerate_icons()
+		if(L.gender == MALE)
+			L.gender = FEMALE
+			L.visible_message("<span class='boldnotice'>[L] suddenly looks more feminine!</span>", "<span class='boldwarning'>You suddenly feel more feminine!</span>")
+		else
+			L.gender = MALE
+			L.visible_message("<span class='boldnotice'>[L] suddenly looks more masculine!</span>", "<span class='boldwarning'>You suddenly feel more masculine!</span>")
+		L.regenerate_icons()
 	qdel(src)
 
 /obj/item/slimepotion/slime/renaming
@@ -976,6 +1017,8 @@
 	imp.implant(M, user)
 	qdel(src)
 
+///Definitions for slime products that don't have anywhere else to go (Floor tiles, blueprints).
+
 /obj/item/stack/tile/bluespace
 	name = "bluespace floor tile"
 	singular_name = "floor tile"
@@ -984,7 +1027,7 @@
 	item_state = "tile-bluespace"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
-	materials = list(MAT_METAL=500)
+	materials = list(/datum/material/iron=500)
 	throwforce = 10
 	throw_speed = 3
 	throw_range = 7
@@ -1001,11 +1044,10 @@
 	item_state = "tile-sepia"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
-	materials = list(MAT_METAL=500)
+	materials = list(/datum/material/iron=500)
 	throwforce = 10
 	throw_speed = 0.1
 	throw_range = 28
-	glide_size = 2
 	flags_1 = CONDUCT_1
 	max_amount = 60
 	turf_type = /turf/open/floor/sepia

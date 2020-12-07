@@ -78,11 +78,6 @@
 	//Might want to have it leave a mess on the floor but no sprites for now
 	return ..()
 
-
-/obj/machinery/am_shielding/CanPass(atom/movable/mover, turf/target)
-	return 0
-
-
 /obj/machinery/am_shielding/process()
 	if(!processing)
 		. = PROCESS_KILL
@@ -243,7 +238,7 @@
 	throwforce = 5
 	throw_speed = 1
 	throw_range = 2
-	materials = list(MAT_METAL=100)
+	materials = list(/datum/material/iron=100)
 
 /obj/item/am_shielding_container/multitool_act(mob/living/user, obj/item/I)
 	if(isturf(loc))

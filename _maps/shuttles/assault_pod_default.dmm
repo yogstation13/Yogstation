@@ -1,4 +1,13 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/door/airlock/centcom{
+	name = "Assault Pod";
+	opacity = 1;
+	req_access_txt = "150"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/shuttle/assault_pod)
 "b" = (
 /obj/machinery/porta_turret/syndicate/pod,
 /turf/closed/wall/mineral/plastitanium,
@@ -19,16 +28,23 @@
 	opacity = 1;
 	req_access_txt = "150"
 	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/shuttle/assault_pod)
+"f" = (
+/obj/machinery/door/airlock/centcom{
+	aiControlDisabled = 1;
+	name = "Assault Pod";
+	opacity = 1;
+	req_access_txt = "150"
+	},
 /obj/docking_port/mobile/assault_pod{
 	dwidth = 3;
 	name = "steel rain";
 	port_direction = 4;
 	preferred_direction = 4
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/shuttle/assault_pod)
 "h" = (
@@ -37,21 +53,6 @@
 /area/shuttle/assault_pod)
 "p" = (
 /turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/assault_pod)
-"t" = (
-/obj/machinery/door/airlock/centcom{
-	aiControlDisabled = 1;
-	name = "Assault Pod";
-	opacity = 1;
-	req_access_txt = "150"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
 /area/shuttle/assault_pod)
 "D" = (
 /obj/structure/chair/comfy/shuttle,
@@ -73,18 +74,6 @@
 /obj/machinery/light,
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/assault_pod)
-"R" = (
-/obj/machinery/door/airlock/centcom{
-	name = "Assault Pod";
-	opacity = 1;
-	req_access_txt = "150"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/assault_pod)
 "V" = (
 /turf/template_noop,
 /area/template_noop)
@@ -93,7 +82,7 @@
 V
 b
 d
-t
+e
 d
 b
 V
@@ -117,13 +106,13 @@ c
 d
 "}
 (4,1,1) = {"
-R
+a
 p
 L
 h
 D
 p
-e
+f
 "}
 (5,1,1) = {"
 d
@@ -147,7 +136,7 @@ b
 V
 b
 d
-t
+e
 d
 b
 V

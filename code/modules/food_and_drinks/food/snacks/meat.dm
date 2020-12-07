@@ -301,6 +301,7 @@
 	filling_color = "#B22222"
 	foodtype = MEAT
 	tastes = list("meat" = 1)
+	juice_results = list(/datum/reagent/consumable/drippings = 15)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/plain
     foodtype = MEAT
@@ -422,6 +423,7 @@
 	filling_color = "#B22222"
 	tastes = list("meat" = 1)
 	foodtype = MEAT
+	juice_results = list(/datum/reagent/consumable/drippings = 5)
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/plain
 

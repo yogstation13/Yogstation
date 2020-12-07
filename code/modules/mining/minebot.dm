@@ -11,6 +11,7 @@
 	icon_living = "mining_drone"
 	status_flags = CANSTUN|CANKNOCKDOWN|CANPUSH
 	mouse_opacity = MOUSE_OPACITY_ICON
+	weather_immunities = list("ash")
 	faction = list("neutral")
 	a_intent = INTENT_HARM
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -130,7 +131,8 @@
 				to_chat(M, "<span class='info'>[src] has been set to attack hostile wildlife.</span>")
 		return
 
-/mob/living/simple_animal/hostile/mining_drone/CanPass(atom/movable/O)
+/mob/living/simple_animal/hostile/mining_drone/CanAllowThrough(atom/movable/O)
+	. = ..()
 	if(istype(O, /obj/item/projectile/kinetic))
 		var/obj/item/projectile/kinetic/K = O
 		if(K.kinetic_gun)
@@ -140,7 +142,6 @@
 					return TRUE
 	if(istype(O, /obj/item/projectile/destabilizer))
 		return TRUE
-	return ..()
 
 /mob/living/simple_animal/hostile/mining_drone/proc/SetCollectBehavior()
 	mode = MINEDRONE_COLLECT

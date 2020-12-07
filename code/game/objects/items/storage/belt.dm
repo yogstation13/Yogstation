@@ -38,6 +38,9 @@
 /obj/item/storage/belt/utility/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 14
+	STR.max_w_class = WEIGHT_CLASS_NORMAL
+	STR.max_combined_w_class = 21
 	STR.set_holdable(list(
 		/obj/item/multitool/tricorder,			//yogs tricorder: 'cause making it into the yogs belt dm makes it the only thing a belt can hold
 		/obj/item/crowbar,
@@ -58,7 +61,17 @@
 		/obj/item/holosign_creator/engineering,
 		/obj/item/forcefield_projector,
 		/obj/item/assembly/signaler,
-		/obj/item/lightreplacer
+		/obj/item/lightreplacer,
+		/obj/item/construction/rcd,
+		/obj/item/pipe_dispenser,
+		/obj/item/inducer,
+		/obj/item/holosign_creator/multi/CE,
+		/obj/item/airlock_painter,
+		/obj/item/grenade/chem_grenade/smart_metal_foam,
+		/obj/item/grenade/chem_grenade/metalfoam,
+		/obj/item/storage/bag/construction,
+		/obj/item/handdrill,
+		/obj/item/jawsoflife
 		))
 
 /obj/item/storage/belt/utility/chief
@@ -68,12 +81,13 @@
 	item_state = "utility_ce"
 
 /obj/item/storage/belt/utility/chief/full/PopulateContents()
-	new /obj/item/screwdriver/power(src)
-	new /obj/item/crowbar/power(src)
+	new /obj/item/handdrill(src)
+	new /obj/item/jawsoflife(src)
 	new /obj/item/weldingtool/experimental(src)//This can be changed if this is too much
 	new /obj/item/multitool/tricorder(src)	//yogs: changes the multitool to the tricorder and removes the analyzer
 	new /obj/item/stack/cable_coil(src,MAXCOIL,pick("red","yellow","orange"))
 	new /obj/item/extinguisher/mini(src)
+	new /obj/item/holosign_creator/multi/CE(src)
 	//much roomier now that we've managed to remove two tools
 
 /obj/item/storage/belt/utility/full/PopulateContents()
@@ -122,7 +136,9 @@
 /obj/item/storage/belt/medical/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 14
 	STR.max_w_class = WEIGHT_CLASS_BULKY
+	STR.max_combined_w_class = 21
 	STR.set_holdable(list(
 		/obj/item/healthanalyzer,
 		/obj/item/dnainjector,
@@ -275,7 +291,9 @@
 		/obj/item/organ/regenerative_core,
 		/obj/item/wormhole_jaunter,
 		/obj/item/storage/bag/plants,
-		/obj/item/stack/marker_beacon
+		/obj/item/stack/marker_beacon,
+		/obj/item/handdrill,
+		/obj/item/jawsoflife
 		))
 
 
@@ -324,7 +342,7 @@
 	desc = "Proves to the world that you are the strongest!"
 	icon_state = "championbelt"
 	item_state = "champion"
-	materials = list(MAT_GOLD=400)
+	materials = list(/datum/material/gold=400)
 
 /obj/item/storage/belt/champion/ComponentInitialize()
 	. = ..()
@@ -446,6 +464,8 @@
 		/obj/item/multitool,
 		/obj/item/reagent_containers/food/drinks/bottle/molotov,
 		/obj/item/grenade/plastic/c4,
+		/obj/item/reagent_containers/food/snacks/grown/cherry_bomb,
+		/obj/item/reagent_containers/food/snacks/grown/firelemon
 		))
 
 /obj/item/storage/belt/grenade/full/PopulateContents()
@@ -499,7 +519,7 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
-	STR.max_w_class = WEIGHT_CLASS_BULKY // Set to this so the  light replacer can fit.
+	STR.max_w_class = WEIGHT_CLASS_BULKY //Set to this so the  light replacer can fit.
 	STR.set_holdable(list(
 		/obj/item/grenade/chem_grenade,
 		/obj/item/lightreplacer,
@@ -511,7 +531,8 @@
 		/obj/item/key/janitor,
 		/obj/item/clothing/gloves,
 		/obj/item/melee/flyswatter,
-		/obj/item/assembly/mousetrap
+		/obj/item/assembly/mousetrap,
+		/obj/item/paint/paint_remover
 		))
 
 /obj/item/storage/belt/janitor/full/PopulateContents()

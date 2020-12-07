@@ -64,7 +64,6 @@
 		dat += "<HR><A href='?src=[REF(src)];lock=1'>Lock Console</A>"
 	var/datum/browser/popup = new(user, "computer", "Prisoner Management Console", 400, 500)
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 	return
 
@@ -129,7 +128,7 @@
 				to_chat(usr, "Unauthorized Access.")
 
 		else if(href_list["warn"])
-			var/warning = copytext(sanitize(input(usr,"Message:","Enter your message here!","")),1,MAX_MESSAGE_LEN)
+			var/warning = stripped_input(usr, "Message:", "Enter your message here!", "", MAX_MESSAGE_LEN)
 			if(!warning)
 				return
 			var/obj/item/implant/I = locate(href_list["warn"]) in GLOB.tracked_implants

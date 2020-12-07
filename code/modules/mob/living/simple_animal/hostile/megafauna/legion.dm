@@ -45,7 +45,7 @@ Difficulty: Medium
 	vision_range = 13
 	wander = FALSE
 	elimination = TRUE
-	appearance_flags = 0
+	appearance_flags = LONG_GLIDE
 	mouse_opacity = MOUSE_OPACITY_ICON
 	attack_action_types = list(/datum/action/innate/megafauna_attack/create_skull,
 							   /datum/action/innate/megafauna_attack/charge_target)
@@ -127,6 +127,9 @@ Difficulty: Medium
 /mob/living/simple_animal/hostile/megafauna/legion/death()
 	if(health > 0)
 		return
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+	if(D)
+		D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
 	if(size > 1)
 		adjustHealth(-maxHealth) //heal ourself to full in prep for splitting
 		var/mob/living/simple_animal/hostile/megafauna/legion/L = new(loc)
@@ -159,9 +162,10 @@ Difficulty: Medium
 				last_legion = FALSE
 				break
 		if(last_legion)
-			loot = list(/obj/item/staff/storm)
+			loot = list(/obj/item/staff/storm,
+			/obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker)
 			elimination = FALSE
-		else if(prob(5))
+		else if(prob(10))
 			loot = list(/obj/structure/closet/crate/necropolis/tendril)
 		if(!true_spawn)
 			loot = null
@@ -222,9 +226,8 @@ Difficulty: Medium
 	else
 		A = new storm_type(list(user_turf.z))
 		A.name = "staff storm"
-		log_game("[user] ([key_name(user)]) has summoned [A] at [AREACOORD(user_turf)]")
-		if (is_special_character(user))
-			message_admins("[A] has been summoned in [ADMIN_VERBOSEJMP(user_turf)] by [ADMIN_LOOKUPFLW(user)], a non-antagonist")
+		log_admin("[user] ([key_name(user)]) has summoned [A] at [AREACOORD(user_turf)]")
+		message_admins("[A] has been summoned in [ADMIN_VERBOSEJMP(user_turf)] by [ADMIN_LOOKUPFLW(user)]")
 		A.area_type = user_area.type
 		A.telegraph_duration = 100
 		A.end_duration = 100

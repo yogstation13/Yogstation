@@ -11,11 +11,11 @@
 	results = list(/datum/reagent/lube = 4)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
 
-/datum/chemical_reaction/gravedigger
-	name = "Grave-Digger"
-	id = /datum/reagent/consumable/graveyard
-	results = list(/datum/reagent/consumable/gravedigger = 3)
-	required_reagents = list(/datum/reagent/consumable/space_cola = 1, /datum/reagent/consumable/dr_gibb = 1, /datum/reagent/consumable/space_up = 1) //soda
+/datum/chemical_reaction/itching_powder
+	name = "Itching Powder"
+	id = /datum/reagent/itching_powder
+	results = list(/datum/reagent/itching_powder = 3)
+	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/ammonia = 1, /datum/reagent/medicine/charcoal = 1)
 
 /datum/chemical_reaction/spraytan
 	name = "Spray Tan"
@@ -559,6 +559,15 @@
 	var/location = get_turf(holder.my_atom)
 	if (location) new /mob/living/carbon/monkey(location)
 
+/datum/chemical_reaction/gorilla
+	name = "gorilla"
+	id = "gorilla"
+	required_reagents = list(/datum/reagent/gorilla_powder = 30, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/gorilla/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/simple_animal/hostile/gorilla(location)
+
 
 /datum/chemical_reaction/hair_dye
 	name = /datum/reagent/hair_dye
@@ -624,3 +633,9 @@
 	id = /datum/reagent/pax
 	results = list(/datum/reagent/pax = 3)
 	required_reagents  = list(/datum/reagent/toxin/mindbreaker = 1, /datum/reagent/medicine/synaptizine = 1, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/liquidelectricity
+	name = /datum/reagent/consumable/liquidelectricity
+	id = /datum/reagent/consumable/liquidelectricity
+	results = list(/datum/reagent/consumable/liquidelectricity = 2)
+	required_reagents = list(/datum/reagent/teslium = 1, /datum/reagent/blood = 2)

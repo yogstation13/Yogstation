@@ -7,6 +7,7 @@
 	invocation = "TARCOL MINTI ZHERI"
 	invocation_type = "shout"
 	sound = 'sound/magic/forcewall.ogg'
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "shield"
 	range = -1
 	include_user = TRUE
@@ -30,11 +31,11 @@
 	. = ..()
 	wizard = summoner
 
-/obj/effect/forcefield/wizard/CanPass(atom/movable/mover, turf/target)
+/obj/effect/forcefield/wizard/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(mover == wizard)
 		return TRUE
 	if(ismob(mover))
 		var/mob/M = mover
 		if(M.anti_magic_check(chargecost = 0))
 			return TRUE
-	return FALSE

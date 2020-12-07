@@ -8,6 +8,7 @@
 	required_enemies = 1
 	recommended_enemies = 1
 	reroll_friendly = FALSE
+	title_icon = "ss13"
 
 	announce_span = "danger"
 	announce_text = "The station's Artificial Intelligence is rogue!\n\
@@ -32,7 +33,7 @@
 		AI.mind.add_antag_datum(/datum/antagonist/traitor/malf)
 
 	gamemode_ready = TRUE
-	return TRUE
+	. = ..()
 
 /datum/game_mode/malf/make_antag_chance()
 	return FALSE //no latejoins for you
@@ -45,9 +46,11 @@
 
 /datum/game_mode/malf/set_round_result()
 	..()
+
 	if(station_was_nuked)
 		SSticker.mode_result = "win - AI doomsday"
-
+	else if(didAntagsWin(traitors, /datum/antagonist/traitor/malf))
+		SSticker.mode_result = "win - AI achieved their objectives"
 	else if(!are_special_antags_dead())
 		SSticker.mode_result = "halfwin - evacuation - AI survived"
 

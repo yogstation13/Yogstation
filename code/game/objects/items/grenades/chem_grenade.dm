@@ -273,7 +273,7 @@
 		var/newspread = text2num(stripped_input(user, "Please enter a new spread amount", name))
 		if (newspread != null && user.canUseTopic(src, BE_CLOSE))
 			newspread = round(newspread)
-			unit_spread = CLAMP(newspread, 5, 100)
+			unit_spread = clamp(newspread, 5, 100)
 			to_chat(user, "<span class='notice'>You set the time release to [unit_spread] units per detonation.</span>")
 		if (newspread != unit_spread)
 			to_chat(user, "<span class='notice'>The new value is out of bounds. Minimum spread is 5 units, maximum is 100 units.</span>")
@@ -339,7 +339,7 @@
 	B2.reagents.add_reagent(/datum/reagent/potassium, 10)
 	B2.reagents.add_reagent(/datum/reagent/phosphorus, 10)
 	B2.reagents.add_reagent(/datum/reagent/toxin/mutagen, 30)
-	
+
 	beakers += B1
 	beakers += B2
 
@@ -558,7 +558,7 @@
 	B1.reagents.add_reagent(/datum/reagent/water, 50)
 	B1.reagents.add_reagent(/datum/reagent/toxin/mutetoxin, 50)
 	B1.reagents.add_reagent(/datum/reagent/toxin/spore, 75)
-	B1.reagents.add_reagent(/datum/reagent/toxin/itching_powder, 50)
+	B1.reagents.add_reagent(/datum/reagent/itching_powder, 50)
 	B2.reagents.add_reagent(/datum/reagent/fluorosurfactant, 150)
 	B2.reagents.add_reagent(/datum/reagent/toxin/mutagen, 150)
 	beakers += B1

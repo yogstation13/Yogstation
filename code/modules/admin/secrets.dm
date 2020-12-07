@@ -2,7 +2,7 @@
 	if(!check_rights(0))
 		return
 
-	var/list/dat = list("<B>The first rule of adminbuse is: you don't talk about the adminbuse.</B><HR>")
+	var/list/dat = list("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>The first rule of adminbuse is: you don't talk about the adminbuse.</B><HR>")
 
 	dat +={"
 			<B>General Secrets</B><BR>
@@ -54,6 +54,7 @@
 			<A href='?src=[REF(src)];[HrefToken()];secrets=quickpower'>Power all SMES</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=tripleAI'>Triple AI mode (needs to be used in the lobby)</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=traitor_all'>Everyone is the traitor</A><BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=iaa_all'>Everyone is the IAA (except sec/cap/hop)</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=onlyone'>There can only be one!</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=delayed_onlyone'>There can only be one! (40-second delay)</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=retardify'>Make all players retarded</A><BR>
@@ -85,6 +86,8 @@
 			<BR>
 			"}
 
+	dat += "</BODY></HTML>"
+
 	usr << browse(dat.Join(), "window=secrets")
 	return
 
@@ -97,22 +100,24 @@
 	var/ok = 0
 	switch(item)
 		if("admin_log")
-			var/dat = "<B>Admin Log<HR></B>"
+			var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Admin Log<HR></B>"
 			for(var/l in GLOB.admin_log)
 				dat += "<li>[l]</li>"
 			if(!GLOB.admin_log.len)
 				dat += "No-one has done anything this round!"
+			dat += "</BODY></HTML>"
 			usr << browse(dat, "window=admin_log")
 
 		if("mentor_log") // YOGS - Get in those mentor logs
 			YogMentorLogs() // YOGS - Same as above
 
 		if("show_admins")
-			var/dat = "<B>Current admins:</B><HR>"
+			var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Current admins:</B><HR>"
 			if(GLOB.admin_datums)
 				for(var/ckey in GLOB.admin_datums)
 					var/datum/admins/D = GLOB.admin_datums[ckey]
 					dat += "[ckey] - [D.rank.name]<br>"
+				dat += "</BODY></HTML>"
 				usr << browse(dat, "window=showadmins;size=600x500")
 
 		if("tdomereset")
@@ -184,25 +189,28 @@
 		if("list_bombers")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<B>Bombing List</B><HR>"
+			var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Bombing List</B><HR>"
 			for(var/l in GLOB.bombers)
 				dat += text("[l]<BR>")
+			dat += "</BODY></HTML>"
 			usr << browse(dat, "window=bombers")
 
 		if("list_signalers")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<B>Showing last [length(GLOB.lastsignalers)] signalers.</B><HR>"
+			var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Showing last [length(GLOB.lastsignalers)] signalers.</B><HR>"
 			for(var/sig in GLOB.lastsignalers)
 				dat += "[sig]<BR>"
+			dat += "</BODY></HTML>"
 			usr << browse(dat, "window=lastsignalers;size=800x500")
 
 		if("list_lawchanges")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<B>Showing last [length(GLOB.lawchanges)] law changes.</B><HR>"
+			var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Showing last [length(GLOB.lawchanges)] law changes.</B><HR>"
 			for(var/sig in GLOB.lawchanges)
 				dat += "[sig]<BR>"
+			dat += "</BODY></HTML>"
 			usr << browse(dat, "window=lawchanges;size=800x500")
 
 		if("moveminingshuttle")
@@ -256,31 +264,33 @@
 		if("manifest")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<B>Showing Crew Manifest.</B><HR>"
+			var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Showing Crew Manifest.</B><HR>"
 			dat += "<table cellspacing=5><tr><th>Name</th><th>Position</th></tr>"
 			for(var/datum/data/record/t in GLOB.data_core.general)
 				dat += "<tr><td>[t.fields["name"]]</td><td>[t.fields["rank"]]</td></tr>"
 			dat += "</table>"
+			dat += "</BODY></HTML>"
 			usr << browse(dat, "window=manifest;size=440x410")
 		if("DNA")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<B>Showing DNA from blood.</B><HR>"
+			var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Showing DNA from blood.</B><HR>"
 			dat += "<table cellspacing=5><tr><th>Name</th><th>DNA</th><th>Blood Type</th></tr>"
 			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 				if(H.ckey)
 					dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.dna.blood_type]</td></tr>"
 			dat += "</table>"
+			dat += "</BODY></HTML>"
 			usr << browse(dat, "window=DNA;size=440x410")
 		if("fingerprints")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<B>Showing Fingerprints.</B><HR>"
+			var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Showing Fingerprints.</B><HR>"
 			dat += "<table cellspacing=5><tr><th>Name</th><th>Fingerprints</th></tr>"
 			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 				if(H.ckey)
 					dat += "<tr><td>[H]</td><td>[md5(H.dna.uni_identity)]</td></tr>"
-			dat += "</table>"
+			dat += "</table></BODY></HTML>"
 			usr << browse(dat, "window=fingerprints;size=440x410")
 
 		if("monkey")
@@ -340,7 +350,7 @@
 			if(!SSticker.HasRoundStarted())
 				alert("The game hasn't started yet!")
 				return
-			var/objective = copytext(sanitize(input("Enter an objective")),1,MAX_MESSAGE_LEN)
+			var/objective = stripped_input(usr, "Enter an objective")
 			if(!objective)
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Traitor All", "[objective]"))
@@ -360,6 +370,28 @@
 				H.mind.add_antag_datum(T)
 			message_admins("<span class='adminnotice'>[key_name_admin(usr)] used everyone is a traitor secret. Objective is [objective]</span>")
 			log_admin("[key_name(usr)] used everyone is a traitor secret. Objective is [objective]")
+
+		if("iaa_all")
+			if(!check_rights(R_FUN))
+				return
+			if(!SSticker.HasRoundStarted())
+				alert("The game hasn't started yet!")
+				return
+			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("IAA All"))
+			for(var/mob/living/H in GLOB.player_list)
+				if(!(ishuman(H)))
+					continue
+				if(H.stat == DEAD || !H.client || !H.mind || ispAI(H))
+					continue
+				if(is_special_character(H))
+					continue
+				var/list/badjobs = list("Security Officer", "Warden", "Detective", "AI", "Cyborg", "Captain", "Head of Personnel", "Head of Security")
+				if(H.mind.assigned_role in badjobs)
+					continue
+				var/datum/antagonist/traitor/internal_affairs/T = new()
+				H.mind.add_antag_datum(T)
+			message_admins("<span class='adminnotice'>[key_name_admin(usr)] used everyone is a iaa secret.</span>")
+			log_admin("[key_name(usr)] used everyone is a iaa secret.")
 
 		if("changebombcap")
 			if(!check_rights(R_FUN))

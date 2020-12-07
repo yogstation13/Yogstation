@@ -168,7 +168,7 @@
 	var/new_psi = input(admin, "Enter a new psi amount. (Current: [psi]/[psi_cap])", "Change Psi", psi) as null|num
 	if(!new_psi)
 		return
-	new_psi = CLAMP(new_psi, 0, psi_cap)
+	new_psi = clamp(new_psi, 0, psi_cap)
 	psi = new_psi
 
 /datum/antagonist/darkspawn/proc/admin_edit_lucidity(mob/admin)
@@ -255,6 +255,13 @@
 	var/obj/screen/counter = owner.current.hud_used.psi_counter
 	counter.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#7264FF'>[psi]</font></div>"
 
+/datum/antagonist/darkspawn/proc/regain_abilities()
+	for(var/A in abilities)
+		var/datum/action/innate/darkspawn/ability = abilities[A]
+		if(ability)
+			ability.Remove(ability.owner)
+			ability.Grant(owner.current)
+
 /datum/antagonist/darkspawn/proc/has_ability(id)
 	if(isnull(abilities[id]))
 		return
@@ -313,7 +320,12 @@
 /datum/antagonist/darkspawn/proc/force_divulge()
 	if(darkspawn_state != MUNDANE)
 		return
+	var/mob/living/carbon/C = owner.current
+	if(C && !ishuman(C))
+		C.humanize()
 	var/mob/living/carbon/human/H = owner.current
+	if(!H)
+		owner.current.gib(TRUE)
 	H.visible_message("<span class='boldwarning'>[H]'s skin begins to slough off in sheets!</span>", \
 	"<span class='userdanger'>You can't maintain your disguise any more! It begins sloughing off!</span>")
 	playsound(H, 'yogstation/sound/creatures/darkspawn_force_divulge.ogg', 50, FALSE)
@@ -369,10 +381,10 @@
 
 // Psi Web code //
 
-/datum/antagonist/darkspawn/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.not_incapacitated_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/antagonist/darkspawn/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "psi_web", "Psi Web", 900, 480, master_ui, state)
+		ui = new(user, src, "PsiWeb", "Psi Web")
 		ui.open()
 
 /datum/antagonist/darkspawn/ui_data(mob/user)

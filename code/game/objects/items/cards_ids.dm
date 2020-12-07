@@ -8,9 +8,9 @@
 
 
 
-/*
- * DATA CARDS - Used for the IC data card reader
- */
+
+//DATA CARDS - Used for the IC data card reader
+
 /obj/item/card
 	name = "card"
 	desc = "Does card things."
@@ -120,6 +120,7 @@
 	var/access_txt // mapping aid
 	var/datum/bank_account/registered_account
 	var/obj/machinery/paystand/my_store
+	var/registered_age = 13 // default age for ss13 players
 
 /obj/item/card/id/Initialize(mapload)
 	. = ..()
@@ -135,14 +136,16 @@
 
 /obj/item/card/id/attack_self(mob/user)
 	if(Adjacent(user))
-		user.visible_message("<span class='notice'>[user] shows you: [icon2html(src, viewers(user))] [src.name].</span>", "<span class='notice'>You show \the [src.name].</span>")
-	add_fingerprint(user)
+		var/minor
+		if(registered_name && registered_age && registered_age < AGE_MINOR)
+			minor = " <b>(MINOR)</b>"
+		user.visible_message("<span class='notice'>[user] shows you: [icon2html(src, viewers(user))] [src.name][minor].</span>", "<span class='notice'>You show \the [src.name][minor].</span>")
 
 /obj/item/card/id/vv_edit_var(var_name, var_value)
 	. = ..()
 	if(.)
 		switch(var_name)
-			if("assignment","registered_name")
+			if("assignment","registered_name","registered_age")
 				update_label()
 
 /obj/item/card/id/attackby(obj/item/W, mob/user, params)
@@ -228,6 +231,8 @@
 
 /obj/item/card/id/examine(mob/user)
 	.=..()
+	if(registered_age)
+		. += "The card indicates that the holder is [registered_age] years old. [(registered_age < AGE_MINOR) ? "There's a holographic stripe that reads <b><span class='danger'>'MINOR: DO NOT SERVE ALCOHOL OR TOBACCO'</span></b> along the bottom of the card." : ""]"
 	if(mining_points)
 		. += "There's [mining_points] mining equipment redemption point\s loaded onto this card."
 
@@ -290,6 +295,7 @@ update_label("John Doe", "Clowny")
 	name = "agent card"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
 	var/anyone = FALSE //Can anyone forge the ID or just syndicate?
+	var/forged = FALSE //have we set a custom name and job assignment, or will we use what we're given when we chameleon change?
 
 /obj/item/card/id/syndicate/Initialize()
 	. = ..()
@@ -310,28 +316,99 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/syndicate/attack_self(mob/user)
 	if(isliving(user) && user.mind)
+		var/first_use = registered_name ? FALSE : TRUE
 		if(!(user.mind.special_role || anyone)) //Unless anyone is allowed, only syndies can use the card, to stop metagaming.
-			if(!registered_name) //If a non-syndie is the first to forge an unassigned agent ID, then anyone can forge it.
+			if(first_use) //If a non-syndie is the first to forge an unassigned agent ID, then anyone can forge it.
 				anyone = TRUE
 			else
 				return ..()
-		if(alert(user, "Action", "Agent ID", "Show", "Forge") == "Forge")
-			var/t = copytext(sanitize(input(user, "What name would you like to put on this card?", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name))as text | null),1,26)
-			if(!t || t == "Unknown" || t == "floor" || t == "wall" || t == "r-wall") //Same as mob/dead/new_player/prefrences.dm
-				if (t)
-					alert("Invalid name.")
-				return
-			registered_name = t
 
-			var/u = copytext(sanitize(input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", "Assistant")as text | null),1,MAX_MESSAGE_LEN)
-			if(!u)
-				registered_name = ""
+		var/popup_input = alert(user, "Choose Action", "Agent ID", "Show", "Forge/Reset", "Change Account ID")
+		if(user.incapacitated())
+			return
+		if(popup_input == "Forge/Reset" && !forged)
+			var/input_name = stripped_input(user, "What name would you like to put on this card? Leave blank to randomise.", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
+			input_name = reject_bad_name(input_name)
+			if(!input_name)
+				// Invalid/blank names give a randomly generated one.
+				if(user.gender == FEMALE)
+					input_name = "[pick(GLOB.first_names_female)] [pick(GLOB.last_names)]"
+				else
+					input_name = "[pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"
+
+			var/target_occupation = stripped_input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", assignment ? assignment : "Assistant", MAX_MESSAGE_LEN)
+			if(!target_occupation)
 				return
-			assignment = u
+
+			var/newAge = input(user, "Choose the ID's age:\n([AGE_MIN]-[AGE_MAX])", "Agent card age") as num|null
+			if(newAge)
+				registered_age = max(round(text2num(newAge)), 0)
+
+			registered_name = input_name
+			assignment = target_occupation
 			update_label()
+			forged = TRUE
 			to_chat(user, "<span class='notice'>You successfully forge the ID card.</span>")
+			log_game("[key_name(user)] has forged \the [initial(name)] with name \"[registered_name]\" and occupation \"[assignment]\".")
+
+			// First time use automatically sets the account id to the user.
+			if (first_use && !registered_account)
+				if(ishuman(user))
+					var/mob/living/carbon/human/accountowner = user
+
+					for(var/bank_account in SSeconomy.bank_accounts)
+						var/datum/bank_account/account = bank_account
+						if(account.account_id == accountowner.account_id)
+							account.bank_cards += src
+							registered_account = account
+							to_chat(user, "<span class='notice'>Your account number has been automatically assigned.</span>")
+			return
+		else if (popup_input == "Forge/Reset" && forged)
+			registered_name = initial(registered_name)
+			assignment = initial(assignment)
+			log_game("[key_name(user)] has reset \the [initial(name)] named \"[src]\" to default.")
+			update_label()
+			forged = FALSE
+			to_chat(user, "<span class='notice'>You successfully reset the ID card.</span>")
+			return
+		else if (popup_input == "Change Account ID")
+			set_new_account(user)
 			return
 	return ..()
+
+// Returns true if new account was set.
+/obj/item/card/id/proc/set_new_account(mob/living/user)
+	. = FALSE
+	var/datum/bank_account/old_account = registered_account
+
+	var/new_bank_id = input(user, "Enter your account ID number.", "Account Reclamation", 111111) as num | null
+
+	if (isnull(new_bank_id))
+		return
+
+	if(!alt_click_can_use_id(user))
+		return
+	if(!new_bank_id || new_bank_id < 111111 || new_bank_id > 999999)
+		to_chat(user, "<span class='warning'>The account ID number needs to be between 111111 and 999999.</span>")
+		return
+	if (registered_account && registered_account.account_id == new_bank_id)
+		to_chat(user, "<span class='warning'>The account ID was already assigned to this card.</span>")
+		return
+
+	for(var/A in SSeconomy.bank_accounts)
+		var/datum/bank_account/B = A
+		if(B.account_id == new_bank_id)
+			if (old_account)
+				old_account.bank_cards -= src
+
+			B.bank_cards += src
+			registered_account = B
+			to_chat(user, "<span class='notice'>The provided account has been linked to this ID card.</span>")
+
+			return TRUE
+
+	to_chat(user, "<span class='warning'>The account ID number provided is invalid.</span>")
+	return
 
 /obj/item/card/id/syndicate/anyone
 	anyone = TRUE
@@ -339,6 +416,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/syndicate/nuke_leader
 	name = "lead agent card"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER)
+	registered_age = null
 
 /obj/item/card/id/syndicate_command
 	name = "syndicate ID card"
@@ -356,6 +434,7 @@ update_label("John Doe", "Clowny")
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	registered_name = "Captain"
 	assignment = "Captain"
+	registered_age = null
 
 /obj/item/card/id/captains_spare/Initialize()
 	var/datum/job/captain/J = new/datum/job/captain
@@ -367,12 +446,23 @@ update_label("John Doe", "Clowny")
 	desc = "An ID straight from Central Command."
 	icon_state = "centcom"
 	registered_name = "Central Command"
-	assignment = "General"
-	item_flags = DROPDEL //admemes arnt the smartest tools in the shed
+	assignment = "CentCom Official"
+	registered_age = null
+
+/obj/item/card/id/centcom/silver
+	name = "\improper silver CentCom ID"
+	desc = "A silver ID straight from Central Command."
+	icon_state = "centcom_silver"
+
+/obj/item/card/id/centcom/gold
+	name = "\improper gold CentCom ID"
+	desc = "A gold ID straight from Central Command."
+	icon_state = "centcom_gold"
+
+
 
 /obj/item/card/id/centcom/Initialize()
 	access = get_all_centcom_access()
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT) //I dont gotta modularize things anymore but eh
 	. = ..()
 
 /obj/item/card/id/ert
@@ -381,11 +471,24 @@ update_label("John Doe", "Clowny")
 	icon_state = "centcom"
 	registered_name = "Emergency Response Team Commander"
 	assignment = "Emergency Response Team Commander"
-	item_flags = ABSTRACT | DROPDEL //admemes arnt the smartest tools in the shed x2
+	registered_age = null
 
+/obj/item/card/id/ert/amber
+	name = "\improper Amber Task Force ID"
+	desc = "An Amber Task Force ID card."
+	assignment = "Amber Task Force"
+
+/obj/item/card/id/ert/occupying
+	name = "\improper Occupying Force ID"
+	desc = "An Occupying Force ID card."
+	assignment = "Occupying Officer"
+
+/obj/item/card/id/ert/occupying/Initialize()
+    access = list(ACCESS_SECURITY,ACCESS_BRIG,ACCESS_WEAPONS,ACCESS_SEC_DOORS,ACCESS_MAINT_TUNNELS)+get_ert_access("sec")
+    . = ..()
+    
 /obj/item/card/id/ert/Initialize()
 	access = get_all_accesses()+get_ert_access("commander")-ACCESS_CHANGE_IDS
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT) //I dont gotta modularize things anymore but eh x2
 	. = ..()
 
 /obj/item/card/id/ert/Security
@@ -447,6 +550,7 @@ update_label("John Doe", "Clowny")
 	registered_name = "Scum"
 	var/goal = 0 //How far from freedom?
 	var/points = 0
+	registered_age = null
 
 /obj/item/card/id/prisoner/attack_self(mob/user)
 	to_chat(usr, "<span class='notice'>You have accumulated [points] out of the [goal] points you need for freedom.</span>")
@@ -487,6 +591,7 @@ update_label("John Doe", "Clowny")
 	name = "a perfectly generic identification card"
 	desc = "A perfectly generic identification card. Looks like it could use some flavor."
 	access = list(ACCESS_AWAY_GENERAL)
+	registered_age = null
 
 /obj/item/card/id/away/hotel
 	name = "Staff ID"
@@ -533,6 +638,7 @@ update_label("John Doe", "Clowny")
 	desc = "Provides access to the departmental budget."
 	var/department_ID = ACCOUNT_CIV
 	var/department_name = ACCOUNT_CIV_NAME
+	registered_age = null
 
 /obj/item/card/id/departmental_budget/Initialize()
 	. = ..()
@@ -548,26 +654,6 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/departmental_budget/Destroy()
 	SSeconomy.dep_cards -= src
 	return ..()
-
-/obj/item/card/id/departmental_budget/civ
-	department_ID = ACCOUNT_CIV
-	department_name = ACCOUNT_CIV_NAME
-
-/obj/item/card/id/departmental_budget/eng
-	department_ID = ACCOUNT_ENG
-	department_name = ACCOUNT_ENG_NAME
-
-/obj/item/card/id/departmental_budget/sci
-	department_ID = ACCOUNT_SCI
-	department_name = ACCOUNT_SCI_NAME
-
-/obj/item/card/id/departmental_budget/med
-	department_ID = ACCOUNT_MED
-	department_name = ACCOUNT_MED_NAME
-
-/obj/item/card/id/departmental_budget/srv
-	department_ID = ACCOUNT_SRV
-	department_name = ACCOUNT_SRV_NAME
 
 /obj/item/card/id/departmental_budget/car
 	department_ID = ACCOUNT_CAR

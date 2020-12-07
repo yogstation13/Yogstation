@@ -89,8 +89,9 @@
 	dat = {"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
 			<html>
 			<head>
+				<meta charset='UTF-8'>
 				<style type=\"text/css\">
-					body { background-image:url('html/paigrid.png'); }
+					body { background-image:url('[SSassets.transport.get_asset_url("paigrid.png")]'); }
 
 					#header { text-align:center; color:white; font-size: 30px; height: 35px; width: 100%; letter-spacing: 2px; z-index: 5}
 					#content {position: relative; left: 10px; height: 400px; width: 100%; z-index: 0}
@@ -268,9 +269,6 @@
 				if(href_list["toggle"])
 					var/mob/living/silicon/pai/pAI = usr
 					pAI.hostscan.attack_self(usr)
-				if(href_list["toggle2"])
-					var/mob/living/silicon/pai/pAI = usr
-					pAI.hostscan.toggle_mode()
 
 			if("encryptionkeys")
 				if(href_list["toggle"])
@@ -295,8 +293,6 @@
 			if("loudness")
 				if(subscreen == 1) // Open Instrument
 					internal_instrument.interact(src)
-				if(subscreen == 2) // Change Instrument type
-					internal_instrument.selectInstrument()
 
 		paiInterface()
 
@@ -545,7 +541,6 @@
 
 			<a href='byond://?src=[REF(src)];software=hostscan;sub=0;toggle=1'>Change Scan Type</a><br>
 
-			<a href='byond://?src=[REF(src)];software=hostscan;sub=0;toggle2=1'>Toggle Verbosity</a><br>
 			"}
 	return dat
 // Atmospheric Scanner
@@ -557,7 +552,6 @@
 		dat += "Unable to obtain a reading.<br>"
 	else
 		var/datum/gas_mixture/environment = T.return_air()
-		var/list/env_gases = environment.gases
 
 		var/pressure = environment.return_pressure()
 		var/total_moles = environment.total_moles()
@@ -565,11 +559,11 @@
 		dat += "Air Pressure: [round(pressure,0.1)] kPa<br>"
 
 		if (total_moles)
-			for(var/id in env_gases)
-				var/gas_level = env_gases[id][MOLES]/total_moles
+			for(var/id in environment.get_gases())
+				var/gas_level = environment.get_moles(id)/total_moles
 				if(gas_level > 0.01)
-					dat += "[env_gases[id][GAS_META][META_GAS_NAME]]: [round(gas_level*100)]%<br>"
-		dat += "Temperature: [round(environment.temperature-T0C)]&deg;C<br>"
+					dat += "[GLOB.meta_gas_info[id][META_GAS_NAME]]: [round(gas_level*100)]%<br>"
+		dat += "Temperature: [round(environment.return_temperature()-T0C)]&deg;C<br>"
 	dat += "<a href='byond://?src=[REF(src)];software=atmosensor;sub=0'>Refresh Reading</a> <br>"
 	dat += "<br>"
 	return dat

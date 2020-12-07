@@ -10,6 +10,8 @@
 	faction += "[REF(src)]"
 	GLOB.mob_living_list += src
 	initialize_footstep()
+	if(startDead)
+		death(FALSE)
 
 /mob/living/proc/initialize_footstep()
 	AddComponent(/datum/component/footstep)
@@ -66,7 +68,7 @@
 		var/obj/O = A
 		if(ObjBump(O))
 			return
-	if(ismovableatom(A))
+	if(ismovable(A))
 		var/atom/movable/AM = A
 		if(PushAM(AM, move_force))
 			return
@@ -168,9 +170,9 @@
 		var/mob/living/L = M
 		if(HAS_TRAIT(L, TRAIT_PUSHIMMUNE))
 			return TRUE
-	/*//If they're a human, and they're not in help intent, block pushing //yogs start: disarmn't rework
+	//If they're a human, and they're not in help intent, block pushing
 	if(ishuman(M) && (M.a_intent != INTENT_HELP))
-		return TRUE*/ //yogs end
+		return TRUE
 	//anti-riot equipment is also anti-push
 	for(var/obj/item/I in M.held_items)
 		if(!istype(M, /obj/item/clothing))
@@ -228,8 +230,8 @@
 	var/current_dir
 	if(isliving(AM))
 		current_dir = AM.dir
-	if(step(AM, t))
-		step(src, t)
+	if(AM.Move(get_step(AM.loc, t), t, glide_size))
+		Move(get_step(loc, t), t)
 	if(current_dir)
 		AM.setDir(current_dir)
 	now_pushing = FALSE
@@ -277,7 +279,7 @@
 
 		log_combat(src, M, "grabbed", addition="passive grab")
 		if(!supress_message && !(iscarbon(AM) && HAS_TRAIT(src, TRAIT_STRONG_GRABBER)))
-			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
+			visible_message("<span class='warning'>[src] has grabbed [M][(zone_selected == "l_arm" || zone_selected == "r_arm")? " by their hands!":" passively!"]</span>")
 		if(!iscarbon(src))
 			M.LAssailant = null
 		else
@@ -299,6 +301,8 @@
 				var/mob/living/carbon/C = L
 				if(HAS_TRAIT(src, TRAIT_STRONG_GRABBER))
 					C.grippedby(src)
+
+				update_pull_movespeed()
 
 		set_pull_offsets(M, state)
 
@@ -354,6 +358,7 @@
 	if(ismob(pulling))
 		reset_pull_offsets(pulling)
 	..()
+	update_pull_movespeed()
 	update_pull_hud_icon()
 
 /mob/living/verb/stop_pulling1()
@@ -562,6 +567,8 @@
 		mood.remove_temp_moods(admin_revive)
 	update_mobility()
 	stop_sound_channel(CHANNEL_HEARTBEAT)
+	if(admin_revive)
+		cure_fakedeath()
 
 //proc called by revive(), to check if we can actually ressuscitate the mob (we don't want to revive him and have him instantly die again)
 /mob/living/proc/can_be_revived()
@@ -572,15 +579,19 @@
 /mob/living/proc/update_damage_overlays()
 	return
 
-/mob/living/Move(atom/newloc, direct)
+/mob/living/Move(atom/newloc, direct, glide_size_override)
 	if (buckled && buckled.loc != newloc) //not updating position
 		if (!buckled.anchored)
-			return buckled.Move(newloc, direct)
+			return buckled.Move(newloc, direct, glide_size)
 		else
 			return 0
 
 	var/old_direction = dir
 	var/turf/T = loc
+
+	if(pulling)
+		update_pull_movespeed()
+
 	. = ..()
 
 	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.
@@ -711,7 +722,7 @@
 		if(resting && pulledby.grab_state < GRAB_KILL) //If resting, resisting out of a grab is equivalent to 1 grab state higher. wont make the grab state exceed the normal max, however
 			altered_grab_state++
 		var/resist_chance = BASE_GRAB_RESIST_CHANCE // see defines/combat.dm
-		resist_chance = max(resist_chance/altered_grab_state-sqrt((getStaminaLoss()+getBruteLoss()/2)*(3-altered_grab_state)), 0) // https://i.imgur.com/6yAT90T.png for sample output values
+		resist_chance = max((resist_chance/altered_grab_state)-sqrt((getBruteLoss()+getFireLoss()+getOxyLoss()+getToxLoss()+getCloneLoss())*0.5+getStaminaLoss()), 0) //stamina loss is weighted twice as heavily as the other damage types in this calculation
 		if(prob(resist_chance))
 			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>")
 			log_combat(pulledby, src, "broke grab")
@@ -848,7 +859,7 @@
 	setMovetype(movement_type & ~FLOATING) // If we were without gravity, the bouncing animation got stopped, so we make sure to restart it in next life().
 
 /mob/living/proc/get_temperature(datum/gas_mixture/environment)
-	var/loc_temp = environment ? environment.temperature : T0C
+	var/loc_temp = environment ? environment.return_temperature() : T0C
 	if(isobj(loc))
 		var/obj/oloc = loc
 		var/obj_temp = oloc.return_temperature()
@@ -949,7 +960,7 @@
 		return TRUE
 	return FALSE
 
-/mob/living/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback)
+/mob/living/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, quickstart = TRUE)
 	stop_pulling()
 	. = ..()
 
@@ -985,10 +996,16 @@
 
 	apply_effect((amount*RAD_MOB_COEFFICIENT)/max(1, (radiation**2)*RAD_OVERDOSE_REDUCTION), EFFECT_IRRADIATE, blocked)
 
+///Return any anti magic atom on this mob that matches the magic type
 /mob/living/anti_magic_check(magic = TRUE, holy = FALSE, tinfoil = FALSE, chargecost = 1, self = FALSE)
-	. = ..()
-	if(.)
+	if(!magic && !holy && !tinfoil)
 		return
+	var/list/protection_sources = list()
+	if(SEND_SIGNAL(src, COMSIG_MOB_RECEIVE_MAGIC, src, magic, holy, tinfoil, chargecost, self, protection_sources) & COMPONENT_BLOCK_MAGIC)
+		if(protection_sources.len)
+			return pick(protection_sources)
+		else
+			return src
 	if((magic && HAS_TRAIT(src, TRAIT_ANTIMAGIC)) || (holy && HAS_TRAIT(src, TRAIT_HOLY)))
 		return src
 
@@ -1000,6 +1017,57 @@
 
 /mob/living/proc/unfry_mob() //Callback proc to tone down spam from multiple sizzling frying oil dipping.
 	REMOVE_TRAIT(src, TRAIT_OIL_FRIED, "cooking_oil_react")
+
+/**
+ * add_body_temperature_change Adds modifications to the body temperature
+ *
+ * This collects all body temperature changes that the mob is experiencing to the list body_temp_changes
+ * the aggrogate result is used to derive the new body temperature for the mob
+ *
+ * arguments:
+ * * key_name (str) The unique key for this change, if it already exist it will be overridden
+ * * amount (int) The amount of change from the base body temperature
+ */
+/mob/living/proc/add_body_temperature_change(key_name, amount)
+	body_temp_changes["[key_name]"] = amount
+
+/**
+ * remove_body_temperature_change Removes the modifications to the body temperature
+ *
+ * This removes the recorded change to body temperature from the body_temp_changes list
+ *
+ * arguments:
+ * * key_name (str) The unique key for this change that will be removed
+ */
+/mob/living/proc/remove_body_temperature_change(key_name)
+	body_temp_changes -= key_name
+
+/**
+ * get_body_temp_normal_change Returns the aggregate change to body temperature
+ *
+ * This aggregates all the changes in the body_temp_changes list and returns the result
+ */
+/mob/living/proc/get_body_temp_normal_change()
+	var/total_change = 0
+	if(body_temp_changes.len)
+		for(var/change in body_temp_changes)
+			total_change += body_temp_changes["[change]"]
+	return total_change
+
+
+
+/**
+ * get_body_temp_normal Returns the mobs normal body temperature with any modifications applied
+ *
+ * This applies the result from proc/get_body_temp_normal_change() against the BODYTEMP_NORMAL and returns the result
+ *
+ * arguments:
+ * * apply_change (optional) Default True This applies the changes to body temperature normal
+ */
+/mob/living/proc/get_body_temp_normal(apply_change=TRUE)
+	if(!apply_change)
+		return BODYTEMP_NORMAL
+	return BODYTEMP_NORMAL + get_body_temp_normal_change()
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
@@ -1026,7 +1094,7 @@
 		update_fire()
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-	fire_stacks = CLAMP(fire_stacks + add_fire_stacks, -20, 20)
+	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
 
@@ -1065,11 +1133,6 @@
 						"[C] topples over [src]!", \
 						"[C] leaps out of [src]'s way!")]</span>")
 	C.Paralyze(40)
-
-/mob/living/ConveyorMove()
-	if((movement_type & FLYING) && !stat)
-		return
-	..()
 
 /mob/living/can_be_pulled()
 	return ..() && !(buckled && buckled.buckle_prevents_pull)
@@ -1164,8 +1227,10 @@
 		A.action.Remove(src)
 
 /mob/living/proc/add_abilities_to_panel()
+	var/list/L = list()
 	for(var/obj/effect/proc_holder/A in abilities)
-		statpanel("[A.panel]",A.get_panel_text(),A)
+		L[++L.len] = list("[A.panel]",A.get_panel_text(),A.name,"[REF(A)]")
+	return L
 
 /mob/living/lingcheck()
 	if(mind)

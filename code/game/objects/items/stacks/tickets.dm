@@ -2,6 +2,7 @@
 	name = "arcade tickets"
 	desc = "Wow! With enough of these, you could buy a bike! ...Pssh, yeah right."
 	singular_name = "arcade ticket"
+	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "arcade-ticket"
 	item_state = "tickets"
 	w_class = WEIGHT_CLASS_TINY

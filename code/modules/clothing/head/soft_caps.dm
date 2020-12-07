@@ -129,3 +129,10 @@
 	icon_state = "emtsoft"
 	item_color = "emt"
 	dog_fashion = null
+
+/obj/item/clothing/head/soft/emt/green
+	name = "green EMT cap"
+	desc = "It's a baseball hat with a green color and a reflective cross on the top."
+	icon_state = "emtgrsoft"
+	item_color = "emt"
+	dog_fashion = null

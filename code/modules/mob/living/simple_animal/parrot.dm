@@ -37,7 +37,7 @@
 	density = FALSE
 	health = 80
 	maxHealth = 80
-	pass_flags = PASSTABLE | PASSMOB
+	pass_flags = PASSTABLE | PASSMOB | PASSCOMPUTER
 
 	speak = list("Hi!","Hello!","Cracker?","BAWWWWK george mellons griffing me!")
 	speak_emote = list("squawks","says","yells")
@@ -110,12 +110,12 @@
 
 	parrot_sleep_dur = parrot_sleep_max //In case someone decides to change the max without changing the duration var
 
-	verbs.Add(/mob/living/simple_animal/parrot/proc/steal_from_ground, \
+	add_verb(src, list(/mob/living/simple_animal/parrot/proc/steal_from_ground, \
 			  /mob/living/simple_animal/parrot/proc/steal_from_mob, \
 			  /mob/living/simple_animal/parrot/verb/drop_held_item_player, \
 			  /mob/living/simple_animal/parrot/proc/perch_player, \
 			  /mob/living/simple_animal/parrot/proc/toggle_mode,
-			  /mob/living/simple_animal/parrot/proc/perch_mob_player)
+			  /mob/living/simple_animal/parrot/proc/perch_mob_player))
 
 
 /mob/living/simple_animal/parrot/examine(mob/user)
@@ -137,13 +137,13 @@
 
 	..(gibbed)
 
-/mob/living/simple_animal/parrot/Stat()
-	..()
-	if(statpanel("Status"))
-		stat("Held Item", held_item)
-		stat("Mode",a_intent)
+/mob/living/simple_animal/parrot/get_status_tab_items()
+	. = ..()
+	. += ""
+	. += "Held Item: [held_item]"
+	. += "Mode: [a_intent]"
 
-/mob/living/simple_animal/parrot/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, message_mode)
+/mob/living/simple_animal/parrot/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, list/message_mods = list())
 	. = ..()
 	if(speaker != src && prob(50)) //Dont imitate ourselves
 		if(!radio_freq || prob(10))
@@ -153,37 +153,32 @@
 	if(speaker == src && !client) //If a parrot squawks in the woods and no one is around to hear it, does it make a sound? This code says yes!
 		return message
 
-/mob/living/simple_animal/parrot/radio(message, message_mode, list/spans, language) //literally copied from human/radio(), but there's no other way to do this. at least it's better than it used to be.
+/mob/living/simple_animal/parrot/radio(message, list/message_mods = list(), list/spans, language) //literally copied from human/radio(), but there's no other way to do this. at least it's better than it used to be.
 	. = ..()
 	if(. != 0)
 		return .
-
-	switch(message_mode)
-		if(MODE_HEADSET)
-			if (ears)
-				ears.talk_into(src, message, , spans, language)
-			return ITALICS | REDUCE_RANGE
-
-		if(MODE_DEPARTMENT)
-			if (ears)
-				ears.talk_into(src, message, message_mode, spans, language)
-			return ITALICS | REDUCE_RANGE
-
-	if(message_mode in GLOB.radiochannels)
+	if(message_mods[MODE_HEADSET])
 		if(ears)
-			ears.talk_into(src, message, message_mode, spans, language)
+			ears.talk_into(src, message, , spans, language, message_mods)
+		return ITALICS | REDUCE_RANGE
+	else if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT)
+		if(ears)
+			ears.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+		return ITALICS | REDUCE_RANGE
+	else if(message_mods[RADIO_EXTENSION] in GLOB.radiochannels)
+		if(ears)
+			ears.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
 
 	return 0
-
 /*
  * Inventory
  */
 /mob/living/simple_animal/parrot/show_inv(mob/user)
 	user.set_machine(src)
 
-	var/dat = 	"<div align='center'><b>Inventory of [name]</b></div><p>"
-	dat += "<br><B>Headset:</B> <A href='?src=[REF(src)];[ears ? "remove_inv=ears'>[ears]" : "add_inv=ears'>Nothing"]</A>"
+	var/dat = 	"<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><div align='center'><b>Inventory of [name]</b></div><p>"
+	dat += "<br><B>Headset:</B> <A href='?src=[REF(src)];[ears ? "remove_inv=ears'>[ears]" : "add_inv=ears'>Nothing"]</A></BODY></HTML>"
 
 	user << browse(dat, "window=mob[REF(src)];size=325x500")
 	onclose(user, "window=mob[REF(src)]")
@@ -208,8 +203,8 @@
 				ears.forceMove(drop_location())
 				ears = null
 				for(var/possible_phrase in speak)
-					if(copytext(possible_phrase,1,3) in GLOB.department_radio_keys)
-						possible_phrase = copytext(possible_phrase,3)
+					if(copytext_char(possible_phrase, 2, 3) in GLOB.department_radio_keys)
+						possible_phrase = copytext_char(possible_phrase, 3)
 
 	//Adding things to inventory
 	else if(href_list["add_inv"])
@@ -418,8 +413,8 @@
 						if(prob(50))
 							useradio = 1
 
-						if((copytext(possible_phrase,1,2) in GLOB.department_radio_prefixes) && (copytext(possible_phrase,2,3) in GLOB.department_radio_keys))
-							possible_phrase = "[useradio?pick(available_channels):""][copytext(possible_phrase,3)]" //crop out the channel prefix
+						if((possible_phrase[1] in GLOB.department_radio_prefixes) && (copytext_char(possible_phrase, 2, 3) in GLOB.department_radio_keys))
+							possible_phrase = "[useradio?pick(available_channels):""][copytext_char(possible_phrase, 3)]" //crop out the channel prefix
 						else
 							possible_phrase = "[useradio?pick(available_channels):""][possible_phrase]"
 
@@ -427,8 +422,8 @@
 
 				else //If we have no headset or channels to use, dont try to use any!
 					for(var/possible_phrase in speak)
-						if((copytext(possible_phrase,1,2) in GLOB.department_radio_prefixes) && (copytext(possible_phrase,2,3) in GLOB.department_radio_keys))
-							possible_phrase = copytext(possible_phrase,3) //crop out the channel prefix
+						if((possible_phrase[1] in GLOB.department_radio_prefixes) && (copytext_char(possible_phrase, 2, 3) in GLOB.department_radio_keys))
+							possible_phrase = copytext_char(possible_phrase, 3) //crop out the channel prefix
 						newspeak.Add(possible_phrase)
 				speak = newspeak
 
@@ -466,11 +461,11 @@
 					return
 			return
 
-		if(parrot_interest && parrot_interest in view(src))
+		if(parrot_interest && (parrot_interest in view(src)))
 			parrot_state = PARROT_SWOOP | PARROT_STEAL
 			return
 
-		if(parrot_perch && parrot_perch in view(src))
+		if(parrot_perch && (parrot_perch in view(src)))
 			parrot_state = PARROT_SWOOP | PARROT_RETURN
 			return
 
@@ -799,8 +794,9 @@
 /mob/living/simple_animal/parrot/Moved(oldLoc, dir)
 	. = ..()
 	if(. && !stat && client && parrot_state == PARROT_PERCH)
-		parrot_state = PARROT_WANDER
-		icon_state = icon_living
+		if(!buckled)
+			parrot_state = PARROT_WANDER
+			icon_state = icon_living
 		pixel_x = initial(pixel_x)
 		pixel_y = initial(pixel_y)
 
@@ -967,6 +963,7 @@
 	speak_chance = 20
 	status_flags = GODMODE
 	incorporeal_move = INCORPOREAL_MOVE_BASIC
+	sentience_type = SENTIENCE_BOSS
 	butcher_results = list(/obj/item/ectoplasm = 1)
 
 /mob/living/simple_animal/parrot/Poly/ghost/Initialize()

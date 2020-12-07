@@ -71,7 +71,7 @@
 		icon_state = "dominator-broken"
 
 /obj/machinery/dominator/examine(mob/user)
-	..()
+	. = ..()
 	if(stat & BROKEN)
 		return
 

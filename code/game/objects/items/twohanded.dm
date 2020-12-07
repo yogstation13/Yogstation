@@ -35,9 +35,9 @@
 	wielded = 0
 	if(force_unwielded)
 		force = force_unwielded
-	var/sf = findtext(name," (Wielded)")
+	var/sf = findtext(name, " (Wielded)", -10)//10 == length(" (Wielded)")
 	if(sf)
-		name = copytext(name,1,sf)
+		name = copytext(name, 1, sf)
 	else //something wrong
 		name = "[initial(name)]"
 	update_icon()
@@ -129,6 +129,7 @@
 	return ..()
 
 /obj/item/twohanded/offhand/dropped(mob/living/user, show_message = TRUE) //Only utilized by dismemberment since you can't normally switch to the offhand to drop it.
+	SHOULD_CALL_PARENT(FALSE)
 	var/obj/I = user.get_active_held_item()
 	if(I && istype(I, /obj/item/twohanded))
 		var/obj/item/twohanded/thw = I
@@ -253,11 +254,24 @@
 	if(wielded) //destroys windows and grilles in one hit
 		if(istype(A, /obj/structure/window))
 			var/obj/structure/window/W = A
-			W.take_damage(200, BRUTE, "melee", 0)
+			W.take_damage(W.max_integrity*2, BRUTE, "melee", 0)
 		else if(istype(A, /obj/structure/grille))
 			var/obj/structure/grille/G = A
-			G.take_damage(40, BRUTE, "melee", 0)
+			G.take_damage(G.max_integrity*2, BRUTE, "melee", 0)
 
+/*
+ * Metal Hydrogen Axe
+ */
+/obj/item/twohanded/fireaxe/metal_h2_axe  // Blatant imitation of the fireaxe, but made out of metallic hydrogen
+	icon_state = "metalh2_axe0"
+	name = "metallic hydrogen axe"
+	desc = "A large, menacing axe made of an unknown substance that the most elder atmosians call Metallic Hydrogen. Truly an otherwordly weapon."
+	force_unwielded = 5
+	force_wielded = 23
+
+/obj/item/twohanded/fireaxe/metal_h2_axe/update_icon()  //Currently only here to fuck with the on-mob icons.
+	icon_state = "metalh2_axe[wielded]"
+	return
 
 /*
  * Double-Bladed Energy Swords - Cheridan
@@ -339,7 +353,7 @@
 		icon_state = "dualsaber[item_color][wielded]"
 	else
 		icon_state = "dualsaber0"
-	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
+	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_TYPE_BLOOD)
 
 /obj/item/twohanded/dualsaber/attack(mob/target, mob/living/carbon/human/user)
 	if(user.has_dna())
@@ -466,7 +480,7 @@
 	throw_speed = 4
 	embedding = list("embedded_impact_pain_multiplier" = 3)
 	armour_penetration = 10
-	materials = list(MAT_METAL=1150, MAT_GLASS=2075)
+	materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
 	sharpness = IS_SHARP
@@ -574,7 +588,7 @@
 	throwforce = 13
 	throw_speed = 2
 	throw_range = 4
-	materials = list(MAT_METAL=13000)
+	materials = list(/datum/material/iron=13000)
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = "swing_hit"
 	sharpness = IS_SHARP
@@ -678,6 +692,15 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 30)
 	resistance_flags = FIRE_PROOF
 
+/obj/item/twohanded/pitchfork/trident
+	icon_state = "trident"
+	name = "trident"
+	desc = "A trident recovered from the ruins of atlantis"
+	force = 14
+	throwforce = 23
+	force_unwielded = 14
+	force_wielded = 20
+
 /obj/item/twohanded/pitchfork/demonic
 	name = "demonic pitchfork"
 	desc = "A red pitchfork, it looks like the work of the devil."
@@ -710,6 +733,7 @@
 	return (BRUTELOSS)
 
 /obj/item/twohanded/pitchfork/demonic/pickup(mob/living/user)
+	. = ..()
 	if(isliving(user) && user.mind && user.owns_soul() && !is_devil(user))
 		var/mob/living/U = user
 		U.visible_message("<span class='warning'>As [U] picks [src] up, [U]'s arms briefly catch fire.</span>", \
@@ -816,6 +840,28 @@
 /obj/item/twohanded/bonespear/update_icon()
 	icon_state = "bone_spear[wielded]"
 
+/obj/item/twohanded/chitinspear //like a mix of a bone spear and bone axe, but more like a bone spear. And better.
+	icon_state = "chitin_spear0"
+	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
+	name = "chitin spear"
+	desc = "A well constructed spear with a sharpened edge akin to a naginata, making it equally great for slicing and throwing."
+	force = 13
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK
+	force_unwielded = 13
+	force_wielded = 23
+	throwforce = 25
+	throw_speed = 4
+	embedding = list("embedded_impact_pain_multiplier" = 3)
+	armour_penetration = 15
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored", "sliced", "ripped", "cut")
+	sharpness = IS_SHARP
+
+/obj/item/twohanded/chitinspear/update_icon()
+	icon_state = "chitin_spear[wielded]"
+
 /obj/item/twohanded/binoculars
 	name = "binoculars"
 	desc = "Used for long-distance surveillance."
@@ -838,38 +884,46 @@
 	if(!wielded)
 		return
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/unwield)
+	RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, .proc/rotate)
 	listeningTo = user
 	user.visible_message("[user] holds [src] up to [user.p_their()] eyes.","You hold [src] up to your eyes.")
 	item_state = "binoculars_wielded"
 	user.regenerate_icons()
-	if(!user?.client)
-		return
-	var/client/C = user.client
-	var/_x = 0
-	var/_y = 0
-	switch(user.dir)
-		if(NORTH)
-			_y = zoom_amt
-		if(EAST)
-			_x = zoom_amt
-		if(SOUTH)
-			_y = -zoom_amt
-		if(WEST)
-			_x = -zoom_amt
-	C.change_view(world.view + zoom_out_amt)
-	C.pixel_x = world.icon_size*_x
-	C.pixel_y = world.icon_size*_y
+	user.client.view_size.zoomOut(zoom_out_amt, zoom_amt, user.dir)
 
 /obj/item/twohanded/binoculars/unwield(mob/user)
 	. = ..()
 	UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
 	listeningTo = null
-	user.visible_message("[user] lowers [src].","You lower [src].")
 	item_state = "binoculars"
 	user.regenerate_icons()
-	if(user && user.client)
-		user.regenerate_icons()
-		var/client/C = user.client
-		C.change_view(CONFIG_GET(string/default_view))
-		user.client.pixel_x = 0
-		user.client.pixel_y = 0
+	user.client.view_size.zoomIn()
+
+/obj/item/twohanded/binoculars/proc/rotate(atom/thing, old_dir, new_dir)
+	if(ismob(thing))
+		var/mob/lad = thing
+		lad.regenerate_icons()
+		lad.client.view_size.zoomOut(zoom_out_amt, zoom_amt, new_dir)
+
+/obj/item/twohanded/bamboospear
+	icon_state = "bamboo_spear0"
+	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
+	name = "bamboo spear"
+	desc = "A haphazardly-constructed bamboo stick with a sharpened tip, ready to poke holes into unsuspecting people."
+	force = 10
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK
+	force_unwielded = 10
+	force_wielded = 18
+	throwforce = 22
+	throw_speed = 4
+	embedding = list("embedded_impact_pain_multiplier" = 2)
+	armour_penetration = 10
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
+	sharpness = IS_SHARP
+
+/obj/item/twohanded/bamboospear/update_icon()
+	icon_state = "bamboo_spear[wielded]"

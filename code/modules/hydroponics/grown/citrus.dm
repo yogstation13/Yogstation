@@ -161,7 +161,7 @@
 //3D Orange
 /obj/item/seeds/orange_3d
 	name = "pack of extradimensional orange seeds"
-	desc = "Polygonal seeds."
+	desc = "A product of research into the overlapping of 3D dimensions."
 	icon_state = "seed-orange"
 	species = "orange"
 	plantname = "Extradimensional Orange Tree"

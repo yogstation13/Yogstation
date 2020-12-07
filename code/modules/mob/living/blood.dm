@@ -119,18 +119,26 @@
 ****************************************************/
 
 //Gets blood from mob to a container or other mob, preserving all data in it.
-/mob/living/proc/transfer_blood_to(atom/movable/AM, amount, forced)
+/mob/living/proc/transfer_blood_to(atom/movable/AM, total_amount, forced)
 	if(!blood_volume || !AM.reagents)
 		return 0
 	if(blood_volume < BLOOD_VOLUME_BAD(src) && !forced)
 		return 0
 
-	if(blood_volume < amount)
-		amount = blood_volume
+	if(blood_volume < total_amount)
+		total_amount = blood_volume
 
 	var/blood_id = get_blood_id()
 	if(!blood_id)
 		return 0
+
+	var/amount = total_amount
+	var/chems_amount = 0
+	var/blood_proportion = (blood_volume > 0 || reagents.total_volume > 0) ? blood_volume / (blood_volume + reagents.total_volume) : 1
+
+	if((1 - blood_proportion) * total_amount >= 0.1)
+		amount = total_amount * blood_proportion
+		chems_amount = total_amount * (1 - blood_proportion)
 
 	blood_volume -= amount
 
@@ -154,6 +162,8 @@
 			return 1
 
 	AM.reagents.add_reagent(blood_id, amount, blood_data, bodytemperature)
+	if(chems_amount)
+		reagents.trans_to(AM, chems_amount)
 	return 1
 
 
@@ -171,7 +181,7 @@
 			var/datum/disease/D = thing
 			blood_data["viruses"] += D.Copy()
 
-		blood_data["blood_DNA"] = copytext(dna.unique_enzymes,1,0)
+		blood_data["blood_DNA"] = dna.unique_enzymes
 		if(disease_resistances && disease_resistances.len)
 			blood_data["resistances"] = disease_resistances.Copy()
 		var/list/temp_chem = list()
@@ -189,7 +199,7 @@
 
 		if(!suiciding)
 			blood_data["cloneable"] = 1
-		blood_data["blood_type"] = copytext(dna.blood_type,1,0)
+		blood_data["blood_type"] = dna.blood_type
 		blood_data["gender"] = gender
 		blood_data["real_name"] = real_name
 		blood_data["features"] = dna.features
@@ -215,6 +225,8 @@
 /mob/living/carbon/human/get_blood_id()
 	if(HAS_TRAIT(src, TRAIT_HUSK))
 		return
+	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS] && mind?.assigned_role == "Clown")
+		return /datum/reagent/colorful_reagent
 	if(dna.species.exotic_blood)
 		return dna.species.exotic_blood
 	else if((NOBLOOD in dna.species.species_traits))

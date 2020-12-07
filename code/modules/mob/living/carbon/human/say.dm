@@ -52,25 +52,22 @@
 		if(dongle.translate_binary)
 			return TRUE
 
-/mob/living/carbon/human/radio(message, message_mode, list/spans, language)
+/mob/living/carbon/human/radio(message, list/message_mods = list(), list/spans, language) //Poly has a copy of this, lazy bastard
 	. = ..()
-	if(. != 0)
+	if(. != FALSE)
 		return .
 
-	switch(message_mode)
-		if(MODE_HEADSET)
-			if (ears)
-				ears.talk_into(src, message, , spans, language)
-			return ITALICS | REDUCE_RANGE
-
-		if(MODE_DEPARTMENT)
-			if (ears)
-				ears.talk_into(src, message, message_mode, spans, language)
-			return ITALICS | REDUCE_RANGE
-
-	if(message_mode in GLOB.radiochannels)
+	if(message_mods[MODE_HEADSET])
 		if(ears)
-			ears.talk_into(src, message, message_mode, spans, language)
+			ears.talk_into(src, message, , spans, language, message_mods)
+		return ITALICS | REDUCE_RANGE
+	else if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT)
+		if(ears)
+			ears.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+		return ITALICS | REDUCE_RANGE
+	else if(GLOB.radiochannels[message_mods[RADIO_EXTENSION]])
+		if(ears)
+			ears.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
 
 	return 0
@@ -82,30 +79,22 @@
 /mob/living/carbon/human/proc/forcesay(list/append) //this proc is at the bottom of the file because quote fuckery makes notepad++ cri
 	if(stat == CONSCIOUS)
 		if(client)
-			var/virgin = 1	//has the text been modified yet?
 			var/temp = winget(client, "input", "text")
-			if(findtextEx(temp, "Say \"", 1, 7) && length(temp) > 5)	//"case sensitive means
+			var/say_starter = "Say \"" //"
+			if(findtextEx(temp, say_starter, 1, length(say_starter) + 1) && length(temp) > length(say_starter))	//case sensitive means
 
-				temp = replacetext(temp, ";", "")	//general radio
+				temp = trim_left(copytext(temp, length(say_starter + 1)))
+				temp = replacetext(temp, ";", "", 1, 2)	//general radio
+				while(trim_left(temp)[1] == ":")	//dept radio again (necessary)
+					temp = copytext_char(trim_left(temp), 3)
 
-				if(findtext(trim_left(temp), ":", 6, 7))	//dept radio
-					temp = copytext(trim_left(temp), 8)
-					virgin = 0
-
-				if(virgin)
-					temp = copytext(trim_left(temp), 6)	//normal speech
-					virgin = 0
-
-				while(findtext(trim_left(temp), ":", 1, 2))	//dept radio again (necessary)
-					temp = copytext(trim_left(temp), 3)
-
-				if(findtext(temp, "*", 1, 2))	//emotes
+				if(temp[1] == "*")	//emotes
 					return
 
 				var/trimmed = trim_left(temp)
 				if(length(trimmed))
 					if(append)
-						temp += pick(append)
+						trimmed += pick(append)
 
-					say(temp)
+					say(trimmed)
 				winset(client, "input", "text=[null]")

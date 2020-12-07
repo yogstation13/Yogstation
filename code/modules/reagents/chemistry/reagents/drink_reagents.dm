@@ -313,6 +313,16 @@
 		. = 1
 	..()
 
+/datum/reagent/consumable/cream/bug
+	name = "Bug Cream"
+	description = "The very fatty, still liquid part of bug milk. It looks pretty gross."
+	color = "#800000"
+	nutriment_factor = 2
+	taste_description = "creamy bug milk"
+	glass_icon_state  = "chocolateglass"
+	glass_name = "glass of bug cream"
+	glass_desc = "Ewwwww!"
+
 /datum/reagent/consumable/coffee
 	name = "Coffee"
 	description = "Coffee is a brewed drink prepared from roasted seeds, commonly called coffee beans, of the coffee plant."
@@ -465,6 +475,7 @@
 	M.drowsyness = 0
 	M.AdjustSleeping(-40, FALSE)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
+	M.apply_effect(5,EFFECT_IRRADIATE,0)
 	..()
 	. = 1
 
@@ -610,6 +621,32 @@
 	..()
 	. = 1
 
+/datum/reagent/consumable/monkey_energy
+	name = "Monkey Energy"
+	description = "The only drink that will make you unleash the ape."
+	color = "#f39b03" // rgb: 243, 155, 3
+	taste_description = "barbecue and nostalgia"
+	glass_icon_state = "monkey_energy_glass"
+	glass_name = "glass of Monkey Energy"
+	glass_desc = "You can unleash the ape, but without the pop of the can?"
+
+/datum/reagent/consumable/monkey_energy/on_mob_life(mob/living/carbon/M)
+	M.Jitter(20)
+	M.dizziness +=1
+	M.drowsyness = 0
+	M.AdjustSleeping(-40, FALSE)
+	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
+	..()
+
+/datum/reagent/consumable/monkey_energy/on_mob_metabolize(mob/living/L)
+	..()
+	if(ismonkey(L))
+		L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.75, blacklisted_movetypes=(FLYING|FLOATING))
+
+/datum/reagent/consumable/monkey_energy/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	..()
+
 /datum/reagent/consumable/ice
 	name = "Ice"
 	description = "Frozen water, your dentist wouldn't like you chewing this."
@@ -682,7 +719,7 @@
 	M.adjustToxLoss(-0.5, 0)
 	M.adjustOxyLoss(-0.5, 0)
 	if(M.nutrition && (M.nutrition - 2 > 0))
-		if(!(M.mind && M.mind.assigned_role == "Medical Doctor")) //Drains the nutrition of the holder. Not medical doctors though, since it's the Doctor's Delight!
+		if(!(M.mind?.assigned_role == "Medical Doctor")) //Drains the nutrition of the holder. Not medical doctors though, since it's the Doctor's Delight!
 			M.adjust_nutrition(-2)
 	..()
 	. = 1
@@ -822,6 +859,14 @@
 	taste_description = "parsnip"
 	glass_name = "glass of parsnip juice"
 
+/datum/reagent/consumable/pineapplejuice
+	name = "Pineapple Juice"
+	description = "Tart, tropical, and hotly debated."
+	color = "#F7D435"
+	taste_description = "pineapple"
+	glass_name = "glass of pineapple juice"
+	glass_desc = "Tart, tropical, and hotly debated."
+
 /datum/reagent/consumable/peachjuice //Intended to be extremely rare due to being the limiting ingredients in the blazaam drink
 	name = "Peach Juice"
 	description = "Just peachy."
@@ -843,6 +888,19 @@
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
 
+/datum/reagent/consumable/sol_dry
+	name = "Sol Dry"
+	description = "A soothing, mellow drink made from ginger."
+	color = "#f7d26a"
+	quality = DRINK_NICE
+	taste_description = "sweet ginger spice"
+	glass_name = "Sol Dry"
+	glass_desc = "A soothing, mellow drink made from ginger."
+
+/datum/reagent/consumable/sol_dry/on_mob_life(mob/living/carbon/M)
+	M.adjust_disgust(-5)
+	..()
+
 /datum/reagent/consumable/red_queen
 	name = "Red Queen"
 	description = "DRINK ME."
@@ -852,7 +910,7 @@
 	glass_icon_state = "red_queen"
 	glass_name = "Red Queen"
 	glass_desc = "DRINK ME."
-	
+
 /datum/reagent/consumable/red_queen/on_mob_life(mob/living/carbon/C)
 	C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -4*REM)
 	..()
@@ -864,7 +922,7 @@
 	color = "#fffafa"
 	taste_description = "cranberry"
 	glass_name = "glass of sprited cranberry"
-	
+
 /datum/reagent/consumable/gravedigger
 	name = "Grave-Digger"
 	description = "What happens when you mix all the sodas in the fountain? You get this monstrosity!"
@@ -877,4 +935,48 @@
 
 /datum/reagent/consumable/graveyard/on_mob_life(mob/living/carbon/M)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
+	..()
+
+/datum/reagent/consumable/buzz_fuzz
+	name = "Buzz Fuzz"
+	description = "~A Hive of Flavour!~ NOTICE: Addicting."
+	addiction_threshold = 14
+	color = "#8CFF00" // rgb: 135, 255, 0
+	taste_description = "carbonated honey and pollen"
+	glass_icon_state = "buzz_fuzz"
+	glass_name = "honeycomb of Buzz Fuzz"
+	glass_desc = "Stinging with flavour."
+
+/datum/reagent/consumable/buzz_fuzz/on_mob_life(mob/living/carbon/M)
+	M.reagents.add_reagent("sugar",2)
+	if(prob(25))
+		M.reagents.add_reagent("honey",1)
+	..()
+
+/datum/reagent/consumable/buzz_fuzz/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+	if(iscarbon(M) && (method in list(TOUCH, VAPOR, PATCH)))
+		var/mob/living/carbon/C = M
+		for(var/s in C.surgeries)
+			var/datum/surgery/S = s
+			S.success_multiplier = max(0.1, S.success_multiplier) // +10% success probability on each step, compared to bacchus' blessing's ~46%
+	..()
+
+/datum/reagent/consumable/buzz_fuzz/addiction_act_stage1(mob/living/M)
+	if(prob(5))
+		to_chat(M, "<span class = 'notice'>[pick("Buzz Buzz.", "Stinging with flavour.", "A Hive of Flavour")]</span>")
+	..()
+
+/datum/reagent/consumable/buzz_fuzz/addiction_act_stage2(mob/living/M)
+	if(prob(10))
+		to_chat(M, "<span class = 'notice'>[pick("Buzz Buzz.", "Stinging with flavour.", "A Hive of Flavour", "The Queen approved it!")]</span>")
+	..()
+
+/datum/reagent/consumable/buzz_fuzz/addiction_act_stage3(mob/living/M)
+	if(prob(15))
+		to_chat(M, "<span class = 'notice'>[pick("Buzz Buzz.", "Stinging with flavour.", "Ideal of the worker drone", "A Hive of Flavour", "The Queen approved it!")]</span>")
+	..()
+
+/datum/reagent/consumable/buzz_fuzz/addiction_act_stage4(mob/living/M)
+	if(prob(25))
+		to_chat(M, "<span class = 'notice'>[pick("Buzz Buzz.", "Stinging with flavour.", "Ideal of the worker drone", "A Hive of Flavour", "Sap back that missing energy!", "Got Honey?", "The Queen approved it!")]</span>")
 	..()

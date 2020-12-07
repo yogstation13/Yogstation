@@ -171,9 +171,8 @@
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_end_events)
 
+	RollCredits()
 	for(var/client/C in GLOB.clients)
-		if(!C.credits)
-			C.RollCredits()
 		C.playtitlemusic(40)
 
 	var/popcount = gather_roundend_feedback()
@@ -199,6 +198,8 @@
 
 	if(length(CONFIG_GET(keyed_list/cross_server)))
 		send_news_report()
+
+	set_observer_default_invisibility(0, "<span class='warning'>The round is over! You are now visible to the living.</span>")
 
 	CHECK_TICK
 
@@ -263,6 +264,10 @@
 	parts += antag_report()
 
 	CHECK_TICK
+	//Security
+	parts += sec_report()
+
+	CHECK_TICK
 	//Medals
 	parts += medal_report()
 	CHECK_TICK
@@ -271,7 +276,11 @@
 
 	CHECK_TICK
 	//Station Goals
-	parts += goal_report()
+	parts += station_goal_report()
+
+	CHECK_TICK
+	// Department Goals
+	parts += department_goal_report()
 
 	listclearnulls(parts)
 
@@ -285,6 +294,7 @@
 		var/statspage = CONFIG_GET(string/roundstatsurl)
 		var/info = statspage ? "<a href='?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
 		parts += "[GLOB.TAB]Round ID: <b>[info]</b>"
+	parts += "[GLOB.TAB]Gamemode: <B>[SSticker.mode.name]</B>"
 	parts += "[GLOB.TAB]Shift Duration: <B>[DisplayTimeText(world.time - SSticker.round_start_time)]</B>"
 	parts += "[GLOB.TAB]Station Integrity: <B>[mode.station_was_nuked ? "<span class='redtext'>Destroyed</span>" : "[popcount["station_integrity"]]%"]</B>"
 	var/total_players = GLOB.joined_player_list.len
@@ -301,6 +311,13 @@
 			//ignore this comment, it fixes the broken sytax parsing caused by the " above
 			else
 				parts += "[GLOB.TAB]<i>Nobody died this shift!</i>"
+	if(istype(SSticker.mode, /datum/game_mode/dynamic))
+		var/datum/game_mode/dynamic/mode = SSticker.mode
+		parts += "[FOURSPACES]Threat level: [mode.threat_level]"
+		parts += "[FOURSPACES]Threat left: [mode.threat]" //yes
+		parts += "[FOURSPACES]Executed rules:"
+		for(var/datum/dynamic_ruleset/rule in mode.executed_rules)
+			parts += "[FOURSPACES][FOURSPACES][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost + rule.scaled_times * rule.scaling_cost] threat"
 	return parts.Join("<br>")
 
 /client/proc/roundend_report_file()
@@ -315,7 +332,7 @@
 	if(!previous)
 		var/list/report_parts = list(personal_report(C), GLOB.common_report)
 		content = report_parts.Join()
-		C.verbs -= /client/proc/show_previous_roundend_report
+		remove_verb(C, /client/proc/show_previous_roundend_report)
 		fdel(filename)
 		text2file(content, filename)
 	else
@@ -323,6 +340,7 @@
 	roundend_report.set_content(content)
 	roundend_report.stylesheets = list()
 	roundend_report.add_stylesheet("roundend", 'html/browser/roundend.css')
+	roundend_report.add_stylesheet("font-awesome", 'html/font-awesome/css/all.min.css')
 	roundend_report.open(FALSE)
 
 /datum/controller/subsystem/ticker/proc/personal_report(client/C, popcount)
@@ -342,6 +360,9 @@
 				parts += "<span class='greentext'>You managed to survive the events on [station_name()] as [M.real_name].</span>"
 				if(M.mind.assigned_role in GLOB.engineering_positions) // We don't actually need to even really do a check to see if assigned_role is set to anything.
 					SSachievements.unlock_achievement(/datum/achievement/engineering, C)
+				else if(M.mind.assigned_role in GLOB.supply_positions) // We don't actually need to even really do a check to see if assigned_role is set to anything.
+					SSachievements.unlock_achievement(/datum/achievement/cargo, C)
+
 
 		else
 			parts += "<div class='panel redborder'>"
@@ -402,13 +423,46 @@
 	else
 		return ""
 
-/datum/controller/subsystem/ticker/proc/goal_report()
+/datum/controller/subsystem/ticker/proc/station_goal_report()
 	var/list/parts = list()
 	if(mode.station_goals.len)
 		for(var/V in mode.station_goals)
 			var/datum/station_goal/G = V
 			parts += G.get_result()
 		return "<div class='panel stationborder'><ul>[parts.Join()]</ul></div>"
+
+/datum/controller/subsystem/ticker/proc/department_goal_report()
+	var/list/parts = list("<div class='panel stationborder'><ul>")
+	var/list/goals = list(
+		ACCOUNT_ENG = list(),
+		ACCOUNT_SCI = list(),
+		ACCOUNT_MED = list(),
+		ACCOUNT_SRV = list(),
+		ACCOUNT_CAR = list(),
+		ACCOUNT_SEC = list())
+	for(var/datum/department_goal/dg in SSYogs.department_goals)
+		goals[dg.account] += dg.get_result()
+
+	parts += "<br><span class='header'>Engineering department goals:</span><br>"
+	parts += goals[ACCOUNT_ENG]
+
+	parts += "<br><span class='header'>Science department goals:</span><br>"
+	parts += goals[ACCOUNT_SCI]
+
+	parts += "<br><span class='header'>Medical department goals:</span><br>"
+	parts += goals[ACCOUNT_MED]
+
+	parts += "<br><span class='header'>Service department goals:</span><br>"
+	parts += goals[ACCOUNT_SRV]
+
+	parts += "<br><span class='header'>Cargo department goals:</span><br>"
+	parts += goals[ACCOUNT_CAR]
+
+	parts += "<br><span class='header'>Security department goals:</span><br>"
+	parts += goals[ACCOUNT_SEC]
+
+	parts += "</ul></div>"
+	return parts.Join()
 
 /datum/controller/subsystem/ticker/proc/medal_report()
 	if(GLOB.commendations.len)
@@ -478,6 +532,21 @@
 		result += "</div>"
 
 	return result.Join()
+
+/datum/controller/subsystem/ticker/proc/sec_report()
+	var/list/sec = list()
+	for(var/mob/living/carbon/human/player in GLOB.carbon_list)
+		if(player.mind && (player.mind.assigned_role in GLOB.security_positions))
+			sec |= player.mind
+	if (sec.len)
+		var/list/result = list()
+		result += "<span class='header'>Security Officers:<br></span>"
+		for(var/mob/living/carbon/human/player in GLOB.carbon_list)
+			if(player.mind && (player.mind.assigned_role in GLOB.security_positions))
+				result += "<ul class='player report'><b>[player.name]</b> (Played by: <b>[player.mind.key]</b>) [(player.stat != DEAD)? "<span class='greentext'>survived</span> as a <b>[player.mind.assigned_role]</b>" : "<span class='redtext'>fell in the line of duty</span> as a <b>[player.mind.assigned_role]</b>"]<br></ul>"
+
+		return "<div class='panel stationborder'><ul>[result.Join()]</ul></div>"
+	return ""
 
 /proc/cmp_antag_category(datum/antagonist/A,datum/antagonist/B)
 	return sorttext(B.roundend_category,A.roundend_category)
@@ -563,9 +632,7 @@
 	var/list/sql_admins = list()
 	for(var/i in GLOB.protected_admins)
 		var/datum/admins/A = GLOB.protected_admins[i]
-		var/sql_ckey = sanitizeSQL(A.target)
-		var/sql_rank = sanitizeSQL(A.rank.name)
-		sql_admins += list(list("ckey" = "'[sql_ckey]'", "rank" = "'[sql_rank]'"))
+		sql_admins += list(list("ckey" = A.target, "rank" = A.rank.name))
 	SSdbcore.MassInsert(format_table_name("admin"), sql_admins, duplicate_key = TRUE)
 	var/datum/DBQuery/query_admin_rank_update = SSdbcore.NewQuery("UPDATE [format_table_name("player")] p INNER JOIN [format_table_name("admin")] a ON p.ckey = a.ckey SET p.lastadminrank = a.rank")
 	query_admin_rank_update.Execute()
@@ -600,15 +667,20 @@
 			flags += "can_edit_flags"
 		if(!flags.len)
 			continue
-		var/sql_rank = sanitizeSQL(R.name)
 		var/flags_to_check = flags.Join(" != [R_EVERYTHING] AND ") + " != [R_EVERYTHING]"
-		var/datum/DBQuery/query_check_everything_ranks = SSdbcore.NewQuery("SELECT flags, exclude_flags, can_edit_flags FROM [format_table_name("admin_ranks")] WHERE rank = '[sql_rank]' AND ([flags_to_check])")
+		var/datum/DBQuery/query_check_everything_ranks = SSdbcore.NewQuery(
+			"SELECT flags, exclude_flags, can_edit_flags FROM [format_table_name("admin_ranks")] WHERE rank = :rank AND ([flags_to_check])",
+			list("rank" = R.name)
+		)
 		if(!query_check_everything_ranks.Execute())
 			qdel(query_check_everything_ranks)
 			return
 		if(query_check_everything_ranks.NextRow()) //no row is returned if the rank already has the correct flag value
 			var/flags_to_update = flags.Join(" = [R_EVERYTHING], ") + " = [R_EVERYTHING]"
-			var/datum/DBQuery/query_update_everything_ranks = SSdbcore.NewQuery("UPDATE [format_table_name("admin_ranks")] SET [flags_to_update] WHERE rank = '[sql_rank]'")
+			var/datum/DBQuery/query_update_everything_ranks = SSdbcore.NewQuery(
+				"UPDATE [format_table_name("admin_ranks")] SET [flags_to_update] WHERE rank = :rank",
+				list("rank" = R.name)
+			)
 			if(!query_update_everything_ranks.Execute())
 				qdel(query_update_everything_ranks)
 				return
@@ -625,14 +697,14 @@
 			cargoking = TRUE
 	var/hasQM = FALSE //we only wanna update the record if there's a QM
 	for(var/mob/M in GLOB.player_list)
-		if(M.mind && M.mind.assigned_role && M.mind.assigned_role == "Quartermaster")
+		if(M.mind?.assigned_role == "Quartermaster")
 			if(ducatduke)
 				SSachievements.unlock_achievement(/datum/achievement/ducatduke, M.client)
 				if(cargoking)
 					SSachievements.unlock_achievement(/datum/achievement/cargoking, M.client)
 			hasQM = TRUE //there might be more than one QM, so we do the DB stuff outside of the loop
 	if(hasQM && cargoking)
-		var/datum/DBQuery/Q = SSdbcore.New("UPDATE [format_table_name("misc")] SET value = '[SSshuttle.points]' WHERE key = 'cargorecord'")
+		var/datum/DBQuery/Q = SSdbcore.New("UPDATE [format_table_name("misc")] SET `value` = '[SSshuttle.points]' WHERE `key` = 'cargorecord'")
 		Q.Execute()
 		qdel(Q)
 

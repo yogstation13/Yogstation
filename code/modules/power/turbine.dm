@@ -86,7 +86,7 @@
 	inturf = get_step(src, dir)
 	locate_machinery()
 	if(!turbine)
-		stat |= BROKEN
+		obj_break()
 
 
 #define COMPFRICTION 5e5
@@ -123,7 +123,7 @@
 			stat &= ~BROKEN
 		else
 			to_chat(user, "<span class='alert'>Turbine not connected.</span>")
-			stat |= BROKEN
+			obj_break()
 		return
 
 	default_deconstruction_crowbar(I)
@@ -185,7 +185,7 @@
 	outturf = get_step(src, dir)
 	locate_machinery()
 	if(!compressor)
-		stat |= BROKEN
+		obj_break()
 	connect_to_network()
 
 /obj/machinery/power/turbine/RefreshParts()
@@ -226,7 +226,7 @@
 
 	// Weird function but it works. Should be something else...
 
-	var/newrpm = ((compressor.gas_contained.temperature) * compressor.gas_contained.total_moles())/4
+	var/newrpm = ((compressor.gas_contained.return_temperature()) * compressor.gas_contained.total_moles())/4
 
 	newrpm = max(0, newrpm)
 
@@ -258,7 +258,7 @@
 			stat &= ~BROKEN
 		else
 			to_chat(user, "<span class='alert'>Compressor not connected.</span>")
-			stat |= BROKEN
+			obj_break()
 		return
 
 	default_deconstruction_crowbar(I)
@@ -329,11 +329,10 @@
 	else
 		compressor = locate(/obj/machinery/power/compressor) in range(7, src)
 
-/obj/machinery/computer/turbine_computer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/turbine_computer/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "turbine_computer", name, 350, 280, master_ui, state)
+		ui = new(user, src, "TurbineComputer", name)
 		ui.open()
 
 /obj/machinery/computer/turbine_computer/ui_data(mob/user)
@@ -347,7 +346,7 @@
 
 	data["power"] = DisplayPower(compressor?.turbine?.lastgen)
 	data["rpm"] = compressor?.rpm
-	data["temp"] = compressor?.gas_contained.temperature
+	data["temp"] = compressor?.gas_contained.return_temperature()
 
 	return data
 

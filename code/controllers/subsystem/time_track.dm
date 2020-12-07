@@ -30,6 +30,7 @@ SUBSYSTEM_DEF(time_track)
 		time_dilation_avg_fast = MC_AVERAGE_FAST(time_dilation_avg_fast, time_dilation_current)
 		time_dilation_avg = MC_AVERAGE(time_dilation_avg, time_dilation_avg_fast)
 		time_dilation_avg_slow = MC_AVERAGE_SLOW(time_dilation_avg_slow, time_dilation_avg)
+		// okay it's kind of bothering me: byond_time vs byondtime. WTF tg?
 	else
 		first_run = FALSE
 	last_tick_realtime = current_realtime

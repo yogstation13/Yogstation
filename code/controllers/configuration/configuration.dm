@@ -49,6 +49,9 @@
 	loadmaplist(CONFIG_MAPS_FILE)
 	LoadMOTD()
 	LoadPolicy()
+	
+	if (Master)
+		Master.OnConfigLoad()
 
 /datum/controller/configuration/proc/full_wipe()
 	if(IsAdminAdvancedProcCall())
@@ -108,13 +111,13 @@
 		if(!L)
 			continue
 
-		var/firstchar = copytext(L, 1, 2)
+		var/firstchar = L[1]
 		if(firstchar == "#")
 			continue
 
 		var/lockthis = firstchar == "@"
 		if(lockthis)
-			L = copytext(L, 2)
+			L = copytext(L, length(firstchar) + 1)
 
 		var/pos = findtext(L, " ")
 		var/entry = null
@@ -122,7 +125,7 @@
 
 		if(pos)
 			entry = lowertext(copytext(L, 1, pos))
-			value = copytext(L, pos + 1)
+			value = copytext(L, pos + length(L[pos]))
 		else
 			entry = lowertext(L)
 
@@ -180,10 +183,9 @@
 	var/list/banned_edits = list(NAMEOF(src, entries_by_type), NAMEOF(src, entries), NAMEOF(src, directory))
 	return !(var_name in banned_edits) && ..()
 
-/datum/controller/configuration/stat_entry()
-	if(!statclick)
-		statclick = new/obj/effect/statclick/debug(null, "Edit", src)
-	stat("[name]:", statclick)
+/datum/controller/configuration/stat_entry(msg)
+	msg = "Edit"
+	return msg
 
 /datum/controller/configuration/proc/Get(entry_type)
 	var/datum/config_entry/E = entry_type
@@ -287,7 +289,7 @@ Example config:
 		t = trim(t)
 		if(length(t) == 0)
 			continue
-		else if(copytext(t, 1, 2) == "#")
+		else if(t[1] == "#")
 			continue
 
 		var/pos = findtext(t, " ")
@@ -296,7 +298,7 @@ Example config:
 
 		if(pos)
 			command = lowertext(copytext(t, 1, pos))
-			data = copytext(t, pos + 1)
+			data = copytext(t, pos + length(t[pos]))
 		else
 			command = lowertext(t)
 
@@ -395,3 +397,7 @@ Example config:
 				continue
 			runnable_modes[M] = probabilities[M.config_tag]
 	return runnable_modes
+	
+//Message admins when you can.
+/datum/controller/configuration/proc/DelayedMessageAdmins(text)
+	addtimer(CALLBACK(GLOBAL_PROC, /proc/message_admins, text), 0)

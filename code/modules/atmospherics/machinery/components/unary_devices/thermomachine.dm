@@ -64,23 +64,19 @@
 
 	var/air_heat_capacity = air_contents.heat_capacity()
 	var/combined_heat_capacity = heat_capacity + air_heat_capacity
-	var/old_temperature = air_contents.temperature
+	var/old_temperature = air_contents.return_temperature()
 
 	if(combined_heat_capacity > 0)
-		var/combined_energy = heat_capacity * target_temperature + air_heat_capacity * air_contents.temperature
-		air_contents.temperature = combined_energy/combined_heat_capacity
+		var/combined_energy = heat_capacity * target_temperature + air_heat_capacity * air_contents.return_temperature()
+		air_contents.set_temperature(combined_energy/combined_heat_capacity)
 
-	var/temperature_delta= abs(old_temperature - air_contents.temperature)
+	var/temperature_delta= abs(old_temperature - air_contents.return_temperature())
 	if(temperature_delta > 1)
 		active_power_usage = (heat_capacity * temperature_delta) / 10 + idle_power_usage
 		update_parents()
 	else
 		active_power_usage = idle_power_usage
 	return 1
-
-/obj/machinery/atmospherics/components/unary/thermomachine/power_change()
-	..()
-	update_icon()
 
 /obj/machinery/atmospherics/components/unary/thermomachine/attackby(obj/item/I, mob/user, params)
 	if(!on)
@@ -98,16 +94,18 @@
 	SetInitDirections()
 	var/obj/machinery/atmospherics/node = nodes[1]
 	if(node)
-		node.disconnect(src)
+		if(src in node.nodes) //Only if it's actually connected. On-pipe version would is one-sided.
+			node.disconnect(src)
 		nodes[1] = null
-	nullifyPipenet(parents[1])
+	if(parents[1])
+		nullifyPipenet(parents[1])
 
 	atmosinit()
 	node = nodes[1]
 	if(node)
 		node.atmosinit()
 		node.addMember(src)
-	build_network()
+	SSair.add_to_rebuild_queue(src)
 	return TRUE
 
 /obj/machinery/atmospherics/components/unary/thermomachine/ui_status(mob/user)
@@ -115,11 +113,10 @@
 		return ..()
 	return UI_CLOSE
 
-/obj/machinery/atmospherics/components/unary/thermomachine/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-																	datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/atmospherics/components/unary/thermomachine/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "thermomachine", name, 300, 230, master_ui, state)
+		ui = new(user, src, "ThermoMachine", name)
 		ui.open()
 
 /obj/machinery/atmospherics/components/unary/thermomachine/ui_data(mob/user)
@@ -132,7 +129,7 @@
 	data["initial"] = initial(target_temperature)
 
 	var/datum/gas_mixture/air1 = airs[1]
-	data["temperature"] = air1.temperature
+	data["temperature"] = air1.return_temperature()
 	data["pressure"] = air1.return_pressure()
 	return data
 
@@ -161,7 +158,7 @@
 				target = text2num(target)
 				. = TRUE
 			if(.)
-				target_temperature = CLAMP(target, min_temperature, max_temperature)
+				target_temperature = clamp(target, min_temperature, max_temperature)
 				investigate_log("was set to [target_temperature] K by [key_name(usr)]", INVESTIGATE_ATMOS)
 
 	update_icon()

@@ -98,7 +98,7 @@
 	if(losebreath >= 1) //You've missed a breath, take oxy damage
 		losebreath--
 		if(prob(10))
-			emote("gasp")
+			INVOKE_ASYNC(src, .proc/emote, "gasp")
 		if(istype(loc, /obj/))
 			var/obj/loc_as_obj = loc
 			loc_as_obj.handle_internal_lifeform(src,0)
@@ -162,24 +162,22 @@
 	var/SA_para_min = 1
 	var/SA_sleep_min = 5
 	var/oxygen_used = 0
-	var/breath_pressure = (breath.total_moles()*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
+	var/breath_pressure = (breath.total_moles()*R_IDEAL_GAS_EQUATION*breath.return_temperature())/BREATH_VOLUME
 
-	var/list/breath_gases = breath.gases
-	breath.assert_gases(/datum/gas/oxygen, /datum/gas/plasma, /datum/gas/carbon_dioxide, /datum/gas/nitrous_oxide, /datum/gas/bz)
-	var/O2_partialpressure = (breath_gases[/datum/gas/oxygen][MOLES]/breath.total_moles())*breath_pressure
-	var/Toxins_partialpressure = (breath_gases[/datum/gas/plasma][MOLES]/breath.total_moles())*breath_pressure
-	var/CO2_partialpressure = (breath_gases[/datum/gas/carbon_dioxide][MOLES]/breath.total_moles())*breath_pressure
+	var/O2_partialpressure = (breath.get_moles(/datum/gas/oxygen)/breath.total_moles())*breath_pressure
+	var/Toxins_partialpressure = (breath.get_moles(/datum/gas/plasma)/breath.total_moles())*breath_pressure
+	var/CO2_partialpressure = (breath.get_moles(/datum/gas/carbon_dioxide)/breath.total_moles())*breath_pressure
 
 
 	//OXYGEN
 	if(O2_partialpressure < safe_oxy_min) //Not enough oxygen
 		if(prob(20))
-			emote("gasp")
+			INVOKE_ASYNC(src, .proc/emote, "gasp")
 		if(O2_partialpressure > 0)
 			var/ratio = 1 - O2_partialpressure/safe_oxy_min
 			adjustOxyLoss(min(5*ratio, 3))
 			failed_last_breath = 1
-			oxygen_used = breath_gases[/datum/gas/oxygen][MOLES]*ratio
+			oxygen_used = breath.get_moles(/datum/gas/oxygen)*ratio
 		else
 			adjustOxyLoss(3)
 			failed_last_breath = 1
@@ -189,11 +187,11 @@
 		failed_last_breath = 0
 		if(health >= crit_threshold)
 			adjustOxyLoss(-5)
-		oxygen_used = breath_gases[/datum/gas/oxygen][MOLES]
+		oxygen_used = breath.get_moles(/datum/gas/oxygen)
 		clear_alert("not_enough_oxy")
 
-	breath_gases[/datum/gas/oxygen][MOLES] -= oxygen_used
-	breath_gases[/datum/gas/carbon_dioxide][MOLES] += oxygen_used
+	breath.adjust_moles(/datum/gas/oxygen, -oxygen_used)
+	breath.adjust_moles(/datum/gas/carbon_dioxide, oxygen_used)
 
 	//CARBON DIOXIDE
 	if(CO2_partialpressure > safe_co2_max)
@@ -212,15 +210,15 @@
 
 	//TOXINS/PLASMA
 	if(Toxins_partialpressure > safe_tox_max)
-		var/ratio = (breath_gases[/datum/gas/plasma][MOLES]/safe_tox_max) * 10
-		adjustToxLoss(CLAMP(ratio, MIN_TOXIC_GAS_DAMAGE, MAX_TOXIC_GAS_DAMAGE))
+		var/ratio = (breath.get_moles(/datum/gas/plasma)/safe_tox_max) * 10
+		adjustToxLoss(clamp(ratio, MIN_TOXIC_GAS_DAMAGE, MAX_TOXIC_GAS_DAMAGE))
 		throw_alert("too_much_tox", /obj/screen/alert/too_much_tox)
 	else
 		clear_alert("too_much_tox")
 
 	//NITROUS OXIDE
-	if(breath_gases[/datum/gas/nitrous_oxide])
-		var/SA_partialpressure = (breath_gases[/datum/gas/nitrous_oxide][MOLES]/breath.total_moles())*breath_pressure
+	if(breath.get_moles(/datum/gas/nitrous_oxide))
+		var/SA_partialpressure = (breath.get_moles(/datum/gas/nitrous_oxide)/breath.total_moles())*breath_pressure
 		if(SA_partialpressure > SA_para_min)
 			Unconscious(60)
 			if(SA_partialpressure > SA_sleep_min)
@@ -234,8 +232,8 @@
 
 	//yogs start -- Adds Nitrogen Narcosis https://en.wikipedia.org/wiki/Nitrogen_narcosis
 	//NITROGEN
-	if(breath_gases[/datum/gas/nitrogen])
-		var/SA_partialpressure = (breath_gases[/datum/gas/nitrogen][MOLES]/breath.total_moles())*breath_pressure
+	if(breath.get_moles(/datum/gas/nitrogen))
+		var/SA_partialpressure = (breath.get_moles(/datum/gas/nitrogen)/breath.total_moles())*breath_pressure
 		if(SA_partialpressure > NITROGEN_NARCOSIS_PRESSURE_LOW) // Giggles
 			if(prob(20))
 				emote(pick("giggle","laugh"))
@@ -246,8 +244,8 @@
 				hallucination += 5
 	//yogs end
 	//BZ (Facepunch port of their Agent B)
-	if(breath_gases[/datum/gas/bz])
-		var/bz_partialpressure = (breath_gases[/datum/gas/bz][MOLES]/breath.total_moles())*breath_pressure
+	if(breath.get_moles(/datum/gas/bz))
+		var/bz_partialpressure = (breath.get_moles(/datum/gas/bz)/breath.total_moles())*breath_pressure
 		/* Yogs comment-out: Smoothed BZ hallucination levels
 		if(bz_partialpressure > 1)
 			hallucination += 10
@@ -257,23 +255,30 @@
 		hallucination += round(BZ_MAX_HALLUCINATION * (1 - NUM_E ** (-BZ_LAMBDA * bz_partialpressure))) // Yogs -- Better BZ hallucination values. Keep in mind that hallucination has to be an integer value, due to how it's handled in handle_hallucination()
 
 	//TRITIUM
-	if(breath_gases[/datum/gas/tritium])
-		var/tritium_partialpressure = (breath_gases[/datum/gas/tritium][MOLES]/breath.total_moles())*breath_pressure
+	if(breath.get_moles(/datum/gas/tritium))
+		var/tritium_partialpressure = (breath.get_moles(/datum/gas/tritium)/breath.total_moles())*breath_pressure
 		radiation += tritium_partialpressure/10
 
 	//NITRYL
-	if(breath_gases[/datum/gas/nitryl])
-		var/nitryl_partialpressure = (breath_gases[/datum/gas/nitryl][MOLES]/breath.total_moles())*breath_pressure
+	if(breath.get_moles(/datum/gas/nitryl))
+		var/nitryl_partialpressure = (breath.get_moles(/datum/gas/nitryl)/breath.total_moles())*breath_pressure
 		adjustFireLoss(nitryl_partialpressure/4)
 
+	//FREON
+	if(breath.get_moles(/datum/gas/freon))
+		var/freon_partialpressure = (breath.get_moles(/datum/gas/freon)/breath.total_moles())*breath_pressure
+		adjustFireLoss(freon_partialpressure * 0.25)
+
 	//MIASMA
-	if(breath_gases[/datum/gas/miasma])
-		var/miasma_partialpressure = (breath_gases[/datum/gas/miasma][MOLES]/breath.total_moles())*breath_pressure
+	if(breath.get_moles(/datum/gas/miasma))
+		var/miasma_partialpressure = (breath.get_moles(/datum/gas/miasma)/breath.total_moles())*breath_pressure
 
 		if(prob(1 * miasma_partialpressure))
 			var/datum/disease/advance/miasma_disease = new /datum/disease/advance/random(2,3)
 			miasma_disease.name = "Unknown"
 			ForceContractDisease(miasma_disease, TRUE, TRUE)
+
+	
 
 		//Miasma side effects
 		switch(miasma_partialpressure)
@@ -307,10 +312,6 @@
 	else
 		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "smell")
 
-
-
-
-	breath.garbage_collect()
 
 	//BREATH TEMPERATURE
 	handle_breath_temperature(breath)
@@ -520,11 +521,13 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			if(prob(25))
 				slurring += 2
 			jitteriness = max(jitteriness - 3, 0)
+			throw_alert("drunk", /obj/screen/alert/drunk)
 			if(HAS_TRAIT(src, TRAIT_DRUNK_HEALING))
 				adjustBruteLoss(-0.12, FALSE)
 				adjustFireLoss(-0.06, FALSE)
 		else
 			SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "drunk")
+			clear_alert("drunk")
 
 		if(drunkenness >= 11 && slurring < 5)
 			slurring += 1.2

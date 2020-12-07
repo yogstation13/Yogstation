@@ -21,7 +21,7 @@
 	var/list/spans = list()
 	var/list/scramble_cache = list()
 	var/default_priority = 0          // the language that an atom knows with the highest "default_priority" is selected by default.
-
+	var/sing_verb = "sings"			  // Used for singing.
 	// if you are seeing someone speak popcorn language, then something is wrong.
 	var/icon = 'icons/misc/language.dmi'
 	var/icon_state = "popcorn"
@@ -35,7 +35,7 @@
 	return TRUE
 
 /datum/language/proc/get_icon()
-	var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/goonchat)
+	var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/chat)
 	return sheet.icon_tag("language-[icon_state]")
 
 /datum/language/proc/get_random_name(gender, name_count=2, syllable_count=4, syllable_divisor=2)
@@ -80,11 +80,11 @@
 	if(lookup)
 		return lookup
 
-	var/input_size = length(input)
+	var/input_size = length_char(input)
 	var/scrambled_text = ""
 	var/capitalize = TRUE
 
-	while(length(scrambled_text) < input_size)
+	while(length_char(scrambled_text) < input_size)
 		var/next = pick(syllables)
 		if(capitalize)
 			next = capitalize(next)
@@ -98,10 +98,10 @@
 			scrambled_text += " "
 
 	scrambled_text = trim(scrambled_text)
-	var/ending = copytext(scrambled_text, length(scrambled_text))
+	var/ending = copytext_char(scrambled_text, -1)
 	if(ending == ".")
-		scrambled_text = copytext(scrambled_text,1,length(scrambled_text)-1)
-	var/input_ending = copytext(input, input_size)
+		scrambled_text = copytext_char(scrambled_text, 1, -2)
+	var/input_ending = copytext_char(input, -1)
 	if(input_ending in list("!","?","."))
 		scrambled_text += input_ending
 

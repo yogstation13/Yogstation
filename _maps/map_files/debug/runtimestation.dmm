@@ -448,8 +448,8 @@
 /area/engine/atmos)
 "bo" = (
 /obj/structure/table,
-/obj/item/screwdriver/power,
-/obj/item/wirecutters/power,
+/obj/item/handdrill,
+/obj/item/jawsoflife,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "bp" = (
@@ -1398,8 +1398,8 @@
 	height = 5;
 	id = "laborcamp_home";
 	name = "fore bay 1";
-	width = 9;
-	roundstart_template = /datum/map_template/shuttle/labour/box
+	roundstart_template = /datum/map_template/shuttle/labour/box;
+	width = 9
 	},
 /turf/open/space/basic,
 /area/space)
@@ -1410,8 +1410,8 @@
 	height = 15;
 	id = "arrivals_stationary";
 	name = "arrivals";
-	width = 7;
-	roundstart_template = /datum/map_template/shuttle/arrival/box
+	roundstart_template = /datum/map_template/shuttle/arrival/box;
+	width = 7
 	},
 /turf/open/space/basic,
 /area/space)
@@ -2298,8 +2298,8 @@
 	height = 5;
 	id = "mining_home";
 	name = "mining shuttle bay";
-	width = 7;
-	roundstart_template = /datum/map_template/shuttle/mining/box
+	roundstart_template = /datum/map_template/shuttle/mining/box;
+	width = 7
 	},
 /turf/open/space/basic,
 /area/space)
@@ -2640,6 +2640,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"tG" = (
+/obj/machinery/sci_bombardment,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "ut" = (
 /obj/structure/closet/secure_closet/atmospherics{
 	locked = 0
@@ -2873,6 +2877,12 @@
 "Tt" = (
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"TT" = (
+/obj/structure/tank_dispenser{
+	pixel_x = -1
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "Ut" = (
 /obj/structure/closet/secure_closet/medical3{
 	locked = 0
@@ -2884,6 +2894,23 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"Vm" = (
+/obj/structure/table,
+/obj/item/transfer_valve,
+/obj/item/transfer_valve{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/item/transfer_valve{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/transfer_valve{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "Vy" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -6126,9 +6153,9 @@ aD
 bT
 cI
 dg
-aD
-aD
-aD
+TT
+Vm
+tG
 ag
 eh
 eh

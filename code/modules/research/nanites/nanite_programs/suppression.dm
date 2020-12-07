@@ -149,7 +149,7 @@
 		var/new_code = input(user, "Set the communication code (1-9999) or set to 0 to disable external signals.", name, null) as null|num
 		if(isnull(new_code))
 			return
-		comm_code = CLAMP(round(new_code, 1), 0, 9999)
+		comm_code = clamp(round(new_code, 1), 0, 9999)
 
 /datum/nanite_program/triggered/comm/speech/get_extra_setting(setting)
 	if(setting == "Sentence")
@@ -193,7 +193,7 @@
 		var/new_code = input(user, "Set the communication code (1-9999) or set to 0 to disable external signals.", name, null) as null|num
 		if(isnull(new_code))
 			return
-		comm_code = CLAMP(round(new_code, 1), 0, 9999)
+		comm_code = clamp(round(new_code, 1), 0, 9999)
 
 /datum/nanite_program/triggered/comm/voice/get_extra_setting(setting)
 	if(setting == "Message")
@@ -213,7 +213,7 @@
 		sent_message = message
 	if(host_mob.stat == DEAD)
 		return
-	to_chat(host_mob, "<i>You hear a strange, robotic voice in your head...</i> \"<span class='robot'>[sent_message]</span>\"")
+	to_chat(host_mob, "<i>You hear a strange, robotic voice in your head...</i> \"<span class='robot'>[html_encode(sent_message)]</span>\"")
 
 /datum/nanite_program/triggered/comm/hallucination
 	name = "Hallucination"
@@ -269,7 +269,7 @@
 		var/new_code = input(user, "(Only for Message) Set the communication code (1-9999) or set to 0 to disable external signals.", name, null) as null|num
 		if(isnull(new_code))
 			return
-		comm_code = CLAMP(round(new_code, 1), 0, 9999)
+		comm_code = clamp(round(new_code, 1), 0, 9999)
 
 	if(setting == "Hallucination Type")
 		var/list/possible_hallucinations = list("Random","Message","Battle","Sound","Weird Sound","Station Message","Health","Alert","Fire","Shock","Plasma Flood")

@@ -115,12 +115,16 @@ Class Procs:
 	var/atom/movable/occupant = null
 	var/speed_process = FALSE // Process as fast as possible?
 	var/obj/item/circuitboard/circuit // Circuit to be created and inserted when the machinery is created
-	var/damage_deflection = 0
+
+	/// What subsystem this machine will use, which is generally SSmachines or SSfastprocess. By default all machinery use SSmachines. This fires a machine's process() roughly every 2 seconds.
+	var/subsystem_type = /datum/controller/subsystem/machines
 
 	var/interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_SET_MACHINE
 	var/fair_market_price = 69
 	var/market_verb = "Customer"
 	var/payment_department = ACCOUNT_ENG
+	/// For storing and overriding ui id
+	var/tgui_id // ID of TGUI interface
 
 /obj/machinery/Initialize()
 	if(!armor)
@@ -136,11 +140,16 @@ Class Procs:
 		START_PROCESSING(SSmachines, src)
 	else
 		START_PROCESSING(SSfastprocess, src)
-	power_change()
-	RegisterSignal(src, COMSIG_ENTER_AREA, .proc/power_change)
 
 	if (occupant_typecache)
 		occupant_typecache = typecacheof(occupant_typecache)
+
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/LateInitialize()
+	. = ..()
+	power_change()
+	RegisterSignal(src, COMSIG_ENTER_AREA, .proc/power_change)
 
 /obj/machinery/Destroy()
 	GLOB.machines.Remove(src)
@@ -287,7 +296,7 @@ Class Procs:
 		user.set_machine(src)
 	. = ..()
 
-/obj/machinery/ui_act(action, params)
+/obj/machinery/ui_act(action, list/params)
 	add_fingerprint(usr)
 	return ..()
 
@@ -370,8 +379,11 @@ Class Procs:
 	M.icon_state = "box_1"
 
 /obj/machinery/obj_break(damage_flag)
-	if(!(flags_1 & NODECONSTRUCT_1))
+	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		stat |= BROKEN
+		SEND_SIGNAL(src, COMSIG_MACHINERY_BROKEN, damage_flag)
+		update_icon()
+		return TRUE
 
 /obj/machinery/contents_explosion(severity, target)
 	if(occupant)
@@ -382,11 +394,6 @@ Class Procs:
 		occupant = null
 		update_icon()
 		updateUsrDialog()
-
-/obj/machinery/run_obj_armor(damage_amount, damage_type, damage_flag = NONE, attack_dir)
-	if(damage_flag == "melee" && damage_amount < damage_deflection)
-		return 0
-	return ..()
 
 /obj/machinery/proc/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/I)
 	if(!(flags_1 & NODECONSTRUCT_1) && I.tool_behaviour == TOOL_SCREWDRIVER)
@@ -543,3 +550,19 @@ Class Procs:
 	. = . % 9
 	AM.pixel_x = -8 + ((.%3)*8)
 	AM.pixel_y = -8 + (round( . / 3)*8)
+
+/obj/machinery/CanPass(atom/movable/mover, turf/target)
+	. = ..()
+	if(istype(mover) && (mover.pass_flags & PASSMACHINES))
+		return TRUE
+
+/obj/machinery/proc/end_processing()
+	var/datum/controller/subsystem/processing/subsystem = locate(subsystem_type) in Master.subsystems
+	STOP_PROCESSING(subsystem, src)
+
+/obj/machinery/proc/begin_processing()
+	var/datum/controller/subsystem/processing/subsystem = locate(subsystem_type) in Master.subsystems
+	START_PROCESSING(subsystem, src)
+
+/obj/machinery/rust_heretic_act()
+	take_damage(500, BRUTE, "melee", 1)

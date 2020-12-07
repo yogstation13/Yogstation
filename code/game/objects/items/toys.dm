@@ -22,6 +22,7 @@
  *		Snowballs
  *		Clockwork Watches
  *		Toy Daggers
+ *		Turn Tracker
  */
 
 
@@ -123,6 +124,21 @@
 	righthand_file = 'icons/mob/inhands/antag/balloons_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 
+/obj/item/toy/mballoon
+	name = "toy mballoon"
+	desc = "A blue baloon, it looks.. mentory?"
+	throwforce = 0
+	throw_speed = 3
+	throw_range = 7
+	force = 0
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "mballoon"
+	item_state = "mballoon"
+	lefthand_file = 'icons/mob/inhands/antag/balloons_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/antag/balloons_righthand.dmi'
+	w_class = WEIGHT_CLASS_BULKY
+
+
 /obj/item/toy/syndicateballoon/pickup(mob/user)
 	. = ..()
 	if(user && user.mind && user.mind.has_antag_datum(/datum/antagonist, TRUE))
@@ -164,7 +180,7 @@
 	flags_1 =  CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(MAT_METAL=10, MAT_GLASS=10)
+	materials = list(/datum/material/iron=10, /datum/material/glass=10)
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
 	var/bullets = 7
 
@@ -203,7 +219,7 @@
 		return
 	src.add_fingerprint(user)
 	if (src.bullets < 1)
-		user.show_message("<span class='warning'>*click*</span>", 2)
+		user.show_message("<span class='warning'>*click*</span>", MSG_AUDIBLE)
 		playsound(src, 'sound/weapons/gun_dry_fire.ogg', 30, TRUE)
 		return
 	playsound(user, 'sound/weapons/gunshot.ogg', 100, 1)
@@ -218,7 +234,7 @@
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "357OLD-7"
 	w_class = WEIGHT_CLASS_TINY
-	materials = list(MAT_METAL=10, MAT_GLASS=10)
+	materials = list(/datum/material/iron=10, /datum/material/glass=10)
 	var/amount_left = 7
 
 /obj/item/toy/ammo/gun/update_icon()
@@ -306,7 +322,6 @@
 	attack_verb = list("pricked", "absorbed", "gored")
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
-
 
 /obj/item/toy/windupToolbox
 	name = "windup toolbox"
@@ -398,6 +413,7 @@
 		pop_burst()
 
 /obj/item/toy/snappop/Crossed(H as mob|obj)
+	. = ..()
 	if(ishuman(H) || issilicon(H)) //i guess carp and shit shouldn't set them off
 		var/mob/living/carbon/M = H
 		if(issilicon(H) || M.m_intent == MOVE_INTENT_RUN)
@@ -615,8 +631,6 @@
 || A Deck of Cards for playing various games of chance ||
 */
 
-
-
 /obj/item/toy/cards
 	resistance_flags = FLAMMABLE
 	max_integrity = 50
@@ -682,7 +696,7 @@
 /obj/item/toy/cards/deck/attack_hand(mob/user)
 	draw_card(user)
 
-/obj/item/toy/cards/deck/proc/draw_card(mob/user)
+/obj/item/toy/cards/deck/proc/draw_card(mob/user, drawnumber = 1)//Person who draws the card, number of cards to be drawn
 	if(isliving(user))
 		var/mob/living/L = user
 		if(!(L.mobility_flags & MOBILITY_PICKUP))
@@ -691,19 +705,46 @@
 	if(cards.len == 0)
 		to_chat(user, "<span class='warning'>There are no more cards to draw!</span>")
 		return
-	var/obj/item/toy/cards/singlecard/H = new/obj/item/toy/cards/singlecard(user.loc)
-	if(holo)
-		holo.spawned += H // track them leaving the holodeck
-	choice = cards[1]
-	H.cardname = choice
-	H.parentdeck = src
-	var/O = src
-	H.apply_card_vars(H,O)
-	src.cards -= choice
-	H.pickup(user)
-	user.put_in_hands(H)
-	user.visible_message("[user] draws a card from the deck.", "<span class='notice'>You draw a card from the deck.</span>")
-	update_icon()
+	if (drawnumber == 1)
+		var/obj/item/toy/cards/singlecard/C = new(user.loc)
+		choice = cards[1]
+		user.visible_message("[user] draws a card from the deck.", "<span class='notice'>You draw a card from the deck.</span>")
+		C.cardname = choice
+		if(holo)
+			holo.spawned += C // track them leaving the holodeck
+		C.parentdeck = src
+		C.apply_card_vars(C, src)
+		C.deckstyle = deckstyle
+		cards.Cut(1,2)
+		user.put_in_hands(C)
+		update_icon()
+		C.interact(user)
+	else //if more than one card is drawn
+		var/obj/item/toy/cards/cardhand/H = new/obj/item/toy/cards/cardhand(user.drop_location())
+		user.visible_message("[user] draws [drawnumber] cards from the deck.", "<span class='notice'>You draw [drawnumber] cards from the deck.</span>")
+		var/i
+		for (i=1,i<=drawnumber,i++)
+			H.currenthand+=cards[i]
+		if(holo)
+			holo.spawned += H // track them leaving the holodeck
+		H.parentdeck = src
+		H.deckstyle=deckstyle
+		src.cards.Cut(1,drawnumber+1)
+		user.put_in_hands(H)
+		update_icon()
+		H.interact(user)
+		H.update_icon()
+
+/obj/item/toy/cards/deck/AltClick(mob/living/L)
+	if(!(L.mobility_flags & MOBILITY_PICKUP))
+		return
+	if(cards.len == 0)
+		to_chat(L, "<span class='warning'>There are no more cards to draw!</span>")
+		return
+	var/drawsize = input(L, "How many cards to draw? (1-[min(cards.len,10)])", "Cards") as null|num
+	if (drawsize && isnum(drawsize))
+		drawsize=clamp(drawsize,1,min(cards.len,10))
+		draw_card(L,drawsize)
 
 /obj/item/toy/cards/deck/update_icon()
 	if(cards.len > 26)
@@ -714,6 +755,11 @@
 		icon_state = "deck_[deckstyle]_low"
 	else if(cards.len == 0)
 		icon_state = "deck_[deckstyle]_empty"
+
+/obj/item/toy/cards/deck/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>This one contains [cards.len] cards.<span>"
+	. += "<span class='notice'>Alt-click the deck to draw multiple cards at once.<span>"
 
 /obj/item/toy/cards/deck/attack_self(mob/user)
 	if(cooldown < world.time - 50)
@@ -769,7 +815,6 @@
 		to_chat(usr, "<span class='warning'>You can't reach it from here!</span>")
 
 
-
 /obj/item/toy/cards/cardhand
 	name = "hand of cards"
 	desc = "A number of cards not in a deck, customarily held in ones hand."
@@ -781,60 +826,41 @@
 
 
 /obj/item/toy/cards/cardhand/attack_self(mob/user)
-	user.set_machine(src)
+	var/list/handradial = list()
+
 	interact(user)
 
-/obj/item/toy/cards/cardhand/ui_interact(mob/user)
-	. = ..()
-	var/dat = "You have:<BR>"
 	for(var/t in currenthand)
-		dat += "<A href='?src=[REF(src)];pick=[t]'>A [t].</A><BR>"
-	dat += "Which card will you remove next?"
-	var/datum/browser/popup = new(user, "cardhand", "Hand of Cards", 400, 240)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
-	popup.set_content(dat)
-	popup.open()
+		handradial[t] = image(icon = src.icon, icon_state = "sc_[t]_[deckstyle]")
 
-
-/obj/item/toy/cards/cardhand/Topic(href, href_list)
-	if(..())
-		return
 	if(usr.stat || !ishuman(usr))
 		return
 	var/mob/living/carbon/human/cardUser = usr
 	if(!(cardUser.mobility_flags & MOBILITY_USE))
 		return
 	var/O = src
-	if(href_list["pick"])
-		if (cardUser.is_holding(src))
-			var/choice = href_list["pick"]
-			var/obj/item/toy/cards/singlecard/C = new/obj/item/toy/cards/singlecard(cardUser.loc)
-			src.currenthand -= choice
-			C.parentdeck = src.parentdeck
-			C.cardname = choice
-			C.apply_card_vars(C,O)
-			C.pickup(cardUser)
-			cardUser.put_in_hands(C)
-			cardUser.visible_message("<span class='notice'>[cardUser] draws a card from [cardUser.p_their()] hand.</span>", "<span class='notice'>You take the [C.cardname] from your hand.</span>")
+	var/choice = show_radial_menu(usr,src, handradial, custom_check = CALLBACK(src, .proc/check_menu, user), radius = 36, require_near = TRUE)
+	if(!choice)
+		return FALSE
+	var/obj/item/toy/cards/singlecard/C = new/obj/item/toy/cards/singlecard(cardUser.loc)
+	currenthand -= choice
+	handradial -= choice
+	C.parentdeck = parentdeck
+	C.cardname = choice
+	C.apply_card_vars(C,O)
+	cardUser.put_in_hands(C)
+	cardUser.visible_message("<span class='notice'>[cardUser] draws a card from [cardUser.p_their()] hand.</span>", "<span class='notice'>You take the [C.cardname] from your hand.</span>")
 
-			interact(cardUser)
-			if(src.currenthand.len < 3)
-				src.icon_state = "[deckstyle]_hand2"
-			else if(src.currenthand.len < 4)
-				src.icon_state = "[deckstyle]_hand3"
-			else if(src.currenthand.len < 5)
-				src.icon_state = "[deckstyle]_hand4"
-			if(src.currenthand.len == 1)
-				var/obj/item/toy/cards/singlecard/N = new/obj/item/toy/cards/singlecard(src.loc)
-				N.parentdeck = src.parentdeck
-				N.cardname = src.currenthand[1]
-				N.apply_card_vars(N,O)
-				qdel(src)
-				N.pickup(cardUser)
-				cardUser.put_in_hands(N)
-				to_chat(cardUser, "<span class='notice'>You also take [currenthand[1]] and hold it.</span>")
-				cardUser << browse(null, "window=cardhand")
-		return
+	interact(cardUser)
+	update_icon()
+	if(length(currenthand) == 1)
+		var/obj/item/toy/cards/singlecard/N = new/obj/item/toy/cards/singlecard(loc)
+		N.parentdeck = parentdeck
+		N.cardname = currenthand[1]
+		N.apply_card_vars(N,O)
+		qdel(src)
+		cardUser.put_in_hands(N)
+		cardUser.visible_message("[cardUser] also takes their last card and holds it.", "<span class='notice'>You also take [currenthand[1]] and hold it.</span>") //the outside world will now know when you break a 2 card hand into two separate cards. Useful for UNO but can be used by any card game
 
 /obj/item/toy/cards/cardhand/attackby(obj/item/toy/cards/singlecard/C, mob/living/user, params)
 	if(istype(C))
@@ -843,12 +869,22 @@
 			user.visible_message("[user] adds a card to [user.p_their()] hand.", "<span class='notice'>You add the [C.cardname] to your hand.</span>")
 			qdel(C)
 			interact(user)
-			if(currenthand.len > 4)
-				src.icon_state = "[deckstyle]_hand5"
-			else if(currenthand.len > 3)
-				src.icon_state = "[deckstyle]_hand4"
-			else if(currenthand.len > 2)
-				src.icon_state = "[deckstyle]_hand3"
+			update_icon()
+		else
+			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
+	else
+		return ..()
+
+/obj/item/toy/cards/cardhand/attackby(obj/item/toy/cards/cardhand/C, mob/living/user, params) //Same as above, but for card hands!
+	if(istype(C))
+		if(C.parentdeck == src.parentdeck) //if the cards come from the same deck
+			var/i
+			for(i=1, i<=C.currenthand.len, i++)
+				src.currenthand += C.currenthand[i] //adds all the cards from the other hand to this one
+			user.visible_message("[user] adds the cards from [user.p_their()] hand to another, consolidating them.", "<span class='notice'>You add the cards from one hand to another.</span>")
+			qdel(C)
+			interact(user)
+			update_icon()
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 	else
@@ -866,6 +902,36 @@
 	newobj.card_attack_verb = sourceobj.card_attack_verb
 	newobj.resistance_flags = sourceobj.resistance_flags
 
+///check_menu: Checks if we are allowed to interact with a radial menu
+
+///Arguments:
+///user The mob interacting with a menu
+
+/obj/item/toy/cards/cardhand/proc/check_menu(mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated())
+		return FALSE
+	return TRUE
+
+/obj/item/toy/cards/cardhand/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>This hand has [currenthand.len] cards in it.<span>"
+
+/obj/item/toy/cards/cardhand/update_icon()
+	if(src.currenthand.len > 4)
+		src.icon_state = "[deckstyle]_hand5"
+	else
+		src.icon_state = "[deckstyle]_hand[currenthand.len]"
+	//radial menu stuff
+	cut_overlays()
+	var/overlay_cards = currenthand.len
+
+	var/k = overlay_cards == 2 ? 1 : overlay_cards - 2
+	for(var/i = k; i <= overlay_cards; i++)
+		var/card_overlay = image(icon=src.icon,icon_state="sc_[currenthand[i]]_[deckstyle]",pixel_x=(1-i+k)*3,pixel_y=(1-i+k)*3)
+		add_overlay(card_overlay)
+
 /obj/item/toy/cards/singlecard
 	name = "card"
 	desc = "a card"
@@ -876,7 +942,6 @@
 	var/flipped = 0
 	pixel_x = -5
 
-
 /obj/item/toy/cards/singlecard/examine(mob/user)
 	. = ..()
 	if(ishuman(user))
@@ -885,7 +950,6 @@
 			cardUser.visible_message("[cardUser] checks [cardUser.p_their()] card.", "<span class='notice'>The card reads: [cardname].</span>")
 		else
 			. += "<span class='warning'>You need to have the card in your hand to check it!</span>"
-
 
 /obj/item/toy/cards/singlecard/verb/Flip()
 	set name = "Flip Card"
@@ -920,7 +984,6 @@
 			to_chat(user, "<span class='notice'>You combine the [C.cardname] and the [src.cardname] into a hand.</span>")
 			qdel(C)
 			qdel(src)
-			H.pickup(user)
 			user.put_in_active_hand(H)
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
@@ -932,12 +995,7 @@
 			user.visible_message("[user] adds a card to [user.p_their()] hand.", "<span class='notice'>You add the [cardname] to your hand.</span>")
 			qdel(src)
 			H.interact(user)
-			if(H.currenthand.len > 4)
-				H.icon_state = "[deckstyle]_hand5"
-			else if(H.currenthand.len > 3)
-				H.icon_state = "[deckstyle]_hand4"
-			else if(H.currenthand.len > 2)
-				H.icon_state = "[deckstyle]_hand3"
+			H.update_icon()
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 	else
@@ -982,6 +1040,57 @@
 	card_throw_range = 7
 	card_attack_verb = list("attacked", "sliced", "diced", "slashed", "cut")
 	resistance_flags = NONE
+
+/*
+ * YOU HAVE UNO IT CAME FREE WITH YOUR FUCKING PDA
+ */
+
+/obj/item/toy/cards/deck/uno
+	name = "deck of UNO cards"
+	desc = "A deck of space-grade UNO cards."
+	deckstyle = "uno"
+	icon_state = "deck_uno_full"
+
+/obj/item/toy/cards/deck/uno/populate_deck() //RED GREEN YELLOW BLUE
+	icon_state = "deck_[deckstyle]_full"
+	for(var/i in 0 to 9)
+		cards += "Red [i]"
+		cards += "Green [i]"
+		cards += "Yellow [i]"
+		cards += "Blue [i]"
+	for(var/k in 1 to 9) //there is only 1 zero, but 2 of each other card, yes this is shitcode :(
+		cards += "Red [k]"
+		cards += "Green [k]"
+		cards += "Yellow [k]"
+		cards += "Blue [k]"
+	var/j=1
+	for(j=1; j<=2; j++)
+		cards += "Red Draw Two"
+		cards += "Green Draw Two"
+		cards += "Yellow Draw Two"
+		cards += "Blue Draw Two"
+		cards += "Red Skip"
+		cards += "Green Skip"
+		cards += "Yellow Skip"
+		cards += "Blue Skip"
+		cards += "Red Reverse"
+		cards += "Green Reverse"
+		cards += "Yellow Reverse"
+		cards += "Blue Reverse"
+	j=1
+	for(j=1; j<=4; j++)
+		cards += "Wildcard"
+		cards += "Wild Draw Four"
+
+/obj/item/toy/cards/deck/uno/update_icon()
+	if(cards.len > 54)
+		icon_state = "deck_[deckstyle]_full"
+	else if(cards.len > 25)
+		icon_state = "deck_[deckstyle]_half"
+	else if(cards.len > 0)
+		icon_state = "deck_[deckstyle]_low"
+	else if(cards.len == 0)
+		icon_state = "deck_[deckstyle]_empty"
 
 /*
  * Fake nuke
@@ -1062,7 +1171,8 @@
 	desc = "A compact ball of snow. Good for throwing at people."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "snowball"
-	throwforce = 12 //pelt your enemies to death with lumps of snow
+	throwforce = 20
+	damtype = STAMINA
 
 /obj/item/toy/snowball/afterattack(atom/target as mob|obj|turf|area, mob/user)
 	. = ..()
@@ -1072,6 +1182,9 @@
 /obj/item/toy/snowball/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!..())
 		playsound(src, 'sound/effects/pop.ogg', 20, 1)
+		if(isliving(hit_atom))
+			var/mob/living/L = hit_atom
+			L.apply_damage(20, STAMINA)
 		qdel(src)
 
 /*
@@ -1088,6 +1201,63 @@
 	. = ..()
 	if(user.dropItemToGround(src))
 		throw_at(target, throw_range, throw_speed)
+/*
+ * Turn tracker
+ */
+
+obj/item/toy/turn_tracker
+	name= "turn tracker"
+	icon = 'icons/obj/assemblies.dmi'
+	icon_state = "bigblue"
+	desc= "A turn tracker, used to track turns. Duh.\nClick on it in hand to set it up.\nAlt-click to reverse turn order."
+	var/list/names=list()
+	var/turn=0
+	var/info=null
+	var/turndir=1//1 for forwards, -1 for backwards
+	var/cooldown=0
+
+
+/obj/item/toy/turn_tracker/attack_self(mob/user)
+	info=stripped_input(user, "Insert a list of names seperated by commas (John, Rose, Steve)", "Names")
+	if (info)
+		names = splittext(info,",")
+		to_chat(user, "<span class='notice'>You set up the turn tracker. </span>")
+	return
+
+/obj/item/toy/turn_tracker/attack_hand(mob/user)
+	if (cooldown < world.time)
+		cooldown = (world.time + 5) //0.5 second cooldown
+		if (names.len==0)
+			to_chat(user, "<span class='warning'>You need to set it up first!</span>")
+			return
+		turn+=turndir//+1 for normal, -1 for backwardz
+		if(turn>names.len)
+			turn=1
+		else if(turn<1)
+			turn=names.len
+		audible_message("<span class='notice'>[user] clicks the button. [src] says: \"It is [names[turn]]'s turn!\"</span>")
+		flick("bigblue_press", src)
+
+/obj/item/toy/turn_tracker/AltClick(mob/user)
+	audible_message("<span class='notice'>[user] clicks the button. [src] says: \"Direction Reversed!\"</span>")
+	turndir=turndir*-1 //this reverses the direction (1 becomes -1, -1 becomes 1)
+
+/obj/item/toy/turn_tracker/MouseDrop(atom/over_object)
+	. = ..()
+	var/mob/living/M = usr
+	if(!istype(M) || !(M.mobility_flags & MOBILITY_PICKUP))
+		return
+	if(Adjacent(usr))
+		if(over_object == M && loc != M)
+			M.put_in_hands(src)
+			to_chat(usr, "<span class='notice'>You pick up the turn tracker.</span>")
+
+		else if(istype(over_object, /obj/screen/inventory/hand))
+			var/obj/screen/inventory/hand/H = over_object
+			if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
+				to_chat(usr, "<span class='notice'>You pick up the turn tracker.</span>")
+	else
+		to_chat(usr, "<span class='warning'>You can't reach it from here!</span>")
 
 /*
  * Clockwork Watch
@@ -1402,7 +1572,7 @@
 	to_chat(user, "You name the dummy as \"[doll_name]\"")
 	name = "[initial(name)] - [doll_name]"
 
-/obj/item/toy/dummy/talk_into(atom/movable/A, message, channel, list/spans, datum/language/language)
+/obj/item/toy/dummy/talk_into(atom/movable/A, message, channel, list/spans, datum/language/language, list/message_mods)
 	var/mob/M = A
 	if (istype(M))
 		M.log_talk(message, LOG_SAY, tag="dummy toy")

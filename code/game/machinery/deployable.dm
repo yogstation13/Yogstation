@@ -14,8 +14,9 @@
 	anchored = TRUE
 	density = TRUE
 	max_integrity = 100
+	layer = ABOVE_WINDOW_LAYER // Barricades should probably be over windows especially if you can put them on windows
 	var/proj_pass_rate = 50 //How many projectiles will pass the cover. Lower means stronger cover
-	var/material = METAL
+	var/bar_material = METAL
 
 /obj/structure/barricade/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -26,31 +27,30 @@
 	return
 
 /obj/structure/barricade/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM && material == METAL)
+	if(I.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM && bar_material == METAL)
 		if(obj_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=0))
 				return
 
 			to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
 			if(I.use_tool(src, user, 40, volume=40))
-				obj_integrity = CLAMP(obj_integrity + 20, 0, max_integrity)
+				obj_integrity = clamp(obj_integrity + 20, 0, max_integrity)
 	else
 		return ..()
 
-/obj/structure/barricade/CanPass(atom/movable/mover, turf/target)//So bullets will fly over and stuff.
+/obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)//So bullets will fly over and stuff.
+	. = ..()
 	if(locate(/obj/structure/barricade) in get_turf(mover))
-		return 1
+		return TRUE
 	else if(istype(mover, /obj/item/projectile))
 		if(!anchored)
-			return 1
+			return TRUE
 		var/obj/item/projectile/proj = mover
 		if(proj.firer && Adjacent(proj.firer))
-			return 1
+			return TRUE
 		if(prob(proj_pass_rate))
-			return 1
-		return 0
-	else
-		return !density
+			return TRUE
+		return FALSE
 
 
 
@@ -61,7 +61,7 @@
 	desc = "This space is blocked off by a wooden barricade."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "woodenbarricade"
-	material = WOOD
+	bar_material = WOOD
 	var/drop_amount = 3
 
 /obj/structure/barricade/wooden/attackby(obj/item/I, mob/user)
@@ -77,7 +77,15 @@
 				new /turf/closed/wall/mineral/wood/nonmetal(get_turf(src))
 				qdel(src)
 				return
-	return ..()
+	else if(I.tool_behaviour == TOOL_CROWBAR && user.a_intent != INTENT_HARM)
+		user.visible_message("[user.name] starts prying [src.name] apart.", \
+							"<span class='notice'>You start prying the barricade apart</span>")
+		if(I.use_tool(src, user, 190, volume=50))
+			to_chat(user, "<span class='notice'>You disassemble the barricade.</span>")
+			new /obj/item/stack/sheet/mineral/wood(user.loc, 5)
+			qdel(src)
+	else
+		return ..()
 
 
 /obj/structure/barricade/wooden/crude
@@ -87,6 +95,15 @@
 	drop_amount = 1
 	max_integrity = 50
 	proj_pass_rate = 65
+
+/obj/structure/barricade/wooden/crude/attackby(obj/item/I, mob/user) // Make it so you cant turn crude planks into walls
+	if(I.tool_behaviour == TOOL_CROWBAR && user.a_intent != INTENT_HARM)
+		user.visible_message("[user.name] starts prying [src.name] apart.", \
+							"<span class='notice'>You start prying the barricade apart</span>")
+		if(I.use_tool(src, user, 190, volume=50))
+			to_chat(user, "<span class='notice'>You disassemble the barricade.</span>")
+			new /obj/item/stack/sheet/mineral/wood(user.loc, 5)
+			qdel(src)
 
 /obj/structure/barricade/wooden/crude/snow
 	desc = "This space is blocked off by a crude assortment of planks. It seems to be covered in a layer of snow."
@@ -105,11 +122,10 @@
 	max_integrity = 280
 	proj_pass_rate = 20
 	pass_flags = LETPASSTHROW
-	material = SAND
+	bar_material = SAND
 	climbable = TRUE
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/obj/structure/barricade/sandbags, /turf/closed/wall, /turf/closed/wall/r_wall, /obj/structure/falsewall, /obj/structure/falsewall/reinforced, /turf/closed/wall/rust, /turf/closed/wall/r_wall/rust, /obj/structure/barricade/security)
-
 
 /obj/structure/barricade/security
 	name = "security barrier"

@@ -23,6 +23,9 @@
 	var/novariants = TRUE //Determines whether the item should update it's sprites based on amount.
 	//NOTE: When adding grind_results, the amounts should be for an INDIVIDUAL ITEM - these amounts will be multiplied by the stack size in on_grind()
 	var/obj/structure/table/tableVariant // we tables now (stores table variant to be built from this stack)
+	var/mats_per_stack = 0
+	/// Amount of matter for RCD
+	var/matter_amount = 0
 
 /obj/item/stack/on_grind()
 	for(var/i in 1 to grind_results.len) //This should only call if it's ground, so no need to check if grind_results exists
@@ -52,9 +55,9 @@
 
 /obj/item/stack/proc/update_weight()
 	if(amount <= (max_amount * (1/3)))
-		w_class = CLAMP(full_w_class-2, WEIGHT_CLASS_TINY, full_w_class)
+		w_class = clamp(full_w_class-2, WEIGHT_CLASS_TINY, full_w_class)
 	else if (amount <= (max_amount * (2/3)))
-		w_class = CLAMP(full_w_class-1, WEIGHT_CLASS_TINY, full_w_class)
+		w_class = clamp(full_w_class-1, WEIGHT_CLASS_TINY, full_w_class)
 	else
 		w_class = full_w_class
 
@@ -178,7 +181,7 @@
 			recipes_list = srl.recipes
 		var/datum/stack_recipe/R = recipes_list[text2num(href_list["make"])]
 		var/multiplier = text2num(href_list["multiplier"])
-		if (!multiplier ||(multiplier <= 0)) //href protection
+		if (!multiplier ||(multiplier <= 0) || isnan(multiplier)) //href protection
 			return
 		if(!building_checks(R, multiplier))
 			return
@@ -336,9 +339,9 @@
 	S.add(transfer)
 	return transfer
 
-/obj/item/stack/Crossed(obj/o)
-	if(istype(o, merge_type) && !o.throwing)
-		merge(o)
+/obj/item/stack/Crossed(atom/movable/AM)
+	if(istype(AM, merge_type) && !AM.throwing)
+		merge(AM)
 	. = ..()
 
 /obj/item/stack/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)

@@ -19,6 +19,7 @@
 		/datum/language/ratvar,
 		/datum/language/aphasia,
 		/datum/language/piratespeak,
+		/datum/language/sylvan,
 		/datum/language/japanese,
 		/datum/language/machine, //yogs
 		/datum/language/darkspawn //also yogs
@@ -150,7 +151,7 @@
 		var/insertpos = rand(1, message_list.len - 1)
 		var/inserttext = message_list[insertpos]
 
-		if(!(copytext(inserttext, length(inserttext) - 2) == "..."))
+		if(!(copytext(inserttext, -3) == "..."))//3 == length("...")
 			message_list[insertpos] = inserttext + "..."
 
 		if(prob(20) && message_list.len > 3)
@@ -239,3 +240,25 @@
 		else
 			new_message += message[i]
 	speech_args[SPEECH_MESSAGE] = new_message
+
+/obj/item/organ/tongue/polysmorph
+	name = "polysmorphtongue"
+	desc = "A polysmorph tongue."
+	say_mod = "hisses"
+	modifies_speech = TRUE
+	var/static/list/languages_possible_polysmorph = typecacheof(list(
+		/datum/language/common,
+		/datum/language/polysmorph))
+
+/obj/item/organ/tongue/polysmorph/handle_speech(datum/source, list/speech_args)
+	var/static/regex/polysmorph_hiss = new("s+", "g")
+	var/static/regex/polysmorph_hiSS = new("S+", "g")
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message[1] != "*")
+		message = polysmorph_hiss.Replace(message, "ssssss")
+		message = polysmorph_hiSS.Replace(message, "SSSSSS")
+	speech_args[SPEECH_MESSAGE] = message
+
+/obj/item/organ/tongue/polysmorph/Initialize(mapload)
+	. = ..()
+	languages_possible = languages_possible_polysmorph

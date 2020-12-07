@@ -13,17 +13,17 @@
 		parsed += copytext(text, pos, search)
 		if(search)
 			pos = search
-			search = findtext(text, ":", pos+1)
+			search = findtext(text, ":", pos + length(text[pos]))
 			if(search)
-				emoji = lowertext(copytext(text, pos+1, search))
-				var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/goonchat)
+				emoji = lowertext(copytext(text, pos + length(text[pos]), search))
+				var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/chat)
 				var/tag = sheet.icon_tag("emoji-[emoji]")
 				if(emoji in yogmojis) //yogs start -yogmoji
 					parsed += icon2html('yogstation/icons/emoji.dmi', world, emoji)
 					pos = search + 1 
 				else if(tag)//yogs end - yogmoji
 					parsed += tag
-					pos = search + 1
+					pos = search + length(text[pos])
 				else
 					parsed += copytext(text, pos, search)
 					pos = search

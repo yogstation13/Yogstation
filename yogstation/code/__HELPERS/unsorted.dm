@@ -198,3 +198,27 @@
 			return "."
 		if(189)
 			return "-"
+
+#define UPPER 0
+#define LOWER 1
+#define CAPITAL 2
+/proc/get_case(txt) // Returns the case of the text given
+	if(txt == uppertext(txt))
+		return UPPER
+	if(txt == lowertext(txt))
+		return LOWER
+	if(txt[1] == uppertext(txt[1]))
+		return CAPITAL
+	
+	return UPPER // We're assuming at this point that the text is a weird mixed-case. Most likely the intended case was UPPER.
+/proc/set_case(txt,case) // Modifies the case of txt to be case input
+	switch(case)
+		if(UPPER)
+			return uppertext(txt)
+		if(LOWER)
+			return lowertext(txt)
+		if(CAPITAL)
+			return uppertext(txt[1]) + copytext(lowertext(txt),2)
+#undef UPPER
+#undef LOWER
+#undef CAPITAL

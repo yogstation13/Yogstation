@@ -511,6 +511,26 @@
 /obj/item/book/manual/wiki/security_space_law,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
+"aW" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"aX" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/sign/departments/restroom{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"aY" = (
+/obj/structure/sign/nanotrasen,
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/escape)
 "aZ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -565,6 +585,12 @@
 /obj/structure/table,
 /obj/machinery/recharger,
 /turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"bh" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bj" = (
 /turf/open/floor/mech_bay_recharge_floor,
@@ -847,13 +873,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"bL" = (
-/obj/structure/sign/nanotrasen{
-	pixel_x = -32;
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
 "bM" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -903,16 +922,6 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"bS" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -1062,12 +1071,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"cg" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
 "ch" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -1193,20 +1196,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
-"cu" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/machinery/stasis,
-/turf/open/floor/plasteel/white,
-/area/shuttle/escape)
 "cv" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -1304,14 +1293,6 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/turf/open/floor/plasteel/white,
-/area/shuttle/escape)
-"cD" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/machinery/stasis,
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "cE" = (
@@ -1459,17 +1440,6 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/turf/open/floor/plasteel/white,
-/area/shuttle/escape)
-"cN" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/machinery/stasis,
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "cO" = (
@@ -1816,16 +1786,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"er" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
 "hd" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -1992,6 +1952,22 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
+"AV" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/stasis{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
 "Bp" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -2089,6 +2065,19 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
+"QS" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/stasis{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
 "RF" = (
 /obj/machinery/light{
 	dir = 8
@@ -2118,6 +2107,16 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/shuttle/escape)
+"Zy" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/stasis{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 
 (1,1,1) = {"
@@ -2182,9 +2181,9 @@ be
 ab
 bc
 ad
-ac
-ac
-ac
+Oe
+Oe
+Oe
 ad
 bc
 bZ
@@ -2387,7 +2386,7 @@ dz
 (7,1,1) = {"
 aa
 aa
-ac
+aW
 af
 aq
 ap
@@ -2431,7 +2430,7 @@ dz
 (8,1,1) = {"
 aa
 aa
-ac
+aW
 ag
 ar
 aA
@@ -2475,7 +2474,7 @@ dz
 (9,1,1) = {"
 aa
 aa
-ac
+aW
 ah
 as
 aB
@@ -2519,7 +2518,7 @@ dz
 (10,1,1) = {"
 aa
 aa
-ac
+aW
 ai
 at
 aC
@@ -2563,7 +2562,7 @@ ad
 (11,1,1) = {"
 aa
 aa
-ac
+aW
 aj
 at
 aC
@@ -2575,7 +2574,7 @@ ac
 bn
 bn
 ac
-ad
+aY
 aZ
 bc
 bc
@@ -2594,7 +2593,7 @@ bc
 bc
 bc
 Ah
-cg
+aX
 bc
 ab
 de
@@ -2607,7 +2606,7 @@ ad
 (12,1,1) = {"
 aa
 aa
-ac
+aW
 ak
 au
 aD
@@ -2619,8 +2618,8 @@ aZ
 aZ
 aZ
 aZ
-lS
-bL
+DU
+bc
 bc
 bT
 rv
@@ -2651,7 +2650,7 @@ dz
 (13,1,1) = {"
 aa
 aa
-ac
+aW
 al
 av
 aE
@@ -2663,10 +2662,10 @@ ba
 ba
 ba
 ba
-er
-er
-bS
-jk
+Bp
+ba
+bh
+bT
 pm
 bX
 bX
@@ -2695,7 +2694,7 @@ dz
 (14,1,1) = {"
 aa
 aa
-ac
+aW
 am
 aw
 ax
@@ -2931,21 +2930,21 @@ bD
 bP
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xb
+Xb
+Xb
+Xb
+Xb
+Xb
+Xb
 ab
 ab
 pf
-cu
+AV
 cy
-cD
+Zy
 cG
-cN
+QS
 ab
 cS
 ab

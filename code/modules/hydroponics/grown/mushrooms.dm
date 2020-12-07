@@ -99,6 +99,7 @@
 	growthstages = 3
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
+	mutatelist = list(/obj/item/seeds/glowshroom)
 	reagents_add = list(/datum/reagent/drug/mushroomhallucinogen = 0.25, /datum/reagent/consumable/nutriment = 0.02)
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap
@@ -161,6 +162,10 @@
 	can_distill = FALSE
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/walkingmushroom/attack_self(mob/user)
+	if(GLOB.walkingmushroom.len > MAX_WALKINGMUSHROOM)
+		to_chat(user, "<span class='notice'>There are too many walking mushrooms!</span>") // Someone spammed mushrooms so now this exists :(
+		return
+
 	if(isspaceturf(user.loc))
 		return
 	var/mob/living/simple_animal/hostile/mushroom/M = new /mob/living/simple_animal/hostile/mushroom(user.loc)
@@ -169,6 +174,7 @@
 	M.melee_damage_upper += round(seed.potency / 20)
 	M.move_to_delay -= round(seed.production / 50)
 	M.health = M.maxHealth
+	GLOB.walkingmushroom += M
 	qdel(src)
 	to_chat(user, "<span class='notice'>You plant the walking mushroom.</span>")
 
@@ -305,3 +311,30 @@
 	. = ..()
 	if(.)
 		investigate_log("was planted by [key_name(user)] at [AREACOORD(user)]", INVESTIGATE_BOTANY)
+
+/obj/item/seeds/fungus
+	name = "pack of cave fungus mycelium"
+	desc = "This mycelium grows into cave fungi, an edible variety of mushroom with anti-toxic properties."
+	icon_state = "seed-fungus"
+	species = "cave fungus"
+	plantname = "cave fungi"
+	product = /obj/item/reagent_containers/food/snacks/grown/fungus
+	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
+	icon_grow = "shroom-grow"
+	icon_dead = "shroom-dead"
+	icon_harvest = "shroom-harvest"
+	lifespan = 50
+	endurance = 10
+	maturation = 8
+	production = 3
+	yield = 6
+	potency = 20
+	growthstages = 2
+	reagents_add = list(/datum/reagent/medicine/charcoal = 0.25, /datum/reagent/medicine/mutadone = 0.04, /datum/reagent/consumable/nutriment = 0.02)
+
+/obj/item/reagent_containers/food/snacks/grown/fungus
+	seed = /obj/item/seeds/fungus
+	name = "cave fungus"
+	desc = "Cave fungus is an edible mushroom which has the ability to purge bodily toxins."
+	icon_state = "fungus"
+	filling_color = "#FF6347"

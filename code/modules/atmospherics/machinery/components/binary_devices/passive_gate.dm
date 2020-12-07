@@ -3,14 +3,14 @@
 Passive gate is similar to the regular pump except:
 * It doesn't require power
 * Can not transfer low pressure to higher pressure (so it's more like a valve where you can control the flow)
-
+* Passes gas when output pressure lower than target pressure
 */
 
 /obj/machinery/atmospherics/components/binary/passive_gate
-	icon_state = "passgate_map-2"
+	icon_state = "passgate_map-3"
 
 	name = "passive gate"
-	desc = "A one-way air valve that does not require power."
+	desc = "A one-way air valve that does not require power. Passes gas when the output pressure is lower than the target pressure."
 
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE
@@ -26,15 +26,29 @@ Passive gate is similar to the regular pump except:
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "passivegate"
 
+
+/obj/machinery/atmospherics/components/binary/passive_gate/CtrlClick(mob/user)
+	if(can_interact(user))
+		on = !on
+		update_icon()
+	return ..()
+
+/obj/machinery/atmospherics/components/binary/passive_gate/AltClick(mob/user)
+	if(can_interact(user))
+		target_pressure = MAX_OUTPUT_PRESSURE
+		update_icon()
+	return ..()
+
+
 /obj/machinery/atmospherics/components/binary/passive_gate/Destroy()
 	SSradio.remove_object(src,frequency)
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/passive_gate/update_icon_nopipes()
 	cut_overlays()
-	icon_state = "passgate_off"
+	icon_state = "passgate_off-[set_overlay_offset(piping_layer)]"
 	if(on)
-		add_overlay(getpipeimage(icon, "passgate_on"))
+		add_overlay(getpipeimage(icon, "passgate_on-[set_overlay_offset(piping_layer)]"))
 
 /obj/machinery/atmospherics/components/binary/passive_gate/process_atmos()
 	..()
@@ -53,11 +67,11 @@ Passive gate is similar to the regular pump except:
 		return
 
 	//Calculate necessary moles to transfer using PV = nRT
-	if((air1.total_moles() > 0) && (air1.temperature>0))
+	if((air1.total_moles() > 0) && (air1.return_temperature()>0))
 		var/pressure_delta = min(target_pressure - output_starting_pressure, (input_starting_pressure - output_starting_pressure)/2)
 		//Can not have a pressure delta that would cause output_pressure > input_pressure
 
-		var/transfer_moles = pressure_delta*air2.volume/(air1.temperature * R_IDEAL_GAS_EQUATION)
+		var/transfer_moles = pressure_delta*air2.return_volume()/(air1.return_temperature() * R_IDEAL_GAS_EQUATION)
 
 		//Actually transfer the gas
 		var/datum/gas_mixture/removed = air1.remove(transfer_moles)
@@ -87,11 +101,10 @@ Passive gate is similar to the regular pump except:
 	))
 	radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
-/obj/machinery/atmospherics/components/binary/passive_gate/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-																		datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/atmospherics/components/binary/passive_gate/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "atmos_pump", name, 335, 115, master_ui, state)
+		ui = new(user, src, "AtmosPump", name)
 		ui.open()
 
 /obj/machinery/atmospherics/components/binary/passive_gate/ui_data()
@@ -123,7 +136,7 @@ Passive gate is similar to the regular pump except:
 				pressure = text2num(pressure)
 				. = TRUE
 			if(.)
-				target_pressure = CLAMP(pressure, 0, MAX_OUTPUT_PRESSURE)
+				target_pressure = clamp(pressure, 0, ONE_ATMOSPHERE*100)
 				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_ATMOS)
 				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 	update_icon()
@@ -146,7 +159,7 @@ Passive gate is similar to the regular pump except:
 		on = !on
 
 	if("set_output_pressure" in signal.data)
-		target_pressure = CLAMP(text2num(signal.data["set_output_pressure"]),0,ONE_ATMOSPHERE*50)
+		target_pressure = clamp(text2num(signal.data["set_output_pressure"]),0,ONE_ATMOSPHERE*100)
 
 	if(on != old_on)
 		investigate_log("was turned [on ? "on" : "off"] by a remote signal", INVESTIGATE_ATMOS)
@@ -159,10 +172,6 @@ Passive gate is similar to the regular pump except:
 	broadcast_status()
 	update_icon()
 
-/obj/machinery/atmospherics/components/binary/passive_gate/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/atmospherics/components/binary/passive_gate/can_unwrench(mob/user)
 	. = ..()
 	if(. && on)
@@ -170,10 +179,10 @@ Passive gate is similar to the regular pump except:
 		return FALSE
 
 
-/obj/machinery/atmospherics/components/binary/passive_gate/layer1
-	piping_layer = 1
-	icon_state = "passgate_map-1"
+/obj/machinery/atmospherics/components/binary/passive_gate/layer2
+	piping_layer = 2
+	icon_state = "passgate_map-2"
 
-/obj/machinery/atmospherics/components/binary/passive_gate/layer3
-	piping_layer = 3
-	icon_state = "passgate_map-3"
+/obj/machinery/atmospherics/components/binary/passive_gate/layer4
+	piping_layer = 4
+	icon_state = "passgate_map-4"

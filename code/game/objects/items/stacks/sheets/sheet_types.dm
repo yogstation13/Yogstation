@@ -42,7 +42,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("rack parts", /obj/item/rack_parts), \
 	new/datum/stack_recipe("closet", /obj/structure/closet, 2, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	null, \
-	new/datum/stack_recipe("canister", /obj/machinery/portable_atmospherics/canister, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("canister", /obj/machinery/portable_atmospherics/canister/generic, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	null, \
 	new/datum/stack_recipe("floor tile", /obj/item/stack/tile/plasteel, 1, 4, 20), \
 	new/datum/stack_recipe("metal rod", /obj/item/stack/rods, 1, 2, 60), \
@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	singular_name = "metal sheet"
 	icon_state = "sheet-metal"
 	item_state = "sheet-metal"
-	materials = list(MAT_METAL=MINERAL_MATERIAL_AMOUNT)
+	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 	throwforce = 10
 	flags_1 = CONDUCT_1
 	resistance_flags = FIRE_PROOF
@@ -107,6 +107,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	grind_results = list(/datum/reagent/iron = 20)
 	point_value = 2
 	tableVariant = /obj/structure/table
+	matter_amount = 4
 
 /obj/item/stack/sheet/metal/ratvar_act()
 	new /obj/item/stack/tile/brass(loc, amount)
@@ -147,7 +148,6 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	new/datum/stack_recipe("AI core", /obj/structure/AIcore, 4, time = 50, one_per_turf = TRUE), \
 	new/datum/stack_recipe("bomb assembly", /obj/machinery/syndicatebomb/empty, 10, time = 50), \
-	new/datum/stack_recipe("pestle", /obj/item/pestle, 1, time = 50), \
 	null, \
 	new /datum/stack_recipe_list("airlock assemblies", list( \
 		new/datum/stack_recipe("high security airlock assembly", /obj/structure/door_assembly/door_assembly_highsecurity, 4, time = 50, one_per_turf = 1, on_floor = 1), \
@@ -161,15 +161,16 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	desc = "This sheet is an alloy of iron and plasma."
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-metal"
-	materials = list(MAT_METAL=2000, MAT_PLASMA=2000)
+	materials = list(/datum/material/iron=2000, /datum/material/plasma=2000)
 	throwforce = 10
 	flags_1 = CONDUCT_1
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 80)
 	resistance_flags = FIRE_PROOF
 	merge_type = /obj/item/stack/sheet/plasteel
 	grind_results = list(/datum/reagent/iron = 20, /datum/reagent/toxin/plasma = 20)
-	point_value = 23
+	point_value = 25
 	tableVariant = /obj/structure/table/reinforced
+	matter_amount = 12
 
 /obj/item/stack/sheet/plasteel/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.plasteel_recipes
@@ -200,6 +201,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("dog bed", /obj/structure/bed/dogbed, 10, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("dresser", /obj/structure/dresser, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("picture frame", /obj/item/wallframe/picture, 1, time = 10),\
+	new/datum/stack_recipe("painting frame", /obj/item/wallframe/painting, 1, time = 10),\
 	new/datum/stack_recipe("display case chassis", /obj/structure/displaycase_chassis, 5, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("wooden buckler", /obj/item/shield/riot/buckler, 20, time = 40), \
 	new/datum/stack_recipe("apiary", /obj/structure/beebox, 40, time = 50),\
@@ -212,6 +214,9 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("loom", /obj/structure/loom, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("mortar", /obj/item/reagent_containers/glass/mortar, 3), \
 	new/datum/stack_recipe("firebrand", /obj/item/match/firebrand, 2, time = 100), \
+  new/datum/stack_recipe("pestle", /obj/item/pestle, 1, time = 50), \
+	new/datum/stack_recipe("easel", /obj/structure/easel, 7, time = 30), \
+
 	null, \
 	new/datum/stack_recipe_list("pews", list(
 		new /datum/stack_recipe("pew (middle)", /obj/structure/chair/pew, 3, one_per_turf = TRUE, on_floor = TRUE),
@@ -249,6 +254,8 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 GLOBAL_LIST_INIT(bamboo_recipes, list ( \
 	new/datum/stack_recipe("punji sticks trap", /obj/structure/punji_sticks, 5, time = 30, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("blow gun", /obj/item/gun/syringe/blowgun, 10, time = 70), \
+	new/datum/stack_recipe("bamboo spear", /obj/item/twohanded/bamboospear, 25, time = 90), \
+	new/datum/stack_recipe("crude syringe", /obj/item/reagent_containers/syringe/crude, 5, time = 10), \
 	))
 
 /obj/item/stack/sheet/mineral/bamboo
@@ -410,7 +417,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 		new /datum/stack_recipe("latex gloves box", /obj/item/storage/box/gloves),				\
 		new /datum/stack_recipe("sterile masks box", /obj/item/storage/box/masks),				\
 		new /datum/stack_recipe("body bag box", /obj/item/storage/box/bodybags),					\
-		new /datum/stack_recipe("perscription glasses box", /obj/item/storage/box/rxglasses),	\
+		new /datum/stack_recipe("prescription glasses box", /obj/item/storage/box/rxglasses),	\
 		null,																					\
 
 		new /datum/stack_recipe("disk box", /obj/item/storage/box/disks),						\
@@ -669,7 +676,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	singular_name = "plastic sheet"
 	icon_state = "sheet-plastic"
 	item_state = "sheet-plastic"
-	materials = list(MAT_PLASTIC=MINERAL_MATERIAL_AMOUNT)
+	materials = list(/datum/material/plastic=MINERAL_MATERIAL_AMOUNT)
 	throwforce = 7
 	merge_type = /obj/item/stack/sheet/plastic
 
@@ -718,3 +725,23 @@ new /datum/stack_recipe("paper frame door", /obj/structure/mineral_door/paperfra
 	desc = "A source of raw socialism, capable of bringing forth the prophesized Soviet Golem."
 	icon_state = "sheet-stalinium"
 	merge_type = /obj/item/stack/sheet/stalinium
+
+/obj/item/stack/sheet/cheese
+	name = "reinforced cheese"
+	desc = "A stack of cheese that seems sturdier than regular cheese."
+	icon_state = "sheet-cheese"
+	item_state = "sheet-cheese"
+	icon = 'icons/obj/stack_objects.dmi'
+	singular_name = "reinforced cheese block"
+	sheettype = "cheese"
+	max_amount = 15
+	grind_results = list(/datum/reagent/consumable/milk = 20)
+	merge_type = /obj/item/stack/sheet/cheese
+
+GLOBAL_LIST_INIT(cheese_recipes, list (
+	new/datum/stack_recipe("cheesus statue", /obj/structure/statue/cheese/cheesus, 5, one_per_turf = 1, on_floor = 1)
+	))
+
+/obj/item/stack/sheet/cheese/Initialize(mapload, new_amount, merge = TRUE)
+	recipes = GLOB.cheese_recipes
+	. = ..()

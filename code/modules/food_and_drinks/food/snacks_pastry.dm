@@ -57,6 +57,14 @@
 	extra_reagent = pick(/datum/reagent/consumable/nutriment, /datum/reagent/consumable/capsaicin, /datum/reagent/consumable/frostoil, /datum/reagent/drug/krokodil, /datum/reagent/toxin/plasma, /datum/reagent/consumable/coco, /datum/reagent/toxin/slimejelly, /datum/reagent/consumable/banana, /datum/reagent/consumable/berryjuice, /datum/reagent/medicine/omnizine)
 	reagents.add_reagent(extra_reagent, 3)
 
+/obj/item/reagent_containers/food/snacks/donut/laugh
+	name = "sweet pea donut"
+	desc = "Goes great with a glass of Bastion Burbon!"
+	icon_state = "donut_laugh"
+	bonus_reagents = list(/datum/reagent/consumable/laughter = 3)
+	tastes = list("donut" = 3, "fizzy tutti frutti" = 1,)
+	filling_color = "#803280"
+
 /obj/item/reagent_containers/food/snacks/donut/jelly
 	name = "jelly donut"
 	desc = "You jelly?"
@@ -86,6 +94,14 @@
 	extra_reagent = /datum/reagent/consumable/cherryjelly
 	foodtype = JUNKFOOD | GRAIN | FRIED | FRUIT | BREAKFAST
 
+/obj/item/reagent_containers/food/snacks/donut/jelly/laugh
+	name = "sweet pea jelly donut"
+	desc = "Goes great with a glass of Bastion Burbon!"
+	icon_state = "jelly_laugh"
+	bonus_reagents = list(/datum/reagent/consumable/laughter = 3)
+	tastes = list("jelly" = 3, "donut" = 1, "fizzy tutti frutti" = 1)
+	filling_color = "#803280"
+	
 /obj/item/reagent_containers/food/snacks/donut/meat
 	name = "meat donut"
 	desc = "Tastes as gross as it looks."
@@ -94,6 +110,14 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/ketchup = 2)
 	tastes = list("meat" = 1)
 	foodtype = JUNKFOOD | MEAT | GROSS | FRIED | BREAKFAST
+
+/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/laugh
+	name = "sweet pea jelly donut"
+	desc = "Goes great with a glass of Bastion Burbon!"
+	icon_state = "jelly_laugh"
+	bonus_reagents = list(/datum/reagent/consumable/laughter = 3)
+	tastes = list("jelly" = 3, "donut" = 1, "fizzy tutti frutti" = 1)
+	filling_color = "#803280"
 
 
 ////////////////////////////////////////////MUFFINS////////////////////////////////////////////
@@ -220,6 +244,9 @@
 	filling_color = "#00FF00"
 	tastes = list("meat" = 2, "dough" = 2)
 	foodtype = GRAIN | VEGETABLES
+
+/obj/item/reagent_containers/food/snacks/cookie/sleepy
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/toxin/chloralhydrate = 10)
 
 /obj/item/reagent_containers/food/snacks/fortunecookie
 	name = "fortune cookie"
@@ -372,6 +399,16 @@
 	filling_color = "#F2CE91"
 	tastes = list("pastry" = 1, "sweetness" = 1)
 	foodtype = GRAIN
+
+/obj/item/reagent_containers/food/snacks/jaffacake
+	name = "jaffacake"
+	desc = "A moreish jaffacke. Is it a cake or is it a biscuit? Who knows."
+	icon_state = "jaffacake"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/coco = 1)
+	filling_color = "#D9833E"
+	tastes = list("orange" = 1, "cake" = 1)
+	foodtype = GRAIN | SUGAR | FRUIT
 
 #define PANCAKE_MAX_STACK 10
 

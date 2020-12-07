@@ -10,9 +10,7 @@
 	if(!..())
 		return FALSE
 	var/obj/item/tank/T = O
-	if(!T.air_contents.gases[gas_type])
-		return FALSE
-	return T.air_contents.gases[gas_type][MOLES] >= moles_required
+	return T.air_contents.get_moles(gas_type) >= moles_required
 
 /datum/bounty/item/engineering/gas/nitryl_tank
 	name = "Full Tank of Nitryl"
@@ -35,3 +33,19 @@
 		return FALSE
 	var/obj/singularity/energy_ball/T = O
 	return !T.miniball
+
+/datum/bounty/item/engineering/gas/freon_tank
+	name = "Full Tank of Freon"
+	description = "The Supermatter of station 33 has started the delamination process. Deliver a tank of Freon gas to help them stop it! (20 Moles)"
+	gas_type = /datum/gas/freon
+
+/datum/bounty/item/engineering/gas/hydrogen_tank
+	name = "Full Tank of Hydrogen"
+	description = "Our R&D department is working on the development of more efficient electrical batteries using hydrogen as a catalyst. Ship us a tank full of it. (20 Moles)"
+	gas_type = /datum/gas/hydrogen
+
+/datum/bounty/item/engineering/gas/zauker_tank
+	name = "Full Tank of Zauker"
+	description = "The main planet of \[REDACTED] has been chosen as testing grounds for the new weapon that uses Zauker gas. Ship us a tank full of it. (20 Moles)"
+	reward = 10000
+	gas_type = /datum/gas/zauker

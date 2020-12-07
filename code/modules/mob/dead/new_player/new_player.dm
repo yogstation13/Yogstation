@@ -34,6 +34,8 @@
 	return
 
 /mob/dead/new_player/proc/new_player_panel()
+	var/datum/asset/asset_datum = get_asset_datum(/datum/asset/simple/lobby)
+	asset_datum.send(client)
 	var/output = "<center><p><a href='byond://?src=[REF(src)];show_preferences=1'>Setup Character</a></p>"
 
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
@@ -54,7 +56,19 @@
 			var/isadmin = 0
 			if(src.client && src.client.holder)
 				isadmin = 1
-			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[sanitizeSQL(ckey)]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[sanitizeSQL(ckey)]\")")
+			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery({"
+				SELECT id FROM [format_table_name("poll_question")]
+				WHERE (adminonly = 0 OR :isadmin = 1)
+				AND Now() BETWEEN starttime AND endtime
+				AND id NOT IN (
+					SELECT pollid FROM [format_table_name("poll_vote")]
+					WHERE ckey = :ckey
+				)
+				AND id NOT IN (
+					SELECT pollid FROM [format_table_name("poll_textreply")]
+					WHERE ckey = :ckey
+				)
+			"}, list("isadmin" = isadmin, "ckey" = ckey))
 			var/rs = REF(src)
 			if(query_get_new_polls.Execute())
 				var/newpoll = 0
@@ -71,7 +85,6 @@
 
 	output += "</center>"
 
-	//src << browse(output,"window=playersetup;size=210x240;can_close=0")
 	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>New Player Options</div>", 250, 265)
 	popup.set_window_options("can_close=0")
 	popup.set_content(output)
@@ -173,9 +186,6 @@
 		AttemptLateSpawn(href_list["SelectedJob"])
 		return
 
-	if(!ready && href_list["preference"])
-		if(client)
-			client.prefs.process_link(src, href_list)
 	else if(!href_list["late_join"])
 		new_player_panel()
 
@@ -295,6 +305,7 @@
 	if(observer.client && observer.client.prefs)
 		observer.real_name = observer.client.prefs.real_name
 		observer.name = observer.real_name
+		observer.client.init_verbs()
 	observer.update_icon()
 	observer.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 	QDEL_NULL(mind)
@@ -387,7 +398,7 @@
 		character.update_parallax_teleport()
 
 	SSticker.minds += character.mind
-
+	character.client.init_verbs() // init verbs for the late join
 	var/mob/living/carbon/human/humanc
 	if(ishuman(character))
 		humanc = character	//Let's retypecast the var to be human,
@@ -402,7 +413,7 @@
 		if(GLOB.highlander)
 			to_chat(humanc, "<span class='userdanger'><i>THERE CAN BE ONLY ONE!!!</i></span>")
 			humanc.make_scottish()
-	
+
 		if(GLOB.curse_of_madness_triggered)
 			give_madness(humanc, GLOB.curse_of_madness_triggered)
 
@@ -499,6 +510,11 @@
 	client.prefs.copy_to(H)
 	H.dna.update_dna_identity()
 	if(mind)
+		if(mind.assigned_role)
+			var/datum/job/J = SSjob.GetJob(mind.assigned_role)
+			if(H.age < J?.minimal_character_age)
+				to_chat(client,"<span class='warning'>Your character is too young to play your assigned job. Their age has been corrected to the minimum possible.</span>")
+				H.age = J.minimal_character_age
 		if(transfer_after)
 			mind.late_joiner = TRUE
 		mind.active = 0					//we wish to transfer the key manually
@@ -507,7 +523,7 @@
 		mind.transfer_to(H)					//won't transfer key since the mind is not active
 
 	H.name = real_name
-
+	client.init_verbs()
 	. = H
 	new_character = .
 	if(transfer_after)
@@ -522,9 +538,15 @@
 		qdel(src)
 
 /mob/dead/new_player/proc/ViewManifest()
-	var/dat = "<html><body>"
+	if(!client)
+		return
+	if(world.time < client.crew_manifest_delay)
+		return
+	client.crew_manifest_delay = world.time + (1 SECONDS)
+	var/dat = "<html><HEAD><meta charset='UTF-8'></HEAD><body>"
 	dat += "<h4>Crew Manifest</h4>"
-	dat += GLOB.data_core.get_manifest(OOC = 1)
+	dat += GLOB.data_core.get_manifest_html()
+	dat += "</BODY></HTML>"
 
 	src << browse(dat, "window=manifest;size=387x420;can_close=1")
 

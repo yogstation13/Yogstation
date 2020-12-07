@@ -7,6 +7,19 @@
 	var/buckle_prevents_pull = FALSE
 
 //Interaction
+/atom/movable/attack_robot(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	if(can_buckle && has_buckled_mobs())
+		if(buckled_mobs.len > 1)
+			var/unbuckled = input(user, "Who do you wish to unbuckle?","Unbuckle Who?") as null|mob in buckled_mobs
+			if(user_unbuckle_mob(unbuckled,user))
+				return 1
+		else
+			if(user_unbuckle_mob(buckled_mobs[1],user))
+				return 1
+
 /atom/movable/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
@@ -70,6 +83,7 @@
 	buckled_mobs |= M
 	M.update_mobility()
 	M.throw_alert("buckled", /obj/screen/alert/restrained/buckled)
+	M.set_glide_size(glide_size)
 	post_buckle_mob(M)
 
 	SEND_SIGNAL(src, COMSIG_MOVABLE_BUCKLE, M, force)
@@ -89,6 +103,7 @@
 		buckled_mob.anchored = initial(buckled_mob.anchored)
 		buckled_mob.update_mobility()
 		buckled_mob.clear_alert("buckled")
+		buckled_mob.set_glide_size(DELAY_TO_GLIDE_SIZE(buckled_mob.total_multiplicative_slowdown()))
 		buckled_mobs -= buckled_mob
 		SEND_SIGNAL(src, COMSIG_MOVABLE_UNBUCKLE, buckled_mob, force)
 

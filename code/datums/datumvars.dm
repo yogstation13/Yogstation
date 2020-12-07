@@ -37,7 +37,7 @@
 
 
 /client/proc/debug_variables(datum/D in world)
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "View Variables"
 	//set src in world
 	var/static/cookieoffset = rand(1, 9999) //to force cookies to reset after the round.
@@ -159,40 +159,40 @@
 				value = L[key]
 			variable_html += debug_variable(i, value, 0, D)
 	else if(isappearance(D))
-		variable_html += debug_variable("animate_movement", D:animate_movement, 0, D)
-		variable_html += debug_variable("screen_loc", D:screen_loc, 0, D)
-		variable_html += debug_variable("pixel_step_size", D:pixel_step_size, 0, D)
-		variable_html += debug_variable("glide_size", D:glide_size, 0, D)
 		variable_html += debug_variable("type", D:type, 0, D)
-		variable_html += debug_variable("parent_type", D:parent_type, 0, D)
-		variable_html += debug_variable("tag", D:tag, 0, D)
 		variable_html += debug_variable("name", D:name, 0, D)
 		variable_html += debug_variable("desc", D:desc, 0, D)
 		variable_html += debug_variable("suffix", D:suffix, 0, D)
 		variable_html += debug_variable("text", D:text, 0, D)
 		variable_html += debug_variable("icon", D:icon, 0, D)
 		variable_html += debug_variable("icon_state", D:icon_state, 0, D)
-		variable_html += debug_variable("overlays", D:overlays, 0, D)
-		variable_html += debug_variable("underlays", D:underlays, 0, D)
-		variable_html += debug_variable("dir", D:dir, 0, D)
 		variable_html += debug_variable("visibility", D:visibility, 0, D)
 		variable_html += debug_variable("luminosity", D:luminosity, 0, D)
 		variable_html += debug_variable("opacity", D:opacity, 0, D)
 		variable_html += debug_variable("density", D:density, 0, D)
-		variable_html += debug_variable("layer", D:layer, 0, D)
+		variable_html += debug_variable("verbs", D:verbs, 0, D)
+		variable_html += debug_variable("dir", D:dir, 0, D)
 		variable_html += debug_variable("gender", D:gender, 0, D)
+		variable_html += debug_variable("tag", D:tag, 0, D)
+		variable_html += debug_variable("overlays", D:overlays, 0, D)
+		variable_html += debug_variable("underlays", D:underlays, 0, D)
+		variable_html += debug_variable("layer", D:layer, 0, D)
+		variable_html += debug_variable("parent_type", D:parent_type, 0, D)
 		variable_html += debug_variable("mouse_over_pointer", D:mouse_over_pointer, 0, D)
 		variable_html += debug_variable("mouse_drag_pointer", D:mouse_drag_pointer, 0, D)
 		variable_html += debug_variable("mouse_drop_pointer", D:mouse_drop_pointer, 0, D)
 		variable_html += debug_variable("mouse_drop_zone", D:mouse_drop_zone, 0, D)
-		variable_html += debug_variable("verbs", D:verbs, 0, D)
-		variable_html += debug_variable("invisibility", D:invisibility, 0, D)
+		variable_html += debug_variable("animate_movement", D:animate_movement, 0, D)
+		variable_html += debug_variable("screen_loc", D:screen_loc, 0, D)
 		variable_html += debug_variable("infra_luminosity", D:infra_luminosity, 0, D)
+		variable_html += debug_variable("invisibility", D:invisibility, 0, D)
+		variable_html += debug_variable("mouse_opacity", D:mouse_opacity, 0, D)
 		variable_html += debug_variable("pixel_x", D:pixel_x, 0, D)
 		variable_html += debug_variable("pixel_y", D:pixel_y, 0, D)
-		variable_html += debug_variable("mouse_opacity", D:mouse_opacity, 0, D)
+		variable_html += debug_variable("pixel_step_size", D:pixel_step_size, 0, D)
 		variable_html += debug_variable("pixel_z", D:pixel_z, 0, D)
 		variable_html += debug_variable("override", D:override, 0, D)
+		variable_html += debug_variable("glide_size", D:glide_size, 0, D)
 		variable_html += debug_variable("maptext", D:maptext, 0, D)
 		variable_html += debug_variable("maptext_width", D:maptext_width, 0, D)
 		variable_html += debug_variable("maptext_height", D:maptext_height, 0, D)
@@ -206,12 +206,8 @@
 		variable_html += debug_variable("plane", D:plane, 0, D)
 		variable_html += debug_variable("appearance_flags", D:appearance_flags, 0, D)
 		variable_html += debug_variable("pixel_w", D:pixel_w, 0, D)
-		variable_html += debug_variable("filters", D:filters, 0, D)
-		variable_html += debug_variable("type", D:type, 0, D)
-		variable_html += debug_variable("text", D:text, 0, D)
-		variable_html += debug_variable("visibility", D:visibility, 0, D)
-		variable_html += debug_variable("luminosity", D:luminosity, 0, D)
-		variable_html += debug_variable("opacity", D:opacity, 0, D)
+		variable_html += debug_variable("render_source", D:render_source, 0, D)
+		variable_html += debug_variable("render_target", D:render_target, 0, D)
 	else
 
 		names = sortList(names)
@@ -222,17 +218,9 @@
 	var/html = {"
 <html>
 	<head>
+		<meta charset='UTF-8'>
 		<title>[title]</title>
-		<style>
-			body {
-				font-family: Verdana, sans-serif;
-				font-size: 9pt;
-			}
-			.value {
-				font-family: "Courier New", monospace;
-				font-size: 8pt;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="view_variables.css">
 	</head>
 	<body onload='selectTextField()' onkeydown='return handle_keydown()' onkeyup='handle_keyup()'>
 		<script type="text/javascript">
@@ -459,6 +447,7 @@
 
 
 #define VV_HTML_ENCODE(thing) ( sanitize ? html_encode(thing) : thing )
+/// Get displayed variable in VV variable list
 /proc/debug_variable(name, value, level, datum/DA = null, sanitize = TRUE)
 	var/header
 	if(DA && !isappearance(DA))
@@ -495,9 +484,17 @@
 	else if (isfile(value))
 		item = "[VV_HTML_ENCODE(name)] = <span class='value'>'[value]'</span>"
 
-	else if(istype(value, /matrix))
+	else if(istype(value,/matrix)) // Needs to be before datum
 		var/matrix/M = value
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>matrix([M.a], [M.b], [M.c], [M.d], [M.e], [M.f])</span>"
+		item = {"[VV_HTML_ENCODE(name)] = <span class='value'>
+			<table class='matrixbrak'><tbody><tr><td class='lbrak'>&nbsp;</td><td>
+			<table class='matrix'>
+			<tbody>
+				<tr><td>[M.a]</td><td>[M.d]</td><td>0</td></tr>
+				<tr><td>[M.b]</td><td>[M.e]</td><td>0</td></tr>
+				<tr><td>[M.c]</td><td>[M.f]</td><td>1</td></tr>
+			</tbody>
+			</table></td><td class='rbrak'>&nbsp;</td></tr></tbody></table></span>"} //TODO link to modify_transform wrapper for all matrices
 
 	else if(isappearance(value))
 		var/image/I = value
@@ -656,33 +653,32 @@
 		offer_control(M)
 	// yogs end
 
+	//~CARN: for renaming mobs (updates their name, real_name, mind.name, their ID/PDA and datacore records).
+
+	else if(href_list["rename"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/mob/M = locate(href_list["rename"]) in GLOB.mob_list
+		if(!istype(M))
+			to_chat(usr, "This can only be used on instances of type /mob")
+			return
+
+		var/new_name = stripped_input(usr,"What would you like to name this mob?","Input a name",M.real_name,MAX_NAME_LEN)
+		if( !new_name || !M )
+			return
+
+		message_admins("Admin [key_name_admin(usr)] renamed [key_name_admin(M)] to [new_name].")
+		M.fully_replace_character_name(M.real_name,new_name)
+		vv_update_display(M, "name", new_name)
+		vv_update_display(M, "real_name", M.real_name || "No real name")
 
 //Needs +VAREDIT past this point
 
+
 	else if(check_rights(R_VAREDIT))
 
-
-	//~CARN: for renaming mobs (updates their name, real_name, mind.name, their ID/PDA and datacore records).
-
-		if(href_list["rename"])
-			if(!check_rights(NONE))
-				return
-
-			var/mob/M = locate(href_list["rename"]) in GLOB.mob_list
-			if(!istype(M))
-				to_chat(usr, "This can only be used on instances of type /mob")
-				return
-
-			var/new_name = stripped_input(usr,"What would you like to name this mob?","Input a name",M.real_name,MAX_NAME_LEN)
-			if( !new_name || !M )
-				return
-
-			message_admins("Admin [key_name_admin(usr)] renamed [key_name_admin(M)] to [new_name].")
-			M.fully_replace_character_name(M.real_name,new_name)
-			vv_update_display(M, "name", new_name)
-			vv_update_display(M, "real_name", M.real_name || "No real name")
-
-		else if(href_list["varnameedit"] && href_list["datumedit"])
+		if(href_list["varnameedit"] && href_list["datumedit"])
 			if(!check_rights(NONE))
 				return
 
@@ -1036,6 +1032,12 @@
 				return
 
 			src.cmd_admin_explosion(A)
+
+		else if(href_list["radiate"] && check_rights(R_FUN))
+			var/atom/A = locate(href_list["radiate"])
+			var/strength = input(usr, "Choose the radiation strength.", "Choose the strength.") as num|null
+			if(!isnull(strength))
+				A.AddComponent(/datum/component/radioactive, strength, src)
 
 		else if(href_list["emp"])
 			if(!check_rights(R_FUN))
@@ -1498,3 +1500,27 @@
 						H.remove_quirk(T)
 					else
 						H.add_quirk(T,TRUE)
+		else if(href_list["delete_paint"])
+			if(!check_rights(R_ADMIN))
+				return
+
+			var/obj/structure/sign/painting/P = locate(href_list["delete_paint"])
+
+			var/mob/user = usr
+			if(!P.persistence_id || !P.C)
+				to_chat(user,"<span class='warning'>This is not a persistent painting.</span>")
+				return
+			var/md5 = md5(P.C.get_data_string())
+			var/author = P.C.author_ckey
+			var/list/current = SSpersistence.paintings[P.persistence_id]
+			if(current)
+				for(var/list/entry in current)
+					if(entry["md5"] == md5)
+						current -= entry
+				var/png = "data/paintings/[P.persistence_id]/[md5].png"
+				fdel(png)
+			for(var/obj/structure/sign/painting/PA in SSpersistence.painting_frames)
+				if(PA.C && md5(PA.C.get_data_string()) == md5)
+					QDEL_NULL(PA.C)
+			log_admin("[key_name(user)] has deleted a persistent painting made by [author].")
+			message_admins("<span class='notice'>[key_name_admin(user)] has deleted persistent painting made by [author].</span>")

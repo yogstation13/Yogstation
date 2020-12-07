@@ -18,7 +18,6 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	circuit = /obj/item/circuitboard/computer/card
 	var/obj/item/card/id/scan = null
 	var/obj/item/card/id/modify = null
-	var/authenticated = 0
 	var/mode = 0
 	var/printing = null
 	var/list/region_access = null
@@ -225,6 +224,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		var/target_name = modify ? html_encode(modify.name) : "--------"
 		var/target_owner = (modify && modify.registered_name) ? html_encode(modify.registered_name) : "--------"
 		var/target_rank = (modify && modify.assignment) ? html_encode(modify.assignment) : "Unassigned"
+		var/target_age = (modify && modify.registered_age) ? html_encode(modify.registered_age) : "--------"
 
 
 		if(!authenticated)
@@ -272,7 +272,8 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 					<input type='hidden' name='src' value='[REF(src)]'>
 					<input type='hidden' name='choice' value='reg'>
 					<b>registered name:</b> <input type='text' id='namefield' name='reg' value='[target_owner]' style='width:250px; background-color:white;' onchange='markRed()'>
-					<input type='submit' value='Rename' onclick='markGreen()'>
+					<b>registered age:</b> <input type='number' id='namefield' name='setage' value='[target_age]' style='width:50px; background-color:white;' onchange='markRed()'>
+					<input type='submit' value='Submit' onclick='markGreen()'>
 					</form>
 					<b>Assignment:</b> "}
 
@@ -322,7 +323,6 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		dat = list("<tt>", header.Join(), body, "<hr><br></tt>")
 	var/datum/browser/popup = new(user, "id_com", src.name, 900, 620)
 	popup.set_content(dat.Join())
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/computer/card/Topic(href, href_list)
@@ -411,9 +411,11 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 							updateUsrDialog()
 							break
 					if(!jobdatum)
-						to_chat(usr, "<span class='error'>No log exists for this job.</span>")
+						to_chat(usr, "<span class='warning'>No log exists for this job.</span>")
 						updateUsrDialog()
 						return
+					if(!isnull(modify.registered_age) && modify.registered_age < jobdatum.minimal_character_age)
+						to_chat(usr, "<span class='warning'>This individual is too young to hold that Job, per Nanotrasen guidelines. Suggest aborting Job Assignment!</span>")
 					if(modify.registered_account)
 						modify.registered_account.account_job = jobdatum // this is a terrible idea and people will grief but sure whatever
 
@@ -432,6 +434,14 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 			if (authenticated)
 				var/t2 = modify
 				if ((authenticated && modify == t2 && (in_range(src, usr) || issilicon(usr)) && isturf(loc)))
+					var/newAge = text2num(href_list["setage"])|null
+					if(newAge && isnum(newAge))
+						modify.registered_age = newAge
+						playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
+					else if(!isnull(newAge))
+						to_chat(usr, "<span class='alert'>Invalid age entered- age not updated.</span>")
+						updateUsrDialog()
+
 					var/newName = reject_bad_name(href_list["reg"])
 					if(newName)
 						modify.registered_name = newName

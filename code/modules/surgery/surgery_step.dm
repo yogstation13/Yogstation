@@ -2,10 +2,10 @@
 	var/name
 	var/list/implements = list()	//format is path = probability of success. alternatively
 	var/implement_type = null		//the current type of implement used. This has to be stored, as the actual typepath of the tool may not match the list type.
-	var/accept_hand = 0				//does the surgery step require an open hand? If true, ignores implements. Compatible with accept_any_item.
-	var/accept_any_item = 0			//does the surgery step accept any item? If true, ignores implements. Compatible with require_hand.
+	var/accept_hand = FALSE				//does the surgery step require an open hand? If true, ignores implements. Compatible with accept_any_item.
+	var/accept_any_item = FALSE			//does the surgery step accept any item? If true, ignores implements. Compatible with require_hand.
 	var/time = 10					//how long does the step take?
-	var/repeatable = 0				//can this step be repeated? Make shure it isn't last step, or it used in surgery with `can_cancel = 1`. Or surgion will be stuck in the loop
+	var/repeatable = FALSE				//can this step be repeated? Make shure it isn't last step, or it used in surgery with `can_cancel = 1`. Or surgion will be stuck in the loop
 	var/list/chems_needed = list()  //list of chems needed to complete the step. Even on success, the step will have no effect if there aren't the chems required in the mob.
 	var/require_all_chems = TRUE    //any on the list or all on the list?
 
@@ -57,18 +57,14 @@
 		if(next_step)
 			surgery.status++
 			if(next_step.try_op(user, target, user.zone_selected, user.get_active_held_item(), surgery))
-				return 1
+				return TRUE
 			else
 				surgery.status--
-
-	if(iscyborg(user) && user.a_intent != INTENT_HARM) //to save asimov borgs a LOT of heartache
-		return 1
-
-	return 0
+	return FALSE
 
 
 /datum/surgery_step/proc/initiate(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
-	surgery.step_in_progress = 1
+	surgery.step_in_progress = TRUE
 
 	var/speed_mod = 1
 
@@ -80,7 +76,7 @@
 		speed_mod = tool.toolspeed
 
 	if(do_after(user, time * speed_mod, target = target))
-		var/advance = 0
+		var/advance = FALSE
 		var/prob_chance = 100
 
 		if(implement_type)	//this means it isn't a require hand or any item step.
@@ -90,17 +86,17 @@
 		if((prob(prob_chance) || iscyborg(user)) && chem_check(target, user,
 	 tool) && !try_to_fail)
 			if(success(user, target, target_zone, tool, surgery))
-				advance = 1
+				advance = TRUE
 		else
 			if(failure(user, target, target_zone, tool, surgery))
-				advance = 1
+				advance = TRUE
 
 		if(advance && !repeatable)
 			surgery.status++
 			if(surgery.status > surgery.steps.len)
 				surgery.complete()
 
-	surgery.step_in_progress = 0
+	surgery.step_in_progress = FALSE
 
 
 /datum/surgery_step/proc/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -121,7 +117,7 @@
 	return FALSE
 
 /datum/surgery_step/proc/tool_check(mob/user, obj/item/tool)
-	return 1
+	return TRUE
 
 /datum/surgery_step/proc/chem_check(mob/living/carbon/target, user,  obj/item/tool)
 	if(!LAZYLEN(chems_needed))

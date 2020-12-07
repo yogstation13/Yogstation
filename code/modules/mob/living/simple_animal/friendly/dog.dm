@@ -1,6 +1,10 @@
 //Dogs.
 
 /mob/living/simple_animal/pet/dog
+	name = "dog"
+	icon_state = "blackdog"
+	icon_living = "blackdog"
+	icon_dead = "blackdog_dead"
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	response_help  = "pets"
 	response_disarm = "bops"
@@ -13,6 +17,7 @@
 	see_in_dark = 5
 	speak_chance = 1
 	turns_per_move = 10
+	gold_core_spawnable = FRIENDLY_SPAWN
 
 	do_footstep = TRUE
 
@@ -52,6 +57,44 @@
 		regenerate_icons()
 	return ..()
 
+/mob/living/simple_animal/pet/dog/corgi/borgi
+	name = "E-N"
+	real_name = "E-N"
+	desc = "It's a borgi."
+	icon_state = "borgi"
+	icon_living = "borgi"
+	icon_dead = "borgi_dead"
+	var/emagged = FALSE
+	minbodytemp = 0
+	loot = list(/obj/effect/decal/cleanable/robot_debris)
+	del_on_death = TRUE
+	deathmessage = "blows apart!"
+	animal_species = /mob/living/simple_animal/pet/dog/corgi/borgi
+	nofur = TRUE
+
+/mob/living/simple_animal/pet/dog/corgi/borgi/emag_act(user as mob)
+	if(!emagged)
+		emagged = TRUE
+		visible_message("<span class='warning'>[user] swipes a card through [src].</span>", "<span class='notice'>You overload [src]s internal reactor.</span>")
+		addtimer(CALLBACK(src, .proc/explode), 1000)
+
+/mob/living/simple_animal/pet/dog/corgi/borgi/proc/explode()
+	visible_message("<span class='warning'>[src] makes an odd whining noise.</span>")
+	explosion(get_turf(src), 0, 1, 4, 7)
+	death()
+
+/mob/living/simple_animal/pet/dog/corgi/borgi/Life(seconds, times_fired)
+	..()
+	//spark for no reason
+	if(prob(5))
+		do_sparks(3, 1, src)
+
+/mob/living/simple_animal/pet/dog/corgi/borgi/death(gibbed)
+	// Only execute the below if we successfully died
+	. = ..(gibbed)
+	if(!.)
+		return FALSE
+	do_sparks(3, 1, src)
 
 /mob/living/simple_animal/pet/dog/pug
 	name = "\improper pug"
@@ -102,10 +145,10 @@
 	user.set_machine(src)
 
 
-	var/dat = 	"<div align='center'><b>Inventory of [name]</b></div><p>"
+	var/dat = 	"<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><div align='center'><b>Inventory of [name]</b></div><p>"
 	dat += "<br><B>Head:</B> <A href='?src=[REF(src)];[inventory_head ? "remove_inv=head'>[inventory_head]" : "add_inv=head'>Nothing"]</A>"
 	dat += "<br><B>Back:</B> <A href='?src=[REF(src)];[inventory_back ? "remove_inv=back'>[inventory_back]" : "add_inv=back'>Nothing"]</A>"
-	dat += "<br><B>Collar:</B> <A href='?src=[REF(src)];[pcollar ? "remove_inv=collar'>[pcollar]" : "add_inv=collar'>Nothing"]</A>"
+	dat += "<br><B>Collar:</B> <A href='?src=[REF(src)];[pcollar ? "remove_inv=collar'>[pcollar]" : "add_inv=collar'>Nothing"]</A></BODY></HTML>"
 
 	user << browse(dat, "window=mob[REF(src)];size=325x500")
 	onclose(user, "mob[REF(src)]")
@@ -201,7 +244,11 @@
 
 		switch(add_to)
 			if("collar")
-				add_collar(usr.get_active_held_item(), usr)
+				var/obj/item/clothing/neck/petcollar/P = usr.get_active_held_item()
+				if(!istype(P))
+					to_chat(usr,"<span class='warning'>That's not a collar.</span>")
+					return
+				add_collar(P, usr)
 				update_corgi_fluff()
 
 			if(BODY_ZONE_HEAD)
@@ -258,7 +305,7 @@
 /mob/living/simple_animal/pet/dog/corgi/proc/place_on_head(obj/item/item_to_add, mob/user)
 
 	if(istype(item_to_add, /obj/item/grenade/plastic)) // last thing he ever wears, I guess
-		item_to_add.afterattack(src,user,1)
+		INVOKE_ASYNC(item_to_add, /obj/item.proc/afterattack, src, user, 1)
 		return
 
 	if(inventory_head)
@@ -444,13 +491,16 @@
 				step_to(src,movement_target,1)
 
 				if(movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
-					if (movement_target.loc.x < src.x)
+					var/turf/T = get_turf(movement_target)
+					if(!T)
+						return
+					if (T.x < src.x)
 						setDir(WEST)
-					else if (movement_target.loc.x > src.x)
+					else if (T.x > src.x)
 						setDir(EAST)
-					else if (movement_target.loc.y < src.y)
+					else if (T.y < src.y)
 						setDir(SOUTH)
-					else if (movement_target.loc.y > src.y)
+					else if (T.y > src.y)
 						setDir(NORTH)
 					else
 						setDir(SOUTH)
@@ -641,9 +691,9 @@
 /mob/living/simple_animal/pet/dog/attack_hand(mob/living/carbon/human/M)
 	. = ..()
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			wuv(1,M)
-		if("harm")
+		if(INTENT_HARM)
 			wuv(-1,M)
 
 /mob/living/simple_animal/pet/dog/proc/wuv(change, mob/M)

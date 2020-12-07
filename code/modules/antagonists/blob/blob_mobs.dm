@@ -24,10 +24,12 @@
 	else
 		remove_atom_colour(FIXED_COLOUR_PRIORITY)
 
+
 /mob/living/simple_animal/hostile/blob/Destroy()
 	if(overmind)
 		overmind.blob_mobs -= src
 	return ..()
+
 
 /mob/living/simple_animal/hostile/blob/blob_act(obj/structure/blob/B)
 	if(stat != DEAD && health < maxHealth)
@@ -42,14 +44,14 @@
 /mob/living/simple_animal/hostile/blob/fire_act(exposed_temperature, exposed_volume)
 	..()
 	if(exposed_temperature)
-		adjustFireLoss(CLAMP(0.01 * exposed_temperature, 1, 5))
+		adjustFireLoss(clamp(0.01 * exposed_temperature, 1, 5))
 	else
 		adjustFireLoss(5)
 
-/mob/living/simple_animal/hostile/blob/CanPass(atom/movable/mover, turf/target)
+/mob/living/simple_animal/hostile/blob/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover, /obj/structure/blob))
-		return 1
-	return ..()
+		return TRUE
 
 /mob/living/simple_animal/hostile/blob/Process_Spacemove(movement_dir = 0)
 	for(var/obj/structure/blob/B in range(1, src))
@@ -221,7 +223,7 @@
 /mob/living/simple_animal/hostile/blob/blobbernaut/Initialize()
 	. = ..()
 	if(!independent) //no pulling people deep into the blob
-		verbs -= /mob/living/verb/pulled
+		remove_verb(src, /mob/living/verb/pulled)
 	else
 		pass_flags &= ~PASSBLOB
 

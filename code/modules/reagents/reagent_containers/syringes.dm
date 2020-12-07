@@ -12,7 +12,7 @@
 	var/mode = SYRINGE_DRAW
 	var/busy = FALSE		// needed for delayed drawing of blood
 	var/proj_piercing = 0 //does it pierce through thick clothes when shot with syringe gun
-	materials = list(MAT_METAL=10, MAT_GLASS=20)
+	materials = list(/datum/material/iron=10, /datum/material/glass=20)
 	reagent_flags = TRANSPARENT
 
 /obj/item/reagent_containers/syringe/Initialize()
@@ -152,7 +152,7 @@
 								for(var/datum/symptom/S in DD.symptoms)
 									viruslist += "[S.name] "
 								viruslist += "\]"
-				
+
 				if(viruslist)
 					investigate_log("[user.real_name] ([user.ckey]) injected [L.real_name] ([L.ckey]) with [viruslist]", INVESTIGATE_VIROLOGY)
 					log_game("[user.real_name] ([user.ckey]) injected [L.real_name] ([L.ckey]) with [viruslist]")
@@ -174,7 +174,7 @@
 	cut_overlays()
 	var/rounded_vol
 	if(reagents && reagents.total_volume)
-		rounded_vol = CLAMP(round((reagents.total_volume / volume * 15),5), 1, 15)
+		rounded_vol = clamp(round((reagents.total_volume / volume * 15),5), 1, 15)
 		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe[rounded_vol]")
 		filling_overlay.color = mix_color_from_reagents(reagents.reagent_list)
 		add_overlay(filling_overlay)
@@ -261,6 +261,13 @@
 	volume = 1
 	list_reagents = list(/datum/reagent/gluttonytoxin = 1)
 
+/obj/item/reagent_containers/syringe/ghost
+	name = "Spectral Curse"
+	desc = "A syringe recovered from a dreaded place. It probably isn't wise to use."
+	amount_per_transfer_from_this = 1
+	volume = 1
+	list_reagents = list(/datum/reagent/ghosttoxin = 1)
+
 /obj/item/reagent_containers/syringe/bluespace
 	name = "bluespace syringe"
 	desc = "An advanced syringe that can hold 60 units of chemicals."
@@ -278,6 +285,11 @@
 	desc = "A diamond-tipped syringe that pierces armor when launched at high velocity. It can hold up to 10 units."
 	volume = 10
 	proj_piercing = 1
+
+/obj/item/reagent_containers/syringe/crude
+	name = "crude syringe"
+	desc = "A crudely made syringe. The flimsy wooden construction makes it hold up minimal amounts of reagents."
+	volume = 5
 
 /obj/item/reagent_containers/syringe/spider_extract
 	name = "spider extract syringe"

@@ -2,12 +2,6 @@
 "a" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"b" = (
-/turf/closed/wall/mineral/wood,
-/area/ruin/powered)
-"c" = (
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/powered)
 "d" = (
 /obj/structure/table/wood,
 /obj/item/clothing/suit/space/hardsuit/wizard,
@@ -144,20 +138,8 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
-"w" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken"
-	},
-/area/ruin/powered)
 "x" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	icon_state = "wood-broken3"
-	},
-/area/ruin/powered)
-"y" = (
-/obj/effect/decal/remains/human,
-/turf/open/floor/wood,
+/turf/closed/indestructible/riveted/uranium,
 /area/ruin/powered)
 "z" = (
 /obj/structure/table/wood,
@@ -176,14 +158,6 @@
 /obj/item/toy/plush/stuffedmonkey,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"C" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
-	},
-/area/ruin/powered)
 "D" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -193,11 +167,28 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
+"G" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"P" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"R" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
 "S" = (
 /mob/living/simple_animal/hostile/wizard/cloaked{
 	name = "Malarky The Mad"
 	},
 /turf/open/floor/wood,
+/area/ruin/powered)
+"U" = (
+/turf/open/floor/wood/lavaland,
 /area/ruin/powered)
 
 (1,1,1) = {"
@@ -214,11 +205,11 @@ a
 "}
 (2,1,1) = {"
 a
-b
-b
-b
-b
-b
+x
+x
+x
+x
+x
 a
 a
 a
@@ -226,182 +217,182 @@ a
 "}
 (3,1,1) = {"
 a
-b
+x
 d
 k
 o
-b
-h
 x
-b
+U
+P
+x
 a
 "}
 (4,1,1) = {"
 a
-b
+x
 e
 l
 p
-b
-h
-y
-C
+x
+U
+R
+G
 a
 "}
 (5,1,1) = {"
 a
-b
+x
 f
 h
 q
-b
-w
-h
-h
+x
+U
+U
+U
 a
 "}
 (6,1,1) = {"
 a
-b
-b
+x
+x
 i
-b
-b
-b
+x
+x
+x
 i
-b
+x
 a
 "}
 (7,1,1) = {"
 a
-b
+x
 g
 h
 h
 h
 h
 h
-b
+x
 a
 "}
 (8,1,1) = {"
 a
-b
+x
 h
 h
 D
 h
 g
 h
-b
+x
 a
 "}
 (9,1,1) = {"
 a
-b
+x
 i
-b
-b
-b
+x
+x
+x
 i
-b
-b
+x
+x
 a
 "}
 (10,1,1) = {"
 a
-b
+x
 j
 n
-b
+x
 s
 h
 h
-b
+x
 a
 "}
 (11,1,1) = {"
 a
-b
-b
-b
-b
-b
+x
+x
+x
+x
+x
 h
 h
-b
+x
 a
 "}
 (12,1,1) = {"
 a
-c
-b
+a
+x
 m
 h
 t
 g
 h
-b
+x
 a
 "}
 (13,1,1) = {"
 a
 a
-b
+x
 m
 h
 h
 h
 h
-b
+x
 a
 "}
 (14,1,1) = {"
 a
 a
-b
+x
 r
 h
 h
 S
 z
-b
+x
 a
 "}
 (15,1,1) = {"
 a
 a
-b
+x
 u
 h
 g
 h
 A
-b
+x
 a
 "}
 (16,1,1) = {"
 a
 a
-b
+x
 r
 h
 v
 h
 B
-b
+x
 a
 "}
 (17,1,1) = {"
 a
 a
-b
-b
-b
-b
-b
-b
-b
+x
+x
+x
+x
+x
+x
+x
 a
 "}
 (18,1,1) = {"

@@ -22,7 +22,7 @@
 	var/del_on_unbuckle_all = FALSE
 
 /datum/component/riding/Initialize()
-	if(!ismovableatom(parent))
+	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_MOVABLE_BUCKLE, .proc/vehicle_mob_buckle)
 	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, .proc/vehicle_mob_unbuckle)
@@ -32,10 +32,14 @@
 	var/atom/movable/AM = parent
 	restore_position(M)
 	unequip_buckle_inhands(M)
+	M.updating_glide_size = TRUE
 	if(del_on_unbuckle_all && !AM.has_buckled_mobs())
 		qdel(src)
 
 /datum/component/riding/proc/vehicle_mob_buckle(datum/source, mob/living/M, force = FALSE)
+	var/atom/movable/AM = parent
+	M.set_glide_size(AM.glide_size)
+	M.updating_glide_size = FALSE
 	handle_vehicle_offsets()
 
 /datum/component/riding/proc/handle_vehicle_layer()
@@ -53,8 +57,8 @@
 
 /datum/component/riding/proc/vehicle_moved(datum/source)
 	var/atom/movable/AM = parent
-	for(var/i in AM.buckled_mobs)
-		ride_check(i)
+	for(var/mob/M in AM.buckled_mobs)
+		ride_check(M)
 	handle_vehicle_offsets()
 	handle_vehicle_layer()
 
@@ -136,7 +140,7 @@
 		buckled_mob.pixel_x = 0
 		buckled_mob.pixel_y = 0
 		if(buckled_mob.client)
-			buckled_mob.client.change_view(CONFIG_GET(string/default_view))
+			buckled_mob.client.view_size.resetToDefault()
 
 //MOVEMENT
 /datum/component/riding/proc/turf_check(turf/next, turf/current)
@@ -154,6 +158,11 @@
 
 	if(world.time < last_vehicle_move + ((last_move_diagonal? 2 : 1) * vehicle_move_delay * CONFIG_GET(number/movedelay/run_delay))) //yogs - fixed this to work with movespeed
 		return
+
+	AM.set_glide_size((last_move_diagonal? 2 : 1) * DELAY_TO_GLIDE_SIZE(vehicle_move_delay) * CONFIG_GET(number/movedelay/run_delay))
+	for(var/mob/M in AM.buckled_mobs)
+		ride_check(M)
+		M.set_glide_size(AM.glide_size)
 	last_vehicle_move = world.time
 
 	if(keycheck(user))
@@ -172,6 +181,10 @@
 			last_move_diagonal = TRUE
 		else
 			last_move_diagonal = FALSE
+		AM.set_glide_size((last_move_diagonal? 2 : 1) * DELAY_TO_GLIDE_SIZE(vehicle_move_delay) * CONFIG_GET(number/movedelay/run_delay))
+		for(var/mob/M in AM.buckled_mobs)
+			ride_check(M)
+			M.set_glide_size(AM.glide_size)
 
 		handle_vehicle_layer()
 		handle_vehicle_offsets()
@@ -201,20 +214,47 @@
 	. = ..()
 	RegisterSignal(parent, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, .proc/on_host_unarmed_melee)
 
+/datum/component/riding/human/vehicle_mob_unbuckle(datum/source, mob/living/M, force = FALSE)
+	unequip_buckle_inhands(parent)
+	var/mob/living/carbon/human/AM = parent
+	AM.remove_movespeed_modifier(MOVESPEED_ID_HUMAN_CARRYING)
+	. = ..()
+
+/datum/component/riding/human/vehicle_mob_buckle(datum/source, mob/living/M, force = FALSE)
+	. = ..()
+	var/mob/living/carbon/human/AM = parent
+	var/slowdown = HUMAN_CARRY_SLOWDOWN - (AM.dna.check_mutation(STRONG) ? 0.2 : 0)
+	AM.add_movespeed_modifier(MOVESPEED_ID_HUMAN_CARRYING, multiplicative_slowdown = slowdown)
+
 /datum/component/riding/human/proc/on_host_unarmed_melee(atom/target)
 	var/mob/living/carbon/human/AM = parent
 	if(AM.a_intent == INTENT_DISARM && (target in AM.buckled_mobs))
 		force_dismount(target)
 
-/datum/component/riding/human/handle_vehicle_layer()
+/datum/component/riding/human/handle_vehicle_layer(dir)
 	var/atom/movable/AM = parent
 	if(AM.buckled_mobs && AM.buckled_mobs.len)
-		if(AM.dir == SOUTH)
-			AM.layer = ABOVE_MOB_LAYER
+		for(var/mob/M in AM.buckled_mobs) //ensure proper layering of piggyback and carry, sometimes weird offsets get applied
+			M.layer = MOB_LAYER
+		if(!AM.buckle_lying)
+			if(dir == SOUTH)
+				AM.layer = ABOVE_MOB_LAYER
+			else
+				AM.layer = OBJ_LAYER
 		else
-			AM.layer = OBJ_LAYER
+			if(dir == NORTH)
+				AM.layer = OBJ_LAYER
+			else
+				AM.layer = ABOVE_MOB_LAYER
 	else
 		AM.layer = MOB_LAYER
+
+/datum/component/riding/human/get_offsets(pass_index)
+	var/mob/living/carbon/human/H = parent
+	if(H.buckle_lying)
+		return list(TEXT_NORTH = list(0, 6), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(0, 6), TEXT_WEST = list(0, 6))
+	else
+		return list(TEXT_NORTH = list(0, 6), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(-6, 4), TEXT_WEST = list( 6, 4))
 
 /datum/component/riding/human/force_dismount(mob/living/user)
 	var/atom/movable/AM = parent
@@ -280,12 +320,15 @@
 	M.throw_at(target, 14, 5, AM)
 	M.Paralyze(60)
 
-/datum/component/riding/proc/equip_buckle_inhands(mob/living/carbon/human/user, amount_required = 1)
+/datum/component/riding/proc/equip_buckle_inhands(mob/living/carbon/human/user, amount_required = 1, riding_target_override = null)
 	var/atom/movable/AM = parent
 	var/amount_equipped = 0
 	for(var/amount_needed = amount_required, amount_needed > 0, amount_needed--)
 		var/obj/item/riding_offhand/inhand = new /obj/item/riding_offhand(user)
-		inhand.rider = user
+		if(!riding_target_override)
+			inhand.rider = user
+		else
+			inhand.rider = riding_target_override
 		inhand.parent = AM
 		if(user.put_in_hands(inhand, TRUE))
 			amount_equipped++
@@ -302,7 +345,6 @@
 	for(var/obj/item/riding_offhand/O in user.contents)
 		if(O.parent != AM)
 			CRASH("RIDING OFFHAND ON WRONG MOB")
-			continue
 		if(O.selfdeleting)
 			continue
 		else
@@ -325,7 +367,7 @@
 	. = ..()
 
 /obj/item/riding_offhand/equipped()
-	if(loc != rider)
+	if(loc != rider && loc != parent)
 		selfdeleting = TRUE
 		qdel(src)
 	. = ..()

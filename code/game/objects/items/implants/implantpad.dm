@@ -65,7 +65,10 @@
 		return
 
 	user.set_machine(src)
-	var/dat = "<B>Implant Mini-Computer:</B><HR>"
+	var/dat = ""
+	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
+
+	dat += "<B>Implant Mini-Computer:</B><HR>"
 	if(case)
 		if(case.imp)
 			if(istype(case.imp, /obj/item/implant))
@@ -74,5 +77,6 @@
 			dat += "The implant casing is empty."
 	else
 		dat += "Please insert an implant casing!"
+	dat += "</BODY></HTML>"
 	user << browse(dat, "window=implantpad")
 	onclose(user, "implantpad")

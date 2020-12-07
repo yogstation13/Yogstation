@@ -359,7 +359,7 @@
 			if(prob(50))
 				neck = /obj/item/bedsheet/rd/royal_cape
 			if(prob(10))
-				l_pocket = pick(list(/obj/item/crowbar/power, /obj/item/wrench/power, /obj/item/weldingtool/experimental))
+				l_pocket = pick(list(/obj/item/jawsoflife, /obj/item/handdrill, /obj/item/weldingtool/experimental))
 		if("YeOlde")
 			mob_gender = FEMALE
 			uniform = /obj/item/clothing/under/maid

@@ -15,7 +15,7 @@
 	turns_per_move = 5
 	see_in_dark = 6
 	ventcrawler = VENTCRAWLER_ALWAYS
-	pass_flags = PASSTABLE
+	pass_flags = PASSTABLE | PASSCOMPUTER
 	mob_size = MOB_SIZE_SMALL
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	minbodytemp = 200
@@ -36,7 +36,8 @@
 
 /mob/living/simple_animal/pet/cat/Initialize()
 	. = ..()
-	verbs += /mob/living/proc/lay_down
+	add_verb(src, /mob/living/proc/lay_down)
+
 
 /mob/living/simple_animal/pet/cat/update_mobility()
 	..()
@@ -227,9 +228,9 @@
 /mob/living/simple_animal/pet/cat/attack_hand(mob/living/carbon/human/M)
 	. = ..()
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			wuv(1, M)
-		if("harm")
+		if(INTENT_HARM)
 			wuv(-1, M)
 
 /mob/living/simple_animal/pet/cat/proc/wuv(change, mob/M)

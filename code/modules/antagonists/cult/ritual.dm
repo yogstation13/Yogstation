@@ -92,13 +92,19 @@ This file contains the cult dagger and rune list code
 		if(sac_objective && !sac_objective.check_completion())
 			to_chat(user, "<span class='warning'>The sacrifice is not complete. The portal would lack the power to open if you tried!</span>")
 			return
+		if(SSticker.mode.bloodstone_cooldown)
+			to_chat(user, "<span class='warning'>The summoning was recently disrupted! you will need to wait before the cult can manage another attempt!</span>")
+			return
 		if(summon_objective.check_completion())
 			to_chat(user, "<span class='cultlarge'>\"I am already here. There is no need to try to summon me now.\"</span>")
+			return
+		if(SSticker.mode.bloodstone_list.len)
+			to_chat(user, "<span class='cultlarge'>\"The summoning has already begun! Protect the bloodstones with your life!\"</span>")
 			return
 		if(!(A in summon_objective.summon_spots))
 			to_chat(user, "<span class='cultlarge'>The Geometer can only be summoned where the veil is weak - in [english_list(summon_objective.summon_spots)]!</span>")
 			return
-		var/confirm_final = alert(user, "This is the FINAL step to summon Nar-Sie; it is a long, painful ritual and the crew will be alerted to your presence", "Are you prepared for the final battle?", "My life for Nar-Sie!", "No")
+		var/confirm_final = alert(user, "This begins the FINAL ritual for the summoning. It will be a long, hard battle and the crew will be alerted to your presence.", "Are you prepared for the final battle?", "My life for Nar-Sie!", "No")
 		if(confirm_final == "No")
 			to_chat(user, "<span class='cult'>You decide to prepare further before scribing the rune.</span>")
 			return
@@ -107,7 +113,6 @@ This file contains the cult dagger and rune list code
 		if(!(A in summon_objective.summon_spots))  // Check again to make sure they didn't move
 			to_chat(user, "<span class='cultlarge'>The Geometer can only be summoned where the veil is weak - in [english_list(summon_objective.summon_spots)]!</span>")
 			return
-		priority_announce("Figments from an eldritch god are being summoned by [user] into [A.map_name] from an unknown dimension. Disrupt the ritual at all costs!","Central Command Higher Dimensional Affairs", 'sound/ai/spanomalies.ogg')
 		for(var/B in spiral_range_turfs(1, user, 1))
 			var/obj/structure/emergency_shield/sanguine/N = new(B)
 			shields += N

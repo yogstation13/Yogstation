@@ -9,6 +9,7 @@
 					/obj/item/storage/box/fancy/cigarettes/cigpack_robust = 3,
 					/obj/item/storage/box/fancy/cigarettes/cigpack_carp = 3,
 					/obj/item/storage/box/fancy/cigarettes/cigpack_midori = 3,
+					/obj/item/storage/box/fancy/cigarettes/cigpack_nonico = 3,
 					/obj/item/storage/box/matches = 10,
 					/obj/item/lighter/greyscale = 4,
 					/obj/item/storage/box/fancy/rollingpapers = 5)
@@ -28,6 +29,7 @@
 					/obj/item/storage/box/fancy/cigarettes/cigpack_uplift = 3,
 					/obj/item/storage/box/fancy/cigarettes/cigpack_robust = 2,
 					/obj/item/storage/box/fancy/cigarettes/cigpack_carp = 3,
+					/obj/item/storage/box/fancy/cigarettes/cigpack_nonico = 3,
 					/obj/item/storage/box/fancy/cigarettes/cigpack_midori = 1,
 					/obj/item/storage/box/matches = 10,
 					/obj/item/lighter/greyscale = 4,

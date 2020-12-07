@@ -1,4 +1,4 @@
-#define EMPOWERED_THRALL_LIMIT 5
+#define EMPOWERED_THRALL_LIMIT 3
 
 /obj/effect/proc_holder/spell/proc/shadowling_check(var/mob/living/carbon/human/H)
 	if(!H || !istype(H)) return
@@ -394,6 +394,7 @@
 		null_charge_acquired = TRUE
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Null Charge</b> ability. This ability will drain an APC's contents to the void, preventing it from recharging \
 		or sending power until repaired.</i></span>")
+		user.mind.AddSpell(new /obj/effect/proc_holder/spell/self/null_charge(null))
 	if(thralls >= CEILING(9 * SSticker.mode.thrall_ratio, 1) && !reviveThrallAcquired)
 		reviveThrallAcquired = TRUE
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Black Recuperation</b> ability. This will, after a short time, bring a dead thrall completely back to life \
@@ -596,11 +597,11 @@
 					return
 				thrallToRevive.visible_message("<span class='warning'>[thrallToRevive] slowly rises, no longer recognizable as human.</span>", \
 											   "<span class='shadowling'><b>You feel new power flow into you. You have been gifted by your masters. You now closely resemble them. You are empowered in \
-											    darkness but wither slowly in light. In addition, Lesser Glare and Guise have been upgraded into their true forms.</b></span>")
+											    darkness but wither slowly in light. In addition, Lesser Glare has been upgraded into it's true form, and you've been given the ability to turn off nearby lights.</b></span>")
 				thrallToRevive.set_species(/datum/species/shadow/ling/lesser)
 				thrallToRevive.mind.RemoveSpell(/obj/effect/proc_holder/spell/targeted/lesser_glare)
-				thrallToRevive.mind.RemoveSpell(/obj/effect/proc_holder/spell/self/lesser_shadow_walk)
 				thrallToRevive.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/glare(null))
+				thrallToRevive.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/veil(null))
 			if("Revive")
 				if(!is_thrall(thrallToRevive))
 					to_chat(user, "<span class='warning'>[thrallToRevive] is not a thrall.</span>")
@@ -682,8 +683,7 @@
 		to_chat(user, "<span class='notice'>You project [M]'s life force toward the approaching shuttle, extending its arrival duration!</span>")
 		M.visible_message("<span class='warning'>[M]'s eyes suddenly flare red. They proceed to collapse on the floor, not breathing.</span>", \
 						  "<span class='warning'><b>...speeding by... ...pretty blue glow... ...touch it... ...no glow now... ...no light... ...nothing at all...</span>")
-		M.death()
-		ADD_TRAIT(M, TRAIT_BADDNA, "shadow-sacrifice") //sacrificed thrall is permadead
+		M.dust()
 
 		if(SSshuttle.emergency.mode == SHUTTLE_CALL)
 			var/more_minutes = 9000

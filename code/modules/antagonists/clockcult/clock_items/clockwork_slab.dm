@@ -22,7 +22,7 @@
 	var/recollection_category = "Default"
 
 	var/list/quickbound = list(/datum/clockwork_scripture/abscond, \
-	/datum/clockwork_scripture/ranged_ability/kindle, /datum/clockwork_scripture/ranged_ability/hateful_manacles) //quickbound scripture, accessed by index
+	/datum/clockwork_scripture/ranged_ability/kindle, /datum/clockwork_scripture/ranged_ability/hateful_manacles, /datum/clockwork_scripture/ranged_ability/sentinels_compromise) //quickbound scripture, accessed by index
 	var/maximum_quickbound = 5 //how many quickbound scriptures we can have
 
 	var/obj/structure/destructible/clockwork/trap/linking //If we're linking traps together, which ones we're doing
@@ -171,12 +171,10 @@
 	ui_interact(user)
 	return TRUE
 
-/obj/item/clockwork/slab/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.inventory_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/clockwork/slab/ui_interact(mob/user, datum/tgui/ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "clockwork_slab", name, 800, 420, master_ui, state)
+		ui = new(user, src, "ClockworkSlab", name)
 		ui.set_autoupdate(FALSE) //we'll update this occasionally, but not as often as possible
-		ui.set_style("clockwork")
 		ui.open()
 
 /obj/item/clockwork/slab/proc/recite_scripture(datum/clockwork_scripture/scripture, mob/living/user)

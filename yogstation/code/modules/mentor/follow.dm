@@ -9,7 +9,7 @@
 		return
 
 	if(check_rights(R_ADMIN, FALSE)) // If they're an admin, then just do an aghost (the FALSE marks that it shouldn't yell about not being admin)
-		//Basically a copy of Yogstation-TG\code\modules\admin\topic.dm, line 960, from 24 Feb 2019
+		//Basically a copy of Yogstation\code\modules\admin\topic.dm, line 960, from 24 Feb 2019
 		if(!isobserver(usr))
 			admin_ghost()
 		var/mob/dead/observer/A = mob
@@ -21,7 +21,7 @@
 		return
 		
 	usr.reset_perspective(M)
-	verbs += /client/proc/mentor_unfollow
+	add_verb(src, /client/proc/mentor_unfollow)
 	if(mentor_datum)
 		mentor_datum.following = M
 
@@ -38,7 +38,7 @@
 		return
 
 	usr.reset_perspective()
-	verbs -= /client/proc/mentor_unfollow
+	remove_verb(src, /client/proc/mentor_unfollow)
 	if(mentor_datum)
 		to_chat(GLOB.admins, "<span class='mentor'><span class='prefix'>MENTOR:</span> <EM>[key_name(usr)]</EM> is no longer following <EM>[key_name(mentor_datum.following)]</span>", confidential=TRUE)
 		log_mentor("[key_name(usr)] stopped following [key_name(mentor_datum.following)]")

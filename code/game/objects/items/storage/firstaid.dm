@@ -356,3 +356,19 @@
 /obj/item/storage/pill_bottle/floorpill/full/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/floorpill(src)
+
+/obj/item/storage/pill_bottle/bica
+	name = "bottle of bicaridine pills"
+	desc = "Contains pills to treat bruises."
+
+/obj/item/storage/pill_bottle/bica/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/reagent_containers/pill/bica(src)
+
+/obj/item/storage/pill_bottle/kelo
+	name = "bottle of kelotane pills"
+	desc = "Contains pills to treat burns."
+
+/obj/item/storage/pill_bottle/kelo/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/reagent_containers/pill/kelo(src)

@@ -53,9 +53,21 @@
 /obj/machinery/chem_master/contents_explosion(severity, target)
 	..()
 	if(beaker)
-		beaker.ex_act(severity, target)
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.high_mov_atom += beaker
+			if(EXPLODE_HEAVY)
+				SSexplosions.med_mov_atom += beaker
+			if(EXPLODE_LIGHT)
+				SSexplosions.low_mov_atom += beaker
 	if(bottle)
-		bottle.ex_act(severity, target)
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.high_mov_atom += bottle
+			if(EXPLODE_HEAVY)
+				SSexplosions.med_mov_atom += bottle
+			if(EXPLODE_LIGHT)
+				SSexplosions.low_mov_atom += bottle
 
 /obj/machinery/chem_master/handle_atom_del(atom/A)
 	..()
@@ -139,20 +151,16 @@
 		bottle = null
 	return ..()
 
-/obj/machinery/chem_master/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/chem_master/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/simple/pills),
+	)
+
+/obj/machinery/chem_master/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		var/datum/asset/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
-		assets.send(user)
-
-		ui = new(user, src, ui_key, "chem_master", name, 565, 550, master_ui, state)
+		ui = new(user, src, "ChemMaster", name)
 		ui.open()
-
-//Insert our custom spritesheet css link into the html
-/obj/machinery/chem_master/ui_base_html(html)
-	var/datum/asset/spritesheet/simple/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
-	. = replacetext(html, "<!--customheadhtml-->", assets.css_tag())
 
 /obj/machinery/chem_master/ui_data(mob/user)
 	var/list/data = list()
@@ -192,7 +200,7 @@
 	if(action == "eject")
 		replace_beaker(usr)
 		return TRUE
-	
+
 	if(action == "ejectPillBottle")
 		if(!bottle)
 			return FALSE
@@ -244,7 +252,7 @@
 			amount = text2num(input(usr,
 				"Max 10. Buffer content will be split evenly.",
 				"How many to make?", 1))
-		amount = CLAMP(round(amount), 0, 10)
+		amount = clamp(round(amount), 0, 10)
 		if (amount <= 0)
 			return FALSE
 		// Get units per item
@@ -270,7 +278,7 @@
 				"Maximum [vol_each_max] units per item.",
 				"How many units to fill?",
 				vol_each_max))
-		vol_each = CLAMP(vol_each, 0, vol_each_max)
+		vol_each = clamp(vol_each, 0, vol_each_max)
 		if(vol_each <= 0)
 			return FALSE
 		// Get item name
@@ -366,7 +374,7 @@
 	if(action == "goScreen")
 		screen = params["screen"]
 		return TRUE
-	
+
 	return FALSE
 
 /obj/machinery/chem_master/proc/isgoodnumber(num)

@@ -5,7 +5,6 @@
 	icon_keyboard = "security_key"
 	circuit = /obj/item/circuitboard/computer/warrant
 	light_color = LIGHT_COLOR_RED
-	var/authenticated = null
 	var/screen = null
 	var/datum/data/record/current = null
 
@@ -22,6 +21,8 @@
 				if("*Arrest*")
 					background = "background-color:#990000;"
 					notice = "<br>**REPORT TO THE BRIG**"
+				if("Search")
+					background = "background-color:#5C4949;"
 				if("Incarcerated")
 					background = "background-color:#CD6500;"
 				if("Paroled")
@@ -105,7 +106,6 @@
 
 	var/datum/browser/popup = new(user, "warrant", "Security Warrant Console", 600, 400)
 	popup.set_content(dat.Join())
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/computer/warrant/Topic(href, href_list)

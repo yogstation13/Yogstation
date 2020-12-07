@@ -33,7 +33,7 @@
 	if(!canSuicide())
 		return
 	var/oldkey = ckey
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
+	var/confirm = alert("Are you sure you want to commit suicide? This will prevent you from being revived!", "Confirm Suicide", "Yes", "No")
 	if(ckey != oldkey)
 		return
 	if(!canSuicide())
@@ -113,7 +113,7 @@
 		death(FALSE)
 
 /mob/living/brain/verb/suicide()
-	set hidden = 1
+	set hidden = TRUE
 	if(!canSuicide())
 		return
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
@@ -129,7 +129,7 @@
 		death(FALSE)
 
 /mob/living/carbon/monkey/verb/suicide()
-	set hidden = 1
+	set hidden = TRUE
 	if(!canSuicide())
 		return
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
@@ -146,7 +146,7 @@
 		death(FALSE)
 
 /mob/living/silicon/ai/verb/suicide()
-	set hidden = 1
+	set hidden = TRUE
 	if(!canSuicide())
 		return
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
@@ -164,7 +164,7 @@
 		death(FALSE)
 
 /mob/living/silicon/robot/verb/suicide()
-	set hidden = 1
+	set hidden = TRUE
 	if(!canSuicide())
 		return
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
@@ -182,7 +182,7 @@
 		death(FALSE)
 
 /mob/living/silicon/pai/verb/suicide()
-	set hidden = 1
+	set hidden = TRUE
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
 	if(confirm == "Yes")
 		var/turf/T = get_turf(src.loc)
@@ -196,7 +196,7 @@
 		to_chat(src, "Aborting suicide attempt.")
 
 /mob/living/carbon/alien/humanoid/verb/suicide()
-	set hidden = 1
+	set hidden = TRUE
 	if(!canSuicide())
 		return
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
@@ -215,7 +215,7 @@
 		death(FALSE)
 
 /mob/living/simple_animal/verb/suicide()
-	set hidden = 1
+	set hidden = TRUE
 	if(!canSuicide())
 		return
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
@@ -236,17 +236,37 @@
 /mob/living/carbon/human/suicide_log()
 	log_game("[key_name(src)] (job: [src.job ? "[src.job]" : "None"]) committed suicide at [AREACOORD(src)].")
 
+//IS_IMPORTANT()
+// Returns whether this player can be programmatically deemed to be important to the game. As of 5 Apr 2020, only used for canSuicide().
+// Split into several type-specific implementations because I wanted to pretend that this programming language was Julia for dozen lines or so.
+/mob/living/proc/is_important() 
+	return (mind && mind.special_role)
+
+/mob/living/carbon/alien/is_important() 
+	return TRUE // :clap: all :clap: aliens :clap: are :clap: valid (and ergo shouldn't be fucking suiciding you pieces of shit)
+
+/mob/living/carbon/human/is_important()
+	return (..() || (job in GLOB.command_positions) || mind?.has_antag_datum(/datum/antagonist/ert))
+//end IS_IMPORTANT()
+
 /mob/living/proc/canSuicide()
 	switch(stat)
-		if(CONSCIOUS)
-			return TRUE
 		if(SOFT_CRIT)
-			to_chat(src, "You can't commit suicide while in a critical condition!")
+			to_chat(src, "<span class='warning'>You can't commit suicide while in a critical condition!</span>")
+			return FALSE
 		if(UNCONSCIOUS)
-			to_chat(src, "You need to be conscious to commit suicide!")
+			to_chat(src, "<span class='warning'>You need to be conscious to commit suicide!</span>")
+			return FALSE
 		if(DEAD)
-			to_chat(src, "You're already dead!")
-	return
+			to_chat(src, "<span class='warning'>You're already dead!</span>")
+			return FALSE
+	//We're assuming they're CONSCIOUS
+	if(is_important()) // If they are someone critical to the round, for some reason
+		var/result = (alert("WARNING: You seem to be serving a critical role. Suiciding now may be against the rules. Consider using the AFK verb instead. Continue regardless?","Suicide Warning","Yes","No") == "Yes")
+		if(!result)
+			return FALSE
+		message_admins("[key_name(src)] may be committing suicide as an important role!")
+	return TRUE
 
 /mob/living/carbon/canSuicide()
 	if(!..())

@@ -31,10 +31,16 @@
 	disk = null
 	program = null
 
-/obj/machinery/nanite_programmer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/nanite_programmer/AltClick(mob/user)
+	if(disk && user.canUseTopic(src, !issilicon(user)))
+		to_chat(user, "<span class='notice'>You take out [disk] from [src].</span>")
+		eject(user)
+	return
+
+/obj/machinery/nanite_programmer/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "nanite_programmer", name, 600, 800, master_ui, state)
+		ui = new(user, src, "NaniteProgrammer", name)
 		ui.open()
 
 /obj/machinery/nanite_programmer/ui_data()
@@ -84,10 +90,11 @@
 				program.activation_delay = 0
 			. = TRUE
 		if("set_code")
-			var/new_code = input("Set code (0000-9999):", name, null) as null|num
+			var/new_code = text2num(params["code"])
+
 			if(!isnull(new_code))
 				playsound(src, "terminal_type", 25, 0)
-				new_code = CLAMP(round(new_code, 1),0,9999)
+				new_code = clamp(round(new_code, 1),0,9999)
 			else
 				return
 
@@ -95,33 +102,34 @@
 			var/target_code = params["target_code"]
 			switch(target_code)
 				if("activation")
-					program.activation_code = CLAMP(round(new_code, 1),0,9999)
+					program.activation_code = clamp(round(new_code, 1),0,9999)
 				if("deactivation")
-					program.deactivation_code = CLAMP(round(new_code, 1),0,9999)
+					program.deactivation_code = clamp(round(new_code, 1),0,9999)
 				if("kill")
-					program.kill_code = CLAMP(round(new_code, 1),0,9999)
+					program.kill_code = clamp(round(new_code, 1),0,9999)
 				if("trigger")
-					program.trigger_code = CLAMP(round(new_code, 1),0,9999)
+					program.trigger_code = clamp(round(new_code, 1),0,9999)
 			. = TRUE
 		if("set_extra_setting")
 			program.set_extra_setting(usr, params["target_setting"])
 			playsound(src, "terminal_type", 25, 0)
 			. = TRUE
 		if("set_activation_delay")
-			var/delay = input("Set activation delay in seconds (0-1800):", name, program.activation_delay) as null|num
+			var/delay = params["delay"]
+
 			if(!isnull(delay))
 				playsound(src, "terminal_type", 25, 0)
-				delay = CLAMP(round(delay, 1),0,1800)
+				delay = clamp(round(delay, 1),0,1800)
 				program.activation_delay = delay
 				if(delay)
 					program.activated = FALSE
 			. = TRUE
 		if("set_timer")
-			var/timer = input("Set timer in seconds (10-3600):", name, program.timer) as null|num
+			var/timer = text2num(params["timer"])
 			if(!isnull(timer))
 				playsound(src, "terminal_type", 25, 0)
 				if(!timer == 0)
-					timer = CLAMP(round(timer, 1),10,3600)
+					timer = clamp(round(timer, 1),10,3600)
 				program.timer = timer
 			. = TRUE
 		if("set_timer_type")

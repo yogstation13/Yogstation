@@ -61,12 +61,12 @@
 		pixel_x = 0
 		pixel_y = 0
 
-		tesla_zap(src, 7, TESLA_DEFAULT_POWER, TRUE)
+		tesla_zap(src, 7, TESLA_DEFAULT_POWER)
 
 		pixel_x = -32
 		pixel_y = -32
 		for (var/ball in orbiting_balls)
-			var/range = rand(1, CLAMP(orbiting_balls.len, 3, 7))
+			var/range = rand(1, clamp(orbiting_balls.len, 3, 7))
 			tesla_zap(ball, range, TESLA_MINI_POWER/7*range)
 	else
 		energy = 0 // ensure we dont have miniballs of miniballs

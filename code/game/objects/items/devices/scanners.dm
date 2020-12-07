@@ -22,7 +22,7 @@ GENE SCANNER
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	materials = list(MAT_METAL=150)
+	materials = list(/datum/material/iron=150)
 
 /obj/item/t_scanner/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins to emit terahertz-rays into [user.p_their()] brain with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -30,7 +30,7 @@ GENE SCANNER
 
 /obj/item/t_scanner/proc/toggle_on()
 	on = !on
-	icon_state = copytext(icon_state, 1, length(icon_state))+"[on]"
+	icon_state = copytext_char(icon_state, 1, -1) + "[on]"
 	if(on)
 		START_PROCESSING(SSobj, src)
 	else
@@ -86,8 +86,7 @@ GENE SCANNER
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 7
-	materials = list(MAT_METAL=200)
-	var/mode = 1
+	materials = list(/datum/material/iron=200)
 	var/scanmode = 0
 	var/advanced = FALSE
 
@@ -119,7 +118,7 @@ GENE SCANNER
 	user.visible_message("<span class='notice'>[user] has analyzed [M]'s vitals.</span>")
 
 	if(scanmode == 0)
-		healthscan(user, M, mode, advanced)
+		healthscan(user, M, advanced)
 	else if(scanmode == 1)
 		chemscan(user, M)
 
@@ -127,7 +126,7 @@ GENE SCANNER
 
 
 // Used by the PDA medical scanner too
-/proc/healthscan(mob/user, mob/living/M, mode = 1, advanced = FALSE)
+/proc/healthscan(mob/user, mob/living/M, advanced = FALSE)
 	if(isliving(user) && (user.incapacitated() || user.eye_blind))
 		return
 	//Damage specifics
@@ -185,6 +184,8 @@ GENE SCANNER
 			to_chat(user, "\t<span class='alert'>Cerebral traumas detected: subject appears to be suffering from [english_list(trauma_text)].</span>")
 		if(C.roundstart_quirks.len)
 			to_chat(user, "\t<span class='info'>Subject has the following physiological traits: [C.get_trait_string()].</span>")
+		if(C.has_quirk(/datum/quirk/allergic))
+			to_chat(user, "\t<span class='info'>Subject is allergic to the chemical [C.allergies].</span>")
 	if(advanced)
 		to_chat(user, "\t<span class='info'>Brain Activity Level: [(200 - M.getOrganLoss(ORGAN_SLOT_BRAIN))/2]%.</span>")
 
@@ -247,7 +248,7 @@ GENE SCANNER
 
 
 	// Body part damage report
-	if(iscarbon(M) && mode == 1)
+	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		var/list/damaged = C.get_damaged_bodyparts(1,1)
 		if(length(damaged)>0 || oxy_loss>0 || tox_loss>0 || fire_loss>0)
@@ -403,20 +404,6 @@ GENE SCANNER
 			else
 				to_chat(user, "<span class='notice'>Subject is not addicted to any reagents.</span>")
 
-/obj/item/healthanalyzer/verb/toggle_mode()
-	set name = "Switch Verbosity"
-	set category = "Object"
-
-	if(usr.incapacitated())
-		return
-
-	mode = !mode
-	switch (mode)
-		if(1)
-			to_chat(usr, "The scanner now shows specific limb damage.")
-		if(0)
-			to_chat(usr, "The scanner no longer shows limb damage.")
-
 /obj/item/healthanalyzer/advanced
 	name = "advanced health analyzer"
 	icon_state = "health_adv"
@@ -440,7 +427,7 @@ GENE SCANNER
 	throw_speed = 3
 	throw_range = 7
 	tool_behaviour = TOOL_ANALYZER
-	materials = list(MAT_METAL=30, MAT_GLASS=20)
+	materials = list(/datum/material/iron=30, /datum/material/glass=20)
 	grind_results = list(/datum/reagent/mercury = 5, /datum/reagent/iron = 5, /datum/reagent/silicon = 5)
 	var/cooldown = FALSE
 	var/cooldown_time = 250
@@ -479,42 +466,37 @@ GENE SCANNER
 	else
 		to_chat(user, "<span class='alert'>Pressure: [round(pressure, 0.01)] kPa</span>")
 	if(total_moles)
-		var/list/env_gases = environment.gases
-
-		environment.assert_gases(arglist(GLOB.hardcoded_gases))
-		var/o2_concentration = env_gases[/datum/gas/oxygen][MOLES]/total_moles
-		var/n2_concentration = env_gases[/datum/gas/nitrogen][MOLES]/total_moles
-		var/co2_concentration = env_gases[/datum/gas/carbon_dioxide][MOLES]/total_moles
-		var/plasma_concentration = env_gases[/datum/gas/plasma][MOLES]/total_moles
+		var/o2_concentration = environment.get_moles(/datum/gas/oxygen)/total_moles
+		var/n2_concentration = environment.get_moles(/datum/gas/nitrogen)/total_moles
+		var/co2_concentration = environment.get_moles(/datum/gas/carbon_dioxide)/total_moles
+		var/plasma_concentration = environment.get_moles(/datum/gas/plasma)/total_moles
 
 		if(abs(n2_concentration - N2STANDARD) < 20)
-			to_chat(user, "<span class='info'>Nitrogen: [round(n2_concentration*100, 0.01)] % ([round(env_gases[/datum/gas/nitrogen][MOLES], 0.01)] mol)</span>")
+			to_chat(user, "<span class='info'>Nitrogen: [round(n2_concentration*100, 0.01)] % ([round(environment.get_moles(/datum/gas/nitrogen), 0.01)] mol)</span>")
 		else
-			to_chat(user, "<span class='alert'>Nitrogen: [round(n2_concentration*100, 0.01)] % ([round(env_gases[/datum/gas/nitrogen][MOLES], 0.01)] mol)</span>")
+			to_chat(user, "<span class='alert'>Nitrogen: [round(n2_concentration*100, 0.01)] % ([round(environment.get_moles(/datum/gas/nitrogen), 0.01)] mol)</span>")
 
 		if(abs(o2_concentration - O2STANDARD) < 2)
-			to_chat(user, "<span class='info'>Oxygen: [round(o2_concentration*100, 0.01)] % ([round(env_gases[/datum/gas/oxygen][MOLES], 0.01)] mol)</span>")
+			to_chat(user, "<span class='info'>Oxygen: [round(o2_concentration*100, 0.01)] % ([round(environment.get_moles(/datum/gas/oxygen), 0.01)] mol)</span>")
 		else
-			to_chat(user, "<span class='alert'>Oxygen: [round(o2_concentration*100, 0.01)] % ([round(env_gases[/datum/gas/oxygen][MOLES], 0.01)] mol)</span>")
+			to_chat(user, "<span class='alert'>Oxygen: [round(o2_concentration*100, 0.01)] % ([round(environment.get_moles(/datum/gas/oxygen), 0.01)] mol)</span>")
 
 		if(co2_concentration > 0.01)
-			to_chat(user, "<span class='alert'>CO2: [round(co2_concentration*100, 0.01)] % ([round(env_gases[/datum/gas/carbon_dioxide][MOLES], 0.01)] mol)</span>")
+			to_chat(user, "<span class='alert'>CO2: [round(co2_concentration*100, 0.01)] % ([round(environment.get_moles(/datum/gas/carbon_dioxide), 0.01)] mol)</span>")
 		else
-			to_chat(user, "<span class='info'>CO2: [round(co2_concentration*100, 0.01)] % ([round(env_gases[/datum/gas/carbon_dioxide][MOLES], 0.01)] mol)</span>")
+			to_chat(user, "<span class='info'>CO2: [round(co2_concentration*100, 0.01)] % ([round(environment.get_moles(/datum/gas/carbon_dioxide), 0.01)] mol)</span>")
 
 		if(plasma_concentration > 0.005)
-			to_chat(user, "<span class='alert'>Plasma: [round(plasma_concentration*100, 0.01)] % ([round(env_gases[/datum/gas/plasma][MOLES], 0.01)] mol)</span>")
+			to_chat(user, "<span class='alert'>Plasma: [round(plasma_concentration*100, 0.01)] % ([round(environment.get_moles(/datum/gas/plasma), 0.01)] mol)</span>")
 		else
-			to_chat(user, "<span class='info'>Plasma: [round(plasma_concentration*100, 0.01)] % ([round(env_gases[/datum/gas/plasma][MOLES], 0.01)] mol)</span>")
+			to_chat(user, "<span class='info'>Plasma: [round(plasma_concentration*100, 0.01)] % ([round(environment.get_moles(/datum/gas/plasma), 0.01)] mol)</span>")
 
-		environment.garbage_collect()
-
-		for(var/id in env_gases)
+		for(var/id in environment.get_gases())
 			if(id in GLOB.hardcoded_gases)
 				continue
-			var/gas_concentration = env_gases[id][MOLES]/total_moles
-			to_chat(user, "<span class='alert'>[env_gases[id][GAS_META][META_GAS_NAME]]: [round(gas_concentration*100, 0.01)] % ([round(env_gases[id][MOLES], 0.01)] mol)</span>")
-		to_chat(user, "<span class='info'>Temperature: [round(environment.temperature-T0C, 0.01)] &deg;C ([round(environment.temperature, 0.01)] K)</span>")
+			var/gas_concentration = environment.get_moles(id)/total_moles
+			to_chat(user, "<span class='alert'>[GLOB.meta_gas_info[id][META_GAS_NAME]]: [round(gas_concentration*100, 0.01)] % ([round(environment.get_moles(id), 0.01)] mol)</span>")
+		to_chat(user, "<span class='info'>Temperature: [round(environment.return_temperature()-T0C, 0.01)] &deg;C ([round(environment.return_temperature(), 0.01)] K)</span>")
 
 /obj/item/analyzer/AltClick(mob/user) //Barometer output for measuring when the next storm happens
 	..()
@@ -593,7 +575,7 @@ GENE SCANNER
 		var/total_moles = air_contents.total_moles()
 		var/pressure = air_contents.return_pressure()
 		var/volume = air_contents.return_volume() //could just do mixture.volume... but safety, I guess?
-		var/temperature = air_contents.temperature
+		var/temperature = air_contents.return_temperature()
 		var/cached_scan_results = air_contents.analyzer_results
 
 		if(total_moles > 0)
@@ -601,10 +583,9 @@ GENE SCANNER
 			to_chat(user, "<span class='notice'>Volume: [volume] L</span>")
 			to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.01)] kPa</span>")
 
-			var/list/cached_gases = air_contents.gases
-			for(var/id in cached_gases)
-				var/gas_concentration = cached_gases[id][MOLES]/total_moles
-				to_chat(user, "<span class='notice'>[cached_gases[id][GAS_META][META_GAS_NAME]]: [round(gas_concentration*100, 0.01)] % ([round(cached_gases[id][MOLES], 0.01)] mol)</span>")
+			for(var/id in air_contents.get_gases())
+				var/gas_concentration = air_contents.get_moles(id)/total_moles
+				to_chat(user, "<span class='notice'>[GLOB.meta_gas_info[id][META_GAS_NAME]]: [round(gas_concentration*100, 0.01)] % ([round(air_contents.get_moles(id), 0.01)] mol)</span>")
 			to_chat(user, "<span class='notice'>Temperature: [round(temperature - T0C,0.01)] &deg;C ([round(temperature, 0.01)] K)</span>")
 
 		else
@@ -634,7 +615,7 @@ GENE SCANNER
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
-	materials = list(MAT_METAL=30, MAT_GLASS=20)
+	materials = list(/datum/material/iron=30, /datum/material/glass=20)
 
 /obj/item/slime_scanner/attack(mob/living/M, mob/living/user)
 	if(user.stat || user.eye_blind)
@@ -693,7 +674,7 @@ GENE SCANNER
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 7
-	materials = list(MAT_METAL=200)
+	materials = list(/datum/material/iron=200)
 
 /obj/item/nanite_scanner/attack(mob/living/M, mob/living/carbon/human/user)
 	user.visible_message("<span class='notice'>[user] has analyzed [M]'s nanites.</span>")
@@ -719,7 +700,7 @@ GENE SCANNER
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 7
-	materials = list(MAT_METAL=200)
+	materials = list(/datum/material/iron=200)
 	var/list/discovered = list() //hit a dna console to update the scanners database
 	var/list/buffer
 	var/ready = TRUE
@@ -727,7 +708,7 @@ GENE SCANNER
 
 /obj/item/sequence_scanner/attack(mob/living/M, mob/living/carbon/human/user)
 	add_fingerprint(user)
-	if (!HAS_TRAIT(M, TRAIT_RADIMMUNE) && !HAS_TRAIT(M, TRAIT_BADDNA)) //no scanning if its a husk or DNA-less Species
+	if (!HAS_TRAIT(M, TRAIT_GENELESS) && !HAS_TRAIT(M, TRAIT_BADDNA)) //no scanning if its a husk or DNA-less Species
 		user.visible_message("<span class='notice'>[user] has analyzed [M]'s genetic sequence.</span>")
 		gene_scan(M, user)
 
@@ -780,10 +761,10 @@ GENE SCANNER
 
 		if(sequence)
 			var/display
-			for(var/i in 0 to length(sequence) / DNA_MUTATION_BLOCKS-1)
+			for(var/i in 0 to length_char(sequence) / DNA_MUTATION_BLOCKS-1)
 				if(i)
 					display += "-"
-				display += copytext(sequence, 1 + i*DNA_MUTATION_BLOCKS, DNA_MUTATION_BLOCKS*(1+i) + 1)
+				display += copytext_char(sequence, 1 + i*DNA_MUTATION_BLOCKS, DNA_MUTATION_BLOCKS*(1+i) + 1)
 
 			to_chat(user, "<span class='boldnotice'>[display]</span><br>")
 

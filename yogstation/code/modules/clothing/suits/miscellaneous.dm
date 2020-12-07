@@ -248,14 +248,6 @@
 	icon_state = "janitor_coat"
 	item_state = "janitor_item"
 
-/obj/item/clothing/suit/toggle/labcoat/pmedic_jacket
-	name = "yellow paramedic jacket"
-	desc = "Bright yellow so people can see you coming from a mile away."
-	icon = 'yogstation/icons/obj/clothing/suits.dmi'
-	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
-	icon_state = "pmedic_jacket"
-	item_state = "pmedic_jacket"
-
 /obj/item/clothing/suit/yogs/detectivecoat
 	name = "detective long coat"
 	desc = "For those detectives that value fashion over function."

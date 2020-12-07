@@ -41,20 +41,18 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	if(delete_after_roundstart)
 		qdel(src)
 
-/obj/effect/landmark/start/New()
+/obj/effect/landmark/start/Initialize()
+	. = ..()
 	GLOB.start_landmarks_list += src
 	if(jobspawn_override)
-		if(!GLOB.jobspawn_overrides[name])
-			GLOB.jobspawn_overrides[name] = list()
-		GLOB.jobspawn_overrides[name] += src
-	..()
+		LAZYADDASSOC(GLOB.jobspawn_overrides, name, src)
 	if(name != "start")
 		tag = "start*[name]"
 
 /obj/effect/landmark/start/Destroy()
 	GLOB.start_landmarks_list -= src
 	if(jobspawn_override)
-		GLOB.jobspawn_overrides[name] -= src
+		LAZYREMOVEASSOC(GLOB.jobspawn_overrides, name, src)
 	return ..()
 
 // START LANDMARKS FOLLOW. Don't change the names unless
@@ -183,6 +181,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "Chaplain"
 	icon_state = "Chaplain"
 
+/obj/effect/landmark/start/artist
+	name = "Artist"
+	icon_state = "Artist"
+
 /obj/effect/landmark/start/cyborg
 	name = "Cyborg"
 	icon_state = "Cyborg"
@@ -230,6 +232,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 
 /obj/effect/landmark/start/depsec/science
 	name = "science_sec"
+
+/obj/effect/landmark/start/depsec/service
+	name = "service_sec"
 
 //Antagonist spawns
 
@@ -303,7 +308,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	GLOB.xeno_spawn += loc
 	return INITIALIZE_HINT_QDEL
 
-//objects with the stationloving component (nuke disk) respawn here. 
+//objects with the stationloving component (nuke disk) respawn here.
 //also blobs that have their spawn forcemoved (running out of time when picking their spawn spot), santa and respawning devils
 /obj/effect/landmark/blobstart
 	name = "blobstart"
@@ -398,6 +403,17 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 /obj/effect/landmark/servant_of_ratvar/Initialize(mapload)
 	..()
 	GLOB.servant_spawns += loc
+	return INITIALIZE_HINT_QDEL
+
+//Servant spawn locations
+/obj/effect/landmark/servant_of_ratvar/scarab
+	name = "servant of ratvar spawn"
+	icon_state = "clockwork_orange"
+	layer = MOB_LAYER
+
+/obj/effect/landmark/servant_of_ratvar/scarab/Initialize(mapload)
+	..()
+	GLOB.servant_spawns_scarabs += loc
 	return INITIALIZE_HINT_QDEL
 
 //City of Cogs entrances

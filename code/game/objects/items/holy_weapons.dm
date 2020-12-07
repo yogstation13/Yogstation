@@ -73,13 +73,15 @@
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/box/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
+	slowdown = 0
+	blocks_shove_knockdown = FALSE
 
 /obj/item/choice_beacon/holy
 	name = "armaments beacon"
 	desc = "Contains a set of armaments for the chaplain."
 
 /obj/item/choice_beacon/holy/canUseBeacon(mob/living/user)
-	if(user.mind && user.mind.isholy)
+	if(user.mind && user.mind.holy_role)
 		return ..()
 	else
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 40, 1)
@@ -252,26 +254,33 @@
 	return (BRUTELOSS|FIRELOSS)
 
 /obj/item/nullrod/attack_self(mob/user)
-	if(user.mind && (user.mind.isholy) && !reskinned)
+	if(user.mind && (user.mind.holy_role) && !reskinned)
 		reskin_holy_weapon(user)
 
+  /*
+  reskin_holy_weapon: Shows a user a list of all available nullrod reskins and based on his choice replaces the nullrod with the reskinned version
+
+  Arguments:
+  M : The mob choosing a nullrod reskin
+  */
 /obj/item/nullrod/proc/reskin_holy_weapon(mob/M)
 	if(GLOB.holy_weapon_type)
 		return
-	var/obj/item/nullrod/holy_weapon
-	var/list/holy_weapons_list = typesof(/obj/item/nullrod)
 	var/list/display_names = list()
-	for(var/V in holy_weapons_list)
+	var/list/nullrod_icons = list()
+	for(var/V in typesof(/obj/item/nullrod))
 		var/obj/item/nullrod/rodtype = V
-		if (initial(rodtype.chaplain_spawnable))
+		if(initial(rodtype.chaplain_spawnable))
 			display_names[initial(rodtype.name)] = rodtype
+			nullrod_icons += list(initial(rodtype.name) = image(icon = initial(rodtype.icon), icon_state = initial(rodtype.icon_state)))
 
-	var/choice = input(M,"What theme would you like for your holy weapon?","Holy Weapon Theme") as null|anything in display_names
-	if(QDELETED(src) || !choice || M.stat || !in_range(M, src) || M.incapacitated() || reskinned)
+	nullrod_icons = sortList(nullrod_icons)
+	var/choice = show_radial_menu(M, src , nullrod_icons, custom_check = CALLBACK(src, .proc/check_menu, M), radius = 42, require_near = TRUE, tooltips = TRUE)
+	if(!choice || !check_menu(M))
 		return
 
 	var/A = display_names[choice] // This needs to be on a separate var as list member access is not allowed for new
-	holy_weapon = new A
+	var/obj/item/nullrod/holy_weapon = new A
 
 	GLOB.holy_weapon_type = holy_weapon.type
 
@@ -281,6 +290,21 @@
 		holy_weapon.reskinned = TRUE
 		qdel(src)
 		M.put_in_active_hand(holy_weapon)
+
+  /*
+  check_menu : Checks if we are allowed to interact with a radial menu
+
+  Arguments:
+  user : The mob interacting with a menu
+  */
+/obj/item/nullrod/proc/check_menu(mob/user)
+	if(!istype(user))
+		return FALSE
+	if(QDELETED(src) || reskinned)
+		return FALSE
+	if(user.incapacitated() || !user.is_holding(src))
+		return FALSE
+	return TRUE
 
 /obj/item/nullrod/godhand
 	icon_state = "disintegrate"
@@ -324,8 +348,8 @@
 	shield_icon = "shield-old"
 
 /obj/item/nullrod/claymore
-	icon_state = "claymore"
-	item_state = "claymore"
+	icon_state = "holyblade"
+	item_state = "holyblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	name = "holy claymore"
@@ -345,13 +369,11 @@
 /obj/item/nullrod/claymore/darkblade
 	icon_state = "cultblade"
 	item_state = "cultblade"
-	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	name = "dark blade"
 	desc = "Spread the glory of the dark gods!"
-	slot_flags = ITEM_SLOT_BELT
+	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	hitsound = 'sound/hallucinations/growl1.ogg'
 
 /obj/item/nullrod/claymore/chainsaw_sword
@@ -653,10 +675,12 @@
 
 /obj/item/nullrod/carp/attack_self(mob/living/user)
 	if(used_blessing)
-	else if(user.mind && (user.mind.isholy))
+	else if(user.mind && (user.mind.holy_role))
 		to_chat(user, "You are blessed by Carp-Sie. Wild space carp will no longer attack you.")
 		user.faction |= "carp"
 		used_blessing = TRUE
+
+
 
 /obj/item/nullrod/claymore/bostaff //May as well make it a "claymore" and inherit the blocking
 	name = "monk's staff"
@@ -769,9 +793,10 @@
 		ADD_TRAIT(G, TRAIT_HOLY, SPECIES_TRAIT)
 		log_game("[key_name(H)] has summoned [key_name(G)], a holoparasite, with a holy tarot deck.")
 		to_chat(H, "<span class='holoparasite'><font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> has been summoned!</span>")
-		H.verbs += /mob/living/proc/guardian_comm
-		H.verbs += /mob/living/proc/guardian_recall
-		H.verbs += /mob/living/proc/guardian_reset
+		add_verb(H, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset))
+		force = 0
+		throwforce = 0
+		to_chat(H, "<span class='warning'>The [src]'s rigid ends become dull from summoning <font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font>!</span>")
 	else
 		to_chat(H, "<span class='holoparasite'>And it's blank? Perhaps you should try again later.</span>")
 		used = FALSE

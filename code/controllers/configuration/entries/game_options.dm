@@ -83,6 +83,11 @@
 	integer = FALSE
 	min_val = 1
 
+/datum/config_entry/number/ecult_scaling_coeff	//how much does the amount of players get divided by to determine e_cult
+	config_entry_value = 6
+	integer = FALSE
+	min_val = 1
+
 /datum/config_entry/number/security_scaling_coeff	//how much does the amount of players get divided by to determine open security officer positions
 	config_entry_value = 8
 	integer = FALSE
@@ -150,6 +155,10 @@
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_FLAG
 
+/datum/config_entry/keyed_list/mentor_races	//races for gamers only
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_FLAG
+
 /datum/config_entry/keyed_list/roundstart_no_hard_check // Species contained in this list will not cause existing characters with no-longer-roundstart species set to be resetted to the human race.
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_FLAG
@@ -181,6 +190,12 @@
 
 /datum/config_entry/string/alert_red_downto
 	config_entry_value = "The station's destruction has been averted. There is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
+
+/datum/config_entry/string/alert_gamma
+	config_entry_value = "Central Command has ordered the Gamma security level on the station. Security is to have weapons equipped at all times, and all civilians are to immediately seek their nearest head for transportation to a secure location. Violating orders is punishable by death."
+
+/datum/config_entry/string/alert_epsilon
+	config_entry_value = "Central Command has ordered the Epsilon security level on the station. Consider all contracts terminated."
 
 /datum/config_entry/string/alert_delta
 	config_entry_value = "Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
@@ -375,3 +390,8 @@
 /datum/config_entry/number/monkeycap
 	config_entry_value = 64
 	min_val = 0
+
+/datum/config_entry/flag/dynamic_config_enabled
+
+/datum/config_entry/number/engine_type
+	config_entry_value = 3

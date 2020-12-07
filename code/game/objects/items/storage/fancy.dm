@@ -113,6 +113,10 @@
 	spawn_type = /obj/item/candle
 	fancy_open = TRUE
 
+/obj/item/storage/box/fancy/candle_box/attack_self(mob_user)
+	. = ..()
+	update_icon()
+
 /obj/item/storage/box/fancy/candle_box/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
@@ -133,6 +137,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	icon_type = "cigarette"
 	spawn_type = /obj/item/clothing/mask/cigarette/space_cigarette
+	age_restricted = TRUE
 
 /obj/item/storage/box/fancy/cigarettes/ComponentInitialize()
 	. = ..()
@@ -250,6 +255,12 @@
 	desc = "Loaded with 100% pure slime. And also nicotine."
 	icon_state = "slime"
 	spawn_type = /obj/item/clothing/mask/cigarette/xeno
+
+/obj/item/storage/box/fancy/cigarettes/cigpack_nonico
+	name = "nicotine-free cigarette packet"
+	desc = "A dull-looking pack of cigarettes."
+	icon_state = "nonico"
+	spawn_type = /obj/item/clothing/mask/cigarette/nonico
 
 /obj/item/storage/box/fancy/cigarettes/cigpack_cannabis
 	name = "\improper Freak Brothers' Special packet"

@@ -12,7 +12,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(MAT_METAL=500)
+	materials = list(/datum/material/iron=500)
 	resistance_flags = FIRE_PROOF
 	var/status = FALSE
 	var/lit = FALSE	//on or off
@@ -204,11 +204,10 @@
 	//TODO: DEFERRED Consider checking to make sure tank pressure is high enough before doing this...
 	//Transfer 5% of current tank air contents to turf
 	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(release_amount)
-	if(air_transfer.gases[/datum/gas/plasma])
-		air_transfer.gases[/datum/gas/plasma][MOLES] *= 5
+	air_transfer.set_moles(/datum/gas/plasma, air_transfer.get_moles(/datum/gas/plasma) * 5)
 	target.assume_air(air_transfer)
 	//Burn it based on transfered gas
-	target.hotspot_expose((ptank.air_contents.temperature*2) + 380,500)
+	target.hotspot_expose((ptank.air_contents.return_temperature()*2) + 380,500)
 	//location.hotspot_expose(1000,500,1)
 	SSair.add_to_active(target, 0)
 

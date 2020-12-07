@@ -17,19 +17,13 @@
 /mob/living/silicon/ai/IsVocal()
 	return !CONFIG_GET(flag/silent_ai)
 
-/mob/living/silicon/ai/radio(message, message_mode, list/spans, language)
+/mob/living/silicon/ai/radio(message, list/message_mods = list(), list/spans, language)
 	if(incapacitated())
 		return FALSE
 	if(!radio_enabled) //AI cannot speak if radio is disabled (via intellicard) or depowered.
 		to_chat(src, "<span class='danger'>Your radio transmitter is offline!</span>")
 		return FALSE
 	..()
-
-/mob/living/silicon/ai/get_message_mode(message)
-	if(copytext(message, 1, 3) in list(":h", ":H", ".h", ".H", "#h", "#H"))
-		return MODE_HOLOPAD
-	else
-		return ..()
 
 //For holopads only. Usable by AI.
 /mob/living/silicon/ai/proc/holopad_talk(message, language)
@@ -48,8 +42,10 @@
 			padloc = AREACOORD(padturf)
 		else
 			padloc = "(UNKNOWN)"
+		var/obj/effect/overlay/hologram = T.masters[src]
 		src.log_talk(message, LOG_SAY, tag="HOLOPAD in [padloc]")
-		send_speech(message, 7, T, "robot", message_language = language)
+		hologram.say("[message]")
+		send_speech(message, 7, T, MODE_ROBOT, message_language = language)
 		to_chat(src, "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> <span class='message robot'>\"[message]\"</span></span></i>")
 	else
 		to_chat(src, "No holopad connected.")
@@ -100,7 +96,7 @@
 
 	last_announcement = message
 
-	var/voxType = input(src, "Male or female VOX?", "VOX-gender") in list("male", "female") //yogs - male vox
+	var/voxType = input(src, "Which voice?", "VOX") in list("Victor (male)", "Verity (female)", "Oscar (military)") //Victor is vox_sounds_male, Verity is vox_sounds, Oscar is vox_sounds_military
 
 	if(!message || announcing_vox > world.time)
 		return
@@ -123,10 +119,12 @@
 		if(!word)
 			words -= word
 			continue
-		if(!GLOB.vox_sounds[word] && voxType == "female") //yogs start - male vox
+		if(!GLOB.vox_sounds[word] && voxType == "Verity (female)") //yogs start - male vox
 			incorrect_words += word
-		if(!GLOB.vox_sounds_male[word] && voxType == "male")
+		if(!GLOB.vox_sounds_male[word] && voxType == "Victor (male)")
 			incorrect_words += word  //yogs end- male vox
+		if(!GLOB.vox_sounds_military[word] && voxType == "Oscar (military)")
+			incorrect_words += word
 
 	if(incorrect_words.len)
 		to_chat(src, "<span class='notice'>These words are not available on the announcement system: [english_list(incorrect_words)].</span>")
@@ -140,18 +138,20 @@
 		play_vox_word(word, src.z, null, voxType) //yogs - male vox
 
 
-/proc/play_vox_word(word, z_level, mob/only_listener, voxType = "female", pitch = 0) // Yogs -- Pitch variation
+/proc/play_vox_word(word, z_level, mob/only_listener, voxType = "Verity (female)", pitch = 0) // Yogs -- Pitch variation
 
 	word = lowertext(word)
 
-	if( (GLOB.vox_sounds[word] && voxType == "female") || (GLOB.vox_sounds_male[word] &&voxType == "male") ) //yogs - male vox
+	if( (GLOB.vox_sounds[word] && voxType == "Verity (female)") || (GLOB.vox_sounds_male[word] &&voxType == "Victor (male)") || (GLOB.vox_sounds_military[word] &&voxType == "Oscar (military)") ) //yogs - male vox
 
 		var/sound_file //yogs start - male vox
 
-		if(voxType == "female")
+		if(voxType == "Verity (female)")
 			sound_file = GLOB.vox_sounds[word]
-		else
+		else if(voxType == "Victor (male)")
 			sound_file = GLOB.vox_sounds_male[word] //yogs end - male vox
+		else
+			sound_file = GLOB.vox_sounds_military[word]
 
 		var/sound/voice = sound(sound_file, wait = 1, channel = CHANNEL_VOX)
 		voice.status = SOUND_STREAM

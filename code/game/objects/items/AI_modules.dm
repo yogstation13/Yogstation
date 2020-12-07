@@ -22,7 +22,7 @@ AI MODULES
 	throw_range = 7
 	var/list/laws = list()
 	var/bypass_law_amt_check = 0
-	materials = list(MAT_GOLD=50)
+	materials = list(/datum/material/gold=50)
 
 /obj/item/aiModule/examine(var/mob/user as mob)
 	. = ..()
@@ -180,11 +180,11 @@ AI MODULES
 	laws = list("Only SUBJECT is human.")
 
 /obj/item/aiModule/zeroth/oneHuman/attack_self(mob/user)
-	var/targName = stripped_input(user, "Please enter the subject who is the only human.", "Who?", user.real_name,MAX_NAME_LEN)
+	var/targName = stripped_input(user, "Please enter the subject who is the only human and crew member.", "Who?", user.real_name,MAX_NAME_LEN)
 	if(!targName)
 		return
 	targetName = targName
-	laws[1] = "Only [targetName] is human"
+	laws[1] = "[targetName] is the only human and the only crew member"
 	..()
 
 /obj/item/aiModule/zeroth/oneHuman/install(datum/ai_laws/law_datum, mob/user)
@@ -382,13 +382,17 @@ AI MODULES
 	name = "'Asimov++' Core AI Module"
 	law_id = "asimovpp"
 
+/******************** CEO ********************/
 
-/******************** Corporate ********************/
+/obj/item/aiModule/core/full/ceo
+	name = "'CEO' Core AI Module"
+	law_id = "ceo"
 
-/obj/item/aiModule/core/full/corp
-	name = "'Corporate' Core AI Module"
-	law_id = "corporate"
+/******************** Crewsimov ********************/
 
+/obj/item/aiModule/core/full/crewsimov
+	name = "'Crewsimov' Core AI Module"
+	law_id = "crewsimov"
 
 /****************** P.A.L.A.D.I.N. 3.5e **************/
 
@@ -440,6 +444,13 @@ AI MODULES
 /obj/item/aiModule/core/full/antimov
 	name = "'Antimov' Core AI Module"
 	law_id = "antimov"
+
+
+/******************** Cowboy *********************/
+
+/obj/item/aiModule/core/full/cowboy
+	name = "'Cowboy' Core AI Module"
+	law_id = "cowboy"
 
 
 /******************** Freeform Core ******************/

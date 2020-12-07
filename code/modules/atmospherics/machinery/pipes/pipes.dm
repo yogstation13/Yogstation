@@ -27,7 +27,7 @@
 	var/obj/machinery/atmospherics/oldN = nodes[i]
 	..()
 	if(oldN)
-		oldN.build_network()
+		SSair.add_to_rebuild_queue(oldN)
 
 /obj/machinery/atmospherics/pipe/destroy_network()
 	QDEL_NULL(parent)
@@ -69,6 +69,11 @@
 
 /obj/machinery/atmospherics/pipe/analyzer_act(mob/living/user, obj/item/I)
 	atmosanalyzer_scan(parent.air, user, src)
+
+/obj/machinery/atmospherics/pipe/examine(mob/dead/observer/user)
+	if(istype(user))
+		analyzer_act(user, src)
+	return ..()
 
 /obj/machinery/atmospherics/pipe/returnPipenet()
 	return parent

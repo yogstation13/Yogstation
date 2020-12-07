@@ -78,7 +78,7 @@
 
 /obj/item/clothing/shoes/sneakers/rainbow
 	name = "rainbow shoes"
-	desc = "Very gay shoes."
+	desc = "Very colorful shoes."
 	icon_state = "rain_bow"
 	item_color = "rainbow"
 

@@ -3,7 +3,7 @@
 	desc = "It measures something."
 	icon = 'icons/obj/atmospherics/pipes/meter.dmi'
 	icon_state = "meterX"
-	layer = GAS_PUMP_LAYER
+	layer = GAS_METER_LAYER
 	power_channel = ENVIRON
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
@@ -15,6 +15,11 @@
 	var/id_tag
 	var/target_layer = PIPING_LAYER_DEFAULT
 
+/obj/machinery/meter/atmos/layer2
+	target_layer = 2
+
+/obj/machinery/meter/atmos/layer4
+	target_layer = 4
 /obj/machinery/meter/atmos
 	frequency = FREQ_ATMOS_STORAGE
 
@@ -103,7 +108,7 @@
 	if (target)
 		var/datum/gas_mixture/environment = target.return_air()
 		if(environment)
-			. = "The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.temperature,0.01)] K ([round(environment.temperature-T0C,0.01)]&deg;C)."
+			. = "The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.return_temperature(),0.01)] K ([round(environment.return_temperature()-T0C,0.01)]&deg;C)."
 		else
 			. = "The sensor error light is blinking."
 	else

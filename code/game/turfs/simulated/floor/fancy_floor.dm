@@ -67,6 +67,9 @@
 /turf/open/floor/wood/airless
 	initial_gas_mix = AIRLESS_ATMOS
 
+/turf/open/floor/wood/lavaland
+	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
+
 /turf/open/floor/grass
 	name = "grass patch"
 	desc = "You can't tell if this is real grass or just cheap plastic imitation."

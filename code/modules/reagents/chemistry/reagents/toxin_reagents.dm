@@ -34,7 +34,7 @@
 /datum/reagent/toxin/mutagen/reaction_mob(mob/living/carbon/M, method=TOUCH, reac_volume)
 	if(!..())
 		return
-	if(!M.has_dna())
+	if(!M.has_dna() || HAS_TRAIT(M, TRAIT_GENELESS) || HAS_TRAIT(M, TRAIT_BADDNA))
 		return  //No robots, AIs, aliens, Ians or other mobs should be affected by this.
 	if((method==VAPOR && prob(min(33, reac_volume))) || method==INGEST || method==PATCH || method==INJECT)
 		M.randmuti()
@@ -89,6 +89,22 @@
 	color = "#7DC3A0"
 	toxpwr = 0
 	taste_description = "acid"
+
+/datum/reagent/toxin/hot_ice
+	name = "Hot Ice Slush"
+	description = "Frozen plasma, worth its weight in gold, to the right people"
+	reagent_state = SOLID
+	color = "#724cb8" // rgb: 114, 76, 184
+	taste_description = "thick and smokey"
+	specific_heat = SPECIFIC_HEAT_PLASMA
+	toxpwr = 3
+
+/datum/reagent/toxin/hot_ice/on_mob_life(mob/living/carbon/M)
+	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
+		holder.remove_reagent(/datum/reagent/medicine/epinephrine, 2*REM)
+	M.adjustPlasma(20)
+	M.adjust_bodytemperature(-7 * TEMPERATURE_DAMAGE_COEFFICIENT, M.get_body_temp_normal())
+	return ..()
 
 /datum/reagent/toxin/lexorin/on_mob_life(mob/living/carbon/C)
 	. = TRUE
@@ -149,20 +165,39 @@
 	color = "#669900" // rgb: 102, 153, 0
 	toxpwr = 0.5
 	taste_description = "death"
+	var/fakedeath_active = FALSE
 
 /datum/reagent/toxin/zombiepowder/on_mob_metabolize(mob/living/L)
 	..()
-	L.fakedeath(type)
+	ADD_TRAIT(L, TRAIT_FAKEDEATH, type)
+	if(fakedeath_active)
+		L.fakedeath(type)
 
 /datum/reagent/toxin/zombiepowder/on_mob_end_metabolize(mob/living/L)
 	L.cure_fakedeath(type)
 	..()
 
-/datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/carbon/M)
-	M.adjustOxyLoss(0.5*REM, 0)
-	..()
-	. = 1
+/datum/reagent/toxin/zombiepowder/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+	L.adjustOxyLoss(0.5*REM, 0)
+	if(method == INGEST)
+		var/datum/reagent/toxin/zombiepowder/Z = L.reagents.has_reagent(/datum/reagent/toxin/zombiepowder)
+		if(istype(Z))
+			Z.fakedeath_active = TRUE
 
+/datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/M)
+	..()
+	if(fakedeath_active)
+		return TRUE
+	switch(current_cycle)
+		if(1 to 5)
+			M.confused += 1
+			M.drowsyness += 1
+			M.slurring += 3
+		if(5 to 8)
+			M.adjustStaminaLoss(40, 0)
+		if(9 to INFINITY)
+			fakedeath_active = TRUE
+			M.fakedeath(type)
 /datum/reagent/toxin/ghoulpowder
 	name = "Ghoul Powder"
 	description = "A strong neurotoxin that slows metabolism to a death-like state, while keeping the patient fully active. Causes toxin buildup if used too long."
@@ -466,20 +501,18 @@
 	toxpwr = 0.5
 	taste_description = "bad cooking"
 
-/datum/reagent/toxin/itching_powder
+/datum/reagent/itching_powder
 	name = "Itching Powder"
 	description = "A powder that induces itching upon contact with the skin. Causes the victim to scratch at their itches and has a very low chance to decay into Histamine."
-	silent_toxin = TRUE
 	reagent_state = LIQUID
 	color = "#C8C8C8"
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
-	toxpwr = 0
 
-/datum/reagent/toxin/itching_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/itching_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == TOUCH || method == VAPOR)
-		M.reagents.add_reagent(/datum/reagent/toxin/itching_powder, reac_volume)
+		M.reagents.add_reagent(/datum/reagent/itching_powder, reac_volume)
 
-/datum/reagent/toxin/itching_powder/on_mob_life(mob/living/carbon/M)
+/datum/reagent/itching_powder/on_mob_life(mob/living/carbon/M)
 	if(prob(15))
 		to_chat(M, "You scratch at your head.")
 		M.adjustBruteLoss(0.2*REM, 0)
@@ -494,7 +527,7 @@
 		. = 1
 	if(prob(3))
 		M.reagents.add_reagent(/datum/reagent/toxin/histamine,rand(1,3))
-		M.reagents.remove_reagent(/datum/reagent/toxin/itching_powder,1.2)
+		M.reagents.remove_reagent(/datum/reagent/itching_powder,1.2)
 		return
 	..()
 
@@ -775,12 +808,20 @@
 		return
 	reac_volume = round(reac_volume,0.1)
 	if(method == INGEST)
-		C.adjustBruteLoss(min(6*toxpwr, reac_volume * toxpwr))
+		if(!HAS_TRAIT(C, TRAIT_ACIDBLOOD))
+			C.adjustBruteLoss(min(6*toxpwr, reac_volume * toxpwr))
 		return
 	if(method == INJECT)
-		C.adjustBruteLoss(1.5 * min(6*toxpwr, reac_volume * toxpwr))
+		if(!HAS_TRAIT(C, TRAIT_ACIDBLOOD))
+			C.adjustBruteLoss(1.5 * min(6*toxpwr, reac_volume * toxpwr))
 		return
 	C.acid_act(acidpwr, reac_volume)
+
+/datum/reagent/toxin/acid/on_mob_life(mob/living/carbon/M)
+	if(HAS_TRAIT(M, TRAIT_ACIDBLOOD))
+		M.adjustToxLoss(clamp((toxpwr-2)*REM, -toxpwr*REM, 0))  //Counteracts toxin damage from parent, stronger acids will still do toxin damage to those with acidic blood but weaker acids will not
+	. = 1
+	..()
 
 /datum/reagent/toxin/acid/reaction_obj(obj/O, reac_volume)
 	if(ismob(O.loc)) //handled in human acid_act()

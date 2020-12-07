@@ -5,7 +5,7 @@
 
 /obj/mecha/proc/get_stats_html()
 	. = {"<html>
-						<head><title>[src.name] data</title>
+						<head><meta charset='UTF-8'><title>[src.name] data</title>
 						<style>
 						body {color: #00ff00; background: #000000; font-family:"Lucida Console",monospace; font-size: 12px;}
 						hr {border: 1px solid #0f0; color: #0f0; background-color: #0f0;}
@@ -78,7 +78,7 @@
 	if (internal_tank)
 		int_tank_air = internal_tank.return_air()
 		tank_pressure = internal_tank ? round(int_tank_air.return_pressure(),0.01) : "None"
-		tank_temperature = internal_tank ? int_tank_air.temperature : "Unknown"
+		tank_temperature = internal_tank ? int_tank_air.return_temperature() : "Unknown"
 		cabin_pressure = round(return_pressure(),0.01)
 	. = {"[report_internal_damage()]
 						[integrity<30?"<span class='userdanger'>DAMAGE LEVEL CRITICAL</span><br>":null]
@@ -157,7 +157,7 @@
 	if(!id_card || !user)
 		return
 	. = {"<html>
-						<head><style>
+						<head><meta charset='UTF-8'><style>
 						h1 {font-size:15px;margin-bottom:4px;}
 						body {color: #00ff00; background: #000000; font-family:"Courier New", Courier, monospace; font-size: 12px;}
 						a {color:#0f0;}
@@ -186,18 +186,24 @@
 	if(!id_card || !user)
 		return
 	. = {"<html>
-						<head>
-						<style>
-						body {color: #00ff00; background: #000000; font-family:"Courier New", Courier, monospace; font-size: 12px;}
-						a {padding:2px 5px; background:#32CD32;color:#000;display:block;margin:2px;text-align:center;text-decoration:none;}
-						</style>
-						</head>
-						<body>
-						[add_req_access?"<a href='?src=[REF(src)];req_access=1;id_card=[REF(id_card)];user=[REF(user)]'>Edit operation keycodes</a>":null]
-						[maint_access?"<a href='?src=[REF(src)];maint_access=1;id_card=[REF(id_card)];user=[REF(user)]'>[(state>0) ? "Terminate" : "Initiate"] maintenance protocol</a>":null]
-						[(state>0) ?"<a href='?src=[REF(src)];set_internal_tank_valve=1;user=[REF(user)]'>Set Cabin Air Pressure</a>":null]
-						</body>
-						</html>"}
+			<head>
+				<meta charset='UTF-8'>
+				<style>
+					body {color: #00ff00; background: #000000; font-family:"Courier New", Courier, monospace; font-size: 12px;}
+					a {padding:2px 5px; background:#32CD32;color:#000;display:block;margin:2px;text-align:center;text-decoration:none;}
+				</style>
+			</head>
+			<body>
+				[add_req_access?"<a href='?src=[REF(src)];req_access=1;id_card=[REF(id_card)];user=[REF(user)]'>Edit operation keycodes</a>":null]
+				[maint_access?"<a href='?src=[REF(src)];maint_access=1;id_card=[REF(id_card)];user=[REF(user)]'>[(state > 0) ? "Terminate" : "Initiate"] maintenance protocol</a>":null]
+				[(state == 3) ?"--------------------</br>":null]
+				[(state == 3) ?"[cell?"<a href='?src=[REF(src)];drop_cell=1;id_card=[REF(id_card)];user=[REF(user)]'>Drop power cell</a>":"No cell installed</br>"]":null]
+				[(state == 3) ?"[scanmod?"<a href='?src=[REF(src)];drop_scanmod=1;id_card=[REF(id_card)];user=[REF(user)]'>Drop scanning module</a>":"No scanning module installed</br>"]":null]
+				[(state == 3) ?"[capacitor?"<a href='?src=[REF(src)];drop_cap=1;id_card=[REF(id_card)];user=[REF(user)]'>Drop capacitor</a>":"No capacitor installed</br>"]":null]
+				[(state == 3) ?"--------------------</br>":null]
+				[(state>0) ?"<a href='?src=[REF(src)];set_internal_tank_valve=1;user=[REF(user)]'>Set Cabin Air Pressure</a>":null]
+			</body>
+		</html>"}
 	user << browse(., "window=exosuit_maint_console")
 	onclose(user, "exosuit_maint_console")
 
@@ -233,7 +239,31 @@
 			else if(state==1)
 				state = 0
 				to_chat(usr, "The securing bolts are now hidden.")
+			else if(state==2) //user feedback YOGGERZ
+				visible_message("<span class='warning'>You need to tighten the securing bolts first!</span>")
+			else if(state==3)
+				visible_message("<span class='warning'>You need to close the hatch to the power unit first!</span>")	
 			output_maintenance_dialog(id_card,usr)
+			return
+
+		if(href_list["drop_cell"])
+			if(state == 3)
+				cell.forceMove(get_turf(src))
+				cell = null
+			output_maintenance_dialog(id_card,usr)
+			return
+		if(href_list["drop_scanmod"])
+			if(state == 3)
+				scanmod.forceMove(get_turf(src))
+				scanmod = null
+			output_maintenance_dialog(id_card,usr)
+			return
+		if(href_list["drop_cap"])
+			if(state == 3)
+				capacitor.forceMove(get_turf(src))
+				capacitor = null
+			output_maintenance_dialog(id_card,usr)
+			return
 
 		if(href_list["set_internal_tank_valve"] && state >=1)
 			var/new_pressure = input(usr,"Input new output pressure","Pressure setting",internal_tank_valve) as num
@@ -283,12 +313,10 @@
 		send_byjax(usr,"exosuit.browser","rfreq","[format_frequency(radio.frequency)]")
 
 	if (href_list["change_name"])
-		var/userinput = input(occupant, "Choose new exosuit name", "Rename exosuit", "") as null|text
-		if(!isnull(userinput))
-			var/newname = copytext(sanitize(userinput),1,MAX_NAME_LEN)
-			if(newname)
-				log_game("[key_name(usr)] renamed [name] to [newname]")
-				name = newname ? newname : initial(name)
+		var/userinput = stripped_input(occupant, "Choose new exosuit name", "Rename exosuit", "", MAX_NAME_LEN)
+		if(!userinput || usr != occupant || usr.incapacitated())
+			return
+		name = userinput
 
 	if (href_list["toggle_id_upload"])
 		add_req_access = !add_req_access
@@ -299,7 +327,8 @@
 			occupant_message("<span class='danger'>Maintenance protocols in effect</span>")
 			return
 		maint_access = !maint_access
-		send_byjax(usr,"exosuit.browser","t_maint_access","[maint_access?"Forbid":"Permit"] maintenance protocols")
+		send_byjax(usr,"exosuit.browser","t_maint_access","[maint_access?"Forbid":"Permit"] maintenance protocols")	
+
 
 	if (href_list["toggle_port_connection"])
 		if(internal_tank.connected_port)

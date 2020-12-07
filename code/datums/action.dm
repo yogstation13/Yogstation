@@ -199,6 +199,9 @@
 /datum/action/item_action/toggle_firemode
 	name = "Toggle Firemode"
 
+/datum/action/item_action/toggle_bodycam
+	name = "Toggle Bodycamera"
+
 /datum/action/item_action/rcl_col
 	name = "Change Cable Color"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
@@ -286,16 +289,6 @@
 			button_icon_state = "vortex_ff_on"
 			name = "Toggle Friendly Fire \[ON\]"
 	..()
-
-/datum/action/item_action/synthswitch
-	name = "Change Synthesizer Instrument"
-	desc = "Change the type of instrument your synthesizer is playing as."
-
-/datum/action/item_action/synthswitch/Trigger()
-	if(istype(target, /obj/item/instrument/piano_synth))
-		var/obj/item/instrument/piano_synth/synth = target
-		return synth.selectInstrument()
-	return ..()
 
 /datum/action/item_action/vortex_recall
 	name = "Vortex Recall"

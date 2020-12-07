@@ -1,5 +1,5 @@
 /datum/admins/proc/open_borgopanel(borgo in GLOB.silicon_mobs)
-	set category = "Admin"
+	set category = "Admin.Player Interaction"
 	set name = "Show Borg Panel"
 	set desc = "Show borg panel"
 
@@ -23,8 +23,8 @@
 
 /datum/borgpanel/New(to_user, mob/living/silicon/robot/to_borg)
 	if(!istype(to_borg))
-		CRASH("Borg panel is only available for borgs")
 		qdel(src)
+		CRASH("Borg panel is only available for borgs")
 
 	user = CLIENT_FROM_VAR(to_user)
 
@@ -33,10 +33,13 @@
 
 	borg = to_borg
 
-/datum/borgpanel/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.admin_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/borgpanel/ui_state(mob/user)
+	return GLOB.admin_state
+
+/datum/borgpanel/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "borgopanel", "Borg Panel", 700, 700, master_ui, state)
+		ui = new(user, src, "BorgPanel")
 		ui.open()
 
 /datum/borgpanel/ui_data(mob/user)
@@ -85,7 +88,7 @@
 		if ("set_charge")
 			var/newcharge = input("New charge (0-[borg.cell.maxcharge]):", borg.name, borg.cell.charge) as num|null
 			if (newcharge)
-				borg.cell.charge = CLAMP(newcharge, 0, borg.cell.maxcharge)
+				borg.cell.charge = clamp(newcharge, 0, borg.cell.maxcharge)
 				message_admins("[key_name_admin(user)] set the charge of [ADMIN_LOOKUPFLW(borg)] to [borg.cell.charge].")
 				log_admin("[key_name(user)] set the charge of [key_name(borg)] to [borg.cell.charge].")
 		if ("remove_cell")
@@ -199,7 +202,7 @@
 				borg.notify_ai(DISCONNECT)
 				if(borg.shell)
 					borg.undeploy()
-				borg.connected_ai = newai
+				borg.set_connected_ai(newai)
 				borg.notify_ai(TRUE)
 				message_admins("[key_name_admin(user)] slaved [ADMIN_LOOKUPFLW(borg)] to the AI [ADMIN_LOOKUPFLW(newai)].")
 				log_admin("[key_name(user)] slaved [key_name(borg)] to the AI [key_name(newai)].")
@@ -207,7 +210,7 @@
 				borg.notify_ai(DISCONNECT)
 				if(borg.shell)
 					borg.undeploy()
-				borg.connected_ai = null
+				borg.set_connected_ai(null)
 				message_admins("[key_name_admin(user)] freed [ADMIN_LOOKUPFLW(borg)] from being slaved to an AI.")
 				log_admin("[key_name(user)] freed [key_name(borg)] from being slaved to an AI.")
 			if (borg.lawupdate)

@@ -66,6 +66,10 @@
 	if(alert("WARNING: Are you sure you wish to self-destruct? This action cannot be undone!",,"Yes","No") != "Yes")
 		return
 
+	if(usr.stat == DEAD)
+		to_chat(usr, "<span class='danger'>You are already dead.</span>")
+		return //won't work if dead
+
 	var/turf/T = get_turf(usr)
 	message_admins("<span class='notice'>[ADMIN_LOOKUPFLW(usr)] detonated themselves at [ADMIN_VERBOSEJMP(T)]!</span>")
 	log_game("\<span class='notice'>[key_name(usr)] detonated themselves!</span>")

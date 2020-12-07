@@ -1,5 +1,5 @@
 {
-    "brain_damage": [
+	"brain_damage": [
 		"wuh if trayters but dey fite eech udder",
 		"@pick(semicolon)ooc why do monkey",
 		"snails wen",
@@ -31,68 +31,64 @@
 		"im just in space, i see perma is broke, and i help prisoners escape",
 		"borg was also trash and literally garbage who needed to be taught a lesson in dick physics who let the aliums out? kmc2000 i love you pls unban or i nerf ballsack",
 		"i love you all please just unban and everything will be o k a y relax R E L A X while i slowly take your credet kurd",
-		"are space dragons human"
-    ],
-
-    "semicolon": [
-        "",
-        ";",
-        ".h"
-    ],
+		"are space dragons human",
+		"THESE NOOBS ARE RUINING MY FAVOURITE FUCKING SERVER.",
+		"AI not rogue, just had an ion law telling it to set shit on fire",
+		"CAN SPACE DRAGONS COMMIT MURDERS?"
+	],
+	"semicolon": [
+		"",
+		";",
+		".h"
+	],
 	"y_replacements": [
-        "y",
-        "i",
-        "e"
-    ],
-
-    "god_foe": [
-        "MORTALS",
-        "HERETICS",
-        "INSECTS",
-	"UNBELIEVERS",
-	"BLASPHEMERS",
-	"PARASITES",
-	"WEAKLINGS",
-	"PEASANTS"
-    ],
-
-    "god_aggressive": [
-        "BEGONE, @pick(god_foe)!",
-        "DIE, @pick(god_foe)!",
-        "BLEED, @pick(god_foe)!",
-	"BURN, @pick(god_foe)!",
-	"ALL WILL FALL BEFORE ME!",
-	"ENDLESS SUFFERING AWAITS YOU, @pick(god_foe).",
-	"DEATH TO @pick(god_foe)!"
-    ],
-
-    "god_neutral": [
-        "STOP",
-	"HALT.",
-        "BE SILENT.",
-        "QUIET",
-	"SEE THE TRUTH BEFORE YOU, MORTALS.",
-	"MORTALS, SAY YOUR NAME",
-	"BEGONE, MORTALS.",
-	"BE HEALED, MORTALS. I AM FEELING MERCIFUL.",
-	"DANCE FOR ME, LITTLE MORTALS.",
-	"YOU. STOP.",
-	"REST, MORTALS, TOMORROW IS A LONG DAY.",
-	"YOU MORTALS MAKE ME SICK.",
-	"HONK..."
-    ],
-
-    "god_unstun": [
-	"GET UP. I HAVE NO TIME TO LOSE.",
-	"GET UP, PRIEST.",
-	"GET UP."
-    ],
-
-    "god_heal": [
-	"YOU WILL LIVE TO SEE ANOTHER DAY.",
-	"YOU SHALL SURVIVE THIS, MY PRIEST.",
-	"BE HEALED, PRIEST.",
-	"YOUR LIFE IS IMPORTANT. KEEP IT."
-    ]
-
+		"y",
+		"i",
+		"e"
+	],
+	"god_foe": [
+		"MORTALS",
+		"HERETICS",
+		"INSECTS",
+		"UNBELIEVERS",
+		"BLASPHEMERS",
+		"PARASITES",
+		"WEAKLINGS",
+		"PEASANTS"
+	],
+	"god_aggressive": [
+		"BEGONE, @pick(god_foe)!",
+		"DIE, @pick(god_foe)!",
+		"BLEED, @pick(god_foe)!",
+		"BURN, @pick(god_foe)!",
+		"ALL WILL FALL BEFORE ME!",
+		"ENDLESS SUFFERING AWAITS YOU, @pick(god_foe).",
+		"DEATH TO @pick(god_foe)!"
+	],
+	"god_neutral": [
+		"STOP",
+		"HALT.",
+		"BE SILENT.",
+		"QUIET",
+		"SEE THE TRUTH BEFORE YOU, MORTALS.",
+		"MORTALS, SAY YOUR NAME",
+		"BEGONE, MORTALS.",
+		"BE HEALED, MORTALS. I AM FEELING MERCIFUL.",
+		"DANCE FOR ME, LITTLE MORTALS.",
+		"YOU. STOP.",
+		"REST, MORTALS, TOMORROW IS A LONG DAY.",
+		"YOU MORTALS MAKE ME SICK.",
+		"HONK..."
+	],
+	"god_unstun": [
+		"GET UP. I HAVE NO TIME TO LOSE.",
+		"GET UP, PRIEST.",
+		"GET UP."
+	],
+	"god_heal": [
+		"YOU WILL LIVE TO SEE ANOTHER DAY.",
+		"YOU SHALL SURVIVE THIS, MY PRIEST.",
+		"BE HEALED, PRIEST.",
+		"YOUR LIFE IS IMPORTANT. KEEP IT."
+	]
 }

@@ -5,15 +5,6 @@
 "ab" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"ac" = (
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
-"ad" = (
-/obj/effect/turf_decal/sand,
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
 "af" = (
 /turf/closed/wall/r_wall/rust,
 /area/lavaland/surface/outdoors)
@@ -37,72 +28,18 @@
 	icon_state = "wood-broken6"
 	},
 /area/ruin/powered)
-"ak" = (
-/obj/item/crowbar,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
-"al" = (
-/obj/structure/grille{
-	density = 0;
-	icon_state = "brokengrille"
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
-"am" = (
-/obj/structure/grille/broken,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
-"an" = (
-/obj/vehicle/ridden/atv,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
 "ao" = (
 /obj/structure/table/wood/bar,
 /obj/item/toy/cards/deck/cas,
 /turf/open/floor/wood,
-/area/ruin/powered)
-"ap" = (
-/obj/structure/girder/reinforced,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/ruin/powered)
-"aq" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
 /area/ruin/powered)
 "ar" = (
 /obj/structure/table/wood/bar,
 /obj/item/toy/cards/deck/cas/black,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"as" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/powered)
 "at" = (
 /mob/living/simple_animal/hostile/asteroid/goliath/beast,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"au" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/lavaland/surface/outdoors)
-"av" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/glass/bottle/potass_iodide{
-	desc = "Fixes your radiation problems. Doesn't come with a vault.";
-	name = "rad-away"
-	},
 /turf/open/floor/wood,
 /area/ruin/powered)
 "aw" = (
@@ -114,38 +51,10 @@
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"az" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/powered)
-"aA" = (
-/obj/structure/girder/reinforced,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/lavaland/surface/outdoors)
 "aB" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aC" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/powered)
-"aD" = (
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aE" = (
-/obj/structure/bookcase/random,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "aF" = (
@@ -155,15 +64,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"aG" = (
-/obj/structure/closet/cardboard,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aH" = (
-/obj/machinery/light/small,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/powered)
 "aI" = (
 /obj/structure/bookcase/random,
 /turf/open/floor/plating{
@@ -207,22 +107,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/powered)
-"aQ" = (
-/obj/item/reagent_containers/glass/bottle/potass_iodide,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
-"aR" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
-"aS" = (
-/obj/structure/dresser,
-/turf/open/floor/wood,
-/area/ruin/powered)
 "aT" = (
 /obj/structure/table/wood/bar,
 /obj/item/pda/chameleon,
@@ -248,11 +132,6 @@
 "aW" = (
 /turf/closed/wall/r_wall/rust,
 /area/ruin/powered)
-"aX" = (
-/obj/item/wrench,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
 "aY" = (
 /obj/item/clothing/suit/jacket/leather,
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion,
@@ -310,8 +189,8 @@
 /area/ruin/powered)
 "bi" = (
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 8
+	dir = 8;
+	icon_state = "tube"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -357,13 +236,6 @@
 /obj/item/toy/cards/cardhand,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"br" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
 "bs" = (
 /obj/structure/ladder,
 /turf/open/floor/wood,
@@ -372,11 +244,6 @@
 /obj/structure/table/wood/poker,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"bu" = (
-/obj/vehicle/ridden/scooter,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
 "bv" = (
 /obj/structure/chair/comfy/beige{
 	dir = 4;
@@ -389,11 +256,6 @@
 /obj/item/reagent_containers/food/drinks/beer,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"bx" = (
-/obj/structure/barricade/wooden,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
 "by" = (
 /mob/living/simple_animal/pet/dog/corgi/Ian{
 	atmos_requirements = list("min_oxy" = 4, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 3, "min_co2" = 0, "max_co2" = 7, "min_n2" = 0, "max_n2" = 1);
@@ -410,21 +272,13 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
-"bA" = (
-/obj/structure/closet/crate/bin,
-/obj/item/reagent_containers/food/snacks/deadmouse,
-/obj/item/trash/can,
-/obj/item/trash/can,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface/outdoors)
 "bC" = (
 /obj/structure/chair/comfy/brown{
 	dir = 4
 	},
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 8
+	dir = 8;
+	icon_state = "tube"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -435,8 +289,8 @@
 /area/ruin/powered)
 "bE" = (
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 4
+	dir = 4;
+	icon_state = "tube"
 	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken4"
@@ -461,7 +315,7 @@
 /area/ruin/powered)
 "bO" = (
 /obj/structure/table/wood/bar,
-/obj/item/cookiesynth,
+/obj/item/rsf/cookiesynth,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "bP" = (
@@ -471,18 +325,104 @@
 "bR" = (
 /obj/structure/table/wood,
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 8
+	dir = 8;
+	icon_state = "tube"
 	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bU" = (
-/obj/machinery/light/small,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "bW" = (
 /mob/living/simple_animal/hostile/asteroid/marrowweaver,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"cw" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"dJ" = (
+/turf/open/floor/wood/lavaland{
+	icon_state = "wood-broken6"
+	},
+/area/ruin/powered)
+"dU" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bottle/potass_iodide{
+	desc = "Fixes your radiation problems. Doesn't come with a vault.";
+	name = "rad-away"
+	},
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"er" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"fO" = (
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"gO" = (
+/turf/open/floor/wood/lavaland{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/powered)
+"iU" = (
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"ka" = (
+/obj/effect/turf_decal/sand,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"lc" = (
+/obj/item/crowbar,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"lR" = (
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "platingdmg3"
+	},
+/area/lavaland/surface/outdoors)
+"mq" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "platingdmg3"
+	},
+/area/lavaland/surface/outdoors)
+"mP" = (
+/obj/machinery/light/small,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"rP" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"st" = (
+/obj/structure/closet/crate/bin,
+/obj/item/reagent_containers/food/snacks/deadmouse,
+/obj/item/trash/can,
+/obj/item/trash/can,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"tD" = (
+/obj/item/wrench,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"vc" = (
+/obj/structure/grille{
+	density = 0;
+	icon_state = "brokengrille"
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
 /area/lavaland/surface/outdoors)
 "xf" = (
 /obj/item/clothing/suit/space/hardsuit/powerarmor_t45b,
@@ -490,10 +430,17 @@
 /area/ruin/powered)
 "zW" = (
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 1
+	dir = 1;
+	icon_state = "tube"
 	},
 /turf/open/floor/wood,
+/area/ruin/powered)
+"Dx" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
 "FQ" = (
 /obj/structure/sign/barsign{
@@ -501,10 +448,98 @@
 	},
 /turf/closed/wall/r_wall/rust,
 /area/ruin/powered)
+"Gm" = (
+/obj/item/reagent_containers/glass/bottle/potass_iodide,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"Hc" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/powered)
+"Jg" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
+"Jk" = (
+/obj/structure/barricade/wooden,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"Ju" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"JH" = (
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"Kv" = (
+/obj/structure/closet/cardboard,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"Ln" = (
+/obj/machinery/door/airlock,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"ML" = (
+/obj/vehicle/ridden/scooter,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"Pr" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
+"RS" = (
+/obj/vehicle/ridden/atv,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"Si" = (
+/obj/machinery/light/small,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
+"Sz" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"Tx" = (
+/obj/structure/dresser,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"Tz" = (
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/powered)
 "Vo" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/ruin/powered)
+"VZ" = (
+/obj/structure/grille/broken,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/lavaland/surface/outdoors)
+"XC" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "platingdmg3"
+	},
+/area/lavaland/surface/outdoors)
 
 (1,1,1) = {"
 aa
@@ -534,7 +569,7 @@ ab
 ab
 ab
 ab
-ac
+iU
 aa
 aa
 aa
@@ -577,12 +612,12 @@ aa
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
+iU
 aa
 aa
 aa
@@ -624,14 +659,14 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 ab
 ab
-ac
-ac
+iU
+iU
 aa
 aa
 aa
@@ -672,15 +707,15 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 ab
 ab
-ac
-ac
-ac
+iU
+iU
+iU
 aa
 aa
 aa
@@ -720,16 +755,16 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
 ab
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 aa
 aa
 aa
@@ -769,16 +804,16 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 ab
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
 aa
 aa
 aa
@@ -808,9 +843,9 @@ aa
 ab
 ab
 ab
-ac
-ac
-ac
+iU
+iU
+iU
 ab
 ab
 ab
@@ -818,11 +853,11 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
+iU
+iU
+iU
 ab
-ac
+iU
 ab
 ab
 ab
@@ -856,26 +891,26 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 ab
 ab
 ab
 ab
 ab
 ab
-ac
-ac
-ac
+iU
+iU
+iU
 ab
-ac
-ab
-ab
+iU
 ab
 ab
-ac
+ab
+ab
+iU
 aa
 aa
 aa
@@ -903,27 +938,27 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
+iU
+iU
+iU
 aW
 aW
-ap
-aq
-ap
-aW
-aW
-aW
+Hc
+Tz
+Hc
 aW
 aW
 aW
 aW
 aW
 aW
-ap
-aq
-aq
-ac
+aW
+aW
+aW
+Hc
+Tz
+Tz
+iU
 aa
 aa
 aa
@@ -950,29 +985,29 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 aW
-ai
-ai
-bk
-ai
-ai
+JH
+JH
+gO
+JH
+JH
 aW
-aE
-ai
-aG
-aG
-ai
-ai
-ai
-bj
-ai
-ap
-ac
-ac
+Ju
+JH
+Kv
+Kv
+JH
+JH
+JH
+dJ
+JH
+Hc
+iU
+iU
 aa
 aa
 aa
@@ -993,35 +1028,35 @@ aa
 aa
 ab
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
-ac
-ap
-ai
-bl
-ai
-ai
-ai
+iU
+Hc
+JH
+er
+JH
+JH
+JH
 aW
-ai
-bk
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ap
-ac
-ac
-ac
+JH
+gO
+JH
+JH
+JH
+JH
+JH
+JH
+JH
+Hc
+iU
+iU
+iU
 aa
 aa
 aa
@@ -1041,35 +1076,35 @@ aa
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
-ac
-aq
-bk
-bl
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-bU
+iU
+Tz
+gO
+er
+JH
+JH
+JH
+JH
+JH
+JH
+JH
+mP
 aW
 aW
-ai
+JH
 aW
 aW
 aW
-ac
-ac
-ac
+iU
+iU
+iU
 aa
 aa
 aa
@@ -1089,36 +1124,36 @@ ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
-ac
-ap
-ai
-av
-ai
-ai
-ai
+iU
+Hc
+JH
+dU
+JH
+JH
+JH
 aW
-bj
-ai
-ai
-ai
+dJ
+JH
+JH
+JH
 aW
-ai
-ai
-ai
-aS
+JH
+JH
+JH
+Tx
 aW
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 aa
 aa
 aa
@@ -1133,41 +1168,41 @@ aa
 (14,1,1) = {"
 aa
 ab
-ac
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
-an
-ac
+iU
+iU
+RS
+iU
 aW
-ai
-ai
-aB
-ai
-aD
+JH
+JH
+cw
+JH
+fO
 aW
-ai
-ai
-ai
-ai
+JH
+JH
+JH
+JH
 aW
-aD
-ai
-bk
-bU
+fO
+JH
+gO
+mP
 aW
-aX
-ac
-ac
-ac
-ac
+tD
+iU
+iU
+iU
+iU
 aa
 aa
 aa
@@ -1180,23 +1215,23 @@ aa
 "}
 (15,1,1) = {"
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 aW
 aW
-ay
+Ln
 aW
 aU
 aW
@@ -1214,8 +1249,8 @@ aW
 aW
 aW
 aW
-ac
-ac
+iU
+iU
 aa
 aa
 aa
@@ -1228,28 +1263,28 @@ aa
 "}
 (16,1,1) = {"
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
 ab
 ab
-ac
-ac
-as
-ac
-ac
-ac
-ac
-ac
-as
-ac
+iU
+iU
+Jg
+iU
+iU
+iU
+iU
+iU
+Jg
+iU
 ab
 ab
 aW
@@ -1262,9 +1297,9 @@ aW
 xf
 aY
 aW
-ac
-ac
-ac
+iU
+iU
+iU
 aa
 aa
 aa
@@ -1275,28 +1310,28 @@ aa
 aa
 "}
 (17,1,1) = {"
-ac
-ac
-ad
+iU
+iU
+ka
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
 ab
 ab
 ab
@@ -1310,8 +1345,8 @@ bo
 ai
 ai
 aU
-ac
-ac
+iU
+iU
 ab
 ab
 aa
@@ -1358,8 +1393,8 @@ aW
 aB
 aZ
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1406,8 +1441,8 @@ aW
 aW
 aW
 aW
-am
-ac
+VZ
+iU
 ab
 ab
 ab
@@ -1443,7 +1478,7 @@ ab
 ab
 ab
 ab
-ac
+iU
 aW
 aK
 ai
@@ -1454,8 +1489,8 @@ aW
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1470,28 +1505,28 @@ aa
 aa
 aa
 aa
-ac
-ac
-ac
+iU
+iU
+iU
 ab
 ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aU
 ai
 ai
@@ -1502,8 +1537,8 @@ bo
 ai
 ai
 aU
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1519,27 +1554,27 @@ aa
 aa
 aa
 ab
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-az
-ac
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+Pr
+iU
 ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 aM
 aB
@@ -1550,8 +1585,8 @@ aW
 aB
 ba
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1567,11 +1602,11 @@ aa
 aa
 aa
 aa
-ac
-ac
-ac
+iU
+iU
+iU
 ab
-ac
+iU
 aW
 aW
 aU
@@ -1586,8 +1621,8 @@ ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 aW
 aW
@@ -1598,8 +1633,8 @@ aW
 aW
 aW
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1618,8 +1653,8 @@ aa
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 ai
 ai
@@ -1634,8 +1669,8 @@ ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 ai
 aO
@@ -1646,8 +1681,8 @@ aW
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1666,8 +1701,8 @@ aa
 aa
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 ai
 ao
@@ -1677,13 +1712,13 @@ ai
 ai
 at
 aU
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aU
 ai
 bj
@@ -1694,8 +1729,8 @@ bo
 bj
 ai
 aU
-ac
-bu
+iU
+ML
 ab
 ab
 ab
@@ -1715,7 +1750,7 @@ aa
 aa
 ab
 ab
-ac
+iU
 aW
 ai
 ai
@@ -1725,13 +1760,13 @@ ai
 bj
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 aN
 aB
@@ -1742,8 +1777,8 @@ aW
 aB
 bg
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1773,13 +1808,13 @@ bv
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-aH
+iU
+Si
 aW
 aW
 aW
@@ -1790,8 +1825,8 @@ aW
 aW
 aW
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1799,7 +1834,7 @@ ab
 ab
 ab
 ab
-ac
+iU
 aa
 "}
 (28,1,1) = {"
@@ -1821,13 +1856,13 @@ bl
 ai
 ai
 ay
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 ai
 bi
@@ -1838,8 +1873,8 @@ ai
 bC
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -1847,8 +1882,8 @@ ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 "}
 (29,1,1) = {"
 aa
@@ -1869,13 +1904,13 @@ ai
 ai
 ai
 aW
-aC
-ac
+Dx
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aU
 ai
 ai
@@ -1886,16 +1921,16 @@ bk
 bl
 ai
 aU
-ac
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
+iU
 ab
 ab
 ab
-ac
+iU
 ab
 "}
 (30,1,1) = {"
@@ -1917,13 +1952,13 @@ ai
 at
 bk
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 bb
 ai
@@ -1934,16 +1969,16 @@ ai
 bD
 ai
 aW
-ac
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
+iU
 ab
 ab
 ab
-ac
+iU
 ab
 "}
 (31,1,1) = {"
@@ -1965,13 +2000,13 @@ ai
 ai
 ai
 aU
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 bc
 ai
@@ -1986,8 +2021,8 @@ aW
 aU
 aW
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -2013,13 +2048,13 @@ ai
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 bb
 bj
@@ -2034,8 +2069,8 @@ bR
 bl
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -2061,13 +2096,13 @@ aW
 aW
 aW
 aW
-ac
+iU
 ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aU
 ai
 ai
@@ -2082,8 +2117,8 @@ bN
 ai
 ai
 aU
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -2101,21 +2136,21 @@ aa
 aa
 ab
 ab
-ak
-al
-am
-ac
-ac
-ac
-ac
-ac
+lc
+vc
+VZ
+iU
+iU
+iU
+iU
+iU
 ab
 ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 FQ
 ai
 ai
@@ -2130,8 +2165,8 @@ bl
 ai
 bk
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -2152,18 +2187,18 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
 ab
 ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 aW
 bk
@@ -2178,8 +2213,8 @@ ai
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -2199,13 +2234,13 @@ aa
 aa
 ab
 ab
-au
-aA
+lR
+XC
 af
 ag
 af
 af
-ac
+iU
 ab
 ab
 ab
@@ -2226,8 +2261,8 @@ ai
 ai
 Vo
 aW
-aC
-ac
+Dx
+iU
 ab
 ab
 ab
@@ -2253,8 +2288,8 @@ ab
 ab
 aF
 af
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -2274,12 +2309,12 @@ bz
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
+iU
 ab
 "}
 (38,1,1) = {"
@@ -2301,12 +2336,12 @@ ab
 ab
 ab
 ag
-ac
+iU
 ab
 ab
 ab
 ab
-ac
+iU
 ab
 ab
 bd
@@ -2322,12 +2357,12 @@ ai
 ai
 ai
 aW
-bA
-ac
+st
+iU
 ab
 ab
 ab
-ac
+iU
 aa
 "}
 (39,1,1) = {"
@@ -2354,8 +2389,8 @@ ab
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 aW
 ai
@@ -2370,12 +2405,12 @@ ai
 ai
 ai
 aU
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
+iU
 aa
 "}
 (40,1,1) = {"
@@ -2397,13 +2432,13 @@ ab
 ab
 ab
 af
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 ai
 ai
@@ -2418,8 +2453,8 @@ ai
 bk
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -2445,13 +2480,13 @@ ab
 ab
 ab
 af
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aU
 ai
 ai
@@ -2466,8 +2501,8 @@ ai
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 ab
@@ -2493,13 +2528,13 @@ aa
 ab
 ab
 ag
-ac
-ac
+iU
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 be
 bl
@@ -2514,8 +2549,8 @@ be
 bl
 Vo
 aW
-aC
-ac
+Dx
+iU
 ab
 ab
 ab
@@ -2542,12 +2577,12 @@ ab
 ab
 af
 aL
-ac
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 zW
 bm
@@ -2562,8 +2597,8 @@ ai
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 aa
@@ -2588,14 +2623,14 @@ aa
 aa
 aa
 ab
-aA
+XC
 ab
-ac
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 ai
 ai
@@ -2610,8 +2645,8 @@ ai
 bk
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 ab
 aa
@@ -2636,14 +2671,14 @@ aa
 aa
 aa
 ab
-au
+lR
 ab
-ac
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aU
 ai
 bj
@@ -2658,8 +2693,8 @@ ai
 ai
 ai
 aU
-ac
-ac
+iU
+iU
 ab
 ab
 aa
@@ -2686,12 +2721,12 @@ aa
 aa
 ab
 ab
-ac
+iU
 ab
 ab
 ab
-ac
-ac
+iU
+iU
 aW
 ai
 ai
@@ -2706,8 +2741,8 @@ ai
 ai
 ai
 aW
-ac
-ac
+iU
+iU
 ab
 aa
 aa
@@ -2738,8 +2773,8 @@ ab
 ab
 ab
 ab
-ac
-aH
+iU
+Si
 aW
 aW
 aU
@@ -2754,8 +2789,8 @@ aW
 aU
 aW
 aW
-ac
-ac
+iU
+iU
 ab
 aa
 aa
@@ -2786,11 +2821,11 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-aQ
+iU
+iU
+iU
+iU
+Gm
 aW
 bk
 ai
@@ -2799,10 +2834,10 @@ ai
 bh
 bs
 aW
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
 ab
 ab
 aa
@@ -2834,11 +2869,11 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
 aW
 zW
 ai
@@ -2847,9 +2882,9 @@ ai
 bn
 bh
 aW
-bx
-ac
-ac
+Jk
+iU
+iU
 ab
 ab
 aa
@@ -2884,9 +2919,9 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
+iU
+iU
+iU
 aW
 aW
 aU
@@ -2895,7 +2930,7 @@ aW
 aU
 aW
 aW
-ac
+iU
 ab
 ab
 ab
@@ -2930,20 +2965,20 @@ aa
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-aR
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
+rP
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
 ab
 ab
 ab
@@ -3127,17 +3162,17 @@ aa
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
 aa
 aa
 aa
@@ -3176,14 +3211,14 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-br
-ac
-ac
-ac
+iU
+iU
+iU
+iU
+Sz
+iU
+iU
+iU
 aa
 aa
 aa
@@ -3222,15 +3257,15 @@ aa
 aa
 aa
 ab
-au
-aA
+lR
+XC
 af
-ag
+mq
 af
 af
 af
-aA
-ac
+XC
+iU
 aa
 aa
 aa
@@ -3277,7 +3312,7 @@ ab
 ab
 ab
 ab
-au
+lR
 aa
 aa
 aa

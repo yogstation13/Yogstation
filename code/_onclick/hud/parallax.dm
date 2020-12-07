@@ -149,6 +149,8 @@
 
 
 /datum/hud/proc/update_parallax_motionblur(client/C, animatedir, new_parallax_movedir, matrix/newtransform)
+	if(!C)
+		return
 	C.parallax_animate_timer = FALSE
 	for(var/thing in C.parallax_layers)
 		var/obj/screen/parallax_layer/L = thing
@@ -308,6 +310,7 @@
 	icon_state = "random_layer1"
 
 /obj/screen/parallax_layer/random/space_gas/Initialize(mapload, view)
+	. = ..()
 	src.add_atom_colour(SSparallax.random_parallax_color, ADMIN_COLOUR_PRIORITY)
 
 /obj/screen/parallax_layer/random/asteroids

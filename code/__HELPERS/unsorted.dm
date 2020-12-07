@@ -6,25 +6,16 @@
 
 //Inverts the colour of an HTML string
 /proc/invertHTML(HTMLstring)
-
-	if (!( istext(HTMLstring) ))
+	if(!istext(HTMLstring))
 		CRASH("Given non-text argument!")
-		return
-	else
-		if (length(HTMLstring) != 7)
-			CRASH("Given non-HTML argument!")
-			return
+	else if(length(HTMLstring) != 7)
+		CRASH("Given non-HTML argument!")
+	else if(length_char(HTMLstring) != 7)
+		CRASH("Given non-hex symbols in argument!")
 	var/textr = copytext(HTMLstring, 2, 4)
 	var/textg = copytext(HTMLstring, 4, 6)
 	var/textb = copytext(HTMLstring, 6, 8)
-	var/r = hex2num(textr)
-	var/g = hex2num(textg)
-	var/b = hex2num(textb)
-	textr = num2hex(255 - r, 2)
-	textg = num2hex(255 - g, 2)
-	textb = num2hex(255 - b, 2)
-	return text("#[][][]", textr, textg, textb)
-	return
+	return rgb(255 - hex2num(textr), 255 - hex2num(textg), 255 - hex2num(textb))
 
 /proc/Get_Angle(atom/movable/start,atom/movable/end)//For beams.
 	if(!start || !end)
@@ -41,7 +32,7 @@
 	else if(dx<0)
 		.+=360
 
-/proc/Get_Pixel_Angle(var/y, var/x)//for getting the angle when animating something's pixel_x and pixel_y
+/proc/Get_Pixel_Angle(y, x)//for getting the angle when animating something's pixel_x and pixel_y
 	if(!y)
 		return (x>=0)?90:270
 	.=arctan(x/y)
@@ -184,15 +175,15 @@ Turf and target are separate in case you want to teleport some distance from a t
 //Returns whether or not a player is a guest using their ckey as an input
 /proc/IsGuestKey(key)
 	if (findtext(key, "Guest-", 1, 7) != 1) //was findtextEx
-		return 0
+		return FALSE
 
 	var/i, ch, len = length(key)
 
-	for (i = 7, i <= len, ++i)
+	for (i = 7, i <= len, ++i) //we know the first 6 chars are Guest-
 		ch = text2ascii(key, i)
-		if (ch < 48 || ch > 57)
-			return 0
-	return 1
+		if (ch < 48 || ch > 57) //0-9
+			return FALSE
+	return TRUE
 
 //Generalised helper proc for letting mobs rename themselves. Used to be clname() and ainame()
 /mob/proc/apply_pref_name(role, client/C)
@@ -281,7 +272,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 	var/list/borgs = active_free_borgs()
 	if(borgs.len)
 		if(user)
-			. = input(user,"Unshackled cyborg signals detected:", "Cyborg Selection", borgs[1]) in borgs
+			. = input(user,"Unshackled cyborg signals detected:", "Cyborg Selection", borgs[1]) in sortList(borgs)
 		else
 			. = pick(borgs)
 	return .
@@ -290,13 +281,13 @@ Turf and target are separate in case you want to teleport some distance from a t
 	var/list/ais = active_ais()
 	if(ais.len)
 		if(user)
-			. = input(user,"AI signals detected:", "AI Selection", ais[1]) in ais
+			. = input(user,"AI signals detected:", "AI Selection", ais[1]) in sortList(ais)
 		else
 			. = pick(ais)
 	return .
 
 //Returns a list of all items of interest with their name
-/proc/getpois(mobs_only=0,skip_mindless=0)
+/proc/getpois(mobs_only = FALSE, skip_mindless = FALSE, specify_dead_role = TRUE)
 	var/list/mobs = sortmobs()
 	var/list/namecounts = list()
 	var/list/pois = list()
@@ -310,7 +301,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 
 		if(M.real_name && M.real_name != M.name)
 			name += " \[[M.real_name]\]"
-		if(M.stat == DEAD)
+		if(M.stat == DEAD && specify_dead_role)
 			if(isobserver(M))
 				name += " \[ghost\]"
 			else
@@ -367,12 +358,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 	return "[round((powerused * 0.000000001),0.0001)] GW"
 
 // Format an energy value in J, kJ, MJ, or GJ. 1W = 1J/s.
-/proc/DisplayEnergy(units)
-	// APCs process every (SSmachines.wait * 0.1) seconds, and turn 1 W of
-	// excess power into GLOB.CELLRATE energy units when charging cells.
-	// With the current configuration of wait=20 and CELLRATE=0.002, this
-	// means that one unit is 1 kJ.
-	units *= SSmachines.wait * 0.1 / GLOB.CELLRATE
+/proc/DisplayJoules(units)
 	if (units < 1000) // Less than a kJ
 		return "[round(units, 0.1)] J"
 	else if (units < 1000000) // Less than a MJ
@@ -380,6 +366,14 @@ Turf and target are separate in case you want to teleport some distance from a t
 	else if (units < 1000000000) // Less than a GJ
 		return "[round(units * 0.000001, 0.001)] MJ"
 	return "[round(units * 0.000000001, 0.0001)] GJ"
+
+// Format an energy value measured in Power Cell units.
+/proc/DisplayEnergy(units)
+	// APCs process every (SSmachines.wait * 0.1) seconds, and turn 1 W of
+	// excess power into GLOB.CELLRATE energy units when charging cells.
+	// With the current configuration of wait=20 and CELLRATE=0.002, this
+	// means that one unit is 1 kJ.
+	return DisplayJoules(units * SSmachines.wait * 0.1 / GLOB.CELLRATE)
 
 /proc/get_mob_by_ckey(key)
 	if(!key)
@@ -451,52 +445,42 @@ Turf and target are separate in case you want to teleport some distance from a t
 	var/y = min(world.maxy, max(1, A.y + dy))
 	return locate(x,y,A.z)
 
-#if DM_VERSION > 513
-#warn 513 is definitely stable now, remove this
-#endif
-#if DM_VERSION < 513
-/proc/arctan(x)
-	var/y=arcsin(x/sqrt(1+x*x))
-	return y
-#endif
-
-
 /*
 	Gets all contents of contents and returns them all in a list.
 */
 
-/atom/proc/GetAllContents(var/T)
+/atom/proc/GetAllContents(T, ignore_flag_1)
 	var/list/processing_list = list(src)
-	var/list/assembled = list()
 	if(T)
-		while(processing_list.len)
-			var/atom/A = processing_list[1]
-			processing_list.Cut(1, 2)
+		. = list()
+		var/i = 0
+		while(i < length(processing_list))
+			var/atom/A = processing_list[++i]
 			//Byond does not allow things to be in multiple contents, or double parent-child hierarchies, so only += is needed
 			//This is also why we don't need to check against assembled as we go along
-			processing_list += A.contents
-			if(istype(A,T))
-				assembled += A
+			if (!(A.flags_1 & ignore_flag_1))
+				processing_list += A.contents
+				if(istype(A,T))
+					. += A
 	else
-		while(processing_list.len)
-			var/atom/A = processing_list[1]
-			processing_list.Cut(1, 2)
-			processing_list += A.contents
-			assembled += A
-	return assembled
+		var/i = 0
+		while(i < length(processing_list))
+			var/atom/A = processing_list[++i]
+			if (!(A.flags_1 & ignore_flag_1))
+				processing_list += A.contents
+		return processing_list
 
 /atom/proc/GetAllContentsIgnoring(list/ignore_typecache)
 	if(!length(ignore_typecache))
 		return GetAllContents()
 	var/list/processing = list(src)
-	var/list/assembled = list()
-	while(processing.len)
-		var/atom/A = processing[1]
-		processing.Cut(1,2)
+	. = list()
+	var/i = 0
+	while(i < length(processing))
+		var/atom/A = processing[++i]
 		if(!ignore_typecache[A.type])
 			processing += A.contents
-			assembled += A
-	return assembled
+			. += A
 
 //Step-towards method of determining whether one atom can see another. Similar to viewers()
 /proc/can_see(atom/source, atom/target, length=5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
@@ -790,7 +774,7 @@ GLOBAL_LIST_INIT(WALLITEMS, typecacheof(list(
 	/obj/machinery/computer/security/telescreen, /obj/machinery/embedded_controller/radio/simple_vent_controller,
 	/obj/item/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
 	/obj/structure/mirror, /obj/structure/fireaxecabinet, /obj/machinery/computer/security/telescreen/entertainment,
-	/obj/structure/sign/picture_frame
+	/obj/structure/sign/picture_frame, /obj/machinery/bounty_board
 	)))
 
 GLOBAL_LIST_INIT(WALLITEMS_EXTERNAL, typecacheof(list(
@@ -801,7 +785,7 @@ GLOBAL_LIST_INIT(WALLITEMS_INVERSE, typecacheof(list(
 	/obj/structure/light_construct, /obj/machinery/light)))
 
 
-/proc/gotwallitem(loc, dir, var/check_external = 0)
+/proc/gotwallitem(loc, dir, check_external = 0)
 	var/locdir = get_step(loc, dir)
 	for(var/obj/O in loc)
 		if(is_type_in_typecache(O, GLOB.WALLITEMS) && check_external != 2)
@@ -884,8 +868,8 @@ GLOBAL_LIST_INIT(WALLITEMS_INVERSE, typecacheof(list(
 	tX = splittext(tX[1], ":")
 	tX = tX[1]
 	var/list/actual_view = getviewsize(C ? C.view : world.view)
-	tX = CLAMP(origin.x + text2num(tX) - round(actual_view[1] / 2) - 1, 1, world.maxx)
-	tY = CLAMP(origin.y + text2num(tY) - round(actual_view[2] / 2) - 1, 1, world.maxy)
+	tX = clamp(origin.x + text2num(tX) - round(actual_view[1] / 2) - 1, 1, world.maxx)
+	tY = clamp(origin.y + text2num(tY) - round(actual_view[2] / 2) - 1, 1, world.maxy)
 	return locate(tX, tY, tZ)
 
 /proc/screen_loc2turf(text, turf/origin, client/C)
@@ -898,8 +882,8 @@ GLOBAL_LIST_INIT(WALLITEMS_INVERSE, typecacheof(list(
 	tX = text2num(tX[2])
 	tZ = origin.z
 	var/list/actual_view = getviewsize(C ? C.view : world.view)
-	tX = CLAMP(origin.x + round(actual_view[1] / 2) - tX, 1, world.maxx)
-	tY = CLAMP(origin.y + round(actual_view[2] / 2) - tY, 1, world.maxy)
+	tX = clamp(origin.x + round(actual_view[1] / 2) - tX, 1, world.maxx)
+	tY = clamp(origin.y + round(actual_view[2] / 2) - tY, 1, world.maxy)
 	return locate(tX, tY, tZ)
 
 /proc/IsValidSrc(datum/D)
@@ -1164,7 +1148,7 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	if(matches.len==1)
 		chosen = matches[1]
 	else
-		chosen = input("Select a type", "Pick Type", matches[1]) as null|anything in matches
+		chosen = input("Select a type", "Pick Type", matches[1]) as null|anything in sortList(matches)
 		if(!chosen)
 			return
 	chosen = matches[chosen]
@@ -1264,7 +1248,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 //Version of view() which ignores darkness, because BYOND doesn't have it (I actually suggested it but it was tagged redundant, BUT HEARERS IS A T- /rant).
-/proc/dview(var/range = world.view, var/center, var/invis_flags = 0)
+/proc/dview(range = world.view, center, invis_flags = 0)
 	if(!center)
 		return
 
@@ -1284,6 +1268,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	var/ready_to_die = FALSE
 
 /mob/dview/Initialize() //Properly prevents this mob from gaining huds or joining any global lists
+	SHOULD_CALL_PARENT(FALSE)
 	return INITIALIZE_HINT_NORMAL
 
 /mob/dview/Destroy(force = FALSE)
@@ -1319,6 +1304,10 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		if(istype(O, /obj/structure/window))
 			var/obj/structure/window/W = O
 			if(W.ini_dir == dir_to_check || W.ini_dir == FULLTILE_WINDOW_DIR || dir_to_check == FULLTILE_WINDOW_DIR)
+				return FALSE
+		if(istype(O, /obj/structure/railing))
+			var/obj/structure/railing/rail = O
+			if(rail.ini_dir == dir_to_check || rail.ini_dir == FULLTILE_WINDOW_DIR || dir_to_check == FULLTILE_WINDOW_DIR)
 				return FALSE
 	return TRUE
 
@@ -1389,24 +1378,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 			. = FALSE
 			break
 
-//returns a GUID like identifier (using a mostly made up record format)
-//guids are not on their own suitable for access or security tokens, as most of their bits are predictable.
-//	(But may make a nice salt to one)
-/proc/GUID()
-	var/const/GUID_VERSION = "b"
-	var/const/GUID_VARIANT = "d"
-	var/node_id = copytext(md5("[rand()*rand(1,9999999)][world.name][world.hub][world.hub_password][world.internet_address][world.address][world.contents.len][world.status][world.port][rand()*rand(1,9999999)]"), 1, 13)
-
-	var/time_high = "[num2hex(text2num(time2text(world.realtime,"YYYY")), 2)][num2hex(world.realtime, 6)]"
-
-	var/time_mid = num2hex(world.timeofday, 4)
-
-	var/time_low = num2hex(world.time, 3)
-
-	var/time_clock = num2hex(TICK_DELTA_TO_MS(world.tick_usage), 3)
-
-	return "{[time_high]-[time_mid]-[GUID_VERSION][time_low]-[GUID_VARIANT][time_clock]-[node_id]}"
-
 // \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
 // If it ever becomes necesary to get a more performant REF(), this lies here in wait
 // #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
@@ -1420,6 +1391,24 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 			else
 				return "\[[url_encode(thing.tag)]\]"
 	return "\ref[input]"
+
+//returns a GUID like identifier (using a mostly made up record format)
+//guids are not on their own suitable for access or security tokens, as most of their bits are predictable.
+//	(But may make a nice salt to one)
+/proc/GUID()
+	var/const/GUID_VERSION = "b"
+	var/const/GUID_VARIANT = "d"
+	var/node_id = copytext_char(md5("[rand()*rand(1,9999999)][world.name][world.hub][world.hub_password][world.internet_address][world.address][world.contents.len][world.status][world.port][rand()*rand(1,9999999)]"), 1, 13)
+
+	var/time_high = "[num2hex(text2num(time2text(world.realtime,"YYYY")), 2)][num2hex(world.realtime, 6)]"
+
+	var/time_mid = num2hex(world.timeofday, 4)
+
+	var/time_low = num2hex(world.time, 3)
+
+	var/time_clock = num2hex(TICK_DELTA_TO_MS(world.tick_usage), 3)
+
+	return "{[time_high]-[time_mid]-[GUID_VERSION][time_low]-[GUID_VARIANT][time_clock]-[node_id]}"
 
 // Makes a call in the context of a different usr
 // Use sparingly

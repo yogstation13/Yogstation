@@ -19,7 +19,7 @@
 	icon_state = "welding"
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	item_state = "welding"
-	materials = list(MAT_METAL=1750, MAT_GLASS=400)
+	materials = list(/datum/material/iron=1750, /datum/material/glass=400)
 	flash_protect = 2
 	tint = 2
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 60)
@@ -184,7 +184,7 @@
 /obj/item/clothing/head/wig
 	name = "wig"
 	desc = "A bunch of hair without a head attached."
-	icon_state = ""
+	icon_state = "pwig"
 	item_state = "pwig"
 	flags_inv = HIDEHAIR
 	var/hair_style = "Very Long Hair"
@@ -197,6 +197,7 @@
 
 /obj/item/clothing/head/wig/update_icon()
 	cut_overlays()
+	icon_state = ""
 	var/datum/sprite_accessory/S = GLOB.hair_styles_list[hair_style]
 	if(!S)
 		icon_state = "pwig"
@@ -228,6 +229,7 @@
 		hair_color = input(usr,"","Choose Color",hair_color) as color|null
 	update_icon()
 
+
 /obj/item/clothing/head/wig/random/Initialize(mapload)
 	hair_style = pick(GLOB.hair_styles_list - "Bald") //Don't want invisible wig
 	hair_color = "#[random_short_color()]"
@@ -245,6 +247,7 @@
 	. = ..()
 
 /obj/item/clothing/head/wig/natural/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
 	if(ishuman(user) && slot == SLOT_HEAD)
 		hair_color = "#[user.hair_color]"
 		update_icon()
@@ -327,3 +330,10 @@
 	. = ..()
 	if(!warped)
 		warp_up()
+
+/obj/item/clothing/head/franks_hat
+	name = "Frank's Hat"
+	desc = "You feel ashamed about what you had to do to get this hat"
+	icon_state = "cowboy"
+	item_state = "cowboy"
+

@@ -19,7 +19,7 @@
 //- Identify how hard it is to break into the area and where the weak points are
 //- Check if the area has too much empty space. If so, make it smaller and replace the rest with maintenance tunnels.
 
-GLOBAL_LIST_INIT(admin_verbs_debug_mapping, list(
+GLOBAL_LIST_INIT(admin_verbs_debug_all, list(
 	/client/proc/camera_view, 				//-errorage
 	/client/proc/sec_camera_report, 		//-errorage
 	/client/proc/intercom_view, 			//-errorage
@@ -39,7 +39,6 @@ GLOBAL_LIST_INIT(admin_verbs_debug_mapping, list(
 	/client/proc/see_dirty_varedits,
 	#endif
 	/client/proc/cmd_admin_test_atmos_controllers,
-	/client/proc/cmd_admin_rejuvenate,
 	/datum/admins/proc/show_traitor_panel,
 	/client/proc/disable_communication,
 	/client/proc/cmd_show_at_list,
@@ -50,9 +49,37 @@ GLOBAL_LIST_INIT(admin_verbs_debug_mapping, list(
 	/client/proc/show_line_profiling,
 	/client/proc/create_mapping_job_icons,
 	/client/proc/debug_z_levels,
-	/client/proc/place_ruin
+	/client/proc/place_ruin,
+	/client/proc/restart_controller,
+	/client/proc/Debug2,
+	/client/proc/cmd_debug_make_powernets,
+	/client/proc/cmd_debug_mob_lists,
+	/client/proc/restart_controller,
+	/client/proc/test_movable_UI,
+	/client/proc/test_snap_UI,
+	/client/proc/debugNatureMapGenerator,
+	/client/proc/check_bomb_impacts,
+	/proc/machine_upgrade,
+	/client/proc/populate_world,
+	/client/proc/get_dynex_power,		//*debug verbs for dynex explosions.
+	/client/proc/get_dynex_range,		//*debug verbs for dynex explosions.
+	/client/proc/set_dynex_scale,
+	/client/proc/cmd_display_del_log,
+	/client/proc/outfit_manager,
+	/client/proc/modify_goals,
+	/client/proc/debug_huds,
+	/client/proc/map_template_load,
+	/client/proc/map_template_upload,
+	/client/proc/jump_to_ruin,
+	/client/proc/clear_dynamic_transit,
+	/client/proc/cmd_display_init_log,
+	/client/proc/cmd_display_overlay_log,
+	/client/proc/reload_configuration,
+	/datum/admins/proc/create_or_modify_area,
+	/client/proc/debug_typeof, // Yogs -- Adds a debug verb for getting the subtypes of something
+	/client/proc/toggle_cdn
 ))
-GLOBAL_PROTECT(admin_verbs_debug_mapping)
+GLOBAL_PROTECT(admin_verbs_debug_all)
 
 /obj/effect/debugging/mapfix_marker
 	name = "map fix marker"
@@ -68,7 +95,7 @@ GLOBAL_PROTECT(admin_verbs_debug_mapping)
 	return 0
 
 /client/proc/camera_view()
-	set category = "Mapping"
+	set category = "Misc.Server Debug"
 	set name = "Camera Range Display"
 
 	var/on = FALSE
@@ -91,7 +118,7 @@ GLOBAL_PROTECT(admin_verbs_debug_mapping)
 GLOBAL_LIST_EMPTY(dirty_vars)
 
 /client/proc/see_dirty_varedits()
-	set category = "Mapping"
+	set category = "Misc.Server Debug"
 	set name = "Dirty Varedits"
 
 	var/list/dat = list()
@@ -105,7 +132,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 #endif
 
 /client/proc/sec_camera_report()
-	set category = "Mapping"
+	set category = "Misc.Server Debug"
 	set name = "Camera Report"
 
 	if(!Master)
@@ -117,7 +144,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		CL += C
 
-	var/output = {"<B>Camera Abnormalities Report</B><HR>
+	var/output = {"<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Camera Abnormalities Report</B><HR>
 <B>The following abnormalities have been detected. The ones in red need immediate attention: Some of those in black may be intentional.</B><BR><ul>"}
 
 	for(var/obj/machinery/camera/C1 in CL)
@@ -134,18 +161,18 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 			if(!(locate(/obj/structure/grille) in T))
 				var/window_check = 0
 				for(var/obj/structure/window/W in T)
-					if (W.dir == turn(C1.dir,180) || W.dir in list(5,6,9,10) )
+					if (W.dir == turn(C1.dir,180) || (W.dir in list(NORTHEAST,SOUTHEAST,NORTHWEST,SOUTHWEST)) )
 						window_check = 1
 						break
 				if(!window_check)
 					output += "<li><font color='red'>Camera not connected to wall at [ADMIN_VERBOSEJMP(C1)] Network: [json_encode(C1.network)]</font></li>"
 
-	output += "</ul>"
+	output += "</ul></BODY></HTML>"
 	usr << browse(output,"window=airreport;size=1000x500")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Show Camera Report") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/intercom_view()
-	set category = "Mapping"
+	set category = "Misc.Server Debug"
 	set name = "Intercom Range Display"
 
 	var/static/intercom_range_display_status = FALSE
@@ -163,11 +190,12 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Show Intercom Range") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_show_at_list()
-	set category = "Mapping"
+	set category = "Misc.Server Debug"
 	set name = "Show roundstart AT list"
 	set desc = "Displays a list of active turfs coordinates at roundstart"
 
-	var/dat = {"<b>Coordinate list of Active Turfs at Roundstart</b>
+	var/dat = {"<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>
+	 <b>Coordinate list of Active Turfs at Roundstart</b>
 	 <br>Real-time Active Turfs list you can see in Air Subsystem at active_turfs var<br>"}
 
 	for(var/t in GLOB.active_turfs_startlist)
@@ -175,12 +203,14 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 		dat += "[ADMIN_VERBOSEJMP(T)]\n"
 		dat += "<br>"
 
+	dat += "</BODY></HTML>"
+
 	usr << browse(dat, "window=at_list")
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Show Roundstart Active Turfs") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_show_at_markers()
-	set category = "Mapping"
+	set category = "Misc.Server Debug"
 	set name = "Show roundstart AT markers"
 	set desc = "Places a marker on all active-at-roundstart turfs"
 
@@ -200,23 +230,23 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Show Roundstart Active Turf Markers")
 
 /client/proc/enable_debug_verbs()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Debug verbs - Enable"
 	if(!check_rights(R_DEBUG))
 		return
-	verbs -= /client/proc/enable_debug_verbs
-	verbs.Add(/client/proc/disable_debug_verbs, GLOB.admin_verbs_debug_mapping)
+	remove_verb(src, /client/proc/enable_debug_verbs)
+	add_verb(src, list(/client/proc/disable_debug_verbs, GLOB.admin_verbs_debug_all))
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Enable Debug Verbs") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/disable_debug_verbs()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Debug verbs - Disable"
-	verbs.Remove(/client/proc/disable_debug_verbs, GLOB.admin_verbs_debug_mapping)
-	verbs += /client/proc/enable_debug_verbs
+	remove_verb(src, list(/client/proc/disable_debug_verbs, GLOB.admin_verbs_debug_all))
+	add_verb(src, /client/proc/enable_debug_verbs)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Disable Debug Verbs") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/count_objects_on_z_level()
-	set category = "Mapping"
+	set category = "Misc.Server Debug"
 	set name = "Count Objects On Level"
 	var/level = input("Which z-level?","Level?") as text
 	if(!level)
@@ -255,7 +285,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Count Objects Zlevel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/count_objects_all()
-	set category = "Mapping"
+	set category = "Misc.Server Debug"
 	set name = "Count Objects All"
 
 	var/type_text = input("Which type path?","") as text
@@ -278,7 +308,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 //This proc is intended to detect lag problems relating to communication procs
 GLOBAL_VAR_INIT(say_disabled, FALSE)
 /client/proc/disable_communication()
-	set category = "Mapping"
+	set category = "Misc.Server Debug"
 	set name = "Disable all communication verbs"
 
 	GLOB.say_disabled = !GLOB.say_disabled
@@ -290,7 +320,7 @@ GLOBAL_VAR_INIT(say_disabled, FALSE)
 //This generates the icon states for job starting location landmarks.
 /client/proc/create_mapping_job_icons()
 	set name = "Generate job landmarks icons"
-	set category = "Mapping"
+	set category = "Misc.Server Debug"
 	var/icon/final = icon()
 	var/mob/living/carbon/human/dummy/D = new(locate(1,1,1)) //spawn on 1,1,1 so we don't have runtimes when items are deleted
 	D.setDir(SOUTH)
@@ -317,7 +347,7 @@ GLOBAL_VAR_INIT(say_disabled, FALSE)
 
 /client/proc/debug_z_levels()
 	set name = "Debug Z-Levels"
-	set category = "Mapping"
+	set category = "Misc.Server Debug"
 
 	var/list/z_list = SSmapping.z_list
 	var/list/messages = list()

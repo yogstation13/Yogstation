@@ -23,8 +23,8 @@
 // Returns special prefixes for the station name on certain days. You wind up with names like "Christmas Object Epsilon". See new_station_name()
 /datum/holiday/proc/getStationPrefix()
 	//get the first word of the Holiday and use that
-	var/i = findtext(name," ",1,0)
-	return copytext(name,1,i)
+	var/i = findtext(name, " ")
+	return copytext(name, 1, i)
 
 // Return 1 if this holidy should be celebrated today
 /datum/holiday/proc/shouldCelebrate(dd, mm, yy, ww, ddd)
@@ -73,7 +73,10 @@
 	drone_hat = /obj/item/clothing/head/festive
 
 /datum/holiday/new_year/getStationPrefix()
-	return pick("Party","New","Hangover","Resolution", "Auld")
+	return pick("Party","New","Hangover","Resolution","Auld")
+	
+/datum/holiday/new_year/greet()
+	return "Happy New Years!"
 
 /datum/holiday/groundhog
 	name = "Groundhog Day"
@@ -82,13 +85,21 @@
 	drone_hat = /obj/item/clothing/head/helmet/space/chronos
 
 /datum/holiday/groundhog/getStationPrefix()
-	return pick("Deja Vu") //I have been to this place before
+	return pick("Groundhog")
+	
+/datum/holiday/groundhog/greet()
+	return "Happy Groundhog day!"
 
 /datum/holiday/valentines
 	name = VALENTINES
 	begin_day = 13
 	end_day = 17
 	begin_month = FEBRUARY
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=cEwZpejd4rM", // Charlie Wilson - Forever Valentine
+		"https://www.youtube.com/watch?v=4j-cPYewjn4", // David Bowie - Valentine's Day
+		"https://www.youtube.com/watch?v=yvUPEW8bdHA" // On The Street Where You Live
+		)
 
 /datum/holiday/valentines/getStationPrefix()
 	return pick("Love","Amore","Single","Smootch","Hug")
@@ -140,14 +151,22 @@
 	name = "Leap Day"
 	begin_day = 29
 	begin_month = FEBRUARY
+	
+/datum/holiday/leap/greet()
+	return "Today is Leap Day!"
 
 /datum/holiday/pi
 	name = "Pi Day"
 	begin_day = 14
 	begin_month = MARCH
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=9WGO7dAxjD8", // Circle Song
+		"https://www.youtube.com/watch?v=3HRkKznJoZA", // Pi Song
+		"https://www.youtube.com/watch?v=Ay8vzCHkgEk" // Pi Black Midi
+		)
 
 /datum/holiday/pi/getStationPrefix()
-	return pick("Sine","Cosine","Tangent","Secant", "Cosecant", "Cotangent")
+	return pick("Sine","Cosine","Tangent","Secant","Cosecant","Cotangent","Radian","Pi","Arc")
 
 /datum/holiday/no_this_is_patrick
 	name = "St. Patrick's Day"
@@ -156,10 +175,10 @@
 	drone_hat = /obj/item/clothing/head/soft/green
 
 /datum/holiday/no_this_is_patrick/getStationPrefix()
-	return pick("Blarney","Green","Leprechaun","Booze")
+	return pick("Blarney","Green","Leprechaun","Booze","Pub","IRA")
 
 /datum/holiday/no_this_is_patrick/greet()
-	return "Happy National Inebriation Day!"
+	return "Happy St. Patrick's Day!"
 
 /datum/holiday/april_fools
 	name = APRIL_FOOLS
@@ -173,6 +192,9 @@
 	for(var/mob/dead/new_player/P in GLOB.mob_list)
 		if(P.client)
 			P.client.playtitlemusic()
+			
+/datum/holiday/april_fools/greet()
+	return "NOTICE: Yogstation will be down from April 2nd to April 5th as we transfer to the Source engine. Please join our discord for more info."
 
 /datum/holiday/spess
 	name = "Cosmonautics Day"
@@ -190,6 +212,9 @@
 
 /datum/holiday/fourtwenty/getStationPrefix()
 	return pick("Snoop","Blunt","Toke","Dank","Cheech","Chong")
+	
+/datum/holiday/fourtwenty/greet()
+	return "Smoke weed every day!"
 
 /datum/holiday/tea
 	name = "National Tea Day"
@@ -209,6 +234,9 @@
 	begin_day = 1
 	begin_month = MAY
 	drone_hat = /obj/item/clothing/head/hardhat
+	
+/datum/holiday/labor/getStationPrefix()
+	return pick("Union","Labor","Worker","Trade")
 
 /datum/holiday/firefighter
 	name = "Firefighter's Day"
@@ -232,6 +260,9 @@
 	name = "Summer Solstice"
 	begin_day = 21
 	begin_month = JUNE
+	
+/datum/holiday/summersolstice/greet()
+	return "Happy Summer Solstice!"
 
 /datum/holiday/doctor
 	name = "Doctor's Day"
@@ -244,9 +275,18 @@
 	begin_day = 2
 	begin_month = JULY
 	drone_hat = /obj/item/clothing/mask/facehugger/dead
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=X8cmbmwFAl8", // Clutch - X-Ray Visions
+		"https://www.youtube.com/watch?v=sYkvpNR8BGU", // Blue Oyster Cult: E.T.I. (Extra Terraestrial Intelligence)
+		"https://www.youtube.com/watch?v=Pyu89NHSniU", // Blood And Rockets: Movement I, Saga Of Jack Parsons - Movement II, Too The Moon
+		"https://www.youtube.com/watch?v=BYDd0TTx4nE", // Nyctophilliac - Blunted Session
+		"https://www.youtube.com/watch?v=n8cCDoDYgc0", // Ballad of a Spaceman - Julia Ecklar
+		"https://www.youtube.com/watch?v=I1VLuZ9Smf0", // Elektronik Supersonik - ZLAD
+		"https://www.youtube.com/watch?v=KvQ0zWHtnN4"  // The Mechanisms - Once Upon a Time - 06 Pump Shanty
+	)
 
 /datum/holiday/UFO/getStationPrefix() //Is such a thing even possible?
-	return pick("Ayy","Truth","Tsoukalos","Mulder","Scully") //Yes it is!
+	return pick("Ayy","Truth","Tsoukalos","Mulder","Scully","Greys") //Yes it is!
 
 /datum/holiday/USA
 	name = "Independence Day"
@@ -256,7 +296,10 @@
 		"https://www.youtube.com/watch?v=5uPoDNEn3I0", // america
 		"https://www.youtube.com/watch?v=ec0XKhAHR5I", // fortunate (how did i forget a slash)
 		"https://www.youtube.com/watch?v=9Cyokaj3BJU", // alabama
-		"https://www.youtube.com/watch?v=1vrEljMfXYo" // country roads
+		"https://www.youtube.com/watch?v=1vrEljMfXYo", // country roads
+		"https://www.youtube.com/watch?v=FqxJ_iuBPCs", // Star Spangled Banner
+		"https://www.youtube.com/watch?v=H0bhSGfKTs4", // Surfin' USA
+		"https://www.youtube.com/watch?v=FAVQsnr4uYg"  // Lone Star - Tony Marcus
 	)
 /datum/holiday/USA/getStationPrefix()
 	return pick("Independent","American","Burger","Bald Eagle","Star-Spangled", "Fireworks")
@@ -271,6 +314,13 @@
 	begin_day = 14
 	begin_month = JULY
 	drone_hat = /obj/item/clothing/head/beret
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=4K1q9Ntcr5g", // French Anthem La Marseillaise
+		"https://www.youtube.com/watch?v=c5OdCqUWRyo", // Le Chant du Depart
+		"https://www.youtube.com/watch?v=wS10laW0rFo", // Chant du 9 Thermidor
+		"https://www.youtube.com/watch?v=o3wivTC1gOw", // Bonjour mon vieux Paris
+		"https://www.youtube.com/watch?v=8KdTChn-pEA" // Mar√©chal, nous voil√† 
+		)
 
 /datum/holiday/france/getStationPrefix()
 	return pick("Francais","Fromage", "Zut", "Merde")
@@ -350,12 +400,23 @@
 	begin_month = OCTOBER
 	end_day = 2
 	end_month = NOVEMBER
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=AfjqL0vaBYU", // Haunted Fortress 2
+		"https://www.youtube.com/watch?v=9QpmfOLaUcw", // Misfortune Teller
+		"https://www.youtube.com/watch?v=m9We2XsVZfc", // Ghostbusters Theme
+		"https://www.youtube.com/watch?v=xIx_HbmRnQY", // Thriller
+		"https://www.youtube.com/watch?v=7-D83f33pAE", // Spooky Scary Skeletons
+		"https://www.youtube.com/watch?v=bebUeWgNkAM", // Halloween Theme Michael Myers
+		"https://www.youtube.com/watch?v=qaQ6oJL1qQA", // Lucifer My Love - Twin Temple
+		"https://www.youtube.com/watch?v=vCYLUZyWeDs&t", // "Unforgiving Cold"- Godzilla NES Creepypasta OST
+		"https://www.youtube.com/watch?v=OPDDFdyKOgU" // Red Signal - The Bifrost Incident - The Mechanisms
+		)
 
 /datum/holiday/halloween/greet()
 	return "Have a spooky Halloween!"
 
 /datum/holiday/halloween/getStationPrefix()
-	return pick("Bone-Rattling","Mr. Bones' Own","2SPOOKY","Spooky","Scary","Skeletons")
+	return pick("Bone-Rattling","Mr. Bones' Own","2SPOOKY","Spooky","Scary","Skeletons","The Haunted","Abominable","Gibbering","Squamous","Ghoul","Zombie","Forbidden","Bloody","Horrific","Infernal","Star Spawned","Hellish","Forgotten","Eldritch","Sleeping","Eternal","Abhorrence","Plague","Dread","Apprehension","Crawling Chaos","Blot","Cold Sweat","Unholy","Jitters","Unknown","Darkness","Festering","Fetid","Vile","Lurker","Scorn","Apocalypse","The Last","Lasting","Corruption","Blasphemous","The Corruption on","The Blasphemous")
 
 /datum/holiday/vegan
 	name = "Vegan Day"
@@ -496,11 +557,13 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	drone_hat = /obj/item/clothing/head/santa
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=v7s2VjwQSMw", // Jingle Bells
-		"https://www.youtube.com/watch?v=oIKt5p3UmXg", // Michael BublÈ - Winter Wonderland
-		"https://www.youtube.com/watch?v=nytpYtLtHpE", // Youíre a Mean One, Mr. Grinch
+		"https://www.youtube.com/watch?v=oIKt5p3UmXg", // Michael Bubl√© - Winter Wonderland
+		"https://www.youtube.com/watch?v=nytpYtLtHpE", // You¬íre a Mean One, Mr. Grinch
 		"https://www.youtube.com/watch?v=jCjrcjFGQCA", // Frosty The Snowman
 		"https://www.youtube.com/watch?v=oyEyMjdD2uk", // Twelve Days of Christmas
-		"https://www.youtube.com/watch?v=Dkq3LD-4pmM"  // Michael BublÈ - Holly Jolly Christmas
+		"https://www.youtube.com/watch?v=Dkq3LD-4pmM",  // Michael Bubl√© - Holly Jolly Christmas
+		"https://www.youtube.com/watch?v=noMhM1CjM78",	// Christopher Lee - Silent Night
+		"https://www.youtube.com/watch?v=kfZtNVEqsBs"  // Christopher Lee - Jingle Hell
 		)
 
 /datum/holiday/xmas/greet()
@@ -544,7 +607,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	return (dd == 13 && ddd == FRIDAY)
 
 /datum/holiday/friday_thirteenth/getStationPrefix()
-	return pick("Mike","Friday","Evil","Myers","Murder","Deathly","Stabby")
+	return pick("Mike","Friday","Evil","Myers","Murder","Deathly","Stabby","Voorhees","Jason","Mother","Krueger","Telephone","Slasher","Flick","Hockey","Chevron")
 
 /datum/holiday/easter
 	name = EASTER
@@ -587,3 +650,23 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 
 /datum/holiday/easter/getStationPrefix()
 	return pick("Fluffy","Bunny","Easter","Egg")
+	
+/datum/holiday/lovecraft
+	name = "H.P. Lovecraft's Birthday"
+	begin_day = 20
+	begin_month = AUGUST
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=XYpGVnpujOQ", // I burn - Toadies
+		"https://www.youtube.com/watch?v=hLRo06NCOAo", // When He Died - Lemon Demon
+		"https://www.youtube.com/watch?v=MfQ1zGsZOiI", // Enter the Temple - Nyctophilliac
+		"https://www.youtube.com/watch?v=w-N1tjMfk4Y", // No Way - The Darkest of Hillside Thickets
+		"https://www.youtube.com/watch?v=27gmVUixXfs", // Ragnarok I: Runaway - The Mechanisms
+		"https://www.youtube.com/watch?v=Q5tYxsjjpsU", // Ragnarok II - The Calling - The Mechanisms
+		"https://www.youtube.com/watch?v=56pccCkgsdk", // Merlin - Kathy Mar
+		"https://www.youtube.com/watch?v=XRnjPSkVdt8", // Blood Ceremony - Goodbye Gemini
+		"https://www.youtube.com/watch?v=I8JtQDPT3-E", // Ascension - Hallas
+		"https://www.youtube.com/watch?v=Nl95A7on4iI", // The Astral Seer - Hallas
+		"https://www.youtube.com/watch?v=xHAeJSwUbaw", // Demon Sultan Azathoth - The H.P. Lovecraft Historical Society
+		"https://www.youtube.com/watch?v=KSvsy11PHxM", // I saw mommy kissing Yog-Sothoth - The H.P. Lovecraft Historical Society
+		"https://www.youtube.com/watch?v=61MR40PG8K4"  // What Do You Do with an Innsmouth Sailor? - The H.P. Lovecraft Historical Society
+		)

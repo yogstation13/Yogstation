@@ -147,6 +147,7 @@
 /datum/map_template/ruin/space/spacehotel
 	id = "spacehotel"
 	suffix = "spacehotel.dmm"
+	unpickable = TRUE
 	name = "The Twin-Nexus Hotel"
 	description = "An interstellar hotel, where the weary spaceman can rest their head and relax, assured that the residental staff will not murder them in their sleep. Probably."
 
@@ -305,14 +306,13 @@
 		of the area exists in any records. After all, it's not like \
 		some doofus with an EVA suit and jetpack can just waltz around \
 		in space and find it..."
+	unpickable = TRUE
 
 /datum/map_template/ruin/space/spacebar
 	id = "spacebar"
 	suffix = "spacebar.dmm"
-	name = "The Rampant Golem and Yellow Hound"
-	description = "No questions asked. No shoes/foot protection, no service. \
-		No tabs. No violence in the inside areas. That's it. Welcome to the \
-		Rampant Golem and Yellow Hound. Can I take your order?"
+	name = "The Space Bar"
+	description = "Technically a Space Bar & Grill, but do you really care about that? No, just about getting drunk and a good (enough) meal."
 
 /datum/map_template/ruin/space/goat_transport
 	id = "goatresearch"
@@ -320,8 +320,41 @@
 	name= "Exotic Goat Transport Vessel"
 	description = "A ship transporting goats attacked by goats. How ironic..."
 
+/datum/map_template/ruin/space/king_goat_arena
+	id = "kinggoatarena"
+	suffix = "kinggoatarena.dmm"
+	name = "King Goat Boss Arena"
+	description = "Abandon All Hope Ye Who Enter Here."
+	always_place = TRUE // This is just the space part, king_goat_boss in /code/datums/ruins/lavaland.dm needs to have this set to true aswell for goat king to actually be reachable
+	allow_duplicates = FALSE
+
 /datum/map_template/ruin/space/drifting_spacepod
 	id = "drifting_spacepod"
 	suffix = "drifting_spacepod.dmm"
 	name = "Drifting Spacepod"
 	description = "An abandoned spacepod, just drifting through space."
+
+/datum/map_template/ruin/space/gaming
+	id = "gaming"
+	suffix = "gameroom.dmm"
+	name = "Game Room"
+	description = "A room in space in which you can play card games and munch on some snacks."
+
+/datum/map_template/ruin/space/gaming
+	id = "puby"
+	suffix = "pubby_monastery.dmm"
+	name = "Pubby Monastery"
+	description = "A beautiful monastery that used to have a station attached to it"
+
+/datum/map_template/ruin/space/harambe
+	id = "bigape"
+	suffix = "bigape.dmm"
+	name = "Big Ape"
+	description = "A gorilla? Out here? But why."
+
+/datum/map_template/ruin/space/cozy_apartment
+	id = "nicelittlenest"
+	suffix = "nicelittlenest.dmm"
+	name = "Cozy Home"
+	description = "A nice little place for travellers to rest. There is even a mint under the pillow!"
+	

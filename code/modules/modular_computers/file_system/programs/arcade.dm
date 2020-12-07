@@ -6,9 +6,7 @@
 	requires_ntnet = FALSE
 	network_destination = "arcade network"
 	size = 6
-	tgui_id = "ntos_arcade"
-	ui_x = 450
-	ui_y = 350
+	tgui_id = "NtosArcade"
 
 	var/game_active = TRUE //Checks to see if a game is in progress.
 	var/pause_state = FALSE //This disables buttons in order to prevent multiple actions before the opponent's actions.
@@ -59,30 +57,23 @@
 		playsound(computer.loc, 'sound/arcade/steal.ogg', 50, TRUE, extrarange = -3, falloff = 10)
 		player_mp -= boss_mpamt
 		boss_mp += boss_mpamt
-		pause_state = FALSE
-		game_check()
-		return
 	else if(boss_mp > 5 && boss_hp <12)
 		heads_up = "[boss_name] heals for [bossheal] health!"
 		playsound(computer.loc, 'sound/arcade/heal.ogg', 50, TRUE, extrarange = -3, falloff = 10)
 		boss_hp += bossheal
 		boss_mp -= boss_mpamt
-		pause_state = FALSE
-		game_check()
-		return
 	else
 		heads_up = "[boss_name] attacks you for [boss_attackamt] damage!"
 		playsound(computer.loc, 'sound/arcade/hit.ogg', 50, TRUE, extrarange = -3, falloff = 10)
 		player_hp -= boss_attackamt
-		pause_state = FALSE
-		game_check()
-		return
-	return
 
-/datum/computer_file/program/arcade/ui_interact(mob/user, ui_key, datum/tgui/ui, force_open, datum/tgui/master_ui, datum/ui_state/state)
-	. = ..()
-	var/datum/asset/assets = get_asset_datum(/datum/asset/simple/arcade)
-	assets.send(user)
+	pause_state = FALSE
+	game_check()
+
+/datum/computer_file/program/arcade/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/arcade),
+	)
 
 /datum/computer_file/program/arcade/ui_data(mob/user)
 	var/list/data = get_header_data()
@@ -97,7 +88,7 @@
 	data["BossID"] = "boss[boss_id].gif"
 	return data
 
-/datum/computer_file/program/arcade/ui_act(action, params, mob/user)
+/datum/computer_file/program/arcade/ui_act(action, list/params, mob/user)
 	if(..())
 		return TRUE
 	var/obj/item/computer_hardware/printer/printer

@@ -171,6 +171,7 @@
 /mob/living/carbon/show_inv(mob/user)
 	user.set_machine(src)
 	var/dat = {"
+	<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>
 	<HR>
 	<B><FONT size=3>[name]</FONT></B>
 	<HR>
@@ -205,6 +206,7 @@
 	dat += {"
 	<BR>
 	<BR><A href='?src=[REF(user)];mach_close=mob[REF(src)]'>Close</A>
+	</BODY></HTML>
 	"}
 	user << browse(dat, "window=mob[REF(src)];size=325x500")
 	onclose(user, "mob[REF(src)]")
@@ -381,7 +383,6 @@
 		else
 			dropItemToGround(I)
 			return
-		return TRUE
 
 /mob/living/carbon/get_standard_pixel_y_offset(lying = 0)
 	if(lying)
@@ -401,7 +402,7 @@
 
 	switch(rand(1,100)+modifier) //91-100=Nothing special happens
 		if(-INFINITY to 0) //attack yourself
-			I.attack(src,src)
+			INVOKE_ASYNC(I, /obj/item.proc/attack, src, src)
 		if(1 to 30) //throw it at yourself
 			I.throw_impact(src)
 		if(31 to 60) //Throw object in facing direction
@@ -417,16 +418,17 @@
 			var/turf/target = get_turf(loc)
 			I.safe_throw_at(target,I.throw_range,I.throw_speed,src, force = move_force)
 
-/mob/living/carbon/Stat()
-	..()
-	if(statpanel("Status"))
-		var/obj/item/organ/alien/plasmavessel/vessel = getorgan(/obj/item/organ/alien/plasmavessel)
-		if(vessel)
-			stat(null, "Plasma Stored: [vessel.storedPlasma]/[vessel.max_plasma]")
-		if(locate(/obj/item/assembly/health) in src)
-			stat(null, "Health: [health]")
+/mob/living/carbon/get_status_tab_items()
+	. = ..()
+	var/obj/item/organ/alien/plasmavessel/vessel = getorgan(/obj/item/organ/alien/plasmavessel)
+	if(vessel)
+		. += "Plasma Stored: [vessel.storedPlasma]/[vessel.max_plasma]"
+	if(locate(/obj/item/assembly/health) in src)
+		. += "Health: [health]"
 
-	add_abilities_to_panel()
+/mob/living/carbon/get_proc_holders()
+	. = ..()
+	. += add_abilities_to_panel()
 
 /mob/living/carbon/attack_ui(slot)
 	if(!has_hand_for_held_index(active_hand_index))
@@ -831,7 +833,7 @@
 	if(!getorgan(/obj/item/organ/brain) && (!mind || !mind.has_antag_datum(/datum/antagonist/changeling)))
 		return 0
 
-/mob/living/carbon/proc/can_defib() //yogs start
+/mob/living/carbon/proc/can_defib(careAboutGhost = TRUE) //yogs start
 	if(suiciding || hellbound || HAS_TRAIT(src, TRAIT_HUSK)) //can't revive
 		return FALSE
 	if((world.time - timeofdeath) > DEFIB_TIME_LIMIT * 10) //too late
@@ -843,7 +845,7 @@
 	var/obj/item/organ/brain/BR = getorgan(/obj/item/organ/brain)
 	if(QDELETED(BR) || BR.brain_death || BR.organ_flags & ORGAN_FAILING || BR.suicided)
 		return FALSE
-	if(get_ghost())
+	if(careAboutGhost && get_ghost())
 		return FALSE
 	return TRUE //yogs end
 
@@ -940,3 +942,72 @@
 	if(mood)
 		if(mood.sanity < SANITY_UNSTABLE)
 			return TRUE
+
+/mob/living/carbon/verb/giveitem(mob/living/carbon/A as mob in range(1))
+	set name = "Give"
+	set category = "IC"
+	if(!iscarbon(src))
+		to_chat(src, "<span class='warning'>You can't give items!</span>")
+		return
+	if(A && A != src && get_dist(src, A) < 2)
+		var/mob/living/carbon/C = src
+		C.give()
+
+/// Returns whether or not the carbon should be able to be shocked
+/mob/living/carbon/proc/should_electrocute(power_source)
+	if (ismecha(loc))
+		return FALSE
+
+	if (wearing_shock_proof_gloves())
+		return FALSE
+
+	if(!get_powernet_info_from_source(power_source))
+		return FALSE
+
+	if (HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
+		return FALSE
+
+	return TRUE
+
+/// Returns if the carbon is wearing shock proof gloves
+/mob/living/carbon/proc/wearing_shock_proof_gloves()
+	return gloves?.siemens_coefficient == 0
+
+/mob/living/carbon/wash(clean_types)
+	. = ..()
+	// Wash equipped stuff that cannot be covered
+	for(var/i in held_items)
+		var/obj/item/held_thing = i
+		if(!held_thing)
+			return
+		
+		if(held_thing.wash(clean_types))
+			. = TRUE
+	if(back?.wash(clean_types))
+		update_inv_back(0)
+		. = TRUE
+	if(head?.wash(clean_types))
+		update_inv_head()
+		. = TRUE
+		// Check and wash stuff that can be covered
+	var/list/obscured = check_obscured_slots()
+
+	// If the eyes are covered by anything but glasses, that thing will be covering any potential glasses as well.
+	if(glasses && is_eyes_covered(FALSE, TRUE, TRUE) && glasses.wash(clean_types))
+		update_inv_glasses()
+		. = TRUE
+	if(wear_mask && !(ITEM_SLOT_MASK in obscured) && wear_mask.wash(clean_types))
+		update_inv_wear_mask()
+		. = TRUE
+	if(ears && !(ITEM_SLOT_EARS in obscured) && ears.wash(clean_types))
+		update_inv_ears()
+		. = TRUE
+	if(wear_neck && !(ITEM_SLOT_NECK in obscured) && wear_neck.wash(clean_types))
+		update_inv_neck()
+		. = TRUE
+	if(shoes && !(ITEM_SLOT_FEET in obscured) && shoes.wash(clean_types))
+		update_inv_shoes()
+		. = TRUE
+	if(gloves && !(ITEM_SLOT_GLOVES in obscured) && gloves.wash(clean_types))
+		update_inv_gloves()
+		. = TRUE

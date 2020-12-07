@@ -12,7 +12,7 @@
 	icon_state = ""
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_SMALL
-	materials = list(MAT_METAL=100)
+	materials = list(/datum/material/iron=100)
 	throwforce = 2
 	throw_speed = 3
 	throw_range = 7
@@ -33,7 +33,8 @@
 
 /obj/item/assembly/proc/on_attach()
 
-/obj/item/assembly/proc/on_detach() //call this when detaching it from a device. handles any special functions that need to be updated ex post facto
+//Call this when detaching it from a device. handles any special functions that need to be updated ex post facto
+/obj/item/assembly/proc/on_detach()
 	if(!holder)
 		return FALSE
 	forceMove(holder.drop_location())
@@ -124,3 +125,11 @@
 
 /obj/item/assembly/interact(mob/user)
 	return ui_interact(user)
+
+/obj/item/assembly/ui_host(mob/user)
+	if(holder)
+		return holder
+	return src
+
+/obj/item/assembly/ui_state(mob/user)
+	return GLOB.hands_state

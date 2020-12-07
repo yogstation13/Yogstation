@@ -43,6 +43,9 @@ GLOBAL_PROTECT(world_paper_log)
 GLOBAL_VAR(tgui_log)
 GLOBAL_PROTECT(tgui_log)
 
+GLOBAL_VAR(demo_log)
+GLOBAL_PROTECT(demo_log)
+
 GLOBAL_LIST_EMPTY(bombers)
 GLOBAL_PROTECT(bombers)
 GLOBAL_LIST_EMPTY(admin_log)

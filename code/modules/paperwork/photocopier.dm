@@ -32,7 +32,7 @@
 
 /obj/machinery/photocopier/ui_interact(mob/user)
 	. = ..()
-	var/dat = "Photocopier<BR><BR>"
+	var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>Photocopier<BR><BR>"
 	if(copy || photocopy || doccopy || (ass && (ass.loc == src.loc)))
 		dat += "<a href='byond://?src=[REF(src)];remove=1'>Remove Paper</a><BR>"
 		if(toner)
@@ -49,6 +49,7 @@
 	dat += "Current toner level: [toner]"
 	if(!toner)
 		dat +="<BR>Please insert a new toner cartridge!"
+	dat += "</BODY></HTML>"
 	user << browse(dat, "window=copier")
 	onclose(user, "copier")
 
@@ -262,10 +263,10 @@
 		return ..()
 
 /obj/machinery/photocopier/obj_break(damage_flag)
-	if(!(flags_1 & NODECONSTRUCT_1))
-		if(toner > 0)
-			new /obj/effect/decal/cleanable/oil(get_turf(src))
-			toner = 0
+	. = ..()
+	if(. && toner > 0)
+		new /obj/effect/decal/cleanable/oil(get_turf(src))
+		toner = 0
 
 /obj/machinery/photocopier/MouseDrop_T(mob/target, mob/user)
 	check_ass() //Just to make sure that you can re-drag somebody onto it after they moved off.

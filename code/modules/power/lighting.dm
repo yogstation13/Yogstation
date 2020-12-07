@@ -24,7 +24,7 @@
 	name = "small light fixture frame"
 	icon_state = "bulb-construct-item"
 	result_path = /obj/structure/light_construct/small
-	materials = list(MAT_METAL=MINERAL_MATERIAL_AMOUNT)
+	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 
 /obj/item/wallframe/light_fixture/try_build(turf/on_wall, user)
 	if(!..())
@@ -117,6 +117,10 @@
 			cell = W
 			add_fingerprint(user)
 		return
+	else if (istype(W, /obj/item/light))
+		to_chat(user, "<span class='warning'>This [name] isn't finished being setup!</span>")
+		return
+
 	switch(stage)
 		if(1)
 			if(W.tool_behaviour == TOOL_WRENCH)
@@ -241,7 +245,7 @@
 	var/bulb_emergency_pow_min = 0.5	// the minimum value for the light's power in emergency mode
 
 	var/bulb_vacuum_colour = "#4F82FF"	// colour of the light when air alarm is set to severe
-	var/bulb_vacuum_brightness = 4
+	var/bulb_vacuum_brightness = 8
 
 /obj/machinery/light/broken
 	status = LIGHT_BROKEN
@@ -332,8 +336,8 @@
 			else
 				icon_state = "[base_state]"
 				if(on && !forced_off)
-					var/mutable_appearance/glowybit = mutable_appearance(overlayicon, base_state, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
-					glowybit.alpha = CLAMP(light_power*250, 30, 200)
+					var/mutable_appearance/glowybit = mutable_appearance(overlayicon, base_state, layer, EMISSIVE_PLANE)
+					glowybit.alpha = clamp(light_power*250, 30, 200)
 					add_overlay(glowybit)
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
@@ -403,7 +407,7 @@
 	update()
 
 /obj/machinery/light/proc/broken_sparks(start_only=FALSE)
-	if(status == LIGHT_BROKEN && has_power())
+	if(status == LIGHT_BROKEN && has_power() && Master.current_runlevel)
 		if(!start_only)
 			do_sparks(3, TRUE, src)
 		var/delay = rand(BROKEN_SPARKS_MIN, BROKEN_SPARKS_MAX)
@@ -785,7 +789,7 @@
 	var/status = LIGHT_OK		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
 	var/switchcount = 0	// number of times switched
-	materials = list(MAT_GLASS=100)
+	materials = list(/datum/material/glass=100)
 	grind_results = list(/datum/reagent/silicon = 5, /datum/reagent/nitrogen = 10) //Nitrogen is used as a cheaper alternative to argon in incandescent lighbulbs
 	var/rigged = FALSE		// true if rigged to explode
 	var/brightness = 2 //how much light it gives off
@@ -849,13 +853,13 @@
 	. = ..()
 	AddComponent(/datum/component/caltrop, force)
 
-/obj/item/light/Crossed(mob/living/L)
+/obj/item/light/Crossed(atom/movable/AM)
 	. = ..()
-	if(istype(L) && has_gravity(loc))
-		if(HAS_TRAIT(L, TRAIT_LIGHT_STEP))
-			playsound(loc, 'sound/effects/glass_step.ogg', 30, 1)
-		else
-			playsound(loc, 'sound/effects/glass_step.ogg', 50, 1)
+	if(!isliving(AM))
+		return
+	var/mob/living/L = AM
+	if(istype(L) && !(L.is_flying() || L.buckled))
+		playsound(src, 'sound/effects/glass_step.ogg', HAS_TRAIT(L, TRAIT_LIGHT_STEP) ? 30 : 50, TRUE)
 		if(status == LIGHT_BURNED || status == LIGHT_OK)
 			shatter()
 
