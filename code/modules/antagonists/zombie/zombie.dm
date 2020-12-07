@@ -16,6 +16,9 @@
 	//EVOLUTION
 	var/evolutionTime = 0 //When can we evolve?
 
+	//GENERAL ABILITIES
+	var/obj/effect/proc_holder/zombie/uncuff/uncuff
+
 	//SPITTER ABILITIES
 	var/obj/effect/proc_holder/zombie/spit/spit
 	var/obj/effect/proc_holder/zombie/acid/acid
@@ -206,9 +209,13 @@
 		var/obj/item/organ/zombie_infection/gamemode/ZI = new()
 		ZI.Insert(H)
 
+	if(H.mind)
+		H.mind.zombified = TRUE
 	H.death()
 	Z.zombify.Remove(H)
 	Z.zombified = TRUE
+	Z.uncuff = new()
+	H.AddAbility(Z.uncuff)
 	Z.evolutionTime = TIER_2_TIME + world.time
 	Z.start_evolution_2()
 
