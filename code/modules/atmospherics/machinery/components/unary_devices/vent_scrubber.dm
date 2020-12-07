@@ -308,10 +308,12 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2
 	piping_layer = 2
 	icon_state = "scrub_map_on-2"
+	showpipe = FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4
 	piping_layer = 4
 	icon_state = "scrub_map_on-4"
+	showpipe = FALSE
 
 #undef SIPHONING
 #undef SCRUBBING

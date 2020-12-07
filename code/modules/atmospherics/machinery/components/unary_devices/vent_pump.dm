@@ -375,10 +375,12 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2
 	piping_layer = 2
 	icon_state = "vent_map_on-2"
+	showpipe = FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4
 	piping_layer = 4
 	icon_state = "vent_map_on-4"
+	showpipe = FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon
 	pump_direction = SIPHONING
