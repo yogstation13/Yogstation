@@ -17,7 +17,7 @@
 	var/evolutionTime = 0 //When can we evolve?
 
 	//GENERAL ABILITIES
-	var/obj/effect/proc_holder/zombie/uncuff/uncuff = new
+	var/datum/action/innate/zombie/uncuff/uncuff = new
 
 	//SPITTER ABILITIES
 	var/obj/effect/proc_holder/zombie/spit/spit
