@@ -10,6 +10,7 @@
 	pipe_flags = PIPING_ONE_PER_TURF
 	pipe_state = "connector"
 	piping_layer = 3
+	showpipe = TRUE
 
 	var/obj/machinery/portable_atmospherics/connected_device
 
