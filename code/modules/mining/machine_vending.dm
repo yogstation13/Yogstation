@@ -67,7 +67,8 @@
 		new /datum/data/mining_equipment("Soap",						/obj/item/soap/nanotrasen,											200, VENDING_MISC),
 		new /datum/data/mining_equipment("Laser Pointer",				/obj/item/laser_pointer,											300, VENDING_MISC),
 		new /datum/data/mining_equipment("Space Cash",					/obj/item/stack/spacecash/c1000,									2000, VENDING_MISC),
-		new /datum/data/mining_equipment("Giga Drill",					/obj/vehicle/ridden/gigadrill,									1000000, VENDING_MISC)
+		new /datum/data/mining_equipment("Giga Drill",					/obj/vehicle/ridden/gigadrill,									50000, VENDING_MISC)
+		)
 	
 
 /datum/data/mining_equipment
