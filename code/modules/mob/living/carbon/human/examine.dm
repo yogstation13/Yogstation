@@ -145,10 +145,12 @@
 if(just_sleeping)
 		msg += "[t_He] [t_is]n't responding to anything around [t_him] and seem[p_s()] to be asleep.\n"
 		
-	var/temp = getBruteLoss() //no need to calculate each of these twice
+	
 
 	var/list/msg = list("")
 
+	var/temp = getBruteLoss() //no need to calculate each of these twice
+	
 	var/list/missing = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	var/list/disabled = list()
 	for(var/X in bodyparts)
