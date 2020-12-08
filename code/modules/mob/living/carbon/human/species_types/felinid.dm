@@ -103,3 +103,13 @@
 
 	if(!silent)
 		to_chat(H, "You are no longer a cat.")
+
+/datum/species/human/felinid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	. = ..()
+	if(H.reagents.has_reagent(/datum/reagent/consumable/coco))
+		M.adjustToxLoss(1, 0)
+		
+/datum/species/human/felinid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	. = ..()
+	if(H.reagents.has_reagent(/datum/reagent/consumable/hot_coco))
+		M.adjustToxLoss(1, 0)
