@@ -462,10 +462,10 @@
 
 /datum/reagent/consumable/nuka_cola/on_mob_metabolize(mob/living/L)
 	..()
-	ADD_TRAIT(L, TRAIT_RESISTDAMAGESLOWDOWN)
+	ADD_TRAIT(L, TRAIT_RESISTDAMAGESLOWDOWN, type)
 
 /datum/reagent/consumable/nuka_cola/on_mob_end_metabolize(mob/living/L)
-	REMOVE_TRAIT(L, TRAIT_RESISTDAMAGESLOWDOWN)
+	REMOVE_TRAIT(L, TRAIT_RESISTDAMAGESLOWDOWN, type)
 	..()
 
 /datum/reagent/consumable/nuka_cola/on_mob_life(mob/living/carbon/M)
