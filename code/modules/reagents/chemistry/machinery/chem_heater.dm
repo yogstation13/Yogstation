@@ -66,7 +66,7 @@
 		return
 	if(on)
 		if(beaker && beaker.reagents.total_volume)
-			var/direction = (beaker.reagents.chem_temp > target_temperature) ? TRUE : FALSE // TRUE is cooling, used to allow it to snap to the target temp
+			var/direction = beaker.reagents.chem_temp > target_temperature // is it cooling? used to allow it to snap to the target temp
 			var/heating = (1000 - beaker.reagents.chem_temp) * heater_coefficient * (direction ? -1 : 1) // How much to increase the heat by
 			if(heating + beaker.reagents.chem_temp >= target_temperature && !direction) // Heat snapping condition
 				heating = target_temperature - beaker.reagents.chem_temp // Makes it snap to target temp
