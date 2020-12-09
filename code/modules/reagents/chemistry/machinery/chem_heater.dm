@@ -9,7 +9,7 @@
 	circuit = /obj/item/circuitboard/machine/chem_heater
 	var/obj/item/reagent_containers/beaker = null
 	var/target_temperature = 300
-	var/heater_coefficient = 0.025
+	var/heater_coefficient = 0.025 // Multiplier for heat
 	var/on = FALSE
 
 /obj/machinery/chem_heater/Destroy()
@@ -65,12 +65,12 @@
 		return
 	if(on)
 		if(beaker && beaker.reagents.total_volume)
-			var/direction = (beaker.reagents.chem_temp > target_temperature) ? TRUE : FALSE // TRUE is cooling
-			var/heating = (1000 - beaker.reagents.chem_temp) * heater_coefficient * (direction ? -1 : 1)
-			if(heating + beaker.reagents.chem_temp >= target_temperature && !direction)
-				heating = target_temperature - beaker.reagents.chem_temp // Stops it from overshooting
-			else if(heating + beaker.reagents.chem_temp <= target_temperature && direction)
-				heating = target_temperature - beaker.reagents.chem_temp // Allows it to work even while cooling
+			var/direction = (beaker.reagents.chem_temp > target_temperature) ? TRUE : FALSE // TRUE is cooling, used to allow it to snap to the target temp
+			var/heating = (1000 - beaker.reagents.chem_temp) * heater_coefficient * (direction ? -1 : 1) // How much to increase the heat by
+			if(heating + beaker.reagents.chem_temp >= target_temperature && !direction) // Heat snapping condition
+				heating = target_temperature - beaker.reagents.chem_temp // Makes it snap to target temp
+			else if(heating + beaker.reagents.chem_temp <= target_temperature && direction) // Cooling snapping condition
+				heating = target_temperature - beaker.reagents.chem_temp // Makes it snap to target temp
 
 			beaker.reagents.adjust_thermal_energy(heating * SPECIFIC_HEAT_DEFAULT * beaker.reagents.total_volume)
 			beaker.reagents.handle_reactions()
