@@ -9,7 +9,8 @@
 	circuit = /obj/item/circuitboard/machine/chem_heater
 	var/obj/item/reagent_containers/beaker = null
 	var/target_temperature = 300
-	var/heater_coefficient = 0.025 // Multiplier for heat
+	/// Multiplier for heat
+	var/heater_coefficient = 0.025
 	var/on = FALSE
 
 /obj/machinery/chem_heater/Destroy()
