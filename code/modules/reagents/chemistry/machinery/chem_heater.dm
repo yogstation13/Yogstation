@@ -9,7 +9,7 @@
 	circuit = /obj/item/circuitboard/machine/chem_heater
 	var/obj/item/reagent_containers/beaker = null
 	var/target_temperature = 300
-	var/heater_coefficient = 0.1
+	var/heater_coefficient = 0.025
 	var/on = FALSE
 
 /obj/machinery/chem_heater/Destroy()
@@ -50,7 +50,7 @@
 	return TRUE
 
 /obj/machinery/chem_heater/RefreshParts()
-	heater_coefficient = 0.1
+	heater_coefficient = initial(heater_coefficient)
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
 		heater_coefficient *= M.rating
 
@@ -65,7 +65,14 @@
 		return
 	if(on)
 		if(beaker && beaker.reagents.total_volume)
-			beaker.reagents.adjust_thermal_energy((target_temperature - beaker.reagents.chem_temp) * heater_coefficient * SPECIFIC_HEAT_DEFAULT * beaker.reagents.total_volume)
+			var/direction = (beaker.reagents.chem_temp > target_temperature) ? TRUE : FALSE // TRUE is cooling
+			var/heating = (1000 - beaker.reagents.chem_temp) * heater_coefficient * (direction ? -1 : 1)
+			if(heating + beaker.reagents.chem_temp >= target_temperature && !direction)
+				heating = target_temperature - beaker.reagents.chem_temp // Stops it from overshooting
+			else if(heating + beaker.reagents.chem_temp <= target_temperature && direction)
+				heating = target_temperature - beaker.reagents.chem_temp // Allows it to work even while cooling
+
+			beaker.reagents.adjust_thermal_energy(heating * SPECIFIC_HEAT_DEFAULT * beaker.reagents.total_volume)
 			beaker.reagents.handle_reactions()
 
 /obj/machinery/chem_heater/attackby(obj/item/I, mob/user, params)
