@@ -89,3 +89,9 @@
 					/obj/item/reagent_containers/food/drinks/soda_cans/shamblers = 10)
 	product_slogans = "~Shake me up some of that Shambler's Juice!~"
 	product_ads = "Refreshing!;Jyrbv dv lg jfdv fw kyrk Jyrdscvi'j Alztv!;Over 1 trillion souls drank!;Thirsty? Nyp efk uizeb kyv uribevjj?;Kyv Jyrdscvi uizebj kyv ezxyk!;Drink up!;Krjkp."
+
+/obj/machinery/vending/cola/shamblers/prison
+	products = list(/obj/item/reagent_containers/food/drinks/soda_cans/shamblers = 80)
+	premium = list(/obj/item/reagent_containers/glass/bottle/water = 5)
+	default_price = 0
+	extra_price = 0

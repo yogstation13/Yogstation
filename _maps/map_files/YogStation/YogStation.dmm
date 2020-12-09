@@ -16653,9 +16653,7 @@
 /area/bridge)
 "aUg" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/cola{
-	onstation = 0
-	},
+/obj/machinery/vending/cola/shamblers/prison,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aUh" = (
@@ -35711,7 +35709,6 @@
 	dir = 8
 	},
 /obj/structure/bed/dogbed/runtime,
-/mob/living/simple_animal/pet/cat/Runtime,
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/heads/cmo";
 	dir = 4;
@@ -35721,6 +35718,7 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+/mob/living/simple_animal/pet/cat/Runtime,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
 "dBq" = (
@@ -36584,12 +36582,12 @@
 /area/science/xenobiology)
 "ehJ" = (
 /obj/structure/flora/ausbushes/grassybush,
-/mob/living/carbon/monkey,
 /obj/machinery/door/window/westleft{
 	dir = 2;
 	name = "Monkey Pen";
 	req_access_txt = "9"
 	},
+/mob/living/carbon/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
 "ehN" = (
@@ -45953,9 +45951,9 @@
 /turf/open/floor/plasteel/white,
 /area/storage/tech)
 "leK" = (
-/mob/living/carbon/monkey,
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/leafybush,
+/mob/living/carbon/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
 "lgl" = (
@@ -56488,9 +56486,9 @@
 /area/maintenance/port/fore)
 "sMx" = (
 /obj/structure/window/reinforced,
-/mob/living/carbon/monkey,
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/flora/ausbushes/sparsegrass,
+/mob/living/carbon/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
 "sNe" = (
