@@ -18095,6 +18095,12 @@
 	icon_state = "darkfull"
 	},
 /area/holodeck/rec_center/gym)
+"Lx" = (
+/obj/machinery/door/window/eastleft,
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "Ly" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -22093,6 +22099,12 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
+"Uo" = (
+/obj/machinery/door/window/westright,
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "Up" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien14";
@@ -67321,7 +67333,7 @@ br
 Xi
 LB
 sc
-eG
+Lx
 eG
 eG
 eG
@@ -68867,7 +68879,7 @@ VY
 VY
 VY
 VY
-VY
+Uo
 Lw
 bj
 aa
