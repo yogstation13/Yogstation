@@ -45078,15 +45078,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
-"kxP" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/item/storage/pill_bottle/dice,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "kxR" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -47401,6 +47392,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/tcoms)
+"msY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/plate_press,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "mtT" = (
 /obj/structure/filingcabinet,
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -49199,6 +49195,18 @@
 	},
 /turf/open/floor/plating,
 /area/security/main)
+"nBs" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/storage/pill_bottle/dice,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/license_plates/empty{
+	amount = 35
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "nCm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -90011,7 +90019,7 @@ aWC
 odU
 aat
 aat
-aat
+msY
 aat
 aat
 ozw
@@ -90268,7 +90276,7 @@ eYm
 xwU
 aat
 baa
-kxP
+nBs
 baa
 aat
 bab
