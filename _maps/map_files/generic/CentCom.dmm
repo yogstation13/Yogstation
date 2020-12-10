@@ -77,12 +77,6 @@
 "aq" = (
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/offline)
-"ar" = (
-/obj/structure/railing/corner,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/space)
 "as" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -426,24 +420,15 @@
 	icon_state = "wood"
 	},
 /area/holodeck/rec_center/lounge)
-"bq" = (
+"br" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/holofloor,
-/area/space)
-"bs" = (
-/obj/structure/railing{
 	dir = 4
 	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/space)
+/turf/open/floor/holofloor,
+/area/holodeck/rec_center/gym)
 "bt" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -646,6 +631,16 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
+"bW" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/holofloor,
+/area/holodeck/rec_center/gym)
 "bX" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -706,6 +701,12 @@
 /obj/item/clothing/head/beekeeper_head,
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/anthophila)
+"cf" = (
+/obj/structure/railing,
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "cg" = (
 /obj/machinery/shower{
 	dir = 4
@@ -1045,12 +1046,6 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
-"da" = (
-/obj/structure/punching_bag,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/space)
 "db" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/effect/holodeck_effect/mobspawner/pet,
@@ -1082,6 +1077,16 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/basketball)
+"df" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/table/wood/bar,
+/obj/item/bikehorn/airhorn,
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "dg" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -1154,16 +1159,6 @@
 	},
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/thunderdome1218)
-"du" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/table/wood/bar,
-/obj/item/bikehorn/airhorn,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/space)
 "dx" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -1294,17 +1289,6 @@
 "dL" = (
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/thunderdome1218)
-"dM" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/space)
 "dN" = (
 /obj/structure/table/wood,
 /obj/item/melee/chainofcommand{
@@ -1493,6 +1477,25 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/firingrange)
+"et" = (
+/obj/item/clothing/gloves/boxing{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/clothing/gloves/boxing/blue{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/clothing/gloves/boxing/green,
+/obj/item/clothing/gloves/boxing/yellow{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/structure/rack,
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "eu" = (
 /obj/item/weldingtool,
 /turf/open/floor/holofloor/plating,
@@ -1580,6 +1583,14 @@
 "eF" = (
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/firingrange)
+"eG" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "eH" = (
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/thunderdome1218)
@@ -1602,6 +1613,15 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
+"eK" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/holofloor{
+	icon_state = "white"
+	},
+/area/holodeck/rec_center/gym)
 "eM" = (
 /obj/structure/chair{
 	dir = 1
@@ -1709,18 +1729,19 @@
 /obj/effect/holodeck_effect/mobspawner/penguin,
 /turf/open/floor/holofloor/snow,
 /area/holodeck/rec_center/winterwonderland)
+"fd" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/holofloor,
+/area/holodeck/rec_center/gym)
 "fe" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/pet_lounge)
-"ff" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/space)
 "fg" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
@@ -1742,15 +1763,6 @@
 /obj/item/paper/guides/jobs/security/range,
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/firingrange)
-"fi" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/space)
 "fj" = (
 /mob/living/simple_animal/crab{
 	name = "Jon"
@@ -1763,14 +1775,6 @@
 	},
 /turf/open/floor/holofloor/snow,
 /area/holodeck/rec_center/winterwonderland)
-"fm" = (
-/obj/structure/railing/corner{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/space)
 "fn" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/holofloor/grass,
@@ -7239,25 +7243,6 @@
 "qE" = (
 /turf/closed/indestructible/riveted/uranium,
 /area/wizard_station)
-"qF" = (
-/obj/item/clothing/gloves/boxing{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/clothing/gloves/boxing/blue{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/clothing/gloves/boxing/green,
-/obj/item/clothing/gloves/boxing/yellow{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/structure/rack,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/space)
 "qG" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -7408,19 +7393,12 @@
 /turf/open/floor/engine,
 /area/centcom/testchamber)
 "rc" = (
-/obj/structure/weightmachine/weightlifter,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
+/obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/holofloor,
-/area/space)
+/area/holodeck/rec_center/gym)
 "rd" = (
 /obj/structure/flora/grass/brown,
 /obj/effect/light_emitter{
@@ -7997,6 +7975,12 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
+"sc" = (
+/obj/structure/railing/corner,
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "sd" = (
 /obj/structure/sign/nanotrasen{
 	pixel_y = 32
@@ -9016,6 +9000,11 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
+"ub" = (
+/turf/open/floor/holofloor{
+	icon_state = "white"
+	},
+/area/holodeck/rec_center/gym)
 "uc" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -9689,6 +9678,17 @@
 	},
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/basketball)
+"vp" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/chair{
+	dir = 1
+	},
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "vq" = (
 /obj/structure/table/wood,
 /obj/item/clothing/suit/wizrobe,
@@ -9745,6 +9745,12 @@
 /obj/item/toy/nuke,
 /turf/open/floor/wood,
 /area/syndicate_mothership/control)
+"vy" = (
+/obj/structure/punching_bag,
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "vz" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -10838,6 +10844,14 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/firingrange)
+"xF" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/turf/open/floor/holofloor{
+	icon_state = "white"
+	},
+/area/holodeck/rec_center/gym)
 "xG" = (
 /turf/open/floor/plasteel/dark,
 /area/syndicate_mothership/control)
@@ -11378,13 +11392,6 @@
 /obj/item/grenade/spawnergrenade/clown,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"yS" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/holofloor,
-/area/space)
 "yT" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -12599,14 +12606,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"Bp" = (
-/obj/structure/railing/corner{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/space)
 "Bq" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien18";
@@ -14934,6 +14933,29 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/tdome/tdomeobserve)
+"FA" = (
+/obj/item/clothing/under/shorts/red{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/clothing/under/shorts/blue{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/clothing/under/shorts/green,
+/obj/item/clothing/under/shorts/grey{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/clothing/under/jabroni{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/structure/rack,
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "FB" = (
 /obj/item/cardboard_cutout/chess/white/bishop,
 /turf/open/floor/holofloor{
@@ -17287,24 +17309,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
-"JV" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/space)
-"JW" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/holofloor,
-/area/space)
 "JX" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/stripes/line{
@@ -17366,19 +17370,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
-"Kd" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/space)
 "Ke" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -17956,6 +17947,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/evac)
+"KZ" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/holofloor,
+/area/holodeck/rec_center/gym)
 "La" = (
 /obj/machinery/stasis{
 	dir = 4
@@ -18086,14 +18087,14 @@
 	icon_state = "darkfull"
 	},
 /area/holodeck/rec_center/chapelcourt)
-"Lv" = (
-/obj/structure/chair{
-	dir = 4
+"Lw" = (
+/obj/structure/railing/corner{
+	dir = 1
 	},
 /turf/open/floor/holofloor{
 	icon_state = "darkfull"
 	},
-/area/space)
+/area/holodeck/rec_center/gym)
 "Ly" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -18106,6 +18107,13 @@
 	},
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/spacechess)
+"LB" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/holofloor,
+/area/holodeck/rec_center/gym)
 "LE" = (
 /obj/structure/table,
 /obj/item/radio/off,
@@ -18436,15 +18444,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Mt" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/space)
 "Mu" = (
 /obj/machinery/light{
 	dir = 1
@@ -18670,17 +18669,6 @@
 	icon = 'icons/default_title.dmi';
 	icon_state = "extension";
 	layer = 5
-	},
-/area/space)
-"MP" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
 	},
 /area/space)
 "MQ" = (
@@ -19043,16 +19031,11 @@
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
 "NK" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/chair{
-	dir = 1
-	},
+/obj/effect/turf_decal/tile/red,
 /turf/open/floor/holofloor{
-	icon_state = "darkfull"
+	icon_state = "white"
 	},
-/area/space)
+/area/holodeck/rec_center/gym)
 "NL" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -19285,13 +19268,6 @@
 /obj/item/encryptionkey/syndicate,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"Oh" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/holofloor,
-/area/space)
 "Oi" = (
 /obj/machinery/portable_atmospherics/canister/miasma,
 /turf/open/floor/bluespace,
@@ -19652,6 +19628,14 @@
 "OQ" = (
 /turf/open/space/bluespace_locker_mirage,
 /area/bluespace_locker)
+"OS" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "OT" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/tile/green{
@@ -19722,6 +19706,34 @@
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
+"Pb" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/holofloor,
+/area/holodeck/rec_center/gym)
+"Pc" = (
+/obj/structure/rack,
+/obj/item/clothing/mask/luchador{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/clothing/mask/luchador/rudos,
+/obj/item/clothing/mask/luchador/tecnicos{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "Pd" = (
 /obj/structure/table,
 /obj/item/assembly/flash/handheld,
@@ -19930,15 +19942,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"PG" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/space)
 "PH" = (
 /obj/structure/chair{
 	pixel_y = -2
@@ -20668,21 +20671,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"Rk" = (
-/obj/structure/rack,
-/obj/item/clothing/mask/luchador{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/clothing/mask/luchador/rudos,
-/obj/item/clothing/mask/luchador/tecnicos{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/space)
 "Rm" = (
 /obj/structure/chair/wood/wings{
 	dir = 3
@@ -21130,6 +21118,20 @@
 	},
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
+"Sh" = (
+/obj/structure/weightmachine/stacklifter,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/holofloor,
+/area/holodeck/rec_center/gym)
 "Si" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
@@ -21263,6 +21265,17 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/pet_lounge)
+"SA" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/holofloor{
+	icon_state = "white"
+	},
+/area/holodeck/rec_center/gym)
 "SB" = (
 /obj/structure/curtain,
 /obj/structure/window/reinforced/tinted{
@@ -21311,6 +21324,14 @@
 /obj/structure/closet/secure_closet/personal,
 /turf/open/floor/plasteel/dark,
 /area/centcom/supplypod)
+"SI" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "SJ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -21330,14 +21351,6 @@
 /obj/machinery/portable_atmospherics/canister/nitryl,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
-"SM" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/space)
 "SN" = (
 /obj/structure/mopbucket,
 /obj/item/mop,
@@ -21446,6 +21459,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
+"SX" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "SY" = (
 /obj/machinery/atmospherics/components/binary/valve{
 	dir = 4;
@@ -21816,20 +21837,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"TL" = (
-/obj/structure/weightmachine/stacklifter,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/space)
 "TM" = (
 /obj/structure/table,
 /obj/item/gps{
@@ -22040,6 +22047,14 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
+"Uj" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "Uk" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/holofloor/snow,
@@ -22084,19 +22099,15 @@
 	opacity = 0
 	},
 /area/bluespace_locker)
-"Uq" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/space)
 "Ur" = (
 /obj/machinery/computer/arcade/orion_trail,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
+"Us" = (
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "Ut" = (
 /obj/structure/closet/bluespace/internal,
 /turf/open/indestructible{
@@ -22171,29 +22182,6 @@
 /obj/structure/table/wood/fancy,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"UB" = (
-/obj/item/clothing/under/shorts/red{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/clothing/under/shorts/blue{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/clothing/under/shorts/green,
-/obj/item/clothing/under/shorts/grey{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/clothing/under/jabroni{
-	pixel_x = 4;
-	pixel_y = 2
-	},
-/obj/structure/rack,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/space)
 "UC" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
@@ -22458,16 +22446,6 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"Vj" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/holofloor,
-/area/space)
 "Vk" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -22609,6 +22587,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
+"VB" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/holofloor,
+/area/holodeck/rec_center/gym)
 "VC" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -22744,12 +22732,6 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"VR" = (
-/obj/structure/railing,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/space)
 "VS" = (
 /obj/item/stack/sheet/mineral/coal{
 	pixel_x = -8;
@@ -22801,6 +22783,14 @@
 /obj/effect/landmark/shuttle_import,
 /turf/open/space/basic,
 /area/space)
+"VY" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "Wa" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -22868,12 +22858,17 @@
 	},
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/firingrange)
-"Wf" = (
-/obj/effect/turf_decal/tile/red,
+"Wg" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
 /turf/open/floor/holofloor{
 	icon_state = "white"
 	},
-/area/space)
+/area/holodeck/rec_center/gym)
 "Wh" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -22993,14 +22988,6 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
-"Ws" = (
-/obj/structure/railing/corner{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/space)
 "Wt" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -23068,6 +23055,15 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
+"WE" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/holofloor{
+	icon_state = "white"
+	},
+/area/holodeck/rec_center/gym)
 "WG" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -23316,6 +23312,20 @@
 "Xh" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
+"Xi" = (
+/obj/structure/weightmachine/weightlifter,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/holofloor,
+/area/holodeck/rec_center/gym)
 "Xj" = (
 /obj/machinery/door/airlock/external{
 	name = "Emergency Recovery Airlock"
@@ -23555,6 +23565,18 @@
 /obj/machinery/portable_atmospherics/canister/nitryl,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
+"XF" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/holofloor,
+/area/holodeck/rec_center/gym)
 "XG" = (
 /obj/structure/sign/poster/official/random{
 	pixel_x = -32
@@ -23845,18 +23867,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Yp" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/space)
 "Yq" = (
 /obj/structure/chair/wood/wings{
 	dir = 8
@@ -23967,11 +23977,6 @@
 "YC" = (
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
-"YD" = (
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/space)
 "YE" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -24207,11 +24212,6 @@
 /obj/item/gun/grenadelauncher,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"Ze" = (
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/space)
 "Zf" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -67060,16 +67060,16 @@ aa
 "}
 (166,1,1) = {"
 bj
-Yp
-Uq
-bq
-YD
-YD
-da
-YD
-Lv
-Lv
-Lv
+XF
+fd
+VB
+Us
+Us
+vy
+Us
+SX
+SX
+SX
 bj
 aa
 aa
@@ -67317,16 +67317,16 @@ aa
 "}
 (167,1,1) = {"
 bj
-Mt
-rc
-yS
-ar
-bs
-bs
-bs
-bs
-bs
-fm
+br
+Xi
+LB
+sc
+eG
+eG
+eG
+eG
+eG
+SI
 bj
 aa
 aa
@@ -67574,16 +67574,16 @@ aa
 "}
 (168,1,1) = {"
 bj
-Mt
-Kd
-yS
-VR
-Ze
-PG
-Ze
-Ze
-Ze
-ff
+br
+Pb
+LB
+cf
+ub
+WE
+ub
+ub
+ub
+Uj
 bj
 aa
 aa
@@ -67831,16 +67831,16 @@ aa
 "}
 (169,1,1) = {"
 bj
-Mt
-rc
-yS
-VR
-fi
-SM
-Ze
-Ze
-Ze
-NK
+br
+Xi
+LB
+cf
+eK
+xF
+ub
+ub
+ub
+vp
 bj
 aa
 aa
@@ -68088,16 +68088,16 @@ aa
 "}
 (170,1,1) = {"
 bj
-Mt
-Kd
-yS
-VR
-Ze
-Ze
-Ze
-Ze
-Ze
-du
+br
+Pb
+LB
+cf
+ub
+ub
+ub
+ub
+ub
+df
 bj
 aa
 aa
@@ -68345,16 +68345,16 @@ aa
 "}
 (171,1,1) = {"
 bj
-Mt
-TL
-yS
-VR
-Ze
-Ze
-Ze
-Wf
-MP
+br
+Sh
+LB
+cf
+ub
+ub
+ub
 NK
+SA
+vp
 bj
 aa
 aa
@@ -68602,16 +68602,16 @@ aa
 "}
 (172,1,1) = {"
 bj
-Mt
-Kd
-yS
-VR
-Ze
-Ze
-Ze
-dM
-Ze
-ff
+br
+Pb
+LB
+cf
+ub
+ub
+ub
+Wg
+ub
+Uj
 bj
 aa
 aa
@@ -68859,16 +68859,16 @@ aa
 "}
 (173,1,1) = {"
 bj
-Mt
-TL
-yS
-Ws
-JV
-JV
-JV
-JV
-JV
-Bp
+br
+Sh
+LB
+OS
+VY
+VY
+VY
+VY
+VY
+Lw
 bj
 aa
 aa
@@ -69116,16 +69116,16 @@ aa
 "}
 (174,1,1) = {"
 bj
-Vj
-Oh
-JW
-YD
-YD
-da
-YD
-qF
-UB
-Rk
+KZ
+rc
+bW
+Us
+Us
+vy
+Us
+et
+FA
+Pc
 bj
 aa
 aa
