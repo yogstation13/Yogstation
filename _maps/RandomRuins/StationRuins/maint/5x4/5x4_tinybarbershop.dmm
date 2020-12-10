@@ -56,6 +56,18 @@
 	icon_state = "platingdmg2"
 	},
 /area/template_noop)
+"J" = (
+/obj/item/storage/toolbox/mechanical,
+/obj/item/clothing/suit/apron/surgical,
+/obj/item/roller,
+/obj/structure/closet/cardboard,
+/obj/item/storage/firstaid,
+/obj/item/storage/box/syringes,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/item/clothing/head/wig/random,
+/obj/item/radio,
+/turf/open/floor/plating,
+/area/template_noop)
 "L" = (
 /obj/structure/table,
 /obj/structure/mirror{
@@ -70,19 +82,6 @@
 "M" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/carpet/green,
-/area/template_noop)
-"T" = (
-/obj/item/storage/toolbox/mechanical,
-/obj/item/clothing/suit/apron/surgical,
-/obj/item/roller,
-/obj/structure/closet/cardboard,
-/obj/item/storage/firstaid,
-/obj/item/storage/box/syringes,
-/obj/item/reagent_containers/glass/bottle/morphine,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/item/clothing/head/wig/random,
-/obj/item/radio,
-/turf/open/floor/plating,
 /area/template_noop)
 
 (1,1,1) = {"
@@ -113,5 +112,5 @@ r
 l
 M
 H
-T
+J
 "}
