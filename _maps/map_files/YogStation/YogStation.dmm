@@ -19476,13 +19476,6 @@
 /obj/machinery/vending/autodrobe/capdrobe,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
-"bdj" = (
-/obj/structure/toilet{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "bdk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -35656,6 +35649,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"dym" = (
+/obj/structure/toilet{
+	cistern = 1;
+	dir = 1;
+	open = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "dys" = (
 /obj/machinery/door/window/eastleft{
 	name = "Medical Delivery";
@@ -93617,7 +93619,7 @@ mLa
 bbs
 bbx
 bbQ
-bdj
+dym
 acd
 abb
 afB
