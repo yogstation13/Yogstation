@@ -338,6 +338,13 @@
 "aZ" = (
 /turf/open/floor/holofloor/carpet,
 /area/holodeck/rec_center/lounge)
+"ba" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/centcom/control)
 "bb" = (
 /obj/structure/chair/comfy/brown{
 	dir = 8
@@ -11237,10 +11244,6 @@
 /obj/item/seeds/cherry/bomb,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"yN" = (
-/obj/effect/turf_decal/loading_area,
-/turf/open/floor/plasteel,
-/area)
 "yO" = (
 /obj/structure/closet/chesspieces/white,
 /turf/open/floor/holofloor/plating,
@@ -19011,11 +19014,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"Oa" = (
-/obj/machinery/door/poddoor/deathsquad,
-/obj/effect/turf_decal/delivery/red,
-/turf/open/floor/plasteel/dark,
-/area)
 "Ob" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -19451,13 +19449,6 @@
 "OQ" = (
 /turf/open/space/bluespace_locker_mirage,
 /area/bluespace_locker)
-"OT" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area)
 "OU" = (
 /obj/item/clothing/under/jabroni,
 /obj/item/clothing/under/geisha,
@@ -20879,10 +20870,6 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"Sc" = (
-/obj/structure/sign/nanotrasen,
-/turf/closed/indestructible/riveted,
-/area)
 "Sd" = (
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
@@ -22106,14 +22093,6 @@
 /obj/item/gun/ballistic/automatic/sniper_rifle,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"UY" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/lockbox/loyalty,
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area)
 "UZ" = (
 /obj/structure/flora/grass/both,
 /turf/open/floor/holofloor/snow,
@@ -22121,9 +22100,6 @@
 "Va" = (
 /turf/open/floor/plasteel/dark,
 /area/bluespace_locker)
-"Vb" = (
-/turf/closed/indestructible/riveted,
-/area)
 "Vd" = (
 /obj/item/cardboard_cutout/chess/white/pawn,
 /turf/open/floor/holofloor{
@@ -23060,6 +23036,14 @@
 	icon_state = "whiteboard"
 	},
 /area/holodeck/rec_center/spacechess)
+"Xn" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/lockbox/loyalty,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/centcom/ferry)
 "Xo" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/plasteel/cafeteria,
@@ -23910,9 +23894,6 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/firingrange)
-"Zi" = (
-/turf/open/floor/plasteel/dark,
-/area)
 "Zj" = (
 /obj/item/cardboard_cutout/chess/black/knight,
 /turf/open/floor/holofloor{
@@ -60481,7 +60462,7 @@ wu
 mD
 mD
 rz
-Oa
+yc
 yc
 yc
 yc
@@ -61767,7 +61748,7 @@ rz
 uV
 zA
 sw
-Zi
+zA
 sw
 zA
 Cu
@@ -64338,7 +64319,7 @@ zg
 sw
 Aj
 AQ
-UY
+Xn
 sw
 CD
 mD
@@ -66138,7 +66119,7 @@ zF
 Am
 tP
 iu
-Vb
+io
 rN
 CX
 iC
@@ -67166,7 +67147,7 @@ nq
 An
 in
 io
-Sc
+in
 CI
 CY
 wH
@@ -67681,7 +67662,7 @@ nq
 qT
 BE
 NU
-yN
+wH
 nq
 np
 nq
@@ -67938,7 +67919,7 @@ xo
 mk
 BE
 iu
-OT
+ba
 nq
 nq
 nq
