@@ -1207,10 +1207,6 @@
 	icon_state = "panelscorched"
 	},
 /area/security/prison)
-"acF" = (
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "acH" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
@@ -80535,6 +80531,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"rBc" = (
+/obj/machinery/light,
+/obj/machinery/vending/cola{
+	default_price = 0;
+	extra_price = 0;
+	onstation = 0
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "rBD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/light/small{
@@ -105809,7 +105814,7 @@ abl
 abD
 abE
 aaI
-acF
+rBc
 abe
 adt
 adO

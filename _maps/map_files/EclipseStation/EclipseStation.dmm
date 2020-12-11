@@ -464,17 +464,6 @@
 "abT" = (
 /turf/closed/wall/r_wall,
 /area/security/courtroom)
-"abV" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "abW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/window/northright{
@@ -88149,6 +88138,22 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"tBh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/machinery/vending/cola{
+	default_price = 0;
+	extra_price = 0;
+	onstation = 0
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "tBE" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -130088,7 +130093,7 @@ gTc
 qWw
 hmf
 act
-abV
+tBh
 abe
 ahh
 acM

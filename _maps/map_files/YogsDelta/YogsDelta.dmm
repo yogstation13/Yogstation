@@ -26454,11 +26454,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
-"aRe" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aRf" = (
 /obj/machinery/holopad,
 /obj/item/radio/intercom{
@@ -127061,6 +127056,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
+"rTr" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/vending/cola{
+	default_price = 0;
+	extra_price = 0;
+	onstation = 0
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "rUD" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
@@ -181670,7 +181675,7 @@ asw
 asQ
 ayY
 aPn
-aRe
+rTr
 aKV
 aHS
 azq
