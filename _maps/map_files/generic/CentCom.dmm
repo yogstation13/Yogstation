@@ -339,12 +339,13 @@
 /turf/open/floor/holofloor/carpet,
 /area/holodeck/rec_center/lounge)
 "ba" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
+/obj/structure/table/reinforced,
+/obj/item/storage/lockbox/loyalty,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
 	},
 /turf/open/floor/plasteel,
-/area/centcom/control)
+/area/centcom/ferry)
 "bb" = (
 /obj/structure/chair/comfy/brown{
 	dir = 8
@@ -1166,6 +1167,13 @@
 	},
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/thunderdome1218)
+"dw" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/centcom/control)
 "dx" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -19632,6 +19640,14 @@
 "OQ" = (
 /turf/open/space/bluespace_locker_mirage,
 /area/bluespace_locker)
+"OS" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/holofloor{
+	icon_state = "darkfull"
+	},
+/area/holodeck/rec_center/gym)
 "OU" = (
 /obj/item/clothing/under/jabroni,
 /obj/item/clothing/under/geisha,
@@ -23359,14 +23375,6 @@
 	icon_state = "whiteboard"
 	},
 /area/holodeck/rec_center/spacechess)
-"Xn" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/lockbox/loyalty,
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/centcom/ferry)
 "Xo" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/plasteel/cafeteria,
@@ -64654,7 +64662,7 @@ zg
 sw
 Aj
 AQ
-Xn
+ba
 sw
 CD
 mD
@@ -68254,7 +68262,7 @@ xo
 mk
 BE
 iu
-ba
+dw
 nq
 nq
 nq
