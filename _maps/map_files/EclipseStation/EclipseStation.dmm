@@ -2052,7 +2052,7 @@
 	areastring = "/area/security/execution";
 	dir = 8;
 	name = "Execution Chamber";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -2624,7 +2624,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Head of Security's Office APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -5055,7 +5055,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/dorms/a";
 	name = "Dormitory North APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
@@ -5465,7 +5465,7 @@
 	areastring = "/area/security/warden";
 	dir = 8;
 	name = "Brig Control APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -6622,7 +6622,7 @@
 	areastring = "/area/security/processing";
 	dir = 8;
 	name = "Labor Shuttle Dock APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral{
@@ -7602,7 +7602,7 @@
 	areastring = "/area/solar/port/aft";
 	dir = 8;
 	name = "Port Quarter Solar APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /turf/open/floor/plating,
 /area/solar/port/aft)
@@ -7704,7 +7704,7 @@
 	areastring = "/area/security/brig";
 	dir = 1;
 	name = "Brig APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -8486,7 +8486,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/vacant_room/commissary";
 	name = "Vacant Commissary APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -9195,7 +9195,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/bar";
 	name = "Bar APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -9435,7 +9435,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/kitchen";
 	name = "Kitchen APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -10739,7 +10739,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/janitor/a";
 	name = "Custodial Closet North APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -10897,7 +10897,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/hydroponics";
 	name = "Hydroponics APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
@@ -10951,7 +10951,7 @@
 	areastring = "/area/security/courtroom";
 	dir = 8;
 	name = "Courtroom APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -11535,7 +11535,7 @@
 	areastring = "/area/lawoffice";
 	dir = 1;
 	name = "Law Office APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
@@ -12567,7 +12567,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/chapel";
 	name = "Chapel APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/security)
@@ -12579,7 +12579,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/chapel/office";
 	name = "Chapel Office APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -12826,7 +12826,7 @@
 	areastring = "/area/hallway/secondary/service";
 	dir = 1;
 	name = "Service Hall APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -13566,7 +13566,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/department/crew_quarters/bar";
 	name = "Bar Maintenance APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -13725,7 +13725,7 @@
 	areastring = "/area/storage/art";
 	dir = 1;
 	name = "Artist's Coven";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
@@ -13934,7 +13934,7 @@
 	areastring = "/area/hallway/primary/port";
 	dir = 1;
 	name = "Port Hall APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -16232,7 +16232,7 @@
 	areastring = "/area/ai_monitored/storage/eva";
 	dir = 1;
 	name = "EVA Storage APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -17231,7 +17231,7 @@
 	areastring = "/area/ai_monitored/nuke_storage";
 	dir = 8;
 	name = "Vault APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/nuke_storage)
@@ -18753,7 +18753,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/teleporter/hub/evac";
 	name = "Escape Hub APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /turf/open/floor/plating,
 /area/teleporter/hub/evac)
@@ -18820,7 +18820,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/library";
 	name = "Library APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -19662,7 +19662,7 @@
 	areastring = "/area/hallway/secondary/exit";
 	dir = 8;
 	name = "Escape Hallway APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit)
@@ -20382,7 +20382,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/department/bridge";
 	name = "Bridge Maintenance APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -21708,7 +21708,7 @@
 	areastring = "/area/maintenance/port/aft";
 	dir = 8;
 	name = "Port Quarter Maintenance APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -22085,7 +22085,7 @@
 	areastring = "/area/maintenance/disposal";
 	dir = 8;
 	name = "Disposal APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -22346,7 +22346,7 @@
 	areastring = "/area/crew_quarters/heads/cmo";
 	dir = 1;
 	name = "CM Office APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -22392,7 +22392,7 @@
 	areastring = "/area/hallway/primary/aft";
 	dir = 8;
 	name = "Aft Hall APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -22422,7 +22422,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/department/chapel";
 	name = "Chapel Maintenance APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -22566,7 +22566,7 @@
 	areastring = "/area/teleporter";
 	dir = 8;
 	name = "Teleporter APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -22633,7 +22633,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/department/science";
 	name = "Science Maintenance APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -22751,7 +22751,7 @@
 	areastring = "/area/solar/starboard/aft";
 	dir = 8;
 	name = "Starboard Quarter Solar APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /turf/open/floor/plating,
 /area/solar/starboard/aft)
@@ -23219,7 +23219,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/storage/primary";
 	name = "Primary Tool Storage APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -25294,7 +25294,7 @@
 	areastring = "/area/crew_quarters/heads/captain";
 	dir = 8;
 	name = "Captain's Office APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -26404,7 +26404,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/medical/paramedic/b";
 	name = "Secondary Paramedic APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -27265,7 +27265,7 @@
 	areastring = "/area/storage/tech";
 	dir = 1;
 	name = "Tech Storage APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -29164,7 +29164,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/engine/engine_smes";
 	name = "SMES room APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable,
 /obj/structure/table,
@@ -30933,7 +30933,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/bridge";
 	name = "Bridge APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral{
@@ -31681,7 +31681,7 @@
 	areastring = "/area/hallway/secondary/command";
 	dir = 8;
 	name = "Command Hallway APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -32234,7 +32234,7 @@
 	areastring = "/area/medical/medbay/lobby";
 	dir = 8;
 	name = "Medbay Lobby APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -33229,7 +33229,7 @@
 	areastring = "/area/engine/engineering";
 	dir = 1;
 	name = "Engineering APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -33453,7 +33453,7 @@
 	areastring = "/area/security/checkpoint/medical";
 	dir = 8;
 	name = "Medbay Security APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -33541,7 +33541,7 @@
 	areastring = "/area/medical/morgue";
 	dir = 1;
 	name = "Morgue APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -34003,7 +34003,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Electrical Maintenance APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -35105,7 +35105,7 @@
 	areastring = "/area/maintenance/department/cargo";
 	dir = 8;
 	name = "Cargo Maintenance APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -35294,7 +35294,7 @@
 	areastring = "/area/science/server";
 	dir = 1;
 	name = "Server Room APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -36320,7 +36320,7 @@
 	areastring = "/area/medical/virology";
 	dir = 1;
 	name = "Virology APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -36777,7 +36777,7 @@
 	areastring = "/area/medical/genetics";
 	dir = 1;
 	name = "Genetics APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -36919,7 +36919,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/quartermaster/sorting";
 	name = "Delivery Office APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -36947,7 +36947,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/quartermaster/office";
 	name = "Cargo Office APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -38002,7 +38002,7 @@
 	areastring = "/area/crew_quarters/heads/hop";
 	dir = 1;
 	name = "Head of Personnel APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
@@ -40046,7 +40046,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/janitor/b";
 	name = "Custodial Closet South APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -40291,7 +40291,7 @@
 	areastring = "/area/teleporter/hub/bridge";
 	dir = 1;
 	name = "Bridge Hub APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /turf/open/floor/plating,
 /area/teleporter/hub/bridge)
@@ -40495,7 +40495,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/quartermaster/storage";
 	name = "Cargo Bay APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -41872,7 +41872,7 @@
 	areastring = "/area/engine/break_room";
 	dir = 8;
 	name = "Engineering Foyer APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -42551,7 +42551,7 @@
 	areastring = "/area/security/checkpoint/engineering";
 	dir = 8;
 	name = "Engineering Security APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -43385,7 +43385,7 @@
 	areastring = "/area/maintenance/department/medical/central";
 	dir = 1;
 	name = "Medical Maintenance APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -43631,7 +43631,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Upload APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -43817,7 +43817,7 @@
 	areastring = "/area/engine/atmos";
 	dir = 1;
 	name = "Atmospherics Wing APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -44384,7 +44384,7 @@
 	areastring = "/area/quartermaster/qm";
 	dir = 1;
 	name = "Quartermaster APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -44528,7 +44528,7 @@
 	areastring = "/area/security/checkpoint/supply";
 	dir = 1;
 	name = "Cargo Security APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -47461,7 +47461,7 @@
 	areastring = "/area/clerk";
 	dir = 8;
 	name = "Gift Shop APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -47934,7 +47934,7 @@
 	areastring = "/area/engine/atmos_distro";
 	dir = 8;
 	name = "Atmospherics Distribution APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/effect/turf_decal/tile/yellow{
@@ -48270,7 +48270,7 @@
 	areastring = "/area/quartermaster/miningoffice";
 	dir = 8;
 	name = "Mining Office APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -48488,7 +48488,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/cafeteria";
 	name = "Cafeteria APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -51931,7 +51931,7 @@
 	areastring = "/area/science/robotics/mechbay";
 	dir = 1;
 	name = "Mech Bay APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
@@ -52123,7 +52123,7 @@
 	areastring = "/area/maintenance/starboard/central";
 	dir = 8;
 	name = "Central Starboard Maintenance APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -53703,7 +53703,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/engine/gravity_generator";
 	name = "Gravity Generator APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable,
 /obj/structure/cable{
@@ -54868,7 +54868,7 @@
 	areastring = "/area/maintenance/starboard/aft";
 	dir = 8;
 	name = "Starboard Quarter Maintenance APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -57989,7 +57989,7 @@
 	areastring = "/area/science/misc_lab";
 	dir = 8;
 	name = "Testing Lab APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -59099,7 +59099,7 @@
 	areastring = "/area/crew_quarters/heads/hor";
 	dir = 8;
 	name = "RD Office APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -59197,7 +59197,7 @@
 	areastring = "/area/science";
 	dir = 8;
 	name = "Science APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -59928,7 +59928,7 @@
 	areastring = "/area/science/storage";
 	dir = 8;
 	name = "Toxins Storage APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -61301,7 +61301,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Toxins Mixing Room APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/purple,
@@ -61733,7 +61733,7 @@
 	areastring = "/area/medical/paramedic/a";
 	dir = 1;
 	name = "Primary Paramedic APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -62294,7 +62294,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Xenobiology APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -62875,7 +62875,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/teleporter/hub/science";
 	name = "Science Hub APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /turf/open/floor/plating,
 /area/teleporter/hub/science)
@@ -64590,7 +64590,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/medical/genetics/cloning";
 	name = "Cloning Lab APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable,
 /turf/open/floor/plasteel,
@@ -65959,7 +65959,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/security/checkpoint/auxiliary";
 	name = "Security Checkpoint APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -66487,7 +66487,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/engine/atmospherics_engine";
 	name = "Fusion Reactor APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmospherics_engine)
@@ -66959,7 +66959,7 @@
 	areastring = "/area/security/detectives_office";
 	dir = 8;
 	name = "Detective's Office APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -68190,7 +68190,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/science/robotics/lab";
 	name = "Robotics Lab APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -68387,7 +68387,7 @@
 	areastring = "/area/quartermaster/miningdock";
 	dir = 1;
 	name = "Mining Dock APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -70262,7 +70262,7 @@
 	areastring = "/area/tcommsat/lounge";
 	dir = 1;
 	name = "Telecoms Satellite Access APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-2";
@@ -72242,7 +72242,7 @@
 	areastring = "/area/tcommsat/entrance";
 	dir = 1;
 	name = "Telecoms Satellite Access APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-2";
@@ -74216,7 +74216,7 @@
 	areastring = "/area/science/research";
 	dir = 8;
 	name = "Research Lab APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/table,
 /turf/open/floor/plating,
@@ -75105,7 +75105,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/dorms/b";
 	name = "Dormitory South APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -75925,7 +75925,7 @@
 	areastring = "/area/tcommsat/computer";
 	dir = 1;
 	name = "Telecomms Control APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -76934,7 +76934,7 @@
 	areastring = "/area/vacant_room";
 	dir = 1;
 	name = "Vacant Office APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
@@ -76991,7 +76991,7 @@
 	areastring = "/area/tcommsat/server";
 	dir = 2;
 	name = "Telecomms Server APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/plasteel/dark/telecomms,
@@ -77052,7 +77052,7 @@
 	areastring = "/area/maintenance/port/fore";
 	dir = 1;
 	name = "Port Bow Maintenance APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -79205,7 +79205,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/hallway/primary/starboard";
 	name = "Starboard Primary Hallway APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/purple,
@@ -82273,7 +82273,7 @@
 	areastring = "/area/solar/aux/port";
 	dir = 8;
 	name = "Port Bow Solar APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -82413,7 +82413,7 @@
 	areastring = "/area/maintenance/department/engine/atmos";
 	dir = 1;
 	name = "Atmospherics Maintenance APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine/atmos)
@@ -85327,7 +85327,7 @@
 	areastring = "/area/crew_quarters/theatre";
 	dir = 8;
 	name = "Theatre Backstage APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -89281,7 +89281,7 @@
 	areastring = "/area/medical/chemistry";
 	dir = 1;
 	name = "Chemistry APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
