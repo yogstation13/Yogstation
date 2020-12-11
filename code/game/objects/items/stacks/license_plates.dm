@@ -19,7 +19,7 @@
 	icon_state = "filled_plate_1_1"
 
 ///Override to allow for variations
-/obj/item/stack/license_plates/filled/update_icon_state()
+/obj/item/stack/license_plates/filled/update_icon()
 	if(novariants)
 		return
 	if(amount <= (max_amount * (1/3)))
