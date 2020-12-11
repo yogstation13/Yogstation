@@ -3,8 +3,8 @@
 /obj/effect/spawner/lootdrop/maintenance/six,
 /obj/structure/closet/crate,
 /obj/machinery/light/small{
-	icon_state = "bulb";
-	dir = 1
+	dir = 1;
+	icon_state = "bulb"
 	},
 /turf/open/floor/plating,
 /area/template_noop)
