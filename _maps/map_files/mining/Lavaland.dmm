@@ -1751,7 +1751,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "Labor Camp APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
@@ -2436,7 +2436,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Labor Camp Security APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
