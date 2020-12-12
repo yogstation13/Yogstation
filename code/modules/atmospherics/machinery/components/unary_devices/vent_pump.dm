@@ -17,7 +17,7 @@
 	level = 1
 	layer = GAS_SCRUBBER_LAYER
 	shift_underlay_only = FALSE
-	show_pipe = FALSE
+	showpipe = FALSE
 
 	var/id_tag = null
 	var/pump_direction = RELEASING
