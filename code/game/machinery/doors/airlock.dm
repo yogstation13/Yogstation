@@ -51,6 +51,7 @@
 	assemblytype = /obj/structure/door_assembly
 	normalspeed = 1
 	explosion_block = 1
+	var/lastdeny = 0 // Stops airlock spamming
 	hud_possible = list(DIAG_AIRLOCK_HUD)
 
 	FASTDMM_PROP(\
@@ -732,10 +733,12 @@
 			update_icon(AIRLOCK_CLOSING)
 		if("deny")
 			if(!stat)
-				update_icon(AIRLOCK_DENY)
-				playsound(src,doorDeni,50,0,3)
-				sleep(6)
-				update_icon(AIRLOCK_CLOSED)
+				if(lastdeny < world.time)
+					lastdeny = world.time + 1 SECONDS // Stops spamming the airlock you shit
+					update_icon(AIRLOCK_DENY)
+					playsound(src,doorDeni,50,0,3)
+					sleep(6)
+					update_icon(AIRLOCK_CLOSED)
 
 /obj/machinery/door/airlock/examine(mob/user)
 	. = ..()
