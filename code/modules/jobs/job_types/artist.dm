@@ -13,7 +13,7 @@
 
 	access = list()
 	minimal_access = list()
-	paycheck = PAYCHECK_EASY
+	paycheck = PAYCHECK_ASSISTANT
 	paycheck_department = ACCOUNT_CIV
 
 	display_order = JOB_DISPLAY_ORDER_ARTIST
