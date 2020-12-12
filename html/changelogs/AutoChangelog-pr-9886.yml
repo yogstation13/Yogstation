@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "clock cultists will now have a drastically slowed warp-in to the station after converting 20% of living players"
+  - tweak: "the slower warp-in will not effect clockwork tiles, make sure to set something up on station!"
