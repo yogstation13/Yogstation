@@ -14,7 +14,7 @@
 	level = 1
 	layer = GAS_SCRUBBER_LAYER
 	shift_underlay_only = FALSE
-
+	show_pipe = FALSE
 	var/id_tag = null
 	var/scrubbing = SCRUBBING //0 = siphoning, 1 = scrubbing
 
