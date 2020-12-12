@@ -136,3 +136,9 @@
 	required_count = 1
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/store/cheesewheel/parmesan)
 
+/datum/bounty/item/chef/healthyjerky
+	name = "Homemade Jerky"
+	description = "One of our officers needs to go on a diet, but she can't get enough of her jerky. Send some healthier jerky to help out and we will reward you."
+	reward = 1500
+	required_count = 3
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/sosjerky/healthy)
