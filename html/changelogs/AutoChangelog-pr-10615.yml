@@ -1,0 +1,5 @@
+author: "ToGWtF"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes Chameleon kits not being able to use Yogstation custom clothing items"
+  - bugfix: "Fixes Psychedelic jumpsuits not showing up"

@@ -6,8 +6,8 @@
 
 #define HUMAN 1
 #define MONKEY 2
-#define ALIEN 4
-#define ROBOT 8
+#define ROBOT 4
+#define POLYSMORPH 8
 #define DRACONIC 16
 #define BEACHTONGUE 32
 GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND,SPAN_CLOWN))//Span classes that players are allowed to set in a radio transmission.
@@ -112,8 +112,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 	interpreter.SetVar("languages", new /datum/n_enum(list(
 		"human" = HUMAN,
 		"monkey" = MONKEY,
-		"alien" = ALIEN,
 		"robot" = ROBOT,
+		"polysmorph" = POLYSMORPH,
 		"draconic" = DRACONIC,
 		"beachtounge" = BEACHTONGUE
 	)))
@@ -145,10 +145,10 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		oldlang = HUMAN
 	else if(oldlang == /datum/language/monkey)
 		oldlang = MONKEY
-	else if(oldlang == /datum/language/xenocommon)
-		oldlang = ALIEN
 	else if(oldlang == /datum/language/machine)
 		oldlang = ROBOT
+	else if(oldlang == /datum/language/polysmorph)
+		oldlang = POLYSMORPH
 	else if(oldlang == /datum/language/draconic)
 		oldlang = DRACONIC
 	else if(oldlang == /datum/language/beachbum)
@@ -271,10 +271,10 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 			return /datum/language/common
 		if(MONKEY)
 			return /datum/language/monkey
-		if(ALIEN)
-			return /datum/language/xenocommon
 		if(ROBOT)
 			return /datum/language/machine
+		if(POLYSMORPH)
+			return /datum/language/polysmorph
 		if(DRACONIC)
 			return /datum/language/draconic
 		if(BEACHTONGUE)
@@ -442,7 +442,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 #undef MAX_MEM_VARS
 #undef HUMAN
 #undef MONKEY
-#undef ALIEN
 #undef ROBOT
+#undef POLYSMORPH
 #undef DRACONIC
 #undef BEACHTONGUE

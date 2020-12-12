@@ -110,9 +110,7 @@
 	if(on)
 		wash_atom(loc)
 		for(var/am in loc)
-			var/atom/movable/movable_content = am
-			if(!ismopable(movable_content)) // Mopables will be cleaned anyways by the turf wash above
-				wash_atom(movable_content)
+			wash_atom(am)
 	else
 		return PROCESS_KILL
 

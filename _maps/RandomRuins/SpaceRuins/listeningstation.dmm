@@ -500,7 +500,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/meter{
-	target_layer = 1
+	target_layer = 2
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation)

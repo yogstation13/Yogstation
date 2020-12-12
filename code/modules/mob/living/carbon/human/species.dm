@@ -1237,6 +1237,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		if(!HAS_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN))
 			var/health_deficiency = max(H.maxHealth - H.health, H.staminaloss)
 			if(health_deficiency >= H.maxHealth * 0.4)
+				if(HAS_TRAIT(H, TRAIT_RESISTDAMAGESLOWDOWN))
+					health_deficiency *= 0.5
 				if(flight)
 					. += (health_deficiency / 75)
 				else

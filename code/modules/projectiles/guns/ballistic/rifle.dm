@@ -105,6 +105,13 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted
 	can_be_sawn_off = FALSE
 
+/obj/item/gun/ballistic/rifle/boltaction/enchanted/oneuse
+	name = "enchanted bolt action rifle"
+	desc = "Careful not to lose your head."
+	guns_left = 0
+	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted
+	can_be_sawn_off = FALSE
+
 /obj/item/gun/ballistic/rifle/boltaction/enchanted/arcane_barrage
 	name = "arcane barrage"
 	desc = "Pew Pew Pew."
