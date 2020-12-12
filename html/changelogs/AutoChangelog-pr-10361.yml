@@ -1,0 +1,5 @@
+author: "Marmio64"
+delete-after: true 
+changes: 
+  - rscadd: "adds nightmare jaunt to slings"
+  - tweak: "edits void jaunt icon to ethereal jaunt"
