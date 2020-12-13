@@ -607,7 +607,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		if(H.undershirt)
 			var/datum/sprite_accessory/undershirt/undershirt = GLOB.undershirt_list[H.undershirt]
 			if(undershirt)
-				if(H.dna.species.sexes && H.gender == FEMALE)
+				if(SKINNY in species_traits)
+					standing += wear_skinny_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
+				else if(H.dna.species.sexes && H.gender == FEMALE)
 					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else
 					standing += mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)

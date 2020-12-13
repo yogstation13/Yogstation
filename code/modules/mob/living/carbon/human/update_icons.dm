@@ -440,6 +440,13 @@ There are several things that need to be remembered:
 		generate_female_clothing(index,t_color,icon,type)
 	return mutable_appearance(GLOB.female_clothing_icons[t_color], layer = -layer)
 
+/proc/wear_skinny_version(t_color, icon, layer, type)
+	var/index = t_color
+	var/icon/skinny_clothing_icon = GLOB.skinny_clothing_icons[index]
+	if(!skinny_clothing_icon) 
+		generate_skinny_clothing(index,t_color,icon,type)
+	return mutable_appearance(GLOB.skinny_clothing_icons[t_color], layer = -layer)
+
 /mob/living/carbon/human/proc/get_overlays_copy(list/unwantedLayers)
 	var/list/out = new
 	for(var/i in 1 to TOTAL_LAYERS)
@@ -526,7 +533,10 @@ generate/load female uniform sprites matching all previously decided variables
 
 	var/mutable_appearance/standing
 	if(femaleuniform)
-		standing = wear_female_version(state,file2use,layer2use,femaleuniform)
+		if(HAS_TRAIT(src, SKINNY))
+			standing = wear_skinny_version(state,file2use,layer2use,femaleuniform)
+		else
+			standing = wear_female_version(state,file2use,layer2use,femaleuniform)
 	if(!standing)
 		standing = mutable_appearance(file2use, state, -layer2use)
 
