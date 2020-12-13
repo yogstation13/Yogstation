@@ -19,7 +19,7 @@
 	resistance_flags = NONE
 	var/damaged = FALSE
 
-/obj/item/clothing/gloves/color/fyellow/get_shocked()
+/obj/item/clothing/gloves/color/fyellow/proc/get_shocked()
 	if(damaged)
 		qdel(src)
 		new/obj/effect/decal/cleanable/ash(src)
