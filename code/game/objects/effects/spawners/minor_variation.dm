@@ -16,6 +16,7 @@ This is mainly to prevent creating new map files when creating smaller variation
 	var/ref_z // z of reference
 
 /obj/effect/variation/Initialize()
+	. = ..()
 	chosen = FALSE
 
 /obj/effect/variation/proc/place(x, y , item , direction)
