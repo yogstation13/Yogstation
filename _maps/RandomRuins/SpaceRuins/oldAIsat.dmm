@@ -603,11 +603,6 @@
 /obj/item/cigbutt,
 /turf/open/floor/plating/airless,
 /area/tcommsat/oldaisat)
-"ca" = (
-/obj/effect/decal/cleanable/blood,
-/obj/item/assembly/signaler,
-/turf/open/floor/plasteel/airless/dark,
-/area/tcommsat/oldaisat)
 "cb" = (
 /obj/structure/table,
 /obj/item/reagent_containers/syringe/lethal/choral,
@@ -910,6 +905,13 @@
 "da" = (
 /obj/machinery/teleport/hub,
 /turf/open/floor/plating,
+/area/tcommsat/oldaisat)
+"pZ" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/assembly/signaler{
+	frequency = 1449
+	},
+/turf/open/floor/plasteel/airless/dark,
 /area/tcommsat/oldaisat)
 
 (1,1,1) = {"
@@ -2709,7 +2711,7 @@ bw
 bw
 bw
 ac
-ca
+pZ
 cf
 bw
 ac
