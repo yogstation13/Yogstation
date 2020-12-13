@@ -9,7 +9,8 @@ obj/effects/variation/sec
 	variations = 2
 
 /obj/effect/variation/box/sec/brig_cell/Initialize()
-	 // chooses between two basic cell variations
+	. = ..()
+	// chooses between two basic cell variations
 
 	var/list/bed = list(
 		/obj/structure/bed,
@@ -33,7 +34,9 @@ obj/effects/variation/sec
 	name = "perma cell variation"
 	variations = 4
 
-/obj/effect/variation/box/sec/brig_cell/perma/Initialize() // chooses between four perma cell variations
+/obj/effect/variation/box/sec/brig_cell/perma/Initialize()
+	. = ..()
+	// chooses between four perma cell variations
 
 	var/list/bed = list(
 		/obj/structure/bed,
