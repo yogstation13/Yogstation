@@ -130,6 +130,9 @@
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
 	item_state = "headset" // lol
+	vision_correction = 1
+
+	
 
 /obj/item/clothing/glasses/material
 	name = "optical material scanner"

@@ -46,6 +46,14 @@
 	build_path = /obj/item/flashlight
 	category = list("initial","Tools")
 
+/datum/design/flashlight
+	name = "Blast Door Controller"
+	id = "blastdoorcontroller"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 50, /datum/material/glass = 20)
+	build_path = /obj/item/assembly/control
+	category = list("initial","T-Comm")
+
 /datum/design/extinguisher
 	name = "Fire Extinguisher"
 	id = "extinguisher"

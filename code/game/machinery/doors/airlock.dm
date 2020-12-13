@@ -107,7 +107,7 @@
 	var/list/bolt_log //yogs - Who can it be bolting all my doors? Go away, don't come down here no more.
 	var/list/shocking_log //yogs - who electrified this door.
 
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_MEDIUM_INSULATION
 
 	var/static/list/airlock_overlays = list()
@@ -918,7 +918,7 @@
 
 /obj/machinery/door/airlock/attackby(obj/item/C, mob/user, params)
 	if(!issilicon(user) && !IsAdminGhost(user))
-		if(isElectrified())
+		if(isElectrified() && !user.incapacitated())
 			if(shock(user, 75))
 				return
 	add_fingerprint(user)
@@ -1236,6 +1236,21 @@
 		if(hasPower() && !prying_so_hard)
 			if (I.tool_behaviour == TOOL_CROWBAR) //we need another check, futureproofing for if/when bettertools actually completely replaces the old jaws
 				time_to_open = 50
+				if(istype(I,/obj/item/jawsoflife/jimmy))
+					time_to_open = 30
+					var/obj/item/jawsoflife/jimmy/J = I
+					if(J.pump_charge >= J.pump_cost)
+						J.pump_charge = J.pump_charge - J.pump_cost
+						if(J.pump_charge < 0)
+							J.pump_charge = 0
+						playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE)
+						if(J.obj_flags & EMAGGED)
+							time_to_open = 15
+					else
+						if(user)
+							to_chat(user, "<span class='warning'>You do not have enough charge in the [J] for this. You need at least [J.pump_cost]% </span>")
+							return
+
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
 				prying_so_hard = TRUE
 				if(do_after(user, time_to_open, TRUE, src))
@@ -1317,11 +1332,11 @@
 	update_icon(AIRLOCK_CLOSING, 1)
 	layer = CLOSED_DOOR_LAYER
 	if(air_tight)
+		density = TRUE
 		air_update_turf(1)
 	sleep(1)
 	density = TRUE
 	if(!air_tight)
-		density = TRUE
 		air_update_turf(1)
 	sleep(4)
 	if(!safe)

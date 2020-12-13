@@ -390,3 +390,8 @@
 /datum/config_entry/number/monkeycap
 	config_entry_value = 64
 	min_val = 0
+
+/datum/config_entry/flag/dynamic_config_enabled
+
+/datum/config_entry/number/engine_type
+	config_entry_value = 3

@@ -1,5 +1,5 @@
 /client/proc/spawn_floor_cluwne()
-	set category = "Fun"
+	set category = "Misc"
 	set name = "Unleash Floor Cluwne"
 	set desc = "Pick a specific target or just let it select randomly and spawn the floor cluwne mob on the station. Be warned: spawning more than one may cause issues!"
 	var/target
@@ -19,13 +19,13 @@
 	message_admins("[key_name(usr)] spawned floor cluwne.")
 
 /client/proc/nerf_or_nothing() // Thank you Groudon, very cool
-	set category = "Fun"
+	set category = "Misc"
 	set name = "Begin Nerf War"
 	set desc = "Gives all living PC humans a nerf gun, and alerts that a Nerf War has begun."
-	
+
 	if(alert("Are you sure you want to spawn nerf guns for every single living person on the server?",,"Yes","No") != "Yes")
 		return
-	
+
 	var/list/gun_type_list = list(/obj/item/gun/ballistic/automatic/toy, /obj/item/gun/ballistic/automatic/toy/pistol, /obj/item/gun/ballistic/shotgun/toy, /obj/item/gun/ballistic/shotgun/toy/crossbow)
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat == DEAD || !(H.client))

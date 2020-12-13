@@ -264,6 +264,11 @@
 		var/nitryl_partialpressure = (breath.get_moles(/datum/gas/nitryl)/breath.total_moles())*breath_pressure
 		adjustFireLoss(nitryl_partialpressure/4)
 
+	//FREON
+	if(breath.get_moles(/datum/gas/freon))
+		var/freon_partialpressure = (breath.get_moles(/datum/gas/freon)/breath.total_moles())*breath_pressure
+		adjustFireLoss(freon_partialpressure * 0.25)
+
 	//MIASMA
 	if(breath.get_moles(/datum/gas/miasma))
 		var/miasma_partialpressure = (breath.get_moles(/datum/gas/miasma)/breath.total_moles())*breath_pressure
@@ -272,6 +277,8 @@
 			var/datum/disease/advance/miasma_disease = new /datum/disease/advance/random(2,3)
 			miasma_disease.name = "Unknown"
 			ForceContractDisease(miasma_disease, TRUE, TRUE)
+
+	
 
 		//Miasma side effects
 		switch(miasma_partialpressure)

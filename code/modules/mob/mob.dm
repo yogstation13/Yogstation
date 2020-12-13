@@ -11,11 +11,11 @@
   * Unsets the focus var
   *
   * Clears alerts for this mob
-  * 
+  *
   * Resets all the observers perspectives to the tile this mob is on
-  * 
+  *
   * qdels any client colours in place on this mob
-  * 
+  *
   * Ghostizes the client attached to this mob
   *
   * Parent call
@@ -48,7 +48,7 @@
   *
   * Sends global signal COMSIG_GLOB_MOB_CREATED
   *
-  * Adds to global lists 
+  * Adds to global lists
   * * GLOB.mob_list
   * * GLOB.mob_directory (by tag)
   * * GLOB.dead_mob_list - if mob is dead
@@ -111,7 +111,7 @@
   * Some kind of debug verb that gives atmosphere environment details
   */
 /mob/proc/Cell()
-	set category = "Admin"
+	set category = "Misc.Server Debug"
 	set hidden = 1
 
 	if(!loc)
@@ -133,7 +133,7 @@
 /mob/proc/get_photo_description(obj/item/camera/camera)
 	return "a ... thing?"
 
-/** 
+/**
   * Show a message to this mob (visual)
   */
 /mob/proc/show_message(msg, type, alt_msg, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
@@ -168,7 +168,7 @@
 
 /**
   * Generate a visible message from this atom
-  * 
+  *
   * Show a message to all player mobs who sees this atom
   *
   * Show a message to the src mob (if the src is a mob)
@@ -183,60 +183,50 @@
   * * vision_distance (optional) define how many tiles away the message can be seen.
   * * ignored_mob (optional) doesn't show any message to a given mob if TRUE.
   */
-/atom/proc/visible_message(message, self_message, blind_message, vision_distance, list/ignored_mobs)
+/atom/proc/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE)
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
+
 	if(!islist(ignored_mobs))
 		ignored_mobs = list(ignored_mobs)
-	var/range = 7
-	if(vision_distance)
-		range = vision_distance
-	for(var/mob/M in get_hearers_in_view(range, src))
+	var/list/hearers = get_hearers_in_view(vision_distance, src) //caches the hearers and then removes ignored mobs.
+	hearers -= ignored_mobs
+
+	if(self_message)
+		hearers -= src
+
+	var/raw_msg = message
+	if(visible_message_flags & EMOTE_MESSAGE)
+		message = "<b>[src]</b> [message]"
+
+	for(var/mob/M in hearers)
 		if(!M.client)
 			continue
-		if(M in ignored_mobs)
+
+		//This entire if/else chain could be in two lines but isn't for readibilties sake.
+		var/msg = message
+		if(M.see_invisible < invisibility)//if src is invisible to M
+			msg = blind_message
+		else if(T != loc && T != src) //if src is inside something and not a turf.
+			msg = blind_message
+		else if(T.lighting_object && T.lighting_object.invisibility <= M.see_invisible && T.is_softly_lit()) //if it is too dark.
+			msg = blind_message
+		if(!msg)
 			continue
-		var/msg = message
-		if(M == src) //the src always see the main message or self message
-			if(self_message)
-				msg = self_message
-		else
-			if(M.see_invisible<invisibility || (T != loc && T != src))//if src is invisible to us or is inside something (and isn't a turf),
-				if(blind_message) // then people see blind message if there is one, otherwise nothing.
-					msg = blind_message
-				else
-					continue
 
-			else if(T.lighting_object)
-				if(T.lighting_object.invisibility <= M.see_invisible && T.is_softly_lit()) //the light object is dark and not invisible to us
-					if(blind_message)
-						msg = blind_message
-					else
-						continue
+		if(visible_message_flags & EMOTE_MESSAGE && runechat_prefs_check(M, visible_message_flags) && !is_blind(M))
+			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = visible_message_flags)
 
-		M.show_message(msg,1,blind_message,2)
+		M.show_message(msg, MSG_VISUAL, blind_message, MSG_AUDIBLE)
 
-/**
-  * Show a message to all mobs in earshot of this one
-  *
-  * This would be for audible actions by the src mob
-  *
-  * vars:
-  * * message is the message output to anyone who can hear.
-  * * self_message (optional) is what the src mob hears.
-  * * deaf_message (optional) is what deaf people will see.
-  * * hearing_distance (optional) is the range, how many tiles away the message can be heard.
-  */
-/mob/audible_message(message, deaf_message, hearing_distance, self_message)
-	var/range = 7
-	if(hearing_distance)
-		range = hearing_distance
-	for(var/mob/M in get_hearers_in_view(range, src))
-		var/msg = message
-		if(self_message && M==src)
-			msg = self_message
-		M.show_message( msg, 2, deaf_message, 1)
+
+
+
+/mob/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE)
+	. = ..()
+	if(self_message)
+		show_message(self_message, MSG_VISUAL, blind_message, MSG_AUDIBLE)
 
 /**
   * Show a message to all mobs in earshot of this atom
@@ -248,12 +238,38 @@
   * * deaf_message (optional) is what deaf people will see.
   * * hearing_distance (optional) is the range, how many tiles away the message can be heard.
   */
-/atom/proc/audible_message(message, deaf_message, hearing_distance)
-	var/range = 7
-	if(hearing_distance)
-		range = hearing_distance
-	for(var/mob/M in get_hearers_in_view(range, src))
-		M.show_message( message, 2, deaf_message, 1)
+
+/atom/proc/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, audible_message_flags = NONE)
+	var/list/hearers = get_hearers_in_view(hearing_distance, src)
+	if(self_message)
+		hearers -= src
+	var/raw_msg = message
+	if(audible_message_flags & EMOTE_MESSAGE)
+		message = "<b>[src]</b> [message]"
+	for(var/mob/M in hearers)
+		if(audible_message_flags & EMOTE_MESSAGE && runechat_prefs_check(M, audible_message_flags) && M.can_hear())
+			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
+		M.show_message(message, MSG_AUDIBLE, deaf_message, MSG_VISUAL)
+
+/mob/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, audible_message_flags = NONE)
+	. = ..()
+	if(self_message)
+		show_message(self_message, MSG_AUDIBLE, deaf_message, MSG_VISUAL)
+
+///Returns the client runechat visible messages preference according to the message type.
+/atom/proc/runechat_prefs_check(mob/target, visible_message_flags = NONE)
+	if(!target.client?.prefs.chat_on_map || !target.client.prefs.see_chat_non_mob)
+		return FALSE
+	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.see_rc_emotes)
+		return FALSE
+	return TRUE
+
+/mob/runechat_prefs_check(mob/target, visible_message_flags = NONE)
+	if(!target.client?.prefs.chat_on_map)
+		return FALSE
+	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.see_rc_emotes)
+		return FALSE
+	return TRUE
 
 ///Get the item on the mob in the storage slot identified by the id passed in
 /mob/proc/get_item_by_slot(slot_id)
@@ -324,7 +340,7 @@
 	return
 
 /**
-  * Equip an item to the slot or delete 
+  * Equip an item to the slot or delete
   *
   * This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to
   * equip people when the round starts and when events happen and such.
@@ -403,16 +419,6 @@
 /// Show the mob's inventory to another mob
 /mob/proc/show_inv(mob/user)
 	return
-
-/mob/verb/giveitem(atom/A as mob in range(1))
-	set name = "Give"
-	set category = "IC"
-	if(!iscarbon(src))
-		to_chat(src, "<span class='warning'>You can't give items!</span>")
-		return
-	if(A && A != src && get_dist(src, A) < 2)
-		var/mob/living/carbon/C = src
-		C.give()
 
 /**
   * Examine a mob
@@ -695,8 +701,8 @@
 	if(ismob(dropping) && dropping != user)
 		var/mob/M = dropping
 		M.show_inv(user)
-		
-/** 
+
+/**
   * Handle the result of a click drag onto this mob
   *
   * For mobs this just shows the inventory
@@ -706,101 +712,34 @@
 /mob/proc/is_muzzled()
 	return 0
 
+
+/// Adds this list to the output to the stat browser
 /mob/proc/get_status_tab_items()
 	. = list()
 
-/**
-  * Output an update to the stat panel for the client
-  * 
-  * calculates client ping, round id, server time, time dilation and other data about the round
-  * and puts it in the mob status panel on a regular loop
-  */
-/mob/Stat()
-	..()
-
-	statpanel("Status")
-	if(client && client.holder)
-		statpanel("MC")
-		if(client.holder.legacy_mc && statpanel("MC (legacy)"))
-			var/turf/T = get_turf(client.eye)
-			stat("Location:", COORD(T))
-			stat("CPU:", "[world.cpu]")
-			stat("Instances:", "[num2text(world.contents.len, 10)]")
-			stat("World Time:", "[world.time]")
-			GLOB.stat_entry()
-			config.stat_entry()
-			stat(null)
-			if(Master)
-				Master.stat_entry()
-			else
-				stat("Master Controller:", "ERROR")
-			if(Failsafe)
-				Failsafe.stat_entry()
-			else
-				stat("Failsafe Controller:", "ERROR")
-			if(Master)
-				stat(null)
-				for(var/datum/controller/subsystem/SS in Master.subsystems)
-					SS.stat_entry_legacy()
-			GLOB.cameranet.stat_entry()
-		// yogs start - Yogs Ticket
-		/*if(statpanel("Tickets"))
-			GLOB.ahelp_tickets.stat_entry()
-		*/
-		// yogs end
-		if(length(GLOB.sdql2_queries))
-			if(statpanel("SDQL2"))
-				stat("Access Global SDQL2 List", GLOB.sdql2_vv_statobj)
-				for(var/i in GLOB.sdql2_queries)
-					var/datum/SDQL2_query/Q = i
-					Q.generate_stat()
-
-	if(listed_turf && client)
-		if(!TurfAdjacent(listed_turf))
-			listed_turf = null
-		else
-			statpanel(listed_turf.name, null, listed_turf)
-			var/list/overrides = list()
-			for(var/image/I in client.images)
-				if(I.loc && I.loc.loc == listed_turf && I.override)
-					overrides += I.loc
-			for(var/atom/A in listed_turf)
-				if(!A.mouse_opacity)
-					continue
-				if(A.invisibility > see_invisible)
-					continue
-				if(overrides.len && (A in overrides))
-					continue
-				if(A.IsObscured())
-					continue
-				statpanel(listed_turf.name, null, A)
-
-	if(client)
-		for(var/tab in client.spell_tabs)
-			statpanel(tab)
 
 /mob/proc/get_proc_holders()
 	. = list()
 	if(mind)
-		. += add_spells_to_statpanel(mind.spell_list)
-	. += add_spells_to_statpanel(mob_spell_list)
+		. += get_spells_for_statpanel(mind.spell_list)
+	. += get_spells_for_statpanel(mob_spell_list)
 
 /**
   * Convert a list of spells into a displyable list for the statpanel
   *
   * Shows charge and other important info
   */
-/mob/proc/add_spells_to_statpanel(list/spells)
+/mob/proc/get_spells_for_statpanel(list/spells)
 	var/list/L = list()
 	for(var/obj/effect/proc_holder/spell/S in spells)
 		if(S.can_be_cast_by(src))
 			switch(S.charge_type)
 				if("recharge")
-					L[++L.len] = list("[S.panel]","[S.charge_counter/10.0]/[S.charge_max/10]",S.name,"\ref[S]")
+					L[++L.len] = list("[S.panel]", "[S.charge_counter/10.0]/[S.charge_max/10]", S.name, REF(S))
 				if("charges")
-					L[++L.len] = list("[S.panel]","[S.charge_counter]/[S.charge_max]",S.name,S)
+					L[++L.len] = list("[S.panel]", "[S.charge_counter]/[S.charge_max]", S.name, REF(S))
 				if("holdervar")
-					L[++L.len] = list("[S.panel]","[S.holder_var_type] [S.holder_var_amount]",S.name,S)
+					L[++L.len] = list("[S.panel]", "[S.holder_var_type] [S.holder_var_amount]", S.name, REF(S))
 	return L
 
 #define MOB_FACE_DIRECTION_DELAY 1
@@ -955,19 +894,12 @@
 		if(istype(S, spell))
 			mob_spell_list -= S
 			qdel(S)
+	if(client)
+		client << output(null, "statbrowser:check_spells")
 
 ///Return any anti magic atom on this mob that matches the magic type
 /mob/proc/anti_magic_check(magic = TRUE, holy = FALSE, tinfoil = FALSE, chargecost = 1, self = FALSE)
-	if(!magic && !holy && !tinfoil)
-		return
-	var/list/protection_sources = list()
-	if(SEND_SIGNAL(src, COMSIG_MOB_RECEIVE_MAGIC, src, magic, holy, tinfoil, chargecost, self, protection_sources) & COMPONENT_BLOCK_MAGIC)
-		if(protection_sources.len)
-			return pick(protection_sources)
-		else
-			return src
-	if((magic && HAS_TRAIT(src, TRAIT_ANTIMAGIC)) || (holy && HAS_TRAIT(src, TRAIT_HOLY)))
-		return src
+	return
 
 /**
   * Buckle to another mob
@@ -1064,7 +996,7 @@
   * Fully update the name of a mob
   *
   * This will update a mob's name, real_name, mind.name, GLOB.data_core records, pda, id and traitor text
-  * 
+  *
   * Calling this proc without an oldname will only update the mob and skip updating the pda, id and records ~Carn
   */
 /mob/proc/fully_replace_character_name(oldname,newname)

@@ -70,7 +70,7 @@
 
 /mob/living/simple_animal/hostile/swarmer/Initialize()
 	. = ..()
-	verbs -= /mob/living/verb/pulled
+	remove_verb(src, /mob/living/verb/pulled)
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
 		diag_hud.add_to_hud(src)
 
@@ -86,10 +86,9 @@
 	holder.pixel_y = I.Height() - world.icon_size
 	holder.icon_state = "hudstat"
 
-/mob/living/simple_animal/hostile/swarmer/Stat()
-	..()
-	if(statpanel("Status"))
-		stat("Resources:",resources)
+/mob/living/simple_animal/hostile/swarmer/get_status_tab_items()
+	. = ..()
+	. += "Resources: [resources]"
 
 /mob/living/simple_animal/hostile/swarmer/emp_act()
 	. = ..()
@@ -227,7 +226,7 @@
 /mob/living/simple_animal/hostile/swarmer/proc/teleport_target(mob/living/target)
 	var/turf/open/floor/safe_turf = find_safe_turf(zlevels = z, extended_safety_checks = TRUE)
 
-	if(!safe_turf )
+	if(!safe_turf)
 		return
 	// If we're getting rid of a human, slap some energy cuffs on
 	// them to keep them away from us a little longer

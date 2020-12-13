@@ -311,9 +311,20 @@
 	mineralType = "metal"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 70)
 	resistance_flags = FIRE_PROOF
+	matter_amount = 1
 
 /obj/item/stack/tile/plasteel/cyborg
 	desc = "The ground you walk on." //Not the usual floor tile desc as that refers to throwing, Cyborgs can't do that - RR
 	materials = list() // All other Borg versions of items have no Metal or Glass - RR
 	is_cyborg = 1
 	cost = 125
+	
+/obj/item/stack/tile/eighties
+	name = "retro tile"
+	singular_name = "retro floor tile"
+	desc = "A stack of floor tiles that remind you of an age of funk."
+	icon_state = "tile_eighties"
+	turf_type = /turf/open/floor/eighties
+	
+/obj/item/stack/tile/eighties/loaded
+	amount = 15

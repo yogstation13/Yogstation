@@ -21,7 +21,7 @@
 /obj/item/grenade/flashbang/proc/bang(turf/T , mob/living/M)
 	if(M.stat == DEAD)	//They're dead!
 		return
-	M.show_message("<span class='userdanger'>BANG</span>", 2)
+	M.show_message("<span class='userdanger'>BANG</span>", MSG_AUDIBLE)
 	var/distance = max(0,get_dist(get_turf(src),T))
 	if(!distance || loc == M || loc == M.loc)	//Stop allahu akbarring rooms with this.
 		M.Paralyze(200)

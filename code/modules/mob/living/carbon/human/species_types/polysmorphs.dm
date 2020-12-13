@@ -2,7 +2,7 @@
 	//Human xenopmorph hybrid
 	name = "Polysmorph"
 	id = "polysmorph"
-	exotic_blood = /datum/reagent/polysmorphblood
+	exotic_blood = /datum/reagent/toxin/acid //Hell yeah sulphuric acid blood
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
 	liked_food = GROSS | MEAT
 	disliked_food = GRAIN | DAIRY | VEGETABLES | FRUIT
@@ -10,14 +10,16 @@
 	say_mod = "hisses"
 	species_language_holder = /datum/language_holder/polysmorph
 	coldmod = 0.75
-	heatmod = 2
-	acidmod = 0.90
+	heatmod = 1.5
+	acidmod = 0.2 //Their blood is literally acid
+	burnmod = 1.25
 	damage_overlay_type = "polysmorph"
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'
 	species_traits = list(NOEYESPRITES, FGENDER, MUTCOLORS, NOCOLORCHANGE)
-	inherent_traits = list(TRAIT_THERMAL_VISION)
+	inherent_traits = list(TRAIT_ACIDBLOOD)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mutanteyes = /obj/item/organ/eyes/polysmorph
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'

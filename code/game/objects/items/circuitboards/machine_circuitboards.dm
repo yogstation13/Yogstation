@@ -43,6 +43,14 @@
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/stack/sheet/glass = 1)
 
+/obj/item/circuitboard/machine/igniter
+	name = "Floor Igniter (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/igniter
+	req_components = list(
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/assembly/igniter = 1)
+
 /obj/item/circuitboard/machine/autolathe
 	name = "Autolathe (Machine Board)"
 	icon_state = "engineering"
@@ -1192,3 +1200,17 @@
 		/obj/item/stock_parts/manipulator = /obj/item/stock_parts/manipulator/femto,
 		/obj/item/stock_parts/micro_laser = /obj/item/stock_parts/micro_laser/quadultra,
 		/obj/item/stock_parts/scanning_module = /obj/item/stock_parts/scanning_module/triphasic)
+
+/obj/item/circuitboard/machine/electrolyzer
+	name = "Electrolyzer (Machine Board)"
+	icon_state = "generic"
+	build_path = /obj/machinery/electrolyzer
+	req_components = list(
+		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stock_parts/capacitor = 1,
+		/obj/item/stack/cable_coil = 3,
+		/obj/item/stack/sheet/glass = 1,
+		/obj/item/stack/sheet/mineral/gold = 1,
+		/obj/item/stack/sheet/mineral/silver = 1)
+
+	needs_anchored = FALSE

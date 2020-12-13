@@ -173,7 +173,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(id in (CONFIG_GET(keyed_list/roundstart_races)))
 		return TRUE
 	return FALSE
-	
+
 /datum/species/proc/check_mentor()
 	if(id in (CONFIG_GET(keyed_list/mentor_races)))
 		return TRUE
@@ -1176,12 +1176,12 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	return 0
 
 /datum/species/proc/handle_mutations_and_radiation(mob/living/carbon/human/H)
+	if(HAS_TRAIT(H, TRAIT_RADIMMUNE))
+		H.radiation = 0
+		return TRUE
+
 	. = FALSE
 	var/radiation = H.radiation
-
-	if(HAS_TRAIT(H, TRAIT_RADIMMUNE))
-		radiation = 0
-		return TRUE
 
 	if(radiation > RAD_MOB_KNOCKDOWN && prob(RAD_MOB_KNOCKDOWN_PROB))
 		if(!H.IsParalyzed())
@@ -1236,7 +1236,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				. += I.slowdown
 		if(!HAS_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN))
 			var/health_deficiency = max(H.maxHealth - H.health, H.staminaloss)
-			if(health_deficiency >= 40)
+			if(health_deficiency >= H.maxHealth * 0.4)
+				if(HAS_TRAIT(H, TRAIT_RESISTDAMAGESLOWDOWN))
+					health_deficiency *= 0.5
 				if(flight)
 					. += (health_deficiency / 75)
 				else
@@ -1506,16 +1508,16 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		return 0
 	SEND_SIGNAL(M, COMSIG_MOB_ATTACK_HAND, M, H, attacker_style)
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			help(M, H, attacker_style)
 
-		if("grab")
+		if(INTENT_GRAB)
 			grab(M, H, attacker_style)
 
-		if("harm")
+		if(INTENT_HARM)
 			harm(M, H, attacker_style)
 
-		if("disarm")
+		if(INTENT_DISARM)
 			disarm(M, H, attacker_style)
 
 /datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)

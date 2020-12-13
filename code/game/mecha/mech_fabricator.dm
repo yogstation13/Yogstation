@@ -46,7 +46,7 @@
 								"Cyborg",
 								"Ripley",
 								"Odysseus",
-								"Clarke",
+								"Firefighter",
 								"Gygax",
 								"Durand",
 								"H.O.N.K",
@@ -150,8 +150,8 @@
 					category_override += "Ripley"
 				if(mech_types & EXOSUIT_MODULE_ODYSSEUS)
 					category_override += "Odysseus"
-				if(mech_types & EXOSUIT_MODULE_CLARKE)
-					category_override += "Clarke"
+				if(mech_types & EXOSUIT_MODULE_FIREFIGHTER)
+					category_override += "Firefighter"
 				if(mech_types & EXOSUIT_MODULE_GYGAX)
 					category_override += "Gygax"
 				if(mech_types & EXOSUIT_MODULE_DURAND)

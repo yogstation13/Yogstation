@@ -288,7 +288,6 @@
 		door.unbolt()
 
 /obj/machinery/advanced_airlock_controller/process()
-	. = ..()
 	process_atmos()
 
 /obj/machinery/advanced_airlock_controller/process_atmos()

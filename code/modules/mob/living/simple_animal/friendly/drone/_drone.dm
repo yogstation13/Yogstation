@@ -3,8 +3,8 @@
 #define DRONE_HEAD_LAYER 2
 #define DRONE_TOTAL_LAYERS 2
 
-#define DRONE_NET_CONNECT "<span class='notice'>DRONE NETWORK: [name] connected.</span>"
-#define DRONE_NET_DISCONNECT "<span class='danger'>DRONE NETWORK: [name] is not responding.</span>"
+#define DRONE_NET_CONNECT "<span class='notice'>DRONE NETWORK: [name] connected in [A.name].</span>"
+#define DRONE_NET_DISCONNECT "<span class='notice'>DRONE NETWORK: [name] has stopped responding at [A.name]!</span>"
 
 #define MAINTDRONE	"drone_maint"
 #define REPAIRDRONE	"drone_repair"
@@ -92,7 +92,9 @@
 	access_card = new /obj/item/card/id(src)
 	var/datum/job/captain/C = new /datum/job/captain
 	access_card.access = C.get_access()
-
+	
+	var/turf/A = get_area(src)
+	
 	if(default_storage)
 		var/obj/item/I = new default_storage(src)
 		equip_to_slot_or_del(I, SLOT_GENERC_DEXTROUS_STORAGE)
@@ -154,6 +156,8 @@
 	if(head)
 		dropItemToGround(head)
 
+	var/turf/A = get_area(src)
+	
 	alert_drones(DRONE_NET_DISCONNECT)
 
 

@@ -392,9 +392,8 @@
 					for(var/mat in materials_used)
 						new_item.materials[mat] = materials_used[mat] / multiplier
 					new_item.autolathe_crafted(src)
-					if(picked_materials.len)
+					if(picked_materials?.len)
 						new_item.set_custom_materials(picked_materials, 1 / multiplier) //Ensure we get the non multiplied amount
-
 			item_beingbuilt = null
 			icon_state = "autolathe"
 			updateUsrDialog()
