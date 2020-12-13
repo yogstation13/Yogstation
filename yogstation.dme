@@ -872,6 +872,8 @@
 #include "code\game\objects\effects\spawners\lootdrop.dm"
 #include "code\game\objects\effects\spawners\structure.dm"
 #include "code\game\objects\effects\spawners\traps.dm"
+#include "code\game\objects\effects\spawners\minor_variation.dm"
+#include "code\game\objects\effects\spawners\minor_variation_templates.dm"
 #include "code\game\objects\effects\spawners\vaultspawner.dm"
 #include "code\game\objects\effects\spawners\xeno_egg_delivery.dm"
 #include "code\game\objects\effects\temporary_visuals\clockcult.dm"
