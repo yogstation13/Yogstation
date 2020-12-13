@@ -1,4 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - bugfix: "Hyperfractal shuttle no longer tries to actively kill you"
