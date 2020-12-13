@@ -19,13 +19,18 @@
 	resistance_flags = NONE
 	var/damaged = FALSE
 
+/obj/item/clothing/gloves/color/fyellow/get_shocked()
+	if(damaged)
+		qdel(src)
+		new/obj/effect/decal/cleanable/ash(src)
+		to_chat(src, "<span class='notice'>Your gloves catch fire and disintegrate!</span>")
+	else
+		damaged = TRUE
+		to_chat(src, "<span class='notice'>Your gloves begin to melt!</span>")
+
 /obj/item/clothing/gloves/color/fyellow/old
 	desc = "Old and worn out insulated gloves, hopefully they still work."
 	name = "worn out insulated gloves"
-
-/obj/item/clothing/gloves/color/fyellow/old/Initialize()
-	. = ..()
-	siemens_coefficient = pick(0,0,0,0.5,0.5,0.5,0.75)
 
 /obj/item/clothing/gloves/color/black
 	desc = "These gloves are fire-resistant."
