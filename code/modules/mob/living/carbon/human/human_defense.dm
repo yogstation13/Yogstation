@@ -499,7 +499,7 @@
 			var/obj/item/clothing/gloves/color/fyellow/greytide = G
 			if(greytide)
 				greytide.get_shocked()
-		siemens	_coeff = gloves_siemens_coeff
+		siemens_coeff = gloves_siemens_coeff
 	if(undergoing_cardiac_arrest() && !illusion)
 		if(shock_damage * siemens_coeff >= 1 && prob(25))
 			var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
