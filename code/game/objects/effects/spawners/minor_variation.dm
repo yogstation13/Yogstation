@@ -43,7 +43,7 @@ This is mainly to prevent creating new map files when creating smaller variation
 	return
 
 /obj/effect/variation/proc/choice()
-	if(choice == "" || choice == 0)
+	if(!choice)
 		choice = 1
 	if(!chosen)
 		ref_x = src.x
