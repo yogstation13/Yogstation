@@ -497,7 +497,7 @@
 			var/obj/item/clothing/gloves/G = gloves
 			gloves_siemens_coeff = G.siemens_coefficient
 			var/obj/item/clothing/gloves/color/fyellow/greytide = G
-			if(greytide)
+			if(istype(greytide))
 				greytide.get_shocked()
 		siemens_coeff = gloves_siemens_coeff
 	if(undergoing_cardiac_arrest() && !illusion)
