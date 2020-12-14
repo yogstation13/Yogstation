@@ -21,13 +21,13 @@ obj/effects/variation/sec
 	switch(choice())
 		if(1)
 			//variation 1 , default;  bed left side
-			place(0,0,bed)
-			place(2,0,closet)
+			place(0, 0, bed)
+			place(2, 0, closet)
 	
 		if(2)
 			//variation 2 , bed right side
-			place(2,0,bed)
-			place(0,0,closet)
+			place(2, 0, bed)
+			place(0, 0, closet)
 
 
 /obj/effect/variation/box/sec/brig_cell/perma
@@ -52,24 +52,24 @@ obj/effects/variation/sec
 	switch(choice())
 		if(1)
 			//variation 1 ; Default . 
-			place(0,1,bed)
-			place(2,0,table)
-			place(2,1,stool)
+			place(0, 1, bed)
+			place(2, 0, table)
+			place(2, 1, stool)
 
 		if(2)
 			//variation 2 ; bed right corner
-			place(2,1,bed)
-			place(0,0,table)
-			place(0,1,stool)
+			place(2, 1, bed)
+			place(0, 0, table)
+			place(0, 1, stool)
 
 		if(3)
 			//variation 3 ; bed bottom left corner
-			place(0,0,bed)
-			place(2,1,table)
-			place(2,0,stool)
+			place(0, 0, bed)
+			place(2, 1, table)
+			place(2, 0, stool)
 
 		if(4)
 			//variation 4 ; bed bottom right corner
-			place(2,0,bed)
-			place(0,1,table)
-			place(0,0,stool)
+			place(2, 0, bed)
+			place(0, 1, table)
+			place(0, 0, stool)
