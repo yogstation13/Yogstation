@@ -480,7 +480,7 @@
 			if(G.siemens_coefficient <= 0)
 				total_coeff -= 0.5
 			var/obj/item/clothing/gloves/color/fyellow/greytide = G
-			if(greytide)
+			if(istype(greytide))
 				greytide.get_shocked()
 		if(wear_suit)
 			var/obj/item/clothing/suit/S = wear_suit
