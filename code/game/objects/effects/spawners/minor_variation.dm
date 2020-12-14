@@ -19,7 +19,7 @@ This is mainly to prevent creating new map files when creating smaller variation
 	. = ..()
 	chosen = FALSE
 
-/obj/effect/variation/proc/place(x, y , item , direction)
+/obj/effect/variation/proc/place(x = 0, y = 0 , item , direction)
 	if(!x)
 		x = 0
 	if(!y)
