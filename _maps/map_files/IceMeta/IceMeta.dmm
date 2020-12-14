@@ -657,13 +657,6 @@
 	icon_state = "panelscorched"
 	},
 /area/security/prison)
-"acr" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "acu" = (
 /obj/machinery/holopad,
 /obj/structure/cable/yellow{
@@ -5731,6 +5724,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"anP" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "anQ" = (
 /obj/structure/chair{
 	dir = 8
@@ -104490,7 +104489,7 @@ aay
 abk
 abC
 abC
-acr
+anP
 acE
 adb
 abE
@@ -105003,7 +105002,7 @@ aax
 aax
 abm
 abE
-aaR
+abE
 aaI
 acm
 abe
