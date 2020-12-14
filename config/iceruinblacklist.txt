@@ -4,6 +4,7 @@
 #SPECIFYING AN INVALID MAP WILL RESULT IN RUNTIMES ON GAME START
 
 ##MISC
+#_maps/RandomRuins/IceRuins/icemoon_surface_shuttle_transit.dmm
 #_maps/RandomRuins/IceRuins/icemoon_surface_mining_site.dmm
 #_maps/RandomRuins/IceRuins/icemoon_surface_lust.dmm
 #_maps/RandomRuins/IceRuins/icemoon_surface_asteroid.dmm
