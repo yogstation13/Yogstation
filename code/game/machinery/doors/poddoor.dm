@@ -103,6 +103,7 @@
 		open(1)
 
 /obj/machinery/door/poddoor/attackby(obj/item/W, mob/user, params)
+	. = ..()
 	if(special && W.tool_behaviour == TOOL_SCREWDRIVER) // No Cheesing
 		to_chat(user, "<span class='warning'>This door appears to have a different screw.</span>")
 		return
