@@ -53,6 +53,4 @@ This is mainly to prevent creating new map files when creating smaller variation
 		chosen = TRUE
 		choice = rand(1, variations)
 		log_world("Chosen variation [choice] out of [variations] for [name]. Spawning on [ref_x],[ref_y],[ref_z].")
-		return choice
-	else
-		return choice
+	return choice
