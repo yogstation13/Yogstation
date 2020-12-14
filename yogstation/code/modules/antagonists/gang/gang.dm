@@ -101,6 +101,7 @@
 	.["Set Uniform Influence"] = CALLBACK(src, .proc/admin_adjust_uniform_influence)
 	if(gang.domination_time != NOT_DOMINATING)
 		.["Set domination time left"] = CALLBACK(src, .proc/set_dom_time_left)
+	.["Set Max Members"] = CALLBACK(src,.proc/admin_set_max_members)
 
 /datum/antagonist/gang/admin_add(datum/mind/new_owner,mob/admin)
 	var/new_or_existing = input(admin, "Which gang do you want to be assigned to the user?", "Gangs") as null|anything in list("New","Existing")
@@ -148,6 +149,13 @@
 		gang.uniform_influence = inf
 		message_admins("[key_name_admin(usr)] changed [gang.name]'s uniform influence to [inf].")
 		log_admin("[key_name(usr)] changed [gang.name]'s uniform influence to [inf].")
+
+/datum/antagonist/gang/proc/admin_set_max_members()
+	var/inf = input("Max members for [gang.name]", "Max Gang Members", gang.max_members) as null | num
+	if(!isnull(inf))
+		gang.max_members = inf
+		message_admins("[key_name_admin(usr)] changed [gang.name]'s max members to [inf].")
+		log_admin("[key_name(usr)] changed [gang.name]'s max members to [inf].")
 
 /datum/antagonist/gang/proc/add_to_gang()
 	gang.add_member(owner)
@@ -311,6 +319,8 @@
 	var/list/outer_outfits = list()
 	var/next_point_time
 	var/recalls = MAXIMUM_RECALLS // Once this reaches 0, this gang cannot force recall the shuttle with their gangtool anymore
+	var/datum/bank_account/registered_account
+	var/max_members = 3 // Max amount of members. When milestones are reached, this number will increase.
 
 /datum/team/gang/New(starting_members)
 	. = ..()
@@ -330,6 +340,7 @@
 				var/datum/antagonist/gang/boss/bossdatum = new
 				CJ.add_antag_datum(bossdatum, src)
 				bossdatum.equip_gang()
+	registered_account = new /datum/bank_account
 	next_point_time = world.time + INFLUENCE_INTERVAL
 	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
 

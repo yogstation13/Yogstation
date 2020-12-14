@@ -28,6 +28,18 @@
 	else
 		return ..()
 
+/obj/item/stashbox/hide(intact)
+	if(intact)
+		invisibility = INVISIBILITY_OBSERVER
+		anchored = TRUE //otherwise you can start pulling, cover it, and drag around an invisible backpack.
+		icon_state = "[initial(icon_state)]2"
+		ADD_TRAIT(src, TRAIT_T_RAY_VISIBLE, TRAIT_GENERIC)
+	else
+		invisibility = initial(invisibility)
+		anchored = FALSE
+		icon_state = initial(icon_state)
+		REMOVE_TRAIT(src, TRAIT_T_RAY_VISIBLE, TRAIT_GENERIC)
+
 /obj/item/stashbox/proc/insert_money(obj/item/I, mob/user, physical_currency)
 	var/cash_money = I.get_item_credit_value()
 	if(!cash_money)
@@ -49,10 +61,9 @@
 
 /obj/item/stashbox/Destroy()
 	var/cached_funds = registered_account.account_balance // Funds before we reduce
-	var/refund_penalty = pick(1.1,1.2,1.3,1.4,1.5)// Ammount to reduce by
-	var/refund = (cached_funds / (refund_penalty))// Ammount to refund after it has been reduced
-	registered_account.adjust_money(-cached_funds)
-// Find someone who can actually do basic math to write a function that will randomize then reduce the amount by. something like 10-20%
+	var/refund_penalty = rand(10, 20)// Percentage to reduce by
+	var/refund = round(((refund_penalty) / 100) * (cached_funds))// Ammount to refund after it has been reduced
+	registered_account.adjust_money(-refund)
 	var/obj/item/holochip/holochip = new (src.drop_location(), refund)
 	to_chat(loc, "a credit chip falls out of [src]")
 

@@ -3113,7 +3113,7 @@
 #include "yogstation\code\game\gamemodes\gangs\gang_pen.dm"
 #include "yogstation\code\game\gamemodes\gangs\gangs.dm"
 #include "yogstation\code\game\gamemodes\gangs\gangtool.dm"
-#include "yogstation\code\game\gamemodes\NewGang\NewGangitems.dm"
+#include "yogstation\code\game\gamemodes\gangs\smugglerbeacon.dm"
 #include "yogstation\code\game\gamemodes\shadowling\shadowling.dm"
 #include "yogstation\code\game\gamemodes\traitor\double_agents.dm"
 #include "yogstation\code\game\gamemodes\vampire\grave_fever.dm"

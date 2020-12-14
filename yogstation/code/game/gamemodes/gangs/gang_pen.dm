@@ -5,14 +5,18 @@
 	var/cooldown
 
 /obj/item/pen/gang/attack(mob/living/M, mob/user, stealth = TRUE)
+	var/datum/antagonist/gang/boss/L = user.mind.has_antag_datum(/datum/antagonist/gang/boss)
+	var/datum/team/gang/gang = L.gang
 	if(!istype(M))
 		return
 	if(!ishuman(M) || !ishuman(user) || M.stat == DEAD)
 		return ..()
-	var/datum/antagonist/gang/boss/L = user.mind.has_antag_datum(/datum/antagonist/gang/boss)
 	if(!L)
 		return ..()
 	if(!..())
+		return
+	if(gang.members_amount >= gang.max_members)
+		to_chat(user, "<span class='warning'>Your gang has too many members! Complete milestones or purchase extra slots to add more members!</span>")
 		return
 	if(cooldown)
 		to_chat(user, "<span class='warning'>[src] needs more time to recharge before it can be used.</span>")
@@ -20,7 +24,6 @@
 	if(!M.client || !M.mind)
 		to_chat(user, "<span class='warning'>A braindead gangster is an useless gangster!</span>")
 		return
-	var/datum/team/gang/gang = L.gang
 	if(!add_gangster(user, gang, M.mind))
 		return
 	cooldown = TRUE
