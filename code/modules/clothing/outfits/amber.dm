@@ -24,7 +24,7 @@
 	new /obj/item/flashlight/flare(src)
 	new /obj/item/flashlight/flare(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
-	new /obj/item/jawsoflife/jimmy(src)
+	new /obj/item/jawsoflife/jimmy(src) 
 
 
 /obj/item/storage/belt/military/amber_commander/ComponentInitialize() // Amber Commander
