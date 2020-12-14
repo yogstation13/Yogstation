@@ -1,4 +1,4 @@
-// sec
+// ===== SECURITY =====
 
 obj/effects/variation/sec
 	icon = 'icons/effects/landmarks_variation.dmi'
