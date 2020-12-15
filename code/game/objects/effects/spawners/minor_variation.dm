@@ -31,7 +31,7 @@ This is mainly to prevent creating new map files when creating smaller variation
 				if(direction)
 					var/obj/H = new I(location_place)
 					H.dir = direction
-					return
+					
 				else
 					new I(location_place)
 		else
