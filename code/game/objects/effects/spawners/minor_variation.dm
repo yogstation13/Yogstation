@@ -40,7 +40,7 @@ This is mainly to prevent creating new map files when creating smaller variation
 				H.dir = direction
 			else
 				new item(location_place)
-	return
+	
 
 /obj/effect/variation/proc/choice()
 	if(!choice)
