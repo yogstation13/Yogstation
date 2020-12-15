@@ -34048,15 +34048,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/aft)
-"cEL" = (
-/obj/structure/table,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/storage/box/bodybags,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/robotics/lab)
 "cFl" = (
 /turf/closed/wall,
 /area/maintenance/solars/port/aft)
@@ -59047,6 +59038,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"uDm" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/color/latex,
+/obj/item/storage/box/bodybags,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/item/tank/internals/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/turf/open/floor/plasteel/dark,
+/area/science/robotics/lab)
 "uDB" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -111151,7 +111153,7 @@ bfX
 bfV
 fGE
 taB
-cEL
+uDm
 idl
 bov
 bpU
