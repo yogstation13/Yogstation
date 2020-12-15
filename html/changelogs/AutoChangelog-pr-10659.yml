@@ -1,0 +1,5 @@
+author: "alao3alao3"
+delete-after: true 
+changes: 
+  - rscadd: "Correct lavaland outdoor area outside winter biodome"
+  - rscdel: "Area outside of winter biodome labeled as lavaland labor camp"
