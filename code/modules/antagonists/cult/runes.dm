@@ -315,10 +315,10 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/obj/item/soulstone/stone = new /obj/item/soulstone(get_turf(src))
 	if(sacrificial.mind && !sacrificial.suiciding)
 		if(ishuman(sacrificial))
-		var/mob/living/carbon/human/H = sacrificial
-		if(is_banned_from(H.ckey, ROLE_CULTIST))
-			H.ghostize(FALSE) // You're getting ghosted no escape
-			H.key = null // Still useful to cult
+			var/mob/living/carbon/human/H = sacrificial
+			if(is_banned_from(H.ckey, ROLE_CULTIST))
+				H.ghostize(FALSE) // You're getting ghosted no escape
+				H.key = null // Still useful to cult
 		stone.invisibility = INVISIBILITY_MAXIMUM //so it's not picked up during transfer_soul()
 		stone.transfer_soul("FORCE", sacrificial, usr)
 		stone.invisibility = 0
