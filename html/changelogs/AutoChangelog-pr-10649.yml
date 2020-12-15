@@ -1,0 +1,4 @@
+author: "  Hopek"
+delete-after: true 
+changes: 
+  - bugfix: "fixed the frequency of the torture device in the oldAIset ruin to make it work."
