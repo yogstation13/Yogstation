@@ -23,7 +23,7 @@
 		return FALSE
 	var/actual_cost = get_weapon_cost(user, gang, gangtool)
 	if(!spawn_item(user, gang, gangtool))
-		gang.adjust_uniform_influence(-actual_cost)
+		gang.registered_account.adjust_money(-actual_cost)
 		to_chat(user, "<span class='notice'>You bought \the [name].</span>")
 		return TRUE
 
@@ -40,7 +40,7 @@
 	return gang && (gang.influence >= get_cost(user, gang, gangtool)) && can_see(user, gang, gangtool)
 
 /datum/gang_item/proc/can_buy_weapon(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
-	return gang && (gang.uniform_influence >= get_weapon_cost(user, gang, gangtool)) && can_see(user, gang, gangtool)
+	return gang && (gang.registered_account.account_balance >= get_weapon_cost(user, gang, gangtool)) && can_see(user, gang, gangtool)
 
 /datum/gang_item/proc/can_see(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
 	return TRUE
@@ -178,62 +178,80 @@
 /datum/gang_item/weapon/shuriken
 	name = "Shuriken"
 	id = "shuriken"
-	weapon_cost = 3
+	weapon_cost = 40
 	item_path = /obj/item/throwing_star
 
 /datum/gang_item/weapon/switchblade
 	name = "Switchblade"
 	id = "switchblade"
-	weapon_cost = 5
+	weapon_cost = 20
 	item_path = /obj/item/switchblade
 
 /datum/gang_item/weapon/surplus
 	name = "Surplus Rifle"
 	id = "surplus"
-	weapon_cost = 8
+	weapon_cost = 100 // Its a glorified bolt action, and improvised shotguns have a much higher damage potential
 	item_path = /obj/item/gun/ballistic/automatic/surplus
 
 /datum/gang_item/weapon/ammo/surplus_ammo
 	name = "Surplus Rifle Ammo"
 	id = "surplus_ammo"
-	weapon_cost = 5
+	weapon_cost = 20
 	item_path = /obj/item/ammo_box/magazine/m10mm/rifle
 
 /datum/gang_item/weapon/improvised
 	name = "Sawn-Off Improvised Shotgun"
 	id = "sawn"
-	weapon_cost = 6
+	weapon_cost = 250 // Much more damage potential
 	item_path = /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawn
 
 /datum/gang_item/weapon/ammo/improvised_ammo
 	name = "Box of Buckshot"
 	id = "buckshot"
-	weapon_cost = 5
+	weapon_cost = 20
 	item_path = /obj/item/storage/box/lethalshot
 
 /datum/gang_item/weapon/pistol
 	name = "10mm Pistol"
 	id = "pistol"
-	weapon_cost = 30
+	weapon_cost = 500 // So much damage potential, when considering dual wielding plus concealability
 	item_path = /obj/item/gun/ballistic/automatic/pistol
 
 /datum/gang_item/weapon/ammo/pistol_ammo
 	name = "10mm Ammo"
 	id = "pistol_ammo"
-	weapon_cost = 10
+	weapon_cost = 40
 	item_path = /obj/item/ammo_box/magazine/m10mm
 
 /datum/gang_item/weapon/uzi
 	name = "Uzi SMG"
 	id = "uzi"
-	weapon_cost = 60
+	weapon_cost = 1200 // A single Uzi is easily worth the same as a combat shotgun
 	item_path = /obj/item/gun/ballistic/automatic/mini_uzi
 
 /datum/gang_item/weapon/ammo/uzi_ammo
 	name = "Uzi Ammo"
 	id = "uzi_ammo"
-	weapon_cost = 40
+	weapon_cost = 300 // Extra magazines which are not otherwise obtainable. Allows for tactical reloads for increased damage output.
 	item_path = /obj/item/ammo_box/magazine/uzim9mm
+
+/datum/gang_item/weapon/equipment/c4
+	name = "C4 Explosive"
+	id = "c4"
+	weapon_cost = 1200
+	item_path = /obj/item/grenade/plastic/c4
+
+/datum/gang_item/weapon/equipment/frag
+	name = "Fragmentation Grenade"
+	id = "frag nade"
+	weapon_cost = 3000
+	item_path = /obj/item/grenade/syndieminibomb/concussion/frag
+
+/datum/gang_item/weapon/equipment/emp
+	name = "EMP Grenade"
+	id = "EMP"
+	weapon_cost = 700
+	item_path = /obj/item/grenade/empgrenade
 
 ///////////////////
 //EQUIPMENT
@@ -265,25 +283,6 @@
 	cost = 3
 	item_path = /obj/item/sharpener
 
-
-/datum/gang_item/equipment/emp
-	name = "EMP Grenade"
-	id = "EMP"
-	cost = 5
-	item_path = /obj/item/grenade/empgrenade
-
-/datum/gang_item/equipment/c4
-	name = "C4 Explosive"
-	id = "c4"
-	cost = 7
-	item_path = /obj/item/grenade/plastic/c4
-
-/datum/gang_item/equipment/frag
-	name = "Fragmentation Grenade"
-	id = "frag nade"
-	cost = 18
-	item_path = /obj/item/grenade/syndieminibomb/concussion/frag
-
 /datum/gang_item/equipment/force_converter
 	name = "Force Converter"
 	id = "force_converter"
@@ -307,6 +306,37 @@
 	desc = "A gang's best hitmen are prepared for anything."
 	permeability_coefficient = 0.01
 	clothing_flags = NOSLIP
+
+/datum/gang_item/equipment/stashbox
+	name = "Stashbox"
+	id = "stashbox"
+	cost = 10
+	item_path = /obj/item/stashbox
+
+/datum/gang_item/equipment/stashbox/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
+	if(item_path)
+		var/obj/item/stashbox/O = new item_path(user.loc, gang)
+		O.registered_account = gang.registered_account
+		user.put_in_hands(O)
+	else
+		return TRUE
+	if(spawn_msg)
+		to_chat(user, spawn_msg)
+
+/datum/gang_item/equipment/smugglerbeacon
+	name = "Smuggler Beacon"
+	id = "smuggler beacon"
+	cost = 10
+	item_path = /obj/machinery/smugglerbeacon
+
+/datum/gang_item/equipment/smugglerbeacon/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
+	if(item_path)
+		var/obj/machinery/smugglerbeacon/O = new item_path(user.loc, gang)
+		O.registered_account = gang.registered_account
+	else
+		return TRUE
+	if(spawn_msg)
+		to_chat(user, spawn_msg)
 
 /datum/gang_item/equipment/pen
 	name = "Recruitment Pen"

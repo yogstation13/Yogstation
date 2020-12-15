@@ -19,6 +19,7 @@
 	var/promotable = FALSE
 	var/static/list/buyable_items = list()
 	var/list/tags = list()
+	var/datum/bank_account/registered_account
 
 /obj/item/gangtool/Initialize()
 	update_icon()
@@ -66,7 +67,7 @@
 			dat += "<center><font color='red'>Takeover In Progress:<br><B>[DisplayTimeText(gang.domination_time_remaining() * 10)] remain</B></font></center>"
 
 		dat += "Registration: <B>[gang.name] Gang Boss</B><br>"
-		dat += "Organization Size: <B>[gang.members.len]</B> | Station Control: <B>[gang.territories.len] territories under control.</B> | Influence: <B>[gang.influence]</B> | Supply: <B>[gang.uniform_influence]</B><br>"
+		dat += "Organization Size: <B>[gang.members.len]</B> | Station Control: <B>[gang.territories.len] territories under control.</B> | Influence: <B>[gang.influence]</B> | Credits: <B>[gang.registered_account.account_balance]</B><br>"
 		dat += "Time until Influence grows: <B>[time2text(gang.next_point_time - world.time, "mm:ss")]</B><br>"
 		dat += "<a href='?src=[REF(src)];commute=1'>Send message to Gang</a><br>"
 		dat += "<a href='?src=[REF(src)];recall=1'>Recall shuttle</a><br>"
@@ -174,6 +175,7 @@
 	if(G)
 		gang = G.gang
 		gang.gangtools += src
+		registered_account = gang.registered_account
 		update_icon()
 		if(!(user.mind in gang.leaders) && promotable)
 			G.promote()

@@ -98,7 +98,7 @@
 	. = ..()
 	.["Promote"] = CALLBACK(src,.proc/admin_promote)
 	.["Set Influence"] = CALLBACK(src, .proc/admin_adjust_influence)
-	.["Set Uniform Influence"] = CALLBACK(src, .proc/admin_adjust_uniform_influence)
+	.["Add credits"] = CALLBACK(src, .proc/admin_add_credits)
 	if(gang.domination_time != NOT_DOMINATING)
 		.["Set domination time left"] = CALLBACK(src, .proc/set_dom_time_left)
 	.["Set Max Members"] = CALLBACK(src,.proc/admin_set_max_members)
@@ -143,12 +143,12 @@
 		message_admins("[key_name_admin(usr)] changed [gang.name]'s influence to [inf].")
 		log_admin("[key_name(usr)] changed [gang.name]'s influence to [inf].")
 
-/datum/antagonist/gang/proc/admin_adjust_uniform_influence()
-	var/inf = input("Uniform Influence for [gang.name]", "Uniform influence", gang.uniform_influence) as null | num
+/datum/antagonist/gang/proc/admin_add_credits()
+	var/inf = input("Credits for [gang.name]", "Credits", gang.registered_account) as null | num
 	if(!isnull(inf))
-		gang.uniform_influence = inf
-		message_admins("[key_name_admin(usr)] changed [gang.name]'s uniform influence to [inf].")
-		log_admin("[key_name(usr)] changed [gang.name]'s uniform influence to [inf].")
+		gang.registered_account.adjust_money(inf)
+		message_admins("[key_name_admin(usr)] added [inf] credits to [gang.name].")
+		log_admin("[key_name(usr)] added [inf] credits to [gang.name].")
 
 /datum/antagonist/gang/proc/admin_set_max_members()
 	var/inf = input("Max members for [gang.name]", "Max Gang Members", gang.max_members) as null | num
@@ -312,8 +312,9 @@
 	var/dom_attempts = INITIAL_DOM_ATTEMPTS
 	var/color
 	var/influence = 0 // influence of the gang, based on how many territories they own. Can be used to buy weapons and tools from a gang uplink.
-	var/uniform_influence = 0 // Influence gained from members wearing uniforms. Counts only to weapons.  yogs
-	var/passive_uniform_income // Passive income for weapons. The more gang members  you have, the less you will get. Wear your uniform.
+	var/passive_paycheck = 0 // Passive credit income.
+	var/member_paycheck // Extra passive income based on member count. Higher members = lower income.
+	var/uniformed_paycheck // Extra passive incomed based on uniformed gang members.
 	var/winner // Once the gang wins with a dominator, this becomes true. For roundend credits purposes.
 	var/list/inner_outfits = list()
 	var/list/outer_outfits = list()
@@ -321,6 +322,9 @@
 	var/recalls = MAXIMUM_RECALLS // Once this reaches 0, this gang cannot force recall the shuttle with their gangtool anymore
 	var/datum/bank_account/registered_account
 	var/max_members = 3 // Max amount of members. When milestones are reached, this number will increase.
+	var/milestones = list()
+	var/completed_milestones = 0
+
 
 /datum/team/gang/New(starting_members)
 	. = ..()
@@ -422,14 +426,15 @@
 		message += "<b>[domination_time_remaining()] seconds remain</b> in hostile takeover.<BR>"
 	else
 		var/new_influence = check_territory_income()
-		var/new_uniform_influence = check_uniform_income()
+		check_paycheck()
+//		var/completed_milestones = check_milestones()
 		if(new_influence != influence)
 			message += "Gang influence has increased by [new_influence - influence] for defending [territories.len] territories<BR>"
-		if(new_uniform_influence != uniform_influence)  // yogs
-			message += "Gang supply has increased by [new_uniform_influence - uniform_influence] for having [uniformed] uniformed gangsters<BR>"
+		if(passive_paycheck)  // yogs
+			message += "Your gang members have earned [member_paycheck] credits, and a bonus [uniformed_paycheck] credits for having [uniformed] uniformed gangsters<BR>"
 		influence = new_influence
-		uniform_influence = new_uniform_influence
-		message += "Your gang now has <b>[influence] influence</b> and <b>[uniform_influence] supply points</b>.<BR>"
+		registered_account.adjust_money(passive_paycheck)
+		message += "Your gang now has <b>[influence] influence</b> and <b>[registered_account.account_balance] credits</b>.<BR>"
 	message_gangtools(message)
 	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
 
@@ -446,11 +451,13 @@
 	var/new_influence = min(999,influence + 15 + territories.len)
 	return new_influence
 
-/datum/team/gang/proc/check_uniform_income()
+/datum/team/gang/proc/check_paycheck()
 	members_amount = 0 // reset so it doesnt just add last cycles to next
 	count_members()
-	var/new_uniform_influence = min(999,uniform_influence + passive_uniform_income + (check_clothing() * 5)) // 5 weapon supply points per uniformed gangster + free income per cycle based on members
-	return new_uniform_influence
+	uniformed_paycheck = (check_clothing() * 100) // 100 credit income per uniformed gangster
+	var/new_passive_paycheck = (member_paycheck + uniformed_paycheck) // This is your total gain
+	passive_paycheck = new_passive_paycheck
+	return passive_paycheck
 
 /datum/team/gang/proc/check_clothing()
 	//Count uniformed gangsters
@@ -480,10 +487,11 @@
 
 /datum/team/gang/proc/adjust_influence(value)
 	influence = max(0, influence + value)
-
-/datum/team/gang/proc/adjust_uniform_influence(value)
-	uniform_influence = max(0, uniform_influence + value)
-
+/*
+Not sure if I need this anymore, since its called in gang_items purchase()
+/datum/team/gang/proc/adjust_credits()
+	gang.registered_account.adjust_money(paycheck))
+*/
 /datum/team/gang/proc/count_members()
 	for(var/datum/mind/gangmind in members)
 		if(ishuman(gangmind.current))
@@ -492,13 +500,15 @@
 				members_amount++
 			switch(members_amount)
 				if(0 to 3)
-					passive_uniform_income = 15
+					member_paycheck = 250
 				if(4 to 5)
-					passive_uniform_income = 10
+					member_paycheck = 100
 				if(6 to INFINITY)
-					passive_uniform_income = 0
-
-
+					member_paycheck = 0
+/*
+/datum/team/gang/proc/check_milestones()
+	for(blahblahblah in milestones)
+*/
 /datum/team/gang/proc/message_gangtools(message)
 	if(!gangtools.len || !message)
 		return
