@@ -15,7 +15,7 @@
 
 	var/message = ""
 
-	switch(rand(1,70)) //Thinking that prompts with narrow range of possible effects get 1, most get 2, those with two variables get 3
+	switch(rand(1,77)) //Thinking that prompts with narrow range of possible effects get 1, most get 2, those with two variables get 3
 		if(1 to 2)
 			message = "PRIORITIZE [ionthings]"
 		if(3)
@@ -92,6 +92,8 @@
 			message = "THE STATION NEEDS MORE [ionthings]"
 		if(64 to 65)
 			message = "YOU ARE [ionthings]"
-		if(66 to 76)
+		if(66)
+			message = "[ionarea] MUST REMAIN CLEAN"
+		if(67 to 77)
 			message = "[ioncached]" // general laws with specific wording
 	return message
