@@ -170,6 +170,7 @@
 	item_flags = ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	sharpness = IS_SHARP
+	hitsound = 'sound/weapons/crunchystab.ogg'
 
 /obj/item/light_eater/Initialize()
 	. = ..()
