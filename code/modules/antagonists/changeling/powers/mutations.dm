@@ -144,7 +144,6 @@
 	req_human = 1
 	weapon_type = /obj/item/melee/arm_blade
 	weapon_name_simple = "blade"
-	resistance_flags = ACID_PROOF
 
 /obj/item/melee/arm_blade
 	name = "arm blade"
@@ -165,6 +164,7 @@
 	sharpness = IS_SHARP
 	var/can_drop = FALSE
 	var/fake = FALSE
+	resistance_flags = ACID_PROOF
 
 /obj/item/melee/arm_blade/Initialize(mapload,silent,synthetic)
 	. = ..()
