@@ -144,6 +144,7 @@
 	req_human = 1
 	weapon_type = /obj/item/melee/arm_blade
 	weapon_name_simple = "blade"
+	resistance_flags = ACID_PROOF
 
 /obj/item/melee/arm_blade
 	name = "arm blade"
