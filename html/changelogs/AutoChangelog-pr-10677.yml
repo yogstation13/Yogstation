@@ -1,0 +1,4 @@
+author: "dragomagol"
+delete-after: true 
+changes: 
+  - bugfix: "YogStation: the medbay scrubbers are now connected to the rest of the station"
