@@ -882,19 +882,14 @@
 /mob/living/simple_animal/hostile/stickman/ranged,
 /turf/open/indestructible/paper,
 /area/ruin/powered)
-"fR" = (
-/obj/machinery/door/airlock/freezer{
-	name = "airlock";
-	opacity = 0
+"gJ" = (
+/obj/structure/fluff/paper{
+	dir = 4
 	},
 /obj/structure/fluff/paper{
 	dir = 8
 	},
-/obj/structure/fluff/paper{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/structure/fans/tiny,
+/obj/structure/fans/tiny/invisible,
 /turf/open/indestructible/paper,
 /area/ruin/powered)
 "wr" = (
@@ -911,6 +906,20 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/turf/open/indestructible/paper,
+/area/ruin/powered)
+"zE" = (
+/obj/machinery/door/airlock/freezer{
+	name = "airlock";
+	opacity = 0
+	},
+/obj/structure/fluff/paper{
+	dir = 8
+	},
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/indestructible/paper,
 /area/ruin/powered)
 "Ns" = (
@@ -2541,8 +2550,8 @@ aa
 (37,1,1) = {"
 aa
 ah
-fR
-an
+zE
+gJ
 wr
 av
 ap
