@@ -56,19 +56,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"dj" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/item/paper/crumpled{
-	info = "Due to concerns about crew performance, the basketball has been removed from the bar. We do not apologize for the inconvenience.";
-	name = "notice"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "dw" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mint,
@@ -509,6 +496,16 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"rD" = (
+/obj/structure/holohoop{
+	pixel_y = 25
+	},
+/obj/item/paper/crumpled{
+	info = "Due to concerns about crew performance, the basketball has been removed from the bar. We do not apologize for the inconvenience.";
+	name = "notice"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -1028,10 +1025,6 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"Jq" = (
-/obj/structure/holohoop,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "JD" = (
 /obj/structure/chair/sofa{
 	dir = 1
@@ -1267,6 +1260,15 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"RJ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "RV" = (
 /obj/machinery/camera{
@@ -1707,8 +1709,8 @@ gu
 "}
 (9,1,1) = {"
 Ip
-Jq
-dj
+rD
+RJ
 KS
 KS
 KS
