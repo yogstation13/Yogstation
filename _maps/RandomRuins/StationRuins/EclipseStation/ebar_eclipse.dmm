@@ -63,6 +63,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/structure/holohoop,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "dw" = (
@@ -1024,10 +1025,6 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Jq" = (
-/obj/structure/holohoop{
-	density = 0;
-	pixel_y = 29
-	},
 /obj/item/paper/crumpled{
 	info = "Due to concerns about crew performance, the basketball has been removed from the bar. We do not apologize for the inconvenience.";
 	name = "notice"
@@ -1710,9 +1707,9 @@ gu
 "}
 (9,1,1) = {"
 Ip
-Jq
-dj
 KS
+dj
+Jq
 KS
 KS
 rk
