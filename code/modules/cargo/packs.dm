@@ -463,7 +463,7 @@
 /datum/supply_pack/security/armory/ballistic_single
 	name = "Combat Shotgun Single-Pack"
 	desc = "For when the enemy absolutely needs to be replaced with lead. Contains one Aussec-designed Combat Shotgun, and one Shotgun Bandolier. Requires Armory access to open."
-	cost = 10000
+	cost = 6000
 	small_item = TRUE
 	contains = list(/obj/item/gun/ballistic/shotgun/automatic/combat,
 					/obj/item/storage/belt/bandolier)
@@ -471,7 +471,7 @@
 /datum/supply_pack/security/armory/ballistic
 	name = "Combat Shotguns Crate"
 	desc = "For when the enemy absolutely needs to be replaced with lead. Contains three Aussec-designed Combat Shotguns, and three Shotgun Bandoliers. Requires Armory access to open."
-	cost = 30000
+	cost = 18000
 	contains = list(/obj/item/gun/ballistic/shotgun/automatic/combat,
 					/obj/item/gun/ballistic/shotgun/automatic/combat,
 					/obj/item/gun/ballistic/shotgun/automatic/combat,
