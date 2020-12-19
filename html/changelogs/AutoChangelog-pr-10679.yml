@@ -1,0 +1,4 @@
+author: "dragomagol"
+delete-after: true 
+changes: 
+  - bugfix: "moved the hoop on the eclipse bar to allow access to the stage"
