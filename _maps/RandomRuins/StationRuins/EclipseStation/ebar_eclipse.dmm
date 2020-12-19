@@ -63,7 +63,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/obj/structure/holohoop,
+/obj/item/paper/crumpled{
+	info = "Due to concerns about crew performance, the basketball has been removed from the bar. We do not apologize for the inconvenience.";
+	name = "notice"
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "dw" = (
@@ -75,14 +78,15 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
+	},
+/obj/machinery/door/window{
+	dir = 4;
+	name = "Theatre Stage"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -1025,10 +1029,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Jq" = (
-/obj/item/paper/crumpled{
-	info = "Due to concerns about crew performance, the basketball has been removed from the bar. We do not apologize for the inconvenience.";
-	name = "notice"
-	},
+/obj/structure/holohoop,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "JD" = (
@@ -1308,9 +1309,8 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/machinery/door/window{
-	dir = 4;
-	name = "Theatre Stage"
+/obj/structure/window/reinforced{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -1707,9 +1707,9 @@ gu
 "}
 (9,1,1) = {"
 Ip
-KS
-dj
 Jq
+dj
+KS
 KS
 KS
 rk
