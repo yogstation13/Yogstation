@@ -48,7 +48,6 @@
 /datum/weather/rad_storm/end()
 	if(..())
 		return
-		
 	priority_announce("The radiation threat has passed. Please return to your workplaces.", "Anomaly Alert")
 	status_alarm(FALSE)
 
