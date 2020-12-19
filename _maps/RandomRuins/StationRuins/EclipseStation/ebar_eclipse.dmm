@@ -1025,6 +1025,7 @@
 /area/crew_quarters/bar)
 "Jq" = (
 /obj/structure/holohoop{
+	density = 0;
 	pixel_y = 29
 	},
 /obj/item/paper/crumpled{
