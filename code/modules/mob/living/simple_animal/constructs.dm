@@ -415,6 +415,9 @@ mob/living/simple_animal/hostile/construct/attackby(obj/item/W, mob/living/user,
 	var/datum/antagonist/cult/C = owner.mind.has_antag_datum(/datum/antagonist/cult)
 	if(!C)
 		return
+	if(!C.cult_team)
+		to_chat(the_construct, "<span class='cult italic'>You are alone, and have no team.</span>")
+		return
 	var/datum/objective/eldergod/summon_objective = locate() in C.cult_team.objectives
 
 	if(summon_objective.check_completion())

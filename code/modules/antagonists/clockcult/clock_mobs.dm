@@ -22,6 +22,7 @@
 	speech_span = SPAN_ROBOT
 	var/playstyle_string = "<span class='heavy_brass'>You are a bug, yell at whoever spawned you!</span>"
 	var/empower_string = "<span class='heavy_brass'>You have nothing to empower, yell at the coders!</span>" //Shown to the mob when the herald beacon activates
+	var/agent = FALSE
 
 /mob/living/simple_animal/hostile/clockwork/Initialize()
 	. = ..()
@@ -29,7 +30,7 @@
 
 /mob/living/simple_animal/hostile/clockwork/Login()
 	..()
-	add_servant_of_ratvar(src, TRUE)
+	add_servant_of_ratvar(src, TRUE, !agent) //since marauders get deleted if they die they aren't put in an agent team
 	to_chat(src, playstyle_string)
 	if(GLOB.ratvar_approaches)
 		to_chat(src, empower_string)

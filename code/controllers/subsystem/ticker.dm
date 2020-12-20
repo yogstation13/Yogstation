@@ -196,6 +196,7 @@ SUBSYSTEM_DEF(ticker)
 			mode.process(wait * 0.1)
 			check_queue()
 			check_maprotate()
+			GLOB.scripture_states = scripture_unlock_alert(GLOB.scripture_states)
 
 			if(!roundend_check_paused && mode.check_finished(force_ending) || force_ending)
 				current_state = GAME_STATE_FINISHED
