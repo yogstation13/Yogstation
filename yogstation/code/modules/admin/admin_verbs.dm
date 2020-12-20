@@ -1,6 +1,6 @@
 /client/proc/rejuv_all()
 	set name = "Revive All"
-	set category = "Fun"
+	set category = "Misc"
 	set desc = "Rejuvinate every mob/living."
 
 	if(!check_rights(R_ADMIN))
@@ -28,7 +28,7 @@
 	log_admin("[src] revived [revive_count] mobs.")
 
 /client/proc/admin_pick_random_player()
-	set category = "Admin"
+	set category = "Admin.Round Interaction"
 	set name = "Pick Random Player"
 	set desc = "Picks a random logged-in player and brings up their player panel."
 

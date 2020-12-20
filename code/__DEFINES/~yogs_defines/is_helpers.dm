@@ -7,5 +7,3 @@
 #define is_darkspawn_or_veil(A) (A.mind && isdarkspawn(A) || isveil(A))
 
 #define isspacepod(A) (istype(A, /obj/spacepod))
-
-#define ispreternis(A) (is_species(A, /datum/species/preternis))

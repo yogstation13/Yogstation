@@ -117,7 +117,7 @@
 	icon_state = "guitar"
 	attack_verb = list("play metal on", "serenade", "crash", "smash")
 	hitsound = 'sound/weapons/stringsmash.ogg'
-	allowed_instrument_ids = "guitar"
+	allowed_instrument_ids = list("guitar","csteelgt","cnylongt", "ccleangt", "cmutedgt")
 
 /obj/item/instrument/eguitar
 	name = "electric guitar"
@@ -127,25 +127,25 @@
 	force = 12
 	attack_verb = list("played metal on", "shredded", "crashed", "smashed")
 	hitsound = 'sound/weapons/stringsmash.ogg'
-	allowed_instrument_ids = "eguitar"
+	allowed_instrument_ids = list("guitar","csteelgt","cnylongt", "ccleangt", "cmutedgt")
 
 /obj/item/instrument/glockenspiel
 	name = "glockenspiel"
 	desc = "Smooth metal bars perfect for any marching band."
 	icon_state = "glockenspiel"
-	allowed_instrument_ids = "glockenspiel"
+	allowed_instrument_ids = list("glockenspiel","crvibr", "sgmmbox", "r3celeste")
 
 /obj/item/instrument/accordion
 	name = "accordion"
 	desc = "Pun-Pun not included."
 	icon_state = "accordion"
-	allowed_instrument_ids = "accordion"
+	allowed_instrument_ids = list("crack", "crtango", "accordion")
 
 /obj/item/instrument/trumpet
 	name = "trumpet"
 	desc = "To announce the arrival of the king!"
 	icon_state = "trumpet"
-	allowed_instrument_ids = "trombone"
+	allowed_instrument_ids = "crtrumpet"
 
 /obj/item/instrument/trumpet/spectral
 	name = "spectral trumpet"
@@ -188,7 +188,7 @@
 	name = "trombone"
 	desc = "How can any pool table ever hope to compete?"
 	icon_state = "trombone"
-	allowed_instrument_ids = "trombone"
+	allowed_instrument_ids = list("crtrombone", "crbrass", "trombone")
 
 /obj/item/instrument/trombone/spectral
 	name = "spectral trombone"
@@ -217,7 +217,7 @@
 	name = "harmonica"
 	desc = "For when you get a bad case of the space blues."
 	icon_state = "harmonica"
-	allowed_instrument_ids = "harmonica"
+	allowed_instrument_ids = list("crharmony", "harmonica")
 	slot_flags = ITEM_SLOT_MASK
 	force = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -243,13 +243,25 @@
 	item_state = "bike_horn"
 	lefthand_file = 'icons/mob/inhands/equipment/horns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/horns_righthand.dmi'
-	allowed_instrument_ids = "bikehorn"
+	allowed_instrument_ids = list("bikehorn", "honk")
 	attack_verb = list("beautifully honk")
 	w_class = WEIGHT_CLASS_TINY
 	force = 0
 	throw_speed = 3
 	throw_range = 15
 	hitsound = 'sound/items/bikehorn.ogg'
+
+/obj/item/instrument/musicalmoth
+	name = "musical moth"
+	desc = "Despite its popularity, this controversial musical toy was eventually banned due to its unethically sampled sounds of moths screaming in agony."
+	icon_state = "mothsician"
+	allowed_instrument_ids = "mothscream"
+	attack_verb = list("flutters", "flaps")
+	w_class = WEIGHT_CLASS_TINY
+	force = 0
+	hitsound = 'sound/voice/moth/scream_moth.ogg'
+	custom_price = 235
+	custom_premium_price = 235
 
 /obj/item/choice_beacon/music
 	name = "instrument delivery beacon"

@@ -1411,8 +1411,8 @@
 /area/awaymission/vr/syndicate)
 "rY" = (
 /obj/machinery/sleep_console{
-	icon_state = "console";
-	dir = 8
+	dir = 8;
+	icon_state = "console"
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
@@ -1867,8 +1867,8 @@
 /area/awaymission/vr/syndicate)
 "Aa" = (
 /obj/machinery/sleep_console{
-	icon_state = "console";
-	dir = 8
+	dir = 8;
+	icon_state = "console"
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/syndicate)
@@ -2489,8 +2489,8 @@
 /area/awaymission/vr/murderdome)
 "KV" = (
 /obj/machinery/door/window/northright{
-	icon_state = "right";
-	dir = 2
+	dir = 2;
+	icon_state = "right"
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)

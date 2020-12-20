@@ -24,7 +24,7 @@
 	if(traitor_kind == TRAITOR_AI)
 		company = /datum/corporation/self
 	else if(!company)
-		company = pick(subtypesof(/datum/corporation/syndicate))
+		company = pick(subtypesof(/datum/corporation/traitor))
 	owner.add_employee(company)
 
 	SSticker.mode.traitors += owner
@@ -56,7 +56,7 @@
 		var/mob/living/silicon/ai/A = owner.current
 		A.set_zeroth_law("")
 		if(malf)
-			A.verbs -= /mob/living/silicon/ai/proc/choose_modules
+			remove_verb(A, /mob/living/silicon/ai/proc/choose_modules)
 			A.malf_picker.remove_malf_verbs(A)
 			qdel(A.malf_picker)
 	owner.remove_employee(company)

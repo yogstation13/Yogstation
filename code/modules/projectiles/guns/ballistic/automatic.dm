@@ -96,6 +96,13 @@
 	mag_display = TRUE
 	mag_display_ammo = TRUE
 	empty_indicator = TRUE
+	weapon_weight = WEAPON_MEDIUM
+
+/obj/item/gun/ballistic/automatic/wt550/occupying
+	name = "surplus security auto rifle"
+	desc = "Crude surplus variant of the WT-550 Automatic Rifle meant for mass deployment. Does not come with the benefits of a two round burst."
+	burst_size = 1
+	mag_type = /obj/item/ammo_box/magazine/wt550m9/wtr
 
 /obj/item/gun/ballistic/automatic/mini_uzi
 	name = "\improper Type U3 Uzi"

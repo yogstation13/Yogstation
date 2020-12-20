@@ -283,3 +283,10 @@
 
 /turf/open/floor/plating/rust/rust_heretic_act()
 	return
+	
+/turf/open/floor/eighties
+	name = "retro floor"
+	desc = "This one takes you back."
+	icon_state = "eighties"
+	floor_tile = /obj/item/stack/tile/eighties
+	broken_states = list("eighties_damaged")

@@ -72,6 +72,7 @@
 /turf/open/floor/pod/light,
 /area/ruin/powered)
 "p" = (
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "q" = (

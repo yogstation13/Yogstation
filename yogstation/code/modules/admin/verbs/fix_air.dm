@@ -1,6 +1,6 @@
 /client/proc/fix_air(var/turf/open/T in world)
 	set name = "Fix Air"
-	set category = "Admin"
+	set category = "Misc.Unused"
 	set desc = "Fixes air in specified radius."
 
 	if(!holder)

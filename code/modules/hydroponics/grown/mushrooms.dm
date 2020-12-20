@@ -162,6 +162,10 @@
 	can_distill = FALSE
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/walkingmushroom/attack_self(mob/user)
+	if(GLOB.walkingmushroom.len > MAX_WALKINGMUSHROOM)
+		to_chat(user, "<span class='notice'>There are too many walking mushrooms!</span>") // Someone spammed mushrooms so now this exists :(
+		return
+
 	if(isspaceturf(user.loc))
 		return
 	var/mob/living/simple_animal/hostile/mushroom/M = new /mob/living/simple_animal/hostile/mushroom(user.loc)
@@ -170,6 +174,7 @@
 	M.melee_damage_upper += round(seed.potency / 20)
 	M.move_to_delay -= round(seed.production / 50)
 	M.health = M.maxHealth
+	GLOB.walkingmushroom += M
 	qdel(src)
 	to_chat(user, "<span class='notice'>You plant the walking mushroom.</span>")
 

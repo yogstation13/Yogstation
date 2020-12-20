@@ -94,6 +94,9 @@
 	var/list/status_effects //a list of all status effects the mob has
 	var/druggy = 0
 
+	/// List of changes to body temperature, used by desease symtoms like fever
+	var/list/body_temp_changes = list()
+
 	//Speech
 	var/stuttering = 0
 	var/slurring = 0

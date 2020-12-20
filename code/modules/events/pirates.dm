@@ -114,8 +114,8 @@
 	for(var/m in GLOB.player_list)
 		var/mob/M = m
 		var/client/C = M.client
-		if((C.prefs.toggles & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
-			C.chatOutput.sendMusic("sound/largefiles/pirate_intro.ogg")
+		if(C.prefs.toggles & SOUND_MIDI)
+			C.tgui_panel?.play_music("https://www.youtube.com/watch?v=MU__2jFQ5EY")
 
 //Shuttle equipment
 /obj/machinery/shuttle_scrambler

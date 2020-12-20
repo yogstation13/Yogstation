@@ -4,7 +4,7 @@
 /datum/controller/subsystem/ticker/proc/choose_lobby_music()
 	//Add/remove songs from this list individually, rather than multiple at once. This makes it easier to judge PRs that change the list, since PRs that change it up heavily are less likely to meet broad support
 	//Add a comment after the song link in the format [Artist - Name]
-	var/list/songs = list("https://www.youtube.com/watch?v=s7dTBoW5H9k", 	// Electric Light Orchestra - Mr. Blue Sky
+	var/list/songs = list("https://www.youtube.com/watch?v=lIrum6iFz6U", 	// Electric Light Orchestra - Mr. Blue Sky
 		"https://www.youtube.com/watch?v=WEhS9Y9HYjU", 						// Noel Harrison - The Windmills of Your Mind
 		"https://www.youtube.com/watch?v=UPHmazxB38g", 						// MashedByMachines - Sector11
 		"https://soundcloud.com/jeffimam/title-plasma-attack",				// Jeff Imam - Title - Plasma Attack
@@ -36,7 +36,8 @@
 		"https://www.youtube.com/watch?v=Ld6TfpgJg7g",						// Tom Kane - Freeway Jazz
 		"https://www.youtube.com/watch?v=ZhhQrFfzFM4",						// Carpenter Brut - Escape from Midwich Valley
 		"https://www.youtube.com/watch?v=dLrdSC9MVb4",						// Tally Hall - Turn the Lights Off
-		"https://www.youtube.com/watch?v=YGulLVWu-s0")							// God Hand "Rock a Bay"
+		"https://www.youtube.com/watch?v=YGulLVWu-s0",						// God Hand "Rock a Bay"
+		"https://www.youtube.com/watch?v=AumYP6Np1eI")						// Ataraxia - Deja Vu
 
 	selected_lobby_music = pick(songs)
 
@@ -53,14 +54,25 @@
 		log_world("Could not play lobby song because youtube-dl is not configured properly, check the config.")
 		return
 
-	var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" -g --no-playlist -- \"[selected_lobby_music]\"")
+	var/list/output = world.shelleo("[ytdl] --geo-bypass --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[selected_lobby_music]\"")
 	var/errorlevel = output[SHELLEO_ERRORLEVEL]
 	var/stdout = output[SHELLEO_STDOUT]
 	var/stderr = output[SHELLEO_STDERR]
 
+	if(!errorlevel)
+		var/list/data
+		try
+			data = json_decode(stdout)
+		catch(var/exception/e)
+			to_chat(src, "<span class='boldwarning'>Youtube-dl JSON parsing FAILED:</span>", confidential=TRUE)
+			to_chat(src, "<span class='warning'>[e]: [stdout]</span>", confidential=TRUE)
+			return
+		if(data["title"])
+			login_music_data["title"] = data["title"]
+			login_music_data["url"] = data["url"]
+	
 	if(errorlevel)
 		to_chat(world, "<span class='boldwarning'>Youtube-dl failed.</span>")
 		log_world("Could not play lobby song [selected_lobby_music]: [stderr]")
 		return
-
 	return stdout

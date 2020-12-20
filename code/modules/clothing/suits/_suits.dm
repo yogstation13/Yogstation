@@ -8,6 +8,8 @@
 	var/blood_overlay_type = "suit"
 	var/togglename = null
 	var/suittoggled = FALSE
+	var/mutantrace_variation = NO_MUTANTRACE_VARIATION
+	var/adjusted = NORMAL_STYLE
 
 
 /obj/item/clothing/suit/worn_overlays(isinhands = FALSE)
@@ -30,3 +32,14 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		M.update_inv_wear_suit()
+
+/obj/item/clothing/suit/equipped(mob/user, slot)
+	..()
+	if(adjusted)
+		adjusted = NORMAL_STYLE
+
+	if(mutantrace_variation && ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(DIGITIGRADE in H.dna.species.species_traits)
+			adjusted = DIGITIGRADE_STYLE
+		H.update_inv_w_uniform()

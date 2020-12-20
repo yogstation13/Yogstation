@@ -52,15 +52,15 @@
 /area/shuttle/auxillary_base)
 "P" = (
 /obj/docking_port/mobile/auxillary_base{
-	dheight = 4;
-	dir = 2;
-	dwidth = 4;
-	height = 9;
-	width = 9
+	dir = 2
 	},
 /obj/machinery/bluespace_beacon,
 /obj/machinery/computer/auxillary_base,
 /turf/closed/wall,
+/area/shuttle/auxillary_base)
+"S" = (
+/obj/machinery/sci_probe,
+/turf/open/floor/plating,
 /area/shuttle/auxillary_base)
 "U" = (
 /obj/structure/closet/secure_closet/miner/unlocked,
@@ -134,7 +134,7 @@ k
 k
 X
 P
-k
+S
 k
 k
 x

@@ -189,6 +189,8 @@ const ItemList = (props, context) => {
           })} />
       )}>
       {decodeHtmlEntities(item.desc)}
+      <br />
+      {item.manufacturer ? "Brought to you by: " + decodeHtmlEntities(item.manufacturer): ""}
     </Section>
   ));
 };

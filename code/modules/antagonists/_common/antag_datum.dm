@@ -153,7 +153,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 		if(istype(greentext_achieve))
 			SSachievements.unlock_achievement(greentext_achieve,owner.current)
 		else // The above still does award the generic greentext achievement, just implicitly.
-			SSachievements.unlock_achievement(/datum/achievement/greentext,owner.current.client) 
+			SSachievements.unlock_achievement(/datum/achievement/greentext,owner.current.client)
 	else
 		report += "<span class='redtext big'>The [name] has failed!</span>"
 
@@ -161,7 +161,11 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 //Displayed at the start of roundend_category section, default to roundend_category header
 /datum/antagonist/proc/roundend_report_header()
-	return 	"<span class='header'>The [roundend_category] were:</span><br>"
+	var/list/report = list()
+	report +="<span class='header'>The [roundend_category] were:</span><br>"
+	report +="<br>"
+
+	return report
 
 //Displayed at the end of roundend_category section
 /datum/antagonist/proc/roundend_report_footer()

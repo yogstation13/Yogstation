@@ -9,8 +9,8 @@
 	circuit = /obj/item/circuitboard/machine/chem_heater
 	var/obj/item/reagent_containers/beaker = null
 	var/target_temperature = 300
-	var/currentspeed = 10
-	var/heater_speed = 10
+	/// Multiplier for heat
+	var/heater_coefficient = 0.025
 	var/on = FALSE
 
 /obj/machinery/chem_heater/Destroy()
@@ -51,25 +51,30 @@
 	return TRUE
 
 /obj/machinery/chem_heater/RefreshParts()
-	heater_speed = 10
+	heater_coefficient = initial(heater_coefficient)
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
-		heater_speed *= M.rating
+		heater_coefficient *= M.rating
 
 /obj/machinery/chem_heater/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Heating reagents at <b>[heater_speed]K</b> per cycle.<span>"
+		. += "<span class='notice'>The status display reads: Heating reagents at <b>[heater_coefficient*1000]%</b> speed.<span>"
 
 /obj/machinery/chem_heater/process()
 	..()
 	if(stat & NOPOWER)
 		return
-	if(on && beaker?.reagents.total_volume)
-		currentspeed = heater_speed
-		if((beaker.reagents.chem_temp + heater_speed) >= target_temperature)
-			currentspeed = target_temperature - beaker.reagents.chem_temp
-		beaker.reagents.adjust_thermal_energy(currentspeed * SPECIFIC_HEAT_DEFAULT * beaker.reagents.total_volume)
-		beaker.reagents.handle_reactions()
+	if(on)
+		if(beaker && beaker.reagents.total_volume)
+			var/direction = beaker.reagents.chem_temp > target_temperature // is it cooling? used to allow it to snap to the target temp
+			var/heating = (1000 - beaker.reagents.chem_temp) * heater_coefficient * (direction ? -1 : 1) // How much to increase the heat by
+			if(heating + beaker.reagents.chem_temp >= target_temperature && !direction) // Heat snapping condition
+				heating = target_temperature - beaker.reagents.chem_temp // Makes it snap to target temp
+			else if(heating + beaker.reagents.chem_temp <= target_temperature && direction) // Cooling snapping condition
+				heating = target_temperature - beaker.reagents.chem_temp // Makes it snap to target temp
+
+			beaker.reagents.adjust_thermal_energy(heating * SPECIFIC_HEAT_DEFAULT * beaker.reagents.total_volume)
+			beaker.reagents.handle_reactions()
 
 /obj/machinery/chem_heater/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "mixer0b", "mixer0b", I))
