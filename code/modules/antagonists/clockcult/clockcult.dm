@@ -5,11 +5,9 @@
 	antagpanel_category = "Clockcult"
 	job_rank = ROLE_SERVANT_OF_RATVAR
 	antag_moodlet = /datum/mood_event/cult
-	var/datum/action/innate/hierophant/hierophant_network = new
+	var/datum/action/innate/hierophant/hierophant_network = new()
 	var/datum/team/clockcult/clock_team
-	var/make_team = TRUE			//This should be only false for tutorial scarabs or traitorcultists
-	var/agent = FALSE			//Can't use stuff deemed "too dangerous for non-cult rounds"
-	var/ignore_holy_water = FALSE	//Can the cultists be deconverted with holy water? set to no for traitorcultists because they aren't conversion antags
+	var/make_team = TRUE //This should be only false for tutorial scarabs
 
 /datum/antagonist/clockcult/silent
 	silent = TRUE
@@ -51,9 +49,6 @@
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/clockcultalr.ogg', 70, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/clockcult/on_gain()
-	if(agent)
-		..()//SKIPP
-		return
 	var/mob/living/current = owner.current
 	SSticker.mode.servants_of_ratvar += owner
 	SSticker.mode.update_servant_icons_added(owner)
@@ -178,9 +173,9 @@
 	log_admin("[key_name(admin)] has made [key_name(new_owner)] into a servant of Ratvar.")
 
 /datum/antagonist/clockcult/admin_remove(mob/user)
+	remove_servant_of_ratvar(owner.current, TRUE)
 	message_admins("[key_name_admin(user)] has removed clockwork servant status from [key_name_admin(owner)].")
 	log_admin("[key_name(user)] has removed clockwork servant status from [key_name(owner)].")
-	remove_servant_of_ratvar(owner.current, TRUE)
 
 /datum/antagonist/clockcult/get_admin_commands()
 	. = ..()
@@ -196,6 +191,17 @@
 	name = "Clockcult"
 	var/list/objective
 	var/datum/mind/eminence
+
+/datum/team/clockcult/New(starting_members)
+	. = ..()
+	START_PROCESSING(SSobj,src)
+
+/datum/team/clockcult/process()
+	GLOB.scripture_states = scripture_unlock_alert(GLOB.scripture_states)
+
+/datum/team/clockcult/Destroy(force, ...)
+	STOP_PROCESSING(SSobj,src)
+	. = ..()
 
 /datum/team/clockcult/proc/check_clockwork_victory()
 	if(GLOB.clockwork_gateway_activated)

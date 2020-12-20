@@ -270,14 +270,8 @@
 	sigil_name = "Vitality Matrix"
 	var/revive_cost = 150
 	var/sigil_active = FALSE
-	var/min_drain_health = -INFINITY //how much health the sigil can drain, allows a cap for traitorcultist sigils
-	var/can_dust = TRUE //can the sigil dust a corpse
 	var/animation_number = 3 //each cycle increments this by 1, at 4 it produces an animation and resets
 	var/static/list/damage_heal_order = list(CLONE, TOX, BURN, BRUTE, OXY) //we heal damage in this order
-
-/obj/effect/clockwork/sigil/vitality/agent
-	min_drain_health = 20
-	can_dust = FALSE
 
 /obj/effect/clockwork/sigil/vitality/examine(mob/user)
 	. = ..()
@@ -303,7 +297,7 @@
 		animation_number++
 		if(!is_servant_of_ratvar(L))
 			var/vitality_drained = 0
-			if(L.stat == DEAD && !consumed_vitality && can_dust)
+			if(L.stat == DEAD && !consumed_vitality)
 				consumed_vitality = TRUE //Prevent the target from being consumed multiple times
 				vitality_drained = L.maxHealth
 				var/obj/effect/temp_visual/ratvar/sigil/vitality/V = new /obj/effect/temp_visual/ratvar/sigil/vitality(get_turf(src))
@@ -315,11 +309,11 @@
 					if(!L.dropItemToGround(W))
 						qdel(W)
 				L.dust()
-			else if(L.health > min_drain_health)
+			else
 				if(!GLOB.ratvar_awakens && L.stat == CONSCIOUS)
-					vitality_drained = L.adjustToxLoss(1, forced = TRUE)
+					vitality_drained = L.adjustToxLoss(1)
 				else
-					vitality_drained = L.adjustToxLoss(1.5, forced = TRUE)
+					vitality_drained = L.adjustToxLoss(1.5)
 			if(vitality_drained)
 				GLOB.clockwork_vitality += vitality_drained
 			else

@@ -102,7 +102,5 @@
 	shield_health_regen = world.time + MARAUDER_SHIELD_REGEN_TIME
 	return TRUE
 
-/mob/living/simple_animal/hostile/clockwork/marauder/agent
-	agent = TRUE
 #undef MARAUDER_SLOWDOWN_PERCENTAGE
 #undef MARAUDER_SHIELD_REGEN_TIME
