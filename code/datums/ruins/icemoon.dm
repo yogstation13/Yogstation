@@ -7,6 +7,12 @@
 
 // above ground only
 
+/datum/map_template/ruin/icemoon/transitshuttle
+	name = "Transit Shuttle"
+	id = "transitshuttle"
+	description = "How did that get here?"
+	suffix = "icemoon_surface_shuttle_transit.dmm"
+
 /datum/map_template/ruin/icemoon/lust
 	name = "Ruin of Lust"
 	id = "lust"
