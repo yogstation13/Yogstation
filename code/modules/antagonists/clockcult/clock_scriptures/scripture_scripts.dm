@@ -23,6 +23,11 @@
 	quickbind = TRUE
 	quickbind_desc = "Creates a Replica Fabricator, which can convert various objects to Ratvarian variants."
 
+/datum/clockwork_scripture/create_object/replica_fabricator/get_spawn_path(mob/user)
+	if(!is_servant_of_ratvar(user, TRUE))
+		creator_message = "You form a replica fabricator. <span class='nezbere'>You can use this to make soul vessels out of positronic brains for soul extraction objectives</span>"
+		return /obj/item/clockwork/replica_fabricator/agent
+	return ..()
 
 //Ocular Warden: Creates an ocular warden, which defends a small area near it.
 /datum/clockwork_scripture/create_object/ocular_warden
@@ -50,7 +55,6 @@
 		return FALSE
 	return ..()
 
-
 //Vitality Matrix: Creates a sigil which will drain health from nonservants and can use that health to heal or even revive servants.
 /datum/clockwork_scripture/create_object/vitality_matrix
 	descname = "Trap, Damage to Healing"
@@ -77,6 +81,10 @@
 		return FALSE
 	return ..()
 
+/datum/clockwork_scripture/create_object/vitality_matrix/get_spawn_path(mob/user)
+	if(!is_servant_of_ratvar(user, TRUE))
+		return /obj/effect/clockwork/sigil/vitality/agent
+	return ..()
 
 //Judicial Visor: Creates a judicial visor, which can smite an area.
 /datum/clockwork_scripture/create_object/judicial_visor

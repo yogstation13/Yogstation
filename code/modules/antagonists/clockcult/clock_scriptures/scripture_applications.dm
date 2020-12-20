@@ -45,6 +45,10 @@
 	quickbind = TRUE
 	quickbind_desc = "Creates a Mania Motor, which causes minor damage and negative mental effects in non-Servants."
 
+/datum/clockwork_scripture/create_object/mania_motor/get_spawn_path(mob/user)
+	if(!is_servant_of_ratvar(user, TRUE))
+		return /obj/structure/destructible/clockwork/powered/mania_motor/agent
+	return ..()
 
 //Clockwork Obelisk: Creates a powerful obelisk that can be used to broadcast messages or open a gateway to any servant or clockwork obelisk at a power cost.
 /datum/clockwork_scripture/create_object/clockwork_obelisk
@@ -90,6 +94,11 @@
 	var/static/recent_marauders = 0
 	var/static/time_since_last_marauder = 0
 	var/static/scaled_recital_time = 0
+
+/datum/clockwork_scripture/create_object/construct/clockwork_marauder/get_spawn_path(mob/user)
+	if(!is_servant_of_ratvar(user, TRUE))
+		return /obj/item/clockwork/construct_chassis/clockwork_marauder/agent
+	return ..()
 
 /datum/clockwork_scripture/create_object/construct/clockwork_marauder/update_construct_limit()
 	var/human_servants = 0

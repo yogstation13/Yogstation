@@ -16,10 +16,16 @@
 	var/unlock_message
 	if(current_power >= SCRIPT_UNLOCK_THRESHOLD && !GLOB.script_scripture_unlocked)
 		GLOB.script_scripture_unlocked = TRUE
-		unlock_message = "<span class='large_brass bold'>The Ark swells as a key power threshold is reached. Script scriptures are now available.</span>"
+		if(SSticker.mode.clock_agent_team)
+			unlock_message = "<span class='sevtug'>The Hierophant Network is showing a jump in power from your sector; You should have access to Script level scriptures.</span>"
+		else
+			unlock_message = "<span class='large_brass bold'>The Ark swells as a key power threshold is reached. Script scriptures are now available.</span>"
 	if(current_power >= APPLICATION_UNLOCK_THRESHOLD && !GLOB.application_scripture_unlocked)
 		GLOB.application_scripture_unlocked = TRUE
-		unlock_message = "<span class='large_brass bold'>The Ark surges as a key power threshold is reached. Application scriptures are now available.</span>"
+		if(SSticker.mode.clock_agent_team)
+			unlock_message = "<span class='sevtug'>Power appears to have stayed on the rise, You'll have access to Application scriptures now if you're still alive.</span>"
+		else
+			unlock_message = "<span class='large_brass bold'>The Ark surges as a key power threshold is reached. Application scriptures are now available.</span>"
 	if(unlock_message && GLOB.servants_active)
 		hierophant_message(unlock_message)
 	return TRUE

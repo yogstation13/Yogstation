@@ -37,6 +37,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 	var/sort_priority = 1 //what position the scripture should have in a list of scripture. Should be based off of component costs/reqs, but you can't initial() lists.
 	var/chant_slowdown = 0 //slowdown added while chanting
 	var/no_mobility = TRUE //if false user can move while chanting
+	var/requires_cult = FALSE //if it can be cast by traitorcultists
 
 //messages for offstation scripture recital, courtesy ratvar's generals(and neovgre)
 	var/static/list/neovgre_penalty = list("Go to the station.", "Useless.", "Don't waste time.", "Pathetic.", "Wasteful.")
@@ -83,6 +84,9 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 
 /datum/clockwork_scripture/proc/can_recite() //If the words can be spoken
 	if(!invoker || !slab || invoker.get_active_held_item() != slab)
+		return FALSE
+	if(!is_servant_of_ratvar(invoker, requires_cult))
+		to_chat(invoker, "<span class='sevtug'>This kind of energy requires Ratvar's full attention, I'm not a miracle worker. On my own, at least.</span>")
 		return FALSE
 	if(!invoker.can_speak_vocal())
 		to_chat(invoker, "<span class='warning'>You are unable to speak the words of the scripture!</span>")
@@ -247,12 +251,16 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 		return FALSE
 	return TRUE
 
+/datum/clockwork_scripture/create_object/proc/get_spawn_path(mob/user)
+	return object_path
+
 /datum/clockwork_scripture/create_object/scripture_effects()
+	var/to_spawn = get_spawn_path(invoker)//in case flavortextchanges
 	if(creator_message && observer_message)
 		invoker.visible_message(observer_message, creator_message)
 	else if(creator_message)
 		to_chat(invoker, creator_message)
-	var/obj/O = new object_path (get_turf(invoker))
+	var/obj/O = new to_spawn(get_turf(invoker))
 	O.ratvar_act() //update the new object so it gets buffed if ratvar is alive
 	if(isitem(O) && put_object_in_hands)
 		invoker.put_in_hands(O)

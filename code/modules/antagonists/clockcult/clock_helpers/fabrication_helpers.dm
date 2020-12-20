@@ -127,6 +127,20 @@
 	consume_visual(fabricator, power_amount)
 	return list("operation_time" = 0, "new_obj_type" = null, "power_cost" = power_amount, "spawn_dir" = SOUTH)
 
+//MMI conversion for agents
+/obj/item/mmi/fabrication_vals(mob/living/user, obj/item/clockwork/replica_fabricator/fabricator, silent)
+	if(!fabricator.agent)
+		return FALSE //no way to use this currently
+	var/newtype = /obj/item/mmi/posibrain/soul_vessel/agent
+	return list("operation_time" = 0, "new_obj_type" = newtype, "power_cost" = 0, "spawn_dir" = SOUTH)
+
+//guvax implanters for agents
+/obj/item/implanter/fabrication_vals(mob/living/user, obj/item/clockwork/replica_fabricator/fabricator, silent)
+	if(!fabricator.agent)
+		return FALSE //again useless for normal clock cult
+	var/newtype = /obj/item/implanter/cult
+	return list("operation_time" = 0, "new_obj_type" = newtype, "power_cost" = 0, "spawn_dir" = SOUTH)
+
 //Airlock conversion
 /obj/machinery/door/airlock/fabrication_vals(mob/living/user, obj/item/clockwork/replica_fabricator/fabricator, silent)
 	var/doortype = /obj/machinery/door/airlock/clockwork

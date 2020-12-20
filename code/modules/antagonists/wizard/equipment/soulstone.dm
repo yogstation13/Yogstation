@@ -76,6 +76,15 @@
 	if(purified && iscultist(user))
 		to_chat(user, "<span class='warning'>Holy magic resides within the stone, you cannot use it.</span>")
 		return
+	if(user.mind.has_antag_datum(/datum/antagonist/cult/agent))
+		var/datum/team/T = SSticker.mode.blood_agent_team
+		for(var/datum/objective/soulshard/O in T?.objectives)
+			if(O.target == M.mind)
+				O.linked_stone = src
+				to_chat(user, "<span class='cultlarge'>\"Perfect. This is the one we need. Do not lose it.\"</span>")
+				log_combat(user, M, "captured [M.name]'s soul", src)
+				transfer_soul("VICTIM", M, user)
+		return
 	log_combat(user, M, "captured [M.name]'s soul", src)
 	transfer_soul("VICTIM", M, user)
 
@@ -90,6 +99,8 @@
 		return
 	if(purified && iscultist(user))
 		to_chat(user, "<span class='warning'>Holy magic resides within the stone, you cannot use it.</span>")
+		return
+	if(user.mind.has_antag_datum(/datum/antagonist/cult/agent))
 		return
 	release_shades(user)
 
@@ -328,3 +339,23 @@
 	init_shade(T, U)
 	qdel(T)
 	return TRUE
+
+////////////////////////////Cult Agent Stuff//////////////////////////////////////
+
+/obj/item/soulstone/attacked_by(obj/item/I, mob/user)
+	. = ..()
+	if(is_servant_of_ratvar(user) && istype(I, /obj/item/mmi/posibrain/soul_vessel/agent))
+		var/obj/item/mmi/posibrain/soul_vessel/agent/V
+		var/datum/team/T = SSticker.mode.clock_agent_team
+		for(var/datum/objective/soul_extraction/O in T?.objectives)
+			for(var/mob/living/simple_animal/shade/A in src)
+				if(O.target == A.mind)
+					to_chat(user, "<span class='nezbere'>That will do. Do not lose it.</span>")
+					V.braintype = "Slave"
+					V.transfer_personality(A)
+					V.linked_objective = O
+					O.linked_vessel = V //we did it boys we saved the universe
+					V.icon_state = "soul_vessel-occupied" //stuff here in case the captured person goes catatonic
+					V.dead_message = "<span class='brass'>Its cogwheel struggles to keep turning, but refuses to stop</span>"
+					qdel(src)
+					break

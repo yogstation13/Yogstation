@@ -24,6 +24,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	force_replace_ai_name = TRUE
 	overrides_aicore_laws = TRUE
+	var/agent = FALSE //agent vs not agent
 
 /obj/item/mmi/posibrain/soul_vessel/Initialize()
 	. = ..()
@@ -45,7 +46,7 @@
 /obj/item/mmi/posibrain/soul_vessel/transfer_personality(mob/candidate)
 	. = ..()
 	if(.)
-		add_servant_of_ratvar(brainmob, TRUE)
+		add_servant_of_ratvar(brainmob, TRUE, !agent, agent)
 
 /obj/item/mmi/posibrain/soul_vessel/attack_self(mob/living/user)
 	if(!is_servant_of_ratvar(user))

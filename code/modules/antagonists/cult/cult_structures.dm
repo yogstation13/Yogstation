@@ -102,7 +102,11 @@
 	if(cooldowntime > world.time)
 		to_chat(user, "<span class='cult italic'>The magic in [src] is weak, it will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>")
 		return
-	var/choice = alert(user,"You study the schematics etched into the altar...",,"Eldritch Whetstone","Construct Shell","Flask of Unholy Water")
+	var/choice
+	if(user.mind.has_antag_datum(/datum/antagonist/cult/agent))
+		choice = alert(user,"You study the schematics etched into the altar...",,"Eldritch Whetstone","Flask of Unholy Water")
+	else
+		choice = alert(user,"You study the schematics etched into the altar...",,"Eldritch Whetstone","Construct Shell","Flask of Unholy Water")
 	var/list/pickedtype = list()
 	switch(choice)
 		if("Eldritch Whetstone")
@@ -139,8 +143,8 @@
 		to_chat(user, "<span class='cult italic'>The magic in [src] is weak, it will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>")
 		return
 	var/choice
-	if(user.mind.has_antag_datum(/datum/antagonist/cult/master))
-		choice = alert(user,"You study the schematics etched into the forge...",,"Shielded Robe","Flagellant's Robe","Mirror Shield")
+	if(user.mind.has_antag_datum(/datum/antagonist/cult/agent))
+		choice = alert(user,"You study the schematics etched into the forge...",,"Shielded Robe", "Flagellant's Robe")
 	else
 		choice = alert(user,"You study the schematics etched into the forge...",,"Shielded Robe","Flagellant's Robe","Mirror Shield")
 	var/list/pickedtype = list()
@@ -256,7 +260,11 @@
 	if(cooldowntime > world.time)
 		to_chat(user, "<span class='cult italic'>The magic in [src] is weak, it will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>")
 		return
-	var/choice = alert(user,"You flip through the black pages of the archives...",,"Zealot's Blindfold","Shuttle Curse","Veil Walker Set")
+	var/choice
+	if(user.mind.has_antag_datum(/datum/antagonist/cult/agent))
+		choice = alert(user,"You flip through the black pages of the archives...",,"Zealot's Blindfold","Veil Walker Set")
+	else
+		choice = alert(user,"You flip through the black pages of the archives...",,"Zealot's Blindfold","Shuttle Curse","Veil Walker Set")
 	var/list/pickedtype = list()
 	switch(choice)
 		if("Zealot's Blindfold")

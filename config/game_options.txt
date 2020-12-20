@@ -235,6 +235,7 @@ SHUTTLE_REFUEL_DELAY 12000
 TRAITOR_SCALING_COEFF 7
 BROTHER_SCALING_COEFF 10
 CHANGELING_SCALING_COEFF 8
+AGENT_SCALING_COEFF 20
 
 ## Variables calculate how number of open security officer positions will scale to population.
 ## Used as (Officers = Population / Coeff)
