@@ -55,8 +55,6 @@
 	for(var/I in subtypesof(/datum/action/innate/cult/blood_spell))
 		var/datum/action/innate/cult/blood_spell/J = I
 		var/cult_name = initial(J.name)
-		if(!iscultist(owner, TRUE) && initial(J.requires_full_power))
-			continue
 		possible_spells[cult_name] = J
 	possible_spells += "(REMOVE SPELL)"
 	entered_spell_name = input(owner, "Pick a blood spell to prepare...", "Spell Choices") as null|anything in possible_spells
@@ -97,7 +95,6 @@
 	var/base_desc //To allow for updating tooltips
 	var/invocation
 	var/health_cost = 0
-	var/requires_full_power = FALSE //TRUE if agents can't use it
 
 /datum/action/innate/cult/blood_spell/Grant(mob/living/owner, datum/action/innate/cult/blood_magic/BM)
 	if(health_cost)
@@ -146,7 +143,6 @@
 	button_icon_state = "hand"
 	magic_path = "/obj/item/melee/blood_magic/stun"
 	health_cost = 10
-	requires_full_power = TRUE
 
 /datum/action/innate/cult/blood_spell/teleport
 	name = "Teleport"
@@ -180,7 +176,7 @@
 
 /datum/action/innate/cult/blood_spell/construction
 	name = "Twisted Construction"
-	desc = "Empowers your hand to corrupt certain metalic objects.<br><u>Converts:</u><br>Plasteel into runed metal<br>50 metal into a construct shell<br>30 sheets of reinforced glass into a soulstone<br>Living cyborgs into constructs after a delay<br>Cyborg shells into construct shells<br>Airlocks into brittle runed airlocks after a delay (harm intent)"
+	desc = "Empowers your hand to corrupt certain metalic objects.<br><u>Converts:</u><br>Plasteel into runed metal<br>50 metal into a construct shell<br>Living cyborgs into constructs after a delay<br>Cyborg shells into construct shells<br>Airlocks into brittle runed airlocks after a delay (harm intent)"
 	button_icon_state = "transmute"
 	magic_path = "/obj/item/melee/blood_magic/construction"
 	health_cost = 12
@@ -334,7 +330,6 @@
 	button_icon_state = "manip"
 	charges = 5
 	magic_path = "/obj/item/melee/blood_magic/manipulator"
-	requires_full_power = TRUE
 
 
 // The "magic hand" items
@@ -601,7 +596,6 @@
 	. += {"<u>A sinister spell used to convert:</u>\n
 	Plasteel into runed metal\n
 	[METAL_TO_CONSTRUCT_SHELL_CONVERSION] metal into a construct shell\n
-	[RGLASS_TO_SOULSTONE_CONVERSION] reinforced glass into a soul stone\n
 	Living cyborgs into constructs after a delay\n
 	Cyborg shells into construct shells\n
 	Airlocks into brittle runed airlocks after a delay (harm intent)"}
@@ -611,9 +605,7 @@
 		var/turf/T = get_turf(target)
 		if(istype(target, /obj/item/stack/sheet/metal))
 			var/obj/item/stack/sheet/candidate = target
-			if(!iscultist(user, TRUE))
-				to_chat(user, "<span class='warning'>The Veil is too strong here for you to effectively make constructs...</span>")
-			else if(candidate.use(METAL_TO_CONSTRUCT_SHELL_CONVERSION))
+			if(candidate.use(METAL_TO_CONSTRUCT_SHELL_CONVERSION))
 				uses--
 				to_chat(user, "<span class='warning'>A dark cloud emanates from your hand and swirls around the metal, twisting it into a construct shell!</span>")
 				new /obj/structure/constructshell(T)
@@ -621,21 +613,6 @@
 			else
 				to_chat(user, "<span class='warning'>You need [METAL_TO_CONSTRUCT_SHELL_CONVERSION] metal to produce a construct shell!</span>")
 				return
-		else if(user.mind.has_antag_datum(/datum/antagonist/cult/agent) && (istype(target, /obj/item/implanter) || istype(target, /obj/item/implantcase)))
-			uses--
-			to_chat(user, "<span class='warning'>A dark cloud emanates from your hand, [target] falling into it and a small soulstone fragment falling out!</span>")
-			new /obj/item/implanter/cult/blood(T)
-			qdel(target)
-			SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
-		else if(user.mind.has_antag_datum(/datum/antagonist/cult/agent) && istype(target, /obj/item/stack/sheet/rglass))
-			var/obj/item/stack/sheet/candidate = target
-			if(candidate.use(RGLASS_TO_SOULSTONE_CONVERSION))
-				uses--
-				to_chat(user, "<span class='warning'>A dark cloud emanates from your hand and swirls around the metal, twisting it into a soulstone!</span>")
-				new /obj/item/soulstone(T)
-				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
-			else
-				to_chat(user, "<span class='warning'>You need [RGLASS_TO_SOULSTONE_CONVERSION] reinforced glass to produce a soulstone!</span>")
 		else if(istype(target, /obj/item/stack/sheet/plasteel))
 			var/obj/item/stack/sheet/plasteel/candidate = target
 			var/quantity = candidate.amount
@@ -835,9 +812,7 @@
 						to_chat(user, "<span class='cultitalic'>You need a free hand for this rite!</span>")
 						qdel(rite)
 			if("Blood Beam (500)")
-				if(!iscultist(user, TRUE))
-					to_chat(user, "<span class='warning'>The Veils is not weak enough here to call upon this power.</span>")
-				else if(uses < BLOOD_BEAM_COST)
+				if(uses < BLOOD_BEAM_COST)
 					to_chat(user, "<span class='cultitalic'>You need [BLOOD_BEAM_COST] charges to perform this rite.</span>")
 				else
 					var/obj/rite = new /obj/item/blood_beam()
