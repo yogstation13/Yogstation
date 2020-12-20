@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "megafauna, ash drakes and space dragons now have a literacy rate over 0"
