@@ -330,7 +330,5 @@ Slimecrossing Items
 		carbie.gain_trauma(/datum/brain_trauma/special/beepsky,TRAUMA_RESILIENCE_ABSOLUTE)
 		qdel(src)
 		return
-
 	stack_item.add(amt)
-
 	qdel(src)

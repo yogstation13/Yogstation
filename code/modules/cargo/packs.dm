@@ -2525,5 +2525,3 @@
 					/obj/item/toner,
 					/obj/item/toner)
 	crate_name = "toner crate"
-
-
