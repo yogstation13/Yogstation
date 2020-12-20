@@ -44,17 +44,8 @@ Credit where due:
 // PROCS //
 ///////////
 
-/proc/is_servant_of_ratvar(mob/M, require_cult = FALSE, holy_water_check = FALSE)
-	if(!istype(M) || isobserver(M))
-		return FALSE
-	var/datum/antagonist/clockcult/D = M?.mind?.has_antag_datum(/datum/antagonist/clockcult)
-	if(!D)
-		return FALSE
-	if(!require_cult || !D.agent)
-		return FALSE
-	if(!holy_water_check || !D.ignore_holy_water)
-		return FALSE
-	return TRUE
+/proc/is_servant_of_ratvar(mob/M)
+	return M?.mind?.has_antag_datum(/datum/antagonist/clockcult)
 
 /proc/is_eligible_servant(mob/M)
 	if(!istype(M))
@@ -78,14 +69,12 @@ Credit where due:
 		return TRUE
 	return FALSE
 
-/proc/add_servant_of_ratvar(mob/L, silent = FALSE, create_team = TRUE, agent = FALSE)
+/proc/add_servant_of_ratvar(mob/L, silent = FALSE, create_team = TRUE)
 	if(!L || !L.mind)
 		return
 	var/update_type = /datum/antagonist/clockcult
 	if(silent)
 		update_type = /datum/antagonist/clockcult/silent
-	if(agent)
-		update_type = /datum/antagonist/clockcult/agent
 	var/datum/antagonist/clockcult/C = new update_type(L.mind)
 	C.make_team = create_team
 	C.show_in_roundend = create_team //tutorial scarabs begone
@@ -119,6 +108,9 @@ Credit where due:
 			" in an endless grey void.<br>It cannot be allowed to escape"].</span>")
 			L.playsound_local(get_turf(L), 'sound/ambience/antag/clockcultalr.ogg', 40, TRUE, frequency = 100000, pressure_affected = FALSE)
 			flash_color(L, flash_color = list("#BE8700", "#BE8700", "#BE8700", rgb(0,0,0)), flash_time = 5)
+
+
+
 
 /proc/remove_servant_of_ratvar(mob/L, silent = FALSE)
 	if(!L || !L.mind)
@@ -389,5 +381,6 @@ Credit where due:
 	if(len_before_addition == round_credits.len)
 		round_credits += list("<center><h2>The servants were cast astray in the void!</h2>", "<center><h2>None shall remember their names!</h2>")
 	round_credits += "<br>"
+
 	round_credits += ..()
 	return round_credits
