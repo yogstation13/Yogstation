@@ -1,0 +1,4 @@
+author: "TheReddDragon"
+delete-after: true 
+changes: 
+  - bugfix: "preternis and other rad immune species with dna no longer mutate in radstorms"
