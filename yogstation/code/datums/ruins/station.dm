@@ -205,6 +205,7 @@
 	suffix = "hydro6.dmm"
 	name = "Hydroponics 6"
 
+//Transfer centre templates for box
 /datum/map_template/ruin/station/box/transfer/transfer1
 	id = "transfer1"
 	suffix = "transfer1.dmm"
@@ -250,6 +251,12 @@
 	suffix = "transfer9.dmm"
 	name = "Transfer 9"
 
+/datum/map_template/ruin/station/box/transfer/transfer10
+	id = "transfer10"
+	suffix = "transfer10.dmm"
+	name = "Transfer 10"
+
+// Eclipse exclusive templates
 /datum/map_template/ruin/station/eclipse
     prefix = "_maps/RandomRuins/StationRuins/EclipseStation/"
 
