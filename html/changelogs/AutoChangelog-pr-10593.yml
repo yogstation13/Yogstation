@@ -1,6 +1,0 @@
-author: "AdamElTablawy"
-delete-after: true 
-changes: 
-  - rscadd: "Added the WT occupying rifle crate to cargo, a single-shot WT rifle loaded with rubber bullets (can be swapped out)"
-  - rscdel: "Removed the WT autorifle burst fire crate from cargo"
-  - tweak: "Adjusted the prices of ballistic weapons in cargo"

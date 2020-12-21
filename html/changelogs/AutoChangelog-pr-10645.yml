@@ -1,6 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - rscadd: "Rapid Service Fabricators are now craftable in the servicelathe and autolathe"
-  - tweak: "Increased RSF matter units from 30 to 50"
-  - tweak: "RSF can accept sheets"

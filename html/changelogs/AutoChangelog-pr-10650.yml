@@ -1,5 +1,0 @@
-author: "  Hopek"
-delete-after: true 
-changes: 
-  - rscadd: "Adds a code variation framework for when the variations you are adding are too small to bother creating a map file in an effort to avoid clutter."
-  - rscadd: "Used the new code variation framework to add brig cell variations and perma cell variations."
