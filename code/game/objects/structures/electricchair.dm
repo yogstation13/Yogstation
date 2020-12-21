@@ -43,6 +43,6 @@
 			buckled_mob.electrocute_act(170, src, 1)
 			to_chat(buckled_mob, "<span class='userdanger'>You feel a deep shock course through your body!</span>")
 			if(buckled_mod.mind && is_revolutionary(buckled_mob) && prob(50))
-				buckled_mob.mind.remove_rev()
+				SSticker.mode.remove_revolutionary(buckled_mob.mind)
 				visible_message("<span class='danger'>The electric shock cleared [buckled_mob]'s brainwashing!'")
 	visible_message("<span class='danger'>The electric chair went off!</span>", "<span class='italics'>You hear a deep sharp shock!</span>")
