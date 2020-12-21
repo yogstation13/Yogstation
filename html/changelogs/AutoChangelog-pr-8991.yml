@@ -1,5 +1,0 @@
-author: " Theos for gamemode stuff, kevinz000 for cultless-cult code"
-delete-after: true 
-changes: 
-  - rscadd: "Adds a new gamemode: traitorcult. Like traitorbros, but with slower scaling and cult powers/themed objectives for the brother teams."
-  - rscadd: "cultists can be made without making a cult team for more gimmick stuff"

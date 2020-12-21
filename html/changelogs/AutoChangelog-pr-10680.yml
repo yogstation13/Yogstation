@@ -1,5 +1,0 @@
-author: "wejengin2"
-delete-after: true 
-changes: 
-  - bugfix: "removes some active turfs, removes some mapping errors on whiteships"
-  - tweak: "singulo engine are all engine areas on the inside"
