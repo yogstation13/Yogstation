@@ -40,7 +40,9 @@
 	if(has_buckled_mobs())
 		for(var/m in buckled_mobs)
 			var/mob/living/buckled_mob = m
-			buckled_mob.electrocute_act(85, src, 1)
+			buckled_mob.electrocute_act(170, src, 1)
 			to_chat(buckled_mob, "<span class='userdanger'>You feel a deep shock course through your body!</span>")
-			addtimer(CALLBACK(buckled_mob, /mob/living.proc/electrocute_act, 85, src, 1), 1)
+			if(ticker.mode.revolutionaries && buckled_mob.mind in ticker.mode.revolutionaries && prob(50))
+				buckled_mob.mind.remove_rev()
+				visible_message("<span class='danger'>The electric shock cleared [buckled_mob]'s brainwashing!'")
 	visible_message("<span class='danger'>The electric chair went off!</span>", "<span class='italics'>You hear a deep sharp shock!</span>")
