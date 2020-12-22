@@ -960,7 +960,7 @@
 	weight = 1
 	cost = 30
 	scaling_cost = 20
-	antag_cap = list(3,3,3,3,3,3,3,3,4,5)
+	antag_cap = list(3,3,3,3,3,3,3,3)
 	requirements = list(80,75,70,65,50,30,30,30,25,20)
 
 /datum/dynamic_ruleset/roundstart/darkspawn/pre_execute()
