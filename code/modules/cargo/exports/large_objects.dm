@@ -131,11 +131,11 @@
 	var/worth = 10
 
 	worth += C.air_contents.get_moles(/datum/gas/stimulum)*3
-    worth += C.air_contents.get_moles(/datum/gas/hypernoblium)*8
-    worth += C.air_contents.get_moles(/datum/gas/freon)*1
-    worth += C.air_contents.get_moles(/datum/gas/healium)*4
-    worth += C.air_contents.get_moles(/datum/gas/pluonium)*2
-    worth += C.air_contents.get_moles(/datum/gas/halon)*3
-    worth += C.air_contents.get_moles(/datum/gas/hexane)*2
-    worth += C.air_contents.get_moles(/datum/gas/zauker)*8
+	worth += C.air_contents.get_moles(/datum/gas/hypernoblium)*8
+	worth += C.air_contents.get_moles(/datum/gas/freon)*1
+	worth += C.air_contents.get_moles(/datum/gas/healium)*4
+	worth += C.air_contents.get_moles(/datum/gas/pluonium)*2
+	worth += C.air_contents.get_moles(/datum/gas/halon)*3
+	worth += C.air_contents.get_moles(/datum/gas/hexane)*2
+	worth += C.air_contents.get_moles(/datum/gas/zauker)*8
 	return worth
