@@ -1,0 +1,5 @@
+author: "wejengin2"
+delete-after: true 
+changes: 
+  - rscadd: "finger snapping emote"
+  - soundadd: " 2 finger snapping sounds"
