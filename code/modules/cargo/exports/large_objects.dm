@@ -129,7 +129,7 @@
 /datum/export/large/gas_canister/get_cost(obj/O)
 	var/obj/machinery/portable_atmospherics/canister/C = O
 	var/worth = 10
-
+	
 	worth += C.air_contents.get_moles(/datum/gas/stimulum)*3
 	worth += C.air_contents.get_moles(/datum/gas/hypernoblium)*8
 	worth += C.air_contents.get_moles(/datum/gas/freon)*1
