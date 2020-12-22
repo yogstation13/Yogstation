@@ -152,6 +152,17 @@
 		cell = null
 		update_icon()
 
+//inducer QoL
+/obj/item/inducer/AltClick()
+	if(!user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+		return
+	if(opened && cell)
+		user.visible_message("[user] removes [cell] from [src]!","<span class='notice'>You remove [cell].</span>")
+		cell.update_icon()
+		user.put_in_hands(cell)
+		cell = null
+		update_icon()
+
 
 /obj/item/inducer/examine(mob/living/M)
 	. = ..()
