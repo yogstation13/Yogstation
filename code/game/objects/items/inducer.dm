@@ -201,6 +201,10 @@
 	powertransfer = 300
 	opened = TRUE
 
+/obj/item/inducer/med/Initialize()
+	. = ..()
+	update_icon()
+
 /obj/item/inducer/med/proc/recharge(atom/movable/A, mob/user)
 	//this var is used to continue
 	var/medcheck = FALSE
