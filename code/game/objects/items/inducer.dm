@@ -189,7 +189,7 @@
 	item_state = "inducer-med"
 	desc = "A tool for inductively charging internal power cells. This one has a medical color scheme, and is less potent than its engineering counterpart."
 	cell_type = null
-	powertransfer = 300
+	powertransfer = 200
 	opened = TRUE
 
 /obj/item/inducer/med/Initialize()
@@ -210,6 +210,7 @@
 		//apcs should be able to be charged too
 		if (istype(A,/obj/machinery/power/apc))
 			medcheck = TRUE 
+
 	if (!medcheck)
 		if (istype(A,/obj))
 			to_chat(user,"Error: This inducer can only recharge medical items.")
@@ -224,5 +225,5 @@
 		return
 
 	if(recharge(M, user))
-		return
+		return FALSE
 	return ..()
