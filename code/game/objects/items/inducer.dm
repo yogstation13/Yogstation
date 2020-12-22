@@ -153,15 +153,6 @@
 		update_icon()
 
 //inducer QoL
-/obj/item/inducer/AltClick()
-	if(!user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
-		return
-	if(opened && cell)
-		user.visible_message("[user] removes [cell] from [src]!","<span class='notice'>You remove [cell].</span>")
-		cell.update_icon()
-		user.put_in_hands(cell)
-		cell = null
-		update_icon()
 
 
 /obj/item/inducer/examine(mob/living/M)
@@ -205,9 +196,9 @@
 	. = ..()
 	update_icon()
 
-/obj/item/inducer/med/proc/recharge(atom/movable/A, mob/user)
+/obj/item/inducer/med/recharge(atom/movable/A, mob/user)
 	//this var is used to continue
-	var/medcheck = FALSE
+	var/medcheck = null
 	//is this a medical inducer
 	if (istype(src,/obj/item/inducer/med))
 		//are we trying to charge a defib
@@ -218,9 +209,20 @@
 			medcheck = TRUE
 		//apcs should be able to be charged too
 		if (istype(A,/obj/machinery/power/apc))
-	if (medcheck == FALSE)
+			medcheck = TRUE 
+	if (!medcheck)
 		if (istype(A,/obj))
 			to_chat(user,"Error: This inducer can only recharge medical items.")
 		return
-	if (medCheck == TRUE)
-		. = ..()
+	. = ..()
+
+/obj/item/inducer/med/attack(mob/M, mob/user)
+	if(user.a_intent == INTENT_HARM)
+		return ..()
+
+	if(cantbeused(user))
+		return
+
+	if(recharge(M, user))
+		return
+	return ..()
