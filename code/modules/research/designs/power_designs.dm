@@ -77,6 +77,16 @@
 	category = list("Power Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
+/datum/design/medinducer
+	name = "Medical Inducer"
+	desc = "The NT-75 Electromagnetic Power Inducer can wirelessly induce electric charge in an object, allowing you to recharge power cells without having to remove them."
+	id = "medinducer"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500)
+	build_path = /obj/item/inducer/med
+	category = list("Power Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+
 /datum/design/board/pacman
 	name = "Machine Design (PACMAN-type Generator Board)"
 	desc = "The circuit board that for a PACMAN-type portable generator."
