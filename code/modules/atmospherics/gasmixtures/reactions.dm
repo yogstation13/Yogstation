@@ -646,7 +646,7 @@ nobliumformation = 1001
 	var/old_heat_capacity = air.heat_capacity()
 	var/heat_efficency = min(temperature * 0.01, air.get_moles(/datum/gas/hydrogen), air.get_moles(/datum/gas/bz))
 	var/energy_used = heat_efficency * 600
-	if ((air.get_moles(/datum/gas/hydrogen) - (heat_efficency * 5 < 0 )) || (air.get_moles(/datum/gas/bz) - (heat_efficency * 0.25 < 0))) //Shouldn't produce gas from nothing.
+	if (air.get_moles(/datum/gas/hydrogen) - (heat_efficency * 5) < 0  || air.get_moles(/datum/gas/bz) - (heat_efficency * 0.25) < 0) //Shouldn't produce gas from nothing.
 		return NO_REACTION
 	air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 5))
 	air.adjust_moles(/datum/gas/bz, -(heat_efficency * 0.25))
