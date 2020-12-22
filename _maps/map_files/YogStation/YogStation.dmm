@@ -31723,6 +31723,9 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"cfj" = (
+/turf/closed/wall,
+/area/maintenance/disposal/incinerator)
 "cfm" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -39830,12 +39833,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
-"gPX" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/closed/wall/r_wall,
-/area/maintenance/disposal/incinerator)
 "gQe" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -58819,6 +58816,12 @@
 	},
 /turf/open/floor/engine/airless,
 /area/space)
+"uxS" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
+/area/maintenance/disposal/incinerator)
 "uxT" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -102437,12 +102440,12 @@ bMU
 bvA
 aaa
 cmd
-cmd
-cmd
+cfj
+cfj
 ewU
+cfj
 cmd
-cmd
-gPX
+uxS
 cmd
 aaa
 aaa
