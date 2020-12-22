@@ -181,3 +181,11 @@
 /obj/item/inducer/sci/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/inducer/med
+	icon_state = "inducer-med"
+	item_state = "inducer-med"
+	desc = "A tool for inductively charging internal power cells. This one has a medical color scheme, and is less potent than its engineering counterpart."
+	cell_type = null
+	powertransfer = 300
+	opened = TRUE
