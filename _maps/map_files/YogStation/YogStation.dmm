@@ -15772,12 +15772,6 @@
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/wood,
 /area/medical/psych)
-"aRB" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/maintenance/disposal/incinerator)
 "aRC" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -31729,9 +31723,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"cfj" = (
-/turf/closed/wall,
-/area/maintenance/disposal/incinerator)
 "cfm" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -39839,6 +39830,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
+"gPX" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
+/area/maintenance/disposal/incinerator)
 "gQe" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -102439,14 +102436,14 @@ bMO
 bMU
 bvA
 aaa
-cfj
-cfj
-cfj
+cmd
+cmd
+cmd
 ewU
-cfj
-cfj
-aRB
-cfj
+cmd
+cmd
+gPX
+cmd
 aaa
 aaa
 aaa
@@ -102696,7 +102693,7 @@ wAc
 bMA
 bvA
 aaf
-cfj
+cmd
 qQi
 sVj
 vvW
@@ -102953,7 +102950,7 @@ bMA
 bMA
 bvA
 aoV
-cfj
+cmd
 jkG
 nYI
 cQn
@@ -103210,7 +103207,7 @@ bvA
 bvA
 bvA
 aaf
-cfj
+cmd
 fJS
 typ
 hMp
@@ -103467,7 +103464,7 @@ aaf
 aaf
 aaf
 aaf
-cfj
+cmd
 sJh
 reN
 rVk
@@ -103722,9 +103719,9 @@ tQD
 bKT
 bKT
 bKT
-cfj
-cfj
-cfj
+cmd
+cmd
+cmd
 vrb
 oqL
 cmd
@@ -103979,7 +103976,7 @@ bzs
 xyU
 xQk
 nIr
-cfj
+cmd
 fSc
 wPB
 aGR
@@ -104493,9 +104490,9 @@ bjz
 bzs
 bzs
 bzs
-cfj
-cfj
-cfj
+cmd
+cmd
+cmd
 hED
 aRH
 cmd
@@ -104752,7 +104749,7 @@ ldW
 ldW
 ldW
 dDZ
-cfj
+cmd
 qWY
 bPq
 cmd
