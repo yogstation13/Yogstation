@@ -46,7 +46,7 @@
 	build_path = /obj/item/flashlight
 	category = list("initial","Tools")
 
-/datum/design/flashlight
+/datum/design/blastdoorcontroller
 	name = "Blast Door Controller"
 	id = "blastdoorcontroller"
 	build_type = AUTOLATHE
