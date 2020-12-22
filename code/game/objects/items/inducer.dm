@@ -200,3 +200,23 @@
 	cell_type = null
 	powertransfer = 300
 	opened = TRUE
+
+/obj/item/inducer/med/proc/recharge(atom/movable/A, mob/user)
+	//this var is used to continue
+	var/medcheck = FALSE
+	//is this a medical inducer
+	if (istype(src,/obj/item/inducer/med))
+		//are we trying to charge a defib
+		if (istype(A,/obj/item/defibrillator))
+			medcheck = TRUE
+		//are we trying to charge a chemmaster
+		if (istype(A,/obj/machinery/chem_master))
+			medcheck = TRUE
+		//apcs should be able to be charged too
+		if (istype(A,/obj/machinery/power/apc))
+	if (medcheck == FALSE)
+		if (istype(A,/obj))
+			to_chat(user,"Error: This inducer can only recharge medical items.")
+		return
+	if (medCheck == TRUE)
+		. = ..()
