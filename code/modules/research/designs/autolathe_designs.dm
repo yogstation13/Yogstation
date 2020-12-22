@@ -449,6 +449,15 @@
 	category = list("initial","Misc", "Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
+/datum/design/rsf
+	name = "Rapid Service Fabricator (RSF)"
+	id = "rsf"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 15000, /datum/material/glass = 7500)
+	build_path = /obj/item/rsf
+	category = list("initial","Misc", "Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
 /datum/design/foilhat
 	name = "Tinfoil Hat"
 	id = "tinfoil_hat"
