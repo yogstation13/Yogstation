@@ -1,5 +1,7 @@
 #This file contains the deafult values of private_server.txt that should be used in testing senarios. If you are a downstream, you should instead edit private_server.txt with your custom config options and include it from secret.txt. If you are looking to suggest changes to the server configuration used on yogstation, you should instead edit private_server.txt
 
+$include resources.txt
+
 ## World address and port for server receiving cross server messages
 ## Use '+' to denote spaces in ServerName
 ## Repeat this entry to add more servers

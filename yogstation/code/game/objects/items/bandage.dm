@@ -95,7 +95,7 @@
 		to_chat(user, "This doesn't look like it'll work.")
 		return FALSE
 
-/obj/item/medical/bandage/proc/wash(obj/O, mob/user)
+/obj/item/medical/bandage/proc/wash2(obj/O, mob/user)
 	if (src.used)
 		to_chat(user, "You clean [src] fastidiously washing away as much of the detritus and residue as you can. The bandage can probably be used again now.")
 		name = "reused bandages"

@@ -111,7 +111,7 @@
 	UNTIL(tgui_panel)
 
 	if(prefs && (prefs.toggles & SOUND_LOBBY))
-		tgui_panel?.play_music(SSticker.login_music)
+		tgui_panel?.play_music(SSticker.login_music_data["url"], SSticker.login_music_data)
 		to_chat(src, "<span class='notice'>Currently playing: </span>[SSticker.selected_lobby_music]")
 
 /proc/get_rand_frequency()

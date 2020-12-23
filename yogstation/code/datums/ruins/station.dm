@@ -65,6 +65,11 @@
 	suffix = "bar_clock.dmm"
 	name = "Bar Clock"
 
+/datum/map_template/ruin/station/box/bar/arcade
+	id = "bar_arcade"
+	suffix = "bar_arcade.dmm"
+	name = "Bar Arcade"
+
 /datum/map_template/ruin/station/box/engine
 	id = "engine_sm"
 	suffix = "engine_sm.dmm"

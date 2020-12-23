@@ -34,10 +34,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
-"gA" = (
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/plating,
-/area/template_noop)
 "gJ" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance/two,
@@ -421,7 +417,7 @@ XV
 "}
 (9,1,1) = {"
 WB
-gA
+DU
 ch
 gP
 gP

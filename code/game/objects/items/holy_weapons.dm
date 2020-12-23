@@ -264,8 +264,6 @@
   M : The mob choosing a nullrod reskin
   */
 /obj/item/nullrod/proc/reskin_holy_weapon(mob/M)
-	if(GLOB.holy_weapon_type)
-		return
 	var/list/display_names = list()
 	var/list/nullrod_icons = list()
 	for(var/V in typesof(/obj/item/nullrod))

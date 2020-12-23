@@ -34,7 +34,7 @@
 /datum/reagent/toxin/mutagen/reaction_mob(mob/living/carbon/M, method=TOUCH, reac_volume)
 	if(!..())
 		return
-	if(!M.has_dna() || HAS_TRAIT(M, TRAIT_RADIMMUNE) || HAS_TRAIT(M, TRAIT_BADDNA))
+	if(!M.has_dna() || HAS_TRAIT(M, TRAIT_GENELESS) || HAS_TRAIT(M, TRAIT_BADDNA))
 		return  //No robots, AIs, aliens, Ians or other mobs should be affected by this.
 	if((method==VAPOR && prob(min(33, reac_volume))) || method==INGEST || method==PATCH || method==INJECT)
 		M.randmuti()
@@ -89,6 +89,22 @@
 	color = "#7DC3A0"
 	toxpwr = 0
 	taste_description = "acid"
+
+/datum/reagent/toxin/hot_ice
+	name = "Hot Ice Slush"
+	description = "Frozen plasma, worth its weight in gold, to the right people"
+	reagent_state = SOLID
+	color = "#724cb8" // rgb: 114, 76, 184
+	taste_description = "thick and smokey"
+	specific_heat = SPECIFIC_HEAT_PLASMA
+	toxpwr = 3
+
+/datum/reagent/toxin/hot_ice/on_mob_life(mob/living/carbon/M)
+	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
+		holder.remove_reagent(/datum/reagent/medicine/epinephrine, 2*REM)
+	M.adjustPlasma(20)
+	M.adjust_bodytemperature(-7 * TEMPERATURE_DAMAGE_COEFFICIENT, M.get_body_temp_normal())
+	return ..()
 
 /datum/reagent/toxin/lexorin/on_mob_life(mob/living/carbon/C)
 	. = TRUE
@@ -466,6 +482,12 @@
 	color = "#00B4FF"
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
 	toxpwr = 1.25
+
+/datum/reagent/toxin/cyanide/reaction_turf(turf/T, reac_volume)
+	if(istype(T, /turf/open/floor/carpet))
+		var/turf/open/floor/F = T
+		F.ChangeTurf(/turf/open/floor/carpet/cyan, flags = CHANGETURF_INHERIT_AIR)
+	..()
 
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/carbon/M)
 	if(prob(5))

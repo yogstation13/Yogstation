@@ -952,3 +952,62 @@
 	if(A && A != src && get_dist(src, A) < 2)
 		var/mob/living/carbon/C = src
 		C.give()
+
+/// Returns whether or not the carbon should be able to be shocked
+/mob/living/carbon/proc/should_electrocute(power_source)
+	if (ismecha(loc))
+		return FALSE
+
+	if (wearing_shock_proof_gloves())
+		return FALSE
+
+	if(!get_powernet_info_from_source(power_source))
+		return FALSE
+
+	if (HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
+		return FALSE
+
+	return TRUE
+
+/// Returns if the carbon is wearing shock proof gloves
+/mob/living/carbon/proc/wearing_shock_proof_gloves()
+	return gloves?.siemens_coefficient == 0
+
+/mob/living/carbon/wash(clean_types)
+	. = ..()
+	// Wash equipped stuff that cannot be covered
+	for(var/i in held_items)
+		var/obj/item/held_thing = i
+		if(!held_thing)
+			return
+		
+		if(held_thing.wash(clean_types))
+			. = TRUE
+	if(back?.wash(clean_types))
+		update_inv_back(0)
+		. = TRUE
+	if(head?.wash(clean_types))
+		update_inv_head()
+		. = TRUE
+		// Check and wash stuff that can be covered
+	var/list/obscured = check_obscured_slots()
+
+	// If the eyes are covered by anything but glasses, that thing will be covering any potential glasses as well.
+	if(glasses && is_eyes_covered(FALSE, TRUE, TRUE) && glasses.wash(clean_types))
+		update_inv_glasses()
+		. = TRUE
+	if(wear_mask && !(ITEM_SLOT_MASK in obscured) && wear_mask.wash(clean_types))
+		update_inv_wear_mask()
+		. = TRUE
+	if(ears && !(ITEM_SLOT_EARS in obscured) && ears.wash(clean_types))
+		update_inv_ears()
+		. = TRUE
+	if(wear_neck && !(ITEM_SLOT_NECK in obscured) && wear_neck.wash(clean_types))
+		update_inv_neck()
+		. = TRUE
+	if(shoes && !(ITEM_SLOT_FEET in obscured) && shoes.wash(clean_types))
+		update_inv_shoes()
+		. = TRUE
+	if(gloves && !(ITEM_SLOT_GLOVES in obscured) && gloves.wash(clean_types))
+		update_inv_gloves()
+		. = TRUE

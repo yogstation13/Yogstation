@@ -18,6 +18,7 @@ SUBSYSTEM_DEF(ticker)
 	var/datum/game_mode/mode = null
 
 	var/login_music							//music played in pregame lobby
+	var/login_music_data
 	var/round_end_sound						//music/jingle played when the world reboots
 	var/round_end_sound_sent = TRUE			//If all clients have loaded it
 
@@ -112,7 +113,9 @@ SUBSYSTEM_DEF(ticker)
 		login_music = pick(music)
 	else
 		login_music = "[global.config.directory]/title_music/sounds/[pick(music)]"*/
+	login_music_data = list()
 	login_music = choose_lobby_music()
+
 	if(!login_music)
 		to_chat(world, "<span class='boldwarning'>Could not load lobby music.</span>") //yogs end
 

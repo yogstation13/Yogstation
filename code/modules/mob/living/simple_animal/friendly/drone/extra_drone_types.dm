@@ -157,6 +157,7 @@
 	return FALSE
 
 /mob/living/simple_animal/drone/cogscarab/alert_drones(msg, dead_can_hear = FALSE)
+	var/turf/A = get_area(src)
 	if(msg == DRONE_NET_CONNECT)
 		msg = "<span class='brass'><i>Hierophant Network:</i> [name] activated.</span>"
 	else if(msg == DRONE_NET_DISCONNECT)

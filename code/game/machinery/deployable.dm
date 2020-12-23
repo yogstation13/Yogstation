@@ -14,6 +14,7 @@
 	anchored = TRUE
 	density = TRUE
 	max_integrity = 100
+	layer = ABOVE_WINDOW_LAYER // Barricades should probably be over windows especially if you can put them on windows
 	var/proj_pass_rate = 50 //How many projectiles will pass the cover. Lower means stronger cover
 	var/bar_material = METAL
 
@@ -94,6 +95,15 @@
 	drop_amount = 1
 	max_integrity = 50
 	proj_pass_rate = 65
+
+/obj/structure/barricade/wooden/crude/attackby(obj/item/I, mob/user) // Make it so you cant turn crude planks into walls
+	if(I.tool_behaviour == TOOL_CROWBAR && user.a_intent != INTENT_HARM)
+		user.visible_message("[user.name] starts prying [src.name] apart.", \
+							"<span class='notice'>You start prying the barricade apart</span>")
+		if(I.use_tool(src, user, 190, volume=50))
+			to_chat(user, "<span class='notice'>You disassemble the barricade.</span>")
+			new /obj/item/stack/sheet/mineral/wood(user.loc, 5)
+			qdel(src)
 
 /obj/structure/barricade/wooden/crude/snow
 	desc = "This space is blocked off by a crude assortment of planks. It seems to be covered in a layer of snow."

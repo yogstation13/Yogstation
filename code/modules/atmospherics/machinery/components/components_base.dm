@@ -38,7 +38,7 @@
 		plane = FLOOR_PLANE
 
 	if(!showpipe)
-		return //no need to update the pipes if they aren't showing
+		return ..()//no need to update the pipes if they aren't showing
 
 	var/connected = 0 //Direction bitset
 
@@ -55,12 +55,13 @@
 
 	if(!shift_underlay_only)
 		PIPING_LAYER_SHIFT(src, piping_layer)
+	return ..()
 
 /obj/machinery/atmospherics/components/proc/get_pipe_underlay(state, dir, color = null)
 	if(color)
-		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir, color, piping_layer = shift_underlay_only ? piping_layer : 2)
+		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir, color, piping_layer = shift_underlay_only ? piping_layer : 3)
 	else
-		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir, piping_layer = shift_underlay_only ? piping_layer : 2)
+		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir, piping_layer = shift_underlay_only ? piping_layer : 3)
 
 // Pipenet stuff; housekeeping
 

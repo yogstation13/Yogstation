@@ -1,7 +1,7 @@
 /client/proc/one_click_antag()
 	set name = "Create Antagonist"
 	set desc = "Auto-create an antagonist of your choice"
-	set category = "Admin.Fun"
+	set category = "Admin.Round Interaction"
 
 	if(holder)
 		holder.one_click_antag()

@@ -12,7 +12,7 @@
 	. += "<span class='notice'>Has a neat <i>selection menu</i> for modifying airlock access levels.</span>"
 
 /obj/item/electronics/airlock/ui_state(mob/user)
-	return GLOB.hands_state
+	return GLOB.always_state
 
 /obj/item/electronics/airlock/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

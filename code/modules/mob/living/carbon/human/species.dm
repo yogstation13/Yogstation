@@ -1176,12 +1176,12 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	return 0
 
 /datum/species/proc/handle_mutations_and_radiation(mob/living/carbon/human/H)
+	if(HAS_TRAIT(H, TRAIT_RADIMMUNE))
+		H.radiation = 0
+		return TRUE
+
 	. = FALSE
 	var/radiation = H.radiation
-
-	if(HAS_TRAIT(H, TRAIT_RADIMMUNE))
-		radiation = 0
-		return TRUE
 
 	if(radiation > RAD_MOB_KNOCKDOWN && prob(RAD_MOB_KNOCKDOWN_PROB))
 		if(!H.IsParalyzed())
@@ -1236,7 +1236,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				. += I.slowdown
 		if(!HAS_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN))
 			var/health_deficiency = max(H.maxHealth - H.health, H.staminaloss)
-			if(health_deficiency >= 40)
+			if(health_deficiency >= H.maxHealth * 0.4)
+				if(HAS_TRAIT(H, TRAIT_RESISTDAMAGESLOWDOWN))
+					health_deficiency *= 0.5
 				if(flight)
 					. += (health_deficiency / 75)
 				else

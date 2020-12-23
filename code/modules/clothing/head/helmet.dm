@@ -73,6 +73,14 @@
 			return
 	return ..()
 
+/obj/item/clothing/head/helmet/sec/occupying
+	name = "occupying force helmet"
+	desc = "Standard deployment gear. Protects the head from impacts and has a built in mounted light."
+
+/obj/item/clothing/head/helmet/sec/occupying/Initialize(mob/user)
+	attached_light = new /obj/item/flashlight/seclite(null)
+	. = ..()
+
 /obj/item/clothing/head/helmet/alt
 	name = "bulletproof helmet"
 	desc = "A bulletproof combat helmet that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."

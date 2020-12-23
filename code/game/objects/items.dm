@@ -811,3 +811,15 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 /obj/item/proc/doStrip(mob/stripper, mob/owner)
 	return owner.dropItemToGround(src)
+
+///Returns the temperature of src. If you want to know if an item is hot use this proc.
+/obj/item/proc/get_temperature()
+	return heat
+
+// Update icons if this is being carried by a mob
+/obj/item/wash(clean_types)
+	. = ..()
+
+	if(ismob(loc))
+		var/mob/mob_loc = loc
+		mob_loc.regenerate_icons()

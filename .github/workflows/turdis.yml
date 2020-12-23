@@ -14,7 +14,7 @@ on:
 jobs:
   lint:
     name: Lints
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         
@@ -26,7 +26,7 @@ jobs:
           restore-keys: ${{ runner.os }}-dreamchecker
 
       - name: Setup Python
-        uses: actions/setup-python@v1.2.0
+        uses: actions/setup-python@v2
       
       - name: Setup Rust
         uses: hecrj/setup-rust-action@v1.3.2
@@ -59,7 +59,7 @@ jobs:
         
   compile:
     name: Compile All Maps
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         
@@ -93,7 +93,7 @@ jobs:
           tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS yogstation.dme  
   test:
     name: Compile and Run Tests
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     services:
       mariadb:
        image: mariadb/server

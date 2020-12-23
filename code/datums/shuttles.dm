@@ -417,25 +417,29 @@
 	name = "fancy transport ferry"
 	description = "At some point, someone upgraded the ferry to have fancier flooring... and fewer seats."
 
-/datum/map_template/shuttle/whiteship/hospital
-	suffix = "hospital"
+/datum/map_template/shuttle/whiteship/box
+	suffix = "box"
 	name = "Hospital Ship"
 
-/datum/map_template/shuttle/whiteship/salvage
-	suffix = "salvage"
+/datum/map_template/shuttle/whiteship/meta
+	suffix = "meta"
 	name = "Salvage Ship"
 
-/datum/map_template/shuttle/whiteship/ufo
-	suffix = "ufo"
+/datum/map_template/shuttle/whiteship/pubby
+	suffix = "pubby"
 	name = "NT White UFO"
 
-/datum/map_template/shuttle/whiteship/construction
-	suffix = "construction"
+/datum/map_template/shuttle/whiteship/cere
+	suffix = "cere"
 	name = "NT Construction Vessel"
 
-/datum/map_template/shuttle/whiteship/frigate
-	suffix = "frigate"
+/datum/map_template/shuttle/whiteship/delta
+	suffix = "delta"
 	name = "NT Frigate"
+
+/datum/map_template/shuttle/whiteship/pod
+	suffix = "whiteship_pod"
+	name = "Salvage Pod"
 
 /datum/map_template/shuttle/cargo/box
 	suffix = "box"

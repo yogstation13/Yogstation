@@ -47,7 +47,8 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/clothing/shoes/wheelys = 2,
 		/obj/item/clothing/shoes/kindleKicks = 2,
 		/obj/item/storage/belt/military/snack = 2,
-		/obj/item/clothing/gloves/rapid/hug = 2))
+		/obj/item/clothing/gloves/rapid/hug = 2,
+		/obj/item/toy/plush/mothplushie = 2))
 
 /obj/machinery/computer/arcade
 	name = "random arcade"
@@ -76,6 +77,13 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		new CB.build_path(loc, CB)
 		return INITIALIZE_HINT_QDEL
 	Reset()
+
+/obj/machinery/computer/arcade/update_icon()
+	if(dir == 2)
+		icon_screen = "invaders"
+	else
+		icon_screen = ""
+	. = ..()
 
 /obj/machinery/computer/arcade/proc/prizevend(mob/user)
 	SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "arcade", /datum/mood_event/arcade)

@@ -64,8 +64,6 @@
 	//List of datums orbiting this atom
 	var/datum/component/orbiter/orbiters
 
-	/// Will move to flags_1 when i can be arsed to (2019, has not done so)
-	var/rad_flags = NONE
 	/// Radiation insulation types
 	var/rad_insulation = RAD_NO_INSULATION
 
@@ -603,6 +601,24 @@
 /atom/proc/wash_cream()
 	return TRUE
 
+/**
+  * Wash this atom
+  *
+  * This will clean it off any temporary stuff like blood. Override this in your item to add custom cleaning behavior.
+  * Returns true if any washing was necessary and thus performed
+  * Arguments:
+  * * clean_types: any of the CLEAN_ constants
+  */
+/atom/proc/wash(clean_types)
+	. = FALSE
+	if(SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, clean_types))
+		. = TRUE
+
+	// Basically "if has washable coloration"
+	if(length(atom_colours) >= WASHABLE_COLOUR_PRIORITY && atom_colours[WASHABLE_COLOUR_PRIORITY])
+		remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+		return TRUE
+
 ///Is this atom in space
 /atom/proc/isinspace()
 	if(isspaceturf(get_turf(src)))
@@ -819,8 +835,7 @@
 ///Removes an instance of colour_type from the atom's atom_colours list
 /atom/proc/remove_atom_colour(colour_priority, coloration)
 	if(!atom_colours)
-		atom_colours = list()
-		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
+		return
 	if(colour_priority > atom_colours.len)
 		return
 	if(coloration && atom_colours[colour_priority] != coloration)
@@ -828,13 +843,11 @@
 	atom_colours[colour_priority] = null
 	update_atom_colour()
 
-
-///Resets the atom's color to null, and then sets it to the highest priority colour available
 /atom/proc/update_atom_colour()
-	if(!atom_colours)
-		atom_colours = list()
-		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
+///Resets the atom's color to null, and then sets it to the highest priority colour available
 	color = null
+	if(!atom_colours)
+		return
 	for(var/C in atom_colours)
 		if(islist(C))
 			var/list/L = C
@@ -879,6 +892,7 @@
 	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"
 	.["Trigger EM pulse"] = "?_src_=vars;[HrefToken()];emp=[REF(src)]"
 	.["Trigger explosion"] = "?_src_=vars;[HrefToken()];explode=[REF(src)]"
+	.["Radiate"] = "?_src_=vars;[HrefToken()];radiate=[REF(src)]"
 
 ///Where atoms should drop if taken from this atom
 /atom/proc/drop_location()
@@ -1102,6 +1116,12 @@
 		var/list/arguments = data.Copy()
 		arguments -= "priority"
 		filters += filter(arglist(arguments))
+
+/obj/item/update_filters()
+	. = ..()
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.UpdateButtonIcon()
 
 /atom/movable/proc/get_filter(name)
 	if(filter_data && filter_data[name])

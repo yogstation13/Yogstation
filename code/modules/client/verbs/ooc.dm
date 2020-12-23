@@ -172,13 +172,13 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 /client/proc/set_ooc(newColor as color)
 	set name = "Set Player OOC Color"
 	set desc = "Modifies player OOC Color"
-	set category = "Fun"
+	set category = "Misc"
 	GLOB.OOC_COLOR = sanitize_ooccolor(newColor)
 
 /client/proc/reset_ooc()
 	set name = "Reset Player OOC Color"
 	set desc = "Returns player OOC Color to default"
-	set category = "Fun"
+	set category = "Misc"
 	GLOB.OOC_COLOR = null
 
 /client/verb/colorooc()
@@ -251,11 +251,8 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 		to_chat(usr, "<span class='notice'>Sorry, tracking is currently disabled.</span>")
 		return
 
-	var/list/body = list()
-	body += "<html><head><meta charset='UTF-8'><title>Playtime for [key]</title></head><BODY><BR>Playtime:"
-	body += get_exp_report()
-	body += "</BODY></HTML>"
-	usr << browse(body.Join(), "window=playerplaytime[ckey];size=550x615")
+	new /datum/job_report_menu(src, usr)
+
 
 /client/proc/ignore_key(client)
 	var/client/C = client

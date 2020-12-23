@@ -6,7 +6,6 @@
 	description = "Some space miners still cling to the old way of getting that \
 		sweet, sweet plasma - painstakingly digging it out of free-floating asteroids\
 		instead of flying down to the hellscape of lavaland."
-	placement_weight = 2
 	allow_duplicates = FALSE
 	always_spawn_with = list(/datum/map_template/ruin/space/whiteshipdock = PLACE_SPACE_RUIN)
 

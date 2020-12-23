@@ -1,4 +1,4 @@
-// Finally, peas. Base plant.
+// Finally, peas. Base plant. 
 /obj/item/seeds/peas
 	name = "pack of pea pods"
 	desc = "These seeds grows into vitamin rich peas!"
@@ -28,7 +28,7 @@
 	tastes = list ("peas" = 1, "chalky saltiness" = 1)
 	wine_power = 50
 	wine_flavor = "what is, distressingly, fermented peas."
-	// distill_regeant = /datum/reagent/saltpetre //if allowed, remove wine_power, ya dingus.
+	distill_reagent = /datum/reagent/consumable/ethanol/peawine
 
 
 // Laughin' Peas
