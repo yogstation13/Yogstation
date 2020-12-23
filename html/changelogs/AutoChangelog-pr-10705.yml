@@ -1,0 +1,5 @@
+author: "  alexkar598"
+delete-after: true 
+changes: 
+  - rscadd: "Hexane now makes you immune to radiation"
+  - rscdel: "Hexane no longer allows you to see into the realm of the dead to hear the ghosts that sourrounds us"
