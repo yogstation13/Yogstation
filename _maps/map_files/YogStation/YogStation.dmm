@@ -40156,31 +40156,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
-"hls" = (
-/obj/structure/table,
-/obj/item/toy/plush/slimeplushie{
-	pixel_x = -8;
-	pixel_y = 3
-	},
-/obj/item/toy/toy_xeno{
-	layer = 2.5;
-	pixel_x = 10;
-	pixel_y = 12
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/item/implant/radio{
-	pixel_x = 8;
-	pixel_y = 3
-	},
-/obj/machinery/camera{
-	c_tag = "Xenobiology South";
-	dir = 8;
-	network = list("ss13","rd")
-	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "hmg" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -59124,6 +59099,31 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/aft)
+"uIx" = (
+/obj/structure/table,
+/obj/item/toy/plush/slimeplushie{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/item/toy/toy_xeno{
+	layer = 2.5;
+	pixel_x = 10;
+	pixel_y = 12
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology South";
+	dir = 8;
+	network = list("ss13","rd")
+	},
+/obj/item/radio{
+	pixel_x = 8;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "uIH" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -109882,7 +109882,7 @@ mhK
 qAZ
 dpC
 mqO
-hls
+uIx
 nMc
 qQV
 qQV
