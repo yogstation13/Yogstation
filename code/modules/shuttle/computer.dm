@@ -11,7 +11,7 @@
 	var/possible_destinations = ""
 	/// Variable dictating if the attached shuttle requires authorization from the admin staff to move
 	var/admin_controlled = FALSE
-	/// Variable dictating if the attached shuttle can change destinations mid-flight
+	/// Variable dictating if the attached shuttle is forbidden to change destinations mid-flight
 	var/no_destination_swap = FALSE
 	/// ID of the currently selected destination of the attached shuttle
 	var/destination
@@ -29,17 +29,28 @@
 	var/list/options = params2list(possible_destinations)
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 	data["docked_location"] = M ? M.get_status_text_tgui() : "Unknown"
-	data["status"] = M.mode == SHUTTLE_IGNITING ? "Igniting" : M.mode != SHUTTLE_IDLE ? "In Transit" : "Idle"
 	data["locations"] = list()
 	data["locked"] = FALSE
 	data["authorization_required"] = admin_controlled
 	data["timer_str"] = M ? M.getTimerStr() : "00:00"
 	data["destination"] = destination
-	if(admin_controlled)
-		data["status"] = "Unauthorized Access"
 	if(!M)
 		data["status"] = "Missing"
 		return data
+	if(admin_controlled)
+		data["status"] = "Unauthorized Access"
+	else if(locked)
+		data["status"] = "Locked"
+	else
+		switch(M.mode)
+			if(SHUTTLE_IGNITING)
+				data["status"] = "Igniting"
+			if(SHUTTLE_IDLE)
+				data["status"] = "Idle"
+			if(SHUTTLE_RECHARGING)
+				data["status"] = "Recharging"
+			else
+				data["status"] = "In Transit"
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
 		if(!options.Find(S.id))
 			continue
@@ -59,6 +70,15 @@
 		data["status"] = "Locked"
 	return data
 
+/**
+  * Checks if we are allowed to launch the shuttle, for special cases
+  *
+  * Arguments:
+  * * user - The mob trying to initiate the launch
+  */
+/obj/machinery/computer/shuttle/proc/launch_check(mob/user)
+	return TRUE
+
 /obj/machinery/computer/shuttle/ui_act(action, params)
 	. = ..()
 	if(.)
@@ -69,6 +89,8 @@
 
 	switch(action)
 		if("move")
+			if(!launch_check(usr))
+				return
 			var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 			if(M.launch_status == ENDGAME_LAUNCHED)
 				to_chat(usr, "<span class='warning'>You've already escaped. Never going back to that place again!</span>")

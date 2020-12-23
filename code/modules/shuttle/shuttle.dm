@@ -718,9 +718,7 @@
 				dst = previous
 			else
 				dst = destination
-			return "In transit towards [dst?.name || "unknown location"]"
-	else if(mode == SHUTTLE_RECHARGING)
-		return "[docked_at], recharging [getTimerStr()]"
+			return "In transit to [dst?.name || "unknown location"]"
 	else
 		return docked_at
 
