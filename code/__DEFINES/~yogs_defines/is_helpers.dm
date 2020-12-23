@@ -14,5 +14,3 @@
 #define is_syndicate(M) (istype(M, /mob/living) && is_traitor(M) || is_blood_brother(M) || is_nukeop(M))
 
 #define isspacepod(A) (istype(A, /obj/spacepod))
-
-#define ispreternis(A) (is_species(A, /datum/species/preternis))
