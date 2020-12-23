@@ -1,5 +1,0 @@
-author: "maxion12345"
-delete-after: true 
-changes: 
-  - rscadd: "Re-added burst autorifles to cargo"
-  - rscdel: "Removed single-shot autorifles from cargo"
