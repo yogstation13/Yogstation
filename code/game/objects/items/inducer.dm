@@ -210,7 +210,8 @@
 		//apcs should be able to be charged too
 		if (istype(A,/obj/machinery/power/apc))
 			medcheck = TRUE 
-
+		if (istype(A,/obj/machinery/chem_dispenser))
+			medcheck = TRUE
 	if (!medcheck)
 		if (istype(A,/obj))
 			to_chat(user,"Error: This inducer can only recharge medical items that have a cell.")
@@ -225,5 +226,5 @@
 		return
 
 	if(recharge(M, user))
-		return FALSE
+		return
 	return ..()
