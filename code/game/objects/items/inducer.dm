@@ -213,7 +213,7 @@
 
 	if (!medcheck)
 		if (istype(A,/obj))
-			to_chat(user,"Error: This inducer can only recharge medical items.")
+			to_chat(user,"Error: This inducer can only recharge medical items that have a cell.")
 		return
 	. = ..()
 
