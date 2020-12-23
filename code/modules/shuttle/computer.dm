@@ -39,8 +39,6 @@
 		return data
 	if(admin_controlled)
 		data["status"] = "Unauthorized Access"
-	else if(locked)
-		data["status"] = "Locked"
 	else
 		switch(M.mode)
 			if(SHUTTLE_IGNITING)
