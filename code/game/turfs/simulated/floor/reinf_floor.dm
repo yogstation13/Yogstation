@@ -77,14 +77,7 @@
 				ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 
 /turf/open/floor/engine/singularity_pull(S, current_size)
-	..()
-	if(current_size >= STAGE_FIVE)
-		if(floor_tile)
-			if(prob(30))
-				new floor_tile(src)
-				make_plating()
-		else if(prob(30))
-			ReplaceWithLattice()
+	return
 
 /turf/open/floor/engine/attack_paw(mob/user)
 	return attack_hand(user)
