@@ -11,15 +11,18 @@ You can type "Fixes issue #6" and issue 6 will be automatically closed when your
 
 # Wiki Documentation
 
-### Briefly describe your PR and the impacts of it, in layman's terms. This will be the basis of the Wiki entry for your PR, and more information / detail is better for Wiki editors to integrate:
+### Briefly describe your PR and the impacts of it, in layman's terms. 
+This will be the basis of the Wiki entry for your PR, and more information / detail is better for Wiki editors to integrate:
 
 ### What should players be aware of when it comes to the changes your PR is implementing?
 
-### What general grouping does this PR fall under - for example, Engineering changes, Medical rebalancing, TEG tweaks, etc.?
+### What general grouping does this PR fall under? 
+For example, Engineering changes, Medical rebalancing, TEG tweaks, etc.?
 
 ### Are there any aspects of the PR that you would like us not to mention on the Wiki?
 
-### If there are any numerical values involved in your PR that will be relevant to a player, please note them here - for example, "This new chem will heal X brute damage". 
+### If there are any numerical values involved in your PR that will be relevant to a player, please note them here. 
+For example, "This new chem will heal X brute damage". 
 
 # Changelog
 
