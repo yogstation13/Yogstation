@@ -248,8 +248,8 @@
 /obj/item/seeds/bee_balm/honey
 	name = "pack of Honey Balm seeds"
 	desc = "These seeds grow into Honey Balms."
-	icon_state = "seed-bee_balmalt"
-	species = "seed-bee_balm_alt"
+	icon_state = "seed-bee_balm_alt"
+	species = "bee_balmalt"
 	plantname = "Honey Balm Pods"
 	product = /obj/item/reagent_containers/food/snacks/grown/bee_balm/honey
 	endurance = 1

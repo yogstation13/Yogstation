@@ -106,6 +106,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	.["miny"] = M.miny
 	.["maxx"] = M.maxx
 	.["maxy"] = M.maxy
+	.["map_filename"] = SSassets.transport.get_asset_url("minimap-1.png")
 
 /datum/crewmonitor/proc/update_data(z)
 	if(data_by_z["[z]"] && last_update["[z]"] && world.time <= last_update["[z]"] + SENSORS_UPDATE_PERIOD)

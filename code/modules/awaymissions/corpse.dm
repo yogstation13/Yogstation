@@ -407,6 +407,21 @@
 	implants = list(/obj/item/implant/teleporter/ghost_role)
 	id = /obj/item/card/id
 
+/obj/effect/mob_spawn/human/bartender/alive/space
+	name = "space bartender sleeper"
+	flavour_text = "<span class='big bold'>You are a space bartender!</span> You got this place from your old man, a bar in the middle of nowhere. Or at least, until NanoTrasen decided to move in. Time to mix drinks and change lives. <b>Do not leave your post under any circumstances!</b>"
+	outfit = /datum/outfit/spacebartender/space
+
+/obj/effect/mob_spawn/human/bartender/alive/space/special(mob/living/L)
+	L.fully_replace_character_name(null,"[L.real_name] Jr.")
+
+/datum/outfit/spacebartender/space
+	ears = /obj/item/radio/headset/headset_srv
+	backpack_contents = list(/obj/item/storage/box/beanbag=1)
+	suit_store = /obj/item/gun/ballistic/shotgun/doublebarrel
+	mask = /obj/item/clothing/mask/breath
+	l_pocket = /obj/item/tank/internals/emergency_oxygen/double
+
 /obj/effect/mob_spawn/human/beach
 	outfit = /datum/outfit/beachbum
 

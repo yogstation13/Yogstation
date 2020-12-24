@@ -100,7 +100,7 @@
 	if(..())
 		return
 	owner.transform = owner.transform.Scale(1, 1.25)
-	passtable_on(owner, GENETIC_MUTATION)
+	passtable_off(owner, GENETIC_MUTATION)
 	owner.visible_message("<span class='danger'>[owner] suddenly grows!</span>", "<span class='notice'>Everything around you seems to shrink..</span>")
 
 

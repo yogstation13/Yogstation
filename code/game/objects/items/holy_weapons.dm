@@ -264,8 +264,6 @@
   M : The mob choosing a nullrod reskin
   */
 /obj/item/nullrod/proc/reskin_holy_weapon(mob/M)
-	if(GLOB.holy_weapon_type)
-		return
 	var/list/display_names = list()
 	var/list/nullrod_icons = list()
 	for(var/V in typesof(/obj/item/nullrod))
@@ -793,9 +791,7 @@
 		ADD_TRAIT(G, TRAIT_HOLY, SPECIES_TRAIT)
 		log_game("[key_name(H)] has summoned [key_name(G)], a holoparasite, with a holy tarot deck.")
 		to_chat(H, "<span class='holoparasite'><font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> has been summoned!</span>")
-		H.verbs += /mob/living/proc/guardian_comm
-		H.verbs += /mob/living/proc/guardian_recall
-		H.verbs += /mob/living/proc/guardian_reset
+		add_verb(H, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset))
 		force = 0
 		throwforce = 0
 		to_chat(H, "<span class='warning'>The [src]'s rigid ends become dull from summoning <font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font>!</span>")

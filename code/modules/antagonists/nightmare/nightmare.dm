@@ -9,7 +9,7 @@
 	new_objective.owner = owner
 	new_objective.completed = TRUE
 	objectives += new_objective
-	new_objective.explanation_text = "<span class='userdanger'>Kill.</span>" // you can do whatever
+	new_objective.explanation_text = "This station is an insult to the void. Return it to darkness."
 	var/datum/objective/survive/survival = new
 	survival.owner = owner
 	objectives += survival // just dont die doing it

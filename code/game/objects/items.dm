@@ -376,7 +376,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		return 1
 	return 0
 
-/obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language)
+/obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language, list/message_mods)
 	return ITALICS | REDUCE_RANGE
 
 /obj/item/proc/dropped(mob/user)
@@ -433,6 +433,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	set src in oview(1)
 	set category = "Object"
 	set name = "Pick up"
+
+	if(HAS_TRAIT(src, TRAIT_NODROP))
+		return
 
 	if(usr.incapacitated() || !Adjacent(usr))
 		return
@@ -808,3 +811,15 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 /obj/item/proc/doStrip(mob/stripper, mob/owner)
 	return owner.dropItemToGround(src)
+
+///Returns the temperature of src. If you want to know if an item is hot use this proc.
+/obj/item/proc/get_temperature()
+	return heat
+
+// Update icons if this is being carried by a mob
+/obj/item/wash(clean_types)
+	. = ..()
+
+	if(ismob(loc))
+		var/mob/mob_loc = loc
+		mob_loc.regenerate_icons()

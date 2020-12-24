@@ -691,9 +691,9 @@
 /mob/living/simple_animal/pet/dog/attack_hand(mob/living/carbon/human/M)
 	. = ..()
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			wuv(1,M)
-		if("harm")
+		if(INTENT_HARM)
 			wuv(-1,M)
 
 /mob/living/simple_animal/pet/dog/proc/wuv(change, mob/M)
@@ -706,3 +706,15 @@
 		else
 			if(M && stat != DEAD) // Same check here, even though emote checks it as well (poor form to check it only in the help case)
 				emote("me", 1, "growls!")
+
+/mob/living/simple_animal/pet/dog/bullterrier
+	name = "\improper bull terrier"
+	real_name = "bull terrier"
+	desc = "It's a bull terrier."
+	icon = 'icons/mob/pets.dmi'
+	icon_state = "bullterrier"
+	icon_living = "bullterrier"
+	icon_dead = "bullterrier_dead"
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/corgi = 3) // Would feel redundant to add more new dog meats.
+	gold_core_spawnable = FRIENDLY_SPAWN
+	collar_type = "bullterrier"

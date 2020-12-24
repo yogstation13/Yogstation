@@ -284,13 +284,9 @@
 		close()
 
 /obj/machinery/door/firedoor/deconstruct(disassembled = TRUE)
-	if(!(flags_1 & NODECONSTRUCT_1))
+	if(!(flags_1 & NODECONSTRUCT_1) && disassembled)
 		var/obj/structure/firelock_frame/F = new assemblytype(get_turf(src))
-		if(disassembled)
-			F.constructionStep = CONSTRUCTION_PANEL_OPEN
-		else
-			F.constructionStep = CONSTRUCTION_WIRES_EXPOSED
-			F.obj_integrity = F.max_integrity * 0.5
+		F.constructionStep = CONSTRUCTION_PANEL_OPEN
 		F.update_icon()
 	qdel(src)
 
@@ -619,6 +615,21 @@
 				update_icon()
 				return
 	return ..()
+
+/obj/structure/firelock_frame/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
+	if((constructionStep == CONSTRUCTION_NOCIRCUIT) && (the_rcd.upgrade & RCD_UPGRADE_SIMPLE_CIRCUITS))
+		return list("mode" = RCD_UPGRADE_SIMPLE_CIRCUITS, "delay" = 20, "cost" = 1)	
+	return FALSE
+
+/obj/structure/firelock_frame/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
+	switch(passed_mode)
+		if(RCD_UPGRADE_SIMPLE_CIRCUITS)
+			user.visible_message("<span class='notice'>[user] fabricates a circuit and places it into [src].</span>", \
+			"<span class='notice'>You adapt a firelock circuit and slot it into the assembly.</span>")
+			constructionStep = CONSTRUCTION_GUTTED
+			update_icon()
+			return TRUE
+	return FALSE
 
 /obj/structure/firelock_frame/heavy
 	name = "heavy firelock frame"

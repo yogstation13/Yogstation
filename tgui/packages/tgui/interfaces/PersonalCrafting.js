@@ -60,8 +60,8 @@ export const PersonalCrafting = (props, context) => {
   return (
     <Window
       title="Crafting Menu"
-      width={700}
-      height={800}
+      width={800}
+      height={600}
       resizable>
       <Window.Content scrollable>
         {!!busy && (

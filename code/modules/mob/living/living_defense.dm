@@ -272,7 +272,7 @@
 
 /mob/living/attack_larva(mob/living/carbon/alien/larva/L)
 	switch(L.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			visible_message("<span class='notice'>[L.name] rubs its head against [src].</span>")
 			return FALSE
 
@@ -295,13 +295,13 @@
 
 /mob/living/attack_alien(mob/living/carbon/alien/humanoid/M)
 	switch(M.a_intent)
-		if ("help")
+		if (INTENT_HELP)
 			visible_message("<span class='notice'>[M] caresses [src] with its scythe like arm.</span>")
 			return FALSE
-		if ("grab")
+		if (INTENT_GRAB)
 			grabbedby(M)
 			return FALSE
-		if("harm")
+		if(INTENT_HARM)
 			if(HAS_TRAIT(M, TRAIT_PACIFISM))
 				to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
 				return FALSE

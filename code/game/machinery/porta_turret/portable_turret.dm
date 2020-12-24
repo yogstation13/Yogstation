@@ -904,7 +904,6 @@
 
 	var/datum/browser/popup = new(user, "turretid", "Turret Control Panel ([get_area_name(src, TRUE)])")
 	popup.set_content(t)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/turretid/Topic(href, href_list)

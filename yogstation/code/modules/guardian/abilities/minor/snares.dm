@@ -4,12 +4,10 @@
 	cost = 1
 
 /datum/guardian_ability/minor/snare/Apply()
-	guardian.verbs += /mob/living/simple_animal/hostile/guardian/proc/Snare
-	guardian.verbs += /mob/living/simple_animal/hostile/guardian/proc/DisarmSnare
+	add_verb(guardian, list(/mob/living/simple_animal/hostile/guardian/proc/Snare, /mob/living/simple_animal/hostile/guardian/proc/DisarmSnare))
 
 /datum/guardian_ability/minor/snare/Remove()
-	guardian.verbs -= /mob/living/simple_animal/hostile/guardian/proc/Snare
-	guardian.verbs -= /mob/living/simple_animal/hostile/guardian/proc/DisarmSnare
+	remove_verb(guardian, list(/mob/living/simple_animal/hostile/guardian/proc/Snare, /mob/living/simple_animal/hostile/guardian/proc/DisarmSnare))
 
 /mob/living/simple_animal/hostile/guardian/proc/Snare()
 	set name = "Set Surveillance Snare"

@@ -154,19 +154,19 @@
 
 	//we are not catholic
 	if(young == TRUE || Kisser.young == TRUE)
-		user.show_message("<span class='notice'>[src] plays tag with [Kisser].</span>", 1,
-			"<span class='notice'>They're happy.</span>", 0)
+		user.show_message("<span class='notice'>[src] plays tag with [Kisser].</span>", MSG_VISUAL,
+			"<span class='notice'>They're happy.</span>", NONE)
 		Kisser.cheer_up()
 		cheer_up()
 
 	//never again
 	else if(Kisser in scorned)
 		//message, visible, alternate message, neither visible nor audible
-		user.show_message("<span class='notice'>[src] rejects the advances of [Kisser]!</span>", 1,
-			"<span class='notice'>That didn't feel like it worked.</span>", 0)
+		user.show_message("<span class='notice'>[src] rejects the advances of [Kisser]!</span>", MSG_VISUAL,
+			"<span class='notice'>That didn't feel like it worked.</span>", NONE)
 	else if(src in Kisser.scorned)
-		user.show_message("<span class='notice'>[Kisser] realises who [src] is and turns away.</span>", 1,
-			"<span class='notice'>That didn't feel like it worked.</span>", 0)
+		user.show_message("<span class='notice'>[Kisser] realises who [src] is and turns away.</span>", MSG_VISUAL,
+			"<span class='notice'>That didn't feel like it worked.</span>", NONE)
 
 	//first comes love
 	else if(Kisser.lover != src && Kisser.partner != src)	//cannot be lovers or married
@@ -186,8 +186,8 @@
 			new_lover(Kisser)
 			Kisser.new_lover(src)
 		else
-			user.show_message("<span class='notice'>[src] rejects the advances of [Kisser], maybe next time?</span>", 1,
-								"<span class='notice'>That didn't feel like it worked, this time.</span>", 0)
+			user.show_message("<span class='notice'>[src] rejects the advances of [Kisser], maybe next time?</span>", MSG_VISUAL,
+								"<span class='notice'>That didn't feel like it worked, this time.</span>", NONE)
 
 	//then comes marriage
 	else if(Kisser.lover == src && Kisser.partner != src)	//need to be lovers (assumes loving is a two way street) but not married (also assumes similar)
@@ -211,7 +211,7 @@
 
 	//then oh fuck something unexpected happened
 	else
-		user.show_message("<span class='warning'>[Kisser] and [src] don't know what to do with one another.</span>", 0)
+		user.show_message("<span class='warning'>[Kisser] and [src] don't know what to do with one another.</span>", NONE)
 
 /obj/item/toy/plush/proc/heartbreak(obj/item/toy/plush/Brutus)
 	if(lover != Brutus)
@@ -522,6 +522,46 @@
 	desc = "A cute toy that resembles an even cuter bee."
 	icon_state = "plushie_h"
 	item_state = "plushie_h"
-	attack_verb = list("stung")
+	attack_verb = list("stung", "buzzed", "pollinated")
 	gender = FEMALE
-	squeak_override = list('sound/voice/moth/scream_moth.ogg'=1)
+	squeak_override = list('sound/voice/moth/scream_moth.ogg'= 1)
+
+/obj/item/toy/plush/mothplushie
+	name = "moth plushie"
+	desc = "An adorable mothperson plushy. It's a huggable bug!"
+	icon_state = "moffplush"
+	item_state = "moffplush"
+	attack_verb = list("fluttered", "flapped")
+	squeak_override = list('sound/voice/moth/scream_moth.ogg'= 1)
+///Used to track how many people killed themselves with item/toy/plush/moth
+	var/suicide_count = 0
+
+/obj/item/toy/plush/mothplushie/suicide_act(mob/living/user)
+	user.visible_message("<span class='suicide'>[user] stares deeply into the eyes of [src]. The plush begins to consume [user.p_their()] soul!  It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	suicide_count++
+	if(suicide_count < 3)
+		desc = "An unsettling mothperson plushy. After killing [suicide_count] [suicide_count == 1 ? "person" : "people"] it's not looking so huggable now..."
+	else
+		desc = "A creepy mothperson plushy. It has killed [suicide_count] people! I don't think I want to hug it any more!"
+		resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | LAVA_PROOF
+	playsound(src, 'sound/hallucinations/wail.ogg', 50, TRUE, -1)
+	var/list/available_spots = get_adjacent_open_turfs(loc)
+	if(available_spots.len) //If the user is in a confined space the plushie will drop normally as the user dies, but in the open the plush is placed one tile away from the user to prevent squeak spam
+		var/turf/open/random_open_spot = pick(available_spots)
+		forceMove(random_open_spot)
+	user.dust(just_ash = FALSE, drop_items = TRUE)
+	return MANUAL_SUICIDE
+
+/obj/item/toy/plush/pkplushie
+	name = "peacekeeper plushie"
+	desc = "A plushie depicting a peacekeeper cyborg. Only you can prevent human harm!"
+	icon_state = "pkplush"
+	item_state = "pkplush"
+	attack_verb = list("hugged", "squeezed", "protected", "pacified")
+	squeak_override = list('sound/ai/harmalarm.ogg'= 1)
+
+/obj/item/toy/plush/foxplushie
+	name = "fox plushie"
+	desc = "An adorable stuffed toy resembling a cute fox."
+	icon_state = "fox"
+	item_state = "fox"
