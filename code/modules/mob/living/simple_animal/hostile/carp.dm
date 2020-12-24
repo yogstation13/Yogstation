@@ -121,6 +121,12 @@
 		add_dead_carp_overlay()
 	..()
 
+/mob/living/simple_animal/hostile/carp/tamed()
+	. = ..()
+	can_buckle = TRUE
+	buckle_lying = 0
+	AddElement(/datum/element/ridable, /datum/component/riding/creature/carp)
+
 /mob/living/simple_animal/hostile/carp/holocarp
 	icon_state = "holocarp"
 	icon_living = "holocarp"
@@ -161,6 +167,15 @@
 	. = ..()
 	if(.)
 		regen_cooldown = world.time + REGENERATION_DELAY
+
+/mob/living/simple_animal/hostile/carp/megacarp/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+
+	AddElement(/datum/element/ridable, /datum/component/riding/creature/megacarp)
+	can_buckle = TRUE
+	buckle_lying = 0
 
 /mob/living/simple_animal/hostile/carp/megacarp/Life()
 	. = ..()

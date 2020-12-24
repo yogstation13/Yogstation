@@ -64,6 +64,8 @@
 	mulebot_count += 1
 	set_id(suffix || id || "#[mulebot_count]")
 	suffix = null
+	AddElement(/datum/element/ridable, /datum/component/riding/creature/mulebot)
+	diag_hud_set_mulebotcell()
 
 /mob/living/simple_animal/bot/mulebot/ComponentInitialize()
 	. = ..()
