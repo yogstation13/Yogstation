@@ -12,7 +12,7 @@ You can type "Fixes issue #6" and issue 6 will be automatically closed when your
 # Wiki Documentation
 
 ### Briefly describe your PR and the impacts of it, in layman's terms. 
-This will be the basis of the Wiki entry for your PR, and more information / detail is better for Wiki editors to integrate:
+This will be the basis of the Wiki entry for your PR, and more information / detail is better for Wiki editors to integrate.
 
 ### What should players be aware of when it comes to the changes your PR is implementing?
 
