@@ -349,9 +349,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/inn)
-"Bl" = (
-/turf/open/floor/plating/snowed/smoothed,
-/area/icemoon/underground/explored)
 "Bu" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -409,6 +406,9 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/ruin/powered/inn)
+"FJ" = (
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/underground/explored)
 "GH" = (
 /obj/structure/table/wood,
 /obj/item/book/manual/wiki/cooking_to_serve_man{
@@ -1064,7 +1064,7 @@ XE
 mW
 KC
 Tm
-Bl
+FJ
 BX
 "}
 (12,1,1) = {"
@@ -1096,8 +1096,8 @@ KC
 KC
 XE
 IN
-Bl
-Bl
+FJ
+FJ
 "}
 (13,1,1) = {"
 sp
@@ -1160,7 +1160,7 @@ XE
 qo
 XE
 Tm
-Bl
+FJ
 BX
 "}
 (15,1,1) = {"
@@ -1269,7 +1269,7 @@ al
 iH
 LZ
 Vr
-Bl
+FJ
 BX
 BX
 Tm
@@ -1301,7 +1301,7 @@ fT
 ex
 ex
 CT
-Bl
+FJ
 BX
 BX
 BX
@@ -1320,7 +1320,7 @@ Tm
 Tm
 Tm
 Tm
-Bl
+FJ
 BX
 "}
 (20,1,1) = {"
@@ -1334,7 +1334,7 @@ oO
 Xh
 Vr
 Bu
-Bl
+FJ
 BX
 BX
 BX
@@ -1368,7 +1368,7 @@ Vr
 BX
 BX
 BX
-Bl
+FJ
 BX
 BX
 BX
@@ -1381,8 +1381,8 @@ Cx
 Tm
 BX
 BX
-Bl
-Bl
+FJ
+FJ
 BX
 BX
 BX
@@ -1399,7 +1399,7 @@ BX
 BX
 BX
 BX
-Bl
+FJ
 BX
 BX
 BX
@@ -1412,7 +1412,7 @@ BX
 BX
 BX
 BX
-Bl
+FJ
 BX
 BX
 BX
@@ -1433,9 +1433,9 @@ BX
 BX
 BX
 BX
-Bl
+FJ
 BX
-BX
+FJ
 BX
 BX
 BX
@@ -1472,7 +1472,7 @@ BX
 TG
 BX
 BX
-BX
+FJ
 BX
 BX
 BX
