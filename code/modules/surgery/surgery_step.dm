@@ -97,6 +97,7 @@
 				surgery.complete()
 
 	surgery.step_in_progress = FALSE
+	return advance
 
 
 /datum/surgery_step/proc/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
