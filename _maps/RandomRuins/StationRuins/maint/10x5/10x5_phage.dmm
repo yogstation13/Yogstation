@@ -2,11 +2,16 @@
 "a" = (
 /turf/open/floor/plasteel,
 /area/template_noop)
-"b" = (
+"c" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"f" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
 /area/template_noop)
 "h" = (
 /obj/item/caution{
@@ -18,6 +23,10 @@
 /area/template_noop)
 "i" = (
 /obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"j" = (
+/obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/plasteel,
 /area/template_noop)
 "n" = (
@@ -53,15 +62,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"x" = (
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/mob_spawn/human/clown/corpse,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/turf/open/floor/plasteel,
-/area/template_noop)
 "y" = (
 /obj/item/caution{
 	desc = "CAUTION! BIOHAZARD QUARANTINE!";
@@ -80,17 +80,19 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/template_noop)
+"B" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/plating,
+/area/template_noop)
 "C" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 4
 	},
 /obj/item/ammo_casing/spent,
 /turf/open/floor/plating,
-/area/template_noop)
-"D" = (
-/obj/effect/mob_spawn/human/corpse/assistant,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plasteel,
 /area/template_noop)
 "H" = (
 /obj/item/ammo_casing/spent,
@@ -112,12 +114,28 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating,
 /area/template_noop)
+"M" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/template_noop)
 "N" = (
 /turf/open/floor/plating,
 /area/template_noop)
 "O" = (
 /obj/structure/barricade/sandbags,
 /turf/open/floor/plasteel,
+/area/template_noop)
+"P" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/gloves/color/yellow,
+/mob/living/simple_animal/pet/dog/corgi/puppy{
+	desc = "It's a corgi puppy! It's covered in blood...";
+	name = "suspicious puppy"
+	},
+/obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/floor/plating,
 /area/template_noop)
 "Q" = (
 /obj/item/ammo_casing/spent,
@@ -140,23 +158,6 @@
 "U" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/template_noop)
-"V" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/clothing/gloves/color/yellow,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/mob/living/simple_animal/pet/dog/corgi/puppy{
-	desc = "It's a corgi puppy! It's covered in blood...";
-	name = "suspicious puppy"
-	},
-/turf/open/floor/plating,
-/area/template_noop)
-"W" = (
-/obj/structure/barricade/sandbags,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/turf/open/floor/plasteel,
 /area/template_noop)
 "Y" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -182,14 +183,14 @@ i
 (3,1,1) = {"
 a
 t
-V
+P
 t
 n
 "}
 (4,1,1) = {"
 y
 t
-x
+f
 r
 y
 "}
@@ -203,7 +204,7 @@ N
 (6,1,1) = {"
 U
 t
-b
+B
 t
 U
 "}
@@ -215,15 +216,15 @@ t
 t
 "}
 (8,1,1) = {"
-D
-a
+c
+j
 C
 H
 U
 "}
 (9,1,1) = {"
 i
-W
+M
 K
 I
 U

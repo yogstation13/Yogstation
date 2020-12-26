@@ -151,19 +151,19 @@
 	if(ishuman(target))
 		var/obj/item/clothing/glasses/G = T.glasses
 		if(G)
-			if(G.flash_protect)
+			if(G.flash_protect > 0)
 				to_chat(user,"<span class='warning'>[T] has protective sunglasses on!</span>")
 				to_chat(target, "<span class='warning'>[user]'s paralyzing gaze is blocked by your [G]!</span>")
 				return
 		var/obj/item/clothing/mask/M = T.wear_mask
 		if(M)
-			if(M.flash_protect)
+			if(M.flash_protect > 0)
 				to_chat(user,"<span class='warning'>[T]'s mask is covering their eyes!</span>")
 				to_chat(target,"<span class='warning'>[user]'s paralyzing gaze is blocked by your [M]!</span>")
 				return
 		var/obj/item/clothing/head/H = T.head
 		if(H)
-			if(H.flash_protect)
+			if(H.flash_protect > 0)
 				to_chat(user, "<span class='vampirewarning'>[T]'s helmet is covering their eyes!</span>")
 				to_chat(target, "<span class='warning'>[user]'s paralyzing gaze is blocked by [H]!</span>")
 				return
@@ -214,26 +214,26 @@
 	if(T)
 		var/obj/item/clothing/glasses/G = T.glasses
 		if(G)
-			if(G.flash_protect)
+			if(G.flash_protect > 0)
 				to_chat(user, "<span class='warning'>[T] has protective sunglasses on!</span>")
 				to_chat(target, "<span class='warning'>[user]'s paralyzing gaze is blocked by [G]!</span>")
 				return
 		var/obj/item/clothing/mask/M = T.wear_mask
 		if(M)
-			if(M.flash_protect)
+			if(M.flash_protect > 0)
 				to_chat(user, "<span class='vampirewarning'>[T]'s mask is covering their eyes!</span>")
 				to_chat(target, "<span class='warning'>[user]'s paralyzing gaze is blocked by [M]!</span>")
 				return
 		var/obj/item/clothing/head/H = T.head
 		if(H)
-			if(H.flash_protect)
+			if(H.flash_protect > 0)
 				to_chat(user, "<span class='vampirewarning'>[T]'s helmet is covering their eyes!</span>")
 				to_chat(target, "<span class='warning'>[user]'s paralyzing gaze is blocked by [H]!</span>")
 				return
 	to_chat(target, "<span class='boldwarning'>Your knees suddenly feel heavy. Your body begins to sink to the floor.</span>")
 	to_chat(user, "<span class='notice'>[target] is now under your spell. In four seconds they will be rendered unconscious as long as they are within close range.</span>")
 	if(do_mob(user, target, 40, TRUE)) // 4 seconds...
-		if(get_dist(user, T) <= 3) // 7 range
+		if(get_dist(user, T) <= 3)
 			flash_color(T, flash_color="#472040", flash_time=30) // it's the vampires color!
 			T.SetSleeping(300)
 			to_chat(user, "<span class='warning'>[T] has fallen asleep!</span>")

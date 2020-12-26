@@ -162,9 +162,10 @@ Difficulty: Medium
 				last_legion = FALSE
 				break
 		if(last_legion)
-			loot = list(/obj/item/staff/storm)
+			loot = list(/obj/item/staff/storm,
+			/obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker)
 			elimination = FALSE
-		else if(prob(5))
+		else if(prob(10))
 			loot = list(/obj/structure/closet/crate/necropolis/tendril)
 		if(!true_spawn)
 			loot = null

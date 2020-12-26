@@ -413,6 +413,8 @@
 			healSnake.desc = "A mystical snake previously trapped upon the Rod of Asclepius, now freed of its burden. Unlike the average snake, its bites contain chemicals with minor healing properties."
 			new /obj/effect/decal/cleanable/ash(owner.loc)
 			new /obj/item/rod_of_asclepius(owner.loc)
+			if(owner.mind)
+				owner.mind.transfer_to(healSnake)
 			qdel(owner)
 	else
 		if(iscarbon(owner))

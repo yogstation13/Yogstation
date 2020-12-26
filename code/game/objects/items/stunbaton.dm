@@ -41,7 +41,8 @@
 	update_icon()
 
 /obj/item/melee/baton/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	..()
+	if(..())
+		return
 	//Only mob/living types have stun handling
 	if(status && prob(throw_hit_chance) && iscarbon(hit_atom))
 		baton_stun(hit_atom)
@@ -254,3 +255,9 @@
 /obj/item/melee/baton/cattleprod/baton_stun()
 	if(sparkler.activate())
 		..()
+
+/obj/item/melee/baton/cattleprod/tactical
+	name = "tactical stunprod"
+	desc = "A cost-effective, mass-produced, tactical stun prod."
+	preload_cell_type = /obj/item/stock_parts/cell/high/plus // comes with a cell
+	color = "#aeb08c" // super tactical

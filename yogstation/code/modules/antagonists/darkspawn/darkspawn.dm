@@ -381,10 +381,10 @@
 
 // Psi Web code //
 
-/datum/antagonist/darkspawn/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.not_incapacitated_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/antagonist/darkspawn/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "PsiWeb", "Psi Web", 900, 480, master_ui, state)
+		ui = new(user, src, "PsiWeb", "Psi Web")
 		ui.open()
 
 /datum/antagonist/darkspawn/ui_data(mob/user)

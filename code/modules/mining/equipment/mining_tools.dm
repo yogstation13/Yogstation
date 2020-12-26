@@ -11,7 +11,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
-	materials = list(MAT_METAL=2000) //one sheet, but where can you make them?
+	materials = list(/datum/material/iron=2000) //one sheet, but where can you make them?
 	tool_behaviour = TOOL_MINING
 	toolspeed = 1
 	usesound = list('sound/effects/picaxe1.ogg', 'sound/effects/picaxe2.ogg', 'sound/effects/picaxe3.ogg')
@@ -32,7 +32,7 @@
 	throwforce = 7
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(MAT_METAL=1000)
+	materials = list(/datum/material/iron=1000)
 
 /obj/item/pickaxe/silver
 	name = "silver-plated pickaxe"
@@ -49,6 +49,17 @@
 	toolspeed = 0.3
 	desc = "A pickaxe with a diamond pick head. Extremely robust at cracking rock walls and digging up dirt."
 	force = 19
+
+obj/item/pickaxe/bonepickaxe
+	name = "bone pickaxe"
+	desc = "A spine and ribcage tied tightly with weaver sinew...at least it's better than your bare hands at digging up dirt."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "bonepickaxe"
+	item_state = "bonepickaxe"
+	toolspeed = 1
+	force = 9
+	throwforce = 6
+	slot_flags = ITEM_SLOT_BELT
 
 /obj/item/pickaxe/drill
 	name = "mining drill"
@@ -101,12 +112,12 @@
 	slot_flags = ITEM_SLOT_BELT
 	force = 8
 	tool_behaviour = TOOL_SHOVEL
-	toolspeed = 1
+	toolspeed = 0.7
 	usesound = 'sound/effects/shovel_dig.ogg'
 	throwforce = 4
 	item_state = "shovel"
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(MAT_METAL=50)
+	materials = list(/datum/material/iron=50)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 	sharpness = IS_SHARP
 

@@ -24,7 +24,7 @@
   *
   * Returns a dictionary with each key being the achievement, and each value a boolean representing whether it's been unlocked
   *
-  * Arguments: 
+  * Arguments:
   * * C - The client we're fetching achievements for. See [/client]
   */
 /datum/achievement_browser/proc/get_achievements(client/C)
@@ -35,21 +35,24 @@
 
 // I don't even know what like, 7 of the args are for l m a o
 /**
-  * Opens the UI for the given user. 
+  * Opens the UI for the given user.
   *
   * Opens the TGUI for the given user. Called by [/client/verb/checkachievements]
   *
   * Arguments:
   * * user - The mob we're opening it for
   */
-/datum/achievement_browser/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/achievement_browser/ui_state(mob/user)
+	return GLOB.always_state
+
+/datum/achievement_browser/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Achievements", "achievements", 450, 450, master_ui, state)
+		ui = new(user, src, "Achievements", "achievements")
 		ui.open()
 
 /**
-  * Supplies the data for the TGUI window. 
+  * Supplies the data for the TGUI window.
   *
   * Gives all the data necessary for the TGUI Window, including names, unlocked status, and descriptions
   *

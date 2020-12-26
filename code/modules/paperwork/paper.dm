@@ -186,7 +186,7 @@
 
 	var/list/T = splittext(t,PAPER_FIELD,1,0,TRUE) // The list of subsections.. Splits the text on where paper fields have been created.
 	//The TRUE marks that we're keeping these "seperator" paper fields; they're included in this list.
-	return T // :) 
+	return T // :)
 
 /obj/item/paper/proc/reload_fields() // Useful if you made the paper programicly and want to include fields. Also runs updateinfolinks() for you.
 	fields = 0
@@ -233,7 +233,7 @@
 		openhelp(usr)
 		return
 	if(href_list["write"])
-		next_write_time = world.time + 1 SECONDS //possible paper exploit		
+		next_write_time = world.time + 1 SECONDS //possible paper exploit
 		var/t =  stripped_multiline_input("Enter what you want to write:", "Write", no_trim=TRUE)
 		if(!t || !usr.canUseTopic(src, BE_CLOSE, literate))
 			return

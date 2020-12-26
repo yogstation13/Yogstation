@@ -18,7 +18,7 @@
 ///restrain combo string
 #define RESTRAIN_COMBO "GG"
 ///pressure combo string
-#define PRESSURE_COMBO "DDG"
+#define PRESSURE_COMBO "DG"
 ///consecutive combo string
 #define CONSECUTIVE_COMBO "HHHHH"
 
@@ -78,7 +78,7 @@
 /**
   * CQC slam combo attack
   *
-  * Basic counter that causes 15 stamina damage with a 2 second paralyze and 8 second knockdown
+  * Basic counter that causes 15 stamina damage with a 3 second paralyze and 8 second knockdown
   */
 /datum/martial_art/cqc/proc/Slam(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
@@ -89,7 +89,7 @@
 		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1) //using hit_kick because for some stupid reason slam.ogg is delayed
 		A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
 		D.apply_damage(15, STAMINA)
-		D.Paralyze(20)
+		D.Paralyze(30)
 		D.Knockdown(80)
 		log_combat(A, D, "slammed (CQC)")
 	return TRUE
@@ -97,8 +97,8 @@
 /**
   * CQC kick combo attack
   *
-  * attack that deals 10 stamina and pushes the target away if they are standing
-  * or 35 stamina damage with a ~8 second mute if they aren't
+  * attack that deals 15 stamina and pushes the target away if they are standing
+  * or 40 stamina damage with a ~8 second mute if they aren't
   */
 /datum/martial_art/cqc/proc/Kick(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
@@ -109,7 +109,7 @@
 							"<span class='userdanger'>[A] kicks you back!</span>")
 		playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 		step(D, A.dir)
-		D.apply_damage(10, STAMINA)
+		D.apply_damage(15, STAMINA)
 		log_combat(A, D, "kicked (CQC)")
 		D.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
 		addtimer(CALLBACK(D, /mob/living/carbon/human/proc/clear_shove_slowdown), SHOVE_SLOWDOWN_LENGTH)
@@ -119,7 +119,7 @@
 					  		"<span class='userdanger'>[A] kicks you in the abdomen!</span>")
 		playsound(get_turf(A), 'sound/weapons/genhit1.ogg', 50, 1, -1)
 		D.Paralyze(5)
-		D.apply_damage(35, STAMINA)
+		D.apply_damage(40, STAMINA)
 		D.silent += 4
 	return TRUE
 
@@ -144,14 +144,14 @@
 	D.visible_message("<span class='warning'>[A] dislocates [D]'s [hit_limb]!</span>", \
 						"<span class = 'userdanger'>[A] dislocates your [hit_limb]!</span>")
 	D.drop_all_held_items()
-	D.apply_damage(50, STAMINA, selected_zone) //damage dealt from 3 harm intent hits would be roughly 45
+	D.apply_damage(50, STAMINA, selected_zone)
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 	return TRUE
 
 /**
   * CQC restrain attack
   *
-  * attack that puts the target into a restraining position, stunning them for a short period
+  * attack that puts the target into a restraining position, stunning and muting them for a short period
   * used to set up a chokehold attack
   */
 /datum/martial_art/cqc/proc/Restrain(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -164,6 +164,7 @@
 		D.visible_message("<span class='warning'>[A] locks [D] into a restraining position!</span>", \
 							"<span class='userdanger'>[A] locks you into a restraining position!</span>")
 		D.Stun(20)
+		D.silent += 1
 		if(!(A.pulling == D))
 			D.grabbedby(A, 1)
 		if(A.grab_state < GRAB_AGGRESSIVE)
@@ -174,7 +175,7 @@
 /**
   * CQC consecutive attack
   *
-  * Attack that causes 2 seconds paralyze and 10 seconds knockdown as well as 25 stamina damage
+  * Attack that causes 5 seconds paralyze and 10 seconds knockdown as well as 25 stamina damage
   */
 /datum/martial_art/cqc/proc/Consecutive(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
@@ -185,7 +186,7 @@
 		D.visible_message("<span class='warning'>[A] delivers a firm blow to [D]'s head, knocking them down!</span>", \
 							"<span class='userdanger'>[A] delivers a firm blow to your head, causing you to fall over!</span>")
 		playsound(get_turf(D), 'sound/weapons/cqchit2.ogg', 50, 1, -1)
-		D.Paralyze(20)
+		D.Paralyze(50)
 		D.Knockdown(100)
 		D.apply_damage(25, STAMINA)
 	return TRUE
@@ -269,7 +270,7 @@
 			A.visible_message("<span class='danger'>[A] relaxes their grip on [D].</span>", \
 								"<span class='danger'>You relax your grip on [D].</span>") //visible message comes from attacker since defender is unconscious and therefore can't see
 		else
-			if(A.grab_state)
+			if(A.grab_state) //honestly with the way current grabs work this doesn't really do all that much
 				A.grab_state = min(1, A.grab_state - 1) //immediately lose grab power...
 				if(!A.grab_state || prob(BASE_GRAB_RESIST_CHANCE/A.grab_state)) //...and have a chance to lose the entire grab
 					A.visible_message("<span class='danger'>[A] is put off balance, losing their grip on [D]!</span>", \
@@ -285,19 +286,21 @@
 /**
   * CQC chokehold handle
   *
-  * handles chokehold attack, dealing 10 oxygen damage with stamina damage multiplied as a % bonus every 1.5 seconds
+  * handles chokehold attack, dealing 10 oxygen damage with stamina damage multiplied as a % bonus every second, also silences for the duration
   * returns true if total damage reaches 80 or oxygen damage reaches 50
   * returns false if the attack is interrupted
   */
 /datum/martial_art/cqc/proc/handle_chokehold(mob/living/carbon/human/A, mob/living/carbon/human/D) //handles the chokehold attack, dealing oxygen damage until the target is unconscious or would have less than 20 health before knocking out
 	chokehold_active = TRUE
-	var/damage2deal = 10 * (1+D.getStaminaLoss()/100) //stamina damage boosts the effectiveness of an attack, making using other attacks to prepare important
-	while(do_mob(A, D, 15))
+	var/damage2deal = 15
+	while(do_mob(A, D, 10))
 		if(!A.grab_state)
 			return FALSE
+		damage2deal = 15 * (1+D.getStaminaLoss()/100) //stamina damage boosts the effectiveness of an attack, making using other attacks to prepare important
 		if(D.health - damage2deal < 20 || D.stat)
 			return TRUE
 		D.adjustOxyLoss(damage2deal)
+		D.silent += 1
 		if(D.getOxyLoss() >= 50)
 			return TRUE
 
@@ -337,7 +340,7 @@
 	to_chat(usr, "<span class='notice'>Slam</span>: Grab Harm. Slam opponent into the ground, knocking them down and dealing decent stamina damage.")
 	to_chat(usr, "<span class='notice'>CQC Kick</span>: Disarm Harm. Knocks opponent away and slows them. Deals heavy stamina damage to prone opponents.")
 	to_chat(usr, "<span class='notice'>Restrain</span>: Grab Grab. Locks opponents into a restraining position, making your grab harder to break out of, disarm to begin a chokehold which deal gradual oxygen damage until the opponent is unconscious, with the damage increasing based on their stamina damage. Failing to complete the chokehold will weaken and possibly break your grab.")
-	to_chat(usr, "<span class='notice'>Pressure</span>: Disarm, Disarm, Grab. Disables the targetted limb or a random limb if the head or chest are targetted, as well as forcing the target to drop anything they are holding.")
+	to_chat(usr, "<span class='notice'>Pressure</span>: Disarm Grab. Disables the targetted limb or a random limb if the head or chest are targetted, as well as forcing the target to drop anything they are holding.")
 	to_chat(usr, "<span class='notice'>Consecutive CQC</span>: Harm Harm Harm Harm Harm. Offensive move, deals bonus stamina damage and knocking down on the last hit.")
 
-	to_chat(usr, "<b><i>In addition, by having your throw mode on when being attacked, you enter an active defense mode where you have a chance to block and sometimes even counter attacks done to you.</i></b>")
+	to_chat(usr, "<b><i>In addition, by having your throw mode on when being attacked, you enter an active defense mode where you have a chance to counter attacks done to you.</i></b>")

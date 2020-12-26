@@ -49,11 +49,7 @@
 /area/shuttle/auxillary_base)
 "j" = (
 /obj/docking_port/mobile/auxillary_base{
-	dheight = 4;
-	dir = 2;
-	dwidth = 4;
-	height = 9;
-	width = 9
+	dir = 2
 	},
 /obj/machinery/bluespace_beacon,
 /obj/machinery/computer/auxillary_base,
@@ -81,6 +77,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
+/turf/open/floor/plating,
+/area/shuttle/auxillary_base)
+"Q" = (
+/obj/machinery/sci_probe,
 /turf/open/floor/plating,
 /area/shuttle/auxillary_base)
 
@@ -116,7 +116,7 @@ c
 f
 h
 j
-f
+Q
 f
 m
 "}

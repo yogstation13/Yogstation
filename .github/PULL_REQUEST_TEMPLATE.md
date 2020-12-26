@@ -17,6 +17,12 @@ If you add a name after the ':cl', that name will be used in the changelog. Leav
 Prefix the PR title with [admin] if it's something admin related.
 Prefix the PR title with [s] if you are fixing an exploit so it is not announced on discord and the server.
 
+### Why is this good for the game?
+
+Explain why each change in your pr is beneficial to the server.
+This is less necessary for bugfixes and such, but it is always welcome.
+Remember: something that is self evident to you might not be to others. Explain your rationale, even if you feel it goes without saying.
+
 #### Changelog
 
 :cl:  

@@ -17,7 +17,7 @@
 	obj_flags |= IN_USE
 	user.health -= 20
 	user.maxHealth -= 20
-	if(user.stat)
+	if(user.maxHealth <= 0)
 		to_chat(user, "<span class='userdanger'>No... just one more try...</span>")
 		user.gib()
 	else

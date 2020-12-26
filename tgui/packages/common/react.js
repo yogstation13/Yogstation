@@ -27,7 +27,7 @@ export const classes = classNames => {
  */
 export const normalizeChildren = children => {
   if (Array.isArray(children)) {
-    return children.filter(value => value);
+    return children.flat().filter(value => value);
   }
   if (typeof children === 'object') {
     return [children];
@@ -64,10 +64,10 @@ export const pureComponentHooks = {
 };
 
 /**
- * A helper to determine whether to render an item.
+ * A helper to determine whether the object is renderable by React.
  */
-export const isFalsy = value => {
-  return value === undefined
-    || value === null
-    || value === false;
+export const canRender = value => {
+  return value !== undefined
+    && value !== null
+    && typeof value !== 'boolean';
 };

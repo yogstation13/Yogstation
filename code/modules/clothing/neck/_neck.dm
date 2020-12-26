@@ -212,6 +212,12 @@
 	tagname = stripped_input(user, "Would you like to change the name on the tag?", "Name your new pet", "Spot", MAX_NAME_LEN)
 	name = "[initial(name)] - [tagname]"
 
+/obj/item/clothing/neck/artist
+	name = "post-modern scarf"
+	icon_state = "artist"
+	item_color = "artist"
+	custom_price = 10
+
 //////////////
 //DOPE BLING//
 //////////////
