@@ -155,18 +155,20 @@
 
 /obj/item/defibrillator/emp_act(severity)
 	. = ..()
+	
 	if(cell && !(. & EMP_PROTECT_CONTENTS))
-		deductcharge(1000 / severity)
+		deductcharge(5000 / severity)
+		
 	if (. & EMP_PROTECT_SELF)
 		return
-	if(safety)
-		safety = FALSE
-		visible_message("<span class='notice'>[src] beeps: Safety protocols disabled!</span>")
-		playsound(src, 'sound/machines/defib_saftyOff.ogg', 50, 0)
-	else
+		
+	if(!safety)
 		safety = TRUE
 		visible_message("<span class='notice'>[src] beeps: Safety protocols enabled!</span>")
 		playsound(src, 'sound/machines/defib_saftyOn.ogg', 50, 0)
+	else
+		visible_message("<span class='notice'>[src] buzzes: Surge detected!</span>")
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 	update_icon()
 
 /obj/item/defibrillator/proc/toggle_paddles()
