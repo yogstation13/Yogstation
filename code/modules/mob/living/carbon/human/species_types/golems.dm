@@ -361,7 +361,7 @@
 	if(COOLDOWN_FINISHED(src, radiation_emission_cooldown) && user != H)
 		radiation_emission(H)
 
-/datum/species/golem/uranium/on_hit(obj/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/uranium/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
 	..()
 	if(COOLDOWN_FINISHED(src, radiation_emission_cooldown))
 		radiation_emission(H)
