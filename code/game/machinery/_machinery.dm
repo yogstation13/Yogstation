@@ -470,8 +470,8 @@ Class Procs:
 						// If it's a corrupt or rigged cell, attempting to send it through Bluespace could have unforeseen consequences.
 						if(istype(B, /obj/item/stock_parts/cell) && W.works_from_distance)
 							var/obj/item/stock_parts/cell/checked_cell = B
-							// If it's rigged or corrupted, max the charge. Then explode it.
-							if(checked_cell.rigged || checked_cell.corrupted)
+							// If it's rigged, max the charge. Then explode it.
+							if(checked_cell.rigged)
 								checked_cell.charge = checked_cell.maxcharge
 								checked_cell.explode()
 						if(B.get_part_rating() > A.get_part_rating())
