@@ -346,7 +346,7 @@
 /datum/species/golem/uranium/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
 	var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
-	var/radiation_block = target.run_armor_check(affecting, rad)
+	var/radiation_block = target.run_armor_check(affecting, "rad")
 	///standard damage roll for use in determining how much you irradiate per punch
 	var/attacker_irradiate_value = rand(user.dna.species.punchdamagelow, user.dna.species.punchdamagehigh)
 	target.apply_effect(attacker_irradiate_value*5, EFFECT_IRRADIATE, radiation_block)
