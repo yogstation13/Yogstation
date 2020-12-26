@@ -7,9 +7,9 @@ GLOBAL_LIST_EMPTY(gangs)
 	config_tag = "gang"
 	antag_flag = ROLE_GANG
 	restricted_jobs = list("Security Officer", "Warden", "Detective", "AI", "Cyborg","Captain", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer")
-	required_players = 1
+	required_players = 30
 	required_enemies = 0
-	recommended_enemies = 2
+	recommended_enemies = 1
 	enemy_minimum_age = 14
 	title_icon = "gang"
 
@@ -44,6 +44,7 @@ GLOBAL_LIST_EMPTY(gangs)
 		antag_candidates -= boss
 		gangboss_candidates += boss
 		boss.restricted_roles = restricted_jobs
+		boss.special_role = ROLE_GANG
 
 	if(gangboss_candidates.len < 1) //Need at least one gangs
 		return

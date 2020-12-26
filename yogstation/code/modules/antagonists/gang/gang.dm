@@ -34,6 +34,7 @@
 		to_chat(owner, "<span class='userdanger'>You are no longer a gangster!</span>")
 
 /datum/antagonist/gang/on_gain()
+	owner.special_role = ROLE_GANG
 	if(!gang)
 		create_team()
 	..()
@@ -51,6 +52,64 @@
 		var/datum/team/gang/gangteam = pick_n_take(GLOB.possible_gangs)
 		if(gangteam)
 			gang = new gangteam
+			forge_gang_objectives()
+
+/datum/antagonist/gang/proc/add_objective(datum/objective/O, needs_target = FALSE)
+	O.team = gang
+	gang.objectives += O
+	O.update_explanation_text()
+	objectives += O
+
+/datum/antagonist/gang/proc/forge_gang_objectives()
+	var/domination = prob(10) // If their objective will be domination or not
+	if(domination)
+		add_objective(new/datum/objective/gang/dominate)
+		gang.can_dominate = TRUE
+	else
+		var/amount_to_add = rand(2, 2)
+		for(var/i = 1 to amount_to_add)
+			forge_single_objective()
+
+/datum/antagonist/gang/proc/forge_single_objective()
+	var/list/possible_objectives = list(
+										"money",
+										"average_joe",
+										"control",
+										"members",
+										"all_from_one",
+										"one_from_all"
+										)
+	if(SSjob.get_living_sec().len)
+		possible_objectives += "inside_man"
+	switch(pick_n_take(possible_objectives))
+		if("money")
+			var/datum/objective/gang/money/new_objective = new
+			new_objective.owner = owner
+			add_objective(new_objective)
+		if("average_joe")
+			var/datum/objective/gang/vip/average_joe/new_objective = new
+			new_objective.owner = owner
+			add_objective(new_objective)
+		if("inside_man")
+			var/datum/objective/gang/vip/inside_man/new_objective = new
+			new_objective.owner = owner
+			add_objective(new_objective)
+		if("control")
+			var/datum/objective/gang/control/new_objective = new
+			new_objective.owner = owner
+			add_objective(new_objective)
+		if("members")
+			var/datum/objective/gang/members/new_objective = new
+			new_objective.owner = owner
+			add_objective(new_objective)
+		if("all_from_one")
+			var/datum/objective/gang/all_from_one/new_objective = new
+			new_objective.owner = owner
+			add_objective(new_objective)
+		if("one_from_all")
+			var/datum/objective/gang/one_from_all/new_objective = new
+			new_objective.owner = owner
+			add_objective(new_objective)
 
 /datum/antagonist/gang/proc/equip_gang() // Bosses get equipped with their tools
 	return
@@ -114,9 +173,11 @@
 		else if(newgang == "Random")
 			var/datum/team/gang/G = pick_n_take(GLOB.possible_gangs)
 			gang = new G
+			forge_gang_objectives()
 		else
 			GLOB.possible_gangs -= newgang
 			gang = new newgang
+			forge_gang_objectives()
 	else
 		if(!GLOB.gangs.len) // no gangs exist
 			to_chat(admin, "<span class='danger'>No gangs exist, please create a new one instead.</span>")
@@ -160,10 +221,14 @@
 /datum/antagonist/gang/proc/add_to_gang()
 	gang.add_member(owner)
 	owner.current.log_message("<font color='red'>Has been converted to the [gang.name] gang!</font>", INDIVIDUAL_ATTACK_LOG)
+	owner.objectives += gang.objectives
+	owner.announce_objectives()
 
 /datum/antagonist/gang/proc/remove_from_gang()
 	gang.remove_member(owner)
 	owner.current.log_message("<font color='red'>Has been deconverted from the [gang.name] gang!</font>", INDIVIDUAL_ATTACK_LOG)
+	owner.objectives -= gang.objectives
+	owner.special_role = null
 
 /datum/antagonist/gang/proc/set_dom_time_left(mob/admin)
 	if(gang.domination_time == NOT_DOMINATING)
@@ -296,6 +361,11 @@
 
 #define MAXIMUM_RECALLS 3
 #define INFLUENCE_INTERVAL 1800
+#define UNIFORM_BONUS 100
+#define MEMBER_BONUS_1 250
+#define MEMBER_BONUS_2 100
+#define MEMBER_BONUS_3 50
+#define INITIAL_MAX_MEMBERS 3
 // Gang team datum. This handles the gang itself.
 /datum/team/gang
 	name = "Gang"
@@ -308,6 +378,7 @@
 	var/list/lost_territories = list() // territories lost by the gang.
 	var/list/new_territories = list() // territories captured by the gang.
 	var/list/gangtools = list()
+	var/can_dominate = FALSE
 	var/domination_time = NOT_DOMINATING
 	var/dom_attempts = INITIAL_DOM_ATTEMPTS
 	var/color
@@ -321,7 +392,7 @@
 	var/next_point_time
 	var/recalls = MAXIMUM_RECALLS // Once this reaches 0, this gang cannot force recall the shuttle with their gangtool anymore
 	var/datum/bank_account/registered_account
-	var/max_members = 3 // Max amount of members. When milestones are reached, this number will increase.
+	var/max_members = INITIAL_MAX_MEMBERS // Max amount of members. When milestones are reached, this number will increase.
 	var/milestones = list()
 	var/completed_milestones = 0
 
@@ -354,20 +425,34 @@
 
 /datum/team/gang/roundend_report()
 	var/list/report = list()
+	var/gangwin = TRUE
+	var/objectives_text = ""
 	report += "<span class='header'>[name]:</span>"
+	if(objectives.len)//If the gang had no objectives, don't need to process this.
+		var/count = 1
+		for(var/datum/objective/objective in objectives)
+			if(objective.check_completion())
+				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <span class='greentext'>Success!</span>"
+			else
+				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <span class='redtext'>Fail.</span>"
+				gangwin = FALSE
+			count++
 	if(winner)
-		report += "<span class='greentext'>The [name] gang was successful!</span>"
+		report += "<span class='greentext'>The [name] gang has successfully taken over the station!</span>"
 		for(var/datum/mind/M in leaders)
 			SSachievements.unlock_achievement(/datum/achievement/greentext/gangleader,M.current)
 		for(var/datum/mind/M in members) // Leaders are included in this too
 			SSachievements.unlock_achievement(/datum/achievement/greentext/gang,M.current) // and so get the lower achievement, too
+	else if(gangwin)
+		report += "<span class='greentext'>The [name] gang was successful in their mission!</span>"
 	else
 		report += "<span class='redtext'>The [name] gang has failed!</span>"
-
+	
 	report += "The [name] gang bosses were:"
 	report += printplayerlist(leaders)
 	report += "The [name] [member_name]s were:"
 	report += printplayerlist(members-leaders)
+	report += objectives_text
 
 	return "<div class='panel redborder'>[report.Join("<br>")]</div>"
 
@@ -454,10 +539,10 @@
 /datum/team/gang/proc/check_paycheck()
 	members_amount = 0 // reset so it doesnt just add last cycles to next
 	count_members()
-	uniformed_paycheck = (check_clothing() * 100) // 100 credit income per uniformed gangster
+	uniformed_paycheck = (check_clothing() * UNIFORM_BONUS) // 100 credit income per uniformed gangster
 	var/new_passive_paycheck = (member_paycheck + uniformed_paycheck) // This is your total gain
 	passive_paycheck = new_passive_paycheck
-	return passive_paycheck
+	return
 
 /datum/team/gang/proc/check_clothing()
 	//Count uniformed gangsters
@@ -500,11 +585,11 @@ Not sure if I need this anymore, since its called in gang_items purchase()
 				members_amount++
 			switch(members_amount)
 				if(0 to 3)
-					member_paycheck = 250
+					member_paycheck = (MEMBER_BONUS_1 * members_amount)
 				if(4 to 5)
-					member_paycheck = 100
+					member_paycheck = (MEMBER_BONUS_2 * members_amount)
 				if(6 to INFINITY)
-					member_paycheck = 0
+					member_paycheck = (MEMBER_BONUS_3 * members_amount)
 /*
 /datum/team/gang/proc/check_milestones()
 	for(blahblahblah in milestones)
@@ -534,6 +619,10 @@ Not sure if I need this anymore, since its called in gang_items purchase()
 	var/diff = domination_time - world.time
 	return round(diff * 0.1)
 
-
 #undef MAXIMUM_RECALLS
 #undef INFLUENCE_INTERVAL
+#undef UNIFORM_BONUS
+#undef MEMBER_BONUS_1
+#undef MEMBER_BONUS_2
+#undef MEMBER_BONUS_3
+#undef INITIAL_MAX_MEMBERS

@@ -55,7 +55,7 @@
 	return "([get_cost(user, gang, gangtool)] Influence)"
 
 /datum/gang_item/proc/get_weapon_cost_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
-	return "([get_weapon_cost(user, gang, gangtool)] Supply)"
+	return "([get_weapon_cost(user, gang, gangtool)] Credits)"
 
 /datum/gang_item/proc/get_name_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
 	return name
@@ -314,12 +314,11 @@
 	item_path = /obj/item/stashbox
 
 /datum/gang_item/equipment/stashbox/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
-	if(item_path)
-		var/obj/item/stashbox/O = new item_path(user.loc, gang)
-		O.registered_account = gang.registered_account
-		user.put_in_hands(O)
-	else
+	if(!item_path)
 		return TRUE
+	var/obj/item/stashbox/O = new item_path(user.loc, gang)
+	O.registered_account = gang.registered_account
+	user.put_in_hands(O)
 	if(spawn_msg)
 		to_chat(user, spawn_msg)
 
@@ -330,11 +329,10 @@
 	item_path = /obj/machinery/smugglerbeacon
 
 /datum/gang_item/equipment/smugglerbeacon/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
-	if(item_path)
-		var/obj/machinery/smugglerbeacon/O = new item_path(user.loc, gang)
-		O.registered_account = gang.registered_account
-	else
+	if(!item_path)
 		return TRUE
+	var/obj/machinery/smugglerbeacon/O = new item_path(user.loc, gang)
+	O.registered_account = gang.registered_account
 	if(spawn_msg)
 		to_chat(user, spawn_msg)
 
@@ -417,6 +415,9 @@
 		if(obj.density)
 			to_chat(user, "<span class='warning'>There's not enough room here!</span>")
 			return FALSE
+	if(!gang.can_dominate)
+		to_chat(user, "<span class='warning'>Your gang can't dominate the station!</span>")
+		return FALSE
 
 	return ..()
 

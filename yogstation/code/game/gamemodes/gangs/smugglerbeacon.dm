@@ -8,7 +8,7 @@
 */
 /obj/item/stashbox
 	name = "stashbox"
-	desc = "a secure stash box criminals use to hide their money"
+	desc = "A secure stash box criminals use to hide their money"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "depositbox"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -65,7 +65,8 @@
 	var/refund = round(((refund_penalty) / 100) * (cached_funds))// Ammount to refund after it has been reduced
 	registered_account.adjust_money(-refund)
 	var/obj/item/holochip/holochip = new (src.drop_location(), refund)
-	to_chat(loc, "a credit chip falls out of [src]")
+	holochip.visible_message("A holochip falls out of [src].")
+	..()
 
 /*
 	Smugglers Beacon
@@ -94,15 +95,15 @@
 		return
 	sending = TRUE
 
-	src.visible_message("<span class='notice'>[src] starts charging up.</span>")
-	src.icon_state = src.warmup_state
+	visible_message("<span class='notice'>[src] starts charging up.</span>")
+	icon_state = warmup_state
 	sending_timer = addtimer(CALLBACK(src,.proc/send),warmup_time, TIMER_STOPPABLE)
 
 /obj/machinery/smugglerbeacon/proc/stop_sending()
 	if(!sending)
 		return
 	sending = FALSE
-	src.icon_state = src.idle_state
+	icon_state = idle_state
 	deltimer(sending_timer)
 	registered_account.adjust_money(points)
 	reset_points()
@@ -131,7 +132,7 @@
 
 	points += value
 
-	src.visible_message("<span class='notice'>[src] activates!</span>")
-	flick(src.sending_state,src)
-	src.icon_state = src.idle_state
+	visible_message("<span class='notice'>[src] activates!</span>")
+	flick(sending_state,src)
+	icon_state = idle_state
 	stop_sending()
