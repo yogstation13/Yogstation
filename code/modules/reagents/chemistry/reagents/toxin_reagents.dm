@@ -433,6 +433,14 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	toxpwr = 1
 
+/datum/reagent/toxin/formadehyde/on_mob_metabolize(mob/living/L)
+	..()
+	ADD_TRAIT(L, TRAIT_PRESERVED_ORGANS, type)
+
+/datum/reagent/toxin/formaldehyde/on_mob_end_metabolize(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_PRESERVED_ORGANS, type)
+	..()
+
 /datum/reagent/toxin/formaldehyde/on_mob_life(mob/living/carbon/M)
 	if(prob(5))
 		holder.add_reagent(/datum/reagent/toxin/histamine, pick(5,15))
