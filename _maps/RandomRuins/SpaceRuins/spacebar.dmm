@@ -781,6 +781,9 @@
 /obj/structure/table,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"HM" = (
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered/no_grav)
 "HZ" = (
 /obj/structure/sign/poster/official/cleanliness{
 	pixel_x = -32
@@ -1023,9 +1026,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
-"Sy" = (
-/turf/open/floor/plating,
-/area/ruin/unpowered/no_grav)
 "TK" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -1191,7 +1191,7 @@ YH
 YH
 YH
 xi
-Sy
+HM
 xi
 YH
 YH
