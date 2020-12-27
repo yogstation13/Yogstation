@@ -109,22 +109,22 @@
 			for(var/datum/mind/possible_target in SSjob.get_living_engineers())
 				target_amount++
 				if(possible_target.has_antag_datum(/datum/antagonist/gang))
-					converted_targets++
+					converted_targets |= possible_target
 		if("science")
 			for(var/datum/mind/possible_target in SSjob.get_living_science())
 				target_amount++
 				if(possible_target.has_antag_datum(/datum/antagonist/gang))
-					converted_targets++
+					converted_targets |= possible_target
 		if("medical")
 			for(var/datum/mind/possible_target in SSjob.get_living_medical())
 				target_amount++
 				if(possible_target.has_antag_datum(/datum/antagonist/gang))
-					converted_targets++
+					converted_targets |= possible_target
 		if("supply")
 			for(var/datum/mind/possible_target in SSjob.get_living_supply())
 				target_amount++
 				if(possible_target.has_antag_datum(/datum/antagonist/gang))
-					converted_targets++
+					converted_targets |= possible_target
 	return (converted_targets.len >= target_amount)
 
 /datum/objective/gang/one_from_all

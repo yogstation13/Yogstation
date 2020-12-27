@@ -120,7 +120,7 @@
 	for(var/atom/movable/AM in get_turf(src))
 		if(AM == src)
 			continue
-		export_item_and_contents(AM, EXPORT_PIRATE | EXPORT_CARGO | EXPORT_CONTRABAND | EXPORT_EMAG, apply_elastic = FALSE, delete_unsold = FALSE, external_report = ex)
+		export_item_and_contents(AM, EXPORT_GANG | EXPORT_CARGO | EXPORT_CONTRABAND | EXPORT_EMAG, apply_elastic = FALSE, delete_unsold = FALSE, external_report = ex)
 
 	var/value = 0
 	for(var/datum/export/E in ex.total_amount)
@@ -136,3 +136,16 @@
 	flick(sending_state,src)
 	icon_state = idle_state
 	stop_sending()
+
+/datum/export/gang
+	export_category = EXPORT_GANG
+
+/datum/export/gang/gangtool
+	cost = 400
+	unit_name = "gangtool"
+	export_types = list(/obj/item/gangtool)
+
+/datum/export/gang/recruitment_pen
+	cost = 250
+	unit_name = "recruitment pen"
+	export_types =list(/obj/item/pen/gang)

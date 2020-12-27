@@ -178,19 +178,19 @@
 /datum/gang_item/weapon/shuriken
 	name = "Shuriken"
 	id = "shuriken"
-	weapon_cost = 40
+	weapon_cost = 100
 	item_path = /obj/item/throwing_star
 
 /datum/gang_item/weapon/switchblade
 	name = "Switchblade"
 	id = "switchblade"
-	weapon_cost = 20
+	weapon_cost = 60
 	item_path = /obj/item/switchblade
 
 /datum/gang_item/weapon/surplus
 	name = "Surplus Rifle"
 	id = "surplus"
-	weapon_cost = 100 // Its a glorified bolt action, and improvised shotguns have a much higher damage potential
+	weapon_cost = 300 // Its a glorified bolt action, and improvised shotguns have a much higher damage potential
 	item_path = /obj/item/gun/ballistic/automatic/surplus
 
 /datum/gang_item/weapon/ammo/surplus_ammo
@@ -202,7 +202,7 @@
 /datum/gang_item/weapon/improvised
 	name = "Sawn-Off Improvised Shotgun"
 	id = "sawn"
-	weapon_cost = 250 // Much more damage potential
+	weapon_cost = 500 // Much more damage potential
 	item_path = /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawn
 
 /datum/gang_item/weapon/ammo/improvised_ammo
@@ -214,7 +214,7 @@
 /datum/gang_item/weapon/pistol
 	name = "10mm Pistol"
 	id = "pistol"
-	weapon_cost = 500 // So much damage potential, when considering dual wielding plus concealability
+	weapon_cost = 1200 // So much damage potential, when considering dual wielding plus concealability
 	item_path = /obj/item/gun/ballistic/automatic/pistol
 
 /datum/gang_item/weapon/ammo/pistol_ammo
@@ -226,7 +226,7 @@
 /datum/gang_item/weapon/uzi
 	name = "Uzi SMG"
 	id = "uzi"
-	weapon_cost = 1200 // A single Uzi is easily worth the same as a combat shotgun
+	weapon_cost = 5000 // A single Uzi is easily worth more than a combat shotgun
 	item_path = /obj/item/gun/ballistic/automatic/mini_uzi
 
 /datum/gang_item/weapon/ammo/uzi_ammo
