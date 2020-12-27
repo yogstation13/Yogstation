@@ -69,7 +69,7 @@
 
 /mob/living/simple_animal/revenant/Initialize(mapload)
 	. = ..()
-	flags_1 = RAD_NO_CONTAMINATE_1
+	flags_1 |= RAD_NO_CONTAMINATE_1
 	ADD_TRAIT(src, TRAIT_SIXTHSENSE, INNATE_TRAIT)
 	AddSpell(new /obj/effect/proc_holder/spell/targeted/night_vision/revenant(null))
 	AddSpell(new /obj/effect/proc_holder/spell/targeted/telepathy/revenant(null))
