@@ -413,16 +413,10 @@
 		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 		return
 	if(!wielded)
-		if(iscyborg(user))
-			to_chat(user, "<span class='warning'>You must activate the paddles in your active module before you can use them on someone!</span>")
-		else
-			to_chat(user, "<span class='warning'>You need to wield the paddles in both hands before you can use them on someone!</span>")
+		to_chat(user, "<span class='warning'>You must activate the paddles in [iscyborg(user) ? "your active module" : "both hands"] before you can use them on someone!</span>")
 		return
 	if(cooldown)
-		if(req_defib)
-			to_chat(user, "<span class='warning'>[defib] is recharging!</span>")
-		else
-			to_chat(user, "<span class='warning'>[src] are recharging!</span>")
+		to_chat(user, "<span class='warning'>[req_defib ? "[defib] is" : "[src] are"] recharging!</span>")
 		return
 
 	if(user.a_intent == INTENT_DISARM)
@@ -568,6 +562,7 @@
 				playsound(src, 'sound/machines/defib_zap.ogg', 75, 1, -1)
 				total_brute	= H.getBruteLoss()
 				total_burn	= H.getFireLoss()
+				var/total_damage = total_brute+total_burn
 				shock_touching(30, H)
 				var/failed
 
@@ -581,7 +576,7 @@
 					failed = "<span class='warning'>[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Patient's heart is missing.</span>"
 				else if (heart.organ_flags & ORGAN_FAILING)
 					failed = "<span class='warning'>[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Patient's heart too damaged.</span>"
-				else if(total_burn >= MAX_REVIVE_FIRE_DAMAGE || total_brute >= MAX_REVIVE_BRUTE_DAMAGE || HAS_TRAIT(H, TRAIT_HUSK))
+				else if(total_damage >= MAX_REVIVE_DAMAGE || HAS_TRAIT(H, TRAIT_HUSK))
 					failed = "<span class='warning'>[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Severe tissue damage makes recovery of patient impossible via defibrillator. Further attempts futile.</span>"
 				else if(H.get_ghost())
 					failed = "<span class='warning'>[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - No activity in patient's brain. Further attempts may be successful.</span>"
