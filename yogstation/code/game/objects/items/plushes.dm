@@ -116,7 +116,7 @@
 		user.visible_message("<span class='notice'>[user] attempts to stab [src]!</span>", "<span class='suicide'>The knife bounces off [src]'s back before breaking into millions of pieces... [src] glares at [user]!</span>") // You fucked up now son
 		I.play_tool_sound(src)
 		qdel(I)
-		wait(3)
+		sleep(3 SECONDS)
 		user.gib()
 
 /obj/item/toy/plush/goatplushie/angry/kinggoat/attackby(obj/item/I,mob/living/user,params)
