@@ -318,6 +318,9 @@
 		new /obj/effect/temp_visual/revenant(S.loc)
 		S.spark_system.start()
 		S.emp_act(EMP_HEAVY)
+	for(var/obj/machinery/door/firedoor/window/W in T) // Fuck you atmos-locks
+		W.take_damage(rand(5,20))
+		to_chat(user,"<span class='notice'>The shutter mechanism starts to grind its gears.</span>")
 
 //Blight: Infects nearby humans and in general messes living stuff up.
 /obj/effect/proc_holder/spell/aoe_turf/revenant/blight
