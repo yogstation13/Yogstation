@@ -730,7 +730,7 @@
 
 /datum/reagent/toxin/rotatium/on_mob_life(mob/living/carbon/M)
 	if(M.hud_used)
-		if(prob(33))
+		if(prob(80))
 			var/list/screens = list(M.hud_used.plane_masters["[FLOOR_PLANE]"], M.hud_used.plane_masters["[GAME_PLANE]"], M.hud_used.plane_masters["[LIGHTING_PLANE]"])
 			var/rotation = rand(0, 360)*rand(1, 4) // By this point the player is probably puking and quitting anyway
 			for(var/whole_screen in screens)
