@@ -149,6 +149,9 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/execution/transfer)
+"x" = (
+/turf/closed/wall/r_wall,
+/area/security/execution/transfer)
 "y" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "executionfireblast";
@@ -322,12 +325,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"R" = (
-/turf/closed/wall{
-	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall"
-	},
-/area/security/execution/transfer)
 "S" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -423,33 +420,33 @@ a
 a
 a
 a
-R
-R
-R
-R
-R
+x
+x
+x
+x
+x
 "}
 (2,1,1) = {"
 a
 a
 a
 a
-R
+x
 s
 H
 Z
-R
+x
 "}
 (3,1,1) = {"
-R
-R
-R
+x
+x
+x
 d
-R
+x
 P
 n
 j
-R
+x
 "}
 (4,1,1) = {"
 w
