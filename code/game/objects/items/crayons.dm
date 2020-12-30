@@ -680,6 +680,26 @@
 		spray_overlay.color = paint_color
 		add_overlay(spray_overlay)
 
+/obj/item/toy/crayon/spraycan/attackby(obj/item/S) //1 light 2 flame
+	if(istype(S, /obj/item/screwdriver))
+		explosion(get_turf(src), 0, 0, 1, flame_range = 2)
+		log_bomber(user, "detonated a", src, "via screwdriver")
+		qdel(src)
+
+/obj/item/toy/crayon/spraycan/hellcan/attackby(obj/item/S) //2 light 5 flame
+	if(istype(S, /obj/item/screwdriver))
+		explosion(get_turf(src), 0, 0, 2, flame_range = 5)
+		log_bomber(user, "detonated a", src, "via screwdriver")
+		qdel(src)
+
+/obj/item/toy/crayon/spraycan/lubecan/attackby(obj/item/S) //lubecan makes big lube no explosion honk
+	if(istype(S, /obj/item/screwdriver))
+		chem_splash(loc, 5, list(reagents))
+		qdel(src)
+
+/obj/item/toy/crayon/spraycan/borg/attackby() //no
+	return
+
 /obj/item/toy/crayon/spraycan/borg
 	name = "cyborg spraycan"
 	desc = "A metallic container containing shiny synthesised paint."
