@@ -680,9 +680,9 @@
 		spray_overlay.color = paint_color
 		add_overlay(spray_overlay)
 
-/obj/item/toy/crayon/spraycan/attackby(obj/item/S) //1 light 2 flame
+/obj/item/toy/crayon/spraycan/attackby(obj/item/S) //1 light
 	if(istype(S, /obj/item/screwdriver))
-		explosion(get_turf(src), 0, 0, 1, flame_range = 2)
+		explosion(get_turf(src), 0, 0, 1, flame_range = 0)
 		log_bomber(usr, "detonated a", src, "via screwdriver")
 		qdel(src)
 
