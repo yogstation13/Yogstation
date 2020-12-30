@@ -1,0 +1,4 @@
+author: "alexkar598"
+delete-after: true 
+changes: 
+  - tweak: "Reviving someone with robotic limbs(such as augmented or preternis) will also heal their robotic limbs when defibbing"
