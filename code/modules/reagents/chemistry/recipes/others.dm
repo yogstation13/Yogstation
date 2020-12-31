@@ -639,3 +639,9 @@
 	id = /datum/reagent/consumable/liquidelectricity
 	results = list(/datum/reagent/consumable/liquidelectricity = 2)
 	required_reagents = list(/datum/reagent/teslium = 1, /datum/reagent/blood = 2)
+
+/datum/chemical_reaction/shrinkserum
+	name = "shrinking serum"
+	id = /datum/reagent/shrinkserum
+	results = list(/datum/reagent/shrinkserum = 3)
+	required_reagents = list(/datum/reagent/drug/space_drugs = 5, /datum/reagent/consumable/red_queen = 2, /datum/reagent/growthserum = 1)
