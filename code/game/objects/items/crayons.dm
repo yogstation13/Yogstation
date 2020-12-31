@@ -680,7 +680,7 @@
 		spray_overlay.color = paint_color
 		add_overlay(spray_overlay)
 
-/obj/item/toy/crayon/spraycan/attackby(obj/item/S)
+/obj/item/toy/crayon/spraycan/attackby(obj/item/S,mob/user)
 	if(S.is_sharp() || istype(S, /obj/item/screwdriver) || istype(S, /obj/item/surgicaldrill))
 
 		if(istype(src, /obj/item/toy/crayon/spraycan/hellcan))
@@ -690,12 +690,13 @@
 			chem_splash(loc, 5, list(reagents)) //lubecan makes big lube no explosion honk
 
 		else if(istype(src, /obj/item/toy/crayon/spraycan/borg))
+			to_chat(user, "<span class='warning'>ERR ERR. ASIMOV SPRAYCAN FIRMWARE DOES NOT ALLOW THIS.</span>")
 			return // are you fucking nuts
-			
+
 		else 
 			explosion(get_turf(src), 0, 0, 1, flame_range = 0) //1 light for default cans
 
-		log_bomber(usr, "detonated a", src, "via screwdriver")
+		log_bomber(user, "detonated a", src, "via screwdriver")
 		qdel(src)
 
 /obj/item/toy/crayon/spraycan/borg
