@@ -682,21 +682,21 @@
 
 /obj/item/toy/crayon/spraycan/attackby(obj/item/S)
 	if(S.is_sharp() || istype(S, /obj/item/screwdriver) || istype(S, /obj/item/surgicaldrill))
-	
+
 		if(istype(src, /obj/item/toy/crayon/spraycan/hellcan))
 			explosion(get_turf(src), 0, 0, 2, flame_range = 5) //2 light 5 flame
 
 		else if(istype(src, /obj/item/toy/crayon/spraycan/lubecan))
 			chem_splash(loc, 5, list(reagents)) //lubecan makes big lube no explosion honk
 
+		else if(istype(src, /obj/item/toy/crayon/spraycan/borg))
+			return // are you fucking nuts
+			
 		else 
 			explosion(get_turf(src), 0, 0, 1, flame_range = 0) //1 light for default cans
 
 		log_bomber(usr, "detonated a", src, "via screwdriver")
 		qdel(src)
-
-/obj/item/toy/crayon/spraycan/borg/attackby() //no
-	return
 
 /obj/item/toy/crayon/spraycan/borg
 	name = "cyborg spraycan"
