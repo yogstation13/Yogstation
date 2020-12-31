@@ -235,7 +235,7 @@
 	var/mob/living/carbon/user = owner.current
 	if(!istype(user))
 		return
-	if(isIPC(target))
+	if(isipc(target))
 		to_chat(user, "<span class='warning'>We cannot absorb mechanical entities!</span>")
 		return
 	if(stored_profiles.len)

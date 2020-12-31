@@ -101,7 +101,7 @@
 		if(affected.status != ORGAN_ROBOTIC)
 			to_chat(user, "<span class='notice'>You can't put [tool] into a meat enclosure!</span>")
 			return -1
-		if(!isIPC(target))
+		if(!isipc(target))
 			to_chat(user, "<span class='notice'>[target] does not have the proper connectors to interface with [tool].</span>")
 			return -1
 		if(target_zone != "chest")

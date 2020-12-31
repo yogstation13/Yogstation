@@ -181,7 +181,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		if(!M.has_antag_datum(/datum/antagonist/changeling))
 			continue
 		var/datum/mind/T = possible_target
-		if(!istype(T) || isIPC(T.current))
+		if(!istype(T) || isipc(T.current))
 			return FALSE
 	return TRUE
 
@@ -957,7 +957,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	for(var/datum/mind/M in SSticker.minds)
 		if(M.has_antag_datum(/datum/antagonist/changeling))
 			continue
-		if(isIPC(M.current))
+		if(isipc(M.current))
 			continue
 		if(department_head in get_department_heads(M.assigned_role))
 			if(ling_count)
@@ -988,7 +988,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	for(var/datum/mind/head in heads)
 		if(head.has_antag_datum(/datum/antagonist/changeling))
 			continue
-		if(isIPC(head.current))
+		if(isipc(head.current))
 			continue
 		if(needed_heads)
 			department_minds += head

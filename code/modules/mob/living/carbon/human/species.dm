@@ -113,7 +113,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	/// What kind of gibs to spawn
 	var/species_gibs = "human"
 	/// Can this species use numbers in its name?
-	var/allow_numbers_in_name
+	var/allow_numbers_in_name = FALSE
 
 	/// species-only traits. Can be found in DNA.dm
 	var/list/species_traits = list()

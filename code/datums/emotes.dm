@@ -118,7 +118,7 @@
 		. = message_AI
 	else if(ismonkey(user) && message_monkey)
 		. = message_monkey
-	else if(isIPC(user) && message_ipc)
+	else if(isipc(user) && message_ipc)
 		. = message_ipc
 	else if(isanimal(user) && message_simple)
 		. = message_simple

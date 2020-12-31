@@ -128,8 +128,8 @@
         ui_y = -224
 
 /datum/techweb_node/ipc_organs
-		ui_x = 510
-		ui_y = -250
+        ui_x = -160
+        ui_y = 32
 
 /datum/techweb_node/adv_engi
         ui_x = -32

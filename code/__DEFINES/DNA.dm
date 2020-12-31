@@ -140,6 +140,7 @@
 #define NOHUSK			22
 /// limbs start out as robotic; but also use organic icons. If you want to use the default ones, you'll have to use on_species_gain
 #define ROBOTIC_LIMBS	23
+/// have no mouth to ingest/eat with
 #define NOMOUTH			24
 
 //organ slots
