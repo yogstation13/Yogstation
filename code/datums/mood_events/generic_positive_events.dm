@@ -105,7 +105,7 @@
 	hidden = TRUE
 	
 /datum/mood_event/changeling
-	description = "<span class='nicegreen'>No feeling supercedes our hunger.</span>\n" //if i could i'd just make them not get all those human feelings
+	description = "<span class='nicegreen'>No feeling supersedes our hunger.</span>\n" //if i could i'd just make them not get all those human feelings
 	mood_change = 40
 	hidden = TRUE
 
