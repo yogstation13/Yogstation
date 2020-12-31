@@ -1773,15 +1773,17 @@
 /datum/reagent/shrinkserum/on_mob_life(mob/living/carbon/M)
 	var/newsize = current_size
 	newsize = 0.85*RESIZE_DEFAULT_SIZE // The same resize as dwarfism
-	switch(current_cycle)
-		if(4)
-			to_chat(M, "<span class='warning'>Goodness...!</span>")
-		if(7)
-			to_chat(M, "<span class='warning'>What did I do!</span>") //Another quote
-		if(10)
-			M.resize = newsize/current_size
-			current_size = newsize
-			M.update_transform()
+	if(!HAS_TRAIT(M, TRAIT_SHORT)) // So you can't repeat the effect to continue shrinking
+		switch(current_cycle)
+			if(4)
+				to_chat(M, "<span class='warning'>Goodness...!</span>")
+			if(7)
+				to_chat(M, "<span class='warning'>What did I do!</span>") //Another quote
+			if(10)
+				ADD_TRAIT(M, TRAIT_SHORT, type)
+				M.resize = newsize/current_size
+				current_size = newsize
+				M.update_transform()
 	..()
 
 /datum/reagent/plastic_polymers

@@ -643,5 +643,5 @@
 /datum/chemical_reaction/shrinkserum
 	name = "shrinking serum"
 	id = /datum/reagent/shrinkserum
-	results = list(/datum/reagent/shrinkserum = 3)
+	results = list(/datum/reagent/shrinkserum = 1)
 	required_reagents = list(/datum/reagent/drug/space_drugs = 5, /datum/reagent/consumable/red_queen = 2, /datum/reagent/growthserum = 1)
