@@ -79,7 +79,7 @@ effective or pretty fucking useless.
 /obj/item/healthanalyzer/rad_laser/attack(mob/living/M, mob/living/user)
 	if(!stealth || !irradiate)
 		..()
-	if(!irradiate)
+	if(!irradiate || !is_syndicate(user)) // only syndicates are aware of this being a rad laser and know how to use it.
 		return
 	if(!used)
 		log_combat(user, M, "irradiated", src)
@@ -105,9 +105,15 @@ effective or pretty fucking useless.
 	return round(max(10, (stealth*30 + intensity*5 - wavelength/4)))
 
 /obj/item/healthanalyzer/rad_laser/attack_self(mob/user)
+	if(!is_syndicate(user))
+		. = ..()
+		return
 	interact(user)
 
 /obj/item/healthanalyzer/rad_laser/interact(mob/user)
+	if(!is_syndicate(user))
+		. = ..()
+		return
 	ui_interact(user)
 
 /obj/item/healthanalyzer/rad_laser/ui_state(mob/user)
