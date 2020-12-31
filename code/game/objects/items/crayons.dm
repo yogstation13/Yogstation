@@ -680,21 +680,19 @@
 		spray_overlay.color = paint_color
 		add_overlay(spray_overlay)
 
-/obj/item/toy/crayon/spraycan/attackby(obj/item/S) //1 light
+/obj/item/toy/crayon/spraycan/attackby(obj/item/S)
 	if(S.is_sharp() || istype(S, /obj/item/screwdriver) || istype(S, /obj/item/surgicaldrill))
-		explosion(get_turf(src), 0, 0, 1, flame_range = 0)
-		log_bomber(usr, "detonated a", src, "via screwdriver")
-		qdel(src)
+	
+		if(istype(src, /obj/item/toy/crayon/spraycan/hellcan))
+			explosion(get_turf(src), 0, 0, 2, flame_range = 5) //2 light 5 flame
 
-/obj/item/toy/crayon/spraycan/hellcan/attackby(obj/item/S) //2 light 5 flame
-	if(S.is_sharp() || istype(S, /obj/item/screwdriver) || istype(S, /obj/item/surgicaldrill))
-		explosion(get_turf(src), 0, 0, 2, flame_range = 5)
-		log_bomber(usr, "detonated a", src, "via screwdriver")
-		qdel(src)
+		else if(istype(src, /obj/item/toy/crayon/spraycan/lubecan))
+			chem_splash(loc, 5, list(reagents)) //lubecan makes big lube no explosion honk
 
-/obj/item/toy/crayon/spraycan/lubecan/attackby(obj/item/S) //lubecan makes big lube no explosion honk
-	if(S.is_sharp() || istype(S, /obj/item/screwdriver) || istype(S, /obj/item/surgicaldrill))
-		chem_splash(loc, 5, list(reagents))
+		else 
+			explosion(get_turf(src), 0, 0, 1, flame_range = 0) //1 light for default cans
+
+		log_bomber(usr, "detonated a", src, "via screwdriver")
 		qdel(src)
 
 /obj/item/toy/crayon/spraycan/borg/attackby() //no
