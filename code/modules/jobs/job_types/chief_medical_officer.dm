@@ -45,7 +45,7 @@
 	uniform = /obj/item/clothing/under/rank/chief_medical_officer
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	suit = /obj/item/clothing/suit/toggle/labcoat/cmo
-	l_hand = /obj/item/storage/firstaid/regular
+	l_hand = /obj/item/storage/firstaid/medical
 	suit_store = /obj/item/flashlight/pen
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
 	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/preset/advanced=1) //yogs - removes med budget
