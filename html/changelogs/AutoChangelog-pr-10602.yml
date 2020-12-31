@@ -1,6 +1,0 @@
-author: "JamieD1"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed Connectors having weird sprites"
-  - bugfix: "Fixed layer 1 and 5 for connectors"
-  - tweak: "Nerfed Electrolyzer,"

@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - rscdel: "gas exports have been removed entirely"
-  - rscadd: "new bounties for several gasses"
