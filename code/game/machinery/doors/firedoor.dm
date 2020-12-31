@@ -11,7 +11,7 @@
 	icon_state = "door_open"
 	opacity = FALSE
 	density = FALSE
-	max_integrity = 300
+	max_integrity = 120
 	resistance_flags = FIRE_PROOF
 	heat_proof = TRUE
 	glass = TRUE
@@ -196,7 +196,10 @@
 	if(welded)
 		to_chat(user, "<span class='warning'>[src] refuses to budge!</span>")
 		return
-	open()
+	if(user.a_intent == INTENT_HARM)
+		return ..()
+	else
+		open()
 
 /obj/machinery/door/firedoor/do_animate(animation)
 	switch(animation)
@@ -281,13 +284,9 @@
 		close()
 
 /obj/machinery/door/firedoor/deconstruct(disassembled = TRUE)
-	if(!(flags_1 & NODECONSTRUCT_1))
+	if(!(flags_1 & NODECONSTRUCT_1) && disassembled)
 		var/obj/structure/firelock_frame/F = new assemblytype(get_turf(src))
-		if(disassembled)
-			F.constructionStep = CONSTRUCTION_PANEL_OPEN
-		else
-			F.constructionStep = CONSTRUCTION_WIRES_EXPOSED
-			F.obj_integrity = F.max_integrity * 0.5
+		F.constructionStep = CONSTRUCTION_PANEL_OPEN
 		F.update_icon()
 	qdel(src)
 
@@ -393,7 +392,7 @@
 	glass = FALSE
 	explosion_block = 2
 	assemblytype = /obj/structure/firelock_frame/heavy
-	max_integrity = 550
+	max_integrity = 350
 
 /obj/machinery/door/firedoor/window
 	name = "window shutter"
@@ -616,6 +615,21 @@
 				update_icon()
 				return
 	return ..()
+
+/obj/structure/firelock_frame/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
+	if((constructionStep == CONSTRUCTION_NOCIRCUIT) && (the_rcd.upgrade & RCD_UPGRADE_SIMPLE_CIRCUITS))
+		return list("mode" = RCD_UPGRADE_SIMPLE_CIRCUITS, "delay" = 20, "cost" = 1)	
+	return FALSE
+
+/obj/structure/firelock_frame/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
+	switch(passed_mode)
+		if(RCD_UPGRADE_SIMPLE_CIRCUITS)
+			user.visible_message("<span class='notice'>[user] fabricates a circuit and places it into [src].</span>", \
+			"<span class='notice'>You adapt a firelock circuit and slot it into the assembly.</span>")
+			constructionStep = CONSTRUCTION_GUTTED
+			update_icon()
+			return TRUE
+	return FALSE
 
 /obj/structure/firelock_frame/heavy
 	name = "heavy firelock frame"

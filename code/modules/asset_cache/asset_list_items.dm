@@ -1,53 +1,61 @@
 //DEFINITIONS FOR ASSET DATUMS START HERE.
 
-/datum/asset/simple/tgui
+/datum/asset/simple/tgui_common
+	keep_local_name = TRUE
 	assets = list(
-		"tgui.bundle.js" = 'tgui/packages/tgui/public/tgui.bundle.js',
-		"tgui.bundle.css" = 'tgui/packages/tgui/public/tgui.bundle.css',
+		"tgui-common.chunk.js" = 'tgui/public/tgui-common.chunk.js',
 	)
 
-/datum/asset/group/tgui
-	children = list(
-		/datum/asset/simple/tgui,
-		/datum/asset/simple/fontawesome
+/datum/asset/simple/tgui
+	keep_local_name = TRUE
+	assets = list(
+		"tgui.bundle.js" = 'tgui/public/tgui.bundle.js',
+		"tgui.bundle.css" = 'tgui/public/tgui.bundle.css',
+	)
+
+/datum/asset/simple/tgui_panel
+	keep_local_name = TRUE
+	assets = list(
+		"tgui-panel.bundle.js" = 'tgui/public/tgui-panel.bundle.js',
+		"tgui-panel.bundle.css" = 'tgui/public/tgui-panel.bundle.css',
 	)
 
 /datum/asset/simple/headers
 	assets = list(
-		"alarm_green.gif" 			= 'icons/program_icons/alarm_green.gif',
-		"alarm_red.gif" 			= 'icons/program_icons/alarm_red.gif',
-		"batt_5.gif" 				= 'icons/program_icons/batt_5.gif',
-		"batt_20.gif" 				= 'icons/program_icons/batt_20.gif',
-		"batt_40.gif" 				= 'icons/program_icons/batt_40.gif',
-		"batt_60.gif" 				= 'icons/program_icons/batt_60.gif',
-		"batt_80.gif" 				= 'icons/program_icons/batt_80.gif',
-		"batt_100.gif" 				= 'icons/program_icons/batt_100.gif',
-		"charging.gif" 				= 'icons/program_icons/charging.gif',
-		"downloader_finished.gif" 	= 'icons/program_icons/downloader_finished.gif',
-		"downloader_running.gif" 	= 'icons/program_icons/downloader_running.gif',
-		"ntnrc_idle.gif"			= 'icons/program_icons/ntnrc_idle.gif',
-		"ntnrc_new.gif"				= 'icons/program_icons/ntnrc_new.gif',
-		"power_norm.gif"			= 'icons/program_icons/power_norm.gif',
-		"power_warn.gif"			= 'icons/program_icons/power_warn.gif',
-		"sig_high.gif" 				= 'icons/program_icons/sig_high.gif',
-		"sig_low.gif" 				= 'icons/program_icons/sig_low.gif',
-		"sig_lan.gif" 				= 'icons/program_icons/sig_lan.gif',
-		"sig_none.gif" 				= 'icons/program_icons/sig_none.gif',
-		"smmon_0.gif" 				= 'icons/program_icons/smmon_0.gif',
-		"smmon_1.gif" 				= 'icons/program_icons/smmon_1.gif',
-		"smmon_2.gif" 				= 'icons/program_icons/smmon_2.gif',
-		"smmon_3.gif" 				= 'icons/program_icons/smmon_3.gif',
-		"smmon_4.gif" 				= 'icons/program_icons/smmon_4.gif',
-		"smmon_5.gif" 				= 'icons/program_icons/smmon_5.gif',
-		"smmon_6.gif" 				= 'icons/program_icons/smmon_6.gif',
-		"borg_mon.gif"				= 'icons/program_icons/borg_mon.gif'
+		"alarm_green.gif" = 'icons/program_icons/alarm_green.gif',
+		"alarm_red.gif" = 'icons/program_icons/alarm_red.gif',
+		"batt_5.gif" = 'icons/program_icons/batt_5.gif',
+		"batt_20.gif" = 'icons/program_icons/batt_20.gif',
+		"batt_40.gif" = 'icons/program_icons/batt_40.gif',
+		"batt_60.gif" = 'icons/program_icons/batt_60.gif',
+		"batt_80.gif" = 'icons/program_icons/batt_80.gif',
+		"batt_100.gif" = 'icons/program_icons/batt_100.gif',
+		"charging.gif" = 'icons/program_icons/charging.gif',
+		"downloader_finished.gif" = 'icons/program_icons/downloader_finished.gif',
+		"downloader_running.gif" = 'icons/program_icons/downloader_running.gif',
+		"ntnrc_idle.gif" = 'icons/program_icons/ntnrc_idle.gif',
+		"ntnrc_new.gif" = 'icons/program_icons/ntnrc_new.gif',
+		"power_norm.gif" = 'icons/program_icons/power_norm.gif',
+		"power_warn.gif" = 'icons/program_icons/power_warn.gif',
+		"sig_high.gif" = 'icons/program_icons/sig_high.gif',
+		"sig_low.gif" = 'icons/program_icons/sig_low.gif',
+		"sig_lan.gif" = 'icons/program_icons/sig_lan.gif',
+		"sig_none.gif" = 'icons/program_icons/sig_none.gif',
+		"smmon_0.gif" = 'icons/program_icons/smmon_0.gif',
+		"smmon_1.gif" = 'icons/program_icons/smmon_1.gif',
+		"smmon_2.gif" = 'icons/program_icons/smmon_2.gif',
+		"smmon_3.gif" = 'icons/program_icons/smmon_3.gif',
+		"smmon_4.gif" = 'icons/program_icons/smmon_4.gif',
+		"smmon_5.gif" = 'icons/program_icons/smmon_5.gif',
+		"smmon_6.gif" = 'icons/program_icons/smmon_6.gif',
+		"borg_mon.gif" = 'icons/program_icons/borg_mon.gif'
 	)
 
 /datum/asset/simple/radar_assets
 	assets = list(
-		"ntosradarbackground.png"	= 'icons/UI_Icons/tgui/ntosradar_background.png',
-		"ntosradarpointer.png"		= 'icons/UI_Icons/tgui/ntosradar_pointer.png',
-		"ntosradarpointerS.png"		= 'icons/UI_Icons/tgui/ntosradar_pointer_S.png'
+		"ntosradarbackground.png" = 'icons/UI_Icons/tgui/ntosradar_background.png',
+		"ntosradarpointer.png" = 'icons/UI_Icons/tgui/ntosradar_pointer.png',
+		"ntosradarpointerS.png" = 'icons/UI_Icons/tgui/ntosradar_pointer_S.png'
 	)
 
 /datum/asset/spritesheet/simple/pda
@@ -79,7 +87,7 @@
 		"scanner"		= 'icons/pda_icons/pda_scanner.png',
 		"signaler"		= 'icons/pda_icons/pda_signaler.png',
 		"status"		= 'icons/pda_icons/pda_status.png',
-		"dronephone"	= 'icons/pda_icons/pda_dronephone.png'
+		"dronephone"	= 'icons/pda_icons/pda_dronephone.png',
 	)
 
 /datum/asset/spritesheet/simple/paper
@@ -95,22 +103,22 @@
 		"stamp-rd" = 'icons/stamp_icons/large_stamp-rd.png',
 		"stamp-cap" = 'icons/stamp_icons/large_stamp-cap.png',
 		"stamp-qm" = 'icons/stamp_icons/large_stamp-qm.png',
-		"stamp-law" = 'icons/stamp_icons/large_stamp-law.png'
+		"stamp-law" = 'icons/stamp_icons/large_stamp-law.png',
 	)
 
 
-/datum/asset/simple/IRV
+/datum/asset/simple/irv
 	assets = list(
 		"jquery-ui.custom-core-widgit-mouse-sortable-min.js" = 'html/IRV/jquery-ui.custom-core-widgit-mouse-sortable-min.js',
 	)
 
-/datum/asset/group/IRV
+/datum/asset/group/irv
 	children = list(
 		/datum/asset/simple/jquery,
-		/datum/asset/simple/IRV
+		/datum/asset/simple/irv
 	)
 
-/datum/asset/simple/changelog
+/datum/asset/simple/namespaced/changelog
 	assets = list(
 		"88x31.png" = 'html/88x31.png',
 		"bug-minus.png" = 'html/bug-minus.png',
@@ -132,44 +140,36 @@
 		"chrome-wrench.png" = 'html/chrome-wrench.png',
 		"changelog.css" = 'html/changelog.css'
 	)
+	parents = list("changelog.html" = 'html/changelog.html')
 
-/datum/asset/group/goonchat
-	children = list(
-		/datum/asset/simple/jquery,
-		/datum/asset/simple/goonchat,
-		/datum/asset/spritesheet/goonchat,
-		/datum/asset/simple/fontawesome
+
+/datum/asset/simple/scanlines
+	assets = list(
+		"scanlines.png" = 'html/scanlines.png'
 	)
-
+	
 /datum/asset/simple/jquery
+	legacy = TRUE
 	assets = list(
-		"jquery.min.js"            = 'code/modules/goonchat/browserassets/js/jquery.min.js',
+		"jquery.min.js" = 'html/jquery.min.js',
 	)
 
-/datum/asset/simple/goonchat
-	assets = list(
-		"json2.min.js"             = 'code/modules/goonchat/browserassets/js/json2.min.js',
-		"browserOutput.js"         = 'code/modules/goonchat/browserassets/js/browserOutput.js',
-		"browserOutput.css"	       = 'code/modules/goonchat/browserassets/css/browserOutput.css',
-		"browserOutput_white.css"  = 'code/modules/goonchat/browserassets/css/browserOutput_white.css'
-	)
-
-/datum/asset/simple/fontawesome
+/datum/asset/simple/namespaced/fontawesome
+	legacy = TRUE
 	assets = list(
 		"fa-regular-400.eot"  = 'html/font-awesome/webfonts/fa-regular-400.eot',
 		"fa-regular-400.woff" = 'html/font-awesome/webfonts/fa-regular-400.woff',
 		"fa-solid-900.eot"    = 'html/font-awesome/webfonts/fa-solid-900.eot',
 		"fa-solid-900.woff"   = 'html/font-awesome/webfonts/fa-solid-900.woff',
-		"font-awesome.css"    = 'html/font-awesome/css/all.min.css',
 		"v4shim.css"          = 'html/font-awesome/css/v4-shims.min.css'
 	)
+	parents = list("font-awesome.css" = 'html/font-awesome/css/all.min.css')
 
-/datum/asset/spritesheet/goonchat
+/datum/asset/spritesheet/chat
 	name = "chat"
 
-/datum/asset/spritesheet/goonchat/register()
+/datum/asset/spritesheet/chat/register()
 	InsertAll("emoji", 'icons/emoji.dmi')
-
 	// pre-loading all lanugage icons also helps to avoid meta
 	InsertAll("language", 'icons/misc/language.dmi')
 	// catch languages which are pulling icons from another file
@@ -179,12 +179,27 @@
 		if (icon != 'icons/misc/language.dmi')
 			var/icon_state = initial(L.icon_state)
 			Insert("language-[icon_state]", icon, icon_state=icon_state)
-
 	..()
+
+/datum/asset/simple/lobby
+	assets = list(
+		"playeroptions.css" = 'html/browser/playeroptions.css'
+	)
+
+/datum/asset/simple/namespaced/common
+	assets = list("padlock.png"	= 'html/padlock.png')
+	parents = list("common.css" = 'html/browser/common.css', "common.js" = 'html/browser/common.js')
 
 /datum/asset/simple/permissions
 	assets = list(
-		"padlock.png"	= 'html/padlock.png'
+		"search.js" = 'html/admin/search.js',
+		"panels.css" = 'html/admin/panels.css'
+	)
+
+/datum/asset/group/permissions
+	children = list(
+		/datum/asset/simple/permissions,
+		/datum/asset/simple/namespaced/common
 	)
 
 /datum/asset/simple/notes
@@ -203,7 +218,7 @@
 		"boss4.gif" = 'icons/UI_Icons/Arcade/boss4.gif',
 		"boss5.gif" = 'icons/UI_Icons/Arcade/boss5.gif',
 		"boss6.gif" = 'icons/UI_Icons/Arcade/boss6.gif',
-		)
+	)
 
 /datum/asset/spritesheet/simple/pills
 	name ="pills"
@@ -342,27 +357,27 @@
 
 /datum/asset/simple/genetics
 	assets = list(
-		"dna_discovered.gif"	= 'html/dna_discovered.gif',
-		"dna_undiscovered.gif"	= 'html/dna_undiscovered.gif',
-		"dna_extra.gif" 		= 'html/dna_extra.gif'
-)
+		"dna_discovered.gif" = 'html/dna_discovered.gif',
+		"dna_undiscovered.gif" = 'html/dna_undiscovered.gif',
+		"dna_extra.gif" = 'html/dna_extra.gif'
+	)
 
 /datum/asset/simple/orbit
 	assets = list(
 		"ghost.png"	= 'html/ghost.png'
 	)
 
-/datum/asset/simple/mapimage // Returns an image of the current map
-	assets = list(
-		//Initialized in New()
-	)
-/datum/asset/simple/mapimage/New()
-	..()
-	assets = list(
-		"map.png" = fcopy_rsc(file("icons/mapimages/[SSmapping.config.map_name].png")) //AFAIK this doesn't race with SSmapping loading up.
-	)
-
 /datum/asset/simple/vv
 	assets = list(
 		"view_variables.css" = 'html/admin/view_variables.css'
 	)
+
+/datum/asset/spritesheet/sheetmaterials
+	name = "sheetmaterials"
+
+/datum/asset/spritesheet/sheetmaterials/register()
+	InsertAll("", 'icons/obj/stack_objects.dmi')
+
+	// Special case to handle Bluespace Crystals
+	Insert("polycrystal", 'icons/obj/telescience.dmi', "polycrystal")
+	..()

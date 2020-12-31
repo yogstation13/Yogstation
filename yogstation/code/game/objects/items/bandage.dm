@@ -95,7 +95,7 @@
 		to_chat(user, "This doesn't look like it'll work.")
 		return FALSE
 
-/obj/item/medical/bandage/proc/wash(obj/O, mob/user)
+/obj/item/medical/bandage/proc/wash2(obj/O, mob/user)
 	if (src.used)
 		to_chat(user, "You clean [src] fastidiously washing away as much of the detritus and residue as you can. The bandage can probably be used again now.")
 		name = "reused bandages"
@@ -130,8 +130,8 @@
 	name = "improvised bandage"
 	desc = "A primitive bandage fashioned from some torn cloth and leftover elastic. Will do in a pinch, but is nowhere near as effective as actual medical-grade bandages."
 	healtype = BRUTE
-	healamount = 40
-	duration = 40
+	healamount = 30
+	duration = 30
 	staunch_bleeding = 240
 
 /obj/item/medical/bandage/improvised_soaked
@@ -139,7 +139,7 @@
 	desc = "Primitive bandage thoroughly soaked in water, Probably decent for a burn wound, but definitely isn't sterile. Useless at stopping bleeding."
 	healtype = BURN
 	color = "blue"
-	healamount = 40
-	duration = 40
+	healamount = 30
+	duration = 30
 	staunch_bleeding = 0
 	

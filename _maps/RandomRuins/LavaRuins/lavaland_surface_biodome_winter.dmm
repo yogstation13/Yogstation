@@ -175,10 +175,6 @@
 	initial_gas_mix = "o2=22;n2=82;TEMP=180"
 	},
 /area/ruin/powered/snow_biodome)
-"aL" = (
-/obj/structure/displaycase/captain,
-/turf/open/floor/wood,
-/area/ruin/powered/snow_biodome)
 "aM" = (
 /turf/open/floor/carpet,
 /area/ruin/powered/snow_biodome)
@@ -288,6 +284,11 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/snow_biodome)
+"el" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "gh" = (
 /obj/machinery/light/small{
 	brightness = 3;
@@ -308,6 +309,10 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
 /area/ruin/powered/snow_biodome)
+"mX" = (
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "qt" = (
 /obj/machinery/door/airlock/silver,
 /obj/structure/fans/tiny,
@@ -316,10 +321,6 @@
 	},
 /turf/open/floor/pod/dark,
 /area/ruin/powered/snow_biodome)
-"tb" = (
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/explored)
 "tl" = (
 /turf/open/floor/pod/light,
 /area/ruin/powered/snow_biodome)
@@ -331,6 +332,10 @@
 /obj/machinery/door/airlock/silver,
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
+/area/ruin/powered/snow_biodome)
+"As" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/wood,
 /area/ruin/powered/snow_biodome)
 "AM" = (
 /obj/structure/table,
@@ -396,14 +401,6 @@
 /obj/item/paper_bin,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/snow_biodome)
-"Qa" = (
-/obj/effect/mapping_helpers/no_lava,
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/explored)
-"QI" = (
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/explored)
 "QK" = (
 /obj/structure/table,
 /obj/item/storage/box/fancy/cigarettes/cigpack_carp,
@@ -427,6 +424,9 @@
 	},
 /turf/open/floor/pod/dark,
 /area/ruin/powered/snow_biodome)
+"VR" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "Wg" = (
 /turf/closed/wall/r_wall,
 /area/ruin/powered/snow_biodome)
@@ -521,8 +521,8 @@ ak
 Wg
 Wg
 Wg
-QI
-QI
+VR
+VR
 aa
 aa
 aa
@@ -554,8 +554,8 @@ ak
 ak
 Wg
 Wg
-QI
-QI
+VR
+VR
 aa
 aa
 "}
@@ -587,8 +587,8 @@ ak
 ak
 Wg
 Wg
-QI
-tb
+VR
+mX
 aa
 "}
 (6,1,1) = {"
@@ -619,8 +619,8 @@ az
 ak
 ak
 Wg
-QI
-tb
+VR
+mX
 aa
 "}
 (7,1,1) = {"
@@ -652,7 +652,7 @@ ak
 bM
 Wg
 Wg
-tb
+mX
 aa
 "}
 (8,1,1) = {"
@@ -684,8 +684,8 @@ ak
 az
 ak
 Wg
-tb
-tb
+mX
+mX
 "}
 (9,1,1) = {"
 aa
@@ -717,7 +717,7 @@ ak
 ak
 Wg
 hA
-tb
+mX
 "}
 (10,1,1) = {"
 Wg
@@ -748,8 +748,8 @@ ak
 ak
 ak
 Wg
-tb
-tb
+mX
+mX
 "}
 (11,1,1) = {"
 Wg
@@ -781,7 +781,7 @@ Wg
 Wg
 Wg
 Wg
-tb
+mX
 "}
 (12,1,1) = {"
 Wg
@@ -792,7 +792,7 @@ bw
 at
 aD
 at
-aL
+As
 aq
 ak
 az
@@ -813,7 +813,7 @@ Wg
 Dd
 Dd
 Wg
-tb
+mX
 "}
 (13,1,1) = {"
 Wg
@@ -845,7 +845,7 @@ Wg
 Mp
 dS
 Wg
-tb
+mX
 "}
 (14,1,1) = {"
 Wg
@@ -877,7 +877,7 @@ Wg
 tl
 tl
 Wg
-tb
+mX
 "}
 (15,1,1) = {"
 Wg
@@ -909,7 +909,7 @@ aO
 tl
 tl
 Ez
-Qa
+el
 "}
 (16,1,1) = {"
 Wg
@@ -941,7 +941,7 @@ aP
 tl
 tl
 aP
-Qa
+el
 "}
 (17,1,1) = {"
 Wg
@@ -973,7 +973,7 @@ Wg
 tl
 tl
 Wg
-tb
+mX
 "}
 (18,1,1) = {"
 Wg
@@ -1005,7 +1005,7 @@ Wg
 HP
 dS
 Wg
-tb
+mX
 "}
 (19,1,1) = {"
 Wg
@@ -1037,7 +1037,7 @@ Wg
 QK
 AM
 Wg
-tb
+mX
 "}
 (20,1,1) = {"
 Wg
@@ -1069,7 +1069,7 @@ Wg
 Wg
 Wg
 Wg
-tb
+mX
 "}
 (21,1,1) = {"
 Wg
@@ -1100,8 +1100,8 @@ ak
 ak
 ak
 Wg
-tb
-tb
+mX
+mX
 "}
 (22,1,1) = {"
 aa
@@ -1133,7 +1133,7 @@ ak
 ak
 Wg
 hA
-tb
+mX
 "}
 (23,1,1) = {"
 aa
@@ -1164,8 +1164,8 @@ ak
 ak
 ak
 Wg
-tb
-tb
+mX
+mX
 "}
 (24,1,1) = {"
 aa
@@ -1196,7 +1196,7 @@ ak
 bM
 Wg
 Wg
-tb
+mX
 aa
 "}
 (25,1,1) = {"
@@ -1227,8 +1227,8 @@ ak
 aC
 ak
 Wg
-QI
-tb
+VR
+mX
 aa
 "}
 (26,1,1) = {"
@@ -1259,7 +1259,7 @@ ak
 ak
 Wg
 Wg
-QI
+VR
 aa
 aa
 "}
@@ -1290,8 +1290,8 @@ ak
 ak
 Wg
 Wg
-QI
-QI
+VR
+VR
 aa
 aa
 "}
@@ -1321,8 +1321,8 @@ ak
 Wg
 Wg
 Wg
-QI
-QI
+VR
+VR
 aa
 aa
 aa

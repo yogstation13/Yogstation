@@ -81,7 +81,13 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/contents_explosion(severity, target)
 	..()
 	if(beaker)
-		beaker.ex_act(severity, target)
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.high_mov_atom += beaker
+			if(EXPLODE_HEAVY)
+				SSexplosions.med_mov_atom += beaker
+			if(EXPLODE_LIGHT)
+				SSexplosions.low_mov_atom += beaker
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/handle_atom_del(atom/A)
 	..()
@@ -179,6 +185,15 @@
 	if(!check_nap_violations())
 		return
 	if(mob_occupant.stat == DEAD) // We don't bother with dead people.
+		return
+
+	/// Individuals with the MEDICALIGNORE trait will stop the cryo from functioning and display a unique warning unless there is clone damage on the body which cryo happens to be able to heal even with MEDICALIGNORE (oversight probably but one of the one ways to heal their clone damage atm). - Hopek
+	if(HAS_TRAIT(mob_occupant,TRAIT_MEDICALIGNORE) && !mob_occupant.getCloneLoss())
+		src.visible_message("<span class='warning'>[src] is unable to treat [mob_occupant] as they cannot be treated with conventional medicine.</span>")
+		playsound(src,'sound/machines/cryo_warning_ignore.ogg',60,1)
+		on = FALSE
+		sleep(2)// here for timing. Shuts off right at climax of the effect before falloff.
+		update_icon()
 		return
 
 	if(mob_occupant.health >= mob_occupant.getMaxHealth()) // Don't bother with fully healed people.
@@ -323,11 +338,13 @@
 		return
 	return ..()
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-																	datum/tgui/master_ui = null, datum/ui_state/state = GLOB.notcontained_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/atmospherics/components/unary/cryo_cell/ui_state(mob/user)
+	return GLOB.notcontained_state
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Cryo", name, 400, 550, master_ui, state)
+		ui = new(user, src, "Cryo", name)
 		ui.open()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/ui_data()
@@ -442,9 +459,11 @@
 		if(node)
 			node.atmosinit()
 			node.addMember(src)
-		build_network()
+		SSair.add_to_rebuild_queue(src)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
 	if(on)
 		on = FALSE
 	else if(!state_open)

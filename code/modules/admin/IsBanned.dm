@@ -36,7 +36,7 @@
 
 	if(GLOB.admin_datums[ckey] || GLOB.deadmins[ckey])
 		admin = TRUE
-	
+
 	var/client/C = GLOB.directory[ckey]
 	//Whitelist
 	if(!real_bans_only && !C && CONFIG_GET(flag/usewhitelist))
@@ -65,7 +65,7 @@
 	//Population Cap Checking
 	var/extreme_popcap = CONFIG_GET(number/extreme_popcap)
 //Yogs start -- Keeps extreme popcap as always being a living-players count.
-	if(!real_bans_only && extreme_popcap) // if we ought to use the extreme popcap 
+	if(!real_bans_only && extreme_popcap) // if we ought to use the extreme popcap
 		if(living_player_count() + (SSticker && SSticker.queued_players.len) >= extreme_popcap) // if the extreme popcap has been reached
 			if(!admin && !GLOB.joined_player_list.Find(ckey) && !(is_donator(C) || (C.ckey in get_donators()))) // if they are not exempt
 				log_access("Failed Login: [key] - Population cap reached")
@@ -115,9 +115,15 @@ Yogs End*/
 				var/desc = {"You, or another user of this computer or connection ([i["key"]]) is banned from playing here.
 				The ban reason is: [i["reason"]]
 				This ban (BanID #[i["id"]]) was applied by [i["admin_key"]] on [i["bantime"]] during round ID [i["round_id"]].
-				[expires] If you wish to appeal this ban please use the keyword 'assistantgreytide' to register an account on the forums."} //yogs
+				[expires] If you wish to appeal this ban please use the keyword 'assistantgreytide' to register an account on the forums. Also please do not take anything from the current game round to the forums or discord."} //yogs
 				log_access("Failed Login: [key] [computer_id] [address] - Banned (#[i["id"]])")
 				key_cache[key] = 0
+				if(address == i["ip"])
+					SSblackbox.record_feedback("amount", "login_blocked_ips", 1)
+					SSblackbox.record_feedback("tally", "login_blocked_ips_by_ckey", 1, key)
+				if(computer_id == i["computerid"])
+					SSblackbox.record_feedback("amount", "login_blocked_cids", 1)
+					SSblackbox.record_feedback("tally", "login_blocked_cids_by_ckey", 1, key)
 				return list("reason"="Banned","desc"="[desc]")
 
 	var/list/ban = ..()	//default pager ban stuff

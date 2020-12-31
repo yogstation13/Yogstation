@@ -1,14 +1,9 @@
-//Sends resource files to client cache
-/client/proc/getFiles(...)
-	for(var/file in args)
-		src << browse_rsc(file)
-
 /client/proc/browse_files(root="data/logs/", max_iterations=10, list/valid_extensions=list("txt","log","htm", "html", "json"))
 	if(IsAdminAdvancedProcCall())
 		log_admin_private("BROWSEFILES: Admin proc call blocked")
 		message_admins("BROWSEFILES: Admin proc call blocked")
 		return null
-	
+
 	var/path = root
 
 	for(var/i=0, i<max_iterations, i++)
@@ -16,7 +11,7 @@
 		if(path != root)
 			choices.Insert(1,"/")
 
-		var/choice = input(src,"Choose a file to access:","Download",null) as null|anything in choices
+		var/choice = input(src,"Choose a file to access:","Download",null) as null|anything in sortList(choices)
 		switch(choice)
 			if(null)
 				return
@@ -76,3 +71,18 @@
 
 /proc/pathflatten(path)
 	return replacetext(path, "/", "_")
+
+/// Returns the md5 of a file at a given path.
+/proc/md5filepath(path)
+	. = md5(file(path))
+
+/// Save file as an external file then md5 it.
+/// Used because md5ing files stored in the rsc sometimes gives incorrect md5 results.
+/proc/md5asfile(file)
+	var/static/notch = 0
+	// its importaint this code can handle md5filepath sleeping instead of hard blocking, if it's converted to use rust_g.
+	var/filename = "tmp/md5asfile.[world.realtime].[world.timeofday].[world.time].[world.tick_usage].[notch]"
+	notch = WRAP(notch+1, 0, 2^15)
+	fcopy(file, filename)
+	. = md5filepath(filename)
+	fdel(filename)

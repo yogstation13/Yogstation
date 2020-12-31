@@ -24,11 +24,13 @@
 	src.allow_special = allow_special
 	src.debug_mode = debug_mode
 
-/datum/guardianbuilder/ui_interact(mob/user, ui_key, datum/tgui/ui = null, force_open, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/guardianbuilder/ui_state(mob/user)
+	return GLOB.always_state
+
+/datum/guardianbuilder/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Guardian", "Build-A-Guardian", 500, 600, master_ui, state)
-		ui.set_autoupdate(TRUE)
+		ui = new(user, src,"Guardian", "Build-A-Guardian")
 		ui.open()
 
 /datum/guardianbuilder/ui_data(mob/user)
@@ -177,9 +179,16 @@
 	used = TRUE
 	calc_points()
 	if(points < 0)
-		to_chat("<span class='danger'>You don't have enough points for a Guardian like that!</span>")
+		to_chat(user, "<span class='danger'>You don't have enough points for a Guardian like that!</span>")
 		used = FALSE
 		return FALSE
+	//alerts user in case they didn't know
+	var/list/all_items = user.GetAllContents()
+	for(var/obj/I in all_items) //Check for mori
+		if(istype(I, /obj/item/clothing/neck/necklace/memento_mori))
+			to_chat(user, "<span class='danger'>The [I] revolts at the sight of the [src]!</span>")
+			used = FALSE
+			return FALSE
 	// IMPORTANT - if we're debugging, the user gets thrown into the stand
 	var/list/mob/dead/observer/candidates = debug_mode ? list(user) : pollGhostCandidates("Do you want to play as the [mob_name] of [user.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
 	if(LAZYLEN(candidates))
@@ -208,9 +217,14 @@
 				to_chat(user, "<span class='holoparasite'><font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> has been summoned!</span>")
 			if("carp")
 				to_chat(user, "<span class='holoparasite'><font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> has been caught!</span>")
-		user.verbs += /mob/living/proc/guardian_comm
-		user.verbs += /mob/living/proc/guardian_recall
-		user.verbs += /mob/living/proc/guardian_reset
+		add_verb(user, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset))
+		//surprise another check in case you tried to get around the first one and now you have no holoparasite :)
+		for(var/obj/H in all_items)
+			if(istype(H, /obj/item/clothing/neck/necklace/memento_mori))
+				to_chat(user, "<span class='danger'>The power of the [H] overtakes the [src]!</span>")
+				used = TRUE
+				G.Destroy()
+				return FALSE
 		return TRUE
 	else
 		to_chat(user, "[failure_message]")

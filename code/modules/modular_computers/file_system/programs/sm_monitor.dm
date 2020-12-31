@@ -9,11 +9,10 @@
 	network_destination = "supermatter monitoring system"
 	size = 5
 	tgui_id = "NtosSupermatterMonitor"
-	ui_x = 600
-	ui_y = 350
 	var/last_status = SUPERMATTER_INACTIVE
 	var/list/supermatters
 	var/obj/machinery/power/supermatter_crystal/active		// Currently selected supermatter crystal.
+	var/data_corrupted = FALSE //used for when supermatter corruptor is attached
 
 
 /datum/computer_file/program/supermatter_monitor/process_tick()
@@ -68,21 +67,34 @@
 		if(!air)
 			active = null
 			return
+		if(active.corruptor_attached)
+			data_corrupted = TRUE
 
 		data["active"] = TRUE
-		data["SM_integrity"] = active.get_integrity()
-		data["SM_power"] = active.power
-		data["SM_ambienttemp"] = air.return_temperature()
-		data["SM_ambientpressure"] = air.return_pressure()
+		if(data_corrupted) //yes it goes negative, that's even more funny
+			data["SM_integrity"] = active.get_fake_integrity()
+			data["SM_power"] = active.power + round((rand()-0.5)*12000,1)
+			data["SM_ambienttemp"] = air.return_temperature() + round((rand()-0.5)*20000,1)
+			data["SM_ambientpressure"] = air.return_pressure() + round((rand()-0.5)*15000,1)
+		else
+			data["SM_integrity"] = active.get_integrity()
+			data["SM_power"] = active.power
+			data["SM_ambienttemp"] = air.return_temperature()
+			data["SM_ambientpressure"] = air.return_pressure()
 		//data["SM_EPR"] = round((air.total_moles / air.group_multiplier) / 23.1, 0.01)
 		var/list/gasdata = list()
 
 
 		if(air.total_moles())
 			for(var/gasid in air.get_gases())
-				gasdata.Add(list(list(
-				"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
-				"amount" = round(100*air.get_moles(gasid)/air.total_moles(),0.01))))
+				if(data_corrupted)
+					gasdata.Add(list(list(
+					"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
+					"amount" = round(rand()*100,0.01))))
+				else
+					gasdata.Add(list(list(
+					"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
+					"amount" = round(100*air.get_moles(gasid)/air.total_moles(),0.01))))
 
 		else
 			for(var/gasid in air.get_gases())
@@ -96,11 +108,18 @@
 		for(var/obj/machinery/power/supermatter_crystal/S in supermatters)
 			var/area/A = get_area(S)
 			if(A)
-				SMS.Add(list(list(
-				"area_name" = A.name,
-				"integrity" = S.get_integrity(),
-				"uid" = S.uid
-				)))
+				if(S.corruptor_attached)
+					SMS.Add(list(list(
+					"area_name" = A.name,
+					"integrity" = S.get_fake_integrity(),
+					"uid" = S.uid
+					)))
+				else
+					SMS.Add(list(list(
+					"area_name" = A.name,
+					"integrity" = S.get_integrity(),
+					"uid" = S.uid
+					)))
 
 		data["active"] = FALSE
 		data["supermatters"] = SMS

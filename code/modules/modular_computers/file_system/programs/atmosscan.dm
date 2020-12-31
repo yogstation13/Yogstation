@@ -5,9 +5,7 @@
 	extended_desc = "A small built-in sensor reads out the atmospheric conditions around the device."
 	network_destination = "atmos scan"
 	size = 4
-	tgui_id = "ntos_atmos"
-	ui_x = 300
-	ui_y = 350
+	tgui_id = "NtosAtmos"
 
 /datum/computer_file/program/atmosscan/ui_data(mob/user)
 	var/list/data = get_header_data()

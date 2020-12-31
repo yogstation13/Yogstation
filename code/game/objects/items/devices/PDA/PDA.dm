@@ -303,6 +303,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 					else if (cartridge.access & CART_SECURITY)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_SECURITY_INCIDENT_REPORT]'>[PDAIMG(notes)]Print Security Incident Report Form</a></li>"
 						dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_INCIDENT_REPORT]'>[PDAIMG(notes)]Print Incident Report Form</a></li>"
+				if(id && id.registered_account && id.registered_account.account_job.paycheck_department)
+					dat += "<li><a href='byond://?src=[REF(src)];choice=6'>[PDAIMG(notes)]Show Department Goals</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=3'>[PDAIMG(atmos)]Atmospheric Scan</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=Light'>[PDAIMG(flashlight)][fon ? "Disable" : "Enable"] Flashlight</a></li>"
 				if (pai)
@@ -404,6 +406,19 @@ GLOBAL_LIST_EMPTY(PDAs)
 				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_JOB_REASSIGNMENT_CERTIFICATE]'>Job Reassignment Certificate</a></li>"
 				dat += "</ul>"
 
+			// I swear, whoever thought that these magical numbers were a good way to create a menu was a good idea should be fucking shot.
+			if(6)
+				if(!id || !id.registered_account || !id.registered_account.account_job.paycheck_department)
+					mode = 0
+					return
+				var/dep_account = id.registered_account.account_job.paycheck_department
+				dat += "<h4>Department Goals for the [SSYogs.getDepartmentFromAccount(dep_account)] department:</h4><ul>"
+				for(var/datum/department_goal/dg in SSYogs.department_goals)
+					if(dg.account == dep_account)
+						dat += "<li>[dg.name]:</li>"
+						dat += "<li>[dg.desc]</li><br>"
+				dat += "</ul>"
+
 			else//Else it links to the cart menu proc. Although, it really uses menu hub 4--menu 4 doesn't really exist as it simply redirects to hub.
 				dat += cartridge.generate_menu()
 
@@ -491,6 +506,11 @@ GLOBAL_LIST_EMPTY(PDAs)
 				mode = 0
 			if("5") //Paperwork Printer
 				mode = 5
+			if("6") // Department goals
+				if(!id || !id.registered_account || !id.registered_account.account_job.paycheck_department)
+					mode = 0
+					return
+				mode = 6
 
 
 //MAIN FUNCTIONS===================================
@@ -984,7 +1004,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	if (ismob(loc))
 		var/mob/M = loc
-		M.show_message("<span class='userdanger'>Your [src] explodes!</span>", 1)
+		M.show_message("<span class='userdanger'>Your [src] explodes!</span>", MSG_VISUAL, "<span class='warning'>You hear a loud *pop*!</span>", MSG_AUDIBLE)
 	else
 		visible_message("<span class='danger'>[src] explodes!</span>", "<span class='warning'>You hear a loud *pop*!</span>")
 

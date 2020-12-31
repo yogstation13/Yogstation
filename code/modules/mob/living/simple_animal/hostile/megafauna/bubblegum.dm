@@ -106,6 +106,9 @@ Difficulty: Hard
 /mob/living/simple_animal/hostile/megafauna/bubblegum/death(gibbed, var/list/force_grant)
 	.=..()
 	if(!(flags_1 & ADMIN_SPAWNED_1))
+		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+		if(D)
+			D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
 		for(var/mob/living/L in view(7,src))
 			if(L.client)
 				SSachievements.unlock_achievement(/datum/achievement/bubblegum, L.client)
@@ -471,7 +474,10 @@ Difficulty: Hard
 /mob/living/simple_animal/hostile/megafauna/bubblegum/Bump(atom/A)
 	if(charging)
 		if(isturf(A) || isobj(A) && A.density)
-			A.ex_act(EXPLODE_HEAVY)
+			if(isobj(A))
+				SSexplosions.med_mov_atom += A
+			else
+				SSexplosions.medturf += A
 		DestroySurroundings()
 		if(isliving(A))
 			var/mob/living/L = A

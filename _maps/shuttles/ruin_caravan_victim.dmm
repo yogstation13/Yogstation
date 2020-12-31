@@ -477,9 +477,6 @@
 	},
 /turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter1)
-"oS" = (
-/turf/open/floor/plasteel/airless/dark,
-/area/shuttle/caravan/freighter1)
 "pR" = (
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
@@ -565,11 +562,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/airless,
 /area/shuttle/caravan/freighter1)
-"tg" = (
+"tL" = (
 /obj/effect/turf_decal/box/white/corners{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/secure/gear,
+/obj/item/gun/energy/e_gun,
 /turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter1)
 "ur" = (
@@ -848,24 +847,6 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/shuttle/caravan/freighter1)
-"Ja" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/rack,
-/obj/item/storage/firstaid/regular,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark{
-	initial_gas_mix = "TEMP=2.7"
-	},
-/area/shuttle/caravan/freighter1)
 "Jv" = (
 /turf/template_noop,
 /area/template_noop)
@@ -949,6 +930,25 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark/airless,
+/area/shuttle/caravan/freighter1)
+"NN" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/storage/firstaid/regular,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/gun/ballistic/automatic/pistol/APS,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "TEMP=2.7"
+	},
 /area/shuttle/caravan/freighter1)
 "Od" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1136,6 +1136,14 @@
 	icon_state = "crateopen"
 	},
 /obj/item/stack/sheet/metal/fifty,
+/turf/open/floor/plasteel/airless/dark,
+/area/shuttle/caravan/freighter1)
+"TZ" = (
+/obj/structure/closet/crate/secure/science,
+/obj/item/circuitboard/machine/autolathe,
+/obj/item/circuitboard/machine/protolathe,
+/obj/item/circuitboard/machine/circuit_imprinter,
+/obj/item/circuitboard/computer/rdconsole,
 /turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter1)
 "Ut" = (
@@ -1359,7 +1367,7 @@ fk
 El
 OK
 ax
-tg
+tL
 El
 "}
 (5,1,1) = {"
@@ -1371,7 +1379,7 @@ El
 aa
 El
 DQ
-oS
+TZ
 bI
 El
 "}
@@ -1534,7 +1542,7 @@ Jv
 (18,1,1) = {"
 Jv
 El
-Ja
+NN
 qM
 Xt
 aj

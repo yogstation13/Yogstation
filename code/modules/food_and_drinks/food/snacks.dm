@@ -196,6 +196,9 @@ All foods are distributed among various categories. Use common sense.
 	reagents.clear_reagents()
 	for(var/obj/item/reagent_containers/RC in contents)
 		RC.reagents.trans_to(reagents, RC.reagents.maximum_volume)
+	for(var/reagent in R.reqs)
+		if(ispath(reagent, /datum/reagent))
+			reagents.add_reagent(reagent, R.reqs[reagent])
 	if(istype(R))
 		contents_loop:
 			for(var/A in contents)

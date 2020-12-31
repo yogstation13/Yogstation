@@ -9,7 +9,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	flags_1 = HEAR_1
 	slot_flags = ITEM_SLOT_BELT
-	materials = list(MAT_METAL=60, MAT_GLASS=30)
+	materials = list(/datum/material/iron=60, /datum/material/glass=30)
 	force = 2
 	throwforce = 0
 	var/recording = 0
@@ -114,7 +114,7 @@
 		icon_state = "taperecorder_idle"
 
 
-/obj/item/taperecorder/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, spans, message_mode)
+/obj/item/taperecorder/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, spans, list/message_mods = list())
 	. = ..()
 	if(mytape && recording)
 		mytape.timestamp += mytape.used_capacity
@@ -220,7 +220,7 @@
 	if(mytape.ruined)
 		to_chat(user, "<span class='notice'>The tape inside the [src] appears to be broken.</span>")
 		return
-		
+
 	update_available_icons()
 	if(icons_available)
 		var/selection = show_radial_menu(user, src, icons_available, radius = 38, require_near = TRUE, tooltips = TRUE)
@@ -283,7 +283,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	w_class = WEIGHT_CLASS_TINY
-	materials = list(MAT_METAL=20, MAT_GLASS=5)
+	materials = list(/datum/material/iron=20, /datum/material/glass=5)
 	force = 1
 	throwforce = 0
 	var/max_capacity = 600

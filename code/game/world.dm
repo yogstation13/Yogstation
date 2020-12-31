@@ -7,13 +7,31 @@ GLOBAL_VAR(restart_counter)
     if (dll)
         call(dll, "debug_initialize")()
 
-//This happens after the Master subsystem new(s) (it's a global datum)
-//So subsystems globals exist, but are not initialised
+/**
+  * World creation
+  *
+  * Here is where a round itself is actually begun and setup, lots of important config changes happen here
+  * * db connection setup
+  * * config loaded from files
+  * * loads admins
+  * * Sets up the dynamic menu system
+  * * and most importantly, calls initialize on the master subsystem, starting the game loop that causes the rest of the game to begin processing and setting up
+  *
+  * Note this happens after the Master subsystem is created (as that is a global datum), this means all the subsystems exist,
+  * but they have not been Initialized at this point, only their New proc has run
+  *
+  * Nothing happens until something moves. ~Albert Einstein
+  *
+  */
 /world/New()
 	enable_debugger() //This does nothing if you aren't trying to debug
-	log_world("World loaded at [time_stamp()]!")
 
-	SetupExternalRSC()
+	//Early profile for auto-profiler - will be stopped on profiler init if necessary.
+#if DM_VERSION >= 513 && DM_BUILD >= 1506
+	world.Profile(PROFILE_START)
+#endif
+
+	log_world("World loaded at [time_stamp()]!")
 
 	GLOB.config_error_log = GLOB.world_manifest_log = GLOB.world_pda_log = GLOB.world_job_debug_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
 
@@ -42,8 +60,6 @@ GLOBAL_VAR(restart_counter)
 
 
 	load_yogs_stuff() // yogs - Donators
-	refresh_admin_files() //yogs - DB support
-	load_admins()
 
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))
@@ -78,16 +94,6 @@ GLOBAL_VAR(restart_counter)
 #endif
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/addtimer, cb, 10 SECONDS))
 
-/world/proc/SetupExternalRSC()
-#if (PRELOAD_RSC == 0)
-	GLOB.external_rsc_urls = world.file2list("[global.config.directory]/external_rsc_urls.txt","\n")
-	var/i=1
-	while(i<=GLOB.external_rsc_urls.len)
-		if(GLOB.external_rsc_urls[i])
-			i++
-		else
-			GLOB.external_rsc_urls.Cut(i,i+1)
-#endif
 
 /world/proc/SetupLogs()
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
@@ -231,6 +237,7 @@ GLOBAL_VAR(restart_counter)
 		var/client/C = boi
 		if(!istype(C)) continue //yes so this is useful to prevent nulls from preventing the server from rebooting...
 		sync_logout_with_db(C.connection_number)
+		C?.tgui_panel?.send_roundrestart()
 
 	TgsReboot()
 

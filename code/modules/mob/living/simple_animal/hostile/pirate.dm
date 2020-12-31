@@ -24,7 +24,7 @@
 	unsuitable_atmos_damage = 15
 	speak_emote = list("yarrs")
 	loot = list(/obj/effect/mob_spawn/human/corpse/pirate,
-			/obj/item/melee/transforming/energy/sword/pirate)
+			/obj/item/melee/cutlass)
 	del_on_death = 1
 	faction = list("pirate")
 
@@ -40,8 +40,7 @@
 	melee_damage_upper = 30
 	armour_penetration = 35
 	attacktext = "slashes"
-	attack_sound = 'sound/weapons/blade1.ogg'
-	var/obj/effect/light_emitter/red_energy_sword/sord
+	attack_sound = 'sound/weapons/rapierhit.ogg'
 
 	do_footstep = TRUE
  
@@ -55,18 +54,6 @@
 	speed = 1
 	spacewalk = TRUE
 
-/mob/living/simple_animal/hostile/pirate/melee/Initialize()
-	. = ..()
-	sord = new(src)
-
-/mob/living/simple_animal/hostile/pirate/melee/Destroy()
-	QDEL_NULL(sord)
-	return ..()
-
-/mob/living/simple_animal/hostile/pirate/melee/Initialize()
-	. = ..()
-	set_light(2)
-
 /mob/living/simple_animal/hostile/pirate/ranged
 	name = "Pirate Gunner"
 	icon_state = "pirateranged"
@@ -79,8 +66,7 @@
 	retreat_distance = 5
 	minimum_distance = 5
 	projectiletype = /obj/item/projectile/beam/laser
-	loot = list(/obj/effect/mob_spawn/human/corpse/pirate/ranged,
-			/obj/item/gun/energy/laser)
+	loot = list(/obj/effect/mob_spawn/human/corpse/pirate/ranged)
 
 /mob/living/simple_animal/hostile/pirate/ranged/space
 	name = "Space Pirate Gunner"

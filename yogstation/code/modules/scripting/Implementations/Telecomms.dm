@@ -6,13 +6,13 @@
 
 #define HUMAN 1
 #define MONKEY 2
-#define ALIEN 4
-#define ROBOT 8
-#define SLIME 16
-#define DRONE 32
-#define DRACONIC 64
-#define BEACHTONGUE 128
+#define ROBOT 4
+#define POLYSMORPH 8
+#define DRACONIC 16
+#define BEACHTONGUE 32
 GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND,SPAN_CLOWN))//Span classes that players are allowed to set in a radio transmission.
+//this is fucking broken
+GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/language/machine,/datum/language/draconic))// language datums that players are allowed to translate to in a radio transmission.
 
 /n_Interpreter/TCS_Interpreter
 	var/datum/TCS_Compiler/Compiler
@@ -112,10 +112,8 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	interpreter.SetVar("languages", new /datum/n_enum(list(
 		"human" = HUMAN,
 		"monkey" = MONKEY,
-		"alien" = ALIEN,
 		"robot" = ROBOT,
-		"slime" = SLIME,
-		"drone" = DRONE,
+		"polysmorph" = POLYSMORPH,
 		"draconic" = DRACONIC,
 		"beachtounge" = BEACHTONGUE
 	)))
@@ -147,14 +145,10 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 		oldlang = HUMAN
 	else if(oldlang == /datum/language/monkey)
 		oldlang = MONKEY
-	else if(oldlang == /datum/language/xenocommon)
-		oldlang = ALIEN
 	else if(oldlang == /datum/language/machine)
 		oldlang = ROBOT
-	else if(oldlang == /datum/language/slime)
-		oldlang = SLIME
-	else if(oldlang == /datum/language/drone)
-		oldlang = DRONE
+	else if(oldlang == /datum/language/polysmorph)
+		oldlang = POLYSMORPH
 	else if(oldlang == /datum/language/draconic)
 		oldlang = DRACONIC
 	else if(oldlang == /datum/language/beachbum)
@@ -211,8 +205,11 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	signal.virt.verb_ask		= script_signal.get_clean_property("ask")
 	signal.virt.verb_yell		= script_signal.get_clean_property("yell")
 	signal.virt.verb_exclaim	= script_signal.get_clean_property("exclaim")
-	var/newlang = script_signal.get_clean_property("language")
-	signal.language = LangBit2Datum(newlang) || oldlang
+	var/newlang = LangBit2Datum(script_signal.get_clean_property("language"))
+	if(newlang != oldlang)// makes sure that we only clean out unallowed languages when a translation is taking place otherwise we run an unnecessary proc to filter newlang on foreign untranslated languages.
+		if(!LAZYFIND(GLOB.allowed_translations, oldlang)) // cleans out any unallowed translations by making sure the new language is on the allowed translation list. Tcomms powergaming is dead! - Hopek
+			newlang = oldlang
+	signal.language = newlang || oldlang
 	var/list/setspans 			= script_signal.get_clean_property("filters") //Save the span vector/list to a holder list
 	if(islist(setspans)) //Players cannot be trusted with ANYTHING. At all. Ever.
 		setspans &= GLOB.allowed_custom_spans //Prune out any illegal ones. Go ahead, comment this line out. See the horror you can unleash!
@@ -274,14 +271,10 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 			return /datum/language/common
 		if(MONKEY)
 			return /datum/language/monkey
-		if(ALIEN)
-			return /datum/language/xenocommon
 		if(ROBOT)
 			return /datum/language/machine
-		if(SLIME)
-			return /datum/language/slime
-		if(DRONE)
-			return /datum/language/drone
+		if(POLYSMORPH)
+			return /datum/language/polysmorph
 		if(DRACONIC)
 			return /datum/language/draconic
 		if(BEACHTONGUE)
@@ -449,9 +442,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 #undef MAX_MEM_VARS
 #undef HUMAN
 #undef MONKEY
-#undef ALIEN
 #undef ROBOT
-#undef SLIME
-#undef DRONE
+#undef POLYSMORPH
 #undef DRACONIC
 #undef BEACHTONGUE

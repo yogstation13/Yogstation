@@ -10,7 +10,7 @@
 	flags_1 =  CONDUCT_1
 	obj_flags = UNIQUE_RENAME
 	slot_flags = ITEM_SLOT_BELT
-	materials = list(MAT_METAL=2000)
+	materials = list(/datum/material/iron=2000)
 	w_class = WEIGHT_CLASS_NORMAL
 	throwforce = 5
 	throw_speed = 3
@@ -69,6 +69,7 @@
 	var/zoom_amt = 3 //Distance in TURFs to move the user's screen forward (the "zoom" effect)
 	var/zoom_out_amt = 0
 	var/datum/action/toggle_scope_zoom/azoom
+	var/recent_shoot = null //time of the last shot with the gun. Used to track if firing happened for feedback out of all things
 
 /obj/item/gun/Initialize()
 	. = ..()
@@ -90,6 +91,11 @@
 	if(azoom)
 		QDEL_NULL(azoom)
 	return ..()
+
+//ALL GUNS ARE NOW STAFF OF THE HONKMOTHER HONK
+/obj/item/gun/honk_act()
+	new /obj/item/gun/magic/staff/honk(src.loc)
+	qdel(src)
 
 /obj/item/gun/handle_atom_del(atom/A)
 	if(A == pin)
@@ -344,6 +350,7 @@
 	if(user)
 		user.update_inv_hands()
 	SSblackbox.record_feedback("tally", "gun_fired", 1, type)
+	recent_shoot = world.time
 	return TRUE
 
 /obj/item/gun/update_icon()
@@ -542,7 +549,9 @@
 	if(chambered && chambered.BB)
 		chambered.BB.damage *= 5
 
-	process_fire(target, user, TRUE, params)
+	var/fired = process_fire(target, user, TRUE, params, BODY_ZONE_HEAD)
+	if(!fired && chambered?.BB)
+		chambered.BB.damage /= 5
 
 /obj/item/gun/proc/unlock() //used in summon guns and as a convience for admins
 	if(pin)

@@ -13,7 +13,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_NECK
-	materials = list(MAT_METAL = 50, MAT_GLASS = 150)
+	materials = list(/datum/material/iron = 50, /datum/material/glass = 150)
 	var/obj/item/disk/holodisk/disk
 	var/pictures_left = 0
 	var/default_picture_name
@@ -123,7 +123,7 @@
 			else
 				. += "It has photos left."
 		else
-			. += "It has [pictures_left] photos left." 
+			. += "It has [pictures_left] photos left."
 	if(photographer)
 		. += "[src] lens is set for a [picture_size_x] by [picture_size_y] picture."
 		. += "[src] is set to the [camera_mode] mode."

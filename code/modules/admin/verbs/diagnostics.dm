@@ -9,12 +9,12 @@
 	var/list/lines = list("<span class='adminnotice'>[AREACOORD(target)]: [env.return_temperature()] K ([env.return_temperature() - T0C] C), [env.return_pressure()] kPa[(burning)?(", <font color='red'>burning</font>"):(null)]</span>")
 	for(var/id in env.get_gases())
 		var/moles = env.get_moles(id)
-		if (moles >= 0.00001)
+		if (abs(moles) >= 0.00001)
 			lines += "[GLOB.meta_gas_info[id][META_GAS_NAME]]: [moles] mol"
 	to_chat(usr, lines.Join("\n"))
 
 /client/proc/air_status(turf/target)
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Display Air Status"
 
 	if(!isturf(target))
@@ -23,7 +23,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Show Air Status") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/fix_next_move()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Unfreeze Everyone"
 	var/largest_move_time = 0
 	var/largest_click_time = 0
@@ -54,7 +54,7 @@
 	return
 
 /client/proc/radio_report()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Radio report"
 
 	var/output = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><b>Radio Report</b><hr>"
@@ -83,7 +83,7 @@
 
 /client/proc/reload_admins()
 	set name = "Reload Admins"
-	set category = "Admin"
+	set category = "Server"
 
 	if(!src.holder)
 		return
@@ -96,3 +96,47 @@
 	load_admins()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Reload All Admins") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	message_admins("[key_name_admin(usr)] manually reloaded admins")
+
+/client/proc/reload_mentors()
+	set name = "Reload Mentors"
+	set category = "Server"
+
+	if(!src.holder)
+		return
+
+	var/confirm = alert(src, "Are you sure you want to reload all mentors?", "Confirm", "Yes", "No")
+	if(confirm !="Yes")
+		return
+
+	load_mentors()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Reload All Mentors") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	message_admins("[key_name_admin(usr)] manually reloaded mentors")
+
+
+/client/proc/toggle_cdn()
+	set name = "Toggle CDN"
+	set category = "Server"
+	var/static/admin_disabled_cdn_transport = null
+	if (alert(usr, "Are you sure you want to toggle the CDN asset transport?", "Confirm", "Yes", "No") != "Yes")
+		return
+	var/current_transport = CONFIG_GET(string/asset_transport)
+	if (!current_transport || current_transport == "simple")
+		if (admin_disabled_cdn_transport)
+			CONFIG_SET(string/asset_transport, admin_disabled_cdn_transport)
+			admin_disabled_cdn_transport = null
+			SSassets.OnConfigLoad()
+			message_admins("[key_name_admin(usr)] re-enabled the CDN asset transport")
+			log_admin("[key_name(usr)] re-enabled the CDN asset transport")
+		else
+			to_chat(usr, "<span class='adminnotice'>The CDN is not enabled!</span>")
+			if (alert(usr, "The CDN asset transport is not enabled! If you having issues with assets you can also try disabling filename mutations.", "The CDN asset transport is not enabled!", "Try disabling filename mutations", "Nevermind") == "Try disabling filename mutations")
+				SSassets.transport.dont_mutate_filenames = !SSassets.transport.dont_mutate_filenames
+				message_admins("[key_name_admin(usr)] [(SSassets.transport.dont_mutate_filenames ? "disabled" : "re-enabled")] asset filename transforms")
+				log_admin("[key_name(usr)] [(SSassets.transport.dont_mutate_filenames ? "disabled" : "re-enabled")] asset filename transforms")
+	else
+		admin_disabled_cdn_transport = current_transport
+		CONFIG_SET(string/asset_transport, "simple")
+		SSassets.OnConfigLoad()
+		SSassets.transport.dont_mutate_filenames = TRUE
+		message_admins("[key_name_admin(usr)] disabled the CDN asset transport")
+		log_admin("[key_name(usr)] disabled the CDN asset transport")

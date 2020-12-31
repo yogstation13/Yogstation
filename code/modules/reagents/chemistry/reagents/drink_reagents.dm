@@ -313,6 +313,16 @@
 		. = 1
 	..()
 
+/datum/reagent/consumable/cream/bug
+	name = "Bug Cream"
+	description = "The very fatty, still liquid part of bug milk. It looks pretty gross."
+	color = "#800000"
+	nutriment_factor = 2
+	taste_description = "creamy bug milk"
+	glass_icon_state  = "chocolateglass"
+	glass_name = "glass of bug cream"
+	glass_desc = "Ewwwww!"
+
 /datum/reagent/consumable/coffee
 	name = "Coffee"
 	description = "Coffee is a brewed drink prepared from roasted seeds, commonly called coffee beans, of the coffee plant."
@@ -452,10 +462,10 @@
 
 /datum/reagent/consumable/nuka_cola/on_mob_metabolize(mob/living/L)
 	..()
-	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.75, blacklisted_movetypes=(FLYING|FLOATING))
+	ADD_TRAIT(L, TRAIT_RESISTDAMAGESLOWDOWN, type)
 
 /datum/reagent/consumable/nuka_cola/on_mob_end_metabolize(mob/living/L)
-	L.remove_movespeed_modifier(type)
+	REMOVE_TRAIT(L, TRAIT_RESISTDAMAGESLOWDOWN, type)
 	..()
 
 /datum/reagent/consumable/nuka_cola/on_mob_life(mob/living/carbon/M)
@@ -465,6 +475,7 @@
 	M.drowsyness = 0
 	M.AdjustSleeping(-40, FALSE)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
+	M.apply_effect(5,EFFECT_IRRADIATE,0)
 	..()
 	. = 1
 
@@ -609,6 +620,32 @@
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
 	. = 1
+
+/datum/reagent/consumable/monkey_energy
+	name = "Monkey Energy"
+	description = "The only drink that will make you unleash the ape."
+	color = "#f39b03" // rgb: 243, 155, 3
+	taste_description = "barbecue and nostalgia"
+	glass_icon_state = "monkey_energy_glass"
+	glass_name = "glass of Monkey Energy"
+	glass_desc = "You can unleash the ape, but without the pop of the can?"
+
+/datum/reagent/consumable/monkey_energy/on_mob_life(mob/living/carbon/M)
+	M.Jitter(20)
+	M.dizziness +=1
+	M.drowsyness = 0
+	M.AdjustSleeping(-40, FALSE)
+	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
+	..()
+
+/datum/reagent/consumable/monkey_energy/on_mob_metabolize(mob/living/L)
+	..()
+	if(ismonkey(L))
+		L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.75, blacklisted_movetypes=(FLYING|FLOATING))
+
+/datum/reagent/consumable/monkey_energy/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	..()
 
 /datum/reagent/consumable/ice
 	name = "Ice"
@@ -898,4 +935,48 @@
 
 /datum/reagent/consumable/graveyard/on_mob_life(mob/living/carbon/M)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
+	..()
+
+/datum/reagent/consumable/buzz_fuzz
+	name = "Buzz Fuzz"
+	description = "~A Hive of Flavour!~ NOTICE: Addicting."
+	addiction_threshold = 14
+	color = "#8CFF00" // rgb: 135, 255, 0
+	taste_description = "carbonated honey and pollen"
+	glass_icon_state = "buzz_fuzz"
+	glass_name = "honeycomb of Buzz Fuzz"
+	glass_desc = "Stinging with flavour."
+
+/datum/reagent/consumable/buzz_fuzz/on_mob_life(mob/living/carbon/M)
+	M.reagents.add_reagent("sugar",2)
+	if(prob(25))
+		M.reagents.add_reagent("honey",1)
+	..()
+
+/datum/reagent/consumable/buzz_fuzz/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+	if(iscarbon(M) && (method in list(TOUCH, VAPOR, PATCH)))
+		var/mob/living/carbon/C = M
+		for(var/s in C.surgeries)
+			var/datum/surgery/S = s
+			S.success_multiplier = max(0.1, S.success_multiplier) // +10% success probability on each step, compared to bacchus' blessing's ~46%
+	..()
+
+/datum/reagent/consumable/buzz_fuzz/addiction_act_stage1(mob/living/M)
+	if(prob(5))
+		to_chat(M, "<span class = 'notice'>[pick("Buzz Buzz.", "Stinging with flavour.", "A Hive of Flavour")]</span>")
+	..()
+
+/datum/reagent/consumable/buzz_fuzz/addiction_act_stage2(mob/living/M)
+	if(prob(10))
+		to_chat(M, "<span class = 'notice'>[pick("Buzz Buzz.", "Stinging with flavour.", "A Hive of Flavour", "The Queen approved it!")]</span>")
+	..()
+
+/datum/reagent/consumable/buzz_fuzz/addiction_act_stage3(mob/living/M)
+	if(prob(15))
+		to_chat(M, "<span class = 'notice'>[pick("Buzz Buzz.", "Stinging with flavour.", "Ideal of the worker drone", "A Hive of Flavour", "The Queen approved it!")]</span>")
+	..()
+
+/datum/reagent/consumable/buzz_fuzz/addiction_act_stage4(mob/living/M)
+	if(prob(25))
+		to_chat(M, "<span class = 'notice'>[pick("Buzz Buzz.", "Stinging with flavour.", "Ideal of the worker drone", "A Hive of Flavour", "Sap back that missing energy!", "Got Honey?", "The Queen approved it!")]</span>")
 	..()

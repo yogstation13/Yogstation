@@ -43,7 +43,7 @@
 		loc.visible_message("<span class='warning'>\The [src] begins to shake. Stand back!</span>")
 		used = TRUE
 		sleep(50)
-		var/turf/deploy_location = get_turf(src)
+		var/turf/deploy_location = get_turf_global(src)
 		var/status = template.check_deploy(deploy_location)
 		switch(status)
 			if(SHELTER_DEPLOY_BAD_AREA)
@@ -315,7 +315,7 @@
 						/obj/item/stack/telecrystal/twenty,
 						/obj/item/nuke_core,
 						/obj/item/phylactery,
-						/obj/item/banhammer)
+						/obj/item/bikehorn)
 
 /obj/item/fakeartefact/Initialize()
 	. = ..()

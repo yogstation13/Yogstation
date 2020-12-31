@@ -219,6 +219,12 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
+"L" = (
+/obj/machinery/computer/emergency_shuttle{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "O" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only,
@@ -460,7 +466,7 @@ f
 f
 f
 f
-f
+L
 O
 "}
 (9,1,1) = {"

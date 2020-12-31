@@ -126,8 +126,6 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
-	new /obj/item/flashlight/flare/emergency(src)
-	new /obj/item/map/station(src)
 
 /obj/item/storage/box/survival/radio/PopulateContents()
 	..() // we want the survival stuff too.
@@ -138,16 +136,12 @@
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/crowbar/red(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
-	new /obj/item/flashlight/flare/emergency(src)
-	new /obj/item/map/station(src)
 
 // Engineer survival box
 /obj/item/storage/box/engineer/PopulateContents()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
-	new /obj/item/flashlight/flare/emergency(src)
-	new /obj/item/map/station(src)
 
 /obj/item/storage/box/engineer/radio/PopulateContents()
 	..() // we want the regular items too.
@@ -163,8 +157,6 @@
 	new /obj/item/clothing/mask/gas/sechailer(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
-	new /obj/item/flashlight/flare/emergency(src)
-	new /obj/item/map/station(src)
 
 /obj/item/storage/box/security/radio/PopulateContents()
 	..() // we want the regular stuff too
@@ -173,10 +165,8 @@
 // Plasmaman survival box
 /obj/item/storage/box/plasmaman/PopulateContents()
 	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/tank/internals/plasmaman(src)
+	new /obj/item/tank/internals/plasmaman/belt/full(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
-	new /obj/item/flashlight/flare/emergency(src)
-	new /obj/item/map/station(src)
 
 /obj/item/storage/box/gloves
 	name = "box of latex gloves"
@@ -891,12 +881,12 @@
 	else if(W.is_sharp())
 		if(!contents.len)
 			if(item_state == "paperbag_None")
-				user.show_message("<span class='notice'>You cut eyeholes into [src].</span>", 1)
+				user.show_message("<span class='notice'>You cut eyeholes into [src].</span>", MSG_VISUAL)
 				new /obj/item/clothing/head/papersack(user.loc)
 				qdel(src)
 				return 0
 			else if(item_state == "paperbag_SmileyFace")
-				user.show_message("<span class='notice'>You cut eyeholes into [src] and modify the design.</span>", 1)
+				user.show_message("<span class='notice'>You cut eyeholes into [src] and modify the design.</span>", MSG_VISUAL)
 				new /obj/item/clothing/head/papersack/smiley(user.loc)
 				qdel(src)
 				return 0
@@ -1074,6 +1064,17 @@
 	new /obj/item/circuitboard/machine/circuit_imprinter(src)
 	new /obj/item/circuitboard/computer/rdconsole(src)
 
+/obj/item/storage/box/rndboards/miner
+	name = "\proper Morokha Heavy Industries Research and Development Kit"
+	desc = "A box containing the essential circuit boards for research and development. Materials, stock parts, and intelligence not included."
+
+/obj/item/storage/box/rndboards/miner/PopulateContents()
+	new /obj/item/circuitboard/machine/autolathe(src)
+	new /obj/item/circuitboard/machine/protolathe(src)
+	new /obj/item/circuitboard/machine/destructive_analyzer(src)
+	new /obj/item/circuitboard/machine/circuit_imprinter(src)
+	new /obj/item/circuitboard/computer/rdconsole(src)
+
 /obj/item/storage/box/silver_sulf
 	name = "box of silver sulfadiazine patches"
 	desc = "Contains patches used to treat burns."
@@ -1139,4 +1140,29 @@
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stock_parts/matter_bin = 2,
 		/obj/item/screwdriver = 1)
+	generate_items_inside(items_inside,src)
+
+/obj/item/storage/box/materials
+	name = "Materials Box"
+	desc = "Contains most of what you would need"
+
+/obj/item/storage/box/materials/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/stack/sheet/metal/fifty = 2,
+		/obj/item/stack/rods/fifty = 2,
+		/obj/item/stack/sheet/plasteel/fifty = 2,
+		/obj/item/stack/sheet/plastic/fifty = 2,
+		/obj/item/stack/sheet/plastitaniumglass/fifty = 2,
+		/obj/item/stack/sheet/titaniumglass/fifty = 2,
+		/obj/item/stack/sheet/plasmaglass/fifty = 2,
+		/obj/item/stack/sheet/rglass/fifty = 2,
+		/obj/item/stack/sheet/mineral/plastitanium/fifty = 1,
+		/obj/item/stack/sheet/mineral/wood/fifty = 1,
+		/obj/item/stack/sheet/mineral/titanium/fifty = 1,
+		/obj/item/stack/sheet/mineral/uranium/fifty = 1,
+		/obj/item/stack/sheet/mineral/diamond = 1,
+		/obj/item/stack/sheet/mineral/plasma/fifty = 1,
+		/obj/item/stack/sheet/mineral/gold/fifty = 1,
+		/obj/item/stack/sheet/mineral/silver/fifty = 1,
+		/obj/item/stack/sheet/mineral/bananium/fifty = 1)
 	generate_items_inside(items_inside,src)

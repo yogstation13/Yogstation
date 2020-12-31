@@ -57,3 +57,11 @@
 #endif
 
 #define EXTOOLS (world.system_type == MS_WINDOWS ? "byond-extools.dll" : "libbyond-extools.so")
+
+#if (DM_VERSION == 513) && (DM_BUILD == 1537)
+#error ============WARNING===============
+#error BYOND version 513.1537 contains a bug that prevents the codebase from compiling properly. Please upgrade/downgrade your BYOND version
+#error BYOND version 513.1537 contains a bug that prevents the codebase from compiling properly. Please upgrade/downgrade your BYOND version
+#error BYOND version 513.1537 contains a bug that prevents the codebase from compiling properly. Please upgrade/downgrade your BYOND version
+#error ==================================
+#endif

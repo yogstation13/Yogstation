@@ -1,6 +1,6 @@
 /obj/machinery/nuclearbomb
 	name = "nuclear fission explosive"
-	desc = "You probably shouldn't stick around to see if this is armed."
+	desc = "A stolen NanoTrasen branded nuclear bomb. You probably shouldn't stick around to see if this is armed."
 	icon = 'icons/obj/machines/nuke.dmi'
 	icon_state = "nuclearbomb_base"
 	anchored = FALSE
@@ -260,10 +260,10 @@
 
 	ui_mode = NUKEUI_AWAIT_TIMER
 
-/obj/machinery/nuclearbomb/ui_interact(mob/user, ui_key="main", datum/tgui/ui=null, force_open=0, datum/tgui/master_ui=null, datum/ui_state/state=GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/nuclearbomb/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "NuclearBomb", name, 350, 442, master_ui, state)
+		ui = new(user, src, "NuclearBomb", name)
 		ui.open()
 
 /obj/machinery/nuclearbomb/ui_data(mob/user)
@@ -578,11 +578,19 @@
 /obj/machinery/nuclearbomb/beer/really_actually_explode()
 	disarm()
 
+
+/**
+  * Kills any mob on the z-level, assuming they're not in a freezer
+  *
+  * Arguments:
+  * * z - the z-level to kill people on
+  */
 /proc/KillEveryoneOnZLevel(z)
 	if(!z)
 		return
 	for(var/mob/M in GLOB.mob_list)
-		if(M.stat != DEAD && M.z == z)
+		var/turf/t = get_turf(M)
+		if(M.stat != DEAD && t.z == z && !istype(M.loc, /obj/structure/closet/secure_closet/freezer))
 			M.gib()
 
 /*

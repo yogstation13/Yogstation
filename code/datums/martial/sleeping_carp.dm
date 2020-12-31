@@ -7,7 +7,7 @@
 /datum/martial_art/the_sleeping_carp
 	name = "The Sleeping Carp"
 	id = MARTIALART_SLEEPINGCARP
-	deflection_chance = 100
+	deflection_chance = 0 //no block unless throwmode is on
 	reroute_deflection = TRUE
 	no_guns = TRUE
 	allow_temp_override = FALSE
@@ -226,7 +226,7 @@
 
 		log_combat(user, H, "Bo Staffed", src.name, "((DAMTYPE: STAMINA)")
 		add_fingerprint(user)
-		H.adjustStaminaLoss(rand(28,33))
+		H.apply_damage(rand(28,33), STAMINA, BODY_ZONE_HEAD)
 		if(H.staminaloss && !H.IsSleeping())
 			var/total_health = (H.health - H.staminaloss)
 			if(total_health <= HEALTH_THRESHOLD_CRIT && !H.stat)

@@ -13,6 +13,9 @@
 #define TK_MAXRANGE 15
 
 /atom/proc/attack_tk(mob/user)
+	if(HAS_TRAIT(user, TRAIT_NOINTERACT))
+		to_chat(user, "<span class='notice'>You can't touch things, even with your mind!</span>")
+		return
 	if(user.stat || !tkMaxRangeCheck(user, src))
 		return
 	new /obj/effect/temp_visual/telekinesis(get_turf(src))
@@ -170,7 +173,7 @@
 	if(!tk_user || !istype(tk_user) || QDELETED(target) || !istype(target) || !tk_user.dna.check_mutation(TK))
 		qdel(src)
 		return
-	if(!tkMaxRangeCheck(tk_user, target) || target.anchored || !isturf(target.loc))
+	if(!tkMaxRangeCheck(tk_user, target) || target.anchored || target.buckled_mobs?.len || !isturf(target.loc))
 		qdel(src)
 		return
 	return TRUE

@@ -14,10 +14,8 @@
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/storage/belt/sabre(src)
 	new /obj/item/door_remote/captain(src)
-	new /obj/item/card/id/captains_spare(src)
 	new /obj/item/storage/photo_album/Captain(src)
 	new /obj/item/clipboard/yog/paperwork/captain(src)
-	new /obj/item/card/id/departmental_budget/civ(src)
 	new /obj/item/radio/security(src)
 
 /obj/structure/closet/secure_closet/hop
@@ -43,7 +41,6 @@
 	new /obj/item/circuitboard/machine/techfab/department/service(src)
 	new /obj/item/storage/photo_album/HoP(src)
 	new /obj/item/clipboard/yog/paperwork/hop(src)
-	new /obj/item/card/id/departmental_budget/srv(src)
 	new /obj/item/gun/energy/e_gun/mini(src) //hop doesn't get a proper gun
 	new /obj/item/storage/backpack/duffelbag/hop/clothing(src)
 
@@ -87,6 +84,7 @@
 	new /obj/item/holosign_creator/security(src)
 	new /obj/item/clothing/mask/gas/sechailer(src)
 	new /obj/item/storage/box/zipties(src)
+	new /obj/item/megaphone/sec(src)
 	new /obj/item/storage/box/flashbangs(src)
 	new /obj/item/storage/belt/security/full(src)
 	new /obj/item/flashlight/seclite(src)
@@ -94,7 +92,6 @@
 	new /obj/item/door_remote/head_of_security(src)
 	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src)
 	new /obj/item/clipboard/yog/paperwork/warden(src)
-	new /obj/item/card/id/departmental_budget/sec(src)
 	new /obj/item/radio/security(src)
 	new /obj/item/storage/backpack/duffelbag/sec/warden/clothing(src)
 
@@ -161,6 +158,7 @@
 	icon_state = "cabinet"
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
+	door_anim_time = 0 // no animation
 
 /obj/structure/closet/secure_closet/detective/PopulateContents()
 	..()
@@ -201,6 +199,9 @@
 	..()
 	new /obj/item/clothing/under/rank/prisoner( src )
 	new /obj/item/clothing/shoes/sneakers/orange( src )
+
+/obj/structure/closet/secure_closet/brig/cell
+	name = "cell locker"
 
 /obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"

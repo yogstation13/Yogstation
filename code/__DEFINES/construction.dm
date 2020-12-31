@@ -23,6 +23,14 @@
 #define WINDOW_IN_FRAME 1
 #define WINDOW_SCREWED_TO_FRAME 2
 
+//reinforced window construction states
+#define RWINDOW_FRAME_BOLTED 3
+#define RWINDOW_BARS_CUT 4
+#define RWINDOW_POPPED 5
+#define RWINDOW_BOLTS_OUT 6
+#define RWINDOW_BOLTS_HEATED 7
+#define RWINDOW_SECURE 8
+
 //airlock assembly construction states
 #define AIRLOCK_ASSEMBLY_NEEDS_WIRES 0
 #define AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS 1
@@ -59,19 +67,6 @@
 //let's just pretend fulltile windows being children of border windows is fine
 #define FULLTILE_WINDOW_DIR NORTHEAST
 
-//Material defines, for determining how much of a given material an item contains
-#define MAT_METAL		"$metal"
-#define MAT_GLASS		"$glass"
-#define MAT_SILVER		"$silver"
-#define MAT_GOLD		"$gold"
-#define MAT_DIAMOND		"$diamond"
-#define MAT_URANIUM		"$uranium"
-#define MAT_PLASMA		"$plasma"
-#define MAT_BLUESPACE	"$bluespace"
-#define MAT_BANANIUM	"$bananium"
-#define MAT_TITANIUM	"$titanium"
-#define MAT_BIOMASS		"$biomass"
-#define MAT_PLASTIC	"$plastic"
 //The amount of materials you get from a sheet of mineral like iron/diamond/glass etc
 #define MINERAL_MATERIAL_AMOUNT 2000
 //The maximum size of a stack object.
@@ -105,9 +100,20 @@
 #define CAT_ICE	"Frozen"
 #define CAT_DRINK   "Drinks"
 
-#define RCD_FLOORWALL 1
-#define RCD_AIRLOCK 2
-#define RCD_DECONSTRUCT 3
-#define RCD_WINDOWGRILLE 4
-#define RCD_MACHINE 8
-#define RCD_COMPUTER 16
+#define RCD_FLOORWALL (1<<0)
+#define RCD_AIRLOCK (1<<1)
+#define RCD_DECONSTRUCT (1<<2)
+#define RCD_WINDOWGRILLE (1<<3)
+#define RCD_MACHINE (1<<4)
+#define RCD_COMPUTER (1<<5)
+#define RCD_FURNISHING (1<<6)
+
+#define RCD_UPGRADE_FRAMES (1<<0)
+#define RCD_UPGRADE_SIMPLE_CIRCUITS	(1<<1)
+#define RCD_UPGRADE_SILO_LINK (1<<2)
+#define RCD_UPGRADE_FURNISHING (1<<3)
+
+#define RCD_WINDOW_FULLTILE "full tile"
+#define RCD_WINDOW_DIRECTIONAL "directional"
+#define RCD_WINDOW_NORMAL "glass"
+#define RCD_WINDOW_REINFORCED "reinforced glass"

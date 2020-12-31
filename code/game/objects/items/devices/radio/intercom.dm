@@ -91,9 +91,8 @@
 		return
 	interact(user)
 
-/obj/item/radio/intercom/interact(mob/user)
-	..()
-	ui_interact(user, state = GLOB.default_state)
+/obj/item/radio/intercom/ui_state(mob/user)
+	return GLOB.default_state
 
 /obj/item/radio/intercom/can_receive(freq, level)
 	if(!on)
@@ -113,8 +112,8 @@
 	return TRUE
 
 
-/obj/item/radio/intercom/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, message_mode)
-	if (message_mode == MODE_INTERCOM)
+/obj/item/radio/intercom/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, list/message_mods = list())
+	if(message_mods[RADIO_EXTENSION] == MODE_INTERCOM)
 		return  // Avoid hearing the same thing twice
 	if(!anyai && !(speaker in ai)) // set the intercomms in AI cores to 0 when this gets implemented
 		return
@@ -137,7 +136,7 @@
 
 /obj/item/radio/intercom/add_blood_DNA(list/blood_dna)
 	return FALSE
-	
+
 /obj/item/radio/intercom/end_emp_effect(curremp)
 	. = ..()
 	if(!.)
@@ -152,4 +151,4 @@
 	result_path = /obj/item/radio/intercom/unscrewed
 	pixel_shift = 29
 	inverse = TRUE
-	materials = list(MAT_METAL = 75, MAT_GLASS = 25)
+	materials = list(/datum/material/iron = 75, /datum/material/glass = 25)

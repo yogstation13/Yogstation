@@ -14,7 +14,8 @@
 	recommended_enemies = 3
 	enemy_minimum_age = 15
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer")
+	title_icon = "ss13"
 
 /datum/game_mode/darkspawn/announce()
 	to_chat(world, "<b>The current game mode is - Darkspawn!</b>")
@@ -127,3 +128,18 @@
 	if(!istype(mind))
 		return FALSE
 	return mind.remove_antag_datum(/datum/antagonist/veil)
+
+/datum/game_mode/darkspawn/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	round_credits += "<center><h1>The Darkspawn:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/darkboi in darkspawn)
+		round_credits += "<center><h2>[darkboi.name] as a Darkspawn</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>The Darkspawn have moved to the shadows!</h2>", "<center><h2>We couldn't locate them!</h2>")
+	round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits

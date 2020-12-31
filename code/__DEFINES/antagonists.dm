@@ -26,10 +26,12 @@
 
 
 //Blob
-#define BLOB_REROLL_TIME 2400 //blob gets a free reroll every X time
+/// blob gets a free reroll every X time
+#define BLOB_REROLL_TIME 2400
 #define BLOB_SPREAD_COST 4
-#define BLOB_ATTACK_REFUND 2 //blob refunds this much if it attacks and doesn't spread
-#define BLOB_REFLECTOR_COST 0 //yogs - reflectors are free
+/// blob refunds this much if it attacks and doesn't spread
+#define BLOB_ATTACK_REFUND 2
+#define BLOB_REFLECTOR_COST 15
 
 
 //ERT Types
@@ -47,11 +49,14 @@
 #define DEATHSQUAD_LEADER "ds_leader"
 
 //Shuttle hijacking
-#define HIJACK_NEUTRAL 0 //Does not stop hijacking but itself won't hijack
-#define HIJACK_HIJACKER 1 //Needs to be present for shuttle to be hijacked
-#define HIJACK_PREVENT 2 //Prevents hijacking same way as non-antags
+/// Does not stop hijacking but itself won't hijack
+#define HIJACK_NEUTRAL 0
+/// Needs to be present for shuttle to be hijacked
+#define HIJACK_HIJACKER 1
+/// Prevents hijacking same way as non-antags
+#define HIJACK_PREVENT 2
 
-//Overthrow time to update heads obj
+///Overthrow time to update heads obj
 #define OBJECTIVE_UPDATING_TIME 300
 
 //Assimilation
@@ -75,3 +80,13 @@
 
 #define CONTRACT_UPLINK_PAGE_CONTRACTS "CONTRACTS"
 #define CONTRACT_UPLINK_PAGE_HUB "HUB"
+
+///It is faster as a macro than a proc
+#define IS_HERETIC(mob) (mob.mind?.has_antag_datum(/datum/antagonist/heretic))
+#define IS_HERETIC_MONSTER(mob) (mob.mind?.has_antag_datum(/datum/antagonist/heretic_monster))
+
+#define PATH_SIDE "Side"
+
+#define PATH_ASH "Ash"
+#define PATH_RUST "Rust"
+#define PATH_FLESH "Flesh"

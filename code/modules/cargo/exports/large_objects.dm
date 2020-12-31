@@ -136,4 +136,11 @@
 	worth += C.air_contents.get_moles(/datum/gas/miasma)*10
 	worth += C.air_contents.get_moles(/datum/gas/tritium)*5
 	worth += C.air_contents.get_moles(/datum/gas/pluoxium)*5
+	worth += C.air_contents.get_moles(/datum/gas/freon)*15
+	worth += C.air_contents.get_moles(/datum/gas/hydrogen)*1
+	worth += C.air_contents.get_moles(/datum/gas/healium)*19
+	worth += C.air_contents.get_moles(/datum/gas/pluonium)*5
+	worth += C.air_contents.get_moles(/datum/gas/halon)*9
+	worth += C.air_contents.get_moles(/datum/gas/hexane)*6
+	worth += C.air_contents.get_moles(/datum/gas/zauker)*1050
 	return worth

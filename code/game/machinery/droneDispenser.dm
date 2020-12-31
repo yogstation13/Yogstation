@@ -50,10 +50,10 @@
 
 /obj/machinery/droneDispenser/Initialize()
 	. = ..()
-	var/datum/component/material_container/materials = AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_GLASS), MINERAL_MATERIAL_AMOUNT * MAX_STACK_SIZE * 2, TRUE, /obj/item/stack)
-	materials.insert_amount(starting_amount)
+	var/datum/component/material_container/materials = AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass), MINERAL_MATERIAL_AMOUNT * MAX_STACK_SIZE * 2, TRUE, /obj/item/stack)
+	materials.insert_amount_mat(starting_amount)
 	materials.precise_insertion = TRUE
-	using_materials = list(MAT_METAL=metal_cost, MAT_GLASS=glass_cost)
+	using_materials = list(/datum/material/iron=metal_cost, /datum/material/glass=glass_cost)
 
 /obj/machinery/droneDispenser/preloaded
 	starting_amount = 5000
@@ -106,28 +106,6 @@
 	recharge_sound = null
 	recharge_message = null
 
-/obj/machinery/droneDispenser/swarmer
-	name = "swarmer fabricator"
-	desc = "An alien machine of unknown origin. It whirs and hums with green-blue light, the air above it shimmering."
-	icon = 'icons/obj/machines/gateway.dmi'
-	icon_state = "toffcenter"
-	icon_off = "toffcenter"
-	icon_on = "toffcenter"
-	icon_recharging = "toffcenter"
-	icon_creating = "offcenter"
-	metal_cost = 0
-	glass_cost = 0
-	cooldownTime = 300 //30 seconds
-	maximum_idle = 0 // Swarmers have no restraint
-	dispense_type = /obj/effect/mob_spawn/swarmer
-	begin_create_message = "hums softly as an interface appears above it, scrolling by at unreadable speed."
-	end_create_message = "materializes a strange shell, which drops to the ground."
-	recharging_text = "Its lights are slowly increasing in brightness."
-	work_sound = 'sound/effects/empulse.ogg'
-	create_sound = 'sound/effects/phasein.ogg'
-	break_sound = 'sound/effects/empulse.ogg'
-	break_message = "slowly falls dark, lights stuttering."
-
 /obj/machinery/droneDispenser/examine(mob/user)
 	. = ..()
 	if((mode == DRONE_RECHARGING) && !stat && recharging_text)
@@ -160,7 +138,7 @@
 			update_icon()
 
 		if(DRONE_PRODUCTION)
-			materials.use_amount(using_materials)
+			materials.use_materials(using_materials)
 			if(power_used)
 				use_power(power_used)
 

@@ -266,15 +266,15 @@
 				break_counter++
 			output += "</div></div>"
 		var/list/long_job_lists = list("Civilian" = GLOB.civilian_positions,
-									"Ghost and Other Roles" = list(ROLE_BRAINWASHED, ROLE_DEATHSQUAD, ROLE_DRONE, ROLE_LAVALAND, ROLE_MIND_TRANSFER, ROLE_POSIBRAIN, ROLE_SENTIENCE),
+									"Ghost and Other Roles" = list(ROLE_BRAINWASHED, ROLE_DEATHSQUAD, ROLE_DRONE, ROLE_FUGITIVE, ROLE_HOLOPARASITE, ROLE_LAVALAND, ROLE_MIND_TRANSFER, ROLE_POSIBRAIN, ROLE_SENTIENCE),
 									"Antagonist Positions" = list(ROLE_ABDUCTOR, ROLE_ALIEN, ROLE_BLOB,
 									ROLE_BROTHER, ROLE_CHANGELING, ROLE_CULTIST,
-									ROLE_DEVIL, ROLE_INTERNAL_AFFAIRS, ROLE_MALF,
+									ROLE_DEVIL, ROLE_FUGITIVE, ROLE_HOLOPARASITE, ROLE_INTERNAL_AFFAIRS, ROLE_MALF,
 									ROLE_MONKEY, ROLE_NINJA, ROLE_OPERATIVE,
 									ROLE_OVERTHROW, ROLE_REV, ROLE_REVENANT,
 									ROLE_REV_HEAD, ROLE_SERVANT_OF_RATVAR, ROLE_SYNDICATE,
 									ROLE_TRAITOR, ROLE_WIZARD, ROLE_GANG, ROLE_VAMPIRE,
-									ROLE_SHADOWLING, ROLE_DARKSPAWN, ROLE_ZOMBIE)) //ROLE_REV_HEAD is excluded from this because rev jobbans are handled by ROLE_REV
+									ROLE_SHADOWLING, ROLE_DARKSPAWN, ROLE_ZOMBIE, ROLE_HERETIC)) //ROLE_REV_HEAD is excluded from this because rev jobbans are handled by ROLE_REV
 		for(var/department in long_job_lists)
 			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [usr.client.prefs.tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
 			break_counter = 0
@@ -823,13 +823,13 @@
 	var/datum/DBQuery/query_edit_ban = SSdbcore.NewQuery({"
 		UPDATE [format_table_name("ban")]
 		SET
-			expiration_time = IF(:duration IS NULL, NULL, bantime + INTERVAL :duration [interval])
-			applies_to_admins = :applies_to_admins,
-			reason = :reason,
-			ckey = :ckey,
-			ip = INET_ATON(:ip),
-			computerid = :ci
-			edits = CONCAT(IFNULL(edits,''), :change_message)
+			[format_table_name("ban")].expiration_time = IF(:duration IS NULL, NULL, bantime + INTERVAL :duration [interval])
+			[format_table_name("ban")].applies_to_admins = :applies_to_admins,
+			[format_table_name("ban")].reason = :reason,
+			[format_table_name("ban")].ckey = :ckey,
+			[format_table_name("ban")].ip = INET_ATON(:ip),
+			[format_table_name("ban")].computerid = :ci
+			[format_table_name("ban")].edits = CONCAT(IFNULL(edits,''), :change_message)
 		WHERE [where]
 	"}, arguments)
 	if(!query_edit_ban.warn_execute())

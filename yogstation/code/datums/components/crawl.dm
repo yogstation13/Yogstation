@@ -126,7 +126,7 @@
 	if(victim.stat == CONSCIOUS)
 		target.visible_message("<span class='warning'>[victim] kicks free of the blood pool just before entering it!</span>", null, "<span class='notice'>You hear splashing and struggling.</span>")
 		return
-	if(victim.reagents && victim.reagents.has_reagent("demonsblood"))
+	if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/consumable/ethanol/demonsblood))
 		target.visible_message("<span class='warning'>Something prevents [victim] from entering the pool!</span>", null, "<span class='notice'>You hear a splash and a thud.</span>")
 		to_chat(user, "<span class='warning'>Some strange force is preventing you from pulling [victim] in!<span>")
 		return
@@ -172,7 +172,7 @@
 		to_chat(user, "<span class='danger'>You happily devour... nothing? Your meal vanished at some point!</span>")
 		return
 
-	if(victim.reagents && victim.reagents.has_reagent("devilskiss"))
+	if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/consumable/ethanol/devilskiss))
 		to_chat(user, "<span class='warning'><b>AAH! THEIR FLESH! IT BURNS!</b></span>")
 		user.adjustBruteLoss(25) //I can't use adjustHealth() here because bloodcrawl affects /mob/living and adjustHealth() only affects simple mobs
 

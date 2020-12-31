@@ -88,6 +88,11 @@ Credit where due:
 
 	. = L.mind.add_antag_datum(C)
 
+	if(.)
+		var/datum/antagonist/clockcult/servant = .
+		var/datum/team/clockcult/cult = servant.get_team()
+		cult.check_size()
+
 	if(!silent && L)
 		if(.)
 			to_chat(L, "<span class='heavy_brass'>The world before you suddenly glows a brilliant yellow. [issilicon(L) ? "You cannot compute this truth!" : \
@@ -144,6 +149,7 @@ Credit where due:
 	var/servants_to_serve = list()
 	var/roundstart_player_count
 	var/ark_time //In minutes, how long the Ark waits before activation; this is equal to 20 + (number of players / 5) (max 35 mins.)
+	title_icon = "clockcult"
 
 	var/datum/team/clockcult/main_clockcult
 
@@ -221,7 +227,7 @@ Credit where due:
 		to_chat(L, "<span class='bold large_brass'>There is a paper in your backpack! It'll tell you if anything's changed, as well as what to expect.</span>")
 		to_chat(L, "<span class='alloy'>[slot] is a <b>clockwork slab</b>, a multipurpose tool used to construct machines and invoke ancient words of power. If this is your first time \
 		as a servant, you can find a concise tutorial in the Recollection category of its interface.</span>")
-		to_chat(L, "<span class='alloy italics'>If you want more information, you can read <a href=\"https://tgstation13.org/wiki/Clockwork_Cult\">the wiki page</a> to learn more.</span>")
+		to_chat(L, "<span class='alloy italics'>If you want more information, you can read <a href=\"https://wiki.yogstation.net/wiki/Clockwork_Cult\">the wiki page</a> to learn more.</span>")
 		return TRUE
 	return FALSE
 
@@ -361,3 +367,20 @@ Credit where due:
 				/obj/structure/destructible/clockwork/wall_gear = 20,
 				/obj/structure/table_frame/brass = 20,
 				/obj/item/stack/tile/brass/ten = 23)
+
+/datum/game_mode/clockwork_cult/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	round_credits += "<center><h1>The Servants of Ratvar:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/servant in servants_of_ratvar)
+		round_credits += "<center><h2>[servant.name] as a faithful servant of Ratvar</h2>"
+	if(GLOB.ratvar_awakens)
+		round_credits += "<center><h2>Ratvar as himself, returned at last</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>The servants were cast astray in the void!</h2>", "<center><h2>None shall remember their names!</h2>")
+	round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits

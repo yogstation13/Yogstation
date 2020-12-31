@@ -6,16 +6,15 @@
 	layer = ABOVE_OBJ_LAYER //Just above doors
 	pressure_resistance = 4*ONE_ATMOSPHERE
 	anchored = TRUE //initially is 0 for tile smoothing
-	flags_1 = ON_BORDER_1
+	flags_1 = ON_BORDER_1 | RAD_PROTECT_CONTENTS_1
 	max_integrity = 25
 	can_be_unanchored = TRUE
 	resistance_flags = ACID_PROOF
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 100)
 	CanAtmosPass = ATMOS_PASS_PROC
 	rad_insulation = RAD_VERY_LIGHT_INSULATION
-	rad_flags = RAD_PROTECT_CONTENTS
 	var/ini_dir = null
-	var/state = WINDOW_OUT_OF_FRAME
+	var/state = WINDOW_SCREWED_TO_FRAME
 	var/reinf = FALSE
 	var/heat_resistance = 800
 	var/decon_speed = 30
@@ -51,7 +50,7 @@
 	if(direct)
 		setDir(direct)
 	if(reinf && anchored)
-		state = WINDOW_SCREWED_TO_FRAME
+		state = RWINDOW_SECURE
 
 	ini_dir = dir
 	air_update_turf(1)
@@ -89,6 +88,13 @@
 		new/obj/structure/window/reinforced/clockwork(get_turf(src), dir)
 	else
 		new/obj/structure/window/reinforced/clockwork/fulltile(get_turf(src))
+	qdel(src)
+
+/obj/structure/window/honk_act()
+	if(fulltile)
+		new/obj/structure/window/bananium/fulltile(get_turf(src))
+	else
+		return
 	qdel(src)
 
 /obj/structure/window/singularity_pull(S, current_size)
@@ -167,6 +173,18 @@
 
 	add_fingerprint(user)
 
+	if(istype(I,/obj/item/stack/sheet/mineral/wood))
+		var/obj/item/stack/sheet/mineral/wood/W = I
+		if(W.amount < 5)
+			to_chat(user, "<span class='warning'>You need at least five wooden planks to barricade the window!</span>")
+			return
+		else
+			to_chat(user, "<span class='notice'>You start adding [I] to [src]...</span>")
+			if(do_after(user, 50, target=src))
+				W.use(5)
+				new /obj/structure/barricade/wooden/crude(get_turf(src))
+				return
+
 	if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP)
 		if(obj_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=0))
@@ -181,34 +199,21 @@
 			to_chat(user, "<span class='warning'>[src] is already in good condition!</span>")
 		return
 
-	if(!(flags_1&NODECONSTRUCT_1))
+	if(!(flags_1&NODECONSTRUCT_1) && !(reinf && state >= RWINDOW_FRAME_BOLTED))
 		if(I.tool_behaviour == TOOL_SCREWDRIVER)
 			I.play_tool_sound(src, 75)
-			if(reinf)
-				if(state == WINDOW_SCREWED_TO_FRAME || state == WINDOW_IN_FRAME)
-					to_chat(user, "<span class='notice'>You begin to [state == WINDOW_SCREWED_TO_FRAME ? "unscrew the window from":"screw the window to"] the frame...</span>")
-					if(I.use_tool(src, user, decon_speed, extra_checks = CALLBACK(src, .proc/check_state_and_anchored, state, anchored)))
-						state = (state == WINDOW_IN_FRAME ? WINDOW_SCREWED_TO_FRAME : WINDOW_IN_FRAME)
-						to_chat(user, "<span class='notice'>You [state == WINDOW_IN_FRAME ? "unfasten the window from":"fasten the window to"] the frame.</span>")
-				else if(state == WINDOW_OUT_OF_FRAME)
-					to_chat(user, "<span class='notice'>You begin to [anchored ? "unscrew the frame from":"screw the frame to"] the floor...</span>")
-					if(I.use_tool(src, user, decon_speed, extra_checks = CALLBACK(src, .proc/check_state_and_anchored, state, anchored)))
-						setAnchored(!anchored)
-						to_chat(user, "<span class='notice'>You [anchored ? "fasten the frame to":"unfasten the frame from"] the floor.</span>")
-			else //if we're not reinforced, we don't need to check or update state
-				to_chat(user, "<span class='notice'>You begin to [anchored ? "unscrew the window from":"screw the window to"] the floor...</span>")
-				if(I.use_tool(src, user, decon_speed, extra_checks = CALLBACK(src, .proc/check_anchored, anchored)))
-					setAnchored(!anchored)
-					to_chat(user, "<span class='notice'>You [anchored ? "fasten the window to":"unfasten the window from"] the floor.</span>")
+			to_chat(user, "<span class='notice'>You begin to [anchored ? "unscrew the window from":"screw the window to"] the floor...</span>")
+			if(I.use_tool(src, user, decon_speed, extra_checks = CALLBACK(src, .proc/check_anchored, anchored)))
+				setAnchored(!anchored)
+				to_chat(user, "<span class='notice'>You [anchored ? "fasten the window to":"unfasten the window from"] the floor.</span>")
 			return
 
-
-		else if(I.tool_behaviour == TOOL_CROWBAR && reinf && (state == WINDOW_OUT_OF_FRAME || state == WINDOW_IN_FRAME))
-			to_chat(user, "<span class='notice'>You begin to lever the window [state == WINDOW_OUT_OF_FRAME ? "into":"out of"] the frame...</span>")
+		else if(I.tool_behaviour == TOOL_CROWBAR && reinf && (state == WINDOW_OUT_OF_FRAME))
+			to_chat(user, "<span class='notice'>You begin to lever the window into the frame...</span>")
 			I.play_tool_sound(src, 75)
-			if(I.use_tool(src, user, decon_speed, extra_checks = CALLBACK(src, .proc/check_state_and_anchored, state, anchored)))
-				state = (state == WINDOW_OUT_OF_FRAME ? WINDOW_IN_FRAME : WINDOW_OUT_OF_FRAME)
-				to_chat(user, "<span class='notice'>You pry the window [state == WINDOW_IN_FRAME ? "into":"out of"] the frame.</span>")
+			if(I.use_tool(src, user, 100, extra_checks = CALLBACK(src, .proc/check_state_and_anchored, state, anchored)))
+				state = RWINDOW_SECURE
+				to_chat(user, "<span class='notice'>You pry the window into the frame.</span>")
 			return
 
 		else if(I.tool_behaviour == TOOL_WRENCH && !anchored)
@@ -378,6 +383,7 @@
 
 /obj/structure/window/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
@@ -385,9 +391,11 @@
 	icon_state = "rwindow"
 	reinf = TRUE
 	heat_resistance = 1600
-	armor = list("melee" = 50, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 25, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 100)
-	max_integrity = 100
+	armor = list("melee" = 80, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 25, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 100)
+	max_integrity = 75
 	explosion_block = 1
+	damage_deflection = 11
+	state = RWINDOW_SECURE
 	glass_type = /obj/item/stack/sheet/rglass
 	rad_insulation = RAD_HEAVY_INSULATION
 
@@ -397,6 +405,74 @@
 	icon = 'icons/obj/smooth_structures/clockwork_window.dmi'
 	icon_state = "clockwork_window_single"
 	glass_type = /obj/item/stack/tile/bronze
+
+//this is shitcode but all of construction is shitcode and needs a refactor, it works for now
+//If you find this like 4 years later and construction still hasn't been refactored, I'm so sorry for this
+/obj/structure/window/reinforced/attackby(obj/item/I, mob/living/user, params)
+	switch(state)
+		if(RWINDOW_SECURE)
+			if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HARM)
+				user.visible_message("<span class='notice'>[user] holds \the [I] to the security screws on \the [src]...</span>",
+										"<span class='notice'>You begin heating the security screws on \the [src]...</span>")
+				if(I.use_tool(src, user, 180, volume = 100))
+					to_chat(user, "<span class='notice'>The security bolts are glowing white hot and look ready to be removed.</span>")
+					state = RWINDOW_BOLTS_HEATED
+					addtimer(CALLBACK(src, .proc/cool_bolts), 300)
+				return
+		if(RWINDOW_BOLTS_HEATED)
+			if(I.tool_behaviour == TOOL_SCREWDRIVER)
+				user.visible_message("<span class='notice'>[user] digs into the heated security screws and starts removing them...</span>",
+										"<span class='notice'>You dig into the heated screws hard and they start turning...</span>")
+				if(I.use_tool(src, user, 80, volume = 50))
+					state = RWINDOW_BOLTS_OUT
+					to_chat(user, "<span class='notice'>The screws come out, and a gap forms around the edge of the pane.</span>")
+				return
+		if(RWINDOW_BOLTS_OUT)
+			if(I.tool_behaviour == TOOL_CROWBAR)
+				user.visible_message("<span class='notice'>[user] wedges \the [I] into the gap in the frame and starts prying...</span>",
+										"<span class='notice'>You wedge \the [I] into the gap in the frame and start prying...</span>")
+				if(I.use_tool(src, user, 50, volume = 50))
+					state = RWINDOW_POPPED
+					to_chat(user, "<span class='notice'>The panel pops out of the frame, exposing some thin metal bars that looks like they can be cut.</span>")
+				return
+		if(RWINDOW_POPPED)
+			if(I.tool_behaviour == TOOL_WIRECUTTER)
+				user.visible_message("<span class='notice'>[user] starts cutting the exposed bars on \the [src]...</span>",
+										"<span class='notice'>You start cutting the exposed bars on \the [src]</span>")
+				if(I.use_tool(src, user, 30, volume = 50))
+					state = RWINDOW_BARS_CUT
+					to_chat(user, "<span class='notice'>The panels falls out of the way exposing the frame bolts.</span>")
+				return
+		if(RWINDOW_BARS_CUT)
+			if(I.tool_behaviour == TOOL_WRENCH)
+				user.visible_message("<span class='notice'>[user] starts unfastening \the [src] from the frame...</span>",
+					"<span class='notice'>You start unfastening the bolts from the frame...</span>")
+				if(I.use_tool(src, user, 50, volume = 50))
+					to_chat(user, "<span class='notice'>You unscrew the bolts from the frame and the window pops loose.</span>")
+					state = WINDOW_OUT_OF_FRAME
+					setAnchored(FALSE)
+				return
+	return ..()
+
+/obj/structure/window/proc/cool_bolts()
+	if(state == RWINDOW_BOLTS_HEATED)
+		state = RWINDOW_SECURE
+		visible_message("<span class='notice'>The bolts on \the [src] look like they've cooled off...</span>")
+
+/obj/structure/window/reinforced/examine(mob/user)
+	. = ..()
+	switch(state)
+		if(RWINDOW_SECURE)
+			. += "It's been screwed in with one way screws, you'd need to <b>heat them</b> to have any chance of backing them out."
+		if(RWINDOW_BOLTS_HEATED)
+			. += "The screws are glowing white hot, and you'll likely be able to <b>unscrew them</b> now."
+		if(RWINDOW_BOLTS_OUT)
+			. += "The screws have been removed, revealing a small gap you could fit a <b>prying tool</b> in."
+		if(RWINDOW_POPPED)
+			. += "The main plate of the window has popped out of the frame, exposing some bars that look like they can be <b>cut</b>."
+		if(RWINDOW_BARS_CUT)
+			. += "The main pane can be easily moved out of the way to reveal some <b>bolts</b> holding the frame in."
+
 
 /obj/structure/window/reinforced/spawner/east
 	dir = EAST
@@ -409,6 +485,7 @@
 
 /obj/structure/window/reinforced/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/plasma
 	name = "plasma window"
@@ -416,7 +493,7 @@
 	icon_state = "plasmawindow"
 	reinf = FALSE
 	heat_resistance = 25000
-	armor = list("melee" = 75, "bullet" = 5, "laser" = 0, "energy" = 0, "bomb" = 45, "bio" = 100, "rad" = 100, "fire" = 99, "acid" = 100)
+	armor = list("melee" = 80, "bullet" = 5, "laser" = 0, "energy" = 0, "bomb" = 45, "bio" = 100, "rad" = 100, "fire" = 99, "acid" = 100)
 	max_integrity = 150
 	explosion_block = 1
 	glass_type = /obj/item/stack/sheet/plasmaglass
@@ -442,6 +519,7 @@
 
 /obj/structure/window/plasma/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/plasma/reinforced
 	name = "reinforced plasma window"
@@ -449,10 +527,73 @@
 	icon_state = "plasmarwindow"
 	reinf = TRUE
 	heat_resistance = 50000
-	armor = list("melee" = 85, "bullet" = 20, "laser" = 0, "energy" = 0, "bomb" = 60, "bio" = 100, "rad" = 100, "fire" = 99, "acid" = 100)
+	armor = list("melee" = 80, "bullet" = 20, "laser" = 0, "energy" = 0, "bomb" = 60, "bio" = 100, "rad" = 100, "fire" = 99, "acid" = 100)
 	max_integrity = 500
+	damage_deflection = 21
 	explosion_block = 2
 	glass_type = /obj/item/stack/sheet/plasmarglass
+
+//entirely copypasted code
+//take this out when construction is made a component or otherwise modularized in some way
+/obj/structure/window/plasma/reinforced/attackby(obj/item/I, mob/living/user, params)
+	switch(state)
+		if(RWINDOW_SECURE)
+			if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HARM)
+				user.visible_message("<span class='notice'>[user] holds \the [I] to the security screws on \the [src]...</span>",
+										"<span class='notice'>You begin heating the security screws on \the [src]...</span>")
+				if(I.use_tool(src, user, 180, volume = 100))
+					to_chat(user, "<span class='notice'>The security screws are glowing white hot and look ready to be removed.</span>")
+					state = RWINDOW_BOLTS_HEATED
+					addtimer(CALLBACK(src, .proc/cool_bolts), 300)
+				return
+		if(RWINDOW_BOLTS_HEATED)
+			if(I.tool_behaviour == TOOL_SCREWDRIVER)
+				user.visible_message("<span class='notice'>[user] digs into the heated security screws and starts removing them...</span>",
+										"<span class='notice'>You dig into the heated screws hard and they start turning...</span>")
+				if(I.use_tool(src, user, 80, volume = 50))
+					state = RWINDOW_BOLTS_OUT
+					to_chat(user, "<span class='notice'>The screws come out, and a gap forms around the edge of the pane.</span>")
+				return
+		if(RWINDOW_BOLTS_OUT)
+			if(I.tool_behaviour == TOOL_CROWBAR)
+				user.visible_message("<span class='notice'>[user] wedges \the [I] into the gap in the frame and starts prying...</span>",
+										"<span class='notice'>You wedge \the [I] into the gap in the frame and start prying...</span>")
+				if(I.use_tool(src, user, 50, volume = 50))
+					state = RWINDOW_POPPED
+					to_chat(user, "<span class='notice'>The panel pops out of the frame, exposing some thin metal bars that looks like they can be cut.</span>")
+				return
+		if(RWINDOW_POPPED)
+			if(I.tool_behaviour == TOOL_WIRECUTTER)
+				user.visible_message("<span class='notice'>[user] starts cutting the exposed bars on \the [src]...</span>",
+										"<span class='notice'>You start cutting the exposed bars on \the [src]</span>")
+				if(I.use_tool(src, user, 30, volume = 50))
+					state = RWINDOW_BARS_CUT
+					to_chat(user, "<span class='notice'>The panels falls out of the way exposing the frame bolts.</span>")
+				return
+		if(RWINDOW_BARS_CUT)
+			if(I.tool_behaviour == TOOL_WRENCH)
+				user.visible_message("<span class='notice'>[user] starts unfastening \the [src] from the frame...</span>",
+					"<span class='notice'>You start unfastening the bolts from the frame...</span>")
+				if(I.use_tool(src, user, 50, volume = 50))
+					to_chat(user, "<span class='notice'>You unfasten the bolts from the frame and the window pops loose.</span>")
+					state = WINDOW_OUT_OF_FRAME
+					setAnchored(FALSE)
+				return
+	return ..()
+
+/obj/structure/window/plasma/reinforced/examine(mob/user)
+	. = ..()
+	switch(state)
+		if(RWINDOW_SECURE)
+			. += "It's been screwed in with one way screws, you'd need to <b>heat them</b> to have any chance of backing them out."
+		if(RWINDOW_BOLTS_HEATED)
+			. += "The screws are glowing white hot, and you'll likely be able to <b>unscrew them</b> now."
+		if(RWINDOW_BOLTS_OUT)
+			. += "The screws have been removed, revealing a small gap you could fit a <b>prying tool</b> in."
+		if(RWINDOW_POPPED)
+			. += "The main plate of the window has popped out of the frame, exposing some bars that look like they can be <b>cut</b>."
+		if(RWINDOW_BARS_CUT)
+			. += "The main pane can be easily moved out of the way to reveal some <b>bolts</b> holding the frame in."
 
 /obj/structure/window/plasma/reinforced/spawner/east
 	dir = EAST
@@ -465,6 +606,7 @@
 
 /obj/structure/window/plasma/reinforced/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
@@ -489,6 +631,7 @@
 
 /obj/structure/window/fulltile/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/plasma/fulltile
 	icon = 'icons/obj/smooth_structures/plasma_window.dmi'
@@ -503,11 +646,13 @@
 
 /obj/structure/window/plasma/fulltile/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/plasma/reinforced/fulltile
 	icon = 'icons/obj/smooth_structures/rplasma_window.dmi'
 	icon_state = "rplasmawindow"
 	dir = FULLTILE_WINDOW_DIR
+	state = RWINDOW_SECURE
 	max_integrity = 1000
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
@@ -516,21 +661,24 @@
 
 /obj/structure/window/plasma/reinforced/fulltile/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/reinforced/fulltile
 	icon = 'icons/obj/smooth_structures/reinforced_window.dmi'
 	icon_state = "r_window"
 	dir = FULLTILE_WINDOW_DIR
-	max_integrity = 200
+	max_integrity = 150
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
 	smooth = SMOOTH_TRUE
+	state = RWINDOW_SECURE
 	canSmoothWith = list(/obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/plasma/fulltile, /obj/structure/window/plasma/reinforced/fulltile)
 	level = 3
 	glass_amount = 2
 
 /obj/structure/window/reinforced/fulltile/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/reinforced/tinted/fulltile
 	icon = 'icons/obj/smooth_structures/tinted_window.dmi'
@@ -586,6 +734,7 @@
 
 /obj/structure/window/shuttle/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/plastitanium
 	name = "plastitanium window"
@@ -593,22 +742,24 @@
 	icon = 'icons/obj/smooth_structures/plastitanium_window.dmi'
 	icon_state = "plastitanium_window"
 	dir = FULLTILE_WINDOW_DIR
-	max_integrity = 100
+	max_integrity = 600
 	wtype = "shuttle"
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
 	reinf = TRUE
 	heat_resistance = 1600
-	armor = list("melee" = 50, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 100)
+	armor = list("melee" = 80, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 100)
 	smooth = SMOOTH_TRUE
 	canSmoothWith = null
 	explosion_block = 3
+	damage_deflection = 21 //The same as reinforced plasma windows.
 	level = 3
 	glass_type = /obj/item/stack/sheet/plastitaniumglass
 	glass_amount = 2
 
 /obj/structure/window/plastitanium/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/reinforced/clockwork
 	name = "brass window"
@@ -661,6 +812,7 @@
 
 /obj/structure/window/reinforced/clockwork/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/reinforced/clockwork/fulltile
 	icon_state = "clockwork_window"
@@ -686,6 +838,7 @@
 
 /obj/structure/window/reinforced/clockwork/fulltile/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/paperframe
 	name = "paper frame"

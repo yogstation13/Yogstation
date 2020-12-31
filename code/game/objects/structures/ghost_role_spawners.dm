@@ -67,7 +67,7 @@
 	var/area/A = get_area(src)
 	team = ashteam
 	if(A)
-		notify_ghosts("An ash walker egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER)
+		notify_ghosts("An ash walker egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACKORBIT, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER)
 
 /datum/outfit/ashwalker
 	name ="Ashwalker"
@@ -135,7 +135,7 @@
 	. = ..()
 	var/area/A = get_area(src)
 	if(!mapload && A)
-		notify_ghosts("\A [initial(species.prefix)] golem shell has been completed in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_GOLEM)
+		notify_ghosts("\A [initial(species.prefix)] golem shell has been completed in \the [A.name].", source = src, action=NOTIFY_ATTACKORBIT, flashwindow = FALSE, ignore_key = POLL_IGNORE_GOLEM)
 	if(has_owner && creator)
 		short_desc = "You are a Golem."
 		flavour_text = "You move slowly, but are highly resistant to heat and cold as well as blunt trauma. You are unable to wear clothes, but can still use most tools. \
@@ -379,7 +379,7 @@
 	important_info = "Be aware that if you do not live up to [owner.name]'s expectations, they can send you back to hell with a single thought. [owner.name]'s death will also return you to hell."
 	var/area/A = get_area(src)
 	if(!mapload && A)
-		notify_ghosts("\A friendship shell has been completed in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE)
+		notify_ghosts("\A friendship shell has been completed in \the [A.name].", source = src, action=NOTIFY_ATTACKORBIT, flashwindow = FALSE)
 	objectives = "Be [owner.name]'s friend, and keep [owner.name] alive, so you don't get sent back to hell."
 	spell = summoning_spell
 
@@ -597,26 +597,3 @@
 
 /obj/effect/mob_spawn/human/pirate/gunner
 	rank = "Gunner"
-
-/obj/effect/mob_spawn/human/gamer
-	name = "gamer sleeper"
-	desc = "A humming cryo pod."
-	mob_name = "a gamer"
-	icon = 'icons/obj/machines/sleeper.dmi'
-	icon_state = "sleeper"
-	roundstart = FALSE
-	death = FALSE
-	random = TRUE
-	mob_species = /datum/species/human
-	short_desc = "You are a person who just wants to have fun with their friends."
-	flavour_text = "How did I get here? What is this place? \
-	My last memory is looking around for a place I could rent to play games with my friends. \
-	Trying to leave just pulls me back here, better stay and defend the Snack Vault, if we lose the pizza box, we will probably starve to death. \
-	Seeing as the food supply is limitless and I'm having a great time, I might as well stay and enjoy myself."
-	important_info = "Do not abandon your friends and defend the Snack Vault, you are free to invite guests to play with you."
-	outfit = /datum/outfit/hotelstaff
-	assignedrole = "Gamer"
-
-/obj/effect/mob_spawn/human/gamer/Destroy()
-	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
-	return ..()

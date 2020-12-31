@@ -1,5 +1,6 @@
 *.dmm eol=crlf
 *.dm eol=crlf
+*.dme eol=crlf
 *.md eol=crlf
 *.txt eol=crlf
 *.html eol=crlf

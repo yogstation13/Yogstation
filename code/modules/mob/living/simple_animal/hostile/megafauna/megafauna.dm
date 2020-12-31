@@ -28,6 +28,7 @@
 	mob_size = MOB_SIZE_HUGE
 	layer = LARGE_MOB_LAYER //Looks weird with them slipping under mineral walls and cameras and shit otherwise
 	mouse_opacity = MOUSE_OPACITY_OPAQUE // Easier to click on in melee, they're giant targets anyway
+	flags_1 = HEAR_1 | PREVENT_CONTENTS_EXPLOSION_1
 	var/list/crusher_loot
 	var/elimination = FALSE
 	var/anger_modifier = 0
@@ -44,7 +45,6 @@
 	. = ..()
 	if(internal_type && true_spawn)
 		internal = new internal_type(src)
-	apply_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
 	ADD_TRAIT(src, TRAIT_NO_TELEPORT, MEGAFAUNA_TRAIT)
 	for(var/action_type in attack_action_types)
 		var/datum/action/innate/megafauna_attack/attack_action = new action_type()
@@ -66,9 +66,6 @@
 		target = null
 		return
 	return ..()
-
-/mob/living/simple_animal/hostile/megafauna/prevent_content_explosion()
-	return TRUE
 
 /mob/living/simple_animal/hostile/megafauna/death(gibbed, var/list/force_grant)
 	if(health > 0)

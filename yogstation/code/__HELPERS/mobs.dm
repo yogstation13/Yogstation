@@ -18,6 +18,24 @@
 
 	return FALSE
 
+/proc/is_mentor(var/user) //Why is this needed
+	if(is_admin(user))
+		return TRUE
+
+	if(ismob(user))
+		var/mob/temp = user
+		if(temp && temp.client)
+			if(temp.client.is_mentor()) //help
+				return TRUE
+
+	else if(istype(user, /client))
+		var/client/temp = user
+		if(temp)
+			if(temp.is_mentor())
+				return TRUE
+
+	return FALSE
+
 /proc/is_donator(var/user)
 	if(is_admin(user))
 		return TRUE

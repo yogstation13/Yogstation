@@ -1,12 +1,42 @@
+/**
+  * # Achievements Subsystem
+  *	
+  * Subsystem used for keeping track of which achievements exist, who has them, and unlocking new ones.
+  *
+  *
+  *	The subsystem is the midpoint between the game and the database, intended to make it as easy as possible to add new achievements
+  * and functionalities. 
+  * Admin calling any of the functions in this subsystem isn't a good idea, nor is varediting it unnecessarily, as it really is 
+  * intended to be 100% code-side. 
+  * Also relevant: [/datum/achievement] and [/datum/achievement_browser]
+  *
+  * For usage in code: use [/datum/controller/subsystem/achievements/proc/has_achievement] to check if they have an achievement, and [/datum/controller/subsystem/achievements/proc/unlock_achievement] to unlock it
+  * 
+  *
+  */
 SUBSYSTEM_DEF(achievements)
 	name = "Achievements"
 	flags = SS_BACKGROUND
+	/// List of all the achievement instances, one for each achievement. Access through [/datum/controller/subsystem/achievements/proc/get_achievement]
 	var/list/achievements = list()
+	/// Dictionary of cached achievements. Key is a username, value is a dictionary where the keys are achievements and the values are booleans signifying completion. See [/datum/controller/subsystem/achievements/proc/cache_achievements]
 	var/list/cached_achievements = list()
+	/// Dictionary of all achievement browsers. Key is a username, value is the given browser. See [/datum/achievement_browser] and [/datum/controller/subsystem/achievements/get_browser]
 	var/list/browsers = list()
-	var/list/achievementsEarned = list()
-	var/mob/living/carbon/human/CE // The current guy that SSachievements believes to be the CE.
+	/// Dictionary of all achievements earned this round. Key is a username, value is a list of achievements that have been earnt by that username. 
+	var/list/achievementsEarned = list() // Really should get around to adding that to the round-end report
+	/// The current guy that SSachievements believes to be the CE. See [/datum/controller/subsystem/achievements/proc/fire]
+	var/mob/living/carbon/human/CE
 
+/**
+  * Sets up all the lists used by the subsystem and updates the database
+  *
+  * First it creates all the achievement instances, then it updates the database to remove old achievements and add any new ones
+  * It also updates old achievement name/descriptions in the database to the new ones
+  * 
+  * Arguments:
+  * * timeofday - Time of initialization, used to calculate how long SS initialization took
+  */
 /datum/controller/subsystem/achievements/Initialize(timeofday)
 	for(var/i in subtypesof(/datum/achievement))
 		var/datum/achievement/A = new i
@@ -48,6 +78,15 @@ SUBSYSTEM_DEF(achievements)
 	qdel(ridOldChieves)
 	return ..()
 
+/**
+  * Subsystem firing, checks solar panel achievement
+  *
+  * Checks whether there's currently a [CE][/datum/controller/subsystem/achievements/var/CE], if there isn't, it tries to find one
+  * Otherwise, it checks to see whether [/datum/achievement/engineering/scotty] should be triggered. It then calls [/datum/controller/subsystem/proc/fire]
+  *
+  * Arguments:
+  * * resumed - Whether or not this was resumed from last tick (unlikely with this subsystem)
+  */
 /datum/controller/subsystem/achievements/fire(resumed)
 	//The solar panel achievement
 	if(!CE)
@@ -64,7 +103,18 @@ SUBSYSTEM_DEF(achievements)
 				if(net.avail >= 3000 && CE.stat != DEAD && CE.client) // If there's 3 MW available (Value is in kW)
 					unlock_achievement(/datum/achievement/engineering/scotty, CE.client)
 
-//Ad-hoc procs
+/**
+  * Unlocks the given achievement for the given client.
+  *
+  * Will log if the achievement getting unlocked doesn't exist.
+  * Will unlock the given achievement, save it to the DB and cache it for the round.
+  * This won't work if you're admin calling the proc, since SQL blocks admin-called queries
+  *
+  * Arguments:
+  * * achievementPath - The typepath for the achievement you're trying to unlock. See [/datum/achievement]
+  * * C - Client that you're unlocking it for, See [/client]
+  *
+  */
 /datum/controller/subsystem/achievements/proc/unlock_achievement(achievementPath, client/C)
 	if(!C)
 		return FALSE
@@ -72,18 +122,26 @@ SUBSYSTEM_DEF(achievements)
 	if(!achievement)
 		log_sql("Achievement [achievementPath] not found in list of achievements when trying to unlock for [ckey(C.ckey)]")
 		return FALSE
-	if(istype(achievement,/datum/achievement/greentext) && achievementPath != /datum/achievement/greentext)
-		unlock_achievement(/datum/achievement/greentext,C) // Oooh, a little bit recursive!
+	if(istype(achievement, /datum/achievement/greentext) && achievementPath != /datum/achievement/greentext)
+		unlock_achievement(/datum/achievement/greentext, C) // Oooh, a little bit recursive!
 	if(!has_achievement(achievementPath, C))
 		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("INSERT INTO [format_table_name("earned_achievements")] (ckey, id) VALUES (:ckey, :id)", list("ckey" = ckey(C.ckey), "id" = initial(achievement.id)))
 		medalQuery.Execute()
 		qdel(medalQuery)
 		cached_achievements[C.ckey] += achievement
-		if(!achievementsEarned[C.ckey])
-			achievementsEarned[C.ckey] = list()
-		achievementsEarned[C.ckey] += achievement
+		achievementsEarned[C.ckey] += list(achievement) // Apparently adding a list to a nullvar just makes the var the list. Neat!
 		to_chat(C, "<span class='greentext'>You have unlocked the \"[achievement.name]\" achievement!</span>")
 		return TRUE
+
+/**
+  * Checks whether the client has an achievement. 
+  *
+  * Will create a cache of the given client's achievements if it doesn't already exist
+  *
+  * Arguments:
+  * * achievementPath - The typepath for the achievement you're checking. See [/datum/achievement]
+  * * C - Client that you're checking it for, See [/client]
+  */
 
 /datum/controller/subsystem/achievements/proc/has_achievement(achievementPath, client/C)
 	var/datum/achievement/achievement = get_achievement(achievementPath)
@@ -95,6 +153,14 @@ SUBSYSTEM_DEF(achievements)
 
 	return (achievement in cached_achievements[C.ckey])
 
+/**
+  * Creates a cache of all achievements and whether or not they're unlocked for the given ckey
+  * 
+  * Will likely not work if admins call this proc, since SQL calls as a result of admin calls are blocked
+  *
+  * Arguments: 
+  * * C - Client that you're caching for, See [/client]
+  */
 /datum/controller/subsystem/achievements/proc/cache_achievements(client/C)
 	var/datum/DBQuery/cacheQuery = SSdbcore.NewQuery("SELECT id FROM [format_table_name("earned_achievements")] WHERE ckey = :ckey", list("ckey" = ckey(C.ckey)))
 	cacheQuery.Execute()
@@ -107,11 +173,28 @@ SUBSYSTEM_DEF(achievements)
 	qdel(cacheQuery)
 	return
 
-/datum/controller/subsystem/achievements/proc/get_browser(client/C)
-	return browsers[C.ckey]
+/**
+  * Gets the achievement browser for the given client. See [/datum/achievement_browser]
+  *
+  * If the achievement_browser doesn't exist, it'll create it and then return it
+  *
+  * Arguments:
+  * * C - Client that you're getting the browser for, See [/client]
+  */
 
+/datum/controller/subsystem/achievements/proc/get_browser(client/C)
+	return browsers[C.ckey] ? browsers[C.ckey] : new /datum/achievement_browser(C)
+
+/**
+  * Gets the achievement instance for the given achievement path
+  *
+  * Will return false if it doesn't exist, otherwise it'll get that exact achievement (subtypes aren't accepted)
+  *
+  * Arguments:
+  * * achievementPath - The typepath for the achievement you're trying to get. See [/datum/achievement]
+  */
 /datum/controller/subsystem/achievements/proc/get_achievement(achievementPath)
 	for(var/datum/achievement/i in achievements)
-		if(i.type == achievementPath) // Can't use istype() here since it needs to be the EXACT correct type.
+		if(istype(i, achievementPath) && !(i in subtypesof(achievementPath)))
 			return i
 	return FALSE

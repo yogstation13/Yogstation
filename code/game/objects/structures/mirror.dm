@@ -158,6 +158,13 @@
 				return
 			H.set_species(newrace, icon_update=0)
 
+			if(FGENDER in H.dna.species.species_traits)
+				H.gender = FEMALE
+			if(MGENDER in H.dna.species.species_traits)
+				H.gender = MALE
+			if(AGENDER in H.dna.species.species_traits)
+				H.gender = PLURAL
+
 			if(H.dna.species.use_skintones)
 				var/new_s_tone = input(user, "Choose your skin tone:", "Race change")  as null|anything in GLOB.skin_tones
 				if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
@@ -167,7 +174,7 @@
 					H.skin_tone = new_s_tone
 					H.dna.update_ui_block(DNA_SKIN_TONE_BLOCK)
 
-			if(MUTCOLORS in H.dna.species.species_traits)
+			if((MUTCOLORS in H.dna.species.species_traits) && !(NOCOLORCHANGE in H.dna.species.species_traits))
 				var/new_mutantcolor = input(user, "Choose your skin color:", "Race change","#"+H.dna.features["mcolor"]) as color|null
 				if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 					return
@@ -188,7 +195,7 @@
 		if("gender")
 			if(!(H.gender in list("male", "female"))) //blame the patriarchy
 				return
-			if(H.gender == "male")
+			if((H.gender == "male") && !(MGENDER in H.dna.species.species_traits))
 				if(alert(H, "Become a Witch?", "Confirmation", "Yes", "No") == "Yes")
 					if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 						return
@@ -197,7 +204,7 @@
 				else
 					return
 
-			else
+			else if((H.gender == "female") && !(FGENDER in H.dna.species.species_traits))
 				if(alert(H, "Become a Warlock?", "Confirmation", "Yes", "No") == "Yes")
 					if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 						return

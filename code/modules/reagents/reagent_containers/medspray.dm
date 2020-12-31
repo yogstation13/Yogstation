@@ -32,14 +32,17 @@
 		amount_per_transfer_from_this = initial(amount_per_transfer_from_this)
 	to_chat(user, "<span class='notice'>You will now apply the medspray's contents in [squirt_mode ? "short bursts":"extended sprays"]. You'll now use [amount_per_transfer_from_this] units per use.</span>")
 
-/obj/item/reagent_containers/medspray/attack(mob/living/M, mob/user, def_zone)
+/obj/item/reagent_containers/medspray/attack(mob/M, mob/user, def_zone)
 	if(!reagents || !reagents.total_volume)
 		to_chat(user, "<span class='warning'>[src] is empty!</span>")
 		return
-	
-	if(!M.can_inject(user, TRUE, check_zone(user.zone_selected)))
-		return
-		
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/L = M
+		if(L.wear_suit?.item_flags & MEDRESIST  && !get_location_accessible(L, user.zone_selected))
+			to_chat(user, "<span class='warning'>[src] cannot be applied through [L.wear_suit]!</span>")
+			return
+
 	if(M == user)
 		M.visible_message("<span class='notice'>[user] attempts to [apply_method] [src] on [user.p_them()]self.</span>")
 		if(self_delay)

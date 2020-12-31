@@ -210,7 +210,7 @@
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/simple_animal/hostile/retaliate/goat/huge
-	name = "Huge Goat"
+	name = "Giant Goat"
 	desc = "Space Jesus, that's a big goat."
 	melee_damage_lower = 10
 	melee_damage_upper = 20

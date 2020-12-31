@@ -11,7 +11,7 @@
 	force = 5
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
-	materials = list(MAT_METAL=50)
+	materials = list(/datum/material/iron=50)
 
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 	tool_behaviour = TOOL_CROWBAR
@@ -50,7 +50,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
 	throw_range = 3
-	materials = list(MAT_METAL=70)
+	materials = list(/datum/material/iron=70)
 	icon_state = "crowbar_large"
 	item_state = "crowbar"
 	toolspeed = 0.7

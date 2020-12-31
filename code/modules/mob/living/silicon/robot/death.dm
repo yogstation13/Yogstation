@@ -17,6 +17,9 @@
 	if(stat == DEAD)
 		return
 
+	if(deployed && shell)
+		deployed = FALSE
+
 	. = ..()
 
 	locked = FALSE //unlock cover

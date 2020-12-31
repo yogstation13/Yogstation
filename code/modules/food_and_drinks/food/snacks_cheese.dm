@@ -250,7 +250,7 @@
 	tastes = list("salt" = 1, "magnificence" = 1, "italy" = 1)
 
 /obj/item/reagent_containers/food/snacks/cheesewheel/preparmesan
-	name = "unmature parmesan cheese wheel"
+	name = "unmatured parmesan cheese wheel"
 	desc = "A big wheel of unmature parmesan cheese."
 	icon_state = "preparmesan_wheel"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -304,3 +304,20 @@
 	filling_color = "#FFD700"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("holes" = 1)
+
+//bug cheese
+/obj/item/reagent_containers/food/snacks/store/cheesewheel/bug
+	name = "bug cheese ball"
+	desc = "A big ball of nasty looking bug cheese."
+	icon_state = "bug_ball"
+	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge/bug
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
+	tastes = list("bug" = 1,"cheese" = 1)
+
+/obj/item/reagent_containers/food/snacks/cheesewedge/bug
+	name = "bug cheese piece"
+	desc = "A piece of bug cheese."
+	icon_state = "bug_piece"
+	filling_color = "#ddedd5"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("bug" = 1,"cheese" = 1)

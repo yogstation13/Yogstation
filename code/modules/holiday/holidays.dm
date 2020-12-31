@@ -275,9 +275,18 @@
 	begin_day = 2
 	begin_month = JULY
 	drone_hat = /obj/item/clothing/mask/facehugger/dead
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=X8cmbmwFAl8", // Clutch - X-Ray Visions
+		"https://www.youtube.com/watch?v=sYkvpNR8BGU", // Blue Oyster Cult: E.T.I. (Extra Terraestrial Intelligence)
+		"https://www.youtube.com/watch?v=Pyu89NHSniU", // Blood And Rockets: Movement I, Saga Of Jack Parsons - Movement II, Too The Moon
+		"https://www.youtube.com/watch?v=BYDd0TTx4nE", // Nyctophilliac - Blunted Session
+		"https://www.youtube.com/watch?v=n8cCDoDYgc0", // Ballad of a Spaceman - Julia Ecklar
+		"https://www.youtube.com/watch?v=I1VLuZ9Smf0", // Elektronik Supersonik - ZLAD
+		"https://www.youtube.com/watch?v=KvQ0zWHtnN4"  // The Mechanisms - Once Upon a Time - 06 Pump Shanty
+	)
 
 /datum/holiday/UFO/getStationPrefix() //Is such a thing even possible?
-	return pick("Ayy","Truth","Tsoukalos","Mulder","Scully") //Yes it is!
+	return pick("Ayy","Truth","Tsoukalos","Mulder","Scully","Greys") //Yes it is!
 
 /datum/holiday/USA
 	name = "Independence Day"
@@ -288,7 +297,9 @@
 		"https://www.youtube.com/watch?v=ec0XKhAHR5I", // fortunate (how did i forget a slash)
 		"https://www.youtube.com/watch?v=9Cyokaj3BJU", // alabama
 		"https://www.youtube.com/watch?v=1vrEljMfXYo", // country roads
-		"https://www.youtube.com/watch?v=FqxJ_iuBPCs" // Star Spangled Banner
+		"https://www.youtube.com/watch?v=FqxJ_iuBPCs", // Star Spangled Banner
+		"https://www.youtube.com/watch?v=H0bhSGfKTs4", // Surfin' USA
+		"https://www.youtube.com/watch?v=FAVQsnr4uYg"  // Lone Star - Tony Marcus
 	)
 /datum/holiday/USA/getStationPrefix()
 	return pick("Independent","American","Burger","Bald Eagle","Star-Spangled", "Fireworks")
@@ -395,14 +406,17 @@
 		"https://www.youtube.com/watch?v=m9We2XsVZfc", // Ghostbusters Theme
 		"https://www.youtube.com/watch?v=xIx_HbmRnQY", // Thriller
 		"https://www.youtube.com/watch?v=7-D83f33pAE", // Spooky Scary Skeletons
-		"https://www.youtube.com/watch?v=bebUeWgNkAM" // Halloween Theme Michael Myers
+		"https://www.youtube.com/watch?v=bebUeWgNkAM", // Halloween Theme Michael Myers
+		"https://www.youtube.com/watch?v=qaQ6oJL1qQA", // Lucifer My Love - Twin Temple
+		"https://www.youtube.com/watch?v=vCYLUZyWeDs&t", // "Unforgiving Cold"- Godzilla NES Creepypasta OST
+		"https://www.youtube.com/watch?v=OPDDFdyKOgU" // Red Signal - The Bifrost Incident - The Mechanisms
 		)
 
 /datum/holiday/halloween/greet()
 	return "Have a spooky Halloween!"
 
 /datum/holiday/halloween/getStationPrefix()
-	return pick("Bone-Rattling","Mr. Bones' Own","2SPOOKY","Spooky","Scary","Skeletons")
+	return pick("Bone-Rattling","Mr. Bones' Own","2SPOOKY","Spooky","Scary","Skeletons","The Haunted","Abominable","Gibbering","Squamous","Ghoul","Zombie","Forbidden","Bloody","Horrific","Infernal","Star Spawned","Hellish","Forgotten","Eldritch","Sleeping","Eternal","Abhorrence","Plague","Dread","Apprehension","Crawling Chaos","Blot","Cold Sweat","Unholy","Jitters","Unknown","Darkness","Festering","Fetid","Vile","Lurker","Scorn","Apocalypse","The Last","Lasting","Corruption","Blasphemous","The Corruption on","The Blasphemous")
 
 /datum/holiday/vegan
 	name = "Vegan Day"
@@ -537,7 +551,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 
 /datum/holiday/xmas
 	name = CHRISTMAS
-	begin_day = 22
+	begin_day = 19
 	begin_month = DECEMBER
 	end_day = 27
 	drone_hat = /obj/item/clothing/head/santa
@@ -547,7 +561,9 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=nytpYtLtHpE", // Youre a Mean One, Mr. Grinch
 		"https://www.youtube.com/watch?v=jCjrcjFGQCA", // Frosty The Snowman
 		"https://www.youtube.com/watch?v=oyEyMjdD2uk", // Twelve Days of Christmas
-		"https://www.youtube.com/watch?v=Dkq3LD-4pmM"  // Michael Bublé - Holly Jolly Christmas
+		"https://www.youtube.com/watch?v=Dkq3LD-4pmM",  // Michael Bublé - Holly Jolly Christmas
+		"https://www.youtube.com/watch?v=noMhM1CjM78",	// Christopher Lee - Silent Night
+		"https://www.youtube.com/watch?v=kfZtNVEqsBs"  // Christopher Lee - Jingle Hell
 		)
 
 /datum/holiday/xmas/greet()
@@ -591,7 +607,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	return (dd == 13 && ddd == FRIDAY)
 
 /datum/holiday/friday_thirteenth/getStationPrefix()
-	return pick("Mike","Friday","Evil","Myers","Murder","Deathly","Stabby")
+	return pick("Mike","Friday","Evil","Myers","Murder","Deathly","Stabby","Voorhees","Jason","Mother","Krueger","Telephone","Slasher","Flick","Hockey","Chevron")
 
 /datum/holiday/easter
 	name = EASTER
@@ -634,3 +650,24 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 
 /datum/holiday/easter/getStationPrefix()
 	return pick("Fluffy","Bunny","Easter","Egg")
+	
+/datum/holiday/lovecraft
+	name = "H.P. Lovecraft's Birthday"
+	begin_day = 20
+	begin_month = AUGUST
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=XYpGVnpujOQ", // I burn - Toadies
+		"https://www.youtube.com/watch?v=hLRo06NCOAo", // When He Died - Lemon Demon
+		"https://www.youtube.com/watch?v=MfQ1zGsZOiI", // Enter the Temple - Nyctophilliac
+		"https://www.youtube.com/watch?v=w-N1tjMfk4Y", // No Way - The Darkest of Hillside Thickets
+		"https://www.youtube.com/watch?v=27gmVUixXfs", // Ragnarok I: Runaway - The Mechanisms
+		"https://www.youtube.com/watch?v=Q5tYxsjjpsU", // Ragnarok II - The Calling - The Mechanisms
+		"https://www.youtube.com/watch?v=56pccCkgsdk", // Merlin - Kathy Mar
+		"https://www.youtube.com/watch?v=XRnjPSkVdt8", // Blood Ceremony - Goodbye Gemini
+		"https://www.youtube.com/watch?v=I8JtQDPT3-E", // Ascension - Hallas
+		"https://www.youtube.com/watch?v=Nl95A7on4iI", // The Astral Seer - Hallas
+		"https://www.youtube.com/watch?v=xHAeJSwUbaw", // Demon Sultan Azathoth - The H.P. Lovecraft Historical Society
+		"https://www.youtube.com/watch?v=KSvsy11PHxM", // I saw mommy kissing Yog-Sothoth - The H.P. Lovecraft Historical Society
+		"https://www.youtube.com/watch?v=61MR40PG8K4", // What Do You Do with an Innsmouth Sailor? - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
+		"https://www.youtube.com/watch?v=P2csnVNai-o"  // Tentacles! - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
+		)

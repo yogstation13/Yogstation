@@ -62,7 +62,7 @@
 	christmas_tree = null
 
 /datum/round_event_control/santa
-	name = "Vist by Santa"
+	name = "Visit by Santa"
 	holidayID = CHRISTMAS
 	typepath = /datum/round_event/santa
 	weight = 20
@@ -85,3 +85,8 @@
 		var/datum/antagonist/santa/A = new
 		santa.mind.add_antag_datum(A)
 
+/datum/recipe/snowman
+	items = list(
+		/obj/item/reagent_containers/food/snacks/grown/carrot = 1,
+    /obj/item/stack/sheet/mineral/snow = 10)
+	result = /mob/living/simple_animal/snowman

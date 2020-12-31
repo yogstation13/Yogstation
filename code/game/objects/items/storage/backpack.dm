@@ -679,7 +679,7 @@
 	new /obj/item/clothing/under/rank/det/skirt(src)
 	new /obj/item/clothing/suit/det_suit(src)
 	new /obj/item/clothing/head/fedora/det_hat(src)
-	new /obj/item/clothing/gloves/color/black(src)
+	new /obj/item/clothing/gloves/color/black/forensic(src)
 	new /obj/item/clothing/under/rank/det/grey(src)
 	new /obj/item/clothing/under/rank/det/grey/skirt(src)
 	new /obj/item/clothing/accessory/waistcoat(src)

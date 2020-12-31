@@ -8,7 +8,23 @@
 	var/overpressure_m = 80
 	volume = 1000
 
-	var/list/scrubbing = list(/datum/gas/plasma, /datum/gas/carbon_dioxide, /datum/gas/nitrous_oxide, /datum/gas/bz, /datum/gas/nitryl, /datum/gas/tritium, /datum/gas/hypernoblium, /datum/gas/water_vapor)
+	var/list/scrubbing = list(
+		/datum/gas/plasma,
+		/datum/gas/carbon_dioxide,
+		/datum/gas/nitrous_oxide,
+		/datum/gas/bz,
+		/datum/gas/nitryl,
+		/datum/gas/tritium,
+		/datum/gas/hypernoblium,
+		/datum/gas/freon,
+		/datum/gas/hydrogen,
+		/datum/gas/water_vapor,
+		/datum/gas/healium,
+		/datum/gas/pluonium,
+		/datum/gas/halon,
+		/datum/gas/zauker,
+		/datum/gas/hexane,
+	)
 
 /obj/machinery/portable_atmospherics/scrubber/Destroy()
 	var/turf/T = get_turf(src)
@@ -61,11 +77,10 @@
 			on = !on
 		update_icon()
 
-/obj/machinery/portable_atmospherics/scrubber/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-														datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/portable_atmospherics/scrubber/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "PortableScrubber", name, 320, 335, master_ui, state)
+		ui = new(user, src, "PortableScrubber", name)
 		ui.open()
 
 /obj/machinery/portable_atmospherics/scrubber/ui_data()
@@ -151,8 +166,7 @@
 	if(default_unfasten_wrench(user, W))
 		if(!movable)
 			on = FALSE
-	else
-		return ..()
+	return ..()
 
 /obj/machinery/portable_atmospherics/scrubber/CtrlShiftClick(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE))

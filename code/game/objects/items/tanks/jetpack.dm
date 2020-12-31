@@ -14,6 +14,7 @@
 	var/full_speed = TRUE // If the jetpack will have a speedboost in space/nograv or not
 	var/classic = TRUE // If the jetpack uses the classic two-tank sprite. False if it has its own special sprite (syndicate jetpack, or void jetpack)
 	var/datum/effect_system/trail_follow/ion/ion_trail
+	var/jetspeed = -0.3 // Negative increases speed
 
 /obj/item/tank/jetpack/Initialize()
 	. = ..()
@@ -56,7 +57,7 @@
 	ion_trail.start()
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/move_react)
 	if(full_speed)
-		user.add_movespeed_modifier(MOVESPEED_ID_JETPACK, priority=100, multiplicative_slowdown=-2, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
+		user.add_movespeed_modifier(MOVESPEED_ID_JETPACK, priority=100, multiplicative_slowdown=jetspeed, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
 
 /obj/item/tank/jetpack/update_icon()
 	icon_state = initial(icon_state)

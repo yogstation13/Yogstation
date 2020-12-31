@@ -1,6 +1,6 @@
 /client/proc/create_poll()
 	set name = "Create Poll"
-	set category = "Special Verbs"
+	set category = "Server"
 	if(!check_rights(R_POLL))
 		return
 	if(!SSdbcore.Connect())
@@ -123,18 +123,11 @@
 	if(!query_polladd_question.warn_execute())
 		qdel(query_polladd_question)
 		return
+	var/questionid = query_polladd_question.last_insert_id
 	qdel(query_polladd_question)
 	if(polltype != POLLTYPE_TEXT)
-		var/pollid = 0
-		var/datum/DBQuery/query_get_id = SSdbcore.NewQuery("SELECT LAST_INSERT_ID()")
-		if(!query_get_id.warn_execute())
-			qdel(query_get_id)
-			return
-		if(query_get_id.NextRow())
-			pollid = query_get_id.item[1]
-		qdel(query_get_id)
 		for(var/list/i in sql_option_list)
-			i |= list("pollid" = "'[pollid]'")
+			i |= list("pollid" = questionid)
 		SSdbcore.MassInsert(format_table_name("poll_option"), sql_option_list, warn = 1)
 	log_admin(m1)
 	message_admins(m2)

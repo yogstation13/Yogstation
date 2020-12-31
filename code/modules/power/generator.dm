@@ -1,17 +1,17 @@
 /obj/machinery/power/generator
 	name = "thermoelectric generator"
 	desc = "It's a high efficiency thermoelectric generator."
-	icon_state = "teg"
+	icon = 'icons/obj/machines/thermoelectric.dmi'
+	icon_state = "teg-unassembled"
 	density = TRUE
 	use_power = NO_POWER_USE
+	integrity_failure = 75
 
 	var/obj/machinery/atmospherics/components/binary/circulator/cold_circ
 	var/obj/machinery/atmospherics/components/binary/circulator/hot_circ
 
 	var/lastgen = 0
 	var/lastgenlev = -1
-	var/lastcirc = "00"
-
 
 /obj/machinery/power/generator/Initialize(mapload)
 	. = ..()
@@ -31,19 +31,26 @@
 	return ..()
 
 /obj/machinery/power/generator/update_icon()
+	cut_overlays()
+	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 
-	if(stat & (NOPOWER|BROKEN))
-		cut_overlays()
+	if(stat & (BROKEN))
+		icon_state = "teg-broken"
+		return
+	if(hot_circ && cold_circ)
+		icon_state = "teg-assembled"
 	else
-		cut_overlays()
-
+		icon_state = "teg-unassembled"
+		if(panel_open)
+			add_overlay("teg-panel")
+		return
+		
+	if(stat & (NOPOWER))
+		return 
+	else
 		var/L = min(round(lastgenlev/100000),11)
 		if(L != 0)
-			add_overlay(image('icons/obj/power.dmi', "teg-op[L]"))
-
-		if(hot_circ && cold_circ)
-			add_overlay("teg-oc[lastcirc]")
-
+			SSvis_overlays.add_vis_overlay(src, icon, "teg-op[L]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
 
 #define GENRATE 800		// generator output coefficient from Q
 
@@ -86,11 +93,6 @@
 			var/datum/gas_mixture/cold_circ_air1 = cold_circ.airs[1]
 			cold_circ_air1.merge(cold_air)
 
-		update_icon()
-
-	var/circ = "[cold_circ && cold_circ.last_pressure_delta > 0 ? "1" : "0"][hot_circ && hot_circ.last_pressure_delta > 0 ? "1" : "0"]"
-	if(circ != lastcirc)
-		lastcirc = circ
 		update_icon()
 
 	src.updateDialog()
@@ -143,7 +145,6 @@
 	. = ..()
 	var/datum/browser/popup = new(user, "teg", "Thermo-Electric Generator", 460, 300)
 	popup.set_content(get_menu())
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/power/generator/Topic(href, href_list)
@@ -155,8 +156,6 @@
 		return FALSE
 	return TRUE
 
-
-
 /obj/machinery/power/generator/proc/find_circs()
 	kill_circs()
 	var/list/circs = list()
@@ -164,23 +163,23 @@
 	var/circpath = /obj/machinery/atmospherics/components/binary/circulator
 	if(dir == NORTH || dir == SOUTH)
 		C = locate(circpath) in get_step(src, EAST)
-		if(C && C.dir == WEST)
+		if(C && C.dir == WEST && C.anchored && !(C.stat &(BROKEN)) && !C.panel_open)
 			circs += C
 
 		C = locate(circpath) in get_step(src, WEST)
-		if(C && C.dir == EAST)
+		if(C && C.dir == EAST && C.anchored && !(C.stat &(BROKEN)) && !C.panel_open)
 			circs += C
 
 	else
 		C = locate(circpath) in get_step(src, NORTH)
-		if(C && C.dir == SOUTH)
+		if(C && C.dir == SOUTH && C.anchored && !(C.stat &(BROKEN)) && !C.panel_open)
 			circs += C
 
 		C = locate(circpath) in get_step(src, SOUTH)
-		if(C && C.dir == NORTH)
+		if(C && C.dir == NORTH && C.anchored && !(C.stat &(BROKEN)) && !C.panel_open)
 			circs += C
 
-	if(circs.len)
+	if(circs.len == 2)
 		for(C in circs)
 			if(C.mode == CIRCULATOR_COLD && !cold_circ)
 				cold_circ = C
@@ -188,36 +187,81 @@
 			else if(C.mode == CIRCULATOR_HOT && !hot_circ)
 				hot_circ = C
 				C.generator = src
+		if(!hot_circ || !cold_circ)
+			kill_circs()
+			return 3
+	return circs.len
 
 /obj/machinery/power/generator/wrench_act(mob/living/user, obj/item/I)
-	if(!panel_open)
+	if(user.a_intent == INTENT_HARM)
 		return
+
+	if(!panel_open) //connect/disconnect circulators
+		if(!anchored)
+			to_chat(user, "<span class='warning'>Anchor [src] before trying to connect the circulators!</span>")
+			return TRUE
+		else
+			if(hot_circ && cold_circ)
+				to_chat(user, "<span class='notice'>You start removing the circulators...</span>")
+				if(I.use_tool(src, user, 30, volume=50))
+					kill_circs()
+					update_icon()
+					to_chat(user, "<span class='notice'>You disconnect [src]'s circulator links.</span>")
+					playsound(src, 'sound/misc/box_deploy.ogg', 50)
+				return TRUE
+
+			to_chat(user, "<span class='notice'>You attempt to attach the circulators...</span>")
+			if(I.use_tool(src, user, 30, volume=50))
+				switch(find_circs())
+					if(0)
+						to_chat(user, "<span class='warning'>No circulators found!</span>")
+					if(1)
+						to_chat(user, "<span class='warning'>Only one circulator found!</span>")
+					if(2)
+						to_chat(user, "<span class='notice'>You connect [src]'s circulator links.</span>")
+						playsound(src, 'sound/misc/box_deploy.ogg', 50)
+						return TRUE
+					if(3)
+						to_chat(user, "<span class='warning'>Both circulators are the same mode!</span>")
+				return TRUE
+
 	anchored = !anchored
 	I.play_tool_sound(src)
 	if(!anchored)
 		kill_circs()
 	connect_to_network()
 	to_chat(user, "<span class='notice'>You [anchored?"secure":"unsecure"] [src].</span>")
-	return TRUE
-
-/obj/machinery/power/generator/multitool_act(mob/living/user, obj/item/I)
-	if(!anchored)
-		return
-	find_circs()
-	to_chat(user, "<span class='notice'>You update [src]'s circulator links.</span>")
+	update_icon()
 	return TRUE
 
 /obj/machinery/power/generator/screwdriver_act(mob/user, obj/item/I)
 	if(..())
 		return TRUE
+	if(user.a_intent == INTENT_HARM)
+		return
+
+	if(hot_circ && cold_circ)
+		to_chat(user, "<span class='warning'>Disconnect the circulators first!</span>")
+		return TRUE
 	panel_open = !panel_open
 	I.play_tool_sound(src)
 	to_chat(user, "<span class='notice'>You [panel_open?"open":"close"] the panel on [src].</span>")
+	update_icon()
 	return TRUE
 
 /obj/machinery/power/generator/crowbar_act(mob/user, obj/item/I)
-	default_deconstruction_crowbar(I)
-	return TRUE
+	if(user.a_intent == INTENT_HARM)
+		return
+
+	if(anchored)
+		to_chat(user, "<span class='warning'>[src] is anchored!</span>")
+		return TRUE
+	else if(!panel_open)
+		to_chat(user, "<span class='warning'>Open the panel first!</span>")
+		return TRUE
+	else
+		default_deconstruction_crowbar(I)
+		return TRUE
 
 /obj/machinery/power/generator/on_deconstruction()
 	kill_circs()
@@ -225,7 +269,14 @@
 /obj/machinery/power/generator/proc/kill_circs()
 	if(hot_circ)
 		hot_circ.generator = null
+		hot_circ.update_icon()
 		hot_circ = null
 	if(cold_circ)
 		cold_circ.generator = null
+		cold_circ.update_icon()
 		cold_circ = null
+
+/obj/machinery/power/generator/obj_break(damage_flag)
+	kill_circs()
+	..()
+	

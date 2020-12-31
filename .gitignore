@@ -219,3 +219,5 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 
 #Debugging and other stuff
 extools.dll
+tgui/.pnp.js
+tgui/.yarn/*

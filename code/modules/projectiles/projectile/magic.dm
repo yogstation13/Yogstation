@@ -9,6 +9,17 @@
 	var/tile_dropoff = 0
 	var/tile_dropoff_s = 0
 
+	var/antimagic_affected = TRUE // Marks whether antimagic will cause this projectile to vanish on contact.
+
+/obj/item/projectile/magic/prehit(atom/target)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/L = target
+		if(L.anti_magic_check())
+			L.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return FALSE
+
 /obj/item/projectile/magic/death
 	name = "bolt of death"
 	icon_state = "pulse1_bl"
@@ -17,9 +28,6 @@
 	. = ..()
 	if(ismob(target))
 		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			return BULLET_ACT_BLOCK
 		M.death(0)
 
 /obj/item/projectile/magic/resurrection
@@ -33,9 +41,6 @@
 	. = ..()
 	if(isliving(target))
 		if(target.hellbound)
-			return BULLET_ACT_BLOCK
-		if(target.anti_magic_check())
-			target.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
 			return BULLET_ACT_BLOCK
 		if(iscarbon(target))
 			var/mob/living/carbon/C = target
@@ -58,11 +63,6 @@
 
 /obj/item/projectile/magic/teleport/on_hit(mob/target)
 	. = ..()
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] fizzles on contact with [target]!</span>")
-			return BULLET_ACT_BLOCK
 	var/teleammount = 0
 	var/teleloc = target
 	if(!isturf(target))
@@ -84,11 +84,6 @@
 
 /obj/item/projectile/magic/safety/on_hit(atom/target)
 	. = ..()
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] fizzles on contact with [target]!</span>")
-			return BULLET_ACT_BLOCK
 	if(isturf(target))
 		return BULLET_ACT_HIT
 
@@ -139,12 +134,6 @@
 
 /obj/item/projectile/magic/change/on_hit(atom/change)
 	. = ..()
-	if(ismob(change))
-		var/mob/M = change
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] fizzles on contact with [M]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
 	wabbajack(change)
 	qdel(src)
 
@@ -289,6 +278,30 @@
 	qdel(M)
 	return new_mob
 
+/obj/item/projectile/magic/cheese
+	name = "bolt of cheese"
+	icon_state = "cheese"
+	damage = 0
+	damage_type = BURN
+	nodamage = TRUE
+
+/obj/item/projectile/magic/cheese/on_hit(mob/living/target)
+	. = ..()
+	if(!istype(target) || target.stat == DEAD || target.notransform || (GODMODE & target.status_flags))
+		return
+	if(istype(target) && target.mind)
+		var/obj/item/reagent_containers/food/snacks/store/cheesewheel/parmesan/P = new(target.loc)
+		var/mob/living/B = new(P)
+		P.desc = "What appears to be [target.real_name] reformed into a wheel of delicious parmesan... recovery is unlikely."
+		P.name = "[target.name] Parmesan"
+		B.real_name = "[target.name] Parmesan"
+		B.name = "[target.name] Parmesan"
+		B.stat = CONSCIOUS
+		target.transfer_observers_to(B)
+		target.mind.transfer_to(B)
+		qdel(target)
+
+
 /obj/item/projectile/magic/animate
 	name = "bolt of animation"
 	icon_state = "red_1"
@@ -343,15 +356,6 @@
 	dismemberment = 50
 	nodamage = FALSE
 
-/obj/item/projectile/magic/spellblade/on_hit(target)
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
-	. = ..()
-
 /obj/item/projectile/magic/arcane_barrage
 	name = "arcane bolt"
 	icon_state = "arcane_barrage"
@@ -361,16 +365,6 @@
 	armour_penetration = 0
 	flag = "magic"
 	hitsound = 'sound/weapons/barragespellhit.ogg'
-
-/obj/item/projectile/magic/arcane_barrage/on_hit(target)
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return
-	. = ..()
-
 
 /obj/item/projectile/magic/locker
 	name = "locker bolt"
@@ -384,10 +378,6 @@
 /obj/item/projectile/magic/locker/prehit(atom/A)
 	if(ismob(A) && locker_suck)
 		var/mob/M = A
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [A]!</span>")
-			qdel(src)
-			return
 		if(M.anchored)
 			return ..()
 		M.forceMove(src)
@@ -461,9 +451,6 @@
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
-		if(L.anti_magic_check())
-			L.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			return BULLET_ACT_BLOCK
 		var/atom/throw_target = get_edge_target_turf(L, angle2dir(Angle))
 		L.throw_at(throw_target, 200, 4)
 
@@ -475,9 +462,6 @@
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
-		if(L.anti_magic_check() || !firer)
-			L.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			return BULLET_ACT_BLOCK
 		L.apply_status_effect(STATUS_EFFECT_BOUNTY, firer)
 
 /obj/item/projectile/magic/antimagic
@@ -488,9 +472,6 @@
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
-		if(L.anti_magic_check())
-			L.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			return BULLET_ACT_BLOCK
 		L.apply_status_effect(STATUS_EFFECT_ANTIMAGIC)
 
 /obj/item/projectile/magic/fetch
@@ -515,9 +496,6 @@
 	. = ..()
 	if(ismob(target))
 		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			return BULLET_ACT_BLOCK
 		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/sapped)
 
 /obj/item/projectile/magic/necropotence
@@ -550,9 +528,6 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			return BULLET_ACT_BLOCK
 		for(var/x in M.get_traumas())//checks to see if the victim is already going through possession
 			if(istype(x, /datum/brain_trauma/special/imaginary_friend/trapped_owner))
 				M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
@@ -625,12 +600,6 @@
 
 /obj/item/projectile/magic/aoe/lightning/on_hit(target)
 	. = ..()
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			visible_message("<span class='warning'>[src] fizzles on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
 	tesla_zap(src, tesla_range, tesla_power, tesla_flags)
 	qdel(src)
 
@@ -655,9 +624,6 @@
 	. = ..()
 	if(ismob(target))
 		var/mob/living/M = target
-		if(M.anti_magic_check())
-			visible_message("<span class='warning'>[src] vanishes into smoke on contact with [target]!</span>")
-			return BULLET_ACT_BLOCK
 		M.take_overall_damage(0,10) //between this 10 burn, the 10 brute, the explosion brute, and the onfire burn, your at about 65 damage if you stop drop and roll immediately
 	var/turf/T = get_turf(target)
 	explosion(T, -1, exp_heavy, exp_light, exp_flash, 0, flame_range = exp_fire)
@@ -671,10 +637,6 @@
 
 /obj/item/projectile/magic/aoe/fireball/infernal/on_hit(target)
 	. = ..()
-	if(ismob(target))
-		var/mob/living/M = target
-		if(M.anti_magic_check())
-			return BULLET_ACT_BLOCK
 	var/turf/T = get_turf(target)
 	for(var/i=0, i<50, i+=10)
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/explosion, T, -1, exp_heavy, exp_light, exp_flash, FALSE, FALSE, exp_fire), i)
@@ -700,12 +662,6 @@
 	temperature = 80
 
 /obj/item/projectile/temp/runic_icycle/on_hit(target)
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
 	.=..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
@@ -720,11 +676,6 @@
 
 /obj/item/projectile/magic/runic_tentacle/on_hit(target)
 	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
 		new /obj/effect/temp_visual/goliath_tentacle/original(target)
 	.=..()
 	if(iscarbon(target))
@@ -740,12 +691,6 @@
 	flag = "magic"
 	nodamage = TRUE
 /obj/item/projectile/magic/runic_heal/on_hit(target)
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
@@ -770,12 +715,6 @@
 	nodamage = FALSE
 
 /obj/item/projectile/magic/runic_fire/on_hit(target)
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
@@ -794,12 +733,6 @@
 	ricochets_max = 66
 
 /obj/item/projectile/magic/runic_honk/on_hit(target)
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
 	. = ..()
 	var/mob/X = target
 	if(istype(X))
@@ -815,14 +748,6 @@
 	var/boom = 1
 
 /obj/item/projectile/magic/runic_bomb/on_hit(target)
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
-		else
-			explosion(M, -1, 0, boom, 0, 0)
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
 		ADD_TRAIT(X, TRAIT_NODISMEMBER, type)
@@ -833,7 +758,9 @@
 			REMOVE_TRAIT(X, TRAIT_SLEEPIMMUNE, type)
 			REMOVE_TRAIT(X, TRAIT_STUNIMMUNE, type)
 			X.adjustBruteLoss(-120)
-		explosion(X, -1, 0, boom, 0, 0)
+	if(ismob(target))
+		var/mob/M = target
+		explosion(M, -1, 0, boom, 0, 0)
 
 /obj/item/projectile/magic/runic_toxin
 	name = "Runic Toxin"
@@ -845,12 +772,6 @@
 	eyeblur = 10
 
 /obj/item/projectile/magic/runic_toxin/on_hit(target)
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
@@ -876,12 +797,6 @@
 	impact_effect_type = /obj/effect/temp_visual/dir_setting/bloodsplatter
 
 /obj/item/projectile/magic/runic_death/on_hit(mob/living/target)
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
 	. = ..()
 	if(iszombie(target))
 		target.gib()
@@ -898,12 +813,6 @@
 	flag = "magic"
 
 /obj/item/projectile/magic/shotgun_slug/on_hit(target)
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
@@ -917,12 +826,6 @@
 
 
 /obj/item/projectile/magic/incediary_slug/on_hit(target)
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
@@ -937,12 +840,6 @@
 	irradiate = 12
 
 /obj/item/projectile/magic/runic_mutation/on_hit(target)
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
@@ -960,12 +857,6 @@
 
 
 /obj/item/projectile/magic/runic_resizement/on_hit(target)
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
 	. = ..()
 	if(isliving(target))
 		var/mob/living/X = target
