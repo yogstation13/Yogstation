@@ -152,6 +152,7 @@
 #define TRAIT_SLIME_EMPATHY		"slime-empathy"
 #define TRAIT_ACIDBLOOD         "acid_blood"
 #define TRAIT_SHORT				"short"
+#define TRAIT_PRESERVED_ORGANS	"preserved_organs"
 
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
