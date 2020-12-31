@@ -1,4 +1,0 @@
-author: "alexkar598"
-delete-after: true 
-changes: 
-  - bugfix: "Probably fixes the issue where donators can't click the donator preferences tab because their item/hat selection is invalid"

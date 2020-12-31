@@ -1,5 +1,0 @@
-author: "  Hopek"
-delete-after: true 
-changes: 
-  - rscadd: "Removed Syndicate meta from the game. Syndicate hud items will now not be visible to non-syndicates."
-  - rscadd: "All syndicate stealth items now function as normal items to non-syndicates."
