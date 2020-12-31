@@ -1,0 +1,5 @@
+author: "AdamElTablawy"
+delete-after: true 
+changes: 
+  - rscadd: "Revenants can now hear deadchat."
+  - bugfix: "Revenants can now just, y'know, fucking hear at all, now."
