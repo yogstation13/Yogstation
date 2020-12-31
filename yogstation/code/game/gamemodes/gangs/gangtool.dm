@@ -67,10 +67,13 @@
 			dat += "<center><font color='red'>Takeover In Progress:<br><B>[DisplayTimeText(gang.domination_time_remaining() * 10)] remain</B></font></center>"
 
 		dat += "Registration: <B>[gang.name] Gang Boss</B><br>"
-		dat += "Organization Size: <B>[gang.members.len]</B> | Station Control: <B>[gang.territories.len] territories under control.</B> | Influence: <B>[gang.influence]</B> | Credits: <B>[gang.registered_account.account_balance]</B><br>"
+		dat += "Organization Size: <B>[gang.members.len]</B> | Max Members: <B>[gang.max_members]</B><br>"
+		dat += "Station Control: <B>[gang.territories.len] territories under control.</B><br>"
+		dat += "Influence: <B>[gang.influence]</B> | Credits: <B>[gang.registered_account.account_balance]</B><br>"
 		dat += "Time until Influence grows: <B>[time2text(gang.next_point_time - world.time, "mm:ss")]</B><br>"
 		dat += "<a href='?src=[REF(src)];commute=1'>Send message to Gang</a><br>"
 		dat += "<a href='?src=[REF(src)];recall=1'>Recall shuttle</a><br>"
+		dat += "<a href='?src=[REF(src)];milestones=1'>View milestones</a><br>"
 		dat += "<hr>"
 		for(var/cat in buyable_items)
 			dat += "<b>[cat]</b><br>"
@@ -137,6 +140,8 @@
 		ping_gang(usr)
 	if(href_list["recall"])
 		recall(usr)
+	if(href_list["milestones"])
+		announce_milestones(usr)
 	attack_self(usr)
 
 /obj/item/gangtool/update_icon()
@@ -277,3 +282,11 @@
 
 /obj/item/gangtool/spare/lt
 	promotable = TRUE
+
+/obj/item/gangtool/proc/announce_milestones()
+	var/obj_count = 1
+	to_chat(usr, "<span class='notice'>Your current milestones:</span>")
+	for(var/milestones in gang.milestones)
+		var/datum/milestone/M = milestones
+		to_chat(usr, "<B>Objective #[obj_count]</B>: [M.explanation_text]")
+		obj_count++

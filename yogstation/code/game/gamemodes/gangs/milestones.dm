@@ -103,27 +103,40 @@
 	explanation_text = "Convert all members of the [department] department to your gang."
 
 /datum/objective/gang/all_from_one/check_completion()
+	var/datum/team/gang/gang = team
 	switch(department)
 		if("engineering")
 			for(var/datum/mind/possible_target in SSjob.get_living_engineers())
 				target_amount++
-				if(possible_target.has_antag_datum(/datum/antagonist/gang))
-					converted_targets |= possible_target
+				var/datum/antagonist/gang/G = possible_target.has_antag_datum(/datum/antagonist/gang)
+				if(G)
+					var/datum/team/gang/possible_gang = G.get_team()
+					if(possible_gang == gang)
+						converted_targets |= possible_target
 		if("science")
 			for(var/datum/mind/possible_target in SSjob.get_living_science())
 				target_amount++
-				if(possible_target.has_antag_datum(/datum/antagonist/gang))
-					converted_targets |= possible_target
+				var/datum/antagonist/gang/G = possible_target.has_antag_datum(/datum/antagonist/gang)
+				if(G)
+					var/datum/team/gang/possible_gang = G.get_team()
+					if(possible_gang == gang)
+						converted_targets |= possible_target
 		if("medical")
 			for(var/datum/mind/possible_target in SSjob.get_living_medical())
 				target_amount++
-				if(possible_target.has_antag_datum(/datum/antagonist/gang))
-					converted_targets |= possible_target
+				var/datum/antagonist/gang/G = possible_target.has_antag_datum(/datum/antagonist/gang)
+				if(G)
+					var/datum/team/gang/possible_gang = G.get_team()
+					if(possible_gang == gang)
+						converted_targets |= possible_target
 		if("supply")
 			for(var/datum/mind/possible_target in SSjob.get_living_supply())
 				target_amount++
-				if(possible_target.has_antag_datum(/datum/antagonist/gang))
-					converted_targets |= possible_target
+				var/datum/antagonist/gang/G = possible_target.has_antag_datum(/datum/antagonist/gang)
+				if(G)
+					var/datum/team/gang/possible_gang = G.get_team()
+					if(possible_gang == gang)
+						converted_targets |= possible_target
 	return (converted_targets.len >= target_amount)
 
 /datum/objective/gang/one_from_all
@@ -154,22 +167,35 @@
 	explanation_text = "Convert a member of each of the following [departments] departments. [is_engineering_staffed] [is_medical_staffed] [is_science_staffed] [is_supply_staffed]"
 
 /datum/objective/gang/one_from_all/check_completion()
+	var/datum/team/gang/gang = team
 	if(is_engineering_staffed)
 		for(var/datum/mind/possible_engineers in SSjob.get_living_engineers())
-			if(possible_engineers.has_antag_datum(/datum/antagonist/gang))
-				converted_engineer = 1
+			var/datum/antagonist/gang/G = possible_engineers.has_antag_datum(/datum/antagonist/gang)
+			if(G)
+				var/datum/team/gang/possible_gang = G.get_team()
+				if(possible_gang == gang)
+					converted_engineer = TRUE
 	if(is_medical_staffed)
 		for(var/datum/mind/possible_medical in SSjob.get_living_medical())
-			if(possible_medical.has_antag_datum(/datum/antagonist/gang))
-				converted_medical = 1
+			var/datum/antagonist/gang/G = possible_medical.has_antag_datum(/datum/antagonist/gang)
+			if(G)
+				var/datum/team/gang/possible_gang = G.get_team()
+				if(possible_gang == gang)
+					converted_medical = TRUE
 	if(is_science_staffed)
 		for(var/datum/mind/possible_science in SSjob.get_living_science())
-			if(possible_science.has_antag_datum(/datum/antagonist/gang))
-				converted_science = 1
+			var/datum/antagonist/gang/G = possible_science.has_antag_datum(/datum/antagonist/gang)
+			if(G)
+				var/datum/team/gang/possible_gang = G.get_team()
+				if(possible_gang == gang)
+					converted_science = TRUE
 	if(is_supply_staffed)
 		for(var/datum/mind/possible_supply in SSjob.get_living_supply())
-			if(possible_supply.has_antag_datum(/datum/antagonist/gang))
-				converted_supply = 1
+			var/datum/antagonist/gang/G = possible_supply.has_antag_datum(/datum/antagonist/gang)
+			if(G)
+				var/datum/team/gang/possible_gang = G.get_team()
+				if(possible_gang == gang)
+					converted_supply = TRUE
 	return (converted_engineer + converted_medical + converted_science + converted_supply >= departments)
 
 #define MAX_TIER 3
@@ -230,7 +256,7 @@
 /datum/milestone/uniform/tier3/New()
 	repeatable = 0
 	tier = 3
-	target_amount = rand(7, 10)
+	target_amount = rand(7, 12)
 	explanation_text = "Have [target_amount] gang members wearing your uniform."
 
 /datum/milestone/members
@@ -268,15 +294,18 @@
 /datum/milestone/money/tier1/New()
 	tier = 1
 	target_amount =  rand(2000, 5000)
+	explanation_text = "Have [target_amount] credits in your gang's bank account."
 
 /datum/milestone/money/tier2/New()
 	tier = 2
 	target_amount =  rand(7000, 10000)
+	explanation_text = "Have [target_amount] credits in your gang's bank account."
 
 /datum/milestone/money/tier3/New()
 	repeatable = 0
 	tier = 3
 	target_amount =  rand(17000, 26000)
+	explanation_text = "Have [target_amount] credits in your gang's bank account."
 
 /datum/milestone/control
 	repeatable = TRUE
@@ -333,7 +362,8 @@
 /datum/milestone/vip/average_joe/check_completion()
 	var/datum/team/gang/gang = team
 	for(var/datum/antagonist/gang/G in target.antag_datums)
-		return (G.gang = gang)
+		var/datum/team/gang/possible_gang = G.get_team()
+		return (possible_gang == gang)
 
 /datum/milestone/proc/get_crewmember_minds()
 	. = list()
@@ -372,20 +402,33 @@
 	explanation_text = "Convert a member of each of the following [departments] departments. [is_engineering_staffed] [is_medical_staffed] [is_science_staffed] [is_supply_staffed]"
 
 /datum/milestone/one_from_all/check_completion()
+	var/datum/team/gang/gang = team
 	if(is_engineering_staffed)
 		for(var/datum/mind/possible_engineers in SSjob.get_living_engineers())
-			if(possible_engineers.has_antag_datum(/datum/antagonist/gang))
-				converted_engineer = 1
+			var/datum/antagonist/gang/G = possible_engineers.has_antag_datum(/datum/antagonist/gang)
+			if(G)
+				var/datum/team/gang/possible_gang = G.get_team()
+				if(possible_gang == gang)
+					converted_engineer = 1
 	if(is_medical_staffed)
 		for(var/datum/mind/possible_medical in SSjob.get_living_medical())
-			if(possible_medical.has_antag_datum(/datum/antagonist/gang))
-				converted_medical = 1
+			var/datum/antagonist/gang/G = possible_medical.has_antag_datum(/datum/antagonist/gang)
+			if(G)
+				var/datum/team/gang/possible_gang = G.get_team()
+				if(possible_gang == gang)
+					converted_medical = 1
 	if(is_science_staffed)
 		for(var/datum/mind/possible_science in SSjob.get_living_science())
-			if(possible_science.has_antag_datum(/datum/antagonist/gang))
-				converted_science = 1
+			var/datum/antagonist/gang/G = possible_science.has_antag_datum(/datum/antagonist/gang)
+			if(G)
+				var/datum/team/gang/possible_gang = G.get_team()
+				if(possible_gang == gang)
+					converted_science = 1
 	if(is_supply_staffed)
 		for(var/datum/mind/possible_supply in SSjob.get_living_supply())
-			if(possible_supply.has_antag_datum(/datum/antagonist/gang))
-				converted_supply = 1
+			var/datum/antagonist/gang/G = possible_supply.has_antag_datum(/datum/antagonist/gang)
+			if(G)
+				var/datum/team/gang/possible_gang = G.get_team()
+				if(possible_gang == gang)
+					converted_supply = 1
 	return (converted_engineer + converted_medical + converted_science + converted_supply >= departments)

@@ -380,6 +380,22 @@
 		return "Promote a Gangster"
 	return "Spare Gangtool"
 
+/datum/gang_item/equipment/member_upgrade
+	name = "Max member upgrade"
+	id = "upgrade"
+	cost = 50
+
+/datum/gang_item/equipment/member_upgrade/can_buy(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
+	if(!gang || !gang.buyable_milestone_upgrades)
+		to_chat(user, "<span class='warning>You can't buy any more of these!</span>")
+		return FALSE
+	return ..()
+
+/datum/gang_item/equipment/member_upgrade/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
+	to_chat(user, "<span class='warning>Max gang members increased by one!</span>")
+	gang.max_members++
+	gang.buyable_milestone_upgrades--
+
 /datum/gang_item/equipment/dominator
 	name = "Station Dominator"
 	id = "dominator"

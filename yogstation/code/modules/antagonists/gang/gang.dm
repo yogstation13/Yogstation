@@ -358,13 +358,15 @@
 	message_name = "Lieutenant"
 
 #define MAXIMUM_RECALLS 3
-#define INFLUENCE_INTERVAL 120
+#define INFLUENCE_INTERVAL 1800
 #define UNIFORM_BONUS 100
 #define MEMBER_BONUS_1 250
 #define MEMBER_BONUS_2 100
 #define MEMBER_BONUS_3 50
 #define INITIAL_MAX_MEMBERS 3
+#define BUYABLE_MILESTONE_UPGRADES 2
 #define REPEATABLE_MILESTONE_AMOUNT 3
+
 // Gang team datum. This handles the gang itself.
 /datum/team/gang
 	name = "Gang"
@@ -393,7 +395,7 @@
 	var/datum/bank_account/registered_account
 	var/max_members = INITIAL_MAX_MEMBERS // Max amount of members. When milestones are reached, this number will increase.
 	var/list/milestones = list()
-	var/completed_milestones
+	var/buyable_milestone_upgrades = BUYABLE_MILESTONE_UPGRADES
 
 
 /datum/team/gang/New(starting_members)
@@ -739,4 +741,5 @@ Not sure if I need this anymore, since its called in gang_items purchase()
 #undef MEMBER_BONUS_2
 #undef MEMBER_BONUS_3
 #undef INITIAL_MAX_MEMBERS
+#undef BUYABLE_MILESTONE_UPGRADES
 #undef REPEATABLE_MILESTONE_AMOUNT
