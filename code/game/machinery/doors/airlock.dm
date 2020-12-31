@@ -1260,8 +1260,39 @@
 				prying_so_hard = FALSE
 
 
+	if(istype(I, /obj/item/zombie_hand/gamemode))
+		var/obj/item/zombie_hand/gamemode/hands = I
+		var/door_time_multiplier = hands.door_open_modifier
+		var/time_to_open = 50 * door_time_multiplier
+
+
+
+		if(!density)//already open
+			return
+
+		if(welded && !locked)
+			to_chat(user, "<span class='warning'>It's welded, this will take a while...</span>")
+			time_to_open = 120 * door_time_multiplier
+
+		if(locked && !welded)
+			to_chat(user, "<span class='warning'>The bolts are down, it won't budge! Forcing the bolts will take a while...</span>")
+			time_to_open = 100 * door_time_multiplier
+
+		if(locked && welded)
+			to_chat(user, "<span class='warning'>The bolts are down, and it's welded.Forcing the bolts and breaking the seal will take a long while...</span>")
+			time_to_open = 240 * door_time_multiplier
+
+
+		if(hasPower())
+			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
+			if(do_after(user, time_to_open, TRUE, src))
+				open(2)
+				if(density && !open(2))
+					to_chat(user, "<span class='warning'>Despite your attempts, [src] refuses to open.</span>")
+
+
 /obj/machinery/door/airlock/open(forced=0)
-	if( operating || welded || locked || brace) //yogs - brace
+	if( (operating || welded || locked || brace) && !forced) //yogs - brace
 		return FALSE
 	if(!forced)
 		if(!hasPower() || wires.is_cut(WIRE_OPEN))
@@ -1283,6 +1314,11 @@
 
 	if(!density)
 		return TRUE
+	if(forced < 2)
+		if(locked)
+			locked = !locked
+		if(welded)
+			welded = !welded
 	operating = TRUE
 	update_icon(AIRLOCK_OPENING, 1)
 	sleep(1)
