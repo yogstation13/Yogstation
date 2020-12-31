@@ -32268,29 +32268,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"cjU" = (
-/obj/machinery/computer/station_alert{
-	dir = 4
-	},
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the RD's goons from the safety of your own office.";
-	dir = 4;
-	name = "Engineering Monitor";
-	network = list("engine","minisat");
-	pixel_x = -24
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/heads/chief)
 "cjW" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
@@ -44382,6 +44359,29 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"kfj" = (
+/obj/machinery/computer/station_alert{
+	dir = 4
+	},
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for watching the RD's goons from the safety of your own office.";
+	dir = 4;
+	name = "Engineering Monitor";
+	network = list("engine","minisat","tcomms");
+	pixel_x = -24
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/heads/chief)
 "kgS" = (
 /obj/structure/closet/crate{
 	icon_state = "crateopen"
@@ -95238,7 +95238,7 @@ cfF
 cfb
 cik
 cjg
-cjU
+kfj
 cfb
 clM
 cfz
