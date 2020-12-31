@@ -15,7 +15,7 @@
 		return ..()
 	if(!..())
 		return
-	if(gang.members_amount >= gang.max_members)
+	if(gang.members.len >= gang.max_members)
 		to_chat(user, "<span class='warning'>Your gang has too many members! Complete milestones or purchase extra slots to add more members!</span>")
 		return
 	if(cooldown)

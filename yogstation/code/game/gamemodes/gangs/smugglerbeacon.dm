@@ -141,11 +141,11 @@
 	export_category = EXPORT_GANG
 
 /datum/export/gang/gangtool
-	cost = 400
+	cost = 250
 	unit_name = "gangtool"
 	export_types = list(/obj/item/gangtool)
 
 /datum/export/gang/recruitment_pen
-	cost = 250
+	cost = 500
 	unit_name = "recruitment pen"
 	export_types =list(/obj/item/pen/gang)

@@ -684,6 +684,7 @@ SUBSYSTEM_DEF(job)
 //Keeps track of all living heads//
 ///////////////////////////////////
 /datum/controller/subsystem/job/proc/get_living_heads()
+	RETURN_TYPE(/list)
 	. = list()
 	for(var/mob/living/carbon/human/player in GLOB.alive_mob_list)
 		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in GLOB.command_positions))
@@ -694,6 +695,7 @@ SUBSYSTEM_DEF(job)
 //Keeps track of all heads//
 ////////////////////////////
 /datum/controller/subsystem/job/proc/get_all_heads()
+	RETURN_TYPE(/list)
 	. = list()
 	for(var/i in GLOB.mob_list)
 		var/mob/player = i
@@ -704,6 +706,7 @@ SUBSYSTEM_DEF(job)
 //Keeps track of all living security members//
 //////////////////////////////////////////////
 /datum/controller/subsystem/job/proc/get_living_sec()
+	RETURN_TYPE(/list)
 	. = list()
 	for(var/mob/living/carbon/human/player in GLOB.carbon_list)
 		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in GLOB.security_positions))
@@ -713,6 +716,7 @@ SUBSYSTEM_DEF(job)
 //Keeps track of all  security members//
 ////////////////////////////////////////
 /datum/controller/subsystem/job/proc/get_all_sec()
+	RETURN_TYPE(/list)
 	. = list()
 	for(var/mob/living/carbon/human/player in GLOB.carbon_list)
 		if(player.mind && (player.mind.assigned_role in GLOB.security_positions))
@@ -722,6 +726,7 @@ SUBSYSTEM_DEF(job)
 //Keeps track of all living engineering members//
 ////////////////////////////////////////////////
 /datum/controller/subsystem/job/proc/get_living_engineers()
+	RETURN_TYPE(/list)
 	. = list()
 	for(var/mob/living/carbon/human/player in GLOB.carbon_list)
 		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in GLOB.engineering_positions))
@@ -731,6 +736,7 @@ SUBSYSTEM_DEF(job)
 //Keeps track of all engineering members//
 /////////////////////////////////////////
 /datum/controller/subsystem/job/proc/get_all_engineers()
+	RETURN_TYPE(/list)
 	. = list()
 	for(var/mob/living/carbon/human/player in GLOB.carbon_list)
 		if(player.mind && (player.mind.assigned_role in GLOB.engineering_positions))
@@ -740,6 +746,7 @@ SUBSYSTEM_DEF(job)
 //Keeps track of all living medical members//
 ////////////////////////////////////////////
 /datum/controller/subsystem/job/proc/get_living_medical()
+	RETURN_TYPE(/list)
 	. = list()
 	for(var/mob/living/carbon/human/player in GLOB.carbon_list)
 		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in GLOB.medical_positions))
@@ -749,6 +756,7 @@ SUBSYSTEM_DEF(job)
 //Keeps track of all  medical members//
 //////////////////////////////////////
 /datum/controller/subsystem/job/proc/get_all_medical()
+	RETURN_TYPE(/list)
 	. = list()
 	for(var/mob/living/carbon/human/player in GLOB.carbon_list)
 		if(player.mind && (player.mind.assigned_role in GLOB.medical_positions))
@@ -758,6 +766,7 @@ SUBSYSTEM_DEF(job)
 //Keeps track of all living science members//
 ////////////////////////////////////////////
 /datum/controller/subsystem/job/proc/get_living_science()
+	RETURN_TYPE(/list)
 	. = list()
 	for(var/mob/living/carbon/human/player in GLOB.carbon_list)
 		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in GLOB.science_positions))
@@ -767,6 +776,7 @@ SUBSYSTEM_DEF(job)
 //Keeps track of all  science members//
 ///////////////////////////////////////
 /datum/controller/subsystem/job/proc/get_all_science()
+	RETURN_TYPE(/list)
 	. = list()
 	for(var/mob/living/carbon/human/player in GLOB.carbon_list)
 		if(player.mind && (player.mind.assigned_role in GLOB.science_positions))
@@ -776,6 +786,7 @@ SUBSYSTEM_DEF(job)
 //Keeps track of all living supply members//
 ///////////////////////////////////////////
 /datum/controller/subsystem/job/proc/get_living_supply()
+	RETURN_TYPE(/list)
 	. = list()
 	for(var/mob/living/carbon/human/player in GLOB.carbon_list)
 		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in GLOB.supply_positions))
@@ -785,6 +796,7 @@ SUBSYSTEM_DEF(job)
 //Keeps track of all  supply members//
 /////////////////////////////////////
 /datum/controller/subsystem/job/proc/get_all_supply()
+	RETURN_TYPE(/list)
 	. = list()
 	for(var/mob/living/carbon/human/player in GLOB.carbon_list)
 		if(player.mind && (player.mind.assigned_role in GLOB.supply_positions))

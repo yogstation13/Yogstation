@@ -1,3 +1,4 @@
+#define OBJECTIVE_AMOUNT 3
 /datum/antagonist/gang
 	name = "Gangster"
 	roundend_category = "gangsters"
@@ -62,15 +63,6 @@
 
 /datum/antagonist/gang/proc/forge_gang_objectives()
 	var/domination = prob(10) // If their objective will be domination or not
-	if(domination)
-		add_objective(new/datum/objective/gang/dominate)
-		gang.can_dominate = TRUE
-	else
-		var/amount_to_add = rand(2, 2)
-		for(var/i = 1 to amount_to_add)
-			forge_single_objective()
-
-/datum/antagonist/gang/proc/forge_single_objective()
 	var/list/possible_objectives = list(
 										"money",
 										"average_joe",
@@ -80,36 +72,42 @@
 										"one_from_all"
 										)
 	if(SSjob.get_living_sec().len)
-		possible_objectives += "inside_man"
-	switch(pick_n_take(possible_objectives))
-		if("money")
-			var/datum/objective/gang/money/new_objective = new
-			new_objective.owner = owner
-			add_objective(new_objective)
-		if("average_joe")
-			var/datum/objective/gang/vip/average_joe/new_objective = new
-			new_objective.owner = owner
-			add_objective(new_objective)
-		if("inside_man")
-			var/datum/objective/gang/vip/inside_man/new_objective = new
-			new_objective.owner = owner
-			add_objective(new_objective)
-		if("control")
-			var/datum/objective/gang/control/new_objective = new
-			new_objective.owner = owner
-			add_objective(new_objective)
-		if("members")
-			var/datum/objective/gang/members/new_objective = new
-			new_objective.owner = owner
-			add_objective(new_objective)
-		if("all_from_one")
-			var/datum/objective/gang/all_from_one/new_objective = new
-			new_objective.owner = owner
-			add_objective(new_objective)
-		if("one_from_all")
-			var/datum/objective/gang/one_from_all/new_objective = new
-			new_objective.owner = owner
-			add_objective(new_objective)
+		possible_objectives |= "inside_man"
+	if(domination)
+		add_objective(new/datum/objective/gang/dominate)
+		gang.can_dominate = TRUE
+	else
+		var/amount_to_add = OBJECTIVE_AMOUNT
+		for(var/i = 1 to amount_to_add)
+			switch(pick_n_take(possible_objectives))
+				if("money")
+					var/datum/objective/gang/money/new_objective = new
+					new_objective.owner = owner
+					add_objective(new_objective)
+				if("average_joe")
+					var/datum/objective/gang/vip/average_joe/new_objective = new
+					new_objective.owner = owner
+					add_objective(new_objective)
+				if("inside_man")
+					var/datum/objective/gang/vip/inside_man/new_objective = new
+					new_objective.owner = owner
+					add_objective(new_objective)
+				if("control")
+					var/datum/objective/gang/control/new_objective = new
+					new_objective.owner = owner
+					add_objective(new_objective)
+				if("members")
+					var/datum/objective/gang/members/new_objective = new
+					new_objective.owner = owner
+					add_objective(new_objective)
+				if("all_from_one")
+					var/datum/objective/gang/all_from_one/new_objective = new
+					new_objective.owner = owner
+					add_objective(new_objective)
+				if("one_from_all")
+					var/datum/objective/gang/one_from_all/new_objective = new
+					new_objective.owner = owner
+					add_objective(new_objective)
 
 /datum/antagonist/gang/proc/equip_gang() // Bosses get equipped with their tools
 	return
@@ -360,12 +358,13 @@
 	message_name = "Lieutenant"
 
 #define MAXIMUM_RECALLS 3
-#define INFLUENCE_INTERVAL 1800
+#define INFLUENCE_INTERVAL 120
 #define UNIFORM_BONUS 100
 #define MEMBER_BONUS_1 250
 #define MEMBER_BONUS_2 100
 #define MEMBER_BONUS_3 50
 #define INITIAL_MAX_MEMBERS 3
+#define REPEATABLE_MILESTONE_AMOUNT 3
 // Gang team datum. This handles the gang itself.
 /datum/team/gang
 	name = "Gang"
@@ -393,8 +392,8 @@
 	var/recalls = MAXIMUM_RECALLS // Once this reaches 0, this gang cannot force recall the shuttle with their gangtool anymore
 	var/datum/bank_account/registered_account
 	var/max_members = INITIAL_MAX_MEMBERS // Max amount of members. When milestones are reached, this number will increase.
-	var/milestones = list()
-	var/completed_milestones = 0
+	var/list/milestones = list()
+	var/completed_milestones
 
 
 /datum/team/gang/New(starting_members)
@@ -418,6 +417,7 @@
 	registered_account = new /datum/bank_account
 	next_point_time = world.time + INFLUENCE_INTERVAL
 	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
+	forge_milestones()
 
 /datum/team/gang/Destroy()
 	GLOB.gangs -= src
@@ -512,7 +512,6 @@
 	else
 		var/new_influence = check_territory_income()
 		check_paycheck()
-//		var/completed_milestones = check_milestones()
 		if(new_influence != influence)
 			message += "Gang influence has increased by [new_influence - influence] for defending [territories.len] territories<BR>"
 		if(passive_paycheck)  // yogs
@@ -520,6 +519,8 @@
 		influence = new_influence
 		registered_account.adjust_money(passive_paycheck)
 		message += "Your gang now has <b>[influence] influence</b> and <b>[registered_account.account_balance] credits</b>.<BR>"
+	check_milestones()
+	to_chat(world, "Debug text: checking milestones")
 	message_gangtools(message)
 	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
 
@@ -590,10 +591,122 @@ Not sure if I need this anymore, since its called in gang_items purchase()
 					member_paycheck = (MEMBER_BONUS_2 * members_amount)
 				if(6 to INFINITY)
 					member_paycheck = (MEMBER_BONUS_3 * members_amount)
-/*
+
 /datum/team/gang/proc/check_milestones()
-	for(blahblahblah in milestones)
-*/
+	for(var/datum/milestone/M in milestones)
+		if(M.check_completion())
+			if(M.repeatable)
+				to_chat(world, "Debug text: repeatable")
+				max_members++
+				forge_milestone_type()
+				milestones.Remove(M)
+			else
+				to_chat(world, "Debug text: not repeatable")
+				max_members++
+				milestones.Remove(M)
+
+/datum/team/gang/proc/forge_milestones()
+	var/list/possible_milestones = list(
+//										"floortiles",
+										"uniform",
+										"members",
+										"money",
+										"control",
+										)
+	if(milestones.len) // We dont want to give them more if they already got some
+		to_chat(world, "Debug text: Force Milestones failed")
+		return
+	for(var/i = 1 to REPEATABLE_MILESTONE_AMOUNT)
+		switch(pick_n_take(possible_milestones))
+//			if("floortiles")
+//				var/datum/milestone/floortiles/tier1/new_milestone = new
+//				new_milestone.team = src
+//				milestones |=  new_milestone
+			if("uniform")
+				var/datum/milestone/uniform/tier1/new_milestone = new
+				new_milestone.team = src
+				milestones |=  new_milestone
+			if("members")
+				var/datum/milestone/members/tier1/new_milestone = new
+				new_milestone.team = src
+				milestones |=  new_milestone
+			if("control")
+				var/datum/milestone/control/tier1/new_milestone = new
+				new_milestone.team = src
+				milestones |=  new_milestone
+			if("money")
+				var/datum/milestone/money/tier1/new_milestone = new
+				new_milestone.team = src
+				milestones |=  new_milestone
+	switch(pick("one_from_all", "average_joe"))
+		if("one_from_all")
+			var/datum/milestone/one_from_all/new_milestone = new
+			new_milestone.team = src
+			milestones |=  new_milestone
+		if("average_joe")
+			var/datum/milestone/vip/average_joe/new_milestone = new
+			new_milestone.team = src
+			milestones |=  new_milestone
+
+/datum/team/gang/proc/forge_milestone_type()
+	for(var/datum/milestone/M in milestones)
+		if(M.tier == M.max_tier)
+			to_chat(world, "Debug text: max tier")
+			return // You've completed that milestone fully.
+		switch(M.milestone_type)
+			if("money")
+				if(M.check_completion())
+					if(M.tier == 1)
+						to_chat(world, "Debug text: i see tier 1, giving tier 2")
+						var/datum/milestone/money/tier2/new_milestone = new
+						new_milestone.team = src
+						milestones |= new_milestone
+					else if(M.tier == 2)
+						to_chat(world, "Debug text: i see tier 2, giving tier 3")
+						var/datum/milestone/money/tier3/new_milestone = new
+						new_milestone.team = src
+						milestones |= new_milestone
+			if("control")
+				if(M.check_completion())
+					if(M.tier == 1)
+						var/datum/milestone/control/tier2/new_milestone = new
+						new_milestone.team = src
+						milestones |= new_milestone
+					else if(M.tier == 2)
+						var/datum/milestone/control/tier3/new_milestone = new
+						new_milestone.team = src
+						milestones |= new_milestone
+			if("members")
+				if(M.check_completion())
+					if(M.tier == 1)
+						var/datum/milestone/members/tier2/new_milestone = new
+						new_milestone.team = src
+						milestones |= new_milestone
+					else if(M.tier == 2)
+						var/datum/milestone/members/tier3/new_milestone = new
+						new_milestone.team = src
+						milestones |= new_milestone
+			if("uniform")
+				if(M.check_completion())
+					if(M.tier == 1)
+						var/datum/milestone/uniform/tier2/new_milestone = new
+						new_milestone.team = src
+						milestones |= new_milestone
+					else if(M.tier == 2)
+						var/datum/milestone/uniform/tier3/new_milestone = new
+						new_milestone.team = src
+						milestones |= new_milestone
+//			if("floortiles")
+//					if(M.check_completion())
+//					if(M.tier == 1)
+//						var/datum/milestone/floortiles/tier2/new_milestone = new
+						new_milestone.team = src
+//						milestones |= new_milestone
+//					else
+//						var/datum/milestone/floortiles/tier3/new_milestone = new
+						new_milestone.team = src
+//						milestones |= new_milestone
+
 /datum/team/gang/proc/message_gangtools(message)
 	if(!gangtools.len || !message)
 		return
@@ -626,3 +739,4 @@ Not sure if I need this anymore, since its called in gang_items purchase()
 #undef MEMBER_BONUS_2
 #undef MEMBER_BONUS_3
 #undef INITIAL_MAX_MEMBERS
+#undef REPEATABLE_MILESTONE_AMOUNT
