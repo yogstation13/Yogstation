@@ -30,6 +30,29 @@
 /obj/structure/filingcabinet/filingcabinet	//not changing the path to avoid unnecessary map issues, but please don't name stuff like this in the future -Pete
 	icon_state = "tallcabinet"
 
+/obj/structure/filingcabinet/blue
+	name = "blue cabinet"
+	icon_state = "bluecabinet" // Command Color
+
+/obj/structure/filingcabinet/red
+	name = "red cabinet"
+	icon_state = "redcabinet" // Security Color
+
+/obj/structure/filingcabinet/green
+	name = "green cabinet"
+	icon_state = "greencabinet" // Service Color
+
+/obj/structure/filingcabinet/purple
+	name = "purple cabinet"
+	icon_state = "purplecabinet" // Science Color
+
+/obj/structure/filingcabinet/yellow
+	name = "yellow cabinet"
+	icon_state = "yellowcabinet" // Engineering Color
+
+/obj/structure/filingcabinet/lightblue
+	name = "light-blue cabinet"
+	icon_state = "lightbluecabinet" // Medical Color
 
 /obj/structure/filingcabinet/Initialize(mapload)
 	. = ..()
@@ -46,6 +69,13 @@
 	qdel(src)
 
 /obj/structure/filingcabinet/attackby(obj/item/P, mob/user, params)
+	if(istype(P, /obj/item/pen))
+		var/str = reject_bad_text(stripped_input(user, "Label Cabinet(Blank to reset)", "Set label","", MAX_NAME_LEN))
+		if(str)
+			name = str
+		else
+			name = initial(name)
+		return
 	if(istype(P, /obj/item/paper) || istype(P, /obj/item/folder) || istype(P, /obj/item/photo) || istype(P, /obj/item/documents))
 		if(!user.transferItemToLoc(P, src))
 			return
