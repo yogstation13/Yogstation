@@ -134,6 +134,13 @@
 #define MGENDER	        22
 /// Do not draw eyes or eyeless overlay
 #define NOEYESPRITES	19
+/// Will revive on heal when healing and total HP > 0.
+#define REVIVESBYHEALING 21
+/// Can't be husked.
+#define NOHUSK			22
+/// limbs start out as robotic; but also use organic icons. If you want to use the default ones, you'll have to use on_species_gain
+#define ROBOTIC_LIMBS	23
+#define NOMOUTH			24
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"

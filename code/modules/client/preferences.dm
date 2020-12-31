@@ -68,7 +68,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/skin_tone = "caucasian1"		//Skin color
 	var/eye_color = "000"				//Eye color
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
-	var/list/features = list("mcolor" = "FFF", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No")
+	var/list/features = list("mcolor" = "FFF", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No", "ipc_screen" = "Blue", "ipc_antenna" = "None", "ipc_chassis" = "Morpheus Cyberkinetics(Greyscale)")
 	var/list/genders = list(MALE, FEMALE, PLURAL)
 	var/list/friendlyGenders = list("Male" = "male", "Female" = "female", "Other" = "plural")
 
@@ -491,6 +491,50 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
+
+			if("ipc_screen" in pref_species.mutant_bodyparts)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Screen Style</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=ipc_screen;task=input'>[features["ipc_screen"]]</a><BR>"
+
+				dat += "<span style='border: 1px solid #161616; background-color: #[eye_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=eyes;task=input'>Change</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
+			if("ipc_antenna" in pref_species.mutant_bodyparts)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Antenna Style</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=ipc_antenna;task=input'>[features["ipc_antenna"]]</a><BR>"
+
+				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair;task=input'>Change</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
+			if("ipc_chassis" in pref_species.mutant_bodyparts)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Chassis Style</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=ipc_chassis;task=input'>[features["ipc_chassis"]]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
 
 			if("tail_human" in pref_species.default_features)
 				if(!mutant_category)
@@ -1528,6 +1572,30 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					new_dorsal_tubes = input(user, "Choose if your character has dorsal tubes:", "Character Preference") as null|anything in GLOB.dorsal_tubes_list
 					if(new_dorsal_tubes)
 						features["dorsal_tubes"] = new_dorsal_tubes
+
+				if("ipc_screen")
+					var/new_ipc_screen
+
+					new_ipc_screen = input(user, "Choose your character's screen:", "Character Preference") as null|anything in GLOB.ipc_screens_list
+
+					if(new_ipc_screen)
+						features["ipc_screen"] = new_ipc_screen
+
+				if("ipc_antenna")
+					var/new_ipc_antenna
+
+					new_ipc_antenna = input(user, "Choose your character's antenna:", "Character Preference") as null|anything in GLOB.ipc_antennas_list
+
+					if(new_ipc_antenna)
+						features["ipc_antenna"] = new_ipc_antenna
+
+				if("ipc_chassis")
+					var/new_ipc_chassis
+
+					new_ipc_chassis = input(user, "Choose your character's chassis:", "Character Preference") as null|anything in GLOB.ipc_chassis_list
+
+					if(new_ipc_chassis)
+						features["ipc_chassis"] = new_ipc_chassis
 
 				if("s_tone")
 					var/new_s_tone = input(user, "Choose your character's skin-tone:", "Character Preference")  as null|anything in GLOB.skin_tones

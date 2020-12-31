@@ -72,6 +72,12 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/wings, GLOB.wings_list)
 	if(!GLOB.moth_wings_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wings, GLOB.moth_wings_list)
+	if(!GLOB.ipc_screens_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_screens, GLOB.ipc_screens_list)
+	if(!GLOB.ipc_antennas_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_antennas, GLOB.ipc_antennas_list)
+	if(!GLOB.ipc_chassis_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_chassis, GLOB.ipc_chassis_list)
 	if(!GLOB.teeth_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/teeth, GLOB.teeth_list)
 	if(!GLOB.dome_list.len)
@@ -80,7 +86,7 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/dorsal_tubes, GLOB.dorsal_tubes_list)
 
 	//For now we will always return none for tail_human and ears.
-	return(list("mcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),"ethcolor" = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)], "tail_lizard" = pick(GLOB.tails_list_lizard), "tail_human" = "None", "wings" = "None", "snout" = pick(GLOB.snouts_list), "horns" = pick(GLOB.horns_list), "ears" = "None", "frills" = pick(GLOB.frills_list), "spines" = pick(GLOB.spines_list), "body_markings" = pick(GLOB.body_markings_list), "legs" = "Normal Legs", "caps" = pick(GLOB.caps_list), "moth_wings" = pick(GLOB.moth_wings_list), "tail_polysmorph" = "Polys", "teeth" = pick(GLOB.teeth_list), "dome" = pick(GLOB.dome_list), "dorsal_tubes" = pick(GLOB.dorsal_tubes_list)))
+	return(list("mcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),"ethcolor" = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)], "tail_lizard" = pick(GLOB.tails_list_lizard), "tail_human" = "None", "wings" = "None", "snout" = pick(GLOB.snouts_list), "horns" = pick(GLOB.horns_list), "ears" = "None", "frills" = pick(GLOB.frills_list), "spines" = pick(GLOB.spines_list), "body_markings" = pick(GLOB.body_markings_list), "legs" = "Normal Legs", "caps" = pick(GLOB.caps_list), "moth_wings" = pick(GLOB.moth_wings_list), "tail_polysmorph" = "Polys", "teeth" = pick(GLOB.teeth_list), "dome" = pick(GLOB.dome_list), "dorsal_tubes" = pick(GLOB.dorsal_tubes_list), "ipc_screen" = pick(GLOB.ipc_screens_list), "ipc_antenna" = pick(GLOB.ipc_antennas_list),"ipc_chassis" = pick(GLOB.ipc_chassis_list)))
 
 /proc/random_hair_style(gender)
 	switch(gender)
@@ -106,6 +112,13 @@
 			. = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 		else
 			. = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
+
+		if(!findname(.))
+			break
+
+/proc/random_unique_ipc_name(attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(ipc_name())
 
 		if(!findname(.))
 			break

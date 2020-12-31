@@ -120,7 +120,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		if(O.late_joiner)
 			try_target_late_joiners = TRUE
 	for(var/datum/mind/possible_target in get_crewmember_minds())
-		if(!(possible_target in owners) && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
+		if(is_valid_target(possible_target) && !(possible_target in owners) && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
 			//yogs start -- Quiet Rounds
 			var/mob/living/carbon/human/guy = possible_target.current
 			if(possible_target.antag_datums || !(guy.client && (guy.client.prefs.yogtoggles & QUIET_ROUND)))
@@ -139,6 +139,9 @@ GLOBAL_LIST_EMPTY(objectives)
 		target = pick(possible_targets)
 	update_explanation_text()
 	return target
+
+/datum/objective/proc/is_valid_target(possible_target)
+	return TRUE
 
 /datum/objective/proc/find_target_by_role(role, role_type=FALSE,invert=FALSE)//Option sets either to check assigned role or special role. Default to assigned., invert inverts the check, eg: "Don't choose a Ling"
 	var/list/datum/mind/owners = get_owners()
@@ -169,6 +172,18 @@ GLOBAL_LIST_EMPTY(objectives)
 		target = pick(possible_targets)
 	update_explanation_text()
 	return target
+
+/datum/objective/escape/escape_with_identity/is_valid_target(possible_target)
+	var/list/datum/mind/owners = get_owners()
+	for(var/datum/mind/M in owners)
+		if(!M)
+			continue
+		if(!M.has_antag_datum(/datum/antagonist/changeling))
+			continue
+		var/datum/mind/T = possible_target
+		if(!istype(T) || isIPC(T.current))
+			return FALSE
+	return TRUE
 
 /datum/objective/proc/update_explanation_text()
 	if(team_explanation_text && LAZYLEN(get_owners()) > 1)
@@ -940,13 +955,15 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/ling_count = lings.len
 
 	for(var/datum/mind/M in SSticker.minds)
-		if(M in lings)
+		if(M.has_antag_datum(/datum/antagonist/changeling))
+			continue
+		if(isIPC(M.current))
 			continue
 		if(department_head in get_department_heads(M.assigned_role))
 			if(ling_count)
-				ling_count--
 				department_minds += M
 				department_real_names += M.current.real_name
+				ling_count--
 			else
 				break
 
@@ -969,7 +986,9 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 	var/list/heads = SSjob.get_living_heads()
 	for(var/datum/mind/head in heads)
-		if(head in lings) //Looking at you HoP.
+		if(head.has_antag_datum(/datum/antagonist/changeling))
+			continue
+		if(isIPC(head.current))
 			continue
 		if(needed_heads)
 			department_minds += head

@@ -33,6 +33,7 @@
 
 	var/lip_style = null
 	var/lip_color = "white"
+	var/mouth = TRUE
 
 
 /obj/item/bodypart/head/Destroy()

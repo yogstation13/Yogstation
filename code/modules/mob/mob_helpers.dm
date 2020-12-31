@@ -543,6 +543,9 @@
 /mob/proc/can_hear()
 	. = TRUE
 
+/mob/proc/has_mouth()
+	return FALSE 
+
 /**
   * Examine text for traits shared by multiple types.
   *

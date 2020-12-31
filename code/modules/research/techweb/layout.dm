@@ -127,6 +127,10 @@
         ui_x = 480
         ui_y = -224
 
+/datum/techweb_node/ipc_organs
+		ui_x = 510
+		ui_y = -250
+
 /datum/techweb_node/adv_engi
         ui_x = -32
         ui_y = -256
