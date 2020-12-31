@@ -17,6 +17,7 @@
 	icon_state = "filingcabinet"
 	density = TRUE
 	anchored = TRUE
+	var/colour = null
 
 /obj/structure/filingcabinet/chestdrawer
 	name = "chest drawer"
@@ -30,32 +31,44 @@
 /obj/structure/filingcabinet/filingcabinet	//not changing the path to avoid unnecessary map issues, but please don't name stuff like this in the future -Pete
 	icon_state = "tallcabinet"
 
-/obj/structure/filingcabinet/blue
+/obj/structure/filingcabinet/colored/blue
 	name = "blue cabinet"
-	icon_state = "bluecabinet" // Command Color
+	colour = "#47679b" // Command Color
 
-/obj/structure/filingcabinet/red
+/obj/structure/filingcabinet/colored/red
 	name = "red cabinet"
-	icon_state = "redcabinet" // Security Color
+	colour = "#AE4B3D" // Security Color
 
-/obj/structure/filingcabinet/green
+/obj/structure/filingcabinet/colored/green
 	name = "green cabinet"
-	icon_state = "greencabinet" // Service Color
+	colour = "#58944f" // Service Color
 
-/obj/structure/filingcabinet/purple
+/obj/structure/filingcabinet/colored/purple
 	name = "purple cabinet"
-	icon_state = "purplecabinet" // Science Color
+	colour = "#7E347E" // Science Color
 
-/obj/structure/filingcabinet/yellow
+/obj/structure/filingcabinet/colored/yellow
 	name = "yellow cabinet"
-	icon_state = "yellowcabinet" // Engineering Color
+	colour = "#c7b01a" // Engineering Color
 
-/obj/structure/filingcabinet/lightblue
+/obj/structure/filingcabinet/colored/lightblue
 	name = "light-blue cabinet"
-	icon_state = "lightbluecabinet" // Medical Color
+	colour = "#498FBD" // Medical Color
+
+/obj/structure/filingcabinet/colored
+	icon_state = "coloredcabinet_frame"
+	name = "colored cabinet"
+	colour = "#1a1816"
+
+/obj/structure/filingcabinet/colored/update_icon()
+	cut_overlays()
+	var/mutable_appearance/cab = mutable_appearance(icon, "coloredcabinet_trim")
+	cab.color = colour
+	add_overlay(cab)
 
 /obj/structure/filingcabinet/Initialize(mapload)
 	. = ..()
+	update_icon()
 	if(mapload)
 		for(var/obj/item/I in loc)
 			if(istype(I, /obj/item/paper) || istype(I, /obj/item/folder) || istype(I, /obj/item/photo))
@@ -80,10 +93,19 @@
 		if(!user.transferItemToLoc(P, src))
 			return
 		to_chat(user, "<span class='notice'>You put [P] in [src].</span>")
-		icon_state = "[initial(icon_state)]-open"
-		sleep(5)
-		icon_state = initial(icon_state)
-		updateUsrDialog()
+		if(istype(src, /obj/structure/filingcabinet/colored))
+			var/mutable_appearance/opentrim = mutable_appearance(icon, "coloredcabinet-open-trim")
+			var/mutable_appearance/open = mutable_appearance(icon, "coloredcabinet-open")
+			opentrim.color = colour
+			var/overlays = list(opentrim, open)
+			add_overlay(overlays)
+			sleep(5)
+			cut_overlay(overlays)
+		else
+			icon_state = "[initial(icon_state)]-open"
+			sleep(5)
+			icon_state = initial(icon_state)
+			updateUsrDialog()
 	else if(P.tool_behaviour == TOOL_WRENCH)
 		to_chat(user, "<span class='notice'>You begin to [anchored ? "unwrench" : "wrench"] [src].</span>")
 		if(P.use_tool(src, user, 20, volume=50))
@@ -136,9 +158,18 @@
 		if(istype(P) && in_range(src, usr))
 			usr.put_in_hands(P)
 			updateUsrDialog()
-			icon_state = "[initial(icon_state)]-open"
-			sleep(5)
-			icon_state = initial(icon_state)
+			if(istype(src, /obj/structure/filingcabinet/colored))
+				var/mutable_appearance/opentrim = mutable_appearance(icon, "coloredcabinet-open-trim")
+				var/mutable_appearance/open = mutable_appearance(icon, "coloredcabinet-open")
+				opentrim.color = colour
+				var/overlays = list(opentrim, open)
+				add_overlay(overlays)
+				sleep(5)
+				cut_overlay(overlays)
+			else
+				icon_state = "[initial(icon_state)]-open"
+				sleep(5)
+				icon_state = initial(icon_state)
 
 
 /*
