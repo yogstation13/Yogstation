@@ -121,25 +121,3 @@
 	cost = 25
 	unit_name = "security barrier"
 	export_types = list(/obj/item/grenade/barrier, /obj/structure/barricade/security)
-
-/datum/export/large/gas_canister
-	cost = 10 //Base cost of canister. You get more for nice gases inside.
-	unit_name = "Gas Canister"
-	export_types = list(/obj/machinery/portable_atmospherics/canister)
-/datum/export/large/gas_canister/get_cost(obj/O)
-	var/obj/machinery/portable_atmospherics/canister/C = O
-	var/worth = 10
-	
-	worth += C.air_contents.get_moles(/datum/gas/stimulum)*4
-	worth += C.air_contents.get_moles(/datum/gas/hypernoblium)*8
-	worth += C.air_contents.get_moles(/datum/gas/freon)*1
-	worth += C.air_contents.get_moles(/datum/gas/healium)*3
-	worth += C.air_contents.get_moles(/datum/gas/pluonium)*2
-	worth += C.air_contents.get_moles(/datum/gas/halon)*3
-	worth += C.air_contents.get_moles(/datum/gas/hexane)*2
-	worth += C.air_contents.get_moles(/datum/gas/zauker)*9
-	worth += C.air_contents.get_moles(/datum/gas/tritium)*0.4
-	worth += C.air_contents.get_moles(/datum/gas/pluoxium)*0.5
-	worth += C.air_contents.get_moles(/datum/gas/miasma)*0.1
-	
-	return worth
