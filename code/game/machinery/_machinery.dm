@@ -558,7 +558,7 @@ Class Procs:
 	AM.pixel_x = -8 + ((.%3)*8)
 	AM.pixel_y = -8 + (round( . / 3)*8)
 
-/obj/machinery/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSMACHINES))
 		return TRUE
