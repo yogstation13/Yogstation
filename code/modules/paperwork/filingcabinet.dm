@@ -45,7 +45,7 @@
 
 /obj/structure/filingcabinet/colored/purple
 	name = "purple cabinet"
-	colour = "#7E347E" // Science Color
+	colour = "#993399" // Science Color
 
 /obj/structure/filingcabinet/colored/yellow
 	name = "yellow cabinet"
