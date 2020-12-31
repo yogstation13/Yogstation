@@ -68,6 +68,8 @@
 	var/list/learned_recipes //List of learned recipe TYPES.
 
 	var/flavour_text = null
+	///Are we zombified/uncloneable?
+	var/zombified = FALSE
 
 /datum/mind/New(key)
 	src.key = key
