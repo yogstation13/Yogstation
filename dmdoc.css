@@ -14,6 +14,7 @@ pre, code {
 }
 pre {
     padding: 8px;
+    white-space: pre-wrap;
 }
 a {
     color: #333333;
