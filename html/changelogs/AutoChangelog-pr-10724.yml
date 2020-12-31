@@ -1,0 +1,4 @@
+author: "AdamElTablawy"
+delete-after: true 
+changes: 
+  - tweak: "Uranium golems now do burn, not brute, and will irradiate mobs on punch, but no longer irradiate passively."
