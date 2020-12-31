@@ -187,3 +187,15 @@
 				add_overlay("[icon_state]_fail_1")
 			if(151 to INFINITY)
 				add_overlay("[icon_state]_fail_2")
+
+/obj/item/gun/energy/e_gun/hitscan
+	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser/hitscan)
+
+/obj/item/gun/energy/e_gun/mini/hitscan
+	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser/hitscan)
+
+/obj/item/gun/energy/e_gun/hos/hitscan
+	ammo_type = list(/obj/item/ammo_casing/energy/disabler/hos, /obj/item/ammo_casing/energy/laser/hos/hitscan, /obj/item/ammo_casing/energy/ion/hos)
+
+/obj/item/gun/energy/e_gun/nuclear/hitscan
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/hitscan, /obj/item/ammo_casing/energy/disabler)

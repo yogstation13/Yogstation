@@ -185,3 +185,20 @@
 		var/mob/living/carbon/M = target
 		M.visible_message("<span class='danger'>[M] explodes into a shower of gibs!</span>")
 		M.gib()
+
+/obj/item/projectile/beam/laser/hitscan
+	damage = 15 // Reduced by 5 damage
+	hitscan = TRUE
+
+/obj/item/projectile/beam/weak/hitscan
+	damage = 10 // Reduced by 5. Also I think this is only used by raven shuttle.
+	hitscan = TRUE
+
+/obj/item/projectile/beam/practice/hitscan
+	hitscan = TRUE
+
+/obj/item/projectile/beam/laser/makeshiftlasrifle/hitscan
+	hitscan = TRUE
+
+/obj/item/projectile/beam/laser/makeshiftlasrifle/weak/hitscan
+	hitscan = TRUE

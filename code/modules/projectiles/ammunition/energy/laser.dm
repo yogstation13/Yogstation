@@ -73,3 +73,23 @@
 	projectile_type = /obj/item/projectile/beam/mindflayer
 	select_name = "MINDFUCK"
 	fire_sound = 'sound/weapons/laser.ogg'
+
+/obj/item/ammo_casing/energy/laser/hitscan
+	projectile_type = /obj/item/projectile/beam/laser/hitscan
+	select_name = "hitscan"
+
+/obj/item/ammo_casing/energy/laser/hos/hitscan
+	projectile_type = /obj/item/projectile/beam/laser/hitscan
+	select_name = "hitscan"
+
+/obj/item/ammo_casing/energy/lasergun/hitscan
+	projectile_type = /obj/item/projectile/beam/laser/hitscan
+
+/obj/item/ammo_casing/energy/laser/practice/hitscan
+	projectile_type = /obj/item/projectile/beam/practice/hitscan
+
+/obj/item/ammo_casing/energy/laser/makeshiftlasrifle/hitscan
+	projectile_type = /obj/item/projectile/beam/laser/makeshiftlasrifle/hitscan
+
+/obj/item/ammo_casing/energy/laser/makeshiftlasrifle/weak/hitscan
+	projectile_type = /obj/item/projectile/beam/laser/makeshiftlasrifle/weak/hitscan

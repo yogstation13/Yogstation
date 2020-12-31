@@ -174,3 +174,15 @@
 /obj/item/projectile/beam/laser/makeshiftlasrifle/weak
 	name = "weak laser"
 	damage = 5
+
+/obj/item/gun/energy/laser/hitscan
+	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/hitscan)
+
+/obj/item/gun/energy/laser/practice/hitscan
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/practice/hitscan)
+
+/obj/item/gun/energy/laser/captain/hitscan
+	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/hitscan)
+
+/obj/item/gun/energy/laser/makeshiftlasrifle/hitscan
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/makeshiftlasrifle/hitscan, /obj/item/ammo_casing/energy/laser/makeshiftlasrifle/weak/hitscan)
