@@ -2,12 +2,6 @@
 "a" = (
 /turf/template_noop,
 /area/space)
-"b" = (
-/turf/closed/wall{
-	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall"
-	},
-/area/security/execution/transfer)
 "c" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -222,6 +216,9 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/security/execution/transfer)
+"z" = (
+/turf/closed/wall/r_wall,
+/area/security/execution/transfer)
 "B" = (
 /obj/structure/chair{
 	dir = 1
@@ -414,33 +411,33 @@ a
 a
 a
 a
-b
-b
-b
-b
-b
+z
+z
+z
+z
+z
 "}
 (2,1,1) = {"
 a
 a
 a
 a
-b
+z
 s
 t
 W
-b
+z
 "}
 (3,1,1) = {"
-b
-b
-b
+z
+z
+z
 d
-b
+z
 J
 l
 K
-b
+z
 "}
 (4,1,1) = {"
 O

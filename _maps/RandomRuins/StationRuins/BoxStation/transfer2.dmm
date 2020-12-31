@@ -82,6 +82,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
+"j" = (
+/turf/closed/wall/r_wall,
+/area/security/execution/transfer)
 "k" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -308,12 +311,6 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"J" = (
-/turf/closed/wall{
-	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall"
-	},
-/area/security/execution/transfer)
 "L" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -420,33 +417,33 @@ a
 a
 a
 a
-J
-J
-J
-J
-J
+j
+j
+j
+j
+j
 "}
 (2,1,1) = {"
 a
 a
 a
 a
-J
+j
 s
 i
 Z
-J
+j
 "}
 (3,1,1) = {"
-J
-J
-J
+j
+j
+j
 d
-J
+j
 x
 w
 k
-J
+j
 "}
 (4,1,1) = {"
 u
