@@ -696,7 +696,7 @@
 		else 
 			explosion(get_turf(src), 0, 0, 1, flame_range = 0) //1 light for default cans
 
-		log_bomber(user, "detonated a", src, "via ", S)
+		log_bomber(user, "detonated a", src, "via [S.name]")
 		qdel(src)
 
 /obj/item/toy/crayon/spraycan/borg
