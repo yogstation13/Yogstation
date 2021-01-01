@@ -127,12 +127,14 @@
 	return !density || (dir != to_dir) || (check_access(ID) && hasPower())
 
 /obj/machinery/door/window/CheckExit(atom/movable/mover as mob|obj, turf/target)
+	if(istype(mover) && (mover.pass_flags & PASSDOOR)) // Since it's a door, allow em through
+		return TRUE
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
-		return 1
+		return TRUE
 	if(get_dir(loc, target) == dir)
 		return !density
 	else
-		return 1
+		return TRUE
 
 /obj/machinery/door/window/open(forced=FALSE)
 	if (operating) //doors can still open when emag-disabled
