@@ -543,8 +543,9 @@
 	name = "Canned Peaches"
 	desc = "A nice can of ripe peaches swimming in their own juices, somehow left untouched."
 	icon_state = "peachcan"
-	grind_results = null
+	list_reagents = list(/datum/reagent/consumable/peachjuice = 8, /datum/reagent/consumable/sugar = 4, /datum/reagent/consumable/nutriment = 4)
 	juice_results = list(/datum/reagent/consumable/peachjuice = 20, /datum/reagent/consumable/sugar = 8, /datum/reagent/consumable/nutriment = 2)
+	grind_results = null
 	filling_color = "#ffdf26"
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("peaches" = 7, "tin" = 1)
