@@ -21268,11 +21268,6 @@
 /obj/item/clothing/head/soft,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"bjn" = (
-/obj/structure/table,
-/obj/machinery/computer/stockexchange,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "bjo" = (
 /obj/machinery/camera{
 	c_tag = "Cargo Bay North"
@@ -51901,6 +51896,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"pDH" = (
+/obj/structure/table,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "pEf" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -85170,7 +85169,7 @@ aPA
 gJt
 bcb
 aZE
-bjn
+pDH
 bjr
 bjh
 bmh
