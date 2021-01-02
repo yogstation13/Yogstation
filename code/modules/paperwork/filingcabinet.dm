@@ -89,6 +89,18 @@
 		else
 			name = initial(name)
 		return
+	if(istype(P, /obj/item/toy/crayon/spraycan) && istype(src, /obj/structure/filingcabinet/colored)) // Colorizer
+		var/obj/item/toy/crayon/spraycan/paint = P
+		. = TRUE // no afterattack
+		paint.check_empty(user, 1) // Can't cheat this smh
+		var/colour_choice = input(usr, "Cabinet Color?", "Color Change") as null | color
+		if(colour_choice)
+			paint.use_charges(user, 1)
+			colour = colour_choice
+			name = "colored cabinet" // Having a cabinet called 'Purple Cabinet' while it's green colored would be weird
+			playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 5)
+			update_icon() // reset overlays
+		return
 	if(istype(P, /obj/item/paper) || istype(P, /obj/item/folder) || istype(P, /obj/item/photo) || istype(P, /obj/item/documents))
 		if(!user.transferItemToLoc(P, src))
 			return
