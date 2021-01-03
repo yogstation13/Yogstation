@@ -6,7 +6,7 @@
 	range = 4
 	dismemberment = 20
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
-	var/mine_range = 3 //mines this many additional tiles of rock
+	var/mine_range = 0 //mines this many additional tiles of rock
 	tracer_type = /obj/effect/projectile/tracer/plasma_cutter
 	muzzle_type = /obj/effect/projectile/muzzle/plasma_cutter
 	impact_type = /obj/effect/projectile/impact/plasma_cutter
@@ -23,9 +23,9 @@
 			return BULLET_ACT_FORCE_PIERCE
 
 /obj/item/projectile/plasma/adv
-	damage = 7
-	range = 5
-	mine_range = 5
+	damage = 10
+	range = 4
+	mine_range = 4
 
 /obj/item/projectile/plasma/adv/mech
 	damage = 10
