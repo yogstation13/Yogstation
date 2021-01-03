@@ -522,8 +522,8 @@
 	display_name = "Mining Technology"
 	description = "Better than Efficiency V."
 	prereq_ids = list("engineering", "basic_plasma")
-	design_ids = list("drill", "superresonator", "triggermod", "damagemod", "cooldownmod", "rangemod", "ore_redemption", "mining_equipment_vendor", "cargoexpress", "plasmacutter")//e a r l y    g a  m e)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	design_ids = list("drill", "superresonator", "ore_redemption", "mining_equipment_vendor", "cargoexpress", "plasmacutter")//e a r l y    g a  m e)
+	research_costs = list(TECHWEB_POINT_TYPE_MINING = 1250)
 	export_price = 5000
 
 /datum/techweb_node/adv_mining
@@ -531,8 +531,17 @@
 	display_name = "Advanced Mining Technology"
 	description = "Efficiency Level 127"	//dumb mc references
 	prereq_ids = list("basic_mining", "adv_engi", "adv_power", "adv_plasma")
-	design_ids = list("drill_diamond", "jackhammer", "hypermod", "plasmacutter_adv", "borg_upgrade_plasmacutter")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	design_ids = list("drill_diamond", "jackhammer", "plasmacutter_adv", "borg_upgrade_plasmacutter")
+	research_costs = list(TECHWEB_POINT_TYPE_MINING = 4000)
+	export_price = 5000
+
+/datum/techweb_node/mining_mods
+	id = "mining_mods"
+	display_name = "Proto-Kinetic Accelerator Mods"
+	description = "Efficency Level Up"
+	prereq_ids = list("basic_mining")
+	design_ids = list("triggermod", "damagemod", "cooldownmod", "rangemod", "hypermod")
+	research_costs = list(TECHWEB_POINT_TYPE_MINING = 1500)
 	export_price = 5000
 
 /datum/techweb_node/camera_theory
