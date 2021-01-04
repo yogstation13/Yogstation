@@ -23,10 +23,10 @@
  * Twohanded
  */
 /obj/item/twohanded
+	/// Is the item currently wielded with two hands
 	var/wielded = FALSE
+	/// How much additonal force to give
 	var/force_wielded = 0
-	var/wieldsound = null
-	var/unwieldsound = null
 
 /obj/item/twohanded/proc/unwield(mob/living/carbon/user, show_message = TRUE)
 	if(!wielded || !user)
