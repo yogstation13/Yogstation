@@ -27,6 +27,10 @@
 	var/wielded = FALSE
 	/// How much additonal force to give
 	var/force_wielded = 0
+	/// Sound made when you wield it
+	var/wieldsound = null
+	/// Sound made when you unwield it
+	var/unwieldsound = null
 
 /obj/item/twohanded/proc/unwield(mob/living/carbon/user, show_message = TRUE)
 	if(!wielded || !user)
