@@ -152,7 +152,7 @@
  */
 
 /obj/item/pen/sleepy/attack(mob/living/M, mob/user)
-	if(!is_syndicate(M)) // if non syndicate , it is just a regular pen as they don't know how to activate hidden payload.
+	if(!is_syndicate(user)) // if non syndicate , it is just a regular pen as they don't know how to activate hidden payload.
 		. = ..()
 		return
 	if(!istype(M))
