@@ -7,8 +7,7 @@
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BACK
 	force = 5
-	force_unwielded = 5
-	force_wielded = 20
+	force_wielded = 15
 	throwforce = 15
 	throw_range = 1
 	w_class = WEIGHT_CLASS_HUGE
@@ -80,8 +79,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	slot_flags = ITEM_SLOT_BACK
 	force = 5
-	force_unwielded = 5
-	force_wielded = 25
+	force_wielded = 20
 	throwforce = 30
 	throw_range = 7
 	w_class = WEIGHT_CLASS_HUGE
