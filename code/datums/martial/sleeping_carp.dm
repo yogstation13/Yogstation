@@ -169,8 +169,7 @@
 	force = 10
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BACK
-	force_unwielded = 10
-	force_wielded = 24
+	force_wielded = 14
 	throwforce = 20
 	throw_speed = 2
 	attack_verb = list("smashed", "slammed", "whacked", "thwacked")
