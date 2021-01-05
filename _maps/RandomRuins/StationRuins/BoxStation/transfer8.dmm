@@ -279,12 +279,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"H" = (
-/turf/closed/wall{
-	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall"
-	},
-/area/security/execution/transfer)
 "I" = (
 /obj/structure/table,
 /obj/item/folder/red{
@@ -393,6 +387,9 @@
 	},
 /turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
 /area/security/execution/transfer)
+"X" = (
+/turf/closed/wall/r_wall,
+/area/security/execution/transfer)
 "Y" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -412,33 +409,33 @@ a
 a
 a
 a
-H
-H
-H
-H
-H
+X
+X
+X
+X
+X
 "}
 (2,1,1) = {"
 a
 a
 a
 a
-H
+X
 s
 i
 n
-H
+X
 "}
 (3,1,1) = {"
-H
-H
-H
+X
+X
+X
 d
-H
+X
 z
 O
 m
-H
+X
 "}
 (4,1,1) = {"
 p

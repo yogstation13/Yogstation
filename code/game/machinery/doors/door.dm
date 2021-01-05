@@ -223,6 +223,9 @@
 	if(user.a_intent != INTENT_HARM && (I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/twohanded/fireaxe)))
 		try_to_crowbar(I, user)
 		return 1
+	else if(istype(I, /obj/item/zombie_hand/gamemode))
+		try_to_crowbar(I, user)
+		return TRUE
 	else if(I.tool_behaviour == TOOL_WELDER)
 		try_to_weld(I, user)
 		return 1

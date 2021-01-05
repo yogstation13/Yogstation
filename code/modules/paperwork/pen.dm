@@ -152,6 +152,9 @@
  */
 
 /obj/item/pen/sleepy/attack(mob/living/M, mob/user)
+	if(!is_syndicate(user)) // if non syndicate , it is just a regular pen as they don't know how to activate hidden payload.
+		. = ..()
+		return
 	if(!istype(M))
 		return
 
@@ -203,6 +206,9 @@
 		playsound(user, 'sound/weapons/saberoff.ogg', 5, 1)
 		to_chat(user, "<span class='warning'>[src] can now be concealed.</span>")
 	else
+		if(!is_syndicate(user)) // this is just a normal pen to non syndicates as they don't know how to switch it on.
+			. = ..()
+			return 
 		on = TRUE
 		force = 18
 		throw_speed = 4

@@ -348,12 +348,15 @@
 /obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
 	name = "chameleon thermals"
 	desc = "A pair of thermal optic goggles with an onboard chameleon generator."
+	syndicate = TRUE
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
 /obj/item/clothing/glasses/thermal/syndi/Initialize()
 	. = ..()
 	chameleon_action = new(src)
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/clothing/glasses
 	chameleon_action.chameleon_name = "Glasses"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/glasses/changeling, only_root_path = TRUE)
