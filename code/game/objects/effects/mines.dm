@@ -109,10 +109,12 @@
 			if(!(MM.movement_type & FLYING))
 				checksmartmine(AM)
 		else
+			if(istype(AM, /obj/item/projectile))
+				return
 			triggermine(AM)
 
 /obj/effect/mine/proc/checksmartmine(mob/target)
-	if(smartmine && target && HAS_TRAIT(target, TRAIT_MINDSHIELD))
+	if(smartmine && target && !HAS_TRAIT(target, TRAIT_MINDSHIELD))
 		triggermine(target)
 	else if(!smartmine)
 		triggermine(target)
