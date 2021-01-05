@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "smartmines now detonate when stepped on by nonmindshielded people rather than ONLY mindshielded people"
+  - tweak: "mines will no longer explode when passed by projectiles"
