@@ -232,12 +232,6 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				if(I && !I.anchored)
 					I.throw_at(H, 4, 3)
 					to_chat(H, "<span class='warning'>What threw that?</span>")
-					
-			if(prob(2))
-				to_chat(H, "<i>yalp ot tnaw I</i>")
-				Appear()
-				manifested = FALSE
-				current_victim.set_drugginess(rand(1,10))
 
 		if(STAGE_SPOOK)
 			if(prob(4))
@@ -260,6 +254,12 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				if(I && !I.anchored)
 					I.throw_at(H, 4, 3)
 					to_chat(H, "<span class='warning'>What threw that?</span>")
+					
+			if(prob(2))
+				to_chat(H, "<i>yalp ot tnaw I</i>")
+				Appear()
+				manifested = FALSE
+				current_victim.set_drugginess(rand(1,10))
 
 		if(STAGE_TORMENT)
 			if(prob(5))
