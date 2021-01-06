@@ -9,7 +9,7 @@ do_after(user, skill = SKILL_MEDICAL, target = src) . This will require a basic 
 
 
 Skills are something that will create a time block if the skill is not present. 
-Advanced skills are meant to be rejected if an individual does not meet requirements for the skill. This should probably be reserved for very specific tasks aimed specifically to stop cross department powergaming.
+You can set skill_required to TRUE in do_after() to reject an individual if they  do not meet requirements for the skill. This should probably be reserved for very specific tasks aimed specifically to stop cross department powergaming.
 */
 
 
