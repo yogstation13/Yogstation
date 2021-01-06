@@ -2,15 +2,18 @@
 This is where all the skills will be defined. 
 
 The actual skill check execution can be found under do_after() in mobs.dm
-skill checks can be called with skill(mob,"skill name", proficiency). 
-Example: skill(src,"medical",1) . This will require a basic medical check.
+skill checks can be called with do_after()
+
+Example: 
+do_after(user, skill = SKILL_MEDICAL, target = src) . This will require a basic medical check.
 
 
 Skills are something that will create a time block if the skill is not present. 
 Advanced skills are meant to be rejected if an individual does not meet requirements for the skill. This should probably be reserved for very specific tasks aimed specifically to stop cross department powergaming.
 */
 
-#define SKILL_PLACEHOLDER "undefined" // here for debug + placeholder for do_after proc
+
+#define SKILL_PLACEHOLDER "undefined" // here for debug + placeholder for do_after() proc
 #define SKILL_DEBUG "divine" // you bypass all skill checks if you have this skill. More of a debug skill or an admin tool. You can probably use this skill to make certain items admin interact only.
 #define SKILL_ASSISTANT "assisting"
 #define SKILL_MEDICAL "medical"

@@ -253,7 +253,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(!user)
 		return 0
 	if(skill != "undefined") // skills are required here
-		if(!HAS_SKILL(user, skill) && !HAS_SKILL(user, "divine")) 
+		if(!user.mind?.skills.Find(skill) && !user.mind?.skills.Find("divine")) 
 			if(skill_required)
 				to_chat(user,"<span class='warning'> You need advanced [skill] skill in order to perform this task.")
 				return 0
