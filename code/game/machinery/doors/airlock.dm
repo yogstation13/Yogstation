@@ -67,8 +67,9 @@
 	var/hackProof = FALSE
 	/// The number of seconds until power is restored.
 	var/secondsMainPowerLost = 0
-	/// The number of seconds until power is restored.
+	/// The number of seconds until backup power is restored.
 	var/secondsBackupPowerLost = 0
+	/// Is the door currently restoring power
 	var/spawnPowerRestoreRunning = FALSE
 	/// Do bolt lights show up
 	var/lights = TRUE
@@ -78,10 +79,10 @@
 	var/aiHacking = FALSE
 	/// Cyclelinking for airlocks that aren't on the same x or y coord as the target.
 	var/closeOtherId
+	/// Reference to the other airlock to link with
 	var/obj/machinery/door/airlock/closeOther
 	/// Will it shock someone upon touching it
 	var/justzap = FALSE
-	var/obj/item/electronics/airlock/electronics
 	/// Cooldowns for shocks
 	var/shockCooldown = FALSE
 	/// If a charge is on it, explode when the door is opened
@@ -92,17 +93,23 @@
 	var/detonated = FALSE
 	/// Will this airlock go through special effects
 	var/abandoned = FALSE
+	/// Material of inner filling; if its an airlock with glass, this should be set to "glass"
+	var/airlock_material
+
+	var/obj/item/electronics/airlock/electronics
+	var/previous_airlock = /obj/structure/door_assembly //what airlock assembly mineral plating was applied to
+	var/obj/machinery/door/airlock/cyclelinkedairlock
+
+	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
+	var/note_overlay_file = 'icons/obj/doors/airlocks/station/overlays.dmi' //Used for papers and photos pinned to the airlock
+	var/mask_file = 'icons/obj/doors/airlocks/mask_32x32.dmi' // because filters aren't allowed to have icon_states :(
 	var/doorOpen = 'sound/machines/airlock.ogg'
 	var/doorClose = 'sound/machines/airlockclose.ogg'
 	var/doorDeni = 'sound/machines/deniedbeep.ogg' // i'm thinkin' Deni's
 	var/boltUp = 'sound/machines/boltsup.ogg'
 	var/boltDown = 'sound/machines/boltsdown.ogg'
 	var/noPower = 'sound/machines/doorclick.ogg'
-	var/previous_airlock = /obj/structure/door_assembly //what airlock assembly mineral plating was applied to
-	var/airlock_material //material of inner filling; if its an airlock with glass, this should be set to "glass"
-	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
-	var/note_overlay_file = 'icons/obj/doors/airlocks/station/overlays.dmi' //Used for papers and photos pinned to the airlock
-	var/mask_file = 'icons/obj/doors/airlocks/mask_32x32.dmi' // because filters aren't allowed to have icon_states :(
+
 	var/mask_x = 0
 	var/mask_y = 0
 	var/anim_parts = "left=-14,0;right=13,0"
@@ -111,10 +118,11 @@
 	var/note_attachment = "left"
 	var/mask_filter
 
-	var/cyclelinkeddir = 0			//yogs note im keeping this in order to not break stuff (airlock_helpers and shutle doors)
-	var/cyclelinkedx = 0			//yogs start	negative is left positive is right
-	var/cyclelinkedy = 0			//yogs end		negative is down positive is up
-	var/obj/machinery/door/airlock/cyclelinkedairlock
+	var/cyclelinkeddir = 0	//yogs note im keeping this in order to not break stuff (airlock_helpers and shutle doors)
+	/// X-dir to search for a door to link with
+	var/cyclelinkedx = 0
+	/// Y-dir to search for a door to link with
+	var/cyclelinkedy = 0
 	var/shuttledocked = 0
 	/// Will it close automagically next time it's opened
 	var/delayed_close_requested = FALSE
