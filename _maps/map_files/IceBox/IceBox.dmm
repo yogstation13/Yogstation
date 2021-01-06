@@ -57565,16 +57565,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"fqd" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "frE" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -57983,19 +57973,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"gve" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/machinery/shower{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "gvw" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "Mix Pump"
@@ -58666,18 +58643,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
-"iGi" = (
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/item/paper/fluff/cloning,
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "iGw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -59762,6 +59727,19 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"lQs" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/shower{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "lQG" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -62087,6 +62065,18 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
+"sEy" = (
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/paper/fluff/cloning,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "sHQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -63145,6 +63135,16 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"vSf" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "vSD" = (
 /obj/machinery/pipedispenser,
 /obj/structure/extinguisher_cabinet{
@@ -104976,7 +104976,7 @@ bsu
 fzU
 aWX
 bnW
-fqd
+vSf
 bua
 bzd
 bhh
@@ -105233,7 +105233,7 @@ bpE
 btk
 aCH
 bnX
-iGi
+sEy
 bua
 bBL
 bhh
@@ -105490,7 +105490,7 @@ bpE
 bti
 bsL
 bnY
-gve
+lQs
 bua
 bBK
 bwz

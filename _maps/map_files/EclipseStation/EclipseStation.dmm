@@ -81688,16 +81688,6 @@
 /obj/item/dice,
 /turf/open/floor/wood,
 /area/maintenance/department/chapel)
-"ePD" = (
-/obj/machinery/camera{
-	c_tag = "Cloning";
-	dir = 1;
-	network = list("ss13","Medbay")
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/medical/genetics/cloning)
 "eQh" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -83524,6 +83514,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/teleporter/hub/science)
+"iGz" = (
+/obj/item/paper/fluff/cloning,
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/medical/genetics/cloning)
 "iKX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
@@ -84186,15 +84182,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
-"kok" = (
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/medical/genetics/cloning)
 "kpO" = (
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -85891,12 +85878,6 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet,
 /area/chapel)
-"oce" = (
-/obj/item/paper/fluff/cloning,
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/medical/genetics/cloning)
 "odq" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=PPH2";
@@ -86581,6 +86562,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
+"pRp" = (
+/obj/machinery/camera{
+	c_tag = "Cloning Lab";
+	dir = 1;
+	network = list("ss13","rd","Medbay")
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/medical/genetics/cloning)
 "pRI" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
@@ -87351,6 +87342,15 @@
 /mob/living/simple_animal/hostile/retaliate/goose/vomit,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
+"rKd" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/medical/genetics/cloning)
 "rKm" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -88542,6 +88542,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
+"uBx" = (
+/obj/machinery/camera{
+	c_tag = "Cloning";
+	dir = 1;
+	network = list("ss13","Medbay")
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/medical/genetics/cloning)
 "uCs" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance/two,
@@ -89933,16 +89943,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"xFh" = (
-/obj/machinery/camera{
-	c_tag = "Cloning Lab";
-	dir = 1;
-	network = list("ss13","rd","Medbay")
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/medical/genetics/cloning)
 "xGo" = (
 /obj/machinery/light{
 	dir = 8;
@@ -101913,7 +101913,7 @@ bKM
 bLl
 bNm
 bEx
-oce
+iGz
 aun
 cdh
 kaT
@@ -102170,7 +102170,7 @@ aun
 bBT
 bPg
 bEy
-ePD
+uBx
 aun
 ciq
 cqn
@@ -102427,7 +102427,7 @@ aun
 bBU
 bSE
 bEy
-xFh
+pRp
 aun
 clD
 hXw
@@ -102684,7 +102684,7 @@ aun
 bBV
 bTj
 bEz
-oce
+iGz
 aun
 clE
 cqn
@@ -102941,7 +102941,7 @@ aun
 bLQ
 bTK
 bEy
-kok
+rKd
 aun
 cat
 cqp

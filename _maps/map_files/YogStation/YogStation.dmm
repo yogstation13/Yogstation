@@ -33521,6 +33521,15 @@
 "czK" = (
 /turf/closed/wall,
 /area/vacant_room)
+"cAe" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "cAf" = (
 /obj/structure/disposaloutlet,
 /obj/structure/disposalpipe/trunk{
@@ -36194,15 +36203,6 @@
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"dVR" = (
-/obj/machinery/computer/cloning{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "dWr" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -42067,16 +42067,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
-"ixQ" = (
-/obj/machinery/clonepod,
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "iyN" = (
 /obj/machinery/camera{
 	c_tag = "Prison Cell 3";
@@ -52534,6 +52524,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"pXL" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 4
+	},
+/obj/item/paper/fluff/cloning,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "pXS" = (
 /obj/structure/transit_tube/crossing,
 /obj/structure/lattice,
@@ -54334,13 +54331,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
-"rlV" = (
-/obj/machinery/dna_scannernew,
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "rne" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -58190,6 +58180,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"tZZ" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "uab" = (
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/circuit/green/telecomms/mainframe,
@@ -107029,9 +107025,9 @@ pHz
 mZG
 uac
 omX
-ixQ
-dVR
-rlV
+cAe
+pXL
+tZZ
 kYK
 kYK
 kYK
