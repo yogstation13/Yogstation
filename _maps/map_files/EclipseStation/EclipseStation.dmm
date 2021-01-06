@@ -40367,14 +40367,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/fore)
-"bFE" = (
-/obj/machinery/computer/cloning{
-	dir = 1
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/medical/genetics/cloning)
 "bFF" = (
 /obj/machinery/light/small,
 /obj/machinery/disposal/bin,
@@ -40383,22 +40375,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"bFG" = (
-/obj/machinery/dna_scannernew,
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/medical/genetics/cloning)
-"bFH" = (
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/machinery/clonepod,
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/medical/genetics/cloning)
 "bFI" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -48020,17 +47996,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
-"bUS" = (
-/obj/machinery/clonepod,
-/obj/machinery/camera{
-	c_tag = "Cloning";
-	dir = 1;
-	network = list("ss13","Medbay")
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/medical/genetics/cloning)
 "bUT" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -70719,17 +70684,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/command)
-"cOi" = (
-/obj/machinery/dna_scannernew,
-/obj/machinery/camera{
-	c_tag = "Cloning Lab";
-	dir = 1;
-	network = list("ss13","rd","Medbay")
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/medical/genetics/cloning)
 "cOj" = (
 /turf/open/floor/wood,
 /area/crew_quarters/dorms/b)
@@ -81634,6 +81588,15 @@
 "eza" = (
 /turf/closed/wall/mineral/bronze,
 /area/maintenance/port/fore)
+"ezr" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/medical/genetics/cloning)
 "ezJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -82023,6 +81986,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"fzn" = (
+/obj/item/paper/fluff/cloning,
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/medical/genetics/cloning)
 "fzE" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -83980,6 +83949,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
+"jNq" = (
+/obj/machinery/camera{
+	c_tag = "Cloning Lab";
+	dir = 1;
+	network = list("ss13","rd","Medbay")
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/medical/genetics/cloning)
 "jPi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -85995,6 +85974,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"opZ" = (
+/obj/machinery/camera{
+	c_tag = "Cloning";
+	dir = 1;
+	network = list("ss13","Medbay")
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/medical/genetics/cloning)
 "orq" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -101667,7 +101656,7 @@ aun
 bBP
 bEw
 bEy
-bFG
+bEy
 aun
 cdf
 cqn
@@ -101924,7 +101913,7 @@ bKM
 bLl
 bNm
 bEx
-bFE
+fzn
 aun
 cdh
 kaT
@@ -102181,7 +102170,7 @@ aun
 bBT
 bPg
 bEy
-bUS
+opZ
 aun
 ciq
 cqn
@@ -102438,7 +102427,7 @@ aun
 bBU
 bSE
 bEy
-cOi
+jNq
 aun
 clD
 hXw
@@ -102695,7 +102684,7 @@ aun
 bBV
 bTj
 bEz
-bFE
+fzn
 aun
 clE
 cqn
@@ -102952,7 +102941,7 @@ aun
 bLQ
 bTK
 bEy
-bFH
+ezr
 aun
 cat
 cqp
