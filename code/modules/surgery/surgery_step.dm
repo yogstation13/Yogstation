@@ -67,16 +67,20 @@
 	surgery.step_in_progress = TRUE
 	var/advance = FALSE
 
-	var/speed_mod = 1
+	var/tooL_speed_mod = 1
+	var/user_speed_mod = 1
 
 	if(preop(user, target, target_zone, tool, surgery) == -1)
 		surgery.step_in_progress = 0
 		return
 
 	if(tool)
-		speed_mod = tool.toolspeed
+		tooL_speed_mod = tool.toolspeed
 
-	if(do_after(user, time * speed_mod, target = target))
+	if(IS_MEDICAL(user))
+		user_speed_mod = 0.8
+
+	if(do_after(user, time * tooL_speed_mod * user_speed_mod, target = target))
 		var/prob_chance = 100
 
 		if(implement_type)	//this means it isn't a require hand or any item step.
