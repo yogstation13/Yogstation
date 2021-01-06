@@ -10,6 +10,11 @@
 /obj/item/paper/fluff/shuttles/daniel
 	info = "i love daniel<br>daniel is my best friend<br><br>you are tearing me apart elise"
 	infolang = /datum/language/aphasia
+	
+/obj/item/paper/fluff/cloning
+	name = "notice- 'IMPORTANT'"
+	info = "<b>IMPORTANT NOTICE:</b><br>\nHey there Nanotrasen station! Due to budget cuts, we had to uninstall your cloning pod and sell it to shady aliens. Result: You have no cloning pod.<br>\n<br>\n<small><i>PS: You can still research and build a cloning pod yourself unlike your peers at GeeTea station.</i></small><hr><br>\n<small><i>PPS: Tell us if you spot any army of mutant insect clones. It turned out those shady aliens were doing shady business.</i></small>"
+	infolang = /datum/language/common
 
 ////////////	Job guides n' fluff
 
