@@ -49,7 +49,7 @@
 	autoclose = TRUE
 	secondsElectrified = MACHINE_NOT_ELECTRIFIED //How many seconds remain until the door is no longer electrified. -1/MACHINE_ELECTRIFIED_PERMANENT = permanently electrified until someone fixes it.
 	assemblytype = /obj/structure/door_assembly
-	normalspeed = 1
+	normalspeed = TRUE
 	explosion_block = 1
 	hud_possible = list(DIAG_AIRLOCK_HUD)
 
@@ -59,23 +59,38 @@
 
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
 
-	var/security_level = 0 //How much are wires secured
-	var/aiControlDisabled = AI_WIRE_NORMAL //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
-	var/hackProof = FALSE // if true, this door can't be hacked by the AI
-	var/secondsMainPowerLost = 0 //The number of seconds until power is restored.
-	var/secondsBackupPowerLost = 0 //The number of seconds until power is restored.
+	/// How much are wires secured
+	var/security_level = 0
+	/// If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
+	var/aiControlDisabled = AI_WIRE_NORMAL
+	/// Can the AI not hack this door
+	var/hackProof = FALSE
+	/// The number of seconds until power is restored.
+	var/secondsMainPowerLost = 0
+	/// The number of seconds until power is restored.
+	var/secondsBackupPowerLost = 0
 	var/spawnPowerRestoreRunning = FALSE
-	var/lights = TRUE // bolt lights show by default
+	/// Do bolt lights show up
+	var/lights = TRUE
+	/// Does this airlock scan IDs
 	var/aiDisabledIdScanner = FALSE
+	/// Is the AI currently hacking this door?
 	var/aiHacking = FALSE
-	var/closeOtherId //Cyclelinking for airlocks that aren't on the same x or y coord as the target.
+	/// Cyclelinking for airlocks that aren't on the same x or y coord as the target.
+	var/closeOtherId
 	var/obj/machinery/door/airlock/closeOther
+	/// Will it shock someone upon touching it
 	var/justzap = FALSE
 	var/obj/item/electronics/airlock/electronics
-	var/shockCooldown = FALSE //Prevents multiple shocks from happening
-	var/obj/item/doorCharge/charge //If applied, causes an explosion upon opening the door
-	var/obj/item/note //Any papers pinned to the airlock
+	/// Cooldowns for shocks
+	var/shockCooldown = FALSE
+	/// If a charge is on it, explode when the door is opened
+	var/obj/item/doorCharge/charge
+	/// Type of paper pinned to the airlock
+	var/obj/item/note
+	/// Has a airlock charge detonated, prevents interaction
 	var/detonated = FALSE
+	/// Will this airlock go through special effects
 	var/abandoned = FALSE
 	var/doorOpen = 'sound/machines/airlock.ogg'
 	var/doorClose = 'sound/machines/airlockclose.ogg'
@@ -101,11 +116,15 @@
 	var/cyclelinkedy = 0			//yogs end		negative is down positive is up
 	var/obj/machinery/door/airlock/cyclelinkedairlock
 	var/shuttledocked = 0
-	var/delayed_close_requested = FALSE // TRUE means the door will automatically close the next time it's opened.
+	/// Will it close automagically next time it's opened
+	var/delayed_close_requested = FALSE
 
+	/// Is it currently being pried open
 	var/prying_so_hard = FALSE
-	var/list/bolt_log //yogs - Who can it be bolting all my doors? Go away, don't come down here no more.
-	var/list/shocking_log //yogs - who electrified this door.
+	/// Log of who is bolting this door
+	var/list/bolt_log
+	/// Log of who is shocking this door
+	var/list/shocking_log
 
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_MEDIUM_INSULATION
@@ -1805,7 +1824,7 @@
 	visible_message("<span class='warning'>[src]'s panel is blown off in a spray of deadly shrapnel!</span>")
 	charge.forceMove(drop_location())
 	charge.ex_act(EXPLODE_DEVASTATE)
-	detonated = 1
+	detonated = TRUE
 	charge = null
 	for(var/mob/living/carbon/human/H in orange(2,src))
 		H.Unconscious(160)
