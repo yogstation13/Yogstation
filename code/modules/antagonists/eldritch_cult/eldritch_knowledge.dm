@@ -25,6 +25,8 @@
 	var/list/result_atoms = list()
 	///What path is this on defaults to "Side"
 	var/route = PATH_SIDE
+	///string that quickly describes the required atoms
+	var/required_shit_list
 
 /datum/eldritch_knowledge/New()
 	. = ..()
@@ -219,7 +221,7 @@
 ///////////////
 
 /datum/eldritch_knowledge/spell/basic
-	name = "Break of dawn"
+	name = "Break of Dawn"
 	desc = "Starts your journey in the mansus. Allows you to select a target using a living heart on a transmutation rune."
 	gain_text = "Gates of mansus open up to your mind."
 	next_knowledge = list(/datum/eldritch_knowledge/base_rust,/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_flesh)
@@ -227,6 +229,7 @@
 	spell_to_add = /obj/effect/proc_holder/spell/targeted/touch/mansus_grasp
 	required_atoms = list(/obj/item/living_heart)
 	route = "Start"
+	required_shit_list = "A living heart, which will be given a target for sacrifice or sacrifice its target if their corpse is on the rune."
 
 /datum/eldritch_knowledge/spell/basic/recipe_snowflake_check(list/atoms, loc)
 	. = ..()
@@ -272,7 +275,7 @@
 				to_chat(user,"<span class='warning'>Your new target has been selected, go and sacrifice [LH.target.real_name]!</span>")
 
 			else
-				to_chat(user,"<span class='warning'>target could not be found for living heart.</span>")
+				to_chat(user,"<span class='warning'>A target could not be found for the living heart.</span>")
 
 /datum/eldritch_knowledge/spell/basic/cleanup_atoms(list/atoms)
 	return
@@ -285,6 +288,7 @@
 	required_atoms = list(/obj/item/organ/heart,/obj/effect/decal/cleanable/blood,/obj/item/reagent_containers/food/snacks/grown/poppy)
 	result_atoms = list(/obj/item/living_heart)
 	route = "Start"
+	required_shit_list = "A pool of blood, a poppy, and a heart."
 
 /datum/eldritch_knowledge/codex_cicatrix
 	name = "Codex Cicatrix"
@@ -294,3 +298,29 @@
 	required_atoms = list(/obj/item/organ/eyes,/obj/item/stack/sheet/animalhide/human,/obj/item/storage/book/bible,/obj/item/pen)
 	result_atoms = list(/obj/item/forbidden_book)
 	route = "Start"
+	required_shit_list = "A bible, a sheet of human skin, a pen, and a pair of eyes."
+
+/datum/eldritch_knowledge/clippy
+	name = "Recall Ritual"
+	desc = "Activate a transmutation rune after placing your Codex Cicatrix on it to recall a compact list of your known rituals, selecting one will show its required objects."
+	gain_text = "FUCK"
+	cost = 0
+	route = "Start"
+	required_atoms = list(/obj/item/forbidden_book)
+
+/datum/eldritch_knowledge/clippy/on_finished_recipe(mob/living/user,list/atoms,loc)
+	var/list/datum/eldritch_knowledge/clippy_list = list()
+	var/datum/antagonist/heretic/cultie = user.mind.has_antag_datum(/datum/antagonist/heretic)
+	var/list/knowledge = cultie.get_all_knowledge()
+	for(var/X in knowledge)
+		var/datum/eldritch_knowledge/EK = knowledge[X]
+		if(!EK.required_shit_list)
+			continue
+		clippy_list[EK.name] = EK.required_shit_list
+	var/ctrlf = input(user, "Select a ritual to recall its reagents.", "Clippy") as null | anything in clippy_list
+	if(ctrlf)
+		to_chat(user, "<span class='cult'>Transmutation requirements for [ctrlf]: [clippy_list[ctrlf]]</span>")
+	return TRUE
+
+/datum/eldritch_knowledge/clippy/cleanup_atoms(list/atoms)
+	return
