@@ -36219,12 +36219,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"dWD" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "dXk" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -45783,13 +45777,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
-"lhI" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 4
-	},
-/obj/item/paper/fluff/cloning,
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "lhO" = (
 /obj/structure/window/reinforced{
 	pixel_y = 2
@@ -56417,6 +56404,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
+"sQa" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "sQI" = (
 /turf/closed/wall,
 /area/security/execution/transfer)
@@ -62013,6 +62009,13 @@
 	},
 /turf/open/floor/plating,
 /area/storage/tech)
+"wNa" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 4
+	},
+/obj/item/paper/fluff/cloning,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "wNL" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/camera{
@@ -63500,15 +63503,6 @@
 	name = "Holodeck Projector Floor"
 	},
 /area/holodeck/rec_center)
-"xYg" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "xYQ" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -63887,6 +63881,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"ykh" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "ykC" = (
 /obj/machinery/flasher{
 	id = "AI";
@@ -107025,9 +107025,9 @@ pHz
 mZG
 uac
 omX
-xYg
-lhI
-dWD
+sQa
+wNa
+ykh
 kYK
 kYK
 kYK

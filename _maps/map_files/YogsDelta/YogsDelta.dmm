@@ -124871,25 +124871,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"fFp" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/status_display/evac{
-	pixel_x = -32
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/genetics/cloning)
 "fJO" = (
 /obj/machinery/door/airlock/research{
 	name = "Research Division Access";
@@ -125519,19 +125500,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/nanite)
-"jnn" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/sign/warning/nosmoking{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/item/paper/fluff/cloning,
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "juf" = (
 /obj/machinery/atmospherics/components/binary/valve,
 /obj/effect/turf_decal/stripes/line{
@@ -125771,15 +125739,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/library)
-"kUm" = (
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "kXP" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -126177,6 +126136,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/morgue)
+"mLe" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/sign/warning/nosmoking{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/item/paper/fluff/cloning,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "mMY" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/vending/snack/random,
@@ -126208,6 +126180,25 @@
 /obj/machinery/bounty_board,
 /turf/closed/wall/r_wall,
 /area/security/execution/transfer)
+"mYp" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/status_display/evac{
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/genetics/cloning)
 "mZp" = (
 /obj/machinery/camera{
 	c_tag = "Medbay - Morgue";
@@ -127757,6 +127748,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"wmY" = (
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "wsq" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/portable_atmospherics/canister/water_vapor,
@@ -169409,7 +169409,7 @@ dit
 cma
 cfl
 dlV
-fFp
+mYp
 dpm
 dqZ
 dst
@@ -169666,7 +169666,7 @@ ccQ
 cmj
 cfm
 dlV
-jnn
+mLe
 dpn
 dra
 dsu
@@ -169923,7 +169923,7 @@ ccR
 cml
 cfn
 dlV
-kUm
+wmY
 dpo
 dpo
 dsv

@@ -44676,22 +44676,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
-"bIr" = (
-/obj/machinery/computer/cloning{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "bIs" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -44844,14 +44828,6 @@
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
-"bIN" = (
-/obj/machinery/dna_scannernew,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
@@ -65134,26 +65110,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/genetics/cloning)
-"cvw" = (
-/obj/machinery/clonepod{
-	pixel_y = 2
-	},
-/obj/item/radio/intercom{
-	pixel_x = 29
-	},
-/obj/structure/window/reinforced,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/genetics/cloning)
 "cvx" = (
 /obj/machinery/computer/scan_consolenew{
 	dir = 4
@@ -76871,6 +76827,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"iaI" = (
+/obj/item/radio/intercom{
+	pixel_x = 29
+	},
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/genetics/cloning)
 "ibf" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -80615,6 +80588,20 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"rKm" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/item/paper/fluff/cloning,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "rLy" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -81878,6 +81865,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"uyq" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "uGb" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -107443,9 +107437,9 @@ bFe
 csz
 ctz
 cmu
-cvw
-bIr
-bIN
+iaI
+rKm
+uyq
 cqo
 bKt
 czZ

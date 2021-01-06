@@ -57247,16 +57247,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
-"eAc" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "eBF" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -59005,6 +58995,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"jEH" = (
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/paper/fluff/cloning,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "jKc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -59312,18 +59314,6 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/cryopods)
-"kFb" = (
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/item/paper/fluff/cloning,
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "kFK" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -60290,6 +60280,16 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
+"nEe" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "nFF" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -62303,6 +62303,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"tme" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/shower{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "tpq" = (
 /obj/item/coin/silver{
 	pixel_x = 7;
@@ -62340,19 +62353,6 @@
 /obj/effect/turf_decal/bot_white/right,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
-"tpy" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/machinery/shower{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "tqk" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -104976,7 +104976,7 @@ bsu
 fzU
 aWX
 bnW
-eAc
+nEe
 bua
 bzd
 bhh
@@ -105233,7 +105233,7 @@ bpE
 btk
 aCH
 bnX
-kFb
+jEH
 bua
 bBL
 bhh
@@ -105490,7 +105490,7 @@ bpE
 bti
 bsL
 bnY
-tpy
+tme
 bua
 bBK
 bwz
