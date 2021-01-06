@@ -575,7 +575,7 @@
 		var/obj/item/scalpel/advanced/LS = locate() in R.module.modules
 		var/obj/item/retractor/advanced/MP = locate() in R.module.modules
 		var/obj/item/cautery/advanced/ST = locate() in R.module.modules
-		if(LS)
+		if(LS || MP || ST)
 			to_chat(user, "<span class='warning'>This unit is already equipped with an advanced surgical kit.</span>")
 			return FALSE
 
