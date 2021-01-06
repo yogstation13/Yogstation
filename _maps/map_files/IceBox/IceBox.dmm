@@ -57247,6 +57247,16 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"eAc" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "eBF" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -59302,6 +59312,18 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/cryopods)
+"kFb" = (
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/paper/fluff/cloning,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "kFK" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -59727,19 +59749,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"lQs" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/machinery/shower{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "lQG" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -62065,18 +62074,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
-"sEy" = (
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/item/paper/fluff/cloning,
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "sHQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -62343,6 +62340,19 @@
 /obj/effect/turf_decal/bot_white/right,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+"tpy" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/shower{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "tqk" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -63135,16 +63145,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"vSf" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "vSD" = (
 /obj/machinery/pipedispenser,
 /obj/structure/extinguisher_cabinet{
@@ -104976,7 +104976,7 @@ bsu
 fzU
 aWX
 bnW
-vSf
+eAc
 bua
 bzd
 bhh
@@ -105233,7 +105233,7 @@ bpE
 btk
 aCH
 bnX
-sEy
+kFb
 bua
 bBL
 bhh
@@ -105490,7 +105490,7 @@ bpE
 bti
 bsL
 bnY
-lQs
+tpy
 bua
 bBK
 bwz
