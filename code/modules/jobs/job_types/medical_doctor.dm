@@ -8,6 +8,7 @@
 	spawn_positions = 3
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
+	job_skills = list(SKILL_MEDICAL, SKILL_MEDICAL_ADVANCED)
 
 	outfit = /datum/outfit/job/doctor
 

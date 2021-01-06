@@ -9,6 +9,7 @@
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
 	var/lawyers = 0 //Counts lawyer amount
+	job_skills = list(SKILL_LAWYER)
 
 	outfit = /datum/outfit/job/lawyer
 

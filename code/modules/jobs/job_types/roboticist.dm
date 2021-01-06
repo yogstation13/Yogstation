@@ -10,6 +10,7 @@
 	selection_color = "#ffeeff"
 	exp_requirements = 60
 	exp_type = EXP_TYPE_CREW
+	job_skills = list(SKILL_SCIENCE, SKILL_ROBOTICS)
 
 	outfit = /datum/outfit/job/roboticist
 

@@ -8,6 +8,7 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#bbe291"
+	job_skills = list(SKILL_JANITOR)
 
 	outfit = /datum/outfit/job/janitor
 

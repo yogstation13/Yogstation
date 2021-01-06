@@ -1,6 +1,7 @@
 /datum/mind
 	var/quiet_round = FALSE //Won't be picked as target in most cases
 	var/accent_name = null // The name of the accent this guy has. NULL implies no accent
+	var/list/skills = list() // You're a mind which means you're smart and possess skills!
 
 
 /datum/mind/proc/vampire_hook()

@@ -95,16 +95,18 @@ GENE SCANNER
 	return BRUTELOSS
 
 /obj/item/healthanalyzer/attack_self(mob/user)
-	if(!scanmode)
-		to_chat(user, "<span class='notice'>You switch the health analyzer to scan chemical contents.</span>")
-		scanmode = 1
-	else
-		to_chat(user, "<span class='notice'>You switch the health analyzer to check physical health.</span>")
-		scanmode = 0
+	if(do_after(user, skill = SKILL_MEDICAL, skill_delay = 10, target = src))
+		if(!scanmode)
+			to_chat(user, "<span class='notice'>You switch the health analyzer to scan chemical contents.</span>")
+			scanmode = 1
+		else
+			to_chat(user, "<span class='notice'>You switch the health analyzer to check physical health.</span>")
+			scanmode = 0
 
 /obj/item/healthanalyzer/attack(mob/living/M, mob/living/carbon/human/user)
 	flick("[icon_state]-scan", src)	//makes it so that it plays the scan animation upon scanning, including clumsy scanning
-
+	if(!do_after(user, skill = SKILL_MEDICAL, target = src))
+		return
 	// Clumsiness/brain damage check
 	if ((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(50))
 		to_chat(user, "<span class='notice'>You stupidly try to analyze the floor's vitals!</span>")

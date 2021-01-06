@@ -8,6 +8,7 @@
 	spawn_positions = 2
 	supervisors = "the head of personnel"
 	selection_color = "#bbe291"
+	job_skills = list(SKILL_BOTANY)
 
 	outfit = /datum/outfit/job/botanist
 

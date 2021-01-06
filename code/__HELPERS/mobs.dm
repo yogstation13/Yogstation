@@ -1,3 +1,5 @@
+#define HAS_SKILL(target, skill) (target.mind.skills ? (target.mind.skills[skill] ? TRUE : FALSE) : FALSE)
+
 /proc/random_blood_type()
 	return pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
@@ -247,9 +249,18 @@ GLOBAL_LIST_EMPTY(species_list)
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null, stayStill = TRUE)
+/proc/do_after(mob/user, var/delay = 0, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null, stayStill = TRUE, var/skill = "undefined", skill_required = FALSE, skill_delay = 30)
 	if(!user)
 		return 0
+	if(skill != "undefined") // skills are required here
+		if(!HAS_SKILL(user, skill) && !HAS_SKILL(user, "divine")) 
+			if(skill_required)
+				to_chat(user,"<span class='warning'> You need advanced [skill] skill in order to perform this task.")
+				return 0
+			else
+				to_chat(user,"<span class='notice'> You struggle as you do not have [skill] skill.")
+				delay = delay + skill_delay
+
 	var/atom/Tloc = null
 	if(target && !isturf(target))
 		Tloc = target.loc

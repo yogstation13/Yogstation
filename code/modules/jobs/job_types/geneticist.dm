@@ -10,6 +10,7 @@
 	selection_color = "#d4ebf2"
 	exp_type = EXP_TYPE_CREW
 	exp_requirements = 60
+	job_skills = list(SKILL_MEDICAL, SKILL_GENETICS)
 
 	outfit = /datum/outfit/job/geneticist
 

@@ -8,6 +8,7 @@
 	spawn_positions = 3
 	supervisors = "the quartermaster and the head of personnel"
 	selection_color = "#dcba97"
+	job_skills = list(SKILL_MINING)
 
 	outfit = /datum/outfit/job/miner
 

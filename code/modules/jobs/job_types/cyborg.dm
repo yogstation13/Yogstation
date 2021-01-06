@@ -11,6 +11,7 @@
 	minimal_player_age = 21
 	exp_requirements = 120
 	exp_type = EXP_TYPE_CREW
+	job_skills = list(SKILL_DEBUG) // silicons and AI get debug to bypass skill checks until there is a need to give AI or cyborg specific skills
 
 	display_order = JOB_DISPLAY_ORDER_CYBORG
 

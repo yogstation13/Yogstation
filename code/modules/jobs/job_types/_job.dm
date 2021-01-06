@@ -35,6 +35,9 @@
 	//Sellection screen color
 	var/selection_color = "#ffffff"
 
+	// skills people with this job have
+	var/list/job_skills = list(SKILL_PLACEHOLDER)
+
 
 	//If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/req_admin_notify
@@ -106,6 +109,7 @@
 		for(var/t in mind_traits)
 			ADD_TRAIT(H.mind, t, JOB_TRAIT)
 	H.mind.add_employee(/datum/corporation/nanotrasen)
+	H.mind.skills = job_skills // we keep skills in the body 
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)

@@ -8,6 +8,7 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
+	job_skills = list(SKILL_ARTIST)
 
 	outfit = /datum/outfit/job/artist
 

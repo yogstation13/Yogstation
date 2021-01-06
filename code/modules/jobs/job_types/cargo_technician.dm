@@ -8,6 +8,7 @@
 	spawn_positions = 2
 	supervisors = "the quartermaster and the head of personnel"
 	selection_color = "#dcba97"
+	job_skills = list(SKILL_CARGO)
 
 	outfit = /datum/outfit/job/cargo_tech
 
