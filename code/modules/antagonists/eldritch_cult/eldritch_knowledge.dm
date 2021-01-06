@@ -300,7 +300,7 @@
 	route = "Start"
 	required_shit_list = "A bible, a sheet of human skin, a pen, and a pair of eyes."
 
-/datum/eldritch_knowledge/clippy
+/datum/eldritch_knowledge/recall
 	name = "Recall Ritual"
 	desc = "Activate a transmutation rune after placing your Codex Cicatrix on it to recall a compact list of your known rituals, selecting one will show its required objects."
 	gain_text = "FUCK"
@@ -308,19 +308,19 @@
 	route = "Start"
 	required_atoms = list(/obj/item/forbidden_book)
 
-/datum/eldritch_knowledge/clippy/on_finished_recipe(mob/living/user,list/atoms,loc)
-	var/list/datum/eldritch_knowledge/clippy_list = list()
+/datum/eldritch_knowledge/recall/on_finished_recipe(mob/living/user,list/atoms,loc)
+	var/list/datum/eldritch_knowledge/recall_list = list()
 	var/datum/antagonist/heretic/cultie = user.mind.has_antag_datum(/datum/antagonist/heretic)
 	var/list/knowledge = cultie.get_all_knowledge()
 	for(var/X in knowledge)
 		var/datum/eldritch_knowledge/EK = knowledge[X]
 		if(!EK.required_shit_list)
 			continue
-		clippy_list[EK.name] = EK.required_shit_list
-	var/ctrlf = input(user, "Select a ritual to recall its reagents.", "Clippy") as null | anything in clippy_list
+		recall_list[EK.name] = EK.required_shit_list
+	var/ctrlf = input(user, "Select a ritual to recall its reagents.", "Recall Knowledge") as null | anything in recall_list
 	if(ctrlf)
-		to_chat(user, "<span class='cult'>Transmutation requirements for [ctrlf]: [clippy_list[ctrlf]]</span>")
+		to_chat(user, "<span class='cult'>Transmutation requirements for [ctrlf]: [recall_list[ctrlf]]</span>")
 	return TRUE
 
-/datum/eldritch_knowledge/clippy/cleanup_atoms(list/atoms)
+/datum/eldritch_knowledge/recall/cleanup_atoms(list/atoms)
 	return
