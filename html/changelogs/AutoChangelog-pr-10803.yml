@@ -1,0 +1,6 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "nerve support nanites are 50% less effective at reducing stuns"
+  - tweak: "armor nanites have had their armor values reduced from 50/35 to 30/25 melee/laser and ballistic/energy"
+  - tweak: "nanite stimulants are now 50% weaker for stamina healing and have a 0.25 speed boost down from 1"
