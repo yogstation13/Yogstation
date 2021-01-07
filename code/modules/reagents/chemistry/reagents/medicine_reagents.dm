@@ -953,6 +953,25 @@
 		. = 1
 	..()
 
+/datum/reagent/medicine/stimulants/nanite
+	name = "Nano-Stimulants"
+	description = "Nanite synthesized muscle stimulation mix that temporarily increases speed and stun resistance slightly. Overdose causes weakness and toxin damage."
+
+/datum/reagent/medicine/stimulants/nanite/on_mob_metabolize(mob/living/L)
+	..()
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.25, blacklisted_movetypes=(FLYING|FLOATING))
+
+/datum/reagent/medicine/stimulants/nanite/on_mob_life(mob/living/carbon/M)
+	if(M.health < 50 && M.health > 0)
+		M.adjustOxyLoss(-1*REM, 0)
+		M.adjustToxLoss(-1*REM, 0)
+		M.adjustBruteLoss(-1*REM, 0)
+		M.adjustFireLoss(-1*REM, 0)
+	M.AdjustAllImmobility(-20, FALSE)
+	M.adjustStaminaLoss(-15*REM, 0)
+	..()
+	. = 1
+
 /datum/reagent/medicine/insulin
 	name = "Insulin"
 	description = "Increases sugar depletion rates."
