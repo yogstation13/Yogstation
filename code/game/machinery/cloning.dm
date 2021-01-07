@@ -177,8 +177,9 @@ GLOBAL_VAR_INIT(clones, 0)
 			update_icon()
 			return NONE
 		if(clonemind.current)
-			var/tdelta = round(world.time - clonemind.current.timeofdeath)
-			if(tdelta < (DEFIB_TIME_LIMIT * 5))
+			var/mob/living/carbon/human/cloneperson = clonemind.current
+			var/tdelta = round(world.time - cloneperson.timeofdeath)
+			if((tdelta < (DEFIB_TIME_LIMIT * 5)) && cloneperson.can_defib())
 				return NONE
 		current_insurance = insurance
 	attempting = TRUE //One at a time!!

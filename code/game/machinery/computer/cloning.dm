@@ -549,7 +549,7 @@
 		return
 	if(mob_occupant)
 		var/tdelta = round(world.time - mob_occupant.timeofdeath)
-		if(tdelta < (DEFIB_TIME_LIMIT * 5))
+		if((tdelta < (DEFIB_TIME_LIMIT * 5)) && mob_occupant.can_defib())
 			to_chat(user, "<span class='danger'>Subject died [DisplayTimeText(tdelta)] ago, defibrillation may be possible! Cloning of subject disabled.</span>")
 			playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
 			return
