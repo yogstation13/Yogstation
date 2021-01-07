@@ -381,6 +381,9 @@
 
 // Psi Web code //
 
+/datum/antagonist/darkspawn/ui_state(mob/user)
+	return GLOB.always_state
+
 /datum/antagonist/darkspawn/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
