@@ -21255,19 +21255,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"bjm" = (
-/obj/structure/table,
-/obj/item/hand_labeler,
-/obj/item/hand_labeler,
-/obj/machinery/requests_console{
-	department = "Cargo Bay";
-	departmentType = 2;
-	pixel_y = 30
-	},
-/obj/item/clothing/head/soft,
-/obj/item/clothing/head/soft,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "bjo" = (
 /obj/machinery/camera{
 	c_tag = "Cargo Bay North"
@@ -24353,19 +24340,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"btt" = (
-/obj/structure/table,
-/obj/item/folder/yellow,
-/obj/item/storage/firstaid/regular{
-	pixel_x = 6;
-	pixel_y = -5
-	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -26
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "btu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -25215,11 +25189,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"bvZ" = (
-/obj/structure/table,
-/obj/machinery/computer/stockexchange,
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "bwa" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -34419,6 +34388,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
+"cOW" = (
+/obj/structure/table,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/item/storage/firstaid/regular,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "cPo" = (
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/darkblue{
@@ -48721,6 +48699,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"nrf" = (
+/obj/structure/table,
+/obj/item/folder/yellow,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "nrj" = (
 /obj/structure/rack,
 /obj/item/storage/briefcase,
@@ -51896,10 +51879,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"pDH" = (
-/obj/structure/table,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "pEf" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -57986,6 +57965,17 @@
 "tSz" = (
 /turf/open/floor/plasteel,
 /area/science/nanite)
+"tSG" = (
+/obj/structure/table,
+/obj/machinery/requests_console{
+	department = "Cargo Bay";
+	departmentType = 2;
+	pixel_y = 30
+	},
+/obj/item/clothing/head/soft,
+/obj/item/clothing/head/soft,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "tSO" = (
 /obj/structure/bookcase/random/reference,
 /turf/open/floor/carpet,
@@ -59660,6 +59650,12 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
+"vdA" = (
+/obj/structure/table,
+/obj/item/hand_labeler,
+/obj/item/hand_labeler,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "vdI" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "misclab";
@@ -85169,7 +85165,7 @@ aPA
 gJt
 bcb
 aZE
-pDH
+vdA
 bjr
 bjh
 bmh
@@ -85426,7 +85422,7 @@ bcu
 bfe
 fRZ
 aZE
-bjm
+tSG
 bjr
 bjh
 bmh
@@ -87489,8 +87485,8 @@ bmt
 boN
 bqo
 brO
-btt
-bvZ
+cOW
+nrf
 hxY
 bxu
 bxx
