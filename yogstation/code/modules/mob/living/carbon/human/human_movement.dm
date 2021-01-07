@@ -6,7 +6,7 @@
 
 /mob/living/carbon/human/update_move_intent_slowdown()
 	var/turf/T = get_turf(src)
-	if(!is_mining_level(T.z))
+	if(T && !is_mining_level(T.z))
 		return ..()
 
 	var/mod = 0
