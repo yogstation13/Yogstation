@@ -4,6 +4,12 @@
 	sync_mind()
 	mind.show_memory(src, 0)
 
+	//Round specific stuff
+	if(SSticker.mode)
+		switch(SSticker.mode.name)
+			if("sandbox")
+				CanBuild()
+
 	update_damage_hud()
 	update_health_hud()
 
