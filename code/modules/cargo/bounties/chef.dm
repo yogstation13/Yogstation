@@ -120,7 +120,7 @@
 	description = "Here at Nanotrasen we consider employees to be family. And you know what families love? Pancakes. Ship a baker's dozen."
 	reward = 5000
 	required_count = 13
-	wanted_types = list(/datum/crafting_recipe/food/pancakes)
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/pancakes)
 
 /datum/bounty/item/chef/nuggies
 	name = "Chicken Nuggets"
