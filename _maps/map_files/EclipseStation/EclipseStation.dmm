@@ -50022,7 +50022,6 @@
 	dir = 8;
 	network = list("ss13","Cargo","Command")
 	},
-/obj/machinery/computer/stockexchange,
 /obj/machinery/status_display/supply{
 	pixel_x = 32
 	},
@@ -67414,7 +67413,6 @@
 	dir = 8
 	},
 /obj/structure/table,
-/obj/machinery/computer/stockexchange,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -78001,7 +77999,6 @@
 /area/quartermaster/office)
 "dec" = (
 /obj/structure/table,
-/obj/machinery/computer/stockexchange,
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
