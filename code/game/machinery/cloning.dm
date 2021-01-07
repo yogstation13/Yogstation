@@ -176,6 +176,10 @@ GLOBAL_VAR_INIT(clones, 0)
 			icon_state = "pod_g"
 			update_icon()
 			return NONE
+		if(clonemind.current)
+			var/tdelta = round(world.time - clonemind.current.timeofdeath)
+			if(tdelta < (DEFIB_TIME_LIMIT * 5))
+				return NONE
 		current_insurance = insurance
 	attempting = TRUE //One at a time!!
 	countdown.start()

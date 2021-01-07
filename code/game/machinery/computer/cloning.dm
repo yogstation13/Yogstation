@@ -547,6 +547,12 @@
 		scantemp = "<font class='bad'>Subject's brain is not responding to scanning stimuli.</font>"
 		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 		return
+	if(mob_occupant)
+		var/tdelta = round(world.time - mob_occupant.timeofdeath)
+		if(tdelta < (DEFIB_TIME_LIMIT * 5))
+			to_chat(user, "<span class='danger'>Subject died [DisplayTimeText(tdelta)] ago, defibrillation may be possible! Cloning of subject disabled.</span>")
+			playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
+			return
 	if(HAS_TRAIT(mob_occupant, TRAIT_BADDNA))
 		scantemp = "<font class='bad'>Subject's DNA is too damaged to initiate cloning procedure.</font>"
 		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
