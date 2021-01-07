@@ -17,7 +17,6 @@
 	icon_state = "filingcabinet"
 	density = TRUE
 	anchored = TRUE
-	var/colour = null
 
 /obj/structure/filingcabinet/chestdrawer
 	name = "chest drawer"
@@ -56,9 +55,10 @@
 	colour = "#498FBD" // Medical Color
 
 /obj/structure/filingcabinet/colored
+	/// Colours for the coloured subtype
+	var/colour = "#2e2c2b"
 	icon_state = "coloredcabinet_frame"
 	name = "colored cabinet"
-	colour = "#1a1816"
 
 /obj/structure/filingcabinet/colored/update_icon()
 	cut_overlays()
@@ -89,26 +89,15 @@
 		else
 			name = initial(name)
 		return
-	if(istype(P, /obj/item/toy/crayon/spraycan) && istype(src, /obj/structure/filingcabinet/colored)) // Colorizer
-		var/obj/item/toy/crayon/spraycan/paint = P
-		. = TRUE // no afterattack
-		paint.check_empty(user, 1) // Can't cheat this smh
-		var/colour_choice = input(usr, "Cabinet Color?", "Color Change") as null | color
-		if(colour_choice)
-			paint.use_charges(user, 1)
-			colour = colour_choice
-			name = "colored cabinet" // Having a cabinet called 'Purple Cabinet' while it's green colored would be weird
-			playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 5)
-			update_icon() // reset overlays
-		return
 	if(istype(P, /obj/item/paper) || istype(P, /obj/item/folder) || istype(P, /obj/item/photo) || istype(P, /obj/item/documents))
 		if(!user.transferItemToLoc(P, src))
 			return
 		to_chat(user, "<span class='notice'>You put [P] in [src].</span>")
 		if(istype(src, /obj/structure/filingcabinet/colored))
+			var/obj/structure/filingcabinet/colored/cab = src
 			var/mutable_appearance/opentrim = mutable_appearance(icon, "coloredcabinet-open-trim")
 			var/mutable_appearance/open = mutable_appearance(icon, "coloredcabinet-open")
-			opentrim.color = colour
+			opentrim.color = cab.colour
 			var/overlays = list(opentrim, open)
 			add_overlay(overlays)
 			sleep(5)
@@ -171,9 +160,10 @@
 			usr.put_in_hands(P)
 			updateUsrDialog()
 			if(istype(src, /obj/structure/filingcabinet/colored))
+				var/obj/structure/filingcabinet/colored/cab = src
 				var/mutable_appearance/opentrim = mutable_appearance(icon, "coloredcabinet-open-trim")
 				var/mutable_appearance/open = mutable_appearance(icon, "coloredcabinet-open")
-				opentrim.color = colour
+				opentrim.color = cab.colour
 				var/overlays = list(opentrim, open)
 				add_overlay(overlays)
 				sleep(5)
@@ -182,6 +172,21 @@
 				icon_state = "[initial(icon_state)]-open"
 				sleep(5)
 				icon_state = initial(icon_state)
+
+/obj/structure/filingcabinet/colored/attackby(obj/item/P, mob/user, params)
+	..()
+	if(istype(P, /obj/item/toy/crayon/spraycan)) // Colorizer
+		var/obj/item/toy/crayon/spraycan/paint = P
+		. = TRUE // no afterattack
+		paint.check_empty(user, 1) // Can't cheat this smh
+		var/colour_choice = input(usr, "Cabinet Color?", "Color Change") as null | color
+		if(colour_choice)
+			paint.use_charges(user, 1)
+			colour = colour_choice
+			name = "colored cabinet" // Having a cabinet called 'Purple Cabinet' while it's green colored would be weird
+			playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 5)
+			update_icon() // reset overlays
+		return
 
 
 /*
