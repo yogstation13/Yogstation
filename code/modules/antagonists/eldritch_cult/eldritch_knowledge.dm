@@ -303,7 +303,7 @@
 /datum/eldritch_knowledge/recall
 	name = "Recall Ritual"
 	desc = "Activate a transmutation rune after placing your Codex Cicatrix on it to recall a compact list of your known rituals, selecting one will show its required objects."
-	gain_text = "FUCK"
+	gain_text = "Your thoughts begin to echo inside your head."
 	cost = 0
 	route = "Start"
 	required_atoms = list(/obj/item/forbidden_book)
