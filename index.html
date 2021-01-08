@@ -30,7 +30,7 @@ General Public License version 3.
 
 <h3 id="modules">Modules
 <aside>(71 modules,
-    519/6431 macros, 8.1%)</aside></h3>
+    521/6433 macros, 8.1%)</aside></h3>
 <ul class="index-tree">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -141,7 +141,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(288 detailed/796 documented/22846 total, 3.5%)</aside></h3>
+<aside>(292 detailed/801 documented/22854 total, 3.5%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -534,6 +534,7 @@ this is the way to do it cleanly and properly.</li>
     <li><a href="datum/parsed_map.html" title="&#x2F;datum&#x2F;parsed_map">parsed_map</a></li>
     <li><a href="datum/powernet.html" title="&#x2F;datum&#x2F;powernet">powernet</a></li>
     <li><a href="datum/preferences.html" title="&#x2F;datum&#x2F;preferences">preferences</a></li>
+    <li><a href="datum/quirk.html" title="&#x2F;datum&#x2F;quirk">Test Quirk</a></li>
     <li class="has-children"><a href="datum/reagent.html" title="&#x2F;datum&#x2F;reagent">Reagent</a> - A single reagent<ul class="index-tree">
     <li><span class="no-substance">colorful_reagent&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;reagent&#x2F;colorful_reagent&#x2F;crayonpowder">Crayon Powder</span> - Coloured Crayon Powder</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;reagent&#x2F;consumable">consumable</span><ul class="index-tree">
@@ -829,7 +830,11 @@ It's attacks are as follows:</li>
     </ul></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;borg">borg</span> - Cyborg Spec Items<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;sight">sight</span> - HUD/SIGHT things</li>
-    <li><a href="obj/item/borg/upgrade.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade">borg upgrade module.</a></li>
+    <li class="has-children"><a href="obj/item/borg/upgrade.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade">borg upgrade module.</a><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;ai">B.O.R.I.S. module</span> - Removes new surgery tools
+Puts in old surgery tools</li>
+    <li><a href="obj/item/borg/upgrade/surgerykit.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;surgerykit">medical cyborg advanced surgical kit</a></li>
+    </ul></li>
     </ul></li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;card">card</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;card&#x2F;mining_access_card">mining access card</span> - Conscript kit</li>
@@ -1113,7 +1118,9 @@ Enables crew to create requests, crew can sign up to perform the request, and th
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;shuttle&#x2F;mining">mining shuttle console</span> - Shuttle Computer</li>
     </ul></li>
     </ul></li>
-    <li><span class="no-substance">door&#x2F;</span><a href="obj/machinery/door/airlock.html" title="&#x2F;obj&#x2F;machinery&#x2F;door&#x2F;airlock">airlock</a></li>
+    <li class="has-children"><a href="obj/machinery/door.html" title="&#x2F;obj&#x2F;machinery&#x2F;door">door</a><ul class="index-tree">
+    <li><a href="obj/machinery/door/airlock.html" title="&#x2F;obj&#x2F;machinery&#x2F;door&#x2F;airlock">airlock</a></li>
+    </ul></li>
     <li><span class="no-substance">doppler_array&#x2F;research&#x2F;</span><a href="obj/machinery/doppler_array/research/science.html" title="&#x2F;obj&#x2F;machinery&#x2F;doppler_array&#x2F;research&#x2F;science">science</a></li>
     <li><a href="obj/machinery/electrolyzer.html" title="&#x2F;obj&#x2F;machinery&#x2F;electrolyzer">space electrolyzer</a></li>
     <li><span class="no-substance">gateway&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;gateway&#x2F;centeraway">centeraway</span> - Away</li>
@@ -1200,6 +1207,7 @@ you want to show on the map, which you usually attach to &quot;vis_contents&quot
     <li><span class="no-substance">cult&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;destructible&#x2F;cult&#x2F;pillar">obsidian pillar</span> - WE'RE IN THE ENDGAME NOW</li>
     <li><a href="obj/structure/destructible/honkmother.html" title="&#x2F;obj&#x2F;structure&#x2F;destructible&#x2F;honkmother">The Honkmother</a></li>
     </ul></li>
+    <li><span class="no-substance">filingcabinet&#x2F;</span><a href="obj/structure/filingcabinet/colored.html" title="&#x2F;obj&#x2F;structure&#x2F;filingcabinet&#x2F;colored">colored cabinet</a></li>
     <li><span class="no-substance">girder&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;girder&#x2F;cult">runed girder</span> - cult girder</li>
     <li><a href="obj/structure/grille.html" title="&#x2F;obj&#x2F;structure&#x2F;grille">grille</a></li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;mecha_wreckage">exosuit wreckage</span> - Mecha wreckage<ul class="index-tree">
@@ -1255,7 +1263,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/290412364001ed205197dc4da604192e0713d116">2904123</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/6921ade5cb0aa88256df7facd809f5b89bd5cf9f">6921ade</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.3.0</a></footer>
 </body>
 </html>
