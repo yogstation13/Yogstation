@@ -1,14 +1,14 @@
 /*
 	Gang stashbox
-	Money can be inserted into it for gang to use
+	Money can be inserted into it for the gang to use
 	but money cannot be taken out directly
-	To widthdraw money, one has to use the gangtool
+	To withdraw money, one has to use the gangtool
 	Destroying the stashbox will drop a significant
 	portion of the money inside, but not all of it
 */
 /obj/item/stashbox
 	name = "stashbox"
-	desc = "A secure stash box criminals use to hide their money"
+	desc = "A secure stash box criminals use to hide their money."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "depositbox"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -71,7 +71,7 @@
 /*
 	Smugglers Beacon
 	Floor teleport structure
-	When alt-clicked, will sell off the items ontop of it
+	When alt-clicked, will sell off the items on top of it
 	Reusing piratepad code
 */
 /obj/machinery/smugglerbeacon
@@ -148,4 +148,4 @@
 /datum/export/gang/recruitment_pen
 	cost = 500
 	unit_name = "recruitment pen"
-	export_types =list(/obj/item/pen/gang)
+	export_types = list(/obj/item/pen/gang)

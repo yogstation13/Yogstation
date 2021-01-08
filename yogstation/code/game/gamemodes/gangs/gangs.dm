@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(gangs)
 		restricted_jobs += "Assistant"
 
 	//Spawn more bosses depending on server population
-	var/gangs_to_create = 4
+	var/gangs_to_create = 2
 	if(prob(num_players()) && num_players() > 1.5*required_players)
 		gangs_to_create++
 	if(prob(num_players()) && num_players() > 2*required_players)

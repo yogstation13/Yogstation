@@ -449,7 +449,6 @@
 		report += "<span class='greentext'>The [name] gang was successful in their mission!</span>"
 	else
 		report += "<span class='redtext'>The [name] gang has failed!</span>"
-	
 	report += "The [name] gang bosses were:"
 	report += printplayerlist(leaders)
 	report += "The [name] [member_name]s were:"
@@ -522,7 +521,6 @@
 		registered_account.adjust_money(passive_paycheck)
 		message += "Your gang now has <b>[influence] influence</b> and <b>[registered_account.account_balance] credits</b>.<BR>"
 	check_milestones()
-	to_chat(world, "Debug text: checking milestones")
 	message_gangtools(message)
 	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
 
@@ -598,12 +596,10 @@ Not sure if I need this anymore, since its called in gang_items purchase()
 	for(var/datum/milestone/M in milestones)
 		if(M.check_completion())
 			if(M.repeatable)
-				to_chat(world, "Debug text: repeatable")
 				max_members++
 				forge_milestone_type()
 				milestones.Remove(M)
 			else
-				to_chat(world, "Debug text: not repeatable")
 				max_members++
 				milestones.Remove(M)
 
@@ -616,7 +612,6 @@ Not sure if I need this anymore, since its called in gang_items purchase()
 										"control",
 										)
 	if(milestones.len) // We dont want to give them more if they already got some
-		to_chat(world, "Debug text: Force Milestones failed")
 		return
 	for(var/i = 1 to REPEATABLE_MILESTONE_AMOUNT)
 		switch(pick_n_take(possible_milestones))
@@ -653,18 +648,15 @@ Not sure if I need this anymore, since its called in gang_items purchase()
 /datum/team/gang/proc/forge_milestone_type()
 	for(var/datum/milestone/M in milestones)
 		if(M.tier == M.max_tier)
-			to_chat(world, "Debug text: max tier")
 			return // You've completed that milestone fully.
 		switch(M.milestone_type)
 			if("money")
 				if(M.check_completion())
 					if(M.tier == 1)
-						to_chat(world, "Debug text: i see tier 1, giving tier 2")
 						var/datum/milestone/money/tier2/new_milestone = new
 						new_milestone.team = src
 						milestones |= new_milestone
 					else if(M.tier == 2)
-						to_chat(world, "Debug text: i see tier 2, giving tier 3")
 						var/datum/milestone/money/tier3/new_milestone = new
 						new_milestone.team = src
 						milestones |= new_milestone
