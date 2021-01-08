@@ -9,7 +9,7 @@
 	spawn_positions = 1
 	supervisors = "the Captain"
 	selection_color = "#ddddff"
-	req_admin_notify = 1
+	req_admin_notify = TRUE
 	space_law_notify = TRUE
 	exp_requirements = 300
 	exp_type = EXP_TYPE_CREW
