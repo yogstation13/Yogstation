@@ -1,9 +1,4 @@
-/obj/item/clothing/under/plasmaman/blueshield
-	name = "blueshield envirosuit"
-	desc = "An envirosuit designed for plasmamen employed as the blueshield."
-	icon_state = "bs_envirosuit"
-	item_state = "bs_envirosuit"
-	item_color = "bs_envirosuit"/obj/item/clothing/under/plasmaman/cargo
+/obj/item/clothing/under/plasmaman/cargo
 	name = "cargo envirosuit"
 	desc = "A joint envirosuit used by plasmamen cargo techs, due to the logistical problems of differenciating the two with the length of their pant legs."
 	icon_state = "cargo_envirosuit"
@@ -23,7 +18,6 @@
 	icon_state = "explorer_envirosuit"
 	item_state = "explorer_envirosuit"
 	item_color = "explorer_envirosuit"
-
 
 /obj/item/clothing/under/plasmaman/chef
 	name = "chef's envirosuit"
@@ -73,7 +67,6 @@
 	icon_state = "botany_envirosuit"
 	item_state = "botany_envirosuit"
 	item_color = "botany_envirosuit"
-
 
 /obj/item/clothing/under/plasmaman/mime
 	name = "mime's envirosuit"
