@@ -326,6 +326,14 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 	export_price = 5000
 
+/datum/techweb_node/cyborg_upg_surgkit
+	id = "cyborg_upg_surgkit"
+	display_name = "Cyborg Upgrade: Medical Advanced Surgical Kit"
+	description = "Advanced Surgical Kit upgrade design for medical cyborgs."
+	prereq_ids = list("cyborg_upg_med", "exp_tools")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
+	export_price = 2000
+
 /datum/techweb_node/ai
 	id = "ai"
 	display_name = "Artificial Intelligence"
