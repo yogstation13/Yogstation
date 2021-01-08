@@ -179,9 +179,9 @@
 				sleep(5 SECONDS)
 				to_chat(src, "Receiving control information from APC.")
 				sleep(0.2 SECONDS)
-				apc_override = 1
-				theAPC.ui_interact(src)
-				apc_override = 0
+				to_chat(src, "<A HREF=?src=[REF(src)];emergencyAPC=[TRUE]>APC ready for connection.</A>")
+				apc_override = theAPC
+				apc_override.ui_interact(src)
 				aiRestorePowerRoutine = POWER_RESTORATION_APC_FOUND
 		sleep(5 SECONDS)
 		theAPC = null
@@ -190,10 +190,13 @@
 	if(aiRestorePowerRoutine)
 		if(aiRestorePowerRoutine == POWER_RESTORATION_APC_FOUND)
 			to_chat(src, "Alert cancelled. Power has been restored.")
+			if(apc_override)
+				to_chat(src, "<span class='notice'>APC backdoor has been closed.</span>") //Fluff for why we have to hack every time.
 		else
 			to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 		aiRestorePowerRoutine = POWER_RESTORATION_OFF
 		set_blindness(0)
+		apc_override = null
 		update_sight()
 
 /mob/living/silicon/ai/proc/ai_lose_power()
