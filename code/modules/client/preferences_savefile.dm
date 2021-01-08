@@ -131,11 +131,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(!ispath(donor_item))
 			donor_item = null
 	if(current_version < 31) //Someone doesn't know how to code and make jukebox and autodeadmin the same thing
-		prefs &= ~DEADMIN_ALWAYS 
-		prefs &= ~DEADMIN_ANTAGONIST
-		prefs &= ~DEADMIN_POSITION_HEAD
-		prefs &= ~DEADMIN_POSITION_SECURITY
-		prefs &= ~DEADMIN_POSITION_SILICON //This last one is technically a no-op but it looks cleaner and less like someone forgot
+		toggles &= ~DEADMIN_ALWAYS 
+		toggles &= ~DEADMIN_ANTAGONIST
+		toggles &= ~DEADMIN_POSITION_HEAD
+		toggles &= ~DEADMIN_POSITION_SECURITY
+		toggles &= ~DEADMIN_POSITION_SILICON //This last one is technically a no-op but it looks cleaner and less like someone forgot
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
