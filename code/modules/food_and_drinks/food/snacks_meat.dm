@@ -43,7 +43,7 @@
 	desc = "Not so delicious rat meat, on a stick."
 	icon_state = "ratkebab"
 	w_class = WEIGHT_CLASS_NORMAL
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("rat meat" = 1, "metal" = 1)
 	foodtype = MEAT | GROSS
 
@@ -52,6 +52,7 @@
 	icon_state = "doubleratkebab"
 	tastes = list("rat meat" = 2, "metal" = 1)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
+	foodtype = MEAT | GROSS
 
 ////////////////////////////////////////////FISH////////////////////////////////////////////
 
