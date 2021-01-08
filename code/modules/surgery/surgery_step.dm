@@ -65,6 +65,7 @@
 
 /datum/surgery_step/proc/initiate(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	surgery.step_in_progress = TRUE
+	var/advance = FALSE
 
 	var/speed_mod = 1
 
@@ -76,7 +77,6 @@
 		speed_mod = tool.toolspeed
 
 	if(do_after(user, time * speed_mod, target = target))
-		var/advance = FALSE
 		var/prob_chance = 100
 
 		if(implement_type)	//this means it isn't a require hand or any item step.
@@ -97,6 +97,7 @@
 				surgery.complete()
 
 	surgery.step_in_progress = FALSE
+	return advance
 
 
 /datum/surgery_step/proc/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)

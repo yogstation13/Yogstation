@@ -188,10 +188,14 @@
 			if (!shuttle.prerequisites_met())
 				to_chat(usr, "<span class='alert'>You have not met the requirements for purchasing this shuttle.</span>")
 				return
+			if(shuttle.emag_buy && !(obj_flags & EMAGGED))
+				return //return silently, only way this could happen is an attempted href exploit
 			var/datum/bank_account/bank_account = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			if (bank_account.account_balance < shuttle.credit_cost)
 				return
 			SSshuttle.shuttle_purchased = SHUTTLEPURCHASE_PURCHASED
+			if(obj_flags & EMAGGED)
+				SSshuttle.emag_shuttle_purchased = TRUE
 			SSshuttle.unload_preview()
 			SSshuttle.existing_shuttle = SSshuttle.emergency
 			SSshuttle.action_load(shuttle)
@@ -400,6 +404,9 @@
 					var/datum/map_template/shuttle/shuttle_template = SSmapping.shuttle_templates[shuttle_id]
 					if (shuttle_template.credit_cost == INFINITY)
 						continue
+					if(shuttle_template.emag_buy)
+						if(!(obj_flags & EMAGGED))
+							continue
 					shuttles += list(list(
 						"name" = shuttle_template.name,
 						"description" = shuttle_template.description,
@@ -444,7 +451,7 @@
 		return FALSE
 	if (SSshuttle.emergency.mode != SHUTTLE_RECALL && SSshuttle.emergency.mode != SHUTTLE_IDLE)
 		return "The shuttle is already in transit."
-	if (SSshuttle.shuttle_purchased == SHUTTLEPURCHASE_PURCHASED)
+	if (SSshuttle.shuttle_purchased == SHUTTLEPURCHASE_PURCHASED  && (SSshuttle.emag_shuttle_purchased || !(obj_flags & EMAGGED)))
 		return "A replacement shuttle has already been purchased."
 	if (SSshuttle.shuttle_purchased == SHUTTLEPURCHASE_FORCED)
 		return "Due to unforseen circumstances, shuttle purchasing is no longer available."

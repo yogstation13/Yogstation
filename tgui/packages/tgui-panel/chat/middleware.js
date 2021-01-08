@@ -31,7 +31,7 @@ const loadChatFromStorage = async store => {
     storage.get('chat-messages'),
   ]);
   // Discard incompatible versions
-  if (state && state.version <= 4) {
+  if (state && state.version <= 5) {
     store.dispatch(loadChat());
     return;
   }

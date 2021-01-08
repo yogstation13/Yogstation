@@ -49,7 +49,7 @@
 	autoclose = TRUE
 	secondsElectrified = MACHINE_NOT_ELECTRIFIED //How many seconds remain until the door is no longer electrified. -1/MACHINE_ELECTRIFIED_PERMANENT = permanently electrified until someone fixes it.
 	assemblytype = /obj/structure/door_assembly
-	normalspeed = 1
+	normalspeed = TRUE
 	explosion_block = 1
 	hud_possible = list(DIAG_AIRLOCK_HUD)
 
@@ -59,35 +59,57 @@
 
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
 
-	var/security_level = 0 //How much are wires secured
-	var/aiControlDisabled = AI_WIRE_NORMAL //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
-	var/hackProof = FALSE // if true, this door can't be hacked by the AI
-	var/secondsMainPowerLost = 0 //The number of seconds until power is restored.
-	var/secondsBackupPowerLost = 0 //The number of seconds until power is restored.
+	/// How much are wires secured
+	var/security_level = 0
+	/// If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
+	var/aiControlDisabled = AI_WIRE_NORMAL
+	/// Can the AI not hack this door
+	var/hackProof = FALSE
+	/// The number of seconds until power is restored.
+	var/secondsMainPowerLost = 0
+	/// The number of seconds until backup power is restored.
+	var/secondsBackupPowerLost = 0
+	/// Is the door currently restoring power
 	var/spawnPowerRestoreRunning = FALSE
-	var/lights = TRUE // bolt lights show by default
+	/// Do bolt lights show up
+	var/lights = TRUE
+	/// Does this airlock scan IDs
 	var/aiDisabledIdScanner = FALSE
+	/// Is the AI currently hacking this door?
 	var/aiHacking = FALSE
-	var/closeOtherId //Cyclelinking for airlocks that aren't on the same x or y coord as the target.
+	/// Cyclelinking for airlocks that aren't on the same x or y coord as the target.
+	var/closeOtherId
+	/// Reference to the other airlock to link with
 	var/obj/machinery/door/airlock/closeOther
+	/// Will it shock someone upon touching it
 	var/justzap = FALSE
-	var/obj/item/electronics/airlock/electronics
-	var/shockCooldown = FALSE //Prevents multiple shocks from happening
-	var/obj/item/doorCharge/charge //If applied, causes an explosion upon opening the door
-	var/obj/item/note //Any papers pinned to the airlock
+	/// Cooldowns for shocks
+	var/shockCooldown = FALSE
+	/// If a charge is on it, explode when the door is opened
+	var/obj/item/doorCharge/charge
+	/// Type of paper pinned to the airlock
+	var/obj/item/note
+	/// Has a airlock charge detonated, prevents interaction
 	var/detonated = FALSE
+	/// Will this airlock go through special effects
 	var/abandoned = FALSE
+	/// Material of inner filling; if its an airlock with glass, this should be set to "glass"
+	var/airlock_material
+
+	var/obj/item/electronics/airlock/electronics
+	var/previous_airlock = /obj/structure/door_assembly //what airlock assembly mineral plating was applied to
+	var/obj/machinery/door/airlock/cyclelinkedairlock
+
+	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
+	var/note_overlay_file = 'icons/obj/doors/airlocks/station/overlays.dmi' //Used for papers and photos pinned to the airlock
+	var/mask_file = 'icons/obj/doors/airlocks/mask_32x32.dmi' // because filters aren't allowed to have icon_states :(
 	var/doorOpen = 'sound/machines/airlock.ogg'
 	var/doorClose = 'sound/machines/airlockclose.ogg'
 	var/doorDeni = 'sound/machines/deniedbeep.ogg' // i'm thinkin' Deni's
 	var/boltUp = 'sound/machines/boltsup.ogg'
 	var/boltDown = 'sound/machines/boltsdown.ogg'
 	var/noPower = 'sound/machines/doorclick.ogg'
-	var/previous_airlock = /obj/structure/door_assembly //what airlock assembly mineral plating was applied to
-	var/airlock_material //material of inner filling; if its an airlock with glass, this should be set to "glass"
-	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
-	var/note_overlay_file = 'icons/obj/doors/airlocks/station/overlays.dmi' //Used for papers and photos pinned to the airlock
-	var/mask_file = 'icons/obj/doors/airlocks/mask_32x32.dmi' // because filters aren't allowed to have icon_states :(
+
 	var/mask_x = 0
 	var/mask_y = 0
 	var/anim_parts = "left=-14,0;right=13,0"
@@ -96,16 +118,21 @@
 	var/note_attachment = "left"
 	var/mask_filter
 
-	var/cyclelinkeddir = 0			//yogs note im keeping this in order to not break stuff (airlock_helpers and shutle doors)
-	var/cyclelinkedx = 0			//yogs start	negative is left positive is right
-	var/cyclelinkedy = 0			//yogs end		negative is down positive is up
-	var/obj/machinery/door/airlock/cyclelinkedairlock
+	var/cyclelinkeddir = 0	//yogs note im keeping this in order to not break stuff (airlock_helpers and shutle doors)
+	/// X-dir to search for a door to link with
+	var/cyclelinkedx = 0
+	/// Y-dir to search for a door to link with
+	var/cyclelinkedy = 0
 	var/shuttledocked = 0
-	var/delayed_close_requested = FALSE // TRUE means the door will automatically close the next time it's opened.
+	/// Will it close automagically next time it's opened
+	var/delayed_close_requested = FALSE
 
+	/// Is it currently being pried open
 	var/prying_so_hard = FALSE
-	var/list/bolt_log //yogs - Who can it be bolting all my doors? Go away, don't come down here no more.
-	var/list/shocking_log //yogs - who electrified this door.
+	/// Log of who is bolting this door
+	var/list/bolt_log
+	/// Log of who is shocking this door
+	var/list/shocking_log
 
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_MEDIUM_INSULATION
@@ -1260,8 +1287,39 @@
 				prying_so_hard = FALSE
 
 
+	if(istype(I, /obj/item/zombie_hand/gamemode))
+		var/obj/item/zombie_hand/gamemode/hands = I
+		var/door_time_multiplier = hands.door_open_modifier
+		var/time_to_open = 50 * door_time_multiplier
+
+
+
+		if(!density)//already open
+			return
+
+		if(welded && !locked)
+			to_chat(user, "<span class='warning'>It's welded, this will take a while...</span>")
+			time_to_open = 120 * door_time_multiplier
+
+		if(locked && !welded)
+			to_chat(user, "<span class='warning'>The bolts are down, it won't budge! Forcing the bolts will take a while...</span>")
+			time_to_open = 100 * door_time_multiplier
+
+		if(locked && welded)
+			to_chat(user, "<span class='warning'>The bolts are down, and it's welded.Forcing the bolts and breaking the seal will take a long while...</span>")
+			time_to_open = 240 * door_time_multiplier
+
+
+		if(hasPower())
+			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
+			if(do_after(user, time_to_open, TRUE, src))
+				open(2)
+				if(density && !open(2))
+					to_chat(user, "<span class='warning'>Despite your attempts, [src] refuses to open.</span>")
+
+
 /obj/machinery/door/airlock/open(forced=0)
-	if( operating || welded || locked || brace) //yogs - brace
+	if( (operating || welded || locked || brace) && !forced) //yogs - brace
 		return FALSE
 	if(!forced)
 		if(!hasPower() || wires.is_cut(WIRE_OPEN))
@@ -1283,6 +1341,11 @@
 
 	if(!density)
 		return TRUE
+	if(forced < 2)
+		if(locked)
+			locked = !locked
+		if(welded)
+			welded = !welded
 	operating = TRUE
 	update_icon(AIRLOCK_OPENING, 1)
 	sleep(1)
@@ -1769,7 +1832,7 @@
 	visible_message("<span class='warning'>[src]'s panel is blown off in a spray of deadly shrapnel!</span>")
 	charge.forceMove(drop_location())
 	charge.ex_act(EXPLODE_DEVASTATE)
-	detonated = 1
+	detonated = TRUE
 	charge = null
 	for(var/mob/living/carbon/human/H in orange(2,src))
 		H.Unconscious(160)

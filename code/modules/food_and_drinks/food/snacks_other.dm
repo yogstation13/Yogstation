@@ -260,7 +260,7 @@
 
 /obj/item/reagent_containers/food/snacks/fivelayerburrito
 	name = "five layer burrito"
-	desc = "5 burritos stacked ontop of eachother, looks suspicously like a layer manifold"
+	desc = "Five burritos stacked on top of each other. It looks suspiciously like a layer manifold."
 	icon_state = "fivelayerburrito"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 12)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5)
@@ -543,8 +543,9 @@
 	name = "Canned Peaches"
 	desc = "A nice can of ripe peaches swimming in their own juices, somehow left untouched."
 	icon_state = "peachcan"
-	grind_results = null
+	list_reagents = list(/datum/reagent/consumable/peachjuice = 8, /datum/reagent/consumable/sugar = 4, /datum/reagent/consumable/nutriment = 4)
 	juice_results = list(/datum/reagent/consumable/peachjuice = 20, /datum/reagent/consumable/sugar = 8, /datum/reagent/consumable/nutriment = 2)
+	grind_results = null
 	filling_color = "#ffdf26"
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("peaches" = 7, "tin" = 1)

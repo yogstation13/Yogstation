@@ -281,7 +281,7 @@
 	},
 /area/template_noop)
 "iS" = (
-/obj/structure/bookcase/random/adult,
+/obj/structure/bookcase/random/religion,
 /turf/open/floor/wood,
 /area/template_noop)
 "nV" = (

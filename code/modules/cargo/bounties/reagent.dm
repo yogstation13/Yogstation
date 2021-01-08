@@ -1,5 +1,5 @@
 /datum/bounty/reagent
-	var/required_volume = 10
+	var/required_volume = 25
 	var/shipped_volume = 0
 	var/datum/reagent/wanted_reagent
 
@@ -175,7 +175,6 @@
 		/datum/reagent/consumable/frostoil,\
 		/datum/reagent/toxin/slimejelly,\
 		/datum/reagent/teslium/energized_jelly,\
-		/datum/reagent/toxin/skewium,\
 		/datum/reagent/toxin/mimesbane,\
 		/datum/reagent/medicine/strange_reagent,\
 		/datum/reagent/nitroglycerin,\

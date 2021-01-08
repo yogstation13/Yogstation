@@ -14,7 +14,7 @@
 	level = 1
 	layer = GAS_SCRUBBER_LAYER
 	shift_underlay_only = FALSE
-
+	showpipe = FALSE
 	var/id_tag = null
 	var/scrubbing = SCRUBBING //0 = siphoning, 1 = scrubbing
 
@@ -308,10 +308,12 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2
 	piping_layer = 2
 	icon_state = "scrub_map_on-2"
+	showpipe = FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4
 	piping_layer = 4
 	icon_state = "scrub_map_on-4"
+	showpipe = FALSE
 
 #undef SIPHONING
 #undef SCRUBBING

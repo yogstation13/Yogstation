@@ -51,6 +51,10 @@
 	noteleport = TRUE
 	icon_state = "dk_yellow" //yogs end
 
+/area/ruin/unpowered/russianbunker
+	name = "Russian Bunker"
+	noteleport = TRUE
+
 /area/ruin/unpowered/syndicate_lava_base/engineering
 	name = "Syndicate Lavaland Engineering"
 

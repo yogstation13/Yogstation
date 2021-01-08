@@ -96,6 +96,7 @@
 	mag_display = TRUE
 	mag_display_ammo = TRUE
 	empty_indicator = TRUE
+	weapon_weight = WEAPON_MEDIUM
 
 /obj/item/gun/ballistic/automatic/wt550/occupying
 	name = "surplus security auto rifle"

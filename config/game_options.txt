@@ -464,6 +464,7 @@ ROUNDSTART_RACES moth
 ROUNDSTART_RACES plasmaman
 #ROUNDSTART_RACES shadow
 ROUNDSTART_RACES preternis
+ROUNDSTART_RACES polysmorph
 #ROUNDSTART_RACES snail
 
 ## Races that are better than humans in some ways, but worse in others
@@ -478,7 +479,6 @@ ROUNDSTART_RACES ethereal
 #ROUNDSTART_RACES uranium
 #ROUNDSTART_RACES abductor
 #ROUNDSTART_RACES synth
-#ROUNDSTART_RACES polysmorph
 
 ## Races that are straight upgrades. If these are on expect powergamers to always pick them
 #ROUNDSTART_RACES skeleton
@@ -489,7 +489,7 @@ ROUNDSTART_RACES pod
 #ROUNDSTART_RACES agent
 
 ## Races that are for EPIC GAMERS only
-MENTOR_RACES polysmorph
+#MENTOR_RACES polysmorph
 
 ##-------------------------------------------------------------------------------------------
 
