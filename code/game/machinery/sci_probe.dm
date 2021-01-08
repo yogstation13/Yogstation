@@ -101,7 +101,7 @@
 	return foundmobs
 
 /obj/machinery/sci_probe/proc/canoperate() // Code simplification
-	var/turf/T = src
+	var/turf/T = src.loc
 	if(!is_mining_level(T.z)) // If it somehow moves
 		if(setup) // Anti-Spam
 			say("Warning: L.P.M is not on lavaland!")
