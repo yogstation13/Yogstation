@@ -12,6 +12,7 @@
 	"Assistant" = list("civillian","green"),
 	"Captain" = list("captain","gold"),
 	"Head of Personnel" = list("civillian","silver"),
+	"Blueshield" = list("security","silver"),
 	"Head of Security" = list("security","silver"),
 	"Chief Engineer" = list("engineering","silver"),
 	"Research Director" = list("science","silver"),

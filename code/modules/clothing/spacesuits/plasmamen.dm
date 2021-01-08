@@ -94,6 +94,12 @@
 	desc = "A slight modification on a tradiational voidsuit helmet, this helmet was Nano-Trasen's first solution to the *logistical problems* that come with employing plasmamen. Despite their limitations, these helmets still see use by historian and old-styled plasmamen alike."
 	icon_state = "curator_envirohelm"
 	item_state = "curator_envirohelm"
+	
+/obj/item/clothing/head/helmet/space/plasmaman/blueshield
+	name = "blueshield envirosuit helmet"
+	desc = "A plasmaman envirohelm designed for the blueshield."
+	icon_state = "bs_envirohelm"
+	item_state = "bs_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mime
 	name = "mime envirosuit helmet"

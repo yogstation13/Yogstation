@@ -128,7 +128,7 @@
 	if(!H)
 		return FALSE
 	
-	if(CONFIG_GET(flag/enforce_human_authority) && (title in GLOB.command_positions))
+	if(CONFIG_GET(flag/enforce_human_authority) && (title in GLOB.command_positions) && (title != "Blueshield"))
 		if(H.dna.species.id != "human")
 			H.set_species(/datum/species/human)
 			H.apply_pref_name("human", preference_source)

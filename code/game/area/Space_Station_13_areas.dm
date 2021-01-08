@@ -310,6 +310,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/crew_quarters/heads
 	airlock_wires = /datum/wires/airlock/command
+	
+/area/blueshield
+	name = "Blueshield Office"
+	icon_state = "blueshield"
 
 /area/crew_quarters/heads/captain
 	name = "Captain's Office"

@@ -151,6 +151,12 @@
 	desc = "It's a special backpack made exclusively for Nanotrasen officers."
 	icon_state = "captainpack"
 	item_state = "captainpack"
+	
+/obj/item/storage/backpack/blueshield
+	name = "blueshield backpack"
+	desc = "A robust backpack issued to Nanotrasen's finest."
+	icon_state = "blueshieldpack"
+	item_state = "blueshieldpack"
 
 /obj/item/storage/backpack/industrial
 	name = "industrial backpack"
@@ -249,6 +255,11 @@
 	desc = "A sterile satchel with virologist colours."
 	icon_state = "satchel-vir"
 	item_state = "viropack"
+	
+/obj/item/storage/backpack/satchel_blueshield
+	name = "blueshield satchel"
+	desc = "A robust satchel issued to Nanotrasen's finest."
+	icon_state = "satchel-blueshield"
 
 /obj/item/storage/backpack/satchel/chem
 	name = "chemist satchel"
@@ -351,6 +362,12 @@
 	desc = "A large duffel bag for holding extra captainly goods."
 	icon_state = "duffel-captain"
 	item_state = "duffel-captain"
+	
+/obj/item/storage/backpack/duffel/blueshield
+	name = "blueshield duffelbag"
+	desc = "A robust duffelbag issued to Nanotrasen's finest."
+	icon_state = "duffel-blueshield"
+	item_state = "duffel-blueshield"
 
 /obj/item/storage/backpack/duffelbag/med
 	name = "medical duffel bag"
