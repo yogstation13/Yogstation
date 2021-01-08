@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "hiding in a locker will not prevent you from moving faster on lavaland"
