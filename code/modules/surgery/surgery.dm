@@ -73,8 +73,8 @@
 		opcomputer = table.computer
 	else
 		var/obj/machinery/stasis/the_stasis_bed = locate(/obj/machinery/stasis, T)
-		if(the_stasis_bed?.op_computer)
-			opcomputer = the_stasis_bed.op_computer
+		if(the_stasis_bed?.computer)
+			opcomputer = the_stasis_bed.computer
 
 	if(!opcomputer)
 		return
