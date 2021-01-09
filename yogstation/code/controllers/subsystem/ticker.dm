@@ -21,7 +21,6 @@
 		"https://www.youtube.com/watch?v=YKVmXn-Gv0M", 						// Jeroen Tel - Tintin on the Moon (Remix by Cuboos)
 		"https://www.youtube.com/watch?v=GISnTECX8Eg",						// Chris Remo - Space Asshole
 		"https://www.youtube.com/watch?v=le1eD6I7k4s",						// Ronald Jenkee - Piano Wire
-		"https://www.youtube.com/watch?v=qx8hrhBZJ98",						// Tonio Delafuente - Epic of Manas
 		"https://www.youtube.com/watch?v=r-eMVfiT8_c",						// Kelly Bailey - Nuclear Missile Jam/Something Secret Steers Us (Remix)
 		"https://www.youtube.com/watch?v=WcWix770cvQ",						// Wintergatan - Local Cluster
 		"https://www.youtube.com/watch?v=w5hBQDepXOE",						// Michael Giacchino - Main Theme (STAR TREK Beyond)
