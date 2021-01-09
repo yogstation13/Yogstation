@@ -1,8 +1,8 @@
 
 /datum/chemical_reaction/sterilizine
 	name = "Sterilizine"
-	id = /datum/reagent/space_cleaner/sterilizine
-	results = list(/datum/reagent/space_cleaner/sterilizine = 3)
+	id = /datum/reagent/sterilizine
+	results = list(/datum/reagent/sterilizine = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/medicine/charcoal = 1, /datum/reagent/chlorine = 1)
 
 /datum/chemical_reaction/lube

@@ -232,7 +232,7 @@
 	icon_grow = "bee_balm-grow"
 	icon_dead = "bee_balm-dead"
 	mutatelist = list(/obj/item/seeds/poppy/geranium, /obj/item/seeds/bee_balm/honey) //Lower odds of becoming honey
-	reagents_add = list(/datum/reagent/medicine/spaceacillin = 0.1, /datum/reagent/space_cleaner/sterilizine = 0.05)
+	reagents_add = list(/datum/reagent/medicine/spaceacillin = 0.1, /datum/reagent/sterilizine = 0.05)
 
 /obj/item/reagent_containers/food/snacks/grown/bee_balm
 	seed = /obj/item/seeds/bee_balm
