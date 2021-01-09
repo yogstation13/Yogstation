@@ -55,7 +55,7 @@
 	data["destination"] = destination
 	data["blind_drop"] = blind_drop_ready
 	data["turrets"] = list()
-	data["status"] = probe.setup
+	data["probestatus"] = probe.setup
 	data["foundmobs"] = probe.mobs
 	data["science"] = SCIENCE_AMOUNT
 	data["calibration"] = probe.calibration

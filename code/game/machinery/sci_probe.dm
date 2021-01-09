@@ -59,7 +59,7 @@
 
 /obj/machinery/sci_probe/ui_data(mob/user)
 	var/list/data = list()
-	data["status"] = setup
+	data["probestatus"] = setup
 	data["foundmobs"] = mobs
 	data["science"] = SCIENCE_AMOUNT
 	data["calibration"] = calibration

@@ -5,7 +5,7 @@ import { Window } from '../layouts';
 export const SciProbe = (props, context) => {
   const { act, data } = useBackend(context);
   const {
-    status,
+    probestatus,
     foundmobs,
     science,
     calibration,
@@ -14,9 +14,9 @@ export const SciProbe = (props, context) => {
     <Section>
       <Section title="Power and Calibration">
         <Button
-          icon={status ? 'power-off' : 'times'}
-          selected={status}
-          content={status ? 'On' : 'Off'}
+          icon={probestatus ? 'power-off' : 'times'}
+          selected={probestatus}
+          content={probestatus ? 'On' : 'Off'}
           onClick={() => act('status')} />
         <Button
           icon={'power-off'}
