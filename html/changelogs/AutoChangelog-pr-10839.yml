@@ -1,0 +1,5 @@
+author: "  alexkar598"
+delete-after: true 
+changes: 
+  - bugfix: "Enabling jukeboxes sounds as an admin no longer deadmins you at the start of every round"
+  - tweak: "Side effect of this is that autodeadmin preferences have been reset to disabled"
