@@ -305,12 +305,14 @@
 	qdel(src)
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
+		var/modulenum = borg.get_selected_module()
+		borg.uneq_active()
 		borg.module.remove_module(src, TRUE)
 		var/obj/item/circular_saw/advanced/PC = locate() in borg.module.modules
 		PC = new(borg.module)
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
-		borg.activate_module(PC)
+		borg.equip_module_to_slot(PC, modulenum)
 	else
 		var/obj/item/circular_saw/advanced/saw = new /obj/item/surgicaldrill/advanced(drop_location())
 		qdel(src)
@@ -337,12 +339,14 @@
 	qdel(src)
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
+		var/modulenum = borg.get_selected_module()
+		borg.uneq_active()
 		borg.module.remove_module(src, TRUE)
 		var/obj/item/scalpel/advanced/PC = locate() in borg.module.modules
 		PC = new(borg.module)
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
-		borg.activate_module(PC)
+		borg.equip_module_to_slot(PC, modulenum)
 	else
 		var/obj/item/scalpel/advanced/scalpel = new /obj/item/surgicaldrill/advanced(drop_location())
 		qdel(src)
@@ -361,12 +365,14 @@
 	qdel(src)
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
+		var/modulenum = borg.get_selected_module()
+		borg.uneq_active()
 		borg.module.remove_module(src, TRUE)
 		var/obj/item/hemostat/advanced/PC = locate() in borg.module.modules
 		PC = new(borg.module)
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
-		borg.activate_module(PC)
+		borg.equip_module_to_slot(PC, modulenum)
 	else
 		var/obj/item/hemostat/advanced/hemostat = new /obj/item/surgicaldrill/advanced(drop_location())
 		qdel(src)
@@ -385,12 +391,14 @@
 	qdel(src)
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
+		var/modulenum = borg.get_selected_module()
+		borg.uneq_active()
 		borg.module.remove_module(src, TRUE)
 		var/obj/item/retractor/advanced/PC = locate() in borg.module.modules
 		PC = new(borg.module)
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
-		borg.activate_module(PC)
+		borg.equip_module_to_slot(PC, modulenum)
 	else
 		var/obj/item/retractor/advanced/retractor = new /obj/item/surgicaldrill/advanced(drop_location())
 		qdel(src)
@@ -415,12 +423,14 @@
 	qdel(src)
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
+		var/modulenum = borg.get_selected_module()
+		borg.uneq_active()
 		borg.module.remove_module(src, TRUE)
 		var/obj/item/cautery/advanced/PC = locate() in borg.module.modules
 		PC = new(borg.module)
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
-		borg.activate_module(PC)
+		borg.equip_module_to_slot(PC, modulenum)
 	else
 		var/obj/item/cautery/advanced/cautery = new /obj/item/surgicaldrill/advanced(drop_location())
 		qdel(src)
@@ -445,12 +455,14 @@
 	to_chat(user, "<span class='notice'>You focus the lensess, it is now set to drilling mode.</span>")
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
+		var/modulenum = borg.get_selected_module()
+		borg.uneq_active()
 		borg.module.remove_module(src, TRUE)
 		var/obj/item/surgicaldrill/advanced/PC = locate() in borg.module.modules
 		PC = new(borg.module)
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
-		borg.activate_module(PC)
+		borg.equip_module_to_slot(PC, modulenum)
 	else
 		var/obj/item/surgicaldrill/advanced/surgicaldrill = new /obj/item/surgicaldrill/advanced(drop_location())
 		qdel(src)
