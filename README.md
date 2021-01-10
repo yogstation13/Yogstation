@@ -1,5 +1,6 @@
 ## Yogstation codebase
 
+![Merge Chance](https://img.shields.io/endpoint?url=https%3A%2F%2Fmerge-chance.info%2Fbadge%3Frepo%3Dyogstation13/yogstation)
 [![Build Status](https://github.com/yogstation13/Yogstation/workflows/Turdis/badge.svg?branch=master)](https://github.com/yogstation13/Yogstation/actions?query=workflow%3ATurdis+branch%3Amaster)
 [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
