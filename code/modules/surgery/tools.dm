@@ -302,7 +302,6 @@
 /obj/item/scalpel/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/machines/click.ogg',50,1)
 	to_chat(user, "<span class='notice'>You incease the power, now it can cut bones.</span>")
-	qdel(src)
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
 		var/modulenum = borg.get_selected_module()
@@ -336,7 +335,6 @@
 /obj/item/circular_saw/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/machines/click.ogg',50,1)
 	to_chat(user, "<span class='notice'>You lower the power.</span>")
-	qdel(src)
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
 		var/modulenum = borg.get_selected_module()
@@ -362,7 +360,6 @@
 /obj/item/retractor/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
 	to_chat(user, "<span class='notice'>You set the [src] to hemostat mode.</span>")
-	qdel(src)
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
 		var/modulenum = borg.get_selected_module()
@@ -388,7 +385,6 @@
 /obj/item/hemostat/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
 	to_chat(user, "<span class='notice'>You set the [src] to retractor mode.</span>")
-	qdel(src)
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
 		var/modulenum = borg.get_selected_module()
@@ -420,7 +416,6 @@
 /obj/item/surgicaldrill/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/weapons/tap.ogg',50,1)
 	to_chat(user, "<span class='notice'>You dilate the lenses, setting it to mending mode.</span>")
-	qdel(src)
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
 		var/modulenum = borg.get_selected_module()
