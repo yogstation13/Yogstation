@@ -65,11 +65,11 @@
 			return TRUE
 
 	var/turf/T = get_turf(target)
-	var/list/valid_surfaces = (/obj/machinery/stasis, /obj/structure/table/optable)
+	var/list/valid_surfaces = list(/obj/machinery/stasis, /obj/structure/table/optable) //add any surgery surface that can use an operating table here
 	var/obj/machinery/computer/operating/opcomputer
 	for(var/table in valid_surfaces)
 		var/surface = locate(table, T)
-		opcomputer = surface?.computer
+		opcomputer = surface?.computer //when adding new surgery surface variants make sure they have a var/obj/machinery/computer/operating/computer as their operating table variable :)
 		if(opcomputer)
 			break
 	if(!opcomputer)
