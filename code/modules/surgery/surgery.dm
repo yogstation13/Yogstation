@@ -65,19 +65,15 @@
 			return TRUE
 
 	var/turf/T = get_turf(target)
-
-	//Get the relevant operating computer
+	var/list/valid_surfaces = (/obj/machinery/stasis, /obj/structure/table/optable)
 	var/obj/machinery/computer/operating/opcomputer
-	var/obj/structure/table/optable/table = locate(/obj/structure/table/optable, T)
-	if(table?.computer)
-		opcomputer = table.computer
-	else
-		var/obj/machinery/stasis/the_stasis_bed = locate(/obj/machinery/stasis, T)
-		if(the_stasis_bed?.computer)
-			opcomputer = the_stasis_bed.computer
-
+	for(var/table in valid_surfaces)
+		var/surface = locate(table, T)
+		opcomputer = surface?.computer
+		if(opcomputer)
+			break
 	if(!opcomputer)
-		return
+		return FALSE
 	if(opcomputer.stat & (NOPOWER|BROKEN))
 		return .
 	if(replaced_by in opcomputer.advanced_surgeries)
