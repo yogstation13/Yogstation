@@ -212,7 +212,7 @@
 							new /obj/effect/DPtarget(LZ, podType, SO)
 							amountordered++
 							. = TRUE
-						message_admins("[ADMIN_LOOKUPFLW(usr)] has ordered a [SO.pack.name] x[amountordered] pod at location [ADMIN_VERBOSEJMP(LZ)]")
-						investigate_log("Order #[SO.id] ([SO.pack.name] x[amountordered], placed by [key_name(SO.orderer_ckey)]), paid by [D.account_holder] has shipped.", INVESTIGATE_CARGO)
 							update_icon()
 							CHECK_TICK
+						message_admins("[ADMIN_LOOKUPFLW(usr)] has ordered a [SO.pack.name] pod x[amountordered] at location [ADMIN_VERBOSEJMP(LZ)]")
+						investigate_log("Order #[SO.id] ([SO.pack.name] x[amountordered], placed by [key_name(SO.orderer_ckey)]), paid by [D.account_holder] has shipped.", INVESTIGATE_CARGO)
