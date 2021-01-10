@@ -205,12 +205,14 @@
 						D.adjust_money(-(SO.pack.cost * (0.72*MAX_EMAG_ROCKETS)))
 
 						SO.generateRequisition(get_turf(src))
+						var/amountordered = 0
 						for(var/i in 1 to MAX_EMAG_ROCKETS)
 							LZ = pick(empty_turfs)
 							LAZYREMOVE(empty_turfs, LZ)
 							new /obj/effect/DPtarget(LZ, podType, SO)
+							amountordered++
 							. = TRUE
-							message_admins("[ADMIN_LOOKUPFLW(usr)] has ordered a [SO.pack.name] pod at location [ADMIN_VERBOSEJMP(LZ)]")
-							investigate_log("Order #[SO.id] ([SO.pack.name], placed by [key_name(SO.orderer_ckey)]), paid by [D.account_holder] has shipped.", INVESTIGATE_CARGO)
+						message_admins("[ADMIN_LOOKUPFLW(usr)] has ordered a [SO.pack.name] x[amountordered] pod at location [ADMIN_VERBOSEJMP(LZ)]")
+						investigate_log("Order #[SO.id] ([SO.pack.name] x[amountordered], placed by [key_name(SO.orderer_ckey)]), paid by [D.account_holder] has shipped.", INVESTIGATE_CARGO)
 							update_icon()
 							CHECK_TICK
