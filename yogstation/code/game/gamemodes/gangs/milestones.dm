@@ -28,7 +28,7 @@
 	var/datum/bank_account/gang_account
 
 /datum/objective/gang/money/New()
-	money_amount = rand(40000, 70000)
+	money_amount = rand(10000, 40000)
 	target_amount = money_amount
 	explanation_text = "Have at least [target_amount] credits in your gang's account at the end of the shift."
 
@@ -46,7 +46,7 @@
 /datum/objective/gang/members/check_completion()
 	var/datum/team/gang/gang = team
 	gang.count_members()
-	return (gang.members_amount >= target_amount)
+	return (gang.members.len >= target_amount)
 
 /datum/objective/gang/vip // Abstract type
 	var/target_role_type = FALSE
@@ -100,7 +100,7 @@
 
 /datum/objective/gang/all_from_one/New()
 	department = pick("engineering", "science", "medical", "supply")
-	explanation_text = "Convert all members of the [department] department to your gang."
+	explanation_text = "Convert or kill all members of the [department] department to your gang."
 
 /datum/objective/gang/all_from_one/check_completion()
 	var/datum/team/gang/gang = team
@@ -265,7 +265,7 @@
 
 /datum/milestone/members/check_completion()
 	var/datum/team/gang/gang = team
-	return (gang.members_amount >= target_amount)
+	return (gang.members.len >= target_amount)
 
 /datum/milestone/members/tier1/New()
 	tier = 1
@@ -280,7 +280,7 @@
 /datum/milestone/members/tier3/New()
 	repeatable = 0
 	tier = 3
-	target_amount =  rand(13, 16)
+	target_amount =  rand(13, 15)
 	explanation_text = "Have [target_amount] gang members in your gang."
 
 /datum/milestone/money

@@ -392,7 +392,10 @@
 			if(other_owners.len)
 				output += "<ul>"
 				for(var/datum/mind/M in other_owners)
-					output += "<li>Conspirator: [M.name]</li>"
+					if(M.has_antag_datum(/datum/antagonist/gang)) // We dont want to spam them with 15 names for each objective
+						continue
+					else
+						output += "<li>Conspirator: [M.name]</li>"
 				output += "</ul>"
 
 	if(window)

@@ -53,61 +53,10 @@
 		var/datum/team/gang/gangteam = pick_n_take(GLOB.possible_gangs)
 		if(gangteam)
 			gang = new gangteam
-			forge_gang_objectives()
 
-/datum/antagonist/gang/proc/add_objective(datum/objective/O, needs_target = FALSE)
-	O.team = gang
-	gang.objectives += O
-	O.update_explanation_text()
-	objectives += O
-
-/datum/antagonist/gang/proc/forge_gang_objectives()
-	var/domination = prob(10) // If their objective will be domination or not
-	var/list/possible_objectives = list(
-										"money",
-										"average_joe",
-										"control",
-										"members",
-										"all_from_one",
-										"one_from_all"
-										)
-	if(SSjob.get_living_sec().len)
-		possible_objectives |= "inside_man"
-	if(domination)
-		add_objective(new/datum/objective/gang/dominate)
-		gang.can_dominate = TRUE
-	else
-		var/amount_to_add = OBJECTIVE_AMOUNT
-		for(var/i = 1 to amount_to_add)
-			switch(pick_n_take(possible_objectives))
-				if("money")
-					var/datum/objective/gang/money/new_objective = new
-					new_objective.owner = owner
-					add_objective(new_objective)
-				if("average_joe")
-					var/datum/objective/gang/vip/average_joe/new_objective = new
-					new_objective.owner = owner
-					add_objective(new_objective)
-				if("inside_man")
-					var/datum/objective/gang/vip/inside_man/new_objective = new
-					new_objective.owner = owner
-					add_objective(new_objective)
-				if("control")
-					var/datum/objective/gang/control/new_objective = new
-					new_objective.owner = owner
-					add_objective(new_objective)
-				if("members")
-					var/datum/objective/gang/members/new_objective = new
-					new_objective.owner = owner
-					add_objective(new_objective)
-				if("all_from_one")
-					var/datum/objective/gang/all_from_one/new_objective = new
-					new_objective.owner = owner
-					add_objective(new_objective)
-				if("one_from_all")
-					var/datum/objective/gang/one_from_all/new_objective = new
-					new_objective.owner = owner
-					add_objective(new_objective)
+/datum/antagonist/gang/proc/inherit_objectives()
+	objectives |= gang.objectives
+	owner.announce_objectives()
 
 /datum/antagonist/gang/proc/equip_gang() // Bosses get equipped with their tools
 	return
@@ -171,11 +120,9 @@
 		else if(newgang == "Random")
 			var/datum/team/gang/G = pick_n_take(GLOB.possible_gangs)
 			gang = new G
-			forge_gang_objectives()
 		else
 			GLOB.possible_gangs -= newgang
 			gang = new newgang
-			forge_gang_objectives()
 	else
 		if(!GLOB.gangs.len) // no gangs exist
 			to_chat(admin, "<span class='danger'>No gangs exist, please create a new one instead.</span>")
@@ -219,8 +166,8 @@
 /datum/antagonist/gang/proc/add_to_gang()
 	gang.add_member(owner)
 	owner.current.log_message("<font color='red'>Has been converted to the [gang.name] gang!</font>", INDIVIDUAL_ATTACK_LOG)
-	owner.objectives += gang.objectives
-	owner.announce_objectives()
+	inherit_objectives()
+	owner.special_role = ROLE_GANG
 
 /datum/antagonist/gang/proc/remove_from_gang()
 	gang.remove_member(owner)
@@ -419,7 +366,59 @@
 	registered_account = new /datum/bank_account
 	next_point_time = world.time + INFLUENCE_INTERVAL
 	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
+	forge_gang_objectives()
 	forge_milestones()
+
+/datum/team/gang/proc/forge_gang_objectives()
+	var/domination = prob(10) // If their objective will be domination or not
+	var/list/possible_objectives = list(
+										"money",
+										"average_joe",
+										"control",
+										"members",
+										"all_from_one",
+										"one_from_all"
+										)
+	if(SSjob.get_living_sec().len)
+		possible_objectives |= "inside_man"
+	if(domination)
+		var/datum/objective/gang/dominate/D = new
+		D.team = src
+		D.update_explanation_text()
+		objectives |= D
+		can_dominate = TRUE
+	else
+		var/amount_to_add = OBJECTIVE_AMOUNT
+		for(var/i = 1 to amount_to_add)
+			switch(pick_n_take(possible_objectives))
+				if("money")
+					var/datum/objective/gang/money/new_objective = new
+					new_objective.team = src
+					objectives |= new_objective
+				if("average_joe")
+					var/datum/objective/gang/vip/average_joe/new_objective = new
+					new_objective.team = src
+					objectives |= new_objective
+				if("inside_man")
+					var/datum/objective/gang/vip/inside_man/new_objective = new
+					new_objective.team = src
+					objectives |= new_objective
+				if("control")
+					var/datum/objective/gang/control/new_objective = new
+					new_objective.team = src
+					objectives |= new_objective
+				if("members")
+					var/datum/objective/gang/members/new_objective = new
+					new_objective.team = src
+					objectives |= new_objective
+				if("all_from_one")
+					var/datum/objective/gang/all_from_one/new_objective = new
+					new_objective.team = src
+					objectives |= new_objective
+				if("one_from_all")
+					var/datum/objective/gang/one_from_all/new_objective = new
+					new_objective.team = src
+					objectives |= new_objective
 
 /datum/team/gang/Destroy()
 	GLOB.gangs -= src

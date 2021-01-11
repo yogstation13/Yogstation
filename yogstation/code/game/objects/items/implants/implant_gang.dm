@@ -33,6 +33,9 @@
 		if(ishuman(target))
 
 			var/success
+			if(gang.members.len >= gang.max_members)
+				to_chat(user, "<span class ='warning'>Your gang cannot hold more members!</span>")
+				return FALSE // At max size
 			if(G)
 				if(!istype(G, /datum/antagonist/gang/boss))
 					success = TRUE	//Was not a gang boss, convert as usual
