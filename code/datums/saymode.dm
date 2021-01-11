@@ -110,7 +110,7 @@
 
 
 /datum/saymode/holopad
-	key = "h"
+	key = MODE_KEY_HOLOPAD
 	mode = MODE_HOLOPAD
 
 /datum/saymode/holopad/handle_message(mob/living/user, message, datum/language/language)
@@ -121,7 +121,7 @@
 	return TRUE
 
 /datum/saymode/monkey
-	key = "k"
+	key = MODE_KEY_MONKEY
 	mode = MODE_MONKEY
 
 /datum/saymode/monkey/handle_message(mob/living/user, message, datum/language/language)
