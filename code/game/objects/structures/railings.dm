@@ -67,14 +67,14 @@
 		to_chat(user, "<span class='notice'>You [anchored ? "fasten the railing to":"unfasten the railing from"] the floor.</span>")
 	return TRUE
 
-/obj/structure/railing/CanPass(atom/movable/mover, turf/target)
-	..()
+/obj/structure/railing/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(get_dir(loc, target) & dir)
 		return !density
 	return TRUE
 
-/obj/structure/railing/corner/CanPass()
-	..()
+/obj/structure/railing/corner/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	return TRUE
 
 /obj/structure/railing/CheckExit(atom/movable/O, turf/target)

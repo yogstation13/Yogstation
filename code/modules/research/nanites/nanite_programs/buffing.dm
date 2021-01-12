@@ -10,13 +10,13 @@
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.stun_mod *= 0.5
+		H.physiology.stun_mod *= 0.75
 
 /datum/nanite_program/nervous/disable_passive_effect()
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.stun_mod *= 2
+		H.physiology.stun_mod /= 0.75
 
 /datum/nanite_program/triggered/adrenaline
 	name = "Adrenaline Burst"
@@ -33,7 +33,7 @@
 	host_mob.adjustStaminaLoss(-75)
 	host_mob.set_resting(FALSE)
 	host_mob.update_mobility()
-	host_mob.reagents.add_reagent(/datum/reagent/medicine/stimulants, 1.5)
+	host_mob.reagents.add_reagent(/datum/reagent/medicine/stimulants/nanite, 1.5)
 
 /datum/nanite_program/hardening
 	name = "Dermal Hardening"
@@ -47,15 +47,15 @@
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.armor.melee += 50
-		H.physiology.armor.bullet += 35
+		H.physiology.armor.melee += 30
+		H.physiology.armor.bullet += 25
 
 /datum/nanite_program/hardening/disable_passive_effect()
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.armor.melee -= 50
-		H.physiology.armor.bullet -= 35
+		H.physiology.armor.melee -= 30
+		H.physiology.armor.bullet -= 25
 
 /datum/nanite_program/refractive
 	name = "Dermal Refractive Surface"
@@ -67,15 +67,15 @@
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.armor.laser += 50
-		H.physiology.armor.energy += 35
+		H.physiology.armor.laser += 30
+		H.physiology.armor.energy += 25
 
 /datum/nanite_program/refractive/disable_passive_effect()
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.armor.laser -= 50
-		H.physiology.armor.energy -= 35
+		H.physiology.armor.laser -= 30
+		H.physiology.armor.energy -= 25
 
 /datum/nanite_program/coagulating
 	name = "Rapid Coagulation"

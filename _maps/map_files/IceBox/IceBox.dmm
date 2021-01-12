@@ -29934,11 +29934,6 @@
 /obj/item/clothing/head/soft,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"bjn" = (
-/obj/structure/table,
-/obj/machinery/computer/stockexchange,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "bjo" = (
 /obj/machinery/camera{
 	c_tag = "Cargo Bay North"
@@ -59631,6 +59626,10 @@
 /obj/structure/transit_tube_pod,
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/lounge)
+"ltP" = (
+/obj/structure/table,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "luw" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -85180,7 +85179,7 @@ aPA
 aSg
 bcb
 aZE
-bjn
+ltP
 bjr
 bjh
 bmh
