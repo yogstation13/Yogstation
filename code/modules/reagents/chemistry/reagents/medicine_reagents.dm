@@ -404,8 +404,8 @@
 				M.adjustFireLoss(-2*heal_amt)
 				if(method == TOUCH)
 					M.reagents.add_reagent(/datum/reagent/medicine/synthflesh, reac_volume)
-				if(HAS_TRAIT_FROM(M, TRAIT_HUSK, BURN) && (S?.volume + reac_volume >= SYNTHFLESH_UNHUSK_AMOUNT && M.getFireLoss <= UNHUSK_DAMAGE_THRESHOLD) && M.cure_husk(BURN)) //cure husk will return true if it cures the final husking source
-					visible_message("<span class='notice'>The synthflesh soaks into [M]'s burns and they regain their natural color!</span>")
+				if(HAS_TRAIT_FROM(M, TRAIT_HUSK, BURN) && (S?.volume + reac_volume >= SYNTHFLESH_UNHUSK_AMOUNT && M.getFireLoss() <= UNHUSK_DAMAGE_THRESHOLD) && M.cure_husk(BURN)) //cure husk will return true if it cures the final husking source
+					M.visible_message("<span class='notice'>The synthflesh soaks into [M]'s burns and they regain their natural color!</span>")
 	..()
 
 /datum/reagent/medicine/charcoal
