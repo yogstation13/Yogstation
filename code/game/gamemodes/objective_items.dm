@@ -82,6 +82,12 @@
 	targetitem = /obj/item/clothing/suit/armor/laserproof
 	difficulty = 3
 	excludefromjob = list("Head of Security", "Warden")
+	
+/datum/objective_item/steal/champion
+	name = "the championship belt."
+	targetitem = /obj/item/storage/belt/champion
+	difficulty = 5
+	excludefromjob = list("Quartermaster", "Head of Personnel")
 
 /datum/objective_item/steal/reactive
 	name = "the reactive teleport armor."
