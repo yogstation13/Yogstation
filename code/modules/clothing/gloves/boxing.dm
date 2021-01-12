@@ -4,6 +4,9 @@
 	icon_state = "boxing"
 	item_state = "boxing"
 	equip_delay_other = 60
+	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
+	heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	species_exception = list(/datum/species/golem) // now you too can be a golem boxing champion
 
 /obj/item/clothing/gloves/boxing/green
