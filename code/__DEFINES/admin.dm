@@ -82,7 +82,7 @@
 #define AHELP_RESOLVED 3
 
 /// Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
-#define ROUNDSTART_LOGOUT_REPORT_TIME	6000
+#define ROUNDSTART_LOGOUT_REPORT_TIME	6001
 
 /// Number of identical messages required before the spam-prevention will warn you to stfu
 #define SPAM_TRIGGER_WARNING	5
