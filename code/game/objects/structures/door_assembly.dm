@@ -215,8 +215,9 @@
 									to_chat(user, "<span class='notice'>You install [M] plating into the airlock assembly.</span>")
 									G.use(2)
 									var/mineralassembly = text2path("/obj/structure/door_assembly/door_assembly_[M]")
-									var/obj/structure/door_assembly/MA = new mineralassembly(loc)
-									transfer_assembly_vars(src, MA, TRUE)
+									if(mineralassembly)
+										var/obj/structure/door_assembly/MA = new mineralassembly(loc)
+										transfer_assembly_vars(src, MA, TRUE)
 							else
 								to_chat(user, "<span class='warning'>You need at least two sheets add a mineral cover!</span>")
 					else
