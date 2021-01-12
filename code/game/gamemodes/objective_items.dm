@@ -88,6 +88,12 @@
 	targetitem = /obj/item/storage/belt/champion
 	difficulty = 5
 	excludefromjob = list("Quartermaster", "Head of Personnel")
+	
+/datum/objective_item/steal/lamarr
+	name = "Lamarr, the Research Director's facehugger."
+	targetitem = /obj/item/clothing/mask/facehugger/lamarr
+	difficulty = 5
+	excludefromjob = list("Research Director")
 
 /datum/objective_item/steal/reactive
 	name = "the reactive teleport armor."
