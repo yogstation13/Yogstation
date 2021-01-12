@@ -225,5 +225,5 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define BULLET_ACT_FORCE_PIERCE		"PIERCE"
 /// It hit us but it should hit something on the same turf too. Usually used for turfs.
 #define BULLET_ACT_TURF				"TURF"
-/// It hit something, but it should just keep going until it hit something else, basically over-penetration
-#define BULLET_ACT_PHASE			"PHASE"
+/// It hit something, but it should just keep going until it hit something else
+#define BULLET_ACT_PENETRATE		"PENETRATE"
