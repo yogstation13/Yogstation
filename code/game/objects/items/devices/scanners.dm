@@ -292,7 +292,7 @@ GENE SCANNER
 				else
 					minor_damage = "\t<span class='info'>Mildly Damaged Organs: "
 					minor_damage += organ.name
-			else if (organ.damage < organ.low_threshold)
+			else if ((organ.damage < organ.low_threshold) && (organ.name != "black tumor" || "festering ooze"))
 				report_organs = TRUE // if no organs get reported, it means they have no organs
 				if(no_damage)
 					no_damage += ", "
