@@ -259,6 +259,7 @@ GENE SCANNER
 	//Organ damages report
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
+		var/no_damage
 		var/minor_damage
 		var/major_damage
 		var/max_damage
@@ -291,6 +292,14 @@ GENE SCANNER
 				else
 					minor_damage = "\t<span class='info'>Mildly Damaged Organs: "
 					minor_damage += organ.name
+			else if (organ.damage < organ.low_threshold)
+				report_organs = TRUE // if no organs get reported, it means they have no organs
+				if(no_damage)
+					no_damage += ", "
+					no_damage += organ.name
+				else
+					no_damage = "\t<span class='info'>Healthy Organs: "
+					no_damage += organ.name
 
 		if(report_organs)	//we either finish the list, or set it to be empty if no organs were reported in that category
 			if(!max_damage)
@@ -305,6 +314,11 @@ GENE SCANNER
 				minor_damage = "\t<span class='info'>Mildly Damaged Organs: </span>"
 			else
 				minor_damage += "</span>"
+			if(!no_damage)
+				no_damage = "\t<span class='info'>Healthy Organs: </span>"
+			else
+				no_damage += "</span>"
+			to_chat(user, no_damage)
 			to_chat(user, minor_damage)
 			to_chat(user, major_damage)
 			to_chat(user, max_damage)
