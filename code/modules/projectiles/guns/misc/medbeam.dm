@@ -176,6 +176,7 @@
 		ubercharge = 0
 
 /obj/item/gun/medbeam/uber/equipped(mob/living/user)
+	..()
 	last_holder = user
 
 /obj/item/gun/medbeam/uber/proc/LoseTarget()
