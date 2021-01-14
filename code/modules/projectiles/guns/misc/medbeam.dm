@@ -179,7 +179,7 @@
 	..()
 	last_holder = user
 
-/obj/item/gun/medbeam/uber/proc/LoseTarget()
+/obj/item/gun/medbeam/uber/LoseTarget()
 	if(ubering)
 		uber_act()
 		ubercharge = 0
