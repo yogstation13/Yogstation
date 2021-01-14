@@ -1,0 +1,4 @@
+author: "Xoxeyos"
+delete-after: true 
+changes: 
+  - tweak: "There is a 3 second delay before you are gibbed when running this certain event."
