@@ -165,9 +165,9 @@
 			ubercharge += 2
 
 	if(ubering)
-			ubercharge -= 25
-			if(ubercharge <= 0)
-				uber_act()
+		ubercharge -= 25
+		if(ubercharge <= 0)
+			uber_act()
 
 	if(ubercharge > 100)
 		ubercharge = 100
