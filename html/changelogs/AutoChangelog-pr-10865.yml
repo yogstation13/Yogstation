@@ -1,0 +1,5 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - rscadd: "Add a new bullet component PENETRATE"
+  - bugfix: "Bullets are nolonger xray if they hit a practice target"
