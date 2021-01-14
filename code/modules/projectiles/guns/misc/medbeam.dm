@@ -133,3 +133,77 @@
 /obj/item/gun/medbeam/mech/Initialize()
 	. = ..()
 	STOP_PROCESSING(SSobj, src) //Mech mediguns do not process until installed, and are controlled by the holder obj
+
+///////////////////////////I AM ZE ÜBERMENSCH////////////////////////////
+/obj/item/gun/medbeam/uber
+	name = "augmented medical beamgun"
+	desc = "Has german science gone too far?"
+	var/ubercharge = 0
+	var/ubering = FALSE
+	var/datum/action/item_action/activate_uber
+	var/mob/last_holder
+
+/obj/item/gun/medbeam/uber/precharged
+	ubercharge = 100
+
+/obj/item/gun/medbeam/uber/examine(mob/user)
+	. = ..()
+	if(ubercharge == 100)
+		. += "<span class='notice'>The [src] is fully charged!</span>"
+	else
+		. += "<span class='notice'>The [src] is [ubercharge]% charged.</span>"
+
+/obj/item/gun/medbeam/uber/process()
+	..()
+
+	if(current_target && !ubering)
+
+		if(current_target.health == current_target.maxHealth)
+			ubercharge += 1
+
+		if(current_target.health < current_target.maxHealth)
+			ubercharge += 2
+
+	if(ubering)
+			ubercharge -= 25
+			if(ubercharge <= 0)
+				uber_act()
+
+	if(ubercharge > 100)
+		ubercharge = 100
+
+	if(ubercharge < 0)
+		ubercharge = 0
+
+/obj/item/gun/medbeam/uber/equipped(mob/living/user)
+	last_holder = user
+
+/obj/item/gun/medbeam/uber/proc/LoseTarget()
+	if(ubering)
+		uber_act()
+		ubercharge = 0
+
+	..()
+
+/obj/item/gun/medbeam/uber/proc/uber_act()
+	ubering = TRUE
+	last_holder.status_flags ^= GODMODE
+	current_target ^= GODMODE
+
+/datum/action/item_action/activate_uber
+	name = "Activate Übercharge"
+	icon_icon = 'icons/obj/chronos.dmi'
+	button_icon_state = "chronogun"
+
+/datum/action/item_action/activate_uber/Trigger()
+	if(!IsAvailable())
+		return
+
+	if(!istype(target, /obj/item/gun/medbeam/uber))
+		return
+
+	if(target.ubercharge < 100)
+		to_chat(owner, "<span class='warning'>The [target] is only [target.ubercharge]% charged!</span>")
+		return
+
+	target.uber_act()
