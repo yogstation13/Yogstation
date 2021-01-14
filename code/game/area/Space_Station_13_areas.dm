@@ -768,6 +768,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Medbay Storage"
 	icon_state = "medbay2"
 
+/area/medical/auxstorage
+	name = "Auxiliary Medbay Storage"
+	icon_state = "medbay2"
+
 /area/medical/patients_rooms
 	name = "Patients' Rooms"
 	icon_state = "patients"
