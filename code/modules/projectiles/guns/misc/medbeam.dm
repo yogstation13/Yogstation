@@ -177,28 +177,7 @@
 	if(ubercharge < 0)
 		ubercharge = 0
 	
-	if(ubercharge == 100)
-		icon_state = "chronogun10"
-	else if(ubercharge > 90)
-		icon_state = "chronogun9"
-	else if(ubercharge > 80)
-		icon_state = "chronogun8"
-	else if(ubercharge > 70)
-		icon_state = "chronogun7"
-	else if(ubercharge > 60)
-		icon_state = "chronogun6"
-	else if(ubercharge > 50)
-		icon_state = "chronogun5"
-	else if(ubercharge > 40)
-		icon_state = "chronogun4"
-	else if(ubercharge > 30)
-		icon_state = "chronogun3"
-	else if(ubercharge > 20)
-		icon_state = "chronogun2"
-	else if(ubercharge > 10)
-		icon_state = "chronogun1"
-	else
-		icon_state = "chronogun0"
+	icon_state = "chronogun[floor(ubercharge/10)]"
 
 /obj/item/gun/medbeam/uber/equipped(mob/user)
 	..()
