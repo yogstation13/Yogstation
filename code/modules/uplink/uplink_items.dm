@@ -1451,6 +1451,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 15
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/device_tools/medgun_uber
+	name = "Augmented Medbeam Gun"
+	desc = "An augmented version of the classic Medbeam Gun that we picked up off the corpse of a german scientist. \
+			It has an invulnerability mode that can be activated for a few seconds after healing for a long while. \
+			This one comes uncharged, so be sure to give it a whirl before getting into combat."
+	item = /obj/item/gun/medbeam/uber
+	cost = 25
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+
 /datum/uplink_item/device_tools/singularity_beacon
 	name = "Power Beacon"
 	desc = "When screwed to wiring attached to an electric grid and activated, this large device pulls any \
