@@ -177,7 +177,7 @@
 	if(ubercharge < 0)
 		ubercharge = 0
 	
-	icon_state = "chronogun[FLOOR(ubercharge/10)]"
+	icon_state = "chronogun[round(ubercharge/10)]"
 
 /obj/item/gun/medbeam/uber/equipped(mob/user)
 	..()
