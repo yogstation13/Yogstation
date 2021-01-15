@@ -174,7 +174,7 @@
 
 	if(ubering)
 		// No uber flashing
-		if(current_target != last_target)
+		if(current_target != uber_target)
 			uber_act()
 			ubercharge = 0
 		else
@@ -192,7 +192,6 @@
 		ubercharge = 0
 	
 	icon_state = "chronogun[round(ubercharge/10)]"
-	last_target = current_target
 
 /// Sets last_holder for uber_act() to prevent exploits
 /obj/item/gun/medbeam/uber/equipped(mob/user)
