@@ -187,9 +187,14 @@
 	..()
 
 /obj/item/gun/medbeam/uber/proc/uber_act()
-	ubering = TRUE
-	last_holder.status_flags ^= GODMODE
-	current_target ^= GODMODE
+	if(!ubering)
+		ubering = TRUE
+		last_holder.status_flags += GODMODE
+		current_target += GODMODE
+	else /// this could remove an admin-given godmode but theres like 0.001% chance that will ever be an issue
+		ubering = FALSE
+		last_holder.status_flags -= GODMODE
+		current_target -= GODMODE
 
 /datum/action/item_action/activate_uber
 	name = "Activate Übercharge"
