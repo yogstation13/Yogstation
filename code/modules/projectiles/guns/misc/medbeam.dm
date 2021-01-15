@@ -143,6 +143,7 @@
 	var/ubercharge = 0
 	var/ubering = FALSE
 	var/mob/last_holder
+	var/mob/last_target
 
 /obj/item/gun/medbeam/uber/precharged
 	name = "fully-charged augmented medical beamgun"
@@ -168,7 +169,11 @@
 			ubercharge += 1*delta_time/10
 
 	if(ubering)
-		ubercharge -= 12.5*delta_time/10
+		// No uber flashing
+		if(current_target != last_target)
+			ubercharge -= 25*delta_time/10
+		else
+			ubercharge -= 12.5*delta_time/10
 		if(ubercharge <= 0)
 			uber_act()
 
@@ -182,6 +187,7 @@
 		ubercharge = 0
 	
 	icon_state = "chronogun[round(ubercharge/10)]"
+	last_target = current_target
 
 /obj/item/gun/medbeam/uber/equipped(mob/user)
 	..()
