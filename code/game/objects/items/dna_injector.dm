@@ -85,16 +85,16 @@
 	desc = "Cures green skin."
 	remove_mutations = list(HULK, ACTIVE_HULK, GENETICS_HULK)
 
-/obj/item/weapon/dnainjector/genetics_hulk
+/obj/item/dnainjector/hulkmut/genetics_hulk
 	name = "\improper DNA injector (Genetics Hulk)"
 	desc = "This will make you big and strong if you get hurt, but give you a bad skin condition."
-	add_mutations_static = list(GENETICS_HULK)
-	
+	add_mutations = list(GENETICS_HULK)
+
 /obj/item/dnainjector/hulkmut
 	name = "\improper DNA injector (Hulk)"
 	desc = "This will make you big and strong permanently, but give you a bad skin condition."
 	add_mutations = list(HULK)
-	
+
 /obj/item/dnainjector/firebreath
 	name = "\improper DNA injector (Fire Breath)"
 	desc = "Restores the dragon ancestry."

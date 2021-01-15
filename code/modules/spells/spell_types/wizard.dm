@@ -379,9 +379,9 @@
 	range = 1
 	cooldown_min = 150
 	invocation = "HULK SMASH!!"
+	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "green_hand"
 	action_background_icon_state = "bg_default"
-	animation = 0
 
 /obj/effect/proc_holder/spell/aoe_turf/repulse/hulk/cast(list/targets,mob/user = usr)
 	var/turf/open/floor/T = get_turf(usr)

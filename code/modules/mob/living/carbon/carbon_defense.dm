@@ -265,7 +265,7 @@
 			return
 		M.visible_message("<span class='notice'>[M] shakes [src] trying to get [p_them()] up!</span>", \
 						"<span class='notice'>You shake [src] trying to get [p_them()] up!</span>")
-						
+
 	else if(check_zone(M.zone_selected) == BODY_ZONE_L_ARM || check_zone(M.zone_selected) == BODY_ZONE_R_ARM) //Headpats are too extreme, we have to pat shoulders on yogs
 		M.visible_message("<span class='notice'>[M] gives [src] a pat on the shoulder to make [p_them()] feel better!</span>", \
 					"<span class='notice'>You give [src] a pat on the shoulder to make [p_them()] feel better!</span>")
@@ -292,11 +292,11 @@
 	AdjustParalyzed(-60)
 	AdjustImmobilized(-60)
 	if(dna && dna.check_mutation(ACTIVE_HULK))
-			if(prob(60))
-				adjustStaminaLoss(10)
-				to_chat(src, "<span class='notice'>[M] calms you down a little.</span>")
-			else
-				to_chat(src, "<span class='warning'>[M] tries to calm you!</span>")
+		if(prob(60))
+			adjustStaminaLoss(10)
+			to_chat(src, "<span class='notice'>[M] calms you down a little.</span>")
+		else
+			to_chat(src, "<span class='warning'>[M] tries to calm you!</span>")
 	set_resting(FALSE)
 
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)

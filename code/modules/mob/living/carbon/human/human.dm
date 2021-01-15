@@ -1237,7 +1237,7 @@
 	race = /datum/species/krokodil_addict
 
 /mob/living/carbon/human/proc/hulk_health_check(oldhealth)
-	if(!dna) 
+	if(!dna)
 		return
 
 	if(dna.check_mutation(ACTIVE_HULK))
@@ -1258,7 +1258,7 @@
 		if(staminaloss >= 90)
 			dna.remove_mutation(ACTIVE_HULK)
 			to_chat(src, "<span class='notice'>You have calm down enough to become human again.</span>")
-			Weaken(6)
+			Knockdown(6)
 		return TRUE
 	else
 		return FALSE
@@ -1267,4 +1267,4 @@
 	..()
 	if(dna.check_mutation(ACTIVE_HULK) && confused && (world.time - last_bumped) > 15)
 		Bumped(AM)
-		return AM.attack_hulk(src) 
+		return AM.attack_hulk(src)

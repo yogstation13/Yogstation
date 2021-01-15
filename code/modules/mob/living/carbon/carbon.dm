@@ -538,7 +538,7 @@
 	var/stam = getStaminaLoss()
 	if(istype(src, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = src
-		if(stam && hulk_stamina_check())
+		if(stam && H.hulk_stamina_check())
 			return
 	if(stam > DAMAGE_PRECISION && (maxHealth - stam) <= crit_threshold && !stat)
 		enter_stamcrit()
@@ -984,7 +984,7 @@
 		var/obj/item/held_thing = i
 		if(!held_thing)
 			return
-		
+
 		if(held_thing.wash(clean_types))
 			. = TRUE
 	if(back?.wash(clean_types))
