@@ -145,6 +145,7 @@
 	var/mob/last_holder
 
 /obj/item/gun/medbeam/uber/precharged
+	name = "fully-charged augmented medical beamgun"
 	ubercharge = 100
 	icon_state = "chronogun10"
 
@@ -171,8 +172,11 @@
 		if(ubercharge <= 0)
 			uber_act()
 
-	if(ubercharge > 100)
+	if(ubercharge >= 100)
 		ubercharge = 100
+		name = "fully-charged augmented medical beamgun"
+	else
+		name = "augmented medical beamgun"
 
 	if(ubercharge < 0)
 		ubercharge = 0
