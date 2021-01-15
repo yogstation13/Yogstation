@@ -138,7 +138,7 @@
 /obj/item/gun/medbeam/uber
 	name = "augmented medical beamgun"
 	desc = "Has german science gone too far?"
-	action_types = list(/datum/action/item_action/activate_uber)
+	actions_types = list(/datum/action/item_action/activate_uber)
 	var/ubercharge = 0
 	var/ubering = FALSE
 	var/mob/last_holder
