@@ -143,7 +143,6 @@
 	var/ubercharge = 0
 	var/ubering = FALSE
 	var/mob/last_holder
-	var/mob/last_target
 	var/mob/uber_target
 
 /// Fully charged for debugging/bus purposes
