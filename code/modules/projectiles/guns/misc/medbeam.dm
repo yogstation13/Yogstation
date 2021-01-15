@@ -187,7 +187,7 @@
 		icon_state = "chronogun7"
 	else if(ubercharge > 60)
 		icon_state = "chronogun6"
-	else if(ubercharge > 50
+	else if(ubercharge > 50)
 		icon_state = "chronogun5"
 	else if(ubercharge > 40)
 		icon_state = "chronogun4"
