@@ -134,7 +134,7 @@
 	. = ..()
 	STOP_PROCESSING(SSobj, src) //Mech mediguns do not process until installed, and are controlled by the holder obj
 
-///////////////////////////I AM ZE ÜBERMENSCH////////////////////////////
+///////////////////////////I AM ZE ÜBERMENSCH///////////////////////////
 /obj/item/gun/medbeam/uber
 	name = "augmented medical beamgun"
 	desc = "Doctor, are you sure this will work?"
