@@ -137,7 +137,7 @@
 ///////////////////////////I AM ZE ÜBERMENSCH////////////////////////////
 /obj/item/gun/medbeam/uber
 	name = "augmented medical beamgun"
-	desc = "Has german science gone too far?"
+	desc = "Doctor, are you sure this will work?"
 	actions_types = list(/datum/action/item_action/activate_uber)
 	var/ubercharge = 0
 	var/ubering = FALSE
