@@ -138,9 +138,9 @@
 /obj/item/gun/medbeam/uber
 	name = "augmented medical beamgun"
 	desc = "Has german science gone too far?"
+	action_types = list(/datum/action/item_action/activate_uber)
 	var/ubercharge = 0
 	var/ubering = FALSE
-	var/datum/action/item_action/activate_uber
 	var/mob/last_holder
 
 /obj/item/gun/medbeam/uber/precharged
@@ -153,19 +153,19 @@
 	else
 		. += "<span class='notice'>The [src] is [ubercharge]% charged.</span>"
 
-/obj/item/gun/medbeam/uber/process()
+/obj/item/gun/medbeam/uber/process(delta_time)
 	..()
 
 	if(current_target && !ubering)
 
 		if(current_target.health == current_target.maxHealth)
-			ubercharge += 1
+			ubercharge += 1*delta_time/10
 
 		if(current_target.health < current_target.maxHealth)
-			ubercharge += 2
+			ubercharge += 2*delta_time/10
 
 	if(ubering)
-		ubercharge -= 25
+		ubercharge -= 25*delta_time/10
 		if(ubercharge <= 0)
 			uber_act()
 
