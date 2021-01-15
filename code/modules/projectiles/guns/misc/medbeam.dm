@@ -207,7 +207,7 @@
 		return
 
 	if(gun.ubercharge < 100)
-		to_chat(owner, "<span class='warning'>The [target] is only [target.ubercharge]% charged!</span>")
+		to_chat(owner, "<span class='warning'>The [gun] is only [gun.ubercharge]% charged!</span>")
 		return
 
 	gun.uber_act()
