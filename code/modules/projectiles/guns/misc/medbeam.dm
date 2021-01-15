@@ -138,6 +138,7 @@
 /obj/item/gun/medbeam/uber
 	name = "augmented medical beamgun"
 	desc = "Doctor, are you sure this will work?"
+	icon_state = "chronogun0"
 	actions_types = list(/datum/action/item_action/activate_uber)
 	var/ubercharge = 0
 	var/ubering = FALSE
@@ -145,6 +146,7 @@
 
 /obj/item/gun/medbeam/uber/precharged
 	ubercharge = 100
+	icon_state = "chronogun10"
 
 /obj/item/gun/medbeam/uber/examine(mob/user)
 	. = ..()
@@ -159,13 +161,13 @@
 	if(current_target && !ubering)
 
 		if(current_target.health == current_target.maxHealth)
-			ubercharge += 1*delta_time/10
+			ubercharge += 0.5*delta_time/10
 
 		if(current_target.health < current_target.maxHealth)
-			ubercharge += 2*delta_time/10
+			ubercharge += 1*delta_time/10
 
 	if(ubering)
-		ubercharge -= 25*delta_time/10
+		ubercharge -= 12.5*delta_time/10
 		if(ubercharge <= 0)
 			uber_act()
 
@@ -174,6 +176,29 @@
 
 	if(ubercharge < 0)
 		ubercharge = 0
+	
+	if(ubercharge == 100)
+		icon_state = "chronogun10"
+	else if(ubercharge > 90)
+		icon_state = "chronogun9"
+	else if(ubercharge > 80)
+		icon_state = "chronogun8"
+	else if(ubercharge > 70)
+		icon_state = "chronogun7"
+	else if(ubercharge > 60)
+		icon_state = "chronogun6"
+	else if(ubercharge > 50
+		icon_state = "chronogun5"
+	else if(ubercharge > 40)
+		icon_state = "chronogun4"
+	else if(ubercharge > 30)
+		icon_state = "chronogun3"
+	else if(ubercharge > 20)
+		icon_state = "chronogun2"
+	else if(ubercharge > 10)
+		icon_state = "chronogun1"
+	else
+		icon_state = "chronogun0"
 
 /obj/item/gun/medbeam/uber/equipped(mob/living/user)
 	..()
