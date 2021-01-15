@@ -200,7 +200,7 @@
 	else
 		icon_state = "chronogun0"
 
-/obj/item/gun/medbeam/uber/equipped(mob/living/user)
+/obj/item/gun/medbeam/uber/equipped(mob/user)
 	..()
 	last_holder = user
 
