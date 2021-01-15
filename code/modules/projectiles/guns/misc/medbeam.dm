@@ -176,6 +176,7 @@
 		// No uber flashing
 		if(current_target != last_target)
 			uber_act()
+			ubercharge = 0
 		else
 			ubercharge -= 12.5*delta_time/10
 		if(ubercharge <= 0)
