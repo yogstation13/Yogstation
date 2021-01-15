@@ -149,9 +149,9 @@
 /obj/item/gun/medbeam/uber/examine(mob/user)
 	. = ..()
 	if(ubercharge == 100)
-		. += "<span class='notice'>The [src] is fully charged!</span>"
+		. += "<span class='notice'>[src] is fully charged!</span>"
 	else
-		. += "<span class='notice'>The [src] is [ubercharge]% charged.</span>"
+		. += "<span class='notice'>[src] is [ubercharge]% charged.</span>"
 
 /obj/item/gun/medbeam/uber/process(delta_time)
 	..()
@@ -207,7 +207,7 @@
 		return
 
 	if(gun.ubercharge < 100)
-		to_chat(owner, "<span class='warning'>The [gun] is only [gun.ubercharge]% charged!</span>")
+		to_chat(owner, "<span class='warning'>[gun] is only [gun.ubercharge]% charged!</span>")
 		return
 
 	gun.uber_act()
