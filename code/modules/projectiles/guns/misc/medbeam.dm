@@ -197,14 +197,17 @@
 	button_icon_state = "chronogun"
 
 /datum/action/item_action/activate_uber/Trigger()
-	if(!IsAvailable())
-		return
 
 	if(!istype(target, /obj/item/gun/medbeam/uber))
 		return
 
-	if(target.ubercharge < 100)
+	var/obj/item/gun/medbeam/uber/gun = target
+
+	if(!IsAvailable())
+		return
+
+	if(gun.ubercharge < 100)
 		to_chat(owner, "<span class='warning'>The [target] is only [target.ubercharge]% charged!</span>")
 		return
 
-	target.uber_act()
+	gun.uber_act()
