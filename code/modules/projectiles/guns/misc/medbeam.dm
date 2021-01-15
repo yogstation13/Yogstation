@@ -146,11 +146,13 @@
 	var/mob/last_target
 	var/mob/uber_target
 
+/// Fully charged for debugging/bus purposes
 /obj/item/gun/medbeam/uber/precharged
 	name = "fully-charged augmented medical beamgun"
 	ubercharge = 100
 	icon_state = "chronogun10"
 
+/// The augmented medical beamgun is 58% charged.
 /obj/item/gun/medbeam/uber/examine(mob/user)
 	. = ..()
 	if(ubercharge == 100)
@@ -158,6 +160,7 @@
 	else
 		. += "<span class='notice'>[src] is [ubercharge]% charged.</span>"
 
+/// Handles ubercharge ticks and icon changes
 /obj/item/gun/medbeam/uber/process(delta_time)
 	..()
 
@@ -190,10 +193,12 @@
 	icon_state = "chronogun[round(ubercharge/10)]"
 	last_target = current_target
 
+/// Sets last_holder for uber_act() to prevent exploits
 /obj/item/gun/medbeam/uber/equipped(mob/user)
 	..()
 	last_holder = user
 
+/// If target is lost, uber is lost
 /obj/item/gun/medbeam/uber/LoseTarget()
 	if(ubering)
 		uber_act()
@@ -201,6 +206,7 @@
 
 	..()
 
+/// Activates/deactivates über
 /obj/item/gun/medbeam/uber/proc/uber_act()
 	if(!ubering)
 		ubering = TRUE
@@ -230,6 +236,7 @@
 	icon_icon = 'icons/obj/chronos.dmi'
 	button_icon_state = "chronogun"
 
+/// Activates über if ubercharge is ready
 /datum/action/item_action/activate_uber/Trigger()
 
 	if(!istype(target, /obj/item/gun/medbeam/uber))
