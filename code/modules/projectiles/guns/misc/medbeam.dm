@@ -189,12 +189,25 @@
 /obj/item/gun/medbeam/uber/proc/uber_act()
 	if(!ubering)
 		ubering = TRUE
+
 		last_holder.status_flags |= GODMODE
+		last_holder.overlay_fullscreen("uber", /obj/screen/fullscreen/uber)
+		last_holder.add_atom_colour("#0000FF", TEMPORARY_COLOUR_PRIORITY)
+
 		current_target.status_flags |= GODMODE
+		current_target.overlay_fullscreen("uber", /obj/screen/fullscreen/uber)
+		current_target.add_atom_colour("#0000FF", TEMPORARY_COLOUR_PRIORITY)
+
 	else /// this could remove an admin-given godmode but theres like 0.001% chance that will ever be an issue
 		ubering = FALSE
+
 		last_holder.status_flags &= ~GODMODE
+		last_holder.clear_fullscreen("uber")
+		last_holder.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
+
 		current_target.status_flags &= ~GODMODE
+		current_target.clear_fullscreen("uber")
+		current_target.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 
 /datum/action/item_action/activate_uber
 	name = "Activate Übercharge"
