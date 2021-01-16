@@ -213,11 +213,11 @@
 
 		last_holder.status_flags |= GODMODE
 		last_holder.overlay_fullscreen("uber", /obj/screen/fullscreen/uber)
-		last_holder.add_atom_colour("#0000FF", TEMPORARY_COLOUR_PRIORITY)
+		last_holder.add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), TEMPORARY_COLOUR_PRIORITY)
 
 		uber_target.status_flags |= GODMODE
 		uber_target.overlay_fullscreen("uber", /obj/screen/fullscreen/uber)
-		uber_target.add_atom_colour("#0000FF", TEMPORARY_COLOUR_PRIORITY)
+		uber_target.add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), TEMPORARY_COLOUR_PRIORITY)
 
 	else /// this could remove an admin-given godmode but theres like 0.001% chance that will ever be an issue
 		ubering = FALSE
