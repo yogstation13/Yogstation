@@ -533,7 +533,7 @@ generate/load female uniform sprites matching all previously decided variables
 
 	var/mutable_appearance/standing
 	if(femaleuniform)
-		if(HAS_TRAIT(src, SKINNY))
+		if(HAS_TRAIT(src, TRAIT_SKINNY))
 			standing = wear_skinny_version(state,file2use,layer2use,femaleuniform)
 		else
 			standing = wear_female_version(state,file2use,layer2use,femaleuniform)
