@@ -255,6 +255,7 @@
 			if(points)
 				if(I)
 					I.mining_points += points
+					SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_MINING = round(points/2)))
 					points = 0
 				else
 					to_chat(usr, "<span class='warning'>No valid ID detected.</span>")

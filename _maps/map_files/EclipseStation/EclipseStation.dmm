@@ -67409,20 +67409,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"cIC" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/machinery/computer/stockexchange,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "cID" = (
 /obj/structure/chair/stool,
 /obj/structure/disposalpipe/segment{
@@ -77999,12 +77985,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"dec" = (
-/obj/structure/table,
-/obj/machinery/computer/stockexchange,
-/obj/effect/turf_decal/tile/brown,
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "ded" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -85160,6 +85140,19 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
+"moP" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "mpw" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -88499,6 +88492,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"use" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/brown,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "usI" = (
 /obj/structure/cable{
 	icon_state = "1-2";
@@ -121718,7 +121716,7 @@ fRe
 ddR
 cHf
 agh
-cIC
+moP
 den
 cdQ
 bNK
@@ -122746,7 +122744,7 @@ jVV
 ddV
 ddX
 ddX
-dec
+use
 der
 aez
 bNN
