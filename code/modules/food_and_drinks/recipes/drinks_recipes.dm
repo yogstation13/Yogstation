@@ -816,6 +816,12 @@
 	results = list(/datum/reagent/consumable/ethanol/flaming_moe = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol/tequila = 1, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/medicine/synaptizine = 1)
 
+/datum/chemical_reaction/coggernac
+	name = "COG-Nac"
+	id = /datum/reagent/consumable/ethanol/coggernac
+	results = list(/datum/reagent/consumable/ethanol/coggernac = 4)
+	required_reagents = list(/datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/ethanol/cognac = 1, /datum/reagent/iron = 1, /datum/reagent/consumable/ethanol/tequila_sunrise = 1)
+
 /datum/chemical_reaction/godfather
 	results = list(/datum/reagent/consumable/ethanol/godfather = 2)
 	required_reagents = list(/datum/reagent/consumable/ethanol/amaretto = 1, /datum/reagent/consumable/ethanol/whiskey = 1)
