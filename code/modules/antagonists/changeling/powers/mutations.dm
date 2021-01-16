@@ -164,6 +164,7 @@
 	sharpness = IS_SHARP
 	var/can_drop = FALSE
 	var/fake = FALSE
+	resistance_flags = ACID_PROOF
 
 /obj/item/melee/arm_blade/Initialize(mapload,silent,synthetic)
 	. = ..()

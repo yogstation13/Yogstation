@@ -46,7 +46,7 @@
 	build_path = /obj/item/flashlight
 	category = list("initial","Tools")
 
-/datum/design/flashlight
+/datum/design/blastdoorcontroller
 	name = "Blast Door Controller"
 	id = "blastdoorcontroller"
 	build_type = AUTOLATHE
@@ -446,6 +446,15 @@
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 15000)
 	build_path = /obj/item/hatchet
+	category = list("initial","Misc", "Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
+/datum/design/rsf
+	name = "Rapid Service Fabricator (RSF)"
+	id = "rsf"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 15000, /datum/material/glass = 7500)
+	build_path = /obj/item/rsf
 	category = list("initial","Misc", "Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 

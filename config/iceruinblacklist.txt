@@ -4,8 +4,10 @@
 #SPECIFYING AN INVALID MAP WILL RESULT IN RUNTIMES ON GAME START
 
 ##MISC
+#_maps/RandomRuins/IceRuins/icemoon_surface_shuttle_transit.dmm
 #_maps/RandomRuins/IceRuins/icemoon_surface_mining_site.dmm
 #_maps/RandomRuins/IceRuins/icemoon_surface_lust.dmm
+#_maps/RandomRuins/IceRuins/icemoon_surface_inn.dmm
 #_maps/RandomRuins/IceRuins/icemoon_surface_asteroid.dmm
 #_maps/RandomRuins/IceRuins/icemoon_surface_hotsprings.dmm
 #_maps/RandomRuins/IceRuins/icemoon_underground_puzzle.dmm
@@ -15,3 +17,4 @@
 #_maps/RandomRuins/IceRuins/icemoon_underground_wrath.dmm
 #_maps/RandomRuins/IceRuins/icemoon_underground_lavaland.dmm
 #_maps/RandomRuins/IceRuins/icemoon_underground_bathhouse.dmm
+#_maps/RandomRuins/IceRuins/icemoon_underground_wampacave.dmm

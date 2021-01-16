@@ -17,7 +17,7 @@
 		return QDEL_HINT_LETMELIVE
 	return ..()
 
-/obj/effect/clockwork/servant_blocker/CanPass(atom/movable/M, turf/target)
+/obj/effect/clockwork/servant_blocker/Cross(atom/movable/M)
 	. = ..()
 	var/list/target_contents = M.GetAllContents() + M
 	for(var/mob/living/L in target_contents)

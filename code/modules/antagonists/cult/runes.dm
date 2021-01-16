@@ -265,10 +265,18 @@ structure_check() searches for nearby cultist structures required for the invoca
 	</b></span>")
 	if(ishuman(convertee))
 		var/mob/living/carbon/human/H = convertee
+		if(is_banned_from(H.ckey, ROLE_CULTIST))
+			H.ghostize(FALSE) // You're getting ghosted no escape
+			var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as [H.name]?", ROLE_CULTIST, null, ROLE_CULTIST, 5 SECONDS, H)
+			if(LAZYLEN(candidates))
+				var/mob/dead/observer/C = pick(candidates)
+				to_chat(H, "Your mob has been taken over by a ghost! Appeal your job ban if you want to avoid this in the future!")
+				message_admins("[key_name_admin(C)] has taken control of ([key_name_admin(H)]) to replace a jobbanned player.")
+				H.key = C.key
 		H.uncuff()
 		H.stuttering = 0
 		H.cultslurring = 0
-	return 1
+	return TRUE
 
 /obj/effect/rune/convert/proc/do_sacrifice(mob/living/sacrificial, list/invokers)
 	var/mob/living/first_invoker = invokers[1]
@@ -277,7 +285,6 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/datum/antagonist/cult/C = first_invoker.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
 	if(!C)
 		return
-
 
 	var/big_sac = FALSE
 	if((((ishuman(sacrificial) || iscyborg(sacrificial)) && sacrificial.stat != DEAD) || C.cult_team.is_sacrifice_target(sacrificial.mind)) && invokers.len < 3)
@@ -307,6 +314,11 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 	var/obj/item/soulstone/stone = new /obj/item/soulstone(get_turf(src))
 	if(sacrificial.mind && !sacrificial.suiciding)
+		if(ishuman(sacrificial))
+			var/mob/living/carbon/human/H = sacrificial
+			if(is_banned_from(H.ckey, ROLE_CULTIST))
+				H.ghostize(FALSE) // You're getting ghosted no escape
+				H.key = null // Still useful to cult
 		stone.invisibility = INVISIBILITY_MAXIMUM //so it's not picked up during transfer_soul()
 		stone.transfer_soul("FORCE", sacrificial, usr)
 		stone.invisibility = 0

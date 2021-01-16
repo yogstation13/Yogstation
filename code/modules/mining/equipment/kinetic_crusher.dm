@@ -12,8 +12,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	obj_flags = UNIQUE_RENAME
 	slot_flags = ITEM_SLOT_BACK
-	force_unwielded = 20 //It's never not wielded so these are the same
-	force_wielded = 20
 	throwforce = 5
 	throw_speed = 4
 	light_range = 5
@@ -342,7 +340,6 @@
 	. = ..()
 	if(.)
 		H.force += bonus_value * 0.2
-		H.force_unwielded += bonus_value * 0.2
 		H.force_wielded += bonus_value * 0.2
 		H.detonation_damage += bonus_value * 0.8
 
@@ -350,7 +347,6 @@
 	. = ..()
 	if(.)
 		H.force -= bonus_value * 0.2
-		H.force_unwielded -= bonus_value * 0.2
 		H.force_wielded -= bonus_value * 0.2
 		H.detonation_damage -= bonus_value * 0.8
 

@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "heretic blades will no longer activate blade effects if the user can't stab people"

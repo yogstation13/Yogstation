@@ -136,17 +136,17 @@
 	for(var/I in 1 to MESSAGE_MODS_LENGTH)
 		var/key = message[1]
 		var/chop_to = 2 //By default we just take off the first char
-		if(key == "#" && !mods[WHISPER_MODE])
+		if(key == MODE_KEY_WHISPER && !mods[WHISPER_MODE])
 			mods[WHISPER_MODE] = MODE_WHISPER
-		else if(key == "%" && !mods[MODE_SING])
+		else if(key == MODE_KEY_SING && !mods[MODE_SING])
 			mods[MODE_SING] = TRUE
-		else if(key == ";" && !mods[MODE_HEADSET])
+		else if(key == MODE_KEY_HEADSET && !mods[MODE_HEADSET])
 			mods[MODE_HEADSET] = TRUE
 		else if((key in GLOB.department_radio_prefixes) && length(message) > length(key) + 1 && !mods[RADIO_EXTENSION] && (lowertext(message[1 + length(key)]) in (GLOB.department_radio_keys + GLOB.special_radio_keys)))
 			mods[RADIO_KEY] = lowertext(message[1 + length(key)])
 			mods[RADIO_EXTENSION] = GLOB.department_radio_keys[mods[RADIO_KEY]]
 			chop_to = length(key) + 2
-		else if(key == "," && !mods[LANGUAGE_EXTENSION])
+		else if(key == LANGUAGE_EXTENSION_KEY && !mods[LANGUAGE_EXTENSION])
 			for(var/ld in GLOB.all_languages)
 				var/datum/language/LD = ld
 				if(initial(LD.key) == message[1 + length(message[1])])

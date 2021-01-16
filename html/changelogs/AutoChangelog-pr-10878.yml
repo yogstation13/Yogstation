@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "heretic underlays from stabbing people won't stick around after the effect is gone any more"
