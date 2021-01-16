@@ -166,10 +166,10 @@
 	if(current_target && !ubering)
 
 		if(current_target.health == current_target.maxHealth)
-			ubercharge += 0.5*delta_time/10
+			ubercharge += 1.25*delta_time/10 // 80 seconds
 
 		if(current_target.health < current_target.maxHealth)
-			ubercharge += 1*delta_time/10
+			ubercharge += 2.5*delta_time/10 // 40 seconds
 
 	if(ubering)
 		// No uber flashing
