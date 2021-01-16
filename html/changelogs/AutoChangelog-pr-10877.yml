@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "eldritch blade effects will no longer get activated if you stab yourself on accident or something"
