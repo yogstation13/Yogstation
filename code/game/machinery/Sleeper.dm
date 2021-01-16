@@ -20,7 +20,7 @@
 	var/list/possible_chems = list(
 		list(/datum/reagent/medicine/epinephrine, /datum/reagent/medicine/morphine, /datum/reagent/medicine/perfluorodecalin, /datum/reagent/medicine/bicaridine, /datum/reagent/medicine/kelotane),
 		list(/datum/reagent/medicine/potassium_iodide),
-		list(/datum/reagent/medicine/antitoxin, /datum/reagent/medicine/salbutamol,
+		list(/datum/reagent/medicine/antitoxin, /datum/reagent/medicine/salbutamol),
 		list(/datum/reagent/medicine/omnizine)
 	)
 	var/list/chem_buttons	//Used when emagged to scramble which chem is used, eg: mutadone -> morphine
