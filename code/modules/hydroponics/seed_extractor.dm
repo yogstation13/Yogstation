@@ -115,7 +115,6 @@
 	else if (istype(O, /obj/item/seeds))
 		if(add_seed(O))
 			to_chat(user, "<span class='notice'>You add [O] to [src.name].</span>")
-			updateUsrDialog()
 		return
 	else if(user.a_intent != INTENT_HARM)
 		to_chat(user, "<span class='warning'>You can't extract any seeds from \the [O.name]!</span>")

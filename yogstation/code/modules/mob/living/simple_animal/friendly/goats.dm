@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/goat/clown
-	name = "Clown Goat"
+	name = "Gary the Goat"
 	desc = "Rather kick your butt than tell jokes."
 	icon = 'yogstation/icons/mob/goats/clown_goat.dmi'
 	icon_state = "clowngoat"

@@ -1,0 +1,4 @@
+author: "alexkar598"
+delete-after: true 
+changes: 
+  - rscdel: "You can no longer fill fire extinguishers with random chems"

@@ -545,7 +545,7 @@
 	desc = "An upgrade to the Medical module, loading a more advanced \
 		array of surgical tools into the holder's module, \
 		replacing the old ones."
-	icon_state = "cyborg_ugprade5"
+	icon_state = "cyborg_upgrade5"
 	require_module = TRUE
 	module_type = /obj/item/robot_module/medical
 	module_flags = BORG_MODULE_MEDICAL
@@ -596,37 +596,52 @@
 	. = ..()
 	if(.)
 		/// Removes new surgery tools
-		for(var/obj/item/scalpel/advanced/LS in R.module.modules)
-			R.module.remove_module(LS, TRUE)
+		for(var/obj/item/scalpel/advanced/SE in R.module.modules)
+			R.module.remove_module(SE, TRUE)
 
-		for(var/obj/item/retractor/advanced/MP in R.module.modules)
-			R.module.remove_module(MP, TRUE)
+		for(var/obj/item/retractor/advanced/RE in R.module.modules)
+			R.module.remove_module(RE, TRUE)
 
-		for(var/obj/item/cautery/advanced/ST in R.module.modules)
-			R.module.remove_module(ST, TRUE)
+		for(var/obj/item/cautery/advanced/CE in R.module.modules)
+			R.module.remove_module(CE, TRUE)
+
+		for(var/obj/item/circular_saw/advanced/CA in R.module.modules)
+			R.module.remove_module(CA, TRUE)
+
+		for(var/obj/item/hemostat/advanced/HA in R.module.modules)
+			R.module.remove_module(HA, TRUE)
+
+		for(var/obj/item/surgicaldrill/advanced/SI in R.module.modules)
+			R.module.remove_module(SI, TRUE)
 
 		/// Puts in old surgery tools
 		var/obj/item/retractor/RT = locate() in R.module.modules
+		RT = new(R.module)
 		R.module.basic_modules += RT
 		R.module.add_module(RT, FALSE, TRUE)
 
 		var/obj/item/hemostat/HS = locate() in R.module.modules
+		HS = new(R.module)
 		R.module.basic_modules += HS
 		R.module.add_module(HS, FALSE, TRUE)
 
 		var/obj/item/cautery/CT = locate() in R.module.modules
+		CT = new(R.module)
 		R.module.basic_modules += CT
 		R.module.add_module(CT, FALSE, TRUE)
 
 		var/obj/item/surgicaldrill/SD = locate() in R.module.modules
+		SD = new(R.module)
 		R.module.basic_modules += SD
 		R.module.add_module(SD, FALSE, TRUE)
 
 		var/obj/item/scalpel/SL = locate() in R.module.modules
+		SL = new(R.module)
 		R.module.basic_modules += SL
 		R.module.add_module(SL, FALSE, TRUE)
 
 		var/obj/item/circular_saw/CS = locate() in R.module.modules
+		CS = new(R.module)
 		R.module.basic_modules += CS
 		R.module.add_module(CS, FALSE, TRUE)
 

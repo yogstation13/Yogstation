@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "defibs will now give proper advice for recovering heavily damaged corpses"

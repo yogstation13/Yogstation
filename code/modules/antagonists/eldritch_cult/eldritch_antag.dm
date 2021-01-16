@@ -33,6 +33,7 @@
 		gain_knowledge(/datum/eldritch_knowledge/spell/basic)
 		gain_knowledge(/datum/eldritch_knowledge/living_heart)
 		gain_knowledge(/datum/eldritch_knowledge/codex_cicatrix)
+		gain_knowledge(/datum/eldritch_knowledge/recall)
 	current.log_message("has been converted to the cult of the forgotten ones!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.AddMind(owner)
 	START_PROCESSING(SSprocessing,src)
@@ -222,7 +223,7 @@
 	var/timer = 5 MINUTES
 
 /datum/objective/stalk/process()
-	if(owner?.current.stat != DEAD && target?.current.stat != DEAD && (target.current in view(5,owner.current)))
+	if(owner?.current.stat != DEAD && target && target.current.stat != DEAD && (target.current in view(5,owner.current)))
 		timer -= 1 SECONDS
 	///we don't want to process after the counter reaches 0, otherwise it is wasted processing
 	if(timer <= 0)
