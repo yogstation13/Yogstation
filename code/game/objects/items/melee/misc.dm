@@ -509,6 +509,31 @@
 /obj/item/melee/supermatter_sword/add_blood_DNA(list/blood_dna)
 	return FALSE
 
+/obj/item/melee/singularity_sword
+	name = "singularity sword"
+	desc = "Spins so hard that it turns any struck foe into mincemeat instantaneously. Make sure not to stick around when you swing it at someone."
+	icon = 'icons/obj/items_and_weapons.dmi'
+	icon_state = "singularity_sword"
+	item_state = "singularity_sword"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	slot_flags = null
+	w_class = WEIGHT_CLASS_BULKY
+	force = 0
+	force_string = "INFINITE SPIN"
+	resistance_flags = INDESTRUCTIBLE
+
+/obj/item/melee/singularity_sword/afterattack(target, mob/user, proximity_flag)
+	. = ..()
+	if(proximity_flag && istype(target, /mob))
+		var/mob/M = target
+		var/turf/T = get_turf(M)
+		M.visible_message("<span class='danger'>[target] is consumed by the singularity!</span>")
+		new /obj/singularity(T)
+		M.gib()
+	else
+		return FALSE
+
 /obj/item/melee/curator_whip
 	name = "curator's whip"
 	desc = "Somewhat eccentric and outdated, it still stings like hell to be hit by."
