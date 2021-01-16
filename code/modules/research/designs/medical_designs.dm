@@ -158,7 +158,7 @@
 	id = "defibrillator_compact"
 	build_type = PROTOLATHE
 	build_path = /obj/item/defibrillator/compact
-	materials = list(/datum/material/iron = 16000, /datum/material/glass = 8000, /datum/material/silver = 6000, /datum/material/gold = 3000)
+	materials = list(/datum/material/iron = 8000, /datum/material/glass = 8000, /datum/material/silver = 6000, /datum/material/gold = 3000, /datum/material/plastic = 8000)
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -168,7 +168,7 @@
 	id = "genescanner"
 	build_path = /obj/item/sequence_scanner
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500)
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500, /datum/material/plastic = 250)
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -178,7 +178,7 @@
 	id = "healthanalyzer_advanced"
 	build_path = /obj/item/healthanalyzer/advanced
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500, /datum/material/silver = 2000, /datum/material/gold = 1500)
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500, /datum/material/silver = 2000, /datum/material/gold = 1500, /datum/material/plastic = 1000)
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -296,7 +296,7 @@
 	id = "ci-medhud"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 500, /datum/material/gold = 500)
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 500, /datum/material/gold = 500, /datum/material/plastic = 150)
 	build_path = /obj/item/organ/cyberimp/eyes/hud/medical
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
@@ -307,7 +307,7 @@
 	id = "ci-sechud"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 750, /datum/material/gold = 750)
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 750, /datum/material/gold = 750, /datum/material/plastic = 150)
 	build_path = /obj/item/organ/cyberimp/eyes/hud/security
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
@@ -318,7 +318,7 @@
 	id = "ci-diaghud"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600)
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plastic = 150)
 	build_path = /obj/item/organ/cyberimp/eyes/hud/diagnostic
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
