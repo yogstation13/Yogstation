@@ -39,6 +39,8 @@
 		"https://www.youtube.com/watch?v=ZhhQrFfzFM4",						// Carpenter Brut - Escape from Midwich Valley
 		"https://www.youtube.com/watch?v=dLrdSC9MVb4",						// Tally Hall - Turn the Lights Off
 		"https://www.youtube.com/watch?v=YGulLVWu-s0",						// God Hand "Rock a Bay"
+		"https://www.youtube.com/watch?v=IhEqUKBTffU",						// Streets Of Rogue - 5-1
+		"https://www.youtube.com/watch?v=fXvxnDmwB_I",						// Rain World THS - Action Scene
 		"https://www.youtube.com/watch?v=AumYP6Np1eI")						// Ataraxia - Deja Vu
 
 	selected_lobby_music = pick(songs)
