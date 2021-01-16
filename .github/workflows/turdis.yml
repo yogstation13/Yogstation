@@ -34,7 +34,7 @@ jobs:
       - name: Install Dependencies
         run: |
           wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-          tools/ci/install_node.sh
+          tools/travis/install_build_tools.sh
           tools/travis/install_spaceman_dmm.sh dreamchecker
 
       - name: Misc Checks
