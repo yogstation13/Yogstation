@@ -1,0 +1,4 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - bugfix: "DNA vault now gives you the correct modifiers"
