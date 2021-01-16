@@ -93,8 +93,8 @@
 			if (!authenticated(usr))
 				return
 
-			var/answer_index = params["answer"]
-			var/message_index = params["message"]
+			var/answer_index = text2num(params["answer"])
+			var/message_index = text2num(params["message"])
 
 			// If either of these aren't numbers, then bad voodoo.
 			if(!isnum(answer_index) || !isnum(message_index))
