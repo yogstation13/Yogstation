@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - rscadd: "Added the cyborg advanced surgery kit to the techweb and mechfab"
+  - bugfix: "Fixed several things that made the cyborg advanced surgery kit not function"
