@@ -8,6 +8,7 @@
 	result_atoms = list(/obj/item/melee/sickly_blade/ash)
 	cost = 1
 	route = PATH_ASH
+	required_shit_list = "A pile of ash and a knife."
 
 /datum/eldritch_knowledge/spell/ashen_shift
 	name = "Ashen Shift"
@@ -55,6 +56,7 @@
 	next_knowledge = list(/datum/eldritch_knowledge/spell/ashen_shift,/datum/eldritch_knowledge/flesh_ghoul)
 	required_atoms = list(/obj/item/organ/eyes,/obj/item/shard)
 	result_atoms = list(/obj/item/clothing/neck/eldritch_amulet)
+	required_shit_list = "A glass shard and a pair of eyes."
 
 /datum/eldritch_knowledge/ash_mark
 	name = "Mark of ash"
@@ -80,6 +82,7 @@
 	next_knowledge = list(/datum/eldritch_knowledge/curse/corrosion,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/curse/paralysis)
 	timer = 2 MINUTES
 	route = PATH_ASH
+	required_shit_list = "A pair of eyes, a screwdriver, and a pool of blood. Requires an item touched by the to-be victim."
 
 /datum/eldritch_knowledge/curse/blindness/curse(mob/living/chosen_mob)
 	. = ..()
@@ -122,6 +125,7 @@
 	required_atoms = list(/obj/item/wirecutters,/obj/effect/decal/cleanable/blood,/obj/item/organ/heart,/obj/item/bodypart/l_arm,/obj/item/bodypart/r_arm)
 	next_knowledge = list(/datum/eldritch_knowledge/curse/blindness,/datum/eldritch_knowledge/spell/area_conversion)
 	timer = 2 MINUTES
+	required_shit_list = "Wirecutters, a pool of blood, a heart, and a left and right arm. Requires an item touched by the to-be victim."
 
 /datum/eldritch_knowledge/curse/corrosion/curse(mob/living/chosen_mob)
 	. = ..()
@@ -139,6 +143,7 @@
 	required_atoms = list(/obj/item/kitchen/knife,/obj/effect/decal/cleanable/blood,/obj/item/bodypart/l_leg,/obj/item/bodypart/r_leg,/obj/item/hatchet)
 	next_knowledge = list(/datum/eldritch_knowledge/curse/blindness,/datum/eldritch_knowledge/summon/raw_prophet)
 	timer = 5 MINUTES
+	required_shit_list = "A knife, a pool of blood, a left and right leg, and a hatchet. Requires an item touched by the to-be victim."
 
 /datum/eldritch_knowledge/curse/paralysis/curse(mob/living/chosen_mob)
 	. = ..()
@@ -168,6 +173,7 @@
 	cost = 3
 	route = PATH_ASH
 	var/list/trait_list = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_BOMBIMMUNE)
+	required_shit_list = "Three dead bodies."
 
 /datum/eldritch_knowledge/final/ash_final/on_finished_recipe(mob/living/user, list/atoms, loc)
 	priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear The Blaze, for Ashbringer [user.real_name] has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", 'sound/ai/spanomalies.ogg')
