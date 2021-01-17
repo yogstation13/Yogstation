@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "Medborg adv surgical tools no longer all turn into searing tool"
