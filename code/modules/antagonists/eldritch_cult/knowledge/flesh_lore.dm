@@ -8,6 +8,7 @@
 	result_atoms = list(/obj/item/melee/sickly_blade/flesh)
 	cost = 1
 	route = PATH_FLESH
+	required_shit_list = "A pool of blood and a knife."
 
 /datum/eldritch_knowledge/flesh_ghoul
 	name = "Imperfect Ritual"
@@ -20,6 +21,7 @@
 	var/max_amt = 2
 	var/current_amt = 0
 	var/list/ghouls = list()
+	required_shit_list = "A poppy and your deceased to rise."
 
 /datum/eldritch_knowledge/flesh_ghoul/on_finished_recipe(mob/living/user,list/atoms,loc)
 	var/mob/living/carbon/human/humie = locate() in atoms
@@ -172,6 +174,7 @@
 	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/raw_prophet
 	next_knowledge = list(/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/spell/blood_siphon,/datum/eldritch_knowledge/curse/paralysis)
 	route = PATH_FLESH
+	required_shit_list = "A pair of eyes and a left and right arm."
 
 /datum/eldritch_knowledge/summon/stalker
 	name = "Lonely Ritual"
@@ -182,6 +185,7 @@
 	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/stalker
 	next_knowledge = list(/datum/eldritch_knowledge/summon/ashy,/datum/eldritch_knowledge/summon/rusty,/datum/eldritch_knowledge/final/flesh_final)
 	route = PATH_FLESH
+	required_shit_list = "A knife, a candle, a pen, and a piece of paper."
 
 /datum/eldritch_knowledge/summon/ashy
 	name = "Ashen Ritual"
@@ -191,6 +195,7 @@
 	required_atoms = list(/obj/effect/decal/cleanable/ash,/obj/item/bodypart/head,/obj/item/book)
 	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/ash_spirit
 	next_knowledge = list(/datum/eldritch_knowledge/summon/stalker,/datum/eldritch_knowledge/spell/flame_birth)
+	required_shit_list = "A pile of ash, a head and a book."
 
 /datum/eldritch_knowledge/summon/rusty
 	name = "Rusted Ritual"
@@ -200,6 +205,7 @@
 	required_atoms = list(/obj/effect/decal/cleanable/vomit,,/obj/item/book)
 	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/rust_spirit
 	next_knowledge = list(/datum/eldritch_knowledge/summon/stalker,/datum/eldritch_knowledge/spell/entropic_plume)
+	required_shit_list = "A pool of vomit and a book"
 
 /datum/eldritch_knowledge/spell/blood_siphon
 	name = "Blood Siphon"
@@ -216,6 +222,7 @@
 	required_atoms = list(/mob/living/carbon/human)
 	cost = 3
 	route = PATH_FLESH
+	required_shit_list = "Three dead bodies."
 
 /datum/eldritch_knowledge/final/flesh_final/on_finished_recipe(mob/living/user, list/atoms, loc)
 	var/alert_ = alert(user,"Do you want to ascend as the Lord of the Night or empower yourself and summon a Terror of the Night?","...","Yes","No")

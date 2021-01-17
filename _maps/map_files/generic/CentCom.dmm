@@ -4680,7 +4680,7 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/supply)
 "mc" = (
-/obj/machinery/computer/auxillary_base{
+/obj/machinery/computer/auxiliary_base{
 	pixel_y = 32
 	},
 /obj/structure/table/reinforced,
@@ -7490,7 +7490,7 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "rl" = (
-/obj/machinery/computer/auxillary_base{
+/obj/machinery/computer/auxiliary_base{
 	pixel_y = 32
 	},
 /obj/structure/table/reinforced,
@@ -18007,6 +18007,13 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/evac)
+"Lj" = (
+/obj/structure/table/wood,
+/obj/item/veilrender/honkrender/honkhulkrender,
+/obj/item/melee/baseball_bat/homerun,
+/obj/item/melee/singularity_sword,
+/turf/open/floor/wood,
+/area/centcom/testchamber)
 "Lk" = (
 /obj/machinery/sleeper{
 	controls_inside = 1;
@@ -19314,12 +19321,6 @@
 	pixel_y = 8
 	},
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"Om" = (
-/obj/structure/table/wood,
-/obj/item/veilrender/honkrender/honkhulkrender,
-/obj/item/melee/baseball_bat/homerun,
-/turf/open/floor/wood,
 /area/centcom/testchamber)
 "On" = (
 /obj/structure/table/wood,
@@ -72417,7 +72418,7 @@ YT
 Ni
 On
 ug
-Om
+Lj
 wS
 OB
 Nt

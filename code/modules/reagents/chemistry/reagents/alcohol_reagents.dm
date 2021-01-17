@@ -2250,6 +2250,21 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "glass of malt liquor"
 	glass_desc = "A freezing pint of malt liquor."
 	
+/datum/reagent/consumable/ethanol/coggernac
+	name = "COG-Nac"
+	description = "I don't even know what an eminence is, but I want him to recall."
+	metabolization_rate = INFINITY
+	boozepwr = 30
+	quality = DRINK_FANTASTIC
+	taste_description = "cogs and brass"
+	glass_icon_state = "coggerchalice"
+	glass_name = "COG-Nac"
+	glass_desc = "Just looking at this makes your head spin. How the hell is it ticking?"
+
+/datum/reagent/consumable/ethanol/coggernac/on_mob_life(mob/living/carbon/M)
+	M.emote("spin")
+	..()
+
 /datum/reagent/consumable/ethanol/amaretto
 	name = "Amaretto"
 	description = "A gentle drink that carries a sweet aroma."
