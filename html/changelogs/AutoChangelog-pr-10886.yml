@@ -1,7 +1,0 @@
-author: "ToGWtF"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed firecrocs for the third time."
-  - bugfix: "Fixed public nanite chamber circuit boards by requiring it to be in your hand to change its settings."
-  - bugfix: "Fixed debug grant full access using the wrong ID icon."
-  - bugfix: "Fixed paystands not dropping a circuit board on deconstruct."
