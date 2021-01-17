@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "mutagen will now only mutate people if ingested in a dose of 5 units or more"
