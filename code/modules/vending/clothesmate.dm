@@ -160,7 +160,6 @@
 		            /obj/item/clothing/under/lawyer/blacksuit = 2,
 		            /obj/item/clothing/suit/toggle/lawyer/black = 2,
 		            /obj/item/clothing/suit/hooded/wintercoat = 2,
-		            /obj/item/clothing/suit/hooded/wintercoat/captain = 2,
 		            /obj/item/clothing/suit/hooded/wintercoat/medical = 2,
 		            /obj/item/clothing/suit/hooded/wintercoat/science = 2,
 		            /obj/item/clothing/suit/hooded/wintercoat/engineering/atmos = 2,
