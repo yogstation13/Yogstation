@@ -254,7 +254,7 @@ Class Procs:
 		if(is_species(user, /datum/species/lizard/ashwalker))
 			return FALSE
 		var/mob/living/carbon/H = user
-		if(istype(H) && H.has_dna() && H.dna.check_mutation(HULK_STATE))
+		if(istype(H) && H.has_dna() && H.dna.check_mutation(ACTIVE_HULK))
 			to_chat(H, "<span class='warning'>HULK NOT NERD. HULK SMASH!!!</span>")
 			return FALSE
 		if(!Adjacent(user))
