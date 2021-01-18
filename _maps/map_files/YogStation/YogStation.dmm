@@ -36908,6 +36908,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing/chamber)
+"eDw" = (
+/obj/structure/fireaxecabinet/spare{
+	pixel_y = 32
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "eDG" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
@@ -48028,13 +48034,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"mTz" = (
-/obj/structure/fireaxecabinet/spare{
-	pixel_x = 2;
-	pixel_y = 32
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "mUg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -97087,7 +97086,7 @@ bfl
 bim
 bjG
 aZV
-mTz
+eDw
 qWH
 kSk
 bqH
