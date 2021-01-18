@@ -19,6 +19,7 @@
 	sexes = FALSE //no fetish content allowed
 	toxic_food = NONE
 	inert_mutation = SHOCKTOUCH
+	screamsound = 'sound/voice/ethereal/ethereal_scream.ogg'
 	var/current_color
 	var/EMPeffect = FALSE
 	var/emageffect = FALSE
