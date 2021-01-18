@@ -81,7 +81,7 @@
 
 	if(!dna)
 		return
-	if(dna.check_mutation(ACTIVE_HULK))
+	if(prob(3) && dna.check_mutation(ACTIVE_HULK))
 		say(pick_list_replacements(BRAIN_DAMAGE_FILE, "hulk"))
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
