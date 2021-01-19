@@ -36,7 +36,6 @@
 	name = "Gondola Day"
 	begin_day = 5
 	begin_month = JULY
-	drone_hat = /obj/item/clothing/head/hardhat/cakehat
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=lM2Lr3NqUcg", // Maamme (Finnish Anthem)
 		"https://www.youtube.com/watch?v=OEtyScs6djU", // Vapaussoturin Valloituslaulu
@@ -46,6 +45,12 @@
 		"https://www.youtube.com/watch?v=8IaUXefAsCU", // The Song of the Pioneers
 		"https://www.youtube.com/watch?v=PJR3xTdbXH8" // Nyet Molotov
 		)
+		
+/datum/holiday/gondoladay/getStationPrefix()
+	return pick("Gondola","Finnish","Finland","Karelia","Perkele")
+	
+/datum/holiday/gondoladay/greet()
+	return "Happy Gondola Day!"
 
 /datum/holiday/yogsday
 	name = "Yogstation Day"
