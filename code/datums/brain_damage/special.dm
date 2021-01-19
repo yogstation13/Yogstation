@@ -58,6 +58,8 @@
 /datum/brain_trauma/special/bluespace_prophet/on_life()
 	if(world.time > next_portal)
 		next_portal = world.time + 100
+		is_centcom_level(owner.z)
+			return
 		var/list/turf/possible_turfs = list()
 		for(var/turf/T in range(owner, 8))
 			if(!T.density)
