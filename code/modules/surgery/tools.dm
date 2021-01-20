@@ -313,7 +313,7 @@
 		borg.module.add_module(PC, FALSE, TRUE)
 		borg.equip_module_to_slot(PC, modulenum)
 	else
-		var/obj/item/circular_saw/advanced/saw = new /obj/item/surgicaldrill/advanced(drop_location())
+		var/obj/item/circular_saw/advanced/saw = new /obj/item/circular_saw/advanced(drop_location())
 		qdel(src)
 		user.put_in_active_hand(saw)
 
@@ -346,7 +346,7 @@
 		borg.module.add_module(PC, FALSE, TRUE)
 		borg.equip_module_to_slot(PC, modulenum)
 	else
-		var/obj/item/scalpel/advanced/scalpel = new /obj/item/surgicaldrill/advanced(drop_location())
+		var/obj/item/scalpel/advanced/scalpel = new /obj/item/scalpel/advanced(drop_location())
 		qdel(src)
 		user.put_in_active_hand(scalpel)
 
@@ -371,7 +371,7 @@
 		borg.module.add_module(PC, FALSE, TRUE)
 		borg.equip_module_to_slot(PC, modulenum)
 	else
-		var/obj/item/hemostat/advanced/hemostat = new /obj/item/surgicaldrill/advanced(drop_location())
+		var/obj/item/hemostat/advanced/hemostat = new /obj/item/hemostat/advanced(drop_location())
 		qdel(src)
 		user.put_in_active_hand(hemostat)
 
@@ -396,7 +396,7 @@
 		borg.module.add_module(PC, FALSE, TRUE)
 		borg.equip_module_to_slot(PC, modulenum)
 	else
-		var/obj/item/retractor/advanced/retractor = new /obj/item/surgicaldrill/advanced(drop_location())
+		var/obj/item/retractor/advanced/retractor = new /obj/item/retractor/advanced(drop_location())
 		qdel(src)
 		user.put_in_active_hand(retractor)
 
@@ -427,7 +427,7 @@
 		borg.module.add_module(PC, FALSE, TRUE)
 		borg.equip_module_to_slot(PC, modulenum)
 	else
-		var/obj/item/cautery/advanced/cautery = new /obj/item/surgicaldrill/advanced(drop_location())
+		var/obj/item/cautery/advanced/cautery = new /obj/item/cautery/advanced(drop_location())
 		qdel(src)
 		user.put_in_active_hand(cautery)
 

@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "synthflesh will now heal burn husks if their burn damage is under 50 and the total amount of synthflesh dosed reaches 100"
