@@ -12,9 +12,6 @@ Crystalized extracts:
 	icon_state = "crystalline"
 	var/obj/structure/slime_crystal/crystal_type
 
-/obj/item/slimecross/crystalized/Initialize()
-	. = ..()
-
 /obj/item/slimecross/crystalized/attack_self(mob/user)
 	. = ..()
 	var/obj/structure/slime_crystal/C = locate() in range(6,get_turf(user))
