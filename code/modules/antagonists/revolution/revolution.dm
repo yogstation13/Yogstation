@@ -23,7 +23,8 @@
 			/datum/antagonist/clockcult,
 			/datum/antagonist/darkspawn,
 			/datum/antagonist/shadowling,
-			/datum/antagonist/cult    
+			/datum/antagonist/cult,
+			/datum/antagonist/zombie
 			)
 		for(var/datum/antagonist/NTA in new_owner.antag_datums)
 			if(NTA.type in no_team_antag)
