@@ -531,10 +531,11 @@ generate/load female uniform sprites matching all previously decided variables
 	if(!layer2use)
 		layer2use = default_layer
 
+	var/mob/M = loc
 	var/mutable_appearance/standing
 	if(femaleuniform)
-		if(HAS_TRAIT(src, TRAIT_SKINNY))
-			standing = wear_skinny_version(state,file2use,layer2use,femaleuniform)
+		if(HAS_TRAIT(M, TRAIT_SKINNY))
+			standing = wear_skinny_version(state,file2use,layer2use,femaleuniform) 
 		else
 			standing = wear_female_version(state,file2use,layer2use,femaleuniform)
 	if(!standing)
@@ -549,7 +550,6 @@ generate/load female uniform sprites matching all previously decided variables
 	standing = center_image(standing, isinhands ? inhand_x_dimension : worn_x_dimension, isinhands ? inhand_y_dimension : worn_y_dimension)
 
 	//Handle held offsets
-	var/mob/M = loc
 	if(istype(M))
 		var/list/L = get_held_offsets()
 		if(L)
