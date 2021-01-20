@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	icon_state = "slime_pylon"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	///Description of the crystal's effects.
-	var/effect_desc = "null"
+	var/effect_desc
 	///Assoc list of affected mobs, the key is the mob while the value of the map is the amount of ticks spent inside of the zone.
 	var/list/affected_mobs = list()
 	///Used to determine wether we use view or range.
@@ -587,8 +587,8 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	if(!ishuman(affected_mob))
 		return
 	var/mob/living/carbon/human/human = affected_mob
-	human.dna.species.brutemod /= 0.5
-	human.dna.species.burnmod /= 0.5
+	human.dna.species.brutemod *= 2
+	human.dna.species.burnmod *= 2
 
 /obj/structure/slime_crystal/rainbow
 	colour = "rainbow"
