@@ -1,7 +1,7 @@
 /*
 Crystalized extracts:
 	Creates a crystal structure that
-	grants the room it's in	unique properties
+	grants unique properties in an aura around it
 	when activated in-hand.
 */
 
