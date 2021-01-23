@@ -126,7 +126,7 @@
 /obj/item/organ/stomach/ethereal/proc/adjust_charge(amount)
 	crystal_charge = clamp(crystal_charge + amount, ETHEREAL_CHARGE_NONE, ETHEREAL_CHARGE_FULL)
 	
-	/obj/item/organ/stomach/cursed
+/obj/item/organ/stomach/cursed
 	name = "cursed stomach"
 	icon_state = "stomach-cursed"
 	desc = "A stomach that used be a source of power of something incredibly vile. It seems to be beating."
