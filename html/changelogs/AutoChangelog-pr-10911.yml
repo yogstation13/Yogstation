@@ -1,0 +1,4 @@
+author: "alexkar598"
+delete-after: true 
+changes: 
+  - bugfix: "The max limit for files is now 5 mb instead of 1 mb because i wanna upload motherfucking music that doesnt suck ass"
