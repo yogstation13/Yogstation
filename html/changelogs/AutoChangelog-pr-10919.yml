@@ -1,7 +1,0 @@
-author: "ChesterTheCheesy"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed crossbreeds not appearing as well as some associated bugs."
-  - tweak: "Tweaked values for crystal integrity, red crystal gain from collecting blood, given it more organs to create, buffed adamantine armor aura."
-  - imageadd: "Added missing icon for the crossbred core."
-  - spellcheck: "Added missing decriptions and names."
