@@ -1,6 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - imageadd: "Polysmorph tongues now look like xeno tongues"
-  - spellcheck: "polysmorphtongue -> polysmorph tongue"
-  - spellcheck: "Improved the description of aforementioned tongue so it's less boring"
