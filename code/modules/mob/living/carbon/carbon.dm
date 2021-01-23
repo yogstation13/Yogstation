@@ -438,6 +438,9 @@
 /mob/living/carbon/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, toxic = FALSE)
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
 		return 1
+		
+	if(istype(src.loc, /obj/effect/dummy))  //cannot vomit while phasing/vomitcrawling
+		return 1
 
 	if(nutrition < 100 && !blood)
 		if(message)
