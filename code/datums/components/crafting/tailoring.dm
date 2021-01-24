@@ -60,6 +60,8 @@
 				  /obj/item/stack/cable_coil = 5)
 	category = CAT_CLOTHING
 
+//lets not add cheap security hud glasses
+
 /datum/crafting_recipe/hudsunsecremoval
 	name = "Security HUD removal"
 	result = /obj/item/clothing/glasses/sunglasses
@@ -77,6 +79,27 @@
 				  /obj/item/clothing/glasses/sunglasses = 1,
 				  /obj/item/stack/cable_coil = 5)
 	category = CAT_CLOTHING
+
+//lets make this require a 10 cable coil instead of 5; it requires more janky wiring to make it work with a cheap pair of chinese sunglasses
+//also, these dont have flash protection
+/datum/crafting_recipe/hudsunmedcheap
+	name = "Cheap Medical HUDsunglasses"
+	result = /obj/item/clothing/glasses/hud/health/sunglasses
+	time = 2 SECONDS
+	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	reqs = list(/obj/item/clothing/glasses/hud/health = 1,
+				  /obj/item/clothing/glasses/cheap/sunglasses = 1,
+				  /obj/item/stack/cable_coil = 10)
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/hudsunmedcheapremoval
+	name = "Medical HUD removal"
+	result = /obj/item/clothing/glasses/cheap/sunglasses
+	time = 2 SECONDS
+	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	reqs = list(/obj/item/clothing/glasses/hud/health/sunglasses/cheap = 1)
+	category = CAT_CLOTHING
+
 
 /datum/crafting_recipe/hudsunmedremoval
 	name = "Medical HUD removal"
