@@ -95,6 +95,11 @@
 	flash_protect = 1
 	tint = 1
 
+/obj/item/clothing/glasses/hud/diagnostic/sunglasses/cheap
+	name = "cheap diagnostic HUDSunglasses"
+	desc = "A crudely fashioned amalgamation of cheap sunglasses and electronics that shows the user a diagnostic HUD."
+	flash_protect = 0
+
 /obj/item/clothing/glasses/hud/security
 	name = "security HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
