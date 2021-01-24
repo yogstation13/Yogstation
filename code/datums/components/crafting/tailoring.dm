@@ -84,7 +84,7 @@
 //also, these dont have flash protection
 /datum/crafting_recipe/hudsunmedcheap
 	name = "Cheap Medical HUDsunglasses"
-	result = /obj/item/clothing/glasses/hud/health/sunglasses
+	result = /obj/item/clothing/glasses/hud/health/sunglasses/cheap
 	time = 2 SECONDS
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	reqs = list(/obj/item/clothing/glasses/hud/health = 1,
