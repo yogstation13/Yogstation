@@ -148,9 +148,9 @@
 /obj/item/clothing/shoes/sandal,
 /obj/item/clothing/shoes/sandal,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/clothing/glasses/sunglasses/cheap,
-/obj/item/clothing/glasses/sunglasses/cheap,
-/obj/item/clothing/glasses/sunglasses/cheap,
+/obj/item/clothing/glasses/cheap/sunglasses,
+/obj/item/clothing/glasses/cheap/sunglasses,
+/obj/item/clothing/glasses/cheap/sunglasses,
 /turf/open/floor/plating/beach/sand,
 /area/template_noop)
 "J" = (

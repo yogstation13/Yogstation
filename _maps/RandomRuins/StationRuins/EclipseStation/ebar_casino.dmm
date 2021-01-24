@@ -544,7 +544,7 @@
 /area/crew_quarters/kitchen)
 "uT" = (
 /obj/structure/table/wood/poker,
-/obj/item/clothing/glasses/sunglasses/cheap,
+/obj/item/clothing/glasses/cheap/sunglasses,
 /obj/item/toy/cards/cardhand,
 /turf/open/floor/carpet/black,
 /area/crew_quarters/bar)
@@ -887,7 +887,7 @@
 /area/crew_quarters/kitchen)
 "HE" = (
 /obj/structure/table/wood/poker,
-/obj/item/clothing/glasses/sunglasses/cheap,
+/obj/item/clothing/glasses/cheap/sunglasses,
 /turf/open/floor/carpet/black,
 /area/crew_quarters/bar)
 "HJ" = (

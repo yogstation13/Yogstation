@@ -50376,7 +50376,7 @@
 	pixel_x = -8;
 	pixel_y = 9
 	},
-/obj/item/clothing/glasses/sunglasses/cheap{
+/obj/item/clothing/glasses/cheap/sunglasses{
 	pixel_x = 6;
 	pixel_y = -4
 	},
