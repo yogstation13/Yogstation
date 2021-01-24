@@ -67,7 +67,7 @@
 
 /obj/item/clothing/glasses/hud/health/sunglasses/cheap
 	name = "cheap medical HUDSunglasses"
-	desc = "A crudely fashioned amalgamation of cheap sunglasses and electronics that show the user a medical HUD."
+	desc = "A crudely fashioned amalgamation of cheap sunglasses and electronics that shows the user a medical HUD."
 	flash_protect = 0
 
 /obj/item/clothing/glasses/hud/diagnostic
