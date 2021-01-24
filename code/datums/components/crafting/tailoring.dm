@@ -119,6 +119,24 @@
 				  /obj/item/stack/cable_coil = 5)
 	category = CAT_CLOTHING
 
+/datum/crafting_recipe/hudsundiagcheap
+	name = "Cheap Diagnostic HUDsunglasses"
+	result = /obj/item/clothing/glasses/hud/diagnostic/sunglasses/cheap
+	time = 2 SECONDS
+	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	reqs = list(/obj/item/clothing/glasses/hud/diagnostic = 1,
+				  /obj/item/clothing/glasses/cheap/sunglasses = 1,
+				  /obj/item/stack/cable_coil = 10)
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/hudsundiagcheapremove
+	name = "Diagnostic HUD removal"
+	result = /obj/item/clothing/glasses/cheap/sunglasses
+	time = 2 SECONDS
+	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	reqs = list(/obj/item/clothing/glasses/hud/diagnostic/sunglasses/cheap)
+	category = CAT_CLOTHING
+
 /datum/crafting_recipe/hudsundiagremoval
 	name = "Diagnostic HUD removal"
 	result = /obj/item/clothing/glasses/sunglasses
