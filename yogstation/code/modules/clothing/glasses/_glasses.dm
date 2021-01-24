@@ -1,3 +1,9 @@
+/obj/item/clothing/glasses/cheap
+	name = "prescription glasses"
+	desc = "Made by Nerd Co. They appear to have fake lenses."
+	icon_state = "glasses"
+	item_state = "glasses"
+
 /obj/item/clothing/glasses/cheap/sunglasses
 	name = "cheap sunglasses"
 	desc = "Made in china"
