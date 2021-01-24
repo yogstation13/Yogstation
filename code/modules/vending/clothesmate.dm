@@ -161,7 +161,7 @@
 		            /obj/item/clothing/under/yogs/whitetuxedo = 1,
 		            /obj/item/clothing/under/yogs/whitedress = 1,
 		            /obj/item/clothing/under/yogs/fancysuit = 1,
-		            /obj/item/clothing/glasses/sunglasses/cheap = 2,
+		            /obj/item/clothing/glasses/cheap/sunglasses = 2,
 		            /obj/item/clothing/glasses/yogs/threed = 2,
 		            /obj/item/clothing/shoes/sneakers/black = 3,
 		            /obj/item/clothing/shoes/yogs/fire_crocs = 1,
