@@ -1,4 +1,4 @@
-/obj/item/clothing/glasses/sunglasses/cheap
+/obj/item/clothing/glasses/cheap/sunglasses
 	name = "cheap sunglasses"
 	desc = "Made in china"
 	icon_state = "sun"
