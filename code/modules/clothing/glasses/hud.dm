@@ -65,6 +65,12 @@
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/blue
 
+/obj/item/clothing/glasses/hud/health/sunglasses/cheap
+	. = ..()
+	name = "cheap medical HUDSunglasses"
+	desc = "A crudely fashioned amalgamation of cheap sunglasses and electronics that show the user a medical HUD."
+	flash_protect = 0
+
 /obj/item/clothing/glasses/hud/diagnostic
 	name = "diagnostic HUD"
 	desc = "A heads-up display capable of analyzing the integrity and status of robotics and exosuits."
