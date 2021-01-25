@@ -71,6 +71,10 @@
 	if(user.get_num_arms() < 2)
 		to_chat(user, "<span class='warning'>You don't have enough intact hands.</span>")
 		return
+	var/obj/item/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
+	if(!user.put_in_inactive_hand(O))
+		to_chat(user, "<span class='notice'>You try to wield it... but it seems you're missing the matching arm.</span>") // should be better text but dunno what
+		return
 	wielded = TRUE
 	if(force_wielded)
 		force += force_wielded
@@ -82,11 +86,9 @@
 		to_chat(user, "<span class='notice'>You grab [src] with both hands.</span>")
 	if (wieldsound)
 		playsound(loc, wieldsound, 50, 1)
-	var/obj/item/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
 	O.name = "[name] - offhand"
 	O.desc = "Your second grip on [src]."
 	O.wielded = TRUE
-	user.put_in_inactive_hand(O)
 	return
 
 /obj/item/twohanded/dropped(mob/user)
