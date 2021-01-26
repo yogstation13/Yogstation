@@ -1,0 +1,4 @@
+author: "TheReddDragon"
+delete-after: true 
+changes: 
+  - bugfix: "cheap sunglasses cannot make hudsunglasses now"
