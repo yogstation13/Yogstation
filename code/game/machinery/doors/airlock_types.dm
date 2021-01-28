@@ -393,6 +393,7 @@
 	anim_parts = "ul=-15,0,0,5,-90;ur=0,15,0,5,-90;dl=0,-15,0,5,-90;dr=15,0,0,5,-90"
 	note_attachment = "ul"
 	panel_attachment = "dr"
+	can_repaint = FALSE
 
 //////////////////////////////////
 /*
