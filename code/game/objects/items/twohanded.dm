@@ -68,9 +68,6 @@
 	if(user.get_inactive_held_item())
 		to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
 		return
-	if(user.get_num_arms() < 2)
-		to_chat(user, "<span class='warning'>You don't have enough intact hands.</span>")
-		return
 	var/obj/item/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
 	if(!user.put_in_inactive_hand(O))
 		to_chat(user, "<span class='notice'>You try to wield it... but it seems you're missing the matching arm.</span>") // should be better text but dunno what
