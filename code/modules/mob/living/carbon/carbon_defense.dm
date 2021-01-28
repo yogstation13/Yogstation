@@ -271,15 +271,15 @@
 					"<span class='notice'>You give [src] a pat on the shoulder to make [p_them()] feel better!</span>")
 	
 	else if(check_zone(M.zone_selected) == BODY_ZONE_HEAD)
-			var/datum/species/S
-			if(ishuman(src))
-				S = dna.species
+		var/datum/species/S
+		if(ishuman(src))
+			S = dna.species
 
-			M.visible_message("<span class='notice'>[M] gives [src] a pat on the head to make [p_them()] feel better!</span>", \
-						"<span class='notice'>You give [src] a pat on the head to make [p_them()] feel better!</span>", target = src,
-						target_message = "<span class='notice'>[M] gives you a pat on the head to make you feel better!</span>")
-			if(S?.can_wag_tail(src) && !dna.species.is_wagging_tail())
-				emote("wag")
+		M.visible_message("<span class='notice'>[M] gives [src] a pat on the head to make [p_them()] feel better!</span>", \
+					"<span class='notice'>You give [src] a pat on the head to make [p_them()] feel better!</span>", target = src,
+					target_message = "<span class='notice'>[M] gives you a pat on the head to make you feel better!</span>")
+		if(S?.can_wag_tail(src) && !dna.species.is_wagging_tail())
+			emote("wag")
 
 	else
 		M.visible_message("<span class='notice'>[M] hugs [src] to make [p_them()] feel better!</span>", \
