@@ -376,7 +376,12 @@
 				to_chat(M, "<span class='danger'>You feel your wounds fade away to nothing!</span>" )
 	..()
 
+/datum/reagent/medicine/mine_salve/on_mob_metabolize(mob/living/M)
+	..()
+	M.surgery_fail_mod *= 0.5
+
 /datum/reagent/medicine/mine_salve/on_mob_end_metabolize(mob/living/M)
+	M.surgery_fail_mod /= 0.5
 	if(iscarbon(M))
 		var/mob/living/carbon/N = M
 		N.hal_screwyhud = SCREWYHUD_NONE
@@ -670,9 +675,11 @@
 /datum/reagent/medicine/morphine/on_mob_metabolize(mob/living/L)
 	..()
 	L.ignore_slowdown(type)
+	ADD_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
 
 /datum/reagent/medicine/morphine/on_mob_end_metabolize(mob/living/L)
 	L.unignore_slowdown(type)
+	REMOVE_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
 	..()
 
 /datum/reagent/medicine/morphine/on_mob_life(mob/living/carbon/M)

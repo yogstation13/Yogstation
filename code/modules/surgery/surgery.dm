@@ -1,3 +1,5 @@
+#define UNPREPARED_SURGERY_PENALTY 0.5
+
 /datum/surgery
 	var/name = "surgery"
 	var/desc = "surgery description"
@@ -122,16 +124,20 @@
 
 /datum/surgery/proc/get_propability_multiplier()
 	var/propability = 0.5
+	var/failure_multiplier = 0
 	var/turf/T = get_turf(target)
 
-	if(locate(/obj/structure/table/optable, T) || locate(/obj/machinery/stasis, T)) //yogs: stasis beds work for surgery
+	if(locate(/obj/structure/table/optable, T))
 		propability = 1
-	else if(locate(/obj/structure/table, T))
+	else if(locate(/obj/structure/table, T) || locate(/obj/machinery/stasis, T))
 		propability = 0.8
 	else if(locate(/obj/structure/bed, T))
 		propability = 0.7
 
-	return propability + success_multiplier
+	if(!HAS_TRAIT(target, TRAIT_SURGERY_PREPARED) && target.stat != DEAD && !IS_IN_STASIS(target)) //not under the effects of anaesthetics or a strong painkiller, harsh penalty to success chance
+		failure_multiplier = UNPREPARED_SURGERY_PENALTY * target.surgery_fail_mod
+
+	return (propability + success_multiplier) * failure_multiplier
 
 /datum/surgery/advanced
 	name = "advanced surgery"

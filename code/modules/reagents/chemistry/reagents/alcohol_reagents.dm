@@ -2205,6 +2205,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Painkiller"
 	glass_desc = "A combination of tropical juices and rum. Surely this will make you feel better."
 
+/datum/reagent/consumable/ethanol/painkiller/on_mob_metabolize(mob/living/M)
+	M.surgery_fail_mod *= 0.5
+
+/datum/reagent/consumable/ethanol/painkiller/on_mob_end_metabolize(mob/living/M)
+	M.surgery_fail_mod /= 0.5
+
 /datum/reagent/consumable/ethanol/pina_colada
 	name = "Pina Colada"
 	description = "A fresh pineapple drink with coconut rum. Yum."
@@ -2249,18 +2255,18 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "sweet corn beer and the hood life"
 	glass_name = "glass of malt liquor"
 	glass_desc = "A freezing pint of malt liquor."
-	
+
 /datum/reagent/consumable/ethanol/amaretto
 	name = "Amaretto"
 	description = "A gentle drink that carries a sweet aroma."
-	color = "#E17600" 
+	color = "#E17600"
 	boozepwr = 25
 	taste_description = "fruity and nutty sweetness"
 	glass_icon_state = "amarettoglass"
 	glass_name = "glass of amaretto"
 	glass_desc = "A sweet and syrupy looking drink."
 	shot_glass_icon_state = "shotglassgold"
-	
+
 /datum/reagent/consumable/ethanol/amaretto_alexander
 	name = "Amaretto Alexander"
 	description = "A weaker version of the Alexander, what it lacks in strength it makes up for in flavor."
@@ -2271,7 +2277,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "alexanderam"
 	glass_name = "Amaretto Alexander"
 	glass_desc = "A creamy, indulgent delight that is in fact as gentle as it seems."
-	
+
 /datum/reagent/consumable/ethanol/ginger_amaretto
 	name = "Ginger Amaretto"
 	description = "A delightfully simple cocktail that pleases the senses."
