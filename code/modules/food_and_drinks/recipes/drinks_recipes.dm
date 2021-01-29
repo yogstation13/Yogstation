@@ -816,10 +816,10 @@
 	results = list(/datum/reagent/consumable/ethanol/flaming_moe = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol/tequila = 1, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/medicine/synaptizine = 1)
 
-/datum/chemical_reaction/coggernac
-	name = "COG-Nac"
-	id = /datum/reagent/consumable/ethanol/coggernac
-	results = list(/datum/reagent/consumable/ethanol/coggernac = 4)
+/datum/chemical_reaction/ratvarnac
+	name = "Justicars Juice"
+	id = /datum/reagent/consumable/ethanol/ratvarnac
+	results = list(/datum/reagent/consumable/ethanol/ratvarnac = 4)
 	required_reagents = list(/datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/ethanol/cognac = 1, /datum/reagent/iron = 1, /datum/reagent/consumable/ethanol/tequila_sunrise = 1)
 
 /datum/chemical_reaction/godfather
