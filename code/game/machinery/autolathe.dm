@@ -38,7 +38,7 @@
 	var/processing_line
 	var/printdirection = 0
 	var/queuelength = 0
-	var/list/categories = list("Tools","Electronics","Construction","T-Comm","Security","Machinery","Medical","Misc","Dinnerware","Imported", "Search")
+	var/list/categories = list("Tools","Electronics","Construction","T-Comm","Security","Machinery","Medical","Miscellaneous","Dinnerware","Imported", "Search")
 
 /obj/machinery/autolathe/Initialize()
 	AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass), 0, TRUE, null, null, CALLBACK(src, .proc/AfterMaterialInsert))
