@@ -135,7 +135,8 @@
 		propability = 0.7
 
 	if(!HAS_TRAIT(target, TRAIT_SURGERY_PREPARED) && target.stat != DEAD && !IS_IN_STASIS(target)) //not under the effects of anaesthetics or a strong painkiller, harsh penalty to success chance
-		failure_multiplier = UNPREPARED_SURGERY_PENALTY * target.surgery_fail_mod
+		if(operated_bodypart.status == BODYPART_ORGANIC) //additionally robot limbs don't feel pain
+			failure_multiplier = UNPREPARED_SURGERY_PENALTY * target.surgery_fail_mod
 
 	return propability + success_multiplier - failure_multiplier
 
