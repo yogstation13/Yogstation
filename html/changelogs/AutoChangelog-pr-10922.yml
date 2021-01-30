@@ -1,6 +1,0 @@
-author: "ChesterTheCheesy"
-delete-after: true 
-changes: 
-  - rscadd: "Added new component: vomitcrawl and an associated cursed stomach. Added it as new bubblegum loot."
-  - bugfix: "You can no longer vomit while in incorporeal form (this includes all forms of phasing)."
-  - imageadd: "Added icon for cursed stomach ."

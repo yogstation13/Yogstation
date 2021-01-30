@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "gas chems will no longer be found in maint pills or strange plants"
-  - tweak: "healium's knockout is harder to bypass"
