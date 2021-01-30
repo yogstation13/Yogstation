@@ -485,6 +485,9 @@
 	if(mutation && mutation != current_species)
 		to_chat(H, mutationtext)
 		H.set_species(mutation)
+		if(HAS_TRAIT(H, TRAIT_GENELESS))
+			if(H.has_dna())
+				H.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA), TRUE) 
 	else
 		to_chat(H, "<span class='danger'>The pain vanishes suddenly. You feel no different.</span>")
 
