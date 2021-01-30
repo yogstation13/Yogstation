@@ -135,7 +135,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 						continue
 				if(L.stat)
 					continue
-				if(!istype(user, /mob/living/simple_animal/shade))
+				if(istype(user, /mob/living/simple_animal/shade))
 					continue
 				invokers += L
 	return invokers
