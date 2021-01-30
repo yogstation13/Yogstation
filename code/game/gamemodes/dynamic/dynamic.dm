@@ -405,6 +405,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 		configure_ruleset(rule)
 		message_admins("Drafting players for forced ruleset [rule.name].")
 		log_game("DYNAMIC: Drafting players for forced ruleset [rule.name].")
+		configure_ruleset(rule)
 		rule.mode = src
 		rule.acceptable(roundstart_pop_ready, threat_level)	// Assigns some vars in the modes, running it here for consistency
 		rule.candidates = candidates.Copy()

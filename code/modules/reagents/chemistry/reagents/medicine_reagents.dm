@@ -399,16 +399,18 @@
 		if (M.stat == DEAD)
 			can_heal = TRUE
 		if((method in list(PATCH, TOUCH)) && can_heal)
+			var/datum/reagent/S = M.reagents.get_reagent(/datum/reagent/medicine/synthflesh)
 			if(!ishuman(M))
 				M.adjustBruteLoss(-1.25 * reac_volume)
 				M.adjustFireLoss(-1.25 * reac_volume)
 			else
-				var/datum/reagent/S = M.reagents.get_reagent(/datum/reagent/medicine/synthflesh)
 				var/heal_amt = clamp(reac_volume, 0, 60 - S?.volume)
 				M.adjustBruteLoss(-2*heal_amt)
 				M.adjustFireLoss(-2*heal_amt)
 				if(method == TOUCH)
 					M.reagents.add_reagent(/datum/reagent/medicine/synthflesh, reac_volume)
+				if(HAS_TRAIT_FROM(M, TRAIT_HUSK, BURN) && (S?.volume + reac_volume >= SYNTHFLESH_UNHUSK_AMOUNT && M.getFireLoss() <= UNHUSK_DAMAGE_THRESHOLD) && M.cure_husk(BURN)) //cure husk will return true if it cures the final husking source
+					M.visible_message("<span class='notice'>The synthflesh soaks into [M]'s burns and they regain their natural color!</span>")
 	..()
 
 /datum/reagent/medicine/charcoal
@@ -959,6 +961,25 @@
 		M.losebreath++
 		. = 1
 	..()
+
+/datum/reagent/medicine/stimulants/nanite
+	name = "Nano-Stimulants"
+	description = "Nanite synthesized muscle stimulation mix that temporarily increases speed and stun resistance slightly. Overdose causes weakness and toxin damage."
+
+/datum/reagent/medicine/stimulants/nanite/on_mob_metabolize(mob/living/L)
+	..()
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.25, blacklisted_movetypes=(FLYING|FLOATING))
+
+/datum/reagent/medicine/stimulants/nanite/on_mob_life(mob/living/carbon/M)
+	if(M.health < 50 && M.health > 0)
+		M.adjustOxyLoss(-1*REM, 0)
+		M.adjustToxLoss(-1*REM, 0)
+		M.adjustBruteLoss(-1*REM, 0)
+		M.adjustFireLoss(-1*REM, 0)
+	M.AdjustAllImmobility(-20, FALSE)
+	M.adjustStaminaLoss(-15*REM, 0)
+	..()
+	. = 1
 
 /datum/reagent/medicine/insulin
 	name = "Insulin"

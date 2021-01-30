@@ -2240,8 +2240,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	M.AdjustUnconscious(-20, FALSE)
 	M.AdjustImmobilized(-20, FALSE)
 	M.AdjustParalyzed(-20, FALSE)
-	if(holder.has_reagent(/datum/reagent/toxin/mindbreaker))
-		holder.remove_reagent(/datum/reagent/toxin/mindbreaker, 5)
+	if(M.reagents.has_reagent(/datum/reagent/toxin/mindbreaker))
+		M.reagents.remove_reagent(/datum/reagent/toxin/mindbreaker, 5)
 	M.hallucination = max(0, M.hallucination - 10)
 	if(prob(30))
 		M.adjustToxLoss(1, 0)
@@ -2255,6 +2255,21 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "sweet corn beer and the hood life"
 	glass_name = "glass of malt liquor"
 	glass_desc = "A freezing pint of malt liquor."
+	
+/datum/reagent/consumable/ethanol/coggernac
+	name = "COG-Nac"
+	description = "I don't even know what an eminence is, but I want him to recall."
+	metabolization_rate = INFINITY
+	boozepwr = 30
+	quality = DRINK_FANTASTIC
+	taste_description = "cogs and brass"
+	glass_icon_state = "coggerchalice"
+	glass_name = "COG-Nac"
+	glass_desc = "Just looking at this makes your head spin. How the hell is it ticking?"
+
+/datum/reagent/consumable/ethanol/coggernac/on_mob_life(mob/living/carbon/M)
+	M.emote("spin")
+	..()
 
 /datum/reagent/consumable/ethanol/amaretto
 	name = "Amaretto"

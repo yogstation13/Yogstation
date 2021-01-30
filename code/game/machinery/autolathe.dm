@@ -190,7 +190,6 @@
 
 /obj/machinery/autolathe/attackby(obj/item/O, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", O))
-		updateUsrDialog()
 		return TRUE
 
 	if(default_deconstruction_crowbar(O))
@@ -229,7 +228,6 @@
 			else
 				flick("autolathe_r",src)//plays glass insertion animation
 		use_power(min(1000, amount_inserted / 100))
-	updateUsrDialog()
 
 /obj/machinery/autolathe/RefreshParts()
 	var/T = 0
@@ -396,9 +394,7 @@
 						new_item.set_custom_materials(picked_materials, 1 / multiplier) //Ensure we get the non multiplied amount
 			item_beingbuilt = null
 			icon_state = "autolathe"
-			updateUsrDialog()
 			desc = initial(desc)
-			updateUsrDialog()
 			return TRUE
 	else
 		say("Not enough resources. Queue processing stopped.")
@@ -426,12 +422,10 @@
 		remove_from_queue(1)
 		if(autoqueue.len)
 			return process_queue()
-		else
-			return
+		return
 	while(D)
 		if(!processing_queue)
 			say("Queue processing halted.")
-			processing_queue = FALSE
 			return
 		if(stat&(NOPOWER|BROKEN) || panel_open)
 			processing_queue = FALSE

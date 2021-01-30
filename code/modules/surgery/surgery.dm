@@ -66,26 +66,26 @@
 		if(type in SP.advanced_surgeries)
 			return TRUE
 
-
 	var/turf/T = get_turf(target)
+
+	//Get the relevant operating computer
+	var/obj/machinery/computer/operating/opcomputer
 	var/obj/structure/table/optable/table = locate(/obj/structure/table/optable, T)
-	var/obj/machinery/stasis/bed = locate(/obj/machinery/stasis, T) //yogs start: stasis beds doing surgery
-	if(table)
-		if(!table.computer)
-			return FALSE
-		if(table.computer.stat & (NOPOWER|BROKEN))
-			return FALSE
-		if(type in table.computer.advanced_surgeries)
-			return TRUE
-	if(bed)
-		if(!bed.computer)
-			return FALSE
-		if(bed.occupant != target)
-			return FALSE
-		if(bed.computer.stat & (NOPOWER|BROKEN))
-			return FALSE
-		if(type in bed.computer.advanced_surgeries)
-			return TRUE //yogs end
+	if(table?.computer)
+		opcomputer = table.computer
+	else
+		var/obj/machinery/stasis/the_stasis_bed = locate(/obj/machinery/stasis, T)
+		if(the_stasis_bed?.computer)
+			opcomputer = the_stasis_bed.computer
+
+	if(!opcomputer)
+		return
+	if(opcomputer.stat & (NOPOWER|BROKEN))
+		return .
+	if(replaced_by in opcomputer.advanced_surgeries)
+		return FALSE
+	if(type in opcomputer.advanced_surgeries)
+		return TRUE
 
 /datum/surgery/proc/next_step(mob/user, intent)
 	if(location != user.zone_selected)
