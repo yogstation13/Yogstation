@@ -285,6 +285,15 @@
 	build_path = /obj/item/ticket_machine_remote
 	category = list ("Electronics")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_MEDICAL
+	
+/datum/design/wallframe/flasher
+	name = "Mounted Flash Frame"
+	id =  "wallframe/flasher"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 10000, /datum/material/glass = 4000)
+	build_path = /obj/item/wallframe/flasher
+	category = list("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /////////////////////////////////////////
 ////////////Janitor Designs//////////////
