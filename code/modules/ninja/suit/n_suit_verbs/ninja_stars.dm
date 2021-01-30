@@ -1,8 +1,8 @@
 
 
-//Creates a throwing star
+//Creates a throwing star for 3 energy, 3% of the base power cell.
 /obj/item/clothing/suit/space/space_ninja/proc/ninjastar()
-	if(!ninjacost(10))
+	if(!ninjacost(30))
 		var/mob/living/carbon/human/H = affecting
 		var/obj/item/throwing_star/ninja/N = new(H)
 		if(H.put_in_hands(N))
@@ -12,7 +12,19 @@
 		H.throw_mode_on() //So they can quickly throw it.
 
 
-/obj/item/throwing_star/ninja
+/obj/item/throwing_star/ninja //while not the most important item in the codebase, it is still neat.
 	name = "ninja throwing star"
-	throwforce = 30
-	embedding = list("embedded_pain_multiplier" = 6, "embed_chance" = 100, "embedded_fall_chance" = 0)
+	desc = "A small throwing star with incapacitating poison laced onto the edges."
+	throwforce = 10
+	embedding = list("embedded_pain_multiplier" = 1, "embed_chance" = 100, "embedded_fall_chance" = 20, "embedded_fall_pain_multiplier" = 1, "embedded_impact_pain_multiplier" = 1)
+
+/obj/item/throwing_star/ninja/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	if(!..())
+		if(iscarbon(hit_atom))
+			var/mob/living/carbon/L = hit_atom
+			L.apply_damage(25, STAMINA)
+			L.reagents.add_reagent(/datum/reagent/toxin/ninjatoxin, 5)
+			return
+
+	..()
+
