@@ -1,0 +1,4 @@
+author: " monster860"
+delete-after: true 
+changes: 
+  - tweak: "Non-dense machines like light fixtures and holopads no longer block abductor machine beacons"
