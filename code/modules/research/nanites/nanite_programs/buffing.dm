@@ -3,8 +3,7 @@
 /datum/nanite_program/nervous
 	name = "Nerve Support"
 	desc = "The nanites act as a secondary nervous system, reducing the amount of time the host is stunned."
-	trigger_cost = 15
-	use_rate = 1.5
+	use_rate = 20
 	rogue_types = list(/datum/nanite_program/nerve_decay)
 
 /datum/nanite_program/nervous/enable_passive_effect()
