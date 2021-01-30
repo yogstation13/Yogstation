@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "surgeries now have a drastically lower success rate when the target is not under anesthetics or painkillers"
-  - tweak: "stasis beds now only have 80% surgery success rate but can be used without anesthetics or painkillers"
