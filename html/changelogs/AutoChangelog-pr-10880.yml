@@ -1,0 +1,6 @@
+author: "alexkar598"
+delete-after: true 
+changes: 
+  - rscadd: "Curator whip does 8 additional damage on simple mobs"
+  - rscdel: "Curator whip no longer guarantees an instant disarm"
+  - tweak: "Curator whip damage decreased from 15 to 12"
