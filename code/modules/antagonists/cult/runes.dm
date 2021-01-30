@@ -219,7 +219,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/datum/team/cult/Cult_team = C.cult_team
 	var/is_convertable = is_convertable_to_cult(L,C.cult_team)
 	if(L.stat != DEAD && (is_clock || is_convertable))
-		invocation = "Mah'weyh pleggh at e'ntrath!"
+		invocation = "Mah'weyh pleggh at e'ntrath!" 
 		..()
 		if(is_clock)
 			L.visible_message("<span class='warning'>[L]'s eyes glow a defiant yellow!</span>", \
