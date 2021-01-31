@@ -1,3 +1,5 @@
+#define SURGERY_FUCKUP_CHANCE 50
+
 /datum/surgery_step
 	var/name
 	var/list/implements = list()	//format is path = probability of success. alternatively
@@ -8,6 +10,9 @@
 	var/repeatable = FALSE				//can this step be repeated? Make shure it isn't last step, or it used in surgery with `can_cancel = 1`. Or surgion will be stuck in the loop
 	var/list/chems_needed = list()  //list of chems needed to complete the step. Even on success, the step will have no effect if there aren't the chems required in the mob.
 	var/require_all_chems = TRUE    //any on the list or all on the list?
+	var/list/ouchie_reduction_chems = list(/datum/reagent/consumable/ethanol/painkiller = 0.5, /datum/reagent/medicine/morphine = 0.5) //chems that will reduce the chance for fuckups while operating on conscious patients, stacks.
+	var/fuckup_damage = 10			//base damage dealt on a surgery being done without anesthetics on SURGERY_FUCKUP_CHANCE percent chance
+	var/fuckup_damage_type = BRUTE	//damage type fuckup_damage is dealt as
 
 /datum/surgery_step/proc/try_op(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	var/success = FALSE
@@ -90,7 +95,10 @@
 		else
 			if(failure(user, target, target_zone, tool, surgery))
 				advance = TRUE
-
+		if(!HAS_TRAIT(target, TRAIT_SURGERY_PREPARED) && target.stat != DEAD && !IS_IN_STASIS(target)) //not under the effects of anaesthetics or a strong painkiller, harsh penalty to success chance
+			var/obj/item/bodypart/operated_bodypart = target.get_bodypart(target_zone)
+			if(!operated_bodypart || operated_bodypart?.status == BODYPART_ORGANIC) //robot limbs don't feel pain but attaching a new bodypart will
+				cause_ouchie(user, target, target_zone, tool, advance)
 		if(advance && !repeatable)
 			surgery.status++
 			if(surgery.status > surgery.steps.len)
@@ -160,3 +168,22 @@
 		detailed_mobs -= target //The patient can't see well what's going on, unless it's something like getting cut
 	user.visible_message(detailed_message, self_message, vision_distance = 1, ignored_mobs = target_detailed ? null : target)
 	user.visible_message(vague_message, "", ignored_mobs = detailed_mobs)
+
+/datum/surgery_step/proc/cause_ouchie(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, success)
+	var/ouchie_mod = 1
+	for(var/datum/reagent/R in ouchie_reduction_chems)
+		if(target.reagents?.has_reagent(R))
+			ouchie_mod *= ouchie_reduction_chems[R]
+	if(target.stat == UNCONSCIOUS)
+		ouchie_mod *= 0.8
+	ouchie_mod *= clamp(1-target.drunkenness/100, 0, 1)
+	if(!success)
+		ouchie_mod *= 2
+	var/final_ouchie_chance = SURGERY_FUCKUP_CHANCE * ouchie_mod
+	if(!prob(final_ouchie_chance))
+		return
+	user.visible_message("<span class='boldwarning'>[target] flinches, bumping [user]'s [tool ? tool.name : "hand"] into something important!", "[target]  flinches, bumping your [tool ? tool.name : "hand"] into something important!</span>")
+	target.apply_damage(fuckup_damage, fuckup_damage_type, target_zone)
+	if(ishuman(target) &&fuckup_damage_type == BRUTE && prob(final_ouchie_chance/2))
+		var/mob/living/carbon/human/H = target
+		H.bleed_rate += min(fuckup_damage/4, 10)
