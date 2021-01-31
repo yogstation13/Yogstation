@@ -61,6 +61,7 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	knife_x_offset = 27
 	knife_y_offset = 13
 	can_be_sawn_off = TRUE
+	weapon_weight = WEAPON_MEDIUM
 
 /obj/item/gun/ballistic/rifle/boltaction/sawoff(mob/user)
 	. = ..()
