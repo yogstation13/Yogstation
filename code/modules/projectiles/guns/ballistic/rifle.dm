@@ -92,6 +92,7 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	if(.)
 		spread = 36
 		can_bayonet = FALSE
+		weapon_weight = WEAPON_LIGHT
 
 /obj/item/gun/ballistic/rifle/boltaction/blow_up(mob/user)
 	. = 0
