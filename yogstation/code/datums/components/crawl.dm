@@ -404,8 +404,8 @@
 				qdel(B)
 		mob.forceMove(get_turf(src))
 		mob.visible_message("<span class='warning'><B>[mob] suddenly appears from the vomit they had entered!</B></span>")
-		mob.Stun(100)
-		mob.Knockdown(200)
+		mob.Stun(50)
+		mob.Knockdown(100)
 		qdel(holder.holder)
 		holder.holder = null
 		holder = null
