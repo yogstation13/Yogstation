@@ -223,6 +223,7 @@
 
 	if(!isliving(mover)) //No stowaways
 		return FALSE
+	return FALSE
 
 /obj/machinery/scanner_gate/luxury_shuttle/auto_scan(atom/movable/AM)
 	return

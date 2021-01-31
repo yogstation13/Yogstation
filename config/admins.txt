@@ -15,7 +15,6 @@ Xantam	=	Host
  
 TehLadyK	=	Council Member
 Yogurtshrimp69	=	Council Member
-Mordrehel	=	Council Member
 Lyis	=	Council Member
 
  

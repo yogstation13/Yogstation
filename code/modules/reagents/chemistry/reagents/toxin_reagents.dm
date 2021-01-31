@@ -36,7 +36,7 @@
 		return
 	if(!M.has_dna() || HAS_TRAIT(M, TRAIT_GENELESS) || HAS_TRAIT(M, TRAIT_BADDNA))
 		return  //No robots, AIs, aliens, Ians or other mobs should be affected by this.
-	if((method==VAPOR && prob(min(33, reac_volume))) || method==INGEST || method==PATCH || method==INJECT)
+	if((method==VAPOR && prob(min(33, reac_volume))) || ((method==INGEST || method==PATCH || method==INJECT) && reac_volume >= 5))
 		M.randmuti()
 		if(prob(98))
 			M.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
@@ -387,7 +387,7 @@
 	toxpwr = 0
 
 /datum/reagent/toxin/polonium/on_mob_life(mob/living/carbon/M)
-	M.radiation += 4
+	M.radiation += 40
 	..()
 
 /datum/reagent/toxin/histamine
@@ -918,3 +918,15 @@
 				to_chat(M, "<span class='warning'>Your missing arm aches from wherever you left it.</span>")
 				M.emote("sigh")
 	return ..()
+
+/datum/reagent/toxin/ninjatoxin //toxin applied by ninja throwing stars
+	name = "Spider Toxin"
+	description = "A weak poison that is supposedly manufactured by the spider clan that causes fatigue in victims."
+	silent_toxin = TRUE
+	color = "#6E2828"
+	toxpwr = 0.1
+	metabolization_rate = 2 * REAGENTS_METABOLISM
+
+/datum/reagent/toxin/ninjatoxin/on_mob_life(mob/living/carbon/M)
+	M.adjustStaminaLoss(3)
+	..()
