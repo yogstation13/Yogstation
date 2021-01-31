@@ -122,18 +122,17 @@
 	SSblackbox.record_feedback("tally", "surgeries_completed", 1, type)
 	qdel(src)
 
-/datum/surgery/proc/get_propability_multiplier()
-	var/propability = 0.5
+/datum/surgery/proc/get_probability_multiplier()
+	var/probability = 0.5
 	var/failure_multiplier = 0
 	var/turf/T = get_turf(target)
 
 	if(locate(/obj/structure/table/optable, T))
-		propability = 1
+		probability = 1
 	else if(locate(/obj/structure/table, T) || locate(/obj/machinery/stasis, T))
-		propability = 0.8
+		probability = 0.8
 	else if(locate(/obj/structure/bed, T))
-		propability = 0.7
-
+		probability = 0.7
 	if(!HAS_TRAIT(target, TRAIT_SURGERY_PREPARED) && target.stat != DEAD && !IS_IN_STASIS(target)) //not under the effects of anaesthetics or a strong painkiller, harsh penalty to success chance
 		if(operated_bodypart.status == BODYPART_ORGANIC) //additionally robot limbs don't feel pain
 			failure_multiplier = UNPREPARED_SURGERY_PENALTY * target.surgery_fail_mod
