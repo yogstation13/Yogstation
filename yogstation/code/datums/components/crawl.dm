@@ -400,8 +400,8 @@
 	if(holder)
 		if(iscarbon(mob))
 			var/mob/living/carbon/C = mob
-			for(var/obj/item/vomitcrawl/B in C)
-				qdel(B)
+			for(var/obj/item/vomitcrawl/V in C)
+				qdel(V)
 		mob.forceMove(get_turf(src))
 		mob.visible_message("<span class='warning'><B>[mob] suddenly appears from the vomit they had entered!</B></span>")
 		mob.Stun(50)
