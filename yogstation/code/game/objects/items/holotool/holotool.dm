@@ -42,6 +42,7 @@
 	if(current_tool)
 		current_tool.on_unset(src)
 	current_tool = mode
+
 	current_tool.on_set(src)
 	playsound(loc, 'yogstation/sound/items/holotool.ogg', get_clamped_volume(), 1, -1)
 	update_icon()
@@ -72,7 +73,10 @@
 		holo_item.color = current_color
 		item_state = current_tool.name
 		add_overlay(holo_item)
-		set_light(3, null, current_color)
+		if(current_tool.name == "off")
+			set_light(0)
+		else
+			set_light(3, null, current_color)
 	else
 		item_state = "holotool"
 		icon_state = "holotool"
