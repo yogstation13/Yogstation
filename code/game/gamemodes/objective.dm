@@ -1283,3 +1283,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/area/target_area = get_area(target)
 
 	return (istype(user_area, dropoff) && istype(target_area, dropoff))
+
+
+//yogs start
+/datum/objective/assassinate/internal/check_completion()
+	return !considered_alive(target)

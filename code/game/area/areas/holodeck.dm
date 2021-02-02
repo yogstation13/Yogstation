@@ -132,3 +132,8 @@
 /area/holodeck/rec_center/thunderdome1218
 	name = "Holodeck - 1218 AD"
 	restricted = 1
+
+
+//yogs start
+/area/holodeck/perma
+	name = "\improper Recreational Holodeck"

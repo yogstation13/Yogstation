@@ -49,3 +49,10 @@
 	desc = "Switch between normal interaction and drain mode."
 	button_icon_state = "s-ninjan"
 	icon_icon = 'icons/obj/clothing/gloves.dmi'
+
+//yogs start
+/datum/action/item_action/ninjacolour
+	name = "Change Colour"
+	desc = "Changes the colour of the suit's lights."
+	button_icon_state = "ninja_colour"
+	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'

@@ -1,3 +1,4 @@
+//Yogs start
 /datum/symptom/numb
 
 	name = "Analgesia"

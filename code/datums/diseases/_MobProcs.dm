@@ -155,3 +155,10 @@
 
 /mob/living/carbon/CanSpreadAirborneDisease()
 	return !((head && (head.flags_cover & HEADCOVERSMOUTH) && (head.armor.getRating("bio") >= 25)) || (wear_mask && (wear_mask.flags_cover & MASKCOVERSMOUTH) && (wear_mask.armor.getRating("bio") >= 25)))
+
+//yogs start
+/mob/living/carbon/human/CanContractDisease(datum/disease/D)
+	var/infectchance = dna.species ? dna.species.yogs_virus_infect_chance : 100 //will this compile? who knows
+	if(prob(infectchance))
+		return ..()
+	return FALSE

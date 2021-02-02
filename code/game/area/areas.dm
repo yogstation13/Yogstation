@@ -737,3 +737,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /// A hook so areas can modify the incoming args (of what??)
 /area/proc/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)
 	return flags
+
+//yogs start
+/area
+	var/atom/global_turf_object = null // for bluespace lockers

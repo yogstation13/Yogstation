@@ -280,3 +280,10 @@
 	name = "25 refined uranium bars."
 	targetitem = /obj/item/stack/sheet/mineral/uranium
 	difficulty = 10
+
+//yogs start
+/datum/objective_item/steal/holotool
+	name = "the holotool."
+	targetitem = /obj/item/holotool
+	difficulty = 5
+	excludefromjob = list("Research Director")
