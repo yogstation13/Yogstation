@@ -50,3 +50,7 @@ GLOBAL_LIST_INIT(preferences_custom_names, list(
 	"religion" = list("pref_name" = "Chaplain religion", "qdesc" = "religion" , "allow_numbers" = TRUE , "group" = "chaplain", "allow_null" = FALSE),
 	"deity" = list("pref_name" = "Chaplain deity", "qdesc" = "deity", "allow_numbers" = TRUE , "group" = "chaplain", "allow_null" = FALSE)
 	))
+
+//Yogs start
+GLOBAL_LIST_INIT(gorilla_names_male, world.file2list("strings/names/gorilla_male.txt"))
+GLOBAL_LIST_INIT(gorilla_names_female, world.file2list("strings/names/gorilla_female.txt"))

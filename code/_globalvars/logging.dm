@@ -75,3 +75,10 @@ GLOBAL_PROTECT(picture_logging_id)
 GLOBAL_VAR(picture_logging_prefix)
 GLOBAL_PROTECT(picture_logging_prefix)
 /////
+
+//Yogs start
+GLOBAL_LIST_EMPTY(mentorlog) // same here man
+GLOBAL_PROTECT(mentorlog)
+
+GLOBAL_LIST_EMPTY(LOOClog)
+GLOBAL_PROTECT(LOOClog)
