@@ -205,12 +205,7 @@ Difficulty: Medium
 	if(!user_area || !user_turf || (user_area.type in excluded_areas))
 		to_chat(user, "<span class='warning'>Something is preventing you from using the staff here.</span>")
 		return
-	var/datum/weather/A
-	for(var/V in SSweather.processing)
-		var/datum/weather/W = V
-		if((user_turf.z in W.impacted_z_levels) && W.area_type == user_area.type)
-			A = W
-			break
+	var/datum/weather/A = SSweather.get_weather(user_turf.z, user_area)
 
 	if(A)
 		if(A.stage != END_STAGE)
