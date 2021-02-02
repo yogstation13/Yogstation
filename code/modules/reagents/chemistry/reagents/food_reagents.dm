@@ -291,31 +291,31 @@
 		if ( eyes_covered && mouth_covered )
 			return
 		else if ( mouth_covered )	// Reduced effects if partially protected
-			if(prob(30))
+			if(prob(50))
 				victim.emote("scream")
-			victim.blur_eyes(12)
-			victim.blind_eyes(8)
+			victim.blur_eyes(14)
+			victim.blind_eyes(10)
 			victim.confused = max(M.confused, 10)
 			victim.damageoverlaytemp = 75
-			victim.Paralyze(80)
+			victim.Paralyze(100)
 			M.adjustStaminaLoss(3)
 			return
 		else if ( eyes_covered ) // Eye cover is better than mouth cover
 			if(prob(20))
-				M.emote("cough")
+				victim.emote("cough")
 			victim.blur_eyes(4)
 			victim.confused = max(M.confused, 6)
 			victim.damageoverlaytemp = 50
 			M.adjustStaminaLoss(3)
 			return
 		else // Oh dear :D
-			if(prob(50))
+			if(prob(60))
 				victim.emote("scream")
-			victim.blur_eyes(12)
-			victim.blind_eyes(8)
+			victim.blur_eyes(14)
+			victim.blind_eyes(10)
 			victim.confused = max(M.confused, 12)
 			victim.damageoverlaytemp = 100
-			victim.Paralyze(120)
+			victim.Paralyze(140)
 			M.adjustStaminaLoss(5)
 		victim.update_damage_hud()
 
