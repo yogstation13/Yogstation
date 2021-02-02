@@ -182,14 +182,14 @@ BLIND     // can't see anything
 	var/icon/female_s				= icon("icon"='icons/mob/uniform.dmi', "icon_state"="[(type == FEMALE_UNIFORM_FULL) ? "female_full" : "female_top"]")
 	female_clothing_icon.Blend(female_s, ICON_MULTIPLY)
 	female_clothing_icon 			= fcopy_rsc(female_clothing_icon)
-	GLOB.female_clothing_icons[index] += female_clothing_icon
+	GLOB.female_clothing_icons[index] = female_clothing_icon
 
 /proc/generate_skinny_clothing(index,t_color,icon,type) //Works the exact same as above but for skinny people
 	var/icon/skinny_clothing_icon	= icon("icon"=icon, "icon_state"=t_color)
 	var/icon/skinny_s				= icon("icon"='icons/mob/uniform.dmi', "icon_state"="[(type == FEMALE_UNIFORM_FULL) ? "skinny_full" : "skinny_top"]") //Hooks into same check to see if it's eligible
 	skinny_clothing_icon.Blend(skinny_s, ICON_MULTIPLY)
 	skinny_clothing_icon 			= fcopy_rsc(skinny_clothing_icon)
-	GLOB.skinny_clothing_icons[index] += skinny_clothing_icon
+	GLOB.skinny_clothing_icons[index] = skinny_clothing_icon
 
 /obj/item/clothing/under/verb/toggle()
 	set name = "Adjust Suit Sensors"
