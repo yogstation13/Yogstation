@@ -117,3 +117,17 @@
 
 /datum/emote/living/snap/get_sound(mob/living/user)
 	return pick('sound/misc/fingersnap1.ogg', 'sound/misc/fingersnap2.ogg')
+
+/datum/emote/living/notice //OwO
+	key = "notice"
+	key_third_person = "notices"
+	
+/datum/emote/living/notice/run_emote(mob/user, params)
+	. = ..()
+	var/list/T = list()
+	for(var/mob/living/carbon/human/C in view(1,user))
+		if(C.gender == "male" && C != user)
+			T += C
+	if(T.len)
+		var/mob/living/carbon/human/N = pick(T)
+		user.visible_message("<span class='danger'>[user.name] notices [N.name]'s bulge!</span>")
