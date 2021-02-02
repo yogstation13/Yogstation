@@ -124,7 +124,7 @@
 	if(isliving(A))
 		var/mob/living/H = A
 		return !beehome || (angery && !H.bee_friendly())
-	if(istype(A, /obj/machinery/hydroponics))
+	if(istype(A, /obj/machinery/hydroponics) && !angery)
 		var/obj/machinery/hydroponics/Hydro = A
 		if(Hydro.myseed && !Hydro.dead && !Hydro.recent_bee_visit)
 			wanted_objects |= hydroponicstypecache //so we only hunt them while they're alive/seeded/not visisted
