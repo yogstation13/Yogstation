@@ -8,22 +8,22 @@
 
 
 /mob/proc/bee_friendly()
-	return 0
+	return FALSE
 
 
 /mob/living/simple_animal/hostile/poison/bees/bee_friendly()
-	return 1
+	return TRUE
 
 
 /mob/living/carbon/human/bee_friendly()
 	if(dna && dna.species && dna.species.id == "pod") //bees pollinate plants, duh.
-		return 1
+		return TRUE
 	if (wear_suit && head && istype(wear_suit, /obj/item/clothing) && istype(head, /obj/item/clothing))
 		var/obj/item/clothing/CS = wear_suit
 		var/obj/item/clothing/CH = head
 		if (CS.clothing_flags & CH.clothing_flags & THICKMATERIAL)
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 
 /obj/structure/beebox
@@ -121,6 +121,11 @@
 /obj/structure/beebox/proc/get_max_bees()
 	. = get_max_honeycomb() * BEES_RATIO
 
+/obj/structure/beebox/proc/toggle_angery(angery) //YES I'M FUCKING MAD
+	for(var/mob/living/simple_animal/hostile/poison/bees/B in bees)
+		B.toggle_angery(angery)
+	if(angery)
+		addtimer(CALLBACK(src, .proc/toggle_angery, FALSE), 300, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/structure/beebox/examine(mob/user)
 	. = ..()
@@ -199,16 +204,18 @@
 	. = ..()
 	if(!user.bee_friendly())
 		//Time to get stung!
-		var/bees = FALSE
+		var/bee_mad = FALSE
+		listclearnulls(bees)
 		for(var/b in bees) //everyone who's ever lived here now instantly hates you, suck it assistant!
 			var/mob/living/simple_animal/hostile/poison/bees/B = b
 			if(B.isqueen)
 				continue
 			if(B.loc == src)
 				B.forceMove(drop_location())
+			toggle_angery(TRUE)
 			B.target = user
-			bees = TRUE
-		if(bees)
+			bee_mad = TRUE
+		if(bee_mad)
 			visible_message("<span class='danger'>[user] disturbs the bees!</span>")
 		else
 			visible_message("<span class='danger'>[user] disturbs the [name] to no effect!</span>")
