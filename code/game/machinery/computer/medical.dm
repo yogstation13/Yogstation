@@ -609,3 +609,8 @@
 		var/obj/item/I = usr.is_holding_item_of_type(/obj/item/card/id)
 		if(I && user.transferItemToLoc(I, src))
 			scan = I
+
+//yogs start
+/obj/machinery/computer/med_data/Initialize()
+	.=..()
+	light_color = LIGHT_COLOR_GREEN

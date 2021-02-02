@@ -73,3 +73,8 @@
 
 		H.dna.add_mutation(CLOWNMUT)
 		H.gain_trauma(/datum/brain_trauma/mild/phobia/clowns, TRAUMA_RESILIENCE_LOBOTOMY) //MWA HA HA
+
+//yogs start
+/obj/machinery/nuclearbomb/syndicate/bananium/centcom
+	desc = "An enriched-bananium explosive stolen from the Syndicate by Nanotrasen. You probably shouldn't stick around to see if this is armed."
+	centcom = TRUE

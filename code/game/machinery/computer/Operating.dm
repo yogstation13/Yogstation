@@ -148,5 +148,10 @@
 		. = TRUE
 	. = TRUE
 
+//yogs start
+/obj/machinery/computer/operating/Initialize()
+	.=..()
+	light_color = LIGHT_COLOR_GREEN
+
 #undef MENU_OPERATION
 #undef MENU_SURGERIES

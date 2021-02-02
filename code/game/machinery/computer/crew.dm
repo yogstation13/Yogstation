@@ -201,4 +201,9 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		if ("select_person")
 			AI.ai_camera_track(params["name"])
 
+//yogs start
+/obj/machinery/computer/crew/Initialize()
+	.=..()
+	light_color = LIGHT_COLOR_GREEN
+
 #undef SENSORS_UPDATE_PERIOD
