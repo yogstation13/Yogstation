@@ -605,8 +605,8 @@
 
 	return TRUE
 
-	//YOGS START
-	/proc/compare_lists(list/a, list/b)
+//YOGS START
+/proc/compare_lists(list/a, list/b)
 	if(!istype(a) || !istype(b))
 		return FALSE
 	if(a.len != b.len)
