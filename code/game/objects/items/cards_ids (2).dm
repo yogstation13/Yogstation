@@ -1,5 +1,5 @@
 /obj/item/card
-	icon = 'yogstation/icons/obj/card.dmi'
+	icon = 'icons/obj/card.dmi'
 	var/has_fluff
 
 /obj/item/card/id/update_label(newname, newjob)

@@ -243,7 +243,7 @@
 /obj/item/reagent_containers/glass/bucket
 	name = "bucket"
 	desc = "It's a bucket."
-	icon = 'yogstation/icons/obj/janitor.dmi' //yogs - wasnt documented
+	icon = 'icons/obj/janitor.dmi' //yogs - wasnt documented
 	icon_state = "bucket"
 	item_state = "bucket"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
@@ -407,7 +407,7 @@
 /obj/item/reagent_containers/glass/mixbowl //chef's bowl
 	name = "mixing bowl"
 	desc = "A large bowl for mixing ingredients."
-	icon = 'yogstation/icons/obj/food/containers.dmi'
+	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "mixbowl"
 	item_state = "mixbowl"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -424,7 +424,7 @@
 	cut_overlays()
 
 	if(reagents.total_volume)
-		var/mutable_appearance/filling = mutable_appearance('yogstation/icons/obj/reagentfillings.dmi', "[icon_state]11")
+		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]11")
 
 		var/percent = round((reagents.total_volume / volume) * 100)
 		switch(percent)

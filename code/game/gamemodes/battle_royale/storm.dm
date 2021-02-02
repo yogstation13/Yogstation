@@ -9,8 +9,8 @@
 	telegraph_duration = 1
 	end_duration = 1
 	immunity_type = "fuckno"
-	telegraph_sound = 'yogstation/sound/effects/battleroyale/stormclosing.ogg'
-	end_sound = 'yogstation/sound/effects/battleroyale/stormalert.ogg'
+	telegraph_sound = 'sound/effects/battleroyale/stormclosing.ogg'
+	end_sound = 'sound/effects/battleroyale/stormalert.ogg'
 	weather_duration = INFINITY
 	weather_duration_lower = INFINITY
 	weather_duration_upper = INFINITY

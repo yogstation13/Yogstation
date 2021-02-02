@@ -7,8 +7,8 @@
 /obj/item/clothing/suit/draculacoat
 	name = "Vampire Coat"
 	desc = "What is a man? A miserable little pile of secrets."
-	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
-	icon = 'yogstation/icons/obj/clothing/suits.dmi'
+	alternate_worn_icon = 'icons/mob/suit.dmi'
+	icon = 'icons/obj/clothing/suits.dmi'
 	icon_state = "draculacoat"
 	item_state = "draculacoat"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS

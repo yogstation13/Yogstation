@@ -28,14 +28,14 @@
 	if(!darkspawn.upgrades["twin_tendrils"] || hands_free.len < 2)
 		owner.visible_message("<span class='warning'>[owner]'s arm contorts into tentacles!</span>", "<span class='velvet bold'>ikna</span><br>\
 		<span class='notice'>You transform your arm into umbral tendrils. Examine them to see possible uses.</span>")
-		playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
+		playsound(owner, 'sound/magic/pass_create.ogg', 50, 1)
 		var/obj/item/umbral_tendrils/T = new(owner, darkspawn)
 		owner.put_in_hands(T)
 	else
 		owner.visible_message("<span class='warning'>[owner]'s arms contort into tentacles!</span>", "<span class='velvet'><b>ikna ikna</b><br>\
 		You transform both arms into umbral tendrils. Examine them to see possible uses.</span>")
-		playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, TRUE)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, owner, 'yogstation/sound/magic/pass_create.ogg', 50, TRUE), 1)
+		playsound(owner, 'sound/magic/pass_create.ogg', 50, TRUE)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, owner, 'sound/magic/pass_create.ogg', 50, TRUE), 1)
 		for(var/i in 1 to 2)
 			var/obj/item/umbral_tendrils/T = new(owner, darkspawn)
 			owner.put_in_hands(T)
@@ -44,7 +44,7 @@
 /datum/action/innate/darkspawn/pass/Deactivate()
 	owner.visible_message("<span class='warning'>[owner]'s tentacles transform back!</span>", "<span class='velvet bold'>haoo</span><br>\
 	<span class='notice'>You dispel the tendrils.</span>")
-	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
+	playsound(owner, 'sound/magic/pass_dispel.ogg', 50, 1)
 	for(var/obj/item/umbral_tendrils/T in owner)
 		qdel(T)
 	return TRUE

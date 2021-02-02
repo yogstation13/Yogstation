@@ -2,7 +2,7 @@
 /obj/machinery/golfhole
 	desc = "A hole for the game of golf. Try to score a hole in one."
 	name = "golf hole"
-	icon = 'yogstation/icons/code/game/golf/golfstuff.dmi'
+	icon = 'icons/code/game/golf/golfstuff.dmi'
 	icon_state = "redgolfhole"
 	anchored = 0
 
@@ -60,13 +60,13 @@
 						"<span class='notice'>You knock the golfball into [src].</span>")
 
 /obj/machinery/golfhole/blue
-	icon = 'yogstation/icons/code/game/golf/golfstuff.dmi'
+	icon = 'icons/code/game/golf/golfstuff.dmi'
 	icon_state = "bluegolfhole"
 
 
 /obj/machinery/golfhole/puttinggreen
 	desc = "The captain's putting green for the game of golf. Try to score a hole in one."
-	icon = 'yogstation/icons/code/game/golf/golfstuff.dmi'
+	icon = 'icons/code/game/golf/golfstuff.dmi'
 	icon_state = "puttinggreen"
 	anchored = 1
 
@@ -74,7 +74,7 @@
 /obj/item/golfball
 	desc = "A ball for the game of golf."
 	name = "golfball"
-	icon = 'yogstation/icons/code/game/golf/golfstuff.dmi'
+	icon = 'icons/code/game/golf/golfstuff.dmi'
 	icon_state ="golfball"
 	throwforce = 12
 	attack_verb = list("hit")
@@ -87,9 +87,9 @@
 /obj/item/golfclub
 	desc = "A club for the game of golf."
 	name = "golfclub"
-	lefthand_file = 'yogstation/icons/mob/inhands/weapons/golfclub_lefthand.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/weapons/golfclub_righthand.dmi'
-	icon = 'yogstation/icons/code/game/golf/golfstuff.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/golfclub_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/golfclub_righthand.dmi'
+	icon = 'icons/code/game/golf/golfstuff.dmi'
 	icon_state ="golfclub"
 	force = 8
 	damtype = BRUTE
@@ -98,7 +98,7 @@
 /obj/structure/closet/golf
 	name = "golf supplies closet"
 	desc = "This unit contains all the supplies for golf."
-	icon = 'yogstation/icons/obj/closet.dmi'
+	icon = 'icons/obj/closet.dmi'
 	icon_state = "golf"
 
 /obj/structure/closet/golf/New()

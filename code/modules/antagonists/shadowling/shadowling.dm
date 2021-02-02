@@ -57,7 +57,7 @@
 	to_chat(owner, "<b>In your limited state, you have three abilities: Enthrall, Hatch, and Hivemind Commune.</b>")
 	to_chat(owner, "<b>Any other shadowlings are your allies. You must assist them as they shall assist you.</b>")
 	to_chat(owner, "<b>You require [SSticker.mode.required_thralls || 15] thralls to ascend.</b><br>")
-	SEND_SOUND(owner.current, sound('yogstation/sound/ambience/antag/sling.ogg'))
+	SEND_SOUND(owner.current, sound('sound/ambience/antag/sling.ogg'))
 
 /datum/antagonist/shadowling/proc/check_shadow_death()
 	for(var/SM in get_antag_minds(/datum/antagonist/shadowling))

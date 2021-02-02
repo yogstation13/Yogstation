@@ -1,5 +1,5 @@
 /obj/item/storage/backpack/holding
-	icon = 'yogstation/icons/obj/storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "holdingpack"
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_HEAD // yes thats right you can wear it on your head! It's not useful for extra storage because it makes you blind or look out the other bag.
 	flags_inv = HIDEHAIR
@@ -9,7 +9,7 @@
 /obj/item/storage/backpack/holding/build_worn_icon(var/state = "", var/default_layer = 0, var/default_icon_file = null, var/isinhands = FALSE, var/femaleuniform = NO_FEMALE_UNIFORM)
 	state = item_state
 	if(default_icon_file == 'icons/mob/head.dmi')
-		default_icon_file = 'yogstation/icons/mob/head.dmi' // thats a fun dilemma.... how to keep the tg sprites when doing back but do yogs sprites when worn on head.
+		default_icon_file = 'icons/mob/head.dmi' // thats a fun dilemma.... how to keep the tg sprites when doing back but do yogs sprites when worn on head.
 	return ..()
 
 /obj/item/storage/backpack/holding/attackby(obj/item/W, mob/living/user)
@@ -166,7 +166,7 @@
 /obj/item/disabled_boh
 	name = "bag of holding"
 	desc = "A backpack that opens into a localized pocket of bluespace. The bluespace interface on this one is collapsed, rendering it useless"
-	icon = 'yogstation/icons/obj/storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "brokenpack"
 	item_state = "holdingpack"
 	resistance_flags = FIRE_PROOF
@@ -182,8 +182,8 @@
 /obj/item/storage/backpack/snail
 	name = "snail shell"
 	desc = "You wonder who this came from."
-	icon = 'yogstation/icons/obj/storage.dmi'
-	alternate_worn_icon = 'yogstation/icons/mob/back.dmi'
+	icon = 'icons/obj/storage.dmi'
+	alternate_worn_icon = 'icons/mob/back.dmi'
 	item_state = "snail_green"
 	icon_state = "snail_green"
 	slowdown = 1
@@ -198,15 +198,15 @@
 /obj/item/storage/backpack/banana
 	name = "banana backpack"
 	desc = "Is it a backpack made of bananas or a backpack with a banana texture? The world may never know."
-	icon = 'yogstation/icons/obj/storage.dmi'
-	alternate_worn_icon = 'yogstation/icons/mob/back.dmi'
+	icon = 'icons/obj/storage.dmi'
+	alternate_worn_icon = 'icons/mob/back.dmi'
 	icon_state = "bananabackpack"
 	item_state = "bananabackpack"
 
 /obj/item/storage/backpack/clownface
 	name = "clown face backpack"
 	desc = "Sometimes there are some things better left off not existing, this is one of them."
-	icon = 'yogstation/icons/obj/storage.dmi'
-	alternate_worn_icon = 'yogstation/icons/mob/back.dmi'
+	icon = 'icons/obj/storage.dmi'
+	alternate_worn_icon = 'icons/mob/back.dmi'
 	icon_state = "clownfacebackpack"
 	item_state = "clownfacebackpack"

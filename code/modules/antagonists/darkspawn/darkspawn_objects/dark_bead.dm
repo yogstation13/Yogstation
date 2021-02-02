@@ -2,7 +2,7 @@
 /obj/item/dark_bead
 	name = "dark bead"
 	desc = "A glowing black orb. It's fading fast."
-	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
+	icon = 'icons/obj/darkspawn_items.dmi'
 	icon_state = "dark_bead"
 	item_state = "disintegrate"
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | UNACIDABLE | INDESTRUCTIBLE
@@ -62,7 +62,7 @@
 		to_chat(L, "<span class='userdanger'><i>AAAAAAAAAAAAAA-</i></span>")
 		L.Stun(50)
 		L.silent += 4
-		playsound(L, 'yogstation/sound/magic/devour_will.ogg', 65, FALSE) //T A S T Y   S O U L S
+		playsound(L, 'sound/magic/devour_will.ogg', 65, FALSE) //T A S T Y   S O U L S
 		if(!do_mob(user, L, 30))
 			user.Knockdown(30)
 			to_chat(L, "<span class='boldwarning'>All right. You're all right.</span>")
@@ -74,7 +74,7 @@
 		"<span class='userdanger italics'>AAAAAAAAAAAAAAA-</span>")
 		to_chat(user, "<span class='velvet'><b>cera qo...</b><br>You begin siphoning [L]'s will...</span>")
 		L.Stun(50)
-		playsound(L, 'yogstation/sound/magic/devour_will_long.ogg', 65, FALSE)
+		playsound(L, 'sound/magic/devour_will_long.ogg', 65, FALSE)
 		if(!do_mob(user, L, 50))
 			user.Knockdown(50)
 			to_chat(L, "<span class='boldwarning'>All right. You're all right.</span>")
@@ -86,7 +86,7 @@
 	Additionally, you have gained one lucidity. Use it to purchase and upgrade abilities."]<br>\
 	<span class='warning'>[L] is now severely weakened and will take some time to recover.</span> \
 	<span class='warning'>Additionally, you can not drain them again without first draining someone else.</span>")
-	playsound(L, 'yogstation/sound/magic/devour_will_victim.ogg', 50, FALSE)
+	playsound(L, 'sound/magic/devour_will_victim.ogg', 50, FALSE)
 	if(full_restore)
 		darkspawn.psi = darkspawn.psi_cap
 		darkspawn.lucidity++ //no getting free lucidity from veils that wouldn't be fun. They'll still count towards winning though.
@@ -101,7 +101,7 @@
 	linked_ability.victims[L] = TRUE
 	linked_ability.last_victim = L.ckey
 	to_chat(L, "<span class='userdanger'>You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber...</span>")
-	L.playsound_local(L, 'yogstation/sound/magic/devour_will_end.ogg', 75, FALSE)
+	L.playsound_local(L, 'sound/magic/devour_will_end.ogg', 75, FALSE)
 	L.Unconscious(15)
 	L.apply_effect(EFFECT_STUTTER, 20)
 	L.apply_status_effect(STATUS_EFFECT_BROKEN_WILL)

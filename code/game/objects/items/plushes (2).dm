@@ -7,7 +7,7 @@
 
 /obj/item/toy/plush/goatplushie
 	name = "strange goat plushie"
-	icon = 'yogstation/icons/obj/toy.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "goat"
 	desc = "Despite its cuddly appearance and plush nature, it will beat you up all the same. Goats never change."
 
@@ -58,30 +58,30 @@
 /obj/item/toy/plush/teddybear
 	name = "teddy bear"
 	desc = "A soft brown bear you can cuddle with anywhere."
-	icon = 'yogstation/icons/obj/toy.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "teddybear"
 
 /obj/item/toy/plush/stuffedmonkey
 	name = "stuffed monkey"
 	desc = "Looks just like the live ones on station. Except this one is made from plush."
-	icon = 'yogstation/icons/obj/toy.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "stuffedmonkey"
 
 /obj/item/toy/plush/inorixplushie
 	name = "inorix plushie"
 	desc = "An adorable stuffed toy that resembles a giant robotic squid. It squirms around in your hand with realistic, buggy motion."
-	icon = 'yogstation/icons/obj/toy.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "plushie_inorix"
 	attack_verb = list("harkened", "glared", "erased")
 
 /obj/item/toy/plush/flowerbunch
 	name = "flower bunch"
 	desc = "Oh, a bunch of flowers to show you care!"
-	icon = 'yogstation/icons/obj/toy.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "flowerbunch"
 
 /obj/item/toy/plush/goatplushie
-	squeak_override = list('yogstation/sound/items/goatsound.ogg'=1)
+	squeak_override = list('sound/items/goatsound.ogg'=1)
 
 /obj/item/toy/plush/goatplushie/angry/realgoat
 	name = "goat plushie"
@@ -91,7 +91,7 @@
 	name = "goat plushie"
 	desc = "Despite its cuddly appearance and plush nature, it will beat you up all the same, or atleast it would if it wasnt a normal plushie."
 	icon_state = "realgoat"
-	squeak_override = list('yogstation/sound/items/goatsound.ogg'=1)
+	squeak_override = list('sound/items/goatsound.ogg'=1)
 
 /obj/item/toy/plush/goatplushie/angry/kinggoat
 	name = "King Goat Plushie"

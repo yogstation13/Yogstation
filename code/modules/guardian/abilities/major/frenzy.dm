@@ -31,7 +31,7 @@
 		if(guardian.summoner?.current && get_dist_euclidian(guardian.summoner.current, L) > master_stats.range)
 			to_chat(guardian, "<span class='danger italics'>[L] is out of your range!</span>")
 			return
-		playsound(guardian, 'yogstation/sound/effects/vector_rush.ogg', 100, FALSE)
+		playsound(guardian, 'sound/effects/vector_rush.ogg', 100, FALSE)
 		guardian.forceMove(get_step(get_turf(L), get_dir(L, guardian)))
 		guardian.target = L
 		guardian.AttackingTarget()
@@ -69,6 +69,6 @@
 		return
 	remove_ranged_ability()
 	G.forceMove(get_step(get_turf(A), turn(A.dir, 180)))
-	playsound(G, 'yogstation/sound/effects/vector_appear.ogg', 100, FALSE)
+	playsound(G, 'sound/effects/vector_appear.ogg', 100, FALSE)
 	G.target = A
 	G.AttackingTarget()

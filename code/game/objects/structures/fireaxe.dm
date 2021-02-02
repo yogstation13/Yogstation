@@ -15,14 +15,14 @@
 	var/alert = TRUE
 	var/axe = TRUE
 
-//yogs NOTICE - Initialize() function MIRRORED to yogstation/code/game/objects/structure/fireaxe.dm
+//yogs NOTICE - Initialize() function MIRRORED to code/game/objects/structure/fireaxe.dm
 //changes made to the below function will have no effect
 /obj/structure/fireaxecabinet/Initialize()
 	. = ..()
 	fireaxe = new
 	update_icon()
 
-//yogs NOTICE - Destroy() function MIRRORED to yogstation/code/game/objects/structure/fireaxe.dm
+//yogs NOTICE - Destroy() function MIRRORED to code/game/objects/structure/fireaxe.dm
 //changes made to the below function will have no effect
 /obj/structure/fireaxecabinet/Destroy()
 	if(fireaxe || spareid)
@@ -206,7 +206,7 @@
 	else
 		add_overlay("glass_raised")
 
-//yogs NOTICE - toggle_lock() function MIRRORED to yogstation/code/game/objects/structure/fireaxe.dm
+//yogs NOTICE - toggle_lock() function MIRRORED to code/game/objects/structure/fireaxe.dm
 //changes made to the below function will have no effect
 /obj/structure/fireaxecabinet/proc/toggle_lock(mob/user)
 	to_chat(user, "<span class = 'caution'> Resetting circuitry...</span>")

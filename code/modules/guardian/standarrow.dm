@@ -1,11 +1,11 @@
 /obj/item/stand_arrow
 	name = "mysterious arrow"
 	desc = "An ancient arrow. You feel poking yourself, or someone else with it would have... <span class='holoparasite'>unpredictable</span> results."
-	icon = 'yogstation/icons/obj/items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "standarrow"
 	item_state = "standarrow"
-	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	sharpness = IS_SHARP
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF

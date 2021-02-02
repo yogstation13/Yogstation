@@ -5,8 +5,8 @@
 /obj/item/clothing/head/beret/sec/amber_medic
 	name = "amber medic beret"
 	desc = "A white beret for the mundane life of an amber task force medic."
-	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+	icon = 'icons/obj/clothing/hats.dmi'
+	alternate_worn_icon = 'icons/mob/head.dmi'
 	icon_state = "beret_ce"
 
 

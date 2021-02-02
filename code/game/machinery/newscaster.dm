@@ -851,7 +851,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 /obj/item/newspaper
 	name = "newspaper"
 	desc = "An issue of The Griffon, the newspaper circulating aboard Nanotrasen Space Stations."
-	icon = 'yogstation/icons/obj/bureaucracy.dmi'
+	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "newspaper"
 	lefthand_file = 'icons/mob/inhands/misc/books_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/books_righthand.dmi'

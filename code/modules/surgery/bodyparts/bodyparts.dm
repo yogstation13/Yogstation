@@ -4,7 +4,7 @@
 	desc = "Why is it detached..."
 	force = 3
 	throwforce = 3
-	icon = 'yogstation/icons/mob/human_parts.dmi' // yogs -- use yog icons instead of tg
+	icon = 'icons/mob/human_parts.dmi' // yogs -- use yog icons instead of tg
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state = ""
 	layer = BELOW_MOB_LAYER //so it isn't hidden behind objects when on the floor
@@ -409,13 +409,13 @@
 			else
 				limb.icon_state = "[species_id]_[body_zone]"
 		else
-			limb.icon = 'yogstation/icons/mob/human_parts.dmi' // yogs -- use yogs icon instead of tg, gorilla people
+			limb.icon = 'icons/mob/human_parts.dmi' // yogs -- use yogs icon instead of tg, gorilla people
 			if(should_draw_gender)
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 			else
 				limb.icon_state = "[species_id]_[body_zone]"
 		if(should_draw_yogs) //yogs start
-			limb.icon = 'yogstation/icons/mob/mutant_bodyparts.dmi'
+			limb.icon = 'icons/mob/mutant_bodyparts.dmi'
 			if(should_draw_gender)
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 			else

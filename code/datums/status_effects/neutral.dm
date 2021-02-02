@@ -165,7 +165,7 @@
 		shadowing.visible_message("<span class='warning'>[owner] breaks away from [shadowing]'s shadow!</span>", \
 		"<span class='userdanger'>You feel a sense of freezing cold pass through you!</span>")
 		to_chat(owner, "<span class='velvet'>You break away from [shadowing].</span>")
-	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, TRUE)
+	playsound(owner, 'sound/magic/devour_will_form.ogg', 50, TRUE)
 	owner.setDir(SOUTH)
 
 /datum/status_effect/tagalong/process()

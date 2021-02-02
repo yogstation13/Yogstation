@@ -1,7 +1,7 @@
 /obj/item/organ/lungs/ashwalker
 	name = "grey lungs"
 	desc = "The grey-ish lungs of an ashwalker."
-	icon = 'yogstation/icons/obj/surgery.dmi'
+	icon = 'icons/obj/surgery.dmi'
 	icon_state = "lungs-ash"
 
 	safe_oxygen_min = 0

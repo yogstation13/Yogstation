@@ -3,7 +3,7 @@
 	desc = "Where the hell does this come from?"
 	gender = MALE
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
-	icon = 'yogstation/icons/mob/chocobo.dmi'
+	icon = 'icons/mob/chocobo.dmi'
 	icon_state = "chocobo"
 	icon_living = "chocobo"
 	icon_dead = "chocobo_dead"

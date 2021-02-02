@@ -22,7 +22,7 @@
 /obj/structure/particle_accelerator
 	name = "Particle Accelerator"
 	desc = "Part of a Particle Accelerator."
-	icon = 'yogstation/icons/obj/machines/particle_accelerator.dmi'//Yogs PA Sprites
+	icon = 'icons/obj/machines/particle_accelerator.dmi'//Yogs PA Sprites
 	icon_state = "none"
 	anchored = FALSE
 	density = TRUE
@@ -161,13 +161,13 @@
 /obj/structure/particle_accelerator/power_box
 	name = "Particle Focusing EM Lens"
 	desc = "This uses electromagnetic waves to focus the Alpha particles."
-	icon = 'yogstation/icons/obj/machines/particle_accelerator.dmi'//Yogs PA Sprites
+	icon = 'icons/obj/machines/particle_accelerator.dmi'//Yogs PA Sprites
 	icon_state = "power_box"
 	reference = "power_box"
 
 /obj/structure/particle_accelerator/fuel_chamber
 	name = "EM Acceleration Chamber"
 	desc = "This is where the Alpha particles are accelerated to <b><i>radical speeds</i></b>."
-	icon = 'yogstation/icons/obj/machines/particle_accelerator.dmi'//Yogs PA Sprites
+	icon = 'icons/obj/machines/particle_accelerator.dmi'//Yogs PA Sprites
 	icon_state = "fuel_chamber"
 	reference = "fuel_chamber"

@@ -2,7 +2,7 @@
 /obj/item/stack/ore/dilithium_crystal
 	name = "dilithium crystal"
 	desc = "A glowing dilithium crystal. It looks very delicate."
-	icon = 'yogstation/icons/obj/telescience.dmi'
+	icon = 'icons/obj/telescience.dmi'
 	icon_state = "dilithium_crystal"
 	singular_name = "dilithium crystal"
 	w_class = WEIGHT_CLASS_TINY

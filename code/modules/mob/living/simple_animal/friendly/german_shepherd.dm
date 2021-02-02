@@ -1,7 +1,7 @@
 /mob/living/simple_animal/pet/dog/gshepherd
 	name = "german shepherd"
 	real_name = "german shepherd"
-	icon = 'yogstation/icons/mob/pets.dmi'
+	icon = 'icons/mob/pets.dmi'
 	icon_state = "g_shepherd"
 	icon_living = "g_shepherd"
 	icon_dead = "g_shepherd_dead"

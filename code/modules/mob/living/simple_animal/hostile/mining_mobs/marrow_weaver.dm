@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/asteroid/marrowweaver
 	name = "marrow weaver"
 	desc = "A big, angry, poisonous spider. It likes to snack on bone marrow. Its preferred food source is you."
-	icon = 'yogstation/icons/mob/lavaland/lavaland_monsters.dmi'
+	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "weaver"
 	icon_living = "weaver"
 	icon_aggro = "weaver"

@@ -507,8 +507,8 @@
 		force_wielded = 1
 		force += 1
 		throwforce = 21
-		righthand_file = 'yogstation/icons/mob/inhands/weapons/polearms_righthand.dmi' //yogs
-		alternate_worn_icon = 'yogstation/icons/mob/back.dmi' //yogs
+		righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi' //yogs
+		alternate_worn_icon = 'icons/mob/back.dmi' //yogs
 		icon_prefix = "spearplasma"
 	update_icon()
 	qdel(tip)

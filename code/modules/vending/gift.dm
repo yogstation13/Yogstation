@@ -1,7 +1,7 @@
 /obj/machinery/vending/gifts
 	name = "\improper Gift Vendor"
 	desc = "A vending machine for the gift shop."
-	icon = 'yogstation/icons/obj/vending.dmi'
+	icon = 'icons/obj/vending.dmi'
 	icon_state = "gifts"
 	icon_deny = "gifts-deny"
 	req_access_txt = "36"

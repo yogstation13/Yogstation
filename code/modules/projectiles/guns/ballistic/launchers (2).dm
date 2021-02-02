@@ -1,7 +1,7 @@
 /obj/item/gun/ballistic/speargun
 	name = "survival speargun"
 	desc = "A heavily stripped down survival weapon built to combat fauna. Fires kinetic spears that must be retrieved after use."
-	icon = 'yogstation/icons/obj/guns/projectile.dmi'
+	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "kineticspeargun"
 	item_state = "speargun"
 	w_class = WEIGHT_CLASS_BULKY

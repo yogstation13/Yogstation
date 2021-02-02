@@ -1,7 +1,7 @@
 /obj/item/storage/box/mre
 	name = "Nanotrasen MRE Ration Kit (Dehydrated bread with tomato ketchup and cheesy spread, meat steak type 1, chocolate bar)"
 	desc = "A package containing food suspended in a bluespace pocket which lasts for centuries, if you're lucky you may even find the legendary MRE 2349 Menu 3 Pepperoni Pizza Slice MRE with coffee instant type 2 in it!"
-	icon = 'yogstation/icons/obj/storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "mre"
 	item_state = "box"
 	var/expiry_date = 2401 //Randomized with each MRE, collect them all!
@@ -16,14 +16,14 @@
 
 /obj/item/storage/box/mre/menu2
 	name = "Nanotrasen MRE Ration Kit (Vegetable omelette, chips, meat cutlet type 2, chocolate bar)"
-	icon = 'yogstation/icons/obj/storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "mre"
 	item_state = "box"
 
 /obj/item/storage/box/mre/menu3
 	name = "Nanotrasen MRE Ration Kit (2349 Menu 3: pepperoni pizza and Italian breadsticks with cheesy jalapeno spread.)"
 	desc = "The holy grail of MREs. This item contains the fabled MRE pizza and a sample of coffee instant type 2. Any NT employee lucky enough to get their hands on one of these is truly blessed."
-	icon = 'yogstation/icons/obj/storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "menu3"
 	item_state = "box"
 

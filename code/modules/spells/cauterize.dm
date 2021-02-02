@@ -10,7 +10,7 @@
 	include_user = TRUE
 	invocation = "AMOS INO!"
 	invocation_type = "shout"
-	action_icon = 'yogstation/icons/mob/actions.dmi'
+	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "cauterize"
 
 /obj/effect/proc_holder/spell/targeted/cauterize/cast(list/targets,mob/user = usr)

@@ -1,7 +1,7 @@
 GLOBAL_LIST_EMPTY(chosen_station_templates)
 
 /obj/effect/landmark/start/yogs
-	icon = 'yogstation/icons/mob/landmarks.dmi'
+	icon = 'icons/mob/landmarks.dmi'
 
 /obj/effect/landmark/start/yogs/mining_medic
 	name = "Mining Medic"
@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 
 /obj/effect/landmark/stationroom/box/bar
 	template_names = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Clock", "Bar Arcade")
-	icon = 'yogstation/icons/rooms/box/bar.dmi'
+	icon = 'icons/rooms/box/bar.dmi'
 	icon_state = "bar_box"
 
 /obj/effect/landmark/stationroom/box/bar/choose()
@@ -92,7 +92,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 
 /obj/effect/landmark/stationroom/box/engine
 	template_names = list("Engine SM", "Engine Singulo And Tesla")
-	icon = 'yogstation/icons/rooms/box/engine.dmi'
+	icon = 'icons/rooms/box/engine.dmi'
 
 /obj/effect/landmark/stationroom/box/engine/choose()
 	. = ..()

@@ -1,5 +1,5 @@
 /datum/looping_sound/sacrament
-	mid_sounds = list('yogstation/sound/magic/sacrament_heartbeat_01.ogg' = 1, 'yogstation/sound/magic/sacrament_heartbeat_02.ogg' = 1, 'yogstation/sound/magic/sacrament_heartbeat_03.ogg' = 1)
+	mid_sounds = list('sound/magic/sacrament_heartbeat_01.ogg' = 1, 'sound/magic/sacrament_heartbeat_02.ogg' = 1, 'sound/magic/sacrament_heartbeat_03.ogg' = 1)
 	mid_length = 10
 	volume = 30
 	var/stage = 1

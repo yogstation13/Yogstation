@@ -21,32 +21,32 @@
 
 /datum/holotool_mode/screwdriver
 	name = "holo-screwdriver"
-	sound = 'yogstation/sound/items/holotool.ogg'
+	sound = 'sound/items/holotool.ogg'
 	behavior = TOOL_SCREWDRIVER
 
 /datum/holotool_mode/crowbar
 	name = "holo-crowbar"
-	sound = 'yogstation/sound/items/holotool.ogg'
+	sound = 'sound/items/holotool.ogg'
 	behavior = TOOL_CROWBAR
 
 /datum/holotool_mode/multitool
 	name = "holo-multitool"
-	sound = 'yogstation/sound/items/holotool.ogg'
+	sound = 'sound/items/holotool.ogg'
 	behavior = TOOL_MULTITOOL
 
 /datum/holotool_mode/wrench
 	name = "holo-wrench"
-	sound = 'yogstation/sound/items/holotool.ogg'
+	sound = 'sound/items/holotool.ogg'
 	behavior = TOOL_WRENCH
 
 /datum/holotool_mode/wirecutters
 	name = "holo-wirecutters"
-	sound = 'yogstation/sound/items/holotool.ogg'
+	sound = 'sound/items/holotool.ogg'
 	behavior = TOOL_WIRECUTTER
 
 /datum/holotool_mode/welder
 	name = "holo-welder"
-	sound = 'yogstation/sound/items/holotool.ogg'
+	sound = 'sound/items/holotool.ogg'
 	behavior = TOOL_WELDER
 
 ////////////////////////////////////////////////

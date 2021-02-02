@@ -2,7 +2,7 @@
 	name = "Pompey"
 	real_name = "Pompey"
 	desc = "It's a pug which has been made to look even sillier then usual by a clown mask on its face."
-	icon = 'yogstation/icons/mob/clownpets.dmi'
+	icon = 'icons/mob/clownpets.dmi'
 	icon_state = "clown_pug"
 	icon_living = "clown_pug"
 	icon_dead = "clown_pug_dead"

@@ -43,7 +43,7 @@ GLOBAL_LIST_EMPTY(donators)
 	if (server_name)
 		s += "<br><b>[server_name]</b> &#8212; 99% Lag Free!!"
 	s += "<br>(<a href=\"https://tinyurl.com/yogsfo\">Forums</a>|<a href=\"https://tinyurl.com/yogsdis\">Discord</a>)<br>" // The Forum & Discord links line
-	s += "<br><i>[pick(world.file2list("yogstation/strings/taglines.txt"))]</i><br>"
+	s += "<br><i>[pick(world.file2list("strings/taglines.txt"))]</i><br>"
 
 
 	//PLAYER COUNT

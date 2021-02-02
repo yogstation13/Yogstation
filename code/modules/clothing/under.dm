@@ -1,7 +1,7 @@
 /obj/item/clothing/under/yogs/cluwne
 	name = "clown suit"
 	desc = "<i>'HONK!'</i>"
-	alternate_screams = list('yogstation/sound/voice/cluwnelaugh1.ogg','yogstation/sound/voice/cluwnelaugh2.ogg','yogstation/sound/voice/cluwnelaugh3.ogg')
+	alternate_screams = list('sound/voice/cluwnelaugh1.ogg','sound/voice/cluwnelaugh2.ogg','sound/voice/cluwnelaugh3.ogg')
 	icon_state = "cluwne"
 	item_state = "cluwne"
 	item_color = "cluwne"

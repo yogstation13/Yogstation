@@ -1,4 +1,4 @@
-//YOGS - FILE MOVED TO yogstation/code/modules/admin/sql_message_system.dm
+//YOGS - FILE MOVED TO code/modules/admin/sql_message_system.dm
 /proc/create_message(type, target_key, admin_ckey, text, timestamp, server, secret, logged = 1, browse, expiry, note_severity)
 	if(!SSdbcore.Connect())
 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)

@@ -1,6 +1,6 @@
 /obj/item/storage/photobook
 	name = "photo book"
-	icon = 'yogstation/icons/obj/toy.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "photobook"
 	item_state = "photobook"
 	w_class = WEIGHT_CLASS_TINY
@@ -17,7 +17,7 @@
 /obj/item/storage/bag/photo
 	name = "Photo Bag"
 	desc = "This Satchel can be used to store all your photo related items."
-	icon = 'yogstation/icons/obj/toy.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "photobag"
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE

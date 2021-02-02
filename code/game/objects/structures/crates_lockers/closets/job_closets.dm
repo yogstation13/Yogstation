@@ -311,7 +311,7 @@
 
 /obj/structure/closet/wardrobe/tcomms
 	name = "signal tech wardrobe"
-	icon = 'yogstation/icons/obj/closet.dmi'
+	icon = 'icons/obj/closet.dmi'
 	icon_state = "sigtech"
 	icon_door = "sigtech"
 

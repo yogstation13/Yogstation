@@ -1167,7 +1167,7 @@
 							T.darkspawn.use_psi(30)
 							qdel(T)
 							return
-					playsound(src, 'yogstation/sound/magic/pass_smash_door.ogg', 50, TRUE)
+					playsound(src, 'sound/magic/pass_smash_door.ogg', 50, TRUE)
 					take_damage(max_integrity / rand(8, 15))
 					to_chat(user, "<span class='velvet bold'>klaj.</span>")
 				ex_act(EXPLODE_DEVASTATE)

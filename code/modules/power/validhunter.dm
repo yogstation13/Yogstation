@@ -1,7 +1,7 @@
 /obj/machinery/power/validhunter_engine
 	name = "validhunter engine"
 	desc = "What is treason? Captain don't hurt me."
-	icon = 'yogstation/icons/obj/validhunter_engine.dmi'
+	icon = 'icons/obj/validhunter_engine.dmi'
 	icon_state = "throw_me_in_the_trash_and_feed_my_remains_to_the_devil"
 	density = TRUE
 	anchored = TRUE

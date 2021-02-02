@@ -37,7 +37,7 @@
 	var/syndie = FALSE  // If true, hears all well-known channels automatically, and can say/hear on the Syndicate channel.
 	var/list/channels = list()  // Map from name (see communications.dm) to on/off. First entry is current department (:h).
 	var/list/secure_radio_connections
-	var/list/radio_sounds = list('yogstation/sound/effects/radio1.ogg','yogstation/sound/effects/radio2.ogg','yogstation/sound/effects/radio3.ogg')
+	var/list/radio_sounds = list('sound/effects/radio1.ogg','sound/effects/radio2.ogg','sound/effects/radio3.ogg')
 
 	var/const/FREQ_LISTENING = 1
 	//FREQ_BROADCASTING = 2

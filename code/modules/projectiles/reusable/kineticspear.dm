@@ -4,7 +4,7 @@
 	damage = 5
 	range = 7
 	var/fauna_damage_bonus = 20
-	icon = 'yogstation/icons/obj/ammo.dmi'
+	icon = 'icons/obj/ammo.dmi'
 	icon_state = "kineticspear"
 	ammo_type = /obj/item/ammo_casing/caseless/kineticspear
 	hitsound = 'sound/weapons/bladeslice.ogg'

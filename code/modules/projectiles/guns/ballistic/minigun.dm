@@ -3,7 +3,7 @@
 /obj/item/minigunbackpack
 	name = "The back stash"
 	desc = "The massive back stash can hold alot of ammo on your back."
-	icon = 'yogstation/icons/obj/guns/minigunosprey.dmi'
+	icon = 'icons/obj/guns/minigunosprey.dmi'
 	icon_state = "holstered"
 	item_state = "backpack"
 	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
@@ -96,11 +96,11 @@
 /obj/item/gun/ballistic/minigunosprey
 	name = "M-546 Osprey"
 	desc = "An advanced minigun with an incredible rate of fire. Requires a bulky backpack to store all that ammo."
-	icon = 'yogstation/icons/obj/guns/minigunosprey.dmi'
+	icon = 'icons/obj/guns/minigunosprey.dmi'
 	icon_state = "minigun_spin"
 	item_state = "minigunosprey"
-	lefthand_file = 'yogstation/icons/mob/inhands/weapons/minigun_inhand_left.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/weapons/minigun_inhand_right.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/minigun_inhand_left.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/minigun_inhand_right.dmi'
 	flags_1 = CONDUCT_1
 	slowdown = 2
 	slot_flags = null

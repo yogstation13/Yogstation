@@ -1,4 +1,4 @@
-//////////////////YOGS - !!!MOVED TO yogstation/code/modules/antagonists/slaughter/slaughter.dm!!!
+//////////////////YOGS - !!!MOVED TO code/modules/antagonists/slaughter/slaughter.dm!!!
 
 /mob/living/simple_animal/slaughter
 	name = "slaughter demon"

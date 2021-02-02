@@ -33,7 +33,7 @@
 	//Cloned March 2019, your mileage may vary
 	var/m
 	var/list/randomtips = world.file2list("strings/tips.txt")
-	randomtips += world.file2list("yogstation/strings/tips.txt")
+	randomtips += world.file2list("strings/tips.txt")
 	var/list/memetips = world.file2list("strings/sillytips.txt")
 	if(randomtips.len && prob(95))
 		m = pick(randomtips)
@@ -50,7 +50,7 @@
 	if(!CONFIG_GET(flag/emojis))
 		to_chat(src,"<span class='warning'>This server has emojis disabled!</span>")
 		return
-	var/static/list/yogemojis = icon_states(icon('yogstation/icons/emoji.dmi'))
+	var/static/list/yogemojis = icon_states(icon('icons/emoji.dmi'))
 	var/static/list/tgemojis = icon_states(icon('icons/emoji.dmi')) - yogemojis // If we have emojis of the same name, they override the TG ones. (https://github.com/yogstation13/Yogstation/pull/5788)
 	
 	to_chat(src,"<b><span class='notice'>List of Emojis:</span></b>")

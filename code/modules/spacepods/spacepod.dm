@@ -456,11 +456,11 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		var/left_thrust = left_thrusts[cdir]
 		var/right_thrust = right_thrusts[cdir]
 		if(left_thrust)
-			add_overlay(image(icon = 'yogstation/icons/obj/spacepods/2x2.dmi', icon_state = "rcs_left", dir = cdir))
+			add_overlay(image(icon = 'icons/obj/spacepods/2x2.dmi', icon_state = "rcs_left", dir = cdir))
 		if(right_thrust)
-			add_overlay(image(icon = 'yogstation/icons/obj/spacepods/2x2.dmi', icon_state = "rcs_right", dir = cdir))
+			add_overlay(image(icon = 'icons/obj/spacepods/2x2.dmi', icon_state = "rcs_right", dir = cdir))
 	if(back_thrust)
-		var/image/I = image(icon = 'yogstation/icons/obj/spacepods/2x2.dmi', icon_state = "thrust")
+		var/image/I = image(icon = 'icons/obj/spacepods/2x2.dmi', icon_state = "thrust")
 		I.transform = matrix(1, 0, 0, 0, 1, -32)
 		add_overlay(I)
 

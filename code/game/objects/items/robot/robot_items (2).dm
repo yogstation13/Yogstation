@@ -4,9 +4,9 @@
 #define DISPENSE_ICECREAM_MODE 4
 /obj/item/borg/lollipop/attack_self(mob/living/user)
 	var/list/choices = list(
-		"Throw Lollipop" = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "throwloli"),
-		"Throw Gumball" = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "throwgum"),
-		"Dispense Icecream" = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "dispice")
+		"Throw Lollipop" = image(icon = 'icons/obj/interface.dmi', icon_state = "throwloli"),
+		"Throw Gumball" = image(icon = 'icons/obj/interface.dmi', icon_state = "throwgum"),
+		"Dispense Icecream" = image(icon = 'icons/obj/interface.dmi', icon_state = "dispice")
 	)
 	var/choice = show_radial_menu(user,src,choices)
 	switch(choice)

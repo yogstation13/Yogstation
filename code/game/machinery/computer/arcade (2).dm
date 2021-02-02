@@ -40,19 +40,19 @@
 	var/sameboard = FALSE
 
 /obj/machinery/computer/arcade/minesweeper/Initialize()
-	squareflag = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_flag")]"
-	squaremine = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_mine")]"
-	squarehidden = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_hidden")]"
-	squareempty = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_empty")]"
-	squareminehit = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_minehit")]"
-	square1 = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_1")]"
-	square2 = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_2")]"
-	square3 = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_3")]"
-	square4 = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_4")]"
-	square5 = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_5")]"
-	square6 = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_6")]"
-	square7 = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_7")]"
-	square8 = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_8")]"
+	squareflag = "[icon2html('icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_flag")]"
+	squaremine = "[icon2html('icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_mine")]"
+	squarehidden = "[icon2html('icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_hidden")]"
+	squareempty = "[icon2html('icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_empty")]"
+	squareminehit = "[icon2html('icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_minehit")]"
+	square1 = "[icon2html('icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_1")]"
+	square2 = "[icon2html('icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_2")]"
+	square3 = "[icon2html('icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_3")]"
+	square4 = "[icon2html('icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_4")]"
+	square5 = "[icon2html('icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_5")]"
+	square6 = "[icon2html('icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_6")]"
+	square7 = "[icon2html('icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_7")]"
+	square8 = "[icon2html('icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_8")]"
 	..()
 
 /obj/machinery/computer/arcade/minesweeper/interact(mob/user)
@@ -64,13 +64,13 @@
 
 	if(game_status == MINESWEEPER_GAME_MAIN_MENU)
 		if(obj_flags & EMAGGED)
-			playsound(loc, 'yogstation/sound/arcade/minesweeper_emag2.ogg', 50, 0, extrarange = -3, falloff = 10)
+			playsound(loc, 'sound/arcade/minesweeper_emag2.ogg', 50, 0, extrarange = -3, falloff = 10)
 			user << browse(static_emagged_web+emagged_web_difficulty_menu,"window=minesweeper,size=400x500")
 		else
-			playsound(loc, 'yogstation/sound/arcade/minesweeper_startup.ogg', 50, 0, extrarange = -3, falloff = 10)
+			playsound(loc, 'sound/arcade/minesweeper_startup.ogg', 50, 0, extrarange = -3, falloff = 10)
 			user << browse(static_web+web_difficulty_menu,"window=minesweeper,size=400x500")
 	else
-		playsound(loc, 'yogstation/sound/arcade/minesweeper_boardpress.ogg', 50, 0, extrarange = -3, falloff = 10)
+		playsound(loc, 'sound/arcade/minesweeper_boardpress.ogg', 50, 0, extrarange = -3, falloff = 10)
 		user << browse(saved_web,"window=minesweeper,size=400x500")
 	if(obj_flags & EMAGGED)
 		do_sparks(5, 1, src)
@@ -102,7 +102,7 @@
 		columns = 0
 		mine_placed = 0
 	if(href_list["Easy"])
-		playsound(loc, 'yogstation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
+		playsound(loc, 'sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
 		flag_text = "OFF"
 		game_status = MINESWEEPER_GAME_PLAYING
 		reset_board = TRUE
@@ -111,7 +111,7 @@
 		columns = 10
 		mine_limit = 10
 	if(href_list["Intermediate"])
-		playsound(loc, 'yogstation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
+		playsound(loc, 'sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
 		flag_text = "OFF"
 		game_status = MINESWEEPER_GAME_PLAYING
 		reset_board = TRUE
@@ -120,7 +120,7 @@
 		columns = 17
 		mine_limit = 40
 	if(href_list["Hard"])
-		playsound(loc, 'yogstation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
+		playsound(loc, 'sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
 		flag_text = "OFF"
 		game_status = MINESWEEPER_GAME_PLAYING
 		reset_board = TRUE
@@ -129,7 +129,7 @@
 		columns = 31
 		mine_limit = 99
 	if(href_list["Custom"])
-		playsound(loc, 'yogstation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
+		playsound(loc, 'sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
 		flag_text = "OFF"
 		game_status = MINESWEEPER_GAME_PLAYING
 		reset_board = TRUE
@@ -140,7 +140,7 @@
 		mine_limit = text2num(input(usr, "How many mines do you want? (Maximum of [round(grid_area*0.85)] allowed)", "Minesweeper Mines"))
 		custom_generation()
 	if(href_list["Flag"])
-		playsound(loc, 'yogstation/sound/arcade/minesweeper_boardpress.ogg', 50, 0, extrarange = -3, falloff = 10)
+		playsound(loc, 'sound/arcade/minesweeper_boardpress.ogg', 50, 0, extrarange = -3, falloff = 10)
 		if(!flagging)
 			flagging = TRUE
 			flag_text = "ON"
@@ -150,10 +150,10 @@
 
 	if(game_status == MINESWEEPER_GAME_MAIN_MENU)
 		if(obj_flags & EMAGGED)
-			playsound(loc, 'yogstation/sound/arcade/minesweeper_emag2.ogg', 50, 0, extrarange = -3, falloff = 10)
+			playsound(loc, 'sound/arcade/minesweeper_emag2.ogg', 50, 0, extrarange = -3, falloff = 10)
 			web += "<font size='2'>Explode in the game, explode in real life!<br>What difficulty do you want to play?<br><br><br><br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font>"
 		else
-			playsound(loc, 'yogstation/sound/arcade/minesweeper_startup.ogg', 50, 0, extrarange = -3, falloff = 10)
+			playsound(loc, 'sound/arcade/minesweeper_startup.ogg', 50, 0, extrarange = -3, falloff = 10)
 			web += web_difficulty_menu
 
 	if(game_status == MINESWEEPER_GAME_PLAYING)
@@ -181,7 +181,7 @@
 							if(table[y1][x1] < 10 && table[y1][x1] >= 0)	//Check that it's not already revealed, and stop flag removal if we're out of flag mode
 								table[y1][x1] += 10
 								if(table[y1][x1] != 10)
-									playsound(loc, 'yogstation/sound/arcade/minesweeper_boardpress.ogg', 50, 0, extrarange = -3, falloff = 10)
+									playsound(loc, 'sound/arcade/minesweeper_boardpress.ogg', 50, 0, extrarange = -3, falloff = 10)
 								else
 									if(game_status != MINESWEEPER_GAME_LOST && game_status != MINESWEEPER_GAME_WON)
 										game_status = MINESWEEPER_GAME_LOST
@@ -191,14 +191,14 @@
 										if(mine_sound)
 											switch(rand(1,3))	//Play every time a mine is hit
 												if(1)
-													playsound(loc, 'yogstation/sound/arcade/minesweeper_explosion1.ogg', 50, 0, extrarange = -3, falloff = 10)
+													playsound(loc, 'sound/arcade/minesweeper_explosion1.ogg', 50, 0, extrarange = -3, falloff = 10)
 												if(2)
-													playsound(loc, 'yogstation/sound/arcade/minesweeper_explosion2.ogg', 50, 0, extrarange = -3, falloff = 10)
+													playsound(loc, 'sound/arcade/minesweeper_explosion2.ogg', 50, 0, extrarange = -3, falloff = 10)
 												if(3)
-													playsound(loc, 'yogstation/sound/arcade/minesweeper_explosion3.ogg', 50, 0, extrarange = -3, falloff = 10)
+													playsound(loc, 'sound/arcade/minesweeper_explosion3.ogg', 50, 0, extrarange = -3, falloff = 10)
 											mine_sound = FALSE
 						else
-							playsound(loc, 'yogstation/sound/arcade/minesweeper_boardpress.ogg', 50, 0, extrarange = -3, falloff = 10)
+							playsound(loc, 'sound/arcade/minesweeper_boardpress.ogg', 50, 0, extrarange = -3, falloff = 10)
 							if(table[y1][x1] >= 0)	//Check that it's not already flagged
 								table[y1][x1] -= 10
 							else if(table[y1][x1] < 0)	//If flagged, remove the flag
@@ -208,7 +208,7 @@
 					if(game_status != MINESWEEPER_GAME_PLAYING)
 						game_status = MINESWEEPER_GAME_PLAYING
 					if(table[y1][x1] >= 10)	//If revealed, become unrevealed!
-						playsound(loc, 'yogstation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
+						playsound(loc, 'sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
 						table[y1][x1] -= 10
 				if(table[y1][x1] > 10 && !reset_board)
 					safe_squares_revealed += 1
@@ -270,19 +270,19 @@
 
 	if(game_status == MINESWEEPER_GAME_WON)
 		if(sameboard) //sucks to be you, you fucking cheater!
-			playsound(loc, 'yogstation/sound/arcade/minesweeper_winfail.ogg', 50, 0, extrarange = -3, falloff = 10)
+			playsound(loc, 'sound/arcade/minesweeper_winfail.ogg', 50, 0, extrarange = -3, falloff = 10)
 			say("You cleared the board of all mines, but you played the same board twice! Try again with a new board!")
 			prizevended = TRUE
 			web += "<font size='4'>You won, but you played the same board twice! Try again with a new board!<br><font size='3'>Want to play again?<br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font></a></b><br><a href='byond://?src=[REF(src)];same_board=1'><font color='#cc66ff'>Play on the same board</font></a><br><a href='byond://?src=[REF(src)];Main_Menu=1'><font color='#cc66ff'>Return to Main Menu</font></a></b><br>"
 		if(rows < 10 || columns < 10)	//If less than easy difficulty
 			if(!prizevended)
-				playsound(loc, 'yogstation/sound/arcade/minesweeper_winfail.ogg', 50, 0, extrarange = -3, falloff = 10)
+				playsound(loc, 'sound/arcade/minesweeper_winfail.ogg', 50, 0, extrarange = -3, falloff = 10)
 				say("You cleared the board of all mines, but you picked too small of a board! Try again with at least a 9x9 board!")
 				prizevended = TRUE
 			web += "<font size='4'>You won, but your board was too small! Pick a bigger board next time!<br><font size='3'>Want to play again?<br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font></a></b><br><a href='byond://?src=[REF(src)];same_board=1'><font color='#cc66ff'>Play on the same board</font></a><br><a href='byond://?src=[REF(src)];Main_Menu=1'><font color='#cc66ff'>Return to Main Menu</font></a></b><br>"
 		else
 			if(!prizevended)
-				playsound(loc, 'yogstation/sound/arcade/minesweeper_win.ogg', 50, 0, extrarange = -3, falloff = 10)
+				playsound(loc, 'sound/arcade/minesweeper_win.ogg', 50, 0, extrarange = -3, falloff = 10)
 				say("You cleared the board of all mines! Congratulations!")
 				if(obj_flags & EMAGGED)
 					var/itemname
@@ -329,38 +329,38 @@
 	obj_flags |= EMAGGED
 	if(game_status == MINESWEEPER_GAME_MAIN_MENU)
 		to_chat(user, "<span class='warning'>An ominous tune plays from the arcade's speakers!</span>")
-		playsound(user, 'yogstation/sound/arcade/minesweeper_emag1.ogg', 100, 0, extrarange = 3, falloff = 10)
+		playsound(user, 'sound/arcade/minesweeper_emag1.ogg', 100, 0, extrarange = 3, falloff = 10)
 	else	//Can't let you do that, star fox!
 		to_chat(user, "<span class='warning'>The machine buzzes and sparks... the game has been reset!</span>")
 		playsound(user, 'sound/machines/buzz-sigh.ogg', 100, 0, extrarange = 3, falloff = 10)	//Loud buzz
 		game_status = MINESWEEPER_GAME_MAIN_MENU
 
 /obj/machinery/computer/arcade/minesweeper/proc/custom_generation()
-	playsound(loc, 'yogstation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)	//Entered into the menu so ping sound
+	playsound(loc, 'sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)	//Entered into the menu so ping sound
 	if(rows < 4)
 		rows = text2num(input(usr, "You must put at least 4 rows! Pick a higher amount of rows", "Minesweeper Rows"))+1	//+1 as dm arrays start at 1
-		playsound(loc, 'yogstation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
+		playsound(loc, 'sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
 		custom_generation()
 	if(columns < 4)
 		columns = text2num(input(usr, "You must put at least 4 columns! Pick a higher amount of columns", "Minesweeper Columns"))+1	//+1 as dm arrays start at 1
-		playsound(loc, 'yogstation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
+		playsound(loc, 'sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
 		custom_generation()
 	if(rows > 31)
 		rows = text2num(input(usr, "A maximum of 30 rows are allowed! Pick a lower amount of rows", "Minesweeper Rows"))+1	//+1 as dm arrays start at 1
-		playsound(loc, 'yogstation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
+		playsound(loc, 'sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
 		custom_generation()
 	if(columns > 51)
 		columns = text2num(input(usr, "A maximum of 50 columns are allowed! Pick a lower amount of columns", "Minesweeper Columns"))+1//+1 as dm arrays start at 1
-		playsound(loc, 'yogstation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
+		playsound(loc, 'sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
 		custom_generation()
 	var/grid_area = (rows-1)*(columns-1)	//Need a live update of this, won't update if we use the area var in topic
 	if(mine_limit > round(grid_area*0.85))
 		mine_limit = text2num(input(usr, "You can only put in [round(grid_area*0.85)] mines on this board! Pick a lower amount of mines to insert", "Minesweeper Mines"))
-		playsound(loc, 'yogstation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
+		playsound(loc, 'sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
 		custom_generation()
 	if(mine_limit < round(grid_area/6.4))	//Same mine density as intermediate difficulty
 		mine_limit = text2num(input(usr, "You must at least put [round(grid_area/6.4)] mines on this board! Pick a higher amount of mines to insert", "Minesweeper Mines"))
-		playsound(loc, 'yogstation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
+		playsound(loc, 'sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
 		custom_generation()
 
 /obj/machinery/computer/arcade/minesweeper/proc/make_mines(var/reset_everything)

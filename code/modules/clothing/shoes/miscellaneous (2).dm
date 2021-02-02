@@ -16,16 +16,16 @@
 /obj/item/clothing/shoes/clown_shoes/scaryclown
 	name = "scary clown shoes"
 	desc = "Clown shoes often seen being worn by sewer clowns."
-	icon = 'yogstation/icons/obj/clothing/shoes.dmi'
-	alternate_worn_icon = 'yogstation/icons/mob/feet.dmi'
+	icon = 'icons/obj/clothing/shoes.dmi'
+	alternate_worn_icon = 'icons/mob/feet.dmi'
 	icon_state = "scaryclownshoes"
 	item_state = "scaryclownshoes"
 
 /obj/item/clothing/shoes/clown_shoes/beeshoes
 	name = "bee shoes"
 	desc = "It's hip to wear bees."
-	icon = 'yogstation/icons/obj/clothing/shoes.dmi'
-	alternate_worn_icon = 'yogstation/icons/mob/feet.dmi'
+	icon = 'icons/obj/clothing/shoes.dmi'
+	alternate_worn_icon = 'icons/mob/feet.dmi'
 	icon_state = "bee_shoes"
 	item_state = "bee_shoes"
 

@@ -1,7 +1,7 @@
 /obj/structure/table/bananium
 	name = "bananium table"
 	desc = "A table made out of bananium very squeaky."
-	icon = 'yogstation/icons/obj/smooth_structures/bananium_table.dmi'
+	icon = 'icons/obj/smooth_structures/bananium_table.dmi'
 	icon_state = "bananium_table"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	frame = /obj/structure/table_frame/bananium
@@ -37,7 +37,7 @@
 /obj/structure/rack/skeletal
 	name = "minibar"
 	desc = "Different from the Middle Ages version."
-	icon = 'yogstation/icons/obj/stationobjs.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "minibar"
 
 /obj/structure/rack/skeletal/left

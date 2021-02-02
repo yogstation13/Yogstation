@@ -44,7 +44,7 @@
 	anchored = FALSE
 
 /obj/structure/window/bananium/fulltile
-	icon = 'yogstation/icons/obj/smooth_structures/bananium_window.dmi'
+	icon = 'icons/obj/smooth_structures/bananium_window.dmi'
 	icon_state = "bananium_window"
 	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 50

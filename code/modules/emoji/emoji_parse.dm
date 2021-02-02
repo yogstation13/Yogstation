@@ -3,7 +3,7 @@
 	if(!CONFIG_GET(flag/emojis))
 		return
 	var/static/list/emojis = icon_states(icon('icons/emoji.dmi'))
-	var/static/list/yogmojis = icon_states(icon('yogstation/icons/emoji.dmi')) //YOGS - yogmoji
+	var/static/list/yogmojis = icon_states(icon('icons/emoji.dmi')) //YOGS - yogmoji
 	var/parsed = ""
 	var/pos = 1
 	var/search = 0
@@ -19,7 +19,7 @@
 				var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/chat)
 				var/tag = sheet.icon_tag("emoji-[emoji]")
 				if(emoji in yogmojis) //yogs start -yogmoji
-					parsed += icon2html('yogstation/icons/emoji.dmi', world, emoji)
+					parsed += icon2html('icons/emoji.dmi', world, emoji)
 					pos = search + 1 
 				else if(tag)//yogs end - yogmoji
 					parsed += tag

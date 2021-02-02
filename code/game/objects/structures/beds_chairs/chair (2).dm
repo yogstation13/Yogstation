@@ -1,5 +1,5 @@
 /obj/structure/chair/bananium
-	icon = 'yogstation/icons/obj/chairs.dmi'
+	icon = 'icons/obj/chairs.dmi'
 	icon_state = "bananium_chair"
 	name = "bananium chair"
 	desc = "A chair made out of bananium alot more confortable then you would think."
@@ -13,7 +13,7 @@
 
 /obj/item/chair/bananium
 	name = "bananium chair"
-	icon = 'yogstation/icons/obj/chairs.dmi'
+	icon = 'icons/obj/chairs.dmi'
 	icon_state = "bananium_chair_toppled"
 	item_state = "woodenchair"
 	resistance_flags = NONE

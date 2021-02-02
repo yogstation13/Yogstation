@@ -35,7 +35,7 @@
 	item_state = "pirate"
 
 /obj/item/shoe_protector
-	icon = 'yogstation/icons/obj/shoeprotector.dmi'
+	icon = 'icons/obj/shoeprotector.dmi'
 	name = "cleaning spray"
 	icon_state = "shoeprotect"
 	desc = "A spray that will clean the blood off of shoes / clothing items, the product description is written exclusively in slang using hip terms such as 'family' and 'Brudda'."

@@ -1,7 +1,7 @@
 /obj/structure/particle_accelerator/particle_emitter
 	name = "EM Containment Grid"
 	desc = "This launches the Alpha particles, might not want to stand near this end."
-	icon = 'yogstation/icons/obj/machines/particle_accelerator.dmi'//Yogs PA Sprites
+	icon = 'icons/obj/machines/particle_accelerator.dmi'//Yogs PA Sprites
 	icon_state = "none"
 	var/fire_delay = 50
 	var/last_shot = 0

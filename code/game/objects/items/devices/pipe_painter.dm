@@ -1,6 +1,6 @@
 /obj/item/pipe_painter
 	name = "pipe painter"
-	icon = 'yogstation/icons/obj/bureaucracy.dmi'
+	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler1"
 	item_state = "flight"
 	item_flags = NOBLUDGEON

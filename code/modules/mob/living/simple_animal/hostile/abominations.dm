@@ -2,7 +2,7 @@
 	name = "abomination"
 	desc = "A groveling, hulking beast. Another failed experiment from those terror ship abductors. What exactly were they trying to make?"
 	speak_emote = list("haunts")
-	icon = 'yogstation/icons/mob/horrors.dmi'
+	icon = 'icons/mob/horrors.dmi'
 	icon_state = "horror1"
 	icon_living = "horror1"
 	icon_dead = "horror_dead"
@@ -21,7 +21,7 @@
 
 /mob/living/simple_animal/hostile/abomination/super
 	desc = "A groveling, terrifying beast. This one seems agile."
-	icon = 'yogstation/icons/mob/horrors.dmi'
+	icon = 'icons/mob/horrors.dmi'
 	icon_state = "headcrab"
 	icon_living = "headcrab"
 	icon_dead = "headcrab_dead"
@@ -45,25 +45,25 @@
 			screamCD = world.time + 1200
 
 /mob/living/simple_animal/hostile/abomination/altform1
-	icon = 'yogstation/icons/mob/horrors.dmi'
+	icon = 'icons/mob/horrors.dmi'
 	icon_state = "horror2"
 	icon_living = "horror2"
 	icon_dead = "horror_dead"
 
 /mob/living/simple_animal/hostile/abomination/altform2
-	icon = 'yogstation/icons/mob/horrors.dmi'
+	icon = 'icons/mob/horrors.dmi'
 	icon_state = "horror3"
 	icon_living = "horror3"
 	icon_dead = "horror_dead"
 
 /mob/living/simple_animal/hostile/abomination/altform3
-	icon = 'yogstation/icons/mob/horrors.dmi'
+	icon = 'icons/mob/horrors.dmi'
 	icon_state = "horror4"
 	icon_living = "horror4"
 	icon_dead = "horror_dead"
 
 /mob/living/simple_animal/hostile/abomination/altform4
-	icon = 'yogstation/icons/mob/horrors.dmi'
+	icon = 'icons/mob/horrors.dmi'
 	icon_state = "horror5"
 	icon_living = "horror5"
 	icon_dead = "horror_dead"

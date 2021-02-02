@@ -16,7 +16,7 @@
 	clothes_req = FALSE
 	range = 50
 	projectile_type = /obj/item/projectile/bullet/arm
-	action_icon = 'yogstation/icons/mob/actions/actions_spells.dmi'
+	action_icon = 'icons/mob/actions/actions_spells.dmi'
 	base_icon_state = "arm"
 	action_icon_state = "arm"
 	active_msg = "You loosen up your arm!"
@@ -67,7 +67,7 @@
 
 /obj/item/projectile/bullet/arm
 	name = "arm"
-	icon = 'yogstation/icons/obj/projectiles.dmi'
+	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "arm"
 	suppressed = TRUE
 	damage = 0

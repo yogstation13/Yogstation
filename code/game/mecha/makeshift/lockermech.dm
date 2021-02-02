@@ -1,7 +1,7 @@
 /obj/mecha/makeshift
 	desc = "A locker with stolen wires, struts, electronics and airlock servos crudely assembled into something that resembles the functions of a mech."
 	name = "Locker Mech"
-	icon = 'yogstation/icons/mecha/lockermech.dmi'
+	icon = 'icons/mecha/lockermech.dmi'
 	icon_state = "lockermech"
 	max_integrity = 100 //its made of scraps
 	lights_power = 5

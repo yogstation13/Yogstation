@@ -3,7 +3,7 @@
 	desc = "Actually a close relative of the hedgehog."
 	health = 20
 	maxHealth = 20
-	icon = 'yogstation/icons/mob/pets.dmi'
+	icon = 'icons/mob/pets.dmi'
 	icon_state = "moonrat"
 	icon_living = "moonrat"
 	icon_dead = "moonrat_dead"

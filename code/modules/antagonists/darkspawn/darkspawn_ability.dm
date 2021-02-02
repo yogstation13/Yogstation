@@ -2,7 +2,7 @@
 	name = "darkspawn ability"
 	var/id //The ability's ID, for giving, taking and such
 	desc = "This probably shouldn't exist."
-	icon_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	icon_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	buttontooltipstyle = "alien"
 

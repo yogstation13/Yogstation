@@ -24,7 +24,7 @@
 	duration = 175
 	pixel_x = -64
 	pixel_y = -64
-	start_sound = 'yogstation/sound/effects/unnatural_clock_noises.ogg'
+	start_sound = 'sound/effects/unnatural_clock_noises.ogg'
 
 /obj/effect/timestop/berserk/Initialize(mapload, radius, time, list/immune_atoms, start)
 	. = ..()

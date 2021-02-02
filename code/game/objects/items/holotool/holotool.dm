@@ -1,13 +1,13 @@
 /obj/item/holotool
 	name = "experimental holotool"
 	desc = "A highly experimental holographic tool projector."
-	icon = 'yogstation/icons/obj/holotool.dmi'
+	icon = 'icons/obj/holotool.dmi'
 	icon_state = "holotool"
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
 	usesound = 'sound/items/pshoom.ogg'
-	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/righthand.dmi'
 	actions_types = list(/datum/action/item_action/change_tool, /datum/action/item_action/change_ht_color)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
@@ -43,7 +43,7 @@
 		current_tool.on_unset(src)
 	current_tool = mode
 	current_tool.on_set(src)
-	playsound(loc, 'yogstation/sound/items/holotool.ogg', get_clamped_volume(), 1, -1)
+	playsound(loc, 'sound/items/holotool.ogg', get_clamped_volume(), 1, -1)
 	update_icon()
 	user.regenerate_icons()
 

@@ -1,4 +1,4 @@
-// yogs - This file is mirrored to yogstation/modules/admin
+// yogs - This file is mirrored to modules/admin
 /client/var/adminhelptimerid = 0	//a timer id for returning the ahelp verb
 /client/var/datum/admin_help/current_ticket	//the current ticket the (usually) not-admin client is dealing with
 

@@ -1,7 +1,7 @@
 /obj/item/medical/bandage
 	name = "\improper Bandage"
 	desc = "A generic bandage of unknown origin and use. What does it cover? Is it a trendy accessory? Will I ever know?."
-	icon = 'yogstation/icons/obj/items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "improv_bandage"
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3

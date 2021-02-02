@@ -23,7 +23,7 @@
 	liked_food = GROSS | MEAT | GRILLED
 	inert_mutation = FIREBREATH
 	deathsound = 'sound/voice/lizard/deathsound.ogg'
-	screamsound = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //yogs - lizard scream
+	screamsound = 'sound/voice/lizardperson/lizard_scream.ogg' //yogs - lizard scream
 	wings_icon = "Dragon"
 	species_language_holder = /datum/language_holder/lizard
 

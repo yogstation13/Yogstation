@@ -68,7 +68,7 @@
 /obj/item/map
 	name = "map"
 	gender = NEUTER
-	icon = 'yogstation/icons/obj/bureaucracy.dmi'
+	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "map"
 	item_state = "paper"
 	throwforce = 0

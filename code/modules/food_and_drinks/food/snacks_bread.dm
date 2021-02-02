@@ -193,7 +193,7 @@
 /obj/item/reagent_containers/food/snacks/butterbiscuit
 	name = "butter biscuit"
 	desc = "Well butter my biscuit!"
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "butterbiscuit"
 	filling_color = "#F0E68C"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
@@ -204,7 +204,7 @@
 /obj/item/reagent_containers/food/snacks/butterdog
 	name = "butterdog"
 	desc = "Made from exotic butters."
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "butterdog"
 	bitesize = 1
 	filling_color = "#F1F49A"
@@ -219,7 +219,7 @@
 /obj/item/reagent_containers/food/snacks/frenchtoast
 	name = "french toast"
 	desc = "This toast looks like it'll surrender at any moment!"
-	icon = 'yogstation/icons/obj/food/burgerbread.dmi'
+	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "frenchtoast"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
 	tastes = list("cinnamon" = 1, "toast" = 1)
@@ -228,7 +228,7 @@
 /obj/item/reagent_containers/food/snacks/deepfryholder
 	name = "Deep Fried Foods Holder Obj"
 	desc = "If you can see this description the code for the deep fryer fucked up."
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = ""
 	bitesize = 2
 

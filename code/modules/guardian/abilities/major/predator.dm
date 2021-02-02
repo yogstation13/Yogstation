@@ -53,7 +53,7 @@
 /obj/effect/proc_holder/spell/self/predator
 	name = "All-Seeing Predator"
 	desc = "Track down a target whose identity you know of."
-	action_icon = 'yogstation/icons/mob/actions.dmi'
+	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "predator"
 	action_background_icon_state = "bg_demon"
 	human_req = FALSE

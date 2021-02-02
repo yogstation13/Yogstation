@@ -3,12 +3,12 @@
 	name = "umbral tendrils"
 	desc = "A mass of pulsing, chitonous tendrils with exposed violet flesh."
 	force = 15
-	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
+	icon = 'icons/obj/darkspawn_items.dmi'
 	icon_state = "umbral_tendrils"
 	item_state = "umbral_tendrils"
-	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
-	hitsound = 'yogstation/sound/magic/pass_attack.ogg'
+	lefthand_file = 'icons/mob/inhands/antag/darkspawn_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/antag/darkspawn_righthand.dmi'
+	hitsound = 'sound/magic/pass_attack.ogg'
 	attack_verb = list("impaled", "tentacled", "torn")
 	item_flags = ABSTRACT | DROPDEL
 	var/datum/antagonist/darkspawn/darkspawn
@@ -117,7 +117,7 @@
 /obj/item/projectile/umbral_tendrils
 	name = "umbral tendrils"
 	icon_state = "cursehand0"
-	hitsound = 'yogstation/sound/magic/pass_attack.ogg'
+	hitsound = 'sound/magic/pass_attack.ogg'
 	layer = LARGE_MOB_LAYER
 	damage = 0
 	nodamage = TRUE
@@ -142,7 +142,7 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		if(!iscyborg(target))
-			playsound(target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE)
+			playsound(target, 'sound/magic/pass_attack.ogg', 50, TRUE)
 			if(!twinned)
 				target.visible_message("<span class='warning'>[firer]'s [name] slam into [target], knocking them off their feet!</span>", \
 				"<span class='userdanger'>You're knocked off your feet!</span>")
@@ -154,7 +154,7 @@
 				"<span class='userdanger'>You're suddenly dragged across the floor!</span>")
 				L.Paralyze(30) //these can't hit people who are already on the ground but they can be spammed to all shit
 				L.Knockdown(80)
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE), 1)
+				addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, target, 'sound/magic/pass_attack.ogg', 50, TRUE), 1)
 		else
 			var/mob/living/silicon/robot/R = target
 			R.update_headlamp(TRUE) //disable headlamps

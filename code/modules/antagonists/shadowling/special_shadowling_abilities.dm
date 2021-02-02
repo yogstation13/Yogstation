@@ -6,7 +6,7 @@
 	charge_max = 3000
 	human_req = TRUE
 	clothes_req = FALSE
-	action_icon = 'yogstation/icons/mob/actions.dmi'
+	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "hatch"
 
 /obj/structure/alien/resin/wall/shadowling //For chrysalis
@@ -115,7 +115,7 @@
 	panel = "Shadowling Evolution"
 	charge_max = 3000
 	clothes_req = FALSE
-	action_icon = 'yogstation/icons/mob/actions.dmi'
+	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "ascend"
 
 /obj/effect/proc_holder/spell/self/shadowling_ascend/cast(list/targets,mob/user = usr)

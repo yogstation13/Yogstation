@@ -158,7 +158,7 @@ Made by Xhuis
 
 /datum/species/shadow/ling/on_species_gain(mob/living/carbon/human/C)
 	C.draw_yogs_parts(TRUE)
-	eyes_overlay = mutable_appearance('yogstation/icons/mob/sling.dmi', "eyes", 25)
+	eyes_overlay = mutable_appearance('icons/mob/sling.dmi', "eyes", 25)
 	C.add_overlay(eyes_overlay)
 	. = ..()
 

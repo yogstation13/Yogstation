@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	message_admins("Battle Royale Mode has disabled late-joining. If you re-enable it you will break everything.")
 	for(var/i = 1 to queued.len)
 		var/datum/mind/virgin = queued[i]
-		SEND_SOUND(virgin.current, 'yogstation/sound/effects/battleroyale/battlebus.ogg')
+		SEND_SOUND(virgin.current, 'sound/effects/battleroyale/battlebus.ogg')
 		virgin.add_antag_datum(antag_datum_type)
 		if(!GLOB.thebattlebus) //Ruhoh.
 			virgin.current.forceMove(pick(GLOB.start_landmarks_list))
@@ -88,7 +88,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		SSticker.mode.check_finished(TRUE)
 		SSticker.force_ending = 1
 		to_chat(world, "<span_class='ratvar'>L. Nobody wins!</span>")
-		SEND_SOUND(world, 'yogstation/sound/effects/battleroyale/L.ogg')
+		SEND_SOUND(world, 'sound/effects/battleroyale/L.ogg')
 		finished = TRUE
 		return
 	if(royalers.len == 1) //We have a wiener!
@@ -97,7 +97,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		winner = pick(royalers)
 		to_chat(world, "<img src='https://cdn.discordapp.com/attachments/351367327184584704/539903688857092106/victoryroyale.png'>")
 		to_chat(world, "<span_class='bigbold'>#1 VICTORY ROYALE: [winner] </span>")
-		SEND_SOUND(world, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
+		SEND_SOUND(world, 'sound/effects/battleroyale/greet_br.ogg')
 		finished = TRUE
 		return
 	addtimer(CALLBACK(src, .proc/check_win), 300) //Check win every 30 seconds. This is so it doesn't fuck the processing time up
@@ -159,7 +159,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	tfue.equipOutfit(/datum/outfit/battleroyale, visualsOnly = FALSE)
 
 /datum/antagonist/battleroyale/greet()
-	SEND_SOUND(owner.current, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
+	SEND_SOUND(owner.current, 'sound/effects/battleroyale/greet_br.ogg')
 	to_chat(owner.current, "<span_class='bigbold'>Welcome contestant!</span>")
 	to_chat(owner.current, "<span_class='danger'>You have been entered into Nanotrasen's up and coming TV show! : <b> LAST MAN STANDING </b>. \n\ KILL YOUR COWORKERS TO ACHIEVE THE VICTORY ROYALE! Attempting to leave the station will disqualify you from the round!</span>")
 	owner.announce_objectives()
@@ -177,7 +177,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 /obj/structure/battle_bus
 	name = "The battle bus"
 	desc = "Quit screwin' around!. Can we get some of that jumping music? Click it to exit!"
-	icon = 'yogstation/icons/battleroyale/battlebus.dmi'
+	icon = 'icons/battleroyale/battlebus.dmi'
 	icon_state = "battlebus"
 	density = FALSE
 	opacity = FALSE
@@ -212,7 +212,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	Ltaker.forceMove(get_turf(src))
 	REMOVE_TRAIT(Ltaker, TRAIT_XRAY_VISION, "virginity")
 	Ltaker.update_sight()
-	SEND_SOUND(Ltaker, 'yogstation/sound/effects/battleroyale/exitbus.ogg')
+	SEND_SOUND(Ltaker, 'sound/effects/battleroyale/exitbus.ogg')
 
 /obj/structure/battle_bus/process()
 	forceMove(get_step(src, EAST)) //Move right.

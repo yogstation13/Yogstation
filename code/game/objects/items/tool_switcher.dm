@@ -20,7 +20,7 @@
 /obj/item/storage/belt/tool_switcher
 	name = "programmable tool switcher"
 	desc = "An advanced programmable device capable of quickly swapping to the correct tool for performing repetitive tasks quickly."
-	icon = 'yogstation/icons/obj/items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "tool_switcher"
 	item_state = null
 	actions_types = list(/datum/action/item_action/tool_switcher_config)

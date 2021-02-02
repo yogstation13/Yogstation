@@ -1,7 +1,7 @@
 /mob/living/simple_animal/pet/eggdog //E G G R P
 	name = "Egg Dog"
 	desc = "It's a egg that is also a dog."
-	icon = 'yogstation/icons/mob/pets.dmi'
+	icon = 'icons/mob/pets.dmi'
 	icon_state = "eggdog"
 	icon_living = "eggdog"
 	icon_dead = "eggdog_dead"

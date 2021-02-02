@@ -2,17 +2,17 @@
 	name = "airlock brace"
 	desc = "Used to prevent airlocks from opening in emergencies. It may be removed by using a security ID."
 	force = 11
-	icon = 'yogstation/icons/obj/brace.dmi'
+	icon = 'icons/obj/brace.dmi'
 	icon_state = "brace_item"
 	item_state = "brace"
-	lefthand_file = 'yogstation/icons/obj/brace_lefthand.dmi' //this is so stupid
-	righthand_file = 'yogstation/icons/obj/brace_righthand.dmi'
+	lefthand_file = 'icons/obj/brace_lefthand.dmi' //this is so stupid
+	righthand_file = 'icons/obj/brace_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/structure/deployed_brace
 	name = "airlock brace"
 	desc = "Used to prevent airlocks from opening in emergencies. It may be removed by using a security ID."
-	icon = 'yogstation/icons/obj/brace.dmi'
+	icon = 'icons/obj/brace.dmi'
 	icon_state = "brace_noshadow"
 	anchored = TRUE
 	density = FALSE

@@ -133,7 +133,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 			else
 				sentmsg = oocmsg
 			if( (ckey(C.key) in pinged) || (C.holder && C.holder.fakekey && (C.holder.fakekey in pinged)) )
-				var/sound/pingsound = sound('yogstation/sound/misc/bikehorn_alert.ogg')
+				var/sound/pingsound = sound('sound/misc/bikehorn_alert.ogg')
 				pingsound.volume = 50
 				pingsound.pan = 80
 				SEND_SOUND(C,pingsound)

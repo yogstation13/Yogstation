@@ -17,7 +17,7 @@
 /obj/item/reagent_containers/hypospray/medipen/stimpack/large
 	name = "stimpack injector"
 	desc = "Contains two heavy doses of stimulants."
-	icon = 'yogstation/icons/obj/syringe.dmi'
+	icon = 'icons/obj/syringe.dmi'
 	icon_state = "stimpakpen"
 	volume = 50
 	amount_per_transfer_from_this = 25
@@ -34,7 +34,7 @@
 /obj/item/reagent_containers/hypospray/medipen/stimpack/large/redpill
 	name = "Red Pill injector"
 	desc = "Contains two heavy doses of Red Pills (Stimulants)."
-	icon = 'yogstation/icons/obj/syringe.dmi'
+	icon = 'icons/obj/syringe.dmi'
 	icon_state = "stimpakpen"
 	volume = 50
 	amount_per_transfer_from_this = 25

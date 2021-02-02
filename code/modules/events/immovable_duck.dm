@@ -26,7 +26,7 @@
 /obj/effect/immovablerod/duck
 	name = "immovable DUCK"
 	desc = "What the duck is that?"
-	icon = 'yogstation/icons/obj/objects.dmi'
+	icon = 'icons/obj/objects.dmi'
 	icon_state = "immquack"
 
 /obj/effect/immovablerod/duck/Initialize()
@@ -36,7 +36,7 @@
 
 /obj/effect/immovablerod/duck/Bump(atom/clong)
 	if(prob(90))
-		playsound(src, 'yogstation/sound/misc/quack.ogg', 50, 1)
+		playsound(src, 'sound/misc/quack.ogg', 50, 1)
 		if(prob(50))
 			audible_message("<span class='danger'>You hear a QUACK!</span>")
 

@@ -1,7 +1,7 @@
 /obj/structure/closet/secure_closet/bartender
 	name = "bartender's closet"
 	desc = "It's a secure storage unit for the bartender's supplies."
-	icon = 'yogstation/icons/obj/closet.dmi'
+	icon = 'icons/obj/closet.dmi'
 	icon_state = "barkeep"
 	req_access = list(ACCESS_BAR)
 /obj/structure/closet/secure_closet/bartender/PopulateContents()

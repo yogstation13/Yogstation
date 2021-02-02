@@ -12,7 +12,7 @@
 	in_use = TRUE
 	owner.visible_message("<span class='boldwarning'>[owner] begins to growl as their chitin hardens...</span>", "<span class='velvet bold'>cap...</span><br>\
 	<span class='danger'>You begin harnessing your power...</span>")
-	playsound(owner, 'yogstation/sound/magic/demented_outburst_charge.ogg', 50, 0)
+	playsound(owner, 'sound/magic/demented_outburst_charge.ogg', 50, 0)
 	addtimer(CALLBACK(src, .proc/outburst, owner), 50)
 	addtimer(CALLBACK(src, .proc/reset), 50)
 	return TRUE
@@ -28,7 +28,7 @@
 		return
 	owner.visible_message("<span class='userdanger'>[owner] lets out a deafening scream!</span>", "<span class='velvet bold italics'>WSWU!</span><br>\
 	<span class='danger'>You let out a deafening outburst!</span>")
-	playsound(owner, 'yogstation/sound/magic/demented_outburst_scream.ogg', 75, 0)
+	playsound(owner, 'sound/magic/demented_outburst_scream.ogg', 75, 0)
 	var/list/thrown_atoms = list()
 	for(var/turf/T in view(5, owner))
 		for(var/atom/movable/AM in T)

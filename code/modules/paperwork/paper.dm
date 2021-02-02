@@ -17,7 +17,7 @@
 /obj/item/paper
 	name = "paper"
 	gender = NEUTER
-	icon = 'yogstation/icons/obj/bureaucracy.dmi'
+	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "paper"
 	item_state = "paper"
 	throwforce = 0

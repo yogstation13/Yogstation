@@ -574,15 +574,15 @@
 /obj/item/rune_scimmy
 	name = "rune scimitar"
 	desc = "A curved sword smelted from an unknown metal. Looking at it gives you the otherworldly urge to pawn it off for '30k', whatever that means."
-	lefthand_file = 'yogstation/icons/mob/inhands/weapons/scimmy_lefthand.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/weapons/scimmy_righthand.dmi'
-	icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/scimmy_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/scimmy_righthand.dmi'
+	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "rune_scimmy"
 	force = 35
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	damtype = BRUTE
 	sharpness = IS_SHARP
-	hitsound = 'yogstation/sound/weapons/rs_slash.ogg'
+	hitsound = 'sound/weapons/rs_slash.ogg'
 	attack_verb = list("slashed","pk'd","atk'd")
 
 //Potion of Flight

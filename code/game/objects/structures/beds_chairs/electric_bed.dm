@@ -1,6 +1,6 @@
 /obj/structure/bed/roller/e_roller
 	name = "electric roller bed"
-	icon = 'yogstation/icons/obj/erollerbed.dmi'
+	icon = 'icons/obj/erollerbed.dmi'
 	icon_state = "down"
 	var/obj/item/electropack/part = null
 	var/last_time = 1
@@ -9,8 +9,8 @@
 
 /obj/structure/bed/roller/e_roller/post_buckle_mob(mob/living/M)
 	..()
-	cables = mutable_appearance('yogstation/icons/obj/erollerbed.dmi', "up_cables", MOB_LAYER + 1)
-	elec_cables = mutable_appearance('yogstation/icons/obj/erollerbed.dmi', "electrocute_cables", MOB_LAYER + 2)
+	cables = mutable_appearance('icons/obj/erollerbed.dmi', "up_cables", MOB_LAYER + 1)
+	elec_cables = mutable_appearance('icons/obj/erollerbed.dmi', "electrocute_cables", MOB_LAYER + 2)
 	add_overlay(cables)
 
 /obj/structure/bed/roller/e_roller/post_unbuckle_mob(mob/living/M)

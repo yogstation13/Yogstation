@@ -385,7 +385,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/goat
 	name = "goat cube"
 	desc = "A Goat Tech Industries goat cube. Just add water!"
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "goatcube"
 	bitesize = 20
 	list_reagents = list(/datum/reagent/consumable/nutriment = 15)

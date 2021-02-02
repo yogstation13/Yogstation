@@ -7,7 +7,7 @@
 /*
 /datum/borg_skin/MadVenturerIsBadAtSiege
 	name = "HeUsesAcog"
-	icon = 'yogstation/icons/mob/DonorRobots.dmi'
+	icon = 'icons/mob/DonorRobots.dmi'
 	icon_state = "saltborg"
 	owner = "asv9"
 	module_locked = "Security"
@@ -16,7 +16,7 @@
 
 /datum/borg_skin //Give it a unique type
 	var/name = "A borg skin" //Give it a name! This will be visible when it's being picked
-	var/icon = 'yogstation/icons/mob/DonorRobots.dmi'
+	var/icon = 'icons/mob/DonorRobots.dmi'
 	var/icon_state = null//Change this icon_state to the NAME OF THE BORG SKIN IN THE DMI ABOVE
 	var/owner = null//The owner of this borg skin, this should be their ckey in lower case!
 	var/module_locked = null //Is this skin for a specific module? don't want a janiborg looking like a secborg, as hilarious as that sounds
@@ -263,7 +263,7 @@
 
 /datum/ai_skin
 	var/name = "A cool ai skin"
-	var/icon = 'yogstation/icons/mob/DonorRobots.dmi'
+	var/icon = 'icons/mob/DonorRobots.dmi'
 	var/icon_state = "ai_dead"
 	var/owner = null
 

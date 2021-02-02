@@ -24,6 +24,6 @@
 		"ら", "り", "る", "れ", "ろ",
 		"わ", "を"
 	)
-	icon = 'yogstation/icons/misc/language.dmi'
+	icon = 'icons/misc/language.dmi'
 	icon_state = "japan"
 	default_priority = 90

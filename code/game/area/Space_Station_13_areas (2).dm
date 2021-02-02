@@ -29,7 +29,7 @@
 						 'sound/voice/lowHiss2.ogg', //Xeno Breathing Hisses, Hahahaha I'm not even sorry.
 						 'sound/voice/lowHiss3.ogg',
 						 'sound/voice/lowHiss4.ogg',
-						 'yogstation/sound/misc/honk_echo_distant.ogg')
+						 'sound/misc/honk_echo_distant.ogg')
 
 /area/bluespace_locker
 	name = "Bluespace Locker"

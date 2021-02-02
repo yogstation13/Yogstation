@@ -431,7 +431,7 @@
 //YOGS start
 /obj/item/book/manual/wiki/supermatter
 	name = "Supermatter for Dummies"
-	icon = 'yogstation/icons/obj/library.dmi'
+	icon = 'icons/obj/library.dmi'
 	icon_state = "sm_book"
 	author = "Engineering Encyclopedia"
 	title = "Easy Guide to Setting up the Supermatter Engine"

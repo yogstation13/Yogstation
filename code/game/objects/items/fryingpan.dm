@@ -1,9 +1,9 @@
 /obj/item/melee/fryingpan
 	name = "frying pan"
 	desc = "A cast-iron frying pan designed for cooking food."
-	lefthand_file = 'yogstation/icons/mob/inhands/weapons/pan_lefthand.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/weapons/pan_righthand.dmi'
-	icon = 'yogstation/icons/obj/pan.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/pan_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/pan_righthand.dmi'
+	icon = 'icons/obj/pan.dmi'
 	icon_state = "frying_pan"
 	w_class = 3
 	force = 12
@@ -14,7 +14,7 @@
 	block_chance = 10
 	materials = list(/datum/material/iron=75)
 	attack_verb = list("BONKED", "panned")
-	hitsound = 'yogstation/sound/weapons/pan.ogg'
+	hitsound = 'sound/weapons/pan.ogg'
 
 /obj/item/melee/fryingpan/get_clamped_volume()
 	return 100 // BONK!

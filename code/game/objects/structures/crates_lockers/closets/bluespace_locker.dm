@@ -93,12 +93,12 @@
 	var/obj/structure/closet/other = get_other_locker()
 	if(!other)
 		other = src
-	var/mutable_appearance/masked_icon = mutable_appearance('yogstation/icons/obj/closet.dmi', "bluespace_locker_mask")
+	var/mutable_appearance/masked_icon = mutable_appearance('icons/obj/closet.dmi', "bluespace_locker_mask")
 	masked_icon.appearance_flags = KEEP_TOGETHER
 	var/mutable_appearance/masking_icon = mutable_appearance(other.icon, other.icon_state)
 	masking_icon.blend_mode = BLEND_MULTIPLY
 	masked_icon.add_overlay(masking_icon)
-	//add_overlay(image('yogstation/icons/obj/closet.dmi', "bluespace_locker_frame"))
+	//add_overlay(image('icons/obj/closet.dmi', "bluespace_locker_frame"))
 	add_overlay(masked_icon)
 	if(!opened)
 		layer = OBJ_LAYER

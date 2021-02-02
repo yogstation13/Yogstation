@@ -1,7 +1,7 @@
 /obj/machinery/power/hugbox_engine
 	name = "hugbox engine"
 	desc = "Turn up the love now, listen up now, turn up the <span style='color:#FF1493;font-style:italic'>love</span>..."
-	icon = 'yogstation/icons/obj/hugbox_engine.dmi'
+	icon = 'icons/obj/hugbox_engine.dmi'
 	icon_state = "hug_me"
 	density = TRUE
 	anchored = FALSE

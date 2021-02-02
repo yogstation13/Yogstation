@@ -4,7 +4,7 @@
 /obj/item/clothing/mask/yogs/cluwne
 	name = "clown wig and mask"
 	desc = "A true prankster's facial attire. A clown is incomplete without his wig and mask."
-	alternate_screams = list('yogstation/sound/voice/cluwnelaugh1.ogg','yogstation/sound/voice/cluwnelaugh2.ogg','yogstation/sound/voice/cluwnelaugh3.ogg')
+	alternate_screams = list('sound/voice/cluwnelaugh1.ogg','sound/voice/cluwnelaugh2.ogg','sound/voice/cluwnelaugh3.ogg')
 	flags_cover = MASKCOVERSEYES
 	icon_state = "cluwne"
 	item_state = "cluwne"
@@ -33,11 +33,11 @@
 		var/i = rand(1,3)
 		switch(i)
 			if(1)
-				playsound (src, 'yogstation/sound/voice/cluwnelaugh1.ogg', 30, 1)
+				playsound (src, 'sound/voice/cluwnelaugh1.ogg', 30, 1)
 			if(2)
-				playsound (src, 'yogstation/sound/voice/cluwnelaugh2.ogg', 30, 1)
+				playsound (src, 'sound/voice/cluwnelaugh2.ogg', 30, 1)
 			if(3)
-				playsound (src, 'yogstation/sound/voice/cluwnelaugh3.ogg', 30, 1)
+				playsound (src, 'sound/voice/cluwnelaugh3.ogg', 30, 1)
 		last_sound = world.time
 
 /obj/item/clothing/mask/yogs/cluwne/handle_speech(datum/source, list/speech_args) //whenever you speak
@@ -206,7 +206,7 @@
 	name = "banana mask"
 	desc = "Do you want a banana?"
 	clothing_flags = MASKINTERNALS
-	alternate_worn_icon = 'yogstation/icons/mob/large-worn-icons/64x64/masks.dmi'
+	alternate_worn_icon = 'icons/mob/large-worn-icons/64x64/masks.dmi'
 	icon_state = "bananamask"
 	item_state = "bananamask"
 	worn_x_dimension = 64

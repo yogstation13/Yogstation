@@ -1,7 +1,7 @@
 /mob/living/simple_animal/pet/fox/fennec
 	name = "Fennec Fox"
 	desc = "It's a fennec fox, fluffy little begger."
-	icon = 'yogstation/icons/mob/pets.dmi'
+	icon = 'icons/mob/pets.dmi'
 	icon_state = "fennec"
 	icon_living = "fennec"
 	icon_dead = "fennec_dead"

@@ -1,7 +1,7 @@
 /turf/open/chasm/ballpit
 	name = "deep ball pit"
 	desc = "A fun looking ball pit! you cant seem to see the bottom for some reason..."
-	icon = 'yogstation/icons/turf/floors/ballpit.dmi'
+	icon = 'icons/turf/floors/ballpit.dmi'
 	baseturfs = /turf/open/chasm/ballpit
 
 /turf/open/chasm/ballpit/sec1prt1

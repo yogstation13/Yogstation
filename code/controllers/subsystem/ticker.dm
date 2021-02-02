@@ -433,7 +433,7 @@ SUBSYSTEM_DEF(ticker)
 		m = selected_tip
 	else
 		var/list/randomtips = world.file2list("strings/tips.txt")
-		randomtips += world.file2list("yogstation/strings/tips.txt")//Yogs -- Yogstips, mostly stuff about Clockcult as of March 2019
+		randomtips += world.file2list("strings/tips.txt")//Yogs -- Yogstips, mostly stuff about Clockcult as of March 2019
 		var/list/memetips = world.file2list("strings/sillytips.txt")
 		if(randomtips.len && prob(95))
 			m = pick(randomtips)
@@ -692,10 +692,10 @@ SUBSYSTEM_DEF(ticker)
 		'sound/roundend/leavingtg.ogg',
 		'sound/roundend/its_only_game.ogg',
 		'sound/roundend/yeehaw.ogg',
-		'yogstation/sound/roundend/aww_shit.ogg', // yogs -- adds "Aww shit, here we go again"
-		'yogstation/sound/roundend/ass_blast_usa.ogg', // yogs -- adds "Ass Blast USA" vox
+		'sound/roundend/aww_shit.ogg', // yogs -- adds "Aww shit, here we go again"
+		'sound/roundend/ass_blast_usa.ogg', // yogs -- adds "Ass Blast USA" vox
 		'sound/roundend/itshappening.ogg',
-		'yogstation/sound/roundend/bamboozeled.ogg',// yogs -- adds "We've been tricked, we've been backstabed, and we've quite possibly been bamboozeled.
+		'sound/roundend/bamboozeled.ogg',// yogs -- adds "We've been tricked, we've been backstabed, and we've quite possibly been bamboozeled.
 		'sound/roundend/yoggers.ogg', //yogs -- adds yogurt saying "Can we get a yoggers in the chat?"
 		'sound/roundend/it_never_happened.ogg', // jonathan frakes telling you you're wrong
 		'sound/roundend/disappointed.ogg',

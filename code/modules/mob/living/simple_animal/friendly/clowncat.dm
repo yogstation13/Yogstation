@@ -4,11 +4,11 @@
 	name = "Honkers"
 	desc = "A goofy little clown cat."
 	var/emagged = FALSE
-	icon = 'yogstation/icons/mob/clownpets.dmi'
+	icon = 'icons/mob/clownpets.dmi'
 	icon_state = "clown_cat"
 	icon_living = "clown_cat"
 	icon_dead = "clown_cat_dead"
-	var/static/meows = list("yogstation/sound/creatures/clownCatHonk.ogg", "yogstation/sound/creatures/clownCatHonk2.ogg","yogstation/sound/creatures/clownCatHonk3.ogg")
+	var/static/meows = list("sound/creatures/clownCatHonk.ogg", "sound/creatures/clownCatHonk2.ogg","sound/creatures/clownCatHonk3.ogg")
 	speak = list("Meow!", "Honk!", "Haaaa....", "Hink!")
 	speak_chance = 15
 	emote_see = list("shakes its head.", "shivers.", "does a gag.", "clowns around.")

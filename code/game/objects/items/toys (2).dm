@@ -5,11 +5,11 @@
 	throw_speed = 3
 	throw_range = 7
 	force = 0
-	icon = 'yogstation/icons/obj/toy.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "heartballoon"
 	item_state = "heartballoon"
-	lefthand_file = 'yogstation/icons/mob/inhands/antag/balloons_lefthand.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/antag/balloons_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/antag/balloons_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/antag/balloons_righthand.dmi'
 
 
 /obj/item/toy/toyballoon
@@ -19,16 +19,16 @@
 	throw_speed = 3
 	throw_range = 7
 	force = 0
-	icon = 'yogstation/icons/obj/toy.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "toyballoon"
 	item_state = "toyballoon"
-	lefthand_file = 'yogstation/icons/mob/inhands/antag/balloons_lefthand.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/antag/balloons_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/antag/balloons_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/antag/balloons_righthand.dmi'
 
 /obj/item/toy/toygrenade
 	name = "toy grenade"
 	desc = "Booooom!"
-	icon = 'yogstation/icons/obj/toy.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "toygrenade"
 	w_class = 1
 
@@ -46,7 +46,7 @@
 	name = "boomerang"
 	desc = "Actually comes back."
 	icon_state = "boomerang"
-	icon = 'yogstation/icons/obj/toy.dmi'
+	icon = 'icons/obj/toy.dmi'
 	force = 0
 	throw_speed = 0.5
 	throw_range = 10
@@ -67,7 +67,7 @@
 	name = "frisbee"
 	desc = "Comes further in life then you."
 	icon_state = "frisbee"
-	icon = 'yogstation/icons/obj/toy.dmi'
+	icon = 'icons/obj/toy.dmi'
 	force = 0
 	throw_speed = 0.5
 	throw_range = 14
@@ -75,7 +75,7 @@
 /obj/item/toy/talking/figure/jexp
 	name = "JEXP action figure"
 	icon_state = "jexp"
-	icon = 'yogstation/icons/obj/toy.dmi'
+	icon = 'icons/obj/toy.dmi'
 	messages = list(
 			"150 rounds as Captain sounds PERFECT!",
 			"Brig Officers! Perfect for newbies, but they'll get better costumes than regular officers!",
@@ -87,7 +87,7 @@
 /obj/item/toy/gun/toyglock
 	name = "toy glock"
 	desc = "Oh, looks just like the real thing, but it's only a toy."
-	icon = 'yogstation/icons/obj/toy.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "toyglock"
 	item_state = "toyglock"
 	slot_flags = ITEM_SLOT_BELT
@@ -97,7 +97,7 @@
 /obj/item/toy/gun/toyflaregun
 	name = "toy flare gun"
 	desc = "For use in make believe emergencies."
-	icon = 'yogstation/icons/obj/toy.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "toyflaregun"
 	item_state = "toyflaregun"
 	slot_flags = ITEM_SLOT_BELT

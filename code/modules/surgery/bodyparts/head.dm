@@ -1,7 +1,7 @@
 /obj/item/bodypart/head
 	name = BODY_ZONE_HEAD
 	desc = "Didn't make sense not to live for fun, your brain gets smart but your head gets dumb."
-	icon = 'yogstation/icons/mob/human_parts.dmi' // yogs -- use yog icons instead of tg
+	icon = 'icons/mob/human_parts.dmi' // yogs -- use yog icons instead of tg
 	icon_state = "default_human_head"
 	max_damage = 200
 	body_zone = BODY_ZONE_HEAD

@@ -28,7 +28,7 @@ Difficulty: Insanely Hard
 /mob/living/simple_animal/hostile/retaliate/goat/king
 	name = "king of the goats"
 	desc = "The oldest and wisest of the goats. King of his race, peerless in dignity and power. His golden fleece radiates nobility."
-	icon = 'yogstation/icons/mob/king_of_goats.dmi'
+	icon = 'icons/mob/king_of_goats.dmi'
 	icon_state = "king_goat"
 	icon_living = "king_goat"
 	icon_dead = "king_goat_dead"
@@ -100,7 +100,7 @@ Difficulty: Insanely Hard
 	var/sound_id = "goat"
 	var/special_attacks = 0
 	var/list/rangers = list()
-	var/current_song = 'yogstation/sound/ambience/Visager-Battle.ogg'
+	var/current_song = 'sound/ambience/Visager-Battle.ogg'
 	var/current_song_length = 1200
 	stun_chance = 7
 
@@ -121,7 +121,7 @@ Difficulty: Insanely Hard
 /mob/living/simple_animal/hostile/retaliate/goat/guard
 	name = "honour guard"
 	desc = "A very handsome and noble beast."
-	icon = 'yogstation/icons/mob/king_of_goats.dmi'
+	icon = 'icons/mob/king_of_goats.dmi'
 	icon_state = "goat_guard"
 	icon_living = "goat_guard"
 	icon_dead = "goat_guard_dead"
@@ -245,7 +245,7 @@ Difficulty: Insanely Hard
 	spellscast = 0
 	maxHealth = 750
 	revive(TRUE)
-	current_song = 'yogstation/sound/ambience/Visager-Miniboss_Fight.ogg'
+	current_song = 'sound/ambience/Visager-Miniboss_Fight.ogg'
 	current_song_length = 1759
 	var/sound/song_played = sound(current_song)
 	for(var/mob/M in rangers)
