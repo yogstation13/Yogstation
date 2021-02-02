@@ -1247,7 +1247,7 @@
 		if(health < oldhealth)
 			adjustStaminaLoss(-1.5 * (oldhealth - health))
 	else
-		if(!dna.check_mutation(HULK) && dna.check_mutation(GENETICS_HULK) && stat == CONSCIOUS && oldhealth >= health + 10)
+		if(!dna.check_mutation(HULK) && dna.check_mutation(GENETICS_HULK) && stat == CONSCIOUS && (oldhealth >= health + 10 || health < (0.5 * maxHealth)))
 			dna.add_mutation(ACTIVE_HULK)
 
 /mob/living/carbon/human/proc/hulk_stamina_check()

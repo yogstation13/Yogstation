@@ -61,6 +61,7 @@
 	name = "Hulk State"
 	quality = POSITIVE
 	class = MUT_OTHER
+	locked = TRUE
 	text_gain_indication = "<span class='notice'>Your muscles hurt!</span>"
 	species_allowed = list("human") //no skeleton/lizard hulk
 	health_req = 1
@@ -85,7 +86,6 @@
 		var/obj/item/clothing/suit/S = owner.wear_suit
 		if(owner.canUnEquip(S))
 			owner.dropItemToGround(S)
-	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 30) //Mild trauma inducing, fuk powergamers
 	owner.undershirt = "Nude"
 	owner.dna.species.no_equip.Add(SLOT_WEAR_SUIT, SLOT_W_UNIFORM)
 	owner.say("PUNY HUMANS!!")
@@ -106,7 +106,6 @@
 	REMOVE_TRAIT(owner, TRAIT_IGNORESLOWDOWN, TRAIT_HULK)
 	UnregisterSignal(owner, COMSIG_MOB_SAY)
 	owner.mind.RemoveSpell(/obj/effect/proc_holder/spell/aoe_turf/repulse/hulk)
-	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -30) //doesn't fix any possible traumas they got
 	owner.dna.species.no_equip.Remove(SLOT_WEAR_SUIT, SLOT_W_UNIFORM)
 	owner.physiology.stamina_mod = initial(owner.physiology.stamina_mod)
 	owner.update_body_parts()
