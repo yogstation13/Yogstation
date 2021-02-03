@@ -153,6 +153,7 @@
 #define TRAIT_ACIDBLOOD         "acid_blood"
 #define TRAIT_PRESERVED_ORGANS	"preserved_organs"
 #define TRAIT_SKINNY			"skinny"
+#define TRAIT_SURGERY_PREPARED	"surgery_prepared"
 
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it

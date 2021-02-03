@@ -58,6 +58,7 @@
 	reqs = list(/obj/item/clothing/glasses/hud/security = 1,
 				  /obj/item/clothing/glasses/sunglasses = 1,
 				  /obj/item/stack/cable_coil = 5)
+	blacklist = list(/obj/item/clothing/glasses/sunglasses/cheap)
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/hudsunsecremoval
@@ -76,6 +77,7 @@
 	reqs = list(/obj/item/clothing/glasses/hud/health = 1,
 				  /obj/item/clothing/glasses/sunglasses = 1,
 				  /obj/item/stack/cable_coil = 5)
+	blacklist = list(/obj/item/clothing/glasses/sunglasses/cheap)
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/hudsunmedremoval
@@ -94,6 +96,8 @@
 	reqs = list(/obj/item/clothing/glasses/hud/diagnostic = 1,
 				  /obj/item/clothing/glasses/sunglasses = 1,
 				  /obj/item/stack/cable_coil = 5)
+	blacklist = list(/obj/item/clothing/glasses/sunglasses/cheap)
+	
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/hudsundiagremoval
@@ -112,6 +116,7 @@
 	reqs = list(/obj/item/clothing/glasses/science = 1,
 				  /obj/item/clothing/glasses/sunglasses = 1,
 				  /obj/item/stack/cable_coil = 5)
+	blacklist = list(/obj/item/clothing/glasses/sunglasses/cheap)
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/beergogglesremoval

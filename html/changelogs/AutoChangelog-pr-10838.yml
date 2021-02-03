@@ -1,5 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - rscadd: "Auxbase now has TGUI"
-  - tweak: "LPM is now integrated into the auxbase"
