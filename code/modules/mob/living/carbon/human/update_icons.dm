@@ -438,12 +438,12 @@ There are several things that need to be remembered:
 	var/icon/female_clothing_icon = GLOB.female_clothing_icons[index]
 	if(!female_clothing_icon) 	//Create standing/laying icons if they don't exist
 		generate_female_clothing(index,t_color,icon,type)
-	return mutable_appearance(GLOB.female_clothing_icons[t_color], layer = -layer)
+	return mutable_appearance(GLOB.female_clothing_icons[t_color], layer = -layer) //Grab the standing/laying icons once/if they do exist
 
 /proc/wear_skinny_version(t_color, icon, layer, type)
 	var/index = t_color
 	var/icon/skinny_clothing_icon = GLOB.skinny_clothing_icons[index]
-	if(!skinny_clothing_icon) 
+	if(!skinny_clothing_icon)
 		generate_skinny_clothing(index,t_color,icon,type)
 	return mutable_appearance(GLOB.skinny_clothing_icons[t_color], layer = -layer)
 

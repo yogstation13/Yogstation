@@ -152,7 +152,7 @@
 #define TRAIT_SLIME_EMPATHY		"slime-empathy"
 #define TRAIT_ACIDBLOOD         "acid_blood"
 #define TRAIT_PRESERVED_ORGANS	"preserved_organs"
-#define TRAIT_SKINNY			"skinny"
+#define TRAIT_SKINNY			"skinny"  //For those with a slightly thinner torso sprite
 #define TRAIT_SURGERY_PREPARED	"surgery_prepared"
 
 //non-mob traits
