@@ -10,7 +10,7 @@
 	var/repeatable = FALSE				//can this step be repeated? Make shure it isn't last step, or it used in surgery with `can_cancel = 1`. Or surgion will be stuck in the loop
 	var/list/chems_needed = list()  //list of chems needed to complete the step. Even on success, the step will have no effect if there aren't the chems required in the mob.
 	var/require_all_chems = TRUE    //any on the list or all on the list?
-	var/list/ouchie_reduction_chems = list(/datum/reagent/consumable/ethanol/painkiller = 0.5, /datum/reagent/medicine/morphine = 0.5) //chems that will reduce the chance for fuckups while operating on conscious patients, stacks.
+	var/list/ouchie_modifying_chems = list(/datum/reagent/consumable/ethanol/painkiller = 0.5, /datum/reagent/medicine/morphine = 0.5) //chems that will modify the chance for fuckups while operating on conscious patients, stacks.
 	var/fuckup_damage = 10			//base damage dealt on a surgery being done without anesthetics on SURGERY_FUCKUP_CHANCE percent chance
 	var/fuckup_damage_type = BRUTE	//damage type fuckup_damage is dealt as
 
@@ -172,9 +172,9 @@
 
 /datum/surgery_step/proc/cause_ouchie(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, success)
 	var/ouchie_mod = 1
-	for(var/datum/reagent/R in ouchie_reduction_chems)
+	for(var/datum/reagent/R in ouchie_modifying_chems)
 		if(target.reagents?.has_reagent(R))
-			ouchie_mod *= ouchie_reduction_chems[R]
+			ouchie_mod *= ouchie_modifying_chems[R]
 	if(target.stat == UNCONSCIOUS)
 		ouchie_mod *= 0.8
 	ouchie_mod *= clamp(1-target.drunkenness/100, 0, 1)
