@@ -114,24 +114,31 @@ GLOBAL_VAR_INIT(clones, 0)
 // Biomass
 
 /obj/machinery/clonepod/attackby(obj/item/W, mob/user, params)
-	var/old_biomass = biomass // saves biomas variable
+	var/tempbiomass = biomass
 	if(istype(W, /obj/item))
 		if(istype(W, /obj/item/stack/sheet/animalhide/human)) // lets play flesh or meat
-			biomass += 50
-		if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab)) // Are we inserting meat?
+			tempbiomass += 50 * S.amount
+		else if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab)) // Are we inserting meat?
 			if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab/human)) // human meat is the easiest to turn into new human materials
-				biomass += 50
+				tempbiomass += 50
 			else if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat))
-				biomass += 34 // synthmeat can be many different things, thus it should be decently high. This ensures 3 of them gives you a full clone, without fucking with decimals.
+				tempbiomass += 34 // synthmeat can be many different things, thus it should be decently high. This ensures 3 of them gives you a full clone, without fucking with decimals.
 			else if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab/monkey))
-				biomass += 25 // Monkey meat is close to human, but not actually human.
+				tempbiomass += 25 // Monkey meat is close to human, but not actually human.
 			// if(istype W, /obj/item/reagent_containers/) //  this space will eventually be for my biomass cartidge, which aren't done.
 			else
-				biomass = biomass + 20 // Not actually human meat? Means that you need more of it.
-	if(biomass != old_biomass) // deletes the item you inserted if biomass changed.
-		qdel(W)
+				tempbiomass += 20 // Not actually human meat? Means that you need more of it.
+		else
+			return
 	if(biomass > 100)
-		biomass = 100 // no going over 100 biomass, you can't just ingore meat requirements for the rest of the shift because some chemist made 80,000 synthmeat
+		to_chat(user, "<span class = 'notice'>[src]'s biomass containers are full!.</span>")
+		return // if biomass is already 100 then yell at those stupid idiots
+	else
+		to_chat(user, "<span class = 'notice'>You insert [W] into [src].</span>") // feel free to fill it.
+		biomass = tempbiomass
+		qdel(W)
+		if(biomass > 100)
+			biomass = 100
 //Clonepod
 
 /obj/machinery/clonepod/examine(mob/user)
