@@ -41,6 +41,10 @@
 		"https://www.youtube.com/watch?v=YGulLVWu-s0",						// God Hand "Rock a Bay"
 		"https://www.youtube.com/watch?v=IhEqUKBTffU",						// Streets Of Rogue - 5-1
 		"https://www.youtube.com/watch?v=fXvxnDmwB_I",						// Rain World THS - Action Scene
+		"https://www.youtube.com/watch?v=1ye2nI7L_0g",						//The Kinks - Apeman
+		"https://www.youtube.com/watch?v=iZB8XXYePy0",						//The Kinks - Super Sonic Ship
+		"https://www.youtube.com/watch?v=tRcPA7Fzebw",						//David Bowie - Starman
+		"https://www.youtube.com/watch?v=FH2EgYq_NCY",						//Lou Reed - Satellite of Love
 		"https://www.youtube.com/watch?v=AumYP6Np1eI")						// Ataraxia - Deja Vu
 
 	selected_lobby_music = pick(songs)
