@@ -130,6 +130,8 @@ GLOBAL_VAR_INIT(clones, 0)
 				biomass = biomass + 20 // Not actually human meat? Means that you need more of it.
 	if(biomass != old_biomass) // deletes the item you inserted if biomass changed.
 		qdel(W)
+	if(biomass > 100)
+		biomass = 100 // no going over 100 biomass, you can't just ingore meat requirements for the rest of the shift because some chemist made 80,000 synthmeat
 //Clonepod
 
 /obj/machinery/clonepod/examine(mob/user)
