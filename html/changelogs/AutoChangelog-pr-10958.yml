@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - tweak: "adds a new holotool mode and makes it so when you set that mode it turns off the light"
