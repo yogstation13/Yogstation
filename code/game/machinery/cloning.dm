@@ -25,6 +25,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	var/attempting = FALSE //One clone attempt at a time thanks
 	var/speed_coeff
 	var/efficiency
+	var/biomass = 0 //Start with no biomass inserted.
 
 	var/datum/mind/clonemind
 	var/grab_ghost_when = CLONER_MATURE_CLONE
@@ -81,6 +82,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	. += "<span class='notice'>The <i>linking</i> device can be <i>scanned<i> with a multitool.</span>"
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.<span>"
+		. += "<span class='notice'>The status display reads: Biomass levels at <b>[biomass]</b><span>" // read out the amount of biomass if you examine
 		if(efficiency > 5)
 			. += "<span class='notice'>Pod has been upgraded to support autoprocessing and apply beneficial mutations.<span>"
 
@@ -109,7 +111,25 @@ GLOBAL_VAR_INIT(clones, 0)
 	. = ..()
 	. += "The write-protect tab is set to [read_only ? "protected" : "unprotected"]."
 
+// Biomass
 
+/obj/machinery/clonepod/attackby(obj/item/W, mob/user, params)
+	var/old_biomass = biomass // saves biomas variable
+	if(istype(W, /obj/item))
+		if(istype(W, /obj/item/stack/sheet/animalhide/human)) // lets play flesh or meat
+			biomass += 50
+		if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab)) // Are we inserting meat?
+			if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab/human)) // human meat is the easiest to turn into new human materials
+				biomass += 50
+			else if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat))
+				biomass += 34 // synthmeat can be many different things, thus it should be decently high. This ensures 3 of them gives you a full clone, without fucking with decimals.
+			else if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab/monkey))
+				biomass += 25 // Monkey meat is close to human, but not actually human.
+			// if(istype W, /obj/item/reagent_containers/) //  this space will eventually be for my biomass cartidge, which aren't done.
+			else
+				biomass = biomass + 20 // Not actually human meat? Means that you need more of it.
+	if(biomass != old_biomass) // deletes the item you inserted if biomass changed.
+		qdel(W)
 //Clonepod
 
 /obj/machinery/clonepod/examine(mob/user)
@@ -178,6 +198,7 @@ GLOBAL_VAR_INIT(clones, 0)
 			return NONE
 		current_insurance = insurance
 	attempting = TRUE //One at a time!!
+	biomass -= 100
 	countdown.start()
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
