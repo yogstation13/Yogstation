@@ -29,8 +29,10 @@
 	var/boltslocked = TRUE
 	var/list/affecting_areas
 
-/obj/machinery/door/firedoor/Initialize()
+/obj/machinery/door/firedoor/Initialize(mapload, direct)
 	. = ..()
+	if(direct)
+		setDir(direct)
 	CalculateAffectingAreas()
 
 /obj/machinery/door/firedoor/examine(mob/user)
@@ -306,6 +308,7 @@
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	flags_1 = ON_BORDER_1
 	CanAtmosPass = ATMOS_PASS_PROC
+	assemblytype = /obj/structure/firelock_frame/border
 
 /obj/machinery/door/firedoor/border_only/closed
 	icon_state = "door_closed"
@@ -345,9 +348,7 @@
 	var/turf/T2 = get_step(T, dir)
 	if(!T || !T2)
 		return
-	var/status1 = check_door_side(T)
-	var/status2 = check_door_side(T2)
-	if((status1 == 1 && status2 == -1) || (status1 == -1 && status2 == 1))
+	if(check_door_side(T) != check_door_side(T2))
 		to_chat(user, "<span class='warning'>Access denied. Try closing another firedoor to minimize decompression, or using a crowbar.</span>")
 		return FALSE
 	return TRUE
@@ -422,6 +423,34 @@
 	density = TRUE
 	var/constructionStep = CONSTRUCTION_NOCIRCUIT
 	var/reinforced = 0
+	var/border = FALSE
+
+/obj/structure/firelock_frame/border
+	icon = 'icons/obj/doors/edge_Doorfire.dmi'
+	border = TRUE
+
+/obj/structure/firelock_frame/border/ComponentInitialize()
+	. = ..()
+	AddComponent(
+		/datum/component/simple_rotation,
+		ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS,
+		null
+		)
+
+/obj/structure/firelock_frame/border/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(istype(mover) && (mover.pass_flags & PASSGLASS))
+		return TRUE
+	if(!(get_dir(loc, target) == dir)) //Make sure looking at appropriate border
+		return TRUE
+
+/obj/structure/firelock_frame/border/CheckExit(atom/movable/mover as mob|obj, turf/target)
+	if(istype(mover) && (mover.pass_flags & PASSGLASS))
+		return TRUE
+	if(get_dir(loc, target) == dir)
+		return !density
+	else
+		return TRUE
 
 /obj/structure/firelock_frame/examine(mob/user)
 	. = ..()
@@ -484,7 +513,9 @@
 				user.visible_message("<span class='notice'>[user] finishes the firelock.</span>", \
 									 "<span class='notice'>You finish the firelock.</span>")
 				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
-				if(reinforced)
+				if(border)
+					new /obj/machinery/door/firedoor/border_only(get_turf(src), dir)
+				else if(reinforced)
 					new /obj/machinery/door/firedoor/heavy(get_turf(src))
 				else
 					new /obj/machinery/door/firedoor(get_turf(src))
@@ -492,6 +523,9 @@
 				return
 			if(istype(C, /obj/item/stack/sheet/plasteel))
 				var/obj/item/stack/sheet/plasteel/P = C
+				if(border)
+					to_chat(user, "<span class='warning'>[src] cannot be reinforced.</span>")
+					return
 				if(reinforced)
 					to_chat(user, "<span class='warning'>[src] is already reinforced.</span>")
 					return
