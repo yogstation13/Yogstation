@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "the staff of storms should now effectively disable ash storms when fired during one"
