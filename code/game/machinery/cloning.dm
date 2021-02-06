@@ -117,6 +117,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	var/tempbiomass = biomass
 	if(istype(W, /obj/item))
 		if(istype(W, /obj/item/stack/sheet/animalhide/human)) // lets play flesh or meat
+			var/obj/item/stack/S = W
 			tempbiomass += 50 * S.amount
 		else if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab)) // Are we inserting meat?
 			if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab/human)) // human meat is the easiest to turn into new human materials
