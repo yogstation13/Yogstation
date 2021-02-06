@@ -331,6 +331,7 @@
 	
 ////////////VOMITCRAWL
 /datum/component/crawl/vomit //ABSOLUTELY DISGUSIN
+	var/obj/item/vomitcrawlholder/crawl
 	crawling_types = list(/obj/effect/decal/cleanable/vomit,/obj/effect/decal/cleanable/insectguts)
 	gain_message = "<span class='boldnotice'>You can now vomitcrawl! Alt-click pools of vomit to phase in and out.</span>"
 	loss_message = "<span class='warning'>You can no longer vomitcrawl.</span>"
@@ -346,6 +347,9 @@
 
 /datum/component/crawl/vomit/start_crawling(atom/target, mob/living/user)
 	if(iscarbon(user))
+		crawl = new(target)
+		crawl.holder = src
+		crawl.mob = user
 		var/mob/living/carbon/C = user
 		var/obj/item/vomitcrawl/B1 = new(C)
 		var/obj/item/vomitcrawl/B2 = new(C)
@@ -381,8 +385,31 @@
 		for(var/obj/item/vomitcrawl/B in C)
 			qdel(B)
 	..()
+	crawl.holder = null
+	qdel(crawl)
+	crawl = null
 	user.visible_message("<span class='warning'><B>[user] rises out of the pool of vomit!?</B></span>")
 	exit_vomit_effect(target, user)
+
+/obj/item/vomitcrawlholder	//if the pool of vomit we entered gets destroyed, we appear stunned on top of it
+	desc = "If you see this, contact a coder"
+	var/datum/component/crawl/vomit/holder
+	var/mob/living/mob
+	
+/obj/item/vomitcrawlholder/Destroy()
+	if(holder)
+		if(iscarbon(mob))
+			var/mob/living/carbon/C = mob
+			for(var/obj/item/vomitcrawl/V in C)
+				qdel(V)
+		mob.forceMove(get_turf(src))
+		mob.visible_message("<span class='warning'><B>[mob] suddenly appears from the vomit they had entered!</B></span>")
+		mob.Stun(50)
+		mob.Knockdown(100)
+		qdel(holder.holder)
+		holder.holder = null
+		holder = null
+	. = ..()
 
 /obj/item/vomitcrawl
 	name = "vomit crawl"
@@ -393,4 +420,3 @@
 /obj/item/vomitcrawl/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
-
