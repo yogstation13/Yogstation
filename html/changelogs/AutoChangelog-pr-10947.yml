@@ -1,0 +1,4 @@
+author: "ChesterTheCheesy"
+delete-after: true 
+changes: 
+  - tweak: "vomitcrawl ends if the pool of blood you entered gets cleaned, leaving you knocked down and stunned"
