@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "bees are no longer immediately hostile, but hitting bees or trying to steal honey without a bee suit will make them angry"
