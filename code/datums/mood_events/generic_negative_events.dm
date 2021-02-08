@@ -121,8 +121,8 @@
 	mood_change = -3
 
 /datum/mood_event/family_heirloom_missing
-	description = "<span class='warning'>I'm missing my family heirloom...</span>\n"
-	mood_change = -4
+	description = "<span class='boldwarning'>I'm missing my family heirloom...</span>\n"
+	mood_change = -50
 
 /datum/mood_event/healsbadman
 	description = "<span class='warning'>I feel like I'm held together by flimsy string, and could fall apart at any moment!</span>\n"
