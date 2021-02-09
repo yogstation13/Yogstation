@@ -89,62 +89,6 @@ GLOBAL_VAR_INIT(clones, 0)
 		if(efficiency > 5)
 			. += "<span class='notice'>Pod has been upgraded to support autoprocessing and apply beneficial mutations.<span>"
 
-/obj/machinery/clonepod/attackby(obj/item/I, mob/user)
-	if(user.a_intent == INTENT_HARM)
-		return ..()
-	var/obj/item/organ/O = I
-	if(!O)
-		to_chat(user, "<span class='warning'>[src] doesn't have a recepticle for [I]!</span>")
-		return
-	if((O.organ_flags & ORGAN_SYNTHETIC))
-		to_chat(user, "<span class='warning'>[src] refuses to accept [I]; it's only capable of using organic organs!</span>")
-		return
-	if((O.organ_flags & ORGAN_FAILING))
-		to_chat(user, "<span class='warning'>[src] refuses to accept [I]; the organ is too damaged to be used!</span>")
-		return
-	var/obj/item/organ/heart/H = I
-	if(istype(H))
-		if(heart)
-			if(!(heart.organ_flags & ORGAN_FAILING))
-				to_chat(user, "<span class='notice'>A green light flashes over the heart recepticle, it's already full.</span>")
-				return
-			heart.forceMove(get_turf(src))
-			to_chat(user, "<span class='notice'>A red light flashes over the heart recepticle, and an old decaying heart falls out.</span>")
-			heart = null
-		if(!user.transferItemToLoc(H, src))
-			return
-		heart = H
-		user.visible_message("<span class='notice'>[user] deposits [I] into [src].</span>", "<span class='notice'>You deposit [I] into [src].</span>")
-		return
-	var/obj/item/organ/lungs/L = I
-	if(istype(L))
-		if(lungs)
-			if(!(lungs.organ_flags & ORGAN_FAILING))
-				to_chat(user, "<span class='notice'>A green light flashes over the lung recepticle, it's already full.</span>")
-				return
-			lungs.forceMove(get_turf(src))
-			to_chat(user, "<span class='notice'>A red light flashes over the lung recepticle, and an old decaying pair of lungs falls out.</span>")
-			lungs = null
-		if(!user.transferItemToLoc(L, src))
-			return
-		lungs = L
-		user.visible_message("<span class='notice'>[user] deposits [I] into [src].</span>", "<span class='notice'>You deposit [I] into [src].</span>")
-		return
-	var/obj/item/organ/liver/V = I
-	if(istype(V))
-		if(liver)
-			if(!(liver.organ_flags & ORGAN_FAILING))
-				to_chat(user, "<span class='notice'>A green light flashes over the liver recepticle, it's already full.</span>")
-				return
-			liver.forceMove(get_turf(src))
-			to_chat(user, "<span class='notice'>A red light flashes over the liver recepticle, and an old decaying liver falls out.</span>")
-			liver = null
-		if(!user.transferItemToLoc(V, src))
-			return
-		liver = V
-		user.visible_message("<span class='notice'>[user] deposits [I] into [src].</span>", "<span class='notice'>You deposit [I] into [src].</span>")
-		return
-
 /obj/machinery/clonepod/attack_hand(mob/user)
 	var/dumped_organ = FALSE
 	if(heart && (heart.organ_flags & ORGAN_FAILING))
@@ -225,7 +169,7 @@ GLOBAL_VAR_INIT(clones, 0)
 		return NONE
 	if(!(heart && liver && lungs))
 		return CLONING_FAIL_MISSING_ORGAN
-	if((liver.organ_flags & ORGAN_FAILING) || (lungs.organ_flags & ORGAN_FAILING) || (liver.organ_flags & ORGAN_FAILING))
+	if((heart.organ_flags & ORGAN_FAILING) || (lungs.organ_flags & ORGAN_FAILING) || (liver.organ_flags & ORGAN_FAILING))
 		return CLONING_FAIL_DECAY
 	QDEL_NULL(heart)
 	QDEL_NULL(liver)
@@ -467,7 +411,60 @@ GLOBAL_VAR_INIT(clones, 0)
 			to_chat(user, "<span class='notice'>You force an emergency ejection. </span>")
 			go_out()
 	else
-		return ..()
+		if(user.a_intent == INTENT_HARM)
+			return ..()
+		var/obj/item/organ/O = W
+		if(!istype(O))
+			to_chat(user, "<span class='warning'>[src] doesn't have a recepticle for [W]!</span>")
+			return
+		if((O.organ_flags & ORGAN_SYNTHETIC))
+			to_chat(user, "<span class='warning'>[src] refuses to accept [W]; it's only capable of using organic organs!</span>")
+			return
+		if((O.organ_flags & ORGAN_FAILING))
+			to_chat(user, "<span class='warning'>[src] refuses to accept [W]; the organ is too damaged to be used!</span>")
+			return
+		var/obj/item/organ/heart/H = W
+		if(istype(H))
+			if(heart)
+				if(!(heart.organ_flags & ORGAN_FAILING))
+					to_chat(user, "<span class='notice'>A green light flashes over the heart recepticle, it's already full.</span>")
+				return
+				heart.forceMove(get_turf(src))
+				to_chat(user, "<span class='notice'>A red light flashes over the heart recepticle, and an old decaying heart falls out.</span>")
+				heart = null
+			if(!user.transferItemToLoc(H, src))
+				return
+			heart = H
+			user.visible_message("<span class='notice'>[user] deposits [W] into [src].</span>", "<span class='notice'>You deposit [W] into [src].</span>")
+			return
+		var/obj/item/organ/lungs/L = W
+		if(istype(L))
+			if(lungs)
+				if(!(lungs.organ_flags & ORGAN_FAILING))
+					to_chat(user, "<span class='notice'>A green light flashes over the lung recepticle, it's already full.</span>")
+					return
+				lungs.forceMove(get_turf(src))
+				to_chat(user, "<span class='notice'>A red light flashes over the lung recepticle, and an old decaying pair of lungs falls out.</span>")
+				lungs = null
+			if(!user.transferItemToLoc(L, src))
+				return
+			lungs = L
+			user.visible_message("<span class='notice'>[user] deposits [W] into [src].</span>", "<span class='notice'>You deposit [W] into [src].</span>")
+			return
+		var/obj/item/organ/liver/V = W
+		if(istype(V))
+			if(liver)
+				if(!(liver.organ_flags & ORGAN_FAILING))
+					to_chat(user, "<span class='notice'>A green light flashes over the liver recepticle, it's already full.</span>")
+					return
+				liver.forceMove(get_turf(src))
+				to_chat(user, "<span class='notice'>A red light flashes over the liver recepticle, and an old decaying liver falls out.</span>")
+				liver = null
+			if(!user.transferItemToLoc(V, src))
+				return
+			liver = V
+			user.visible_message("<span class='notice'>[user] deposits [W] into [src].</span>", "<span class='notice'>You deposit [W] into [src].</span>")
+			return
 
 /obj/machinery/clonepod/emag_act(mob/user)
 	if(!occupant)
