@@ -149,12 +149,15 @@ GLOBAL_VAR_INIT(clones, 0)
 	var/dumped_organ = FALSE
 	if(heart && (heart.organ_flags & ORGAN_FAILING))
 		heart.forceMove(get_turf(src))
+		heart = null
 		dumped_organ = TRUE
 	if(lungs && (lungs.organ_flags & ORGAN_FAILING))
 		lungs.forceMove(get_turf(src))
+		lungs = null
 		dumped_organ = TRUE
 	if(liver && (liver.organ_flags & ORGAN_FAILING))
 		liver.forceMove(get_turf(src))
+		liver = null
 		dumped_organ = TRUE
 	if(dumped_organ)
 		user.visible_message("<span class='notice'>[user] presses the organ scan button on [src], causing any decayed organs to fall out!</span>", "<span class='notice'>You press the organ scan button on [src], causing it to detach any decayed organs!</span>")

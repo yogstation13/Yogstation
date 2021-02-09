@@ -473,7 +473,7 @@
 				temp = "<font class='bad'>Cannot initiate regular cloning with body-only scans.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 			var/obj/machinery/clonepod/pod = GetAvailablePod()
-			var/success = FALSE
+			var/no_generic_message = FALSE
 			//Can't clone without someone to clone.  Or a pod.  Or if the pod is busy. Or full of gibs.
 			if(!LAZYLEN(pods))
 				temp = "<font class='bad'>No Clonepods detected.</font>"
@@ -495,7 +495,7 @@
 					if(active_record == C)
 						active_record = null
 					menu = 1
-					success = TRUE
+					no_generic_message = TRUE
 					if(!empty)
 						log_cloning("[key_name(usr)] initiated cloning of [key_name(C.fields["mindref"])] via [src] at [AREACOORD(src)]. Pod: [pod] at [AREACOORD(pod)].")
 					else
@@ -507,10 +507,14 @@
 					records -= C
 				if(result & CLONING_FAIL_DECAY)
 					temp = "[C.fields["name"]] => <font class='bad'>Cloning failed: Pod reports decay in organs, replace any damaged organs in the cloning pod and try again.</font>"
+					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
+					no_generic_message = TRUE
 				if(result & CLONING_FAIL_MISSING_ORGAN)
 					temp = "[C.fields["name"]] => <font class='bad'>Cloning failed: Pod reports missing organs, insert healthy organs into the cloning pod and try again.</font>"
+					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
+					no_generic_message = TRUE
 
-			if(!success)
+			if(!no_generic_message)
 				temp = "[C.fields["name"]] => <font class='bad'>Initialisation failure.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 
