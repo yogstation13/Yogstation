@@ -411,7 +411,7 @@ GLOBAL_VAR_INIT(clones, 0)
 			to_chat(user, "<span class='notice'>You force an emergency ejection. </span>")
 			go_out()
 	else
-		var/obj/item/organ/O
+		var/obj/item/organ/O = W
 		if(!istype(O))
 			return ..()
 		if((O.organ_flags & ORGAN_SYNTHETIC))
