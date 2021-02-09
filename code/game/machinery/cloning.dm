@@ -411,12 +411,8 @@ GLOBAL_VAR_INIT(clones, 0)
 			to_chat(user, "<span class='notice'>You force an emergency ejection. </span>")
 			go_out()
 	else
-		if(user.a_intent == INTENT_HARM)
-			return ..()
-		var/obj/item/organ/O = W
 		if(!istype(O))
-			to_chat(user, "<span class='warning'>[src] doesn't have a recepticle for [W]!</span>")
-			return
+			return ..()
 		if((O.organ_flags & ORGAN_SYNTHETIC))
 			to_chat(user, "<span class='warning'>[src] refuses to accept [W]; it's only capable of using organic organs!</span>")
 			return
