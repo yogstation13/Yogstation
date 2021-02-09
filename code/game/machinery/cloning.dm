@@ -428,7 +428,7 @@ GLOBAL_VAR_INIT(clones, 0)
 			if(heart)
 				if(!(heart.organ_flags & ORGAN_FAILING))
 					to_chat(user, "<span class='notice'>A green light flashes over the heart recepticle, it's already full.</span>")
-				return
+					return
 				heart.forceMove(get_turf(src))
 				to_chat(user, "<span class='notice'>A red light flashes over the heart recepticle, and an old decaying heart falls out.</span>")
 				heart = null
