@@ -224,6 +224,9 @@ GLOBAL_VAR_INIT(clones, 0)
 		return CLONING_FAIL_MISSING_ORGAN
 	if((liver.organ_flags & ORGAN_FAILING) || (lungs.organ_flags & ORGAN_FAILING) || (liver.organ_flags & ORGAN_FAILING))
 		return CLONING_FAIL_DECAY
+	QDEL_NULL(heart)
+	QDEL_NULL(liver)
+	QDEL_NULL(lungs)
 
 	if(!empty) //Doesn't matter if we're just making a copy
 		clonemind = locate(mindref) in SSticker.minds
