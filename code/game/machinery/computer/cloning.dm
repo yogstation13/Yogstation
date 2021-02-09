@@ -505,6 +505,10 @@
 						active_record = null
 					menu = 1
 					records -= C
+				if(result & CLONING_FAIL_DECAY)
+					temp = "[C.fields["name"]] => <font class='bad'>Cloning failed: Pod reports decay in organs, replace any damaged organs in the cloning pod and try again.</font>"
+				if(result & CLONING_FAIL_MISSING_ORGAN)
+					temp = "[C.fields["name"]] => <font class='bad'>Cloning failed: Pod reports missing organs, insert healthy organs into the cloning pod and try again.</font>"
 
 			if(!success)
 				temp = "[C.fields["name"]] => <font class='bad'>Initialisation failure.</font>"

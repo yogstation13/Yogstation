@@ -26,6 +26,10 @@ GLOBAL_VAR_INIT(clones, 0)
 	var/speed_coeff
 	var/efficiency
 
+	var/obj/item/organ/heart/heart
+	var/obj/item/organ/lungs/lungs
+	var/obj/item/organ/liver/liver
+
 	var/datum/mind/clonemind
 	var/grab_ghost_when = CLONER_MATURE_CLONE
 
@@ -80,9 +84,80 @@ GLOBAL_VAR_INIT(clones, 0)
 	. = ..()
 	. += "<span class='notice'>The <i>linking</i> device can be <i>scanned<i> with a multitool.</span>"
 	if(in_range(user, src) || isobserver(user))
+		. += "<span class='notice'>You can see a button labeled \"check organs\" at the pod's base and slots to place a heart, a liver, and a set of lungs.</span>"
 		. += "<span class='notice'>The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.<span>"
 		if(efficiency > 5)
 			. += "<span class='notice'>Pod has been upgraded to support autoprocessing and apply beneficial mutations.<span>"
+
+/obj/machinery/clonepod/attackby(obj/item/I, mob/user)
+	if(user.a_intent == INTENT_HARM)
+		return ..()
+	var/obj/item/organ/O = I
+	if(!O)
+		to_chat(user, "<span class='warning'>[src] doesn't have a recepticle for [I]!</span>")
+		return
+	if((O.organ_flags & ORGAN_SYNTHETIC))
+		to_chat(user, "<span class='warning'>[src] refuses to accept [I]; it's only capable of using organic organs!</span>")
+		return
+	if((O.organ_flags & ORGAN_FAILING))
+		to_chat(user, "<span class='warning'>[src] refuses to accept [I]; the organ is too damaged to be used!</span>")
+		return
+	var/obj/item/organ/heart/H = I
+	if(istype(H))
+		if(heart)
+			if(!(heart.organ_flags & ORGAN_FAILING))
+				to_chat(user, "<span class='notice'>A green light flashes over the heart recepticle, it's already full.</span>")
+				return
+			heart.forceMove(get_turf(src))
+			to_chat(user, "<span class='notice'>A red light flashes over the heart recepticle, and an old decaying heart falls out.</span>")
+			heart = null
+		if(!user.transferItemToLoc(H, src))
+			return
+		heart = H
+		user.visible_message("<span class='notice'>[user] deposits [I] into [src].</span>", "<span class='notice'>You deposit [I] into [src].</span>")
+		return
+	var/obj/item/organ/lungs/L = I
+	if(istype(L))
+		if(lungs)
+			if(!(lungs.organ_flags & ORGAN_FAILING))
+				to_chat(user, "<span class='notice'>A green light flashes over the lung recepticle, it's already full.</span>")
+				return
+			lungs.forceMove(get_turf(src))
+			to_chat(user, "<span class='notice'>A red light flashes over the lung recepticle, and an old decaying pair of lungs falls out.</span>")
+			lungs = null
+		if(!user.transferItemToLoc(L, src))
+			return
+		lungs = L
+		user.visible_message("<span class='notice'>[user] deposits [I] into [src].</span>", "<span class='notice'>You deposit [I] into [src].</span>")
+		return
+	var/obj/item/organ/liver/V = I
+	if(istype(V))
+		if(liver)
+			if(!(liver.organ_flags & ORGAN_FAILING))
+				to_chat(user, "<span class='notice'>A green light flashes over the liver recepticle, it's already full.</span>")
+				return
+			liver.forceMove(get_turf(src))
+			to_chat(user, "<span class='notice'>A red light flashes over the liver recepticle, and an old decaying liver falls out.</span>")
+			liver = null
+		if(!user.transferItemToLoc(V, src))
+			return
+		liver = V
+		user.visible_message("<span class='notice'>[user] deposits [I] into [src].</span>", "<span class='notice'>You deposit [I] into [src].</span>")
+		return
+
+/obj/machinery/clonepod/attack_hand(mob/user)
+	var/dumped_organ = FALSE
+	if(heart && (heart.organ_flags & ORGAN_FAILING))
+		heart.forceMove(get_turf(src))
+		dumped_organ = TRUE
+	if(lungs && (lungs.organ_flags & ORGAN_FAILING))
+		lungs.forceMove(get_turf(src))
+		dumped_organ = TRUE
+	if(liver && (liver.organ_flags & ORGAN_FAILING))
+		liver.forceMove(get_turf(src))
+		dumped_organ = TRUE
+	if(dumped_organ)
+		user.visible_message("<span class='notice'>[user] presses the organ scan button on [src], causing any decayed organs to fall out!</span>", "<span class='notice'>You press the organ scan button on [src], causing it to detach any decayed organs!</span>")
 
 //The return of data disks?? Just for transferring between genetics machine/cloning machine.
 //TO-DO: Make the genetics machine accept them.
@@ -145,6 +220,10 @@ GLOBAL_VAR_INIT(clones, 0)
 		return NONE
 	if(mess || attempting)
 		return NONE
+	if(!(heart && liver && lungs))
+		return CLONING_FAIL_MISSING_ORGAN
+	if((liver.organ_flags & ORGAN_FAILING) || (lungs.organ_flags & ORGAN_FAILING) || (liver.organ_flags & ORGAN_FAILING))
+		return CLONING_FAIL_DECAY
 
 	if(!empty) //Doesn't matter if we're just making a copy
 		clonemind = locate(mindref) in SSticker.minds
