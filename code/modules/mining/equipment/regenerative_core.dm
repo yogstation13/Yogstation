@@ -70,6 +70,9 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
+	if(inert)
+		to_chat(user, "<span class='notice'>[src] has decayed and can no longer be used to heal.</span>")
+		return
 	to_chat(user, "<span class='notice'>You crush [src] within your hand. Disgusting tendrils spread across your body, hold you together and allow you to keep moving, but for how long?</span>")
 	SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "self"))
 	H.apply_status_effect(STATUS_EFFECT_REGENERATIVE_CORE)
