@@ -95,7 +95,7 @@
 		else
 			if(failure(user, target, target_zone, tool, surgery))
 				advance = TRUE
-		if(!HAS_TRAIT(target, TRAIT_SURGERY_PREPARED) && target.stat != DEAD && !IS_IN_STASIS(target)) //not under the effects of anaesthetics or a strong painkiller, harsh penalty to success chance
+		if(!HAS_TRAIT(target, TRAIT_SURGERY_PREPARED) && target.stat != DEAD && !IS_IN_STASIS(target) && fuckup_damage) //not under the effects of anaesthetics or a strong painkiller, harsh penalty to success chance
 			if(!issilicon(user) && !HAS_TRAIT(user, TRAIT_SURGEON)) //borgs and abductors are immune to this
 				var/obj/item/bodypart/operated_bodypart = target.get_bodypart(target_zone)
 				if(!operated_bodypart || operated_bodypart?.status == BODYPART_ORGANIC) //robot limbs don't feel pain
