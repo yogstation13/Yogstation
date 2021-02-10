@@ -106,6 +106,11 @@
 	layer = BLIND_LAYER
 
 /obj/screen/fullscreen/blind
+	icon_state = "blindimageoverlay"
+	layer = BLIND_LAYER
+	plane = FULLSCREEN_PLANE
+
+/obj/screen/fullscreen/black
 	icon_state = "blackimageoverlay"
 	layer = BLIND_LAYER
 	plane = FULLSCREEN_PLANE
