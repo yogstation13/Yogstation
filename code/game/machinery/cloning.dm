@@ -25,7 +25,17 @@ GLOBAL_VAR_INIT(clones, 0)
 	var/attempting = FALSE //One clone attempt at a time thanks
 	var/speed_coeff
 	var/efficiency
+	// the three variables that handle meatcloning
 	var/biomass = 0 //Start with no biomass inserted.
+	///List of special meat that gives extra/less biomass
+	var/list/accepted_biomass = list(
+		/obj/item/reagent_containers/food/snacks/meat/slab/monkey = 25, 
+		/obj/item/reagent_containers/food/snacks/meat/slab/synthmeat = 34,
+		/obj/item/reagent_containers/food/snacks/meat/slab/human = 50,
+		/obj/item/stack/sheet/animalhide/human = 50
+		)
+	///How much biomass does regular meat that isn't in the above list give
+	var/biomass_per_slab = 20
 
 	var/datum/mind/clonemind
 	var/grab_ghost_when = CLONER_MATURE_CLONE
@@ -113,33 +123,34 @@ GLOBAL_VAR_INIT(clones, 0)
 
 // Biomass
 
-/obj/machinery/clonepod/attackby(obj/item/W, mob/user, params)
-	var/tempbiomass = biomass
-	if(istype(W, /obj/item))
-		if(istype(W, /obj/item/stack/sheet/animalhide/human)) // lets play flesh or meat
-			var/obj/item/stack/S = W
-			tempbiomass += 50 * S.amount
-		else if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab)) // Are we inserting meat?
-			if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab/human)) // human meat is the easiest to turn into new human materials
-				tempbiomass += 50
-			else if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat))
-				tempbiomass += 34 // synthmeat can be many different things, thus it should be decently high. This ensures 3 of them gives you a full clone, without fucking with decimals.
-			else if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab/monkey))
-				tempbiomass += 25 // Monkey meat is close to human, but not actually human.
-			// if(istype W, /obj/item/reagent_containers/) //  this space will eventually be for my biomass cartidge, which aren't done.
-			else
-				tempbiomass += 20 // Not actually human meat? Means that you need more of it.
-		else
-			return
-	if(biomass > 100)
+/obj/machinery/clonepod/proc/handle_biomass(W, tempbiomass, user) // updates the value
+	if(biomass >= 100)
 		to_chat(user, "<span class = 'notice'>[src]'s biomass containers are full!.</span>")
 		return // if biomass is already 100 then yell at those stupid idiots
 	else
 		to_chat(user, "<span class = 'notice'>You insert [W] into [src].</span>") // feel free to fill it.
 		biomass = tempbiomass
 		qdel(W)
-		if(biomass > 100)
+		if(biomass > 100) // hidden check to make sure we don't get an end value of like 106 or something.
 			biomass = 100
+	return
+
+/obj/machinery/clonepod/attackby(obj/item/W, mob/user, params)
+	var/tempbiomass = biomass
+	if(W.type in accepted_biomass)
+		if(istype(W, /obj/item/stack/sheet))
+			var/obj/item/stack/S = W
+			tempbiomass += S.amount * accepted_biomass[W.type] //we need special code because stacks are cringe
+			handle_biomass(W, tempbiomass, user)
+
+		else
+			tempbiomass += accepted_biomass[W.type] // changes biomass to whatever slab it picked
+			handle_biomass(W, tempbiomass, user)
+
+	else if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab)) // If no special slab was picked it reverts to var/biomass_per_slab
+		tempbiomass += biomass_per_slab
+		handle_biomass(W, tempbiomass, user)
+
 //Clonepod
 
 /obj/machinery/clonepod/examine(mob/user)
