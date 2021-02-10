@@ -227,7 +227,7 @@
 			var/datum/mind/M = mind
 			if(M.current?.client)
 				SSachievements.unlock_achievement(/datum/achievement/greentext/ratvar,M.current.client)
-		if(eminence.current?.client)
+		if(eminence?.current?.client)
 			SSachievements.unlock_achievement(/datum/achievement/greentext/ratvar/eminence,eminence.current.client)
 	else
 		parts += "<span class='redtext big'>The Ark was destroyed! Ratvar will rust away for all eternity!</span>"
