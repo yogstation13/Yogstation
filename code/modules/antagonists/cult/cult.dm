@@ -45,6 +45,16 @@
 	. = ..()
 	if(. && !ignore_implant)
 		. = is_convertable_to_cult(new_owner.current,cult_team)
+		var/list/no_team_antag = list(
+			/datum/antagonist/rev,
+			/datum/antagonist/clockcult,
+			/datum/antagonist/darkspawn,
+			/datum/antagonist/shadowling,
+			/datum/antagonist/zombie
+			)
+		for(var/datum/antagonist/NTA in new_owner.antag_datums)
+			if(NTA.type in no_team_antag)
+				return FALSE
 
 /datum/antagonist/cult/greet()
 	to_chat(owner.current, "<B><font size=3 color=red>You are a member of the cult!</font><B>")
