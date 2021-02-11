@@ -433,7 +433,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	toxpwr = 1
 
-/datum/reagent/toxin/formadehyde/on_mob_add(mob/living/L)
+/datum/reagent/toxin/formaldehyde/on_mob_add(mob/living/L)
 	..()
 	ADD_TRAIT(L, TRAIT_PRESERVED_ORGANS, type)
 
