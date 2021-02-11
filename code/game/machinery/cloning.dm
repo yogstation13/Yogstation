@@ -170,6 +170,12 @@ GLOBAL_VAR_INIT(clones, 0)
 			icon_state = "pod_g"
 			update_icon()
 			return NONE
+		if(clonemind.zombified) //Can't clone the damned x2
+			INVOKE_ASYNC(src, .proc/horrifyingsound)
+			mess = TRUE
+			icon_state = "pod_g"
+			update_icon()
+			return NONE
 		current_insurance = insurance
 	attempting = TRUE //One at a time!!
 	countdown.start()
@@ -195,7 +201,7 @@ GLOBAL_VAR_INIT(clones, 0)
 			H.gender = MALE
 		if((AGENDER in H.dna.species.species_traits) && (H.gender != PLURAL))
 			H.gender = PLURAL
-	
+
 	H.silent = 20 //Prevents an extreme edge case where clones could speak if they said something at exactly the right moment.
 	occupant = H
 

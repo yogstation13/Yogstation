@@ -23002,20 +23002,6 @@
 	},
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/science/xenobiology)
-"bje" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 2;
-	external_pressure_bound = 120;
-	name = "server vent"
-	},
-/obj/machinery/camera{
-	c_tag = "Science - Server Room";
-	dir = 8;
-	name = "science camera";
-	network = list("ss13","rd")
-	},
-/turf/open/floor/circuit/green/telecomms/mainframe,
-/area/science/xenobiology)
 "bjf" = (
 /obj/structure/dresser,
 /obj/structure/extinguisher_cabinet{
@@ -32685,6 +32671,19 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"kKr" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 2;
+	external_pressure_bound = 120;
+	name = "server vent"
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology Kill Room";
+	dir = 8;
+	network = list("ss13","rd")
+	},
+/turf/open/floor/circuit/green/telecomms/mainframe,
+/area/science/xenobiology)
 "kKQ" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/poddoor{
@@ -93265,7 +93264,7 @@ sKZ
 bfP
 bfP
 bfP
-bje
+kKr
 bjx
 bjI
 sKZ

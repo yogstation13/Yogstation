@@ -8,6 +8,7 @@
 	result_atoms = list(/obj/item/melee/sickly_blade/rust)
 	cost = 1
 	route = PATH_RUST
+	required_shit_list = "A piece of trash and a knife."
 
 /datum/eldritch_knowledge/rust_fist
 	name = "Grasp of rust"
@@ -106,6 +107,7 @@
 	next_knowledge = list(/datum/eldritch_knowledge/rust_regen,/datum/eldritch_knowledge/flesh_ghoul)
 	required_atoms = list(/obj/structure/table,/obj/item/clothing/mask/gas)
 	result_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch)
+	required_shit_list = "A table and a gas mask."
 
 /datum/eldritch_knowledge/essence
 	name = "Priest's ritual"
@@ -115,6 +117,7 @@
 	next_knowledge = list(/datum/eldritch_knowledge/rust_regen,/datum/eldritch_knowledge/spell/ashen_shift)
 	required_atoms = list(/obj/structure/reagent_dispensers/watertank)
 	result_atoms = list(/obj/item/reagent_containers/glass/beaker/eldritch)
+	required_shit_list = "A tank of water."
 
 /datum/eldritch_knowledge/final/rust_final
 	name = "Rustbringer's Oath"
@@ -123,6 +126,7 @@
 	cost = 3
 	required_atoms = list(/mob/living/carbon/human)
 	route = PATH_RUST
+	required_shit_list = "Three dead bodies."
 
 /datum/eldritch_knowledge/final/rust_final/on_finished_recipe(mob/living/user, list/atoms, loc)
 	var/mob/living/carbon/human/H = user

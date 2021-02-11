@@ -44,9 +44,6 @@
 	},
 /turf/template_noop,
 /area/template_noop)
-"ap" = (
-/turf/open/indestructible/paper,
-/area/ruin/powered)
 "aw" = (
 /obj/structure/fluff/paper{
 	dir = 8
@@ -146,10 +143,6 @@
 	},
 /turf/template_noop,
 /area/template_noop)
-"bA" = (
-/obj/item/toner,
-/turf/open/indestructible/paper,
-/area/ruin/powered)
 "bI" = (
 /obj/structure/fluff/paper/corner{
 	dir = 1
@@ -1994,8 +1987,8 @@ uT
 uT
 uT
 uT
-ap
-bA
+uT
+Vj
 vf
 uT
 Zb
@@ -2039,8 +2032,8 @@ fh
 uT
 tP
 uT
-ap
-ap
+uT
+uT
 uT
 uT
 uT

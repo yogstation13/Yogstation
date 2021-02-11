@@ -19,7 +19,7 @@
 	scaling_cost = 10
 	requirements = list(10,10,10,10,10,10,10,10,10,10)
 	high_population_requirement = 10
-	antag_cap = list(1,1,1,1,2,2,2,2,3,3,4)
+	antag_cap = list(1,1,1,1,2,2,2,2,3,3)
 	var/autotraitor_cooldown = 450 // 15 minutes (ticks once per 2 sec)
 
 /datum/dynamic_ruleset/roundstart/traitor/pre_execute()
@@ -59,7 +59,7 @@
 	scaling_cost = 10
 	requirements = list(40,30,30,20,20,15,15,15,10,10)
 	high_population_requirement = 10
-	antag_cap = list(2,2,2,2,2,2,2,2,2,2,3)	// Can pick 3 per team, but rare enough it doesn't matter.
+	antag_cap = list(2,2,2,2,2,2,2,2,2,2)	// Can pick 3 per team, but rare enough it doesn't matter.
 	var/list/datum/team/brother_team/pre_brother_teams = list()
 	var/const/team_amount = 2 // Hard limit on brother teams if scaling is turned off
 	var/const/min_team_size = 2
@@ -108,7 +108,6 @@
 	scaling_cost = 15
 	requirements = list(75,70,60,50,40,20,20,10,10,10)
 	high_population_requirement = 10
-	var/team_mode_probability = 30
 	antag_cap = list(1,1,1,1,1,2,2,2,2,3)
 
 /datum/dynamic_ruleset/roundstart/changeling/pre_execute()
@@ -121,21 +120,8 @@
 	return TRUE
 
 /datum/dynamic_ruleset/roundstart/changeling/execute()
-	var/team_mode = FALSE
-	if(prob(team_mode_probability))
-		team_mode = TRUE
-		var/list/team_objectives = subtypesof(/datum/objective/changeling_team_objective)
-		var/list/possible_team_objectives = list()
-		for(var/T in team_objectives)
-			var/datum/objective/changeling_team_objective/CTO = T
-			if(assigned.len >= initial(CTO.min_lings))
-				possible_team_objectives += T
-
-		if(possible_team_objectives.len && prob(20*assigned.len))
-			GLOB.changeling_team_objective_type = pick(possible_team_objectives)
 	for(var/datum/mind/changeling in assigned)
 		var/datum/antagonist/changeling/new_antag = new antag_datum()
-		new_antag.team_mode = team_mode
 		changeling.add_antag_datum(new_antag)
 	return TRUE
 
@@ -963,7 +949,7 @@
 //                                          //
 //////////////////////////////////////////////
 
-/datum/dynamic_ruleset/roundstart/darkspawn
+/*/datum/dynamic_ruleset/roundstart/darkspawn
 	name = "Darkspawn"
 	antag_flag = ROLE_DARKSPAWN
 	antag_datum = /datum/antagonist/darkspawn/
@@ -974,7 +960,7 @@
 	weight = 1
 	cost = 30
 	scaling_cost = 20
-	antag_cap = list(3,3,3,3,3,3,3,3,4,5)
+	antag_cap = list(3,3,3,3,3,3,3,3)
 	requirements = list(80,75,70,65,50,30,30,30,25,20)
 
 /datum/dynamic_ruleset/roundstart/darkspawn/pre_execute()
@@ -985,4 +971,4 @@
 		M.mind.special_role = ROLE_DARKSPAWN
 		M.mind.restricted_roles = restricted_roles
 		log_game("[key_name(M)] has been selected as a Darkspawn")
-	return TRUE
+	return TRUE */

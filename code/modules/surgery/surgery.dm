@@ -1,3 +1,5 @@
+#define UNPREPARED_SURGERY_PENALTY 0.5
+
 /datum/surgery
 	var/name = "surgery"
 	var/desc = "surgery description"
@@ -64,26 +66,26 @@
 		if(type in SP.advanced_surgeries)
 			return TRUE
 
-
 	var/turf/T = get_turf(target)
+
+	//Get the relevant operating computer
+	var/obj/machinery/computer/operating/opcomputer
 	var/obj/structure/table/optable/table = locate(/obj/structure/table/optable, T)
-	var/obj/machinery/stasis/bed = locate(/obj/machinery/stasis, T) //yogs start: stasis beds doing surgery
-	if(table)
-		if(!table.computer)
-			return FALSE
-		if(table.computer.stat & (NOPOWER|BROKEN))
-			return FALSE
-		if(type in table.computer.advanced_surgeries)
-			return TRUE
-	if(bed)
-		if(!bed.computer)
-			return FALSE
-		if(bed.occupant != target)
-			return FALSE
-		if(bed.computer.stat & (NOPOWER|BROKEN))
-			return FALSE
-		if(type in bed.computer.advanced_surgeries)
-			return TRUE //yogs end
+	if(table?.computer)
+		opcomputer = table.computer
+	else
+		var/obj/machinery/stasis/the_stasis_bed = locate(/obj/machinery/stasis, T)
+		if(the_stasis_bed?.computer)
+			opcomputer = the_stasis_bed.computer
+
+	if(!opcomputer)
+		return
+	if(opcomputer.stat & (NOPOWER|BROKEN))
+		return .
+	if(replaced_by in opcomputer.advanced_surgeries)
+		return FALSE
+	if(type in opcomputer.advanced_surgeries)
+		return TRUE
 
 /datum/surgery/proc/next_step(mob/user, intent)
 	if(location != user.zone_selected)
@@ -122,16 +124,21 @@
 
 /datum/surgery/proc/get_propability_multiplier()
 	var/propability = 0.5
+	var/failure_multiplier = 0
 	var/turf/T = get_turf(target)
 
-	if(locate(/obj/structure/table/optable, T) || locate(/obj/machinery/stasis, T)) //yogs: stasis beds work for surgery
+	if(locate(/obj/structure/table/optable, T))
 		propability = 1
-	else if(locate(/obj/structure/table, T))
+	else if(locate(/obj/structure/table, T) || locate(/obj/machinery/stasis, T))
 		propability = 0.8
 	else if(locate(/obj/structure/bed, T))
 		propability = 0.7
 
-	return propability + success_multiplier
+	if(!HAS_TRAIT(target, TRAIT_SURGERY_PREPARED) && target.stat != DEAD && !IS_IN_STASIS(target)) //not under the effects of anaesthetics or a strong painkiller, harsh penalty to success chance
+		if(operated_bodypart.status == BODYPART_ORGANIC) //additionally robot limbs don't feel pain
+			failure_multiplier = UNPREPARED_SURGERY_PENALTY * target.surgery_fail_mod
+
+	return propability + success_multiplier - failure_multiplier
 
 /datum/surgery/advanced
 	name = "advanced surgery"

@@ -149,6 +149,7 @@
 /datum/action/item_action/toggle_multitool
 	name = "Toggle AI detector HUD"
 	check_flags = NONE
+	syndicate = TRUE
 
 /datum/action/item_action/toggle_multitool/Trigger()
 	if(!..())

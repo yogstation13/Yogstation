@@ -54,6 +54,7 @@
 	//...and display them.
 	add_to_all_human_data_huds()
 
+
 /mob/living/carbon/human/get_status_tab_items()
 	. = ..()
 	. += "Intent: [a_intent]"
@@ -79,6 +80,11 @@
 			. += ""
 			. += "Chemical Storage: [changeling.chem_charges]/[changeling.chem_storage]"
 			. += "Absorbed DNA: [changeling.absorbedcount]"
+		var/datum/antagonist/zombie/zombie = mind.has_antag_datum(/datum/antagonist/zombie)
+		if(zombie)
+			if((zombie.evolutionTime - world.time) > 0)
+				. += "Time to Tier 2 Evolution: [(zombie.evolutionTime - world.time) / 10] seconds"
+
 
 	//NINJACODE
 	if(istype(wear_suit, /obj/item/clothing/suit/space/space_ninja)) //Only display if actually a ninja.
