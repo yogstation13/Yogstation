@@ -12,10 +12,6 @@
 	icon_state = "emergencystorage"
 //end Minsky Specific Areas
 
-/area/medical/psych
-	name = "Psychiatrists office"
-	icon_state = "exam_room"
-
 /area/clerk
 	name = "Clerks office"
 	icon_state = "cafeteria"

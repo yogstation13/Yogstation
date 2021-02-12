@@ -24,7 +24,6 @@ GLOBAL_LIST_INIT(medical_positions, list(
 	// yogs start - Yog jobs
 	"Chemist",
 	"Paramedic",
-	"Psychiatrist",
 	"Mining Medic"))
 	// yogs end
 
@@ -125,7 +124,6 @@ GLOBAL_PROTECT(exp_specialmap)
 	// yogs start - Yog jobs
 	var/static/regex/tour_expand = new("tourist")
 	var/static/regex/mm_expand = new("mining medic")
-	var/static/regex/psych_expand = new("psychiatrist")
 	var/static/regex/clerk_expand = new("clerk")
 	var/static/regex/para_expand = new("paramedic")
 	// yogs end
@@ -148,7 +146,6 @@ GLOBAL_PROTECT(exp_specialmap)
 	// yogs start - Yog jobs
 	job = tour_expand.Replace(job, "tourist")
 	job = mm_expand.Replace(job, "mining medic")
-	job = psych_expand.Replace(job, "psychiatrist")
 	job = clerk_expand.Replace(job, "clerk")
 	job = para_expand.Replace(job, "paramedic")
 	// yogs end

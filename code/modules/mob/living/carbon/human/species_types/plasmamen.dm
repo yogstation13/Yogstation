@@ -135,9 +135,6 @@
 		if("Paramedic")
 			O = new /datum/outfit/job/plasmaman/paramedic
 
-		if("Psychiatrist")
-			O = new /datum/outfit/job/plasmaman/psych
-
 		if("Clerk")
 			O = new /datum/outfit/job/plasmaman/clerk
 

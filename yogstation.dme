@@ -3393,7 +3393,6 @@
 #include "yogstation\code\modules\jobs\job_types\medical_doctor.dm"
 #include "yogstation\code\modules\jobs\job_types\mining_medic.dm"
 #include "yogstation\code\modules\jobs\job_types\paramedic.dm"
-#include "yogstation\code\modules\jobs\job_types\psychiatrist.dm"
 #include "yogstation\code\modules\jobs\job_types\research_director.dm"
 #include "yogstation\code\modules\jobs\job_types\roboticist.dm"
 #include "yogstation\code\modules\jobs\job_types\scientist.dm"

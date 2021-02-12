@@ -1783,7 +1783,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/grenade/spawnergrenade/feral_cats
 	cost = 4
 	manufacturer = /datum/corporation/traitor/waffleco
-	restricted_roles = list("Psychiatrist")///why? Becuase its funny that a person in charge of your mental wellbeing has a cat granade..<---(he cant spell)
+	restricted_roles = list("Medical Doctor")///why? Becuase its funny that a person in charge of your mental wellbeing has a cat granade..<---(he cant spell)
 
 /datum/uplink_item/role_restricted/blastcannon
 	name = "Blast Cannon"

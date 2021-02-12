@@ -158,16 +158,6 @@
     job = "Roboticist"
     path = /obj/item/clothing/neck/skillcape/trimmed/robo
 
-/datum/skillcape/psych
-    name = "cape of the psychiatrist"
-    job = "Psychiatrist"
-    path = /obj/item/clothing/neck/skillcape/psych
-
-/datum/skillcape/trimmed/psych
-    name = "cape of the grand psychiatrist"
-    job = "Psychiatrist"
-    path = /obj/item/clothing/neck/skillcape/trimmed/psych
-
 /datum/skillcape/paramedic
     name = "cape of the paramedic"
     job = "Paramedic"

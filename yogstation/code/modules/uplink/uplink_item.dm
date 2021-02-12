@@ -32,7 +32,7 @@
 	category = "Conspicuous Weapons"
 
 /datum/uplink_item/device_tools/hypnotic_flash
-	restricted_roles = list("Psychiatrist")
+	restricted_roles = list("Medical Doctor")
 	category = "Role-Restricted"
 
 

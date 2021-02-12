@@ -214,16 +214,6 @@
 	icon_state = "robo-trimmed"
 	item_state = "robo-trimmed"
 
-/obj/item/clothing/neck/skillcape/psych
-	name = "cape of the psychiatrist"
-	icon_state = "psych-skillcape"
-	item_state = "psych-skillcape"
-
-/obj/item/clothing/neck/skillcape/trimmed/psych
-	name = "cape of the grand psychiatrist"
-	icon_state = "psych-trimmed"
-	item_state = "psych-trimmed"
-
 /obj/item/clothing/neck/skillcape/paramedic
 	name = "cape of the paramedic"
 	icon_state = "para-skillcape"

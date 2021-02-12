@@ -19,10 +19,6 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	name = "Paramedic"
 	icon_state = "Paramedic"
 
-/obj/effect/landmark/start/yogs/psychiatrist
-	name = "Psychiatrist"
-	icon_state = "Psychiatrist"
-
 /obj/effect/landmark/start/yogs/tourist
 	name = "Tourist"
 	icon_state = "Tourist"

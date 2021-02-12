@@ -427,21 +427,6 @@
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 
-
-/datum/outfit/job/plasmaman/psych
-	name = "Plasmaman Psych"
-
-	head = /obj/item/clothing/head/helmet/space/plasmaman
-	r_hand= /obj/item/tank/internals/plasmaman/belt/full
-	mask = /obj/item/clothing/mask/breath
-	shoes = /obj/item/clothing/shoes/sneakers/brown
-	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
-	l_hand = /obj/item/storage/briefcase
-	glasses = /obj/item/clothing/glasses/regular
-	belt = /obj/item/pda
-	ears = /obj/item/radio/headset/headset_med
-	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
-
 /datum/outfit/job/plasmaman/clerk
 	name = "Plasmaman Clerk"
 

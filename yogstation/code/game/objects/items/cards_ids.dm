@@ -24,7 +24,6 @@
 	"Virologist" = list("medical","green"),
 	"Chemist" = list("medical","orange"),
 	"Paramedic" = list("medical","white"),
-	"Psychiatrist" = list("medical","brown"),
 	"Scientist" = list("science","purple"),
 	"Roboticist" = list("science","black"),
 	"Quartermaster" = list("cargo","silver"),
