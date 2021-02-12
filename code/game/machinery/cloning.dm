@@ -82,29 +82,33 @@ GLOBAL_VAR_INIT(clones, 0)
 
 /obj/machinery/clonepod/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>The <i>linking</i> device can be <i>scanned<i> with a multitool.</span>"
+	. += "<span class='notice'>The <i>linking</i> device can be <i>scanned</i> with a multitool.</span>"
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>You can see a button labeled \"check organs\" at the pod's base and slots to place a heart, a liver, and a set of lungs.</span>"
 		. += "<span class='notice'>The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.<span>"
 		if(efficiency > 5)
 			. += "<span class='notice'>Pod has been upgraded to support autoprocessing and apply beneficial mutations.<span>"
+		. += "<span class='notice'>There are three receptacles for organs at the base of the pod:\n<b>\
+				Heart: [heart ? (heart.organ_flags & ORGAN_FAILING) ? "<font color='red'>DECAYED</font>" : "<span class='nicegreen'>ACTIVE</span>" : "<font color='black'>MISSING</font>"]\n\
+				Lungs: [lungs ? (lungs.organ_flags & ORGAN_FAILING) ? "<font color='red'>DECAYED</font>" : "<span class='nicegreen'>ACTIVE</span>" : "<font color='black'>MISSING</font>"]\n\
+				Liver: [liver ? (liver.organ_flags & ORGAN_FAILING) ? "<font color='red'>DECAYED</font>" : "<span class='nicegreen'>ACTIVE</span>" : "<font color='black'>MISSING</font>"]</b></span>"
+		. += "<span class='notice'>You can see a button labeled <b>\"Organ Release\"</b> near the base of the clone pod.</span>"
 
 /obj/machinery/clonepod/attack_hand(mob/user)
 	var/dumped_organ = FALSE
-	if(heart && (heart.organ_flags & ORGAN_FAILING))
+	if(heart)
 		heart.forceMove(get_turf(src))
 		heart = null
 		dumped_organ = TRUE
-	if(lungs && (lungs.organ_flags & ORGAN_FAILING))
+	if(lungs)
 		lungs.forceMove(get_turf(src))
 		lungs = null
 		dumped_organ = TRUE
-	if(liver && (liver.organ_flags & ORGAN_FAILING))
+	if(liver)
 		liver.forceMove(get_turf(src))
 		liver = null
 		dumped_organ = TRUE
 	if(dumped_organ)
-		user.visible_message("<span class='notice'>[user] presses the organ scan button on [src], causing any decayed organs to fall out!</span>", "<span class='notice'>You press the organ scan button on [src], causing it to detach any decayed organs!</span>")
+		user.visible_message("<span class='notice'>[user] presses the organ release button on [src], causing its stored organs to fall out!</span>", "<span class='notice'>You press the organ release button on [src], causing it to drop its stored organs!</span>")
 
 //The return of data disks?? Just for transferring between genetics machine/cloning machine.
 //TO-DO: Make the genetics machine accept them.
