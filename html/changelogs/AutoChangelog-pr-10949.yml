@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "surgeries will no longer have a high fail chance if the target is not under anesthetics or painkillers, instead they'll have a high chance to cause a small to moderate amount of damage. This chance can be reduced through high alcohol intake and certain chemicals and outright removed with the application of morphine or an anesthetic gas"
+  - tweak: "stasis bed success modifier returned to 1 from 0.8"
