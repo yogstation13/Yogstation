@@ -1,12 +1,12 @@
 /obj/effect/proc_holder/zombie/tank
 	name = "Tank"
-	desc = "Gives you a moderate armor boost for a few seconds. Heals 75% of your brute and fire damage."
+	desc = "Gives you a moderate armor boost for a few seconds. Heals 60% of your brute and fire damage."
 	action_icon = 'icons/mob/actions/actions_changeling.dmi'
 	action_icon_state = "fake_death"
-	cooldown_time = 7.5 MINUTES
+	cooldown_time = 2.5 MINUTES
 	var/duration = 30 SECONDS
-	var/armor_boost = 15
-	var/heal = 0.75
+	var/armor_boost = 12.5
+	var/heal = 0.6
 
 
 /obj/effect/proc_holder/zombie/tank/proc/run_ability(mob/living/carbon/human/user)

@@ -99,7 +99,7 @@
 	causes_damage = FALSE
 
 /obj/item/organ/zombie_infection/gamemode
-	damage_caused = 2.5
+	damage_caused = 3
 
 /obj/item/organ/zombie_infection/gamemode/zombify()
 	timer_id = null
