@@ -29978,6 +29978,13 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/science/misc_lab)
+"bPL" = (
+/obj/machinery/holopad,
+/obj/effect/turf_decal/box/white{
+	color = "#52B4E9"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/aft)
 "bPN" = (
 /turf/closed/wall,
 /area/science/misc_lab)
@@ -47515,18 +47522,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"mCC" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/holopad,
-/obj/effect/turf_decal/box/white{
-	color = "#52B4E9"
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/aft)
 "mDn" = (
 /obj/machinery/telecomms/broadcaster/preset_left{
 	name = "subspace broadcaster A"
@@ -49572,6 +49567,12 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plating,
 /area/bridge)
+"oac" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/aft)
 "oad" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -104361,10 +104362,10 @@ jZe
 adK
 nwZ
 uEa
+bPL
 uEa
 uEa
-uEa
-uEa
+tPK
 uEa
 jBH
 bNd
@@ -104621,7 +104622,7 @@ uEa
 uEa
 uEa
 uEa
-uEa
+oac
 uEa
 jBH
 bNd
@@ -104878,7 +104879,7 @@ uEa
 uEa
 uEa
 uEa
-tPK
+oac
 uEa
 wkT
 bRN
@@ -105132,7 +105133,7 @@ qnv
 nuK
 uGQ
 yfA
-mCC
+gru
 gru
 uvR
 tVG
