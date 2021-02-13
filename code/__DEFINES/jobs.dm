@@ -5,7 +5,7 @@
 #define HOS				(1<<1)
 #define WARDEN			(1<<2)
 #define DETECTIVE		(1<<3)
-#define OFFICER			(1<<4
+#define OFFICER			(1<<4)
 #define CHIEF			(1<<5)
 #define ENGINEER		(1<<6)
 #define ATMOSTECH		(1<<7)
