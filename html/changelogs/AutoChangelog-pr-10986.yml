@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "tend wounds will now only multiply its damage per bonus healing point by 3 down from 5 when done on corpses (tldr tend wounds on corpse penalty is lower)"
