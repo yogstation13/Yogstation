@@ -5506,12 +5506,12 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"marked@npm:^1.1.0":
-  version: 1.2.5
-  resolution: "marked@npm:1.2.5"
+"marked@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "marked@npm:2.0.0"
   bin:
     marked: bin/marked
-  checksum: f4d370e267ead928530d78ef5e52d79d7f938e419fc71103a8c22626daddadbe8f9cd56e8f745e94b5d1c47b95bf5ccb4d4917497d9bc1cd0c3f2cb3ee2f1398
+  checksum: 5b3b13b9b68beb126284d04fedeacee37c847618c091cf575eaa32746cf0af2d65b1ed25b2cc9269b0cdffa2e8dc5aa2daacff81ead68c59a7a6a1656f1d28ed
   languageName: node
   linkType: hard
 
@@ -8391,7 +8391,7 @@ fsevents@~2.1.2:
     dompurify: ^2.0.17
     inferno: ^7.4.2
     inferno-vnode-flags: ^7.4.2
-    marked: ^1.1.0
+    marked: ^2.0.0
     tgui-dev-server: "workspace:*"
     tgui-polyfill: "workspace:*"
   languageName: unknown
