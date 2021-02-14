@@ -215,6 +215,29 @@
 	force = 15
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv)
 
+/obj/item/upgrade/plasmacutter
+	name = "plasma cutter defuser kit"
+	desc = "An upgrade for plasma shotguns."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "modkit"
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/gun/energy/plasmacutter/scatter
+	name = "plasma cutter shotgun"
+	icon_state = "miningshotgun"
+	item_state = "miningshotgun"
+	desc = "An industrial-grade heavy-duty mining shotgun"
+	force = 10
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/scatter)
+
+/obj/item/gun/energy/plasmacutter/scatter/attackby(obj/item/I, mob/user)
+	. = ..()
+	if(istype(I, /obj/item/upgrade/plasmacutter))
+		var/kaboom = new/obj/item/ammo_casing/energy/plasma/scatter/adv
+		ammo_type = list(kaboom)
+		to_chat(user, "<span class='notice'>You install [I] into [src]</span>")
+		qdel(I)
+
 /obj/item/gun/energy/plasmacutter/adv/cyborg
 	name = "cyborg advanced plasma cutter"
 	icon_state = "adv_plasmacutter"
