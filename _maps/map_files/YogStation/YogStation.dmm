@@ -46751,6 +46751,23 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"lTG" = (
+/obj/machinery/camera/motion{
+	c_tag = "AI Upload Chamber - Port";
+	dir = 4;
+	network = list("aiupload")
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/assembly/flash/handheld,
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai_upload)
 "lUy" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -49230,19 +49247,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"nGc" = (
-/obj/machinery/camera/motion{
-	c_tag = "AI Upload Chamber - Port";
-	dir = 4;
-	network = list("aiupload")
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/item/assembly/flash/handheld,
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/ai_upload)
 "nGg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
@@ -58716,25 +58720,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"uuP" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced,
-/obj/machinery/door/window{
-	base_state = "right";
-	dir = 4;
-	icon_state = "right";
-	name = "Core Modules";
-	req_access_txt = "20"
-	},
-/obj/item/aiModule/core/full/asimov,
-/obj/effect/spawner/lootdrop/aimodule_neutral,
-/obj/effect/spawner/lootdrop/aimodule_harmless,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/item/aiModule/core/freeformcore,
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/ai_upload)
 "uuV" = (
 /obj/machinery/smartfridge/organ,
 /turf/closed/wall,
@@ -61722,6 +61707,22 @@
 /obj/machinery/atmospherics/miner/n2o,
 /turf/open/floor/engine/n2o,
 /area/engine/atmos_distro)
+"wyw" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced,
+/obj/machinery/door/window{
+	base_state = "right";
+	dir = 4;
+	icon_state = "right";
+	name = "Core Modules";
+	req_access_txt = "20"
+	},
+/obj/item/aiModule/core/full/asimov,
+/obj/effect/spawner/lootdrop/aimodule_neutral,
+/obj/effect/spawner/lootdrop/aimodule_harmless,
+/obj/item/aiModule/core/freeformcore,
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai_upload)
 "wyC" = (
 /obj/machinery/door/airlock/engineering/glass{
 	name = "AI Satellite Monitoring";
@@ -91698,8 +91699,8 @@ kbT
 aaa
 bfv
 bfv
-uuP
-nGc
+wyw
+lTG
 vJO
 bfv
 bfv
