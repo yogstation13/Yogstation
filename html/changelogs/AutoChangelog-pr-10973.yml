@@ -1,5 +1,0 @@
-author: "ChesterTheCheesy"
-delete-after: true 
-changes: 
-  - bugfix: "fixes PKA chassis mods not having an overlay when reloading"
-  - imageadd: "adds missing overlays"
