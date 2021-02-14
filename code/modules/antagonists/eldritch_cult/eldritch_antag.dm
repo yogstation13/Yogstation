@@ -9,6 +9,7 @@
 	var/list/researched_knowledge = list()
 	var/total_sacrifices = 0
 	var/ascended = FALSE
+	var/charge = 1
 
 /datum/antagonist/heretic/admin_add(datum/mind/new_owner,mob/admin)
 	give_equipment = FALSE
@@ -94,7 +95,7 @@
 	var/list/assasination = list()
 	var/list/protection = list()
 	for(var/i in 1 to 2)
-		var/pck = pick("assasinate","stalk","protect")
+		var/pck = pick("assasinate","protect")
 		switch(pck)
 			if("assasinate")
 				var/datum/objective/assassinate/A = new
@@ -103,11 +104,6 @@
 				A.find_target(owners,protection)
 				assasination += A.target
 				objectives += A
-			if("stalk")
-				var/datum/objective/stalk/S = new
-				S.owner = owner
-				S.find_target()
-				objectives += S
 			if("protect")
 				var/datum/objective/protect/P = new
 				P.owner = owner
@@ -147,6 +143,20 @@
 /datum/antagonist/heretic/get_admin_commands()
 	. = ..()
 	.["Equip"] = CALLBACK(src,.proc/equip_cultist)
+	.["Edit Research Points (Current: [charge])"] = CALLBACK(src, .proc/admin_edit_research)
+	.["Give Knowledge"] = CALLBACK(src, .proc/admin_give_knowledge)
+
+/datum/antagonist/heretic/proc/admin_edit_research(mob/admin)
+	var/research2add = input(admin, "Enter an amount to change research by (Negative numbers remove research)", "Research Grant") as null|num
+	if(!research2add)
+		return
+	charge += research2add
+
+/datum/antagonist/heretic/proc/admin_give_knowledge(mob/admin)
+	var/knowledge2add = input(admin, "Select a knowledge to grant", "Scholarship") as null | anything in get_researchable_knowledge()
+	if(!knowledge2add)
+		return
+	gain_knowledge(knowledge2add)
 
 /datum/antagonist/heretic/roundend_report()
 	var/list/parts = list()
@@ -216,33 +226,6 @@
 ////////////////
 // Objectives //
 ////////////////
-
-/datum/objective/stalk
-	name = "spendtime"
-	var/timer = 5 MINUTES
-
-/datum/objective/stalk/process()
-	if(owner?.current.stat != DEAD && target?.current.stat != DEAD && (target.current in view(5,owner.current)))
-		timer -= 1 SECONDS
-	///we don't want to process after the counter reaches 0, otherwise it is wasted processing
-	if(timer <= 0)
-		STOP_PROCESSING(SSprocessing,src)
-
-/datum/objective/stalk/Destroy(force, ...)
-	STOP_PROCESSING(SSprocessing,src)
-	return ..()
-
-/datum/objective/stalk/update_explanation_text()
-	//we want to start processing after we set the timer
-	timer += rand(-3 MINUTES, 3 MINUTES)
-	START_PROCESSING(SSprocessing,src)
-	if(target?.current)
-		explanation_text = "Stalk [target.name] for at least [DisplayTimeText(timer)] while they're alive."
-	else
-		explanation_text = "Free Objective"
-
-/datum/objective/stalk/check_completion()
-	return timer <= 0 || explanation_text == "Free Objective"
 
 /datum/objective/sacrifice_ecult
 	name = "sacrifice"
