@@ -44,12 +44,6 @@ endmap
 map runtimestation
 endmap
 
-map monsterstation
-endmap
-
-map redoubt
-endmap
-
 map multiz_debug
 endmap
 

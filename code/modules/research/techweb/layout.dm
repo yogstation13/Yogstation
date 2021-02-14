@@ -151,10 +151,6 @@
         ui_x = 96
         ui_y = -384
 
-/datum/techweb_node/mining_mods
-        ui_x = 96
-        ui_y = -416
-
 /datum/techweb_node/weaponry
         ui_x = -576
         ui_y = -416

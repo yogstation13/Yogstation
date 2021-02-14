@@ -301,10 +301,21 @@
 
 /obj/item/scalpel/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/machines/click.ogg',50,1)
-	var/obj/item/circular_saw/advanced/saw = new /obj/item/circular_saw/advanced(drop_location())
 	to_chat(user, "<span class='notice'>You incease the power, now it can cut bones.</span>")
-	qdel(src)
-	user.put_in_active_hand(saw)
+	if(issilicon(user))
+		var/mob/living/silicon/robot/borg = user
+		var/modulenum = borg.get_selected_module()
+		borg.uneq_active()
+		borg.module.remove_module(src, TRUE)
+		var/obj/item/circular_saw/advanced/PC = locate() in borg.module.modules
+		PC = new(borg.module)
+		borg.module.basic_modules += PC
+		borg.module.add_module(PC, FALSE, TRUE)
+		borg.equip_module_to_slot(PC, modulenum)
+	else
+		var/obj/item/circular_saw/advanced/saw = new /obj/item/circular_saw/advanced(drop_location())
+		qdel(src)
+		user.put_in_active_hand(saw)
 
 /obj/item/circular_saw/advanced
 	name = "laser scalpel"
@@ -323,10 +334,21 @@
 
 /obj/item/circular_saw/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/machines/click.ogg',50,1)
-	var/obj/item/scalpel/advanced/scalpel = new /obj/item/scalpel/advanced(drop_location())
 	to_chat(user, "<span class='notice'>You lower the power.</span>")
-	qdel(src)
-	user.put_in_active_hand(scalpel)
+	if(issilicon(user))
+		var/mob/living/silicon/robot/borg = user
+		var/modulenum = borg.get_selected_module()
+		borg.uneq_active()
+		borg.module.remove_module(src, TRUE)
+		var/obj/item/scalpel/advanced/PC = locate() in borg.module.modules
+		PC = new(borg.module)
+		borg.module.basic_modules += PC
+		borg.module.add_module(PC, FALSE, TRUE)
+		borg.equip_module_to_slot(PC, modulenum)
+	else
+		var/obj/item/scalpel/advanced/scalpel = new /obj/item/scalpel/advanced(drop_location())
+		qdel(src)
+		user.put_in_active_hand(scalpel)
 
 /obj/item/retractor/advanced
 	name = "mechanical pinches"
@@ -337,10 +359,21 @@
 
 /obj/item/retractor/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
-	var/obj/item/hemostat/advanced/hemostat = new /obj/item/hemostat/advanced(drop_location())
 	to_chat(user, "<span class='notice'>You set the [src] to hemostat mode.</span>")
-	qdel(src)
-	user.put_in_active_hand(hemostat)
+	if(issilicon(user))
+		var/mob/living/silicon/robot/borg = user
+		var/modulenum = borg.get_selected_module()
+		borg.uneq_active()
+		borg.module.remove_module(src, TRUE)
+		var/obj/item/hemostat/advanced/PC = locate() in borg.module.modules
+		PC = new(borg.module)
+		borg.module.basic_modules += PC
+		borg.module.add_module(PC, FALSE, TRUE)
+		borg.equip_module_to_slot(PC, modulenum)
+	else
+		var/obj/item/hemostat/advanced/hemostat = new /obj/item/hemostat/advanced(drop_location())
+		qdel(src)
+		user.put_in_active_hand(hemostat)
 
 /obj/item/hemostat/advanced
 	name = "mechanical pinches"
@@ -351,10 +384,21 @@
 
 /obj/item/hemostat/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
-	var/obj/item/retractor/advanced/retractor = new /obj/item/retractor/advanced(drop_location())
 	to_chat(user, "<span class='notice'>You set the [src] to retractor mode.</span>")
-	qdel(src)
-	user.put_in_active_hand(retractor)
+	if(issilicon(user))
+		var/mob/living/silicon/robot/borg = user
+		var/modulenum = borg.get_selected_module()
+		borg.uneq_active()
+		borg.module.remove_module(src, TRUE)
+		var/obj/item/retractor/advanced/PC = locate() in borg.module.modules
+		PC = new(borg.module)
+		borg.module.basic_modules += PC
+		borg.module.add_module(PC, FALSE, TRUE)
+		borg.equip_module_to_slot(PC, modulenum)
+	else
+		var/obj/item/retractor/advanced/retractor = new /obj/item/retractor/advanced(drop_location())
+		qdel(src)
+		user.put_in_active_hand(retractor)
 
 /obj/item/surgicaldrill/advanced
 	name = "searing tool"
@@ -371,10 +415,21 @@
 
 /obj/item/surgicaldrill/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/weapons/tap.ogg',50,1)
-	var/obj/item/cautery/advanced/cautery = new /obj/item/cautery/advanced(drop_location())
 	to_chat(user, "<span class='notice'>You dilate the lenses, setting it to mending mode.</span>")
-	qdel(src)
-	user.put_in_active_hand(cautery)
+	if(issilicon(user))
+		var/mob/living/silicon/robot/borg = user
+		var/modulenum = borg.get_selected_module()
+		borg.uneq_active()
+		borg.module.remove_module(src, TRUE)
+		var/obj/item/cautery/advanced/PC = locate() in borg.module.modules
+		PC = new(borg.module)
+		borg.module.basic_modules += PC
+		borg.module.add_module(PC, FALSE, TRUE)
+		borg.equip_module_to_slot(PC, modulenum)
+	else
+		var/obj/item/cautery/advanced/cautery = new /obj/item/cautery/advanced(drop_location())
+		qdel(src)
+		user.put_in_active_hand(cautery)
 
 /obj/item/cautery/advanced
 	name = "searing tool"
@@ -392,7 +447,18 @@
 
 /obj/item/cautery/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/welderdeactivate.ogg',50,1)
-	var/obj/item/surgicaldrill/advanced/surgicaldrill = new /obj/item/surgicaldrill/advanced(drop_location())
 	to_chat(user, "<span class='notice'>You focus the lensess, it is now set to drilling mode.</span>")
-	qdel(src)
-	user.put_in_active_hand(surgicaldrill)
+	if(issilicon(user))
+		var/mob/living/silicon/robot/borg = user
+		var/modulenum = borg.get_selected_module()
+		borg.uneq_active()
+		borg.module.remove_module(src, TRUE)
+		var/obj/item/surgicaldrill/advanced/PC = locate() in borg.module.modules
+		PC = new(borg.module)
+		borg.module.basic_modules += PC
+		borg.module.add_module(PC, FALSE, TRUE)
+		borg.equip_module_to_slot(PC, modulenum)
+	else
+		var/obj/item/surgicaldrill/advanced/surgicaldrill = new /obj/item/surgicaldrill/advanced(drop_location())
+		qdel(src)
+		user.put_in_active_hand(surgicaldrill)

@@ -96,3 +96,28 @@
 #define JOB_DISPLAY_ORDER_CHAPLAIN 39
 
 
+/proc/find_job(target)
+	//Get the job from the mind
+	if(istype(target, /datum/mind))
+		var/datum/mind/M = target
+		return M.assigned_role
+
+	//Alive mob, get it from the mind if possible
+	if(isliving(target))
+		var/mob/living/L = target
+		return L.mind?.assigned_role
+
+	//I swear to god, if you passing me a string, im going to assume you passed me the job directly and you want it compared
+	if(istext(target))
+		return target
+
+	//No match
+	return null
+
+#define IS_JOB(target, job) (find_job(target) == job)
+#define IS_COMMAND(target) (find_job(target) in GLOB.command_positions)
+#define IS_ENGINEERING(target) (find_job(target) in GLOB.engineering_positions)
+#define IS_MEDICAL(target) (find_job(target) in GLOB.medical_positions)
+#define IS_SCIENCE(target) (find_job(target) in GLOB.science_positions)
+#define IS_CARGO(target) (find_job(target) in GLOB.supply_positions)
+#define IS_SECURITY(target) (find_job(target) in GLOB.security_positions)

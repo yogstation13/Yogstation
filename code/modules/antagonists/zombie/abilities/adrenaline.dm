@@ -3,8 +3,8 @@
 	desc = "Makes you able to sprint for a second or two!"
 	action_icon = 'icons/mob/actions/actions_changeling.dmi'
 	action_icon_state = "adrenaline"
-	cooldown_time = 7.5 MINUTES
-	var/reagent_amount = 2
+	cooldown_time = 3 MINUTES
+	var/reagent_amount = 3
 
 
 /obj/effect/proc_holder/zombie/adrenaline/proc/add_reagent(mob/living/carbon/user)

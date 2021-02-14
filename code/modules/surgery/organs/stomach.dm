@@ -125,3 +125,48 @@
 
 /obj/item/organ/stomach/ethereal/proc/adjust_charge(amount)
 	crystal_charge = clamp(crystal_charge + amount, ETHEREAL_CHARGE_NONE, ETHEREAL_CHARGE_FULL)
+	
+/obj/item/organ/stomach/cursed
+	name = "cursed stomach"
+	icon_state = "stomach-cursed"
+	desc = "A stomach that used be a source of power of something incredibly vile. It seems to be beating."
+	decay_factor = 0
+	actions_types = list(/datum/action/item_action/organ_action/use)
+
+/obj/item/organ/stomach/cursed/ui_action_click() //Stomach that allows you to vomit at will, oh the humanity!
+	if(HAS_TRAIT(owner, TRAIT_NOHUNGER))
+		to_chat(owner, "<span class='notice'>You don't hunger, you can't vomit!</span>")
+		return
+	if(owner.IsParalyzed())
+		to_chat(owner, "<span class='notice'>You can't bring yourself to vomit while stunned!</span>")
+		return
+	if(istype(owner.loc, /obj/effect/dummy/crawling))
+		to_chat(owner, "<span class='notice'>You can't vomit while in vomitform!</span>") //no vomitghosts allowed
+		return
+	to_chat(owner, "<span class='notice'>You force yourself to vomit.</span>")
+	owner.vomit(10, FALSE, TRUE, rand(0,4))  //BLEEEUUUGHHHH!!
+
+/obj/item/organ/stomach/cursed/attack(mob/M, mob/living/carbon/user, obj/target)
+	if(M != user)
+		return ..()
+	user.visible_message("<span class='warning'>[user] raises [src] to [user.p_their()] mouth with disgust and tears into it with [user.p_their()] teeth!?</span>", \
+						 "<span class='danger'>An unnatural hunger consumes you. You raise [src] your mouth and unwillingly devour it!</span>")
+	playsound(user, 'sound/magic/demon_consume.ogg', 35, 1)
+	if(user.GetComponent(/datum/component/crawl/vomit))
+		to_chat(user, "<span class='warning'>...and you don't feel any different.</span>")
+		qdel(src)
+		return
+	user.visible_message("<span class='warning'>[user] looks extremely sick!</span>", \
+						 "<span class='userdanger'>You feel extremely weird... you have absorbed the demonic vomit-travelling powers?</span>")
+	user.temporarilyRemoveItemFromInventory(src, TRUE)
+	src.Insert(user) //Are you gonna seriously gonna eat THAT?
+
+/obj/item/organ/stomach/cursed/Insert(mob/living/carbon/M, special = 0)
+	..()
+	M.AddComponent(/datum/component/crawl/vomit)
+
+/obj/item/organ/stomach/cursed/Remove(mob/living/carbon/M, special = 0)
+	..()
+	var/datum/component/crawl/vomit/B = M.GetComponent(/datum/component/crawl/vomit)
+	if(B)
+		B.RemoveComponent()
