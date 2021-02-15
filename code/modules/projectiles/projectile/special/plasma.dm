@@ -26,7 +26,7 @@
 	if(istype(target, /turf/closed/mineral/gibtonite))
 		var/turf/closed/mineral/gibtonite/gib = target
 		gib.defuse()
-	..()
+	. = ..()
 
 /obj/item/projectile/plasma/adv
 	damage = 7

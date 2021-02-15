@@ -215,13 +215,6 @@
 	force = 15
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv)
 
-/obj/item/upgrade/plasmacutter
-	name = "plasma cutter defuser kit"
-	desc = "An upgrade for plasma shotguns."
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "modkit"
-	w_class = WEIGHT_CLASS_SMALL
-
 /obj/item/gun/energy/plasmacutter/scatter
 	name = "plasma cutter shotgun"
 	icon_state = "miningshotgun"
@@ -232,9 +225,7 @@
 
 /obj/item/gun/energy/plasmacutter/scatter/attackby(obj/item/I, mob/user)
 	. = ..()
-	if(istype(I, /obj/item/upgrade/plasmacutter))
-		var/kaboom = new/obj/item/ammo_casing/energy/plasma/scatter/adv
-		ammo_type = list(kaboom)
+	if(try_upgrade(I))
 		to_chat(user, "<span class='notice'>You install [I] into [src]</span>")
 		qdel(I)
 
@@ -244,6 +235,25 @@
 	force = 15
 	selfcharge = 1
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/cyborg)
+
+// Upgrades for plasma cutters
+/obj/item/upgrade/plasmacutter
+	name = "generic upgrade kit"
+	desc = "An upgrade for plasma shotguns."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "modkit"
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/upgrade/plasmacutter/defuser
+	name = "plasma cutter defusal kit"
+	desc = "An upgrade for plasma shotguns that allows it to automatically defuse gibtonite."
+
+/obj/item/gun/energy/plasmacutter/proc/try_upgrade(obj/item/I)
+	if(istype(I, /obj/item/upgrade/plasmacutter/defuser))
+		var/kaboom = new/obj/item/ammo_casing/energy/plasma/scatter/adv
+		ammo_type = list(kaboom)
+		return TRUE
+	return FALSE
 
 /obj/item/gun/energy/wormhole_projector
 	name = "bluespace wormhole projector"

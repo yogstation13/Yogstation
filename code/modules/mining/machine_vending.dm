@@ -25,7 +25,7 @@
 		new /datum/data/mining_equipment("Silver Pickaxe",				/obj/item/pickaxe/silver,											1000, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/pickaxe/diamond,											2000, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Plasma Cutter Shotgun",		/obj/item/gun/energy/plasmacutter/scatter,							6000, VENDING_WEAPON),
-		new /datum/data/mining_equipment("Plasma Shotgun Upgrade",		/obj/item/upgrade/plasmacutter,										1000, VENDING_WEAPON),
+		new /datum/data/mining_equipment("Plasma Shotgun Upgrade",		/obj/item/upgrade/plasmacutter/defuser,								1000, VENDING_WEAPON),
 		new /datum/data/mining_equipment("KA Minebot Passthrough",		/obj/item/borg/upgrade/modkit/minebot_passthrough,					100, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("KA White Tracer Rounds",		/obj/item/borg/upgrade/modkit/tracer,								100, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("KA Adjustable Tracer Rounds",	/obj/item/borg/upgrade/modkit/tracer/adjustable,					150, VENDING_UPGRADE),
@@ -69,7 +69,7 @@
 		new /datum/data/mining_equipment("Soap",						/obj/item/soap/nanotrasen,											200, VENDING_MISC),
 		new /datum/data/mining_equipment("Laser Pointer",				/obj/item/laser_pointer,											300, VENDING_MISC),
 		new /datum/data/mining_equipment("Space Cash",					/obj/item/stack/spacecash/c1000,									2000, VENDING_MISC),
-		new /datum/data/mining_equipment("Giga Drill",					/obj/vehicle/ridden/gigadrill,									50000, VENDING_MISC)
+		new /datum/data/mining_equipment("Giga Drill",					/obj/vehicle/ridden/gigadrill,										50000, VENDING_MISC)
 	)
 	
 
@@ -277,7 +277,7 @@
 		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/pickaxe/diamond,										1500, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Plasma Cutter" ,				/obj/item/gun/energy/plasmacutter,								2500, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Plasma Cutter Shotgun",		/obj/item/gun/energy/plasmacutter/scatter,						6000, VENDING_WEAPON),
-		new /datum/data/mining_equipment("Plasma Shotgun Upgrade",		/obj/item/upgrade/plasmacutter,									1000, VENDING_WEAPON),
+		new /datum/data/mining_equipment("Plasma Shotgun Upgrade",		/obj/item/upgrade/plasmacutter/defuser,							1000, VENDING_WEAPON),
 		new /datum/data/mining_equipment("KA Minebot Passthrough",		/obj/item/borg/upgrade/modkit/minebot_passthrough,				100, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("KA White Tracer Rounds",		/obj/item/borg/upgrade/modkit/tracer,							100, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("KA Adjustable Tracer Rounds",	/obj/item/borg/upgrade/modkit/tracer/adjustable,				150, VENDING_UPGRADE),
