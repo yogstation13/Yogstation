@@ -118,7 +118,7 @@
 	gain_text = "I saw the mirror-sheen in their dead eyes. It could be put to use."
 	desc = "You can now summon a Raw Prophet by transmuting eyes, a left arm and a right arm. Raw prophets have a massive sight range, X-ray, and can sustain a telepathic network, but are very fragile and weak."
 	cost = 1
-	next_knowledge = list(/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/spell/blood_siphon,/datum/eldritch_knowledge/paralysis)
+	next_knowledge = list(/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/blood_siphon,/datum/eldritch_knowledge/paralysis)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/raw_prophet)
 	route = PATH_FLESH
 
@@ -136,7 +136,7 @@
 	gain_text = "I combined the principle of Hunger with a desire for Destruction. The Eyeful Lords took notice."
 	desc = "You can now summon an Ash Man by transmutating a pile of ash, a head and a book. Ash Men have powerful offensive abilities and access to the Ash Passage spell."
 	cost = 1
-	next_knowledge = list(/datum/eldritch_knowledge/stalker,/datum/eldritch_knowledge/spell/flame_birth)
+	next_knowledge = list(/datum/eldritch_knowledge/stalker,/datum/eldritch_knowledge/flame_birth)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/ashy)
 
 /datum/eldritch_knowledge/rusty
@@ -144,16 +144,16 @@
 	gain_text = "I combined the principle of Hunger with a desire of Corruption. The Rusted Hills call my name."
 	desc = "You can now summon a Rust Walker transmutating vomit pool and a book. Rust Walkers are capable of spreading rust and have a decent but short ranged projectile attack."
 	cost = 1
-	next_knowledge = list(/datum/eldritch_knowledge/stalker,/datum/eldritch_knowledge/spell/entropic_plume)
+	next_knowledge = list(/datum/eldritch_knowledge/stalker,/datum/eldritch_knowledge/entropic_plume)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/rusty)
 
-/datum/eldritch_knowledge/spell/blood_siphon
+/datum/eldritch_knowledge/blood_siphon
 	name = "Blood Siphon"
 	gain_text = "Our blood is one in the same, after all. The Owl told me."
 	desc = "You gain a spell that drains enemies health and restores yours."
 	cost = 1
 	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/touch/blood_siphon)
-	next_knowledge = list(/datum/eldritch_knowledge/raw_prophet,/datum/eldritch_knowledge/spell/area_conversion)
+	next_knowledge = list(/datum/eldritch_knowledge/raw_prophet,/datum/eldritch_knowledge/area_conversion)
 
 /datum/eldritch_knowledge/flesh_final
 	name = "Priest's Final Hymn"

@@ -8,7 +8,7 @@
 	cost = 1
 	route = PATH_ASH
 
-/datum/eldritch_knowledge/spell/ashen_shift
+/datum/eldritch_knowledge/ashen_shift
 	name = "Ashen Shift"
 	gain_text = "Ash is so simple, yet so numerous. Is it possible to master it all?"
 	desc = "Short range jaunt that can help you escape from bad situations."
@@ -22,7 +22,7 @@
 	gain_text = "Gates have opened, minds have flooded, only I remain."
 	desc = "Empowers your mansus grasp to throw away enemies."
 	cost = 1
-	next_knowledge = list(/datum/eldritch_knowledge/spell/ashen_shift)
+	next_knowledge = list(/datum/eldritch_knowledge/ashen_shift)
 	route = PATH_ASH
 
 /datum/eldritch_knowledge/ashen_grasp/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
@@ -52,7 +52,7 @@
 	desc = "Allows you to craft an eldritch amulet by transmutating eyes with a glass shard. When worn, the amulet will give you thermal vision."
 	unlocked_transmutations = list(/datum/eldritch_transmutation/ashen_eyes)
 	cost = 1
-	next_knowledge = list(/datum/eldritch_knowledge/spell/ashen_shift,/datum/eldritch_knowledge/flesh_ghoul)
+	next_knowledge = list(/datum/eldritch_knowledge/ashen_shift,/datum/eldritch_knowledge/flesh_ghoul)
 
 
 /datum/eldritch_knowledge/ash_mark
@@ -79,13 +79,13 @@
 	next_knowledge = list(/datum/eldritch_knowledge/corrosion,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/paralysis)
 	route = PATH_ASH
 
-/datum/eldritch_knowledge/spell/flame_birth
+/datum/eldritch_knowledge/flame_birth
 	name = "Flame Birth"
 	gain_text = "The Nightwatcher was a man of principles, and yet he arose from the chaos he vowed to protect from."
 	desc = "A healing spell that saps the life from those combusted nearby."
 	cost = 1
 	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/fiery_rebirth)
-	next_knowledge = list(/datum/eldritch_knowledge/spell/cleave,/datum/eldritch_knowledge/ashy,/datum/eldritch_knowledge/ash_final)
+	next_knowledge = list(/datum/eldritch_knowledge/cleave,/datum/eldritch_knowledge/ashy,/datum/eldritch_knowledge/ash_final)
 	route = PATH_ASH
 
 /datum/eldritch_knowledge/ash_blade_upgrade
@@ -93,7 +93,7 @@
 	gain_text = "May the sun burn the heretics."
 	desc = "Your blade of choice will now add firestacks."
 	cost = 2
-	next_knowledge = list(/datum/eldritch_knowledge/spell/flame_birth)
+	next_knowledge = list(/datum/eldritch_knowledge/flame_birth)
 	banned_knowledge = list(/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade)
 	route = PATH_ASH
 
@@ -110,7 +110,7 @@
 	desc = "Curse someone for 2 minutes of vomiting and major organ damage by transmuting a wirecutter, a spill of blood, a heart, left arm and a right arm, and an item that the victim touched  with their bare hands."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/curse/corrosion)
-	next_knowledge = list(/datum/eldritch_knowledge/blindness,/datum/eldritch_knowledge/spell/area_conversion)
+	next_knowledge = list(/datum/eldritch_knowledge/blindness,/datum/eldritch_knowledge/area_conversion)
 
 /datum/eldritch_knowledge/paralysis
 	name = "Curse of Paralysis"
@@ -120,13 +120,13 @@
 	unlocked_transmutations = list(/datum/eldritch_transmutation/curse/paralysis)
 	next_knowledge = list(/datum/eldritch_knowledge/blindness,/datum/eldritch_knowledge/raw_prophet)
 
-/datum/eldritch_knowledge/spell/cleave
+/datum/eldritch_knowledge/cleave
 	name = "Blood Cleave"
 	gain_text = "At first I didn't know these instruments of war, but The Priest told me to use them."
 	desc = "Gives AOE spell that causes heavy bleeding and blood loss."
 	cost = 1
 	spells_to_add = list(/obj/effect/proc_holder/spell/pointed/cleave)
-	next_knowledge = list(/datum/eldritch_knowledge/spell/entropic_plume,/datum/eldritch_knowledge/spell/flame_birth)
+	next_knowledge = list(/datum/eldritch_knowledge/entropic_plume,/datum/eldritch_knowledge/flame_birth)
 
 /datum/eldritch_knowledge/ash_final
 	name = "Ashlord's Rite"

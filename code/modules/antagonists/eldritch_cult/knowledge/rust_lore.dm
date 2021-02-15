@@ -29,13 +29,13 @@
 	target.rust_heretic_act()
 	return TRUE
 
-/datum/eldritch_knowledge/spell/area_conversion
+/datum/eldritch_knowledge/area_conversion
 	name = "Agressive Spread"
 	desc = "Spreads rust to nearby turfs. Destroys already rusted walls."
 	gain_text = "All men wise know not to touch the bound king."
 	cost = 1
 	spells_to_add = list(/obj/effect/proc_holder/spell/aoe_turf/rust_conversion)
-	next_knowledge = list(/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/corrosion,/datum/eldritch_knowledge/spell/blood_siphon)
+	next_knowledge = list(/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/corrosion,/datum/eldritch_knowledge/blood_siphon)
 	route = PATH_RUST
 
 /datum/eldritch_knowledge/rust_regen
@@ -63,7 +63,7 @@
 	desc = "Your eldritch blade now applies a rust mark. The Rust Mark has a chance to deal between 0 to 200 damage to 75% of enemies items. To Detonate the Mark use your mansus grasp on it."
 	gain_text = "Lords of the depths help those in dire need at a cost."
 	cost = 2
-	next_knowledge = list(/datum/eldritch_knowledge/spell/area_conversion)
+	next_knowledge = list(/datum/eldritch_knowledge/area_conversion)
 	banned_knowledge = list(/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/flesh_mark)
 	route = PATH_RUST
 
@@ -78,7 +78,7 @@
 	gain_text = "Let your blade guide you through the flesh."
 	desc = "Your blade of choice will now add toxin to enemies bloodstream."
 	cost = 2
-	next_knowledge = list(/datum/eldritch_knowledge/spell/entropic_plume)
+	next_knowledge = list(/datum/eldritch_knowledge/entropic_plume)
 	banned_knowledge = list(/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade)
 	route = PATH_RUST
 
@@ -88,13 +88,13 @@
 		var/mob/living/carbon/carbon_target = target
 		carbon_target.reagents.add_reagent(/datum/reagent/eldritch, 2)
 
-/datum/eldritch_knowledge/spell/entropic_plume
+/datum/eldritch_knowledge/entropic_plume
 	name = "Entropic Plume"
 	desc = "You can now send a befuddling plume that blinds, poisons and makes enemies strike each other. Also converts the area into rust."
 	gain_text = "Messengers of hope fear I, the Rustbringer!"
 	cost = 1
 	spells_to_add = list(/obj/effect/proc_holder/spell/cone/staggered/entropic_plume)
-	next_knowledge = list(/datum/eldritch_knowledge/rust_final,/datum/eldritch_knowledge/spell/cleave,/datum/eldritch_knowledge/rusty)
+	next_knowledge = list(/datum/eldritch_knowledge/rust_final,/datum/eldritch_knowledge/cleave,/datum/eldritch_knowledge/rusty)
 	route = PATH_RUST
 
 /datum/eldritch_knowledge/armor
@@ -110,7 +110,7 @@
 	desc = "You can now transmute a tank of water into a bottle of eldritch water."
 	gain_text = "I learned an old recipe, tought by an Owl in my dreams."
 	cost = 1
-	next_knowledge = list(/datum/eldritch_knowledge/rust_regen,/datum/eldritch_knowledge/spell/ashen_shift)
+	next_knowledge = list(/datum/eldritch_knowledge/rust_regen,/datum/eldritch_knowledge/ashen_shift)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/water)
 
 /datum/eldritch_knowledge/rust_final
