@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "bone axe now deals 23 damage instead of 28 due to an oversight"
