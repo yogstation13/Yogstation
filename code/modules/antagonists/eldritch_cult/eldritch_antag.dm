@@ -7,6 +7,7 @@
 	can_hijack = HIJACK_HIJACKER
 	var/give_equipment = TRUE
 	var/list/researched_knowledge = list()
+	var/list/transmutations = list()
 	var/total_sacrifices = 0
 	var/ascended = FALSE
 	var/charge = 1
@@ -25,16 +26,13 @@
 	to_chat(owner, "<span class='cult'>The book whispers, the forbidden knowledge walks once again!<br>\
 	Your book allows you to research abilities, read it very carefully! you cannot undo what has been done!<br>\
 	You gain charges by either collecitng influences or sacrifcing people tracked by the living heart<br> \
-	You can find a basic guide at : https://tgstation13.org/wiki/Heresy_101 </span>")
+	You can find a basic guide at : https://wiki.yogstation.net/wiki/Heretic </span>")
 
 /datum/antagonist/heretic/on_gain()
 	var/mob/living/current = owner.current
 	if(ishuman(current))
 		forge_primary_objectives()
 		gain_knowledge(/datum/eldritch_knowledge/spell/basic)
-		gain_knowledge(/datum/eldritch_knowledge/living_heart)
-		gain_knowledge(/datum/eldritch_knowledge/codex_cicatrix)
-		gain_knowledge(/datum/eldritch_knowledge/recall)
 	current.log_message("has been converted to the cult of the forgotten ones!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.AddMind(owner)
 	START_PROCESSING(SSprocessing,src)
@@ -91,6 +89,9 @@
 	for(var/X in researched_knowledge)
 		var/datum/eldritch_knowledge/EK = researched_knowledge[X]
 		EK.on_life(owner.current)
+	for(var/Y in transmutations)
+		var/datum/eldritch_transmutation/ET = Y
+		ET.on_life(owner.current)
 
 /datum/antagonist/heretic/proc/forge_primary_objectives()
 	var/list/assasination = list()
@@ -157,7 +158,7 @@
 	var/knowledge2add = input(admin, "Select a knowledge to grant", "Scholarship") as null | anything in get_researchable_knowledge()
 	if(!knowledge2add)
 		return
-	gain_knowledge(knowledge2add)
+	gain_knowledge(knowledge2add, TRUE)
 
 /datum/antagonist/heretic/roundend_report()
 	var/list/parts = list()
@@ -199,12 +200,13 @@
 // Knowledge //
 ////////////////
 
-/datum/antagonist/heretic/proc/gain_knowledge(datum/eldritch_knowledge/EK)
+/datum/antagonist/heretic/proc/gain_knowledge(datum/eldritch_knowledge/EK, forced = FALSE)
 	if(get_knowledge(EK))
 		return FALSE
 	var/datum/eldritch_knowledge/initialized_knowledge = new EK
 	researched_knowledge[initialized_knowledge.type] = initialized_knowledge
 	initialized_knowledge.on_gain(owner.current)
+	charge -= initialized_knowledge.cost
 	return TRUE
 
 /datum/antagonist/heretic/proc/get_researchable_knowledge()
@@ -223,6 +225,13 @@
 
 /datum/antagonist/heretic/proc/get_all_knowledge()
 	return researched_knowledge
+
+/datum/antagonist/heretic/proc/get_transmutation(wanted)
+	return transmutations[wanted]
+
+/datum/antagonist/heretic/proc/get_all_transmutations()
+	return transmutations
+
 
 ////////////////
 // Objectives //

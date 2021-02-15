@@ -127,8 +127,7 @@
 				var/datum/eldritch_knowledge/EK = X
 				if(initial(EK.name) != ekname)
 					continue
-				if(cultie.charge >= EK.cost && cultie.gain_knowledge(EK))
-					cultie.charge -= EK.cost
+				if(cultie.gain_knowledge(EK))
 					return TRUE
 
 	update_icon() // Not applicable to all objects.
