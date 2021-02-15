@@ -517,7 +517,7 @@ Difficulty: Hard
 	icon_state = "leftsmack"
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination
-	name = "bubblegum's hallucination"
+	name = "demonic hallucination"
 	desc = "Is that really just a hallucination?"
 	health = 1
 	maxHealth = 1
@@ -559,3 +559,7 @@ Difficulty: Hard
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/try_bloodattack()
 	return
+
+/mob/living/simple_animal/hostile/megafauna/bubblegum/Initialize()
+	. = ..()
+	name = "[pick(GLOB.bubblegum_first_names)] [pick(GLOB.bubblegum_last_names)]"
