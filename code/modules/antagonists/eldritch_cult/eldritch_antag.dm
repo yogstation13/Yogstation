@@ -25,8 +25,9 @@
 	owner.announce_objectives()
 	to_chat(owner, "<span class='cult'>The book whispers, the forbidden knowledge walks once again!<br>\
 	Your book allows you to research abilities, read it very carefully! you cannot undo what has been done!<br>\
-	You gain charges by either collecitng influences or sacrifcing people tracked by the living heart<br> \
-	You can find a basic guide at : https://wiki.yogstation.net/wiki/Heretic </span>")
+	You gain charges by either collecting influences or sacrifcing people tracked by the living heart<br> \
+	You can find a basic guide at : https://wiki.yogstation.net/wiki/Heretic </span><br>\
+	If you need to quickly check your unlocked transmutation recipes, transmute your Codex Cicatrix.")
 
 /datum/antagonist/heretic/on_gain()
 	var/mob/living/current = owner.current
