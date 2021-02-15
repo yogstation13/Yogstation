@@ -673,3 +673,7 @@ obj/effect/temp_visual/fireball
 
 /mob/living/simple_animal/hostile/megafauna/dragon/space_dragon/AltClickOn(atom/movable/A)
 	return
+
+/mob/living/simple_animal/hostile/megafauna/drake/Initialize()
+	. = ..()
+	name = "[pick(GLOB.dragon_first_names)] [pick(GLOB.dragon_last_names)]"
