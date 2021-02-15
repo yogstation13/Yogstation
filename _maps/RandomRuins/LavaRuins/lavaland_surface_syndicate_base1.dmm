@@ -5761,6 +5761,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/syndicate_lava_base/medbay)
+"Gj" = (
+/obj/machinery/porta_turret/syndicate,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/syndicate_lava_base/arrivals)
 "Gv" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -5771,6 +5775,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/arrivals)
+"GA" = (
+/obj/machinery/porta_turret/syndicate,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/syndicate_lava_base/chemistry)
 "Hi" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/wiki/chemistry,
@@ -5813,6 +5821,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/virology)
+"HT" = (
+/obj/machinery/porta_turret/syndicate,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/syndicate_lava_base/testlab)
 "HY" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -6270,6 +6282,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/syndicate_lava_base/medbay)
+"PF" = (
+/obj/machinery/porta_turret/syndicate,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/syndicate_lava_base/dormitories)
 "PW" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -6292,6 +6308,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/main)
+"Qj" = (
+/obj/machinery/porta_turret/syndicate,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/syndicate_lava_base/telecomms)
 "Ql" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -6388,6 +6408,10 @@
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
+"RF" = (
+/obj/machinery/porta_turret/syndicate,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/syndicate_lava_base/virology)
 "RP" = (
 /obj/machinery/door/airlock/hatch{
 	name = "Monkey Pen";
@@ -6430,6 +6454,10 @@
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/bar)
+"Sj" = (
+/obj/machinery/porta_turret/syndicate,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/unpowered/syndicate_lava_base/engineering)
 "Sr" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -6918,12 +6946,12 @@ ab
 ab
 ab
 ab
+Qj
 mn
 mn
 mn
 mn
-mn
-mn
+Qj
 ab
 ab
 ab
@@ -7047,7 +7075,7 @@ ab
 ab
 ab
 ab
-eh
+RF
 eh
 eh
 eh
@@ -7068,7 +7096,7 @@ ab
 ab
 ab
 ab
-mn
+Qj
 mn
 mN
 mn
@@ -7305,7 +7333,7 @@ gs
 eh
 gj
 eh
-eh
+RF
 ab
 ab
 ab
@@ -7540,7 +7568,7 @@ ab
 ab
 ab
 ab
-ae
+HT
 ae
 ae
 ae
@@ -7623,7 +7651,7 @@ kn
 QM
 nW
 nQ
-mT
+Gj
 mT
 mT
 oF
@@ -7859,7 +7887,7 @@ ia
 ik
 if
 iQ
-hz
+PF
 hz
 jy
 jy
@@ -7890,7 +7918,7 @@ ab
 ab
 ab
 ab
-ae
+HT
 ae
 ae
 ae
@@ -8200,7 +8228,7 @@ dZ
 Ay
 as
 as
-as
+GA
 HY
 Qg
 hz
@@ -8244,7 +8272,7 @@ ab
 ab
 ab
 ac
-as
+GA
 as
 as
 as
@@ -8303,7 +8331,7 @@ fr
 Kv
 gL
 he
-hz
+PF
 hz
 hz
 hz
@@ -8459,7 +8487,7 @@ ha
 iq
 Ho
 iq
-ha
+LH
 jt
 jF
 jT
@@ -8963,13 +8991,13 @@ ab
 ab
 ab
 ab
+Sj
 ju
 ju
 ju
 ju
 ju
-ju
-ju
+Sj
 ab
 ab
 ab
