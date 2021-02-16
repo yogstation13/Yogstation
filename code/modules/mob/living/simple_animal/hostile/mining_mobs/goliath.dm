@@ -200,9 +200,8 @@
 	for(var/mob/living/L in loc)
 		if((!QDELETED(spawner) && spawner.faction_check_mob(L)) || L.stat == DEAD)
 			continue
-		visible_message("<span class='danger'>[src] grabs hold of [L]!</span>")
-		L.Stun(100)
-		L.adjustBruteLoss(rand(10,15))
+		visible_message("<span class='danger'>[src] pierces [L]!</span>")
+		L.adjustBruteLoss(rand(30,50))
 		latched = TRUE
 	if(!latched)
 		retract()
