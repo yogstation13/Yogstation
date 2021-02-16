@@ -201,6 +201,7 @@
 		if((!QDELETED(spawner) && spawner.faction_check_mob(L)) || L.stat == DEAD)
 			continue
 		visible_message("<span class='danger'>[src] pierces [L]!</span>")
+		L.Knockdown(50)
 		L.adjustBruteLoss(rand(30,50))
 		latched = TRUE
 	if(!latched)
