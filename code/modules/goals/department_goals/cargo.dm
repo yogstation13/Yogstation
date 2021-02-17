@@ -12,7 +12,7 @@
 /datum/department_goal/car/sheets/check_complete()
 	var/obj/machinery/ore_silo/O = GLOB.ore_silo_default
 	var/datum/component/material_container/materials = O.GetComponent(/datum/component/material_container)
-	var/list/materials = list(
+	var/list/material_list = list(
 		"bluespace",
 		"diamond",
 		"uranium",
@@ -22,7 +22,7 @@
 		"plasma",
 		"glass",
 		"iron")
-	for(var/I in materials)
+	for(var/I in material_list)
 		if(!materials.has_enough_of_material(/datum/material/I, MINERAL_MATERIAL_AMOUNT, 50))
 			return FALSE
 	return TRUE
