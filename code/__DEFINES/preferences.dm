@@ -92,6 +92,12 @@
 #define EXP_TYPE_ADMIN			"Admin"
 #define EXP_TYPE_MENTOR			"Mentor"
 
+///Screentip settings
+#define SCREENTIP_OFF 0
+#define SCREENTIP_SMALL 1
+#define SCREENTIP_MEDIUM 1
+#define SCREENTIP_BIG 1
+
 //Flags in the players table in the db
 #define DB_FLAG_EXEMPT 1
 
