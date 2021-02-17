@@ -12,16 +12,20 @@
 /datum/department_goal/car/sheets/check_complete()
 	var/obj/machinery/ore_silo/O = GLOB.ore_silo_default
 	var/datum/component/material_container/materials = O.GetComponent(/datum/component/material_container)
-	if(materials.has_enough_of_material(/datum/material/bluespace, MINERAL_MATERIAL_AMOUNT, 50))
-		if(materials.has_enough_of_material(/datum/material/diamond, MINERAL_MATERIAL_AMOUNT, 50))
-			if(materials.has_enough_of_material(/datum/material/uranium, MINERAL_MATERIAL_AMOUNT, 50))
-				if(materials.has_enough_of_material(/datum/material/gold, MINERAL_MATERIAL_AMOUNT, 50))
-					if(materials.has_enough_of_material(/datum/material/titanium, MINERAL_MATERIAL_AMOUNT, 50))
-						if(materials.has_enough_of_material(/datum/material/silver, MINERAL_MATERIAL_AMOUNT, 50))
-							if(materials.has_enough_of_material(/datum/material/plasma, MINERAL_MATERIAL_AMOUNT, 50))
-								if(materials.has_enough_of_material(/datum/material/glass, MINERAL_MATERIAL_AMOUNT, 50))
-									if(materials.has_enough_of_material(/datum/material/iron, MINERAL_MATERIAL_AMOUNT, 50))
-										return TRUE
+	var/list/materials = list(
+		bluespace,
+		diamond,
+		uranium,
+		gold,
+		titanium,
+		silver,
+		plasma,
+		glass,
+		iron)
+	for(var/I in materials)
+		if(!materials.has_enough_of_material(/datum/material/I, MINERAL_MATERIAL_AMOUNT, 50))
+			return FALSE
+	return TRUE
 
 // Setup a tesla in cargo
 /datum/department_goal/car/tesla
