@@ -81,10 +81,10 @@
 	var/last_hit = 0
 
 /obj/item/golfball/attackby(obj/item/O, mob/user, params)
-	if(istype(O, /obj/item/golfclub) && world.time > last_hit)
+	if(istype(O, /obj/item/golfclub))
 		var/turf/throw_at = get_ranged_target_turf(src, get_dir(user, src), 3 )
 		throw_at(throw_at, 3 , 2)
-		last_hit = world.time + 30
+		user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/item/golfclub
 	desc = "A club for the game of golf."
