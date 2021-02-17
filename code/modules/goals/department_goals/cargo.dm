@@ -22,10 +22,7 @@
 		/datum/material/plasma,
 		/datum/material/glass,
 		/datum/material/iron)
-	for(var/datum/material/I in material_list)
-		if(!materials.has_enough_of_material(I, MINERAL_MATERIAL_AMOUNT, 50))
-			return FALSE
-	return TRUE
+	return materials.has_materials(material_list, 50*MINERAL_MATERIAL_AMOUNT)
 
 // Setup a tesla in cargo
 /datum/department_goal/car/tesla
