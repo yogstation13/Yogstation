@@ -2,18 +2,26 @@
 	account = ACCOUNT_CAR
 
 
-// Have 500 plasteel sheets in the ore silo
-// I'ven't played this game for so long I have no clue how viable this even is.
-// Is this easy? Is this hard? Is the reward too high? Who knows?
-/datum/department_goal/car/uranium
-	name = "Have 500 uranium"
-	desc = "Store 500 uranium sheets in the ore silo"
-	reward = "50000"
+// Have 50 of every (traditional) sheet (not bananium or plastic)
+/datum/department_goal/car/sheets
+	name = "Have 50 of every ore sheet"
+	desc = "Store 50 of every ore sheet in the ore silo"
+	reward = 5000
+	continuous = 3000 // rewards every 5 minutes
 
-/datum/department_goal/car/uranium/check_complete()
+/datum/department_goal/car/sheets/check_complete()
 	var/obj/machinery/ore_silo/O = GLOB.ore_silo_default
 	var/datum/component/material_container/materials = O.GetComponent(/datum/component/material_container)
-	return materials.has_enough_of_material(/datum/material/uranium, MINERAL_MATERIAL_AMOUNT, 500)
+	if(materials.has_enough_of_material(/datum/material/iron, MINERAL_MATERIAL_AMOUNT, 50))
+		if(materials.has_enough_of_material(/datum/material/glass, MINERAL_MATERIAL_AMOUNT, 50))
+			if(materials.has_enough_of_material(/datum/material/silver, MINERAL_MATERIAL_AMOUNT, 50))
+				if(materials.has_enough_of_material(/datum/material/gold, MINERAL_MATERIAL_AMOUNT, 50))
+					if(materials.has_enough_of_material(/datum/material/diamond, MINERAL_MATERIAL_AMOUNT, 50))
+						if(materials.has_enough_of_material(/datum/material/uranium, MINERAL_MATERIAL_AMOUNT, 50))
+							if(materials.has_enough_of_material(/datum/material/plasma, MINERAL_MATERIAL_AMOUNT, 50))
+								if(materials.has_enough_of_material(/datum/material/bluespace, MINERAL_MATERIAL_AMOUNT, 50))
+									if(materials.has_enough_of_material(/datum/material/titanium, MINERAL_MATERIAL_AMOUNT, 50))
+										return TRUE
 
 // Setup a tesla in cargo
 /datum/department_goal/car/tesla
