@@ -13,15 +13,15 @@
 	var/obj/machinery/ore_silo/O = GLOB.ore_silo_default
 	var/datum/component/material_container/materials = O.GetComponent(/datum/component/material_container)
 	var/list/materials = list(
-		bluespace,
-		diamond,
-		uranium,
-		gold,
-		titanium,
-		silver,
-		plasma,
-		glass,
-		iron)
+		"bluespace",
+		"diamond",
+		"uranium",
+		"gold",
+		"titanium",
+		"silver",
+		"plasma",
+		"glass",
+		"iron")
 	for(var/I in materials)
 		if(!materials.has_enough_of_material(/datum/material/I, MINERAL_MATERIAL_AMOUNT, 50))
 			return FALSE
