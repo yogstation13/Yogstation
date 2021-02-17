@@ -94,8 +94,6 @@
 	var/list/status_effects //a list of all status effects the mob has
 	var/druggy = 0
 
-	var/surgery_fail_mod = 1 //multiplied by UNPREPARED_SURGERY_PENALTY for an increase in surgery fail chance when doing surgery on someone who is not prepared properly for surgery, reduced by some chemicals
-
 	/// List of changes to body temperature, used by desease symtoms like fever
 	var/list/body_temp_changes = list()
 
