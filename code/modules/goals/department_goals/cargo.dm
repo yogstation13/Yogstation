@@ -22,8 +22,8 @@
 		"plasma",
 		"glass",
 		"iron")
-	for(var/I in material_list)
-		if(!materials.has_enough_of_material(/datum/material/I, MINERAL_MATERIAL_AMOUNT, 50))
+	for(var/datum/material/I in material_list)
+		if(!materials.has_enough_of_material(I, MINERAL_MATERIAL_AMOUNT, 50))
 			return FALSE
 	return TRUE
 
