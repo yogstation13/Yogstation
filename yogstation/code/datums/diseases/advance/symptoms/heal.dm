@@ -15,13 +15,13 @@
 	)
 
 /datum/symptom/heal/conversion/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.properties["stage_rate"] >= 7)
 		hunger_reduction = 4
 	if(A.properties["resistance"] >= 9)
 		toxin_damage = TRUE
-	return TRUE
 		
 /datum/symptom/heal/conversion/CanHeal(datum/disease/advance/A)
 	var/mob/living/M = A.affected_mob

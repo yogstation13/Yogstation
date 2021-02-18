@@ -16,11 +16,11 @@
 	)
 
 /datum/symptom/heal/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.properties["stage_rate"] >= 6) //stronger healing
 		power = 2
-	return TRUE
 
 /datum/symptom/heal/Activate(datum/disease/advance/A)
 	if(!..())
