@@ -21,6 +21,7 @@
 		Hunger_reduction = 4
 	if(A.properties["resistance"] >= 9)
 		Toxin_damage = TRUE
+	return TRUE
 		
 /datum/symptom/heal/conversion/CanHeal(datum/disease/advance/A)
 	var/mob/living/M = A.affected_mob
