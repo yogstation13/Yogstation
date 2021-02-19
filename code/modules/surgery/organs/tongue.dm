@@ -22,7 +22,7 @@
 		/datum/language/sylvan,
 		/datum/language/japanese,
 		/datum/language/machine, //yogs
-		/datum/language/darkspawn //also yogs
+		/datum/language/darkspawn, //also yogs
 		/datum/language/encrypted
 	))
 
