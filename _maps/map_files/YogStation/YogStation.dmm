@@ -31130,9 +31130,6 @@
 /obj/machinery/announcement_system,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
-"caF" = (
-/turf/closed/wall/r_wall,
-/area/maintenance/starboard)
 "caR" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -36210,9 +36207,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"dZD" = (
-/turf/closed/wall,
-/area/science/server)
 "eam" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -38210,13 +38204,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"fAh" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	layer = 2.35;
-	level = 1
-	},
-/turf/closed/wall/r_wall,
-/area/science/mixing)
 "fAv" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
@@ -40112,6 +40099,14 @@
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
+"hif" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 6;
+	layer = 2.35;
+	level = 1
+	},
+/turf/closed/wall/r_wall,
+/area/science/mixing)
 "hla" = (
 /obj/structure/easel,
 /obj/item/canvas/twentythreeXnineteen,
@@ -46572,6 +46567,9 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"lLn" = (
+/turf/closed/wall/r_wall,
+/area/maintenance/starboard)
 "lLr" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
@@ -51860,6 +51858,10 @@
 	},
 /turf/open/floor/engine/air,
 /area/engine/atmos_distro)
+"pAJ" = (
+/obj/structure/sign/departments/minsky/research/research,
+/turf/closed/wall,
+/area/science/lab)
 "pAL" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/blue{
@@ -52233,10 +52235,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"pMf" = (
-/obj/structure/sign/departments/minsky/research/research,
-/turf/closed/wall,
-/area/science/lab)
 "pMt" = (
 /obj/machinery/advanced_airlock_controller{
 	dir = 1;
@@ -59321,9 +59319,6 @@
 /obj/structure/rack,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
-"uQD" = (
-/turf/closed/wall,
-/area/science/mixing/chamber)
 "uQX" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Cargo Bay Warehouse Maintenance";
@@ -61575,6 +61570,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"wvN" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	layer = 2.35;
+	level = 1
+	},
+/turf/closed/wall/r_wall,
+/area/science/mixing)
 "wvQ" = (
 /obj/machinery/light{
 	dir = 4
@@ -62441,6 +62443,9 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos_distro)
+"xgu" = (
+/turf/closed/wall,
+/area/science/server)
 "xgD" = (
 /obj/structure/table,
 /obj/item/hand_labeler,
@@ -63405,14 +63410,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"xRv" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 6;
-	layer = 2.35;
-	level = 1
-	},
-/turf/closed/wall/r_wall,
-/area/science/mixing)
 "xRT" = (
 /obj/structure/closet/secure_closet/CMO,
 /obj/effect/turf_decal/tile/blue{
@@ -108125,10 +108122,10 @@ wRN
 box
 vCt
 bnx
-dZD
-dZD
-dZD
-dZD
+xgu
+xgu
+xgu
+xgu
 bDb
 bEm
 vtR
@@ -108382,7 +108379,7 @@ cAR
 box
 uUo
 bnD
-dZD
+xgu
 bzu
 bAz
 bzu
@@ -108639,7 +108636,7 @@ mZk
 box
 oTW
 bnE
-dZD
+xgu
 bzt
 bAy
 bBS
@@ -108896,7 +108893,7 @@ cIf
 wci
 bgp
 bnH
-dZD
+xgu
 bzw
 bAB
 bBV
@@ -109153,7 +109150,7 @@ cIe
 wci
 bgp
 sRl
-dZD
+xgu
 bzv
 bAA
 bAs
@@ -109667,7 +109664,7 @@ sfI
 wci
 bgp
 bnH
-dZD
+xgu
 bKS
 bAC
 bBW
@@ -109924,10 +109921,10 @@ jZY
 box
 bgp
 bnU
-dZD
-dZD
-dZD
-dZD
+xgu
+xgu
+xgu
+xgu
 bDb
 bDb
 bDb
@@ -112760,8 +112757,8 @@ bEC
 bGc
 bss
 bGc
-xRv
-fAh
+hif
+wvN
 bTC
 aaf
 aaf
@@ -113509,7 +113506,7 @@ bbF
 aYV
 aXq
 aYV
-pMf
+pAJ
 boB
 biX
 bhV
@@ -114564,7 +114561,7 @@ eCX
 oad
 crN
 buC
-uQD
+ado
 ahB
 oos
 ajF
@@ -117125,7 +117122,7 @@ rYO
 rYO
 rYO
 cmz
-caF
+lLn
 bGd
 bHv
 mGG
@@ -117382,7 +117379,7 @@ rYO
 rYO
 rYO
 rYO
-caF
+lLn
 bEY
 bEY
 bEY
