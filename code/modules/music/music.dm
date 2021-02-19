@@ -10,7 +10,7 @@
 	var/length = 1200
 	
 	/// The base volume to play at, not accounting for fading
-	var/base_volume = 40
+	var/base_volume = 65
 
 	/// Higher priority music plays over lower priority ones. If a looping music is masked by a higher priority music, it will start playing once the higher priority ends if it hasn't been removed.
 	var/priority = 0
@@ -185,8 +185,8 @@
 	/// Whether new mobs will be added. To force mobs to stop playing this, use stop_all()
 	var/enabled = TRUE
 	/// Range within which music will start to play
-	var/start_range = 10
-	var/fade_in_time = 20
+	var/start_range = 7
+	var/fade_in_time = 30
 	/// Whether music of the same typepath is shared
 	var/shared = TRUE
 
@@ -199,19 +199,21 @@
 	if(!music_path)
 		return
 	var/shared = FALSE
-	outer:
-		for(var/mob/M in range(start_range, parent))
-			if(!M.client)
-				continue
-			if(mob_players[M])
-				continue
-			if(shared)
-				for(var/_music in M.client.active_music)
-					var/datum/music/sourced/music = _music
-					if(istype(music, music_path))
-						mob_players[M] = music
-						music.players += src
-						continue outer
+	for(var/mob/M in range(start_range, parent))
+		if(!M.client)
+			continue
+		if(mob_players[M])
+			continue
+		var/did_find = FALSE
+		if(shared)
+			for(var/_music in M.client.active_music)
+				var/datum/music/sourced/music = _music
+				if(istype(music, music_path))
+					mob_players[M] = music
+					music.players += src
+					did_find = TRUE
+					break
+		if(!did_find)
 			var/datum/music/sourced/music = new music_path(M.client, fade_time > 0 ? 0 : 1)
 			if(!music.gc_destroyed)
 				mob_players[M] = music
@@ -245,6 +247,7 @@
 		do_range_check()
 
 /datum/component/music_player/battle/process()
+	. = ..()
 	var/mob/M = parent
 	var/should_be_enabled = !M.stat && !M.client
 	if(enabled && !should_be_enabled)
