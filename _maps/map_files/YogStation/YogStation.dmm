@@ -7777,9 +7777,6 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/science/nanite)
-"atN" = (
-/turf/closed/wall/r_wall,
-/area/science/nanite)
 "atP" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -20200,9 +20197,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"bfV" = (
-/turf/closed/wall/r_wall,
-/area/science/robotics/lab)
 "bfW" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
@@ -20258,9 +20252,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"bgc" = (
-/turf/closed/wall/r_wall,
-/area/science/lab)
 "bgd" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -24996,9 +24987,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"bvx" = (
-/turf/closed/wall/r_wall,
-/area/science/research)
 "bvz" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -25879,9 +25867,6 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
 /area/medical/genetics)
-"byf" = (
-/turf/closed/wall/r_wall,
-/area/science/server)
 "byg" = (
 /obj/structure/table,
 /obj/item/clipboard,
@@ -28695,9 +28680,6 @@
 /obj/machinery/shieldwallgen/xenobiologyaccess,
 /turf/open/floor/plating,
 /area/science/xenobiology)
-"bJN" = (
-/turf/closed/wall,
-/area/science/xenobiology)
 "bJO" = (
 /obj/machinery/door/airlock/research{
 	name = "Testing Lab";
@@ -28968,10 +28950,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"bLe" = (
-/obj/structure/sign/warning/biohazard,
-/turf/closed/wall,
-/area/science/xenobiology)
 "bLf" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -31152,6 +31130,9 @@
 /obj/machinery/announcement_system,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
+"caF" = (
+/turf/closed/wall/r_wall,
+/area/maintenance/starboard)
 "caR" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -36229,6 +36210,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"dZD" = (
+/turf/closed/wall,
+/area/science/server)
 "eam" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -38226,6 +38210,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"fAh" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	layer = 2.35;
+	level = 1
+	},
+/turf/closed/wall/r_wall,
+/area/science/mixing)
 "fAv" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
@@ -45378,14 +45369,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"kRZ" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 6;
-	layer = 2.35;
-	level = 1
-	},
-/turf/closed/wall,
-/area/science/mixing)
 "kSb" = (
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
@@ -52250,6 +52233,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"pMf" = (
+/obj/structure/sign/departments/minsky/research/research,
+/turf/closed/wall,
+/area/science/lab)
 "pMt" = (
 /obj/machinery/advanced_airlock_controller{
 	dir = 1;
@@ -54465,13 +54452,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"rrF" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	layer = 2.35;
-	level = 1
-	},
-/turf/closed/wall,
-/area/science/mixing)
 "rrG" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/plasteel/white,
@@ -54608,10 +54588,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"ryf" = (
-/obj/structure/sign/departments/minsky/research/research,
-/turf/closed/wall/r_wall,
-/area/science/lab)
 "ryP" = (
 /obj/structure/chair/stool,
 /obj/item/clothing/under/lawyer/blacksuit,
@@ -59345,6 +59321,9 @@
 /obj/structure/rack,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"uQD" = (
+/turf/closed/wall,
+/area/science/mixing/chamber)
 "uQX" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Cargo Bay Warehouse Maintenance";
@@ -63426,6 +63405,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"xRv" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 6;
+	layer = 2.35;
+	level = 1
+	},
+/turf/closed/wall/r_wall,
+/area/science/mixing)
 "xRT" = (
 /obj/structure/closet/secure_closet/CMO,
 /obj/effect/turf_decal/tile/blue{
@@ -107875,10 +107862,10 @@ bnc
 bnc
 bnc
 cHP
-bfV
-bfV
-bfV
-bfV
+box
+box
+box
+box
 uMn
 bnu
 bvB
@@ -108135,13 +108122,13 @@ jqQ
 yhy
 bpS
 wRN
-bfV
+box
 vCt
 bnx
-byf
-byf
-byf
-byf
+dZD
+dZD
+dZD
+dZD
 bDb
 bEm
 vtR
@@ -108392,10 +108379,10 @@ ldM
 boE
 bsQ
 cAR
-bfV
+box
 uUo
 bnD
-byf
+dZD
 bzu
 bAz
 bzu
@@ -108649,10 +108636,10 @@ wmb
 cHX
 buj
 mZk
-bfV
+box
 oTW
 bnE
-byf
+dZD
 bzt
 bAy
 bBS
@@ -108909,7 +108896,7 @@ cIf
 wci
 bgp
 bnH
-byf
+dZD
 bzw
 bAB
 bBV
@@ -109166,7 +109153,7 @@ cIe
 wci
 bgp
 sRl
-byf
+dZD
 bzv
 bAA
 bAs
@@ -109680,7 +109667,7 @@ sfI
 wci
 bgp
 bnH
-byf
+dZD
 bKS
 bAC
 bBW
@@ -109937,17 +109924,17 @@ jZY
 box
 bgp
 bnU
-byf
-byf
-byf
-byf
+dZD
+dZD
+dZD
+dZD
 bDb
 bDb
 bDb
 bDb
 bDb
-bJN
-bJN
+bDb
+bDb
 xaA
 ubY
 wJm
@@ -110204,7 +110191,7 @@ jtJ
 bHe
 bIz
 bIz
-bJN
+bDb
 xHn
 ubY
 uoU
@@ -110438,11 +110425,11 @@ aFu
 aYV
 aXq
 aYV
-bfV
-bfV
+box
+box
 nct
 qnR
-bfV
+box
 cHM
 bkr
 xCw
@@ -110461,7 +110448,7 @@ kkv
 bEc
 bIB
 bIB
-bJN
+bDb
 mvV
 ubY
 jaq
@@ -110696,7 +110683,7 @@ aYV
 aXq
 aYV
 bfW
-bfV
+box
 vBO
 mnK
 dSS
@@ -110718,7 +110705,7 @@ nUQ
 bsf
 bEo
 bEo
-bJN
+bDb
 eDW
 xwn
 jaq
@@ -110953,7 +110940,7 @@ aYV
 aXq
 aYV
 bfX
-bfV
+box
 qqo
 bou
 bou
@@ -110975,7 +110962,7 @@ dDp
 bsg
 bEo
 bEo
-bJN
+bDb
 kCh
 ubY
 jaq
@@ -111210,7 +111197,7 @@ aYV
 aXq
 aYV
 bfX
-bfV
+box
 fGE
 taB
 uDm
@@ -111232,7 +111219,7 @@ bDf
 bsm
 bGY
 bGY
-bJN
+bDb
 smk
 ubY
 jaq
@@ -111467,11 +111454,11 @@ bal
 aXq
 aYV
 tMm
-bfV
-bfV
-bfV
-bfV
-bfV
+box
+box
+box
+box
+box
 box
 qYz
 brs
@@ -111489,7 +111476,7 @@ bDc
 bsn
 bDc
 bDc
-bLe
+wUc
 bMr
 uBi
 bMr
@@ -111508,9 +111495,9 @@ bDb
 bDb
 bDb
 bDb
-atN
-atN
-atN
+wkN
+wkN
+wkN
 qQV
 qQV
 qQV
@@ -111728,7 +111715,7 @@ bhA
 biR
 aBT
 bjZ
-bvx
+bhA
 boz
 boM
 bzE
@@ -111767,7 +111754,7 @@ auy
 bMS
 cbZ
 bSl
-atN
+wkN
 bMB
 cOe
 vIg
@@ -112024,7 +112011,7 @@ pyE
 aSa
 cbY
 cws
-atN
+wkN
 vjL
 jiK
 giq
@@ -112242,7 +112229,7 @@ bhA
 biS
 aMK
 blH
-bvx
+bhA
 boz
 bnJ
 bBD
@@ -112281,7 +112268,7 @@ itG
 bBb
 wvX
 mkO
-atN
+wkN
 fmN
 cNW
 cNW
@@ -112495,11 +112482,11 @@ aYV
 aXq
 aYV
 bga
-bgc
-bgc
-bgc
-bgc
-bgc
+boB
+boB
+boB
+boB
+boB
 boB
 boB
 boB
@@ -112538,7 +112525,7 @@ auT
 bBe
 avH
 jDm
-atN
+wkN
 aNt
 cOe
 bMB
@@ -112768,13 +112755,13 @@ byo
 aDH
 bqb
 bHY
-bvK
-bEs
+byt
+bEC
 bGc
 bss
 bGc
-kRZ
-rrF
+xRv
+fAh
 bTC
 aaf
 aaf
@@ -112795,7 +112782,7 @@ tSz
 bym
 avJ
 mkO
-atN
+wkN
 iLQ
 qoX
 pDG
@@ -113025,7 +113012,7 @@ emB
 bwR
 jKn
 bCh
-bvK
+byt
 bEv
 vRL
 bsv
@@ -113052,7 +113039,7 @@ qeQ
 aGe
 avK
 bQn
-atN
+wkN
 vJS
 cNW
 cNW
@@ -113282,7 +113269,7 @@ byp
 bzJ
 aDa
 bCg
-bvK
+byt
 bEu
 tbz
 bsv
@@ -113309,7 +113296,7 @@ fKl
 auV
 avM
 bSl
-atN
+wkN
 vJS
 cNW
 aaa
@@ -113522,8 +113509,8 @@ bbF
 aYV
 aXq
 aYV
-ryf
-bgc
+pMf
+boB
 biX
 bhV
 bka
@@ -113539,7 +113526,7 @@ bys
 bzM
 bya
 bCj
-bvK
+byt
 bBU
 bFU
 bsv
@@ -113560,12 +113547,12 @@ bZZ
 bxF
 bWr
 wkN
-atN
-atN
-atN
-atN
-atN
-atN
+wkN
+wkN
+wkN
+wkN
+wkN
+wkN
 wkN
 vJS
 bPp
@@ -113779,7 +113766,7 @@ aCR
 bcy
 bdx
 beG
-bgc
+boB
 bhE
 biW
 bkv
@@ -113796,7 +113783,7 @@ byr
 bzL
 bxZ
 bCi
-bvK
+byt
 acP
 pbM
 aXK
@@ -113816,7 +113803,7 @@ alN
 alN
 bwU
 bWr
-bQZ
+bPN
 iKq
 iKq
 iKq
@@ -114036,7 +114023,7 @@ aMZ
 nhP
 wmI
 beI
-bgc
+boB
 bhF
 dEY
 bib
@@ -114053,7 +114040,7 @@ byu
 bzN
 bCf
 aGs
-bvK
+byt
 abe
 bFU
 bsy
@@ -114073,7 +114060,7 @@ alX
 alX
 bwU
 bMw
-bQZ
+bPN
 iKq
 iKq
 iKq
@@ -114293,15 +114280,15 @@ aZd
 aTk
 bdy
 beH
-bgc
-bgc
-bgc
-bgc
-bgc
-bgc
-bgc
+boB
+boB
+boB
+boB
+boB
+boB
+boB
 bpp
-bgc
+boB
 brr
 bmZ
 bvK
@@ -114330,7 +114317,7 @@ alY
 bwT
 bxG
 asK
-bQZ
+bPN
 iKq
 iKq
 iKq
@@ -114558,7 +114545,7 @@ biY
 bjS
 bnr
 bpr
-bgc
+boB
 blx
 bna
 bvM
@@ -114577,17 +114564,17 @@ eCX
 oad
 crN
 buC
-ado
+uQD
 ahB
 oos
 ajF
-bQZ
+bPN
 alj
 alj
 bwU
 aqV
 asU
-bQZ
+bPN
 iKq
 iKq
 iKq
@@ -114814,8 +114801,8 @@ bky
 btp
 bjT
 boB
-bgc
-bgc
+boB
+boB
 bsk
 bsF
 aCN
@@ -114838,13 +114825,13 @@ bEC
 ahF
 aiR
 bHp
-bQZ
+bPN
 alk
 alk
 bwU
 xgD
 asW
-bQZ
+bPN
 iKq
 iKq
 iKq
@@ -115071,7 +115058,7 @@ bky
 gea
 gMA
 bjS
-bqe
+bxn
 brA
 blD
 buw
@@ -115095,12 +115082,12 @@ bEC
 cNW
 cNW
 rTR
-bQZ
-bQZ
-bQZ
+bPN
+bPN
+bPN
 aRv
-bQZ
-bQZ
+bPN
+bPN
 bPN
 cNW
 hVC
@@ -115328,7 +115315,7 @@ bky
 cAs
 bky
 bjT
-bqe
+bxn
 brz
 blN
 cBt
@@ -115585,7 +115572,7 @@ bky
 nCC
 bky
 bjT
-bqe
+bxn
 brC
 blN
 bvO
@@ -115842,7 +115829,7 @@ bky
 cVZ
 bky
 bjT
-bqe
+bxn
 brB
 bla
 bsG
@@ -116099,7 +116086,7 @@ aaf
 aaa
 bky
 bjT
-bqe
+bxn
 brD
 blO
 bsI
@@ -116356,24 +116343,24 @@ aaf
 aaa
 bky
 bjT
-bqe
-bqe
+bxn
+bxn
 bQs
-bqe
-bqe
-bqe
+bxn
+bxn
+bxn
 bqe
 bqe
 bqe
 bqe
 bqe
 brw
-bEs
-bEs
+bEC
+bEC
 btn
-bEs
-bEs
-bEs
+bEC
+bEC
+bEC
 cNW
 cNW
 nex
@@ -116625,12 +116612,12 @@ bsM
 bsM
 bsM
 xRe
-bEs
+bEC
 bHu
 btu
 bKf
 bLk
-bEs
+bEC
 iKq
 iKq
 iKq
@@ -116882,12 +116869,12 @@ lLX
 bky
 bky
 bky
-bEs
+bEC
 cBA
 aPn
 bKe
 bLj
-bEs
+bEC
 iKq
 iKq
 iKq
@@ -117138,13 +117125,13 @@ rYO
 rYO
 rYO
 cmz
-bky
+caF
 bGd
 bHv
 mGG
 bKe
 bLm
-bEs
+bEC
 iKq
 iKq
 iKq
@@ -117395,13 +117382,13 @@ rYO
 rYO
 rYO
 rYO
-bky
+caF
 bEY
 bEY
 bEY
-bEs
+bEC
 bLl
-bEs
+bEC
 bPp
 bPp
 cNW
