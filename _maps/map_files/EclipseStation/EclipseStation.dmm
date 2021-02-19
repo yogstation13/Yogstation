@@ -81820,6 +81820,15 @@
 /obj/structure/table,
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
+"fwd" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "psych";
+	name = "Evaluation Office Shutters"
+	},
+/turf/open/floor/plating,
+/area/medical/sleeper)
 "fxg" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/red,
@@ -84688,6 +84697,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"lMD" = (
+/obj/structure/chair/office,
+/turf/open/floor/wood,
+/area/medical/sleeper)
 "lMP" = (
 /obj/machinery/light{
 	dir = 1
@@ -86004,15 +86017,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/maintenance/department/chapel)
-"oBq" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/preopen{
-	id = "psych";
-	name = "privacy shutter"
-	},
-/obj/machinery/door/firedoor,
-/turf/open/floor/plating,
-/area/medical/sleeper)
 "oCP" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -87045,6 +87049,16 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/maintenance/department/bridge)
+"rlS" = (
+/obj/structure/table/wood,
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Common Channel";
+	pixel_x = 30
+	},
+/obj/item/clothing/neck/stethoscope,
+/turf/open/floor/wood,
+/area/medical/sleeper)
 "rmF" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -87466,17 +87480,6 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
-"shZ" = (
-/obj/structure/chair/wood{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "psych";
-	name = "Evaluation Office Shutters";
-	pixel_x = 28
-	},
-/turf/open/floor/wood,
-/area/medical/sleeper)
 "sjK" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -87534,10 +87537,6 @@
 /obj/machinery/vending/cola/random,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"soU" = (
-/obj/structure/chair/comfy,
-/turf/open/floor/wood,
-/area/medical/sleeper)
 "soY" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance/two,
@@ -88035,6 +88034,26 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
+"twb" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "psych";
+	name = "Evaluation Office Shutters Control";
+	pixel_x = 25;
+	pixel_y = 6
+	},
+/obj/machinery/button/door{
+	id = "evaloffice";
+	name = "Evaluation Office Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = 25;
+	pixel_y = -8;
+	specialfunctions = 4
+	},
+/turf/open/floor/wood,
+/area/medical/sleeper)
 "twC" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -88459,20 +88478,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"uxV" = (
-/obj/machinery/door/airlock/wood{
-	name = "Evaluation Office";
-	req_access_txt = "5"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/wood,
-/area/medical/sleeper)
 "uxZ" = (
 /obj/structure/window/reinforced,
 /obj/machinery/light{
@@ -88716,6 +88721,20 @@
 /obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/plating,
 /area/maintenance/department/security)
+"uSo" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/wood{
+	id_tag = "evaloffice";
+	name = "Evaluation Office"
+	},
+/turf/open/floor/wood,
+/area/medical/sleeper)
 "uSP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/vending/snack/random,
@@ -89735,15 +89754,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"xeW" = (
-/obj/structure/table/wood,
-/obj/item/radio/intercom{
-	freerange = 1;
-	name = "Common Channel";
-	pixel_x = 30
-	},
-/turf/open/floor/wood,
-/area/medical/sleeper)
 "xfI" = (
 /obj/structure/chair/comfy/brown{
 	buildstackamount = 0;
@@ -97014,7 +97024,7 @@ atC
 atC
 bEt
 lfy
-oBq
+fwd
 flN
 szq
 uut
@@ -97271,7 +97281,7 @@ cdU
 atC
 bEt
 lfy
-oBq
+fwd
 lOI
 wuT
 jMy
@@ -97528,7 +97538,7 @@ bmA
 iMz
 bEt
 lfy
-oBq
+fwd
 poA
 wJu
 mUg
@@ -97785,11 +97795,11 @@ bmB
 iMz
 bEu
 bGg
-uxV
+uSo
 uys
-soU
-xeW
-shZ
+lMD
+rlS
+twb
 pQu
 aaa
 aaa
