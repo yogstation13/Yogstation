@@ -31,7 +31,7 @@
 	visor_flags_inv = 0
 
 /obj/item/clothing/mask/gas/sechailer/swat/encrypted
-	name = "MK.II SWAT mask"
+	name = "\improper MK.II SWAT mask"
 	desc = "A top-grade mask that encrypts your voice, allowing only other users of the same mask to understand you. \
 			There are some buttons with basic commands to control the locals."
 	var/static/list/garbled_noises
