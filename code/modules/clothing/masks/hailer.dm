@@ -30,6 +30,27 @@
 	flags_inv = HIDEFACIALHAIR|HIDEFACE|HIDEEYES|HIDEEARS|HIDEHAIR
 	visor_flags_inv = 0
 
+/obj/item/clothing/mask/gas/sechailer/swat/encrypted
+	name = "MK.II SWAT mask"
+	desc = "A top-grade mask that encrypts your voice, allowing only other users of the same mask to understand you. \
+			There are some buttons with basic commands to control the locals."
+	var/static/list/garbled_noises
+
+/obj/item/clothing/mask/gas/sechailer/swat/encrypted/Initialize()
+	. = ..()
+	garbled_noises = list('sound/voice/cpvoice/combine1.ogg', 'sound/voice/cpvoice/combine2.ogg', 'sound/voice/cpvoice/combine3.ogg', 'sound/voice/cpvoice/combine4.ogg', 'sound/voice/cpvoice/combine5.ogg', 'sound/voice/cpvoice/combine6.ogg', 'sound/voice/cpvoice/combine7.ogg', 'sound/voice/cpvoice/combine8.ogg', 'sound/voice/cpvoice/combine9.ogg', 'sound/voice/cpvoice/combine10.ogg', 'sound/voice/cpvoice/combine11.ogg', 'sound/voice/cpvoice/combine12.ogg', 'sound/voice/cpvoice/combine13.ogg', 'sound/voice/cpvoice/combine14.ogg', 'sound/voice/cpvoice/combine15.ogg')
+
+/obj/item/clothing/mask/gas/sechailer/swat/encrypted/equipped(mob/living/user)
+	user.grant_language(/datum/language/encrypted)
+
+/obj/item/clothing/mask/gas/sechailer/swat/encrypted/dropped(mob/living/user)
+	user.remove_language(/datum/language/encrypted)
+
+/obj/item/clothing/mask/gas/sechailer/swat/encrypted/on_mob_say(mob/living/carbon/L, message, message_range)
+	if(L.wear_mask == src)
+		var/chosen_sound = pick(garbled_noises)
+		playsound(L, chosen_sound, 50, FALSE)
+
 /obj/item/clothing/mask/gas/sechailer/swat/spacepol
 	name = "spacepol mask"
 	desc = "A close-fitting tactical mask created in cooperation with a certain megacorporation, comes with an especially aggressive Compli-o-nator 3000."
