@@ -23,6 +23,7 @@
 		/datum/language/japanese,
 		/datum/language/machine, //yogs
 		/datum/language/darkspawn //also yogs
+		/datum/language/encrypted
 	))
 
 /obj/item/organ/tongue/Initialize(mapload)
