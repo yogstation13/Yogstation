@@ -145,3 +145,6 @@
 	var/list/completed_asset_jobs = list()
 	var/last_asset_job = 0
 	var/last_completed_asset_job = 0
+
+	var/list/active_music = list()
+	var/datum/music/playing_music = null

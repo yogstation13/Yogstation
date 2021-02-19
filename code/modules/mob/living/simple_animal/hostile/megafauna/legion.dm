@@ -134,6 +134,10 @@ Difficulty: Medium
 		adjustHealth(-maxHealth) //heal ourself to full in prep for splitting
 		var/mob/living/simple_animal/hostile/megafauna/legion/L = new(loc)
 
+		var/datum/component/music_player/player = GetComponent(/datum/component/music_player)
+		if(player)
+			L.AddComponent(player.type, player.music_path)
+
 		L.maxHealth = round(maxHealth * 0.6,DAMAGE_PRECISION)
 		maxHealth = L.maxHealth
 
