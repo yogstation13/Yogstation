@@ -279,6 +279,10 @@
 "Ct" = (
 /turf/closed/indestructible/riveted,
 /area/reebe)
+"RI" = (
+/obj/item/reagent_containers/food/snacks/grown/onion,
+/turf/open/indestructible/reebe_void/spawning/lattices,
+/area/reebe)
 "Vl" = (
 /obj/structure/table/reinforced/brass,
 /obj/effect/landmark/servant_of_ratvar/scarab,
@@ -5211,7 +5215,7 @@ ab
 ab
 ab
 ab
-ab
+RI
 ab
 ab
 ab
