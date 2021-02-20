@@ -89,7 +89,7 @@
 	. = ..()
 
 	if(!beehome)
-		. += "<span class='warning'>This bee is homeless!</span>"
+		. += "<span class='warning'>This bee is homeless AND ANGRY!</span>"
 
 
 /mob/living/simple_animal/hostile/poison/bees/proc/generate_bee_visuals()
@@ -117,13 +117,13 @@
 		return FALSE
 	if(isliving(the_target))
 		var/mob/living/H = the_target
-		return !beehome || (angery && !H.bee_friendly())
+		return !H.bee_friendly() && (!beehome || angery)
 
 
 /mob/living/simple_animal/hostile/poison/bees/Found(atom/A)
 	if(isliving(A))
 		var/mob/living/H = A
-		return !beehome || (angery && !H.bee_friendly())
+		return !H.bee_friendly() && (!beehome || angery)
 	if(istype(A, /obj/machinery/hydroponics) && !angery)
 		var/obj/machinery/hydroponics/Hydro = A
 		if(Hydro.myseed && !Hydro.dead && !Hydro.recent_bee_visit)
