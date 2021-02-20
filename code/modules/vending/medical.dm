@@ -13,7 +13,7 @@
 					/obj/item/reagent_containers/pill/patch/silver_sulf = 5,
 					/obj/item/reagent_containers/syringe/perfluorodecalin = 2,
 					/obj/item/reagent_containers/pill/insulin = 5,
-					/obj/item/reagent_containers/glass/bottle/charcoal = 4,
+					/obj/item/reagent_containers/glass/bottle/multiver = 4,
 					/obj/item/reagent_containers/glass/bottle/epinephrine = 3,
 					/obj/item/reagent_containers/glass/bottle/morphine = 4,
 					/obj/item/reagent_containers/glass/bottle/potass_iodide = 1,
@@ -27,7 +27,7 @@
 					/obj/item/pinpointer/crew = 2)
 	contraband = list(/obj/item/reagent_containers/pill/tox = 3,
 		              /obj/item/reagent_containers/pill/morphine = 4,
-		              /obj/item/reagent_containers/pill/charcoal = 6,
+		              /obj/item/reagent_containers/pill/multiver = 6,
 		              /obj/item/storage/box/hug/medical = 1)
 	premium = list(/obj/item/reagent_containers/medspray/synthflesh = 2,
 		           /obj/item/storage/pill_bottle/psicodine = 2,

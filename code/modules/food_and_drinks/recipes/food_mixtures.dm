@@ -358,3 +358,8 @@ datum/chemical_reaction/bugmix
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_containers/food/snacks/store/cheesewheel/bug(location)
 
+
+/datum/chemical_reaction/food/nutriconversion
+	results = list(/datum/reagent/consumable/nutriment/peptides = 0.5)
+	required_reagents = list(/datum/reagent/consumable/nutriment = 0.5)
+	required_catalysts = list(/datum/reagent/medicine/metafactor = 0.5)

@@ -165,8 +165,8 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/syringe/charcoal = 4,
-		/obj/item/storage/pill_bottle/charcoal = 2,
+		/obj/item/reagent_containers/syringe/multiver = 4,
+		/obj/item/storage/pill_bottle/multiver = 2,
 		/obj/item/healthanalyzer = 1)
 	generate_items_inside(items_inside,src)
 
@@ -299,13 +299,13 @@
 	user.visible_message("<span class='suicide'>[user] is trying to get the cap off [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return (TOXLOSS)
 
-/obj/item/storage/pill_bottle/charcoal
-	name = "bottle of charcoal pills"
+/obj/item/storage/pill_bottle/multiver
+	name = "bottle of multiver pills"
 	desc = "Contains pills used to counter toxins."
 
 /obj/item/storage/pill_bottle/charcoal/PopulateContents()
 	for(var/i in 1 to 7)
-		new /obj/item/reagent_containers/pill/charcoal(src)
+		new /obj/item/reagent_containers/pill/multiver(src)
 
 /obj/item/storage/pill_bottle/epinephrine
 	name = "bottle of epinephrine pills"
