@@ -1,3 +1,4 @@
+#define C2NAMEREAGENT "[initial(reagent.name)] (Has Side-Effects)"
 /*
 Contains:
 Borg Hypospray
@@ -67,11 +68,18 @@ Borg Hypospray
 	R.add_reagent(reagent, 30)
 
 	modes[reagent] = modes.len + 1
-	reagent_names[initial(reagent.name)] = reagent
+
+	if(initial(reagent.harmful))
+		reagent_names[C2NAMEREAGENT] = reagent
+	else
+		reagent_names[initial(reagent.name)] = reagent
 
 /obj/item/reagent_containers/borghypo/proc/del_reagent(datum/reagent/reagent)
 	reagent_ids -= reagent
-	reagent_names -= initial(reagent.name)
+	if(istype(reagent, /datum/reagent/medicine/c2))
+		reagent_names -= C2NAMEREAGENT
+	else
+		reagent_names -= initial(reagent.name)
 	var/datum/reagents/RG
 	var/datum/reagents/TRG
 	for(var/i in 1 to reagent_ids.len)
