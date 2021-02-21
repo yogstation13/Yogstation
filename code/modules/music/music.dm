@@ -149,26 +149,26 @@
 	if(!target_mob || !target_mob.client)
 		qdel(src)
 		return
-	if(fade_volume == 1 || fade_volume_target != 1 || !is_fading)
-		var/closest_range_squared = soft_range*soft_range + 10
-		for(var/_player in players)
-			var/datum/component/music_player/player = _player
-			var/atom/movable/M = player.parent
-			if(M.z != target_mob.z)
-				continue
-			var/dx = M.x-target_mob.x
-			var/dy = M.y-target_mob.y
-			var/range_squared = dx*dx+dy*dy
-			if(range_squared < closest_range_squared)
-				closest_range_squared = range_squared
-		var/closest_range = sqrt(closest_range_squared)
-		var/target
-		if(closest_range <= full_range)
-			target = 1
-		else if(closest_range >= soft_range)
-			target = 0
-		else
-			target = (soft_range - closest_range) / (soft_range - full_range)
+	var/closest_range_squared = soft_range*soft_range + 10
+	for(var/_player in players)
+		var/datum/component/music_player/player = _player
+		var/atom/movable/M = player.parent
+		if(M.z != target_mob.z)
+			continue
+		var/dx = M.x-target_mob.x
+		var/dy = M.y-target_mob.y
+		var/range_squared = dx*dx+dy*dy
+		if(range_squared < closest_range_squared)
+			closest_range_squared = range_squared
+	var/closest_range = sqrt(closest_range_squared)
+	var/target
+	if(closest_range <= full_range)
+		target = 1
+	else if(closest_range >= soft_range)
+		target = 0
+	else
+		target = (soft_range - closest_range) / (soft_range - full_range)
+	if(!is_fading || fade_volume_target != target)
 		fade_at_rate(target, range_fade_speed)
 
 	. = ..()
