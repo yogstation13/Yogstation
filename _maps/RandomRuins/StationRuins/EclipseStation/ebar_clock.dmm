@@ -177,14 +177,6 @@
 "fU" = (
 /turf/open/floor/bronze,
 /area/crew_quarters/theatre)
-"gm" = (
-/obj/item/lighter,
-/obj/structure/table/bronze,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
 "gq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -256,10 +248,16 @@
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
-"jM" = (
+"jQ" = (
+/obj/item/lighter,
 /obj/structure/table/bronze,
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "jS" = (
@@ -281,10 +279,6 @@
 /obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"km" = (
-/obj/machinery/smartfridge/drinks,
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
 "kB" = (
 /obj/structure/table/bronze,
 /obj/structure/disposalpipe/segment{
@@ -343,15 +337,6 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
-"lu" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
 "me" = (
 /obj/machinery/door/airlock{
 	name = "Theatre Backstage";
@@ -412,6 +397,14 @@
 "pb" = (
 /obj/structure/chair/bronze,
 /turf/open/floor/bronze,
+/area/crew_quarters/bar)
+"pk" = (
+/obj/structure/table/bronze,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "px" = (
 /obj/structure/window/reinforced{
@@ -729,11 +722,6 @@
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
-"Cu" = (
-/obj/item/clothing/head/that,
-/obj/structure/table/bronze,
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
 "Cz" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
@@ -747,6 +735,16 @@
 /obj/structure/window/reinforced/bronze,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/theatre)
+"DB" = (
+/obj/structure/table/bronze,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
 "DH" = (
 /obj/structure/chair/bronze{
 	dir = 4
@@ -770,10 +768,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"Ea" = (
-/obj/structure/table/bronze,
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
 "Eg" = (
 /obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/bronze/reebe,
@@ -793,6 +787,15 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
+"Ew" = (
+/obj/item/clothing/head/that,
+/obj/structure/table/bronze,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
 "EA" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -938,6 +941,14 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
+"JH" = (
+/obj/machinery/smartfridge/drinks,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
 "JQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -963,6 +974,21 @@
 	},
 /obj/item/clockwork/alloy_shards/medium,
 /turf/open/floor/bronze,
+/area/crew_quarters/bar)
+"KJ" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "bar shutters";
+	pixel_x = 25;
+	pixel_y = 24
+	},
+/turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "KL" = (
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -1578,11 +1604,11 @@ aC
 Ld
 aC
 aC
-gm
-Ea
-Cu
-Ea
-Ea
+jQ
+pk
+Ew
+pk
+pk
 xi
 kZ
 pb
@@ -1602,7 +1628,7 @@ OU
 OU
 Kl
 OU
-jM
+DB
 xi
 Hr
 ms
@@ -1617,12 +1643,12 @@ ip
 ip
 ip
 aC
-lu
+KJ
 Jv
 vh
 tI
 OU
-km
+JH
 ms
 OU
 OU

@@ -30,18 +30,6 @@
 /obj/structure/musician/piano,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
-"ag" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Bar Maintenance";
-	req_access_txt = "12"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "ah" = (
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/structure/table/wood,
@@ -313,10 +301,6 @@
 /obj/structure/sign/plaques/deempisi,
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"aT" = (
-/obj/item/storage/secure/safe,
-/turf/closed/wall,
-/area/crew_quarters/bar)
 "aU" = (
 /obj/structure/statue/sandstone/venus,
 /turf/open/floor/plasteel/vaporwave,
@@ -332,12 +316,6 @@
 	},
 /obj/item/gun/ballistic/revolver/russian,
 /turf/open/floor/wood,
-/area/crew_quarters/bar)
-"aX" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "aY" = (
 /obj/structure/kitchenspike,
@@ -516,16 +494,6 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
-"by" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/bar)
 "bz" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -610,37 +578,12 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/beach/sand,
 /area/crew_quarters/bar)
-"bI" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/item/storage/bag/tray,
-/obj/item/storage/bag/tray,
-/obj/item/storage/bag/tray,
-/obj/item/storage/bag/tray,
-/obj/item/storage/bag/tray,
-/obj/item/reagent_containers/food/snacks/dolphinmeat,
-/obj/item/reagent_containers/food/snacks/dolphinmeat,
-/obj/item/reagent_containers/food/snacks/dolphinmeat,
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/bar)
 "bJ" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
 "bK" = (
 /obj/machinery/vending/boozeomat,
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/bar)
-"bL" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "conveyorbar"
-	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "bM" = (
@@ -700,10 +643,6 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
-"bT" = (
-/obj/machinery/smartfridge/drinks,
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/bar)
 "bU" = (
 /obj/machinery/deepfryer,
 /turf/open/floor/plasteel/vaporwave,
@@ -723,18 +662,6 @@
 	dir = 4
 	},
 /turf/open/floor/plating/beach/sand,
-/area/crew_quarters/bar)
-"bZ" = (
-/obj/structure/table/reinforced,
-/obj/structure/plasticflaps,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "conveyorbar"
-	},
-/turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "ca" = (
 /obj/structure/table,
@@ -771,12 +698,6 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
-"ch" = (
-/obj/structure/table/reinforced,
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/bar)
 "cj" = (
 /obj/machinery/light_switch{
 	pixel_y = -25
@@ -830,10 +751,6 @@
 /obj/structure/flora/ausbushes/leafybush,
 /mob/living/simple_animal/hostile/lizard,
 /turf/open/floor/plating/beach/sand,
-/area/crew_quarters/bar)
-"cs" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "ct" = (
 /obj/structure/table/reinforced,
@@ -1026,20 +943,6 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
-"cY" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/mask/cigarette/rollie/cannabis,
-/obj/item/clothing/mask/cigarette/rollie/cannabis,
-/obj/item/clothing/mask/cigarette/rollie/cannabis,
-/obj/item/clothing/mask/cigarette/rollie/cannabis,
-/obj/item/clothing/mask/cigarette/rollie/cannabis,
-/obj/item/clothing/mask/cigarette/rollie/cannabis,
-/obj/item/clothing/mask/cigarette/rollie/cannabis,
-/obj/item/clothing/mask/cigarette/rollie/cannabis,
-/obj/item/clothing/mask/cigarette/rollie/cannabis,
-/obj/item/clothing/mask/cigarette/rollie/cannabis,
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/bar)
 "df" = (
 /obj/structure/chair/stool,
 /obj/effect/landmark/start/assistant,
@@ -1086,8 +989,25 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
+"hc" = (
+/obj/structure/table/reinforced,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
 "ht" = (
 /obj/effect/landmark/event_spawn,
+/turf/closed/wall,
+/area/crew_quarters/bar)
+"hG" = (
+/obj/item/storage/secure/safe{
+	pixel_x = -2;
+	pixel_y = 4
+	},
 /turf/closed/wall,
 /area/crew_quarters/bar)
 "jj" = (
@@ -1105,10 +1025,6 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
-"nw" = (
-/obj/effect/spawner/structure/window/plasma,
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "ow" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
@@ -1125,6 +1041,25 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
+"pR" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/bag/tray,
+/obj/item/storage/bag/tray,
+/obj/item/storage/bag/tray,
+/obj/item/storage/bag/tray,
+/obj/item/storage/bag/tray,
+/obj/item/reagent_containers/food/snacks/dolphinmeat,
+/obj/item/reagent_containers/food/snacks/dolphinmeat,
+/obj/item/reagent_containers/food/snacks/dolphinmeat,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
 "qM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -1166,8 +1101,48 @@
 /obj/item/reagent_containers/food/snacks/mint,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
+"wK" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/mask/cigarette/rollie/cannabis,
+/obj/item/clothing/mask/cigarette/rollie/cannabis,
+/obj/item/clothing/mask/cigarette/rollie/cannabis,
+/obj/item/clothing/mask/cigarette/rollie/cannabis,
+/obj/item/clothing/mask/cigarette/rollie/cannabis,
+/obj/item/clothing/mask/cigarette/rollie/cannabis,
+/obj/item/clothing/mask/cigarette/rollie/cannabis,
+/obj/item/clothing/mask/cigarette/rollie/cannabis,
+/obj/item/clothing/mask/cigarette/rollie/cannabis,
+/obj/item/clothing/mask/cigarette/rollie/cannabis,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
+"yj" = (
+/obj/effect/spawner/structure/window/plasma,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "BP" = (
 /obj/effect/spawner/xmastree,
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
+"DY" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "conveyorbar"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "EC" = (
@@ -1190,11 +1165,96 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
+"Mn" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "conveyorbar"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
+"Ow" = (
+/obj/structure/table/reinforced,
+/obj/structure/plasticflaps,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "conveyorbar"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
+"PG" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
+"Qr" = (
+/obj/machinery/smartfridge/drinks,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
+"QR" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
+"Rm" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "bar shutters";
+	pixel_x = -25;
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
 "SA" = (
 /obj/effect/landmark/blobstart,
 /obj/item/clothing/mask/cigarette/rollie/cannabis,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
+"Tz" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/maintenance{
+	name = "Bar Maintenance";
+	req_one_access_txt = "12;25"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "VM" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/mixbowl{
@@ -1231,11 +1291,11 @@ ab
 ab
 ab
 ab
-nw
+yj
 ht
-nw
+yj
 ab
-nw
+yj
 ab
 ab
 ab
@@ -1335,7 +1395,7 @@ cJ
 cL
 df
 ao
-nw
+yj
 "}
 (8,1,1) = {"
 ac
@@ -1361,29 +1421,29 @@ ao
 ao
 ao
 ao
-bZ
-cs
-cs
-cs
+Ow
+QR
+QR
+QR
 aP
 ds
 ab
 "}
 (10,1,1) = {"
-ag
+Tz
 at
 ao
 ao
 ao
 ao
 ao
-bL
+DY
 ao
 ao
-cY
+wK
 aP
 ao
-nw
+yj
 "}
 (11,1,1) = {"
 ab
@@ -1393,10 +1453,10 @@ aV
 bh
 bx
 ao
-bL
+DY
 cu
 ao
-cs
+QR
 aP
 cC
 ab
@@ -1407,12 +1467,12 @@ ab
 ab
 ab
 aS
-by
-bI
-cL
+PG
+pR
+Mn
 cv
 ao
-cs
+QR
 aP
 ao
 cG
@@ -1422,13 +1482,13 @@ ah
 aw
 aJ
 aW
-aT
+hG
 bz
 ao
 cL
 ao
 ao
-ch
+hc
 dh
 ao
 ab
@@ -1439,7 +1499,7 @@ wt
 aK
 ai
 cA
-aX
+Rm
 bf
 cL
 ce
@@ -1460,7 +1520,7 @@ bK
 cL
 cy
 ao
-bT
+Qr
 ao
 dx
 ab

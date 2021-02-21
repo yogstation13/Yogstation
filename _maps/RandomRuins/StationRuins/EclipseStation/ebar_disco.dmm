@@ -115,15 +115,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"eG" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "eI" = (
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/light/colour_cycle/dancefloor_a,
@@ -210,11 +201,6 @@
 /obj/machinery/computer/slot_machine/casino,
 /turf/open/floor/carpet/black,
 /area/crew_quarters/bar)
-"jD" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/head/that,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "jJ" = (
 /obj/structure/sink/kitchen{
 	pixel_y = 28
@@ -236,10 +222,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"kY" = (
-/obj/machinery/smartfridge/drinks,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "le" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Bar Maintenance";
@@ -257,6 +239,39 @@
 /obj/structure/table/reinforced,
 /obj/item/clothing/head/hardhat/cakehat,
 /turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
+"ly" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/westright,
+/obj/machinery/chem_dispenser/drinks,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"lz" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "bar shutters";
+	pixel_x = 25;
+	pixel_y = 24
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"lN" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "lU" = (
 /obj/machinery/light{
@@ -313,10 +328,15 @@
 /mob/living/carbon/monkey/punpun,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"nJ" = (
-/obj/structure/sign/barsign,
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/turf/open/floor/plating,
+"oa" = (
+/obj/structure/table/reinforced,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "pG" = (
 /obj/structure/table/wood,
@@ -370,6 +390,14 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
+"qX" = (
+/obj/machinery/smartfridge/drinks,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "rc" = (
 /obj/machinery/button/door{
 	id = "kitchen";
@@ -440,6 +468,15 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"ty" = (
+/obj/structure/sign/barsign,
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "tz" = (
 /obj/item/radio/intercom{
 	pixel_y = 25
@@ -622,10 +659,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"Bx" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "BJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -647,19 +680,6 @@
 "CA" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"CD" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "CP" = (
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -720,12 +740,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"Ga" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/westright,
-/obj/machinery/chem_dispenser/drinks,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "Gc" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -788,6 +802,15 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/crew_quarters/theatre)
+"Ib" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/that,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "KA" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -1000,6 +1023,14 @@
 /obj/structure/closet/secure_closet/bartender,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
+"SA" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "SL" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/light/colour_cycle/dancefloor_a,
@@ -1009,12 +1040,6 @@
 	pixel_y = -30
 	},
 /turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
-"ST" = (
-/obj/structure/table/reinforced,
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Tk" = (
 /obj/structure/table/reinforced,
@@ -1210,8 +1235,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"ZA" = (
-/obj/structure/table/reinforced,
+"ZI" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 
@@ -1225,13 +1263,13 @@ iu
 iu
 rV
 rV
-Bx
+SA
 rV
 rV
-Bx
+SA
 rV
 rV
-Bx
+SA
 rV
 rV
 "}
@@ -1353,7 +1391,7 @@ SL
 Xi
 ak
 VK
-nJ
+ty
 "}
 (8,1,1) = {"
 ir
@@ -1373,7 +1411,7 @@ Xi
 Xi
 zO
 VK
-Bx
+SA
 "}
 (9,1,1) = {"
 ir
@@ -1440,12 +1478,12 @@ rV
 rV
 le
 rV
-CD
-Ga
-ZA
-jD
-ZA
-ZA
+ZI
+ly
+lN
+Ib
+lN
+lN
 rF
 VK
 hk
@@ -1465,7 +1503,7 @@ Ru
 Ru
 gi
 Ru
-ST
+oa
 rF
 VK
 de
@@ -1480,12 +1518,12 @@ zN
 zN
 zN
 rV
-eG
+lz
 Qd
 nr
 hy
 Ru
-kY
+qX
 VK
 VK
 VK

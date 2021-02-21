@@ -35,18 +35,6 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
-"af" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Bar Maintenance";
-	req_access_txt = "12"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "ag" = (
 /turf/closed/wall{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
@@ -234,16 +222,6 @@
 /obj/item/storage/bag/money,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"aH" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "aI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -328,15 +306,6 @@
 /obj/machinery/chem_dispenser/drinks/beer{
 	dir = 8
 	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"aS" = (
-/obj/structure/table/reinforced,
-/obj/machinery/chem_dispenser/drinks{
-	dir = 4;
-	icon_state = "soda_dispenser"
-	},
-/obj/machinery/door/window/westright,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aT" = (
@@ -509,12 +478,6 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"bo" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "bp" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_y = -32
@@ -588,10 +551,6 @@
 	pixel_x = 2
 	},
 /turf/open/floor/carpet/black,
-/area/crew_quarters/bar)
-"by" = (
-/obj/machinery/smartfridge/drinks,
-/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bz" = (
 /obj/structure/extinguisher_cabinet{
@@ -730,12 +689,6 @@
 /obj/effect/landmark/start/cook,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"bR" = (
-/obj/structure/table/reinforced,
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "bS" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -783,11 +736,6 @@
 	light_color = "#e8eaff"
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/bar)
-"bY" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/head/that,
-/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bZ" = (
 /obj/effect/landmark/start/bartender,
@@ -837,10 +785,6 @@
 /obj/effect/landmark/event_spawn,
 /obj/structure/chair/americandiner,
 /turf/open/floor/carpet,
-/area/crew_quarters/bar)
-"cl" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "cm" = (
 /turf/open/floor/wood,
@@ -923,13 +867,49 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"ij" = (
-/obj/structure/sign/plaques/deempisi,
+"he" = (
+/obj/machinery/smartfridge/drinks,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"ig" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = -26;
+	pixel_y = 24;
+	req_access_txt = "28"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"jK" = (
+/obj/structure/sign/plaques/deempisi{
+	pixel_x = 6;
+	pixel_y = 5
+	},
 /turf/closed/wall{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
 	icon_state = "r_wall"
 	},
 /area/crew_quarters/bar)
+"pd" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/maintenance{
+	name = "Bar Maintenance";
+	req_one_access_txt = "12;25"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "pr" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -944,6 +924,23 @@
 /obj/effect/spawner/xmastree,
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
+"rg" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/that,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"xv" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "zc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8;
@@ -953,6 +950,14 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
+"zx" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "AK" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/enzyme{
@@ -961,6 +966,20 @@
 /obj/item/stack/packageWrap,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
+"Di" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "Fj" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets{
@@ -1000,6 +1019,16 @@
 /obj/effect/landmark/event_spawn,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"SA" = (
+/obj/structure/table/reinforced,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "SW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -1026,16 +1055,29 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
+"ZJ" = (
+/obj/structure/table/reinforced,
+/obj/machinery/chem_dispenser/drinks{
+	dir = 4;
+	icon_state = "soda_dispenser"
+	},
+/obj/machinery/door/window/westright,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
 ac
 ac
-ab
+xv
 ac
-ab
+xv
 Sl
-ab
+xv
 ac
 ac
 ac
@@ -1137,7 +1179,7 @@ ck
 bw
 bv
 ap
-ab
+xv
 "}
 (8,1,1) = {"
 ac
@@ -1172,7 +1214,7 @@ ap
 bO
 "}
 (10,1,1) = {"
-af
+pd
 as
 ap
 ap
@@ -1208,16 +1250,16 @@ ag
 ag
 ag
 ag
-ij
-aH
-aS
-cl
-bY
-cl
-cl
+jK
+Di
+ZJ
+zx
+rg
+zx
+zx
 ap
 ap
-ab
+xv
 "}
 (13,1,1) = {"
 ah
@@ -1225,12 +1267,12 @@ ax
 aK
 aW
 be
-bo
+ig
 cm
 cm
 bZ
 cm
-bR
+SA
 Gp
 bJ
 ac
@@ -1262,7 +1304,7 @@ bq
 cm
 bh
 cm
-by
+he
 ap
 db
 ac

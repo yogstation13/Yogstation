@@ -672,54 +672,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"bw" = (
-/obj/machinery/disposal/bin,
-/obj/structure/sign/warning/securearea{
-	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
-	icon_state = "monkey_painting";
-	name = "Mr. Deempisi portrait";
-	pixel_x = -28;
-	pixel_y = -4
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/machinery/button/door{
-	id = "barShutters";
-	name = "bar shutters";
-	pixel_x = 4;
-	pixel_y = 28
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkgreen,
-/obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"bx" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkgreen,
-/obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "by" = (
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks/beer{
@@ -799,22 +751,6 @@
 /area/crew_quarters/bar)
 "bD" = (
 /obj/structure/chair/stool/bar,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkgreen,
-/obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"bE" = (
-/obj/structure/table/reinforced,
-/obj/item/lighter,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
@@ -920,14 +856,6 @@
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"bP" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/preopen{
-	id = "barShutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "bQ" = (
 /obj/structure/chair{
 	dir = 4
@@ -981,21 +909,6 @@
 "bT" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkgreen,
-/obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"bU" = (
-/obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
@@ -1138,24 +1051,6 @@
 /area/crew_quarters/bar)
 "cg" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkgreen,
-/obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"ch" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/head/that{
-	throwforce = 1
-	},
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
@@ -1727,7 +1622,10 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"dd" = (
+"hs" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
@@ -1739,7 +1637,12 @@
 	dir = 1;
 	icon_state = "tile_corner"
 	},
-/obj/machinery/smartfridge/drinks,
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "bar shutters";
+	pixel_x = -26;
+	pixel_y = 25
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "hD" = (
@@ -1762,6 +1665,28 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"iD" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/that{
+	throwforce = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "pI" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/mixbowl{
@@ -1769,7 +1694,7 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"qV" = (
+"rc" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -1784,6 +1709,49 @@
 	},
 /obj/item/book/manual/wiki/barman_recipes,
 /obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"BW" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/machinery/smartfridge/drinks,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"Mh" = (
+/obj/structure/table/reinforced,
+/obj/item/lighter,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "MM" = (
@@ -1802,6 +1770,25 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"OP" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "PQ" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -1819,6 +1806,39 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"Rd" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
+"TD" = (
+/obj/machinery/disposal/bin,
+/obj/structure/sign/warning/securearea{
+	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
+	icon_state = "monkey_painting";
+	name = "Mr. Deempisi portrait";
+	pixel_x = -28;
+	pixel_y = -4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
@@ -1828,11 +1848,11 @@ ab
 ab
 ad
 bA
-bP
+Rd
 ad
-bP
+Rd
 ad
-bP
+Rd
 ad
 ad
 "}
@@ -1930,7 +1950,7 @@ cq
 cA
 aI
 aI
-bP
+Rd
 "}
 (8,1,1) = {"
 ab
@@ -2003,11 +2023,11 @@ ad
 ad
 ad
 ad
-bE
-bU
-ch
-bU
-bU
+Mh
+OP
+iD
+OP
+OP
 cH
 cW
 ad
@@ -2018,12 +2038,12 @@ au
 aL
 bb
 ad
-bw
+TD
 aI
 aI
 ci
 aI
-qV
+rc
 cI
 cX
 ad
@@ -2034,7 +2054,7 @@ ag
 aM
 bc
 bn
-bx
+hs
 aI
 bV
 aI
@@ -2055,7 +2075,7 @@ bF
 aI
 cj
 aI
-dd
+BW
 aI
 PQ
 ad

@@ -21,18 +21,6 @@
 /obj/structure/table/bronze,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/theatre)
-"ad" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Bar Maintenance";
-	req_access_txt = "12"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "ai" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Kitchen Maintenance";
@@ -90,11 +78,6 @@
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"au" = (
-/obj/item/lighter,
-/obj/structure/table/bronze,
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
 "aw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -324,6 +307,14 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
+"jl" = (
+/obj/machinery/smartfridge/drinks,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
 "js" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -396,13 +387,17 @@
 "nF" = (
 /turf/closed/wall,
 /area/crew_quarters/theatre)
-"nZ" = (
-/obj/item/clockwork/alloy_shards/clockgolem_remains,
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
-"oo" = (
+"nL" = (
 /obj/item/clothing/head/that,
 /obj/structure/table/bronze,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
+"nZ" = (
+/obj/item/clockwork/alloy_shards/clockgolem_remains,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "pv" = (
@@ -442,6 +437,15 @@
 	dir = 4
 	},
 /turf/open/floor/bronze/reebe,
+/area/crew_quarters/theatre)
+"rd" = (
+/obj/structure/grille/ratvar,
+/obj/structure/window/reinforced/fulltile/bronze,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
 /area/crew_quarters/theatre)
 "rj" = (
 /obj/machinery/vending/wardrobe/bar_wardrobe,
@@ -522,15 +526,6 @@
 /obj/structure/chair/bronze,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
-"vs" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "barShutters";
-	name = "privacy shutters"
-	},
-/obj/structure/grille/ratvar,
-/obj/structure/window/reinforced/fulltile/bronze,
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "vK" = (
 /obj/structure/table/bronze,
 /obj/item/reagent_containers/glass/mixbowl{
@@ -543,6 +538,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/bronze,
 /area/crew_quarters/theatre)
+"wq" = (
+/obj/item/lighter,
+/obj/structure/table/bronze,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
 "wz" = (
 /mob/living/carbon/monkey/punpun,
 /turf/open/floor/bronze/reebe,
@@ -554,6 +558,18 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
+"xa" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/maintenance{
+	name = "Bar Maintenance";
+	req_one_access_txt = "12;25"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "xr" = (
 /obj/machinery/light{
 	dir = 8
@@ -766,10 +782,6 @@
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
-"Gs" = (
-/obj/machinery/smartfridge/drinks,
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
 "Gv" = (
 /obj/machinery/chem_dispenser/drinks/beer{
 	dir = 8
@@ -793,12 +805,6 @@
 /area/crew_quarters/bar)
 "GL" = (
 /obj/item/clockwork/alloy_shards/small,
-/turf/open/floor/bronze,
-/area/crew_quarters/bar)
-"GN" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
 "Hp" = (
@@ -827,29 +833,6 @@
 /obj/structure/table/bronze,
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
-"Iq" = (
-/obj/machinery/disposal/bin,
-/obj/structure/sign/warning/securearea{
-	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
-	icon_state = "monkey_painting";
-	name = "Mr. Deempisi portrait";
-	pixel_x = -28;
-	pixel_y = -4
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/machinery/button/door{
-	id = "barShutters";
-	name = "bar shutters";
-	pixel_x = 4;
-	pixel_y = 28
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/bronze,
-/area/crew_quarters/bar)
 "IF" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -873,15 +856,6 @@
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
-"JB" = (
-/obj/structure/grille/ratvar,
-/obj/machinery/door/poddoor/preopen{
-	id = "barShutters";
-	name = "privacy shutters"
-	},
-/obj/structure/window/reinforced/fulltile/bronze,
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "JU" = (
 /obj/structure/chair/brass{
 	dir = 8
@@ -893,6 +867,18 @@
 	pixel_y = 28
 	},
 /turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
+"Ki" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "bar shutters";
+	pixel_x = -24;
+	pixel_y = 26
+	},
+/turf/open/floor/bronze,
 /area/crew_quarters/bar)
 "Lp" = (
 /obj/item/reagent_containers/food/drinks/shaker,
@@ -937,6 +923,14 @@
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
+"MZ" = (
+/obj/structure/table/bronze,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
 "Nc" = (
 /obj/item/clockwork/component/geis_capacitor/fallen_armor,
 /turf/open/floor/bronze,
@@ -956,6 +950,15 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/theatre)
+"Pe" = (
+/obj/structure/grille/ratvar,
+/obj/structure/window/reinforced/fulltile/bronze,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "PF" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -1029,12 +1032,6 @@
 /obj/structure/table/bronze,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
-"Sf" = (
-/obj/structure/table/bronze,
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
 "SD" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -1077,15 +1074,6 @@
 /obj/structure/table/bronze,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
-"Uf" = (
-/obj/structure/grille/ratvar,
-/obj/machinery/door/poddoor/preopen{
-	id = "barShutters";
-	name = "privacy shutters"
-	},
-/obj/structure/window/reinforced/fulltile/bronze,
-/turf/open/floor/plating,
-/area/crew_quarters/theatre)
 "Uv" = (
 /obj/effect/landmark/start/cook,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -1130,6 +1118,23 @@
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
+"VF" = (
+/obj/machinery/disposal/bin,
+/obj/structure/sign/warning/securearea{
+	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
+	icon_state = "monkey_painting";
+	name = "Mr. Deempisi portrait";
+	pixel_x = -28;
+	pixel_y = -4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/bronze,
+/area/crew_quarters/bar)
 "Wq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -1145,6 +1150,16 @@
 /area/crew_quarters/bar)
 "Wx" = (
 /turf/open/floor/bronze,
+/area/crew_quarters/bar)
+"WM" = (
+/obj/structure/table/bronze,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "WQ" = (
 /obj/machinery/light{
@@ -1191,15 +1206,15 @@
 aa
 aa
 BE
-Uf
+rd
 BE
-JB
+Pe
 nb
-vs
+Pe
 Ws
-vs
+Pe
 Ws
-vs
+Pe
 Ws
 Ws
 "}
@@ -1297,7 +1312,7 @@ aw
 EX
 AD
 Wx
-vs
+Pe
 "}
 (8,1,1) = {"
 nF
@@ -1332,7 +1347,7 @@ rR
 Fv
 "}
 (10,1,1) = {"
-ad
+xa
 PF
 Wx
 ax
@@ -1370,11 +1385,11 @@ Ws
 Ws
 Ws
 Ws
-au
-oo
-BA
-BA
-BA
+wq
+nL
+MZ
+MZ
+MZ
 GK
 Re
 Ws
@@ -1385,12 +1400,12 @@ QK
 Xj
 jf
 Ws
-Iq
+VF
 AD
 AD
 zN
 AD
-Sf
+WM
 yQ
 Rh
 Ws
@@ -1401,7 +1416,7 @@ Hw
 IU
 AS
 gC
-GN
+Ki
 AD
 wz
 AD
@@ -1422,7 +1437,7 @@ BM
 AD
 BH
 AD
-Gs
+jl
 AD
 MA
 Ws
