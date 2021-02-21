@@ -78,7 +78,6 @@
 	icon_state ="golfball"
 	throwforce = 12
 	attack_verb = list("hit")
-	var/last_hit = 0
 
 /obj/item/golfball/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/golfclub))
