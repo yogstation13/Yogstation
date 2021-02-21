@@ -56,22 +56,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"dk" = (
-/obj/structure/table/reinforced,
-/obj/item/lighter,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "dw" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mint,
@@ -134,6 +118,14 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"fB" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "fL" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/bluecherrycupcake{
@@ -168,25 +160,6 @@
 /obj/effect/spawner/xmastree,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"gN" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "bar shutters";
-	pixel_x = 25;
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "gS" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -204,13 +177,7 @@
 /obj/item/reagent_containers/food/snacks/nachos,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"hz" = (
-/obj/structure/chair/comfy/brown{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"hH" = (
+"hu" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
@@ -222,6 +189,12 @@
 	name = "privacy shutters"
 	},
 /turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"hz" = (
+/obj/structure/chair/comfy/brown{
+	dir = 4
+	},
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "hZ" = (
 /obj/machinery/computer/slot_machine,
@@ -281,14 +254,15 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"jN" = (
+"jt" = (
 /obj/structure/table/reinforced,
+/obj/item/lighter,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/stripes/line{
-	dir = 10
+	dir = 8
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
@@ -320,15 +294,6 @@
 "kR" = (
 /obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/wood,
-/area/crew_quarters/bar)
-"lo" = (
-/obj/structure/sign/barsign,
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plating,
 /area/crew_quarters/bar)
 "lA" = (
 /obj/machinery/deepfryer,
@@ -384,24 +349,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"mj" = (
-/obj/machinery/jukebox,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "mm" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -419,6 +366,22 @@
 /obj/effect/turf_decal/tile/bar,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"mp" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/maintenance{
+	name = "Bar Maintenance";
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/crew_quarters/bar)
 "ms" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
@@ -429,6 +392,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
+"mV" = (
+/obj/structure/sign/barsign,
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "nF" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only{
@@ -475,21 +447,6 @@
 /obj/effect/turf_decal/tile/bar,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"oG" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "pf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -528,14 +485,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"rf" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "rk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -634,10 +583,47 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"tM" = (
+/obj/machinery/jukebox,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "up" = (
 /obj/structure/kitchenspike,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"uC" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "bar shutters";
+	pixel_x = 25;
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "uP" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -700,6 +686,21 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
+/area/crew_quarters/bar)
+"yc" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "yd" = (
 /obj/structure/table,
@@ -1003,6 +1004,21 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"GU" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/stripes/line,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "GZ" = (
 /obj/structure/table/wood,
 /obj/item/clothing/head/hardhat/cakehat,
@@ -1033,21 +1049,6 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/bar)
-"Ik" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/stripes/line,
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "Ip" = (
 /turf/closed/wall,
@@ -1144,6 +1145,21 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
+/area/crew_quarters/bar)
+"NI" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "Od" = (
 /obj/structure/table/reinforced,
@@ -1308,22 +1324,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"RO" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/head/that,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "RV" = (
 /obj/machinery/camera{
 	c_tag = "Theatre Stage";
@@ -1375,6 +1375,22 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/bar,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"Te" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/that,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "TA" = (
@@ -1549,22 +1565,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"Yk" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Bar Maintenance";
-	req_access_txt = "12"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
-/area/maintenance/department/crew_quarters/bar)
 "Yn" = (
 /obj/machinery/computer/arcade/minesweeper,
 /turf/open/floor/wood,
@@ -1599,13 +1599,13 @@ gS
 gS
 Ip
 Ip
-rf
+fB
 Ip
 Ip
-rf
+fB
 Ip
 Ip
-rf
+fB
 Ip
 Ip
 "}
@@ -1727,7 +1727,7 @@ Dc
 mi
 KS
 KS
-lo
+mV
 "}
 (8,1,1) = {"
 qd
@@ -1747,7 +1747,7 @@ OM
 mi
 KS
 KS
-rf
+fB
 "}
 (9,1,1) = {"
 Ip
@@ -1770,7 +1770,7 @@ KS
 QJ
 "}
 (10,1,1) = {"
-Yk
+mp
 zs
 Qv
 mh
@@ -1814,12 +1814,12 @@ Ip
 Ip
 fV
 Ip
-mj
-dk
-oG
-RO
-oG
-jN
+tM
+jt
+yc
+Te
+yc
+NI
 Zu
 Vm
 aU
@@ -1839,7 +1839,7 @@ Ux
 Td
 UX
 Td
-Ik
+GU
 Zu
 xw
 KS
@@ -1854,12 +1854,12 @@ kh
 kh
 kh
 Ip
-gN
+uC
 Yc
 IG
 RX
 Td
-hH
+hu
 KS
 KS
 KS

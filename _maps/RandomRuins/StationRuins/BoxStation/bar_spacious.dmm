@@ -5,18 +5,6 @@
 "ab" = (
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"ad" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Bar Maintenance";
-	req_access_txt = "12"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "ae" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -937,6 +925,27 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"fo" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "bar shutters";
+	pixel_x = 4;
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/bar)
+"hU" = (
+/obj/effect/landmark/event_spawn,
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/bar)
 "lI" = (
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/tile/bar,
@@ -946,8 +955,17 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"mg" = (
-/obj/machinery/smartfridge/drinks,
+"lR" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
+"ny" = (
+/obj/machinery/holopad,
+/obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
 	name = "privacy shutters"
@@ -966,14 +984,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"ou" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/bar)
 "pB" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/saltshaker{
@@ -995,35 +1005,47 @@
 /obj/machinery/door/window/westright,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"uj" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
-"vg" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
+"vL" = (
+/obj/machinery/smartfridge/drinks,
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
 	name = "privacy shutters"
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
-"xu" = (
+"yc" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/hardhat/cakehat,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/bar)
+"BN" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /obj/item/book/manual/wiki/barman_recipes,
 /obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/bar)
+"Dm" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/bar)
+"DB" = (
+/obj/machinery/chem_dispenser/drinks,
+/obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
 	name = "privacy shutters"
@@ -1054,39 +1076,21 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"Hf" = (
-/obj/effect/landmark/event_spawn,
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/bar)
-"Jb" = (
-/obj/machinery/chem_dispenser/drinks,
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/bar)
 "Lp" = (
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
-"Sl" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+"Rx" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "bar shutters";
-	pixel_x = 4;
-	pixel_y = 28
+/obj/machinery/door/airlock/maintenance{
+	name = "Bar Maintenance";
+	req_access_txt = "12"
 	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/bar)
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "Sp" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -1095,9 +1099,14 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"Va" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/head/hardhat/cakehat,
+"Wo" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
 	name = "privacy shutters"
@@ -1111,15 +1120,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"XK" = (
-/obj/machinery/holopad,
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
@@ -1129,11 +1129,11 @@ an
 an
 ab
 bm
-uj
+lR
 ab
-uj
+lR
 ab
-uj
+lR
 ab
 ab
 "}
@@ -1209,10 +1209,10 @@ cQ
 cT
 ba
 cI
-Va
-Hf
-XK
-ou
+yc
+hU
+ny
+Dm
 cI
 ba
 ct
@@ -1225,13 +1225,13 @@ Lp
 cT
 ba
 cI
-ou
+Dm
 bj
 bj
-ou
+Dm
 lI
 ba
-uj
+lR
 "}
 (8,1,1) = {"
 an
@@ -1241,10 +1241,10 @@ cR
 cU
 ba
 cI
-ou
+Dm
 bj
 bj
-ou
+Dm
 cI
 ba
 ct
@@ -1257,26 +1257,26 @@ ba
 ba
 ba
 cI
-ou
+Dm
 bj
 bj
-ou
+Dm
 cI
 cl
 cu
 "}
 (10,1,1) = {"
-ad
+Rx
 ae
 ba
 ba
 ba
 ba
 cI
-ou
+Dm
 bj
 bj
-ou
+Dm
 lI
 cm
 ab
@@ -1289,10 +1289,10 @@ aS
 ba
 ba
 cI
-ou
+Dm
 bj
 bj
-ou
+Dm
 cI
 bE
 ab
@@ -1303,12 +1303,12 @@ ab
 ab
 ab
 Eu
-vg
-xu
-Jb
+Wo
+BN
+DB
 cE
 bj
-ou
+Dm
 cI
 co
 ab
@@ -1319,12 +1319,12 @@ ao
 as
 aD
 ab
-Sl
+fo
 bj
 bj
 bj
 bj
-ou
+Dm
 cM
 cp
 ab
@@ -1356,7 +1356,7 @@ bD
 bj
 bj
 bj
-mg
+vL
 ba
 ba
 ab

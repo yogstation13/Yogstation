@@ -76,6 +76,15 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"bd" = (
+/obj/structure/sign/barsign,
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "be" = (
 /obj/machinery/processor,
 /obj/machinery/firealarm{
@@ -92,6 +101,14 @@
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = -6;
 	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"bO" = (
+/obj/machinery/smartfridge/drinks,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -181,6 +198,16 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"eZ" = (
+/obj/structure/table/wood,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "fw" = (
 /obj/machinery/camera{
 	c_tag = "Theatre Stage";
@@ -248,6 +275,19 @@
 "ip" = (
 /turf/template_noop,
 /area/template_noop)
+"iE" = (
+/obj/item/lighter,
+/obj/structure/table/wood,
+/obj/item/clothing/mask/cigarette/pipe/cobpipe,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "iO" = (
 /obj/machinery/smartfridge,
 /turf/closed/wall,
@@ -255,14 +295,6 @@
 "jb" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = 32
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"jD" = (
-/obj/structure/table/wood,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -285,6 +317,18 @@
 /obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"kp" = (
+/obj/structure/table/wood,
+/obj/item/clothing/head/yogs/truecowboy2{
+	desc = "Yee where no man has hawed before with the official cowboy hat of NanoTrasen!";
+	pixel_y = -2
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "kM" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
@@ -424,6 +468,14 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"rw" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "rB" = (
 /obj/machinery/door/window/southright{
 	name = "Bar Door";
@@ -433,14 +485,6 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/bar)
-"rC" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plating,
 /area/crew_quarters/bar)
 "rD" = (
 /obj/machinery/airalarm{
@@ -473,19 +517,6 @@
 /area/crew_quarters/bar)
 "sK" = (
 /obj/machinery/vending/cigarette,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"tk" = (
-/obj/item/lighter,
-/obj/structure/table/wood,
-/obj/item/clothing/mask/cigarette/pipe/cobpipe,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "tt" = (
@@ -533,14 +564,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
-"vL" = (
-/obj/machinery/smartfridge/drinks,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "vY" = (
 /obj/structure/chair/pew/left{
 	dir = 1
@@ -842,6 +865,14 @@
 /obj/item/storage/box/mixedcubes,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"FH" = (
+/obj/structure/table/wood,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "Gr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4;
@@ -1144,18 +1175,6 @@
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
-"Pi" = (
-/obj/structure/table/wood,
-/obj/item/clothing/head/yogs/truecowboy2{
-	desc = "Yee where no man has hawed before with the official cowboy hat of NanoTrasen!";
-	pixel_y = -2
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "Pw" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
@@ -1234,25 +1253,6 @@
 "Uk" = (
 /turf/closed/wall/mineral/wood,
 /area/crew_quarters/bar)
-"Uo" = (
-/obj/structure/sign/barsign,
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
-"UB" = (
-/obj/structure/table/wood,
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "UM" = (
 /obj/structure/chair/pew/right{
 	dir = 1
@@ -1294,21 +1294,6 @@
 /obj/machinery/icecream_vat,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"Wf" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "bar shutters";
-	pixel_x = 25;
-	pixel_y = 24
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "Wj" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -1424,6 +1409,21 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"Zw" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "bar shutters";
+	pixel_x = 25;
+	pixel_y = 24
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 
 (1,1,1) = {"
 EP
@@ -1435,13 +1435,13 @@ ai
 ai
 Uk
 Uk
-rC
+rw
 Uk
 Uk
-rC
+rw
 Uk
 Uk
-rC
+rw
 Uk
 Uk
 "}
@@ -1563,7 +1563,7 @@ gj
 gh
 OU
 OU
-Uo
+bd
 "}
 (8,1,1) = {"
 EP
@@ -1583,7 +1583,7 @@ OU
 dO
 OU
 OU
-rC
+rw
 "}
 (9,1,1) = {"
 Uk
@@ -1651,11 +1651,11 @@ Uk
 Ld
 Uk
 Uk
-tk
-jD
-Pi
-jD
-jD
+iE
+FH
+kp
+FH
+FH
 TE
 OU
 PX
@@ -1675,7 +1675,7 @@ OU
 OU
 Kl
 OU
-UB
+eZ
 TE
 OU
 OU
@@ -1690,12 +1690,12 @@ ip
 ip
 ip
 Uk
-Wf
+Zw
 Jv
 vh
 tI
 OU
-vL
+bO
 OU
 OU
 OU

@@ -930,15 +930,24 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"do" = (
-/obj/structure/table/american,
-/obj/item/clothing/head/that,
+"gX" = (
+/obj/machinery/vending/cola,
+/obj/structure/window/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/bar)
+"hl" = (
+/obj/structure/table/american/end,
+/obj/structure/window/reinforced,
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8;
 	icon_state = "warningline_red"
 	},
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
@@ -950,15 +959,36 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/bar)
-"eB" = (
-/obj/effect/spawner/structure/window,
-/obj/effect/landmark/event_spawn,
+"hy" = (
+/obj/structure/table/american,
+/obj/item/reagent_containers/food/snacks/burger/plain,
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 8;
+	icon_state = "warningline_red"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
 	name = "privacy shutters"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
 /area/crew_quarters/bar)
+"hW" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/maintenance{
+	name = "Bar Maintenance";
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "if" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mint,
@@ -969,7 +999,7 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"jA" = (
+"iA" = (
 /obj/item/storage/secure/safe{
 	pixel_x = -7
 	},
@@ -984,23 +1014,6 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
-"oC" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/bar)
 "pQ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -1017,6 +1030,23 @@
 /obj/effect/turf_decal/ameritard,
 /obj/effect/spawner/xmastree,
 /turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"uM" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
 /area/crew_quarters/bar)
 "vo" = (
 /obj/structure/table,
@@ -1046,17 +1076,6 @@
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"vQ" = (
-/obj/machinery/vending/cola,
-/obj/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/bar)
 "xx" = (
 /obj/structure/sign/plaques/deempisi,
 /turf/closed/wall,
@@ -1066,21 +1085,43 @@
 /obj/item/reagent_containers/food/snacks/burger/plain,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"zL" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+"Aw" = (
+/obj/structure/table,
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
 	},
-/obj/machinery/button/door{
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
+"Dn" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/item/reagent_containers/food/snacks/burger/superbite,
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
+"Dt" = (
+/obj/machinery/smartfridge/drinks,
+/obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
-	name = "bar shutters";
-	pixel_x = 4;
-	pixel_y = 28
+	name = "privacy shutters"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/bar)
-"zT" = (
+"He" = (
 /obj/structure/table/american/end{
 	dir = 1;
 	icon_state = "table-end";
@@ -1102,44 +1143,6 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/bar)
-"Aw" = (
-/obj/structure/table,
-/obj/machinery/requests_console{
-	department = "Kitchen";
-	departmentType = 2;
-	pixel_x = 30
-	},
-/obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
-"Cn" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/maintenance{
-	name = "Bar Maintenance";
-	req_one_access_txt = "12;25"
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
-"Dn" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/obj/item/reagent_containers/food/snacks/burger/superbite,
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
 "HO" = (
 /obj/structure/table,
 /obj/item/clothing/head/hardhat/cakehat,
@@ -1151,45 +1154,47 @@
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"IO" = (
-/obj/structure/table/american/end,
-/obj/structure/window/reinforced,
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 8;
-	icon_state = "warningline_red"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/bar)
-"Jf" = (
-/obj/structure/table/american,
-/obj/item/reagent_containers/food/snacks/burger/plain,
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 8;
-	icon_state = "warningline_red"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/bar)
 "JN" = (
 /mob/living/carbon/monkey{
 	name = "Pun Pun"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/bar)
+"JR" = (
+/obj/structure/table/american,
+/obj/item/clothing/head/that,
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 8;
+	icon_state = "warningline_red"
+	},
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/bar)
+"Md" = (
+/obj/structure/table/american,
+/obj/item/reagent_containers/food/snacks/burger/superbite,
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 8;
+	icon_state = "warningline_red"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -1205,15 +1210,22 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
-"Sz" = (
-/obj/machinery/smartfridge/drinks,
+"NF" = (
+/obj/effect/spawner/structure/window,
+/obj/effect/landmark/event_spawn,
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
 	name = "privacy shutters"
 	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
+"Oo" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
 	},
+/turf/open/floor/plating,
 /area/crew_quarters/bar)
 "Tm" = (
 /obj/structure/table/reinforced,
@@ -1253,31 +1265,19 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"XB" = (
-/obj/structure/table/american,
-/obj/item/reagent_containers/food/snacks/burger/superbite,
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 8;
-	icon_state = "warningline_red"
+"Zi" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/button/door{
 	id = "barshutters";
-	name = "privacy shutters"
+	name = "bar shutters";
+	pixel_x = 4;
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
 	},
-/area/crew_quarters/bar)
-"XP" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plating,
 /area/crew_quarters/bar)
 
 (1,1,1) = {"
@@ -1288,11 +1288,11 @@ ab
 ab
 ab
 ab
-eB
+NF
 ab
-XP
+Oo
 ab
-XP
+Oo
 ab
 ab
 "}
@@ -1390,7 +1390,7 @@ cs
 bc
 az
 az
-XP
+Oo
 "}
 (8,1,1) = {"
 ab
@@ -1425,7 +1425,7 @@ dc
 dj
 "}
 (10,1,1) = {"
-Cn
+hW
 ar
 az
 az
@@ -1462,12 +1462,12 @@ ab
 ab
 ab
 xx
-oC
-zT
-do
-Jf
-XB
-IO
+uM
+He
+JR
+hy
+Md
+hl
 az
 az
 ab
@@ -1477,13 +1477,13 @@ af
 at
 aG
 aV
-jA
-zL
+iA
+Zi
 cv
 cv
 cg
 cv
-vQ
+gX
 cQ
 df
 ab
@@ -1515,7 +1515,7 @@ by
 cv
 bW
 cv
-Sz
+Dt
 az
 dh
 ab

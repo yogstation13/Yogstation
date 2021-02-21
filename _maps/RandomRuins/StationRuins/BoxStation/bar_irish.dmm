@@ -21,18 +21,6 @@
 "ad" = (
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"ae" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Bar Maintenance";
-	req_access_txt = "12"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "af" = (
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/structure/table/wood,
@@ -1622,9 +1610,10 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"hs" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
+"fJ" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/that{
+	throwforce = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -1637,11 +1626,9 @@
 	dir = 1;
 	icon_state = "tile_corner"
 	},
-/obj/machinery/button/door{
+/obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
-	name = "bar shutters";
-	pixel_x = -26;
-	pixel_y = 25
+	name = "privacy shutters"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -1665,10 +1652,9 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"iD" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/head/that{
-	throwforce = 1
+"pd" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -1681,9 +1667,11 @@
 	dir = 1;
 	icon_state = "tile_corner"
 	},
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/button/door{
 	id = "barshutters";
-	name = "privacy shutters"
+	name = "bar shutters";
+	pixel_x = -26;
+	pixel_y = 25
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -1694,7 +1682,7 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"rc" = (
+"pJ" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -1715,62 +1703,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"BW" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkgreen,
-/obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/machinery/smartfridge/drinks,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"Mh" = (
-/obj/structure/table/reinforced,
-/obj/item/lighter,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkgreen,
-/obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"MM" = (
-/obj/structure/table,
-/obj/item/kitchen/rollingpin{
-	pixel_x = 5;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -3;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -7;
-	pixel_y = 5
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"OP" = (
+"qf" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -1789,24 +1722,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"PQ" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkgreen,
-/obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"Rd" = (
+"yt" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
@@ -1814,7 +1730,7 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"TD" = (
+"zj" = (
 /obj/machinery/disposal/bin,
 /obj/structure/sign/warning/securearea{
 	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
@@ -1839,6 +1755,90 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"IS" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/machinery/smartfridge/drinks,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"MM" = (
+/obj/structure/table,
+/obj/item/kitchen/rollingpin{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"PA" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/maintenance{
+	name = "Bar Maintenance";
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
+"PQ" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"UK" = (
+/obj/structure/table/reinforced,
+/obj/item/lighter,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
@@ -1848,11 +1848,11 @@ ab
 ab
 ad
 bA
-Rd
+yt
 ad
-Rd
+yt
 ad
-Rd
+yt
 ad
 ad
 "}
@@ -1950,7 +1950,7 @@ cq
 cA
 aI
 aI
-Rd
+yt
 "}
 (8,1,1) = {"
 ab
@@ -1985,7 +1985,7 @@ cT
 dc
 "}
 (10,1,1) = {"
-ae
+PA
 as
 aJ
 aZ
@@ -2023,11 +2023,11 @@ ad
 ad
 ad
 ad
-Mh
-OP
-iD
-OP
-OP
+UK
+qf
+fJ
+qf
+qf
 cH
 cW
 ad
@@ -2038,12 +2038,12 @@ au
 aL
 bb
 ad
-TD
+zj
 aI
 aI
 ci
 aI
-rc
+pJ
 cI
 cX
 ad
@@ -2054,7 +2054,7 @@ ag
 aM
 bc
 bn
-hs
+pd
 aI
 bV
 aI
@@ -2075,7 +2075,7 @@ bF
 aI
 cj
 aI
-BW
+IS
 aI
 PQ
 ad

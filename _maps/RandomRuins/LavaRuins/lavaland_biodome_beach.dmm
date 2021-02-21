@@ -202,20 +202,6 @@
 /obj/structure/weightmachine/stacklifter,
 /turf/open/floor/plating/beach/sand,
 /area/ruin/powered/beach)
-"aP" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/ruin/powered/beach)
-"aQ" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp,
-/turf/open/floor/wood,
-/area/ruin/powered/beach)
-"aR" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/tequila,
-/turf/open/floor/wood,
-/area/ruin/powered/beach)
 "aS" = (
 /obj/machinery/processor,
 /turf/open/floor/wood,
@@ -456,6 +442,14 @@
 	},
 /turf/open/floor/pod/dark,
 /area/ruin/powered/beach)
+"eR" = (
+/obj/structure/table/wood,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/beach)
 "hY" = (
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks/beer,
@@ -467,6 +461,14 @@
 	dir = 8
 	},
 /turf/open/floor/pod/dark,
+/area/ruin/powered/beach)
+"jl" = (
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "bar shutters";
+	pixel_x = -24
+	},
+/turf/open/floor/wood,
 /area/ruin/powered/beach)
 "jF" = (
 /obj/effect/turf_decal/sand,
@@ -604,6 +606,15 @@
 	},
 /turf/open/floor/plating/beach/sand,
 /area/ruin/powered/beach)
+"QU" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/beach)
 "TP" = (
 /obj/machinery/light{
 	dir = 8
@@ -614,6 +625,15 @@
 /area/ruin/powered/beach)
 "VO" = (
 /turf/open/floor/pod/dark,
+/area/ruin/powered/beach)
+"VT" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/tequila,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
 /area/ruin/powered/beach)
 "Xp" = (
 /obj/effect/turf_decal/sand,
@@ -983,8 +1003,8 @@ ag
 as
 aw
 aC
-aC
-aP
+jl
+eR
 aW
 aK
 Ga
@@ -1016,7 +1036,7 @@ as
 aj
 aD
 aC
-aQ
+QU
 aW
 oK
 sO
@@ -1048,7 +1068,7 @@ at
 ax
 hY
 aC
-aP
+eR
 aW
 aK
 sy
@@ -1080,7 +1100,7 @@ aj
 aj
 aF
 aC
-aR
+VT
 aW
 aK
 aK

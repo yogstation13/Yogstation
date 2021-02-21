@@ -1244,26 +1244,28 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"gd" = (
+"dF" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
+/obj/machinery/smartfridge/drinks,
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
 	name = "privacy shutters"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"gf" = (
+"hu" = (
 /obj/structure/table/reinforced,
+/obj/item/clothing/head/that{
+	throwforce = 1
+	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
-/obj/item/reagent_containers/glass/rag,
-/obj/item/book/manual/wiki/barman_recipes,
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
 	name = "privacy shutters"
@@ -1279,18 +1281,18 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
-"kz" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
+"qr" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
-/obj/machinery/door/airlock/maintenance{
-	name = "Bar Maintenance";
-	req_one_access_txt = "12;25"
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
 	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "sb" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets{
@@ -1299,34 +1301,18 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"sh" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/head/that{
-	throwforce = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
+"tP" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
+/obj/machinery/door/airlock/maintenance{
+	name = "Bar Maintenance";
+	req_access_txt = "12"
 	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"uW" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/machinery/smartfridge/drinks,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "xI" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/mixbowl{
@@ -1334,25 +1320,48 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"xQ" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
-"Kq" = (
+"AJ" = (
+/obj/structure/table/reinforced,
+/obj/item/lighter,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
-/obj/machinery/button/door{
+/obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
-	name = "Bar Shutters Control";
-	pixel_x = -25;
-	pixel_y = 24;
-	req_access_txt = "28"
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"IS" = (
+/obj/machinery/disposal/bin,
+/obj/structure/sign/warning/securearea{
+	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
+	icon_state = "monkey_painting";
+	name = "Mr. Deempisi portrait";
+	pixel_x = -27;
+	pixel_y = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"Ke" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/item/reagent_containers/glass/rag,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -1406,18 +1415,13 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"Sp" = (
-/obj/structure/table/reinforced,
-/obj/item/lighter,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
+"Sf" = (
+/obj/effect/spawner/structure/window,
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
 	name = "privacy shutters"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/crew_quarters/bar)
 "SG" = (
 /obj/effect/turf_decal/tile/bar,
@@ -1429,21 +1433,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"WH" = (
-/obj/machinery/disposal/bin,
-/obj/structure/sign/warning/securearea{
-	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
-	icon_state = "monkey_painting";
-	name = "Mr. Deempisi portrait";
-	pixel_x = -27;
-	pixel_y = 4
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
+"Xj" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = -25;
+	pixel_y = 24;
+	req_access_txt = "28"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -1456,11 +1456,11 @@ ac
 ac
 ag
 bE
-xQ
+Sf
 ag
-xQ
+Sf
 ag
-xQ
+Sf
 ag
 ag
 "}
@@ -1558,7 +1558,7 @@ bX
 cc
 bx
 bx
-xQ
+Sf
 "}
 (8,1,1) = {"
 ac
@@ -1593,7 +1593,7 @@ cY
 dh
 "}
 (10,1,1) = {"
-kz
+tP
 am
 bw
 KF
@@ -1631,11 +1631,11 @@ ag
 ag
 ag
 ag
-Sp
-gd
-sh
-gd
-gd
+AJ
+qr
+hu
+qr
+qr
 cM
 db
 ag
@@ -1646,12 +1646,12 @@ ay
 aE
 bd
 ag
-WH
-Kq
+IS
+Xj
 bx
 cp
 bx
-gf
+Ke
 cN
 dc
 ag
@@ -1683,7 +1683,7 @@ bJ
 bx
 cq
 bx
-uW
+dF
 bx
 SG
 ag

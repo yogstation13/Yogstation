@@ -28,18 +28,6 @@
 /obj/item/radio/intercom,
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"af" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Bar Maintenance";
-	req_access_txt = "12"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "ag" = (
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/structure/table/wood,
@@ -1181,6 +1169,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"dh" = (
+/obj/effect/spawner/structure/window{
+	color = "purple"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "di" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 4;
@@ -1302,19 +1300,7 @@
 /obj/item/clothing/head/hardhat/cakehat,
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/bar)
-"kM" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
-"nV" = (
+"ii" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -1331,12 +1317,34 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"rS" = (
+"kM" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4;
+	icon_state = "scrub_map_on-3"
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
+"pi" = (
+/obj/structure/table/reinforced{
+	color = "purple"
+	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 1;
 	icon_state = "tile_corner"
 	},
-/obj/machinery/smartfridge/drinks,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/item/clothing/head/that{
+	throwforce = 1;
+	throwing = 1
+	},
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
 	name = "privacy shutters"
@@ -1363,16 +1371,6 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"vF" = (
-/obj/effect/spawner/structure/window{
-	color = "purple"
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "xW" = (
 /obj/structure/chair/stool/bar{
 	color = "purple"
@@ -1381,18 +1379,49 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"zp" = (
+/obj/structure/table/reinforced{
+	color = "purple"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/item/gun/ballistic/revolver/russian,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
+"AB" = (
+/obj/structure/table/reinforced{
+	color = "purple"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/item/reagent_containers/food/snacks/burger/purple,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "BD" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
-"BE" = (
-/obj/item/storage/secure/safe{
-	pixel_x = 1;
-	pixel_y = 5
-	},
-/turf/closed/wall,
 /area/crew_quarters/bar)
 "Dl" = (
 /obj/item/clothing/gloves/color/purple,
@@ -1465,43 +1494,17 @@
 	},
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/kitchen)
-"HO" = (
-/obj/structure/table/reinforced{
-	color = "purple"
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/item/reagent_containers/food/snacks/burger/purple,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "Jf" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mint,
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/kitchen)
-"KT" = (
-/obj/structure/table/reinforced{
-	color = "purple"
-	},
+"Ki" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1;
 	icon_state = "tile_corner"
 	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/item/gun/ballistic/revolver/russian,
+/obj/machinery/smartfridge/drinks,
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
 	name = "privacy shutters"
@@ -1531,7 +1534,19 @@
 /obj/effect/spawner/xmastree,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"UQ" = (
+"WM" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/maintenance{
+	name = "Bar Maintenance";
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
+"WY" = (
 /obj/structure/table/reinforced{
 	color = "purple"
 	},
@@ -1555,27 +1570,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"Ve" = (
-/obj/structure/table/reinforced{
-	color = "purple"
+"YX" = (
+/obj/item/storage/secure/safe{
+	pixel_x = 1;
+	pixel_y = 5
 	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/item/clothing/head/that{
-	throwforce = 1;
-	throwing = 1
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel/dark,
+/turf/closed/wall,
 /area/crew_quarters/bar)
 
 (1,1,1) = {"
@@ -1586,11 +1586,11 @@ ab
 ab
 ab
 bH
-vF
+dh
 ab
-vF
+dh
 ab
-vF
+dh
 ab
 ab
 "}
@@ -1688,7 +1688,7 @@ bx
 bh
 df
 ar
-vF
+dh
 "}
 (8,1,1) = {"
 ab
@@ -1723,7 +1723,7 @@ ar
 dF
 "}
 (10,1,1) = {"
-af
+WM
 ad
 aZ
 ce
@@ -1744,13 +1744,13 @@ at
 cd
 cf
 aW
-UQ
-HO
-Ve
-HO
-KT
-KT
-rS
+WY
+AB
+pi
+AB
+zp
+zp
+Ki
 bF
 ab
 "}
@@ -1775,8 +1775,8 @@ ag
 au
 aK
 ba
-BE
-nV
+YX
+ii
 aw
 aw
 cx

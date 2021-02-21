@@ -2,18 +2,6 @@
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
-"ab" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Bar Maintenance";
-	req_access_txt = "12"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "ac" = (
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/item/stack/spacecash/c10,
@@ -1284,66 +1272,7 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"gN" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "bar shutters";
-	pixel_x = -26;
-	pixel_y = 24
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/crew_quarters/bar)
-"mS" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.9
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/crew_quarters/bar)
-"ni" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/mineral/titanium,
-/area/crew_quarters/kitchen)
-"qg" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/crew_quarters/bar)
-"rV" = (
+"fm" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -1363,9 +1292,25 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
-"tj" = (
+"ni" = (
+/obj/structure/table,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/mineral/titanium,
+/area/crew_quarters/kitchen)
+"qW" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
+"zM" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/pie/cream,
+/obj/item/reagent_containers/food/snacks/spacetwinkie,
 /obj/machinery/door/window/westright,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -1379,7 +1324,33 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"ua" = (
+"Ai" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/crew_quarters/bar)
+"Eh" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/maintenance{
+	name = "Bar Maintenance";
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
+"FT" = (
 /obj/machinery/smartfridge/drinks,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -1397,7 +1368,7 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
-"IL" = (
+"Lb" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
 	dir = 8
@@ -1405,7 +1376,10 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
 	name = "privacy shutters"
@@ -1436,16 +1410,22 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
-"PF" = (
-/obj/effect/spawner/structure/window/shuttle,
+"NC" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
 	name = "privacy shutters"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
-"Qy" = (
-/obj/structure/table/reinforced,
+"Qb" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1456,28 +1436,14 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/button/door{
 	id = "barshutters";
-	name = "privacy shutters"
+	name = "bar shutters";
+	pixel_x = -26;
+	pixel_y = 24
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
-"QZ" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/spacetwinkie,
-/obj/machinery/door/window/westright,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
 "Rz" = (
 /obj/structure/sign/plaques/deempisi,
 /turf/closed/wall,
@@ -1496,6 +1462,40 @@
 /obj/item/twohanded/required/kirbyplants/photosynthetic,
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
+"Sl" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/snacks/pie/cream,
+/obj/machinery/door/window/westright,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
+"Xi" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
@@ -1503,11 +1503,11 @@ aa
 ag
 ag
 ag
-PF
+qW
 bC
-PF
+qW
 ag
-PF
+qW
 ag
 ag
 ag
@@ -1623,7 +1623,7 @@ aI
 aI
 aI
 aM
-PF
+qW
 "}
 (9,1,1) = {"
 ag
@@ -1642,7 +1642,7 @@ aM
 cL
 "}
 (10,1,1) = {"
-ab
+Eh
 aw
 aN
 aN
@@ -1662,13 +1662,13 @@ ag
 ax
 aO
 aY
-mS
-qg
-IL
-Qy
-Qy
-Qy
-Qy
+Lb
+Ai
+NC
+Xi
+Xi
+Xi
+Xi
 aL
 cD
 ag
@@ -1684,7 +1684,7 @@ aL
 aM
 aM
 aM
-Qy
+Xi
 aL
 cE
 ag
@@ -1700,7 +1700,7 @@ aL
 aM
 bX
 aM
-rV
+fm
 ct
 aM
 ag
@@ -1711,7 +1711,7 @@ ae
 aR
 bb
 bl
-gN
+Qb
 bz
 bO
 aM
@@ -1732,7 +1732,7 @@ bA
 aM
 bZ
 aM
-ua
+FT
 aM
 cI
 ag
@@ -1745,9 +1745,9 @@ ag
 ag
 al
 bM
-QZ
+zM
 al
-tj
+Sl
 bM
 cu
 al

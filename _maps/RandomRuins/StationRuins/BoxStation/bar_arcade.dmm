@@ -542,7 +542,7 @@
 	},
 /turf/open/floor/eighties,
 /area/crew_quarters/bar)
-"fP" = (
+"gz" = (
 /obj/structure/table/reinforced,
 /obj/item/lighter,
 /obj/machinery/door/poddoor/preopen{
@@ -569,25 +569,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"iv" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = 32
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "Bar Shutters Control";
-	pixel_x = -25;
-	pixel_y = 24;
-	req_access_txt = "28"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "iF" = (
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
@@ -597,10 +578,29 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"lh" = (
+/obj/structure/table/reinforced,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "lE" = (
 /obj/machinery/door/window/southright{
 	name = "Bar Door";
 	req_one_access_txt = "25;28"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"mz" = (
+/obj/structure/table/reinforced,
+/obj/item/toy/cards/deck,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -616,21 +616,6 @@
 	pixel_y = -30
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/bar)
-"op" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
-"pa" = (
-/obj/structure/sign/plaques/deempisi{
-	pixel_x = -6;
-	pixel_y = -8
-	},
-/turf/closed/wall,
 /area/crew_quarters/bar)
 "pw" = (
 /obj/item/twohanded/required/kirbyplants/random,
@@ -669,15 +654,6 @@
 	dir = 8
 	},
 /obj/machinery/light,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"rL" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/head/that,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "sb" = (
@@ -736,9 +712,30 @@
 	},
 /turf/open/floor/eighties,
 /area/crew_quarters/bar)
+"vS" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "wF" = (
 /obj/machinery/vending/snack/random,
 /turf/open/floor/eighties,
+/area/crew_quarters/bar)
+"wQ" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/that,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "xh" = (
 /obj/structure/extinguisher_cabinet{
@@ -764,15 +761,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"zO" = (
-/obj/structure/table/reinforced,
-/obj/item/toy/cards/deck,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "Ak" = (
 /obj/machinery/light,
 /obj/machinery/firealarm{
@@ -787,9 +775,42 @@
 /obj/item/reagent_containers/food/snacks/candy,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"CV" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/maintenance{
+	name = "Bar Maintenance";
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
+"Ep" = (
+/obj/machinery/disposal/bin,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "FY" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/eighties,
+/area/crew_quarters/bar)
+"Go" = (
+/obj/structure/sign/plaques/deempisi{
+	pixel_x = -6;
+	pixel_y = -8
+	},
+/turf/closed/wall,
 /area/crew_quarters/bar)
 "He" = (
 /obj/structure/chair{
@@ -817,22 +838,35 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"JG" = (
-/obj/machinery/disposal/bin,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
+"JF" = (
+/obj/effect/spawner/structure/window,
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
 	name = "privacy shutters"
 	},
-/turf/open/floor/wood,
+/turf/open/floor/plating,
 /area/crew_quarters/bar)
 "JH" = (
 /obj/structure/chair/stool/bar,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Km" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 32
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = -25;
+	pixel_y = 24;
+	req_access_txt = "28"
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Mt" = (
@@ -932,6 +966,14 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"Rx" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "RD" = (
 /obj/effect/landmark/event_spawn,
 /obj/item/radio/intercom{
@@ -960,14 +1002,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"TH" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "UF" = (
 /obj/structure/chair/stool/bar,
 /obj/effect/landmark/start/assistant,
@@ -986,18 +1020,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"WT" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "Xq" = (
 /obj/machinery/computer/arcade{
 	dir = 4
@@ -1018,18 +1040,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"Xy" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/airlock/maintenance{
-	name = "Bar Maintenance";
-	req_one_access_txt = "12;25"
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "Yn" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -1040,16 +1050,6 @@
 /obj/machinery/vending/snack/random,
 /obj/machinery/light{
 	dir = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"Zf" = (
-/obj/structure/table/reinforced,
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -1080,11 +1080,11 @@ ag
 ag
 ag
 bE
-op
+JF
 ag
-op
+JF
 ag
-op
+JF
 ag
 ag
 "}
@@ -1182,7 +1182,7 @@ hb
 hb
 hb
 hb
-op
+JF
 "}
 (8,1,1) = {"
 ac
@@ -1217,7 +1217,7 @@ hb
 dh
 "}
 (10,1,1) = {"
-Xy
+CV
 Yn
 aJ
 Ow
@@ -1253,13 +1253,13 @@ ag
 ag
 ag
 ag
-pa
-JG
-WT
-zO
-rL
-fP
-TH
+Go
+Ep
+vS
+mz
+wQ
+gz
+Rx
 JH
 yM
 ag
@@ -1270,12 +1270,12 @@ ay
 aE
 Nf
 ag
-iv
+Km
 aB
 ef
 aB
 aB
-Zf
+lh
 UF
 He
 ag
