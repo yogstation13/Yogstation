@@ -302,7 +302,7 @@
 	// Healium
 		REMOVE_TRAIT(H, TRAIT_SURGERY_PREPARED, "healium")
 		var/healium_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/healium))
-		if(healium_pp > gas_stimulation_min)
+		if(healium_pp > SA_sleep_min)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/healium)
 			ADD_TRAIT(H, TRAIT_SURGERY_PREPARED, "healium")
 			H.reagents.add_reagent(/datum/reagent/healium,max(0, 1 - existing))
@@ -317,7 +317,7 @@
 
 	// Zauker
 		var/zauker_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/zauker))
-		if(zauker_pp > gas_stimulation_min)
+		if(zauker_pp > safe_toxins_max)
 			H.adjustBruteLoss(25)
 			H.adjustOxyLoss(5)
 			H.adjustFireLoss(8)
@@ -326,8 +326,8 @@
 		breath.adjust_moles(/datum/gas/zauker, -gas_breathed)
 
 	// Halon
-		var/halon_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/halon))
-		if(halon_pp > gas_stimulation_min)
+		gas_breathed = breath.breath.get_moles(/datum/gas/halon)
+		if(gas_breathed > gas_stimulation_min)
 			H.adjustOxyLoss(5)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/halon)
 			H.reagents.add_reagent(/datum/reagent/halon,max(0, 1 - existing))
@@ -335,8 +335,8 @@
 		breath.adjust_moles(/datum/gas/halon, -gas_breathed)
 
 	// Hexane
-		var/hexane_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/hexane))
-		if(hexane_pp > gas_stimulation_min)
+		gas_breathed = breath.get_moles(/datum/gas/hexane)
+		if(gas_breathed > gas_stimulation_min)
 			H.hallucination += 50
 			H.reagents.add_reagent(/datum/reagent/hexane,5)
 			if(prob(33))
