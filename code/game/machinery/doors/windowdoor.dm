@@ -8,6 +8,7 @@
 	resistance_flags = ACID_PROOF
 	var/base_state = "left"
 	max_integrity = 200 //If you change this, consider changing ../door/window/brigdoor/ max_integrity at the bottom of this .dm file
+	damage_deflection = 21
 	integrity_failure = 0
 	armor = list("melee" = 60, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
 	visible = FALSE
@@ -366,6 +367,7 @@
 	base_state = "leftsecure"
 	var/id = null
 	max_integrity = 350 //Stronger doors for prison (regular window door health is 200)
+	damage_deflection = 30
 	reinf = 1
 	explosion_block = 1
 
