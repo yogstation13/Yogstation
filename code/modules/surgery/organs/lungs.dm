@@ -326,7 +326,7 @@
 		breath.adjust_moles(/datum/gas/zauker, -gas_breathed)
 
 	// Halon
-		gas_breathed = breath.breath.get_moles(/datum/gas/halon)
+		gas_breathed = breath.get_moles(/datum/gas/halon)
 		if(gas_breathed > gas_stimulation_min)
 			H.adjustOxyLoss(5)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/halon)
