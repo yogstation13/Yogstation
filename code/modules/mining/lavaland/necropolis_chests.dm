@@ -616,7 +616,7 @@
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/C = M
 		var/holycheck = ishumanbasic(C)
-		if(!(holycheck || islizard(C)) || reac_volume < 5) // implying polysmorphs are holy //as with all things,
+		if(!(holycheck || islizard(C) || ismoth(C)) || reac_volume < 5) // implying polysmorphs are holy //as with all things,
 			if(method == INGEST && show_message)
 				to_chat(C, "<span class='notice'><i>You feel nothing but a terrible aftertaste.</i></span>")
 			return ..()
@@ -628,6 +628,9 @@
 			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 		if(islizard(C))
 			to_chat(C, "<span class='notice'>You feel blessed... by... something?</span>")
+			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
+		if(ismoth(C))
+			to_chat(C, "<span class='notice'>Your wings feel.... stronger?</span>")
 			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 		playsound(C.loc, 'sound/items/poster_ripped.ogg', 50, TRUE, -1)
 		C.adjustBruteLoss(20)
