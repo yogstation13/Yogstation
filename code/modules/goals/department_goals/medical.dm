@@ -16,7 +16,7 @@
 	desc = "When shift ends, 60% of the original crew must still be alive"
 
 /datum/department_goal/med/survrate1/check_complete()
-	if([PERCENT(popcount[POPCOUNT_SURVIVORS]/total_players)] > 60)
+	if(PERCENT(popcount[POPCOUNT_SURVIVORS]/total_players) > 60)
 		return TRUE
 
 /datum/department_goal/med/survrate2
@@ -24,5 +24,5 @@
 	desc = "When shift ends, 80% of the original crew must still be alive"
 
 /datum/department_goal/med/survrate2/check_complete()
-	if([PERCENT(popcount[POPCOUNT_SURVIVORS]/total_players)] > 80)
+	if(PERCENT(popcount[POPCOUNT_SURVIVORS]/total_players) > 80)
 		return TRUE
