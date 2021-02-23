@@ -57,7 +57,6 @@
 	health_req = 25
 
 /datum/mutation/human/active_hulk
-
 	name = "Hulk State"
 	quality = POSITIVE
 	class = MUT_OTHER
@@ -66,6 +65,7 @@
 	species_allowed = list("human") //no skeleton/lizard hulk
 	health_req = 1
 	var/health_based = 0
+	power = /obj/effect/proc_holder/spell/aoe_turf/repulse/hulk
 
 
 /datum/mutation/human/active_hulk/on_acquiring(mob/living/carbon/human/owner)
@@ -76,7 +76,6 @@
 	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, TRAIT_HULK)
 	ADD_TRAIT(owner, TRAIT_IGNORESLOWDOWN, TRAIT_HULK)
 	RegisterSignal(owner, COMSIG_MOB_SAY, .proc/handle_speech)
-	owner.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/repulse/hulk(null))
 	if(istype(owner.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = owner.w_uniform
 		if(owner.canUnEquip(U))
@@ -105,7 +104,6 @@
 	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, TRAIT_HULK)
 	REMOVE_TRAIT(owner, TRAIT_IGNORESLOWDOWN, TRAIT_HULK)
 	UnregisterSignal(owner, COMSIG_MOB_SAY)
-	owner.mind.RemoveSpell(/obj/effect/proc_holder/spell/aoe_turf/repulse/hulk)
 	owner.dna.species.no_equip.Remove(SLOT_WEAR_SUIT, SLOT_W_UNIFORM)
 	owner.physiology.stamina_mod = initial(owner.physiology.stamina_mod)
 	owner.update_body_parts()
