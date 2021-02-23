@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Changes cargo's 500 uranium goal to 50 of every sheet"
