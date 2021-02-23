@@ -232,7 +232,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 		to_chat(src, "<span class='notice'>The Message of the Day has not been set.</span>")
 
 /client/proc/self_notes()
-	set name = "View Admin Remarks"
+	set name = "View Own Notes"
 	set category = "OOC"
 	set desc = "View the notes that admins have written about you"
 
