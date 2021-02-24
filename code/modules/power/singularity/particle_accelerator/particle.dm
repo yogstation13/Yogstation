@@ -64,7 +64,7 @@
 	if(!step(src,dir))
 		forceMove(get_step(src,dir))
 	movement_range--
-	if(movement_range == 0)
+	if(movement_range <= 0)
 		qdel(src)
 	else
 		sleep(speed)
