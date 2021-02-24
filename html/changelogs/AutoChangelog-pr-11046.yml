@@ -1,0 +1,4 @@
+author: "  Hopek"
+delete-after: true 
+changes: 
+  - bugfix: "chitinous armor now accepts oxygen tanks."
