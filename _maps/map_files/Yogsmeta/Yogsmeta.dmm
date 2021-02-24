@@ -21475,22 +21475,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"aRw" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/structure/rack,
-/obj/item/c_tube,
-/obj/item/stack/wrapping_paper,
-/turf/open/floor/plasteel,
-/area/clerk)
 "aRx" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -78001,6 +77985,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"kNr" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/item/stack/wrapping_paper,
+/obj/item/stack/packageWrap{
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/turf/open/floor/plasteel,
+/area/clerk)
 "kNy" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/table,
@@ -113843,7 +113846,7 @@ cbW
 cgj
 cgX
 chl
-aRw
+kNr
 aJr
 aJI
 aXP

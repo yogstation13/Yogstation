@@ -31091,6 +31091,17 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/server)
+"jcC" = (
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/meter{
+	target_layer = 2
+	},
+/turf/open/floor/plating,
+/area/ai_monitored/turret_protected/aisat_interior)
 "jcW" = (
 /obj/structure/cable/white{
 	icon_state = "1-4"
@@ -41401,15 +41412,6 @@
 "sNc" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall/rust,
-/area/ai_monitored/turret_protected/aisat_interior)
-"sNd" = (
-/obj/structure/cable/white{
-	icon_state = "1-2"
-	},
-/obj/machinery/meter,
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
 "sNf" = (
 /obj/effect/turf_decal/stripes/line,
@@ -92663,7 +92665,7 @@ sMg
 sLC
 sMr
 sMO
-sNd
+jcC
 uWh
 sNI
 sMr
