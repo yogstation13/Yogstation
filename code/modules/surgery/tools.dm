@@ -312,6 +312,7 @@
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
 		borg.equip_module_to_slot(PC, modulenum)
+		borg.select_module(modulenum)
 	else
 		var/obj/item/circular_saw/advanced/saw = new /obj/item/circular_saw/advanced(drop_location())
 		qdel(src)
@@ -345,6 +346,7 @@
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
 		borg.equip_module_to_slot(PC, modulenum)
+		borg.select_module(modulenum)
 	else
 		var/obj/item/scalpel/advanced/scalpel = new /obj/item/scalpel/advanced(drop_location())
 		qdel(src)
@@ -370,6 +372,7 @@
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
 		borg.equip_module_to_slot(PC, modulenum)
+		borg.select_module(modulenum)
 	else
 		var/obj/item/hemostat/advanced/hemostat = new /obj/item/hemostat/advanced(drop_location())
 		qdel(src)
@@ -395,6 +398,7 @@
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
 		borg.equip_module_to_slot(PC, modulenum)
+		borg.select_module(modulenum)
 	else
 		var/obj/item/retractor/advanced/retractor = new /obj/item/retractor/advanced(drop_location())
 		qdel(src)
@@ -426,6 +430,7 @@
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
 		borg.equip_module_to_slot(PC, modulenum)
+		borg.select_module(modulenum)
 	else
 		var/obj/item/cautery/advanced/cautery = new /obj/item/cautery/advanced(drop_location())
 		qdel(src)
@@ -458,6 +463,7 @@
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
 		borg.equip_module_to_slot(PC, modulenum)
+		borg.select_module(modulenum)
 	else
 		var/obj/item/surgicaldrill/advanced/surgicaldrill = new /obj/item/surgicaldrill/advanced(drop_location())
 		qdel(src)
