@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscdel: "heretics can no longer get the stalk objective since it wasn't easy to make time for or track your completion"
+  - tweak: "heretic transmutation recipes are now stored seperately from knowledge and multiple spells can be added per knowledge, currently mostly unused"
