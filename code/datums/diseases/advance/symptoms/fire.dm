@@ -37,7 +37,8 @@ Bonus
 	)
 
 /datum/symptom/fire/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStageSpeed() >= 4)
 		power = 1.5
@@ -49,7 +50,8 @@ Bonus
 		infective = TRUE
 
 /datum/symptom/fire/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)
@@ -121,7 +123,8 @@ Bonus
 	)
 
 /datum/symptom/alkali/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalResistance() >= 9) //intense but sporadic effect
 		power = 2
@@ -133,7 +136,8 @@ Bonus
 		chems = TRUE
 
 /datum/symptom/alkali/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)

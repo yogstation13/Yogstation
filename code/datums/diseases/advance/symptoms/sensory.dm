@@ -18,7 +18,8 @@
 	)
 
 /datum/symptom/mind_restoration/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalResistance() >= 6) //heal brain damage
 		trauma_heal_mild = TRUE
@@ -28,7 +29,8 @@
 		purge_alcohol = TRUE
 
 /datum/symptom/mind_restoration/Activate(var/datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 
@@ -77,7 +79,8 @@
 	symptom_delay_max = 1
 
 /datum/symptom/sensory_restoration/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)

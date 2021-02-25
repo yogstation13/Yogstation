@@ -32,7 +32,8 @@ Bonus
 	)
 
 /datum/symptom/narcolepsy/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalTransmittable() >= 7) //stamina damage
 		stamina = TRUE
@@ -57,7 +58,8 @@ Bonus
 	else
 		sleep_level = 0
 
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 
 	switch(A.stage)

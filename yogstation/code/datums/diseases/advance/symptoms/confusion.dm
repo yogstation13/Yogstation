@@ -20,7 +20,8 @@
 	)
 					  
 /datum/symptom/numb/Start(datum/disease/advance/A)  //ADD Stamina reg, and a stun resist
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStealth() >= 4)
 		suppress_warning = TRUE
@@ -30,7 +31,8 @@
 		stamina_regen = TRUE
 		
 /datum/symptom/numb/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	if(A.stage < 5)
@@ -48,7 +50,8 @@
 	
 /datum/symptom/numb/End(datum/disease/advance/A)
 	var/mob/living/carbon/M = A.affected_mob
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	else
 		REMOVE_TRAIT(M, TRAIT_SURGERY_PREPARED, DISEASE_TRAIT)

@@ -38,7 +38,8 @@ BONUS
 	)
 
 /datum/symptom/cough/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStealth() >= 4)
 		suppress_warning = TRUE
@@ -52,7 +53,8 @@ BONUS
 		symptom_delay_max = 10
 
 /datum/symptom/cough/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)

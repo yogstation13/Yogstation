@@ -34,7 +34,8 @@ Bonus
 	)
 
 /datum/symptom/choking/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStageSpeed() >= 8)
 		symptom_delay_min = 7
@@ -43,7 +44,8 @@ Bonus
 		suppress_warning = TRUE
 
 /datum/symptom/choking/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)
@@ -108,7 +110,8 @@ Bonus
 
 
 /datum/symptom/asphyxiation/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStageSpeed() >= 8)
 		paralysis = TRUE
@@ -116,7 +119,8 @@ Bonus
 		power = 2
 
 /datum/symptom/asphyxiation/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)

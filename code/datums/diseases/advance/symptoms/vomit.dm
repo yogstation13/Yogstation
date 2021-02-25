@@ -41,7 +41,8 @@ Bonus
 	)
 
 /datum/symptom/vomit/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStealth() >= 4)
 		suppress_warning = TRUE
@@ -51,7 +52,8 @@ Bonus
 		proj_vomit = 5
 
 /datum/symptom/vomit/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)

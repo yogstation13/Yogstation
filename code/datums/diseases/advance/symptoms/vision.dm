@@ -35,7 +35,8 @@ Bonus
 	)
 
 /datum/symptom/visionloss/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStealth() >= 4)
 		suppress_warning = TRUE
@@ -43,7 +44,8 @@ Bonus
 		remove_eyes = TRUE
 
 /datum/symptom/visionloss/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)

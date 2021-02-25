@@ -23,7 +23,8 @@
 		power = 2
 
 /datum/symptom/heal/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)
@@ -63,7 +64,8 @@
 	)
 
 /datum/symptom/heal/starlight/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalTransmittable() >= 6)
 		nearspace_penalty = 1
@@ -116,7 +118,8 @@
 	)
 
 /datum/symptom/heal/chem/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStageSpeed() >= 6)
 		food_conversion = TRUE
@@ -151,7 +154,8 @@
 	)
 
 /datum/symptom/heal/metabolism/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStageSpeed() >= 10)
 		triple_metabolism = TRUE
@@ -185,7 +189,8 @@
 	)
 
 /datum/symptom/heal/darkness/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStageSpeed() >= 8)
 		power = 2
@@ -238,7 +243,8 @@
 	)
 
 /datum/symptom/heal/coma/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStageSpeed() >= 7)
 		power = 1.5
@@ -314,7 +320,8 @@
 	)
 
 /datum/symptom/heal/water/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStageSpeed() >= 7)
 		power = 2
@@ -372,7 +379,8 @@
 	)
 
 /datum/symptom/heal/plasma/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStageSpeed() >= 7)
 		power = 2
@@ -439,7 +447,8 @@
 	)
 
 /datum/symptom/heal/radiation/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalResistance() >= 7)
 		power = 2

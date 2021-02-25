@@ -17,7 +17,8 @@
 	)
 
 /datum/symptom/radiation/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalTransmittable() >= 12)
 		radothers = TRUE
@@ -25,7 +26,8 @@
 		fastrads = TRUE
 
 /datum/symptom/radiation/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)

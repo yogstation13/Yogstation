@@ -37,7 +37,8 @@ Bonus
 	)
 
 /datum/symptom/voice_change/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStealth() >= 3)
 		suppress_warning = TRUE
@@ -49,7 +50,8 @@ Bonus
 		scramble_language = TRUE
 
 /datum/symptom/voice_change/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)

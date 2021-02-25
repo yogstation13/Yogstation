@@ -22,7 +22,8 @@
 	var/tentacle_recheck_cooldown = 100
 
 /datum/symptom/necroseed/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalResistance() >= 15)
 		tendrils = TRUE
@@ -30,7 +31,8 @@
 		fireproof = TRUE
 
 /datum/symptom/necroseed/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)
@@ -85,7 +87,8 @@
 				cached_tentacle_turfs -= t
 
 /datum/symptom/necroseed/End(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	to_chat(M, "<span class='danger'>You feel weakened as the necropolis' blessing leaves your body.</span>")

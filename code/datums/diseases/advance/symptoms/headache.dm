@@ -36,7 +36,8 @@ BONUS
 	)
 
 /datum/symptom/headache/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStealth() >= 4)
 		base_message_chance = 50
@@ -48,7 +49,8 @@ BONUS
 		power = 3
 
 /datum/symptom/headache/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	if(power < 2)

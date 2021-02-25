@@ -36,7 +36,8 @@ Bonus
 	)
 
 /datum/symptom/confusion/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalResistance() >= 6)
 		brain_damage = TRUE
@@ -46,7 +47,8 @@ Bonus
 		suppress_warning = TRUE
 
 /datum/symptom/confusion/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)

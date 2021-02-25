@@ -32,7 +32,8 @@ Bonus
 	)
 
 /datum/symptom/flesh_eating/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalResistance() >= 7) //extra bleeding
 		bleed = TRUE
@@ -40,7 +41,8 @@ Bonus
 		pain = TRUE
 
 /datum/symptom/flesh_eating/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)
@@ -96,7 +98,8 @@ Bonus
 	)
 
 /datum/symptom/flesh_death/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStealth() >= 5)
 		suppress_warning = TRUE
@@ -104,7 +107,8 @@ Bonus
 		chems = TRUE
 
 /datum/symptom/flesh_death/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)

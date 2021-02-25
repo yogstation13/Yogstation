@@ -33,7 +33,8 @@ Bonus
 	)
 
 /datum/symptom/dizzy/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStealth() >= 4)
 		suppress_warning = TRUE
@@ -41,7 +42,8 @@ Bonus
 		power = 2
 
 /datum/symptom/dizzy/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)

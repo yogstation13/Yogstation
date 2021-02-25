@@ -35,7 +35,8 @@ BONUS
 	)
 
 /datum/symptom/itching/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalTransmittable() >= 6) //itch more often
 		symptom_delay_min = 1
@@ -44,7 +45,8 @@ BONUS
 		scratch = TRUE
 
 /datum/symptom/itching/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	var/picked_bodypart = pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)

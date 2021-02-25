@@ -33,7 +33,8 @@ Bonus
 		"Stealth 4" = "The symptom remains hidden until active.",
 	)
 /datum/symptom/deafness/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.totalStealth() >= 4)
 		suppress_warning = TRUE
@@ -41,7 +42,8 @@ Bonus
 		power = 2
 
 /datum/symptom/deafness/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)
