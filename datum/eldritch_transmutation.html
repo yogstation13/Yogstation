@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;eldritch_transmutation - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/eldritch_transmutation.html#var">Var Details</a> - <a href="datum/eldritch_transmutation.html#proc">Proc Details</a></header>
+<main>
+<h1>Transmutation Recipe <aside>/<a href="datum.html">datum</a>/<a href="datum/eldritch_transmutation.html">eldritch_transmutation</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/14cbb51b24bb0171dc7ff69fc9469c7dce9348a8/code/modules/antagonists/eldritch_cult/eldritch_transmutations.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;eldritch_cult&#x2F;eldritch_transmutations.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/eldritch_transmutation.html#var/required_atoms">required_atoms</a></th><td>Used with rituals, how many items this needs</td></tr>
+            <tr><th><a href="datum/eldritch_transmutation.html#var/required_shit_list">required_shit_list</a></th><td>string that quickly describes the required atoms</td></tr>
+            <tr><th><a href="datum/eldritch_transmutation.html#var/result_atoms">result_atoms</a></th><td>What do we get out of this</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/eldritch_transmutation.html#proc/cleanup_atoms">cleanup_atoms</a></th><td>Used atom cleanup</td></tr>
+            <tr><th><a href="datum/eldritch_transmutation.html#proc/on_finished_recipe">on_finished_recipe</a></th><td>What happens once the recipe is succesfully finished</td></tr>
+            <tr><th><a href="datum/eldritch_transmutation.html#proc/on_life">on_life</a></th><td>If a transmutation for some reason needs to do stuff on life at any point</td></tr>
+            <tr><th><a href="datum/eldritch_transmutation.html#proc/recipe_snowflake_check">recipe_snowflake_check</a></th><td>Special check for recipes</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/required_atoms"><aside class="declaration">var </aside>required_atoms
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/14cbb51b24bb0171dc7ff69fc9469c7dce9348a8/code/modules/antagonists/eldritch_cult/eldritch_transmutations.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;eldritch_cult&#x2F;eldritch_transmutations.dm 4"/></a></h3>
+        <p>Used with rituals, how many items this needs</p><h3 id="var/required_shit_list"><aside class="declaration">var </aside>required_shit_list
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/14cbb51b24bb0171dc7ff69fc9469c7dce9348a8/code/modules/antagonists/eldritch_cult/eldritch_transmutations.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;eldritch_cult&#x2F;eldritch_transmutations.dm 10"/></a></h3>
+        <p>string that quickly describes the required atoms</p><h3 id="var/result_atoms"><aside class="declaration">var </aside>result_atoms
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/14cbb51b24bb0171dc7ff69fc9469c7dce9348a8/code/modules/antagonists/eldritch_cult/eldritch_transmutations.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;eldritch_cult&#x2F;eldritch_transmutations.dm 6"/></a></h3>
+        <p>What do we get out of this</p><h2 id="proc">Proc Details</h2><h3 id="proc/cleanup_atoms"><aside class="declaration">proc </aside>cleanup_atoms<aside>(/list/atoms) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/14cbb51b24bb0171dc7ff69fc9469c7dce9348a8/code/modules/antagonists/eldritch_cult/eldritch_transmutations.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;eldritch_cult&#x2F;eldritch_transmutations.dm 45"/></a></aside>
+        </h3>
+        <p>Used atom cleanup</p>
+<p>Overide this proc if you dont want ALL ATOMS to be destroyed. useful in many situations.</p><h3 id="proc/on_finished_recipe"><aside class="declaration">proc </aside>on_finished_recipe<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /list/atoms, loc) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/14cbb51b24bb0171dc7ff69fc9469c7dce9348a8/code/modules/antagonists/eldritch_cult/eldritch_transmutations.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;eldritch_cult&#x2F;eldritch_transmutations.dm 31"/></a></aside>
+        </h3>
+        <p>What happens once the recipe is succesfully finished</p>
+<p>By default this proc creates atoms from result_atoms list. Override this is you want something else to happen.</p><h3 id="proc/on_life"><aside class="declaration">proc </aside>on_life<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/14cbb51b24bb0171dc7ff69fc9469c7dce9348a8/code/modules/antagonists/eldritch_cult/eldritch_transmutations.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;eldritch_cult&#x2F;eldritch_transmutations.dm 58"/></a></aside>
+        </h3>
+        <p>If a transmutation for some reason needs to do stuff on life at any point</p>
+<p>Activated on SSprocess in the heretic antag</p><h3 id="proc/recipe_snowflake_check"><aside class="declaration">proc </aside>recipe_snowflake_check<aside>(/list/atoms, loc) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/14cbb51b24bb0171dc7ff69fc9469c7dce9348a8/code/modules/antagonists/eldritch_cult/eldritch_transmutations.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;eldritch_cult&#x2F;eldritch_transmutations.dm 23"/></a></aside>
+        </h3>
+        <p>Special check for recipes</p>
+<p>If you are adding a more complex summoning or something that requires a special check that parses through all the atoms in an area override this.</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/14cbb51b24bb0171dc7ff69fc9469c7dce9348a8">14cbb51</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.3.0</a></footer>
+</body>
+</html>

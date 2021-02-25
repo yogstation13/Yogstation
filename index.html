@@ -142,7 +142,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(297 detailed/809 documented/22868 total, 3.5%)</aside></h3>
+<aside>(300 detailed/812 documented/22905 total, 3.5%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -272,6 +272,7 @@ The namespace folder's name will change if any of the assets change. (excluding 
     </ul></li>
     <li><a href="datum/component/explodable.html" title="&#x2F;datum&#x2F;component&#x2F;explodable">explodable</a> - Component specifically for explosion sensetive things, currently only applies to heat based explosions but can later perhaps be used for things that are dangerous to handle carelessly like nitroglycerin.</li>
     <li><a href="datum/component/material_container.html" title="&#x2F;datum&#x2F;component&#x2F;material_container">material_container</a></li>
+    <li><a href="datum/component/music_player.html" title="&#x2F;datum&#x2F;component&#x2F;music_player">music_player</a></li>
     <li><a href="datum/component/religious_tool.html" title="&#x2F;datum&#x2F;component&#x2F;religious_tool">religious_tool</a> - Allows the parent to act similarly to the Altar of Gods with modularity. Invoke and Sect Selection is done via attacking with a bible. This means you cannot sacrifice Bibles (you shouldn't want to do this anyways although now that I mentioned it you probably will want to).</li>
     <li><span class="no-substance">riding&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;riding&#x2F;human">human</span> - Yes, I said humans. No, this won't end well...</li>
     <li><a href="datum/component/uplink.html" title="&#x2F;datum&#x2F;component&#x2F;uplink">syndicate uplink</a> - Uplinks</li>
@@ -426,9 +427,10 @@ just pass in the object to attach it to in set_up
 Then do start() to start it and stop() to stop it, obviously
 and don't call start() in a loop that will be repeated otherwise it'll get spammed!</li>
     <li class="has-children"><a href="datum/eldritch_knowledge.html" title="&#x2F;datum&#x2F;eldritch_knowledge">Basic knowledge</a> - #Eldritch Knwoledge<ul class="index-tree">
-    <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;eldritch_knowledge&#x2F;spell">spell</span> - Subtypes<ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;eldritch_knowledge&#x2F;spell&#x2F;basic">Break of Dawn</span> - Base lore</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;eldritch_knowledge&#x2F;basic">Break of Dawn</span> - Base lore</li>
     </ul></li>
+    <li class="has-children"><a href="datum/eldritch_transmutation.html" title="&#x2F;datum&#x2F;eldritch_transmutation">Transmutation Recipe</a><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;eldritch_transmutation&#x2F;curse">curse</span> - Subtypes</li>
     </ul></li>
     <li><a href="datum/emote.html" title="&#x2F;datum&#x2F;emote">emote</a></li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;fantasy_affix">fantasy_affix</span><ul class="index-tree">
@@ -522,6 +524,9 @@ note of an instrument.*</li>
     <li><a href="datum/mind.html" title="&#x2F;datum&#x2F;mind">mind</a></li>
     <li><a href="datum/module_picker.html" title="&#x2F;datum&#x2F;module_picker">Malfunction Modules Menu</a> - The datum and interface for the malf unlock menu, which lets them choose actions to unlock.</li>
     <li><a href="datum/mood_event.html" title="&#x2F;datum&#x2F;mood_event">mood_event</a></li>
+    <li class="has-children"><a href="datum/music.html" title="&#x2F;datum&#x2F;music">music</a> - Used for playing background music<ul class="index-tree">
+    <li><a href="datum/music/sourced.html" title="&#x2F;datum&#x2F;music&#x2F;sourced">sourced</a></li>
+    </ul></li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;objective">objective</span><ul class="index-tree">
     <li><span class="no-substance">assassinate&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;assassinate&#x2F;obsessed">obsessed</span> - CREEPY objectives (few chosen per obsession)</li>
     <li class="has-children"><a href="datum/objective/minor.html" title="&#x2F;datum&#x2F;objective&#x2F;minor">Minor Objectives</a> - Objectives given to traitors without hijack or martyr, just small flavour things that shouldn't be too hard or impactful.<ul class="index-tree">
@@ -531,7 +536,6 @@ note of an instrument.*</li>
     <li><a href="datum/objective/minor/secrecords.html" title="&#x2F;datum&#x2F;objective&#x2F;minor&#x2F;secrecords">Delete your security records</a> - Just delete the original record. For now, you don't have to prevent other records being made of your identity</li>
     <li><a href="datum/objective/minor/staffpics.html" title="&#x2F;datum&#x2F;objective&#x2F;minor&#x2F;staffpics">Photograph a head of staff</a> - photograph a head of staff</li>
     </ul></li>
-    <li><a href="datum/objective/stalk.html" title="&#x2F;datum&#x2F;objective&#x2F;stalk">spendtime</a></li>
     </ul></li>
     <li><a href="datum/outfit.html" title="&#x2F;datum&#x2F;outfit">Outfit datums</a> - This is a clean system of applying outfits to mobs, if you need to equip someone in a uniform
 this is the way to do it cleanly and properly.</li>
@@ -1275,7 +1279,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/3e13a5cf49b75fbe2f60e2261cbd728328f3e04e">3e13a5c</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/14cbb51b24bb0171dc7ff69fc9469c7dce9348a8">14cbb51</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.3.0</a></footer>
 </body>
 </html>
