@@ -23,15 +23,4 @@
 		/datum/material/glass,
 		/datum/material/iron)
 	return materials.has_materials(material_list, 50*MINERAL_MATERIAL_AMOUNT)
-
-// Setup a tesla in cargo
-/datum/department_goal/car/tesla
-	name = "Create a tesla"
-	desc = "Create a tesla engine in the cargo bay"
-	reward = 50000
-
-/datum/department_goal/car/tesla/check_complete()
-	for(var/obj/singularity/energy_ball/e in GLOB.singularities)
-		if(istype(get_area(e), /area/quartermaster/storage))
-			return TRUE
-	return FALSE
+	
