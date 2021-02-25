@@ -35,9 +35,9 @@ Bonus
 /datum/symptom/dizzy/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.properties["stealth"] >= 4)
+	if(A.totalStealth() >= 4)
 		suppress_warning = TRUE
-	if(A.properties["transmittable"] >= 6) //druggy
+	if(A.totalTransmittable() >= 6) //druggy
 		power = 2
 
 /datum/symptom/dizzy/Activate(datum/disease/advance/A)

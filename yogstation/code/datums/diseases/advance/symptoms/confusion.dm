@@ -22,11 +22,11 @@
 /datum/symptom/numb/Start(datum/disease/advance/A)  //ADD Stamina reg, and a stun resist
 	if(!..())
 		return
-	if(A.properties["stealth"] >= 4)
+	if(A.totalStealth() >= 4)
 		suppress_warning = TRUE
-	if(A.properties["resistance"] >= 8)
+	if(A.totalResistance() >= 8)
 		stun_reduce = -25
-	if(A.properties["transmission"] >= 7)
+	if(A.totalTransmittable() >= 7)
 		stamina_regen = TRUE
 		
 /datum/symptom/numb/Activate(datum/disease/advance/A)

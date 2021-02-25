@@ -38,11 +38,11 @@ Bonus
 /datum/symptom/confusion/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.properties["resistance"] >= 6)
+	if(A.totalResistance() >= 6)
 		brain_damage = TRUE
-	if(A.properties["transmittable"] >= 6)
+	if(A.totalTransmittable() >= 6)
 		power = 1.5
-	if(A.properties["stealth"] >= 4)
+	if(A.totalStealth() >= 4)
 		suppress_warning = TRUE
 
 /datum/symptom/confusion/Activate(datum/disease/advance/A)

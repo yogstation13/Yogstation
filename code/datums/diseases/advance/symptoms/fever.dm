@@ -36,10 +36,10 @@ Bonus
 /datum/symptom/fever/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.properties["resistance"] >= 5) //dangerous fever
+	if(A.totalResistance() >= 5) //dangerous fever
 		power = 1.5
 		unsafe = TRUE
-	if(A.properties["resistance"] >= 10)
+	if(A.totalResistance() >= 10)
 		power = 2.5
 
 /datum/symptom/fever/Activate(datum/disease/advance/A)

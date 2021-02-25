@@ -37,10 +37,10 @@ BONUS
 /datum/symptom/itching/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.properties["transmittable"] >= 6) //itch more often
+	if(A.totalTransmittable() >= 6) //itch more often
 		symptom_delay_min = 1
 		symptom_delay_max = 4
-	if(A.properties["stage_rate"] >= 7) //scratch
+	if(A.totalStageSpeed() >= 7) //scratch
 		scratch = TRUE
 
 /datum/symptom/itching/Activate(datum/disease/advance/A)

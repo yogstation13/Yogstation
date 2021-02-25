@@ -36,10 +36,10 @@ Bonus
 /datum/symptom/hallucigen/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.properties["stealth"] >= 4) //fake good symptom messages
+	if(A.totalStealth() >= 4) //fake good symptom messages
 		fake_healthy = TRUE
 		base_message_chance = 50
-	if(A.properties["stage_rate"] >= 7) //stronger hallucinations
+	if(A.totalStageSpeed() >= 7) //stronger hallucinations
 		power = 2
 
 /datum/symptom/hallucigen/Activate(datum/disease/advance/A)

@@ -18,9 +18,9 @@
 /datum/symptom/nano_boost/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.properties["transmittable"] >= 5) //reverse boost
+	if(A.totalTransmittable() >= 5) //reverse boost
 		reverse_boost = TRUE
-	if(A.properties["stage_rate"] >= 7) //more nanites
+	if(A.totalStageSpeed() >= 7) //more nanites
 		power = 2
 
 /datum/symptom/nano_boost/Activate(datum/disease/advance/A)
@@ -52,9 +52,9 @@
 /datum/symptom/nano_destroy/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.properties["stage_rate"] >= 5) //reverse boost
+	if(A.totalStageSpeed() >= 5) //reverse boost
 		reverse_boost = TRUE
-	if(A.properties["resistance"] >= 7) //more nanites
+	if(A.totalResistance() >= 7) //more nanites
 		power = 3
 
 /datum/symptom/nano_destroy/Activate(datum/disease/advance/A)

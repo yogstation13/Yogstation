@@ -20,11 +20,11 @@
 /datum/symptom/mind_restoration/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.properties["resistance"] >= 6) //heal brain damage
+	if(A.totalResistance() >= 6) //heal brain damage
 		trauma_heal_mild = TRUE
-	if(A.properties["resistance"] >= 9) //heal severe traumas
+	if(A.totalResistance() >= 9) //heal severe traumas
 		trauma_heal_severe = TRUE
-	if(A.properties["transmittable"] >= 8) //purge alcohol
+	if(A.totalTransmittable() >= 8) //purge alcohol
 		purge_alcohol = TRUE
 
 /datum/symptom/mind_restoration/Activate(var/datum/disease/advance/A)

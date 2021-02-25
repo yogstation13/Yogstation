@@ -35,10 +35,10 @@ Bonus
 /datum/symptom/fever/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.properties["stage_rate"] >= 5) //dangerous cold
+	if(A.totalStageSpeed() >= 5) //dangerous cold
 		power = 1.5
 		unsafe = TRUE
-	if(A.properties["stage_rate"] >= 10)
+	if(A.totalStageSpeed() >= 10)
 		power = 2.5
 
 /datum/symptom/shivering/Activate(datum/disease/advance/A)

@@ -24,9 +24,9 @@
 /datum/symptom/necroseed/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.properties["resistance"] >= 15)
+	if(A.totalResistance() >= 15)
 		tendrils = TRUE
-	if(A.properties["resistance"] >= 20)
+	if(A.totalResistance() >= 20)
 		fireproof = TRUE
 
 /datum/symptom/necroseed/Activate(datum/disease/advance/A)

@@ -35,7 +35,7 @@ Bonus
 /datum/symptom/oxygen/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.properties["resistance"] >= 8) //blood regeneration
+	if(A.totalResistance() >= 8) //blood regeneration
 		regenerate_blood = TRUE
 
 /datum/symptom/oxygen/Activate(datum/disease/advance/A)

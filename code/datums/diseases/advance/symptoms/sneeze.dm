@@ -35,9 +35,9 @@ Bonus
 /datum/symptom/sneeze/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.properties["transmittable"] >= 9) //longer spread range
+	if(A.totalTransmittable() >= 9) //longer spread range
 		power = 2
-	if(A.properties["stealth"] >= 4)
+	if(A.totalStealth() >= 4)
 		suppress_warning = TRUE
 
 /datum/symptom/sneeze/Activate(datum/disease/advance/A)
