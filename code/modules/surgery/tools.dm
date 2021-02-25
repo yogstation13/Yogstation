@@ -307,8 +307,7 @@
 		var/modulenum = borg.get_selected_module()
 		borg.uneq_active()
 		borg.module.remove_module(src, TRUE)
-		var/obj/item/circular_saw/advanced/PC = locate() in borg.module.modules
-		PC = new(borg.module)
+		var/obj/item/circular_saw/advanced/PC = new
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
 		borg.equip_module_to_slot(PC, modulenum)
@@ -341,8 +340,7 @@
 		var/modulenum = borg.get_selected_module()
 		borg.uneq_active()
 		borg.module.remove_module(src, TRUE)
-		var/obj/item/scalpel/advanced/PC = locate() in borg.module.modules
-		PC = new(borg.module)
+		var/obj/item/scalpel/advanced/PC = new
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
 		borg.equip_module_to_slot(PC, modulenum)
@@ -367,8 +365,7 @@
 		var/modulenum = borg.get_selected_module()
 		borg.uneq_active()
 		borg.module.remove_module(src, TRUE)
-		var/obj/item/hemostat/advanced/PC = locate() in borg.module.modules
-		PC = new(borg.module)
+		var/obj/item/hemostat/advanced/PC = new
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
 		borg.equip_module_to_slot(PC, modulenum)
@@ -393,8 +390,7 @@
 		var/modulenum = borg.get_selected_module()
 		borg.uneq_active()
 		borg.module.remove_module(src, TRUE)
-		var/obj/item/retractor/advanced/PC = locate() in borg.module.modules
-		PC = new(borg.module)
+		var/obj/item/retractor/advanced/PC = new
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
 		borg.equip_module_to_slot(PC, modulenum)
@@ -425,8 +421,7 @@
 		var/modulenum = borg.get_selected_module()
 		borg.uneq_active()
 		borg.module.remove_module(src, TRUE)
-		var/obj/item/cautery/advanced/PC = locate() in borg.module.modules
-		PC = new(borg.module)
+		var/obj/item/cautery/advanced/PC = new
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
 		borg.equip_module_to_slot(PC, modulenum)
@@ -458,8 +453,7 @@
 		var/modulenum = borg.get_selected_module()
 		borg.uneq_active()
 		borg.module.remove_module(src, TRUE)
-		var/obj/item/surgicaldrill/advanced/PC = locate() in borg.module.modules
-		PC = new(borg.module)
+		var/obj/item/surgicaldrill/advanced/PC = new
 		borg.module.basic_modules += PC
 		borg.module.add_module(PC, FALSE, TRUE)
 		borg.equip_module_to_slot(PC, modulenum)
