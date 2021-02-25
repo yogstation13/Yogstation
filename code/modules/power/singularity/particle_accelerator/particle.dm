@@ -67,5 +67,4 @@
 		qdel(src)
 		return
 	movement_range--
-	sleep(speed)
-	move()
+	addtimer(CALLBACK(src, .proc/move), speed)
