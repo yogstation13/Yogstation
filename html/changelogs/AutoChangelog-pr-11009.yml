@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "goliath tentacles will only increase existing stuns by 2 seconds instead of setting them to 10 to reduce chainstunning potential"
