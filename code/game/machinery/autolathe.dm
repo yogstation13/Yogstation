@@ -336,8 +336,6 @@
 
 /obj/machinery/autolathe/proc/make_item(datum/design/D, multiplier)
 	var/is_stack = ispath(D.build_path, /obj/item/stack)
-	if(is_stack)
-	else
 	var/coeff = (is_stack ? 1 : prod_coeff) //stacks are unaffected by production coefficient
 	var/total_amount = 0
 	for(var/MAT in D.materials)
