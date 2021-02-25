@@ -335,11 +335,13 @@
 	return
 
 /obj/machinery/autolathe/proc/make_item(datum/design/D, multiplier)
-	var/is_stack = ispath(request.build_path, /obj/item/stack)
+	var/is_stack = ispath(D.build_path, /obj/item/stack)
+	if(is_stack)
+	else
 	var/coeff = (is_stack ? 1 : prod_coeff) //stacks are unaffected by production coefficient
 	var/total_amount = 0
-	for(var/MAT in request.materials)
-		total_amount += request.materials[MAT]
+	for(var/MAT in D.materials)
+		total_amount += D.materials[MAT]
 	var/power = max(2000, (total_amount)*multiplier/5) //Change this to use all materials
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	if (!materials)
@@ -349,9 +351,9 @@
 		var/list/materials_used = list()
 		var/list/picked_materials
 		var/list/custom_materials = list() //These will apply their material effect, This should usually only be one.
-		for(var/MAT in request.materials)
+		for(var/MAT in D.materials)
 			var/datum/material/used_material = MAT
-			var/amount_needed = request.materials[MAT] * coeff * multiplier
+			var/amount_needed = D.materials[MAT] * coeff * multiplier
 			if(istext(used_material)) //This means its a category
 				var/list/list_to_show = list()
 				for(var/i in SSmaterials.materials_by_category[used_material])
@@ -418,29 +420,24 @@
 /obj/machinery/autolathe/proc/process_queue() //Process the queue from the autoqueue list. Will add temp metal and glass later.
 	var/datum/design/D = autoqueue[1][1]
 	var/multiplier = autoqueue[1][2]
-	if(!D)
-		remove_from_queue(1)
-		if(autoqueue.len)
-			return process_queue()
+	if(!processing_queue)
+		say("Queue processing halted.")
 		return
-	while(D)
-		if(!processing_queue)
-			say("Queue processing halted.")
-			return
-		if(stat&(NOPOWER|BROKEN) || panel_open)
-			processing_queue = FALSE
-			return
-		if(!can_build(D,multiplier))
-			say("Not enough resources. Queue processing terminated.")
-			processing_queue = FALSE
-			return
-		remove_from_queue(1)
-		make_item(D,multiplier)
-		D = listgetindex(listgetindex(autoqueue, 1),1)
-		multiplier = listgetindex(listgetindex(autoqueue,1),2)
-	being_built = new /list()
-	say("Queue processing finished successfully.")
-	processing_queue = FALSE
+	if(stat&(NOPOWER|BROKEN) || panel_open)
+		processing_queue = FALSE
+		return
+	if(!can_build(D,multiplier))
+		say("Not enough resources. Queue processing terminated.")
+		processing_queue = FALSE
+		return
+	remove_from_queue(1)
+	make_item(D,multiplier)
+	if(autoqueue.len)
+		process_queue()
+	else
+		being_built = new /list()
+		say("Queue processing finished successfully.")
+		processing_queue = FALSE
 
 /obj/machinery/autolathe/proc/get_processing_line()  //Gets processing line for whats building for UI
 	var/datum/design/D = being_built[1]
