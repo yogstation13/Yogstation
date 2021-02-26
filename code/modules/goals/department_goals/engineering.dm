@@ -43,7 +43,7 @@
 			return TRUE
 	return FALSE
 
-// Setup a tesla in cargo
+// Set up a tesla
 /datum/department_goal/eng/tesla
 	name = "Create a tesla"
 	desc = "Create a tesla engine using a tesla generator"
