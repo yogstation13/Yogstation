@@ -925,6 +925,20 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"dn" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/bar)
 "fo" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -934,15 +948,6 @@
 	name = "bar shutters";
 	pixel_x = 4;
 	pixel_y = 28
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/bar)
-"hU" = (
-/obj/effect/landmark/event_spawn,
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
@@ -962,15 +967,6 @@
 	name = "privacy shutters"
 	},
 /turf/open/floor/plating,
-/area/crew_quarters/bar)
-"ny" = (
-/obj/machinery/holopad,
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
 "nP" = (
 /obj/structure/table,
@@ -996,6 +992,14 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"qv" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/bar)
 "rr" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -1005,6 +1009,15 @@
 /obj/machinery/door/window/westright,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"ti" = (
+/obj/effect/landmark/event_spawn,
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/bar)
 "vL" = (
 /obj/machinery/smartfridge/drinks,
 /obj/machinery/door/poddoor/preopen{
@@ -1013,42 +1026,12 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
-"yc" = (
+"xj" = (
+/obj/machinery/holopad,
 /obj/structure/table/reinforced,
-/obj/item/clothing/head/hardhat/cakehat,
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/bar)
-"BN" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/bar)
-"Dm" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/bar)
-"DB" = (
-/obj/machinery/chem_dispenser/drinks,
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
+	name = "bar shutters"
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
@@ -1076,9 +1059,40 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"Ft" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/hardhat/cakehat,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/bar)
+"Ij" = (
+/obj/machinery/chem_dispenser/drinks,
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/bar)
 "Lp" = (
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"PW" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/bar)
 "Rx" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/border_only,
@@ -1098,20 +1112,6 @@
 	},
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"Wo" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
 "Wu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -1209,10 +1209,10 @@ cQ
 cT
 ba
 cI
-yc
-hU
-ny
-Dm
+Ft
+ti
+xj
+qv
 cI
 ba
 ct
@@ -1225,10 +1225,10 @@ Lp
 cT
 ba
 cI
-Dm
+qv
 bj
 bj
-Dm
+qv
 lI
 ba
 lR
@@ -1241,10 +1241,10 @@ cR
 cU
 ba
 cI
-Dm
+qv
 bj
 bj
-Dm
+qv
 cI
 ba
 ct
@@ -1257,10 +1257,10 @@ ba
 ba
 ba
 cI
-Dm
+qv
 bj
 bj
-Dm
+qv
 cI
 cl
 cu
@@ -1273,10 +1273,10 @@ ba
 ba
 ba
 cI
-Dm
+qv
 bj
 bj
-Dm
+qv
 lI
 cm
 ab
@@ -1289,10 +1289,10 @@ aS
 ba
 ba
 cI
-Dm
+qv
 bj
 bj
-Dm
+qv
 cI
 bE
 ab
@@ -1303,12 +1303,12 @@ ab
 ab
 ab
 Eu
-Wo
-BN
-DB
+dn
+PW
+Ij
 cE
 bj
-Dm
+qv
 cI
 co
 ab
@@ -1324,7 +1324,7 @@ bj
 bj
 bj
 bj
-Dm
+qv
 cM
 cp
 ab

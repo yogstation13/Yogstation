@@ -93,6 +93,15 @@
 /obj/structure/chair/americandiner/booth/end_right,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"dn" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/that,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "dB" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -146,14 +155,6 @@
 /area/crew_quarters/bar)
 "gi" = (
 /obj/effect/landmark/start/bartender,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"he" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "hk" = (
@@ -443,6 +444,16 @@
 /obj/effect/landmark/start/cook,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"sP" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/westright,
+/obj/machinery/chem_dispenser/drinks,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "tn" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -486,16 +497,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
-"tP" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/westright,
-/obj/machinery/chem_dispenser/drinks,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "tY" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = 32
@@ -590,15 +591,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"xF" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/head/that,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "xJ" = (
 /obj/machinery/icecream_vat,
 /turf/open/floor/plasteel/showroomfloor,
@@ -615,23 +607,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
-"yk" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "zd" = (
 /obj/structure/disposalpipe/segment,
@@ -740,6 +715,14 @@
 /obj/item/reagent_containers/food/snacks/mint,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"EQ" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "Fn" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/plasteel/ameridiner,
@@ -847,16 +830,6 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
-"Ly" = (
-/obj/structure/table/reinforced,
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "LK" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/window/reinforced,
@@ -897,6 +870,23 @@
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"Nz" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "NL" = (
 /obj/item/instrument/accordion,
 /turf/open/floor/light/colour_cycle/dancefloor_b,
@@ -1093,6 +1083,16 @@
 	},
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/crew_quarters/theatre)
+"Ua" = (
+/obj/structure/table/reinforced,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "Ui" = (
 /obj/item/clothing/under/schoolgirl,
 /obj/machinery/door/firedoor/border_only,
@@ -1478,12 +1478,12 @@ rV
 rV
 le
 rV
-yk
-tP
-he
-xF
-he
-he
+Nz
+sP
+EQ
+dn
+EQ
+EQ
 rF
 VK
 hk
@@ -1503,7 +1503,7 @@ Ru
 Ru
 gi
 Ru
-Ly
+Ua
 rF
 VK
 de

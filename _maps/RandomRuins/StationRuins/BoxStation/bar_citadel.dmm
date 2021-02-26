@@ -378,6 +378,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"gN" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/starkist{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "hD" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/bluecherrycupcake{
@@ -473,25 +492,6 @@
 	pixel_x = -30;
 	pixel_y = 45;
 	receive_ore_updates = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"kz" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/starkist{
-	pixel_x = -3;
-	pixel_y = 5
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -626,15 +626,8 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"rd" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
-"ri" = (
+"qY" = (
 /obj/structure/table/reinforced,
-/obj/item/clothing/head/that,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -642,12 +635,18 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
-	name = "privacy shutters"
+	name = "bar shutters"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"rd" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
 "ro" = (
 /obj/structure/sign/barsign,
 /turf/closed/wall,
@@ -778,6 +777,29 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"yH" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/item/paper_bin/bundlenatural{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/pen/fountain{
+	pixel_x = 6
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/item/pen/fourcolor,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "zJ" = (
 /obj/machinery/computer/arcade/minesweeper,
 /turf/open/floor/wood,
@@ -891,21 +913,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"DD" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "Ei" = (
 /obj/structure/chair/comfy/brown{
 	dir = 4
@@ -916,21 +923,6 @@
 /obj/machinery/gibber,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"Fg" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "Fi" = (
 /obj/structure/table,
 /obj/item/storage/pill_bottle/dice{
@@ -999,29 +991,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"GV" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/item/paper_bin/bundlenatural{
-	pixel_x = 6;
-	pixel_y = 4
-	},
-/obj/item/pen/fountain{
-	pixel_x = 6
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/item/pen/fourcolor,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "He" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
@@ -1064,6 +1033,22 @@
 	pixel_y = 9
 	},
 /turf/open/floor/wood,
+/area/crew_quarters/bar)
+"HS" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/that,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "Ic" = (
 /obj/machinery/reagentgrinder,
@@ -1208,6 +1193,21 @@
 /obj/machinery/icecream_vat,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"MT" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "MY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -1660,11 +1660,11 @@ OC
 OC
 OC
 OC
-GV
-Fg
-ri
-Fg
-kz
+yH
+qY
+HS
+qY
+gN
 sC
 sr
 OC
@@ -1680,7 +1680,7 @@ kk
 Pe
 cK
 Pe
-DD
+MT
 TU
 xa
 OC

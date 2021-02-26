@@ -930,48 +930,12 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"gX" = (
+"hl" = (
 /obj/machinery/vending/cola,
 /obj/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/bar)
-"hl" = (
-/obj/structure/table/american/end,
-/obj/structure/window/reinforced,
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 8;
-	icon_state = "warningline_red"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/bar)
-"hy" = (
-/obj/structure/table/american,
-/obj/item/reagent_containers/food/snacks/burger/plain,
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 8;
-	icon_state = "warningline_red"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
+	name = "bar shutters"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -999,11 +963,49 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
+"io" = (
+/obj/structure/table/american/end,
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 8;
+	icon_state = "warningline_red"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/bar)
 "iA" = (
 /obj/item/storage/secure/safe{
 	pixel_x = -7
 	},
 /turf/closed/wall,
+/area/crew_quarters/bar)
+"kJ" = (
+/obj/structure/table/american,
+/obj/item/clothing/head/that,
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 8;
+	icon_state = "warningline_red"
+	},
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
 /area/crew_quarters/bar)
 "lT" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -1030,23 +1032,6 @@
 /obj/effect/turf_decal/ameritard,
 /obj/effect/spawner/xmastree,
 /turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"uM" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
 /area/crew_quarters/bar)
 "vo" = (
 /obj/structure/table,
@@ -1121,23 +1106,18 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/bar)
-"He" = (
-/obj/structure/table/american/end{
-	dir = 1;
-	icon_state = "table-end";
-	tag = ""
+"Ec" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/burger/plain,
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 8;
-	icon_state = "warningline_red"
-	},
-/obj/machinery/door/firedoor/border_only{
+/obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/preopen{
+/obj/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
-	name = "privacy shutters"
+	name = "bar shutters"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -1162,29 +1142,9 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/bar)
-"JR" = (
+"Ku" = (
 /obj/structure/table/american,
-/obj/item/clothing/head/that,
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 8;
-	icon_state = "warningline_red"
-	},
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/bar)
-"Md" = (
-/obj/structure/table/american,
-/obj/item/reagent_containers/food/snacks/burger/superbite,
+/obj/item/reagent_containers/food/snacks/burger/plain,
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8;
 	icon_state = "warningline_red"
@@ -1192,9 +1152,9 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
-	name = "privacy shutters"
+	name = "bar shutters"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -1226,6 +1186,24 @@
 	name = "privacy shutters"
 	},
 /turf/open/floor/plating,
+/area/crew_quarters/bar)
+"Su" = (
+/obj/structure/table/american,
+/obj/item/reagent_containers/food/snacks/burger/superbite,
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 8;
+	icon_state = "warningline_red"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
 /area/crew_quarters/bar)
 "Tm" = (
 /obj/structure/table/reinforced,
@@ -1264,6 +1242,28 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Ye" = (
+/obj/structure/table/american/end{
+	dir = 1;
+	icon_state = "table-end";
+	tag = ""
+	},
+/obj/item/reagent_containers/food/snacks/burger/plain,
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 8;
+	icon_state = "warningline_red"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
 /area/crew_quarters/bar)
 "Zi" = (
 /obj/structure/disposalpipe/segment{
@@ -1462,12 +1462,12 @@ ab
 ab
 ab
 xx
-uM
-He
-JR
-hy
-Md
-hl
+Ec
+Ye
+kJ
+Ku
+Su
+io
 az
 az
 ab
@@ -1483,7 +1483,7 @@ cv
 cv
 cg
 cv
-gX
+hl
 cQ
 df
 ab

@@ -161,6 +161,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"fh" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "fw" = (
 /obj/machinery/camera{
 	c_tag = "Bar North"
@@ -242,21 +257,6 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"jo" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp,
-/obj/effect/turf_decal/stripes/asteroid/line{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "jp" = (
 /obj/machinery/computer/security/telescreen/entertainment{
@@ -416,6 +416,17 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"qZ" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "rl" = (
 /obj/item/toy/beach_ball,
 /turf/open/floor/plating/beach/sand,
@@ -587,18 +598,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"xd" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/tequila,
-/obj/effect/turf_decal/stripes/asteroid/line{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "xC" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -756,17 +755,6 @@
 "CL" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plating/beach/sand,
-/area/crew_quarters/bar)
-"Di" = (
-/obj/structure/table/wood,
-/obj/effect/turf_decal/stripes/asteroid/line,
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Dm" = (
 /obj/effect/spawner/structure/window,
@@ -1099,17 +1087,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"MW" = (
-/obj/structure/table/wood,
-/obj/effect/turf_decal/stripes/asteroid/line{
-	dir = 10
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "Nk" = (
 /obj/machinery/light,
 /obj/machinery/disposal/bin,
@@ -1118,6 +1095,17 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"Ns" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 10
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "NK" = (
 /obj/effect/turf_decal/sand,
 /obj/structure/chair/stool/bar,
@@ -1223,6 +1211,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"Uo" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/tequila,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "UD" = (
 /turf/open/floor/plating/beach/coastline_t{
 	dir = 4
@@ -1313,17 +1313,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"XC" = (
-/obj/structure/table/wood,
-/obj/effect/turf_decal/stripes/asteroid/line{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "Yn" = (
 /turf/closed/wall,
 /area/crew_quarters/bar)
@@ -1357,6 +1346,17 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/disposalpipe/segment,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"ZF" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/stripes/asteroid/line,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "ZP" = (
@@ -1594,11 +1594,11 @@ Js
 Ld
 Yn
 Yn
-jo
-XC
-xd
-XC
-MW
+fh
+qZ
+Uo
+qZ
+Ns
 sW
 OU
 Ty
@@ -1618,7 +1618,7 @@ pk
 pk
 Kl
 pk
-Di
+ZF
 sW
 OU
 mv

@@ -192,16 +192,6 @@
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
-"bP" = (
-/obj/structure/table/bronze,
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
 "di" = (
 /obj/machinery/computer/arcade,
 /turf/open/floor/bronze,
@@ -241,6 +231,14 @@
 /obj/machinery/deepfryer,
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
+"fa" = (
+/obj/structure/table/bronze,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
 "fz" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/window/reinforced/bronze,
@@ -452,14 +450,6 @@
 /obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
-"rs" = (
-/obj/structure/table/bronze,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
 "rB" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
@@ -491,15 +481,6 @@
 /obj/structure/table/bronze,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
-"sm" = (
-/obj/item/clothing/head/that,
-/obj/structure/table/bronze,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
 "tF" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -567,15 +548,6 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
-"wW" = (
-/obj/item/lighter,
-/obj/structure/table/bronze,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
 "xr" = (
 /obj/machinery/light{
 	dir = 8
@@ -951,12 +923,31 @@
 /obj/effect/landmark/start/cook,
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
+"Mh" = (
+/obj/structure/table/bronze,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
 "MA" = (
 /obj/item/clockwork/alloy_shards,
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = 32
 	},
 /turf/open/floor/bronze,
+/area/crew_quarters/bar)
+"MF" = (
+/obj/item/lighter,
+/obj/structure/table/bronze,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "Nc" = (
 /obj/item/clockwork/component/geis_capacitor/fallen_armor,
@@ -1003,6 +994,15 @@
 "QK" = (
 /obj/machinery/reagentgrinder,
 /obj/structure/table/bronze,
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
+"QP" = (
+/obj/item/clothing/head/that,
+/obj/structure/table/bronze,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "Re" = (
@@ -1385,11 +1385,11 @@ Ws
 Ws
 Ws
 Ws
-wW
-sm
-rs
-rs
-rs
+MF
+QP
+fa
+fa
+fa
 GK
 Re
 Ws
@@ -1405,7 +1405,7 @@ AD
 AD
 zN
 AD
-bP
+Mh
 yQ
 Rh
 Ws
