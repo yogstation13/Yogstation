@@ -649,6 +649,12 @@
 	else
 		return pick("trails_1", "trails_2")
 
+/mob/living/carbon/human/species/polysmorph/getTrail()
+	if(getBruteLoss() < 300)
+		return pick("xltrails_1", "xltrails_2")
+	else
+		return pick("xttrails_1", "xttrails_2")
+		
 /mob/living/experience_pressure_difference(pressure_difference, direction, pressure_resistance_prob_delta = 0)
 	if(buckled)
 		return
