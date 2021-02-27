@@ -120,7 +120,7 @@
 /obj/item/reagent_containers/food/snacks/lasagna
 	name = "lasagna"
 	desc = "I hate Mondays."
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "lasagna"
 	trash = /obj/item/trash/plate
 	list_reagents = list(/datum/reagent/consumable/nutriment = 15)

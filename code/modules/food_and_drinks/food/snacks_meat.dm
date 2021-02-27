@@ -288,7 +288,7 @@
 /obj/item/reagent_containers/food/snacks/dolphinmeat/Initialize()
   . = ..()
   eatverb = pick("bite","chew","choke down","gnaw","swallow","chomp")
-  
+
 /obj/item/reagent_containers/food/snacks/meatclown
 	name = "meat clown"
 	desc = "A delicious, round piece of meat clown. How horrifying."
@@ -327,7 +327,7 @@
 	else if (!spammer) // Visible message in case there are no fingerprints
 		visible_message("<span class='notice'>[src] fails to expand!</span>")
 	qdel(src)
-	
+
 /obj/item/reagent_containers/food/snacks/monkeycube/suicide_act(mob/living/M)
 	M.visible_message("<span class='suicide'>[M] is putting [src] in [M.p_their()] mouth! It looks like [M.p_theyre()] trying to commit suicide!</span>")
 	var/eating_success = do_after(M, 10, TRUE, src, TRUE)
@@ -385,7 +385,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/goat
 	name = "goat cube"
 	desc = "A Goat Tech Industries goat cube. Just add water!"
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "goatcube"
 	bitesize = 20
 	list_reagents = list(/datum/reagent/consumable/nutriment = 15)
