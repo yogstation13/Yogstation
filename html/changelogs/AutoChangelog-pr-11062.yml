@@ -1,4 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - bugfix: "Cable coils no longer print in sets of 30 if something is queued after it"
