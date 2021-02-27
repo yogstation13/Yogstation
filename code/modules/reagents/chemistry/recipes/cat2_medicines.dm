@@ -38,12 +38,6 @@
 	results = list(/datum/reagent/medicine/c2/seiver = 3)
 	required_reagents = list(/datum/reagent/nitrogen = 1, /datum/reagent/potassium = 1, /datum/reagent/aluminium = 1)
 
-/datum/chemical_reaction/medicine/multiver
-	results = list(/datum/reagent/medicine/c2/multiver = 2)
-	required_reagents = list(/datum/reagent/ash = 1, /datum/reagent/consumable/sodiumchloride = 1)
-	mix_message = "The mixture yields a fine black powder."
-	required_temp = 380
-
 /datum/chemical_reaction/medicine/syriniver
 	results = list(/datum/reagent/medicine/c2/syriniver = 5)
 	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/fluorine = 1, /datum/reagent/toxin = 1, /datum/reagent/nitrous_oxide = 2)

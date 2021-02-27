@@ -48,7 +48,7 @@
 					/obj/item/reagent_containers/syringe = 3,
 					/obj/item/reagent_containers/pill/patch/styptic = 2,
 					/obj/item/reagent_containers/pill/patch/silver_sulf = 2,
-					/obj/item/reagent_containers/glass/bottle/multiver = 1,
+					/obj/item/reagent_containers/glass/bottle/charcoal = 1,
 					/obj/item/reagent_containers/pill/epinephrine = 1,
 					/obj/item/reagent_containers/glass/beaker/large = 2,
 					/obj/item/flashlight = 3,

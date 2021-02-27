@@ -229,9 +229,9 @@
 	name = "silver sulfadiazine reserve tank"
 	list_reagents = list(/datum/reagent/medicine/silver_sulfadiazine = 50)
 
-/obj/item/reagent_containers/glass/beaker/large/multiver
-	name = "multiver reserve tank"
-	list_reagents = list(/datum/reagent/medicine/c2/multiver = 50)
+/obj/item/reagent_containers/glass/beaker/large/charcoal
+	name = "charcoal reserve tank"
+	list_reagents = list(/datum/reagent/medicine/charcoal = 50)
 
 /obj/item/reagent_containers/glass/beaker/large/epinephrine
 	name = "epinephrine reserve tank"

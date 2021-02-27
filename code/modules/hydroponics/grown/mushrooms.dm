@@ -21,7 +21,7 @@
 	growthstages = 4
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
-	reagents_add = list(/datum/reagent/medicine/morphine = 0.35, /datum/reagent/medicine/c2/multiver = 0.35, /datum/reagent/consumable/nutriment = 0)
+	reagents_add = list(/datum/reagent/medicine/morphine = 0.35, /datum/reagent/medicine/charcoal = 0.35, /datum/reagent/consumable/nutriment = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/reishi
 	seed = /obj/item/seeds/reishi
@@ -330,7 +330,7 @@
 	yield = 6
 	potency = 20
 	growthstages = 2
-	reagents_add = list(/datum/reagent/medicine/c2/multiver = 0.25, /datum/reagent/medicine/mutadone = 0.04, /datum/reagent/consumable/nutriment = 0.02)
+	reagents_add = list(/datum/reagent/medicine/charcoal = 0.25, /datum/reagent/medicine/mutadone = 0.04, /datum/reagent/consumable/nutriment = 0.02)
 
 /obj/item/reagent_containers/food/snacks/grown/fungus
 	seed = /obj/item/seeds/fungus

@@ -359,8 +359,8 @@
 /area/ruin/powered)
 "bb" = (
 /obj/structure/table,
-/obj/item/reagent_containers/glass/beaker/large/multiver,
-/obj/item/reagent_containers/glass/beaker/large/multiver,
+/obj/item/reagent_containers/glass/beaker/large/charcoal,
+/obj/item/reagent_containers/glass/beaker/large/charcoal,
 /obj/machinery/light/small{
 	dir = 4;
 	icon_state = "bulb"

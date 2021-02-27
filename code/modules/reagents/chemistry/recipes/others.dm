@@ -3,7 +3,7 @@
 	name = "Sterilizine"
 	id = /datum/reagent/space_cleaner/sterilizine
 	results = list(/datum/reagent/space_cleaner/sterilizine = 3)
-	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/medicine/c2/multiver = 1, /datum/reagent/chlorine = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/medicine/charcoal = 1, /datum/reagent/chlorine = 1)
 
 /datum/chemical_reaction/lube
 	name = "Space Lube"
@@ -15,7 +15,7 @@
 	name = "Itching Powder"
 	id = /datum/reagent/itching_powder
 	results = list(/datum/reagent/itching_powder = 3)
-	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/ammonia = 1, /datum/reagent/medicine/c2/multiver = 1)
+	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/ammonia = 1, /datum/reagent/medicine/charcoal= 1)
 
 /datum/chemical_reaction/spraytan
 	name = "Spray Tan"

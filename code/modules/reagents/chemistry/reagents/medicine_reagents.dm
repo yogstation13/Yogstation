@@ -408,6 +408,22 @@
 					M.visible_message("<span class='notice'>The synthflesh soaks into [M]'s burns and they regain their natural color!</span>")
 	..()
 
+/datum/reagent/medicine/charcoal
+	name = "Charcoal"
+	description = "Heals toxin damage as well as slowly removing any other chemicals the patient has in their bloodstream."
+	reagent_state = LIQUID
+	color = "#000000"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	taste_description = "ash"
+
+/datum/reagent/medicine/charcoal/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(-2*REM, 0)
+	. = 1
+	for(var/datum/reagent/R in M.reagents.reagent_list)
+		if(R != src)
+			M.reagents.remove_reagent(R.type,1)
+	..()
+
 /datum/reagent/medicine/omnizine
 	name = "Omnizine"
 	description = "Slowly heals all damage types. Overdose will cause damage in all types instead."

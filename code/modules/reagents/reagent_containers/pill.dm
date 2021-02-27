@@ -121,11 +121,11 @@
 	list_reagents = list(/datum/reagent/medicine/salbutamol = 30)
 	rename_with_volume = TRUE
 
-/obj/item/reagent_containers/pill/multiver
-	name = "multiver pill"
-	desc = "Neutralizes many common toxins and scales with unique medicine in the system. Diluted with protozine."
+/obj/item/reagent_containers/pill/charcoal
+	name = "charcoal pill"
+	desc = "Neutralizes many common toxins."
 	icon_state = "pill17"
-	list_reagents = list(/datum/reagent/medicine/c2/multiver = 5, /datum/reagent/medicine/omnizine/protozine = 5)
+	list_reagents = list(/datum/reagent/medicine/charcoal = 10)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/pill/epinephrine

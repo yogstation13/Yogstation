@@ -197,30 +197,6 @@
 	..()
 	return TRUE
 
-/datum/reagent/medicine/c2/multiver //enhanced with MULTIple medicines
-	name = "Multiver"
-	description = "A chem-purger that becomes more effective the more unique medicines present. Slightly heals toxicity but causes lung damage (mitigatable by unique medicines). Will purge other medicines unless 2 other unique medicine reagents are present."
-
-/datum/reagent/medicine/c2/multiver/on_mob_life(mob/living/carbon/human/M)
-	var/medibonus = 0 //it will always have itself which makes it REALLY start @ 1
-	for(var/r in M.reagents.reagent_list)
-		var/datum/reagent/the_reagent = r
-		if(istype(the_reagent, /datum/reagent/medicine))
-			medibonus += 1
-
-	M.adjustToxLoss(-0.5 * min(medibonus, 3) * REM) //not great at healing but if you have nothing else it will work
-	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 0.5 * REM) //kills at 40u
-	for(var/r2 in M.reagents.reagent_list)
-		var/datum/reagent/the_reagent2 = r2
-		if(the_reagent2 == src)
-			continue
-		var/amount2purge = 3
-		if(medibonus >= 3 && istype(the_reagent2, /datum/reagent/medicine)) //3 unique meds (2+multiver) will make it not purge medicines
-			continue
-		M.reagents.remove_reagent(the_reagent2.type, amount2purge * REM)
-	..()
-	return TRUE
-
 #define issyrinormusc(A) (istype(A,/datum/reagent/medicine/c2/syriniver) || istype(A,/datum/reagent/medicine/c2/musiver)) //musc is metab of syrin so let's make sure we're not purging either
 
 /datum/reagent/medicine/c2/syriniver //Inject >> SYRINge

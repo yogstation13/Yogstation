@@ -6,7 +6,7 @@
 	density = FALSE
 	products = list(/obj/item/storage/pill_bottle/mannitol = 2,
 		            /obj/item/storage/pill_bottle/mutadone = 2,
-		            /obj/item/reagent_containers/pill/multiver = 6,
+		            /obj/item/reagent_containers/pill/charcoal = 6,
 					/obj/item/clothing/glasses/regular = 5,
 					/obj/item/disk/data = 2,
 					/obj/item/reagent_containers/food/snacks/monkeycube = 10)
