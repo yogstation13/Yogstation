@@ -103,7 +103,7 @@
 	pull_vines()
 	if(!kudzu_need())
 		adjustHealth(-5)
-		if(prob(10))
+		if(prob(20))
 			to_chat(src, "<span class='danger'>You wither away without the support of the kudzu...</span>")
 	
 /mob/living/simple_animal/hostile/venus_human_trap/AttackingTarget()
