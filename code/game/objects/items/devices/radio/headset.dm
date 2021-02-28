@@ -232,7 +232,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "mining radio headset"
 	desc = "Headset used by shaft miners."
 	icon_state = "mine_headset"
-	keyslot = new /obj/item/encryptionkey/headset_mining
+	keyslot = new /obj/item/encryptionkey/headset_cargo
 
 /obj/item/radio/headset/headset_srv
 	name = "service radio headset"
