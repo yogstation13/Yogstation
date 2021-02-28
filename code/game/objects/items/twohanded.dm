@@ -68,10 +68,14 @@
 	if(user.get_inactive_held_item())
 		to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
 		return
-	var/obj/item/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
-	if(!user.put_in_inactive_hand(O))
-		to_chat(user, "<span class='notice'>You try to wield it... but it seems you're missing the matching arm.</span>") // should be better text but dunno what
-		return
+	var/obj/item/twohanded/offhand/O = new(user) // Reserve other hand
+	// Cyborgs are snowflakes hand wise
+	if(iscyborg(user))
+		user.put_in_inactive_hand(O)
+	else
+		if(!user.put_in_inactive_hand(O))
+			to_chat(user, "<span class='notice'>You try to wield it... but it seems you're missing the matching arm.</span>") // should be better text but dunno what
+			return
 	wielded = TRUE
 	if(force_wielded)
 		force += force_wielded
@@ -802,7 +806,7 @@
 	icon_state = "bone_axe0"
 	name = "bone axe"
 	desc = "A large, vicious axe crafted out of several sharpened bone plates and crudely tied together. Made of monsters, by killing monsters, for killing monsters."
-	force_wielded = 23
+	force_wielded = 18
 
 /obj/item/twohanded/fireaxe/boneaxe/update_icon()
 	icon_state = "bone_axe[wielded]"

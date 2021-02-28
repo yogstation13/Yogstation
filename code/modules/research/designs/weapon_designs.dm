@@ -296,16 +296,6 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
-/datum/design/wormhole_projector
-	name = "Bluespace Wormhole Projector"
-	desc = "A projector that emits high density quantum-coupled bluespace beams."
-	id = "wormholeprojector"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/silver = 2000, /datum/material/iron = 5000, /datum/material/diamond = 2000, /datum/material/bluespace = 3000)
-	build_path = /obj/item/gun/energy/wormhole_projector
-	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
-
 //WT550 Mags
 
 /datum/design/mag_oldsmg

@@ -1301,15 +1301,15 @@
 
 		if(welded && !locked)
 			to_chat(user, "<span class='warning'>It's welded, this will take a while...</span>")
-			time_to_open = 120 * door_time_multiplier
+			time_to_open = 100 * door_time_multiplier
 
 		if(locked && !welded)
 			to_chat(user, "<span class='warning'>The bolts are down, it won't budge! Forcing the bolts will take a while...</span>")
-			time_to_open = 100 * door_time_multiplier
+			time_to_open = 80 * door_time_multiplier
 
 		if(locked && welded)
 			to_chat(user, "<span class='warning'>The bolts are down, and it's welded.Forcing the bolts and breaking the seal will take a long while...</span>")
-			time_to_open = 240 * door_time_multiplier
+			time_to_open = 200 * door_time_multiplier
 
 
 		if(hasPower())
