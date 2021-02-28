@@ -383,6 +383,15 @@
                     /obj/item/key/security)
     crate_name = "secway crate"
 
+/datum/supply_pack/security/silverswords
+	name = "Silver Swords"
+	desc = "Blades forged from silver, meant to arm anti-vampire personnel. Requires security access to open."
+	cost = 5000
+	contains = list(/obj/item/melee/silversword,
+					/obj/item/melee/silversword,
+					/obj/item/melee/silversword)
+	crate_name = "silver swords crate"
+
 /datum/supply_pack/security/firingpins
 	name = "Standard Firing Pins Crate"
 	desc = "Upgrade your arsenal with 10 standard firing pins. Requires Security access to open."

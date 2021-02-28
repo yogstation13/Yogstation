@@ -59,6 +59,41 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	materials = list(/datum/material/iron = 1000)
 
+/obj/item/melee/silversword
+	name = "silver sword"
+	desc = "A sword made out of the purest of metals, made to banish unholy creatures of the night, such as vampires and werewolves."
+	icon_state = "claymore"
+	item_state = "claymore"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	flags_1 = CONDUCT_1
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
+	force = 12 //Has to be weak as a weapon against normal people or it'll be abused.
+	throwforce = 10
+	w_class = WEIGHT_CLASS_NORMAL
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	sharpness = IS_SHARP
+	max_integrity = 200
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
+	resistance_flags = FIRE_PROOF
+	materials = list(/datum/material/iron = 1000)
+	var/bonus_burn = 0 //doesn't burn the unholy
+
+/obj/item/melee/silversword/attack(mob/living/target, mob/living/carbon/human/user)
+	. = ..()
+	bonus_burn = 0
+	if(!QDELETED(target) && target.stat != DEAD) 
+		if(is_vampire(target))
+			target.visible_message("<span class='warning'>[target] burns violently at [src]'s touch!</span>")
+			to_chat(target, "<span class='userdanger'>Your body flares with agony at [src]'s presence!</span>")
+			bonus_burn = 13 //total 25 damage on vampire. Yes, it is powerful, but a gun is still generally better.
+	target.adjustFireLoss(bonus_burn)
+
+/obj/item/melee/silversword/Initialize()
+	. = ..()
+	AddComponent(/datum/component/butchering, 40, 105)
+
 /obj/item/melee/cutlass
 	name = "cutlass"
 	desc = "A true pirates weapon, seems somewhat dull though"
