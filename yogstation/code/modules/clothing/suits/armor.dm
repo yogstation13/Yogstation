@@ -7,6 +7,7 @@
 	resistance_flags = FIRE_PROOF
 	armor = list(melee = 65, bullet = 35, laser = 15, energy = 10, bomb = 35, fire = 50, bio = 0, rad = 0)
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
+	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman) // allows ling armor to carry the usual space suit tanks.
 
 /obj/item/clothing/suit/armor/vest/rycliesarmour
 	name = "war armour"

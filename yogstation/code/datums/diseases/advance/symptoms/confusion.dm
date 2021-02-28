@@ -37,6 +37,7 @@
 		if(prob(base_message_chance) && !suppress_warning)
 			to_chat(M, "<span class='notice'>[pick("You feel better.")]</span>")
 	else
+		ADD_TRAIT(M, TRAIT_SURGERY_PREPARED, DISEASE_TRAIT)
 		M.AdjustStun(stun_reduce, 0)
 		M.set_screwyhud(SCREWYHUD_HEALTHY)
 		if(stamina_regen)
@@ -50,6 +51,7 @@
 	if(!..())
 		return
 	else
+		REMOVE_TRAIT(M, TRAIT_SURGERY_PREPARED, DISEASE_TRAIT)
 		M.set_screwyhud(SCREWYHUD_NONE)
 		M.updatehealth()
 	return

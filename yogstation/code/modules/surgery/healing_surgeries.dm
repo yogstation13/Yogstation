@@ -19,6 +19,7 @@
 	name = "apply gauze"
 	implements = list(/obj/item/stack/medical/gauze = 100, /obj/item/medical/bandage/improvised = 65, /obj/item/clothing/torncloth = 35)
 	time = 24
+	fuckup_damage = 0
 	var/dressing_type = "brute"
 
 /datum/surgery_step/apply_dressing/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)

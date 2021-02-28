@@ -75,7 +75,7 @@ SUBSYSTEM_DEF(weather)
     var/datum/weather/A
     for(var/V in processing)
         var/datum/weather/W = V
-        if((z in W.impacted_z_levels) && W.area_type == active_area.type)
+        if((z in W.impacted_z_levels) && istype(active_area, W.area_type))
             A = W
             break
     return A

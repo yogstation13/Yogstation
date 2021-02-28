@@ -577,9 +577,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			adjustToxLoss(1)
 			if(prob(5) && !stat)
 				to_chat(src, "<span class='warning'>Maybe you should lie down for a bit...</span>")
-			ADD_TRAIT(src, TRAIT_SURGERY_PREPARED, "drunkashell")
-		else
-			REMOVE_TRAIT(src, TRAIT_SURGERY_PREPARED, "drunkashell")
 
 		if(drunkenness >= 91)
 			adjustToxLoss(1)
