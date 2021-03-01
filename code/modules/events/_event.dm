@@ -61,7 +61,7 @@
 	triggering = TRUE
 	if (alert_observers)
 		//Yogs start -- 20 seconds instead of 10
-		message_admins("<span class='big bold'><font color = red>Random Event triggering in 20 seconds: [name] (<a href='?src=[REF(src)];cancel=1'>CANCEL</a>)</font color></span>")
+		message_admins("<span class='bold'><font color = red>Random Event triggering in 20 seconds: [name] (<a href='?src=[REF(src)];cancel=1'>CANCEL</a>)</font color></span>")
 		sleep(20 SECONDS)
 		//Yogs end
 		var/gamemode = SSticker.mode.config_tag
