@@ -202,20 +202,6 @@
 /obj/structure/weightmachine/stacklifter,
 /turf/open/floor/plating/beach/sand,
 /area/ruin/powered/beach)
-"aP" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/ruin/powered/beach)
-"aQ" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp,
-/turf/open/floor/wood,
-/area/ruin/powered/beach)
-"aR" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/tequila,
-/turf/open/floor/wood,
-/area/ruin/powered/beach)
 "aS" = (
 /obj/machinery/processor,
 /turf/open/floor/wood,
@@ -468,6 +454,14 @@
 	},
 /turf/open/floor/pod/dark,
 /area/ruin/powered/beach)
+"jl" = (
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = -24
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/beach)
 "jF" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/pod/dark,
@@ -552,6 +546,14 @@
 /obj/structure/closet/athletic_mixed,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/beach)
+"wz" = (
+/obj/structure/table/wood,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/beach)
 "wY" = (
 /turf/open/floor/pod/light,
 /area/ruin/powered/beach)
@@ -597,6 +599,15 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/beach)
+"Qc" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/beach)
 "QS" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/light{
@@ -614,6 +625,15 @@
 /area/ruin/powered/beach)
 "VO" = (
 /turf/open/floor/pod/dark,
+/area/ruin/powered/beach)
+"Ws" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/tequila,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
 /area/ruin/powered/beach)
 "Xp" = (
 /obj/effect/turf_decal/sand,
@@ -983,8 +1003,8 @@ ag
 as
 aw
 aC
-aC
-aP
+jl
+wz
 aW
 aK
 Ga
@@ -1016,7 +1036,7 @@ as
 aj
 aD
 aC
-aQ
+Qc
 aW
 oK
 sO
@@ -1048,7 +1068,7 @@ at
 ax
 hY
 aC
-aP
+wz
 aW
 aK
 sy
@@ -1080,7 +1100,7 @@ aj
 aj
 aF
 aC
-aR
+Ws
 aW
 aK
 aK

@@ -20,6 +20,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"ap" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/chem_dispenser/drinks/fullupgrade,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/spacebar)
 "as" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -35,6 +53,20 @@
 /obj/effect/turf_decal/tile/bar,
 /obj/machinery/vending/snack,
 /turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
+"aC" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/item/book/manual/wiki/barman_recipes{
+	pixel_y = -4
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
 "aH" = (
 /obj/effect/turf_decal/tile/bar{
@@ -119,6 +151,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"fH" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/spacebar)
 "gh" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -152,6 +195,24 @@
 	tag = ""
 	},
 /turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
+"hf" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
 "hh" = (
 /obj/machinery/door/airlock/external,
@@ -340,20 +401,6 @@
 /obj/structure/chair,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
-"oo" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/chem_dispenser/drinks/beer/fullupgrade,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/spacebar)
 "oC" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -367,23 +414,6 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/powered/spacebar)
-"pP" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/chem_dispenser/drinks/fullupgrade,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/sign/poster/random{
-	pixel_x = 32
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
 "pV" = (
 /obj/machinery/light{
@@ -418,6 +448,17 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
+"rf" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
 "rE" = (
 /obj/effect/turf_decal/stripes/line{
@@ -504,13 +545,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered/spacebar)
-"uu" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/structure/table/reinforced,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/spacebar)
 "uD" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -520,14 +554,6 @@
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/powered/spacebar)
-"vd" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
 "vh" = (
 /obj/effect/turf_decal/stripes/line{
@@ -667,16 +693,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered/spacebar)
-"Ee" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/item/reagent_containers/food/drinks/bottle/lizardwine{
-	pixel_y = 6
-	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/spacebar)
 "Ej" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -687,6 +703,32 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
+"ES" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/spacebar)
+"Ft" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/item/reagent_containers/food/drinks/bottle/lizardwine{
+	pixel_y = 6
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
 "Fy" = (
 /obj/machinery/light/small{
@@ -715,16 +757,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
-"GA" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/item/book/manual/wiki/barman_recipes{
-	pixel_y = -4
-	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/spacebar)
 "GD" = (
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered/spacebar)
@@ -746,15 +778,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
-"GM" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/item/reagent_containers/food/drinks/shaker,
-/obj/item/reagent_containers/glass/rag,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/spacebar)
 "Hf" = (
 /obj/structure/chair/stool,
 /obj/item/toy/figure/bartender{
@@ -765,13 +788,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/spacebar)
-"Hi" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/structure/table/reinforced,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/spacebar)
 "Hk" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -780,6 +796,15 @@
 /obj/effect/turf_decal/tile/bar,
 /obj/structure/table,
 /turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
+"Hp" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
 "HM" = (
 /turf/open/floor/plating/airless,
@@ -806,13 +831,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/spacebar)
-"Jw" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/spacebar)
 "JG" = (
 /obj/structure/chair/stool,
 /turf/open/floor/carpet,
@@ -820,9 +838,14 @@
 "JO" = (
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
-"JU" = (
+"KL" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/line,
+/mob/living/carbon/monkey/punpun,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
 "KO" = (
@@ -903,12 +926,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
-"Nn" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/line,
-/mob/living/carbon/monkey/punpun,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/spacebar)
 "NH" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -946,6 +963,15 @@
 /area/ruin/space/has_grav/powered/spacebar)
 "Ow" = (
 /turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/spacebar)
+"OL" = (
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = 25;
+	pixel_y = 24
+	},
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
 "OV" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -1026,6 +1052,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"Tw" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/spacebar)
 "TK" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -1080,6 +1119,17 @@
 "VN" = (
 /obj/structure/closet/crate/rcd,
 /turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
+"VY" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
 "Wl" = (
 /obj/structure/sign/poster/contraband/eat{
@@ -1646,11 +1696,11 @@ yg
 yg
 yg
 PZ
-uu
-GA
-GM
-Ee
-Jw
+VY
+aC
+Tw
+Ft
+fH
 PZ
 yg
 KZ
@@ -1679,11 +1729,11 @@ eC
 yg
 yg
 PZ
-Hi
+rf
 JO
 JO
 JO
-JU
+Hp
 PZ
 yg
 Hk
@@ -1712,11 +1762,11 @@ Hk
 yg
 yg
 yg
-oo
+hf
 JO
 JO
 JO
-Nn
+KL
 PZ
 yg
 Ej
@@ -1745,11 +1795,11 @@ fy
 yg
 mQ
 aX
-pP
+ap
+OL
 JO
 JO
-JO
-vd
+ES
 PZ
 yg
 yg
@@ -1785,7 +1835,7 @@ yK
 FB
 jk
 yg
-yg
+mQ
 yg
 yg
 Ls
