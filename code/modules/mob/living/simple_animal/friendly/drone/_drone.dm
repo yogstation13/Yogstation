@@ -23,8 +23,8 @@
 	icon_living = "drone_maint_grey"
 	icon_dead = "drone_maint_dead"
 	possible_a_intents = list(INTENT_HELP, INTENT_HARM)
-	health = 30
-	maxHealth = 30
+	health = 15
+	maxHealth = 15
 	unsuitable_atmos_damage = 0
 	wander = 0
 	speed = -1 //YOGS - drones //Buffed to not be a fucking god damn piece of slug matter writhing on the fucking floor
