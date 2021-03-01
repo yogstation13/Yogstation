@@ -466,10 +466,6 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"bo" = (
-/obj/machinery/smartfridge/drinks,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "bq" = (
 /obj/machinery/door/airlock{
 	name = "Bar Storage";
@@ -878,6 +874,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"kM" = (
+/obj/machinery/smartfridge/drinks,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "lg" = (
 /obj/effect/spawner/xmastree,
 /turf/open/floor/plasteel/dark,
@@ -934,6 +938,19 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
+"Cr" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = 6;
+	pixel_y = 24;
+	req_access_txt = "25"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "Eq" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/head/that,
@@ -973,18 +990,6 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
-"Kw" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "bar shutters";
-	pixel_x = 4;
-	pixel_y = 28
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "Mm" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/wiki/barman_recipes,
@@ -1249,7 +1254,7 @@ au
 aI
 aW
 Ta
-Kw
+Cr
 cv
 cv
 ci
@@ -1286,7 +1291,7 @@ br
 cv
 ck
 cv
-bo
+kM
 an
 dg
 ai

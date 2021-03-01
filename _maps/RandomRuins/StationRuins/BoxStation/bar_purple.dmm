@@ -1300,23 +1300,6 @@
 /obj/item/clothing/head/hardhat/cakehat,
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/bar)
-"ii" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "bar shutters";
-	pixel_x = 7;
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "kM" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 8;
@@ -1474,6 +1457,23 @@
 /obj/effect/landmark/blobstart,
 /obj/item/toy/crayon/purple,
 /turf/open/floor/plating,
+/area/crew_quarters/bar)
+"Qw" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_y = 24;
+	req_access_txt = "25"
+	},
+/turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "QV" = (
 /obj/structure/table/reinforced{
@@ -1776,7 +1776,7 @@ au
 aK
 ba
 YX
-ii
+Qw
 aw
 aw
 cx

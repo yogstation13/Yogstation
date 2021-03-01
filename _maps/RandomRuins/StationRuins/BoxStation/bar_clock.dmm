@@ -728,18 +728,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
-"DT" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "bar shutters";
-	pixel_x = -24;
-	pixel_y = 26
-	},
-/turf/open/floor/bronze,
-/area/crew_quarters/bar)
 "Ej" = (
 /turf/closed/wall,
 /area/crew_quarters/bar)
@@ -835,23 +823,6 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/theatre)
-"IS" = (
-/obj/machinery/disposal/bin,
-/obj/structure/sign/warning/securearea{
-	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
-	icon_state = "monkey_painting";
-	name = "Mr. Deempisi portrait";
-	pixel_x = -28;
-	pixel_y = -4
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/bronze,
-/area/crew_quarters/bar)
 "IU" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/xeno_spawn,
@@ -968,6 +939,12 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/theatre)
+"Pf" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/open/floor/bronze,
+/area/crew_quarters/bar)
 "PF" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -1191,6 +1168,29 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
+"Ya" = (
+/obj/machinery/disposal/bin,
+/obj/structure/sign/warning/securearea{
+	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
+	icon_state = "monkey_painting";
+	name = "Mr. Deempisi portrait";
+	pixel_x = -28;
+	pixel_y = -4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_y = 25;
+	req_access_txt = "25"
+	},
+/turf/open/floor/bronze,
+/area/crew_quarters/bar)
 "YH" = (
 /obj/item/clockwork/alloy_shards/small,
 /turf/open/floor/bronze/reebe,
@@ -1400,7 +1400,7 @@ QK
 Xj
 jf
 Ws
-IS
+Ya
 AD
 AD
 zN
@@ -1416,7 +1416,7 @@ Hw
 IU
 AS
 gC
-DT
+Pf
 AD
 wz
 AD

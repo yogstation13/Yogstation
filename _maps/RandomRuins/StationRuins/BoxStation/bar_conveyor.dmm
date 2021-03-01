@@ -494,12 +494,6 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
-"bz" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/bar)
 "bA" = (
 /obj/machinery/camera{
 	c_tag = "Kitchen";
@@ -1211,6 +1205,12 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
+"HW" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
 "KY" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4;
@@ -1226,6 +1226,19 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
+"Rl" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = 1;
+	pixel_y = 23;
+	req_access_txt = "25"
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
 "RP" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -1268,18 +1281,6 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
-"XY" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "bar shutters";
-	pixel_x = -25;
-	pixel_y = 25
-	},
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
@@ -1479,7 +1480,7 @@ aw
 aJ
 aW
 wy
-bz
+Rl
 ao
 cL
 ao
@@ -1495,7 +1496,7 @@ wt
 aK
 ai
 cA
-XY
+HW
 bf
 cL
 ce

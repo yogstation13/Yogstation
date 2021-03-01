@@ -298,22 +298,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"dz" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "bar shutters";
-	pixel_x = -26;
-	pixel_y = 27
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "dP" = (
 /obj/structure/chair/sofa/left,
 /obj/structure/window{
@@ -358,26 +342,6 @@
 /obj/machinery/vending/wardrobe/chef_wardrobe,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"gv" = (
-/obj/machinery/disposal/bin,
-/obj/structure/sign/plaques/deempisi{
-	pixel_x = -28;
-	pixel_y = -4
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/machinery/light_switch{
-	name = "Bar Lights";
-	pixel_x = -6;
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "gN" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/bar,
@@ -704,6 +668,16 @@
 	dir = 5
 	},
 /turf/open/floor/wood,
+/area/crew_quarters/bar)
+"tP" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "uE" = (
 /obj/machinery/chem_master/condimaster{
@@ -1242,6 +1216,33 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"PT" = (
+/obj/machinery/disposal/bin,
+/obj/structure/sign/plaques/deempisi{
+	pixel_x = -28;
+	pixel_y = -4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	name = "Bar Lights";
+	pixel_x = -6;
+	pixel_y = 28
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = 6;
+	pixel_y = 24;
+	req_access_txt = "25"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "Qa" = (
 /obj/structure/chair/sofa/right{
 	dir = 1
@@ -1675,7 +1676,7 @@ RL
 Ic
 Al
 OC
-gv
+PT
 kk
 Pe
 cK
@@ -1691,7 +1692,7 @@ Ko
 wQ
 cj
 rP
-dz
+tP
 Pe
 Hm
 Pe

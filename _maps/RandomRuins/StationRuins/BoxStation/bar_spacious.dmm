@@ -939,18 +939,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
-"fo" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "bar shutters";
-	pixel_x = 4;
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/bar)
 "lI" = (
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/tile/bar,
@@ -997,6 +985,18 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/bar)
+"qE" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_y = 24;
+	req_access_txt = "25"
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
@@ -1319,7 +1319,7 @@ ao
 as
 aD
 ab
-fo
+qE
 bj
 bj
 bj

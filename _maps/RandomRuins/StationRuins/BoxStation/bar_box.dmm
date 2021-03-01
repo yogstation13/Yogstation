@@ -971,6 +971,20 @@
 /obj/item/reagent_containers/food/snacks/mint,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"cu" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = -25;
+	pixel_y = 24;
+	req_access_txt = "25"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "cv" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/cafeteria,
@@ -1433,20 +1447,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"Xj" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "Bar Shutters Control";
-	pixel_x = -25;
-	pixel_y = 24;
-	req_access_txt = "28"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
@@ -1647,7 +1647,7 @@ aE
 bd
 ag
 IS
-Xj
+cu
 bx
 cp
 bx

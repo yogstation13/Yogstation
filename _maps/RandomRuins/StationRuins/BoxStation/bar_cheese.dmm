@@ -1015,20 +1015,20 @@
 /obj/machinery/icecream_vat,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"Hm" = (
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_y = 24;
+	req_access_txt = "25"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "IK" = (
 /obj/structure/table/wood,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"JD" = (
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "bar shutters";
-	pixel_x = 4;
-	pixel_y = 28
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -1312,7 +1312,7 @@ at
 Ew
 ba
 ag
-JD
+Hm
 au
 aB
 jf

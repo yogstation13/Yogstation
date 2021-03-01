@@ -1630,7 +1630,7 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"pd" = (
+"kY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
@@ -1644,12 +1644,6 @@
 /obj/effect/turf_decal/tile/darkgreen{
 	dir = 1;
 	icon_state = "tile_corner"
-	},
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "bar shutters";
-	pixel_x = -26;
-	pixel_y = 25
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -1689,31 +1683,6 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"zj" = (
-/obj/machinery/disposal/bin,
-/obj/structure/sign/warning/securearea{
-	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
-	icon_state = "monkey_painting";
-	name = "Mr. Deempisi portrait";
-	pixel_x = -28;
-	pixel_y = -4
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkgreen,
-/obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "Bj" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/head/that{
@@ -1752,6 +1721,38 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
 	name = "privacy shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"Jv" = (
+/obj/machinery/disposal/bin,
+/obj/structure/sign/warning/securearea{
+	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
+	icon_state = "monkey_painting";
+	name = "Mr. Deempisi portrait";
+	pixel_x = -28;
+	pixel_y = -4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = 1;
+	pixel_y = 24;
+	req_access_txt = "25"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -2038,7 +2039,7 @@ au
 aL
 bb
 ad
-zj
+Jv
 aI
 aI
 ci
@@ -2054,7 +2055,7 @@ ag
 aM
 bc
 bn
-pd
+kY
 aI
 bV
 aI

@@ -577,16 +577,31 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"kv" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 32
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = -25;
+	pixel_y = 24;
+	req_access_txt = "25"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "lE" = (
 /obj/machinery/door/window/southright{
 	name = "Bar Door";
 	req_one_access_txt = "25;28"
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/bar)
-"nf" = (
-/obj/machinery/smartfridge/drinks,
-/turf/open/floor/eighties,
 /area/crew_quarters/bar)
 "nA" = (
 /obj/structure/chair{
@@ -835,25 +850,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"Km" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = 32
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/obj/machinery/button/door{
-	id = "barshutters";
-	name = "Bar Shutters Control";
-	pixel_x = -25;
-	pixel_y = 24;
-	req_access_txt = "28"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "Mt" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/table,
@@ -1071,6 +1067,14 @@
 /obj/item/instrument/piano_synth,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"ZY" = (
+/obj/machinery/smartfridge/drinks,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
@@ -1270,7 +1274,7 @@ ay
 aE
 Nf
 ag
-Km
+kv
 aB
 ef
 aB
@@ -1307,7 +1311,7 @@ Xt
 aB
 MG
 aB
-nf
+ZY
 aB
 nA
 ag

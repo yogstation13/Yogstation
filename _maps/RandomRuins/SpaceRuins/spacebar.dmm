@@ -967,7 +967,7 @@
 "OL" = (
 /obj/machinery/button/door{
 	id = "barshutters";
-	name = "bar shutters";
+	name = "Bar Shutters Control";
 	pixel_x = 25;
 	pixel_y = 24
 	},

@@ -457,7 +457,7 @@
 "jl" = (
 /obj/machinery/button/door{
 	id = "barshutters";
-	name = "bar shutters";
+	name = "Bar Shutters Control";
 	pixel_x = -24
 	},
 /turf/open/floor/wood,
