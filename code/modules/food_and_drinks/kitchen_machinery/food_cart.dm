@@ -22,6 +22,7 @@
 	create_reagents(LIQUID_CAPACIY, OPENCONTAINER | NO_REACT)
 	mixer = new /obj/item/reagent_containers(src, MIXER_CAPACITY)
 	mixer.name = "Mixer"
+	AddComponent(/datum/component/refrigerating)
 
 /obj/machinery/food_cart/Destroy()
 	QDEL_NULL(mixer)
@@ -80,6 +81,7 @@
 				stored_food[sanitize(S.name)]++
 			else
 				stored_food[sanitize(S.name)] = 1
+			SEND_SIGNAL(src, COMSIG_STORAGE_CLOSE, S)
 	else if(istype(O, /obj/item/stack/sheet/glass))
 		var/obj/item/stack/sheet/glass/G = O
 		if(G.get_amount() >= 1)
@@ -118,6 +120,7 @@
 			for(var/obj/O in contents)
 				if(sanitize(O.name) == href_list["dispense"])
 					O.forceMove(drop_location())
+					SEND_SIGNAL(src, COMSIG_STORAGE_OPEN, O)
 					break
 
 	if(href_list["portion"])

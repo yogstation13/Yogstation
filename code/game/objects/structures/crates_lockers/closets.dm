@@ -175,6 +175,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	var/atom/L = drop_location()
 	for(var/atom/movable/AM in src)
 		AM.forceMove(L)
+		SEND_SIGNAL(src, COMSIG_STORAGE_OPEN, AM)
 		if(throwing) // you keep some momentum when getting out of a thrown closet
 			step(AM, dir)
 	if(throwing)
@@ -185,6 +186,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	for(var/atom/movable/AM in L)
 		if(AM != src && insert(AM) == -1) // limit reached
 			break
+		SEND_SIGNAL(src, COMSIG_STORAGE_CLOSE, AM)
 
 /obj/structure/closet/proc/open(mob/living/user)
 	if(opened || !can_open(user))

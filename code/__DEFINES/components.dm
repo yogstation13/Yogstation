@@ -357,6 +357,10 @@
 #define COMSIG_TRY_STORAGE_RETURN_INVENTORY "storage_return_inventory"	//(list/list_to_inject_results_into, recursively_search_inside_storages = TRUE)
 #define COMSIG_TRY_STORAGE_CAN_INSERT "storage_can_equip"				//(obj/item/insertion_candidate, mob/user, silent) - returns bool
 
+// Signal from lockers that give you each individual atom that was moved in or out
+#define COMSIG_STORAGE_OPEN  "closet_open"
+#define COMSIG_STORAGE_CLOSE "closet_close"
+
 // /datum/action signals
 #define COMSIG_ACTION_TRIGGER "action_trigger"						//from base of datum/action/proc/Trigger(): (datum/action)
 #define COMPONENT_ACTION_BLOCK_TRIGGER 1

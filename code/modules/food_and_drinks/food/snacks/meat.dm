@@ -1,6 +1,12 @@
 /obj/item/reagent_containers/food/snacks/meat
 	var/subjectname = ""
 	var/subjectjob = null
+	var/spoiled = /obj/item/reagent_containers/food/snacks/badrecipe
+
+/obj/item/reagent_containers/food/snacks/meat/Initialize(mapload)
+	. = ..()
+	if(spoiled)
+		AddComponent(/datum/component/spoiling, spoiled)
 
 /obj/item/reagent_containers/food/snacks/meat/slab
 	name = "meat"
@@ -15,6 +21,7 @@
 	filling_color = "#FF0000"
 	tastes = list("meat" = 1)
 	foodtype = MEAT | RAW
+	spoiled = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
 
 /obj/item/reagent_containers/food/snacks/meat/slab/initialize_slice(obj/item/reagent_containers/food/snacks/meat/rawcutlet/slice, reagents_per_slice)
 	..()
