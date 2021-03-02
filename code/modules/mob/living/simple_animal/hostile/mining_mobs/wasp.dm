@@ -1,7 +1,7 @@
 //A wasp that charges at their enemy, injecting them with poison
 /mob/living/simple_animal/hostile/asteroid/wasp
 	name = "wasp"
-	desc = "A massive, mutated wasp equipped with a giant stinger. It's eyes flash with burning fury."
+	desc = "A massive, mutated wasp equipped with a giant stinger. Its eyes flash with burning fury."
 	icon = 'icons/mob/jungle/wasp.dmi'
 	icon_state = "wasp"
 	icon_living = "wasp"
