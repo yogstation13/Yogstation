@@ -908,6 +908,10 @@
 /obj/machinery/computer/shuttle/white_ship/miner,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
+"pU" = (
+/obj/structure/closet/secure_closet/medical2,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
 "qA" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
@@ -982,6 +986,10 @@
 /obj/effect/mob_spawn/human/free_miner{
 	dir = 8
 	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"Al" = (
+/obj/machinery/sleeper,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Bd" = (
@@ -1189,12 +1197,6 @@
 /area/shuttle/abandoned)
 "XU" = (
 /obj/structure/dresser,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
-"XZ" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "YW" = (
@@ -1542,7 +1544,7 @@ my
 Zb
 aE
 bk
-XZ
+Al
 aO
 gP
 bk
@@ -1559,7 +1561,7 @@ LC
 bz
 JR
 ci
-JR
+pU
 JR
 qA
 bk
