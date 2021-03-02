@@ -639,6 +639,29 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
+"cL" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = 2
+	},
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/syringe{
+	pixel_x = -5
+	},
+/obj/item/stock_parts/cell/high{
+	pixel_x = -15;
+	pixel_y = 5
+	},
+/obj/item/paper/crumpled{
+	inertia_dir = 0;
+	info = "Finally got a cell charger for the defib. next time someone dies because they forgot to turn on their oxygen, we won't have to wire the defib to the ships engines.<br><br>-D";
+	pixel_x = 1;
+	pixel_y = 6
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
 "cZ" = (
 /obj/machinery/shower{
 	dir = 4;
@@ -859,6 +882,13 @@
 /obj/item/hatchet,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
+"oK" = (
+/obj/structure/table,
+/obj/item/storage/backpack/duffelbag/med/surgery{
+	pixel_x = 2
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
 "pa" = (
 /obj/machinery/door/airlock/shuttle{
 	name = "engineering bay"
@@ -908,14 +938,27 @@
 /obj/machinery/computer/shuttle/white_ship/miner,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
-"pU" = (
-/obj/structure/closet/secure_closet/medical2,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
 "qA" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
 /obj/item/defibrillator,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"qR" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/color/latex{
+	pixel_x = 9
+	},
+/obj/item/clothing/suit/apron/surgical{
+	pixel_x = 12
+	},
+/obj/item/tank/internals/anesthetic{
+	pixel_x = -13;
+	pixel_y = 1
+	},
+/obj/item/clothing/mask/breath/medical{
+	pixel_x = -13
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "ry" = (
@@ -972,11 +1015,6 @@
 /obj/structure/chair/office/light,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
-"xX" = (
-/obj/structure/table,
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
 "zy" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/mineral/titanium,
@@ -986,10 +1024,6 @@
 /obj/effect/mob_spawn/human/free_miner{
 	dir = 8
 	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
-"Al" = (
-/obj/machinery/sleeper,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Bd" = (
@@ -1090,12 +1124,6 @@
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
-"MD" = (
-/obj/structure/table,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/suit/apron/surgical,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
 "Nt" = (
 /obj/structure/sink{
 	dir = 4;
@@ -1155,27 +1183,6 @@
 /obj/item/wrench,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
-"WI" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/bottle/epinephrine{
-	pixel_x = 6
-	},
-/obj/item/reagent_containers/glass/bottle/charcoal{
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/syringe,
-/obj/item/stock_parts/cell/high{
-	pixel_x = -10;
-	pixel_y = 5
-	},
-/obj/item/paper/crumpled{
-	inertia_dir = 0;
-	info = "Finally got a cell charger for the defib. next time someone dies because they forgot to turn on their oxygen, we won't have to wire the defib to the ships engines.<br><br>-D";
-	pixel_x = 4;
-	pixel_y = 6
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
 "Xh" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/beaker{
@@ -1197,6 +1204,12 @@
 /area/shuttle/abandoned)
 "XU" = (
 /obj/structure/dresser,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"XZ" = (
+/obj/machinery/sleeper{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "YW" = (
@@ -1544,7 +1557,7 @@ my
 Zb
 aE
 bk
-Al
+XZ
 aO
 gP
 bk
@@ -1561,7 +1574,7 @@ LC
 bz
 JR
 ci
-pU
+JR
 JR
 qA
 bk
@@ -1580,7 +1593,7 @@ JR
 cj
 JR
 Zp
-WI
+cL
 ae
 "}
 (22,1,1) = {"
@@ -1597,7 +1610,7 @@ bk
 bk
 aJ
 lL
-MD
+qR
 ae
 "}
 (23,1,1) = {"
@@ -1614,7 +1627,7 @@ Fj
 bk
 Mw
 Nt
-xX
+oK
 bk
 "}
 (24,1,1) = {"
