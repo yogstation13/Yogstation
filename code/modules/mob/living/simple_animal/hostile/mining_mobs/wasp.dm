@@ -24,7 +24,7 @@
 	melee_damage_lower = 12  //not that lethal, but it'll catch up to you easily
 	melee_damage_upper = 12
 	attacktext = "stings"
-	attack_sound = 'sound/weapons/bite.ogg'
+	attack_sound = 'sound/voice/moth/scream_moth.ogg'
 	deathmessage = "rolls over, falling to the ground."
 	gold_core_spawnable = HOSTILE_SPAWN
 	butcher_results = list(/obj/item/stack/sheet/bone = 1, /obj/item/stack/sheet/sinew = 3, /obj/item/stack/sheet/animalhide/weaver_chitin = 2)
