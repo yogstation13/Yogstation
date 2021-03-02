@@ -14,7 +14,10 @@
 
 /datum/component/spoiling/process()
 	if(!cold)
-		spoiling_time -= 1 SECONDS
+		var/atom/parent_atom = parent
+		var/turf/T = parent_atom.loc
+		if(T.return_air().return_temperature() > 263.15) // 10C
+			spoiling_time -= 1 SECONDS
 
 	if(spoiling_time <= 0) // Uh oh stinky!
 		new spawned(drop_location())
