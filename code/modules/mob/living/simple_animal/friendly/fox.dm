@@ -42,8 +42,8 @@
 		if(change > 0)
 			if(M && stat != DEAD) // dead :,(((((
 				new /obj/effect/temp_visual/heart(loc)
-				emote("me", 1, "yaps happily!")
+				emote("me", 1, "yaps happily!", TRUE)
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
 		else
 			if(M && stat != DEAD) // Same check here, even though emote checks it as well (poor form to check it only in the help case)
-				emote("me", 1, "growls!")
+				emote("me", 1, "growls!", TRUE)
