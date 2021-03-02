@@ -128,6 +128,10 @@
 	filling_color = "#8B4513"
 	foodtype = GROSS
 
+/obj/item/reagent_containers/food/snacks/badrecipe/spoiled
+	name = "moldy mess"
+	desc = "Something that used to be food"
+
 /obj/item/reagent_containers/food/snacks/carrotfries
 	name = "carrot fries"
 	desc = "Tasty fries from fresh carrots."

@@ -14,12 +14,18 @@
 	resistance_flags = FLAMMABLE
 	var/foodtype = NONE
 	var/last_check_time
+	/// Does this item spoil into something?
+	var/spoiled = null
+	/// How long until it spoils
+	var/spoil_time = 12.5 MINUTES
 
 /obj/item/reagent_containers/food/Initialize(mapload)
 	. = ..()
 	if(!mapload)
 		pixel_x = rand(-5, 5)
 		pixel_y = rand(-5, 5)
+	if(spoiled)
+		AddComponent(/datum/component/spoiling, spoiled, spoil_time)
 
 /obj/item/reagent_containers/food/proc/checkLiked(var/fraction, mob/M)
 	if(last_check_time + 50 < world.time)

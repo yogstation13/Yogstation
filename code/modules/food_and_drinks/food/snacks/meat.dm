@@ -1,12 +1,7 @@
 /obj/item/reagent_containers/food/snacks/meat
 	var/subjectname = ""
 	var/subjectjob = null
-	var/spoiled = /obj/item/reagent_containers/food/snacks/badrecipe
-
-/obj/item/reagent_containers/food/snacks/meat/Initialize(mapload)
-	. = ..()
-	if(spoiled)
-		AddComponent(/datum/component/spoiling, spoiled)
+	spoiled = /obj/item/reagent_containers/food/snacks/badrecipe/spoiled 
 
 /obj/item/reagent_containers/food/snacks/meat/slab
 	name = "meat"
