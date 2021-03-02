@@ -787,7 +787,7 @@
 	requirements = list(90,80,80,70,60,40,30,30,20,10)
 	flags = HIGHLANDER_RULESET
 	minimum_players = 30
-	var/shadowling_cap = list(3,3,3,3,3,3,3,3,3,4)
+	var/shadowling_cap = list(3,3,3,3,3,3)
 	var/datum/team/shadowling/shadowling
 
 /datum/dynamic_ruleset/roundstart/shadowling/pre_execute()
