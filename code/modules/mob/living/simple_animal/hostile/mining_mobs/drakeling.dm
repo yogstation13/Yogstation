@@ -211,7 +211,7 @@
 		new /obj/effect/hotspot(T)
 		T.hotspot_expose(700,50,1)
 		for(var/mob/living/L in T.contents)
-			if(L in hit_list || L in protected)
+			if((L in hit_list) || (L in protected))
 				continue
 			hit_list += L
 			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
