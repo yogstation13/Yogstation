@@ -24,13 +24,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/template_noop)
-"v" = (
-/obj/structure/closet{
-	opened = 1
-	},
+"B" = (
+/obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/item/kitchen/knife,
-/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet,
 /turf/open/floor/plasteel,
 /area/template_noop)
 "N" = (
@@ -41,7 +39,7 @@
 
 (1,1,1) = {"
 a
-v
+b
 e
 "}
 (2,1,1) = {"
@@ -52,5 +50,5 @@ b
 (3,1,1) = {"
 b
 N
-b
+B
 "}

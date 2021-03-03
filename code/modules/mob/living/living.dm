@@ -909,6 +909,10 @@
 /mob/living/proc/harvest(mob/living/user) //used for extra objects etc. in butchering
 	return
 
+// Hotkeys Exist, so this stops it from making runtimes
+/mob/living/proc/give()
+	return
+
 /mob/living/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
 	if(incapacitated())
 		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
@@ -1365,3 +1369,18 @@
 			update_transform()
 		if("lighting_alpha")
 			sync_lighting_plane_alpha()
+			
+/mob/living/proc/is_convert_antag()
+    var/list/bad_antags = list(
+        /datum/antagonist/clockcult,
+        /datum/antagonist/cult,
+        /datum/antagonist/darkspawn,
+        /datum/antagonist/rev,
+        /datum/antagonist/shadowling,
+        /datum/antagonist/veil
+    )
+    for(var/antagcheck in bad_antags)
+        if(mind?.has_antag_datum(antagcheck))
+            return TRUE
+    return FALSE
+	

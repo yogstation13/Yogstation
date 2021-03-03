@@ -70,7 +70,11 @@
 
 	if(force && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
-		return
+		return TRUE
+	
+	if((item_flags & SURGICAL_TOOL) && (user.a_intent != INTENT_HARM)) // checks for if harm intent with surgery tool
+		to_chat(user, "<span class='warning'>You aren't doing surgery!</span>") //yells at you
+		return TRUE
 
 	if(!force)
 		playsound(loc, 'sound/weapons/tap.ogg', get_clamped_volume(), 1, -1)

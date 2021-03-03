@@ -119,7 +119,7 @@
 			continue
 		if(is_servant_of_ratvar(L) || (HAS_TRAIT(L, TRAIT_BLIND)) || L.anti_magic_check(TRUE, TRUE))
 			continue
-		if(L.stat || (L.IsStun())) //yogs: changes mobility flag to IsStun so people have to taze themselves to ignore warden attacks
+		if(L.stat || L.IsStun() || L.IsParalyzed()) //yogs: changes mobility flag to IsStun so people have to taze themselves to ignore warden attacks
 			continue
 		if(isslime(L)) //Ocular wardens heal slimes
 			continue

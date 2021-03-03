@@ -99,7 +99,7 @@
 	burnmod = 0.925
 	speedmod = 1.45
 	mutanthands = /obj/item/zombie_hand/gamemode
-	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE,
+	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTDAMAGESLOWDOWN, TRAIT_STABLELIVER, TRAIT_STABLEHEART,
 	TRAIT_RADIMMUNE, TRAIT_LIMBATTACHMENT, TRAIT_NOBREATH, TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_NOHUNGER, TRAIT_RESISTHEAT, TRAIT_SHOCKIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE, TRAIT_BADDNA)
 	no_equip = list(SLOT_WEAR_MASK, SLOT_GLASSES, SLOT_HEAD)
 
@@ -110,13 +110,14 @@
 	brutemod = 1
 
 /datum/species/zombie/infectious/gamemode/juggernaut
+	mutanthands = /obj/item/zombie_hand/gamemode/tank
 	armor = 30 // 135 damage to KO a zombie, which kills it
-	brutemod = 0.8
-	speedmod = 1.75
-	heal_rate = 1.15
+	brutemod = 0.75
+	speedmod = 1.3
+	heal_rate = 1.20
 
 /datum/species/zombie/infectious/gamemode/spitter
-	armor = 10 // 110 damage to KO a zombie, which kills it
+	armor = 5 // 110 damage to KO a zombie, which kills it
 	brutemod = 1
 	burnmod = 1
 
