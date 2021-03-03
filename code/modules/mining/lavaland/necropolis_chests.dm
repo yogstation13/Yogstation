@@ -766,9 +766,9 @@
 			new /obj/item/melee/ghost_sword(src)
 		if(2)
 			new /obj/item/lava_staff(src)
-		if(3)
 			new /obj/item/book/granter/spell/sacredflame(src)
-			new /obj/item/gun/magic/wand/fireball(src)
+		if(3)
+			new /obj/item/dragon_egg(src)
 		if(4)
 			new /obj/item/dragons_blood(src)
 
@@ -992,6 +992,29 @@
 /obj/effect/temp_visual/lavastaff
 	icon_state = "lavastaff_warn"
 	duration = 50
+
+//Dragon Egg
+
+/obj/item/dragon_egg
+	name = "dragon's egg"
+	desc = "A large egg-shaped rock. It's cold to the touch..."
+	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
+	icon_state = "large_egg"
+	color = "#2C2C2C"
+
+/obj/item/dragon_egg/burn()
+	visible_message("<span class='boldwarning'>[src] suddenly begins to glow red and starts violently shaking!</span>")
+	name = "heated dragon's egg"
+	desc = "A large egg seemingly made out of rock. It's red-hot and seems to be shaking!"
+	color = "#990000"
+	extinguish()
+	resistance_flags = LAVA_PROOF | FIRE_PROOF
+	addtimer(CALLBACK(src, .proc/hatch), 20 SECONDS)
+
+/obj/item/dragon_egg/proc/hatch()
+	visible_message("<span class='boldwarning'>[src] suddenly cracks apart, revealing a tiny ash drake!</span>")
+	new /mob/living/simple_animal/hostile/drakeling(get_turf(src))
+	qdel(src)
 
 //Bubblegum
 /obj/structure/closet/crate/necropolis/bubblegum
