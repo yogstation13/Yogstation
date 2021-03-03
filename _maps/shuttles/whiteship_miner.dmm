@@ -639,6 +639,29 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
+"cL" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = 2
+	},
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/syringe{
+	pixel_x = -5
+	},
+/obj/item/stock_parts/cell/high{
+	pixel_x = -15;
+	pixel_y = 5
+	},
+/obj/item/paper/crumpled{
+	inertia_dir = 0;
+	info = "Finally got a cell charger for the defib. next time someone dies because they forgot to turn on their oxygen, we won't have to wire the defib to the ships engines.<br><br>-D";
+	pixel_x = 1;
+	pixel_y = 6
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
 "cZ" = (
 /obj/machinery/shower{
 	dir = 4;
@@ -859,6 +882,13 @@
 /obj/item/hatchet,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
+"oK" = (
+/obj/structure/table,
+/obj/item/storage/backpack/duffelbag/med/surgery{
+	pixel_x = 2
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
 "pa" = (
 /obj/machinery/door/airlock/shuttle{
 	name = "engineering bay"
@@ -914,6 +944,23 @@
 /obj/item/defibrillator,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
+"qR" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/color/latex{
+	pixel_x = 9
+	},
+/obj/item/clothing/suit/apron/surgical{
+	pixel_x = 12
+	},
+/obj/item/tank/internals/anesthetic{
+	pixel_x = -13;
+	pixel_y = 1
+	},
+/obj/item/clothing/mask/breath/medical{
+	pixel_x = -13
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
 "ry" = (
 /obj/item/reagent_containers/food/condiment/saltshaker{
 	pixel_x = -8;
@@ -966,11 +1013,6 @@
 /area/shuttle/abandoned)
 "wj" = (
 /obj/structure/chair/office/light,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
-"xX" = (
-/obj/structure/table,
-/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "zy" = (
@@ -1082,12 +1124,6 @@
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
-"MD" = (
-/obj/structure/table,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/suit/apron/surgical,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
 "Nt" = (
 /obj/structure/sink{
 	dir = 4;
@@ -1145,27 +1181,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/wrench,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
-"WI" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/bottle/epinephrine{
-	pixel_x = 6
-	},
-/obj/item/reagent_containers/glass/bottle/charcoal{
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/syringe,
-/obj/item/stock_parts/cell/high{
-	pixel_x = -10;
-	pixel_y = 5
-	},
-/obj/item/paper/crumpled{
-	inertia_dir = 0;
-	info = "Finally got a cell charger for the defib. next time someone dies because they forgot to turn on their oxygen, we won't have to wire the defib to the ships engines.<br><br>-D";
-	pixel_x = 4;
-	pixel_y = 6
-	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Xh" = (
@@ -1578,7 +1593,7 @@ JR
 cj
 JR
 Zp
-WI
+cL
 ae
 "}
 (22,1,1) = {"
@@ -1595,7 +1610,7 @@ bk
 bk
 aJ
 lL
-MD
+qR
 ae
 "}
 (23,1,1) = {"
@@ -1612,7 +1627,7 @@ Fj
 bk
 Mw
 Nt
-xX
+oK
 bk
 "}
 (24,1,1) = {"
