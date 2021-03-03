@@ -1,0 +1,1700 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/open/space,
+/area/space)
+"ab" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "cargo bay";
+	req_access_txt = "71"
+	},
+/obj/structure/fans/tiny,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"ad" = (
+/obj/structure/closet/crate/medical{
+	name = "medical crate"
+	},
+/obj/item/storage/firstaid/o2{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/roller{
+	pixel_y = 4
+	},
+/obj/item/healthanalyzer,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"ae" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/shuttle/abandoned)
+"af" = (
+/obj/structure/frame/machine,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"ag" = (
+/obj/effect/decal/cleanable/oil,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"ah" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "recovery shuttle external airlock"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/fans/tiny,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"ai" = (
+/obj/effect/decal/cleanable/robot_debris/old,
+/obj/effect/decal/cleanable/oil,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"aj" = (
+/obj/structure/mirror{
+	pixel_x = 28
+	},
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 11
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"ak" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "burst_s"
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/abandoned)
+"al" = (
+/obj/structure/closet/emcloset,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"am" = (
+/obj/structure/closet/crate{
+	name = "emergency supplies crate"
+	},
+/obj/item/storage/toolbox/emergency,
+/obj/item/flashlight/flare{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/wrench,
+/obj/item/extinguisher,
+/obj/effect/decal/cleanable/cobweb,
+/obj/item/grenade/chem_grenade/metalfoam,
+/obj/item/tank/internals/oxygen/red,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/mining_scanner,
+/obj/item/clothing/glasses/meson,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"an" = (
+/obj/structure/toilet{
+	pixel_y = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/greenglow{
+	desc = "Looks like something's sprung a leak"
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"ao" = (
+/obj/structure/ore_box,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"ap" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "cargo bay"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"aq" = (
+/obj/structure/bed,
+/obj/effect/mob_spawn/human/free_miner{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"ar" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"as" = (
+/obj/effect/decal/cleanable/blood/gibs/old,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"at" = (
+/obj/structure/mirror{
+	pixel_x = 28
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"au" = (
+/obj/structure/tank_dispenser/oxygen{
+	layer = 2.7;
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"aw" = (
+/obj/structure/sign/warning/vacuum{
+	pixel_x = -32
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"ax" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"ay" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"az" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"aA" = (
+/obj/structure/table,
+/obj/item/camera,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"aB" = (
+/obj/item/paper/crumpled{
+	info = "Card readers are expensive, so I only put access restrictions on the outer doors of the main airlock and the cargo bay. I doubt anyone would want to stow away on this hunk of junk anyway.<br><br>-E"
+	},
+/obj/structure/reagent_dispensers/watertank,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
+"aD" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 8;
+	icon_state = "heater"
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/abandoned)
+"aE" = (
+/obj/machinery/light,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"aF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"aG" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "bathroom"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"aH" = (
+/obj/structure/table,
+/obj/item/megaphone,
+/obj/item/clothing/glasses/meson{
+	pixel_x = 7;
+	pixel_y = 5
+	},
+/obj/machinery/light,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"aI" = (
+/obj/machinery/processor,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"aJ" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/reagent_containers/blood/random{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/random,
+/obj/effect/decal/cleanable/blood/old,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"aL" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"aM" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "E.V.A. equipment"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"aN" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/whiteship/miner,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"aO" = (
+/obj/machinery/vending/wallmed{
+	name = "Emergency NanoMed";
+	pixel_x = -28;
+	req_access_txt = "0"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"aP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
+/obj/item/mecha_parts/mecha_equipment/mining_scanner,
+/obj/item/mecha_parts/mecha_equipment/drill,
+/obj/structure/closet/crate{
+	moving_diagonally = 0;
+	name = "mech equipment crate"
+	},
+/obj/item/stack/sheet/metal{
+	alternate_worn_layer = null;
+	amount = 5
+	},
+/obj/item/stack/cable_coil,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/stock_parts/cell/hyper/empty,
+/obj/item/stock_parts/capacitor/adv,
+/obj/item/stock_parts/scanning_module/adv,
+/obj/item/stack/rods{
+	amount = 10
+	},
+/obj/item/mecha_parts/mecha_equipment/ripleyupgrade,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"bd" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "bathroom"
+	},
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"bf" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "dormitory"
+	},
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"bg" = (
+/obj/machinery/vending/boozeomat{
+	icon_deny = "smartfridge";
+	icon_state = "smartfridge";
+	req_access_txt = "0"
+	},
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/abandoned)
+"bk" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/abandoned)
+"bm" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"bv" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/sign/warning/vacuum{
+	pixel_x = -32
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
+"bw" = (
+/obj/machinery/vending/coffee{
+	pixel_x = -2
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"bx" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"by" = (
+/obj/structure/chair,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"bz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"bC" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "recovery shuttle interior airlock"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"bD" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"bE" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"bG" = (
+/obj/structure/table,
+/obj/item/storage/box/fancy/donut_box,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"bH" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"bI" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "living quarters"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"bP" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "bridge"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"bT" = (
+/obj/machinery/vending/cola{
+	pixel_x = -1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"bU" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"bZ" = (
+/obj/machinery/vending/snack{
+	pixel_x = -1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"ce" = (
+/obj/structure/sign/departments/botany,
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/abandoned)
+"cf" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "hydroponics"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
+"cg" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "kitchen"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"ci" = (
+/obj/structure/sign/departments/medbay/alt,
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/abandoned)
+"cj" = (
+/obj/machinery/door/airlock/shuttle{
+	icon_state = "closed";
+	name = "medbay";
+	welded = 0
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"cl" = (
+/obj/item/storage/bag/plants/portaseeder,
+/obj/structure/table,
+/obj/item/reagent_containers/spray/plantbgone{
+	pixel_x = 13;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/glass/bottle/nutrient/ez,
+/obj/item/reagent_containers/glass/bottle/nutrient/ez,
+/obj/item/reagent_containers/glass/bottle/nutrient/ez,
+/obj/item/reagent_containers/glass/bottle/nutrient/rh{
+	pixel_x = -2;
+	pixel_y = 3
+	},
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"cm" = (
+/obj/machinery/biogenerator{
+	idle_power_usage = 0
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"cn" = (
+/obj/machinery/vending/hydroseeds{
+	pixel_x = 2
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"cp" = (
+/obj/structure/kitchenspike,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"cq" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/item/storage/box/donkpockets,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"cw" = (
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 11
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"cx" = (
+/obj/machinery/smartfridge,
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/abandoned)
+"cy" = (
+/obj/structure/sink{
+	dir = 8;
+	icon_state = "sink";
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"cz" = (
+/obj/effect/decal/cleanable/food/egg_smudge,
+/obj/effect/decal/cleanable/food/flour,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"cH" = (
+/obj/machinery/hydroponics/constructable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"cI" = (
+/obj/machinery/hydroponics/constructable,
+/obj/item/seeds/glowshroom,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"cJ" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder{
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"cL" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = 2
+	},
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/syringe{
+	pixel_x = -5
+	},
+/obj/item/stock_parts/cell/high{
+	pixel_x = -15;
+	pixel_y = 5
+	},
+/obj/item/paper/crumpled{
+	inertia_dir = 0;
+	info = "Finally got a cell charger for the defib. next time someone dies because they forgot to turn on their oxygen, we won't have to wire the defib to the ships engines.<br><br>-D";
+	pixel_x = 1;
+	pixel_y = 6
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"cZ" = (
+/obj/machinery/shower{
+	dir = 4;
+	icon_state = "shower"
+	},
+/obj/machinery/door/window/westright{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/soap/nanotrasen,
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"ea" = (
+/obj/structure/table,
+/obj/item/healthanalyzer,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"eT" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/structure/ore_box,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"fh" = (
+/obj/item/paper/crumpled{
+	info = "For the love of god, someone clean this place up. We eat in here.<br><br>-C"
+	},
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"fw" = (
+/obj/structure/table,
+/obj/item/storage/photo_album,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"gv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/syndicatebomb/training{
+	desc = "A sticky note on the side says 'DO NOT TOUCH, VERY DANGEROUS'.";
+	name = "self-destruct device"
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"gP" = (
+/obj/effect/decal/cleanable/xenoblood,
+/obj/machinery/iv_drip{
+	density = 0;
+	pixel_x = -8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"ho" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -1;
+	pixel_y = 6
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"hs" = (
+/obj/effect/decal/cleanable/oil,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/paper/crumpled{
+	inertia_dir = 0;
+	info = "HA! FINALLY! All those years of hoarding parts finally payed off! All I have to do is take this old wreck apart with a welder, crowbar out the boards, and I can have my own mech! I can't let myself forget to DNA lock it so those damn miners don't steal it. Hopefully we don't fly through another rad storm that scrambles all our genes after I do.<br><br>-E";
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/clothing/head/welding{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"id" = (
+/obj/machinery/computer/mech_bay_power_console,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"jA" = (
+/obj/structure/table,
+/obj/item/kitchen/rollingpin,
+/obj/item/kitchen/knife,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/paper/crumpled{
+	info = "WHO THE FUCK ORDERED SO MUCH SALT?<br><br>-K";
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -10;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -5;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -10;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -10;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -10;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"kL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/suit_storage_unit/mining/eva,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"kR" = (
+/obj/structure/table,
+/obj/item/storage/belt/utility,
+/obj/item/storage/bag/ore,
+/obj/item/storage/bag/ore,
+/obj/item/storage/bag/ore,
+/obj/item/storage/bag/ore,
+/obj/item/radio/off,
+/obj/item/radio/off,
+/obj/item/paper/crumpled{
+	info = "Note to self - do not forget to turn internals on before leaving the airlock.<br><br>-M";
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/mining_scanner,
+/obj/item/mining_scanner,
+/obj/item/mining_scanner,
+/obj/item/clothing/glasses/meson,
+/obj/item/clothing/glasses/meson,
+/obj/item/pickaxe,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"lo" = (
+/obj/machinery/mech_bay_recharge_port,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"lL" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"mu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/vomit,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"my" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/clothing/gloves/color/black,
+/obj/structure/table,
+/obj/item/clothing/gloves/color/black,
+/obj/item/clothing/glasses/meson,
+/obj/item/pickaxe,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"mR" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/box/fancy/egg_box{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/item/storage/box/monkeycubes{
+	pixel_y = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"ov" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/paper/crumpled{
+	info = "I found this while digging through another derelict, thought we could prank the rest of the crew with it.<br><br>-F"
+	},
+/obj/item/clothing/mask/breath,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"oy" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mob_spawn/human/free_miner/captain,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"oH" = (
+/obj/structure/table,
+/obj/item/wrench,
+/obj/item/crowbar,
+/obj/item/clothing/suit/apron,
+/obj/item/shovel/spade,
+/obj/item/cultivator,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/wirecutters,
+/obj/item/reagent_containers/glass/bucket,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/hatchet,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"oK" = (
+/obj/structure/table,
+/obj/item/storage/backpack/duffelbag/med/surgery{
+	pixel_x = 2
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"pa" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "engineering bay"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"pg" = (
+/obj/structure/table,
+/obj/item/radio/off{
+	pixel_y = 6
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"pu" = (
+/obj/docking_port/mobile{
+	callTime = 250;
+	dheight = 0;
+	dir = 2;
+	dwidth = 11;
+	height = 15;
+	id = "whiteship";
+	launch_status = 0;
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
+	name = "Free Miner Ship";
+	port_direction = 8;
+	preferred_direction = 4;
+	width = 28
+	},
+/obj/machinery/door/airlock/shuttle{
+	name = "free miner ship external airlock";
+	req_access_txt = "71"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/fans/tiny,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"pP" = (
+/obj/machinery/computer/shuttle/white_ship/miner,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"qA" = (
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/obj/item/defibrillator,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"qR" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/color/latex{
+	pixel_x = 9
+	},
+/obj/item/clothing/suit/apron/surgical{
+	pixel_x = 12
+	},
+/obj/item/tank/internals/anesthetic{
+	pixel_x = -13;
+	pixel_y = 1
+	},
+/obj/item/clothing/mask/breath/medical{
+	pixel_x = -13
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"ry" = (
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/soymilk,
+/obj/item/reagent_containers/food/condiment/soymilk,
+/obj/item/reagent_containers/food/condiment/sugar,
+/obj/item/reagent_containers/food/condiment/sugar,
+/obj/item/reagent_containers/food/condiment/sugar,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"rT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/ore_box,
+/obj/effect/mob_spawn/human/free_miner/engi,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"ti" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil,
+/obj/structure/mecha_wreckage/loaded_ripley,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"vK" = (
+/obj/effect/decal/cleanable/oil,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate,
+/obj/item/circuitboard/machine/ore_redemption,
+/obj/item/stack/cable_coil,
+/obj/item/assembly/igniter,
+/obj/item/stack/sheet/glass,
+/obj/item/stock_parts/manipulator,
+/obj/item/stock_parts/matter_bin,
+/obj/item/stock_parts/micro_laser,
+/obj/item/stock_parts/matter_bin,
+/obj/item/stock_parts/matter_bin,
+/obj/item/stock_parts/matter_bin,
+/obj/item/stock_parts/manipulator,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"wj" = (
+/obj/structure/chair/office/light,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"zy" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"zE" = (
+/obj/structure/bed,
+/obj/effect/mob_spawn/human/free_miner{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"Bd" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "recovery shuttle external airlock";
+	req_access_txt = "71"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/fans/tiny,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"Ct" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/abandoned)
+"Di" = (
+/obj/effect/decal/cleanable/xenoblood,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"DS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"DY" = (
+/obj/item/storage/box/ids/free_miners{
+	pixel_y = 15
+	},
+/obj/structure/table,
+/obj/item/paper/crumpled{
+	info = "Damn corporates. Finally managed to scrap together enough parts for an ore redemption machine, so we can actually start cashing in on the ore we mine. Still have to put it together in the cargo bay. The catch is, the only place to sell anything around here is a Nanotrasen outpost - some screaming metal deathtrap called Space Station 13. If we want to get anything that is not in the vendor, we will have to go there.<br><br>-C";
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/gps{
+	gpstag = "NTREC1";
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"Fj" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"Ft" = (
+/obj/structure/rack{
+	dir = 8;
+	layer = 2.9;
+	pixel_y = 2
+	},
+/obj/item/storage/toolbox/electrical{
+	pixel_x = 1;
+	pixel_y = 6
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/item/clothing/glasses/welding,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"Gy" = (
+/obj/structure/table,
+/obj/item/storage/pill_bottle/dice{
+	pixel_y = 3
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"HW" = (
+/obj/structure/chair/office/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"JR" = (
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"LC" = (
+/obj/item/storage/toolbox/emergency{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/storage/toolbox/emergency,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"Mw" = (
+/obj/structure/table/optable,
+/obj/item/storage/firstaid/regular,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"Nt" = (
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 11
+	},
+/obj/effect/decal/cleanable/xenoblood/xgibs/limb,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"Oj" = (
+/obj/structure/table,
+/obj/item/stack/sheet/metal{
+	amount = 15
+	},
+/obj/item/stock_parts/cell/high{
+	charge = 100;
+	maxcharge = 15000;
+	pixel_y = 2
+	},
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"PB" = (
+/obj/structure/extinguisher_cabinet,
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/abandoned)
+"PO" = (
+/obj/machinery/light/broken,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"RI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/ore_box,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"TL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/mineral/equipment_vendor/free_miner,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"Ua" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"VU" = (
+/obj/structure/table,
+/obj/item/stack/sheet/glass{
+	amount = 25;
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/stack/rods{
+	amount = 50
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/wrench,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"Xh" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/item/reagent_containers/dropper,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = 12
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"Xq" = (
+/obj/item/mecha_parts/chassis/ripley,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"XU" = (
+/obj/structure/dresser,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"XZ" = (
+/obj/machinery/sleeper{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"YW" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "free miner ship interior airlock"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"Zb" = (
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"Zp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"ZB" = (
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+bk
+bk
+ah
+bk
+bk
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+ak
+ak
+ak
+ak
+ae
+bv
+ax
+aB
+ae
+ak
+ak
+ak
+ak
+aa
+"}
+(3,1,1) = {"
+bk
+bk
+aD
+aD
+bk
+bk
+bk
+bC
+bk
+bk
+bk
+aD
+aD
+bk
+bk
+"}
+(4,1,1) = {"
+bk
+bk
+bk
+bk
+bk
+bm
+bw
+ax
+bT
+bZ
+bk
+bk
+bk
+bk
+bk
+"}
+(5,1,1) = {"
+bk
+an
+bk
+cZ
+bk
+ay
+aL
+aL
+aL
+aE
+bk
+cl
+oH
+cH
+bk
+"}
+(6,1,1) = {"
+ae
+aj
+aG
+at
+bd
+aL
+bx
+bD
+bx
+aL
+ce
+cm
+ax
+cH
+ae
+"}
+(7,1,1) = {"
+bk
+bk
+bk
+bk
+bk
+aL
+by
+bE
+bU
+aL
+cf
+ax
+aL
+cI
+ae
+"}
+(8,1,1) = {"
+ae
+Gy
+JR
+aL
+bf
+JR
+by
+fh
+bU
+aL
+bk
+cn
+cw
+cH
+bk
+"}
+(9,1,1) = {"
+bk
+XU
+aq
+zE
+bg
+JR
+by
+bG
+bU
+aF
+bk
+bk
+cx
+bk
+bk
+"}
+(10,1,1) = {"
+bk
+bk
+bk
+bk
+bk
+az
+bz
+bH
+bx
+aL
+cg
+aL
+cy
+cJ
+bk
+"}
+(11,1,1) = {"
+bk
+Oj
+kR
+VU
+bk
+zy
+aL
+ax
+aL
+aL
+bk
+aI
+mu
+mR
+ae
+"}
+(12,1,1) = {"
+ae
+kL
+Ua
+Ft
+bk
+bk
+bk
+bI
+bk
+bk
+bk
+cp
+cz
+Xh
+ae
+"}
+(13,1,1) = {"
+ae
+kL
+JR
+JR
+aM
+JR
+JR
+JR
+JR
+JR
+bk
+cq
+jA
+ry
+bk
+"}
+(14,1,1) = {"
+bk
+au
+ar
+TL
+PB
+JR
+bx
+DS
+Zb
+JR
+bk
+bk
+bk
+bk
+bk
+"}
+(15,1,1) = {"
+bk
+bk
+Ct
+bk
+bk
+az
+bx
+ov
+bx
+aE
+bk
+hs
+aP
+lo
+bk
+"}
+(16,1,1) = {"
+pu
+aw
+aL
+ax
+YW
+JR
+JR
+gv
+JR
+JR
+pa
+aL
+ax
+Xq
+ae
+"}
+(17,1,1) = {"
+Bd
+ax
+as
+aL
+YW
+aL
+JR
+bx
+aL
+JR
+bk
+rT
+ti
+id
+bk
+"}
+(18,1,1) = {"
+bk
+bk
+bk
+bk
+bk
+JR
+aL
+bx
+JR
+JR
+bk
+bk
+bk
+bk
+bk
+"}
+(19,1,1) = {"
+bk
+RI
+af
+JR
+bk
+az
+Zb
+my
+Zb
+aE
+bk
+XZ
+aO
+gP
+bk
+"}
+(20,1,1) = {"
+bk
+ao
+ag
+PO
+bk
+JR
+Zb
+LC
+bz
+JR
+ci
+JR
+JR
+qA
+bk
+"}
+(21,1,1) = {"
+ae
+vK
+aL
+aL
+ap
+aL
+JR
+ax
+aL
+JR
+cj
+JR
+Zp
+cL
+ae
+"}
+(22,1,1) = {"
+ae
+ad
+aL
+al
+bk
+bk
+bk
+bP
+bk
+bk
+bk
+aJ
+lL
+qR
+ae
+"}
+(23,1,1) = {"
+ab
+JR
+ai
+am
+bk
+eT
+HW
+JR
+wj
+Fj
+bk
+Mw
+Nt
+oK
+bk
+"}
+(24,1,1) = {"
+bk
+bk
+ae
+bk
+bk
+aA
+oy
+JR
+Di
+aH
+bk
+bk
+ae
+bk
+bk
+"}
+(25,1,1) = {"
+aa
+aa
+aa
+aa
+ae
+fw
+JR
+ZB
+JR
+ea
+ae
+aa
+aa
+aa
+aa
+"}
+(26,1,1) = {"
+aa
+aa
+aa
+aa
+ae
+ho
+DY
+pP
+aN
+pg
+ae
+aa
+aa
+aa
+aa
+"}
+(27,1,1) = {"
+aa
+aa
+aa
+aa
+bk
+ae
+ae
+ae
+ae
+ae
+bk
+aa
+aa
+aa
+aa
+"}

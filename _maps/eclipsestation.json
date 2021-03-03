@@ -1,0 +1,11 @@
+{
+    "map_name": "EclipseStation",
+    "map_path": "map_files/EclipseStation",
+    "map_file": "EclipseStation.dmm",
+    "shuttles": {
+	    "emergency": "emergency_box",
+	    "ferry": "ferry_fancy",
+	    "cargo": "cargo_box",
+	    "whiteship": "whiteship_box"
+    }
+}

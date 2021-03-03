@@ -15,7 +15,7 @@ TRICORDER
 	desc = "A multifunction handheld device useful for data sensing, analysis, and recording."
 	icon = 'yogstation/icons/obj/device.dmi'
 	icon_state = "tricorder"
-	item_state = "analyzer"
+	item_state = "tricorder"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	flags_1 = CONDUCT_1
@@ -28,7 +28,7 @@ TRICORDER
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 7
-	materials = list(MAT_METAL=500,MAT_SILVER=300,MAT_GOLD=300)
+	materials = list(/datum/material/iron=500,/datum/material/silver=300,/datum/material/gold=300)
 
 	var/medicalTricorder = FALSE	//Set to TRUE for normal medical scanner, set to FALSE for a gutted version
 

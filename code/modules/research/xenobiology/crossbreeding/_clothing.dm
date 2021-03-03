@@ -7,7 +7,7 @@ Slimecrossing Armor
 //Rebreather mask - Chilling Blue
 /obj/item/clothing/mask/nobreath
 	name = "rebreather mask"
-	desc = "A transparent mask, resembling a conventional breath mask, but made of bluish slime. Seems to lack any air supply tube, though."
+	desc = "A transparent mask, resembling a conventional breath mask, but made of bluish slime. Seems to lack any air supply tube, though, as if it doesn't need one."
 	icon_state = "slime"
 	item_state = "slime"
 	body_parts_covered = NONE
@@ -133,6 +133,7 @@ Slimecrossing Armor
 	item_state = "adamsuit"
 	flags_inv = NONE
 	obj_flags = IMMUTABLE_SLOW
+	armor = list("melee" = 60, "bullet" = 50, "laser" = 30, "energy" = 50, "bomb" = 80, "bio" = 100, "rad" = 0, "fire" = 90, "acid" = 90)
 	slowdown = 4
 	var/hit_reflect_chance = 40
 

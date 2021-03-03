@@ -48,6 +48,10 @@
 				new material_drop_type(get_turf(src), drop_amt)
 	qdel(src)
 
+/obj/structure/statue/honk_act()
+	new /obj/structure/statue/bananium/clown(src.loc)
+	qdel(src)
+
 //////////////////////////////////////STATUES/////////////////////////////////////////////////////////////
 ////////////////////////uranium///////////////////////////////////
 
@@ -66,7 +70,7 @@
 	icon_state = "nuke"
 
 /obj/structure/statue/uranium/eng
-	name = "Statue of an engineer"
+	name = "statue of an engineer"
 	desc = "This statue has a sickening green colour."
 	icon_state = "eng"
 
@@ -212,15 +216,15 @@
 	desc = "This is a very expensive diamond statue."
 
 /obj/structure/statue/diamond/captain
-	name = "statue of THE captain."
+	name = "statue of THE captain"
 	icon_state = "cap"
 
 /obj/structure/statue/diamond/ai1
-	name = "statue of the AI hologram."
+	name = "statue of the AI hologram"
 	icon_state = "ai1"
 
 /obj/structure/statue/diamond/ai2
-	name = "statue of the AI core."
+	name = "statue of the AI core"
 	icon_state = "ai2"
 
 ////////////////////////bananium///////////////////////////////////////
@@ -259,6 +263,9 @@
 		spawn(20)
 			spam_flag = 0
 
+/obj/structure/statue/bananium/clown/honk_act()
+	return FALSE
+
 /////////////////////sandstone/////////////////////////////////////////
 
 /obj/structure/statue/sandstone
@@ -293,3 +300,35 @@
 	name = "snowlegion"
 	desc = "Looks like that weird kid with the tiger plushie has been round here again."
 	icon_state = "snowlegion"
+
+////////////////////cheese/////////////////////////////////////////
+
+/obj/structure/statue/cheese
+	max_integrity = 100
+	material_drop_type = /obj/item/stack/sheet/cheese
+	impressiveness = 20
+
+/obj/structure/statue/cheese/cheesus
+	name = "statue of cheesus"
+	desc = "Cheese expertly crafted into a representation of our mighty lord and saviour."
+	icon_state = "cheesus1"
+
+/obj/structure/statue/cheese/cheesus/attackby(obj/item/W, mob/user, params)
+	if(obj_integrity <= 20)
+		icon_state = "cheesus4"
+		return ..()
+	if(obj_integrity <= 40)
+		icon_state = "cheesus3"
+		return ..()
+	if(obj_integrity <= 60)
+		icon_state = "cheesus2"
+		return ..()
+	return ..()
+
+/obj/structure/statue/elder_atmosian
+	name = "Elder Atmosian"
+	desc = "A statue of an Elder Atmosian, capable of bending the laws of thermodynamics to their will."
+	icon_state = "eng"
+	custom_materials = list(/datum/material/metalhydrogen = MINERAL_MATERIAL_AMOUNT*10)
+	max_integrity = 1000
+	impressiveness = 100

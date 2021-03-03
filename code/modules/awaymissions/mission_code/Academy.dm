@@ -2,31 +2,23 @@
 //Academy Areas
 
 /area/awaymission/academy
-	name = "Academy Asteroids"
 	icon_state = "away"
+	requires_power = FALSE
 
-/area/awaymission/academy/headmaster
-	name = "Academy Fore Block"
+/area/awaymission/academy/academyclassroom
+	name = "Academy Classrooms"
 	icon_state = "away1"
 
-/area/awaymission/academy/classrooms
-	name = "Academy Classroom Block"
+/area/awaymission/academy/academyfore
+	name = "Academy Fore Block"
 	icon_state = "away2"
 
 /area/awaymission/academy/academyaft
-	name = "Academy Ship Aft Block"
+	name = "Academy Aft Block"
 	icon_state = "away3"
-
-/area/awaymission/academy/academygate
-	name = "Academy Gateway"
-	icon_state = "away4"
 
 /area/awaymission/academy/academycellar
 	name = "Academy Cellar"
-	icon_state = "away4"
-
-/area/awaymission/academy/academyengine
-	name = "Academy Engine"
 	icon_state = "away4"
 
 //Academy Items
@@ -206,6 +198,7 @@
 		addtimer(CALLBACK(src, .proc/effect, user, .), 1 SECONDS)
 
 /obj/item/dice/d20/fate/equipped(mob/user, slot)
+	. = ..()
 	if(!ishuman(user) || !user.mind || (user.mind in SSticker.mode.wizards))
 		to_chat(user, "<span class='warning'>You feel the magic of the dice is restricted to ordinary humans! You should leave it alone.</span>")
 		user.dropItemToGround(src)

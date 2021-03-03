@@ -123,6 +123,7 @@
 					/obj/item/clothing/mask/yogs/scaryclown = 1,
 					/obj/item/clothing/under/yogs/scaryclown = 1,
 					/obj/item/clothing/shoes/clown_shoes/scaryclown = 1,
+					/obj/item/clothing/shoes/clown_shoes/clowncrocs = 1,
 					/obj/item/clothing/under/yogs/barber = 4,
 					/obj/item/clothing/head/yogs/boater = 4,
 					/obj/item/clothing/under/yogs/bluecoatuniform = 5,
@@ -183,7 +184,13 @@
 					/obj/item/clothing/head/yogs/sith_hood = 1,
 					/obj/item/clothing/neck/yogs/sith_cloak = 1,
 					/obj/item/clothing/suit/yogs/armor/sith_suit = 1,
-					/obj/item/clothing/shoes/clown_shoes/beeshoes = 1) //yogs clothes for autodrobe end here
+					/obj/item/clothing/shoes/clown_shoes/beeshoes = 1,
+					/obj/item/clothing/suit/santa = 1,
+					/obj/item/clothing/head/santa = 1,
+					/obj/item/clothing/neck/skillcape/admin = 1,
+					/obj/item/clothing/neck/skillcape/trimmed/admin = 1,
+					/obj/item/clothing/neck/skillcape/mentor = 1,
+					/obj/item/clothing/neck/skillcape = 1) //yogs clothes for autodrobe end here
 	contraband = list(/obj/item/clothing/suit/judgerobe = 1,
 					  /obj/item/clothing/head/powdered_wig = 1,
 					  /obj/item/gun/magic/wand = 2,
@@ -258,4 +265,4 @@
 
 	default_price = 50
 	extra_price = 75
-	payment_department = ACCOUNT_SRV
+	payment_department = ACCOUNT_SEC

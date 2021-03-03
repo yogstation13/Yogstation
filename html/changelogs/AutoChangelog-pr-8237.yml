@@ -1,9 +1,0 @@
-author: "  Identification"
-delete-after: true 
-changes: 
-  - rscadd: "The hierarchy for CentCom has been reformatted! You may see new CentCom officials visit the station."
-  - rscadd: "These new officials include: Official, Captain, Major, Commodore, Colonel, Rear-Admiral, Admiral, and Grand Admiral."
-  - imageadd: "The Central Command uniforms have been resprited."
-  - imageadd: "A new uniform to the newly added Admiral CentCom roles."
-  - imageadd: "Resprited misc items for CentCom, including gloves, armor, and cap."
-  - experiment: "The station Captain now outranks CentCom officials! Unless they somehow have written and stamped orders from your superiors that is."

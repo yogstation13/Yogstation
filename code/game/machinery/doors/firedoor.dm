@@ -11,7 +11,7 @@
 	icon_state = "door_open"
 	opacity = FALSE
 	density = FALSE
-	max_integrity = 300
+	max_integrity = 120
 	resistance_flags = FIRE_PROOF
 	heat_proof = TRUE
 	glass = TRUE
@@ -29,8 +29,10 @@
 	var/boltslocked = TRUE
 	var/list/affecting_areas
 
-/obj/machinery/door/firedoor/Initialize()
+/obj/machinery/door/firedoor/Initialize(mapload, direct)
 	. = ..()
+	if(direct)
+		setDir(direct)
 	CalculateAffectingAreas()
 
 /obj/machinery/door/firedoor/examine(mob/user)
@@ -70,23 +72,25 @@
 	return ..()
 
 /obj/machinery/door/firedoor/Bumped(atom/movable/AM)
-	if(panel_open || operating || welded)
+	if(panel_open || operating || welded || (stat & NOPOWER))
 		return
 	if(ismob(AM))
 		var/mob/user = AM
-		if(density && !welded && !operating && !(stat & NOPOWER) && (!density || allow_hand_open(user)))
+		if(allow_hand_open(user))
 			add_fingerprint(user)
+			open()
+			return TRUE
+	if(ismecha(AM))
+		var/obj/mecha/M = AM
+		if(M.occupant && allow_hand_open(M.occupant))
 			open()
 			return TRUE
 	return FALSE
 
 
 /obj/machinery/door/firedoor/power_change()
-	if(powered(power_channel))
-		stat &= ~NOPOWER
-		latetoggle()
-	else
-		stat |= NOPOWER
+	. = ..()
+	latetoggle()
 
 /obj/machinery/door/firedoor/attack_hand(mob/user)
 	. = ..()
@@ -194,7 +198,10 @@
 	if(welded)
 		to_chat(user, "<span class='warning'>[src] refuses to budge!</span>")
 		return
-	open()
+	if(user.a_intent == INTENT_HARM)
+		return ..()
+	else
+		open()
 
 /obj/machinery/door/firedoor/do_animate(animation)
 	switch(animation)
@@ -279,13 +286,9 @@
 		close()
 
 /obj/machinery/door/firedoor/deconstruct(disassembled = TRUE)
-	if(!(flags_1 & NODECONSTRUCT_1))
+	if(!(flags_1 & NODECONSTRUCT_1) && disassembled)
 		var/obj/structure/firelock_frame/F = new assemblytype(get_turf(src))
-		if(disassembled)
-			F.constructionStep = CONSTRUCTION_PANEL_OPEN
-		else
-			F.constructionStep = CONSTRUCTION_WIRES_EXPOSED
-			F.obj_integrity = F.max_integrity * 0.5
+		F.constructionStep = CONSTRUCTION_PANEL_OPEN
 		F.update_icon()
 	qdel(src)
 
@@ -305,6 +308,7 @@
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	flags_1 = ON_BORDER_1
 	CanAtmosPass = ATMOS_PASS_PROC
+	assemblytype = /obj/structure/firelock_frame/border
 
 /obj/machinery/door/firedoor/border_only/closed
 	icon_state = "door_closed"
@@ -325,7 +329,7 @@
 				to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes</span>")
 				M.pulling.forceMove(T1)
 				M.start_pulling(M2)
-				
+
 	for(var/mob/living/M in T2)
 		if(M.stat == CONSCIOUS && M.pulling && M.pulling.loc == T1 && !M.pulling.anchored && M.pulling.move_resist <= M.move_force)
 			var/mob/living/M2 = M.pulling
@@ -345,7 +349,7 @@
 	if(!T || !T2)
 		return
 	var/status1 = check_door_side(T)
-	var/status2 = check_door_side(T2)
+	var/status2 = check_door_side(T2)	
 	if((status1 == 1 && status2 == -1) || (status1 == -1 && status2 == 1))
 		to_chat(user, "<span class='warning'>Access denied. Try closing another firedoor to minimize decompression, or using a crowbar.</span>")
 		return FALSE
@@ -364,12 +368,11 @@
 		return 0 // not big enough to matter
 	return start_point.air.return_pressure() < 20 ? -1 : 1
 
-/obj/machinery/door/firedoor/border_only/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/door/firedoor/border_only/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return TRUE
-	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
-		return !density
-	else
+	if(!(get_dir(loc, target) == dir)) //Make sure looking at appropriate border
 		return TRUE
 
 /obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover as mob|obj, turf/target)
@@ -392,7 +395,7 @@
 	glass = FALSE
 	explosion_block = 2
 	assemblytype = /obj/structure/firelock_frame/heavy
-	max_integrity = 550
+	max_integrity = 350
 
 /obj/machinery/door/firedoor/window
 	name = "window shutter"
@@ -422,6 +425,34 @@
 	density = TRUE
 	var/constructionStep = CONSTRUCTION_NOCIRCUIT
 	var/reinforced = 0
+	var/border = FALSE
+
+/obj/structure/firelock_frame/border
+	icon = 'icons/obj/doors/edge_Doorfire.dmi'
+	border = TRUE
+
+/obj/structure/firelock_frame/border/ComponentInitialize()
+	. = ..()
+	AddComponent(
+		/datum/component/simple_rotation,
+		ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS,
+		null
+		)
+
+/obj/structure/firelock_frame/border/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(istype(mover) && (mover.pass_flags & PASSGLASS))
+		return TRUE
+	if(!(get_dir(loc, target) == dir)) //Make sure looking at appropriate border
+		return TRUE
+
+/obj/structure/firelock_frame/border/CheckExit(atom/movable/mover as mob|obj, turf/target)
+	if(istype(mover) && (mover.pass_flags & PASSGLASS))
+		return TRUE
+	if(get_dir(loc, target) == dir)
+		return !density
+	else
+		return TRUE
 
 /obj/structure/firelock_frame/examine(mob/user)
 	. = ..()
@@ -440,6 +471,18 @@
 /obj/structure/firelock_frame/update_icon()
 	..()
 	icon_state = "frame[constructionStep]"
+
+/obj/structure/firelock_frame/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
+	if(the_rcd.mode == RCD_DECONSTRUCT)
+		return list("mode" = RCD_DECONSTRUCT, "delay" = 50, "cost" = 16)
+	return FALSE
+
+/obj/structure/firelock_frame/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
+	if(passed_mode == RCD_DECONSTRUCT)
+		to_chat(user, "<span class='notice'>You deconstruct [src].</span>")
+		qdel(src)
+		return TRUE
+	return FALSE
 
 /obj/structure/firelock_frame/attackby(obj/item/C, mob/user)
 	switch(constructionStep)
@@ -472,7 +515,9 @@
 				user.visible_message("<span class='notice'>[user] finishes the firelock.</span>", \
 									 "<span class='notice'>You finish the firelock.</span>")
 				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
-				if(reinforced)
+				if(border)
+					new /obj/machinery/door/firedoor/border_only(get_turf(src), dir)
+				else if(reinforced)
 					new /obj/machinery/door/firedoor/heavy(get_turf(src))
 				else
 					new /obj/machinery/door/firedoor(get_turf(src))
@@ -480,6 +525,9 @@
 				return
 			if(istype(C, /obj/item/stack/sheet/plasteel))
 				var/obj/item/stack/sheet/plasteel/P = C
+				if(border)
+					to_chat(user, "<span class='warning'>[src] cannot be reinforced.</span>")
+					return
 				if(reinforced)
 					to_chat(user, "<span class='warning'>[src] is already reinforced.</span>")
 					return
@@ -603,6 +651,21 @@
 				update_icon()
 				return
 	return ..()
+
+/obj/structure/firelock_frame/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
+	if((constructionStep == CONSTRUCTION_NOCIRCUIT) && (the_rcd.upgrade & RCD_UPGRADE_SIMPLE_CIRCUITS))
+		return list("mode" = RCD_UPGRADE_SIMPLE_CIRCUITS, "delay" = 20, "cost" = 1)	
+	return FALSE
+
+/obj/structure/firelock_frame/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
+	switch(passed_mode)
+		if(RCD_UPGRADE_SIMPLE_CIRCUITS)
+			user.visible_message("<span class='notice'>[user] fabricates a circuit and places it into [src].</span>", \
+			"<span class='notice'>You adapt a firelock circuit and slot it into the assembly.</span>")
+			constructionStep = CONSTRUCTION_GUTTED
+			update_icon()
+			return TRUE
+	return FALSE
 
 /obj/structure/firelock_frame/heavy
 	name = "heavy firelock frame"

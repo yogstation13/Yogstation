@@ -105,7 +105,7 @@ Difficulty: Medium
 		wander = TRUE
 
 /mob/living/simple_animal/hostile/megafauna/legion/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	if(GLOB.necropolis_gate && true_spawn)
+	if(amount > 0 && GLOB.necropolis_gate && true_spawn)
 		GLOB.necropolis_gate.toggle_the_gate(null, TRUE) //very clever.
 	return ..()
 
@@ -127,9 +127,16 @@ Difficulty: Medium
 /mob/living/simple_animal/hostile/megafauna/legion/death()
 	if(health > 0)
 		return
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+	if(D)
+		D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
 	if(size > 1)
 		adjustHealth(-maxHealth) //heal ourself to full in prep for splitting
 		var/mob/living/simple_animal/hostile/megafauna/legion/L = new(loc)
+
+		var/datum/component/music_player/player = GetComponent(/datum/component/music_player)
+		if(player)
+			L.AddComponent(player.type, player.music_path)
 
 		L.maxHealth = round(maxHealth * 0.6,DAMAGE_PRECISION)
 		maxHealth = L.maxHealth
@@ -159,9 +166,10 @@ Difficulty: Medium
 				last_legion = FALSE
 				break
 		if(last_legion)
-			loot = list(/obj/item/staff/storm)
+			loot = list(/obj/item/staff/storm,
+			/obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker)
 			elimination = FALSE
-		else if(prob(5))
+		else if(prob(10))
 			loot = list(/obj/structure/closet/crate/necropolis/tendril)
 		if(!true_spawn)
 			loot = null
@@ -201,12 +209,7 @@ Difficulty: Medium
 	if(!user_area || !user_turf || (user_area.type in excluded_areas))
 		to_chat(user, "<span class='warning'>Something is preventing you from using the staff here.</span>")
 		return
-	var/datum/weather/A
-	for(var/V in SSweather.processing)
-		var/datum/weather/W = V
-		if((user_turf.z in W.impacted_z_levels) && W.area_type == user_area.type)
-			A = W
-			break
+	var/datum/weather/A = SSweather.get_weather(user_turf.z, user_area)
 
 	if(A)
 		if(A.stage != END_STAGE)
@@ -222,9 +225,8 @@ Difficulty: Medium
 	else
 		A = new storm_type(list(user_turf.z))
 		A.name = "staff storm"
-		log_game("[user] ([key_name(user)]) has summoned [A] at [AREACOORD(user_turf)]")
-		if (is_special_character(user))
-			message_admins("[A] has been summoned in [ADMIN_VERBOSEJMP(user_turf)] by [ADMIN_LOOKUPFLW(user)], a non-antagonist")
+		log_admin("[user] ([key_name(user)]) has summoned [A] at [AREACOORD(user_turf)]")
+		message_admins("[A] has been summoned in [ADMIN_VERBOSEJMP(user_turf)] by [ADMIN_LOOKUPFLW(user)]")
 		A.area_type = user_area.type
 		A.telegraph_duration = 100
 		A.end_duration = 100

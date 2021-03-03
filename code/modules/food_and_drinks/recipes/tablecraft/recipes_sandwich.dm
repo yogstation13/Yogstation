@@ -5,22 +5,12 @@
 ////////////////////////////////////////////////SANDWICHES////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/grilledcheesesandwich
-	name = "Grilled Cheese Sandwich"
+	name = "Cheese Sandwich"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/breadslice/plain = 2,
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/grilledcheese
-	subcategory = CAT_SANDWICH
-
-/datum/crafting_recipe/food/icecreamsandwich
-	name = "Icecream Sandwich"
-	reqs = list(
-		/datum/reagent/consumable/cream = 5,
-		/datum/reagent/consumable/ice = 5,
-		/obj/item/reagent_containers/food/snacks/icecream = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/icecreamsandwich
 	subcategory = CAT_SANDWICH
 
 /datum/crafting_recipe/food/slimesandwich

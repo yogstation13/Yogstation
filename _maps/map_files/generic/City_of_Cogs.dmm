@@ -19,13 +19,6 @@
 /obj/machinery/door/airlock/clockwork/brass,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
-"af" = (
-/obj/structure/table/reinforced/brass,
-/obj/item/clockwork/slab,
-/obj/item/clockwork/slab,
-/obj/item/clockwork/slab,
-/turf/open/floor/clockwork/reebe,
-/area/reebe/city_of_cogs)
 "ag" = (
 /obj/machinery/door/airlock/clockwork/brass{
 	name = "Summoning Chamber"
@@ -130,11 +123,6 @@
 	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
-"aB" = (
-/obj/structure/table/reinforced/brass,
-/obj/item/clockwork/construct_chassis/cogscarab,
-/turf/open/floor/clockwork/reebe,
-/area/reebe/city_of_cogs)
 "aC" = (
 /obj/machinery/sleeper/clockwork{
 	dir = 1
@@ -195,10 +183,6 @@
 	},
 /turf/open/indestructible/reebe_void,
 /area/reebe/city_of_cogs)
-"aL" = (
-/obj/structure/table/reinforced/brass,
-/turf/open/floor/clockwork/reebe,
-/area/reebe/city_of_cogs)
 "aM" = (
 /obj/structure/lattice/catwalk/clockwork,
 /obj/effect/clockwork/servant_blocker,
@@ -220,6 +204,11 @@
 /obj/machinery/door/airlock/clockwork/brass,
 /turf/open/indestructible/clock_spawn_room,
 /area/reebe/city_of_cogs)
+"aQ" = (
+/obj/structure/table/reinforced/brass,
+/obj/item/kitchen/fork,
+/turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
 "bj" = (
 /obj/structure/destructible/clockwork/eminence_spire,
 /turf/open/floor/clockwork/reebe,
@@ -233,99 +222,162 @@
 	},
 /turf/closed/wall/clockwork,
 /area/reebe/city_of_cogs)
+"cC" = (
+/obj/structure/table/reinforced/brass,
+/obj/item/kitchen/fork{
+	pixel_x = 10
+	},
+/obj/item/kitchen/fork{
+	pixel_x = -4
+	},
+/turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
+"mj" = (
+/obj/structure/table/reinforced/brass,
+/obj/item/clockwork/slab{
+	pixel_x = 10;
+	pixel_y = 10
+	},
+/obj/item/clockwork/slab{
+	pixel_x = 6;
+	pixel_y = 7
+	},
+/obj/item/clockwork/slab{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/obj/item/clockwork/slab{
+	pixel_x = -2;
+	pixel_y = 1
+	},
+/obj/item/clockwork/slab{
+	pixel_x = -6;
+	pixel_y = -2
+	},
+/obj/item/clockwork/slab{
+	pixel_x = -10;
+	pixel_y = -5
+	},
+/turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
+"wm" = (
+/obj/structure/table/reinforced/brass,
+/obj/item/kitchen/fork{
+	pixel_x = -4
+	},
+/obj/item/kitchen/fork{
+	pixel_x = -11
+	},
+/obj/item/kitchen/fork{
+	pixel_x = 3
+	},
+/obj/item/kitchen/fork{
+	pixel_x = 10
+	},
+/turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
+"Ct" = (
+/turf/closed/indestructible/riveted,
+/area/reebe)
+"Vl" = (
+/obj/structure/table/reinforced/brass,
+/obj/effect/landmark/servant_of_ratvar/scarab,
+/turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
 
 (1,1,1) = {"
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
 "}
 (2,1,1) = {"
+Ct
 ab
 ab
 ab
@@ -413,10 +465,10 @@ ab
 ab
 ab
 ab
-ab
-ab
+Ct
 "}
 (3,1,1) = {"
+Ct
 ab
 ab
 ab
@@ -504,10 +556,10 @@ ab
 ab
 ab
 ab
-ab
-ab
+Ct
 "}
 (4,1,1) = {"
+Ct
 ab
 ab
 ab
@@ -595,10 +647,10 @@ ab
 ab
 ab
 ab
-ab
-ab
+Ct
 "}
 (5,1,1) = {"
+Ct
 ab
 ab
 ab
@@ -686,10 +738,10 @@ ab
 ab
 ab
 ab
-ab
-ab
+Ct
 "}
 (6,1,1) = {"
+Ct
 ab
 ab
 ab
@@ -777,10 +829,10 @@ ab
 ab
 ab
 ab
-ab
-ab
+Ct
 "}
 (7,1,1) = {"
+Ct
 ab
 ab
 ab
@@ -868,11 +920,10 @@ ab
 ab
 ab
 ab
-ab
-ab
+Ct
 "}
 (8,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -960,10 +1011,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (9,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -1051,10 +1102,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (10,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -1142,10 +1193,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (11,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -1233,10 +1284,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (12,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -1324,10 +1375,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (13,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -1415,10 +1466,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (14,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -1506,10 +1557,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (15,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -1597,10 +1648,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (16,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -1688,10 +1739,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (17,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -1779,10 +1830,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (18,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -1870,10 +1921,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (19,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -1961,10 +2012,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (20,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -2052,10 +2103,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (21,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -2143,10 +2194,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (22,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -2234,10 +2285,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (23,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -2325,10 +2376,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (24,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -2416,10 +2467,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (25,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -2507,10 +2558,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (26,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -2598,10 +2649,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (27,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -2689,10 +2740,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (28,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -2780,10 +2831,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (29,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -2871,10 +2922,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (30,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -2962,10 +3013,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (31,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -3053,10 +3104,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (32,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -3144,10 +3195,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (33,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -3235,10 +3286,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (34,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -3326,10 +3377,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (35,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -3417,10 +3468,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (36,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -3508,10 +3559,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (37,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -3552,7 +3603,7 @@ aj
 aj
 ah
 aj
-aB
+Vl
 ai
 aj
 aj
@@ -3599,10 +3650,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (38,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -3641,7 +3692,7 @@ aj
 aj
 aj
 ah
-af
+mj
 aj
 aj
 ag
@@ -3690,10 +3741,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (39,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -3781,10 +3832,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (40,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -3821,7 +3872,7 @@ aj
 aj
 aj
 ah
-af
+wm
 ax
 aj
 aj
@@ -3872,10 +3923,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (41,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -3915,7 +3966,7 @@ aj
 aj
 aj
 aj
-aB
+Vl
 az
 ah
 ai
@@ -3963,10 +4014,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (42,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -4002,7 +4053,7 @@ aj
 aj
 aj
 ai
-aB
+Vl
 aj
 aj
 aj
@@ -4054,10 +4105,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (43,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -4145,10 +4196,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (44,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -4236,10 +4287,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (45,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -4327,10 +4378,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (46,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -4418,10 +4469,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (47,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -4509,10 +4560,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (48,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -4600,10 +4651,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (49,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -4639,7 +4690,7 @@ aj
 aj
 aj
 ah
-aL
+cC
 aj
 aj
 aj
@@ -4691,10 +4742,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (50,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -4782,10 +4833,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (51,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -4873,10 +4924,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (52,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -4964,10 +5015,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (53,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -5007,7 +5058,7 @@ aj
 aj
 aj
 ah
-aL
+aQ
 am
 ai
 aj
@@ -5055,10 +5106,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (54,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -5146,10 +5197,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (55,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -5237,10 +5288,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (56,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -5328,10 +5379,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (57,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -5419,10 +5470,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (58,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -5510,10 +5561,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (59,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -5601,10 +5652,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (60,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -5692,10 +5743,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (61,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -5783,10 +5834,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (62,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -5874,10 +5925,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (63,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -5965,10 +6016,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (64,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -6056,10 +6107,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (65,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -6147,10 +6198,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (66,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -6238,10 +6289,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (67,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -6329,10 +6380,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (68,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -6420,10 +6471,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (69,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -6511,10 +6562,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (70,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -6602,10 +6653,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (71,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -6693,10 +6744,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (72,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -6784,10 +6835,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (73,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -6875,10 +6926,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (74,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -6966,10 +7017,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (75,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -7057,10 +7108,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (76,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -7148,10 +7199,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (77,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -7239,10 +7290,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (78,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -7330,10 +7381,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (79,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -7421,10 +7472,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (80,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -7512,10 +7563,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (81,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -7603,10 +7654,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (82,1,1) = {"
-ab
+Ct
 ab
 ab
 ab
@@ -7694,9 +7745,10 @@ ab
 ab
 ab
 ab
-ab
+Ct
 "}
 (83,1,1) = {"
+Ct
 ab
 ab
 ab
@@ -7784,10 +7836,10 @@ ab
 ab
 ab
 ab
-ab
-ab
+Ct
 "}
 (84,1,1) = {"
+Ct
 ab
 ab
 ab
@@ -7875,10 +7927,10 @@ ab
 ab
 ab
 ab
-ab
-ab
+Ct
 "}
 (85,1,1) = {"
+Ct
 ab
 ab
 ab
@@ -7966,10 +8018,10 @@ ab
 ab
 ab
 ab
-ab
-ab
+Ct
 "}
 (86,1,1) = {"
+Ct
 ab
 ab
 ab
@@ -8057,10 +8109,10 @@ ab
 ab
 ab
 ab
-ab
-ab
+Ct
 "}
 (87,1,1) = {"
+Ct
 ab
 ab
 ab
@@ -8148,10 +8200,10 @@ ab
 ab
 ab
 ab
-ab
-ab
+Ct
 "}
 (88,1,1) = {"
+Ct
 ab
 ab
 ab
@@ -8239,97 +8291,96 @@ ab
 ab
 ab
 ab
-ab
-ab
+Ct
 "}
 (89,1,1) = {"
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
+Ct
 "}

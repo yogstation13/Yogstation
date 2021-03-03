@@ -19,7 +19,6 @@
 		var/area/A = get_area(T)
 		if(is_type_in_typecache(A, banned_areas))
 			return SHELTER_DEPLOY_BAD_AREA
-
 		var/banned = is_type_in_typecache(T, blacklisted_turfs)
 		var/permitted = is_type_in_typecache(T, whitelisted_turfs)
 		if(banned && !permitted)
@@ -41,7 +40,7 @@
 
 /datum/map_template/shelter/alpha/New()
 	. = ..()
-	blacklisted_turfs = typecacheof(/turf/open/indestructible) //yogs added indestructible floors to the shelter black list
+	blacklisted_turfs += typecacheof(/turf/open/indestructible) //yogs added indestructible floors to the shelter black list
 	whitelisted_turfs = typecacheof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
@@ -57,6 +56,6 @@
 
 /datum/map_template/shelter/beta/New()
 	. = ..()
-	blacklisted_turfs = typecacheof(/turf/open/indestructible) //yogs added indestructible floors to the shelter black list
+	blacklisted_turfs += typecacheof(/turf/open/indestructible) //yogs added indestructible floors to the shelter black list
 	whitelisted_turfs = typecacheof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)

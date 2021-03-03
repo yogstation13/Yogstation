@@ -2,16 +2,31 @@
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
+"ab" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "ac" = (
 /obj/structure/sign/warning/radiation,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "ad" = (
 /obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "ae" = (
 /turf/closed/wall/mineral/titanium,
+/area/shuttle/escape)
+"af" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "ag" = (
 /obj/structure/closet/radiation{
@@ -493,10 +508,10 @@ aa
 (2,1,1) = {"
 aw
 ae
-ad
+ab
 ac
 ae
-ad
+ab
 aw
 ai
 aD
@@ -525,7 +540,7 @@ cw
 ai
 ai
 ai
-ad
+af
 aa
 aa
 aM
@@ -574,7 +589,7 @@ bg
 as
 as
 bk
-ad
+af
 aM
 aO
 aa
@@ -622,7 +637,7 @@ bh
 au
 au
 bl
-ad
+af
 aM
 aP
 aa
@@ -669,7 +684,7 @@ cw
 ai
 ai
 ai
-ad
+af
 aa
 aa
 aM

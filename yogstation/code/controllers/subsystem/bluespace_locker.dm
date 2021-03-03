@@ -21,7 +21,7 @@ SUBSYSTEM_DEF(bluespace_locker)
 	- typesof(/obj/structure/closet/abductor) - typesof(/obj/structure/closet/bluespace), only_root_path = TRUE)
 
 	var/list/lockers_list = list()
-	for(var/obj/structure/closet/L in world)
+	for(var/obj/structure/closet/L in GLOB.lockers)
 		if(is_station_level(L.z) && is_type_in_typecache(L, valid_lockers))
 			lockers_list += L
 	if(!lockers_list.len)

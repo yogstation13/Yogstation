@@ -40,7 +40,8 @@
 #define CHAPLAIN		(1<<10)
 #define CLOWN			(1<<11)
 #define MIME			(1<<12)
-#define ASSISTANT		(1<<13)
+#define ARTIST			(1<<13)
+#define ASSISTANT		(1<<14)
 
 #define JOB_AVAILABLE 0
 #define JOB_UNAVAILABLE_GENERIC 1
@@ -54,41 +55,69 @@
 
 #define JOB_DISPLAY_ORDER_DEFAULT 0
 
-#define JOB_DISPLAY_ORDER_ASSISTANT 1 //yogs start - this list has been changed to include the yogs jobs.
+#define JOB_DISPLAY_ORDER_ASSISTANT 1
 #define JOB_DISPLAY_ORDER_CAPTAIN 2
-#define JOB_DISPLAY_ORDER_HEAD_OF_PERSONNEL 3
-#define JOB_DISPLAY_ORDER_QUARTERMASTER 4
-#define JOB_DISPLAY_ORDER_CARGO_TECHNICIAN 5
-#define JOB_DISPLAY_ORDER_SHAFT_MINER 6
-#define JOB_DISPLAY_ORDER_BARTENDER 7
-#define JOB_DISPLAY_ORDER_COOK 8
-#define JOB_DISPLAY_ORDER_BOTANIST 9
-#define JOB_DISPLAY_ORDER_JANITOR 10
-#define JOB_DISPLAY_ORDER_CLOWN 11
-#define JOB_DISPLAY_ORDER_MIME 12
-#define JOB_DISPLAY_ORDER_CURATOR 13
-#define JOB_DISPLAY_ORDER_LAWYER 14
-#define JOB_DISPLAY_ORDER_TOURIST 15
-#define JOB_DISPLAY_ORDER_CLERK 16
-#define JOB_DISPLAY_ORDER_CHAPLAIN 17
-#define JOB_DISPLAY_ORDER_CHIEF_ENGINEER 18
-#define JOB_DISPLAY_ORDER_STATION_ENGINEER 19
-#define JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN 20
-#define JOB_DISPLAY_ORDER_SIGNAL_TECHNICIAN 21
-#define JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER 22
-#define JOB_DISPLAY_ORDER_MEDICAL_DOCTOR 23
-#define JOB_DISPLAY_ORDER_CHEMIST 24
-#define JOB_DISPLAY_ORDER_GENETICIST 25
-#define JOB_DISPLAY_ORDER_VIROLOGIST 26
-#define JOB_DISPLAY_ORDER_MINING_MEDIC 27
-#define JOB_DISPLAY_ORDER_PARAMEDIC 28
-#define JOB_DISPLAY_ORDER_PSYCHIATRIST 29
-#define JOB_DISPLAY_ORDER_RESEARCH_DIRECTOR 30
-#define JOB_DISPLAY_ORDER_SCIENTIST 31
-#define JOB_DISPLAY_ORDER_ROBOTICIST 32
-#define JOB_DISPLAY_ORDER_HEAD_OF_SECURITY 33
-#define JOB_DISPLAY_ORDER_WARDEN 34
-#define JOB_DISPLAY_ORDER_DETECTIVE 35
-#define JOB_DISPLAY_ORDER_SECURITY_OFFICER 36
-#define JOB_DISPLAY_ORDER_AI 37
-#define JOB_DISPLAY_ORDER_CYBORG 38 //yogs end - this list was changed to include the yogs jobs
+#define JOB_DISPLAY_ORDER_HEAD_OF_SECURITY 3
+#define JOB_DISPLAY_ORDER_WARDEN 4
+#define JOB_DISPLAY_ORDER_SECURITY_OFFICER 5
+#define JOB_DISPLAY_ORDER_DETECTIVE 6
+#define JOB_DISPLAY_ORDER_CHIEF_ENGINEER 7
+#define JOB_DISPLAY_ORDER_STATION_ENGINEER 8
+#define JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN 9
+#define JOB_DISPLAY_ORDER_SIGNAL_TECHNICIAN 10
+#define JOB_DISPLAY_ORDER_AI 11
+#define JOB_DISPLAY_ORDER_CYBORG 12
+#define JOB_DISPLAY_ORDER_RESEARCH_DIRECTOR 13
+#define JOB_DISPLAY_ORDER_SCIENTIST 14
+#define JOB_DISPLAY_ORDER_ROBOTICIST 15
+#define JOB_DISPLAY_ORDER_QUARTERMASTER 16
+#define JOB_DISPLAY_ORDER_CARGO_TECHNICIAN 17
+#define JOB_DISPLAY_ORDER_SHAFT_MINER 18
+#define JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER 19
+#define JOB_DISPLAY_ORDER_MEDICAL_DOCTOR 20
+#define JOB_DISPLAY_ORDER_CHEMIST 21
+#define JOB_DISPLAY_ORDER_GENETICIST 22
+#define JOB_DISPLAY_ORDER_VIROLOGIST 23
+#define JOB_DISPLAY_ORDER_MINING_MEDIC 24
+#define JOB_DISPLAY_ORDER_PARAMEDIC 25
+#define JOB_DISPLAY_ORDER_PSYCHIATRIST 26
+#define JOB_DISPLAY_ORDER_HEAD_OF_PERSONNEL 27
+#define JOB_DISPLAY_ORDER_BARTENDER 28
+#define JOB_DISPLAY_ORDER_COOK 29
+#define JOB_DISPLAY_ORDER_BOTANIST 30
+#define JOB_DISPLAY_ORDER_JANITOR 31
+#define JOB_DISPLAY_ORDER_CLOWN 32
+#define JOB_DISPLAY_ORDER_MIME 33
+#define JOB_DISPLAY_ORDER_CURATOR 34
+#define JOB_DISPLAY_ORDER_LAWYER 35
+#define JOB_DISPLAY_ORDER_ARTIST 36
+#define JOB_DISPLAY_ORDER_TOURIST 37
+#define JOB_DISPLAY_ORDER_CLERK 38
+#define JOB_DISPLAY_ORDER_CHAPLAIN 39
+
+
+/proc/find_job(target)
+	//Get the job from the mind
+	if(istype(target, /datum/mind))
+		var/datum/mind/M = target
+		return M.assigned_role
+
+	//Alive mob, get it from the mind if possible
+	if(isliving(target))
+		var/mob/living/L = target
+		return L.mind?.assigned_role
+
+	//I swear to god, if you passing me a string, im going to assume you passed me the job directly and you want it compared
+	if(istext(target))
+		return target
+
+	//No match
+	return null
+
+#define IS_JOB(target, job) (find_job(target) == job)
+#define IS_COMMAND(target) (find_job(target) in GLOB.command_positions)
+#define IS_ENGINEERING(target) (find_job(target) in GLOB.engineering_positions)
+#define IS_MEDICAL(target) (find_job(target) in GLOB.medical_positions)
+#define IS_SCIENCE(target) (find_job(target) in GLOB.science_positions)
+#define IS_CARGO(target) (find_job(target) in GLOB.supply_positions)
+#define IS_SECURITY(target) (find_job(target) in GLOB.security_positions)

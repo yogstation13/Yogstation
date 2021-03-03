@@ -50,7 +50,9 @@
 	name = "Bridge"
 	icon_state = "bridge"
 
-
+/area/ruin/space/has_grav/powered/spacebar //yogs start
+	name = "Space Bar"
+	icon_state = "dk_yellow" //yogs end
 
 /area/ruin/space/has_grav/powered/dinner_for_two
 	name = "Dinner for Two"
@@ -65,6 +67,8 @@
 	name = "Aesthetic"
 	ambientsounds = list('sound/ambience/ambivapor1.ogg')
 
+/area/ruin/space/has_grav/powered/gaming
+	name ="Game Room"
 
 //Ruin of Hotel
 

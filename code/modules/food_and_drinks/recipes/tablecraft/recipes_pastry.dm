@@ -23,7 +23,7 @@
 	subcategory = CAT_PASTRY
 
 /datum/crafting_recipe/food/donut
-	time = 15
+	time = 1.5 SECONDS
 	name = "Donut"
 	reqs = list(
 		/datum/reagent/consumable/sugar = 1,
@@ -42,7 +42,7 @@
 	subcategory = CAT_PASTRY
 
 datum/crafting_recipe/food/donut/meat
-	time = 15
+	time = 1.5 SECONDS
 	name = "Meat Donut"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/meat/slab = 1,
@@ -60,6 +60,33 @@ datum/crafting_recipe/food/donut/meat
 	result = /obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly
 	subcategory = CAT_PASTRY
 
+/datum/crafting_recipe/food/donut/laugh
+	name = "Sweet Pea Donut"
+	reqs = list(
+		/datum/reagent/consumable/laughsyrup = 3,
+		/obj/item/reagent_containers/food/snacks/donut = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/donut/laugh
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/donut/jelly/laugh
+	name = "Sweet Pea Jelly Donut"
+	reqs = list(
+		/datum/reagent/consumable/laughsyrup = 3,
+		/obj/item/reagent_containers/food/snacks/donut/jelly = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/donut/jelly/laugh
+	subcategory = CAT_PASTRY
+	
+/datum/crafting_recipe/food/donut/slimejelly/laugh
+	name = "Sweet Pea Jelly Donut"
+	reqs = list(
+		/datum/reagent/consumable/laughsyrup = 3,
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/laugh
+	subcategory = CAT_PASTRY
+	
 ////////////////////////////////////////////////WAFFLES AND PANCAKES////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/bbpancakes
@@ -100,7 +127,7 @@ datum/crafting_recipe/food/donut/meat
 /datum/crafting_recipe/food/rofflewaffles
 	name = "Roffle Waffles"
 	reqs = list(
-		/datum/reagent/mushroomhallucinogen = 5,
+		/datum/reagent/drug/mushroomhallucinogen = 5,
 		/obj/item/reagent_containers/food/snacks/pastrybase = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/rofflewaffles
@@ -125,7 +152,7 @@ datum/crafting_recipe/food/donut/meat
 	subcategory = CAT_PASTRY
 
 /datum/crafting_recipe/food/waffles
-	time = 15
+	time = 1.5 SECONDS
 	name = "Waffles"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pastrybase = 2
@@ -136,7 +163,7 @@ datum/crafting_recipe/food/donut/meat
 ////////////////////////////////////////////////DONK POCKETS////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/dankpocket
-	time = 15
+	time = 1.5 SECONDS
 	name = "Dankpocket"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
@@ -146,7 +173,7 @@ datum/crafting_recipe/food/donut/meat
 	subcategory = CAT_PASTRY
 
 /datum/crafting_recipe/food/donkpocket
-	time = 15
+	time = 1.5 SECONDS
 	name = "Donkpocket"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
@@ -217,7 +244,7 @@ datum/crafting_recipe/food/donut/meat
 	subcategory = CAT_PASTRY
 
 /datum/crafting_recipe/food/muffin
-	time = 15
+	time = 1.5 SECONDS
 	name = "Muffin"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
@@ -259,7 +286,7 @@ datum/crafting_recipe/food/donut/meat
 	subcategory = CAT_PASTRY
 
 /datum/crafting_recipe/food/cracker
-	time = 15
+	time = 1.5 SECONDS
 	name = "Cracker"
 	reqs = list(
 		/datum/reagent/consumable/sodiumchloride = 1,
@@ -269,7 +296,7 @@ datum/crafting_recipe/food/donut/meat
 	subcategory = CAT_PASTRY
 
 /datum/crafting_recipe/food/fortunecookie
-	time = 15
+	time = 1.5 SECONDS
 	name = "Fortune Cookie"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
@@ -322,7 +349,7 @@ datum/crafting_recipe/food/donut/meat
 	subcategory = CAT_PASTRY
 
 /datum/crafting_recipe/food/plumphelmetbiscuit
-	time = 15
+	time = 1.5 SECONDS
 	name = "Plump Helmet Biscuit"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
@@ -332,7 +359,7 @@ datum/crafting_recipe/food/donut/meat
 	subcategory = CAT_PASTRY
 
 /datum/crafting_recipe/food/poppypretzel
-	time = 15
+	time = 1.5 SECONDS
 	name = "Poppy Pretzel"
 	reqs = list(
 		/obj/item/seeds/poppy = 1,
@@ -352,11 +379,21 @@ datum/crafting_recipe/food/donut/meat
 	subcategory = CAT_PASTRY
 
 /datum/crafting_recipe/food/sugarcookie
-	time = 15
+	time = 1.5 SECONDS
 	name = "Sugar Cookie"
 	reqs = list(
 		/datum/reagent/consumable/sugar = 5,
 		/obj/item/reagent_containers/food/snacks/pastrybase = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/sugarcookie
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/jaffacake
+	name = "Jaffa Cake"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
+		/obj/item/reagent_containers/food/snacks/chocolatebar = 1,
+		/datum/reagent/consumable/orangejuice = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/jaffacake
 	subcategory = CAT_PASTRY

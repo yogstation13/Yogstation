@@ -16,6 +16,7 @@
 
 	var/port_x_offset
 	var/port_y_offset
+	var/extra_desc = ""
 
 /datum/map_template/shuttle/proc/prerequisites_met()
 	return TRUE
@@ -160,10 +161,17 @@
 
 /datum/map_template/shuttle/emergency/construction
 	suffix = "construction"
-	name = "Build your own shuttle kit"
+	name = "Build Your Own Shuttle"
 	description = "For the enterprising shuttle engineer! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials."
-	admin_notes = "No brig, no medical facilities, no shuttle console."
+	admin_notes = "No brig and no medical facilities. Build YOUR own."
 	credit_cost = 5000
+
+/datum/map_template/shuttle/emergency/construction_small
+	suffix = "construction_small"
+	name = "Build Your Own Shuttle, Jr."
+	description = "The full-size BYOS too big for your taste? Aside from the reduced size and cost, this has the all same (lack of) amenities as its full-sized sibling."
+	admin_notes = "No brig and no medical facilities. Build YOUR own."
+	credit_cost = 2000
 
 /datum/map_template/shuttle/emergency/airless/prerequisites_met()
 	// first 10 minutes only
@@ -175,6 +183,12 @@
 	var/datum/supply_pack/P = SSshuttle.supply_packs[/datum/supply_pack/engineering/shuttle_engine]
 	P.special_enabled = TRUE
 
+
+/datum/map_template/shuttle/emergency/transtar
+	suffix = "transtar"
+	name = "Transtar 800-C"
+	description = "A brand-new passenger transit vessel featuring a Centcom exclusion aftermarket kit for securely holding prisoners en-route to Centcom. Features First Class and business, in-flight beverages and snacks, and video screens for entertainment during the voyage!"
+	credit_cost = 3000
 
 /datum/map_template/shuttle/emergency/asteroid
 	suffix = "asteroid"
@@ -217,8 +231,9 @@
 	suffix = "luxury"
 	name = "Luxury Shuttle"
 	description = "A luxurious golden shuttle complete with an indoor swimming pool. Each crewmember wishing to board must bring 500 credits, payable in cash and mineral coin."
+	extra_desc = "This shuttle costs 500 credits to board."
 	admin_notes = "Due to the limited space for non paying crew, this shuttle may cause a riot."
-	credit_cost = 10000
+	credit_cost = 50000
 
 /datum/map_template/shuttle/emergency/discoinferno
 	suffix = "discoinferno"
@@ -263,10 +278,9 @@
 	name = "Snappop(tm)!"
 	description = "Hey kids and grownups! \
 	Are you bored of DULL and TEDIOUS shuttle journeys after you're evacuating for probably BORING reasons. Well then order the Snappop(tm) today! \
-	We've got fun activities for everyone, an all access cockpit, and no boring security brig! Boo! Play dress up with your friends! \
-	Collect all the bedsheets before your neighbour does! Check if the AI is watching you with our patent pending \"Peeping Tom AI Multitool Detector\" or PEEEEEETUR for short. \
-	Have a fun ride!"
-	admin_notes = "Brig is replaced by anchored greentext book surrounded by lavaland chasms, stationside door has been removed to prevent accidental dropping. No brig."
+	We've got fun activities for everyone and an all access cockpit! Play dress up with your friends! Collect all the bedsheets before your neighbour does! \
+	Check if the AI is watching you with our patent pending \"Peeping Tom AI Multitool Detector\" or PEEEEEETUR for short. Have a fun ride!"
+	admin_notes = "Brig contains a single chair surrounded by fake lavaland chasms. Main seating is replaced with beds."
 	credit_cost = 8000
 
 /datum/map_template/shuttle/emergency/cramped
@@ -351,6 +365,14 @@
 	name = "NES Port"
 	description = "The Nanotrasen Emergency Shuttle Port(NES Port for short) is a shuttle used at other less known Nanotrasen facilities and has a more open inside for larger crowds, but fewer onboard shuttle facilities."
 	credit_cost = 500
+
+/datum/map_template/shuttle/emergency/rollerdome
+	suffix = "rollerdome"
+	name = "Uncle Pete's Rollerdome"
+	description = "Created by a freak accident in which a member of the NT Temporal Discovery Division accidently warped a building from the past into our second Disco Inferno shuttle. \
+	It resembles a 1990s era rollerdome all the way down to the carpet texture."
+	admin_notes = "ONLY NINETIES KIDS REMEMBER. Uses the fun balloon and drone from the Emergency Bar."
+	credit_cost = 2500
 
 /datum/map_template/shuttle/emergency/wabbajack
 	suffix = "wabbajack"
@@ -478,10 +500,6 @@
 /datum/map_template/shuttle/arrival/delta
 	suffix = "delta"
 	name = "arrival shuttle (Delta)"
-
-/datum/map_template/shuttle/arrival/pubby
-	suffix = "pubby"
-	name = "arrival shuttle (Pubby)"
 
 /datum/map_template/shuttle/arrival/omega
 	suffix = "omega"

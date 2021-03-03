@@ -4,9 +4,9 @@
 	animate_movement = FORWARD_STEPS
 	anchored = TRUE
 	density = TRUE
-	var/moving = 0
+	var/moving = FALSE
 	var/datum/gas_mixture/air_contents = new()
-
+	var/cargo = FALSE
 
 /obj/structure/transit_tube_pod/Initialize()
 	. = ..()
@@ -54,10 +54,17 @@
 	..()
 	if(!QDELETED(src))
 		empty_pod()
+		contents_explosion(severity, target)
 
 /obj/structure/transit_tube_pod/contents_explosion(severity, target)
-	for(var/atom/movable/AM in contents)
-		AM.ex_act(severity, target)
+	for(var/thing in contents)
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.high_mov_atom += thing
+			if(EXPLODE_HEAVY)
+				SSexplosions.med_mov_atom += thing
+			if(EXPLODE_LIGHT)
+				SSexplosions.low_mov_atom += thing
 
 /obj/structure/transit_tube_pod/singularity_pull(S, current_size)
 	..()

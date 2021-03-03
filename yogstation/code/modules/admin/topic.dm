@@ -8,8 +8,7 @@
 //why is this called hippie stop it thats bad
 
 /datum/admins/proc/checkMentorEditList(ckey)
-	var/sql_key = sanitizeSQL("[ckey]")
-	var/datum/DBQuery/query_memoedits = SSdbcore.NewQuery("SELECT edits FROM [format_table_name("mentor_memo")] WHERE (ckey = '[sql_key]')")
+	var/datum/DBQuery/query_memoedits = SSdbcore.NewQuery("SELECT edits FROM [format_table_name("mentor_memo")] WHERE (ckey = :key)", list("key" = ckey))
 	if(!query_memoedits.warn_execute())
 		qdel(query_memoedits)
 		return
@@ -38,7 +37,7 @@
 		new /datum/mentors(ckey)
 
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_get_mentor = SSdbcore.NewQuery("SELECT id FROM `[format_table_name("mentor")]` WHERE `ckey` = '[ckey]'")
+		var/datum/DBQuery/query_get_mentor = SSdbcore.NewQuery("SELECT id FROM `[format_table_name("mentor")]` WHERE `ckey` = :ckey", list("ckey" = ckey))
 		query_get_mentor.warn_execute()
 		if(query_get_mentor.NextRow())
 			to_chat(usr, "<span class='danger'>[ckey] is already a mentor.</span>", confidential=TRUE)
@@ -46,17 +45,20 @@
 			return
 		qdel(query_get_mentor)
 
-		var/datum/DBQuery/query_add_mentor = SSdbcore.NewQuery("INSERT INTO `[format_table_name("mentor")]` (`id`, `ckey`) VALUES (null, '[ckey]')")
+		var/datum/DBQuery/query_add_mentor = SSdbcore.NewQuery("INSERT INTO `[format_table_name("mentor")]` (`id`, `ckey`) VALUES (null, :ckey)", list("ckey" = ckey))
 		if(!query_add_mentor.warn_execute())
 			qdel(query_add_mentor)
 			return
 		qdel(query_add_mentor)
 
-		var/datum/DBQuery/query_add_admin_log = SSdbcore.NewQuery("INSERT INTO `[format_table_name("admin_log")]` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , '[usr.ckey]', '[usr.client.address]', 'Added new mentor [ckey]');")
-		if(!query_add_admin_log.warn_execute())
-			qdel(query_add_admin_log)
+		var/datum/DBQuery/query_add_mentor_log = SSdbcore.NewQuery({"
+			INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log)
+			VALUES (:time, :round_id, :adminckey, INET_ATON(:adminip), 'add mentor', :target, CONCAT('New mentor added: ', :target))
+		"}, list("time" = SQLtime(), "round_id" = "[GLOB.round_id]", "adminckey" = usr.ckey, "adminip" = usr.client.address, "target" = ckey))
+		if(!query_add_mentor_log.warn_execute())
+			qdel(query_add_mentor_log)
 			return
-		qdel(query_add_admin_log)
+		qdel(query_add_mentor_log)
 
 		webhook_send_mchange(owner.ckey, C.ckey, "add")
 
@@ -87,7 +89,7 @@
 		GLOB.mentors -= C
 
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_remove_mentor = SSdbcore.NewQuery("DELETE FROM `[format_table_name("mentor")]` WHERE `ckey` = '[ckey]'")
+		var/datum/DBQuery/query_remove_mentor = SSdbcore.NewQuery("DELETE FROM `[format_table_name("mentor")]` WHERE `ckey` = :ckey", list("ckey" = ckey))
 		query_remove_mentor.warn_execute()
 		qdel(query_remove_mentor)
 

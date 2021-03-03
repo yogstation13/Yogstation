@@ -18,7 +18,11 @@
 
 	display_order = JOB_DISPLAY_ORDER_CARGO_TECHNICIAN
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("EclipseStation", "OmegaStation")
+
+/datum/job/cargo_tech/proc/EclipseStationChanges()
+	total_positions = 5
+	spawn_positions = 4
 
 /datum/job/cargo_tech/proc/OmegaStationChanges()
 	total_positions = 2

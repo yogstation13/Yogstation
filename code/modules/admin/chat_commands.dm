@@ -28,7 +28,7 @@
 		return
 	last_irc_check = rtod
 	var/server = CONFIG_GET(string/server)
-	return "[GLOB.round_id ? "Round #[GLOB.round_id]: " : ""][GLOB.clients.len] players on [SSmapping.config.map_name], Mode: [GLOB.master_mode]; Round [SSticker.HasRoundStarted() ? (SSticker.IsRoundInProgress() ? "Active" : "Finishing") : "Starting"] -- [server ? server : "[world.internet_address]:[world.port]"]" 
+	return "[GLOB.round_id ? "Round #[GLOB.round_id]: " : ""][GLOB.clients.len] players on [SSmapping.config.map_name], Mode: [GLOB.master_mode]; Round [SSticker.HasRoundStarted() ? (SSticker.IsRoundInProgress() ? "Active" : "Finishing") : "Starting"] -- [server ? server : "[world.internet_address]:[world.port]"]"
 
 /datum/tgs_chat_command/ahelp
 	name = "ahelp"
@@ -103,7 +103,7 @@ GLOBAL_LIST(round_end_notifiees)
 	var/list/text_res = results.Copy(1, 3)
 	var/list/refs = results.len > 3 ? results.Copy(4) : null
 	. = "[text_res.Join("\n")][refs ? "\nRefs: [refs.Join(" ")]" : ""]"
-	
+
 /datum/tgs_chat_command/reload_admins
 	name = "reload_admins"
 	help_text = "Forces the server to reload admins."
@@ -118,3 +118,17 @@ GLOBAL_LIST(round_end_notifiees)
 	set waitfor = FALSE
 	refresh_admin_files() //yogs - DB support
 	load_admins()
+
+/datum/tgs_chat_command/reload_mentors
+	name = "reload_mentors"
+	help_text = "Forces the server to reload mentors."
+	admin_only = TRUE
+
+/datum/tgs_chat_command/reload_mentors/Run(datum/tgs_chat_user/sender, params)
+	ReloadAsync()
+	log_admin("[sender.friendly_name] reloaded mentors via chat command.")
+	return "Mentors reloaded."
+
+/datum/tgs_chat_command/reload_mentors/proc/ReloadAsync()
+	set waitfor = FALSE
+	load_mentors()

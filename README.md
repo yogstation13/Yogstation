@@ -3,6 +3,17 @@
 [![Build Status](https://github.com/yogstation13/Yogstation/workflows/Turdis/badge.svg?branch=master)](https://github.com/yogstation13/Yogstation/actions?query=workflow%3ATurdis+branch%3Amaster)
 [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
+![badge?](https://forthebadge.com/images/badges/0-percent-optimized.svg)
+![badge????](https://forthebadge.com/images/badges/built-with-resentment.svg)
+![badge.](https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg)
+![badge!!!!](https://forthebadge.com/images/badges/contains-technical-debt.svg)
+![badge.....](https://forthebadge.com/images/badges/designed-in-ms-paint.svg)
+![badge:((](https://forthebadge.com/images/badges/made-with-out-pants.svg)
+![badge:D](https://forthebadge.com/images/badges/powered-by-black-magic.svg)
+![badge!](https://forthebadge.com/images/badges/uses-badges.svg)
+![b-a-d-g-e](https://forthebadge.com/images/badges/uses-git.svg)
+![B.A.D.G.E.](https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)
+
 [**Website**](https://yogstation.net)
 
 [**Code**](https://github.com/yogstation13/yogstation)
@@ -94,12 +105,13 @@ https://github.com/tgstation/tgstation-server
 
 ## MAPS
 
-Yogstation currently comes equipped with five maps.
+Yogstation currently comes equipped with the following maps.
 
-* [BoxStation (default)](https://wiki.yogstation.net/wiki/Maps#Boxstation_.28YogBox.29)
-* [MetaStation](https://wiki.yogstation.net/wiki/Maps#MetaStation_.28YogsMeta.29)
-* [DeltaStation](https://wiki.yogstation.net/wiki/Maps#DeltaStation_.28YogsDelta.29)
-* [PubbyStation](https://wiki.yogstation.net/wiki/Maps#PubbyStation_.28YogsPubby.29)
+* [BoxStation (default)](https://wiki.yogstation.net/wiki/BoxStation)
+* [DeltaStation](https://wiki.yogstation.net/wiki/DeltaStation)
+* [EclipseStation](https://wiki.yogstation.net/wiki/Maps)
+* [MetaStation](https://wiki.yogstation.net/wiki/MetaStation)
+* [OmegaStation](https://wiki.yogstation.net/wiki/OmegaStation)
 
 
 All maps have their own code file that is in the base of the _maps directory. Maps are loaded dynamically when the game starts. Follow this guideline when adding your own map, to your fork, for easy compatibility.

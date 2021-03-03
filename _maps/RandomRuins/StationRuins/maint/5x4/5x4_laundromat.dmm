@@ -1,0 +1,144 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"d" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"e" = (
+/obj/machinery/washing_machine,
+/obj/item/toy/crayon/yellow,
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"j" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"o" = (
+/obj/structure/closet/crate/trashcart,
+/obj/effect/spawner/lootdrop/costume,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"v" = (
+/obj/machinery/washing_machine,
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"x" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"C" = (
+/obj/effect/turf_decal/trimline/white/filled/line,
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"D" = (
+/obj/machinery/washing_machine,
+/obj/item/clothing/gloves/color/fyellow,
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"F" = (
+/obj/effect/turf_decal/trimline/white/filled/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"G" = (
+/obj/effect/turf_decal/trimline/white/filled/corner,
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"H" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"L" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"N" = (
+/turf/open/floor/plasteel,
+/area/template_noop)
+"P" = (
+/obj/structure/table,
+/obj/structure/bedsheetbin,
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"S" = (
+/obj/effect/turf_decal/trimline/white/filled/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/white/filled/corner,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"T" = (
+/obj/machinery/washing_machine,
+/obj/effect/spawner/lootdrop/gloves,
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"U" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/gloves,
+/obj/effect/spawner/lootdrop/gloves,
+/obj/item/storage/crayons,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/template_noop)
+"V" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+
+(1,1,1) = {"
+j
+C
+e
+T
+"}
+(2,1,1) = {"
+o
+F
+H
+x
+"}
+(3,1,1) = {"
+a
+V
+N
+S
+"}
+(4,1,1) = {"
+U
+G
+d
+L
+"}
+(5,1,1) = {"
+P
+C
+D
+v
+"}

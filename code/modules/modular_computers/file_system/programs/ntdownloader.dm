@@ -10,7 +10,7 @@
 	requires_ntnet_feature = NTNET_SOFTWAREDOWNLOAD
 	available_on_ntnet = 0
 	ui_header = "downloader_finished.gif"
-	tgui_id = "ntos_net_downloader"
+	tgui_id = "NtosNetDownloader"
 
 	var/datum/computer_file/program/downloaded_file = null
 	var/hacked_download = 0

@@ -63,7 +63,9 @@
 	orbiters[orbiter] = TRUE
 	orbiter.orbiting = src
 	RegisterSignal(orbiter, COMSIG_MOVABLE_MOVED, .proc/orbiter_move_react)
+
 	var/matrix/initial_transform = matrix(orbiter.transform)
+	orbiters[orbiter] = initial_transform
 
 	// Head first!
 	if(pre_rotation)
@@ -87,7 +89,6 @@
 		orbiter.glide_size = AM.glide_size
 
 	//we stack the orbits up client side, so we can assign this back to normal server side without it breaking the orbit
-	orbiter.transform = initial_transform
 	orbiter.forceMove(get_turf(parent))
 	to_chat(orbiter, "<span class='notice'>Now orbiting [parent].</span>")
 
@@ -96,6 +97,8 @@
 		return
 	UnregisterSignal(orbiter, COMSIG_MOVABLE_MOVED)
 	orbiter.SpinAnimation(0, 0)
+	if(istype(orbiters[orbiter],/matrix)) //This is ugly.
+		orbiter.transform = orbiters[orbiter]
 	orbiters -= orbiter
 	orbiter.stop_orbit(src)
 	orbiter.orbiting = null
@@ -157,10 +160,11 @@
 /atom/movable/proc/orbit(atom/A, radius = 10, clockwise = FALSE, rotation_speed = 20, rotation_segments = 36, pre_rotation = TRUE)
 	if(!istype(A) || !get_turf(A) || A == src)
 		return
-
+	orbit_target = A
 	return A.AddComponent(/datum/component/orbiter, src, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 
 /atom/movable/proc/stop_orbit(datum/component/orbiter/orbits)
+	orbit_target = null
 	return // We're just a simple hook
 
 /atom/proc/transfer_observers_to(atom/target)

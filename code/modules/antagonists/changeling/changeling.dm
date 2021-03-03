@@ -7,7 +7,7 @@
 	roundend_category  = "changelings"
 	antagpanel_category = "Changeling"
 	job_rank = ROLE_CHANGELING
-	antag_moodlet = /datum/mood_event/focused
+	antag_moodlet = /datum/mood_event/changeling
 
 	var/you_are_greet = TRUE
 	var/give_objectives = TRUE
@@ -283,7 +283,8 @@
 	prof.underwear = H.underwear
 	prof.undershirt = H.undershirt
 	prof.socks = H.socks
-	prof.accent = H.mind.accent_name
+	if(H.mind)//yes we need to check this
+		prof.accent = H.mind.accent_name
 
 	var/list/slots = list("head", "wear_mask", "back", "wear_suit", "w_uniform", "shoes", "belt", "gloves", "glasses", "ears", "wear_id", "s_store")
 	for(var/slot in slots)
@@ -522,7 +523,7 @@
 	var/underwear
 	var/undershirt
 	var/socks
-	var/accent
+	var/accent = null
 
 /datum/changelingprofile/Destroy()
 	qdel(dna)

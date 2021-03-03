@@ -13,6 +13,11 @@
 	implements = list(/obj/item/scalpel = 100, /obj/item/melee/transforming/energy/sword = 15, /obj/item/kitchen/knife = 35, /obj/item/shard = 25)	
 	time = 64
 
+/datum/surgery/gender_reassignment/can_start(mob/user, mob/living/carbon/target)
+	if(target.dna && ((AGENDER in target.dna.species.species_traits) || (MGENDER in target.dna.species.species_traits) || (FGENDER in target.dna.species.species_traits)))
+		return FALSE
+	return TRUE
+
 /datum/surgery_step/reshape_genitals/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(target.gender == FEMALE)
 		user.visible_message("[user] begins to reshape [target]'s genitals to look more masculine.", "<span class='notice'>You begin to reshape [target]'s genitals to look more masculine...</span>")

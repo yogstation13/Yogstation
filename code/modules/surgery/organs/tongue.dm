@@ -240,3 +240,26 @@
 		else
 			new_message += message[i]
 	speech_args[SPEECH_MESSAGE] = new_message
+
+/obj/item/organ/tongue/polysmorph
+	name = "polysmorph tongue"
+	desc = "Similar to that of a true xenomorph, but less bitey."
+	icon_state = "tonguexeno"
+	say_mod = "hisses"
+	modifies_speech = TRUE
+	var/static/list/languages_possible_polysmorph = typecacheof(list(
+		/datum/language/common,
+		/datum/language/polysmorph))
+
+/obj/item/organ/tongue/polysmorph/handle_speech(datum/source, list/speech_args)
+	var/static/regex/polysmorph_hiss = new("s+", "g")
+	var/static/regex/polysmorph_hiSS = new("S+", "g")
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message[1] != "*")
+		message = polysmorph_hiss.Replace(message, "ssssss")
+		message = polysmorph_hiSS.Replace(message, "SSSSSS")
+	speech_args[SPEECH_MESSAGE] = message
+
+/obj/item/organ/tongue/polysmorph/Initialize(mapload)
+	. = ..()
+	languages_possible = languages_possible_polysmorph

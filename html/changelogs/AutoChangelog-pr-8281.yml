@@ -1,4 +1,0 @@
-author: " monster860"
-delete-after: true 
-changes: 
-  - bugfix: "The airlock controller UI no longer causes \"you are clicking too many times in a minute\" error"

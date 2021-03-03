@@ -6,7 +6,6 @@
 	icon_state = "seeds"
 	products = list(/obj/item/seeds/ambrosia = 3,
 					/obj/item/seeds/apple = 3,
-					/obj/item/seeds/cotton = 3,
 					/obj/item/seeds/banana = 3,
 					/obj/item/seeds/berry = 3,
 					/obj/item/seeds/cabbage = 3,
@@ -18,6 +17,7 @@
 					/obj/item/seeds/cocoapod = 3,
 					/obj/item/seeds/coffee = 3,
 					/obj/item/seeds/corn = 3,
+					/obj/item/seeds/cotton = 3,
 					/obj/item/seeds/eggplant = 3,
 					/obj/item/seeds/garlic = 3,
 					/obj/item/seeds/grape = 3,
@@ -26,6 +26,7 @@
 					/obj/item/seeds/lime = 3,
 					/obj/item/seeds/onion = 3,
 					/obj/item/seeds/orange = 3,
+					/obj/item/seeds/peas = 3,
 					/obj/item/seeds/pineapple = 3,
 					/obj/item/seeds/potato = 3,
 					/obj/item/seeds/poppy = 3,
@@ -43,13 +44,13 @@
 					/obj/item/seeds/wheat = 3,
 					/obj/item/seeds/whitebeet = 3)
 	contraband = list(/obj/item/seeds/amanita = 2,
-					  /obj/item/seeds/glowshroom = 2,
 					  /obj/item/seeds/liberty = 2,
 					  /obj/item/seeds/nettle = 2,
 					  /obj/item/seeds/plump = 2,
 					  /obj/item/seeds/reishi = 2,
 					  /obj/item/seeds/cannabis = 3,
 					  /obj/item/seeds/starthistle = 2,
+					  /obj/item/seeds/fungus = 3,
 					  /obj/item/seeds/random = 3)
 	premium = list(/obj/item/reagent_containers/spray/waterflower = 1)
 	armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)

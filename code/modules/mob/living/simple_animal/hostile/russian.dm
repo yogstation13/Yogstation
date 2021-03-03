@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/russian
-	name = "Russian"
+	name = "\improper Russian"
 	desc = "For the Motherland!"
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "russianmelee"

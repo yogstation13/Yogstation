@@ -2,6 +2,7 @@
 	var/name
 	var/item_path
 	var/cost
+	var/weapon_cost
 	var/spawn_msg
 	var/category
 	var/list/gang_whitelist = list()
@@ -17,6 +18,15 @@
 		to_chat(user, "<span class='notice'>You bought \the [name].</span>")
 		return TRUE
 
+/datum/gang_item/proc/weapon_purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool, check_canbuy_weapon = TRUE)
+	if(check_canbuy_weapon && !can_buy_weapon(user, gang, gangtool))
+		return FALSE
+	var/actual_cost = get_weapon_cost(user, gang, gangtool)
+	if(!spawn_item(user, gang, gangtool))
+		gang.adjust_uniform_influence(-actual_cost)
+		to_chat(user, "<span class='notice'>You bought \the [name].</span>")
+		return TRUE
+
 /datum/gang_item/proc/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool) // If this returns anything other than null, something fucked up and influence won't lower.
 	if(item_path)
 		var/obj/item/O = new item_path(user.loc)
@@ -29,14 +39,23 @@
 /datum/gang_item/proc/can_buy(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
 	return gang && (gang.influence >= get_cost(user, gang, gangtool)) && can_see(user, gang, gangtool)
 
+/datum/gang_item/proc/can_buy_weapon(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
+	return gang && (gang.uniform_influence >= get_weapon_cost(user, gang, gangtool)) && can_see(user, gang, gangtool)
+
 /datum/gang_item/proc/can_see(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
 	return TRUE
 
 /datum/gang_item/proc/get_cost(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
 	return cost
 
+/datum/gang_item/proc/get_weapon_cost(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
+	return weapon_cost
+
 /datum/gang_item/proc/get_cost_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
 	return "([get_cost(user, gang, gangtool)] Influence)"
+
+/datum/gang_item/proc/get_weapon_cost_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
+	return "([get_weapon_cost(user, gang, gangtool)] Supply)"
 
 /datum/gang_item/proc/get_name_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
 	return name
@@ -159,61 +178,61 @@
 /datum/gang_item/weapon/shuriken
 	name = "Shuriken"
 	id = "shuriken"
-	cost = 3
+	weapon_cost = 3
 	item_path = /obj/item/throwing_star
 
 /datum/gang_item/weapon/switchblade
 	name = "Switchblade"
 	id = "switchblade"
-	cost = 5
+	weapon_cost = 5
 	item_path = /obj/item/switchblade
 
 /datum/gang_item/weapon/surplus
 	name = "Surplus Rifle"
 	id = "surplus"
-	cost = 8
+	weapon_cost = 8
 	item_path = /obj/item/gun/ballistic/automatic/surplus
 
 /datum/gang_item/weapon/ammo/surplus_ammo
 	name = "Surplus Rifle Ammo"
 	id = "surplus_ammo"
-	cost = 5
+	weapon_cost = 5
 	item_path = /obj/item/ammo_box/magazine/m10mm/rifle
 
 /datum/gang_item/weapon/improvised
 	name = "Sawn-Off Improvised Shotgun"
 	id = "sawn"
-	cost = 6
+	weapon_cost = 6
 	item_path = /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawn
 
 /datum/gang_item/weapon/ammo/improvised_ammo
 	name = "Box of Buckshot"
 	id = "buckshot"
-	cost = 5
+	weapon_cost = 5
 	item_path = /obj/item/storage/box/lethalshot
 
 /datum/gang_item/weapon/pistol
 	name = "10mm Pistol"
 	id = "pistol"
-	cost = 30
+	weapon_cost = 30
 	item_path = /obj/item/gun/ballistic/automatic/pistol
 
 /datum/gang_item/weapon/ammo/pistol_ammo
 	name = "10mm Ammo"
 	id = "pistol_ammo"
-	cost = 10
+	weapon_cost = 10
 	item_path = /obj/item/ammo_box/magazine/m10mm
 
 /datum/gang_item/weapon/uzi
 	name = "Uzi SMG"
 	id = "uzi"
-	cost = 60
+	weapon_cost = 60
 	item_path = /obj/item/gun/ballistic/automatic/mini_uzi
 
 /datum/gang_item/weapon/ammo/uzi_ammo
 	name = "Uzi Ammo"
 	id = "uzi_ammo"
-	cost = 40
+	weapon_cost = 40
 	item_path = /obj/item/ammo_box/magazine/uzim9mm
 
 ///////////////////

@@ -24,28 +24,31 @@
 /obj/item/storage/lockbox/attackby(obj/item/W, mob/user, params)
 	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
 	if(W.GetID())
-		if(broken)
-			to_chat(user, "<span class='danger'>It appears to be broken.</span>")
-			return
-		if(allowed(user))
-			SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, !locked)
-			locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
-			if(locked)
-				icon_state = icon_locked
-				to_chat(user, "<span class='danger'>You lock the [src.name]!</span>")
-				SEND_SIGNAL(src, COMSIG_TRY_STORAGE_HIDE_ALL)
-				return
-			else
-				icon_state = icon_closed
-				to_chat(user, "<span class='danger'>You unlock the [src.name]!</span>")
-				return
-		else
-			to_chat(user, "<span class='danger'>Access Denied.</span>")
-			return
+		togglelock(user)
 	if(!locked)
 		return ..()
 	else
 		to_chat(user, "<span class='danger'>It's locked!</span>")
+
+/obj/item/storage/lockbox/proc/togglelock(mob/living/user, silent)
+	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
+	if(broken)
+		to_chat(user, "<span class='danger'>It appears to be broken.</span>")
+		return
+	if(allowed(user))
+		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, !locked)
+		locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
+		if(locked)
+			icon_state = icon_locked
+			to_chat(user, "<span class='danger'>You lock the [src.name]!</span>")
+			SEND_SIGNAL(src, COMSIG_TRY_STORAGE_HIDE_ALL)
+		else
+			icon_state = icon_closed
+			to_chat(user, "<span class='danger'>You unlock the [src.name]!</span>")
+			return
+	else
+		to_chat(user, "<span class='danger'>Access Denied.</span>")
+		return
 
 /obj/item/storage/lockbox/emag_act(mob/user)
 	if(!broken)
@@ -66,6 +69,12 @@
 	. = ..()
 	open = TRUE
 	update_icon()
+
+/obj/item/storage/lockbox/AltClick(mob/user)
+	..()
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
+	togglelock(user)
 
 /obj/item/storage/lockbox/loyalty
 	name = "lockbox of mindshield implants"

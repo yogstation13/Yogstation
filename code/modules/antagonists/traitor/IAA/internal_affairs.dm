@@ -30,16 +30,18 @@
 
 /datum/antagonist/traitor/internal_affairs/on_gain()
 	START_PROCESSING(SSprocessing, src)
-	
+
 	if(ishuman(owner.current))
-		//Gives Cyanide dental implant
-		var/obj/item/reagent_containers/pill/cyanide/cyan = new
-		owner.current.transferItemToLoc(cyan, owner, TRUE)
-		var/datum/action/item_action/hands_free/activate_pill/P = new(cyan)
-		P.button.name = "Activate [cyan.name]"
-		P.target = cyan
+		//Gives Cyanide/death pill dental implant
+		var/obj/item/reagent_containers/pill/iaa/death = new
+		owner.current.transferItemToLoc(death, owner, TRUE)
+		var/datum/action/item_action/hands_free/activate_pill/P = new(death)
+		P.button.name = "Activate [death.name]"
+		P.target = death
 		P.Grant(owner.current)//The pill never actually goes in an inventory slot, so the owner doesn't inherit actions from it
-	
+
+	company = /datum/corporation/mi13
+
 	.=..()
 /datum/antagonist/traitor/internal_affairs/on_removal()
 	STOP_PROCESSING(SSprocessing,src)
@@ -97,7 +99,7 @@
 				var/mob/current = objective.target.current
 				if(current&&current.stat!=DEAD)
 					scan_target = current
-				break
+					break
 
 /datum/status_effect/agent_pinpointer/tick()
 	if(!owner)

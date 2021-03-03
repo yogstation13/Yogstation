@@ -7,13 +7,13 @@
 		var/datum/world_topic/WT = I
 		var/keyword = initial(WT.keyword)
 		if(!keyword)
-			warning("[WT] has no keyword! Ignoring...")
+			stack_trace("[WT] has no keyword! Ignoring...")
 			continue
 		var/existing_path = .[keyword]
 		if(existing_path)
-			warning("[existing_path] and [WT] have the same keyword! Ignoring [WT]...")
+			stack_trace("[existing_path] and [WT] have the same keyword! Ignoring [WT]...")
 		else if(keyword == "key")
-			warning("[WT] has keyword 'key'! Ignoring...")
+			stack_trace("[WT] has keyword 'key'! Ignoring...")
 		else
 			.[keyword] = WT
 
@@ -88,7 +88,7 @@
 /datum/world_topic/comms_console/Run(list/input)
 	minor_announce(input["message"], "Incoming message from [input["message_sender"]]")
 	for(var/obj/machinery/computer/communications/CM in GLOB.machines)
-		CM.overrideCooldown()
+		CM.override_cooldown()
 
 /datum/world_topic/news_report
 	keyword = "News_Report"
@@ -96,6 +96,32 @@
 
 /datum/world_topic/news_report/Run(list/input)
 	minor_announce(input["message"], "Breaking Update From [input["message_sender"]]")
+	
+/datum/world_topic/ooc_relay
+	keyword = "ooc_relay"
+	require_comms_key = TRUE
+
+/datum/world_topic/ooc_relay/Run(list/input)
+	var/messages = json_decode(input["message"])
+	var/oocmsg = messages["normal"]
+	var/oocmsg_toadmins = messages["admin"]
+	
+	var/source = json_decode(input["message_sender"])
+	var/sourceadmin = source["is_admin"]
+	var/sourcekey = source["key"]
+
+	//SENDING THE MESSAGES OUT
+	for(var/c in GLOB.clients)
+		var/client/C = c // God bless typeless for-loops
+		if( (C.prefs.chat_toggles & CHAT_OOC) && (sourceadmin || !(sourcekey in C.prefs.ignoring)) )
+			var/sentmsg // The message we're sending to this specific person
+			if(C.holder) // If they're an admin-ish
+				sentmsg = oocmsg_toadmins // Get the admin one
+			else
+				sentmsg = oocmsg
+			sentmsg = "<span class='prefix'>RELAY: [input["source"]]</span> " + sentmsg
+			//no pinging across servers, thats intentional
+			to_chat(C,sentmsg)
 
 /datum/world_topic/server_hop
 	keyword = "server_hop"

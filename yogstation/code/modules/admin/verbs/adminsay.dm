@@ -1,5 +1,5 @@
 /client/proc/cmd_admin_say(msg as text)
-	set category = "Special Verbs"
+	set category = "Misc.Unused"
 	set name = "Asay" //Gave this shit a shorter name so you only have to time out "asay" rather than "admin say" to use it --NeoFite
 	set hidden = 1
 	if(!check_rights(0))
@@ -10,12 +10,12 @@
 		return
 
 	webhook_send_asay(key_name(src), msg)
-	
+
 	msg = sanitize(msg)
 	msg = to_utf8(msg)
 
 	mob.log_talk(msg, LOG_ADMIN_PRIVATE)
-	
+
 	msg = emoji_parse(msg)
 	msg = keywords_lookup(msg)
 	if(check_rights(R_ADMIN,0))

@@ -107,6 +107,20 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 10)
 	tastes = list("cheddar" = 1)
 
+/obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	if(W.tool_behaviour == TOOL_WELDER)
+		if(W.use_tool(src, user, 0, volume=40))
+			var/obj/item/stack/sheet/cheese/new_item = new(usr.loc, 5)
+			user.visible_message("[user.name] shaped [src] into a sturdier looking cheese with [W].", \
+						 "<span class='notice'>You shape [src] into a sturdier looking cheese with [W].</span>", \
+						 "<span class='italics'>You hear welding.</span>")
+			var/obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar/R = src
+			qdel(src)
+			var/replace = (user.get_inactive_held_item()==R)
+			if (!R && replace)
+				user.put_in_hands(new_item)
+
 /obj/item/reagent_containers/food/snacks/cheesemix/cheddar
 	name = "cheddar mix"
 	cooked_type = /obj/item/reagent_containers/food/snacks/cheesemix_heated/cheddar
@@ -236,7 +250,7 @@
 	tastes = list("salt" = 1, "magnificence" = 1, "italy" = 1)
 
 /obj/item/reagent_containers/food/snacks/cheesewheel/preparmesan
-	name = "unmature parmesan cheese wheel"
+	name = "unmatured parmesan cheese wheel"
 	desc = "A big wheel of unmature parmesan cheese."
 	icon_state = "preparmesan_wheel"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -290,3 +304,20 @@
 	filling_color = "#FFD700"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("holes" = 1)
+
+//bug cheese
+/obj/item/reagent_containers/food/snacks/store/cheesewheel/bug
+	name = "bug cheese ball"
+	desc = "A big ball of nasty looking bug cheese."
+	icon_state = "bug_ball"
+	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge/bug
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
+	tastes = list("bug" = 1,"cheese" = 1)
+
+/obj/item/reagent_containers/food/snacks/cheesewedge/bug
+	name = "bug cheese piece"
+	desc = "A piece of bug cheese."
+	icon_state = "bug_piece"
+	filling_color = "#ddedd5"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("bug" = 1,"cheese" = 1)

@@ -273,6 +273,11 @@
 	icon_state = "bottle3"
 	spawned_disease = /datum/disease/brainrot
 
+/obj/item/reagent_containers/glass/bottle/sleepy
+	name = "Sleepy virus culture bottle"
+	desc = "A small bottle. Contains a sample of the SLPY Virus."
+	spawned_disease = /datum/disease/sleepy
+
 /obj/item/reagent_containers/glass/bottle/magnitis
 	name = "Magnitis culture bottle"
 	desc = "A small bottle. Contains a small dosage of Fukkos Miracos."
@@ -298,6 +303,11 @@
 	desc = "A small bottle. Contains a sample of Inquisitius."
 	spawned_disease = /datum/disease/fluspanish
 
+/obj/item/reagent_containers/glass/bottle/jitters
+	name = "Jitters culture bottle"
+	desc = "A small bottle. Contains a sample of the Jitters."
+	spawned_disease = /datum/disease/jitters
+
 /obj/item/reagent_containers/glass/bottle/tuberculosis
 	name = "Fungal Tuberculosis culture bottle"
 	desc = "A small bottle. Contains a sample of Fungal Tubercle bacillus."
@@ -307,6 +317,12 @@
 	name = "BVAK bottle"
 	desc = "A small bottle containing Bio Virus Antidote Kit."
 	list_reagents = list(/datum/reagent/medicine/atropine = 5, /datum/reagent/medicine/epinephrine = 5, /datum/reagent/medicine/perfluorodecalin = 10, /datum/reagent/medicine/spaceacillin = 10)
+
+/obj/item/reagent_containers/glass/bottle/necropolis_seed
+	name = "bowl of blood"
+	desc = "A clay bowl containing a fledgling Necropolis, preserved in blood. A robust virologist may be able to unlock its full potential..."
+	icon_state = "mortar"
+	spawned_disease = /datum/disease/advance/necropolis
 
 //Oldstation.dmm chemical storage bottles
 
@@ -409,3 +425,10 @@
 /obj/item/reagent_containers/glass/bottle/bromine
 	name = "bromine bottle"
 	list_reagents = list(/datum/reagent/bromine = 30)
+
+/obj/item/reagent_containers/glass/woodmug
+	name = "wooden mug"
+	desc = "Style is everything, whether it be an ashtray or a keychain or a kitchen timer, we’re living in an age of design, where the physical contours of an object are paramount. Look at this wooden mug, for instance, and see how much it deviates, in its conception, from the ordinary mug. Not much. It is round, tallish, has a handle just like any coffee mug. But it’s not an ordinary coffee mug. First of all its form is totally different; it’s made of wood, not ceramic or plastic. It’s an object that cannot be used casually and put it away, you would love to possess it."
+	icon_state = "woodenmug"
+	icon = 'icons/obj/drinks.dmi'
+	volume = 30

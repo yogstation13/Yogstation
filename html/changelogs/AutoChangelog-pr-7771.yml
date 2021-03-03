@@ -1,4 +1,0 @@
-author: "alexkar598"
-delete-after: true 
-changes: 
-  - tweak: "Borgs can no longer heal themself when they are over 0 health(health goes from -100 to 100)"

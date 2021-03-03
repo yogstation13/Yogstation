@@ -75,6 +75,19 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/obj/effect/proc_holder/spell/self/vampire_help
+	name = "How to suck blood 101"
+	desc = "Explains how the vampire blood sucking system works."
+	action_icon_state = "bloodymaryglass"
+	action_icon = 'icons/obj/drinks.dmi'
+	action_background_icon_state = "bg_demon"
+	charge_max = 0
+	vamp_req = TRUE //YES YOU NEED TO BE A VAMPIRE TO KNOW HOW TO BE A VAMPIRE SHOCKING
+
+/obj/effect/proc_holder/spell/self/vampire_help/cast(list/targets, mob/user = usr)
+	to_chat(user, "<span class='notice'>You can consume blood from living, humanoid life by <b>punching their head while on the harm intent</b>. This <i>WILL</i> alert everyone who can see it as well as make a noise, which is generally hearable about <b>three meters away</b>. Note that you <b>cannot</b> draw blood from <b>catatonics or corpses</b>.\n\
+			Your bloodsucking speed depends on grab strength, you can <i>stealthily</i> extract blood by initiating without a grab, and can suck more blood per cycle by <b>having a neck grab or stronger</b>. Both of these modify the amount of blood taken by 50%; less for stealth, more for strong grabs.</span>")
+
 /obj/effect/proc_holder/spell/self/rejuvenate
 	name = "Rejuvenate"
 	desc= "Flush your system with spare blood to repair minor stamina damage to your body."
@@ -102,28 +115,130 @@
 		sleep(7.5)
 
 
-/obj/effect/proc_holder/spell/targeted/hypnotise
-	name = "Hypnotize"
-	desc= "A piercing stare that incapacitates your victim for a good length of time."
-	action_icon_state = "hypnotize"
-	blood_used = 0
-	charge_max = 1500
+/obj/effect/proc_holder/spell/pointed/gaze
+	name = "Vampiric Gaze"
+	desc = "Paralyze your target with fear."
+	charge_max = 300
+	action_icon_state = "gaze"
+	active_msg = "You prepare your vampiric gaze.</span>"
+	deactive_msg = "You stop preparing your vampiric gaze.</span>"
+	vamp_req = TRUE
+	ranged_mousepointer = 'icons/effects/mouse_pointers/gaze_target.dmi'
 	action_icon = 'yogstation/icons/mob/vampire.dmi'
 	action_background_icon_state = "bg_demon"
+
+/obj/effect/proc_holder/spell/pointed/gaze/can_target(atom/target, mob/user, silent)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!target)
+		return FALSE
+	if(!ishuman(target))
+		to_chat(user, "<span class='warning'>Gaze will not work on this being.</span>")
+		return FALSE
+	var/mob/living/carbon/human/T = target
+
+	if(T.stat == DEAD)
+		to_chat(user,"<span class='warning'>You cannot gaze at corpses... \
+			or maybe you could if you really wanted to.</span>")
+		return FALSE
+
+/obj/effect/proc_holder/spell/pointed/gaze/cast(list/targets, mob/user)
+	var/mob/living/target = targets[1]
+	var/mob/living/carbon/human/T = target
+	user.visible_message("<span class='warning'>[user]'s eyes flash red.</span>",\
+					"<span class='warning'>[user]'s eyes flash red.</span>")
+	if(ishuman(target))
+		var/obj/item/clothing/glasses/G = T.glasses
+		if(G)
+			if(G.flash_protect > 0)
+				to_chat(user,"<span class='warning'>[T] has protective sunglasses on!</span>")
+				to_chat(target, "<span class='warning'>[user]'s paralyzing gaze is blocked by your [G]!</span>")
+				return
+		var/obj/item/clothing/mask/M = T.wear_mask
+		if(M)
+			if(M.flash_protect > 0)
+				to_chat(user,"<span class='warning'>[T]'s mask is covering their eyes!</span>")
+				to_chat(target,"<span class='warning'>[user]'s paralyzing gaze is blocked by your [M]!</span>")
+				return
+		var/obj/item/clothing/head/H = T.head
+		if(H)
+			if(H.flash_protect > 0)
+				to_chat(user, "<span class='vampirewarning'>[T]'s helmet is covering their eyes!</span>")
+				to_chat(target, "<span class='warning'>[user]'s paralyzing gaze is blocked by [H]!</span>")
+				return
+		to_chat(target,"<span class='warning'>You are paralyzed with fear!</span>")
+		to_chat(user,"<span class='notice'>You paralyze [T].</span>")
+		T.Stun(50)
+
+
+/obj/effect/proc_holder/spell/pointed/hypno
+	name = "Hypnotize"
+	desc = "Knock out your target."
+	charge_max = 300
+	blood_used = 20
+	action_icon_state = "hypnotize"
+	active_msg = "<span class='warning'>You prepare your hypnosis technique.</span>"
+	deactive_msg = "<span class='warning'>You stop preparing your hypnosis.</span>"
 	vamp_req = TRUE
+	ranged_mousepointer = 'icons/effects/mouse_pointers/hypnotize_target.dmi'
+	action_icon = 'yogstation/icons/mob/vampire.dmi'
+	action_background_icon_state = "bg_demon"
 
-/obj/effect/proc_holder/spell/targeted/hypnotise/cast(list/targets, mob/user = usr)
-	for(var/mob/living/carbon/target in targets)
-		user.visible_message("<span class='warning'>[user]'s eyes flash briefly as he stares into [target]'s eyes</span>")
-		if(do_mob(user, target, 30))
-			to_chat(user, "<span class='warning'>Your piercing gaze knocks out [target].</span>")
-			to_chat(target, "<span class='warning'>You find yourself unable to move or speak.</span>")
-			target.Paralyze(150)
-			target.silent = 10 //finally makes this stupid spell USEFUL
+/obj/effect/proc_holder/spell/pointed/hypno/Click()
+	if(!active)
+		usr.visible_message("<span class='warning'>[usr] twirls their finger in a circlular motion.</span>",\
+				"<span class='warning'>You twirl your finger in a circular motion.</span>")
+	..()
+
+/obj/effect/proc_holder/spell/pointed/hypno/can_target(atom/target, mob/user, silent)
+	if(!..())
+		return FALSE
+	if(!target)
+		return FALSE
+	if(!ishuman(target))
+		to_chat(user, "<span class='warning'>Hypnotize will not work on this being.</span>")
+		return FALSE
+
+	var/mob/living/carbon/human/T = target
+	if(T.IsSleeping())
+		to_chat(user, "<span class='warning'>[T] is already asleep!.</span>")
+		return FALSE
+	return TRUE
+
+/obj/effect/proc_holder/spell/pointed/hypno/cast(list/targets, mob/user)
+	var/mob/living/target = targets[1]
+	var/mob/living/carbon/human/T = target
+	user.visible_message("<span class='warning'>[user]'s eyes flash red.</span>",\
+					"<span class='warning'>[user]'s eyes flash red.</span>")
+	if(T)
+		var/obj/item/clothing/glasses/G = T.glasses
+		if(G)
+			if(G.flash_protect > 0)
+				to_chat(user, "<span class='warning'>[T] has protective sunglasses on!</span>")
+				to_chat(target, "<span class='warning'>[user]'s paralyzing gaze is blocked by [G]!</span>")
+				return
+		var/obj/item/clothing/mask/M = T.wear_mask
+		if(M)
+			if(M.flash_protect > 0)
+				to_chat(user, "<span class='vampirewarning'>[T]'s mask is covering their eyes!</span>")
+				to_chat(target, "<span class='warning'>[user]'s paralyzing gaze is blocked by [M]!</span>")
+				return
+		var/obj/item/clothing/head/H = T.head
+		if(H)
+			if(H.flash_protect > 0)
+				to_chat(user, "<span class='vampirewarning'>[T]'s helmet is covering their eyes!</span>")
+				to_chat(target, "<span class='warning'>[user]'s paralyzing gaze is blocked by [H]!</span>")
+				return
+	to_chat(target, "<span class='boldwarning'>Your knees suddenly feel heavy. Your body begins to sink to the floor.</span>")
+	to_chat(user, "<span class='notice'>[target] is now under your spell. In four seconds they will be rendered unconscious as long as they are within close range.</span>")
+	if(do_mob(user, target, 40, TRUE)) // 4 seconds...
+		if(get_dist(user, T) <= 3)
+			flash_color(T, flash_color="#472040", flash_time=30) // it's the vampires color!
+			T.SetSleeping(300)
+			to_chat(user, "<span class='warning'>[T] has fallen asleep!</span>")
 		else
-			revert_cast(usr)
-			to_chat(usr, "<span class='warning'>You broke your gaze.</span>")
-
+			to_chat(T, "<span class='notice'>You feel a whole lot better now.</span>")
 
 /obj/effect/proc_holder/spell/self/shapeshift
 	name = "Shapeshift (50)"
@@ -249,14 +364,14 @@
 /obj/effect/proc_holder/spell/self/screech/cast(list/targets, mob/user = usr)
 	user.visible_message("<span class='warning'>[user] lets out an ear piercing shriek!</span>", "<span class='warning'>You let out a loud shriek.</span>", "<span class='warning'>You hear a loud painful shriek!</span>")
 	for(var/mob/living/carbon/C in hearers(4))
-		if(C == user || (ishuman(C) && C.get_ear_protection()) || is_vampire(C))
-			continue
-		to_chat(C, "<span class='warning'><font size='3'><b>You hear a ear piercing shriek and your senses dull!</font></b></span>")
-		C.Knockdown(40)
-		C.adjustEarDamage(0, 30)
-		C.stuttering = 250
-		C.Paralyze(40)
-		C.Jitter(150)
+		if(!C == user  || !is_vampire(C))
+			if(ishuman(C) && C.soundbang_act(1, 0))
+				to_chat(C, "<span class='warning'><font size='3'><b>You hear a ear piercing shriek and your senses dull!</font></b></span>")
+				C.Knockdown(40)
+				C.adjustEarDamage(0, 30)
+				C.stuttering = 250
+				C.Paralyze(40)
+				C.Jitter(150)
 	for(var/obj/structure/window/W in view(4))
 		W.take_damage(75)
 	playsound(user.loc, 'sound/effects/screech.ogg', 100, 1)
@@ -322,9 +437,11 @@
 	for(var/mob/living/carbon/target in targets)
 		if(is_vampire(target))
 			to_chat(user, "<span class='warning'>They're already a vampire!</span>")
+			vamp.usable_blood += blood_used	// Refund cost
 			continue
 		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 			to_chat(user, "<span class='warning'>[target]'s mind is too strong!</span>")
+			vamp.usable_blood += blood_used	// Refund cost
 			continue
 		user.visible_message("<span class='warning'>[user] latches onto [target]'s neck, pure dread eminating from them.</span>", "<span class='warning'>You latch onto [target]'s neck, preparing to transfer your unholy blood to them.</span>", "<span class='warning'>A dreadful feeling overcomes you</span>")
 		target.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 10) //incase you're choking the victim
@@ -341,6 +458,7 @@
 			if(!do_mob(user, target, 70))
 				to_chat(user, "<span class='danger'>The pact has failed! [target] has not became a vampire.</span>")
 				to_chat(target, "<span class='notice'>The visions stop, and you relax.</span>")
+				vamp.usable_blood += blood_used / 2	// Refund half the cost
 				return
 		if(!QDELETED(user) && !QDELETED(target))
 			to_chat(user, "<span class='notice'>. . .</span>")

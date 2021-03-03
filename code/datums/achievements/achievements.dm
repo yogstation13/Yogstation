@@ -6,11 +6,22 @@
 #define ENGIEDEPT 768 // Offset for engineering-related achievements.
 #define CARGODEPT 1028 // Offset for Cargo-related achievements
 
+/**
+  * Achievement datums
+  *
+  * Each achievement datum represents an achievement the user can get. To add a new achievement, simply add a new typepath
+  * with a unique ID, the name and description *can* match others' but they probably shouldn't.
+  * Then use [/datum/controller/subsystem/achievements/proc/has_achievement] and [/datum/controller/subsystem/achievements/proc/unlock_achievement].
+  */
 /datum/achievement
+	/// Name of the achievement. Make it a reference or a joke or something
 	var/name = "achievement"
+	/// Description of the achievement. Should probably be how to get it.
 	var/desc = "Please make an issue on github, including this achievement's name and how you got it."
-	var/id = 0 //Should be incremented so every achievement has a unique ID
-	var/hidden = FALSE // Whether or not this achievement's description is hidden untill you accomplish this (doesn't apply to the online viewer)
+	/// ID of the achievement. Should be unique, since this is what we use to keep track of them
+	var/id = 0
+	/// Whether or not we hide the achievement's description in the in-game viewer
+	var/hidden = FALSE
 
 /datum/achievement/bubblegum
 	name = "Kick Ass and Chew Bubblegum"
@@ -48,7 +59,7 @@
 	desc = "Kill yourself using the nuclear authentication disk"
 	id = 7
 	hidden = TRUE
-  
+
 /datum/achievement/badass
 	name = "Badass Syndie"
 	desc = "As a traitor, complete your objectives without buying any items"
@@ -113,7 +124,7 @@
 	desc = "As a signal technician, create a script that makes poly LOUD"
 	id = 19
 	hidden = TRUE
-  
+
 /datum/achievement/cargoking
 	name = "King of Credits"
 	desc = "As the QM, beat the current record of cargo credits: " //theoretically, if someone manages to get to an amount that's larger than 1992 digits, this'd break DB things
@@ -122,9 +133,9 @@
 
 /datum/achievement/cargoking/New()
 	.=..()
-	var/datum/DBQuery/Q = SSdbcore.NewQuery("SELECT value FROM [format_table_name("misc")] WHERE `key` = 'cargorecord'")
+	var/datum/DBQuery/Q = SSdbcore.NewQuery("SELECT `value` FROM [format_table_name("misc")] WHERE `key` = 'cargorecord'")
 	Q.Execute()
-	if(Q.item.len)
+	if(Q.NextRow())
 		amount = Q.item[1]
 	qdel(Q)
 	desc += "[amount]"
@@ -134,7 +145,7 @@
 	desc = "Use a surgical drill to spin right round like a record baby"
 	id = 21
 	hidden = TRUE
-  
+
 /datum/achievement/ducatduke
 	name = "Duke of Ducats"
 	desc = "As the QM, have a million cargo credits by the end of the round" //Cargoking-junior
@@ -144,12 +155,6 @@
 	name = "On my authority"
 	desc = "Trigger a keycard authentication device event, by yourself."
 	id = 23
-
-/datum/achievement/dab
-	name = "Brain Damage"
-	desc = "Dab."
-	id = 24
-	hidden = TRUE
 
 // The achievements that are basically just "greentext as this sort of antag"
 

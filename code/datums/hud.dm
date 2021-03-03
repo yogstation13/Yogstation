@@ -34,7 +34,10 @@ GLOBAL_LIST_INIT(huds, list(
 	ANTAG_HUD_VAMPIRE = new/datum/atom_hud/antag/hidden(), // Yogs
 	ANTAG_HUD_DARKSPAWN = new/datum/atom_hud/antag(), //Yogs
 	ANTAG_HUD_CAPITALIST = new/datum/atom_hud/antag(),
-	ANTAG_HUD_COMMUNIST = new/datum/atom_hud/antag()
+	ANTAG_HUD_COMMUNIST = new/datum/atom_hud/antag(),
+	ANTAG_HUD_HERETIC = new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_MINDSLAVE = new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_ZOMBIE = new/datum/atom_hud/antag(),
 	))
 
 /datum/atom_hud

@@ -1,7 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "some pipes are where they should be on moonmap"
-  - bugfix: "ladder can lead to the bottom level of the ice moon"
-  - bugfix: "lavaland ruin shouldn't have its own atmos"
-  - rscadd: "adds joe the mining goliath!"

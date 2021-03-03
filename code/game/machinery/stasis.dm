@@ -25,7 +25,7 @@
 	for(var/direction in GLOB.cardinals)
 		computer = locate(/obj/machinery/computer/operating, get_step(src, direction))
 		if(computer)
-			computer.bed = src
+			computer.sbed = src
 			break
 
 /obj/machinery/stasis/examine(mob/user)
@@ -90,13 +90,12 @@
 
 /obj/machinery/stasis/obj_break(damage_flag)
 	. = ..()
-	play_power_sound()
-	update_icon()
+	if(.)
+		play_power_sound()
 
 /obj/machinery/stasis/power_change()
 	. = ..()
 	play_power_sound()
-	update_icon()
 
 /obj/machinery/stasis/proc/chill_out(mob/living/target)
 	if(target != occupant)
@@ -155,6 +154,10 @@
 /obj/machinery/stasis/screwdriver_act(mob/living/user, obj/item/I)
 	. = default_deconstruction_screwdriver(user, "stasis_maintenance", "stasis", I)
 	update_icon()
+
+/obj/machinery/stasis/wrench_act(mob/living/user, obj/item/I)
+	if(default_change_direction_wrench(user, I))
+		return TRUE
 
 /obj/machinery/stasis/crowbar_act(mob/living/user, obj/item/I)
 	return default_deconstruction_crowbar(I)

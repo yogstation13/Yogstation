@@ -1,5 +1,5 @@
 /obj/mecha/makeshift
-	desc = "A locker with stolen wires, struts, electronics and airlock servos crudley assemebled into something that resembles the fuctions of a mech."
+	desc = "A locker with stolen wires, struts, electronics and airlock servos crudely assembled into something that resembles the functions of a mech."
 	name = "Locker Mech"
 	icon = 'yogstation/icons/mecha/lockermech.dmi'
 	icon_state = "lockermech"

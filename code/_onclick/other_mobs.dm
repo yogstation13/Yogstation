@@ -6,6 +6,10 @@
 */
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
 
+	if(HAS_TRAIT(A, TRAIT_NOINTERACT))
+		to_chat(A, "<span class='notice'>You can't touch things!</span>")
+		return
+
 	if(!has_active_hand()) //can't attack without a hand.
 		to_chat(src, "<span class='notice'>You look at your arm and sigh.</span>")
 		return
@@ -53,6 +57,9 @@
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
 	if(!(interaction_flags_atom & INTERACT_ATOM_IGNORE_INCAPACITATED) && user.incapacitated((interaction_flags_atom & INTERACT_ATOM_IGNORE_RESTRAINED), !(interaction_flags_atom & INTERACT_ATOM_CHECK_GRAB)))
+		return FALSE
+	if(HAS_TRAIT(user, TRAIT_NOINTERACT))
+		to_chat(user, "<span class='notice'>You can't touch things!</span>")
 		return FALSE
 	return TRUE
 

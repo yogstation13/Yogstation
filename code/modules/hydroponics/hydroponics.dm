@@ -282,7 +282,7 @@
 		else
 			plant_overlay.icon_state = myseed.icon_harvest
 	else
-		var/t_growthstate = min(round((age / myseed.maturation) * myseed.growthstages), myseed.growthstages)
+		var/t_growthstate = clamp(round((age / myseed.maturation) * myseed.growthstages), 1, myseed.growthstages)
 		plant_overlay.icon_state = "[myseed.icon_grow][t_growthstate]"
 	add_overlay(plant_overlay)
 
@@ -362,7 +362,7 @@
 	pestlevel = 0 // Reset
 	update_icon()
 	visible_message("<span class='warning'>The [oldPlantName] is overtaken by some [myseed.plantname]!</span>")
-
+	update_name()
 
 /obj/machinery/hydroponics/proc/mutate(lifemut = 2, endmut = 5, productmut = 1, yieldmut = 2, potmut = 25, wrmut = 2, wcmut = 5, traitmut = 0) // Mutates the current seed
 	if(!myseed)
@@ -396,7 +396,7 @@
 	sleep(5) // Wait a while
 	update_icon()
 	visible_message("<span class='warning'>[oldPlantName] suddenly mutates into [myseed.plantname]!</span>")
-
+	update_name()
 
 /obj/machinery/hydroponics/proc/mutateweed() // If the weeds gets the mutagent instead. Mind you, this pretty much destroys the old plant
 	if( weedlevel > 5 )
@@ -416,9 +416,9 @@
 		sleep(5) // Wait a while
 		update_icon()
 		visible_message("<span class='warning'>The mutated weeds in [src] spawn some [myseed.plantname]!</span>")
+		update_name()
 	else
 		to_chat(usr, "<span class='warning'>The few weeds in [src] seem to react, but only for a moment...</span>")
-
 
 /obj/machinery/hydroponics/proc/plantdies() // OH NOES!!!!! I put this all in one function to make things easier
 	plant_health = 0
@@ -657,6 +657,17 @@
 	// FEED ME SEYMOUR
 	if(S.has_reagent(/datum/reagent/medicine/strange_reagent, 1))
 		spawnplant()
+	
+	// Honey, Pests are dieing of sugar, so is the plant
+	if(S.has_reagent(/datum/reagent/consumable/honey, 1))
+		adjustPests(-rand(2,5))
+		adjustHealth(-round(S.get_reagent_amount(/datum/reagent/consumable/honey) * 1))
+
+	// Buzz Fuzz, a drink seemingly made for plants...
+	if(S.has_reagent(/datum/reagent/consumable/buzz_fuzz, 1))
+		adjustPests(-rand(2,5))
+		adjustHealth(round(S.get_reagent_amount(/datum/reagent/consumable/buzz_fuzz) * 0.1))
+		adjustNutri(round(S.get_reagent_amount(/datum/reagent/consumable/buzz_fuzz) * 0.5))
 
 	// The best stuff there is. For testing/debugging.
 	if(S.has_reagent(/datum/reagent/medicine/adminordrazine, 1))
@@ -675,6 +686,22 @@
 				mutatepest(user)
 			else
 				to_chat(user, "<span class='warning'>Nothing happens...</span>")
+
+/obj/machinery/hydroponics/attack_ghost(mob/user)
+	if(myseed)
+		to_chat(user, "*** <B>[myseed.plantname]</B> ***" )
+		to_chat(user, "- Plant Age: <span class='notice'>[age]</span>")
+		var/list/text_string = myseed.get_analyzer_text()
+		if(text_string)
+			to_chat(user, text_string)
+	else
+		to_chat(user, "<B>No plant found.</B>")
+	to_chat(user, "- Weed level: <span class='notice'>[weedlevel] / 10</span>")
+	to_chat(user, "- Pest level: <span class='notice'>[pestlevel] / 10</span>")
+	to_chat(user, "- Toxicity level: <span class='notice'>[toxic] / 100</span>")
+	to_chat(user, "- Water level: <span class='notice'>[waterlevel] / [maxwater]</span>")
+	to_chat(user, "- Nutrition level: <span class='notice'>[nutrilevel] / [maxnutri]</span>")
+	to_chat(user, "")
 
 /obj/machinery/hydroponics/attackby(obj/item/O, mob/user, params)
 	//Called when mob user "attacks" it with object O
@@ -760,6 +787,7 @@
 			to_chat(user, "<span class='notice'>You plant [O].</span>")
 			dead = 0
 			myseed = O
+			update_name()
 			age = 1
 			plant_health = myseed.endurance
 			lastcycle = world.time
@@ -826,6 +854,7 @@
 					harvest = FALSE //To make sure they can't just put in another seed and insta-harvest it
 				qdel(myseed)
 				myseed = null
+				update_name()
 			weedlevel = 0 //Has a side effect of cleaning up those nasty weeds
 			update_icon()
 
@@ -857,6 +886,7 @@
 		to_chat(user, "<span class='notice'>You remove the dead plant from [src].</span>")
 		qdel(myseed)
 		myseed = null
+		update_name()
 		update_icon()
 	else
 		if(user)
@@ -874,6 +904,7 @@
 	if(!myseed.get_gene(/datum/plant_gene/trait/repeated_harvest))
 		qdel(myseed)
 		myseed = null
+		update_name()
 		dead = 0
 	update_icon()
 
@@ -910,6 +941,12 @@
 	visible_message("<span class='boldnotice'>[src] begins to glow with a beautiful light!</span>")
 	self_sustaining = TRUE
 	update_icon()
+
+/obj/machinery/hydroponics/proc/update_name()
+	if(myseed)
+		name = "[initial(name)] ([myseed.plantname])"
+	else
+		name = initial(name)
 
 ///////////////////////////////////////////////////////////////////////////////
 /obj/machinery/hydroponics/soil //Not actually hydroponics at all! Honk!

@@ -1,9 +1,0 @@
-author: "Darkstick"
-delete-after: true 
-changes: 
-  - rscadd: "new vampire objective"
-  - rscadd: "vampire subtype with less objectives and own round end card spot"
-  - rscadd: "Sleep stun after conversion to avoid immediate vengeance kills"
-  - tweak: "changed the conversion text to discourage vengeance"
-  - tweak: "replaced two bits of stinky writing with my own less stinky writing"
-  - tweak: "lowered the price of Lilith's pact to 300, and it's unlocking point at 320 instead of 400 and 450"

@@ -21,6 +21,10 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/antagpanel_category = "Uncategorized"	//Antagpanel will display these together, REQUIRED
 	var/show_name_in_check_antagonists = FALSE //Will append antagonist name in admin listings - use for categories that share more than one antag type
 	var/datum/achievement/greentext/greentext_achieve // The achievement received for greentexting as this antag type. Not all antag types use this to distribute their achievements.
+	var/show_to_ghosts = FALSE // Should this antagonist be shown as antag to ghosts? Shouldn't be used for stealthy antagonists like traitors
+	/// The corporation employing us
+	var/datum/corporation/company
+
 
 /datum/antagonist/New()
 	GLOB.antagonists += src
@@ -49,6 +53,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	return src
 
 /datum/antagonist/proc/on_body_transfer(mob/living/old_body, mob/living/new_body)
+	SHOULD_CALL_PARENT(TRUE)
 	remove_innate_effects(old_body)
 	apply_innate_effects(new_body)
 
@@ -66,6 +71,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 //Proc called when the datum is given to a mind.
 /datum/antagonist/proc/on_gain()
+	SHOULD_CALL_PARENT(TRUE)
 	if(owner && owner.current)
 		if(!silent)
 			greet()
@@ -93,6 +99,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 		owner.current.key = C.key
 
 /datum/antagonist/proc/on_removal()
+	SHOULD_CALL_PARENT(TRUE)
 	remove_innate_effects()
 	clear_antag_moodies()
 	if(owner)
@@ -146,7 +153,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 		if(istype(greentext_achieve))
 			SSachievements.unlock_achievement(greentext_achieve,owner.current)
 		else // The above still does award the generic greentext achievement, just implicitly.
-			SSachievements.unlock_achievement(/datum/achievement/greentext,owner.current.client) 
+			SSachievements.unlock_achievement(/datum/achievement/greentext,owner.current.client)
 	else
 		report += "<span class='redtext big'>The [name] has failed!</span>"
 
@@ -154,7 +161,11 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 //Displayed at the start of roundend_category section, default to roundend_category header
 /datum/antagonist/proc/roundend_report_header()
-	return 	"<span class='header'>The [roundend_category] were:</span><br>"
+	var/list/report = list()
+	report +="<span class='header'>The [roundend_category] were:</span><br>"
+	report +="<br>"
+
+	return report
 
 //Displayed at the end of roundend_category section
 /datum/antagonist/proc/roundend_report_footer()

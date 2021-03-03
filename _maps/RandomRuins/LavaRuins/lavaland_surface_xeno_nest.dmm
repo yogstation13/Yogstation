@@ -152,9 +152,9 @@
 /obj/structure/bed/nest,
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/item/tank/internals/oxygen,
-/obj/item/clothing/suit/space/syndicate/orange,
+/obj/item/clothing/suit/space/fragile,
 /obj/item/clothing/mask/gas,
-/obj/item/clothing/head/helmet/space/syndicate/orange,
+/obj/item/clothing/head/helmet/space/fragile,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/xenonest)
 "O" = (

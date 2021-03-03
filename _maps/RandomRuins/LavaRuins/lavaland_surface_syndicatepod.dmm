@@ -77,8 +77,8 @@
 /area/ruin/powered)
 "r" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/ruin/powered)

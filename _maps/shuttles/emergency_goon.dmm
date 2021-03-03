@@ -3,19 +3,19 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/obj/structure/shuttle/engine/propulsion{
+/obj/machinery/stasis{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "c" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 8
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 1
+/obj/machinery/vending/wallmed{
+	pixel_x = -32
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "d" = (
 /turf/closed/wall/mineral/titanium,
@@ -100,17 +100,11 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "p" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 8
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion"
 	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"q" = (
-/obj/machinery/stasis,
-/turf/open/floor/mineral/titanium/white,
+/turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "r" = (
 /turf/open/floor/mineral/titanium,
@@ -161,12 +155,11 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "y" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/toolbox/emergency,
-/obj/structure/window/reinforced{
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/turf/open/floor/mineral/titanium/yellow,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "z" = (
 /obj/structure/chair/comfy/shuttle{
@@ -187,15 +180,10 @@
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "B" = (
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/machinery/vending/wallmed{
+	pixel_y = 32
 	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/table/reinforced,
-/obj/item/radio,
-/turf/open/floor/mineral/titanium/yellow,
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "C" = (
 /obj/machinery/door/firedoor/border_only{
@@ -227,12 +215,8 @@
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "G" = (
-/obj/machinery/computer/emergency_shuttle{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/emergency,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "H" = (
@@ -243,11 +227,7 @@
 /area/shuttle/escape)
 "I" = (
 /obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced,
-/obj/item/storage/firstaid/regular,
+/obj/item/radio,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "J" = (
@@ -267,9 +247,9 @@
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "L" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/firstaid/regular,
-/obj/structure/window/reinforced,
+/obj/machinery/computer/emergency_shuttle{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "M" = (
@@ -281,11 +261,21 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
+"N" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/regular,
+/turf/open/floor/mineral/titanium/yellow,
+/area/shuttle/escape)
 "O" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"P" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "Q" = (
@@ -340,27 +330,13 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "W" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"X" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 4
-	},
-/obj/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"Y" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 8
 	},
-/obj/structure/window/reinforced,
-/turf/open/floor/plating,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "Z" = (
 /obj/structure/chair/comfy/shuttle{
@@ -373,46 +349,46 @@
 (1,1,1) = {"
 a
 d
-b
-b
-b
+p
+p
+p
 d
-b
-b
-b
+p
+p
+p
 d
 a
 "}
 (2,1,1) = {"
+p
+d
+W
+W
+W
+d
+W
+W
 W
 d
 p
-p
-p
-d
-p
-p
-p
-d
-X
 "}
 (3,1,1) = {"
-c
+W
 d
-q
+b
 v
-q
+b
 d
 H
 H
 H
 d
-Y
+W
 "}
 (4,1,1) = {"
 d
-l
-n
+d
+B
 n
 R
 d
@@ -428,7 +404,7 @@ d
 d
 w
 f
-l
+d
 f
 K
 d
@@ -441,7 +417,7 @@ d
 Z
 r
 M
-s
+c
 Z
 r
 M
@@ -450,7 +426,7 @@ a
 "}
 (7,1,1) = {"
 a
-m
+y
 Z
 r
 M
@@ -458,7 +434,7 @@ s
 Z
 r
 M
-m
+P
 a
 "}
 (8,1,1) = {"
@@ -476,7 +452,7 @@ d
 "}
 (9,1,1) = {"
 g
-r
+k
 r
 r
 C
@@ -484,12 +460,12 @@ r
 k
 r
 r
-r
+C
 g
 "}
 (10,1,1) = {"
 h
-r
+k
 r
 r
 C
@@ -497,7 +473,7 @@ r
 k
 r
 r
-r
+C
 g
 "}
 (11,1,1) = {"
@@ -515,7 +491,7 @@ d
 "}
 (12,1,1) = {"
 a
-m
+y
 s
 s
 Z
@@ -523,12 +499,12 @@ r
 M
 s
 s
-m
+P
 a
 "}
 (13,1,1) = {"
 a
-m
+y
 s
 s
 Z
@@ -536,7 +512,7 @@ r
 M
 s
 s
-m
+P
 a
 "}
 (14,1,1) = {"
@@ -568,13 +544,13 @@ a
 (16,1,1) = {"
 a
 a
-m
 y
+G
 A
 F
 A
-L
-m
+N
+P
 a
 a
 "}
@@ -595,11 +571,11 @@ a
 a
 a
 a
-m
-B
-G
+y
 I
-m
+L
+N
+P
 a
 a
 a

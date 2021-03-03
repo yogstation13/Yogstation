@@ -86,6 +86,11 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 		call_help_cooldown = world.time + call_help_cooldown_amt
 		summon_backup(25) //long range, only called max once per 15 seconds, so it's not deathlag
 
+/mob/living/simple_animal/hostile/megafauna/swarmer_swarm_beacon/death()
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+	if(D)
+		D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
+	. = ..()
 
 /obj/item/gps/internal/swarmer_beacon
 	icon_state = null
@@ -104,7 +109,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 
 /mob/living/simple_animal/hostile/swarmer/ai/Initialize()
 	. = ..()
-	ToggleLight() //so you can see them eating you out of house and home/shooting you/stunlocking you for eternity
+	toggle_light() //so you can see them eating you out of house and home/shooting you/stunlocking you for eternity
 	LAZYINITLIST(GLOB.AISwarmersByType[type])
 	GLOB.AISwarmers += src
 	GLOB.AISwarmersByType[type] += src
@@ -116,7 +121,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	return ..()
 
 
-/mob/living/simple_animal/hostile/swarmer/ai/SwarmerTypeToCreate()
+/mob/living/simple_animal/hostile/swarmer/ai/swarmer_type_to_create()
 	return GetUncappedAISwarmerType()
 
 
@@ -126,7 +131,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 		if(!stop_automated_movement)
 			if(health < maxHealth*0.25)
 				StartAction(100)
-				RepairSelf()
+				repair_self()
 				return
 
 
@@ -199,6 +204,10 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 
 
 /mob/living/simple_animal/hostile/swarmer/ai/resource/AttackingTarget()
+	if(isliving(target))
+		StartAction(30)
+		prepare_target(target)
+		return TRUE
 	if(target.swarmer_act(src))
 		add_type_to_wanted(target.type)
 		return TRUE
@@ -213,16 +222,16 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 		if(!stop_automated_movement)
 			if(GLOB.AISwarmers.len < GetTotalAISwarmerCap() && resources >= 50)
 				StartAction(100) //so they'll actually sit still and use the verbs
-				CreateSwarmer()
+				create_swarmer()
 				return
 
 			if(resources > 5)
 				if(prob(5)) //lower odds, as to prioritise reproduction
 					StartAction(10) //not a typo
-					CreateBarricade()
+					create_barricade()
 					return
 				if(prob(5))
-					CreateTrap()
+					create_trap()
 					return
 
 
@@ -269,7 +278,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	if(isliving(target))
 		if(prob(35))
 			StartAction(30)
-			DisperseTarget(target)
+			prepare_target(target)
 		else
 			var/mob/living/L = target
 			L.attack_animal(src)

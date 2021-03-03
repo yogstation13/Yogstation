@@ -32,6 +32,8 @@
 
 		if(cloud_id)
 			cloud_sync()
+/datum/component/nanites/proc/delete_nanites()
+	qdel(src)
 
 /datum/component/nanites/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_HAS_NANITES, .proc/confirm_nanites)
@@ -46,6 +48,7 @@
 	RegisterSignal(parent, COMSIG_NANITE_ADD_PROGRAM, .proc/add_program)
 	RegisterSignal(parent, COMSIG_NANITE_SCAN, .proc/nanite_scan)
 	RegisterSignal(parent, COMSIG_NANITE_SYNC, .proc/sync)
+	RegisterSignal(parent, COMSIG_NANITE_DELETE, .proc/delete_nanites)
 
 	if(isliving(parent))
 		RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, .proc/on_emp)
@@ -78,7 +81,8 @@
 								COMSIG_MOVABLE_HEAR,
 								COMSIG_SPECIES_GAIN,
 								COMSIG_NANITE_SIGNAL,
-								COMSIG_NANITE_COMM_SIGNAL))
+								COMSIG_NANITE_COMM_SIGNAL,
+								COMSIG_NANITE_DELETE))
 
 /datum/component/nanites/Destroy()
 	STOP_PROCESSING(SSnanites, src)
@@ -97,6 +101,7 @@
 
 /datum/component/nanites/process()
 	adjust_nanites(null, regen_rate)
+	add_research()
 	for(var/X in programs)
 		var/datum/nanite_program/NP = X
 		NP.on_process()
@@ -247,6 +252,19 @@
 
 /datum/component/nanites/proc/get_programs(datum/source, list/nanite_programs)
 	nanite_programs |= programs
+
+/datum/component/nanites/proc/add_research()
+	var/research_value = NANITE_BASE_RESEARCH
+	if(!ishuman(host_mob))	
+		if(!iscarbon(host_mob))
+			research_value *= 0.4
+		else
+			research_value *= 0.8
+	if(!host_mob.client)
+		research_value *= 0.5
+	if(host_mob.stat == DEAD)
+		research_value *= 0.75
+	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_NANITES = research_value))
 
 /datum/component/nanites/proc/nanite_scan(datum/source, mob/user, full_scan)
 	if(!full_scan)

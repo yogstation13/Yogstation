@@ -213,8 +213,9 @@
 /datum/round_event_control/morph
 	name = "Spawn Morph"
 	typepath = /datum/round_event/ghost_role/morph
-	weight = 0 //Admin only
+	weight = 5
 	max_occurrences = 1
+	earliest_start = 30 MINUTES
 
 /datum/round_event/ghost_role/morph
 	minimum_required = 1

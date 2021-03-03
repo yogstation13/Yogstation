@@ -61,6 +61,7 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	knife_x_offset = 27
 	knife_y_offset = 13
 	can_be_sawn_off = TRUE
+	weapon_weight = WEAPON_MEDIUM
 
 /obj/item/gun/ballistic/rifle/boltaction/sawoff(mob/user)
 	. = ..()
@@ -91,6 +92,7 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	if(.)
 		spread = 36
 		can_bayonet = FALSE
+		weapon_weight = WEAPON_LIGHT
 
 /obj/item/gun/ballistic/rifle/boltaction/blow_up(mob/user)
 	. = 0
@@ -102,6 +104,13 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	name = "enchanted bolt action rifle"
 	desc = "Careful not to lose your head."
 	var/guns_left = 30
+	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted
+	can_be_sawn_off = FALSE
+
+/obj/item/gun/ballistic/rifle/boltaction/enchanted/oneuse
+	name = "enchanted bolt action rifle"
+	desc = "Careful not to lose your head."
+	guns_left = 0
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted
 	can_be_sawn_off = FALSE
 

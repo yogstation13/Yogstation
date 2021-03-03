@@ -13,6 +13,7 @@
 	climb_time = 10 //real fast, because let's be honest stepping into or onto a crate is easy
 	climb_stun = 0 //climbing onto crates isn't hard, guys
 	delivery_icon = "deliverycrate"
+	door_anim_time = 0 // no animation
 	var/obj/item/paper/fluff/jobs/cargo/manifest/manifest
 
 /obj/structure/closet/crate/Initialize()
@@ -21,15 +22,15 @@
 		opened = TRUE
 	update_icon()
 
-/obj/structure/closet/crate/CanPass(atom/movable/mover, turf/target)
+/obj/structure/closet/crate/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(!istype(mover, /obj/structure/closet))
 		var/obj/structure/closet/crate/locatedcrate = locate(/obj/structure/closet/crate) in get_turf(mover)
 		if(locatedcrate) //you can walk on it like tables, if you're not in an open crate trying to move to a closed crate
 			if(opened) //if we're open, allow entering regardless of located crate openness
-				return 1
+				return TRUE
 			if(!locatedcrate.opened) //otherwise, if the located crate is closed, allow entering
-				return 1
-	return !density
+				return TRUE
 
 /obj/structure/closet/crate/update_icon()
 	icon_state = "[initial(icon_state)][opened ? "open" : ""]"
@@ -216,7 +217,7 @@
 
 
 /obj/structure/closet/crate/magic/PopulateContents()
-	var/table = rand(1,12) //12 customized surprise mechanics™  for you all
+	var/table = rand(1,12) //12 customized surprise mechanicsï¿½  for you all
 	switch(table)
 		if(1)
 			new /obj/item/gun/magic/rune/icycle_rune(src)
@@ -290,6 +291,7 @@
 	desc = "Contains a completly random goat from Goat Tech Industries that may or may not break the laws of science!"
 
 /obj/structure/closet/crate/critter/exoticgoats/Initialize()
+	. = ..()
 	var/loot = rand(1,39) //39 different goats!
 	switch(loot)
 		if(1)

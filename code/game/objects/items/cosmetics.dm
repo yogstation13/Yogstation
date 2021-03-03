@@ -52,6 +52,9 @@
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
+		if(ispolysmorph(M))//polysmorphs dont have sprites for lipstick
+			to_chat(user,"<span class='warning'>Where are the lips on that?</span>")
+			return
 		if(H.is_mouth_covered())
 			to_chat(user, "<span class='warning'>Remove [ H == user ? "your" : "[H.p_their()]" ] mask!</span>")
 			return

@@ -207,6 +207,7 @@
 	var/paused = FALSE
 
 /datum/point/vector/processed/Destroy()
+	. = ..()
 	STOP_PROCESSING(SSprojectiles, src)
 
 /datum/point/vector/processed/proc/start()

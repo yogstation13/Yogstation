@@ -18,7 +18,11 @@
 
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_DOCTOR
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("EclipseStation", "OmegaStation")
+
+/datum/job/doctor/proc/EclipseStationChanges()
+	total_positions = 6
+	spawn_positions = 5
 
 /datum/job/doctor/proc/OmegaStationChanges()
 	selection_color = "#ffffff"
@@ -37,7 +41,7 @@
 	uniform = /obj/item/clothing/under/rank/medical
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit =  /obj/item/clothing/suit/toggle/labcoat
-	l_hand = /obj/item/storage/firstaid/regular
+	l_hand = /obj/item/storage/firstaid/medical
 	suit_store = /obj/item/flashlight/pen
 
 	backpack = /obj/item/storage/backpack/medic

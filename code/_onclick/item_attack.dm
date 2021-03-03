@@ -21,6 +21,9 @@
 
 // Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
 /obj/item/proc/attack_self(mob/user)
+	if(HAS_TRAIT(user, TRAIT_NOINTERACT)) //sorry no using grenades
+		to_chat(user, "<span class='notice'>You can't use things!</span>")
+		return
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
 		return
 	interact(user)
@@ -67,7 +70,11 @@
 
 	if(force && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
-		return
+		return TRUE
+	
+	if((item_flags & SURGICAL_TOOL) && (user.a_intent != INTENT_HARM)) // checks for if harm intent with surgery tool
+		to_chat(user, "<span class='warning'>You aren't doing surgery!</span>") //yells at you
+		return TRUE
 
 	if(!force)
 		playsound(loc, 'sound/weapons/tap.ogg', get_clamped_volume(), 1, -1)

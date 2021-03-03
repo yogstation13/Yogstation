@@ -10,7 +10,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
-	materials = list(MAT_METAL=50, MAT_GLASS=20)
+	materials = list(/datum/material/iron=50, /datum/material/glass=20)
 	actions_types = list(/datum/action/item_action/toggle_light)
 	var/on = FALSE
 	var/brightness_on = 4 //range of light when on
@@ -36,6 +36,7 @@
 /obj/item/flashlight/attack_self(mob/user)
 	on = !on
 	update_brightness(user)
+	playsound(user, on ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, 1)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
@@ -188,11 +189,11 @@
 	icon_state = "medi_holo"
 	duration = 30
 
-/obj/effect/temp_visual/medical_holosign/Initialize(mapload, creator)
+/obj/effect/temp_visual/medical_holosign/Initialize(mapload, mob/creator)
 	. = ..()
 	playsound(loc, 'sound/machines/ping.ogg', 50, 0) //make some noise!
 	if(creator)
-		visible_message("<span class='danger'>[creator] created a medical hologram!</span>")
+		visible_message("<span class='danger'>[creator] created a medical hologram, indicating that [creator.p_theyre(FALSE, FALSE)] coming to help!</span>")
 
 
 /obj/item/flashlight/seclite
@@ -254,10 +255,12 @@
 	brightness_on = 7 // Pretty bright.
 	icon_state = "flare"
 	item_state = "flare"
+	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	actions_types = list()
+	var/ignition_sound = 'sound/items/flare_strike_1.ogg'
 	var/fuel = 0
 	var/on_damage = 7
-	var/produce_heat = 1500
 	var/frng_min = 800
 	var/frng_max = 1000
 	heat = 1000
@@ -275,6 +278,8 @@
 		turn_off()
 		if(!fuel)
 			icon_state = "[initial(icon_state)]-empty"
+			name = "spent [initial(src.name)]"
+			desc = "[initial(src.desc)] It's all used up."
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/flare/ignition_effect(atom/A, mob/user)
@@ -288,6 +293,9 @@
 	on = FALSE
 	force = initial(src.force)
 	damtype = initial(src.damtype)
+	hitsound = initial(src.hitsound)
+	desc = initial(src.desc)
+	attack_verb = initial(src.attack_verb)
 	if(ismob(loc))
 		var/mob/U = loc
 		update_brightness(U)
@@ -315,8 +323,13 @@
 	// All good, turn it on.
 	if(.)
 		user.visible_message("<span class='notice'>[user] lights \the [src].</span>", "<span class='notice'>You light \the [src]!</span>")
+		playsound(loc, ignition_sound, 50, 1) //make some noise!
 		force = on_damage
+		name = "lit [initial(src.name)]"
+		desc = "[initial(src.desc)] This one is lit."
 		damtype = "fire"
+		attack_verb = list("burnt","scorched","scalded")
+		hitsound = 'sound/items/welder.ogg'
 		START_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/flare/is_hot()
@@ -324,10 +337,26 @@
 
 /obj/item/flashlight/flare/emergency
 	name = "safety flare"
-	desc = "A flare issued to nanotrasen employees for emergencies. There are instructions on the side, it reads 'pull cord, make light, obey nanotrasen'."
+	desc = "A flare issued to Nanotrasen employees for emergencies. There are instructions on the side, it reads 'pull cord, make light, obey Nanotrasen'."
 	brightness_on = 3
+	item_state = "flare"
+	icon_state = "flaresafety"
+	ignition_sound = 'sound/items/flare_strike_2.ogg'
 	frng_min = 40
 	frng_max = 70
+
+/obj/item/flashlight/flare/signal
+	name = "signalling flare"
+	desc = "A specialized formulation of the standard Nanotrasen-issued flare, containing increased magnesium content. There are instructions on the side, it reads 'pull cord, make intense light'."
+	brightness_on = 5
+	flashlight_power = 2
+	item_state = "flaresignal"
+	icon_state = "flaresignal"
+	light_color = LIGHT_COLOR_HALOGEN
+	frng_min = 540
+	frng_max = 700
+	heat = 2500
+	grind_results = list(/datum/reagent/sulfur = 15, /datum/reagent/potassium = 10)
 
 /obj/item/flashlight/flare/torch
 	name = "torch"
@@ -338,6 +367,7 @@
 	item_state = "torch"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+	ignition_sound = 'sound/items/match_strike.ogg'
 	light_color = LIGHT_COLOR_ORANGE
 	on_damage = 10
 	slot_flags = null
@@ -403,12 +433,17 @@
 	return TRUE
 
 /obj/item/flashlight/emp/attack(mob/living/M, mob/living/user)
+
+	if(!is_syndicate(user))
+		return
 	if(on && (user.zone_selected in list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH))) // call original attack when examining organs
 		..()
 	return
 
 /obj/item/flashlight/emp/afterattack(atom/movable/A, mob/user, proximity)
 	. = ..()
+	if(!is_syndicate(user)) // non syndicates don't know the flashlight is an EMP flashlight therefore won't know how to use it as such.
+		return
 	if(!proximity)
 		return
 

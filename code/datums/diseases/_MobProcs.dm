@@ -22,7 +22,13 @@
 	if(!can_infect)
 		return FALSE
 
-	if(!(type in D.viable_mobtypes))
+	can_infect = FALSE // var reuse
+	for(var/viable_types in D.viable_mobtypes)
+		if(typesof(src,viable_types))
+			can_infect = TRUE
+			break
+
+	if(!can_infect)
 		return FALSE
 
 	return TRUE
@@ -108,7 +114,7 @@
 		D.try_infect(src)
 
 /mob/living/proc/AirborneContractDisease(datum/disease/D, force_spread)
-	if(stat == DEAD) // no breathing when your dead
+	if(stat == DEAD) // no breathing when you're dead
 		return
 	if( ((D.spread_flags & DISEASE_SPREAD_AIRBORNE) || force_spread) && prob((50*D.permeability_mod) - 1))
 		ForceContractDisease(D)

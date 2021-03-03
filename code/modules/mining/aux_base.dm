@@ -6,138 +6,199 @@
 #define BAD_COORDS	3
 #define BAD_TURF	4
 
-/area/shuttle/auxillary_base
-	name = "Auxillary Base"
+/area/shuttle/auxiliary_base
+	name = "Auxiliary Base"
 	luminosity = 0 //Lighting gets lost when it lands anyway
 
-
-/obj/machinery/computer/auxillary_base
-	name = "auxillary base management console"
+/obj/machinery/computer/auxiliary_base
+	name = "auxiliary base management console"
+	desc = "Allows a deployable expedition base to be dropped from the station to a designated mining location. It can also \
+	interface with the mining shuttle at the landing site if a mobile beacon is also deployed."
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "dorm_available"
+	req_one_access = list(ACCESS_CONSTRUCTION, ACCESS_HEADS)
+	/// Shuttle ID of the base
 	var/shuttleId = "colony_drop"
-	desc = "Allows a deployable expedition base to be dropped from the station to a designated mining location. It can also \
-interface with the mining shuttle at the landing site if a mobile beacon is also deployed."
+	/// If we give warnings before base is launched
 	var/launch_warning = TRUE
-	var/list/turrets = list() //List of connected turrets
-
-	req_one_access = list(ACCESS_CARGO, ACCESS_CONSTRUCTION, ACCESS_HEADS, ACCESS_RESEARCH)
+	/// List of connected turrets
+	var/list/turrets = list()
+	/// List of all possible destinations
 	var/possible_destinations
-	clockwork = TRUE
-	var/obj/item/gps/internal/base/locator
-	circuit = /obj/item/circuitboard/computer/auxillary_base
+	/// ID of the currently selected destination of the attached base
+	var/destination
+	/// If blind drop option is available
+	var/blind_drop_ready = TRUE
 
-/obj/machinery/computer/auxillary_base/Initialize()
-	. = ..()
-	locator = new(src)
+	// Reference to probe for easy access
+	var/obj/machinery/sci_probe/probe
 
-/obj/machinery/computer/auxillary_base/ui_interact(mob/user)
+/obj/machinery/computer/auxiliary_base/Initialize()
 	. = ..()
+	probe = new /obj/machinery/sci_probe(src)
+
+/obj/machinery/computer/auxiliary_base/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AuxBaseConsole", name)
+		ui.open()
+
+/obj/machinery/computer/auxiliary_base/ui_data(mob/user)
+	var/list/data = list()
 	var/list/options = params2list(possible_destinations)
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-	var/dat = "[is_station_level(z) ? "Docking clamps engaged. Standing by." : "Mining Shuttle Uplink: [M ? M.getStatusText() : "*OFFLINE*"]"]<br>"
-	if(M)
-		var/destination_found
-		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-			if(!options.Find(S.id))
-				continue
-			if(!M.check_dock(S, silent=TRUE))
-				continue
-			destination_found = 1
-			dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
-		if(!destination_found && is_station_level(z)) //Only available if miners are lazy and did not set an LZ using the remote.
-			dat += "<A href='?src=[REF(src)];random=1'>Prepare for blind drop? (Dangerous)</A><br>"
+	data["type"] = shuttleId == "colony_drop" ? "base" : "shuttle"
+	data["docked_location"] = M ? M.get_status_text_tgui() : "Unknown"
+	data["locations"] = list()
+	data["locked"] = FALSE
+	data["timer_str"] = M ? M.getTimerStr() : "00:00"
+	data["destination"] = destination
+	data["blind_drop"] = blind_drop_ready
+	data["turrets"] = list()
+	data["probestatus"] = probe.setup
+	data["foundmobs"] = probe.mobs
+	data["science"] = SCIENCE_AMOUNT
+	data["calibration"] = probe.calibration
 	if(LAZYLEN(turrets))
-		dat += "<br><b>Perimeter Defense System:</b> <A href='?src=[REF(src)];turrets_power=on'>Enable All</A> / <A href='?src=[REF(src)];turrets_power=off'>Disable All</A><br> \
-		Units connected: [LAZYLEN(turrets)]<br>\
-		Unit | Condition | Status | Direction | Distance<br>"
-		for(var/PDT in turrets)
-			var/obj/machinery/porta_turret/aux_base/T = PDT
-			var/integrity = max((T.obj_integrity-T.integrity_failure)/(T.max_integrity-T.integrity_failure)*100, 0)
-			var/status
-			if(T.stat & BROKEN)
-				status = "<span class='bad'>ERROR</span>"
-			else if(!T.on)
-				status = "Disabled"
-			else if(T.raised)
-				status = "<span class='average'><b>Firing</b></span>"
+		for(var/turret in turrets)
+			var/obj/machinery/porta_turret/aux_base/base_turret = turret
+			var/turret_integrity = clamp(round((base_turret.obj_integrity / base_turret.max_integrity)*100,2), 0, 100)
+			var/turret_status
+			if(base_turret.stat & BROKEN)
+				turret_status = "ERROR"
+			else if(!base_turret.on)
+				turret_status = "Disabled"
+			else if(base_turret.raised)
+				turret_status = "Firing"
 			else
-				status = "<span class='good'>All Clear</span>"
-			dat += "[T.name] | [integrity]% | [status] | [dir2text(get_dir(src, T))] | [get_dist(src, T)]m <A href='?src=[REF(src)];single_turret_power=[REF(T)]'>Toggle Power</A><br>"
+				turret_status = "All Clear"
+			var/list/turret_data = list(
+				name = base_turret.name,
+				integrity = turret_integrity,
+				status = turret_status,
+				direction = dir2text(get_dir(src, base_turret)),
+				distance = get_dist(src, base_turret),
+				ref = REF(base_turret)
+			)
+			data["turrets"] += list(turret_data)
+	if(!M)
+		data["status"] = "Missing"
+		return data
+	switch(M.mode)
+		if(SHUTTLE_IGNITING)
+			data["status"] = "Igniting"
+		if(SHUTTLE_IDLE)
+			data["status"] = "Idle"
+		if(SHUTTLE_RECHARGING)
+			data["status"] = "Recharging"
+		else
+			data["status"] = "In Transit"
+	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+		if(!options.Find(S.id))
+			continue
+		if(!M.check_dock(S, silent=TRUE))
+			continue
+		var/list/location_data = list(
+			id = S.id,
+			name = S.name
+		)
+		data["locations"] += list(location_data)
+	if(length(data["locations"]) == 1)
+		for(var/location in data["locations"])
+			destination = location["id"]
+			data["destination"] = destination
+	if(!length(data["locations"]))
+		data["locked"] = TRUE
+		data["status"] = "Locked"
+	return data
 
+/**
+ * Checks if we are allowed to launch the base
+ *
+ * Arguments:
+ * * user - The mob trying to initiate the launch
+ */
+/obj/machinery/computer/auxiliary_base/proc/launch_check(mob/user)
+	if(!is_station_level(z) && shuttleId == "colony_drop")
+		to_chat(user, "<span class='warning'>You can't move the base again!</span>")
+		return FALSE
+	return TRUE
 
-	dat += "<a href='?src=[REF(user)];mach_close=computer'>Close</a>"
-
-	var/datum/browser/popup = new(user, "computer", "base management", 550, 300) //width, height
-	popup.set_content("<center>[dat]</center>")
-	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
-	popup.open()
-
-
-/obj/machinery/computer/auxillary_base/Topic(href, href_list)
-	if(..())
+/obj/machinery/computer/auxiliary_base/ui_act(action, params)
+	. = ..()
+	if(.)
 		return
-	usr.set_machine(src)
-	add_fingerprint(usr)
 	if(!allowed(usr))
 		to_chat(usr, "<span class='danger'>Access denied.</span>")
 		return
 
-	if(href_list["move"])
-		if(!is_station_level(z) && shuttleId == "colony_drop")
-			to_chat(usr, "<span class='warning'>You can't move the base again!</span>")
-			return
-		var/shuttle_error = SSshuttle.moveShuttle(shuttleId, href_list["move"], 1)
-		if(launch_warning)
-			say("<span class='danger'>Launch sequence activated! Prepare for drop!!</span>")
-			playsound(loc, 'sound/machines/warning-buzzer.ogg', 70, 0)
-			launch_warning = FALSE
-		else if(!shuttle_error)
-			say("Shuttle request uploaded. Please stand away from the doors.")
-		else
-			say("Shuttle interface failed.")
+	switch(action)
+		if("move")
+			if(!launch_check(usr))
+				return
+			var/shuttle_error = SSshuttle.moveShuttle(shuttleId, params["shuttle_id"], 1)
+			if(launch_warning)
+				say("<span class='danger'>Launch sequence activated! Prepare for drop!!</span>")
+				playsound(loc, 'sound/machines/warning-buzzer.ogg', 70, FALSE)
+				launch_warning = FALSE
+				blind_drop_ready = FALSE
+				return TRUE
+			else if(!shuttle_error)
+				say("Shuttle request uploaded. Please stand away from the doors.")
+			else
+				say("Shuttle interface failed.")
+		if("random")
+			if(possible_destinations)
+				return
+			usr.changeNext_move(CLICK_CD_RAPID) //Anti-spam
+			var/list/all_mining_turfs = list()
+			for(var/z_level in SSmapping.levels_by_trait(ZTRAIT_MINING))
+				all_mining_turfs += Z_TURFS(z_level)
+			var/turf/LZ = pick(all_mining_turfs) //Pick a random mining Z-level turf
+			if(!ismineralturf(LZ) && !istype(LZ, /turf/open/floor/plating/asteroid))
+			//Find a suitable mining turf. Reduces chance of landing in a bad area
+				to_chat(usr, "<span class='warning'>Landing zone scan failed. Please try again.</span>")
+				return
+			if(set_landing_zone(LZ, usr) != ZONE_SET)
+				to_chat(usr, "<span class='warning'>Landing zone unsuitable. Please recalculate.</span>")
+				return
+			blind_drop_ready = FALSE
+			return TRUE
+		if("set_destination")
+			var/target_destination = params["destination"]
+			if(!target_destination)
+				return
+			destination = target_destination
+			return TRUE
+		if("turrets_power")
+			for(var/obj/machinery/porta_turret/aux_base/base_turret in turrets)
+				base_turret.on = !base_turret.on
+			return TRUE
+		if("single_turret_power")
+			var/obj/machinery/porta_turret/aux_base/base_turret = locate(params["single_turret_power"]) in turrets
+			if(!istype(base_turret))
+				return
+			base_turret.on = !base_turret.on
+			return 
+		if("status")
+			probe.setup = !probe.setup
+			probe.canoperate()
+			if(probe.setup)
+				probe.radio.talk_into(src, "L.P.M Engaged. Producing science from local megafauna", probe.radio_freq)
+		if("calibrate")
+			probe.calibration = initial(probe.calibration)
 
-	if(href_list["random"] && !possible_destinations)
-		usr.changeNext_move(CLICK_CD_RAPID) //Anti-spam
-		var/list/all_mining_turfs = list()
-		for (var/z_level in SSmapping.levels_by_trait(ZTRAIT_MINING))
-			all_mining_turfs += Z_TURFS(z_level)
-		var/turf/LZ = safepick(all_mining_turfs) //Pick a random mining Z-level turf
-		if(!ismineralturf(LZ) && !istype(LZ, /turf/open/floor/plating/asteroid))
-		//Find a suitable mining turf. Reduces chance of landing in a bad area
-			to_chat(usr, "<span class='warning'>Landing zone scan failed. Please try again.</span>")
-			updateUsrDialog()
-			return
-		if(set_landing_zone(LZ, usr) != ZONE_SET)
-			to_chat(usr, "<span class='warning'>Landing zone unsuitable. Please recalculate.</span>")
-			updateUsrDialog()
-			return
 
-
-	if(LAZYLEN(turrets))
-		if(href_list["turrets_power"])
-			for(var/obj/machinery/porta_turret/aux_base/T in turrets)
-				if(href_list["turrets_power"] == "on")
-					T.on = TRUE
-				else
-					T.on = FALSE
-		if(href_list["single_turret_power"])
-			var/obj/machinery/porta_turret/aux_base/T = locate(href_list["single_turret_power"]) in turrets
-			if(istype(T))
-				T.on = !T.on
-
-	updateUsrDialog()
-
-/obj/machinery/computer/auxillary_base/proc/set_mining_mode()
+/obj/machinery/computer/auxiliary_base/proc/set_mining_mode()
 	if(is_mining_level(z)) //The console switches to controlling the mining shuttle once landed.
 		req_one_access = list()
 		shuttleId = "mining" //The base can only be dropped once, so this gives the console a new purpose.
 		possible_destinations = "mining_home;mining_away;landing_zone_dock;mining_public"
 
-/obj/machinery/computer/auxillary_base/proc/set_landing_zone(turf/T, mob/user, no_restrictions)
-	var/obj/docking_port/mobile/auxillary_base/base_dock = locate(/obj/docking_port/mobile/auxillary_base) in SSshuttle.mobile
+/obj/machinery/computer/auxiliary_base/proc/set_landing_zone(turf/T, mob/user, no_restrictions)
+	var/obj/docking_port/mobile/auxiliary_base/base_dock = locate(/obj/docking_port/mobile/auxiliary_base) in SSshuttle.mobile
 	if(!base_dock) //Not all maps have an Aux base. This object is useless in that case.
-		to_chat(user, "<span class='warning'>This station is not equipped with an auxillary base. Please contact your Nanotrasen contractor.</span>")
+		to_chat(user, "<span class='warning'>This station is not equipped with an auxiliary base. Please contact your Nanotrasen contractor.</span>")
 		return
 	if(!no_restrictions)
 		var/static/list/disallowed_turf_types = typecacheof(list(
@@ -151,7 +212,6 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 		if(!is_mining_level(T.z))
 			return BAD_ZLEVEL
 
-		
 		var/list/colony_turfs = base_dock.return_ordered_turfs(T.x,T.y,T.z,base_dock.dir)
 		for(var/i in 1 to colony_turfs.len)
 			CHECK_TICK
@@ -190,7 +250,7 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	desc = "Deploy to designate the landing zone of the auxillary base."
+	desc = "Deploy to designate the landing zone of the auxiliary base."
 	w_class = WEIGHT_CLASS_SMALL
 	shuttle_id = "colony_drop"
 	var/setting = FALSE
@@ -208,14 +268,14 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 	setting = FALSE
 
 	var/turf/T = get_turf(user)
-	var/obj/machinery/computer/auxillary_base/AB
+	var/obj/machinery/computer/auxiliary_base/AB
 
-	for (var/obj/machinery/computer/auxillary_base/A in GLOB.machines)
+	for (var/obj/machinery/computer/auxiliary_base/A in GLOB.machines)
 		if(is_station_level(A.z))
 			AB = A
 			break
 	if(!AB)
-		to_chat(user, "<span class='warning'>No auxillary base console detected.</span>")
+		to_chat(user, "<span class='warning'>No auxiliary base console detected.</span>")
 		return
 
 	switch(AB.set_landing_zone(T, user, no_restrictions))
@@ -236,8 +296,8 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 	no_restrictions = TRUE
 
 
-/obj/docking_port/mobile/auxillary_base
-	name = "auxillary base"
+/obj/docking_port/mobile/auxiliary_base
+	name = "auxiliary base"
 	id = "colony_drop"
 	//Reminder to map-makers to set these values equal to the size of your base.
 	dheight = 4
@@ -245,7 +305,7 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 	width = 9
 	height = 9
 
-/obj/docking_port/mobile/auxillary_base/takeoff(list/old_turfs, list/new_turfs, list/moved_atoms, rotation, movement_direction, old_dock, area/underlying_old_area)
+/obj/docking_port/mobile/auxiliary_base/takeoff(list/old_turfs, list/new_turfs, list/moved_atoms, rotation, movement_direction, old_dock, area/underlying_old_area)
 	for(var/i in new_turfs)
 		var/turf/place = i
 		if(istype(place, /turf/closed/mineral))
@@ -263,7 +323,7 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 
 /obj/structure/mining_shuttle_beacon
 	name = "mining shuttle beacon"
-	desc = "A bluespace beacon calibrated to mark a landing spot for the mining shuttle when deployed near the auxillary mining base."
+	desc = "A bluespace beacon calibrated to mark a landing spot for the mining shuttle when deployed near the auxiliary mining base."
 	anchored = FALSE
 	density = FALSE
 	var/shuttle_ID = "landing_zone_dock"
@@ -294,13 +354,13 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 	if(!is_mining_level(landing_spot.z))
 		to_chat(user, "<span class='warning'>This device is only to be used in a mining zone.</span>")
 		return
-	var/obj/machinery/computer/auxillary_base/aux_base_console
-	for(var/obj/machinery/computer/auxillary_base/ABC in GLOB.machines)
+	var/obj/machinery/computer/auxiliary_base/aux_base_console
+	for(var/obj/machinery/computer/auxiliary_base/ABC in GLOB.machines)
 		if(get_dist(landing_spot, ABC) <= console_range)
 			aux_base_console = ABC
 			break
 	if(!aux_base_console) //Needs to be near the base to serve as its dock and configure it to control the mining shuttle.
-		to_chat(user, "<span class='warning'>The auxillary base's console must be within [console_range] meters in order to interface.</span>")
+		to_chat(user, "<span class='warning'>The auxiliary base's console must be within [console_range] meters in order to interface.</span>")
 		return
 
 //Mining shuttles may not be created equal, so we find the map's shuttle dock and size accordingly.
@@ -312,7 +372,7 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 
 			Mport = new(landing_spot)
 			Mport.id = "landing_zone_dock"
-			Mport.name = "auxillary base landing site"
+			Mport.name = "auxiliary base landing site"
 			Mport.dwidth = SM.dwidth
 			Mport.dheight = SM.dheight
 			Mport.width = SM.width
@@ -344,18 +404,18 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 	for(var/i in 1 to landing_turfs.len) //You land NEAR the base, not IN it.
 		var/turf/L = landing_turfs[i]
 		if(!L) //This happens at map edges
-			to_chat(user, "<span class='warning'>Unable to secure a valid docking zone. Please try again in an open area near, but not within the aux. mining base.</span>")
+			to_chat(user, "<span class='warning'>Unable to secure a valid docking zone. Please try again in an open area near, but not within the auxiliary mining base.</span>")
 			SSshuttle.stationary.Remove(Mport)
 			qdel(Mport)
 			return
-		if(istype(get_area(L), /area/shuttle/auxillary_base))
+		if(istype(get_area(L), /area/shuttle/auxiliary_base))
 			to_chat(user, "<span class='warning'>The mining shuttle must not land within the mining base itself.</span>")
 			SSshuttle.stationary.Remove(Mport)
 			qdel(Mport)
 			return
 
 	if(mining_shuttle.canDock(Mport) != SHUTTLE_CAN_DOCK)
-		to_chat(user, "<span class='warning'>Unable to secure a valid docking zone. Please try again in an open area near, but not within the aux. mining base.</span>")
+		to_chat(user, "<span class='warning'>Unable to secure a valid docking zone. Please try again in an open area near, but not within the auxiliary mining base.</span>")
 		SSshuttle.stationary.Remove(Mport)
 		qdel(Mport)
 		return
@@ -363,7 +423,7 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 	aux_base_console.set_mining_mode() //Lets the colony park the shuttle there, now that it has a dock.
 	to_chat(user, "<span class='notice'>Mining shuttle calibration successful! Shuttle interface available at base console.</span>")
 	anchored = TRUE //Locks in place to mark the landing zone.
-	playsound(loc, 'sound/machines/ping.ogg', 50, 0)
+	playsound(loc, 'sound/machines/ping.ogg', 50, FALSE)
 
 /obj/structure/mining_shuttle_beacon/proc/clear_cooldown()
 	anti_spam_cd = 0

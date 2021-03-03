@@ -5,6 +5,7 @@
 	icon_state = "card_scanner"
 	density = TRUE
 	anchored = TRUE
+	circuit = /obj/item/circuitboard/machine/paystand
 	var/locked = FALSE
 	var/obj/item/card/id/my_card
 	var/obj/item/assembly/signaler/signaler //attached signaler, let people attach signalers that get activated if the user's transaction limit is achieved.
@@ -30,6 +31,9 @@
 				return
 		var/obj/item/card/id/vbucks = W
 		if(vbucks.registered_account)
+			if(!my_card)
+				to_chat(user, "<span class='warning'>ERROR: No bank account assigned to pay stand.</span>")
+				return
 			var/momsdebitcard = input(user, "How much would you like to deposit?", "Money Deposit") as null|num
 			if(momsdebitcard < 1)
 				to_chat(user, "<span class='warning'>ERROR: Invalid amount designated.</span>")

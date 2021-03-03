@@ -6,6 +6,7 @@
 	exclaim_verb = "invokes"
 	key = "n"
 	sentence_chance = 8
+	sing_verb = "intones"
 	space_chance = 95 //very high due to the potential length of each syllable
 	var/static/list/base_syllables = list(
 		"h", "v", "c", "e", "g", "d", "r", "n", "h", "o", "p",

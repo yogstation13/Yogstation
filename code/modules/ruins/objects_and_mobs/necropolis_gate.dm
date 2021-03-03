@@ -56,10 +56,10 @@
 /obj/structure/necropolis_gate/singularity_pull()
 	return 0
 
-/obj/structure/necropolis_gate/CanPass(atom/movable/mover, turf/target)
-	if(get_dir(loc, target) == dir)
-		return !density
-	return 1
+/obj/structure/necropolis_gate/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(!(get_dir(loc, target) == dir))
+		return TRUE
 
 /obj/structure/necropolis_gate/CheckExit(atom/movable/O, target)
 	if(get_dir(O.loc, target) == dir)
@@ -188,6 +188,12 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 				flash_color(M, flash_color = "#FF0000", flash_time = 50)
 		var/mutable_appearance/release_overlay = mutable_appearance('icons/effects/effects.dmi', "legiondoor")
 		notify_ghosts("Legion has been released in the [get_area(src)]!", source = src, alert_overlay = release_overlay, action = NOTIFY_JUMP)
+		// Time it so that the music starts after the sound
+		spawn(165)
+			for(var/mob/living/simple_animal/hostile/megafauna/legion/M in GLOB.mob_list)
+				if(!M.GetComponent(/datum/component/music_player))
+					var/datum/component/music_player/battle/player = M.AddComponent(/datum/component/music_player/battle, /datum/music/sourced/battle/legion)
+					player.do_range_check(0) // Start without fading, instantly.
 
 /obj/effect/temp_visual/necropolis
 	icon = 'icons/effects/96x96.dmi'
@@ -264,6 +270,7 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 	return
 
 /obj/structure/stone_tile/Crossed(atom/movable/AM)
+	. = ..()
 	if(falling || fallen)
 		return
 	var/turf/T = get_turf(src)

@@ -55,7 +55,6 @@ SUBSYSTEM_DEF(server_maint)
 
 	var/kick_inactive = CONFIG_GET(flag/kick_inactive)
 	var/afk_period
-	var/can_tracking = SSdbcore.Connect()
 
 	if(kick_inactive)
 		afk_period = CONFIG_GET(number/afk_period)
@@ -70,13 +69,6 @@ SUBSYSTEM_DEF(server_maint)
 				QDEL_IN(C, 1) //to ensure they get our message before getting disconnected
 				continue
 
-		if(can_tracking)
-			if(C.holder?.rank.name == "RetiredAdmin" && C.is_afk() && C.connection_number)
-				world.sync_logout_with_db(C.connection_number)
-				C.connection_number = null
-			if(!C.is_afk() && !C.connection_number) //no connection number but not inactive
-				C.sync_login_with_db() 
-
 		if (!(!C || world.time - C.connection_time < PING_BUFFER_TIME || C.inactivity >= (wait-1)))
 			winset(C, null, "command=.update_ping+[world.time+world.tick_lag*TICK_USAGE_REAL/100]")
 
@@ -90,9 +82,7 @@ SUBSYSTEM_DEF(server_maint)
 		if(!thing)
 			continue
 		var/client/C = thing
-		var/datum/chatOutput/co = C.chatOutput
-		if(co)
-			co.ehjax_send(data = "roundrestart")
+		C?.tgui_panel?.send_roundrestart()
 		if(server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[server]")
 	var/datum/tgs_version/tgsversion = world.TgsVersion()

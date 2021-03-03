@@ -13,8 +13,9 @@
 #define PINEAPPLE	(1<<12)
 #define BREAKFAST	(1<<13)
 #define CLOTH 		(1<<14)
-#define EGG       (1<<16) // for eggpeople, to nerf egg-cannibalism  
- 
+#define GRILLED		(1<<15)
+#define EGG			(1<<16) // for eggpeople, to nerf egg-cannibalism
+
 #define DRINK_NICE	1
 #define DRINK_GOOD	2
 #define DRINK_VERYGOOD	3

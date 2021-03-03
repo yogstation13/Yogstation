@@ -27,11 +27,13 @@
 				"<span class='italics'>You hear a ratchet.</span>")
 				src.anchored = 0
 
-/obj/machinery/golfhole/CanPass(atom/movable/mover, turf/target, height=0)
-	if (contents.len >= 3)
-		visible_message("<span class='notice'>The golf hole is full! Try removing golfballs from the hole.</span>")
-		return ..(mover, target, height)
+/obj/machinery/golfhole/Cross(atom/movable/mover, turf/target)
+	. = ..()
 	if (istype(mover,/obj/item/golfball) && mover.throwing  && anchored)
+		if (contents.len >= 3)
+			visible_message("<span class='notice'>The golf hole is full! Try removing golfballs from the hole.</span>")
+			return FALSE
+
 		var/obj/item/golfball = mover
 		if(prob(75))
 			golfball.loc = src
@@ -40,9 +42,9 @@
 			update_icon()
 		else
 			visible_message("<span class='notice'>The golfball bounces out of [src]!</span>")
-		return 0
+		return FALSE
 	else
-		return ..(mover, target, height)
+		return ..()
 
 
 /obj/machinery/golfhole/attack_hand(atom, mob/user)
@@ -81,6 +83,7 @@
 	if(istype(O, /obj/item/golfclub))
 		var/turf/throw_at = get_ranged_target_turf(src, get_dir(user, src), 3 )
 		throw_at(throw_at, 3 , 2)
+		user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/item/golfclub
 	desc = "A club for the game of golf."

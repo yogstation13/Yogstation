@@ -3,8 +3,11 @@
 /turf/closed/wall/mineral/wood,
 /area/shuttle/escape)
 "b" = (
-/obj/machinery/light_switch,
-/turf/closed/wall/mineral/wood,
+/obj/machinery/light_switch{
+	pixel_x = -4;
+	pixel_y = 24
+	},
+/turf/open/floor/wood,
 /area/shuttle/escape)
 "c" = (
 /obj/docking_port/mobile/emergency{
@@ -259,8 +262,8 @@ a
 a
 "}
 (2,1,1) = {"
+a
 b
-d
 d
 d
 d

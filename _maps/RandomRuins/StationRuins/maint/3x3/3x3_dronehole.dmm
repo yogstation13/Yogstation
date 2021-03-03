@@ -1,0 +1,55 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/plating,
+/area/template_noop)
+"k" = (
+/obj/item/screwdriver,
+/turf/open/floor/plating,
+/area/template_noop)
+"l" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"r" = (
+/obj/item/drone_shell,
+/obj/structure/bed/dogbed{
+	desc = "A comfy-looking drone bed.";
+	name = "drone bed"
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"D" = (
+/obj/effect/decal/cleanable/robot_debris/old,
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plating,
+/area/template_noop)
+"E" = (
+/obj/structure/sign/poster/contraband/free_drone{
+	pixel_y = 32
+	},
+/obj/structure/bed/dogbed{
+	desc = "A comfy-looking drone bed.";
+	name = "drone bed"
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"U" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+E
+D
+l
+"}
+(2,1,1) = {"
+U
+l
+a
+"}
+(3,1,1) = {"
+r
+k
+l
+"}

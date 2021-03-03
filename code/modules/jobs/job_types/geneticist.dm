@@ -20,10 +20,14 @@
 
 	display_order = JOB_DISPLAY_ORDER_GENETICIST
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "EclipseStation")
 
 /datum/job/geneticist/proc/OmegaStationChanges()
 	return TRUE
+
+/datum/job/geneticist/proc/EclipseStationChanges()
+	total_positions = 3
+	spawn_positions = 3
 
 /datum/outfit/job/geneticist
 	name = "Geneticist"

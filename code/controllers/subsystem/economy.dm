@@ -48,6 +48,8 @@ SUBSYSTEM_DEF(economy)
 							"rainbow" = 1000)
 	var/list/bank_accounts = list() //List of normal accounts (not department accounts)
 	var/list/dep_cards = list()
+	///ref to moneysink. Only one should exist on the map. Has its payout() proc called every budget cycle
+	var/obj/item/energy_harvester/moneysink = null
 
 /datum/controller/subsystem/economy/Initialize(timeofday)
 	var/budget_to_hand_out = round(budget_pool / department_accounts.len)
@@ -56,29 +58,48 @@ SUBSYSTEM_DEF(economy)
 	return ..()
 
 /datum/controller/subsystem/economy/fire(resumed = 0)
-	eng_payout()  // Payout based on nothing. What will replace it? Surplus power, powered APC's, air alarms? Who knows.
+	eng_payout() // Payout based on station integrity. Also adds money from excess power sold via energy harvester.
 	sci_payout() // Payout based on slimes.
 	secmedsrv_payout() // Payout based on crew safety, health, and mood.
 	civ_payout() // Payout based on ??? Profit
+	car_payout() // Cargo's natural gain in the cash moneys.
+	var/list/dictionary = list()
+	for(var/datum/corporation/c in GLOB.corporations)
+		dictionary[c] = list()
+		for(var/datum/mind/m in c.employees)
+			dictionary[c] += m.name
 	for(var/A in bank_accounts)
 		var/datum/bank_account/B = A
-		B.payday(1)
-
+		for(var/datum/corporation/c in dictionary)
+			if(B.account_holder in dictionary[c])
+				B.payday(c.paymodifier, TRUE)
+		B.payday(1)	
 
 /datum/controller/subsystem/economy/proc/get_dep_account(dep_id)
 	for(var/datum/bank_account/department/D in generated_accounts)
 		if(D.department_id == dep_id)
 			return D
 
+/** Payout for engineering every cycle. Uses a base of 3000 then multiplies it by station integrity. Afterwards, calls the payout proc from
+  * the energy harvester and adds the cash from that to the budget.
+  */
 /datum/controller/subsystem/economy/proc/eng_payout()
 	var/engineering_cash = 3000
 	engineering_check.count()
 	var/station_integrity = min(PERCENT(GLOB.start_state.score(engineering_check)), 100)
 	station_integrity *= 0.01
 	engineering_cash *= station_integrity
-	var/datum/bank_account/D = get_dep_account(ACCOUNT_ENG)
+	if(moneysink)
+		engineering_cash += moneysink.payout()
+	var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
 	if(D)
 		D.adjust_money(engineering_cash)
+
+
+/datum/controller/subsystem/economy/proc/car_payout()
+	var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
+	if(D)
+		D.adjust_money(500)
 
 /datum/controller/subsystem/economy/proc/secmedsrv_payout()
 	var/crew
@@ -119,10 +140,17 @@ SUBSYSTEM_DEF(economy)
 	if(D)
 		D.adjust_money(min(cash_to_grant, MAX_GRANT_SECMEDSRV))
 
+	var/service_passive_income = (rand(1, 6) * 400) //min 400, max 2400
+	var/datum/bank_account/SRV = get_dep_account(ACCOUNT_SRV)
+	if(SRV)
+		SRV.adjust_money(service_passive_income)
+
 /datum/controller/subsystem/economy/proc/sci_payout()
 	var/science_bounty = 0
 	for(var/mob/living/simple_animal/slime/S in GLOB.mob_list)
 		if(S.stat == DEAD)
+			continue
+		if(!is_station_level(S.z))
 			continue
 		science_bounty += slime_bounty[S.colour]
 	var/datum/bank_account/D = get_dep_account(ACCOUNT_SCI)

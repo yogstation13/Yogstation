@@ -10,6 +10,7 @@
 	active_power_usage = 500
 	circuit = /obj/item/circuitboard/computer/crew
 
+
 	light_color = LIGHT_COLOR_BLUE
 
 /obj/machinery/computer/crew/syndie
@@ -75,13 +76,12 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 /datum/crewmonitor/Destroy()
 	return ..()
 
-/datum/crewmonitor/ui_interact(mob/user, ui_key = "crew", datum/tgui/ui = null, force_open = FALSE, \
-							datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/crewmonitor/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
 		for(var/datum/minimap/M in SSmapping.station_minimaps)
 			M.send(user)
-		ui = new(user, src, ui_key, "crew", "Crew Monitoring Console", 1000, 600 , master_ui, state)
+		ui = new(user, src, "CrewConsole")
 		ui.open()
 
 /datum/crewmonitor/proc/show(mob/M, source)
@@ -106,6 +106,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	.["miny"] = M.miny
 	.["maxx"] = M.maxx
 	.["maxy"] = M.maxy
+	.["map_filename"] = SSassets.transport.get_asset_url("minimap-1.png")
 
 /datum/crewmonitor/proc/update_data(z)
 	if(data_by_z["[z]"] && last_update["[z]"] && world.time <= last_update["[z]"] + SENSORS_UPDATE_PERIOD)

@@ -69,7 +69,6 @@
 	new /obj/item/circuitboard/machine/techfab/department/medical(src)
 	new /obj/item/storage/photo_album/CMO(src)
 	new /obj/item/clipboard/yog/paperwork/cmo(src)
-	new /obj/item/card/id/departmental_budget/med(src)
 	new /obj/item/storage/backpack/duffelbag/med/chief/clothing(src)
 
 
@@ -110,6 +109,7 @@
 	new /obj/item/clothing/head/soft/emt/green (src)
 	new /obj/item/radio/headset/headset_med(src)
 	new /obj/item/storage/belt/medical(src)
+	new /obj/item/clothing/gloves/color/latex/nitrile(src)
 
 /obj/structure/closet/secure_closet/mmedical
 	name = "mining medic's locker"

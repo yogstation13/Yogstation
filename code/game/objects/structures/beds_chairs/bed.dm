@@ -38,8 +38,10 @@
 
 /obj/structure/bed/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WRENCH && !(flags_1&NODECONSTRUCT_1))
-		W.play_tool_sound(src)
-		deconstruct(TRUE)
+		to_chat(user, "<span class='notice'>You start deconstructing [src]...</span>")
+		if(W.use_tool(src, user, 40, volume=50))
+			W.play_tool_sound(src)
+			deconstruct(TRUE)
 	else
 		return ..()
 
@@ -188,6 +190,11 @@
 /obj/structure/bed/dogbed/runtime
 	desc = "A comfy-looking cat bed. You can even strap your pet in, in case the gravity turns off."
 	name = "Runtime's bed"
+	anchored = TRUE
+
+/obj/structure/bed/dogbed/birdboat
+	desc = "A former dog bed, now covered in droppings and scratches. Ew."
+	name = "Birdboat's bed"
 	anchored = TRUE
 
 /obj/structure/bed/dogbed/proc/update_owner(mob/living/M)
