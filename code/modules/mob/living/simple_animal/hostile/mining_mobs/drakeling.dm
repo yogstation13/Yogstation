@@ -7,6 +7,7 @@
 	move_to_delay = 10
 	speak_emote = list("roars")
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	a_intent = INTENT_HARM
 	attack_sound = 'sound/magic/demon_attack1.ogg'
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "ash_whelp"
