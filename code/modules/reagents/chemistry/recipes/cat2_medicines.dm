@@ -17,7 +17,7 @@
 	name = "lenturi"
 	id = /datum/reagent/medicine/c2/lenturi
 	results = list(/datum/reagent/medicine/c2/lenturi = 5)
-	required_reagents = list(/datum/reagent/ammonia = 1, /datum/reagent/silver = 1, /datum/reagent/sulfur = 1, /datum/reagent/oxygen = 1, /datum/reagent/chlorine = 1)
+	required_reagents = list(/datum/reagent/ammonia = 1, /datum/reagent/silver = 1, /datum/reagent/sulfur = 1, /datum/reagent/oxygen = 1, /datum/reagent/bromine = 1)
 
 /datum/chemical_reaction/medicine/aiuri
 	name = "aiuri"
