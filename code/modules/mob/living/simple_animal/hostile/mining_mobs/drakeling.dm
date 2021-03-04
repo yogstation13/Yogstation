@@ -27,6 +27,7 @@
 	maxbodytemp = INFINITY //DRAGON
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	emote_see = list("flaps its little wings.", "waves its tail.","hops around a few times.", "breathes out a little smoke.", "tilts its head.")
+	gold_core_spawnable = NO_SPAWN
 	butcher_results = list(/obj/item/stack/ore/diamond = 3) //you MONSTER
 	tame = TRUE
 	can_buckle = TRUE
