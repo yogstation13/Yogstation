@@ -14,6 +14,8 @@
 	icon_living = "ash_whelp"
 	icon_dead ="ash_whelp_dead"
 	attacktext = "chomps"
+	vision_range = 4
+	aggro_vision_range = 7
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	response_help  = "pets"
