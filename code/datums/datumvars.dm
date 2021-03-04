@@ -1399,7 +1399,8 @@
 				to_chat(usr, "Mob doesn't exist anymore")
 				return
 			H.cluwneify()
-			message_admins("<span class='notice'>[key_name(usr)] has made [key_name(H)] into a Cluwne.</span>")
+			ADD_TRAIT(H, TRAIT_VALID, "adminverb")
+			message_admins("<span class='notice'>[key_name(usr)] has made [key_name(H)] into a valid cluwne.</span>")
 			return // yogs end
 
 		else if(href_list["makepacman"])

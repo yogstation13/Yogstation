@@ -551,6 +551,9 @@
 /mob/proc/common_trait_examine()
 	if(HAS_TRAIT(src, TRAIT_DISSECTED))
 		. += "<span class='notice'>This body has been dissected and analyzed. It is no longer worth experimenting on.</span><br>"
+	
+	if(HAS_TRAIT(src, TRAIT_VALID))
+		. += "<span class='warning'>Looking at [src] makes you seething with rage! Beat the shit out of [p_them()]!</span><br>"
 
 /**
   * Get the list of keywords for policy config
