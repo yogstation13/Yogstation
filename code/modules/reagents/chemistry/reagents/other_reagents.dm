@@ -485,6 +485,9 @@
 	if(mutation && mutation != current_species)
 		to_chat(H, mutationtext)
 		H.set_species(mutation)
+		if(HAS_TRAIT(H, TRAIT_GENELESS))
+			if(H.has_dna())
+				H.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA), TRUE) 
 	else
 		to_chat(H, "<span class='danger'>The pain vanishes suddenly. You feel no different.</span>")
 
@@ -853,6 +856,7 @@
 	description = "Sterilizes wounds in preparation for surgery."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	taste_description = "bitterness"
+	toxpwr = 0
 
 /datum/reagent/space_cleaner/sterilizine/reaction_mob(mob/living/carbon/C, method=TOUCH, reac_volume)
 	if(method in list(TOUCH, VAPOR, PATCH))
@@ -1203,6 +1207,7 @@
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "E1A116"
+	can_synth = FALSE
 	taste_description = "sourness"
 
 /datum/reagent/stimulum/on_mob_metabolize(mob/living/L)
@@ -1225,6 +1230,7 @@
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
+	can_synth = FALSE
 	taste_description = "burning"
 
 /datum/reagent/nitryl/on_mob_metabolize(mob/living/L)
@@ -1241,24 +1247,31 @@
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl/freon/hypernoblium are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
+	can_synth = FALSE
 	taste_description = "burning"
+
 /datum/reagent/freon/on_mob_metabolize(mob/living/L)
 	. = ..()
 	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=1.6, blacklisted_movetypes=(FLYING|FLOATING))
+
 /datum/reagent/freon/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_modifier(type)
 	return ..()
+
 /datum/reagent/hypernoblium
 	name = "Hyper-Noblium"
 	description = "A suppressive gas that stops gas reactions on those who inhale it."
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl/freon/hyper-nob are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
+	can_synth = FALSE
 	taste_description = "searingly cold"
+
 /datum/reagent/hypernoblium/on_mob_metabolize(mob/living/L)
 	. = ..()
 	if(isplasmaman(L))
 		ADD_TRAIT(L, TRAIT_NOFIRE, type)
+
 /datum/reagent/hypernoblium/on_mob_end_metabolize(mob/living/L)
 	if(isplasmaman(L))
 		REMOVE_TRAIT(L, TRAIT_NOFIRE, type)
@@ -1270,14 +1283,22 @@
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	color = "90560B"
+	can_synth = FALSE
 	taste_description = "rubbery"
 
 /datum/reagent/healium/on_mob_metabolize(mob/living/L)
 	. = ..()
 	L.SetSleeping(1000)
+	L.SetUnconscious(1000)
+
+/datum/reagent/healium/on_mob_life(mob/living/carbon/M)
+	M.SetSleeping(1000)
+	M.SetUnconscious(1000) //in case you have sleep immunity :^)
+	..()
 
 /datum/reagent/healium/on_mob_end_metabolize(mob/living/L)
 	L.SetSleeping(10)
+	L.SetUnconscious(10)
 	return ..()
 
 /datum/reagent/halon
@@ -1286,6 +1307,7 @@
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	color = "90560B"
+	can_synth = FALSE
 	taste_description = "minty"
 
 /datum/reagent/halon/on_mob_metabolize(mob/living/L)
@@ -1304,6 +1326,7 @@
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	color = "90560B"
+	can_synth = FALSE
 	taste_description = "fresh"
 
 /datum/reagent/hexane/on_mob_metabolize(mob/living/L)

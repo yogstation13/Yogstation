@@ -18,10 +18,10 @@
 		"https://www.youtube.com/watch?v=icy4-CQHVh4", 						// Joseph "Zhaytee" Toscano - Absconditus
 		"https://www.youtube.com/watch?v=dCPWE4WexM8", 						// Hiroaki Yoshida, Hitomi Komatsu - Robocop Theme (Remix by Cboyardee)
 		"https://www.youtube.com/watch?v=3W7mwRpUbqQ", 						// Stellardrone - Comet Haley
+		"https://www.youtube.com/watch?v=BY-1SrsLER0", 						// Jeroen Tel - Tintin on the Moon  (Noisemaker's Remix)
 		"https://www.youtube.com/watch?v=YKVmXn-Gv0M", 						// Jeroen Tel - Tintin on the Moon (Remix by Cuboos)
 		"https://www.youtube.com/watch?v=GISnTECX8Eg",						// Chris Remo - Space Asshole
 		"https://www.youtube.com/watch?v=le1eD6I7k4s",						// Ronald Jenkee - Piano Wire
-		"https://www.youtube.com/watch?v=qx8hrhBZJ98",						// Tonio Delafuente - Epic of Manas
 		"https://www.youtube.com/watch?v=r-eMVfiT8_c",						// Kelly Bailey - Nuclear Missile Jam/Something Secret Steers Us (Remix)
 		"https://www.youtube.com/watch?v=WcWix770cvQ",						// Wintergatan - Local Cluster
 		"https://www.youtube.com/watch?v=w5hBQDepXOE",						// Michael Giacchino - Main Theme (STAR TREK Beyond)
@@ -39,6 +39,12 @@
 		"https://www.youtube.com/watch?v=ZhhQrFfzFM4",						// Carpenter Brut - Escape from Midwich Valley
 		"https://www.youtube.com/watch?v=dLrdSC9MVb4",						// Tally Hall - Turn the Lights Off
 		"https://www.youtube.com/watch?v=YGulLVWu-s0",						// God Hand "Rock a Bay"
+		"https://www.youtube.com/watch?v=IhEqUKBTffU",						// Streets Of Rogue - 5-1
+		"https://www.youtube.com/watch?v=fXvxnDmwB_I",						// Rain World THS - Action Scene
+		"https://www.youtube.com/watch?v=1ye2nI7L_0g",						//The Kinks - Apeman
+		"https://www.youtube.com/watch?v=iZB8XXYePy0",						//The Kinks - Super Sonic Ship
+		"https://www.youtube.com/watch?v=tRcPA7Fzebw",						//David Bowie - Starman
+		"https://www.youtube.com/watch?v=FH2EgYq_NCY",						//Lou Reed - Satellite of Love
 		"https://www.youtube.com/watch?v=AumYP6Np1eI")						// Ataraxia - Deja Vu
 
 	selected_lobby_music = pick(songs)

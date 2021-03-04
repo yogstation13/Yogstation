@@ -65,6 +65,7 @@
 	implements = list(/obj/item/cautery = 100, /obj/item/gun/energy/laser = 90, TOOL_WELDER = 70,
 		/obj/item = 30) // 30% success with any hot item.
 	time = 24
+	fuckup_damage_type = BURN
 
 /datum/surgery_step/close/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, "<span class='notice'>You begin to mend the incision in [target]'s [parse_zone(target_zone)]...</span>",
@@ -94,6 +95,7 @@
 		/obj/item/melee/arm_blade = 75, /obj/item/mounted_chainsaw = 65, /obj/item/twohanded/required/chainsaw = 50,
 		/obj/item/twohanded/fireaxe = 50, /obj/item/hatchet = 35, /obj/item/kitchen/knife/butcher = 25)
 	time = 54
+	fuckup_damage = 20
 
 /datum/surgery_step/saw/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, "<span class='notice'>You begin to saw through the bone in [target]'s [parse_zone(target_zone)]...</span>",
@@ -112,6 +114,7 @@
 	name = "drill bone"
 	implements = list(/obj/item/surgicaldrill = 100, /obj/item/pickaxe/drill = 60, /obj/item/mecha_parts/mecha_equipment/drill = 60, TOOL_SCREWDRIVER = 20)
 	time = 30
+	fuckup_damage = 15
 
 /datum/surgery_step/drill/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, "<span class='notice'>You begin to drill into the bone in [target]'s [parse_zone(target_zone)]...</span>",

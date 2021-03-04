@@ -50922,18 +50922,6 @@
 "cam" = (
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"can" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Bar Maintenance";
-	req_access_txt = "12"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "cao" = (
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/structure/table/wood,
@@ -51787,30 +51775,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"cci" = (
-/obj/machinery/disposal/bin,
-/obj/structure/sign/warning/securearea{
-	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
-	icon_state = "monkey_painting";
-	name = "Mr. Deempisi portrait";
-	pixel_x = -28;
-	pixel_y = -4
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/machinery/button/door{
-	id = "barShutters";
-	name = "bar shutters";
-	pixel_x = 4;
-	pixel_y = 28
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "ccj" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -51939,15 +51903,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"ccv" = (
-/obj/structure/table/reinforced,
-/obj/item/lighter,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "ccw" = (
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
@@ -52034,14 +51989,6 @@
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"ccH" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/preopen{
-	id = "barShutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "ccI" = (
 /obj/structure/chair{
 	dir = 4
@@ -52084,14 +52031,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"ccN" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "ccO" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -52301,17 +52240,6 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"cdo" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/head/that{
-	throwforce = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "cdp" = (
 /obj/effect/landmark/start/bartender,
 /obj/effect/turf_decal/tile/bar,
@@ -52552,36 +52480,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"cdM" = (
-/obj/machinery/door/window/southright{
-	name = "Bar Door";
-	req_one_access_txt = "25;28"
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "cdN" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"cdO" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 32
-	},
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "cdP" = (
 /obj/effect/landmark/start/cook,
 /turf/open/floor/plasteel/cafeteria,
@@ -56879,6 +56783,24 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/cryopods)
+"drj" = (
+/obj/machinery/disposal/bin,
+/obj/structure/sign/warning/securearea{
+	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
+	icon_state = "monkey_painting";
+	name = "Mr. Deempisi portrait";
+	pixel_x = -28;
+	pixel_y = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "dus" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lantern,
@@ -57100,6 +57022,33 @@
 	dir = 1
 	},
 /area/hallway/secondary/entry)
+"etS" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"eut" = (
+/obj/machinery/door/window/southright{
+	name = "Bar Door";
+	req_one_access_txt = "25;28"
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "euu" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
@@ -58447,6 +58396,21 @@
 "ihS" = (
 /turf/closed/wall/r_wall,
 /area/medical/sleeper)
+"ijl" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/that{
+	throwforce = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "ikS" = (
 /obj/effect/landmark/stationroom/box/execution,
 /turf/template_noop,
@@ -59062,6 +59026,19 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"jRX" = (
+/obj/structure/table/reinforced,
+/obj/item/lighter,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "jTt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
@@ -60238,6 +60215,18 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
+"nlv" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/maintenance{
+	name = "Bar Maintenance";
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "npR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -61743,6 +61732,23 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
 /area/storage/tools)
+"rRr" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = 32
+	},
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "rSv" = (
 /obj/machinery/advanced_airlock_controller/lavaland{
 	dir = 4;
@@ -62161,6 +62167,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"sJy" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = -25;
+	pixel_y = 24;
+	req_access_txt = "28"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "sJz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
@@ -63564,6 +63584,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"wML" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "wPB" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -99378,11 +99406,11 @@ aCr
 aCr
 cam
 ccq
-ccH
+wML
 cam
-ccH
+wML
 cam
-ccH
+wML
 cam
 cam
 xDQ
@@ -100926,7 +100954,7 @@ cdA
 cdK
 cba
 cba
-ccH
+wML
 aYV
 aYV
 bes
@@ -101684,7 +101712,7 @@ aae
 alQ
 bSP
 bTp
-can
+nlv
 caG
 cbb
 cbD
@@ -102204,11 +102232,11 @@ cam
 cam
 cam
 cam
-ccv
-ccN
-cdo
-ccN
-ccN
+jRX
+etS
+ijl
+etS
+etS
 cdX
 cev
 cam
@@ -102460,12 +102488,12 @@ caI
 cbd
 cbF
 cam
-cci
-cba
+drj
+sJy
 cba
 cdp
 cba
-ccN
+etS
 cdY
 cew
 cam
@@ -102722,7 +102750,7 @@ cba
 ccO
 cba
 cba
-cdM
+eut
 cba
 cex
 cam
@@ -102979,7 +103007,7 @@ ccx
 cba
 cdq
 cba
-cdO
+rRr
 cba
 cba
 cam

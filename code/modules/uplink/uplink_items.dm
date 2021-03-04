@@ -398,7 +398,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/twohanded/dualsaber
 	player_minimum = 25
 	cost = 16
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/doublesword/get_discount()
 	return pick(4;0.8,2;0.65,1;0.5)
@@ -506,7 +506,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A small, easily concealable handgun that uses 10mm auto rounds in 8-round magazines and is compatible \
 			with suppressors."
 	item = /obj/item/gun/ballistic/automatic/pistol
-	cost = 7
+	cost = 6
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/bolt_action
@@ -522,7 +522,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/revolver
 	cost = 13
 	surplus = 50
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/foamsmg
 	name = "Toy Submachine Gun"
@@ -548,7 +548,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An innocent-looking toy pistol designed to fire foam darts. Comes loaded with riot-grade \
 			darts effective at incapacitating a target."
 	item = /obj/item/gun/ballistic/automatic/toy/pistol/riot
-	cost = 2
+	cost = 1
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 10
 
@@ -613,7 +613,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	slur as if inebriated. It can produce an infinite number \
 	of bolts, but takes time to automatically recharge after each shot."
 	item = /obj/item/gun/energy/kinetic_accelerator/crossbow
-	cost = 10
+	cost = 11
 	surplus = 50
 	exclude_modes = list(/datum/game_mode/nuclear)
 
@@ -852,7 +852,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Box of Riot Darts"
 	desc = "A box of 40 Donksoft riot darts, for reloading any compatible foam dart magazine. Don't forget to share!"
 	item = /obj/item/ammo_box/foambox/riot
-	cost = 2
+	cost = 1
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 0
 	illegal_tech = FALSE
@@ -1335,7 +1335,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			such as AI units and cyborgs, over their private binary channel. Caution should \
 			be taken while doing this, as unless they are allied with you, they are programmed to report such intrusions."
 	item = /obj/item/encryptionkey/binary
-	cost = 5
+	cost = 2
 	surplus = 75
 	restricted = TRUE
 
@@ -1346,7 +1346,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			'Advanced Magboots' slow you down in simulated-gravity environments much like the standard issue variety."
 	item = /obj/item/clothing/shoes/magboots/syndie
 	cost = 2
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/device_tools/briefcase_launchpad
 	name = "Briefcase Launchpad"
@@ -1444,11 +1443,20 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/cybersun
 
 /datum/uplink_item/device_tools/medgun
-	name = "Medbeam Gun"
+	name = "Medbeam Gun" 
 	desc = "A wonder of Syndicate engineering, the Medbeam gun, or Medi-Gun enables a medic to keep his fellow \
 			operatives in the fight, even while under fire. Don't cross the streams!"
 	item = /obj/item/gun/medbeam
-	cost = 15
+	cost = 8
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+
+/datum/uplink_item/device_tools/medgun_uber
+	name = "Augmented Medbeam Gun"
+	desc = "An augmented version of the classic Medbeam Gun that we picked up off the corpse of a german scientist. \
+			It has an invulnerability mode that can be activated for a few seconds after healing for a long while. \
+			This one comes uncharged, so be sure to give it a whirl before getting into combat. Goes well with a M-546 Osprey."
+	item = /obj/item/gun/medbeam/uber
+	cost = 25
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/device_tools/singularity_beacon
@@ -1479,7 +1487,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			load on the grid, causing a station-wide blackout. The sink is large and cannot be stored in most \
 			traditional bags and boxes. Caution: Will explode if the powernet contains sufficient amounts of energy."
 	item = /obj/item/powersink
-	cost = 10
+	cost = 8
 	manufacturer = /datum/corporation/traitor/waffleco
 
 /datum/uplink_item/device_tools/rad_laser
@@ -1489,7 +1497,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			of humanoids. It has two settings: intensity, which controls the power of the radiation, \
 			and wavelength, which controls the delay before the effect kicks in."
 	item = /obj/item/healthanalyzer/rad_laser
-	cost = 3
+	cost = 4
 	manufacturer = /datum/corporation/traitor/donkco
 
 /datum/uplink_item/device_tools/stimpack
@@ -1761,6 +1769,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Clown")
 	surplus = 0 //No fun unless you're the clown!
 
+/datum/uplink_item/support/honker
+	name = "Dark H.O.N.K."
+	desc = "A clown combat mech equipped with bombanana peel and tearstache grenade launchers, as well as the ubiquitous HoNkER BlAsT 5000."
+	item = /obj/mecha/combat/honker/dark/loaded
+	cost = 35
+	restricted_roles = list("Clown")
+	manufacturer = /datum/corporation/traitor/waffleco
+	surplus = 0
+
 /datum/uplink_item/role_restricted/arm_medical_gun
 	name = "Arm Mounted Medical Beamgun"
 	desc = "An arm mounted medical beamgun to heal your best buds (disclaimer: does not come with friends)."
@@ -1814,7 +1831,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			transported to you that will teleport the actual bomb to it upon activation. Note that this bomb can \
 			be defused, and some crew may attempt to do so."
 	item = /obj/item/sbeacondrop/clownbomb
-	cost = 15
+	cost = 7
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted_roles = list("Clown")
 

@@ -93,6 +93,9 @@
 
 	var/do_footstep = FALSE
 
+	var/music_component = null
+	var/music_path = null
+
 /mob/living/simple_animal/Initialize()
 	. = ..()
 	GLOB.simple_animals[AIStatus] += src
@@ -105,6 +108,8 @@
 	update_simplemob_varspeed()
 	if(dextrous)
 		AddComponent(/datum/component/personal_crafting)
+	if(music_component && music_path)
+		AddComponent(music_component, music_path)
 
 /mob/living/simple_animal/Destroy()
 	GLOB.simple_animals[AIStatus] -= src

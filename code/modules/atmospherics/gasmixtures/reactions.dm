@@ -96,8 +96,6 @@ nobliumformation = 1001
 	min_requirements = list(/datum/gas/water_vapor = MOLES_GAS_VISIBLE)
 
 /datum/gas_reaction/water_vapor/react(datum/gas_mixture/air, datum/holder)
-	if(air.return_temperature()>T0C+500&& air.return_pressure()>6*ONE_ATMOSPHERE)
-		return NO_REACTION
 	var/turf/open/location = isturf(holder) ? holder : null
 	. = NO_REACTION
 	if (air.return_temperature() <= WATER_VAPOR_FREEZE)

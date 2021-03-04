@@ -509,6 +509,32 @@
 /obj/item/melee/supermatter_sword/add_blood_DNA(list/blood_dna)
 	return FALSE
 
+/obj/item/melee/singularity_sword
+	name = "singularity sword"
+	desc = "Spins so hard that it turns any struck foe into mincemeat instantaneously. Make sure not to stick around when you swing it at someone."
+	icon = 'icons/obj/items_and_weapons.dmi'
+	icon_state = "singularity_sword"
+	item_state = "singularity_sword"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	slot_flags = null
+	w_class = WEIGHT_CLASS_BULKY
+	force = 0
+	force_string = "INFINITE SPIN"
+	resistance_flags = INDESTRUCTIBLE
+
+/obj/item/melee/singularity_sword/afterattack(target, mob/user, proximity_flag)
+	. = ..()
+	if(proximity_flag && istype(target, /mob))
+		var/mob/M = target
+		var/turf/T = get_turf(M)
+		M.visible_message("<span class='danger'>[target] is consumed by the singularity!</span>")
+		new /obj/singularity(T)
+		M.gib()
+	else
+		return FALSE
+
+/// Simple whip that does additional damage(8 brute to be exact) to simple animals
 /obj/item/melee/curator_whip
 	name = "curator's whip"
 	desc = "Somewhat eccentric and outdated, it still stings like hell to be hit by."
@@ -517,17 +543,16 @@
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	slot_flags = ITEM_SLOT_BELT
-	force = 15
+	force = 12
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 	hitsound = 'sound/weapons/whip.ogg'
 
 /obj/item/melee/curator_whip/afterattack(target, mob/user, proximity_flag)
 	. = ..()
-	if(ishuman(target) && proximity_flag)
-		var/mob/living/carbon/human/H = target
-		H.drop_all_held_items()
-		H.visible_message("<span class='danger'>[user] disarms [H]!</span>", "<span class='userdanger'>[user] disarmed you!</span>")
+	if(isanimal(target) && proximity_flag)
+		var/mob/living/simple_animal/A = target
+		A.apply_damage(8, BRUTE)
 
 /obj/item/melee/roastingstick
 	name = "advanced roasting stick"

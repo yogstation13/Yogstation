@@ -15879,6 +15879,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"aGK" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "aGY" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -23975,14 +23984,6 @@
 /obj/structure/girder,
 /turf/open/floor/plating/airless,
 /area/asteroid/nearstation)
-"bvt" = (
-/obj/structure/table/reinforced,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "bvI" = (
 /obj/item/pickaxe/emergency,
 /turf/open/floor/plating/asteroid/airless,
@@ -24236,29 +24237,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/restrooms)
-"bHP" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/glass/rag{
-	pixel_y = 5
-	},
-/obj/item/book/manual/wiki/barman_recipes{
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/shaker,
-/obj/machinery/newscaster{
-	pixel_y = -30
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 26
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "bIG" = (
 /turf/open/floor/plating/asteroid/airless,
 /area/maintenance/port)
@@ -26118,14 +26096,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"dRZ" = (
-/obj/structure/table/reinforced,
-/obj/item/lighter,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "dTh" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -26772,19 +26742,6 @@
 	},
 /turf/open/floor/circuit/green,
 /area/ai_monitored/turret_protected/ai)
-"eyd" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/head/that{
-	throwforce = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "eyT" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -27011,6 +26968,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"eMH" = (
+/obj/structure/table/reinforced,
+/obj/item/lighter,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "ePo" = (
 /obj/machinery/camera{
 	c_tag = "Medbay Morgue";
@@ -29906,6 +29875,23 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/library)
+"hRM" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/that{
+	throwforce = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "hSR" = (
 /obj/structure/cable/white{
 	icon_state = "2-4"
@@ -30011,6 +29997,23 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"hXw" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = 3
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "hXB" = (
 /obj/machinery/light{
 	dir = 8
@@ -30279,16 +30282,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"ipM" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/matches{
-	pixel_y = 5
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "iqC" = (
 /obj/machinery/air_sensor/atmos/carbon_tank,
 /turf/open/floor/engine/co2,
@@ -31091,6 +31084,17 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/server)
+"jcC" = (
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/meter{
+	target_layer = 2
+	},
+/turf/open/floor/plating,
+/area/ai_monitored/turret_protected/aisat_interior)
 "jcW" = (
 /obj/structure/cable/white{
 	icon_state = "1-4"
@@ -31446,6 +31450,35 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"jvH" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = 5;
+	pixel_y = 15
+	},
+/obj/machinery/newscaster{
+	pixel_y = -30
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 26
+	},
+/obj/item/reagent_containers/food/drinks/shaker{
+	pixel_x = -9
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "jvR" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -32662,15 +32695,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical)
-"kKb" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "kKr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 2;
@@ -32980,6 +33004,21 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/library)
+"lgS" = (
+/obj/structure/table/wood,
+/obj/item/book/manual/wiki/barman_recipes{
+	pixel_y = 5
+	},
+/obj/item/stack/packageWrap,
+/obj/item/stack/packageWrap,
+/obj/item/gun/ballistic/shotgun/doublebarrel{
+	pixel_y = -5
+	},
+/obj/item/gun/ballistic/shotgun/doublebarrel{
+	pixel_y = -5
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "lhM" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -34677,14 +34716,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"nfA" = (
-/obj/item/gun/ballistic/shotgun/doublebarrel,
-/obj/structure/table/wood,
-/obj/item/stack/packageWrap,
-/obj/item/stack/packageWrap,
-/obj/item/gun/ballistic/shotgun/doublebarrel,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "nfB" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/yellow,
@@ -37071,6 +37102,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"pDu" = (
+/obj/structure/table/reinforced,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "pEA" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -39403,19 +39446,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"rZJ" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "sak" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/tile/blue{
@@ -41402,15 +41432,6 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall/rust,
 /area/ai_monitored/turret_protected/aisat_interior)
-"sNd" = (
-/obj/structure/cable/white{
-	icon_state = "1-2"
-	},
-/obj/machinery/meter,
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plating,
-/area/ai_monitored/turret_protected/aisat_interior)
 "sNf" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable/yellow{
@@ -42230,6 +42251,20 @@
 /obj/machinery/disposal/bin,
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
+"tnJ" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/matches{
+	pixel_y = 5
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "tnV" = (
 /obj/structure/girder,
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
@@ -89374,9 +89409,9 @@ bTM
 oEX
 lxq
 fPe
-eyd
-ipM
-rZJ
+hRM
+tnJ
+hXw
 xXO
 xXO
 aOr
@@ -89631,7 +89666,7 @@ fJE
 aiE
 nWT
 fHZ
-bvt
+pDu
 jXX
 aju
 aJY
@@ -89888,7 +89923,7 @@ gVt
 oEX
 lxq
 fPe
-dRZ
+eMH
 bXm
 sBA
 try
@@ -90147,8 +90182,8 @@ qVR
 qVR
 ajn
 cVd
-kKb
-bHP
+aGK
+jvH
 xXO
 apd
 akN
@@ -91174,7 +91209,7 @@ aiF
 lxq
 lzd
 xXO
-nfA
+lgS
 jED
 fYS
 akb
@@ -92663,7 +92698,7 @@ sMg
 sLC
 sMr
 sMO
-sNd
+jcC
 uWh
 sNI
 sMr

@@ -354,6 +354,7 @@
 	name = "double-bladed toy sword"
 	desc = "A cheap, plastic replica of TWO energy swords.  Double the fun!"
 	force = 0
+	force_wielded = 0 // Why did someone make this a subtype of dualsabers
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 5

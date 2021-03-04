@@ -18373,20 +18373,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"aFa" = (
-/obj/machinery/disposal/bin,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "aFb" = (
 /obj/structure/table,
 /obj/structure/cable/white{
@@ -19110,25 +19096,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"aGl" = (
-/obj/machinery/newscaster{
-	pixel_x = 32
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "aGm" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 32
@@ -21178,62 +21145,6 @@
 "aIY" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall,
-/area/crew_quarters/bar)
-"aIZ" = (
-/obj/structure/table/reinforced,
-/obj/item/lighter{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/lighter,
-/obj/machinery/camera{
-	c_tag = "Bar - Fore";
-	dir = 4;
-	name = "service camera"
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
-"aJa" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
-"aJb" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/matches{
-	pixel_x = -3;
-	pixel_y = 5
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "aJc" = (
 /obj/structure/sign/nanotrasen,
@@ -125294,6 +125205,24 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/nanite)
+"jrG" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "juf" = (
 /obj/machinery/atmospherics/components/binary/valve,
 /obj/effect/turf_decal/stripes/line{
@@ -125961,6 +125890,28 @@
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"mPF" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/matches{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "mQb" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -126240,6 +126191,32 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/closed/wall/r_wall,
 /area/engine/atmospherics_engine)
+"oGu" = (
+/obj/machinery/newscaster{
+	pixel_x = 32
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = 25;
+	pixel_y = 24;
+	req_access_txt = "25"
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "oHB" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -126363,6 +126340,34 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
+"oYh" = (
+/obj/structure/table/reinforced,
+/obj/item/lighter{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/lighter,
+/obj/machinery/camera{
+	c_tag = "Bar - Fore";
+	dir = 4;
+	name = "service camera"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "oYI" = (
 /obj/machinery/igniter/incinerator_toxmix,
 /turf/open/floor/engine/vacuum,
@@ -127710,6 +127715,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"wrp" = (
+/obj/machinery/disposal/bin,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/disposalpipe/trunk,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "wsq" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/portable_atmospherics/canister/water_vapor,
@@ -164726,7 +164746,7 @@ aDL
 aEU
 aCx
 aHB
-aIZ
+oYh
 aKy
 aLK
 aLL
@@ -164983,7 +165003,7 @@ aDL
 aEV
 aCF
 aHi
-aJa
+jrG
 aKz
 aLL
 aDe
@@ -165240,7 +165260,7 @@ aDL
 aEW
 aCS
 aHB
-aJa
+jrG
 aKz
 aLL
 aNh
@@ -165497,7 +165517,7 @@ aDL
 aEX
 aog
 aHC
-aJb
+mPF
 aKz
 aLL
 aNh
@@ -165754,7 +165774,7 @@ aDL
 aEY
 aod
 aHB
-aJa
+jrG
 aKz
 aLL
 aNh
@@ -166011,7 +166031,7 @@ aDL
 aEZ
 aof
 aHD
-aJa
+jrG
 aKA
 aLL
 aNi
@@ -166265,10 +166285,10 @@ aAp
 auj
 agx
 aDL
-aFa
-aGl
+wrp
+oGu
 aHE
-aJa
+jrG
 aKB
 aLM
 aLL

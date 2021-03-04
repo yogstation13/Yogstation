@@ -45,7 +45,7 @@
 			var/flesh_wound = ran_zone(user.zone_selected)
 			if(scaled_infect_chance)
 				var/mob/living/mob_target = target
-				var/total_damage = mob_target.get_damage_amount(BRUTE) + mob_target.get_damage_amount(BURN) + mob_target.get_damage_amount(TOX) + mob_target.get_damage_amount(OXY) + mob_target.get_damage_amount(CLONE)
+				var/total_damage = mob_target.get_damage_amount(BRUTE)
 
 				var/infect_modifier = (total_damage ** 2) / 100
 
@@ -110,7 +110,10 @@
 /obj/item/zombie_hand/gamemode/runner
 	force = 10
 	infect_chance = 35
-	door_open_modifier = 1.5
+	door_open_modifier = 1.1
+
+/obj/item/zombie_hand/gamemode/tank
+	door_open_modifier = 0.8
 
 /obj/item/zombie_hand/gamemode/necro
 	force = 7

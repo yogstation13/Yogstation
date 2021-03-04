@@ -1555,14 +1555,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	if(channels_to_use.len)
 		world.TgsChatBroadcast()
 
-/proc/num2sign(numeric)
-	if(numeric > 0)
-		return 1
-	else if(numeric < 0)
-		return -1
-	else
-		return 0
-
 /proc/CallAsync(datum/source, proctype, list/arguments)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
