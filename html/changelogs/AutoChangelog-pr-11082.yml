@@ -1,0 +1,4 @@
+author: "UselessTheremin"
+delete-after: true 
+changes: 
+  - bugfix: "survival capsules don't get deleted when popped at the edge of the map"
