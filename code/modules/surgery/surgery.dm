@@ -68,14 +68,11 @@
 
 	//Get the relevant operating computer
 	var/obj/machinery/computer/operating/opcomputer
-	var/obj/structure/table/optable/table = locate(/obj/structure/table/optable, T)
-	if(table?.computer)
-		opcomputer = table.computer
-	else
-		var/obj/machinery/stasis/the_stasis_bed = locate(/obj/machinery/stasis, T)
-		if(the_stasis_bed?.computer)
-			opcomputer = the_stasis_bed.computer
-
+	var/list/computer_viable_surfaces = list(/obj/structure/table/optable, /obj/machinery/stasis) //make sure anything in this list has a get_computer() proc thanks :)
+	for(var/thing in computer_viable_surfaces)
+		opcomputer = call(thing, "get_computer")()
+		if(opcomputer)
+			break
 	if(!opcomputer)
 		return
 	if(opcomputer.stat & (NOPOWER|BROKEN))
