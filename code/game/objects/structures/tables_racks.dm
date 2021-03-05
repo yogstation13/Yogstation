@@ -532,6 +532,9 @@
 			computer.table = src
 			break
 
+/obj/structure/table/optable/proc/get_computer()
+	return computer
+
 /obj/structure/table/optable/Destroy()
 	. = ..()
 	if(computer && computer.table == src)
