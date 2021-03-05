@@ -76217,6 +76217,15 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"hsg" = (
+/obj/structure/cable/yellow,
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshieldshutters";
+	name = "Blueshield Office Shutters"
+	},
+/turf/open/floor/plating,
+/area/blueshield)
 "hsn" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -77452,15 +77461,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"kcH" = (
-/obj/structure/cable/yellow,
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "blueshieldshutters";
-	name = "blueshield shutters"
-	},
-/turf/open/floor/plating,
-/area/blueshield)
 "kdO" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -81795,20 +81795,6 @@
 /obj/machinery/vending/assist,
 /turf/open/floor/plasteel,
 /area/maintenance/department/science)
-"uwi" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "blueshieldshutters";
-	name = "blueshield shutters"
-	},
-/turf/open/floor/plating,
-/area/blueshield)
 "uyj" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -82148,6 +82134,20 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"vmm" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshieldshutters";
+	name = "Blueshield Office Shutters"
+	},
+/turf/open/floor/plating,
+/area/blueshield)
 "vmz" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -106604,8 +106604,8 @@ aLR
 kjn
 rUY
 snk
-uwi
-kcH
+vmm
+hsg
 bkz
 bmo
 bom
