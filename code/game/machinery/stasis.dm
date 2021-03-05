@@ -59,6 +59,9 @@
 			thaw_them(L)
 	. = ..()
 
+/obj/machinery/stasis/proc/get_computer()
+	return computer
+
 /obj/machinery/stasis/proc/stasis_running()
 	return stasis_enabled && is_operational()
 
