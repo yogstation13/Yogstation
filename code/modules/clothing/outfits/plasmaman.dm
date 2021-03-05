@@ -499,5 +499,5 @@
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	ears = /obj/item/radio/headset
 	belt = /obj/item/pda
-	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
+	backpack_contents = list(/obj/item/gun/energy/e_gun, /obj/item/storage/box/plasmaman = 1)
 
