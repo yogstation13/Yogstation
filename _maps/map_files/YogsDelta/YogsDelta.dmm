@@ -119142,6 +119142,19 @@
 /obj/effect/turf_decal/loading_area,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+"dKE" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable/white,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshieldshutters";
+	name = "Blueshield Office Shutters"
+	},
+/turf/open/floor/plating,
+/area/blueshield)
 "dKF" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/effect/turf_decal/bot,
@@ -124490,6 +124503,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
+"fxl" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/cable/white,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshieldshutters";
+	name = "Blueshield Office Shutters"
+	},
+/turf/open/floor/plating,
+/area/blueshield)
 "fyd" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -126626,19 +126652,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab/range)
-"qkJ" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/cable/white,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "blueshieldshutters";
-	name = "blueshieldshutters"
-	},
-/turf/open/floor/plating,
-/area/blueshield)
 "qnx" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/toxins_mixing_input,
 /turf/open/floor/engine/vacuum,
@@ -127652,19 +127665,6 @@
 /obj/structure/closet/wardrobe/green,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
-"wgV" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable/white,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "blueshieldshutters";
-	name = "blueshieldshutters"
-	},
-/turf/open/floor/plating,
-/area/blueshield)
 "wgW" = (
 /turf/open/floor/carpet/royalblue,
 /area/blueshield)
@@ -163512,7 +163512,7 @@ sSw
 pcV
 gVT
 xhU
-qkJ
+fxl
 byX
 bJZ
 cvo
@@ -164283,7 +164283,7 @@ vJY
 ujW
 xPK
 eXN
-wgV
+dKE
 cqT
 bLg
 cvo

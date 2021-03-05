@@ -57109,6 +57109,14 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
+"eHW" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshieldshutters";
+	name = "Blueshield Office Shutters"
+	},
+/turf/open/floor/plating,
+/area/blueshield)
 "eIk" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -58719,14 +58727,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
-"iUN" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "blueshieldshutters";
-	name = "blueshieldshutters"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/blueshield)
 "iVj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -59163,14 +59163,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
-"khH" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "blueshieldshutters";
-	name = "blueshieldshutters"
-	},
-/turf/open/floor/plating,
-/area/blueshield)
 "khN" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -59526,6 +59518,18 @@
 /obj/structure/sign/warning/biohazard,
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
+"leF" = (
+/obj/structure/cable,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshieldshutters";
+	name = "Blueshield Office Shutters"
+	},
+/turf/open/floor/plating,
+/area/blueshield)
 "lhK" = (
 /obj/machinery/telecomms/server/presets/science,
 /obj/effect/turf_decal/tile/neutral{
@@ -60287,29 +60291,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"nvl" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "blueshieldshutters";
-	name = "blueshieldshutters"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/ai_monitored/storage/eva)
 "nCV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -62210,6 +62191,29 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"sTm" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshieldshutters";
+	name = "Blueshield Office Shutters"
+	},
+/turf/open/floor/plating,
+/area/blueshield)
 "sTv" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -63770,18 +63774,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"xEn" = (
-/obj/structure/cable,
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "blueshieldshutters";
-	name = "blueshieldshutters"
-	},
-/turf/open/floor/plating,
-/area/ai_monitored/storage/eva)
 "xFj" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -92967,8 +92959,8 @@ apd
 axv
 ayL
 ayS
-nvl
-xEn
+sTm
+leF
 hvo
 aDI
 ayL
@@ -93230,7 +93222,7 @@ vtY
 vAf
 iLu
 jmK
-iUN
+eHW
 aae
 bOS
 aLY
@@ -93487,7 +93479,7 @@ eLW
 gvO
 cwN
 pGS
-iUN
+eHW
 aae
 bOS
 aJq
@@ -94253,8 +94245,8 @@ axF
 apP
 fAg
 fAg
-khH
-khH
+eHW
+eHW
 isH
 fAg
 fAg
