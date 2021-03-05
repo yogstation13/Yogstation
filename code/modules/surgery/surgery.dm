@@ -70,7 +70,10 @@
 	var/obj/machinery/computer/operating/opcomputer
 	var/list/computer_viable_surfaces = list(/obj/structure/table/optable, /obj/machinery/stasis) //make sure anything in this list has a get_computer() proc thanks :)
 	for(var/thing in computer_viable_surfaces)
-		opcomputer = call(thing, "get_computer")()
+		var/thingy = locate(thing, T)
+		if(!thingy)
+			continue
+		opcomputer = call(thingy, "get_computer")()
 		if(opcomputer)
 			break
 	if(!opcomputer)
