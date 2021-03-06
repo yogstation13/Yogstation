@@ -23,6 +23,8 @@
 	loot = list(/obj/structure/closet/crate/sphere/stalwart)
 	deathmessage = "erupts into blue flame, and screeches before violently shattering."
 	deathsound = 'borg_deathsound.ogg'
+	internal_type = /obj/item/gps/internal/stalwart
+
 	attack_action_types = list(/datum/action/innate/megafauna_attack/lava_nade,
 							   /datum/action/innate/megafauna_attack/energy_pike,
 							   /datum/action/innate/megafauna_attack/charge,
@@ -30,6 +32,13 @@
 
 
 //Projectiles and such
+
+/obj/item/gps/internal/stalwart
+	icon_state = null
+	gpstag = "Ancient Signal"
+	desc = "Bzz bizzop boop blip beep"
+	invisibility = 100
+
 /obj/item/projectile/stalpike
 	name = "energy pike"
 	icon_state = "arcane_barrage"
@@ -46,3 +55,13 @@
 	icon_state = "wipe"
 	damage = 0
 
+/mob/living/simple_animal/hostile/megafauna/stalwart/devour(mob/living/L)
+	visible_message("<span class='danger'>[src] melts [L]!</span>")
+	L.dust()
+
+/obj/item/gun/energy/plasmacutter/adv/robocutter
+	name = "energized powercutter"
+	desc = "Ripped out of an ancient machine, this self-recharging cutter is unmatched."
+	fire_delay = 4
+	icon_state = "robocutter"
+	selfcharge = 1

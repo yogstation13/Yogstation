@@ -1392,6 +1392,14 @@
 /obj/item/hierophant_club/station
 	z_level_check = FALSE
 
+//Stalwart
+/obj/structure/closet/crate/sphere/stalwart
+	name = "silvery capsule"
+	desc = "It feels cold to the touch..."
+
+/obj/structure/closet/crate/necropolis/colossus/PopulateContents()
+	new /obj/item/gun/energy/plasmacutter/adv/robocutter
+
 //Just some minor stuff
 /obj/structure/closet/crate/necropolis/puzzle
 	name = "puzzling chest"
