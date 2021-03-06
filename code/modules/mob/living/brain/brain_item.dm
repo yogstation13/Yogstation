@@ -252,12 +252,6 @@
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain-occupied"
 
-/obj/item/organ/brain/positron/Insert(mob/living/carbon/C, special = 0, no_id_transfer = FALSE)
-	owner = C
-	C.internal_organs |= src
-	C.internal_organs_slot[slot] = src
-	loc = null
-
 /obj/item/organ/brain/positron/emp_act(severity)
 	switch(severity)
 		if(1)

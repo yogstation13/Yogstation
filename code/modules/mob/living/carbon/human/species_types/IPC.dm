@@ -185,7 +185,7 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 			return FALSE
 		if(H.mind)
 			H.mind.grab_ghost()
-		H.revive()
 		qdel(I) // One use only >:(
+		H.revive()
 		to_chat(user, "<span class='notice'>You reset the IPC's internal circuitry - reviving them!</span>")
 		return
