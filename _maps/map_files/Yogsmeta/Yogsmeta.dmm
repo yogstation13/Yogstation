@@ -75552,17 +75552,6 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"fXv" = (
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/obj/item/station_charter/flag,
-/obj/item/radio/intercom{
-	pixel_x = 28;
-	pixel_y = 5
-	},
-/turf/open/floor/wood,
-/area/blueshield)
 "fYy" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -81704,6 +81693,17 @@
 /obj/machinery/atmospherics/components/trinary/filter/flipped/critical,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"uhw" = (
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/item/radio/intercom{
+	pixel_x = 28;
+	pixel_y = 5
+	},
+/obj/item/banner/command,
+/turf/open/floor/wood,
+/area/blueshield)
 "uik" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -107373,7 +107373,7 @@ aIA
 aVE
 aLV
 kjn
-fXv
+uhw
 mWZ
 itE
 wnq

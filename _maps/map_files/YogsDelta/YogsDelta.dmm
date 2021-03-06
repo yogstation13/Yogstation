@@ -125429,6 +125429,13 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/storage/art)
+"kGS" = (
+/obj/machinery/status_display/ai{
+	pixel_x = 32
+	},
+/obj/item/banner/command,
+/turf/open/floor/wood,
+/area/blueshield)
 "kJq" = (
 /obj/machinery/light{
 	dir = 8
@@ -126740,13 +126747,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/nanite)
-"qVZ" = (
-/obj/machinery/status_display/ai{
-	pixel_x = 32
-	},
-/obj/item/station_charter/flag,
-/turf/open/floor/wood,
-/area/blueshield)
 "qWg" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light/small{
@@ -165051,7 +165051,7 @@ brp
 bsm
 bsJ
 vJY
-qVZ
+kGS
 xTL
 iCN
 sSw

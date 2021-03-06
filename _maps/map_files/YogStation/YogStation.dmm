@@ -58243,10 +58243,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"uaF" = (
-/obj/item/station_charter/flag,
-/turf/open/floor/wood,
-/area/blueshield)
 "ubH" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -59289,6 +59285,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"uLP" = (
+/obj/item/banner/command,
+/turf/open/floor/wood,
+/area/blueshield)
 "uMh" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -93353,7 +93353,7 @@ iDI
 ykF
 ykF
 dYu
-uaF
+uLP
 msV
 aaa
 bOS

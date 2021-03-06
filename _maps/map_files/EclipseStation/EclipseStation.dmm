@@ -83633,6 +83633,20 @@
 /obj/structure/closet/secure_closet/blueshield,
 /turf/open/floor/wood,
 /area/blueshield)
+"jAl" = (
+/obj/machinery/requests_console{
+	department = "EVA";
+	pixel_x = -32
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/item/banner/command,
+/turf/open/floor/wood,
+/area/blueshield)
 "jBN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/brown,
@@ -88656,20 +88670,6 @@
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"uTC" = (
-/obj/machinery/requests_console{
-	department = "EVA";
-	pixel_x = -32
-	},
-/obj/item/station_charter/flag,
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/turf/open/floor/wood,
-/area/blueshield)
 "uVi" = (
 /obj/structure/chair{
 	dir = 4
@@ -124479,7 +124479,7 @@ aMR
 aOI
 aPk
 dNC
-uTC
+jAl
 seT
 mgl
 gOd

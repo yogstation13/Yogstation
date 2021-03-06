@@ -57258,6 +57258,14 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/maintenance/department/tcoms)
+"eYB" = (
+/obj/machinery/camera{
+	c_tag = "EVA East";
+	dir = 1
+	},
+/obj/item/banner/command,
+/turf/open/floor/wood,
+/area/blueshield)
 "eYN" = (
 /obj/item/clothing/gloves/color/rainbow,
 /obj/item/clothing/head/soft/rainbow,
@@ -58193,14 +58201,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/lounge)
-"hzB" = (
-/obj/machinery/camera{
-	c_tag = "EVA East";
-	dir = 1
-	},
-/obj/item/station_charter/flag,
-/turf/open/floor/wood,
-/area/blueshield)
 "hCS" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -93735,7 +93735,7 @@ nGJ
 iKN
 fNI
 cwN
-hzB
+eYB
 fAg
 bOS
 bOS
