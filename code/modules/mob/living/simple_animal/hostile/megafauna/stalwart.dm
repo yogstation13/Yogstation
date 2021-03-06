@@ -58,10 +58,3 @@
 /mob/living/simple_animal/hostile/megafauna/stalwart/devour(mob/living/L)
 	visible_message("<span class='danger'>[src] melts [L]!</span>")
 	L.dust()
-
-/obj/item/gun/energy/plasmacutter/adv/robocutter
-	name = "energized powercutter"
-	desc = "Ripped out of an ancient machine, this self-recharging cutter is unmatched."
-	fire_delay = 4
-	icon_state = "robocutter"
-	selfcharge = 1
