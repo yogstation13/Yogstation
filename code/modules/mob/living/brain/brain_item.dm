@@ -258,12 +258,6 @@
 	C.internal_organs_slot[slot] = src
 	loc = null
 
-	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
-		if(H.dna && H.dna.species && (REVIVESBYHEALING in H.dna.species.species_traits))
-			if(H.health > 0 && !H.hellbound)
-				H.revive(0)
-
 /obj/item/organ/brain/positron/emp_act(severity)
 	switch(severity)
 		if(1)

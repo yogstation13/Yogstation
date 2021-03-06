@@ -20,8 +20,6 @@
 	exotic_blood = "oil"
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
-	mutant_bodyparts = list("ipc_screen", "ipc_antenna", "ipc_chassis")
-	default_features = list("ipc_screen" = "BSOD", "ipc_antenna" = "None")
 	burnmod = 2
 	heatmod = 1.5
 	brutemod = 1
