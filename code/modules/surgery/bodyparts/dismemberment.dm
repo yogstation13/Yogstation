@@ -300,6 +300,8 @@
 		O.Insert(C)
 
 	update_bodypart_damage_state()
+	if(C.dna && C.dna.species && (ROBOTIC_LIMBS in C.dna.species.species_traits) && src.status == BODYPART_ROBOTIC)
+		src.render_like_organic = TRUE
 
 	C.updatehealth()
 	C.update_body()

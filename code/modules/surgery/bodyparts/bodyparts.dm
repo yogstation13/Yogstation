@@ -88,6 +88,14 @@
 		var/mob/living/carbon/human/H = C
 		if(HAS_TRAIT(C, TRAIT_LIMBATTACHMENT))
 			if(!H.get_bodypart(body_zone) && !animal_origin)
+				if(iscarbon(user))
+					var/mob/living/carbon/target = user
+					if(target.dna && target.dna.species && (ROBOTIC_LIMBS in target.dna.species.species_traits) && src.status != BODYPART_ROBOTIC)
+						if(H == user)
+							to_chat(H, "<span class='warning'>You try to force [src] into your empty socket, but it doesn't fit</span>")
+						else
+							to_chat(user, "<span class='warning'>You try to force [src] into [H.p_their()] empty socket, but it doesn't fit</span>")
+						return
 				if(H == user)
 					H.visible_message("<span class='warning'>[H] jams [src] into [H.p_their()] empty socket!</span>",\
 					"<span class='notice'>You force [src] into your empty socket, and it locks into place!</span>")
