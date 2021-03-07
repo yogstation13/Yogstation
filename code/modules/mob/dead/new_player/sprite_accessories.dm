@@ -904,7 +904,7 @@
 	name = "Yellow"
 	icon_state = "yellow"
 
-/datum/sprite_accessory/ipc_screens/stars
+/datum/sprite_accessory/ipc_screens/textdrop
 	name = "Text drop"
 	icon_state = "textdrop"
 

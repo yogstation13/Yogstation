@@ -130,14 +130,14 @@
 #define DYNCOLORS		17
 /// Forced genders
 #define AGENDER			18
-#define FGENDER         21
-#define MGENDER	        22
+#define FGENDER         19
+#define MGENDER	        20
 /// Do not draw eyes or eyeless overlay
-#define NOEYESPRITES	19
+#define NOEYESPRITES	21
 /// Can't be husked.
-#define NOHUSK			20
+#define NOHUSK			22
 /// limbs start out as robotic; but also use organic icons. If you want to use the default ones, you'll have to use on_species_gain
-#define ROBOTIC_LIMBS	21
+#define ROBOTIC_LIMBS	23
 /// have no mouth to ingest/eat with
 #define NOMOUTH			222
 
