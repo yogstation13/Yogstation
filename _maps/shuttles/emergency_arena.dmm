@@ -1,47 +1,413 @@
-"a" = (/turf/closed/indestructible/necropolis,/area/shuttle/escape/arena)
-"b" = (/turf/open/indestructible{icon_state = "cult"},/area/shuttle/escape/arena)
-"c" = (/obj/structure/closet/crate/necropolis/dragon,/turf/open/indestructible{icon_state = "cult"},/area/shuttle/escape/arena)
-"d" = (/obj/machinery/computer/emergency_shuttle,/turf/open/indestructible{icon_state = "cult"},/area/shuttle/escape/arena)
-"e" = (/turf/open/indestructible/necropolis/air,/area/shuttle/escape/arena)
-"f" = (/obj/structure/fluff/drake_statue,/turf/open/indestructible{icon_state = "cult"},/area/shuttle/escape/arena)
-"g" = (/obj/structure/closet/crate/necropolis/tendril,/turf/open/indestructible/necropolis/air,/area/shuttle/escape/arena)
-"h" = (/obj/structure/fluff/drake_statue,/turf/open/indestructible/necropolis/air,/area/shuttle/escape/arena)
-"i" = (/obj/effect/landmark/shuttle_arena_safe,/turf/open/indestructible/necropolis/air,/area/shuttle/escape/arena)
-"j" = (/mob/living/simple_animal/slaughter{deathmessage = "collapses down..."; desc = "Your trusty shuttle navigator. You're wondering where this shuttle is going anyway..."; loot = list(/obj/effect/decal/cleanable/blood,/obj/effect/decal/cleanable/blood/innards); name = "Gumdrop"; playstyle_string = "<span class='big bold'>You are a slaughter demon,</span><B> However, against your nature, you've been employed by the king of demons himself to entertain the victorious passagers on this god forsaken shuttle.</B>"},/turf/open/indestructible{icon_state = "cult"},/area/shuttle/escape/arena)
-"k" = (/obj/structure/chair/comfy/shuttle{dir = 1},/turf/open/indestructible{icon_state = "cult"},/area/shuttle/escape/arena)
-"l" = (/obj/structure/healingfountain,/turf/open/indestructible/necropolis/air,/area/shuttle/escape/arena)
-"m" = (/turf/template_noop,/area/template_noop)
-"n" = (/obj/structure/chair/comfy/shuttle{dir = 4},/turf/open/indestructible/necropolis/air,/area/shuttle/escape/arena)
-"o" = (/obj/structure/chair/comfy/shuttle{dir = 8},/turf/open/indestructible/necropolis/air,/area/shuttle/escape/arena)
-"p" = (/obj/effect/forcefield/arena_shuttle_entrance,/obj/structure/fans/tiny/invisible,/turf/open/indestructible/necropolis/air,/area/shuttle/escape/arena)
-"q" = (/obj/effect/forcefield/arena_shuttle_entrance,/obj/docking_port/mobile/emergency{name = "The Arena"},/obj/structure/fans/tiny/invisible,/turf/open/indestructible/necropolis/air,/area/shuttle/escape/arena)
-"r" = (/obj/structure/chair/comfy/shuttle{dir = 4},/turf/open/indestructible{icon_state = "cult"},/area/shuttle/escape/arena)
-"s" = (/obj/structure/chair/comfy/shuttle{dir = 8},/turf/open/indestructible{icon_state = "cult"},/area/shuttle/escape/arena)
-"t" = (/obj/structure/shuttle/engine/heater{resistance_flags = 3},/turf/closed/indestructible/necropolis,/area/shuttle/escape/arena)
-"u" = (/obj/structure/shuttle/engine/huge,/turf/closed/indestructible/necropolis,/area/shuttle/escape/arena)
-"v" = (/obj/structure/shuttle/engine/large,/turf/closed/indestructible/necropolis,/area/shuttle/escape/arena)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/necropolis,
+/area/shuttle/escape/arena)
+"b" = (
+/turf/open/indestructible{
+	icon_state = "cult"
+	},
+/area/shuttle/escape/arena)
+"c" = (
+/obj/structure/closet/crate/necropolis/dragon,
+/turf/open/indestructible{
+	icon_state = "cult"
+	},
+/area/shuttle/escape/arena)
+"d" = (
+/obj/machinery/computer/emergency_shuttle,
+/turf/open/indestructible{
+	icon_state = "cult"
+	},
+/area/shuttle/escape/arena)
+"e" = (
+/turf/open/indestructible/necropolis/air,
+/area/shuttle/escape/arena)
+"f" = (
+/obj/structure/fluff/drake_statue,
+/turf/open/indestructible{
+	icon_state = "cult"
+	},
+/area/shuttle/escape/arena)
+"g" = (
+/obj/structure/closet/crate/necropolis/tendril,
+/turf/open/indestructible/necropolis/air,
+/area/shuttle/escape/arena)
+"h" = (
+/obj/structure/fluff/drake_statue,
+/turf/open/indestructible/necropolis/air,
+/area/shuttle/escape/arena)
+"i" = (
+/obj/effect/landmark/shuttle_arena_safe,
+/turf/open/indestructible/necropolis/air,
+/area/shuttle/escape/arena)
+"j" = (
+/mob/living/simple_animal/slaughter{
+	deathmessage = "collapses down...";
+	desc = "Your trusty shuttle navigator. You're wondering where this shuttle is going anyway...";
+	loot = list(/obj/effect/decal/cleanable/blood,/obj/effect/decal/cleanable/blood/innards);
+	name = "Gumdrop";
+	playstyle_string = "<span class='big bold'>You are a slaughter demon,</span><B> However, against your nature, you've been employed by the king of demons himself to entertain the victorious passagers on this god forsaken shuttle.</B>"
+	},
+/turf/open/indestructible{
+	icon_state = "cult"
+	},
+/area/shuttle/escape/arena)
+"k" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/indestructible{
+	icon_state = "cult"
+	},
+/area/shuttle/escape/arena)
+"l" = (
+/obj/structure/healingfountain,
+/turf/open/indestructible/necropolis/air,
+/area/shuttle/escape/arena)
+"m" = (
+/turf/template_noop,
+/area/template_noop)
+"n" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/indestructible/necropolis/air,
+/area/shuttle/escape/arena)
+"o" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/indestructible/necropolis/air,
+/area/shuttle/escape/arena)
+"p" = (
+/obj/effect/forcefield/arena_shuttle_entrance,
+/obj/structure/fans/tiny/invisible,
+/turf/open/indestructible/necropolis/air,
+/area/shuttle/escape/arena)
+"q" = (
+/obj/effect/forcefield/arena_shuttle_entrance,
+/obj/docking_port/mobile/emergency{
+	name = "The Arena"
+	},
+/obj/structure/fans/tiny/invisible,
+/turf/open/indestructible/necropolis/air,
+/area/shuttle/escape/arena)
+"r" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/indestructible{
+	icon_state = "cult"
+	},
+/area/shuttle/escape/arena)
+"s" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/indestructible{
+	icon_state = "cult"
+	},
+/area/shuttle/escape/arena)
+"t" = (
+/obj/structure/shuttle/engine/heater{
+	resistance_flags = 3
+	},
+/turf/closed/indestructible/necropolis,
+/area/shuttle/escape/arena)
+"u" = (
+/obj/structure/shuttle/engine/huge,
+/turf/closed/indestructible/necropolis,
+/area/shuttle/escape/arena)
+"v" = (
+/obj/structure/shuttle/engine/large,
+/turf/closed/indestructible/necropolis,
+/area/shuttle/escape/arena)
 
 (1,1,1) = {"
-maaaaaaaaaam
-aabbccdccbba
-aaefbjkbbfea
-aaegbbbbbgea
-aaeeeeeeeeea
-aaehneeeohea
-aaegieeeigea
-paeeeeeeeeea
-aaehneeeohea
-qaegieeeigea
-aaeeeeeeeeea
-aaefreeeohea
-aaegieeeigea
-aaeeeeeeeeea
-aaehneeeshea
-paegieeeigea
-aaeeeeeeeeea
-pabeeeeeeeba
-aallllllllaa
-maaaattaaaam
-mmaaaaaaaamm
-mmuaavauaamm
+m
+a
+a
+a
+a
+a
+a
+p
+a
+q
+a
+a
+a
+a
+a
+p
+a
+p
+a
+m
+m
+m
+"}
+(2,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+m
+m
+"}
+(3,1,1) = {"
+a
+b
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+b
+l
+a
+a
+u
+"}
+(4,1,1) = {"
+a
+b
+f
+g
+e
+h
+g
+e
+h
+g
+e
+f
+g
+e
+h
+g
+e
+e
+l
+a
+a
+a
+"}
+(5,1,1) = {"
+a
+c
+b
+b
+e
+n
+i
+e
+n
+i
+e
+r
+i
+e
+n
+i
+e
+e
+l
+a
+a
+a
+"}
+(6,1,1) = {"
+a
+c
+j
+b
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+l
+t
+a
+v
+"}
+(7,1,1) = {"
+a
+d
+k
+b
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+l
+t
+a
+a
+"}
+(8,1,1) = {"
+a
+c
+b
+b
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+l
+a
+a
+u
+"}
+(9,1,1) = {"
+a
+c
+b
+b
+e
+o
+i
+e
+o
+i
+e
+o
+i
+e
+s
+i
+e
+e
+l
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+b
+f
+g
+e
+h
+g
+e
+h
+g
+e
+h
+g
+e
+h
+g
+e
+e
+l
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+b
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+b
+a
+a
+m
+m
+"}
+(12,1,1) = {"
+m
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+m
+m
+m
 "}
