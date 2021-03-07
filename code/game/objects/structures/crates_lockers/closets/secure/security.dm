@@ -300,7 +300,7 @@
 	..()
 	new /obj/item/pinpointer/crew(src)
 	new /obj/item/storage/belt/security/full(src)
-	new /obj/item/storage/firstaid/advanced(src)
+	new /obj/item/storage/firstaid/regular(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
 	new /obj/item/grenade/flashbang(src)
 	new /obj/item/assembly/flash/handheld(src)
