@@ -30,6 +30,36 @@
 							   /datum/action/innate/megafauna_attack/charge,
 							   /datum/action/innate/megafauna_attack/backup)
 
+/mob/living/simple_animal/hostile/megafauna/stalwart/OpenFire()
+	ranged_cooldown = world.time + 120
+	anger_modifier = clamp(((maxHealth - health)/50),0,20)
+		if(prob(20+anger_modifier)) //Major attack
+		backup()
+	else if(prob(20))
+		charge()
+	else
+		if(prob(70))
+			lava_nade()
+		else
+			energy_pike()
+
+/mob/living/simple_animal/hostile/megafauna/stalwart/proc/telegraph()
+	for(var/mob/M in range(10,src))
+		if(M.client)
+			flash_color(M.client, "#6CA4E3", 1)
+			shake_camera(M, 4, 3)
+
+/mob/living/simple_animal/hostile/megafauna/stalwart/proc/energy_pike()
+	ranged_cooldown = world.time + 20
+	var/turf/target_turf = get_turf(target)
+	playsound(src, 'sound/effects/pop_exl.ogg', 200, 1, 2)
+	newtonian_move(get_dir(target_turf, src))
+	var/angle_to_target = Get_Angle(src, target_turf)
+	if(isnum(set_angle))
+		angle_to_target = set_angle
+	var/static/list/stalwart_pike_angles = list(7.5, 2.5, -2.5, -7.5)
+	for(var/i in stalwart_pike_angles)
+		shoot_projectile(target_turf, angle_to_target + i)
 
 //Projectiles and such
 
