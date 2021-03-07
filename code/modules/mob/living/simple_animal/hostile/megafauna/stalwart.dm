@@ -33,13 +33,13 @@
 /mob/living/simple_animal/hostile/megafauna/stalwart/OpenFire()
 	ranged_cooldown = world.time + 120
 	anger_modifier = clamp(((maxHealth - health)/50),0,20)
-		if(prob(20+anger_modifier)) //Major attack
-		backup()
+	if(prob(20+anger_modifier)) //Major attack
+		lava_nade()
 	else if(prob(20))
 		charge()
 	else
 		if(prob(70))
-			lava_nade()
+			backup()
 		else
 			energy_pike()
 
@@ -48,6 +48,17 @@
 		if(M.client)
 			flash_color(M.client, "#6CA4E3", 1)
 			shake_camera(M, 4, 3)
+
+/mob/living/simple_animal/hostile/megafauna/stalwart/proc/shoot_projectile(turf/marker, set_angle)
+	if(!isnum(set_angle) && (!marker || marker == loc))
+		return
+	var/turf/startloc = get_turf(src)
+	var/obj/item/projectile/P = new /obj/item/projectile/stalpike(startloc)
+	P.preparePixelProjectile(marker, startloc)
+	P.firer = src
+	if(target)
+		P.original = target
+	P.fire(set_angle)
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/energy_pike()
 	ranged_cooldown = world.time + 20
@@ -61,7 +72,20 @@
 	for(var/i in stalwart_pike_angles)
 		shoot_projectile(target_turf, angle_to_target + i)
 
+/mob/living/simple_animal/hostile/megafauna/stalwart/proc/backup()
+	visible_message("<span class='danger'>[src] constructs a flock of mini mechanoid!</span>")
+	for(var/turf/open/H in range(src, 10))
+		if(prob(25))
+			new /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone(H.loc)
+
 //Projectiles and such
+
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone
+	name = "mini mechanoid"
+	desc = "It's staring at you intently. Do not taunt."
+	icon_state = "drone_gem"
+	faction = list("mining")
+	weather_immunities = list("lava","ash")
 
 /obj/item/gps/internal/stalwart
 	icon_state = null
