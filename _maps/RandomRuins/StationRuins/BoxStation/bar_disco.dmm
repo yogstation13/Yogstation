@@ -209,18 +209,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"aD" = (
-/obj/structure/chair/americandiner/booth/end_right{
-	dir = 4;
-	icon_state = "ameribooth-end2";
-	tag = ""
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8;
-	icon_state = "vent_map_on-1"
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "aE" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
@@ -980,6 +968,17 @@
 /obj/machinery/light_switch,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"GD" = (
+/obj/structure/chair/americandiner/booth/end_right{
+	dir = 4;
+	icon_state = "ameribooth-end2";
+	tag = ""
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "IN" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -1139,7 +1138,7 @@ ai
 (6,1,1) = {"
 ai
 ap
-aD
+GD
 aO
 bc
 bc

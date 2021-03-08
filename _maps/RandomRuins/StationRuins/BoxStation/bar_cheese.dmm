@@ -756,13 +756,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"cz" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/obj/machinery/computer/arcade,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "cB" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
@@ -916,6 +909,10 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"or" = (
+/obj/machinery/computer/arcade,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "oC" = (
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
@@ -1006,6 +1003,12 @@
 	},
 /obj/machinery/reagentgrinder,
 /obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"EX" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Fb" = (
@@ -1239,7 +1242,7 @@ aB
 aB
 aB
 aB
-aB
+EX
 dh
 "}
 (10,1,1) = {"
@@ -1319,7 +1322,7 @@ jf
 aY
 aB
 aB
-cz
+or
 ag
 "}
 (15,1,1) = {"

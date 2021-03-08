@@ -782,13 +782,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"bM" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/obj/structure/flora/ausbushes/sunnybush,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "bN" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -1312,6 +1305,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"qz" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "vD" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
@@ -1719,7 +1718,7 @@ aw
 aw
 aw
 df
-ar
+qz
 dF
 "}
 (10,1,1) = {"
@@ -1815,7 +1814,7 @@ cj
 cL
 bk
 bl
-bM
+aX
 ab
 "}
 (16,1,1) = {"
