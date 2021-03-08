@@ -939,6 +939,17 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"CC" = (
+/obj/structure/chair/americandiner/booth/end_right{
+	dir = 4;
+	icon_state = "ameribooth-end2";
+	tag = ""
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "Eq" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/head/that,
@@ -964,17 +975,6 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"FP" = (
-/obj/structure/chair/americandiner/booth/end_right{
-	dir = 4;
-	icon_state = "ameribooth-end2";
-	tag = ""
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "Gv" = (
 /obj/machinery/light_switch,
 /turf/closed/wall,
@@ -1138,7 +1138,7 @@ ai
 (6,1,1) = {"
 ai
 ap
-FP
+CC
 aO
 bc
 bc
