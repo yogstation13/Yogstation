@@ -1305,12 +1305,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"uk" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "vD" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
@@ -1490,6 +1484,12 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
+"QW" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
@@ -1718,7 +1718,7 @@ aw
 aw
 aw
 df
-uk
+QW
 dF
 "}
 (10,1,1) = {"

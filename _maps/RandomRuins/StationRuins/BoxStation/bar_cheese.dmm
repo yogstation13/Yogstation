@@ -918,10 +918,6 @@
 /obj/structure/closet/secure_closet/bartender,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"oN" = (
-/obj/machinery/computer/arcade,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "qS" = (
 /obj/item/book/manual/wiki/barman_recipes,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
@@ -968,10 +964,8 @@
 /obj/machinery/deepfryer,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"wZ" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
+"wu" = (
+/obj/machinery/computer/arcade,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "BJ" = (
@@ -1009,6 +1003,12 @@
 	},
 /obj/machinery/reagentgrinder,
 /obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"EX" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Fb" = (
@@ -1242,7 +1242,7 @@ aB
 aB
 aB
 aB
-wZ
+EX
 dh
 "}
 (10,1,1) = {"
@@ -1322,7 +1322,7 @@ jf
 aY
 aB
 aB
-oN
+wu
 ag
 "}
 (15,1,1) = {"
