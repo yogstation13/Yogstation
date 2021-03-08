@@ -964,10 +964,6 @@
 /obj/machinery/deepfryer,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"wu" = (
-/obj/machinery/computer/arcade,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "BJ" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -989,6 +985,10 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"Do" = (
+/obj/machinery/computer/arcade,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "Ew" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1003,12 +1003,6 @@
 	},
 /obj/machinery/reagentgrinder,
 /obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"EX" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Fb" = (
@@ -1089,6 +1083,12 @@
 	},
 /obj/structure/sink/kitchen{
 	pixel_y = 28
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"VZ" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -1242,7 +1242,7 @@ aB
 aB
 aB
 aB
-EX
+VZ
 dh
 "}
 (10,1,1) = {"
@@ -1322,7 +1322,7 @@ jf
 aY
 aB
 aB
-wu
+Do
 ag
 "}
 (15,1,1) = {"

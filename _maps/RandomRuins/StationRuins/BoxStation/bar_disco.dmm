@@ -964,11 +964,7 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"Gv" = (
-/obj/machinery/light_switch,
-/turf/closed/wall,
-/area/crew_quarters/bar)
-"Hy" = (
+"FP" = (
 /obj/structure/chair/americandiner/booth/end_right{
 	dir = 4;
 	icon_state = "ameribooth-end2";
@@ -978,6 +974,10 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
+"Gv" = (
+/obj/machinery/light_switch,
+/turf/closed/wall,
 /area/crew_quarters/bar)
 "IN" = (
 /obj/structure/disposalpipe/segment,
@@ -1138,7 +1138,7 @@ ai
 (6,1,1) = {"
 ai
 ap
-Hy
+FP
 aO
 bc
 bc
