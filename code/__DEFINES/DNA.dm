@@ -116,8 +116,6 @@
 /// Used if we want the mutant colour to be only used by mutant bodyparts. Don't combine this with MUTCOLORS, or it will be useless.
 #define MUTCOLORS_PARTSONLY	8
 #define NOZOMBIE		9
-/// If we want a race to have a standard color (for now this is only polysmorphs)
-#define NOCOLORCHANGE   20
 /// Uses weird leg sprites. Optional for Lizards, required for ashwalkers. Don't give it to other races unless you make sprites for this (see human_parts_greyscale.dmi)
 #define DIGITIGRADE		10
 #define NO_UNDERWEAR	11
@@ -139,7 +137,9 @@
 /// limbs start out as robotic; but also use organic icons. If you want to use the default ones, you'll have to use on_species_gain
 #define ROBOTIC_LIMBS	23
 /// have no mouth to ingest/eat with
-#define NOMOUTH			222
+#define NOMOUTH			24
+/// If we want a race to have a standard color (for now this is only polysmorphs)
+#define NOCOLORCHANGE   25
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
