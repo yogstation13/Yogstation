@@ -1305,7 +1305,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"qz" = (
+"uk" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
 	},
@@ -1718,7 +1718,7 @@ aw
 aw
 aw
 df
-qz
+uk
 dF
 "}
 (10,1,1) = {"
