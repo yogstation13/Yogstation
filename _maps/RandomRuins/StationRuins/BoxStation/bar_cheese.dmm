@@ -857,18 +857,8 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"fZ" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "hk" = (
 /obj/effect/landmark/xeno_spawn,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"ij" = (
-/obj/machinery/computer/arcade,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "iI" = (
@@ -908,6 +898,10 @@
 	dir = 8;
 	pixel_x = 26
 	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"kT" = (
+/obj/machinery/computer/arcade,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "nY" = (
@@ -1032,6 +1026,12 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Ju" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -1242,7 +1242,7 @@ aB
 aB
 aB
 aB
-fZ
+Ju
 dh
 "}
 (10,1,1) = {"
@@ -1322,7 +1322,7 @@ jf
 aY
 aB
 aB
-ij
+kT
 ag
 "}
 (15,1,1) = {"

@@ -2321,20 +2321,6 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/mine/laborcamp)
-"FX" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 6
-	},
-/obj/structure/reagent_dispensers/peppertank{
-	pixel_x = 30
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/turf/open/floor/plasteel,
-/area/mine/laborcamp/security)
 "Gr" = (
 /obj/structure/sign/poster/official/do_not_question{
 	pixel_y = 32
@@ -2996,6 +2982,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"ZX" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 6
+	},
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_x = 30
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/turf/open/floor/plasteel,
+/area/mine/laborcamp/security)
 
 (1,1,1) = {"
 aa
@@ -9130,7 +9130,7 @@ vE
 if
 Lq
 td
-FX
+ZX
 QU
 pw
 aj
