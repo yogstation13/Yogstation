@@ -1482,14 +1482,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
-"ka" = (
-/obj/structure/window/reinforced,
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/production)
 "kc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -2027,6 +2019,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"zj" = (
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/medical2,
+/turf/open/floor/plasteel/white,
+/area/mine/production)
 "zw" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/machinery/light{
@@ -4486,7 +4486,7 @@ bO
 aw
 pw
 BC
-ka
+zj
 qK
 At
 Vt

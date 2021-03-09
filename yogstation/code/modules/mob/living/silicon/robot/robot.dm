@@ -52,6 +52,19 @@
 		eye_lights.icon_state = "[icon_state]_e[is_servant_of_ratvar(src) ? "_r" : ""]"
 		add_overlay(eye_lights)
 
+		if(opened)
+			if(wiresexposed)
+				add_overlay("ov-opencover +w")
+			else if(cell)
+				add_overlay("ov-opencover +c")
+			else
+				add_overlay("ov-opencover -c")
+		if(hat)
+			var/mutable_appearance/head_overlay = hat.build_worn_icon(state = hat.icon_state, default_layer = 20, default_icon_file = 'icons/mob/head.dmi')
+			head_overlay.pixel_y += hat_offset
+			add_overlay(head_overlay)
+		update_fire()
+
 /mob/living/silicon/robot/examine(mob/user)
 	. = ..()
 	. += "It seems to have the <b>[module.name] module</b> loaded."
