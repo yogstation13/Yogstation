@@ -18,9 +18,9 @@
 	. = ..()
 	if(!.)
 		return
-	if(A.properties["stage_rate"] >= 7)
+	if(A.totalStageSpeed() >= 7)
 		hunger_reduction = 4
-	if(A.properties["resistance"] >= 9)
+	if(A.totalResistance() >= 9)
 		toxin_damage = TRUE
 		
 /datum/symptom/heal/conversion/CanHeal(datum/disease/advance/A)
