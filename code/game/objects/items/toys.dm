@@ -1581,15 +1581,14 @@ obj/item/toy/turn_tracker
 
 /obj/item/toy/dummy/GetVoice()
 	return doll_name
-	
+
 /obj/item/toy/eldritch_book
 	name = "Codex Cicatrix"
 	desc = "A toy book that closely resembles the Codex Cicatrix. Covered in fake polyester human flesh and has a huge goggly eye attached to the cover. The runes are gibberish and cannot be used to summon demons... Hopefully?"
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "book"
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb_continuous = list("sacrifices", "transmutes", "graspes", "curses")
-	attack_verb_simple = list("sacrifice", "transmute", "grasp", "curse")
+	attack_verb = list("sacrificed", "transmuted", "grasped", "cursed")
 	/// Helps determine the icon state of this item when it's used on self.
 	var/book_open = FALSE
 
@@ -1597,7 +1596,7 @@ obj/item/toy/turn_tracker
 	book_open = !book_open
 	update_icon()
 
-/obj/item/toy/eldritch_book/update_icon_state()
+/obj/item/toy/eldritch_book/update_icon()
 	icon_state = book_open ? "book_open" : "book"
 
 /*
