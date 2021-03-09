@@ -1217,3 +1217,9 @@
 		var/mouseparams = list2params(paramslist)
 		usr_client.Click(src, loc, null, mouseparams)
 		return TRUE
+
+//Update the screentip to reflect what we're hoverin over
+/atom/MouseEntered(location, control, params)
+	. = ..()
+	// Statusbar
+	status_bar_set_text(usr, name)
