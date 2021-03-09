@@ -22,19 +22,12 @@
 "e" = (
 /turf/open/indestructible/necropolis/air,
 /area/shuttle/escape/arena)
-"f" = (
-/obj/structure/fluff/drake_statue,
-/turf/open/indestructible{
-	icon_state = "cult"
-	},
-/area/shuttle/escape/arena)
 "g" = (
 /obj/structure/closet/crate/necropolis/tendril,
 /turf/open/indestructible/necropolis/air,
 /area/shuttle/escape/arena)
 "h" = (
-/obj/structure/fluff/drake_statue,
-/turf/open/indestructible/necropolis/air,
+/turf/open/floor/plating/airless,
 /area/shuttle/escape/arena)
 "i" = (
 /obj/effect/landmark/shuttle_arena_safe,
@@ -60,24 +53,14 @@
 	icon_state = "cult"
 	},
 /area/shuttle/escape/arena)
-"l" = (
-/obj/structure/healingfountain,
-/turf/open/indestructible/necropolis/air,
-/area/shuttle/escape/arena)
 "m" = (
 /turf/template_noop,
 /area/template_noop)
 "n" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
+/obj/structure/healingfountain,
+/turf/open/indestructible{
+	icon_state = "cult"
 	},
-/turf/open/indestructible/necropolis/air,
-/area/shuttle/escape/arena)
-"o" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
-	},
-/turf/open/indestructible/necropolis/air,
 /area/shuttle/escape/arena)
 "p" = (
 /obj/effect/forcefield/arena_shuttle_entrance,
@@ -92,21 +75,9 @@
 /obj/structure/fans/tiny/invisible,
 /turf/open/indestructible/necropolis/air,
 /area/shuttle/escape/arena)
-"r" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "cult"
-	},
-/area/shuttle/escape/arena)
 "s" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
-	},
-/turf/open/indestructible{
-	icon_state = "cult"
-	},
+/obj/structure/shuttle/engine/propulsion,
+/turf/open/floor/plating/airless,
 /area/shuttle/escape/arena)
 "t" = (
 /obj/structure/shuttle/engine/heater{
@@ -114,30 +85,52 @@
 	},
 /turf/closed/indestructible/necropolis,
 /area/shuttle/escape/arena)
-"u" = (
-/obj/structure/shuttle/engine/huge,
-/turf/closed/indestructible/necropolis,
+"w" = (
+/obj/effect/landmark/shuttle_arena_safe,
+/turf/open/indestructible{
+	icon_state = "cult"
+	},
 /area/shuttle/escape/arena)
-"v" = (
+"B" = (
+/obj/structure/healingfountain,
+/obj/effect/light_emitter/tendril,
+/turf/open/indestructible{
+	icon_state = "cult"
+	},
+/area/shuttle/escape/arena)
+"J" = (
+/obj/effect/light_emitter/tendril,
+/turf/open/indestructible{
+	icon_state = "cult"
+	},
+/area/shuttle/escape/arena)
+"N" = (
 /obj/structure/shuttle/engine/large,
-/turf/closed/indestructible/necropolis,
+/turf/open/floor/plating/airless,
+/area/shuttle/escape/arena)
+"T" = (
+/obj/structure/fluff/drake_statue,
+/obj/effect/light_emitter/tendril,
+/turf/open/indestructible{
+	icon_state = "cult"
+	},
 /area/shuttle/escape/arena)
 
 (1,1,1) = {"
 m
-a
-a
-a
-a
-a
+m
+m
+m
+m
+m
 a
 p
 a
 q
 a
-a
-a
-a
+m
+m
+m
 a
 p
 a
@@ -173,51 +166,51 @@ m
 "}
 (3,1,1) = {"
 a
-b
-e
-e
-e
-e
-e
-e
-e
-e
-e
-e
-e
-e
+J
 e
 e
 e
 b
-l
-a
-a
-u
+e
+e
+b
+e
+e
+b
+e
+e
+b
+e
+e
+i
+B
+t
+s
+m
 "}
 (4,1,1) = {"
 a
 b
-f
+T
 g
 e
-h
+T
 g
 e
-h
+T
 g
 e
-f
+T
 g
 e
-h
+T
 g
 e
-e
-l
-a
-a
-a
+w
+n
+t
+s
+m
 "}
 (5,1,1) = {"
 a
@@ -225,95 +218,95 @@ c
 b
 b
 e
+b
+e
+e
+b
+e
+e
+b
+e
+e
+b
+e
+b
+w
 n
-i
-e
-n
-i
-e
-r
-i
-e
-n
-i
-e
-e
-l
 a
-a
-a
+m
+m
 "}
 (6,1,1) = {"
 a
 c
 j
 b
+b
+k
 e
 e
+k
 e
 e
+k
 e
 e
-e
-e
-e
-e
-e
-e
-e
-e
-l
+k
+b
+b
+w
+n
 t
-a
-v
+h
+N
 "}
 (7,1,1) = {"
 a
 d
 k
 b
-e
-e
-e
-e
-e
-e
-e
-e
-e
-e
-e
-e
-e
-e
-l
+J
+b
+b
+b
+b
+J
+b
+b
+b
+b
+b
+b
+J
+b
+n
 t
-a
-a
+h
+h
 "}
 (8,1,1) = {"
 a
 c
 b
 b
+b
+k
 e
 e
+k
 e
 e
+k
 e
 e
-e
-e
-e
-e
-e
-e
-e
-e
-l
+k
+b
+b
+w
+n
 a
-a
-u
+m
+m
 "}
 (9,1,1) = {"
 a
@@ -321,74 +314,73 @@ c
 b
 b
 e
-o
-i
+b
 e
-o
-i
 e
-o
-i
+b
 e
+e
+b
+e
+e
+b
+e
+b
+w
+n
+t
 s
-i
-e
-e
-l
-a
-a
-a
+m
 "}
 (10,1,1) = {"
 a
 b
-f
+T
 g
 e
-h
+T
 g
 e
-h
+T
 g
 e
-h
+T
 g
 e
-h
+T
 g
 e
-e
-l
-a
-a
-a
+w
+n
+t
+s
+m
 "}
 (11,1,1) = {"
 a
-b
-e
-e
-e
-e
-e
-e
-e
-e
-e
-e
-e
-e
+J
 e
 e
 e
 b
-a
+e
+e
+b
+e
+e
+b
+e
+e
+b
+e
+e
+i
+B
 a
 m
 m
 "}
 (12,1,1) = {"
-m
 a
 a
 a
@@ -407,7 +399,8 @@ a
 a
 a
 a
-m
+a
+a
 m
 m
 "}
