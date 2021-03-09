@@ -26,7 +26,6 @@
  * rank: new crewmember's rank.
  */
 /datum/team/nation/proc/new_possible_separatist(datum/source, mob/living/crewmember, rank)
-	SIGNAL_HANDLER
 
 	if(rank in potential_recruits)
 		//surely we can trust the player who just joined the game to have a mind.
@@ -73,7 +72,7 @@
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
 	var/datum/team/nation/nation
-	
+
 /datum/antagonist/separatist/on_gain()
 	create_objectives()
 	. = ..()

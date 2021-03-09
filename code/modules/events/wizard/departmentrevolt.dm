@@ -4,7 +4,7 @@
 	typepath = /datum/round_event/wizard/deprevolt
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
-	
+
 	var/picked_department
 	var/announce = FALSE
 	var/dangerous_nation = TRUE
@@ -81,7 +81,7 @@
 	if(department == "Uprising of Assistants")
 		var/prefix = pick("roving clans", "barbaric tribes", "tides", "bandit kingdom", "tribal society", "marauder clans", "horde")
 		nation_name = "The [prefix] of [nation_name]"
-		
+
 	var/datum/team/nation/nation = new(null, jobs_to_revolt, department)
 	nation.name = nation_name
 	var/datum/team/department_target //dodges unfortunate runtime
@@ -89,7 +89,7 @@
 		department_target = pick(independent_departments)
 	nation.generate_nation_objectives(dangerous, department_target)
 
-	for(var/mob/living/carbon/human/H in GLOB.carbon_list)
+	for(var/i in GLOB.carbon_list)
 		var/mob/living/carbon/human/possible_separatist = i
 		if(!possible_separatist.mind)
 			continue
@@ -101,7 +101,7 @@
 				citizens += possible_separatist
 				separatist_mind.add_antag_datum(/datum/antagonist/separatist, nation, department)
 				nation.add_member(separatist_mind)
-				possible_separatist.log_message("Was made into a separatist, long live [nation_name]!", LOG_ATTACK, color="red"))
+				possible_separatist.log_message("Was made into a separatist, long live [nation_name]!", LOG_ATTACK, color="red")
 
 	if(citizens.len)
 		var/jobs_english_list = english_list(jobs_to_revolt)
