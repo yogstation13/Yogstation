@@ -12,7 +12,7 @@
 	for(var/card in card_list)
 		cards += "[card]"
 
-/obj/item/toy/cards/deck/wizoff/examine_more(mob/user)
+/obj/item/toy/cards/deck/wizoff/examine(mob/user)
 	var/list/msg = list("<span class='notice'>Remember the rules of Wiz-Off!</span>")
 	msg += "\t<span class='info'>Each player draws 5 cards.</span>"
 	msg += "\t<span class='info'>There are five rounds. Each round, a player selects a card to play, and the winner is selected based on the following rules:</span>"
