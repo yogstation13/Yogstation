@@ -111,7 +111,18 @@
 			to_chat(owner, "<span class='warning'>Alert: Heavy EMP Detected. Rebooting power cell to prevent damage.</span>")
 		if(2)
 			owner.nutrition = 250
-			to_chat(owner, "<span class='warning'>Alert: EMP Detected. Cycling battery.</span>") 
+			to_chat(owner, "<span class='warning'>Alert: EMP Detected. Cycling battery.</span>")
+
+/obj/item/organ/stomach/cell/Insert(mob/living/carbon/M, special, drop_if_replaced)
+	. = ..()
+	RegisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, .proc/charge)
+
+/obj/item/organ/stomach/cell/Remove(mob/living/carbon/M, special)
+	. = ..()
+	UnregisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT)
+
+/obj/item/organ/stomach/cell/proc/charge(datum/source, amount, repairs)
+	owner.nutrition = clamp(owner.nutrition + (amount/100), 0, NUTRITION_LEVEL_FULL) // no fat ipcs
 
 /obj/item/organ/stomach/ethereal
 	name = "biological battery"
