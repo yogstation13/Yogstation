@@ -28,7 +28,8 @@ BONUS
 	symptom_delay_max = 75
 
 /datum/symptom/vitiligo/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	if(ishuman(M))
@@ -73,7 +74,8 @@ BONUS
 	symptom_delay_max = 14
 
 /datum/symptom/revitiligo/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	if(ishuman(M))
@@ -100,7 +102,8 @@ BONUS
 	symptom_delay_max = 14
 
 /datum/symptom/polyvitiligo/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)

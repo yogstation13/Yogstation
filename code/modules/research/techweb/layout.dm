@@ -215,6 +215,10 @@
         ui_x = 352
         ui_y = -160
 
+/datum/techweb_node/cyborg_upg_surgkit
+        ui_x = 416
+        ui_y = -160
+
 /datum/techweb_node/cyber_organs
         ui_x = 352
         ui_y = -96

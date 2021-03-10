@@ -1,4 +1,4 @@
-#define TIER_2_TIME 9000
+#define TIER_2_TIME 4500
 
 /datum/antagonist/zombie
 	name = "Zombie"

@@ -331,7 +331,7 @@
 	
 ////////////VOMITCRAWL
 /datum/component/crawl/vomit //ABSOLUTELY DISGUSIN
-	var/obj/item/vomitcrawlholder/crawl
+	var/obj/effect/decal/cleanable/enteredvomit
 	crawling_types = list(/obj/effect/decal/cleanable/vomit,/obj/effect/decal/cleanable/insectguts)
 	gain_message = "<span class='boldnotice'>You can now vomitcrawl! Alt-click pools of vomit to phase in and out.</span>"
 	loss_message = "<span class='warning'>You can no longer vomitcrawl.</span>"
@@ -347,9 +347,6 @@
 
 /datum/component/crawl/vomit/start_crawling(atom/target, mob/living/user)
 	if(iscarbon(user))
-		crawl = new(target)
-		crawl.holder = src
-		crawl.mob = user
 		var/mob/living/carbon/C = user
 		var/obj/item/vomitcrawl/B1 = new(C)
 		var/obj/item/vomitcrawl/B2 = new(C)
@@ -359,6 +356,8 @@
 		C.put_in_hands(B2)
 		C.regenerate_icons()
 		C.ExtinguishMob()
+	enteredvomit = target
+	RegisterSignal(target, COMSIG_PARENT_PREQDELETED, .proc/throw_out)
 	user.visible_message("<span class='warning'>[user] sinks into the pool of vomit!?</span>")
 	playsound(get_turf(target), 'sound/magic/mutate.ogg', 50, 1, -1)
 	..()
@@ -385,31 +384,25 @@
 		for(var/obj/item/vomitcrawl/B in C)
 			qdel(B)
 	..()
-	crawl.holder = null
-	qdel(crawl)
-	crawl = null
+	UnregisterSignal(enteredvomit, COMSIG_PARENT_PREQDELETED, .proc/throw_out)
+	enteredvomit = null
 	user.visible_message("<span class='warning'><B>[user] rises out of the pool of vomit!?</B></span>")
 	exit_vomit_effect(target, user)
 
-/obj/item/vomitcrawlholder	//if the pool of vomit we entered gets destroyed, we appear stunned on top of it
-	desc = "If you see this, contact a coder"
-	var/datum/component/crawl/vomit/holder
-	var/mob/living/mob
-	
-/obj/item/vomitcrawlholder/Destroy()
-	if(holder)
-		if(iscarbon(mob))
-			var/mob/living/carbon/C = mob
-			for(var/obj/item/vomitcrawl/V in C)
-				qdel(V)
-		mob.forceMove(get_turf(src))
-		mob.visible_message("<span class='warning'><B>[mob] suddenly appears from the vomit they had entered!</B></span>")
-		mob.Stun(50)
-		mob.Knockdown(100)
-		qdel(holder.holder)
-		holder.holder = null
-		holder = null
-	. = ..()
+/datum/component/crawl/vomit/proc/throw_out() //throw user out violently when the enteredvomit gets destroyed
+	if(iscarbon(parent))
+		var/mob/living/carbon/C = parent
+		C.Stun(50)
+		C.Knockdown(100)
+		for(var/obj/item/vomitcrawl/B in C)
+			qdel(B)
+	var/mob/living/C = parent
+	C.forceMove(get_turf(enteredvomit))
+	C.visible_message("<span class='warning'><B>[C] suddenly appears from [enteredvomit] they had previously entered!</B></span>")
+	exit_vomit_effect(enteredvomit, parent)
+	enteredvomit = null
+	qdel(holder)
+	holder = null
 
 /obj/item/vomitcrawl
 	name = "vomit crawl"

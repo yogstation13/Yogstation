@@ -2205,12 +2205,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Painkiller"
 	glass_desc = "A combination of tropical juices and rum. Surely this will make you feel better."
 
-/datum/reagent/consumable/ethanol/painkiller/on_mob_metabolize(mob/living/M)
-	M.surgery_fail_mod *= 0.5
-
-/datum/reagent/consumable/ethanol/painkiller/on_mob_end_metabolize(mob/living/M)
-	M.surgery_fail_mod /= 0.5
-
 /datum/reagent/consumable/ethanol/pina_colada
 	name = "Pina Colada"
 	description = "A fresh pineapple drink with coconut rum. Yum."
@@ -2255,7 +2249,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "sweet corn beer and the hood life"
 	glass_name = "glass of malt liquor"
 	glass_desc = "A freezing pint of malt liquor."
-	
+
 /datum/reagent/consumable/ethanol/ratvarnac
 	name = "Justicars Juice"
 	description = "I don't even know what an eminence is, but I want him to recall."

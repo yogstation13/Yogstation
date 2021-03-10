@@ -195,8 +195,8 @@
 	if(..())
 		return
 
-	var/list/buildlist = list("Walls and Floors" = 1,"Airlocks" = 2,"Deconstruction" = 3,"Windows and Grilles" = 4)
-	var/buildmode = input("Set construction mode.", "Base Console", null) in buildlist
+	var/list/buildlist = list("Walls and Floors" = RCD_FLOORWALL,"Airlocks" = RCD_AIRLOCK,"Deconstruction" = RCD_DECONSTRUCT,"Windows and Grilles" = RCD_WINDOWGRILLE)
+	var/buildmode = input(owner, "Set construction mode.", "Base Console", null) in buildlist
 	B.RCD.mode = buildlist[buildmode]
 	to_chat(owner, "Build mode is now [buildmode].")
 
@@ -208,7 +208,7 @@ datum/action/innate/aux_base/airlock_type/Activate()
 	if(..())
 		return
 
-	B.RCD.change_airlock_setting()
+	B.RCD.change_airlock_setting(owner, remote_eye)
 
 
 datum/action/innate/aux_base/window_type
@@ -218,7 +218,7 @@ datum/action/innate/aux_base/window_type
 datum/action/innate/aux_base/window_type/Activate()
 	if(..())
 		return
-	B.RCD.toggle_window_glass()
+	B.RCD.toggle_window_glass(owner)
 
 datum/action/innate/aux_base/place_fan
 	name = "Place Tiny Fan"
