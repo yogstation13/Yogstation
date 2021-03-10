@@ -26,9 +26,6 @@
 /obj/structure/closet/crate/necropolis/tendril,
 /turf/open/indestructible/necropolis/air,
 /area/shuttle/escape/arena)
-"h" = (
-/turf/open/floor/plating/airless,
-/area/shuttle/escape/arena)
 "i" = (
 /obj/effect/landmark/shuttle_arena_safe,
 /turf/open/indestructible/necropolis/air,
@@ -103,10 +100,6 @@
 /turf/open/indestructible{
 	icon_state = "cult"
 	},
-/area/shuttle/escape/arena)
-"N" = (
-/obj/structure/shuttle/engine/large,
-/turf/open/floor/plating/airless,
 /area/shuttle/escape/arena)
 "T" = (
 /obj/structure/fluff/drake_statue,
@@ -257,8 +250,8 @@ b
 w
 n
 t
-h
-N
+s
+m
 "}
 (7,1,1) = {"
 a
@@ -281,8 +274,8 @@ J
 b
 n
 t
-h
-h
+s
+m
 "}
 (8,1,1) = {"
 a
@@ -304,8 +297,8 @@ b
 b
 w
 n
-a
-m
+t
+s
 m
 "}
 (9,1,1) = {"
@@ -328,8 +321,8 @@ e
 b
 w
 n
-t
-s
+a
+m
 m
 "}
 (10,1,1) = {"
@@ -376,8 +369,8 @@ e
 e
 i
 B
-a
-m
+t
+s
 m
 "}
 (12,1,1) = {"
