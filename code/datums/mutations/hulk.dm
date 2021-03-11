@@ -97,6 +97,9 @@
 	owner.adjustStaminaLoss(-0.5)
 	return target.attack_hulk(owner)
 
+/datum/mutation/human/active_hulk/on_life()
+	owner.adjustStaminaLoss(0.5)
+
 /datum/mutation/human/active_hulk/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
