@@ -55,6 +55,8 @@
 		P.original = target
 	P.fire(set_angle)
 
+/mob/living/simple_animal/hostile/megafauna/stalwart/proc/stalnade()
+
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/backup()
 	visible_message("<span class='danger'>[src] constructs a flock of mini mechanoid!</span>")
 	for(var/turf/open/H in range(src, 10))
@@ -104,8 +106,20 @@
 /obj/item/projectile/stalnade
 	name = "volatile orb"
 	icon_state = "wipe"
-	damage = 0
+	damage = 300
+	armour_penetration = 100
+	speed = 1
+	eyeblur = 0
+	damage_type = brute
+	pass_flags = PASSTABLE
 
+/obj/item/projectile/stalnade/Move()
+	. = ..()
+	var/turf/location = get_turf(src)
+	if(location)
+		new /obj/effect/hotspot(location)
+		location.hotspot_expose(700, 50, 1)
+		
 /mob/living/simple_animal/hostile/megafauna/stalwart/devour(mob/living/L)
 	visible_message("<span class='danger'>[src] melts [L]!</span>")
 	L.dust()
