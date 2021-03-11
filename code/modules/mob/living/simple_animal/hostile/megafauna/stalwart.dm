@@ -4,7 +4,7 @@
 	health = "3000"
 	maxHealth = "3000"
 	attacktext = "zaps"
-	attacksound = 'sound/effects/empulse.ogg'
+	attack_sound = 'sound/effects/empulse.ogg'
 	icon_state = "stalwart"
 	icon_living = "stalwart"
 	icon_dead = ""
