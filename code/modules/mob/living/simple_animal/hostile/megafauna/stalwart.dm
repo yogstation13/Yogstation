@@ -25,11 +25,6 @@
 	deathsound = 'borg_deathsound.ogg'
 	internal_type = /obj/item/gps/internal/stalwart
 
-	attack_action_types = list(/datum/action/innate/megafauna_attack/lava_nade,
-							   /datum/action/innate/megafauna_attack/energy_pike,
-							   /datum/action/innate/megafauna_attack/charge,
-							   /datum/action/innate/megafauna_attack/backup)
-
 /mob/living/simple_animal/hostile/megafauna/stalwart/OpenFire()
 	ranged_cooldown = world.time + 120
 	anger_modifier = clamp(((maxHealth - health)/50),0,20)
