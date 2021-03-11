@@ -292,7 +292,7 @@
 	AdjustParalyzed(-60)
 	AdjustImmobilized(-60)
 	if(dna && dna.check_mutation(ACTIVE_HULK))
-		if(prob(60))
+		if(prob(30))
 			adjustStaminaLoss(10)
 			to_chat(src, "<span class='notice'>[M] calms you down a little.</span>")
 		else
