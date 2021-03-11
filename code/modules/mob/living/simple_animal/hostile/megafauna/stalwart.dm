@@ -60,23 +60,25 @@
 		P.original = target
 	P.fire(set_angle)
 
-/mob/living/simple_animal/hostile/megafauna/stalwart/proc/energy_pike()
-	ranged_cooldown = world.time + 20
-	var/turf/target_turf = get_turf(target)
-	playsound(src, 'sound/effects/pop_exl.ogg', 200, 1, 2)
-	newtonian_move(get_dir(target_turf, src))
-	var/angle_to_target = Get_Angle(src, target_turf)
-	if(isnum(set_angle))
-		angle_to_target = set_angle
-	var/static/list/stalwart_pike_angles = list(7.5, 2.5, -2.5, -7.5)
-	for(var/i in stalwart_pike_angles)
-		shoot_projectile(target_turf, angle_to_target + i)
-
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/backup()
 	visible_message("<span class='danger'>[src] constructs a flock of mini mechanoid!</span>")
 	for(var/turf/open/H in range(src, 10))
 		if(prob(25))
 			new /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone(H.loc)
+
+/mob/living/simple_animal/hostile/megafauna/colossus/proc/alternating_dir_shots()
+	ranged_cooldown = world.time + 40
+	dir_shots(GLOB.diagonals)
+	dir_shots(GLOB.cardinals)
+	SLEEP_CHECK_DEATH(10)
+
+/mob/living/simple_animal/hostile/megafauna/stalwart/proc/dir_shots(list/dirs)
+	if(!islist(dirs))
+		dirs = GLOB.alldirs.Copy()
+	playsound(src, 'sound/effects/pop_exl.ogg', 200, 1, 2)
+	for(var/d in dirs)
+		var/turf/E = get_step(src, d)
+		shoot_projectile(E)
 
 //Projectiles and such
 
