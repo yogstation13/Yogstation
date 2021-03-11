@@ -5,24 +5,13 @@
 ### Intent of your Pull Request
 
 Explain what the purpose of your PR is. Mention if you tested your changes. If you changed a map, make sure you used the mapmerge tool. Mention if your PR is related to an issue.
-You can type "Fixes issue #6" and issue 6 will be automatically closed when your pull request is merged.
+You can type "Fixes: #6" and issue 6 will be automatically closed when your pull request is merged.
 
 ### Why is this change good for the game?
 
 # Wiki Documentation
 
-### Briefly describe your PR and the impacts of it, in layman's terms. 
-This will be the basis of the Wiki entry for your PR, and more information / detail is better for Wiki editors to integrate.
-
-### What should players be aware of when it comes to the changes your PR is implementing?
-
-### What general grouping does this PR fall under? 
-For example, Engineering changes, Medical rebalancing, TEG tweaks, etc.?
-
-### Are there any aspects of the PR that you would like us not to mention on the Wiki?
-
-### If there are any numerical values involved in your PR that will be relevant to a player, please note them here. 
-For example, "This new chem will heal X brute damage". 
+Explain any impacts in here. Mention if you would wish for something to not be mentioned on the wiki, and please provide any numerical values for the wiki-men to intergrate.
 
 # Changelog
 
