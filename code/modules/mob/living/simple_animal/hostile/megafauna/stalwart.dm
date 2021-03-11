@@ -66,7 +66,7 @@
 		if(prob(25))
 			new /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone(H.loc)
 
-/mob/living/simple_animal/hostile/megafauna/colossus/proc/alternating_dir_shots()
+/mob/living/simple_animal/hostile/megafauna/stalwart/proc/alternating_dir_shots()
 	ranged_cooldown = world.time + 40
 	dir_shots(GLOB.diagonals)
 	dir_shots(GLOB.cardinals)
