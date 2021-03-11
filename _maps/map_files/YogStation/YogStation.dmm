@@ -33056,6 +33056,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"cxr" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/turf/open/floor/plasteel,
+/area/ai_monitored/storage/eva)
 "cxv" = (
 /obj/machinery/advanced_airlock_controller{
 	dir = 8;
@@ -36113,15 +36122,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"ehE" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/item/clothing/shoes/magboots,
-/obj/item/tank/jetpack/carbondioxide,
-/turf/open/floor/plasteel,
-/area/ai_monitored/storage/eva)
 "ehJ" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/machinery/door/window/westleft{
@@ -50735,15 +50735,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"oFV" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/item/clothing/shoes/magboots,
-/obj/item/tank/jetpack/carbondioxide,
-/turf/open/floor/plasteel,
-/area/ai_monitored/storage/eva)
 "oGb" = (
 /obj/machinery/flasher{
 	id = "Cell 3";
@@ -62354,6 +62345,15 @@
 /obj/item/storage/secure/briefcase,
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
+"wUA" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/item/tank/jetpack/carbondioxide,
+/obj/item/tank/jetpack/carbondioxide,
+/turf/open/floor/plasteel,
+/area/ai_monitored/storage/eva)
 "wVt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -92578,7 +92578,7 @@ avt
 ayL
 cxm
 aAb
-ehE
+wUA
 aIK
 qkO
 aFc
@@ -92835,7 +92835,7 @@ awh
 ayL
 cwt
 aAb
-oFV
+cxr
 aCc
 qqu
 ayL
