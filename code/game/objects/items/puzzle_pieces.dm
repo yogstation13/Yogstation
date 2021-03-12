@@ -15,7 +15,7 @@
 	var/puzzle_id = null
 	
 //Skeleton key - drops from Legion megafauna, gives access to area behind Legion.
-/obj/item/keycard/cheese
+/obj/item/keycard/necropolis
 	name = "skeleton key"
 	desc = "Legends say it can open any lock. Luckily airlocks today don't have such locks on them."
 	icon_state = "skeleton"
