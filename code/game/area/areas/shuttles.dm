@@ -146,7 +146,6 @@
 /area/shuttle/escape/arena
 	name = "The Arena"
 	noteleport = TRUE
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/shuttle/escape/meteor
 	name = "\proper a meteor with engines strapped to it"
