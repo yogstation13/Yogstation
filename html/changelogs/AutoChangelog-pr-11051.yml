@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "singularities will now not spawn infinite rods when near reinforced floors"
+  - bugfix: "singularities will no longer eat rwalls like normal walls"
