@@ -13,7 +13,7 @@
 	
 /obj/item/megaphone/examine(mob/user)
 	. = ..()
-	if(spamcheck > world.time)
+	if(last_used > world.time)
 		. += "<span class='warning'>\The [src] is recharging!</span>"
 
 /obj/item/megaphone/suicide_act(mob/living/carbon/user)
