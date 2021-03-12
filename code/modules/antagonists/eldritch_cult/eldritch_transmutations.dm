@@ -149,7 +149,7 @@
 		atoms -= H
 		H.gib()
 
-/datum/eldritch_transmutation/attune_heart
+/datum/eldritch_transmutation/basic
 	name = "Attune Heart"
 	required_atoms = list(/obj/item/living_heart)
 	required_shit_list = "A living heart, which will be given a target for sacrifice or sacrifice its target if their corpse is on the rune."
