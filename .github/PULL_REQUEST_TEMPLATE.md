@@ -11,7 +11,7 @@ You can type "Fixes: #6" and issue 6 will be automatically closed when your pull
 
 # Wiki Documentation
 
-Explain any impacts in here. Mention if you would wish for something to not be mentioned on the wiki, and please provide any numerical values for the wiki-men to intergrate.
+Explain any PR impacts here, in simple terms, and indicate the general gameplay areas that they will influence. Provide any gameplay-relevant numerical changes. Indicate anything you would like the Wiki to not document or mention.
 
 # Changelog
 
