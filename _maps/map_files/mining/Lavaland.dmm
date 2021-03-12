@@ -76,9 +76,72 @@
 "an" = (
 /turf/closed/mineral/random/labormineral/volcanic,
 /area/lavaland/surface/outdoors)
+"ao" = (
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/skeleton,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"ap" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/skeleton/templar{
+	speak = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
+	speak_chance = 0
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
 "aq" = (
 /turf/closed/wall,
 /area/mine/laborcamp)
+"ar" = (
+/obj/machinery/door/keycard/necropolis,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"as" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/megafauna/dragon,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"at" = (
+/obj/structure/chair/office/dark{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/bot/secbot/beepsky{
+	desc = "Powered by the tears and sweat of laborers.";
+	name = "Prison Ofitser"
+	},
+/turf/open/floor/plasteel,
+/area/mine/laborcamp/security)
 "aw" = (
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors/explored)
@@ -411,40 +474,10 @@
 	},
 /turf/open/indestructible/boss,
 /area/ruin/unpowered)
-"fi" = (
-/mob/living/simple_animal/hostile/skeleton/templar{
-	speak = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
-	speak_chance = 0
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "fs" = (
 /obj/structure/bookcase/random,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"fA" = (
-/mob/living/simple_animal/hostile/megafauna/dragon,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "fQ" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors/unexplored/danger)
@@ -750,14 +783,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"hX" = (
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/stone_tile/block,
-/obj/structure/mineral_door/sandstone,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "id" = (
 /obj/structure/stone_tile{
 	dir = 4
@@ -2019,24 +2044,6 @@
 	},
 /turf/open/indestructible/boss,
 /area/ruin/unpowered)
-"rf" = (
-/mob/living/simple_animal/hostile/skeleton/templar{
-	speak = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
-	speak_chance = 0
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile,
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "ro" = (
 /obj/machinery/computer/prisoner{
 	dir = 4;
@@ -2056,17 +2063,6 @@
 /obj/item/pickaxe,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors/explored)
-"sa" = (
-/obj/structure/chair/office/dark{
-	dir = 8
-	},
-/mob/living/simple_animal/bot/secbot/beepsky{
-	desc = "Powered by the tears and sweat of laborers.";
-	name = "Prison Ofitser"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/mine/laborcamp/security)
 "sg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/red/filled/line,
@@ -3362,21 +3358,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/laborcamp)
-"ST" = (
-/mob/living/simple_animal/hostile/skeleton,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile,
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "SV" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -3527,21 +3508,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/mine/laborcamp)
-"We" = (
-/mob/living/simple_animal/hostile/skeleton,
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "Wl" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/red/filled/corner{
@@ -9338,7 +9304,7 @@ pJ
 sg
 if
 aA
-sa
+at
 Yj
 ge
 lf
@@ -36879,7 +36845,7 @@ aa
 aa
 aa
 aa
-hX
+ar
 aa
 aa
 aa
@@ -37907,7 +37873,7 @@ aa
 bq
 bq
 KJ
-We
+ao
 jn
 bq
 bq
@@ -38419,10 +38385,10 @@ aj
 aa
 aa
 bq
-We
+ao
 bq
 bq
-We
+ao
 Ay
 bq
 aa
@@ -39195,7 +39161,7 @@ aa
 en
 aa
 en
-ST
+qf
 aa
 aa
 ab
@@ -39447,7 +39413,7 @@ aj
 aa
 aa
 en
-ST
+qf
 en
 cw
 en
@@ -40220,7 +40186,7 @@ aa
 en
 en
 en
-ST
+qf
 en
 en
 en
@@ -41762,7 +41728,7 @@ aa
 aa
 ty
 en
-rf
+ap
 en
 Ed
 aa
@@ -42275,7 +42241,7 @@ aa
 aa
 aa
 aa
-rf
+ap
 Bl
 en
 aa
@@ -43563,7 +43529,7 @@ dC
 en
 en
 en
-fi
+pt
 aa
 aa
 aa
@@ -44075,7 +44041,7 @@ aa
 aa
 dC
 Gt
-rf
+ap
 QW
 ZQ
 aa
@@ -47673,7 +47639,7 @@ aa
 Uc
 ZK
 Zb
-fA
+as
 ZK
 Zb
 yd
