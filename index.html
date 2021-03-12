@@ -142,7 +142,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(300 detailed/812 documented/22904 total, 3.5%)</aside></h3>
+<aside>(302 detailed/817 documented/22938 total, 3.6%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -217,6 +217,7 @@ See: <a href="datum/controller/subsystem/achievements.html" title="/datum/contro
 *</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>*</li>
     </ul></li>
     </ul></li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;drake_ollie">DRAGON Ollie</span> - dragon ollie, do I have to explain?</li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;action&#x2F;innate">innate</span><ul class="index-tree">
     <li class="has-children"><a href="datum/action/innate/ai.html" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;ai">AI Action</a> - The malf AI action subtype. All malf actions are subtypes of this.<ul class="index-tree">
     <li><a href="datum/action/innate/ai/ranged.html" title="&#x2F;datum&#x2F;action&#x2F;innate&#x2F;ai&#x2F;ranged">Ranged AI Action</a> - Framework for ranged abilities that can have different effects by left-clicking stuff.</li>
@@ -569,9 +570,9 @@ this is the way to do it cleanly and properly.</li>
     <li><a href="datum/round_event/stray_cargo.html" title="&#x2F;datum&#x2F;round_event&#x2F;stray_cargo">stray_cargo</a> - Spawns a cargo pod containing a random cargo supply pack on a random area of the station</li>
     </ul></li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control">round_event_control</span><ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control&#x2F;spawn_swarmer">Spawn Swarmer Beacon</span> - Places that shouldn't explode
-Subtypes from the above that actually should explode.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control&#x2F;stray_cargo">Stray Cargo Pod</span> - Spawns a cargo pod containing a random cargo supply pack on a random area of the station</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control&#x2F;supermatter_surge">Supermatter Surge</span> - Places that shouldn't explode
+Subtypes from the above that actually should explode.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control&#x2F;zombie">Spawn Zombie</span> - You will appear adjacent to the beacon</li>
     </ul></li>
     <li><a href="datum/rust_spread.html" title="&#x2F;datum&#x2F;rust_spread">rust_spread</a> - #Rust spread datum</li>
@@ -704,6 +705,7 @@ It's attacks are as follows:</li>
     <li><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;construct&#x2F;wraith&#x2F;angelic">angelic</span> - Angelic-Wraith</li>
     </ul></li>
     </ul></li>
+    <li><a href="mob/living/simple_animal/hostile/drakeling.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;drakeling">drakeling</a></li>
     <li class="has-children"><a href="mob/living/simple_animal/hostile/eldritch.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;eldritch">Demon</a><ul class="index-tree">
     <li><a href="mob/living/simple_animal/hostile/eldritch/armsy.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;eldritch&#x2F;armsy">Terror of the night</a></li>
     </ul></li>
@@ -754,6 +756,10 @@ It's attacks are as follows:</li>
     </ul></li>
     <li><span class="no-substance">particle_effect&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;smoke">smoke</span> - SMOKE SYSTEMS</li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;effect&#x2F;proc_holder">proc_holder</span><ul class="index-tree">
+    <li class="has-children"><a href="obj/effect/proc_holder/drakeling.html" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;drakeling">ULTRA DRAGON ATTACK</a><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;drakeling&#x2F;fire_breath">Fire Breath</span> - drakeling fire breath attack: shoots a short line of fire that is very effective against lavaland fauna and not very effective against much else</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;drakeling&#x2F;wing_flap">Wing Flap</span> - drakeling wing flap attack: deals relatively minor damage to lavaland fauna and pushes anything it hits away, also breaks rocks on contact like a plasmacutter</li>
+    </ul></li>
     <li><a href="obj/effect/proc_holder/ranged_ai.html" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;ranged_ai">ranged_ai</a> - The actual ranged proc holder.</li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;spell">spell</span><ul class="index-tree">
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;spell&#x2F;aoe_turf">aoe_turf</span><ul class="index-tree">
@@ -1279,7 +1285,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/d412582c0ce1ebcc89b042b9617efa0cc5f54891">d412582</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/35beedb845dec3763f984157262ee9f485822ebf">35beedb</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.3.0</a></footer>
 </body>
 </html>
