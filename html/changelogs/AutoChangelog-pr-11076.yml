@@ -1,5 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - tweak: "Event cancel time is 20 seconds"
-  - tweak: "Event cancel text is scary red"
