@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "simplemobs will now do audible and visible emotes again"
+  - bugfix: "pets will now do emotes on being pet and other stuff"
