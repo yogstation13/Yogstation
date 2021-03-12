@@ -1,0 +1,4 @@
+author: "UselessTheremin"
+delete-after: true 
+changes: 
+  - rscadd: "adds a new random event which increases the power level of the sm for a bit"
