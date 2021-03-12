@@ -190,9 +190,9 @@
 					else
 						randomValue -= speak.len
 						if(emote_see && randomValue <= emote_see.len)
-							emote("me [pick(emote_see)]", 1)
+							emote("me [pick(emote_see)]", 1, TRUE)
 						else
-							emote("me [pick(emote_hear)]", 2)
+							emote("me [pick(emote_hear)]", 2, TRUE)
 				else
 					say(pick(speak), forced = "poly")
 			else
@@ -204,9 +204,9 @@
 					var/length = emote_hear.len + emote_see.len
 					var/pick = rand(1,length)
 					if(pick <= emote_see.len)
-						emote("me", 1, pick(emote_see))
+						emote("me", 1, pick(emote_see), TRUE)
 					else
-						emote("me", 2, pick(emote_hear))
+						emote("me", 2, pick(emote_hear), TRUE)
 
 
 /mob/living/simple_animal/proc/environment_is_safe(datum/gas_mixture/environment, check_temp = FALSE)
