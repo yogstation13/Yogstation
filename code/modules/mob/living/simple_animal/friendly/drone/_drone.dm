@@ -109,6 +109,9 @@
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
 		diag_hud.add_to_hud(src)
 
+	add_verb(src, /mob/living/simple_animal/drone/verb/check_laws)
+	add_verb(src, /mob/living/simple_animal/drone/verb/drone_ping)
+	add_verb(src, /mob/living/simple_animal/drone/verb/cmd_robot_alerts)
 
 /mob/living/simple_animal/drone/med_hud_set_health()
 	var/image/holder = hud_list[DIAG_HUD]
