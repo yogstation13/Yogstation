@@ -492,12 +492,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"br" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
-/obj/machinery/door/window/westright,
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "bs" = (
 /obj/machinery/door/airlock{
 	name = "Kitchen cold room";
@@ -916,6 +910,10 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"yX" = (
+/obj/machinery/holopad,
+/turf/open/floor/carpet,
+/area/crew_quarters/bar)
 "zc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8;
@@ -1029,6 +1027,17 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
+"Tn" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/westright,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "TA" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mint,
@@ -1174,7 +1183,7 @@ aD
 aD
 aD
 bW
-ap
+yX
 ck
 bw
 bv
@@ -1317,9 +1326,9 @@ ag
 ag
 am
 am
-br
+Tn
 am
-br
+Tn
 am
 bE
 am
