@@ -97,7 +97,8 @@
 		var/pck = pick("assasinate","stalk","protect")
 		switch(pck)
 			if("assasinate")
-				var/datum/objective/assassinate/A = new
+				var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
+				var/datum/objective/assassinate/A = new N
 				A.owner = owner
 				var/list/owners = A.get_owners()
 				A.find_target(owners,protection)

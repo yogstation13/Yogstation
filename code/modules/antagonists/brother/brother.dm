@@ -162,7 +162,8 @@
 		else if(prob(30))
 			add_objective(new/datum/objective/maroon, TRUE)
 		else
-			add_objective(new/datum/objective/assassinate, TRUE)
+			var/A = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
+			add_objective(new A, TRUE)
 	else
 		add_objective(new/datum/objective/steal, TRUE)
 
