@@ -1379,6 +1379,15 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
+"Ey" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/machinery/holopad,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "ER" = (
 /obj/structure/table,
 /obj/machinery/requests_console{
@@ -1621,7 +1630,7 @@ aT
 aT
 aT
 UJ
-aT
+Ey
 di
 du
 ab

@@ -592,14 +592,6 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"bC" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
-/obj/machinery/door/window/westright,
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
 "bD" = (
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -930,6 +922,19 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"fR" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/westright,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
 "hl" = (
 /obj/machinery/vending/cola,
 /obj/structure/window/reinforced,
@@ -1232,6 +1237,11 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
+"Tv" = (
+/obj/effect/turf_decal/ameritard,
+/obj/machinery/holopad,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "Up" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/enzyme{
@@ -1321,7 +1331,7 @@ aO
 aO
 bc
 az
-az
+Tv
 az
 bu
 az
@@ -1529,9 +1539,9 @@ ab
 ab
 aj
 aj
-bC
+fR
 aj
-bC
+fR
 aj
 cf
 aj
