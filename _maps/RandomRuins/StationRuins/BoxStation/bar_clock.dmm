@@ -520,6 +520,11 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/theatre)
+"uK" = (
+/obj/structure/table/bronze,
+/obj/item/clothing/head/hardhat/cakehat,
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
 "ve" = (
 /obj/effect/landmark/start/assistant,
 /obj/structure/chair/bronze,
@@ -637,10 +642,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
-"BA" = (
-/obj/structure/table/bronze,
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
 "BC" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -982,6 +983,17 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
+"QQ" = (
+/obj/effect/landmark/start/assistant,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/holopad,
+/turf/open/floor/bronze,
+/area/crew_quarters/bar)
 "Re" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -1109,16 +1121,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1;
 	icon_state = "vent_map_on-1"
-	},
-/turf/open/floor/bronze,
-/area/crew_quarters/bar)
-"Vt" = (
-/obj/effect/landmark/start/assistant,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
@@ -1261,7 +1263,7 @@ ve
 ug
 jy
 dw
-BA
+uK
 QB
 Wx
 Ws
@@ -1292,7 +1294,7 @@ Wx
 Wx
 Wx
 Cw
-Vt
+QQ
 Vl
 Wx
 Wx
