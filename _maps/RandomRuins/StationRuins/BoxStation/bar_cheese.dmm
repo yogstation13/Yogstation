@@ -967,6 +967,15 @@
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"vy" = (
+/obj/structure/table/wood,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/obj/item/clothing/head/hardhat/cakehat,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "we" = (
 /obj/machinery/deepfryer,
 /turf/open/floor/plasteel/cafeteria,
@@ -1065,6 +1074,10 @@
 	id = "barshutters";
 	name = "privacy shutters"
 	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Uj" = (
+/obj/machinery/holopad,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Ux" = (
@@ -1238,7 +1251,7 @@ cG
 aB
 aB
 aB
-aB
+Uj
 aB
 dh
 "}
@@ -1279,7 +1292,7 @@ ag
 ag
 ag
 aC
-IK
+vy
 aB
 au
 aE
