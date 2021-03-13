@@ -42,3 +42,15 @@
 		if(is_station_level(s.z) && !istype(s, /obj/singularity/energy_ball))
 			return TRUE
 	return FALSE
+
+// Set up a tesla
+/datum/department_goal/eng/tesla
+	name = "Create a tesla"
+	desc = "Create a tesla engine using a tesla generator"
+	reward = "50000"
+
+/datum/department_goal/eng/tesla/check_complete()
+	for(var/obj/singularity/energy_ball/e in GLOB.singularities)
+		if(is_station_level(e.z))
+			return TRUE
+	return FALSE
