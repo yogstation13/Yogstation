@@ -38,9 +38,9 @@
 /datum/antagonist/obsessed/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_obsession_icons_added(M)
-	if(ishuman(owner) && !owner.GetComponent(/datum/component/mood))
+	if(owner.current && ishuman(owner.current) && !owner.current.GetComponent(/datum/component/mood))
 		to_chat(owner, "<span class='danger'>You feel more aware of your condition, mood has been enabled!</span>")
-		owner.AddComponent(/datum/component/mood) //you fool you absolute buffoon to think you could escape
+		owner.current.AddComponent(/datum/component/mood) //you fool you absolute buffoon to think you could escape
 
 /datum/antagonist/obsessed/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
