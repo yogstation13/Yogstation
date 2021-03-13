@@ -9,14 +9,8 @@
 	var/temp = "" // output message
 
 /obj/machinery/telecomms/attackby(obj/item/P, mob/user, params)
-
-	var/icon_closed = initial(icon_state)
-	var/icon_open = "[initial(icon_state)]_o"
-	if(!on)
-		icon_closed = "[initial(icon_state)]_off"
-		icon_open = "[initial(icon_state)]_o_off"
-
-	if(default_deconstruction_screwdriver(user, icon_open, icon_closed, P))
+	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]_o", initial(icon_state), P))
+		update_icon()
 		return
 	// Using a multitool lets you access the receiver's interface
 	else if(P.tool_behaviour == TOOL_MULTITOOL)
