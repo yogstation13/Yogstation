@@ -580,18 +580,6 @@
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
-"bM" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "conveyorbar"
-	},
-/obj/machinery/door/window/westleft{
-	name = "Conveyor Door";
-	req_access_txt = "25"
-	},
-/obj/machinery/door/firedoor,
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/kitchen)
 "bN" = (
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
@@ -669,10 +657,6 @@
 "cc" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/kitchen)
-"cd" = (
-/obj/effect/spawner/structure/window/plasma,
-/turf/open/floor/plating,
 /area/crew_quarters/kitchen)
 "ce" = (
 /mob/living/carbon/monkey{
@@ -1059,6 +1043,27 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
+"kf" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "conveyorbar"
+	},
+/obj/machinery/door/window/westleft{
+	name = "Conveyor Door";
+	req_access_txt = "25"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/kitchen)
+"kM" = (
+/obj/machinery/holopad,
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
 "nE" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/border_only{
@@ -1149,6 +1154,16 @@
 	pixel_y = 6
 	},
 /turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/kitchen)
+"vH" = (
+/obj/effect/spawner/structure/window/plasma,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/crew_quarters/kitchen)
 "wt" = (
 /obj/structure/disposalpipe/segment,
@@ -1416,7 +1431,7 @@ jj
 ao
 ao
 ao
-ao
+kM
 ao
 hc
 RP
@@ -1530,9 +1545,9 @@ ab
 ab
 al
 al
-bM
+kf
 al
-cd
+vH
 al
 cB
 al
