@@ -133,7 +133,6 @@
 
 /mob/living/simple_animal/drone/Login()
 	..()
-	src.client.init_verbs()
 	check_laws()
 
 	if(flavortext)

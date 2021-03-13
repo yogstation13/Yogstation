@@ -164,7 +164,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 /mob/living/simple_animal/hostile/guardian/Login() //if we have a mind, set its name to ours when it logs in
 	. = ..()
-	src.client.init_verbs()
 	if(mind)
 		mind.name = "[real_name]"
 	if(berserk)
