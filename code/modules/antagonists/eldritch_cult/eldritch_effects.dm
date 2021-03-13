@@ -29,7 +29,7 @@
 	is_in_use = TRUE
 	// Have fun trying to read this proc.
 	var/datum/antagonist/heretic/cultie = user.mind.has_antag_datum(/datum/antagonist/heretic)
-	var/list/knowledge = cultie.get_all_knowledge()
+	var/list/transmutations = cultie.get_all_transmutations()
 	var/list/atoms_in_range = list()
 
 	for(var/A in range(1, src))
@@ -43,20 +43,20 @@
 			if(living_in_range.stat != DEAD || living_in_range == user) // we only accept corpses, no living beings allowed.
 				continue
 		atoms_in_range += atom_in_range
-	for(var/X in knowledge)
-		var/datum/eldritch_knowledge/current_eldritch_knowledge = knowledge[X]
+	for(var/X in transmutations)
+		var/datum/eldritch_transmutation/current_eldritch_transmutation = X
 
 		//has to be done so that we can freely edit the local_required_atoms without fucking up the eldritch knowledge
 		var/list/local_required_atoms = list()
 
-		if(!current_eldritch_knowledge.required_atoms || current_eldritch_knowledge.required_atoms.len == 0)
+		if(!current_eldritch_transmutation.required_atoms || current_eldritch_transmutation.required_atoms.len == 0)
 			continue
 
-		local_required_atoms += current_eldritch_knowledge.required_atoms
+		local_required_atoms += current_eldritch_transmutation.required_atoms
 
 		var/list/selected_atoms = list()
 
-		if(!current_eldritch_knowledge.recipe_snowflake_check(atoms_in_range,drop_location(),selected_atoms))
+		if(!current_eldritch_transmutation.recipe_snowflake_check(atoms_in_range,drop_location(),selected_atoms))
 			continue
 
 		for(var/LR in local_required_atoms)
@@ -79,8 +79,8 @@
 			var/atom/atom_to_disappear = to_disappear
 			//temporary so we dont have to deal with the bs of someone picking those up when they may be deleted
 			atom_to_disappear.invisibility = INVISIBILITY_ABSTRACT
-		if(current_eldritch_knowledge.on_finished_recipe(user,selected_atoms,loc))
-			current_eldritch_knowledge.cleanup_atoms(selected_atoms)
+		if(current_eldritch_transmutation.on_finished_recipe(user,selected_atoms,loc))
+			current_eldritch_transmutation.cleanup_atoms(selected_atoms)
 		is_in_use = FALSE
 
 		for(var/to_appear in atoms_to_disappear)

@@ -908,10 +908,12 @@
 		/obj/item/stock_parts/manipulator = 1)
 
 /obj/item/circuitboard/machine/public_nanite_chamber/multitool_act(mob/living/user)
-	var/new_cloud = input("Set the public nanite chamber's Cloud ID (1-100).", "Cloud ID", cloud_id) as num|null
-	if(new_cloud && (src.loc == user))
+	if(!(src.loc == user))
+		to_chat(user, "<span class='warning'>You have to hold the circuit in your hand to change it!</span>")
 		return
-	cloud_id = clamp(round(new_cloud, 1), 1, 100)
+	var/new_cloud = input("Set the public nanite chamber's Cloud ID (1-100).", "Cloud ID", cloud_id) as num|null
+	if(new_cloud)
+		cloud_id = clamp(round(new_cloud, 1), 1, 100)
 
 /obj/item/circuitboard/machine/public_nanite_chamber/examine(mob/user)
 	. = ..()

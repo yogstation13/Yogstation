@@ -73,6 +73,9 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	if(!iscultist(user))
 		to_chat(user, "<span class='warning'>You aren't able to understand the words of [src].</span>")
 		return
+	if(istype(user, /mob/living/simple_animal/shade))
+		to_chat(user, "<span class='warning'>Your form is not yet strong enough to utilize the [src].</span>")
+		return
 	var/list/invokers = can_invoke(user)
 	if(invokers.len >= req_cultists)
 		invoke(invokers)
@@ -131,6 +134,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 					if((HAS_TRAIT(H, TRAIT_MUTE)) || H.silent)
 						continue
 				if(L.stat)
+					continue
+				if(istype(user, /mob/living/simple_animal/shade))
 					continue
 				invokers += L
 	return invokers

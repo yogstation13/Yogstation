@@ -247,5 +247,5 @@
 	name = "Charcoal Stylus"
 	result = /obj/item/pen/charcoal
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 1, /datum/reagent/ash = 30)
-	time = 30
+	time = 3 SECONDS
 	category = CAT_PRIMAL

@@ -20,23 +20,26 @@
 	)
 					  
 /datum/symptom/numb/Start(datum/disease/advance/A)  //ADD Stamina reg, and a stun resist
-	if(!..())
+	. = ..()
+	if(!.)
 		return
-	if(A.properties["stealth"] >= 4)
+	if(A.totalStealth() >= 4)
 		suppress_warning = TRUE
-	if(A.properties["resistance"] >= 8)
+	if(A.totalResistance() >= 8)
 		stun_reduce = -25
-	if(A.properties["transmission"] >= 7)
+	if(A.totalTransmittable() >= 7)
 		stamina_regen = TRUE
 		
 /datum/symptom/numb/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	if(A.stage < 5)
 		if(prob(base_message_chance) && !suppress_warning)
 			to_chat(M, "<span class='notice'>[pick("You feel better.")]</span>")
 	else
+		ADD_TRAIT(M, TRAIT_SURGERY_PREPARED, DISEASE_TRAIT)
 		M.AdjustStun(stun_reduce, 0)
 		M.set_screwyhud(SCREWYHUD_HEALTHY)
 		if(stamina_regen)
@@ -47,9 +50,11 @@
 	
 /datum/symptom/numb/End(datum/disease/advance/A)
 	var/mob/living/carbon/M = A.affected_mob
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	else
+		REMOVE_TRAIT(M, TRAIT_SURGERY_PREPARED, DISEASE_TRAIT)
 		M.set_screwyhud(SCREWYHUD_NONE)
 		M.updatehealth()
 	return

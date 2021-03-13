@@ -655,7 +655,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 		var/turf/T = loc
 		viable = TRUE
 		for(var/obj/thing in T.contents)
-			if(thing.density || ismachinery(thing) || isstructure(thing))
+			if(thing.density)
 				viable = FALSE
 	if(viable)
 		playsound(src, 'sound/effects/phasein.ogg', 50, TRUE)

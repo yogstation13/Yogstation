@@ -52,6 +52,8 @@ Difficulty: Very Hard
 							   /datum/action/innate/megafauna_attack/shotgun,
 							   /datum/action/innate/megafauna_attack/alternating_cardinals)
 	small_sprite_type = /datum/action/small_sprite/megafauna/colossus
+	music_component = /datum/component/music_player/battle
+	music_path = /datum/music/sourced/battle/colossus
 
 /datum/action/innate/megafauna_attack/spiral_attack
 	name = "Spiral Shots"

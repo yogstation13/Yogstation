@@ -64,26 +64,26 @@
 		if(type in SP.advanced_surgeries)
 			return TRUE
 
-
 	var/turf/T = get_turf(target)
+
+	//Get the relevant operating computer
+	var/obj/machinery/computer/operating/opcomputer
 	var/obj/structure/table/optable/table = locate(/obj/structure/table/optable, T)
-	var/obj/machinery/stasis/bed = locate(/obj/machinery/stasis, T) //yogs start: stasis beds doing surgery
-	if(table)
-		if(!table.computer)
-			return FALSE
-		if(table.computer.stat & (NOPOWER|BROKEN))
-			return FALSE
-		if(type in table.computer.advanced_surgeries)
-			return TRUE
-	if(bed)
-		if(!bed.computer)
-			return FALSE
-		if(bed.occupant != target)
-			return FALSE
-		if(bed.computer.stat & (NOPOWER|BROKEN))
-			return FALSE
-		if(type in bed.computer.advanced_surgeries)
-			return TRUE //yogs end
+	if(table?.computer)
+		opcomputer = table.computer
+	else
+		var/obj/machinery/stasis/the_stasis_bed = locate(/obj/machinery/stasis, T)
+		if(the_stasis_bed?.computer)
+			opcomputer = the_stasis_bed.computer
+
+	if(!opcomputer)
+		return
+	if(opcomputer.stat & (NOPOWER|BROKEN))
+		return .
+	if(replaced_by in opcomputer.advanced_surgeries)
+		return FALSE
+	if(type in opcomputer.advanced_surgeries)
+		return TRUE
 
 /datum/surgery/proc/next_step(mob/user, intent)
 	if(location != user.zone_selected)
@@ -120,18 +120,18 @@
 	SSblackbox.record_feedback("tally", "surgeries_completed", 1, type)
 	qdel(src)
 
-/datum/surgery/proc/get_propability_multiplier()
-	var/propability = 0.5
+/datum/surgery/proc/get_probability_multiplier()
+	var/probability = 0.5
 	var/turf/T = get_turf(target)
 
-	if(locate(/obj/structure/table/optable, T) || locate(/obj/machinery/stasis, T)) //yogs: stasis beds work for surgery
-		propability = 1
+	if(locate(/obj/structure/table/optable, T) || locate(/obj/machinery/stasis, T))
+		probability = 1
 	else if(locate(/obj/structure/table, T))
-		propability = 0.8
+		probability = 0.8
 	else if(locate(/obj/structure/bed, T))
-		propability = 0.7
+		probability = 0.7
 
-	return propability + success_multiplier
+	return probability + success_multiplier
 
 /datum/surgery/advanced
 	name = "advanced surgery"

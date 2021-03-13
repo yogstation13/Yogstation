@@ -151,10 +151,6 @@
         ui_x = 96
         ui_y = -384
 
-/datum/techweb_node/mining_mods
-        ui_x = 96
-        ui_y = -416
-
 /datum/techweb_node/weaponry
         ui_x = -576
         ui_y = -416
@@ -217,6 +213,10 @@
 
 /datum/techweb_node/cyborg_upg_med
         ui_x = 352
+        ui_y = -160
+
+/datum/techweb_node/cyborg_upg_surgkit
+        ui_x = 416
         ui_y = -160
 
 /datum/techweb_node/cyber_organs

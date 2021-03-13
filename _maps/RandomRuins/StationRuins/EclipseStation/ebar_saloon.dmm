@@ -1,4 +1,17 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ac" = (
+/obj/item/lighter,
+/obj/structure/table/wood,
+/obj/item/clothing/mask/cigarette/pipe/cobpipe,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "ad" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/condiment/saltshaker{
@@ -76,6 +89,15 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"bd" = (
+/obj/structure/sign/barsign,
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "be" = (
 /obj/machinery/processor,
 /obj/machinery/firealarm{
@@ -92,6 +114,14 @@
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = -6;
 	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"bO" = (
+/obj/machinery/smartfridge/drinks,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -213,15 +243,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"gm" = (
-/obj/item/lighter,
-/obj/structure/table/wood,
-/obj/item/clothing/mask/cigarette/pipe/cobpipe,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "gE" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -254,11 +275,6 @@
 /obj/machinery/food_cart,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
-"ie" = (
-/obj/structure/sign/barsign,
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "ip" = (
 /turf/template_noop,
 /area/template_noop)
@@ -291,10 +307,6 @@
 /obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"km" = (
-/obj/machinery/smartfridge/drinks,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "kM" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
@@ -316,15 +328,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
-"lu" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "lJ" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck/uno{
@@ -402,6 +405,16 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"oX" = (
+/obj/structure/table/wood,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "pa" = (
 /obj/structure/chair/pew/right,
 /turf/open/floor/wood,
@@ -443,6 +456,14 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"rw" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "barshutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "rB" = (
 /obj/machinery/door/window/southright{
 	name = "Bar Door";
@@ -520,6 +541,18 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
+"uw" = (
+/obj/structure/table/wood,
+/obj/item/clothing/head/yogs/truecowboy2{
+	desc = "Yee where no man has hawed before with the official cowboy hat of NanoTrasen!";
+	pixel_y = -2
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "vh" = (
 /obj/structure/disposalpipe/segment,
 /mob/living/carbon/monkey/punpun,
@@ -736,14 +769,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
-"Cu" = (
-/obj/structure/table/wood,
-/obj/item/clothing/head/yogs/truecowboy2{
-	desc = "Yee where no man has hawed before with the official cowboy hat of NanoTrasen!";
-	pixel_y = -2
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "Cz" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
@@ -968,12 +993,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"JA" = (
-/obj/structure/table/wood,
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "JQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -1156,6 +1175,14 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"Pz" = (
+/obj/structure/table/wood,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "PP" = (
 /turf/closed/wall,
 /area/crew_quarters/kitchen)
@@ -1332,10 +1359,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
-"WK" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "WZ" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/soup/stew{
@@ -1386,6 +1409,21 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"Zw" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/machinery/button/door{
+	id = "barshutters";
+	name = "Bar Shutters Control";
+	pixel_x = 25;
+	pixel_y = 24
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 
 (1,1,1) = {"
 EP
@@ -1397,13 +1435,13 @@ ai
 ai
 Uk
 Uk
-WK
+rw
 Uk
 Uk
-WK
+rw
 Uk
 Uk
-WK
+rw
 Uk
 Uk
 "}
@@ -1525,7 +1563,7 @@ gj
 gh
 OU
 OU
-ie
+bd
 "}
 (8,1,1) = {"
 EP
@@ -1545,7 +1583,7 @@ OU
 dO
 OU
 OU
-WK
+rw
 "}
 (9,1,1) = {"
 Uk
@@ -1613,11 +1651,11 @@ Uk
 Ld
 Uk
 Uk
-gm
-Ea
-Cu
-Ea
-Ea
+ac
+Pz
+uw
+Pz
+Pz
 TE
 OU
 PX
@@ -1637,7 +1675,7 @@ OU
 OU
 Kl
 OU
-JA
+oX
 TE
 OU
 OU
@@ -1652,12 +1690,12 @@ ip
 ip
 ip
 Uk
-lu
+Zw
 Jv
 vh
 tI
 OU
-km
+bO
 OU
 OU
 OU

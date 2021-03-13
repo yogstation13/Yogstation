@@ -190,7 +190,7 @@
 
 ///Compile all the overlays for an atom from the cache lists
 #define COMPILE_OVERLAYS(A)\
-	if (TRUE) {\
+	do {\
 		var/list/ad = A.add_overlays;\
 		var/list/rm = A.remove_overlays;\
 		var/list/po = A.priority_overlays;\
@@ -214,7 +214,7 @@
 		A.flags_1 &= ~OVERLAY_QUEUED_1;\
 		if(isturf(A)){SSdemo.mark_turf(A);}\
 		if(isobj(A) || ismob(A)){SSdemo.mark_dirty(A);}\
-	}
+	} while (FALSE)
 
 
 // Air subsystem subtasks

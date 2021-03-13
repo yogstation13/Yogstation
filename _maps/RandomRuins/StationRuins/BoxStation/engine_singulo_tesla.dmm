@@ -294,18 +294,6 @@
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"aW" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating/airless,
-/area/engine/engineering)
-"aX" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/plating/airless,
-/area/engine/engineering)
 "aY" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -663,11 +651,6 @@
 /obj/structure/sign/warning/radiation/rad_area,
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
-"ey" = (
-/obj/machinery/door/firedoor/window,
-/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "gm" = (
 /turf/open/space/basic,
 /area/engine/engineering)
@@ -944,6 +927,12 @@
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"Ls" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 "Ma" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = -32
@@ -1035,6 +1024,12 @@
 /obj/machinery/the_singularitygen/tesla,
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"YV" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 
 (1,1,1) = {"
 ab
@@ -1269,7 +1264,7 @@ nL
 Vm
 Fx
 MU
-aW
+YV
 bd
 bm
 bm
@@ -1408,7 +1403,7 @@ bG
 ac
 aE
 Gt
-ey
+Rl
 kU
 sd
 gm
@@ -1436,7 +1431,7 @@ ad
 ad
 zh
 zh
-ey
+Rl
 kU
 gm
 gm
@@ -1604,7 +1599,7 @@ ad
 ad
 zh
 zh
-ey
+Rl
 kU
 gm
 gm
@@ -1632,7 +1627,7 @@ ci
 ac
 aE
 Gt
-ey
+Rl
 kU
 sd
 gm
@@ -1773,7 +1768,7 @@ nL
 Ma
 Io
 MU
-aX
+Ls
 bn
 bm
 bm
