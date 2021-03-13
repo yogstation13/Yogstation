@@ -939,6 +939,14 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
+"gP" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/holopad,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "lI" = (
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/tile/bar,
@@ -1000,15 +1008,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
-"rr" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/obj/machinery/door/window/westright,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "ti" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/table/reinforced,
@@ -1080,6 +1079,21 @@
 "Lp" = (
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"MB" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/machinery/door/window/westright,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "PW" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -1163,7 +1177,7 @@ ba
 ba
 ba
 cC
-ba
+gP
 ba
 ba
 ci
@@ -1369,9 +1383,9 @@ ab
 ab
 aj
 aj
-rr
-rr
-rr
+MB
+MB
+MB
 aj
 cb
 aj
