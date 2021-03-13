@@ -779,6 +779,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 					S = GLOB.legs_list[H.dna.features["legs"]]
 				if("moth_wings")
 					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
+				if("moth_wingsopen")
+					S = GLOB.moth_wingsopen_list[H.dna.features["moth_wings"]]
 				if("caps")
 					S = GLOB.caps_list[H.dna.features["caps"]]
 				if("teeth")
@@ -1933,6 +1935,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(isnull(fly))
 		fly = new
 		fly.Grant(H)
+	if(ismoth(H)) //mothpeople don't grow new wings, they already have theirs
+		return
 	if(H.dna.features["wings"] != wings_icon)
 		mutant_bodyparts |= "wings"
 		H.dna.features["wings"] = wings_icon
@@ -1949,6 +1953,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 /datum/species/proc/CanFly(mob/living/carbon/human/H)
 	if(H.stat || !(H.mobility_flags & MOBILITY_STAND))
+		return FALSE
+	if(H.dna.features["moth_wings"] == "Burnt Off") //this is so tragic can we get an "F" in the chat
+		to_chat(H, "<span>Your crispy wings won't work anymore!</span>")
 		return FALSE
 	if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) && (!H.wear_suit.species_exception || !is_type_in_list(src, H.wear_suit.species_exception))))	//Jumpsuits have tail holes, so it makes sense they have wing holes too
 		to_chat(H, "Your suit blocks your wings from extending!")
