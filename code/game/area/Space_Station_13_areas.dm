@@ -634,6 +634,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	ambientsounds = ENGINEERING
 	minimap_color = "#6b6b6b"
 	airlock_wires = /datum/wires/airlock/engineering
+	sound_environment = SOUND_AREA_SPACE
 
 /area/solar/fore
 	name = "Fore Solar Array"
