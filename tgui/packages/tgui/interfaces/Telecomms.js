@@ -178,7 +178,7 @@ export const Telecomms = (props, context) => {
                           ml={2}>
                           [{RADIO_CHANNELS
                             .find(channel => channel
-                              .freq === entry).name } ]
+                              .freq === entry).name }]
                         </Box>
                       )}
                     </Table.Cell>
