@@ -75,7 +75,7 @@
 
 	preload_rsc = PRELOAD_RSC
 
-	var/obj/screen/click_catcher/void
+	var/atom/movable/screen/click_catcher/void
 
 	///used to make a special mouse cursor, this one for mouse up icon
 	var/mouse_up_icon = null
@@ -115,7 +115,7 @@
  	///these persist between logins/logouts during the same round.
 	var/datum/player_details/player_details
 
-	///Should only be a key-value list of north/south/east/west = obj/screen.
+	///Should only be a key-value list of north/south/east/west = atom/movable/screen.
 	var/list/char_render_holders
 
 	///LibVG encoding

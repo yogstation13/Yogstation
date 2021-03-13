@@ -84,8 +84,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50) //HALP AM DUMB
 			to_chat(H,"<span class='danger'>ALERT! MEMORY UNIT [rand(1,5)] FAILURE.NERVEOUS SYSTEM DAMAGE.</span>")
 		if(2)
-			H.overlay_fullscreen("preternis_emag", /obj/screen/fullscreen/high)
-			H.throw_alert("preternis_emag", /obj/screen/alert/high/preternis)
+			H.overlay_fullscreen("preternis_emag", /atom/movable/screen/fullscreen/high)
+			H.throw_alert("preternis_emag", /atom/movable/screen/alert/high/preternis)
 			to_chat(H,"<span class='danger'>ALERT! OPTIC SENSORS FAILURE.VISION PROCESSOR COMPROMISED.</span>")
 
 /datum/species/preternis/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
@@ -153,10 +153,10 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		to_chat(H,"<span class='danger'>Warning! System power criti-$#@$</span>")
 		H.death()
 	else if(charge < PRETERNIS_LEVEL_STARVING)
-		H.throw_alert("preternis_charge", /obj/screen/alert/preternis_charge, 3)
+		H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 3)
 	else if(charge < PRETERNIS_LEVEL_HUNGRY)
-		H.throw_alert("preternis_charge", /obj/screen/alert/preternis_charge, 2)
+		H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 2)
 	else if(charge < PRETERNIS_LEVEL_FED)
-		H.throw_alert("preternis_charge", /obj/screen/alert/preternis_charge, 1)
+		H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 1)
 	else
 		H.clear_alert("preternis_charge")

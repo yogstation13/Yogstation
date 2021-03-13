@@ -6,7 +6,7 @@
 		make_laws()
 
 /mob/living/silicon/proc/post_lawchange(announce = TRUE)
-	throw_alert("newlaw", /obj/screen/alert/newlaw)
+	throw_alert("newlaw", /atom/movable/screen/alert/newlaw)
 	if(announce && last_lawchange_announce != world.time)
 		to_chat(src, "<b>Your laws have been changed.</b>")
 		SEND_SOUND(src, sound('sound/effects/ionlaw.ogg'))

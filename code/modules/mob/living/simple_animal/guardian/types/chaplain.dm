@@ -9,7 +9,7 @@
 	melee_damage_upper = 10
 	playstyle_string = "<span class='holoparasite'>As the Chaplain's <b>support</b> holyparasite, you may toggle your basic attacks to a healing mode.</span>"
 	magic_fluff_string = "<span class='holoparasite'>..And draw the Sun, XIX. Upon closer inspection, all of the cards are the same. What a rip-off.</span>"
-	toggle_button_type = /obj/screen/guardian/ToggleMode
+	toggle_button_type = /atom/movable/screen/guardian/ToggleMode
 	var/toggle = FALSE
 
 /mob/living/simple_animal/hostile/guardian/chaplain/Initialize()

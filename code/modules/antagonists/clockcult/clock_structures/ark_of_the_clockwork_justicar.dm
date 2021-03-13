@@ -146,7 +146,7 @@
 				M.current.forceMove(get_step(get_step(src, NORTH),NORTH)) // AI too fat, must make sure it always ends up a 2 tiles north instead of on the ark.
 			else
 				M.current.forceMove(get_turf(src))
-		M.current.overlay_fullscreen("flash", /obj/screen/fullscreen/flash)
+		M.current.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash)
 		M.current.clear_fullscreen("flash", 5)
 	playsound(src, 'sound/magic/clockwork/invoke_general.ogg', 50, FALSE)
 	recalls_remaining--
@@ -174,7 +174,7 @@
 			if(isobj(L.loc))
 				target = L.loc
 			target.forceMove(get_turf(pick(GLOB.generic_event_spawns)))
-			L.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/static)
+			L.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/static)
 			L.clear_fullscreen("flash", 30)
 			if(isliving(L))
 				var/mob/living/LI = L
@@ -303,7 +303,7 @@
 		var/turf/T = get_turf(M)
 		if(is_servant_of_ratvar(M) && (!T || T.z != z))
 			M.forceMove(get_step(src, SOUTH))
-			M.overlay_fullscreen("flash", /obj/screen/fullscreen/flash)
+			M.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash)
 			M.clear_fullscreen("flash", 5)
 	if(grace_period)
 		grace_period--

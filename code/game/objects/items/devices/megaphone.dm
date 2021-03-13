@@ -10,7 +10,7 @@
 	siemens_coefficient = 1
 	var/last_used = 0
 	var/list/voicespan = list(SPAN_COMMAND)
-	
+
 /obj/item/megaphone/examine(mob/user)
 	. = ..()
 	if(last_used > world.time)
@@ -43,7 +43,7 @@
 		return FALSE
 	last_used = world.time + recharge_time
 	update_icon()
-	addtimer(CALLBACK(src, .proc/update_icon), recharge_time)
+	addtimer(CALLBACK(src, /atom/.proc/update_icon), recharge_time)
 	return TRUE
 
 /obj/item/megaphone/update_icon()

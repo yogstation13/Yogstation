@@ -55,7 +55,7 @@
 		can_buckle = initial(can_buckle)
 	update_icon()
 
-/mob/living/simple_animal/chocobo/proc/update_icon()
+/mob/living/simple_animal/chocobo/update_icon()
 	if(!random_color) //icon override
 		return
 	cut_overlays()

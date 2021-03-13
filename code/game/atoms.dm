@@ -1218,6 +1218,10 @@
 		usr_client.Click(src, loc, null, mouseparams)
 		return TRUE
 
+///Children inherit from this, no baseplate functionality
+/atom/proc/update_icon()
+	return
+
 //Update the screentip to reflect what we're hoverin over
 /atom/MouseEntered(location, control, params)
 	. = ..()
