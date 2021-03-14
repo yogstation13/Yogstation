@@ -111,6 +111,7 @@
 /datum/dynamic_ruleset/roundstart/changeling/pre_execute(population)
 	. = ..()
 	var/num_changelings = get_antag_cap(population) * (scaled_times + 1)
+	for (var/i = 1 to num_changelings)
 		var/mob/M = pick_n_take(candidates)
 		assigned += M.mind
 		M.mind.restricted_roles = restricted_roles

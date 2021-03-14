@@ -428,7 +428,6 @@
 	weight = 1
 	cost = 5
 	requirements = list(90,85,80,70,50,40,30,25,20,10)
-	high_population_requirement = 50
 	repeatable = TRUE
 	var/list/spawn_locs = list()
 

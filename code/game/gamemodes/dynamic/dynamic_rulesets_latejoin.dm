@@ -201,7 +201,6 @@
 	requirements = list(80,70,60,50,50,45,30,30,20,25)
 	minimum_players = 30
 	repeatable = TRUE
-	flags = TRAITOR_RULESET
 
 
 //////////////////////////////////////////////
