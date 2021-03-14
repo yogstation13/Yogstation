@@ -459,7 +459,7 @@ ROUNDSTART_RACES human
 ## Races that are strictly worse than humans that could probably be turned on without balance concerns
 ROUNDSTART_RACES lizard
 #ROUNDSTART_RACES gorilla
-#ROUNDSTART_RACES fly
+ROUNDSTART_RACES fly
 ROUNDSTART_RACES moth
 ROUNDSTART_RACES plasmaman
 #ROUNDSTART_RACES shadow
@@ -469,7 +469,7 @@ ROUNDSTART_RACES polysmorph
 
 ## Races that are better than humans in some ways, but worse in others
 ROUNDSTART_RACES ethereal
-#ROUNDSTART_RACES jelly
+ROUNDSTART_RACES jelly
 #ROUNDSTART_RACES golem
 #ROUNDSTART_RACES adamantine
 #ROUNDSTART_RACES plasma
@@ -490,6 +490,8 @@ ROUNDSTART_RACES pod
 
 ## Races that are for EPIC GAMERS only
 #MENTOR_RACES polysmorph
+MENTOR_RACES mush
+
 
 ##-------------------------------------------------------------------------------------------
 
