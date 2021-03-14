@@ -35,16 +35,20 @@ endmap
 
 map icebox
 	minplayers 25
+	disabled 
 endmap
 
 map eclipsestation
 	minplayers 60
+	disabled 
 endmap
 
 map runtimestation
+	disabled 
 endmap
 
 map multiz_debug
+	disabled 
 endmap
 
 
