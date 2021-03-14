@@ -262,14 +262,11 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	. += "<b>[title]</b></center><BR>"
 	. += desc
 
-	if(station_goals.len)
-		. += "<hr><b>Special Orders for [station_name()]:</b>"
-		for(var/datum/station_goal/G in station_goals)
-			G.on_report()
-			. += G.get_report()
+	. += generate_station_goal_report()
+	. += generate_station_trait_report()
 
 	print_command_report(., "Central Command Status Summary", announce=FALSE)
-	priority_announce(desc, title, 'sound/ai/intercept.ogg')
+	priority_announce(desc, title, ANNOUNCER_INTERCEPT)
 	if(GLOB.security_level < SEC_LEVEL_BLUE)
 		set_security_level(SEC_LEVEL_BLUE)
 

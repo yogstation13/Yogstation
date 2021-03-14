@@ -53,3 +53,5 @@
 		for(var/job in jobs_to_revolt)
 			message += "[job],"
 		message_admins("The nation of [nation_name] has been formed. Affected jobs are [message]")
+		
+// Note for Swissloaf to later put announcement changes if Department Revolt is merged. This will be deleted when the merge conflict is triggered.
