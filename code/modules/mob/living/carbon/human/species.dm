@@ -602,12 +602,15 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		if(H.underwear)
 			var/datum/sprite_accessory/underwear/underwear = GLOB.underwear_list[H.underwear]
 			if(underwear)
-				standing += mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
+				if(HAS_TRAIT(H, TRAIT_SKINNY))
+					standing += wear_skinny_version(underwear.icon_state, underwear.icon, BODY_LAYER) //Neat, this works
+				else
+					standing += mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
 
 		if(H.undershirt)
 			var/datum/sprite_accessory/undershirt/undershirt = GLOB.undershirt_list[H.undershirt]
 			if(undershirt)
-				if(HAS_TRAIT(H, TRAIT_SKINNY) && (H.underwear == "Nude")) //Since underwear doesn't get modified, we don't want it to stick out from under skinny clothing
+				if(HAS_TRAIT(H, TRAIT_SKINNY)) //Check for skinny first
 					standing += wear_skinny_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else if(H.dna.species.sexes && H.gender == FEMALE)
 					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
