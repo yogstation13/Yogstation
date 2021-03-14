@@ -100,7 +100,7 @@
 /datum/station_trait/scarves/proc/on_job_after_spawn(datum/source, datum/job/job, mob/living/living_mob, mob/M, joined_late)
 	var/scarf_type = pick(scarves)
 
-	living_mob.equip_to_slot_or_del(new scarf_type(living_mob), ITEM_SLOT_NECK, initial = FALSE)
+	living_mob.equip_to_slot_or_del(new scarf_type(living_mob), ITEM_SLOT_NECK)
 
 /datum/station_trait/filled_maint
 	name = "Filled up maintenance"
