@@ -65,9 +65,7 @@
 	weight = 1
 	cost = 5
 	requirements = list(40,30,20,10,10,10,10,10,10,10)
-	high_population_requirement = 10
 	repeatable = TRUE
-	flags = TRAITOR_RULESET
 
 //////////////////////////////////////////////
 //                                          //
@@ -89,8 +87,6 @@
 	cost = 20
 	delay = 1 MINUTES
 	requirements = list(80,75,60,60,55,50,40,30,20,20)
-	high_population_requirement = 50
-	flags = HIGHLANDER_RULESET
 	blocking_rules = list(/datum/dynamic_ruleset/roundstart/revs)
 	var/required_heads_of_staff = 3
 	var/finished = FALSE

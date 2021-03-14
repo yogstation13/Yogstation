@@ -53,8 +53,8 @@
 	var/gamemode_ready = FALSE //Is the gamemode all set up and ready to start checking for ending conditions.
 	var/setup_error		//What stopepd setting up the mode.
 
-/// Associative list of current players, in order: living players, living antagonists, dead players and observers.
-	//var/list/list/current_players = list(CURRENT_LIVING_PLAYERS = list(), CURRENT_LIVING_ANTAGS = list(), CURRENT_DEAD_PLAYERS = list(), CURRENT_OBSERVERS = list())
+	/// Associative list of current players, in order: living players, living antagonists, dead players and observers.
+	var/list/list/current_players = list(CURRENT_LIVING_PLAYERS = list(), CURRENT_LIVING_ANTAGS = list(), CURRENT_DEAD_PLAYERS = list(), CURRENT_OBSERVERS = list())
 
 /datum/game_mode/proc/announce() //Shows the gamemode's name and a fast description.
 	to_chat(world, "<b>The gamemode is: <span class='[announce_span]'>[name]</span>!</b>")
@@ -90,7 +90,7 @@
 ///Everyone should now be on the station and have their normal gear.  This is the place to give the special roles extra things
 /datum/game_mode/proc/post_setup(report) //Gamemodes can override the intercept report. Passing TRUE as the argument will force a report.
 	SHOULD_CALL_PARENT(TRUE)
-	
+
 	if(!report)
 		report = !CONFIG_GET(flag/no_intercept_report)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)

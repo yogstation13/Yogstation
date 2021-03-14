@@ -1,4 +1,4 @@
-////////////////////////////////////////////// 
+//////////////////////////////////////////////
 //                                          //
 //            MIDROUND RULESETS             //
 //                                          //
@@ -171,23 +171,29 @@
 	cost = 10
 	requirements = list(50,40,30,20,10,10,10,10,10,10)
 	repeatable = TRUE
-	high_population_requirement = 10
-	flags = TRAITOR_RULESET
 
 /datum/dynamic_ruleset/midround/autotraitor/acceptable(population = 0, threat = 0)
 	var/player_count = mode.current_players[CURRENT_LIVING_PLAYERS].len
 	var/antag_count = mode.current_players[CURRENT_LIVING_ANTAGS].len
 	var/max_traitors = round(player_count / 10) + 1
-	if ((antag_count < max_traitors) && prob(mode.threat_level))//adding traitors if the antag population is getting low
-		return ..()
-	else
+
+	// adding traitors if the antag population is getting low
+	var/too_little_antags = antag_count < max_traitors
+	if (!too_little_antags)
+		log_game("DYNAMIC: Too many living antags compared to living players ([antag_count] living antags, [player_count] living players, [max_traitors] max traitors)")
 		return FALSE
+
+	if (!prob(mode.threat_level))
+		log_game("DYNAMIC: Random chance to roll autotraitor failed, it was a [mode.threat_level]% chance.")
+		return FALSE
+
+	return ..()
 
 /datum/dynamic_ruleset/midround/autotraitor/trim_candidates()
 	..()
 	for(var/mob/living/player in living_players)
 		if(issilicon(player)) // Your assigned role doesn't change when you are turned into a silicon.
-			living_players -= player 
+			living_players -= player
 			continue
 		if(is_centcom_level(player.z))
 			living_players -= player // We don't autotator people in CentCom
@@ -229,7 +235,6 @@
 	weight = 1
 	cost = 35
 	requirements = list(100,100,80,70,60,60,50,50,45,40)
-	high_population_requirement = 35
 	required_type = /mob/living/silicon/ai
 	var/ion_announce = 33
 	var/removeDontImproveChance = 10
@@ -282,7 +287,6 @@
 	weight = 1
 	cost = 20
 	requirements = list(90,90,70,40,30,20,10,10,10,10)
-	high_population_requirement = 50
 	repeatable = TRUE
 
 /datum/dynamic_ruleset/midround/from_ghosts/wizard/ready(forced = FALSE)
@@ -314,10 +318,9 @@
 	weight = 1
 	cost = 35
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
-	high_population_requirement = 10
 	var/list/operative_cap = list(2,2,3,3,4,5,5,5,5,5)
 	var/datum/team/nuclear/nuke_team
-	flags = HIGHLANDER_RULESET
+	flags = HIGH_IMPACT_RULESET
 
 /datum/dynamic_ruleset/midround/from_ghosts/nuclear/acceptable(population=0, threat=0)
 	if (locate(/datum/dynamic_ruleset/roundstart/nuclear) in mode.executed_rules)
@@ -357,7 +360,6 @@
 	weight = 1
 	cost = 30
 	requirements = list(100,100,100,80,60,50,45,30,20,20)
-	high_population_requirement = 50
 	repeatable = TRUE
 
 /datum/dynamic_ruleset/midround/from_ghosts/blob/generate_ruleset_body(mob/applicant)
@@ -380,7 +382,6 @@
 	weight = 1
 	cost = 20
 	requirements = list(100,100,100,70,50,40,30,25,20,10)
-	high_population_requirement = 50
 	repeatable = TRUE
 	var/list/vents = list()
 
@@ -457,7 +458,7 @@
 	log_game("DYNAMIC: [key_name(S)] was spawned as a Nightmare by the midround ruleset.")
 	return S
 
-//////////////////////////////////////////////	
+//////////////////////////////////////////////
 //                                          //
 //                VAMPIRE                   //
 //                                          //
@@ -474,7 +475,7 @@
 	cost = 25
 	requirements = list(80,70,60,50,50,45,30,30,25,25)
 	minimum_players = 30
-	
+
 /datum/dynamic_ruleset/midround/autovamp/acceptable(population = 0, threat = 0)
 	var/player_count = mode.current_players[CURRENT_LIVING_PLAYERS].len
 	var/antag_count = mode.current_players[CURRENT_LIVING_ANTAGS].len
@@ -511,7 +512,7 @@
 	var/datum/antagonist/vampire/newVampire = new
 	M.mind.add_antag_datum(newVampire)
 	return TRUE
-	
+
 //////////////////////////////////////////////
 //                                          //
 //              ZOMBIE (GHOST)              //
@@ -561,4 +562,4 @@
 	log_game("[key_name(M)] was spawned as a Zombie by an event.")
 	spawned_mobs += M
 	return SUCCESSFUL_SPAWN
-	
+
