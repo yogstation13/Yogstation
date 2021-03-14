@@ -159,8 +159,6 @@
 		            /obj/item/clothing/under/lawyer/blacksuit = 2,
 		            /obj/item/clothing/suit/toggle/lawyer/black = 2,
 		            /obj/item/clothing/suit/hooded/wintercoat = 2,
-		            /obj/item/clothing/suit/hooded/wintercoat/hydro = 2,
-		            /obj/item/clothing/suit/hooded/wintercoat/miner = 2,
 		            /obj/item/clothing/suit/hooded/wintercoat/bluecoat = 2,
 		            /obj/item/clothing/suit/hooded/spesshoodie = 2,
 		            /obj/item/clothing/suit/yogs/zebrasweat = 2,
@@ -178,14 +176,8 @@
 		            /obj/item/clothing/shoes/yogs/fire_crocs = 1,
 		            /obj/item/clothing/shoes/winterboots = 2,
 		            /obj/item/clothing/shoes/singery = 1,
-		            /obj/item/clothing/shoes/singerb = 1,
-		            /obj/item/clothing/shoes/yogs/trainers/red = 1,
-		            /obj/item/clothing/shoes/yogs/trainers/white = 1,
-		            /obj/item/clothing/shoes/yogs/trainers/zebra = 1,
-		            /obj/item/clothing/shoes/yogs/trainers/darkbrown = 1,
-		            /obj/item/clothing/shoes/yogs/trainers/black = 1,
+		            /obj/item/clothing/shoes/singerb = 1,t
 		            /obj/item/clothing/shoes/yogs/trainers = 1,
-		            /obj/item/clothing/mask/gas/cyborg = 1,
 		            /obj/item/clothing/shoes/yogs/fuzzy_slippers = 3) //yogs clothes for clothesmate end here
 	contraband = list(/obj/item/clothing/under/syndicate/tacticool = 1,
 		              /obj/item/clothing/mask/balaclava = 1,
@@ -207,11 +199,7 @@
 		           /obj/item/clothing/head/yogs/formalhat = 1, //yogs start
 		           /obj/item/clothing/suit/yogs/trainman = 1,
 		           /obj/item/clothing/head/yogs/trainman = 1,
-		           /obj/item/clothing/suit/drfreeze_coat = 1,
-		           /obj/item/clothing/suit/nemes = 1,
-		           /obj/item/clothing/suit/draculacoat = 1,
 		           /obj/item/clothing/suit/yogs/infsuit = 1,
-		           /obj/item/clothing/suit/yogs/jesus = 1,
 		           /obj/item/clothing/under/yogs/persskinsuit = 3) //yogs end
 	refill_canister = /obj/item/vending_refill/clothing
 	default_price = 50
