@@ -176,7 +176,7 @@
 		            /obj/item/clothing/shoes/yogs/fire_crocs = 1,
 		            /obj/item/clothing/shoes/winterboots = 2,
 		            /obj/item/clothing/shoes/singery = 1,
-		            /obj/item/clothing/shoes/singerb = 1,t
+		            /obj/item/clothing/shoes/singerb = 1,
 		            /obj/item/clothing/shoes/yogs/trainers = 1,
 		            /obj/item/clothing/shoes/yogs/fuzzy_slippers = 3) //yogs clothes for clothesmate end here
 	contraband = list(/obj/item/clothing/under/syndicate/tacticool = 1,
