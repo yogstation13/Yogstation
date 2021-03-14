@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		return "Bar Irish"
 
 /obj/effect/landmark/stationroom/box/engine
-	template_names = list("Engine SM", "Engine Singulo And Tesla")
+	template_names = list("Engine SM", "Engine Singulo And Tesla", "Engine TEG")
 	icon = 'yogstation/icons/rooms/box/engine.dmi'
 
 /obj/effect/landmark/stationroom/box/engine/choose()
