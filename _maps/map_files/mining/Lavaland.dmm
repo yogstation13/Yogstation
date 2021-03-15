@@ -76,61 +76,24 @@
 "an" = (
 /turf/closed/mineral/random/labormineral/volcanic,
 /area/lavaland/surface/outdoors)
-"ao" = (
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile,
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/skeleton,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "ap" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/stone_tile{
 	dir = 1
 	},
-/obj/structure/stone_tile,
-/obj/structure/stone_tile{
-	dir = 4
-	},
 /obj/structure/stone_tile{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/skeleton/templar{
-	speak = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
-	speak_chance = 0
+/obj/structure/stone_tile{
+	dir = 4
 	},
+/obj/structure/stone_tile,
+/obj/structure/mineral_door/iron,
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
 "aq" = (
 /turf/closed/wall,
 /area/mine/laborcamp)
-"ar" = (
-/obj/machinery/door/keycard/necropolis,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
-"as" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/mob/living/simple_animal/hostile/megafauna/dragon,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "at" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -170,6 +133,20 @@
 "aD" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors/explored)
+"aS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/burnt,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "aT" = (
 /obj/structure/ore_box,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -187,20 +164,6 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating,
 /area/mine/laborcamp)
-"bg" = (
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "bi" = (
 /obj/structure/gulag_beacon,
 /turf/open/floor/plasteel,
@@ -220,20 +183,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/laborcamp)
-"bq" = (
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile{
+"by" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/cracked{
 	dir = 8
 	},
-/obj/structure/stone_tile,
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
 "bE" = (
 /obj/structure/toilet{
 	dir = 4
@@ -243,10 +206,13 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/mine/laborcamp)
-"bJ" = (
-/obj/structure/stone_tile,
+"bO" = (
+/obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/stone_tile{
 	dir = 1
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
 	},
 /obj/structure/stone_tile{
 	dir = 4
@@ -254,9 +220,9 @@
 /obj/structure/stone_tile{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/cracked,
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
 "bQ" = (
 /obj/structure/chair/stool,
 /obj/structure/sign/poster/official/report_crimes{
@@ -299,6 +265,21 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/mine/laborcamp)
+"cs" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/ash,
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "cu" = (
 /obj/item/pickaxe,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -307,20 +288,6 @@
 /obj/structure/ore_box,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"cw" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "cU" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/dirt,
@@ -343,6 +310,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/laborcamp)
+"df" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "du" = (
 /obj/machinery/conveyor{
 	id = "gulag"
@@ -368,17 +349,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"dC" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile/block/cracked,
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "dF" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -413,7 +383,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/laborcamp)
-"en" = (
+"eq" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/stone_tile{
 	dir = 1
@@ -425,23 +395,23 @@
 /obj/structure/stone_tile{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/ash,
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
-"ew" = (
-/obj/effect/decal/remains/human,
+/area/ruin/unpowered/dragonslair)
+"eA" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/stone_tile{
 	dir = 1
 	},
-/obj/structure/stone_tile,
-/obj/structure/stone_tile{
-	dir = 4
-	},
 /obj/structure/stone_tile{
 	dir = 8
 	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/burnt{
+	dir = 4
+	},
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
 "eE" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate,
@@ -463,17 +433,28 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"fd" = (
+"eZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/block/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
+/obj/structure/stone_tile/block/cracked{
 	dir = 1
 	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered/dragonslair)
+"fa" = (
+/obj/structure/mineral_door/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/block,
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
 "fs" = (
 /obj/structure/bookcase/random,
 /turf/open/floor/plasteel,
@@ -496,14 +477,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"fU" = (
-/obj/effect/decal/remains/human{
-	name = "Rather Dashing"
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/slab/cracked,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "fV" = (
 /turf/closed/indestructible/riveted/boss/see_through,
 /area/lavaland/surface/outdoors)
@@ -533,6 +506,22 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/mine/laborcamp/security)
+"gh" = (
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/twohanded/spear,
+/obj/item/flashlight/lantern,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "gj" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 1
@@ -587,6 +576,20 @@
 /obj/structure/stone_tile,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"gx" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "gy" = (
 /obj/structure/stone_tile/cracked,
 /obj/structure/stone_tile{
@@ -600,13 +603,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"gA" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/wood,
-/obj/structure/stone_tile/slab/cracked,
-/obj/item/stack/sheet/mineral/diamond/fifty,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "gB" = (
 /obj/structure/stone_tile/block{
 	dir = 4
@@ -709,6 +705,21 @@
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"hG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/sheet/mineral/gold/fifty,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "hH" = (
 /obj/structure/stone_tile/block{
 	dir = 1
@@ -752,9 +763,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"hN" = (
+"hO" = (
+/obj/machinery/shower{
+	pixel_y = 20
+	},
+/turf/open/floor/plasteel/freezer,
+/area/mine/laborcamp)
+"hP" = (
 /obj/item/stack/sheet/mineral/gold/fifty,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
 /obj/structure/stone_tile/cracked{
 	dir = 4
 	},
@@ -766,13 +786,7 @@
 	dir = 1
 	},
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
-"hO" = (
-/obj/machinery/shower{
-	pixel_y = 20
-	},
-/turf/open/floor/plasteel/freezer,
-/area/mine/laborcamp)
+/area/ruin/unpowered/dragonslair)
 "hW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/red/filled/corner{
@@ -950,22 +964,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"jn" = (
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/twohanded/spear,
-/obj/item/flashlight/lantern,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "jq" = (
 /obj/structure/stone_tile,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -1431,6 +1429,21 @@
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"mc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/twohanded/spear,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "mk" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 8
@@ -1772,6 +1785,10 @@
 	},
 /turf/open/indestructible/boss,
 /area/lavaland/surface/outdoors)
+"nd" = (
+/obj/machinery/door/keycard/necropolis,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "ne" = (
 /obj/structure/stone_tile/block{
 	dir = 1
@@ -1819,34 +1836,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"nt" = (
-/obj/structure/mineral_door/iron,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile,
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "nC" = (
 /obj/machinery/atmospherics/components/unary/tank/air,
 /turf/open/floor/plating,
 /area/mine/laborcamp)
 "nJ" = (
-/obj/item/stack/sheet/mineral/gold,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/obj/structure/stone_tile/surrounding/cracked,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered/dragonslair)
 "oe" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/decal/cleanable/dirt,
@@ -1856,11 +1853,18 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/mine/laborcamp)
-"oK" = (
+"oH" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/slab/cracked,
+/obj/effect/decal/cleanable/ash,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/block/cracked,
+/obj/structure/stone_tile{
+	dir = 4
+	},
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
 "oO" = (
 /obj/structure/sign/poster/official/work_for_a_future{
 	pixel_y = 32
@@ -1882,20 +1886,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
-"pe" = (
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "pf" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -1918,21 +1908,6 @@
 "pl" = (
 /turf/open/floor/plasteel/freezer,
 /area/mine/laborcamp)
-"pt" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/skeleton/templar{
-	speak = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
-	speak_chance = 0
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "pw" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
 	dir = 1;
@@ -1963,7 +1938,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"qf" = (
+"qh" = (
+/obj/effect/spawner/structure/window,
+/obj/structure/cloth_curtain{
+	color = "#99ccff"
+	},
+/turf/open/floor/plating,
+/area/mine/laborcamp)
+"ql" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/stone_tile{
 	dir = 1
@@ -1975,29 +1957,9 @@
 /obj/structure/stone_tile{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/skeleton,
+/obj/item/twohanded/spear,
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
-"qh" = (
-/obj/effect/spawner/structure/window,
-/obj/structure/cloth_curtain{
-	color = "#99ccff"
-	},
-/turf/open/floor/plating,
-/area/mine/laborcamp)
-"qs" = (
-/obj/structure/stone_tile/block{
-	dir = 4
-	},
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
 "qE" = (
 /obj/structure/table,
 /obj/item/toy/cards/deck,
@@ -2020,18 +1982,57 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"qW" = (
-/obj/structure/stone_tile/block{
+"ro" = (
+/obj/machinery/computer/prisoner{
+	dir = 4;
+	icon_state = "computer"
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/mine/laborcamp/security)
+"rw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
 	dir = 8
 	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/megafauna/dragon,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
+"rG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/slab/cracked,
+/obj/item/stack/sheet/mineral/diamond/fifty,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
+"rI" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/stone_tile{
 	dir = 1
 	},
-/obj/structure/stone_tile,
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/cracked,
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
-"re" = (
+/area/ruin/unpowered/dragonslair)
+"rX" = (
+/obj/item/pickaxe,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
+"rZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/stone_tile/block/cracked{
 	dir = 4
@@ -2043,26 +2044,7 @@
 	dir = 8
 	},
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
-"ro" = (
-/obj/machinery/computer/prisoner{
-	dir = 4;
-	icon_state = "computer"
-	},
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/mine/laborcamp/security)
-"rz" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/block/cracked,
-/turf/open/lava/smooth/lava_land_surface,
-/area/ruin/unpowered)
-"rX" = (
-/obj/item/pickaxe,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/explored)
+/area/ruin/unpowered/dragonslair)
 "sg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/red/filled/line,
@@ -2150,18 +2132,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"ty" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/flashlight/flare/torch,
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile/block/cracked,
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "tA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/loading_area{
@@ -2196,9 +2166,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"tZ" = (
+"tQ" = (
+/obj/item/stack/sheet/mineral/gold,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/sheet/mineral/diamond/fifty,
 /obj/structure/stone_tile/cracked{
 	dir = 4
 	},
@@ -2210,7 +2180,7 @@
 	dir = 1
 	},
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
 "uu" = (
 /obj/machinery/door/airlock{
 	name = "Labor Camp Library"
@@ -2245,6 +2215,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"vz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/block/cracked,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/skeleton/templar{
+	speak = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
+	speak_chance = 0
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "vC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/public/glass{
@@ -2276,13 +2261,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"vP" = (
-/obj/item/immortality_talisman,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/closet/crate/coffin,
-/obj/structure/stone_tile/slab/cracked,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "wc" = (
 /obj/structure/closet/crate/internals,
 /obj/item/tank/internals/emergency_oxygen,
@@ -2309,6 +2287,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"wK" = (
+/obj/item/stack/sheet/mineral/gold,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/block/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "wP" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -2324,6 +2314,20 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/mine/laborcamp)
+"xc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "xO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/seeds/redbeet,
@@ -2336,43 +2340,49 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/laborcamp)
-"xV" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
-"yd" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
-"yt" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/ash,
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile/block/cracked,
+"xU" = (
+/obj/effect/decal/remains/human,
 /obj/structure/stone_tile{
 	dir = 4
 	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
+"yg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/cracked,
+/obj/effect/decal/remains/human,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
+"yr" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "yx" = (
 /obj/structure/chair/stool,
 /obj/structure/sign/poster/official/obey{
@@ -2454,6 +2464,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"zH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/block/cracked,
+/obj/item/stack/sheet/mineral/gold,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "zX" = (
 /obj/structure/ore_box,
 /obj/effect/decal/cleanable/dirt,
@@ -2470,10 +2492,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"Aa" = (
+"Ab" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/stone_tile/block/cracked,
-/obj/item/stack/sheet/mineral/gold,
 /obj/structure/stone_tile/cracked{
 	dir = 4
 	},
@@ -2481,7 +2502,21 @@
 	dir = 1
 	},
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
+"Ai" = (
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "Al" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -2501,37 +2536,6 @@
 	},
 /turf/open/floor/plating,
 /area/mine/laborcamp)
-"Ax" = (
-/obj/effect/decal/remains/human,
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
-"Ay" = (
-/obj/effect/decal/remains/human,
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "AO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -2542,37 +2546,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"AS" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
-"Bl" = (
+"AZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/stone_tile{
 	dir = 1
 	},
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile,
+/obj/structure/stone_tile/block/cracked,
 /obj/structure/stone_tile{
 	dir = 4
 	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
 "Bn" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	icon_state = "pump_on_map-2";
@@ -2596,39 +2581,36 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"BD" = (
-/obj/item/stack/sheet/mineral/gold/fifty,
+"Bw" = (
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile,
 /obj/structure/stone_tile/block/cracked{
 	dir = 1
 	},
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
+/obj/structure/stone_tile{
 	dir = 8
 	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
+/mob/living/simple_animal/hostile/skeleton/templar{
+	speak = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
+	speak_chance = 0
 	},
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
-"BK" = (
-/obj/structure/mineral_door/iron,
+/area/ruin/unpowered/dragonslair)
+"By" = (
+/obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/stone_tile{
 	dir = 1
 	},
+/obj/structure/stone_tile,
 /obj/structure/stone_tile{
 	dir = 4
 	},
 /obj/structure/stone_tile{
-	dir = 4
+	dir = 8
 	},
-/obj/structure/stone_tile/block,
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
 "BW" = (
 /obj/structure/sign/poster/official/safety_report{
 	pixel_x = -32
@@ -2722,6 +2704,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/freezer,
 /area/mine/laborcamp)
+"Dz" = (
+/obj/effect/decal/remains/human{
+	desc = "They look like human remains. They appear to have short pants on them.";
+	name = "Rather Dashing"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/slab/burnt,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "DZ" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -2742,18 +2733,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"Ed" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/flashlight/flare/torch,
-/obj/structure/stone_tile,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "Eh" = (
 /obj/machinery/washing_machine,
 /obj/effect/turf_decal/tile/blue{
@@ -2773,6 +2752,33 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"Et" = (
+/obj/item/stack/sheet/mineral/gold,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile/cracked,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
+"Eu" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/skeleton,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "Ez" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/seeds/onion,
@@ -2815,6 +2821,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"FI" = (
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/ash,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "FP" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -2831,6 +2852,21 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/mine/laborcamp)
+"Gi" = (
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/remains/human,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "Gr" = (
 /obj/structure/sign/poster/official/do_not_question{
 	pixel_y = 32
@@ -2844,16 +2880,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"Gt" = (
+"GC" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/stone_tile{
 	dir = 1
 	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile,
 /obj/structure/stone_tile{
 	dir = 8
 	},
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
 "GK" = (
 /obj/item/radio/intercom{
 	desc = "Talk through this. It looks like it has been modified to not broadcast.";
@@ -2874,6 +2914,66 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"HC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/sheet/mineral/diamond/fifty,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
+"HD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/skeleton/templar{
+	speak = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
+	speak_chance = 0
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
+"HH" = (
+/obj/item/stack/sheet/mineral/gold/fifty,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/block/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
+"HM" = (
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/skeleton,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "HO" = (
 /obj/structure/closet/secure_closet/brig,
 /obj/effect/decal/cleanable/dirt,
@@ -2906,18 +3006,21 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/laborcamp)
-"Jg" = (
-/obj/item/stack/sheet/mineral/gold/fifty,
+"Kg" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/block/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
+/obj/structure/stone_tile{
 	dir = 1
 	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
 "Km" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -2947,35 +3050,24 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/laborcamp)
-"KJ" = (
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile,
+"KO" = (
+/turf/closed/indestructible/riveted/boss,
+/area/ruin/unpowered/dragonslair)
+"KQ" = (
+/obj/item/stack/sheet/mineral/gold/fifty,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/stone_tile/cracked{
 	dir = 4
 	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
-"KT" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/twohanded/spear,
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile,
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile{
+/obj/structure/stone_tile/cracked{
 	dir = 8
 	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
 "Ld" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/metal/ten,
@@ -3007,6 +3099,20 @@
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"Lv" = (
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "Lw" = (
 /obj/machinery/door/airlock/medical/glass{
 	name = "Infirmary"
@@ -3031,13 +3137,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/laborcamp)
-"LF" = (
+"LC" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
+/obj/structure/stone_tile/block/cracked,
 /turf/open/lava/smooth/lava_land_surface,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
+"LZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "Md" = (
 /obj/machinery/door/airlock/external{
 	glass = 1;
@@ -3046,21 +3155,17 @@
 	},
 /turf/open/floor/plating/lavaland_baseturf,
 /area/mine/laborcamp)
-"Mh" = (
+"Mi" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/sheet/mineral/gold/fifty,
-/obj/structure/stone_tile/cracked{
-	dir = 4
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
 	},
 /obj/structure/stone_tile/cracked{
 	dir = 8
 	},
 /obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
 "Mk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -3085,11 +3190,7 @@
 	},
 /turf/open/floor/plating,
 /area/mine/laborcamp)
-"NJ" = (
-/obj/structure/chair/stool,
-/turf/open/floor/plasteel,
-/area/mine/laborcamp)
-"NO" = (
+"Nm" = (
 /obj/structure/stone_tile{
 	dir = 4
 	},
@@ -3101,9 +3202,12 @@
 	},
 /obj/structure/stone_tile,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/ash,
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
+"NJ" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plasteel,
+/area/mine/laborcamp)
 "NP" = (
 /obj/machinery/mineral/processing_unit_console,
 /turf/closed/wall,
@@ -3131,9 +3235,6 @@
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"Ov" = (
-/turf/closed/indestructible/riveted/boss,
-/area/ruin/unpowered)
 "Oy" = (
 /obj/structure/sink/kitchen{
 	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
@@ -3143,6 +3244,20 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/mine/laborcamp)
+"OD" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "OR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/green/filled/line,
@@ -3171,16 +3286,64 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"Pw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
+"PE" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "PW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"Qc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "Qf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"Qm" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/stack/sheet/mineral/mythril{
+	amount = 50
+	},
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "Qn" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -3248,21 +3411,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/closed/wall/r_wall,
 /area/mine/laborcamp/security)
-"QW" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/ash,
-/obj/structure/stone_tile,
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "Rc" = (
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
@@ -3334,6 +3482,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"SC" = (
+/obj/structure/stone_tile/surrounding,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered/dragonslair)
 "SD" = (
 /obj/structure/fence{
 	dir = 4
@@ -3400,21 +3552,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
+"TT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/block/cracked,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "Ub" = (
 /turf/closed/wall/r_wall,
 /area/lavaland/surface/outdoors/explored)
-"Uc" = (
-/obj/item/stack/sheet/mineral/gold,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/block/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "Ud" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -3422,6 +3573,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"Ue" = (
+/obj/structure/stone_tile/surrounding/burnt,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered/dragonslair)
 "Up" = (
 /obj/machinery/status_display/evac{
 	pixel_x = -32
@@ -3532,6 +3687,28 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/mine/laborcamp)
+"Wz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/effect/decal/remains/human,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
+"WI" = (
+/obj/item/immortality_talisman,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate/coffin,
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "WY" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
@@ -3568,15 +3745,17 @@
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"Yf" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/wood,
-/obj/item/stack/sheet/mineral/mythril{
-	amount = 50
+"XW" = (
+/obj/structure/stone_tile/block{
+	dir = 8
 	},
-/obj/structure/stone_tile/slab/cracked,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
 "Yj" = (
 /obj/structure/table,
 /obj/machinery/recharger,
@@ -3584,21 +3763,6 @@
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
-"Ys" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile,
-/obj/structure/mineral_door/iron,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "YE" = (
 /obj/item/soap/nanotrasen,
 /obj/machinery/shower{
@@ -3616,20 +3780,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"Zb" = (
+"YV" = (
+/obj/structure/mineral_door/iron,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
+/obj/structure/stone_tile{
 	dir = 8
 	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
+/obj/structure/stone_tile,
+/obj/structure/stone_tile/block{
 	dir = 1
 	},
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
+/area/ruin/unpowered/dragonslair)
 "Zf" = (
 /obj/machinery/atmospherics/pipe/manifold{
 	dir = 4
@@ -3651,32 +3813,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"ZK" = (
-/obj/item/stack/sheet/mineral/gold,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
-"ZQ" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered)
 "ZT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
@@ -36845,7 +36981,7 @@ aa
 aa
 aa
 aa
-ar
+nd
 aa
 aa
 aa
@@ -37099,13 +37235,13 @@ aj
 (131,1,1) = {"
 aa
 aa
-qs
-qs
-qs
-bJ
-qs
-qs
-qs
+OD
+yr
+yr
+PE
+yr
+yr
+yr
 aa
 aa
 gR
@@ -37356,13 +37492,13 @@ aj
 (132,1,1) = {"
 aa
 aa
-bq
-Ax
-Ov
-Ov
-Ov
-bq
-bq
+Nm
+xU
+KO
+KO
+KO
+Nm
+Nm
 aa
 aa
 gR
@@ -37613,13 +37749,13 @@ aj
 (133,1,1) = {"
 aa
 aa
-bq
-bq
-NO
-bq
-bq
-KJ
-bq
+Nm
+Nm
+FI
+Nm
+Nm
+Ai
+Nm
 aa
 aa
 ae
@@ -37870,13 +38006,13 @@ aj
 (134,1,1) = {"
 aa
 aa
-bq
-bq
-KJ
-ao
-jn
-bq
-bq
+Nm
+Nm
+Ai
+HM
+gh
+Nm
+Gi
 aa
 aa
 aa
@@ -38127,13 +38263,13 @@ aj
 (135,1,1) = {"
 aa
 aa
-bq
-bq
-bq
-bq
-bq
-bq
-bq
+Gi
+Nm
+Nm
+Nm
+Nm
+Nm
+Nm
 aa
 aa
 aa
@@ -38384,13 +38520,13 @@ aj
 (136,1,1) = {"
 aa
 aa
-bq
-ao
-bq
-bq
-ao
-Ay
-bq
+Nm
+HM
+Nm
+Nm
+HM
+xU
+Nm
 aa
 aa
 aa
@@ -38641,13 +38777,13 @@ aj
 (137,1,1) = {"
 aa
 aa
-qW
-qW
-qW
-pe
-qW
-qW
-qW
+XW
+XW
+XW
+Lv
+XW
+XW
+XW
 aa
 aa
 iK
@@ -38901,7 +39037,7 @@ aa
 aa
 aa
 aa
-en
+gx
 aa
 aa
 aa
@@ -39155,13 +39291,13 @@ aj
 (139,1,1) = {"
 aa
 aa
-KT
-en
+mc
+gx
 aa
-en
+gx
 aa
-en
-qf
+Qc
+Eu
 aa
 aa
 ab
@@ -39412,13 +39548,13 @@ aj
 (140,1,1) = {"
 aa
 aa
-en
-qf
-en
-cw
-en
-en
-en
+Kg
+Eu
+gx
+GC
+gx
+gx
+gx
 aa
 aa
 ad
@@ -39670,12 +39806,12 @@ aj
 aa
 aa
 aa
-en
+gx
 aa
 aa
 aa
 aa
-en
+gx
 aa
 aa
 aa
@@ -39927,12 +40063,12 @@ aj
 aa
 aa
 aa
-en
+gx
 aa
 aa
 aa
 aa
-ew
+By
 aa
 aa
 aa
@@ -40183,13 +40319,13 @@ aj
 (143,1,1) = {"
 aa
 aa
-en
-en
-en
-qf
-en
-en
-en
+Wz
+gx
+gx
+Eu
+gx
+gx
+ql
 aa
 aa
 aa
@@ -40440,13 +40576,13 @@ aj
 (144,1,1) = {"
 aa
 aa
-qf
-en
+Eu
+gx
 aa
 aa
 aa
-en
-qf
+gx
+Eu
 aa
 aa
 ad
@@ -40698,11 +40834,11 @@ aj
 aa
 aa
 aa
-en
+gx
 aa
 aa
 aa
-en
+gx
 aa
 aa
 aa
@@ -40955,11 +41091,11 @@ aj
 aa
 aa
 aa
-en
-en
-en
-en
-cw
+gx
+gx
+gx
+eq
+GC
 aa
 aa
 aa
@@ -41213,9 +41349,9 @@ aa
 aa
 aa
 aa
-en
-en
-en
+gx
+yg
+gx
 aa
 aa
 aa
@@ -41469,11 +41605,11 @@ aj
 aa
 aa
 aa
-yt
-en
-en
-en
-pt
+oH
+gx
+gx
+gx
+Bw
 aa
 aa
 aa
@@ -41726,11 +41862,11 @@ aj
 aa
 aa
 aa
-ty
-en
-ap
-en
-Ed
+Ue
+gx
+HD
+gx
+SC
 aa
 aa
 aa
@@ -41983,11 +42119,11 @@ aj
 aa
 aa
 aa
-dC
-en
-en
-en
-ZQ
+AZ
+gx
+gx
+gx
+Pw
 aa
 aa
 aa
@@ -42241,9 +42377,9 @@ aa
 aa
 aa
 aa
-ap
-Bl
-en
+HD
+bO
+gx
 aa
 aa
 aa
@@ -42497,11 +42633,11 @@ aj
 aa
 aa
 aa
-dC
-en
-en
-ew
-ZQ
+TT
+gx
+gx
+By
+Pw
 aa
 aa
 aa
@@ -42754,11 +42890,11 @@ aj
 aa
 aa
 aa
-ty
-en
-ew
-en
-Ed
+SC
+gx
+By
+gx
+nJ
 aa
 aa
 aa
@@ -43011,11 +43147,11 @@ aj
 aa
 aa
 aa
-dC
-en
-en
-en
-ZQ
+TT
+gx
+gx
+gx
+Pw
 aa
 aa
 aa
@@ -43269,9 +43405,9 @@ aa
 aa
 aa
 aa
-ew
-en
-bg
+By
+gx
+rI
 aa
 aa
 aa
@@ -43525,11 +43661,11 @@ aj
 aa
 aa
 aa
-dC
-en
-en
-en
-pt
+vz
+gx
+aS
+gx
+Bw
 aa
 aa
 aa
@@ -43782,11 +43918,11 @@ aj
 aa
 aa
 aa
-ty
-cw
-en
-en
-Ed
+nJ
+GC
+gx
+gx
+Ue
 aa
 aa
 aa
@@ -44039,11 +44175,11 @@ aj
 aa
 aa
 aa
-dC
-Gt
-ap
-QW
-ZQ
+TT
+eA
+HD
+cs
+Pw
 aa
 aa
 aa
@@ -44297,9 +44433,9 @@ aa
 aa
 aa
 aa
-BK
-Ys
-nt
+fa
+ap
+YV
 aa
 aa
 aa
@@ -44553,11 +44689,11 @@ aj
 aa
 aa
 aa
-fd
-re
-re
-re
-yd
+Ab
+rZ
+rZ
+rZ
+Mi
 aa
 aa
 aa
@@ -44810,11 +44946,11 @@ aj
 aa
 aa
 aa
-fd
-Zb
-xV
-Zb
-yd
+Ab
+df
+xc
+df
+Mi
 aa
 aa
 aa
@@ -45066,13 +45202,13 @@ aj
 (162,1,1) = {"
 aa
 aa
-fd
-Zb
-Zb
-Zb
-Zb
-Zb
-yd
+Ab
+df
+df
+df
+df
+df
+Mi
 aa
 aa
 ab
@@ -45323,13 +45459,13 @@ aj
 (163,1,1) = {"
 aa
 aa
-fd
-AS
-Zb
-Zb
-Zb
-Zb
-yd
+Ab
+by
+df
+df
+df
+df
+Mi
 aa
 aa
 ab
@@ -45580,13 +45716,13 @@ aj
 (164,1,1) = {"
 aa
 aa
-fd
-LF
-oK
-oK
-oK
-rz
-yd
+Ab
+eZ
+LZ
+LZ
+LZ
+LC
+Mi
 aa
 aa
 ab
@@ -45837,13 +45973,13 @@ aj
 (165,1,1) = {"
 aa
 aa
-fd
-LF
-oK
-fU
-oK
-rz
-yd
+Ab
+eZ
+LZ
+Dz
+LZ
+LC
+Mi
 aa
 aa
 ab
@@ -46094,13 +46230,13 @@ aj
 (166,1,1) = {"
 aa
 aa
-fd
-LF
-oK
-oK
-oK
-rz
-yd
+Ab
+eZ
+LZ
+LZ
+LZ
+LC
+Mi
 aa
 aa
 ab
@@ -46351,13 +46487,13 @@ aj
 (167,1,1) = {"
 aa
 aa
-fd
-Zb
-Zb
-Zb
-Zb
-Zb
-yd
+Ab
+df
+df
+df
+df
+df
+Mi
 aa
 aa
 ab
@@ -46608,13 +46744,13 @@ aj
 (168,1,1) = {"
 aa
 aa
-fd
-Zb
-Zb
-Zb
-Zb
-Zb
-yd
+Ab
+df
+df
+df
+df
+df
+Mi
 aa
 aa
 ab
@@ -46865,13 +47001,13 @@ aj
 (169,1,1) = {"
 aa
 aa
-fd
-Zb
-Zb
-Zb
-Zb
-Zb
-yd
+aa
+df
+df
+df
+df
+df
+aa
 aa
 aa
 ab
@@ -47122,13 +47258,13 @@ aj
 (170,1,1) = {"
 aa
 aa
-fd
-Zb
-Zb
-Zb
-Zb
-Zb
-yd
+Ab
+df
+df
+df
+df
+df
+Mi
 aa
 aa
 ab
@@ -47379,13 +47515,13 @@ aj
 (171,1,1) = {"
 aa
 aa
-fd
-Zb
-ZK
-Zb
-Zb
-ZK
-yd
+Ab
+df
+tQ
+df
+df
+tQ
+Mi
 aa
 aa
 ab
@@ -47636,13 +47772,13 @@ aj
 (172,1,1) = {"
 aa
 aa
-Uc
-ZK
-Zb
-as
-ZK
-Zb
-yd
+wK
+tQ
+df
+rw
+tQ
+df
+Mi
 aa
 aa
 ab
@@ -47893,13 +48029,13 @@ aj
 (173,1,1) = {"
 aa
 aa
-Aa
-hN
-hN
-hN
-hN
-hN
-nJ
+zH
+KQ
+KQ
+KQ
+KQ
+KQ
+Et
 aa
 aa
 it
@@ -48151,11 +48287,11 @@ aj
 aa
 aa
 aa
-Jg
-tZ
-Mh
-Mh
-BD
+HH
+HC
+hG
+hG
+hP
 aa
 aa
 aa
@@ -48409,9 +48545,9 @@ aa
 aa
 aa
 aa
-vP
-Yf
-gA
+WI
+Qm
+rG
 aa
 aa
 aa
