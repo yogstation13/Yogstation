@@ -675,7 +675,7 @@
 
 //////////////////////////////////////////////
 //                                          //
-//                                    //
+//                MONKEY                    //
 //                                          //
 //////////////////////////////////////////////
 
@@ -688,6 +688,7 @@
 	weight = 1
 	cost = 70
 	requirements = list(100,100,95,90,85,80,80,80,80,70)
+	flags = LONE_RULESET
 	var/players_per_carrier = 25
 	var/monkeys_to_win = 1
 	var/escaped_monkeys = 0
@@ -747,6 +748,7 @@
 	weight = 1
 	cost = 75
 	requirements = list(100,100,100,100,100,100,100,100,99,98)
+	flags = LONE_RULESET
 	var/meteordelay = 2000
 	var/nometeors = 0
 	var/rampupdelta = 5
