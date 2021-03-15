@@ -15,7 +15,7 @@
 	name = "Itching Powder"
 	id = /datum/reagent/itching_powder
 	results = list(/datum/reagent/itching_powder = 3)
-	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/ammonia = 1, /datum/reagent/medicine/charcoal= 1)
+	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/ammonia = 1, /datum/reagent/medicine/charcoal = 1)
 
 /datum/chemical_reaction/spraytan
 	name = "Spray Tan"

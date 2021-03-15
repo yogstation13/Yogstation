@@ -1447,6 +1447,46 @@
 		M.vomit()
 	..()
 
+/datum/reagent/medicine/silibinin
+	name = "Silibinin"
+	description = "A thistle derrived hepatoprotective flavolignan mixture that help reverse damage to the liver."
+	reagent_state = SOLID
+	color = "#FFFFD0"
+	metabolization_rate = 1.5 * REAGENTS_METABOLISM
+
+/datum/reagent/medicine/silibinin/on_mob_life(mob/living/carbon/M)
+	M.adjustOrganLoss(ORGAN_SLOT_LIVER, -2 * REM)//Add a chance to cure liver trauma once implemented.
+	..()
+	. = TRUE
+
+/datum/reagent/medicine/polypyr  //This is intended to be an ingredient in advanced chems.
+	name = "Polypyrylium Oligomers"
+	description = "A purple mixture of short polyelectrolyte chains not easily synthesized in the laboratory. It is valued as an intermediate in the synthesis of the cutting edge pharmaceuticals."
+	reagent_state = SOLID
+	color = "#9423FF"
+	metabolization_rate = 0.25 * REAGENTS_METABOLISM
+	overdose_threshold = 50
+	taste_description = "numbing bitterness"
+
+/datum/reagent/medicine/polypyr/on_mob_life(mob/living/carbon/M) //I wanted a collection of small positive effects, this is as hard to obtain as coniine after all.
+	. = ..()
+	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, -0.25 * REM)
+	M.adjustBruteLoss(-0.35 * REM, 0)
+	return TRUE
+
+/datum/reagent/medicine/polypyr/reaction_mob(mob/living/carbon/human/exposed_human, methods=TOUCH, reac_volume)
+	. = ..()
+	if(!(methods & (TOUCH|VAPOR)) || !ishuman(exposed_human) || (reac_volume < 0.5))
+		return
+	exposed_human.hair_color = "92f"
+	exposed_human.facial_hair_color = "92f"
+	exposed_human.update_hair()
+
+/datum/reagent/medicine/polypyr/overdose_process(mob/living/M)
+	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 0.5 * REM)
+	..()
+	. = TRUE
+
 /datum/reagent/medicine/burnmix
 	name = "BurnMix"
 	description = "Take in moderation. Initially heals damage at a snail's pace until overdosed. Effects increase when used with Epinephrine or Perfluorodecalin. You don't want this in your body for longer than needed."
