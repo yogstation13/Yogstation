@@ -91,6 +91,36 @@
 		var/turf/E = get_step(src, d)
 		shoot_projectile(E)
 
+/mob/living/simple_animal/hostile/megafauna/stalwart/proc/charge(var/atom/chargeat = target, var/delay = 5)
+	if(!chargeat)
+		return
+	var/chargeturf = get_turf(chargeat)
+	if(!chargeturf)
+		return
+	var/dir = get_dir(src, chargeturf)
+	var/turf/T = get_ranged_target_turf(chargeturf, dir, 2)
+	if(!T)
+		return
+	charging = TRUE
+	revving_charge = TRUE
+	do_alert_animation(src)
+	walk(src, 0)
+	setDir(dir)
+	SLEEP_CHECK_DEATH(delay)
+	revving_charge = FALSE
+	var/movespeed = 1
+	walk_towards(src, T, movespeed)
+	SLEEP_CHECK_DEATH(get_dist(src, T) * movespeed)
+	walk(src, 0) // cancel the movement
+	charging = FALSE
+
+/mob/living/simple_animal/hostile/megafauna/stalwart/Move()
+	if(revving_charge)
+		return FALSE
+	if(charging)
+		DestroySurroundings() // code stolen from chester stolen from bubblegum i am the ultimate shitcoder
+	..()
+	
 //Projectiles and such
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone
