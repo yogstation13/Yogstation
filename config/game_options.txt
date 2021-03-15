@@ -490,7 +490,7 @@ ROUNDSTART_RACES pod
 
 ## Races that are for EPIC GAMERS only
 #MENTOR_RACES polysmorph
-MENTOR_RACES mush
+#MENTOR_RACES mush
 
 
 ##-------------------------------------------------------------------------------------------
