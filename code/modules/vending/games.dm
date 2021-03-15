@@ -8,6 +8,7 @@
 		            /obj/item/storage/pill_bottle/dice = 10,
 		            /obj/item/toy/cards/deck/cas = 3,
 		            /obj/item/toy/cards/deck/cas/black = 3,
+					/obj/item/toy/cards/deck/wizoff = 3,
 					/obj/item/hourglass = 2,
 					/obj/item/toy/turn_tracker = 6,
 					/obj/item/instrument/musicalmoth = 1,
