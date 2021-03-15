@@ -55,7 +55,21 @@
 		P.original = target
 	P.fire(set_angle)
 
+/mob/living/simple_animal/hostile/megafauna/stalwart/proc/bombsaway(turf/marker, set_angle)
+	if(!isnum(set_angle) && (!marker || marker == loc))
+		return
+	var/turf/startloc = get_turf(src)
+	var/obj/item/projectile/P = new /obj/item/projectile/stalnade(startloc)
+	P.preparePixelProjectile(marker, startloc)
+	P.firer = src
+	if(target)
+		P.original = target
+	P.fire(set_angle)
+
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/stalnade()
+	for(var/d in dirs)
+		var/turf/E = get_step(src, d)
+		bombsaway(E)
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/backup()
 	visible_message("<span class='danger'>[src] constructs a flock of mini mechanoid!</span>")
@@ -117,9 +131,16 @@
 	. = ..()
 	var/turf/location = get_turf(src)
 	if(location)
-		new /obj/effect/hotspot(location)
-		location.hotspot_expose(700, 50, 1)
-		
+		new /obj/effect/temp_visual/hierophant/wall/stalwart(location)
+
+/obj/effect/temp_visual/hierophant/wall/stalwart
+	name = "vortex wall"
+	icon = 'icons/effects/fire.dmi'
+	icon_state = "3"
+	duration = 100
+	smooth = SMOOTH_FALSE
+	color = "#6CA4E3"
+
 /mob/living/simple_animal/hostile/megafauna/stalwart/devour(mob/living/L)
 	visible_message("<span class='danger'>[src] melts [L]!</span>")
 	L.dust()
