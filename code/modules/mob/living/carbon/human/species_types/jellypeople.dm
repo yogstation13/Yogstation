@@ -13,8 +13,8 @@
 	var/datum/action/innate/regenerate_limbs/regenerate_limbs
 	liked_food = MEAT
 	coldmod = 6   // = 3x cold damage
-	heatmod = 0.5 // = 1/4x heat damage
-	burnmod = 0.5 // = 1/2x generic burn damage
+	heatmod = 0.825 // = 1/4x heat damage
+	burnmod = 0.65 // = 1/2x generic burn damage
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/jelly
 
