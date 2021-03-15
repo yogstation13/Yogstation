@@ -1,4 +1,4 @@
-/obj/machinery/power/treadmill
+/obj/machinery/power/stationarybike
 	name = "stationary bike"
 	desc = "Fifteen Million Merits"
 	icon = 'icons/obj/vehicles.dmi'
@@ -17,18 +17,18 @@
 	var/slave_power = 50 // Living, non-braindead, non-catatonic
 	var/lifeweb // Emagged or not
 
-/obj/machinery/power/treadmill/examine(mob/user)
+/obj/machinery/power/stationarybike/examine(mob/user)
 	. = ..()
 	. +="<span class='notice'>It is generating [generating]kw of power.</span>"
 
-/obj/machinery/power/treadmill/emag_act(mob/user)
+/obj/machinery/power/stationarybike/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
 	obj_flags |= EMAGGED
 	lifeweb = 1
 	to_chat(user, "<span class='warning'>You disabled safeties</span>")
 
-/obj/machinery/power/treadmill/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/power/stationarybike/wrench_act(mob/living/user, obj/item/I)
 	if(!anchored && !isinspace())
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 		if(do_after(user, 20, target = src))
@@ -48,7 +48,7 @@
 			playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 	return TRUE
 
-/obj/machinery/power/treadmill/crowbar_act(mob/living/user, obj/item/I)
+/obj/machinery/power/stationarybike/crowbar_act(mob/living/user, obj/item/I)
 	for(var/mob/living/BM in buckled_mobs)
 		if(lifeweb)
 			to_chat(user, "<span class='notice'>You forcefully yank the emergency brake.</span>")
@@ -56,16 +56,16 @@
 			check_buckled()
 	return TRUE
 
-/obj/machinery/power/treadmill/attack_paw(mob/user)
+/obj/machinery/power/stationarybike/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/power/treadmill/attack_hand(mob/user)
+/obj/machinery/power/stationarybike/attack_hand(mob/user)
 	if(lifeweb)
 		to_chat(user, "<span class='danger'>It's spinning too fast! You might hurt yourself if you try to get them off!</span>")
 		return
 	. = ..()
 
-/obj/machinery/power/treadmill/process()
+/obj/machinery/power/stationarybike/process()
 	if(!operating)
 		return
 	if(operating)
@@ -81,12 +81,12 @@
 
 //BUCKLE HOOKS
 
-/obj/machinery/power/treadmill/user_unbuckle_mob(mob/living/buckled_mob,force = 0)
+/obj/machinery/power/stationarybike/user_unbuckle_mob(mob/living/buckled_mob,force = 0)
 	operating = 0
 	generating = 0
 	. = ..()
 
-/obj/machinery/power/treadmill/user_buckle_mob(mob/living/M, mob/living/carbon/user)
+/obj/machinery/power/stationarybike/user_buckle_mob(mob/living/M, mob/living/carbon/user)
 	if(user.incapacitated() || !istype(user))
 		return
 	for(var/atom/movable/A in get_turf(src))
@@ -97,7 +97,7 @@
 	playsound(src,'sound/mecha/mechmove01.ogg', 50, TRUE)
 	check_buckled()
 
-/obj/machinery/power/treadmill/proc/check_buckled(mob/living)
+/obj/machinery/power/stationarybike/proc/check_buckled(mob/living)
 	for(var/mob/living/BM in buckled_mobs)
 		if(!BM || BM.stat == DEAD)
 			operating = 0
@@ -110,7 +110,7 @@
 				return
 			operating = slave_power
 
-/obj/machinery/power/treadmill/proc/life_drain(mob/living)
+/obj/machinery/power/stationarybike/proc/life_drain(mob/living)
 	for(var/mob/living/BM in buckled_mobs)
 		BM.adjustBruteLoss(5)
 		BM.Paralyze(30)
