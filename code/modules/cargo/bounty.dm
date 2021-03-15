@@ -176,6 +176,12 @@ GLOBAL_LIST_EMPTY(bounties_list)
 	var/datum/bounty/B = pick(GLOB.bounties_list)
 	B.mark_high_priority()
 
+	/********************************Progression Gens********************************/
+	var/list/progression_type_list = typesof(/datum/bounty/item/progression)
+
+	for(var/progression_bounty in progression_type_list)
+		try_add_bounty(new progression_bounty)
+
 	/********************************Low Priority Gens********************************/
 	var/list/low_priority_strict_type_list = list(  /datum/bounty/item/alien_organs,
 													/datum/bounty/item/syndicate_documents,
