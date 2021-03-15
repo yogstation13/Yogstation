@@ -24,12 +24,14 @@
 	deathmessage = "erupts into blue flame, and screeches before violently shattering."
 	deathsound = 'borg_deathsound.ogg'
 	internal_type = /obj/item/gps/internal/stalwart
+	var/charging = FALSE
+	var/revving_charge = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/OpenFire()
 	ranged_cooldown = world.time + 120
 	anger_modifier = clamp(((maxHealth - health)/50),0,20)
 	if(prob(20+anger_modifier)) //Major attack
-		lava_nade()
+		stalnade()
 	else if(prob(20))
 		charge()
 	else
@@ -40,9 +42,8 @@
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/telegraph()
 	for(var/mob/M in range(10,src))
-		if(M.client)
-			flash_color(M.client, "#6CA4E3", 1)
-			shake_camera(M, 4, 3)
+		flash_color(M.client, "#6CA4E3", 1)
+		shake_camera(M, 4, 3)
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/shoot_projectile(turf/marker, set_angle)
 	if(!isnum(set_angle) && (!marker || marker == loc))
@@ -67,7 +68,7 @@
 	P.fire(set_angle)
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/stalnade()
-	for(var/d in dirs)
+	for(var/d in dir)
 		var/turf/E = get_step(src, d)
 		bombsaway(E)
 
@@ -103,7 +104,7 @@
 		return
 	charging = TRUE
 	revving_charge = TRUE
-	do_alert_animation(src)
+	telegraph(src)
 	walk(src, 0)
 	setDir(dir)
 	SLEEP_CHECK_DEATH(delay)
@@ -154,7 +155,6 @@
 	armour_penetration = 100
 	speed = 1
 	eyeblur = 0
-	damage_type = brute
 	pass_flags = PASSTABLE
 
 /obj/item/projectile/stalnade/Move()
@@ -164,7 +164,7 @@
 		new /obj/effect/temp_visual/hierophant/wall/stalwart(location)
 
 /obj/effect/temp_visual/hierophant/wall/stalwart
-	name = "vortex wall"
+	name = "azure barrier"
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "3"
 	duration = 100
