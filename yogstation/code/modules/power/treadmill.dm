@@ -1,5 +1,5 @@
 /obj/machinery/power/treadmill
-	name = "treadmill"
+	name = "stationary bike"
 	desc = "Fifteen Million Merits"
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "bicycle"
