@@ -1,0 +1,5 @@
+author: "ChesterTheCheesy"
+delete-after: true 
+changes: 
+  - bugfix: "fixes arena shuttle not spawning correctly"
+  - tweak: "arena shuttle now has engines, a shuttle console, seats and a slaughter demon flight attendant"
