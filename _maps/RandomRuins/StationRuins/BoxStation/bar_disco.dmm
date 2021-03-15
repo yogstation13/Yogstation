@@ -1039,14 +1039,14 @@
 /area/crew_quarters/bar)
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
 "WX" = (
 /obj/structure/chair/americandiner/booth/end_right{
 	dir = 4;
 	icon_state = "ameribooth-end2";
 	tag = ""
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
 	},
 "Zg" = (
 /obj/structure/table,
