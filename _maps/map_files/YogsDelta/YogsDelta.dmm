@@ -44165,17 +44165,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"brp" = (
-/obj/structure/table/wood,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/storage/lockbox/loyalty,
-/obj/item/storage/secure/safe{
-	pixel_x = 32
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/hop)
 "brq" = (
 /obj/structure/table/wood,
 /obj/item/radio/intercom{
@@ -76196,6 +76185,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"cmx" = (
+/obj/structure/bed/dogbed/ian,
+/mob/living/simple_animal/pet/dog/corgi/Ian,
+/turf/open/floor/plasteel/grimy,
+/area/crew_quarters/heads/hop)
 "cmA" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -127668,6 +127662,16 @@
 "wgW" = (
 /turf/open/floor/carpet/royalblue,
 /area/blueshield)
+"wjm" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/storage/secure/safe{
+	pixel_x = 32
+	},
+/obj/structure/closet/secure_closet/hop,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/hop)
 "wjF" = (
 /obj/structure/chair/office/light{
 	dir = 1;
@@ -164792,7 +164796,7 @@ blh
 boS
 blh
 blh
-blh
+cmx
 vJY
 nTz
 qDo
@@ -165047,7 +165051,7 @@ bli
 blU
 bnU
 ckV
-brp
+wjm
 bsm
 bsJ
 vJY
