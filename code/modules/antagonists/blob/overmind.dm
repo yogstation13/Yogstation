@@ -254,7 +254,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		if(manualplace_min_time)
 			. +=  "Time Before Manual Placement: [max(round((manualplace_min_time - world.time)*0.1, 0.1), 0)]"
 		. += "Time Before Automatic Placement: [max(round((autoplace_max_time - world.time)*0.1, 0.1), 0)]"
-	
+
 /mob/camera/blob/Move(NewLoc, Dir = 0)
 	if(placed)
 		var/obj/structure/blob/B = locate() in range("3x3", NewLoc)

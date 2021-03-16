@@ -680,6 +680,8 @@
 	var/list/not_interested = list()
 	var/being_used = FALSE
 	var/sentience_type = SENTIENCE_ORGANIC
+	var/intel_timer = 0
+	var/intel_cooldown = 200 // in deciseconds, the cooldown in between uses
 
 /obj/item/slimepotion/slime/sentience/attack(mob/living/M, mob/user)
 	if(being_used || !ismob(M))
@@ -693,6 +695,11 @@
 	var/mob/living/simple_animal/SM = M
 	if(SM.sentience_type != sentience_type)
 		to_chat(user, "<span class='warning'>[src] won't work on [SM].</span>")
+		return
+	if(intel_timer <= world.time)
+		intel_timer = world.time + intel_cooldown
+	else
+		to_chat(src, "<span class='danger'>The [src] is on cooldown! You must wait [((intel_timer - world.time) / 10)] seconds before using it again.</span>")
 		return
 
 	to_chat(user, "<span class='notice'>You offer [src] to [SM]...</span>")
@@ -933,14 +940,26 @@
 	if(L.gender != MALE && L.gender != FEMALE)
 		to_chat(user, "<span class='warning'>The potion can only be used on gendered things!</span>")
 		return
-
-	if(L.gender == MALE)
-		L.gender = FEMALE
-		L.visible_message("<span class='boldnotice'>[L] suddenly looks more feminine!</span>", "<span class='boldwarning'>You suddenly feel more feminine!</span>")
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		if(C.dna && !(MGENDER in C.dna.species.species_traits) && !(FGENDER in C.dna.species.species_traits) && !(AGENDER in C.dna.species.species_traits))
+			if(C.gender == MALE)
+				C.gender = FEMALE
+				C.visible_message("<span class='boldnotice'>[C] suddenly looks more feminine!</span>", "<span class='boldwarning'>You suddenly feel more feminine!</span>")
+			else
+				C.gender = MALE
+				C.visible_message("<span class='boldnotice'>[C] suddenly looks more masculine!</span>", "<span class='boldwarning'>You suddenly feel more masculine!</span>")
+			C.regenerate_icons()
+		else
+			C.visible_message("<span class='boldnotice'>[C]'s physiology fails to change!</span>", "<span class='boldwarning'>The potion fails to meaningfully effect you!</span>")
 	else
-		L.gender = MALE
-		L.visible_message("<span class='boldnotice'>[L] suddenly looks more masculine!</span>", "<span class='boldwarning'>You suddenly feel more masculine!</span>")
-	L.regenerate_icons()
+		if(L.gender == MALE)
+			L.gender = FEMALE
+			L.visible_message("<span class='boldnotice'>[L] suddenly looks more feminine!</span>", "<span class='boldwarning'>You suddenly feel more feminine!</span>")
+		else
+			L.gender = MALE
+			L.visible_message("<span class='boldnotice'>[L] suddenly looks more masculine!</span>", "<span class='boldwarning'>You suddenly feel more masculine!</span>")
+		L.regenerate_icons()
 	qdel(src)
 
 /obj/item/slimepotion/slime/renaming
@@ -1008,7 +1027,7 @@
 	item_state = "tile-bluespace"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
-	materials = list(MAT_METAL=500)
+	materials = list(/datum/material/iron=500)
 	throwforce = 10
 	throw_speed = 3
 	throw_range = 7
@@ -1025,7 +1044,7 @@
 	item_state = "tile-sepia"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
-	materials = list(MAT_METAL=500)
+	materials = list(/datum/material/iron=500)
 	throwforce = 10
 	throw_speed = 0.1
 	throw_range = 28

@@ -43,7 +43,7 @@
 
 /datum/crafting_recipe/food/baguette
 	name = "Baguette"
-	time = 40
+	time = 4 SECONDS
 	reqs = list(/datum/reagent/consumable/sodiumchloride = 1,
 				/datum/reagent/consumable/blackpepper = 1,
 				/obj/item/reagent_containers/food/snacks/pastrybase = 2
@@ -53,7 +53,7 @@
 
 /datum/crafting_recipe/food/beans
 	name = "Beans"
-	time = 40
+	time = 4 SECONDS
 	reqs = list(/datum/reagent/consumable/ketchup = 5,
 		/obj/item/reagent_containers/food/snacks/grown/soybeans = 2
 	)
@@ -76,6 +76,14 @@
 		/obj/item/reagent_containers/food/snacks/grown/soybeans = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/burrito
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/fivelayerburrito
+	name ="Five Layer Burrito"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/burrito = 5
+	)
+	result = /obj/item/reagent_containers/food/snacks/fivelayerburrito
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/candiedapple
@@ -233,7 +241,7 @@
 
 /datum/crafting_recipe/food/loadedbakedpotato
 	name = "Loaded Baked Potato"
-	time = 40
+	time = 4 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/grown/potato = 1,
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 1
@@ -286,7 +294,7 @@
 
 /datum/crafting_recipe/food/powercrepe
 	name = "Powercrepe"
-	time = 40
+	time = 4 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/flatdough = 1,
 		/datum/reagent/consumable/milk = 1,
@@ -319,7 +327,7 @@
 
 /datum/crafting_recipe/food/stuffedlegion
 	name = "Stuffed Legion"
-	time = 40
+	time = 4 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/meat/steak/goliath = 1,
 		/obj/item/organ/regenerative_core/legion = 1,

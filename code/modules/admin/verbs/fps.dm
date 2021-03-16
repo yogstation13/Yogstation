@@ -1,6 +1,6 @@
 //replaces the old Ticklag verb, fps is easier to understand
 /client/proc/set_server_fps()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Set Server FPS"
 	set desc = "Sets game speed in frames-per-second. Can potentially break the game"
 

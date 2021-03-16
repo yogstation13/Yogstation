@@ -36,7 +36,7 @@
 	make_spells()
 
 /datum/antagonist/wizard/meme/proc/make_spells()
-	switch(rand(9)) //keep this consistent with the amount of loadouts.
+	switch(rand(1,9)) //keep this consistent with the amount of loadouts.
 
 		if(1) //5x jaunt
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt, 4)
@@ -46,7 +46,7 @@
 
 		if(3) //2x smoke, 2x blind, and 2x barnyard :)
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/smoke, 1)
-			SpellAdd(/obj/effect/proc_holder/spell/targeted/trigger/blind, 1)
+			SpellAdd(/obj/effect/proc_holder/spell/pointed/trigger/blind, 1)
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/barnyardcurse, 1)
 
 		if(4) //5x summon guns - no
@@ -69,7 +69,7 @@
 		if(8) // 5x Flesh to stone 5x Animation Spell 2x Blind (Weeping Angels)
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/touch/flesh_to_stone, 4)
 			SpellAdd(/obj/effect/proc_holder/spell/aimed/animation, 4)
-			SpellAdd(/obj/effect/proc_holder/spell/targeted/trigger/blind, 1)
+			SpellAdd(/obj/effect/proc_holder/spell/pointed/trigger/blind, 1)
 
 		if(9) // 5x Mouse Shapeshift 5x Mindswap (From Men to Mice)
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/shapeshift/mouse, 4)

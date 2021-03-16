@@ -129,6 +129,15 @@
 /turf/open/floor/mineral/plastitanium/red/brig
 	name = "brig floor"
 
+/turf/open/floor/mineral/plastitanium/red/brig/fakepit
+	name = "brig chasm"
+	desc = "A place for very naughy criminals."
+	smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE
+	canSmoothWith = list(/turf/open/floor/mineral/plastitanium/red/brig/fakepit)
+	icon = 'icons/turf/floors/Chasms.dmi'
+	icon_state = "smooth"
+	tiled_dirt = FALSE
+
 //BANANIUM
 
 /turf/open/floor/mineral/bananium

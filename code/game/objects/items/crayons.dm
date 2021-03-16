@@ -137,13 +137,13 @@
 		to_chat(user, "<span class='warning'>There is not enough of [src] left!</span>")
 		. = TRUE
 
-/obj/item/toy/crayon/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.hands_state)
-	// tgui is a plague upon this codebase
+/obj/item/toy/crayon/ui_state(mob/user)
+	return GLOB.hands_state
 
-	SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/toy/crayon/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.hands_state)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Crayon", name, 600, 600,
-			master_ui, state)
+		ui = new(user, src, "Crayon", name)
 		ui.open()
 
 /obj/item/toy/crayon/spraycan/AltClick(mob/user)
@@ -311,7 +311,7 @@
 	else if(drawing in graffiti|oriented)
 		temp = "graffiti"
 	var/gang_check = hippie_gang_check(user,target) // yogs start -- gang check and temp setting
-	if(!gang_check) 
+	if(!gang_check)
 		return
 	else if(gang_check == "gang graffiti")
 		temp = gang_check // yogs end
@@ -639,7 +639,7 @@
 			C.blind_eyes(1)
 		if(C.get_eye_protection() <= 0) // no eye protection? ARGH IT BURNS.
 			C.confused = max(C.confused, 3)
-			C.Paralyze(60)
+			C.Knockdown(20)
 		if(ishuman(C) && actually_paints)
 			var/mob/living/carbon/human/H = C
 			H.lip_style = "spray_face"
@@ -679,6 +679,25 @@
 		var/mutable_appearance/spray_overlay = mutable_appearance('icons/obj/crayons.dmi', "[is_capped ? "spraycan_cap_colors" : "spraycan_colors"]")
 		spray_overlay.color = paint_color
 		add_overlay(spray_overlay)
+
+/obj/item/toy/crayon/spraycan/attackby(obj/item/S,mob/user)
+	if(S.is_sharp() || istype(S, /obj/item/screwdriver) || istype(S, /obj/item/surgicaldrill))
+
+		if(istype(src, /obj/item/toy/crayon/spraycan/hellcan))
+			explosion(get_turf(src), 0, 0, 2, flame_range = 5) //2 light 5 flame
+
+		else if(istype(src, /obj/item/toy/crayon/spraycan/lubecan))
+			chem_splash(loc, 5, list(reagents)) //lubecan makes big lube no explosion honk
+
+		else if(istype(src, /obj/item/toy/crayon/spraycan/borg))
+			to_chat(user, "<span class='warning'>ERR ERR. ASIMOV SPRAYCAN FIRMWARE DOES NOT ALLOW THIS.</span>")
+			return // are you fucking nuts
+
+		else 
+			explosion(get_turf(src), 0, 0, 1, flame_range = 0) //1 light for default cans
+
+		log_bomber(user, "detonated a", src, "via [S.name]")
+		qdel(src)
 
 /obj/item/toy/crayon/spraycan/borg
 	name = "cyborg spraycan"

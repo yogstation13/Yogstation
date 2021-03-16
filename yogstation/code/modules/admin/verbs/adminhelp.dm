@@ -190,7 +190,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //Removes the ahelp verb and returns it after 2 minutes
 /datum/admin_help/proc/TimeoutVerb()
-	initiator.verbs -= /client/verb/adminhelp
+	remove_verb(initiator, /client/verb/adminhelp)
 	initiator.adminhelptimerid = addtimer(CALLBACK(initiator, /client/proc/giveadminhelpverb), 1200, TIMER_STOPPABLE) //2 minute cooldown of admin helps
 
 //private
@@ -330,7 +330,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	if(resolved)
 		AddInteraction("Ticket #[id] marked as resolved by [usr.ckey].")
-		to_chat(initiator, "<span class='adminhelp'>Your ticket has been marked as resolved by [usr.client.holder?.fakekey ? "an Administrator" : key_name(usr, 0, 0)]. The Adminhelp verb will be returned to you shortly.</span>", confidential=TRUE)
+		to_chat(initiator, "<span class='adminhelp'>Your ticket has been marked as resolved by [usr.client.holder?.fakekey ? "an Administrator" : key_name(usr, 0, 0)].</span>", confidential=TRUE)
 		addtimer(CALLBACK(initiator, /client/proc/giveadminhelpverb), 50)
 	else // AHELP_ACTIVE
 		AddInteraction("Ticket #[id] marked as unresolved by [usr.ckey].")
@@ -598,7 +598,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(!src)
 		return
 		
-	src.verbs |= /client/verb/adminhelp
+	if(!locate(/client/verb/adminhelp) in src.verbs)
+		add_verb(src, /client/verb/adminhelp)
+
+
 	deltimer(adminhelptimerid)
 	adminhelptimerid = 0
 

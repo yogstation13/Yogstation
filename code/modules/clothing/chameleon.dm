@@ -72,7 +72,8 @@
 	name = "Select Chameleon Outfit"
 	button_icon_state = "chameleon_outfit"
 	var/list/outfit_options //By default, this list is shared between all instances. It is not static because if it were, subtypes would not be able to have their own. If you ever want to edit it, copy it first.
-
+	syndicate = TRUE
+	
 /datum/action/chameleon_outfit/New()
 	..()
 	initialize_outfits()
@@ -141,7 +142,6 @@
 	var/list/chameleon_list = list()
 	var/chameleon_type = null
 	var/chameleon_name = "Item"
-
 	var/emp_timer
 
 /datum/action/item_action/chameleon/change/Grant(mob/M)
@@ -220,6 +220,7 @@
 		var/obj/item/I = target
 		I.item_state = initial(picked_item.item_state)
 		I.item_color = initial(picked_item.item_color)
+		I.alternate_worn_icon = initial(picked_item.alternate_worn_icon)
 		if(istype(I, /obj/item/clothing) && istype(initial(picked_item), /obj/item/clothing))
 			var/obj/item/clothing/CL = I
 			var/obj/item/clothing/PCL = picked_item
@@ -262,6 +263,9 @@
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
+/obj/item/clothing/under/chameleon/syndicate
+	syndicate = TRUE
+
 /obj/item/clothing/under/chameleon/ratvar
 	name = "ratvarian engineer's jumpsuit"
 	desc = "A tough jumpsuit woven from alloy threads. It can take on the appearance of other jumpsuits."
@@ -272,6 +276,8 @@
 /obj/item/clothing/under/chameleon/Initialize()
 	. = ..()
 	chameleon_action = new(src)
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/clothing/under
 	chameleon_action.chameleon_name = "Jumpsuit"
 	chameleon_action.chameleon_blacklist = typecacheof(list(/obj/item/clothing/under, /obj/item/clothing/under/color, /obj/item/clothing/under/rank, /obj/item/clothing/under/changeling), only_root_path = TRUE)
@@ -298,9 +304,14 @@
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
+/obj/item/clothing/suit/chameleon/syndicate
+	syndicate = TRUE
+
 /obj/item/clothing/suit/chameleon/Initialize()
 	. = ..()
 	chameleon_action = new(src)
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/clothing/suit
 	chameleon_action.chameleon_name = "Suit"
 	chameleon_action.chameleon_blacklist = typecacheof(list(/obj/item/clothing/suit/armor/abductor, /obj/item/clothing/suit/changeling), only_root_path = TRUE)
@@ -326,9 +337,14 @@
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
+/obj/item/clothing/glasses/chameleon/syndicate
+	syndicate = TRUE
+
 /obj/item/clothing/glasses/chameleon/Initialize()
 	. = ..()
 	chameleon_action = new(src)
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/clothing/glasses
 	chameleon_action.chameleon_name = "Glasses"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/glasses/changeling, only_root_path = TRUE)
@@ -355,9 +371,14 @@
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
+/obj/item/clothing/gloves/chameleon/syndicate
+	syndicate = TRUE
+
 /obj/item/clothing/gloves/chameleon/Initialize()
 	. = ..()
 	chameleon_action = new(src)
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/clothing/gloves
 	chameleon_action.chameleon_name = "Gloves"
 	chameleon_action.chameleon_blacklist = typecacheof(list(/obj/item/clothing/gloves, /obj/item/clothing/gloves/color, /obj/item/clothing/gloves/changeling), only_root_path = TRUE)
@@ -384,9 +405,14 @@
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
+/obj/item/clothing/head/chameleon/syndicate
+	syndicate = TRUE
+
 /obj/item/clothing/head/chameleon/Initialize()
 	. = ..()
 	chameleon_action = new(src)
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/clothing/head
 	chameleon_action.chameleon_name = "Hat"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/head/changeling, only_root_path = TRUE)
@@ -434,9 +460,14 @@
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
+/obj/item/clothing/mask/chameleon/syndicate
+	syndicate = TRUE
+
 /obj/item/clothing/mask/chameleon/Initialize()
 	. = ..()
 	chameleon_action = new(src)
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/clothing/mask
 	chameleon_action.chameleon_name = "Mask"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/mask/changeling, only_root_path = TRUE)
@@ -487,9 +518,14 @@
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
+/obj/item/clothing/shoes/chameleon/syndicate
+	syndicate = TRUE
+
 /obj/item/clothing/shoes/chameleon/Initialize()
 	. = ..()
 	chameleon_action = new(src)
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/clothing/shoes
 	chameleon_action.chameleon_name = "Shoes"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/shoes/changeling, only_root_path = TRUE)
@@ -509,6 +545,9 @@
 	clothing_flags = NOSLIP
 	can_be_bloody = FALSE
 
+/obj/item/clothing/shoes/chameleon/noslip/syndicate
+	syndicate = TRUE
+
 /obj/item/clothing/shoes/chameleon/noslip/broken/Initialize()
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
@@ -517,9 +556,14 @@
 	name = "backpack"
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
+/obj/item/storage/backpack/chameleon/syndicate
+	syndicate = TRUE
+
 /obj/item/storage/backpack/chameleon/Initialize()
 	. = ..()
 	chameleon_action = new(src)
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/storage/backpack
 	chameleon_action.chameleon_name = "Backpack"
 	chameleon_action.initialize_disguises()
@@ -539,10 +583,15 @@
 	desc = "Holds tools."
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
+/obj/item/storage/belt/chameleon/syndicate
+	syndicate = TRUE
+
 /obj/item/storage/belt/chameleon/Initialize()
 	. = ..()
 
 	chameleon_action = new(src)
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/storage/belt
 	chameleon_action.chameleon_name = "Belt"
 	chameleon_action.initialize_disguises()
@@ -566,9 +615,14 @@
 	name = "radio headset"
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
+/obj/item/radio/headset/chameleon/syndicate
+	syndicate = TRUE
+
 /obj/item/radio/headset/chameleon/Initialize()
 	. = ..()
 	chameleon_action = new(src)
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/radio/headset
 	chameleon_action.chameleon_name = "Headset"
 	chameleon_action.initialize_disguises()
@@ -587,9 +641,14 @@
 	name = "PDA"
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
+/obj/item/pda/chameleon/syndicate
+	syndicate = TRUE
+
 /obj/item/pda/chameleon/Initialize()
 	. = ..()
 	chameleon_action = new(src)
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/pda
 	chameleon_action.chameleon_name = "PDA"
 	chameleon_action.chameleon_blacklist = typecacheof(list(/obj/item/pda/heads, /obj/item/pda/ai, /obj/item/pda/ai/pai), only_root_path = TRUE)
@@ -608,9 +667,14 @@
 /obj/item/stamp/chameleon
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
+/obj/item/stamp/chameleon/syndicate
+	syndicate = TRUE
+
 /obj/item/stamp/chameleon/Initialize()
 	. = ..()
 	chameleon_action = new(src)
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/stamp
 	chameleon_action.chameleon_name = "Stamp"
 	chameleon_action.initialize_disguises()

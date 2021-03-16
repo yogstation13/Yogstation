@@ -69,9 +69,7 @@ effective or pretty fucking useless.
 */
 
 /obj/item/healthanalyzer/rad_laser
-	materials = list(MAT_METAL=400)
-	var/ui_x = 320
-	var/ui_y = 335
+	materials = list(/datum/material/iron=400)
 	var/irradiate = TRUE
 	var/stealth = FALSE
 	var/used = FALSE // is it cooling down?
@@ -81,7 +79,7 @@ effective or pretty fucking useless.
 /obj/item/healthanalyzer/rad_laser/attack(mob/living/M, mob/living/user)
 	if(!stealth || !irradiate)
 		..()
-	if(!irradiate)
+	if(!irradiate || !is_syndicate(user)) // only syndicates are aware of this being a rad laser and know how to use it.
 		return
 	if(!used)
 		log_combat(user, M, "irradiated", src)
@@ -107,16 +105,24 @@ effective or pretty fucking useless.
 	return round(max(10, (stealth*30 + intensity*5 - wavelength/4)))
 
 /obj/item/healthanalyzer/rad_laser/attack_self(mob/user)
+	if(!is_syndicate(user))
+		. = ..()
+		return
 	interact(user)
 
 /obj/item/healthanalyzer/rad_laser/interact(mob/user)
+	if(!is_syndicate(user))
+		. = ..()
+		return
 	ui_interact(user)
 
-/obj/item/healthanalyzer/rad_laser/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.hands_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/healthanalyzer/rad_laser/ui_state(mob/user)
+	return GLOB.hands_state
+
+/obj/item/healthanalyzer/rad_laser/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "RadioactiveMicrolaser", "Radioactive Microlaser", ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "RadioactiveMicrolaser")
 		ui.open()
 
 /obj/item/healthanalyzer/rad_laser/ui_data(mob/user)

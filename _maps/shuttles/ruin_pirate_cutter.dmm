@@ -74,32 +74,6 @@
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
-"ah" = (
-/obj/structure/chair/office/dark{
-	dir = 4
-	},
-/obj/machinery/turretid{
-	icon_state = "control_kill";
-	lethal = 1;
-	locked = 0;
-	pixel_y = -30;
-	req_access = null
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/pirate/ranged{
-	environment_smash = 0
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/caravan/pirate)
 "ai" = (
 /obj/machinery/door/poddoor{
 	id = "caravanpirate_bridge"
@@ -202,19 +176,6 @@
 	dir = 5
 	},
 /area/shuttle/caravan/pirate)
-"bd" = (
-/obj/structure/table/reinforced,
-/obj/machinery/button/door{
-	id = "caravanpirate_bridge";
-	name = "Bridge Blast Door Control";
-	pixel_x = -16
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/caravan/pirate)
 "bH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
@@ -296,11 +257,32 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/caravan/pirate)
-"hh" = (
-/mob/living/simple_animal/hostile/pirate{
+"gy" = (
+/obj/structure/chair/office/dark{
+	dir = 4
+	},
+/obj/machinery/turretid{
+	icon_state = "control_kill";
+	lethal = 1;
+	locked = 0;
+	pixel_x = 1;
+	pixel_y = -25;
+	req_access = null
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/pirate/ranged{
 	environment_smash = 0
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
 "hI" = (
 /obj/structure/cable/yellow{
@@ -377,24 +359,6 @@
 	dir = 6
 	},
 /turf/open/floor/plating,
-/area/shuttle/caravan/pirate)
-"jo" = (
-/obj/structure/table,
-/obj/machinery/airalarm/all_access{
-	pixel_y = 24
-	},
-/obj/item/ammo_box/a40mm,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
 "jU" = (
 /obj/structure/shuttle/engine/propulsion/burst{
@@ -587,6 +551,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
+"qd" = (
+/mob/living/simple_animal/hostile/pirate{
+	environment_smash = 0;
+	loot = list(/obj/effect/mob_spawn/human/corpse/pirate)
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/caravan/pirate)
 "qo" = (
 /obj/machinery/porta_turret/syndicate/pod{
 	dir = 6;
@@ -637,6 +608,24 @@
 "su" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
+/area/shuttle/caravan/pirate)
+"sW" = (
+/obj/structure/table,
+/obj/machinery/airalarm/all_access{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/storage/toolbox/syndicate,
+/turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
 "to" = (
 /obj/structure/table,
@@ -829,7 +818,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Pirate Cutter APC";
-	pixel_x = -24;
+	pixel_x = -25;
 	req_access = null
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -881,6 +870,20 @@
 /obj/machinery/atmospherics/components/unary/tank/air,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating,
+/area/shuttle/caravan/pirate)
+"Go" = (
+/obj/structure/table/reinforced,
+/obj/machinery/button/door{
+	id = "caravanpirate_bridge";
+	name = "Bridge Blast Door Control";
+	pixel_x = 6;
+	pixel_y = -5
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
 "GQ" = (
 /obj/machinery/light/small{
@@ -1267,7 +1270,7 @@ na
 su
 Ag
 af
-jo
+sW
 al
 sr
 af
@@ -1298,7 +1301,7 @@ su
 Kd
 af
 oT
-hh
+qd
 zB
 af
 af
@@ -1461,8 +1464,8 @@ Jv
 Jv
 aa
 oO
-ah
-bd
+gy
+Go
 ao
 Jv
 Jv

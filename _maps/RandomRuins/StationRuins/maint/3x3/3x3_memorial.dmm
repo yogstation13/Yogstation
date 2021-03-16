@@ -1,0 +1,48 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/item/reagent_containers/food/snacks/grown/harebell,
+/turf/open/floor/plating,
+/area/template_noop)
+"o" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"p" = (
+/obj/structure/sign/plaques/kiddie/badger{
+	desc = "This plaque seems to memorialize those who fell while constructing the station. The names have been redacted, and they cover the entire plaque.";
+	pixel_y = 32
+	},
+/obj/item/twohanded/required/kirbyplants/dead{
+	desc = "Some flowers have been placed lovingly here in a pot. They have not been watered quite as lovingly...";
+	name = "Dead Flowers";
+	pixel_y = 19
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"H" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"I" = (
+/turf/closed/wall/rust,
+/area/template_noop)
+"X" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+o
+X
+a
+"}
+(2,1,1) = {"
+o
+I
+p
+"}
+(3,1,1) = {"
+o
+X
+H
+"}

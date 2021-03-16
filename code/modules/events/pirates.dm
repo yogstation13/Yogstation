@@ -30,6 +30,7 @@
 
 /datum/round_event/pirates/announce(fake)
 	priority_announce("Incoming subspace communication. Secure channel opened at all communication consoles.", "Incoming Message", 'sound/ai/commandreport.ogg')
+	play_intro_music()
 	if(fake)
 		return
 	threat = new
@@ -71,7 +72,7 @@
 	priority_announce("Unidentified ship with trajectory towards the station has exploded, expect debris.")
 	// small amount of meteors instead of a pirate boarding seems like a good deal
 	spawn_meteors(2, GLOB.meteors_normal)
-	
+
 
 /datum/round_event/pirates/start()
 	if(!paid_off && !shuttle_spawned)
@@ -106,9 +107,17 @@
 				announce_to_ghosts(spawner)
 
 	priority_announce("Unidentified armed ship detected near the station.")
+	play_intro_music()
+
+///plays Cortez Battle - Paper Mario: The Thousand-Year Door. Uses chatoutput.sendmusic instead of playsound.local because it is more than 90 seconds long
+/datum/round_event/pirates/proc/play_intro_music()
+	for(var/m in GLOB.player_list)
+		var/mob/M = m
+		var/client/C = M.client
+		if(C.prefs.toggles & SOUND_MIDI)
+			C.tgui_panel?.play_music("https://www.youtube.com/watch?v=MU__2jFQ5EY")
 
 //Shuttle equipment
-
 /obj/machinery/shuttle_scrambler
 	name = "Data Siphon"
 	desc = "This heap of machinery steals credits and data from unprotected systems and locks down cargo shuttles."
@@ -277,8 +286,6 @@
 
 /obj/machinery/computer/piratepad_control
 	name = "cargo hold control terminal"
-	ui_x = 600
-	ui_y = 230
 	var/status_report = "Ready for delivery."
 	var/obj/machinery/piratepad/pad
 	var/warmup_time = 100
@@ -308,11 +315,10 @@
 	else
 		pad = locate() in range(4,src)
 
-/obj/machinery/computer/piratepad_control/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/piratepad_control/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "CargoHoldTerminal", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "CargoHoldTerminal", name)
 		ui.open()
 
 /obj/machinery/computer/piratepad_control/ui_data(mob/user)

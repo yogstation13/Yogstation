@@ -63,7 +63,11 @@ export const CrewConsole = (props, context) => {
   const sensors = data.sensors || [];
 
   return (
-    <Window resizable>
+    <Window
+      title="Crew Monitor"
+      width={1400}
+      height={800}
+      resizable>
       <Window.Content scrollable>
         <Flex>
           <Flex.Item>
@@ -80,7 +84,7 @@ export const CrewConsole = (props, context) => {
                       } />
                     )
                   ))}
-                  <img src="minimap-1.png" width="600px"
+                  <img src={data.map_filename} width="600px"
                     style={`-ms-interpolation-mode: nearest-neighbor`} />
                 </div>
               )}

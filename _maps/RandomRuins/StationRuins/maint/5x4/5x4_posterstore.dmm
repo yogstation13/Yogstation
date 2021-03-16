@@ -1,0 +1,140 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating,
+/area/template_noop)
+"d" = (
+/obj/structure/table_frame,
+/obj/structure/sign/poster/ripped{
+	pixel_y = 32
+	},
+/obj/item/poster/random_contraband,
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"g" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"h" = (
+/obj/structure/table,
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/obj/item/poster/random_contraband{
+	pixel_x = 2;
+	pixel_y = 5
+	},
+/obj/item/poster/random_contraband{
+	pixel_x = 4;
+	pixel_y = 10
+	},
+/obj/item/poster/random_contraband,
+/turf/open/floor/plating,
+/area/template_noop)
+"k" = (
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"q" = (
+/obj/structure/rack,
+/obj/item/poster/random_official{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/obj/item/poster/random_official,
+/obj/structure/sign/poster/official/random{
+	pixel_y = -32
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"s" = (
+/obj/item/chair,
+/turf/open/floor/plating,
+/area/template_noop)
+"w" = (
+/obj/structure/table,
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/obj/item/poster/random_contraband{
+	pixel_x = 2;
+	pixel_y = 5
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"y" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plating,
+/area/template_noop)
+"A" = (
+/obj/structure/rack,
+/obj/item/poster/random_official,
+/obj/structure/sign/poster/official/random{
+	pixel_y = -32
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"D" = (
+/obj/structure/table_frame,
+/obj/item/stack/sheet/metal,
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/template_noop)
+"J" = (
+/obj/structure/table/reinforced,
+/obj/item/circuitboard/machine/paystand,
+/turf/open/floor/plating,
+/area/template_noop)
+"R" = (
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating,
+/area/template_noop)
+"T" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"Y" = (
+/obj/structure/table,
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/obj/item/poster/random_contraband,
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+h
+T
+k
+q
+"}
+(2,1,1) = {"
+w
+k
+R
+A
+"}
+(3,1,1) = {"
+D
+g
+T
+T
+"}
+(4,1,1) = {"
+d
+k
+y
+s
+"}
+(5,1,1) = {"
+Y
+T
+J
+c
+"}

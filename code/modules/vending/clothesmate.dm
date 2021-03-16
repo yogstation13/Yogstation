@@ -115,6 +115,7 @@
 		            /obj/item/clothing/neck/yogs/stripedscarf/yellow = 3,
 		            /obj/item/clothing/neck/yogs/stripedscarf/orange = 3,
 		            /obj/item/clothing/neck/yogs/stripedscarf/cyan = 3,
+					/obj/item/clothing/neck/artist = 3,
 		            /obj/item/clothing/head/yogs/fez = 3,
 		            /obj/item/clothing/head/yogs/ballhat = 3,
 		            /obj/item/clothing/suit/yogs/pinksweater = 2,

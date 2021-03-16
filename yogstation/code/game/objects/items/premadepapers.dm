@@ -348,14 +348,19 @@
 /obj/item/paper/paperwork/mech_form/Initialize()
 	. = ..()
 	written = list()
-	written += new/datum/langtext("<center><h3>Mech Request Form SCI-9</h3></center><hr>",/datum/language/common)
-	written += new/datum/langtext("<b>Name: </b><span class=\"paper_field\">write</span><br><br>",/datum/language/common)
-	written += new/datum/langtext("<b>Job: </b><span class=\"paper_field\">write</span><br><br>",/datum/language/common)
-	written += new/datum/langtext("<b>Requested Mech: </b><span class=\"paper_field\">write</span><br><br>",/datum/language/common)
-	written += new/datum/langtext("<b>Requested Equipment: </b><span class=\"paper_field\">write</span><br><br>",/datum/language/common)
-	written += new/datum/langtext("<b>Reason: </b><span class=\"paper_field\">write</span><br><br>",/datum/language/common)
-	written += new/datum/langtext("<b>Signed, </b><span class=\"paper_field\">write</span><br><br><br>",/datum/language/common)
-	written += new/datum/langtext("<b>Stamp Below if Approved</b>",/datum/language/common)
+	written += new/datum/langtext("<center><h3>Mech Request Form SCI-9</h3></center><hr><b>Name: </b>",/datum/language/common)
+	written += "</b><span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<br><br><b>Job:</b>",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<br><br><b>Requested Mech: </b>",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<br><br><b>Requested Equipment: </b>",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<br><br><b>Reason: </b>",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<br><br><b>Signed, </b>",/datum/language/common)
+	written += "<span class=\"paper_field\"></span>"
+	written += new/datum/langtext("<br><br><br><b>Stamp Below if Approved</b>",/datum/language/common)
 	update_icon()
 
 /**

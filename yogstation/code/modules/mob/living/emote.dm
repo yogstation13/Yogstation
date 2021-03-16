@@ -24,12 +24,6 @@
 	message = "strikes a menacing pose!"
 	restraint_check = TRUE
 
-/datum/emote/living/tpose
-	key = "tpose"
-	key_third_person = "tposes"
-	message = "strikes a T-pose!"
-	restraint_check = TRUE
-
 /datum/emote/living/vpose
 	key = "vpose"
 	key_third_person = "vposes"
@@ -58,20 +52,3 @@
 	key = "smirk"
 	key_third_person = "smirks"
 	message = "smirks."
-
-/datum/emote/living/dab
-	key = "dab"
-	key_third_person = "dabs"
-	message = "dabs."
-	message_param = "dabs on %t."
-	restraint_check = TRUE
-
-/datum/emote/living/dab/run_emote(mob/user, params)
-	. = ..()
-	if(. && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		var/light_dab_angle = rand(35,55)
-		var/light_dab_speed = rand(3,7)
-		H.DabAnimation(angle = light_dab_angle , speed = light_dab_speed)
-		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
-		SSachievements.unlock_achievement(/datum/achievement/dab,H.client)

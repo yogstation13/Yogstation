@@ -5,7 +5,8 @@
 #define MUTE_OOC		(1<<1)
 #define MUTE_PRAY		(1<<2)
 #define MUTE_ADMINHELP	(1<<3)
-#define MUTE_DEADCHAT	(1<<4)
+#define MUTE_MENTORHELP (1<<4)
+#define MUTE_DEADCHAT	(1<<5)
 #define MUTE_ALL		(~0)
 
 //Some constants for DB_Ban

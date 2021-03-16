@@ -14,8 +14,6 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	var/forwards		// this is the default (forward) direction, set by the map dir
 	var/backwards		// hopefully self-explanatory
 	var/movedir			// the actual direction to move stuff in
-
-	var/list/affecting	// the list of all items that will be moved this ptick
 	var/id = ""			// the control ID	- must match controller ID
 	var/verted = 1		// Inverts the direction the conveyor belt moves.
 	speed_process = TRUE
@@ -57,7 +55,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor/Destroy()
 	LAZYREMOVE(GLOB.conveyors_by_id[id], src)
-	. = ..()
+	return ..()
 
 /obj/machinery/conveyor/vv_edit_var(var_name, var_value)
 	if (var_name == "id")
@@ -117,6 +115,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor/proc/update()
 	if(stat & BROKEN || !operable || stat & NOPOWER)
 		operating = FALSE
+		update_icon()
 		return FALSE
 	return TRUE
 
@@ -130,24 +129,36 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		return
 	use_power(6)
 	//get the first 30 items in contents
-	affecting = list()
-	var/i = 0
-	for(var/item in loc.contents)
-		if(item == src)
-			continue
-		i++ // we're sure it's a real target to move at this point
-		if(i >= MAX_CONVEYOR_ITEMS_MOVE)
-			break
-		affecting.Add(item)
+	var/turf/locturf = loc
+	var/list/items = locturf.contents - src - locturf.lighting_object
+	if(!LAZYLEN(items))//Dont do anything at all if theres nothing there but the conveyor
+		return
+	var/list/affecting
+	if(length(items) > MAX_CONVEYOR_ITEMS_MOVE)
+		affecting = items.Copy(1, MAX_CONVEYOR_ITEMS_MOVE + 1)//Lists start at 1 lol
+	else
+		affecting = items
 	conveying = TRUE
-	addtimer(CALLBACK(src, .proc/convey, affecting), 1)
+
+	addtimer(CALLBACK(src, .proc/convey, affecting), 1)//Movement effect
 
 /obj/machinery/conveyor/proc/convey(list/affecting)
-	for(var/atom/movable/A in affecting)
-		if(!QDELETED(A) && (A.loc == loc))
-			A.ConveyorMove(movedir)
-			//Give this a chance to yield if the server is busy
-			stoplag()
+	for(var/am in affecting)
+		if(!ismovable(am))	//This is like a third faster than for(var/atom/movable in affecting)
+			continue
+		var/atom/movable/movable_thing = am
+		//Give this a chance to yield if the server is busy
+		stoplag()
+		if(QDELETED(movable_thing) || (movable_thing.loc != loc))
+			continue
+		if(iseffect(movable_thing) || isdead(movable_thing))
+			continue
+		if(isliving(movable_thing))
+			var/mob/living/zoommob = movable_thing
+			if((zoommob.movement_type & FLYING) && !zoommob.stat)
+				continue
+		if(!movable_thing.anchored && movable_thing.has_gravity())
+			step(movable_thing, movedir)
 	conveying = FALSE
 
 // attack with item, place item on conveyor
@@ -286,6 +297,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	for(var/obj/machinery/conveyor/C in GLOB.conveyors_by_id[id])
 		C.operating = position
 		C.update_move_direction()
+		C.update_icon()
 		CHECK_TICK
 
 // attack with hand, switch position
@@ -385,7 +397,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	max_amount = 30
 	singular_name = "conveyor belt"
 	w_class = WEIGHT_CLASS_BULKY
-	materials = list(MAT_METAL = 3000)
+	materials = list(/datum/material/iron = 3000)
 	///id for linking
 	var/id = ""
 
@@ -425,4 +437,4 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/item/paper/guides/conveyor
 	name = "paper- 'Nano-it-up U-build series, #9: Build your very own conveyor belt, in SPACE'"
 	info = "<h1>Congratulations!</h1><p>You are now the proud owner of the best conveyor set available for space mail order! We at Nano-it-up know you love to prepare your own structures without wasting time, so we have devised a special streamlined assembly procedure that puts all other mail-order products to shame!</p><p>Firstly, you need to link the conveyor switch assembly to each of the conveyor belt assemblies. After doing so, you simply need to install the belt assemblies onto the floor, et voila, belt built. Our special Nano-it-up smart switch will detected any linked assemblies as far as the eye can see! This convenience, you can only have it when you Nano-it-up. Stay nano!</p>"
-#undef MAX_CONVEYOR_ITEMS_MOVE 
+#undef MAX_CONVEYOR_ITEMS_MOVE

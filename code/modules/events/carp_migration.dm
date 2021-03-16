@@ -21,8 +21,8 @@
 /datum/round_event/carp_migration/start()
 	var/mob/living/simple_animal/hostile/carp/fish
 	for(var/obj/effect/landmark/carpspawn/C in GLOB.landmarks_list)
-		//yogs -- Oak's birthday :D
-		if(SSevents.holidays["Oak's Birthday"])
+		//yogs -- Gondola Day for some goddamn reason. Can't they just let go of Oak?
+		if(SSevents.holidays["Gondola Day"])
 			fish = new /mob/living/simple_animal/pet/gondola
 			return
 		//yogs end

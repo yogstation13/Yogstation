@@ -24,7 +24,7 @@ export const Autolathe = (props, context) => {
 
   const { act, data } = useBackend(context);
   return (
-    <Window resizable>
+    <Window width={1116} height={703} resizable>
       <Window.Content scrollable>
         <Section
           title={("Autolathe")}

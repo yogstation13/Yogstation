@@ -1,0 +1,68 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"b" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"c" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/template_noop)
+"d" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/donut,
+/turf/open/floor/plating,
+/area/template_noop)
+"e" = (
+/obj/structure/chair/stool{
+	pixel_y = 8
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"f" = (
+/obj/structure/table,
+/obj/item/pen,
+/turf/open/floor/plating,
+/area/template_noop)
+"u" = (
+/obj/structure/table,
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+a
+e
+e
+a
+"}
+(2,1,1) = {"
+a
+b
+f
+a
+"}
+(3,1,1) = {"
+a
+c
+c
+a
+"}
+(4,1,1) = {"
+a
+d
+u
+a
+"}
+(5,1,1) = {"
+a
+e
+e
+a
+"}

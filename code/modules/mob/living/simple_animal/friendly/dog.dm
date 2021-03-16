@@ -71,13 +71,13 @@
 	deathmessage = "blows apart!"
 	animal_species = /mob/living/simple_animal/pet/dog/corgi/borgi
 	nofur = TRUE
-	
+
 /mob/living/simple_animal/pet/dog/corgi/borgi/emag_act(user as mob)
 	if(!emagged)
 		emagged = TRUE
 		visible_message("<span class='warning'>[user] swipes a card through [src].</span>", "<span class='notice'>You overload [src]s internal reactor.</span>")
 		addtimer(CALLBACK(src, .proc/explode), 1000)
-	
+
 /mob/living/simple_animal/pet/dog/corgi/borgi/proc/explode()
 	visible_message("<span class='warning'>[src] makes an odd whining noise.</span>")
 	explosion(get_turf(src), 0, 1, 4, 7)
@@ -305,7 +305,7 @@
 /mob/living/simple_animal/pet/dog/corgi/proc/place_on_head(obj/item/item_to_add, mob/user)
 
 	if(istype(item_to_add, /obj/item/grenade/plastic)) // last thing he ever wears, I guess
-		item_to_add.afterattack(src,user,1)
+		INVOKE_ASYNC(item_to_add, /obj/item.proc/afterattack, src, user, 1)
 		return
 
 	if(inventory_head)
@@ -512,10 +512,10 @@
 						movement_target.attack_animal(src)
 					else if(ishuman(movement_target.loc) )
 						if(prob(20))
-							emote("me", 1, "stares at [movement_target.loc]'s [movement_target] with a sad puppy-face")
+							emote("me", 1, "stares at [movement_target.loc]'s [movement_target] with a sad puppy-face", TRUE)
 
 		if(prob(1))
-			emote("me", 1, pick("dances around.","chases its tail!"))
+			emote("me", 1, pick("dances around.","chases its tail!"), TRUE)
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					setDir(i)
@@ -671,7 +671,7 @@
 
 	if(!stat && !resting && !buckled)
 		if(prob(1))
-			emote("me", 1, pick("dances around.","chases her tail."))
+			emote("me", 1, pick("dances around.","chases her tail."), TRUE)
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					setDir(i)
@@ -682,7 +682,7 @@
 
 	if(!stat && !resting && !buckled)
 		if(prob(1))
-			emote("me", 1, pick("chases its tail."))
+			emote("me", 1, pick("chases its tail."), TRUE)
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					setDir(i)
@@ -691,9 +691,9 @@
 /mob/living/simple_animal/pet/dog/attack_hand(mob/living/carbon/human/M)
 	. = ..()
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			wuv(1,M)
-		if("harm")
+		if(INTENT_HARM)
 			wuv(-1,M)
 
 /mob/living/simple_animal/pet/dog/proc/wuv(change, mob/M)
@@ -701,8 +701,20 @@
 		if(change > 0)
 			if(M && stat != DEAD) // Added check to see if this mob (the dog) is dead to fix issue 2454
 				new /obj/effect/temp_visual/heart(loc)
-				emote("me", 1, "yaps happily!")
+				emote("me", 1, "yaps happily!", TRUE)
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
 		else
 			if(M && stat != DEAD) // Same check here, even though emote checks it as well (poor form to check it only in the help case)
-				emote("me", 1, "growls!")
+				emote("me", 1, "growls!", TRUE)
+
+/mob/living/simple_animal/pet/dog/bullterrier
+	name = "\improper bull terrier"
+	real_name = "bull terrier"
+	desc = "It's a bull terrier."
+	icon = 'icons/mob/pets.dmi'
+	icon_state = "bullterrier"
+	icon_living = "bullterrier"
+	icon_dead = "bullterrier_dead"
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/corgi = 3) // Would feel redundant to add more new dog meats.
+	gold_core_spawnable = FRIENDLY_SPAWN
+	collar_type = "bullterrier"

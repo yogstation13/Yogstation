@@ -40,7 +40,7 @@
 	if(alertresult == "No" || QDELETED(O) || !istype(O) || !O.key)
 		return FALSE
 	var/type = pick(typesof(/mob/living/simple_animal/hostile/retaliate/clown))
-	var/mob/R = new type
+	var/mob/R = new type(get_turf(src))
 	R.visible_message("<span class='warning'>[R] awakens!</span>")
 	R.key = O.key
 
@@ -54,7 +54,7 @@
 		var/turf/T = F
 		T.honk_act(TRUE)
 		for(var/I in T)
-			var/atom/A = F
+			var/atom/A = I
 			A.honk_act()
 	var/dir_to_step_in = pick(GLOB.cardinals)
 	step(src, dir_to_step_in)

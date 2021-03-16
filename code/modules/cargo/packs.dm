@@ -463,7 +463,7 @@
 /datum/supply_pack/security/armory/ballistic_single
 	name = "Combat Shotgun Single-Pack"
 	desc = "For when the enemy absolutely needs to be replaced with lead. Contains one Aussec-designed Combat Shotgun, and one Shotgun Bandolier. Requires Armory access to open."
-	cost = 3200
+	cost = 6000
 	small_item = TRUE
 	contains = list(/obj/item/gun/ballistic/shotgun/automatic/combat,
 					/obj/item/storage/belt/bandolier)
@@ -471,7 +471,7 @@
 /datum/supply_pack/security/armory/ballistic
 	name = "Combat Shotguns Crate"
 	desc = "For when the enemy absolutely needs to be replaced with lead. Contains three Aussec-designed Combat Shotguns, and three Shotgun Bandoliers. Requires Armory access to open."
-	cost = 8000
+	cost = 18000
 	contains = list(/obj/item/gun/ballistic/shotgun/automatic/combat,
 					/obj/item/gun/ballistic/shotgun/automatic/combat,
 					/obj/item/gun/ballistic/shotgun/automatic/combat,
@@ -483,7 +483,7 @@
 /datum/supply_pack/security/armory/riotshotgun
 	name = "Riot Shotguns Crate"
 	desc = "Tip: techically, it counts as non-lethally subduing a target as long as they don't die before Medbay can get to them. Contains three security-grade riot shotguns. Requires Armory access to open."
-	cost = 6000
+	cost = 8000
 	contains = list(/obj/item/gun/ballistic/shotgun/riot,
 					/obj/item/gun/ballistic/shotgun/riot,
 					/obj/item/gun/ballistic/shotgun/riot)
@@ -492,7 +492,7 @@
 /datum/supply_pack/security/armory/riotshotgun_single
 	name = "Riot Shotgun Single-Pack"
 	desc = "Stop that Clown in his tracks with this magic stick of non-lethal subduction! Contains one security-grade riot shotgun. Requires Armory access to open."
-	cost = 2500
+	cost = 3200
 	small_item = TRUE
 	contains = list(/obj/item/gun/ballistic/shotgun/riot)
 
@@ -653,32 +653,41 @@
 	crate_name = "swat crate"
 
 /datum/supply_pack/security/armory/wt550_single
-	name = "WT-550 Auto Rifle Single-Pack"
-	desc = "Contains one high-powered, semiautomatic rifles chambered in 4.6x30mm. Requires Armory access to open."
+	name = "Surplus Security Autorifle Single-Pack"
+	desc = "Contains one high-powered, semiautomatic rifles chambered in 4.6x30mm rubber rounds. Requires Armory access to open."
 	cost = 2000
-	contains = list(/obj/item/gun/ballistic/automatic/wt550)
+	contains = list(/obj/item/gun/ballistic/automatic/wt550/occupying)
 	small_item = TRUE
 
 /datum/supply_pack/security/armory/wt550
-	name = "WT-550 Auto Rifle Crate"
-	desc = "Contains two high-powered, semiautomatic rifles chambered in 4.6x30mm. Requires Armory access to open."
+	name = "Surplus Security Autorifle Crate"
+	desc = "Contains two high-powered, semiautomatic rifles chambered in 4.6x30mm rubber rounds. Requires Armory access to open."
 	cost = 3500
-	contains = list(/obj/item/gun/ballistic/automatic/wt550,
-					/obj/item/gun/ballistic/automatic/wt550)
+	contains = list(/obj/item/gun/ballistic/automatic/wt550/occupying,
+					/obj/item/gun/ballistic/automatic/wt550/occupying)
 	crate_name = "auto rifle crate"
 
 /datum/supply_pack/security/armory/wt550ammo
-	name = "WT-550 Auto Rifle Ammo Crate"
-	desc = "Contains four 20-round magazine for the WT-550 Auto Rifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	name = "Surplus Security Autorifle Ammo Crate"
+	desc = "Contains four 20-round magazines for the surplus security autorifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 3000
 	contains = list(/obj/item/ammo_box/magazine/wt550m9,
 					/obj/item/ammo_box/magazine/wt550m9,
 					/obj/item/ammo_box/magazine/wt550m9,
 					/obj/item/ammo_box/magazine/wt550m9)
 
+/datum/supply_pack/security/armory/wt550ammo_rubber
+	name = "Surplus Security Autorifle Ammo Crate"
+	desc = "Contains four 20-round less than lethal magazines for the surplus security autorifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	cost = 2500
+	contains = list(/obj/item/ammo_box/magazine/wt550m9/wtr,
+					/obj/item/ammo_box/magazine/wt550m9/wtr,
+					/obj/item/ammo_box/magazine/wt550m9/wtr,
+					/obj/item/ammo_box/magazine/wt550m9/wtr)
+
 /datum/supply_pack/security/armory/wt550ammo_single
-	name = "WT-550 Auto Rifle Ammo Single-Pack"
-	desc = "Contains a 20-round magazine for the WT-550 Auto Rifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	name = "Surplus Security Autorifle Ammo Crate Single-Pack"
+	desc = "Contains a 20-round magazine for the surplus security autorifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 750 //one of the few single-pack items that who's price per unit is the exact same as the bulk
 	contains = list(/obj/item/ammo_box/magazine/wt550m9)
 	small_item = TRUE
@@ -1887,6 +1896,27 @@
 					/obj/item/vending_refill/hydronutrients)
 	crate_name = "hydroponics supply crate"
 
+/datum/supply_pack/organic/grill
+	name = "Grilling Starter Kit"
+	desc = "Hey dad I'm Hungry. Hi Hungry I'm THE NEW GRILLING STARTER KIT ONLY 5000 BUX GET NOW! Contains a grill and fuel."
+	cost = 5000
+	crate_type = /obj/structure/closet/crate
+	contains = list(/obj/item/stack/sheet/mineral/coal/five,
+					/obj/machinery/grill/unwrenched,
+					/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy
+					)
+	crate_name = "grilling starter kit crate"
+
+/datum/supply_pack/organic/grillfuel
+	name = "Grilling Fuel Kit"
+	desc = "Contains propane and propane accessories. (Note: doesn't contain any actual propane.)"
+	cost = 2000
+	crate_type = /obj/structure/closet/crate
+	contains = list(/obj/item/stack/sheet/mineral/coal/ten,
+					/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy
+					)
+	crate_name = "grilling fuel kit crate"
+
 //////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// Livestock /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -1960,6 +1990,14 @@
 		if(D.gender == FEMALE)
 			qdel(D)
 			new /mob/living/simple_animal/pet/dog/corgi/Lisa(.)
+
+/datum/supply_pack/critter/bullterrier
+	name = "Bull Terrier Crate"
+	desc = "Like a normal dog, but with a head the shape of an egg. Comes with a nice collar!"
+	cost = 5000
+	contains = list(/mob/living/simple_animal/pet/dog/bullterrier,
+					/obj/item/clothing/neck/petcollar)
+	crate_name = "bull terrier crate"
 
 /datum/supply_pack/critter/cow
 	name = "Cow Crate"
@@ -2396,8 +2434,8 @@
 					/obj/item/instrument/trombone,
 					/obj/item/instrument/recorder,
 					/obj/item/instrument/harmonica,
-					/obj/structure/piano/unanchored,
-					/obj/item/instrument/banjo)
+					/obj/item/instrument/banjo,
+					/obj/structure/musician/piano/unanchored)
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/misc/book_crate

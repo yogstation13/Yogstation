@@ -8,4 +8,4 @@
 	if(user == src && pulling && !pulling.anchored && grab_state >= GRAB_AGGRESSIVE && (HAS_TRAIT(src, TRAIT_FAT)) && ismonkey(pulling))	
 		devour_mob(pulling)	
 	else	
-		..()
+		.=..()

@@ -213,7 +213,7 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/assassinate/internal/update_explanation_text()
 	..()
 	if(target && !target.current)
-		explanation_text = "Assassinate [target.name], who was obliterated"
+		explanation_text = "Assassinate [target.name], who was obliterated."
 
 /datum/objective/mutiny
 	name = "mutiny"
@@ -686,7 +686,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	name = "capture"
 
 /datum/objective/capture/proc/gen_amount_goal()
-	target_amount = rand(5,10)
+	target_amount = rand(3,5)
 	update_explanation_text()
 	return target_amount
 
@@ -863,7 +863,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		var/mob/new_target = input(admin,"Select target:", "Objective target") as null|anything in possible_targets
 		target = new_target.mind
 	else
-		to_chat(admin, "No active AIs with minds")
+		to_chat(admin, "<span class='warning'>No active AIs with minds!</span>")
 	update_explanation_text()
 
 /datum/objective/destroy/internal
@@ -900,7 +900,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 //Picks as many people as it can from a department (Security,Engineer,Medical,Science)
 //and tasks the lings with killing and replacing them
 /datum/objective/changeling_team_objective/impersonate_department
-	explanation_text = "Ensure X department are killed, impersonated, and replaced by Changelings"
+	explanation_text = "Ensure X department are killed, impersonated, and replaced by Changelings."
 	var/command_staff_only = FALSE //if this is true, it picks command staff instead
 	var/list/department_minds = list()
 	var/list/department_real_names = list()
@@ -1050,8 +1050,191 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 //This subtype always picks as many command staff as it can (HoS,HoP,Cap,CE,CMO,RD)
 //and tasks the lings with killing and replacing them
 /datum/objective/changeling_team_objective/impersonate_department/impersonate_heads
-	explanation_text = "Have X or more heads of staff escape on the shuttle disguised as heads, while the real heads are dead"
+	explanation_text = "Have X or more heads of staff escape on the shuttle disguised as heads, while the real heads are dead."
 	command_staff_only = TRUE
+
+////////////////////////////////
+//  Minor traitor Objectives  //
+////////////////////////////////
+/**
+  * # Minor Objectives
+  *
+  * Objectives given to traitors without hijack or martyr, just small flavour things that shouldn't be too hard or impactful.
+  */
+/datum/objective/minor
+
+/**
+  * Sets up the achievement, returns TRUE if it was set up successfully and can be used, FALSE otherwise
+  */
+/datum/objective/minor/proc/finalize()
+	return FALSE
+
+
+/**
+  * # Delete your security records
+  *
+  * Just delete the original record. For now, you don't have to prevent other records being made of your identity
+  */
+/datum/objective/minor/secrecords
+	name = "Delete your security records."
+	explanation_text = "Delete your Nanotrasen security records."
+	/// The security record that needs to be deleted
+	var/datum/data/record/record
+
+/**
+  * Search through all the security records, and find ours.
+  */
+/datum/objective/minor/secrecords/finalize()
+	for(var/datum/data/record/s in GLOB.data_core.security)
+		if(s.fields["name"] == owner.name)
+			record = s
+			return TRUE
+	return FALSE
+
+/**
+  * Returns TRUE if there's no record, returns FALSE otherwise
+  */
+/datum/objective/minor/secrecords/check_completion()
+	return !record || !(record in GLOB.data_core.security)
+
+
+/**
+  * # Kill Pet
+  *
+  * Kill Pet
+  */
+/datum/objective/minor/pet
+	name = "Kill Ian."
+	explanation_text = "Assassinate the HoP's assistant, Ian."
+	/// Pet
+	var/mob/Ian
+
+/**
+  * Chooses and finds pet.area
+  *
+  * Choices are: Ian, Runtime, Anadear, Pun pun, Poly, Renault, Autumn.
+  */
+/datum/objective/minor/pet/finalize()
+	var/list/pets = list("ian", "runtime", "anadear", "pun-pun", "poly", "renault", "autumn")
+	while(pets.len && !Ian)
+		var/pet = rand(1, pets.len)
+		switch(pets[pet])
+			if("ian")
+				Ian = locate(/mob/living/simple_animal/pet/dog/corgi/Ian) in GLOB.mob_living_list
+				name = "Kill Ian."
+				explanation_text = "Assassinate the HoP's assistant, Ian."
+			if("runtime")
+				Ian = locate(/mob/living/simple_animal/pet/cat/Runtime) in GLOB.mob_living_list
+				name = "Kill Runtime."
+				explanation_text = "Assassinate the CMO's assistant, Runtime."
+			if("anadear")
+				Ian = locate(/mob/living/simple_animal/pet/penguin/emperor/shamebrero) in GLOB.mob_living_list
+				name = "Kill Anadear."
+				explanation_text = "Assassinate the RD's assistant, Anadear."
+			if("pun-pun")
+				Ian = locate(/mob/living/carbon/monkey/punpun) in GLOB.mob_living_list
+				name = "Kill Pun Pun."
+				explanation_text = "Assassinate the barkeep's assistant, Pun Pun."
+			if("poly")
+				Ian = locate(/mob/living/simple_animal/parrot/Poly) in GLOB.mob_living_list
+				name = "Kill Poly."
+				explanation_text = "Assassinate the CE's assistant, Poly."
+			if("renault")
+				Ian = locate(/mob/living/simple_animal/pet/fox/Renault) in GLOB.mob_living_list
+				name = "Kill Renault."
+				explanation_text = "Assassinate the Captain's asssistant, Renault."
+			if("autumn")
+				Ian = locate(/mob/living/simple_animal/pet/fox/fennec/Autumn) in GLOB.mob_living_list
+				name = "Kill Autumn."
+				explanation_text = "Assassinate the QM's assistant, Autumn."
+		pets -= pets[pet]
+	return Ian
+
+/**
+  * Check whether Pet is dead
+  */
+/datum/objective/minor/pet/check_completion()
+	return (!Ian || Ian.stat == DEAD)
+
+/**
+  * # Take a picture of your target's dead body
+  *
+  * Escape with a picture of their dead body
+  */
+
+/datum/objective/minor/deadpics
+	name = "Photograph your target's dead body"
+	explanation_text = "Escape with a photo of the dead body of your target"
+
+/**
+  * Checks whether our owner has an assassinate target, and sets the objective up if so, returns FALSE otherwise
+  */
+/datum/objective/minor/deadpics/finalize()
+	var/datum/objective/assassinate/A = locate() in owner.objectives
+	if(!A)
+		return FALSE
+	target = A.target
+	explanation_text = "Escape with a photo of the dead body of [target.name]."
+	return TRUE
+
+/**
+  * Ripped code straight from [/datum/objective/steal], checks all the owner's items for a picture with the dead target
+  */
+/datum/objective/minor/deadpics/check_completion()
+	var/list/all_items = owner.current.GetAllContents()
+	for(var/obj/item/photo/P in all_items)
+		for(var/mob/M in P.picture.dead_seen)
+			if(M.real_name == target.name)
+				return TRUE
+	return FALSE
+
+/**
+  * # Mindshielding
+  *
+  * get mindshielded
+  */
+/datum/objective/minor/mindshield
+	name = "Get mindshielded."
+	explanation_text = "Extract with an NT mindshield implanted in you."
+
+/datum/objective/minor/mindshield/finalize()
+	return TRUE
+
+/datum/objective/minor/mindshield/check_completion()
+	return HAS_TRAIT(owner.current, TRAIT_MINDSHIELD)
+
+/**
+  * # Photograph a head of staff
+  *
+  * photograph a head of staff
+  */
+/datum/objective/minor/staffpics
+	name = "Photograph a head of staff."
+	explanation_text = "Extract with a photograph of this head of staff."
+
+/**
+  * Find a head of staff to photograph
+  */
+/datum/objective/minor/staffpics/finalize()
+	var/list/datum/mind/heads = SSjob.get_living_heads()
+	if(!heads.len || (owner in heads))
+		return FALSE
+
+	target = pick(heads)
+	name = "Photograph [target.name]."
+	explanation_text = "Extract with a photograph of [target.name], the [target.assigned_role]."
+	return TRUE
+
+/**
+  * return true if we escape with a picture of the head of staff
+  */
+/datum/objective/minor/staffpics/check_completion()
+	var/list/all_items = owner.current.GetAllContents()
+	for(var/obj/item/photo/P in all_items)
+		for(var/mob/M in P.picture.mobs_seen)
+			if(M.real_name == target.name)
+				return TRUE
+	return FALSE
 
 //Ideally this would be all of them but laziness and unusual subtypes
 /proc/generate_admin_objective_list()

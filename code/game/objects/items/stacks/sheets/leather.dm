@@ -124,6 +124,13 @@ GLOBAL_LIST_INIT(xeno_recipes, list ( \
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "weed_extract"
 
+/obj/item/goldgrubguts
+	name= "Gold Grub Guts"
+	desc = "Gross, slimy, and green intestines retrieved from a Gold Grub. Legends say it is valuable in traditional medicines."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "goldgrubguts"
+	grind_results = list(/datum/reagent/medicine/grubjuice = 5)
+
 /obj/item/stack/sheet/hairlesshide
 	name = "hairless hide"
 	desc = "This hide was stripped of its hair, but still needs washing and tanning."

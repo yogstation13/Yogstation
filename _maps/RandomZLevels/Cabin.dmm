@@ -106,7 +106,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "cabin APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -710,7 +710,7 @@
 /turf/open/floor/wood,
 /area/awaymission/cabin)
 "cz" = (
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /turf/open/floor/wood,
 /area/awaymission/cabin)
 "cA" = (

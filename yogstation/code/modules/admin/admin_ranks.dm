@@ -1,5 +1,7 @@
 // Kn0ss0s: This proc allows your to use a database for admin ranks, whilst immediately providing a functioning actual fallback in the case of failure
 /proc/refresh_admin_files()
+	return //this is a stupid system
+	/*
 	// Generate the Admins and Admins Ranks config files
 	if(SSdbcore.IsConnected())
 		var/datum/DBQuery/query_ranks = SSdbcore.NewQuery("SELECT `name`, `byond`, `rank_group` FROM `web_groups` ORDER BY `web_groups`.`rank_group` ASC, `web_groups`.`name` DESC")
@@ -39,3 +41,4 @@
 				WRITE_FILE(adminsFile, "[name]\t=\t[adminrank]")
 
 		qdel(query_admin)
+*/

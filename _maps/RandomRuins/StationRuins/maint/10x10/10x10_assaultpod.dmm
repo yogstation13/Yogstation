@@ -1,0 +1,326 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/plating,
+/area/template_noop)
+"b" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"d" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/template_noop)
+"e" = (
+/obj/item/clothing/suit/syndicatefake,
+/obj/item/clothing/head/syndicatefake,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating,
+/area/template_noop)
+"f" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"g" = (
+/obj/structure/chair/comfy/shuttle,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/template_noop)
+"i" = (
+/obj/structure/girder,
+/turf/open/floor/plating,
+/area/template_noop)
+"k" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"m" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/space_heater,
+/turf/open/floor/plating,
+/area/template_noop)
+"n" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/template_noop)
+"o" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"p" = (
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"q" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/machinery/light/broken,
+/turf/open/floor/plating,
+/area/template_noop)
+"r" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/template_noop)
+"t" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating,
+/area/template_noop)
+"v" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/plastitanium/red,
+/area/template_noop)
+"w" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/plastitanium/red,
+/area/template_noop)
+"x" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating,
+/area/template_noop)
+"y" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/template_noop)
+"z" = (
+/obj/item/trash/syndi_cakes,
+/turf/open/floor/mineral/plastitanium/red,
+/area/template_noop)
+"A" = (
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"C" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "floor7-old"
+	},
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"E" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/coin/antagtoken,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"F" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plating,
+/area/template_noop)
+"H" = (
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating,
+/area/template_noop)
+"I" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"J" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plating,
+/area/template_noop)
+"L" = (
+/obj/structure/girder,
+/obj/item/stack/sheet/metal,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/template_noop)
+"M" = (
+/turf/open/floor/mineral/plastitanium/red,
+/area/template_noop)
+"N" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"O" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"P" = (
+/obj/structure/girder,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/template_noop)
+"Q" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plating,
+/area/template_noop)
+"S" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/template_noop)
+"U" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/emcloset/anchored,
+/turf/open/floor/plating,
+/area/template_noop)
+"V" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/template_noop)
+"W" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"X" = (
+/obj/effect/decal/cleanable/robot_debris,
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plating,
+/area/template_noop)
+"Y" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+n
+n
+n
+W
+W
+p
+N
+n
+k
+p
+"}
+(2,1,1) = {"
+n
+W
+y
+y
+a
+i
+C
+t
+J
+p
+"}
+(3,1,1) = {"
+W
+y
+y
+r
+w
+p
+O
+p
+p
+I
+"}
+(4,1,1) = {"
+n
+y
+r
+w
+E
+p
+H
+V
+I
+Y
+"}
+(5,1,1) = {"
+n
+n
+M
+q
+y
+g
+w
+S
+p
+W
+"}
+(6,1,1) = {"
+W
+L
+b
+C
+f
+M
+v
+I
+X
+n
+"}
+(7,1,1) = {"
+p
+I
+p
+A
+z
+d
+y
+i
+W
+n
+"}
+(8,1,1) = {"
+W
+p
+p
+o
+F
+P
+i
+x
+e
+n
+"}
+(9,1,1) = {"
+n
+O
+O
+W
+n
+n
+W
+W
+n
+n
+"}
+(10,1,1) = {"
+W
+W
+W
+W
+n
+W
+W
+U
+m
+Q
+"}

@@ -61,6 +61,7 @@
 	var/money_to_transfer = account_job.paycheck * amt_of_paychecks
 	if(free)
 		adjust_money(money_to_transfer)
+		return TRUE
 	else
 		var/datum/bank_account/D = SSeconomy.get_dep_account(account_job.paycheck_department)
 		if(D)

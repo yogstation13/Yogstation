@@ -95,11 +95,10 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 
 //config stuff
 
-/obj/machinery/announcement_system/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	. = ..()
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/announcement_system/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "AutomatedAnnouncement", "Automated Announcement System", 500, 225, master_ui, state)
+		ui = new(user, src, "AutomatedAnnouncement")
 		ui.open()
 
 /obj/machinery/announcement_system/ui_data()
@@ -125,14 +124,14 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 			var/NewMessage = trim(html_encode(param["newText"]), MAX_MESSAGE_LEN)
 			if(!usr.canUseTopic(src, !issilicon(usr)))
 				return
-			if(NewMessage)
+			if(NewMessage && !isnotpretty(NewMessage))
 				arrival = NewMessage
 				log_game("The arrivals announcement was updated: [NewMessage] by:[key_name(usr)]")
 		if("NewheadText")
 			var/NewMessage = trim(html_encode(param["newText"]), MAX_MESSAGE_LEN)
 			if(!usr.canUseTopic(src, !issilicon(usr)))
 				return
-			if(NewMessage)
+			if(NewMessage && !isnotpretty(NewMessage))
 				newhead = NewMessage
 				log_game("The head announcement was updated: [NewMessage] by:[key_name(usr)]")
 		if("NewheadToggle")

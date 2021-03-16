@@ -275,7 +275,7 @@
 	description = "A chemical agent used for self-defense and in police work."
 	color = "#B31008" // rgb: 179, 16, 8
 	taste_description = "scorching agony"
-	metabolization_rate = 4 * REAGENTS_METABOLISM
+	metabolization_rate = 6 * REAGENTS_METABOLISM
 
 /datum/reagent/consumable/condensedcapsaicin/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(!ishuman(M) && !ismonkey(M))
@@ -291,32 +291,38 @@
 		if ( eyes_covered && mouth_covered )
 			return
 		else if ( mouth_covered )	// Reduced effects if partially protected
-			if(prob(5))
+			if(prob(50))
 				victim.emote("scream")
-			victim.blur_eyes(3)
-			victim.blind_eyes(2)
-			victim.confused = max(M.confused, 3)
-			victim.damageoverlaytemp = 60
-			victim.Paralyze(60)
-			return
-		else if ( eyes_covered ) // Eye cover is better than mouth cover
-			victim.blur_eyes(3)
-			victim.damageoverlaytemp = 30
-			return
-		else // Oh dear :D
-			if(prob(5))
-				victim.emote("scream")
-			victim.blur_eyes(5)
-			victim.blind_eyes(3)
-			victim.confused = max(M.confused, 6)
+			victim.blur_eyes(14)
+			victim.blind_eyes(10)
+			victim.confused = max(M.confused, 10)
 			victim.damageoverlaytemp = 75
 			victim.Paralyze(100)
+			M.adjustStaminaLoss(3)
+			return
+		else if ( eyes_covered ) // Eye cover is better than mouth cover
+			if(prob(20))
+				victim.emote("cough")
+			victim.blur_eyes(4)
+			victim.confused = max(M.confused, 6)
+			victim.damageoverlaytemp = 50
+			M.adjustStaminaLoss(3)
+			return
+		else // Oh dear :D
+			if(prob(60))
+				victim.emote("scream")
+			victim.blur_eyes(14)
+			victim.blind_eyes(10)
+			victim.confused = max(M.confused, 12)
+			victim.damageoverlaytemp = 100
+			victim.Paralyze(140)
+			M.adjustStaminaLoss(5)
 		victim.update_damage_hud()
 
 /datum/reagent/consumable/condensedcapsaicin/on_mob_life(mob/living/carbon/M)
-	if(prob(10))
-		M.visible_message("<span class='warning'>[M] [pick("dry heaves!","splutters!")]</span>")
 	if(prob(15))
+		M.visible_message("<span class='warning'>[M] [pick("dry heaves!","splutters!")]</span>")
+	if(prob(20))
 		M.emote("cough")
 
 	M.adjustStaminaLoss(3)
@@ -378,7 +384,7 @@
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	taste_description = "mushroom"
 
-/datum/reagent/mushroomhallucinogen/on_mob_life(mob/living/carbon/M)
+/datum/reagent/drug/mushroomhallucinogen/on_mob_life(mob/living/carbon/M)
 	if(!M.slurring)
 		M.slurring = 1
 	switch(current_cycle)
@@ -745,7 +751,7 @@
 	taste_mult = 2
 	taste_description = "bitter sweetness"
 	reagent_state = SOLID
-	
+
 /datum/reagent/consumable/mesophilicculture
 	name = "mesophilic culture"
 	description = "A mixture of mesophilic bacteria used to make most cheese."
@@ -769,7 +775,7 @@
 	description = "A special bacterium used to make blue cheese."
 	color = "#365E30" // rgb: 54, 94, 48
 	taste_description = "bitterness"
-	
+
 /datum/reagent/consumable/parmesan_delight
 	name = "Parmesan Delight"
 	description = "The time spent cultivating parmesan has produced this magical liquid."
@@ -800,4 +806,26 @@
 	color = "#75553a"
 	taste_mult = 1.5
 	taste_description = "gravy"
-	
+
+/datum/reagent/consumable/char
+	name = "Char"
+	description = "Essence of the grill. Has strange properties when overdosed."
+	reagent_state = LIQUID
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	color = "#C8C8C8"
+	taste_mult = 1 //has to be a bit low so it doesn't overtake literally everything when INTENSE GRILLING takes place
+	taste_description = "smoke"
+	overdose_threshold = 25
+
+/datum/reagent/consumable/char/overdose_process(mob/living/carbon/M)
+	if(prob(10))
+		M.say(pick("I hate my wife.", "I just want to grill for God's sake.", "I wish I could just go on my lawnmower and cut the grass.", "Yep, Quake. That was a good game...", "Yeah, my PDA has wi-fi. A wife I hate."), forced = /datum/reagent/consumable/char)
+	..()
+
+/datum/reagent/consumable/laughsyrup
+	name = "Laughin' Syrup"
+	description = "The product of juicing Laughin' Peas. Fizzy, and seems to change flavour based on what it's used with!"
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	color = "#803280"
+	taste_mult = 2
+	taste_description = "fizzy sweetness"

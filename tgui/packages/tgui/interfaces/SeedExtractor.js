@@ -46,11 +46,14 @@ export const SeedExtractor = (props, context) => {
   const { act, data } = useBackend(context);
   const seeds = createSeeds(data.seeds);
   return (
-    <Window resizable>
+    <Window
+      width={1000}
+      height={400}
+      resizable>
       <Window.Content scrollable>
         <Section title="Stored seeds:">
           <Table cellpadding="3" textAlign="center">
-            <Table.Row>
+            <Table.Row header>
               <Table.Cell>Name</Table.Cell>
               <Table.Cell>Lifespan</Table.Cell>
               <Table.Cell>Endurance</Table.Cell>
@@ -58,6 +61,7 @@ export const SeedExtractor = (props, context) => {
               <Table.Cell>Production</Table.Cell>
               <Table.Cell>Yield</Table.Cell>
               <Table.Cell>Potency</Table.Cell>
+              <Table.Cell>Instability</Table.Cell>
               <Table.Cell>Stock</Table.Cell>
             </Table.Row>
             {seeds.map(item => (
@@ -69,8 +73,9 @@ export const SeedExtractor = (props, context) => {
                 <Table.Cell>{item.production}</Table.Cell>
                 <Table.Cell>{item.yield}</Table.Cell>
                 <Table.Cell>{item.potency}</Table.Cell>
+                <Table.Cell>{item.instability}</Table.Cell>
                 <Table.Cell>
-                  <Button mr={0.5}
+                  <Button
                     content="Vend"
                     onClick={() => act('select', {
                       item: item.key,

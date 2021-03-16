@@ -6,7 +6,6 @@
 	icon_state = "seeds"
 	products = list(/obj/item/seeds/ambrosia = 3,
 					/obj/item/seeds/apple = 3,
-					/obj/item/seeds/cotton = 3,
 					/obj/item/seeds/banana = 3,
 					/obj/item/seeds/berry = 3,
 					/obj/item/seeds/cabbage = 3,
@@ -18,6 +17,7 @@
 					/obj/item/seeds/cocoapod = 3,
 					/obj/item/seeds/coffee = 3,
 					/obj/item/seeds/corn = 3,
+					/obj/item/seeds/cotton = 3,
 					/obj/item/seeds/eggplant = 3,
 					/obj/item/seeds/garlic = 3,
 					/obj/item/seeds/grape = 3,
@@ -26,6 +26,7 @@
 					/obj/item/seeds/lime = 3,
 					/obj/item/seeds/onion = 3,
 					/obj/item/seeds/orange = 3,
+					/obj/item/seeds/peas = 3,
 					/obj/item/seeds/pineapple = 3,
 					/obj/item/seeds/potato = 3,
 					/obj/item/seeds/poppy = 3,

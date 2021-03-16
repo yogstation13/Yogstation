@@ -59,7 +59,7 @@
 /datum/game_mode/proc/announce() //Shows the gamemode's name and a fast description.
 	to_chat(world, "<b>The gamemode is: <span class='[announce_span]'>[name]</span>!</b>")
 	to_chat(world, "<b>[announce_text]</b>")
-	
+
 /datum/game_mode/proc/admin_panel()
 	return
 
@@ -89,6 +89,8 @@
 
 ///Everyone should now be on the station and have their normal gear.  This is the place to give the special roles extra things
 /datum/game_mode/proc/post_setup(report) //Gamemodes can override the intercept report. Passing TRUE as the argument will force a report.
+	SHOULD_CALL_PARENT(TRUE)
+	
 	if(!report)
 		report = !CONFIG_GET(flag/no_intercept_report)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)
@@ -581,7 +583,7 @@
 
 	for (var/C in GLOB.admins)
 		to_chat(C, msg.Join())
-
+		log_admin(msg.Join())
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/game_mode/proc/age_check(client/C)
 	if(get_remaining_days(C) == 0)
@@ -637,6 +639,25 @@
 		if(SSshuttle.emergency.is_hijacked())
 			SSticker.news_report = SHUTTLE_HIJACK
 
+/**
+  * Given a list of minds, returns TRUE if they completed all their objectives, FALSE otherwise
+  *
+  * Arguments:
+  * * antags - list of minds that we're checking
+  * * antagonist_datum - The type we're checking for, is optional
+  */
+/datum/game_mode/proc/didAntagsWin(list/antags, datum/antagonist/antagonist_datum)
+	for(var/m in antags)
+		var/datum/mind/mind = m
+		for(var/a in mind.antag_datums)
+			var/datum/antagonist/antagonist = a
+			if(antagonist_datum && !istype(antagonist, antagonist_datum))
+				continue
+			for(var/o in antagonist.objectives)
+				var/datum/objective/objective = o
+				if(!objective.check_completion())
+					return FALSE
+	return TRUE
 
 /datum/game_mode/proc/AdminPanelEntry()
 	return
@@ -731,4 +752,4 @@
 	round_credits += "<br>"
 	round_credits += "<br>"
 
-	return round_credits 
+	return round_credits

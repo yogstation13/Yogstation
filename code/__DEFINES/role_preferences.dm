@@ -11,12 +11,15 @@
 #define ROLE_OPERATIVE			"Operative"
 #define ROLE_CHANGELING			"Changeling"
 #define ROLE_WIZARD				"Wizard"
+#define ROLE_RAGINMAGES			"Ragin Mages"
+#define ROLE_BULLSHITMAGES		"Bullshit Mages"
 #define ROLE_MALF				"Malf AI"
 #define ROLE_REV				"Revolutionary"
 #define ROLE_REV_HEAD			"Head Revolutionary"
 #define ROLE_ALIEN				"Xenomorph"
 #define ROLE_PAI				"pAI"
 #define ROLE_CULTIST			"Cultist"
+#define ROLE_HERETIC			"Heretic"
 #define ROLE_BLOB				"Blob"
 #define ROLE_NINJA				"Space Ninja"
 #define ROLE_MONKEY				"Monkey"
@@ -39,11 +42,11 @@
 #define ROLE_FUGITIVE           "Fugitive"
 #define ROLE_SHADOWLING 		"Shadowling" // Yogs
 #define ROLE_VAMPIRE			"Vampire" // Yogs
-#define ROLE_BATTLEROYALE		"Battle Royale Contestant" //Yogs - Battle Royale Mode
 #define ROLE_GANG				"gangster" // Yogs
 #define ROLE_DARKSPAWN			"darkspawn" //Yogs
 #define ROLE_HOLOPARASITE		"Holoparasite" // Yogs
-#define ROLE_ZOMBIE				"Zombie" //Yogs
+#define ROLE_ZOMBIE				"Zombie"
+
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
 //The gamemode specific ones are just so the gamemodes can query whether a player is old enough
@@ -55,6 +58,8 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_OPERATIVE = /datum/game_mode/nuclear,
 	ROLE_CHANGELING = /datum/game_mode/changeling,
 	ROLE_WIZARD = /datum/game_mode/wizard,
+	ROLE_RAGINMAGES = /datum/game_mode/wizard,
+	ROLE_BULLSHITMAGES = /datum/game_mode/wizard,
 	ROLE_MALF,
 	ROLE_REV = /datum/game_mode/revolution,
 	ROLE_ALIEN,
@@ -72,12 +77,13 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_OVERTHROW = /datum/game_mode/overthrow,
 	ROLE_SHADOWLING = /datum/game_mode/shadowling, //yogs
 	ROLE_GANG = /datum/game_mode/gang, // yogs
+	ROLE_HERETIC = /datum/game_mode/heretics,
 	ROLE_HIVE = /datum/game_mode/hivemind,
 	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
 	ROLE_DARKSPAWN = /datum/game_mode/darkspawn,
 	ROLE_SENTIENCE,
-	ROLE_FUGITIVE,
-	ROLE_ZOMBIE
+	ROLE_ZOMBIE = /datum/game_mode/zombie,
+	ROLE_FUGITIVE
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection

@@ -1,0 +1,76 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/dresser,
+/turf/open/floor/carpet/black,
+/area/template_noop)
+"g" = (
+/turf/open/floor/carpet/black,
+/area/template_noop)
+"m" = (
+/obj/structure/mirror{
+	pixel_x = 15;
+	pixel_y = 30
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/table/wood,
+/obj/item/lipstick/random{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/lipstick/random,
+/obj/item/lipstick/random{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/turf/open/floor/carpet/black,
+/area/template_noop)
+"q" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/table/wood,
+/obj/item/reagent_containers/spray/waterflower,
+/turf/open/floor/carpet/black,
+/area/template_noop)
+"C" = (
+/obj/machinery/iv_drip{
+	name = "clothes rack"
+	},
+/obj/effect/spawner/lootdrop/costume,
+/obj/effect/spawner/lootdrop/costume,
+/turf/open/floor/wood,
+/area/template_noop)
+"Y" = (
+/obj/machinery/vending/autodrobe{
+	req_access_txt = "0"
+	},
+/turf/open/floor/carpet/black,
+/area/template_noop)
+
+(1,1,1) = {"
+m
+g
+a
+"}
+(2,1,1) = {"
+q
+g
+Y
+"}
+(3,1,1) = {"
+g
+g
+g
+"}
+(4,1,1) = {"
+C
+g
+C
+"}
+(5,1,1) = {"
+C
+g
+C
+"}

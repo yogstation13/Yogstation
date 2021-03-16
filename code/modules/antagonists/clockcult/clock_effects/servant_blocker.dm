@@ -17,7 +17,7 @@
 		return QDEL_HINT_LETMELIVE
 	return ..()
 
-/obj/effect/clockwork/servant_blocker/CanPass(atom/movable/M, turf/target)
+/obj/effect/clockwork/servant_blocker/Cross(atom/movable/M)
 	. = ..()
 	var/list/target_contents = M.GetAllContents() + M
 	for(var/mob/living/L in target_contents)
@@ -42,5 +42,5 @@
 /obj/effect/clockwork/servant_blocker/ex_act(severity, target)
 	return
 
-/obj/effect/clockwork/servant_blocker/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, diagonals_first = FALSE, datum/callback/callback, force = MOVE_FORCE_STRONG)
+/obj/effect/clockwork/servant_blocker/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, diagonals_first = FALSE, datum/callback/callback, force = MOVE_FORCE_STRONG, quickstart = TRUE)
 	return

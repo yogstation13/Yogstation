@@ -157,6 +157,66 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	moles_visible = MOLES_GAS_VISIBLE * 60
 	rarity = 250
 
+/datum/gas/freon
+	id = "freon"
+	specific_heat = 600
+	name = "Freon"
+	gas_overlay = "freon"
+	moles_visible = MOLES_GAS_VISIBLE *30
+	fusion_power = -5
+	rarity = 10
+
+/datum/gas/hydrogen
+	id = "hydrogen"
+	specific_heat = 15
+	name = "Hydrogen"
+	dangerous = TRUE
+	rarity = 700
+
+/datum/gas/healium
+	id = "healium"
+	specific_heat = 10
+	name = "Healium"
+	dangerous = TRUE
+	gas_overlay = "healium"
+	moles_visible = MOLES_GAS_VISIBLE
+	rarity = 100
+
+/datum/gas/pluonium
+	id = "pluonium"
+	specific_heat = 30
+	name = "Pluonium"
+	dangerous = TRUE
+	gas_overlay = "pluonium"
+	moles_visible = MOLES_GAS_VISIBLE
+	rarity = 100
+
+/datum/gas/halon
+	id = "halon"
+	specific_heat = 175
+	name = "Halon"
+	dangerous = TRUE
+	gas_overlay = "halon"
+	moles_visible = MOLES_GAS_VISIBLE
+	rarity = 100
+
+/datum/gas/zauker
+	id = "zauker"
+	specific_heat = 350
+	name = "Zauker"
+	dangerous = TRUE
+	gas_overlay = "zauker"
+	moles_visible = MOLES_GAS_VISIBLE
+	rarity = 1
+/datum/gas/hexane
+	id = "hexane"
+	specific_heat = 5
+	name = "Hexane"
+	dangerous = TRUE
+	gas_overlay = "hexane"
+	moles_visible = MOLES_GAS_VISIBLE
+	rarity = 100
+
 /obj/effect/overlay/gas
 	icon = 'icons/effects/atmospherics.dmi'
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

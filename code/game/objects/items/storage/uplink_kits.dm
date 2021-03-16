@@ -14,10 +14,10 @@
 			new /obj/item/flashlight/emp(src)
 
 		if("bloodyspai")
-			new /obj/item/clothing/under/chameleon(src) // 2 tc since it's not the full set
-			new /obj/item/clothing/mask/chameleon(src) // Goes with above
+			new /obj/item/clothing/under/chameleon/syndicate(src) // 2 tc since it's not the full set
+			new /obj/item/clothing/mask/chameleon/syndicate(src) // Goes with above
 			new /obj/item/card/id/syndicate(src) // 2 tc
-			new /obj/item/clothing/shoes/chameleon/noslip(src) // 2 tc
+			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src) // 2 tc
 			new /obj/item/camera_bug(src) // 1 tc
 			new /obj/item/multitool/ai_detect(src) // 1 tc
 			new /obj/item/encryptionkey/syndicate(src) // 2 tc
@@ -59,7 +59,7 @@
 			new /obj/item/melee/transforming/energy/sword/saber(src)
 			new /obj/item/clothing/glasses/thermal/syndi(src)
 			new /obj/item/card/emag(src)
-			new /obj/item/clothing/shoes/chameleon/noslip(src)
+			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src)
 			new /obj/item/encryptionkey/syndicate(src)
 			new /obj/item/grenade/syndieminibomb(src)
 
@@ -126,7 +126,7 @@
 			new /obj/item/suppressor(src)
 			new /obj/item/ammo_box/magazine/m10mm(src)
 			new /obj/item/ammo_box/magazine/m10mm(src)
-			new /obj/item/clothing/under/chameleon(src)
+			new /obj/item/clothing/under/chameleon/syndicate(src)
 			new /obj/item/card/id/syndicate(src)
 			new /obj/item/reagent_containers/syringe/stimulants(src)
 			new /obj/item/reagent_containers/glass/rag(src)
@@ -136,7 +136,7 @@
 			new /obj/item/implanter/adrenalin(src) // 8 tc
 			for(var/i in 1 to 6)
 				new /obj/item/throwing_star(src) // ~5 tc for all 6
-			new /obj/item/storage/belt/chameleon(src) // Unique but worth at least 2 tc
+			new /obj/item/storage/belt/chameleon/syndicate(src) // Unique but worth at least 2 tc
 			new /obj/item/card/id/syndicate(src) // 2 tc
 			new /obj/item/chameleon(src) // 7 tc
 
@@ -145,7 +145,7 @@
 			new /obj/item/dnainjector/telemut/darkbundle(src)
 			new /obj/item/clothing/suit/hooded/chaplain_hoodie(src)
 			new /obj/item/card/id/syndicate(src)
-			new /obj/item/clothing/shoes/chameleon/noslip(src) //because slipping while being a dark lord sucks
+			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src) //because slipping while being a dark lord sucks
 			new /obj/item/book/granter/spell/summonitem(src)
 
 		if("white_whale_holy_grail") //Unique items that don't appear anywhere else
@@ -184,7 +184,7 @@
 		if("mr_freeze")
 			new /obj/item/clothing/glasses/cold(src)
 			new /obj/item/clothing/gloves/color/black(src)
-			new /obj/item/clothing/mask/chameleon(src)
+			new /obj/item/clothing/mask/chameleon/syndicate(src)
 			new /obj/item/clothing/suit/hooded/wintercoat(src)
 			new /obj/item/clothing/shoes/winterboots(src)
 			new /obj/item/grenade/gluon(src)
@@ -309,8 +309,8 @@
 /obj/item/storage/box/syndicate/contractor_loadout/PopulateContents()
 	new /obj/item/clothing/head/helmet/space/syndicate/contract(src)
 	new /obj/item/clothing/suit/space/syndicate/contract(src)
-	new /obj/item/clothing/under/chameleon(src)
-	new /obj/item/clothing/mask/chameleon(src)
+	new /obj/item/clothing/under/chameleon/syndicate(src)
+	new /obj/item/clothing/mask/chameleon/syndicate(src)
 	new /obj/item/card/id/syndicate(src)
 	new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate(src)
 	new /obj/item/lighter(src)
@@ -329,7 +329,7 @@
 		/obj/item/pen/sleepy,
 		/obj/item/flashlight/emp,
 		/obj/item/reagent_containers/syringe/mulligan,
-		/obj/item/clothing/shoes/chameleon/noslip,
+		/obj/item/clothing/shoes/chameleon/noslip/syndicate,
 		/obj/item/storage/firstaid/tactical,
 		/obj/item/encryptionkey/syndicate,
 		/obj/item/clothing/glasses/thermal/syndi,
@@ -522,17 +522,17 @@
 	name = "chameleon kit"
 
 /obj/item/storage/box/syndie_kit/chameleon/PopulateContents()
-	new /obj/item/clothing/under/chameleon(src)
-	new /obj/item/clothing/suit/chameleon(src)
-	new /obj/item/clothing/gloves/chameleon(src)
-	new /obj/item/clothing/shoes/chameleon(src)
-	new /obj/item/clothing/glasses/chameleon(src)
-	new /obj/item/clothing/head/chameleon(src)
-	new /obj/item/clothing/mask/chameleon(src)
-	new /obj/item/storage/backpack/chameleon(src)
-	new /obj/item/radio/headset/chameleon(src)
-	new /obj/item/stamp/chameleon(src)
-	new /obj/item/pda/chameleon(src)
+	new /obj/item/clothing/under/chameleon/syndicate(src)
+	new /obj/item/clothing/suit/chameleon/syndicate(src)
+	new /obj/item/clothing/gloves/chameleon/syndicate(src)
+	new /obj/item/clothing/shoes/chameleon/syndicate(src)
+	new /obj/item/clothing/glasses/chameleon/syndicate(src)
+	new /obj/item/clothing/head/chameleon/syndicate(src)
+	new /obj/item/clothing/mask/chameleon/syndicate(src)
+	new /obj/item/storage/backpack/chameleon/syndicate(src)
+	new /obj/item/radio/headset/chameleon/syndicate(src)
+	new /obj/item/stamp/chameleon/syndicate(src)
+	new /obj/item/pda/chameleon/syndicate(src)
 
 //5*(2*4) = 5*8 = 45, 45 damage if you hit one person with all 5 stars.
 //Not counting the damage it will do while embedded (2*4 = 8, at 15% chance)

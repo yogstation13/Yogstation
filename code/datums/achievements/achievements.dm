@@ -135,7 +135,7 @@
 	.=..()
 	var/datum/DBQuery/Q = SSdbcore.NewQuery("SELECT `value` FROM [format_table_name("misc")] WHERE `key` = 'cargorecord'")
 	Q.Execute()
-	if(Q.item && Q.item.len)
+	if(Q.NextRow())
 		amount = Q.item[1]
 	qdel(Q)
 	desc += "[amount]"
@@ -155,12 +155,6 @@
 	name = "On my authority"
 	desc = "Trigger a keycard authentication device event, by yourself."
 	id = 23
-
-/datum/achievement/dab
-	name = "Brain Damage"
-	desc = "Dab."
-	id = 24
-	hidden = TRUE
 
 // The achievements that are basically just "greentext as this sort of antag"
 

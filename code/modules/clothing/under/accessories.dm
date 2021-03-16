@@ -112,10 +112,11 @@
 	desc = "A bronze medal."
 	icon_state = "bronze"
 	item_color = "bronze"
-	materials = list(MAT_METAL=1000)
+	materials = list(/datum/material/iron=1000)
 	resistance_flags = FIRE_PROOF
 	var/medaltype = "medal" //Sprite used for medalbox
 	var/commended = FALSE
+	above_suit = TRUE
 
 //Pinning medals on people
 /obj/item/clothing/accessory/medal/attack(mob/living/carbon/human/M, mob/living/user)
@@ -182,7 +183,7 @@
 	icon_state = "silver"
 	item_color = "silver"
 	medaltype = "medal-silver"
-	materials = list(MAT_SILVER=1000)
+	materials = list(/datum/material/silver=1000)
 
 /obj/item/clothing/accessory/medal/silver/valor
 	name = "medal of valor"
@@ -202,7 +203,7 @@
 	icon_state = "gold"
 	item_color = "gold"
 	medaltype = "medal-gold"
-	materials = list(MAT_GOLD=1000)
+	materials = list(/datum/material/gold=1000)
 
 /obj/item/clothing/accessory/medal/gold/captain
 	name = "medal of captaincy"
@@ -220,7 +221,7 @@
 	item_color = "plasma"
 	medaltype = "medal-plasma"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = -10, "acid" = 0) //It's made of plasma. Of course it's flammable.
-	materials = list(MAT_PLASMA=1000)
+	materials = list(/datum/material/plasma=1000)
 
 /obj/item/clothing/accessory/medal/plasma/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
@@ -244,6 +245,7 @@
 	icon_state = "redband"
 	item_color = "redband"
 	attachment_slot = null
+	above_suit = TRUE
 
 /obj/item/clothing/accessory/armband/deputy
 	name = "security deputy armband"
@@ -348,6 +350,7 @@
 	item_color = "talisman"
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
 	attachment_slot = null
+	above_suit = TRUE
 
 /obj/item/clothing/accessory/skullcodpiece
 	name = "skull codpiece"

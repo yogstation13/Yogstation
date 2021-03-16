@@ -1,8 +1,8 @@
 /datum/buildmode_mode/throwing
 	key = "throw"
-	
+
 	var/atom/movable/throw_atom = null
-	
+
 /datum/buildmode_mode/throwing/Destroy()
 	throw_atom = null
 	return ..()
@@ -17,6 +17,7 @@
 	var/list/pa = params2list(params)
 	var/left_click = pa.Find("left")
 	var/right_click = pa.Find("right")
+	var/alt_click = pa.Find("alt")
 
 	if(left_click)
 		if(isturf(object))
@@ -27,3 +28,8 @@
 		if(throw_atom)
 			throw_atom.throw_at(object, 10, 1, c.mob)
 			log_admin("Build Mode: [key_name(c)] threw [throw_atom] at [object] ([AREACOORD(object)])")
+	if(left_click && alt_click)
+		var/obj/item/reagent_containers/food/snacks/pie/cream/admin/p = new (get_turf(pick(oview(3,c.mob))))
+		throw_atom = p
+		throw_atom.throw_at(object, 10, 0.5, c.mob)
+		log_admin("Build Mode: [key_name(c)] threw [throw_atom] at [object] ([AREACOORD(object)])")

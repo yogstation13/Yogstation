@@ -12,7 +12,7 @@
 	var/mode = SYRINGE_DRAW
 	var/busy = FALSE		// needed for delayed drawing of blood
 	var/proj_piercing = 0 //does it pierce through thick clothes when shot with syringe gun
-	materials = list(MAT_METAL=10, MAT_GLASS=20)
+	materials = list(/datum/material/iron=10, /datum/material/glass=20)
 	reagent_flags = TRANSPARENT
 
 /obj/item/reagent_containers/syringe/Initialize()
@@ -152,7 +152,7 @@
 								for(var/datum/symptom/S in DD.symptoms)
 									viruslist += "[S.name] "
 								viruslist += "\]"
-				
+
 				if(viruslist)
 					investigate_log("[user.real_name] ([user.ckey]) injected [L.real_name] ([L.ckey]) with [viruslist]", INVESTIGATE_VIROLOGY)
 					log_game("[user.real_name] ([user.ckey]) injected [L.real_name] ([L.ckey]) with [viruslist]")
@@ -260,7 +260,7 @@
 	amount_per_transfer_from_this = 1
 	volume = 1
 	list_reagents = list(/datum/reagent/gluttonytoxin = 1)
-	
+
 /obj/item/reagent_containers/syringe/ghost
 	name = "Spectral Curse"
 	desc = "A syringe recovered from a dreaded place. It probably isn't wise to use."
@@ -285,6 +285,11 @@
 	desc = "A diamond-tipped syringe that pierces armor when launched at high velocity. It can hold up to 10 units."
 	volume = 10
 	proj_piercing = 1
+
+/obj/item/reagent_containers/syringe/crude
+	name = "crude syringe"
+	desc = "A crudely made syringe. The flimsy wooden construction makes it hold up minimal amounts of reagents."
+	volume = 5
 
 /obj/item/reagent_containers/syringe/spider_extract
 	name = "spider extract syringe"

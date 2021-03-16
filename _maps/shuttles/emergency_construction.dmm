@@ -15,14 +15,8 @@
 /turf/closed/wall/mineral/plastitanium,
 /area/shuttle/escape)
 "d" = (
-/obj/structure/window/reinforced,
-/obj/structure/shuttle/engine/heater{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "e" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
@@ -40,10 +34,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"h" = (
-/obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "i" = (
@@ -187,55 +177,26 @@
 "p" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
-"q" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"r" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"s" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "t" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/window/reinforced,
+/obj/structure/shuttle/engine/heater{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
+/turf/open/floor/plating/airless,
+/area/shuttle/escape)
+"L" = (
+/obj/machinery/computer/emergency_shuttle{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"O" = (
+"X" = (
 /obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"W" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"Y" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 
@@ -244,7 +205,7 @@ a
 c
 e
 e
-W
+X
 e
 e
 g
@@ -252,7 +213,7 @@ e
 i
 e
 e
-W
+X
 e
 e
 g
@@ -269,7 +230,7 @@ a
 "}
 (2,1,1) = {"
 b
-d
+t
 f
 f
 f
@@ -297,7 +258,7 @@ a
 "}
 (3,1,1) = {"
 b
-d
+t
 f
 f
 f
@@ -346,14 +307,14 @@ f
 f
 e
 e
-W
-W
-q
+X
+X
+X
 a
 "}
 (5,1,1) = {"
 b
-d
+t
 f
 f
 f
@@ -376,11 +337,21 @@ f
 f
 f
 f
-h
-s
+X
+X
 "}
 (6,1,1) = {"
 b
+t
+f
+f
+f
+f
+f
+f
+f
+d
+d
 d
 f
 f
@@ -395,21 +366,11 @@ f
 f
 f
 f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-O
+X
 "}
 (7,1,1) = {"
 b
-d
+t
 f
 f
 f
@@ -433,7 +394,7 @@ f
 f
 f
 f
-O
+X
 "}
 (8,1,1) = {"
 c
@@ -460,12 +421,12 @@ f
 f
 f
 f
-f
-O
+L
+X
 "}
 (9,1,1) = {"
 b
-d
+t
 f
 f
 f
@@ -489,11 +450,11 @@ f
 f
 f
 f
-O
+X
 "}
 (10,1,1) = {"
 b
-d
+t
 f
 f
 f
@@ -517,35 +478,35 @@ f
 f
 f
 f
-O
+X
 "}
 (11,1,1) = {"
 b
-d
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-h
 t
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+X
+X
 "}
 (12,1,1) = {"
 c
@@ -570,14 +531,14 @@ f
 f
 e
 e
-Y
-Y
-r
+X
+X
+X
 a
 "}
 (13,1,1) = {"
 b
-d
+t
 f
 f
 f
@@ -605,7 +566,7 @@ a
 "}
 (14,1,1) = {"
 b
-d
+t
 f
 f
 f
@@ -636,19 +597,19 @@ a
 c
 e
 e
-Y
+X
 e
 e
 e
-Y
+X
 e
 e
 e
-Y
+X
 e
 e
 e
-Y
+X
 e
 e
 p

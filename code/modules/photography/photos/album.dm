@@ -10,6 +10,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/briefcase_righthand.dmi'
 	resistance_flags = FLAMMABLE
 	var/persistence_id
+	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
 
 /obj/item/storage/photo_album/Initialize()
 	. = ..()

@@ -1,7 +1,7 @@
 /client/proc/dsay(msg as text)
-	set category = "Special Verbs"
+	set category = "Misc.Unused"
 	set name = "Dsay"
-	set hidden = 1
+	set hidden = TRUE
 	if(!holder)
 		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
 		return

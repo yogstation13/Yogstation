@@ -31,7 +31,7 @@
 	if(mob && !isdead(mob))
 		var/mob/M = mob
 		
-		var/time = input(src, "How long do you expect to be gone?") as anything in list("5 minutes","10 minutes","15 minutes","30 minutes","Whole round","Unknown")
+		var/time = input(src, "How long do you expect to be gone?") as null|anything in list("5 minutes","10 minutes","15 minutes","30 minutes","Whole round","Unknown")
 		
 		if(!time)
 			return

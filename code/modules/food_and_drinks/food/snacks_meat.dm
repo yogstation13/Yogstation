@@ -43,7 +43,7 @@
 	desc = "Not so delicious rat meat, on a stick."
 	icon_state = "ratkebab"
 	w_class = WEIGHT_CLASS_NORMAL
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("rat meat" = 1, "metal" = 1)
 	foodtype = MEAT | GROSS
 
@@ -51,7 +51,7 @@
 	name = "double rat kebab"
 	icon_state = "doubleratkebab"
 	tastes = list("rat meat" = 2, "metal" = 1)
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
 
 ////////////////////////////////////////////FISH////////////////////////////////////////////
 
@@ -104,6 +104,15 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	filling_color = "#FA8072"
 	tastes = list("fish" = 1, "chips" = 1)
+	foodtype = MEAT | VEGETABLES | FRIED
+
+/obj/item/reagent_containers/food/snacks/fishfry
+	name = "fish fry"
+	desc = "All that and no bag of chips..."
+	icon_state = "fish_fry"
+	list_reagents = list (/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
+	filling_color = "#ee7676"
+	tastes = list("fish" = 1, "pan seared vegtables" = 1)
 	foodtype = MEAT | VEGETABLES | FRIED
 
 /obj/item/reagent_containers/food/snacks/sashimi
@@ -279,7 +288,7 @@
 /obj/item/reagent_containers/food/snacks/dolphinmeat/Initialize()
   . = ..()
   eatverb = pick("bite","chew","choke down","gnaw","swallow","chomp")
-  
+
 /obj/item/reagent_containers/food/snacks/meatclown
 	name = "meat clown"
 	desc = "A delicious, round piece of meat clown. How horrifying."
@@ -318,7 +327,7 @@
 	else if (!spammer) // Visible message in case there are no fingerprints
 		visible_message("<span class='notice'>[src] fails to expand!</span>")
 	qdel(src)
-	
+
 /obj/item/reagent_containers/food/snacks/monkeycube/suicide_act(mob/living/M)
 	M.visible_message("<span class='suicide'>[M] is putting [src] in [M.p_their()] mouth! It looks like [M.p_theyre()] trying to commit suicide!</span>")
 	var/eating_success = do_after(M, 10, TRUE, src, TRUE)
@@ -376,7 +385,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/goat
 	name = "goat cube"
 	desc = "A Goat Tech Industries goat cube. Just add water!"
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "goatcube"
 	bitesize = 20
 	list_reagents = list(/datum/reagent/consumable/nutriment = 15)

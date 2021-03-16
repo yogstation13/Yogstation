@@ -1,7 +1,6 @@
 GLOBAL_LIST_EMPTY(exp_to_update)
 GLOBAL_PROTECT(exp_to_update)
 
-
 // Procs
 /datum/job/proc/required_playtime_remaining(client/C)
 	if(!C)
@@ -57,74 +56,10 @@ GLOBAL_PROTECT(exp_to_update)
 			amount += explist[job]
 	return amount
 
-/client/proc/get_exp_report()
-	if(!CONFIG_GET(flag/use_exp_tracking))
-		return "Tracking is disabled in the server configuration file."
-	var/list/play_records = prefs.exp
-	if(!play_records.len)
-		set_exp_from_db()
-		play_records = prefs.exp
-		if(!play_records.len)
-			return "[key] has no records."
-	var/return_text = list()
-	return_text += "<UL>"
-	var/list/exp_data = list()
-	for(var/category in SSjob.name_occupations)
-		if(play_records[category])
-			exp_data[category] = text2num(play_records[category])
-		else
-			exp_data[category] = 0
-	for(var/category in GLOB.exp_specialmap)
-		if(category == EXP_TYPE_SPECIAL || category == EXP_TYPE_ANTAG)
-			if(GLOB.exp_specialmap[category])
-				for(var/innercat in GLOB.exp_specialmap[category])
-					if(play_records[innercat])
-						exp_data[innercat] = text2num(play_records[innercat])
-					else
-						exp_data[innercat] = 0
-		else
-			if(play_records[category])
-				exp_data[category] = text2num(play_records[category])
-			else
-				exp_data[category] = 0
-	if(prefs.db_flags & DB_FLAG_EXEMPT)
-		return_text += "<LI>Exempt (all jobs auto-unlocked)</LI>"
 
-	for(var/dep in exp_data)
-		if(exp_data[dep] > 0)
-			if(exp_data[EXP_TYPE_LIVING] > 0)
-				var/percentage = num2text(round(exp_data[dep]/exp_data[EXP_TYPE_LIVING]*100))
-				return_text += "<LI>[dep] [get_exp_format(exp_data[dep])] ([percentage]%)</LI>"
-			else
-				return_text += "<LI>[dep] [get_exp_format(exp_data[dep])] </LI>"
-	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_rights_for(src,R_ADMIN))
-		return_text += "<LI>Admin (all jobs auto-unlocked)</LI>"
-	return_text += "</UL>"
-	var/list/jobs_locked = list()
-	var/list/jobs_unlocked = list()
-	for(var/datum/job/job in SSjob.occupations)
-		if(job.exp_requirements && job.exp_type)
-			if(!job_is_xp_locked(job.title))
-				continue
-			else if(!job.required_playtime_remaining(mob.client))
-				jobs_unlocked += job.title
-			else
-				var/xp_req = job.get_exp_req_amount()
-				jobs_locked += "[job.title] [get_exp_format(text2num(calc_exp_type(job.get_exp_req_type())))] / [get_exp_format(xp_req)] as [job.get_exp_req_type()])"
-	if(jobs_unlocked.len)
-		return_text += "<BR><BR>Jobs Unlocked:<UL><LI>"
-		return_text += jobs_unlocked.Join("</LI><LI>")
-		return_text += "</LI></UL>"
-	if(jobs_locked.len)
-		return_text += "<BR><BR>Jobs Not Unlocked:<UL><LI>"
-		return_text += jobs_locked.Join("</LI><LI>")
-		return_text += "</LI></UL>"
-	return return_text
-
-
-/client/proc/get_exp_living()
-	if(!prefs.exp)
-		return "No data"
+/client/proc/get_exp_living(pure_numeric = FALSE)
+	if(!prefs.exp || !prefs.exp[EXP_TYPE_LIVING])
+		return pure_numeric ? 0 : "No data"
 	var/exp_living = text2num(prefs.exp[EXP_TYPE_LIVING])
 	return get_exp_format(exp_living)
 
@@ -140,8 +75,6 @@ GLOBAL_PROTECT(exp_to_update)
 	if(!SSdbcore.Connect())
 		return -1
 	for(var/client/L in GLOB.clients)
-		if(L.is_afk())
-			continue
 		L.update_exp_list(mins,ann)
 
 /datum/controller/subsystem/blackbox/proc/update_exp_db()
@@ -211,7 +144,18 @@ GLOBAL_PROTECT(exp_to_update)
 		return -1
 	var/list/play_records = list()
 
-	if(isliving(mob))
+	if(holder && !holder.deadmined)
+		play_records[EXP_TYPE_ADMIN] += minutes
+		if(announce_changes)
+			to_chat(src,"<span class='notice'>You got: [minutes] Admin EXP!</span>")
+
+	//This doesn't use is_mentor(), thats intentional, we don't want admins to rack up mentor playtime because theyre admins not mentors
+	if(mentor_datum)
+		play_records[EXP_TYPE_MENTOR] += minutes
+		if(announce_changes)
+			to_chat(src,"<span class='notice'>You got: [minutes] Mentor EXP!</span>")
+
+	if(isliving(mob) && !is_afk())
 		if(mob.stat != DEAD)
 			var/rolefound = FALSE
 			play_records[EXP_TYPE_LIVING] += minutes
@@ -239,19 +183,14 @@ GLOBAL_PROTECT(exp_to_update)
 			if(!rolefound)
 				play_records["Unknown"] += minutes
 		else
-			if(holder && !holder.deadmined)
-				play_records[EXP_TYPE_ADMIN] += minutes
-				if(announce_changes)
-					to_chat(src,"<span class='notice'>You got: [minutes] Admin EXP!</span>")
-			else
-				play_records[EXP_TYPE_GHOST] += minutes
-				if(announce_changes)
-					to_chat(src,"<span class='notice'>You got: [minutes] Ghost EXP!</span>")
-	else if(isobserver(mob))
+			play_records[EXP_TYPE_GHOST] += minutes
+			if(announce_changes)
+				to_chat(src,"<span class='notice'>You got: [minutes] Ghost EXP!</span>")
+	else if(isobserver(mob) && !is_afk())
 		play_records[EXP_TYPE_GHOST] += minutes
 		if(announce_changes)
 			to_chat(src,"<span class='notice'>You got: [minutes] Ghost EXP!</span>")
-	else if(minutes)	//Let "refresh" checks go through
+	else if(minutes && !is_afk())	//Let "refresh" checks go through
 		return
 
 	for(var/jtype in play_records)

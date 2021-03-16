@@ -671,7 +671,7 @@
 /area/ruin/powered)
 "by" = (
 /obj/structure/table/wood,
-/obj/item/banhammer,
+/obj/item/bikehorn,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "bA" = (

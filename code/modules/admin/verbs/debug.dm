@@ -1,5 +1,5 @@
 /client/proc/Debug2()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Debug-Game"
 	if(!check_rights(R_DEBUG))
 		return
@@ -27,7 +27,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 */
 
 /client/proc/callproc()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Advanced ProcCall"
 	set waitfor = FALSE
 
@@ -150,7 +150,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 #endif
 
 /client/proc/callproc_datum(datum/A as null|area|mob|obj|turf)
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Atom ProcCall"
 	set waitfor = FALSE
 
@@ -225,7 +225,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 
 /client/proc/Cell()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Air Status in Location"
 	if(!mob)
 		return
@@ -236,7 +236,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Air Status In Location") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_robotize(mob/M in GLOB.mob_list)
-	set category = "Fun"
+	set category = "Misc"
 	set name = "Make Robot"
 
 	if(!SSticker.HasRoundStarted())
@@ -252,7 +252,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		alert("Invalid mob")
 
 /client/proc/cmd_admin_blobize(mob/M in GLOB.mob_list)
-	set category = "Fun"
+	set category = "Misc"
 	set name = "Make Blob"
 
 	if(!SSticker.HasRoundStarted())
@@ -267,7 +267,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 
 /client/proc/cmd_admin_animalize(mob/M in GLOB.mob_list)
-	set category = "Fun"
+	set category = "Misc"
 	set name = "Make Simple Animal"
 
 	if(!SSticker.HasRoundStarted())
@@ -288,7 +288,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 
 /client/proc/makepAI(turf/T in GLOB.mob_list)
-	set category = "Fun"
+	set category = "Misc"
 	set name = "Make pAI"
 	set desc = "Specify a location to spawn a pAI device, then specify a key to play that pAI"
 
@@ -315,7 +315,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Make pAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_alienize(mob/M in GLOB.mob_list)
-	set category = "Fun"
+	set category = "Misc"
 	set name = "Make Alien"
 
 	if(!SSticker.HasRoundStarted())
@@ -330,7 +330,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		alert("Invalid mob")
 
 /client/proc/cmd_admin_slimeize(mob/M in GLOB.mob_list)
-	set category = "Fun"
+	set category = "Misc"
 	set name = "Make slime"
 
 	if(!SSticker.HasRoundStarted())
@@ -345,7 +345,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		alert("Invalid mob")
 
 /client/proc/cmd_admin_pacmanize(mob/M in GLOB.mob_list)
-	set category = "Fun"
+	set category = "Misc"
 	set name = "Make pacman"
 
 	if(!SSticker.HasRoundStarted())
@@ -421,7 +421,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 //TODO: merge the vievars version into this or something maybe mayhaps
 /client/proc/cmd_debug_del_all(object as text)
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Del-All"
 
 	var/list/matches = get_fancy_list_of_atom_types()
@@ -445,7 +445,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 
 /client/proc/cmd_debug_make_powernets()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Make Powernets"
 	SSmachines.makepowernets()
 	log_admin("[key_name(src)] has remade the powernet. makepowernets() called.")
@@ -453,7 +453,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Make Powernets") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_grantfullaccess(mob/M in GLOB.mob_list)
-	set category = "Admin"
+	set category = "Misc.Server Debug"
 	set name = "Grant Full Access"
 
 	if(!SSticker.HasRoundStarted())
@@ -466,7 +466,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		if(worn)
 			id = worn.GetID()
 		if(id)
-			id.icon_state = "gold"
+			id.icon_state = "id_gold"
 			id.access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()
 		else
 			id = new /obj/item/card/id/gold(H.loc)
@@ -495,7 +495,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("<span class='adminnotice'>[key_name_admin(usr)] has granted [M.key] full access.</span>")
 
 /client/proc/cmd_assume_direct_control(mob/M in GLOB.mob_list)
-	set category = "Admin"
+	set category = "Misc.Unused"
 	set name = "Assume direct control"
 	set desc = "Direct intervention"
 
@@ -514,7 +514,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Assume Direct Control") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_test_atmos_controllers()
-	set category = "Mapping"
+	set category = "Misc.Server Debug"
 	set name = "Test Atmos Monitoring Consoles"
 
 	var/list/dat = list()
@@ -550,7 +550,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	popup.open()
 
 /client/proc/cmd_admin_areatest(on_station)
-	set category = "Mapping"
+	set category = "Misc.Server Debug"
 	set name = "Test Areas"
 
 	var/list/dat = list()
@@ -719,18 +719,22 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 
 /client/proc/cmd_admin_areatest_station()
-	set category = "Mapping"
+	set category = "Misc.Server Debug"
 	set name = "Test Areas (STATION Z)"
 	cmd_admin_areatest(TRUE)
 
 /client/proc/cmd_admin_areatest_all()
-	set category = "Mapping"
+	set category = "Misc.Server Debug"
 	set name = "Test Areas (ALL)"
 	cmd_admin_areatest(FALSE)
 
 /client/proc/cmd_admin_dress(mob/M in GLOB.mob_list)
-	set category = "Fun"
+	set category = "Misc"
 	set name = "Select equipment"
+
+	if(!check_rights(R_SPAWN))
+		return
+
 	if(!(ishuman(M) || isobserver(M)))
 		alert("Invalid mob")
 		return
@@ -823,7 +827,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 /client/proc/startSinglo()
 
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Start Singularity"
 	set desc = "Sets up the singularity and all machines to get power flowing through the station"
 
@@ -879,7 +883,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			SMES.input_attempt = 1
 
 /client/proc/cmd_debug_mob_lists()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Debug Mob Lists"
 	set desc = "For when you just gotta know"
 
@@ -900,7 +904,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			to_chat(usr, jointext(GLOB.joined_player_list,","), confidential=TRUE)
 
 /client/proc/cmd_display_del_log()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Display del() Log"
 	set desc = "Display del's log of everything that's passed through it."
 
@@ -929,21 +933,21 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	usr << browse(dellog.Join(), "window=dellog")
 
 /client/proc/cmd_display_overlay_log()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Display overlay Log"
 	set desc = "Display SSoverlays log of everything that's passed through it."
 
 	render_stats(SSoverlays.stats, src)
 
 /client/proc/cmd_display_init_log()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Display Initialize() Log"
 	set desc = "Displays a list of things that didn't handle Initialize() properly"
 
 	usr << browse("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>" + replacetext(SSatoms.InitLog(), "\n", "<br>") + "</BODY></HTML>", "window=initlog")
 
 /client/proc/debug_huds(i as num)
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Debug HUDs"
 	set desc = "Debug the data or antag HUDs"
 
@@ -952,7 +956,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	debug_variables(GLOB.huds[i])
 
 /client/proc/jump_to_ruin()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Jump to Ruin"
 	set desc = "Displays a list of all placed ruins to teleport to."
 	if(!holder)
@@ -984,7 +988,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		to_chat(usr, "<span class='italics'>[template.description]</span>", confidential=TRUE)
 
 /client/proc/place_ruin()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Spawn Ruin"
 	set desc = "Attempt to randomly place a specific ruin."
 	if (!holder)
@@ -1034,7 +1038,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		to_chat(src, "<span class='warning'>Failed to place [template.name].</span>", confidential=TRUE)
 
 /client/proc/clear_dynamic_transit()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Clear Dynamic Turf Reservations"
 	set desc = "Deallocates all reserved space, restoring it to round start conditions."
 	if(!holder)
@@ -1048,7 +1052,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	SSmapping.wipe_reservations()				//this goes after it's logged, incase something horrible happens.
 
 /client/proc/view_runtimes()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "View Runtimes"
 	set desc = "Open the runtime Viewer"
 
@@ -1058,7 +1062,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	GLOB.error_cache.show_to(src)
 
 /client/proc/pump_random_event()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Pump Random Event"
 	set desc = "Schedules the event subsystem to fire a new random event immediately. Some events may fire without notification."
 	if(!holder)
@@ -1109,7 +1113,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	profile_show(src, sort)
 
 /client/proc/reload_configuration()
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "Reload Configuration"
 	set desc = "Force config reload to world default"
 	if(!check_rights(R_DEBUG))

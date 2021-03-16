@@ -22,15 +22,17 @@
 	var/tentacle_recheck_cooldown = 100
 
 /datum/symptom/necroseed/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
-	if(A.properties["resistance"] >= 15)
+	if(A.totalResistance() >= 15)
 		tendrils = TRUE
-	if(A.properties["resistance"] >= 20)
+	if(A.totalResistance() >= 20)
 		fireproof = TRUE
 
 /datum/symptom/necroseed/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)
@@ -53,7 +55,7 @@
 			M.dna.species.brutemod = 0.6
 			M.dna.species.burnmod = 0.6
 			M.dna.species.heatmod = 0.6
-			M.add_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN, update=TRUE, priority=100, multiplicative_slowdown=1)
+			M.add_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN, update=TRUE, priority=100, multiplicative_slowdown=0.5)
 			ADD_TRAIT(M, TRAIT_PIERCEIMMUNE, DISEASE_TRAIT)
 			if(fireproof)
 				ADD_TRAIT(M, TRAIT_RESISTHEAT, DISEASE_TRAIT)
@@ -85,17 +87,18 @@
 				cached_tentacle_turfs -= t
 
 /datum/symptom/necroseed/End(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
-	to_chat(M, "<span class='danger'>You feel weak and powerless as the necropolis' blessing leaves your body, leaving you slow and vulnerable.</span>")
-	M.dna.species.punchdamagelow = 1
-	M.dna.species.punchdamagehigh = 5
-	M.dna.species.punchstunthreshold = 10
-	M.dna.species.brutemod = 1.5
-	M.dna.species.burnmod = 1.5
-	M.dna.species.heatmod = 1.5
-	M.dna.species.speedmod = 2
+	to_chat(M, "<span class='danger'>You feel weakened as the necropolis' blessing leaves your body.</span>")
+	M.remove_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN)
+	M.dna.species.punchdamagelow = initial(M.dna.species.punchdamagelow)
+	M.dna.species.punchdamagehigh = initial(M.dna.species.punchdamagehigh)
+	M.dna.species.punchstunthreshold = initial(M.dna.species.punchstunthreshold)
+	M.dna.species.brutemod /= 0.6
+	M.dna.species.burnmod /= 0.6
+	M.dna.species.heatmod /= 0.6
 	REMOVE_TRAIT(M, TRAIT_PIERCEIMMUNE, DISEASE_TRAIT)
 	if(fireproof)
 		REMOVE_TRAIT(M, TRAIT_RESISTHIGHPRESSURE, DISEASE_TRAIT)

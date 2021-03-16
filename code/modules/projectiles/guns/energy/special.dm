@@ -89,7 +89,7 @@
 	icon_state = "crossbow"
 	item_state = "crossbow"
 	w_class = WEIGHT_CLASS_SMALL
-	materials = list(MAT_METAL=2000)
+	materials = list(/datum/material/iron=2000)
 	suppressed = TRUE
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt)
 	weapon_weight = WEAPON_LIGHT
@@ -112,7 +112,7 @@
 	desc = "A reverse engineered weapon using syndicate technology."
 	icon_state = "crossbowlarge"
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(MAT_METAL=4000)
+	materials = list(/datum/material/iron=4000)
 	suppressed = null
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/large)
 	pin = null
@@ -215,12 +215,51 @@
 	force = 15
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv)
 
+/obj/item/gun/energy/plasmacutter/scatter
+	name = "plasma cutter shotgun"
+	icon_state = "miningshotgun"
+	item_state = "miningshotgun"
+	desc = "An industrial-grade heavy-duty mining shotgun"
+	force = 10
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/scatter)
+
+/obj/item/gun/energy/plasmacutter/attackby(obj/item/I, mob/user)
+	. = ..()
+	if(try_upgrade(I))
+		to_chat(user, "<span class='notice'>You install [I] into [src]</span>")
+		playsound(loc, 'sound/items/screwdriver.ogg', 100, 1)
+		qdel(I)
+
 /obj/item/gun/energy/plasmacutter/adv/cyborg
 	name = "cyborg advanced plasma cutter"
 	icon_state = "adv_plasmacutter"
 	force = 15
 	selfcharge = 1
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/cyborg)
+
+// Upgrades for plasma cutters
+/obj/item/upgrade/plasmacutter
+	name = "generic upgrade kit"
+	desc = "An upgrade for plasma shotguns."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "modkit"
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/upgrade/plasmacutter/defuser
+	name = "plasma cutter defusal kit"
+	desc = "An upgrade for plasma shotguns that allows it to automatically defuse gibtonite."
+
+/obj/item/gun/energy/plasmacutter/proc/try_upgrade(obj/item/I)
+	return // no upgrades for the plasmacutter
+
+/obj/item/gun/energy/plasmacutter/scatter/try_upgrade(obj/item/I)
+	if(.)
+		return
+	if(istype(I, /obj/item/upgrade/plasmacutter/defuser))
+		var/kaboom = new/obj/item/ammo_casing/energy/plasma/scatter/adv
+		ammo_type = list(kaboom)
+		return TRUE
+	return FALSE
 
 /obj/item/gun/energy/wormhole_projector
 	name = "bluespace wormhole projector"

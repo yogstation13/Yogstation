@@ -91,7 +91,7 @@
 			<head>
 				<meta charset='UTF-8'>
 				<style type=\"text/css\">
-					body { background-image:url('html/paigrid.png'); }
+					body { background-image:url('[SSassets.transport.get_asset_url("paigrid.png")]'); }
 
 					#header { text-align:center; color:white; font-size: 30px; height: 35px; width: 100%; letter-spacing: 2px; z-index: 5}
 					#content {position: relative; left: 10px; height: 400px; width: 100%; z-index: 0}
@@ -269,9 +269,6 @@
 				if(href_list["toggle"])
 					var/mob/living/silicon/pai/pAI = usr
 					pAI.hostscan.attack_self(usr)
-				if(href_list["toggle2"])
-					var/mob/living/silicon/pai/pAI = usr
-					pAI.hostscan.toggle_mode()
 
 			if("encryptionkeys")
 				if(href_list["toggle"])
@@ -296,8 +293,6 @@
 			if("loudness")
 				if(subscreen == 1) // Open Instrument
 					internal_instrument.interact(src)
-				if(subscreen == 2) // Change Instrument type
-					internal_instrument.selectInstrument()
 
 		paiInterface()
 
@@ -546,7 +541,6 @@
 
 			<a href='byond://?src=[REF(src)];software=hostscan;sub=0;toggle=1'>Change Scan Type</a><br>
 
-			<a href='byond://?src=[REF(src)];software=hostscan;sub=0;toggle2=1'>Toggle Verbosity</a><br>
 			"}
 	return dat
 // Atmospheric Scanner

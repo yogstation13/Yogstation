@@ -18,7 +18,7 @@
 
 /datum/mood_event/besthug/add_effects(mob/friend)
 	description = "<span class='nicegreen'>[friend.name] is great to be around, [friend.p_they()] makes me feel so happy!</span>\n"
-	
+
 /datum/mood_event/lamphug
 	description = "<span class='nicegreen'>I just hugged a lamp.</span>\n"
 	mood_change = 3
@@ -102,6 +102,16 @@
 /datum/mood_event/cult
 	description = "<span class='nicegreen'>I have seen the truth, praise the almighty one!</span>\n"
 	mood_change = 40 //maybe being a cultist isnt that bad after all
+	hidden = TRUE
+	
+/datum/mood_event/changeling
+	description = "<span class='nicegreen'>No feeling supersedes our hunger.</span>\n" //if i could i'd just make them not get all those human feelings
+	mood_change = 40
+	hidden = TRUE
+
+/datum/mood_event/heretics
+	description = "<span class='nicegreen'>I can't stop here. If I continue my research, I could become immortal!</span>\n"
+	mood_change = 10
 	hidden = TRUE
 
 /datum/mood_event/family_heirloom

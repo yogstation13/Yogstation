@@ -64,26 +64,29 @@
 	//List of datums orbiting this atom
 	var/datum/component/orbiter/orbiters
 
-	/// Will move to flags_1 when i can be arsed to (2019, has not done so)
-	var/rad_flags = NONE
 	/// Radiation insulation types
 	var/rad_insulation = RAD_NO_INSULATION
 
+	///The custom materials this atom is made of, used by a lot of things like furniture, walls, and floors (if I finish the functionality, that is.)
+	var/list/custom_materials
+	///Bitfield for how the atom handles materials.
+	var/material_flags = NONE
+
 	var/chat_color_name // Last name used to calculate a color for the chatmessage overlays
-	
+
 	var/chat_color // Last color calculated for the the chatmessage overlays
 
 	var/chat_color_darkened // A luminescence-shifted value of the last color calculated for chatmessage overlays
 
-
+	var/atom/orbit_target //Reference to atom being orbited
 /**
   * Called when an atom is created in byond (built in engine proc)
-  * 
+  *
   * Not a lot happens here in SS13 code, as we offload most of the work to the
   * [Intialization](atom.html#proc/Initialize) proc, mostly we run the preloader
   * if the preloader is being used and then call InitAtom of which the ultimate
   * result is that the Intialize proc is called.
-  * 
+  *
   * We also generate a tag here if the DF_USE_TAG flag is set on the atom
   */
 /atom/New(loc, ...)
@@ -104,15 +107,15 @@
 
 /**
   * The primary method that objects are setup in SS13 with
-  * 
+  *
   * we don't use New as we have better control over when this is called and we can choose
   * to delay calls or hook other logic in and so forth
-  * 
+  *
   * During roundstart map parsing, atoms are queued for intialization in the base atom/New(),
   * After the map has loaded, then Initalize is called on all atoms one by one. NB: this
   * is also true for loading map templates as well, so they don't Initalize until all objects
   * in the map file are parsed and present in the world
-  * 
+  *
   * If you're creating an object at any point after SSInit has run then this proc will be
   * immediately be called from New.
   *
@@ -120,7 +123,7 @@
   * the Atom subsystem intialization, or if the atom is being loaded from the map template.
   * If the item is being created at runtime any time after the Atom subsystem is intialized then
   * it's false.
-  * 
+  *
   * You must always call the parent of this proc, otherwise failures will occur as the item
   * will not be seen as initalized (this can lead to all sorts of strange behaviour, like
   * the item being completely unclickable)
@@ -129,7 +132,7 @@
   *
   * Any parameters from new are passed through (excluding loc), naturally if you're loading from a map
   * there are no other arguments
-  * 
+  *
   * Must return an [initialization hint](code/__DEFINES/subsystems.html) or a runtime will occur.
   *
   * Note: the following functions don't call the base for optimization and must copypasta handling:
@@ -156,13 +159,22 @@
 	if (canSmoothWith)
 		canSmoothWith = typelist("canSmoothWith", canSmoothWith)
 
+	if(custom_materials && custom_materials.len)
+		var/temp_list = list()
+		for(var/i in custom_materials)
+			var/datum/material/material = getmaterialref(i) || i
+			temp_list[material] = custom_materials[material] //Get the proper instanced version
+
+		custom_materials = null //Null the list to prepare for applying the materials properly
+		set_custom_materials(temp_list)
+
 	ComponentInitialize()
 
 	return INITIALIZE_HINT_NORMAL
 
 /**
   * Late Intialization, for code that should run after all atoms have run Intialization
-  * 
+  *
   * To have your LateIntialize proc be called, your atoms [Initalization](atom.html#proc/Initialize)
   *  proc must return the hint
   * [INITIALIZE_HINT_LATELOAD](code/__DEFINES/subsystems.html#define/INITIALIZE_HINT_LATELOAD)
@@ -227,11 +239,11 @@
 	SHOULD_BE_PURE(TRUE)
 	return !density
 
-/** 
+/**
   * Is this atom currently located on centcom
-  * 
+  *
   * Specifically, is it on the z level and within the centcom areas
-  * 
+  *
   * You can also be in a shuttleshuttle during endgame transit
   *
   * Used in gamemode to identify mobs who have escaped and for some other areas of the code
@@ -304,7 +316,7 @@
   * If the part is a moveable atom and the  previous location of the item was a mob/living,
   * it calls the inventory handler transferItemToLoc for that mob/living and transfers the part
   * to this atom
-  * 
+  *
   * Otherwise it simply forceMoves the atom into this atom
   */
 /atom/proc/CheckParts(list/parts_list)
@@ -374,8 +386,9 @@
 /atom/proc/AllowDrop()
 	return FALSE
 
+/// Are you allowed to pass a sided object of the same dir
 /atom/proc/CheckExit()
-	return 1
+	return TRUE
 
 ///Is this atom within 1 tile of another atom
 /atom/proc/HasProximity(atom/movable/AM as mob|obj)
@@ -385,7 +398,7 @@
   * React to an EMP of the given severity
   *
   * Default behaviour is to send the COMSIG_ATOM_EMP_ACT signal
-  * 
+  *
   * If the signal does not return protection, and there are attached wires then we call
   * emp_pulse() on the wires
   *
@@ -448,6 +461,11 @@
 	if(desc)
 		. += desc
 
+	if(custom_materials)
+		for(var/i in custom_materials)
+			var/datum/material/M = i
+			. += "<u>It is made out of [M.name]</u>."
+
 	if(reagents)
 		if(reagents.flags & TRANSPARENT)
 			. += "It contains:"
@@ -472,7 +490,7 @@
 
 /**
   * An atom we are buckled or is contained within us has tried to move
-  * 
+  *
   * Default behaviour is to send a warning that the user can't move while buckled as long
   * as the buckle_message_cooldown has expired (50 ticks)
   */
@@ -481,10 +499,6 @@
 		buckle_message_cooldown = world.time + 50
 		to_chat(user, "<span class='warning'>You can't move while buckled to [src]!</span>")
 	return
-
-/// Return true if this atoms contents should not have ex_act called on ex_act
-/atom/proc/prevent_content_explosion()
-	return FALSE
 
 /// Handle what happens when your contents are exploded by a bomb
 /atom/proc/contents_explosion(severity, target)
@@ -588,6 +602,24 @@
 /atom/proc/wash_cream()
 	return TRUE
 
+/**
+  * Wash this atom
+  *
+  * This will clean it off any temporary stuff like blood. Override this in your item to add custom cleaning behavior.
+  * Returns true if any washing was necessary and thus performed
+  * Arguments:
+  * * clean_types: any of the CLEAN_ constants
+  */
+/atom/proc/wash(clean_types)
+	. = FALSE
+	if(SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, clean_types))
+		. = TRUE
+
+	// Basically "if has washable coloration"
+	if(length(atom_colours) >= WASHABLE_COLOUR_PRIORITY && atom_colours[WASHABLE_COLOUR_PRIORITY])
+		remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+		return TRUE
+
 ///Is this atom in space
 /atom/proc/isinspace()
 	if(isspaceturf(get_turf(src)))
@@ -679,7 +711,7 @@
   *
   * This behaviour is usually to mass transfer, but this is no longer a used proc as it just
   * calls the underyling /datum/component/storage dump act if a component exists
-  * 
+  *
   * TODO these should be purely component items that intercept the atom clicks higher in the
   * call chain
   */
@@ -723,7 +755,7 @@
 
 /**
   * This proc is called when an atom in our contents has it's Destroy() called
-  * 
+  *
   * Default behaviour is to simply send COMSIG_ATOM_CONTENTS_DEL
   */
 /atom/proc/handle_atom_del(atom/A)
@@ -749,7 +781,7 @@
 
 /**
   * the sight changes to give to the mob whose perspective is set to that atom
-  * 
+  *
   * (e.g. A mob with nightvision loses its nightvision while looking through a normal camera)
   */
 /atom/proc/update_remote_sight(mob/living/user)
@@ -772,7 +804,7 @@
 
 /**
   * Called when the atom log's in or out
-  * 
+  *
   * Default behaviour is to call on_log on the location this atom is in
   */
 /atom/proc/on_log(login)
@@ -804,8 +836,7 @@
 ///Removes an instance of colour_type from the atom's atom_colours list
 /atom/proc/remove_atom_colour(colour_priority, coloration)
 	if(!atom_colours)
-		atom_colours = list()
-		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
+		return
 	if(colour_priority > atom_colours.len)
 		return
 	if(coloration && atom_colours[colour_priority] != coloration)
@@ -813,13 +844,11 @@
 	atom_colours[colour_priority] = null
 	update_atom_colour()
 
-
-///Resets the atom's color to null, and then sets it to the highest priority colour available
 /atom/proc/update_atom_colour()
-	if(!atom_colours)
-		atom_colours = list()
-		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
+///Resets the atom's color to null, and then sets it to the highest priority colour available
 	color = null
+	if(!atom_colours)
+		return
 	for(var/C in atom_colours)
 		if(islist(C))
 			var/list/L = C
@@ -832,9 +861,9 @@
 
 /**
   * call back when a var is edited on this atom
-  * 
+  *
   * Can be used to implement special handling of vars
-  * 
+  *
   * At the atom level, if you edit a var named "color" it will add the atom colour with
   * admin level priority to the atom colours list
   *
@@ -864,6 +893,7 @@
 	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"
 	.["Trigger EM pulse"] = "?_src_=vars;[HrefToken()];emp=[REF(src)]"
 	.["Trigger explosion"] = "?_src_=vars;[HrefToken()];explode=[REF(src)]"
+	.["Radiate"] = "?_src_=vars;[HrefToken()];radiate=[REF(src)]"
 
 ///Where atoms should drop if taken from this atom
 /atom/proc/drop_location()
@@ -907,9 +937,9 @@
 
 /**
   *Tool behavior procedure. Redirects to tool-specific procs by default.
-  * 
+  *
   * You can override it to catch all tool interactions, for use in complex deconstruction procs.
-  * 
+  *
   * Must return  parent proc ..() in the end if overridden
   */
 /atom/proc/tool_act(mob/living/user, obj/item/I, tool_type)
@@ -1088,9 +1118,102 @@
 		arguments -= "priority"
 		filters += filter(arglist(arguments))
 
+/obj/item/update_filters()
+	. = ..()
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.UpdateButtonIcon()
+
 /atom/movable/proc/get_filter(name)
 	if(filter_data && filter_data[name])
 		return filters[filter_data.Find(name)]
 
+/atom/movable/proc/remove_filter(name)
+	if(filter_data && filter_data[name])
+		filter_data -= name
+		update_filters()
+
+
 /atom/proc/intercept_zImpact(atom/movable/AM, levels = 1)
 	return FALSE
+
+/**Returns the material composition of the atom.
+  *
+  * Used when recycling items, specifically to turn alloys back into their component mats.
+  *
+  * Exists because I'd need to add a way to un-alloy alloys or otherwise deal
+  * with people converting the entire stations material supply into alloys.
+  *
+  * Arguments:
+  * - flags: A set of flags determining how exactly the materials are broken down.
+  */
+/atom/proc/get_material_composition(breakdown_flags=NONE)
+	. = list()
+	var/list/cached_materials = custom_materials
+	for(var/mat in cached_materials)
+		var/datum/material/material = getmaterialref(mat)
+		var/list/material_comp = material.return_composition(cached_materials[material], breakdown_flags)
+		for(var/comp_mat in material_comp)
+			.[comp_mat] += material_comp[comp_mat]
+
+/**
+  * Causes effects when the atom gets hit by a rust effect from heretics
+  *
+  * Override this if you want custom behaviour in whatever gets hit by the rust
+  */
+/atom/proc/rust_heretic_act()
+	return
+
+/**
+  * Recursive getter method to return a list of all ghosts orbitting this atom
+  *
+  * This will work fine without manually passing arguments.
+  */
+/atom/proc/get_all_orbiters(list/processed, source = TRUE)
+	var/list/output = list()
+	if (!processed)
+		processed = list()
+	if (src in processed)
+		return output
+	if (!source)
+		output += src
+	processed += src
+	for (var/o in orbiters?.orbiters)
+		var/atom/atom_orbiter = o
+		output += atom_orbiter.get_all_orbiters(processed, source = FALSE)
+	return output
+
+///Sets the custom materials for an item.
+/atom/proc/set_custom_materials(var/list/materials, multiplier = 1)
+	if(custom_materials) //Only runs if custom materials existed at first. Should usually be the case but check anyways
+		for(var/i in custom_materials)
+			var/datum/material/custom_material = i
+			custom_material.on_removed(src, material_flags) //Remove the current materials
+
+	custom_materials = list() //Reset the list
+
+	for(var/x in materials)
+		var/datum/material/custom_material = x
+
+
+		custom_material.on_applied(src, materials[custom_material] * multiplier, material_flags)
+		custom_materials[custom_material] += materials[x] * multiplier
+
+///Passes Stat Browser Panel clicks to the game and calls client click on an atom
+/atom/Topic(href, list/href_list)
+	. = ..()
+	if(!usr?.client)
+		return
+	var/client/usr_client = usr.client
+	var/list/paramslist = list()
+	if(href_list["statpanel_item_shiftclick"])
+		paramslist["shift"] = "1"
+	if(href_list["statpanel_item_ctrlclick"])
+		paramslist["ctrl"] = "1"
+	if(href_list["statpanel_item_altclick"])
+		paramslist["alt"] = "1"
+	if(href_list["statpanel_item_click"])
+		// first of all make sure we valid
+		var/mouseparams = list2params(paramslist)
+		usr_client.Click(src, loc, null, mouseparams)
+		return TRUE

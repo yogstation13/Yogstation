@@ -3,8 +3,8 @@
 #define DRONE_HEAD_LAYER 2
 #define DRONE_TOTAL_LAYERS 2
 
-#define DRONE_NET_CONNECT "<span class='notice'>DRONE NETWORK: [name] connected.</span>"
-#define DRONE_NET_DISCONNECT "<span class='danger'>DRONE NETWORK: [name] is not responding.</span>"
+#define DRONE_NET_CONNECT "<span class='notice'>DRONE NETWORK: [name] connected in [A.name].</span>"
+#define DRONE_NET_DISCONNECT "<span class='notice'>DRONE NETWORK: [name] has stopped responding at [A.name]!</span>"
 
 #define MAINTDRONE	"drone_maint"
 #define REPAIRDRONE	"drone_repair"
@@ -57,10 +57,11 @@
 	var/picked = FALSE //Have we picked our visual appearence (+ colour if applicable)
 	var/colour = "grey"	//Stored drone color, so we can go back when unhacked.
 	var/list/drone_overlays[DRONE_TOTAL_LAYERS]
-	var/laws = \
-	"1. You may not involve yourself in the matters of another being, even if such matters conflict with Law Two or Law Three, unless the other being is another Drone.\n"+\
-	"2. You may not harm any being, regardless of intent or circumstance.\n"+\
-	"3. Your goals are to build, maintain, repair, improve, and provide power to the best of your abilities, You must never actively work against these goals." //yogs - changed from tg since our rules are different
+	var/laws = {"\
+1. You may not involve yourself in the matters of another being, even if such matters conflict with Law Two or Law Three, unless the other being is another Drone.
+2. You may not harm any being, regardless of intent or circumstance.
+3. Your goals are to build, maintain, repair, improve, and provide power to the best of your abilities, You must never actively work against these goals.\
+"}
 	var/heavy_emp_damage = 25 //Amount of damage sustained if hit by a heavy EMP pulse
 	var/alarms = list("Atmosphere" = list(), "Fire" = list(), "Power" = list())
 	var/obj/item/internal_storage //Drones can store one item, of any size/type in their body
@@ -79,13 +80,21 @@
 	"<span class='warning'>These rules are at admin discretion and will be heavily enforced.</span>\n"+\
 	"<span class='warning'><u>If you do not have the regular drone laws, follow your laws to the best of your ability.</u></span>"
 
+/mob/living/simple_animal/drone/get_status_tab_items()
+	. = ..()
+	. += ""
+	. += "<h2>Current Drone Laws:</h2>"
+	. += replacetext(laws, "\n", "<br>")
+
 /mob/living/simple_animal/drone/Initialize()
 	. = ..()
 	GLOB.drones_list += src
 	access_card = new /obj/item/card/id(src)
 	var/datum/job/captain/C = new /datum/job/captain
 	access_card.access = C.get_access()
-
+	
+	var/turf/A = get_area(src)
+	
 	if(default_storage)
 		var/obj/item/I = new default_storage(src)
 		equip_to_slot_or_del(I, SLOT_GENERC_DEXTROUS_STORAGE)
@@ -147,6 +156,8 @@
 	if(head)
 		dropItemToGround(head)
 
+	var/turf/A = get_area(src)
+	
 	alert_drones(DRONE_NET_DISCONNECT)
 
 

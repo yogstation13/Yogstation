@@ -4,7 +4,7 @@
 	name = "Computer Design ( NULL ENTRY )"
 	desc = "I promise this doesn't give you syndicate goodies!"
 	build_type = IMPRINTER
-	materials = list(MAT_GLASS = 1000)
+	materials = list(/datum/material/glass = 1000)
 
 /datum/design/board/arcade_battle
 	name = "Computer Design (Battle Arcade Machine)"

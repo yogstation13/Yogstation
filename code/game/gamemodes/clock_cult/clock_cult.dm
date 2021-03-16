@@ -88,6 +88,11 @@ Credit where due:
 
 	. = L.mind.add_antag_datum(C)
 
+	if(.)
+		var/datum/antagonist/clockcult/servant = .
+		var/datum/team/clockcult/cult = servant.get_team()
+		cult.check_size()
+
 	if(!silent && L)
 		if(.)
 			to_chat(L, "<span class='heavy_brass'>The world before you suddenly glows a brilliant yellow. [issilicon(L) ? "You cannot compute this truth!" : \
@@ -222,7 +227,7 @@ Credit where due:
 		to_chat(L, "<span class='bold large_brass'>There is a paper in your backpack! It'll tell you if anything's changed, as well as what to expect.</span>")
 		to_chat(L, "<span class='alloy'>[slot] is a <b>clockwork slab</b>, a multipurpose tool used to construct machines and invoke ancient words of power. If this is your first time \
 		as a servant, you can find a concise tutorial in the Recollection category of its interface.</span>")
-		to_chat(L, "<span class='alloy italics'>If you want more information, you can read <a href=\"https://tgstation13.org/wiki/Clockwork_Cult\">the wiki page</a> to learn more.</span>")
+		to_chat(L, "<span class='alloy italics'>If you want more information, you can read <a href=\"https://wiki.yogstation.net/wiki/Clockwork_Cult\">the wiki page</a> to learn more.</span>")
 		return TRUE
 	return FALSE
 
@@ -378,4 +383,4 @@ Credit where due:
 	round_credits += "<br>"
 
 	round_credits += ..()
-	return round_credits 
+	return round_credits

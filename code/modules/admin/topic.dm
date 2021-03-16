@@ -35,7 +35,7 @@
 			M.client.show_popup_menus = TRUE
 			M.client.show_verb_panel = TRUE
 			M.notransform = FALSE
-			M.verbs += M.client.afreeze_stored_verbs
+			add_verb(M, M.client.afreeze_stored_verbs)
 			message = "[key_name(usr)] has unfrozen [key_name(M)]."
 		else
 			to_chat(M, "<span class='userdanger'>You have been frozen by an administrator.</span>")
@@ -44,7 +44,7 @@
 			M.client.show_verb_panel = FALSE
 			M.notransform = TRUE
 			M.client.afreeze_stored_verbs = M.verbs.Copy()
-			M.verbs.Cut()
+			remove_verb(M, M.verbs.Copy())
 			message = "[key_name(usr)] has frozen [key_name(M)]."
 		log_admin(message)
 		message_admins(message) //yogs end
@@ -276,53 +276,6 @@
 		log_admin("[key_name(usr)] removed [rule] from the forced roundstart rulesets.")
 		message_admins("[key_name(usr)] removed [rule] from the forced roundstart rulesets.", 1)
 
-	else if(href_list["f_dynamic_latejoin"])
-		if(!check_rights(R_ADMIN))
-			return
-		if(!SSticker || !SSticker.mode)
-			return alert(usr, "The game must start first.", null, null, null, null)
-		if(GLOB.master_mode != "dynamic")
-			return alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
-		var/latejoin_rules = list()
-		for (var/rule in subtypesof(/datum/dynamic_ruleset/latejoin))
-			var/datum/dynamic_ruleset/latejoin/newrule = new rule()
-			latejoin_rules[newrule.name] = newrule
-		var/added_rule = input(usr,"What ruleset do you want to force upon the next latejoiner? This will bypass threat level and population restrictions.", "Rigging Latejoin", null) as null|anything in latejoin_rules
-		if (added_rule)
-			var/datum/game_mode/dynamic/mode = SSticker.mode
-			mode.forced_latejoin_rule = latejoin_rules[added_rule]
-			log_admin("[key_name(usr)] set [added_rule] to proc on the next latejoin.")
-			message_admins("[key_name(usr)] set [added_rule] to proc on the next latejoin.", 1)
-			Game()
-
-	else if(href_list["f_dynamic_latejoin_clear"])
-		if(!check_rights(R_ADMIN))
-			return
-		if (SSticker && SSticker.mode && istype(SSticker.mode,/datum/game_mode/dynamic))
-			var/datum/game_mode/dynamic/mode = SSticker.mode
-			mode.forced_latejoin_rule = null
-			Game()
-			log_admin("[key_name(usr)] cleared the forced latejoin ruleset.")
-			message_admins("[key_name(usr)] cleared the forced latejoin ruleset.", 1)
-
-	else if(href_list["f_dynamic_midround"])
-		if(!check_rights(R_ADMIN))
-			return
-		if(!SSticker || !SSticker.mode)
-			return alert(usr, "The game must start first.", null, null, null, null)
-		if(GLOB.master_mode != "dynamic")
-			return alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
-		var/midround_rules = list()
-		for (var/rule in subtypesof(/datum/dynamic_ruleset/midround))
-			var/datum/dynamic_ruleset/midround/newrule = new rule()
-			midround_rules[newrule.name] = rule
-		var/added_rule = input(usr,"What ruleset do you want to force right now? This will bypass threat level and population restrictions.", "Execute Ruleset", null) as null|anything in midround_rules
-		if (added_rule)
-			var/datum/game_mode/dynamic/mode = SSticker.mode
-			log_admin("[key_name(usr)] executed the [added_rule] ruleset.")
-			message_admins("[key_name(usr)] executed the [added_rule] ruleset.", 1)
-			mode.picking_specific_rule(midround_rules[added_rule],1)
-
 	else if (href_list["f_dynamic_options"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -486,7 +439,7 @@
 		GLOB.dynamic_stacking_limit = input(usr,"Change the threat limit at which round-endings rulesets will start to stack.", "Change stacking limit", null) as num
 		log_admin("[key_name(usr)] set 'stacking_limit' to [GLOB.dynamic_stacking_limit].")
 		message_admins("[key_name(usr)] set 'stacking_limit' to [GLOB.dynamic_stacking_limit].")
-		dynamic_mode_options(usr)	
+		dynamic_mode_options(usr)
 
 	else if(href_list["f_dynamic_high_pop_limit"])
 		if(!check_rights(R_ADMIN))
@@ -505,7 +458,7 @@
 
 		log_admin("[key_name(usr)] set 'high_pop_limit' to [GLOB.dynamic_high_pop_limit].")
 		message_admins("[key_name(usr)] set 'high_pop_limit' to [GLOB.dynamic_high_pop_limit].")
-		dynamic_mode_options(usr)		
+		dynamic_mode_options(usr)
 
 	else if(href_list["f_dynamic_forced_threat"])
 		if(!check_rights(R_ADMIN))
@@ -811,6 +764,10 @@
 			var/message_id = href_list["deletemessageempty"]
 			delete_message(message_id, browse = TRUE)
 
+	else if(href_list["viewdemo"])
+		var/roundnumber = href_list["viewdemo"]
+		usr.client.demoview(roundnumber)
+
 	else if(href_list["editmessage"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -924,7 +881,7 @@
 
 	else if(href_list["f_secret"])
 		return HandleFSecret()
-		
+
 	else if(href_list["f_dynamic_roundstart"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -997,12 +954,13 @@
 		if(GLOB.master_mode != "dynamic")
 			return alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
 		var/midround_rules = list()
+		var/datum/game_mode/dynamic/mode = SSticker.mode
 		for (var/rule in subtypesof(/datum/dynamic_ruleset/midround))
 			var/datum/dynamic_ruleset/midround/newrule = new rule()
+			mode.configure_ruleset(newrule)
 			midround_rules[newrule.name] = rule
 		var/added_rule = input(usr,"What ruleset do you want to force right now? This will bypass threat level and population restrictions.", "Execute Ruleset", null) as null|anything in midround_rules
 		if (added_rule)
-			var/datum/game_mode/dynamic/mode = SSticker.mode
 			log_admin("[key_name(usr)] executed the [added_rule] ruleset.")
 			message_admins("[key_name(usr)] executed the [added_rule] ruleset.", 1)
 			mode.picking_specific_rule(midround_rules[added_rule],1)
@@ -1170,7 +1128,7 @@
 		GLOB.dynamic_stacking_limit = input(usr,"Change the threat limit at which round-endings rulesets will start to stack.", "Change stacking limit", null) as num
 		log_admin("[key_name(usr)] set 'stacking_limit' to [GLOB.dynamic_stacking_limit].")
 		message_admins("[key_name(usr)] set 'stacking_limit' to [GLOB.dynamic_stacking_limit].")
-		dynamic_mode_options(usr)	
+		dynamic_mode_options(usr)
 
 	else if(href_list["f_dynamic_high_pop_limit"])
 		if(!check_rights(R_ADMIN))
@@ -1189,7 +1147,7 @@
 
 		log_admin("[key_name(usr)] set 'high_pop_limit' to [GLOB.dynamic_high_pop_limit].")
 		message_admins("[key_name(usr)] set 'high_pop_limit' to [GLOB.dynamic_high_pop_limit].")
-		dynamic_mode_options(usr)		
+		dynamic_mode_options(usr)
 
 	else if(href_list["f_dynamic_forced_threat"])
 		if(!check_rights(R_ADMIN))
@@ -1208,7 +1166,7 @@
 
 		log_admin("[key_name(usr)] set 'forced_threat_level' to [GLOB.dynamic_forced_threat_level].")
 		message_admins("[key_name(usr)] set 'forced_threat_level' to [GLOB.dynamic_forced_threat_level].")
-		dynamic_mode_options(usr)	
+		dynamic_mode_options(usr)
 
 
 
@@ -1578,6 +1536,10 @@
 		var/atom/movable/AM = locate(href_list["admingetmovable"])
 		if(QDELETED(AM))
 			return
+		if(!check_rights(R_FUN))
+			if(is_centcom_level(AM.z) && !is_centcom_level(usr.z))
+				to_chat(usr, "You cannot get things from the Centcom Z-Level", confidential=TRUE)
+				return
 		AM.forceMove(get_turf(usr))
 
 	else if(href_list["adminplayerobservecoodjump"])
@@ -2390,7 +2352,7 @@
 		dat += "</BODY></HTML>"
 
 		usr << browse(dat.Join("<br>"), "window=related_[C];size=420x300")
-	
+
 	else if(href_list["centcomlookup"])
 		if(!check_rights(R_ADMIN))
 			return

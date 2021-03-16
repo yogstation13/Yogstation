@@ -280,6 +280,8 @@
 			temporary_unstoppable_movement = TRUE
 			ENABLE_BITFIELD(movement_type, UNSTOPPABLE)
 		return process_hit(T, select_target(T), qdel_self, TRUE)		//Hit whatever else we can since we're piercing through but we're still on the same tile.
+	else if(result == BULLET_ACT_PENETRATE) // This is slightly different from ACT_TURF in that it goes through the first thing
+		return process_hit(T, select_target(T), qdel_self, TRUE)
 	else if(result == BULLET_ACT_TURF)									//We hit the turf but instead we're going to also hit something else on it.
 		return process_hit(T, select_target(T), QDEL_SELF, TRUE)
 	else		//Whether it hit or blocked, we're done!

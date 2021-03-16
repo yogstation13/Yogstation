@@ -13,7 +13,6 @@ The three stages of the king goat:
  Stage 3: The king goat will completely heal, grow slightly bigger and start glowing. It has the exact same attacks as stage 2 but is more aggressive overall.
 
 The loot:
-The meteor gun: It has three shots before needing to be recharged, can insta-crit almost anybody and destroys almost anything you fire it at.
 The king goat pelt: Gained by butchering the King Goat's corpse. When worn on your head grants complete bomb immunity. Has slightly better gun and laser protection than the drake helm at the cost of slightly reduced melee protection. Makes goats friendly towards you as long as you are wearing it.
 
 Difficulty: Insanely Hard
@@ -95,14 +94,13 @@ Difficulty: Insanely Hard
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
 	pixel_y = 5//default_pixel_y = 5
 	//break_stuff_probability = 40
+	music_component = /datum/component/music_player/battle
+	music_path = /datum/music/sourced/battle/king_goat
 
 	var/spellscast = 0
 	var/phase3 = FALSE
 	var/sound_id = "goat"
 	var/special_attacks = 0
-	var/list/rangers = list()
-	var/current_song = 'yogstation/sound/ambience/Visager-Battle.ogg'
-	var/current_song_length = 1200
 	stun_chance = 7
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Initialize()
@@ -246,15 +244,12 @@ Difficulty: Insanely Hard
 	spellscast = 0
 	maxHealth = 750
 	revive(TRUE)
-	current_song = 'yogstation/sound/ambience/Visager-Miniboss_Fight.ogg'
-	current_song_length = 1759
-	var/sound/song_played = sound(current_song)
-	for(var/mob/M in rangers)
-		if(!M.client || !(M.client.prefs.toggles & SOUND_INSTRUMENTS))
-			continue
-		M.stop_sound_channel(CHANNEL_JUKEBOX)
-		rangers[M] = world.time + current_song_length
-		M.playsound_local(null, null, 30, channel = CHANNEL_JUKEBOX, S = song_played)
+	var/datum/component/music_player/player = GetComponent(/datum/component/music_player)
+	// Do a sudden transition of music
+	player.stop_all(0)
+	player.remove_all()
+	player.music_path = /datum/music/sourced/battle/king_goat_2
+	player.do_range_check(0)
 	stun_chance = 10
 	update_icon()
 	visible_message("<span class='cult'>\The [src]' wounds close with a flash, and when he emerges, he's even larger than before!</span>")
@@ -273,28 +268,6 @@ Difficulty: Insanely Hard
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Life()
 	. = ..()
-	if(stat != DEAD)
-		var/sound/song_played = sound(current_song)
-
-		for(var/mob/M in range(10, src))
-			if(!M.client || !(M.client.prefs.toggles & SOUND_INSTRUMENTS))
-				continue
-			if(!(M in rangers) || world.time > rangers[M])
-				M.stop_sound_channel(CHANNEL_JUKEBOX)
-				rangers[M] = world.time + current_song_length
-				M.playsound_local(null, null, 30, channel = CHANNEL_JUKEBOX, S = song_played)
-		for(var/mob/L in rangers)
-			if(get_dist(src, L) > 10)
-				rangers -= L
-				if(!L || !L.client)
-					continue
-				L.stop_sound_channel(CHANNEL_JUKEBOX)
-	else
-		for(var/mob/L in rangers)
-			rangers -= L
-			if(!L || !L.client)
-				continue
-			L.stop_sound_channel(CHANNEL_JUKEBOX)
 	if(move_to_delay < 3)
 		move_to_delay += 0.1
 	if((health <= 150 && !phase3 && spellscast == 5) || (stat == DEAD && !phase3)) //begin phase 3, reset spell limit and heal
@@ -312,28 +285,14 @@ Difficulty: Insanely Hard
 	qdel(src);
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/OnDeath()
-	for(var/mob/L in rangers)
-		rangers -= L
-		if(!L || !L.client)
-			continue
-		L.stop_sound_channel(CHANNEL_JUKEBOX)
 	if(phase3)
 		visible_message("<span class='cult'>\The [src] shrieks as the seal on his power breaks and he starts to break apart!</span>")
 		new /obj/structure/ladder/unbreakable/goat(loc)
-		new /obj/item/gun/energy/meteorgun(loc)
 		new /obj/item/toy/plush/goatplushie/angry/kinggoat(loc) //If someone dies from this after beating the king goat im going to laugh
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/death()
 	..()
 	OnDeath()
-
-/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Destroy()
-	for(var/mob/L in rangers)
-		rangers -= L
-		if(!L || !L.client)
-			continue
-		L.stop_sound_channel(CHANNEL_JUKEBOX)
-	. = ..()
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/AttackingTarget()
 	. = ..()

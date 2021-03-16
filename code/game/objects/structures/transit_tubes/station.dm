@@ -147,10 +147,11 @@
 					pod.empty_pod(input)
 					playsound(src, 'sound/mecha/mechturn.ogg', 25 ,1)
 				else
-					for (var/obj/structure/S in input)
-						if (istype(S, /obj/structure/closet) && !S.anchored)
-							S.forceMove(pod)
-							playsound(src, 'sound/mecha/mechturn.ogg', 25 ,1)
+					for (var/obj/structure/closet/S in input)
+						if (S.anchored)
+							continue
+						S.forceMove(pod)
+						playsound(src, 'sound/mecha/mechturn.ogg', 25 ,1)
 				pod.update_icon()
 			sleep(SleepTime)
 			if(open_status == STATION_TUBE_CLOSED && pod && pod.loc == loc)

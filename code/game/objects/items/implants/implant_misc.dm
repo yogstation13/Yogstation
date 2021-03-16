@@ -102,7 +102,7 @@
 /obj/item/implant/radio/activate()
 	. = ..()
 	// needs to be GLOB.deep_inventory_state otherwise it won't open
-	radio.ui_interact(usr, "main", null, FALSE, null, GLOB.deep_inventory_state)
+	radio.ui_interact(usr, state = GLOB.deep_inventory_state)
 
 /obj/item/implant/radio/Initialize(mapload)
 	. = ..()
@@ -123,6 +123,12 @@
 /obj/item/implant/radio/syndicate
 	desc = "Are you there God? It's me, Syndicate Comms Agent."
 	radio_key = /obj/item/encryptionkey/syndicate
+	subspace_transmission = TRUE
+
+/obj/item/implant/radio/antenna
+	name = "internal antenna"
+	desc = "The internal organ part of the antenna. Science has not yet given it a good name."
+	radio_key = /obj/item/encryptionkey/heads/captain
 	subspace_transmission = TRUE
 
 /obj/item/implant/radio/slime

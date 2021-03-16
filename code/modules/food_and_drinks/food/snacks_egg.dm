@@ -20,16 +20,21 @@
 	filling_color = "#F0E68C"
 	foodtype = MEAT | EGG
 	grind_results = list()
+	var/mob/living/egg_rper
 
 /obj/item/reagent_containers/food/snacks/egg/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] RPs as [src]!</span>")
 	if(istype(user) && user.mind)
-		var/mob/living/B = new(src)
-		B.real_name = name
-		B.name = name
-		B.stat = CONSCIOUS
-		user.mind.transfer_to(B)
+		egg_rper = new(src)
+		egg_rper.real_name = name
+		egg_rper.name = name
+		egg_rper.stat = CONSCIOUS
+		user.mind.transfer_to(egg_rper)
 	return BRUTELOSS
+
+/obj/item/reagent_containers/food/snacks/egg/Destroy()
+	qdel(egg_rper)
+	. = ..()
 
 /obj/item/reagent_containers/food/snacks/egg/gland
 	desc = "An egg! It looks weird..."

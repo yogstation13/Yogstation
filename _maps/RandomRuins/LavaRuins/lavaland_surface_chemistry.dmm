@@ -397,6 +397,20 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/ruin/powered)
+"X" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/item/clothing/suit/space/pirate,
+/obj/item/clothing/head/helmet/space/pirate,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered)
 "Y" = (
 /obj/item/clothing/head/helmet/space/pirate,
 /turf/open/floor/plating/lavaland_baseturf,
@@ -596,7 +610,7 @@ o
 p
 P
 C
-J
+X
 A
 a
 a

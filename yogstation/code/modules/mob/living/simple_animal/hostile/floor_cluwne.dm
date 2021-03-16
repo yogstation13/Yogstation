@@ -20,6 +20,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	attack_sound = 'sound/items/bikehorn.ogg'
 	del_on_death = TRUE
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB | LETPASSTHROW | PASSGLASS | PASSBLOB | PASSMACHINES //it's practically a ghost when unmanifested (under the floor)
+	sentience_type = SENTIENCE_BOSS
 	loot = list(/obj/item/clothing/mask/yogs/cluwne)
 	wander = FALSE
 	minimum_distance = 2
@@ -253,24 +254,12 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				if(I && !I.anchored)
 					I.throw_at(H, 4, 3)
 					to_chat(H, "<span class='warning'>What threw that?</span>")
-
+					
 			if(prob(2))
 				to_chat(H, "<i>yalp ot tnaw I</i>")
 				Appear()
 				manifested = FALSE
-				addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Manifest), 1)
-				if(current_victim.hud_used)//yay skewium
-					var/list/screens = list(current_victim.hud_used.plane_masters["[GAME_PLANE]"], current_victim.hud_used.plane_masters["[LIGHTING_PLANE]"])
-					var/matrix/skew = matrix()
-					var/intensity = 8
-					skew.set_skew(rand(-intensity,intensity), rand(-intensity,intensity))
-					var/matrix/newmatrix = skew
-
-					for(var/whole_screen in screens)
-						animate(whole_screen, transform = newmatrix, time = 5, easing = QUAD_EASING, loop = -1)
-						animate(transform = -newmatrix, time = 5, easing = QUAD_EASING)
-
-					addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Reset_View, screens), 10)
+				current_victim.set_drugginess(rand(1,10))
 
 		if(STAGE_TORMENT)
 			if(prob(5))

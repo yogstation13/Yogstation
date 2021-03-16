@@ -7,13 +7,13 @@
 		var/datum/world_topic/WT = I
 		var/keyword = initial(WT.keyword)
 		if(!keyword)
-			warning("[WT] has no keyword! Ignoring...")
+			stack_trace("[WT] has no keyword! Ignoring...")
 			continue
 		var/existing_path = .[keyword]
 		if(existing_path)
-			warning("[existing_path] and [WT] have the same keyword! Ignoring [WT]...")
+			stack_trace("[existing_path] and [WT] have the same keyword! Ignoring [WT]...")
 		else if(keyword == "key")
-			warning("[WT] has keyword 'key'! Ignoring...")
+			stack_trace("[WT] has keyword 'key'! Ignoring...")
 		else
 			.[keyword] = WT
 
@@ -88,7 +88,7 @@
 /datum/world_topic/comms_console/Run(list/input)
 	minor_announce(input["message"], "Incoming message from [input["message_sender"]]")
 	for(var/obj/machinery/computer/communications/CM in GLOB.machines)
-		CM.overrideCooldown()
+		CM.override_cooldown()
 
 /datum/world_topic/news_report
 	keyword = "News_Report"

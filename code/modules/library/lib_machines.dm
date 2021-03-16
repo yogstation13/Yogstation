@@ -51,7 +51,7 @@
 				var/datum/DBQuery/query_library_list_books = SSdbcore.NewQuery({"
 				SELECT author, title, category, id
 					FROM [format_table_name("library")]
-					WHERE isnull(deleted)
+					WHERE deleted IS NULL
 						AND author LIKE :like_author
 						AND title LIKE :like_title
 						AND (:category = 'Any' OR category = :category)
@@ -72,7 +72,6 @@
 			dat += "<A href='?src=[REF(src)];back=1'>\[Go Back\]</A><BR>"
 	var/datum/browser/popup = new(user, "publiclibrary", name, 600, 400)
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/computer/libraryconsole/Topic(href, href_list)
@@ -101,7 +100,7 @@
 		else
 			author = null
 	if(href_list["search"])
-		SQLquery = "SELECT author, title, category, id FROM [format_table_name("library")] WHERE isnull(deleted) AND "
+		SQLquery = "SELECT author, title, category, id FROM [format_table_name("library")] WHERE deleted IS NULL AND "
 		if(category == "Any")
 			SQLquery += "author LIKE '%[author]%' AND title LIKE '%[title]%'"
 		else
@@ -142,7 +141,7 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 	if(!SSdbcore.Connect())
 		return
 	GLOB.cachedbooks = list()
-	var/datum/DBQuery/query_library_cache = SSdbcore.NewQuery("SELECT id, author, title, category FROM [format_table_name("library")] WHERE isnull(deleted)")
+	var/datum/DBQuery/query_library_cache = SSdbcore.NewQuery("SELECT id, author, title, category FROM [format_table_name("library")] WHERE deleted IS NULL")
 	if(!query_library_cache.Execute())
 		qdel(query_library_cache)
 		return
@@ -317,7 +316,6 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 
 	var/datum/browser/popup = new(user, "library", name, 600, 400)
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/computer/libraryconsole/bookmanagement/proc/findscanner(viewrange)
@@ -465,7 +463,7 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 		else
 			cooldown = world.time + PRINTER_COOLDOWN
 			var/datum/DBQuery/query_library_print = SSdbcore.NewQuery(
-				"SELECT * FROM [format_table_name("library")] WHERE id=:id AND isnull(deleted)",
+				"SELECT * FROM [format_table_name("library")] WHERE id=:id AND deleted IS NULL",
 				list("id" = id)
 			)
 			if(!query_library_print.Execute())
@@ -541,7 +539,6 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 		dat += "<BR>"
 	var/datum/browser/popup = new(user, "scanner", name, 600, 400)
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/libraryscanner/Topic(href, href_list)

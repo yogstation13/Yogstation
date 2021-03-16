@@ -19,6 +19,7 @@
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails_animated/lizard, GLOB.animated_tails_list_lizard)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/human, GLOB.tails_list_human)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails_animated/human, GLOB.animated_tails_list_human)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/polysmorph, GLOB.tails_list_polysmorph)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts, GLOB.snouts_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/horns,GLOB.horns_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/ears, GLOB.ears_list)
@@ -31,6 +32,10 @@
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/wings, GLOB.r_wings_list,roundstart = TRUE)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/caps, GLOB.caps_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wings, GLOB.moth_wings_list)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wingsopen, GLOB.moth_wingsopen_list)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/teeth, GLOB.teeth_list)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/dome, GLOB.dome_list)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/dorsal_tubes, GLOB.dorsal_tubes_list)
 
 
 	//Species
@@ -42,13 +47,11 @@
 	for(var/path in subtypesof(/datum/surgery))
 		GLOB.surgeries_list += new path()
 
-	//Materials
-	for(var/path in subtypesof(/datum/material))
-		var/datum/material/D = new path()
-		GLOB.materials_list[D.id] = D
-
 	GLOB.emote_list = init_emote_list()
-	
+	//Skillcapes
+	for(var/path in subtypesof(/datum/skillcape))
+		var/datum/skillcape/A = new path()
+		GLOB.skillcapes += A
 
 	init_subtypes(/datum/crafting_recipe, GLOB.crafting_recipes)
 

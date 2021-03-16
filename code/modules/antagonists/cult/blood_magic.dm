@@ -139,7 +139,7 @@
 //Cult Blood Spells
 /datum/action/innate/cult/blood_spell/stun
 	name = "Stun"
-	desc = "Empowers your hand to stun and mute a victim on contact."
+	desc = "Empowers your hand to stun and mute a victim on contact. Effects become weaker as the cult grows in size."
 	button_icon_state = "hand"
 	magic_path = "/obj/item/melee/blood_magic/stun"
 	health_cost = 10
@@ -407,7 +407,7 @@
 //Stun
 /obj/item/melee/blood_magic/stun
 	name = "Stunning Aura"
-	desc = "Will stun and mute a victim on contact."
+	desc = "Will stun and mute a victim on contact. Effects become weaker as the cult grows."
 	color = RUNE_COLOR_RED
 	invocation = "Fuu ma'jin!"
 
@@ -417,6 +417,8 @@
 	var/mob/living/L = target
 	if(iscultist(target))
 		return
+	var/datum/antagonist/cult/cultist = user.mind.has_antag_datum(/datum/antagonist/cult)
+	var/datum/team/cult/cult = cultist.get_team()
 	if(iscultist(user))
 		user.visible_message("<span class='warning'>[user] holds up [user.p_their()] hand, which explodes in a flash of red light!</span>", \
 							"<span class='cultitalic'>You attempt to stun [L] with the spell!</span>")
@@ -439,20 +441,50 @@
 				target.visible_message("<span class='warning'>[L] starts to glow in a halo of light!</span>", \
 									   "<span class='userdanger'>A feeling of warmth washes over you, rays of holy light surround your body and protect you from the flash of light!</span>")
 		else
-			to_chat(user, "<span class='cultitalic'>In a brilliant flash of red, [L] falls to the ground!</span>")
-			L.Paralyze(160)
-			L.flash_act(1,1)
-			if(issilicon(target))
-				var/mob/living/silicon/S = L
-				S.emp_act(EMP_HEAVY)
-			else if(iscarbon(target))
-				var/mob/living/carbon/C = L
-				C.silent += 6
-				C.stuttering += 15
-				C.cultslurring += 15
-				C.Jitter(15)
-			if(is_servant_of_ratvar(L))
-				L.adjustBruteLoss(15)
+			if(cult.cult_ascendent)
+				to_chat(user, "<span class='cultitalic'>[L] is dazed by a flash of red light!</span>")
+				L.Knockdown(100)
+				L.apply_damage(50, STAMINA, BODY_ZONE_HEAD)
+				L.flash_act(1,1)
+				if(issilicon(target))
+					var/mob/living/silicon/S = L
+					S.emp_act(EMP_HEAVY)
+				else if(iscarbon(target))
+					var/mob/living/carbon/C = L
+					C.cultslurring += 10
+					C.Jitter(15)
+				if(is_servant_of_ratvar(L))
+					L.adjustBruteLoss(30)
+			else if(cult.cult_risen)
+				to_chat(user, "<span class='cultitalic'>In a dull flash of red, [L] falls to the ground!</span>")
+				L.Paralyze(80)
+				L.flash_act(1,1)
+				if(issilicon(target))
+					var/mob/living/silicon/S = L
+					S.emp_act(EMP_LIGHT)
+				else if(iscarbon(target))
+					var/mob/living/carbon/C = L
+					C.silent += 3
+					C.stuttering += 7
+					C.cultslurring += 7
+					C.Jitter(7)
+				if(is_servant_of_ratvar(L))
+					L.adjustBruteLoss(20)
+			else
+				to_chat(user, "<span class='cultitalic'>In a brilliant flash of red, [L] falls to the ground!</span>")
+				L.Paralyze(160)
+				L.flash_act(1,1)
+				if(issilicon(target))
+					var/mob/living/silicon/S = L
+					S.emp_act(EMP_HEAVY)
+				else if(iscarbon(target))
+					var/mob/living/carbon/C = L
+					C.silent += 6
+					C.stuttering += 15
+					C.cultslurring += 15
+					C.Jitter(15)
+				if(is_servant_of_ratvar(L))
+					L.adjustBruteLoss(15)
 		uses--
 	..()
 
@@ -588,36 +620,6 @@
 				uses --
 				new /obj/item/stack/sheet/runed_metal(T,quantity)
 				to_chat(user, "<span class='warning'>A dark cloud emanates from you hand and swirls around the plasteel, transforming it into runed metal!</span>")
-				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
-		else if(istype(target,/mob/living/silicon/robot))
-			var/mob/living/silicon/robot/candidate = target
-			if(candidate.mmi)
-				user.visible_message("<span class='danger'>A dark cloud emanates from [user]'s hand and swirls around [candidate]!</span>")
-				playsound(T, 'sound/machines/airlock_alien_prying.ogg', 80, 1)
-				var/prev_color = candidate.color
-				candidate.color = "black"
-				if(do_after(user, 90, target = candidate))
-					candidate.emp_act(EMP_HEAVY)
-					var/construct_class = alert(user, "Please choose which type of construct you wish to create.",,"Juggernaut","Wraith","Artificer")
-					user.visible_message("<span class='danger'>The dark cloud receedes from what was formerly [candidate], revealing a\n [construct_class]!</span>")
-					switch(construct_class)
-						if("Juggernaut")
-							makeNewConstruct(/mob/living/simple_animal/hostile/construct/armored, candidate, user, 0, T)
-						if("Wraith")
-							makeNewConstruct(/mob/living/simple_animal/hostile/construct/wraith, candidate, user, 0, T)
-						if("Artificer")
-							makeNewConstruct(/mob/living/simple_animal/hostile/construct/builder, candidate, user, 0, T)
-					SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
-					uses--
-					candidate.mmi = null
-					qdel(candidate)
-				else
-					candidate.color = prev_color
-					return
-			else
-				uses--
-				to_chat(user, "<span class='warning'>A dark cloud emanates from you hand and swirls around [candidate] - twisting it into a construct shell!</span>")
-				new /obj/structure/constructshell(T)
 				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
 		else if(istype(target,/obj/machinery/door/airlock))
 			playsound(T, 'sound/machines/airlockforced.ogg', 50, 1)

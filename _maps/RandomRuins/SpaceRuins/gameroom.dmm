@@ -676,12 +676,6 @@
 /obj/structure/chair/stool/bar,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
-"Ct" = (
-/obj/effect/mob_spawn/human/gamer{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
 "CT" = (
 /obj/machinery/vending/autodrobe/all_access,
 /obj/machinery/door/firedoor/border_only{
@@ -1351,7 +1345,7 @@ yS
 Ag
 yR
 Ag
-Ct
+Ag
 wT
 og
 og
@@ -1383,7 +1377,7 @@ yS
 Ag
 Ag
 Ag
-Ct
+Ag
 wT
 og
 og
@@ -1415,7 +1409,7 @@ yS
 Ag
 Ag
 Ag
-Ct
+Ag
 wT
 og
 og
@@ -1447,7 +1441,7 @@ yS
 Ag
 Ag
 Ag
-Ct
+Ag
 wT
 og
 og

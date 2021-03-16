@@ -93,6 +93,8 @@
 		return "Parts misaligned!"
 	if(!has_space())
 		return "Not enough free space!"
+	if(is_reebe(z))
+		return text2ratvar("Not on my watch")
 
 /obj/machinery/bsa/middle/proc/has_space()
 	var/cannon_dir = get_cannon_direction()
@@ -179,7 +181,7 @@
 /obj/machinery/bsa/full/proc/fire(mob/user, turf/bullseye)
 	var/turf/point = get_front_turf()
 	for(var/turf/T in getline(get_step(point,dir),get_target_turf()))
-		T.ex_act(EXPLODE_DEVASTATE)
+		SSexplosions.highturf += T //also fucks everything else on the turf
 	point.Beam(get_target_turf(),icon_state="bsa_beam",time=50,maxdistance = world.maxx) //ZZZAP
 	new /obj/effect/temp_visual/bsa_splash(point, dir)
 	if(user.client)
@@ -219,11 +221,13 @@
 	icon_state = "control_boxp"
 	var/area_aim = FALSE //should also show areas for targeting
 
-/obj/machinery/computer/bsa_control/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/bsa_control/ui_state(mob/user)
+	return GLOB.physical_state
+
+/obj/machinery/computer/bsa_control/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "BluespaceArtillery", name, 400, 220, master_ui, state)
+		ui = new(user, src, "BluespaceArtillery", name)
 		ui.open()
 
 /obj/machinery/computer/bsa_control/ui_data()
@@ -281,7 +285,7 @@
 
 /**
   * Fires the BSA (duh) if it has power
-  * 
+  *
   * If its target is the [pirate gps] [/obj/item/gps/pirate], it'll just fire at the edge of the map then call the [GPS' on_shoot proc] [/obj/item/gps/pirate/proc/on_shoot]
   *
   * Arguments:

@@ -118,7 +118,7 @@
 		return
 
 	for(var/id in air.get_gases())
-		if (nonoverlaying_gases[id])
+		if(nonoverlaying_gases[id])
 			continue
 		var/gas_meta = GLOB.meta_gas_info[id]
 		var/gas_overlay = gas_meta[META_GAS_OVERLAY]

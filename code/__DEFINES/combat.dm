@@ -107,6 +107,7 @@
 
 //the define for visible message range in combat
 #define COMBAT_MESSAGE_RANGE 3
+#define DEFAULT_MESSAGE_RANGE 7
 
 //Shove knockdown lengths (deciseconds)
 #define SHOVE_KNOCKDOWN_HUMAN 10
@@ -117,8 +118,6 @@
 //Shove disarming item list
 GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 	/obj/item/gun)))
-
-//Combat object defines
 
 //Embedded objects
 #define EMBEDDED_PAIN_CHANCE 					15	//Chance for embedded objects to cause pain (damage user)
@@ -218,7 +217,13 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define DAMAGE_PRECISION 0.1
 
 //bullet_act() return values
+/// It's a successful hit, whatever that means in the context of the thing it's hitting.
 #define BULLET_ACT_HIT				"HIT"		//It's a successful hit, whatever that means in the context of the thing it's hitting.
-#define BULLET_ACT_BLOCK			"BLOCK"		//It's a blocked hit, whatever that means in the context of the thing it's hitting.
-#define BULLET_ACT_FORCE_PIERCE		"PIERCE"	//It pierces through the object regardless of the bullet being piercing by default.
-#define BULLET_ACT_TURF				"TURF"		//It hit us but it should hit something on the same turf too. Usually used for turfs.
+/// It's a blocked hit, whatever that means in the context of the thing it's hitting.
+#define BULLET_ACT_BLOCK			"BLOCK"
+/// It pierces through the object regardless of the bullet being piercing by default.
+#define BULLET_ACT_FORCE_PIERCE		"PIERCE"
+/// It hit us but it should hit something on the same turf too. Usually used for turfs.
+#define BULLET_ACT_TURF				"TURF"
+/// It hit something, but it should just keep going until it hit something else
+#define BULLET_ACT_PENETRATE		"PENETRATE"

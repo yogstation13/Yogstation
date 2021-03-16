@@ -16,6 +16,9 @@
 	var/turf/open/T = get_turf(A)
 	if(!istype(T) || T.return_air().return_pressure() > (WARNING_HIGH_PRESSURE - 10))
 		return
+	var/area/area = get_area(T)
+	if(area.outdoors)
+		return
 
 	var/datum/gas_mixture/turf_air = T.return_air()
 	var/datum/gas_mixture/stank_breath = T.remove_air(1 / turf_air.return_volume() * turf_air.total_moles())

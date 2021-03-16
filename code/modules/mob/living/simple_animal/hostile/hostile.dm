@@ -137,10 +137,8 @@
 			if(can_see(targets_from, HM, vision_range))
 				. += HM
 	else
-		. = list() // The following code is only very slightly slower than just returning oview(vision_range, targets_from), but it saves us much more work down the line, particularly when bees are involved
-		for (var/obj/A in oview(vision_range, targets_from))
-			. += A
-		for (var/mob/A in oview(vision_range, targets_from))
+		. = list()
+		for (var/atom/movable/A in oview(vision_range, targets_from))
 			. += A
 
 /mob/living/simple_animal/hostile/proc/FindTarget(var/list/possible_targets, var/HasTargetsList = 0)//Step 2, filter down possible targets to things we actually care about
@@ -553,7 +551,7 @@ mob/living/simple_animal/hostile/proc/DestroySurroundings() // for use with mega
 		toggle_ai(AI_Z_OFF)
 		return
 
-	var/cheap_search = isturf(T) && !is_station_level(T.z)
+	var/cheap_search = isturf(T) && !(is_station_level(T.z) || is_mining_level(T.z))
 	if (cheap_search)
 		tlist = ListTargetsLazy(T.z)
 	else

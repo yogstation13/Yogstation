@@ -40,11 +40,6 @@
 	name = "Lavaland Gas Station"
 	icon_state = "dk_yellow" // yogs end
 
-/area/ruin/powered/spacebar //yogs start
-	name = "Space Bar"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
-	icon_state = "dk_yellow" //yogs end
-
 /area/ruin/unpowered/syndicate_lava_base
 	name = "Secret Base"
 	icon_state = "dk_yellow"
@@ -55,6 +50,10 @@
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	noteleport = TRUE
 	icon_state = "dk_yellow" //yogs end
+
+/area/ruin/unpowered/russianbunker
+	name = "Russian Bunker"
+	noteleport = TRUE
 
 /area/ruin/unpowered/syndicate_lava_base/engineering
 	name = "Syndicate Lavaland Engineering"

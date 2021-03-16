@@ -54,10 +54,9 @@
 				to_chat(user, "<span class='warning'>You try to insert the currently loaded program into [target]'s nanites, but the installation fails.</span>")
 
 //Same UI as the nanite programmer, as it pretty much does the same
-/obj/item/nanite_hijacker/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.hands_state)
-	SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/nanite_hijacker/ui_interact(mob/user, datum/tgui/ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "nanite_programmer", "Internal Nanite Programmer", 420, 800, master_ui, state)
+		ui = new(user, src, "nanite_programmer", "Internal Nanite Programmer")
 		ui.open()
 
 /obj/item/nanite_hijacker/ui_data()

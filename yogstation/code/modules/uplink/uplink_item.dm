@@ -107,6 +107,7 @@
 	desc = "An implant injected into another body, forcing the victim to obey any command by the user."
 	item = /obj/item/storage/box/syndie_kit/imp_mindslave
 	cost = 7
+	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 20
 
 /datum/uplink_item/implants/greytide

@@ -43,12 +43,12 @@
 		loc.visible_message("<span class='warning'>\The [src] begins to shake. Stand back!</span>")
 		used = TRUE
 		sleep(50)
-		var/turf/deploy_location = get_turf(src)
+		var/turf/deploy_location = get_turf_global(src)
 		var/status = template.check_deploy(deploy_location)
 		switch(status)
 			if(SHELTER_DEPLOY_BAD_AREA)
 				src.loc.visible_message("<span class='warning'>\The [src] will not function in this area.</span>")
-			if(SHELTER_DEPLOY_BAD_TURFS, SHELTER_DEPLOY_ANCHORED_OBJECTS)
+			if(SHELTER_DEPLOY_BAD_TURFS, SHELTER_DEPLOY_ANCHORED_OBJECTS, SHELTER_DEPLOY_OUTSIDE_MAP)
 				var/width = template.width
 				var/height = template.height
 				src.loc.visible_message("<span class='warning'>\The [src] doesn't have room to deploy! You need to clear a [width]x[height] area!</span>")
@@ -57,13 +57,13 @@
 			used = FALSE
 			return
 
-		playsound(src, 'sound/effects/phasein.ogg', 100, 1)
-
+		template.load(deploy_location, centered = TRUE)
 		var/turf/T = deploy_location
 		if(!is_mining_level(T.z)) //only report capsules away from the mining/lavaland level
 			message_admins("[ADMIN_LOOKUPFLW(usr)] activated a bluespace capsule away from the mining level! [ADMIN_VERBOSEJMP(T)]")
 			log_admin("[key_name(usr)] activated a bluespace capsule away from the mining level at [AREACOORD(T)]")
-		template.load(deploy_location, centered = TRUE)
+
+		playsound(src, 'sound/effects/phasein.ogg', 100, TRUE)
 		new /obj/effect/particle_effect/smoke(get_turf(src))
 		qdel(src)
 
@@ -315,7 +315,7 @@
 						/obj/item/stack/telecrystal/twenty,
 						/obj/item/nuke_core,
 						/obj/item/phylactery,
-						/obj/item/banhammer)
+						/obj/item/bikehorn)
 
 /obj/item/fakeartefact/Initialize()
 	. = ..()

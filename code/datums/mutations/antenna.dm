@@ -4,31 +4,21 @@
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>You feel an antenna sprout from your forehead.</span>"
 	text_lose_indication = "<span class='notice'>Your antenna shrinks back down.</span>"
-	instability = 5
+	instability = 15
 	difficulty = 8
-	var/obj/item/implant/radio/antenna/linked_radio
-
-/obj/item/implant/radio/antenna
-	name = "internal antenna organ"
-	desc = "The internal organ part of the antenna. Science has not yet given it a good name."
-	icon = 'icons/obj/radio.dmi'//maybe make a unique sprite later. not important
-	icon_state = "walkietalkie"
-
-/obj/item/implant/radio/antenna/Initialize(mapload)
-	..()
-	radio.name = "internal antenna"
+	var/obj/item/implant/radio/antenna/radio
 
 /datum/mutation/human/antenna/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	linked_radio = new(owner)
-	linked_radio.implant(owner, null, TRUE, TRUE)
+	radio = new(owner)
+	radio.implant(owner, null, TRUE, TRUE)
 
 /datum/mutation/human/antenna/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	if(linked_radio)
-		linked_radio.Destroy()
+	if(radio)
+		radio.Destroy()
 
 /datum/mutation/human/antenna/New(class_ = MUT_OTHER, timer, datum/mutation/human/copymut)
 	..()

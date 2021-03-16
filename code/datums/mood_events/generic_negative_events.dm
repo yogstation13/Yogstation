@@ -56,7 +56,7 @@
 	description = "<span class='warning'>I feel sad for no particular reason.</span>\n"
 	mood_change = -9
 	timeout = 1200
-	
+
 /datum/mood_event/depression_moderate
 	description = "<span class='warning'>I feel miserable.</span>\n"
 	mood_change = -14
@@ -121,8 +121,8 @@
 	mood_change = -3
 
 /datum/mood_event/family_heirloom_missing
-	description = "<span class='warning'>I'm missing my family heirloom...</span>\n"
-	mood_change = -4
+	description = "<span class='boldwarning'>I'm missing my family heirloom...</span>\n"
+	mood_change = -30
 
 /datum/mood_event/healsbadman
 	description = "<span class='warning'>I feel like I'm held together by flimsy string, and could fall apart at any moment!</span>\n"
@@ -207,6 +207,11 @@
 	description = "<span class='warning'>I've produced better art than that from my ass.</span>\n"
 	mood_change = -2
 	timeout = 1200
+
+/datum/mood_event/gates_of_mansus
+	description = "<span class='boldwarning'>I CAN'T- I CAN'T- I CAN'T- SEE ME- MYSELF- WHERE- WHAT AM I?</span>\n"
+	mood_change = -25
+	timeout = 4 MINUTES
 
 //These are unused so far but I want to remember them to use them later
 /datum/mood_event/cloned_corpse

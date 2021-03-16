@@ -38,7 +38,7 @@
 	flags_1 = CONDUCT_1
 	sharpness = IS_SHARP
 	w_class = WEIGHT_CLASS_BULKY
-	force = 30
+	force = 25
 	throwforce = 10
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "rended")
@@ -260,7 +260,7 @@
 	desc = "A strong bola, bound with dark magic that allows it to pass harmlessly through Nar'sien cultists. Throw it to trip and slow your victim."
 	icon_state = "bola_cult"
 	breakouttime = 60
-	knockdown = 20
+	immobilize = 20
 
 /obj/item/restraints/legcuffs/bola/cult/pickup(mob/living/user)
 	. = ..()
@@ -926,7 +926,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("bumped", "prodded")
 	hitsound = 'sound/weapons/smash.ogg'
-	var/illusions = 2
+	var/illusions = 5
 
 /obj/item/shield/mirror/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(iscultist(owner))
@@ -945,8 +945,8 @@ GLOBAL_VAR_INIT(curselimit, 0)
 				return FALSE //To avoid reflection chance double-dipping with block chance
 		. = ..()
 		if(.)
-			playsound(src, 'sound/weapons/parry.ogg', 100, 1)
 			if(illusions > 0)
+				playsound(src, 'sound/weapons/parry.ogg', 100, 1)
 				illusions--
 				addtimer(CALLBACK(src, /obj/item/shield/mirror.proc/readd), 450)
 				if(prob(60))
@@ -959,7 +959,13 @@ GLOBAL_VAR_INIT(curselimit, 0)
 					E.Copy_Parent(owner, 70, 10)
 					E.GiveTarget(owner)
 					E.Goto(owner, owner.movement_delay(), E.minimum_distance)
+			else
+				var/turf/T = get_turf(owner)
+				T.visible_message("<span class='warning'>[src] shatters as it blocks [hitby]!</span>")
+				new /obj/effect/temp_visual/cult/sparks(T)
+				qdel(src)
 			return TRUE
+				
 	else
 		if(prob(50))
 			var/mob/living/simple_animal/hostile/illusion/H = new(owner.loc)

@@ -282,7 +282,7 @@
 		else
 			plant_overlay.icon_state = myseed.icon_harvest
 	else
-		var/t_growthstate = min(round((age / myseed.maturation) * myseed.growthstages), myseed.growthstages)
+		var/t_growthstate = clamp(round((age / myseed.maturation) * myseed.growthstages), 1, myseed.growthstages)
 		plant_overlay.icon_state = "[myseed.icon_grow][t_growthstate]"
 	add_overlay(plant_overlay)
 
@@ -657,6 +657,17 @@
 	// FEED ME SEYMOUR
 	if(S.has_reagent(/datum/reagent/medicine/strange_reagent, 1))
 		spawnplant()
+	
+	// Honey, Pests are dieing of sugar, so is the plant
+	if(S.has_reagent(/datum/reagent/consumable/honey, 1))
+		adjustPests(-rand(2,5))
+		adjustHealth(-round(S.get_reagent_amount(/datum/reagent/consumable/honey) * 1))
+
+	// Buzz Fuzz, a drink seemingly made for plants...
+	if(S.has_reagent(/datum/reagent/consumable/buzz_fuzz, 1))
+		adjustPests(-rand(2,5))
+		adjustHealth(round(S.get_reagent_amount(/datum/reagent/consumable/buzz_fuzz) * 0.1))
+		adjustNutri(round(S.get_reagent_amount(/datum/reagent/consumable/buzz_fuzz) * 0.5))
 
 	// The best stuff there is. For testing/debugging.
 	if(S.has_reagent(/datum/reagent/medicine/adminordrazine, 1))
@@ -675,6 +686,22 @@
 				mutatepest(user)
 			else
 				to_chat(user, "<span class='warning'>Nothing happens...</span>")
+
+/obj/machinery/hydroponics/attack_ghost(mob/user)
+	if(myseed)
+		to_chat(user, "*** <B>[myseed.plantname]</B> ***" )
+		to_chat(user, "- Plant Age: <span class='notice'>[age]</span>")
+		var/list/text_string = myseed.get_analyzer_text()
+		if(text_string)
+			to_chat(user, text_string)
+	else
+		to_chat(user, "<B>No plant found.</B>")
+	to_chat(user, "- Weed level: <span class='notice'>[weedlevel] / 10</span>")
+	to_chat(user, "- Pest level: <span class='notice'>[pestlevel] / 10</span>")
+	to_chat(user, "- Toxicity level: <span class='notice'>[toxic] / 100</span>")
+	to_chat(user, "- Water level: <span class='notice'>[waterlevel] / [maxwater]</span>")
+	to_chat(user, "- Nutrition level: <span class='notice'>[nutrilevel] / [maxnutri]</span>")
+	to_chat(user, "")
 
 /obj/machinery/hydroponics/attackby(obj/item/O, mob/user, params)
 	//Called when mob user "attacks" it with object O

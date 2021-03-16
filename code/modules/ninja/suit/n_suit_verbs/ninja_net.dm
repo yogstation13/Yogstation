@@ -17,7 +17,10 @@
 		if(T.density)//Don't want them shooting nets through walls. It's kind of cheesy.
 			to_chat(H, "<span class='warning'>You may not use an energy net through solid obstacles!</span>")
 			return
-	if(!ninjacost(200,N_STEALTH_CANCEL))
+	if(istype(C, /mob/dead/observer))
+		to_chat(H, "<span class='warning'>You may not use an energy net on ghosts!</span>")
+		return
+	if(!ninjacost(250,N_STEALTH_CANCEL)) //25 energy, 25% of base cell.
 		H.Beam(C,"n_beam",time=15)
 		H.say("Get over here!", forced = "ninja net")
 		var/obj/structure/energy_net/E = new /obj/structure/energy_net(C.drop_location())

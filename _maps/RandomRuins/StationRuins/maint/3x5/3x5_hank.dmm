@@ -1,0 +1,74 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"e" = (
+/obj/machinery/vending/autodrobe,
+/turf/open/floor/plasteel/vaporwave,
+/area/template_noop)
+"f" = (
+/turf/closed/wall/mineral/wood,
+/area/template_noop)
+"g" = (
+/turf/open/floor/carpet/orange,
+/area/template_noop)
+"i" = (
+/obj/structure/bed,
+/obj/item/bedsheet/clown,
+/obj/machinery/light_switch{
+	pixel_x = 20
+	},
+/turf/open/floor/carpet/orange,
+/area/template_noop)
+"m" = (
+/turf/open/floor/plasteel/vaporwave,
+/area/template_noop)
+"B" = (
+/obj/structure/dresser,
+/obj/item/flashlight/lamp/bananalamp{
+	pixel_x = -2;
+	pixel_y = 17
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/template_noop)
+"D" = (
+/obj/structure/closet/crate/wooden/toy,
+/turf/open/floor/plasteel/vaporwave,
+/area/template_noop)
+"G" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/carpet/orange,
+/area/template_noop)
+"M" = (
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/vaporwave,
+/area/template_noop)
+"S" = (
+/obj/machinery/door/airlock/bananium/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/stairs/old,
+/area/template_noop)
+
+(1,1,1) = {"
+e
+m
+m
+S
+g
+"}
+(2,1,1) = {"
+m
+m
+M
+f
+G
+"}
+(3,1,1) = {"
+B
+D
+m
+f
+i
+"}

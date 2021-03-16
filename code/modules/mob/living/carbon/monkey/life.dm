@@ -39,7 +39,7 @@
 			if(prob(1))
 				to_chat(src, "<span class='danger'>You mutate!</span>")
 				easy_randmut(NEGATIVE+MINOR_NEGATIVE)
-				emote("gasp")
+				INVOKE_ASYNC(src, .proc/emote, "gasp")
 				domutcheck()
 
 				if(radiation > RAD_MOB_MUTATE * 2 && prob(50))

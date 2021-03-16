@@ -73,6 +73,9 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	if(!iscultist(user))
 		to_chat(user, "<span class='warning'>You aren't able to understand the words of [src].</span>")
 		return
+	if(istype(user, /mob/living/simple_animal/shade))
+		to_chat(user, "<span class='warning'>Your form is not yet strong enough to utilize the [src].</span>")
+		return
 	var/list/invokers = can_invoke(user)
 	if(invokers.len >= req_cultists)
 		invoke(invokers)
@@ -131,6 +134,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 					if((HAS_TRAIT(H, TRAIT_MUTE)) || H.silent)
 						continue
 				if(L.stat)
+					continue
+				if(istype(user, /mob/living/simple_animal/shade))
 					continue
 				invokers += L
 	return invokers
@@ -265,10 +270,18 @@ structure_check() searches for nearby cultist structures required for the invoca
 	</b></span>")
 	if(ishuman(convertee))
 		var/mob/living/carbon/human/H = convertee
+		if(is_banned_from(H.ckey, ROLE_CULTIST))
+			H.ghostize(FALSE) // You're getting ghosted no escape
+			var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as [H.name]?", ROLE_CULTIST, null, ROLE_CULTIST, 5 SECONDS, H)
+			if(LAZYLEN(candidates))
+				var/mob/dead/observer/C = pick(candidates)
+				to_chat(H, "Your mob has been taken over by a ghost! Appeal your job ban if you want to avoid this in the future!")
+				message_admins("[key_name_admin(C)] has taken control of ([key_name_admin(H)]) to replace a jobbanned player.")
+				H.key = C.key
 		H.uncuff()
 		H.stuttering = 0
 		H.cultslurring = 0
-	return 1
+	return TRUE
 
 /obj/effect/rune/convert/proc/do_sacrifice(mob/living/sacrificial, list/invokers)
 	var/mob/living/first_invoker = invokers[1]
@@ -277,7 +290,6 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/datum/antagonist/cult/C = first_invoker.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
 	if(!C)
 		return
-
 
 	var/big_sac = FALSE
 	if((((ishuman(sacrificial) || iscyborg(sacrificial)) && sacrificial.stat != DEAD) || C.cult_team.is_sacrifice_target(sacrificial.mind)) && invokers.len < 3)
@@ -307,6 +319,11 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 	var/obj/item/soulstone/stone = new /obj/item/soulstone(get_turf(src))
 	if(sacrificial.mind && !sacrificial.suiciding)
+		if(ishuman(sacrificial))
+			var/mob/living/carbon/human/H = sacrificial
+			if(is_banned_from(H.ckey, ROLE_CULTIST))
+				H.ghostize(FALSE) // You're getting ghosted no escape
+				H.key = null // Still useful to cult
 		stone.invisibility = INVISIBILITY_MAXIMUM //so it's not picked up during transfer_soul()
 		stone.transfer_soul("FORCE", sacrificial, usr)
 		stone.invisibility = 0
@@ -543,10 +560,10 @@ structure_check() searches for nearby cultist structures required for the invoca
 			message_admins("[ADMIN_LOOKUPFLW(user)] erased a Narsie rune with a null rod")
 			..()
 
-//Rite of Resurrection: Requires a dead or inactive cultist. When reviving the dead, you can only perform one revival for every sacrifice your cult has carried out.
+//Rite of Resurrection: Requires a dead or inactive cultist. When reviving the dead, you can only perform one revival for every three sacrifices your cult has carried out.
 /obj/effect/rune/raise_dead
 	cultist_name = "Revive"
-	cultist_desc = "requires a dead, mindless, or inactive cultist placed upon the rune. Provided there have been sufficient sacrifices, they will be given a new life."
+	cultist_desc = "requires a dead, mindless, or inactive cultist placed upon the rune. Provided there have been sufficient sacrifices, they will be given a new life. This will cause large amounts of damage to the invoker and the revived corpse."
 	invocation = "Pasnar val'keriam usinar. Savrae ines amutan. Yam'toth remium il'tarat!" //Depends on the name of the user - see below
 	icon_state = "1"
 	color = RUNE_COLOR_MEDIUMRED
@@ -556,7 +573,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	. = ..()
 	if(iscultist(user) || user.stat == DEAD)
 		var/revive_number = LAZYLEN(GLOB.sacrificed) - revives_used
-		. += "<b>Revives Remaining:</b> [revive_number]"
+		. += "<b>Revives Remaining:</b> [round(revive_number/SOULS_TO_REVIVE)]"
 
 /obj/effect/rune/raise_dead/invoke(var/list/invokers)
 	var/turf/T = get_turf(src)
@@ -595,6 +612,9 @@ structure_check() searches for nearby cultist structures required for the invoca
 		revives_used += SOULS_TO_REVIVE
 		mob_to_revive.revive(1, 1) //This does remove traits and such, but the rune might actually see some use because of it!
 		mob_to_revive.grab_ghost()
+		mob_to_revive.adjustBruteLoss(60)
+		var/damage4invoker = abs(user.health * 0.4)
+		user.adjustBruteLoss(damage4invoker)
 	if(!mob_to_revive.client || mob_to_revive.client.is_afk())
 		set waitfor = FALSE
 		var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [mob_to_revive.name], an inactive blood cultist?", ROLE_CULTIST, null, ROLE_CULTIST, 50, mob_to_revive)

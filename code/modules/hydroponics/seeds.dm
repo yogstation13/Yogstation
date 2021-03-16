@@ -325,6 +325,13 @@
 /obj/item/seeds/proc/on_chem_reaction(datum/reagents/S)  //in case seeds have some special interaction with special chems
 	return
 
+/// Ghost attack proc
+/obj/item/seeds/attack_ghost(mob/user)
+	to_chat(user, "<span class='info'>*---------*\n This is \a <span class='name'>[src]</span>.</span>")
+	var/text = get_analyzer_text()
+	if(text)
+		to_chat(user, "<span class='notice'>[text]</span>")
+
 /obj/item/seeds/attackby(obj/item/O, mob/user, params)
 	if (istype(O, /obj/item/plant_analyzer))
 		to_chat(user, "<span class='info'>*---------*\n This is \a <span class='name'>[src]</span>.</span>")

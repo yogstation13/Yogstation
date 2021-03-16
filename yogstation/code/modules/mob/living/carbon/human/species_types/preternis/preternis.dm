@@ -42,7 +42,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		if(istype(BP,/obj/item/bodypart/chest) || istype(BP,/obj/item/bodypart/head))
 			continue
 		BP.max_damage = 35
-	C.grant_language(/datum/language/machine)
 
 /datum/species/preternis/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()
@@ -54,8 +53,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	C.clear_alert("preternis_emag") //this means a changeling can transform from and back to a preternis to clear the emag status but w/e i cant find a solution to not do that
 	C.clear_fullscreen("preternis_emag")
 	C.remove_movespeed_modifier("preternis_teslium")
-	if(C.job != "Curator")// if not curator, removes the encoded audio language.
-		C.remove_language(/datum/language/machine)
 
 /datum/species/preternis/spec_emp_act(mob/living/carbon/human/H, severity)
 	. = ..()

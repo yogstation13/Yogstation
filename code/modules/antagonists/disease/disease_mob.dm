@@ -83,6 +83,7 @@ the new instance inside the host to be updated to the template's stats.
 	if(freemove)
 		to_chat(src, "<span class='warning'>You have [DisplayTimeText(freemove_end - world.time)] to select your first host. Click on a human to select your host.</span>")
 
+
 /mob/camera/disease/get_status_tab_items()
 	. = ..()
 	if(freemove)
@@ -113,7 +114,7 @@ the new instance inside the host to be updated to the template's stats.
 			follow_next(Dir & NORTHWEST)
 			last_move_tick = world.time
 
-/mob/camera/disease/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+/mob/camera/disease/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
 	. = ..()
 	var/atom/movable/to_follow = speaker
 	if(radio_freq)
@@ -126,9 +127,9 @@ the new instance inside the host to be updated to the template's stats.
 		link = ""
 	// Create map text prior to modifying message for goonchat
 	if (client?.prefs.chat_on_map && (client.prefs.see_chat_non_mob || ismob(speaker)))
-		create_chat_message(speaker, message_language, raw_message, spans, message_mode)
+		create_chat_message(speaker, message_language, raw_message, spans)
 	// Recompose the message, because it's scrambled by default
-	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode)
+	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mods)
 	to_chat(src, "[link] [message]")
 
 

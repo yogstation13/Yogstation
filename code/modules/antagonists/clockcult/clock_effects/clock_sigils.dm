@@ -360,7 +360,7 @@
 				if(L.stat == CONSCIOUS)
 					vitality_for_cycle = 2
 				vitality_for_cycle = min(GLOB.clockwork_vitality, vitality_for_cycle)
-			var/vitality_used = L.heal_ordered_damage(vitality_for_cycle, damage_heal_order)
+			var/vitality_used = L.heal_ordered_damage(vitality_for_cycle, damage_heal_order, BODYPART_ANY)
 
 			if(!vitality_used)
 				break

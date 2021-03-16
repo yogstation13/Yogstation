@@ -346,7 +346,8 @@
 					/obj/item/clothing/shoes/galoshes = 2,
 					/obj/item/watertank/janitor = 2,
 					/obj/item/storage/belt/janitor = 2,
-					/obj/item/clothing/accessory/armband/service = 1)
+					/obj/item/clothing/accessory/armband/service = 1,
+					/obj/item/reagent_containers/spray/cleaner = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/jani_wardrobe
 	payment_department = ACCOUNT_SRV
 /obj/item/vending_refill/wardrobe/jani_wardrobe
@@ -389,6 +390,7 @@
 	vend_reply = "Thank you for using the ChapDrobe!"
 	products = list(/obj/item/choice_beacon/holy = 1,
 					/obj/item/storage/backpack/cultpack = 1,
+					/obj/item/reagent_containers/glass/urn = 10,
 					/obj/item/clothing/accessory/pocketprotector/cosmetology = 1,
 					/obj/item/clothing/under/rank/chaplain = 1,
 					/obj/item/clothing/under/rank/chaplain/skirt = 2,

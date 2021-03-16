@@ -46,7 +46,7 @@ GLOBAL_LIST_EMPTY(minor_filter_items)
 
 // List all filters that have been loaded
 /client/proc/list_pretty_filters()
-	set category = "Special Verbs"
+	set category = "Server"
 	set name = "Pretty Filters - List"
 
 	to_chat(usr, "<font size='3'><b>Pretty filters list</b></font>", confidential=TRUE)
