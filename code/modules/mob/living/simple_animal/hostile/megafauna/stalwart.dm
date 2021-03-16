@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/megafauna/stalwart
 	name = "stalwart"
 	desc = "A graceful, floating automaton. It emits a soft hum."
-	health = "3000"
-	maxHealth = "3000"
+	health = 3000
+	maxHealth = 3000
 	attacktext = "zaps"
 	attack_sound = 'sound/effects/empulse.ogg'
 	icon_state = "stalwart"
@@ -28,7 +28,7 @@
 	var/revving_charge = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/OpenFire()
-	ranged_cooldown = world.time + 120
+	ranged_cooldown = world.time + 50
 	anger_modifier = clamp(((maxHealth - health)/50),0,20)
 	if(prob(20+anger_modifier)) //Major attack
 		stalnade()
@@ -44,7 +44,8 @@
 	for(var/mob/M in range(10,src))
 		flash_color(M.client, "#6CA4E3", 1)
 		shake_camera(M, 4, 3)
-
+	playsound(src, 'sound/voice/borg_deathsound.ogg', 200, 1)
+	
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/shoot_projectile(turf/marker, set_angle)
 	if(!isnum(set_angle) && (!marker || marker == loc))
 		return
@@ -67,7 +68,7 @@
 		P.original = target
 	P.fire(set_angle)
 
-/mob/living/simple_animal/hostile/megafauna/stalwart/proc/stalnade()
+/mob/living/simple_animal/hostile/megafauna/stalwart/proc/stalnade(turf/marker, set_angle)
 	for(var/d in dir)
 		var/turf/E = get_step(src, d)
 		bombsaway(E)
