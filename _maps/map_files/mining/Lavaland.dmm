@@ -2192,6 +2192,11 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"uB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered/dragonslair)
 "uD" = (
 /obj/machinery/computer/security/labor{
 	dir = 4;
@@ -3068,6 +3073,11 @@
 	},
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/dragonslair)
+"Lb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/block/burnt,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered/dragonslair)
 "Ld" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/metal/ten,
@@ -3541,17 +3551,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/laborcamp)
-"TM" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 6
-	},
-/obj/structure/reagent_dispensers/peppertank{
-	pixel_x = 30
-	},
-/turf/open/floor/plasteel,
-/area/mine/laborcamp/security)
 "TT" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/stone_tile{
@@ -3622,6 +3621,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/laborcamp)
+"Vh" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 6
+	},
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_x = 30
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/turf/open/floor/plasteel,
+/area/mine/laborcamp/security)
 "Vj" = (
 /obj/machinery/computer/secure_data{
 	dir = 4;
@@ -9955,7 +9968,7 @@ vE
 if
 Lq
 td
-TM
+Vh
 QU
 pw
 aj
@@ -38777,13 +38790,13 @@ aj
 (137,1,1) = {"
 aa
 aa
-XW
+uB
 XW
 XW
 Lv
 XW
 XW
-XW
+Lb
 aa
 aa
 iK
