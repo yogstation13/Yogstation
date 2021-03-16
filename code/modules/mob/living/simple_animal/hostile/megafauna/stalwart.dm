@@ -22,7 +22,7 @@
 	internal_type = /obj/item/gps/internal/stalwart
 	loot = list(/obj/structure/closet/crate/sphere/stalwart)
 	deathmessage = "erupts into blue flame, and screeches before violently shattering."
-	deathsound = 'borg_deathsound.ogg'
+	deathsound = 'sound/voice/borg_deathsound.ogg'
 	internal_type = /obj/item/gps/internal/stalwart
 	var/charging = FALSE
 	var/revving_charge = FALSE
