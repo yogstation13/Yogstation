@@ -675,7 +675,7 @@
 
 //////////////////////////////////////////////
 //                                          //
-//                MONKEY                    //
+//               MONKEY                     //
 //                                          //
 //////////////////////////////////////////////
 
@@ -750,6 +750,7 @@
 	requirements = list(100,100,100,100,100,100,100,100,99,98)
 	flags = LONE_RULESET
 	var/meteordelay = 2000
+	flags = LONE_RULESET
 	var/nometeors = 0
 	var/rampupdelta = 5
 
