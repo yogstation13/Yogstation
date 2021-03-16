@@ -464,10 +464,7 @@
 /area/medical/psych)
 "aaY" = (
 /obj/item/clipboard,
-/obj/structure/table/wood{
-	step_x = 0;
-	step_y = 0
-	},
+/obj/structure/table/wood,
 /turf/open/floor/carpet,
 /area/medical/psych)
 "aaZ" = (
@@ -786,10 +783,7 @@
 /obj/item/flashlight/lamp/green{
 	dir = 1
 	},
-/obj/structure/table/wood{
-	step_x = 0;
-	step_y = 0
-	},
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/medical/psych)
 "abL" = (
@@ -1092,10 +1086,7 @@
 	pixel_y = 3
 	},
 /obj/item/folder,
-/obj/structure/table/wood{
-	step_x = 0;
-	step_y = 0
-	},
+/obj/structure/table/wood,
 /turf/open/floor/carpet,
 /area/medical/psych)
 "acn" = (
@@ -1283,19 +1274,13 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/structure/table/wood{
-	step_x = 0;
-	step_y = 0
-	},
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/medical/psych)
 "acI" = (
 /obj/item/paper_bin,
 /obj/item/pen/fountain,
-/obj/structure/table/wood{
-	step_x = 0;
-	step_y = 0
-	},
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/medical/psych)
 "acJ" = (
