@@ -89,6 +89,7 @@
 	bitesize_mod = 3
 	wine_power = 35
 	tastes = list("thistle" = 2, "artichoke" = 1)
+	foodtype = VEGETABLES
 
 // Cabbage
 /obj/item/seeds/cabbage
