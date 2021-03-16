@@ -31035,10 +31035,6 @@
 	},
 /turf/open/floor/engine/co2,
 /area/engine/atmos)
-"aXW" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/turf/open/floor/engine/co2,
-/area/engine/atmos)
 "aXX" = (
 /obj/machinery/air_sensor/atmos/carbon_tank,
 /turf/open/floor/engine/co2,
@@ -33572,10 +33568,6 @@
 /obj/machinery/air_sensor/atmos/oxygen_tank,
 /turf/open/floor/engine/o2,
 /area/engine/atmos)
-"bbO" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/open/floor/engine/o2,
-/area/engine/atmos)
 "bbP" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -35335,10 +35327,6 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/engine/plasma,
-/area/engine/atmos)
-"bev" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/engine/plasma,
 /area/engine/atmos)
 "bew" = (
@@ -37447,10 +37435,6 @@
 /area/engine/atmos)
 "bhv" = (
 /obj/machinery/air_sensor/atmos/nitrogen_tank,
-/turf/open/floor/engine/n2,
-/area/engine/atmos)
-"bhw" = (
-/obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/engine/n2,
 /area/engine/atmos)
 "bhx" = (
@@ -39861,12 +39845,6 @@
 "bkG" = (
 /obj/machinery/light/small{
 	dir = 8
-	},
-/turf/open/floor/engine/n2o,
-/area/engine/atmos)
-"bkH" = (
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide{
-	valve_open = 1
 	},
 /turf/open/floor/engine/n2o,
 /area/engine/atmos)
@@ -125273,6 +125251,11 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/engine,
 /area/science/mixing/chamber)
+"ipX" = (
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/machinery/atmospherics/miner/carbon_dioxide,
+/turf/open/floor/engine/co2,
+/area/engine/atmos)
 "isB" = (
 /obj/machinery/bounty_board,
 /turf/closed/wall/r_wall,
@@ -125633,6 +125616,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"kEA" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/machinery/atmospherics/miner/nitrogen,
+/turf/open/floor/engine/n2,
+/area/engine/atmos)
 "kEN" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
@@ -125711,6 +125699,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/library)
+"kUu" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/atmospherics/miner/toxins,
+/turf/open/floor/engine/plasma,
+/area/engine/atmos)
 "kXP" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -126378,6 +126371,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"ojF" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/atmospherics/miner/oxygen,
+/turf/open/floor/engine/o2,
+/area/engine/atmos)
 "olS" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/decal/cleanable/dirt,
@@ -127207,6 +127205,13 @@
 /obj/machinery/door/poddoor/incinerator_toxmix,
 /turf/open/floor/engine/vacuum,
 /area/science/mixing/chamber)
+"sAo" = (
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide{
+	valve_open = 1
+	},
+/obj/machinery/atmospherics/miner/n2o,
+/turf/open/floor/engine/n2o,
+/area/engine/atmos)
 "sFC" = (
 /obj/machinery/status_display/evac{
 	pixel_x = 32
@@ -149313,15 +149318,15 @@ aFr
 aSQ
 aRF
 aWu
-aXW
+ipX
 aWt
 aRF
 bcY
-bev
+kUu
 bcX
 aRF
 biU
-bkH
+sAo
 biT
 aRF
 bpO
@@ -156768,11 +156773,11 @@ aVa
 aTl
 aRF
 bal
-bbO
+ojF
 bam
 aRF
 bgg
-bhw
+kEA
 bgh
 aRF
 aMN
