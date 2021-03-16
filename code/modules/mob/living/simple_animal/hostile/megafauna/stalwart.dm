@@ -87,7 +87,7 @@
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/dir_shots(list/dirs)
 	if(!islist(dirs))
 		dirs = GLOB.alldirs.Copy()
-	playsound(src, 'sound/effects/pop_exl.ogg', 200, 1, 2)
+	playsound(src, 'sound/effects/pop_expl.ogg', 200, 1, 2)
 	for(var/d in dirs)
 		var/turf/E = get_step(src, d)
 		shoot_projectile(E)
