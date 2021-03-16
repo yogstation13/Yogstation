@@ -64,7 +64,7 @@
 	if(istype(dynamic) && dynamic_should_hijack && dynamic.random_event_hijacked != HIJACKED_NOTHING)
 		return FALSE
 
-	return TRUE
+	. = TRUE
 
 /datum/round_event_control/proc/preRunEvent()
 	if(!ispath(typepath, /datum/round_event))
