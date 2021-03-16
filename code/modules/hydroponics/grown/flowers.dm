@@ -76,6 +76,7 @@
 	desc = "A vivid flower that smells faintly of freshly cut grass. Touching the flower seems to stain the skin some time after contact, yet most other surfaces seem to be unaffected by this phenomenon."
 	icon_state = "spacemanstrumpet"
 	bitesize_mod = 3
+	foodtype = VEGETABLES
 
 // Geranium
 /obj/item/seeds/poppy/geranium
