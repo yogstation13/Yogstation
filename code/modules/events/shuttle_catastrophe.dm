@@ -6,7 +6,7 @@
 
 /datum/round_event_control/shuttle_catastrophe/canSpawnEvent(players, gamemode)
 	if((SSshuttle.emergency.name == "Build your own shuttle kit") || (SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL || SSshuttle.emergency.mode == SHUTTLE_DOCKED))
-		return FALSE //don't undo manual player engineering, it also would unload people and ghost them, there's just a lot of problems
+		return FALSE // don't undo manual player engineering, it also would unload people and ghost them, there's just a lot of problems
 	return ..()
 
 
