@@ -59,11 +59,12 @@
 		return FALSE
 	if(ispath(typepath, /datum/round_event/ghost_role) && GHOSTROLE_MIDROUND_EVENT)
 		return FALSE
-	return TRUE
 
 	var/datum/game_mode/dynamic/dynamic = SSticker.mode
 	if(istype(dynamic) && dynamic_should_hijack && dynamic.random_event_hijacked != HIJACKED_NOTHING)
 		return FALSE
+
+	return TRUE
 
 /datum/round_event_control/proc/preRunEvent()
 	if(!ispath(typepath, /datum/round_event))
@@ -109,7 +110,7 @@
 	testing("[time2text(world.time, "hh:mm:ss")] [E.type]")
 	if(random)
 		log_game("Random Event triggering: [name] ([typepath])")
-	if (alert_observers)
+	if(alert_observers)
 		deadchat_broadcast(" has just been[random ? " randomly" : ""] triggered!", "<b>[name]</b>") //STOP ASSUMING IT'S BADMINS!
 	return E
 
@@ -150,7 +151,7 @@
 //Only called once.
 /datum/round_event/proc/announce_to_ghosts(atom/atom_of_interest)
 	if(control.alert_observers)
-		if (atom_of_interest)
+		if(atom_of_interest)
 			//Yogs start -- Makes this a bit more specific
 			var/typeofthing = "object"
 			if(iscarbon(atom_of_interest))
