@@ -28,3 +28,15 @@
 	crit_rate = crit_rate * crit_dropoff_coeff
 	if(crit_rate < initial(crit_rate))
 		crit_rate = initial(crit_rate)
+
+/datum/component/randomcrits/guaranteed
+	crit_rate = 100 //guaranteed crit
+	crit_rate_max = 100 //max is 100
+	crit_rate_increase = 0 //safekeeping
+	crit_dropoff_coeff = 1 //stays until the component is gone
+
+/datum/component/randomcrits/guaranteed/Initialize(force)
+	..()
+	parent.add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), TEMPORARY_COLOUR_PRIORITY)
+	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/RemoveComponent())
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/RemoveComponent())

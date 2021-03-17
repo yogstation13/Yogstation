@@ -137,9 +137,11 @@
 ///////////////////////////I AM ZE ÜBERMENSCH///////////////////////////
 /obj/item/gun/medbeam/uber
 	name = "augmented medical beamgun"
+	var/srcname = "augmented medical beamgun"
 	desc = "Doctor, are you sure this will work?"
 	icon_state = "chronogun0"
 	actions_types = list(/datum/action/item_action/activate_uber)
+	var/chargerate = 2.5 // 40-80 second charge time
 	var/ubercharge = 0
 	var/ubering = FALSE
 	var/mob/last_holder
@@ -166,10 +168,10 @@
 	if(current_target && !ubering)
 
 		if(current_target.health == current_target.maxHealth)
-			ubercharge += 1.25*delta_time/10 // 80 seconds
+			ubercharge += (chargerate/2)*delta_time/10
 
 		if(current_target.health < current_target.maxHealth)
-			ubercharge += 2.5*delta_time/10 // 40 seconds
+			ubercharge += chargerate*delta_time/10
 
 	if(ubering)
 		// No uber flashing
@@ -183,9 +185,9 @@
 
 	if(ubercharge >= 100)
 		ubercharge = 100
-		name = "fully-charged augmented medical beamgun"
+		name = "fully-charged [srcname]"
 	else
-		name = "augmented medical beamgun"
+		name = srcname
 
 	if(ubercharge < 0)
 		ubercharge = 0
@@ -230,6 +232,7 @@
 		uber_target.clear_fullscreen("uber")
 		uber_target.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 
+///////////////////////////UBER ACTION BUTTON///////////////////////////
 /datum/action/item_action/activate_uber
 	name = "Activate Übercharge"
 	icon_icon = 'icons/obj/chronos.dmi'
@@ -251,3 +254,45 @@
 		return
 
 	gun.uber_act()
+
+///////////////////////////CRITICAL SHIT///////////////////////////
+/obj/item/gun/medbeam/uber/crits
+	name = "kritzkrieg"
+	srcname = "kritzkrieg"
+	desc = "For when the base damage doesn't quite cut it."
+	chargerate = 3.125 // 25% faster than normal gun, 32-64 second charge time
+	var/list/critcomps
+	var/list/crititems
+
+/obj/item/gun/medbeam/uber/crits/uber_act()
+	if(!ubering)
+		ubering = TRUE
+		uber_target = current_target
+		set_crit()
+		RegisterSignal(uber_target, list(COMSIG_MOB_ITEM_ATTACK), .proc/set_crit())
+
+	else
+		ubering = FALSE
+		UnregisterSignal(uber_target, list(COMSIG_MOB_ITEM_ATTACK))
+		clear_crit()
+
+/// Set crits
+/obj/item/gun/medbeam/uber/crits/proc/set_crit()
+	clear_crit()
+	/// Get all items the target has held
+	var/list/held = uber_target.held_items
+	/// Add them to the critted items lists and attach the crit component to them (and store that too so we can remove it later)
+	for(var/obj/i in held)
+		critcomps += i.AddComponent(/datum/component/randomcrits/guaranteed, force)
+		crititems += i
+
+/// Clear crits
+/obj/item/gun/medbeam/uber/crits/proc/clear_crit()
+	/// Remove all crits
+	for(var/datum/component/c in critcomps)
+		c.RemoveComponent()
+		critcomps -= c
+	/// Clear the crititems list
+	for(var/obj/p in crititems)
+		p.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
+		crititems -= p
