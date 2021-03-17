@@ -1404,6 +1404,7 @@
 	name = "energized powercutter"
 	desc = "Ripped out of an ancient machine, this self-recharging cutter is unmatched."
 	fire_delay = 4
+	icon = "icons/obj/guns/energy.dmi"
 	icon_state = "robocutter"
 	selfcharge = 1
 //Just some minor stuff
