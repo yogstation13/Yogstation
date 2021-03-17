@@ -1,3 +1,8 @@
+/// Operation modes
+#define POWER "power"
+#define SCIENCE "research"
+#define MONEY "money"
+
 // stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT
 #define RAD_COLLECTOR_EFFICIENCY 80 	// radiation needs to be over this amount to get power
 #define RAD_COLLECTOR_COEFFICIENT 100
@@ -13,60 +18,82 @@
 	anchored = FALSE
 	density = TRUE
 	req_access = list(ACCESS_ENGINE_EQUIP)
-//	use_power = NO_POWER_USE
 	max_integrity = 350
 	integrity_failure = 80
 	circuit = /obj/item/circuitboard/machine/rad_collector
 	rad_insulation = RAD_EXTREME_INSULATION
 	var/obj/item/tank/internals/plasma/loaded_tank = null
+	/// How much power does it have
 	var/stored_power = 0
+	/// Is it on
 	var/active = 0
+	/// Are the controls and tanks locked
 	var/locked = FALSE
+	/// Modifier of how much gas to drain for both research and power
 	var/drainratio = 1
-	var/powerproduction_drain = 0.01
-
-	var/bitcoinproduction_drain = 0.15
-	var/bitcoinmining = FALSE
-
+	/// How much gas to drain
+	var/drain = 0.01
+	/// What is it producing
+	var/mode = POWER
+	/// What gasses are we using
+	var/list/using = list()
+	/// Gasses we give
+	var/list/giving = list()
 
 /obj/machinery/power/rad_collector/anchored
 	anchored = TRUE
 
-/obj/machinery/power/rad_collector/Destroy()
-	return ..()
-
 /obj/machinery/power/rad_collector/process()
 	if(!loaded_tank)
 		return
-	if(!bitcoinmining)
-		if(loaded_tank.air_contents.get_moles(/datum/gas/plasma) < 0.0001)
-			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SINGULO)
-			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
-			playsound(src, 'sound/machines/ding.ogg', 50, 1)
-			eject()
-		else
-			var/gasdrained = min(powerproduction_drain*drainratio,loaded_tank.air_contents.get_moles(/datum/gas/plasma))
-			loaded_tank.air_contents.adjust_moles(/datum/gas/plasma, -gasdrained)
-			loaded_tank.air_contents.adjust_moles(/datum/gas/tritium, gasdrained)
+	switch(mode)
+		if(POWER)
+			using = list(/datum/gas/plasma)
+			giving = list(/datum/gas/tritium = 1)
+			
+		if(SCIENCE)
+			using = list(/datum/gas/tritium, /datum/gas/oxygen)
+			giving = list(/datum/gas/carbon_dioxide = 2) // Conservation of mass
 
-			var/power_produced = RAD_COLLECTOR_OUTPUT
-			add_avail(power_produced)
-			stored_power-=power_produced
-	else if(is_station_level(z) && SSresearch.science_tech)
-		if(!loaded_tank.air_contents.get_moles(/datum/gas/tritium) || !loaded_tank.air_contents.get_moles(/datum/gas/oxygen))
-			playsound(src, 'sound/machines/ding.ogg', 50, 1)
-			eject()
-		else
-			var/gasdrained = bitcoinproduction_drain*drainratio
-			loaded_tank.air_contents.adjust_moles(/datum/gas/tritium, -gasdrained)
-			loaded_tank.air_contents.adjust_moles(/datum/gas/oxygen, -gasdrained)
-			loaded_tank.air_contents.adjust_moles(/datum/gas/carbon_dioxide, gasdrained*2)
-			var/bitcoins_mined = RAD_COLLECTOR_OUTPUT
-			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_ENG)
-			if(D)
-				D.adjust_money(bitcoins_mined*RAD_COLLECTOR_MINING_CONVERSION_RATE)
-			SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, bitcoins_mined*RAD_COLLECTOR_MINING_CONVERSION_RATE)
-			stored_power-=bitcoins_mined
+		if(MONEY)
+			using = list(/datum/gas/plasma)
+			giving = list(/datum/gas/tritium = 0.5) // money
+
+	if(active && loaded_tank)
+		var/gasdrained = drain*drainratio
+		for(var/gasID in using) // Preliminary check before doing it again
+			if(loaded_tank.air_contents.get_moles(gasID) < gasdrained)
+				investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SINGULO)
+				investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
+				playsound(src, 'sound/machines/ding.ogg', 50, 1)
+				eject()
+
+		for(var/gasID in using)
+			loaded_tank.air_contents.adjust_moles(gasID, -gasdrained)
+		
+		for(var/gasID in giving)
+			loaded_tank.air_contents.adjust_moles(gasID, giving[gasID]*gasdrained)
+
+		var/output = RAD_COLLECTOR_OUTPUT
+		switch(mode) // Now handle the special interactions
+			if(POWER)
+				add_avail(output)
+				stored_power -= output
+
+			if(SCIENCE)
+				if(is_station_level(z) && SSresearch.science_tech)
+					SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, output*RAD_COLLECTOR_MINING_CONVERSION_RATE)
+					stored_power -= output
+					var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_ENG)
+					if(D)
+						D.adjust_money(output*RAD_COLLECTOR_MINING_CONVERSION_RATE)
+
+			if(MONEY)
+				if(is_station_level(z))
+					var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+					if(D)
+						stored_power -= output
+						D.adjust_money(output*RAD_COLLECTOR_MINING_CONVERSION_RATE*10)
 
 /obj/machinery/power/rad_collector/interact(mob/user)
 	if(anchored)
@@ -98,23 +125,24 @@
 			disconnect_from_network()
 
 /obj/machinery/power/rad_collector/attackby(obj/item/W, mob/user, params)
+	. = TRUE // No afterattack
 	if(istype(W, /obj/item/tank/internals/plasma))
 		if(!anchored)
 			to_chat(user, "<span class='warning'>[src] needs to be secured to the floor first!</span>")
-			return TRUE
+			return
 		if(loaded_tank)
 			to_chat(user, "<span class='warning'>There's already a plasma tank loaded!</span>")
-			return TRUE
+			return
 		if(panel_open)
 			to_chat(user, "<span class='warning'>Close the maintenance panel first!</span>")
-			return TRUE
+			return
 		if(!user.transferItemToLoc(W, src))
 			return
 		loaded_tank = W
 		update_icon()
 	else if(W.GetID())
 		if(togglelock(user))
-			return TRUE
+			return
 	else
 		return ..()
 
@@ -137,43 +165,59 @@
 	togglelock(user)
 
 /obj/machinery/power/rad_collector/wrench_act(mob/living/user, obj/item/I)
-	default_unfasten_wrench(user, I)
+	if(!(default_unfasten_wrench(user, I)))
+		return FALSE
 	return TRUE
 
 /obj/machinery/power/rad_collector/screwdriver_act(mob/living/user, obj/item/I)
+	. = TRUE // No afterattacks
 	if(..())
-		return TRUE
+		return
 	if(loaded_tank)
 		to_chat(user, "<span class='warning'>Remove the plasma tank first!</span>")
-	else
-		default_deconstruction_screwdriver(user, icon_state, icon_state, I)
-	return TRUE
+		return
+	if(!(default_deconstruction_screwdriver(user, icon_state, icon_state, I)))
+		return FALSE // If it returns false probably meant to attack it
 
 /obj/machinery/power/rad_collector/crowbar_act(mob/living/user, obj/item/I)
+	. = TRUE // Prevents afterattacks
 	if(loaded_tank)
 		if(locked)
 			to_chat(user, "<span class='warning'>The controls are locked!</span>")
-			return TRUE
+			return
 		eject()
-		return TRUE
 	if(default_deconstruction_crowbar(I))
-		return TRUE
+		return
 	to_chat(user, "<span class='warning'>There isn't a tank loaded!</span>")
-	return TRUE
 
 /obj/machinery/power/rad_collector/multitool_act(mob/living/user, obj/item/I)
-	if(!is_station_level(z) && !SSresearch.science_tech)
-		to_chat(user, "<span class='warning'>[src] isn't linked to a research system!</span>")
-		return TRUE
+	. = TRUE // No afterattack
 	if(locked)
 		to_chat(user, "<span class='warning'>[src] is locked!</span>")
-		return TRUE
+		return
 	if(active)
-		to_chat(user, "<span class='warning'>[src] is currently active, producing [bitcoinmining ? "research points":"power"].</span>")
-		return TRUE
-	bitcoinmining = !bitcoinmining
-	to_chat(user, "<span class='warning'>You [bitcoinmining ? "enable":"disable"] the research point production feature of [src].</span>")
-	return TRUE
+		to_chat(user, "<span class='warning'>[src] is currently active, producing [mode].</span>")
+		return
+
+	var/choice = input(user,"Select a mode","Mode Selection:",null) as null|anything in list(POWER, SCIENCE, MONEY)
+	if(!choice)
+		return
+	switch(choice)
+		if(POWER)
+			mode = POWER
+		if(SCIENCE)
+			if(!is_station_level(z) && !SSresearch.science_tech)
+				to_chat(user, "<span class='warning'>[src] isn't linked to a research system!</span>")
+				return // Dont switch over
+			mode = SCIENCE
+		if(MONEY)
+			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+			if(!D)
+				to_chat(user, "<span class='warning'>[src] couldn't find the cargo budget!</span>")
+				return // Dont switch over
+			mode = MONEY
+
+	to_chat(user, "<span class='warning'>You set the [src] mode to [mode] production.</span>")
 
 /obj/machinery/power/rad_collector/analyzer_act(mob/living/user, obj/item/I)
 	if(loaded_tank)
@@ -182,15 +226,17 @@
 /obj/machinery/power/rad_collector/examine(mob/user)
 	. = ..()
 	if(active)
-		if(!bitcoinmining)
+		if(mode == POWER)
 			. +=  "<span class='notice'>[src]'s display states that it has stored <b>[DisplayPower(stored_power)]</b>, and processing <b>[DisplayPower(RAD_COLLECTOR_OUTPUT)]</b>.</span>"
 		else
 			. += "<span class='notice'>[src]'s display states that it has stored a total of <b>[stored_power*RAD_COLLECTOR_MINING_CONVERSION_RATE]</b>, and producing [RAD_COLLECTOR_OUTPUT*RAD_COLLECTOR_MINING_CONVERSION_RATE*30] research points per minute.</span>"
 	else
-		if(!bitcoinmining)
+		if(mode == POWER)
 			. += "<span class='notice'><b>[src]'s display displays the words:</b> \"Power production mode. Please insert <b>Plasma</b>. Use a multitool to change production modes.\"</span>"
-		else
+		else if(mode == SCIENCE)
 			. += "<span class='notice'><b>[src]'s display displays the words:</b> \"Research point production mode. Please insert <b>Tritium</b> and <b>Oxygen</b>. Use a multitool to change production modes.\"</span>"
+		else if(mode == MONEY)
+			. += "<span class='notice'><b>[src]'s display displays the words:</b> \"Money production mode. Please insert <b>Plasma</b>. Use a multitool to change production modes.\"</span>"
 
 /obj/machinery/power/rad_collector/obj_break(damage_flag)
 	. = ..()
@@ -235,10 +281,12 @@
 		icon_state = "ca"
 		flick("ca_deactive", src)
 	update_icon()
-	return
 
 #undef RAD_COLLECTOR_EFFICIENCY
 #undef RAD_COLLECTOR_COEFFICIENT
 #undef RAD_COLLECTOR_STORED_OUT
 #undef RAD_COLLECTOR_MINING_CONVERSION_RATE
 #undef RAD_COLLECTOR_OUTPUT
+#undef POWER
+#undef SCIENCE
+#undef MONEY
