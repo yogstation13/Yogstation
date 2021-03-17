@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "you no longer get stuck on the above mob layer when using fireman carry and layer changes get passed properly"
