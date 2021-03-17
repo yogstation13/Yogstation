@@ -1397,7 +1397,7 @@
 	name = "silvery capsule"
 	desc = "It feels cold to the touch..."
 
-/obj/structure/closet/crate/necropolis/stalwart/PopulateContents()
+/obj/structure/closet/crate/sphere/stalwart/PopulateContents()
 	new /obj/item/gun/energy/plasmacutter/adv/robocutter
 
 /obj/item/gun/energy/plasmacutter/adv/robocutter
