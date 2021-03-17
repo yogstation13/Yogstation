@@ -75,7 +75,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/backup()
 	visible_message("<span class='danger'>[src] constructs a flock of mini mechanoid!</span>")
-	for(var/turf/open/H in range(src, 10))
+	for(var/turf/open/H in range(src, 2))
 		if(prob(25))
 			new /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone(H.loc)
 
