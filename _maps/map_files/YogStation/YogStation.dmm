@@ -49601,6 +49601,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
+"nXk" = (
+/obj/machinery/power/apc{
+	areastring = "/area/blueshield";
+	dir = 4;
+	name = "Blueshield Office APC";
+	pixel_x = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/wood,
+/area/blueshield)
 "nXu" = (
 /turf/template_noop,
 /area/maintenance/port)
@@ -59122,21 +59134,6 @@
 /obj/vehicle/ridden/wheelchair,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"uHG" = (
-/obj/machinery/light_switch{
-	pixel_x = 27
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/blueshield";
-	dir = 4;
-	name = "Blueshield Office APC";
-	pixel_x = 24
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/wood,
-/area/blueshield)
 "uHN" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -94123,7 +94120,7 @@ dPi
 fTa
 fKp
 wep
-uHG
+nXk
 dTK
 lpl
 aJp
