@@ -271,9 +271,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
 	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "aaG" = (
@@ -307,7 +304,7 @@
 /area/medical/psych)
 "aaK" = (
 /obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
+	req_access_txt = "5"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -323,9 +320,6 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
@@ -408,9 +402,6 @@
 /turf/open/space,
 /area/space/nearstation)
 "aaU" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
@@ -442,9 +433,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
 "aaW" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
@@ -454,9 +442,6 @@
 /turf/open/floor/carpet,
 /area/medical/psych)
 "aaX" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
 	},
@@ -497,12 +482,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"abc" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/turf/open/floor/carpet,
-/area/medical/psych)
 "abd" = (
 /obj/machinery/bounty_board,
 /turf/closed/wall,
@@ -642,12 +621,6 @@
 "abw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/medical/psych)
-"abx" = (
-/obj/structure/cable{
-	icon_state = "1-2"
 	},
 /turf/open/floor/carpet,
 /area/medical/psych)
@@ -1195,12 +1168,6 @@
 /obj/item/stack/cable_coil/random,
 /turf/open/space,
 /area/space/nearstation)
-"acz" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/carpet,
-/area/medical/psych)
 "acA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -1210,18 +1177,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"acB" = (
-/obj/machinery/power/apc{
-	areastring = "/area/medical/psych";
-	name = "Psychiatrist Office APC";
-	pixel_x = 26;
-	pixel_y = 0
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "acC" = (
 /obj/machinery/button/door{
 	id = "psych";
@@ -52573,6 +52528,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
+"pPP" = (
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	areastring = "/area/medical/psych";
+	name = "Psychiatrist Office APC";
+	pixel_y = -23
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "pQy" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Escape Podbay"
@@ -63490,6 +63454,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"xOs" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "xPc" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -89471,8 +89453,8 @@ arP
 arP
 arP
 arP
-axB
-aqR
+xOs
+pPP
 aDR
 aar
 aaX
@@ -89732,10 +89714,10 @@ axB
 awc
 aDR
 aan
-abc
-abx
-abx
-acz
+aaJ
+aaJ
+aaJ
+aaJ
 acE
 aaI
 acZ
@@ -89992,7 +89974,7 @@ aas
 abm
 abK
 aca
-acB
+aaI
 acF
 abL
 aDR
