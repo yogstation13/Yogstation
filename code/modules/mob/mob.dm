@@ -63,9 +63,9 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_CREATED, src)
 	add_to_mob_list()
 	if(stat == DEAD)
-		add_to_mob_list()
+		remove_from_alive_mob_list()
 	else
-		add_to_mob_list()
+		add_to_alive_mob_list()
 	set_focus(src)
 	prepare_huds()
 	for(var/v in GLOB.active_alternate_appearances)
