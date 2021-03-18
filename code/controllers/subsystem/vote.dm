@@ -53,35 +53,6 @@ SUBSYSTEM_DEF(vote)
 		total_votes += votes
 		if(votes > greatest_votes)
 			greatest_votes = votes
-	//default-vote for everyone who didn't vote
-	if(!CONFIG_GET(flag/default_no_vote) && choices.len)
-		var/list/non_voters = GLOB.directory.Copy()
-		non_voters -= voted
-		for (var/non_voter_ckey in non_voters)
-			var/client/C = non_voters[non_voter_ckey]
-			if (!C || C.is_afk())
-				non_voters -= non_voter_ckey
-		if(non_voters.len > 0)
-			if(mode == "restart")
-				choices["Continue Playing"] += non_voters.len
-				if(choices["Continue Playing"] >= greatest_votes)
-					greatest_votes = choices["Continue Playing"]
-			else if(mode == "gamemode")
-				if(GLOB.master_mode in choices)
-					choices[GLOB.master_mode] += non_voters.len
-					if(choices[GLOB.master_mode] >= greatest_votes)
-						greatest_votes = choices[GLOB.master_mode]
-			else if(mode == "map")
-				for (var/non_voter_ckey in non_voters)
-					var/client/C = non_voters[non_voter_ckey]
-					if(C.prefs.preferred_map)
-						var/preferred_map = C.prefs.preferred_map
-						choices[preferred_map] += 1
-						greatest_votes = max(greatest_votes, choices[preferred_map])
-					else if(global.config.defaultmap)
-						var/default_map = global.config.defaultmap.map_name
-						choices[default_map] += 1
-						greatest_votes = max(greatest_votes, choices[default_map])
 
 	//get all options with that many votes and return them in a list
 	. = list()
