@@ -25,7 +25,8 @@
 			var/obj/item/gun/G = target
 			if(G.pin && (force_replace || G.pin.pin_removeable))
 				G.pin.forceMove(get_turf(G))
-				G.pin.gun_remove(user)
+				if(!G.pin.gun_remove(user))
+					return
 				to_chat(user, "<span class ='notice'>You remove [G]'s old pin.</span>")
 
 			if(!G.pin)
@@ -51,7 +52,7 @@
 /obj/item/firing_pin/proc/gun_remove(mob/living/user)
 	gun.pin = null
 	gun = null
-	return
+	return TRUE
 
 /obj/item/firing_pin/proc/pin_auth(mob/living/user)
 	return TRUE
@@ -147,6 +148,15 @@
 	desc = "Advanced clowntech that can convert any firearm into a far more useful object. It has a small nitrobananium charge on it."
 	selfdestruct = TRUE
 
+// fun pin
+// for when you need a gun to not be fired by anyone else ever
+/obj/item/firing_pin/dredd/fucked
+	name = "Syndicate Ultrasecure Firing Pin"
+	desc = "Get fuuuuuuuuucked."
+
+/obj/item/firing_pin/fucked/gun_remove(mob/living/user)
+	auth_fail(user)
+	return FALSE
 
 // DNA-keyed pin.
 // When you want to keep your toys for yourself.
