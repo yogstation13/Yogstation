@@ -320,20 +320,34 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		log_world("ERROR: Station areas list failed to generate!")
 
 /datum/controller/subsystem/mapping/proc/maprotate()
-	if(map_voted)
-		map_voted = FALSE
+	if(map_voted || SSmapping.next_map_config) //If voted or set by other means.
 		return
 
 	var/players = GLOB.clients.len
 	var/list/mapvotes = list()
-	for(var/M in global.config.maplist)
-		mapvotes[M] = 1
+	//count votes
+	var/pmv = CONFIG_GET(flag/preference_map_voting)
+	if(pmv)
+		for (var/client/c in GLOB.clients)
+			var/vote = c.prefs.preferred_map
+			if (!vote)
+				if (global.config.defaultmap)
+					mapvotes[global.config.defaultmap.map_name] += 1
+				continue
+			mapvotes[vote] += 1
+	else
+		for(var/M in global.config.maplist)
+			mapvotes[M] = 1
 
 	//filter votes
 	for (var/map in mapvotes)
 		if (!map)
 			mapvotes.Remove(map)
+			continue
 		if (!(map in global.config.maplist))
+			mapvotes.Remove(map)
+			continue
+		if(map in SSpersistence.blocked_maps)
 			mapvotes.Remove(map)
 			continue
 		var/datum/map_config/VM = global.config.maplist[map]
@@ -358,6 +372,13 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	. = changemap(VM)
 	if (. && VM.map_name != config.map_name)
 		to_chat(world, "<span class='boldannounce'>Map rotation has chosen [VM.map_name] for next round!</span>")
+
+/datum/controller/subsystem/mapping/proc/mapvote()
+	if(map_voted || SSmapping.next_map_config) //If voted or set by other means.
+		return
+	if(SSvote.mode) //Theres already a vote running, default to rotation.
+		maprotate()
+	SSvote.initiate_vote("map", "automatic map rotation")
 
 /datum/controller/subsystem/mapping/proc/changemap(var/datum/map_config/VM)
 	if(!VM.MakeNextMap())

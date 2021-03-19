@@ -105,6 +105,8 @@
 	integer = FALSE
 	min_val = 0
 
+/datum/config_entry/flag/default_no_vote	// vote does not default to nochange/norestart
+
 /datum/config_entry/flag/no_dead_vote	// dead people can't vote
 
 /datum/config_entry/flag/allow_metadata	// Metadata is supported.
@@ -368,9 +370,12 @@
 /datum/config_entry/flag/announce_admin_login
 
 /datum/config_entry/flag/allow_map_voting
+	deprecated_by = /datum/config_entry/flag/preference_map_voting
 
 /datum/config_entry/flag/allow_map_voting/DeprecationUpdate(value)
 	return value
+
+/datum/config_entry/flag/preference_map_voting
 
 /datum/config_entry/number/client_warn_version
 	config_entry_value = null

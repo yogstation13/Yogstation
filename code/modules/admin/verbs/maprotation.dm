@@ -6,7 +6,6 @@
 		return
 	message_admins("[key_name_admin(usr)] is forcing a random map rotation.")
 	log_admin("[key_name(usr)] is forcing a random map rotation.")
-	SSticker.maprotatechecked = 1
 	SSmapping.maprotate()
 
 /client/proc/adminchangemap()
@@ -36,7 +35,6 @@
 	var/chosenmap = input("Choose a map to change to", "Change Map")  as null|anything in maprotatechoices
 	if (!chosenmap)
 		return
-	SSticker.maprotatechecked = 1
 	var/datum/map_config/VM = maprotatechoices[chosenmap]
 	message_admins("[key_name_admin(usr)] is changing the map to [VM.map_name]")
 	log_admin("[key_name(usr)] is changing the map to [VM.map_name]")
