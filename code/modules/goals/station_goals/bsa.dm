@@ -179,6 +179,8 @@
 	reload()
 
 /obj/machinery/bsa/full/proc/fire(mob/user, turf/bullseye)
+	if(!ready)
+		return
 	var/turf/point = get_front_turf()
 	for(var/turf/T in getline(get_step(point,dir),get_target_turf()))
 		SSexplosions.highturf += T //also fucks everything else on the turf
