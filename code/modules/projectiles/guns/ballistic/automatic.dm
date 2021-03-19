@@ -322,7 +322,7 @@
 	can_unsuppress = TRUE
 	pin = /obj/item/firing_pin/implant/pindicate
 
-/obj/item/gun/ballistic/automatic/sniper_rifle/syndicate
+/obj/item/gun/ballistic/automatic/sniper_rifle/ultrasecure
 	pin = /obj/item/firing_pin/dredd/fucked
 
 // Old Semi-Auto Rifle //
