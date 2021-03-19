@@ -19,18 +19,18 @@ endmap
 
 map omegastation
 	maxplayers 35
-	votable
+	disabled
 endmap
 
 map yogsmeta
 	minplayers 25
 	voteweight 1.3
-	votable
+	disabled
 endmap
 
 map yogsdelta
 	minplayers 50
-	votable
+	disabled
 endmap
 
 map icebox
