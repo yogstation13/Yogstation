@@ -43,20 +43,24 @@
 	obj_flags |= EMAGGED
 	to_chat(user, "<span class='notice'>You override the authentication mechanism.</span>")
 
+///what do we do when we are being added to a gun
 /obj/item/firing_pin/proc/gun_insert(mob/living/user, obj/item/gun/G)
 	gun = G
 	forceMove(gun)
 	gun.pin = src
 	return
 
+///pin removal proc, return TRUE if the gun is still intact when it's done, false if there is a "tragic" "accident"
 /obj/item/firing_pin/proc/gun_remove(mob/living/user)
 	gun.pin = null
 	gun = null
 	return TRUE
 
+///can the pin be used by whoever is firing its gun
 /obj/item/firing_pin/proc/pin_auth(mob/living/user)
 	return TRUE
 
+///what happens if an authorization is failed, defaults to exploding
 /obj/item/firing_pin/proc/auth_fail(mob/living/user)
 	user.show_message(fail_message, MSG_VISUAL)
 	if(selfdestruct)
@@ -150,9 +154,15 @@
 
 // fun pin
 // for when you need a gun to not be fired by anyone else ever
-/obj/item/firing_pin/dredd/fucked
+/obj/item/firing_pin/fucked
 	name = "Syndicate Ultrasecure Firing Pin"
 	desc = "Get fuuuuuuuuucked."
+	selfdestruct = TRUE
+
+/obj/item/firing_pin/fucked/pin_auth(mob/living/user)
+	if(faction_check(user.faction, list(ROLE_SYNDICATE), FALSE)
+		return TRUE
+	return FALSE
 
 /obj/item/firing_pin/fucked/gun_remove(mob/living/user)
 	auth_fail(user)
