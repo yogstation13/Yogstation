@@ -60,9 +60,9 @@
 /obj/item/firing_pin/proc/pin_auth(mob/living/user)
 	return TRUE
 
-///what happens if an authorization is failed, defaults to exploding
+///what happens if an authorization is failed, explodes if selfdestruct is TRUE
 /obj/item/firing_pin/proc/auth_fail(mob/living/user)
-	user.show_message(fail_message, MSG_VISUAL)
+	user?.show_message(fail_message, MSG_VISUAL)
 	if(selfdestruct)
 		if(user)
 			user.show_message("<span class='danger'>SELF-DESTRUCTING...</span><br>", MSG_VISUAL)
