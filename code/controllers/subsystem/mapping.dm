@@ -326,19 +326,8 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 	var/players = GLOB.clients.len
 	var/list/mapvotes = list()
-	//count votes
-	var/pmv = CONFIG_GET(flag/preference_map_voting)
-	if(pmv)
-		for (var/client/c in GLOB.clients)
-			var/vote = c.prefs.preferred_map
-			if (!vote)
-				if (global.config.defaultmap)
-					mapvotes[global.config.defaultmap.map_name] += 1
-				continue
-			mapvotes[vote] += 1
-	else
-		for(var/M in global.config.maplist)
-			mapvotes[M] = 1
+	for(var/M in global.config.maplist)
+		mapvotes[M] = 1
 
 	//filter votes
 	for (var/map in mapvotes)
@@ -360,9 +349,6 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		if (VM.config_max_users > 0 && players > VM.config_max_users)
 			mapvotes.Remove(map)
 			continue
-
-		if(pmv)
-			mapvotes[map] = mapvotes[map]*VM.voteweight
 
 	var/pickedmap = pickweight(mapvotes)
 	if (!pickedmap)

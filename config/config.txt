@@ -165,9 +165,6 @@ VOTE_PERIOD 600
 ## prevents dead players from voting or starting votes
 # NO_DEAD_VOTE
 
-## players' votes default to "No vote" (otherwise,  default to "No change")
-# DEFAULT_NO_VOTE
-
 ## disable abandon mob
 NORESPAWN
 
@@ -292,11 +289,6 @@ ANNOUNCE_ADMIN_LOGIN
 ## Map rotation
 ## You should edit maps.txt to match your configuration when you enable this.
 MAPROTATION
-
-## Map voting
-## Allows players to vote with their preffered map setting
-## When it's set to zero, the map will be randomly picked each round
-PREFERENCE_MAP_VOTING 1
 
 ## Map rotate chance delta
 ## This is the chance of map rotation factored to the round length.
