@@ -323,7 +323,7 @@
 	pin = /obj/item/firing_pin/implant/pindicate
 
 /obj/item/gun/ballistic/automatic/sniper_rifle/ultrasecure
-	pin = /obj/item/firing_pin/dredd/fucked
+	pin = /obj/item/firing_pin/fucked
 
 // Old Semi-Auto Rifle //
 
