@@ -17,10 +17,13 @@ headers = """// DM Environment file for yogstation.dme.
 // BEGIN_INCLUDE
 """
 
+# What DME you want to generate
+TARGET_DME = 'yogstation.dme'
+
 # Things we dont want
 ignored_dirs = [
     'tgs',          # Has its own includes
-    R"../../tools", # We dont include tools
+    R".\tools",        # We dont include tools
     "_maps",        # We dont include maps
     "unit_tests"    # Has its own includes
 ]  
@@ -65,11 +68,11 @@ def sortedWalk(top, topdown=True, onerror=None):
     if not topdown:
         yield top, dirs, nondirs
 
-
-with open('../../yogstation.dme', 'w') as enviroment:
+print('Generating the DME...')
+with open(TARGET_DME, 'w') as enviroment:
     enviroment.truncate(0)
     enviroment.write(headers) # No DME is complete without headers
-    for root, dirs, files in sortedWalk('../../'):
+    for root, dirs, files in sortedWalk('.'):
         files.sort(key=str.lower)
         dirs.sort(key=str.lower)
         for file in files:
@@ -79,14 +82,13 @@ with open('../../yogstation.dme', 'w') as enviroment:
                 for ignored_dir in ignored_dirs:
                     if ignored_dir in root:
                         if file in snowflakes:
-                            print(f'Including {root[6:]}\\{file}')
-                            enviroment.write(f'#include "{root[6:]}\\{file}"\n')
-                        print(f'Excluding {root[6:]}\\{file}')
+                            enviroment.write(f'#include "{root[2:]}\\{file}"\n')
                         ignoring = True
                         break
                 if(ignoring):
                     continue
                 if file in ignored_files:
                     continue
-                enviroment.write(f'#include "{root[6:]}\\{file}"\n')
+                enviroment.write(f'#include "{root[2:]}\\{file}"\n')
     enviroment.write(f'// END_INCLUDE\n')
+    print('Finished generating the DME')

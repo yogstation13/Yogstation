@@ -62,8 +62,15 @@ const taskDm = new Task('dm')
     await exec(compiler, 'yogstation.dme');
   });
 
+const taskDME = new Task('dme')
+  .depends('yogstation.dme')
+  .build(async () => {
+    await exec('python3', 'tools/DME_Merge/merger.py');
+  });
+
 // Frontend
 let tasksToRun = [
+  taskDME,
   taskTgui,
   taskDm,
 ];
