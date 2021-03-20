@@ -38536,6 +38536,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"fUt" = (
+/obj/docking_port/stationary/public_mining_dock{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
 "fUP" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -77051,7 +77057,7 @@ apN
 apN
 apN
 apN
-apN
+fUt
 apN
 apN
 apN
