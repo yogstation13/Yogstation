@@ -68,7 +68,7 @@ def sortedWalk(top, topdown=True, onerror=None):
     if not topdown:
         yield top, dirs, nondirs
 
-print('Generating the DME...')
+print(f'Generating {TARGET_DME}')
 with open(TARGET_DME, 'w') as enviroment:
     enviroment.truncate(0)
     enviroment.write(headers) # No DME is complete without headers
@@ -91,4 +91,4 @@ with open(TARGET_DME, 'w') as enviroment:
                     continue
                 enviroment.write(f'#include "{root[2:]}\\{file}"\n')
     enviroment.write(f'// END_INCLUDE\n')
-    print('Finished generating the DME')
+    print(f'Finished generating {TARGET_DME}')
