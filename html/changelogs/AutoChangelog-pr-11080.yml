@@ -1,0 +1,5 @@
+author: "ChesterTheCheesy"
+delete-after: true 
+changes: 
+  - rscadd: "adds wasps"
+  - imageadd: "adds wasp sprites"
