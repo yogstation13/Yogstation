@@ -1,0 +1,5 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - tweak: "Tcomms machines have been resprited"
+  - imageadd: "Tcomms machines now have overlays"
