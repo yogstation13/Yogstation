@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "the BSA now actually respects its minute long cooldown that just never actually did anything due to TGUI code"
