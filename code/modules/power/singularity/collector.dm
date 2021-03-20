@@ -39,6 +39,8 @@
 	var/list/using = list()
 	/// Gasses we give
 	var/list/giving = list()
+	/// Last output used to calculate per minute
+	var/last_output = 0
 
 /obj/machinery/power/rad_collector/anchored
 	anchored = TRUE
@@ -79,6 +81,7 @@
 			if(POWER)
 				add_avail(output)
 				stored_power -= output
+				last_output = output
 
 			if(SCIENCE)
 				if(is_station_level(z) && SSresearch.science_tech)
@@ -87,13 +90,16 @@
 					var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_ENG)
 					if(D)
 						D.adjust_money(output*RAD_COLLECTOR_MINING_CONVERSION_RATE)
+						last_output = output*RAD_COLLECTOR_MINING_CONVERSION_RATE
 
 			if(MONEY)
 				if(is_station_level(z))
 					var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 					if(D)
-						stored_power -= output
-						D.adjust_money(output*RAD_COLLECTOR_MINING_CONVERSION_RATE*10)
+						var/payout = clamp((output^(output/1.2*output))/2500000, 0, stored_power) // No cheating
+						stored_power -= payout*1000
+						D.adjust_money(payout)
+						last_output = payout
 
 /obj/machinery/power/rad_collector/interact(mob/user)
 	if(anchored)
@@ -227,9 +233,11 @@
 	. = ..()
 	if(active)
 		if(mode == POWER)
-			. +=  "<span class='notice'>[src]'s display states that it has stored <b>[DisplayPower(stored_power)]</b>, and processing <b>[DisplayPower(RAD_COLLECTOR_OUTPUT)]</b>.</span>"
-		else
-			. += "<span class='notice'>[src]'s display states that it has stored a total of <b>[stored_power*RAD_COLLECTOR_MINING_CONVERSION_RATE]</b>, and producing [RAD_COLLECTOR_OUTPUT*RAD_COLLECTOR_MINING_CONVERSION_RATE*30] research points per minute.</span>"
+			. += "<span class='notice'>[src]'s display states that it has stored <b>[DisplayPower(stored_power)]</b>, and processing <b>[DisplayPower(RAD_COLLECTOR_OUTPUT)]</b>.</span>"
+		else if(mode == SCIENCE)
+			. += "<span class='notice'>[src]'s display states that it has stored a total of <b>[stored_power*RAD_COLLECTOR_MINING_CONVERSION_RATE]</b>, and producing [last_output*30] research points per minute.</span>"
+		else if(mode == MONEY)
+			. += "<span class='notice'>[src]'s display states that it has stored a total of <b>[stored_power*RAD_COLLECTOR_MINING_CONVERSION_RATE] credits</b>, and producing [last_output*30] credits per minute.</span>"
 	else
 		if(mode == POWER)
 			. += "<span class='notice'><b>[src]'s display displays the words:</b> \"Power production mode. Please insert <b>Plasma</b>. Use a multitool to change production modes.\"</span>"
