@@ -1,5 +1,3 @@
-//////////////////YOGS - !!!MOVED TO yogstation/code/modules/antagonists/slaughter/slaughter.dm!!!
-
 /mob/living/simple_animal/slaughter
 	name = "slaughter demon"
 	real_name = "slaughter demon"
@@ -34,9 +32,8 @@
 	melee_damage_upper = 30
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	bloodcrawl = BLOODCRAWL_EAT
 	var/playstyle_string = "<span class='big bold'>You are a slaughter demon,</span><B> a terrible creature from another realm. You have a single desire: To kill.  \
-							You may use the \"Blood Crawl\" ability near blood pools to travel through them, appearing and disappearing from the station at will. \
+							Alt-click blood pools to travel through them, appearing and disappearing from the station at will. \
 							Pulling a dead or unconscious mob while you enter a pool will pull them in with you, allowing you to feast and regain your health. \
 							You move quickly upon leaving a pool of blood, but the material world will soon sap your strength and leave you sluggish. </B>"
 
@@ -48,24 +45,16 @@
 
 /mob/living/simple_animal/slaughter/Initialize()
 	..()
-	var/obj/effect/proc_holder/spell/bloodcrawl/bloodspell = new
-	AddSpell(bloodspell)
-	if(istype(loc, /obj/effect/dummy/phased_mob/slaughter))
-		bloodspell.phased = TRUE
+	var/datum/component/crawl/blood/demonic/bloodcrawl = AddComponent(/datum/component/crawl/blood/demonic)
+	if(bloodcrawl && istype(loc, /obj/effect/dummy/crawling))
+		bloodcrawl.holder = loc
 
 /obj/effect/decal/cleanable/blood/innards
+	icon = 'icons/obj/surgery.dmi'
 	name = "pile of viscera"
 	desc = "A repulsive pile of guts and gore."
 	gender = NEUTER
-	icon = 'icons/obj/surgery.dmi'
 	icon_state = "innards"
-	random_icon_states = null
-
-/mob/living/simple_animal/slaughter/phasein()
-	. = ..()
-	add_movespeed_modifier(MOVESPEED_ID_SLAUGHTER, update=TRUE, priority=100, multiplicative_slowdown=-1)
-	addtimer(CALLBACK(src, .proc/remove_movespeed_modifier, MOVESPEED_ID_SLAUGHTER, TRUE), 6 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
-
 
 //The loot from killing a slaughter demon - can be consumed to allow the user to blood crawl
 /obj/item/organ/heart/demon
@@ -73,6 +62,7 @@
 	desc = "Still it beats furiously, emanating an aura of utter hate."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "demon_heart-on"
+	decay_factor = 0
 
 /obj/item/organ/heart/demon/update_icon()
 	return //always beating visually
@@ -83,11 +73,10 @@
 	user.visible_message("<span class='warning'>[user] raises [src] to [user.p_their()] mouth and tears into it with [user.p_their()] teeth!</span>", \
 						 "<span class='danger'>An unnatural hunger consumes you. You raise [src] your mouth and devour it!</span>")
 	playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
-	for(var/obj/effect/proc_holder/spell/knownspell in user.mind.spell_list)
-		if(knownspell.type == /obj/effect/proc_holder/spell/bloodcrawl)
-			to_chat(user, "<span class='warning'>...and you don't feel any different.</span>")
-			qdel(src)
-			return
+	if(user.GetComponent(/datum/component/crawl/blood))
+		to_chat(user, "<span class='warning'>...and you don't feel any different.</span>")
+		qdel(src)
+		return
 	user.visible_message("<span class='warning'>[user]'s eyes flare a deep crimson!</span>", \
 						 "<span class='userdanger'>You feel a strange power seep into your body... you have absorbed the demon's blood-travelling powers!</span>")
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
@@ -95,13 +84,13 @@
 
 /obj/item/organ/heart/demon/Insert(mob/living/carbon/M, special = 0)
 	..()
-	if(M.mind)
-		M.mind.AddSpell(new /obj/effect/proc_holder/spell/bloodcrawl(null))
+	M.AddComponent(/datum/component/crawl/blood)
 
 /obj/item/organ/heart/demon/Remove(mob/living/carbon/M, special = 0)
 	..()
-	if(M.mind)
-		M.mind.RemoveSpell(/obj/effect/proc_holder/spell/bloodcrawl)
+	var/datum/component/crawl/blood/B = M.GetComponent(/datum/component/crawl/blood)
+	if(B)
+		B.RemoveComponent()
 
 /obj/item/organ/heart/demon/Stop()
 	return 0 // Always beating.
@@ -127,13 +116,10 @@
 		prison of hugs."
 	loot = list(/mob/living/simple_animal/pet/cat/kitten{name = "Laughter"})
 
-	// Keep the people we hug!
-	var/list/consumed_mobs = list()
-
 	playstyle_string = "<span class='big bold'>You are a laughter \
 	demon,</span><B> a wonderful creature from another realm. You have a single \
 	desire: <span class='clown'>To hug and tickle.</span><BR>\
-	You may use the \"Blood Crawl\" ability near blood pools to travel \
+	Alt-click blood pools to travel \
 	through them, appearing and disappearing from the station at will. \
 	Pulling a dead or unconscious mob while you enter a pool will pull \
 	them in with you, allowing you to hug them and regain your health.<BR> \
@@ -143,6 +129,15 @@
 	them; but don't worry! When you die, everyone you hugged will be \
 	released and fully healed, because in the end it's just a jape, \
 	sibling!</B>"
+
+/mob/living/simple_animal/slaughter/laughter/Initialize()
+	..()
+	var/datum/component/crawl/blood/demonic/scary = GetComponent(/datum/component/crawl/blood/demonic)
+	if(scary)
+		scary.RemoveComponent(del_holder=FALSE)
+	var/datum/component/crawl/blood/demonic/hilarious/bloodcrawl = AddComponent(/datum/component/crawl/blood/demonic/hilarious)
+	if(bloodcrawl && istype(loc, /obj/effect/dummy/crawling))
+		bloodcrawl.holder = loc
 
 /mob/living/simple_animal/slaughter/laughter/Destroy()
 	release_friends()
@@ -158,10 +153,10 @@
 			adjustBruteLoss(30)
 
 /mob/living/simple_animal/slaughter/laughter/proc/release_friends()
-	if(!consumed_mobs)
+	var/datum/component/crawl/blood/demonic/hilarious/bloodcrawl = GetComponent(/datum/component/crawl/blood/demonic/hilarious)
+	if(!bloodcrawl || !bloodcrawl.friends)
 		return
-
-	for(var/mob/living/M in consumed_mobs)
+	for(var/mob/living/M in bloodcrawl.friends)
 		if(!M)
 			continue
 		var/turf/T = find_safe_turf()
@@ -171,14 +166,13 @@
 		if(M.revive(full_heal = TRUE, admin_revive = TRUE))
 			M.grab_ghost(force = TRUE)
 			playsound(T, feast_sound, 50, 1, -1)
-			to_chat(M, "<span class='clown'>You leave [src]'s warm embrace,	and feel ready to take on the world.</span>")
+			to_chat(M, "<span class='clown'>You leave [src]'s warm embrace, and feel ready to take on the world.</span>") //Why the fuck was there a random tab in this message?
 
 /mob/living/simple_animal/slaughter/laughter/bloodcrawl_swallow(var/mob/living/victim)
-	if(consumed_mobs)
-		// Keep their corpse so rescue is possible
-		consumed_mobs += victim
-	else
-		// Be safe and just eject the corpse
+	var/datum/component/crawl/blood/demonic/hilarious/bloodcrawl = GetComponent(/datum/component/crawl/blood/demonic/hilarious)
+	if(!bloodcrawl || !bloodcrawl.friends)
 		victim.forceMove(get_turf(victim))
 		victim.exit_blood_effect()
 		victim.visible_message("[victim] falls out of the air, covered in blood, looking highly confused. And dead.")
+		return
+	bloodcrawl.friends += victim

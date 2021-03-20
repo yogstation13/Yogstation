@@ -1,5 +1,4 @@
-//YOGS - FILE MOVED TO yogstation/code/modules/admin/sql_message_system.dm
-/proc/create_message(type, target_key, admin_ckey, text, timestamp, server, secret, logged = 1, browse, expiry, note_severity)
+/proc/create_message(type, target_key, admin_ckey, text, timestamp, server, secret, logged = 1, browse, expiry)
 	if(!SSdbcore.Connect())
 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
 		return
@@ -11,10 +10,7 @@
 		if(!new_key)
 			return
 		var/new_ckey = ckey(new_key)
-		var/datum/DBQuery/query_find_ckey = SSdbcore.NewQuery(
-			"SELECT ckey FROM [format_table_name("player")] WHERE ckey = :ckey",
-			list("ckey" = new_ckey)
-		)
+		var/datum/DBQuery/query_find_ckey = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("player")] WHERE ckey = :new_ckey", list("new_ckey" = new_ckey))
 		if(!query_find_ckey.warn_execute())
 			qdel(query_find_ckey)
 			return
@@ -58,10 +54,7 @@
 			var/expire_time = input("Set expiry time for [type] as format YYYY-MM-DD HH:MM:SS. All times in server time. HH:MM:SS is optional and 24-hour. Must be later than current time for obvious reasons.", "Set expiry time", SQLtime()) as null|text
 			if(!expire_time)
 				return
-			var/datum/DBQuery/query_validate_expire_time = SSdbcore.NewQuery(
-				"SELECT IF(STR_TO_DATE(:expire_time,'%Y-%c-%d %T') > NOW(), STR_TO_DATE(:expire_time,'%Y-%c-%d %T'), 0)",
-				list("expire_time" = expire_time)
-			)
+			var/datum/DBQuery/query_validate_expire_time = SSdbcore.NewQuery("SELECT IF(STR_TO_DATE(:expire_time,'%Y-%c-%d %T') > NOW(), STR_TO_DATE(:expire_time,'%Y-%c-%d %T'), 0)", list("expire_time" = expire_time))
 			if(!query_validate_expire_time.warn_execute())
 				qdel(query_validate_expire_time)
 				return
@@ -73,13 +66,10 @@
 					return
 				expiry = query_validate_expire_time.item[1]
 			qdel(query_validate_expire_time)
-	if(type == "note" && isnull(note_severity))
-		note_severity = input("Set the severity of the note.", "Severity", null, null) as null|anything in list("High", "Medium", "Minor", "None")
-		if(!note_severity)
-			return
+
 	var/datum/DBQuery/query_create_message = SSdbcore.NewQuery({"
-		INSERT INTO [format_table_name("messages")] (type, targetckey, adminckey, text, timestamp, server, server_ip, server_port, round_id, secret, expire_timestamp, severity)
-		VALUES (:type, :target_ckey, :admin_ckey, :text, :timestamp, :server, INET_ATON(:internet_address), :port, :round_id, :secret, :expiry, :note_severity)
+		INSERT INTO [format_table_name("messages")] (type, targetckey, adminckey, text, timestamp, server, server_ip, server_port, round_id, secret, expire_timestamp)
+		VALUES (:type, :target_ckey, :admin_ckey, :text, :timestamp, :server, INET_ATON(:internet_address), :port, :round_id, :secret, :expiry)
 	"}, list(
 		"type" = type,
 		"target_ckey" = target_ckey,
@@ -92,8 +82,8 @@
 		"round_id" = GLOB.round_id,
 		"secret" = secret,
 		"expiry" = expiry || null,
-		"note_severity" = note_severity,
 	))
+
 	var/pm = "[key_name(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]: [text]"
 	var/header = "[key_name(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]" // yogs - Yog Tickets
 	if(!query_create_message.warn_execute())
@@ -122,11 +112,7 @@
 	var/text
 	var/user_key_name = key_name(usr)
 	var/user_name_admin = key_name_admin(usr)
-	var/datum/DBQuery/query_find_del_message = SSdbcore.NewQuery(
-		"SELECT type, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey), text FROM [format_table_name("messages")] WHERE id = :id AND deleted = 0",
-		list("id" = message_id)
-	)
-
+	var/datum/DBQuery/query_find_del_message = SSdbcore.NewQuery("SELECT type, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), text FROM [format_table_name("messages")] WHERE id = :message_id AND deleted = 0", list("message_id" = message_id))
 	if(!query_find_del_message.warn_execute())
 		qdel(query_find_del_message)
 		return
@@ -135,12 +121,7 @@
 		target_key = query_find_del_message.item[2]
 		text = query_find_del_message.item[3]
 	qdel(query_find_del_message)
-
-	var/datum/DBQuery/query_del_message = SSdbcore.NewQuery(
-		"UPDATE [format_table_name("messages")] SET deleted = 1 WHERE id = :id",
-		list("id" = message_id)
-	)
-
+	var/datum/DBQuery/query_del_message = SSdbcore.NewQuery("UPDATE [format_table_name("messages")] SET deleted = 1 WHERE id = :message_id", list("message_id" = message_id))
 	if(!query_del_message.warn_execute())
 		qdel(query_del_message)
 		return
@@ -166,15 +147,7 @@
 	var/editor_key = usr.key
 	var/kn = key_name(usr)
 	var/kna = key_name_admin(usr)
-	var/datum/DBQuery/query_find_edit_message = SSdbcore.NewQuery({"
-		SELECT
-			type,
-			IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey),
-			IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), targetckey),
-			text
-		FROM [format_table_name("messages")]
-		WHERE id = :id AND deleted = 0
-	"}, list("id" = message_id))
+	var/datum/DBQuery/query_find_edit_message = SSdbcore.NewQuery("SELECT type, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), text FROM [format_table_name("messages")] WHERE id = :message_id AND deleted = 0", list("message_id" = message_id))
 	if(!query_find_edit_message.warn_execute())
 		qdel(query_find_edit_message)
 		return
@@ -188,11 +161,7 @@
 			qdel(query_find_edit_message)
 			return
 		var/edit_text = "Edited by [editor_key] on [SQLtime()] from<br>[old_text]<br>to<br>[new_text]<hr>"
-		var/datum/DBQuery/query_edit_message = SSdbcore.NewQuery({"
-			UPDATE [format_table_name("messages")]
-			SET text = :text, lasteditor = :lasteditor, edits = CONCAT(IFNULL(edits,''),:edit_text)
-			WHERE id = :id AND deleted = 0
-		"}, list("text" = new_text, "lasteditor" = editor_ckey, "edit_text" = edit_text, "id" = message_id))
+		var/datum/DBQuery/query_edit_message = SSdbcore.NewQuery("UPDATE [format_table_name("messages")] SET text = :new_text, lasteditor = :editor_ckey, edits = CONCAT(IFNULL(edits,''), :edit_text) WHERE id = :message_id AND deleted = 0", list("new_text" = new_text, "editor_ckey" = editor_ckey, "edit_text" = edit_text, "message_id" = message_id))
 		if(!query_edit_message.warn_execute())
 			qdel(query_edit_message)
 			return
@@ -216,15 +185,7 @@
 	var/editor_key = usr.key
 	var/kn = key_name(usr)
 	var/kna = key_name_admin(usr)
-	var/datum/DBQuery/query_find_edit_expiry_message = SSdbcore.NewQuery({"
-		SELECT
-			type,
-			IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey),
-			IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), adminckey),
-			expire_timestamp
-		FROM [format_table_name("messages")]
-		WHERE id = :id AND deleted = 0
-	"}, list("id" = message_id))
+	var/datum/DBQuery/query_find_edit_expiry_message = SSdbcore.NewQuery("SELECT type, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), expire_timestamp FROM [format_table_name("messages")] WHERE id = :message_id AND deleted = 0", list("message_id" = message_id))
 	if(!query_find_edit_expiry_message.warn_execute())
 		qdel(query_find_edit_expiry_message)
 		return
@@ -241,9 +202,7 @@
 		if(expire_time == "-1")
 			new_expiry = "non-expiring"
 		else
-			var/datum/DBQuery/query_validate_expire_time_edit = SSdbcore.NewQuery({"
-				SELECT IF(STR_TO_DATE(:expire_time,'%Y-%c-%d %T') > NOW(), STR_TO_DATE(:expire_time,'%Y-%c-%d %T'), 0)
-			"}, list("expire_time" = expire_time))
+			var/datum/DBQuery/query_validate_expire_time_edit = SSdbcore.NewQuery("SELECT IF(STR_TO_DATE(:expire_time,'%Y-%c-%d %T') > NOW(), STR_TO_DATE(:expire_time,'%Y-%c-%d %T'), 0)", list("expire_time" = expire_time))
 			if(!query_validate_expire_time_edit.warn_execute())
 				qdel(query_validate_expire_time_edit)
 				qdel(query_find_edit_expiry_message)
@@ -258,11 +217,12 @@
 				new_expiry = query_validate_expire_time_edit.item[1]
 			qdel(query_validate_expire_time_edit)
 		var/edit_text = "Expiration time edited by [editor_key] on [SQLtime()] from [old_expiry] to [new_expiry]<hr>"
-		var/datum/DBQuery/query_edit_message_expiry = SSdbcore.NewQuery({"
-			UPDATE [format_table_name("messages")]
-			SET expire_timestamp = :expire_time, lasteditor = :lasteditor, edits = CONCAT(IFNULL(edits,''),:edit_text)
-			WHERE id = :id AND deleted = 0
-		"}, list("expire_time" = (expire_time == "-1" ? null : new_expiry), "lasteditor" = editor_ckey, "edit_text" = edit_text, "id" = message_id))
+		var/expire_timestamp = "NULL"
+		if(expire_time == "-1")
+			expire_timestamp = "NULL"
+		else
+			expire_timestamp = new_expiry
+		var/datum/DBQuery/query_edit_message_expiry = SSdbcore.NewQuery("UPDATE [format_table_name("messages")] SET expire_timestamp = :expire_timestamp, lasteditor = :editor_ckey, edits = CONCAT(IFNULL(edits,''), :edit_text) WHERE id = :message_id AND deleted = 0", list("expire_timestamp" = expire_timestamp, "editor_ckey" = editor_ckey, "edit_text" = edit_text, "message_id" = message_id))
 		if(!query_edit_message_expiry.warn_execute())
 			qdel(query_edit_message_expiry)
 			qdel(query_find_edit_expiry_message)
@@ -276,57 +236,6 @@
 			browse_messages(target_ckey = ckey(target_key), agegate = TRUE)
 	qdel(query_find_edit_expiry_message)
 
-/proc/edit_message_severity(message_id)
-	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
-		return
-	message_id = text2num(message_id)
-	if(!message_id)
-		return
-	var/kn = key_name(usr)
-	var/kna = key_name_admin(usr)
-	var/datum/DBQuery/query_find_edit_note_severity = SSdbcore.NewQuery({"
-		SELECT
-			type,
-			IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey),
-			IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), adminckey),
-			severity
-		FROM [format_table_name("messages")]
-		WHERE id = :id AND deleted = 0
-	"}, list("id" = message_id))
-	if(!query_find_edit_note_severity.warn_execute())
-		qdel(query_find_edit_note_severity)
-		return
-	if(query_find_edit_note_severity.NextRow())
-		var/type = query_find_edit_note_severity.item[1]
-		var/target_key = query_find_edit_note_severity.item[2]
-		var/admin_key = query_find_edit_note_severity.item[3]
-		var/old_severity = query_find_edit_note_severity.item[4]
-		if(!old_severity)
-			old_severity = "NA"
-		var/editor_key = usr.key
-		var/editor_ckey = usr.ckey
-		var/new_severity = input("Set the severity of the note.", "Severity", null, null) as null|anything in list("high", "medium", "minor", "none") //lowercase for edit log consistency
-		if(!new_severity)
-			qdel(query_find_edit_note_severity)
-			return
-		new_severity = new_severity
-		var/edit_text = "Note severity edited by [editor_key] on [SQLtime()] from [old_severity] to [new_severity]<hr>"
-		var/datum/DBQuery/query_edit_note_severity = SSdbcore.NewQuery({"
-			UPDATE [format_table_name("messages")]
-			SET severity = :severity, lasteditor = :lasteditor, edits = CONCAT(IFNULL(edits,''),:edit_text)
-			WHERE id = :id AND deleted = 0
-		"}, list("severity" = new_severity, "lasteditor" = editor_ckey, "edit_text" = edit_text, "id" = message_id))
-		if(!query_edit_note_severity.warn_execute(async = TRUE))
-			qdel(query_edit_note_severity)
-			qdel(qdel(query_find_edit_note_severity))
-			return
-		qdel(query_edit_note_severity)
-		log_admin_private("[kn] has edited the severity of a [type] for [target_key] made by [admin_key] from [old_severity] to [new_severity]")
-		message_admins("[kna] has edited the severity time of a [type] for [target_key] made by [admin_key] from [old_severity] to [new_severity]")
-		browse_messages(target_ckey = ckey(target_key), agegate = TRUE)
-	qdel(query_find_edit_note_severity)
-
 /proc/toggle_message_secrecy(message_id)
 	if(!SSdbcore.Connect())
 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
@@ -338,15 +247,7 @@
 	var/editor_key = usr.key
 	var/kn = key_name(usr)
 	var/kna = key_name_admin(usr)
-	var/datum/DBQuery/query_find_message_secret = SSdbcore.NewQuery({"
-		SELECT
-			type,
-			IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey),
-			IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), targetckey),
-			secret
-		FROM [format_table_name("messages")]
-		WHERE id = :id AND deleted = 0
-	"}, list("id" = message_id))
+	var/datum/DBQuery/query_find_message_secret = SSdbcore.NewQuery("SELECT type, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), secret FROM [format_table_name("messages")] WHERE id = :message_id AND deleted = 0", list("message_id" = message_id))
 	if(!query_find_message_secret.warn_execute())
 		qdel(query_find_message_secret)
 		return
@@ -356,11 +257,7 @@
 		var/admin_key = query_find_message_secret.item[3]
 		var/secret = text2num(query_find_message_secret.item[4])
 		var/edit_text = "Made [secret ? "not secret" : "secret"] by [editor_key] on [SQLtime()]<hr>"
-		var/datum/DBQuery/query_message_secret = SSdbcore.NewQuery({"
-			UPDATE [format_table_name("messages")]
-			SET secret = NOT secret, lasteditor = :lasteditor, edits = CONCAT(IFNULL(edits,''),:edit_text)
-			WHERE id = :id
-		"}, list("lasteditor" = editor_ckey, "edit_text" = edit_text, "id" = message_id))
+		var/datum/DBQuery/query_message_secret = SSdbcore.NewQuery("UPDATE [format_table_name("messages")] SET secret = NOT secret, lasteditor = :editor_ckey, edits = CONCAT(IFNULL(edits,''), :edit_text) WHERE id = :message_id", list("editor_ckey" = editor_ckey, "edit_text" = edit_text, "message_id" = message_id))
 		if(!query_message_secret.warn_execute())
 			qdel(query_find_message_secret)
 			qdel(query_message_secret)
@@ -377,10 +274,10 @@
 		return
 	var/list/output = list()
 	var/ruler = "<hr style='background:#000000; border:0; height:3px'>"
-	var/list/navbar = list("<a href='?_src_=holder;[HrefToken()];nonalpha=1'>All</a><a href='?_src_=holder;[HrefToken()];nonalpha=2'>#</a>")
+	var/list/navbar = list("<a href='?_src_=holder;[HrefToken()];nonalpha=1'>\[All\]</a>|<a href='?_src_=holder;[HrefToken()];nonalpha=2'>\[#\]</a>")
 	for(var/letter in GLOB.alphabet)
-		navbar += "<a href='?_src_=holder;[HrefToken()];showmessages=[letter]'>[letter]</a>"
-	navbar += "<a href='?_src_=holder;[HrefToken()];showmemo=1'>Memos</a><a href='?_src_=holder;[HrefToken()];showwatch=1'>Watchlist</a>"
+		navbar += "|<a href='?_src_=holder;[HrefToken()];showmessages=[letter]'>\[[letter]\]</a>"
+	navbar += "|<a href='?_src_=holder;[HrefToken()];showmemo=1'>\[Memos\]</a>|<a href='?_src_=holder;[HrefToken()];showwatch=1'>\[Watchlist\]</a>"
 	navbar += "<br><form method='GET' name='search' action='?'>\
 	<input type='hidden' name='_src_' value='holder'>\
 	[HrefTokenFormField()]\
@@ -391,29 +288,16 @@
 	if(type == "memo" || type == "watchlist entry")
 		if(type == "memo")
 			output += "<h2><center>Admin memos</h2>"
-			output += "<a href='?_src_=holder;[HrefToken()];addmemo=1'>Add memo</a></center>"
+			output += "<a href='?_src_=holder;[HrefToken()];addmemo=1'>\[Add memo\]</a></center>"
 		else if(type == "watchlist entry")
 			output += "<h2><center>Watchlist entries</h2>"
-			output += "<a href='?_src_=holder;[HrefToken()];addwatchempty=1'>Add watchlist entry</a>"
+			output += "<a href='?_src_=holder;[HrefToken()];addwatchempty=1'>\[Add watchlist entry\]</a>"
 			if(filter)
-				output += "<a href='?_src_=holder;[HrefToken()];showwatch=1'>Unfilter clients</a></center>"
+				output += "|<a href='?_src_=holder;[HrefToken()];showwatch=1'>\[Unfilter clients\]</a></center>"
 			else
-				output += "<a href='?_src_=holder;[HrefToken()];showwatchfilter=1'>Filter offline clients</a></center>"
+				output += "|<a href='?_src_=holder;[HrefToken()];showwatchfilter=1'>\[Filter offline clients\]</a></center>"
 		output += ruler
-		var/datum/DBQuery/query_get_type_messages = SSdbcore.NewQuery({"
-			SELECT
-				id,
-				IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey),
-				targetckey,
-				IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), adminckey),
-				text,
-				timestamp,
-				server,
-				IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor), lasteditor),
-				expire_timestamp
-			FROM [format_table_name("messages")]
-			WHERE type = :type AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)
-		"}, list("type" = type))
+		var/datum/DBQuery/query_get_type_messages = SSdbcore.NewQuery("SELECT id, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), text, timestamp, server, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor), expire_timestamp FROM [format_table_name("messages")] WHERE type = :type AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)", list("type" = type))
 		if(!query_get_type_messages.warn_execute())
 			qdel(query_get_type_messages)
 			return
@@ -438,32 +322,16 @@
 			if(expire_timestamp)
 				output += " | Expires [expire_timestamp]"
 			output += "</b>"
-			output += " <a href='?_src_=holder;[HrefToken()];editmessageexpiryempty=[id]'>Change Expiry Time</a>"
-			output += " <a href='?_src_=holder;[HrefToken()];deletemessageempty=[id]'>Delete</a>"
-			output += " <a href='?_src_=holder;[HrefToken()];editmessageempty=[id]'>Edit</a>"
+			output += " <a href='?_src_=holder;[HrefToken()];editmessageexpiryempty=[id]'>\[Change Expiry Time\]</a>"
+			output += " <a href='?_src_=holder;[HrefToken()];deletemessageempty=[id]'>\[Delete\]</a>"
+			output += " <a href='?_src_=holder;[HrefToken()];editmessageempty=[id]'>\[Edit\]</a>"
 			if(editor_key)
 				output += " <font size='2'>Last edit by [editor_key] <a href='?_src_=holder;[HrefToken()];messageedits=[id]'>(Click here to see edit log)</a></font>"
 			output += "<br>[text]<hr style='background:#000000; border:0; height:1px'>"
 		qdel(query_get_type_messages)
 	if(target_ckey)
 		var/target_key
-		var/datum/DBQuery/query_get_messages = SSdbcore.NewQuery({"
-			SELECT
-				type,
-				secret,
-				id,
-				IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), adminckey),
-				text,
-				timestamp,
-				server,
-				IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor), lasteditor),
-				DATEDIFF(NOW(), timestamp),
-				IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey),
-				expire_timestamp, severity
-			FROM [format_table_name("messages")]
-			WHERE type <> 'memo' AND targetckey = :targetckey AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)
-			ORDER BY timestamp DESC
-		"}, list("targetckey" = target_ckey))
+		var/datum/DBQuery/query_get_messages = SSdbcore.NewQuery("SELECT type, secret, id, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), text, timestamp, round_id, server, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor), DATEDIFF(NOW(), timestamp), (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), expire_timestamp FROM [format_table_name("messages")] WHERE type <> 'memo' AND targetckey = :target_ckey AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) ORDER BY timestamp DESC", list("target_ckey" = target_ckey))
 		if(!query_get_messages.warn_execute())
 			qdel(query_get_messages)
 			return
@@ -484,12 +352,12 @@
 			var/admin_key = query_get_messages.item[4]
 			var/text = query_get_messages.item[5]
 			var/timestamp = query_get_messages.item[6]
-			var/server = query_get_messages.item[7]
-			var/editor_key = query_get_messages.item[8]
-			var/age = text2num(query_get_messages.item[9])
-			target_key = query_get_messages.item[10]
-			var/expire_timestamp = query_get_messages.item[11]
-			var/severity = query_get_messages.item[12]
+			var/roundnumber = query_get_messages.item[7]
+			var/server = query_get_messages.item[8]
+			var/editor_key = query_get_messages.item[9]
+			var/age = text2num(query_get_messages.item[10])
+			target_key = query_get_messages.item[11]
+			var/expire_timestamp = query_get_messages.item[12]
 			var/alphatext = ""
 			var/nsd = CONFIG_GET(number/note_stale_days)
 			var/nfd = CONFIG_GET(number/note_fresh_days)
@@ -503,33 +371,25 @@
 						alpha = 10
 						skipped = TRUE
 					alphatext = "filter: alpha(opacity=[alpha]); opacity: [alpha/100];"
-			var/list/data = list("<div style='margin:0px;[alphatext]'><p class='severity'>")
-			if(severity)
-				data += "<img src='[SSassets.transport.get_asset_url("[severity]_button.png")]' height='24' width='24'></img> "
-			data += "<b>[timestamp] | [server] | [admin_key][secret ? " | <i>- Secret</i>" : ""]"
+			var/list/data = list("<p style='margin:0px;[alphatext]'> <b>[timestamp] | [server] | [admin_key] | ")
+			data += "Round: #<a href='?_src_=holder;[HrefToken()];viewdemo=[roundnumber]'>[roundnumber]</a>"
 			if(expire_timestamp)
 				data += " | Expires [expire_timestamp]"
-			data += "</b></p><center>"
+			data += "</b>"
 			if(!linkless)
+				data += " <a href='?_src_=holder;[HrefToken()];editmessageexpiry=[id]'>\[Change Expiry Time\]</a>"
+				data += " <a href='?_src_=holder;[HrefToken()];deletemessage=[id]'>\[Delete\]</a>"
 				if(type == "note")
-					if(severity)
-						data += "<a href='?_src_=holder;[HrefToken()];editmessageseverity=[id]'>[severity=="none" ? "No" : "[capitalize(severity)]"] Severity</a>"
-					else
-						data += "<a href='?_src_=holder;[HrefToken()];editmessageseverity=[id]'>N/A Severity</a>"
-				data += " <a href='?_src_=holder;[HrefToken()];editmessageexpiry=[id]'>Change Expiry Time</a>"
-				data += " <a href='?_src_=holder;[HrefToken()];deletemessage=[id]'>Delete</a>"
-				if(type == "note")
-					data += " <a href='?_src_=holder;[HrefToken()];secretmessage=[id]'>[secret ? "<b>Secret</b>" : "Not secret"]</a>"
+					data += " <a href='?_src_=holder;[HrefToken()];secretmessage=[id]'>[secret ? "<b>\[Secret\]</b>" : "\[Not secret\]"]</a>"
 				if(type == "message sent")
 					data += " <font size='2'>Message has been sent</font>"
 					if(editor_key)
 						data += "|"
 				else
-					data += " <a href='?_src_=holder;[HrefToken()];editmessage=[id]'>Edit</a>"
+					data += " <a href='?_src_=holder;[HrefToken()];editmessage=[id]'>\[Edit\]</a>"
 				if(editor_key)
 					data += " <font size='2'>Last edit by [editor_key] <a href='?_src_=holder;[HrefToken()];messageedits=[id]'>(Click here to see edit log)</a></font>"
-			data += "</div></center>"
-			data += "<p style='[alphatext]'>[text]</p><hr style='background:#000000; border:0; height:1px; [alphatext]'>"
+			data += "<br>[text]</p><hr style='background:#000000; border:0; height:1px; [alphatext]'>"
 			switch(type)
 				if("message")
 					messagedata += data
@@ -541,9 +401,7 @@
 					notedata += data
 		qdel(query_get_messages)
 		if(!target_key)
-			var/datum/DBQuery/query_get_message_key = SSdbcore.NewQuery({"
-				SELECT byond_key FROM [format_table_name("player")] WHERE ckey = :ckey
-			"}, list("ckey" = target_ckey))
+			var/datum/DBQuery/query_get_message_key = SSdbcore.NewQuery("SELECT byond_key FROM [format_table_name("player")] WHERE ckey = :target_ckey", list("target_ckey" = target_ckey))
 			if(!query_get_message_key.warn_execute())
 				qdel(query_get_message_key)
 				return
@@ -552,34 +410,36 @@
 			qdel(query_get_message_key)
 		output += "<h2><center>[target_key]</center></h2><center>"
 		if(!linkless)
-			output += "<a href='?_src_=holder;[HrefToken()];addnote=[target_key]'>Add note</a>"
-			output += " <a href='?_src_=holder;[HrefToken()];addmessage=[target_key]'>Add message</a>"
-			output += " <a href='?_src_=holder;[HrefToken()];addwatch=[target_key]'>Add to watchlist</a>"
-			output += " <a href='?_src_=holder;[HrefToken()];showmessageckey=[target_ckey]'>Refresh page</a></center>"
+			output += "<a href='?_src_=holder;[HrefToken()];addnote=[target_key]'>\[Add note\]</a>"
+			output += " <a href='?_src_=holder;[HrefToken()];addmessage=[target_key]'>\[Add message\]</a>"
+			output += " <a href='?_src_=holder;[HrefToken()];addwatch=[target_key]'>\[Add to watchlist\]</a>"
+			output += " <a href='?_src_=holder;[HrefToken()];showmessageckey=[target_ckey]'>\[Refresh page\]</a></center>"
 		else
-			output += " <a href='?_src_=holder;[HrefToken()];showmessageckeylinkless=[target_ckey]'>Refresh page</a></center>"
+			output += " <a href='?_src_=holder;[HrefToken()];showmessageckeylinkless=[target_ckey]'>\[Refresh page\]</a></center>"
 		output += ruler
 		if(messagedata)
-			output += "<h2>Messages</h2>"
+			output += "<h4>Messages</h4>"
 			output += messagedata
 		if(watchdata)
-			output += "<h2>Watchlist</h2>"
+			output += "<h4>Watchlist</h4>"
 			output += watchdata
 		if(notedata)
-			output += "<h2>Notes</h2>"
+			output += "<h4>Notes</h4>"
 			output += notedata
 			if(!linkless)
 				if (agegate)
 					if (skipped) //the first skipped message is still shown so that we can put this link over it.
-						output += "<center><a href='?_src_=holder;[HrefToken()];showmessageckey=[target_ckey];showall=1' style='position: relative; top: -3em;'>Show [skipped] hidden messages</a></center>"
+						output += " <center><a href='?_src_=holder;[HrefToken()];showmessageckey=[target_ckey];showall=1' style='position: relative; top: -3em;'>\[Show [skipped] hidden messages\]</center>"
 					else
-						output += "<center><a href='?_src_=holder;[HrefToken()];showmessageckey=[target_ckey];showall=1'>Show All</a></center>"
+						output += " <center><a href='?_src_=holder;[HrefToken()];showmessageckey=[target_ckey];showall=1'>\[Show All\]</center>"
+
 				else
-					output += "<center><a href='?_src_=holder;[HrefToken()];showmessageckey=[target_ckey]'>Hide Old</a></center>"
+					output += " <center><a href='?_src_=holder;[HrefToken()];showmessageckey=[target_ckey]'>\[Hide Old\]</center>"
 	if(index)
 		var/search
-		output += "<center><a href='?_src_=holder;[HrefToken()];addmessageempty=1'>Add message</a><a href='?_src_=holder;[HrefToken()];addwatchempty=1'>Add watchlist entry</a><a href='?_src_=holder;[HrefToken()];addnoteempty=1'>Add note</a></center>"
+		output += "<center><a href='?_src_=holder;[HrefToken()];addmessageempty=1'>\[Add message\]</a><a href='?_src_=holder;[HrefToken()];addwatchempty=1'>\[Add watchlist entry\]</a><a href='?_src_=holder;[HrefToken()];addnoteempty=1'>\[Add note\]</a></center>"
 		output += ruler
+
 		switch(index)
 			if(1)
 				search = "^."
@@ -606,16 +466,14 @@
 				return
 			var/index_ckey = query_list_messages.item[1]
 			var/index_key = query_list_messages.item[2]
+			if(!index_key)
+				index_key = index_ckey
 			output += "<a href='?_src_=holder;[HrefToken()];showmessageckey=[index_ckey]'>[index_key]</a><br>"
 		qdel(query_list_messages)
 	else if(!type && !target_ckey && !index)
-		output += "<center><a href='?_src_=holder;[HrefToken()];addmessageempty=1'>Add message</a><a href='?_src_=holder;[HrefToken()];addwatchempty=1'>Add watchlist entry</a><a href='?_src_=holder;[HrefToken()];addnoteempty=1'>Add note</a></center>"
+		output += "<center></a> <a href='?_src_=holder;[HrefToken()];addmessageempty=1'>\[Add message\]</a><a href='?_src_=holder;[HrefToken()];addwatchempty=1'>\[Add watchlist entry\]</a><a href='?_src_=holder;[HrefToken()];addnoteempty=1'>\[Add note\]</a></center>"
 		output += ruler
-	var/datum/browser/browser = new(usr, "Note panel", "Manage player notes", 1000, 500)
-	var/datum/asset/notes_assets = get_asset_datum(/datum/asset/simple/notes)
-	notes_assets.send(usr.client)
-	browser.set_content(jointext(output, ""))
-	browser.open()
+	usr << browse({"<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /></head><body>[jointext(output, "")]</body></html>"}, "window=browse_messages;size=900x500")
 
 /proc/get_message_output(type, target_ckey)
 	if(!SSdbcore.Connect())
@@ -624,19 +482,12 @@
 	if(!type)
 		return
 	var/output
-	var/datum/DBQuery/query_get_message_output = SSdbcore.NewQuery({"
-		SELECT
-			id,
-			(SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey),
-			text,
-			timestamp,
-			(SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor)
-		FROM [format_table_name("messages")]
-		WHERE type = :type
-		AND deleted = 0
-		AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)
-		AND ((type != 'message' AND type != 'watchlist entry') OR targetckey = :targetckey)
-	"}, list("targetckey" = target_ckey, "type" = type))
+	var/values = list("type" = type)
+	var/query = "SELECT id, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), text, timestamp, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor) FROM [format_table_name("messages")] WHERE type = :type AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)"
+	if(type == "message" || type == "watchlist entry")
+		query += " AND targetckey = :target_ckey"
+		values["target_ckey"] = target_ckey
+	var/datum/DBQuery/query_get_message_output = SSdbcore.NewQuery(query, values)
 	if(!query_get_message_output.warn_execute())
 		qdel(query_get_message_output)
 		return
@@ -650,10 +501,7 @@
 			if("message")
 				output += "<font color='red' size='3'><b>Admin message left by <span class='prefix'>[admin_key]</span> on [timestamp]</b></font>"
 				output += "<br><font color='red'>[text]</font><br>"
-				var/datum/DBQuery/query_message_read = SSdbcore.NewQuery(
-					"UPDATE [format_table_name("messages")] SET type = 'message sent' WHERE id = :id",
-					list("id" = message_id)
-				)
+				var/datum/DBQuery/query_message_read = SSdbcore.NewQuery("UPDATE [format_table_name("messages")] SET type = 'message sent' WHERE id = :message_id", list("message_id" = message_id))
 				if(!query_message_read.warn_execute())
 					qdel(query_get_message_output)
 					qdel(query_message_read)
@@ -673,9 +521,6 @@
 #define NOTESFILE "data/player_notes.sav"
 //if the AUTOCONVERT_NOTES is turned on, anytime a player connects this will be run to try and add all their notes to the databas
 /proc/convert_notes_sql(ckey)
-	if(!fexists(NOTESFILE))
-		return
-
 	var/savefile/notesfile = new(NOTESFILE)
 	if(!notesfile)
 		log_game("Error: Cannot access [NOTESFILE]")
@@ -701,7 +546,7 @@
 			timestamp = query_convert_time.item[1]
 		qdel(query_convert_time)
 		if(ckey && notetext && timestamp && admin_ckey && server)
-			create_message("note", ckey, admin_ckey, notetext, timestamp, server, 1, 0, null, 0, 0)
+			create_message("note", ckey, admin_ckey, notetext, timestamp, server, 1, 0, null, 0)
 	notesfile.cd = "/"
 	notesfile.dir.Remove(ckey)
 

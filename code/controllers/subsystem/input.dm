@@ -1,4 +1,3 @@
-// yogs - Replicated for custom keybindings
 SUBSYSTEM_DEF(input)
 	name = "Input"
 	wait = 1 //SS_TICKER means this runs every tick
@@ -8,20 +7,17 @@ SUBSYSTEM_DEF(input)
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 
 	var/list/macro_sets
-	var/list/movement_keys
+
+	var/list/movement_arrows
 
 /datum/controller/subsystem/input/Initialize()
 	setup_default_macro_sets()
-
 	setup_default_movement_keys()
 
 	initialized = TRUE
 
-	refresh_client_macro_sets()
-
 	return ..()
 
-// This is for when macro sets are eventualy datumized
 /datum/controller/subsystem/input/proc/setup_default_macro_sets()
 	var/list/static/default_macro_sets
 
@@ -32,9 +28,6 @@ SUBSYSTEM_DEF(input)
 	default_macro_sets = list(
 		"default" = list(
 			"Tab" = "\".winset \\\"input.focus=true?map.focus=true input.background-color=[COLOR_INPUT_DISABLED]:input.focus=true input.background-color=[COLOR_INPUT_ENABLED]\\\"\"",
-			"O" = "ooc",
-			"T" = "say",
-			"M" = "me",
 			"Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"", // This makes it so backspace can remove default inputs
 			"Any" = "\"KeyDown \[\[*\]\]\"",
 			"Any+UP" = "\"KeyUp \[\[*\]\]\"",
@@ -43,12 +36,10 @@ SUBSYSTEM_DEF(input)
 			"Tab" = "\".winset \\\"mainwindow.macro=old_hotkeys map.focus=true input.background-color=[COLOR_INPUT_DISABLED]\\\"\"",
 			"Ctrl+T" = "say",
 			"Ctrl+O" = "ooc",
+			"CTRL+L" = "looc",
 			),
 		"old_hotkeys" = list(
 			"Tab" = "\".winset \\\"mainwindow.macro=old_default input.focus=true input.background-color=[COLOR_INPUT_ENABLED]\\\"\"",
-			"O" = "ooc",
-			"T" = "say",
-			"M" = "me",
 			"Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"", // This makes it so backspace can remove default inputs
 			"Any" = "\"KeyDown \[\[*\]\]\"",
 			"Any+UP" = "\"KeyUp \[\[*\]\]\"",
@@ -57,6 +48,8 @@ SUBSYSTEM_DEF(input)
 
 	// Because i'm lazy and don't want to type all these out twice
 	var/list/old_default = default_macro_sets["old_default"]
+	var/list/old_hotkeys = default_macro_sets["old_hotkeys"]
+	var/list/default = default_macro_sets["default"]
 
 	var/list/static/oldmode_keys = list(
 		"North", "East", "South", "West",
@@ -91,23 +84,26 @@ SUBSYSTEM_DEF(input)
 		old_default["Ctrl+[key]"] = "\"KeyDown [override]\""
 		old_default["Ctrl+[key]+UP"] = "\"KeyUp [override]\""
 
+	// basically when these keys are pressed, we want to make sure to clear/set ctrl's state if we need to.
+	var/list/static/ctrl_sensitive_keys = list(
+		"North", "East", "South", "West",
+		"W", "A", "S", "D"
+		)
+	for(var/i in 1 to ctrl_sensitive_keys.len)
+		var/key = ctrl_sensitive_keys[i]
+		old_hotkeys["Ctrl+[key]"] = "\"KeyDown Ctrl\""
+		old_hotkeys["[key]"] = "\"KeyUp Ctrl\""
+		default["Ctrl+[key]"] = "\"KeyDown Ctrl\""
+		default["[key]"] = "\"KeyUp Ctrl\""
+
 	macro_sets = default_macro_sets
 
-// For initially setting up or resetting to default the movement keys
 /datum/controller/subsystem/input/proc/setup_default_movement_keys()
-	var/static/list/default_movement_keys = list(
-		"W" = NORTH, "A" = WEST, "S" = SOUTH, "D" = EAST,				// WASD
+	var/static/list/arrow_keys = list(
 		"North" = NORTH, "West" = WEST, "South" = SOUTH, "East" = EAST,	// Arrow keys & Numpad
-		)
+	)
 
-	movement_keys = default_movement_keys.Copy()
-
-// Badmins just wanna have fun ♪
-/datum/controller/subsystem/input/proc/refresh_client_macro_sets()
-	var/list/clients = GLOB.clients
-	for(var/i in 1 to clients.len)
-		var/client/user = clients[i]
-		user.set_macros()
+	movement_arrows = arrow_keys.Copy()
 
 /datum/controller/subsystem/input/fire()
 	var/list/clients = GLOB.clients // Let's sing the list cache song

@@ -6,14 +6,14 @@
 //spooky recipes
 
 /datum/recipe/sugarcookie/spookyskull
-	reagents = list(/datum/reagent/consumable/flour = 5, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/milk = 5)
+	reagents_list = list(/datum/reagent/consumable/flour = 5, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/milk = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/egg,
 	)
 	result = /obj/item/reagent_containers/food/snacks/sugarcookie/spookyskull
 
 /datum/recipe/sugarcookie/spookycoffin
-	reagents = list(/datum/reagent/consumable/flour = 5, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/coffee = 5)
+	reagents_list = list(/datum/reagent/consumable/flour = 5, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/coffee = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/egg,
 	)
@@ -34,7 +34,7 @@
 	var/trapped = 0
 	var/mob/trapped_mob
 
-/obj/structure/closet/initialize()
+/obj/structure/closet/Initialize()
 	..()
 	if(prob(30))
 		set_spooky_trap()
