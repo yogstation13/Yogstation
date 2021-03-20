@@ -13,6 +13,7 @@ Format:
 	votable (is this map votable)
 
 map yogstation
+	maxplayers 60
 	voteweight 0.9
 	votable
 endmap
