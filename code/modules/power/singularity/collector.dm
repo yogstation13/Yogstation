@@ -46,60 +46,47 @@
 	anchored = TRUE
 
 /obj/machinery/power/rad_collector/process()
-	if(!loaded_tank)
+	if(!loaded_tank || !active)
 		return
-	switch(mode)
+
+	var/gasdrained = drain*drainratio
+	for(var/gasID in using) // Preliminary check before doing it again
+		if(loaded_tank.air_contents.get_moles(gasID) < gasdrained)
+			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SINGULO)
+			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
+			playsound(src, 'sound/machines/ding.ogg', 50, 1)
+			eject()
+
+	for(var/gasID in using)
+		loaded_tank.air_contents.adjust_moles(gasID, -gasdrained)
+	
+	for(var/gasID in giving)
+		loaded_tank.air_contents.adjust_moles(gasID, giving[gasID]*gasdrained)
+
+	var/output = RAD_COLLECTOR_OUTPUT
+	switch(mode) // Now handle the special interactions
 		if(POWER)
-			using = list(/datum/gas/plasma)
-			giving = list(/datum/gas/tritium = 1)
-			
+			add_avail(output)
+			stored_power -= output
+			last_output = output
+
 		if(SCIENCE)
-			using = list(/datum/gas/tritium, /datum/gas/oxygen)
-			giving = list(/datum/gas/carbon_dioxide = 2) // Conservation of mass
+			if(is_station_level(z) && SSresearch.science_tech)
+				SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, output*RAD_COLLECTOR_MINING_CONVERSION_RATE)
+				stored_power -= output
+				var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_ENG)
+				if(D)
+					D.adjust_money(output*RAD_COLLECTOR_MINING_CONVERSION_RATE)
+					last_output = output*RAD_COLLECTOR_MINING_CONVERSION_RATE
 
 		if(MONEY)
-			using = list(/datum/gas/plasma)
-			giving = list(/datum/gas/tritium = 0.5) // money
-
-	if(active && loaded_tank)
-		var/gasdrained = drain*drainratio
-		for(var/gasID in using) // Preliminary check before doing it again
-			if(loaded_tank.air_contents.get_moles(gasID) < gasdrained)
-				investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SINGULO)
-				investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
-				playsound(src, 'sound/machines/ding.ogg', 50, 1)
-				eject()
-
-		for(var/gasID in using)
-			loaded_tank.air_contents.adjust_moles(gasID, -gasdrained)
-		
-		for(var/gasID in giving)
-			loaded_tank.air_contents.adjust_moles(gasID, giving[gasID]*gasdrained)
-
-		var/output = RAD_COLLECTOR_OUTPUT
-		switch(mode) // Now handle the special interactions
-			if(POWER)
-				add_avail(output)
-				stored_power -= output
-				last_output = output
-
-			if(SCIENCE)
-				if(is_station_level(z) && SSresearch.science_tech)
-					SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, output*RAD_COLLECTOR_MINING_CONVERSION_RATE)
-					stored_power -= output
-					var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_ENG)
-					if(D)
-						D.adjust_money(output*RAD_COLLECTOR_MINING_CONVERSION_RATE)
-						last_output = output*RAD_COLLECTOR_MINING_CONVERSION_RATE
-
-			if(MONEY)
-				if(is_station_level(z))
-					var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
-					if(D)
-						var/payout = clamp((output^(output/1.2*output))/2500000, 0, stored_power) // No cheating
-						stored_power -= payout*1000
-						D.adjust_money(payout)
-						last_output = payout
+			if(is_station_level(z))
+				var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+				if(D)
+					var/payout = output/4000
+					stored_power -= min(payout*20000, stored_power)
+					D.adjust_money(payout)
+					last_output = payout
 
 /obj/machinery/power/rad_collector/interact(mob/user)
 	if(anchored)
@@ -210,18 +197,26 @@
 		return
 	switch(choice)
 		if(POWER)
+			if(!powernet)
+				to_chat(user, "<span class='warning'>[src] isn't connected to a powernet!</span>")
 			mode = POWER
+			using = list(/datum/gas/plasma)
+			giving = list(/datum/gas/tritium = 1)
 		if(SCIENCE)
 			if(!is_station_level(z) && !SSresearch.science_tech)
 				to_chat(user, "<span class='warning'>[src] isn't linked to a research system!</span>")
 				return // Dont switch over
 			mode = SCIENCE
+			using = list(/datum/gas/tritium, /datum/gas/oxygen)
+			giving = list(/datum/gas/carbon_dioxide = 2) // Conservation of mass
 		if(MONEY)
 			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			if(!D)
 				to_chat(user, "<span class='warning'>[src] couldn't find the cargo budget!</span>")
 				return // Dont switch over
 			mode = MONEY
+			using = list(/datum/gas/plasma)
+			giving = list(/datum/gas/tritium = 0.5) // money
 
 	to_chat(user, "<span class='warning'>You set the [src] mode to [mode] production.</span>")
 
@@ -237,7 +232,7 @@
 		else if(mode == SCIENCE)
 			. += "<span class='notice'>[src]'s display states that it has stored a total of <b>[stored_power*RAD_COLLECTOR_MINING_CONVERSION_RATE]</b>, and producing [last_output*30] research points per minute.</span>"
 		else if(mode == MONEY)
-			. += "<span class='notice'>[src]'s display states that it has stored a total of <b>[stored_power*RAD_COLLECTOR_MINING_CONVERSION_RATE] credits</b>, and producing [last_output*30] credits per minute.</span>"
+			. += "<span class='notice'>[src]'s display states that it has stored a total of <b>[stored_power*RAD_COLLECTOR_MINING_CONVERSION_RATE*20000] credits</b>, and producing [last_output*30] credits per minute.</span>"
 	else
 		if(mode == POWER)
 			. += "<span class='notice'><b>[src]'s display displays the words:</b> \"Power production mode. Please insert <b>Plasma</b>. Use a multitool to change production modes.\"</span>"
