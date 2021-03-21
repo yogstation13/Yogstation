@@ -2,6 +2,7 @@
  * Contains:
  * 		Beds
  *		Roller beds
+ *		Torture beds
  */
 
 /*
@@ -210,3 +211,57 @@
 	name = "resting contraption"
 	desc = "This looks similar to contraptions from Earth. Could aliens be stealing our technology?"
 	icon_state = "abed"
+
+//torture device, stretches a person strapped to it when wrenched
+/obj/structure/bed/rack
+	name = "torture rack"
+	desc = "A contraption dating the early medieval days, designed to torture prisoners and cure dwarfism.\nUse a <b>wrench</b> to move its wheel. \n<span class='notice'>It's held together by a couple of <b>screws</b>.</span>"
+	icon_state = "torture_rack"
+	max_buckled_mobs = 1
+	bolts = FALSE
+	
+/obj/structure/bed/attackby(obj/item/W, mob/user, params)
+	if(W.tool_behaviour == TOOL_SCREWDRIVER && !(flags_1&NODECONSTRUCT_1))
+		to_chat(user, "<span class='notice'>You start deconstructing [src]...</span>")
+		if(W.use_tool(src, user, 40, volume=50))
+			W.play_tool_sound(src)
+			deconstruct(TRUE)
+	else if (W.tool_behaviour == TOOL_WRENCH)
+		if(!has_buckled_mobs())
+			to_chat(user, "<span class='notice'>You move the [src] wheel with ease, there's nobody strapped onto it!</span>")
+			W.play_tool_sound(src)
+		else
+			var/mob/living/carbon/human/H = buckled_mobs[1]
+			to_chat(user, "<span class='notice'>You begin to stretch [H] on the [src]...</span>")
+			if(W.use_tool(src, user, 40, volume=120))
+				W.play_tool_sound(src)
+				var/obj/item/bodypart/LL = H.get_bodypart(BODY_ZONE_L_LEG)
+				var/obj/item/bodypart/RL = H.get_bodypart(BODY_ZONE_R_LEG)
+				var/obj/item/bodypart/LA = H.get_bodypart(BODY_ZONE_L_ARM)
+				var/obj/item/bodypart/RA = H.get_bodypart(BODY_ZONE_R_ARM)
+				
+				if(!LL && !RL) //can't stretch without at least one leg
+					return
+				if(!LA && !RA) //neither without an arm
+					return
+				
+				if(LL)
+					H.apply_damage(rand(5,10), BRUTE, LL)
+					if(prob(5))
+						LL.dismember()
+				if(RL)
+					H.apply_damage(rand(5,10), BRUTE, RL)
+					if(prob(5))
+						RL.dismember()
+				if(LA)
+					H.apply_damage(rand(5,10), BRUTE, LA)
+					if(prob(5))
+						LA.dismember()
+				if(RA)
+					H.apply_damage(rand(5,10), BRUTE, RA)
+					if(prob(5))
+						RA.dismember()
+				H.emote("scream")
+				H.transform = H.transform.Scale(1.04, 1) //STREETCH, not by much so people can't get ridiculously long
+	else
+		return ..()
