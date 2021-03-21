@@ -38,6 +38,8 @@
 	explosion(get_turf(src), 0, 1, 5, 5)
 	qdel(src)
 
+/obj/structure/closet/crate/secure/cheap
+
 /obj/structure/closet/crate/secure/weapon
 	desc = "A secure weapons crate."
 	name = "weapons crate"
