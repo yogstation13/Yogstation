@@ -3,7 +3,7 @@
 /client/proc/ghost_pool_protection() //Creates a verb for admins to open up the ui
 	set name = "Ghost Pool Protection"
 	set desc = "Choose which ways people can get into the round, or just clear it out completely for admin events."
-	set category = "Adminbus"
+	set category = "Admin"
 	var/datum/ghost_pool_menu/tgui  = new(usr)//create the datum
 	tgui.ui_interact(usr)//datum has a tgui component, here we open the window
 
