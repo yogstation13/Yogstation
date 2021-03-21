@@ -1,5 +1,0 @@
-author: "wejengin2"
-delete-after: true 
-changes: 
-  - bugfix: "fixes anesthetic locker in mining base access"
-  - tweak: "mining base has rougher edges"

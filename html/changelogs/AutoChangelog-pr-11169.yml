@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "lavaland syndicate sniper rifles are no longer safe to be fired by crew"
-  - tweak: "some firing pin removal stuff actually gets called when it's supposed to be i.e. on firing pin removal"
