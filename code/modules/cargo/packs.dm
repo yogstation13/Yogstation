@@ -1743,6 +1743,7 @@
 	name = "Mutagen Supply Crate"
 	desc = "A couple beakers of mutagen to help mutate more exotic plants. Do not ingest."
 	cost = 900
+	small_item = TRUE
 	contains = list(/obj/item/reagent_containers/glass/beaker/large/mutagen,
 					/obj/item/reagent_containers/glass/beaker/large/mutagen)
 
