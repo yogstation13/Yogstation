@@ -1,9 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - rscadd: "TRAIT_SKINNY is here for all your skinny race needs! Maybe!"
-  - imageadd: "Polysmorphs now look skinnier than humans in all jumpsuits and regular clothing (probably)"
-  - imageadd: "skinny thingywhatsises added to uniform.dmi for the purposes of sprite modification"
-  - imageadd: "Polysmorph north-facing body shape now consistent with south-facing shape"
-  - bugfix: "generate_female_clothing proc probably works better"
-  - bugfix: "invisible bodies should stop being a thing"
