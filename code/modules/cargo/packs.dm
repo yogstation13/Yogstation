@@ -957,7 +957,7 @@
 /datum/supply_pack/engine/sing_gen
 	name = "Singularity Generator Crate"
 	desc = "The key to unlocking the power of Lord Singuloth. Particle Accelerator not included."
-	cost = 10000
+	cost = 5000
 	contains = list(/obj/machinery/the_singularitygen)
 	crate_name = "singularity generator crate"
 
