@@ -65,6 +65,15 @@
 
 		pixel_x = -32
 		pixel_y = -32
+		
+		var/list/RG = range(1, src)
+		for(var/obj/singularity/energy_ball/E in RG)
+			if(!E.miniball && E != src)
+				var/turf/T = get_turf(src)
+				message_admins("Two teslas smashed against each other creating a massive explosion at [ADMIN_VERBOSEJMP(T)].")
+				explosion(src.loc,4,7,12,30)  //big ass explosion when touching another tesla ball, to prevent tesla stacking
+				qdel(E) //THERE CAN ONLY BE ONE!
+		
 		for (var/ball in orbiting_balls)
 			var/range = rand(1, clamp(orbiting_balls.len, 3, 7))
 			tesla_zap(ball, range, TESLA_MINI_POWER/7*range)
