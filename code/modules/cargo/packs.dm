@@ -1739,6 +1739,13 @@
 	crate_name = "exotic seeds crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
+/datum/supply_pack/organic/mutagen
+	name = "Mutagen Supply Crate"
+	desc = "A couple beakers of mutagen to help mutate more exotic plants. Do not ingest."
+	cost = 900
+	contents = list(/obj/item/reagent_containers/glass/beaker/large/mutagen,
+					/obj/item/reagent_containers/glass/beaker/large/mutagen)
+
 /datum/supply_pack/organic/food
 	name = "Food Crate"
 	desc = "Get things cooking with this crate full of useful ingredients! Contains a dozen eggs, three bananas, and some flour, rice, milk, soymilk, salt, pepper, enzyme, sugar, and monkeymeat."
