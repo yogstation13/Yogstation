@@ -161,6 +161,7 @@ SUBSYSTEM_DEF(garbage)
 				var/datum/qdel_item/I = items[type]
 				testing("GC: -- \ref[src] | [type] was unable to be GC'd --")
 				I.failures++
+				return
 			if (GC_QUEUE_HARDDELETE)
 				HardDelete(D)
 				if (MC_TICK_CHECK)
