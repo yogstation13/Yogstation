@@ -285,7 +285,7 @@
 /**
   * CQC chokehold handle
   *
-  * handles chokehold attack, dealing 10 oxygen damage with stamina damage multiplied as a % bonus every second, also silences for the duration
+  * handles chokehold attack, dealing 10 oxygen damage with stamina damage multiplied as a % bonus every second
   * returns true if total damage reaches 80 or oxygen damage reaches 50
   * returns false if the attack is interrupted
   */
