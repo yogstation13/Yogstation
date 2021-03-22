@@ -797,8 +797,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	set category = "Admin"
 	set name = "Adminhelp"
 
+	//Yes theres nothing after game finished, no i dont care, in the future there might
+	if(SSticket.current_state >= GAME_STATE_FINISHED)
+		to_chat(src, "<span class='danger'>The round has already ended! Make a player complaint on the forums instead.</span>, confidential=TRUE")
+		return
+	
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>", confidential=TRUE)
+		to_chat(src, "<span class='danger'>Speech is currently admin-disabled.</span>", confidential=TRUE)
 		return
 
 	//handle muting and automuting
