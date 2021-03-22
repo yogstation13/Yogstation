@@ -1,6 +1,3 @@
-#define TESLA_DEFAULT_POWER 1738260
-#define TESLA_MINI_POWER 869130
-
 /obj/singularity/energy_ball
 	name = "energy ball"
 	desc = "An energy ball."
