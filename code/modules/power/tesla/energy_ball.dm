@@ -66,6 +66,8 @@
 		pixel_x = -32
 		pixel_y = -32
 		for (var/ball in orbiting_balls)
+			if(prob(80))  //tesla nerf/reducing lag, each miniball now has only 20% to trigger the zap
+				return
 			var/range = rand(1, clamp(orbiting_balls.len, 3, 7))
 			tesla_zap(ball, range, TESLA_MINI_POWER/7*range)
 	else
