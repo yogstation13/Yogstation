@@ -798,7 +798,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	set name = "Adminhelp"
 
 	//Yes theres nothing after game finished, no i dont care, in the future there might
-	if(SSticket.current_state >= GAME_STATE_FINISHED)
+	if(SSticker.current_state >= GAME_STATE_FINISHED)
 		to_chat(src, "<span class='danger'>The round has already ended! Make a player complaint on the forums instead.</span>, confidential=TRUE")
 		return
 	
