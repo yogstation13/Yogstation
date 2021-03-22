@@ -20,7 +20,7 @@
   *
   * Parent call
   *
-  * Returns QDEL_HINT_HARDDEL (don't change this)
+  * Returns parent
   */
 /mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
 	GLOB.mob_list -= src
@@ -40,8 +40,8 @@
 		qdel(cc)
 	client_colours = null
 	ghostize()
-	..()
-	return QDEL_HINT_HARDDEL
+	
+	return ..()
 
 /**
   * Intialize a mob
