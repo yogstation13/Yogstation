@@ -598,3 +598,11 @@
 /obj/item/storage/box/syndie_kit/bee_grenades/PopulateContents()
 	for(var/i in 1 to 3)
 		new /obj/item/grenade/spawnergrenade/buzzkill(src)
+
+/obj/item/storage/box/syndie_kit/imp_warp
+	name = "boxed warp implant (with injector)"
+
+/obj/item/storage/box/syndie_kit/imp_warp/PopulateContents()
+	var/obj/item/implanter/O = new(src)
+	O.imp = new /obj/item/implant/warp(O)
+	O.update_icon()
