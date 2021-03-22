@@ -33,10 +33,15 @@
 	return TRUE
 
 /obj/machinery/ntnet_relay/update_icon()
+	cut_overlays()
 	if(is_operational())
-		icon_state = "bus"
+		var/mutable_appearance/on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
+		add_overlay(on_overlay)
+	if(panel_open)
+		icon_state = "[initial(icon_state)]_o"
 	else
-		icon_state = "bus_off"
+		icon_state = initial(icon_state)
+	icon_state = "bus"
 
 /obj/machinery/ntnet_relay/process()
 	if(is_operational())
