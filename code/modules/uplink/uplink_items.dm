@@ -1591,6 +1591,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	player_minimum = 25
 
+/datum/uplink_item/implants/warp
+	name = "Warp Implant"
+	desc = "An implant injected into the body and later activated at the user's will. It will inject eigenstasium which saves the user's location and teleports them there after five seconds. Lasts only fifteen times."
+	item = /obj/item/storage/box/syndie_kit/imp_warp
+	cost = 6
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+
 /datum/uplink_item/implants/antistun
 	name = "CNS Rebooter Implant"
 	desc = "This implant will help you get back up on your feet faster after being stunned. Comes with an autosurgeon."
