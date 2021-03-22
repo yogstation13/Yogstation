@@ -18,6 +18,7 @@
 	var/ride_check_rider_incapacitated = FALSE
 	var/ride_check_rider_restrained = FALSE
 	var/ride_check_ridden_incapacitated = FALSE
+	var/parent_initial_layer
 
 	var/del_on_unbuckle_all = FALSE
 
@@ -30,6 +31,7 @@
 
 /datum/component/riding/proc/vehicle_mob_unbuckle(datum/source, mob/living/M, force = FALSE)
 	var/atom/movable/AM = parent
+	AM.layer = parent_initial_layer
 	restore_position(M)
 	unequip_buckle_inhands(M)
 	M.updating_glide_size = TRUE
@@ -40,14 +42,15 @@
 	var/atom/movable/AM = parent
 	M.set_glide_size(AM.glide_size)
 	M.updating_glide_size = FALSE
+	parent_initial_layer = AM.layer
 	handle_vehicle_offsets()
 
-/datum/component/riding/proc/handle_vehicle_layer()
+/datum/component/riding/proc/handle_vehicle_layer(dir)
 	var/atom/movable/AM = parent
 	var/static/list/defaults = list(TEXT_NORTH = OBJ_LAYER, TEXT_SOUTH = ABOVE_MOB_LAYER, TEXT_EAST = ABOVE_MOB_LAYER, TEXT_WEST = ABOVE_MOB_LAYER)
-	. = defaults["[AM.dir]"]
-	if(directional_vehicle_layers["[AM.dir]"])
-		. = directional_vehicle_layers["[AM.dir]"]
+	. = defaults["[dir]"]
+	if(directional_vehicle_layers["[dir]"])
+		. = directional_vehicle_layers["[dir]"]
 	if(isnull(.))	//you can set it to null to not change it.
 		. = AM.layer
 	AM.layer = .
@@ -55,12 +58,12 @@
 /datum/component/riding/proc/set_vehicle_dir_layer(dir, layer)
 	directional_vehicle_layers["[dir]"] = layer
 
-/datum/component/riding/proc/vehicle_moved(datum/source)
+/datum/component/riding/proc/vehicle_moved(datum/source, oldloc, dir, forced)
 	var/atom/movable/AM = parent
 	for(var/mob/M in AM.buckled_mobs)
 		ride_check(M)
 	handle_vehicle_offsets()
-	handle_vehicle_layer()
+	handle_vehicle_layer(dir)
 
 /datum/component/riding/proc/ride_check(mob/living/M)
 	var/atom/movable/AM = parent
@@ -186,7 +189,7 @@
 			ride_check(M)
 			M.set_glide_size(AM.glide_size)
 
-		handle_vehicle_layer()
+		handle_vehicle_layer(direction)
 		handle_vehicle_offsets()
 	else
 		to_chat(user, "<span class='notice'>You'll need the keys in one of your hands to [drive_verb] [AM].</span>")
@@ -284,10 +287,10 @@
 			to_chat(user, "<span class='userdanger'>You can't grab onto [AM] with no hands!</span>")
 			return
 
-/datum/component/riding/cyborg/handle_vehicle_layer()
+/datum/component/riding/cyborg/handle_vehicle_layer(dir)
 	var/atom/movable/AM = parent
 	if(AM.buckled_mobs && AM.buckled_mobs.len)
-		if(AM.dir == SOUTH)
+		if(dir == SOUTH)
 			AM.layer = ABOVE_MOB_LAYER
 		else
 			AM.layer = OBJ_LAYER

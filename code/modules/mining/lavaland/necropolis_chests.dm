@@ -763,7 +763,7 @@
 	name = "dragon chest"
 
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
-	var/loot = rand(1,3)
+	var/loot = rand(1,4)
 	switch(loot)
 		if(1)
 			new /obj/item/melee/ghost_sword(src)
