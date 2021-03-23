@@ -23,6 +23,7 @@
 	var/energy_to_raise = 32
 	var/energy_to_lower = -20
 	var/max_balls = 10
+	var/gloved = FALSE
 
 /obj/singularity/energy_ball/Initialize(mapload, starting_energy = 50, is_miniball = FALSE)
 	miniball = is_miniball
@@ -51,6 +52,8 @@
 
 
 /obj/singularity/energy_ball/process()
+	if(gloved) //we don't act, move or zap, when "contained" in insuls
+		return
 	if(!orbiting)
 		handle_energy()
 
@@ -312,3 +315,58 @@
 
 	else if(closest_structure)
 		closest_structure.tesla_act(power, tesla_flags, shocked_targets)
+
+/obj/item/tesla_insuls
+	name = "bloated insulated glove"
+	desc = "It ain't stupid if it works."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "tesla_insuls"
+	throw_speed = 3
+	throw_range = 7
+	throwforce = 0
+	force = 0
+	var/obj/singularity/energy_ball/stored_tesla
+	var/escape_time = 600 //around a minute before tesla escapes, better get rid of it!
+	var/timer = 0
+
+/obj/item/tesla_insuls/Initialize(mapload, var/obj/singularity/energy_ball/tesla)
+	. = ..()
+	stored_tesla = tesla
+	stored_tesla.gloved = TRUE
+	stored_tesla.forceMove(src) //yoink!
+	timer = world.time + escape_time
+	addtimer(CALLBACK(src, .proc/release), escape_time) //clock is ticking, get moving!
+
+/obj/item/tesla_insuls/proc/release()
+	if(!stored_tesla)
+		qdel(src)
+	if(timer == world.time) //time's up
+		stored_tesla.gloved = FALSE
+		stored_tesla.forceMove(get_turf(src))
+		src.visible_message("<span class='warning'>[stored_tesla] breaks out of the [src]!</span>")
+		qdel(src)
+
+/obj/item/tesla_insuls/examine(mob/user)
+	. = ..()
+	. += "You feel like the energy ball could escape in [DisplayTimeText(timer - world.time)]!"
+
+/obj/item/tesla_insuls/attackby(obj/item/W, mob/user, params) //you can coat those insuls with another layer of insulated gloves to reset the timer before tesla escapes
+	if(istype(W, /obj/item/clothing/gloves/color/yellow))
+		to_chat(user, "<span class='notice'>You wrap [src] around with [W], making another coat of insulation! It should withstand for more time.</span>")
+		qdel(W)
+		timer = world.time + escape_time
+		addtimer(CALLBACK(src, .proc/release), escape_time)
+		return
+	..()
+
+/obj/singularity/energy_ball/attackby(obj/item/W, mob/user, params) //this is the stupidest thing i've ever done ~Chester
+	if(istype(W, /obj/item/clothing/gloves/color/yellow))
+		if(miniball)
+			return
+		to_chat(user, "<span class='notice'>You stretch [W] with all your might and quickly wrap them around [src]!</span>")
+		qdel(W)
+		new/obj/item/tesla_insuls(get_turf(src), src)
+		to_chat(user, "<span class='warning'>IT WORKED!</span>") //famous last words
+		SSachievements.unlock_achievement(/datum/achievement/tesla_insuls, user.client)
+		return
+	..()
