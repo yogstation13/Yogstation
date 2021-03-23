@@ -155,6 +155,12 @@
 	name = "On my authority"
 	desc = "Trigger a keycard authentication device event, by yourself."
 	id = 23
+	
+/datum/achievement/tesla_insuls
+	name = "Insulated containment"
+	desc = "Successfully contain an energy ball inside a pair of insulated gloves."
+	id = 24
+	hidden = TRUE
 
 // The achievements that are basically just "greentext as this sort of antag"
 
