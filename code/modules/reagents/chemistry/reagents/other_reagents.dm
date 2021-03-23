@@ -468,6 +468,7 @@
 			N.skin_tone = saved_color
 		else if(MUTCOLORS in N.dna.species.species_traits)
 			N.dna.features["mcolor"] = saved_color
+		N.regenerate_icons()
 	..()
 
 /datum/reagent/mutationtoxin
