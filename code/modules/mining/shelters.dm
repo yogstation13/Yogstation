@@ -69,7 +69,7 @@
 	whitelisted_turfs = typecacheof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
-	/datum/map_template/shelter/charlie
+/datum/map_template/shelter/charlie
 	name = "Shelter Charlie"
 	shelter_id = "shelter_charlie"
 	description = "A luxury elite shelter which holds an entire bar \
