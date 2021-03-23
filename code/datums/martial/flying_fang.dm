@@ -163,7 +163,7 @@
 	name = "Leap"
 	desc = "Prepare to jump at a target, with a successful hit stunning them and preventing you from moving for a few seconds."
 	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
-	var/datum/martial_art/lizard/linked_martial
+	var/datum/martial_art/flyingfang/linked_martial
 
 /datum/action/innate/lizard_leap/New()
 	..()
