@@ -835,10 +835,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"dg" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
+"fj" = (
 /obj/structure/chair/americandiner/black{
 	dir = 8;
 	icon_state = "americhair_black";
@@ -957,6 +954,12 @@
 "Gv" = (
 /obj/machinery/light_switch,
 /turf/closed/wall,
+/area/crew_quarters/bar)
+"HK" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "IN" = (
 /obj/structure/disposalpipe/segment,
@@ -1257,7 +1260,7 @@ Eq
 nK
 nK
 an
-an
+HK
 ai
 "}
 (13,1,1) = {"
@@ -1305,7 +1308,7 @@ ck
 cv
 kM
 an
-dg
+fj
 ai
 "}
 (16,1,1) = {"
