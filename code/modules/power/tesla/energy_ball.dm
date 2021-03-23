@@ -322,11 +322,13 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "tesla_insuls"
 	throw_speed = 3
-	throw_range = 7
+	throw_range = 2
 	throwforce = 0
 	force = 0
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/obj/singularity/energy_ball/stored_tesla
 	var/escape_time = 600 //around a minute before tesla escapes, better get rid of it!
+	var/timing_id
 	var/timer = 0
 
 /obj/item/tesla_insuls/Initialize(mapload, var/obj/singularity/energy_ball/tesla)
@@ -335,16 +337,15 @@
 	stored_tesla.gloved = TRUE
 	stored_tesla.forceMove(src) //yoink!
 	timer = world.time + escape_time
-	addtimer(CALLBACK(src, .proc/release), escape_time) //clock is ticking, get moving!
+	timing_id = addtimer(CALLBACK(src, .proc/release), escape_time, TIMER_STOPPABLE) //clock is ticking, get moving!
 
 /obj/item/tesla_insuls/proc/release()
 	if(!stored_tesla)
 		qdel(src)
-	if(timer == world.time) //time's up
-		stored_tesla.gloved = FALSE
-		stored_tesla.forceMove(get_turf(src))
-		src.visible_message("<span class='warning'>[stored_tesla] breaks out of the [src]!</span>")
-		qdel(src)
+	stored_tesla.gloved = FALSE
+	stored_tesla.forceMove(get_turf(src))
+	src.visible_message("<span class='warning'>[stored_tesla] breaks out of the [src]!</span>")
+	qdel(src)
 
 /obj/item/tesla_insuls/examine(mob/user)
 	. = ..()
@@ -354,8 +355,11 @@
 	if(istype(W, /obj/item/clothing/gloves/color/yellow))
 		to_chat(user, "<span class='notice'>You wrap [src] around with [W], making another coat of insulation! It should withstand for more time.</span>")
 		qdel(W)
+		if(timing_id)
+			deltimer(timing_id)
+			timing_id = null
 		timer = world.time + escape_time
-		addtimer(CALLBACK(src, .proc/release), escape_time)
+		timing_id = addtimer(CALLBACK(src, .proc/release), escape_time, TIMER_STOPPABLE)
 		return
 	..()
 
@@ -370,3 +374,4 @@
 		SSachievements.unlock_achievement(/datum/achievement/tesla_insuls, user.client)
 		return
 	..()
+	
