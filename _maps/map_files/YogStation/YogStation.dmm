@@ -57266,6 +57266,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"ttv" = (
+/obj/item/cigbutt,
+/turf/closed/wall,
+/area/security/brig)
 "ttJ" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
@@ -92158,7 +92162,7 @@ afy
 afF
 agj
 agj
-agj
+ttv
 agj
 agj
 agj
