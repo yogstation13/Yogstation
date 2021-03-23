@@ -350,6 +350,7 @@
 
 	if(victim.wearing_shock_proof_gloves())
 		SEND_SIGNAL(victim, COMSIG_LIVING_SHOCK_PREVENTED, power_source, source, siemens_coeff, dist_check)
+		var/G = victim.gloves
 		if(istype(G, /obj/item/clothing/gloves/color/fyellow))
 			var/obj/item/clothing/gloves/color/fyellow/greytide = G
 			greytide.get_shocked()
