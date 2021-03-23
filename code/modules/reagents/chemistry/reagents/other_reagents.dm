@@ -462,12 +462,13 @@
 	return
 
 /datum/reagent/spraytan/on_mob_delete(mob/living/L)
-	if(ishuman(M))
+	if(ishuman(M) && saved_color)
 		var/mob/living/carbon/human/N = M
 		if(N.dna.species.use_skintones)
 			N.skin_tone = saved_color
 		else if(MUTCOLORS in N.dna.species.species_traits)
 			N.dna.features["mcolor"] = saved_color
+	..()
 
 /datum/reagent/mutationtoxin
 	name = "Stable Mutation Toxin"
