@@ -6,7 +6,7 @@
 
 /datum/martial_art/flyingfang
 	name = "Flying Fang"
-	id = MARTIALART_flyingfang
+	id = MARTIALART_FLYINGFANG
 	no_guns = TRUE
 	help_verb = /mob/living/carbon/human/proc/flyingfang_help
 	///used to keep track of the pounce ability
