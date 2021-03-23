@@ -484,8 +484,8 @@
 			var/obj/item/clothing/gloves/G = gloves
 			if(G.siemens_coefficient <= 0)
 				total_coeff -= 0.5
-			var/obj/item/clothing/gloves/color/fyellow/greytide = G
-			if(istype(greytide))
+			if(istype(G, /obj/item/clothing/gloves/color/fyellow)
+				var/obj/item/clothing/gloves/color/fyellow/greytide = G
 				greytide.get_shocked()
 		if(wear_suit)
 			var/obj/item/clothing/suit/S = wear_suit
@@ -501,8 +501,8 @@
 		if(gloves)
 			var/obj/item/clothing/gloves/G = gloves
 			gloves_siemens_coeff = G.siemens_coefficient
-			var/obj/item/clothing/gloves/color/fyellow/greytide = G
-			if(istype(greytide))
+			if(istype(G, /obj/item/clothing/gloves/color/fyellow)
+				var/obj/item/clothing/gloves/color/fyellow/greytide = G
 				greytide.get_shocked()
 		siemens_coeff = gloves_siemens_coeff
 	if(undergoing_cardiac_arrest() && !illusion)
