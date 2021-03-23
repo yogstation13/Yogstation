@@ -23,10 +23,10 @@
 	if(damaged)
 		qdel(src)
 		new/obj/effect/decal/cleanable/ash(src)
-		to_chat(src, "<span class='notice'>Your gloves catch fire and disintegrate!</span>")
+		src.visible_message("<span class='notice'>Your gloves catch fire and disintegrate!</span>")
 	else
 		damaged = TRUE
-		to_chat(src, "<span class='notice'>Your gloves begin to melt!</span>")
+		src.visible_message("<span class='notice'>Your gloves begin to melt!</span>")
 
 /obj/item/clothing/gloves/color/fyellow/old
 	desc = "Old and worn out insulated gloves, hopefully they still work."
