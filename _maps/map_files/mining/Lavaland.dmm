@@ -1744,6 +1744,23 @@
 /obj/machinery/atmospherics/components/unary/tank/air,
 /turf/open/floor/plating,
 /area/mine/laborcamp)
+"nM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/obj/item/stack/sheet/mineral/gold{
+	amount = 25
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "nT" = (
 /obj/structure/stone_tile/surrounding/burnt,
 /turf/open/lava/smooth/lava_land_surface,
@@ -2300,23 +2317,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/mine/laborcamp)
-"xA" = (
-/obj/item/stack/sheet/mineral/gold/fifty{
-	amount = 25
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/dragonslair)
 "xO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/seeds/redbeet,
@@ -2827,26 +2827,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"GP" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/item/stack/sheet/mineral/gold/fifty{
-	amount = 25
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/dragonslair)
 "GX" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/stone_tile/block/cracked,
@@ -3478,20 +3458,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/laborcamp)
-"SM" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/block/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/item/stack/sheet/mineral/gold/fifty{
-	amount = 25
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/dragonslair)
 "SV" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -3576,6 +3542,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"UK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/block/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/obj/item/stack/sheet/mineral/gold{
+	amount = 25
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "UL" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/stack/sheet/mineral/gold/fifty,
@@ -3630,6 +3610,26 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"VF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/obj/item/stack/sheet/mineral/gold{
+	amount = 25
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "VP" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
@@ -3778,23 +3778,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"Zb" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/item/stack/sheet/mineral/gold/fifty{
-	amount = 25
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/dragonslair)
 "Zf" = (
 /obj/machinery/atmospherics/pipe/manifold{
 	dir = 4
@@ -48066,11 +48049,11 @@ aj
 aa
 aa
 GX
-xA
-Zb
-Zb
-Zb
-Zb
+nM
+nM
+nM
+nM
+nM
 Ih
 aa
 aa
@@ -48323,11 +48306,11 @@ aj
 aa
 aa
 aa
-SM
+UK
 Aw
 UL
 UL
-GP
+VF
 aa
 aa
 aa
