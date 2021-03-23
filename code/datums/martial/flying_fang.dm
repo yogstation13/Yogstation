@@ -4,19 +4,19 @@
 #define TAIL_COMBO "TD"
 
 
-/datum/martial_art/lizard
+/datum/martial_art/flyingfang
 	name = "Flying Fang"
-	id = MARTIALART_LIZARD
+	id = MARTIALART_FLYINGFANG
 	no_guns = TRUE
 	help_verb = /mob/living/carbon/human/proc/flyingfang_help
 	///used to keep track of the pounce ability
 	var/leaping = FALSE
 	var/datum/action/innate/lizard_leap/linked_leap
 
-/datum/martial_art/lizard/can_use(mob/living/carbon/human/H)
+/datum/martial_art/flyingfang/can_use(mob/living/carbon/human/H)
 	return islizard(H)
 
-/datum/martial_art/lizard/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/flyingfang/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return
 	if(findtext(streak,TAIL_COMBO_START))
@@ -37,7 +37,7 @@
 		return TRUE
 
 ///second attack of the tail slap combo, deals high stamina damage, low brute damage, and causes a short slowdown
-/datum/martial_art/lizard/proc/Slam(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/flyingfang/proc/Slam(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return
 	var/selected_zone = A.zone_selected
@@ -54,7 +54,7 @@
 	log_combat(A, D, "slammed (Flying Fang)")
 
 ///last hit of the tail slap combo, causes a short stun or throws whatever blocks the attack
-/datum/martial_art/lizard/proc/Slap(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/flyingfang/proc/Slap(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return
 	A.emote("spin")
@@ -85,7 +85,7 @@
 	log_combat(A, D, "tail slapped (Flying Fang)")
 
 //headbutt, deals moderate brute and stamina damage with a short stun and eye blur, causes poor aim for a few seconds to the target if they have no helmet on with a chance to concuss
-/datum/martial_art/lizard/proc/Headbutt(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/flyingfang/proc/Headbutt(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return
 	var/obj/item/bodypart/affecting = D.get_bodypart(check_zone(BODY_ZONE_HEAD))
@@ -105,10 +105,10 @@
 					  "<span class='userdanger'>[A] headbutts you!</span>")
 	log_combat(A, D, "headbutted (Flying Fang)")
 
-/datum/martial_art/lizard/proc/remove_bonk(mob/living/carbon/human/D)
+/datum/martial_art/flyingfang/proc/remove_bonk(mob/living/carbon/human/D)
 	REMOVE_TRAIT(D, TRAIT_POOR_AIM, "martial")
 
-/datum/martial_art/lizard/proc/Chomp(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/flyingfang/proc/Chomp(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return
 	if((D.mobility_flags & MOBILITY_STAND))
@@ -130,19 +130,19 @@
 	D.Stun(2 SECONDS)
 	log_combat(A, D, "neck chomped (Flying Fang)")
 
-/datum/martial_art/lizard/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/flyingfang/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("D",D)
 	if(check_streak(A,D))
 		return TRUE
 	return FALSE //nothing special here
 
-/datum/martial_art/lizard/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/flyingfang/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("G",D)
 	if(check_streak(A,D))
 		return TRUE
 	return FALSE //nothing special here
 
-/datum/martial_art/lizard/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/flyingfang/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
 	add_to_streak("H",D)
@@ -163,7 +163,7 @@
 	name = "Leap"
 	desc = "Prepare to jump at a target, with a successful hit stunning them and preventing you from moving for a few seconds."
 	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
-	var/datum/martial_art/lizard/linked_martial
+	var/datum/martial_art/flyingfang/linked_martial
 
 /datum/action/innate/lizard_leap/New()
 	..()
@@ -206,7 +206,7 @@
 	linked_martial.leaping = FALSE
 	UpdateButtonIcon()
 
-/datum/martial_art/lizard/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
+/datum/martial_art/flyingfang/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
 	if(!leaping)
 		return FALSE
 	if(hit_atom)
@@ -254,7 +254,7 @@
 	to_chat(usr, "<span class='notice'>Neck Bite</span>: Grab Harm. Target must be prone. Stuns you and your target for a short period, dealing heavy brute damage and bleeding. If the target is not in crit, this attack will heal you.")
 	to_chat(usr, "<spna class='notice'>Leap</span>: Action: Jump at a target, with a successful hit stunning them and preventing you from moving for a few seconds.")
 
-/datum/martial_art/lizard/teach(mob/living/carbon/human/H,make_temporary=0)
+/datum/martial_art/flyingfang/teach(mob/living/carbon/human/H,make_temporary=0)
 	..()
 	if(!linked_leap)
 		linked_leap = new
@@ -268,7 +268,7 @@
 	if(S)
 		S.add_no_equip_slot(H, SLOT_WEAR_SUIT)
 
-/datum/martial_art/lizard/on_remove(mob/living/carbon/human/H)
+/datum/martial_art/flyingfang/on_remove(mob/living/carbon/human/H)
 	..()
 	linked_leap.Remove(H)
 	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, "martial")

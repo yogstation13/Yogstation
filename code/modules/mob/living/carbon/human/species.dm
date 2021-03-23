@@ -1536,7 +1536,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				playsound(H.loc, 'sound/weapons/punch1.ogg', 25, 1, -1)
 			log_combat(M, H, "hulk punched a shield held by")
 			return FALSE
-		if(istype(attacker_style, /datum/martial_art/lizard) && M.a_intent == INTENT_DISARM)
+		if(istype(attacker_style, /datum/martial_art/flyingfang) && M.a_intent == INTENT_DISARM)
 			disarm(M, H, attacker_style)
 		log_combat(M, H, "attempted to touch")
 		H.visible_message("<span class='warning'>[M] attempted to touch [H]!</span>")
