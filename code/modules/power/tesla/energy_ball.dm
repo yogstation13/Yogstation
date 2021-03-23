@@ -316,22 +316,20 @@
 	else if(closest_structure)
 		closest_structure.tesla_act(power, tesla_flags, shocked_targets)
 
-/obj/item/tesla_insuls
+/obj/item/twohanded/required/tesla_insuls
 	name = "bloated insulated glove"
 	desc = "It ain't stupid if it works."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "tesla_insuls"
-	throw_speed = 3
-	throw_range = 2
-	throwforce = 0
-	force = 0
+	throw_range = 1
+	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/obj/singularity/energy_ball/stored_tesla
 	var/escape_time = 600 //around a minute before tesla escapes, better get rid of it!
 	var/timing_id
 	var/timer = 0
 
-/obj/item/tesla_insuls/Initialize(mapload, var/obj/singularity/energy_ball/tesla)
+/obj/item/twohanded/required/tesla_insuls/Initialize(mapload, var/obj/singularity/energy_ball/tesla)
 	. = ..()
 	stored_tesla = tesla
 	stored_tesla.gloved = TRUE
@@ -339,7 +337,7 @@
 	timer = world.time + escape_time
 	timing_id = addtimer(CALLBACK(src, .proc/release), escape_time, TIMER_STOPPABLE) //clock is ticking, get moving!
 
-/obj/item/tesla_insuls/proc/release()
+/obj/item/twohanded/required/tesla_insuls/proc/release()
 	if(!stored_tesla)
 		qdel(src)
 	stored_tesla.gloved = FALSE
@@ -347,11 +345,11 @@
 	src.visible_message("<span class='warning'>[stored_tesla] breaks out of the [src]!</span>")
 	qdel(src)
 
-/obj/item/tesla_insuls/examine(mob/user)
+/obj/item/twohanded/required/tesla_insuls/examine(mob/user)
 	. = ..()
 	. += "You feel like the energy ball could escape in [DisplayTimeText(timer - world.time)]!"
 
-/obj/item/tesla_insuls/attackby(obj/item/W, mob/user, params) //you can coat those insuls with another layer of insulated gloves to reset the timer before tesla escapes
+/obj/item/twohanded/required/tesla_insuls/attackby(obj/item/W, mob/user, params) //you can coat those insuls with another layer of insulated gloves to reset the timer before tesla escapes
 	if(istype(W, /obj/item/clothing/gloves/color/yellow))
 		to_chat(user, "<span class='notice'>You wrap [src] around with [W], making another coat of insulation! It should withstand for more time.</span>")
 		qdel(W)
@@ -369,9 +367,8 @@
 			return
 		to_chat(user, "<span class='notice'>You stretch [W] with all your might and quickly wrap them around [src]!</span>")
 		qdel(W)
-		new/obj/item/tesla_insuls(get_turf(src), src)
+		new/obj/item/twohanded/required/tesla_insuls(get_turf(src), src)
 		to_chat(user, "<span class='warning'>IT WORKED!</span>") //famous last words
 		SSachievements.unlock_achievement(/datum/achievement/tesla_insuls, user.client)
 		return
 	..()
-	
