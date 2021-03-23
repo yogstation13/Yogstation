@@ -376,6 +376,30 @@
 		name = "empty scroll"
 		icon_state = "blankscroll"
 
+/obj/item/book/granter/martial/flyingfang
+	martial = /datum/martial_art/lizard
+	name = "strange scroll"
+	martialname = "Flying Fang"
+	desc = "A scroll with strange pictograms that appear to detail some kind of fighting technique."
+	greet = "<span class='sciradio'>You have learned the ancient martial art of Flying Fang! Your unarmed attacks have become somewhat more effective,  \
+	and you are more resistant to damage and stun-based weaponry. However, you are also unable to use any ranged weaponry or armor. You can learn more about your newfound art by using the Recall Teachings verb in the Flying Fang tab.</span>"
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "scroll2"
+	remarks = list("Feasting on the insides of your enemies...", "Some of these techniques look a bit dizzying...", "Not like I need armor anyways...", "Don't get shot, whatever that means...")
+
+/obj/item/book/granter/martial/flyingfang/already_known(mob/user)
+	if(!islizard(user))
+		to_chat(user, "<span class='warning'>You can't tell if this is some poorly written fanfiction or an actual guide to something.</span>")
+		return TRUE
+	return ..()
+
+/obj/item/book/granter/martial/flyingfang/onlearned(mob/living/carbon/user)
+	..()
+	if(oneuse == TRUE)
+		desc = "It's completely blank."
+		name = "empty scroll"
+		icon_state = "blankscroll"
+
 /obj/item/book/granter/martial/plasma_fist
 	martial = /datum/martial_art/plasma_fist
 	name = "frayed scroll"

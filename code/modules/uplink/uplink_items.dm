@@ -1443,7 +1443,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/cybersun
 
 /datum/uplink_item/device_tools/medgun
-	name = "Medbeam Gun" 
+	name = "Medbeam Gun"
 	desc = "A wonder of Syndicate engineering, the Medbeam gun, or Medi-Gun enables a medic to keep his fellow \
 			operatives in the fight, even while under fire. Don't cross the streams!"
 	item = /obj/item/gun/medbeam
@@ -1713,6 +1713,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Recently Syndicate scientist have found the formula of returning lizards genetics back in time and giving them the ability to breath fire."
 	cost = 6
 	item = /obj/item/dnainjector/firebreath
+	restricted_species = list("lizard")
+
+/datum/uplink_item/race_restricted/flyingfang
+	name = "Flying Fang scroll"
+	desc = "This scroll contains a set of old lizard fighting techniques, increasing your melee combat effectiveness but preventing you from using armor or guns."
+	cost = 14
+	item = /obj/item/book/granter/martial/flyingfang
 	restricted_species = list("lizard")
 
 /datum/uplink_item/race_restricted/angelcoolboy
