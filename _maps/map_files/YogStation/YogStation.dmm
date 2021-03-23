@@ -14267,12 +14267,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
-"aMJ" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/morgue)
 "aMK" = (
 /obj/machinery/shower{
 	dir = 8
@@ -35953,6 +35947,16 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/medical/virology)
+"dRZ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
 "dSv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -36254,6 +36258,10 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos_distro)
+"egd" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
 "egh" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 1
@@ -42980,12 +42988,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
-"jgb" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/morgue)
 "jgh" = (
 /obj/machinery/doorButtons/access_button{
 	idDoor = "telecomms_airlock_exterior";
@@ -48381,6 +48383,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"ndn" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/light_switch{
+	pixel_y = -25
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
 "ndo" = (
 /obj/structure/transit_tube/station{
 	dir = 4
@@ -55876,6 +55887,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+"ssu" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
 "sti" = (
 /obj/structure/chair/office/light{
 	dir = 4
@@ -56281,21 +56299,6 @@
 /obj/effect/turf_decal/trimline/blue,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"sKm" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/obj/machinery/light_switch{
-	pixel_y = -25
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/morgue)
 "sKs" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/abandoned,
@@ -57254,18 +57257,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"ttj" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/morgue)
 "ttn" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -60763,12 +60754,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"vRM" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/morgue)
 "vRS" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -105601,7 +105586,7 @@ oXu
 bfL
 wec
 bhm
-bhm
+aBV
 bhm
 gCp
 bfL
@@ -105857,10 +105842,10 @@ aYV
 mWK
 bfL
 bhm
-aMJ
-bhm
-aBV
-ttj
+egd
+iKB
+ssu
+dRZ
 tEa
 pwz
 rPb
@@ -106114,10 +106099,10 @@ aYV
 jTR
 bfL
 bhm
-jgb
-vRM
-iKB
-sKm
+bhm
+bhm
+bhm
+ndn
 bfL
 czn
 tIW
