@@ -461,7 +461,7 @@
 	..()
 	return
 
-/datum/reagent/spraytan/on_mob_delete(mob/living/L)
+/datum/reagent/spraytan/on_mob_delete(mob/living/M)
 	if(ishuman(M) && saved_color)
 		var/mob/living/carbon/human/N = M
 		if(N.dna.species.use_skintones)
