@@ -21,8 +21,8 @@
 
 /obj/item/clothing/gloves/color/fyellow/proc/get_shocked()
 	if(damaged)
-		qdel(src)
 		new/obj/effect/decal/cleanable/ash(src)
+		qdel(src)
 		visible_message("<span class='notice'>Your gloves catch fire and disintegrate!</span>")
 	else
 		damaged = TRUE
