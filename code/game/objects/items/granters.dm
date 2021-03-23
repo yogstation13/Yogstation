@@ -377,7 +377,7 @@
 		icon_state = "blankscroll"
 
 /obj/item/book/granter/martial/flyingfang
-	martial = /datum/martial_art/lizard
+	martial = /datum/martial_art/flyingfang
 	name = "strange scroll"
 	martialname = "Flying Fang"
 	desc = "A scroll with strange pictograms that appear to detail some kind of fighting technique."
