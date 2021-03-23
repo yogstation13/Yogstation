@@ -1955,20 +1955,9 @@
 /turf/open/floor/engine/vacuum,
 /area/science/mixing/chamber)
 "afi" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/warden)
+/obj/item/cigbutt,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "afj" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1985,14 +1974,20 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "afk" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
-/area/escapepodbay)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "afl" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -2138,6 +2133,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/item/storage/box/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "afG" = (
@@ -2282,11 +2278,14 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "afW" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+/obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
-/area/hallway/primary/port)
+/area/escapepodbay)
 "afX" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2620,9 +2619,11 @@
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "agJ" = (
-/obj/item/cigbutt,
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/port)
 "agK" = (
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -86793,7 +86794,7 @@ aHG
 kVU
 naQ
 aLE
-afW
+agJ
 aNU
 aPG
 aPG
@@ -91642,7 +91643,7 @@ aej
 afy
 afD
 acd
-agK
+afi
 ahp
 amb
 aiE
@@ -91899,7 +91900,7 @@ aei
 aeO
 afG
 acd
-agJ
+agK
 agK
 ail
 ajv
@@ -96012,7 +96013,7 @@ aHs
 arD
 agu
 agX
-afi
+afk
 aij
 agn
 agf
@@ -115317,7 +115318,7 @@ aaa
 ptH
 fxr
 uVA
-afk
+afW
 aFR
 aMZ
 aOa
