@@ -25,10 +25,10 @@
 	results = list(/datum/reagent/medicine/c2/aiuri = 4)
 	required_reagents = list(/datum/reagent/ammonia = 1, /datum/reagent/toxin/acid = 1, /datum/reagent/hydrogen = 2)
 
-/datum/chemical_reaction/medicine/hercuri
-	name = "hercuri"
-	id = /datum/reagent/medicine/c2/hercuri
-	results = list(/datum/reagent/medicine/c2/hercuri = 5)
+/datum/chemical_reaction/medicine/rhigoxane
+	name = "rhigoxane"
+	id = /datum/reagent/medicine/c2/rhigoxane
+	results = list(/datum/reagent/medicine/c2/rhigoxane = 5)
 	required_reagents = list(/datum/reagent/cryostylane = 3, /datum/reagent/bromine = 1, /datum/reagent/lye = 1)
 	required_temp = 47
 	is_cold_recipe = TRUE
@@ -50,8 +50,8 @@
 	results = list(/datum/reagent/medicine/c2/seiver = 3)
 	required_reagents = list(/datum/reagent/nitrogen = 1, /datum/reagent/potassium = 1, /datum/reagent/aluminium = 1)
 
-/datum/chemical_reaction/medicine/syriniver
-	name = "syriniver"
-	id = /datum/reagent/medicine/c2/syriniver
-	results = list(/datum/reagent/medicine/c2/syriniver = 5)
+/datum/chemical_reaction/medicine/thializid
+	name = "thializid"
+	id = /datum/reagent/medicine/c2/thializid
+	results = list(/datum/reagent/medicine/c2/thializid = 5)
 	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/fluorine = 1, /datum/reagent/toxin = 1, /datum/reagent/nitrous_oxide = 2)
