@@ -1222,3 +1222,9 @@
 	id= "smallmagician"
 	suffix = "10x10_smallmagician.dmm"
 	name = "Maint smallmagician"
+
+///Author: Veeblefetzer
+/datum/map_template/ruin/station/maint/tenxten/fourshops
+	id= "fourshops"
+	suffix = "10x10_fourshops.dmm"
+	name = "Maint fourshops"
