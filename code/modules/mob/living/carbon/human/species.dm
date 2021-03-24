@@ -602,12 +602,17 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		if(H.underwear)
 			var/datum/sprite_accessory/underwear/underwear = GLOB.underwear_list[H.underwear]
 			if(underwear)
-				standing += mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
+				if(HAS_TRAIT(H, TRAIT_SKINNY))
+					standing += wear_skinny_version(underwear.icon_state, underwear.icon, BODY_LAYER) //Neat, this works
+				else
+					standing += mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
 
 		if(H.undershirt)
 			var/datum/sprite_accessory/undershirt/undershirt = GLOB.undershirt_list[H.undershirt]
 			if(undershirt)
-				if(H.dna.species.sexes && H.gender == FEMALE)
+				if(HAS_TRAIT(H, TRAIT_SKINNY)) //Check for skinny first
+					standing += wear_skinny_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
+				else if(H.dna.species.sexes && H.gender == FEMALE)
 					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else
 					standing += mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
@@ -1505,6 +1510,16 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(M.mind)
 		attacker_style = M.mind.martial_art
 	if((M != H) && M.a_intent != INTENT_HELP && H.check_shields(M, 0, M.name, attack_type = UNARMED_ATTACK))
+		if((M.dna.check_mutation(ACTIVE_HULK) || M.dna.check_mutation(HULK)) && M.a_intent == "disarm")
+			H.check_shields(0, M.name) // We check their shields twice since we are a hulk. Also triggers hitreactions for HULK_ATTACK
+			M.visible_message("<span class='danger'>[M]'s punch knocks the shield out of [H]'s hand.</span>", \
+							"<span class='userdanger'>[M]'s punch knocks the shield out of [H]'s hand.</span>")
+			if(M.dna)
+				playsound(H.loc, M.dna.species.attack_sound, 25, 1, -1)
+			else
+				playsound(H.loc, 'sound/weapons/punch1.ogg', 25, 1, -1)
+			log_combat(M, H, "hulk punched a shield held by")
+			return FALSE
 		log_combat(M, H, "attempted to touch")
 		H.visible_message("<span class='warning'>[M] attempted to touch [H]!</span>")
 		return 0
