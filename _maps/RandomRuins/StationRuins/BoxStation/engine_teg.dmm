@@ -28,28 +28,6 @@
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
 /area/engine/engineering)
-"ar" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"as" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/camera{
-	c_tag = "Engineering TEG Starboard";
-	dir = 8;
-	network = list("ss13","engine")
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "au" = (
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -121,6 +99,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"bt" = (
+/obj/structure/grille,
+/turf/template_noop,
+/area/space/nearstation)
 "bC" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -165,6 +147,22 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"co" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/sign/poster/official/build{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
+/area/engine/engineering)
 "cA" = (
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -175,10 +173,6 @@
 	},
 /turf/template_noop,
 /area/space/nearstation)
-"cK" = (
-/obj/machinery/suit_storage_unit/engine,
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "cL" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 5
@@ -186,12 +180,6 @@
 /obj/structure/lattice,
 /turf/template_noop,
 /area/space/nearstation)
-"cP" = (
-/obj/machinery/atmospherics/pipe/manifold/green/visible{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "de" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -257,13 +245,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"eE" = (
-/obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/manifold/green/visible{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "eW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 6
@@ -281,6 +262,12 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"fH" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "fL" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -294,6 +281,18 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
+/area/engine/engineering)
+"hA" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/engine/engineering)
+"hC" = (
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 1
+	},
+/turf/open/floor/engine,
 /area/engine/engineering)
 "ia" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
@@ -316,6 +315,12 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"iU" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "iX" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -336,6 +341,16 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"jb" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"jh" = (
+/obj/machinery/atmospherics/pipe/manifold/dark/visible,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "ju" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -348,6 +363,43 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"jE" = (
+/obj/structure/table/reinforced,
+/obj/structure/sign/warning/enginesafety{
+	pixel_y = 32
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/item/storage/toolbox/mechanical,
+/obj/item/wrench,
+/obj/item/multitool,
+/obj/item/analyzer,
+/turf/open/floor/engine,
+/area/engine/engineering)
+"jN" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/turf/open/floor/engine,
+/area/engine/engineering)
+"jQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/yellow/visible{
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -403,17 +455,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"mb" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "me" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -421,11 +462,30 @@
 	},
 /turf/template_noop,
 /area/space/nearstation)
-"mJ" = (
-/obj/item/tank/internals/oxygen/red,
-/obj/structure/rack,
-/obj/item/clothing/mask/breath,
-/turf/open/floor/plasteel/dark,
+"mj" = (
+/obj/machinery/atmospherics/pipe/manifold/dark/visible{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"mm" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/dark/corner{
+	dir = 1
+	},
+/area/engine/engineering)
+"mw" = (
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 6
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"mI" = (
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 8
+	},
+/turf/open/floor/engine,
 /area/engine/engineering)
 "mW" = (
 /obj/machinery/atmospherics/pipe/manifold/orange/visible{
@@ -453,6 +513,12 @@
 "nh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/visible,
+/turf/open/floor/engine,
+/area/engine/engineering)
+"ni" = (
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 9
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "nL" = (
@@ -507,20 +573,6 @@
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"pb" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"pn" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 4
-	},
-/obj/machinery/portable_atmospherics/canister/toxins,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "pq" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
@@ -535,11 +587,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"qw" = (
-/obj/machinery/air_sensor{
-	id_tag = "teghotchamber"
+"pY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 5
 	},
-/turf/open/floor/engine/airless,
+/turf/open/floor/engine,
 /area/engine/engineering)
 "qx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -547,6 +600,11 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
+/area/engine/engineering)
+"qy" = (
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
 /area/engine/engineering)
 "qJ" = (
 /obj/machinery/light/small{
@@ -615,12 +673,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"sR" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible{
-	dir = 6
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "sT" = (
 /obj/structure/lattice,
 /turf/template_noop,
@@ -682,16 +734,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"tm" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "tw" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 6
@@ -708,28 +750,15 @@
 /obj/structure/lattice/catwalk,
 /turf/template_noop,
 /area/space/nearstation)
-"tK" = (
+"vf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
-"tM" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 4
+	dir = 9
 	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
-"vb" = (
-/obj/machinery/atmospherics/pipe/manifold/green/visible{
+/turf/open/floor/plasteel/dark/corner{
 	dir = 8
 	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"vm" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible,
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/turf/open/floor/engine,
 /area/engine/engineering)
 "vE" = (
 /obj/structure/lattice,
@@ -780,25 +809,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/engine/engineering)
-"wf" = (
-/obj/machinery/atmospherics/pipe/manifold4w/green/visible,
-/turf/open/floor/engine,
-/area/engine/engineering)
-"wv" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/engine,
 /area/engine/engineering)
 "wU" = (
 /obj/effect/turf_decal/stripes/line,
@@ -875,6 +885,20 @@
 /obj/structure/lattice,
 /turf/template_noop,
 /area/space/nearstation)
+"za" = (
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/manifold/dark/visible{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"zh" = (
+/obj/machinery/atmospherics/components/unary/portables_connector{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "zp" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -898,13 +922,6 @@
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/open/floor/engine,
-/area/engine/engineering)
-"zJ" = (
-/obj/machinery/atmospherics/pipe/manifold/green/visible{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "zP" = (
@@ -953,6 +970,13 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"AC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/dark/visible{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "AD" = (
 /obj/effect/turf_decal/trimline/red/filled/corner{
 	dir = 8
@@ -989,6 +1013,13 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"Bv" = (
+/obj/machinery/air_sensor{
+	id_tag = "tegburn_sensor";
+	luminosity = 2
+	},
+/turf/open/floor/engine/airless,
+/area/engine/engineering)
 "BD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/visible{
@@ -1000,11 +1031,20 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"BI" = (
-/obj/machinery/atmospherics/pipe/manifold/green/visible{
+"BG" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
 	},
-/turf/open/floor/engine,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/camera{
+	c_tag = "Engineering TEG Starboard";
+	dir = 8;
+	network = list("ss13","engine")
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
 /area/engine/engineering)
 "BV" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
@@ -1018,20 +1058,23 @@
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"Cs" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/green/visible,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 4
-	},
-/obj/machinery/portable_atmospherics/canister/toxins,
-/turf/open/floor/engine,
-/area/engine/engineering)
-"CN" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/decal/cleanable/dirt,
+"Cw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel/dark,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
+/area/engine/engineering)
+"CQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 1
+	},
+/turf/open/floor/engine,
 /area/engine/engineering)
 "Db" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -1055,14 +1098,6 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/engine/engineering)
-"Ek" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 9
-	},
-/turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "EE" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
@@ -1090,6 +1125,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Ff" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "FL" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -1100,22 +1145,14 @@
 /obj/machinery/space_heater,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"GI" = (
-/obj/machinery/status_display/ai{
-	pixel_y = 32
-	},
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
-"Hu" = (
+"FZ" = (
 /obj/structure/window/plasma/reinforced,
 /obj/machinery/computer/atmos_control/tank{
 	dir = 8;
 	input_tag = "teghot_in";
+	name = "TEG Chamber Control";
 	output_tag = "teghot_out";
-	sensors = list("teghotchamber" = "Chamber")
+	sensors = list("tegburn_sensor" = "Chamber")
 	},
 /obj/machinery/door/firedoor/window,
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
@@ -1123,27 +1160,34 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"GB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/side,
+/area/engine/engineering)
+"GY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/engine/engineering)
+"Hc" = (
+/obj/structure/closet/radiation,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/engine/engineering)
 "Ic" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/orange/visible{
 	dir = 4
 	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"Ig" = (
-/obj/structure/table/reinforced,
-/obj/structure/sign/warning/enginesafety{
-	pixel_y = 32
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/item/storage/toolbox/mechanical,
-/obj/item/wrench,
-/obj/item/multitool,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Iz" = (
@@ -1221,13 +1265,6 @@
 /obj/structure/lattice,
 /turf/template_noop,
 /area/engine/engineering)
-"JM" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "JR" = (
 /obj/structure/sign/warning/fire,
 /turf/closed/wall/r_wall,
@@ -1241,9 +1278,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"Lu" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible{
-	dir = 10
+"Ln" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 6
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1315,15 +1352,6 @@
 /obj/item/pipe_dispenser,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"Ob" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "OB" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -1340,12 +1368,27 @@
 	},
 /turf/open/floor/engine/airless,
 /area/engine/engineering)
+"OV" = (
+/obj/machinery/atmospherics/pipe/manifold4w/dark/visible,
+/turf/open/floor/engine,
+/area/engine/engineering)
+"OZ" = (
+/obj/machinery/status_display/ai{
+	pixel_y = 32
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/corner,
+/area/engine/engineering)
 "Py" = (
 /obj/machinery/atmospherics/components/unary/heat_exchanger,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"PE" = (
-/obj/machinery/atmospherics/pipe/manifold/green/visible,
+"PP" = (
+/obj/machinery/atmospherics/pipe/manifold/yellow/visible{
+	dir = 8
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "PV" = (
@@ -1354,6 +1397,15 @@
 	name = "Gas to TEG"
 	},
 /turf/open/floor/engine,
+/area/engine/engineering)
+"PY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
 /area/engine/engineering)
 "Qg" = (
 /obj/structure/lattice,
@@ -1380,6 +1432,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"Rq" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/closet/emcloset/anchored,
+/obj/machinery/advanced_airlock_controller{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/effect/turf_decal/box,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "Rr" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1395,13 +1459,6 @@
 /obj/machinery/atmospherics/components/binary/valve/digital{
 	dir = 4;
 	name = "Waste to Space"
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"Sa" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/green/visible{
-	dir = 5
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1474,6 +1531,13 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"TO" = (
+/obj/structure/closet/radiation,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/dark/corner{
+	dir = 4
+	},
+/area/engine/engineering)
 "TP" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -1532,6 +1596,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Vb" = (
+/obj/structure/sign/warning/vacuum/external{
+	pixel_y = -32
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/engine/engineering)
 "Vd" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = 32
@@ -1539,20 +1612,6 @@
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
-/area/engine/engineering)
-"VE" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/manifold/green/visible{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"VM" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_y = -32
-	},
-/obj/machinery/light,
-/turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "VS" = (
 /obj/machinery/atmospherics/components/binary/valve/digital{
@@ -1637,12 +1696,6 @@
 	},
 /turf/open/floor/engine/airless,
 /area/engine/engineering)
-"Yt" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "Yz" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -1677,6 +1730,22 @@
 	req_access_txt = "10"
 	},
 /turf/open/floor/engine,
+/area/engine/engineering)
+"Zs" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
+/area/engine/engineering)
+"ZI" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
 /area/engine/engineering)
 "ZP" = (
 /obj/machinery/atmospherics/components/binary/pump{
@@ -1888,7 +1957,7 @@ ab
 ag
 oi
 bb
-qJ
+Rq
 ad
 pq
 Bf
@@ -2031,7 +2100,7 @@ cA
 ia
 ia
 ia
-vm
+ia
 fb
 fF
 Si
@@ -2056,11 +2125,11 @@ FL
 bC
 vW
 YG
-zJ
-zJ
-zJ
-wf
-pb
+AC
+AC
+AC
+OV
+hC
 Sj
 Si
 ei
@@ -2108,7 +2177,7 @@ dG
 "}
 (16,1,1) = {"
 ad
-Ig
+jE
 bC
 vW
 sN
@@ -2136,8 +2205,8 @@ dG
 "}
 (17,1,1) = {"
 Zn
-ar
-wv
+Ff
+jN
 Bs
 Am
 vI
@@ -2164,8 +2233,8 @@ dG
 "}
 (18,1,1) = {"
 ac
-JM
-tm
+fH
+bC
 mW
 kD
 kB
@@ -2206,7 +2275,7 @@ dD
 sT
 Si
 yz
-qw
+Bv
 yz
 ad
 LZ
@@ -2230,7 +2299,7 @@ Ic
 BD
 UW
 cm
-Hu
+FZ
 LA
 XF
 Bi
@@ -2251,7 +2320,7 @@ ad
 IV
 bC
 ZP
-sR
+mw
 lV
 aH
 nh
@@ -2278,12 +2347,12 @@ dG
 ac
 Ci
 bp
-eE
-Nw
-sR
-pb
-pn
-Cs
+za
+ni
+Ln
+jb
+jb
+CQ
 TF
 Wh
 ad
@@ -2306,12 +2375,12 @@ sT
 ac
 Ci
 bp
-aQ
+mI
 ej
-VE
+jQ
 zQ
-BI
-Nw
+jb
+zh
 dp
 RQ
 ad
@@ -2334,12 +2403,12 @@ dG
 ad
 TP
 bJ
-cP
-PE
+mj
+jh
 IQ
-Lu
-vb
-Sa
+iU
+PP
+pY
 Sz
 ye
 fL
@@ -2393,21 +2462,21 @@ tl
 aX
 ad
 ad
-GI
-DJ
-bN
-hk
-qx
-mJ
-cK
+OZ
+hA
+qy
+PY
+GY
+Hc
+TO
 ad
 ad
 ad
 ei
 sT
 sT
-sT
-dG
+bt
+bt
 dG
 dG
 sT
@@ -2421,21 +2490,21 @@ UZ
 aY
 bq
 ac
-tM
+GB
 DJ
 bN
 hk
 qx
 bN
-VM
+Vb
 bb
 qJ
 ad
 ei
 sT
-dG
 sT
-sT
+eu
+bt
 sT
 sT
 sT
@@ -2449,13 +2518,13 @@ KV
 OB
 UM
 iD
-Ek
-Yt
-CN
-mb
-as
-Ob
-tK
+vf
+ZI
+Zs
+co
+BG
+Cw
+mm
 la
 Vd
 iX
