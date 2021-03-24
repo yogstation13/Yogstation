@@ -98,15 +98,15 @@
 	..()
 	return TRUE
 
-/datum/reagent/medicine/c2/hercuri
-	name = "Hercuri"
+/datum/reagent/medicine/c2/rhigoxane
+	name = "Rhigoxane"
 	description = "Not to be confused with element Mercury, this medicine excels in reverting effects of dangerous high-temperature environments. Prolonged exposure can cause hypothermia."
 	reagent_state = LIQUID
 	color = "#F7FFA5"
 	overdose_threshold = 25
 	reagent_weight = 0.6
 
-/datum/reagent/medicine/c2/hercuri/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/c2/rhigoxane/on_mob_life(mob/living/carbon/M)
 	if(M.getFireLoss() > 50)
 		M.adjustFireLoss(-2 * REM, FALSE)
 	else
@@ -117,7 +117,7 @@
 	..()
 	. = TRUE
 
-/datum/reagent/medicine/c2/hercuri/reaction_mob(mob/living/carbon/exposed_mob, methods=VAPOR, reac_volume)
+/datum/reagent/medicine/c2/rhigoxane/reaction_mob(mob/living/carbon/exposed_mob, methods=VAPOR, reac_volume)
 	. = ..()
 	if(!(methods & VAPOR))
 		return
@@ -127,7 +127,7 @@
 	if(reac_volume >= metabolization_rate)
 		exposed_mob.ExtinguishMob()
 
-/datum/reagent/medicine/c2/hercuri/overdose_process(mob/living/carbon/M)
+/datum/reagent/medicine/c2/rhigoxane/overdose_process(mob/living/carbon/M)
 	M.adjust_bodytemperature(-10 * TEMPERATURE_DAMAGE_COEFFICIENT * REM, 50) //chilly chilly
 	..()
 
@@ -197,10 +197,10 @@
 	..()
 	return TRUE
 
-#define issyrinormusc(A) (istype(A,/datum/reagent/medicine/c2/syriniver) || istype(A,/datum/reagent/medicine/c2/musiver)) //musc is metab of syrin so let's make sure we're not purging either
+#define isthiaormusc(A) (istype(A,/datum/reagent/medicine/c2/thialazid) || istype(A,/datum/reagent/medicine/c2/musiver)) //musc is metab of thialazid so let's make sure we're not purging either
 
-/datum/reagent/medicine/c2/syriniver //Inject >> SYRINge
-	name = "Syriniver"
+/datum/reagent/medicine/c2/thializid
+	name = "Thializid"
 	description = "A potent antidote for intravenous use with a narrow therapeutic index, it is considered an active prodrug of musiver."
 	reagent_state = LIQUID
 	color = "#8CDF24" // heavy saturation to make the color blend better
@@ -208,7 +208,7 @@
 	overdose_threshold = 6
 	var/conversion_amount
 
-/datum/reagent/medicine/c2/syriniver/on_transfer(atom/A, methods=INJECT, trans_volume)
+/datum/reagent/medicine/c2/thializid/on_transfer(atom/A, methods=INJECT, trans_volume)
 	if(!(methods & INJECT) || !iscarbon(A))
 		return
 	var/mob/living/carbon/C = A
@@ -218,22 +218,22 @@
 	if((L.organ_flags & ORGAN_FAILING) || !L)
 		return
 	conversion_amount = trans_volume * (min(100 -C.getOrganLoss(ORGAN_SLOT_LIVER), 80) / 100) //the more damaged the liver the worse we metabolize.
-	C.reagents.remove_reagent(/datum/reagent/medicine/c2/syriniver, conversion_amount)
+	C.reagents.remove_reagent(/datum/reagent/medicine/c2/thializid, conversion_amount)
 	C.reagents.add_reagent(/datum/reagent/medicine/c2/musiver, conversion_amount)
 	..()
 
-/datum/reagent/medicine/c2/syriniver/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/c2/thializid/on_mob_life(mob/living/carbon/M)
 	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 0.8 * REM )
 	M.adjustToxLoss(-1 * REM, 0)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
-		if(issyrinormusc(R))
+		if(isthiaormusc(R))
 			continue
 		M.reagents.remove_reagent(R.type, 0.4 * REM)
 
 	..()
 	. = TRUE
 
-/datum/reagent/medicine/c2/syriniver/overdose_process(mob/living/carbon/M)
+/datum/reagent/medicine/c2/thializid/overdose_process(mob/living/carbon/M)
 	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 1.5 * REM)
 	M.adjust_disgust(3 * REM)
 	M.reagents.add_reagent(/datum/reagent/medicine/c2/musiver, 0.225 * REM)
@@ -242,7 +242,7 @@
 
 /datum/reagent/medicine/c2/musiver //MUScles
 	name = "Musiver"
-	description = "The active metabolite of syriniver. Causes muscle weakness on overdose"
+	description = "The active metabolite of thializid. Causes muscle weakness on overdose"
 	reagent_state = LIQUID
 	color = "#DFD54E"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
@@ -253,7 +253,7 @@
 	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 0.1 * REM)
 	M.adjustToxLoss(-1 * REM, 0)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
-		if(issyrinormusc(R))
+		if(isthiaormusc(R))
 			continue
 		M.reagents.remove_reagent(R.type, 0.2 * REM)
 	..()
@@ -275,7 +275,7 @@
 	..()
 	. = TRUE
 
-#undef issyrinormusc
+#undef isthiaormusc
 
 /******NICHE******/
 //todo
