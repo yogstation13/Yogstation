@@ -20,17 +20,13 @@
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	speak_emote = list("squeaks")
 	ventcrawler = VENTCRAWLER_ALWAYS
-	var/datum/mind/origin
 	var/egg_lain = 0
 	gold_core_spawnable = NO_SPAWN //yogs
 
 /mob/living/simple_animal/hostile/headcrab/proc/Infect(mob/living/carbon/victim)
 	var/obj/item/organ/body_egg/changeling_egg/egg = new(victim)
 	egg.Insert(victim)
-	if(origin)
-		egg.origin = origin
-	else if(mind) // Let's make this a feature
-		egg.origin = mind
+	egg.origin = mind
 	for(var/obj/item/organ/I in src)
 		I.forceMove(egg)
 	visible_message("<span class='warning'>[src] plants something in [victim]'s flesh!</span>", \
