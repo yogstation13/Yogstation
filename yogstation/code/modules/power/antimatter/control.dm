@@ -361,7 +361,7 @@
 	updateDialog()
 	return
 
-#undefine SHIELD_UPDATE_NONE
-#undefine SHIELD_UPDATE_NORMAL
-#undefine SHIELD_UPDATE_FULL
-#undefine BASE_POWER_OUTPUT
+#undef SHIELD_UPDATE_NONE
+#undef SHIELD_UPDATE_NORMAL
+#undef SHIELD_UPDATE_FULL
+#undef BASE_POWER_OUTPUT
