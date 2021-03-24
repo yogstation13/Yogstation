@@ -157,7 +157,7 @@
 	id = 23
 	
 /datum/achievement/tesla_insuls
-	name = "Insulated containment"
+	name = "Insulated Kamehameha!"
 	desc = "Successfully contain an energy ball inside a pair of insulated gloves."
 	id = 24
 	hidden = TRUE
