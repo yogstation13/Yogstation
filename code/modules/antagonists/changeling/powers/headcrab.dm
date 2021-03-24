@@ -13,7 +13,6 @@
 	if(alert("Are we sure we wish to kill ourself and create a headslug?",,"Yes", "No") == "No")
 		return
 	..()
-	var/datum/mind/M = user.mind
 	var/list/organs = user.getorganszone(BODY_ZONE_HEAD, 1)
 
 	for(var/obj/item/organ/I in organs)
@@ -32,14 +31,11 @@
 		to_chat(S, "<span class='userdanger'>Your sensors are disabled by a shower of blood!</span>")
 		S.Paralyze(60)
 	var/turf = get_turf(user)
-	user.gib()
 	. = TRUE
 	sleep(5) // So it's not killed in explosion
 	var/mob/living/simple_animal/hostile/headcrab/crab = new(turf)
 	for(var/obj/item/organ/I in organs)
 		I.forceMove(crab)
-	crab.origin = M
-	if(crab.origin)
-		crab.origin.active = 1
-		crab.origin.transfer_to(crab)
-		to_chat(crab, "<span class='warning'>You burst out of the remains of your former body in a shower of gore!</span>")
+	user.mind.transfer_to(crab)
+	to_chat(crab, "<span class='warning'>You burst out of the remains of your former body in a shower of gore!</span>")
+	user.gib()
