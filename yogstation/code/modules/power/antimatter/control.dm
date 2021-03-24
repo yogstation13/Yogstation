@@ -360,3 +360,8 @@
 
 	updateDialog()
 	return
+
+#undefine SHIELD_UPDATE_NONE
+#undefine SHIELD_UPDATE_NORMAL
+#undefine SHIELD_UPDATE_FULL
+#undefine BASE_POWER_OUTPUT
