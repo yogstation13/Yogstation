@@ -197,7 +197,7 @@
 	..()
 	return TRUE
 
-#define isthiaormusc(A) (istype(A,/datum/reagent/medicine/c2/thialazid) || istype(A,/datum/reagent/medicine/c2/musiver)) //musc is metab of thialazid so let's make sure we're not purging either
+#define isthiaormusc(A) (istype(A,/datum/reagent/medicine/c2/thializid) || istype(A,/datum/reagent/medicine/c2/musiver)) //musc is metab of thialazid so let's make sure we're not purging either
 
 /datum/reagent/medicine/c2/thializid
 	name = "Thializid"
