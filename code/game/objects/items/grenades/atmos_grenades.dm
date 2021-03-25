@@ -4,7 +4,7 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "bluefrag"
 	item_state = "flashbang"
-	resistance_flags = FIRE_PROOF
+	resistance_flags = FIRE_PROOFremind 2d give the assassinate subtypes a time minimum for being dead to make them less easy
 
 /obj/item/grenade/gas_crystal/preprime(mob/user, delayoverride, msg = TRUE, volume = 60)
 	var/turf/turf_loc = get_turf(src)
@@ -53,7 +53,7 @@
 
 /obj/item/grenade/gas_crystal/pluonium_crystal
 	name = "Pluonium crystal"
-	desc = "A crystal made from pluonium, you can see the liquid gases inside." //LIQUID gasses
+	desc = "A crystal made from pluonium, you can see the liquid nitrogen and oxygen inside."
 	icon_state = "pluonium_crystal"
 	///Range of the grenade air refilling
 	var/refill_range = 5
