@@ -216,7 +216,7 @@
 	
 /obj/machinery/syndicatebomb/emp
 	name = "EMP Bomb"
-	desc = "A modified bomb designed to release a crippling electromagnetic pulse instead of explode"
+	desc = "A modified bomb designed to release a crippling electromagnetic pulse instead of an explosion"
 	payload = /obj/item/bombcore/emp
 
 /obj/machinery/syndicatebomb/badmin
