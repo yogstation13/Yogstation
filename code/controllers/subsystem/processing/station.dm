@@ -52,4 +52,4 @@ PROCESSING_SUBSYSTEM_DEF(station)
 		for(var/i in picked_trait.blacklist)
 			var/datum/station_trait/trait_to_remove = i
 			selectable_traits_by_types[initial(trait_to_remove.trait_type)] -= trait_to_remove
-	log_admin("Chosen Traits This Round:" + tolog)
+	log_admin("Chosen Traits This Round:[tolog]")
