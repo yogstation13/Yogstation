@@ -46,7 +46,7 @@ PROCESSING_SUBSYSTEM_DEF(station)
 		var/datum/station_trait/picked_trait = pickweight(selectable_traits_by_types[trait_type]) //Rolls from the table for the specific trait type
 		picked_trait = new picked_trait()
 		station_traits += picked_trait
-		tolog += " [station_trait],"
+		tolog += "[picked_trait],"
 		if(!picked_trait.blacklist)
 			continue
 		for(var/i in picked_trait.blacklist)
