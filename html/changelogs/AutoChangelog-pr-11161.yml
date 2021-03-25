@@ -1,0 +1,5 @@
+author: "ChesterTheCheesy"
+delete-after: true 
+changes: 
+  - rscadd: "cogscarabs can now be picked up during war"
+  - imageadd: "adds a sprite for cogscarab on head"
