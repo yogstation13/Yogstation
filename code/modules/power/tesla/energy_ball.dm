@@ -342,7 +342,7 @@
 		qdel(src)
 	stored_tesla.gloved = FALSE
 	stored_tesla.forceMove(get_turf(src))
-	src.visible_message("<span class='warning'>[stored_tesla] breaks out of the [src]!</span>")
+	src.visible_message("<span class='warning'>[stored_tesla] breaks out of [src]!</span>")
 	qdel(src)
 
 /obj/item/twohanded/required/tesla_insuls/examine(mob/user)
