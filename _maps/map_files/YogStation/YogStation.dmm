@@ -2018,15 +2018,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
-"afo" = (
-/obj/machinery/door/airlock/external{
-	name = "Escape Pod Three"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/security/main)
 "afp" = (
 /obj/docking_port/stationary{
 	dir = 4;
@@ -23871,6 +23862,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/storage)
+"bsh" = (
+/turf/closed/wall,
+/area/teleporter)
 "bsi" = (
 /obj/structure/table,
 /obj/item/hand_tele,
@@ -36390,6 +36384,28 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"egX" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod Three";
+	req_access_txt = "63"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/security/main)
 "ehJ" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/machinery/door/window/westleft{
@@ -36437,6 +36453,9 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"ekO" = (
+/turf/closed/wall/r_wall,
+/area/maintenance/fore/secondary)
 "ekT" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -44874,27 +44893,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"kxR" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/machinery/door/airlock/external{
-	name = "Escape Pod Three"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/security/main)
 "kyA" = (
 /obj/structure/table,
 /obj/item/assembly/flash/handheld{
@@ -60199,6 +60197,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"vxh" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod Three";
+	req_access_txt = "63"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/security/main)
 "vyT" = (
 /obj/structure/sign/warning/nosmoking{
 	pixel_y = 32
@@ -96323,10 +96331,10 @@ aZV
 aZV
 aZV
 bqH
-bqH
-bqH
-bqH
-bqH
+bsh
+bsh
+bsh
+bsh
 bqH
 aJq
 aJq
@@ -100118,11 +100126,11 @@ abp
 abp
 abp
 abp
-kxR
+egX
 abp
 adR
 jDB
-ahn
+ekO
 jtq
 ahT
 ahT
@@ -100632,7 +100640,7 @@ abp
 abp
 abp
 abp
-afo
+vxh
 abp
 adR
 aoZ
@@ -113577,7 +113585,7 @@ atN
 atN
 atN
 atN
-atN
+wkN
 vJS
 bPp
 aaa
@@ -115112,7 +115120,7 @@ bQZ
 aRv
 bQZ
 bQZ
-bQZ
+bPN
 cNW
 hVC
 cNW
