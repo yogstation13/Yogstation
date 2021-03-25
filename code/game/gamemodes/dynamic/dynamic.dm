@@ -265,7 +265,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	. += generate_station_goal_report()
 	. += generate_station_trait_report()
 
-    desc += "<br>[generate_station_trait_report()]"
+	desc += "<br>[generate_station_trait_report()]"
 
 	print_command_report(., "Central Command Status Summary", announce=FALSE)
 	priority_announce(desc, title, ANNOUNCER_INTERCEPT)
@@ -833,7 +833,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 			return RULE_OF_THREE(40, 20, x) + 50
 		if (20 to INFINITY)
 			return rand(90, 100)
-			
+
 /datum/game_mode/dynamic/proc/configure_ruleset(datum/dynamic_ruleset/ruleset)
 	if(configuration)
 		if(!configuration[ruleset.ruletype])
