@@ -39,17 +39,14 @@ PROCESSING_SUBSYSTEM_DEF(station)
 
 ///Picks traits of a specific category (e.g. bad or good) and a specified amount, then initializes them and adds them to the list of traits.
 /datum/controller/subsystem/processing/station/proc/pick_traits(trait_type, amount)
-	var/tolog = ""
 	if(!amount)
 		return
 	for(var/iterator in 1 to amount)
 		var/datum/station_trait/picked_trait = pickweight(selectable_traits_by_types[trait_type]) //Rolls from the table for the specific trait type
 		picked_trait = new picked_trait()
 		station_traits += picked_trait
-		tolog += "[picked_trait],"
 		if(!picked_trait.blacklist)
 			continue
 		for(var/i in picked_trait.blacklist)
 			var/datum/station_trait/trait_to_remove = i
 			selectable_traits_by_types[initial(trait_to_remove.trait_type)] -= trait_to_remove
-	log_admin("Chosen Traits This Round:[tolog]")
