@@ -265,7 +265,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	. += generate_station_goal_report()
 	. += generate_station_trait_report()
 
-	desc += "<br><br>[generate_station_trait_report()]"
+	desc += "\n\n[generate_station_trait_announcement()]"
 
 	print_command_report(., "Central Command Status Summary", announce=FALSE)
 	priority_announce(desc, title, ANNOUNCER_INTERCEPT)

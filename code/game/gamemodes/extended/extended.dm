@@ -27,7 +27,7 @@
 		G.on_report()
 
 /datum/game_mode/extended/announced/send_intercept()
-	var/greenshift_message = "Thanks to the tireless efforts of our security and intelligence divisions, there are currently no credible threats to [station_name()]. All station construction projects have been authorized. Have a secure shift!<br><br>[generate_station_trait_report()]"
+	var/greenshift_message = "Thanks to the tireless efforts of our security and intelligence divisions, there are currently no credible threats to [station_name()]. All station construction projects have been authorized. Have a secure shift!\n\n[generate_station_trait_announcement()]"
 	. += "<b><i>Central Command Status Summary</i></b><hr>"
 	. += greenshift_message
 	. += generate_station_trait_report()
