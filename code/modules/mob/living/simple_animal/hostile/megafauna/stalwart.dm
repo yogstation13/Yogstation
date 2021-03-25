@@ -57,8 +57,8 @@
 		P.original = target
 	P.fire(set_angle)
 
-/mob/living/simple_animal/hostile/megafauna/stalwart/proc/bombsaway(turf/marker, set_angle)
-	if(!isnum(set_angle) && (!marker || marker == loc))
+/mob/living/simple_animal/hostile/megafauna/stalwart/proc/bombsaway(turf/marker)
+	if(!marker || marker == loc)
 		return
 	var/turf/startloc = get_turf(src)
 	var/obj/item/projectile/P = new /obj/item/projectile/stalnade(startloc)
@@ -66,9 +66,9 @@
 	P.firer = src
 	if(target)
 		P.original = target
-	P.fire(set_angle)
+	P.fire()
 
-/mob/living/simple_animal/hostile/megafauna/stalwart/proc/stalnade(turf/marker, set_angle)
+/mob/living/simple_animal/hostile/megafauna/stalwart/proc/stalnade(turf/marker)
 	for(var/d in dir)
 		var/turf/E = get_step(src, d)
 		bombsaway(E)
