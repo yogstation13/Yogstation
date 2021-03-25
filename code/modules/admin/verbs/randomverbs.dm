@@ -1084,7 +1084,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 
-	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_PIE)
+	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_PIE, ADMIN_PUNISHMENT_CLUWNE)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
 
@@ -1154,6 +1154,15 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			if(confirm == "Yes")
 				to_chat(target, "<span class='clown'>Honk! You probably did something stupid..</span>")
 			var/mob/living/carbon/C = target
+			C.adminpie(target)
+	punish_log(target, punishment)
+	
+	if(ADMIN_PUNISHMENT_CLUWNE)
+			var/confirm = alert(usr, "Send Cluwne Message?", "Cluwne Message", "Yes", "No")
+			if(confirm == "Yes")
+				to_chat(target, "<span class='reallybigphobia'>HENK!! HENK!! HENK!! YOU DID SOMETHING EXTREMELY DUMB, AND MADE GOD MAD. CRY ABOUT IT.</span>")
+			var/mob/living/carbon/C = target
+			C.cluwneify(target)
 			C.adminpie(target)
 	punish_log(target, punishment)
 
