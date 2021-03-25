@@ -54,4 +54,4 @@ PROCESSING_SUBSYSTEM_DEF(station)
 	for(var/datum/station_trait/station_trait as anything in SSstation.station_traits)
 		tolog += " [station_trait],"
 	if(tolog)
-		admin_log("Chosen Traits This Round:" + tolog)
+		log_admin("Chosen Traits This Round:" + tolog)
