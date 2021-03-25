@@ -30,7 +30,7 @@ General Public License version 3.
 
 <h3 id="modules">Modules
 <aside>(72 modules,
-    528/6457 macros, 8.2%)</aside></h3>
+    529/6462 macros, 8.2%)</aside></h3>
 <ul class="index-tree">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -142,7 +142,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(305 detailed/820 documented/22950 total, 3.6%)</aside></h3>
+<aside>(307 detailed/824 documented/22954 total, 3.6%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -483,6 +483,7 @@ note of an instrument.*</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;map_template&#x2F;ruin&#x2F;station&#x2F;maint&#x2F;tenxten&#x2F;aquarium">Maint aquarium</span> - Aquarium-NT scientists study space marine life. Author: Jcat</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;map_template&#x2F;ruin&#x2F;station&#x2F;maint&#x2F;tenxten&#x2F;assaultpod">Maint assaultpod</span> - Author: Veeblefetzer</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;map_template&#x2F;ruin&#x2F;station&#x2F;maint&#x2F;tenxten&#x2F;boxfactory">Maint boxfactory</span> - Author: Veeblefetzer</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;map_template&#x2F;ruin&#x2F;station&#x2F;maint&#x2F;tenxten&#x2F;fourshops">Maint fourshops</span> - Author: Veeblefetzer</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;map_template&#x2F;ruin&#x2F;station&#x2F;maint&#x2F;tenxten&#x2F;junction">Maint junction</span> - Junction- sometimes in life, you can only go forward. Author: Jcat</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;map_template&#x2F;ruin&#x2F;station&#x2F;maint&#x2F;tenxten&#x2F;lasertag">Maint lasertag</span> - Lasertag-Author: Jcat</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;map_template&#x2F;ruin&#x2F;station&#x2F;maint&#x2F;tenxten&#x2F;maze">Maint maze</span> - Author: Veeblefetzer</li>
@@ -573,6 +574,8 @@ this is the way to do it cleanly and properly.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control&#x2F;stray_cargo">Stray Cargo Pod</span> - Spawns a cargo pod containing a random cargo supply pack on a random area of the station</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control&#x2F;supermatter_surge">Supermatter Surge</span> - Places that shouldn't explode
 Subtypes from the above that actually should explode.</li>
+    <li><span class="no-substance">wizard&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control&#x2F;wizard&#x2F;fake_explosion">Fake Nuclear Explosion</span> - departments that are already independent, these will be disallowed to be randomly picked
+departments that are already independent, these will be disallowed to be randomly picked</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control&#x2F;zombie">Spawn Zombie</span> - You will appear adjacent to the beacon</li>
     </ul></li>
     <li><a href="datum/rust_spread.html" title="&#x2F;datum&#x2F;rust_spread">rust_spread</a> - #Rust spread datum</li>
@@ -629,7 +632,10 @@ All of this is passed to the Request Console UI in order to present in organized
     </ul></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;surgery_step&#x2F;replace">sever muscles</span> - AUGMENTATION SURGERIES</li>
     </ul></li>
-    <li><span class="no-substance">team&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;team&#x2F;contractor_team">contractor_team</span> - Team for storing both the contractor and their support unit - only really for the HUD and admin logging.</li>
+    <li class="has-children"><span title="&#x2F;datum&#x2F;team">team</span><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;team&#x2F;contractor_team">contractor_team</span> - Team for storing both the contractor and their support unit - only really for the HUD and admin logging.</li>
+    <li><a href="datum/team/nation.html" title="&#x2F;datum&#x2F;team&#x2F;nation">Nation</a></li>
+    </ul></li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;techweb_node">techweb_node</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;techweb_node&#x2F;adv_mecha">adv_mecha</span> - mech technology</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;techweb_node&#x2F;alientech">alientech</span> - Alien technology</li>
@@ -965,6 +971,7 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;multitool">multitool</span> - Multitool -- A multitool is used for hacking electronic devices.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;necromantic_stone">necromantic stone</span> - Necromantic Stone</li>
     <li class="has-children"><a href="obj/item/organ.html" title="&#x2F;obj&#x2F;item&#x2F;organ">organ</a><ul class="index-tree">
+    <li><span class="no-substance">body_egg&#x2F;</span><a href="obj/item/organ/body_egg/alien_embryo.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;body_egg&#x2F;alien_embryo">alien embryo</a></li>
     <li><a href="obj/item/organ/brain.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;brain">brain</a></li>
     <li><span class="no-substance">eyes&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;eyes&#x2F;robotic">robotic eyes</span> - Robotic</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;regenerative_core">regenerative core</span> - Hivelord core<ul class="index-tree">
@@ -1288,7 +1295,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/57e0b712dde7dd32cfbc65ed9e725fb7bcb8c51c">57e0b71</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/5459edc9465152cde2fdfadc3af7fd73e48007a2">5459edc</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.3.0</a></footer>
 </body>
 </html>
