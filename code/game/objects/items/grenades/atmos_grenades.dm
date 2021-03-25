@@ -4,7 +4,7 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "bluefrag"
 	item_state = "flashbang"
-	resistance_flags = FIRE_PROOFremind 2d give the assassinate subtypes a time minimum for being dead to make them less easy
+	resistance_flags = FIRE_PROOF
 
 /obj/item/grenade/gas_crystal/preprime(mob/user, delayoverride, msg = TRUE, volume = 60)
 	var/turf/turf_loc = get_turf(src)
