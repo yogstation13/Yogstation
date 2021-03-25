@@ -52,6 +52,6 @@ PROCESSING_SUBSYSTEM_DEF(station)
 			selectable_traits_by_types[initial(trait_to_remove.trait_type)] -= trait_to_remove
 	var/tolog = ""
 	for(var/datum/station_trait/station_trait as anything in SSstation.station_traits)
-	  tolog += " [station_trait],"
+		tolog += " [station_trait],"
 	if(tolog)
-	  admin_log("Chosen Traits This Round:" + tolog)
+		admin_log("Chosen Traits This Round:" + tolog)
