@@ -23871,9 +23871,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/storage)
-"bsh" = (
-/turf/closed/wall,
-/area/teleporter)
 "bsi" = (
 /obj/structure/table,
 /obj/item/hand_tele,
@@ -96326,10 +96323,10 @@ aZV
 aZV
 aZV
 bqH
-bsh
-bsh
-bsh
-bsh
+bqH
+bqH
+bqH
+bqH
 bqH
 aJq
 aJq
@@ -97814,7 +97811,7 @@ agz
 ahb
 ahI
 bHT
-abp
+adR
 ajh
 ajn
 ajn
@@ -98071,7 +98068,7 @@ agB
 ahd
 ahI
 clS
-abp
+adR
 ajj
 ajP
 aky
@@ -98328,7 +98325,7 @@ aoD
 ahc
 ahJ
 aiq
-abp
+adR
 aji
 ajO
 akL
@@ -98585,7 +98582,7 @@ ahV
 ahf
 ahK
 ait
-abp
+adR
 ajl
 ajR
 ame
@@ -98842,7 +98839,7 @@ aly
 ahe
 ahM
 dFX
-abp
+adR
 ajk
 ajQ
 ake
@@ -99099,7 +99096,7 @@ agE
 ahh
 aic
 uQE
-abp
+adR
 aiY
 ajE
 akf
@@ -99356,7 +99353,7 @@ afY
 ahg
 ahL
 aiu
-abp
+adR
 aaB
 aaG
 ajn
@@ -99613,7 +99610,7 @@ kcy
 eEt
 wCs
 pEk
-abp
+adR
 ajp
 ajU
 ajn
@@ -99868,9 +99865,9 @@ esT
 aga
 abp
 frH
-abp
+adR
 sXv
-abp
+adR
 ajo
 ajo
 ajo
@@ -100119,7 +100116,7 @@ aaa
 acw
 abp
 abp
-adR
+abp
 abp
 kxR
 abp
@@ -100380,7 +100377,7 @@ ppd
 txU
 nAV
 agc
-abp
+adR
 siX
 qKd
 kNa
@@ -100637,7 +100634,7 @@ abp
 abp
 afo
 abp
-abp
+adR
 aoZ
 apx
 ahn
@@ -101147,11 +101144,11 @@ aaa
 aaf
 aaa
 aaa
-adR
+abp
 aaa
 aaa
 aaa
-adR
+abp
 aoL
 apy
 aqq
@@ -113580,7 +113577,7 @@ atN
 atN
 atN
 atN
-wkN
+atN
 vJS
 bPp
 aaa
@@ -115115,7 +115112,7 @@ bQZ
 aRv
 bQZ
 bQZ
-bPN
+bQZ
 cNW
 hVC
 cNW
