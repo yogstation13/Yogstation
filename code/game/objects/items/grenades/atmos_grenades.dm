@@ -3,7 +3,7 @@
 	name = "Gas Crystal"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "bluefrag"
-	item_state  = "flashbang"
+	item_state = "flashbang"
 	resistance_flags = FIRE_PROOF
 
 /obj/item/grenade/gas_crystal/preprime(mob/user, delayoverride, msg = TRUE, volume = 60)
