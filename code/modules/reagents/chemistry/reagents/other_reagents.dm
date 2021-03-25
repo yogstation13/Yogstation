@@ -366,6 +366,7 @@
 	metabolization_rate = 10 * REAGENTS_METABOLISM // very fast, so it can be applied rapidly.  But this changes on an overdose
 	overdose_threshold = 11 //Slightly more than one un-nozzled spraybottle.
 	taste_description = "sour oranges"
+	var/saved_color
 
 /datum/reagent/spraytan/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(ishuman(M))
@@ -444,8 +445,10 @@
 		if(!(HAIR in N.dna.species.species_traits)) //No hair? No problem!
 			N.dna.species.species_traits += HAIR
 		if(N.dna.species.use_skintones)
+			saved_color = N.skin_tone
 			N.skin_tone = "orange"
 		else if(MUTCOLORS in N.dna.species.species_traits) //Aliens with custom colors simply get turned orange
+			saved_color = N.dna.features["mcolor"]
 			N.dna.features["mcolor"] = "f80"
 		N.regenerate_icons()
 		if(prob(7))
@@ -457,6 +460,16 @@
 		M.say(pick("Shit was SO cash.", "You are everything bad in the world.", "What sports do you play, other than 'jack off to naked drawn Japanese people?'", "Don???t be a stranger. Just hit me with your best shot.", "My name is John and I hate every single one of you."), forced = /datum/reagent/spraytan)
 	..()
 	return
+
+/datum/reagent/spraytan/on_mob_delete(mob/living/M)
+	if(ishuman(M) && saved_color)
+		var/mob/living/carbon/human/N = M
+		if(N.dna.species.use_skintones)
+			N.skin_tone = saved_color
+		else if(MUTCOLORS in N.dna.species.species_traits)
+			N.dna.features["mcolor"] = saved_color
+		N.regenerate_icons()
+	..()
 
 /datum/reagent/mutationtoxin
 	name = "Stable Mutation Toxin"
