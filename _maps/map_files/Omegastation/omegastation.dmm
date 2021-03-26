@@ -14681,11 +14681,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"aCs" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/machinery/light/small,
-/turf/open/floor/engine/o2,
-/area/engine/atmos)
 "aCt" = (
 /obj/structure/table,
 /obj/item/paper,
@@ -14716,11 +14711,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"aCw" = (
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/obj/machinery/light/small,
-/turf/open/floor/engine/n2,
-/area/engine/atmos)
 "aCz" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1
@@ -24765,6 +24755,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"ckx" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/miner/toxins,
+/turf/open/floor/engine/plasma,
+/area/engine/atmos)
 "clF" = (
 /obj/machinery/light{
 	dir = 1
@@ -28050,13 +28048,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
-"gap" = (
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/engine/n2o,
-/area/engine/atmos)
 "gaE" = (
 /obj/item/storage/box/firingpins,
 /obj/item/storage/box/firingpins,
@@ -29754,13 +29745,6 @@
 	dir = 5
 	},
 /turf/closed/wall/r_wall,
-/area/engine/atmos)
-"hOh" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/engine/co2,
 /area/engine/atmos)
 "hOC" = (
 /obj/structure/cable/white{
@@ -32142,13 +32126,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical)
-"kit" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/engine/plasma,
-/area/engine/atmos)
 "kiv" = (
 /obj/structure/cable/white{
 	icon_state = "1-8"
@@ -35187,6 +35164,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"nIH" = (
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/miner/carbon_dioxide,
+/turf/open/floor/engine/co2,
+/area/engine/atmos)
 "nIT" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -35564,6 +35549,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"nXN" = (
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/miner/n2o,
+/turf/open/floor/engine/n2o,
+/area/engine/atmos)
 "nXQ" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Custodial Maintenance";
@@ -38215,6 +38208,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"qNT" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/light/small,
+/obj/machinery/atmospherics/miner/oxygen,
+/turf/open/floor/engine/o2,
+/area/engine/atmos)
 "qOO" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "ceblast";
@@ -43490,6 +43489,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"uyz" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/machinery/light/small,
+/obj/machinery/atmospherics/miner/nitrogen,
+/turf/open/floor/engine/n2,
+/area/engine/atmos)
 "uyI" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /turf/open/floor/engine,
@@ -74486,7 +74491,7 @@ aac
 aac
 aac
 pNE
-hOh
+nIH
 iqC
 aqA
 kHA
@@ -75514,7 +75519,7 @@ aad
 aad
 aad
 pNE
-kit
+ckx
 ddI
 aqA
 vmU
@@ -76042,7 +76047,7 @@ eaf
 agS
 aAi
 axi
-aCs
+qNT
 uok
 fTS
 mdy
@@ -76542,7 +76547,7 @@ aaW
 aad
 aad
 pNE
-gap
+nXN
 fnp
 aqA
 viy
@@ -77070,7 +77075,7 @@ eaf
 ahb
 aAi
 atx
-aCw
+uyz
 uok
 iNt
 aFu
