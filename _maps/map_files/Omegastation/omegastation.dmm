@@ -9827,20 +9827,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"anG" = (
-/obj/structure/sign/directions/engineering{
-	dir = 2;
-	pixel_y = -8
-	},
-/obj/structure/sign/directions/security{
-	dir = 8
-	},
-/obj/structure/sign/directions/command{
-	dir = 1;
-	pixel_y = 8
-	},
-/turf/closed/wall,
-/area/security/brig)
 "anH" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -10266,17 +10252,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
 	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
-"aoj" = (
-/obj/structure/cable/white{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "aok" = (
@@ -19405,14 +19380,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"aSS" = (
-/obj/item/clothing/gloves/color/black,
-/obj/item/clothing/glasses/meson/engine,
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "aSU" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -24755,14 +24722,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"ckx" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/atmospherics/miner/toxins,
-/turf/open/floor/engine/plasma,
-/area/engine/atmos)
 "clF" = (
 /obj/machinery/light{
 	dir = 1
@@ -25265,6 +25224,12 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
+"cQy" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/light/small,
+/obj/machinery/atmospherics/miner/oxygen,
+/turf/open/floor/engine/o2,
+/area/engine/atmos)
 "cRn" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -26474,6 +26439,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"emD" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/miner/toxins,
+/turf/open/floor/engine/plasma,
+/area/engine/atmos)
 "eos" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -26881,6 +26854,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"eIl" = (
+/obj/item/clothing/gloves/color/black,
+/obj/item/clothing/glasses/meson/engine,
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/stripes/line,
+/obj/item/pipe_dispenser,
+/obj/item/pipe_dispenser,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "eJL" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -30670,6 +30653,14 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
+/area/engine/atmos)
+"iIQ" = (
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/miner/n2o,
+/turf/open/floor/engine/n2o,
 /area/engine/atmos)
 "iIY" = (
 /obj/effect/turf_decal/tile/purple{
@@ -35164,14 +35155,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"nIH" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/atmospherics/miner/carbon_dioxide,
-/turf/open/floor/engine/co2,
-/area/engine/atmos)
 "nIT" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -35549,14 +35532,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"nXN" = (
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/atmospherics/miner/n2o,
-/turf/open/floor/engine/n2o,
-/area/engine/atmos)
 "nXQ" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Custodial Maintenance";
@@ -38208,12 +38183,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"qNT" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/machinery/light/small,
-/obj/machinery/atmospherics/miner/oxygen,
-/turf/open/floor/engine/o2,
-/area/engine/atmos)
 "qOO" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "ceblast";
@@ -38857,6 +38826,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/medical)
+"ruu" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/machinery/light/small,
+/obj/machinery/atmospherics/miner/nitrogen,
+/turf/open/floor/engine/n2,
+/area/engine/atmos)
 "rvh" = (
 /obj/structure/cable/white{
 	icon_state = "2-8"
@@ -38998,6 +38973,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"rDw" = (
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/miner/carbon_dioxide,
+/turf/open/floor/engine/co2,
+/area/engine/atmos)
 "rEx" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
@@ -42917,6 +42900,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"tXY" = (
+/obj/structure/sign/directions/engineering{
+	dir = 2;
+	pixel_y = -8
+	},
+/obj/structure/sign/directions/security{
+	dir = 8
+	},
+/obj/structure/sign/directions/command{
+	dir = 1;
+	pixel_y = 8
+	},
+/turf/closed/wall/r_wall,
+/area/security/brig)
 "tYm" = (
 /obj/machinery/processor,
 /turf/open/floor/plasteel/cafeteria{
@@ -43489,12 +43486,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"uyz" = (
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/obj/machinery/light/small,
-/obj/machinery/atmospherics/miner/nitrogen,
-/turf/open/floor/engine/n2,
-/area/engine/atmos)
 "uyI" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /turf/open/floor/engine,
@@ -46869,6 +46860,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
+"yjQ" = (
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "ylL" = (
 /obj/structure/table,
 /obj/item/book/manual/wiki/cooking_to_serve_man,
@@ -74491,7 +74496,7 @@ aac
 aac
 aac
 pNE
-nIH
+rDw
 iqC
 aqA
 kHA
@@ -75519,7 +75524,7 @@ aad
 aad
 aad
 pNE
-ckx
+emD
 ddI
 aqA
 vmU
@@ -76047,7 +76052,7 @@ eaf
 agS
 aAi
 axi
-qNT
+cQy
 uok
 fTS
 mdy
@@ -76547,7 +76552,7 @@ aaW
 aad
 aad
 pNE
-nXN
+iIQ
 fnp
 aqA
 viy
@@ -77075,7 +77080,7 @@ eaf
 ahb
 aAi
 atx
-uyz
+ruu
 uok
 iNt
 aFu
@@ -77091,7 +77096,7 @@ aMX
 sJG
 sQu
 aRK
-aSS
+eIl
 aLk
 aUS
 aUU
@@ -79912,7 +79917,7 @@ aAf
 urZ
 rBK
 aoi
-aoj
+yjQ
 rel
 xPI
 ddE
@@ -82971,7 +82976,7 @@ atM
 agF
 atM
 atM
-anG
+tXY
 sYw
 aeq
 agF
