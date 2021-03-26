@@ -54,7 +54,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 	
 	for(var/mob/M in GLOB.player_list)
 		if(M?.client?.prefs?.toggles & SOUND_AMBIENCE && !isnewplayer(M))
-			SEND_SOUND(M, sound('sound/misc/nuke_declaration_of_war_music.ogg', wait=0, volume = 50, channel=CHANNEL_JUKEBOX))
+			SEND_SOUND(M, sound(pick('sound/misc/war_music_1.ogg', 'sound/misc/war_music_2.ogg'), wait=0, volume = 50, channel=CHANNEL_JUKEBOX))
 
 	to_chat(user, "You've attracted the attention of powerful forces within the syndicate. A bonus bundle of telecrystals has been granted to your team. Great things await you if you complete the mission.")
 
