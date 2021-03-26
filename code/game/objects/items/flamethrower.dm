@@ -78,6 +78,7 @@
 			var/turflist = getline(user, target_turf)
 			log_combat(user, target, "flamethrowered", src)
 			flame_turf(turflist)
+			user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/item/flamethrower/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WRENCH && !status)//Taking this apart
@@ -200,16 +201,22 @@
 			attack_self(M)
 
 
-/obj/item/flamethrower/proc/default_ignite(turf/target, release_amount = 0.05)
-	//TODO: DEFERRED Consider checking to make sure tank pressure is high enough before doing this...
-	//Transfer 5% of current tank air contents to turf
-	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(release_amount)
-	air_transfer.set_moles(/datum/gas/plasma, air_transfer.get_moles(/datum/gas/plasma) * 5)
-	target.assume_air(air_transfer)
-	//Burn it based on transfered gas
-	target.hotspot_expose((ptank.air_contents.return_temperature()*2) + 380,500)
+/obj/item/flamethrower/proc/default_ignite(turf/target, release_amount = 3, damage = 10)
+	///TODO: DEFERRED Consider checking to make sure tank pressure is high enough before doing this...
+	///Transfer (amount) moles of current tank air contents to turf
+	//air_transfer.set_moles(/datum/gas/plasma, air_transfer.get_moles(/datum/gas/plasma) * 5)
+	//target.assume_air(air_transfer)
+	///Burn it based on transfered gas
+	new /obj/effect/hotspot(target)
+	target.hotspot_expose(1000,ptank.air_contents.remove(release_amount),1)
+	var/list/hit_list = list()
+	for(var/mob/living/L in target.contents)
+		if(L in hit_list)
+			continue
+		hit_list += L
+		L.adjustFireLoss(damage)
 	//location.hotspot_expose(1000,500,1)
-	SSair.add_to_active(target, 0)
+	//SSair.add_to_active(target, 0)
 
 
 /obj/item/flamethrower/Initialize(mapload)
@@ -237,7 +244,7 @@
 	if(damage && attack_type == PROJECTILE_ATTACK && P.damage_type != STAMINA && prob(15))
 		owner.visible_message("<span class='danger'>\The [attack_text] hits the fueltank on [owner]'s [name], rupturing it! What a shot!</span>")
 		var/target_turf = get_turf(owner)
-		igniter.ignite_turf(src,target_turf, release_amount = 100)
+		igniter.ignite_turf(src,target_turf, release_amount = INFINITY, 50)
 		qdel(ptank)
 		return 1 //It hit the flamethrower, not them
 
@@ -245,5 +252,5 @@
 /obj/item/assembly/igniter/proc/flamethrower_process(turf/open/location)
 	location.hotspot_expose(700,2)
 
-/obj/item/assembly/igniter/proc/ignite_turf(obj/item/flamethrower/F,turf/open/location,release_amount = 0.05)
-	F.default_ignite(location,release_amount)
+/obj/item/assembly/igniter/proc/ignite_turf(obj/item/flamethrower/F,turf/open/location,release_amount = 3, damage = 10)
+	F.default_ignite(location,release_amount,damage)
