@@ -174,7 +174,7 @@
 /obj/machinery/vending/autodrobe,
 /turf/open/floor/plasteel,
 /area/science/test_area)
-"w" = (
+"z" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
@@ -192,10 +192,12 @@
 	dir = 10
 	},
 /obj/structure/table,
-/obj/item/storage/belt/utility{
-	contents = list(/obj/item/screwdriver,/obj/item/wrench,/obj/item/weldingtool,/obj/item/crowbar,/obj/item/wirecutters,/obj/item/multitool)
-	},
 /obj/item/clothing/gloves/color/yellow,
+/obj/item/storage/belt/utility,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = 2;
+	pixel_y = 1
+	},
 /turf/open/floor/plasteel,
 /area/science/test_area)
 "E" = (
@@ -455,7 +457,7 @@ q
 W
 k
 i
-w
+z
 t
 t
 c
