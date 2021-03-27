@@ -61,6 +61,7 @@
 		/obj/item/stack/sheet/mineral/bananium	    = /datum/species/golem/bananium,
 		/obj/item/stack/sheet/mineral/titanium	    = /datum/species/golem/titanium,
 		/obj/item/stack/sheet/mineral/plastitanium	= /datum/species/golem/plastitanium,
+		/obj/item/stack/sheet/mineral/metal_hydrogen= /datum/species/golem/mhydrogen,
 		/obj/item/stack/sheet/mineral/abductor	    = /datum/species/golem/alloy,
 		/obj/item/stack/sheet/mineral/wood	        = /datum/species/golem/wood,
 		/obj/item/stack/sheet/bluespace_crystal	    = /datum/species/golem/bluespace,
@@ -79,7 +80,10 @@
 		/obj/item/stack/sheet/mineral/snow			= /datum/species/golem/snow,
 		/obj/item/stack/sheet/capitalisium			= /datum/species/golem/capitalist,
 		/obj/item/stack/sheet/stalinium				= /datum/species/golem/soviet,
-		/obj/item/stack/sheet/cheese				= /datum/species/golem/cheese)
+		/obj/item/stack/sheet/cheese				= /datum/species/golem/cheese,
+		/obj/item/stack/telecrystal					= /datum/species/golem/telecrystal,
+		/obj/item/stack/telecrystal/five			= /datum/species/golem/telecrystal,
+		/obj/item/stack/telecrystal/twenty			= /datum/species/golem/telecrystal)
 
 	if(istype(I, /obj/item/stack))
 		var/obj/item/stack/O = I
