@@ -109,6 +109,11 @@
 	id = "testing_site_3"
 	suffix = "testingsite_range3.dmm"
 	name = "Clown Bomb Range"
+	
+/datum/map_template/ruin/station/box/testingsite/clerk
+	id = "testing_site_4"
+	suffix = "testingsite_range4.dmm"
+	name = "Clerk Bomb Range"
 
 /datum/map_template/ruin/station/box/medbay/morgue
 	id = "medbay_morgue1"
