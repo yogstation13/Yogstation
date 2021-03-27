@@ -1,6 +1,5 @@
 /datum/centcom_announcer/medbot
-	welcome_sounds = list('sound/ai/medbot/welcome.ogg',
-		'sound/ai/medbot/newAI.ogg')
+	welcome_sounds = list('sound/ai/medbot/welcome.ogg')
 	alert_sounds = list('sound/ai/medbot/attention.ogg')
 	command_report_sounds = list('sound/ai/medbot/commandreport.ogg')
 	event_sounds = list(ANNOUNCER_AIMALF = 'sound/ai/default/aimalf.ogg',
