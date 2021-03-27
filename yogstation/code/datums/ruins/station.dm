@@ -80,6 +80,11 @@
 	suffix = "engine_singulo_tesla.dmm"
 	name = "Engine Singulo And Tesla"
 
+/datum/map_template/ruin/station/box/engine/teg
+	id = "engine_teg"
+	suffix = "engine_teg.dmm"
+	name = "Engine TEG"
+
 /datum/map_template/ruin/station/box/maint/xenobridge
 	id = "maint_xenobridge_default"
 	suffix = "xenobridge_default.dmm"
