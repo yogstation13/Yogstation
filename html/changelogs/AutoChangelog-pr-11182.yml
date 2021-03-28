@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - rscdel: "you can no longer order tesla generators or coils from cargo. This is why we can't have nice things."
-  - rscdel: "removes the cargo tesla bounty"
