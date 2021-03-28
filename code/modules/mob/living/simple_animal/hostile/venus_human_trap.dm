@@ -101,6 +101,10 @@
 /mob/living/simple_animal/hostile/venus_human_trap/Life()
 	. = ..()
 	pull_vines()
+	if(!kudzu_need())
+		adjustHealth(-5)
+		if(prob(20))
+			to_chat(src, "<span class='danger'>You wither away without the support of the kudzu...</span>")
 	
 /mob/living/simple_animal/hostile/venus_human_trap/AttackingTarget()
 	. = ..()
@@ -186,5 +190,17 @@
   * Arguments:
   * * datum/beam/vine - The vine to be removed from the list.
   */
-mob/living/simple_animal/hostile/venus_human_trap/proc/remove_vine(datum/beam/vine, force)
+/mob/living/simple_animal/hostile/venus_human_trap/proc/remove_vine(datum/beam/vine, force)
 	vines -= vine
+
+/**
+  * Damages the human trap if they're >3 tiles away from a kudzu
+  *
+  * Checks if there is a kudzu within 3 tiles
+  * Damages the mob if not
+  */
+/mob/living/simple_animal/hostile/venus_human_trap/proc/kudzu_need()
+	for(var/obj/structure/spacevine in view(3,src))
+		return TRUE
+	return FALSE
+		
