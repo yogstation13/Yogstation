@@ -29,13 +29,13 @@ GLOBAL_LIST_INIT(abductor_gear, subtypesof(/datum/abductor_gear))
 /datum/abductor_gear/baton
 	name = "Advanced Baton"
 	description = "A advanced baton with four modes allowing it to stun, sleep, cuff, and probe victims."
-	id = "agent_vest"
+	id = "baton"
 	build_path = /obj/item/abductor/baton
 
 /datum/abductor_gear/alien_pistol
 	name = "Agent Pistol"
 	description = "A small self defence pistol for dealing with rowdy patients with blasts of high-intensity radiation."
-	id = "agent_vest"
+	id = "alien_pistol"
 	build_path = /obj/item/gun/energy/alien
 
 /datum/abductor_gear/radio_silencer
