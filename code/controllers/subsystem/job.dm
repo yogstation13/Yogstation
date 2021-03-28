@@ -689,14 +689,11 @@ SUBSYSTEM_DEF(job)
 
 ///Lands specified mob at a random spot in the hallways
 /datum/controller/subsystem/job/proc/DropLandAtRandomHallwayPoint(mob/living/living_mob)
-	var/list/turfs = get_area_turfs(/area/hallway, SSmapping.levels_by_trait(ZTRAIT_STATION), TRUE)
-	for(var/turf/closed/turf in turfs)
-		turfs -= turf
-	var/turf/death = safepick(turfs) // Incase the hallway is entirely walls
+	var/turf/spawn_turf = get_safe_random_station_turf(typesof(/area/hallway))
 
 	var/obj/structure/closet/supplypod/centcompod/toLaunch = new()
 	living_mob.forceMove(toLaunch)
-	new /obj/effect/DPtarget(death, toLaunch)
+	new /obj/effect/DPtarget(spawn_turf, toLaunch)
 
 
 ///////////////////////////////////
