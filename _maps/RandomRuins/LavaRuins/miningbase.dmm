@@ -333,6 +333,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"ds" = (
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel,
+/area/mine/eva)
 "du" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -645,22 +649,6 @@
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
 /area/mine/production)
-"fN" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/machinery/door/airlock/external{
-	glass = 1;
-	name = "Mining External Airlock";
-	opacity = 0;
-	req_access_txt = "54"
-	},
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/mine/eva)
 "fT" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -1762,18 +1750,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/production)
-"yy" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/machinery/door/airlock/external{
-	glass = 1;
-	name = "Mining External Airlock";
-	opacity = 0;
-	req_access_txt = "54"
-	},
-/turf/open/floor/plasteel,
-/area/mine/eva)
 "yE" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1892,6 +1868,13 @@
 	},
 /turf/open/floor/plating,
 /area/mine/living_quarters)
+"Br" = (
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/mine/eva)
 "Bs" = (
 /obj/machinery/telecomms/relay/preset/mining,
 /turf/open/floor/circuit/green/telecomms,
@@ -3348,7 +3331,7 @@ aw
 bI
 Cu
 Jb
-yy
+ds
 Jb
 Cu
 ak
@@ -3444,7 +3427,7 @@ aw
 bI
 ao
 sI
-fN
+Br
 zc
 ao
 ao
