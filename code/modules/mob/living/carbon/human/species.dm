@@ -1969,7 +1969,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 /datum/species/proc/CanFly(mob/living/carbon/human/H)
 	if(H.stat || !(H.mobility_flags & MOBILITY_STAND))
 		return FALSE
-	if(H.dna.features["moth_wings"] == "Burnt Off") //this is so tragic can we get an "F" in the chat
+	if(ismoth(H) && H.dna.features["moth_wings"] == "Burnt Off") //this is so tragic can we get an "F" in the chat
 		to_chat(H, "<span>Your crispy wings won't work anymore!</span>")
 		return FALSE
 	if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) && (!H.wear_suit.species_exception || !is_type_in_list(src, H.wear_suit.species_exception))))	//Jumpsuits have tail holes, so it makes sense they have wing holes too
