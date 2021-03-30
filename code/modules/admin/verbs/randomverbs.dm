@@ -1167,8 +1167,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/confirm = alert(usr, "Send Cluwne Message?", "Cluwne Message", "Yes", "No")
 			if(confirm == "Yes")
 				to_chat(target, "<span class='reallybigphobia'>HENK!! HENK!! HENK!! YOU DID SOMETHING EXTREMELY DUMB, AND MADE GOD MAD. CRY ABOUT IT.</span>")
-			var/mob/living/carbon/C = target
-			C.cluwneify()
+			var/mob/living/carbon/human/H = target
+			H?.cluwneify()
 	punish_log(target, punishment)
 
 /client/proc/punish_log(var/whom, var/punishment)
