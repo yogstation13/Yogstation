@@ -1,4 +1,0 @@
-author: "maxion12345"
-delete-after: true 
-changes: 
-  - tweak: "moved beacon in mining over by 1 to prevent rng death"
