@@ -100,4 +100,4 @@
 /obj/item/clockwork/construct_chassis/cogscarab/post_spawn(mob/living/construct)
 	if(seasonal_hat && seasonal_hat != "none")
 		var/obj/item/hat = new seasonal_hat(construct)
-			onstruct.equip_to_slot_or_del(hat, SLOT_HEAD)
+		construct.equip_to_slot_or_del(hat, SLOT_HEAD)
