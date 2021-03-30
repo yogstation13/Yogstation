@@ -72,6 +72,8 @@
 	return amt
 
 /obj/structure/frame/machine/attackby(obj/item/P, mob/user, params)
+	if(!istype(user, /mob/living))
+		return
 	switch(state)
 		if(1)
 			if(istype(P, /obj/item/circuitboard/machine))
@@ -110,8 +112,6 @@
 				return
 
 		if(2)
-			if(!istype(user, /mob/living))
-				return
 			if(P.tool_behaviour == TOOL_WRENCH)
 				to_chat(user, "<span class='notice'>You start [anchored ? "un" : ""]securing [name]...</span>")
 				if(P.use_tool(src, user, 40, volume=75))
