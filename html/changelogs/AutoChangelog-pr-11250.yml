@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - bugfix: "Removed ability for ghosts to build machines"
