@@ -1162,9 +1162,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				to_chat(target, "<span class='clown'>Honk! You probably did something stupid..</span>")
 			var/mob/living/carbon/C = target
 			C.adminpie(target)
-	punish_log(target, punishment)
 	
-	if(ADMIN_PUNISHMENT_CLUWNE)
+		if(ADMIN_PUNISHMENT_CLUWNE)
 			var/confirm = alert(usr, "Send Cluwne Message?", "Cluwne Message", "Yes", "No")
 			if(confirm == "Yes")
 				to_chat(target, "<span class='reallybigphobia'>HENK!! HENK!! HENK!! YOU DID SOMETHING EXTREMELY DUMB, AND MADE GOD MAD. CRY ABOUT IT.</span>")
