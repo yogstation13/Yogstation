@@ -13,7 +13,7 @@
 	var/power = 2000
 
 /datum/round_event/supermatter_surge/setup()
-	power = rand(200,4000)
+	power = rand(400,8000)
 
 /datum/round_event/supermatter_surge/announce()
 	if(power > 800 || prob(round(power/8)))
