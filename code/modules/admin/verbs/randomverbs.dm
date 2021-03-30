@@ -1103,11 +1103,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if(ADMIN_PUNISHMENT_BRAINDAMAGE)
 			target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 199, 199)
 		if(ADMIN_PUNISHMENT_MCNUGGET)
-			if (effectLimb && iscarbon(M)) 
-			var/mob/living/carbon/CM = M
-			for (var/obj/item/bodypart/bodypart in CM.bodyparts)
+			if(iscarbon(target)) 
+			var/mob/living/carbon/CM = target
+			for(var/obj/item/bodypart/bodypart in CM.bodyparts)
 				if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)
-					if (bodypart.dismemberable)
+					if(bodypart.dismemberable)
 						bodypart.dismember() 
 		if(ADMIN_PUNISHMENT_GIB)
 			target.gib(FALSE)
@@ -1162,14 +1162,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				to_chat(target, "<span class='clown'>Honk! You probably did something stupid..</span>")
 			var/mob/living/carbon/C = target
 			C.adminpie(target)
-	
+
 		if(ADMIN_PUNISHMENT_CLUWNE)
 			var/confirm = alert(usr, "Send Cluwne Message?", "Cluwne Message", "Yes", "No")
 			if(confirm == "Yes")
 				to_chat(target, "<span class='reallybigphobia'>HENK!! HENK!! HENK!! YOU DID SOMETHING EXTREMELY DUMB, AND MADE GOD MAD. CRY ABOUT IT.</span>")
 			var/mob/living/carbon/C = target
-			C.cluwneify(target)
-			C.adminpie(target)
+			C.cluwneify()
 	punish_log(target, punishment)
 
 /client/proc/punish_log(var/whom, var/punishment)
