@@ -30813,20 +30813,6 @@
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"iNU" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Maintenance Hatch";
-	req_access_txt = "12"
-	},
-/obj/effect/mapping_helpers/airlock/abandoned,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/closed/wall/r_wall,
-/area/maintenance/port)
 "iOW" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -35571,6 +35557,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"nYY" = (
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Maintenance Hatch";
+	req_access_txt = "12"
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port)
 "nZf" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 8
@@ -80190,7 +80190,7 @@ lqV
 ddE
 sKx
 aOH
-iNU
+nYY
 aMu
 aOH
 aOH
