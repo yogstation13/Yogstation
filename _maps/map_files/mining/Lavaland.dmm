@@ -128,6 +128,21 @@
 /obj/structure/gulag_beacon,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"bk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/obj/item/coin/gold,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "bl" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -337,6 +352,24 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"eS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/obj/item/coin/gold,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "fs" = (
 /obj/structure/bookcase/random,
 /turf/open/floor/plasteel,
@@ -1728,39 +1761,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"nn" = (
-/obj/item/stack/sheet/mineral/gold,
+"nj" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/block/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
+/obj/structure/stone_tile/slab/cracked,
+/obj/item/coin/gold,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/dragonslair)
 "nC" = (
 /obj/machinery/atmospherics/components/unary/tank/air,
 /turf/open/floor/plating,
 /area/mine/laborcamp)
-"nM" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/item/stack/sheet/mineral/gold{
-	amount = 25
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/dragonslair)
 "nT" = (
 /obj/structure/stone_tile/surrounding/burnt,
 /turf/open/lava/smooth/lava_land_surface,
@@ -1808,6 +1818,18 @@
 	dir = 8
 	},
 /obj/structure/stone_tile/cracked,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
+"oS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/block/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/obj/item/coin/gold,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/dragonslair)
 "pb" = (
@@ -1920,6 +1942,18 @@
 /obj/structure/stone_tile/cracked{
 	dir = 4
 	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
+"qy" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile/cracked,
+/obj/item/coin/gold,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/dragonslair)
 "qE" = (
@@ -2157,13 +2191,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"uw" = (
-/obj/item/immortality_talisman,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/closet/crate/coffin,
-/obj/structure/stone_tile/slab/cracked,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/dragonslair)
 "uD" = (
 /obj/machinery/computer/security/labor{
 	dir = 4;
@@ -2294,21 +2321,6 @@
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
-"wT" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile/block/cracked,
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/mob/living/simple_animal/hostile/skeleton/templar{
-	speak = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
-	speak_chance = 0
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/dragonslair)
 "wZ" = (
 /obj/machinery/camera{
 	c_tag = "Labor Camp External West";
@@ -2426,6 +2438,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"zO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/block/cracked,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/skeleton,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "zX" = (
 /obj/structure/ore_box,
 /obj/effect/decal/cleanable/dirt,
@@ -2461,21 +2485,6 @@
 	},
 /turf/open/floor/plating,
 /area/mine/laborcamp)
-"Aw" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/sheet/mineral/diamond/fifty,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/dragonslair)
 "AO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -2619,21 +2628,6 @@
 /obj/structure/stone_tile/cracked,
 /obj/structure/stone_tile/burnt{
 	dir = 4
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/dragonslair)
-"Da" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/skeleton/templar{
-	speak = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
-	speak_chance = 0
 	},
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/dragonslair)
@@ -2827,18 +2821,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"GX" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/block/cracked,
-/obj/item/stack/sheet/mineral/gold,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/dragonslair)
 "GZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/stone_tile,
@@ -2879,18 +2861,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"Ih" = (
-/obj/item/stack/sheet/mineral/gold,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/dragonslair)
 "IC" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -2904,24 +2874,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/laborcamp)
-"Jh" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile,
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/skeleton/templar{
-	speak = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
-	speak_chance = 0
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/dragonslair)
 "Js" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/stone_tile{
@@ -2971,21 +2923,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"Kn" = (
-/obj/item/stack/sheet/mineral/gold,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/dragonslair)
 "Kr" = (
 /obj/machinery/light/small,
 /obj/machinery/camera{
@@ -3207,6 +3144,18 @@
 /obj/effect/turf_decal/trimline/green/filled/line,
 /turf/open/floor/plasteel/dark,
 /area/mine/laborcamp)
+"OT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/stone_tile,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/skeleton,
+/turf/open/indestructible/boss,
+/area/ruin/unpowered/dragonslair)
 "Pg" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -3542,35 +3491,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"UK" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/block/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/item/stack/sheet/mineral/gold{
-	amount = 25
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/dragonslair)
-"UL" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/stack/sheet/mineral/gold/fifty,
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/dragonslair)
 "UM" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -3610,26 +3530,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"VF" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/item/stack/sheet/mineral/gold{
-	amount = 25
-	},
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/dragonslair)
 "VP" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
@@ -41112,7 +41012,7 @@ aa
 aa
 gS
 gS
-gS
+Jw
 XI
 mg
 aa
@@ -41628,7 +41528,7 @@ rt
 gS
 gS
 gS
-Da
+OT
 aa
 aa
 aa
@@ -41883,7 +41783,7 @@ aa
 aa
 nT
 gS
-Jh
+gS
 gS
 lY
 aa
@@ -42140,7 +42040,7 @@ aa
 aa
 Js
 gS
-gS
+Jw
 gS
 GZ
 aa
@@ -42396,7 +42296,7 @@ aa
 aa
 aa
 aa
-Jh
+gS
 oQ
 gS
 aa
@@ -42652,7 +42552,7 @@ aj
 aa
 aa
 aa
-RY
+zO
 gS
 gS
 qO
@@ -43425,7 +43325,7 @@ aa
 aa
 aa
 qO
-gS
+Jw
 Qp
 aa
 aa
@@ -43680,11 +43580,11 @@ aj
 aa
 aa
 aa
-wT
+RY
 gS
 Ml
 gS
-Da
+GZ
 aa
 aa
 aa
@@ -44196,7 +44096,7 @@ aa
 aa
 RY
 CJ
-Jh
+Jw
 wl
 GZ
 aa
@@ -47535,11 +47435,11 @@ aj
 aa
 aa
 qd
+bk
 Ya
-Kn
 Ya
 Ya
-Kn
+bk
 ow
 aa
 aa
@@ -47791,11 +47691,11 @@ aj
 (172,1,1) = {"
 aa
 aa
-nn
-Kn
+oS
+bk
 Ya
 Cb
-Kn
+bk
 Ya
 ow
 aa
@@ -48048,13 +47948,13 @@ aj
 (173,1,1) = {"
 aa
 aa
-GX
-nM
-nM
-nM
-nM
-nM
-Ih
+oS
+bk
+bk
+bk
+bk
+bk
+qy
 aa
 aa
 it
@@ -48306,11 +48206,11 @@ aj
 aa
 aa
 aa
-UK
-Aw
-UL
-UL
-VF
+oS
+bk
+bk
+bk
+eS
 aa
 aa
 aa
@@ -48564,7 +48464,7 @@ aa
 aa
 aa
 aa
-uw
+nj
 Ep
 ce
 aa
