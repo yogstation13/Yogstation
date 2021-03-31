@@ -257,7 +257,7 @@ PROTECT_ROLES_FROM_ANTAGONIST
 #PROTECT_AI_FROM_TRAITOR
 
 ## If non-human species are barred from joining as a head of staff
-ENFORCE_HUMAN_AUTHORITY
+#ENFORCE_HUMAN_AUTHORITY
 
 ## If late-joining players have a chance to become a traitor/changeling
 ALLOW_LATEJOIN_ANTAGONISTS
@@ -342,7 +342,7 @@ MINIMAL_ACCESS_THRESHOLD 18
 SECURITY_HAS_MAINT_ACCESS
 
 ## Uncomment to give everyone maint access.
-#EVERYONE_HAS_MAINT_ACCESS
+EVERYONE_HAS_MAINT_ACCESS
 
 ## Comment this out this to make security officers spawn in departmental security posts
 SEC_START_BRIG
@@ -354,7 +354,7 @@ GHOST_INTERACTION
 
 ## NEAR-DEATH EXPERIENCE ###
 ## Comment this out to disable mobs hearing ghosts when unconscious and very close to death
-#NEAR_DEATH_EXPERIENCE
+NEAR_DEATH_EXPERIENCE
 
 ## NON-VOCAL SILICONS ###
 ## Uncomment these to stop the AI, or cyborgs, from having vocal communication.
@@ -399,7 +399,7 @@ RANDOM_LAWS reporter
 #RANDOM_LAWS ratvar
 
 ## meme laws. Honk
-#RANDOM_LAWS buildawall
+RANDOM_LAWS buildawall
 
 ## If weighted laws are selected (DEFAULT_LAWS = 3),
 ## then an AI's starting laws will be determined by the weights of these values
@@ -409,13 +409,13 @@ RANDOM_LAWS reporter
 LAW_WEIGHT custom,0
 
 ## standard-ish laws. These are fairly ok to run
-LAW_WEIGHT asimov,6
-LAW_WEIGHT crewsimov,6
+LAW_WEIGHT asimov,0
+LAW_WEIGHT crewsimov,0
 LAW_WEIGHT asimovpp,0
 LAW_WEIGHT paladin,0
 LAW_WEIGHT robocop,0
 LAW_WEIGHT corporate,0
-LAW_WEIGHT ceo,6
+LAW_WEIGHT ceo,0
 
 ## Quirky laws. Shouldn't cause too much harm
 LAW_WEIGHT hippocratic,0
@@ -423,15 +423,15 @@ LAW_WEIGHT maintain,0
 LAW_WEIGHT drone,0
 LAW_WEIGHT liveandletlive,0
 LAW_WEIGHT peacekeeper,0
-LAW_WEIGHT reporter,3
+LAW_WEIGHT reporter,0
 
 ## Bad idea laws. Probably shouldn't enable these
 LAW_WEIGHT syndie,0
 LAW_WEIGHT ninja,0
 LAW_WEIGHT antimov,0
 LAW_WEIGHT thermodynamic,0
-LAW_WEIGHT ratvar,0
-LAW_WEIGHT buildawall,0
+LAW_WEIGHT ratvar,1
+LAW_WEIGHT buildawall,69420
 
 ##------------------------------------------------
 
@@ -458,32 +458,32 @@ ROUNDSTART_RACES human
 
 ## Races that are strictly worse than humans that could probably be turned on without balance concerns
 ROUNDSTART_RACES lizard
-#ROUNDSTART_RACES gorilla
-#ROUNDSTART_RACES fly
+ROUNDSTART_RACES gorilla
+ROUNDSTART_RACES fly
 ROUNDSTART_RACES moth
 ROUNDSTART_RACES plasmaman
-#ROUNDSTART_RACES shadow
+ROUNDSTART_RACES shadow
 ROUNDSTART_RACES preternis
 ROUNDSTART_RACES polysmorph
 #ROUNDSTART_RACES snail
 
 ## Races that are better than humans in some ways, but worse in others
 ROUNDSTART_RACES ethereal
-#ROUNDSTART_RACES jelly
-#ROUNDSTART_RACES golem
-#ROUNDSTART_RACES adamantine
-#ROUNDSTART_RACES plasma
-#ROUNDSTART_RACES diamond
-#ROUNDSTART_RACES gold
-#ROUNDSTART_RACES silver
-#ROUNDSTART_RACES uranium
-#ROUNDSTART_RACES abductor
-#ROUNDSTART_RACES synth
+ROUNDSTART_RACES jelly
+ROUNDSTART_RACES golem
+ROUNDSTART_RACES adamantine
+ROUNDSTART_RACES plasma
+ROUNDSTART_RACES diamond
+ROUNDSTART_RACES gold
+ROUNDSTART_RACES silver
+ROUNDSTART_RACES uranium
+ROUNDSTART_RACES abductor
+ROUNDSTART_RACES synth
 
 ## Races that are straight upgrades. If these are on expect powergamers to always pick them
-#ROUNDSTART_RACES skeleton
-#ROUNDSTART_RACES zombie
-#ROUNDSTART_RACES slime
+ROUNDSTART_RACES skeleton
+ROUNDSTART_RACES zombie
+ROUNDSTART_RACES slime
 ROUNDSTART_RACES pod
 #ROUNDSTART_RACES military_synth
 #ROUNDSTART_RACES agent
@@ -498,10 +498,10 @@ ROUNDSTART_RACES pod
 #ROUNDSTART_NO_HARD_CHECK felinid
 
 ## Uncomment to give players the choice of joining as a human with mutant bodyparts before they join the game
-#JOIN_WITH_MUTANT_HUMANS
+JOIN_WITH_MUTANT_HUMANS
 
 ##Overflow job. Default is assistant
-OVERFLOW_JOB Assistant
+OVERFLOW_JOB Clown
 
 ## Overflow slot cap. Set to -1 for unlimited. If limited, it will still open up if every other job is full.
 OVERFLOW_CAP -1
@@ -566,7 +566,7 @@ ARRIVALS_SHUTTLE_DOCK_WINDOW 55
 
 ## How many wirechewing rodents you want to spawn on exposed maintenane wires at the start of the round. You may wish to set this to 0 if you're testing powernets.
 
-MICE_ROUNDSTART 5
+MICE_ROUNDSTART 20
 
 ## If the percentage of players alive (doesn't count conversions) drops below this threshold the emergency shuttle will be forcefully called (provided it can be)
 #EMERGENCY_SHUTTLE_AUTOCALL_THRESHOLD 0.2
