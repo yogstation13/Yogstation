@@ -11,7 +11,7 @@
 	max_heat_protection_temperature = null
 	clothing_flags = null
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 5, "energy" = 0, "bomb" = 5, "bio" = 0, "fire" = 80, "acid" = 80)
-	slowdown = 0.8
+	slowdown = 0.5
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
 
 /obj/item/clothing/suit/space/hardsuit/darktemplarfollowerchap
@@ -25,7 +25,7 @@
 	max_heat_protection_temperature = null
 	clothing_flags = null
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 5, "energy" = 0, "bomb" = 5, "bio" = 0, "fire" = 80, "acid" = 80)
-	slowdown = 0.8
+	slowdown = 0.33
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
 
 /obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
@@ -61,7 +61,7 @@
 	desc = "Deus Vult."
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
-	armor = list("melee" = 41, "bullet" = 15, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
+	armor = list("melee" = 40, "bullet" = 10, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	strip_delay = 80
@@ -72,6 +72,7 @@
 	desc = "God wills it!"
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
+	armor = list("melee" = 40, "bullet" = 10, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/box/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
 	slowdown = 0
 	blocks_shove_knockdown = FALSE
@@ -152,12 +153,14 @@
 	desc = "None may pass!"
 	icon_state = "knight_ancient"
 	item_state = "knight_ancient"
+	armor = list("melee" = 40, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
 
 /obj/item/clothing/suit/armor/riot/chaplain/ancient
 	name = "ancient armour"
 	desc = "Defend the treasure..."
 	icon_state = "knight_ancient"
 	item_state = "knight_ancient"
+	armor = list("melee" = 40, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
 
 /obj/item/storage/box/holy/witchhunter
 	name = "Witchhunter Kit"
@@ -171,6 +174,7 @@
 	desc = "This worn outfit saw much use back in the day."
 	icon_state = "witchhunter"
 	item_state = "witchhunter"
+	armor = list("melee" = 40, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 
 /obj/item/clothing/head/helmet/chaplain/witchunter_hat
@@ -178,6 +182,7 @@
 	desc = "This hat saw much use back in the day."
 	icon_state = "witchhunterhat"
 	item_state = "witchhunterhat"
+	armor = list("melee" = 40, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
 	flags_cover = HEADCOVERSEYES
 
 /obj/item/storage/box/holy/follower
@@ -211,12 +216,14 @@
 	desc = "Now you're ready for some 50 dollar bling water."
 	icon_state = "chaplain_hoodie_leader"
 	item_state = "chaplain_hoodie_leader"
+	armor = list("melee" = 15, "bullet" = 5, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 25)
 	hoodtype = /obj/item/clothing/head/hooded/chaplain_hood/leader
 
 /obj/item/clothing/head/hooded/chaplain_hood/leader
 	name = "leader hood"
 	desc = "I mean, you don't /have/ to seek bling water. I just think you should."
 	icon_state = "chaplain_hood_leader"
+	armor = list("melee" = 15, "bullet" = 5, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 25)
 
 /obj/item/storage/box/holy/darktemplar
 	name = "Founder Kit of the Black Templars"
