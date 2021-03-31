@@ -771,7 +771,9 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "ji" = (
-/mob/living/simple_animal/hostile/poison/giant_spider/tarantula,
+/mob/living/simple_animal/hostile/poison/giant_spider/tarantula{
+	faction = list("mining")
+	},
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered/dragonslair)
 "jk" = (
@@ -2180,7 +2182,9 @@
 /area/mine/laborcamp)
 "xY" = (
 /obj/structure/stone_tile/slab,
-/mob/living/simple_animal/hostile/poison/giant_spider/tarantula,
+/mob/living/simple_animal/hostile/poison/giant_spider/tarantula{
+	faction = list("mining")
+	},
 /obj/structure/spider/stickyweb,
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered/dragonslair)
