@@ -4,7 +4,7 @@
 	hitsound = "sparks"
 	damage = 0
 	nodamage = TRUE
-	pass_flags = PASSGLASS | PASSTABLE | PASSGRILLE | PASSMOB
+	pass_flags = PASSGRILLE | PASSMOB
 	var/obj/item/gun/energy/wormhole_projector/gun
 	color = "#33CCFF"
 	tracer_type = /obj/effect/projectile/tracer/wormhole
