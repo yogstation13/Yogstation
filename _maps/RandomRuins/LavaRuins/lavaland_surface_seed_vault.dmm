@@ -66,10 +66,6 @@
 /obj/effect/spawner/lootdrop/seed_vault,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
-"l" = (
-/obj/machinery/door/airlock,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/powered/seedvault)
 "m" = (
 /obj/machinery/door/airlock/external,
 /obj/structure/fans/tiny,
@@ -166,6 +162,14 @@
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/seedvault)
+"A" = (
+/obj/machinery/door/airlock,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
@@ -276,6 +280,16 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
+"Z" = (
+/obj/machinery/door/airlock,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/seedvault)
 
 (1,1,1) = {"
 a
@@ -353,8 +367,8 @@ Q
 Q
 Q
 Q
-l
-l
+Z
+Z
 Q
 Q
 Q
@@ -437,7 +451,7 @@ a
 Q
 e
 h
-l
+A
 h
 h
 c

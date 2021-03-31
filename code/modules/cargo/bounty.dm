@@ -111,18 +111,15 @@ GLOBAL_LIST_EMPTY(bounties_list)
 			var/subtype = pick(subtypesof(/datum/bounty/item/slime))
 			return new subtype
 		if(10)
-			var/subtype = pick(subtypesof(/datum/bounty/item/engineering))
-			return new subtype
-		if(11)
 			var/subtype = pick(subtypesof(/datum/bounty/item/mining))
 			return new subtype
-		if(12)
+		if(11)
 			var/subtype = pick(subtypesof(/datum/bounty/item/medical))
 			return new subtype
-		if(13)
+		if(12)
 			var/subtype = pick(subtypesof(/datum/bounty/item/botany))
 			return new subtype
-		if(14)
+		if(13)
 			var/subtype
 			if(rand(2) == 1)
 				subtype = pick(subtypesof(/datum/bounty/item/atmos/simple))
@@ -141,7 +138,6 @@ GLOBAL_LIST_EMPTY(bounties_list)
 											/datum/bounty/item/chef = 3,
 											/datum/bounty/item/security = 1,
 											/datum/bounty/virus = 1,
-											/datum/bounty/item/engineering = 1,
 											/datum/bounty/item/mining = 3,
 											/datum/bounty/item/medical = 2,
 											/datum/bounty/item/botany = 3,

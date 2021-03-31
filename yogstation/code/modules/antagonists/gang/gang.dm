@@ -84,6 +84,7 @@
 /datum/antagonist/gang/proc/promote() // Bump up to boss
 	var/datum/team/gang/old_gang = gang
 	var/datum/mind/old_owner = owner
+	silent = TRUE
 	owner.remove_antag_datum(/datum/antagonist/gang)
 	var/datum/antagonist/gang/boss/lieutenant/new_boss = new
 	new_boss.silent = TRUE
