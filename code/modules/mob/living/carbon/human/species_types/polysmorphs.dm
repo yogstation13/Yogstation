@@ -16,7 +16,7 @@
 	damage_overlay_type = "polysmorph"
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'
-	species_traits = list(NOEYESPRITES, FGENDER, MUTCOLORS, NOCOLORCHANGE)
+	species_traits = list(NOEYESPRITES, FGENDER, MUTCOLORS,HAIR, NOCOLORCHANGE)
 	inherent_traits = list(TRAIT_ACIDBLOOD, TRAIT_SKINNY)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	mutanteyes = /obj/item/organ/eyes/polysmorph
@@ -25,8 +25,8 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	fixed_mut_color = "444466" //don't mess with this if you don't feel like manually adjusting the mutant bodypart sprites
-	mutant_bodyparts = list("tail_polysmorph", "dome", "dorsal_tubes", "teeth", "legs")
-	default_features = list("tail_polysmorph" = "Polys", "dome" = "None", "dorsal_tubes" = "No", "teeth" = "None", "legs" = "Normal Legs")
+	mutant_bodyparts = list("tail_polysmorph", "dome", "dorsal_tubes", "teeth", "legs", "wings", "tail_human","tail_lizard", "ears")
+	default_features = list("tail_polysmorph" = "Polys", "dome" = "None", "dorsal_tubes" = "No", "teeth" = "None", "legs" = "Normal Legs", "wings" = "none", "tail_human" = "none", "tail_lizard" = "none", "ears" = "None")
 	mutanttongue = /obj/item/organ/tongue/polysmorph
 	mutanttail = /obj/item/organ/tail/polysmorph
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT

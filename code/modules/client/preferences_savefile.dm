@@ -131,7 +131,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(!ispath(donor_item))
 			donor_item = null
 	if(current_version < 31) //Someone doesn't know how to code and make jukebox and autodeadmin the same thing
-		toggles &= ~DEADMIN_ALWAYS 
+		toggles &= ~DEADMIN_ALWAYS
 		toggles &= ~DEADMIN_ANTAGONIST
 		toggles &= ~DEADMIN_POSITION_HEAD
 		toggles &= ~DEADMIN_POSITION_SECURITY
@@ -404,9 +404,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(!CONFIG_GET(flag/join_with_mutant_humans))
 		features["tail_human"] = "none"
 		features["ears"] = "none"
+		features["wings"] = "none"
 	else
 		READ_FILE(S["feature_human_tail"], features["tail_human"])
 		READ_FILE(S["feature_human_ears"], features["ears"])
+		READ_FILE(S["feature_wings"], features["wings"])
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)
@@ -496,6 +498,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["teeth"]	= sanitize_inlist(features["teeth"], GLOB.teeth_list)
 	features["dome"]	= sanitize_inlist(features["dome"], GLOB.dome_list)
 	features["dorsal_tubes"]	= sanitize_inlist(features["dorsal_tubes"], GLOB.dorsal_tubes_list)
+	features["wings"] 	= sanitize_inlist(features["wings"], GLOB.r_wings_list, "None")
 
 	joblessrole	= sanitize_integer(joblessrole, 1, 3, initial(joblessrole))
 	//Validate job prefs
@@ -551,6 +554,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_polysmorph_teeth"]			, features["teeth"])
 	WRITE_FILE(S["feature_polysmorph_dome"]			, features["dome"])
 	WRITE_FILE(S["feature_polysmorph_dorsal_tubes"]			, features["dorsal_tubes"])
+	WRITE_FILE(S["feature_wings"]					, features["wings"])
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)

@@ -4,9 +4,11 @@
 	say_mod = "rattles"
 	sexes = 0
 	meat = /obj/item/stack/sheet/mineral/plasma
-	species_traits = list(NOBLOOD,NOTRANSSTING)
+	species_traits = list(NOBLOOD,NOTRANSSTING, HAIR)
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_NOHUNGER,TRAIT_CALCIUM_HEALER,TRAIT_ALWAYS_CLEAN)
 	inherent_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
+	mutant_bodyparts = list("wings", "tail_human", "tail_lizard", "tail_polysmorph", "ears")
+	default_features = list("wings" = "none", "tail_human" = "none", "tail_lizard" = "none", "tail_polysmorph" = "none","ears" = "None")
 	mutantlungs = /obj/item/organ/lungs/plasmaman
 	mutanttongue = /obj/item/organ/tongue/bone/plasmaman
 	mutantliver = /obj/item/organ/liver/plasmaman

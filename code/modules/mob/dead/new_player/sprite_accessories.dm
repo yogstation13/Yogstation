@@ -1731,7 +1731,6 @@
 	dimension_x = 46
 	center = TRUE
 	dimension_y = 34
-	locked = TRUE
 
 /datum/sprite_accessory/wings_open/angel
 	name = "Angel"
@@ -1747,7 +1746,6 @@
 	dimension_x = 96
 	center = TRUE
 	dimension_y = 32
-	locked = TRUE
 
 /datum/sprite_accessory/wings_open/dragon
 	name = "Dragon"
@@ -1857,7 +1855,7 @@
 /datum/sprite_accessory/moth_wings
 	icon = 'yogstation/icons/mob/wings.dmi' //yogs moth sprite fix
 	color_src = null
-	
+
 /datum/sprite_accessory/moth_wingsopen
 	icon = 'icons/mob/moth_wingsopen.dmi'
 	color_src = null

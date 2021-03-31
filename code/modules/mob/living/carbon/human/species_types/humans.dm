@@ -3,7 +3,8 @@
 	id = "human"
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
-	default_features = list("mcolor" = "FFF", "wings" = "None")
+	default_features = list("mcolor" = "FFF", "wings" = "None", "tail_human" = "none","tail_lizard" = "none", "tail_polysmorph" = "none", "ears" = "None")
+	mutant_bodyparts = list("wings", "tail_human", "tail_lizard", "tail_polysmorph", "ears")
 	use_skintones = 1
 	skinned_type = /obj/item/stack/sheet/animalhide/human
 	disliked_food = GROSS | RAW
@@ -14,4 +15,4 @@
 	return TRUE	//Pure humans are always allowed in all roles.
 
 /datum/species/human/has_toes()
-	return TRUE 
+	return TRUE

@@ -5,10 +5,12 @@
 	name = "Phytosian"
 	id = "pod" // We keep this at pod for compatibility reasons
 	default_color = "59CE00"
-	species_traits = list(MUTCOLORS,EYECOLOR)
+	species_traits = list(MUTCOLORS,EYECOLOR,HAIR)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
+	mutant_bodyparts = list("wings", "tail_human", "tail_lizard", "tail_polysmorph", "ears")
+	default_features = list("wings" = "none", "tail_human" = "none", "tail_lizard" = "none", "tail_polysmorph" = "none", "ears" = "None")
 	burnmod = 2
 	heatmod = 1.5
 	coldmod = 1.5
