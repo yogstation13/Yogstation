@@ -161,6 +161,9 @@
 
 /datum/action/innate/lizard_leap
 	name = "Leap"
+	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "lizard_tackle"
+	background_icon_state = "bg_default"
 	desc = "Prepare to jump at a target, with a successful hit stunning them and preventing you from moving for a few seconds."
 	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
 	var/datum/martial_art/flyingfang/linked_martial
@@ -181,15 +184,19 @@
 	if(linked_martial.leaping || !linked_martial.can_use(owner))
 		return FALSE
 
-/datum/action/innate/lizard_leap/Activate()
-	owner.visible_message("<span class='danger'>[owner] prepares to pounce!</span>", "<b><i>You will now pounce as your next attack.</i></b>")
+/datum/action/innate/lizard_leap/Activate(silent)
+	if(!silent)
+		owner.visible_message("<span class='danger'>[owner] prepares to pounce!</span>", "<b><i>You will now pounce as your next attack.</i></b>")
 	owner.click_intercept = src
 	active = TRUE
+	background_icon_state = "bg_default_on"
 
-/datum/action/innate/lizard_leap/Deactivate()
-	owner.visible_message("<span class='danger'>[owner] assumes a neutral stance.</span>", "<b><i>You will no longer pounce on attack.</i></b>")
+/datum/action/innate/lizard_leap/Deactivate(silent)
+	if(!silent)
+		owner.visible_message("<span class='danger'>[owner] assumes a neutral stance.</span>", "<b><i>You will no longer pounce on attack.</i></b>")
 	owner.click_intercept = null
 	active = FALSE
+	background_icon_state = "bg_default"
 
 /datum/action/innate/lizard_leap/proc/InterceptClickOn(mob/living/carbon/human/A, params, atom/target)
 	if(linked_martial.leaping)
@@ -231,13 +238,11 @@
 		else if(hit_atom.density && !hit_atom.CanPass(A))
 			A.visible_message("<span class ='danger'>[A] smashes into [hit_atom]!</span>", "<span class ='danger'>You smash into [hit_atom]!</span>")
 			A.Paralyze(6 SECONDS, 1)
-
 		if(leaping)
 			leaping = FALSE
 		linked_leap.UpdateButtonIcon()
+		linked_leap.Deactivate(TRUE)
 		return TRUE
-
-//throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback)
 
 /mob/living/carbon/human/proc/flyingfang_help()
 	set name = "Recall Your Teachings"
@@ -246,7 +251,7 @@
 	to_chat(usr, "<b><i>You try to remember some of the basics of Flying Fang.</i></b>")
 
 	to_chat(usr, "<span class='notice'>Your training has rendered you more resistant to pain, allowing you to keep fighting effectively for longer and reducing the effectiveness of stun and stamina weapons by about a third.</span>")
-	to_chat(usr, "<span class='warning'>However, the primitive instincts gained through this training prevent you from using guns or armor.</span>")
+	to_chat(usr, "<span class='warning'>However, the primitive instincts gained through this training prevent you from using guns, stun weapons, or armor.</span>")
 	to_chat(usr, "<span class='notice'><b>All of your unarmed attacks deal increased brute damage with a small amount of armor piercing</b></span>")
 
 	to_chat(usr, "<span class='notice'>Tail Slap</span>: Disarm Disarm Disarm. High armor piercing attack that causes a short slow followed by a knockdown. Deals heavy stamina damage.")
@@ -262,6 +267,7 @@
 	linked_leap.Grant(H)
 	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, "martial")
 	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, "martial")
+	ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "martial")
 	H.physiology.stamina_mod *= 0.66
 	H.physiology.stun_mod *= 0.66
 	var/datum/species/S = H.dna?.species
@@ -273,6 +279,7 @@
 	linked_leap.Remove(H)
 	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, "martial")
 	REMOVE_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, "martial")
+	REMOVE_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "martial")
 	H.physiology.stamina_mod /= 0.66
 	H.physiology.stun_mod /= 0.66
 	var/datum/species/S = H.dna?.species
