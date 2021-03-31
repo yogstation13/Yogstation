@@ -430,7 +430,7 @@ LAW_WEIGHT syndie,0
 LAW_WEIGHT ninja,0
 LAW_WEIGHT antimov,0
 LAW_WEIGHT thermodynamic,0
-LAW_WEIGHT ratvar,1
+LAW_WEIGHT ratvar,0
 LAW_WEIGHT buildawall,69420
 
 ##------------------------------------------------
