@@ -128,7 +128,6 @@
 	desc = "The uniform of a bygone institute of learning."
 	icon_state = "studentuni"
 	item_state = "studentuni"
-	armor = list("melee" = 40, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
 	body_parts_covered = ARMS|CHEST
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/box/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
 
@@ -138,7 +137,6 @@
 	alternate_worn_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
 	icon_state = "cage"
 	item_state = "cage"
-	armor = list("melee" = 40, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
 	worn_x_dimension = 64
 	worn_y_dimension = 64
 	dynamic_hair_suffix = ""
@@ -155,14 +153,12 @@
 	desc = "None may pass!"
 	icon_state = "knight_ancient"
 	item_state = "knight_ancient"
-	armor = list("melee" = 40, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
 
 /obj/item/clothing/suit/armor/riot/chaplain/ancient
 	name = "ancient armour"
 	desc = "Defend the treasure..."
 	icon_state = "knight_ancient"
 	item_state = "knight_ancient"
-	armor = list("melee" = 40, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
 
 /obj/item/storage/box/holy/witchhunter
 	name = "Witchhunter Kit"
@@ -176,7 +172,6 @@
 	desc = "This worn outfit saw much use back in the day."
 	icon_state = "witchhunter"
 	item_state = "witchhunter"
-	armor = list("melee" = 40, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 
 /obj/item/clothing/head/helmet/chaplain/witchunter_hat
@@ -184,7 +179,6 @@
 	desc = "This hat saw much use back in the day."
 	icon_state = "witchhunterhat"
 	item_state = "witchhunterhat"
-	armor = list("melee" = 40, "bullet" = 10, "laser" = 10,"energy" = 10, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
 	flags_cover = HEADCOVERSEYES
 
 /obj/item/storage/box/holy/follower
