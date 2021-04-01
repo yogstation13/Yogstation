@@ -80,6 +80,11 @@
 	suffix = "engine_singulo_tesla.dmm"
 	name = "Engine Singulo And Tesla"
 
+/datum/map_template/ruin/station/box/engine/teg
+	id = "engine_teg"
+	suffix = "engine_teg.dmm"
+	name = "Engine TEG"
+
 /datum/map_template/ruin/station/box/maint/xenobridge
 	id = "maint_xenobridge_default"
 	suffix = "xenobridge_default.dmm"
@@ -104,6 +109,11 @@
 	id = "testing_site_3"
 	suffix = "testingsite_range3.dmm"
 	name = "Clown Bomb Range"
+	
+/datum/map_template/ruin/station/box/testingsite/clerk
+	id = "testing_site_4"
+	suffix = "testingsite_range4.dmm"
+	name = "Clerk Bomb Range"
 
 /datum/map_template/ruin/station/box/medbay/morgue
 	id = "medbay_morgue1"
@@ -1222,3 +1232,9 @@
 	id= "smallmagician"
 	suffix = "10x10_smallmagician.dmm"
 	name = "Maint smallmagician"
+
+///Author: Veeblefetzer
+/datum/map_template/ruin/station/maint/tenxten/fourshops
+	id= "fourshops"
+	suffix = "10x10_fourshops.dmm"
+	name = "Maint fourshops"

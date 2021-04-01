@@ -3467,12 +3467,6 @@
 "agF" = (
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
-"agG" = (
-/obj/structure/table/wood,
-/obj/item/storage/box/fancy/cigarettes,
-/obj/item/clothing/glasses/sunglasses,
-/turf/open/floor/carpet,
-/area/security/detectives_office)
 "agH" = (
 /obj/structure/closet/secure_closet/brig,
 /obj/effect/turf_decal/tile/neutral{
@@ -45625,12 +45619,6 @@
 /obj/machinery/air_sensor/atmos/nitrous_tank,
 /turf/open/floor/engine/n2o,
 /area/engine/atmos)
-"bKI" = (
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide{
-	valve_open = 1
-	},
-/turf/open/floor/engine/n2o,
-/area/engine/atmos)
 "bKJ" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -48519,10 +48507,6 @@
 /obj/machinery/air_sensor/atmos/toxin_tank,
 /turf/open/floor/engine/plasma,
 /area/engine/atmos)
-"bQY" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
-/turf/open/floor/engine/plasma,
-/area/engine/atmos)
 "bQZ" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -50924,10 +50908,6 @@
 /area/engine/atmos)
 "bVN" = (
 /obj/machinery/air_sensor/atmos/carbon_tank,
-/turf/open/floor/engine/co2,
-/area/engine/atmos)
-"bVO" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/open/floor/engine/co2,
 /area/engine/atmos)
 "bVP" = (
@@ -58050,10 +58030,6 @@
 "cjc" = (
 /turf/open/floor/engine/n2,
 /area/engine/atmos)
-"cjd" = (
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/turf/open/floor/engine/n2,
-/area/engine/atmos)
 "cje" = (
 /obj/machinery/camera{
 	c_tag = "Atmospherics Tank - N2";
@@ -58062,10 +58038,6 @@
 /turf/open/floor/engine/n2,
 /area/engine/atmos)
 "cjf" = (
-/turf/open/floor/engine/o2,
-/area/engine/atmos)
-"cjg" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/engine/o2,
 /area/engine/atmos)
 "cjh" = (
@@ -75716,6 +75688,11 @@
 	},
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
+"fPi" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/atmospherics/miner/toxins,
+/turf/open/floor/engine/plasma,
+/area/engine/atmos)
 "fQe" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -77217,6 +77194,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"iUT" = (
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/machinery/atmospherics/miner/carbon_dioxide,
+/turf/open/floor/engine/co2,
+/area/engine/atmos)
 "iWR" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
@@ -77298,6 +77280,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
+"jaV" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/atmospherics/miner/oxygen,
+/turf/open/floor/engine/o2,
+/area/engine/atmos)
 "jbV" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -77313,6 +77300,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"jcx" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/machinery/atmospherics/miner/nitrogen,
+/turf/open/floor/engine/n2,
+/area/engine/atmos)
 "jdY" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -77377,6 +77369,13 @@
 "jkf" = (
 /turf/template_noop,
 /area/maintenance/port/fore)
+"jkG" = (
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide{
+	valve_open = 1
+	},
+/obj/machinery/atmospherics/miner/n2o,
+/turf/open/floor/engine/n2o,
+/area/engine/atmos)
 "jlt" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -83351,6 +83350,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/engine/foyer)
+"xTA" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/fancy/cigarettes,
+/obj/item/clothing/glasses/sunglasses,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/turf/open/floor/carpet,
+/area/security/detectives_office)
 "xTR" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -114604,7 +114610,7 @@ alW
 aHe
 asm
 agE
-agG
+xTA
 aBn
 aCv
 awo
@@ -124942,7 +124948,7 @@ bGF
 aaf
 bIl
 chO
-cjd
+jcx
 ckG
 bAR
 aaf
@@ -125970,7 +125976,7 @@ bGF
 aaf
 bIl
 chR
-cjg
+jaV
 ckH
 bAR
 aaf
@@ -129036,15 +129042,15 @@ bCC
 bCC
 bAR
 bJd
-bKI
+jkG
 bJd
 bAR
 bPy
-bQY
+fPi
 bPy
 bAR
 bUJ
-bVO
+iUT
 bUJ
 bAR
 aaf

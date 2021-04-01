@@ -105,7 +105,7 @@
 	},
 /turf/open/floor/carpet/red,
 /area/template_noop)
-"M" = (
+"H" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/frame/computer{
 	dir = 4
@@ -114,7 +114,6 @@
 	pixel_x = -32
 	},
 /obj/machinery/light/small,
-/obj/item/circuitboard/computer/secure_data,
 /turf/open/floor/carpet/red,
 /area/template_noop)
 "T" = (
@@ -153,7 +152,7 @@
 a
 r
 f
-M
+H
 "}
 (2,1,1) = {"
 b
