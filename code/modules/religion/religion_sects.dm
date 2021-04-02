@@ -212,7 +212,7 @@
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 		playsound(user, 'sound/misc/capitialism.ogg', 25, TRUE, -1)
 		H.visible_message("<span class='notice'>[user] blesses [H] with the power of capitalism!</span>")
-		to_chat(H, "<span class='boldnotice'>You spiritually enriched, and donate to the casue of [GLOB.deity]!</span>")
+		to_chat(H, "<span class='boldnotice'>You feel spiritually enriched, and donate to the cause of [GLOB.deity]!</span>")
 		H.visible_message("<span class='notice'>[H] donated 10 credits!</span>")
 
 	var/heal_amt = 10
