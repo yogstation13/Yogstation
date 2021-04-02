@@ -654,17 +654,17 @@
 
 /datum/supply_pack/security/armory/wt550_single
 	name = "Surplus Security Autorifle Single-Pack"
-	desc = "Contains one high-powered, semiautomatic rifles chambered in 4.6x30mm rubber rounds. Requires Armory access to open."
+	desc = "Contains one high-powered, semiautomatic rifle chambered in 4.6x30mm rounds. Requires Armory access to open."
 	cost = 2000
-	contains = list(/obj/item/gun/ballistic/automatic/wt550/occupying)
+	contains = list(/obj/item/gun/ballistic/automatic/wt550)
 	small_item = TRUE
 
 /datum/supply_pack/security/armory/wt550
 	name = "Surplus Security Autorifle Crate"
-	desc = "Contains two high-powered, semiautomatic rifles chambered in 4.6x30mm rubber rounds. Requires Armory access to open."
+	desc = "Contains two high-powered, semiautomatic rifles chambered in 4.6x30mm rounds. Requires Armory access to open."
 	cost = 3500
-	contains = list(/obj/item/gun/ballistic/automatic/wt550/occupying,
-					/obj/item/gun/ballistic/automatic/wt550/occupying)
+	contains = list(/obj/item/gun/ballistic/automatic/wt550,
+					/obj/item/gun/ballistic/automatic/wt550)
 	crate_name = "auto rifle crate"
 
 /datum/supply_pack/security/armory/wt550ammo
