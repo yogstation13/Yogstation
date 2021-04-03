@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "old cogscarab code that at some point was used to gain infinite power has been removed"
