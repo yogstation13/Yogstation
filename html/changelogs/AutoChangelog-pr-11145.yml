@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscadd: "new cargo bounties and a system to allow bounties to unlock the ability to order new crates"
+  - tweak: "miners can now do bounties to unlock mining gear so they can wait for the cargo shuttle instead of waiting for science"
