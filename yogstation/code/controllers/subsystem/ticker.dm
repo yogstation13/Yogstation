@@ -45,6 +45,10 @@
 		"https://www.youtube.com/watch?v=iZB8XXYePy0",						//The Kinks - Super Sonic Ship
 		"https://www.youtube.com/watch?v=tRcPA7Fzebw",						//David Bowie - Starman
 		"https://www.youtube.com/watch?v=FH2EgYq_NCY",						//Lou Reed - Satellite of Love
+		"https://www.youtube.com/watch?v=2M-XEHh7bu0",						//Death Road To Canada - Rigor Mortis Rag
+		"https://www.youtube.com/watch?v=aYeLVR2xiyc",						//Ridiculon - Walls of Denial
+		"https://www.youtube.com/watch?v=gRinrFL_BbU",						//Throne II Theme
+		"https://www.youtube.com/watch?v=WOplPqnG2CU",						//Noita - Beat of the Cosmos
 		"https://www.youtube.com/watch?v=AumYP6Np1eI")						// Ataraxia - Deja Vu
 
 	selected_lobby_music = pick(songs)
