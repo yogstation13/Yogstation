@@ -1,0 +1,4 @@
+author: "wejengin2"
+delete-after: true 
+changes: 
+  - tweak: "adds gas miners to omega, various other engi related fixes for omega"
