@@ -328,16 +328,3 @@
 	human2plant.set_species(/datum/species/golem/wood/holy)
 	human2plant.visible_message("<span class='notice'>[human2plant] has been converted by the rite of [name]!</span>")
 	return TRUE
-
-/datum/religion_rites/strangeseed
-	name = "Strange Seeds"
-	desc = "Summons three mystery seeds that may contain very powerful mutations."
-	ritual_length = 10 SECONDS
-	invoke_msg = "please lend us three of your most powerful seeds, so we may empower the soil with your greatness."
-	favor_cost = 100 //on average, 8-12 crops
-
-/datum/religion_rites/strangeseed/invoke_effect(mob/living/user, atom/movable/religious_tool)
-	var/altar_turf = get_turf(religious_tool)
-	for(var/i in 1 to 3)
-		new /obj/item/seeds/random(altar_turf)
-	return TRUE
