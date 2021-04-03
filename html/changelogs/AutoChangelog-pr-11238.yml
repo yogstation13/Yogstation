@@ -1,0 +1,7 @@
+author: "ChesterTheCheesy"
+delete-after: true 
+changes: 
+  - rscadd: "adds a telecrystal golem"
+  - bugfix: "makes it able to create metal hydrogen golems"
+  - tweak: "gives 3 golems a new unique crystalline sprite"
+  - imageadd: "added grayscale crystal golem bodyparts, added sprites for the new phase jump ability"
