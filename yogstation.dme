@@ -1641,6 +1641,7 @@
 #include "code\modules\cargo\bounties\mech.dm"
 #include "code\modules\cargo\bounties\medical.dm"
 #include "code\modules\cargo\bounties\mining.dm"
+#include "code\modules\cargo\bounties\progression.dm"
 #include "code\modules\cargo\bounties\reagent.dm"
 #include "code\modules\cargo\bounties\science.dm"
 #include "code\modules\cargo\bounties\security.dm"
