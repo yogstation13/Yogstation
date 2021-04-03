@@ -319,6 +319,10 @@
 		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
 		return 1
 
+/datum/species/golem/wood/holy //slightly upgraded wood golem, for the plant sect
+	id = "holy wood golem"
+	speedmod = 1 //wood golems aren't very good, so the holy ones are slightly faster so that you don't put in a bunch of hardwork to downgrade yourself
+
 //Radioactive puncher, hits for burn but only as hard as human
 /datum/species/golem/uranium
 	name = "Uranium Golem"
