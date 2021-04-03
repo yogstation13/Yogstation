@@ -1104,11 +1104,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 199, 199)
 		if(ADMIN_PUNISHMENT_MCNUGGET)
 			if(iscarbon(target)) 
-			var/mob/living/carbon/CM = target
-			for(var/obj/item/bodypart/bodypart in CM.bodyparts)
-				if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)
-					if(bodypart.dismemberable)
-						bodypart.dismember() 
+				var/mob/living/carbon/CM = target
+				for(var/obj/item/bodypart/bodypart in CM.bodyparts)
+					if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)
+						if(bodypart.dismemberable)
+							bodypart.dismember() 
 		if(ADMIN_PUNISHMENT_GIB)
 			target.gib(FALSE)
 		if(ADMIN_PUNISHMENT_BSA)
