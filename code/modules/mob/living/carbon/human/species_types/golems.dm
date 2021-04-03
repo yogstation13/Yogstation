@@ -322,6 +322,8 @@
 /datum/species/golem/wood/holy //slightly upgraded wood golem, for the plant sect
 	id = "holy wood golem"
 	speedmod = 1 //wood golems aren't very good, so the holy ones are slightly faster so that you don't put in a bunch of hardwork to downgrade yourself
+	changesource_flags = MIRROR_BADMIN
+	random_eligible = FALSE
 
 //Radioactive puncher, hits for burn but only as hard as human
 /datum/species/golem/uranium
