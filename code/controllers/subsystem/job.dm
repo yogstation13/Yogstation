@@ -443,10 +443,7 @@ SUBSYSTEM_DEF(job)
 	if(!joined_late)
 		var/spawning_handled = FALSE
 		var/obj/S = null
-		if(HAS_TRAIT(SSstation, STATION_TRAIT_LATE_ARRIVALS))
-			SendToLateJoin(living_mob)
-			spawning_handled = TRUE
-		else if(HAS_TRAIT(SSstation, STATION_TRAIT_RANDOM_ARRIVALS))
+		if(HAS_TRAIT(SSstation, STATION_TRAIT_RANDOM_ARRIVALS))
 			DropLandAtRandomHallwayPoint(living_mob)
 			spawning_handled = TRUE
 		else if(length(GLOB.jobspawn_overrides[rank]))
