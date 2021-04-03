@@ -10,6 +10,12 @@
 	projectile_type = /obj/item/projectile/beam/wormhole/orange
 	select_name = "orange"
 
+/obj/item/ammo_casing/energy/wormhole
+	projectile_type = /obj/item/projectile/beam/wormhole/upgraded
+
+/obj/item/ammo_casing/energy/wormhole/orange
+	projectile_type = /obj/item/projectile/beam/wormhole/orange/upgraded
+
 /obj/item/ammo_casing/energy/wormhole/Initialize(mapload, obj/item/gun/energy/wormhole_projector/wh)
 	. = ..()
 	gun = wh

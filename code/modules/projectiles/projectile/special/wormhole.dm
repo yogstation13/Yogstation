@@ -16,6 +16,13 @@
 	name = "orange bluespace beam"
 	color = "#FF6600"
 
+//muh OOP, wheres my traits/implements/extends lummox 
+/obj/item/projectile/beam/wormhole/upgraded
+	pass_flags = PASSGLASS | PASSTABLE | PASSGRILLE | PASSMOB
+
+/obj/item/projectile/beam/wormhole/orange/upgraded
+	pass_flags = PASSGLASS | PASSTABLE | PASSGRILLE | PASSMOB
+
 /obj/item/projectile/beam/wormhole/Initialize(mapload, obj/item/ammo_casing/energy/wormhole/casing)
 	. = ..()
 	if(casing)
