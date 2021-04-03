@@ -1169,6 +1169,12 @@
 
 /mob/living/carbon/human/species/golem/cheese
 	race = /datum/species/golem/cheese
+	
+/mob/living/carbon/human/species/golem/mhydrogen
+	race = /datum/species/golem/mhydrogen
+
+/mob/living/carbon/human/species/golem/telecrystal
+	race = /datum/species/golem/telecrystal
 
 /mob/living/carbon/human/species/jelly
 	race = /datum/species/jelly
