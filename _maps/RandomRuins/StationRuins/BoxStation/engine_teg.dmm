@@ -518,6 +518,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"qt" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/atmos{
+	dir = 1;
+	id = "teghot_in"
+	},
+/turf/open/floor/engine/airless,
+/area/engine/engineering)
 "qx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -681,6 +688,13 @@
 "tJ" = (
 /obj/machinery/atmospherics/pipe/manifold/dark/visible,
 /turf/open/floor/engine,
+/area/engine/engineering)
+"ue" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos{
+	dir = 1;
+	id_tag = "teghot_out"
+	},
+/turf/open/floor/engine/airless,
 /area/engine/engineering)
 "uW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -1195,13 +1209,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"Jj" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/atmos{
-	dir = 1;
-	id = "teghotchamber_in"
-	},
-/turf/open/floor/engine/airless,
-/area/engine/engineering)
 "Jv" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1715,13 +1722,6 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/engine/engineering)
-"Yn" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos{
-	dir = 1;
-	id_tag = "teghotchamber_out"
-	},
-/turf/open/floor/engine/airless,
 /area/engine/engineering)
 "Yz" = (
 /obj/structure/lattice/catwalk,
@@ -2264,7 +2264,7 @@ we
 LA
 XF
 Bi
-Yn
+ue
 yz
 Si
 ei
@@ -2320,7 +2320,7 @@ QA
 LA
 XF
 Bi
-Jj
+qt
 yz
 Si
 ei
