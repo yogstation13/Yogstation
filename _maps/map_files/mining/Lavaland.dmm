@@ -2158,16 +2158,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/mine/laborcamp)
-"xs" = (
-/mob/living/simple_animal/hostile/skeleton/templar{
-	faction = list("skeleton","mining");
-	loot = list(/obj/effect/decal/remains/human)
-	},
-/mob/living/simple_animal/hostile/skeleton/templar{
-	faction = list("skeleton","mining")
-	},
-/turf/open/indestructible/necropolis,
-/area/ruin/unpowered/dragonslair)
 "xO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/seeds/redbeet,
@@ -2285,6 +2275,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"Ac" = (
+/obj/effect/decal/cleanable/ash,
+/obj/item/reagent_containers/hypospray/medipen/survival{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/sord{
+	desc = "The famous Dragons Layer, proof that fashion alone doesn't get you anywhere.";
+	name = "\improper Dragonslayer";
+	pixel_x = 11;
+	pixel_y = -5
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered/dragonslair)
 "Al" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -2707,20 +2711,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/laborcamp)
-"JX" = (
-/obj/effect/decal/cleanable/ash,
-/obj/item/reagent_containers/hypospray/medipen/survival{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/sord{
-	desc = "The famous Dragons Layer, proof that fashion doesn't get you anywhere.";
-	name = "\improper Dragonslayer";
-	pixel_x = 11;
-	pixel_y = -5
-	},
-/turf/open/indestructible/necropolis,
-/area/ruin/unpowered/dragonslair)
 "Km" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -36869,7 +36859,7 @@ BA
 ZR
 Od
 XB
-XB
+DF
 aa
 aa
 gR
@@ -43803,7 +43793,7 @@ aj
 aa
 aa
 aa
-xs
+DF
 XB
 XB
 FC
@@ -44317,7 +44307,7 @@ aj
 aa
 aa
 aa
-JX
+Ac
 XB
 XB
 XB
