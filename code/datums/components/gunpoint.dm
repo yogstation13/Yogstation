@@ -104,8 +104,6 @@
 		weapon.chambered.BB.stamina *= damage_mult
 
 	var/fired = weapon.process_fire(target, shooter)
-	if(!fired && weapon.chambered?.loaded_projectile)
-		weapon.chambered.loaded_projectile.damage /= damage_mult
 	qdel(src)
 
 /datum/component/gunpoint/proc/noshooted()
