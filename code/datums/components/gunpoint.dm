@@ -137,7 +137,7 @@
 	if(prob(flinch_chance))
 		shooter.visible_message("<span class='danger'>[shooter] flinches!</span>", \
 			"<span class='danger'>You flinch!</span>")
-		trigger_reaction(flinch = TRUE) //flinching will always result in firing at the target
+		trigger_reaction(TRUE) //flinching will always result in firing at the target
 
 /datum/component/gunpoint/proc/flinch_disarm(attacker,zone_targeted)
 	var/mob/living/shooter = parent
@@ -148,13 +148,13 @@
 	if(shooter.held_items[RIGHT_HANDS] == weapon)
 		gun_hand = RIGHT_HANDS
 
-	if((def_zone == BODY_ZONE_L_ARM && gun_hand == LEFT_HANDS) || (def_zone == BODY_ZONE_R_ARM && gun_hand == RIGHT_HANDS))
+	if((zone_targeted == BODY_ZONE_L_ARM && gun_hand == LEFT_HANDS) || (zone_targeted == BODY_ZONE_R_ARM && gun_hand == RIGHT_HANDS))
 		flinch_chance = 80
 
 	if(prob(flinch_chance))
 		shooter.visible_message("<span class='danger'>[shooter] flinches!</span>", \
 			"<span class='danger'>You flinch!</span>")
-		trigger_reaction(flinch = TRUE) //flinching will always result in firing at the target
+		trigger_reaction(TRUE) //flinching will always result in firing at the target
 
 #undef GUNPOINT_SHOOTER_STRAY_RANGE
 #undef GUNPOINT_DELAY_STAGE_2
