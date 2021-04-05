@@ -1,6 +1,6 @@
 #define GUNPOINT_SHOOTER_STRAY_RANGE 3
-#define GUNPOINT_DELAY_STAGE_2 20
-#define GUNPOINT_DELAY_STAGE_3 80 // cumulative with past stages, so 100 deciseconds
+#define GUNPOINT_DELAY_STAGE_2 25
+#define GUNPOINT_DELAY_STAGE_3 85 // cumulative with past stages, so 100 deciseconds
 #define GUNPOINT_MULT_STAGE_1 1
 #define GUNPOINT_MULT_STAGE_2 2
 #define GUNPOINT_MULT_STAGE_3 2.5
