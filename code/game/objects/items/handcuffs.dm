@@ -115,6 +115,7 @@
 	item_state = "coil"
 	item_color = "red"
 	color = "#ff0000"
+	force = 0
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	materials = list(/datum/material/iron=150, /datum/material/glass=75)
@@ -171,6 +172,7 @@
 /obj/item/restraints/handcuffs/fake
 	name = "fake handcuffs"
 	desc = "Fake handcuffs meant for gag purposes."
+	force = 0
 	breakouttime = 10 //Deciseconds = 1s
 
 /obj/item/restraints/handcuffs/cable/attackby(obj/item/I, mob/user, params)
@@ -207,6 +209,7 @@
 /obj/item/restraints/handcuffs/cable/zipties
 	name = "zipties"
 	desc = "Plastic, disposable zipties that can be used to restrain temporarily but are destroyed after use."
+	force = 0
 	icon_state = "cuff"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
