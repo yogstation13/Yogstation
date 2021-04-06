@@ -66,6 +66,10 @@
 
 	var/bandaged // yogs - FALSE if the limb is not bandaged, TRUE if the limb is bandaged
 
+	var/has_bones = FALSE
+
+	var/datum/bone/bone
+
 /obj/item/bodypart/examine(mob/user)
 	. = ..()
 	if(brute_dam > DAMAGE_PRECISION)
@@ -76,10 +80,20 @@
 /obj/item/bodypart/blob_act()
 	take_damage(max_damage)
 
+/obj/item/bodypart/Initialize()
+	..()
+	if(has_bones)
+		bone = new()
+		bone.baseline_health = max_damage * BODYPART_TO_BONE_RATIO
+		bone.bodypart = src
+		RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/HandleMove)
+
 /obj/item/bodypart/Destroy()
 	if(owner)
 		owner.bodyparts -= src
 		owner = null
+	if(bone)
+		qdel(bone)
 	return ..()
 
 /obj/item/bodypart/attack(mob/living/carbon/C, mob/user)
@@ -109,6 +123,33 @@
 			"<span class='notice'>You begin to cut open [src]...</span>")
 		if(do_after(user, 54, target = src))
 			drop_organs(user, TRUE)
+	else if(has_bones && istype(W, /obj/item/splint))
+		var/splint_time = 5 SECONDS
+		if(user == owner)
+			splint_time *= 2
+			to_chat(owner, "<span class='notice'>You start splinting your [src]</span>")
+		else
+			to_chat(user, "<span class='notice'>You start splinting [owner]'s [src]</span>")
+			to_chat(owner, "<span class='warning'>[user] starts splinting your [src]</span>")
+
+		if(!do_after(user, splint_time, target = owner))
+			if(user == owner)
+				to_chat(owner, "<span class='warning'>You stop splinting your [src]</span>")
+			else
+				to_chat(user, "<span class='warning'>You stop splinting [owner]'s [src]</span>")
+				to_chat(owner, "<span class='warning'>[user] stops splinting your [src]</span>")
+			return
+		if(!W)
+			return
+		bones.splinted = TRUE
+
+		if(user == owner)
+				to_chat(owner, "<span class='notice'>You finish splinting your [src]</span>")
+			else
+				to_chat(user, "<span class='notice'>You finish splinting [owner]'s [src]</span>")
+				to_chat(owner, "<span class='warning'>[user] finishes splinting your [src]</span>")
+		qdel(W)
+
 	else
 		return ..()
 
@@ -130,6 +171,8 @@
 /obj/item/bodypart/proc/consider_processing()
 	if(stamina_dam > DAMAGE_PRECISION)
 		. = TRUE
+	else if(bone)
+		. = TRUE
 	//else if.. else if.. so on.
 	else
 		. = FALSE
@@ -140,6 +183,10 @@
 	if(stamina_dam > DAMAGE_PRECISION && stam_regen)					//DO NOT update health here, it'll be done in the carbon's life.
 		heal_damage(0, 0, INFINITY, null, FALSE)
 		. |= BODYPART_LIFE_UPDATE_HEALTH
+	if(bone)
+		var/damage_action = bone.process()
+		if(damage_action)
+			. |= BODYPART_LIFE_UPDATE_HEALTH
 
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
@@ -233,6 +280,8 @@
 			return BODYPART_DISABLED_DAMAGE
 		if(disabled && (get_damage(TRUE) <= (max_damage * 0.5)))
 			return BODYPART_NOT_DISABLED
+		if(bone.damage_severity == COMPOUND_FRACTURE)
+			return BODYPART_DISABLED_DAMAGE
 	else
 		return BODYPART_NOT_DISABLED
 
@@ -447,6 +496,10 @@
 	drop_organs()
 	qdel(src)
 
+/obj/item/bodypart/proc/HandleMove()
+	if(bone)
+		bone.HandleMove()
+
 /obj/item/bodypart/chest
 	name = BODY_ZONE_CHEST
 	desc = "It's impolite to stare at a person's chest."
@@ -646,6 +699,9 @@
 /obj/item/bodypart/l_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_LEG))
 		return BODYPART_DISABLED_PARALYSIS
+	if(bone)
+		if(bone.damage_severity >= FRACTURE)
+		return BODYPART_DISABLED_DAMAGE
 	return ..()
 
 /obj/item/bodypart/l_leg/set_disabled(new_disabled)
@@ -704,6 +760,9 @@
 /obj/item/bodypart/r_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))
 		return BODYPART_DISABLED_PARALYSIS
+	if(bone)
+		if(bone.damage_severity >= FRACTURE)
+		return BODYPART_DISABLED_DAMAGE
 	return ..()
 
 /obj/item/bodypart/r_leg/set_disabled(new_disabled)
@@ -742,3 +801,4 @@
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
+
