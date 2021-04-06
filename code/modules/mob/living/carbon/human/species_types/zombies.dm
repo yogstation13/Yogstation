@@ -41,7 +41,7 @@
 /datum/species/zombie/infectious/spec_stun(mob/living/carbon/human/H,amount)
 	. = min(20, amount)
 
-/datum/species/zombie/infectious/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
+/datum/species/zombie/infectious/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, is_sharp = FALSE)
 	. = ..()
 	if(.)
 		regen_cooldown = world.time + REGENERATION_DELAY
@@ -124,7 +124,7 @@
 /datum/species/zombie/infectious/gamemode/spec_stun(mob/living/carbon/human/H,amount)
 	. = 0
 
-/datum/species/zombie/infectious/gamemode/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
+/datum/species/zombie/infectious/gamemode/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, is_sharp = FALSE)
 	if(damagetype == STAMINA)
 		return
 	. = ..()
