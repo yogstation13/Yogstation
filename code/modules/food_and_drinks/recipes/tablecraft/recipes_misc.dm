@@ -341,8 +341,8 @@
 	name = "Strawberry Flavored Candy"
 	time = 2 SECONDS
 	reqs = list (
-		/datum/reagent/blood = 10, //Close enough to strawberries
-		/datum/reagent/consumable/sugar = 10,
+		/datum/reagent/blood = 5, //Close enough to strawberries
+		/datum/reagent/consumable/sugar = 5,
 		/obj/item/paper = 1 //This is normal paper used as wrapping paper, its intentional
 	)
 	tools = list(
