@@ -31,7 +31,7 @@
 		to_chat(user, "<span class='notice'>Dispatch radio broadcasting systems are recharging.</span>")
 		return FALSE
 	var/list/options = list()
-	for(var/option in list("401 (murder)", "101 (resisting arrest)", "210 (breaking and entering)", "206 (riot)", "302 (assault on an officer)")) //Just hardcoded for now!
+	for(var/option in list("601 (Murder)", "101 (Resisting arrest)", "310 (Breaking and entering)", "306 (Riot)", "401 (Assault, Officer)")) //Just hardcoded for now!
 		options[option] = image(icon = 'yogstation/icons/effects/aiming.dmi', icon_state = option)
 	var/message = show_radial_menu(user, user, options)
 	if(!message)
