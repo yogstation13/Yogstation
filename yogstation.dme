@@ -11,7 +11,7 @@
 // BEGIN_PREFERENCES
 #define DEBUG
 // END_PREFERENCES
-
+#include "yogstation\code\modules\clothing\masks\hailer.dm"
 // BEGIN_INCLUDE
 #include "_maps\_basemap.dm"
 #include "code\_compile_options.dm"
@@ -3338,6 +3338,7 @@
 #include "yogstation\code\modules\clothing\head\jobs.dm"
 #include "yogstation\code\modules\clothing\head\misc.dm"
 #include "yogstation\code\modules\clothing\head\misc_special.dm"
+#include "yogstation\code\modules\clothing\masks\hailer.dm"
 #include "yogstation\code\modules\clothing\neck\_neck.dm"
 #include "yogstation\code\modules\clothing\outfits\event.dm"
 #include "yogstation\code\modules\clothing\shoes\miscellaneous.dm"
