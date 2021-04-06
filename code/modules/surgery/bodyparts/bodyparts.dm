@@ -69,6 +69,10 @@
 	var/has_bones = FALSE
 
 	var/datum/bone/bone
+	//How difficult it is to break the underlying bone, 1 = 100% of brute damage transferred, 0.5 = 50% of brute damage transferred
+	var/bone_protection = 1
+	//How much minimum damage before the actual bone takes damage, can't break your bones with a pen haha
+	var/minimum_damage_to_bone = 20
 
 /obj/item/bodypart/examine(mob/user)
 	. = ..()
@@ -141,13 +145,13 @@
 			return
 		if(!W)
 			return
-		bones.splinted = TRUE
+		bone.splinted = TRUE
 
 		if(user == owner)
-				to_chat(owner, "<span class='notice'>You finish splinting your [src]</span>")
-			else
-				to_chat(user, "<span class='notice'>You finish splinting [owner]'s [src]</span>")
-				to_chat(owner, "<span class='warning'>[user] finishes splinting your [src]</span>")
+			to_chat(owner, "<span class='notice'>You finish splinting your [src]</span>")
+		else
+			to_chat(user, "<span class='notice'>You finish splinting [owner]'s [src]</span>")
+			to_chat(owner, "<span class='warning'>[user] finishes splinting your [src]</span>")
 		qdel(W)
 
 	else
@@ -184,14 +188,14 @@
 		heal_damage(0, 0, INFINITY, null, FALSE)
 		. |= BODYPART_LIFE_UPDATE_HEALTH
 	if(bone)
-		var/damage_action = bone.process()
+		var/damage_action = bone.process_bone()
 		if(damage_action)
 			. |= BODYPART_LIFE_UPDATE_HEALTH
 
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
 //Cannot apply negative damage
-/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null)
+/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null, caused_by_fracture = FALSE)
 	var/hit_percent = (100-blocked)/100
 	if((!brute && !burn && !stamina) || hit_percent <= 0)
 		return FALSE
@@ -231,6 +235,11 @@
 
 	//We've dealt the physical damages, if there's room lets apply the stamina damage.
 	stamina_dam += round(clamp(stamina, 0, max_stamina_damage - stamina_dam), DAMAGE_PRECISION)
+	//Time to deal with the bone
+	if(bone && !caused_by_fracture)
+		var/bone_damage = max(0, brute - brute_reduction * bone_protection)
+		if(bone_damage >= minimum_damage_to_bone)
+			bone.apply_damage(bone_damage)
 
 
 	if(owner && updating_health)
@@ -701,7 +710,7 @@
 		return BODYPART_DISABLED_PARALYSIS
 	if(bone)
 		if(bone.damage_severity >= FRACTURE)
-		return BODYPART_DISABLED_DAMAGE
+			return BODYPART_DISABLED_DAMAGE
 	return ..()
 
 /obj/item/bodypart/l_leg/set_disabled(new_disabled)
@@ -762,7 +771,7 @@
 		return BODYPART_DISABLED_PARALYSIS
 	if(bone)
 		if(bone.damage_severity >= FRACTURE)
-		return BODYPART_DISABLED_DAMAGE
+			return BODYPART_DISABLED_DAMAGE
 	return ..()
 
 /obj/item/bodypart/r_leg/set_disabled(new_disabled)

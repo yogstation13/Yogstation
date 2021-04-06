@@ -1256,6 +1256,16 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			if(I.item_flags & SLOWS_WHILE_IN_HAND)
 				. += I.slowdown
 		if(!HAS_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN))
+			//Slowdown for fractures
+			for(var/B in H.bodyparts)
+				var/obj/item/bodypart/bodypart = B
+				if(!bodypart.bone)
+					continue
+				var/temp_slowdown = FRACTURE_SLOWDOWN_BASE * bodypart.bone.damage_severity
+				if(bodypart.body_part == LEG_RIGHT || bodypart.body_part == LEG_LEFT)
+					temp_slowdown *= LEG_BONE_SLOWDOWN_MULTIPLIER
+				. += temp_slowdown
+
 			var/health_deficiency = max(H.maxHealth - H.health, H.staminaloss)
 			if(HAS_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN))
 				health_deficiency -= H.maxHealth * 0.2 //20% more damage required for slowdown
