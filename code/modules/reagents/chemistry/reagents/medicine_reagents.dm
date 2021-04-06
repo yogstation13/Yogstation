@@ -1594,4 +1594,40 @@
 	..()
 
 
+/datum/reagent/medicine/ibandronate
+	name = "Ibandronate acid"
+	description = "Helps mend broken bones. An overdose causes the opposite effect."
+	reagent_state = LIQUID
+	color = "#07E79E"
+	overdose_threshold = 30
+
+
+/datum/reagent/medicine/ibandronate/on_mob_life(mob/living/carbon/M)
+	if(!iscarbon(M))
+		..()
+		. = 1
+		return
+	for(var/X in M.bodyparts)
+		var/obj/item/bodypart/B = X
+		if(!istype(B))
+			continue
+		if(B.bone)
+			B.bone.heal_damage(-0.5*REM)
+	..()
+	. = 1
+
+/datum/reagent/medicine/ibandronate/overdose_process(mob/living/carbon/M)
+	if(!iscarbon(M))
+		..()
+		. = 1
+		return
+	for(var/X in M.bodyparts)
+		var/obj/item/bodypart/B = X
+		if(!istype(B))
+			continue
+		if(B.bone)
+			B.bone.apply_damage(0.1*REM)
+	..()
+	. = 1
+
 #undef PERF_BASE_DAMAGE

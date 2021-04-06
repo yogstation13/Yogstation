@@ -34,7 +34,8 @@
 		/obj/item/stack/medical/bruise_pack = 2,
 		/obj/item/stack/medical/ointment = 2,
 		/obj/item/reagent_containers/hypospray/medipen = 1,
-		/obj/item/healthanalyzer = 1)
+		/obj/item/healthanalyzer = 1,
+		/obj/item/stack/medical/splint = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/medical
@@ -103,6 +104,7 @@
 		/obj/item/stack/medical/bruise_pack = 2,
 		/obj/item/stack/medical/ointment = 2,
 		/obj/item/reagent_containers/hypospray/medipen = 1,
+		/obj/item/stack/medical/splint = 1,
 		/obj/item/healthanalyzer = 1,
 		/obj/item/surgical_drapes = 1,
 		/obj/item/scalpel = 1,
@@ -120,7 +122,8 @@
 	var/static/items_inside = list(
 		/obj/item/stack/medical/gauze = 1,
 		/obj/item/stack/medical/bruise_pack = 3,
-		/obj/item/stack/medical/ointment= 3)
+		/obj/item/stack/medical/ointment= 3,
+		/obj/item/stack/medical/splint = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/fire
@@ -203,7 +206,8 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/pill/patch/styptic = 4,
+		/obj/item/reagent_containers/pill/patch/styptic = 3,
+		/obj/item/stack/medical/splint = 1,
 		/obj/item/stack/medical/gauze = 2,
 		/obj/item/healthanalyzer = 1)
 	generate_items_inside(items_inside,src)
@@ -219,7 +223,8 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/pill/patch/synthflesh = 3,
+		/obj/item/reagent_containers/pill/patch/synthflesh = 2,
+		/obj/item/stack/medical/splint = 1,
 		/obj/item/reagent_containers/hypospray/medipen/atropine = 2,
 		/obj/item/stack/medical/gauze = 1,
 		/obj/item/storage/pill_bottle/penacid = 1)
@@ -246,6 +251,7 @@
 	new /obj/item/reagent_containers/pill/patch/styptic(src)
 	new /obj/item/reagent_containers/pill/patch/silver_sulf(src)
 	new /obj/item/reagent_containers/pill/patch/silver_sulf(src)
+	new /obj/item/stack/medical/splint(src)
 	new /obj/item/clothing/glasses/hud/health/night(src)
 
 //medibot assembly

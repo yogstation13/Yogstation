@@ -7,6 +7,7 @@
 	var/baseline_health = 10
 
 	var/splinted = FALSE
+	var/splint_speed = 0
 	//Have we had bone gel applied?
 	var/gelled = FALSE
 
@@ -18,6 +19,10 @@
 	damage += amount
 	damage = clamp(damage, baseline_health, 0)
 	handle_damage()
+
+/datum/bone/proc/heal_damage(amount)
+	damage -= amount
+	damage = clamp(damage, baseline_health, 0)
 
 /datum/bone/proc/handle_damage()
 	if(damage_severity == COMPOUND_FRACTURE)
@@ -47,10 +52,11 @@
 /datum/bone/proc/process_bone()
 	. = FALSE
 	if(splinted)
-		damage = max(damage - SPLINT_HEALING_POWER, 0)
+		damage = max(damage - SPLINT_HEALING_POWER * splint_speed, 0)
 		if(damage <= 0)
 			to_chat(bodypart.owner, "<span class='warning'>Your [bodypart] feels better! The splint seems to have fallen off.</span>")
 			splinted = FALSE
+			splint_speed = 0
 
 	if(damage_severity != COMPOUND_FRACTURE && damage_severity != NO_FRACTURE)
 		if(damage <= FRACTURE_HEALING_CUTOFF)

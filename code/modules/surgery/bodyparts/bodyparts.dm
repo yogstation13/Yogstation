@@ -127,33 +127,6 @@
 			"<span class='notice'>You begin to cut open [src]...</span>")
 		if(do_after(user, 54, target = src))
 			drop_organs(user, TRUE)
-	else if(has_bones && istype(W, /obj/item/splint))
-		var/splint_time = 5 SECONDS
-		if(user == owner)
-			splint_time *= 2
-			to_chat(owner, "<span class='notice'>You start splinting your [src]</span>")
-		else
-			to_chat(user, "<span class='notice'>You start splinting [owner]'s [src]</span>")
-			to_chat(owner, "<span class='warning'>[user] starts splinting your [src]</span>")
-
-		if(!do_after(user, splint_time, target = owner))
-			if(user == owner)
-				to_chat(owner, "<span class='warning'>You stop splinting your [src]</span>")
-			else
-				to_chat(user, "<span class='warning'>You stop splinting [owner]'s [src]</span>")
-				to_chat(owner, "<span class='warning'>[user] stops splinting your [src]</span>")
-			return
-		if(!W)
-			return
-		bone.splinted = TRUE
-
-		if(user == owner)
-			to_chat(owner, "<span class='notice'>You finish splinting your [src]</span>")
-		else
-			to_chat(user, "<span class='notice'>You finish splinting [owner]'s [src]</span>")
-			to_chat(owner, "<span class='warning'>[user] finishes splinting your [src]</span>")
-		qdel(W)
-
 	else
 		return ..()
 
@@ -195,7 +168,7 @@
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
 //Cannot apply negative damage
-/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null, caused_by_fracture = FALSE)
+/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null, caused_by_fracture = FALSE, is_sharp = FALSE)
 	var/hit_percent = (100-blocked)/100
 	if((!brute && !burn && !stamina) || hit_percent <= 0)
 		return FALSE
@@ -236,7 +209,7 @@
 	//We've dealt the physical damages, if there's room lets apply the stamina damage.
 	stamina_dam += round(clamp(stamina, 0, max_stamina_damage - stamina_dam), DAMAGE_PRECISION)
 	//Time to deal with the bone
-	if(bone && !caused_by_fracture)
+	if(bone && !caused_by_fracture && !is_sharp)
 		var/bone_damage = max(0, brute - brute_reduction * bone_protection)
 		if(bone_damage >= minimum_damage_to_bone)
 			bone.apply_damage(bone_damage)

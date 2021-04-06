@@ -884,3 +884,9 @@
 				)
 	category = CAT_MISC
 
+/datum/crafting_recipe/improvised_splint
+	name = "Improvised Splint"
+	result = /obj/item/stack/medical/splint/improvised
+	reqs = list(/obj/item/stack/rods = 1)
+	time = 15 SECONDS
+	category = CAT_MISC

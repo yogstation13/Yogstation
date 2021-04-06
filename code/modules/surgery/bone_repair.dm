@@ -33,7 +33,7 @@
 	name = "mend bones"
 	repeatable = 1
 	//Bone gel
-	implements = list(gtrrttr = 100)
+	implements = list(/obj/item/bone_gel = 100, /obj/item/screwdriver = 40)
 
 /datum/surgery_step/fix_bones/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(surgery.operated_bodypart)
@@ -62,7 +62,7 @@
 	name = "set bones"
 	repeatable = 1
 	//Bone setter
-	implements = list(gtrrttr = 100)
+	implements = list(/obj/item/bone_setter = 100, /obj/item/wrench = 50, /obj/item/wirecutters = 20)
 
 /datum/surgery_step/set_bones/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(surgery.operated_bodypart)

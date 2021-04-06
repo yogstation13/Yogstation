@@ -315,3 +315,9 @@
 	mix_message = "The mixture binds together from the heat, releasing a disgusting smelling smoke."
 	results = list(/datum/reagent/medicine/tribaldetox = 10)
 	required_reagents = list(/datum/reagent/ash = 10, /datum/reagent/consumable/entpoly = 1)
+
+/datum/chemical_reaction/ibandronate
+	name = "Ibandronate acid"
+	id = /datum/reagent/medicine/ibandronate
+	results = list(/datum/reagent/medicine/ibandronate = 2)
+	required_reagents = list(/datum/reagent/medicine/styptic_powder = 1, /datum/reagent/medicine/bicaridine = 1, /datum/reagent/medicine/neurine = 1)

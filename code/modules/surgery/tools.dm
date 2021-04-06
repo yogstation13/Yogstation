@@ -74,6 +74,36 @@
 	attack_verb = list("burnt")
 
 
+/obj/item/bone_setter
+	name = "bone setter"
+	desc = "You wouldn't want to be awake for this..."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "bone setter"
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	item_state = "clamps"
+	materials = list(/datum/material/iron=10000)
+	flags_1 = CONDUCT_1
+	item_flags = SURGICAL_TOOL
+	w_class = WEIGHT_CLASS_NORMAL
+	attack_verb = list("attacked")
+
+/obj/item/bone_gel
+	name = "bone gel"
+	desc = "Very mushy, doesn't taste great either."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "bone-gel"
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	item_state = "ointment"
+	materials = list(/datum/material/iron=4000)
+	flags_1 = CONDUCT_1
+	item_flags = SURGICAL_TOOL
+	w_class = WEIGHT_CLASS_SMALL
+	attack_verb = list("attacked", "whacked")
+
+
+
 /obj/item/surgicaldrill
 	name = "surgical drill"
 	desc = "You can drill using this item. You dig?"
@@ -468,3 +498,4 @@
 		var/obj/item/surgicaldrill/advanced/surgicaldrill = new /obj/item/surgicaldrill/advanced(drop_location())
 		qdel(src)
 		user.put_in_active_hand(surgicaldrill)
+
