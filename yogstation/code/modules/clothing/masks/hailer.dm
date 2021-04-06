@@ -26,7 +26,7 @@
 	radio.recalculateChannels()
 
 /obj/item/clothing/mask/gas/sechailer/proc/dispatch(mob/user)
-	//var/turf/A = get_area(src)
+	var/area/A = get_area(src)
 	if(world.time < last_dispatch + dispatch_cooldown)
 		to_chat(user, "<span class='notice'>Dispatch radio broadcasting systems are recharging.</span>")
 		return FALSE
@@ -36,7 +36,7 @@
 	var/message = show_radial_menu(user, user, options)
 	if(!message)
 		return FALSE
-	radio.talk_into(src, "Dispatch, code [message] in progress in , requesting assistance.", radio_channel)
+	radio.talk_into(src, "Dispatch, code [message] in progress in [A], requesting assistance.", radio_channel)
 	last_dispatch = world.time
 	for(var/atom/movable/hailer in GLOB.sechailers)
 		if(hailer.loc &&ismob(hailer.loc))
