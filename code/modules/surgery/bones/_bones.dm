@@ -12,6 +12,7 @@
 
 /datum/bone/Destroy()
 	bodypart.bone = null
+	..()
 
 /datum/bone/proc/apply_damage(amount)
 	damage += amount
