@@ -26,6 +26,7 @@
 	screamsound = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //yogs - lizard scream
 	wings_icon = "Dragon"
 	species_language_holder = /datum/language_holder/lizard
+	has_bones = TRUE
 
 /datum/species/lizard/random_name(gender,unique,lastname)
 	if(unique)

@@ -9,9 +9,10 @@
 	disliked_food = GROSS | RAW
 	liked_food = JUNKFOOD | FRIED | GRILLED
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
+	has_bones = TRUE
 
 /datum/species/human/qualifies_for_rank(rank, list/features)
 	return TRUE	//Pure humans are always allowed in all roles.
 
 /datum/species/human/has_toes()
-	return TRUE 
+	return TRUE

@@ -33,7 +33,6 @@
 
 	var/lip_style = null
 	var/lip_color = "white"
-	has_bones = TRUE
 
 
 /obj/item/bodypart/head/Destroy()
@@ -247,7 +246,6 @@
 	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "default_monkey_head"
 	animal_origin = MONKEY_BODYPART
-	has_bones = FALSE
 
 /obj/item/bodypart/head/alien
 	icon = 'icons/mob/animal_parts.dmi'
@@ -257,13 +255,13 @@
 	dismemberable = 0
 	max_damage = 500
 	animal_origin = ALIEN_BODYPART
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 /obj/item/bodypart/head/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 /obj/item/bodypart/head/larva
 	icon = 'icons/mob/animal_parts.dmi'
@@ -273,4 +271,4 @@
 	dismemberable = 0
 	max_damage = 50
 	animal_origin = LARVA_BODYPART
-	has_bones = FALSE
+	can_have_bones = FALSE

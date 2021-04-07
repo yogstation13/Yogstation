@@ -30,7 +30,7 @@
 	light_burn_msg = ROBOTIC_LIGHT_BURN_MSG
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 /obj/item/bodypart/r_arm/robot
 	name = "cyborg right arm"
@@ -52,7 +52,7 @@
 	light_burn_msg = ROBOTIC_LIGHT_BURN_MSG
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 /obj/item/bodypart/l_leg/robot
 	name = "cyborg left leg"
@@ -74,7 +74,7 @@
 	light_burn_msg = ROBOTIC_LIGHT_BURN_MSG
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 /obj/item/bodypart/r_leg/robot
 	name = "cyborg right leg"
@@ -96,7 +96,7 @@
 	light_burn_msg = ROBOTIC_LIGHT_BURN_MSG
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 /obj/item/bodypart/chest/robot
 	name = "cyborg torso"
@@ -121,7 +121,7 @@
 	var/wired = FALSE
 	var/obj/item/stock_parts/cell/cell = null
 
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 
 /obj/item/bodypart/chest/robot/handle_atom_del(atom/A)
@@ -223,7 +223,7 @@
 	var/obj/item/assembly/flash/handheld/flash1 = null
 	var/obj/item/assembly/flash/handheld/flash2 = null
 
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 
 /obj/item/bodypart/head/robot/handle_atom_del(atom/A)
@@ -306,7 +306,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
-	has_bones = FALSE
+
 
 /obj/item/bodypart/r_arm/robot/surplus
 	name = "surplus prosthetic right arm"
@@ -315,7 +315,6 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
-	has_bones = FALSE
 
 /obj/item/bodypart/l_leg/robot/surplus
 	name = "surplus prosthetic left leg"
@@ -324,7 +323,6 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
-	has_bones = FALSE
 
 /obj/item/bodypart/r_leg/robot/surplus
 	name = "surplus prosthetic right leg"
@@ -333,7 +331,6 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
-	has_bones = FALSE
 
 
 #undef ROBOTIC_LIGHT_BRUTE_MSG

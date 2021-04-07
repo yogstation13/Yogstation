@@ -147,6 +147,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 	///Bitflag that controls what in game ways can select this species as a spawnable source. Think magic mirror and pride mirror, slime extract, ERT etc, see defines in __DEFINES/mobs.dm, defaults to NONE, so people actually have to think about it
 	var/changesource_flags = NONE
+
+	///If this is true this species is affected by the bonesystem (bonecode)
+	var/has_bones = FALSE
 ///////////
 // PROCS //
 ///////////
@@ -400,6 +403,19 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(flying_species && isnull(fly))
 		fly = new
 		fly.Grant(C)
+
+	for(var/X in C.bodyparts)
+		var/obj/item/bodypart/B = X
+		if(!istype(B))
+			continue
+		if(has_bones)
+			if(!B.bone)
+				B.InitializeBones()
+		else
+			if(B.bone)
+				qdel(B.bone)
+				B.bone = null
+
 
 	C.add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 100, override=TRUE, multiplicative_slowdown=speedmod, movetypes=(~FLYING))
 

@@ -66,7 +66,7 @@
 
 	var/bandaged // yogs - FALSE if the limb is not bandaged, TRUE if the limb is bandaged
 
-	var/has_bones = FALSE
+	var/can_have_bones = TRUE
 
 	var/datum/bone/bone
 	//How difficult it is to break the underlying bone, 1 = 100% of brute damage transferred, 0.5 = 50% of brute damage transferred
@@ -84,20 +84,13 @@
 /obj/item/bodypart/blob_act()
 	take_damage(max_damage)
 
-/obj/item/bodypart/Initialize()
-	..()
-	if(has_bones)
-		bone = new()
-		bone.baseline_health = max_damage * BODYPART_TO_BONE_RATIO
-		bone.bodypart = src
-		RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/HandleMove)
-
 /obj/item/bodypart/Destroy()
 	if(owner)
 		owner.bodyparts -= src
 		owner = null
 	if(bone)
 		qdel(bone)
+		bone = null
 	return ..()
 
 /obj/item/bodypart/attack(mob/living/carbon/C, mob/user)
@@ -482,6 +475,19 @@
 	if(bone)
 		bone.HandleMove()
 
+/obj/item/bodypart/proc/InitializeBones()
+	if(!can_have_bones)
+		if(bone)
+			qdel(bone)
+			bone = null
+		return
+	if(bone)
+		return
+	bone = new()
+	bone.baseline_health = max_damage * BODYPART_TO_BONE_RATIO
+	bone.bodypart = src
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/HandleMove)
+
 /obj/item/bodypart/chest
 	name = BODY_ZONE_CHEST
 	desc = "It's impolite to stare at a person's chest."
@@ -493,7 +499,6 @@
 	px_y = 0
 	stam_damage_coeff = 1
 	max_stamina_damage = 120
-	has_bones = TRUE
 	var/obj/item/cavity_item
 
 /obj/item/bodypart/chest/can_dismember(obj/item/I)
@@ -515,7 +520,6 @@
 	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "default_monkey_chest"
 	animal_origin = MONKEY_BODYPART
-	has_bones = FALSE
 
 /obj/item/bodypart/chest/alien
 	icon = 'icons/mob/animal_parts.dmi'
@@ -523,13 +527,13 @@
 	dismemberable = 0
 	max_damage = 500
 	animal_origin = ALIEN_BODYPART
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 /obj/item/bodypart/chest/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 /obj/item/bodypart/chest/larva
 	icon = 'icons/mob/animal_parts.dmi'
@@ -537,7 +541,7 @@
 	dismemberable = 0
 	max_damage = 50
 	animal_origin = LARVA_BODYPART
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 /obj/item/bodypart/l_arm
 	name = "left arm"
@@ -557,7 +561,6 @@
 	held_index = 1
 	px_x = -6
 	px_y = 0
-	has_bones = TRUE
 
 /obj/item/bodypart/l_arm/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
@@ -591,7 +594,6 @@
 	animal_origin = MONKEY_BODYPART
 	px_x = -5
 	px_y = -3
-	has_bones = FALSE
 
 /obj/item/bodypart/l_arm/alien
 	icon = 'icons/mob/animal_parts.dmi'
@@ -601,13 +603,13 @@
 	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 /obj/item/bodypart/l_arm/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 /obj/item/bodypart/r_arm
 	name = "right arm"
@@ -625,7 +627,6 @@
 	px_x = 6
 	px_y = 0
 	max_stamina_damage = 50
-	has_bones = TRUE
 
 /obj/item/bodypart/r_arm/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_ARM))
@@ -659,7 +660,6 @@
 	animal_origin = MONKEY_BODYPART
 	px_x = 5
 	px_y = -3
-	has_bones = FALSE
 
 /obj/item/bodypart/r_arm/alien
 	icon = 'icons/mob/animal_parts.dmi'
@@ -669,13 +669,13 @@
 	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 /obj/item/bodypart/r_arm/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 /obj/item/bodypart/l_leg
 	name = "left leg"
@@ -690,7 +690,6 @@
 	px_x = -2
 	px_y = 12
 	max_stamina_damage = 50
-	has_bones = TRUE
 
 /obj/item/bodypart/l_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_LEG))
@@ -722,7 +721,6 @@
 	icon_state = "default_monkey_l_leg"
 	animal_origin = MONKEY_BODYPART
 	px_y = 4
-	has_bones = FALSE
 
 /obj/item/bodypart/l_leg/alien
 	icon = 'icons/mob/animal_parts.dmi'
@@ -732,13 +730,13 @@
 	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 /obj/item/bodypart/l_leg/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 /obj/item/bodypart/r_leg
 	name = "right leg"
@@ -755,7 +753,6 @@
 	px_x = 2
 	px_y = 12
 	max_stamina_damage = 50
-	has_bones = TRUE
 
 /obj/item/bodypart/r_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))
@@ -787,7 +784,6 @@
 	icon_state = "default_monkey_r_leg"
 	animal_origin = MONKEY_BODYPART
 	px_y = 4
-	has_bones = FALSE
 
 /obj/item/bodypart/r_leg/alien
 	icon = 'icons/mob/animal_parts.dmi'
@@ -797,11 +793,11 @@
 	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
-	has_bones = FALSE
+	can_have_bones = FALSE
 
 /obj/item/bodypart/r_leg/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
-	has_bones = FALSE
+	can_have_bones = FALSE
 
