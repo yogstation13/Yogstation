@@ -40678,6 +40678,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"hJk" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "hJu" = (
 /obj/machinery/light,
 /obj/structure/sign/warning/electricshock{
@@ -46548,6 +46552,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "lOS" = (
+/obj/structure/chair/stool,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
@@ -103126,8 +103131,8 @@ mzH
 oIp
 uUO
 btY
-bAw
-bAw
+hwl
+hJk
 bAw
 hwl
 avy
