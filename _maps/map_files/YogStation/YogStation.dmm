@@ -42587,10 +42587,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"iVy" = (
-/obj/machinery/space_heater,
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "iVG" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Fitness Room Maintenance";
@@ -46551,6 +46547,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
+"lOS" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/maintenance/aft)
 "lPO" = (
 /obj/machinery/telecomms/bus/preset_three,
 /turf/open/floor/circuit/green/telecomms/mainframe,
@@ -47045,6 +47046,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness)
+"mqp" = (
+/obj/machinery/space_heater,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "mqz" = (
 /obj/effect/turf_decal/bot{
 	dir = 1
@@ -55409,7 +55414,7 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "sia" = (
-/obj/effect/landmark/stationroom/maint/fivexthree,
+/obj/effect/landmark/stationroom/maint/threexthree,
 /turf/template_noop,
 /area/maintenance/aft)
 "siG" = (
@@ -63531,19 +63536,6 @@
 /obj/effect/spawner/lootdrop/techstorage/tcomms,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/tcoms)
-"yan" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "yaD" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/window{
@@ -102362,7 +102354,7 @@ rMv
 jdO
 jdO
 jdO
-btU
+sCB
 bzs
 ldW
 ldW
@@ -102621,9 +102613,9 @@ jBv
 uUO
 btU
 bzs
-ldW
-ldW
-ldW
+bzs
+fjd
+bzs
 avy
 bai
 aSJ
@@ -102877,10 +102869,10 @@ tdV
 jhQ
 uUO
 btU
-bzs
-ldW
-ldW
-ldW
+bHX
+mqp
+cJt
+lOS
 avy
 bai
 bgu
@@ -103134,10 +103126,10 @@ mzH
 oIp
 uUO
 btY
-bzs
-bzs
-fjd
-bzs
+bAw
+bAw
+bAw
+hwl
 avy
 avy
 avy
@@ -103392,7 +103384,7 @@ oAV
 uUO
 vpX
 bLT
-yan
+bLT
 bLT
 cED
 bLT
@@ -103651,7 +103643,7 @@ aDR
 aDR
 tQD
 bIJ
-iVy
+bAw
 xWw
 bHX
 bAw
