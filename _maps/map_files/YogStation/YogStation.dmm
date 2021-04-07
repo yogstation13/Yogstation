@@ -16274,11 +16274,6 @@
 "aTQ" = (
 /turf/closed/wall,
 /area/bridge)
-"aUg" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/cola/shamblers/prison,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aUh" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -62588,6 +62583,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"xrc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/cola/shamblers/prison{
+	onstation = 0
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "xrs" = (
 /obj/machinery/requests_console{
 	department = "AI";
@@ -89450,7 +89452,7 @@ aYN
 dxV
 uNu
 aat
-aUg
+xrc
 sQI
 qQV
 qQV
