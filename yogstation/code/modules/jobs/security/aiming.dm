@@ -49,13 +49,13 @@
 /obj/effect/temp_visual/aiming
 	icon = 'yogstation/icons/effects/aiming.dmi'
 	icon_state = "aiming"
-	duration = 3 
+	duration = 3
 	layer = ABOVE_MOB_LAYER
 
 ///Shows a big flashy exclamation mark above the suspect to warn the space cop that they're trying something stupid.
 /obj/effect/temp_visual/aiming/suspect_alert
 	icon_state = "perp_alert"
-	duration = 1 
+	duration = 1
 	layer = ABOVE_MOB_LAYER
 
 /datum/component/aiming
@@ -88,8 +88,8 @@
 	new /obj/effect/temp_visual/aiming(get_turf(target))
 
 	//Register signals to alert our user if the target does something shifty.
-	RegisterSignal(src.target, COMSIG_MOB_ITEM_DROPPED, .proc/on_drop)
-	RegisterSignal(src.target, COMSIG_MOB_ITEM_EQUIPPED, .proc/on_equip)
+	RegisterSignal(src.target, COMSIG_ITEM_DROPPED, .proc/on_drop)
+	RegisterSignal(src.target, COMSIG_ITEM_EQUIPPED, .proc/on_equip)
 	RegisterSignal(src.target, COMSIG_LIVING_STATUS_PARALYZE, .proc/on_paralyze)
 	//And show the radials to perp and officer mc space cop...
 	src.target.aim_react()
@@ -99,11 +99,11 @@
 
 /obj/item/equipped(mob/equipper, slot)
 	. = ..()
-	SEND_SIGNAL(equipper, COMSIG_MOB_ITEM_EQUIPPED)
+	SEND_SIGNAL(equipper, COMSIG_ITEM_EQUIPPED)
 
 /obj/item/dropped(mob/user)
 	. = ..()
-	SEND_SIGNAL(user, COMSIG_MOB_ITEM_DROPPED)
+	SEND_SIGNAL(user, COMSIG_ITEM_DROPPED)
 
 /*
 Methods to alert the aimer about events, usually to signify that they're complying with the arrest or to warn them if the perp is trying something funny.
@@ -188,8 +188,8 @@ There are two main branches, dictated by SOP. If the perp is armed, tell them to
 
 /datum/component/aiming/proc/stop_aiming()
 	if(target)
-		UnregisterSignal(target, COMSIG_MOB_ITEM_DROPPED)
-		UnregisterSignal(target, COMSIG_MOB_ITEM_EQUIPPED)
+		UnregisterSignal(target, COMSIG_ITEM_DROPPED)
+		UnregisterSignal(target, COMSIG_ITEM_EQUIPPED)
 		UnregisterSignal(target, COMSIG_LIVING_STATUS_PARALYZE)
 	user = null
 	target = null

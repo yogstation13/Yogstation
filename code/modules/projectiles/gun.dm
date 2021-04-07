@@ -180,7 +180,7 @@
 		for(var/obj/O in contents)
 			O.emp_act(severity)
 
-/obj/item/gun/afterattack(atom/target, mob/living/user, flag, params)
+/obj/item/gun/afterattack(atom/target, mob/living/user, flag, params, aimed)//Nsv13 - Overrided this proc to add "aimed" to work with the aiming component.
 	. = ..()
 	if(!target)
 		return
@@ -235,7 +235,8 @@
 				loop_counter++
 				addtimer(CALLBACK(G, /obj/item/gun.proc/process_fire, target, user, TRUE, params, null, bonus_spread), loop_counter)
 
-	process_fire(target, user, TRUE, params, null, bonus_spread)
+		//Nsv13 aiming component
+	process_fire(target, user, TRUE, params, null, bonus_spread, aimed)
 
 /obj/item/gun/proc/check_botched(mob/living/user, params)
 	if(clumsy_check)
@@ -303,7 +304,7 @@
 	update_icon()
 	return TRUE
 
-/obj/item/gun/proc/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
+/obj/item/gun/proc/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, aimed=FALSE)
 	if(user)
 		SEND_SIGNAL(user, COMSIG_MOB_FIRED_GUN, user, target, params, zone_override)
 
@@ -332,7 +333,7 @@
 					to_chat(user, "<span class='notice'> [src] is lethally chambered! You don't want to risk harming anyone...</span>")
 					return
 			sprd = round((rand() - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread))
-			before_firing(target,user)
+			before_firing(target,user, aimed)
 			if(!chambered.fire_casing(target, user, params, , suppressed, zone_override, sprd, src))
 				shoot_with_empty_chamber(user)
 				return
@@ -561,7 +562,7 @@
 	pin = new /obj/item/firing_pin
 
 //Happens before the actual projectile creation
-/obj/item/gun/proc/before_firing(atom/target,mob/user)
+/obj/item/gun/proc/before_firing(atom/target,mob/user, aimed)
 	return
 
 /////////////

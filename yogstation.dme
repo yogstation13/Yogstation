@@ -3411,6 +3411,7 @@
 #include "yogstation\code\modules\jobs\job_types\space_bartender.dm"
 #include "yogstation\code\modules\jobs\job_types\tourist.dm"
 #include "yogstation\code\modules\jobs\job_types\warden.dm"
+#include "yogstation\code\modules\jobs\security\aiming.dm"
 #include "yogstation\code\modules\keybindings\bindings_admin.dm"
 #include "yogstation\code\modules\keybindings\bindings_atom.dm"
 #include "yogstation\code\modules\keybindings\bindings_carbon.dm"
