@@ -618,3 +618,11 @@
 	build_path = /obj/item/circuitboard/machine/electrolyzer
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/board/crystallizer
+	name = "Machine Design (Crystallizer)"
+	desc = "The circuit board for a crystallizer."
+	id = "crystallizer"
+	build_path = /obj/item/circuitboard/machine/crystallizer
+	category = list ("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING

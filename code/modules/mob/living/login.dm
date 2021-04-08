@@ -25,3 +25,5 @@
 	var/datum/antagonist/darkspawn/darkspawn = mind.has_antag_datum(/datum/antagonist/darkspawn)
 	if(darkspawn)
 		darkspawn.regain_abilities()
+
+	src.client.init_verbs()

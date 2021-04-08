@@ -1002,24 +1002,6 @@
 	crate_type = /obj/structure/closet/crate/secure/engineering
 	dangerous = TRUE
 
-/datum/supply_pack/engine/tesla_coils
-	name = "Tesla Coil Crate"
-	desc = "Whether it's high-voltage executions, creating research points, or just plain old power generation: This pack of four Tesla coils can do it all!"
-	cost = 2500
-	contains = list(/obj/machinery/power/tesla_coil,
-					/obj/machinery/power/tesla_coil,
-					/obj/machinery/power/tesla_coil,
-					/obj/machinery/power/tesla_coil)
-	crate_name = "tesla coil crate"
-	crate_type = /obj/structure/closet/crate/engineering/electrical
-
-/datum/supply_pack/engine/tesla_gen
-	name = "Tesla Generator Crate"
-	desc = "The key to unlocking the power of the Tesla energy ball. Particle Accelerator not included."
-	cost = 5000
-	contains = list(/obj/machinery/the_singularitygen/tesla)
-	crate_name = "tesla generator crate"
-
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////// Canisters & Materials ////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -1662,6 +1644,45 @@
 	cost = 700
 	contains = list()
 	crate_name = "crate"
+
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////// Special Clearance////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+/datum/supply_pack/clearance
+	group = "Unlocked Clearance"
+	special = TRUE
+	small_item = TRUE
+
+/datum/supply_pack/clearance/ka_damage
+	name = "KA Damage Mods"
+	desc = "Modifiers for a kinetic accelerator that increase the force of its projectiles."
+	cost = 700
+	contains = list(/obj/item/borg/upgrade/modkit/damage,/obj/item/borg/upgrade/modkit/damage,/obj/item/borg/upgrade/modkit/damage)
+
+/datum/supply_pack/clearance/ka_cooldown
+	name = "KA Cooldown Mods"
+	desc = "Modifiers for a kinetic accelerator that decrease the time needed for the accelerator to cool between shots."
+	cost = 700
+	contains = list(/obj/item/borg/upgrade/modkit/cooldown,/obj/item/borg/upgrade/modkit/cooldown,/obj/item/borg/upgrade/modkit/cooldown)
+
+/datum/supply_pack/clearance/ka_range
+	name = "KA Range Mods"
+	desc = "Modifiers for a kinetic accelerator that increase the range of its projectiles."
+	cost = 700
+	contains = list(/obj/item/borg/upgrade/modkit/range,/obj/item/borg/upgrade/modkit/range,/obj/item/borg/upgrade/modkit/range)
+
+/datum/supply_pack/clearance/plasmacutter
+	name = "Plasmacutter Crate"
+	desc = "Two plasmacutters, experimental mining equipment that uses heated plasma as fuel."
+	cost = 900
+	contains = list(/obj/item/gun/energy/plasmacutter,/obj/item/gun/energy/plasmacutter)
+
+/datum/supply_pack/clearance/plasmacutter_advanced
+	name = "Advanced Plasmacutter Crate"
+	desc = "A prototype plasmacutter variant with lower cooldown, more efficient fuel usage, and higher range."
+	cost = 2000
+	contains = list(/obj/item/gun/energy/plasmacutter/adv)
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Organic /////////////////////////////////////////

@@ -73,6 +73,7 @@
 #define TRAIT_PACIFISM			"pacifism"
 #define TRAIT_IGNORESLOWDOWN	"ignoreslow"
 #define TRAIT_IGNOREDAMAGESLOWDOWN "ignoredamageslowdown"
+#define TRAIT_REDUCED_DAMAGE_SLOWDOWN "reduced_damage_slowdown"
 #define TRAIT_RESISTDAMAGESLOWDOWN "resistdamageslowdown"
 #define TRAIT_DEATHCOMA			"deathcoma" //Causes death-like unconsciousness
 #define TRAIT_FAKEDEATH			"fakedeath" //Makes the owner appear as dead to most forms of medical examination
@@ -98,6 +99,7 @@
 #define TRAIT_NODISMEMBER		"dismember_immunity"
 #define TRAIT_NOFIRE			"nonflammable"
 #define TRAIT_NOGUNS			"no_guns"
+#define TRAIT_NO_STUN_WEAPONS	"no_stun_weapons" //prevents use of commonly available instant or near instant stun weapons
 #define TRAIT_NOINTERACT		"no_interact" //Not allowed to touch anything (even with TK) or use things in hand
 #define TRAIT_NOHUNGER			"no_hunger"
 #define TRAIT_EASYDISMEMBER		"easy_dismember"
@@ -152,6 +154,7 @@
 #define TRAIT_SLIME_EMPATHY		"slime-empathy"
 #define TRAIT_ACIDBLOOD         "acid_blood"
 #define TRAIT_PRESERVED_ORGANS	"preserved_organs"
+#define TRAIT_SKINNY			"skinny"  //For those with a slightly thinner torso sprite
 #define TRAIT_SURGERY_PREPARED	"surgery_prepared"
 
 //non-mob traits

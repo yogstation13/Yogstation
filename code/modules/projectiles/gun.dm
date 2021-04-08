@@ -114,8 +114,10 @@
 	var/obj/item/gun/G = locate(/obj/item/gun) in contents
 	if(G)
 		G.forceMove(loc)
-		QDEL_NULL(G.pin)
-		visible_message("[G] can now fit a new pin, but the old one was destroyed in the process.", null, null, 3)
+		var/pin = G.pin
+		if(G.pin.gun_remove()) //if this returns false the gun and pin are not going to exist
+			visible_message("[G] can now fit a new pin, but the old one was destroyed in the process.", null, null, 3)
+			QDEL_NULL(pin)
 		qdel(src)
 
 /obj/item/gun/examine(mob/user)

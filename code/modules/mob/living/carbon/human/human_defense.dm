@@ -49,7 +49,7 @@
 	if(mind)
 		if(mind.martial_art && !incapacitated(FALSE, TRUE) && mind.martial_art.can_use(src) && (mind.martial_art.deflection_chance || ((mind.martial_art.id == "sleeping carp") && in_throw_mode))) //Some martial arts users can deflect projectiles!
 			if(prob(mind.martial_art.deflection_chance) || ((mind.martial_art.id == "sleeping carp") && in_throw_mode)) // special check if sleeping carp is our martial art and throwmode is on, deflect
-				if((mobility_flags & MOBILITY_USE) && dna && !dna.check_mutation(HULK)) //But only if they're otherwise able to use items, and hulks can't do it
+				if((mobility_flags & MOBILITY_USE) && dna && !(dna.check_mutation(HULK)|| dna.check_mutation(ACTIVE_HULK))) //But only if they're otherwise able to use items, and hulks can't do it
 					if(!isturf(loc)) //if we're inside something and still got hit
 						P.force_hit = TRUE //The thing we're in passed the bullet to us. Pass it back, and tell it to take the damage.
 						loc.bullet_act(P)
@@ -484,8 +484,8 @@
 			var/obj/item/clothing/gloves/G = gloves
 			if(G.siemens_coefficient <= 0)
 				total_coeff -= 0.5
-			var/obj/item/clothing/gloves/color/fyellow/greytide = G
-			if(istype(greytide))
+			if(istype(G, /obj/item/clothing/gloves/color/fyellow))
+				var/obj/item/clothing/gloves/color/fyellow/greytide = G
 				greytide.get_shocked()
 		if(wear_suit)
 			var/obj/item/clothing/suit/S = wear_suit
@@ -501,8 +501,8 @@
 		if(gloves)
 			var/obj/item/clothing/gloves/G = gloves
 			gloves_siemens_coeff = G.siemens_coefficient
-			var/obj/item/clothing/gloves/color/fyellow/greytide = G
-			if(istype(greytide))
+			if(istype(G, /obj/item/clothing/gloves/color/fyellow))
+				var/obj/item/clothing/gloves/color/fyellow/greytide = G
 				greytide.get_shocked()
 		siemens_coeff = gloves_siemens_coeff
 	if(undergoing_cardiac_arrest() && !illusion)

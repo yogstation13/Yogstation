@@ -147,10 +147,12 @@
 		relay_information(signal, /obj/machinery/telecomms/broadcaster)
 
 /obj/machinery/telecomms/message_server/update_icon()
-	..()
 	cut_overlays()
-	if(calibrating)
-		add_overlay("message_server_calibrate")
+	if(calibrating && on)
+		var/mutable_appearance/calibrate = mutable_appearance(icon, "message_server_disabled")
+		add_overlay(calibrate)
+	else if (!calibrating && on)
+		return ..()
 
 
 // Root messaging signal datum
