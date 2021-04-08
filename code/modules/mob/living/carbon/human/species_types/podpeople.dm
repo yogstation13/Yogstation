@@ -70,4 +70,4 @@
 			H.set_nutrition(min(H.nutrition+30, NUTRITION_LEVEL_FULL))
 
 if(H.reagents.has_reagent(/datum/reagent/plantnutriment/robustharvestnutriment))
-		H.adjustBruteLoss(-0.1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+		H.adjustBruteLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
