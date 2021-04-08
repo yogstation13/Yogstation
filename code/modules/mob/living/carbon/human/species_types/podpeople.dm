@@ -25,6 +25,10 @@
 	. = ..()
 	C.faction -= "plants"
 	C.faction -= "vines"
+	
+
+if(H.reagents.has_reagent(/datum/reagent/plantnutriment/robustharvestnutriment))
+		H.adjustBruteLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
 /datum/species/pod/spec_life(mob/living/carbon/human/H)
 	if(H.stat == DEAD)
@@ -69,5 +73,3 @@
 		if(/obj/item/projectile/energy/florayield)
 			H.set_nutrition(min(H.nutrition+30, NUTRITION_LEVEL_FULL))
 
-if(H.reagents.has_reagent(/datum/reagent/plantnutriment/robustharvestnutriment))
-		H.adjustBruteLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
