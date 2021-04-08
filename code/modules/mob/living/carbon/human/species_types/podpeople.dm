@@ -68,3 +68,6 @@
 				H.show_message("<span class='userdanger'>The radiation beam singes you!</span>")
 		if(/obj/item/projectile/energy/florayield)
 			H.set_nutrition(min(H.nutrition+30, NUTRITION_LEVEL_FULL))
+
+if(H.reagents.has_reagent(/datum/reagent/plantnutriment/robustharvestnutriment))
+		H.adjustBruteLoss(-0.1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
