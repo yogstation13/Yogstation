@@ -76,7 +76,7 @@
 #error Your version of BYOND is too new to compile this project. Download version 513.1538 at www.byond.com/download/build/513/513.1538_byond_setup.exe
 #endif
 
-#ifdef TGS
+#ifdef TRAVISBUILDING
 // TGS performs its own build of dm.exe, but includes a prepended TGS define.
 #define CBT
 #endif
