@@ -1,10 +1,10 @@
 
 /**
-  * #Eldritch Knwoledge
+  * #Eldritch Knowledge
   *
   * Datum that makes eldritch cultist interesting.
   *
-  * Eldritch knowledge aren't instantiated anywhere roundstart, and are initalized and destroyed as the round goes on.
+  * Eldritch knowledge isn't instantiated anywhere roundstart, and is initalized and destroyed as the round goes on.
   */
 /datum/eldritch_knowledge
 	///Name of the knowledge

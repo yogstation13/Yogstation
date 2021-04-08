@@ -42,6 +42,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/toxic_food = TOXIC
 	/// slots the race can't equip stuff to
 	var/list/no_equip = list()
+	/// slots the race can't equip stuff to that have been added externally that should be inherited on species change
+	var/list/extra_no_equip = list()
 	/// this is sorta... weird. it basically lets you equip stuff that usually needs jumpsuits without one, like belts and pockets and ids
 	var/nojumpsuit = FALSE
 	/// affects the speech message
@@ -196,6 +198,17 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 	return randname
 
+//used to add things to the no_equip list that'll get inherited on species changes
+/datum/species/proc/add_no_equip_slot(mob/living/carbon/C, slot)
+	extra_no_equip.Add(slot)
+	var/obj/item/thing = C.get_item_by_slot(slot)
+	if(thing && (!thing.species_exception || !is_type_in_list(src,thing.species_exception)))
+		C.dropItemToGround(thing)
+
+//removes something from the extra_no_equip list as well as the normal no_equip list
+/datum/species/proc/remove_no_equip_slot(mob/living/carbon/C, slot)
+	extra_no_equip.Remove(slot)
+
 //Called when cloning, copies some vars that should be kept
 /datum/species/proc/copy_properties_from(datum/species/old_species)
 	return
@@ -341,6 +354,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		C.gender = FEMALE
 	if((MGENDER in species_traits))
 		C.gender = MALE
+	extra_no_equip.Add(old_species.extra_no_equip)
 	for(var/slot_id in no_equip)
 		var/obj/item/thing = C.get_item_by_slot(slot_id)
 		if(thing && (!thing.species_exception || !is_type_in_list(src,thing.species_exception)))
@@ -602,12 +616,17 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		if(H.underwear)
 			var/datum/sprite_accessory/underwear/underwear = GLOB.underwear_list[H.underwear]
 			if(underwear)
-				standing += mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
+				if(HAS_TRAIT(H, TRAIT_SKINNY))
+					standing += wear_skinny_version(underwear.icon_state, underwear.icon, BODY_LAYER) //Neat, this works
+				else
+					standing += mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
 
 		if(H.undershirt)
 			var/datum/sprite_accessory/undershirt/undershirt = GLOB.undershirt_list[H.undershirt]
 			if(undershirt)
-				if(H.dna.species.sexes && H.gender == FEMALE)
+				if(HAS_TRAIT(H, TRAIT_SKINNY)) //Check for skinny first
+					standing += wear_skinny_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
+				else if(H.dna.species.sexes && H.gender == FEMALE)
 					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else
 					standing += mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
@@ -882,7 +901,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	return
 
 /datum/species/proc/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE)
-	if(slot in no_equip)
+	if((slot in no_equip) || (slot in extra_no_equip))
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
 			return FALSE
 
@@ -1238,6 +1257,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				. += I.slowdown
 		if(!HAS_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN))
 			var/health_deficiency = max(H.maxHealth - H.health, H.staminaloss)
+			if(HAS_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN))
+				health_deficiency -= H.maxHealth * 0.2 //20% more damage required for slowdown
 			if(health_deficiency >= H.maxHealth * 0.4)
 				if(HAS_TRAIT(H, TRAIT_RESISTDAMAGESLOWDOWN))
 					health_deficiency *= 0.5
@@ -1505,6 +1526,18 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(M.mind)
 		attacker_style = M.mind.martial_art
 	if((M != H) && M.a_intent != INTENT_HELP && H.check_shields(M, 0, M.name, attack_type = UNARMED_ATTACK))
+		if((M.dna.check_mutation(ACTIVE_HULK) || M.dna.check_mutation(HULK)) && M.a_intent == "disarm")
+			H.check_shields(0, M.name) // We check their shields twice since we are a hulk. Also triggers hitreactions for HULK_ATTACK
+			M.visible_message("<span class='danger'>[M]'s punch knocks the shield out of [H]'s hand.</span>", \
+							"<span class='userdanger'>[M]'s punch knocks the shield out of [H]'s hand.</span>")
+			if(M.dna)
+				playsound(H.loc, M.dna.species.attack_sound, 25, 1, -1)
+			else
+				playsound(H.loc, 'sound/weapons/punch1.ogg', 25, 1, -1)
+			log_combat(M, H, "hulk punched a shield held by")
+			return FALSE
+		if(istype(attacker_style, /datum/martial_art/flyingfang) && M.a_intent == INTENT_DISARM)
+			disarm(M, H, attacker_style)
 		log_combat(M, H, "attempted to touch")
 		H.visible_message("<span class='warning'>[M] attempted to touch [H]!</span>")
 		return 0
@@ -1954,7 +1987,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 /datum/species/proc/CanFly(mob/living/carbon/human/H)
 	if(H.stat || !(H.mobility_flags & MOBILITY_STAND))
 		return FALSE
-	if(H.dna.features["moth_wings"] == "Burnt Off") //this is so tragic can we get an "F" in the chat
+	if(ismoth(H) && H.dna.features["moth_wings"] == "Burnt Off") //this is so tragic can we get an "F" in the chat
 		to_chat(H, "<span>Your crispy wings won't work anymore!</span>")
 		return FALSE
 	if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) && (!H.wear_suit.species_exception || !is_type_in_list(src, H.wear_suit.species_exception))))	//Jumpsuits have tail holes, so it makes sense they have wing holes too

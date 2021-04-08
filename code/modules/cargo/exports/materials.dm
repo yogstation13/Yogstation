@@ -96,3 +96,8 @@
 	unit_name = "of metallic hydrogen"
 	material_id = /datum/material/metalhydrogen
 	export_types = list(/obj/item/stack/sheet/mineral/metal_hydrogen)
+
+/datum/export/material/zaukerite
+	cost = 900
+	material_id = /datum/material/zaukerite
+	export_types = list(/obj/item/stack/sheet/mineral/zaukerite)

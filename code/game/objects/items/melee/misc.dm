@@ -239,6 +239,9 @@
 	if(!on)
 		return ..()
 
+	if(HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
+		to_chat(user, "<span class='warning'>You can't seem to remember how this works!</span>")
+		return
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 		to_chat(user, "<span class ='danger'>You hit yourself over the head.</span>")
