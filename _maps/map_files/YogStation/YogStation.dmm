@@ -40678,10 +40678,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"hJk" = (
-/obj/effect/decal/cleanable/oil,
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "hJu" = (
 /obj/machinery/light,
 /obj/structure/sign/warning/electricshock{
@@ -54497,6 +54493,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"rAd" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "rAz" = (
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
@@ -55404,6 +55404,19 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/science/storage)
+"sgJ" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "shz" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -102359,7 +102372,7 @@ rMv
 jdO
 jdO
 jdO
-sCB
+btU
 bzs
 ldW
 ldW
@@ -103132,7 +103145,7 @@ oIp
 uUO
 btY
 hwl
-hJk
+rAd
 bAw
 hwl
 avy
@@ -103397,7 +103410,7 @@ bLT
 bLT
 bLT
 bLT
-bLT
+sgJ
 bLT
 bwY
 avy
@@ -104167,8 +104180,8 @@ mNx
 bNd
 bNd
 bNd
-bAw
 bXp
+jsp
 bAw
 bZN
 bHX
