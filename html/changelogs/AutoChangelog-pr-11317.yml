@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "bloodcultists who are elected the master of the bloodcult no longer lose all their spells as part of their initiation ritual"
