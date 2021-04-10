@@ -220,6 +220,7 @@
 		to_chat(human_user,"<span class='boldwarning'>You know better than to tempt forces out of your control!</span>")
 	else
 		//a very elaborate way to suicide
+		var/throwtarget
 		for(var/i in 1 to 20)
 			human_user.SetStun(INFINITY) //:^^^^^^^^^^)
 			throwtarget = get_edge_target_turf(src, pick(GLOB.alldirs))
