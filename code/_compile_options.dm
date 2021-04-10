@@ -77,6 +77,11 @@
 #endif
 
 #ifdef TRAVISBUILDING
+// Turdis is special :)
+#define CBT
+#endif
+
+#ifdef TGS
 // TGS performs its own build of dm.exe, but includes a prepended TGS define.
 #define CBT
 #endif
