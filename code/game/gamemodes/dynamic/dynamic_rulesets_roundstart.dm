@@ -519,6 +519,7 @@
 	cost = 40
 	requirements = list(100,90,80,70,60,50,30,30,30,30)
 	high_population_requirement = 50
+	antag_cap = list(4,4,4,5,5,6,6,7,7,8) //this isn't used but having it probably stops a runtime
 	flags = HIGHLANDER_RULESET
 	minimum_players = 38
 	var/ark_time
@@ -680,7 +681,7 @@
 //                                          //
 //////////////////////////////////////////////
 
-/datum/dynamic_ruleset/roundstart/monkey
+/*/datum/dynamic_ruleset/roundstart/monkey
 	name = "Monkey"
 	antag_flag = ROLE_MONKEY
 	antag_datum = /datum/antagonist/monkey/leader
@@ -689,6 +690,7 @@
 	weight = 1
 	cost = 70
 	requirements = list(100,100,95,90,85,80,80,80,80,70)
+	antag_cap = list(1,1,1,2,2,2,3,3,3,3)
 	var/players_per_carrier = 25
 	var/monkeys_to_win = 1
 	var/escaped_monkeys = 0
@@ -733,7 +735,7 @@
 	if(check_monkey_victory())
 		SSticker.mode_result = "win - monkey win"
 	else
-		SSticker.mode_result = "loss - staff stopped the monkeys"
+		SSticker.mode_result = "loss - staff stopped the monkeys"*/
 
 //////////////////////////////////////////////
 //                                          //
@@ -827,6 +829,7 @@
 	scaling_cost = 10
 	requirements = list(80,70,60,50,50,45,30,30,25,20)
 	minimum_players = 30
+	antag_cap = list(3,3,3,3,3,3,3,3,3,4)
 	var/autovamp_cooldown = 450 // 15 minutes (ticks once per 2 sec)
 
 /datum/dynamic_ruleset/roundstart/vampire/pre_execute()
@@ -864,33 +867,23 @@
 	weight = 1
 	cost = 100
 	requirements = list(100,100,100,100,90,90,85,85,85,80)
+	antag_cap = list(5,5,5,5,5,5,5,5,5,5)
 	roundstart_wizards = list()
-	var/bullshit_mode = 0
-
-/datum/dynamic_ruleset/roundstart/wizard/acceptable(population=0, threat=0)
-	if(GLOB.wizardstart.len == 0)
-		log_admin("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
-		message_admins("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
-		return FALSE
-	return ..()
 
 /datum/dynamic_ruleset/roundstart/wizard/ragin/pre_execute()
 	if(GLOB.wizardstart.len == 0)
 		return FALSE
 
 	mode.antags_rolled += 1
-	var/mob/M = pick_n_take(candidates)
-	if (M)
-		assigned += M.mind
-		M.mind.assigned_role = ROLE_RAGINMAGES
-		M.mind.special_role = ROLE_RAGINMAGES
+	for(var/i in antag_cap[indice_pop])
+		var/mob/M = pick_n_take(candidates)
+		if (M)
+			assigned += M.mind
+			M.mind.assigned_role = ROLE_RAGINMAGES
+			M.mind.special_role = ROLE_RAGINMAGES
+		else
+			break
 
-	return TRUE
-
-/datum/dynamic_ruleset/roundstart/wizard/ragin/execute()
-	for(var/datum/mind/M in assigned)
-		M.current.forceMove(pick(GLOB.wizardstart))
-		M.add_antag_datum(new antag_datum())
 	return TRUE
 
 //////////////////////////////////////////////
@@ -904,44 +897,19 @@
 	antag_flag = ROLE_BULLSHITMAGES
 	antag_datum = /datum/antagonist/wizard/
 	minimum_required_age = 14
-	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a wizard getting picked won't ever imply a Captain or HoS not getting drafted
+	restricted_roles = list() // lol
 	required_candidates = 4
 	weight = 1
 	cost = 101
 	minimum_players = 40
 	requirements = list(100,100,100,100,100,100,100,100,100,100)
-	var/mage_cap = 999
-	bullshit_mode = 1
-
-/datum/dynamic_ruleset/roundstart/wizard/ragin/bullshit/acceptable(population=0, threat=0)
-	if(GLOB.wizardstart.len == 0)
-		log_admin("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
-		message_admins("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
-		return FALSE
-	return ..()
+	antag_cap = list(69420,69420,69420,69420,69420,69420,69420,69420,69420,69420) //this is going to go terribly but it will be hilarious for at least one minute
 
 /datum/dynamic_ruleset/roundstart/wizard/ragin/bullshit/pre_execute()
-	var/indice_pop = min(45,round(mode.roundstart_pop_ready/2)+1)
-	var/mages = mage_cap[indice_pop]
-	for(var/mages_number = 1 to mages)
-	if(GLOB.wizardstart.len == 0)
-		return FALSE
-
-	mode.antags_rolled += 1
-	var/mob/M = pick_n_take(candidates)
-	if (M)
-		assigned += M.mind
-		M.mind.assigned_role = ROLE_RAGINMAGES
-		M.mind.special_role = ROLE_RAGINMAGES
+	. = ..()
+	if(.)
 		log_admin("Shit is about to get wild. -Bullshit Wizards")
-
-	return TRUE
-
-/datum/dynamic_ruleset/roundstart/wizard/ragin/bullshit/execute()
-	for(var/datum/mind/M in assigned)
-		M.current.forceMove(pick(GLOB.wizardstart))
-		M.add_antag_datum(new antag_datum())
-	return TRUE
+		return TRUE
 
 //////////////////////////////////////////////
 //                                          //
