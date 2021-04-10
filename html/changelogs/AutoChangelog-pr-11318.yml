@@ -1,0 +1,5 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - rscdel: "Polysmorphs will now always have digitigrade legs instead of them being optional."
+  - rscdel: "Polysmorphs can now equip shoes if they have their legs replaced."
