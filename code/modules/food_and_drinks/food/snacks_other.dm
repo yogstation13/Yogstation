@@ -36,6 +36,16 @@
 	tastes = list("chocolate" = 1)
 	foodtype = JUNKFOOD | SUGAR
 
+/obj/item/reagent_containers/food/snacks/candy_strawberry
+	name = "strawberry flavored candy"
+	desc = "You aren't sure if thats strawberries or blood."
+	icon_state = "candy_strawberry"
+	trash = /obj/item/trash/candy
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 1) //Really crappy because it can easily be mass produced
+	filling_color = "#FF0000"
+	tastes = list("candy" = 10, "strawberries" = 5, "blood" = 1)
+	foodtype = JUNKFOOD | SUGAR
+
 /obj/item/reagent_containers/food/snacks/hugemushroomslice
 	name = "huge mushroom slice"
 	desc = "A slice from a huge mushroom."
