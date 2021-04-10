@@ -209,10 +209,6 @@
 	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 20, "embedded_fall_chance" = 10) // Incentive to disengage/stop chasing when stuck
 	attack_verb = list("stuck", "shanked", "stabbed", "shivved")
 
-/obj/item/kitchen/knife/shank/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is slitting [user.p_their()] [pick("wrists", "throat")] with the shank! It looks like [user.p_theyre()] trying to commit suicide.</span>")
-	return (BRUTELOSS)
-
 /obj/item/kitchen/rollingpin
 	name = "rolling pin"
 	desc = "Used to knock out the Bartender."
