@@ -227,7 +227,7 @@
 			human_user.Shake(rand(-100,100), rand(-100,100), 110) //oh we are TOTALLY stacking these //turns out we are not in fact stacking these
 			to_chat(user, "<span class='userdanger'>[pick("I- I- I-", "NO-", "IT HURTS-", "GETOUTOFMYHEADGETOUTOFMY-", "<i>POD-</i>","<i>COVE-</i>", "AAAAAAAAA-")]</span>")
 			sleep(1.1) //Spooky flavor message spam
-		to_chat(user, "<span class='cultbold>That was a really bad idea...</span>")
+		to_chat(user, "<span class='cultbold'>That was a really bad idea...</span>")
 		human_user.ghostize()
 		var/obj/item/bodypart/head/head = locate() in human_user.bodyparts
 		if(head)
