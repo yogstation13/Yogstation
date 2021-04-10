@@ -366,6 +366,7 @@
 	metabolization_rate = 10 * REAGENTS_METABOLISM // very fast, so it can be applied rapidly.  But this changes on an overdose
 	overdose_threshold = 11 //Slightly more than one un-nozzled spraybottle.
 	taste_description = "sour oranges"
+	var/saved_color
 
 /datum/reagent/spraytan/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(ishuman(M))
@@ -444,8 +445,10 @@
 		if(!(HAIR in N.dna.species.species_traits)) //No hair? No problem!
 			N.dna.species.species_traits += HAIR
 		if(N.dna.species.use_skintones)
+			saved_color = N.skin_tone
 			N.skin_tone = "orange"
 		else if(MUTCOLORS in N.dna.species.species_traits) //Aliens with custom colors simply get turned orange
+			saved_color = N.dna.features["mcolor"]
 			N.dna.features["mcolor"] = "f80"
 		N.regenerate_icons()
 		if(prob(7))
@@ -457,6 +460,16 @@
 		M.say(pick("Shit was SO cash.", "You are everything bad in the world.", "What sports do you play, other than 'jack off to naked drawn Japanese people?'", "Don???t be a stranger. Just hit me with your best shot.", "My name is John and I hate every single one of you."), forced = /datum/reagent/spraytan)
 	..()
 	return
+
+/datum/reagent/spraytan/on_mob_delete(mob/living/M)
+	if(ishuman(M) && saved_color)
+		var/mob/living/carbon/human/N = M
+		if(N.dna.species.use_skintones)
+			N.skin_tone = saved_color
+		else if(MUTCOLORS in N.dna.species.species_traits)
+			N.dna.features["mcolor"] = saved_color
+		N.regenerate_icons()
+	..()
 
 /datum/reagent/mutationtoxin
 	name = "Stable Mutation Toxin"
@@ -485,6 +498,9 @@
 	if(mutation && mutation != current_species)
 		to_chat(H, mutationtext)
 		H.set_species(mutation)
+		if(HAS_TRAIT(H, TRAIT_GENELESS))
+			if(H.has_dna())
+				H.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA), TRUE) 
 	else
 		to_chat(H, "<span class='danger'>The pain vanishes suddenly. You feel no different.</span>")
 
@@ -853,6 +869,7 @@
 	description = "Sterilizes wounds in preparation for surgery."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	taste_description = "bitterness"
+	toxpwr = 0
 
 /datum/reagent/space_cleaner/sterilizine/reaction_mob(mob/living/carbon/C, method=TOUCH, reac_volume)
 	if(method in list(TOUCH, VAPOR, PATCH))
@@ -1203,6 +1220,7 @@
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "E1A116"
+	can_synth = FALSE
 	taste_description = "sourness"
 
 /datum/reagent/stimulum/on_mob_metabolize(mob/living/L)
@@ -1225,6 +1243,7 @@
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
+	can_synth = FALSE
 	taste_description = "burning"
 
 /datum/reagent/nitryl/on_mob_metabolize(mob/living/L)
@@ -1241,24 +1260,31 @@
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl/freon/hypernoblium are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
+	can_synth = FALSE
 	taste_description = "burning"
+
 /datum/reagent/freon/on_mob_metabolize(mob/living/L)
 	. = ..()
 	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=1.6, blacklisted_movetypes=(FLYING|FLOATING))
+
 /datum/reagent/freon/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_modifier(type)
 	return ..()
+
 /datum/reagent/hypernoblium
 	name = "Hyper-Noblium"
 	description = "A suppressive gas that stops gas reactions on those who inhale it."
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl/freon/hyper-nob are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
+	can_synth = FALSE
 	taste_description = "searingly cold"
+
 /datum/reagent/hypernoblium/on_mob_metabolize(mob/living/L)
 	. = ..()
 	if(isplasmaman(L))
 		ADD_TRAIT(L, TRAIT_NOFIRE, type)
+
 /datum/reagent/hypernoblium/on_mob_end_metabolize(mob/living/L)
 	if(isplasmaman(L))
 		REMOVE_TRAIT(L, TRAIT_NOFIRE, type)
@@ -1270,14 +1296,22 @@
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	color = "90560B"
+	can_synth = FALSE
 	taste_description = "rubbery"
 
 /datum/reagent/healium/on_mob_metabolize(mob/living/L)
 	. = ..()
 	L.SetSleeping(1000)
+	L.SetUnconscious(1000)
+
+/datum/reagent/healium/on_mob_life(mob/living/carbon/M)
+	M.SetSleeping(1000)
+	M.SetUnconscious(1000) //in case you have sleep immunity :^)
+	..()
 
 /datum/reagent/healium/on_mob_end_metabolize(mob/living/L)
 	L.SetSleeping(10)
+	L.SetUnconscious(10)
 	return ..()
 
 /datum/reagent/halon
@@ -1286,6 +1320,7 @@
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	color = "90560B"
+	can_synth = FALSE
 	taste_description = "minty"
 
 /datum/reagent/halon/on_mob_metabolize(mob/living/L)
@@ -1304,18 +1339,19 @@
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5
 	color = "90560B"
+	can_synth = FALSE
 	taste_description = "fresh"
 
 /datum/reagent/hexane/on_mob_metabolize(mob/living/L)
 	. = ..()
 	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=1.8, blacklisted_movetypes=(FLYING|FLOATING))
 	ADD_TRAIT(L, CHANGELING_HIVEMIND_MUTE, type)
-	ADD_TRAIT(L, TRAIT_SIXTHSENSE, type)
+	ADD_TRAIT(L, TRAIT_RADIMMUNE, type)
 
 /datum/reagent/hexane/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_modifier(type)
 	REMOVE_TRAIT(L, CHANGELING_HIVEMIND_MUTE, type)
-	REMOVE_TRAIT(L, TRAIT_SIXTHSENSE, type)
+	REMOVE_TRAIT(L, TRAIT_RADIMMUNE, type)
 	return ..()
 
 /////////////////////////Coloured Crayon Powder////////////////////////////
@@ -1736,30 +1772,30 @@
 	name = "Growth Serum"
 	description = "A commercial chemical designed to help older men in the bedroom."//not really it just makes you a giant
 	color = "#ff0000"//strong red. rgb 255, 0, 0
-	var/current_size = 1
+	var/current_size = RESIZE_DEFAULT_SIZE
 	taste_description = "bitterness" // apparently what viagra tastes like
 
 /datum/reagent/growthserum/on_mob_metabolize(mob/living/carbon/H)
 	var/newsize = current_size
 	switch(volume)
 		if(0 to 19)
-			newsize = 1.25
+			newsize = 1.25*RESIZE_DEFAULT_SIZE
 		if(20 to 49)
-			newsize = 1.5
+			newsize = 1.5*RESIZE_DEFAULT_SIZE
 		if(50 to 99)
-			newsize = 2
+			newsize = 2*RESIZE_DEFAULT_SIZE
 		if(100 to 199)
-			newsize = 2.5
+			newsize = 2.5*RESIZE_DEFAULT_SIZE
 		if(200 to INFINITY)
-			newsize = 3.5
-
+			newsize = 3.5*RESIZE_DEFAULT_SIZE
 	H.resize = newsize/current_size
 	current_size = newsize
 	H.update_transform()
 	..()
 
 /datum/reagent/growthserum/on_mob_end_metabolize(mob/living/M)
-	M.resize = 1/current_size
+	M.resize = RESIZE_DEFAULT_SIZE/current_size
+	current_size = RESIZE_DEFAULT_SIZE
 	M.update_transform()
 	..()
 

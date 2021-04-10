@@ -22,7 +22,8 @@
 		/datum/language/sylvan,
 		/datum/language/japanese,
 		/datum/language/machine, //yogs
-		/datum/language/darkspawn //also yogs
+		/datum/language/darkspawn, //also yogs
+		/datum/language/encrypted
 	))
 
 /obj/item/organ/tongue/Initialize(mapload)
@@ -242,8 +243,9 @@
 	speech_args[SPEECH_MESSAGE] = new_message
 
 /obj/item/organ/tongue/polysmorph
-	name = "polysmorphtongue"
-	desc = "A polysmorph tongue."
+	name = "polysmorph tongue"
+	desc = "Similar to that of a true xenomorph, but less bitey."
+	icon_state = "tonguexeno"
 	say_mod = "hisses"
 	modifies_speech = TRUE
 	var/static/list/languages_possible_polysmorph = typecacheof(list(

@@ -24,12 +24,6 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"p" = (
-/obj/item/poster{
-	pixel_y = 32
-	},
-/turf/open/floor/plating,
-/area/template_noop)
 "r" = (
 /obj/machinery/light/small,
 /obj/structure/table,
@@ -64,6 +58,12 @@
 	},
 /area/template_noop)
 "C" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"D" = (
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
 /turf/open/floor/plating,
 /area/template_noop)
 "J" = (
@@ -132,7 +132,7 @@ N
 N
 N
 N
-p
+D
 r
 "}
 (3,1,1) = {"

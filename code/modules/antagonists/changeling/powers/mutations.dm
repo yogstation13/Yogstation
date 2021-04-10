@@ -164,6 +164,7 @@
 	sharpness = IS_SHARP
 	var/can_drop = FALSE
 	var/fake = FALSE
+	resistance_flags = ACID_PROOF
 
 /obj/item/melee/arm_blade/Initialize(mapload,silent,synthetic)
 	. = ..()
@@ -530,6 +531,7 @@
 	flags_inv = HIDEJUMPSUIT
 	cold_protection = 0
 	heat_protection = 0
+	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman) // allows ling armor to carry the usual space suit tanks.
 
 /obj/item/clothing/suit/armor/changeling/Initialize()
 	. = ..()

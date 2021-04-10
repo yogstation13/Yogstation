@@ -68,6 +68,8 @@
 	var/list/learned_recipes //List of learned recipe TYPES.
 
 	var/flavour_text = null
+	///Are we zombified/uncloneable?
+	var/zombified = FALSE
 
 /datum/mind/New(key)
 	src.key = key
@@ -702,6 +704,15 @@
 		for(var/datum/action/A in current.actions)
 			A.Grant(new_character)
 	transfer_mindbound_actions(new_character)
+
+//Check if there is a specific spell in mind
+/datum/mind/proc/CheckSpell(var/obj/effect/proc_holder/spell/spell)
+	if(!spell) return
+	for(var/X in spell_list)
+		var/obj/effect/proc_holder/spell/S = X
+		if(istype(S, spell))
+			return TRUE
+	return FALSE
 
 /datum/mind/proc/transfer_mindbound_actions(mob/living/new_character)
 	for(var/X in spell_list)

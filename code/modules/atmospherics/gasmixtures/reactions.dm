@@ -96,8 +96,6 @@ nobliumformation = 1001
 	min_requirements = list(/datum/gas/water_vapor = MOLES_GAS_VISIBLE)
 
 /datum/gas_reaction/water_vapor/react(datum/gas_mixture/air, datum/holder)
-	if(air.return_temperature()>T0C+500&& air.return_pressure()>6*ONE_ATMOSPHERE)
-		return NO_REACTION
 	var/turf/open/location = isturf(holder) ? holder : null
 	. = NO_REACTION
 	if (air.return_temperature() <= WATER_VAPOR_FREEZE)
@@ -646,7 +644,7 @@ nobliumformation = 1001
 	var/old_heat_capacity = air.heat_capacity()
 	var/heat_efficency = min(temperature * 0.01, air.get_moles(/datum/gas/hydrogen), air.get_moles(/datum/gas/bz))
 	var/energy_used = heat_efficency * 600
-	if ((air.get_moles(/datum/gas/hydrogen) - (heat_efficency * 5 < 0 )) || (air.get_moles(/datum/gas/bz) - (heat_efficency * 0.25 < 0))) //Shouldn't produce gas from nothing.
+	if (air.get_moles(/datum/gas/hydrogen) - (heat_efficency * 5) < 0  || air.get_moles(/datum/gas/bz) - (heat_efficency * 0.25) < 0) //Shouldn't produce gas from nothing.
 		return NO_REACTION
 	air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 5))
 	air.adjust_moles(/datum/gas/bz, -(heat_efficency * 0.25))

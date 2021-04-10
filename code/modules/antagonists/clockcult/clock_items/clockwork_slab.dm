@@ -172,6 +172,7 @@
 	return TRUE
 
 /obj/item/clockwork/slab/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ClockworkSlab", name)
 		ui.set_autoupdate(FALSE) //we'll update this occasionally, but not as often as possible

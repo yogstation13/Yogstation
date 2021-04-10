@@ -1,5 +1,5 @@
 /obj/item/gun/medbeam
-	name = "Medical Beamgun"
+	name = "medical beamgun"
 	desc = "Don't cross the streams!"
 	icon = 'icons/obj/chronos.dmi'
 	icon_state = "chronogun"
@@ -133,3 +133,121 @@
 /obj/item/gun/medbeam/mech/Initialize()
 	. = ..()
 	STOP_PROCESSING(SSobj, src) //Mech mediguns do not process until installed, and are controlled by the holder obj
+
+///////////////////////////I AM ZE ÜBERMENSCH///////////////////////////
+/obj/item/gun/medbeam/uber
+	name = "augmented medical beamgun"
+	desc = "Doctor, are you sure this will work?"
+	icon_state = "chronogun0"
+	actions_types = list(/datum/action/item_action/activate_uber)
+	var/ubercharge = 0
+	var/ubering = FALSE
+	var/mob/last_holder
+	var/mob/uber_target
+
+/// Fully charged for debugging/bus purposes
+/obj/item/gun/medbeam/uber/precharged
+	name = "fully-charged augmented medical beamgun"
+	ubercharge = 100
+	icon_state = "chronogun10"
+
+/// The augmented medical beamgun is 58% charged.
+/obj/item/gun/medbeam/uber/examine(mob/user)
+	. = ..()
+	if(ubercharge == 100)
+		. += "<span class='notice'>[src] is fully charged!</span>"
+	else
+		. += "<span class='notice'>[src] is [ubercharge]% charged.</span>"
+
+/// Handles ubercharge ticks and icon changes
+/obj/item/gun/medbeam/uber/process(delta_time)
+	..()
+
+	if(current_target && !ubering)
+
+		if(current_target.health == current_target.maxHealth)
+			ubercharge += 1.25*delta_time/10 // 80 seconds
+
+		if(current_target.health < current_target.maxHealth)
+			ubercharge += 2.5*delta_time/10 // 40 seconds
+
+	if(ubering)
+		// No uber flashing
+		if(current_target != uber_target)
+			uber_act()
+			ubercharge = 0
+		else
+			ubercharge -= 12.5*delta_time/10
+		if(ubercharge <= 0)
+			uber_act()
+
+	if(ubercharge >= 100)
+		ubercharge = 100
+		name = "fully-charged augmented medical beamgun"
+	else
+		name = "augmented medical beamgun"
+
+	if(ubercharge < 0)
+		ubercharge = 0
+	
+	icon_state = "chronogun[round(ubercharge/10)]"
+
+/// Sets last_holder for uber_act() to prevent exploits
+/obj/item/gun/medbeam/uber/equipped(mob/user)
+	..()
+	last_holder = user
+
+/// If target is lost, uber is lost
+/obj/item/gun/medbeam/uber/LoseTarget()
+	if(ubering)
+		uber_act()
+		ubercharge = 0
+
+	..()
+
+/// Activates/deactivates über
+/obj/item/gun/medbeam/uber/proc/uber_act()
+	if(!ubering)
+		ubering = TRUE
+		uber_target = current_target
+
+		last_holder.status_flags |= GODMODE
+		last_holder.overlay_fullscreen("uber", /obj/screen/fullscreen/uber)
+		last_holder.add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), TEMPORARY_COLOUR_PRIORITY)
+
+		uber_target.status_flags |= GODMODE
+		uber_target.overlay_fullscreen("uber", /obj/screen/fullscreen/uber)
+		uber_target.add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), TEMPORARY_COLOUR_PRIORITY)
+
+	else /// this could remove an admin-given godmode but theres like 0.001% chance that will ever be an issue
+		ubering = FALSE
+
+		last_holder.status_flags &= ~GODMODE
+		last_holder.clear_fullscreen("uber")
+		last_holder.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
+
+		uber_target.status_flags &= ~GODMODE
+		uber_target.clear_fullscreen("uber")
+		uber_target.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
+
+/datum/action/item_action/activate_uber
+	name = "Activate Übercharge"
+	icon_icon = 'icons/obj/chronos.dmi'
+	button_icon_state = "chronogun"
+
+/// Activates über if ubercharge is ready
+/datum/action/item_action/activate_uber/Trigger()
+
+	if(!istype(target, /obj/item/gun/medbeam/uber))
+		return
+
+	var/obj/item/gun/medbeam/uber/gun = target
+
+	if(!IsAvailable())
+		return
+
+	if(gun.ubercharge < 100)
+		to_chat(owner, "<span class='warning'>[gun] is only [gun.ubercharge]% charged!</span>")
+		return
+
+	gun.uber_act()

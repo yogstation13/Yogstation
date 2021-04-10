@@ -91,14 +91,14 @@
 	icon_state = "mailman"
 	item_state = "b_suit"
 	item_color = "mailman"
-
+/* Commented out in favor of yogstation custom content
 /obj/item/clothing/under/rank/psyche
 	name = "psychedelic jumpsuit"
 	desc = "Groovy!"
 	icon_state = "psyche"
 	item_state = "p_suit"
 	item_color = "psyche"
-
+*/
 /obj/item/clothing/under/rank/clown/sexy
 	name = "sexy-clown suit"
 	desc = "It makes you look HONKable!"

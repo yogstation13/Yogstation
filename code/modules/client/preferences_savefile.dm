@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	29
+#define SAVEFILE_VERSION_MAX	31
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -125,6 +125,17 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			job_preferences = list()
 	if(current_version < 29)
 		purrbation = FALSE
+	if(current_version < 30) //Someone doesn't know how to code and make savefiles get corrupted
+		if(!ispath(donor_hat))
+			donor_hat = null
+		if(!ispath(donor_item))
+			donor_item = null
+	if(current_version < 31) //Someone doesn't know how to code and make jukebox and autodeadmin the same thing
+		toggles &= ~DEADMIN_ALWAYS 
+		toggles &= ~DEADMIN_ANTAGONIST
+		toggles &= ~DEADMIN_POSITION_HEAD
+		toggles &= ~DEADMIN_POSITION_SECURITY
+		toggles &= ~DEADMIN_POSITION_SILICON //This last one is technically a no-op but it looks cleaner and less like someone forgot
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -247,8 +258,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// yogs start - Donor features & yogtoggles
 	yogtoggles		= sanitize_integer(yogtoggles, 0, (1 << 23), initial(yogtoggles))
 	donor_pda		= sanitize_integer(donor_pda, 1, GLOB.donor_pdas.len, 1)
-	donor_hat       = sanitize(donor_hat)
-	donor_item      = sanitize(donor_item)
 	purrbation      = sanitize_integer(purrbation, FALSE, TRUE, initial(purrbation))
 
 	accent			= sanitize_text(accent, initial(accent)) // Can't use sanitize_inlist since it doesn't support falsely default values.

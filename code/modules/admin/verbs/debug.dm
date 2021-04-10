@@ -466,7 +466,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		if(worn)
 			id = worn.GetID()
 		if(id)
-			id.icon_state = "gold"
+			id.icon_state = "id_gold"
 			id.access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()
 		else
 			id = new /obj/item/card/id/gold(H.loc)

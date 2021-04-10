@@ -386,8 +386,9 @@
 /atom/proc/AllowDrop()
 	return FALSE
 
+/// Are you allowed to pass a sided object of the same dir
 /atom/proc/CheckExit()
-	return 1
+	return TRUE
 
 ///Is this atom within 1 tile of another atom
 /atom/proc/HasProximity(atom/movable/AM as mob|obj)

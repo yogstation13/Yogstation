@@ -1115,6 +1115,27 @@ B --><-- A
 /proc/get_random_station_turf()
 	return safepick(get_area_turfs(pick(GLOB.the_station_areas)))
 
+/proc/get_safe_random_station_turf(list/areas_to_pick_from = GLOB.the_station_areas) //excludes dense turfs (like walls) and areas that have valid_territory set to FALSE
+	for (var/i in 1 to 5)
+		var/list/L = get_area_turfs(pick(areas_to_pick_from))
+		var/turf/target
+		while (L.len && !target)
+			var/I = rand(1, L.len)
+			var/turf/T = L[I]
+			var/area/X = get_area(T)
+			if(!T.density && X.valid_territory)
+				var/clear = TRUE
+				for(var/obj/O in T)
+					if(O.density)
+						clear = FALSE
+						break
+				if(clear)
+					target = T
+			if (!target)
+				L.Cut(I,I+1)
+		if (target)
+			return target
+
 /proc/get_closest_atom(type, list, source)
 	var/closest_atom
 	var/closest_distance
@@ -1554,14 +1575,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 	if(channels_to_use.len)
 		world.TgsChatBroadcast()
-
-/proc/num2sign(numeric)
-	if(numeric > 0)
-		return 1
-	else if(numeric < 0)
-		return -1
-	else
-		return 0
 
 /proc/CallAsync(datum/source, proctype, list/arguments)
 	set waitfor = FALSE

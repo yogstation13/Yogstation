@@ -509,10 +509,11 @@
 	reqs = 	list(/obj/item/stack/sheet/cloth = 2, /obj/item/stack/rods = 1)
 	result = /obj/structure/cloth_curtain
 	category = CAT_MISC
-	
+
 /datum/crafting_recipe/secure_closet
 	name = "Secure Closet"
 	reqs = list(/obj/item/stack/sheet/metal = 5, /obj/item/stack/cable_coil = 10, /obj/item/electronics/airlock = 1)
+	parts = list(/obj/item/electronics/airlock = 1)
 	result = /obj/structure/closet/secure_closet
 	category = CAT_MISC
 
@@ -521,7 +522,7 @@
 	reqs = list(/obj/item/stack/sheet/plasteel = 10, /obj/item/stack/cable_coil = 5, /obj/item/electronics/airlock = 1)
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	time = 10 SECONDS
-	result = /obj/machinery/door/poddoor/shutters
+	result = /obj/machinery/door/poddoor/shutters/preopen
 	category = CAT_MISC
 
 /datum/crafting_recipe/blastdoor
@@ -529,7 +530,7 @@
 	reqs = list(/obj/item/stack/sheet/plasteel = 20, /obj/item/stack/cable_coil = 10, /obj/item/electronics/airlock = 1)
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	time = 20 SECONDS
-	result = /obj/machinery/door/poddoor/shutters
+	result = /obj/machinery/door/poddoor/preopen
 	category = CAT_MISC
 
 /datum/crafting_recipe/chemical_payload
@@ -650,6 +651,14 @@
 	name = "Bone Sword"
 	result = /obj/item/claymore/bone
 	time = 4 SECONDS
+	reqs = list(/obj/item/stack/sheet/bone = 3,
+				/obj/item/stack/sheet/sinew = 2)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/bonepickaxe
+	name = "Bone Pickaxe"
+	result = /obj/item/pickaxe/bonepickaxe
+	time = 50
 	reqs = list(/obj/item/stack/sheet/bone = 3,
 				/obj/item/stack/sheet/sinew = 2)
 	category = CAT_PRIMAL
@@ -867,10 +876,11 @@
 	name = "Elder Atmosian Statue"
 	result = /obj/structure/statue/elder_atmosian
 	time = 6 SECONDS
-	reqs = list(/obj/item/stack/sheet/mineral/metal_hydrogen = 10
-				//jamie - /obj/item/grenade/gas_crystal/healium_crystal = 1,
-				// jamie - /obj/item/grenade/gas_crystal/pluonium_crystal = 1,
-				// jamie - /obj/item/grenade/gas_crystal/zauker_crystal = 1
+	reqs = list(/obj/item/stack/sheet/mineral/metal_hydrogen = 10,
+				/obj/item/stack/sheet/mineral/zaukerite = 1,
+				/obj/item/grenade/gas_crystal/healium_crystal = 1,
+				/obj/item/grenade/gas_crystal/pluonium_crystal = 1,
+				/obj/item/grenade/gas_crystal/healium_crystal = 1
 				)
 	category = CAT_MISC
 

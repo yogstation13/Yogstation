@@ -9,7 +9,8 @@
 	circuit = /obj/item/circuitboard/machine/chem_heater
 	var/obj/item/reagent_containers/beaker = null
 	var/target_temperature = 300
-	var/heater_coefficient = 0.1
+	/// Multiplier for heat
+	var/heater_coefficient = 0.025
 	var/on = FALSE
 
 /obj/machinery/chem_heater/Destroy()
@@ -50,7 +51,7 @@
 	return TRUE
 
 /obj/machinery/chem_heater/RefreshParts()
-	heater_coefficient = 0.1
+	heater_coefficient = initial(heater_coefficient)
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
 		heater_coefficient *= M.rating
 
@@ -65,7 +66,14 @@
 		return
 	if(on)
 		if(beaker && beaker.reagents.total_volume)
-			beaker.reagents.adjust_thermal_energy((target_temperature - beaker.reagents.chem_temp) * heater_coefficient * SPECIFIC_HEAT_DEFAULT * beaker.reagents.total_volume)
+			var/direction = beaker.reagents.chem_temp > target_temperature // is it cooling? used to allow it to snap to the target temp
+			var/heating = (1000 - beaker.reagents.chem_temp) * heater_coefficient * (direction ? -1 : 1) // How much to increase the heat by
+			if(heating + beaker.reagents.chem_temp >= target_temperature && !direction) // Heat snapping condition
+				heating = target_temperature - beaker.reagents.chem_temp // Makes it snap to target temp
+			else if(heating + beaker.reagents.chem_temp <= target_temperature && direction) // Cooling snapping condition
+				heating = target_temperature - beaker.reagents.chem_temp // Makes it snap to target temp
+
+			beaker.reagents.adjust_thermal_energy(heating * SPECIFIC_HEAT_DEFAULT * beaker.reagents.total_volume)
 			beaker.reagents.handle_reactions()
 
 /obj/machinery/chem_heater/attackby(obj/item/I, mob/user, params)

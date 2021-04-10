@@ -78,7 +78,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	mutatelist = list(/obj/item/seeds/replicapod)
-	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/reagent_containers/food/snacks/grown/cabbage
 	seed = /obj/item/seeds/cabbage
@@ -116,37 +116,6 @@
 	bitesize_mod = 2
 	foodtype = VEGETABLES | SUGAR
 	distill_reagent = /datum/reagent/consumable/ethanol/rum
-
-// Gatfruit
-/obj/item/seeds/gatfruit
-	name = "pack of gatfruit seeds"
-	desc = "These seeds grow into .357 revolvers. A prized commodity among the criminal shadow-collective."
-	icon_state = "seed-gatfruit"
-	species = "gatfruit"
-	plantname = "Gatfruit Tree"
-	product = /obj/item/reagent_containers/food/snacks/grown/shell/gatfruit
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
-	lifespan = 20
-	endurance = 20
-	maturation = 40
-	production = 10
-	yield = 2
-	potency = 60
-	growthstages = 2
-	rarity = 60 // Obtainable only with xenobio+superluck.
-	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
-	reagents_add = list(/datum/reagent/sulfur = 0.1, /datum/reagent/carbon = 0.1, /datum/reagent/nitrogen = 0.07, /datum/reagent/potassium = 0.05)
-
-/obj/item/reagent_containers/food/snacks/grown/shell/gatfruit
-	seed = /obj/item/seeds/gatfruit
-	name = "gatfruit"
-	desc = "It smells like burning."
-	icon_state = "gatfruit"
-	trash = /obj/item/gun/ballistic/revolver
-	bitesize_mod = 2
-	foodtype = FRUIT
-	tastes = list("gunpowder" = 1)
-	wine_power = 90 //It burns going down, too.
 
 //Cherry Bombs
 /obj/item/seeds/cherry/bomb

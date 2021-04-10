@@ -101,12 +101,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"p" = (
-/turf/closed/wall{
-	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall"
-	},
-/area/security/execution/transfer)
 "q" = (
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
@@ -232,6 +226,9 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
+/area/security/execution/transfer)
+"C" = (
+/turf/closed/wall/r_wall,
 /area/security/execution/transfer)
 "D" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
@@ -418,33 +415,33 @@ a
 a
 a
 a
-p
-p
-p
-p
-p
+C
+C
+C
+C
+C
 "}
 (2,1,1) = {"
 a
 a
 a
 a
-p
+C
 s
 l
 j
-p
+C
 "}
 (3,1,1) = {"
-p
-p
-p
+C
+C
+C
 d
-p
+C
 w
 Y
 P
-p
+C
 "}
 (4,1,1) = {"
 Z

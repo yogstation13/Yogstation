@@ -686,7 +686,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	name = "capture"
 
 /datum/objective/capture/proc/gen_amount_goal()
-	target_amount = rand(5,10)
+	target_amount = rand(3,5)
 	update_explanation_text()
 	return target_amount
 

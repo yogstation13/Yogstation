@@ -45,7 +45,7 @@
 	nutriment_factor = 15 * REAGENTS_METABOLISM
 	color = "#664330" // rgb: 102, 67, 48
 
-	var/brute_heal = 1
+	var/brute_heal = 0.5
 	var/burn_heal = 0
 
 /datum/reagent/consumable/nutriment/on_mob_life(mob/living/carbon/M)
@@ -92,8 +92,8 @@
 	name = "Vitamin"
 	description = "All the best vitamins, minerals, and carbohydrates the body needs in pure form."
 
-	brute_heal = 1
-	burn_heal = 1
+	brute_heal = 1.5
+	burn_heal = 1.5
 
 /datum/reagent/consumable/nutriment/vitamin/on_mob_life(mob/living/carbon/M)
 	if(M.satiety < 600)
@@ -106,7 +106,7 @@
 	color = "#EADD6B" //RGB: 234, 221, 107 (based off of canola oil)
 	taste_mult = 0.8
 	taste_description = "oil"
-	nutriment_factor = 7 * REAGENTS_METABOLISM //Not very healthy on its own
+	nutriment_factor = 1 * REAGENTS_METABOLISM //Not very healthy on its own
 	metabolization_rate = 10 * REAGENTS_METABOLISM
 	var/fry_temperature = 450 //Around ~350 F (117 C) which deep fryers operate around in the real world
 
@@ -158,7 +158,7 @@
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 255, 255, 255
 	taste_mult = 1.5 // stop sugar drowning out other flavours
-	nutriment_factor = 10 * REAGENTS_METABOLISM
+	nutriment_factor = 2 * REAGENTS_METABOLISM
 	metabolization_rate = 2 * REAGENTS_METABOLISM
 	overdose_threshold = 200 // Hyperglycaemic shock
 	taste_description = "sweetness"
@@ -291,31 +291,31 @@
 		if ( eyes_covered && mouth_covered )
 			return
 		else if ( mouth_covered )	// Reduced effects if partially protected
-			if(prob(30))
+			if(prob(50))
 				victim.emote("scream")
-			victim.blur_eyes(12)
-			victim.blind_eyes(8)
+			victim.blur_eyes(14)
+			victim.blind_eyes(10)
 			victim.confused = max(M.confused, 10)
 			victim.damageoverlaytemp = 75
-			victim.Paralyze(80)
+			victim.Paralyze(100)
 			M.adjustStaminaLoss(3)
 			return
 		else if ( eyes_covered ) // Eye cover is better than mouth cover
 			if(prob(20))
-				M.emote("cough")
+				victim.emote("cough")
 			victim.blur_eyes(4)
 			victim.confused = max(M.confused, 6)
 			victim.damageoverlaytemp = 50
 			M.adjustStaminaLoss(3)
 			return
 		else // Oh dear :D
-			if(prob(50))
+			if(prob(60))
 				victim.emote("scream")
-			victim.blur_eyes(12)
-			victim.blind_eyes(8)
+			victim.blur_eyes(14)
+			victim.blind_eyes(10)
 			victim.confused = max(M.confused, 12)
 			victim.damageoverlaytemp = 100
-			victim.Paralyze(120)
+			victim.Paralyze(140)
 			M.adjustStaminaLoss(5)
 		victim.update_damage_hud()
 
@@ -443,7 +443,7 @@
 /datum/reagent/consumable/cornoil
 	name = "Corn Oil"
 	description = "An oil derived from various types of corn."
-	nutriment_factor = 20 * REAGENTS_METABOLISM
+	nutriment_factor = 15 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "slime"
 

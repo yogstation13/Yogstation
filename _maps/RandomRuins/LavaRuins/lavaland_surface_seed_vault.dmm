@@ -5,6 +5,12 @@
 "b" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"c" = (
+/obj/machinery/vending/hydronutrients{
+	onstation = 0
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/seedvault)
 "d" = (
 /obj/structure/table/wood,
 /obj/item/lighter,
@@ -58,10 +64,6 @@
 "k" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/seed_vault,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/powered/seedvault)
-"l" = (
-/obj/machinery/door/airlock,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "m" = (
@@ -133,11 +135,9 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "v" = (
-/obj/machinery/vending/hydronutrients,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/powered/seedvault)
-"w" = (
-/obj/machinery/vending/hydroseeds,
+/obj/machinery/vending/hydroseeds{
+	onstation = 0
+	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "x" = (
@@ -162,6 +162,14 @@
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/seedvault)
+"A" = (
+/obj/machinery/door/airlock,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
@@ -272,6 +280,16 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
+"Z" = (
+/obj/machinery/door/airlock,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/seedvault)
 
 (1,1,1) = {"
 a
@@ -349,8 +367,8 @@ Q
 Q
 Q
 Q
-l
-l
+Z
+Z
 Q
 Q
 Q
@@ -433,10 +451,10 @@ a
 Q
 e
 h
-l
+A
 h
 h
-v
+c
 h
 h
 B
@@ -480,7 +498,7 @@ h
 Q
 p
 h
-w
+v
 h
 h
 D

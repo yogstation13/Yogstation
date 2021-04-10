@@ -110,6 +110,7 @@
 #define INIT_ORDER_VIS				80
 #define INIT_ORDER_MATERIALS		76
 #define INIT_ORDER_RESEARCH			75
+#define INIT_ORDER_STATION			74
 #define INIT_ORDER_EVENTS			70
 #define INIT_ORDER_MAPPING			65
 #define INIT_ORDER_JOBS				60
@@ -190,7 +191,7 @@
 
 ///Compile all the overlays for an atom from the cache lists
 #define COMPILE_OVERLAYS(A)\
-	if (TRUE) {\
+	do {\
 		var/list/ad = A.add_overlays;\
 		var/list/rm = A.remove_overlays;\
 		var/list/po = A.priority_overlays;\
@@ -214,7 +215,7 @@
 		A.flags_1 &= ~OVERLAY_QUEUED_1;\
 		if(isturf(A)){SSdemo.mark_turf(A);}\
 		if(isobj(A) || ismob(A)){SSdemo.mark_dirty(A);}\
-	}
+	} while (FALSE)
 
 
 // Air subsystem subtasks

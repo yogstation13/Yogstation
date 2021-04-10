@@ -1,5 +1,0 @@
-author: " Xoxeyos"
-delete-after: true 
-changes: 
-  - tweak: "Buttons have been moved to the game mode panel."
-  - bugfix: "Fixes forced roundstart rulesets"

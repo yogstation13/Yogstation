@@ -103,7 +103,8 @@
 		open(1)
 
 /obj/machinery/door/poddoor/attackby(obj/item/W, mob/user, params)
-	if(special) // No Cheesing
+	. = ..()
+	if(special && W.tool_behaviour == TOOL_SCREWDRIVER) // No Cheesing
 		to_chat(user, "<span class='warning'>This door appears to have a different screw.</span>")
 		return
 
@@ -175,9 +176,6 @@
 			
 			constructionstate = INTACT
 			return
-
-	else
-		to_chat(user, "<span class='warning'>You need to open the panel first.</span>")
 
 /obj/machinery/door/poddoor/examine(mob/user)
 	. = ..()

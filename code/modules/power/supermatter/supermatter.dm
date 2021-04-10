@@ -176,7 +176,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/messages_admins = TRUE
 
 	/// Makes the SM loose more power the higher it is
-	var/powerloss_dynamic_scaling = 0
+	var/powerloss_dynamic_scaling = 1
 
 	/// Ratio of power reduction to power addition. Range is 0-1
 	var/gasmix_power_ratio = 0
@@ -194,7 +194,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/mole_heat_penalty = 0
 
 	/// How much powerloss to reduce. Scale of 1-0
-	var/powerloss_inhibitor = 0
+	var/powerloss_inhibitor = 1
 
 
 /obj/machinery/power/supermatter_crystal/Initialize()

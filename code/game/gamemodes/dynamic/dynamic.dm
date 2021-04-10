@@ -262,14 +262,13 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	. += "<b>[title]</b></center><BR>"
 	. += desc
 
-	if(station_goals.len)
-		. += "<hr><b>Special Orders for [station_name()]:</b>"
-		for(var/datum/station_goal/G in station_goals)
-			G.on_report()
-			. += G.get_report()
+	. += generate_station_goal_report()
+	. += generate_station_trait_report()
+
+	desc += "\n\n[generate_station_trait_announcement()]"
 
 	print_command_report(., "Central Command Status Summary", announce=FALSE)
-	priority_announce(desc, title, 'sound/ai/intercept.ogg')
+	priority_announce(desc, title, ANNOUNCER_INTERCEPT)
 	if(GLOB.security_level < SEC_LEVEL_BLUE)
 		set_security_level(SEC_LEVEL_BLUE)
 
@@ -412,6 +411,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 		configure_ruleset(rule)
 		message_admins("Drafting players for forced ruleset [rule.name].")
 		log_game("DYNAMIC: Drafting players for forced ruleset [rule.name].")
+		configure_ruleset(rule)
 		rule.mode = src
 		rule.acceptable(roundstart_pop_ready, threat_level)	// Assigns some vars in the modes, running it here for consistency
 		rule.candidates = candidates.Copy()
@@ -833,7 +833,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 			return RULE_OF_THREE(40, 20, x) + 50
 		if (20 to INFINITY)
 			return rand(90, 100)
-			
+
 /datum/game_mode/dynamic/proc/configure_ruleset(datum/dynamic_ruleset/ruleset)
 	if(configuration)
 		if(!configuration[ruleset.ruletype])

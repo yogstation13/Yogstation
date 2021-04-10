@@ -347,7 +347,7 @@
 	suit = /obj/item/clothing/suit/space/hardsuit/deathsquad
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
-	mask = /obj/item/clothing/mask/gas/sechailer/swat
+	mask = /obj/item/clothing/mask/gas/sechailer/swat/encrypted
 	glasses = /obj/item/clothing/glasses/hud/toggle/thermal
 	back = /obj/item/storage/backpack/security
 	l_pocket = /obj/item/melee/transforming/energy/sword/saber
@@ -402,7 +402,7 @@
 	suit = /obj/item/clothing/suit/space/hardsuit/syndi/debug
 	shoes = /obj/item/clothing/shoes/magboots/advance
 	suit_store = /obj/item/tank/internals/oxygen
-	mask = /obj/item/clothing/mask/gas/welding
+	mask = /obj/item/clothing/mask/gas/syndicate
 	belt = /obj/item/storage/belt/utility/chief/full
 	gloves = /obj/item/clothing/gloves/combat
 	id = /obj/item/card/id/ert

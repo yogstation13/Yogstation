@@ -92,31 +92,31 @@ ALERT_DELTA Destruction of the station is imminent. All crew are instructed to o
 ## Default probablity is 1, increase to make that mode more likely to be picked.
 ## Set to 0 to disable that mode.
 
+# New
+PROBABILITY DARKSPAWN 6
+PROBABILITY HERESY 4
+
 # Lowpop
-PROBABILITY TRAITOR 6
-PROBABILITY TRAITORBRO 6
+PROBABILITY TRAITOR 5
+PROBABILITY TRAITORBRO 5
 PROBABILITY TRAITORCHAN 6
+PROBABILITY TRAITORVAMP 4
 PROBABILITY INTERNAL_AFFAIRS 3
-PROBABILITY CHANGELING 3
+PROBABILITY CHANGELING 4
+PROBABILITY VAMPIRE 4
 
 # Group antags
-PROBABILITY REVOLUTION 9
-PROBABILITY GANG 5
-PROBABILITY CULT 9
-PROBABILITY CLOCKWORK_CULT 3
+PROBABILITY REVOLUTION 8
+PROBABILITY GANG 6
+PROBABILITY CULT 5
+PROBABILITY CLOCKWORK_CULT 5
 
 # Snowflakes
-PROBABILITY SHADOWLING 4
-PROBABILITY WIZARD 7
+PROBABILITY SHADOWLING 6
+PROBABILITY WIZARD 8
 PROBABILITY NUCLEAR 9
-PROBABILITY MALF 6
-PROBABILITY CLOWNOPS 0
-
-# New
-PROBABILITY HIVEMIND 0
-PROBABILITY OVERTHROW 0
-PROBABILITY TRAITORVAMP 2
-PROBABILITY VAMPIRE 2
+PROBABILITY MALF 8
+PROBABILITY CLOWNOPS 1
 
 # Special
 PROBABILITY RAGINMAGES 1
@@ -126,6 +126,7 @@ PROBABILITY EXTENDED 0
 PROBABILITY SECRET_EXTENDED 0
 PROBABILITY DEVIL 0
 PROBABILITY DEVIL_AGENTS 0
+PROBABILITY ZOMBIE 1
 
 ## Percent weight reductions for three of the most recent modes
 
@@ -327,7 +328,7 @@ GATEWAY_DELAY 18000
 ## If the number of players ready at round starts exceeds this threshold, JOBS_HAVE_MINIMAL_ACCESS will automatically be enabled. Otherwise, it will be disabled.
 ## This is useful for accomodating both low and high population rounds on the same server.
 ## Comment this out or set to 0 to disable this automatic toggle.
-MINIMAL_ACCESS_THRESHOLD 8
+MINIMAL_ACCESS_THRESHOLD 18
 
 ## Comment this out this if you wish to use the setup where jobs have more access.
 ## This is intended for servers with low populations - where there are not enough
@@ -599,5 +600,5 @@ ECONOMY
 ## Uncomment to enable dynamic ruleset config file.
 DYNAMIC_CONFIG_ENABLED
 
-## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for both
+## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for any, 4 for TEG
 ENGINE_TYPE 3

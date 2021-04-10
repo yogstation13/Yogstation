@@ -35,18 +35,15 @@ endmap
 
 map eclipsestation
 	minplayers 60
+	disabled 
 endmap
 
 map runtimestation
-endmap
-
-map monsterstation
-endmap
-
-map redoubt
+	disabled 
 endmap
 
 map multiz_debug
+	disabled 
 endmap
 
 

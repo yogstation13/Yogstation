@@ -147,7 +147,7 @@
 				var/datum/antagonist/rev/R = M.has_antag_datum(/datum/antagonist/rev)
 				R.remove_revolutionary(FALSE, "gamemode")
 		priority_announce("It appears the mutiny has been quelled. Please return yourself and your incapacitated colleagues to work. \
-			We have remotely blacklisted the head revolutionaries in your medical records to prevent accidental revival.", null, 'sound/ai/attention.ogg', null, "Central Command Loyalty Monitoring Division")
+			We have remotely blacklisted the head revolutionaries in your medical records to prevent accidental revival.", null, null, null, "Central Command Loyalty Monitoring Division")
 		return RULESET_STOP_PROCESSING
 
 
@@ -214,7 +214,7 @@
 //                                          //
 //////////////////////////////////////////////
 
-/datum/dynamic_ruleset/latejoin/heretic_smuggler
+/*/datum/dynamic_ruleset/latejoin/heretic_smuggler
 	name = "Heretic Smuggler"
 	antag_datum = /datum/antagonist/heretic
 	antag_flag = ROLE_HERETIC
@@ -224,4 +224,4 @@
 	weight = 4
 	cost = 10
 	requirements = list(40,30,20,10,10,10,10,10,10,10)
-	repeatable = TRUE
+	repeatable = TRUE */

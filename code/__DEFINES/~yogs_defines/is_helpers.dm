@@ -6,6 +6,11 @@
 #define isveil(A) (A?.mind?.has_antag_datum(/datum/antagonist/veil))
 #define is_darkspawn_or_veil(A) (A.mind && isdarkspawn(A) || isveil(A))
 
-#define isspacepod(A) (istype(A, /obj/spacepod))
+#define is_clockcult(M) (istype(M, /mob/living) && M.mind && M.mind.has_antag_datum(/datum/antagonist/clockcult))
 
-#define ispreternis(A) (is_species(A, /datum/species/preternis))
+#define is_traitor(M) (istype(M, /mob/living) && M.mind && M.mind.has_antag_datum(/datum/antagonist/traitor))
+#define is_blood_brother(M) (istype(M, /mob/living) && M.mind && M.mind.has_antag_datum(/datum/antagonist/brother))
+#define is_nukeop(M) (M.mind && M.mind.has_antag_datum(/datum/antagonist/nukeop)) // also detects clownOP
+#define is_syndicate(M) (istype(M, /mob/living) && is_traitor(M) || is_blood_brother(M) || is_nukeop(M))
+
+#define isspacepod(A) (istype(A, /obj/spacepod))

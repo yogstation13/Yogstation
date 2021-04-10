@@ -4,7 +4,7 @@
 /obj/item/clothing/mask/gas/sechailer
 	name = "security gas mask"
 	desc = "A standard issue Security gas mask with integrated 'Compli-o-nator 3000' device. Plays over a dozen pre-recorded compliance phrases designed to get scumbags to stand still whilst you tase them. Do not tamper with the device."
-	actions_types = list(/datum/action/item_action/halt, /datum/action/item_action/adjust)
+	actions_types = list(/datum/action/item_action/halt, /datum/action/item_action/adjust, /datum/action/item_action/dispatch)
 	icon_state = "sechailer"
 	item_state = "sechailer"
 	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
@@ -23,12 +23,32 @@
 /obj/item/clothing/mask/gas/sechailer/swat
 	name = "\improper SWAT mask"
 	desc = "A close-fitting tactical mask with an especially aggressive Compli-o-nator 3000."
-	actions_types = list(/datum/action/item_action/halt)
+	actions_types = list(/datum/action/item_action/halt, /datum/action/item_action/dispatch)
 	icon_state = "swat"
 	item_state = "swat"
 	aggressiveness = 3
 	flags_inv = HIDEFACIALHAIR|HIDEFACE|HIDEEYES|HIDEEARS|HIDEHAIR
 	visor_flags_inv = 0
+
+/obj/item/clothing/mask/gas/sechailer/swat/encrypted
+	name = "\improper MK.II SWAT mask"
+	desc = "A top-grade mask that encrypts your voice, allowing only other users of the same mask to understand you. \
+			There are some buttons with basic commands to control the locals."
+
+/obj/item/clothing/mask/gas/sechailer/swat/encrypted/equipped(mob/living/user)
+	user.add_blocked_language(subtypesof(/datum/language/) - /datum/language/encrypted, LANGUAGE_HAT)
+	user.grant_language(/datum/language/encrypted, TRUE, TRUE, LANGUAGE_HAT)
+	..()
+
+/obj/item/clothing/mask/gas/sechailer/swat/encrypted/dropped(mob/living/user)
+	user.remove_blocked_language(subtypesof(/datum/language/), LANGUAGE_HAT)
+	user.remove_language(/datum/language/encrypted, TRUE, TRUE, LANGUAGE_HAT)
+	..()
+
+/obj/item/clothing/mask/gas/sechailer/swat/encrypted/on_mob_say(mob/living/carbon/L, message, message_range)
+	if(L.wear_mask == src)
+		var/chosen_sound = file("sound/voice/cpvoice/ds ([rand(1,27)]).ogg")
+		playsound(L, chosen_sound, 50, FALSE)
 
 /obj/item/clothing/mask/gas/sechailer/swat/spacepol
 	name = "spacepol mask"
@@ -42,7 +62,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "taperecorder_idle"
 	aggressiveness = 1 //Borgs are nicecurity!
-	actions_types = list(/datum/action/item_action/halt)
+	actions_types = list(/datum/action/item_action/halt, /datum/action/item_action/dispatch)
 
 /obj/item/clothing/mask/gas/sechailer/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
@@ -70,6 +90,8 @@
 /obj/item/clothing/mask/gas/sechailer/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/halt))
 		halt()
+	else if(istype(action, /datum/action/item_action/dispatch))
+		dispatch(user)
 	else
 		adjustmask(user)
 

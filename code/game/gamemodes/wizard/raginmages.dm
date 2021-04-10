@@ -95,7 +95,6 @@
 			var/mob/living/carbon/human/new_character= makeBody(theghost)
 			new_character.mind.make_Wizard()
 			making_mage = 0
-			return 1
 
 /datum/game_mode/wizard/raginmages/proc/makeBody(mob/dead/observer/G_found) // Uses stripped down and bastardized code from respawn character
 	if(!G_found || !G_found.key)
