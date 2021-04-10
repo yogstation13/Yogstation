@@ -427,7 +427,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
-			if("legs" in pref_species.default_features)
+			if(("legs" in pref_species.default_features) && !(DIGITIGRADE in pref_species.species_traits))
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
