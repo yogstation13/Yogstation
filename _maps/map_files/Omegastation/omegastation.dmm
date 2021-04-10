@@ -36425,6 +36425,17 @@
 /obj/item/reagent_containers/food/drinks/bottle/lizardwine,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar/atrium)
+"oRf" = (
+/obj/docking_port/stationary{
+	dir = 2;
+	dwidth = 11;
+	height = 22;
+	id = "whiteship_home";
+	name = "SS13: South of Arrivals";
+	width = 35
+	},
+/turf/open/space/basic,
+/area/space)
 "oSY" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -89231,7 +89242,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+oRf
 aaa
 aaa
 aaa
