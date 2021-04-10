@@ -1,0 +1,5 @@
+author: "swissloaf"
+delete-after: true 
+changes: 
+  - rscadd: "Adds station traits"
+  - soundadd: "Adds two new announcer sounds: Intern and medbot"
