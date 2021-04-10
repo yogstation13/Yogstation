@@ -771,7 +771,10 @@ GLOBAL_LIST_EMPTY(PDAs)
 	tnote += signal
 
 	if (!silent)
-		playsound(src, 'sound/machines/twobeep_high.ogg', 50, 1)
+		if(HAS_TRAIT(SSstation, STATION_TRAIT_PDA_GLITCHED))
+			playsound(src, pick('sound/machines/twobeep_voice1.ogg', 'sound/machines/twobeep_voice2.ogg'), 50, TRUE)
+		else
+			playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
 		audible_message("[icon2html(src, hearers(src))] *[ttone]*", null, 3)
 	//Search for holder of the PDA.
 	var/mob/living/L = null

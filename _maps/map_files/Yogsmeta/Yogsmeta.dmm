@@ -3467,12 +3467,6 @@
 "agF" = (
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
-"agG" = (
-/obj/structure/table/wood,
-/obj/item/storage/box/fancy/cigarettes,
-/obj/item/clothing/glasses/sunglasses,
-/turf/open/floor/carpet,
-/area/security/detectives_office)
 "agH" = (
 /obj/structure/closet/secure_closet/brig,
 /obj/effect/turf_decal/tile/neutral{
@@ -83356,6 +83350,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/engine/foyer)
+"xTA" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/fancy/cigarettes,
+/obj/item/clothing/glasses/sunglasses,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/turf/open/floor/carpet,
+/area/security/detectives_office)
 "xTR" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -114609,7 +114610,7 @@ alW
 aHe
 asm
 agE
-agG
+xTA
 aBn
 aCv
 awo

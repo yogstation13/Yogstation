@@ -1,5 +1,0 @@
-author: "swissloaf"
-delete-after: true 
-changes: 
-  - rscadd: "Overhauls the admin-only department revolt event to be more playable"
-  - tweak: "Tweaks some minor bugs from the old version of the event"

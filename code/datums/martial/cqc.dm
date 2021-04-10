@@ -120,7 +120,7 @@
 		playsound(get_turf(A), 'sound/weapons/genhit1.ogg', 50, 1, -1)
 		D.Paralyze(5)
 		D.apply_damage(40, STAMINA)
-		D.silent += 4
+		D.silent += 2
 	return TRUE
 
 /**
@@ -164,7 +164,6 @@
 		D.visible_message("<span class='warning'>[A] locks [D] into a restraining position!</span>", \
 							"<span class='userdanger'>[A] locks you into a restraining position!</span>")
 		D.Stun(20)
-		D.silent += 1
 		if(!(A.pulling == D))
 			D.grabbedby(A, 1)
 		if(A.grab_state < GRAB_AGGRESSIVE)
@@ -286,7 +285,7 @@
 /**
   * CQC chokehold handle
   *
-  * handles chokehold attack, dealing 10 oxygen damage with stamina damage multiplied as a % bonus every second, also silences for the duration
+  * handles chokehold attack, dealing 10 oxygen damage with stamina damage multiplied as a % bonus every second
   * returns true if total damage reaches 80 or oxygen damage reaches 50
   * returns false if the attack is interrupted
   */
@@ -300,7 +299,6 @@
 		if(D.health - damage2deal < 20 || D.stat)
 			return TRUE
 		D.adjustOxyLoss(damage2deal)
-		D.silent += 1
 		if(D.getOxyLoss() >= 50)
 			return TRUE
 
@@ -339,7 +337,7 @@
 
 	to_chat(usr, "<span class='notice'>Slam</span>: Grab Harm. Slam opponent into the ground, knocking them down and dealing decent stamina damage.")
 	to_chat(usr, "<span class='notice'>CQC Kick</span>: Disarm Harm. Knocks opponent away and slows them. Deals heavy stamina damage to prone opponents.")
-	to_chat(usr, "<span class='notice'>Restrain</span>: Grab Grab. Locks opponents into a restraining position, making your grab harder to break out of, disarm to begin a chokehold which deal gradual oxygen damage until the opponent is unconscious, with the damage increasing based on their stamina damage. Failing to complete the chokehold will weaken and possibly break your grab.")
+	to_chat(usr, "<span class='notice'>Restrain</span>: Grab Grab. Locks opponents into a restraining position, making your grab harder to break out of. Disarm to begin a chokehold which deal gradual oxygen damage until the opponent is unconscious, with the damage increasing based on their stamina damage. Failing to complete the chokehold will weaken and possibly break your grab.")
 	to_chat(usr, "<span class='notice'>Pressure</span>: Disarm Grab. Disables the targetted limb or a random limb if the head or chest are targetted, as well as forcing the target to drop anything they are holding.")
 	to_chat(usr, "<span class='notice'>Consecutive CQC</span>: Harm Harm Harm Harm Harm. Offensive move, deals bonus stamina damage and knocking down on the last hit.")
 

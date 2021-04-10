@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		return "Bar Irish"
 
 /obj/effect/landmark/stationroom/box/engine
-	template_names = list("Engine SM", "Engine Singulo And Tesla")
+	template_names = list("Engine SM", "Engine Singulo And Tesla", "Engine TEG")
 	icon = 'yogstation/icons/rooms/box/engine.dmi'
 
 /obj/effect/landmark/stationroom/box/engine/choose()
@@ -103,16 +103,20 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		if(2)
 			return "Engine Singulo And Tesla"
 		if(3)
-			if(prob(50))
+			if(prob(33))
 				return "Engine SM"
-			else
+			if(prob(33))
 				return "Engine Singulo And Tesla"
+			if(prob(33))
+				return "Engine TEG"
+		if(4)
+			return "Engine TEG"
 
 /obj/effect/landmark/stationroom/box/xenobridge
 	template_names = list("Xenobiology Bridge", "Xenobiology Lattice")
 
 /obj/effect/landmark/stationroom/box/testingsite
-	template_names = list("Bunker Bomb Range","Syndicate Bomb Range","Clown Bomb Range")
+	template_names = list("Bunker Bomb Range","Syndicate Bomb Range","Clown Bomb Range", "Clerk Bomb Range")
 
 /obj/effect/landmark/stationroom/box/medbay/morgue
 	template_names = list("Morgue", "Morgue 2", "Morgue 3", "Morgue 4", "Morgue 5")
@@ -156,4 +160,4 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 
 /obj/effect/landmark/stationroom/maint/tenxten
 	template_names = list("Maint aquarium", "Maint bigconstruction", "Maint bigtheatre", "Maint deltalibrary", "Maint graffitiroom", "Maint junction", "Maint podrepairbay", "Maint pubbybar", "Maint roosterdome", "Maint sanitarium", "Maint snakefighter", "Maint vault", "Maint ward", "Maint assaultpod", "Maint maze", "Maint maze2", "Maint boxfactory",
-	"Maint sixsectorsdown", "Maint advbotany", "Maint beach", "Maint botany_apiary", "Maint gamercave", "Maint ladytesla_altar", "Maint olddiner", "Maint smallmagician")
+	"Maint sixsectorsdown", "Maint advbotany", "Maint beach", "Maint botany_apiary", "Maint gamercave", "Maint ladytesla_altar", "Maint olddiner", "Maint smallmagician", "Maint fourshops")
