@@ -6800,40 +6800,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
-"ajp" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "Gravity Generator Chamber";
-	req_access_txt = "19; 61"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/gravity_generator)
 "ajq" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -34294,6 +34260,40 @@
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/maintenance/starboard/aft)
+"mHd" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/airlock/highsecurity{
+	name = "Gravity Generator";
+	req_access_txt = "11"
+	},
+/turf/open/floor/plasteel,
+/area/engine/gravity_generator)
 "mIn" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -36425,17 +36425,6 @@
 /obj/item/reagent_containers/food/drinks/bottle/lizardwine,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar/atrium)
-"oRf" = (
-/obj/docking_port/stationary{
-	dir = 2;
-	dwidth = 11;
-	height = 22;
-	id = "whiteship_home";
-	name = "SS13: South of Arrivals";
-	width = 35
-	},
-/turf/open/space/basic,
-/area/space)
 "oSY" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -39001,6 +38990,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"rDy" = (
+/obj/docking_port/stationary{
+	dir = 2;
+	dwidth = 11;
+	height = 22;
+	id = "whiteship_home";
+	name = "SS13: South of Arrivals";
+	width = 35
+	},
+/turf/open/space/basic,
+/area/space)
 "rEx" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
@@ -74792,7 +74792,7 @@ aGe
 aGe
 sIu
 aKx
-ajp
+mHd
 aQY
 aMJ
 aIq
@@ -89242,7 +89242,7 @@ aaa
 aaa
 aaa
 aaa
-oRf
+rDy
 aaa
 aaa
 aaa
