@@ -33,6 +33,7 @@
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/Initialize()
 	. = ..()
+	ADD_TRAIT(src, TRAIT_ANTIMAGIC, "ohgodohfuck")
 	ADD_TRAIT(src, TRAIT_HOLY, "ohgodohfuck") //sorry no magic
 	alpha = 0
 	animate(src, alpha = 255, time = 10)
