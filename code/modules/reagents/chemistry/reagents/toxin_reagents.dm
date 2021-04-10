@@ -113,8 +113,8 @@
 		. = FALSE
 
 	if(.)
-		C.adjustOxyLoss(5, 0)
-		C.losebreath += 2
+		C.adjustOxyLoss(3, 0)
+		C.losebreath += 1
 		if(prob(20))
 			C.emote("gasp")
 	..()
