@@ -191,7 +191,7 @@
 
 /obj/effect/broken_illusion/Initialize()
 	. = ..()
-	addtimer(CALLBACK(.proc/kill_the_self), 1 MINUTE)
+	addtimer(CALLBACK(.proc/kill_the_self), 1 MINUTES)
 
 /obj/effect/broken_illusion/proc/kill_the_self()
 	visible_message("<span class='boldwarning'>[src] fades away...</span>")
