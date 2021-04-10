@@ -1,0 +1,4 @@
+author: "ChesterTheCheesy"
+delete-after: true 
+changes: 
+  - bugfix: "Clown bug now properly transfer minds on death"
