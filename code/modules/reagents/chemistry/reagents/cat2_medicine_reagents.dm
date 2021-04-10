@@ -100,7 +100,7 @@
 
 /datum/reagent/medicine/c2/rhigoxane
 	name = "Rhigoxane"
-	description = "Not to be confused with element Mercury, this medicine excels in reverting effects of dangerous high-temperature environments. Prolonged exposure can cause hypothermia."
+	description = "A second generation burn treatment agent exhibiting a cooling effect that is especially pronounced when deployed as a spray. Its high halogen content helps extinguish fires."
 	reagent_state = LIQUID
 	color = "#F7FFA5"
 	overdose_threshold = 25
