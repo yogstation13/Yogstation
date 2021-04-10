@@ -169,7 +169,7 @@
 			new /obj/item/assembly/signaler(src) // 0 tc
 			new /obj/item/storage/toolbox/syndicate(src) // 1 tc
 			new /obj/item/pen/edagger(src)
-			new /obj/item/gun/energy/wormhole_projector(src) //mooorttyyyy
+			new /obj/item/gun/energy/wormhole_projector/upgraded(src) //mooorttyyyy
 			new /obj/item/gun/energy/decloner/unrestricted(src)
 
 		if("bee")
