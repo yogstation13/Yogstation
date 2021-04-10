@@ -21,6 +21,12 @@
 	if(owner.current && isAI(owner.current))
 		traitor_kind = TRAITOR_AI
 
+	if(traitor_kind == TRAITOR_AI)
+		company = /datum/corporation/self
+	else if(!company)
+		company = pick(subtypesof(/datum/corporation/traitor))
+	owner.add_employee(company)
+
 	SSticker.mode.traitors += owner
 	owner.special_role = special_role
 	if(give_objectives)
@@ -50,9 +56,10 @@
 		var/mob/living/silicon/ai/A = owner.current
 		A.set_zeroth_law("")
 		if(malf)
-			A.verbs -= /mob/living/silicon/ai/proc/choose_modules
+			remove_verb(A, /mob/living/silicon/ai/proc/choose_modules)
 			A.malf_picker.remove_malf_verbs(A)
 			qdel(A.malf_picker)
+	owner.remove_employee(company)
 	UnregisterSignal(owner.current, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
 	SSticker.mode.traitors -= owner
 	if(!silent && owner.current)
@@ -225,6 +232,7 @@
 	owner.announce_objectives()
 	if(should_give_codewords)
 		give_codewords()
+	to_chat(owner.current, "<span class='notice'>Your employer [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your nanotrasen paycheck.</span>")
 
 /datum/antagonist/traitor/proc/update_traitor_icons_added(datum/mind/traitor_mind)
 	var/datum/atom_hud/antag/traitorhud = GLOB.huds[ANTAG_HUD_TRAITOR]

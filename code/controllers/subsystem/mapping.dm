@@ -121,6 +121,14 @@ SUBSYSTEM_DEF(mapping)
 		log_game("Reebe failed to load!")
 	for(var/datum/parsed_map/PM in reebes)
 		PM.initTemplateBounds()
+	//Load an Arena
+	errorList = list()
+	var/list/arenas = SSmapping.LoadGroup(errorList, "Arena", "templates", "arena.dmm", silent = TRUE)
+	if(errorList.len)	// arena failed to load
+		message_admins("A shuttle arena failed to load!")
+		log_game("A shuttle arena failed to load!")
+	for(var/datum/parsed_map/PM in arenas)
+		PM.initTemplateBounds()
 	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	repopulate_sorted_areas()
@@ -442,7 +450,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 //Manual loading of away missions.
 /client/proc/admin_away()
 	set name = "Load Away Mission"
-	set category = "Fun"
+	set category = "Misc.Server Debug"
 
 	if(!holder ||!check_rights(R_FUN))
 		return

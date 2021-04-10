@@ -143,40 +143,39 @@
 // Default proc for stock part installation
 // Third set of steps by default
 /datum/component/construction/mecha/proc/get_stockpart_steps()
-	var/prevstep_text = circuit_weapon ? "Weapons control module is secured." : "Peripherals control module is secured."
 	return list(
 		list(
 			"key" = /obj/item/stock_parts/scanning_module,
 			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = prevstep_text
+			"desc" = "Scanner module is installed."
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Scanner module is installed."
+			"desc" = "Scanner module is secured."
 		),
 		list(
 			"key" = /obj/item/stock_parts/capacitor,
 			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Scanner module is secured."
+			"desc" = "Capacitor is installed."
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Capacitor is installed."
+			"desc" = "Capacitor is secured."
 		),
 		list(
 			"key" = /obj/item/stock_parts/cell,
 			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Capacitor is secured."
+			"desc" = "The power cell is installed."
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "The power cell is installed."
+			"desc" = "The power cell is secured."
 		)
 	)
 
@@ -980,50 +979,57 @@
 /datum/component/construction/mecha/phazon/get_stockpart_steps()
 	return list(
 		list(
-			"key" = TOOL_SCREWDRIVER,
-			"back_key" = TOOL_CROWBAR,
+			"key" = /obj/item/stock_parts/scanning_module,
+			"action" = ITEM_MOVE_INSIDE,
+			"back_key" = TOOL_SCREWDRIVER,
 			"desc" = "Scanner module is installed."
 		),
 		list(
-			"key" = /obj/item/stock_parts/capacitor,
-			"action" = ITEM_MOVE_INSIDE,
+			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_SCREWDRIVER,
 			"desc" = "Scanner module is secured."
 		),
 		list(
-			"key" = TOOL_SCREWDRIVER,
+			"key" = /obj/item/stock_parts/capacitor,
 			"back_key" = TOOL_CROWBAR,
+			"action" = ITEM_MOVE_INSIDE,
 			"desc" = "Capacitor is installed."
 		),
 		list(
-			"key" = /obj/item/stack/ore/bluespace_crystal,
-			"amount" = 1,
+			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_SCREWDRIVER,
 			"desc" = "Capacitor is secured."
 		),
 		list(
-			"key" = /obj/item/stack/cable_coil,
-			"amount" = 5,
+			"key" = /obj/item/stack/ore/bluespace_crystal,
 			"back_key" = TOOL_CROWBAR,
+			"amount" = 1,
+			"action" = ITEM_MOVE_INSIDE,
 			"desc" = "The bluespace crystal is installed."
 		),
 		list(
-			"key" = TOOL_SCREWDRIVER,
+			"key" = /obj/item/stack/cable_coil,
 			"back_key" = TOOL_WIRECUTTER,
+			"amount" = 5,
+			"action" = ITEM_MOVE_INSIDE,
 			"desc" = "The bluespace crystal is connected."
 		),
 		list(
-			"key" = /obj/item/stock_parts/cell,
-			"action" = ITEM_MOVE_INSIDE,
+			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_SCREWDRIVER,
 			"desc" = "The bluespace crystal is engaged."
 		),
 		list(
-			"key" = TOOL_SCREWDRIVER,
+			"key" = /obj/item/stock_parts/cell,
 			"back_key" = TOOL_CROWBAR,
+			"action" = ITEM_MOVE_INSIDE,
 			"desc" = "The power cell is installed.",
-			"icon_state" = "phazon17"
-			// This is the point where a step icon is skipped, so "icon_state" had to be set manually starting from here.
+		),
+		list(
+			"key" = TOOL_SCREWDRIVER,
+			"back_key" = TOOL_SCREWDRIVER,
+			"desc" = "The power cell is secured."	,					
+			"icon_state" = "phazon17" 	// This is the point where a step icon is skipped, so "icon_state" had to be set manually starting from here.
 		)
 	)
 

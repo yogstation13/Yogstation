@@ -287,6 +287,8 @@ GLOBAL_LIST_EMPTY(lockers)
 /obj/structure/closet/proc/tool_interact(obj/item/W, mob/user)//returns TRUE if attackBy call shouldnt be continued (because tool was used/closet was of wrong type), FALSE if otherwise
 	. = TRUE
 	if(opened)
+		if(user.a_intent == INTENT_HARM)
+			return FALSE
 		if(istype(W, cutting_tool))
 			if(W.tool_behaviour == TOOL_WELDER)
 				if(!W.tool_start_check(user, amount=0))
@@ -534,8 +536,14 @@ GLOBAL_LIST_EMPTY(lockers)
 				req_access += pick(get_all_accesses())
 
 /obj/structure/closet/contents_explosion(severity, target)
-	for(var/atom/A in contents)
-		A.ex_act(severity, target)
+	for(var/thing in contents)
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.high_mov_atom += thing
+			if(EXPLODE_HEAVY)
+				SSexplosions.med_mov_atom += thing
+			if(EXPLODE_LIGHT)
+				SSexplosions.low_mov_atom += thing
 		CHECK_TICK
 
 /obj/structure/closet/singularity_act()

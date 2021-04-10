@@ -8,6 +8,7 @@
 	name = "remove embedded objects"
 	time = 32
 	accept_hand = 1
+	fuckup_damage = 0
 	var/obj/item/bodypart/L = null
 
 

@@ -12,6 +12,7 @@
 	var/ignore_implant = FALSE
 	var/give_equipment = FALSE
 	var/datum/team/cult/cult_team
+	var/original_eye_color = "000" //this will store the eye color of the cultist so it can be returned if they get deconverted
 
 
 /datum/antagonist/cult/get_team()
@@ -45,6 +46,16 @@
 	. = ..()
 	if(. && !ignore_implant)
 		. = is_convertable_to_cult(new_owner.current,cult_team)
+		var/list/no_team_antag = list(
+			/datum/antagonist/rev,
+			/datum/antagonist/clockcult,
+			/datum/antagonist/darkspawn,
+			/datum/antagonist/shadowling,
+			/datum/antagonist/zombie
+			)
+		for(var/datum/antagonist/NTA in new_owner.antag_datums)
+			if(NTA.type in no_team_antag)
+				return FALSE
 
 /datum/antagonist/cult/greet()
 	to_chat(owner.current, "<B><font size=3 color=red>You are a member of the cult!</font><B>")
@@ -55,6 +66,9 @@
 /datum/antagonist/cult/on_gain()
 	. = ..()
 	var/mob/living/current = owner.current
+	if(ishuman(current))
+		var/mob/living/carbon/human/H = current
+		original_eye_color = H.eye_color
 	add_objectives()
 	if(give_equipment)
 		equip_cultist(TRUE)
@@ -129,11 +143,11 @@
 	current.clear_alert("bloodsense")
 	if(ishuman(current))
 		var/mob/living/carbon/human/H = current
-		H.eye_color = initial(H.eye_color)
+		H.eye_color = original_eye_color
 		H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
 		REMOVE_TRAIT(H, CULT_EYES, null)
 		H.remove_overlay(HALO_LAYER)
-		H.update_body()
+		H.updateappearance()
 
 /datum/antagonist/cult/on_removal()
 	SSticker.mode.cult -= owner
@@ -229,11 +243,11 @@
 
 	if(ishuman(current))
 		var/mob/living/carbon/human/H = current
-		H.eye_color = initial(H.eye_color)
+		H.eye_color = original_eye_color
 		H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
 		REMOVE_TRAIT(H, CULT_EYES, null)
 		H.remove_overlay(HALO_LAYER)
-		H.update_body()
+		H.updateappearance()
 
 /datum/team/cult
 	name = "Cult"
@@ -287,7 +301,7 @@
 		H.eye_color = "f00"
 		H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
 		ADD_TRAIT(H, CULT_EYES, CULT_TRAIT)
-		H.update_body()
+		H.updateappearance()
 
 /datum/team/cult/proc/ascend(cultist)
 	if(ishuman(cultist))

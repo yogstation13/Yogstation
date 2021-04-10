@@ -1,3 +1,8 @@
+#define SHIELD_UPDATE_NONE 0
+#define SHIELD_UPDATE_NORMAL 1
+#define SHIELD_UPDATE_FULL 2
+#define BASE_POWER_OUTPUT 200000
+
 /obj/machinery/power/am_control_unit
 	name = "antimatter control unit"
 	desc = "This device injects antimatter into connected shielding units, the more antimatter injected the more power produced.  Wrench the device to set it up."
@@ -14,19 +19,19 @@
 	var/list/obj/machinery/am_shielding/linked_shielding
 	var/list/obj/machinery/am_shielding/linked_cores
 	var/obj/item/am_containment/fueljar
-	var/update_shield_icons = 0
+	var/update_shield_icons = SHIELD_UPDATE_NONE
 	var/stability = 100
-	var/exploding = 0
+	var/exploding = FALSE
 
-	var/active = 0//On or not
+	var/active = FALSE//On or not
 	var/fuel_injection = 2//How much fuel to inject
-	var/shield_icon_delay = 0//delays resetting for a short time
+	var/shield_icon_delay = FALSE//delays resetting for a short time
 	var/reported_core_efficiency = 0
 
 	var/power_cycle = 0
 	var/power_cycle_delay = 4//How many ticks till produce_power is called
-	var/stored_core_stability = 0
-	var/stored_core_stability_delay = 0
+	var/stored_core_stability = 100
+	var/stored_core_stability_delay = FALSE
 
 	var/stored_power = 0//Power to deploy per tick
 
@@ -53,7 +58,7 @@
 
 	if(update_shield_icons && !shield_icon_delay)
 		check_shield_icons()
-		update_shield_icons = 0
+		update_shield_icons = SHIELD_UPDATE_NONE
 
 	if(stat & (NOPOWER|BROKEN) || !active)//can update the icons even without power
 		return
@@ -68,6 +73,7 @@
 	power_cycle++
 	if(power_cycle >= power_cycle_delay)
 		produce_power()
+		check_core_stability()
 		power_cycle = 0
 
 	return
@@ -77,11 +83,11 @@
 	playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
 	var/core_power = reported_core_efficiency//Effectively how much fuel we can safely deal with
 	if(core_power <= 0)
-		return 0//Something is wrong
+		return FALSE//Something is wrong
 	var/core_damage = 0
 	var/fuel = fueljar.usefuel(fuel_injection)
 
-	stored_power = (fuel/core_power)*fuel*200000
+	stored_power = (fuel/core_power) * fuel * BASE_POWER_OUTPUT
 	//Now check if the cores could deal with it safely, this is done after so you can overload for more power if needed, still a bad idea
 	if(fuel > (2*core_power))//More fuel has been put in than the current cores can deal with
 		if(prob(50))
@@ -96,7 +102,7 @@
 			AMS.stability -= core_damage
 			AMS.check_stability(1)
 		playsound(src.loc, 'sound/effects/bang.ogg', 50, 1)
-	return
+	return TRUE
 
 
 /obj/machinery/power/am_control_unit/emp_act(severity)
@@ -211,24 +217,24 @@
 
 /obj/machinery/power/am_control_unit/proc/add_shielding(obj/machinery/am_shielding/AMS, AMS_linking = 0)
 	if(!istype(AMS))
-		return 0
+		return FALSE
 	if(!anchored)
-		return 0
+		return FALSE
 	if(!AMS_linking && !AMS.link_control(src))
-		return 0
+		return FALSE
 	linked_shielding.Add(AMS)
-	update_shield_icons = 1
-	return 1
+	update_shield_icons = SHIELD_UPDATE_NORMAL
+	return TRUE
 
 
 /obj/machinery/power/am_control_unit/proc/remove_shielding(obj/machinery/am_shielding/AMS)
 	if(!istype(AMS))
-		return 0
+		return FALSE
 	linked_shielding.Remove(AMS)
-	update_shield_icons = 2
+	update_shield_icons = SHIELD_UPDATE_FULL
 	if(active)
 		toggle_power()
-	return 1
+	return TRUE
 
 
 /obj/machinery/power/am_control_unit/proc/check_stability()//TODO: make it break when low also might want to add a way to fix it like a part or such that can be replaced
@@ -242,9 +248,11 @@
 	if(active)
 		use_power = ACTIVE_POWER_USE
 		visible_message("The [src.name] starts up.")
+		update_shield_icons = SHIELD_UPDATE_NORMAL
 	else
 		use_power = !powerfail
 		visible_message("The [src.name] shuts down.")
+		update_shield_icons = SHIELD_UPDATE_NORMAL
 	update_icon()
 	return
 
@@ -252,8 +260,8 @@
 /obj/machinery/power/am_control_unit/proc/check_shield_icons()//Forces icon_update for all shields
 	if(shield_icon_delay)
 		return
-	shield_icon_delay = 1
-	if(update_shield_icons == 2)//2 means to clear everything and rebuild
+	shield_icon_delay = TRUE
+	if(update_shield_icons == SHIELD_UPDATE_FULL)//2 means to clear everything and rebuild
 		for(var/obj/machinery/am_shielding/AMS in linked_shielding)
 			if(AMS.processing)
 				AMS.shutdown_core()
@@ -266,12 +274,12 @@
 	addtimer(CALLBACK(src, .proc/reset_shield_icon_delay), 20)
 
 /obj/machinery/power/am_control_unit/proc/reset_shield_icon_delay()
-	shield_icon_delay = 0
+	shield_icon_delay = FALSE
 
 /obj/machinery/power/am_control_unit/proc/check_core_stability()
 	if(stored_core_stability_delay || linked_cores.len <= 0)
 		return
-	stored_core_stability_delay = 1
+	stored_core_stability_delay = TRUE
 	stored_core_stability = 0
 	for(var/obj/machinery/am_shielding/AMS in linked_cores)
 		stored_core_stability += AMS.stability
@@ -279,7 +287,7 @@
 	addtimer(CALLBACK(src, .proc/reset_stored_core_stability_delay), 40)
 
 /obj/machinery/power/am_control_unit/proc/reset_stored_core_stability_delay()
-	stored_core_stability_delay = 0
+	stored_core_stability_delay = FALSE
 
 /obj/machinery/power/am_control_unit/ui_interact(mob/user)
 	. = ..()
@@ -293,7 +301,6 @@
 	dat += "AntiMatter Control Panel<BR>"
 	dat += "<A href='?src=[REF(src)];close=1'>Close</A><BR>"
 	dat += "<A href='?src=[REF(src)];refresh=1'>Refresh</A><BR>"
-	dat += "<A href='?src=[REF(src)];refreshicons=1'>Force Shielding Update</A><BR><BR>"
 	dat += "Status: [(active?"Injecting":"Standby")] <BR>"
 	dat += "<A href='?src=[REF(src)];togglestatus=1'>Toggle Status</A><BR>"
 
@@ -333,9 +340,6 @@
 	if(href_list["togglestatus"])
 		toggle_power()
 
-	if(href_list["refreshicons"])
-		update_shield_icons = 1
-
 	if(href_list["ejectjar"])
 		if(fueljar)
 			fueljar.forceMove(drop_location())
@@ -356,3 +360,8 @@
 
 	updateDialog()
 	return
+
+#undef SHIELD_UPDATE_NONE
+#undef SHIELD_UPDATE_NORMAL
+#undef SHIELD_UPDATE_FULL
+#undef BASE_POWER_OUTPUT

@@ -5,7 +5,7 @@
 	icon_state = "grille"
 	density = TRUE
 	anchored = TRUE
-	flags_1 = CONDUCT_1
+	flags_1 = CONDUCT_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	pressure_resistance = 5*ONE_ATMOSPHERE
 	armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
 	max_integrity = 50
@@ -20,7 +20,6 @@
 	var/rods_broken = TRUE
 	var/grille_type = null
 	var/broken_type = null
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	FASTDMM_PROP(\
 		pipe_astar_cost = 1\
 	)
@@ -62,10 +61,9 @@
 		if(RCD_DECONSTRUCT)
 			return list("mode" = RCD_DECONSTRUCT, "delay" = 20, "cost" = 5)
 		if(RCD_WINDOWGRILLE)
-			if(the_rcd.window_type == /obj/structure/window/reinforced/fulltile)
+			if(the_rcd.window_glass == RCD_WINDOW_REINFORCED)
 				return list("mode" = RCD_WINDOWGRILLE, "delay" = 40, "cost" = 12)
-			else
-				return list("mode" = RCD_WINDOWGRILLE, "delay" = 20, "cost" = 8)
+			return list("mode" = RCD_WINDOWGRILLE, "delay" = 20, "cost" = 8)
 	return FALSE
 
 /obj/structure/grille/rcd_act(mob/user, var/obj/item/construction/rcd/the_rcd, passed_mode)
@@ -75,10 +73,14 @@
 			qdel(src)
 			return TRUE
 		if(RCD_WINDOWGRILLE)
-			if(locate(/obj/structure/window) in loc)
+			if(!isturf(loc))
+				return FALSE
+			var/turf/T = loc
+			var/window_dir = the_rcd.window_size == RCD_WINDOW_FULLTILE ? FULLTILE_WINDOW_DIR : user.dir
+			if(!valid_window_location(T, window_dir))
 				return FALSE
 			to_chat(user, "<span class='notice'>You construct the window.</span>")
-			var/obj/structure/window/WD = new the_rcd.window_type(drop_location())
+			var/obj/structure/window/WD = new the_rcd.window_type(T, window_dir)
 			WD.setAnchored(TRUE)
 			return TRUE
 	return FALSE

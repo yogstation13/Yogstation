@@ -44,7 +44,7 @@
 	var/state = 0
 	var/last_message = 0
 	var/add_req_access = 1
-	var/maint_access = 0
+	var/maint_access = FALSE
 	var/dna_lock //dna-locking the mech
 	var/list/proc_res = list() //stores proc owners, like proc_res["functionname"] = owner reference
 	var/datum/effect_system/spark_spread/spark_system = new
@@ -55,7 +55,7 @@
 
 	var/bumpsmash = 0 //Whether or not the mech destroys walls by running into it.
 	//inner atmos
-	var/use_internal_tank = 0
+	var/use_internal_tank = FALSE
 	var/internal_tank_valve = ONE_ATMOSPHERE
 	var/obj/machinery/portable_atmospherics/canister/internal_tank
 	var/datum/gas_mixture/cabin_air
@@ -82,7 +82,7 @@
 	var/turnsound = 'sound/mecha/mechturn.ogg'
 
 	var/melee_cooldown = 10
-	var/melee_can_hit = 1
+	var/melee_can_hit = TRUE
 
 	var/silicon_pilot = FALSE //set to true if an AI or MMI is piloting.
 
@@ -214,7 +214,7 @@
 	return ..()
 
 /obj/mecha/proc/restore_equipment()
-	equipment_disabled = 0
+	equipment_disabled = FALSE
 	if(occupant)
 		SEND_SOUND(occupant, sound('sound/items/timer.ogg', volume=50))
 		to_chat(occupant, "<span=notice>Equipment control unit has been rebooted successfuly.</span>")
@@ -230,7 +230,8 @@
 /obj/mecha/proc/update_part_values() ///Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
 	if(scanmod)
 		normal_step_energy_drain = 20 - (5 * scanmod.rating) //10 is normal, so on lowest part its worse, on second its ok and on higher its real good up to 0 on best
-		step_energy_drain = normal_step_energy_drain
+		if(!leg_overload_mode)
+			step_energy_drain = normal_step_energy_drain
 	else
 		normal_step_energy_drain = 500
 		step_energy_drain = normal_step_energy_drain
@@ -289,11 +290,11 @@
 
 /obj/mecha/proc/can_use(mob/user)
 	if(user != occupant)
-		return 0
+		return FALSE
 	if(user && ismob(user))
 		if(!user.incapacitated())
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -332,7 +333,7 @@
 
 //processing internal damage, temperature, air regulation, alert updates, lights power use.
 /obj/mecha/process()
-	var/internal_temp_regulation = 1
+	var/internal_temp_regulation = TRUE
 
 	if(internal_damage)
 		if(internal_damage & MECHA_INT_FIRE)
@@ -350,7 +351,7 @@
 					take_damage(4/round(max_temperature/cabin_air.return_temperature(),0.1), BURN, 0, 0)
 
 		if(internal_damage & MECHA_INT_TEMP_CONTROL)
-			internal_temp_regulation = 0
+			internal_temp_regulation = FALSE
 
 		if(internal_damage & MECHA_INT_TANK_BREACH) //remove some air from internal tank
 			if(internal_tank)
@@ -462,11 +463,11 @@
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
 	return
 
-/obj/mecha/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+/obj/mecha/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
 	. = ..()
 	if(speaker == occupant)
 		if(radio?.broadcasting)
-			radio.talk_into(speaker, text, , spans, message_language)
+			radio.talk_into(speaker, text, , spans, message_language, message_mods)
 		//flick speech bubble
 		var/list/speech_bubble_recipients = list()
 		for(var/mob/M in get_hearers_in_view(7,src))
@@ -530,9 +531,9 @@
 		if(equipment_disabled)
 			return
 		target.mech_melee_attack(src)
-		melee_can_hit = 0
+		melee_can_hit = FALSE
 		spawn(melee_cooldown)
-			melee_can_hit = 1
+			melee_can_hit = TRUE
 
 
 /obj/mecha/proc/range_action(atom/target)
@@ -554,9 +555,9 @@
 /obj/mecha/Process_Spacemove(var/movement_dir = 0)
 	. = ..()
 	if(.)
-		return 1
+		return TRUE
 	if(thrusters_active && movement_dir && use_power(step_energy_drain))
-		return 1
+		return TRUE
 
 	var/atom/movable/backup = get_spacemove_backup()
 	if(backup)
@@ -564,7 +565,7 @@
 			if(backup.newtonian_move(turn(movement_dir, 180)))
 				if(occupant)
 					to_chat(occupant, "<span class='info'>You push off of [backup] to propel yourself.</span>")
-		return 1
+		return TRUE
 
 /obj/mecha/relaymove(mob/user,direction)
 	if(completely_disabled)
@@ -574,12 +575,12 @@
 	if(user != occupant) //While not "realistic", this piece is player friendly.
 		user.forceMove(get_turf(src))
 		to_chat(user, "<span class='notice'>You climb out from [src].</span>")
-		return 0
+		return FALSE
 	if(internal_tank?.connected_port)
 		if(world.time - last_message > 20)
 			occupant_message("<span class='warning'>Unable to move while connected to the air system port!</span>")
 			last_message = world.time
-		return 0
+		return FALSE
 	if(state)
 		if(world.time - last_message > 20)
 			occupant_message("<span class='danger'>Maintenance protocols in effect.</span>")
@@ -589,31 +590,31 @@
 
 /obj/mecha/proc/domove(direction)
 	if(can_move >= world.time)
-		return 0
+		return FALSE
 	if(!Process_Spacemove(direction))
-		return 0
+		return FALSE
 	if(!has_charge(step_energy_drain))
-		return 0
+		return FALSE
 	if(defence_mode)
 		if(world.time - last_message > 20)
 			occupant_message("<span class='danger'>Unable to move while in defence mode</span>")
 			last_message = world.time
-		return 0
+		return FALSE
 	if(zoom_mode)
 		if(world.time - last_message > 20)
 			occupant_message("Unable to move while in zoom mode.")
 			last_message = world.time
-		return 0
+		return FALSE
 	if(!cell)
 		if(world.time - last_message > 20)
 			occupant_message("<span class='warning'>Missing power cell.</span>")
 			last_message = world.time
-		return 0
+		return FALSE
 	if(!scanmod || !capacitor)
 		if(world.time - last_message > 20)
 			occupant_message("<span class='warning'>Missing [scanmod? "capacitor" : "scanning module"].</span>")
 			last_message = world.time
-		return 0
+		return FALSE
 
 	var/move_result = 0
 	var/oldloc = loc
@@ -627,15 +628,17 @@
 		move_result = mechstep(direction)
 	if(move_result || loc != oldloc)// halfway done diagonal move still returns false
 		use_power(step_energy_drain)
+		if(leg_overload_mode)
+			take_damage(2, BRUTE)
 		can_move = world.time + step_in
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/mecha/proc/mechturn(direction)
 	setDir(direction)
 	if(turnsound)
 		playsound(src,turnsound,40,1)
-	return 1
+	return TRUE
 
 /obj/mecha/proc/mechstep(direction)
 	var/current_dir = dir
@@ -666,7 +669,7 @@
 				forceMove(newloc)
 				use_power(phasing_energy_drain)
 				sleep(step_in*3)
-				can_move = 1
+				can_move = TRUE
 	else
 		if(..()) //mech was thrown
 			return
@@ -752,9 +755,9 @@
 		if(occupant)
 			to_chat(user, "<span class='warning'>This exosuit has a pilot and cannot be controlled.</span>")
 			return
-		var/can_control_mech = 0
+		var/can_control_mech = FALSE
 		for(var/obj/item/mecha_parts/mecha_tracking/ai_control/A in trackers)
-			can_control_mech = 1
+			can_control_mech = TRUE
 			to_chat(user, "<span class='notice'>[icon2html(src, user)] Status of [name]:</span>\n[A.get_mecha_info()]")
 			break
 		if(!can_control_mech)
@@ -834,7 +837,7 @@
 	AI.controlled_mech = src
 	AI.remote_control = src
 	AI.mobility_flags = ALL //Much easier than adding AI checks! Be sure to set this back to 0 if you decide to allow an AI to leave a mech somehow.
-	AI.can_shunt = 0 //ONE AI ENTERS. NO AI LEAVES.
+	AI.can_shunt = FALSE //ONE AI ENTERS. NO AI LEAVES.
 	to_chat(AI, AI.can_dominate_mechs ? "<span class='announce'>Takeover of [name] complete! You are now loaded onto the onboard computer. Do not attempt to leave the station sector!</span>" :\
 		"<span class='notice'>You have been uploaded to a mech's onboard computer.</span>")
 	to_chat(AI, "<span class='reallybig boldnotice'>Use Middle-Mouse to activate mech functions and equipment. Click normally for AI interactions.</span>")
@@ -1151,14 +1154,14 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 /obj/mecha/proc/use_power(amount)
 	if(get_charge())
 		cell.use(amount)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/mecha/proc/give_power(amount)
 	if(!isnull(get_charge()))
 		cell.give(amount)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/mecha/update_remote_sight(mob/living/user)
 	if(occupant_sight_flags)

@@ -1,7 +1,7 @@
 /client/proc/debug_typeof()
 	set name = "List-Subtypes" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
 	set desc = "Lists the subtypes of the type you input."
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 
 	if(!check_rights(R_DEBUG))
 		return

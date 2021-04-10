@@ -16,8 +16,8 @@
 		pipe_astar_cost = 50 /* nich really doesn't like pipes that go through walls */\
 	)
 
-	var/hardness = 40 //lower numbers are harder. Used to determine the probability of a hulk smashing through.
-	var/slicing_duration = 100  //default time taken to slice the wall
+	var/hardness = 30 //lower numbers are harder. Used to determine the probability of a hulk smashing through.
+	var/slicing_duration = 200  //default time taken to slice the wall
 	var/sheet_type = /obj/item/stack/sheet/metal
 	var/sheet_amount = 2
 	var/girder_type = /obj/structure/girder
@@ -34,6 +34,16 @@
 	smooth = SMOOTH_TRUE
 
 	var/list/dent_decals
+
+/turf/closed/wall/Initialize(mapload)
+	. = ..()
+	if(is_station_level(z))
+		GLOB.station_turfs += src
+
+/turf/closed/wall/Destroy()
+	if(is_station_level(z))
+		GLOB.station_turfs -= src
+	..()
 
 /turf/closed/wall/examine(mob/user)
 	. += ..()

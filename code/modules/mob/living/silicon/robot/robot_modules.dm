@@ -90,8 +90,8 @@
 		var/obj/item/stack/S = I
 
 		if(is_type_in_list(S, list(/obj/item/stack/sheet/metal, /obj/item/stack/rods, /obj/item/stack/tile/plasteel)))
-			if(S.materials[MAT_METAL])
-				S.cost = S.materials[MAT_METAL] * 0.25
+			if(S.materials[/datum/material/iron])
+				S.cost = S.materials[/datum/material/iron] * 0.25
 			S.source = get_or_create_estorage(/datum/robot_energy_storage/metal)
 
 		else if(istype(S, /obj/item/stack/sheet/glass))
@@ -163,7 +163,8 @@
 
 /obj/item/robot_module/proc/rebuild_modules() //builds the usable module list from the modules we have
 	var/mob/living/silicon/robot/R = loc
-	var/held_modules = R.held_items.Copy()
+	var/list/held_modules = R.held_items.Copy()
+	var/active_module = R.module_active
 	R.uneq_all()
 	modules = list()
 	for(var/obj/item/I in basic_modules)
@@ -178,7 +179,9 @@
 		add_module(I, FALSE, FALSE)
 	for(var/i in held_modules)
 		if(i)
-			R.activate_module(i)
+			R.equip_module_to_slot(i, held_modules.Find(i))
+	if(active_module)
+		R.select_module(held_modules.Find(active_module))
 	if(R.hud_used)
 		R.hud_used.update_robot_modules_display()
 
@@ -230,7 +233,8 @@
 	R.setDir(SOUTH)
 	R.anchored = FALSE
 	R.notransform = FALSE
-	R.update_headlamp()
+	R.updatehealth()
+	R.update_headlamp(FALSE, BORG_LAMP_CD_RESET)
 	R.notify_ai(NEW_MODULE)
 	if(R.hud_used)
 		R.hud_used.update_robot_modules_display()
@@ -238,7 +242,7 @@
 
    /*
    check_menu: Checks if we are allowed to interact with a radial menu
-  
+
    Arguments:
    user The mob interacting with a menu
   */

@@ -155,6 +155,10 @@
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_FLAG
 
+/datum/config_entry/keyed_list/mentor_races	//races for gamers only
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_FLAG
+
 /datum/config_entry/keyed_list/roundstart_no_hard_check // Species contained in this list will not cause existing characters with no-longer-roundstart species set to be resetted to the human race.
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_FLAG
@@ -386,3 +390,8 @@
 /datum/config_entry/number/monkeycap
 	config_entry_value = 64
 	min_val = 0
+
+/datum/config_entry/flag/dynamic_config_enabled
+
+/datum/config_entry/number/engine_type
+	config_entry_value = 3

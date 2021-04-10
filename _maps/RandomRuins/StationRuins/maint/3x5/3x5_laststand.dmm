@@ -33,13 +33,11 @@
 	icon_state = "panelscorched"
 	},
 /area/template_noop)
-"r" = (
-/obj/item/gun/ballistic/shotgun/doublebarrel/improvised,
-/obj/effect/mob_spawn/human/corpse/assistant,
-/obj/effect/decal/cleanable/blood/gibs/core,
+"s" = (
 /obj/effect/decal/cleanable/blood/old,
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvised,
 /turf/open/floor/plating{
-	icon_state = "platingdmg1"
+	icon_state = "panelscorched"
 	},
 /area/template_noop)
 "z" = (
@@ -52,10 +50,11 @@
 /obj/item/ammo_casing/spent,
 /turf/open/floor/plating,
 /area/template_noop)
-"T" = (
+"W" = (
 /obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/blood/gibs/body,
 /turf/open/floor/plating{
-	icon_state = "panelscorched"
+	icon_state = "platingdmg1"
 	},
 /area/template_noop)
 
@@ -69,8 +68,8 @@ c
 (2,1,1) = {"
 b
 e
-r
-T
+W
+s
 c
 "}
 (3,1,1) = {"

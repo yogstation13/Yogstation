@@ -83,6 +83,7 @@
 #define ANTAG_HUD_COMMUNIST		28
 #define ANTAG_HUD_HERETIC		29
 #define ANTAG_HUD_MINDSLAVE		30
+#define ANTAG_HUD_ZOMBIE		31
 
 // Notification action types
 #define NOTIFY_JUMP "jump"

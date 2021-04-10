@@ -657,12 +657,19 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * * Gravity if the Z level has an SSMappingTrait for ZTRAIT_GRAVITY
   * * otherwise no gravity
   */
-/atom/proc/has_gravity(turf/T)
-	if(!T || !isturf(T))
+/atom/proc/has_gravity(turf/target)
+	SHOULD_BE_PURE(TRUE)
+
+	//This is a bit weird but proc arguments are considered non local variables 
+	// so it gets mad if you try to reassign it see https://github.com/SpaceManiac/SpacemanDMM/issues/235
+	var/turf/T
+	if(!target || !isturf(target))
 		T = get_turf(src)
+	else
+		T = target
 
 	if(!T)
-		return 0
+		return FALSE
 
 	var/list/forced_gravity = list()
 	SEND_SIGNAL(src, COMSIG_ATOM_HAS_GRAVITY, T, forced_gravity)
@@ -675,7 +682,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		return max_grav
 
 	if(isspaceturf(T)) // Turf never has gravity
-		return 0
+		return FALSE
 
 	var/area/A = get_area(T)
 	if(A.has_gravity) // Areas which always has gravity

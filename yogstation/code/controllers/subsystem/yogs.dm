@@ -14,13 +14,13 @@ SUBSYSTEM_DEF(Yogs)
 
 /datum/controller/subsystem/Yogs/Initialize()
 	mentortickets = list()
-	
+
 	//PRIZEPOOL MODIFIER THING
 	GLOB.arcade_prize_pool[/obj/item/grenade/plastic/glitterbomb/pink] = 1
 	GLOB.arcade_prize_pool[/obj/item/toy/plush/goatplushie/angry] = 2
 	GLOB.arcade_prize_pool[/obj/item/toy/plush/goatplushie/angry/realgoat] = 2
 	GLOB.arcade_prize_pool[/obj/item/stack/tile/ballpit] = 2
-	
+
 	//MULTI-PORTAL HANDLER
 	var/list/enters = list()
 	var/list/exits_by_id = list()
@@ -64,7 +64,7 @@ SUBSYSTEM_DEF(Yogs)
 	// Picking department goals
 	// Engineering first
 	generateGoalsFromSubtypes(/datum/department_goal/eng)
-	
+
 	// Then security
 	generateGoalsFromSubtypes(/datum/department_goal/sec)
 
@@ -87,25 +87,25 @@ SUBSYSTEM_DEF(Yogs)
 
 		if(istype(C, /obj/machinery/computer/card/minor/ce))
 			account = ACCOUNT_ENG
-		
+
 		else if(istype(C, /obj/machinery/computer/cargo))
 			account = ACCOUNT_CAR
-		
+
 		else if(istype(C, /obj/machinery/computer/card/minor/cmo))
 			account = ACCOUNT_MED
-		
+
 		else if(istype(C, /obj/machinery/computer/card/minor/rd))
 			account = ACCOUNT_SCI
-		
+
 		else if(istype(C, /obj/machinery/computer/card) && !istype(C, /obj/machinery/computer/card/minor))
 			account = ACCOUNT_SRV
-		
+
 		else if(istype(C, /obj/machinery/computer/card/minor/hos))
 			account = ACCOUNT_SEC
-		
+
 		else if(istype(C, /obj/machinery/computer/communications))
 			account = "all" // Special case, we'll give em all the objectives
-		
+
 		if(account)
 			if(!is_station_level(C.z))
 				continue
@@ -136,21 +136,24 @@ SUBSYSTEM_DEF(Yogs)
 				P.update_icon()
 
 
+	for(var/path in subtypesof(/datum/corporation))
+		new path
+
 	return ..()
 
 /datum/controller/subsystem/Yogs/fire(resumed = 0)
 	//END OF SHIFT ANNOUNCER
 	if(world.time > (ROUND_END_ANNOUNCEMENT_TIME*600) && !endedshift && !(EMERGENCY_AT_LEAST_DOCKED))
-		priority_announce("Crew, your shift has come to an end. \n You may call the shuttle whenever you find it appropriate.", "End of shift announcement", 'sound/ai/commandreport.ogg')
+		priority_announce("Crew, your shift has come to an end. [SSshuttle.emergency.mode != SHUTTLE_IDLE ? "\n You may call the shuttle whenever you find it appropriate." : ""]", "End of shift announcement", SSstation.announcer.get_rand_report_sound())
 		endedshift = TRUE
-	
+
 	//UNCLAIMED TICKET BWOINKER
 	if(world.time - last_rebwoink > REBWOINK_TIME*10)
 		last_rebwoink = world.time
 		for(var/datum/admin_help/bwoink in GLOB.unclaimed_tickets)
 			if(bwoink.check_owner())
 				GLOB.unclaimed_tickets -= bwoink
-	
+
 	// Department goal checker
 	if(department_goals.len && SSticker.current_state == GAME_STATE_PLAYING)
 		for(var/datum/department_goal/dg in department_goals)
@@ -162,7 +165,7 @@ SUBSYSTEM_DEF(Yogs)
 				dg.continuing()
 
 /**
-  * Generates up to 5 department goals of the given type. 
+  * Generates up to 5 department goals of the given type.
   *
   * Arguments:
   * * d - the given datum that we're getting the subtypes of.
@@ -175,7 +178,7 @@ SUBSYSTEM_DEF(Yogs)
 		var/datum/department_goal/goal = new typepath
 		if(goal.is_available())
 			goalsSoFar++
-		else 
+		else
 			qdel(goal)
 
 /**

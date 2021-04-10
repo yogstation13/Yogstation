@@ -31,7 +31,7 @@
 	if(mob && !isdead(mob))
 		var/mob/M = mob
 		
-		var/time = input(src, "How long do you expect to be gone?") as anything in list("5 minutes","10 minutes","15 minutes","30 minutes","Whole round","Unknown")
+		var/time = input(src, "How long do you expect to be gone?") as null|anything in list("5 minutes","10 minutes","15 minutes","30 minutes","Whole round","Unknown")
 		
 		if(!time)
 			return
@@ -89,6 +89,9 @@
 			adminhelp("I need to go AFK as '[important_role]' for duration of '[time]' [reason ? " with the reason: '[reason]'" : ""]")
 			mob.log_message("is now AFK for [time] [reason ? " with the reason: '[reason]'" : ""]", LOG_OWNERSHIP)
 		else
-			to_chat(src, "<span class='danger'>Admins will not be automatically alerted, because you do not seem to be in a critical station role.</span>")
+			to_chat(src, "<span class='danger'>Admins will be subtly alerted, because you do not seem to be in a critical station role.</span>")
+			var/normal_role = special_role || M.job || initial(M.name) || "unknown job"
+			message_admins("[ADMIN_LOOKUPFLW(src)] has used the AFK verb as '[normal_role]' for duration of '[time]'")
+			log_game("[key_name(src)] has used the AFK verb as '[normal_role]' for duration of '[time]'")
 	else
 		to_chat(src, "<span class='boldnotice'>It is not necessary to report being AFK if you are not in the game.</span>")

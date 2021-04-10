@@ -20,11 +20,6 @@
 	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/ammonia = 1, /datum/reagent/oxygen = 1)
 	required_temp = 380
 
-/datum/chemical_reaction/itching_powder
-	name = "Itching Powder"
-	id = /datum/reagent/toxin/itching_powder
-	results = list(/datum/reagent/toxin/itching_powder = 3)
-	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/ammonia = 1, /datum/reagent/medicine/charcoal = 1)
 
 /datum/chemical_reaction/facid
 	name = "Fluorosulfuric acid"
@@ -101,13 +96,6 @@
 	required_reagents = list(/datum/reagent/toxin/mindbreaker = 1, /datum/reagent/teslium = 1, /datum/reagent/toxin/fentanyl = 1)
 	mix_message = "<span class='danger'>After sparks, fire, and the smell of mindbreaker, the mix is constantly spinning with no stop in sight.</span>"
 
-/datum/chemical_reaction/skewium
-	name = "Skewium"
-	id = "Skewium"
-	results = list(/datum/reagent/toxin/skewium = 5)
-	required_reagents = list(/datum/reagent/toxin/rotatium = 2, /datum/reagent/toxin/plasma = 2, /datum/reagent/toxin/acid = 1)
-	mix_message = "<span class='danger'>Wow! it turns out if you mix rotatium with some plasma and sulphuric acid, it gets even worse!</span>"
-
 /datum/chemical_reaction/anacea
 	name = "Anacea"
 	id = /datum/reagent/toxin/anacea
@@ -124,5 +112,10 @@
 	name = "Bone Hurting Juice"
 	id = /datum/reagent/toxin/bonehurtingjuice
 	results = list(/datum/reagent/toxin/bonehurtingjuice = 5)
-	required_reagents = list(/datum/reagent/toxin/mutagen = 1, /datum/reagent/toxin/itching_powder = 3, /datum/reagent/consumable/milk = 1)
+	required_reagents = list(/datum/reagent/toxin/mutagen = 1, /datum/reagent/itching_powder = 3, /datum/reagent/consumable/milk = 1)
 	mix_message = "<span class='danger'>The mixture suddenly becomes clear and looks a lot like water. You feel a strong urge to drink it.</span>"
+
+/datum/chemical_reaction/hot_ice_melt
+	results = list(/datum/reagent/toxin/plasma = 12) //One sheet of hot ice makes 200m of plasma
+	required_reagents = list(/datum/reagent/toxin/hot_ice = 1)
+	required_temp = T0C + 30 //Don't burst into flames when you melt

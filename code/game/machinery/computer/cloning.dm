@@ -315,7 +315,6 @@
 
 	var/datum/browser/popup = new(user, "cloning", "Cloning System Control")
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
 	popup.open()
 
 /obj/machinery/computer/cloning/Topic(href, href_list)
@@ -475,7 +474,7 @@
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 			var/obj/machinery/clonepod/pod = GetAvailablePod()
 			var/success = FALSE
-			//Can't clone without someone to clone.  Or a pod.  Or if the pod is busy. Or full of gibs.
+			//Can't clone without someone to clone.  Or a pod.  Or if the pod is busy. Or full of gibs. Or if there isn't any meat available.
 			if(!LAZYLEN(pods))
 				temp = "<font class='bad'>No Clonepods detected.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
@@ -487,6 +486,9 @@
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 			else if(pod.occupant)
 				temp = "<font class='bad'>Cloning cycle already in progress.</font>"
+				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
+			else if(pod.biomass < 100)
+				temp = "<font class ='bad'>Insufficient biomass levels.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 			else
 				var/result = grow_clone_from_record(pod, C, empty)

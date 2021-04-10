@@ -148,7 +148,8 @@ CONTINUOUS WIZARD
 CONTINUOUS HIVEMIND
 CONTINUOUS MALF
 CONTINUOUS SHADOWLING
-
+CONTINUOUS VAMPIRE
+CONTINUOUS DYNAMIC
 ##Note: do not toggle continuous off for these modes, as they have no antagonists and would thus end immediately!
 
 CONTINUOUS METEOR
@@ -327,7 +328,7 @@ GATEWAY_DELAY 18000
 ## If the number of players ready at round starts exceeds this threshold, JOBS_HAVE_MINIMAL_ACCESS will automatically be enabled. Otherwise, it will be disabled.
 ## This is useful for accomodating both low and high population rounds on the same server.
 ## Comment this out or set to 0 to disable this automatic toggle.
-MINIMAL_ACCESS_THRESHOLD 8
+MINIMAL_ACCESS_THRESHOLD 18
 
 ## Comment this out this if you wish to use the setup where jobs have more access.
 ## This is intended for servers with low populations - where there are not enough
@@ -464,6 +465,7 @@ ROUNDSTART_RACES moth
 ROUNDSTART_RACES plasmaman
 #ROUNDSTART_RACES shadow
 ROUNDSTART_RACES preternis
+ROUNDSTART_RACES polysmorph
 #ROUNDSTART_RACES snail
 
 ## Races that are better than humans in some ways, but worse in others
@@ -478,7 +480,6 @@ ROUNDSTART_RACES ethereal
 #ROUNDSTART_RACES uranium
 #ROUNDSTART_RACES abductor
 #ROUNDSTART_RACES synth
-#ROUNDSTART_RACES polysmorph
 
 ## Races that are straight upgrades. If these are on expect powergamers to always pick them
 #ROUNDSTART_RACES skeleton
@@ -487,6 +488,9 @@ ROUNDSTART_RACES ethereal
 ROUNDSTART_RACES pod
 #ROUNDSTART_RACES military_synth
 #ROUNDSTART_RACES agent
+
+## Races that are for EPIC GAMERS only
+#MENTOR_RACES polysmorph
 
 ##-------------------------------------------------------------------------------------------
 
@@ -592,3 +596,9 @@ DISABLE_HUMAN_MOOD
 
 ## Enable the capitalist agenda on your server.
 ECONOMY
+
+## Uncomment to enable dynamic ruleset config file.
+DYNAMIC_CONFIG_ENABLED
+
+## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for any, 4 for TEG
+ENGINE_TYPE 3

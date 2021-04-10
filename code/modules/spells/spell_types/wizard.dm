@@ -287,7 +287,7 @@
 				var/mob/living/M = AM
 				M.Paralyze(stun_amt)
 				to_chat(M, "<span class='userdanger'>You're thrown back by [user]!</span>")
-			AM.safe_throw_at(throwtarget, ((clamp((maxthrow - (clamp(distfromcaster - 2, 0, distfromcaster))), 3, maxthrow))), 1,user, force = repulse_force)//So stuff gets tossed around at the same time.
+			AM.safe_throw_at(throwtarget, ((clamp((maxthrow - (clamp(distfromcaster - 2, 0, distfromcaster))), 3, maxthrow))), 1,user, force = repulse_force, quickstart = TRUE)//So stuff gets tossed around at the same time.
 
 /obj/effect/proc_holder/spell/aoe_turf/repulse/xeno //i fixed conflicts only to find out that this is in the WIZARD file instead of the xeno file?!
 	name = "Tail Sweep"
@@ -364,8 +364,28 @@
 				M.electrocute_act(80, src, illusion = 1)
 		qdel(src)
 
-/obj/item/spellpacket/lightningbolt/throw_at(atom/target, range, speed, mob/thrower, spin=TRUE, diagonals_first = FALSE, datum/callback/callback, force = INFINITY)
+/obj/item/spellpacket/lightningbolt/throw_at(atom/target, range, speed, mob/thrower, spin=TRUE, diagonals_first = FALSE, datum/callback/callback, force = INFINITY, quickstart = TRUE)
 	. = ..()
 	if(ishuman(thrower))
 		var/mob/living/carbon/human/H = thrower
 		H.say("LIGHTNINGBOLT!!", forced = "spell")
+
+/obj/effect/proc_holder/spell/aoe_turf/repulse/hulk
+	name = "Ground Smash"
+	desc = "Smash the ground to throw your enemies back!"
+	sound = 'sound/magic/Repulse.ogg'
+	charge_max = 150
+	clothes_req = FALSE
+	range = 1
+	cooldown_min = 150
+	invocation = "HULK SMASH!!"
+	action_icon = 'icons/mob/actions.dmi'
+	action_icon_state = "green_hand"
+	action_background_icon_state = "bg_default"
+
+/obj/effect/proc_holder/spell/aoe_turf/repulse/hulk/cast(list/targets,mob/user = usr)
+	var/turf/open/floor/T = get_turf(usr)
+	if(istype(T))
+		T.break_tile()
+	playsound(usr.loc, 'sound/effects/meteorimpact.ogg', 30, 1, 2)
+	..()

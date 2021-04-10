@@ -23,18 +23,20 @@
  * Twohanded
  */
 /obj/item/twohanded
-	var/wielded = 0
-	var/force_unwielded = 0
+	/// Is the item currently wielded with two hands
+	var/wielded = FALSE
+	/// How much additonal force to give
 	var/force_wielded = 0
+	/// Sound made when you wield it
 	var/wieldsound = null
+	/// Sound made when you unwield it
 	var/unwieldsound = null
 
 /obj/item/twohanded/proc/unwield(mob/living/carbon/user, show_message = TRUE)
 	if(!wielded || !user)
 		return
-	wielded = 0
-	if(force_unwielded)
-		force = force_unwielded
+	wielded = FALSE
+	force -= force_wielded
 	var/sf = findtext(name, " (Wielded)", -10)//10 == length(" (Wielded)")
 	if(sf)
 		name = copytext(name, 1, sf)
@@ -66,12 +68,17 @@
 	if(user.get_inactive_held_item())
 		to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
 		return
-	if(user.get_num_arms() < 2)
-		to_chat(user, "<span class='warning'>You don't have enough intact hands.</span>")
-		return
-	wielded = 1
+	var/obj/item/twohanded/offhand/O = new(user) // Reserve other hand
+	// Cyborgs are snowflakes hand wise
+	if(iscyborg(user))
+		user.put_in_inactive_hand(O)
+	else
+		if(!user.put_in_inactive_hand(O))
+			to_chat(user, "<span class='notice'>You try to wield it... but it seems you're missing the matching arm.</span>") // should be better text but dunno what
+			return
+	wielded = TRUE
 	if(force_wielded)
-		force = force_wielded
+		force += force_wielded
 	name = "[name] (Wielded)"
 	update_icon()
 	if(iscyborg(user))
@@ -80,11 +87,9 @@
 		to_chat(user, "<span class='notice'>You grab [src] with both hands.</span>")
 	if (wieldsound)
 		playsound(loc, wieldsound, 50, 1)
-	var/obj/item/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
 	O.name = "[name] - offhand"
 	O.desc = "Your second grip on [src]."
 	O.wielded = TRUE
-	user.put_in_inactive_hand(O)
 	return
 
 /obj/item/twohanded/dropped(mob/user)
@@ -226,8 +231,7 @@
 	throwforce = 15
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
-	force_unwielded = 5
-	force_wielded = 24
+	force_wielded = 19
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = IS_SHARP
@@ -254,11 +258,23 @@
 	if(wielded) //destroys windows and grilles in one hit
 		if(istype(A, /obj/structure/window))
 			var/obj/structure/window/W = A
-			W.take_damage(200, BRUTE, "melee", 0)
+			W.take_damage(W.max_integrity*2, BRUTE, "melee", 0)
 		else if(istype(A, /obj/structure/grille))
 			var/obj/structure/grille/G = A
-			G.take_damage(40, BRUTE, "melee", 0)
+			G.take_damage(G.max_integrity*2, BRUTE, "melee", 0)
 
+/*
+ * Metal Hydrogen Axe
+ */
+/obj/item/twohanded/fireaxe/metal_h2_axe  // Blatant imitation of the fireaxe, but made out of metallic hydrogen
+	icon_state = "metalh2_axe0"
+	name = "metallic hydrogen axe"
+	desc = "A large, menacing axe made of an unknown substance that the most elder atmosians call Metallic Hydrogen. Truly an otherwordly weapon."
+	force_wielded = 18
+
+/obj/item/twohanded/fireaxe/metal_h2_axe/update_icon()  //Currently only here to fuck with the on-mob icons.
+	icon_state = "metalh2_axe[wielded]"
+	return
 
 /*
  * Double-Bladed Energy Swords - Cheridan
@@ -275,8 +291,7 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
 	var/w_class_on = WEIGHT_CLASS_BULKY
-	force_unwielded = 3
-	force_wielded = 34
+	force_wielded = 31
 	wieldsound = 'sound/weapons/saberon.ogg'
 	unwieldsound = 'sound/weapons/saberoff.ogg'
 	hitsound = "swing_hit"
@@ -340,11 +355,11 @@
 		icon_state = "dualsaber[item_color][wielded]"
 	else
 		icon_state = "dualsaber0"
-	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
+	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_TYPE_BLOOD)
 
 /obj/item/twohanded/dualsaber/attack(mob/target, mob/living/carbon/human/user)
 	if(user.has_dna())
-		if(user.dna.check_mutation(HULK))
+		if(user.dna.check_mutation(HULK) || user.dna.check_mutation(ACTIVE_HULK))
 			to_chat(user, "<span class='warning'>You grip the blade too hard and accidentally close it!</span>")
 			unwield()
 			return
@@ -381,7 +396,7 @@
 
 /obj/item/twohanded/dualsaber/wield(mob/living/carbon/M) //Specific wield () hulk checks due to reflection chance for balance issues and switches hitsounds.
 	if(M.has_dna())
-		if(M.dna.check_mutation(HULK))
+		if(M.dna.check_mutation(HULK) || M.dna.check_mutation(ACTIVE_HULK))
 			to_chat(M, "<span class='warning'>You lack the grace to wield this!</span>")
 			return
 	..()
@@ -461,13 +476,12 @@
 	force = 10
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
-	force_unwielded = 10
-	force_wielded = 18
+	force_wielded = 8
 	throwforce = 20
 	throw_speed = 4
 	embedding = list("embedded_impact_pain_multiplier" = 3)
 	armour_penetration = 10
-	materials = list(MAT_METAL=1150, MAT_GLASS=2075)
+	materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
 	sharpness = IS_SHARP
@@ -494,8 +508,8 @@
 /obj/item/twohanded/spear/CheckParts(list/parts_list)
 	var/obj/item/shard/tip = locate() in parts_list
 	if (istype(tip, /obj/item/shard/plasma))
-		force_wielded = 19
-		force_unwielded = 11
+		force_wielded = 1
+		force += 1
 		throwforce = 21
 		righthand_file = 'yogstation/icons/mob/inhands/weapons/polearms_righthand.dmi' //yogs
 		alternate_worn_icon = 'yogstation/icons/mob/back.dmi' //yogs
@@ -506,7 +520,7 @@
 	if(G)
 		var/obj/item/twohanded/spear/explosive/lance = new /obj/item/twohanded/spear/explosive(src.loc, G)
 		lance.force_wielded = force_wielded
-		lance.force_unwielded = force_unwielded
+		lance.force = force
 		lance.throwforce = throwforce
 		lance.icon_prefix = icon_prefix
 		parts_list -= G
@@ -575,7 +589,7 @@
 	throwforce = 13
 	throw_speed = 2
 	throw_range = 4
-	materials = list(MAT_METAL=13000)
+	materials = list(/datum/material/iron=13000)
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = "swing_hit"
 	sharpness = IS_SHARP
@@ -640,8 +654,8 @@
 	icon_state = "spearglass0"
 	name = "\improper Grey Tide"
 	desc = "Recovered from the aftermath of a revolt aboard Defense Outpost Theta Aegis, in which a seemingly endless tide of Assistants caused heavy casualities among Nanotrasen military forces."
-	force_unwielded = 15
-	force_wielded = 25
+	force = 15
+	force_wielded = 10
 	throwforce = 20
 	throw_speed = 4
 	attack_verb = list("gored")
@@ -670,8 +684,7 @@
 	force = 7
 	throwforce = 15
 	w_class = WEIGHT_CLASS_BULKY
-	force_unwielded = 7
-	force_wielded = 15
+	force_wielded = 8
 	attack_verb = list("attacked", "impaled", "pierced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = IS_SHARP
@@ -685,16 +698,14 @@
 	desc = "A trident recovered from the ruins of atlantis"
 	force = 14
 	throwforce = 23
-	force_unwielded = 14
-	force_wielded = 20
+	force_wielded = 6
 
 /obj/item/twohanded/pitchfork/demonic
 	name = "demonic pitchfork"
 	desc = "A red pitchfork, it looks like the work of the devil."
 	force = 19
 	throwforce = 24
-	force_unwielded = 19
-	force_wielded = 25
+	force_wielded = 6
 
 /obj/item/twohanded/pitchfork/demonic/Initialize()
 	. = ..()
@@ -703,13 +714,11 @@
 /obj/item/twohanded/pitchfork/demonic/greater
 	force = 24
 	throwforce = 50
-	force_unwielded = 24
-	force_wielded = 34
+	force_wielded = 10
 
 /obj/item/twohanded/pitchfork/demonic/ascended
 	force = 100
 	throwforce = 100
-	force_unwielded = 100
 	force_wielded = 500000 // Kills you DEAD.
 
 /obj/item/twohanded/pitchfork/update_icon()
@@ -757,8 +766,8 @@
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	name = "vibro sword"
 	desc = "A potent weapon capable of cutting through nearly anything. Wielding it in two hands will allow you to deflect gunfire."
-	force_unwielded = 20
-	force_wielded = 40
+	force = 20
+	force_wielded = 20
 	armour_penetration = 100
 	block_chance = 40
 	throwforce = 20
@@ -797,7 +806,7 @@
 	icon_state = "bone_axe0"
 	name = "bone axe"
 	desc = "A large, vicious axe crafted out of several sharpened bone plates and crudely tied together. Made of monsters, by killing monsters, for killing monsters."
-	force_wielded = 23
+	force_wielded = 18
 
 /obj/item/twohanded/fireaxe/boneaxe/update_icon()
 	icon_state = "bone_axe[wielded]"
@@ -814,8 +823,7 @@
 	force = 11
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
-	force_unwielded = 11
-	force_wielded = 20					//I have no idea how to balance
+	force_wielded = 9					//I have no idea how to balance
 	throwforce = 22
 	throw_speed = 4
 	embedding = list("embedded_impact_pain_multiplier" = 3)
@@ -826,6 +834,27 @@
 
 /obj/item/twohanded/bonespear/update_icon()
 	icon_state = "bone_spear[wielded]"
+
+/obj/item/twohanded/chitinspear //like a mix of a bone spear and bone axe, but more like a bone spear. And better.
+	icon_state = "chitin_spear0"
+	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
+	name = "chitin spear"
+	desc = "A well constructed spear with a sharpened edge akin to a naginata, making it equally great for slicing and throwing."
+	force = 13
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK
+	force_wielded = 10
+	throwforce = 25
+	throw_speed = 4
+	embedding = list("embedded_impact_pain_multiplier" = 3)
+	armour_penetration = 15
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored", "sliced", "ripped", "cut")
+	sharpness = IS_SHARP
+
+/obj/item/twohanded/chitinspear/update_icon()
+	icon_state = "chitin_spear[wielded]"
 
 /obj/item/twohanded/binoculars
 	name = "binoculars"
@@ -880,8 +909,7 @@
 	force = 10
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
-	force_unwielded = 10
-	force_wielded = 18
+	force_wielded = 8
 	throwforce = 22
 	throw_speed = 4
 	embedding = list("embedded_impact_pain_multiplier" = 2)

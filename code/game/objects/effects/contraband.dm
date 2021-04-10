@@ -670,6 +670,11 @@
 	desc = "This informational poster teaches the viewer what carbon dioxide is."
 	icon_state = "poster35_legit"
 
+/obj/structure/sign/poster/official/keep_calm
+	name = "Keep Calm"
+	desc = "This poster reminds employees to not panic in the unlikely event of an emergency."
+	icon_state = "poster37_legit" //36 is taken
+
 /obj/item/wantedposterposter
 	name = "Wanted Poster Poster"
 	desc = "This piece of high-tech machinery prints out a poster on walls that it's used on."

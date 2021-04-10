@@ -247,11 +247,12 @@
 	light_color = "#FFE48E"
 	light_range = 2
 	light_power = 0.7
-	duration = 55
+	duration = 50
 
-/obj/effect/temp_visual/ratvar/warp_marker/Initialize(mapload, mob/living/servant)
+/obj/effect/temp_visual/ratvar/warp_marker/Initialize(mapload, mob/living/servant, _duration = 50)
+	duration = _duration
 	. = ..()
-	animate(src, alpha = 255, time = 50)
+	animate(src, alpha = 255, time = duration)
 
 //Used by the Eminence to coordinate the cult
 /obj/effect/temp_visual/ratvar/command_point

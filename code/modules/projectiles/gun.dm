@@ -10,7 +10,7 @@
 	flags_1 =  CONDUCT_1
 	obj_flags = UNIQUE_RENAME
 	slot_flags = ITEM_SLOT_BELT
-	materials = list(MAT_METAL=2000)
+	materials = list(/datum/material/iron=2000)
 	w_class = WEIGHT_CLASS_NORMAL
 	throwforce = 5
 	throw_speed = 3
@@ -114,8 +114,10 @@
 	var/obj/item/gun/G = locate(/obj/item/gun) in contents
 	if(G)
 		G.forceMove(loc)
-		QDEL_NULL(G.pin)
-		visible_message("[G] can now fit a new pin, but the old one was destroyed in the process.", null, null, 3)
+		var/pin = G.pin
+		if(G.pin.gun_remove()) //if this returns false the gun and pin are not going to exist
+			visible_message("[G] can now fit a new pin, but the old one was destroyed in the process.", null, null, 3)
+			QDEL_NULL(pin)
 		qdel(src)
 
 /obj/item/gun/examine(mob/user)
@@ -304,7 +306,7 @@
 /obj/item/gun/proc/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(user)
 		SEND_SIGNAL(user, COMSIG_MOB_FIRED_GUN, user, target, params, zone_override)
-	
+
 	add_fingerprint(user)
 
 	if(semicd)

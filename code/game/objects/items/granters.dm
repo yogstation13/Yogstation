@@ -304,7 +304,7 @@
 
 /obj/item/book/granter/spell/random/Initialize()
 	. = ..()
-	var/static/banned_spells = list(/obj/item/book/granter/spell/mimery_blockade, /obj/item/book/granter/spell/mimery_guns)
+	var/static/banned_spells = list(/obj/item/book/granter/spell/mimery_blockade, /obj/item/book/granter/spell/mimery_guns, /obj/item/book/granter/spell/fireball)
 	var/real_type = pick(subtypesof(/obj/item/book/granter/spell) - banned_spells)
 	new real_type(loc)
 	return INITIALIZE_HINT_QDEL
@@ -376,6 +376,31 @@
 		name = "empty scroll"
 		icon_state = "blankscroll"
 
+/obj/item/book/granter/martial/flyingfang
+	martial = /datum/martial_art/flyingfang
+	name = "strange tablet"
+	martialname = "Flying Fang"
+	desc = "A tablet with strange pictograms that appear to detail some kind of fighting technique."
+	force = 10
+	greet = "<span class='sciradio'>You have learned the ancient martial art of Flying Fang! Your unarmed attacks have become somewhat more effective,  \
+	and you are more resistant to damage and stun-based weaponry. However, you are also unable to use any ranged weaponry or armor. You can learn more about your newfound art by using the Recall Teachings verb in the Flying Fang tab.</span>"
+	icon = 'icons/obj/items_and_weapons.dmi'
+	icon_state = "stone_tablet"
+	remarks = list("Feasting on the insides of your enemies...", "Some of these techniques look a bit dizzying...", "Not like I need armor anyways...", "Don't get shot, whatever that means...")
+
+/obj/item/book/granter/martial/flyingfang/already_known(mob/user)
+	if(!islizard(user))
+		to_chat(user, "<span class='warning'>You can't tell if this is some poorly written fanfiction or an actual guide to something.</span>")
+		return TRUE
+	return ..()
+
+/obj/item/book/granter/martial/flyingfang/onlearned(mob/living/carbon/user)
+	..()
+	if(oneuse == TRUE)
+		desc = "It's completely blank."
+		name = "blank tablet"
+		icon_state = "stone_tablet_blank"
+
 /obj/item/book/granter/martial/plasma_fist
 	martial = /datum/martial_art/plasma_fist
 	name = "frayed scroll"
@@ -414,6 +439,6 @@
 /obj/item/book/granter/crafting_recipe/weapons
 	name = "makeshift weapons 101"
 	desc = "A book filled with directions on how to make various weaponry."
-	crafting_recipe_types = list(/datum/crafting_recipe/baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing, /datum/crafting_recipe/makeshiftlasrifle)
+	crafting_recipe_types = list(/datum/crafting_recipe/baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing)
 	icon_state = "bookCrafting"
 	oneuse = TRUE

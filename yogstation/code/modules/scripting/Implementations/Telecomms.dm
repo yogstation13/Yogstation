@@ -6,13 +6,12 @@
 
 #define HUMAN 1
 #define MONKEY 2
-#define ALIEN 4
-#define ROBOT 8
-#define SLIME 16
-#define DRONE 32
-#define DRACONIC 64
-#define BEACHTONGUE 128
+#define ROBOT 4
+#define POLYSMORPH 8
+#define DRACONIC 16
+#define BEACHTONGUE 32
 GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND,SPAN_CLOWN))//Span classes that players are allowed to set in a radio transmission.
+//this is fucking broken
 GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/language/machine,/datum/language/draconic))// language datums that players are allowed to translate to in a radio transmission.
 
 /n_Interpreter/TCS_Interpreter
@@ -113,10 +112,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 	interpreter.SetVar("languages", new /datum/n_enum(list(
 		"human" = HUMAN,
 		"monkey" = MONKEY,
-		"alien" = ALIEN,
 		"robot" = ROBOT,
-		"slime" = SLIME,
-		"drone" = DRONE,
+		"polysmorph" = POLYSMORPH,
 		"draconic" = DRACONIC,
 		"beachtounge" = BEACHTONGUE
 	)))
@@ -148,14 +145,10 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		oldlang = HUMAN
 	else if(oldlang == /datum/language/monkey)
 		oldlang = MONKEY
-	else if(oldlang == /datum/language/xenocommon)
-		oldlang = ALIEN
 	else if(oldlang == /datum/language/machine)
 		oldlang = ROBOT
-	else if(oldlang == /datum/language/slime)
-		oldlang = SLIME
-	else if(oldlang == /datum/language/drone)
-		oldlang = DRONE
+	else if(oldlang == /datum/language/polysmorph)
+		oldlang = POLYSMORPH
 	else if(oldlang == /datum/language/draconic)
 		oldlang = DRACONIC
 	else if(oldlang == /datum/language/beachbum)
@@ -278,14 +271,10 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 			return /datum/language/common
 		if(MONKEY)
 			return /datum/language/monkey
-		if(ALIEN)
-			return /datum/language/xenocommon
 		if(ROBOT)
 			return /datum/language/machine
-		if(SLIME)
-			return /datum/language/slime
-		if(DRONE)
-			return /datum/language/drone
+		if(POLYSMORPH)
+			return /datum/language/polysmorph
 		if(DRACONIC)
 			return /datum/language/draconic
 		if(BEACHTONGUE)
@@ -378,6 +367,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 	var/exclaim = script_signal.get_clean_property("exclaim")
 	var/language = script_signal.get_clean_property("language")
 
+
 	var/obj/machinery/telecomms/server/S = interp.Compiler.Holder
 	var/obj/item/radio/server/hradio = S.server_radio
 
@@ -420,7 +410,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 	virt.verb_exclaim = exclaim
 	virt.verb_yell = yell
 
-	var/datum/signal/subspace/vocal/newsign = new(hradio,freq,virt,language,message,spans,list(S.z))
+	var/datum/signal/subspace/vocal/newsign = new(hradio,freq,virt,language,message,spans, list(), list(S.z))
 	/*
 	virt.languages_spoken = language
 	virt.languages_understood = virt.languages_spoken //do not remove this or everything turns to jibberish
@@ -445,6 +435,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 	newsign.data["vname"] = source
 	newsign.data["vmask"] = 0
 
+
 	var/pass = S.relay_information(newsign, /obj/machinery/telecomms/hub)
 	if(!pass) // If we're not sending this to the hub (i.e. we're running a basic tcomms or something)
 		pass = S.relay_information(newsign, /obj/machinery/telecomms/broadcaster) // send this message to broadcasters directly
@@ -453,9 +444,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 #undef MAX_MEM_VARS
 #undef HUMAN
 #undef MONKEY
-#undef ALIEN
 #undef ROBOT
-#undef SLIME
-#undef DRONE
+#undef POLYSMORPH
 #undef DRACONIC
 #undef BEACHTONGUE

@@ -98,7 +98,7 @@
 	if(losebreath >= 1) //You've missed a breath, take oxy damage
 		losebreath--
 		if(prob(10))
-			emote("gasp")
+			INVOKE_ASYNC(src, .proc/emote, "gasp")
 		if(istype(loc, /obj/))
 			var/obj/loc_as_obj = loc
 			loc_as_obj.handle_internal_lifeform(src,0)
@@ -172,7 +172,7 @@
 	//OXYGEN
 	if(O2_partialpressure < safe_oxy_min) //Not enough oxygen
 		if(prob(20))
-			emote("gasp")
+			INVOKE_ASYNC(src, .proc/emote, "gasp")
 		if(O2_partialpressure > 0)
 			var/ratio = 1 - O2_partialpressure/safe_oxy_min
 			adjustOxyLoss(min(5*ratio, 3))
@@ -264,6 +264,11 @@
 		var/nitryl_partialpressure = (breath.get_moles(/datum/gas/nitryl)/breath.total_moles())*breath_pressure
 		adjustFireLoss(nitryl_partialpressure/4)
 
+	//FREON
+	if(breath.get_moles(/datum/gas/freon))
+		var/freon_partialpressure = (breath.get_moles(/datum/gas/freon)/breath.total_moles())*breath_pressure
+		adjustFireLoss(freon_partialpressure * 0.25)
+
 	//MIASMA
 	if(breath.get_moles(/datum/gas/miasma))
 		var/miasma_partialpressure = (breath.get_moles(/datum/gas/miasma)/breath.total_moles())*breath_pressure
@@ -272,6 +277,8 @@
 			var/datum/disease/advance/miasma_disease = new /datum/disease/advance/random(2,3)
 			miasma_disease.name = "Unknown"
 			ForceContractDisease(miasma_disease, TRUE, TRUE)
+
+
 
 		//Miasma side effects
 		switch(miasma_partialpressure)
@@ -334,7 +341,7 @@
 
 /mob/living/carbon/proc/handle_bodyparts()
 	var/stam_regen = FALSE
-	if(stam_regen_start_time <= world.time)
+	if(stam_regen_start_time <= world.time && (has_dna() && !dna.check_mutation(ACTIVE_HULK)))
 		stam_regen = TRUE
 		if(stam_paralyzed)
 			. |= BODYPART_LIFE_UPDATE_HEALTH //make sure we remove the stamcrit

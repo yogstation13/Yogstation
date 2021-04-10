@@ -79,15 +79,15 @@
 			continue // i'd be right happy to
 		meme_pack_data[P.group]["packs"] += list(list(
 			"name" = P.name,
-			"cost" = P.cost,
+			"cost" = P.get_cost(),
 			"id" = pack,
 			"desc" = P.desc || P.name // If there is a description, use it. Otherwise use the pack's name.
 		))
 
-/obj/machinery/computer/cargo/express/ui_interact(mob/living/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state) // Remember to use the appropriate state.
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/cargo/express/ui_interact(mob/living/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "CargoExpress", name, 600, 700, master_ui, state)
+		ui = new(user, src, "CargoExpress", name)
 		ui.open()
 
 /obj/machinery/computer/cargo/express/ui_data(mob/user)
@@ -170,7 +170,7 @@
 			if(D)
 				points_to_check = D.account_balance
 			if(!(obj_flags & EMAGGED))
-				if(SO.pack.cost <= points_to_check)
+				if(SO.pack.get_cost() <= points_to_check)
 					if (istype(beacon) && usingBeacon)//prioritize beacons over landing in cargobay
 						LZ = get_turf(beacon)
 						beacon.update_status(SP_LAUNCH)
@@ -186,15 +186,15 @@
 							CHECK_TICK
 						if(empty_turfs && empty_turfs.len)
 							LZ = pick(empty_turfs)
-					if (SO.pack.cost <= points_to_check && LZ)//we need to call the cost check again because of the CHECK_TICK call
-						D.adjust_money(-SO.pack.cost)
+					if (SO.pack.get_cost() <= points_to_check && LZ)//we need to call the cost check again because of the CHECK_TICK call
+						D.adjust_money(-SO.pack.get_cost())
 						new /obj/effect/DPtarget(LZ, podType, SO)
 						. = TRUE
 						message_admins("[ADMIN_LOOKUPFLW(usr)] has ordered a [SO.pack.name] pod at location [ADMIN_VERBOSEJMP(LZ)]")
 						investigate_log("Order #[SO.id] ([SO.pack.name], placed by [key_name(SO.orderer_ckey)]), paid by [D.account_holder] has shipped.", INVESTIGATE_CARGO)
 						update_icon()
 			else
-				if(SO.pack.cost * (0.72*MAX_EMAG_ROCKETS) <= points_to_check) // bulk discount :^)
+				if(SO.pack.get_cost() * (0.72*MAX_EMAG_ROCKETS) <= points_to_check) // bulk discount :^)
 					landingzone = GLOB.areas_by_type[pick(GLOB.the_station_areas)]  //override default landing zone
 					for(var/turf/open/floor/T in landingzone.contents)
 						if(is_blocked_turf(T))
@@ -202,15 +202,17 @@
 						LAZYADD(empty_turfs, T)
 						CHECK_TICK
 					if(empty_turfs && empty_turfs.len)
-						D.adjust_money(-(SO.pack.cost * (0.72*MAX_EMAG_ROCKETS)))
+						D.adjust_money(-(SO.pack.get_cost() * (0.72*MAX_EMAG_ROCKETS)))
 
 						SO.generateRequisition(get_turf(src))
+						var/amountordered = 0
 						for(var/i in 1 to MAX_EMAG_ROCKETS)
 							LZ = pick(empty_turfs)
 							LAZYREMOVE(empty_turfs, LZ)
 							new /obj/effect/DPtarget(LZ, podType, SO)
+							amountordered++
 							. = TRUE
-							message_admins("[ADMIN_LOOKUPFLW(usr)] has ordered a [SO.pack.name] pod at location [ADMIN_VERBOSEJMP(LZ)]")
-							investigate_log("Order #[SO.id] ([SO.pack.name], placed by [key_name(SO.orderer_ckey)]), paid by [D.account_holder] has shipped.", INVESTIGATE_CARGO)
 							update_icon()
 							CHECK_TICK
+						message_admins("[ADMIN_LOOKUPFLW(usr)] has ordered a [SO.pack.name] pod x[amountordered] at location [ADMIN_VERBOSEJMP(LZ)]")
+						investigate_log("Order #[SO.id] ([SO.pack.name] x[amountordered], placed by [key_name(SO.orderer_ckey)]), paid by [D.account_holder] has shipped.", INVESTIGATE_CARGO)

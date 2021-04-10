@@ -130,7 +130,6 @@
 	default_storage = /obj/item/storage/toolbox/brass/prefilled
 	hacked = TRUE
 	visualAppearence = CLOCKDRONE
-	can_be_held = FALSE
 	flavortext = "<b><span class='nezbere'>You are a cogscarab,</span> a tiny building construct of Ratvar. While you're weak and can't recite scripture, \
 	you have a set of quick tools, as well as a replica fabricator that can create brass and convert objects.<br><br>Work with the servants of Ratvar \
 	to construct and maintain defenses at the City of Cogs. If there are no servants, use this time to experiment with base designs!"
@@ -146,8 +145,16 @@
 	set_light(2, 0.5)
 	qdel(access_card) //we don't have free access
 	access_card = null
-	verbs -= /mob/living/simple_animal/drone/verb/check_laws
-	verbs -= /mob/living/simple_animal/drone/verb/drone_ping
+	remove_verb(src, list(/mob/living/simple_animal/drone/verb/check_laws, /mob/living/simple_animal/drone/verb/drone_ping))
+
+//Cogscarabs being able to be picked up during war
+/mob/living/simple_animal/drone/cogscarab/attack_hand(mob/user)
+	if(!is_servant_of_ratvar(user))
+		to_chat(user, "<span class='warning'>[src] wriggles out of your hands! You can't pick it up!</span>")
+		return
+	if(!GLOB.ratvar_approaches) 
+		return
+	..()
 
 /mob/living/simple_animal/drone/cogscarab/Login()
 	..()
@@ -158,6 +165,7 @@
 	return FALSE
 
 /mob/living/simple_animal/drone/cogscarab/alert_drones(msg, dead_can_hear = FALSE)
+	var/turf/A = get_area(src)
 	if(msg == DRONE_NET_CONNECT)
 		msg = "<span class='brass'><i>Hierophant Network:</i> [name] activated.</span>"
 	else if(msg == DRONE_NET_DISCONNECT)

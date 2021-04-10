@@ -84,7 +84,7 @@
 
 /obj/machinery/atmospherics/components/binary/circulator/update_icon()
 	cut_overlays()
-	
+
 	if(anchored)
 		for(var/direction in GLOB.cardinals)
 			if(!(direction & initialize_directions))
@@ -120,7 +120,7 @@
 			add_overlay("circ-panel")
 		set_light(0)
 		return
-	
+
 	icon_state = "circ-assembled-[flipped]"
 
 	if(!is_operational())
@@ -150,7 +150,7 @@
 /obj/machinery/atmospherics/components/binary/circulator/wrench_act(mob/living/user, obj/item/I)
 	if(user.a_intent == INTENT_HARM)
 		return
-		
+
 	if(!panel_open)
 		to_chat(user, "<span class='warning'>Open the panel first!</span>")
 		return TRUE
@@ -186,7 +186,7 @@
 		if(node2)
 			node2.atmosinit()
 			node2.addMember(src)
-		build_network()
+		SSair.add_to_rebuild_queue(src)
 
 	update_icon()
 
@@ -211,7 +211,7 @@
 
 /obj/machinery/atmospherics/components/binary/circulator/multitool_act(mob/living/user, obj/item/I)
 	if(user.a_intent == INTENT_HARM)
-		return 
+		return
 	if(generator)
 		to_chat(user, "<span class='warning'>Disconnect [generator] first!</span>")
 		return TRUE
@@ -283,4 +283,3 @@
 		generator.kill_circs()
 		generator.update_icon()
 	..()
-	

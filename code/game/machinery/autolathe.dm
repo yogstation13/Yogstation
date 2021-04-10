@@ -38,13 +38,10 @@
 	var/processing_line
 	var/printdirection = 0
 	var/queuelength = 0
-	var/list/categories = list("Tools","Electronics","Construction","T-Comm","Security","Machinery","Medical","Misc","Dinnerware","Imported", "Search")
-
-	ui_x = 1116
-	ui_y = 703
+	var/list/categories = list("Tools","Electronics","Construction","T-Comm","Security","Machinery","Medical","Miscellaneous","Dinnerware","Imported", "Search")
 
 /obj/machinery/autolathe/Initialize()
-	AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_GLASS), 0, TRUE, null, null, CALLBACK(src, .proc/AfterMaterialInsert))
+	AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass), 0, TRUE, null, null, CALLBACK(src, .proc/AfterMaterialInsert))
 	. = ..()
 
 	wires = new /datum/wires/autolathe(src)
@@ -55,14 +52,14 @@
 	QDEL_NULL(wires)
 	return ..()
 
-/obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/autolathe/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!is_operational())
 		return
 	if(shocked && !(stat & NOPOWER))
 		shock(user,50)
 	if(!ui)
-		ui = new(user, src, ui_key, "Autolathe", name, ui_x, ui_y, master_ui, state)  //Create the TGUI from autolathe.js
+		ui = new(user, src, "Autolathe", name)
 		ui.open()
 
 /obj/machinery/autolathe/proc/wallcheck(direction) //Check for nasty walls and update ui
@@ -77,8 +74,8 @@
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	data["total_amount"] = materials.total_amount
 	data["max_amount"] = materials.max_amount
-	data["metal_amount"] = materials.amount(MAT_METAL)
-	data["glass_amount"] = materials.amount(MAT_GLASS)
+	data["metal_amount"] = materials.get_material_amount(/datum/material/iron)
+	data["glass_amount"] = materials.get_material_amount(/datum/material/glass)
 	data["rightwall"] = wallcheck(4) // Wall data for ui
 	data["leftwall"] = wallcheck(8)
 	data["abovewall"] = wallcheck(1)
@@ -98,7 +95,9 @@
 		design["category"] = D.category
 		var/max_multiplier_list = list()
 		if(ispath(D.build_path, /obj/item/stack))
-			var/max_multiplier = min(D.maxstack, D.materials[MAT_METAL] ? round(materials.amount(MAT_METAL)/D.materials[MAT_METAL]):INFINITY,D.materials[MAT_GLASS]?round(materials.amount(MAT_GLASS)/D.materials[MAT_GLASS]):INFINITY)
+			var/max_multiplier
+			for(var/datum/material/mat in D.materials)
+				max_multiplier = min(D.maxstack, round(materials.get_material_amount(mat)/D.materials[mat]))
 			if (max_multiplier > 10 && !disabled)
 				max_multiplier_list += "10"
 			if (max_multiplier > 25 && !disabled)
@@ -183,7 +182,6 @@
 			if(printdirection > 8)  // Simple Sanity Check
 				printdirection = 0
 
-	ui_interact(usr)
 	update_icon()
 
 /obj/machinery/autolathe/on_deconstruction()
@@ -192,7 +190,6 @@
 
 /obj/machinery/autolathe/attackby(obj/item/O, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", O))
-		updateUsrDialog()
 		return TRUE
 
 	if(default_deconstruction_crowbar(O))
@@ -226,12 +223,11 @@
 		use_power(MINERAL_MATERIAL_AMOUNT / 10)
 	else
 		switch(id_inserted)
-			if (MAT_METAL)
+			if (/datum/material/iron)
 				flick("autolathe_o",src)//plays metal insertion animation
-			if (MAT_GLASS)
+			else
 				flick("autolathe_r",src)//plays glass insertion animation
 		use_power(min(1000, amount_inserted / 100))
-	updateUsrDialog()
 
 /obj/machinery/autolathe/RefreshParts()
 	var/T = 0
@@ -254,29 +250,33 @@
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	var/dat = "<b>Total amount:</b> [materials.total_amount] / [materials.max_amount] cm<sup>3</sup><br>"
 	for(var/mat_id in materials.materials)
-		var/datum/material/M = materials.materials[mat_id]
-		dat += "<b>[M.name] amount:</b> [M.amount] cm<sup>3</sup><br>"
+		var/datum/material/M = mat_id
+		var/mineral_amount = materials.materials[mat_id]
+		if(mineral_amount > 0)
+			dat += "<b>[M.name] amount:</b> [mineral_amount] cm<sup>3</sup><br>"
 	return dat
 
 /obj/machinery/autolathe/proc/can_build(datum/design/D, amount = 1)
 	if(D.make_reagents.len)
 		return FALSE
 	var/coeff = (ispath(D.build_path, /obj/item/stack) ? 1 : prod_coeff)
+
+	var/list/required_materials = list()
+
+	for(var/i in D.materials)
+		required_materials[i] = D.materials[i] * coeff * amount
+
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-	if(D.materials[MAT_METAL] && (materials.amount(MAT_METAL) < (D.materials[MAT_METAL] * coeff * amount)))
-		return FALSE
-	if(D.materials[MAT_GLASS] && (materials.amount(MAT_GLASS) < (D.materials[MAT_GLASS] * coeff * amount)))
-		return FALSE
 	if(wallcheck(printdirection))
 		say("Output blocked, please remove obstruction.")
 		return FALSE
-	return TRUE
+	return materials.has_materials(required_materials)
 
 /obj/machinery/autolathe/proc/get_design_cost_metal(datum/design/D)
 	var/coeff = (ispath(D.build_path, /obj/item/stack) ? 1 : prod_coeff)
 	var/dat
-	if(D.materials[MAT_METAL])
-		dat = D.materials[MAT_METAL] * coeff
+	if(D.materials[/datum/material/iron])
+		dat = D.materials[/datum/material/iron] * coeff
 	else
 		dat = 0
 	return dat
@@ -284,8 +284,8 @@
 /obj/machinery/autolathe/proc/get_design_cost_glass(datum/design/D)
 	var/coeff = (ispath(D.build_path, /obj/item/stack) ? 1 : prod_coeff)
 	var/dat
-	if(D.materials[MAT_GLASS])
-		dat = D.materials[MAT_GLASS] * coeff
+	if(D.materials[/datum/material/glass])
+		dat = D.materials[/datum/material/glass] * coeff
 	else
 		dat = 0
 	return dat
@@ -335,20 +335,39 @@
 	return
 
 /obj/machinery/autolathe/proc/make_item(datum/design/D, multiplier)
-	var/is_stack = ispath(request.build_path, /obj/item/stack)
+	var/is_stack = ispath(D.build_path, /obj/item/stack)
 	var/coeff = (is_stack ? 1 : prod_coeff) //stacks are unaffected by production coefficient
-	var/metal_cost = request.materials[MAT_METAL]
-	var/glass_cost = request.materials[MAT_GLASS]
-	var/power = max(2000, (metal_cost + glass_cost) * multiplier / 5)
+	var/total_amount = 0
+	for(var/MAT in D.materials)
+		total_amount += D.materials[MAT]
+	var/power = max(2000, (total_amount)*multiplier/5) //Change this to use all materials
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	if (!materials)
 		say("No access to material storage, please contact the quartermaster.")
 		return FALSE
 	if(can_build(D, multiplier))  // Check if we can build if not, return
-		if((materials.amount(MAT_METAL) >= metal_cost * multiplier * coeff) && (materials.amount(MAT_GLASS) >= glass_cost * multiplier * coeff))
+		var/list/materials_used = list()
+		var/list/picked_materials
+		var/list/custom_materials = list() //These will apply their material effect, This should usually only be one.
+		for(var/MAT in D.materials)
+			var/datum/material/used_material = MAT
+			var/amount_needed = D.materials[MAT] * coeff * multiplier
+			if(istext(used_material)) //This means its a category
+				var/list/list_to_show = list()
+				for(var/i in SSmaterials.materials_by_category[used_material])
+					if(materials.materials[i])
+						list_to_show += i
+
+				used_material = input("Choose [used_material]", "Custom Material") as null|anything in list_to_show
+				if(!used_material)
+					return //Didn't pick any material, so you can't build shit either.
+				custom_materials[used_material] += amount_needed
+
+			materials_used[used_material] = amount_needed
+
+		if(materials.has_materials(materials_used))
 			use_power(power)
-			var/list/materials_used = list(MAT_METAL=metal_cost * coeff * multiplier, MAT_GLASS=glass_cost * coeff*multiplier)
-			materials.use_amount(materials_used)
+			materials.use_materials(materials_used)
 			being_built = list(D, multiplier)
 			desc = "It's building \a [initial(D.name)]."
 			icon_state = "autolathe_n"
@@ -371,11 +390,11 @@
 					for(var/mat in materials_used)
 						new_item.materials[mat] = materials_used[mat] / multiplier
 					new_item.autolathe_crafted(src)
+					if(picked_materials?.len)
+						new_item.set_custom_materials(picked_materials, 1 / multiplier) //Ensure we get the non multiplied amount
 			item_beingbuilt = null
 			icon_state = "autolathe"
-			updateUsrDialog()
 			desc = initial(desc)
-			updateUsrDialog()
 			return TRUE
 	else
 		say("Not enough resources. Queue processing stopped.")
@@ -399,31 +418,24 @@
 /obj/machinery/autolathe/proc/process_queue() //Process the queue from the autoqueue list. Will add temp metal and glass later.
 	var/datum/design/D = autoqueue[1][1]
 	var/multiplier = autoqueue[1][2]
-	if(!D)
-		remove_from_queue(1)
-		if(autoqueue.len)
-			return process_queue()
-		else
-			return
-	while(D)
-		if(!processing_queue)
-			say("Queue processing halted.")
-			processing_queue = FALSE
-			return
-		if(stat&(NOPOWER|BROKEN) || panel_open)
-			processing_queue = FALSE
-			return
-		if(!can_build(D,multiplier))
-			say("Not enough resources. Queue processing terminated.")
-			processing_queue = FALSE
-			return
-		remove_from_queue(1)
-		make_item(D,multiplier)
-		D = listgetindex(listgetindex(autoqueue, 1),1)
-		multiplier = listgetindex(listgetindex(autoqueue,1),2)
-	being_built = new /list()
-	say("Queue processing finished successfully.")
-	processing_queue = FALSE
+	if(!processing_queue)
+		say("Queue processing halted.")
+		return
+	if(stat&(NOPOWER|BROKEN) || panel_open)
+		processing_queue = FALSE
+		return
+	if(!can_build(D,multiplier))
+		say("Not enough resources. Queue processing terminated.")
+		processing_queue = FALSE
+		return
+	remove_from_queue(1)
+	make_item(D,multiplier)
+	if(autoqueue.len)
+		process_queue()
+	else
+		being_built = new /list()
+		say("Queue processing finished successfully.")
+		processing_queue = FALSE
 
 /obj/machinery/autolathe/proc/get_processing_line()  //Gets processing line for whats building for UI
 	var/datum/design/D = being_built[1]

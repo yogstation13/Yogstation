@@ -7,7 +7,7 @@
 	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	dir = NONE
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	var/datum/gas_mixture/gas	// gas used to flush, will appear at exit point
 	var/active = FALSE			// true if the holder is moving, otherwise inactive
 	var/count = 1000			// can travel 1000 steps before going inactive (in case of loops)
@@ -119,7 +119,7 @@
 	if(user.incapacitated())
 		return
 	for(var/mob/M in range(5, get_turf(src)))
-		M.show_message("<FONT size=[max(0, 5 - get_dist(src, M))]>CLONG, clong!</FONT>", 2)
+		M.show_message("<FONT size=[max(0, 5 - get_dist(src, M))]>CLONG, clong!</FONT>", MSG_AUDIBLE)
 	playsound(src.loc, 'sound/effects/clang.ogg', 50, 0, 0)
 
 // called to vent all gas in holder to a location

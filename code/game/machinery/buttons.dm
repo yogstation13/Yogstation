@@ -89,11 +89,31 @@
 		if(!device && !board && W.tool_behaviour == TOOL_WRENCH)
 			to_chat(user, "<span class='notice'>You start unsecuring the button frame...</span>")
 			W.play_tool_sound(src)
-			if(W.use_tool(src, user, 40))
+			if(W.use_tool(src, user, 4 SECONDS))
 				to_chat(user, "<span class='notice'>You unsecure the button frame.</span>")
 				transfer_fingerprints_to(new /obj/item/wallframe/button(get_turf(src)))
 				playsound(loc, 'sound/items/deconstruct.ogg', 50, 1)
 				qdel(src)
+
+		if(W.tool_behaviour == TOOL_MULTITOOL)
+			if(istype(device, /obj/item/assembly/control)) // User Feedback
+				var/obj/item/multitool/P = W
+				if(!id) // Generate New ID if none exists
+					id = rand(1, 25565) // rare enough that ids should never conflict
+					to_chat(user, "<span class='notice'>No ID found. Generating New ID</span>")
+
+				P.buffer = id
+				to_chat(user, "<span class='notice'>You link the button to the [P].</span>")
+				setup_device() // Has to be done. It sets the signaller up
+			else
+				to_chat(user, "<span class='warning'>No blast door controller found</span>")
+
+		if(board && W.tool_behaviour == TOOL_WIRECUTTER)
+			to_chat(user, "<span class='warning'>You start wiping the button's ID...</span>")
+			W.play_tool_sound(src)
+			if(W.use_tool(src, user, 4 SECONDS)) // To make sure they're not doing this unintentionally
+				to_chat(user, "<span class='notice'>You wipe the button's ID.</span>")
+				id = null
 
 		update_icon()
 		return
@@ -287,4 +307,4 @@
 	desc = "Used for building buttons."
 	icon_state = "button"
 	result_path = /obj/machinery/button
-	materials = list(MAT_METAL=MINERAL_MATERIAL_AMOUNT)
+	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)

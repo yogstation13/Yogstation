@@ -22,7 +22,7 @@ GENE SCANNER
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	materials = list(MAT_METAL=150)
+	materials = list(/datum/material/iron=150)
 
 /obj/item/t_scanner/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins to emit terahertz-rays into [user.p_their()] brain with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -86,8 +86,7 @@ GENE SCANNER
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 7
-	materials = list(MAT_METAL=200)
-	var/mode = 1
+	materials = list(/datum/material/iron=200)
 	var/scanmode = 0
 	var/advanced = FALSE
 
@@ -119,7 +118,7 @@ GENE SCANNER
 	user.visible_message("<span class='notice'>[user] has analyzed [M]'s vitals.</span>")
 
 	if(scanmode == 0)
-		healthscan(user, M, mode, advanced)
+		healthscan(user, M, advanced)
 	else if(scanmode == 1)
 		chemscan(user, M)
 
@@ -127,7 +126,7 @@ GENE SCANNER
 
 
 // Used by the PDA medical scanner too
-/proc/healthscan(mob/user, mob/living/M, mode = 1, advanced = FALSE)
+/proc/healthscan(mob/user, mob/living/M, advanced = FALSE)
 	if(isliving(user) && (user.incapacitated() || user.eye_blind))
 		return
 	//Damage specifics
@@ -249,7 +248,7 @@ GENE SCANNER
 
 
 	// Body part damage report
-	if(iscarbon(M) && mode == 1)
+	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		var/list/damaged = C.get_damaged_bodyparts(1,1)
 		if(length(damaged)>0 || oxy_loss>0 || tox_loss>0 || fire_loss>0)
@@ -260,6 +259,7 @@ GENE SCANNER
 	//Organ damages report
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
+		var/no_damage
 		var/minor_damage
 		var/major_damage
 		var/max_damage
@@ -292,6 +292,14 @@ GENE SCANNER
 				else
 					minor_damage = "\t<span class='info'>Mildly Damaged Organs: "
 					minor_damage += organ.name
+			else if ((organ.damage < organ.low_threshold) && (organ.name != "festering ooze"))
+				report_organs = TRUE // if no organs get reported, it means they have no organs
+				if(no_damage)
+					no_damage += ", "
+					no_damage += organ.name
+				else
+					no_damage = "\t<span class='info'>Healthy Organs: "
+					no_damage += organ.name
 
 		if(report_organs)	//we either finish the list, or set it to be empty if no organs were reported in that category
 			if(!max_damage)
@@ -306,6 +314,11 @@ GENE SCANNER
 				minor_damage = "\t<span class='info'>Mildly Damaged Organs: </span>"
 			else
 				minor_damage += "</span>"
+			if(!no_damage)
+				no_damage = "\t<span class='info'>Healthy Organs: </span>"
+			else
+				no_damage += "</span>"
+			to_chat(user, no_damage)
 			to_chat(user, minor_damage)
 			to_chat(user, major_damage)
 			to_chat(user, max_damage)
@@ -318,7 +331,7 @@ GENE SCANNER
 		var/mob/living/carbon/human/H = M
 		var/datum/species/S = H.dna.species
 		var/mutant = FALSE
-		if (H.dna.check_mutation(HULK))
+		if (H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK))
 			mutant = TRUE
 		else if (S.mutantlungs != initial(S.mutantlungs))
 			mutant = TRUE
@@ -405,20 +418,6 @@ GENE SCANNER
 			else
 				to_chat(user, "<span class='notice'>Subject is not addicted to any reagents.</span>")
 
-/obj/item/healthanalyzer/verb/toggle_mode()
-	set name = "Switch Verbosity"
-	set category = "Object"
-
-	if(usr.incapacitated())
-		return
-
-	mode = !mode
-	switch (mode)
-		if(1)
-			to_chat(usr, "The scanner now shows specific limb damage.")
-		if(0)
-			to_chat(usr, "The scanner no longer shows limb damage.")
-
 /obj/item/healthanalyzer/advanced
 	name = "advanced health analyzer"
 	icon_state = "health_adv"
@@ -442,7 +441,7 @@ GENE SCANNER
 	throw_speed = 3
 	throw_range = 7
 	tool_behaviour = TOOL_ANALYZER
-	materials = list(MAT_METAL=30, MAT_GLASS=20)
+	materials = list(/datum/material/iron=30, /datum/material/glass=20)
 	grind_results = list(/datum/reagent/mercury = 5, /datum/reagent/iron = 5, /datum/reagent/silicon = 5)
 	var/cooldown = FALSE
 	var/cooldown_time = 250
@@ -630,7 +629,7 @@ GENE SCANNER
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
-	materials = list(MAT_METAL=30, MAT_GLASS=20)
+	materials = list(/datum/material/iron=30, /datum/material/glass=20)
 
 /obj/item/slime_scanner/attack(mob/living/M, mob/living/user)
 	if(user.stat || user.eye_blind)
@@ -689,7 +688,7 @@ GENE SCANNER
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 7
-	materials = list(MAT_METAL=200)
+	materials = list(/datum/material/iron=200)
 
 /obj/item/nanite_scanner/attack(mob/living/M, mob/living/carbon/human/user)
 	user.visible_message("<span class='notice'>[user] has analyzed [M]'s nanites.</span>")
@@ -715,7 +714,7 @@ GENE SCANNER
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 7
-	materials = list(MAT_METAL=200)
+	materials = list(/datum/material/iron=200)
 	var/list/discovered = list() //hit a dna console to update the scanners database
 	var/list/buffer
 	var/ready = TRUE
@@ -723,7 +722,7 @@ GENE SCANNER
 
 /obj/item/sequence_scanner/attack(mob/living/M, mob/living/carbon/human/user)
 	add_fingerprint(user)
-	if (!HAS_TRAIT(M, TRAIT_RADIMMUNE) && !HAS_TRAIT(M, TRAIT_BADDNA)) //no scanning if its a husk or DNA-less Species
+	if (!HAS_TRAIT(M, TRAIT_GENELESS) && !HAS_TRAIT(M, TRAIT_BADDNA)) //no scanning if its a husk or DNA-less Species
 		user.visible_message("<span class='notice'>[user] has analyzed [M]'s genetic sequence.</span>")
 		gene_scan(M, user)
 

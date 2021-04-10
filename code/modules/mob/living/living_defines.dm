@@ -36,6 +36,9 @@
 	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
 	var/timeofdeath = 0
 
+	///This var, if true, kills the mob on initalize
+	var/startDead = FALSE
+
 	//Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
 	var/incorporeal_move = FALSE //FALSE is off, INCORPOREAL_MOVE_BASIC is normal, INCORPOREAL_MOVE_SHADOW is for ninjas
 								 //and INCORPOREAL_MOVE_JAUNT is blocked by holy water/salt
@@ -90,6 +93,9 @@
 
 	var/list/status_effects //a list of all status effects the mob has
 	var/druggy = 0
+
+	/// List of changes to body temperature, used by desease symtoms like fever
+	var/list/body_temp_changes = list()
 
 	//Speech
 	var/stuttering = 0

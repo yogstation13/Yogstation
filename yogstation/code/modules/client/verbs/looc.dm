@@ -52,7 +52,7 @@
 		to_chat(src, "<span class='danger'>You have LOOC muted.</span>")
 		return
 
-	mob.log_talk(raw_msg, LOG_LOOC)
+	mob.log_talk(raw_msg, LOG_LOOC, "LOOC")
 
 	var/list/clients_to_hear = list()
 	var/turf/looc_source = get_turf(mob.get_looc_source())

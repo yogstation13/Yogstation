@@ -25,7 +25,8 @@
 			var/obj/item/gun/G = target
 			if(G.pin && (force_replace || G.pin.pin_removeable))
 				G.pin.forceMove(get_turf(G))
-				G.pin.gun_remove(user)
+				if(!G.pin.gun_remove(user))
+					return
 				to_chat(user, "<span class ='notice'>You remove [G]'s old pin.</span>")
 
 			if(!G.pin)
@@ -42,25 +43,29 @@
 	obj_flags |= EMAGGED
 	to_chat(user, "<span class='notice'>You override the authentication mechanism.</span>")
 
+///what do we do when we are being added to a gun
 /obj/item/firing_pin/proc/gun_insert(mob/living/user, obj/item/gun/G)
 	gun = G
 	forceMove(gun)
 	gun.pin = src
 	return
 
+///pin removal proc, return TRUE if the gun is still intact when it's done, false if there is a "tragic" "accident"
 /obj/item/firing_pin/proc/gun_remove(mob/living/user)
 	gun.pin = null
 	gun = null
-	return
+	return TRUE
 
+///can the pin be used by whoever is firing its gun
 /obj/item/firing_pin/proc/pin_auth(mob/living/user)
 	return TRUE
 
+///what happens if an authorization is failed, explodes if selfdestruct is TRUE
 /obj/item/firing_pin/proc/auth_fail(mob/living/user)
-	user.show_message(fail_message, 1)
+	user?.show_message(fail_message, MSG_VISUAL)
 	if(selfdestruct)
 		if(user)
-			user.show_message("<span class='danger'>SELF-DESTRUCTING...</span><br>", 1)
+			user.show_message("<span class='danger'>SELF-DESTRUCTING...</span><br>", MSG_VISUAL)
 			to_chat(user, "<span class='userdanger'>[gun] explodes!</span>")
 		explosion(get_turf(gun), -1, 0, 2, 3)
 		if(gun)
@@ -147,6 +152,21 @@
 	desc = "Advanced clowntech that can convert any firearm into a far more useful object. It has a small nitrobananium charge on it."
 	selfdestruct = TRUE
 
+// fun pin
+// for when you need a gun to not be fired by anyone else ever
+/obj/item/firing_pin/fucked
+	name = "Syndicate Ultrasecure Firing Pin"
+	desc = "Get fuuuuuuuuucked."
+	selfdestruct = TRUE
+
+/obj/item/firing_pin/fucked/pin_auth(mob/living/user)
+	if(faction_check(user.faction, list(ROLE_SYNDICATE), FALSE))
+		return TRUE
+	return FALSE
+
+/obj/item/firing_pin/fucked/gun_remove(mob/living/user)
+	auth_fail(user)
+	return FALSE
 
 // DNA-keyed pin.
 // When you want to keep your toys for yourself.

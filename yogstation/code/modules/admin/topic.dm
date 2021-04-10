@@ -51,11 +51,14 @@
 			return
 		qdel(query_add_mentor)
 
-		var/datum/DBQuery/query_add_admin_log = SSdbcore.NewQuery("INSERT INTO `[format_table_name("admin_log")]` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , :usrckey, :address, :ckey);", list("usrckey" = usr.ckey, "address" = usr.client.address, "ckey" = "Added new mentor [ckey]"))
-		if(!query_add_admin_log.warn_execute())
-			qdel(query_add_admin_log)
+		var/datum/DBQuery/query_add_mentor_log = SSdbcore.NewQuery({"
+			INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log)
+			VALUES (:time, :round_id, :adminckey, INET_ATON(:adminip), 'add mentor', :target, CONCAT('New mentor added: ', :target))
+		"}, list("time" = SQLtime(), "round_id" = "[GLOB.round_id]", "adminckey" = usr.ckey, "adminip" = usr.client.address, "target" = ckey))
+		if(!query_add_mentor_log.warn_execute())
+			qdel(query_add_mentor_log)
 			return
-		qdel(query_add_admin_log)
+		qdel(query_add_mentor_log)
 
 		webhook_send_mchange(owner.ckey, C.ckey, "add")
 

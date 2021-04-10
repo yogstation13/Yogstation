@@ -82,6 +82,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
+"j" = (
+/turf/closed/wall/r_wall,
+/area/security/execution/transfer)
 "k" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -130,10 +133,10 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
 /obj/structure/cable{
@@ -205,7 +208,7 @@
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
 "w" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -273,7 +276,7 @@
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
 "D" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
 "E" = (
@@ -315,9 +318,6 @@
 /obj/item/reagent_containers/glass/bucket/wooden,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/execution/transfer)
-"M" = (
-/turf/closed/wall,
-/area/security/execution/transfer)
 "N" = (
 /obj/machinery/power/apc{
 	areastring = "/area/security/execution/transfer";
@@ -341,10 +341,10 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
 	},
 /turf/open/floor/plasteel/dark,
@@ -379,7 +379,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -394,7 +394,7 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/execution/transfer)
 "Y" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
@@ -417,33 +417,33 @@ a
 a
 a
 a
-M
-M
-M
-M
-M
+j
+j
+j
+j
+j
 "}
 (2,1,1) = {"
 a
 a
 a
 a
-M
+j
 s
 i
 Z
-M
+j
 "}
 (3,1,1) = {"
-M
-M
-M
+j
+j
+j
 d
-M
+j
 x
 w
 k
-M
+j
 "}
 (4,1,1) = {"
 u

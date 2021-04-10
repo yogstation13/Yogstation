@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
 	icon_state = "headset"
 	item_state = "headset"
-	materials = list(MAT_METAL=75)
+	materials = list(/datum/material/iron=75)
 	subspace_transmission = TRUE
 	canhear_range = 0 // can't hear headsets from very far away
 
@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	QDEL_NULL(keyslot2)
 	return ..()
 
-/obj/item/radio/headset/talk_into(mob/living/M, message, channel, list/spans,datum/language/language)
+/obj/item/radio/headset/talk_into(mob/living/M, message, channel, list/spans, datum/language/language, list/message_mods)
 	if (!listening)
 		return ITALICS | REDUCE_RANGE
 	return ..()
@@ -73,7 +73,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	else if(AIuser)
 		return ..(freq, level)
 	return FALSE
-	
+
 /obj/item/radio/headset/ui_data(mob/user)
 	. = ..()
 	.["headset"] = TRUE

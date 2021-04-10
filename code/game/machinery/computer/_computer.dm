@@ -14,6 +14,7 @@
 	var/icon_screen = "generic"
 	var/clockwork = FALSE
 	var/time_to_scewdrive = 20
+	var/authenticated = FALSE
 
 /obj/machinery/computer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
@@ -138,7 +139,7 @@
 			C.forceMove(loc)
 	qdel(src)
 
-/obj/machinery/computer/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/computer/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSCOMPUTER))
 		return TRUE

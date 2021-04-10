@@ -122,7 +122,9 @@ God bless America.
 			return ..()
 		else if(!frying && user.transferItemToLoc(I, src))
 			to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+			var/item_reags = I.grind_results
 			frying = new/obj/item/reagent_containers/food/snacks/deepfryholder(src, I)
+			frying.reagents.add_reagent_list(item_reags)
 			icon_state = "fryer_on"
 			if(superfry)
 				icon_state = "syndie_fryer_on"
@@ -182,7 +184,7 @@ God bless America.
 				fry_loop.start()
 				return
 				
-	if(user.pulling && user.a_intent == "grab" && iscarbon(user.pulling) && reagents.total_volume && isliving(user.pulling))
+	if(user.pulling && user.a_intent == INTENT_GRAB && iscarbon(user.pulling) && reagents.total_volume && isliving(user.pulling))
 		var/mob/living/carbon/C = user.pulling
 		if(user.grab_state < GRAB_AGGRESSIVE)
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")

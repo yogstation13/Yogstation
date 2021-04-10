@@ -39,6 +39,16 @@
 	. = ..()
 	if(.)
 		. = is_eligible_servant(new_owner.current)
+		var/list/no_team_antag = list(
+			/datum/antagonist/rev,
+			/datum/antagonist/darkspawn,
+			/datum/antagonist/shadowling,
+			/datum/antagonist/cult,
+			/datum/antagonist/zombie
+			)
+		for(var/datum/antagonist/NTA in new_owner.antag_datums)
+			if(NTA.type in no_team_antag)
+				return FALSE
 
 /datum/antagonist/clockcult/greet()
 	if(!owner.current || silent)
@@ -217,7 +227,7 @@
 			var/datum/mind/M = mind
 			if(M.current?.client)
 				SSachievements.unlock_achievement(/datum/achievement/greentext/ratvar,M.current.client)
-		if(eminence.current?.client)
+		if(eminence?.current?.client)
 			SSachievements.unlock_achievement(/datum/achievement/greentext/ratvar/eminence,eminence.current.client)
 	else
 		parts += "<span class='redtext big'>The Ark was destroyed! Ratvar will rust away for all eternity!</span>"
@@ -234,3 +244,17 @@
 		parts += printplayerlist(members - eminence)
 
 	return "<div class='panel clockborder'>[parts.Join("<br>")]</div>"
+
+/datum/team/clockcult/proc/check_size()
+	if(GLOB.clockwork_hardmode_active)
+		return
+	var/alive = 0
+	var/servants = length(GLOB.all_clockwork_mobs)
+	for(var/I in GLOB.player_list)
+		var/mob/M = I
+		if(M.stat != DEAD)
+			++alive
+	var/ratio = servants/alive
+	if(ratio >= SERVANT_HARDMODE_PERCENT)
+		GLOB.clockwork_hardmode_active = TRUE
+		hierophant_message("<span class='large_brass bold'>As the cult increases in size, the Ark's connection to the material plane weakens. Warping with camera consoles will take substantially more time unless the destination is a clockwork tile!</span>")

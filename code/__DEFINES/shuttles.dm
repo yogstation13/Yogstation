@@ -31,6 +31,11 @@
 #define EARLY_LAUNCHED 2
 #define ENDGAME_TRANSIT 3
 
+//positive value = cannot purchase
+#define SHUTTLEPURCHASE_PURCHASABLE 0 //station can buy a shuttle
+#define SHUTTLEPURCHASE_PURCHASED 1 //station has already bought a shuttle, so cannot
+#define SHUTTLEPURCHASE_FORCED 2 //station was given a new shuttle through events or other shenanigans
+
 // Ripples, effects that signal a shuttle's arrival
 #define SHUTTLE_RIPPLE_TIME 100
 
@@ -78,3 +83,7 @@
 //Shuttle defaults
 #define SHUTTLE_DEFAULT_SHUTTLE_AREA_TYPE /area/shuttle
 #define SHUTTLE_DEFAULT_UNDERLYING_AREA /area/space
+
+///Check for arena shuttle, if the bubblegum has died this round
+GLOBAL_VAR_INIT(bubblegum_dead, FALSE)
+

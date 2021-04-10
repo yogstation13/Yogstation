@@ -32,16 +32,17 @@
 	var/resist = L.getarmor(null, "rad")
 	if(prob(40))
 		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
-			if(H.dna && !HAS_TRAIT(H, TRAIT_RADIMMUNE))
-				if(prob(max(0,100-resist)))
-					H.randmuti()
-					if(prob(50))
-						if(prob(90))
-							H.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
-						else
-							H.easy_randmut(POSITIVE)
-						H.domutcheck()
+			if (!HAS_TRAIT(L,TRAIT_RADIMMUNE)) //if they dont have radimmune, continue
+				var/mob/living/carbon/human/H = L
+				if(H.dna && !HAS_TRAIT(H, TRAIT_GENELESS))
+					if(prob(max(0,100-resist)))
+						H.randmuti()
+						if(prob(50))
+							if(prob(90))
+								H.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
+							else
+								H.easy_randmut(POSITIVE)
+							H.domutcheck()
 		L.rad_act(20)
 
 /datum/weather/rad_storm/end()

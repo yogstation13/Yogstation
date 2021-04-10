@@ -28,6 +28,8 @@
 			return FALSE
 		if(M.mind.unconvertable)
 			return FALSE
+		if(M.is_convert_antag())
+			return FALSE
 	else
 		return FALSE
 	if(HAS_TRAIT(M, TRAIT_MINDSHIELD) || issilicon(M) || isbot(M) || isdrone(M) || ismouse(M) || is_servant_of_ratvar(M) || !M.client)
@@ -40,7 +42,7 @@
 	report_type = "cult"
 	antag_flag = ROLE_CULTIST
 	false_report_weight = 10
-	restricted_jobs = list("Chaplain","AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
+	restricted_jobs = list("Chaplain","AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer")
 	protected_jobs = list()
 	required_players = 29
 	required_enemies = 4
@@ -267,7 +269,7 @@
 			L.maxHealth = initial(L.maxHealth)
 			to_chat(L, "<span class='cult'>Your form regains its original durability!</span>")
 	//send message to cultists saying they can do stuff again
-	
+
 /datum/game_mode/cult/generate_credit_text()
 	var/list/round_credits = list()
 	var/len_before_addition

@@ -339,7 +339,7 @@
 	B2.reagents.add_reagent(/datum/reagent/potassium, 10)
 	B2.reagents.add_reagent(/datum/reagent/phosphorus, 10)
 	B2.reagents.add_reagent(/datum/reagent/toxin/mutagen, 30)
-	
+
 	beakers += B1
 	beakers += B2
 
@@ -558,7 +558,7 @@
 	B1.reagents.add_reagent(/datum/reagent/water, 50)
 	B1.reagents.add_reagent(/datum/reagent/toxin/mutetoxin, 50)
 	B1.reagents.add_reagent(/datum/reagent/toxin/spore, 75)
-	B1.reagents.add_reagent(/datum/reagent/toxin/itching_powder, 50)
+	B1.reagents.add_reagent(/datum/reagent/itching_powder, 50)
 	B2.reagents.add_reagent(/datum/reagent/fluorosurfactant, 150)
 	B2.reagents.add_reagent(/datum/reagent/toxin/mutagen, 150)
 	beakers += B1

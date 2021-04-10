@@ -1,0 +1,199 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"b" = (
+/turf/closed/wall/r_wall,
+/area/template_noop)
+"c" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/template_noop)
+"g" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"n" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/template_noop)
+"t" = (
+/obj/structure/sign/warning/securearea,
+/turf/closed/wall/r_wall,
+/area/template_noop)
+"v" = (
+/obj/item/clothing/mask/yogs/dallas,
+/turf/open/space/basic,
+/area/template_noop)
+"x" = (
+/obj/effect/spawner/lootdrop/maintenance/three,
+/turf/open/floor/plating,
+/area/template_noop)
+"E" = (
+/turf/open/space/basic,
+/area/template_noop)
+"H" = (
+/obj/item/stack/rods,
+/turf/open/space/basic,
+/area/template_noop)
+"I" = (
+/turf/open/floor/mineral/gold{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/template_noop)
+"M" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/template_noop)
+"O" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"P" = (
+/obj/item/paper/crumpled{
+	info = "Next time don't build your vault next to space, dumbass! Did you forget we don't live in a 2d world? NT's finest my foot! -J";
+	infolang = /datum/language/common
+	},
+/turf/open/floor/mineral/gold{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/template_noop)
+"R" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg2";
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/template_noop)
+"U" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"Y" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+
+(1,1,1) = {"
+x
+O
+g
+g
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+n
+Y
+Y
+Y
+n
+n
+n
+n
+a
+"}
+(3,1,1) = {"
+a
+n
+H
+E
+E
+E
+c
+c
+n
+a
+"}
+(4,1,1) = {"
+a
+n
+E
+H
+v
+b
+t
+c
+n
+a
+"}
+(5,1,1) = {"
+a
+n
+E
+U
+R
+I
+b
+E
+n
+a
+"}
+(6,1,1) = {"
+a
+n
+E
+b
+I
+P
+b
+E
+n
+a
+"}
+(7,1,1) = {"
+a
+n
+c
+t
+b
+b
+t
+c
+n
+a
+"}
+(8,1,1) = {"
+a
+n
+c
+c
+E
+E
+c
+c
+n
+a
+"}
+(9,1,1) = {"
+a
+n
+n
+n
+n
+n
+n
+n
+n
+M
+"}
+(10,1,1) = {"
+M
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

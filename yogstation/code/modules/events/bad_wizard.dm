@@ -36,7 +36,7 @@
 	make_spells()
 
 /datum/antagonist/wizard/meme/proc/make_spells()
-	switch(rand(9)) //keep this consistent with the amount of loadouts.
+	switch(rand(1,9)) //keep this consistent with the amount of loadouts.
 
 		if(1) //5x jaunt
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt, 4)

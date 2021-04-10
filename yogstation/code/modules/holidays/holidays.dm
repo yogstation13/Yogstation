@@ -5,7 +5,7 @@
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=U06jlgpMtQs", // the USSR anthem
 		"https://www.youtube.com/watch?v=x2YlbiyiuMc", // Polyushka Polye
-		"https://www.youtube.com/watch?v=cW38y4AFGyI", // Let's Go
+		"https://www.youtube.com/watch?v=2Z5hUa56_C4", // Let's Go
 		"https://www.youtube.com/watch?v=zgKazTrhXmI", // Red Army is the Strongest
 		"https://www.youtube.com/watch?v=Q_iIeFWJszY", // Shchors' Song
 		"https://www.youtube.com/watch?v=8iAoibAgAvM", // Swallowing Dust
@@ -32,11 +32,10 @@
 		"https://www.youtube.com/watch?v=ckNIMPQoBPw" // And on mars there will be apple blossoms
 		)
 
-/datum/holiday/oakday
-	name = "Oak's Birthday"
+/datum/holiday/gondoladay
+	name = "Gondola Day"
 	begin_day = 5
 	begin_month = JULY
-	drone_hat = /obj/item/clothing/head/hardhat/cakehat
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=lM2Lr3NqUcg", // Maamme (Finnish Anthem)
 		"https://www.youtube.com/watch?v=OEtyScs6djU", // Vapaussoturin Valloituslaulu
@@ -46,12 +45,12 @@
 		"https://www.youtube.com/watch?v=8IaUXefAsCU", // The Song of the Pioneers
 		"https://www.youtube.com/watch?v=PJR3xTdbXH8" // Nyet Molotov
 		)
-
-/datum/holiday/oakday/getStationPrefix()
-	return pick("Gondola","Finnish","Council","Oakreich","Perkele")
+		
+/datum/holiday/gondoladay/getStationPrefix()
+	return pick("Gondola","Finnish","Finland","Karelia","Perkele")
 	
-/datum/holiday/oakday/greet()
-	return "Happy birthday to Oakboscage!"
+/datum/holiday/gondoladay/greet()
+	return "Happy Gondola Day!"
 
 /datum/holiday/yogsday
 	name = "Yogstation Day"

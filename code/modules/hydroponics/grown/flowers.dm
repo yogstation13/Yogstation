@@ -141,7 +141,7 @@
 	icon_dead = "sunflower-dead"
 	product = /obj/item/reagent_containers/food/snacks/grown/moonflower
 	mutatelist = list()
-	reagents_add = list(/datum/reagent/consumable/ethanol/moonshine = 0.2, /datum/reagent/consumable/nutriment/vitamin = 0.02, /datum/reagent/consumable/nutriment = 0.02)
+	reagents_add = list(/datum/reagent/consumable/ethanol/moonshine = 0.2, /datum/reagent/consumable/nutriment = 0.02)
 	rarity = 15
 
 /obj/item/reagent_containers/food/snacks/grown/moonflower
@@ -248,8 +248,8 @@
 /obj/item/seeds/bee_balm/honey
 	name = "pack of Honey Balm seeds"
 	desc = "These seeds grow into Honey Balms."
-	icon_state = "seed-bee_balmalt"
-	species = "seed-bee_balm_alt"
+	icon_state = "seed-bee_balm_alt"
+	species = "bee_balmalt"
 	plantname = "Honey Balm Pods"
 	product = /obj/item/reagent_containers/food/snacks/grown/bee_balm/honey
 	endurance = 1

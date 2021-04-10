@@ -1,0 +1,242 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table,
+/turf/open/floor/plating,
+/area/template_noop)
+"c" = (
+/obj/structure/table_frame,
+/turf/open/floor/plating,
+/area/template_noop)
+"d" = (
+/obj/structure/table,
+/turf/open/floor/plating,
+/area/template_noop)
+"h" = (
+/obj/effect/decal/cleanable/glass,
+/obj/item/shard,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/template_noop)
+"j" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"n" = (
+/obj/machinery/door/window{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"p" = (
+/turf/closed/wall,
+/area/template_noop)
+"s" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"t" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"u" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"x" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/template_noop)
+"y" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"z" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"B" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/circuitboard/machine/recharger,
+/turf/open/floor/plating,
+/area/template_noop)
+"C" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/ears/earmuffs{
+	pixel_x = -3;
+	pixel_y = -2
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"F" = (
+/obj/item/target/syndicate,
+/turf/open/floor/plating,
+/area/template_noop)
+"G" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"I" = (
+/obj/structure/closet/crate{
+	icon_state = "crateopen"
+	},
+/obj/item/target,
+/obj/item/target/clown,
+/obj/item/target/syndicate,
+/obj/item/cardboard_cutout,
+/obj/item/cardboard_cutout,
+/obj/item/stack/rods/fifty,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"J" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table_frame,
+/obj/item/gun/energy/laser/practice,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"K" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"N" = (
+/obj/structure/frame/machine,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"P" = (
+/obj/item/chair,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"Q" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/template_noop)
+"R" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"S" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"T" = (
+/obj/effect/decal/cleanable/glass,
+/obj/structure/grille/broken,
+/turf/open/floor/plating,
+/area/template_noop)
+"V" = (
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plating,
+/area/template_noop)
+"X" = (
+/obj/structure/table,
+/obj/item/pen{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/paper/crumpled,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"Y" = (
+/obj/item/target,
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+x
+R
+u
+R
+x
+"}
+(2,1,1) = {"
+z
+s
+P
+x
+x
+"}
+(3,1,1) = {"
+p
+p
+h
+Q
+T
+"}
+(4,1,1) = {"
+I
+X
+d
+R
+c
+"}
+(5,1,1) = {"
+j
+j
+R
+x
+j
+"}
+(6,1,1) = {"
+N
+y
+V
+x
+j
+"}
+(7,1,1) = {"
+C
+B
+n
+J
+b
+"}
+(8,1,1) = {"
+t
+x
+R
+R
+S
+"}
+(9,1,1) = {"
+R
+Y
+F
+Y
+x
+"}
+(10,1,1) = {"
+K
+R
+x
+R
+G
+"}

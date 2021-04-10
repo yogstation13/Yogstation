@@ -12,14 +12,12 @@
 	w_class = WEIGHT_CLASS_BULKY
 	obj_flags = UNIQUE_RENAME
 	slot_flags = ITEM_SLOT_BACK
-	force_unwielded = 20 //It's never not wielded so these are the same
-	force_wielded = 20
 	throwforce = 5
 	throw_speed = 4
 	light_range = 5
 	light_power = 1
 	armour_penetration = 10
-	materials = list(MAT_METAL=1150, MAT_GLASS=2075)
+	materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("smashed", "crushed", "cleaved", "chopped", "pulped")
 	sharpness = IS_SHARP
@@ -63,6 +61,8 @@
 
 /obj/item/twohanded/required/kinetic_crusher/attack(mob/living/target, mob/living/carbon/user)
 	var/datum/status_effect/crusher_damage/C = target.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+	if(!C)
+		C = target.apply_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
 	var/target_health = target.health
 	..()
 	for(var/t in trophies)
@@ -97,6 +97,8 @@
 		if(!CM || CM.hammer_synced != src || !L.remove_status_effect(STATUS_EFFECT_CRUSHERMARK))
 			return
 		var/datum/status_effect/crusher_damage/C = L.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+		if(!C)
+			C = L.apply_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
 		var/target_health = L.health
 		for(var/t in trophies)
 			var/obj/item/crusher_trophy/T = t
@@ -338,7 +340,6 @@
 	. = ..()
 	if(.)
 		H.force += bonus_value * 0.2
-		H.force_unwielded += bonus_value * 0.2
 		H.force_wielded += bonus_value * 0.2
 		H.detonation_damage += bonus_value * 0.8
 
@@ -346,7 +347,6 @@
 	. = ..()
 	if(.)
 		H.force -= bonus_value * 0.2
-		H.force_unwielded -= bonus_value * 0.2
 		H.force_wielded -= bonus_value * 0.2
 		H.detonation_damage -= bonus_value * 0.8
 
