@@ -65,3 +65,29 @@
 #error BYOND version 513.1537 contains a bug that prevents the codebase from compiling properly. Please upgrade/downgrade your BYOND version
 #error ==================================
 #endif
+
+//If you update these values, update the message in the #error
+#define MAX_BYOND_MAJOR 513
+#define MAX_BYOND_MINOR 1538
+
+///Uncomment to bypass the max version check. Note: This will likely break the game, only use if you know what you're doing
+//#define IGNORE_MAX_BYOND_VERSION
+#if ((DM_VERSION > MAX_BYOND_MAJOR) || (DM_BUILD > MAX_BYOND_MINOR)) && !defined(IGNORE_MAX_BYOND_VERSION)
+#error Your version of BYOND is too new to compile this project. Download version 513.1538 at www.byond.com/download/build/513/513.1538_byond_setup.exe
+#endif
+
+#ifdef TRAVISBUILDING
+// Turdis is special :)
+#define CBT
+#endif
+
+#ifdef TGS
+// TGS performs its own build of dm.exe, but includes a prepended TGS define.
+#define CBT
+#endif
+
+#if !defined(CBT) && !defined(SPACEMAN_DMM)
+#warn "Building with Dream Maker is no longer supported and may result in errors."
+#warn "In order to build, run BUILD.bat in the root directory."
+#warn "Consider switching to VSCode editor instead, where you can press Ctrl+Shift+B to build."
+#endif

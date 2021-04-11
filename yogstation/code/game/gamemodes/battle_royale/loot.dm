@@ -54,7 +54,7 @@
 					new /obj/item/storage/box/syndie_kit/throwing_weapons(src)
 					return
 				if(8)
-					new /obj/item/gun/energy/wormhole_projector(src)
+					new /obj/item/gun/energy/wormhole_projector/upgraded(src)
 					return
 		else if(prob(25))
 			var/num = rand(1,8)

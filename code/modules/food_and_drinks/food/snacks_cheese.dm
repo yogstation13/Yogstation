@@ -100,7 +100,7 @@
 //cheddar
 /obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar
 	name = "cheddar wheel"
-	desc = "A big wheel of delcious cheddar."
+	desc = "A big wheel of delicious cheddar."
 	icon_state = "cheesewheel"
 	custom_food_type = /obj/item/reagent_containers/food/snacks/customizable/cheesewheel/cheddar
 	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge/cheddar

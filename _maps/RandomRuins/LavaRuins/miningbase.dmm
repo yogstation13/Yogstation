@@ -236,13 +236,6 @@
 /obj/effect/turf_decal/tile/purple,
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"aS" = (
-/obj/item/beacon,
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/mine/production)
 "aT" = (
 /turf/open/floor/plasteel,
 /area/mine/production)
@@ -2792,6 +2785,17 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/mine/maintenance)
+"QE" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4;
+	icon_state = "vent_map_on-1"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/item/beacon,
+/turf/open/floor/plasteel,
+/area/mine/production)
 "Rf" = (
 /obj/structure/bodycontainer/morgue{
 	dir = 8
@@ -2866,16 +2870,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"SK" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4;
-	icon_state = "vent_map_on-1"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/mine/production)
 "To" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -4286,7 +4280,7 @@ ab
 ac
 aw
 FB
-aS
+dd
 Dr
 YP
 FB
@@ -4319,7 +4313,7 @@ ak
 aw
 aG
 aT
-SK
+QE
 jV
 aY
 lo
