@@ -23,13 +23,11 @@
 			ided += 1
 		else
 			survivors += 1
-	if(ided == 0) // avoiding divide by zero
-		return TRUE
-	else
+	if(ided) // avoiding divide by zero
 		if(survivors / ided >= 1.5) //for every dead person, there should be 1.5 alive people
 			return TRUE
-		else
-			return FALSE
+		return FALSE
+	return TRUE
 
 /datum/department_goal/med/survrate2
 	name = "Ensure at least a 80% survival rate"
@@ -43,10 +41,8 @@
 			ided += 1
 		else if(M.stat == CONSCIOUS || M.stat == UNCONSCIOUS || M.stat == SOFT_CRIT)
 			survivors += 1
-	if(ided == 0) // avoiding divide by zero
-		return TRUE
-	else
-		if(survivors / ided >= 4) // for every dead person, there should be 4 alive people
+	if(ided) // avoiding divide by zero
+		if(survivors / ided >= 4) //for every dead person, there should be 1.5 alive people
 			return TRUE
-		else
-			return FALSE
+		return FALSE
+	return TRUE
