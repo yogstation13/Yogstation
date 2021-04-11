@@ -16,13 +16,12 @@ export const Vote = (props, context) => {
     <Window resizable title={windowTitle} width={400} height={500}>
       <Window.Content>
         <Stack fill vertical>
-        <Section title="Start a vote">
-          <VoteOptions />
-          {!!lower_admin && (
-          	<VotersList />
-          	)}
-          
-        </Section>
+          <Section title="Start a vote">
+            <VoteOptions />
+            {!!lower_admin && (
+              <VotersList />
+            )}
+          </Section>
           <ChoicesPanel />
           <TimePanel />
         </Stack>
@@ -100,9 +99,9 @@ const VoteOptions = (props, context) => {
           {!!upper_admin && (
           	<Stack.Item>
             <Button disabled={!upper_admin} onClick={() => act("custom")}>
-              Create Custom Vote
-            </Button>
-          </Stack.Item>
+                Create Custom Vote
+              </Button>
+           </Stack.Item>
           	)}
         </Stack>
       </Collapsible>
