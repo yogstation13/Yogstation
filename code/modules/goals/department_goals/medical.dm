@@ -11,11 +11,11 @@
 /datum/department_goal/med/cloning/check_complete()
 	return GLOB.clones >= 5
 
-/datum/department_goal/med/survrate1
+/datum/department_goal/med/survrate60
 	name = "Ensure at least a 60% survival rate"
 	desc = "When shift ends, 60% of the original crew must still be alive"
 
-/datum/department_goal/med/survrate1/check_complete()
+/datum/department_goal/med/survrate60/check_complete()
 	var/survivors = 0
 	var/ided = 0
 	for(var/mob/M in GLOB.player_list)
@@ -29,11 +29,11 @@
 		return FALSE
 	return TRUE
 
-/datum/department_goal/med/survrate2
+/datum/department_goal/med/survrate80
 	name = "Ensure at least a 80% survival rate"
 	desc = "When shift ends, 80% of the original crew must still be alive"
 
-/datum/department_goal/med/survrate2/check_complete()
+/datum/department_goal/med/survrate80/check_complete()
 	var/survivors = 0
 	var/ided = 0
 	for(var/mob/M in GLOB.player_list)
