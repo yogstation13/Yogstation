@@ -41,7 +41,6 @@
 /obj/item/gun/before_firing(atom/target,mob/user, aimed)
 	if(aimed)
 		if(chambered?.BB && !istype(src, /obj/item/gun/ballistic/automatic/toy))
-			chambered.BB.stamina = initial(chambered.BB.stamina) += 55
 			chambered.BB.jitter = initial(chambered.BB.jitter) += 2
 			chambered.BB.jitter = initial(chambered.BB.speed) *= 0.5 //Apparently "SPEED" makes the bullet go slower as SPEED increases. THANK YOU SS13.
 	. = ..()
