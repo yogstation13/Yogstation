@@ -210,6 +210,7 @@
 #define CLOTHING_TRAIT "clothing"
 #define VEHICLE_TRAIT "vehicle" // inherited from riding vehicles
 #define INNATE_TRAIT "innate"
+#define STATION_TRAIT "station-trait"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"
@@ -252,3 +253,12 @@
 #define GUARDIAN_TRAIT "guardian_trait"
 #define RANDOM_BLACKOUTS "random_blackouts"
 #define MADE_UNCLONEABLE "made-uncloneable"
+
+///Traits given by station traits
+#define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"
+#define STATION_TRAIT_CARP_INFESTATION "station_trait_carp_infestation"
+#define STATION_TRAIT_PREMIUM_INTERNALS "station_trait_premium_internals"
+#define STATION_TRAIT_RANDOM_ARRIVALS "station_trait_random_arrivals"
+#define STATION_TRAIT_FILLED_MAINT "station_trait_filled_maint"
+#define STATION_TRAIT_EMPTY_MAINT "station_trait_empty_maint"
+#define STATION_TRAIT_PDA_GLITCHED "station_trait_pda_glitched"

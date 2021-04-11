@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(bounties_list)
 	if(can_claim())
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 		if(D)
-			D.adjust_money(reward)
+			D.adjust_money(reward * SSeconomy.bounty_modifier)
 			D.bounties_claimed += 1
 			if(D.bounties_claimed == 10)
 				SSachievements.unlock_achievement(/datum/achievement/cargo/bounties, user.client)
