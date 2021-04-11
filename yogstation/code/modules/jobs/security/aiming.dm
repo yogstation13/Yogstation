@@ -41,7 +41,6 @@
 /obj/item/gun/before_firing(atom/target,mob/user, aimed)
 	if(aimed)
 		if(chambered?.BB && !istype(src, /obj/item/gun/ballistic/automatic/toy))
-			chambered.BB.stamina = initial(chambered.BB.stamina) += 55
 			chambered.BB.jitter = initial(chambered.BB.jitter) += 2
 			chambered.BB.jitter = initial(chambered.BB.speed) *= 0.5 //Apparently "SPEED" makes the bullet go slower as SPEED increases. THANK YOU SS13.
 	. = ..()
@@ -49,7 +48,7 @@
 /obj/effect/temp_visual/aiming
 	icon = 'yogstation/icons/effects/aiming.dmi'
 	icon_state = "aiming"
-	duration = 3
+	duration = 30
 	layer = ABOVE_MOB_LAYER
 
 ///Shows a big flashy exclamation mark above the suspect to warn the space cop that they're trying something stupid.
@@ -63,7 +62,9 @@
 	var/mob/living/user = null
 	var/mob/living/target = null
 	var/aiming_cooldown = FALSE
-	var/cooldown_time = 5  //A pretty hefty cooldown to prevent spamming aim mode to get the superspeed bullet
+	var/cooldown_time = 50  //A pretty hefty cooldown to prevent spamming aim mode to get the superspeed bullet
+	var/choice_cooldown = FALSE
+	var/choice_cooldown_time = 10
 
 /datum/component/aiming/Initialize(source)
 	. = ..()
@@ -161,13 +162,33 @@ There are two main branches, dictated by SOP. If the perp is armed, tell them to
 			fire()
 			return
 		if("raise_hands")
-			user.say("PUT YOUR HANDS BEHIND YOUR HEAD!")
+			if(choice_cooldown == FALSE)
+				user.say("PUT YOUR HANDS IN THE AIR!")
+				choice_cooldown = TRUE
+				addtimer(VARSET_CALLBACK(src, choice_cooldown, FALSE), choice_cooldown_time)
+			else
+				to_chat(user, "<span class='nicegreen'>You need to catch your breath first!</</span>")
 		if("drop_weapon")
-			user.say("DROP YOUR WEAPON!")
+			if(choice_cooldown == FALSE)
+				user.say("DROP YOUR WEAPON!")
+				choice_cooldown = TRUE
+				addtimer(VARSET_CALLBACK(src, choice_cooldown, FALSE), choice_cooldown_time)
+			else
+				to_chat(user, "<span class='nicegreen'>You need to catch your breath first!</</span>")
 		if("face_wall")
-			user.say("TURN AROUND AND FACE THE WALL. SLOWLY.")
+			if(choice_cooldown == FALSE)
+				user.say("TURN AROUND AND FACE THE WALL!")
+				choice_cooldown = TRUE
+				addtimer(VARSET_CALLBACK(src, choice_cooldown, FALSE), choice_cooldown_time)
+			else
+				to_chat(user, "<span class='nicegreen'>You need to catch your breath first!</</span>")
 		if("drop_to_floor")
-			user.say("ON THE FLOOR, NOW!")
+			if(choice_cooldown == FALSE)
+				user.say("LAY DOWN ON THE GROUND, NOW!")
+				choice_cooldown = TRUE
+				addtimer(VARSET_CALLBACK(src, choice_cooldown, FALSE), choice_cooldown_time)
+			else
+				to_chat(user, "<span class='nicegreen'>You need to catch your breath first!</span>")
 	show_ui(user, target, choice)
 
 /datum/component/aiming/proc/fire() //Todo
