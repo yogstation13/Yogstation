@@ -292,6 +292,9 @@ GLOBAL_LIST_INIT(bananium_recipes, list ( \
 /obj/item/stack/sheet/mineral/bananium/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.bananium_recipes
 	. = ..()
+	
+/obj/item/stack/sheet/mineral/bananium/five
+	amount = 5
 
 /*
  * Titanium
@@ -488,3 +491,13 @@ GLOBAL_LIST_INIT(metalhydrogen_recipes, list(
 /obj/item/stack/sheet/mineral/metal_hydrogen/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.metalhydrogen_recipes
 	. = ..()
+
+/obj/item/stack/sheet/mineral/zaukerite
+	name = "zaukerite"
+	icon_state = "zaukerite"
+	item_state = "sheet-zaukerite"
+	singular_name = "zaukerite crystal"
+	w_class = WEIGHT_CLASS_NORMAL
+	point_value = 120
+	materials = list(/datum/material/zaukerite = MINERAL_MATERIAL_AMOUNT)
+	merge_type = /obj/item/stack/sheet/mineral/zaukerite

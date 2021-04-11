@@ -36,6 +36,16 @@
 	tastes = list("chocolate" = 1)
 	foodtype = JUNKFOOD | SUGAR
 
+/obj/item/reagent_containers/food/snacks/candy_strawberry
+	name = "strawberry flavored candy"
+	desc = "You aren't sure if thats strawberries or blood."
+	icon_state = "candy_strawberry"
+	trash = /obj/item/trash/candy
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 1) //Really crappy because it can easily be mass produced
+	filling_color = "#FF0000"
+	tastes = list("candy" = 10, "strawberries" = 5, "blood" = 1)
+	foodtype = JUNKFOOD | SUGAR
+
 /obj/item/reagent_containers/food/snacks/hugemushroomslice
 	name = "huge mushroom slice"
 	desc = "A slice from a huge mushroom."
@@ -560,7 +570,7 @@
 /obj/item/reagent_containers/food/snacks/dolphincereal
 	name = "dolphin cereal"
 	desc = "Finest dolphin skin flakes. This looks flippin' disgusting."
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "dolphincereal"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -569,7 +579,7 @@
 /obj/item/reagent_containers/food/snacks/dolphinandchips
 	name = "dolphin and chips"
 	desc = "Dolphin and chips, wrapped in the finest newspaper from the clown's newscaster channel."
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "dolphinandchips"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -578,7 +588,7 @@
 /obj/item/reagent_containers/food/snacks/youmonster
 	name = "full dolphin platter"
 	desc = "A whole dolphin. Good luck eating this. (WARNING: do not consume any wafer thin mints after consumption)"
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "youmonster"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 100, /datum/reagent/consumable/nutriment/vitamin = 2)

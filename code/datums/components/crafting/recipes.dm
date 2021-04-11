@@ -876,10 +876,11 @@
 	name = "Elder Atmosian Statue"
 	result = /obj/structure/statue/elder_atmosian
 	time = 6 SECONDS
-	reqs = list(/obj/item/stack/sheet/mineral/metal_hydrogen = 10
-				//jamie - /obj/item/grenade/gas_crystal/healium_crystal = 1,
-				// jamie - /obj/item/grenade/gas_crystal/pluonium_crystal = 1,
-				// jamie - /obj/item/grenade/gas_crystal/zauker_crystal = 1
+	reqs = list(/obj/item/stack/sheet/mineral/metal_hydrogen = 10,
+				/obj/item/stack/sheet/mineral/zaukerite = 1,
+				/obj/item/grenade/gas_crystal/healium_crystal = 1,
+				/obj/item/grenade/gas_crystal/pluonium_crystal = 1,
+				/obj/item/grenade/gas_crystal/healium_crystal = 1
 				)
 	category = CAT_MISC
 

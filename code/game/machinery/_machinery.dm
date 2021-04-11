@@ -250,10 +250,14 @@ Class Procs:
 	else
 		if(interaction_flags_machine & INTERACT_MACHINE_REQUIRES_SILICON)
 			return FALSE
+		
 		if(is_species(user, /datum/species/lizard/ashwalker))
 			return FALSE
+		var/mob/living/carbon/H = user
+		if(istype(H) && H.has_dna() && H.dna.check_mutation(ACTIVE_HULK))
+			to_chat(H, "<span class='warning'>HULK NOT NERD. HULK SMASH!!!</span>")
+			return FALSE
 		if(!Adjacent(user))
-			var/mob/living/carbon/H = user
 			if(!(istype(H) && H.has_dna() && H.dna.check_mutation(TK)))
 				return FALSE
 	return TRUE
@@ -538,8 +542,11 @@ Class Procs:
 
 /obj/machinery/tesla_act(power, tesla_flags, shocked_objects)
 	..()
-	if(prob(85) && (tesla_flags & TESLA_MACHINE_EXPLOSIVE) && !(resistance_flags & INDESTRUCTIBLE))
-		explosion(src, 1, 2, 4, flame_range = 2, adminlog = FALSE, smoke = FALSE)
+	if((tesla_flags & TESLA_MACHINE_EXPLOSIVE) && !(resistance_flags & INDESTRUCTIBLE))
+		if(prob(60))
+			ex_act(EXPLODE_DEVASTATE)
+		else if (prob(50))
+			explosion(src, 1, 2, 4, flame_range = 2, adminlog = FALSE, smoke = FALSE)
 	if(tesla_flags & TESLA_OBJ_DAMAGE)
 		take_damage(power/2000, BURN, "energy")
 		if(prob(40))

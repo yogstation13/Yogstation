@@ -439,7 +439,7 @@
 				var/datum/antagonist/rev/R = M.has_antag_datum(/datum/antagonist/rev)
 				R.remove_revolutionary(FALSE, "gamemode")
 		priority_announce("It appears the mutiny has been quelled. Please return yourself and your incapacitated colleagues to work. \
-			We have remotely blacklisted the head revolutionaries in your medical records to prevent accidental revival.", null, 'sound/ai/attention.ogg', null, "Central Command Loyalty Monitoring Division")
+			We have remotely blacklisted the head revolutionaries in your medical records to prevent accidental revival.", null, null, null, "Central Command Loyalty Monitoring Division")
 		return RULESET_STOP_PROCESSING
 
 /// Checks for revhead loss conditions and other antag datums.
@@ -787,7 +787,7 @@
 	requirements = list(90,80,80,70,60,40,30,30,20,10)
 	flags = HIGHLANDER_RULESET
 	minimum_players = 30
-	var/shadowling_cap = list(3,3,3,3,3,3,3,3,3,4)
+	antag_cap = list(3,3,3,3,3,3,3,3,3,4)
 	var/datum/team/shadowling/shadowling
 
 /datum/dynamic_ruleset/roundstart/shadowling/pre_execute()

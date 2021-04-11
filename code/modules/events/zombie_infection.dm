@@ -10,7 +10,7 @@
 	fakeable = TRUE
 
 /datum/round_event/ghost_role/zombie/announce(fake)
-	priority_announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", 'sound/ai/aliens.ogg', 'sound/hallucinations/growl1.ogg')
+	priority_announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", ANNOUNCER_ALIENS, 'sound/hallucinations/growl1.ogg')
 
 /datum/round_event/ghost_role/zombie/spawn_role()
 	var/list/candidates = get_candidates(ROLE_ALIEN, null, ROLE_ALIEN)

@@ -49,8 +49,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
 	},
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 5
 	},
 /turf/open/floor/plating,
@@ -65,17 +67,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
-"l" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/landmark/event_spawn,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -87,9 +79,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
+	},
+/obj/structure/disposalpipe/junction/flip{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
@@ -100,11 +94,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
@@ -133,36 +127,19 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "p" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "q" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
+/obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "r" = (
 /obj/structure/chair,
 /obj/item/storage/box/fancy/cigarettes,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "s" = (
 /obj/structure/chair,
-/obj/structure/disposalpipe/junction/flip{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
-"t" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "u" = (
@@ -208,7 +185,7 @@ y
 c
 c
 k
-q
+p
 c
 v
 v
@@ -220,7 +197,7 @@ y
 u
 c
 k
-q
+p
 h
 u
 u
@@ -232,7 +209,7 @@ u
 u
 h
 k
-q
+p
 h
 u
 u
@@ -244,7 +221,7 @@ u
 u
 h
 k
-q
+p
 h
 u
 u
@@ -256,7 +233,7 @@ u
 u
 c
 k
-q
+p
 c
 u
 u
@@ -267,7 +244,7 @@ u
 (7,1,1) = {"
 u
 c
-l
+k
 q
 c
 u
@@ -304,7 +281,7 @@ u
 d
 h
 k
-q
+p
 h
 u
 u
@@ -316,7 +293,7 @@ u
 u
 c
 k
-q
+p
 c
 u
 u
@@ -328,7 +305,7 @@ u
 u
 c
 k
-q
+p
 c
 u
 u
@@ -340,7 +317,7 @@ u
 u
 h
 k
-q
+p
 h
 u
 u
@@ -352,7 +329,7 @@ u
 u
 h
 k
-q
+p
 h
 d
 d
@@ -364,7 +341,7 @@ d
 u
 h
 n
-t
+p
 h
 u
 u

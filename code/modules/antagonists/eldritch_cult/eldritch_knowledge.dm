@@ -1,10 +1,10 @@
 
 /**
-  * #Eldritch Knwoledge
+  * #Eldritch Knowledge
   *
   * Datum that makes eldritch cultist interesting.
   *
-  * Eldritch knowledge aren't instantiated anywhere roundstart, and are initalized and destroyed as the round goes on.
+  * Eldritch knowledge isn't instantiated anywhere roundstart, and is initalized and destroyed as the round goes on.
   */
 /datum/eldritch_knowledge
 	///Name of the knowledge
@@ -89,5 +89,5 @@
 	next_knowledge = list(/datum/eldritch_knowledge/base_rust,/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_flesh)
 	cost = 0
 	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/touch/mansus_grasp)
-	unlocked_transmutations = list(/datum/eldritch_transmutation/attune_heart, /datum/eldritch_transmutation/living_heart, /datum/eldritch_transmutation/codex_cicatrix, /datum/eldritch_transmutation/recall)
+	unlocked_transmutations = list(/datum/eldritch_transmutation/basic, /datum/eldritch_transmutation/living_heart, /datum/eldritch_transmutation/codex_cicatrix, /datum/eldritch_transmutation/recall)
 	route = "Start"

@@ -92,16 +92,15 @@
 			log_game("[user.real_name] ([user.ckey]) sprayed \a [src] containing [viruslist]")
 // yogs end
 	D.color = mix_color_from_reagents(D.reagents.reagent_list)
-	var/wait_step = max(round(2+3/range), 2)
-	do_spray(A, wait_step, D, range, puff_reagent_left, user)
+	do_spray(A, D, range, puff_reagent_left, user)
 
-/obj/item/reagent_containers/spray/proc/do_spray(atom/A, wait_step, obj/effect/decal/chempuff/D, range, puff_reagent_left, mob/user)
+/obj/item/reagent_containers/spray/proc/do_spray(atom/A, obj/effect/decal/chempuff/D, range, puff_reagent_left, mob/user)
 	set waitfor = FALSE
 	var/range_left = range
 	for(var/i=0, i<range, i++)
 		range_left--
 		step_towards(D,A)
-		sleep(wait_step)
+		sleep(2)
 
 		for(var/atom/T in get_turf(D))
 			if(T == D || T.invisibility) //we ignore the puff itself and stuff below the floor
