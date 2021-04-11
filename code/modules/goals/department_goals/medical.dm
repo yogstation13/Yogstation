@@ -21,7 +21,7 @@
 	for(var/mob/M in GLOB.player_list)
 		if(M.stat == DEAD)
 			ided += 1
-		else if(M.stat == CONSCIOUS || M.stat == UNCONSCIOUS || M.stat == SOFT_CRIT)
+		else
 			survivors += 1
 	if(ided == 0) // avoiding divide by zero
 		return TRUE
