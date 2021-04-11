@@ -1,4 +1,4 @@
-/obj/item/melee/mantis_blade
+/obj/item/mantis_blade
 	name = "C.H.R.O.M.A.T.A. mantis blade"
 	desc = "Powerful inbuilt blade, hidden just beneath the skin. Singular brain signals directly link to this bad boy, allowing it to spring into action in just seconds."
 	icon_state = "mantis"
@@ -10,7 +10,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 
-/obj/item/melee/mantis_blade/equipped(mob/user, slot, initial)
+/obj/item/mantis_blade/equipped(mob/user, slot, initial)
 	. = ..()
 	if(slot != ITEM_SLOT_HANDS)
 		return
@@ -34,13 +34,13 @@
 	user.do_attack_animation(M,null,some_item)
 	some_item.attack(M,user)
 
-/obj/item/melee/mantis_blade/syndicate
+/obj/item/mantis_blade/syndicate
 	name = "A.R.A.S.A.K.A. mantis blade"
 	icon_state = "syndie_mantis"
 	force = 20
 	block_chance = 20
 
-/obj/item/melee/mantis_blade/syndicate/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/mantis_blade/syndicate/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(proximity_flag || get_dist(user,target) > 3 || !isliving(target))
 		return
