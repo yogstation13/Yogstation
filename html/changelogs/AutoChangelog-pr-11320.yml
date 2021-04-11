@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Lexorin oxyloss from 5 to 3 and breathloss stacks from 2 to 1 per cycle"
