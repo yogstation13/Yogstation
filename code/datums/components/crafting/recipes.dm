@@ -891,7 +891,6 @@
 				/obj/item/stack/rods = 1,
 				/obj/item/stack/cable_coil = 10)
 	result = /obj/item/kitchen/knife/shank
-	tools = list(TOOL_WIRECUTTER)
 	time = 10
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
