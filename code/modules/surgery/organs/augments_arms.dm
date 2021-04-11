@@ -237,12 +237,12 @@
 /obj/item/organ/cyberimp/arm/mantis
 	name = "C.H.R.O.M.A.T.A. mantis blade implants"
 	desc = "High tech mantis blade implants, easily portable weapon, that has a high wound potential."
-	contents = newlist(/obj/item/mantis_blade)
+	contents = newlist(/obj/item/mantis/blade)
 
 /obj/item/organ/cyberimp/arm/syndie_mantis
 	name = "A.R.A.S.A.K.A. mantis blade implants"
 	desc = "Modernized mantis blade designed coined by Tiger operatives, much sharper blade with energy actuators makes it a much deadlier weapon."
-	contents = newlist(/obj/item/mantis_blade/syndicate)
+	contents = newlist(/obj/item/mantis/blade/syndicate)
 
 /obj/item/organ/cyberimp/arm/syndie_mantis/l
 	zone = BODY_ZONE_L_ARM
