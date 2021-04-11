@@ -44,7 +44,7 @@
 		var/totalaliens = 0
 		for(var/I in GLOB.player_list) /// Scan player list for amt of xenos
 			var/mob/M = I
-			if(isalien(M))
+			if(isalien(M) && M.stat != DEAD)
 				totalaliens++
 		if(totalaliens == 1) /// Check if the user is the only xeno existing
 			/// Force them into drone
