@@ -3,7 +3,7 @@
 	var/list/exclude_objectives = list() //objectives to disallow the buyer from buying this item
 	var/surplus_nullcrates
 
-/datum/uplink_item/New()	
+/datum/uplink_item/New()
 	. = ..()
 	if(isnull(surplus_nullcrates))
 		surplus_nullcrates = surplus
@@ -70,7 +70,7 @@
 	cost = 5
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear)
-	
+
 /datum/uplink_item/device_tools/arm/nuke
 	cost = 15
 	exclude_modes = list()
@@ -117,6 +117,14 @@
 	cost = 5
 	surplus = 20
 	restricted_roles = list("Assistant")
+
+/datum/uplink_item/implants/mantis_kit
+	name = "A.R.A.S.A.K.A. Mantis Blades Kit"
+	desc = "Comes with 2 A.R.A.S.A.K.A. Mantis blades and a syndicate cyberlink. All packaged with autosurgeons."
+	item = /obj/item/storage/briefcase/syndie_mantis
+	cost = 20
+	include_modes = list(/datum/game_mode/nuclear)
+
 
 /datum/uplink_item/badass/frying_pan
 	name = "Bananium Plated Frying Pan"

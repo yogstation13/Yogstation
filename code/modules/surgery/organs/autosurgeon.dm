@@ -94,6 +94,13 @@
 
 /obj/item/autosurgeon/reviver
 	starting_organ = /obj/item/organ/cyberimp/chest/reviver
-	
+
 /obj/item/autosurgeon/medibeam
 	starting_organ = /obj/item/organ/cyberimp/arm/medibeam
+
+
+/obj/item/autosurgeon/organ/syndicate/syndie_mantis
+	starting_organ = /obj/item/organ/cyberimp/arm/syndie_mantis
+
+/obj/item/autosurgeon/organ/syndicate/syndie_mantis/l
+	starting_organ = /obj/item/organ/cyberimp/arm/syndie_mantis/l

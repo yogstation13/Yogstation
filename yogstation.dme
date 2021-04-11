@@ -3224,6 +3224,7 @@
 #include "yogstation\code\game\objects\items\implants\implant_mindslave.dm"
 #include "yogstation\code\game\objects\items\implants\implant_teleporter.dm"
 #include "yogstation\code\game\objects\items\melee\energy.dm"
+#include "yogstation\code\game\objects\items\melee\mantis.dm"
 #include "yogstation\code\game\objects\items\robot\robot_items.dm"
 #include "yogstation\code\game\objects\items\robot\robot_parts.dm"
 #include "yogstation\code\game\objects\items\stacks\dilithiumcrystal.dm"
