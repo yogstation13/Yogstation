@@ -23,16 +23,13 @@
 
 /obj/item/melee/mantis/blade/attack(mob/living/M, mob/living/user)
 	. = ..()
-	if(user.get_active_held_item() != src)
-		return
 
-	var/obj/item/some_item = user.get_inactive_held_item()
+	var/obj/item/secondsword = user.get_inactive_held_item()
 
-	if(!istype(some_item,type))
-		return
+	if(istype(secondsword, /obj/item/mantis/blade))
+		secondsword.attack(M, user)
 
-	user.do_attack_animation(M,null,some_item)
-	some_item.attack(M,user)
+	return
 
 /obj/item/mantis/blade/syndicate
 	name = "A.R.A.S.A.K.A. mantis blade"
@@ -40,11 +37,3 @@
 	force = 20
 	block_chance = 20
 
-/obj/item/mantis/blade/syndicate/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(proximity_flag || get_dist(user,target) > 3 || !isliving(target))
-		return
-
-	for(var/i in 1 to get_dist(user,target))
-		step_towards(user,target)
-	attack(target,user)

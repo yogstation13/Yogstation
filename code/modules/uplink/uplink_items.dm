@@ -1700,6 +1700,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
+/datum/uplink_item/implants/mantis_kit
+	name = "A.R.A.S.A.K.A. Mantis Blades Kit"
+	desc = "Comes with 2 A.R.A.S.A.K.A. Mantis blades and a syndicate cyberlink. All packaged with autosurgeons."
+	item = /obj/item/storage/briefcase/syndie_mantis
+	cost = 20
+	surplus = 0
+	include_modes = list(/datum/game_mode/nuclear)
+
+
 //Race-specific items
 /datum/uplink_item/race_restricted
 	category = "Species-Restricted"
