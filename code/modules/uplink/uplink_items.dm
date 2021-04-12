@@ -1705,7 +1705,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/briefcase/syndie_mantis
 	cost = 20
 	surplus = 0
-	include_modes = list(/datum/game_mode/nuclear)
 
 //Race-specific items
 /datum/uplink_item/race_restricted
