@@ -1,0 +1,4 @@
+author: "  Identification"
+delete-after: true 
+changes: 
+  - imageadd: "Retro floor tile no longer shows an error when damaged."
