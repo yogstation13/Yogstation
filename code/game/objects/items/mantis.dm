@@ -21,10 +21,10 @@
 	else
 		transform = matrix(-1, 0, 0, 0, 1, 0)
 
-/obj/item/melee/mantis/blade/attack(mob/living/M, mob/living/user)
+/obj/item/mantis/blade/attack(mob/living/M, mob/living/user)
 	. = ..()
 
-	var/obj/item/secondsword = user.get_inactive_held_item()
+	var/obj/item/blade/secondsword = user.get_inactive_held_item()
 
 	if(istype(secondsword, /obj/item/mantis/blade))
 		secondsword.attack(M, user)
