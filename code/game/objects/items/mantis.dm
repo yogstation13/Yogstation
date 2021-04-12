@@ -25,9 +25,8 @@
 	. = ..()
 	var/obj/item/mantis/blade/secondsword = user.get_inactive_held_item()
 	if(istype(secondsword, /obj/item/mantis/blade) && !secondattack)
+		sleep(2)
 		secondsword.attack(M, user, TRUE)
-		..()
-	sleep(1.5)
 	return
 
 /obj/item/mantis/blade/syndicate
