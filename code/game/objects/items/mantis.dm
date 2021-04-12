@@ -21,14 +21,13 @@
 	else
 		transform = matrix(-1, 0, 0, 0, 1, 0)
 
-/obj/item/mantis/blade/attack(mob/living/M, mob/living/user)
+/obj/item/mantis/blade/attack(mob/living/M, mob/living/user, secondattack = FALSE)
 	. = ..()
-
-	var/obj/item/blade/secondsword = user.get_inactive_held_item()
-
-	if(istype(secondsword, /obj/item/mantis/blade))
-		secondsword.attack(M, user)
-
+	var/obj/item/mantis/blade/secondsword = user.get_inactive_held_item()
+	if(istype(secondsword, /obj/item/mantis/blade) && !secondattack)
+		secondsword.attack(M, user, TRUE)
+		..()
+	sleep(1)
 	return
 
 /obj/item/mantis/blade/syndicate
