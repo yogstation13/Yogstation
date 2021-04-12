@@ -170,9 +170,8 @@
 /obj/item/dice/d20/fate/one_use
 	reusable = FALSE
 
-/obj/item/dice/d20/fate/one_use/stealth
-	name = "d20"
-	desc = "A die with twenty sides. The preferred die to throw at the GM."
+/obj/item/dice/d20/fate/stealth/one_use
+	reusable = FALSE
 
 /obj/item/dice/d20/fate/cursed
 	name = "Cursed Die of Fate"
@@ -188,9 +187,7 @@
 /obj/item/dice/d20/fate/cursed/one_use
 	reusable = FALSE
 
-/obj/item/dice/d20/fate/cursed/one_use/stealth
-	name = "Die of Fate"
-	desc = "A die with twenty sides. The preferred die to throw at the GM."
+/obj/item/dice/d20/fate/cursed/stealth/one_use
 	reusable = FALSE
 
 /obj/item/dice/d20/fate/blessed
@@ -207,9 +204,7 @@
 /obj/item/dice/d20/fate/blessed/one_use
 	reusable = FALSE
 
-/obj/item/dice/d20/fate/blessed/one_use/stealth
-	name = "Die of Fate"
-	desc = "A die with twenty sides. The preferred die to throw at the GM."
+/obj/item/dice/d20/fate/blessed/stealth/one_use
 	reusable = FALSE
 
 /obj/item/dice/d20/fate/diceroll(mob/user)
