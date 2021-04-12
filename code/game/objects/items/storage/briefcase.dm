@@ -54,3 +54,8 @@
 	..()
 	new /obj/item/autosurgeon/organ/syndicate/syndie_mantis(src)
 	new /obj/item/autosurgeon/organ/syndicate/syndie_mantis/l(src)
+
+/obj/item/storage/briefcase/NT_mantis/PopulateContents()
+	..()
+	new /obj/item/autosurgeon/organ/mantis(src)
+	new /obj/item/autosurgeon/organ/mantis/l(src)

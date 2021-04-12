@@ -234,13 +234,16 @@
 	desc = "A set of surgical tools hidden behind a concealed panel on the user's arm."
 	contents = newlist(/obj/item/retractor/augment, /obj/item/hemostat/augment, /obj/item/cautery/augment, /obj/item/surgicaldrill/augment, /obj/item/scalpel/augment, /obj/item/circular_saw/augment, /obj/item/surgical_drapes)
 
-/obj/item/organ/cyberimp/arm/mantis
-	name = "C.H.R.O.M.A.T.A. mantis blade implants"
-	desc = "High tech mantis blade implants, easily portable weapon, that has a high wound potential."
-	contents = newlist(/obj/item/mantis/blade)
+/obj/item/organ/cyberimp/arm/NT_mantis
+	name = "H.E.P.H.A.E.S.T.U.S. mantis blade implants"
+	desc = "High tech mantis blade implants, easily portable weapon, that has a high damage potential."
+	contents = newlist(/obj/item/mantis/blade/NT)
+
+/obj/item/organ/cyberimp/arm/NT_mantis/l
+	zone = BODY_ZONE_L_ARM
 
 /obj/item/organ/cyberimp/arm/syndie_mantis
-	name = "A.R.A.S.A.K.A. mantis blade implants"
+	name = "G.O.R.L.E.X. mantis blade implants"
 	desc = "Modernized mantis blade designed coined by Tiger operatives, much sharper blade with energy actuators makes it a much deadlier weapon."
 	contents = newlist(/obj/item/mantis/blade/syndicate)
 

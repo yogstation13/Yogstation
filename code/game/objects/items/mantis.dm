@@ -1,5 +1,5 @@
 /obj/item/mantis/blade
-	name = "C.H.R.O.M.A.T.A. mantis blade"
+	name = "mantis blade"
 	desc = "Powerful inbuilt blade, hidden just beneath the skin. Singular brain signals directly link to this bad boy, allowing it to spring into action in just seconds."
 	icon_state = "mantis"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -30,8 +30,13 @@
 	return
 
 /obj/item/mantis/blade/syndicate
-	name = "A.R.A.S.A.K.A. mantis blade"
+	name = "G.O.R.L.E.X. mantis blade"
 	icon_state = "syndie_mantis"
 	force = 20
 	block_chance = 20
+
+/obj/item/mantis/blade/NT
+	name = "H.E.P.H.A.E.S.T.U.S. mantis blade"
+	icon_state = "mantis"
+	force = 18
 
