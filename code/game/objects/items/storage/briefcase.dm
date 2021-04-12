@@ -48,14 +48,17 @@
 	new /obj/item/suppressor/specialoffer(src)
 
 /obj/item/storage/briefcase/syndie_mantis
-	desc = "Fully metallic briefcase. Has A.R.A.S.A.K.A. engraved on the side in Futura font."
+	desc = "A sleek briefcase. It has the letters G.O.R.L.E.X. on it"
 
 /obj/item/storage/briefcase/syndie_mantis/PopulateContents()
 	..()
 	new /obj/item/autosurgeon/organ/syndicate/syndie_mantis(src)
 	new /obj/item/autosurgeon/organ/syndicate/syndie_mantis/l(src)
 
+/obj/item/storage/briefcase/NT_mantis
+	desc = "A sleek briefcase. It has the letters H.E.P.H.A.E.S.T.U.S. on it"
+
 /obj/item/storage/briefcase/NT_mantis/PopulateContents()
 	..()
-	new /obj/item/autosurgeon/organ/mantis(src)
-	new /obj/item/autosurgeon/organ/mantis/l(src)
+	new /obj/item/autosurgeon/organ/NT/NT_mantis(src)
+	new /obj/item/autosurgeon/organ/NT/NT_mantis/l(src)
