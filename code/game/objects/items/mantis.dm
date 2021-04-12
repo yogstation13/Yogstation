@@ -8,7 +8,7 @@
 	flags_1 = CONDUCT_1
 	force = 20
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "lacerated", "ripped", "diced", "cut")
 
 /obj/item/mantis/blade/equipped(mob/user, slot, initial)
 	. = ..()

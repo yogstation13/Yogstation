@@ -1698,7 +1698,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/autosurgeon/xray_eyes
 	cost = 10
 	surplus = 0
-	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/implants/mantis_kit
 	name = "A.R.A.S.A.K.A. Mantis Blades Kit"
@@ -1707,7 +1706,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 20
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
-
 
 //Race-specific items
 /datum/uplink_item/race_restricted

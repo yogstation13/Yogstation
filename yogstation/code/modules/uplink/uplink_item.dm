@@ -123,8 +123,7 @@
 	desc = "Comes with 2 A.R.A.S.A.K.A. Mantis blades and a syndicate cyberlink. All packaged with autosurgeons."
 	item = /obj/item/storage/briefcase/syndie_mantis
 	cost = 20
-	include_modes = list(/datum/game_mode/nuclear)
-
+	surplus = 0
 
 /datum/uplink_item/badass/frying_pan
 	name = "Bananium Plated Frying Pan"
