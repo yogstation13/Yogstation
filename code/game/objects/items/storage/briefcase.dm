@@ -61,4 +61,4 @@
 /obj/item/storage/briefcase/NT_mantis/PopulateContents()
 	..()
 	new /obj/item/autosurgeon/organ/NT/NT_mantis(src)
-	new /obj/item/autosurgeon/organ/NT/NT_mantis/l(src)
+	new /obj/item/autosurgeon/organ/NT/NT_mantis/left(src)

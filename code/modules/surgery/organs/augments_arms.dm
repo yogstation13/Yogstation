@@ -239,7 +239,7 @@
 	desc = "High tech mantis blade implants, easily portable weapon, that has a high damage potential."
 	contents = newlist(/obj/item/mantis/blade/NT)
 
-/obj/item/organ/cyberimp/arm/NT_mantis/l
+/obj/item/organ/cyberimp/arm/NT_mantis/left
 	zone = BODY_ZONE_L_ARM
 
 /obj/item/organ/cyberimp/arm/syndie_mantis
