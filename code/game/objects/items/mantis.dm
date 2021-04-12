@@ -27,7 +27,7 @@
 	if(istype(secondsword, /obj/item/mantis/blade) && !secondattack)
 		secondsword.attack(M, user, TRUE)
 		..()
-	sleep(1)
+	sleep(1.5)
 	return
 
 /obj/item/mantis/blade/syndicate
