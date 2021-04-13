@@ -238,6 +238,8 @@
 	name = "G.O.R.L.E.X. mantis blade implants"
 	desc = "Modernized mantis blade designed coined by Tiger operatives, much sharper blade with energy actuators makes it a much deadlier weapon."
 	contents = newlist(/obj/item/mantis/blade/syndicate)
+	syndicate_implant = TRUE
 
 /obj/item/organ/cyberimp/arm/syndie_mantis/l
 	zone = BODY_ZONE_L_ARM
+	syndicate_implant = TRUE
