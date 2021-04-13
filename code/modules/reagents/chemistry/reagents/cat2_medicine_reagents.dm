@@ -171,13 +171,13 @@
 	var/healypoints = 0 //5 healypoints = 1 heart damage; 5 rads = 1 tox damage healed for the purpose of healypoints
 
 	//you're hot
-	var/toxcalc = min(round(5 + ((chemtemp-1000)/175), 0.1), 5) * REM //max 2.5 tox healing per second
+	var/toxcalc = min(round(5 + ((chemtemp-1000)/175), 0.1), 5) * REM //max 2.5 tox healing per second, 1 point per 175 degrees over 125 kelvin
 	if(toxcalc > 0)
 		M.adjustToxLoss(-toxcalc)
 		healypoints += toxcalc
 
 	//and you're cold
-	var/radcalc = round((T0C-chemtemp) / 6, 0.1) * REM //max ~45 rad loss unless you've hit below 0K. if so, wow.
+	var/radcalc = round((T0C-chemtemp) / 6, 0.1) * REM //max ~45 rad loss unless you've hit below 0K. if so, wow. 1 point per 6 degrees under 273 kelvin
 	if(radcalc > 0)
 		//no cost percent healing if you are SUPER cold (on top of cost healing)
 		if(chemtemp < radbonustemp*0.1) //if you're super chilly, it takes off 25% of your current rads
