@@ -338,9 +338,9 @@
 
 /mob/camera/blob/verb/strain_reroll()
 	set category = "Blob"
-	set name = "Reactive Strain Adaptation (40)"
+	set name = "Reactive Strain Adaptation (15)"
 	set desc = "Replaces your strain with a random, different one."
-	if(!rerolling && (free_strain_rerolls || can_buy(40)))
+	if(!rerolling && (free_strain_rerolls || can_buy(15)))
 		rerolling = TRUE
 		reroll_strain()
 		rerolling = FALSE
