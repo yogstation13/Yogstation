@@ -146,9 +146,6 @@
 
 		if("Assistant")
 			O = new /datum/outfit/job/plasmaman/assistant
-			
-		if("Artist")
-			O = new /datum/outfit/job/plasmaman/artist
 
 	H.equipOutfit(O, visualsOnly)
 	H.internal = H.get_item_for_held_index(2)
