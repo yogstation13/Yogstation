@@ -55,7 +55,8 @@ GLOBAL_LIST_INIT(civilian_positions, list(
 	// yogs start - Yog jobs
 	"Assistant",
 	"Clerk",
-	"Tourist"))
+	"Tourist",
+	"Artist"))
 	// yogs end
 
 
