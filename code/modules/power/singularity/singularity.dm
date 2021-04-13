@@ -27,6 +27,7 @@
 	var/last_failed_movement = 0//Will not move in the same dir if it couldnt before, will help with the getting stuck on fields thing
 	var/last_warning
 	var/consumedSupermatter = 0 //If the singularity has eaten a supermatter shard and can go to stage six
+	var/maxStage = 1 //The largest stage this singularity has been
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 
@@ -46,6 +47,9 @@
 	return
 
 /obj/singularity/Destroy()
+	var/shardstage = text2path("/obj/item/singularity_shard/stage[maxStage]")
+	var/turf/T = get_turf(src)
+	new shardstage(T, src)
 	STOP_PROCESSING(SSobj, src)
 	GLOB.poi_list.Remove(src)
 	GLOB.singularities.Remove(src)
@@ -202,6 +206,8 @@
 				dissipate_delay = 5
 				dissipate_track = 0
 				dissipate_strength = 5
+				if(maxStage < 2)
+					maxStage = 2
 		if(STAGE_THREE)
 			if(check_cardinals_range(2, TRUE))
 				current_size = STAGE_THREE
@@ -214,6 +220,8 @@
 				dissipate_delay = 4
 				dissipate_track = 0
 				dissipate_strength = 20
+				if(maxStage < 3)
+					maxStage = 3
 		if(STAGE_FOUR)
 			if(check_cardinals_range(3, TRUE))
 				current_size = STAGE_FOUR
@@ -226,6 +234,8 @@
 				dissipate_delay = 10
 				dissipate_track = 0
 				dissipate_strength = 10
+				if(maxStage < 4)
+					maxStage = 4
 		if(STAGE_FIVE)//this one also lacks a check for gens because it eats everything
 			current_size = STAGE_FIVE
 			icon = 'icons/effects/288x288.dmi'
@@ -235,6 +245,8 @@
 			grav_pull = 10
 			consume_range = 4
 			dissipate = 0 //It cant go smaller due to e loss
+			if(maxStage < 5)
+				maxStage = 5
 		if(STAGE_SIX) //This only happens if a stage 5 singulo consumes a supermatter shard.
 			current_size = STAGE_SIX
 			icon = 'icons/effects/352x352.dmi'
@@ -244,6 +256,8 @@
 			grav_pull = 15
 			consume_range = 5
 			dissipate = 0
+			if(maxStage < 6)
+				maxStage = 6
 	if(current_size == allowed_size)
 		investigate_log("<font color='red'>grew to size [current_size]</font>", INVESTIGATE_SINGULO)
 		return 1
@@ -457,3 +471,33 @@
 	explosion(src.loc,(dist),(dist*2),(dist*4))
 	qdel(src)
 	return(gain)
+
+/obj/item/singularity_shard
+	name = "singularity shard"
+	desc = "THIS SHOULDN'T EXIST. TELL A CODER HOW YOU GOT THIS."
+	icon_state = "singularity_shard_s1"
+	resistance_flags = INDESTRUCTIBLE
+
+/obj/item/singularity_shard/stage1
+	icon_state = "singularity_shard_s1"
+	desc = "A radiant shard of what was once an all-consuming maw of the void. This one reached stage 1."
+
+/obj/item/singularity_shard/stage2
+	icon_state = "singularity_shard_s2"
+	desc = "A radiant shard of what was once an all-consuming maw of the void. This one reached stage 2."
+
+/obj/item/singularity_shard/stage3
+	icon_state = "singularity_shard_s3"
+	desc = "A radiant shard of what was once an all-consuming maw of the void. This one reached stage 3."
+
+/obj/item/singularity_shard/stage4
+	icon_state = "singularity_shard_s4"
+	desc = "A radiant shard of what was once an all-consuming maw of the void. This one reached stage 4."
+
+/obj/item/singularity_shard/stage5
+	icon_state = "singularity_shard_s5"
+	desc = "A radiant shard of what was once an all-consuming maw of the void. This one reached stage 5."
+
+/obj/item/singularity_shard/stage6
+	icon_state = "singularity_shard_s6"
+	desc = "A radiant shard of what was once an all-consuming maw of the void. This one reached stage 6."
