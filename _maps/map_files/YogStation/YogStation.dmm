@@ -36282,24 +36282,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"eHP" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/sign/departments/minsky/engineering/atmospherics{
-	pixel_y = 32
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "eHU" = (
 /obj/machinery/door/airlock{
 	name = "Custodial Closet";
@@ -41401,6 +41383,22 @@
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
+"iwc" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "iwi" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -44615,6 +44613,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"kGc" = (
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/maintenance_hatch,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "kGo" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -45692,6 +45701,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
+"lvY" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/sign/departments/minsky/engineering/atmospherics{
+	pixel_y = 32
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "lwb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -54401,6 +54428,21 @@
 	},
 /turf/open/floor/plating,
 /area/medical/sleeper)
+"rtL" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "ruc" = (
 /turf/closed/wall,
 /area/medical/genetics/cloning)
@@ -58984,22 +59026,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"uGY" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "uHe" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/blue{
@@ -62853,21 +62879,6 @@
 /obj/effect/variation/box/sec/brig_cell/perma,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"xvt" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "xvY" = (
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -102804,7 +102815,7 @@ uUO
 btU
 bzs
 bzs
-fjd
+kGc
 bzs
 avy
 bai
@@ -105645,7 +105656,7 @@ bNd
 bNd
 bzs
 bzs
-aNE
+rtL
 bAw
 bzs
 gtn
@@ -105902,7 +105913,7 @@ bNd
 bZR
 bHo
 bzs
-aNE
+rtL
 bAw
 bzs
 bzs
@@ -106159,7 +106170,7 @@ dRN
 bZQ
 aNG
 bQD
-uGY
+iwc
 ccM
 ccM
 dmf
@@ -106416,7 +106427,7 @@ bNd
 bZS
 caR
 bzs
-eHP
+lvY
 bAw
 gIR
 bzs
@@ -106673,7 +106684,7 @@ bNd
 bzs
 bzs
 bzs
-aNE
+rtL
 hwl
 ceK
 bzs
@@ -106930,7 +106941,7 @@ bNd
 bZU
 bAg
 bLT
-xvt
+brn
 hwl
 bzs
 bzs
