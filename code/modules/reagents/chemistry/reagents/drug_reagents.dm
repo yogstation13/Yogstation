@@ -269,7 +269,7 @@
 	. = 1
 
 /datum/reagent/drug/bath_salts
-	name = "Bath Salts"
+	name = "3-Methylmethcathinone"
 	description = "Makes you impervious to stuns and grants a stamina regeneration buff, but you will be a nearly uncontrollable tramp-bearded raving lunatic."
 	reagent_state = LIQUID
 	color = "#FAFAFA"
