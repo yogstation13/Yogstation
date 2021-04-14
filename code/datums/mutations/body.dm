@@ -173,6 +173,9 @@
 	locked = TRUE //Species specific, keep out of actual gene pool
 
 /datum/mutation/human/race/on_acquiring(mob/living/carbon/human/owner)
+	if(owner.has_brain_worms())
+		to_chat(owner, "<span class='warning'>You feel something strongly clinging to your humanity!</span>")
+		return
 	if(..())
 		return
 	. = owner.monkeyize(TR_KEEPITEMS | TR_KEEPIMPLANTS | TR_KEEPORGANS | TR_KEEPDAMAGE | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_KEEPSE)
