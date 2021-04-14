@@ -530,7 +530,7 @@
 	name = "Electrocharged tentacle"
 	id = "paralysis"
 	desc = "Empowers your tentacle knockdown ability by giving it extra charge, knocking your victim down unconcious."
-	soul_price = 3
+	soul_price = 2
 
 /datum/horror_upgrade/paralysis/apply_effects()
 	var/datum/action/innate/horror/A = B.has_ability("freeze_victim")
@@ -545,7 +545,7 @@
 	name = "Efficient chemical glands"
 	id = "chem_regen"
 	desc = "Your chemical glands work more efficiently. Unlocking this increases your chemical regeneration."
-	soul_price = 3
+	soul_price = 2
 
 /datum/horror_upgrade/chemical_regen/apply_effects()
 	B.chem_regen_rate += 2
@@ -580,14 +580,14 @@
 	name = "Reflective fluids"
 	id = "invisible_exit"
 	desc = "You build up reflective solution inside host's brain. Upon exiting a host, you're briefly covered in it, rendering you near invisible for a few seconds. This mutation also makes the host unable to notice you exiting it directly."
-	soul_price = 2
+	soul_price = 1
 
 //Increases melee damage to 20
 /datum/horror_upgrade/dmg_up
 	name = "Sharpened teeth"
 	id = "dmg_up"
 	desc = "Your teeth become sharp blades, this mutation increases your melee damage."
-	soul_price = 2
+	soul_price = 1
 
 /datum/horror_upgrade/dmg_up/apply_effects()
 	B.attacktext = "crunches"
@@ -610,7 +610,7 @@
 	name = "Precise probosci"
 	id = "fast_control"
 	desc = "Your probosci become more precise, allowing you to take control over your host's brain noticably faster."
-	soul_price = 2
+	soul_price = 1
 
 //makes it longer for host to snap out of mind control
 /datum/horror_upgrade/deep_control
