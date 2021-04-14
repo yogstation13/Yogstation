@@ -1,7 +1,7 @@
 /datum/round_event_control/horror
 	name = "Spawn Eldritch Horror"
 	typepath = /datum/round_event/ghost_role/horror
-	max_occurrences = 3
+	max_occurrences = 0  //needs testing first
 	min_players = 15
 	earliest_start = 20 MINUTES
 
