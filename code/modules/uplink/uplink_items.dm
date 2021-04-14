@@ -1895,6 +1895,17 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 20
 	restricted_roles = list("Chaplain")
 	surplus = 5 //Very low chance to get it in a surplus crate even without being the chaplain
+	
+/datum/uplink_item/role_restricted/horror
+	name = "Horror-in-a-box"
+	desc = "When dissecting a head of a dead Nanotrasen scientist, our surgeons noticed incredibly peculiar creature inside and menaged to extract it into safe containment. \
+	Either a failed experiment or otherworldy monster, this creature has been trained to aid whoever wakes it up. If you aren't afraid of it entering your head, it can prove an useful ally. \
+	We take no responsibility for your newfound madness and accept no refunds."
+	item = /obj/item/storage/box/syndie_kit/horror
+	cost = 16
+	surplus = 0
+	restricted_roles = list("Curator")
+	player_minimum = 20
 
 /datum/uplink_item/role_restricted/explosive_hot_potato
 	name = "Exploding Hot Potato"
