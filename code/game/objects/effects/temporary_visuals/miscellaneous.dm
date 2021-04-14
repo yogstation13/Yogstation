@@ -473,3 +473,8 @@
 /obj/effect/temp_visual/dir_setting/space_wind/Initialize(mapload, set_dir, set_alpha = 255)
 	. = ..()
 	alpha = set_alpha
+	
+/obj/effect/temp_visual/summon
+	randomdir = 0
+	duration = 20
+	icon_state = "summon"
