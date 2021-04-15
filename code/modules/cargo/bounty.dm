@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(bounties_list)
 	if(can_claim())
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 		if(D)
-			D.adjust_money(reward)
+			D.adjust_money(reward * SSeconomy.bounty_modifier)
 			D.bounties_claimed += 1
 			if(D.bounties_claimed == 10)
 				SSachievements.unlock_achievement(/datum/achievement/cargo/bounties, user.client)
@@ -171,6 +171,12 @@ GLOBAL_LIST_EMPTY(bounties_list)
 	/********************************Cutoff for Non-Low Priority Bounties********************************/
 	var/datum/bounty/B = pick(GLOB.bounties_list)
 	B.mark_high_priority()
+
+	/********************************Progression Gens********************************/
+	var/list/progression_type_list = typesof(/datum/bounty/item/progression)
+
+	for(var/progression_bounty in progression_type_list)
+		try_add_bounty(new progression_bounty)
 
 	/********************************Low Priority Gens********************************/
 	var/list/low_priority_strict_type_list = list(  /datum/bounty/item/alien_organs,

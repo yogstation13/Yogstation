@@ -671,3 +671,13 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=61MR40PG8K4", // What Do You Do with an Innsmouth Sailor? - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
 		"https://www.youtube.com/watch?v=P2csnVNai-o"  // Tentacles! - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
 		)
+
+/datum/holiday/twofoursixohfive
+	name = "24605 Anniversary"
+	begin_day = 2
+	begin_month = AUGUST
+	drone_hat = /obj/item/clothing/head/beret/atmos
+	lobby_music = list("https://www.youtube.com/watch?v=5WyLhwYFgmk") // Johnny Cash - Ring Of Fire
+
+/datum/holiday/twofoursixohfive/getStationPrefix()
+	return pick("Class-O","Class-B","Class-A","Class-F","Class-G","Class-K","Class-M","Dwarf","Main Sequence","Giant","Atmospheric")

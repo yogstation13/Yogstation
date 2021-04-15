@@ -90,6 +90,19 @@
 	toxpwr = 0
 	taste_description = "acid"
 
+/datum/reagent/toxin/lexorin/on_mob_life(mob/living/carbon/C)
+	. = TRUE
+
+	if(HAS_TRAIT(C, TRAIT_NOBREATH))
+		. = FALSE
+
+	if(.)
+		C.adjustOxyLoss(3, 0)
+		C.losebreath += 1
+		if(prob(20))
+			C.emote("gasp")
+	..()
+
 /datum/reagent/toxin/hot_ice
 	name = "Hot Ice Slush"
 	description = "Frozen plasma, worth its weight in gold, to the right people"
@@ -106,18 +119,6 @@
 	M.adjust_bodytemperature(-7 * TEMPERATURE_DAMAGE_COEFFICIENT, M.get_body_temp_normal())
 	return ..()
 
-/datum/reagent/toxin/lexorin/on_mob_life(mob/living/carbon/C)
-	. = TRUE
-
-	if(HAS_TRAIT(C, TRAIT_NOBREATH))
-		. = FALSE
-
-	if(.)
-		C.adjustOxyLoss(5, 0)
-		C.losebreath += 2
-		if(prob(20))
-			C.emote("gasp")
-	..()
 
 /datum/reagent/toxin/slimejelly
 	name = "Slime Jelly"

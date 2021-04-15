@@ -50,6 +50,10 @@ SUBSYSTEM_DEF(economy)
 	var/list/dep_cards = list()
 	///ref to moneysink. Only one should exist on the map. Has its payout() proc called every budget cycle
 	var/obj/item/energy_harvester/moneysink = null
+	///The modifier multiplied to the value of bounties paid out.
+	var/bounty_modifier = 1
+	///The modifier multiplied to the value of cargo pack prices.
+	var/pack_price_modifier = 1
 
 /datum/controller/subsystem/economy/Initialize(timeofday)
 	var/budget_to_hand_out = round(budget_pool / department_accounts.len)
