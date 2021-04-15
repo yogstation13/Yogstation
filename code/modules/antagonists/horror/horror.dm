@@ -120,20 +120,30 @@
 	return TRUE
 
 /mob/living/simple_animal/horror/proc/SearchTarget()
-	if(world.time - used_target < 240)
-		to_chat(src, "<span class='warning'>You cannot use that ability again so soon.</span>")
-		return
 	if(target)
+		if(world.time - used_target < 3 MINUTES)
+			to_chat(src, "<span class='warning'>You cannot use that ability again so soon.</span>")
+			return
 		if(alert("You already have a target ([target.name]). Would you like to change that target?","Swap targets?","Yes","No") != "Yes")
 			return
-	var/list/possible_targets = list()
-	//get crewmen minds
-	var/datum/mind/crew = list()
-	for(var/V in GLOB.data_core.locked)
-		var/datum/data/record/R = V
-		var/datum/mind/M = R.fields["mindref"]
-		if(M)
-			crew += M
+			
+	var/datum/objective/A = new
+	A.owner = mind
+	var/list/targets = list()
+	for(var/i in 0 to 4)
+		var/datum/mind/targeted =  A.find_target(TRUE, list(mind.enslaved_to.mind, target))
+		if(!targeted || !targeted.hasSoul)
+			break
+		targets[targeted.current.real_name] = targeted.current
+		
+	target = targets[input(src,"Choose your next target","Target") in targets]
+	qdel(A)
+
+	if(target)
+		used_target = world.time
+		to_chat(src,"<span class='warning'>Your new target has been selected, go and consume [target.name]'s soul!</span>")
+	else
+		to_chat(src,"<span class='warning'>A new target could not be found.</span>")
 
 	for(var/datum/mind/possible_target in crew)
 		if(ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && possible_target.hasSoul && possible_target != mind.enslaved_to.mind && possible_target != target) //checking if our target possesses a soul
