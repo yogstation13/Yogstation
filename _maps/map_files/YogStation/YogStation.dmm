@@ -52441,13 +52441,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
-"qco" = (
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/library)
 "qcs" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -57911,6 +57904,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"tVc" = (
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "tVl" = (
 /obj/structure/table/wood,
 /obj/machinery/camera{
@@ -59189,12 +59191,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
-"uMn" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "uMu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -61118,6 +61114,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"wdx" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/obj/structure/sign/painting{
+	persistence_id = "public";
+	pixel_x = -32
+	},
+/turf/open/floor/carpet,
+/area/library)
 "wdT" = (
 /obj/effect/turf_decal/arrows/white{
 	color = "#99ccff";
@@ -107934,7 +107941,7 @@ bfV
 bfV
 bfV
 bfV
-uMn
+tVc
 bnu
 bvB
 bzs
@@ -108173,9 +108180,9 @@ bLO
 idq
 idq
 idq
-aYW
-qco
-aYW
+idq
+wdx
+idq
 bbD
 aYV
 hoB
