@@ -300,8 +300,7 @@
 		"https://www.youtube.com/watch?v=1vrEljMfXYo", // country roads
 		"https://www.youtube.com/watch?v=FqxJ_iuBPCs", // Star Spangled Banner
 		"https://www.youtube.com/watch?v=H0bhSGfKTs4", // Surfin' USA
-		"https://www.youtube.com/watch?v=FAVQsnr4uYg", // Lone Star - Tony Marcus
-		"https://www.youtube.com/watch?v=tRx212PUa4g"  // Born in the U.S.A.
+		"https://www.youtube.com/watch?v=FAVQsnr4uYg" // Lone Star - Tony Marcus
 	)
 /datum/holiday/USA/getStationPrefix()
 	return pick("Independent","American","Burger","Bald Eagle","Star-Spangled", "Fireworks")
@@ -671,9 +670,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=xHAeJSwUbaw", // Demon Sultan Azathoth - The H.P. Lovecraft Historical Society
 		"https://www.youtube.com/watch?v=KSvsy11PHxM", // I saw mommy kissing Yog-Sothoth - The H.P. Lovecraft Historical Society
 		"https://www.youtube.com/watch?v=61MR40PG8K4", // What Do You Do with an Innsmouth Sailor? - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
-		"https://www.youtube.com/watch?v=P2csnVNai-o", // Tentacles! - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
-		"https://www.youtube.com/watch?v=M4zd4uCpPag", // Dreams in the Witch House - Dreams in the Witch House
-		"https://www.youtube.com/watch?v=vFov17mmDk8"  // Azathoth - Dreams in the Witch House
+		"https://www.youtube.com/watch?v=P2csnVNai-o" // Tentacles! - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
 		)
 
 /datum/holiday/twofoursixohfive
