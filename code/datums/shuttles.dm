@@ -175,7 +175,7 @@
 
 /datum/map_template/shuttle/emergency/construction/prerequisites_met()
 	// first 10 minutes only
-	return world.time - SSticker.round_start_time < 6000
+	return world.time - SSticker.round_start_time < 12000
 
 /datum/map_template/shuttle/emergency/construction/post_load()
 	. = ..()
