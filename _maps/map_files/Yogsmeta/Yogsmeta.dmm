@@ -74365,13 +74365,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
-"fKJ" = (
-/obj/machinery/atmospherics/components/binary/pump/on{
-	name = "Waste to Filter";
-	target_pressure = 101.325
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "fNa" = (
 /obj/structure/chair{
 	dir = 4
@@ -75333,19 +75326,6 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/aisat)
-"hxX" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 4;
-	name = "External Waste Ports to Filter";
-	target_pressure = 101.325
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "hyP" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod Two"
@@ -75579,6 +75559,18 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/toilet/auxiliary)
+"hVv" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/components/binary/pump/on{
+	dir = 4;
+	name = "External Waste Ports to Filter"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "hWi" = (
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
@@ -75928,14 +75920,6 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
-"iDI" = (
-/obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 8;
-	name = "Mix to Filter";
-	target_pressure = 101.325
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "iDY" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -81092,6 +81076,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/cryopods)
+"tyH" = (
+/obj/machinery/atmospherics/components/binary/pump/on{
+	name = "Waste to Filter"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "tzg" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -81672,6 +81662,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/fore)
+"uGf" = (
+/obj/machinery/atmospherics/components/binary/pump/on{
+	dir = 8;
+	name = "Mix to Filter"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "uGm" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -125119,7 +125116,7 @@ ceP
 bIP
 ceT
 bHu
-hxX
+hVv
 bIT
 bKx
 bNQ
@@ -125889,7 +125886,7 @@ bxc
 kyR
 bkY
 bAJ
-fKJ
+tyH
 bjB
 bza
 bKB
@@ -126403,7 +126400,7 @@ bxc
 ayG
 bAL
 ddF
-iDI
+uGf
 bFR
 bHx
 bIU
