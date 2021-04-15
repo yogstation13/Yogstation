@@ -480,6 +480,21 @@
 	desc = "THIS SHOULDN'T EXIST. TELL A CODER HOW YOU GOT THIS."
 	icon_state = "singularity_shard_s1"
 	resistance_flags = INDESTRUCTIBLE
+	var/all_powerful = FALSE /// will it spawn an actual singularity when someone suicides with it
+
+/obj/item/singularity_shard/suicide_act(mob/living/carbon/user)
+	user.visible_message("<span class='suicide'>[user] is trying to break open the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	addtimer(CALLBACK(user, /mob/.proc/gib), 99)
+	addtimer(CALLBACK(src, /mob/.proc/spawnsing), 100)
+	return MANUAL_SUICIDE
+
+/obj/item/singularity_shard/spawnsing()
+	var/turf/T = get_turf(src)
+	if(all_powerful)
+		new /obj/singularity(T, src)
+		qdel(src)
+	else
+		new /obj/item/toy/spinningtoy(T, src)
 
 /obj/item/singularity_shard/stage1
 	icon_state = "singularity_shard_s1"
@@ -503,4 +518,5 @@
 
 /obj/item/singularity_shard/stage6
 	icon_state = "singularity_shard_s6"
-	desc = "A radiant shard of what was once an all-consuming maw of the void. This one reached stage 6."
+	desc = "A radiant shard of what was once an all-consuming maw of the void. This one reached stage 6 and looks particularly unstable."
+	all_powerful = TRUE
