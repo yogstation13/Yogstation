@@ -329,7 +329,7 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 			new /obj/item/melee/cultblade/dagger(get_turf(src))
 			to_chat(user, "<span class='warning'>Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a sinister dagger sitting on the desk. You don't even remember where it came from...</span>")
 		if(2)
-			new /obj/item/clockwork/clockwork_slab(get_turf(src))
+			new /obj/item/clockwork/slab(get_turf(src))
 			to_chat(user, "<span class='warning'>Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a strange metal tablet sitting on the desk. You don't even remember where it came from...</span>")
 		if(3)
 			new /obj/item/forbidden_book(get_turf(src))
