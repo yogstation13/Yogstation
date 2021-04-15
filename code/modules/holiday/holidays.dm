@@ -276,13 +276,14 @@
 	begin_month = JULY
 	drone_hat = /obj/item/clothing/mask/facehugger/dead
 	lobby_music = list(
-		"https://www.youtube.com/watch?v=X8cmbmwFAl8", // Clutch - X-Ray Visions
-		"https://www.youtube.com/watch?v=sYkvpNR8BGU", // Blue Oyster Cult: E.T.I. (Extra Terraestrial Intelligence)
-		"https://www.youtube.com/watch?v=Pyu89NHSniU", // Blood And Rockets: Movement I, Saga Of Jack Parsons - Movement II, Too The Moon
-		"https://www.youtube.com/watch?v=BYDd0TTx4nE", // Nyctophilliac - Blunted Session
-		"https://www.youtube.com/watch?v=n8cCDoDYgc0", // Ballad of a Spaceman - Julia Ecklar
-		"https://www.youtube.com/watch?v=I1VLuZ9Smf0", // Elektronik Supersonik - ZLAD
-		"https://www.youtube.com/watch?v=KvQ0zWHtnN4"  // The Mechanisms - Once Upon a Time - 06 Pump Shanty
+		"https://www.youtube.com/watch?v=X8cmbmwFAl8",	// Clutch - X-Ray Visions
+		"https://www.youtube.com/watch?v=sYkvpNR8BGU",	// Blue Oyster Cult: E.T.I. (Extra Terraestrial Intelligence)
+		"https://www.youtube.com/watch?v=Pyu89NHSniU",	// Blood And Rockets: Movement I, Saga Of Jack Parsons - Movement II, Too The Moon
+		"https://www.youtube.com/watch?v=BYDd0TTx4nE",	// Nyctophilliac - Blunted Session
+		"https://www.youtube.com/watch?v=n8cCDoDYgc0",	// Ballad of a Spaceman - Julia Ecklar
+		"https://www.youtube.com/watch?v=I1VLuZ9Smf0",	// Elektronik Supersonik - ZLAD
+		"https://www.youtube.com/watch?v=KvQ0zWHtnN4",	// The Mechanisms - Once Upon a Time - 06 Pump Shanty
+		"https://www.youtube.com/watch?v=4hutvW-eSFY"	// Bryan Scary and the Shedding Tears - Venus Ambassador
 	)
 
 /datum/holiday/UFO/getStationPrefix() //Is such a thing even possible?
@@ -299,7 +300,8 @@
 		"https://www.youtube.com/watch?v=1vrEljMfXYo", // country roads
 		"https://www.youtube.com/watch?v=FqxJ_iuBPCs", // Star Spangled Banner
 		"https://www.youtube.com/watch?v=H0bhSGfKTs4", // Surfin' USA
-		"https://www.youtube.com/watch?v=FAVQsnr4uYg"  // Lone Star - Tony Marcus
+		"https://www.youtube.com/watch?v=FAVQsnr4uYg", // Lone Star - Tony Marcus
+		"https://www.youtube.com/watch?v=tRx212PUa4g"  // Born in the U.S.A.
 	)
 /datum/holiday/USA/getStationPrefix()
 	return pick("Independent","American","Burger","Bald Eagle","Star-Spangled", "Fireworks")
@@ -669,7 +671,9 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=xHAeJSwUbaw", // Demon Sultan Azathoth - The H.P. Lovecraft Historical Society
 		"https://www.youtube.com/watch?v=KSvsy11PHxM", // I saw mommy kissing Yog-Sothoth - The H.P. Lovecraft Historical Society
 		"https://www.youtube.com/watch?v=61MR40PG8K4", // What Do You Do with an Innsmouth Sailor? - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
-		"https://www.youtube.com/watch?v=P2csnVNai-o"  // Tentacles! - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
+		"https://www.youtube.com/watch?v=P2csnVNai-o", // Tentacles! - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
+		"https://www.youtube.com/watch?v=M4zd4uCpPag", // Dreams in the Witch House - Dreams in the Witch House
+		"https://www.youtube.com/watch?v=vFov17mmDk8"  // Azathoth - Dreams in the Witch House
 		)
 
 /datum/holiday/twofoursixohfive
