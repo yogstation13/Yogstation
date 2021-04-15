@@ -152,7 +152,7 @@
 		if(H && H.victim == target)
 			user.visible_message("[user] successfully extracts [H] from [target]'s [parse_zone(target_zone)]!",
 				"<span class='notice'>You successfully extract [H] from [target]'s [parse_zone(target_zone)].</span>")
-			log_say(user, target, "surgically removed [H] from", addition="INTENT: [uppertext(user.a_intent)]")
+			log_combat(user, target, "surgically removed [H] from", addition="INTENT: [uppertext(user.a_intent)]")
 			H.leave_victim()
 			return FALSE
 		if(I && I.owner == target)
