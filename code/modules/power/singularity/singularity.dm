@@ -27,7 +27,7 @@
 	var/last_failed_movement = 0//Will not move in the same dir if it couldnt before, will help with the getting stuck on fields thing
 	var/last_warning
 	var/consumedSupermatter = 0 //If the singularity has eaten a supermatter shard and can go to stage six
-	var/maxStage = 1 //The largest stage this singularity has been
+	var/maxStage = 0 //The largest stage this singularity has been
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 
@@ -47,9 +47,10 @@
 	return
 
 /obj/singularity/Destroy()
-	var/shardstage = text2path("/obj/item/singularity_shard/stage[maxStage]")
-	var/turf/T = get_turf(src)
-	new shardstage(T, src)
+	if(maxStage)
+		var/shardstage = text2path("/obj/item/singularity_shard/stage[maxStage]")
+		var/turf/T = get_turf(src)
+		new shardstage(T, src)
 	STOP_PROCESSING(SSobj, src)
 	GLOB.poi_list.Remove(src)
 	GLOB.singularities.Remove(src)
@@ -194,6 +195,8 @@
 			dissipate_delay = 10
 			dissipate_track = 0
 			dissipate_strength = 1
+			if(maxStage < 1)
+				maxStage = 1
 		if(STAGE_TWO)
 			if(check_cardinals_range(1, TRUE))
 				current_size = STAGE_TWO
