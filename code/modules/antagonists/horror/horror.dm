@@ -333,14 +333,14 @@
 	if(waketimerid)
 		waketimerid = null
 
-/mob/living/simple_animal/horror/say(message)
+/mob/living/simple_animal/horror/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(victim)
 		to_chat(src, "<span class='warning'>You cannot speak out loud while inside a host!</span>")
 		return
 	else
 		..()
 
-/mob/living/simple_animal/horror/emote(var/message)
+/mob/living/simple_animal/horror/emote(act, m_type = null, message = null, intentional = FALSE)
 	if(victim)
 		to_chat(src, "<span class='warning'>You cannot emote while inside a host!</span>")
 		return
