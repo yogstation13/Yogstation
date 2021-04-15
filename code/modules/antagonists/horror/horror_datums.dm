@@ -625,8 +625,7 @@
 	name = "host brain"
 	real_name = "host brain"
 
-/mob/living/captive_brain/say(var/message)
-
+/mob/living/captive_brain/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, "<span class='danger'>You cannot speak in IC (muted).</span>")
@@ -652,7 +651,7 @@
 			else if(M.stat == 2 &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
 				to_chat(M, "<i>Thought-speech, <b>[src]</b> -> <b>[B.truename]:</b> [message]</i>")
 
-/mob/living/captive_brain/emote(var/message)
+/mob/living/captive_brain/emote(act, m_type = null, message = null, intentional = FALSE)
 	return
 
 /mob/living/captive_brain/resist()
