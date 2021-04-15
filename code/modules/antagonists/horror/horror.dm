@@ -145,17 +145,6 @@
 	else
 		to_chat(src,"<span class='warning'>A new target could not be found.</span>")
 
-	for(var/datum/mind/possible_target in crew)
-		if(ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && possible_target.hasSoul && possible_target != mind.enslaved_to.mind && possible_target != target) //checking if our target possesses a soul
-			possible_targets += possible_target
-
-	if(possible_targets.len > 0)
-		used_target = world.time
-		target = pick(possible_targets)
-		to_chat(src,"<span class='warning'>Your new target has been selected, go and consume [target.name]'s soul!</span>")
-	else
-		to_chat(src,"<span class='warning'>A new target could not be found.</span>")
-
 /mob/living/simple_animal/horror/proc/ConsumeSoul()
 	if(!can_use_ability())
 		return
