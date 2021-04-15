@@ -74365,6 +74365,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
+"fKJ" = (
+/obj/machinery/atmospherics/components/binary/pump/on{
+	name = "Waste to Filter";
+	target_pressure = 101.325
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "fNa" = (
 /obj/structure/chair{
 	dir = 4
@@ -74420,14 +74427,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
-"fPJ" = (
-/obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 8;
-	name = "Mix to Filter";
-	target_pressure = 4500
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "fQe" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -75334,6 +75333,19 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/aisat)
+"hxX" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/components/binary/pump/on{
+	dir = 4;
+	name = "External Waste Ports to Filter";
+	target_pressure = 101.325
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "hyP" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod Two"
@@ -75916,6 +75928,14 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"iDI" = (
+/obj/machinery/atmospherics/components/binary/pump/on{
+	dir = 8;
+	name = "Mix to Filter";
+	target_pressure = 101.325
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "iDY" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -77354,19 +77374,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"lDL" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 4;
-	name = "External Waste Ports to Filter";
-	target_pressure = 4500
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "lEu" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -77858,13 +77865,6 @@
 /obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
 /area/maintenance/fore)
-"mRu" = (
-/obj/machinery/atmospherics/components/binary/pump/on{
-	name = "Waste to Filter";
-	target_pressure = 4500
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "mTv" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -125119,7 +125119,7 @@ ceP
 bIP
 ceT
 bHu
-lDL
+hxX
 bIT
 bKx
 bNQ
@@ -125889,7 +125889,7 @@ bxc
 kyR
 bkY
 bAJ
-mRu
+fKJ
 bjB
 bza
 bKB
@@ -126403,7 +126403,7 @@ bxc
 ayG
 bAL
 ddF
-fPJ
+iDI
 bFR
 bHx
 bIU
