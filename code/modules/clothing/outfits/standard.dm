@@ -347,7 +347,7 @@
 	suit = /obj/item/clothing/suit/space/hardsuit/deathsquad
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
-	mask = /obj/item/clothing/mask/gas/sechailer/swat
+	mask = /obj/item/clothing/mask/gas/sechailer/swat/encrypted
 	glasses = /obj/item/clothing/glasses/hud/toggle/thermal
 	back = /obj/item/storage/backpack/security
 	l_pocket = /obj/item/melee/transforming/energy/sword/saber
