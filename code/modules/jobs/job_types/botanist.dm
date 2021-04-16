@@ -38,6 +38,8 @@
 	gloves  =/obj/item/clothing/gloves/botanic_leather
 	suit_store = /obj/item/plant_analyzer
 
+	plasmaman_head = /obj/item/clothing/head/helmet/space/plasmaman/blue
+	plasmaman_uniform = /obj/item/clothing/under/plasmaman/botany
 	backpack = /obj/item/storage/backpack/botany
 	satchel = /obj/item/storage/backpack/satchel/hyd
 

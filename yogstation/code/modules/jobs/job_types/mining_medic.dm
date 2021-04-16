@@ -41,6 +41,10 @@
 	l_pocket =  /obj/item/pda/medical
 	gloves = /obj/item/clothing/gloves/color/latex
 	mask = /obj/item/clothing/mask/surgical
+
+	plasmaman_uniform = /obj/item/clothing/under/plasmaman/mining
+	plasmaman_head = /obj/item/clothing/head/helmet/space/plasmaman/blue
+
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med

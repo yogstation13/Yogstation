@@ -141,6 +141,12 @@
 	new /obj/item/crowbar/red(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 
+/obj/item/storage/box/survival_mining/plasmaman/PopulateContents()
+	new /obj/item/clothing/mask/gas/explorer(src)
+	new /obj/item/tank/internals/plasmaman(src)
+	new /obj/item/crowbar/red(src)
+	new /obj/item/reagent_containers/hypospray/medipen(src)
+
 // Engineer survival box
 /obj/item/storage/box/engineer/PopulateContents()
 	new /obj/item/clothing/mask/breath(src)
@@ -160,6 +166,11 @@
 /obj/item/storage/box/security/PopulateContents()
 	new /obj/item/clothing/mask/gas/sechailer(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
+	new /obj/item/reagent_containers/hypospray/medipen(src)
+
+/obj/item/storage/box/security/plasmaman/PopulateContents()
+	new /obj/item/clothing/mask/gas/sechailer(src)
+	new /obj/item/tank/internals/plasmaman(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 
 /obj/item/storage/box/security/radio/PopulateContents()
@@ -781,7 +792,16 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
-	
+
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_PREMIUM_INTERNALS))
+		new /obj/item/flashlight/flare(src)
+		new /obj/item/radio/off(src)
+
+/obj/item/storage/box/hug/survival/plasmaman/PopulateContents()
+	new /obj/item/clothing/mask/breath(src)
+	new /obj/item/tank/internals/plasmaman(src)
+	new /obj/item/reagent_containers/hypospray/medipen(src)
+
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_PREMIUM_INTERNALS))
 		new /obj/item/flashlight/flare(src)
 		new /obj/item/radio/off(src)
