@@ -651,7 +651,7 @@
 
 /obj/item/clothing/suit/cosmeticvampirecoat
 	name = "Vampire Coat"
-	desc = "A Coat designed to mimic the coats of the vampires from translyvania"
+	desc = "A Coat designed to mimic the coats of the vampires from Translyvania."
 	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "draculacoat"
