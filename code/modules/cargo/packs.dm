@@ -441,6 +441,15 @@
 					/obj/item/clothing/suit/armor/bulletproof)
 	crate_name = "bulletproof armor crate"
 
+/datum/supply_pack/security/armory/bullethelmets
+	name = "Bulletproof Helmet Crate"
+	desc = "Contains three bulletproof helmets, perfect for protecting the void inside your skull. Requires Armory access to open."
+	cost = 1500
+	contains = list(/obj/item/clothing/head/helmet/alt,
+					/obj/item/clothing/head/helmet/alt,
+					/obj/item/clothing/head/helmet/alt)
+	crate_name = "bulletproof helmet crate"
+
 /datum/supply_pack/security/armory/chemimp
 	name = "Chemical Implants Crate"
 	desc = "Contains five Remote Chemical implants. Requires Armory access to open."
