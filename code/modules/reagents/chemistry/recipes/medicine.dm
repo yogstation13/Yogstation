@@ -315,3 +315,31 @@
 	mix_message = "The mixture binds together from the heat, releasing a disgusting smelling smoke."
 	results = list(/datum/reagent/medicine/tribaldetox = 10)
 	required_reagents = list(/datum/reagent/ash = 10, /datum/reagent/consumable/entpoly = 1)
+
+///medical stacks
+
+/datum/chemical_reaction/medsuture
+	name = "Medicated Suture"
+	id = "med_suture"
+	required_reagents = list(/datum/reagent/cellulose = 10, /datum/reagent/toxin/formaldehyde = 20, /datum/reagent/medicine/polypyr = 15)
+
+/datum/chemical_reaction/medsuture/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/stack/medical/suture/medicated(location)
+
+/datum/chemical_reaction/medicine/medmesh
+	required_reagents = list(/datum/reagent/cellulose = 20, /datum/reagent/consumable/aloejuice = 20, /datum/reagent/space_cleaner/sterilizine = 10)
+
+/datum/chemical_reaction/medicine/medmesh/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/stack/medical/mesh/advanced(location)
+
+/datum/chemical_reaction/medicine/poultice
+	required_reagents = list(/datum/reagent/toxin/bungotoxin = 20, /datum/reagent/cellulose = 20, /datum/reagent/consumable/aloejuice = 20)
+
+/datum/chemical_reaction/medicine/poultice/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i in 1 to created_volume)
+		new /obj/item/stack/medical/poultice(location)
