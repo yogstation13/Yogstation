@@ -187,6 +187,7 @@
 					/obj/item/clothing/shoes/clown_shoes/beeshoes = 1,
 					/obj/item/clothing/suit/santa = 1,
 					/obj/item/clothing/head/santa = 1,
+					/obj/item/clothing/suit/cosmeticvampirecoat,
 					/obj/item/clothing/neck/skillcape/admin = 1,
 					/obj/item/clothing/neck/skillcape/trimmed/admin = 1,
 					/obj/item/clothing/neck/skillcape/mentor = 1,
