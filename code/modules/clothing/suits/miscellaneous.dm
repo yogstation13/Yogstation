@@ -650,7 +650,7 @@
 	alternate_worn_layer = UNDER_HEAD_LAYER
 
 /obj/item/clothing/suit/cosmeticvampirecoat
-	name = "Vampire Coat"
+	name = "Collectible Vampire Coat"
 	desc = "A Coat designed to mimic the coats of the vampires from Translyvania."
 	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
