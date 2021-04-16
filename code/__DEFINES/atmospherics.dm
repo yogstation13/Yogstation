@@ -237,7 +237,7 @@
 
 //OPEN TURF ATMOS
 /// the default air mix that open turfs spawn
-#define OPENTURF_DEFAULT_ATMOS		"o2=22;n2=82;TEMP=293.15"
+#define OPENTURF_DEFAULT_ATMOS		"plasma=22;n2=82;TEMP=293.15"
 /// -193,15°C telecommunications. also used for xenobiology slime killrooms
 #define TCOMMS_ATMOS				"n2=100;TEMP=80"
 /// space
@@ -271,7 +271,7 @@
 #define ATMOS_TANK_ZAUKER			"zauker=100000;TEMP=293.15"
 #define ATMOS_TANK_HELIUM			"helium=100000;TEMP=293.15"
 #define ATMOS_TANK_ANTINOBLIUM		"antinoblium=100000;TEMP=293.15"
-#define ATMOS_TANK_AIRMIX			"o2=2644;n2=10580;TEMP=293.15"
+#define ATMOS_TANK_AIRMIX			"plasma=2644;n2=10580;TEMP=293.15"
 
 //LAVALAND
 /// what pressure you have to be under to increase the effect of equipment meant for lavaland

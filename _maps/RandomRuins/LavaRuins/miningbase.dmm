@@ -1206,27 +1206,9 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/plating,
 /area/mine/living_quarters)
-"eS" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/machinery/atmospherics/components/unary/portables_connector{
-	dir = 1;
-	icon_state = "connector_map-2"
-	},
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "eT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"eU" = (
-/obj/machinery/atmospherics/components/trinary/filter{
-	dir = 8;
-	filter_type = "o2";
-	icon_state = "filter_on";
-	name = "Oxygen Gas Filter";
-	on = 1
-	},
-/turf/open/floor/plating,
 /area/mine/living_quarters)
 "eV" = (
 /obj/structure/cable{
@@ -1696,6 +1678,10 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/mine/production)
+"nx" = (
+/obj/machinery/atmospherics/components/unary/tank/toxins,
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "og" = (
 /obj/structure/closet/secure_closet/mmedical,
 /obj/effect/turf_decal/tile/blue{
@@ -1826,8 +1812,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"rP" = (
-/obj/machinery/atmospherics/components/unary/tank/oxygen,
+"rS" = (
+/obj/machinery/atmospherics/components/unary/portables_connector{
+	dir = 1;
+	icon_state = "connector_map-2"
+	},
+/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "rU" = (
@@ -3113,6 +3103,16 @@
 /obj/item/reagent_containers/blood,
 /turf/open/floor/plasteel/white,
 /area/mine/production)
+"YC" = (
+/obj/machinery/atmospherics/components/trinary/filter{
+	dir = 8;
+	filter_type = "plasma";
+	icon_state = "filter_on";
+	name = "Plasma Gas Filter";
+	on = 1
+	},
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "YH" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3770,9 +3770,9 @@ ac
 ac
 ac
 bQ
-rP
+nx
 MR
-eU
+YC
 dt
 eH
 eR
@@ -3807,7 +3807,7 @@ ge
 cs
 eF
 eQ
-eS
+rS
 bQ
 ds
 eV

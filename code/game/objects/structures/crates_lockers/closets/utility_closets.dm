@@ -14,7 +14,7 @@
  */
 /obj/structure/closet/emcloset
 	name = "emergency closet"
-	desc = "It's a storage unit for emergency breath masks and O2 tanks."
+	desc = "It's a storage unit for emergency breath masks and plasma tanks."
 	icon_state = "emergency"
 
 /obj/structure/closet/emcloset/anchored
@@ -28,13 +28,13 @@
 
 	switch (pickweight(list("small" = 40, "aid" = 25, "tank" = 20, "both" = 10, "nothing" = 4, "delete" = 1)))
 		if ("small")
-			new /obj/item/tank/internals/emergency_oxygen(src)
-			new /obj/item/tank/internals/emergency_oxygen(src)
+			new /obj/item/tank/internals/plasmaman/belt/full(src)
+			new /obj/item/tank/internals/plasmaman/belt/full(src)
 			new /obj/item/clothing/mask/breath(src)
 			new /obj/item/clothing/mask/breath(src)
 
 		if ("aid")
-			new /obj/item/tank/internals/emergency_oxygen(src)
+			new /obj/item/tank/internals/plasmaman/belt/full(src)
 			new /obj/item/storage/firstaid/o2(src)
 			new /obj/item/clothing/mask/breath(src)
 
@@ -43,7 +43,7 @@
 			new /obj/item/clothing/mask/breath(src)
 
 		if ("both")
-			new /obj/item/tank/internals/emergency_oxygen(src)
+			new /obj/item/tank/internals/plasmaman/belt/full(src)
 			new /obj/item/clothing/mask/breath(src)
 
 		if ("nothing")
