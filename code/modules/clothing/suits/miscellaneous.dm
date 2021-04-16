@@ -648,3 +648,15 @@
 	w_class = WEIGHT_CLASS_TINY
 	flags_inv = HIDEGLOVES|HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	alternate_worn_layer = UNDER_HEAD_LAYER
+
+/obj/item/clothing/suit/cosmeticvampirecoat
+	name = "Vampire Coat"
+	desc = "A Coat designed to mimic the coats of the vampires from translyvania"
+	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
+	icon = 'yogstation/icons/obj/clothing/suits.dmi'
+	icon_state = "draculacoat"
+	item_state = "draculacoat"
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	w_class = WEIGHT_CLASS_TINY
+
+
