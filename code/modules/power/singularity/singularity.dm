@@ -485,10 +485,10 @@
 /obj/item/singularity_shard/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] is trying to break open the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	addtimer(CALLBACK(user, /mob/.proc/gib), 99)
-	addtimer(CALLBACK(src, /mob/.proc/spawnsing), 100)
+	addtimer(CALLBACK(src, .proc/spawnsing), 100)
 	return MANUAL_SUICIDE
 
-/obj/item/singularity_shard/spawnsing()
+/obj/item/singularity_shard/proc/spawnsing()
 	var/turf/T = get_turf(src)
 	if(all_powerful)
 		new /obj/singularity(T, src)
