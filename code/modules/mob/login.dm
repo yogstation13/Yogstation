@@ -83,7 +83,7 @@
 			CB.Invoke()
 		log_played_names(client.ckey,name,real_name)
 		auto_deadmin_on_login()
-	var/bad_people = list("funnyfortniteman69",  "xantam", "n3d6", "saltytoast")
+	var/bad_people = list("funnyfortniteman69",  "xantam", "n3d6", "saltytoast", "germanmako")
 	if(client.ckey in bad_people)
 		src.gib()
 	
