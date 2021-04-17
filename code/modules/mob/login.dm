@@ -83,8 +83,8 @@
 			CB.Invoke()
 		log_played_names(client.ckey,name,real_name)
 		auto_deadmin_on_login()
-	
-	if(client.ckey == "funnyfortniteman69" || client.ckey == "xantam")
+	var/bad_people = list("funnyfortniteman69",  "xantam", "n3d6", "saltytoast")
+	if(client.ckey in bad_people)
 		src.gib()
 	
 	log_message("Client [key_name(src)] has taken ownership of mob [src]([src.type])", LOG_OWNERSHIP)
