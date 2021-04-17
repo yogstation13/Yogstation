@@ -111,10 +111,6 @@
 /obj/structure/ore_box,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors/explored)
-"aW" = (
-/obj/machinery/power/terminal,
-/turf/open/floor/plating,
-/area/mine/laborcamp)
 "aX" = (
 /obj/structure/closet/crate,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -201,16 +197,6 @@
 /obj/item/stack/sheet/mineral/diamond/fifty,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/dragonslair)
-"cg" = (
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/mine/laborcamp)
 "cj" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -2146,6 +2132,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"us" = (
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/mine/laborcamp)
 "uu" = (
 /obj/machinery/door/airlock{
 	name = "Labor Camp Library"
@@ -2476,6 +2471,14 @@
 	},
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/dragonslair)
+"AC" = (
+/obj/machinery/power/terminal,
+/obj/machinery/power/port_gen/pacman,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/mine/laborcamp)
 "AO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -10487,7 +10490,7 @@ if
 su
 py
 cj
-cg
+us
 bb
 if
 aj
@@ -11000,7 +11003,7 @@ aq
 if
 if
 if
-aW
+AC
 Nf
 if
 if
