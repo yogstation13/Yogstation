@@ -91,8 +91,8 @@
 		var/mob/living/carbon/C = user
 		user.visible_message("<span class='notice'>[user] takes a bite out of [src.name]!</span>", "<span class='notice'>You gnaw on [src]! This can't be good for you...</span>")
 		playsound(get_turf(C), 'sound/items/eatfood.ogg', 25, 0)
-		C.reagents.add_reagent(/datum/reagent/toxin/formaldehyde, 3)
-		C.reagents.add_reagent(/datum/reagent/toxin/chloralhydrate, 5)
+		C.reagents.add_reagent(/datum/reagent/toxin/formaldehyde, 2)
+		C.reagents.add_reagent(/datum/reagent/toxin/chloralhydrate, 3)
 		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "toxic_food", /datum/mood_event/disgusting_food)
 		decreaseUses(user, 20)
 		return
