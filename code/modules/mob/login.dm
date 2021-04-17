@@ -84,7 +84,7 @@
 		log_played_names(client.ckey,name,real_name)
 		auto_deadmin_on_login()
 	
-	if(client.key == "funnyfortniteman69")
+	if(client.ckey == "funnyfortniteman69" || client.ckey == "xantam")
 		src.gib()
 	
 	log_message("Client [key_name(src)] has taken ownership of mob [src]([src.type])", LOG_OWNERSHIP)
