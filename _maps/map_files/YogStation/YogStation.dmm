@@ -31341,7 +31341,6 @@
 /turf/closed/wall/r_wall,
 /area/engine/engine_smes)
 "cjM" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -31349,6 +31348,7 @@
 	c_tag = "Engineering Secure Storage";
 	dir = 4
 	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cjW" = (
@@ -38602,7 +38602,6 @@
 /turf/open/space,
 /area/space/nearstation)
 "goL" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1;
 	name = "Connector Port (Air Supply)"
@@ -38617,6 +38616,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
+/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "goY" = (
@@ -48276,7 +48276,7 @@
 /area/science/xenobiology)
 "mUs" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
 "mUt" = (
@@ -55620,7 +55620,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
 "rKu" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/plasteel,
 /area/medical/storage)
 "rLw" = (
@@ -59105,10 +59105,7 @@
 /obj/effect/turf_decal/bot{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
+/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "tZV" = (
@@ -65323,7 +65320,6 @@
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "yhk" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1;
 	name = "Connector Port (Air Supply)"
@@ -65335,6 +65331,7 @@
 	name = "Medbay RC";
 	pixel_y = -32
 	},
+/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "yhr" = (
