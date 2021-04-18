@@ -367,6 +367,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 	var/exclaim = script_signal.get_clean_property("exclaim")
 	var/language = script_signal.get_clean_property("language")
 
+
 	var/obj/machinery/telecomms/server/S = interp.Compiler.Holder
 	var/obj/item/radio/server/hradio = S.server_radio
 
@@ -409,7 +410,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 	virt.verb_exclaim = exclaim
 	virt.verb_yell = yell
 
-	var/datum/signal/subspace/vocal/newsign = new(hradio,freq,virt,language,message,spans,list(S.z))
+	var/datum/signal/subspace/vocal/newsign = new(hradio,freq,virt,language,message,spans, list(), list(S.z))
 	/*
 	virt.languages_spoken = language
 	virt.languages_understood = virt.languages_spoken //do not remove this or everything turns to jibberish
@@ -433,6 +434,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 	newsign.data["vmessage"] = message
 	newsign.data["vname"] = source
 	newsign.data["vmask"] = 0
+
 
 	var/pass = S.relay_information(newsign, /obj/machinery/telecomms/hub)
 	if(!pass) // If we're not sending this to the hub (i.e. we're running a basic tcomms or something)

@@ -21,12 +21,12 @@
 
 /obj/item/clothing/gloves/color/fyellow/proc/get_shocked()
 	if(damaged)
-		qdel(src)
+		to_chat(loc, "<span class='warning'>Your gloves catch fire and disintegrate!</span>")
 		new/obj/effect/decal/cleanable/ash(src)
-		to_chat(src, "<span class='notice'>Your gloves catch fire and disintegrate!</span>")
+		qdel(src)
 	else
+		to_chat(loc, "<span class='warning'>Your gloves begin to melt!</span>")
 		damaged = TRUE
-		to_chat(src, "<span class='notice'>Your gloves begin to melt!</span>")
 
 /obj/item/clothing/gloves/color/fyellow/old
 	desc = "Old and worn out insulated gloves, hopefully they still work."

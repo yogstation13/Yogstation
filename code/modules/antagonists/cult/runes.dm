@@ -495,7 +495,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	. = ..()
 	GLOB.poi_list |= src
 	var/area/A = get_area(src)
-	priority_announce("An anomaly in veil physics has appeared in your station according to our scanners, the source being in [A.map_name]. It appears the anomaly is being stabilized by the cult of Nar-Sie!","Central Command Higher Dimensional Affairs", 'sound/ai/spanomalies.ogg')
+	priority_announce("An anomaly in veil physics has appeared in your station according to our scanners, the source being in [A.map_name]. It appears the anomaly is being stabilized by the cult of Nar-Sie!","Central Command Higher Dimensional Affairs", ANNOUNCER_SPANOMALIES)
 
 
 /obj/effect/rune/narsie/Destroy()

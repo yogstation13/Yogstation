@@ -88,6 +88,11 @@
 /area/ruin/unpowered/syndicate_lava_base/telecomms
 	name = "Syndicate Lavaland Telecommunications"
 
+/area/ruin/unpowered/dragonslair //yogs start
+	name = "Dragons Lair"
+	hidden = TRUE
+	noteleport = TRUE //yogs (bell)end
+
 //Xeno Nest
 
 /area/ruin/unpowered/xenonest

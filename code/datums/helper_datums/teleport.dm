@@ -120,7 +120,7 @@
   * * zlevels - list of z-levels to check for a safe turf
   * * extended_safety_checks - check for lava
   */
-/proc/find_safe_turf(zlevel, list/zlevels, extended_safety_checks = FALSE)
+/proc/find_safe_turf(zlevel, list/zlevels, extended_safety_checks = FALSE, dense_atoms = TRUE)
 	if(!zlevels)
 		if (zlevel)
 			zlevels = list(zlevel)
@@ -172,6 +172,16 @@
 				var/turf/open/lava/L = F
 				if(!L.is_safe())
 					continue
+					
+		// Check that we're not warping onto a table or window
+		if(!dense_atoms)
+			var/density_found = FALSE
+			for(var/atom/movable/found_movable in F)
+				if(found_movable.density)
+					density_found = TRUE
+					break
+			if(density_found)
+				continue
 
 		// DING! You have passed the gauntlet, and are "probably" safe.
 		return F

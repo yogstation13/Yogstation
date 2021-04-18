@@ -138,6 +138,9 @@
 		user.Paralyze(stunforce*3)
 		deductcharge(hitcost)
 		return
+	if(HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
+		to_chat(user, "<span class='warning'>You can't seem to remember how this works!</span>")
+		return
 	//yogs edit begin ---------------------------------
 	if(status && ishuman(M))
 		var/mob/living/carbon/human/H = M

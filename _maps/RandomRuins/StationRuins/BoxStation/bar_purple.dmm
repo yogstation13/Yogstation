@@ -782,13 +782,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"bM" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/obj/structure/flora/ausbushes/sunnybush,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "bN" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -1462,6 +1455,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"Mr" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "Px" = (
 /obj/effect/landmark/blobstart,
 /obj/item/toy/crayon/purple,
@@ -1728,7 +1727,7 @@ aw
 aw
 aw
 df
-ar
+Mr
 dF
 "}
 (10,1,1) = {"
@@ -1824,7 +1823,7 @@ cj
 cL
 bk
 bl
-bM
+aX
 ab
 "}
 (16,1,1) = {"

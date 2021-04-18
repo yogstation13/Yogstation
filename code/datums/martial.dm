@@ -10,7 +10,7 @@
 	///the name of the martial art
 	var/name = "Martial Art"
 	///ID, used by mind/has_martialart
-	var/id = "" 
+	var/id = ""
 	///current streak, successful attacks add to this
 	var/streak = ""
 	///longest a streak can be before the oldest attack is forgotten
@@ -140,6 +140,16 @@
 	else if(!(D.mobility_flags & MOBILITY_STAND))
 		D.forcesay(GLOB.hit_appends)
 	return TRUE
+
+/**
+  *martial arts handle_throw proc
+  *
+  *does stuff for hitting people while thrown
+  *returns TRUE if the default throw impact shouldn't do anything, FALSE if you still slam into something at mach 20 and eat a stun
+  */
+
+/datum/martial_art/proc/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
+	return FALSE
 
 /**
   * martial art learn proc

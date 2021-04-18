@@ -300,14 +300,13 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	. += "<b>[title]</b></center><BR>"
 	. += desc
 
-	if(station_goals.len)
-		. += "<hr><b>Special Orders for [station_name()]:</b>"
-		for(var/datum/station_goal/G in station_goals)
-			G.on_report()
-			. += G.get_report()
+	. += generate_station_goal_report()
+	. += generate_station_trait_report()
+
+	desc += "\n\n[generate_station_trait_announcement()]"
 
 	print_command_report(., "Central Command Status Summary", announce=FALSE)
-	priority_announce(desc, title, 'sound/ai/intercept.ogg')
+	priority_announce(desc, title, ANNOUNCER_INTERCEPT)
 	if(GLOB.security_level < SEC_LEVEL_BLUE)
 		set_security_level(SEC_LEVEL_BLUE)
 
@@ -810,6 +809,23 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	message_admins("DYNAMIC: [text]")
 	log_game("DYNAMIC: [text]")
 
+/datum/game_mode/dynamic/proc/configure_ruleset(datum/dynamic_ruleset/ruleset)
+	if(configuration)
+		if(!configuration[ruleset.ruletype])
+			return
+		if(!configuration[ruleset.ruletype][ruleset.name])
+			return
+		var/rule_conf = configuration[ruleset.ruletype][ruleset.name]
+		for(var/variable in rule_conf)
+			if(isnull(ruleset.vars[variable]))
+				stack_trace("Invalid dynamic configuration variable [variable] in [ruleset.ruletype] [ruleset.name].")
+				continue
+			ruleset.vars[variable] = rule_conf[variable]
+		if(CONFIG_GET(flag/protect_roles_from_antagonist))
+			ruleset.restricted_roles |= ruleset.protected_roles
+		if(CONFIG_GET(flag/protect_assistant_from_antagonist))
+			ruleset.restricted_roles |= "Assistant"
+      
 #undef FAKE_REPORT_CHANCE
 #undef REPORT_NEG_DIVERGENCE
 #undef REPORT_POS_DIVERGENCE
