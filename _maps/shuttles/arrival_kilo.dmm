@@ -16,17 +16,15 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/structure/fans/tiny,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/arrival)
 "e" = (
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall/mineral/titanium,
-/area/shuttle/arrival)
-"f" = (
-/obj/structure/window/shuttle,
-/obj/structure/grille,
-/turf/open/floor/plating,
 /area/shuttle/arrival)
 "g" = (
 /turf/template_noop,
@@ -126,15 +124,6 @@
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
-/area/shuttle/arrival)
-"o" = (
-/obj/structure/window/shuttle,
-/obj/structure/grille,
-/obj/structure/shuttle/engine/heater{
-	dir = 8;
-	icon_state = "heater"
-	},
-/turf/open/floor/plating,
 /area/shuttle/arrival)
 "p" = (
 /obj/structure/table,
@@ -285,19 +274,6 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/arrival)
-"D" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
-/obj/machinery/door/airlock/shuttle{
-	name = "Arrival Shuttle Airlock"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/arrival)
 "E" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -411,12 +387,45 @@
 /obj/machinery/light,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/arrival)
+"R" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 8;
+	icon_state = "heater"
+	},
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 "S" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
 	},
 /obj/machinery/light,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/arrival)
+"W" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/shuttle/arrival)
+"Y" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/obj/machinery/door/airlock/shuttle{
+	name = "Arrival Shuttle Airlock"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/delivery,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/arrival)
 "Z" = (
@@ -440,9 +449,9 @@ a
 (2,1,1) = {"
 b
 h
-o
-o
-o
+R
+R
+R
 h
 b
 "}
@@ -462,7 +471,7 @@ q
 w
 I
 O
-f
+W
 "}
 (5,1,1) = {"
 e
@@ -474,31 +483,31 @@ S
 e
 "}
 (6,1,1) = {"
-f
+W
 k
 r
 y
 J
 N
-f
+W
 "}
 (7,1,1) = {"
-f
+W
 k
 r
 z
 J
 N
-f
+W
 "}
 (8,1,1) = {"
-f
+W
 k
 r
 A
 J
 N
-f
+W
 "}
 (9,1,1) = {"
 c
@@ -516,13 +525,13 @@ s
 C
 K
 w
-f
+W
 "}
 (11,1,1) = {"
 b
 c
 c
-D
+Y
 L
 c
 b
@@ -548,9 +557,9 @@ g
 (14,1,1) = {"
 g
 c
-f
-f
-f
+W
+W
+W
 c
 g
 "}

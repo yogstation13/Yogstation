@@ -2,10 +2,6 @@
 "a" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/mining)
-"b" = (
-/obj/effect/spawner/structure/window/shuttle,
-/turf/open/floor/plating,
-/area/shuttle/mining)
 "c" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/emergency,
@@ -61,17 +57,6 @@
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/mining)
 "i" = (
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/mining)
-"j" = (
 /obj/machinery/door/airlock/shuttle{
 	name = "Mining Shuttle Airlock"
 	},
@@ -89,10 +74,6 @@
 	name = "mining shuttle";
 	port_direction = 4;
 	width = 7
-	},
-/obj/machinery/atmospherics/pipe/simple/general/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/mining)
@@ -130,16 +111,11 @@
 /obj/structure/closet/crate/internals,
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -22
+	pixel_x = -24
 	},
 /obj/machinery/light/small,
 /obj/effect/turf_decal/box,
 /turf/open/floor/mineral/plastitanium,
-/area/shuttle/mining)
-"l" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/structure/shuttle/engine/heater,
-/turf/open/floor/plating,
 /area/shuttle/mining)
 "m" = (
 /obj/structure/ore_box,
@@ -179,7 +155,50 @@
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/mining)
+"v" = (
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/mineral/titanium/yellow,
+/area/shuttle/mining)
+"G" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"I" = (
+/obj/structure/shuttle/engine/heater,
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/mining)
 "T" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"V" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"W" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -188,19 +207,15 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/general/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
-	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/mining)
 
 (1,1,1) = {"
 a
 a
-b
+G
 a
-b
+G
 a
 a
 "}
@@ -214,19 +229,19 @@ k
 n
 "}
 (3,1,1) = {"
-b
+V
 d
 t
-i
+v
 g
-l
+I
 o
 "}
 (4,1,1) = {"
 a
 e
 s
-T
+W
 g
 m
 n
@@ -234,9 +249,9 @@ n
 (5,1,1) = {"
 a
 a
-b
-j
-b
+T
+i
+T
 a
 a
 "}

@@ -2,10 +2,6 @@
 "a" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/labor)
-"b" = (
-/obj/effect/spawner/structure/window/shuttle,
-/turf/open/floor/plating,
-/area/shuttle/labor)
 "c" = (
 /obj/machinery/computer/shuttle/labor{
 	dir = 4
@@ -72,30 +68,6 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/labor)
-"i" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Labor Shuttle Airlock";
-	req_access_txt = "2"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/labor)
-"j" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Labor Shuttle Airlock";
-	req_access_txt = "2"
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/mineral/plastitanium,
 /area/shuttle/labor)
 "k" = (
 /obj/machinery/mineral/stacking_machine/laborstacker{
@@ -217,7 +189,30 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/labor)
-"u" = (
+"v" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/labor)
+"x" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/labor)
+"y" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/open/floor/plating/airless,
+/area/shuttle/labor)
+"A" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/shuttle/engine/heater,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/labor)
+"D" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/labor)
+"E" = (
 /obj/machinery/door/airlock/titanium{
 	id_tag = "prisonshuttle";
 	name = "Labor Shuttle Airlock"
@@ -237,76 +232,108 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/labor)
-"v" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shuttle/labor)
-"w" = (
+"L" = (
 /obj/effect/spawner/structure/window/shuttle,
-/obj/structure/shuttle/engine/heater,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/shuttle/labor)
-"x" = (
-/turf/closed/wall/mineral/plastitanium,
+"M" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Labor Shuttle Airlock";
+	req_access_txt = "2"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/shuttle/labor)
-"y" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/open/floor/plating/airless,
+"P" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Labor Shuttle Airlock";
+	req_access_txt = "2"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/plastitanium,
 /area/shuttle/labor)
 
 (1,1,1) = {"
 a
 a
-b
+D
 a
-b
+D
 a
-b
+D
 v
 x
 "}
 (2,1,1) = {"
-b
+L
 c
 f
-j
+P
 l
 o
 r
-w
+A
 y
 "}
 (3,1,1) = {"
-b
+L
 d
 g
 a
 m
 p
 s
-w
+A
 y
 "}
 (4,1,1) = {"
-b
+L
 e
 h
 k
 n
 q
 t
-w
+A
 y
 "}
 (5,1,1) = {"
 a
 a
-i
+M
 a
 a
 a
-u
+E
 v
 x
 "}
