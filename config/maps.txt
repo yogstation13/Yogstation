@@ -33,6 +33,11 @@ map yogsdelta
 	votable
 endmap
 
+map kilostation
+	maxplayers 40
+	votable
+endmap
+
 map icebox
 	minplayers 25
 	disabled 
