@@ -748,19 +748,6 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 				var/latejoin_injection_cooldown_middle = 0.5*(latejoin_delay_max + latejoin_delay_min)
 				latejoin_injection_cooldown = round(clamp(EXP_DISTRIBUTION(latejoin_injection_cooldown_middle), latejoin_delay_min, latejoin_delay_max)) + world.time
 
-/// Apply configurations to rule.
-/datum/game_mode/dynamic/proc/configure_ruleset(datum/dynamic_ruleset/ruleset)
-	var/rule_conf = LAZYACCESSASSOC(configuration, ruleset.ruletype, ruleset.name)
-	for(var/variable in rule_conf)
-		if(!(variable in ruleset.vars))
-			stack_trace("Invalid dynamic configuration variable [variable] in [ruleset.ruletype] [ruleset.name].")
-			continue
-		ruleset.vars[variable] = rule_conf[variable]
-	if(CONFIG_GET(flag/protect_roles_from_antagonist))
-		ruleset.restricted_roles |= ruleset.protected_roles
-	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
-		ruleset.restricted_roles |= "Assistant"
-
 /// Refund threat, but no more than threat_level.
 /datum/game_mode/dynamic/proc/refund_threat(regain)
 	mid_round_budget = min(threat_level, mid_round_budget + regain)
