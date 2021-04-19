@@ -20,7 +20,7 @@
 
 
 /obj/item/tank/internals/oxygen/populate_gas()
-	air_contents.set_moles(/datum/gas/oxygen, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+	air_contents.set_moles(/datum/gas/plasma, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
 
 /obj/item/tank/internals/oxygen/yellow
@@ -52,7 +52,7 @@
 	force = 10
 
 /obj/item/tank/internals/anesthetic/populate_gas()
-	air_contents.set_moles(/datum/gas/oxygen, (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD)
+	air_contents.set_moles(/datum/gas/plasma, (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD)
 	air_contents.set_moles(/datum/gas/nitrous_oxide, (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD)
 
 /*
@@ -67,7 +67,7 @@
 	dog_fashion = /datum/dog_fashion/back
 
 /obj/item/tank/internals/air/populate_gas()
-	air_contents.set_moles(/datum/gas/oxygen, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD)
+	air_contents.set_moles(/datum/gas/plasma, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD)
 	air_contents.set_moles(/datum/gas/nitrogen, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD)
 
 /*

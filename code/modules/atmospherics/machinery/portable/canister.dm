@@ -285,7 +285,7 @@
 /obj/machinery/portable_atmospherics/canister/air/create_gas()
 	if(starter_temp)
 		air_contents.set_temperature(starter_temp)
-	air_contents.set_moles(/datum/gas/oxygen, (O2STANDARD * maximum_pressure * filled) * air_contents.return_volume() / (R_IDEAL_GAS_EQUATION * air_contents.return_temperature()))
+	air_contents.set_moles(/datum/gas/plasma, (O2STANDARD * maximum_pressure * filled) * air_contents.return_volume() / (R_IDEAL_GAS_EQUATION * air_contents.return_temperature()))
 	air_contents.set_moles(/datum/gas/nitrogen, (N2STANDARD * maximum_pressure * filled) * air_contents.return_volume() / (R_IDEAL_GAS_EQUATION * air_contents.return_temperature()))
 
 #define CANISTER_UPDATE_HOLDING		(1<<0)
