@@ -171,8 +171,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/o2
-	name = "oxygen deprivation treatment kit"
-	desc = "A box full of oxygen goodies."
+	name = "plasma deprivation treatment kit"
+	desc = "A box full of plasma goodies."
 	icon_state = "o2"
 	item_state = "firstaid-o2"
 
