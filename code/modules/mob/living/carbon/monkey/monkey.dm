@@ -49,7 +49,7 @@
 
 /mob/living/carbon/monkey/create_internal_organs()
 	internal_organs += new /obj/item/organ/appendix
-	internal_organs += new /obj/item/organ/lungs
+	internal_organs += new /obj/item/organ/lungs/plasmaman
 	internal_organs += new /obj/item/organ/heart
 	internal_organs += new /obj/item/organ/brain
 	internal_organs += new /obj/item/organ/tongue
