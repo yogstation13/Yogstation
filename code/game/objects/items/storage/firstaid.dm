@@ -173,7 +173,7 @@
 /obj/item/storage/firstaid/o2
 	name = "plasma deprivation treatment kit"
 	desc = "A box full of plasma goodies."
-	icon_state = "o2"
+	icon_state = "purplefirstaid"
 	item_state = "firstaid-o2"
 
 /obj/item/storage/firstaid/o2/suicide_act(mob/living/carbon/user)
