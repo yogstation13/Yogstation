@@ -58,97 +58,97 @@
 	var/datum/outfit/plasmaman/O = new /datum/outfit/plasmaman
 	switch(current_job)
 		if("Bartender")
-			O = new /datum/outfit/job/plasmaman/bartender
+			O = new /datum/outfit/job/bartender
 
 		if("Cook")
-			O = new /datum/outfit/job/plasmaman/cook
+			O = new /datum/outfit/job/cook
 
 		if("Botanist")
-			O = new /datum/outfit/job/plasmaman/botanist
+			O = new /datum/outfit/job/botanist
 
 		if("Curator")
-			O = new /datum/outfit/job/plasmaman/curator
+			O = new /datum/outfit/job/curator
 
 		if("Chaplain")
-			O = new /datum/outfit/job/plasmaman/chaplain
+			O = new /datum/outfit/job/chaplain
 
 		if("Janitor")
-			O = new /datum/outfit/job/plasmaman/janitor
+			O = new /datum/outfit/job/janitor
 
 		if("Security Officer")
-			O = new /datum/outfit/job/plasmaman/security
+			O = new /datum/outfit/job/security
 
 		if("Detective")
-			O = new /datum/outfit/job/plasmaman/detective
+			O = new /datum/outfit/job/detective
 
 		if("Warden")
-			O = new /datum/outfit/job/plasmaman/warden
+			O = new /datum/outfit/job/warden
 
 		if("Cargo Technician")
-			O = new /datum/outfit/job/plasmaman/cargo_tech
+			O = new /datum/outfit/job/cargo_tech
 
 		if("Quartermaster")
-			O = new /datum/outfit/job/plasmaman/quartermaster
+			O = new /datum/outfit/job/quartermaster
 
 		if("Shaft Miner")
-			O = new /datum/outfit/job/plasmaman/miner
+			O = new /datum/outfit/job/miner
 
 		if("Lawyer")
-			O = new /datum/outfit/job/plasmaman/lawyer
+			O = new /datum/outfit/job/lawyer
 
 		if("Medical Doctor")
-			O = new /datum/outfit/job/plasmaman/doctor
+			O = new /datum/outfit/job/doctor
 
 		if("Virologist")
-			O = new /datum/outfit/job/plasmaman/virologist
+			O = new /datum/outfit/job/virologist
 
 		if("Chemist")
-			O = new /datum/outfit/job/plasmaman/chemist
+			O = new /datum/outfit/job/chemist
 
 		if("Geneticist")
-			O = new /datum/outfit/job/plasmaman/geneticist
+			O = new /datum/outfit/job/geneticist
 
 		if("Scientist")
-			O = new /datum/outfit/job/plasmaman/scientist
+			O = new /datum/outfit/job/scientist
 
 		if("Roboticist")
-			O = new /datum/outfit/job/plasmaman/roboticist
+			O = new /datum/outfit/job/roboticist
 
 		if("Station Engineer")
-			O = new /datum/outfit/job/plasmaman/engineer
+			O = new /datum/outfit/job/engineer
 
 		if("Atmospheric Technician")
-			O = new /datum/outfit/job/plasmaman/atmos
+			O = new /datum/outfit/job/atmos
 
 		if("Mime")
-			O = new /datum/outfit/job/plasmaman/mime
+			O = new /datum/outfit/job/mime
 
 		if("Clown")
-			O = new /datum/outfit/job/plasmaman/clown
+			O = new /datum/outfit/job/clown
 
 		if("Signal Technician")
-			O = new /datum/outfit/job/plasmaman/sigtech
+			O = new /datum/outfit/job/signal_tech
 
 		if("Mining Medic")
-			O = new /datum/outfit/job/plasmaman/miningmedic
+			O = new /datum/outfit/job/miningmedic
 
 		if("Paramedic")
-			O = new /datum/outfit/job/plasmaman/paramedic
+			O = new /datum/outfit/job/paramedic
 
 		if("Psychiatrist")
-			O = new /datum/outfit/job/plasmaman/psych
+			O = new /datum/outfit/job/psych
 
 		if("Clerk")
-			O = new /datum/outfit/job/plasmaman/clerk
+			O = new /datum/outfit/job/clerk
 
 		if("Tourist")
-			O = new /datum/outfit/job/plasmaman/tourist
+			O = new /datum/outfit/job/tourist
 
 		if("Assistant")
-			O = new /datum/outfit/job/plasmaman/assistant
+			O = new /datum/outfit/job/assistant
 			
 		if("Artist")
-			O = new /datum/outfit/job/plasmaman/artist
+			O = new /datum/outfit/job/artist
 
 	H.equipOutfit(O, visualsOnly)
 	H.internal = H.get_item_for_held_index(2)
