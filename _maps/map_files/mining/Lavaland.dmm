@@ -1691,29 +1691,6 @@
 	},
 /turf/open/indestructible/boss,
 /area/lavaland/surface/outdoors)
-"ni" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/airlock/maintenance{
-	name = "Labor Camp Maintenance";
-	req_access_txt = "2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/red/filled/line,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel,
-/area/mine/laborcamp)
 "nn" = (
 /obj/item/stack/sheet/mineral/gold,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1960,6 +1937,17 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/dragonslair)
+"rc" = (
+/obj/machinery/power/terminal,
+/obj/machinery/power/port_gen/pacman,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/item/stack/sheet/mineral/plasma{
+	amount = 20
+	},
+/turf/open/floor/plating,
+/area/mine/laborcamp)
 "ro" = (
 /obj/machinery/computer/prisoner{
 	dir = 4;
@@ -2041,6 +2029,29 @@
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/mine/laborcamp)
+"sR" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/airlock/maintenance{
+	name = "Labor Camp Maintenance";
+	req_access_txt = "2"
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
@@ -2131,15 +2142,6 @@
 	name = "labor camp conveyor"
 	},
 /turf/open/floor/plasteel,
-/area/mine/laborcamp)
-"us" = (
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
 /area/mine/laborcamp)
 "uu" = (
 /obj/machinery/door/airlock{
@@ -2471,14 +2473,6 @@
 	},
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/dragonslair)
-"AC" = (
-/obj/machinery/power/terminal,
-/obj/machinery/power/port_gen/pacman,
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plating,
-/area/mine/laborcamp)
 "AO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -3612,6 +3606,15 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
+/area/mine/laborcamp)
+"Vs" = (
+/obj/machinery/atmospherics/pipe/simple{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
 /area/mine/laborcamp)
 "VF" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -10233,7 +10236,7 @@ if
 if
 if
 if
-ni
+sR
 if
 if
 aj
@@ -10490,7 +10493,7 @@ if
 su
 py
 cj
-us
+Vs
 bb
 if
 aj
@@ -11003,7 +11006,7 @@ aq
 if
 if
 if
-AC
+rc
 Nf
 if
 if
