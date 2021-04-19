@@ -91,7 +91,7 @@
 			O = new /datum/outfit/job/quartermaster
 
 		if("Shaft Miner")
-			O = new /datum/outfit/job/miner
+			O = new /datum/outfit/job/plasmaman/miner
 
 		if("Lawyer")
 			O = new /datum/outfit/job/lawyer
@@ -130,7 +130,7 @@
 			O = new /datum/outfit/job/signal_tech
 
 		if("Mining Medic")
-			O = new /datum/outfit/job/miningmedic
+			O = new /datum/outfit/job/plasmaman/miningmedic
 
 		if("Paramedic")
 			O = new /datum/outfit/job/paramedic
