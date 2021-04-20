@@ -114,4 +114,3 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/store/bread/xenomeat
 	subcategory = CAT_BREAD
-
