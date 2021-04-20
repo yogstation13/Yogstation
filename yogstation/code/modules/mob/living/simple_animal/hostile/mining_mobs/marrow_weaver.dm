@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/asteroid/marrowweaver
 	name = "marrow weaver"
-	desc = "A big, angry, poisonous spider. It likes to snack on bone marrow. Its preferred food source is you."
+	desc = "A big, angry, venomous spider. It likes to snack on bone marrow. Its preferred food source is you."
 	icon = 'yogstation/icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "weaver"
 	icon_living = "weaver"
@@ -91,7 +91,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/marrowweaver/clown
 	name = "Clown Spider"
-	desc = "A big, angry, poisonous clown spider. It likes to snack on noses. Its preferred food source is you."
+	desc = "A big, angry, venomous clown spider. It likes to snack on noses. Its preferred food source is you."
 	icon = 'goon/icons/mob/clownspider.dmi'
 	icon_state = "clownspider_queen"
 	icon_living = "clownspider_queen"
@@ -108,7 +108,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/marrowweaver/cluwne
 	name = "Cluwne Spider"
-	desc = "A big, angry, poisonous... something It likes to snack on souls. Its preferred food source is you probably."
+	desc = "A big, angry, venomous... something It likes to snack on souls. Its preferred food source is you probably."
 	icon = 'goon/icons/mob/cluwnespider.dmi'
 	icon_state = "cluwnespider_queen"
 	icon_living = "cluwnespider_queen"
