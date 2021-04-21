@@ -33,7 +33,7 @@ body:
     required: true
   
 - type: input
-    attributes:
+  attributes:
     label: Round ID
     description: This is always required if you have encountered the issue on the live server, having this information helps us find logs associated with the error you encountered such as runtime error logs
     placeholder: "Round #12345"
