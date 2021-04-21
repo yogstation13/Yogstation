@@ -1122,14 +1122,15 @@ GLOBAL_LIST_EMPTY(possible_items_special)
   * Choices are: Ian, Runtime, Anadear, Pun pun, Poly, Renault, Autumn.
   */
 /datum/objective/minor/pet/finalize()
+	var/list/possible_pets = list()
 	for(var/P in pets)
-		var/A = locate(P) in GLOB.mob_living_list
-		if(!A)
-			pets -= P
-	if(!pets)
+		var/mob/A = locate(P) in GLOB.mob_living_list
+		if(A && is_station_level(A.z))
+			possible_pets += P
+	if(!possible_pets)
 		return
-	var/chosen_pet = rand(1, pets.len)
-	pet = locate(pets[chosen_pet]) in GLOB.mob_living_list
+	var/chosen_pet = rand(1, possible_pets.len)
+	pet = locate(possible_pets[chosen_pet]) in GLOB.mob_living_list
 	name = "Kill [pet.name]]"
 	explanation_text = "Assasinate the important animal, [pet.name]"
 	return pet
@@ -1139,13 +1140,12 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	for(var/P in pets)
 		var/A = locate(P) in GLOB.mob_living_list
 		if(A)
-			possible_targets += P
+			possible_targets += A
 	if(possible_targets.len)
-		var/pet_selection = input(admin,"Select target:", "Objective target") as null|anything in possible_targets
-		var/mob/new_pet = locate(pet_selection) in GLOB.mob_living_list
-		if(!new_pet)
+		var/selected_pet = input(admin,"Select target:", "Objective target") as null|anything in possible_targets
+		if(!selected_pet)
 			return
-		pet = new_pet
+		pet = selected_pet
 	else
 		to_chat(admin, "<span class='warning'>No living pets!</span>")
 	update_explanation_text()
