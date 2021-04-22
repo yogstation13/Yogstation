@@ -86749,11 +86749,6 @@
 	},
 /turf/open/space/basic,
 /area/solar/port/aft)
-"cLD" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/space,
-/area/engine/atmos)
 "cLF" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -89456,12 +89451,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/fore)
-"dal" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plating,
-/area/ai_monitored/turret_protected/ai_upload)
 "dbd" = (
 /obj/machinery/door/airlock/mining{
 	name = "Auxiliary Base";
@@ -90084,6 +90073,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port)
+"eeP" = (
+/obj/machinery/door/airlock/external{
+	name = "Atmospherics External Airlock";
+	req_access_txt = "24"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/disposal/incinerator)
 "efs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line{
@@ -90201,6 +90200,12 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/port/aft)
+"eow" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 "eoL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -91231,9 +91236,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port)
-"gaH" = (
-/turf/open/floor/plating/airless,
-/area/maintenance/disposal/incinerator)
 "gba" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12";
@@ -93688,16 +93690,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"jkG" = (
-/obj/machinery/door/airlock/external{
-	name = "Atmospherics External Airlock";
-	req_access_txt = "24"
+"jkV" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/ai_monitored/turret_protected/ai_upload)
 "jmB" = (
 /obj/machinery/door/airlock/mining{
 	name = "Auxiliary Base";
@@ -94857,6 +94856,11 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/heads/hor)
+"kJR" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/space,
+/area/space/nearstation)
 "kKb" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -99091,9 +99095,6 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/starboard/aft)
-"rdb" = (
-/turf/open/space/basic,
-/area/maintenance/disposal/incinerator)
 "rfS" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/effect/turf_decal/tile/neutral,
@@ -99502,12 +99503,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
 /area/maintenance/port/aft)
-"rLN" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/maintenance/disposal/incinerator)
 "rMw" = (
 /obj/item/tank/internals/oxygen/empty,
 /obj/effect/turf_decal/stripes/line{
@@ -102696,9 +102691,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"wyk" = (
-/turf/open/floor/plating/asteroid/airless,
-/area/maintenance/disposal)
 "wzb" = (
 /obj/machinery/door/airlock/maintenance{
 	req_one_access_txt = "12;36"
@@ -115445,7 +115437,7 @@ cwp
 cwp
 cwq
 cwp
-aeu
+cwp
 aeu
 aeu
 xjU
@@ -115700,9 +115692,9 @@ rJG
 rJG
 rJG
 rJG
+rJG
 gXF
 cwq
-aeu
 aeu
 aeu
 aeu
@@ -115958,8 +115950,8 @@ rJG
 rJG
 rJG
 rJG
+rJG
 cwp
-aeu
 aeu
 aeu
 jwf
@@ -116215,8 +116207,8 @@ rJG
 rJG
 rJG
 rJG
+rJG
 cwq
-aeu
 aeu
 aLZ
 aLZ
@@ -116472,8 +116464,8 @@ rJG
 rJG
 rJG
 rJG
+rJG
 cwp
-aeu
 aeu
 aeu
 aLZ
@@ -116729,8 +116721,8 @@ rJG
 rJG
 rJG
 rJG
+rJG
 cwp
-aeu
 aLZ
 xjU
 slQ
@@ -116986,8 +116978,8 @@ rJG
 rJG
 rJG
 rJG
+rJG
 cwp
-aeu
 aLZ
 aLZ
 aLZ
@@ -117243,8 +117235,8 @@ rJG
 rJG
 rJG
 rJG
+rJG
 cwq
-aLZ
 aLZ
 ymm
 xjU
@@ -117500,8 +117492,8 @@ rJG
 rJG
 rJG
 rJG
+rJG
 cwq
-aeu
 aLZ
 wvp
 aLZ
@@ -117757,8 +117749,8 @@ rJG
 rJG
 rJG
 rJG
+rJG
 cwp
-aeu
 aeu
 aLZ
 aLZ
@@ -118014,8 +118006,8 @@ rJG
 rJG
 rJG
 rJG
+rJG
 cwp
-aeu
 aeu
 aeu
 aLZ
@@ -118272,7 +118264,7 @@ cwp
 cwq
 cwp
 cwp
-aeu
+cwp
 aeu
 aeu
 aeu
@@ -129898,7 +129890,7 @@ aMY
 gtQ
 aMY
 bFP
-cLD
+kJR
 bUZ
 aFJ
 jnt
@@ -131192,7 +131184,7 @@ egL
 ioF
 wDs
 aFI
-jkG
+eeP
 oHZ
 wjW
 fnA
@@ -131707,11 +131699,11 @@ ujK
 jnt
 aaa
 acK
-rLN
+eow
 oHZ
 wze
 oHZ
-gaH
+cko
 aaa
 aeo
 aaa
@@ -131964,11 +131956,11 @@ aFI
 aFI
 aaa
 aaa
-gaH
+cko
 cNN
 aGc
 cNN
-gaH
+cko
 aaa
 aeo
 aaa
@@ -132219,10 +132211,10 @@ aIG
 aFM
 aFM
 aFM
-rdb
-rdb
-rdb
-rdb
+aaa
+aaa
+aaa
+aaa
 aob
 aob
 aoe
@@ -132926,8 +132918,8 @@ afh
 app
 arl
 arl
-dal
-dal
+jkV
+jkV
 bha
 arl
 bgQ
@@ -143018,7 +143010,7 @@ cku
 cqp
 iVr
 vTv
-wyk
+aeU
 cmU
 aeU
 ciQ
@@ -143275,7 +143267,7 @@ ckU
 cnu
 nKN
 cnu
-wyk
+aeU
 cmU
 cmU
 cnf
