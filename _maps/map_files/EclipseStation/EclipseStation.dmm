@@ -82260,6 +82260,10 @@
 	},
 /turf/open/floor/plating,
 /area/solar/port/fore)
+"fYM" = (
+/obj/machinery/vending/modularpc,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/command)
 "fZl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -86309,6 +86313,10 @@
 /obj/structure/sign/warning/biohazard,
 /turf/closed/wall/r_wall,
 /area/science/xenobiology)
+"pep" = (
+/obj/machinery/lapvend,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/command)
 "pez" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -86669,6 +86677,11 @@
 /obj/effect/spawner/lootdrop/costume,
 /turf/open/floor/plating,
 /area/maintenance/starboard/central)
+"qht" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/emcloset,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/command)
 "qhE" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/camera{
@@ -121210,7 +121223,7 @@ alx
 bPI
 bQC
 cdQ
-bRC
+qht
 bRC
 bRC
 bWC
@@ -121467,7 +121480,7 @@ bOK
 bPJ
 bQD
 cdQ
-cFa
+cEh
 bRC
 bRC
 cgK
@@ -121981,7 +121994,7 @@ bHR
 bMV
 bMV
 bMV
-cEh
+fYM
 cSS
 cfU
 agE
@@ -122238,7 +122251,7 @@ bMV
 bMV
 bON
 jSj
-cEY
+pep
 aak
 cwz
 aez
