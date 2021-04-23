@@ -2018,17 +2018,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
-"afp" = (
-/obj/docking_port/stationary{
-	dir = 4;
-	dwidth = 1;
-	height = 4;
-	name = "escape pod loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
-	width = 3
-	},
-/turf/open/space/basic,
-/area/space)
 "afq" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -8009,9 +7998,6 @@
 /area/ai_monitored/security/armory)
 "auO" = (
 /obj/structure/closet/emcloset,
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
-"auP" = (
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "auQ" = (
@@ -15272,15 +15258,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"aQG" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "aQK" = (
 /obj/effect/spawner/xmastree,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -26690,12 +26667,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/science/storage)
-"bDi" = (
-/obj/structure/sign/warning/docking{
-	pixel_y = 32
-	},
-/turf/open/space,
-/area/space/nearstation)
 "bDk" = (
 /obj/structure/table,
 /obj/item/folder/yellow,
@@ -28428,6 +28399,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"bMI" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod Four";
+	req_one_access_txt = "10;61"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -2;
+	diry = 2
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "bMJ" = (
 /obj/machinery/air_sensor{
 	id_tag = "o2_sensor"
@@ -28678,17 +28661,6 @@
 "bOd" = (
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"bOg" = (
-/obj/machinery/door/airlock/external{
-	name = "Engineering External Access";
-	req_one_access_txt = "10;61"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
-	dirx = -2;
-	diry = 2
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
 "bOi" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
@@ -32081,17 +32053,6 @@
 /obj/effect/turf_decal/trimline/neutral,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"cqq" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 1;
-	height = 4;
-	name = "escape pod loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
-	width = 3
-	},
-/turf/open/space/basic,
-/area/space)
 "cqx" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -32390,14 +32351,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"cwT" = (
-/obj/machinery/camera{
-	c_tag = "Arrivals Escape Pod 2";
-	dir = 8
-	},
-/obj/machinery/light/small,
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
 "cwV" = (
 /obj/docking_port/stationary/random{
 	dir = 8;
@@ -32463,23 +32416,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"cxY" = (
-/obj/machinery/camera{
-	c_tag = "Arrivals Escape Pod 1";
-	dir = 8
-	},
-/obj/machinery/light/small,
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
-"cyb" = (
-/obj/machinery/door/airlock/external{
-	name = "Escape Pod One"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
 "cyd" = (
 /obj/docking_port/stationary{
 	dir = 2;
@@ -36673,6 +36609,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
+"eXu" = (
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "eXN" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -37006,6 +36951,18 @@
 /obj/item/folder/white,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"fkk" = (
+/obj/machinery/camera{
+	c_tag = "Arrivals Escape Pod 1";
+	dir = 8
+	},
+/obj/machinery/light/small,
+/obj/machinery/advanced_airlock_controller{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "fkH" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -38782,6 +38739,18 @@
 	},
 /turf/open/floor/plating,
 /area/science/xenobiology)
+"gEt" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod One"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "gEO" = (
 /obj/structure/closet/toolcloset,
 /turf/open/floor/plating,
@@ -39417,6 +39386,17 @@
 /obj/item/canvas/twentythreeXnineteen,
 /turf/open/floor/carpet,
 /area/crew_quarters/fitness)
+"hlb" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod two loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/two;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "hlp" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -39472,6 +39452,15 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
+"hmO" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "hnn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -40769,6 +40758,17 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
+"ieh" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod one loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "ier" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -40980,15 +40980,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"ijY" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "ikt" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -41545,6 +41536,27 @@
 	dir = 1
 	},
 /area/hallway/secondary/entry)
+"iBD" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod One"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "iBS" = (
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/door/firedoor/border_only,
@@ -41656,21 +41668,6 @@
 "iEt" = (
 /turf/open/floor/plasteel,
 /area/escapepodbay)
-"iEJ" = (
-/obj/machinery/door/airlock/external{
-	name = "Escape Pod One"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
 "iFI" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -46684,6 +46681,18 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"mnb" = (
+/obj/machinery/camera{
+	c_tag = "Arrivals Escape Pod 2";
+	dir = 8
+	},
+/obj/machinery/light/small,
+/obj/machinery/advanced_airlock_controller{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "mnl" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
@@ -49628,6 +49637,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"oir" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod Three";
+	req_access_txt = "63"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/security/main)
 "oiA" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /obj/effect/turf_decal/stripes/line{
@@ -50574,6 +50594,17 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"oIO" = (
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod four loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/four;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "oIU" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -50587,6 +50618,15 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/tcommsat/server)
+"oJs" = (
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/flasher/portable,
+/obj/machinery/camera{
+	c_tag = "Armory Access";
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "oKv" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
@@ -51323,15 +51363,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"ppQ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "pqp" = (
 /obj/machinery/camera{
 	c_tag = "Medbay Morgue";
@@ -51779,6 +51810,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"pFB" = (
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod three loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/three;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "pGm" = (
 /obj/structure/disposalpipe/junction{
 	dir = 8
@@ -52828,6 +52870,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"qrJ" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod Two"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "qsa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -53039,15 +53093,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/processing)
-"qyG" = (
-/obj/effect/turf_decal/bot_white,
-/obj/machinery/flasher/portable,
-/obj/machinery/camera{
-	c_tag = "Armory Access";
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "qyQ" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -55547,6 +55592,18 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"skc" = (
+/obj/structure/sign/warning/vacuum/external{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "skk" = (
 /obj/structure/closet/secure_closet/hydroponics,
 /turf/open/floor/plasteel,
@@ -56964,6 +57021,27 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"toz" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod Two"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "toE" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -58316,16 +58394,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
-"ulz" = (
-/obj/machinery/door/airlock/external{
-	name = "Escape Pod Three";
-	req_access_txt = "63"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/security/main)
 "ulD" = (
 /obj/structure/tank_dispenser,
 /obj/effect/turf_decal/bot{
@@ -62175,6 +62243,12 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plating,
 /area/storage/tech)
+"wPQ" = (
+/obj/structure/sign/warning/docking{
+	pixel_y = 32
+	},
+/turf/open/space,
+/area/space)
 "wRK" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -74238,7 +74312,7 @@ aaa
 aaf
 aaa
 aaa
-cqq
+ieh
 aaa
 aaa
 aaa
@@ -74252,7 +74326,7 @@ aaa
 aaa
 aaa
 aaa
-cqq
+hlb
 aaa
 aaa
 aaa
@@ -74495,7 +74569,7 @@ aaa
 aaf
 arB
 asE
-cyb
+gEt
 asE
 arB
 aaa
@@ -74509,7 +74583,7 @@ aaa
 aaa
 arB
 asE
-cyb
+qrJ
 asE
 arB
 aaa
@@ -74752,8 +74826,8 @@ apJ
 apJ
 apJ
 auO
-auP
-cwT
+eXu
+mnb
 aAC
 aaa
 aaa
@@ -74766,8 +74840,8 @@ aaa
 aaa
 aAC
 auO
-auP
-cxY
+eXu
+fkk
 arB
 aaa
 aaa
@@ -75009,7 +75083,7 @@ apN
 apN
 apJ
 avP
-iEJ
+iBD
 asE
 arB
 aaa
@@ -75023,7 +75097,7 @@ aaa
 aaa
 arB
 asE
-iEJ
+toz
 avP
 arB
 aaa
@@ -75266,7 +75340,7 @@ apN
 apN
 apJ
 awY
-ayk
+mvu
 awW
 aEa
 aSm
@@ -75280,7 +75354,7 @@ aaa
 aSm
 aSm
 awW
-aQG
+skc
 aRX
 arB
 aaa
@@ -75523,7 +75597,7 @@ apN
 apN
 apJ
 bXA
-ppQ
+hmO
 vrz
 dsT
 aCK
@@ -75537,7 +75611,7 @@ aaa
 dvM
 qOB
 xJF
-ijY
+dhy
 aRY
 aSm
 aaa
@@ -85846,7 +85920,7 @@ bxu
 aJn
 bxu
 bxu
-bDi
+wPQ
 aaa
 aaa
 aaa
@@ -94258,7 +94332,7 @@ aBX
 asG
 aEq
 aEw
-qyG
+oJs
 aHt
 aeW
 agQ
@@ -98742,7 +98816,7 @@ dwx
 wga
 cig
 cig
-bOg
+bMI
 cig
 cig
 qgZ
@@ -98999,7 +99073,7 @@ cxI
 oPo
 ccw
 aaa
-afp
+oIO
 aaa
 vnn
 ucZ
@@ -100683,7 +100757,7 @@ abp
 abp
 abp
 abp
-ulz
+oir
 abp
 adR
 aoZ
@@ -100940,7 +101014,7 @@ aaf
 aaf
 abp
 aaa
-afp
+pFB
 aaa
 abp
 axX

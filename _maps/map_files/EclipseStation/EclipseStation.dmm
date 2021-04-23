@@ -103,10 +103,11 @@
 	dir = 8;
 	dwidth = 1;
 	height = 4;
-	name = "escape pod loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
+	name = "escape pod one loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod;
 	width = 3
 	},
+/obj/structure/fans/tiny/invisible,
 /turf/open/space/basic,
 /area/space)
 "aau" = (
@@ -4192,12 +4193,13 @@
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "ajt" = (
+/obj/structure/fans/tiny/invisible,
 /obj/docking_port/stationary{
 	dir = 4;
 	dwidth = 1;
 	height = 4;
-	name = "escape pod loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
+	name = "escape pod three loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/three;
 	width = 3
 	},
 /turf/open/space/basic,
@@ -83503,6 +83505,18 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"iDX" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod two loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/two;
+	width = 3
+	},
+/obj/structure/fans/tiny/invisible,
+/turf/open/space/basic,
+/area/space)
 "iEl" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -99385,7 +99399,7 @@ aat
 aaa
 akR
 aaa
-aat
+iDX
 aaa
 akR
 aaa

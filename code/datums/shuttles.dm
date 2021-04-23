@@ -135,8 +135,18 @@
 /datum/map_template/shuttle/aux_base
 	port_id = "aux_base"
 
-/datum/map_template/shuttle/escape_pod
+/datum/map_template/shuttle/escape_pod/
 	port_id = "escape_pod"
+	suffix = "1"
+
+/datum/map_template/shuttle/escape_pod/two
+	suffix = "2"
+
+/datum/map_template/shuttle/escape_pod/three
+	suffix = "3"
+
+/datum/map_template/shuttle/escape_pod/four
+	suffix = "4"
 
 /datum/map_template/shuttle/assault_pod
 	port_id = "assault_pod"

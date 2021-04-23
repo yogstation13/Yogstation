@@ -627,13 +627,14 @@
 /turf/open/floor/plasteel,
 /area/janitor)
 "abu" = (
+/obj/structure/fans/tiny/invisible,
 /obj/docking_port/stationary{
 	dwidth = 1;
 	height = 4;
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
+	name = "escape pod two loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/two;
 	width = 3
 	},
-/obj/structure/fans/tiny/invisible,
 /turf/open/space/basic,
 /area/space)
 "abv" = (
@@ -1796,14 +1797,15 @@
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
 "adF" = (
+/obj/structure/fans/tiny/invisible,
 /obj/docking_port/stationary{
 	dir = 4;
 	dwidth = 1;
 	height = 4;
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
+	name = "escape pod three loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/three;
 	width = 3
 	},
-/obj/structure/fans/tiny/invisible,
 /turf/open/space/basic,
 /area/space)
 "adG" = (
@@ -73223,6 +73225,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"dIe" = (
+/obj/structure/fans/tiny/invisible,
+/obj/docking_port/stationary{
+	dwidth = 1;
+	height = 4;
+	name = "escape pod one loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "dKl" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -76239,6 +76252,18 @@
 /obj/effect/landmark/stationroom/maint/threexfive,
 /turf/template_noop,
 /area/maintenance/starboard/aft)
+"jrI" = (
+/obj/structure/fans/tiny/invisible,
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod four loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/four;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "jrX" = (
 /obj/structure/chair/comfy/black,
 /obj/effect/landmark/start/head_of_personnel,
@@ -92965,7 +92990,7 @@ cSP
 aaa
 aaa
 aaa
-abu
+dIe
 bsk
 aUc
 aVu
@@ -126642,7 +126667,7 @@ cXI
 cYj
 atm
 wOY
-adF
+jrI
 wOY
 aTq
 bhE
