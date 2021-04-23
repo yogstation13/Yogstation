@@ -94401,26 +94401,6 @@
 "cOV" = (
 /turf/closed/wall/r_wall,
 /area/security/checkpoint/science/research)
-"cOW" = (
-/obj/structure/table,
-/obj/item/paper_bin,
-/obj/item/pen,
-/obj/structure/sign/poster/official/science{
-	pixel_x = -32
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/science/research)
-"cOX" = (
-/obj/structure/chair,
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/science/research)
 "cOY" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/purple{
@@ -94431,15 +94411,6 @@
 "cOZ" = (
 /obj/structure/chair,
 /obj/effect/landmark/start/assistant,
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/science/research)
-"cPa" = (
-/obj/structure/table,
-/obj/item/folder/white,
-/obj/item/paicard,
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
@@ -95431,15 +95402,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science/research)
-"cQH" = (
-/obj/structure/table,
-/obj/item/folder/white,
-/obj/item/assembly/infra,
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/science/research)
 "cQI" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/neutral{
@@ -100356,21 +100318,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science/research)
-"cXr" = (
-/obj/structure/table,
-/obj/item/clipboard,
-/obj/item/electronics/airlock,
-/obj/item/stack/sheet/glass,
-/obj/item/assembly/signaler,
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/science/research)
 "cXs" = (
 /obj/machinery/door/airlock/research{
 	name = "Research Testing Range";
@@ -124904,6 +124851,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
+"fXI" = (
+/obj/structure/table,
+/obj/item/folder/white,
+/obj/item/paicard,
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "gcN" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -125148,6 +125106,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"hVY" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/machinery/lapvend,
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "hXk" = (
 /obj/structure/table,
 /obj/item/canvas/twentythreeXtwentythree,
@@ -126623,6 +126588,16 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"prJ" = (
+/obj/structure/sign/poster/official/science{
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/machinery/vending/modularpc,
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "pwJ" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/color/latex,
@@ -127186,6 +127161,23 @@
 /obj/machinery/door/poddoor/incinerator_toxmix,
 /turf/open/floor/engine/vacuum,
 /area/science/mixing/chamber)
+"sEc" = (
+/obj/structure/table,
+/obj/item/clipboard,
+/obj/item/electronics/airlock,
+/obj/item/stack/sheet/glass,
+/obj/item/assembly/signaler,
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/item/assembly/infra,
+/obj/item/folder/white,
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "sFC" = (
 /obj/machinery/status_display/evac{
 	pixel_x = 32
@@ -163256,12 +163248,12 @@ bKh
 bZp
 aOl
 cNp
-cOW
-cQH
+prJ
+hVY
 cSp
 cUe
 cWb
-cXr
+sEc
 cOR
 daK
 cyY
@@ -163513,7 +163505,7 @@ aKY
 bZp
 bPf
 cNq
-cOX
+cOY
 cQI
 cQJ
 cnh
@@ -164541,7 +164533,7 @@ bKm
 bZw
 aOl
 cNp
-cPa
+fXI
 cQM
 cXA
 cBR
