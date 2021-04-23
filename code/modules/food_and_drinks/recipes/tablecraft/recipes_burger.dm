@@ -312,5 +312,5 @@
 		/obj/item/reagent_containers/food/snacks/sausage = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/hotdog
-	subcategory = CAT_BREAD
+	subcategory = CAT_BURGER
 	
