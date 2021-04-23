@@ -4988,16 +4988,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
-"akd" = (
-/turf/open/space,
-/area/maintenance/solars/starboard/fore)
-"ake" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/space,
-/area/maintenance/solars/starboard/fore)
 "akf" = (
 /obj/machinery/conveyor{
 	dir = 1;
@@ -36400,16 +36390,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/hallway/primary/port)
-"bsr" = (
-/obj/effect/landmark/event_spawn,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "bss" = (
 /obj/structure/chair/comfy/beige{
 	dir = 8
@@ -61865,29 +61845,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
-"csA" = (
-/obj/structure/chair/office/light{
-	dir = 8
-	},
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Chief Medical Officer's Desk";
-	departmentType = 5;
-	name = "Chief Medical Officer RC";
-	pixel_y = -32
-	},
-/obj/effect/landmark/start/chief_medical_officer,
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/heads/cmo)
 "csB" = (
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for monitoring medbay to ensure patient safety.";
@@ -76282,6 +76239,11 @@
 /obj/effect/landmark/stationroom/maint/threexfive,
 /turf/template_noop,
 /area/maintenance/starboard/aft)
+"jrX" = (
+/obj/structure/chair/comfy/black,
+/obj/effect/landmark/start/head_of_personnel,
+/turf/open/floor/carpet,
+/area/bridge)
 "jtr" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/enzyme{
@@ -77595,13 +77557,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
-"mbm" = (
-/obj/structure/chair/comfy/black{
-	dir = 4
-	},
-/obj/effect/landmark/start/head_of_personnel,
-/turf/open/floor/carpet,
-/area/bridge)
 "meu" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -79480,6 +79435,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"qvm" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space,
+/area/solar/starboard/fore)
 "qvY" = (
 /obj/machinery/holopad,
 /obj/structure/disposalpipe/segment,
@@ -81623,6 +81585,28 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"utf" = (
+/obj/structure/chair/office/light{
+	dir = 8
+	},
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Chief Medical Officer's Desk";
+	departmentType = 5;
+	name = "Chief Medical Officer RC";
+	pixel_y = -32
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/cmo)
 "utP" = (
 /obj/structure/girder,
 /turf/open/floor/plating,
@@ -82828,11 +82812,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/storage_shared)
-"wQy" = (
-/obj/structure/chair/comfy/black,
-/obj/effect/landmark/start/captain,
-/turf/open/floor/carpet,
-/area/bridge)
 "wQA" = (
 /turf/closed/wall/r_wall,
 /area/science/mixing/chamber)
@@ -82851,6 +82830,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"wSb" = (
+/obj/effect/landmark/event_spawn,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/effect/landmark/start/captain,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "wSf" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Disposal Conveyor Access";
@@ -83019,6 +83009,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"xop" = (
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/obj/effect/landmark/start/chief_medical_officer,
+/turf/open/floor/carpet,
+/area/bridge)
 "xoy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -107669,7 +107666,7 @@ cnF
 ftd
 bEI
 cds
-csA
+utf
 ctA
 ctA
 ctA
@@ -110207,7 +110204,7 @@ bsV
 bsU
 bwu
 bqM
-mbm
+xop
 bBH
 biB
 bCQ
@@ -110719,8 +110716,8 @@ bov
 baF
 bpe
 bqF
-bsr
-wQy
+wSb
+jrX
 bzW
 bBJ
 biC
@@ -127124,7 +127121,7 @@ aaa
 aaf
 aaa
 aaa
-akd
+aav
 avU
 apm
 apm
@@ -127379,7 +127376,7 @@ aaf
 aaa
 aaa
 aaf
-akd
+aav
 avU
 avU
 avU
@@ -127636,7 +127633,7 @@ abR
 abR
 abR
 abR
-ake
+qvm
 alw
 uWn
 nFe
@@ -127893,7 +127890,7 @@ aaf
 aaa
 aaa
 aaf
-akd
+aav
 avU
 apm
 avU
@@ -128152,7 +128149,7 @@ aaa
 aaf
 aaa
 aaa
-akd
+aav
 avU
 apm
 apm
