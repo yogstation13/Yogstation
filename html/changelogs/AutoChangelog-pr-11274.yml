@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Cargo can now order normal WT-550 crates instead of the Occupying Force variants"
+  - spellcheck: "fixed a typo in cargo WT-550 rifle crate description"
