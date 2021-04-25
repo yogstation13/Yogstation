@@ -250,7 +250,7 @@
 
 /obj/item/reagent_containers/pill/bica
 	name = "bicaridine pill"
-	desc = "Used to stimulate burn healing."
+	desc = "Used heal bruises and cuts."
 	icon_state = "pill10"
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 14)
 
@@ -259,3 +259,15 @@
 	desc = "Used to heal burns."
 	icon_state = "pill12"
 	list_reagents = list(/datum/reagent/medicine/kelotane = 14)
+
+/obj/item/reagent_containers/pill/libi
+	name = "libital pill"
+	desc = "Used heal bruises and cuts."
+	icon_state = "pill10"
+	list_reagents = list(/datum/reagent/medicine/c2/libital = 14)
+
+/obj/item/reagent_containers/pill/aiur
+	name = "aiuri pill"
+	desc = "Used to heal burns."
+	icon_state = "pill12"
+	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 14)

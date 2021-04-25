@@ -1233,6 +1233,13 @@
 					/obj/item/storage/box/beakers)
 	crate_name = "chemical crate"
 
+/datum/supply_pack/medical/lemoline
+	name = "Lemoline Import Crate"
+	desc = "Contains a beaker of lemoline, used in the production of several powerful medicines."
+	cost = 700
+	contains = list(/obj/item/reagent_containers/glass/beaker/large/lemoline)
+	crate_name = "imported chemical crate"
+
 /datum/supply_pack/medical/defibs
 	name = "Defibrillator Crate"
 	desc = "Contains two defibrillators for bringing the recently deceased back to life."
