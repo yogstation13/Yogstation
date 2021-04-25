@@ -659,15 +659,14 @@
 	},
 /area/crew_quarters/locker)
 "abs" = (
+/obj/structure/fans/tiny/invisible,
 /obj/docking_port/stationary{
-	dir = 1;
 	dwidth = 1;
 	height = 4;
-	name = "escape pod loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
+	name = "escape pod one loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod;
 	width = 3
 	},
-/obj/structure/fans/tiny/invisible,
 /turf/open/space/basic,
 /area/space)
 "abt" = (
@@ -33320,15 +33319,15 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "bbv" = (
+/obj/structure/fans/tiny/invisible,
 /obj/docking_port/stationary{
 	dir = 4;
 	dwidth = 1;
 	height = 4;
-	name = "escape pod loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
+	name = "escape pod three loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/three;
 	width = 3
 	},
-/obj/structure/fans/tiny/invisible,
 /turf/open/space/basic,
 /area/space)
 "bbw" = (
@@ -125848,6 +125847,17 @@
 /obj/item/paper_bin,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"mgq" = (
+/obj/structure/fans/tiny/invisible,
+/obj/docking_port/stationary{
+	dwidth = 1;
+	height = 4;
+	name = "escape pod two loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/two;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "mgU" = (
 /obj/structure/bodycontainer/morgue{
 	dir = 2
@@ -169301,7 +169311,7 @@ aat
 aaa
 aaa
 aaa
-abs
+mgq
 abF
 abQ
 acb
