@@ -324,13 +324,16 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 	return null
 
 /obj/machinery/computer/libraryconsole/bookmanagement/proc/print_forbidden_lore(mob/user)
-	if (prob(50))
-		new /obj/item/melee/cultblade/dagger(get_turf(src))
-		to_chat(user, "<span class='warning'>Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a sinister dagger sitting on the desk. You don't even remember where it came from...</span>")
-	else
-		new /obj/item/clockwork/slab(get_turf(src))
-		to_chat(user, "<span class='warning'>Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a strange metal tablet sitting on the desk. You don't even remember where it came from...</span>")
-
+	switch(rand(1,3))
+		if(1)
+			new /obj/item/melee/cultblade/dagger(get_turf(src))
+			to_chat(user, "<span class='warning'>Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a sinister dagger sitting on the desk. You don't even remember where it came from...</span>")
+		if(2)
+			new /obj/item/clockwork/slab(get_turf(src))
+			to_chat(user, "<span class='warning'>Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a strange metal tablet sitting on the desk. You don't even remember where it came from...</span>")
+		if(3)
+			new /obj/item/forbidden_book(get_turf(src))
+			to_chat(user, "<span class='warning'>You lose your train of thought, the longer you stare into the vault's browsing window, the deeper you reach into timeless eons. You tear away from the screen, and a book fashioned in a strange leather, bound in chains, appears before you...</span>")
 	user.visible_message("[user] stares at the blank screen for a few moments, [user.p_their()] expression frozen in fear. When [user.p_they()] finally awaken[user.p_s()] from it, [user.p_they()] look[user.p_s()] a lot older.", 2)
 
 /obj/machinery/computer/libraryconsole/bookmanagement/attackby(obj/item/W, mob/user, params)
