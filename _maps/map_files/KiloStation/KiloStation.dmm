@@ -9974,11 +9974,7 @@
 	name = "Emergency Storage";
 	req_access_txt = "19"
 	},
-/obj/machinery/suit_storage_unit/standard_unit{
-	desc = "An industrial suit storage device carrying retro space suits. This one is blue.";
-	helmet_type = /obj/item/clothing/head/helmet/space/syndicate/blue;
-	suit_type = /obj/item/clothing/suit/space/syndicate/blue
-	},
+/obj/machinery/suit_storage_unit/command,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "arb" = (
