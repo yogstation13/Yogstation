@@ -212,7 +212,7 @@
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 		playsound(user, 'sound/misc/capitialism.ogg', 25, TRUE, -1)
 		H.visible_message("<span class='notice'>[user] blesses [H] with the power of capitalism!</span>")
-		to_chat(H, "<span class='boldnotice'>You spiritually enriched, and donate to the casue of [GLOB.deity]!</span>")
+		to_chat(H, "<span class='boldnotice'>You feel spiritually enriched, and donate to the cause of [GLOB.deity]!</span>")
 		H.visible_message("<span class='notice'>[H] donated 10 credits!</span>")
 
 	var/heal_amt = 10
@@ -263,4 +263,31 @@
 	to_chat(user, "<span class='notice'>Another candle for [GLOB.deity]'s collection</span>")
 	adjust_favor(20, user) //it's not a lot but hey there's a pacifist favor option at least
 	qdel(offering)
+	return TRUE
+
+/**** Children of the Kudzu sect, will allow you to sacrifice plants to become a special wood golem. ****/
+
+/datum/religion_sect/plant
+	name = "Children of the Kudzu"
+	desc = "A sect dedicated to plants."
+	convert_opener = "The kudzu welcomes you with open arms, acolyte.<br>Sacrificing plants will give you favor based on their potency and allow you to ascend."
+	alignment = ALIGNMENT_NEUT
+	max_favor = 10000
+	desired_items = list(/obj/item/reagent_containers/food/snacks/grown)
+	rites_list = list(/datum/religion_rites/plantconversion)
+	altar_icon_state = "convertaltar-green"
+
+//plant sect bibles don't heal or do anything special apart from the standard holy water blessings
+/datum/religion_sect/plant/sect_bless(mob/living/blessed, mob/living/user)
+	return TRUE
+
+/datum/religion_sect/plant/on_sacrifice(obj/item/I, mob/living/L)
+	var/obj/item/reagent_containers/food/snacks/grown/offering = I
+	var/favortogive = 1
+	if(!istype(offering))
+		return
+	favortogive += I.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 2
+	adjust_favor(round(favortogive), L) //amount of favor depends on how much nutriment the plant carries
+	to_chat(L, "<span class='notice'>[GLOB.deity] happily accepts your offering, and brings the crop to a new home.</span>")
+	qdel(I)
 	return TRUE
