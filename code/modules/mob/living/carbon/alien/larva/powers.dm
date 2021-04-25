@@ -41,6 +41,19 @@
 		return
 
 	if(L.amount_grown >= L.max_grown)	//TODO ~Carn
+		var/totalaliens = 0
+		for(var/I in GLOB.player_list) /// Scan player list for amt of xenos
+			var/mob/M = I
+			if(isalien(M) && M.stat != DEAD)
+				totalaliens++
+		if(totalaliens == 1) /// Check if the user is the only xeno existing
+			/// Force them into drone
+			var/mob/living/carbon/alien/humanoid/new_xeno
+			new_xeno = new /mob/living/carbon/alien/humanoid/drone(L.loc)
+			L.alien_evolve(new_xeno)
+			to_chat(L, "<span class='info>You are a</span> <span class='name'>Drone</span> <span class='info'>! They are the weakest and slowest of the castes, but can grow into a praetorian and then queen if no queen exists, and are vital to maintaining a hive with their resin secretion abilities.</span>")
+			return 0
+			
 		to_chat(L, "<span class='name'>You are growing into a beautiful alien! It is time to choose a caste.</span>")
 		to_chat(L, "<span class='info'>There are three to choose from:</span>")
 		to_chat(L, "<span class='name'>Hunters</span> <span class='info'>are the most agile caste, tasked with hunting for hosts. They are faster than a human and can even pounce, but are not much tougher than a drone.</span>")
