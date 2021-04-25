@@ -538,7 +538,6 @@
 		/obj/item/storage/box/fancy/cigarettes/cigpack_robustgold,
 		/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
 		/obj/item/storage/box/fancy/cigarettes/cigars,
-		/obj/item/storage/box/fancy/cigarettes/cigars/cohiba,
 		/obj/item/storage/box/fancy/cigarettes/cigars/havana)
 	. = ..()
 
