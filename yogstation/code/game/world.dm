@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(donators)
 		log_sql("Failed to connect to database in load_donators().")
 		return
 
-	var/datum/DBQuery/query = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("donors")] WHERE (expiration_time > Now()) AND (revoked IS NULL)")
+	var/datum/DBQuery/query = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("donors")] WHERE expiration_time > Now() AND revoked IS NULL AND valid = 1")
 	if(!query.Execute())
 		message_admins("Error loading donators from database.")
 		log_sql("Error loading donators from database.")
@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(donators)
 	s += "<img src=\"https://i.imgur.com/gNgarRJ.gif\">" //Banner image
 	var/server_name = CONFIG_GET(string/servername)
 	if (server_name)
-		s += "<br><b>[server_name]</b> &#8212; 99% Lag Free!!"
+		s += "<br><b>[server_name]</b> &#8212; New Player Friendly &#8212; 99% Lag Free!!"
 	s += "<br>(<a href=\"https://tinyurl.com/yogsfo\">Forums</a>|<a href=\"https://tinyurl.com/yogsdis\">Discord</a>)<br>" // The Forum & Discord links line
 	s += "<br><i>[pick(world.file2list("yogstation/strings/taglines.txt"))]</i><br>"
 

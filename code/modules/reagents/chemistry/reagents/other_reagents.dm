@@ -1949,3 +1949,10 @@
 	reagent_state = SOLID
 	color = "#E6E6DA"
 	taste_mult = 0
+
+/datum/reagent/lemoline
+	name = "Lemoline"
+	description = "Synthesized in off-station laboratories, used in several high quality medicines."
+	color ="#FFF44F"
+	taste_description = "lemony"
+

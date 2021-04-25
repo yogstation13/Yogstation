@@ -223,20 +223,20 @@
 /datum/chemical_reaction/bicaridine
 	name = "Bicaridine"
 	id = /datum/reagent/medicine/bicaridine
-	results = list(/datum/reagent/medicine/bicaridine = 3)
-	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/oxygen = 1, /datum/reagent/consumable/sugar = 1)
+	results = list(/datum/reagent/medicine/bicaridine = 4)
+	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/oxygen = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/lemoline = 1)
 
 /datum/chemical_reaction/kelotane
 	name = "Kelotane"
 	id = /datum/reagent/medicine/kelotane
-	results = list(/datum/reagent/medicine/kelotane = 2)
-	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/silicon = 1)
+	results = list(/datum/reagent/medicine/kelotane = 3)
+	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/silicon = 1, /datum/reagent/lemoline = 1)
 
 /datum/chemical_reaction/antitoxin
 	name = "Antitoxin"
 	id = /datum/reagent/medicine/antitoxin
-	results = list(/datum/reagent/medicine/antitoxin = 3)
-	required_reagents = list(/datum/reagent/nitrogen = 1, /datum/reagent/silicon = 1, /datum/reagent/potassium = 1)
+	results = list(/datum/reagent/medicine/antitoxin = 4)
+	required_reagents = list(/datum/reagent/nitrogen = 1, /datum/reagent/silicon = 1, /datum/reagent/potassium = 1, /datum/reagent/lemoline = 1)
 
 /datum/chemical_reaction/tricordrazine
 	name = "Tricordrazine"

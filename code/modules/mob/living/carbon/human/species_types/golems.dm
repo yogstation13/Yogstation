@@ -142,6 +142,7 @@
 /datum/species/golem/diamond
 	name = "Diamond Golem"
 	id = "diamond golem"
+	limbs_id = "cr_golem"
 	fixed_mut_color = "0ff"
 	armor = 70 //up from 55
 	meat = /obj/item/stack/ore/diamond
@@ -319,6 +320,12 @@
 		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
 		return 1
 
+/datum/species/golem/wood/holy //slightly upgraded wood golem, for the plant sect
+	id = "holy wood golem"
+	speedmod = 1 //wood golems aren't very good, so the holy ones are slightly faster so that you don't put in a bunch of hardwork to downgrade yourself
+	changesource_flags = MIRROR_BADMIN
+	random_eligible = FALSE
+
 //Radioactive puncher, hits for burn but only as hard as human
 /datum/species/golem/uranium
 	name = "Uranium Golem"
@@ -401,6 +408,7 @@
 /datum/species/golem/glass
 	name = "Glass Golem"
 	id = "glass golem"
+	limbs_id = "cr_golem"
 	fixed_mut_color = "5a96b4aa" //transparent body
 	meat = /obj/item/shard
 	armor = 0
@@ -438,6 +446,7 @@
 /datum/species/golem/bluespace
 	name = "Bluespace Golem"
 	id = "bluespace golem"
+	limbs_id = "cr_golem"
 	fixed_mut_color = "33f"
 	meat = /obj/item/stack/ore/bluespace_crystal
 	info_text = "As a <span class='danger'>Bluespace Golem</span>, you are spatially unstable: You will teleport when hit, and you can teleport manually at a long distance."
@@ -1154,7 +1163,7 @@
 	playsound(source, 'sound/misc/mymoney.ogg', 25, 0)
 	speech_args[SPEECH_MESSAGE] = "Hello, I like money!"
 
-/datum/species/golem/church_capitalist
+/datum/species/golem/church_capitalist //slightly faster reskinned iron golem gained from a cult of st credit rite
 	name = "Churchgoing Capitalist Golem"
 	id = "church_capitalist golem"
 	prefix = "Religio-Capitalist"
@@ -1163,6 +1172,7 @@
 	special_names = list("John D. Rockefeller","Rich Uncle Pennybags","Commodore Vanderbilt","Entrepreneur","Mr. Moneybags", "Adam Smith")
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES)
 	fixed_mut_color = null
+	speedmod = 1.5
 	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER)
 	info_text = "As a <span class='danger'>Churchgoing Capitalist Golem</span>, your god-given right is to make fat stacks of money!"
 	changesource_flags = MIRROR_BADMIN
@@ -1271,3 +1281,65 @@
 /datum/species/golem/mhydrogen/on_species_loss(mob/living/carbon/C)
 	REMOVE_TRAIT(C, TRAIT_ANTIMAGIC, SPECIES_TRAIT)
 	return ..()
+	
+//Fast golem that can be only created with use of telecrystals, can make ninja-like teleports
+/datum/species/golem/telecrystal
+	name = "Telecrystal Golem"
+	id = "telecrystal golem"
+	limbs_id = "cr_golem"
+	fixed_mut_color = "e02828"
+	speedmod = 1 //same as golden golem
+	random_eligible = FALSE //too strong for a charged black extract
+	info_text = "As a <span class='danger'>Telecrystal Golem</span>, you are faster than an avarage golem. Being created out of telecrystal, a much stable but less powerful variation of bluespace, you possess the ability to make controlled short ranged phase jumps."
+	species_traits = list(NOBLOOD,MUTCOLORS,NO_UNDERWEAR,NOFLASH)
+	prefix = "Telecrystal"
+	special_names = list("Agent", "Operative")
+	var/obj/effect/proc_holder/spell/pointed/phase_jump/phase_jump
+
+/datum/species/golem/telecrystal/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+	..()
+	if(ishuman(C))
+		phase_jump = new
+		C.AddSpell(phase_jump)
+
+/datum/species/golem/telecrystal/on_species_loss(mob/living/carbon/C)
+	if(phase_jump)
+		C.RemoveSpell(phase_jump)
+	..()
+
+/obj/effect/proc_holder/spell/pointed/phase_jump
+	name = "Phase Jump"
+	desc = "Tap the power of your telecrystal body to teleport a short distance!"
+	charge_max = 200
+	clothes_req = FALSE
+	stat_allowed = FALSE
+	antimagic_allowed = TRUE
+	cooldown_min = 200
+	range = 3
+	ranged_mousepointer = 'icons/effects/mouse_pointers/phase_jump.dmi'
+	action_icon_state = "phasejump"
+	active_msg = "<span class='notice'>You start channeling your telecrystal core....</span>"
+	deactive_msg = "<span class='notice'>You stop channeling your telecrystal core.</span>"
+
+/obj/effect/proc_holder/spell/pointed/phase_jump/cast(list/targets,mob/user = usr)
+	var/target = targets[1]
+	var/turf/T = get_turf(target)
+	var/phasein = /obj/effect/temp_visual/dir_setting/cult/phase
+	var/phaseout = /obj/effect/temp_visual/dir_setting/cult/phase/out
+	var/obj/spot1 = new phaseout(get_turf(user), user.dir)
+	user.forceMove(T)
+	var/obj/spot2 = new phasein(get_turf(user), user.dir)
+	spot1.Beam(spot2,"tentacle",time=20)
+	user.visible_message("<span class='danger'>[user] phase shifts away!", "<span class='warning'>You shift around the space around you.</span>")
+
+/obj/effect/proc_holder/spell/pointed/phase_jump/can_target(atom/target, mob/user, silent)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/turf/T = get_turf(target)
+	var/area/AU = get_area(user)
+	var/area/AT = get_area(T)
+	if(AT.noteleport || AU.noteleport)
+		remove_ranged_ability("Something nullifies any teleports in the local area...")
+		return FALSE
+	return TRUE

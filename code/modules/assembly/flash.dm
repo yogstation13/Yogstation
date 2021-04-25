@@ -93,6 +93,9 @@
 		return typecache_filter_list(target_loc.GetAllContents(), GLOB.typecache_living)
 
 /obj/item/assembly/flash/proc/try_use_flash(mob/user = null)
+	if(user && HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
+		to_chat(user, "<span class='warning'>You can't seem to remember how this works!</span>")
+		return FALSE
 	if(burnt_out || (world.time < last_trigger + cooldown))
 		return FALSE
 	last_trigger = world.time
@@ -235,6 +238,9 @@
 	addtimer(CALLBACK(src, .proc/cooldown), flashcd * 2)
 
 /obj/item/assembly/flash/armimplant/try_use_flash(mob/user = null)
+	if(user && HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
+		to_chat(user, "<span class='warning'>You can't seem to remember how this works!</span>")
+		return FALSE
 	if(overheat)
 		if(I && I.owner)
 			to_chat(I.owner, "<span class='warning'>Your photon projector is running too hot to be used again so quickly!</span>")

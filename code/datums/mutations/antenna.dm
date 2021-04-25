@@ -45,6 +45,7 @@
 	charge_max = 50
 	range = 7
 	clothes_req = FALSE
+	antimagic_allowed = TRUE
 	action_icon_state = "mindread"
 
 /obj/effect/proc_holder/spell/targeted/mindread/cast(list/targets, mob/living/carbon/human/user = usr)

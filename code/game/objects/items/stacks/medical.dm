@@ -1,7 +1,7 @@
 /obj/item/stack/medical
 	name = "medical pack"
 	singular_name = "medical pack"
-	icon = 'icons/obj/stack_medical.dmi'
+	icon = 'yogstation/icons/obj/stack_medical.dmi'
 	amount = 6
 	max_amount = 6
 	w_class = WEIGHT_CLASS_TINY
@@ -121,7 +121,7 @@
 	to_chat(user, "<span class='warning'>You can not use \the [src] on [M]!</span>")
 
 /obj/item/stack/medical/gauze/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_WIRECUTTER || I.get_sharpness())
+	if(I.tool_behaviour == TOOL_WIRECUTTER || I.is_sharp())
 		if(get_amount() < 2)
 			to_chat(user, "<span class='warning'>You need at least two gauzes to do this!</span>")
 			return
@@ -183,7 +183,7 @@
 	amount = 15
 	max_amount = 15
 	repeating = TRUE
-	var/heal_brute = 10
+	heal_brute = 10
 	grind_results = list(/datum/reagent/medicine/spaceacillin = 2)
 
 /obj/item/stack/medical/suture/medicated
@@ -225,7 +225,7 @@
 	amount = 15
 	max_amount = 15
 	repeating = TRUE
-	var/heal_burn = 10
+	heal_burn = 10
 	var/is_open = TRUE ///This var determines if the sterile packaging of the mesh has been opened.
 	grind_results = list(/datum/reagent/medicine/spaceacillin = 2)
 
@@ -331,7 +331,6 @@
 	self_delay = 40
 	other_delay = 10
 	repeating = TRUE
-	drop_sound = 'sound/misc/moist_impact.ogg'
 	mob_throw_hit_sound = 'sound/misc/moist_impact.ogg'
 	hitsound = 'sound/misc/moist_impact.ogg'
 	merge_type = /obj/item/stack/medical/poultice

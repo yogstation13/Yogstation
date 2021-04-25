@@ -876,10 +876,21 @@
 	name = "Elder Atmosian Statue"
 	result = /obj/structure/statue/elder_atmosian
 	time = 6 SECONDS
-	reqs = list(/obj/item/stack/sheet/mineral/metal_hydrogen = 10
-				//jamie - /obj/item/grenade/gas_crystal/healium_crystal = 1,
-				// jamie - /obj/item/grenade/gas_crystal/pluonium_crystal = 1,
-				// jamie - /obj/item/grenade/gas_crystal/zauker_crystal = 1
+	reqs = list(/obj/item/stack/sheet/mineral/metal_hydrogen = 10,
+				/obj/item/stack/sheet/mineral/zaukerite = 1,
+				/obj/item/grenade/gas_crystal/healium_crystal = 1,
+				/obj/item/grenade/gas_crystal/pluonium_crystal = 1,
+				/obj/item/grenade/gas_crystal/healium_crystal = 1
 				)
 	category = CAT_MISC
 
+// Shank - Makeshift weapon that can embed on throw
+/datum/crafting_recipe/shank
+	name = "Shank"
+	reqs = list(/obj/item/shard = 1,
+				/obj/item/stack/rods = 1,
+				/obj/item/stack/cable_coil = 10)
+	result = /obj/item/kitchen/knife/shank
+	time = 10
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
