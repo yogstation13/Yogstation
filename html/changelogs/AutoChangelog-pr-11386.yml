@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "aux base can now be launched by people who should have access to launch aux base and not just engineering"
