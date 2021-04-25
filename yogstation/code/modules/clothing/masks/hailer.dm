@@ -8,7 +8,7 @@
 	var/obj/item/radio/radio //For engineering alerts.
 	var/radio_key = /obj/item/encryptionkey/headset_sec
 	var/radio_channel = "Security"
-	var/dispatch_cooldown = 20
+	var/dispatch_cooldown = 250
 	var/last_dispatch = 0
 
 /obj/item/clothing/mask/gas/sechailer/Destroy()

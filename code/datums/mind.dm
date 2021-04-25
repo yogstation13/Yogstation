@@ -635,6 +635,12 @@
 		special_role = ROLE_CHANGELING
 	return C
 
+/datum/mind/proc/make_Heretic()
+	if(quiet_round)
+		return
+	if(!(has_antag_datum(/datum/antagonist/heretic)))
+		add_antag_datum(/datum/antagonist/heretic)
+
 /datum/mind/proc/make_Wizard()
 	// yogs start - Donor features, quiet round
 	if(quiet_round)
