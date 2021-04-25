@@ -3983,18 +3983,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
-"agG" = (
-/obj/docking_port/stationary{
-	dir = 2;
-	dwidth = 1;
-	height = 4;
-	name = "escape pod loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
-	width = 3
-	},
-/obj/structure/fans/tiny/invisible,
-/turf/open/space/basic,
-/area/space)
 "agH" = (
 /obj/machinery/door/airlock/command{
 	name = "Chief Medical Officer's Office";
@@ -75680,17 +75668,6 @@
 /obj/vehicle/ridden/secway,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/brig)
-"crx" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 1;
-	height = 4;
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
-	width = 3
-	},
-/obj/structure/fans/tiny/invisible,
-/turf/open/space/basic,
-/area/space)
 "cry" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/light/small{
@@ -81654,17 +81631,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"cDB" = (
-/obj/docking_port/stationary{
-	dir = 1;
-	dwidth = 1;
-	height = 4;
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
-	width = 3
-	},
-/obj/structure/fans/tiny/invisible,
-/turf/open/space/basic,
-/area/space)
 "cDC" = (
 /turf/closed/wall/rust,
 /area/construction/mining/aux_base)
@@ -83713,17 +83679,6 @@
 	dir = 1
 	},
 /area/hallway/primary/fore)
-"cHC" = (
-/obj/docking_port/stationary{
-	dir = 4;
-	dwidth = 1;
-	height = 4;
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
-	width = 3
-	},
-/obj/structure/fans/tiny/invisible,
-/turf/open/space/basic,
-/area/space)
 "cHD" = (
 /obj/docking_port/stationary/random{
 	dir = 4;
@@ -92424,6 +92379,18 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/break_room)
+"igy" = (
+/obj/structure/fans/tiny/invisible,
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod four loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/four;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "igC" = (
 /turf/closed/wall/rust,
 /area/clerk)
@@ -93885,6 +93852,18 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
+"jQv" = (
+/obj/structure/fans/tiny/invisible,
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod one loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "jRN" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -97822,6 +97801,17 @@
 	},
 /turf/closed/wall/rust,
 /area/engine/break_room)
+"pxN" = (
+/obj/structure/fans/tiny/invisible,
+/obj/docking_port/stationary{
+	dwidth = 1;
+	height = 4;
+	name = "escape pod two loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/two;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "pBF" = (
 /obj/structure/table,
 /obj/machinery/computer/security/telescreen/turbine{
@@ -98876,6 +98866,18 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
+"qSN" = (
+/obj/structure/fans/tiny/invisible,
+/obj/docking_port/stationary{
+	dir = 2;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod three loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/three;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "qUP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/effect/decal/cleanable/dirt,
@@ -116255,7 +116257,7 @@ aeu
 aeu
 amA
 agy
-crx
+igy
 agy
 amR
 aeu
@@ -121182,7 +121184,7 @@ cls
 cmf
 crD
 cKM
-agG
+qSN
 aaa
 aaa
 aaa
@@ -144739,7 +144741,7 @@ acy
 aaa
 aaa
 aaa
-cDB
+pxN
 btR
 agg
 agD
@@ -148108,7 +148110,7 @@ cbV
 ceT
 ava
 agy
-cHC
+jQv
 agy
 bkd
 aeu
