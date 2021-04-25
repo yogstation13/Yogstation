@@ -105,6 +105,13 @@
 				else
 					message_admins("[key_name_admin(usr)] tried to create changelings. Unfortunately, there were no candidates available.")
 					log_admin("[key_name(usr)] failed to create changelings.")
+			if("heretics")
+				if(src.makeHeretics())
+					message_admins("[key_name(usr)] created heretics.")
+					log_admin("[key_name(usr)] created heretics.")
+				else
+					message_admins("[key_name_admin(usr)] tried to create heretics. Unfortunately, there were no candidates available.")
+					log_admin("[key_name(usr)] failed to create heretics.")
 			if("revs")
 				if(src.makeRevs())
 					message_admins("[key_name(usr)] started a revolution.")
