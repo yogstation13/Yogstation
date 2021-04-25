@@ -12,10 +12,15 @@
 	max_integrity = 40
 	novariants = FALSE
 	item_flags = NOBLUDGEON
+	///how much brute damage do we heal, also used for healing simplemobs
 	var/heal_brute = 0
+	///how much burn damage do we heal
 	var/heal_burn = 0
-	var/self_delay = 50
+	///time required to heal self
+	var/self_delay = 5 SECONDS
+	///time required to heal someone else
 	var/other_delay = 0
+	///does stack automatically attempt to repeat treatment if patient is still hurt
 	var/repeating = FALSE
 
 /obj/item/stack/medical/attack(mob/living/M, mob/user)
@@ -23,44 +28,63 @@
 	try_heal(M, user)
 
 
-/obj/item/stack/medical/proc/try_heal(mob/living/M, mob/user, silent = FALSE)
-	if(!M.can_inject(user, TRUE))
+/obj/item/stack/medical/proc/try_heal(mob/living/patient, mob/user, silent = FALSE)
+	if(!patient.can_inject(user, TRUE))
 		return
-	if(M == user)
+	if(patient == user)
 		if(!silent)
 			user.visible_message("<span class='notice'>[user] starts to apply \the [src] on [user.p_them()]self...</span>", "<span class='notice'>You begin applying \the [src] on yourself...</span>")
-		if(!do_mob(user, M, self_delay, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
+		if(!do_mob(user, patient, self_delay, extra_checks=CALLBACK(patient, /mob/living/proc/can_inject, user, TRUE)))
 			return
 	else if(other_delay)
 		if(!silent)
-			user.visible_message("<span class='notice'>[user] starts to apply \the [src] on [M].</span>", "<span class='notice'>You begin applying \the [src] on [M]...</span>")
-		if(!do_mob(user, M, other_delay, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
+			user.visible_message("<span class='notice'>[user] starts to apply \the [src] on [patient].</span>", "<span class='notice'>You begin applying \the [src] on [patient]...</span>")
+		if(!do_mob(user, patient, other_delay, extra_checks=CALLBACK(patient, /mob/living/proc/can_inject, user, TRUE)))
 			return
 
-	if(heal(M, user))
-		log_combat(user, M, "healed", src.name)
+	if(heal(patient, user))
+		log_combat(user, patient, "healed", src.name)
 		use(1)
 		if(repeating && amount > 0)
-			try_heal(M, user, TRUE)
+			try_heal(patient, user, TRUE)
 
-/obj/item/stack/medical/proc/heal(mob/living/M, mob/user)
-	return
+/// In which we print the message that we're starting to heal someone, then we try healing them. Does the do_after whether or not it can actually succeed on a targeted mob
+/obj/item/stack/medical/proc/heal(mob/living/patient, mob/user)
+	if(patient.stat == DEAD)
+		to_chat(user, "<span class='warning'>[patient] is dead! You can not help [patient.p_them()].</span>")
+		return
+	if(isanimal(patient) && heal_brute) // only brute can heal
+		var/mob/living/simple_animal/critter = patient
+		if (!critter.healable)
+			to_chat(user, "<span class='warning'>You cannot use [src] on [patient]!</span>")
+			return FALSE
+		else if (critter.health == critter.maxHealth)
+			to_chat(user, "<span class='notice'>[patient] is at full health.</span>")
+			return FALSE
+			user.visible_message("<span class='green'>[user] applies [src] on [patient].</span>", "<span class='green'>You apply [src] on [patient].</span>")
+			patient.heal_bodypart_damage((heal_brute * 0.5))
+			return TRUE
+	if(iscarbon(patient))
+		return heal_carbon(patient, user, heal_brute, heal_burn)
+	to_chat(user, "<span class='warning'>You can't heal [patient] with [src]!</span>")
 
+/// The healing effects on a carbon patient. Since we have extra details for dealing with bodyparts, we get our own fancy proc. Still returns TRUE on success and FALSE on fail
 /obj/item/stack/medical/proc/heal_carbon(mob/living/carbon/C, mob/user, brute, burn)
 	var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
 	if(!affecting) //Missing limb?
 		to_chat(user, "<span class='warning'>[C] doesn't have \a [parse_zone(user.zone_selected)]!</span>")
 		return
-	if(affecting.status == BODYPART_ORGANIC) //Limb must be organic to be healed - RR
-		if(affecting.brute_dam && brute || affecting.burn_dam && burn)
-			user.visible_message("<span class='green'>[user] applies \the [src] on [C]'s [affecting.name].</span>", "<span class='green'>You apply \the [src] on [C]'s [affecting.name].</span>")
-			if(affecting.heal_damage(brute, burn))
-				C.update_damage_overlays()
-			post_heal_effects(max(previous_damage - affecting.get_damage(), 0), C, user)
-			return TRUE
-		to_chat(user, "<span class='warning'>[C]'s [affecting.name] can not be healed with \the [src]!</span>")
-		return
-	to_chat(user, "<span class='warning'>\The [src] won't work on a robotic limb!</span>")
+	if(affecting.status != BODYPART_ORGANIC) //Limb must be organic to be healed - RR
+		to_chat(user, "<span class='warning'>[src] won't work on a robotic limb!</span>")
+		return FALSE
+	if(affecting.brute_dam && brute || affecting.burn_dam && burn)
+		user.visible_message("<span class='green'>[user] applies [src] on [C]'s [affecting.name].</span>", "<span class='green'>You apply [src] on [C]'s [affecting.name].</span>")
+		var/previous_damage = affecting.get_damage()
+		if(affecting.heal_damage(brute, burn))
+			C.update_damage_overlays()
+		post_heal_effects(max(previous_damage - affecting.get_damage(), 0), C, user)
+		return TRUE
+	to_chat(user, "<span class='warning'>[C]'s [affecting.name] can not be healed with \the [src]!</span>")
 
 ///Override this proc for special post heal effects.
 /obj/item/stack/medical/proc/post_heal_effects(amount_healed, mob/living/carbon/healed_mob, mob/user)
@@ -73,28 +97,9 @@
 	icon_state = "brutepack"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	heal_brute = 40
-	self_delay = 20
-	grind_results = list(/datum/reagent/medicine/C2/libital = 10)
-
-/obj/item/stack/medical/bruise_pack/heal(mob/living/M, mob/user)
-	if(M.stat == DEAD)
-		to_chat(user, "<span class='warning'>[M] is dead! You can not help [M.p_them()].</span>")
-		return
-	if(isanimal(M))
-		var/mob/living/simple_animal/critter = M
-		if (!(critter.healable))
-			to_chat(user, "<span class='warning'>You cannot use \the [src] on [M]!</span>")
-			return FALSE
-		else if (critter.health == critter.maxHealth)
-			to_chat(user, "<span class='notice'>[M] is at full health.</span>")
-			return FALSE
-		user.visible_message("<span class='green'>[user] applies \the [src] on [M].</span>", "<span class='green'>You apply \the [src] on [M].</span>")
-		M.heal_bodypart_damage((heal_brute/2))
-		return TRUE
-	if(iscarbon(M))
-		return heal_carbon(M, user, heal_brute, 0)
-	to_chat(user, "<span class='warning'>You can't heal [M] with the \the [src]!</span>")
+	heal_brute = 4 SECONDS
+	self_delay = 2 SECONDS
+	grind_results = list(/datum/reagent/medicine/c2/libital = 10)
 
 /obj/item/stack/medical/bruise_pack/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is bludgeoning [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -107,7 +112,7 @@
 	singular_name = "medical gauze"
 	icon_state = "gauze"
 	var/stop_bleeding = 1800
-	self_delay = 20
+	self_delay = 2 SECONDS
 	max_amount = 12
 	grind_results = list(/datum/reagent/cellulose = 2)
 
@@ -157,20 +162,20 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	heal_burn = 40
-	self_delay = 20
-	grind_results = list(/datum/reagent/medicine/C2/lenturi = 10)
-
-/obj/item/stack/medical/ointment/heal(mob/living/M, mob/user)
-	if(M.stat == DEAD)
-		to_chat(user, "<span class='warning'>[M] is dead! You can not help [M.p_them()].</span>")
-		return
-	if(iscarbon(M))
-		return heal_carbon(M, user, 0, heal_burn)
-	to_chat(user, "<span class='warning'>You can't heal [M] with the \the [src]!</span>")
+	self_delay = 2 SECONDS
+	grind_results = list(/datum/reagent/medicine/c2/lenturi = 10)
 
 /obj/item/stack/medical/ointment/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] is squeezing \the [src] into [user.p_their()] mouth! [user.p_do(TRUE)]n't [user.p_they()] know that stuff is toxic?</span>")
 	return TOXLOSS
+
+	/*
+	The idea is for these medical devices to work like a hybrid of the old brute packs and tend wounds,
+	they heal a little at a time, have reduced healing density and does not allow for rapid healing while in combat.
+	However they provice graunular control of where the healing is directed, this makes them better for curing work-related cuts and scrapes.
+
+	The interesting limb targeting mechanic is retained and i still believe they will be a viable choice, especially when healing others in the field.
+	 */
 
 /obj/item/stack/medical/suture
 	name = "suture"
@@ -178,8 +183,8 @@
 	gender = PLURAL
 	singular_name = "suture"
 	icon_state = "suture"
-	self_delay = 30
-	other_delay = 10
+	self_delay = 3 SECONDS
+	other_delay = 1 SECONDS
 	amount = 15
 	max_amount = 15
 	repeating = TRUE
@@ -191,28 +196,7 @@
 	icon_state = "suture_purp"
 	desc = "A suture infused with drugs that speed up wound healing of the treated laceration."
 	heal_brute = 15
-	grind_results = list(/datum/reagent/medicine/polypyr = 2)
-
-/obj/item/stack/medical/suture/heal(mob/living/M, mob/user)
-	. = ..()
-	if(M.stat == DEAD)
-		to_chat(user, "<span class='warning'>[M] is dead! You can not help [M.p_them()].</span>")
-		return
-	if(iscarbon(M))
-		return heal_carbon(M, user, heal_brute, 0)
-	if(isanimal(M))
-		var/mob/living/simple_animal/critter = M
-		if (!(critter.healable))
-			to_chat(user, "<span class='warning'>You cannot use \the [src] on [M]!</span>")
-			return FALSE
-		else if (critter.health == critter.maxHealth)
-			to_chat(user, "<span class='notice'>[M] is at full health.</span>")
-			return FALSE
-		user.visible_message("<span class='green'>[user] applies \the [src] on [M].</span>", "<span class='green'>You apply \the [src] on [M].</span>")
-		M.heal_bodypart_damage(heal_brute)
-		return TRUE
-
-	to_chat(user, "<span class='warning'>You can't heal [M] with the \the [src]!</span>")
+	grind_results = list(/datum/reagent/medicine/polypyr = 1)
 
 /obj/item/stack/medical/mesh
 	name = "regenerative mesh"
@@ -220,8 +204,8 @@
 	gender = PLURAL
 	singular_name = "regenerative mesh"
 	icon_state = "regen_mesh"
-	self_delay = 30
-	other_delay = 10
+	self_delay = 3 SECONDS
+	other_delay = 1 SECONDS
 	amount = 15
 	max_amount = 15
 	repeating = TRUE
@@ -239,35 +223,25 @@
 /obj/item/stack/medical/mesh/update_icon()
 	if(!is_open)
 		return
-	. = ..()
-
-/obj/item/stack/medical/mesh/heal(mob/living/M, mob/user)
-	. = ..()
-	if(M.stat == DEAD)
-		to_chat(user, "<span class='warning'>[M] is dead! You can not help [M.p_them()].</span>")
-		return
-	if(iscarbon(M))
-		return heal_carbon(M, user, 0, heal_burn)
-	to_chat(user, "<span class='warning'>You can't heal [M] with the \the [src]!</span>")
-
+	return ..()
 
 /obj/item/stack/medical/mesh/try_heal(mob/living/M, mob/user, silent = FALSE)
 	if(!is_open)
 		to_chat(user, "<span class='warning'>You need to open [src] first.</span>")
 		return
-	. = ..()
+	return ..()
 
 /obj/item/stack/medical/mesh/AltClick(mob/living/user)
 	if(!is_open)
 		to_chat(user, "<span class='warning'>You need to open [src] first.</span>")
 		return
-	. = ..()
+	return ..()
 
 /obj/item/stack/medical/mesh/attack_hand(mob/user)
 	if(!is_open & user.get_inactive_held_item() == src)
 		to_chat(user, "<span class='warning'>You need to open [src] first.</span>")
 		return
-	. = ..()
+	return ..()
 
 /obj/item/stack/medical/mesh/attack_self(mob/user)
 	if(!is_open)
@@ -288,7 +262,7 @@
 	grind_results = list(/datum/reagent/consumable/aloejuice = 1)
 	merge_type = /obj/item/stack/medical/mesh/advanced
 
-/obj/item/stack/medical/mesh/advanced/update_icon_state()
+/obj/item/stack/medical/mesh/advanced/update_icon()
 	if(is_open)
 		return ..()
 	icon_state = "aloe_mesh_closed"
@@ -311,14 +285,6 @@
 	grind_results = list(/datum/reagent/consumable/aloejuice = 1)
 	merge_type = /obj/item/stack/medical/aloe
 
-	/*
-	The idea is for these medical devices to work like a hybrid of the old brute packs and tend wounds,
-	they heal a little at a time, have reduced healing density and does not allow for rapid healing while in combat.
-	However they provice graunular control of where the healing is directed, this makes them better for curing work-related cuts and scrapes.
-
-	The interesting limb targeting mechanic is retained and i still believe they will be a viable choice, especially when healing others in the field.
-	 */
-
 /obj/item/stack/medical/poultice
 	name = "mourning poultices"
 	singular_name = "mourning poultice"
@@ -328,10 +294,9 @@
 	max_amount = 15
 	heal_brute = 10
 	heal_burn = 10
-	self_delay = 40
-	other_delay = 10
+	self_delay = 4 SECONDS
+	other_delay = 1 SECONDS
 	repeating = TRUE
-	mob_throw_hit_sound = 'sound/misc/moist_impact.ogg'
 	hitsound = 'sound/misc/moist_impact.ogg'
 	merge_type = /obj/item/stack/medical/poultice
 

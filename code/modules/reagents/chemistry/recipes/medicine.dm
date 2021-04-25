@@ -337,7 +337,10 @@
 		new /obj/item/stack/medical/mesh/advanced(location)
 
 /datum/chemical_reaction/medicine/poultice
-	required_reagents = list(/datum/reagent/toxin/bungotoxin = 20, /datum/reagent/cellulose = 20, /datum/reagent/consumable/aloejuice = 20)
+	required_reagents = list(/datum/reagent/toxin/amanitin = 10, /datum/reagent/cellulose = 20, /datum/reagent/consumable/aloejuice = 20)
+
+/datum/chemical_reaction/medicine/poultice/alt
+	required_reagents = list(/datum/reagent/consumable/entpoly = 12, /datum/reagent/cellulose = 20, /datum/reagent/consumable/tinlux = 10)
 
 /datum/chemical_reaction/medicine/poultice/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
