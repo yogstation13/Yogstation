@@ -128,7 +128,7 @@
 /obj/item/implant/radio/antenna
 	name = "internal antenna"
 	desc = "The internal organ part of the antenna. Science has not yet given it a good name."
-	radio_key = /obj/item/encryptionkey/heads/captain
+	radio_key = /obj/item/encryptionkey/antenna
 	subspace_transmission = TRUE
 
 /obj/item/implant/radio/slime
