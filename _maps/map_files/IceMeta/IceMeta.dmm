@@ -12974,19 +12974,6 @@
 /obj/item/toy/cards/deck,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"aEc" = (
-/obj/structure/window/reinforced,
-/obj/machinery/light/small,
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Fore";
-	dir = 1;
-	network = list("minisat")
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/turf/open/floor/plasteel/dark,
-/area/aisat)
 "aEd" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/bot,
@@ -77070,6 +77057,18 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/starboard/fore)
+"opx" = (
+/obj/machinery/light/small,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Fore";
+	dir = 1;
+	network = list("minisat")
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/aisat)
 "orM" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -126619,7 +126618,7 @@ dKl
 dqT
 fhB
 fhB
-gtn
+axY
 hSu
 aFT
 den
@@ -126876,8 +126875,8 @@ iEM
 dqT
 dqT
 fhB
-gtn
-hWS
+axY
+axY
 axY
 aCZ
 aWB
@@ -137166,8 +137165,8 @@ gKN
 hPB
 aYd
 aGX
-aEc
-gtn
+opx
+lyT
 gtn
 aRy
 aRy
