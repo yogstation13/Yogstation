@@ -2303,8 +2303,8 @@
 	dir = 4;
 	dwidth = 1;
 	height = 4;
-	name = "escape pod loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
+	name = "escape pod three loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/three;
 	width = 3
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
@@ -11274,8 +11274,8 @@
 	dir = 8;
 	dwidth = 1;
 	height = 4;
-	name = "escape pod loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
+	name = "escape pod one loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod;
 	width = 3
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
@@ -58877,6 +58877,17 @@
 /obj/machinery/atmospherics/components/unary/tank/toxins,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"jmn" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod two loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/two;
+	width = 3
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "jmH" = (
 /obj/structure/sign/warning/vacuum,
 /turf/closed/wall,
@@ -60699,6 +60710,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"oWV" = (
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod four loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/four;
+	width = 3
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "oXu" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -74142,7 +74164,7 @@ abY
 abY
 abY
 abY
-axf
+jmn
 abY
 abY
 aae
@@ -98889,7 +98911,7 @@ oXP
 rfE
 ccw
 abY
-afa
+oWV
 abY
 vnn
 aaf
