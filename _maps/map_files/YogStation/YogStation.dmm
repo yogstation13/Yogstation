@@ -17131,6 +17131,21 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"aYn" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/junction/flip{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "aYx" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -31814,6 +31829,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"cmV" = (
+/obj/structure/chair,
+/obj/item/storage/box/fancy/cigarettes,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "cna" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -32023,6 +32043,17 @@
 	},
 /turf/open/floor/plating,
 /area/science/robotics/mechbay)
+"cpM" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "cpU" = (
 /obj/machinery/camera{
 	c_tag = "Fore Starboard Solar Access"
@@ -39302,6 +39333,30 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/carpet,
 /area/library)
+"hdR" = (
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "hef" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -42082,6 +42137,10 @@
 	dir = 4
 	},
 /area/crew_quarters/theatre)
+"iTl" = (
+/obj/structure/chair,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "iTF" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -43114,6 +43173,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/nanite)
+"jDo" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "jDB" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
@@ -43434,6 +43508,17 @@
 	},
 /turf/open/floor/wood,
 /area/library)
+"jRr" = (
+/obj/machinery/door/airlock/external{
+	name = "Solar Maintenance";
+	req_access_txt = "10; 13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -1;
+	diry = 2
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "jRs" = (
 /obj/effect/turf_decal/box/corners,
 /obj/structure/cable{
@@ -43839,6 +43924,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"kdC" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "kfj" = (
 /obj/machinery/computer/station_alert{
 	dir = 4
@@ -48853,10 +48953,6 @@
 	},
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
-"nCP" = (
-/obj/effect/landmark/stationroom/box/xenobridge,
-/turf/template_noop,
-/area/template_noop)
 "nDj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -49002,6 +49098,10 @@
 /obj/item/phone/banana,
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
+"nJL" = (
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 "nJW" = (
 /obj/structure/closet/secure_closet/atmospherics,
 /turf/open/floor/plasteel/dark,
@@ -107792,16 +107892,16 @@ arE
 arE
 arE
 xXT
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-nCP
+cpM
+aMD
+kdC
+cOe
+cNW
+bAw
+bAw
+jRr
+aag
+pEf
 aaa
 aaa
 aaa
@@ -108049,16 +108149,16 @@ bDb
 bDb
 bDb
 bDb
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+cNW
+cNW
+jDo
+cOe
+cNW
+bKT
+bKT
+bKT
+aag
+pEf
 aaa
 aaa
 aaa
@@ -108306,16 +108406,16 @@ hIO
 vtR
 niv
 bDb
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+aaa
+cNW
+jDo
+cOe
+bPp
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -108563,16 +108663,16 @@ bEm
 bEm
 bEm
 jFB
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+aaa
+bPp
+jDo
+cOe
+bPp
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -108820,16 +108920,16 @@ iMj
 bEm
 jRs
 nTx
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+aaa
+bPp
+jDo
+cOe
+bPp
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -109077,16 +109177,16 @@ iWE
 nca
 gEr
 bDb
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+aaa
+cNW
+jDo
+cOe
+cNW
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -109334,16 +109434,16 @@ kcH
 qXB
 qfB
 bDb
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+aaa
+cNW
+jDo
+cBL
+cNW
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -109591,16 +109691,16 @@ eII
 sxC
 eII
 jFB
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+aaf
+bPp
+jDo
+cmV
+bPp
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -109848,16 +109948,16 @@ psk
 psk
 wnN
 eWj
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+nJL
+bPY
+aYn
+iTl
+bPp
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -110105,16 +110205,16 @@ dpC
 mqO
 uIx
 nMc
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+aaf
+bPp
+jDo
+cOe
+bPp
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -110362,16 +110462,16 @@ bDb
 bDb
 bDb
 bDb
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+aaa
+cNW
+jDo
+cOe
+cNW
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -110619,16 +110719,16 @@ bDb
 gXs
 gXs
 gXs
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+aaa
+cNW
+jDo
+cOe
+cNW
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 bPp
 cNW
@@ -110876,16 +110976,16 @@ bDb
 gXs
 aaa
 aaa
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+aaa
+bPp
+jDo
+cOe
+bPp
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 hNI
 haw
@@ -111133,16 +111233,16 @@ bDb
 gXs
 aaa
 aaa
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+aaa
+bPp
+jDo
+cOe
+bPp
+aaf
+aaf
+aaf
+aaf
+aaf
 cNW
 fvM
 wkE
@@ -111390,16 +111490,16 @@ bDb
 gXs
 gXs
 gXs
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+aaa
+bPp
+jDo
+cOe
+bPp
+aaa
+aaa
+aaa
+aaf
+aaf
 cNW
 gsK
 cmn
@@ -111647,16 +111747,16 @@ bDb
 atN
 atN
 atN
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
-qQV
+cNW
+cNW
+hdR
+cNW
+cNW
+cNW
+cNW
+cNW
+cNW
+cNW
 cNW
 gsK
 cmn
