@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "you can now buy engines for the byos and it will only be purchasable in thef irst 10 minutes of the round as intended"
-  - tweak: "BYOS purchase window increased from 10 to 20 minutes"
