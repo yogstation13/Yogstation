@@ -10,7 +10,11 @@
 /turf/open/floor/plating,
 /area/shuttle/mining)
 "c" = (
-/obj/structure/table,
+/obj/effect/turf_decal/bot,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/ore_box,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/mining)
 "d" = (
@@ -27,10 +31,8 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/mining)
 "g" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium,
+/obj/structure/chair/comfy/shuttle,
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/mining)
 "h" = (
 /obj/machinery/door/airlock/titanium{
@@ -53,11 +55,34 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/mining)
-"i" = (
-/obj/structure/closet/crate,
+"j" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Mining Shuttle Airlock"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"k" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/ore_box,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/mining)
-"j" = (
+"l" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Mining Shuttle Airlock"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"x" = (
 /obj/structure/shuttle/engine/heater,
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -71,19 +96,16 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/mining)
-"k" = (
-/obj/structure/ore_box,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/mining)
-"l" = (
-/obj/structure/shuttle/engine/propulsion/burst,
-/turf/open/floor/plating/airless,
-/area/shuttle/mining)
 "E" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"G" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/mining)
 "Q" = (
@@ -99,49 +121,53 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/mining)
+"U" = (
+/obj/structure/shuttle/engine/propulsion/burst,
+/turf/open/floor/plating/airless,
+/area/shuttle/mining)
 
 (1,1,1) = {"
 a
 a
 T
-a
+j
 T
-a
-a
+x
+U
 "}
 (2,1,1) = {"
 a
 c
-e
 g
+e
 f
-i
-a
+k
+G
 "}
 (3,1,1) = {"
 b
 d
 Q
 e
-f
-j
+e
+e
 l
 "}
 (4,1,1) = {"
 a
 c
-e
+g
 e
 f
 k
-a
+G
 "}
 (5,1,1) = {"
 a
 a
 E
 h
-E
-a
-a
+T
+x
+U
 "}
