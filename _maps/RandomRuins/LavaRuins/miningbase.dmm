@@ -764,7 +764,7 @@
 /area/mine/living_quarters)
 "hq" = (
 /obj/structure/sign/departments/minsky/supply/mining{
-	pixel_y = -32
+	pixel_y = 32
 	},
 /obj/machinery/light/small{
 	dir = 1
