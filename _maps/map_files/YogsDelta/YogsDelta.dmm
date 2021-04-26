@@ -61094,23 +61094,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
-"bPA" = (
-/obj/structure/closet/secure_closet/contraband/armory,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "bPB" = (
 /obj/machinery/light/small,
 /obj/structure/disposalpipe/segment{
@@ -128151,6 +128134,24 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
+"yjB" = (
+/obj/structure/closet/secure_closet/contraband/armory,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/armory_contraband,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 
 (1,1,1) = {"
 aaa
@@ -182244,7 +182245,7 @@ aaa
 aad
 bLs
 bNt
-bPA
+yjB
 bRw
 bTk
 bVr
