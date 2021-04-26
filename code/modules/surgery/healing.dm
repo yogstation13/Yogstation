@@ -16,7 +16,7 @@
 	if(healing_step_type)
 		steps = list(/datum/surgery_step/incise/nobleed,
 					healing_step_type, //hehe cheeky
-					/datum/surgery_step/close)
+					/datum/surgery_step/close/nofail)
 
 /datum/surgery_step/heal
 	name = "repair body"
