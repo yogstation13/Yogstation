@@ -22,6 +22,8 @@
 	var/other_delay = 0
 	///does stack automatically attempt to repeat treatment if patient is still hurt
 	var/repeating = FALSE
+	///skip dead check in try_heal
+	var/corpse_healing = FALSE
 
 /obj/item/stack/medical/attack(mob/living/M, mob/user)
 	. = ..()
@@ -31,7 +33,7 @@
 /obj/item/stack/medical/proc/try_heal(mob/living/patient, mob/user, silent = FALSE)
 	if(!patient.can_inject(user, TRUE))
 		return
-	if(patient.stat == DEAD)
+	if(!corpse_healing && patient.stat == DEAD)
 		to_chat(user, "<span class='warning'>[patient] is dead! You can not help [patient.p_them()].</span>")
 		return
 	if(patient == user)
@@ -226,7 +228,7 @@
 /obj/item/stack/medical/mesh/update_icon()
 	if(is_open)
 		return ..()
-	icon_state = "regen_mesh_closed"
+	icon_state = "mesh_closed"
 
 /obj/item/stack/medical/mesh/try_heal(mob/living/M, mob/user, silent = FALSE)
 	if(!is_open)
@@ -302,6 +304,7 @@
 	repeating = TRUE
 	hitsound = 'sound/misc/moist_impact.ogg'
 	merge_type = /obj/item/stack/medical/poultice
+	corpse_healing = TRUE
 
 /obj/item/stack/medical/poultice/heal(mob/living/M, mob/user)
 	if(iscarbon(M))
