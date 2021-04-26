@@ -75,3 +75,19 @@
 #if ((DM_VERSION > MAX_BYOND_MAJOR) || (DM_BUILD > MAX_BYOND_MINOR)) && !defined(IGNORE_MAX_BYOND_VERSION)
 #error Your version of BYOND is too new to compile this project. Download version 513.1538 at www.byond.com/download/build/513/513.1538_byond_setup.exe
 #endif
+
+#ifdef TRAVISBUILDING
+// Turdis is special :)
+#define CBT
+#endif
+
+#ifdef TGS
+// TGS performs its own build of dm.exe, but includes a prepended TGS define.
+#define CBT
+#endif
+
+#if !defined(CBT) && !defined(SPACEMAN_DMM)
+#warn "Building with Dream Maker is no longer supported and may result in errors."
+#warn "In order to build, run BUILD.bat in the root directory."
+#warn "Consider switching to VSCode editor instead, where you can press Ctrl+Shift+B to build."
+#endif
