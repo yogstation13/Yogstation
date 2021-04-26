@@ -31,6 +31,9 @@
 /obj/item/stack/medical/proc/try_heal(mob/living/patient, mob/user, silent = FALSE)
 	if(!patient.can_inject(user, TRUE))
 		return
+	if(patient.stat == DEAD)
+		to_chat(user, "<span class='warning'>[patient] is dead! You can not help [patient.p_them()].</span>")
+		return
 	if(patient == user)
 		if(!silent)
 			user.visible_message("<span class='notice'>[user] starts to apply \the [src] on [user.p_them()]self...</span>", "<span class='notice'>You begin applying \the [src] on yourself...</span>")
@@ -61,9 +64,9 @@
 		else if (critter.health == critter.maxHealth)
 			to_chat(user, "<span class='notice'>[patient] is at full health.</span>")
 			return FALSE
-			user.visible_message("<span class='green'>[user] applies [src] on [patient].</span>", "<span class='green'>You apply [src] on [patient].</span>")
-			patient.heal_bodypart_damage((heal_brute * 0.5))
-			return TRUE
+		user.visible_message("<span class='green'>[user] applies [src] on [patient].</span>", "<span class='green'>You apply [src] on [patient].</span>")
+		patient.heal_bodypart_damage((heal_brute * 0.5))
+		return TRUE
 	if(iscarbon(patient))
 		return heal_carbon(patient, user, heal_brute, heal_burn)
 	to_chat(user, "<span class='warning'>You can't heal [patient] with [src]!</span>")
@@ -217,13 +220,13 @@
 	..()
 	if(amount == max_amount)	 //only seal full mesh packs
 		is_open = FALSE
-		icon_state = "regen_mesh_closed"
+		update_icon()
 
 
 /obj/item/stack/medical/mesh/update_icon()
-	if(!is_open)
-		return
-	return ..()
+	if(is_open)
+		return ..()
+	icon_state = "mesh_closed"
 
 /obj/item/stack/medical/mesh/try_heal(mob/living/M, mob/user, silent = FALSE)
 	if(!is_open)
