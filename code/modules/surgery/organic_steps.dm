@@ -96,7 +96,8 @@
 		H.bleed_rate = max( (H.bleed_rate - 3), 0)
 	return ..()
 
-
+/datum/surgery_step/close/nofail
+	fuckup_damage = 0
 
 //saw bone
 /datum/surgery_step/saw
