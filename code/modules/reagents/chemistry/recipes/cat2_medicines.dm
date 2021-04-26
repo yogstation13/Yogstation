@@ -8,6 +8,8 @@
 	required_reagents = list(/datum/reagent/phenol = 1, /datum/reagent/oxygen = 1, /datum/reagent/nitrogen = 1)
 
 /datum/chemical_reaction/medicine/probital
+	name = "probital"
+	id = /datum/reagent/medicine/c2/probital
 	results = list(/datum/reagent/medicine/c2/probital = 4)
 	required_reagents = list(/datum/reagent/copper = 1, /datum/reagent/acetone = 2,  /datum/reagent/phosphorus = 1)
 
