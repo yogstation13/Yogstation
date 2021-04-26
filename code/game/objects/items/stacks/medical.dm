@@ -61,9 +61,9 @@
 		else if (critter.health == critter.maxHealth)
 			to_chat(user, "<span class='notice'>[patient] is at full health.</span>")
 			return FALSE
-			user.visible_message("<span class='green'>[user] applies [src] on [patient].</span>", "<span class='green'>You apply [src] on [patient].</span>")
-			patient.heal_bodypart_damage((heal_brute * 0.5))
-			return TRUE
+		user.visible_message("<span class='green'>[user] applies [src] on [patient].</span>", "<span class='green'>You apply [src] on [patient].</span>")
+		patient.heal_bodypart_damage((heal_brute * 0.5))
+		return TRUE
 	if(iscarbon(patient))
 		return heal_carbon(patient, user, heal_brute, heal_burn)
 	to_chat(user, "<span class='warning'>You can't heal [patient] with [src]!</span>")
