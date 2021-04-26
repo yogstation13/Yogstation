@@ -1,7 +1,0 @@
-author: "  lots of tg coders and ExcessiveUseOfCobblestone"
-delete-after: true 
-changes: 
-  - rscadd: "adds a bunch of new medicines from tg"
-  - tweak: "replaces most uses of trekchems with their cobbychem equivalent, and gates trekchems behind a new chemical that has to be ordered from cargo"
-  - rscadd: "adds spaceman trumpet and galaxythistle plants"
-  - imageadd: "adds images for trumpet and galaxythistle"
