@@ -226,7 +226,7 @@
 /obj/item/stack/medical/mesh/update_icon()
 	if(is_open)
 		return ..()
-	icon_state = "mesh_closed"
+	icon_state = "regen_mesh_closed"
 
 /obj/item/stack/medical/mesh/try_heal(mob/living/M, mob/user, silent = FALSE)
 	if(!is_open)
