@@ -343,17 +343,12 @@
 	id = "poultice"
 	required_reagents = list(/datum/reagent/toxin/amanitin = 10, /datum/reagent/cellulose = 20, /datum/reagent/consumable/aloejuice = 20)
 
-/datum/chemical_reaction/poultice_alt
+/datum/chemical_reaction/poultice/alt
 	name = "poultice"
 	id = "poultice_alt"
-	required_reagents = list(/datum/reagent/consumable/entpoly = 12, /datum/reagent/cellulose = 20, /datum/reagent/consumable/tinlux = 10)
+	required_reagents = list(/datum/reagent/consumable/entpoly = 15, /datum/reagent/cellulose = 20, /datum/reagent/consumable/tinlux = 12)
 
 /datum/chemical_reaction/poultice/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
-	for(var/i in 1 to created_volume)
-		new /obj/item/stack/medical/poultice(location)
-
-/datum/chemical_reaction/poultice_alt/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/stack/medical/poultice(location)
