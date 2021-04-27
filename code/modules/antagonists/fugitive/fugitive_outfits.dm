@@ -120,6 +120,8 @@
 	head = /obj/item/clothing/head/fedora
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	ears = /obj/item/radio/headset
+	implants = list(/obj/item/implant/explosive, /obj/item/organ/cyberimp/arm/toolset)
+
 
 /datum/outfit/waldo/post_equip(mob/living/carbon/human/H, visualsOnly=FALSE)
 	if(visualsOnly)
