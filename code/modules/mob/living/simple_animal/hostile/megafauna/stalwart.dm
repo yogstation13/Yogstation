@@ -28,14 +28,14 @@
 	var/revving_charge = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/OpenFire()
-	ranged_cooldown = world.time + 30
+	ranged_cooldown = world.time + 50
 	anger_modifier = clamp(((maxHealth - health)/50),0,20)
 	if(prob(20+anger_modifier)) //Major attack
 		stalnade()
-	else if(prob(50))
+	else if(prob(20))
 		charge()
 	else
-		if(prob(20))
+		if(prob(70))
 			backup()
 		else
 			energy_pike()
@@ -77,7 +77,7 @@
 	visible_message("<span class='danger'>[src] constructs a flock of mini mechanoid!</span>")
 	for(var/turf/open/H in range(src, 2))
 		if(prob(25))
-			new /mob/living/simple_animal/hostile/asteroid/staldrone(H.loc)
+			new /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone(H.loc)
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/energy_pike()
 	ranged_cooldown = world.time + 40
@@ -125,34 +125,12 @@
 	
 //Projectiles and such
 
-/mob/living/simple_animal/hostile/asteroid/staldrone
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone
 	name = "mini mechanoid"
-	desc = "A still hot, newly formed spawn of an automaton. It seems upset with you."
-	icon = 'icons/mob/drone.dmi'
+	desc = "It's staring at you intently. Do not taunt."
 	icon_state = "drone_gem"
-	icon_living = "drone_gem"
-	icon_aggro = "drone_gem"
-	icon_dead = "drone_gem"
-	icon_gib = "syndicate_gib"
-	mouse_opacity = MOUSE_OPACITY_OPAQUE
-	move_to_delay = 1
-	friendly = "buzzes near"
-	vision_range = 10
-	speed = 3
-	maxHealth = 1
-	health = 1
-	movement_type = FLYING
-	harm_intent_damage = 5
-	melee_damage_lower = 8
-	melee_damage_upper = 8
-	attacktext = "slashes"
-	speak_emote = list("telepathically cries")
-	attack_sound = 'sound/weapons/pierce.ogg'
-	throw_message = "falls right through the strange body of the"
-	obj_damage = 0
-	environment_smash = ENVIRONMENT_SMASH_NONE
-	pass_flags = PASSTABLE
-	del_on_death = 1
+	faction = list("mining")
+	weather_immunities = list("lava","ash")
 
 /obj/item/gps/internal/stalwart
 	icon_state = null
