@@ -742,6 +742,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"gV" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/vacant)
 "gW" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -826,8 +833,13 @@
 /area/mine/living_quarters)
 "ia" = (
 /obj/effect/turf_decal/loading_area,
-/obj/structure/extinguisher_cabinet{
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "Mining Production APC";
 	pixel_x = -32
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
@@ -840,6 +852,9 @@
 /area/mine/infirmary)
 "id" = (
 /obj/structure/chair/comfy/brown,
+/obj/machinery/firealarm{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "ik" = (
@@ -1066,7 +1081,12 @@
 	dir = 1;
 	icon_state = "scrub_map_on-3"
 	},
-/obj/structure/bookcase/random/fiction,
+/obj/structure/closet/wardrobe/pjs{
+	anchored = 1
+	},
+/obj/item/toy/plush/beeplushie,
+/obj/item/toy/plush/snakeplushie,
+/obj/item/toy/plush/inorixplushie,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "lF" = (
@@ -1372,6 +1392,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/vacant)
+"rv" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/vacant)
 "rM" = (
 /obj/machinery/computer/arcade{
 	dir = 8
@@ -1439,6 +1465,9 @@
 	dir = 10
 	},
 /obj/machinery/meter/atmos,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
 "tx" = (
@@ -1463,11 +1492,13 @@
 "tZ" = (
 /obj/structure/closet{
 	anchored = 1;
-	name = "Mining Equipment"
+	name = "Miner Equipment #4"
 	},
 /obj/item/shovel,
 /obj/item/pickaxe,
-/obj/item/gps/mining,
+/obj/item/gps/mining{
+	gpstag = "MINER_4"
+	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
 "ui" = (
@@ -1708,6 +1739,9 @@
 /area/mine/eva_secondary)
 "xU" = (
 /obj/structure/table,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -32
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/break_room)
 "yf" = (
@@ -1793,6 +1827,18 @@
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/break_room)
+"As" = (
+/obj/structure/closet{
+	anchored = 1;
+	name = "Miner Equipment #3"
+	},
+/obj/item/shovel,
+/obj/item/pickaxe,
+/obj/item/gps/mining{
+	gpstag = "MINER_3"
+	},
+/turf/open/floor/plasteel,
+/area/mine/eva)
 "At" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
@@ -1905,12 +1951,19 @@
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "Bx" = (
-/obj/structure/sink/kitchen{
-	dir = 8;
-	pixel_x = 11
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/door/poddoor/preopen{
+	id = "mining1";
+	name = "Mining Lockdown Blast Doors"
 	},
-/turf/open/floor/plasteel/cafeteria,
-/area/mine/break_room)
+/obj/structure/curtain{
+	density = 1;
+	icon_state = "closed";
+	opacity = 1;
+	open = 0
+	},
+/turf/open/floor/plating,
+/area/mine/vacant)
 "BC" = (
 /obj/machinery/door/airlock/mining{
 	name = "Mining Station Storage";
@@ -2144,6 +2197,10 @@
 	name = "Station Intercom (General)";
 	pixel_y = -26
 	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -32
+	},
 /turf/open/floor/plasteel,
 /area/mine/production)
 "EJ" = (
@@ -2156,6 +2213,9 @@
 "ET" = (
 /obj/machinery/mineral/mint{
 	input_dir = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
@@ -2301,7 +2361,25 @@
 /turf/open/floor/plasteel,
 /area/mine/eva)
 "GP" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel/dark,
+/area/mine/break_room)
+"GT" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/door/poddoor/preopen{
+	id = "mining1";
+	name = "Mining Lockdown Blast Doors"
+	},
+/obj/structure/curtain{
+	density = 1;
+	icon_state = "closed";
+	opacity = 1;
+	open = 0
+	},
+/turf/open/floor/plating,
 /area/mine/break_room)
 "Hh" = (
 /obj/machinery/vending/snack/random,
@@ -2380,13 +2458,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Mining Production APC";
-	pixel_x = -32
-	},
 /obj/structure/cable{
-	icon_state = "0-4"
+	icon_state = "1-4"
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
@@ -2410,9 +2483,6 @@
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "Jt" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Recovery Room"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
@@ -2425,10 +2495,27 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/machinery/door/airlock/medical{
+	name = "Recovery Room"
+	},
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
 /area/mine/infirmary)
+"JA" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/door/poddoor/preopen{
+	id = "mining1";
+	name = "Mining Lockdown Blast Doors"
+	},
+/obj/structure/curtain{
+	density = 1;
+	icon_state = "closed";
+	opacity = 1;
+	open = 0
+	},
+/turf/open/floor/plating,
+/area/mine/production)
 "JJ" = (
 /obj/machinery/door/airlock/external{
 	glass = 1;
@@ -2468,6 +2555,9 @@
 /area/mine/production)
 "KO" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,
+/obj/machinery/firealarm{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
 "KX" = (
@@ -2895,13 +2985,19 @@
 /obj/structure/mopbucket,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/mop,
+/obj/structure/sink/kitchen{
+	dir = 8;
+	pixel_x = 11
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/break_room)
 "RH" = (
 /obj/machinery/light_switch{
 	pixel_y = 32
 	},
-/obj/machinery/atmospherics/components/unary/portables_connector/visible,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	name = "Aux Waste Port"
+	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
 "RK" = (
@@ -3047,6 +3143,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/vacant)
+"Tq" = (
+/obj/structure/closet{
+	anchored = 1;
+	name = "Miner Equipment #1"
+	},
+/obj/item/shovel,
+/obj/item/pickaxe,
+/obj/item/gps/mining{
+	gpstag = "MINER_1"
+	},
+/turf/open/floor/plasteel,
+/area/mine/eva)
 "TF" = (
 /obj/machinery/atmospherics/components/trinary/mixer/on{
 	dir = 4;
@@ -3336,6 +3444,18 @@
 "Zm" = (
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
+"Zs" = (
+/obj/structure/closet{
+	anchored = 1;
+	name = "Miner Equipment #2"
+	},
+/obj/item/shovel,
+/obj/item/pickaxe,
+/obj/item/gps/mining{
+	gpstag = "MINER_2"
+	},
+/turf/open/floor/plasteel,
+/area/mine/eva)
 "ZJ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -3712,7 +3832,7 @@ zW
 kJ
 kJ
 kJ
-kJ
+JA
 kJ
 oh
 kM
@@ -4017,7 +4137,7 @@ tZ
 dX
 ef
 qc
-tZ
+As
 ND
 Cv
 ak
@@ -4349,11 +4469,11 @@ Xo
 kO
 Xc
 zW
-tZ
+Tq
 iT
 Hy
 iT
-tZ
+Zs
 ND
 Ap
 Ap
@@ -4454,12 +4574,12 @@ ab
 ab
 ab
 ab
-Uf
+Bx
 Rl
 Hi
 cF
 Hi
-Rl
+rv
 zW
 pM
 AG
@@ -4538,12 +4658,12 @@ ab
 ab
 ab
 Ap
-Uf
+Bx
 Rl
 Hi
 cZ
 Hi
-Rl
+gV
 zW
 gm
 AG
@@ -4592,7 +4712,7 @@ ld
 zW
 zW
 Ru
-Bx
+Rf
 Sg
 rM
 Hh
@@ -4634,7 +4754,7 @@ AG
 fO
 zW
 Sg
-Sg
+GT
 Sg
 Sg
 Sg
