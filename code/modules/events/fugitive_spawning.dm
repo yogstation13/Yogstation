@@ -23,7 +23,7 @@
 	var/list/possible_backstories = list()
 	var/list/candidates = get_candidates(ROLE_FUGITIVE, null, ROLE_FUGITIVE)
 	if(candidates.len >= 1) //solo refugees
-		possible_backstories.Add("waldo")
+		possible_backstories.Add("waldo", "gadget")
 	if(candidates.len >= 2)//group refugees
 		possible_backstories.Add("prisoner", "cultist", "synth")
 	if(!possible_backstories.len)
@@ -37,6 +37,8 @@
 			leader = pick_n_take(candidates)
 		if("waldo")
 			member_size = 0 //solo refugees have no leader so the member_size gets bumped to one a bit later
+		if("gadget")
+			member_size = 0
 	var/list/members = list()
 	var/list/spawned_mobs = list()
 	if(isnull(leader))
@@ -79,6 +81,8 @@
 			comm.Grant(S)
 		if("waldo")
 			S.equipOutfit(/datum/outfit/waldo)
+		if("gadget")
+			S.equipOutfit(/datum/outfit/gadget)
 		if("synth")
 			S.equipOutfit(/datum/outfit/synthetic)
 			S.set_species(/datum/species/synth)
