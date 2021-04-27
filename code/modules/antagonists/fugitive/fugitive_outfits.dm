@@ -112,3 +112,31 @@
 	W.assignment = "Police Officer"
 	W.registered_name = H.real_name
 	W.update_label()
+
+/datum/outfit/gadget
+	name = "Inspector Gadget"
+	uniform = /obj/item/clothing/under/color/grey
+	suit = /obj/item/clothing/suit/det_suit/grey
+	head = /obj/item/clothing/head/fedora
+	shoes = /obj/item/clothing/shoes/sneakers/brown
+	ears = /obj/item/radio/headset
+
+/datum/outfit/waldo/post_equip(mob/living/carbon/human/H, visualsOnly=FALSE)
+	if(visualsOnly)
+		return
+	H.fully_replace_character_name(null,"Inspector Gadget")
+	H.eye_color = "000"
+	H.gender = MALE
+	H.skin_tone = "caucasian3"
+	H.hair_style = "Business Hair 3"
+	H.facial_hair_style = "Shaved"
+	H.hair_color = "000"
+	H.facial_hair_color = H.hair_color
+	var/list/no_drops = list()
+	no_drops += H.get_item_by_slot(SLOT_SHOES)
+	no_drops += H.get_item_by_slot(SLOT_W_UNIFORM)
+	no_drops += H.get_item_by_slot(SLOT_WEAR_SUIT)
+	no_drops += H.get_item_by_slot(SLOT_HEAD)
+	for(var/i in no_drops)
+		var/obj/item/I = i
+		ADD_TRAIT(I, TRAIT_NODROP, CURSED_ITEM_TRAIT)
