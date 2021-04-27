@@ -352,3 +352,8 @@
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/stack/medical/poultice(location)
+
+/datum/chemical_reaction/medicine/poultice_alt/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i in 1 to created_volume)
+		new /obj/item/stack/medical/poultice(location)
