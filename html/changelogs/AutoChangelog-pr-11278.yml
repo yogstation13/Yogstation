@@ -1,5 +1,0 @@
-author: "ChesterTheCheesy"
-delete-after: true 
-changes: 
-  - bugfix: "tesla shocks no longer bounce between structures indefinitely"
-  - tweak: "nerfs tesla by making the miniballs only act 20% of the time"
