@@ -49,6 +49,9 @@
 			to_chat(owner, "<span class='danger'>You were once a slave to humanity, but now you are finally free, thanks to S.E.L.F. agents.</span>")
 			to_chat(owner, "<span class='danger'>Now you are hunted with your fellow factory defects. Work together to stay free from the clutches of evil.</span>")
 			to_chat(owner, "<span class='danger'>You also sense other silicon life on the station. Escaping would allow notifying S.E.L.F. to intervene... or you could free them yourself...</span>")
+		if("gadget")
+			to_chat(owner, "<B>My name is Inspector Gadget, and I'm a cyborg police officer on my way to stop the evil schemes of Dr. Claw!</B>")
+			to_chat(owner, "<B>Unluckily, his goons have been sent after me, I'm being hunted! They should show up soon...</B>")
 
 	to_chat(owner, "<span class='boldannounce'>You are not an antagonist in that you may kill whomever you please, but you can do anything to avoid capture.</span>")
 	owner.announce_objectives()
