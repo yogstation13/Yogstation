@@ -329,6 +329,8 @@
 		new /obj/item/stack/medical/suture/medicated(location)
 
 /datum/chemical_reaction/medicine/medmesh
+	name = "Advanced Mesh"
+	id = "adv_mesh"
 	required_reagents = list(/datum/reagent/cellulose = 20, /datum/reagent/consumable/aloejuice = 20, /datum/reagent/space_cleaner/sterilizine = 10)
 
 /datum/chemical_reaction/medicine/medmesh/on_reaction(datum/reagents/holder, created_volume)
@@ -337,9 +339,13 @@
 		new /obj/item/stack/medical/mesh/advanced(location)
 
 /datum/chemical_reaction/medicine/poultice
+	name = "poultice"
+	id = "poultice"
 	required_reagents = list(/datum/reagent/toxin/amanitin = 10, /datum/reagent/cellulose = 20, /datum/reagent/consumable/aloejuice = 20)
 
-/datum/chemical_reaction/medicine/poultice/alt
+/datum/chemical_reaction/medicine/poultice_alt
+	name = "poultice"
+	id = "poultice_alt"
 	required_reagents = list(/datum/reagent/consumable/entpoly = 12, /datum/reagent/cellulose = 20, /datum/reagent/consumable/tinlux = 10)
 
 /datum/chemical_reaction/medicine/poultice/on_reaction(datum/reagents/holder, created_volume)
