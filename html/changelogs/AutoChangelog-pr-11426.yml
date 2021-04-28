@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "holdup no longer force triggers on movement, uses non-forced trigger"
