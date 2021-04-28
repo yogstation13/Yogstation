@@ -219,7 +219,7 @@
 /area/crew_quarters/bar)
 "aG" = (
 /obj/effect/landmark/blobstart,
-/obj/item/storage/bag/money,
+/obj/item/storage/bag/money/vault,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
 "aI" = (

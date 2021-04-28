@@ -271,6 +271,10 @@
 	var/obj/effect/portal/p_orange
 	var/atmos_link = FALSE
 
+/obj/item/gun/energy/wormhole_projector/upgraded
+	desc = "A projector that emits high density quantum-coupled bluespace beams. This one seems to be modified to go through glass."
+	ammo_type = list(/obj/item/ammo_casing/energy/wormhole/upgraded, /obj/item/ammo_casing/energy/wormhole/orange/upgraded)
+
 /obj/item/gun/energy/wormhole_projector/update_icon()
 	icon_state = "[initial(icon_state)][select]"
 	item_state = icon_state
