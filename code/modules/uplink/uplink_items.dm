@@ -1912,7 +1912,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 16
 	surplus = 0
 	restricted_roles = list("Curator")
-	player_minimum = 20
+	player_minimum = 1000
 
 /datum/uplink_item/role_restricted/explosive_hot_potato
 	name = "Exploding Hot Potato"
