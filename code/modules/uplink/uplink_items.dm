@@ -1273,9 +1273,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/stealthy_tools/armorpolish
 	name = "Armor Polish"
-	desc = "This simple polish will strengthen clothing to be as strong as a standard issue armor vest.  \
+	desc = "This two use polish will strengthen clothing to be as strong as a standard issue armor vest.  \
 			Reinforced with nanite technology, you are able to stay lookin good while bashing heads in. \
-			Beware, you can only polish things that go over your jumpsuit!"
+			Beware, you can only polish things that go over your jumpsuit or a hat!"
 	item = /obj/item/armorpolish
 	cost = 6
 
