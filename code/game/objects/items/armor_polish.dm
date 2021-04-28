@@ -1,5 +1,5 @@
 /obj/item/armorpolish
-	name = "armor aolish"
+	name = "armor polish"
 	desc = "Some canned tuna... oh wait. That's armor polish."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "armor_polish"
