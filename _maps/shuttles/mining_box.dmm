@@ -15,6 +15,9 @@
 	dir = 1
 	},
 /obj/structure/ore_box,
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/mining)
 "d" = (
@@ -81,6 +84,17 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
+/area/shuttle/mining)
+"m" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/ore_box,
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/mining)
 "x" = (
 /obj/structure/shuttle/engine/heater,
@@ -155,7 +169,7 @@ l
 "}
 (4,1,1) = {"
 a
-c
+m
 g
 e
 f

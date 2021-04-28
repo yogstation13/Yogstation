@@ -641,10 +641,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/break_room)
-"ft" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
+"fp" = (
+/obj/machinery/newscaster{
+	pixel_x = 32
 	},
+/turf/open/floor/plasteel,
+/area/mine/eva_secondary)
+"ft" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
@@ -734,6 +737,18 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/mine/living_quarters)
+"gn" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "gy" = (
 /obj/machinery/light,
 /obj/item/radio/intercom{
@@ -756,12 +771,10 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 8
-	},
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "hd" = (
@@ -822,12 +835,12 @@
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
 "hW" = (
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
 /obj/structure/cable{
 	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -935,12 +948,12 @@
 /turf/open/floor/plasteel,
 /area/mine/eva)
 "iV" = (
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
 /obj/structure/cable{
 	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -999,6 +1012,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "kC" = (
@@ -1128,9 +1142,6 @@
 /obj/machinery/firealarm{
 	pixel_y = 32
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
@@ -1164,7 +1175,7 @@
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "mz" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "mJ" = (
@@ -1233,7 +1244,7 @@
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
 "og" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "oh" = (
@@ -1282,6 +1293,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"pB" = (
+/turf/closed/wall/r_wall,
+/area/mine/maintenance)
 "pL" = (
 /obj/machinery/atmospherics/components/unary/tank/nitrogen{
 	name = "Pure N2"
@@ -1801,6 +1815,15 @@
 	},
 /turf/open/floor/plating,
 /area/mine/maintenance)
+"zK" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "zW" = (
 /turf/closed/wall,
 /area/mine/living_quarters)
@@ -1853,6 +1876,12 @@
 /obj/item/storage/box/donkpockets,
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/break_room)
+"Ax" = (
+/obj/structure/sign/poster/random{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/freezer,
+/area/mine/living_quarters)
 "AG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -1866,15 +1895,13 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "AK" = (
@@ -1914,6 +1941,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -2226,9 +2256,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -2270,6 +2297,9 @@
 	},
 /obj/structure/table,
 /obj/machinery/recharger,
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "FF" = (
@@ -2293,6 +2323,13 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/mine/break_room)
+"FR" = (
+/obj/structure/table,
+/obj/structure/sign/poster/official/random{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel,
+/area/mine/eva_secondary)
 "FW" = (
 /obj/structure/closet/secure_closet/miner{
 	anchored = 1
@@ -2827,6 +2864,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"OZ" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8;
+	icon_state = "scrub_map_on-3"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "Pj" = (
 /obj/machinery/atmospherics/components/unary/tank/oxygen{
 	name = "Pure O2"
@@ -2863,6 +2913,9 @@
 "PP" = (
 /obj/structure/chair{
 	dir = 8
+	},
+/obj/structure/sign/poster/random{
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
@@ -3424,6 +3477,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
 /turf/open/floor/wood,
 /area/mine/break_room)
 "YY" = (
@@ -3708,11 +3764,11 @@ ak
 Ap
 Ap
 Ap
-oh
-oh
-oh
-oh
-oh
+pB
+pB
+pB
+pB
+pB
 Ap
 Ap
 Ap
@@ -3750,11 +3806,11 @@ ak
 ak
 Ap
 Ap
-oh
+pB
 LZ
 zw
 Si
-oh
+pB
 Cv
 Cv
 Ap
@@ -3792,11 +3848,11 @@ ak
 ak
 ak
 ak
-oh
+pB
 ce
 cu
 Tk
-oh
+pB
 UE
 Cv
 Cv
@@ -3834,11 +3890,11 @@ kJ
 kJ
 JA
 kJ
-oh
+pB
 kM
 EZ
 kM
-oh
+pB
 mX
 oh
 oh
@@ -4113,7 +4169,7 @@ ab
 ab
 ak
 RR
-RK
+FR
 Zm
 Ld
 Zm
@@ -4247,7 +4303,7 @@ qa
 wU
 Kp
 fJ
-ft
+gn
 uy
 ep
 ep
@@ -4331,7 +4387,7 @@ KX
 fY
 Fx
 fJ
-ft
+OZ
 uy
 ep
 ep
@@ -4415,7 +4471,7 @@ gh
 Ql
 Xo
 sU
-ft
+zK
 vn
 OU
 OU
@@ -4453,7 +4509,7 @@ RK
 Zm
 Ld
 Zm
-Zm
+fp
 mx
 og
 iV
@@ -4751,7 +4807,7 @@ Uf
 zW
 we
 AG
-fO
+Ax
 zW
 Sg
 GT
