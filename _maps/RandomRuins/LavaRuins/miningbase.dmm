@@ -3051,6 +3051,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	name = "Aux Waste Port"
 	},
+/obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
 "RK" = (
