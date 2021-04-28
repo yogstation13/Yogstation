@@ -1,6 +1,6 @@
 /obj/item/armorpolish
-	name = "Armor Polish"
-	desc = "Some canned tuna... oh wait. That's Armor polish."
+	name = "armor aolish"
+	desc = "Some canned tuna... oh wait. That's armor polish."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "armor_polish"
 	w_class = WEIGHT_CLASS_TINY
