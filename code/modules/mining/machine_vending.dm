@@ -72,7 +72,7 @@
 		new /datum/data/mining_equipment("Space Cash",					/obj/item/stack/spacecash/c1000,									2000, VENDING_MISC),
 		new /datum/data/mining_equipment("Giga Drill",					/obj/vehicle/ridden/gigadrill,										50000, VENDING_MISC)
 	)
-	
+
 
 /datum/data/mining_equipment
 	var/equipment_name = "generic"
@@ -250,10 +250,10 @@
 /obj/machinery/mineral/equipment_vendor/golem/Initialize()
 	desc += "\nIt seems a few selections have been added."
 	prize_list += list(
-		new /datum/data/mining_equipment("Brute Pill Bottle",			/obj/item/storage/pill_bottle/bica,									600, VENDING_MEDS),
-		new /datum/data/mining_equipment("Burn Pill Bottle",			/obj/item/storage/pill_bottle/kelo,									600, VENDING_MEDS),
+		new /datum/data/mining_equipment("Brute Pill Bottle",			/obj/item/storage/pill_bottle/libi,									600, VENDING_MEDS),
+		new /datum/data/mining_equipment("Burn Pill Bottle",			/obj/item/storage/pill_bottle/aiur,									600, VENDING_MEDS),
 		new /datum/data/mining_equipment("Toxin Pill Bottle",			/obj/item/storage/pill_bottle/charcoal,								600, VENDING_MEDS),
-		new /datum/data/mining_equipment("KA Trigger Guard Kit",    		/obj/item/borg/upgrade/modkit/trigger_guard,					1700, VENDING_UPGRADE),
+		new /datum/data/mining_equipment("KA Trigger Guard Kit",    	/obj/item/borg/upgrade/modkit/trigger_guard,					1700, VENDING_UPGRADE),
 		new /datum/data/mining_equipment("Extra ID",       				/obj/item/card/id/mining, 				                   		250, VENDING_MISC),
 		new /datum/data/mining_equipment("Monkey Cube",					/obj/item/reagent_containers/food/snacks/monkeycube,        	300, VENDING_MISC),
 		new /datum/data/mining_equipment("Grey Slime Extract",			/obj/item/slime_extract/grey,									1000, VENDING_MISC),
