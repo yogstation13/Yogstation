@@ -175,11 +175,11 @@
 	return TOXLOSS
 
 	/*
-	The idea is for these medical devices to work like a hybrid of the old brute packs and tend wounds,
-	they heal a little at a time, have reduced healing density and does not allow for rapid healing while in combat.
-	However they provice graunular control of where the healing is directed, this makes them better for curing work-related cuts and scrapes.
+	The idea is for these medical devices to work as a hybrid of the old brute packs and tend wounds,
+	they heal a little at a time, have reduced healing density, and do not allow for rapid healing while in combat.
+	However they provide granular control of where the healing is directed, this makes them better for curing work-related cuts and scrapes.
 
-	The interesting limb targeting mechanic is retained and i still believe they will be a viable choice, especially when healing others in the field.
+	The interesting limb targeting mechanic is retained and I still believe they will be a viable choice, especially when healing others in the field.
 	 */
 
 /obj/item/stack/medical/suture
