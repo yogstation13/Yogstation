@@ -293,7 +293,7 @@
 /obj/item/stack/medical/poultice
 	name = "mourning poultices"
 	singular_name = "mourning poultice"
-	desc = "A type of primitive herbal poultice.\nWhile traditionally used to prepare corpses for the mourning feast, it can also treat scrapes and burns on the living, however, it is liable to cause shortness of breath when employed in this manner.\nIt is imbued with ancient wisdom."
+	desc = "A type of primitive herbal poultice.\nWhile traditionally used to prepare corpses for the mourning feast, it can also treat scrapes and burns on the living. However, it is liable to cause shortness of breath when employed in this manner.\nIt is imbued with ancient wisdom."
 	icon_state = "poultice"
 	amount = 15
 	max_amount = 15
