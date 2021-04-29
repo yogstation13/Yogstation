@@ -197,7 +197,7 @@
 	icon_state = "seed-aloe"
 	species = "aloe"
 	plantname = "Aloe"
-	product = /obj/item/food/grown/aloe
+	product = /obj/item/reagent_containers/food/snacks/grown/aloe
 	lifespan = 60
 	endurance = 25
 	maturation = 4
