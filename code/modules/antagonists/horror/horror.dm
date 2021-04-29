@@ -63,7 +63,6 @@
 	add_ability("mutate")
 	add_ability("seek_soul")
 	add_ability("consume_soul")
-	add_ability("locate_soul")
 	add_ability("talk_to_host")
 	add_ability("freeze_victim")
 	add_ability("infest")
@@ -74,6 +73,7 @@
 	add_ability("make_chems")
 	add_ability("talk_to_brain")
 	add_ability("release_control")
+	RefreshAbilities()
 
 	//starting chems, more are to be unlocked
 	horror_chems += list(/datum/horror_chem/epinephrine,/datum/horror_chem/mannitol,/datum/horror_chem/bicaridine,/datum/horror_chem/kelotane,/datum/horror_chem/charcoal)
@@ -126,22 +126,25 @@
 			return
 		if(alert("You already have a target ([target.name]). Would you like to change that target?","Swap targets?","Yes","No") != "Yes")
 			return
-			
+
 	var/datum/objective/A = new
 	A.owner = mind
 	var/list/targets = list()
 	for(var/i in 0 to 4)
-		var/datum/mind/targeted =  A.find_target(TRUE, list(mind.enslaved_to.mind, target))
+		var/datum/mind/targeted =  A.find_target(null, list(mind.enslaved_to.mind, target))
 		if(!targeted || !targeted.hasSoul)
 			break
 		targets[targeted.current.real_name] = targeted.current
-		
+
 	target = targets[input(src,"Choose your next target","Target") in targets]
 	qdel(A)
 
 	if(target)
 		used_target = world.time
 		to_chat(src,"<span class='warning'>Your new target has been selected, go and consume [target.name]'s soul!</span>")
+		apply_status_effect(/datum/status_effect/agent_pinpointer/horror)
+		for(var/datum/status_effect/agent_pinpointer/horror/status in status_effects)
+			status.scan_target = target
 	else
 		to_chat(src,"<span class='warning'>A new target could not be found.</span>")
 
@@ -153,11 +156,11 @@
 		to_chat(src, "This host doesn't have a soul!")
 		return
 
-	if(src.victim == src.mind.enslaved_to)
-		to_chat(src, "<span class='userdanger'>No, not yet...We still need them...</span>")
+	if(victim == mind.enslaved_to)
+		to_chat(src, "<span class='userdanger'>No, not yet... We still need them...</span>")
 		return
 
-	if(src.victim.mind != src.target)
+	if(victim != target)
 		to_chat(src, "This soul isn't your target, you can't consume it!")
 		return
 
@@ -165,44 +168,19 @@
 	addtimer(CALLBACK(src, .proc/consume), 200)
 
 /mob/living/simple_animal/horror/proc/consume()
-	if(!src.victim.mind.hasSoul)
+	if(!can_use_ability() || !victim || !victim.mind.hasSoul)
 		return
-	src.consumed_souls++
-	src.available_points++
+	consumed_souls++
+	available_points++
 	to_chat(src, "<span class='userdanger'>You succeed in consuming [victim.name]'s soul!</span>")
-	to_chat(src.victim, "<span class='userdanger'>You suddenly feel hollow inside...</span>")
-	src.victim.mind.hasSoul = FALSE
+	to_chat(src.victim, "<span class='userdanger'>You suddenly feel weak and hollow inside...</span>")
+	victim.health -= 20
+	victim.maxHealth -= 20
+	victim.mind.hasSoul = FALSE
 	target = null
+	remove_status_effect(/datum/status_effect/agent_pinpointer/horror)
 	playsound(src, 'sound/effects/curseattack.ogg', 150)
 	playsound(src, 'sound/effects/ghost.ogg', 50)
-
-
-/mob/living/simple_animal/horror/proc/Locate()
-	if(stat != CONSCIOUS)
-		return
-	if(!target)
-		to_chat(src,"<span class='warning>You don't have a target!</span>")
-		return
-
-	var/mob/living/carbon/T = target.current
-	var/dist = get_dist(src.loc,T.loc)
-	var/dir = get_dir(src.loc,T.loc)
-
-	if(src.z != T.z)
-		to_chat(src,"<span class='warning>[T.name] is ... vertical to you?</span>")
-	else
-		switch(dist)
-			if(0 to 15)
-				to_chat(src,"<span class='warning'>[T.name] is near you. They are to the [dir2text(dir)] of you!</span>")
-			if(16 to 31)
-				to_chat(src,"<span class='warning'>[T.name] is somewhere in your vicinty. They are to the [dir2text(dir)] of you!</span>")
-			if(32 to 127)
-				to_chat(src,"<span class='warning'>[T.name] is far away from you. They are to the [dir2text(dir)] of you!</span>")
-			else
-				to_chat(src,"<span class='warning'>[T.name] is beyond our reach.</span>")
-
-
-
 
 /mob/living/simple_animal/horror/proc/Communicate()
 	if(!can_use_ability())
@@ -234,24 +212,21 @@
 	set category = "Horror"
 	set desc = "Communicate mentally with the thing in your head."
 
-
 	var/mob/living/simple_animal/horror/B = has_brain_worms()
-	if(!B)
-		return
+	if(B)
+		var/input = stripped_input(src, "Please enter a message to tell the horror.", "Message", "")
+		if(!input)
+			return
 
-	var/input = stripped_input(src, "Please enter a message to tell the horror.", "Message", null)
-	if(!input)
-		return
+		to_chat(B, "<span class='changeling'><i>[src.name] says:</i> [input]</span>")
+		src.log_talk("Horror Communication: [key_name(src)] -> [key_name(B)] : [input]", LOG_SAY, tag="changeling")
 
-	to_chat(B, "<span class='changeling'><i>[src] says:</i> [input]</span>")
-	log_say("Horror Communication: [key_name(src)] -> [key_name(B)] : [input]")
-
-	for(var/M in GLOB.dead_mob_list)
-		if(isobserver(M))
-			var/rendered = "<span class='changeling'><i>Horror Communication from <b>[src]</b> : [input]</i>"
-			var/link = FOLLOW_LINK(M, src)
-			to_chat(M, "[link] [rendered]")
-	to_chat(src, "<span class='changeling'><i>[src] says:</i> [input]</span>")
+		for(var/M in GLOB.dead_mob_list)
+			if(isobserver(M))
+				var/rendered = "<span class='changeling'><i>Horror Communication from <b>[src]</b> : [input]</i>"
+				var/link = FOLLOW_LINK(M, src)
+				to_chat(M, "[link] [rendered]")
+		to_chat(src, "<span class='changeling'><i>[src] says:</i> [input]</span>")
 
 /mob/living/proc/trapped_mind_comm()
 	var/mob/living/simple_animal/horror/B = has_brain_worms()
@@ -353,7 +328,12 @@
 			chemscan(usr, A)
 		else
 			alpha = 255
-			invisible = FALSE
+			if(hiding)
+				var/datum/action/innate/horror/H = has_ability("toggle_hide")
+				H.Activate()
+			if(invisible)
+				var/datum/action/innate/horror/H = has_ability("chameleon")
+				H.Activate()
 			Update_Invisibility_Button()
 			..()
 
@@ -401,7 +381,6 @@
 	Infect(H)
 
 /mob/living/simple_animal/horror/proc/Infect(mob/living/carbon/C)
-
 	if(!C)
 		return
 	var/obj/item/bodypart/head/head = C.get_bodypart(BODY_ZONE_HEAD)
@@ -420,7 +399,7 @@
 		to_chat(src, "<span class='warning'>[C] is already infested!</span>")
 		return
 
-	if(!C.key || !C.mind)
+	if((!C.key || !C.mind) && C != target)
 		to_chat(src, "<span class='warning'>[C]'s mind seems unresponsive. Try someone else!</span>")
 		return
 
@@ -428,9 +407,7 @@
 	Update_Invisibility_Button()
 	victim = C
 	forceMove(victim)
-
 	RefreshAbilities()
-
 	log_game("[src]/([src.ckey]) has infested [victim]/([victim.ckey]")
 
 /mob/living/simple_animal/horror/proc/secrete_chemicals()
@@ -529,8 +506,7 @@
 	if(horrorupgrades["paralysis"])
 		to_chat(src, "<span class='warning'>You whip your electrocharged tentacle at [M]'s leg and knock them down!</span>")
 		playsound(loc, "sound/effects/sparks4.ogg", 30, 1, -1)
-		M.Stun(60)
-		M.Knockdown(80)
+		M.SetSleeping(70)
 		M.electrocute_act(15, src, 1, FALSE, FALSE, FALSE, 1, FALSE)
 	else
 		to_chat(src, "<span class='warning'>You whip your tentacle at [M]'s leg and knock them down!</span>")
@@ -770,6 +746,7 @@
 
 		qdel(host_brain)
 		host_brain = new(src)
+		host_brain.H = src
 		victim.mind.transfer_to(host_brain)
 
 		to_chat(host_brain, "You are trapped in your own mind. You feel that there must be a way to resist!")
@@ -794,7 +771,7 @@
 		B.detatch()
 
 //Check for brain worms in head.
-/mob/proc/has_brain_worms()
+/mob/living/proc/has_brain_worms()
 	for(var/I in contents)
 		if(ishorror(I))
 			return I

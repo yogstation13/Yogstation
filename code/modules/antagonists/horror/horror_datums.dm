@@ -16,25 +16,32 @@
 		H.mind.store_memory("You become docile after contact with [H.weakness.name]. Avoid it.")
 
 /datum/antagonist/horror/proc/give_objectives()
-	var/datum/objective/survive/survive = new
-	survive.owner = owner
-	objectives += survive
 	if(summoner)
 		var/datum/objective/newobjective = new
 		newobjective.explanation_text = "Serve your summoner, [summoner.name]."
 		newobjective.owner = owner
+		newobjective.completed = TRUE
 		objectives += newobjective
 	else
 		var/datum/objective/horrorascend/ascend = new
 		ascend.owner = owner
+		ascend.target_amount = rand(6, 10)
 		objectives += ascend
+		ascend.update_explanation_text()
+	var/datum/objective/survive/survive = new
+	survive.owner = owner
+	objectives += survive
 
 /datum/objective/horrorascend
-	explanation_text = "Consume 10 souls."
+	name = "consume souls"
+
+/datum/objective/horrorascend/update_explanation_text()
+	. = ..()
+	explanation_text = "Consume [target_amount] souls."
 
 /datum/objective/horrorascend/check_completion()
 	var/mob/living/simple_animal/horror/H = owner.current
-	if(istype(H) && H.consumed_souls > 10)
+	if(istype(H) && H.consumed_souls > target_amount)
 		return TRUE
 	return FALSE
 
@@ -139,7 +146,7 @@
 					to_chat(user, "<span class='danger'>[src] breaks!</span>")
 					qdel(src)
 
-/obj/item/pickaxe/suicide_act(mob/living/user)  //"I am the prettiest unicorn that ever was!" ~Spy 2013
+/obj/item/horrorsummonhorn/suicide_act(mob/living/user)  //"I am the prettiest unicorn that ever was!" ~Spy 2013
 	user.visible_message("<span class='suicide'>[user] stabs [user.p_their()] forehead with [src]!  It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return BRUTELOSS
 
@@ -240,6 +247,28 @@
 	user.visible_message("<span class='suicide'>[src] coils itself around [user] tightly gripping [user.p_their()] neck! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return (OXYLOSS)
 
+//Pinpointer
+/obj/screen/alert/status_effect/agent_pinpointer/horror
+	name = "Soul locator"
+	desc = "Find your target soul."
+
+/datum/status_effect/agent_pinpointer/horror
+	id = "horror_pinpointer"
+	minimum_range = 0
+	range_fuzz_factor = 0
+	tick_interval = 20
+	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/horror
+
+/datum/status_effect/agent_pinpointer/horror/scan_for_target()
+	return
+
+/datum/status_effect/agent_pinpointer/horror/point_to_target()
+	if(!ishorror(owner))
+		return
+	return ..()
+
+
+
 //ABILITIES
 
 /datum/action/innate/horror
@@ -291,17 +320,6 @@
 /datum/action/innate/horror/consume_soul/Activate()
 	B.ConsumeSoul()
 
-/datum/action/innate/horror/locate_soul
-	name = "Locate Soul"
-	id = "locate_soul"
-	desc = "Locate the whereabouts of your target."
-	button_icon_state = "locate_soul"
-	blacklisted = TRUE
-	category = list("horror","infest")
-
-/datum/action/innate/horror/locate_soul/Activate()
-	B.Locate()
-
 /datum/action/innate/horror/talk_to_host
 	name = "Converse with Host"
 	id = "talk_to_host"
@@ -345,7 +363,8 @@
 	blacklisted = TRUE
 
 /datum/action/innate/horror/talk_to_horror/Activate()
-	B.victim.horror_comm()
+	var/mob/living/O = owner
+	O.horror_comm()
 
 /datum/action/innate/horror/talk_to_brain
 	name = "Converse with Trapped Mind"
@@ -530,7 +549,7 @@
 	name = "Electrocharged tentacle"
 	id = "paralysis"
 	desc = "Empowers your tentacle knockdown ability by giving it extra charge, knocking your victim down unconcious."
-	soul_price = 2
+	soul_price = 3
 
 /datum/horror_upgrade/paralysis/apply_effects()
 	var/datum/action/innate/horror/A = B.has_ability("freeze_victim")
@@ -580,17 +599,17 @@
 	name = "Reflective fluids"
 	id = "invisible_exit"
 	desc = "You build up reflective solution inside host's brain. Upon exiting a host, you're briefly covered in it, rendering you near invisible for a few seconds. This mutation also makes the host unable to notice you exiting it directly."
-	soul_price = 1
+	soul_price = 2
 
 //Increases melee damage to 20
 /datum/horror_upgrade/dmg_up
 	name = "Sharpened teeth"
 	id = "dmg_up"
 	desc = "Your teeth become sharp blades, this mutation increases your melee damage."
-	soul_price = 1
+	soul_price = 2
 
 /datum/horror_upgrade/dmg_up/apply_effects()
-	B.attacktext = "crunches"
+	B.attacktext = "crushes"
 	B.attack_sound = 'sound/weapons/pierce_slow.ogg' //chunky
 	B.melee_damage_lower += 10
 	B.melee_damage_upper += 10
@@ -610,7 +629,7 @@
 	name = "Precise probosci"
 	id = "fast_control"
 	desc = "Your probosci become more precise, allowing you to take control over your host's brain noticably faster."
-	soul_price = 1
+	soul_price = 2
 
 //makes it longer for host to snap out of mind control
 /datum/horror_upgrade/deep_control
@@ -624,6 +643,13 @@
 /mob/living/captive_brain
 	name = "host brain"
 	real_name = "host brain"
+	var/datum/action/innate/resist_control/R
+	var/mob/living/simple_animal/horror/H
+
+/mob/living/captive_brain/Initialize(mapload, gen=1)
+	..()
+	R = new
+	R.Grant(src)
 
 /mob/living/captive_brain/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(client)
@@ -641,37 +667,44 @@
 		if(stat == 2)
 			return say_dead(message)
 
-		var/mob/living/simple_animal/horror/B = loc
 		to_chat(src, "<i><span class='alien'>You whisper silently, \"[message]\"</span></i>")
-		to_chat(B.victim, "<i><span class='alien'>The captive mind of [src] whispers, \"[message]\"</span></i>")
+		to_chat(H.victim, "<i><span class='alien'>The captive mind of [src] whispers, \"[message]\"</span></i>")
 
 		for (var/mob/M in GLOB.player_list)
 			if(isnewplayer(M))
 				continue
 			else if(M.stat == 2 &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
-				to_chat(M, "<i>Thought-speech, <b>[src]</b> -> <b>[B.truename]:</b> [message]</i>")
+				to_chat(M, "<i>Thought-speech, <b>[src]</b> -> <b>[H.truename]:</b> [message]</i>")
 
 /mob/living/captive_brain/emote(act, m_type = null, message = null, intentional = FALSE)
 	return
 
-/mob/living/captive_brain/resist()
+/datum/action/innate/resist_control
+	name = "Resist control"
+	desc = "Try to take back control over your brain. A strong nerve impulse should do it."
+	background_icon_state = "bg_ecult"
+	icon_icon = 'icons/mob/actions/actions_horror.dmi'
+	button_icon_state = "resist_control"
 
-	var/mob/living/simple_animal/horror/B = loc
+/datum/action/innate/resist_control/Activate()
+	var/mob/living/captive_brain/B = owner
+	if(B)
+		B.try_resist()
+
+/mob/living/captive_brain/resist()
+	try_resist()
+
+/mob/living/captive_brain/proc/try_resist()
 	var/delay = rand(50,150)
-	if(B.victim == B.mind.enslaved_to)
-		delay = 10
-	if(B.horrorupgrades["deep_control"]) //yes, longer control also affects our master
+	if(H.horrorupgrades["deep_control"])
 		delay += rand(50,150)
 	to_chat(src, "<span class='danger'>You begin doggedly resisting the parasite's control.</span>")
-	to_chat(B.victim, "<span class='danger'>You feel the captive mind of [src] begin to resist your control.</span>")
+	to_chat(H.victim, "<span class='danger'>You feel the captive mind of [src] begin to resist your control.</span>")
+	addtimer(CALLBACK(src, .proc/return_control), delay)
 
-
-	addtimer(CALLBACK(src, .proc/return_control, src.loc), delay)
-
-/mob/living/captive_brain/proc/return_control(mob/living/simple_animal/horror/B)
-    if(!B || !B.controlling)
+/mob/living/captive_brain/proc/return_control()
+    if(!H || !H.controlling)
         return
-
-    to_chat(src, "<span class='danger'>With an immense exertion of will, you regain control of your body!</span>")
-    to_chat(B.victim, "<span class='danger'>You feel control of the host brain ripped from your grasp, and retract your probosci before the wild neural impulses can damage you.</span>")
-    B.detatch()
+    to_chat(src, "<span class='userdanger'>With an immense exertion of will, you regain control of your body!</span>")
+    to_chat(H.victim, "<span class='danger'>You feel control of the host brain ripped from your grasp, and retract your probosci before the wild neural impulses can damage you.</span>")
+    H.detatch()
