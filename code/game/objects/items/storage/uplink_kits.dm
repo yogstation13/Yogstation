@@ -602,7 +602,7 @@
 /obj/item/storage/box/syndie_kit/horror
 	name = "horror-in-a-box"
 	illustration = "writing_syndie"
-	desc = "A sleek, sturdy box with a tentacles slithering from the inside. Uh oh."
+	desc = "A sleek, sturdy box with tentacles slithering from the inside. Uh oh."
 
 obj/item/storage/box/syndie_kit/horror/PopulateContents()
 	var/datum/reagent/W = pick(/datum/reagent/water/holywater, /datum/reagent/consumable/garlic, /datum/reagent/consumable/ketchup, /datum/reagent/consumable/eggyolk, /datum/reagent/consumable/sodiumchloride, /datum/reagent/consumable/hot_ramen)
