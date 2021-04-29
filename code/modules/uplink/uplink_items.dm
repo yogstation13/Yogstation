@@ -1905,14 +1905,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	
 /datum/uplink_item/role_restricted/horror
 	name = "Horror-in-a-box"
-	desc = "When dissecting a head of a dead Nanotrasen scientist, our surgeons noticed incredibly peculiar creature inside and menaged to extract it into safe containment. \
-	Either a failed experiment or otherworldy monster, this creature has been trained to aid whoever wakes it up. If you aren't afraid of it entering your head, it can prove an useful ally. \
+	desc = "When dissecting the head of a dead Nanotrasen scientist, our surgeons noticed an incredibly peculiar creature inside and managed to extract it into safe containment. \
+	Either a failed experiment or otherworldly monster, this creature has been trained to aid whoever wakes it up. If you aren't afraid of it entering your head, it can prove a useful ally. \
 	We take no responsibility for your newfound madness and accept no refunds."
 	item = /obj/item/storage/box/syndie_kit/horror
 	cost = 16
 	surplus = 0
 	restricted_roles = list("Curator")
-	player_minimum = 1000
+	player_minimum = 20
 
 /datum/uplink_item/role_restricted/explosive_hot_potato
 	name = "Exploding Hot Potato"
