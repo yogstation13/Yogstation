@@ -57,11 +57,11 @@
 	var/last_tipping_action_voice = 0
 	//Setting which reagents to use to treat what by default. By id.
 	var/treatment_brute_avoid = /datum/reagent/medicine/tricordrazine
-	var/treatment_brute = /datum/reagent/medicine/bicaridine
+	var/treatment_brute = /datum/reagent/medicine/c2/libital
 	var/treatment_oxy_avoid = null
 	var/treatment_oxy = /datum/reagent/medicine/dexalin
 	var/treatment_fire_avoid = /datum/reagent/medicine/tricordrazine
-	var/treatment_fire = /datum/reagent/medicine/kelotane
+	var/treatment_fire = /datum/reagent/medicine/c2/aiuri
 	var/treatment_tox_avoid = /datum/reagent/medicine/tricordrazine
 	var/treatment_tox = /datum/reagent/medicine/charcoal
 	var/treatment_virus_avoid = null
@@ -320,7 +320,7 @@
 /mob/living/simple_animal/bot/medbot/proc/handle_panic()
 	tipped_status++
 	var/list/messagevoice
-	
+
 	switch(tipped_status)
 		if(MEDBOT_PANIC_LOW)
 			messagevoice = list("I require assistance." = 'sound/voice/medbot/i_require_asst.ogg')
@@ -370,7 +370,7 @@
 	if(mode == BOT_TIPPED)
 		handle_panic()
 		return
-	
+
 	if(mode == BOT_HEALING)
 		return
 
@@ -502,7 +502,7 @@
 
 	return FALSE
 
-/mob/living/simple_animal/bot/medbot/attack_hand(mob/living/carbon/human/H)	
+/mob/living/simple_animal/bot/medbot/attack_hand(mob/living/carbon/human/H)
 	if(H.a_intent == INTENT_DISARM && mode != BOT_TIPPED)
 		H.visible_message("<span class='danger'>[H] begins tipping over [src].</span>", "<span class='warning'>You begin tipping over [src]...</span>")
 
@@ -515,7 +515,7 @@
 
 		if(do_after(H, 3 SECONDS, target=src))
 			tip_over(H)
-			
+
 	else if(H.a_intent == INTENT_HELP && mode == BOT_TIPPED)
 		H.visible_message("<span class='notice'>[H] begins righting [src].</span>", "<span class='notice'>You begin righting [src]...</span>")
 		if(do_after(H, 3 SECONDS, target=src))
@@ -682,7 +682,7 @@
 
 /obj/machinery/bot_core/medbot
 	req_one_access = list(ACCESS_MEDICAL, ACCESS_ROBOTICS)
-	
+
 #undef MEDBOT_PANIC_NONE
 #undef MEDBOT_PANIC_LOW
 #undef MEDBOT_PANIC_MED

@@ -884,3 +884,13 @@
 				)
 	category = CAT_MISC
 
+// Shank - Makeshift weapon that can embed on throw
+/datum/crafting_recipe/shank
+	name = "Shank"
+	reqs = list(/obj/item/shard = 1,
+				/obj/item/stack/rods = 1,
+				/obj/item/stack/cable_coil = 10)
+	result = /obj/item/kitchen/knife/shank
+	time = 10
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
