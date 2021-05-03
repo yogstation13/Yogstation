@@ -1,4 +1,4 @@
-// Finally, peas. Base plant.
+// Finally, peas. Base plant. 
 /obj/item/seeds/peas
 	name = "pack of pea pods"
 	desc = "These seeds grows into vitamin rich peas!"
@@ -14,7 +14,7 @@
 	icon_dead = "peas-dead"
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	mutatelist = list(/obj/item/seeds/peas/laugh) // TODO: Add /obj/item/seeds/peas/shoot at a later date, for the peashooter mutation line
-	reagents_add = list (/datum/reagent/consumable/nutriment/vitamin = 0.1, /datum/reagent/consumable/nutriment = 0.05, /datum/reagent/water = 0.05)
+	reagents_add = list (/datum/reagent/consumable/nutriment = 0.05, /datum/reagent/water = 0.05)
 
 
 /obj/item/reagent_containers/food/snacks/grown/peas
@@ -28,7 +28,7 @@
 	tastes = list ("peas" = 1, "chalky saltiness" = 1)
 	wine_power = 50
 	wine_flavor = "what is, distressingly, fermented peas."
-	// distill_regeant = /datum/reagent/saltpetre //if allowed, remove wine_power, ya dingus.
+	distill_reagent = /datum/reagent/consumable/ethanol/peawine
 
 
 // Laughin' Peas

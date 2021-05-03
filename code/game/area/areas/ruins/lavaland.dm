@@ -51,6 +51,10 @@
 	noteleport = TRUE
 	icon_state = "dk_yellow" //yogs end
 
+/area/ruin/unpowered/russianbunker
+	name = "Russian Bunker"
+	noteleport = TRUE
+
 /area/ruin/unpowered/syndicate_lava_base/engineering
 	name = "Syndicate Lavaland Engineering"
 
@@ -83,6 +87,11 @@
 
 /area/ruin/unpowered/syndicate_lava_base/telecomms
 	name = "Syndicate Lavaland Telecommunications"
+
+/area/ruin/unpowered/dragonslair //yogs start
+	name = "Dragons Lair"
+	hidden = TRUE
+	noteleport = TRUE //yogs (bell)end
 
 //Xeno Nest
 

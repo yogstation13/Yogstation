@@ -211,7 +211,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/medical
 	ears = /obj/item/radio/headset/headset_med
 	suit =  /obj/item/clothing/suit/toggle/labcoat
-	l_hand = /obj/item/storage/firstaid/regular
+	l_hand = /obj/item/storage/firstaid/medical
 	suit_store = /obj/item/flashlight/pen
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
@@ -482,4 +482,20 @@
 	ears = /obj/item/radio/headset
 	belt = /obj/item/pda
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
+
+/datum/outfit/job/plasmaman/artist
+	name = "Plasmaman Artist"
+
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
+	uniform = /obj/item/clothing/under/plasmaman
+	shoes = /obj/item/clothing/shoes/sneakers/black
+	belt = /obj/item/pda/artist
+	ears = /obj/item/radio/headset/headset_srv
+	gloves = /obj/item/clothing/gloves/fingerless
+	neck = /obj/item/clothing/neck/artist
+	l_pocket = /obj/item/laser_pointer
+	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
+
 

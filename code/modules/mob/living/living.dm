@@ -645,8 +645,12 @@
 
 /mob/living/proc/getTrail()
 	if(getBruteLoss() < 300)
+		if(ispolysmorph(src))
+			return pick("xltrails_1", "xltrails_2")
 		return pick("ltrails_1", "ltrails_2")
 	else
+		if(ispolysmorph(src))
+			return pick("xttrails_1", "xttrails_2")
 		return pick("trails_1", "trails_2")
 
 /mob/living/experience_pressure_difference(pressure_difference, direction, pressure_resistance_prob_delta = 0)
@@ -909,6 +913,10 @@
 /mob/living/proc/harvest(mob/living/user) //used for extra objects etc. in butchering
 	return
 
+// Hotkeys Exist, so this stops it from making runtimes
+/mob/living/proc/give()
+	return
+
 /mob/living/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
 	if(incapacitated())
 		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
@@ -996,10 +1004,16 @@
 
 	apply_effect((amount*RAD_MOB_COEFFICIENT)/max(1, (radiation**2)*RAD_OVERDOSE_REDUCTION), EFFECT_IRRADIATE, blocked)
 
+///Return any anti magic atom on this mob that matches the magic type
 /mob/living/anti_magic_check(magic = TRUE, holy = FALSE, tinfoil = FALSE, chargecost = 1, self = FALSE)
-	. = ..()
-	if(.)
+	if(!magic && !holy && !tinfoil)
 		return
+	var/list/protection_sources = list()
+	if(SEND_SIGNAL(src, COMSIG_MOB_RECEIVE_MAGIC, src, magic, holy, tinfoil, chargecost, self, protection_sources) & COMPONENT_BLOCK_MAGIC)
+		if(protection_sources.len)
+			return pick(protection_sources)
+		else
+			return src
 	if((magic && HAS_TRAIT(src, TRAIT_ANTIMAGIC)) || (holy && HAS_TRAIT(src, TRAIT_HOLY)))
 		return src
 
@@ -1359,3 +1373,18 @@
 			update_transform()
 		if("lighting_alpha")
 			sync_lighting_plane_alpha()
+			
+/mob/living/proc/is_convert_antag()
+    var/list/bad_antags = list(
+        /datum/antagonist/clockcult,
+        /datum/antagonist/cult,
+        /datum/antagonist/darkspawn,
+        /datum/antagonist/rev,
+        /datum/antagonist/shadowling,
+        /datum/antagonist/veil
+    )
+    for(var/antagcheck in bad_antags)
+        if(mind?.has_antag_datum(antagcheck))
+            return TRUE
+    return FALSE
+	

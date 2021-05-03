@@ -614,7 +614,7 @@
 	for(var/organ in src)
 		var/obj/item/organ/O = organ
 		if(O)
-			O.damage = max(0, O.damage - repair_rate)
+			O.damage = max(0, O.damage - (O.maxHealth * repair_rate))
 	..()
 
 /obj/machinery/smartfridge/organ/Exited(atom/movable/AM, atom/newLoc)

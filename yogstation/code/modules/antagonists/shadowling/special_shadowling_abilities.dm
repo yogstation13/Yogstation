@@ -103,6 +103,7 @@
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/glare(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/veil(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/void_jaunt(null))
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/shadowwalk(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/flashfreeze(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/collective_mind(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_regenarmor(null))

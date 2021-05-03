@@ -72,12 +72,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/execution/transfer)
-"o" = (
-/turf/closed/wall{
-	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall"
-	},
-/area/security/execution/transfer)
 "p" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -434,39 +428,42 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
+"Y" = (
+/turf/closed/wall/r_wall,
+/area/security/execution/transfer)
 
 (1,1,1) = {"
 a
 a
 a
 a
-o
-o
-o
-o
-o
+Y
+Y
+Y
+Y
+Y
 "}
 (2,1,1) = {"
 a
 a
 a
 a
-o
+Y
 s
 W
 V
-o
+Y
 "}
 (3,1,1) = {"
 n
 n
-o
+Y
 d
-o
+Y
 p
 A
 J
-o
+Y
 "}
 (4,1,1) = {"
 b

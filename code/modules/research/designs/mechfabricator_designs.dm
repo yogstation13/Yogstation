@@ -732,6 +732,16 @@
 	construction_time = 40
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/borg_upgrade_surgerykit
+	name = "Cyborg Upgrade (Advanced Surgical Kit)"
+	id = "borg_upgrade_surgerykit"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/surgerykit
+	/// Combined materials of all 3 advanced surgical tools
+	materials = list(/datum/material/iron = 22000, /datum/material/glass = 7500, /datum/material/plasma = 2000, /datum/material/uranium = 3000, /datum/material/silver = 6000, /datum/material/gold = 1500, /datum/material/diamond = 200, /datum/material/titanium = 12000)
+	construction_time = 140
+	category = list("Cyborg Upgrade Modules")
+
 /datum/design/borg_upgrade_trashofholding
 	name = "Cyborg Upgrade (Trash Bag of Holding)"
 	id = "borg_upgrade_trashofholding"

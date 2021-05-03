@@ -570,7 +570,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/senderOverride = input(src, "Please input the sender of the report", "Sender", "[command_name()] Update")
 	switch(confirm)
 		if("Yes")
-			priority_announce(input, null, 'sound/ai/commandreport.ogg', sender_override = senderOverride)
+			priority_announce(input, null, SSstation.announcer.get_rand_report_sound(), sender_override = senderOverride)
 			announce_command_report = FALSE
 		if("Cancel")
 			return
@@ -1084,7 +1084,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 
-	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_PIE)
+	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_PIE, ADMIN_PUNISHMENT_CLUWNE, ADMIN_PUNISHMENT_MCNUGGET)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
 
@@ -1102,6 +1102,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			to_chat(target, "<span class='userdanger'>The gods have punished you for your sins!</span>")
 		if(ADMIN_PUNISHMENT_BRAINDAMAGE)
 			target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 199, 199)
+		if(ADMIN_PUNISHMENT_MCNUGGET)
+			if(iscarbon(target)) 
+				var/mob/living/carbon/CM = target
+				for(var/obj/item/bodypart/bodypart in CM.bodyparts)
+					if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)
+						if(bodypart.dismemberable)
+							bodypart.dismember() 
 		if(ADMIN_PUNISHMENT_GIB)
 			target.gib(FALSE)
 		if(ADMIN_PUNISHMENT_BSA)
@@ -1155,6 +1162,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				to_chat(target, "<span class='clown'>Honk! You probably did something stupid..</span>")
 			var/mob/living/carbon/C = target
 			C.adminpie(target)
+
+		if(ADMIN_PUNISHMENT_CLUWNE)
+			var/confirm = alert(usr, "Send Cluwne Message?", "Cluwne Message", "Yes", "No")
+			if(confirm == "Yes")
+				to_chat(target, "<span class='reallybigphobia'>HENK!! HENK!! HENK!! YOU DID SOMETHING EXTREMELY DUMB, AND MADE GOD MAD. CRY ABOUT IT.</span>")
+			var/mob/living/carbon/human/H = target
+			H?.cluwneify()
 	punish_log(target, punishment)
 
 /client/proc/punish_log(var/whom, var/punishment)
@@ -1266,16 +1280,26 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Spawn on Centcom"
 	if(!check_rights(R_ADMIN))
 		return
-	var/turf/T = locate(196,82,1)
+	var/turf/T = locate(196,82,1) // Magic number alert!
 	if(ismob(usr))
 		var/mob/M = usr
 		if(isobserver(M))
-			M.forceMove(T)
-			var/mob/living/carbon/human/newmob = M.change_mob_type( /mob/living/carbon/human , null, null, TRUE)
-			newmob.equipOutfit(/datum/outfit/centcom/official)
-			var/msg = "[key_name_admin(usr)] has spawned in at centcom [ADMIN_VERBOSEJMP(usr)]."
+			var/mob/living/carbon/human/H = new(T)
+			var/datum/preferences/A = new
+			A.copy_to(H)
+			H.dna.update_dna_identity()
+			H.equipOutfit(/datum/outfit/centcom/official/nopda)
+			
+			var/datum/mind/Mind = new /datum/mind(M.key) // Reusing the mob's original mind actually breaks objectives for any antag who had this person as their target.
+			// For that reason, we're making a new one. This mimics the behavior of, say, lone operatives, and I believe other ghostroles.
+			Mind.active = 1
+			Mind.transfer_to(H)
+			
+			var/msg = "[key_name_admin(H)] has spawned in at centcom [ADMIN_VERBOSEJMP(H)]."
 			message_admins(msg)
 			log_admin(msg)
+			return
+	to_chat(usr,"<span class='warning'>Only observers can use this command!</span>")
 
 /datum/admins/proc/cmd_admin_fuckrads()
 	set category = "Admin.Round Interaction"

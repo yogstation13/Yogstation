@@ -293,7 +293,7 @@ SUBSYSTEM_DEF(ticker)
 	SSdbcore.SetRoundStart()
 
 	to_chat(world, "<span class='notice'><B>Welcome to [station_name()], enjoy your stay!</B></span>")
-	SEND_SOUND(world, sound('sound/ai/welcome.ogg'))
+	SEND_SOUND(world, sound(SSstation.announcer.get_rand_welcome_sound()))
 
 	current_state = GAME_STATE_PLAYING
 	webhook_send_roundstatus("ingame") //yogs - webhook support
@@ -701,7 +701,8 @@ SUBSYSTEM_DEF(ticker)
 		'sound/roundend/disappointed.ogg',
 		'sound/roundend/scrunglartiy.ogg',
 		'sound/roundend/windowsxp.ogg',
-		'sound/roundend/spacemanthing.ogg'\
+		'sound/roundend/spacemanthing.ogg',
+		'sound/roundend/no_more_cuss_words.ogg'\
 		)
 
 	SEND_SOUND(world, sound(round_end_sound))

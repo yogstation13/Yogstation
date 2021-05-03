@@ -169,7 +169,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Worn-out APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/machinery/light{
 	dir = 1

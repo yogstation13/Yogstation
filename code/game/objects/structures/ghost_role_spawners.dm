@@ -597,3 +597,33 @@
 
 /obj/effect/mob_spawn/human/pirate/gunner
 	rank = "Gunner"
+
+//The Innkeeper, a iceplanet ghostrole for peacefully operating a rest stop complete with food and drinks.
+/obj/effect/mob_spawn/human/innkeeper
+	name = "innkeeper sleeper"
+	desc = "A standard sleeper designed to keep someone in suspended animation until they are ready to awake."
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"
+	outfit = /datum/outfit/innkeeper
+	id_job = "Bartender"
+	id_access_list = list(ACCESS_BAR,ACCESS_KITCHEN,ACCESS_HYDROPONICS)
+	random = TRUE
+	roundstart = FALSE
+	death = FALSE
+	short_desc = "You're a simpleman on a desolate ice land, with the goal of running your inn."
+	flavour_text = "The electricity bill isn't going to pay itself. Try to get some customers and earn some money at your inn."
+	assignedrole = "Innkeeper"
+
+/datum/outfit/innkeeper
+	name = "Innkeeper"
+	uniform = /obj/item/clothing/under/rank/bartender
+	head = /obj/item/clothing/head/flatcap
+	back = /obj/item/storage/backpack
+	suit = /obj/item/clothing/suit/armor/vest
+	mask = /obj/item/clothing/mask/cigarette/pipe
+	shoes = /obj/item/clothing/shoes/sneakers/black
+	glasses = /obj/item/clothing/glasses/sunglasses/reagent
+	ears = /obj/item/radio/headset
+	id = /obj/item/card/id
+	implants = list(/obj/item/implant/teleporter/innkeeper) //stay at your inn please.
+	suit_store = /obj/item/gun/ballistic/shotgun/doublebarrel //emergency weapon, ice planets are dangerous, and customers can be too.

@@ -3,6 +3,9 @@
 	var/armor = getarmor(def_zone, attack_flag)
 
 	//the if "armor" check is because this is used for everything on /living, including humans
+	if(status_flags & GODMODE)
+		visible_message("<span class='danger'>A strange force protects [src], [p_they()] can't be damaged!</span>", "<span class='userdanger'>A strange force protects you!</span>")
+		return armor
 	if(armor > 0 && armour_penetration)
 		armor = max(0, armor - armour_penetration)
 		if(penetrated_text)

@@ -41,6 +41,15 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	null, \
 	new/datum/stack_recipe("rack parts", /obj/item/rack_parts), \
 	new/datum/stack_recipe("closet", /obj/structure/closet, 2, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe_list("filing cabinets", list( \
+		new/datum/stack_recipe("gray filing cabinet", /obj/structure/filingcabinet/filingcabinet, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
+		new/datum/stack_recipe("blue filing cabinet", /obj/structure/filingcabinet/colored/blue, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
+		new/datum/stack_recipe("red filing cabinet", /obj/structure/filingcabinet/colored/red, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
+		new/datum/stack_recipe("green filing cabinet", /obj/structure/filingcabinet/colored/green, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
+		new/datum/stack_recipe("purple filing cabinet", /obj/structure/filingcabinet/colored/purple, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
+		new/datum/stack_recipe("yellow filing cabinet", /obj/structure/filingcabinet/colored/yellow, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
+		new/datum/stack_recipe("light-blue filing cabinet", /obj/structure/filingcabinet/colored/lightblue, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
+		)), \
 	null, \
 	new/datum/stack_recipe("canister", /obj/machinery/portable_atmospherics/canister/generic, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	null, \
@@ -74,6 +83,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	)), \
 	null, \
 	new/datum/stack_recipe("firelock frame", /obj/structure/firelock_frame, 3, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("directonal firelock frame", /obj/structure/firelock_frame/border, 3, time = 50, on_floor = TRUE, placement_checks = STACK_CHECK_CARDINALS), \
 	new/datum/stack_recipe("turret frame", /obj/machinery/porta_turret_construct, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("meatspike frame", /obj/structure/kitchenspike_frame, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("reflector frame", /obj/structure/reflector, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \

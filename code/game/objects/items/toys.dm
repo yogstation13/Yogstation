@@ -354,11 +354,10 @@
 	name = "double-bladed toy sword"
 	desc = "A cheap, plastic replica of TWO energy swords.  Double the fun!"
 	force = 0
+	force_wielded = 0 // Why did someone make this a subtype of dualsabers
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 5
-	force_unwielded = 0
-	force_wielded = 0
 	attack_verb = list("attacked", "struck", "hit")
 
 /obj/item/twohanded/dualsaber/toy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
@@ -1582,3 +1581,38 @@ obj/item/toy/turn_tracker
 
 /obj/item/toy/dummy/GetVoice()
 	return doll_name
+
+/obj/item/toy/eldritch_book
+	name = "Codex Cicatrix"
+	desc = "A toy book that closely resembles the Codex Cicatrix. Covered in fake polyester human flesh and has a huge goggly eye attached to the cover. The runes are gibberish and cannot be used to summon demons... Hopefully?"
+	icon = 'icons/obj/eldritch.dmi'
+	icon_state = "book"
+	w_class = WEIGHT_CLASS_SMALL
+	attack_verb = list("sacrificed", "transmuted", "grasped", "cursed")
+	/// Helps determine the icon state of this item when it's used on self.
+	var/book_open = FALSE
+
+/obj/item/toy/eldritch_book/attack_self(mob/user)
+	book_open = !book_open
+	update_icon()
+
+/obj/item/toy/eldritch_book/update_icon()
+	icon_state = book_open ? "book_open" : "book"
+
+/*
+ * Fake tear
+ */
+
+/obj/item/toy/reality_pierce
+	name = "Pierced reality"
+	desc = "Hah. You thought it was the real deal!"
+	icon = 'icons/effects/eldritch.dmi'
+	icon_state = "pierced_illusion"
+
+/obj/item/storage/box/heretic_box
+	name = "box of pierced realities"
+	desc = "A box containing toys resembling pierced realities."
+
+/obj/item/storage/box/heretic_box/PopulateContents()
+	for(var/i in 1 to rand(1,4))
+		new /obj/item/toy/reality_pierce(src)

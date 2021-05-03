@@ -399,12 +399,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
-"N" = (
-/turf/closed/wall{
-	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall"
-	},
-/area/security/execution/transfer)
 "O" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -466,6 +460,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
+"U" = (
+/turf/closed/wall/r_wall,
+/area/security/execution/transfer)
 "W" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -478,33 +475,33 @@ a
 a
 a
 a
-N
-N
-N
-N
-N
+U
+U
+U
+U
+U
 "}
 (2,1,1) = {"
 a
 a
 a
 a
-N
+U
 s
 b
 S
-N
+U
 "}
 (3,1,1) = {"
 u
 u
-N
+U
 d
-N
+U
 L
 k
 j
-N
+U
 "}
 (4,1,1) = {"
 P

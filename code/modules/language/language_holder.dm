@@ -325,8 +325,9 @@ Key procs
 
 /datum/language_holder/polysmorph
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
-								/datum/language/xenocommon = list(LANGUAGE_ATOM))
-	spoken_languages = list(/datum/language/xenocommon = list(LANGUAGE_ATOM))
+								/datum/language/polysmorph = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+								/datum/language/polysmorph = list(LANGUAGE_ATOM))
 
 
 /datum/language_holder/clockwork

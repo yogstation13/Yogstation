@@ -200,6 +200,9 @@
 	new /obj/item/clothing/under/rank/prisoner( src )
 	new /obj/item/clothing/shoes/sneakers/orange( src )
 
+/obj/structure/closet/secure_closet/brig/cell
+	name = "cell locker"
+
 /obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"
 	req_access = list(ACCESS_COURT)

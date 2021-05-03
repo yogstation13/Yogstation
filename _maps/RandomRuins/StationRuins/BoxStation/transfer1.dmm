@@ -87,6 +87,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
+"p" = (
+/turf/closed/wall/r_wall,
+/area/security/execution/transfer)
 "q" = (
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
@@ -317,12 +320,6 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
-"P" = (
-/turf/closed/wall{
-	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall"
-	},
-/area/security/execution/transfer)
 "Q" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -405,33 +402,33 @@ a
 a
 a
 a
-P
-P
-P
-P
-P
+p
+p
+p
+p
+p
 "}
 (2,1,1) = {"
 a
 a
 a
 a
-P
+p
 s
 U
 O
-P
+p
 "}
 (3,1,1) = {"
-P
-P
-P
+p
+p
+p
 d
-P
+p
 H
 z
 k
-P
+p
 "}
 (4,1,1) = {"
 Z

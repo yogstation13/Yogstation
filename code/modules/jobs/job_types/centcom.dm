@@ -4,6 +4,7 @@
 
 /datum/outfit/centcom/official //Generic centcom person. Whatever rank you want that is Lieutenant or lower.
 	name = "(CO-1)CentCom Official"
+	var/pdaequip = TRUE
 
 	uniform = /obj/item/clothing/under/rank/centcom_officer
 	suit = null
@@ -23,11 +24,11 @@
 /datum/outfit/centcom/official/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
-
-	var/obj/item/pda/heads/pda = H.r_store
-	pda.owner = H.real_name
-	pda.ownjob = "CentCom Official"
-	pda.update_label()
+	if(pdaequip)
+		var/obj/item/pda/heads/pda = H.r_store
+		pda.owner = H.real_name
+		pda.ownjob = "CentCom Official"
+		pda.update_label()
 
 	var/obj/item/card/id/W = H.wear_id
 	W.icon = 'icons/obj/card.dmi' //Bypasses modularisation.
@@ -40,6 +41,8 @@
 
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
+/datum/outfit/centcom/official/nopda
+	pdaequip = FALSE
 /datum/outfit/centcom/captain //CentCom Captain. Essentially a station captain.
 	name = "(CO-2)CentCom Captain"
 

@@ -386,8 +386,9 @@
 /atom/proc/AllowDrop()
 	return FALSE
 
+/// Are you allowed to pass a sided object of the same dir
 /atom/proc/CheckExit()
-	return 1
+	return TRUE
 
 ///Is this atom within 1 tile of another atom
 /atom/proc/HasProximity(atom/movable/AM as mob|obj)
@@ -561,7 +562,7 @@
 
 ///Get the mobs dna list
 /mob/living/carbon/get_blood_dna_list()
-	if(get_blood_id() != /datum/reagent/blood)
+	if(!(get_blood_id() in list(/datum/reagent/blood, /datum/reagent/toxin/acid))) //polysmorphs have DNA located in literal acid, don't ask me why
 		return
 	var/list/blood_dna = list()
 	if(dna)

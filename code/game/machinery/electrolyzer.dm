@@ -101,14 +101,14 @@
 	cell.use((5 * proportion * workingPower) / (efficiency + workingPower))
 
 /obj/machinery/electrolyzer/RefreshParts()
-	var/manipulator = 0
+	var/lasers = 0
 	var/cap = 0
-	for(var/obj/item/stock_parts/manipulator/M in component_parts)
-		manipulator += M.rating
+	for(var/obj/item/stock_parts/micro_laser/L in component_parts)
+		lasers += L.rating
 	for(var/obj/item/stock_parts/capacitor/M in component_parts)
 		cap += M.rating
 
-	workingPower = manipulator //used in the amount of moles processed
+	workingPower = lasers / 2 //used in the amount of moles processed
 
 	efficiency = (cap + 1) * 0.5 //used in the amount of charge in power cell uses
 

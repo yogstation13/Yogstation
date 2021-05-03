@@ -64,7 +64,9 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	MODE_KEY_CHANGELING = MODE_TOKEN_CHANGELING,
 	MODE_KEY_ALIEN = MODE_TOKEN_ALIEN,
 	MODE_KEY_MONKEY = MODE_MONKEY,
-	MODE_KEY_DARKSPAWN = MODE_DARKSPAWN,
+	MODE_KEY_DARKSPAWN = MODE_TOKEN_DARKSPAWN,
+	MODE_KEY_MONKEY = MODE_TOKEN_MONKEY,
+	MODE_KEY_HOLOPAD = MODE_TOKEN_HOLOPAD,
 	MODE_KEY_SING = MODE_SING
 ))
 
@@ -225,6 +227,9 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	if(succumbed)
 		succumb(1)
 		to_chat(src, compose_message(src, language, message, , spans, message_mods))
+	
+	for(var/obj/item/I in contents)
+		I.on_mob_say(src, message, message_range)
 
 	return 1
 
@@ -396,7 +401,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		. = ..()
 
 /mob/living/whisper(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
-	say("#[message]", bubble_type, spans, sanitize, language, ignore_spam, forced)
+	say("[MODE_KEY_WHISPER][message]", bubble_type, spans, sanitize, language, ignore_spam, forced)
 
 /mob/living/get_language_holder(get_minds = TRUE)
 	if(get_minds && mind)

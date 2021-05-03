@@ -120,8 +120,6 @@
 	for(var/id in air.get_gases())
 		if(nonoverlaying_gases[id])
 			continue
-		if(id=="water_vapor" && air.return_temperature()>T0C+500 && air.return_pressure()>6*ONE_ATMOSPHERE)
-			continue
 		var/gas_meta = GLOB.meta_gas_info[id]
 		var/gas_overlay = gas_meta[META_GAS_OVERLAY]
 		if(gas_overlay && air.get_moles(id) > gas_meta[META_GAS_MOLES_VISIBLE])

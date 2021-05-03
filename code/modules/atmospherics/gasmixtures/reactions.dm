@@ -1,4 +1,30 @@
 //All defines used in reactions are located in ..\__DEFINES\reactions.dm
+/*priority so far, check this list to see what are the numbers used. Please use a different priority for each reaction(higher number are done first)
+miaster = -10 (this should always be under all other fires)
+freonfire = -5
+plasmafire = -4
+h2fire = -3
+tritfire = -2
+halon_o2removal = -1
+nitrous_decomp = 0
+water_vapor = 1
+fusion = 2
+nitrylformation = 3
+bzformation = 4
+freonformation = 5
+stimformation = 6
+stim_ball = 7
+zauker_decomp = 8
+healium_formation = 9
+pluonium_formation = 10
+zauker_formation = 11
+halon_formation = 12
+hexane_formation = 13
+pluonium_response = 14 - 16
+metalhydrogen = 17
+nobliumsuppression = 1000
+nobliumformation = 1001
+*/
 
 /proc/init_gas_reactions()
 	. = list()
@@ -70,8 +96,6 @@
 	min_requirements = list(/datum/gas/water_vapor = MOLES_GAS_VISIBLE)
 
 /datum/gas_reaction/water_vapor/react(datum/gas_mixture/air, datum/holder)
-	if(air.return_temperature()>T0C+500&& air.return_pressure()>6*ONE_ATMOSPHERE)
-		return NO_REACTION
 	var/turf/open/location = isturf(holder) ? holder : null
 	. = NO_REACTION
 	if (air.return_temperature() <= WATER_VAPOR_FREEZE)
@@ -371,7 +395,7 @@
 		return REACTING
 
 /datum/gas_reaction/stimformation //Stimulum formation follows a strange pattern of how effective it will be at a given temperature, having some multiple peaks and some large dropoffs. Exo and endo thermic.
-	priority = 5
+	priority = 6
 	name = "Stimulum formation"
 	id = "stimformation"
 
@@ -603,7 +627,7 @@
 	
 	
 /datum/gas_reaction/hexane_formation
-	priority = 14
+	priority = 13
 	name = "Hexane formation"
 	id = "hexane_formation"
 
@@ -620,7 +644,7 @@
 	var/old_heat_capacity = air.heat_capacity()
 	var/heat_efficency = min(temperature * 0.01, air.get_moles(/datum/gas/hydrogen), air.get_moles(/datum/gas/bz))
 	var/energy_used = heat_efficency * 600
-	if ((air.get_moles(/datum/gas/hydrogen) - (heat_efficency * 5 < 0 )) || (air.get_moles(/datum/gas/bz) - (heat_efficency * 0.25 < 0))) //Shouldn't produce gas from nothing.
+	if (air.get_moles(/datum/gas/hydrogen) - (heat_efficency * 5) < 0  || air.get_moles(/datum/gas/bz) - (heat_efficency * 0.25) < 0) //Shouldn't produce gas from nothing.
 		return NO_REACTION
 	air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 5))
 	air.adjust_moles(/datum/gas/bz, -(heat_efficency * 0.25))
@@ -633,7 +657,7 @@
 	return REACTING
 
 /datum/gas_reaction/metalhydrogen
-	priority = 20
+	priority = 17
 	name = "Metal Hydrogen formation"
 	id = "metalhydrogen"
 
@@ -886,7 +910,7 @@
 	return NO_REACTION
 
 /datum/gas_reaction/pluonium_bz_response
-	priority = 13
+	priority = 14
 	name = "Pluonium bz response"
 	id = "pluonium_bz_response"
 
@@ -926,7 +950,7 @@
 	return REACTING
 
 /datum/gas_reaction/pluonium_tritium_response
-	priority = 16
+	priority = 15
 	name = "Pluonium tritium response"
 	id = "pluonium_tritium_response"
 
@@ -958,7 +982,7 @@
 	return REACTING
 
 /datum/gas_reaction/pluonium_hydrogen_response
-	priority = 17
+	priority = 16
 	name = "Pluonium hydrogen response"
 	id = "pluonium_hydrogen_response"
 

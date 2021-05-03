@@ -29,7 +29,7 @@
 	is_in_use = TRUE
 	// Have fun trying to read this proc.
 	var/datum/antagonist/heretic/cultie = user.mind.has_antag_datum(/datum/antagonist/heretic)
-	var/list/knowledge = cultie.get_all_knowledge()
+	var/list/transmutations = cultie.get_all_transmutations()
 	var/list/atoms_in_range = list()
 
 	for(var/A in range(1, src))
@@ -43,20 +43,20 @@
 			if(living_in_range.stat != DEAD || living_in_range == user) // we only accept corpses, no living beings allowed.
 				continue
 		atoms_in_range += atom_in_range
-	for(var/X in knowledge)
-		var/datum/eldritch_knowledge/current_eldritch_knowledge = knowledge[X]
+	for(var/X in transmutations)
+		var/datum/eldritch_transmutation/current_eldritch_transmutation = X
 
 		//has to be done so that we can freely edit the local_required_atoms without fucking up the eldritch knowledge
 		var/list/local_required_atoms = list()
 
-		if(!current_eldritch_knowledge.required_atoms || current_eldritch_knowledge.required_atoms.len == 0)
+		if(!current_eldritch_transmutation.required_atoms || current_eldritch_transmutation.required_atoms.len == 0)
 			continue
 
-		local_required_atoms += current_eldritch_knowledge.required_atoms
+		local_required_atoms += current_eldritch_transmutation.required_atoms
 
 		var/list/selected_atoms = list()
 
-		if(!current_eldritch_knowledge.recipe_snowflake_check(atoms_in_range,drop_location(),selected_atoms))
+		if(!current_eldritch_transmutation.recipe_snowflake_check(atoms_in_range,drop_location(),selected_atoms))
 			continue
 
 		for(var/LR in local_required_atoms)
@@ -79,8 +79,8 @@
 			var/atom/atom_to_disappear = to_disappear
 			//temporary so we dont have to deal with the bs of someone picking those up when they may be deleted
 			atom_to_disappear.invisibility = INVISIBILITY_ABSTRACT
-		if(current_eldritch_knowledge.on_finished_recipe(user,selected_atoms,loc))
-			current_eldritch_knowledge.cleanup_atoms(selected_atoms)
+		if(current_eldritch_transmutation.on_finished_recipe(user,selected_atoms,loc))
+			current_eldritch_transmutation.cleanup_atoms(selected_atoms)
 		is_in_use = FALSE
 
 		for(var/to_appear in atoms_to_disappear)
@@ -189,6 +189,14 @@
 	anchored = TRUE
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
+/obj/effect/broken_illusion/Initialize()
+	. = ..()
+	addtimer(CALLBACK(.proc/kill_the_self), 1 MINUTES)
+
+/obj/effect/broken_illusion/proc/kill_the_self()
+	visible_message("<span class='boldwarning'>[src] fades away...</span>")
+	qdel(src)
+
 /obj/effect/broken_illusion/attack_hand(mob/living/user)
 	if(!ishuman(user))
 		return ..()
@@ -198,7 +206,7 @@
 	else
 		var/obj/item/bodypart/arm = human_user.get_active_hand()
 		if(prob(25))
-			to_chat(human_user,"<span class='userdanger'>An otherwordly presence tears and atomizes your arm as you try to touch the hole in the very fabric of reality!</span>")
+			to_chat(human_user,"<span class='userdanger'>As you reach into [src], you feel something latch onto it and tear it off of you!</span>")
 			arm.dismember()
 			qdel(arm)
 		else
@@ -212,7 +220,15 @@
 		to_chat(human_user,"<span class='boldwarning'>You know better than to tempt forces out of your control!</span>")
 	else
 		//a very elaborate way to suicide
-		to_chat(human_user,"<span class='userdanger'>Eldritch energy lashes out, piercing your fragile mind, tearing it to pieces!</span>")
+		var/throwtarget
+		for(var/i in 1 to 20)
+			human_user.SetStun(INFINITY) //:^^^^^^^^^^)
+			throwtarget = get_edge_target_turf(src, pick(GLOB.alldirs))
+			human_user.safe_throw_at(throwtarget, rand(1,20), 1, src, force = MOVE_FORCE_OVERPOWERING , quickstart = TRUE)
+			human_user.Shake(rand(-100,100), rand(-100,100), 110) //oh we are TOTALLY stacking these //turns out we are not in fact stacking these
+			to_chat(user, "<span class='userdanger'>[pick("I- I- I-", "NO-", "IT HURTS-", "GETOUTOFMYHEADGETOUTOFMY-", "<i>POD-</i>","<i>COVE-</i>", "AAAAAAAAA-")]</span>")
+			sleep(1.1) //Spooky flavor message spam
+		to_chat(user, "<span class='cultbold'>That was a really bad idea...</span>")
 		human_user.ghostize()
 		var/obj/item/bodypart/head/head = locate() in human_user.bodyparts
 		if(head)
@@ -228,7 +244,7 @@
 /obj/effect/broken_illusion/examine(mob/user)
 	if(!IS_HERETIC(user) && ishuman(user))
 		var/mob/living/carbon/human/human_user = user
-		to_chat(human_user,"<span class='warning'>Your brain hurts when you look at this!</span>")
+		to_chat(human_user,"<span class='warning'>You get a headache even trying to look at this!</span>")
 		human_user.adjustOrganLoss(ORGAN_SLOT_BRAIN,10)
 	. = ..()
 

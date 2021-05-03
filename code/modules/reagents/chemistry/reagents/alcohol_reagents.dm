@@ -2115,6 +2115,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Planet Cracker"
 	glass_desc = "Although historians believe the drink was originally created to commemorate the end of an important conflict in man's past, its origins have largely been forgotten and it is today seen more as a general symbol of human supremacy."
 
+/datum/reagent/consumable/ethanol/planet_cracker/on_mob_life(mob/living/carbon/M)
+	if(islizard(M) && prob(15))
+		M.emote("scream")
+	return ..()
+
 /datum/reagent/consumable/ethanol/cactuscooler
 	name = "Cactus Cooler"
 	description = "An alcoholic drink created by fermenting cactus, its color is odd looking."
@@ -2234,8 +2239,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	M.AdjustUnconscious(-20, FALSE)
 	M.AdjustImmobilized(-20, FALSE)
 	M.AdjustParalyzed(-20, FALSE)
-	if(holder.has_reagent(/datum/reagent/toxin/mindbreaker))
-		holder.remove_reagent(/datum/reagent/toxin/mindbreaker, 5)
+	if(M.reagents.has_reagent(/datum/reagent/toxin/mindbreaker))
+		M.reagents.remove_reagent(/datum/reagent/toxin/mindbreaker, 5)
 	M.hallucination = max(0, M.hallucination - 10)
 	if(prob(30))
 		M.adjustToxLoss(1, 0)
@@ -2249,18 +2254,33 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "sweet corn beer and the hood life"
 	glass_name = "glass of malt liquor"
 	glass_desc = "A freezing pint of malt liquor."
-	
+
+/datum/reagent/consumable/ethanol/ratvarnac
+	name = "Justicars Juice"
+	description = "I don't even know what an eminence is, but I want him to recall."
+	metabolization_rate = INFINITY
+	boozepwr = 30
+	quality = DRINK_FANTASTIC
+	taste_description = "cogs and brass"
+	glass_icon_state = "coggerchalice"
+	glass_name = "COG-Nac"
+	glass_desc = "Just looking at this makes your head spin. How the hell is it ticking?"
+
+/datum/reagent/consumable/ethanol/ratvarnac/on_mob_life(mob/living/carbon/M)
+	M.emote("spin")
+	..()
+
 /datum/reagent/consumable/ethanol/amaretto
 	name = "Amaretto"
 	description = "A gentle drink that carries a sweet aroma."
-	color = "#E17600" 
+	color = "#E17600"
 	boozepwr = 25
 	taste_description = "fruity and nutty sweetness"
 	glass_icon_state = "amarettoglass"
 	glass_name = "glass of amaretto"
 	glass_desc = "A sweet and syrupy looking drink."
 	shot_glass_icon_state = "shotglassgold"
-	
+
 /datum/reagent/consumable/ethanol/amaretto_alexander
 	name = "Amaretto Alexander"
 	description = "A weaker version of the Alexander, what it lacks in strength it makes up for in flavor."
@@ -2271,7 +2291,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "alexanderam"
 	glass_name = "Amaretto Alexander"
 	glass_desc = "A creamy, indulgent delight that is in fact as gentle as it seems."
-	
+
 /datum/reagent/consumable/ethanol/ginger_amaretto
 	name = "Ginger Amaretto"
 	description = "A delightfully simple cocktail that pleases the senses."
@@ -2304,3 +2324,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "godmother"
 	glass_name = "Godmother"
 	glass_desc = "A lovely fresh smelling cocktail, a true Sicilian delight."
+
+/datum/reagent/consumable/ethanol/peawine
+	name = "Pea Wine"
+	description = "An alcoholic beverage That is created through distilling peas."
+	color = "#008000" // rgb: 0, 128, 0
+	nutriment_factor = 1 * REAGENTS_METABOLISM
+	boozepwr = 25
+	taste_description = "rotting vegetables"
+	glass_name = "glass of pea wine"
+	glass_desc = "A freezing glass of pea wine."

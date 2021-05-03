@@ -445,7 +445,7 @@ mob/living/simple_animal/hostile/swarmer/proc/remove_drone(mob/drone, force)
 	. = ..()
 	if(!.)
 		return
-	if(!istype(target, /mob/living/simple_animal) || !istype(firer, /mob/living/simple_animal/hostile/swarmer))
+	if(!istype(target, /mob/living/simple_animal) || istype(target, /mob/living/simple_animal/hostile/swarmer))
 		return
 	var/mob/living/simple_animal/hostile/swarmer/swarmer = firer
 	swarmer.teleport_target(target)

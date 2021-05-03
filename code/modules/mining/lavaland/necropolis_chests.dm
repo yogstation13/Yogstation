@@ -578,7 +578,7 @@
 	righthand_file = 'yogstation/icons/mob/inhands/weapons/scimmy_righthand.dmi'
 	icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "rune_scimmy"
-	force = 35
+	force = 28
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	damtype = BRUTE
 	sharpness = IS_SHARP
@@ -616,7 +616,7 @@
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/C = M
 		var/holycheck = ishumanbasic(C)
-		if(!(holycheck || islizard(C)) || reac_volume < 5) // implying xenohumans are holy //as with all things,
+		if(!(holycheck || islizard(C) || ismoth(C)) || reac_volume < 5) // implying polysmorphs are holy //as with all things,
 			if(method == INGEST && show_message)
 				to_chat(C, "<span class='notice'><i>You feel nothing but a terrible aftertaste.</i></span>")
 			return ..()
@@ -628,6 +628,9 @@
 			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 		if(islizard(C))
 			to_chat(C, "<span class='notice'>You feel blessed... by... something?</span>")
+			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
+		if(ismoth(C))
+			to_chat(C, "<span class='notice'>Your wings feel.... stronger?</span>")
 			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 		playsound(C.loc, 'sound/items/poster_ripped.ogg', 50, TRUE, -1)
 		C.adjustBruteLoss(20)
@@ -766,9 +769,9 @@
 			new /obj/item/melee/ghost_sword(src)
 		if(2)
 			new /obj/item/lava_staff(src)
-		if(3)
 			new /obj/item/book/granter/spell/sacredflame(src)
-			new /obj/item/gun/magic/wand/fireball(src)
+		if(3)
+			new /obj/item/dragon_egg(src)
 		if(4)
 			new /obj/item/dragons_blood(src)
 
@@ -892,8 +895,10 @@
 		if(1)
 			to_chat(user, "<span class='danger'>Your appearance morphs to that of a very small humanoid ash dragon! You get to look like a freak without the cool abilities.</span>")
 			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Curled", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
-			H.eye_color = "fee5a3"
 			H.set_species(/datum/species/lizard)
+			H.eye_color = "fee5a3"
+			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
+			H.updateappearance()
 		if(2)
 			to_chat(user, "<span class='danger'>Your flesh begins to melt! Miraculously, you seem fine otherwise.</span>")
 			H.set_species(/datum/species/skeleton)
@@ -993,6 +998,29 @@
 	icon_state = "lavastaff_warn"
 	duration = 50
 
+//Dragon Egg
+
+/obj/item/dragon_egg
+	name = "dragon's egg"
+	desc = "A large egg-shaped rock. It's cold to the touch..."
+	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
+	icon_state = "large_egg"
+	color = "#2C2C2C"
+
+/obj/item/dragon_egg/burn()
+	visible_message("<span class='boldwarning'>[src] suddenly begins to glow red and starts violently shaking!</span>")
+	name = "heated dragon's egg"
+	desc = "A large egg seemingly made out of rock. It's red-hot and seems to be shaking!"
+	color = "#990000"
+	extinguish()
+	resistance_flags = LAVA_PROOF | FIRE_PROOF
+	addtimer(CALLBACK(src, .proc/hatch), 20 SECONDS)
+
+/obj/item/dragon_egg/proc/hatch()
+	visible_message("<span class='boldwarning'>[src] suddenly cracks apart, revealing a tiny ash drake!</span>")
+	new /mob/living/simple_animal/hostile/drakeling(get_turf(src))
+	qdel(src)
+
 //Bubblegum
 /obj/structure/closet/crate/necropolis/bubblegum
 	name = "bubblegum chest"
@@ -1000,7 +1028,7 @@
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
-	var/loot = rand(1,3)
+	var/loot = rand(1,4)
 	switch(loot)
 		if(1)
 			new /obj/item/mayhem(src)
@@ -1008,6 +1036,8 @@
 			new /obj/item/blood_contract(src)
 		if(3)
 			new /obj/item/gun/magic/staff/spellblade(src)
+		if(4)
+			new /obj/item/organ/stomach/cursed(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/crusher
 	name = "bloody bubblegum chest"
@@ -1392,6 +1422,21 @@
 /obj/item/hierophant_club/station
 	z_level_check = FALSE
 
+//Stalwart
+/obj/structure/closet/crate/sphere/stalwart
+	name = "silvery capsule"
+	desc = "It feels cold to the touch..."
+
+/obj/structure/closet/crate/sphere/stalwart/PopulateContents()
+	new /obj/item/gun/energy/plasmacutter/adv/robocutter
+
+/obj/item/gun/energy/plasmacutter/adv/robocutter
+	name = "energized powercutter"
+	desc = "Ripped out of an ancient machine, this self-recharging cutter is unmatched."
+	fire_delay = 4
+	icon = 'icons/obj/guns/energy.dmi'
+	icon_state = "robocutter"
+	selfcharge = 1
 //Just some minor stuff
 /obj/structure/closet/crate/necropolis/puzzle
 	name = "puzzling chest"

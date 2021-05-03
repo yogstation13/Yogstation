@@ -433,12 +433,17 @@
 	return TRUE
 
 /obj/item/flashlight/emp/attack(mob/living/M, mob/living/user)
+
+	if(!is_syndicate(user))
+		return
 	if(on && (user.zone_selected in list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH))) // call original attack when examining organs
 		..()
 	return
 
 /obj/item/flashlight/emp/afterattack(atom/movable/A, mob/user, proximity)
 	. = ..()
+	if(!is_syndicate(user)) // non syndicates don't know the flashlight is an EMP flashlight therefore won't know how to use it as such.
+		return
 	if(!proximity)
 		return
 

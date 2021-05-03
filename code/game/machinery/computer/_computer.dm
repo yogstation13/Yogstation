@@ -139,7 +139,7 @@
 			C.forceMove(loc)
 	qdel(src)
 
-/obj/machinery/computer/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/computer/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSCOMPUTER))
 		return TRUE

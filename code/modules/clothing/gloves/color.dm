@@ -13,22 +13,24 @@
 	name = "budget insulated gloves"
 	icon_state = "yellow"
 	item_state = "ygloves"
-	siemens_coefficient = 1			//Set to a default of 1, gets overridden in Initialize()
+	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	item_color = "yellow"
 	resistance_flags = NONE
+	var/damaged = FALSE
 
-/obj/item/clothing/gloves/color/fyellow/Initialize()
-	. = ..()
-	siemens_coefficient = pick(0,0.5,0.5,0.5,0.5,0.75,1.5)
+/obj/item/clothing/gloves/color/fyellow/proc/get_shocked()
+	if(damaged)
+		to_chat(loc, "<span class='warning'>Your gloves catch fire and disintegrate!</span>")
+		new/obj/effect/decal/cleanable/ash(src)
+		qdel(src)
+	else
+		to_chat(loc, "<span class='warning'>Your gloves begin to melt!</span>")
+		damaged = TRUE
 
 /obj/item/clothing/gloves/color/fyellow/old
 	desc = "Old and worn out insulated gloves, hopefully they still work."
 	name = "worn out insulated gloves"
-
-/obj/item/clothing/gloves/color/fyellow/old/Initialize()
-	. = ..()
-	siemens_coefficient = pick(0,0,0,0.5,0.5,0.5,0.75)
 
 /obj/item/clothing/gloves/color/black
 	desc = "These gloves are fire-resistant."
