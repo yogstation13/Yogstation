@@ -4,7 +4,7 @@
 /obj/item/chopping_block
 	name = "chopping block"
 	desc = "A primitive version that cavemen used to use for processing food. Yuck!"
-	icon = 'modular_skyrat/icons/obj/kitchen.dmi'
+	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "choppingblock"
 
 /obj/item/chopping_block/attackby(obj/item/W, mob/user, params)
@@ -20,7 +20,7 @@
 /obj/structure/chopping_block
 	name = "chopping block"
 	desc = "A primitive version that cavemen used to use for processing food. Yuck!"
-	icon = 'modular_skyrat/icons/obj/kitchen.dmi'
+	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "choppingpin"
 
 	var/build_stage = 1
@@ -73,7 +73,7 @@
 /obj/machinery/processor/chopping_block
 	name = "chopping block"
 	desc = "A primitive version that cavemen used to use for processing food. Yuck!"
-	icon = 'modular_skyrat/icons/obj/kitchen.dmi'
+	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "chopibobut"
 	density = FALSE
 	circuit = null
