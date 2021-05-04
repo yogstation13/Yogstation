@@ -31,6 +31,7 @@ export const Vote = (props, context) => {
       <Window.Content overflowY="scroll">
         <Flex direction="column" height="100%">
           {!!lower_admin && <AdminPanel />}
+          <VotePanel />
           <ChoicesPanel />
           <TimePanel />
         </Flex>
@@ -50,11 +51,6 @@ const AdminPanel = (props, context) => {
           <Flex mt={2} justify="space-between">
             <Flex.Item>
               <Box mb={1}>
-                <Button
-                  disabled={!upper_admin || !avmap}
-                  onClick={() => act("map")} >
-                  Map
-                </Button>
                 {!!upper_admin && (
                   <Button.Checkbox
                     ml={1}
@@ -65,12 +61,6 @@ const AdminPanel = (props, context) => {
                   </Button.Checkbox>
                 )}
               </Box>
-              <Box mb={1}>
-                <Button
-                  disabled={!upper_admin || !avr}
-                  onClick={() => act("restart")} >
-                  Restart
-                </Button>
                 {!!upper_admin && (
                   <Button.Checkbox
                     ml={1}
@@ -117,6 +107,41 @@ const AdminPanel = (props, context) => {
   );
 };
 
+const VotePanel = (props, context) => {
+  const { act, data } = useBackend(context);
+  const { avm, avr, avmap, voting, upper_admin } = data;
+  return (
+    <Flex.Item>
+      <Section mb={1} title="Vote Options">
+        <Collapsible title="Start a Vote">
+          <Flex mt={2} justify="space-between">
+            <Flex.Item>
+              <Box mb={1}>
+                <Button
+                  disabled={!upper_admin || !avmap}
+                  onClick={() => act("map")} >
+                  Map
+                </Button>
+               </Box>
+               <Box mb={1}>
+                <Button
+                  disabled={!upper_admin || !avr}
+                  onClick={() => act("restart")} >
+                  Restart
+                </Button>
+              </Box>
+              <Box mb={1}>
+                <Button
+                  disabled={!upper_admin || !avm}
+                  onClick={() => act("gamemode")} >
+                  Gamemode
+                </Button>
+              </Box>
+        </Collapsible>
+      </Section>
+    </Flex.Item>
+  );
+};
 // Display choices as buttons
 const ChoicesPanel = (props, context) => {
   const { data } = useBackend(context);
