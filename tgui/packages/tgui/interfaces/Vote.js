@@ -47,7 +47,7 @@ const AdminPanel = (props, context) => {
   return (
     <Flex.Item>
       <Section mb={1} title="Admin Options">
-        <Collapsible title="Start a Vote">
+        <Collapsible title="Custom Votes/Vote Toggles">
           <Flex mt={2} justify="space-between">
             <Flex.Item>
               <Box mb={1}>
@@ -55,9 +55,9 @@ const AdminPanel = (props, context) => {
                   <Button.Checkbox
                     ml={1}
                     color="red"
-                    checked={!avmap}
+                    checked={avmap}
                     onClick={() => act("toggle_map")} >
-                    Disable{!avmap ? "d" : ""}
+                    Map Vote {!avmap ? "dis" : "en"}abled
                   </Button.Checkbox>
                 )}
               </Box>
@@ -66,25 +66,20 @@ const AdminPanel = (props, context) => {
                   <Button.Checkbox
                     ml={1}
                     color="red"
-                    checked={!avr}
+                    checked={avr}
                     onClick={() => act("toggle_restart")} >
-                    Disable{!avr ? "d" : ""}
+                    Restart Vote {!avr ? "dis" : "en"}abled
                   </Button.Checkbox>
                 )}
               </Box>
               <Box mb={1}>
-                <Button
-                  disabled={!upper_admin || !avm}
-                  onClick={() => act("gamemode")} >
-                  Gamemode
-                </Button>
                 {!!upper_admin && (
                   <Button.Checkbox
                     ml={1}
                     color="red"
-                    checked={!avm}
+                    checked={avm}
                     onClick={() => act("toggle_gamemode")} >
-                    Disable{!avm ? "d" : ""}
+                    Gamemode Vote {!avm ? "dis" : "en"}abled
                   </Button.Checkbox>
                 )}
               </Box>
@@ -119,21 +114,21 @@ const VotePanel = (props, context) => {
             <Flex.Item>
               <Box mb={1}>
                 <Button
-                  disabled={!upper_admin || !avmap}
+                  disabled={!upper_admin && !avmap}
                   onClick={() => act("map")} >
                   Map
                 </Button>
               </Box>
               <Box mb={1}>
                 <Button
-                  disabled={!upper_admin || !avr}
+                  disabled={!upper_admin && !avr}
                   onClick={() => act("restart")} >
                   Restart
                 </Button>
               </Box>
               <Box mb={1}>
                 <Button
-                  disabled={!upper_admin || !avm}
+                  disabled={!upper_admin && !avm}
                   onClick={() => act("gamemode")} >
                   Gamemode
                 </Button>
