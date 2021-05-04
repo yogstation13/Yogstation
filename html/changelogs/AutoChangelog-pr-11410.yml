@@ -1,0 +1,5 @@
+author: "Marmio64"
+delete-after: true 
+changes: 
+  - rscdel: "Removes antenna's access to the sec and command channels"
+  - tweak: "antenna mutation instability lowered to 10"
