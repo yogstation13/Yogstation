@@ -61,6 +61,7 @@ const AdminPanel = (props, context) => {
                   </Button.Checkbox>
                 )}
               </Box>
+              <Box mb={1}>
                 {!!upper_admin && (
                   <Button.Checkbox
                     ml={1}
@@ -122,8 +123,8 @@ const VotePanel = (props, context) => {
                   onClick={() => act("map")} >
                   Map
                 </Button>
-               </Box>
-               <Box mb={1}>
+              </Box>
+              <Box mb={1}>
                 <Button
                   disabled={!upper_admin || !avr}
                   onClick={() => act("restart")} >
@@ -137,6 +138,8 @@ const VotePanel = (props, context) => {
                   Gamemode
                 </Button>
               </Box>
+            </Flex.Item>
+          </Flex>
         </Collapsible>
       </Section>
     </Flex.Item>
