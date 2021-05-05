@@ -46,7 +46,7 @@
 	var/chem_regen_rate = 2
 	var/used_freeze
 	var/used_target
-	var/horror_chems = list()
+	var/horror_chems = list(/datum/horror_chem/epinephrine,/datum/horror_chem/mannitol,/datum/horror_chem/bicaridine,/datum/horror_chem/kelotane,/datum/horror_chem/charcoal)
 
 	var/leaving = FALSE
 	var/hiding = FALSE
@@ -75,8 +75,6 @@
 	add_ability("release_control")
 	RefreshAbilities()
 
-	//starting chems, more are to be unlocked
-	horror_chems += list(/datum/horror_chem/epinephrine,/datum/horror_chem/mannitol,/datum/horror_chem/bicaridine,/datum/horror_chem/kelotane,/datum/horror_chem/charcoal)
 	var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	hud.add_hud_to(src)
 	update_horror_hud()
@@ -93,7 +91,7 @@
 
 /mob/living/simple_animal/horror/proc/use_chemicals(amt)
 	if(!has_chemicals(amt))
-		return
+		return FALSE
 	chemicals -= amt
 	update_horror_hud()
 	return TRUE
@@ -204,15 +202,15 @@
 					var/link = FOLLOW_LINK(M, src)
 					to_chat(M, "[link] [rendered]")
 		to_chat(src, "<span class='changeling'><i>[truename] [say_string]:</i> [input]</span>")
-		victim.verbs += /mob/living/proc/horror_comm
+		add_verb(victim, /mob/living/verb/horror_comm)
 		talk_to_horror_action.Grant(victim)
 
-/mob/living/proc/horror_comm()
+/mob/living/verb/horror_comm()
 	set name = "Converse with Horror"
 	set category = "Horror"
 	set desc = "Communicate mentally with the thing in your head."
 
-	var/mob/living/simple_animal/horror/B = has_brain_worms()
+	var/mob/living/simple_animal/horror/B = has_horror_inside()
 	if(B)
 		var/input = stripped_input(src, "Please enter a message to tell the horror.", "Message", "")
 		if(!input)
@@ -229,7 +227,7 @@
 		to_chat(src, "<span class='changeling'><i>[src] says:</i> [input]</span>")
 
 /mob/living/proc/trapped_mind_comm()
-	var/mob/living/simple_animal/horror/B = has_brain_worms()
+	var/mob/living/simple_animal/horror/B = has_horror_inside()
 	if(!B || !B.host_brain)
 		return
 	var/mob/living/captive_brain/CB = B.host_brain
@@ -311,15 +309,13 @@
 	if(victim)
 		to_chat(src, "<span class='warning'>You cannot speak out loud while inside a host!</span>")
 		return
-	else
-		..()
+	return ..()
 
 /mob/living/simple_animal/horror/emote(act, m_type = null, message = null, intentional = FALSE)
 	if(victim)
 		to_chat(src, "<span class='warning'>You cannot emote while inside a host!</span>")
 		return
-	else
-		..()
+	return ..()
 
 /mob/living/simple_animal/horror/UnarmedAttack(atom/A)
 	if(isliving(A))
@@ -366,7 +362,7 @@
 	if(!Adjacent(H))
 		return FALSE
 
-	if(H.has_brain_worms())
+	if(H.has_horror_inside())
 		to_chat(src, "<span class='warning'>[victim] is already infested!</span>")
 		return
 
@@ -395,7 +391,7 @@
 		to_chat(src, "<span class='warning'>[C] doesn't have a brain! </span>")
 		return
 
-	if(C.has_brain_worms())
+	if(C.has_horror_inside())
 		to_chat(src, "<span class='warning'>[C] is already infested!</span>")
 		return
 
@@ -434,8 +430,6 @@
 
 	usr << browse(null, "window=ViewHorror\ref[src]Chems;size=600x800")
 	usr << browse(html, "window=ViewHorror\ref[src]Chems;size=600x800")
-
-	return
 
 /mob/living/simple_animal/horror/proc/hide()
 	if(victim)
@@ -582,7 +576,7 @@
 	victim.machine = null
 
 	var/mob/living/V = victim
-	V.verbs -= /mob/living/proc/horror_comm
+	remove_verb(V, /mob/living/verb/horror_comm)
 	talk_to_horror_action.Remove(victim)
 
 	for(var/obj/item/horrortentacle/T in victim)
@@ -756,22 +750,20 @@
 		bonding = FALSE
 		controlling = TRUE
 
-		victim.verbs += /mob/living/carbon/proc/release_control
-		victim.verbs -= /mob/living/proc/horror_comm
-		victim.verbs += /mob/living/proc/trapped_mind_comm
+		remove_verb(victim, /mob/living/verb/horror_comm)
 		talk_to_horror_action.Remove(victim)
 		GrantControlActions()
 
 		victim.med_hud_set_status()
 
 /mob/living/carbon/proc/release_control()
-	var/mob/living/simple_animal/horror/B = has_brain_worms()
+	var/mob/living/simple_animal/horror/B = has_horror_inside()
 	if(B && B.host_brain)
 		to_chat(src, "<span class='danger'>You withdraw your probosci, releasing control of [B.host_brain]</span>")
 		B.detatch()
 
 //Check for brain worms in head.
-/mob/proc/has_brain_worms()
+/mob/living/proc/has_horror_inside()
 	for(var/I in contents)
 		if(ishorror(I))
 			return I
@@ -789,9 +781,7 @@
 
 	controlling = FALSE
 	UnregisterSignal(victim, COMSIG_MOB_APPLY_DAMAGE)
-	victim.verbs -= /mob/living/carbon/proc/release_control
-	victim.verbs += /mob/living/proc/horror_comm
-	victim.verbs -= /mob/living/proc/trapped_mind_comm
+	add_verb(victim, /mob/living/verb/horror_comm)
 	RemoveControlActions()
 	RefreshAbilities()
 	talk_to_horror_action.Grant(victim)

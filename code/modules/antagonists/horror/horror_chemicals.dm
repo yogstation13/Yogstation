@@ -37,8 +37,7 @@
 
 /datum/horror_chem
 	var/chemname
-	var/chem_desc = "This is a chemical."
-
+	var/chem_desc = "This is a chemical"
 	var/datum/reagent/R
 	var/chemuse = 30
 	var/quantity = 10
