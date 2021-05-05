@@ -1467,6 +1467,7 @@
 #include "code\modules\antagonists\hivemind\hivemind.dm"
 #include "code\modules\antagonists\hivemind\vessel.dm"
 #include "code\modules\antagonists\horror\horror.dm"
+#include "code\modules\antagonists\horror\horror_abilities_and_upgrades.dm"
 #include "code\modules\antagonists\horror\horror_chemicals.dm"
 #include "code\modules\antagonists\horror\horror_datums.dm"
 #include "code\modules\antagonists\horror\horror_html.dm"
