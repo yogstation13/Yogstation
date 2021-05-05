@@ -763,7 +763,7 @@
 		B.detatch()
 
 //Check for brain worms in head.
-/mob/living/proc/has_horror_inside()
+/mob/proc/has_horror_inside()
 	for(var/I in contents)
 		if(ishorror(I))
 			return I
