@@ -18,7 +18,7 @@
 	var/dir = get_dir(user.loc,target.loc)
 
 	if(user.z != target.z)
-		to_chat(user,"<span class='warning>[target.real_name] is ... vertical to you?</span>")
+		to_chat(user,"<span class='warning'>[target.real_name] is ... vertical to you?</span>")
 	else
 		switch(dist)
 			if(0 to 15)
