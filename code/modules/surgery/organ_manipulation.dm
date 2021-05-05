@@ -102,7 +102,7 @@
 	else if(implement_type in implements_extract)
 		current_type = "extract"
 		var/list/organs = target.getorganszone(target_zone)
-		var/mob/living/simple_animal/horror/H = target.has_brain_worms()
+		var/mob/living/simple_animal/horror/H = target.has_horror_inside()
 		if(H)
 			user.visible_message("[user] begins to extract [H] from [target]'s [parse_zone(target_zone)].",
 					"<span class='notice'>You begin to extract [H] from [target]'s [parse_zone(target_zone)]...</span>")
@@ -148,7 +148,7 @@
 			"[user] inserts something into [target]'s [parse_zone(target_zone)]!")
 
 	else if(current_type == "extract")
-		var/mob/living/simple_animal/horror/H = target.has_brain_worms()
+		var/mob/living/simple_animal/horror/H = target.has_horror_inside()
 		if(H && H.victim == target)
 			user.visible_message("[user] successfully extracts [H] from [target]'s [parse_zone(target_zone)]!",
 				"<span class='notice'>You successfully extract [H] from [target]'s [parse_zone(target_zone)].</span>")
