@@ -173,7 +173,7 @@
 	locked = TRUE //Species specific, keep out of actual gene pool
 
 /datum/mutation/human/race/on_acquiring(mob/living/carbon/human/owner)
-	if(owner.has_brain_worms())
+	if(owner.has_horror_inside())
 		to_chat(owner, "<span class='warning'>You feel something strongly clinging to your humanity!</span>")
 		return
 	if(..())
