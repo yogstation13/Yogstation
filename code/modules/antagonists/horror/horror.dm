@@ -129,7 +129,11 @@
 	A.owner = mind
 	var/list/targets = list()
 	for(var/i in 0 to 4)
-		var/datum/mind/targeted =  A.find_target(null, list(mind.enslaved_to.mind, target))
+		var/datum/mind/targeted
+		if(mind.enslaved_to)
+			targeted = A.find_target(null, list(mind.enslaved_to.mind, target))
+		else
+			targeted = A.find_target(null, list(target))
 		if(!targeted || !targeted.hasSoul)
 			break
 		targets[targeted.current.real_name] = targeted.current
