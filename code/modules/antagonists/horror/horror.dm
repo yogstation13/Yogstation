@@ -322,6 +322,15 @@
 	return ..()
 
 /mob/living/simple_animal/horror/UnarmedAttack(atom/A)
+	if(istype(A, /obj/machinery/door/airlock))
+		visible_message("<span class='warning'>[src] slips their tentacles into the airlock and starts prying it open!</span>", "<span class='warning'>You start moving onto the airlock.</span>")
+		playsound(A, 'sound/misc/splort.ogg', 50, 1)
+		if(!do_after(src, 5 SECONDS, target = A))
+			return
+		visible_message("<span class='warning'>[src] forces themselves through the airlock!</span>", "<span class='warning'>You force yourself through the airlock.</span>")
+		forceMove(get_turf(A))
+		playsound(A, 'sound/machines/airlock_alien_prying.ogg', 50, 1)
+		return
 	if(isliving(A))
 		if(victim || A == src.mind.enslaved_to)
 			healthscan(usr, A)
