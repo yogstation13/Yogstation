@@ -324,9 +324,9 @@
 	try_resist()
 
 /mob/living/captive_brain/proc/try_resist()
-	var/delay = rand(50,150)
+	var/delay = rand(20 SECONDS,30 SECONDS)
 	if(H.horrorupgrades["deep_control"])
-		delay += rand(50,150)
+		delay += rand(20 SECONDS,30 SECONDS)
 	to_chat(src, "<span class='danger'>You begin doggedly resisting the parasite's control.</span>")
 	to_chat(H.victim, "<span class='danger'>You feel the captive mind of [src] begin to resist your control.</span>")
 	addtimer(CALLBACK(src, .proc/return_control), delay)
