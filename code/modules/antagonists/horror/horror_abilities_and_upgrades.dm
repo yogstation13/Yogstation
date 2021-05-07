@@ -14,6 +14,13 @@
 	B = horror
 	..()
 
+/datum/action/innate/horror/IsAvailable()
+	if(!B)
+		return
+	if(!B.has_chemicals(chemical_cost))
+		return
+	. = ..()
+
 /datum/action/innate/horror/mutate
 	name = "Mutate"
 	id = "mutate"
@@ -177,11 +184,12 @@
 	id = "tentacle"
 	desc = "Makes your host grow a tentacle in their arm. Costs 50 chemicals to activate."
 	button_icon_state = "tentacle"
+	chemical_cost = 50
 	category = list("infest", "control")
 	soul_price = 2
 
 /datum/action/innate/horror/tentacle/IsAvailable()
-	if(!active && !B.has_chemicals(50))
+	if(!active && !B.has_chemicals(chemical_cost))
 		return FALSE
 	return ..()
 
@@ -215,6 +223,73 @@
 	for(var/obj/item/horrortentacle/T in B.victim)
 		qdel(T)
 	return TRUE
+
+/datum/action/innate/horror/transfer_host
+	name = "Transfer to another Host"
+	id = "transfer_host"
+	desc = "Move into another host directly. Grabbing makes the process faster."
+	button_icon_state = "transfer_host"
+	category = list("infest", "control")
+	soul_price = 1
+
+/datum/action/innate/horror/transfer_host/Activate()
+	var/list/choices = list()
+	for(var/mob/living/carbon/C in range(1,B.victim))
+		if(C!=B.victim && C.Adjacent(B.victim))
+			choices += C
+
+	if(!choices.len)
+		return
+	var/mob/living/carbon/C = choices.len > 1 ? input(owner,"Who do you wish to infest?") in null|choices : choices[1]
+	if(!C || !B)
+		return
+	if(!C.Adjacent(B.victim))
+		return
+	var/obj/item/bodypart/head/head = C.get_bodypart(BODY_ZONE_HEAD)
+	if(!head)
+		to_chat(owner, "<span class='warning'>[C] doesn't have a head!</span>")
+		return
+	var/hasbrain = FALSE
+	for(var/obj/item/organ/brain/X in C.internal_organs)
+		hasbrain = TRUE
+		break
+	if(!hasbrain)
+		to_chat(owner, "<span class='warning'>[C] doesn't have a brain! </span>")
+		return
+	if((!C.key || !C.mind) && C != B.target)
+		to_chat(owner, "<span class='warning'>[C]'s mind seems unresponsive. Try someone else!</span>")
+		return
+	if(C.has_horror_inside())
+		to_chat(owner, "<span class='warning'>[C] is already infested!</span>")
+		return
+
+	to_chat(owner, "<span class='warning'>You move your tentacles away from [B.victim] and begin to transfer to [C]...</span>")
+	var/delay = 20 SECONDS
+	var/silent
+	if(B.victim.pulling != C)
+		silent = TRUE
+	else
+		switch(B.victim.grab_state)
+			if(GRAB_PASSIVE)
+				delay = 10 SECONDS
+			if(GRAB_AGGRESSIVE)
+				delay = 5 SECONDS
+			if(GRAB_NECK)
+				delay = 3 SECONDS
+			else
+				delay = 1 SECONDS
+
+	if(!do_mob(B, C, delay))
+		to_chat(owner, "<span class='warning'>As [C] moves away, your transfer gets interrupted!</span>")
+		return
+
+	if(!C || !B)
+		return
+	B.leave_victim()
+	B.Infect(C)
+	if(!silent)
+		to_chat(C, "<span class='warning'>Something slimy wiggles into your ear!</span>")
+		playsound(B, 'sound/effects/blobattack.ogg', 30, 1)
 
 /datum/action/innate/horror/jumpstart_host
 	name = "Revive Host"

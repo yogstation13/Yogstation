@@ -206,10 +206,10 @@
 					var/link = FOLLOW_LINK(M, src)
 					to_chat(M, "[link] [rendered]")
 		to_chat(src, "<span class='changeling'><i>[truename] [say_string]:</i> [input]</span>")
-		add_verb(victim, /mob/living/verb/horror_comm)
+		add_verb(victim, /mob/living/proc/horror_comm)
 		talk_to_horror_action.Grant(victim)
 
-/mob/living/verb/horror_comm()
+/mob/living/proc/horror_comm()
 	set name = "Converse with Horror"
 	set category = "Horror"
 	set desc = "Communicate mentally with the thing in your head."
@@ -225,7 +225,7 @@
 
 		for(var/M in GLOB.dead_mob_list)
 			if(isobserver(M))
-				var/rendered = "<span class='changeling'><i>Horror Communication from <b>[src]</b> : [input]</i>"
+				var/rendered = "<span class='changeling'><i>Horror Communication from <b>[B.truename]</b> : [input]</i>"
 				var/link = FOLLOW_LINK(M, src)
 				to_chat(M, "[link] [rendered]")
 		to_chat(src, "<span class='changeling'><i>[src] says:</i> [input]</span>")
@@ -244,7 +244,7 @@
 
 	for(var/M in GLOB.dead_mob_list)
 		if(isobserver(M))
-			var/rendered = "<span class='changeling'><i>Horror Communication from <b>[B]</b> : [input]</i>"
+			var/rendered = "<span class='changeling'><i>Horror Communication from <b>[B.truename]</b> : [input]</i>"
 			var/link = FOLLOW_LINK(M, src)
 			to_chat(M, "[link] [rendered]")
 	to_chat(src, "<span class='changeling'><i>[B.truename] says:</i> [input]</span>")
@@ -373,10 +373,10 @@
 		return
 
 	if(!Adjacent(H))
-		return FALSE
+		return
 
 	if(H.has_horror_inside())
-		to_chat(src, "<span class='warning'>[victim] is already infested!</span>")
+		to_chat(src, "<span class='warning'>[H] is already infested!</span>")
 		return
 
 	to_chat(src, "<span class='warning'>You slither your tentacles up [H] and begin probing at their ear canal...</span>")
@@ -589,7 +589,7 @@
 	victim.machine = null
 
 	var/mob/living/V = victim
-	remove_verb(V, /mob/living/verb/horror_comm)
+	remove_verb(V, /mob/living/proc/horror_comm)
 	talk_to_horror_action.Remove(victim)
 
 	for(var/obj/item/horrortentacle/T in victim)
@@ -763,11 +763,15 @@
 		bonding = FALSE
 		controlling = TRUE
 
-		remove_verb(victim, /mob/living/verb/horror_comm)
+		remove_verb(victim, /mob/living/proc/horror_comm)
 		talk_to_horror_action.Remove(victim)
 		GrantControlActions()
 
 		victim.med_hud_set_status()
+		if(target)
+			victim.apply_status_effect(/datum/status_effect/agent_pinpointer/horror)
+			for(var/datum/status_effect/agent_pinpointer/horror/status in victim.status_effects)
+				status.scan_target = target
 
 /mob/living/carbon/proc/release_control()
 	var/mob/living/simple_animal/horror/B = has_horror_inside()
@@ -794,12 +798,13 @@
 
 	controlling = FALSE
 	UnregisterSignal(victim, COMSIG_MOB_APPLY_DAMAGE)
-	add_verb(victim, /mob/living/verb/horror_comm)
+	add_verb(victim, /mob/living/proc/horror_comm)
 	RemoveControlActions()
 	RefreshAbilities()
 	talk_to_horror_action.Grant(victim)
 
 	victim.med_hud_set_status()
+	victim.remove_status_effect(/datum/status_effect/agent_pinpointer/horror)
 
 	victim.mind.transfer_to(src)
 	if(host_brain)

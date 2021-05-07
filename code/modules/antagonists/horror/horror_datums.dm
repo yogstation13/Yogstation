@@ -263,11 +263,6 @@
 /datum/status_effect/agent_pinpointer/horror/scan_for_target()
 	return
 
-/datum/status_effect/agent_pinpointer/horror/point_to_target()
-	if(!ishorror(owner))
-		return
-	return ..()
-
 //TRAPPED MIND - when horror takes control over your body, you become a mute trapped mind
 /mob/living/captive_brain
 	name = "host brain"
