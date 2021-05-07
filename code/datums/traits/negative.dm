@@ -538,7 +538,6 @@
 		/obj/item/storage/box/fancy/cigarettes/cigpack_robustgold,
 		/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
 		/obj/item/storage/box/fancy/cigarettes/cigars,
-		/obj/item/storage/box/fancy/cigarettes/cigars/cohiba,
 		/obj/item/storage/box/fancy/cigarettes/cigars/havana)
 	. = ..()
 
@@ -598,7 +597,9 @@
 									/datum/reagent/medicine/oculine,
 									/datum/reagent/medicine/neurine,
 									/datum/reagent/medicine/bicaridine,
-									/datum/reagent/medicine/kelotane) //Everything in the list can be healed from another source round-start
+									/datum/reagent/medicine/kelotane,
+									/datum/reagent/medicine/c2/libital,
+									/datum/reagent/medicine/c2/aiuri) //Everything in the list can be healed from another source round-start
 	var/reagent_id
 	var/cooldown_time = 1 MINUTES //Cant act again until the first wears off
 	var/cooldown = FALSE

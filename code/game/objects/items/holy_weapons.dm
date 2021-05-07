@@ -324,6 +324,9 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
+/obj/item/nullrod/godhand/ignition_effect(atom/A, mob/user)
+	. = "<span class='notice'>[user] grasps [A] with [user.p_their()] flaming hand, igniting it in a burst of holy flame. Holy hot damn, that is badass. </span>"
+
 /obj/item/nullrod/staff
 	icon_state = "godstaff-red"
 	item_state = "godstaff-red"
