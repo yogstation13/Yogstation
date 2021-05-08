@@ -380,7 +380,7 @@
 	suffix = "kilo"
 	name = "Kilo Station Emergency Shuttle"
 	credit_cost = 5000
-	description = "A fully functional shuttle including a complete infirmary, storage facilties and regular amenities."
+	description = "A fully functional shuttle including a complete infirmary, storage facilities, and regular amenities."
 
 /datum/map_template/shuttle/emergency/rollerdome
 	suffix = "rollerdome"
