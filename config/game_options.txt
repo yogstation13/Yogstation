@@ -94,7 +94,7 @@ ALERT_DELTA Destruction of the station is imminent. All crew are instructed to o
 
 # New
 PROBABILITY DARKSPAWN 6
-PROBABILITY HERESY 4
+PROBABILITY HERESY 0
 
 # Lowpop
 PROBABILITY TRAITOR 5
