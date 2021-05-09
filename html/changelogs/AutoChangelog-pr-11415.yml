@@ -1,7 +1,0 @@
-author: "  lots of tg coders"
-delete-after: true 
-changes: 
-  - rscadd: "several new weaker but more numerous healing stack items, including recipes for unique and upgraded variants"
-  - rscdel: "old healing stack items are now unattainable since they are boring"
-  - imageadd: "icons for all the new stuff"
-  - soundadd: "sounds for poultice"
