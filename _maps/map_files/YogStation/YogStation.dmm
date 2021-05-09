@@ -44065,13 +44065,6 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/port/fore)
-"kjw" = (
-/obj/effect/landmark/event_spawn,
-/obj/structure/chair/office/dark,
-/obj/effect/landmark/start/assistant,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/wood,
-/area/library)
 "kjA" = (
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
@@ -49278,6 +49271,17 @@
 	},
 /turf/open/floor/plating,
 /area/science/xenobiology)
+"nTH" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/library)
 "nUj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -57012,6 +57016,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"tjl" = (
+/obj/effect/landmark/event_spawn,
+/obj/structure/chair/office/dark,
+/obj/effect/landmark/start/assistant,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/library)
 "tkv" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -109114,7 +109128,7 @@ aCD
 aFe
 aGQ
 bNw
-aPP
+nTH
 qbI
 ujG
 qfi
@@ -109371,7 +109385,7 @@ aCC
 aFh
 aFu
 aFu
-kjw
+tjl
 aLg
 aLg
 aOS
