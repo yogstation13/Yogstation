@@ -1,4 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - bugfix: "BYOS kit shouldn't be catastrophie'd and delete everyone and everything on it."
