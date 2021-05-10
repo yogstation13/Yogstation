@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "the cargo shuttle will be prevented from moving if a privately ordered crate is loaded on it"

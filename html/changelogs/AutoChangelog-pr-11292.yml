@@ -1,6 +1,0 @@
-author: "ChesterTheCheesy"
-delete-after: true 
-changes: 
-  - rscadd: "Polysmorphs now bleed green like they always should have."
-  - bugfix: "species with no blood no longer bleed red when hit by ballistic projectiles"
-  - imageadd: "added generic blood splatter"
