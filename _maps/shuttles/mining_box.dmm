@@ -9,17 +9,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/mining)
-"c" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/ore_box,
-/obj/machinery/newscaster{
-	pixel_y = 32
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/mining)
 "d" = (
 /obj/machinery/computer/shuttle/mining,
 /turf/open/floor/mineral/titanium/blue,
@@ -85,17 +74,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/mining)
-"m" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/ore_box,
-/obj/structure/sign/poster/official/random{
-	pixel_y = 32
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/mining)
 "x" = (
 /obj/structure/shuttle/engine/heater,
 /obj/structure/window/reinforced{
@@ -128,6 +106,17 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/mining)
+"S" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/mining)
 "T" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -138,6 +127,17 @@
 "U" = (
 /obj/structure/shuttle/engine/propulsion/burst,
 /turf/open/floor/plating/airless,
+/area/shuttle/mining)
+"Z" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/mining)
 
 (1,1,1) = {"
@@ -151,7 +151,7 @@ U
 "}
 (2,1,1) = {"
 a
-c
+S
 g
 e
 f
@@ -169,7 +169,7 @@ l
 "}
 (4,1,1) = {"
 a
-m
+Z
 g
 e
 f
