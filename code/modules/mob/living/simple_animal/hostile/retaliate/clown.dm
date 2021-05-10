@@ -23,6 +23,7 @@
 	melee_damage_upper = 10
 	attacktext = "attacks"
 	attack_sound = 'sound/items/bikehorn.ogg'
+	faction = list("creature")
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	del_on_death = 1
