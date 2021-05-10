@@ -727,6 +727,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/mine/production)
 "fO" = (
@@ -818,6 +819,7 @@
 	},
 /obj/effect/turf_decal/bot,
 /obj/item/tank/internals/anesthetic,
+/obj/item/clothing/mask/breath/medical,
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "gV" = (
@@ -3533,7 +3535,7 @@
 /obj/machinery/newscaster{
 	pixel_y = 32
 	},
-/obj/item/radio/headset/headset_cargo/mining,
+/obj/item/book/random,
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
 "VJ" = (
@@ -3545,6 +3547,7 @@
 /area/mine/production)
 "VK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/effect/decal/cleanable/oil,
 /turf/open/floor/plasteel,
 /area/mine/production)
 "VL" = (
