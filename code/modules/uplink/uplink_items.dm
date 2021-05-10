@@ -1881,6 +1881,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 3
 	manufacturer = /datum/corporation/traitor/donkco
 	restricted_roles = list("Roboticist", "Research Director")
+	
+/datum/uplink_item/role_restricted/syndicate_basket
+	name = "C.L.U.W.N.E. Grenade"
+	desc = "A tactical clown grenade which conjures a clown from the netherworlds. Be careful, it may attack you too!"
+	item = /obj/item/grenade/spawnergrenade/clown
+	cost = 3
+	restricted_roles = list("Cook")
 
 /datum/uplink_item/role_restricted/haunted_magic_eightball
 	name = "Haunted Magic Eightball"
