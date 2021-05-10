@@ -13616,6 +13616,9 @@
 	persistence_id = "public";
 	pixel_y = 32
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/library)
 "aLh" = (
@@ -20851,11 +20854,11 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
 	},
 /turf/open/floor/carpet,
 /area/library)
@@ -28331,13 +28334,12 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "bLO" = (
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 8
-	},
 /obj/structure/sign/painting{
 	persistence_id = "public";
 	pixel_x = -32
+	},
+/obj/machinery/light/small{
+	dir = 8
 	},
 /turf/open/floor/carpet,
 /area/library)
@@ -44259,9 +44261,6 @@
 	},
 /area/maintenance/port/fore)
 "kjw" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
 /obj/structure/table/wood,
 /obj/item/storage/crayons,
 /obj/item/toy/crayon/spraycan{
@@ -44270,6 +44269,9 @@
 /obj/structure/sign/painting{
 	persistence_id = "public";
 	pixel_x = -32
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/library)
@@ -49094,7 +49096,6 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/machinery/vending/coffee,
 /turf/open/floor/wood,
 /area/library)
 "nAK" = (
@@ -54211,12 +54212,12 @@
 /area/engine/atmos_distro)
 "qYn" = (
 /obj/effect/turf_decal/siding/wood,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/wood,
 /area/library)
 "qYw" = (
@@ -54872,7 +54873,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/machinery/vending/games,
+/obj/machinery/vending/coffee,
 /turf/open/floor/wood,
 /area/library)
 "ryP" = (
@@ -61576,10 +61577,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "wdx" = (
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 8
-	},
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -25
 	},
@@ -62422,7 +62419,8 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "wGr" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/item/twohanded/required/kirbyplants/random,
+/obj/machinery/light,
 /turf/open/floor/carpet,
 /area/library)
 "wHY" = (
@@ -63647,7 +63645,9 @@
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
 "xGs" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/open/floor/carpet,
 /area/library)
 "xGG" = (
@@ -108897,7 +108897,7 @@ tBG
 uhU
 aYW
 idq
-wGr
+aYW
 jRI
 bjK
 wxd
@@ -109415,7 +109415,7 @@ aYW
 wJG
 foa
 aYW
-xKE
+wGr
 bbD
 aYV
 oUe
