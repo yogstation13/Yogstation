@@ -532,7 +532,8 @@
 			computer.table = src
 			break
 
-/obj/structure/table/optable/proc/get_computer()
+//gets the operating table's linked computer for surgeries
+/obj/structure/table/optable/proc/get_operating_computer()
 	return computer
 
 /obj/structure/table/optable/Destroy()
