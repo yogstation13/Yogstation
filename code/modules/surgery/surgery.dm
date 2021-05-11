@@ -69,7 +69,7 @@
 	//Get the relevant operating computer
 	var/obj/machinery/computer/operating/opcomputer
 	for(var/obj/O in T)
-		if(O && hascall(O, "get_operating_computer")
+		if(O && hascall(O, "get_operating_computer"))
 			opcomputer = call(O, "get_operating_computer")()
 			if(opcomputer)
 				break
