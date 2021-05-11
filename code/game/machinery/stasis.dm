@@ -59,7 +59,8 @@
 			thaw_them(L)
 	. = ..()
 
-/obj/machinery/stasis/proc/get_computer()
+///gets the stasis bed's linked operating computer for available surgeries
+/obj/machinery/stasis/proc/get_operating_computer()
 	return computer
 
 /obj/machinery/stasis/proc/stasis_running()
