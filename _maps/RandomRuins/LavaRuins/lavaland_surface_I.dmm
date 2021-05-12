@@ -23,12 +23,6 @@
 	},
 /turf/open/floor/mineral/diamond,
 /area/ruin/unpowered)
-"aA" = (
-/obj/structure/table,
-/obj/item/necromantic_stone,
-/obj/item/stack/sheet/mineral/diamond,
-/turf/open/floor/mineral/diamond,
-/area/ruin/unpowered)
 "aD" = (
 /obj/item/chair,
 /turf/open/floor/mineral/diamond,
@@ -262,6 +256,11 @@
 /obj/effect/decal/remains/human,
 /obj/item/coin/gold,
 /turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
+"Wd" = (
+/obj/structure/table,
+/obj/item/stack/sheet/mineral/diamond,
+/turf/open/floor/mineral/diamond,
 /area/ruin/unpowered)
 "Xa" = (
 /obj/item/slimecross/industrial/silver,
@@ -685,7 +684,7 @@ aU
 aU
 vW
 rp
-aA
+Wd
 aE
 rp
 bm
