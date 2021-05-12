@@ -430,13 +430,14 @@
 	reagent_state = LIQUID
 	color = "#DCDCDC"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
+	var/healing = 0.5
 	overdose_threshold = 30
 
 /datum/reagent/medicine/omnizine/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(-0.5*REM, 0)
-	M.adjustOxyLoss(-0.5*REM, 0)
-	M.adjustBruteLoss(-0.5*REM, 0)
-	M.adjustFireLoss(-0.5*REM, 0)
+	M.adjustToxLoss(-healing*REM, 0)
+	M.adjustOxyLoss(-healing*REM, 0)
+	M.adjustBruteLoss(-healing*REM, 0)
+	M.adjustFireLoss(-healing*REM, 0)
 	..()
 	. = 1
 
@@ -447,6 +448,12 @@
 	M.adjustFireLoss(1.5*REM, FALSE, FALSE, BODYPART_ORGANIC)
 	..()
 	. = 1
+
+/datum/reagent/medicine/omnizine/protozine
+	name = "Protozine"
+	description = "A less environmentally friendly and somewhat weaker variant of omnizine."
+	color = "#d8c7b7"
+	healing = 0.2
 
 /datum/reagent/medicine/calomel
 	name = "Calomel"
@@ -1424,6 +1431,61 @@
 	..()
 	. = 1
 
+/datum/reagent/medicine/metafactor
+	name = "Mitogen Metabolism Factor"
+	description = "This enzyme catalyzes the conversion of nutricious food into healing peptides."
+	metabolization_rate = 0.0625  * REAGENTS_METABOLISM //slow metabolism rate so the patient can self heal with food even after the troph has metabolized away for amazing reagent efficency.
+	reagent_state = SOLID
+	color = "#FFBE00"
+	overdose_threshold = 10
+
+/datum/reagent/medicine/metafactor/overdose_start(mob/living/carbon/M)
+	metabolization_rate = 2  * REAGENTS_METABOLISM
+
+/datum/reagent/medicine/metafactor/overdose_process(mob/living/carbon/M)
+	if(prob(13))
+		M.vomit()
+	..()
+
+/datum/reagent/medicine/silibinin
+	name = "Silibinin"
+	description = "A thistle derrived hepatoprotective flavolignan mixture that help reverse damage to the liver."
+	reagent_state = SOLID
+	color = "#FFFFD0"
+	metabolization_rate = 1.5 * REAGENTS_METABOLISM
+
+/datum/reagent/medicine/silibinin/on_mob_life(mob/living/carbon/M)
+	M.adjustOrganLoss(ORGAN_SLOT_LIVER, -2 * REM)//Add a chance to cure liver trauma once implemented.
+	..()
+	. = TRUE
+
+/datum/reagent/medicine/polypyr  //This is intended to be an ingredient in advanced chems.
+	name = "Polypyrylium Oligomers"
+	description = "A purple mixture of short polyelectrolyte chains not easily synthesized in the laboratory. It is valued as an intermediate in the synthesis of the cutting edge pharmaceuticals."
+	reagent_state = SOLID
+	color = "#9423FF"
+	metabolization_rate = 0.25 * REAGENTS_METABOLISM
+	overdose_threshold = 50
+	taste_description = "numbing bitterness"
+
+/datum/reagent/medicine/polypyr/on_mob_life(mob/living/carbon/M) //I wanted a collection of small positive effects, this is as hard to obtain as coniine after all.
+	. = ..()
+	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, -0.25 * REM)
+	M.adjustBruteLoss(-0.35 * REM, 0)
+	return TRUE
+
+/datum/reagent/medicine/polypyr/reaction_mob(mob/living/carbon/human/exposed_human, methods=TOUCH, reac_volume)
+	. = ..()
+	if(!(methods & (TOUCH|VAPOR)) || !ishuman(exposed_human) || (reac_volume < 0.5))
+		return
+	exposed_human.hair_color = "92f"
+	exposed_human.facial_hair_color = "92f"
+	exposed_human.update_hair()
+
+/datum/reagent/medicine/polypyr/overdose_process(mob/living/M)
+	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 0.5 * REM)
+	..()
+	. = TRUE
 
 /datum/reagent/medicine/burnmix
 	name = "BurnMix"
