@@ -33248,7 +33248,8 @@
 "cKD" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/structure/railing,
-/obj/machinery/bookbinder{
+/obj/machinery/vending/games{
+	pixel_x = -4;
 	pixel_y = 8
 	},
 /turf/open/floor/wood,
@@ -34324,18 +34325,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
-"doI" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes{
-	dir = 1
-	},
-/obj/effect/turf_decal/ramp_middle,
-/obj/effect/turf_decal/ramp_middle,
-/obj/structure/bookcase/random/religion,
-/turf/open/floor/carpet,
-/area/library)
 "dpw" = (
 /obj/structure/table/glass,
 /obj/item/storage/box/rxglasses{
@@ -39102,12 +39091,12 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/structure/bookcase/random/religion,
 /obj/effect/turf_decal/stripes{
 	dir = 1
 	},
 /obj/effect/turf_decal/ramp_middle,
 /obj/effect/turf_decal/ramp_middle,
+/obj/structure/bookcase/random/fiction,
 /turf/open/floor/carpet,
 /area/library)
 "gOg" = (
@@ -40798,13 +40787,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"hYi" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/obj/structure/bookcase/random/fiction,
-/turf/open/floor/carpet,
-/area/library)
 "hYC" = (
 /obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
@@ -40936,7 +40918,7 @@
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "idq" = (
-/obj/structure/bookcase/random/reference,
+/obj/structure/bookcase/random/nonfiction,
 /turf/open/floor/carpet,
 /area/library)
 "idB" = (
@@ -42100,6 +42082,13 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"iMx" = (
+/obj/structure/railing,
+/obj/machinery/bookbinder{
+	pixel_y = 8
+	},
+/turf/open/floor/wood,
+/area/library)
 "iMC" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -43719,10 +43708,6 @@
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "jRI" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
 /obj/structure/bookcase/random/religion,
 /turf/open/floor/carpet,
 /area/library)
@@ -45747,10 +45732,6 @@
 /obj/effect/turf_decal/stripes{
 	dir = 5
 	},
-/obj/machinery/vending/games{
-	pixel_x = -4;
-	pixel_y = -1
-	},
 /obj/effect/turf_decal/ramp_middle,
 /obj/effect/turf_decal/ramp_middle{
 	dir = 8
@@ -45764,6 +45745,9 @@
 /obj/effect/turf_decal/ramp_middle,
 /obj/structure/railing{
 	dir = 4
+	},
+/obj/item/twohanded/required/kirbyplants/random{
+	pixel_x = -5
 	},
 /turf/open/floor/carpet,
 /area/library)
@@ -58735,7 +58719,7 @@
 	},
 /obj/effect/turf_decal/ramp_middle,
 /obj/effect/turf_decal/ramp_middle,
-/obj/structure/bookcase/random/fiction,
+/obj/structure/bookcase/random/adult,
 /turf/open/floor/carpet,
 /area/library)
 "uiz" = (
@@ -62481,7 +62465,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "wJG" = (
-/obj/structure/bookcase/random/religion,
+/obj/structure/bookcase/random/reference,
 /turf/open/floor/carpet,
 /area/library)
 "wJL" = (
@@ -108641,7 +108625,7 @@ uhU
 bLO
 idq
 xGs
-hYi
+jRI
 aYW
 wdx
 xKE
@@ -109151,7 +109135,7 @@ ffH
 jQY
 aIt
 rCR
-doI
+gOa
 aYW
 aYW
 aYW
@@ -109407,7 +109391,7 @@ qbI
 ujG
 qfi
 aES
-rCR
+iMx
 gOa
 aYW
 wJG
