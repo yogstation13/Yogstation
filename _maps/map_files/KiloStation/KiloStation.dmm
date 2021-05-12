@@ -9177,11 +9177,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/teleporter)
-"apR" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/atmospherics/pipe/simple/general/hidden,
-/turf/open/floor/engine,
-/area/science/xenobiology)
 "apS" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
@@ -14117,15 +14112,6 @@
 /obj/item/stack/cable_coil,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"axR" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "Xenolab";
-	name = "Containment Chamber Blast Door"
-	},
-/obj/machinery/atmospherics/pipe/simple/general/hidden,
-/obj/effect/turf_decal/caution/stand_clear,
-/turf/open/floor/engine,
-/area/science/xenobiology)
 "axS" = (
 /turf/closed/wall/r_wall/rust,
 /area/engine/engineering)
@@ -100063,6 +100049,15 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"sVa" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "Xenolab";
+	name = "Containment Chamber Blast Door"
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/turf/open/floor/engine,
+/area/science/xenobiology)
 "sVe" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -102372,6 +102367,11 @@
 /obj/structure/sign/warning/fire,
 /turf/closed/wall,
 /area/maintenance/disposal/incinerator)
+"vQC" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/turf/open/floor/engine,
+/area/science/xenobiology)
 "vQT" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -141815,8 +141815,8 @@ aeu
 bwe
 bfY
 bdD
-apR
-axR
+vQC
+sVa
 iKn
 oDv
 afO
