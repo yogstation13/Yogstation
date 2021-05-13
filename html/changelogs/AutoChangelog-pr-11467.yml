@@ -1,0 +1,4 @@
+author: "Asdjky"
+delete-after: true 
+changes: 
+  - bugfix: "Telsa miniballs now properly trigger 20% of the time."
