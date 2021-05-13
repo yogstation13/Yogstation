@@ -686,6 +686,7 @@
 		var/prev_lockcharge = R.lockcharge
 		R.SetLockdown(1)
 		R.anchored = TRUE
+		R.hasExpanded = TRUE
 		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(1, R.loc)
 		smoke.start()
@@ -698,7 +699,6 @@
 		R.anchored = FALSE
 		R.notransform = FALSE
 		R.resize = 2
-		R.hasExpanded = TRUE
 		R.update_transform()
 
 /obj/item/borg/upgrade/expand/deactivate(mob/living/silicon/robot/R, user = usr)
