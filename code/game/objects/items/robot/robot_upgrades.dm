@@ -1,5 +1,7 @@
 // robot_upgrades.dm
 // Contains various borg upgrades.
+#define EXPANDER_MAXIMUM_STACK 2
+
 
 /obj/item/borg/upgrade
 	name = "borg upgrade module."
@@ -678,15 +680,15 @@
 	. = ..()
 	if(.)
 
-		if(R.hasExpanded)
-			to_chat(usr, "<span class='notice'>This unit already has an expand module installed!</span>")
+		if(R.hasExpanded >= EXPANDER_MAXIMUM_STACK)
+			to_chat(usr, "<span class='notice'>This unit has already expanded as much as it can!</span>")
 			return FALSE
 
 		R.notransform = TRUE
 		var/prev_lockcharge = R.lockcharge
 		R.SetLockdown(1)
 		R.anchored = TRUE
-		R.hasExpanded = TRUE
+		R.hasExpanded++
 		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(1, R.loc)
 		smoke.start()
