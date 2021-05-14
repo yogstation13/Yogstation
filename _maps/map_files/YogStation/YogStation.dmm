@@ -32383,6 +32383,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"cAY" = (
+/obj/structure/table/glass,
+/turf/open/floor/plasteel/chapel{
+	dir = 4
+	},
+/area/chapel/main)
 "cBg" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/effect/landmark/event_spawn,
@@ -36446,14 +36452,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"eZE" = (
-/obj/structure/table/glass,
-/obj/item/reagent_containers/food/snacks/grown/poppy,
-/obj/item/reagent_containers/food/snacks/grown/harebell,
-/turf/open/floor/plasteel/chapel{
-	dir = 4
-	},
-/area/escapepodbay)
 "eZN" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -41910,12 +41908,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
-"iQR" = (
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/chapel{
-	dir = 4
-	},
-/area/escapepodbay)
 "iQY" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -43826,6 +43818,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
+"kfF" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/food/snacks/grown/poppy,
+/obj/item/reagent_containers/food/snacks/grown/harebell,
+/turf/open/floor/plasteel/chapel{
+	dir = 4
+	},
+/area/chapel/main)
 "kgV" = (
 /obj/machinery/camera{
 	c_tag = "Bridge West Entrance";
@@ -49655,6 +49655,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"ohr" = (
+/obj/structure/table/glass,
+/turf/open/floor/plasteel/chapel,
+/area/chapel/main)
 "ohL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -57397,10 +57401,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"ttZ" = (
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/chapel,
-/area/escapepodbay)
 "tuW" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 8
@@ -114316,10 +114316,10 @@ atS
 aCR
 bfb
 aCR
-eZE
-ttZ
-iQR
-ttZ
+kfF
+ohr
+cAY
+ohr
 aCR
 aNX
 aPo
