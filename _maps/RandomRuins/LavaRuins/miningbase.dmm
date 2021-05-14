@@ -86,10 +86,6 @@
 /obj/machinery/sleeper{
 	dir = 8
 	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 32
-	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -421,9 +417,9 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/item/beacon,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "dq" = (
@@ -827,6 +823,7 @@
 	dir = 1;
 	pixel_y = -32
 	},
+/obj/structure/table,
 /turf/open/floor/plasteel/dark,
 /area/mine/vacant)
 "gW" = (
@@ -978,6 +975,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/item/book/random,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "iT" = (
@@ -996,6 +994,12 @@
 "iW" = (
 /obj/machinery/computer/operating{
 	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 32
+	},
+/obj/machinery/firealarm{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
@@ -1072,6 +1076,9 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/delivery,
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "jX" = (
@@ -1227,6 +1234,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/item/beacon,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "mb" = (
@@ -1551,6 +1559,9 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -32
 	},
+/obj/structure/table,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty,
 /turf/open/floor/plasteel/dark,
 /area/mine/vacant)
 "sp" = (
@@ -1570,6 +1581,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
 "sO" = (
@@ -1601,9 +1613,6 @@
 	dir = 10
 	},
 /obj/machinery/meter/atmos,
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 30
-	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
 "tx" = (
@@ -1974,6 +1983,9 @@
 /obj/item/storage/box/bodybags,
 /obj/item/storage/box/bodybags,
 /obj/item/hand_labeler,
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "Ap" = (
@@ -2316,6 +2328,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/machinery/holopad,
 /turf/open/floor/wood,
 /area/mine/break_room)
 "DT" = (
@@ -2957,9 +2970,6 @@
 	pixel_x = 5
 	},
 /obj/item/storage/backpack/duffelbag/med/surgery,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 32
-	},
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
 "MO" = (
@@ -2980,10 +2990,10 @@
 /turf/open/floor/plating/lavaland_baseturf,
 /area/mine/eva)
 "Np" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/machinery/light_switch{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "ND" = (
@@ -3156,6 +3166,9 @@
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/pump,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
 "PQ" = (
@@ -3237,6 +3250,11 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
+"QP" = (
+/obj/structure/table,
+/obj/item/book/random,
+/turf/open/floor/plasteel/freezer,
+/area/mine/living_quarters)
 "QQ" = (
 /obj/structure/table,
 /turf/open/floor/plasteel/white,
@@ -3298,9 +3316,6 @@
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
 "RO" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Morgue"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
@@ -3313,6 +3328,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/machinery/door/airlock/medical,
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
 "RR" = (
@@ -3390,9 +3406,6 @@
 	},
 /area/mine/eva)
 "To" = (
-/obj/machinery/door/airlock/glass{
-	name = "Mining Station Vacant Room"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
@@ -3408,6 +3421,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
+/obj/machinery/door/airlock/engineering/glass,
 /turf/open/floor/plasteel,
 /area/mine/vacant)
 "TG" = (
@@ -3473,14 +3487,6 @@
 /area/mine/production)
 "UP" = (
 /obj/structure/table,
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -2
-	},
-/obj/item/storage/toolbox/electrical{
-	pixel_x = 2;
-	pixel_y = 2
-	},
 /obj/structure/cable,
 /obj/machinery/power/apc{
 	dir = 4;
@@ -3494,6 +3500,15 @@
 	},
 /obj/machinery/light_switch{
 	pixel_y = -32
+	},
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/toolbox/electrical{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = -2
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
@@ -3554,10 +3569,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
-/obj/machinery/light_switch{
-	pixel_y = -32
-	},
-/obj/machinery/light/small,
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "VP" = (
@@ -3569,8 +3580,6 @@
 /obj/structure/closet/secure_closet/mmedical{
 	anchored = 1
 	},
-/obj/item/clothing/ears/earmuffs,
-/obj/item/twohanded/binoculars,
 /obj/machinery/newscaster{
 	pixel_x = -30
 	},
@@ -3912,11 +3921,11 @@ ab
 ab
 ab
 ab
-ab
-ab
+Ap
+Ap
 Ap
 ak
-Ap
+ak
 ak
 ak
 ab
@@ -3954,7 +3963,7 @@ ab
 ab
 ab
 ab
-ab
+Ap
 zW
 zW
 qR
@@ -5006,7 +5015,7 @@ Uf
 Uf
 Uf
 zW
-we
+QP
 AG
 Ax
 zW
@@ -5061,7 +5070,7 @@ kD
 Np
 Ug
 VL
-kD
+wN
 ak
 ak
 ak
@@ -5143,7 +5152,7 @@ ab
 Ap
 kD
 kD
-wN
+kD
 kD
 kD
 Ap
