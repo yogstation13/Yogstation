@@ -45163,6 +45163,16 @@
 /obj/item/wrench,
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"kCl" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/item/twohanded/required/kirbyplants/random{
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "kCr" = (
 /turf/open/floor/carpet,
 /area/crew_quarters/cryopods)
@@ -47452,9 +47462,6 @@
 	},
 /obj/structure/railing{
 	dir = 8
-	},
-/obj/item/twohanded/required/kirbyplants/random{
-	pixel_y = 3
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -59280,6 +59287,9 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/item/twohanded/required/kirbyplants/random{
+	pixel_y = 3
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "ubH" = (
@@ -62426,9 +62436,6 @@
 	},
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
-	},
-/obj/item/twohanded/required/kirbyplants/random{
-	pixel_y = 3
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
@@ -118067,7 +118074,7 @@ uaV
 wQI
 uaV
 tku
-vgp
+kCl
 vZG
 vTE
 ksq
