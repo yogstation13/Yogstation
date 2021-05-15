@@ -707,9 +707,9 @@
 	. = ..()
 	if (.)
 		while(R.expansion_count)
-			resize = 0.5
-			expansion_count--
-			update_transform()
+			R.resize = 0.5
+			R.expansion_count--
+			R.update_transform()
 
 /obj/item/borg/upgrade/rped
 	name = "engineering cyborg RPED"
