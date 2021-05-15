@@ -6979,6 +6979,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"arM" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/item/twohanded/required/kirbyplants/random{
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "arP" = (
 /turf/closed/wall,
 /area/maintenance/fore)
@@ -41672,9 +41682,6 @@
 /obj/structure/sign/departments/minsky/security/security{
 	pixel_y = -32
 	},
-/obj/item/twohanded/required/kirbyplants/random{
-	pixel_y = 3
-	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
@@ -47452,9 +47459,6 @@
 	},
 /obj/structure/railing{
 	dir = 8
-	},
-/obj/item/twohanded/required/kirbyplants/random{
-	pixel_y = 3
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -54032,9 +54036,6 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/item/twohanded/required/kirbyplants/random{
-	pixel_y = 3
-	},
 /obj/structure/sign/departments/minsky/security/security{
 	pixel_y = -32
 	},
@@ -57955,6 +57956,9 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/item/twohanded/required/kirbyplants/random{
+	pixel_y = 7
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "tkv" = (
@@ -60946,6 +60950,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/item/twohanded/required/kirbyplants/random{
+	pixel_y = 7
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "vgX" = (
@@ -62426,9 +62433,6 @@
 	},
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
-	},
-/obj/item/twohanded/required/kirbyplants/random{
-	pixel_y = 3
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
@@ -118063,7 +118067,7 @@ aRL
 jrf
 aRL
 pMt
-uaV
+arM
 wQI
 uaV
 tku
