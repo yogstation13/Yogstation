@@ -680,7 +680,7 @@
 	. = ..()
 	if(.)
 
-		if(R.hasExpanded >= EXPANDER_MAXIMUM_STACK)
+		if(R.expansion_count >= EXPANDER_MAXIMUM_STACK)
 			to_chat(usr, "<span class='notice'>This unit has already expanded as much as it can!</span>")
 			return FALSE
 
@@ -688,7 +688,7 @@
 		var/prev_lockcharge = R.lockcharge
 		R.SetLockdown(1)
 		R.anchored = TRUE
-		R.hasExpanded++
+		R.expansion_count++
 		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(1, R.loc)
 		smoke.start()
