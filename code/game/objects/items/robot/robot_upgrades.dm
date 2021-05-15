@@ -706,7 +706,7 @@
 /obj/item/borg/upgrade/expand/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		while(expansion_count)
+		while(R.expansion_count)
 			resize = 0.5
 			expansion_count--
 			update_transform()
