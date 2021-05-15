@@ -678,7 +678,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	return "F"
 
 /obj/item/projectile/guardian
-	name = "crystal spray"
+	name = "crystal bolt"
 	icon_state = "greyscale_bolt"
 	damage = 10
 	damage_type = BRUTE
