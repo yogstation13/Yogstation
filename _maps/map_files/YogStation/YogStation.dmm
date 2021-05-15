@@ -14969,9 +14969,6 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 8
 	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
@@ -37134,9 +37131,6 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 8
 	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
 /obj/structure/sign/departments/minsky/security/security{
 	pixel_y = -32
 	},
@@ -37147,10 +37141,10 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
+/obj/structure/closet/firecloset,
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
-/obj/structure/closet/firecloset,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "fdv" = (
@@ -40752,16 +40746,6 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
-/obj/effect/turf_decal/ramp_middle,
 /obj/structure/railing,
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -40770,6 +40754,14 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_middle,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "hLb" = (
@@ -42696,6 +42688,27 @@
 	dir = 4
 	},
 /area/crew_quarters/theatre)
+"iSs" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Security Office";
+	req_access_txt = "63"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "iTl" = (
 /obj/structure/chair,
 /turf/open/floor/plating,
@@ -43921,9 +43934,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
 	},
 /obj/effect/turf_decal/ramp_middle{
 	dir = 8
@@ -45310,15 +45320,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"kDn" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
 "kDs" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 8
@@ -47368,19 +47369,6 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
-"mbj" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
 "mck" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -52201,27 +52189,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
-"pca" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Security Office";
-	req_access_txt = "63"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
 "pcg" = (
 /obj/structure/sign/painting{
 	persistence_id = "public";
@@ -54439,12 +54406,6 @@
 	},
 /obj/structure/railing,
 /obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
-/obj/effect/turf_decal/ramp_middle{
 	dir = 1
 	},
 /obj/item/twohanded/required/kirbyplants/random{
@@ -54457,6 +54418,9 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "qEu" = (
@@ -58469,6 +58433,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+"tpe" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "tpq" = (
 /obj/item/coin/silver{
 	pixel_x = 7;
@@ -60768,6 +60741,19 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
+"uPV" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "uQe" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
@@ -65782,7 +65768,6 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 8
 	},
-/obj/effect/turf_decal/ramp_middle,
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
@@ -65790,6 +65775,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "ygi" = (
@@ -118251,11 +118237,11 @@ tXQ
 jtI
 rqG
 lIh
-kDn
+tpe
 vUA
-pca
+iSs
 nzY
-mbj
+uPV
 bwH
 aMZ
 bjT
