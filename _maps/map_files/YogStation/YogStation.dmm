@@ -36251,9 +36251,6 @@
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/captain)
 "eDG" = (
-/obj/structure/railing/corner{
-	dir = 4
-	},
 /obj/effect/turf_decal/ramp_corner{
 	dir = 4
 	},
@@ -46313,7 +46310,6 @@
 "llI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/railing/corner,
 /obj/effect/turf_decal/ramp_corner{
 	dir = 1
 	},
