@@ -123,3 +123,13 @@
 	maxHealth = 450
 	poison_type = /datum/reagent/cluwnification
 
+/mob/living/simple_animal/hostile/asteroid/marrowweaver/ice
+	name = "Frostbite Spider"
+	desc = "A big, angry, venomous ice spider. It likes to snack on bone marrow. Its preferred food source is you."
+	icon_state = "weaver_ice"
+	icon_living = "weaver_ice"
+	icon_aggro = "weaver_ice"
+	icon_dead = "weaver_ice_dead"
+	melee_damage_lower = 10 //stronger venom, but weaker attack.
+	melee_damage_upper = 13
+	poison_type = /datum/reagent/consumable/frostoil
