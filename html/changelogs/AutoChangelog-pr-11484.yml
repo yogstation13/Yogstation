@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "ranged holoparasites deal twice the damage per shot, but shoot 75% slower to stop the attack speed from preventing movement"
-  - tweak: "ranged holoparasite projectile icon and name changed to reflect their higher damage/lower speed"
