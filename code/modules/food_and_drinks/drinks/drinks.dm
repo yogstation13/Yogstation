@@ -566,7 +566,7 @@
 
 /obj/item/reagent_containers/food/drinks/soda_cans/buzz_fuzz
 	name = "Buzz Fuzz"
-	desc = "The sister drink of Shambler's Juice! Uses real honey, making it a sweet tooth's dream drink. The slogan reads ''A Hive of Flavour'', there's also a label about how it is adddicting."
+	desc = "The sister drink of Shambler's Juice! Uses real honey, making it a sweet tooth's dream drink. The slogan reads 'A Hive of Flavour', there's also a label about how it is adddicting."
 	icon_state = "honeysoda_can"
 	list_reagents = list(/datum/reagent/consumable/buzz_fuzz = 25, /datum/reagent/consumable/honey = 5)
 	foodtype = SUGAR | JUNKFOOD
