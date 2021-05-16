@@ -186,7 +186,7 @@
 			C.adjustStaminaLoss(0.1) //Not healing any wounds, so the nanites will reconstruct random healthy tissue. Very painful!
 		if(!C.getBruteLoss() && !C.getFireLoss())
 			if(prob(5))	
-				to_chat(C, "<span class='warning'>You feel a searing pain accross your body!")
+				to_chat(C, "<span class='warning'>You feel a searing pain across your body!")
 		else
 			if(prob(5))
 				to_chat(C, "<span class='warning'>Your wounds burn horribly as they heal!")
