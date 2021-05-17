@@ -183,12 +183,11 @@
 		if(C.getStaminaLoss() < 100) //Stops after hitting the second slowdown level. This is distributed so only ~80% is counted towards crit
 			C.adjustStaminaLoss(5) //Hurts a lot more
 		else if(C.getBruteLoss() || C.getFireLoss()) //Prevents stamina regen if it's actively healing and you're over the limit.
-			C.adjustStaminaLoss(0.1) //Not healing any wounds, so the nanites will reconstruct random healthy tissue. Very painful!
-		if(!C.getBruteLoss() && !C.getFireLoss())
-			if(prob(5))	
-				to_chat(C, "<span class='warning'>You feel a searing pain across your body!")
-		else
-			if(prob(5))
+			C.adjustStaminaLoss(0.1) 
+		if(prob(5))
+			if(!C.getBruteLoss() && !C.getFireLoss())	
+				to_chat(C, "<span class='warning'>You feel a searing pain across your body!")//Not actively healing, so nanites will start randomly replacing healthy tissue. Ouch!
+			else
 				to_chat(C, "<span class='warning'>Your wounds burn horribly as they heal!")
 	else
 		host_mob.adjustBruteLoss(-3, TRUE)
