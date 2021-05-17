@@ -25,7 +25,7 @@ obj/item/armorpolish/afterattack(atom/target, mob/user, proximity)
 				energy = I.armor.energy < 25 ? 25 : I.armor.energy
 			)
 			remaining_uses -= 1
-			to_chat(user, "You apply the armor polish to the [target.name].")
+			to_chat(user, "You apply [src] to the [target.name].")
 			if(remaining_uses <= 0) {
 				to_chat(user, "<span class='warning'>The [src] disintegrates into nothing...</span>")
 				qdel(src)
