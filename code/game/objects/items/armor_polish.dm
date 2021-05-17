@@ -18,7 +18,12 @@ obj/item/armorpolish/afterattack(atom/target, mob/user, proximity)
 		//make sure it's not too strong already ((busted))
 		if((I.armor.melee <= 30) || (I.armor.bullet <= 30) || (I.armor.laser <= 20) || (I.armor.energy <= 25))
 			//it is weak enough to benefit
-			I.armor = I.armor.setRating(melee = I.armor.melee < 30 ? 30 : I.armor.melee,bullet = I.armor.bullet < 30 ? 30 : I.armor.bullet,laser = I.armor.laser < 20 ? 20 : I.armor.laser,energy = I.armor.energy < 25 ? 25 : I.armor.energy)
+			I.armor = I.armor.setRating(
+				melee = I.armor.melee < 30 ? 30 : I.armor.melee,
+				bullet = I.armor.bullet < 30 ? 30 : I.armor.bullet,
+				laser = I.armor.laser < 20 ? 20 : I.armor.laser,
+				energy = I.armor.energy < 25 ? 25 : I.armor.energy
+			)
 			remaining_uses -= 1
 			to_chat(user, "You apply the armor polish to the [target.name].")
 			if(remaining_uses <= 0) {
