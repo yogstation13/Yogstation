@@ -4,9 +4,9 @@
  * @license MIT
  */
 
+import { KEY_ENTER, KEY_ESCAPE, KEY_SPACE } from 'common/keycodes';
 import { classes, pureComponentHooks } from 'common/react';
 import { Component, createRef } from 'inferno';
-import { KEY_ENTER, KEY_ESCAPE, KEY_SPACE } from '../../common/keycodes';
 import { createLogger } from '../logging';
 import { Box } from './Box';
 import { Icon } from './Icon';
@@ -20,7 +20,6 @@ export const Button = props => {
     fluid,
     icon,
     iconRotation,
-    iconSize,
     iconSpin,
     iconColor,
     iconPosition,
@@ -29,7 +28,6 @@ export const Button = props => {
     selected,
     tooltip,
     tooltipPosition,
-    tooltipOverrideLong,
     ellipsis,
     compact,
     circular,
@@ -50,7 +48,7 @@ export const Button = props => {
   }
   // IE8: Use a lowercase "onclick" because synthetic events are fucked.
   // IE8: Use an "unselectable" prop because "user-select" doesn't work.
-  return (
+  let buttonContent = (
     <Box
       className={classes([
         'Button',
@@ -94,21 +92,31 @@ export const Button = props => {
       {(icon && iconPosition !== 'right') && (
         <Icon
           name={icon}
-          rotation={iconRotation}
           color={iconColor}
-          size={iconSize}
+          rotation={iconRotation}
           spin={iconSpin} />
       )}
       {content}
       {children}
-      {tooltip && (
-        <Tooltip
-          content={tooltip}
-          overrideLong={tooltipOverrideLong}
-          position={tooltipPosition} />
+      {(icon && iconPosition === 'right') && (
+        <Icon
+          name={icon}
+          color={iconColor}
+          rotation={iconRotation}
+          spin={iconSpin} />
       )}
     </Box>
   );
+
+  if (tooltip) {
+    buttonContent = (
+      <Tooltip content={tooltip} position={tooltipPosition}>
+        {buttonContent}
+      </Tooltip>
+    );
+  }
+
+  return buttonContent;
 };
 
 Button.defaultHooks = pureComponentHooks;
@@ -229,14 +237,13 @@ export class ButtonInput extends Component {
       iconSpin,
       tooltip,
       tooltipPosition,
-      tooltipOverrideLong,
       color = 'default',
       placeholder,
       maxLength,
       ...rest
     } = this.props;
 
-    return (
+    let buttonInput = (
       <Box
         className={classes([
           'Button',
@@ -258,6 +265,13 @@ export class ButtonInput extends Component {
             'display': !this.state.inInput ? 'none' : undefined,
             'text-align': 'left',
           }}
+          onBlur={e => {
+            if (!this.state.inInput) {
+              return;
+            }
+            this.setInInput(false);
+            this.commitResult(e);
+          }}
           onKeyDown={e => {
             if (e.keyCode === KEY_ENTER) {
               this.setInInput(false);
@@ -266,19 +280,24 @@ export class ButtonInput extends Component {
             }
             if (e.keyCode === KEY_ESCAPE) {
               this.setInInput(false);
-              return;
             }
           }}
         />
-        {tooltip && (
-          <Tooltip
-            content={tooltip}
-            overrideLong={tooltipOverrideLong}
-            position={tooltipPosition}
-          />
-        )}
       </Box>
     );
+
+    if (tooltip) {
+      buttonContent = (
+        <Tooltip
+          content={tooltip}
+          position={tooltipPosition}
+        >
+          {buttonContent}
+        </Tooltip>
+      );
+    }
+
+    return buttonContent;
   }
 }
 
