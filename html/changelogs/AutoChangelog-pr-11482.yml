@@ -1,0 +1,4 @@
+author: "FLME"
+delete-after: true 
+changes: 
+  - tweak: "blast door in one of the bar templates is now a shutter"
