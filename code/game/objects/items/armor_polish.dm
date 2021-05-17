@@ -42,4 +42,4 @@ obj/item/armorpolish/afterattack(atom/target, mob/user, proximity)
 			}
 			
 	else
-		to_chat(user, "<span class='warning'>You can only polish suits and hats!</span>")
+		to_chat(user, "<span class='warning'>You can only polish suits and headgear!</span>")
