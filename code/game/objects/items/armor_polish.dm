@@ -38,7 +38,7 @@ obj/item/armorpolish/afterattack(atom/target, mob/user, proximity)
 			if(istype(target,/obj/item/clothing/suit)) {
 				to_chat(user, "<span class='warning'>This suit is strong enough already! Try it on something weaker.</span>")
 			} else {
-				to_chat(user, "<span class='warning'>This hat is strong enough already! Try it on something weaker.</span>")
+				to_chat(user, "<span class='warning'>This headgear is strong enough already! Try it on something weaker.</span>")
 			}
 			
 	else
