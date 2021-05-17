@@ -5,6 +5,7 @@
 	implements = list(/obj/item/scalpel = 100, /obj/item/melee/transforming/energy/sword = 75, /obj/item/kitchen/knife = 65,
 		/obj/item/shard = 45, /obj/item = 30) // 30% success with any sharp item.
 	time = 16
+	var/bleeding = 3 //how much bleeding you get from this being done
 
 /datum/surgery_step/incise/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, "<span class='notice'>You begin to make an incision in [target]'s [parse_zone(target_zone)]...</span>",
@@ -20,12 +21,21 @@
 /datum/surgery_step/incise/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if ishuman(target)
 		var/mob/living/carbon/human/H = target
-		if (!(NOBLOOD in H.dna.species.species_traits))
+		if (!(NOBLOOD in H.dna.species.species_traits) && bleeding)
 			display_results(user, target, "<span class='notice'>Blood pools around the incision in [H]'s [parse_zone(target_zone)].</span>",
 				"Blood pools around the incision in [H]'s [parse_zone(target_zone)].",
 				"")
-			H.bleed_rate += 3
+			H.bleed_rate += bleeding
 	return TRUE
+
+/datum/surgery_step/incise/nobleed
+	fuckup_damage = 0
+	bleeding = 0
+
+/datum/surgery_step/incise/nobleed/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	display_results(user, target, "<span class='notice'>You begin to <i>carefully</i> make an incision in [target]'s [parse_zone(target_zone)]...</span>",
+		"<span class='notice'>[user] begins to <i>carefully</i> make an incision in [target]'s [parse_zone(target_zone)].</span>",
+		"<span class='notice'>[user] begins to <i>carefully</i> make an incision in [target]'s [parse_zone(target_zone)].</span>")
 
 //clamp bleeders
 /datum/surgery_step/clamp_bleeders
@@ -86,7 +96,8 @@
 		H.bleed_rate = max( (H.bleed_rate - 3), 0)
 	return ..()
 
-
+/datum/surgery_step/close/nofail
+	fuckup_damage = 0
 
 //saw bone
 /datum/surgery_step/saw
