@@ -9,7 +9,7 @@
 /obj/item/armorpolish/examine(mob/user)
 	. = ..()
 	if(remaining_uses != -1)
-		. += "It has [remaining_uses] uses left."
+		. += "It has [remaining_uses] use[remaining_uses > 1 ? "s" : ""] left."
 
 obj/item/armorpolish/afterattack(atom/target, mob/user, proximity)
 	if(istype(target, /obj/item/clothing/suit) || istype(target, /obj/item/clothing/head))
