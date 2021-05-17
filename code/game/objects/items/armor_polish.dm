@@ -16,7 +16,7 @@ obj/item/armorpolish/afterattack(atom/target, mob/user, proximity)
 		var/obj/item/clothing/I = target;
 		//theos said 30/30/20/25
 		//make sure it's not too strong already ((busted))
-		if((I.armor.melee <= 30) || (I.armor.bullet <= 30) || (I.armor.laser <= 20) || (I.armor.energy <= 25))
+		if((I.armor.melee < 30) || (I.armor.bullet < 30) || (I.armor.laser < 20) || (I.armor.energy < 25))
 			//it is weak enough to benefit
 			I.armor = I.armor.setRating(
 				melee = I.armor.melee < 30 ? 30 : I.armor.melee,
