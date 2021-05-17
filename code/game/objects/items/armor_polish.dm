@@ -30,7 +30,7 @@ obj/item/armorpolish/afterattack(atom/target, mob/user, proximity)
 				to_chat(user, "<span class='warning'>The [src] disintegrates into nothing...</span>")
 				qdel(src)
 			} else {
-				to_chat(user, "<span class='warning'>The [src] has [remaining_uses] use left.</span>")
+				to_chat(user, "<span class='warning'>The [src] has [remaining_uses] use[remaining_uses > 1 ? "s" : ""] left.</span>")
 			}
 			
 			
