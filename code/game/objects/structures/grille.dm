@@ -234,8 +234,7 @@
 	if(!(flags_1 & NODECONSTRUCT_1))
 		var/obj/R = new rods_type(drop_location(), rods_amount)
 		transfer_fingerprints_to(R)
-		qdel(src)
-	..()
+		..()
 
 /obj/structure/grille/obj_break()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
