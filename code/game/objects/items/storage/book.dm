@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 		usr << browse(null, "window=editicon")
 
 /obj/item/storage/book/bible/proc/bless(mob/living/L, mob/living/user)
-	if(GLOB.religious_sect)
+	if(!istype(src, /obj/item/storage/book/bible/syndicate) && GLOB.religious_sect)
 		return GLOB.religious_sect.sect_bless(L,user)
 	if(!ishuman(L))
 		return
@@ -247,12 +247,12 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 	damtype = BURN
 	name = "Syndicate Tome"
 	attack_verb = list("attacked", "burned", "blessed", "damned", "scorched")
-	var/uses = 1
+	var/used = FALSE
 
 /obj/item/storage/book/bible/syndicate/attack_self(mob/living/carbon/human/H)
-	if (uses)
+	if (!used)
 		H.mind.holy_role = HOLY_ROLE_PRIEST
-		uses -= 1
+		used = TRUE
 		to_chat(H, "<span class='userdanger'>You try to open the book AND IT BITES YOU!</span>")
 		playsound(src.loc, 'sound/effects/snap.ogg', 50, 1)
 		H.apply_damage(5, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
