@@ -9,7 +9,7 @@
 	name = "Traitors"
 	persistent = TRUE
 	antag_flag = ROLE_TRAITOR
-	antag_datum = /datum/antagonist/traitor/
+	antag_datum = /datum/antagonist/traitor
 	minimum_required_age = 0
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg")
@@ -153,7 +153,6 @@
 		assigned += picked_candidate.mind
 		picked_candidate.mind.restricted_roles = restricted_roles
 		picked_candidate.mind.special_role = ROLE_HERETIC
-		GLOB.pre_setup_antags += picked_candidate.mind
 	return TRUE
 
 /datum/dynamic_ruleset/roundstart/heretics/execute()
@@ -162,7 +161,6 @@
 		var/datum/mind/cultie = c
 		var/datum/antagonist/heretic/new_antag = new antag_datum()
 		cultie.add_antag_datum(new_antag)
-		GLOB.pre_setup_antags -= cultie
 
 	return TRUE */
 
