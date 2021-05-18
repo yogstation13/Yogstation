@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - bugfix: "Turning into a crab via a gold slime pylon is no longer permanent"
