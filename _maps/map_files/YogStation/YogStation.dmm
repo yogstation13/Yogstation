@@ -11236,6 +11236,12 @@
 "aEZ" = (
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
+"aFa" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "aFb" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -14422,20 +14428,6 @@
 /area/hallway/secondary/exit)
 "aOb" = (
 /obj/machinery/computer/arcade,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
-"aOc" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
-"aOd" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "aOe" = (
@@ -32941,6 +32933,12 @@
 	dir = 4
 	},
 /area/crew_quarters/theatre)
+"cIU" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "cIZ" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -38035,16 +38033,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"ggH" = (
-/obj/machinery/holopad,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
 "ghA" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -41358,6 +41346,19 @@
 	},
 /turf/open/floor/carpet,
 /area/security/detectives_office)
+"ivA" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "ivM" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/structure/rack,
@@ -46734,6 +46735,27 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"miI" = (
+/obj/item/radio/intercom{
+	dir = 8;
+	name = "Station Intercom (General)";
+	pixel_x = -28
+	},
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Escape Arm Holding Area";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "miX" = (
 /obj/machinery/door/window/southleft{
 	base_state = "right";
@@ -49832,6 +49854,18 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"ofF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "ofJ" = (
 /obj/structure/sign/plaques/atmos{
 	pixel_y = 32
@@ -57204,30 +57238,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"tes" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	dir = 8;
-	name = "Station Intercom (General)";
-	pixel_x = -28
-	},
-/obj/structure/chair{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Escape Arm Holding Area";
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
 "tfB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -57484,6 +57494,12 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"toT" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "tpa" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -28
@@ -58468,6 +58484,18 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/robotics/lab)
+"tWU" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "tXh" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Port Bow Solar Access";
@@ -59967,6 +59995,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"uZw" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "uZz" = (
 /obj/structure/chair/office/dark,
 /obj/machinery/light{
@@ -60220,6 +60258,18 @@
 /obj/item/book/manual/wiki/atmospherics,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"viw" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "viU" = (
 /obj/machinery/camera{
 	c_tag = "Dormitory Toilets";
@@ -60663,6 +60713,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"vzP" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "vAn" = (
 /obj/effect/landmark/stationroom/maint/threexthree,
 /turf/template_noop,
@@ -62192,6 +62252,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"wyK" = (
+/obj/machinery/holopad,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "wzt" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -115370,13 +115443,13 @@ dhY
 dhY
 rEn
 aPq
-aPq
-aPq
-rEn
-aPq
-aPq
-aPq
-aPq
+aFa
+aFa
+viw
+aFa
+aFa
+aFa
+aFa
 aPq
 rPu
 hoc
@@ -115627,13 +115700,13 @@ aMZ
 aNa
 rEn
 aPq
-aPq
-aPq
-ggH
-aPq
-aPq
-aPq
-aPq
+cIU
+cIU
+wyK
+cIU
+cIU
+cIU
+cIU
 aPq
 imh
 nsr
@@ -115879,7 +115952,7 @@ afW
 aFR
 aMZ
 aOa
-tes
+miI
 smJ
 aNa
 rEn
@@ -116135,19 +116208,19 @@ sHo
 sHo
 lsn
 aMZ
-aOd
-aWd
-kVO
-aRL
-hXW
+uZw
 aPq
 aPq
-thb
-nWK
-lIE
-eDG
-edR
-xvY
+aNa
+rEn
+aPq
+aFa
+aFa
+tWU
+aFa
+aFa
+aFa
+aFa
 aPq
 wex
 ilH
@@ -116392,21 +116465,21 @@ sHo
 sHo
 sHo
 aMZ
-aOc
-iTF
-mAm
+uZw
+toT
+aPq
 aNa
-mAm
-aPs
-aPs
-aXG
-ccT
-oDC
-hKY
-evF
-wSe
-aPs
-fcV
+rEn
+aPq
+cIU
+cIU
+ofF
+cIU
+cIU
+cIU
+cIU
+aPq
+wex
 ilH
 oGJ
 olb
@@ -116649,21 +116722,21 @@ sHo
 sHo
 sHo
 aMZ
-aRW
-aRW
-qOl
-aNa
-mmV
-aRW
-aRW
-aRW
-aRW
-aRW
-mXC
-aNa
-nxw
-aRW
-aRW
+vzP
+aWd
+kVO
+aRL
+hXW
+aPq
+aPq
+thb
+nWK
+lIE
+eDG
+edR
+xvY
+aPq
+wex
 hoc
 oUG
 dVX
@@ -116906,21 +116979,21 @@ sHo
 sHo
 sHo
 ptH
-aaf
-aRW
-jOV
+ivA
+iTF
+mAm
 aNa
-jOV
-aRW
-aaa
-aaf
-aaa
-aRW
-jOV
-aNa
-jOV
-aRW
-aaf
+mAm
+aPs
+aPs
+aXG
+ccT
+oDC
+hKY
+evF
+wSe
+aPs
+fcV
 hoc
 nzY
 qsO
@@ -117163,21 +117236,21 @@ iOa
 iOa
 rIf
 xnF
-aaa
-aMZ
-jrf
+aRW
+aRW
+qOl
 aNa
-pMt
-aMZ
-aaf
-aaf
-aaf
-aMZ
-jrf
+mmV
+aRW
+aRW
+aRW
+aRW
+aRW
+mXC
 aNa
-pMt
-aMZ
-aaa
+nxw
+aRW
+aRW
 hoc
 aEM
 aEM
@@ -117420,21 +117493,21 @@ uxv
 uxv
 uxv
 dgz
-aaa
-aRW
-jJQ
-aNa
-iHI
-aRW
-aaf
-aaa
 aaf
 aRW
-iHI
+jOV
 aNa
-hSf
+jOV
 aRW
 aaa
+aaf
+aaa
+aRW
+jOV
+aNa
+jOV
+aRW
+aaf
 aaa
 gXs
 aaa
@@ -117678,19 +117751,19 @@ aaa
 aaa
 aaa
 aaa
-aRW
-fOS
+aMZ
+jrf
 aNa
-fOS
-aRW
+pMt
+aMZ
 aaf
 aaf
 aaf
-aRW
-fOS
+aMZ
+jrf
 aNa
-fOS
-aRW
+pMt
+aMZ
 aaa
 aaa
 gXs
@@ -117936,17 +118009,17 @@ aaa
 aaa
 aaa
 aRW
-cyh
-bOH
-aTo
+jJQ
+aNa
+iHI
 aRW
-aaa
 aaf
 aaa
+aaf
 aRW
-aTo
-bOH
-cyr
+iHI
+aNa
+hSf
 aRW
 aaa
 aaa
@@ -118192,19 +118265,19 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-afa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aRW
+fOS
+aNa
+fOS
+aRW
+aaf
+aaf
+aaf
+aRW
+fOS
+aNa
+fOS
+aRW
 aaa
 aaa
 aaa
@@ -118449,19 +118522,19 @@ aaa
 aaa
 aaa
 aaa
+aRW
+cyh
+bOH
+aTo
+aRW
 aaa
+aaf
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aRW
+aTo
+bOH
+cyr
+aRW
 aaa
 aaa
 aaa
@@ -118709,7 +118782,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+afa
 aaa
 aaa
 aaa
@@ -122305,7 +122378,7 @@ aaa
 aaa
 aaa
 aaa
-aae
+aoV
 aaa
 aaa
 aaa
@@ -122819,7 +122892,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+cEB
 aaa
 aaa
 aaa
