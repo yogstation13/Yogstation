@@ -195,7 +195,7 @@
 	antag_datum = /datum/antagonist/vampire
 	protected_roles = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel")
 	restricted_roles = list("AI", "Cyborg")
-	required_candidates = 3
+	required_candidates = 1
 	weight = 1
 	cost = 15
 	requirements = list(80,70,60,50,50,45,30,30,20,25)
@@ -213,7 +213,7 @@
 	name = "Heretic Smuggler"
 	antag_datum = /datum/antagonist/heretic
 	antag_flag = ROLE_HERETIC
-	protected_roles = list("Security Officer", "Warden", "Head of Personnel", "Detective", "Head of Security", "Captain","Prisoner")
+	protected_roles = list("Security Officer", "Warden", "Head of Personnel", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("AI","Cyborg")
 	required_candidates = 1
 	weight = 4
