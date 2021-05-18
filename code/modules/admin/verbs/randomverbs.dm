@@ -570,7 +570,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/senderOverride = input(src, "Please input the sender of the report", "Sender", "[command_name()] Update")
 	switch(confirm)
 		if("Yes")
-			priority_announce(input, null, 'sound/ai/commandreport.ogg', sender_override = senderOverride)
+			priority_announce(input, null, SSstation.announcer.get_rand_report_sound(), sender_override = senderOverride)
 			announce_command_report = FALSE
 		if("Cancel")
 			return
@@ -1084,7 +1084,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 
-	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_PIE)
+	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_PIE, ADMIN_PUNISHMENT_CLUWNE, ADMIN_PUNISHMENT_MCNUGGET)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
 
@@ -1102,6 +1102,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			to_chat(target, "<span class='userdanger'>The gods have punished you for your sins!</span>")
 		if(ADMIN_PUNISHMENT_BRAINDAMAGE)
 			target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 199, 199)
+		if(ADMIN_PUNISHMENT_MCNUGGET)
+			if(iscarbon(target)) 
+				var/mob/living/carbon/CM = target
+				for(var/obj/item/bodypart/bodypart in CM.bodyparts)
+					if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)
+						if(bodypart.dismemberable)
+							bodypart.dismember() 
 		if(ADMIN_PUNISHMENT_GIB)
 			target.gib(FALSE)
 		if(ADMIN_PUNISHMENT_BSA)
@@ -1155,6 +1162,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				to_chat(target, "<span class='clown'>Honk! You probably did something stupid..</span>")
 			var/mob/living/carbon/C = target
 			C.adminpie(target)
+
+		if(ADMIN_PUNISHMENT_CLUWNE)
+			var/confirm = alert(usr, "Send Cluwne Message?", "Cluwne Message", "Yes", "No")
+			if(confirm == "Yes")
+				to_chat(target, "<span class='reallybigphobia'>HENK!! HENK!! HENK!! YOU DID SOMETHING EXTREMELY DUMB, AND MADE GOD MAD. CRY ABOUT IT.</span>")
+			var/mob/living/carbon/human/H = target
+			H?.cluwneify()
 	punish_log(target, punishment)
 
 /client/proc/punish_log(var/whom, var/punishment)

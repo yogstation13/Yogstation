@@ -1422,6 +1422,21 @@
 /obj/item/hierophant_club/station
 	z_level_check = FALSE
 
+//Stalwart
+/obj/structure/closet/crate/sphere/stalwart
+	name = "silvery capsule"
+	desc = "It feels cold to the touch..."
+
+/obj/structure/closet/crate/sphere/stalwart/PopulateContents()
+	new /obj/item/gun/energy/plasmacutter/adv/robocutter
+
+/obj/item/gun/energy/plasmacutter/adv/robocutter
+	name = "energized powercutter"
+	desc = "Ripped out of an ancient machine, this self-recharging cutter is unmatched."
+	fire_delay = 4
+	icon = 'icons/obj/guns/energy.dmi'
+	icon_state = "robocutter"
+	selfcharge = 1
 //Just some minor stuff
 /obj/structure/closet/crate/necropolis/puzzle
 	name = "puzzling chest"

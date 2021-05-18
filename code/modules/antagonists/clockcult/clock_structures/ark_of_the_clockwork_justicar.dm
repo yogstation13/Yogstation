@@ -74,8 +74,6 @@
 		ark_time = 30 //minutes
 	initial_activation_delay = ark_time * 60
 	seconds_until_activation = ark_time * 60 //60 seconds in a minute * number of minutes
-	for(var/obj/item/clockwork/construct_chassis/cogscarab/C in GLOB.all_clockwork_objects)
-		C.infinite_resources = FALSE
 	GLOB.servants_active = TRUE
 	SSshuttle.registerHostileEnvironment(src)
 

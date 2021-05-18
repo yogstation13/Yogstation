@@ -4,7 +4,7 @@
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>You feel an antenna sprout from your forehead.</span>"
 	text_lose_indication = "<span class='notice'>Your antenna shrinks back down.</span>"
-	instability = 15
+	instability = 10
 	difficulty = 8
 	var/obj/item/implant/radio/antenna/radio
 
@@ -45,6 +45,7 @@
 	charge_max = 50
 	range = 7
 	clothes_req = FALSE
+	antimagic_allowed = TRUE
 	action_icon_state = "mindread"
 
 /obj/effect/proc_holder/spell/targeted/mindread/cast(list/targets, mob/living/carbon/human/user = usr)

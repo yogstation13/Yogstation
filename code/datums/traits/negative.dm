@@ -519,6 +519,17 @@
 	else
 		++tick_counter
 
+/datum/quirk/junkie/clone_data()
+	return reagent_id
+
+/datum/quirk/junkie/on_clone(data)
+	var/mob/living/carbon/human/H = quirk_holder
+	reagent_id = data
+	var/datum/reagent/prot_holder = GLOB.chemical_reagents_list[reagent_id]
+	reagent_type = prot_holder.type
+	reagent_instance = new reagent_type()
+	H.reagents.addiction_list.Add(reagent_instance)
+
 /datum/quirk/junkie/smoker
 	name = "Smoker"
 	desc = "Sometimes you just really want a smoke. Probably not great for your lungs."
@@ -538,7 +549,6 @@
 		/obj/item/storage/box/fancy/cigarettes/cigpack_robustgold,
 		/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
 		/obj/item/storage/box/fancy/cigarettes/cigars,
-		/obj/item/storage/box/fancy/cigarettes/cigars/cohiba,
 		/obj/item/storage/box/fancy/cigarettes/cigars/havana)
 	. = ..()
 
@@ -598,7 +608,9 @@
 									/datum/reagent/medicine/oculine,
 									/datum/reagent/medicine/neurine,
 									/datum/reagent/medicine/bicaridine,
-									/datum/reagent/medicine/kelotane) //Everything in the list can be healed from another source round-start
+									/datum/reagent/medicine/kelotane,
+									/datum/reagent/medicine/c2/libital,
+									/datum/reagent/medicine/c2/aiuri) //Everything in the list can be healed from another source round-start
 	var/reagent_id
 	var/cooldown_time = 1 MINUTES //Cant act again until the first wears off
 	var/cooldown = FALSE

@@ -30,6 +30,7 @@
 	resistance_flags = FLAMMABLE
 	max_integrity = 50
 	dog_fashion = /datum/dog_fashion/head
+	grind_results = list(/datum/reagent/cellulose = 3)
 
 	var/info = "" // What's prewritten on the paper. Appears first and is a special snowflake callback to how paper used to work.
 	var/coloroverride // A hexadecimal as a string that, if set, overrides the font color of the whole document. Used by photocopiers

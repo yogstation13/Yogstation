@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(bounties_list)
 	if(can_claim())
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 		if(D)
-			D.adjust_money(reward)
+			D.adjust_money(reward * SSeconomy.bounty_modifier)
 			D.bounties_claimed += 1
 			if(D.bounties_claimed == 10)
 				SSachievements.unlock_achievement(/datum/achievement/cargo/bounties, user.client)
@@ -111,18 +111,15 @@ GLOBAL_LIST_EMPTY(bounties_list)
 			var/subtype = pick(subtypesof(/datum/bounty/item/slime))
 			return new subtype
 		if(10)
-			var/subtype = pick(subtypesof(/datum/bounty/item/engineering))
-			return new subtype
-		if(11)
 			var/subtype = pick(subtypesof(/datum/bounty/item/mining))
 			return new subtype
-		if(12)
+		if(11)
 			var/subtype = pick(subtypesof(/datum/bounty/item/medical))
 			return new subtype
-		if(13)
+		if(12)
 			var/subtype = pick(subtypesof(/datum/bounty/item/botany))
 			return new subtype
-		if(14)
+		if(13)
 			var/subtype
 			if(rand(2) == 1)
 				subtype = pick(subtypesof(/datum/bounty/item/atmos/simple))
@@ -141,7 +138,6 @@ GLOBAL_LIST_EMPTY(bounties_list)
 											/datum/bounty/item/chef = 3,
 											/datum/bounty/item/security = 1,
 											/datum/bounty/virus = 1,
-											/datum/bounty/item/engineering = 1,
 											/datum/bounty/item/mining = 3,
 											/datum/bounty/item/medical = 2,
 											/datum/bounty/item/botany = 3,
@@ -175,6 +171,12 @@ GLOBAL_LIST_EMPTY(bounties_list)
 	/********************************Cutoff for Non-Low Priority Bounties********************************/
 	var/datum/bounty/B = pick(GLOB.bounties_list)
 	B.mark_high_priority()
+
+	/********************************Progression Gens********************************/
+	var/list/progression_type_list = typesof(/datum/bounty/item/progression)
+
+	for(var/progression_bounty in progression_type_list)
+		try_add_bounty(new progression_bounty)
 
 	/********************************Low Priority Gens********************************/
 	var/list/low_priority_strict_type_list = list(  /datum/bounty/item/alien_organs,

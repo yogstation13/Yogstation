@@ -1,6 +1,6 @@
 #define GUNPOINT_SHOOTER_STRAY_RANGE 3
-#define GUNPOINT_DELAY_STAGE_2 20
-#define GUNPOINT_DELAY_STAGE_3 80 // cumulative with past stages, so 100 deciseconds
+#define GUNPOINT_DELAY_STAGE_2 25
+#define GUNPOINT_DELAY_STAGE_3 85 // cumulative with past stages, so 100 deciseconds
 #define GUNPOINT_MULT_STAGE_1 1
 #define GUNPOINT_MULT_STAGE_2 2
 #define GUNPOINT_MULT_STAGE_3 2.5
@@ -29,14 +29,15 @@
 	var/mob/living/shooter = parent
 	target = targ
 	weapon = wep
-	RegisterSignal(targ, list(COMSIG_MOB_ATTACK_HAND, COMSIG_MOB_ITEM_ATTACK, COMSIG_MOB_THROW, COMSIG_MOB_FIRED_GUN, COMSIG_MOVABLE_MOVED), .proc/trigger_reaction)
+	RegisterSignal(targ, list(COMSIG_MOB_ATTACK_HAND, COMSIG_MOB_FIRED_GUN, COMSIG_MOB_THROW, COMSIG_MOB_ITEM_ATTACK), .proc/trigger_reaction, TRUE) //any actions by the hostage will trigger the shot no exceptions
+	RegisterSignal(targ, COMSIG_MOVABLE_MOVED, .proc/trigger_reaction) //except this one
 	RegisterSignal(weapon, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), .proc/cancel)
 
 	shooter.visible_message("<span class='danger'>[shooter] aims [weapon] point blank at [target]!</span>", \
 		"<span class='danger'>You aim [weapon] point blank at [target]!</span>", target)
 	to_chat(target, "<span class='userdanger'>[shooter] aims [weapon] point blank at you!</span>")
 	if(!target.has_status_effect(STATUS_EFFECT_NOTSCARED))
-		target.Immobilize(2) //short immobilize to let them know they're getting shot at without totally stopping them from fighting
+		target.Immobilize(10) //short immobilize to let them know they're getting shot at
 		target.apply_status_effect(STATUS_EFFECT_NOTSCARED)//this can only trigger once per minute so you can't use it to meme people a bunch in a fight
 
 	status_hold_up = shooter.apply_status_effect(STATUS_EFFECT_HOLDUP)
@@ -54,14 +55,14 @@
 /datum/component/gunpoint/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/check_deescalate)
 	RegisterSignal(parent, COMSIG_MOB_APPLY_DAMAGE, .proc/flinch)
+	RegisterSignal(parent, COMSIG_HUMAN_DISARM_HIT, .proc/flinch_disarm)
 	RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOB_THROW, COMSIG_MOB_FIRED_GUN, COMSIG_MOB_TABLING), .proc/noshooted)
 
 /datum/component/gunpoint/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(parent, COMSIG_MOB_APPLY_DAMAGE)
-	UnregisterSignal(parent, COMSIG_MOVABLE_BUMP)
-	UnregisterSignal(parent, COMSIG_MOB_THROW)
-	UnregisterSignal(parent, COMSIG_MOB_FIRED_GUN)
+	UnregisterSignal(parent, COMSIG_HUMAN_DISARM_HIT)
+	UnregisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOB_THROW, COMSIG_MOB_FIRED_GUN, COMSIG_MOB_TABLING))
 
 // if you're gonna try to break away from a holdup, better to do it right away
 /datum/component/gunpoint/proc/update_stage(new_stage)
@@ -80,10 +81,10 @@
 	if(!can_see(parent, target, GUNPOINT_SHOOTER_STRAY_RANGE - 1))
 		cancel()
 
-/datum/component/gunpoint/proc/trigger_reaction(var/flinch)
+/datum/component/gunpoint/proc/trigger_reaction(var/forced)
 	var/mob/living/shooter = parent
 
-	if(flinch != TRUE && shooter.pulling == target) //target won't get shot if they're being moved by the shooter
+	if(!forced && shooter.pulling == target) //target won't get shot if they're being moved by the shooter
 		return
 	if(disrupted)
 		return
@@ -101,6 +102,7 @@
 		return
 	if(weapon.chambered && weapon.chambered.BB)
 		weapon.chambered.BB.damage *= damage_mult
+		weapon.chambered.BB.stamina *= damage_mult
 
 	weapon.process_fire(target, shooter)
 	qdel(src)
@@ -136,7 +138,24 @@
 	if(prob(flinch_chance))
 		shooter.visible_message("<span class='danger'>[shooter] flinches!</span>", \
 			"<span class='danger'>You flinch!</span>")
-		trigger_reaction(flinch = TRUE) //flinching will always result in firing at the target
+		trigger_reaction(TRUE) //flinching will always result in firing at the target
+
+/datum/component/gunpoint/proc/flinch_disarm(attacker,zone_targeted)
+	var/mob/living/shooter = parent
+
+	var/flinch_chance = 50
+	var/gun_hand = LEFT_HANDS
+
+	if(shooter.held_items[RIGHT_HANDS] == weapon)
+		gun_hand = RIGHT_HANDS
+
+	if((zone_targeted == BODY_ZONE_L_ARM && gun_hand == LEFT_HANDS) || (zone_targeted == BODY_ZONE_R_ARM && gun_hand == RIGHT_HANDS))
+		flinch_chance = 80
+
+	if(prob(flinch_chance))
+		shooter.visible_message("<span class='danger'>[shooter] flinches!</span>", \
+			"<span class='danger'>You flinch!</span>")
+		trigger_reaction(TRUE) //flinching will always result in firing at the target
 
 #undef GUNPOINT_SHOOTER_STRAY_RANGE
 #undef GUNPOINT_DELAY_STAGE_2
