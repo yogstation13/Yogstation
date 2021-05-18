@@ -11,6 +11,10 @@
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_NUM
 
+/datum/config_entry/keyed_list/job_species_whitelist	// Assigns species-based exceptions to Command roles
+	key_mode = KEY_MODE_TYPE
+	value_mode = VALUE_MODE_TEXT
+
 /datum/config_entry/keyed_list/max_pop/ValidateListEntry(key_name)
 	return key_name in config.modes
 

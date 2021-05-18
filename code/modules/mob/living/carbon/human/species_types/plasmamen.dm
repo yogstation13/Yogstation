@@ -146,9 +146,15 @@
 
 		if("Assistant")
 			O = new /datum/outfit/job/plasmaman/assistant
-			
+
 		if("Artist")
 			O = new /datum/outfit/job/plasmaman/artist
+
+		if("Chief Engineer")
+			O = new /datum/outfit/job/plasmaman/ce
+
+		if("Research Director")
+			O = new /datum/outfit/job/plasmaman/rd
 
 	H.equipOutfit(O, visualsOnly)
 	H.internal = H.get_item_for_held_index(2)
