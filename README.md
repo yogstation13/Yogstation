@@ -40,7 +40,7 @@ hassle if you want to make any changes at all, so it's not recommended.)
 
 ## :exclamation: How to compile :exclamation:
 
-**Recenetly** we have changed the way to compile the codebase.
+Recently we have changed the way to compile the codebase.
 
 Find `BUILD.bat` here in the root folder of yogstation, and double click it to initiate the build. It consists of multiple steps and might take around 1-5 minutes to compile.
 
