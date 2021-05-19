@@ -23566,19 +23566,6 @@
 "aMG" = (
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
-"aMH" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "aMI" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/wiki/security_space_law,
@@ -125060,6 +125047,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/nuke_storage)
+"hHf" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "hLm" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -150084,7 +150084,7 @@ aad
 aad
 aFr
 amj
-aMH
+hHf
 aJK
 gnJ
 aPC
