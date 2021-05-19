@@ -51,7 +51,7 @@
 	..()
 	. = TRUE
 
-/datum/reagent/medicine/c2/probital/reaction_mob(atom/A, method=INGEST, trans_volume)
+/datum/reagent/medicine/c2/probital/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
 	if(method != INGEST || !iscarbon(A))
 		return
 
@@ -204,7 +204,7 @@
 	overdose_threshold = 6
 	var/conversion_amount
 
-/datum/reagent/medicine/c2/thializid/reaction_mob(atom/A, method=INJECT, trans_volume)
+/datum/reagent/medicine/c2/thializid/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
 	if(method != INJECT || !iscarbon(A))
 		return
 	var/mob/living/carbon/C = A
