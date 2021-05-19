@@ -55,8 +55,8 @@
 	if(method != INGEST || !iscarbon(L))
 		return
 
-	L.reagents.remove_reagent(/datum/reagent/medicine/c2/probital, trans_volume * 0.05)
-	L.reagents.add_reagent(/datum/reagent/medicine/metafactor, trans_volume * 0.25)
+	L.reagents.remove_reagent(/datum/reagent/medicine/c2/probital, reac_volume * 0.05)
+	L.reagents.add_reagent(/datum/reagent/medicine/metafactor, reac_volume * 0.25)
 
 	..()
 
@@ -208,12 +208,12 @@
 	if(method != INJECT || !iscarbon(L))
 		return
 	var/mob/living/carbon/C = L
-	if(trans_volume >= 0.6) //prevents cheesing with ultralow doses.
-		C.adjustToxLoss(-1.5 * min(2, trans_volume) * REM, 0)   //This is to promote iv pole use for that chemotherapy feel.
+	if(reac_volume >= 0.6) //prevents cheesing with ultralow doses.
+		C.adjustToxLoss(-1.5 * min(2, reac_volume) * REM, 0)   //This is to promote iv pole use for that chemotherapy feel.
 	var/obj/item/organ/liver/Lword = C.internal_organs_slot[ORGAN_SLOT_LIVER]
 	if((Lword.organ_flags & ORGAN_FAILING) || !Lword)
 		return
-	conversion_amount = trans_volume * (min(100 -C.getOrganLoss(ORGAN_SLOT_LIVER), 80) / 100) //the more damaged the liver the worse we metabolize.
+	conversion_amount = reac_volume * (min(100 -C.getOrganLoss(ORGAN_SLOT_LIVER), 80) / 100) //the more damaged the liver the worse we metabolize.
 	C.reagents.remove_reagent(/datum/reagent/medicine/c2/thializid, conversion_amount)
 	C.reagents.add_reagent(/datum/reagent/medicine/c2/musiver, conversion_amount)
 	..()
