@@ -55,8 +55,8 @@
 	if(method != INGEST || !iscarbon(L))
 		return
 
-	A.reagents.remove_reagent(/datum/reagent/medicine/c2/probital, trans_volume * 0.05)
-	A.reagents.add_reagent(/datum/reagent/medicine/metafactor, trans_volume * 0.25)
+	M.reagents.remove_reagent(/datum/reagent/medicine/c2/probital, trans_volume * 0.05)
+	M.reagents.add_reagent(/datum/reagent/medicine/metafactor, trans_volume * 0.25)
 
 	..()
 
