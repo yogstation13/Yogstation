@@ -301,7 +301,7 @@
 
 /obj/item/scalpel/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/machines/click.ogg',50,1)
-	to_chat(user, "<span class='notice'>You incease the power, now it can cut bones.</span>")
+	to_chat(user, "<span class='notice'>You increase the power, now it can cut bones.</span>")
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
 		var/modulenum = borg.get_selected_module()

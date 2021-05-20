@@ -38,7 +38,7 @@
 	Eyes filled with stars.\n\
 	You feel a vast consciousness slowly consume your own and the veil falls away.\n\
 	Serve the darkspawn above all else. Your former allegiances are now forfeit. Their goal is yours, and yours is theirs.</b>")
-	to_chat(owner, "<i>Use <b>.k</b> before your messages to speak over the Mindlink. This only works across your current z-level.</i>")
+	to_chat(owner, "<i>Use <b>:[MODE_KEY_DARKSPAWN] or .[MODE_KEY_DARKSPAWN]</b> before your messages to speak over the Mindlink. This only works across your current z-level.</i>")
 	to_chat(owner, "<i>Ask for help from your masters or fellows if you're new to this role.</i>")
 	SEND_SOUND(owner.current, sound ('yogstation/sound/ambience/antag/become_veil.ogg', volume = 50))
 	flash_color(owner, flash_color = "#21007F", flash_time = 100)

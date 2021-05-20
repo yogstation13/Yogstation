@@ -496,13 +496,14 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 /obj/structure/slime_crystal/gold
 	colour = "gold"
 	effect_desc = "Touching it will transform you into a random pet. Effects are undone when leaving the area."
+	var/list/gold_pet_options = list(/mob/living/simple_animal/pet/dog/corgi , /mob/living/simple_animal/pet/dog/pug , /mob/living/simple_animal/pet/dog/bullterrier , /mob/living/simple_animal/crab , /mob/living/simple_animal/pet/fox , /mob/living/simple_animal/pet/cat/kitten , /mob/living/simple_animal/pet/cat/space , /mob/living/simple_animal/pet/penguin/emperor , /mob/living/simple_animal/pet/penguin/baby)
 
 /obj/structure/slime_crystal/gold/attack_hand(mob/user)
 	. = ..()
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/human_mob = user
-	var/mob/living/simple_animal/pet/chosen_pet = pick(/mob/living/simple_animal/pet/dog/corgi,/mob/living/simple_animal/pet/dog/pug,/mob/living/simple_animal/pet/dog/bullterrier,/mob/living/simple_animal/crab,/mob/living/simple_animal/pet/fox,/mob/living/simple_animal/pet/cat/kitten,/mob/living/simple_animal/pet/cat/space,/mob/living/simple_animal/pet/penguin/emperor,/mob/living/simple_animal/pet/penguin/baby)
+	var/mob/living/simple_animal/chosen_pet = pick(gold_pet_options)
 	chosen_pet = new chosen_pet(get_turf(human_mob))
 	if(chosen_pet)
 		to_chat(user, "<span class='notice'>You touch the crystal, and become a small animal!</span>")
@@ -514,7 +515,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 		human_mob.mind.transfer_to(chosen_pet)
 
 /obj/structure/slime_crystal/gold/on_mob_leave(mob/living/affected_mob)
-	if(!istype(affected_mob,/mob/living/simple_animal/pet))
+	if(!is_type_in_list(affected_mob, gold_pet_options))
 		return
 	var/mob/living/carbon/human/human_mob = locate() in affected_mob
 	if(!human_mob)
