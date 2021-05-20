@@ -1,4 +1,4 @@
-//DEFINITIONS FOR ASSET DATUMS START HERE.
+a//DEFINITIONS FOR ASSET DATUMS START HERE.
 
 /datum/asset/simple/tgui_common
 	keep_local_name = TRUE
@@ -147,7 +147,7 @@
 	assets = list(
 		"scanlines.png" = 'html/scanlines.png'
 	)
-	
+
 /datum/asset/simple/jquery
 	legacy = TRUE
 	assets = list(
@@ -394,14 +394,9 @@
 		var/list/portrait = p
 		var/png = "data/paintings/[tab]/[portrait["md5"]].png"
 		if(fexists(png))
-			assets[portrait["title"]] = png
+			var/asset_name = "[tab]_[portrait["md5"]]"
+			assets[asset_name] = png
 	..() //this is where it registers all these assets we added to the list
 
-/datum/asset/simple/portraits/library
-	tab = "library"
-
-/datum/asset/simple/portraits/library_secure
-	tab = "library_secure"
-
-/datum/asset/simple/portraits/library_private
-	tab = "library_private"
+/datum/asset/simple/portraits/public
+	tab = "public"

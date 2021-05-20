@@ -8,25 +8,13 @@ export const NtosPortraitPrinter = (props, context) => {
   const [tabIndex, setTabIndex] = useLocalState(context, 'tabIndex', 0);
   const [listIndex, setListIndex] = useLocalState(context, 'listIndex', 0);
   const {
-    library,
-    library_secure,
-    library_private,
+    public_paintings,
   } = data;
   const TABS = [
     {
-      name: 'Common Portraits',
-      asset_prefix: "library",
-      list: library,
-    },
-    {
-      name: 'Secure Portraits',
-      asset_prefix: "library_secure",
-      list: library_secure,
-    },
-    {
-      name: 'Private Portraits',
-      asset_prefix: "library_private",
-      list: library_private,
+      name: 'Public Portraits',
+      asset_prefix: "public",
+      list: public_paintings,
     },
   ];
   const tab2list = TABS[tabIndex].list;

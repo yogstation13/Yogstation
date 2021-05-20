@@ -186,7 +186,7 @@
 
 /obj/item/canvas/proc/try_rename(mob/user)
 	var/new_name = stripped_input(user,"What do you want to name the painting?")
-	if(painting_name != initial(painting_name) && new_name && user.canUseTopic(src,BE_CLOSE))
+	if(new_name != painting_name && new_name && user.canUseTopic(src,BE_CLOSE))
 		painting_name = new_name
 		SStgui.update_uis(src)
 
@@ -365,9 +365,9 @@
 		stack_trace("Invalid persistence_id - [persistence_id]")
 		return
 	if(!C.painting_name)
-		return
+		C.painting_name = "Untitled Artwork"
 	var/data = C.get_data_string()
-	var/md5 = md5(data)
+	var/md5 = md5(lowertext(data))
 	var/list/current = SSpersistence.paintings[persistence_id]
 	if(!current)
 		current = list()
