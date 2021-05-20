@@ -92,6 +92,12 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aan" = (
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/library)
 "aao" = (
 /obj/machinery/light{
 	dir = 4
@@ -57215,10 +57221,6 @@
 	},
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/tcommsat/server)
-"exz" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/wood,
-/area/library)
 "eyM" = (
 /obj/machinery/mineral/ore_redemption{
 	input_dir = 2;
@@ -110660,7 +110662,7 @@ aPg
 aQr
 aFu
 aTb
-exz
+aan
 aVR
 aYW
 aYW

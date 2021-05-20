@@ -714,6 +714,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"abG" = (
+/obj/machinery/light_switch{
+	pixel_x = 28
+	},
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/library)
 "abH" = (
 /obj/structure/table,
 /obj/structure/cable/yellow{
@@ -69978,12 +69987,6 @@
 	},
 /turf/open/floor/wood,
 /area/library)
-"cVf" = (
-/obj/machinery/light_switch{
-	pixel_x = 28
-	},
-/turf/open/floor/wood,
-/area/library)
 "cVh" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plasteel/dark,
@@ -104826,7 +104829,7 @@ bAg
 bzE
 cVb
 cVe
-cVf
+abG
 hZd
 bOm
 fhb
