@@ -238,7 +238,7 @@
 			back = backpack //Department backpack
 
 	if (isplasmaman(H)) //this is a plasmaman fix to stop having two boxes
-		r_hand = /obj/item/tank/internals/plasmaman
+		r_hand = /obj/item/tank/internals/plasmaman/belt/full
 		mask = /obj/item/clothing/mask/breath
 		box = plasmaman_box
 		head = plasmaman_head

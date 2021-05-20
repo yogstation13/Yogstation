@@ -142,10 +142,11 @@
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 
 /obj/item/storage/box/survival_mining/plasmaman/PopulateContents()
-	new /obj/item/clothing/mask/gas/explorer(src)
-	new /obj/item/tank/internals/plasmaman(src)
-	new /obj/item/crowbar/red(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	..()
+	var/obj/item/tank/internals/T
+	for(T in src)
+		qdel(T)
+	new /obj/item/tank/internals/plasmaman/belt/full(src)
 
 // Engineer survival box
 /obj/item/storage/box/engineer/PopulateContents()
@@ -169,9 +170,11 @@
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 
 /obj/item/storage/box/security/plasmaman/PopulateContents()
-	new /obj/item/clothing/mask/gas/sechailer(src)
-	new /obj/item/tank/internals/plasmaman(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	..()
+	var/obj/item/tank/internals/T
+	for(T in src)
+		qdel(T)
+	new /obj/item/tank/internals/plasmaman/belt/full(src)
 
 /obj/item/storage/box/security/radio/PopulateContents()
 	..() // we want the regular stuff too
@@ -179,9 +182,11 @@
 
 // Plasmaman survival box
 /obj/item/storage/box/plasmaman/PopulateContents()
-	new /obj/item/clothing/mask/breath(src)
+	..()
+	var/obj/item/tank/internals/T
+	for(T in src)
+		qdel(T)
 	new /obj/item/tank/internals/plasmaman/belt/full(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
 
 /obj/item/storage/box/gloves
 	name = "box of latex gloves"
@@ -798,9 +803,11 @@
 		new /obj/item/radio/off(src)
 
 /obj/item/storage/box/hug/survival/plasmaman/PopulateContents()
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/tank/internals/plasmaman(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	..()
+	var/obj/item/tank/internals/T
+	for(T in src)
+		qdel(T)
+	new /obj/item/tank/internals/plasmaman/belt/full
 
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_PREMIUM_INTERNALS))
 		new /obj/item/flashlight/flare(src)

@@ -45,6 +45,7 @@
 	suit_store = /obj/item/flashlight/pen
 
 	plasmaman_uniform = /obj/item/clothing/under/plasmaman/medical
+	plasmaman_head = /obj/item/clothing/head/helmet/space/plasmaman/blue
 
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med

@@ -35,7 +35,7 @@
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/hydroponics
 	suit = /obj/item/clothing/suit/apron
-	gloves  =/obj/item/clothing/gloves/botanic_leather
+	gloves = /obj/item/clothing/gloves/botanic_leather
 	suit_store = /obj/item/plant_analyzer
 
 	plasmaman_head = /obj/item/clothing/head/helmet/space/plasmaman/blue
