@@ -1,6 +1,6 @@
 import { resolveAsset } from '../assets';
 import { useBackend, useLocalState } from '../backend';
-import { Button, NoticeBox, Section, Stack, Tabs } from '../components';
+import { Button, NoticeBox, Section, Flex, Tabs } from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosPortraitPrinter = (props, context) => {
@@ -34,12 +34,11 @@ export const NtosPortraitPrinter = (props, context) => {
   const current_portrait_asset_name = TABS[tabIndex].asset_prefix + "_" + tab2list[listIndex]["md5"];
   return (
     <NtosWindow
-      title="Art Galaxy"
       width={400}
       height={406}>
       <NtosWindow.Content>
-        <Stack vertical fill>
-          <Stack.Item>
+        <Flex direction="column" height="100%">
+          <Flex.Item>
             <Section fitted>
               <Tabs fluid textAlign="center">
                 {TABS.map((tabObj, i) => !!tabObj.list && (
@@ -55,15 +54,15 @@ export const NtosPortraitPrinter = (props, context) => {
                 ))}
               </Tabs>
             </Section>
-          </Stack.Item>
-          <Stack.Item grow={2}>
+          </Flex.Item>
+          <Flex.Item grow={2}>
             <Section fill>
-              <Stack
+              <Flex
                 height="100%"
                 align="center"
                 justify="center"
                 direction="column">
-                <Stack.Item>
+                <Flex.Item>
                   <img
                     src={resolveAsset(current_portrait_asset_name)}
                     height="128px"
@@ -72,33 +71,33 @@ export const NtosPortraitPrinter = (props, context) => {
                       'vertical-align': 'middle',
                       '-ms-interpolation-mode': 'nearest-neighbor',
                     }} />
-                </Stack.Item>
-                <Stack.Item className="Section__titleText">
+                </Flex.Item>
+                <Flex.Item className="Section__titleText">
                   {current_portrait_title}
-                </Stack.Item>
-              </Stack>
+                </Flex.Item>
+              </Flex>
             </Section>
-          </Stack.Item>
-          <Stack.Item>
-            <Stack>
-              <Stack.Item grow={3}>
+          </Flex.Item>
+          <Flex.Item>
+            <Flex>
+              <Flex.Item grow={3}>
                 <Section height="100%">
-                  <Stack justify="space-between">
-                    <Stack.Item grow={1}>
+                  <Flex justify="space-between">
+                    <Flex.Item grow={1}>
                       <Button
                         icon="angle-double-left"
                         disabled={listIndex === 0}
                         onClick={() => setListIndex(0)}
                       />
-                    </Stack.Item>
-                    <Stack.Item grow={3}>
+                    </Flex.Item>
+                    <Flex.Item grow={3}>
                       <Button
                         disabled={listIndex === 0}
                         icon="chevron-left"
                         onClick={() => setListIndex(listIndex-1)}
                       />
-                    </Stack.Item>
-                    <Stack.Item grow={3}>
+                    </Flex.Item>
+                    <Flex.Item grow={3}>
                       <Button
                         icon="check"
                         content="Print Portrait"
@@ -107,33 +106,33 @@ export const NtosPortraitPrinter = (props, context) => {
                           selected: listIndex+1,
                         })}
                       />
-                    </Stack.Item>
-                    <Stack.Item grow={1}>
+                    </Flex.Item>
+                    <Flex.Item grow={1}>
                       <Button
                         icon="chevron-right"
                         disabled={listIndex === tab2list.length-1}
                         onClick={() => setListIndex(listIndex+1)}
                       />
-                    </Stack.Item>
-                    <Stack.Item>
+                    </Flex.Item>
+                    <Flex.Item>
                       <Button
                         icon="angle-double-right"
                         disabled={listIndex === tab2list.length-1}
                         onClick={() => setListIndex(tab2list.length-1)}
                       />
-                    </Stack.Item>
-                  </Stack>
+                    </Flex.Item>
+                  </Flex>
                 </Section>
-              </Stack.Item>
-            </Stack>
-            <Stack.Item mt={1} mb={-1}>
+              </Flex.Item>
+            </Flex>
+            <Flex.Item mt={1} mb={-1}>
               <NoticeBox info>
                 Printing a canvas costs 10 paper from
                 the printer installed in your machine.
               </NoticeBox>
-            </Stack.Item>
-          </Stack.Item>
-        </Stack>
+            </Flex.Item>
+          </Flex.Item>
+        </Flex>
       </NtosWindow.Content>
     </NtosWindow>
   );
