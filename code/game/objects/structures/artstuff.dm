@@ -332,7 +332,7 @@
 	update_icon()
 
 /obj/structure/sign/painting/proc/save_persistent()
-	if(!persistence_id || !C || current_canvas.no_save)
+	if(!persistence_id || !C || C.no_save)
 		return
 	if(sanitize_filename(persistence_id) != persistence_id)
 		stack_trace("Invalid persistence_id - [persistence_id]")
