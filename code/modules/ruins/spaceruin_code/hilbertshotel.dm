@@ -226,20 +226,24 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     do_sparks(3, FALSE, get_turf(A))
 
 /turf/closed/indestructible/hoteldoor
-    name = "Hotel Door"
-    icon_state = "hoteldoor"
-    explosion_block = INFINITY
-    var/obj/item/hilbertshotel/parentSphere
+	name = "Hotel Door"
+	icon_state = "hoteldoor"
+	explosion_block = INFINITY
+	var/obj/item/hilbertshotel/parentSphere
 
-/turf/closed/indestructible/hoteldoor/proc/promptExit(mob/user)
-    if(!user.mind)
-        return
-    if(!parentSphere)
-        to_chat(user, span_warning("The door seems to be malfunctioned and refuses to operate!"))
-        return
-    if(alert(user, "Hilbert's Hotel would like to remind you that while we will do everything we can to protect the belongings you leave behind, we make no guarantees of their safety while you're gone, especially that of the health of any living creatures. With that in mind, are you ready to leave?", "Exit", "Leave", "Stay") == "Leave")
-        user.forceMove(get_turf(parentSphere))
-        do_sparks(3, FALSE, get_turf(user))
+/turf/closed/indestructible/hoteldoor/proc/promptExit(mob/living/user)
+	if(!isliving(user))
+		return
+	if(!user.mind)
+		return
+	if(!parentSphere)
+		to_chat(user, "<span class='warning'>The door seems to be malfunctioning and refuses to operate!</span>")
+		return
+	if(tgui_alert(user, "Hilbert's Hotel would like to remind you that while we will do everything we can to protect the belongings you leave behind, we make no guarantees of their safety while you're gone, especially that of the health of any living creatures. With that in mind, are you ready to leave?", "Exit", list("Leave", "Stay")) == "Leave")
+		if(HAS_TRAIT(user, TRAIT_IMMOBILIZED) || (get_dist(get_turf(src), get_turf(user)) > 1)) //no teleporting around if they're dead or moved away during the prompt.
+			return
+		user.forceMove(get_turf(parentSphere))
+		do_sparks(3, FALSE, get_turf(user))
 
 /turf/closed/indestructible/hoteldoor/attack_ghost(mob/dead/observer/user)
     if(!isobserver(user) || !parentSphere)

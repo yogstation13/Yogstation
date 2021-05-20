@@ -46,7 +46,7 @@
 		if (ssqlname)
 			server = ssqlname
 	if(isnull(secret))
-		switch(tgui_alert(usr, "Hide note from being viewed by players?", "Secret note?",list("Yes","No","Cancel")))
+		switch(tgui_alert(usr,"Hide note from being viewed by players?", "Secret note?",list("Yes","No","Cancel")))
 			if("Yes")
 				secret = 1
 			if("No")

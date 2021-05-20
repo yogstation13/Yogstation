@@ -157,9 +157,7 @@
 				radio.attack_self(src)
 
 			if("image") // Set pAI card display face
-				var/newImage = input("Select your new display image.", "Display Image", "Happy") in list("Happy", "Cat", "Extremely Happy", "Face", "Laugh", "Off", "Sad", "Angry", "What")
-				var/pID = 1
-
+				var/newImage = tgui_input_list(usr, "Select your new display image.", "Display Image", sortList(list("Happy", "Cat", "Extremely Happy", "Face", "Laugh", "Off", "Sad", "Angry", "What", "Sunglasses")))
 				switch(newImage)
 					if("Happy")
 						pID = 1
@@ -223,7 +221,7 @@
 						aiPDA.silent = !aiPDA.silent
 					else if(href_list["target"])
 						if(silent)
-							return alert("Communications circuits remain uninitialized.")
+							return tgui_alert(usr,"Communications circuits remain uninitialized.")
 						var/target = locate(href_list["target"]) in GLOB.PDAs
 						aiPDA.create_message(src, target)
 

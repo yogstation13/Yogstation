@@ -487,27 +487,36 @@
 
 	var/rebootconfirm
 	if(SSticker.admin_delay_notice)
-		if(tgui_alert(usr, "Are you sure? An admin has already delayed the round end for the following reason: [SSticker.admin_delay_notice]", "Confirmation", list("Yes", "No")) == "Yes")
-			rebootconfirm = TRUE
-	else
-		rebootconfirm = TRUE
-	if(rebootconfirm)
-		var/result = input(usr, "Select reboot method", "World Reboot", options[1]) as null|anything in options
-		if(result)
-			SSblackbox.record_feedback("tally", "admin_verb", 1, "Reboot World") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-			var/init_by = "Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]."
-			switch(result)
-				if("Regular Restart")
-					SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", 10 SECONDS, check_rights(R_SERVER, FALSE)) // Force if they have +SERVER
-				if("Hard Restart (No Delay, No Feeback Reason)")
-					to_chat(world, "World reboot - [init_by]")
-					world.Reboot()
-				if("Hardest Restart (No actions, just reboot)")
-					to_chat(world, "Hard world reboot - [init_by]")
-					world.Reboot(fast_track = TRUE)
-				if("Server Restart (Kill and restart DD)")
-					to_chat(world, "Server restart - [init_by]")
-					world.TgsEndProcess()
+		if(tgui_alert(usr, "Are you sure? An admin has already delayed the round end for the following reason: [SSticker.admin_delay_notice]", "Confirmation", list("Yes", "No")) != "Yes")
+			return FALSE
+
+	var/result = input(usr, "Select reboot method", "World Reboot", options[1]) as null|anything in options
+	if(result)
+		SSblackbox.record_feedback("tally", "admin_verb", 1, "Reboot World") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		var/init_by = "Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]."
+		switch(result)
+			if("Regular Restart")
+				if(!(isnull(usr.client.address) || (usr.client.address in localhost_addresses)))
+					if(tgui_alert(usr, "Are you sure you want to restart the server?","This server is live",list("Restart","Cancel")) != "Restart")
+						return FALSE
+				SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", 10)
+			if("Regular Restart (with delay)")
+				var/delay = input("What delay should the restart have (in seconds)?", "Restart Delay", 5) as num|null
+				if(!delay)
+					return FALSE
+				if(!(isnull(usr.client.address) || (usr.client.address in localhost_addresses)))
+					if(tgui_alert(usr,"Are you sure you want to restart the server?","This server is live",list("Restart","Cancel")) != "Restart")
+						return FALSE
+				SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", delay * 10)
+			if("Hard Restart (No Delay, No Feeback Reason)")
+				to_chat(world, "World reboot - [init_by]")
+				world.Reboot()
+			if("Hardest Restart (No actions, just reboot)")
+				to_chat(world, "Hard world reboot - [init_by]")
+				world.Reboot(fast_track = TRUE)
+			if("Server Restart (Kill and restart DD)")
+				to_chat(world, "Server restart - [init_by]")
+				world.TgsEndProcess()
 
 /datum/admins/proc/end_round()
 	set category = "Server"
@@ -585,16 +594,26 @@
 	set desc="Start the round RIGHT NOW"
 	set name="Start Now"
 	if(SSticker.current_state == GAME_STATE_PREGAME || SSticker.current_state == GAME_STATE_STARTUP)
-		SSticker.start_immediately = TRUE
-		log_admin("[usr.key] has started the game.")
-		var/msg = ""
-		if(SSticker.current_state == GAME_STATE_STARTUP)
-			msg = " (The server is still setting up, but the round will be \
-				started as soon as possible.)"
-		message_admins("<font color='blue'>\
-			[usr.key] has started the game.[msg]</font>")
-		SSblackbox.record_feedback("tally", "admin_verb", 1, "Start Now") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		return 1
+		if(!SSticker.start_immediately)
+			var/localhost_addresses = list("127.0.0.1", "::1")
+			if(!(isnull(usr.client.address) || (usr.client.address in localhost_addresses)))
+				if(tgui_alert(usr, "Are you sure you want to start the round?","Start Now",list("Start Now","Cancel")) != "Start Now")
+					return FALSE
+			SSticker.start_immediately = TRUE
+			log_admin("[usr.key] has started the game.")
+			var/msg = ""
+			if(SSticker.current_state == GAME_STATE_STARTUP)
+				msg = " (The server is still setting up, but the round will be \
+					started as soon as possible.)"
+			message_admins("<font color='blue'>[usr.key] has started the game.[msg]</font>")
+			SSblackbox.record_feedback("tally", "admin_verb", 1, "Start Now") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+			return TRUE
+		SSticker.start_immediately = FALSE
+		SSticker.SetTimeLeft(1800)
+		to_chat(world, "<span class='infoplain'><b>The game will start in 180 seconds.</b></span>")
+		SEND_SOUND(world, sound('sound/ai/default/attention.ogg'))
+		message_admins("<font color='blue'>[usr.key] has cancelled immediate game start. Game will start in 180 seconds.</font>")
+		log_admin("[usr.key] has cancelled immediate game start.")
 	else
 		to_chat(usr, "<font color='red'>Error: Start Now: Game has already started.</font>", confidential=TRUE)
 
@@ -691,7 +710,7 @@
 		message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]")
 		log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
 	else
-		tgui_alert(usr, "[M.name] is not prisoned.")
+		tgui_alert(usr,"[M.name] is not prisoned.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Unprison") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
@@ -969,7 +988,7 @@
 		question = "This mob already has a user ([tomob.key]) in control of it! "
 	question += "Are you sure you want to place [frommob.name]([frommob.key]) in control of [tomob.name]?"
 
-	var/ask = tgui_alert(frommob, question, "Place ghost in control of mob?", list("Yes", "No"))
+	var/ask = tgui_alert(usr, question, "Place ghost in control of mob?", list("Yes", "No"))
 	if (ask != "Yes")
 		return 1
 

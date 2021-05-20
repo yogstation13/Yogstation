@@ -520,7 +520,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 			if(channel_name == "" || channel_name == "\[REDACTED\]" || scanned_user == "Unknown" || check || (scanned_user in existing_authors) )
 				screen=7
 			else
-				var/choice = tgui_alert(usr, "Please confirm Feed channel creation","Network Channel Handler",list("Confirm","Cancel"))
+				var/choice = tgui_alert(usr, "Please confirm Feed channel creation","Network Channel Handler", list("Confirm","Cancel"))
 				if(choice=="Confirm")
 					scan_user(usr)
 					GLOB.news_network.CreateFeedChannel(channel_name, scanned_user, c_locked)
@@ -601,16 +601,16 @@ GLOBAL_LIST_EMPTY(allCasters)
 						screen = 15
 					else
 						if(GLOB.news_network.wanted_issue.isAdminMsg)
-							tgui_alert(usr, "The wanted issue has been distributed by a Nanotrasen higherup. You cannot edit it.","Ok")
+							tgui_alert(usr,"The wanted issue has been distributed by a Nanotrasen higherup. You cannot edit it.")
 							return
 						GLOB.news_network.submitWanted(channel_name, msg, scanned_user, picture)
 						screen = 19
 			updateUsrDialog()
 		else if(href_list["cancel_wanted"])
 			if(GLOB.news_network.wanted_issue.isAdminMsg)
-				tgui_alert(usr, "The wanted issue has been distributed by a Nanotrasen higherup. You cannot take it down.","Ok")
+				tgui_alert(usr,"The wanted issue has been distributed by a Nanotrasen higherup. You cannot take it down.")
 				return
-			var/choice = tgui_alert(usr, "Please confirm Wanted Issue removal","Network Security Handler",list("Confirm","Cancel"))
+			var/choice = tgui_alert(usr,"Please confirm Wanted Issue removal","Network Security Handler",list("Confirm","Cancel"))
 			if(choice=="Confirm")
 				GLOB.news_network.deleteWanted()
 				screen=17
@@ -621,21 +621,21 @@ GLOBAL_LIST_EMPTY(allCasters)
 		else if(href_list["censor_channel_author"])
 			var/datum/newscaster/feed_channel/FC = locate(href_list["censor_channel_author"]) in GLOB.news_network.network_channels
 			if(FC.is_admin_channel)
-				tgui_alert(usr, "This channel was created by a Nanotrasen Officer. You cannot censor it.","Ok")
+				tgui_alert(usr,"This channel was created by a Nanotrasen Officer. You cannot censor it.")
 				return
 			FC.toggleCensorAuthor()
 			updateUsrDialog()
 		else if(href_list["censor_channel_story_author"])
 			var/datum/newscaster/feed_message/MSG = locate(href_list["censor_channel_story_author"]) in viewing_channel.messages
 			if(MSG.is_admin_message)
-				tgui_alert(usr, "This message was created by a Nanotrasen Officer. You cannot censor its author.","Ok")
+				tgui_alert(usr,"This message was created by a Nanotrasen Officer. You cannot censor its author.")
 				return
 			MSG.toggleCensorAuthor()
 			updateUsrDialog()
 		else if(href_list["censor_channel_story_body"])
 			var/datum/newscaster/feed_message/MSG = locate(href_list["censor_channel_story_body"]) in viewing_channel.messages
 			if(MSG.is_admin_message)
-				tgui_alert(usr, "This channel was created by a Nanotrasen Officer. You cannot censor it.","Ok")
+				tgui_alert(usr,"This channel was created by a Nanotrasen Officer. You cannot censor it.")
 				return
 			MSG.toggleCensorBody()
 			updateUsrDialog()
@@ -647,7 +647,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 		else if(href_list["toggle_d_notice"])
 			var/datum/newscaster/feed_channel/FC = locate(href_list["toggle_d_notice"]) in GLOB.news_network.network_channels
 			if(FC.is_admin_channel)
-				tgui_alert(usr, "This channel was created by a Nanotrasen Officer. You cannot place a D-Notice upon it.","Ok")
+				tgui_alert(usr,"This channel was created by a Nanotrasen Officer. You cannot place a D-Notice upon it.")
 				return
 			FC.toggleCensorDclass()
 			updateUsrDialog()

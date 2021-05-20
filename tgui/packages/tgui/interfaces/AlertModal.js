@@ -6,17 +6,20 @@
 
 import { clamp01 } from 'common/math';
 import { useBackend } from '../backend';
-import { Box, Button, Flex } from '../components';
+import { Component, createRef } from 'inferno';
+import { Box, Flex, Section } from '../components';
 import { Window } from '../layouts';
+import {
+  KEY_ENTER,
+  KEY_LEFT,
+  KEY_RIGHT,
+  KEY_SPACE,
+  KEY_TAB,
+} from 'common/keycodes';
 
-export const AlertModal = (props, context) => {
-  const { act, data } = useBackend(context);
-  const {
-    title,
-    message,
-    buttons,
-    timeout,
-  } = data;
+export class AlertModal extends Component {
+  constructor() {
+    super();
 
   return (
     <Window
@@ -38,36 +41,22 @@ export const AlertModal = (props, context) => {
                 </Box>
               </Flex.Item>
             </Flex>
-          </Flex.Item>
-          <Flex.Item my={2}>
-            <Flex className="AlertModal__Buttons">
-              {buttons.map(button => (
-                <Flex.Item key={button} mx={1}>
-                  <Button
-                    px={3}
-                    onClick={() => act("choose", { choice: button })}>
-                    {button}
-                  </Button>
-                </Flex.Item>
-              ))}
-            </Flex>
-          </Flex.Item>
-        </Flex>
-      </Window.Content>
-    </Window>
-  );
-};
+          </Section>
+        </Window.Content>
+      </Window>
+    );
+  }
+
+}
 
 export const Loader = props => {
   const { value } = props;
+
   return (
-    <div
-      className="AlertModal__Loader">
+    <div className="AlertModal__Loader">
       <Box
         className="AlertModal__LoaderProgress"
-        style={{
-          width: clamp01(value) * 100 + '%',
-        }} />
+        style={{ width: clamp01(value) * 100 + '%' }} />
     </div>
   );
 };
