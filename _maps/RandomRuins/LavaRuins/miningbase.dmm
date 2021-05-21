@@ -823,7 +823,6 @@
 	dir = 1;
 	pixel_y = -32
 	},
-/obj/structure/table,
 /turf/open/floor/plasteel/dark,
 /area/mine/vacant)
 "gW" = (
@@ -1559,9 +1558,6 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -32
 	},
-/obj/structure/table,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/glass/fifty,
 /turf/open/floor/plasteel/dark,
 /area/mine/vacant)
 "sp" = (
@@ -2720,7 +2716,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/mine/eva)
 "IX" = (
