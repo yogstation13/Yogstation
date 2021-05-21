@@ -252,5 +252,5 @@
 /obj/structure/fireaxecabinet/spare/Initialize()
 	. = ..()
 	fireaxe = null
-	spareid = new
+	spareid = new(src)
 	update_icon()
