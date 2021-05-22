@@ -58,6 +58,9 @@ SUBSYSTEM_DEF(economy)
 /datum/controller/subsystem/economy/Initialize(timeofday)
 	var/budget_to_hand_out = round(budget_pool / department_accounts.len)
 	for(var/A in department_accounts)
+		if(A == ACCOUNT_SEC)
+			new /datum/bank_account/department(A, STARTING_SEC_BUDGET)
+			continue
 		new /datum/bank_account/department(A, budget_to_hand_out)
 	return ..()
 
@@ -138,11 +141,6 @@ SUBSYSTEM_DEF(economy)
 			if(H.stat == DEAD && (H.z in SSmapping.levels_by_trait(ZTRAIT_STATION)))
 				dead_monsters++
 		CHECK_TICK
-	var/living_ratio = alive_crew / crew
-	cash_to_grant = (crew_safety_bounty * living_ratio) + (monster_bounty * dead_monsters)
-	var/datum/bank_account/D = get_dep_account(ACCOUNT_SEC)
-	if(D)
-		D.adjust_money(min(cash_to_grant, MAX_GRANT_SECMEDSRV))
 
 	var/service_passive_income = (rand(1, 6) * 400) //min 400, max 2400
 	var/datum/bank_account/SRV = get_dep_account(ACCOUNT_SRV)
