@@ -108,9 +108,6 @@ SUBSYSTEM_DEF(economy)
 		D.adjust_money(500)
 
 /datum/controller/subsystem/economy/proc/secmedsrv_payout()
-	var/crew
-	var/alive_crew
-	var/cash_to_grant
 	for(var/mob/m in GLOB.mob_list)
 		if(isnewplayer(m))
 			continue
