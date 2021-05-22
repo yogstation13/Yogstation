@@ -111,7 +111,6 @@ SUBSYSTEM_DEF(economy)
 /datum/controller/subsystem/economy/proc/secmedsrv_payout()
 	var/crew
 	var/alive_crew
-	var/dead_monsters
 	var/cash_to_grant
 	for(var/mob/m in GLOB.mob_list)
 		if(isnewplayer(m))
@@ -136,10 +135,6 @@ SUBSYSTEM_DEF(economy)
 					var/datum/bank_account/D = get_dep_account(ACCOUNT_MED)
 					if(D)
 						D.adjust_money(medical_cash)
-		if(ishostile(m))
-			var/mob/living/simple_animal/hostile/H = m
-			if(H.stat == DEAD && (H.z in SSmapping.levels_by_trait(ZTRAIT_STATION)))
-				dead_monsters++
 		CHECK_TICK
 
 	var/service_passive_income = (rand(1, 6) * 400) //min 400, max 2400
