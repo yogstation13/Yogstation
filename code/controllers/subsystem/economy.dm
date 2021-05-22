@@ -18,7 +18,6 @@ SUBSYSTEM_DEF(economy)
 	var/datum/station_state/engineering_check = new /datum/station_state()
 	var/alive_humans_bounty = 100
 	var/crew_safety_bounty = 1500
-	var/monster_bounty = 150
 	var/mood_bounty = 100
 	var/techweb_bounty = 25 // yogs start - nerf insane rd budget
 	var/slime_bounty = list("grey" = 10,
