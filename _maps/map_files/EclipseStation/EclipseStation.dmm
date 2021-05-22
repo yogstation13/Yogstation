@@ -45,15 +45,6 @@
 "aah" = (
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/dorms/a)
-"aai" = (
-/obj/machinery/newscaster{
-	pixel_x = -32
-	},
-/obj/machinery/modular_computer/console/preset/curator{
-	dir = 4
-	},
-/turf/open/floor/carpet/exoticpurple,
-/area/library)
 "aaj" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -13175,6 +13166,15 @@
 "aCS" = (
 /turf/open/floor/plasteel/dark,
 /area/chapel)
+"aCT" = (
+/obj/machinery/newscaster{
+	pixel_x = -32
+	},
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 4
+	},
+/turf/open/floor/carpet/exoticpurple,
+/area/library)
 "aCU" = (
 /obj/effect/landmark/stationroom/eclipse/bar,
 /turf/template_noop,
@@ -99857,7 +99857,7 @@ aKQ
 aNW
 aNY
 aNX
-aai
+aCT
 aMt
 bat
 aeq

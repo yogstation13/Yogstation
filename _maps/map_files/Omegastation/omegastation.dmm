@@ -1007,25 +1007,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"abr" = (
-/obj/machinery/power/apc{
-	areastring = "/area/library";
-	dir = 8;
-	name = "Library APC";
-	pixel_x = -25
-	},
-/obj/structure/cable/white{
-	icon_state = "0-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/obj/machinery/libraryscanner,
-/turf/open/floor/wood,
-/area/library)
 "abs" = (
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/hop)
@@ -5592,28 +5573,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/starboard)
-"ahO" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -26
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/modular_computer/console/preset/curator{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/library)
 "ahP" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -19986,6 +19945,28 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/asteroid/nearstation)
+"aUV" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -26
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/library)
 "aUX" = (
 /turf/open/floor/wood,
 /area/library)
@@ -44712,6 +44693,25 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/carpet,
 /area/crew_quarters/theatre)
+"vOn" = (
+/obj/machinery/power/apc{
+	areastring = "/area/library";
+	dir = 8;
+	name = "Library APC";
+	pixel_x = -25
+	},
+/obj/structure/cable/white{
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/libraryscanner,
+/turf/open/floor/wood,
+/area/library)
 "vQD" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -80969,7 +80969,7 @@ ddE
 ddE
 ddE
 ddE
-ahO
+aUV
 aVN
 aWA
 aQW
@@ -81225,7 +81225,7 @@ aPO
 sJI
 aRT
 aRU
-abr
+vOn
 omq
 hQl
 czh
