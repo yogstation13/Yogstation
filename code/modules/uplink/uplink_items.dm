@@ -446,7 +446,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, they require an \
 			organic host as a home base and source of fuel. Holoparasites come in various types and share damage with their host."
 	item = /obj/item/guardiancreator/tech
-	cost = 40 //regardless of what it does, if built right it's worth twice a gun
+	cost = 30 //regardless of what it does, if built right it's worth twice a gun
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
