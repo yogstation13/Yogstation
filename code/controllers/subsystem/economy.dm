@@ -116,9 +116,7 @@ SUBSYSTEM_DEF(economy)
 				continue
 			if(ishuman(m))
 				var/mob/living/carbon/human/H = m
-				crew++
 				if(H.stat != DEAD)
-					alive_crew++
 					var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
 					var/medical_cash = (H.health / H.maxHealth) * alive_humans_bounty
 					if(mood)
