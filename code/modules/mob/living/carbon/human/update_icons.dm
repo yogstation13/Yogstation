@@ -270,12 +270,17 @@ There are several things that need to be remembered:
 		inv.update_icon()
 
 	if(shoes)
-		shoes.screen_loc = ui_shoes					//move the item to the appropriate screen loc
+		shoes.screen_loc = ui_shoes                    //move the item to the appropriate screen loc
+		var/obj/item/clothing/shoes/S = shoes
+		var/worn_shoes_icon = S.icon_state
+		if(S.adjusted == DIGITIGRADE_STYLE)
+			worn_shoes_icon = "[S.icon_state]_l" // Sets digitgrade version of a shoe if it has it
+
 		if(client && hud_used && hud_used.hud_shown)
-			if(hud_used.inventory_shown)			//if the inventory is open
-				client.screen += shoes					//add it to client's screen
+			if(hud_used.inventory_shown)            //if the inventory is open
+				client.screen += shoes                    //add it to client's screen
 		update_observer_view(shoes,1)
-		overlays_standing[SHOES_LAYER] = shoes.build_worn_icon(state = shoes.icon_state, default_layer = SHOES_LAYER, default_icon_file = 'icons/mob/feet.dmi')
+		overlays_standing[SHOES_LAYER] = shoes.build_worn_icon(state = worn_shoes_icon, default_layer = SHOES_LAYER, default_icon_file = 'icons/mob/feet.dmi')
 		var/mutable_appearance/shoes_overlay = overlays_standing[SHOES_LAYER]
 		if(OFFSET_SHOES in dna.species.offset_features)
 			shoes_overlay.pixel_x += dna.species.offset_features[OFFSET_SHOES][1]
@@ -535,7 +540,7 @@ generate/load female uniform sprites matching all previously decided variables
 	var/mutable_appearance/standing
 	if(femaleuniform)
 		if(HAS_TRAIT(H, TRAIT_SKINNY) && (H.underwear == "Nude"))
-			standing = wear_skinny_version(state,file2use,layer2use,femaleuniform) 
+			standing = wear_skinny_version(state,file2use,layer2use,femaleuniform)
 		else
 			standing = wear_female_version(state,file2use,layer2use,femaleuniform)
 	if(!standing)
