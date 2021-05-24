@@ -15,6 +15,9 @@
 	var/offset = 0
 	var/equipped_before_drop = FALSE
 	var/can_be_bloody = TRUE
+	var/xenoshoe = NO_DIGIT  // Check for if shoes can be worn by straight legs (NO_DIGIT) which is default, both / hybrid (EITHER_STYLE), or digitigrade only (YES_DIGIT)
+	var/mutantrace_variation = NO_MUTANTRACE_VARIATION // Assigns shoes to have variations for if worn clothing doesn't enforce straight legs (such as cursed jumpskirts)
+	var/adjusted = NORMAL_STYLE // Default needed to make the above work
 
 /obj/item/clothing/shoes/suicide_act(mob/living/carbon/user)
 	if(rand(2)>1)
@@ -50,12 +53,25 @@
 			. += mutable_appearance('icons/effects/blood.dmi', "shoeblood")
 
 /obj/item/clothing/shoes/equipped(mob/user, slot)
+	if(adjusted)
+		adjusted = NORMAL_STYLE
+	if(mutantrace_variation && ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(DIGITIGRADE in H.dna.species.species_traits)
+			for(var/X in H.bodyparts)
+				var/obj/item/bodypart/O = X
+				if(!O.use_digitigrade)
+					continue
+				if(O.use_digitigrade == FULL_DIGITIGRADE)
+					adjusted = DIGITIGRADE_STYLE
+		user.update_inv_shoes()
 	. = ..()
 	if(offset && slot_flags & slotdefine2slotbit(slot))
 		user.pixel_y += offset
 		worn_y_dimension -= (offset * 2)
-		user.update_inv_shoes()
 		equipped_before_drop = TRUE
+
+	user.update_inv_shoes()
 
 /obj/item/clothing/shoes/proc/restore_offsets(mob/user)
 	equipped_before_drop = FALSE
