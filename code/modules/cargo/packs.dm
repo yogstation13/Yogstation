@@ -1731,7 +1731,7 @@
 /datum/supply_pack/organic/randomized/chef
 	name = "Excellent Meat Crate"
 	desc = "The best cuts in the whole galaxy."
-	cost = 300
+	cost = 1000
 	small_item = TRUE
 	contains = list(/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/slime,
 					/obj/item/reagent_containers/food/snacks/meat/slab/killertomato,
@@ -2431,7 +2431,7 @@
 /datum/supply_pack/misc/artsupply
 	name = "Art Supplies"
 	desc = "Make some happy little accidents with six canvasses, two easels, and two rainbow crayons!"
-	cost = 300 //can get away with this since the crate is wooden and therefore cheap as hell
+	cost = 400 
 	contains = list(/obj/structure/easel,
 					/obj/structure/easel,
 					/obj/item/canvas/nineteenXnineteen,
@@ -2456,7 +2456,7 @@
 /datum/supply_pack/misc/bigband
 	name = "Big Band Instrument Collection"
 	desc = "Get your sad station movin' and groovin' with this fine collection! Contains ten different instruments!"
-	cost = 400
+	cost = 600
 	crate_name = "Big band musical instruments collection"
 	contains = list(/obj/item/instrument/violin,
 					/obj/item/instrument/guitar,
