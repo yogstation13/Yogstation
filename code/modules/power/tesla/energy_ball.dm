@@ -72,8 +72,7 @@
 		for (var/ball in orbiting_balls)
 			if(prob(80))  //tesla nerf/reducing lag, each miniball now has only 20% to trigger the zap
 				continue
-			var/range = rand(1, clamp(orbiting_balls.len, 3, zap_range))
-			tesla_zap(ball, range, TESLA_MINI_POWER/7*range)
+			tesla_zap(ball, rand(2, zap_range), TESLA_MINI_POWER)
 	else
 		energy = 0 // ensure we dont have miniballs of miniballs
 
@@ -130,6 +129,11 @@
 /obj/singularity/energy_ball/proc/new_mini_ball()
 	if(!loc)
 		return
+	// Timers can be added fast enough that the max_balls check in handle_energy will "fail".
+	// Timers aren't accounted for in that check so it will add more timers to make more miniballs.
+	if(orbiting_balls.len >= max_balls)
+		return
+
 	var/obj/singularity/energy_ball/EB = new(loc, 0, TRUE)
 
 	EB.transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
@@ -227,10 +231,13 @@
 		if(!(tesla_flags & TESLA_ALLOW_DUPLICATES) && LAZYACCESS(shocked_targets, A))
 			continue
 
+		var/dist = get_dist(source, A)
+		if(dist > zap_range)
+			continue
+
 		if(istype(A, /obj/machinery/power/tesla_coil))
-			var/dist = get_dist(source, A)
 			var/obj/machinery/power/tesla_coil/C = A
-			if(dist <= zap_range && (dist < closest_dist || !closest_tesla_coil) && !(C.obj_flags & BEING_SHOCKED))
+			if((dist < closest_dist || !closest_tesla_coil) && !(C.obj_flags & BEING_SHOCKED))
 				closest_dist = dist
 
 				//we use both of these to save on istype and typecasting overhead later on
@@ -238,13 +245,11 @@
 				closest_tesla_coil = C
 				closest_atom = C
 
-
 		else if(closest_tesla_coil)
 			continue //no need checking these other things
 
 		else if(istype(A, /obj/machinery/power/grounding_rod))
-			var/dist = get_dist(source, A)-2
-			if(dist <= zap_range && (dist < closest_dist || !closest_grounding_rod))
+			if((dist < closest_dist || !closest_grounding_rod))
 				closest_grounding_rod = A
 				closest_atom = A
 				closest_dist = dist
@@ -253,9 +258,8 @@
 			continue
 
 		else if(isliving(A))
-			var/dist = get_dist(source, A)
 			var/mob/living/L = A
-			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && L.stat != DEAD && !(L.flags_1 & TESLA_IGNORE_1))
+			if((dist < closest_dist || !closest_mob) && L.stat != DEAD && !(L.flags_1 & TESLA_IGNORE_1))
 				closest_mob = L
 				closest_atom = A
 				closest_dist = dist
@@ -265,8 +269,7 @@
 
 		else if(ismachinery(A))
 			var/obj/machinery/M = A
-			var/dist = get_dist(source, A)
-			if(dist <= zap_range && (dist < closest_dist || !closest_machine) && !(M.obj_flags & BEING_SHOCKED))
+			if((dist < closest_dist || !closest_machine) && !(M.obj_flags & BEING_SHOCKED))
 				closest_machine = M
 				closest_atom = A
 				closest_dist = dist
@@ -276,8 +279,7 @@
 
 		else if(istype(A, /obj/structure/blob))
 			var/obj/structure/blob/B = A
-			var/dist = get_dist(source, A)
-			if(dist <= zap_range && (dist < closest_dist || !closest_tesla_coil) && !(B.obj_flags & BEING_SHOCKED))
+			if((dist < closest_dist || !closest_tesla_coil) && !(B.obj_flags & BEING_SHOCKED))
 				closest_blob = B
 				closest_atom = A
 				closest_dist = dist
@@ -287,8 +289,7 @@
 
 		else if(isstructure(A))
 			var/obj/structure/S = A
-			var/dist = get_dist(source, A)
-			if(dist <= zap_range && (dist < closest_dist || !closest_tesla_coil) && !(S.obj_flags & BEING_SHOCKED))
+			if((dist < closest_dist || !closest_tesla_coil) && !(S.obj_flags & BEING_SHOCKED))
 				closest_structure = S
 				closest_atom = A
 				closest_dist = dist
