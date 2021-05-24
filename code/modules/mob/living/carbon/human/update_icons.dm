@@ -272,19 +272,9 @@ There are several things that need to be remembered:
 	if(shoes)
 		shoes.screen_loc = ui_shoes                    //move the item to the appropriate screen loc
 		var/obj/item/clothing/shoes/S = shoes
-//		var/obj/item/clothing/under/U = w_uniform
 		var/worn_shoes_icon = S.icon_state
-//		var/obj/item/clothing/suit/B = wear_suit
 		if(S.adjusted == DIGITIGRADE_STYLE)
 			worn_shoes_icon = "[S.icon_state]_l" // Sets digitgrade version of a shoe if it has it
-//		if(U && (U.adjusted != DIGITIGRADE_STYLE))
-//			worn_shoes_icon = S.icon_state
-//		if(B && (B.adjusted != DIGITIGRADE_STYLE))
-//			worn_shoes_icon = S.icon_state
-//		for(get_body_slots(w_uniform))
-//			var/obj/item/clothing/under/U = w_uniform  Foolish alt
-//			if(U.adjusted != DIGITIGRADE_STYLE)
-//				worn_shoes_icon = S.icon_state
 
 		if(client && hud_used && hud_used.hud_shown)
 			if(hud_used.inventory_shown)            //if the inventory is open
