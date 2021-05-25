@@ -356,7 +356,7 @@
 //                                          //
 //////////////////////////////////////////////
 
-/datum/dynamic_ruleset/roundstart/revs
+/*/datum/dynamic_ruleset/roundstart/revs
 	name = "Revolution"
 	persistent = TRUE
 	antag_flag = ROLE_REV_HEAD
@@ -473,7 +473,7 @@
 		SSticker.mode_result = "loss - rev heads killed"
 		SSticker.news_report = REVS_LOSE
 
-// Admin only rulesets. The threat requirement is 101 so it is not possible to roll them.
+// Admin only rulesets. The threat requirement is 101 so it is not possible to roll them. */
 
 //////////////////////////////////////////////
 //                                          //
