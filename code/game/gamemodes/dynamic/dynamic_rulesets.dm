@@ -79,10 +79,13 @@
 
 /datum/dynamic_ruleset/New()
 	..()
+
 	if (istype(SSticker.mode, /datum/game_mode/dynamic))
 		mode = SSticker.mode
 	else if (!SSticker.is_mode("dynamic")) // This is here to make roundstart forced ruleset function.
 		qdel(src)
+
+
 /datum/dynamic_ruleset/roundstart // One or more of those drafted at roundstart
 	ruletype = "Roundstart"
 
@@ -97,6 +100,7 @@
 		return FALSE
 	if(maximum_players > 0 && population > maximum_players)
 		return FALSE
+
 	pop_per_requirement = pop_per_requirement > 0 ? pop_per_requirement : mode.pop_per_requirement
 	indice_pop = min(requirements.len,round(population/pop_per_requirement)+1)
 	return (threat_level >= requirements[indice_pop])
@@ -178,11 +182,6 @@
 /// Set mode result and news report here.
 /// Only called if ruleset is flagged as HIGH_IMPACT_RULESET
 /datum/dynamic_ruleset/proc/round_result()
-
-/// Checks if round is finished, return true to end the round.
-/// Only called if ruleset is flagged as HIGH_IMPACT_RULESET
-/datum/dynamic_ruleset/proc/check_finished()
-	return FALSE
 
 //////////////////////////////////////////////
 //                                          //
