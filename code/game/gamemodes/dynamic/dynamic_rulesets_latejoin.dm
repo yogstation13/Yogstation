@@ -73,7 +73,7 @@
 //                                          //
 //////////////////////////////////////////////
 
-/datum/dynamic_ruleset/latejoin/provocateur
+/*/datum/dynamic_ruleset/latejoin/provocateur
 	name = "Provocateur"
 	persistent = TRUE
 	antag_datum = /datum/antagonist/rev/head
@@ -181,7 +181,7 @@
 		SSticker.news_report = REVS_WIN
 	else if(finished == STATION_VICTORY)
 		SSticker.mode_result = "loss - rev heads killed"
-		SSticker.news_report = REVS_LOSE
+		SSticker.news_report = REVS_LOSE */
 
 //////////////////////////////////////////////
 //                                          //
