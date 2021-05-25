@@ -1,0 +1,5 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - rscadd: "Skeletons and preternisnseresiisnrisses can now get wings from the wing potion! Skeletons cannot fly, but the robots can."
+  - imageadd: "Skeleton and robotic wing sprites added!"
