@@ -638,6 +638,8 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 					if(rule.ruletype == "Latejoin" && !(GLOB.ghost_role_flags & GHOSTROLE_MIDROUND_EVENT))
 						continue
 						// If admins have disabled dynamic from picking from the ghost pool
+						if(rule.ruletype == "Latejoin" && !(GLOB.ghost_role_flags & GHOSTROLE_MIDROUND_EVENT))
+							continue
 					rule.trim_candidates()
 					if (rule.ready())
 						drafted_rules[rule] = rule.get_weight()
