@@ -73,7 +73,7 @@
 //                                          //
 //////////////////////////////////////////////
 
-/*/datum/dynamic_ruleset/latejoin/provocateur
+/datum/dynamic_ruleset/latejoin/provocateur
 	name = "Provocateur"
 	persistent = TRUE
 	antag_datum = /datum/antagonist/rev/head
@@ -84,7 +84,7 @@
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 1
-	cost = 20
+	cost = 100000
 	delay = 1 MINUTES
 	requirements = list(80,75,60,60,55,50,40,30,20,20)
 	blocking_rules = list(/datum/dynamic_ruleset/roundstart/revs)
@@ -181,7 +181,7 @@
 		SSticker.news_report = REVS_WIN
 	else if(finished == STATION_VICTORY)
 		SSticker.mode_result = "loss - rev heads killed"
-		SSticker.news_report = REVS_LOSE */
+		SSticker.news_report = REVS_LOSE
 
 //////////////////////////////////////////////
 //                                          //
