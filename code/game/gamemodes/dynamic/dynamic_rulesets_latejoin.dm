@@ -62,7 +62,7 @@
 	protected_roles = list("Security Officer", "Warden", "Head of Personnel", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("AI","Cyborg")
 	required_candidates = 1
-	weight = 1
+	weight = 7
 	cost = 15
 	requirements = list(40,30,20,10,10,10,10,10,10,10)
 	repeatable = TRUE
@@ -196,7 +196,7 @@
 	protected_roles = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel")
 	restricted_roles = list("AI", "Cyborg")
 	required_candidates = 1
-	weight = 1
+	weight = 4
 	cost = 15
 	requirements = list(80,70,60,50,50,45,30,30,20,25)
 	minimum_players = 30
@@ -216,7 +216,7 @@
 	protected_roles = list("Security Officer", "Warden", "Head of Personnel", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("AI","Cyborg")
 	required_candidates = 1
-	weight = 4
+	weight = 3
 	cost = 15
 	requirements = list(40,30,20,10,10,10,10,10,10,10)
 	repeatable = TRUE */
