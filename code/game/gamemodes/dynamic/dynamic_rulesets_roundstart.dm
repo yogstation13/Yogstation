@@ -14,7 +14,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg")
 	required_candidates = 1
-	weight = 1
+	weight = 5
 	cost = 8	// Avoid raising traitor threat above 10, as it is the default low cost ruleset.
 	scaling_cost = 9
 	requirements = list(10,10,10,10,10,10,10,10,10,10)
@@ -53,7 +53,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 2
-	weight = 1
+	weight = 4
 	cost = 10
 	scaling_cost = 10
 	requirements = list(40,30,30,20,20,15,15,15,10,10)
@@ -102,7 +102,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("AI", "Cyborg")
 	required_candidates = 1
-	weight = 1
+	weight = 3
 	cost = 16
 	scaling_cost = 10
 	requirements = list(75,70,60,50,40,20,20,10,10,10)
@@ -180,7 +180,7 @@
 	minimum_required_age = 14
 	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a wizard getting picked won't ever imply a Captain or HoS not getting drafted
 	required_candidates = 1
-	weight = 1
+	weight = 2
 	cost = 20
 	requirements = list(90,90,70,40,30,20,10,10,10,10)
 	var/list/roundstart_wizards = list()
@@ -224,7 +224,7 @@
 	minimum_required_age = 14
 	restricted_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Chaplain", "Head of Personnel")
 	required_candidates = 2
-	weight = 1
+	weight = 3
 	cost = 20
 	requirements = list(100,80,70,60,40,30,30,20,10,10)
 	flags = HIGH_IMPACT_RULESET
@@ -280,7 +280,7 @@
 	minimum_required_age = 14
 	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a nukie getting picked won't ever imply a Captain or HoS not getting drafted
 	required_candidates = 5
-	weight = 1
+	weight = 3
 	cost = 20
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
 	flags = HIGH_IMPACT_RULESET
@@ -783,7 +783,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 3
-	weight = 1
+	weight = 3
 	cost = 30
 	requirements = list(90,80,80,70,60,40,30,30,20,10)
 	flags = HIGH_IMPACT_RULESET
@@ -827,7 +827,7 @@
 	protected_roles = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel")
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 3
-	weight = 1
+	weight = 3
 	cost = 8
 	scaling_cost = 9
 	requirements = list(80,70,60,50,50,45,30,30,25,20)
@@ -930,7 +930,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
 	restricted_roles = list("AI", "Cyborg")
 	required_candidates = 3
-	weight = 1
+	weight = 3
 	cost = 30
 	scaling_cost = 20
 	antag_cap = 3
