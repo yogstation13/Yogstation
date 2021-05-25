@@ -31,7 +31,6 @@
 		assigned += M.mind
 		M.mind.special_role = ROLE_TRAITOR
 		M.mind.restricted_roles = restricted_roles
-		GLOB.pre_setup_antags += M.mind
 		log_game("[key_name(M)] has been selected as a Traitor")
 	return TRUE
 
