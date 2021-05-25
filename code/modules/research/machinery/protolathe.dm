@@ -17,7 +17,8 @@
 								"Firing Pins",
 								"Computer Parts",
 								"Spacepod Designs", // yoggers
-								"Service"
+								"Service",
+								"Circuitry"
 								)
 	production_animation = "protolathe_n"
 	allowed_buildtypes = PROTOLATHE
