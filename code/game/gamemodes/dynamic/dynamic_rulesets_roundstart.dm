@@ -367,7 +367,7 @@
 	required_candidates = 3
 	weight = 1
 	delay = 7 MINUTES
-	cost = 20
+	cost = 101
 	requirements = list(101,101,101,101,101,101,101,101,101,101)
 	antag_cap = 3
 	flags = HIGH_IMPACT_RULESET
