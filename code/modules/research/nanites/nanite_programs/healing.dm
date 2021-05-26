@@ -25,7 +25,7 @@
 		for(var/obj/item/bodypart/L in parts)
 			if(L.heal_damage(1/parts.len, 1/parts.len, null, BODYPART_ORGANIC))
 				host_mob.update_damage_overlays()
-		if(C.getStaminaLoss() < 50) //Should just push you into the first slowdown stage before resetting after 10 seconds
+		if(C.getStaminaLoss() < 41) //Should just push you into the first slowdown stage before resetting after 10 seconds
 			C.adjustStaminaLoss(1) //Annoying but not lethal, and won't stop stamina regen if you're over the limit
 			if(prob(5))
 				to_chat(C, "<span class='warning'>Your injuries itch and burn as they heal.")
@@ -180,7 +180,7 @@
 				update = TRUE
 		if(update)
 			host_mob.update_damage_overlays()
-		if(C.getStaminaLoss() < 100) //Stops after hitting the second slowdown level. This is distributed so only ~80% is counted towards crit
+		if(C.getStaminaLoss() < 80) //Stops after hitting the second slowdown level.
 			C.adjustStaminaLoss(5) //Hurts a lot more
 		else if(C.getBruteLoss() || C.getFireLoss()) //Prevents stamina regen if it's actively healing and you're over the limit.
 			C.adjustStaminaLoss(0.1) 
