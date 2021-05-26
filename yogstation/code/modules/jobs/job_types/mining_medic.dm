@@ -40,7 +40,6 @@
 	l_hand = /obj/item/storage/firstaid/regular
 	l_pocket =  /obj/item/pda/medical
 	gloves = /obj/item/clothing/gloves/color/latex
-	mask = /obj/item/clothing/mask/surgical
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
