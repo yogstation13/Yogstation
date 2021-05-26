@@ -12,7 +12,7 @@
 	guardian.range = range * 2
 	if(ranged)
 		guardian.ranged = TRUE
-		guardian.ranged_cooldown_time = 5 / speed
+		guardian.ranged_cooldown_time = 20 / speed
 	else
 		guardian.melee_damage_lower = damage * 5
 		guardian.melee_damage_upper = damage * 5

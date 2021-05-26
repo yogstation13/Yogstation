@@ -330,6 +330,7 @@
 	yield = 6
 	potency = 20
 	growthstages = 2
+	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
 	reagents_add = list(/datum/reagent/medicine/charcoal = 0.25, /datum/reagent/medicine/mutadone = 0.04, /datum/reagent/consumable/nutriment = 0.02)
 
 /obj/item/reagent_containers/food/snacks/grown/fungus
