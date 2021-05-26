@@ -1884,7 +1884,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	
 /datum/uplink_item/role_restricted/clowngrenade
 	name = "C.L.U.W.N.E. Grenade"
-	desc = "A tactical clown grenade which conjures a clown from the netherworlds. Be careful, it may attack you too! Not guaranteed to be useful in the slightest."
+	desc = "A tactical clown grenade which conjures a clown from the netherworlds. Be careful; it may attack you too! Not guaranteed to be useful in the slightest."
 	item = /obj/item/grenade/spawnergrenade/clown
 	cost = 7
 	restricted_roles = list("Clown")
