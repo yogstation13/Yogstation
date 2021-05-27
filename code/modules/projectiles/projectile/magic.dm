@@ -305,11 +305,12 @@
 		for(var/obj/item/W in contents)
 			if(!M.dropItemToGround(W))
 				qdel(W)
-
 	var/mob/living/B
+
 	B = new /mob/living/simple_animal/cheese(M.loc)
 	if(!B)
 		return
+
 	M.log_message("became [B.real_name]", LOG_ATTACK, color="orange")
 	B.desc = "What appears to be [M.real_name] reformed into a wheel of delicious parmesan... recovery is unlikely."
 	B.name = "[M.name] Parmesan"
@@ -320,12 +321,11 @@
 		M.mind.transfer_to(B)
 	else
 		B.key = M.key
-	to_chat(src, "<span class='big bold'>You are a cheesewheel!</span><b> You're a harmless wheel of parmesan that is remarkably tasty. Careful of people that want to eat you.</b>")
 	var/poly_msg = get_policy(POLICY_POLYMORPH)
 	if(poly_msg)
 		to_chat(B, poly_msg)
 	M.transfer_observers_to(B)
-
+	to_chat(B, "<span class='big bold'>You are a cheesewheel!</span><b> You're a harmless wheel of parmesan that is remarkably tasty. Careful of people that want to eat you.</b>")
 	qdel(M)
 	return B
 
