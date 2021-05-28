@@ -1,0 +1,8 @@
+author: "Anvilman6"
+delete-after: true 
+changes: 
+  - rscadd: "Adds footwraps and related infrastructure to the game!"
+  - wip: "Wraps should be functional at this stage, but there are a few modular additions I will be looking at later. Such as adding them to vendors, potentially adding sound effects to them, or potentially adding other types of wraps beyond Common/Security. Suggestions are welcome here."
+  - tweak: "Added more infrastructure to footwear. Shoes can be flagged as digitigrade usable or not for easy modular additions."
+  - tweak: "Creates more aggressive cases of item state updating and checking for shoes, so be advised if designing shoes with alternative view states."
+  - imageadd: "Item sprites, wrap on-character sprites, and situational side view sprites! I am not a spriter, so if people think these need touchups, I would welcome spriter input and help for a patch."
