@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 	var/on_store_name = "Cryogenic Oversight"
 
 	// 5 minutes-ish safe period before being despawned.
-	var/time_till_despawn = 5 MINUTES // This is reduced to 60 seconds if a player manually enters cryo
+	var/time_till_despawn = 5 MINUTES // This is reduced to 30 seconds if a player manually enters cryo
 
 	var/obj/machinery/computer/cryopod/control_computer
 	var/cooldown = FALSE
@@ -216,14 +216,12 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 		if(!occupant) //Check they still exist
 			return
 		if(mob_occupant.client)//if they're logged in
-			addtimer(VARSET_CALLBACK(src, ready, TRUE), (time_till_despawn * 0.2)) // This gives them 60 seconds
+			var/offertimer = addtimer(VARSET_CALLBACK(src, ready, TRUE), (time_till_despawn * 0.1), TIMER_STOPPABLE) // This gives them 30 seconds
+			if(alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", "Yes", "No"))
+				deltimer(offertimer)
+				offer_control(occupant)
 		else
 			addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn)
-
-		if(mob_occupant.client)
-			var/offer = alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", "Yes", "No")
-			if(offer == "Yes" && offer_control(occupant))
-				return
 
 /obj/machinery/cryopod/open_machine()
 	..()
