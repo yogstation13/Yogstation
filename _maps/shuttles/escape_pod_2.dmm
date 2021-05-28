@@ -1,11 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"s" = (
+"a" = (
 /obj/machinery/door/airlock/titanium{
 	name = "Escape Pod Airlock"
 	},
 /obj/docking_port/mobile/pod{
 	dwidth = 1;
 	height = 4;
+	id = "pod2";
 	port_direction = 2;
 	width = 3
 	},
@@ -67,7 +68,7 @@ I
 t
 O
 L
-s
+a
 "}
 (3,1,1) = {"
 T

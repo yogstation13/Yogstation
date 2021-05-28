@@ -167,6 +167,8 @@
 
 	. = O
 
+	transfer_trait_datums(O)
+
 	qdel(src)
 
 //////////////////////////           Humanize               //////////////////////////////
@@ -339,6 +341,8 @@
 	for(var/A in loc.vars)
 		if(loc.vars[A] == src)
 			loc.vars[A] = O
+
+	transfer_trait_datums(O)
 
 	qdel(src)
 

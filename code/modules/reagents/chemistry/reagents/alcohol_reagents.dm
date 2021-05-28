@@ -2327,7 +2327,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/peawine
 	name = "Pea Wine"
-	description = "An alcoholic beverage That is created through distilling peas."
+	description = "An alcoholic beverage that is created through distilling peas."
 	color = "#008000" // rgb: 0, 128, 0
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	boozepwr = 25

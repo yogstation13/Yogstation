@@ -216,6 +216,8 @@
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
 
 	var/pda_slot = SLOT_BELT
+	var/alt_shoes = /obj/item/clothing/shoes/xeno_wraps // Default digitgrade shoes assignment variable
+	var/alt_shoes_s = /obj/item/clothing/shoes/xeno_wraps/jackboots // Digitigrade shoes for Sec assignment variable
 
 /datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	switch(H.backbag)
@@ -236,6 +238,11 @@
 
 	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
 		box = null
+
+	if((DIGITIGRADE in H.dna.species.species_traits) && (IS_SECURITY(H))) // Special shoes for sec, roll first to avoid defaulting
+		shoes = alt_shoes_s
+	else if(DIGITIGRADE in H.dna.species.species_traits) // Check to assign default digitigrade shoes
+		shoes = alt_shoes
 
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
