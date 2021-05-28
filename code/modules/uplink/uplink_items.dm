@@ -1805,7 +1805,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Arm Mounted Medical Beamgun"
 	desc = "An arm mounted medical beamgun to heal your best buds (disclaimer: does not come with friends)."
 	item = /obj/item/autosurgeon/medibeam
-	restricted_roles = list("Medical Doctor", "Chief Medical Officer")
+	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Mining Medic")
 	cost = 8
 	manufacturer = /datum/corporation/traitor/cybersun
 
@@ -1842,7 +1842,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A disk containing the procedure to perform a brainwashing surgery, allowing you to implant an objective onto a target. \
 	Insert into an Operating Console to enable the procedure."
 	item = /obj/item/disk/surgery/brainwashing
-	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Roboticist")
+	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Roboticist", "Mining Medic")
 	cost = 5
 	manufacturer = /datum/corporation/traitor/cybersun
 
@@ -1950,7 +1950,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 5 //you need two for full damage, so total of 10 for maximum damage
 	manufacturer = /datum/corporation/traitor/donkco // Unless you're donk co, then it's 8
 	limited_stock = 2 //you can't use more than two!
-	restricted_roles = list("Shaft Miner")
+	restricted_roles = list("Shaft Miner", "Mining Medic")
 
 /datum/uplink_item/role_restricted/magillitis_serum
 	name = "Magillitis Serum Autoinjector"
