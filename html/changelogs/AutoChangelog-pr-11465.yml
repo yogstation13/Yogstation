@@ -1,0 +1,4 @@
+author: "wejengin2"
+delete-after: true 
+changes: 
+  - tweak: "removes the wizard item that allows you to create thralls from a lavaland ruin"
