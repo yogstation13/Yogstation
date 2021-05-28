@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "repeating healing surgeries no longer cause damage with lack of anesthetic since they are short"

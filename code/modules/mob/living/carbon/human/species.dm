@@ -896,10 +896,6 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	stop_wagging_tail(H)
 	return
 
-/datum/species/proc/auto_equip(mob/living/carbon/human/H)
-	// handles the equipping of species-specific gear
-	return
-
 /datum/species/proc/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE)
 	if((slot in no_equip) || (slot in extra_no_equip))
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
@@ -1992,6 +1988,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		return FALSE
 	if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) && (!H.wear_suit.species_exception || !is_type_in_list(src, H.wear_suit.species_exception))))	//Jumpsuits have tail holes, so it makes sense they have wing holes too
 		to_chat(H, "Your suit blocks your wings from extending!")
+		return FALSE
+	if(isskeleton(H))
+		to_chat(H, "Your wings are just bones; You can't actually fly!")
 		return FALSE
 	var/turf/T = get_turf(H)
 	if(!T)
