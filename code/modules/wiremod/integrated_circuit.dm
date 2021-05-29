@@ -9,7 +9,7 @@
 	name = "integrated circuit"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "integrated_circuit"
-	inhand_icon_state = "electronic"
+	item_state = "electronic"
 
 	/// The power of the integrated circuit
 	var/obj/item/stock_parts/cell/cell
@@ -50,7 +50,7 @@
 
 	if(istype(I, /obj/item/stock_parts/cell))
 		if(cell)
-			balloon_alert(user, "<span class='warning'>There already is a cell inside!</span>")
+			to_chat(user, "<span class='warning'>There already is a cell inside!</span>")
 			return
 		if(!user.transferItemToLoc(I, src))
 			return
@@ -345,7 +345,7 @@
 				value = port.convert_value(port.output_value)
 			else if(isnull(value))
 				value = "null"
-			balloon_alert(usr, "[port.name] value: [value]")
+			to_chat(usr, "<span class='notice'>[port.name] value: [value]</span>")
 			. = TRUE
 
 #undef WITHIN_RANGE

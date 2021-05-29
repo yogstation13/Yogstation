@@ -8,12 +8,9 @@
 	name = "controller"
 	icon = 'icons/obj/wiremod.dmi'
 	icon_state = "setup_small_calc"
-	inhand_icon_state = "electronic"
-	worn_icon_state = "electronic"
+	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	light_system = MOVABLE_LIGHT_DIRECTIONAL
-	light_on = FALSE
 
 /obj/item/controller/Initialize()
 	. = ..()
@@ -44,12 +41,12 @@
 /obj/item/circuit_component/controller/register_shell(atom/movable/shell)
 	RegisterSignal(shell, COMSIG_ITEM_ATTACK_SELF, .proc/send_trigger)
 	RegisterSignal(shell, COMSIG_CLICK_ALT, .proc/send_alternate_signal)
-	RegisterSignal(shell, COMSIG_CLICK_ALT_SECONDARY, .proc/send_right_signal)
+	RegisterSignal(shell, COMSIG_CLICK_CTRL, .proc/send_right_signal) //potentially change to shift+ctrl instead of ctrl
 
 /obj/item/circuit_component/controller/unregister_shell(atom/movable/shell)
 	UnregisterSignal(shell, list(
 		COMSIG_ITEM_ATTACK_SELF,
-		COMSIG_CLICK_ALT_SECONDARY,
+		COMSIG_CLICK_CTRL,
 		COMSIG_CLICK_ALT,
 	))
 
@@ -60,7 +57,7 @@
 	SIGNAL_HANDLER
 	if(!user.Adjacent(source))
 		return
-	source.balloon_alert(user, "clicked primary button")
+	to_chat(user, "<span class='notice'>Clicked primary button.</span>")
 	playsound(source, get_sfx("terminal_type"), 25, FALSE)
 	signal.set_output(COMPONENT_SIGNAL)
 
@@ -71,7 +68,7 @@
 	SIGNAL_HANDLER
 	if(!user.Adjacent(source))
 		return
-	source.balloon_alert(user, "clicked alternate button")
+	to_chat(user, "<span class='notice'>Clicked alternate button.</span>")
 	playsound(source, get_sfx("terminal_type"), 25, FALSE)
 	alt.set_output(COMPONENT_SIGNAL)
 
@@ -79,6 +76,6 @@
 	SIGNAL_HANDLER
 	if(!user.Adjacent(source))
 		return
-	source.balloon_alert(user, "clicked extra button")
+	to_chat(user, "<span class='notice'>Clicked extra button.</span>")
 	playsound(source, get_sfx("terminal_type"), 25, FALSE)
 	right.set_output(COMPONENT_SIGNAL)

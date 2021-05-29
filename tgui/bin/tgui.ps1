@@ -38,8 +38,13 @@ function task-dev-server {
 
 ## Run a linter through all packages
 function task-eslint {
-  yarn run eslint packages @Args
-  Write-Output "tgui: eslint check passed"
+  yarn run tsc
+  Write-Output "tgui: type check passed"
+  yarn run eslint packages --ext .js,.jsx,.ts,.tsx,.cjs,.mjs @Args
+}
+
+function task-test {
+  yarn run jest
 }
 
 ## Mr. Proper
@@ -110,6 +115,13 @@ if ($Args.Length -eq 0) {
   task-webpack --mode=production
   exit 0
 }
+
+  if ($Args[0] -eq "--test") {
+    $Rest = $Args | Select-Object -Skip 1
+    task-install
+    task-test @Rest
+    exit 0
+  }
 
 ## Run webpack with custom flags
 task-install

@@ -1,5 +1,5 @@
 import { computeBoxProps } from "./Box";
-import { Stack } from "./Stack";
+import { Flex } from "./Flex";
 import { ProgressBar } from "./ProgressBar";
 import { Button } from "./Button";
 import { Component } from 'inferno';
@@ -133,19 +133,19 @@ export class InfinitePlane extends Component {
           {children}
         </div>
 
-        <Stack
+        <Flex
           position="absolute"
           width="100%"
         >
-          <Stack.Item>
+          <Flex.Item>
             <Button
               icon="minus"
               onClick={() => this.setState({
                 zoom: Math.max(zoom-ZOOM_INCREMENT, ZOOM_MIN_VAL),
               })}
             />
-          </Stack.Item>
-          <Stack.Item grow={1}>
+          </Flex.Item>
+          <Flex.Item grow={1}>
             <ProgressBar
               minValue={ZOOM_MIN_VAL}
               value={zoom}
@@ -153,16 +153,16 @@ export class InfinitePlane extends Component {
             >
               {zoom}x
             </ProgressBar>
-          </Stack.Item>
-          <Stack.Item>
+          </Flex.Item>
+          <Flex.Item>
             <Button
               icon="plus"
               onClick={() => this.setState({
                 zoom: Math.min(zoom+ZOOM_INCREMENT, ZOOM_MAX_VAL),
               })}
             />
-          </Stack.Item>
-        </Stack>
+          </Flex.Item>
+        </Flex>
       </div>
     );
   }

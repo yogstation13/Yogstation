@@ -82,7 +82,7 @@
 /datum/component/shell/proc/on_attack_by(atom/source, obj/item/item, mob/living/attacker)
 	SIGNAL_HANDLER
 	if(istype(item, /obj/item/stock_parts/cell))
-		source.balloon_alert(attacker, "can't pull cell in directly!")
+		to_chat(attacker, "<span class='warning'>You can't put the cell in directly!</span>")
 		return
 
 	if(!istype(item, /obj/item/integrated_circuit))
@@ -94,11 +94,11 @@
 		return
 
 	if(attached_circuit)
-		source.balloon_alert(attacker, "there is already a circuitboard inside!")
+		to_chat(attacker, "<span class='warning'>There is already a circuitboard inside!</span>")
 		return
 
 	if(length(logic_board.attached_components) > capacity)
-		source.balloon_alert(attacker, "this is too large to fit into [parent]!")
+		to_chat(attacker, "<span class='warning'>This is too large to fit into [parent]!</span>")
 		return
 
 	attach_circuit(logic_board, attacker)
@@ -120,7 +120,7 @@
 		return
 
 	tool.play_tool_sound(parent)
-	source.balloon_alert(user, "You unscrew [attached_circuit] from [parent].")
+	to_chat(user, "<span class='notice>You unscrew [attached_circuit] from [parent].</span>")
 	remove_circuit()
 	return COMPONENT_BLOCK_TOOL_ATTACK
 
