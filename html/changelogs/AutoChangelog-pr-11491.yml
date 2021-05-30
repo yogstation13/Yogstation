@@ -1,0 +1,4 @@
+author: "Joe-Derp"
+delete-after: true 
+changes: 
+  - bugfix: "fixed nanite cloud display"
