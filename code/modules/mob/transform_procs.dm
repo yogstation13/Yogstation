@@ -442,7 +442,7 @@
 	R.notify_ai(NEW_BORG)
 
 	. = R
-		if(R.ckey && is_banned_from(R.ckey, "Cyborg"))
+	if(R.ckey && is_banned_from(R.ckey, "Cyborg"))
 		INVOKE_ASYNC(R, /mob/living/silicon/robot.proc/replace_banned_cyborg)
 	qdel(src)
 
