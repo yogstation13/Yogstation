@@ -1,4 +1,0 @@
-author: "UselessTheremin"
-delete-after: true 
-changes: 
-  - bugfix: "players with a cyborg ban can no longer bypass said ban with a borg factory"
