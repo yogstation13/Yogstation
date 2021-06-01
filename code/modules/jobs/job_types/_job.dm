@@ -128,12 +128,12 @@
 /datum/job/proc/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
 	if(!H)
 		return FALSE
-	
+
 	if(CONFIG_GET(flag/enforce_human_authority) && (title in GLOB.command_positions))
 		if(H.dna.species.id != "human")
 			H.set_species(/datum/species/human)
 			H.apply_pref_name("human", preference_source)
-	
+
 	if(!visualsOnly)
 		var/datum/bank_account/bank_account = new(H.real_name, src)
 		bank_account.payday(STARTING_PAYCHECKS, TRUE)
@@ -219,6 +219,8 @@
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
 
 	var/pda_slot = SLOT_BELT
+	var/alt_shoes = /obj/item/clothing/shoes/xeno_wraps // Default digitgrade shoes assignment variable
+	var/alt_shoes_s = /obj/item/clothing/shoes/xeno_wraps/jackboots // Digitigrade shoes for Sec assignment variable
 
 /datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	switch(H.backbag)
@@ -244,6 +246,11 @@
 		head = plasmaman_head
 		uniform = plasmaman_uniform
 		
+
+	if((DIGITIGRADE in H.dna.species.species_traits) && (IS_SECURITY(H))) // Special shoes for sec, roll first to avoid defaulting
+		shoes = alt_shoes_s
+	else if(DIGITIGRADE in H.dna.species.species_traits) // Check to assign default digitigrade shoes
+		shoes = alt_shoes
 
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)

@@ -112,8 +112,6 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		if(4)
 			return "Engine TEG"
 
-/obj/effect/landmark/stationroom/box/xenobridge
-	template_names = list("Xenobiology Bridge", "Xenobiology Lattice")
 
 /obj/effect/landmark/stationroom/box/testingsite
 	template_names = list("Bunker Bomb Range","Syndicate Bomb Range","Clown Bomb Range", "Clerk Bomb Range")

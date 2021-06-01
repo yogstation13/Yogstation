@@ -1271,6 +1271,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	surplus = 30
 
+/datum/uplink_item/stealthy_tools/armorpolish
+	name = "Armor Polish"
+	desc = "This two use polish will strengthen clothing to be as strong as a standard-issue armor vest.  \
+			Reinforced with nanite technology, you are able to stay looking good while bashing heads in. \
+			Beware, you can only polish suits and headgear!"
+	item = /obj/item/armorpolish
+	cost = 6
+
+
+
 //Space Suits and Hardsuits
 /datum/uplink_item/suits
 	category = "Space Suits"

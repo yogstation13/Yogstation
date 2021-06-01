@@ -103,10 +103,11 @@
 	dir = 8;
 	dwidth = 1;
 	height = 4;
-	name = "escape pod loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
+	name = "escape pod one loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod;
 	width = 3
 	},
+/obj/structure/fans/tiny/invisible,
 /turf/open/space/basic,
 /area/space)
 "aau" = (
@@ -4192,12 +4193,13 @@
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "ajt" = (
+/obj/structure/fans/tiny/invisible,
 /obj/docking_port/stationary{
 	dir = 4;
 	dwidth = 1;
 	height = 4;
-	name = "escape pod loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
+	name = "escape pod three loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/three;
 	width = 3
 	},
 /turf/open/space/basic,
@@ -82260,6 +82262,10 @@
 	},
 /turf/open/floor/plating,
 /area/solar/port/fore)
+"fYM" = (
+/obj/machinery/vending/modularpc,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/command)
 "fZl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -83499,6 +83505,18 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"iDX" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod two loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/two;
+	width = 3
+	},
+/obj/structure/fans/tiny/invisible,
+/turf/open/space/basic,
+/area/space)
 "iEl" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -86309,6 +86327,10 @@
 /obj/structure/sign/warning/biohazard,
 /turf/closed/wall/r_wall,
 /area/science/xenobiology)
+"pep" = (
+/obj/machinery/lapvend,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/command)
 "pez" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -86669,6 +86691,11 @@
 /obj/effect/spawner/lootdrop/costume,
 /turf/open/floor/plating,
 /area/maintenance/starboard/central)
+"qht" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/emcloset,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/command)
 "qhE" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/camera{
@@ -99372,7 +99399,7 @@ aat
 aaa
 akR
 aaa
-aat
+iDX
 aaa
 akR
 aaa
@@ -121210,7 +121237,7 @@ alx
 bPI
 bQC
 cdQ
-bRC
+qht
 bRC
 bRC
 bWC
@@ -121467,7 +121494,7 @@ bOK
 bPJ
 bQD
 cdQ
-cFa
+cEh
 bRC
 bRC
 cgK
@@ -121981,7 +122008,7 @@ bHR
 bMV
 bMV
 bMV
-cEh
+fYM
 cSS
 cfU
 agE
@@ -122238,7 +122265,7 @@ bMV
 bMV
 bON
 jSj
-cEY
+pep
 aak
 cwz
 aez

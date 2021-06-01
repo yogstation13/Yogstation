@@ -285,7 +285,7 @@
 "zO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
-/obj/item/storage/pill_bottle/bica,
+/obj/item/storage/pill_bottle/libi,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/golem_ship)
 "zV" = (
@@ -336,7 +336,7 @@
 /area/ruin/powered/golem_ship)
 "Ci" = (
 /obj/structure/rack,
-/obj/item/storage/pill_bottle/kelo,
+/obj/item/storage/pill_bottle/aiur,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/golem_ship)
 "CE" = (

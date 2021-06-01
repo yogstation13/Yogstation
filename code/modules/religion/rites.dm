@@ -281,3 +281,50 @@
 		new /obj/item/candle/infinite(altar_turf)
 	playsound(altar_turf, 'sound/magic/fireball.ogg', 50, TRUE)
 	return TRUE
+
+/*********Plant people**********/
+
+/datum/religion_rites/plantconversion
+	name = "Ent Conversion"
+	desc = "Convert a human-esque individual into a treelike golem."
+	ritual_length = 1 MINUTES
+	ritual_invocations = list(
+	"Let us call upon the vines that protect...",
+	"... Allow them to strip away that which is undesirable...",
+	"... Allow them to protect our souls with a new shell..."
+	)
+	invoke_msg = "... Arise, one from the earth! Become one with the true vines, and spread its holy roots!!"
+	favor_cost = 400 //on average, 20-40 crops
+
+/datum/religion_rites/plantconversion/perform_rite(mob/living/user, atom/religious_tool)
+	if(!ismovable(religious_tool))
+		to_chat(user, "<span class='warning'>This rite requires a religious device that individuals can be buckled to.</span>")
+		return FALSE
+	var/atom/movable/movable_reltool = religious_tool
+	if(!movable_reltool)
+		return FALSE
+	if(!LAZYLEN(movable_reltool.buckled_mobs))
+		. = FALSE
+		if(!movable_reltool.can_buckle) //yes, if you have somehow managed to have someone buckled to something that now cannot buckle, we will still let you perform the rite!
+			to_chat(user, "<span class='warning'>This rite requires a religious device that individuals can be buckled to.</span>")
+			return
+		to_chat(user, "<span class='warning'>This rite requires an individual to be buckled to [movable_reltool].</span>")
+		return
+	return ..()
+
+/datum/religion_rites/plantconversion/invoke_effect(mob/living/user, atom/religious_tool)
+	if(!ismovable(religious_tool))
+		CRASH("[name]'s perform_rite had a movable atom that has somehow turned into a non-movable!")
+	var/atom/movable/movable_reltool = religious_tool
+	if(!movable_reltool?.buckled_mobs?.len)
+		return FALSE
+	var/mob/living/carbon/human/human2plant
+	for(var/i in movable_reltool.buckled_mobs)
+		if(istype(i,/mob/living/carbon/human))
+			human2plant = i
+			break
+	if(!human2plant)
+		return FALSE
+	human2plant.set_species(/datum/species/golem/wood/holy)
+	human2plant.visible_message("<span class='notice'>[human2plant] has been converted by the rite of [name]!</span>")
+	return TRUE

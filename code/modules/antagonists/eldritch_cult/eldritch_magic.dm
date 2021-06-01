@@ -46,6 +46,10 @@
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
 	catchphrase = "FEAR THE BEYOND"
+	
+/obj/item/melee/touch_attack/mansus_fist/ignition_effect(atom/A, mob/user)
+	. = "<span class='notice'>[user] effortlessly snaps [user.p_their()] fingers near [A], igniting it with eldritch energies. Fucking badass!</span>"
+	qdel(src)
 
 /obj/item/melee/touch_attack/mansus_fist/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 

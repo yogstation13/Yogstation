@@ -645,8 +645,12 @@
 
 /mob/living/proc/getTrail()
 	if(getBruteLoss() < 300)
+		if(ispolysmorph(src))
+			return pick("xltrails_1", "xltrails_2")
 		return pick("ltrails_1", "ltrails_2")
 	else
+		if(ispolysmorph(src))
+			return pick("xttrails_1", "xttrails_2")
 		return pick("trails_1", "trails_2")
 
 /mob/living/experience_pressure_difference(pressure_difference, direction, pressure_resistance_prob_delta = 0)

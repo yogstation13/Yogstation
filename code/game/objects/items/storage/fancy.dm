@@ -329,7 +329,7 @@
 
 /obj/item/storage/box/fancy/cigarettes/cigars/cohiba
 	name = "\improper Cohiba Robusto cigar case"
-	desc = "A case of imported Cohiba cigars, renowned for their strong flavor."
+	desc = "A case of imported Cohiba cigars, renowned for their strong flavor. The warning label states that the cigar is extremely potent."
 	icon_state = "cohibacase"
 	spawn_type = /obj/item/clothing/mask/cigarette/cigar/cohiba
 

@@ -1826,14 +1826,14 @@
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "fi" = (
+/obj/structure/fans/tiny/invisible,
 /obj/docking_port/stationary{
-	dir = 1;
 	dwidth = 1;
 	height = 4;
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
+	name = "escape pod one loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod;
 	width = 3
 	},
-/obj/structure/fans/tiny/invisible,
 /turf/open/space/basic,
 /area/space)
 "fj" = (

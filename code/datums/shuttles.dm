@@ -135,8 +135,18 @@
 /datum/map_template/shuttle/aux_base
 	port_id = "aux_base"
 
-/datum/map_template/shuttle/escape_pod
+/datum/map_template/shuttle/escape_pod/
 	port_id = "escape_pod"
+	suffix = "1"
+
+/datum/map_template/shuttle/escape_pod/two
+	suffix = "2"
+
+/datum/map_template/shuttle/escape_pod/three
+	suffix = "3"
+
+/datum/map_template/shuttle/escape_pod/four
+	suffix = "4"
 
 /datum/map_template/shuttle/assault_pod
 	port_id = "assault_pod"
@@ -166,18 +176,18 @@
 	admin_notes = "No brig and no medical facilities. Build YOUR own."
 	credit_cost = 5000
 
-/datum/map_template/shuttle/emergency/construction_small
+/datum/map_template/shuttle/emergency/construction/small
 	suffix = "construction_small"
 	name = "Build Your Own Shuttle, Jr."
 	description = "The full-size BYOS too big for your taste? Aside from the reduced size and cost, this has the all same (lack of) amenities as its full-sized sibling."
 	admin_notes = "No brig and no medical facilities. Build YOUR own."
 	credit_cost = 2000
 
-/datum/map_template/shuttle/emergency/airless/prerequisites_met()
+/datum/map_template/shuttle/emergency/construction/prerequisites_met()
 	// first 10 minutes only
-	return world.time - SSticker.round_start_time < 6000
+	return world.time - SSticker.round_start_time < 12000
 
-/datum/map_template/shuttle/emergency/airless/post_load()
+/datum/map_template/shuttle/emergency/construction/post_load()
 	. = ..()
 	//enable buying engines from cargo
 	var/datum/supply_pack/P = SSshuttle.supply_packs[/datum/supply_pack/engineering/shuttle_engine]

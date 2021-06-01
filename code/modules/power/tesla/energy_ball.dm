@@ -1,6 +1,3 @@
-#define TESLA_DEFAULT_POWER 1738260
-#define TESLA_MINI_POWER 869130
-
 /obj/singularity/energy_ball
 	name = "energy ball"
 	desc = "An energy ball."
@@ -73,6 +70,8 @@
 				collide(E)
 
 		for (var/ball in orbiting_balls)
+			if(prob(80))  //tesla nerf/reducing lag, each miniball now has only 20% to trigger the zap
+				continue
 			var/range = rand(1, clamp(orbiting_balls.len, 3, zap_range))
 			tesla_zap(ball, range, TESLA_MINI_POWER/7*range)
 	else

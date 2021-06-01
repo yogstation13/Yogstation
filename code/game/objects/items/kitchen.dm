@@ -7,6 +7,7 @@
  *		Butcher's cleaver
  *		Combat Knife
  *		Rolling Pins
+ *		Shank
  */
 
 /obj/item/kitchen
@@ -191,6 +192,22 @@
 /obj/item/kitchen/knife/carrotshiv/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] forcefully drives \the [src] into [user.p_their()] eye! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return BRUTELOSS
+	
+// Shank - Makeshift weapon that can embed on throw
+/obj/item/kitchen/knife/shank
+	name = "Shank"
+	desc = "A crude knife fashioned by securing a glass shard and a rod together with cables, and welding them together."
+	icon = 'icons/obj/items_and_weapons.dmi'
+	icon_state = "shank"
+	item_state = "shank"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	force = 6
+	throwforce = 8
+	throw_speed = 5 //yeets
+	armour_penetration = 5
+	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 20, "embedded_fall_chance" = 10) // Incentive to disengage/stop chasing when stuck
+	attack_verb = list("stuck", "shanked", "stabbed", "shivved")
 
 /obj/item/kitchen/rollingpin
 	name = "rolling pin"

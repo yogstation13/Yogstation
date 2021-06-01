@@ -7352,17 +7352,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"akn" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "ako" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -15902,16 +15891,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/chemistry)
-"aHu" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/sign/departments/minsky/supply/mining{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "aHx" = (
 /obj/structure/cable/white{
 	icon_state = "0-4"
@@ -29737,6 +29716,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
+"hQk" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/sign/departments/minsky/supply/mining{
+	pixel_y = -32
+	},
+/obj/machinery/vending/modularpc,
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "hQl" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -45722,6 +45709,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"wYs" = (
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/lapvend,
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "wYt" = (
 /obj/machinery/bounty_board,
 /turf/closed/wall/r_wall,
@@ -94046,7 +94042,7 @@ ajK
 anm
 aGo
 adC
-akn
+wYs
 sqz
 bhk
 bhk
@@ -94303,7 +94299,7 @@ rER
 cTB
 bOf
 vLY
-aHu
+hQk
 sqz
 gwL
 bhk

@@ -268,6 +268,10 @@ GENE SCANNER
 		//Piece together the lists to be reported
 		for(var/O in H.internal_organs)
 			var/obj/item/organ/organ = O
+			if(istype(O, /obj/item/organ/cyberimp))
+				var/obj/item/organ/cyberimp/stealthcheck = O
+				if(stealthcheck.syndicate_implant)
+					continue
 			if(organ.organ_flags & ORGAN_FAILING)
 				report_organs = TRUE	//if we report one organ, we report all organs, even if the lists are empty, just for consistency
 				if(max_damage)

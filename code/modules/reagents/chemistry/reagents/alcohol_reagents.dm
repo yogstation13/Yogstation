@@ -2115,6 +2115,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Planet Cracker"
 	glass_desc = "Although historians believe the drink was originally created to commemorate the end of an important conflict in man's past, its origins have largely been forgotten and it is today seen more as a general symbol of human supremacy."
 
+/datum/reagent/consumable/ethanol/planet_cracker/on_mob_life(mob/living/carbon/M)
+	if(islizard(M) && prob(15))
+		M.emote("scream")
+	return ..()
+
 /datum/reagent/consumable/ethanol/cactuscooler
 	name = "Cactus Cooler"
 	description = "An alcoholic drink created by fermenting cactus, its color is odd looking."
@@ -2322,7 +2327,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/peawine
 	name = "Pea Wine"
-	description = "An alcoholic beverage That is created through distilling peas."
+	description = "An alcoholic beverage that is created through distilling peas."
 	color = "#008000" // rgb: 0, 128, 0
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	boozepwr = 25
