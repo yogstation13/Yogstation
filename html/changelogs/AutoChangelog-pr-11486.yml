@@ -1,4 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - rscadd: "Accelerated regeneration and bio-reconstruction nanites will do stamina damage while active (up to a limit (usually))."
