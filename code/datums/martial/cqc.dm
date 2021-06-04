@@ -51,7 +51,7 @@
   * otherwise returns false
   */
 /datum/martial_art/cqc/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!(can_use(A) || can_use(D))
+	if(!(can_use(A) || can_use(D)))
 		return FALSE
 	if(findtext(streak,SLAM_COMBO))
 		streak = ""
