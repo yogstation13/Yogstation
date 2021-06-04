@@ -206,7 +206,7 @@
 
 ///CQC harm intent, deals 15 stamina damage and immobilizes for 1.5 seconds, if the attacker is prone, they knock the defender down and stand up
 /datum/martial_art/cqc/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!(can_use(A) || can_use(D))
+	if(!(can_use(A) || can_use(D)))
 		return FALSE
 	add_to_streak("H",D)
 	if(check_streak(A,D))
@@ -234,7 +234,7 @@
 
 ///CQC disarm, 65% chance to instantly pick up the opponent's weapon and deal 5 stamina damage, also used for choke attack
 /datum/martial_art/cqc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!(can_use(A) || can_use(D))
+	if(!(can_use(A) || can_use(D)))
 		return FALSE
 	add_to_streak("D",D)
 	var/obj/item/I = null
