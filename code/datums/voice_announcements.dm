@@ -146,7 +146,7 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 	
 	GLOB.announcing_vox = world.time + 600
 
-	var/var/turf/mob_turf = get_turf(client.mob)
+	var/turf/mob_turf = get_turf(client.mob)
 	var/z_level = mob_turf.z
 	
 	var/sound/sound1 = sound('sound/vox/doop.ogg')
@@ -172,7 +172,7 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 
 /datum/voice_announce/command/announce(snd)
 	set waitfor = 0
-	var/var/turf/console_turf = get_turf(comms_console)
+	var/turf/console_turf = get_turf(comms_console)
 	var/z_level = console_turf.z
 	SScommunications.nonsilicon_message_cooldown = world.time + 300
 	var/mob/living/user = client.mob

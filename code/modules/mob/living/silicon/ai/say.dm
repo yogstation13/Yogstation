@@ -86,7 +86,6 @@
 	popup.open()
 
 /mob/living/silicon/ai/proc/voice_announce()
-	var/static/GLOB.announcing_vox = 0 // Stores the time of the last announcement
 	if(GLOB.announcing_vox > world.time)
 		to_chat(src, "<span class='notice'>Please wait [DisplayTimeText(GLOB.announcing_vox - world.time)].</span>")
 		return
