@@ -12,7 +12,6 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 /datum/voice_announce/New(client/client)
 	. = ..()
 	src.client = client
-	id = "[client.ckey]_[sha1(GUID())]"
 
 /datum/voice_announce/Destroy()
 	GLOB.voice_announce_list -= id
@@ -32,6 +31,12 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 		return
 
 	SScommunications.last_voice_announce_open = world.time
+
+	if(world.system_type == UNIX)
+		var/list/output = world.shelleo("dd if=/dev/urandom bs=1024 count=1 2>/dev/null | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1")
+		id = "[client.ckey]_[output[SHELLEO_STDOUT]]"
+	else
+		id = "[client.ckey]_[sha1(GUID())]"
 
 	GLOB.voice_announce_list[id] = src
 	usr << link(url_base + "[CONFIG_GET(string/serversqlname)]/[id]")
