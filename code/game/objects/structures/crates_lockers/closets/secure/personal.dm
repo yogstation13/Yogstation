@@ -31,6 +31,15 @@
 	new /obj/item/instrument/piano_synth(src)
 	new /obj/item/radio/headset( src )
 
+//miner personal closet
+/obj/structure/closet/secure_closet/personal/miner
+	desc = "Its a secure locker for shaft miners. The first card swiped gains control."
+	name = "miner personal closet"
+
+/obj/structure/closet/secure_closet/personal/miner/PopulateContents()
+	new /obj/item/pickaxe //mining tools
+	new /obj/item/shovel //mining tools
+
 /obj/structure/closet/secure_closet/personal/prisoner
 	desc = "It's a secure locker for prisoners. The first card swiped gains control."
 	name = "prisoner closet"

@@ -185,8 +185,10 @@
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
 "bx" = (
-/obj/machinery/vending/wardrobe/sec_wardrobe,
 /obj/effect/turf_decal/delivery,
+/obj/structure/closet/secure_closet/contraband/armory{
+	req_access = list(63)
+	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "bD" = (
@@ -1055,16 +1057,13 @@
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "jQ" = (
-/obj/structure/closet{
-	anchored = 1;
-	name = "Miner Equipment #1"
-	},
-/obj/item/shovel,
-/obj/item/pickaxe,
 /obj/item/gps/mining{
 	gpstag = "MINER_1"
 	},
 /obj/effect/turf_decal/bot,
+/obj/structure/closet/secure_closet/personal/miner{
+	anchored = 1
+	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
 "jW" = (
@@ -1340,16 +1339,13 @@
 /turf/closed/wall,
 /area/mine/maintenance)
 "oi" = (
-/obj/structure/closet{
-	anchored = 1;
-	name = "Miner Equipment #2"
-	},
-/obj/item/shovel,
-/obj/item/pickaxe,
 /obj/item/gps/mining{
 	gpstag = "MINER_2"
 	},
 /obj/effect/turf_decal/bot,
+/obj/structure/closet/secure_closet/personal/miner{
+	anchored = 1
+	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
 "oF" = (
@@ -2545,16 +2541,13 @@
 /turf/open/floor/plating,
 /area/mine/eva)
 "Gk" = (
-/obj/structure/closet{
-	anchored = 1;
-	name = "Miner Equipment #4"
-	},
-/obj/item/shovel,
-/obj/item/pickaxe,
 /obj/item/gps/mining{
 	gpstag = "MINER_4"
 	},
 /obj/effect/turf_decal/bot,
+/obj/structure/closet/secure_closet/personal/miner{
+	anchored = 1
+	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
 "Gv" = (
@@ -3458,16 +3451,13 @@
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "Um" = (
-/obj/structure/closet{
-	anchored = 1;
-	name = "Miner Equipment #3"
-	},
-/obj/item/shovel,
-/obj/item/pickaxe,
 /obj/item/gps/mining{
 	gpstag = "MINER_3"
 	},
 /obj/effect/turf_decal/bot,
+/obj/structure/closet/secure_closet/personal/miner{
+	anchored = 1
+	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
 "Uy" = (
