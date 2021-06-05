@@ -488,10 +488,7 @@
 	deadchat_broadcast(" made a priority announcement from <span class='name'>[get_area_name(usr, TRUE)]</span>.", "<span class='name'>[user.real_name]</span>", user)
 
 /obj/machinery/computer/communications/proc/make_voice_announcement(mob/living/user)
-	var/is_ai = issilicon(user)
-	if(is_ai)
-		return FALSE
-	if(!SScommunications.can_announce(user, is_ai))
+	if(!SScommunications.can_announce(user, FALSE))
 		to_chat(user, "<span class='alert'>Intercomms recharging. Please stand by.</span>")
 		return
 	var/datum/voice_announce/command/announce_datum = new(user.client, src)

@@ -4,7 +4,6 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 	var/id
 	var/client/client
 	var/is_ai = FALSE
-	var/open = FALSE
 	var/started_playing = FALSE
 	var/duration = 300
 	var/canceled = FALSE
@@ -13,7 +12,7 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 /datum/voice_announce/New(client/client)
 	. = ..()
 	src.client = client
-	id = "[client.ckey]_[sha1("[world.time]-[world.realtime]-[world.timeofday]-[rand()]")]"
+	id = "[client.ckey]_[sha1(GUID())]"
 
 /datum/voice_announce/Destroy()
 	GLOB.voice_announce_list -= id
@@ -35,7 +34,6 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 	SScommunications.last_voice_announce_open = world.time
 
 	GLOB.voice_announce_list[id] = src
-	open = TRUE
 	usr << link(url_base + "[CONFIG_GET(string/serversqlname)]/[id]")
 	addtimer(CALLBACK(src, .proc/timeout1), 15 SECONDS)
 	addtimer(CALLBACK(src, .proc/timeout2), 5 MINUTES)
@@ -100,6 +98,7 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 	return TRUE
 
 /datum/voice_announce/proc/announce(snd)
+	stack_trace("announce() is unimplemented")
 
 /datum/voice_announce/proc/handle_announce(ogg_filename, base_filename, ip, duration)
 	src.duration = duration
@@ -155,9 +154,9 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 /datum/voice_announce/command/check_valid()
 	if(!..())
 		return FALSE
-	if(SScommunications.nonsilicon_message_cooldown > world.time)
-		return FALSE
 	var/mob/living/user = client.mob
+	if(!SScommunications.can_announce(user, issilicon(user)))
+		return FALSE
 	if(!istype(user) || !user.canUseTopic(comms_console, !issilicon(user)))
 		return FALSE
 	return TRUE
