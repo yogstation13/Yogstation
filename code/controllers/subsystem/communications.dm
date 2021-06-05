@@ -43,12 +43,5 @@ SUBSYSTEM_DEF(communications)
 				P.info = sending.content
 				P.update_icon()
 
-/datum/controller/subsystem/communications/Shutdown()
-	for(var/I = GLOB.voice_announce_list.len, I >= 1,  I--)
-		var/id = GLOB.voice_announce_list[I]
-		var/datum/voice_announce/announce = GLOB.voice_announce_list[id]
-		if(announce)
-			qdel(announce)
-
 #undef COMMUNICATION_COOLDOWN
 #undef COMMUNICATION_COOLDOWN_AI

@@ -4,22 +4,18 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 	var/id
 	var/client/client
 	var/is_ai = FALSE
-	var/topic_token
-	var/json_file
 	var/open = FALSE
 	var/started_playing = FALSE
 	var/duration = 300
 	var/canceled = FALSE
+	var/was_queried = FALSE
 
 /datum/voice_announce/New(client/client)
 	. = ..()
 	src.client = client
 	id = "[client.ckey]_[sha1("[world.time]-[world.realtime]-[world.timeofday]-[rand()]")]"
-	topic_token = sha1("[client.ckey]-[rand()]")
 
 /datum/voice_announce/Destroy()
-	if(json_file && fexists(json_file))
-		fdel(json_file)
 	GLOB.voice_announce_list -= id
 	. = ..()
 
@@ -38,23 +34,19 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 
 	SScommunications.last_voice_announce_open = world.time
 
-	json_file = "[dir]/[id].json"
-	var/tz_off = text2num(time2text(0, "hh"))
-	var/tz_suffix
-	if(tz_off > 12)
-		tz_suffix = "-[num2text(24-tz_off, 2, 10)]:00"
-	else
-		tz_suffix = "+[num2text(tz_off, 2, 10)]:00"
-	var/list/data = list(
-		"created" = time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss[tz_suffix]"),
-		"is_ai" = is_ai,
-		"topic_token" = topic_token,
-		"serversqlname" = CONFIG_GET(string/serversqlname)
-	)
 	GLOB.voice_announce_list[id] = src
-	text2file(json_encode(data), json_file)
 	open = TRUE
-	usr << link(url_base + id)
+	usr << link(url_base + "[CONFIG_GET(string/serversqlname)]/[id]")
+	addtimer(CALLBACK(src, .proc/timeout1), 15 SECONDS)
+	addtimer(CALLBACK(src, .proc/timeout2), 5 MINUTES)
+
+/datum/voice_announce/proc/timeout1()
+	if(!was_queried && !started_playing)
+		qdel(src)
+
+/datum/voice_announce/proc/timeout2()
+	if(!started_playing)
+		qdel(src)
 
 /datum/voice_announce/Topic(href, href_list)
 	. = ..()
@@ -97,7 +89,7 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 			if(T.z == z_level)
 				SEND_SOUND(M, sound2)
 	sleep(duration)
-
+	qdel(src)
 
 /datum/voice_announce/proc/check_valid()
 	if(client == null)

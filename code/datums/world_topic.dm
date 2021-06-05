@@ -176,11 +176,35 @@
 
 /datum/world_topic/voice_announce
 	keyword = "voice_announce"
+	require_comms_key = TRUE
 
 /datum/world_topic/voice_announce/Run(list/input)
 	var/datum/voice_announce/A = GLOB.voice_announce_list[input["voice_announce"]]
-	if(istype(A) && A.topic_token == input["voice_announce_token"])
+	if(istype(A))
 		A.handle_announce(input["ogg_file"], input["uploaded_file"], input["ip"], text2num(input["duration"]))
+
+/datum/world_topic/voice_announce_cancel
+	keyword = "voice_announce_cancel"
+	require_comms_key = TRUE
+
+/datum/world_topic/voice_announce_cancel/Run(list/input)
+	var/datum/voice_announce/A = GLOB.voice_announce_list[input["voice_announce_cancel"]]
+	if(istype(A))
+		qdel(A)
+		
+/datum/world_topic/voice_announce_query
+	keyword = "voice_announce_query"
+	require_comms_key = TRUE
+
+/datum/world_topic/voice_announce_query/Run(list/input)
+	. = list()
+	var/datum/voice_announce/A = GLOB.voice_announce_list[input["voice_announce_query"]]
+	if(istype(A))
+		A.was_queried = TRUE
+		.["exists"] = TRUE
+		.["is_ai"] = A.is_ai
+	else
+		.["exists"] = FALSE
 
 /datum/world_topic/status
 	keyword = "status"
