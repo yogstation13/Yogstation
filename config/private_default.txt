@@ -14,7 +14,7 @@ $include resources.txt
 SERVERNAME Space station 13
 
 ## Server SQL name: This is the name used to identify the server to the SQL DB, distinct from SERVERNAME as it must be at most 32 characters.
-#SERVERSQLNAME
+SERVERSQLNAME yogstation
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
 #HUB
@@ -79,3 +79,6 @@ TICK_LIMIT_MC_INIT 500
 ##	FEEDBACK_TABLEPREFIX SS13_
 ## Remove "SS13_" if you are using the standard schema file.
 FEEDBACK_TABLEPREFIX SS13_
+
+VOICE_ANNOUNCE_URL_BASE http://localhost/voice_announce/
+VOICE_ANNOUNCE_DIR ../Yogstation.net/voice_announce_tmp

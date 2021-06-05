@@ -161,6 +161,10 @@
 			if (!authenticated_as_silicon_or_captain(usr))
 				return
 			make_announcement(usr)
+		if ("makeVoiceAnnouncement")
+			if (!authenticated_as_non_silicon_captain(usr))
+				return
+			make_voice_announcement(usr)
 		if ("messageAssociates")
 			if (!authenticated_as_non_silicon_captain(usr))
 				return
@@ -343,6 +347,7 @@
 			if (STATE_MAIN)
 				data["canBuyShuttles"] = can_buy_shuttles(user)
 				data["canMakeAnnouncement"] = FALSE
+				data["canMakeVoiceAnnouncement"] = FALSE
 				data["canMessageAssociates"] = FALSE
 				data["canRecallShuttles"] = !issilicon(user)
 				data["canRequestNuke"] = FALSE
@@ -381,6 +386,7 @@
 
 					data["alertLevelTick"] = alert_level_tick
 					data["canMakeAnnouncement"] = TRUE
+					data["canMakeVoiceAnnouncement"] = ishuman(user)
 					data["canSetAlertLevel"] = issilicon(user) ? "NO_SWIPE_NEEDED" : "SWIPE_NEEDED"
 
 				if (SSshuttle.emergency.mode != SHUTTLE_IDLE && SSshuttle.emergency.mode != SHUTTLE_RECALL)
@@ -480,6 +486,17 @@
 		return
 	SScommunications.make_announcement(user, is_ai, input)
 	deadchat_broadcast(" made a priority announcement from <span class='name'>[get_area_name(usr, TRUE)]</span>.", "<span class='name'>[user.real_name]</span>", user)
+
+/obj/machinery/computer/communications/proc/make_voice_announcement(mob/living/user)
+	var/is_ai = issilicon(user)
+	if(is_ai)
+		return FALSE
+	if(!SScommunications.can_announce(user, is_ai))
+		to_chat(user, "<span class='alert'>Intercomms recharging. Please stand by.</span>")
+		return
+	var/datum/voice_announce/command/announce_datum = new(user.client, src)
+	announce_datum.open()
+
 
 /obj/machinery/computer/communications/proc/post_status(command, data1, data2)
 

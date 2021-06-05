@@ -7,6 +7,7 @@ SUBSYSTEM_DEF(communications)
 
 	var/silicon_message_cooldown
 	var/nonsilicon_message_cooldown
+	var/last_voice_announce_open = 0
 
 /datum/controller/subsystem/communications/proc/can_announce(mob/living/user, is_silicon)
 	if(is_silicon && silicon_message_cooldown > world.time)
@@ -41,6 +42,13 @@ SUBSYSTEM_DEF(communications)
 				P.name = "paper - '[sending.title]'"
 				P.info = sending.content
 				P.update_icon()
+
+/datum/controller/subsystem/communications/Shutdown()
+	for(var/I = GLOB.voice_announce_list.len, I >= 1,  I--)
+		var/id = GLOB.voice_announce_list[I]
+		var/datum/voice_announce/announce = GLOB.voice_announce_list[id]
+		if(announce)
+			qdel(announce)
 
 #undef COMMUNICATION_COOLDOWN
 #undef COMMUNICATION_COOLDOWN_AI

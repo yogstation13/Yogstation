@@ -174,6 +174,14 @@
 
 	return jointext(message, "")
 
+/datum/world_topic/voice_announce
+	keyword = "voice_announce"
+
+/datum/world_topic/voice_announce/Run(list/input)
+	var/datum/voice_announce/A = GLOB.voice_announce_list[input["voice_announce"]]
+	if(istype(A) && A.topic_token == input["voice_announce_token"])
+		A.handle_announce(input["ogg_file"], input["uploaded_file"], input["ip"], text2num(input["duration"]))
+
 /datum/world_topic/status
 	keyword = "status"
 

@@ -84,7 +84,11 @@
 	if(..())
 		return
 	var/mob/living/silicon/ai/AI = usr
-	AI.announcement()
+	var/announce_type = input(usr, "What kind?", "Announce") in list("Voice", "Vox")
+	if(announce_type == "Voice")
+		AI.voice_announce()
+	else
+		AI.announcement()
 
 /obj/screen/ai/call_shuttle
 	name = "Call Emergency Shuttle"
