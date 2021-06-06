@@ -93,6 +93,7 @@
 	r_pocket = null
 	gloves = /obj/item/clothing/gloves/color/yellow
 	belt = /obj/item/storage/belt/utility/full
+	id = /obj/item/card/id/freeminer/engineer
 
 /obj/effect/mob_spawn/human/free_miner/captain
 	name = "Free Miner Captain"
@@ -122,6 +123,10 @@
 /obj/item/card/id/freeminer/captain
 	name = "Free Miner Ship Pilot ID"
 	access = list(ACCESS_MINERAL_STOREROOM, ACCESS_FREEMINER, ACCESS_FREEMINER_CAPTAIN)
+	
+/obj/item/card/id/freeminer/engineer
+	name = "Free Miner Engineer ID"
+		access = list(ACCESS_MINERAL_STOREROOM, ACCESS_FREEMINER, ACCESS_MECH_SCIENCE, ACCESS_MECH_ENGINE)
 
 /obj/item/storage/box/ids/free_miners
 	name = "box of spare IDs"
@@ -129,6 +134,7 @@
 	illustration = "id"
 
 /obj/item/storage/box/ids/free_miners/PopulateContents()
+	new /obj/item/card/id/freeminer/engineer(src)
 	for(var/i in 1 to 4)
 		new /obj/item/card/id/freeminer(src)
 	for(var/i in 1 to 2)
