@@ -57,9 +57,23 @@
 	gain_text = "<span class='danger'>You feel smooth.</span>"
 	lose_text = "<span class='notice'>You feel wrinkled again.</span>"
 	medical_record_text = "Patient has a tumor in their brain that is slowly driving them to brain death."
+	var/where = "at your feet"
 
 /datum/quirk/brainproblems/on_process()
 	quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2)
+
+/datum/quirk/brainproblems/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/mannitolpills = new /obj/item/storage/pill_bottle/mannitol/braintumor(get_turf(quirk_holder))
+	var/list/slots = list(
+		"in your left pocket" = SLOT_L_STORE,
+		"in your right pocket" = SLOT_R_STORE,
+		"in your backpack" = SLOT_IN_BACKPACK
+	)
+	where = H.equip_in_one_of_slots(mannitolpills, slots, FALSE) || "at your feet"
+
+/datum/quirk/brainproblems/post_add()
+	to_chat(quirk_holder, "<span class='boldnotice'>There is a pill bottle of mannitol [where]. You're going to need it.</span>")
 
 /datum/quirk/deafness
 	name = "Deaf"
