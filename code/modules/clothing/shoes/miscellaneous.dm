@@ -460,7 +460,7 @@
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 
 /obj/item/clothing/shoes/xeno_wraps //Standard for all digitigrade legs and feets
-	name = "Footwraps"
+	name = "footwraps"
 	desc = "Standard issue NanoTrasen cloth footwraps for those with podiatric deficiencies. They're quite itchy and scratchy."
 	icon_state = "footwraps"
 	item_state = "footwraps"
@@ -468,7 +468,7 @@
 	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
 
 /obj/item/clothing/shoes/xeno_wraps/jackboots // Footwraps woven with security-grade materials, still somewhat inferior to full jackboots.
-	name = "Reinforced Footwraps"
+	name = "reinforced footwraps"
 	desc = "These make your feet feel snug and secure, while still being breathable and light."
 	icon_state = "footwraps_s"
 	item_state = "footwraps_s"
@@ -481,7 +481,7 @@
 	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
 
 /obj/item/clothing/shoes/xeno_wraps/command  // Not applicable unless 11505 merges - Digitigrade-exclusive shoes for Command positions
-	name = "Command Footwraps"
+	name = "command footwraps"
 	desc = "These Command-grade NanoTrasen fiber footwraps exude an air of refinement not often felt by those with alien podiatric structures."
 	icon_state = "footwraps_c"
 	item_state = "footwraps_c"

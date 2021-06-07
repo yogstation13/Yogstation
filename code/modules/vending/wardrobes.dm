@@ -23,6 +23,7 @@
 					/obj/item/clothing/under/rank/security = 3,
 					/obj/item/clothing/under/yogs/armyuniform = 3,
 					/obj/item/clothing/shoes/jackboots = 3,
+					/obj/item/clothing/shoes/xeno_wraps/jackboots = 3,
 					/obj/item/clothing/head/beret/sec = 3,
 					/obj/item/clothing/head/beret/corpsec = 3,
 					/obj/item/clothing/head/soft/sec = 3,
