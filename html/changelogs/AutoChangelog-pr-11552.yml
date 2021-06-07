@@ -1,0 +1,5 @@
+author: "MaintClown"
+delete-after: true 
+changes: 
+  - rscadd: "added footwraps to vendors"
+  - spellcheck: "lowercased footwrap names"
