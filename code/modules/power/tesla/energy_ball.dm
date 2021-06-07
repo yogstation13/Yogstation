@@ -227,7 +227,7 @@
 										/obj/machinery/the_singularitygen/tesla,
 										/obj/structure/frame/machine))
 
-	// +3 to range specifically to include grounding rods that are zap_range+2 away
+	// +3 to range specifically to include grounding rods that are zap_range+3 away
 	for(var/A in typecache_filter_multi_list_exclusion(oview(source, zap_range+3), things_to_shock, blacklisted_tesla_types))
 		if(!(tesla_flags & TESLA_ALLOW_DUPLICATES) && LAZYACCESS(shocked_targets, A))
 			continue
@@ -268,7 +268,7 @@
 
 		else if(ismachinery(A))
 			var/obj/machinery/M = A
-			if((dist <= zap_range && dist < closest_dist || !closest_machine) && !(M.obj_flags & BEING_SHOCKED))
+			if(dist <= zap_range && (dist < closest_dist || !closest_machine) && !(M.obj_flags & BEING_SHOCKED))
 				closest_machine = M
 				closest_atom = A
 				closest_dist = dist
