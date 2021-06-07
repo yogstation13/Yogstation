@@ -227,17 +227,16 @@
 										/obj/machinery/the_singularitygen/tesla,
 										/obj/structure/frame/machine))
 
-	for(var/A in typecache_filter_multi_list_exclusion(oview(source, zap_range+2), things_to_shock, blacklisted_tesla_types))
+	// +3 to range specifically to include grounding rods that are zap_range+2 away
+	for(var/A in typecache_filter_multi_list_exclusion(oview(source, zap_range+3), things_to_shock, blacklisted_tesla_types))
 		if(!(tesla_flags & TESLA_ALLOW_DUPLICATES) && LAZYACCESS(shocked_targets, A))
 			continue
 
 		var/dist = get_dist(source, A)
-		if(dist > zap_range)
-			continue
 
 		if(istype(A, /obj/machinery/power/tesla_coil))
 			var/obj/machinery/power/tesla_coil/C = A
-			if((dist < closest_dist || !closest_tesla_coil) && !(C.obj_flags & BEING_SHOCKED))
+			if(dist <= zap_range && (dist < closest_dist || !closest_tesla_coil) && !(C.obj_flags & BEING_SHOCKED))
 				closest_dist = dist
 
 				//we use both of these to save on istype and typecasting overhead later on
@@ -249,7 +248,7 @@
 			continue //no need checking these other things
 
 		else if(istype(A, /obj/machinery/power/grounding_rod))
-			if((dist < closest_dist || !closest_grounding_rod))
+			if(dist < closest_dist || !closest_grounding_rod)
 				closest_grounding_rod = A
 				closest_atom = A
 				closest_dist = dist
@@ -259,7 +258,7 @@
 
 		else if(isliving(A))
 			var/mob/living/L = A
-			if((dist < closest_dist || !closest_mob) && L.stat != DEAD && !(L.flags_1 & TESLA_IGNORE_1))
+			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && L.stat != DEAD && !(L.flags_1 & TESLA_IGNORE_1))
 				closest_mob = L
 				closest_atom = A
 				closest_dist = dist
@@ -269,7 +268,7 @@
 
 		else if(ismachinery(A))
 			var/obj/machinery/M = A
-			if((dist < closest_dist || !closest_machine) && !(M.obj_flags & BEING_SHOCKED))
+			if((dist <= zap_range && dist < closest_dist || !closest_machine) && !(M.obj_flags & BEING_SHOCKED))
 				closest_machine = M
 				closest_atom = A
 				closest_dist = dist
@@ -279,7 +278,7 @@
 
 		else if(istype(A, /obj/structure/blob))
 			var/obj/structure/blob/B = A
-			if((dist < closest_dist || !closest_tesla_coil) && !(B.obj_flags & BEING_SHOCKED))
+			if(dist <= zap_range && (dist < closest_dist || !closest_tesla_coil) && !(B.obj_flags & BEING_SHOCKED))
 				closest_blob = B
 				closest_atom = A
 				closest_dist = dist
@@ -289,7 +288,7 @@
 
 		else if(isstructure(A))
 			var/obj/structure/S = A
-			if((dist < closest_dist || !closest_tesla_coil) && !(S.obj_flags & BEING_SHOCKED))
+			if(dist <= zap_range && (dist < closest_dist || !closest_tesla_coil) && !(S.obj_flags & BEING_SHOCKED))
 				closest_structure = S
 				closest_atom = A
 				closest_dist = dist
