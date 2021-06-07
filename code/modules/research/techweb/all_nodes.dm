@@ -898,7 +898,7 @@
 	display_name = "Exosuit Weapon (BRM-6 Missile Rack)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("explosive_weapons")
-	design_ids = list("mech_missile_rack", "mech_missile_rack_ammo")
+	design_ids = list("mech_missile_rack", "mech_missile_rack_ammo_brm")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
