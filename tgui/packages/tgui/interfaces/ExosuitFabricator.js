@@ -146,7 +146,7 @@ export const ExosuitFabricator = (props, context) => {
     <Window
       resizable
       title="Exosuit Fabricator"
-      width={1200} // Yogs: increesed this from 1100 to fit dilithium. Lazy solution, but i dont want to re-organize the layout so this will have to do.
+      width={1200} // Yogs: increesed this from 1100 to fit dilithium.
       height={640}>
       <Window.Content
         scrollable>
