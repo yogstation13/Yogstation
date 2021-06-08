@@ -17,7 +17,7 @@ const MATERIAL_KEYS = {
   "bananium": "sheet-bananium",
   "titanium": "sheet-titanium_3",
   "bluespace crystal": "polycrystal",
-  "dilithium crystal": "dilithium_polycrystal", //Yogs: added dilithium to the list
+  "dilithium crystal": "dilithium_polycrystal", // Yogs: added dilithium to the list
   "plastic": "sheet-plastic_3",
 };
 
