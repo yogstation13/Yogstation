@@ -45,6 +45,38 @@
 	//Copying these values is handled by copy_extra_settings_to()
 	var/list/extra_settings = list()
 
+	//A list of all harmful nanites, for logging purposes
+	var/list/harmful = list(
+		/datum/nanite_program/glitch,
+		/datum/nanite_program/necrotic,
+		/datum/nanite_program/toxic,
+		/datum/nanite_program/suffocating,
+		/datum/nanite_program/brain_decay,
+		/datum/nanite_program/brain_misfire,
+		/datum/nanite_program/skin_decay,
+		/datum/nanite_program/nerve_decay,
+		/datum/nanite_program/triggered/sleepy,
+		/datum/nanite_program/paralyzing,
+		/datum/nanite_program/triggered/shocking,
+		/datum/nanite_program/triggered/stun,
+		/datum/nanite_program/pacifying,
+		/datum/nanite_program/blinding,
+		/datum/nanite_program/mute,
+		/datum/nanite_program/fake_death,
+		/datum/nanite_program/triggered/comm,
+		/datum/nanite_program/flesh_eating,
+		/datum/nanite_program/poison,
+		/datum/nanite_program/memory_leak,
+		/datum/nanite_program/aggressive_replication,
+		/datum/nanite_program/meltdown,
+		/datum/nanite_program/triggered/explosive,
+		/datum/nanite_program/triggered/heart_stop,
+		/datum/nanite_program/triggered/emp,
+		/datum/nanite_program/pyro,
+		/datum/nanite_program/cryo,
+		/datum/nanite_program/mind_control
+	)
+
 /datum/nanite_program/triggered
 	use_rate = 0
 	trigger_cost = 5
@@ -232,16 +264,26 @@
 			nanites.add_program(null, rogue, src)
 			qdel(src)
 
+/datum/nanite_program/proc/is_harmful()
+	for(var/P in harmful)
+		if(istype(src, P))
+			return TRUE
+	return FALSE
+
 /datum/nanite_program/proc/receive_signal(code, source)
 	if(activation_code && code == activation_code && !activated)
 		activate()
 		host_mob.investigate_log("'s [name] nanite program was activated by [source] with code [code].", INVESTIGATE_NANITES)
+		if(is_harmful())
+			message_admins("[ADMIN_LOOKUPFLW(host_mob)]'s [name] nanite program was activated by [source] with code [code].")
 	else if(deactivation_code && code == deactivation_code && activated)
 		deactivate()
 		host_mob.investigate_log("'s [name] nanite program was deactivated by [source] with code [code].", INVESTIGATE_NANITES)
 	if(can_trigger && trigger_code && code == trigger_code)
 		trigger()
 		host_mob.investigate_log("'s [name] nanite program was triggered by [source] with code [code].", INVESTIGATE_NANITES)
+		if(is_harmful())
+			message_admins("[ADMIN_LOOKUPFLW(host_mob)]'s [name] nanite program was triggered by [source] with code [code].")
 	if(kill_code && code == kill_code)
 		host_mob.investigate_log("'s [name] nanite program was deleted by [source] with code [code].", INVESTIGATE_NANITES)
 		qdel(src)

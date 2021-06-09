@@ -180,6 +180,8 @@
 					playsound(src, 'sound/machines/terminal_prompt.ogg', 50, 0)
 					var/datum/component/nanites/nanites = backup.nanites
 					nanites.add_program(null, disk.program.copy())
+					if(disk.program.is_harmful())
+						message_admins("[ADMIN_LOOKUPFLW(usr)] uploaded program [disk.program.name] to cloud #[current_view]")
 					investigate_log("[key_name(usr)] uploaded program [disk.program.name] to cloud #[current_view]", INVESTIGATE_NANITES)
 			. = TRUE
 		if("remove_program")
