@@ -2165,7 +2165,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/inocybeshine
 	name = "Inocybe Shine"
-	description = "A very strong, slightly toxic alcohol from fermented inocybe mycelium."
+	description = "A very strong, slightly toxic alcohol made from fermented inocybe mycelium. As a result of the fermentation process, the toxins inside the mushroom now work as a mild painkiller as well."
 	color = "#664300" // rgb: 102, 67, 0
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	boozepwr = 75
