@@ -39,7 +39,7 @@ const jobToColor = jobId => {
   if (jobId >= 200 && jobId < 230) {
     return COLORS.department.centcom;
   }
-  if (jobId == 999) { // Yogs Start: Assistants need the new color too
+  if (jobId === 999) { // Yogs Start: Assistants need the new color too
     return COLORS.department.civilian;
   } // Yogs End
   return COLORS.department.other;
