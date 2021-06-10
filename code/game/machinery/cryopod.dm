@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 			return
 		if(mob_occupant.client)//if they're logged in
 			var/offertimer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn_online, TIMER_STOPPABLE)
-			if(alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", "Yes", "No"))
+			if(alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", "Yes", "No") == "Yes")
 				deltimer(offertimer) //Player wants to offer, cancel the timer
 				if(!offer_control(occupant))
 					//Player is a jackass that noone wants the body of, restart the timer
