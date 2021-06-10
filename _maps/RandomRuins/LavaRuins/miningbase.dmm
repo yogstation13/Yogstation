@@ -625,6 +625,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
+/obj/effect/turf_decal/caution{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "eZ" = (
@@ -1233,6 +1236,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/item/beacon,
+/obj/effect/turf_decal/caution{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "mb" = (
@@ -3047,7 +3053,7 @@
 	icon_state = "0-2"
 	},
 /obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/white,
 /area/mine/maintenance)
 "OD" = (
 /obj/machinery/conveyor/inverted{
@@ -3159,6 +3165,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -32
 	},
+/obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
 "PQ" = (
@@ -3299,6 +3306,7 @@
 	name = "Aux Waste Port"
 	},
 /obj/machinery/portable_atmospherics/scrubber,
+/obj/effect/turf_decal/stripes/box,
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
 "RK" = (
