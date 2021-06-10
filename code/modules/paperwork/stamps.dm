@@ -67,5 +67,10 @@
 	icon_state = "stamp-clown"
 	item_color = "clown"
 
+/obj/item/stamp/mime
+	name = "mime's rubber stamp"
+	icon_state = "stamp-mime"
+	item_color = "mime"
+
 /obj/item/stamp/attack_paw(mob/user)
 	return attack_hand(user)
