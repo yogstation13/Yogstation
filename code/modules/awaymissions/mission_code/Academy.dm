@@ -165,6 +165,7 @@
 
 /obj/item/dice/d20/fate/stealth
 	name = "d20"
+	color = NULL
 	desc = "A die with twenty sides. The preferred die to throw at the GM."
 
 /obj/item/dice/d20/fate/one_use
@@ -182,6 +183,7 @@
 
 /obj/item/dice/d20/fate/cursed/stealth
 	name = "Die of Fate"
+	color = NULL
 	desc = "A die with twenty sides. The preferred die to throw at the GM."
 
 /obj/item/dice/d20/fate/cursed/one_use
