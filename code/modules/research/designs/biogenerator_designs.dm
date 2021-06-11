@@ -194,3 +194,11 @@
 	materials = list(/datum/material/biomass = 300)
 	build_path = /obj/item/clothing/head/rice_hat
 	category = list("initial","Organic Materials")
+
+/datum/design/strange_seeds
+	name = "Strange Seeds"
+	id = "strange_seeds"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 1200)
+	build_path = /obj/item/seeds/random
+	category = list("initial", "Organic Materials")
