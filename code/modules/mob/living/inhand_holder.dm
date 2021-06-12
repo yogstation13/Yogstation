@@ -82,3 +82,20 @@
 		return ..()
 	icon = 'icons/mob/drone.dmi'
 	icon_state = "[D.visualAppearence]_hat"
+
+/obj/item/clothing/head/mob_holder/cheese/release(del_on_release = TRUE)
+	if(!held_mob)
+		if(del_on_release && !destroying)
+			qdel(src)
+		return FALSE
+	if(isliving(loc))
+		var/mob/living/L = loc
+		to_chat(L, "<span class='warning'>[held_mob] cheeses free!</span>")
+		L.dropItemToGround(src)
+	held_mob.forceMove(get_turf(held_mob))
+	held_mob.reset_perspective()
+	held_mob.setDir(SOUTH)
+	held_mob = null
+	if(del_on_release && !destroying)
+		qdel(src)
+	return TRUE
