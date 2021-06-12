@@ -59,7 +59,7 @@
 	name = "breaching missiles"
 	desc = "A box of large missiles, ready for loading into a BRM-6 exosuit missile rack."
 	icon_state = "missile_br"
-	rounds = 9
+	rounds = 6
 	round_term = "missile"
 	direct_load = TRUE
 	load_audio = "sound/weapons/bulletinsert.ogg"
