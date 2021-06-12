@@ -345,7 +345,7 @@
 	icon_state = "mecha_missilerack"
 	projectile = /obj/item/projectile/bullet/a84mm_he
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
-	projectiles = 8
+	projectiles = 9 //the sprite holds 9 rockets
 	projectiles_cache = 0
 	projectiles_cache_max = 0
 	disabledreload = TRUE
