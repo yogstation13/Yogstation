@@ -1,0 +1,5 @@
+author: "  tralezab"
+delete-after: true 
+changes: 
+  - rscadd: "Curators can print paintings"
+  - rscadd: "AIs can pick paintings as their icon"
