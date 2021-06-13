@@ -1,0 +1,5 @@
+author: "alexkar598"
+delete-after: true 
+changes: 
+  - bugfix: "You can no longer offer people to ghosts by cryoing them forcibly, players who cryo themselves are still able to offer themselves"
+  - bugfix: "You can no longer delay the cryo despawn timer indefinetly by keeping the offer to ghost prompt open indefinetly"
