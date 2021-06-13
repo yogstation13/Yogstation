@@ -1,4 +1,0 @@
-author: "tf-4"
-delete-after: true 
-changes: 
-  - bugfix: "Signals will no longer sometimes runtime when unregistering"
