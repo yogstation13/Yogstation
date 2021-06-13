@@ -2,14 +2,21 @@
 // These are the main datums that emit light.
 
 /datum/light_source
-	var/atom/top_atom        // The atom we're emitting light from (for example a mob if we're from a flashlight that's being held).
-	var/atom/source_atom     // The atom that we belong to.
+	///The atom we're emitting light from (for example a mob if we're from a flashlight that's being held).
+	var/atom/top_atom
+	///The atom that we belong to.
+	var/atom/source_atom
 
-	var/turf/source_turf     // The turf under the above.
-	var/turf/pixel_turf      // The turf the top_atom appears to over.
-	var/light_power    // Intensity of the emitter light.
-	var/light_range      // The range of the emitted light.
-	var/light_color    // The colour of the light, string, decomposed by parse_light_color()
+	///The turf under the source atom.
+	var/turf/source_turf
+	///The turf the top_atom appears to over.
+	var/turf/pixel_turf
+	///Intensity of the emitter light.
+	var/light_power
+	/// The range of the emitted light.
+	var/light_range
+	/// The colour of the light, string, decomposed by parse_light_color()
+	var/light_color
 
 	// Variables for keeping track of the colour.
 	var/lum_r
@@ -24,9 +31,11 @@
 	var/list/datum/lighting_corner/effect_str     // List used to store how much we're affecting corners.
 	var/list/turf/affecting_turfs
 
-	var/applied = FALSE // Whether we have applied our light yet or not.
+	/// Whether we have applied our light yet or not.
+	var/applied = FALSE
 
-	var/needs_update = LIGHTING_NO_UPDATE    // Whether we are queued for an update.
+	/// whether we are to be added to SSlighting's sources_queue list for an update
+	var/needs_update = LIGHTING_NO_UPDATE
 
 
 /datum/light_source/New(var/atom/owner, var/atom/top)
@@ -121,8 +130,7 @@
 		. * applied_lum_b                    \
 	);
 
-// This is the define used to calculate falloff.
-
+/// This is the define used to calculate falloff.
 /datum/light_source/proc/remove_lum()
 	applied = FALSE
 	var/thing
@@ -141,14 +149,14 @@
 
 	effect_str = null
 
-/datum/light_source/proc/recalc_corner(var/datum/lighting_corner/C)
+/datum/light_source/proc/recalc_corner(datum/lighting_corner/corner)
 	LAZYINITLIST(effect_str)
-	if (effect_str[C]) // Already have one.
-		REMOVE_CORNER(C)
-		effect_str[C] = 0
+	if (effect_str[corner]) // Already have one.
+		REMOVE_CORNER(corner)
+		effect_str[corner] = 0
 
-	APPLY_CORNER(C)
-	UNSETEMPTY(effect_str)
+	APPLY_CORNER(corner)
+	effect_str[corner] = .
 
 
 /datum/light_source/proc/update_corners()
@@ -185,9 +193,9 @@
 		pixel_turf = get_turf_pixel(top_atom)
 		update = TRUE
 	else
-		var/P = get_turf_pixel(top_atom)
-		if (P != pixel_turf)
-			pixel_turf = P
+		var/pixel_loc = get_turf_pixel(top_atom)
+		if (pixel_loc != pixel_turf)
+			pixel_turf = pixel_loc
 			update = TRUE
 
 	if (!isturf(source_turf))
@@ -213,10 +221,7 @@
 		return //nothing's changed
 
 	var/list/datum/lighting_corner/corners = list()
-	var/list/turf/turfs                    = list()
-	var/thing
-	var/datum/lighting_corner/C
-	var/turf/T
+	var/list/turf/turfs = list()
 
 	if (source_turf)
 		var/oldlum = source_turf.luminosity
@@ -271,12 +276,11 @@
 				continue
 			APPLY_CORNER(C)
 
-	L = effect_str - corners
-	for (thing in L) // Old, now gone, corners.
-		C = thing
-		REMOVE_CORNER(C)
-		LAZYREMOVE(C.affecting, src)
-	effect_str -= L
+	var/list/datum/lighting_corner/gone_corners = effect_str - corners
+	for (var/datum/lighting_corner/corner as anything in gone_corners)
+		REMOVE_CORNER(corner)
+		LAZYREMOVE(corner.affecting, src)
+	effect_str -= gone_corners
 
 	applied_lum_r = lum_r
 	applied_lum_g = lum_g

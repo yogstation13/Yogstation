@@ -70,8 +70,9 @@ SUBSYSTEM_DEF(lighting)
 	if(!init_tick_checks)
 		MC_SPLIT_TICK
 
-	for (i in 1 to GLOB.lighting_update_objects.len)
-		var/atom/movable/lighting_object/O = GLOB.lighting_update_objects[i]
+	queue = objects_queue
+	for (i in 1 to length(queue))
+		var/datum/lighting_object/O = queue[i]
 
 		if (QDELETED(O))
 			continue
