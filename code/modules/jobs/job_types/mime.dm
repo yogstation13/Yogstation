@@ -32,10 +32,15 @@
 	gloves = /obj/item/clothing/gloves/color/white
 	head = /obj/item/clothing/head/frenchberet
 	suit = /obj/item/clothing/suit/suspenders
-	backpack_contents = list(/obj/item/book/mimery=1, /obj/item/reagent_containers/food/drinks/bottle/bottleofnothing=1)
+	backpack_contents = list(
+	/obj/item/book/mimery=1,
+	/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing=1,
+	/obj/item/stamp/mime = 1)
 
 	backpack = /obj/item/storage/backpack/mime
 	satchel = /obj/item/storage/backpack/mime
+
+	chameleon_extras = /obj/item/stamp/mime
 
 
 /datum/outfit/job/mime/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
