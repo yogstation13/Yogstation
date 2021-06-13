@@ -38889,6 +38889,11 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"gML" = (
+/obj/structure/alien/weeds,
+/obj/effect/spawner/lootdrop/two_percent_xeno_egg_spawner,
+/turf/open/floor/engine,
+/area/science/xenobiology)
 "gNi" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -110368,7 +110373,7 @@ bKS
 bAC
 bBW
 bDb
-xwZ
+gML
 egr
 bEm
 bDb
