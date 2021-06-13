@@ -500,7 +500,7 @@
 		H.set_species(mutation)
 		if(HAS_TRAIT(H, TRAIT_GENELESS))
 			if(H.has_dna())
-				H.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA), TRUE) 
+				H.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA), TRUE)
 	else
 		to_chat(H, "<span class='danger'>The pain vanishes suddenly. You feel no different.</span>")
 
@@ -1942,3 +1942,16 @@
 	color = "#020202"
 	taste_description = "bananas"
 	can_synth = TRUE
+
+/datum/reagent/cellulose
+	name = "Cellulose Fibers"
+	description = "A crystalline polydextrose polymer, plants swear by this stuff."
+	reagent_state = SOLID
+	color = "#E6E6DA"
+	taste_mult = 0
+
+/datum/reagent/lemoline
+	name = "Lemoline"
+	description = "Synthesized in off-station laboratories, used in several high-quality medicines."
+	color ="#FFF44F"
+	taste_description = "lemony"

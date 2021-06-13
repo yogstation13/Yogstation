@@ -240,6 +240,10 @@
 /obj/item/reagent_containers/glass/beaker/synthflesh
 	list_reagents = list(/datum/reagent/medicine/synthflesh = 50)
 
+/obj/item/reagent_containers/glass/beaker/large/lemoline
+	name = "lemoline reserve tank"
+	list_reagents = list(/datum/reagent/lemoline = 100)
+
 /obj/item/reagent_containers/glass/bucket
 	name = "bucket"
 	desc = "It's a bucket."

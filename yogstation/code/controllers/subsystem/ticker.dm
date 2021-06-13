@@ -26,11 +26,11 @@
 		"https://www.youtube.com/watch?v=WcWix770cvQ",						// Wintergatan - Local Cluster
 		"https://www.youtube.com/watch?v=w5hBQDepXOE",						// Michael Giacchino - Main Theme (STAR TREK Beyond)
 		"https://www.youtube.com/watch?v=orT5RN3Zwak",						// Kirk Franklin - Revolution
-		"https://www.youtube.com/watch?v=d2xkpz-26jM",						// Admiral Hippie - Clown.wmv
+		"https://www.youtube.com/watch?v=9whQIbNmu9s",						// Admiral Hippie - Clown.wmv
 		"https://www.youtube.com/watch?v=UlHGGKgzgzI",						// Elbow - Leaders of the Free World
 		"https://www.youtube.com/watch?v=ysPtBjY8o_A",						// Chris Christodoulou - Risk of Rain Coalescence
 		"https://www.youtube.com/watch?v=SQOdPQQf2Uo",						// Star Trek The Motion Picture: Main Theme Album Style Edit
-		"https://www.youtube.com/watch?v=NQPUMvP2fyM",						// Chris Remo - The Wizard
+		"https://www.youtube.com/watch?v=jJDAV9vSmYc",						// Chris Remo - The Wizard
 		"https://www.youtube.com/watch?v=nRjLv1L0WF8",						// Blue Oyster Cult - Sole Survivor
 		"https://www.youtube.com/watch?v=51Uw-9lNl08",						// fIREHOSE - Brave Captain
 		"https://www.youtube.com/watch?v=RnQofA9CNww",						// minomus of DOMU - Winds of Fjords

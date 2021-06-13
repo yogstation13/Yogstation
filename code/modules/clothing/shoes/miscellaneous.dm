@@ -458,3 +458,32 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	cold_protection = LEGS|FEET
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+
+/obj/item/clothing/shoes/xeno_wraps //Standard for all digitigrade legs and feets
+	name = "footwraps"
+	desc = "Standard issue NanoTrasen cloth footwraps for those with podiatric deficiencies. They're quite itchy and scratchy."
+	icon_state = "footwraps"
+	item_state = "footwraps"
+	xenoshoe = EITHER_STYLE // This can be worn by digitigrade or straight legs, or a hybridization thereof (one prosthetic one digitigrade). Xenoshoe variable will default to NO_DIGIT, excluding digitigrade feet.
+	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
+
+/obj/item/clothing/shoes/xeno_wraps/jackboots // Footwraps woven with security-grade materials, still somewhat inferior to full jackboots.
+	name = "reinforced footwraps"
+	desc = "These make your feet feel snug and secure, while still being breathable and light."
+	icon_state = "footwraps_s"
+	item_state = "footwraps_s"
+	strip_delay = 25 // Half time to take off
+	equip_delay_other = 25 // Half time
+	resistance_flags = NONE
+	permeability_coefficient = 0.70 // Fabric is more permeable than boot, but still somewhat resistant
+	// pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes -- No storage pocket for wraps
+	xenoshoe = EITHER_STYLE // This can be worn by digitigrade or straight legs, or a hybridization thereof (one prosthetic one digitigrade). Xenoshoe variable will default to NO_DIGIT, excluding digitigrade feet.
+	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
+
+/obj/item/clothing/shoes/xeno_wraps/command  // Not applicable unless 11505 merges - Digitigrade-exclusive shoes for Command positions
+	name = "command footwraps"
+	desc = "These Command-grade NanoTrasen fiber footwraps exude an air of refinement not often felt by those with alien podiatric structures."
+	icon_state = "footwraps_c"
+	item_state = "footwraps_c"
+	xenoshoe = YES_DIGIT // This is digitigrade leg exclusive
+	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts

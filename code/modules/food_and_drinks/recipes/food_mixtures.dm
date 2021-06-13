@@ -93,6 +93,13 @@
 	required_temp = 483.15
 	mob_react = FALSE
 
+/datum/chemical_reaction/nutriconversion
+	name = "Peptide conversion"
+	id = "peptide_conversion"
+	results = list(/datum/reagent/consumable/nutriment/peptides = 0.5)
+	required_reagents = list(/datum/reagent/consumable/nutriment = 0.5)
+	required_catalysts = list(/datum/reagent/medicine/metafactor = 0.5)
+
 /datum/chemical_reaction/synthmeat
 	name = "synthmeat"
 	id = "synthmeat"

@@ -19952,7 +19952,6 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -26
 	},
-/obj/machinery/libraryscanner,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -19962,6 +19961,9 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/library)
@@ -21106,19 +21108,6 @@
 	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel,
-/area/science/robotics/lab)
-"baB" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/computer/rdconsole{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "baG" = (
 /obj/effect/turf_decal/stripes/line{
@@ -34859,6 +34848,22 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/security/checkpoint)
+"nvw" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/computer/rdconsole{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/posialert{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/robotics/lab)
 "nwr" = (
 /obj/machinery/newscaster{
 	pixel_y = -32
@@ -44707,6 +44712,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
 	},
+/obj/machinery/libraryscanner,
 /turf/open/floor/wood,
 /area/library)
 "vQD" = (
@@ -93567,7 +93573,7 @@ alE
 xcJ
 bag
 bba
-baB
+nvw
 bcC
 bdy
 ber

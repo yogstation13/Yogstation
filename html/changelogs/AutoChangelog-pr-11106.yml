@@ -1,5 +1,0 @@
-author: "swissloaf"
-delete-after: true 
-changes: 
-  - rscadd: "Adds echo and reverb to different areas"
-  - soundadd: "Updates actions sound"

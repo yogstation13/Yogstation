@@ -63,6 +63,13 @@
 			return FALSE
 		if(type in SP.advanced_surgeries)
 			return TRUE
+	else
+		var/mob/living/carbon/human/R = user
+		var/obj/item/healthanalyzer/advanced/adv = locate() in R.GetAllContents()
+		if(!adv || (replaced_by in adv.advanced_surgeries))
+			return FALSE
+		if(type in adv.advanced_surgeries)
+			return TRUE
 
 	var/turf/T = get_turf(target)
 

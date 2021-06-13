@@ -314,3 +314,9 @@
 
 /obj/effect/turf_decal/siding/wideplating/dark/end
 	icon_state = "siding_wideplating_end"
+
+/obj/effect/turf_decal/ramp_middle
+	icon_state = "ramp_middle"
+
+/obj/effect/turf_decal/ramp_corner
+	icon_state = "ramp_corner"

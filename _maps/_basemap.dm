@@ -12,6 +12,7 @@
 		#include "map_files\YogsDelta\YogsDelta.dmm"
 		#include "map_files\EclipseStation\EclipseStation.dmm"
 		#include "map_files\IceMeta\IceMeta.dmm"
+		#include "map_files\KiloStation\KiloStation.dmm"
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"
 		#endif
