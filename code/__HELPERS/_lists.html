@@ -14,7 +14,7 @@
  &mdash; <a href="code/__HELPERS/_lists.html#define">Define Details</a></header>
 <main>
 <h1>code/__HELPERS/_lists.dm 
-            <a href="https://github.com/yogstation13/Yogstation/blob/88b49a16833db5789f859ae13696051038bde8cb/code/__HELPERS/_lists.dm">
+            <a href="https://github.com/yogstation13/Yogstation/blob/20eccc3f30fe43634b5f88c56250c5de8ffd38d5/code/__HELPERS/_lists.dm">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm"/></a></h1>
 
 <table class="summary" cellspacing="0">
@@ -26,11 +26,59 @@ LIST: List to insert object into
 TYPECONT: The typepath of the contents of the list
 COMPARE: The object to compare against, usualy the same as INPUT
 COMPARISON: The variable on the objects to compare</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/english_list">english_list</a></th>
+                <td>Returns a list in plain english as a string</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/listgetindex">listgetindex</a></th>
+                <td>Returns list element or null. Should prevent &quot;index out of bounds&quot; error.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/safepick">safepick</a></th>
+                <td>Return either pick(list) or null if list is not of type /list or is empty</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/isemptylist">isemptylist</a></th>
+                <td>Checks if the list is empty</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/is_type_in_list">is_type_in_list</a></th>
+                <td>Checks for specific types in a list</td></tr>
         <tr><th><a href="code/__HELPERS/_lists.html#define/is_type_in_typecache">is_type_in_typecache</a></th><td>Checks for specific types in specifically structured (Assoc &quot;type&quot; = TRUE) lists ('typecaches')</td></tr>
-        <tr><th><a href="code/__HELPERS/_lists.html#define/KEYBYINDEX">KEYBYINDEX</a></th><td>Returns the key based on the index</td></tr></table><h2 id="define">Define Details</h2>
+        <tr><th>/proc/<a href="global.html#proc/is_string_in_list">is_string_in_list</a></th>
+                <td>Checks for a string in a list</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/remove_strings_from_list">remove_strings_from_list</a></th>
+                <td>Removes a string from a list</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/typecache_filter_list">typecache_filter_list</a></th>
+                <td>returns a new list with only atoms that are in typecache L</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/typecache_filter_list_reverse">typecache_filter_list_reverse</a></th>
+                <td>returns a new list with only atoms that are not in typecache L</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/typecacheof">typecacheof</a></th>
+                <td>Like typesof() or subtypesof(), but returns a typecache instead of a list</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/clearlist">clearlist</a></th>
+                <td>Empties the list by setting the length to 0. Hopefully the elements get garbage collected</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/pick_n_take">pick_n_take</a></th>
+                <td>Pick a random element from the list and remove it from the list.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/pop">pop</a></th>
+                <td>Returns the top(last) element from the list and removes it from the list (typical stack function)</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/popleft">popleft</a></th>
+                <td>Returns the bottom(first) element from the list and removes it from the list (typical stack function)</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/next_list_item">next_list_item</a></th>
+                <td>Returns the next item in a list</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/previous_list_item">previous_list_item</a></th>
+                <td>Returns the previous item in a list</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/shuffle">shuffle</a></th>
+                <td>Randomize: Return the list in a random order</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/shuffle_inplace">shuffle_inplace</a></th>
+                <td>Same as shuffle, but returns nothing and acts on list in place</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/uniqueList">uniqueList</a></th>
+                <td>Returns a list without duplicate entrys</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/sortKey">sortKey</a></th>
+                <td>Sort a list by CKEY</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/sortRecord">sortRecord</a></th>
+                <td>Sort datum records in a list</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/bitfield2list">bitfield2list</a></th>
+                <td>Converts a bitfield to a list of numbers (or words if a wordlist is provided)</td></tr>
+        <tr><th><a href="code/__HELPERS/_lists.html#define/KEYBYINDEX">KEYBYINDEX</a></th><td>Returns the key based on the index</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/find_record">find_record</a></th>
+                <td>Find a datum record from a list</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/removeNullsFromList">removeNullsFromList</a></th>
+                <td>remove all nulls from a list</td></tr></table><h2 id="define">Define Details</h2>
 <h3 id="define/BINARY_INSERT"><aside class="declaration">#define </aside>BINARY_INSERT
             <aside>(INPUT, LIST, TYPECONT, COMPARE, COMPARISON, COMPTYPE)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/88b49a16833db5789f859ae13696051038bde8cb/code/__HELPERS/_lists.dm#L40">
+            <a href="https://github.com/yogstation13/Yogstation/blob/20eccc3f30fe43634b5f88c56250c5de8ffd38d5/code/__HELPERS/_lists.dm#L40">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 40"/></a>
     </h3>
     <p>Binary search sorted insert
@@ -39,27 +87,27 @@ LIST: List to insert object into
 TYPECONT: The typepath of the contents of the list
 COMPARE: The object to compare against, usualy the same as INPUT
 COMPARISON: The variable on the objects to compare</p><h3 id="define/COMPARE_KEY"><aside class="declaration">#define </aside>COMPARE_KEY
-            <a href="https://github.com/yogstation13/Yogstation/blob/88b49a16833db5789f859ae13696051038bde8cb/code/__HELPERS/_lists.dm#L28">
+            <a href="https://github.com/yogstation13/Yogstation/blob/20eccc3f30fe43634b5f88c56250c5de8ffd38d5/code/__HELPERS/_lists.dm#L28">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 28"/></a>
     </h3>
     <p>Passed into BINARY_INSERT to compare keys</p><h3 id="define/COMPARE_VALUE"><aside class="declaration">#define </aside>COMPARE_VALUE
-            <a href="https://github.com/yogstation13/Yogstation/blob/88b49a16833db5789f859ae13696051038bde8cb/code/__HELPERS/_lists.dm#L30">
+            <a href="https://github.com/yogstation13/Yogstation/blob/20eccc3f30fe43634b5f88c56250c5de8ffd38d5/code/__HELPERS/_lists.dm#L30">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 30"/></a>
     </h3>
     <p>Passed into BINARY_INSERT to compare values</p><h3 id="define/KEYBYINDEX"><aside class="declaration">#define </aside>KEYBYINDEX
             <aside>(L, index)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/88b49a16833db5789f859ae13696051038bde8cb/code/__HELPERS/_lists.dm#L391">
+            <a href="https://github.com/yogstation13/Yogstation/blob/20eccc3f30fe43634b5f88c56250c5de8ffd38d5/code/__HELPERS/_lists.dm#L391">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 391"/></a>
     </h3>
     <p>Returns the key based on the index</p><h3 id="define/is_type_in_typecache"><aside class="declaration">#define </aside>is_type_in_typecache
             <aside>(A, L)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/88b49a16833db5789f859ae13696051038bde8cb/code/__HELPERS/_lists.dm#L118">
+            <a href="https://github.com/yogstation13/Yogstation/blob/20eccc3f30fe43634b5f88c56250c5de8ffd38d5/code/__HELPERS/_lists.dm#L118">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 118"/></a>
     </h3>
     <p>Checks for specific types in specifically structured (Assoc &quot;type&quot; = TRUE) lists ('typecaches')</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/88b49a16833db5789f859ae13696051038bde8cb">88b49a1</a>
-        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.3.0</a></footer>
+    <a href="https://github.com/yogstation13/Yogstation/tree/20eccc3f30fe43634b5f88c56250c5de8ffd38d5">20eccc3</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>

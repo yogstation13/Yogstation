@@ -56,6 +56,11 @@ table.summary th, table.summary td {
     padding-left: 0;
     padding-right: 1em;
 }
+table.summary th {
+    padding-left: 1em;
+    padding-bottom: 4px;
+    text-indent: -1em;
+}
 .no-substance {
     color: #888888;
 }

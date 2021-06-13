@@ -27,8 +27,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 this.textContent = node.hidden ? "\u2795" : "\u2796";
             };
         }(node));
+
+        if (node.parentElement.parentElement.classList.contains("modules")) {
+            node.hidden = false;
+            expander.textContent = "\u2796";
+        }
+
         parent.insertBefore(expander, parent.firstChild);
-        nodes.push([node, expander]);
+        nodes.push({ node, expander });
     }
 
     if (nodes.length) {
@@ -38,10 +44,10 @@ document.addEventListener("DOMContentLoaded", function() {
         toggle.addEventListener("click", function(event) {
             event.preventDefault();
 
-            var hidden = !nodes[0][0].hidden;
+            var hidden = !nodes[1].node.hidden;
             for (var i = 0; i < nodes.length; ++i) {
-                nodes[i][0].hidden = hidden;
-                nodes[i][1].textContent = hidden ? "\u2795" : "\u2796";
+                nodes[i].node.hidden = hidden;
+                nodes[i].expander.textContent = hidden ? "\u2795" : "\u2796";
             }
         });
 
