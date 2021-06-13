@@ -423,4 +423,5 @@
 		/obj/item/guardiancreator/debug=1,\
 		/obj/item/card/emag/bluespace=1,\
 		/obj/item/dnainjector/hulkmut=1,\
-		/obj/item/storage/box/materials=1)
+		/obj/item/storage/box/materials=1,\
+		/obj/item/slimecross/stabilized/red=1)
