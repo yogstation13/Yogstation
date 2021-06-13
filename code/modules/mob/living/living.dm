@@ -384,7 +384,7 @@
 			return
 		to_chat(src, "<span class='notice'>You have started to loosen the grip on this world you will die in about 90 seconds.</span>")
 		visible_message("<span class='notice'>[src] is losing their grip on this world.</span>")
-		addtimer(CALLBACK(src, .proc/succumbrequest, whispered), 180 SECONDS)
+		addtimer(CALLBACK(src, .proc/succumbrequest, whispered), 90 SECONDS)
 
 /mob/living/proc/succumbrequest(whisperedtext)
 	if (InCritical())
