@@ -51241,17 +51241,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
-"cbs" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/science/robotics/lab)
 "cbt" = (
 /obj/machinery/mecha_part_fabricator,
 /obj/effect/turf_decal/stripes/line{
@@ -84720,6 +84709,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/paramedic/b)
+"lzm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/posialert{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/science/robotics/lab)
 "lzN" = (
 /obj/machinery/camera{
 	c_tag = "Gravity Generator";
@@ -127677,7 +127680,7 @@ bYj
 dfn
 bZN
 caH
-cbs
+lzm
 cbP
 bYl
 cdo
