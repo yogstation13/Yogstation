@@ -1215,7 +1215,7 @@
 	. = ..()
 	for(var/obj/effect/proc_holder/spell/aoe_turf/knock/spell in C.mob_spell_list)
 		C.RemoveSpell(spell)
-	UnregisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)
+	UnregisterSignal(C, COMSIG_MOB_SAY)
 	var/datum/antagonist/golem/communist/CU = C.mind.has_antag_datum(/datum/antagonist/golem/communist)
 	if(CU && !CU.removing)
 		C.mind.remove_antag_datum(/datum/antagonist/golem/communist)
