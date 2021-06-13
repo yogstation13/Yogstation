@@ -289,7 +289,9 @@
 	. = ..()
 	if(!istype(M) || M.stat == DEAD || M.notransform || (GODMODE & M.status_flags))
 		return
-
+	if(istype(M, /mob/living/simple_animal/cheese))
+		M.revive()
+		return	
 	M.notransform = TRUE
 	M.mobility_flags = NONE
 	M.icon = null
