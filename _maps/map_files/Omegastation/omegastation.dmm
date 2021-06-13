@@ -21109,19 +21109,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"baB" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/computer/rdconsole{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/robotics/lab)
 "baG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -34861,6 +34848,22 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/security/checkpoint)
+"nvw" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/computer/rdconsole{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/posialert{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/robotics/lab)
 "nwr" = (
 /obj/machinery/newscaster{
 	pixel_y = -32
@@ -93570,7 +93573,7 @@ alE
 xcJ
 bag
 bba
-baB
+nvw
 bcC
 bdy
 ber

@@ -22026,20 +22026,6 @@
 "bou" = (
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
-"bov" = (
-/obj/machinery/disposal/bin,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_x = 29
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "bow" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "Biohazard";
@@ -23408,10 +23394,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"bsW" = (
-/obj/machinery/vending/wardrobe/robo_wardrobe,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "bta" = (
 /obj/machinery/camera{
 	c_tag = "Research Division North"
@@ -43208,6 +43190,19 @@
 /obj/item/camera,
 /turf/open/floor/wood,
 /area/vacant_room)
+"jDe" = (
+/obj/machinery/disposal/bin,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/posialert{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "jDm" = (
 /obj/machinery/vending/assist,
 /obj/machinery/airalarm{
@@ -52039,6 +52034,15 @@
 	},
 /turf/open/floor/engine/air,
 /area/engine/atmos_distro)
+"pAG" = (
+/obj/machinery/vending/wardrobe/robo_wardrobe,
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_x = 30;
+	pixel_y = -9
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "pAL" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/blue{
@@ -111903,10 +111907,10 @@ fGE
 taB
 uDm
 idl
-bov
+jDe
 bpU
 brq
-bsW
+pAG
 wci
 bgp
 bxe

@@ -786,6 +786,7 @@
 #include "code\game\machinery\embedded_controller\simple_vent_controller.dm"
 #include "code\game\machinery\pipe\construction.dm"
 #include "code\game\machinery\pipe\pipe_dispenser.dm"
+#include "code\game\machinery\posialert.dm"
 #include "code\game\machinery\porta_turret\portable_turret.dm"
 #include "code\game\machinery\porta_turret\portable_turret_construct.dm"
 #include "code\game\machinery\porta_turret\portable_turret_cover.dm"
