@@ -88,4 +88,4 @@ SQL_ENABLED
 FEEDBACK_TABLEPREFIX erro_
 
 VOICE_ANNOUNCE_URL_BASE https://www.yogstation.net/voice_announce/
-VOICE_ANNOUNCE_DIR tmp/voice_announce_tmp
+VOICE_ANNOUNCE_DIR data/voice_announcements
