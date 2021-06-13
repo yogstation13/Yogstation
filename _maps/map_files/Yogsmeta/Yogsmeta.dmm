@@ -69982,6 +69982,9 @@
 /obj/machinery/light_switch{
 	pixel_x = 28
 	},
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/library)
 "cVh" = (

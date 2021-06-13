@@ -1,4 +1,4 @@
-//DEFINITIONS FOR ASSET DATUMS START HERE.
+a//DEFINITIONS FOR ASSET DATUMS START HERE.
 
 /datum/asset/simple/tgui_common
 	keep_local_name = TRUE
@@ -147,7 +147,7 @@
 	assets = list(
 		"scanlines.png" = 'html/scanlines.png'
 	)
-	
+
 /datum/asset/simple/jquery
 	legacy = TRUE
 	assets = list(
@@ -381,3 +381,22 @@
 	// Special case to handle Bluespace Crystals
 	Insert("polycrystal", 'icons/obj/telescience.dmi', "polycrystal")
 	..()
+
+
+/datum/asset/simple/portraits
+	var/tab = "use subtypes of this please"
+	assets = list()
+
+/datum/asset/simple/portraits/New()
+	if(!SSpersistence.paintings || !SSpersistence.paintings[tab] || !length(SSpersistence.paintings[tab]))
+		return
+	for(var/p in SSpersistence.paintings[tab])
+		var/list/portrait = p
+		var/png = "data/paintings/[tab]/[portrait["md5"]].png"
+		if(fexists(png))
+			var/asset_name = "[tab]_[portrait["md5"]]"
+			assets[asset_name] = png
+	..() //this is where it registers all these assets we added to the list
+
+/datum/asset/simple/portraits/public
+	tab = "public"
