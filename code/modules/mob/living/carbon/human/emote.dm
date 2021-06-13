@@ -66,7 +66,7 @@
 	key_third_person = "screams"
 	message = "screams!"
 	emote_type = EMOTE_AUDIBLE
-	only_forced_audio = TRUE
+	cooldown = 10 SECONDS
 	vary = TRUE
 
 /datum/emote/living/carbon/human/scream/get_sound(mob/living/user)
