@@ -1,0 +1,5 @@
+author: "MaintClown"
+delete-after: true 
+changes: 
+  - rscadd: "added the positronic alert console"
+  - imageadd: "added the sprites for the positronic alert console"
