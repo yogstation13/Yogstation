@@ -11,5 +11,4 @@ IF NOT "%1" == "" (
 	rem TGS3: Otherwise build in Game/B
 	cd ..\Game\B
 )
-set TG_BUILD_TGS_MODE=1
-tools\build\build
+tools\build\build tgs
