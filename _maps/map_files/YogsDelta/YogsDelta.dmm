@@ -82276,7 +82276,6 @@
 /turf/open/floor/plasteel,
 /area/maintenance/port)
 "cwy" = (
-/obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -82287,6 +82286,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/modular_computer/console/preset/curator,
 /turf/open/floor/plasteel/dark,
 /area/library)
 "cwz" = (

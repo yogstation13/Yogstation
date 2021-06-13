@@ -57216,7 +57216,9 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/tcommsat/server)
 "exz" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/library)
 "eyM" = (

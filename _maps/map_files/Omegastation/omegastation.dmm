@@ -19952,7 +19952,6 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -26
 	},
-/obj/machinery/libraryscanner,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -19962,6 +19961,9 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/library)
@@ -44707,6 +44709,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
 	},
+/obj/machinery/libraryscanner,
 /turf/open/floor/wood,
 /area/library)
 "vQD" = (
