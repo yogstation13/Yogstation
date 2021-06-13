@@ -1,4 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - rscadd: "Added logging of harmful nanite actions"
