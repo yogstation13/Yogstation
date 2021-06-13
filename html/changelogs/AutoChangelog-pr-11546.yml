@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "chef cqc will no longer work if the person being assailed is not trespassing"
