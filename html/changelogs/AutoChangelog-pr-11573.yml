@@ -1,0 +1,6 @@
+author: "MaintClown"
+delete-after: true 
+changes: 
+  - rscadd: "added a utatul plushie to the gift vendor and as a donator item"
+  - imageadd: "added the utatul plushie codersprite"
+  - tweak: "removes a stray white pixel from the lizard plushie"
