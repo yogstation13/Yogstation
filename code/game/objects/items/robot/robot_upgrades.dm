@@ -822,7 +822,7 @@
 	if(CONFIG_GET(flag/disable_secborg))
 		to_chat(user, "<span class='warning'>Nanotrasen policy disallows the use of weapons of mass destruction.</span>")
 		return FALSE
-	if(is_banned_from(player.ckey, "Security Officer"))
+	if(is_banned_from(R.ckey, "Security Officer"))
 		JobDebug("DO isbanned failed, Player: [player], Job:[Security Officer]")
 		to_chat(user, "<span class='warning'>Nanotrasen has disallowed this unit from becomming this type of module</span>")
 		return FALSE
