@@ -55,8 +55,8 @@
 
 	if(requires_tech)
 		. = FALSE
-	var/mob/living/carbon/human/user_human = user
-	var/obj/item/healthanalyzer/advanced/adv = locate() in user_human.GetAllContents()
+		
+	var/obj/item/healthanalyzer/advanced/adv = locate() in user.GetAllContents()
 
 	if(iscyborg(user))
 		var/mob/living/silicon/robot/R = user
