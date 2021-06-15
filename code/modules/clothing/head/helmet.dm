@@ -440,7 +440,7 @@
 	desc = "Battle Helmet from a long lost empire"
 	icon_state = "stormtrooperhelmet"
 	item_state = "stormtrooperhelmet"
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 40,"energy" = 30, "bomb" = 25, "bio" = 40, "rad" = 20, "fire" = 50, "acid" = 50)
+	armor = list("melee" = 35, "bullet" = 25, "laser" = 35,"energy" = 20, "bomb" = 25, "bio" = 40, "rad" = 20, "fire" = 40, "acid" = 50)
 	flags_inv = HIDEEARS|HIDEHAIR
 	cold_protection = HEAD
 	min_cold_protection_temperature = HELMET_MIN_TEMP_PROTECT

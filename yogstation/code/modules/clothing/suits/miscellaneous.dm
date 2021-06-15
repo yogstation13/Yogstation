@@ -254,6 +254,7 @@
 	icon_state = "detective_coat"
 	item_state = "detective_item"
 
+
 /obj/item/clothing/suit/yogs/blacktrenchcoat
 	name = "black trenchcoat"
 	desc = "For those assistants that want to look extra cool."
@@ -278,6 +279,12 @@
 	desc = "A detective jacket that is blue!"
 	icon_state = "blue_detective"
 	item_state = "blue_item"
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 45)
+
+/obj/item/clothing/suit/yogs/bluedetective/Initialize()
+	. = ..()
+	allowed = GLOB.detective_vest_allowed
+
 
 /obj/item/clothing/suit/hooded/spesshoodie
     alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'

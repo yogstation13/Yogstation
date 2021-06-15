@@ -151,6 +151,11 @@
 #define ALT_STYLE			1
 #define DIGITIGRADE_STYLE 	2
 
+//flags for digitigrade checks related to footwear. Only Human accessible / Both accessible / Only funny leg accessible.
+#define NO_DIGIT			0
+#define EITHER_STYLE		1
+#define YES_DIGIT		 	2
+
 //flags for outfits that have mutantrace variants (try not to use this): Currently only needed if you're trying to add tight fitting bootyshorts
 #define NO_MUTANTRACE_VARIATION		0
 #define MUTANTRACE_VARIATION		1

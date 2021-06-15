@@ -106,6 +106,7 @@
 		            /obj/item/clothing/shoes/cowboy/white = 2,
 		            /obj/item/clothing/shoes/cowboy/black = 2,
 		            /obj/item/clothing/shoes/cowboy/lizard = 2,
+					/obj/item/clothing/shoes/xeno_wraps = 3,
 		            /obj/item/clothing/suit/jacket/miljacket = 1,
 		            /obj/item/clothing/suit/apron/purple_bartender = 2,
 		            /obj/item/clothing/under/rank/bartender/purple = 2, //yogs added a ,

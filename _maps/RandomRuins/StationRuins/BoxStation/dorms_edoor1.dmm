@@ -1,5 +1,20 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"c" = (
+"j" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/template_noop)
+"k" = (
+/obj/structure/chair/stool{
+	pixel_y = 8
+	},
+/turf/open/floor/carpet,
+/area/template_noop)
+"z" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
@@ -8,31 +23,7 @@
 	dir = 6
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
-"e" = (
-/obj/effect/landmark/xeno_spawn,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/dorms)
-"E" = (
-/turf/closed/wall,
-/area/crew_quarters/dorms)
-"I" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/template_noop)
 "J" = (
 /obj/structure/table,
 /obj/machinery/light/small{
@@ -42,59 +33,38 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/template_noop)
 "L" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/machinery/airalarm{
+	pixel_y = 24
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
-"R" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
-"X" = (
-/obj/structure/chair/stool{
-	pixel_y = 8
+/area/template_noop)
+"Q" = (
+/obj/effect/landmark/xeno_spawn,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
+/area/template_noop)
 
 (1,1,1) = {"
-E
-E
-E
-E
+J
+k
 "}
 (2,1,1) = {"
-E
-J
-X
-E
+z
+Q
 "}
 (3,1,1) = {"
-E
-c
-e
-E
-"}
-(4,1,1) = {"
-E
-I
-R
-E
-"}
-(5,1,1) = {"
-E
-E
 L
-E
+j
 "}
