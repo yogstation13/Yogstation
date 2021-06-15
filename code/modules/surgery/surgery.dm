@@ -56,6 +56,8 @@
 	if(requires_tech)
 		. = FALSE
 
+	var/obj/item/healthanalyzer/advanced/adv = locate() in R.GetAllContents()
+
 	if(iscyborg(user))
 		var/mob/living/silicon/robot/R = user
 		var/obj/item/surgical_processor/SP = locate() in R.module.modules
@@ -63,10 +65,9 @@
 			return FALSE
 		if(type in SP.advanced_surgeries)
 			return TRUE
-	else
+	else if(adv)
 		var/mob/living/carbon/human/R = user
-		var/obj/item/healthanalyzer/advanced/adv = locate() in R.GetAllContents()
-		if(!adv || (replaced_by in adv.advanced_surgeries))
+		if((replaced_by in adv.advanced_surgeries))
 			return FALSE
 		if(type in adv.advanced_surgeries)
 			return TRUE
