@@ -2965,6 +2965,7 @@
 	pixel_y = 24;
 	req_access_txt = "31"
 	},
+/obj/structure/closet/emcloset,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "ahx" = (
@@ -20619,6 +20620,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "bjr" = (
@@ -20830,9 +20832,11 @@
 /turf/open/floor/plasteel/white,
 /area/science/lab)
 "bkj" = (
-/obj/structure/closet/emcloset,
 /obj/machinery/airalarm{
 	pixel_y = 24
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
@@ -21332,9 +21336,12 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "blY" = (
-/obj/structure/closet/emcloset,
 /obj/effect/turf_decal/stripes/line{
-	dir = 8
+	dir = 9
+	},
+/obj/machinery/conveyor{
+	dir = 5;
+	id = "QMLoad2"
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
@@ -21753,12 +21760,6 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"bnw" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "bnx" = (
 /obj/machinery/door/airlock/research{
 	name = "Genetics Research Access";
@@ -22121,7 +22122,11 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "boJ" = (
-/obj/machinery/conveyor_switch/oneway{
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/conveyor{
+	dir = 1;
 	id = "QMLoad2"
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -22442,8 +22447,8 @@
 /turf/open/floor/plasteel,
 /area/science/lab)
 "bps" = (
-/obj/effect/turf_decal/loading_area{
-	dir = 4
+/obj/machinery/conveyor_switch/oneway{
+	id = "QMLoad2"
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
@@ -22664,12 +22669,12 @@
 /turf/open/floor/plasteel/white,
 /area/science/lab)
 "bql" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "QMLoad2"
-	},
 /obj/effect/turf_decal/stripes/line{
-	dir = 1
+	dir = 6
+	},
+/obj/machinery/conveyor/inverted{
+	dir = 10;
+	id = "QMLoad2"
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
@@ -23544,6 +23549,9 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
+	},
+/obj/machinery/computer/cargo{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
@@ -31769,7 +31777,7 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cnC" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/structure/closet/emcloset,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "cnM" = (
@@ -84922,7 +84930,7 @@ rOP
 bgT
 aZE
 blY
-bnw
+boJ
 boJ
 bql
 rGf
@@ -85180,8 +85188,8 @@ xND
 aZE
 bkj
 bjr
-bjr
 bps
+bjr
 blT
 bjr
 uXZ
