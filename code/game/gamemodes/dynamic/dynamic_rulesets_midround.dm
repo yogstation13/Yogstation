@@ -321,6 +321,7 @@
 	var/list/operative_cap = list(2,2,3,3,4,5,5,5,5,5)
 	var/datum/team/nuclear/nuke_team
 	flags = HIGH_IMPACT_RULESET
+	minimum_players = 40
 
 /datum/dynamic_ruleset/midround/from_ghosts/nuclear/acceptable(population=0, threat=0)
 	if (locate(/datum/dynamic_ruleset/roundstart/nuclear) in mode.executed_rules)
@@ -384,6 +385,7 @@
 	requirements = list(100,100,100,70,50,40,30,25,20,10)
 	repeatable = TRUE
 	var/list/vents = list()
+	minimum_players = 30
 
 /datum/dynamic_ruleset/midround/from_ghosts/xenomorph/execute()
 	// 50% chance of being incremented by one
@@ -473,7 +475,7 @@
 	weight = 5
 	cost = 25
 	requirements = list(80,70,60,50,50,45,30,30,25,25)
-	minimum_players = 30
+	minimum_players = 25
 
 /datum/dynamic_ruleset/midround/autovamp/acceptable(population = 0, threat = 0)
 	var/player_count = mode.current_players[CURRENT_LIVING_PLAYERS].len
@@ -529,6 +531,7 @@
 	requirements = list(90,85,80,75,70,65,60,55)
 	repeatable = TRUE
 	var/list/spawn_locs = list()
+	minimum_players = 40
 
 /datum/round_event/ghost_role/zombie/spawn_role()
 	var/list/candidates = get_candidates(ROLE_ZOMBIE, null, ROLE_ZOMBIE)
