@@ -130,7 +130,7 @@
 //                                          //
 //////////////////////////////////////////////
 
-/*/datum/dynamic_ruleset/roundstart/heretics
+/datum/dynamic_ruleset/roundstart/heretics
 	name = "Heretics"
 	antag_flag = ROLE_HERETIC
 	antag_datum = /datum/antagonist/heretic
@@ -162,7 +162,7 @@
 		var/datum/antagonist/heretic/new_antag = new antag_datum()
 		cultie.add_antag_datum(new_antag)
 
-	return TRUE */
+	return TRUE
 
 //////////////////////////////////////////////
 //                                          //
