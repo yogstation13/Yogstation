@@ -88,10 +88,10 @@
 //	item = /obj/item/storage/box/syndie_kit/xeno_infestation_kit
 //	restricted_species = list("polysmorph")
 
-	/datum/uplink_item/race_restricted/xeno_organ_kit
+/datum/uplink_item/race_restricted/xeno_organ_kit
 	name = "Xenomorph Organ Kit"
 	desc = "A kit containing the some organs that were... \"donated\" by your ancestors. Contains a autosurgen, plasma vessel, resin spinner, an acid gland, and a neurotoxin gland."
-	cost = 15 //Price might not be ballenced as I am not too familiar with tator uplink stuff, feedback would be nice 
+	cost = 15 //Price might not be ballenced as I am not too familiar with tator uplink stuff, feedback would be nice
 	item = /obj/item/storage/box/syndie_kit/xeno_organ_kit
 	restricted_species = list("polysmorph")
 
