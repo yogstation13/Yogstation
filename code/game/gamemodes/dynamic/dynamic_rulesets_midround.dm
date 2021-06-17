@@ -164,10 +164,10 @@
 	name = "Syndicate Sleeper Agent"
 	antag_datum = /datum/antagonist/traitor
 	antag_flag = ROLE_TRAITOR
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director")
 	restricted_roles = list("Cyborg", "AI", "Positronic Brain")
 	required_candidates = 1
-	weight = 1
+	weight = 7
 	cost = 10
 	requirements = list(50,40,30,20,10,10,10,10,10,10)
 	repeatable = TRUE
@@ -232,7 +232,7 @@
 	exclusive_roles = list("AI")
 	required_enemies = list(4,4,4,4,4,4,2,2,2,0)
 	required_candidates = 1
-	weight = 1
+	weight = 3
 	cost = 35
 	requirements = list(100,100,80,70,60,60,50,50,45,40)
 	required_type = /mob/living/silicon/ai
@@ -315,8 +315,8 @@
 	enemy_roles = list("AI", "Cyborg", "Security Officer", "Warden","Detective","Head of Security", "Captain")
 	required_enemies = list(3,3,3,3,2,2,1,1,0,0)
 	required_candidates = 5
-	weight = 1
-	cost = 35
+	weight = 2
+	cost = 25
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
 	var/list/operative_cap = list(2,2,3,3,4,5,5,5,5,5)
 	var/datum/team/nuclear/nuke_team
@@ -357,8 +357,8 @@
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
-	weight = 1
-	cost = 30
+	weight = 4
+	cost = 10
 	requirements = list(100,100,100,80,60,50,45,30,20,20)
 	repeatable = TRUE
 
@@ -379,7 +379,7 @@
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
-	weight = 1
+	weight = 3
 	cost = 20
 	requirements = list(100,100,100,70,50,40,30,25,20,10)
 	repeatable = TRUE
@@ -425,7 +425,7 @@
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
 	required_enemies = list(2,2,1,1,1,1,0,0,0,0)
 	required_candidates = 1
-	weight = 1
+	weight = 4
 	cost = 5
 	requirements = list(90,85,80,70,50,40,30,25,20,10)
 	repeatable = TRUE
@@ -467,10 +467,10 @@
 	name = "Vampire"
 	antag_flag = ROLE_VAMPIRE
 	antag_datum = /datum/antagonist/vampire
-	protected_roles = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel")
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director")
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 1
-	weight = 1
+	weight = 5
 	cost = 25
 	requirements = list(80,70,60,50,50,45,30,30,25,25)
 	minimum_players = 30
