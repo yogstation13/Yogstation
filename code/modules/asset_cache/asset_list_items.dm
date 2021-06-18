@@ -408,7 +408,7 @@ a//DEFINITIONS FOR ASSET DATUMS START HERE.
 
 /datum/asset/spritesheet/supplypods/register()
 	for (var/style in 1 to length(GLOB.podstyles))
-		var/icon_file = "icons/obj/supplypods.dmi" 
+		var/icon_file = 'icons/obj/supplypods.dmi'
 		if (style == STYLE_SEETHROUGH)
 			Insert("pod_asset[style]", icon(icon_file, "seethrough-icon"))
 			continue
