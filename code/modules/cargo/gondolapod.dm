@@ -39,7 +39,7 @@
 	set name = "Release Contents"
 	set category = "Gondola"
 	set desc = "Release any contents stored within your vast belly."
-	linked_pod.open(src, forced = TRUE)
+	linked_pod.open(src)
 
 /mob/living/simple_animal/pet/gondola/gondolapod/examine(mob/user)
 	. = ..()
