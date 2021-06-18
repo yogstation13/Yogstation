@@ -58,12 +58,12 @@
 	else
 		to_chat(src, "<span class='notice'>A closer look inside yourself reveals... nothing.</span>")
 
-/mob/living/simple_animal/pet/gondola/gondolapod/proc/setOpened()
+/mob/living/simple_animal/pet/gondola/gondolapod/setOpened()
 	opened = TRUE
 	update_icon()
-	addtimer(CALLBACK(src, .proc/setClosed), 50)
+	addtimer(CALLBACK(src, /atom/.proc/setClosed), 50)
 
-/mob/living/simple_animal/pet/gondola/gondolapod/proc/setClosed()
+/mob/living/simple_animal/pet/gondola/gondolapod/setClosed()
 	opened = FALSE
 	update_icon()
 

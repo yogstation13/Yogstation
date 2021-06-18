@@ -1165,6 +1165,22 @@
 	return
 
 /**
+ * Used to set something as 'open' if it's being used as a supplypod
+ *
+ * Override this if you want an atom to be usable as a supplypod.
+ */
+/atom/proc/setOpened()
+	return
+
+/**
+ * Used to set something as 'closed' if it's being used as a supplypod
+ *
+ * Override this if you want an atom to be usable as a supplypod.
+ */
+/atom/proc/setClosed()
+	return
+
+/**
   * Recursive getter method to return a list of all ghosts orbitting this atom
   *
   * This will work fine without manually passing arguments.
