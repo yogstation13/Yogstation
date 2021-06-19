@@ -500,3 +500,13 @@
 /datum/config_entry/string/centcom_ban_db	// URL for the CentCom Galactic Ban DB API
 
 /datum/config_entry/flag/auto_profile
+
+/datum/config_entry/flag/disable_gc_failure_hard_deletes
+
+/datum/config_entry/flag/disable_all_hard_deletes
+
+
+
+
+
+
