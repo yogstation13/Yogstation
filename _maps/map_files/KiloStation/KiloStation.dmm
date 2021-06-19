@@ -34163,31 +34163,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/checkpoint/science/research)
-"bec" = (
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/obj/machinery/light,
-/obj/machinery/requests_console{
-	department = "Science";
-	departmentType = 2;
-	name = "Science RC";
-	pixel_y = -30;
-	receive_ore_updates = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/science/mixing)
 "bed" = (
 /obj/effect/spawner/structure/window/hollow/reinforced/middle,
 /obj/structure/cable/yellow{
@@ -98425,6 +98400,35 @@
 	icon_state = "platingdmg1"
 	},
 /area/engine/engineering)
+"qVq" = (
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/machinery/light,
+/obj/machinery/requests_console{
+	department = "Science";
+	departmentType = 2;
+	name = "Science RC";
+	pixel_y = -30;
+	receive_ore_updates = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/computer/atmos_sim{
+	dir = 1;
+	mode = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/science/mixing)
 "qWc" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/item/t_scanner,
@@ -144937,7 +144941,7 @@ aFN
 aGe
 jVe
 aNq
-bec
+qVq
 bbN
 bba
 bex
