@@ -1,0 +1,5 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - bugfix: "fixed some jobs missing IDs in the crew console"
+  - tweak: "Removed the map an gave civilians their own color on the crew console"
