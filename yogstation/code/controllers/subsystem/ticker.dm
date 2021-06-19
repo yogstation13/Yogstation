@@ -45,7 +45,8 @@
 		"https://www.youtube.com/watch?v=iZB8XXYePy0",						//The Kinks - Super Sonic Ship
 		"https://www.youtube.com/watch?v=tRcPA7Fzebw",						//David Bowie - Starman
 		"https://www.youtube.com/watch?v=FH2EgYq_NCY",						//Lou Reed - Satellite of Love
-		"https://www.youtube.com/watch?v=AumYP6Np1eI")						// Ataraxia - Deja Vu
+		"https://www.youtube.com/watch?v=zquJ6AqvVNw",						//Dungeons of Dredmor - Diggle Hell
+		"https://www.youtube.com/watch?v=AumYP6Np1eI")						// Ataraxia - Deja Vuzz
 
 	selected_lobby_music = pick(songs)
 
