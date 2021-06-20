@@ -29,7 +29,7 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(374 modules,
+<aside>(376 modules,
     535/6530 macros, 8.2%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -527,6 +527,7 @@ transformations and other events that cause new languages to become available.</
     <li><a href="code/modules/surgery/healing.html" title="code&#x2F;modules&#x2F;surgery&#x2F;healing">healing</a></li>
     <li><a href="code/modules/surgery/limb_augmentation.html" title="code&#x2F;modules&#x2F;surgery&#x2F;limb_augmentation">limb_augmentation</a></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;surgery&#x2F;organs">organs</span><ul class="index-tree">
+    <li><a href="code/modules/surgery/organs/autosurgeon.html" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;autosurgeon">autosurgeon</a></li>
     <li><a href="code/modules/surgery/organs/eyes.html" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;eyes">eyes</a></li>
     <li><a href="code/modules/surgery/organs/vocal_cords.html" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;vocal_cords">vocal_cords</a></li>
     </ul></li>
@@ -562,7 +563,10 @@ transformations and other events that cause new languages to become available.</
     </ul></li>
     <li class="has-children"><span title="yogstation&#x2F;code&#x2F;game">game</span><ul class="index-tree">
     <li><span class="no-substance">mecha&#x2F;</span><a href="yogstation/code/game/mecha/mecha_wreckage.html" title="yogstation&#x2F;code&#x2F;game&#x2F;mecha&#x2F;mecha_wreckage">mecha_wreckage</a></li>
-    <li><span class="no-substance">objects&#x2F;items&#x2F;</span><a href="yogstation/code/game/objects/items/premadepapers.html" title="yogstation&#x2F;code&#x2F;game&#x2F;objects&#x2F;items&#x2F;premadepapers">premadepapers</a></li>
+    <li class="has-children"><span class="no-substance">objects&#x2F;</span><span title="yogstation&#x2F;code&#x2F;game&#x2F;objects&#x2F;items">items</span><ul class="index-tree">
+    <li><a href="yogstation/code/game/objects/items/premadepapers.html" title="yogstation&#x2F;code&#x2F;game&#x2F;objects&#x2F;items&#x2F;premadepapers">premadepapers</a></li>
+    <li><span class="no-substance">storage&#x2F;</span><a href="yogstation/code/game/objects/items/storage/uplink_kits.html" title="yogstation&#x2F;code&#x2F;game&#x2F;objects&#x2F;items&#x2F;storage&#x2F;uplink_kits">uplink_kits</a></li>
+    </ul></li>
     </ul></li>
     <li class="has-children"><span title="yogstation&#x2F;code&#x2F;modules">modules</span><ul class="index-tree">
     <li><span class="no-substance">clothing&#x2F;</span><a href="yogstation/code/modules/clothing/mask.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;clothing&#x2F;mask">mask</a></li>
@@ -587,7 +591,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(324 detailed/854 documented/23172 total, 3.7%)</aside></h3>
+<aside>(324 detailed/857 documented/23175 total, 3.7%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1138,6 +1142,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="datum/ui_state.html" title="&#x2F;datum&#x2F;ui_state">ui_state</a></li>
     <li class="has-children"><a href="datum/uplink_item.html" title="&#x2F;datum&#x2F;uplink_item">item name</a> - Uplink Items<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;uplink_item&#x2F;dangerous">dangerous</span> - Item re-balancing</li>
+    <li><span class="no-substance">race_restricted&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;uplink_item&#x2F;race_restricted&#x2F;xeno_organ_kit">Xenomorph Organ Kit</span> - datum/uplink_item/race_restricted/xeno_infestation_kit //Disabled as creating a xeno infestation is not very helpful, bit left it in here in case you want it</li>
     <li><span class="no-substance">role_restricted&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;uplink_item&#x2F;role_restricted&#x2F;blastcannon">Blast Cannon</span> - why? Becuase its funny that a person in charge of your mental wellbeing has a cat granade..&lt;---(he cant spell)</li>
     <li><span class="no-substance">stealthy_weapons&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;uplink_item&#x2F;stealthy_weapons&#x2F;door_charge">Explosive Airlock Charge</span> - New Items</li>
     </ul></li>
@@ -1312,6 +1317,7 @@ It's attacks are as follows:</li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;antag_spawner&#x2F;slaughter_demon">vial of blood</span> - SLAUGHTER DEMON</li>
     </ul></li>
+    <li><span class="no-substance">autosurgeon&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;autosurgeon&#x2F;plasmavessel">plasmavessel</span> - obj/item/autosurgeon/hivenode //Yogs Start: put this here as putting it in a copy put in the yougs folder will caue it to be loaded too late</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;bodypart">limb</span> - BODYPARTS</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;bombcore">bomb payload</span> - Bomb Cores<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;bombcore&#x2F;training">dummy payload</span> - Bomb Core Subtypes</li>
@@ -1582,7 +1588,11 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     </ul></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;storage">storage</span><ul class="index-tree">
     <li><span class="no-substance">bag&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;bag&#x2F;money">money bag</span> - Money bag</li>
-    <li><span class="no-substance">box&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;box&#x2F;clown">clown box</span> - clown box &amp; honkbot assembly</li>
+    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;box">box</span><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;box&#x2F;clown">clown box</span> - clown box &amp; honkbot assembly</li>
+    <li><span class="no-substance">syndie_kit&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;box&#x2F;syndie_kit&#x2F;xeno_organ_kit">Xenomorph Organ Kit</span> - obj/item/storage/box/syndie_kit/xeno_infestation_kit //disabled as creating a xenomorph infestation is not very helpful, but left it in here incase you want to add it
+obj/item/storage/box/syndie_kit/xeno_infestation_kit/PopulateContents()</li>
+    </ul></li>
     <li><a href="obj/item/storage/pod.html" title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;pod">emergency space suits</a></li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;syndicatedetonator">big red button</span> - Syndicate Detonator (aka the big red button)</li>
@@ -1780,7 +1790,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/414e965a0304e009f63651198294f50f5b353bdd">414e965</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/dc72ab24e30698638f7bfe28ff6b5a52cef9739f">dc72ab2</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
