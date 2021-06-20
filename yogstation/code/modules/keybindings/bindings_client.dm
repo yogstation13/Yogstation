@@ -38,7 +38,7 @@
 			get_ooc()
 			return
 		if(ACTION_MENTORCHAT)
-			if(ismentor(src))
+			if(is_mentor(src))
 				user.get_mentor_say()
 			return
 		if(ACTION_LOOC)
