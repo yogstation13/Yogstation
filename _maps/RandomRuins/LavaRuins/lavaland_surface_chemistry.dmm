@@ -112,6 +112,19 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
+"s" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/item/melee/transforming/energy/sword/pirate,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered)
 "t" = (
 /turf/open/floor/plating/lavaland_baseturf,
 /area/lavaland/surface/outdoors)
@@ -566,7 +579,7 @@ k
 B
 G
 p
-J
+s
 A
 a
 a
