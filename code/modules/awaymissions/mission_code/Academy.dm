@@ -165,22 +165,49 @@
 
 /obj/item/dice/d20/fate/stealth
 	name = "d20"
+	color = null
 	desc = "A die with twenty sides. The preferred die to throw at the GM."
 
 /obj/item/dice/d20/fate/one_use
 	reusable = FALSE
 
-/obj/item/dice/d20/fate/one_use/stealth
-	name = "d20"
-	desc = "A die with twenty sides. The preferred die to throw at the GM."
+/obj/item/dice/d20/fate/stealth/one_use
+	reusable = FALSE
 
 /obj/item/dice/d20/fate/cursed
-	name = "cursed Die of Fate"
+	name = "Cursed Die of Fate"
 	desc = "A die with twenty sides. You feel that rolling this is a REALLY bad idea."
 	color = "#00BB00"
-
 	rigged = DICE_TOTALLY_RIGGED
 	rigged_value = 1
+
+/obj/item/dice/d20/fate/cursed/stealth
+	name = "Die of Fate"
+	color = null
+	desc = "A die with twenty sides. The preferred die to throw at the GM."
+
+/obj/item/dice/d20/fate/cursed/one_use
+	reusable = FALSE
+
+/obj/item/dice/d20/fate/cursed/stealth/one_use
+	reusable = FALSE
+
+/obj/item/dice/d20/fate/blessed
+	name = "Blessed Die of Fate"
+	desc = "A die with twenty sides. You feel that rolling this is a REALLY good idea."
+	color = "#00FFFF"
+	rigged = DICE_TOTALLY_RIGGED
+	rigged_value = 20
+
+/obj/item/dice/d20/fate/blessed/stealth
+	name = "Die of Fate"
+	desc = "A die with twenty sides. The preferred die to throw at the GM."
+
+/obj/item/dice/d20/fate/blessed/one_use
+	reusable = FALSE
+
+/obj/item/dice/d20/fate/blessed/stealth/one_use
+	reusable = FALSE
 
 /obj/item/dice/d20/fate/diceroll(mob/user)
 	. = ..()

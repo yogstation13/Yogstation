@@ -185,7 +185,7 @@ GLOBAL_LIST_EMPTY(objectives)
 				H.equip_in_one_of_slots(O, slots)
 
 /datum/objective/assassinate
-	name = "assasinate"
+	name = "assassinate"
 	var/target_role_type=FALSE
 	martyr_compatible = 1
 

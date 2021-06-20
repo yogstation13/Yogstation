@@ -27,6 +27,11 @@
 /code/modules/atmospherics/ @monster860
 /yogstation/code/modules/atmospherics/ @monster860
 
+#alexkar598
+/rust_g @alexkar598
+*.so @alexkar598
+*.dll @alexkar598
+
 #Art stuff
 
 /code/controllers/subsystem/ticker.dm @yogstation13/art

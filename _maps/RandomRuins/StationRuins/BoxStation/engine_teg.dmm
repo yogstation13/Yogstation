@@ -284,6 +284,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"hN" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/obj/machinery/meter,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "ia" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
@@ -590,12 +597,6 @@
 	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"sf" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 4
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -2284,7 +2285,7 @@ US
 AD
 Ji
 te
-sf
+hN
 nQ
 Dr
 xW
