@@ -25,6 +25,10 @@
 		for(var/obj/item/bodypart/L in parts)
 			if(L.heal_damage(1/parts.len, 1/parts.len, null, BODYPART_ORGANIC))
 				host_mob.update_damage_overlays()
+		if(C.getStaminaLoss() < 41) //Should just push you into the first slowdown stage before resetting after 10 seconds
+			C.adjustStaminaLoss(1) //Annoying but not lethal, and won't stop stamina regen if you're over the limit
+			if(prob(5))
+				to_chat(C, "<span class='warning'>Your injuries itch and burn as they heal.")
 	else
 		host_mob.adjustBruteLoss(-1, TRUE)
 		host_mob.adjustFireLoss(-1, TRUE)
@@ -176,6 +180,15 @@
 				update = TRUE
 		if(update)
 			host_mob.update_damage_overlays()
+		if(C.getStaminaLoss() < 80) //Stops after hitting the second slowdown level.
+			C.adjustStaminaLoss(5) //Hurts a lot more
+		else if(C.getBruteLoss() || C.getFireLoss()) //Prevents stamina regen if it's actively healing and you're over the limit.
+			C.adjustStaminaLoss(0.1) 
+		if(prob(5))
+			if(!C.getBruteLoss() && !C.getFireLoss())	
+				to_chat(C, "<span class='warning'>You feel a searing pain across your body!")//Not actively healing, so nanites will start randomly replacing healthy tissue. Ouch!
+			else
+				to_chat(C, "<span class='warning'>Your wounds burn horribly as they heal!")
 	else
 		host_mob.adjustBruteLoss(-3, TRUE)
 		host_mob.adjustFireLoss(-3, TRUE)

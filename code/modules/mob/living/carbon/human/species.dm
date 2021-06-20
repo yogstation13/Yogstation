@@ -744,6 +744,15 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			var/obj/item/clothing/under/U = H.w_uniform
 			if(U.mutantrace_variation != MUTANTRACE_VARIATION)
 				should_be_squished = TRUE
+		if(H.shoes)
+			var/obj/item/clothing/shoes/S = H.shoes
+			if(S.mutantrace_variation != MUTANTRACE_VARIATION)
+				should_be_squished = TRUE
+			if(should_be_squished)
+				S.adjusted = NORMAL_STYLE
+			else
+				S.adjusted = DIGITIGRADE_STYLE
+			H.update_inv_shoes()
 		if(O.use_digitigrade == FULL_DIGITIGRADE && should_be_squished)
 			O.use_digitigrade = SQUISHED_DIGITIGRADE
 			update_needed = TRUE
@@ -950,9 +959,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				return FALSE
 			if(num_legs < 2)
 				return FALSE
-			if(DIGITIGRADE in species_traits)
+			var/obj/item/clothing/shoes/S = I
+			if((!S && (DIGITIGRADE in species_traits)) || ((DIGITIGRADE in species_traits) ? S.xenoshoe == NO_DIGIT : S.xenoshoe == YES_DIGIT)) // Checks leg compatibilty with shoe digitigrade or not flag
 				if(!disable_warning)
-					to_chat(H, "<span class='warning'>The footwear around here isn't compatible with your feet!</span>")
+					to_chat(H, "<span class='warning'>This footwear isn't compatible with your feet!</span>")
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_BELT)
