@@ -66485,15 +66485,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"cDf" = (
-/obj/machinery/mecha_part_fabricator,
-/obj/machinery/camera{
-	c_tag = "Robotics - Fore";
-	network = list("ss13","rd")
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "cDg" = (
 /obj/machinery/power/apc{
 	areastring = "/area/science/robotics/lab";
@@ -69981,6 +69972,9 @@
 "cVf" = (
 /obj/machinery/light_switch{
 	pixel_x = 28
+	},
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/library)
@@ -82939,6 +82933,18 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
+"xgC" = (
+/obj/machinery/mecha_part_fabricator,
+/obj/machinery/camera{
+	c_tag = "Robotics - Fore";
+	network = list("ss13","rd")
+	},
+/obj/effect/turf_decal/delivery,
+/obj/machinery/posialert{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "xhj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -112829,7 +112835,7 @@ czl
 cAp
 cBj
 cDi
-cDf
+xgC
 bPd
 cFh
 csX

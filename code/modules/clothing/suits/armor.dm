@@ -305,5 +305,5 @@
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	armor = list("melee" = 20, "bullet" = 20, "laser" = 60, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 10, "fire" = 80, "acid" = 80)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 50, "energy" = 15, "bomb" = 30, "bio" = 20, "rad" = 10, "fire" = 80, "acid" = 80)
 	slowdown = 0.9
