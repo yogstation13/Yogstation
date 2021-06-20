@@ -39,7 +39,7 @@
 			return
 		if(ACTION_MENTORCHAT)
 			if(is_mentor(src))
-				user.get_mentor_say()
+				get_mentor_say()
 			return
 		if(ACTION_LOOC)
 			get_looc()
