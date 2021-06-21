@@ -163,6 +163,11 @@
 	desc = "A rapid way to get you out of a tight situation and fast! You'll feel rather drowsy, though."
 	list_reagents = list(/datum/reagent/medicine/morphine = 10)
 
+/obj/item/reagent_containers/hypospray/medipen/regenslime
+	name = "regenerative jelly medipen"
+	desc = "A medipen filled with a experimental healing jelly"
+	list_reagents = list(/datum/reagent/medicine/regen_jelly = 10)
+
 /obj/item/reagent_containers/hypospray/medipen/tuberculosiscure
 	name = "BVAK autoinjector"
 	desc = "Bio Virus Antidote Kit autoinjector. Has a two use system for yourself, and someone else. Inject when infected."
