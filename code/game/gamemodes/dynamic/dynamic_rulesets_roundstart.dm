@@ -140,7 +140,7 @@
 	weight = 3
 	cost = 15
 	scaling_cost = 9
-	requirements = list(50,45,45,40,35,20,20,15,10,10)
+	requirements = list(101,101,101,40,35,20,20,15,10,10)
 	antag_cap = list("denominator" = 24)
 
 
@@ -182,7 +182,7 @@
 	required_candidates = 1
 	weight = 2
 	cost = 20
-	requirements = list(90,90,70,40,30,20,10,10,10,10)
+	requirements = list(90,90,90,80,60,40,30,20,10,10)
 	var/list/roundstart_wizards = list()
 
 /datum/dynamic_ruleset/roundstart/wizard/acceptable(population=0, threat=0)
@@ -226,7 +226,7 @@
 	required_candidates = 2
 	weight = 3
 	cost = 20
-	requirements = list(100,80,70,60,40,30,30,20,10,10)
+	requirements = list(100,90,80,60,40,30,10,10,10,10)
 	flags = HIGH_IMPACT_RULESET
 	antag_cap = list("denominator" = 20, "offset" = 1)
 	var/datum/team/cult/main_cult
