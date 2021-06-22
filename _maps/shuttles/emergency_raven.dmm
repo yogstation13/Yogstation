@@ -32,11 +32,6 @@
 /obj/machinery/recharger,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
-"af" = (
-/obj/machinery/computer/shuttle,
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/escape)
 "ag" = (
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/dirt,
@@ -2525,6 +2520,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
+"Jh" = (
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/computer/emergency_shuttle,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
 "LM" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -2950,7 +2950,7 @@ el
 "}
 (11,1,1) = {"
 br
-af
+Jh
 al
 at
 aC

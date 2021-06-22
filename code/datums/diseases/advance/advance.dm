@@ -360,11 +360,9 @@
 	if(HasSymptom(S))
 		return
 
-	if(symptoms.len < (VIRUS_SYMPTOM_LIMIT - 1) + rand(-1, 1))
-		symptoms += S
-	else
+	if(symptoms.len >= VIRUS_SYMPTOM_LIMIT)
 		RemoveSymptom(pick(symptoms))
-		symptoms += S
+	symptoms += S
 
 // Simply removes the symptom.
 /datum/disease/advance/proc/RemoveSymptom(datum/symptom/S)

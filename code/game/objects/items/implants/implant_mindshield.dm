@@ -66,6 +66,8 @@
 		if(target.mind.has_antag_datum(/datum/antagonist/gang/boss) || is_shadow_or_thrall(target))
 			if(!silent)
 				target.visible_message("<span class='warning'>[target] seems to resist the implant!</span>", "<span class='warning'>You feel something interfering with your mental conditioning, but you resist it!</span>")
+			removed(target, 1)
+			qdel(src)
 			return FALSE
 		if(target.mind.has_antag_datum(/datum/antagonist/gang))
 			target.mind.remove_antag_datum(/datum/antagonist/gang)

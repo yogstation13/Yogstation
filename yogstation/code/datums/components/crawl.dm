@@ -328,3 +328,88 @@
 	thing = "silicons"
 	crawl_name = "siliconcrawl"
 	crawling_types = list(/mob/living/silicon)
+	
+////////////VOMITCRAWL
+/datum/component/crawl/vomit //ABSOLUTELY DISGUSIN
+	var/obj/effect/decal/cleanable/enteredvomit
+	crawling_types = list(/obj/effect/decal/cleanable/vomit,/obj/effect/decal/cleanable/insectguts)
+	gain_message = "<span class='boldnotice'>You can now vomitcrawl! Alt-click pools of vomit to phase in and out.</span>"
+	loss_message = "<span class='warning'>You can no longer vomitcrawl.</span>"
+
+/datum/component/crawl/vomit/can_start_crawling(atom/target, mob/living/user)
+	if(!iscarbon(user))
+		return ..()
+	var/mob/living/carbon/C = user
+	for(var/obj/item/I in C.held_items)
+		to_chat(C, "<span class='warning'>You may not hold items while vomit crawling!</span>")
+		return FALSE
+	return ..()
+
+/datum/component/crawl/vomit/start_crawling(atom/target, mob/living/user)
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		var/obj/item/vomitcrawl/B1 = new(C)
+		var/obj/item/vomitcrawl/B2 = new(C)
+		B1.icon_state = "vomit_2"
+		B2.icon_state = "vomit_3"
+		C.put_in_hands(B1)
+		C.put_in_hands(B2)
+		C.regenerate_icons()
+		C.ExtinguishMob()
+	enteredvomit = target
+	RegisterSignal(target, COMSIG_PARENT_PREQDELETED, .proc/throw_out)
+	user.visible_message("<span class='warning'>[user] sinks into the pool of vomit!?</span>")
+	playsound(get_turf(target), 'sound/magic/mutate.ogg', 50, 1, -1)
+	..()
+
+/datum/component/crawl/vomit/proc/exit_vomit_effect(atom/target, mob/living/user)
+	playsound(get_turf(target), 'sound/misc/splort.ogg', 100, 1, -1)
+	//Makes the mob have the color of the vomit pool it came out of
+	var/newcolor = rgb(169, 143, 57)
+	if(istype(target, /obj/effect/decal/cleanable/vomit/old))
+		newcolor = rgb(91, 108, 7)
+
+	user.add_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
+	// but only for a few seconds
+	addtimer(CALLBACK(user, /atom/.proc/remove_atom_colour, TEMPORARY_COLOUR_PRIORITY, newcolor), 10 SECONDS) //vomit doesn't wash off as easily as blood
+
+/datum/component/crawl/vomit/stop_crawling(atom/target, mob/living/user)
+	target.visible_message("<span class='warning'>[target] starts to bubble...?</span>")
+	if(!do_after(user, 20, target = target))
+		return
+	if(!target)
+		return
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		for(var/obj/item/vomitcrawl/B in C)
+			qdel(B)
+	..()
+	UnregisterSignal(enteredvomit, COMSIG_PARENT_PREQDELETED)
+	enteredvomit = null
+	user.visible_message("<span class='warning'><B>[user] rises out of the pool of vomit!?</B></span>")
+	exit_vomit_effect(target, user)
+
+/datum/component/crawl/vomit/proc/throw_out() //throw user out violently when the enteredvomit gets destroyed
+	if(iscarbon(parent))
+		var/mob/living/carbon/C = parent
+		C.Stun(50)
+		C.Knockdown(100)
+		for(var/obj/item/vomitcrawl/B in C)
+			qdel(B)
+	var/mob/living/C = parent
+	C.forceMove(get_turf(enteredvomit))
+	C.visible_message("<span class='warning'><B>[C] suddenly appears from [enteredvomit] they had previously entered!</B></span>")
+	exit_vomit_effect(enteredvomit, parent)
+	enteredvomit = null
+	qdel(holder)
+	holder = null
+
+/obj/item/vomitcrawl
+	name = "vomit crawl"
+	desc = "You are unable to hold anything while in vomit form."
+	icon = 'icons/effects/blood.dmi'
+	item_flags = ABSTRACT | DROPDEL
+
+/obj/item/vomitcrawl/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)

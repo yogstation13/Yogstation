@@ -184,3 +184,9 @@
 	layer = LIGHTING_LAYER
 	blend_mode = BLEND_ADD
 	show_when_dead = TRUE
+
+//Triggered by übercharge activation
+/obj/screen/fullscreen/uber
+	icon_state = "uberoverlay"
+	plane = FULLSCREEN_PLANE
+	layer = CURSE_LAYER

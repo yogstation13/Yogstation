@@ -26,7 +26,10 @@ export const ChemDispenser = (props, context) => {
     || data.beakerContents
     || [];
   return (
-    <Window resizable>
+    <Window
+      width={565}
+      height={620}
+      resizable>
       <Window.Content scrollable>
         <Section
           title="Status"
@@ -65,7 +68,7 @@ export const ChemDispenser = (props, context) => {
                 key={chemical.id}
                 icon="tint"
                 width="129.5px"
-                lineHeight="21px"
+                lineHeight={1.75}
                 content={chemical.title}
                 onClick={() => act('dispense', {
                   reagent: chemical.id,

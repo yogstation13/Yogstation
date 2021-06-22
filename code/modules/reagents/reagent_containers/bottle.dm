@@ -273,6 +273,11 @@
 	icon_state = "bottle3"
 	spawned_disease = /datum/disease/brainrot
 
+/obj/item/reagent_containers/glass/bottle/sleepy
+	name = "Sleepy virus culture bottle"
+	desc = "A small bottle. Contains a sample of the SLPY Virus."
+	spawned_disease = /datum/disease/sleepy
+
 /obj/item/reagent_containers/glass/bottle/magnitis
 	name = "Magnitis culture bottle"
 	desc = "A small bottle. Contains a small dosage of Fukkos Miracos."

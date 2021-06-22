@@ -14,7 +14,7 @@ It is possible to destroy the net by the occupant or someone else.
 	mouse_opacity = MOUSE_OPACITY_ICON//So you can hit it with stuff.
 	anchored = TRUE//Can't drag/grab the net.
 	layer = ABOVE_ALL_MOB_LAYER
-	max_integrity = 25 //How much health it has.
+	max_integrity = 40 //How much health it has.
 	can_buckle = 1
 	buckle_lying = 0
 	buckle_prevents_pull = TRUE

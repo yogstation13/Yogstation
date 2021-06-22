@@ -447,6 +447,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	mood_message = "<span class='nicegreen'>I love being in the bar!\n</span>"
 	airlock_wires = /datum/wires/airlock/service
 
+/area/crew_quarters/bar/Initialize(mapload)
+	. = ..()
+	GLOB.bar_areas += src
+
 /area/crew_quarters/bar/atrium
 	name = "Atrium"
 	icon_state = "bar"
@@ -1103,7 +1107,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "primarystorage"
 
 /area/storage/art
-	name = "Art Supply Storage"
+	name = "Artist's Coven"
 	icon_state = "storage"
 
 /area/storage/tcom

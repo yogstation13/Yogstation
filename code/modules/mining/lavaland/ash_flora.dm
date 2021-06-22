@@ -157,7 +157,7 @@
 	resistance_flags = FLAMMABLE
 	max_integrity = 100
 	seed = /obj/item/seeds/lavaland/polypore
-	wine_power = 20
+	distill_reagent = /datum/reagent/consumable/ethanol/polyporepop
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/Initialize()
 	. = ..()
@@ -171,21 +171,21 @@
 	desc = "A leaf, from a mushroom."
 	icon_state = "mushroom_leaf"
 	seed = /obj/item/seeds/lavaland/porcini
-	wine_power = 40
+	distill_reagent = /datum/reagent/consumable/ethanol/porcinisap
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_cap
 	name = "mushroom cap"
 	desc = "The cap of a large mushroom."
 	icon_state = "mushroom_cap"
 	seed = /obj/item/seeds/lavaland/inocybe
-	wine_power = 70
+	distill_reagent = /datum/reagent/consumable/ethanol/inocybeshine
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_stem
 	name = "mushroom stem"
 	desc = "A long mushroom stem. It's slightly glowing."
 	icon_state = "mushroom_stem"
 	seed = /obj/item/seeds/lavaland/ember
-	wine_power = 60
+	distill_reagent = /datum/reagent/consumable/ethanol/embershroomcream
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/cactus_fruit
 	name = "cactus fruit"
@@ -272,7 +272,7 @@
 	name = "Mushroom Bowl"
 	result = /obj/item/reagent_containers/glass/bowl/mushroom_bowl
 	reqs = list(/obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings = 5)
-	time = 30
+	time = 3 SECONDS
 	category = CAT_PRIMAL
 
 /obj/item/reagent_containers/food/snacks/customizable/salad/ashsalad

@@ -1,7 +1,7 @@
 /client/proc/one_click_antag()
 	set name = "Create Antagonist"
 	set desc = "Auto-create an antagonist of your choice"
-	set category = "Admin"
+	set category = "Admin.Round Interaction"
 
 	if(holder)
 		holder.one_click_antag()
@@ -13,6 +13,7 @@
 	var/dat = {"
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=traitors'>Make Traitors</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=changelings'>Make Changelings</a><br>
+		<a href='?src=[REF(src)];[HrefToken()];makeAntag=heretics'>Make Heretics</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=revs'>Make Revs</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=cult'>Make Cult</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=clockcult'>Make Clockwork Cult</a><br>
@@ -104,6 +105,37 @@
 			candidates.Remove(H)
 
 		return 1
+
+	return 0
+
+/datum/admins/proc/makeHeretics()
+	var/datum/game_mode/heretics/temp = new
+
+	if(CONFIG_GET(flag/protect_roles_from_antagonist))
+		temp.restricted_jobs += temp.protected_jobs
+
+	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
+		temp.restricted_jobs += "Assistant"
+
+	var/list/mob/living/carbon/human/candidates = list()
+	var/mob/living/carbon/human/H = null
+
+	for(var/mob/living/carbon/human/applicant in GLOB.player_list)
+		if(isReadytoRumble(applicant, ROLE_HERETIC))
+			if(temp.age_check(applicant.client))
+				if(!(applicant.job in temp.restricted_jobs))
+					candidates += applicant
+
+	if(candidates.len)
+		var/numHeretics = min(candidates.len, 3)
+
+		for(var/i = 0, i<numHeretics, i++)
+			H = pick(candidates)
+			H.mind.make_Heretic()
+			candidates.Remove(H)
+
+		return 1
+
 
 	return 0
 
@@ -419,7 +451,7 @@
 				chosen_candidate.client.prefs.copy_to(ERTOperative)
 				ERTOperative.key = chosen_candidate.key
 
-				if(ertemplate.enforce_human || !ERTOperative.dna.species.changesource_flags & ERT_SPAWN) // Don't want any exploding plasmemes
+				if(ertemplate.enforce_human || !(ERTOperative.dna.species.changesource_flags & ERT_SPAWN)) // Don't want any exploding plasmemes
 					ERTOperative.set_species(/datum/species/human)
 
 				//Give antag datum

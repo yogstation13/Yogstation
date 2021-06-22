@@ -121,15 +121,15 @@
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/remains/human,
 /obj/machinery/light/broken{
-	icon_state = "tube-broken";
-	dir = 1
+	dir = 1;
+	icon_state = "tube-broken"
 	},
 /turf/open/floor/grass,
 /area/ruin/powered)
 "aD" = (
 /obj/structure/shuttle/engine/huge{
-	icon_state = "huge_engine";
-	dir = 4
+	dir = 4;
+	icon_state = "huge_engine"
 	},
 /turf/open/space/basic,
 /area/space)
@@ -147,8 +147,8 @@
 /area/ruin/powered)
 "aH" = (
 /obj/structure/fence{
-	icon_state = "straight";
-	dir = 4
+	dir = 4;
+	icon_state = "straight"
 	},
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
@@ -179,8 +179,8 @@
 /area/ruin/powered)
 "aO" = (
 /obj/machinery/sleeper{
-	icon_state = "sleeper";
-	dir = 8
+	dir = 8;
+	icon_state = "sleeper"
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/powered)
@@ -277,8 +277,8 @@
 /area/ruin/powered)
 "bf" = (
 /obj/effect/turf_decal/loading_area{
-	icon_state = "loadingarea";
-	dir = 8
+	dir = 8;
+	icon_state = "loadingarea"
 	},
 /obj/machinery/button{
 	id = "goatshutters";
@@ -294,8 +294,8 @@
 /area/ruin/powered)
 "bh" = (
 /obj/machinery/computer{
-	icon_state = "computer";
-	dir = 4
+	dir = 4;
+	icon_state = "computer"
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/powered)
@@ -336,8 +336,8 @@
 /area/ruin/powered)
 "bo" = (
 /obj/effect/turf_decal/loading_area{
-	icon_state = "loadingarea";
-	dir = 8
+	dir = 8;
+	icon_state = "loadingarea"
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/ruin/powered)
@@ -398,8 +398,8 @@
 /area/ruin/powered)
 "bB" = (
 /obj/structure/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 4
+	dir = 4;
+	icon_state = "wooden_chair"
 	},
 /mob/living/simple_animal/hostile/retaliate/goat/guard,
 /turf/open/floor/mineral/titanium,
@@ -415,22 +415,22 @@
 /area/ruin/powered)
 "bE" = (
 /obj/structure/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 8
+	dir = 8;
+	icon_state = "wooden_chair"
 	},
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
 "bF" = (
 /obj/structure/chair/sofa/left{
-	icon_state = "sofaend_left";
-	dir = 4
+	dir = 4;
+	icon_state = "sofaend_left"
 	},
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
 "bG" = (
 /obj/structure/fence{
-	icon_state = "straight";
-	dir = 8
+	dir = 8;
+	icon_state = "straight"
 	},
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
@@ -442,8 +442,8 @@
 /area/ruin/powered)
 "bI" = (
 /obj/structure/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 4
+	dir = 4;
+	icon_state = "wooden_chair"
 	},
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
@@ -459,8 +459,8 @@
 /area/ruin/powered)
 "bL" = (
 /obj/structure/chair/sofa{
-	icon_state = "sofamiddle";
-	dir = 4
+	dir = 4;
+	icon_state = "sofamiddle"
 	},
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
@@ -472,8 +472,8 @@
 /area/ruin/powered)
 "bN" = (
 /obj/structure/chair/sofa/right{
-	icon_state = "sofaend_right";
-	dir = 4
+	dir = 4;
+	icon_state = "sofaend_right"
 	},
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
@@ -511,15 +511,15 @@
 /area/ruin/powered)
 "bW" = (
 /obj/structure/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 1
+	dir = 1;
+	icon_state = "wooden_chair"
 	},
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
 "bX" = (
 /obj/structure/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 1
+	dir = 1;
+	icon_state = "wooden_chair"
 	},
 /obj/effect/mob_spawn/human/corpse/cargo_tech,
 /obj/effect/decal/cleanable/blood/old,
@@ -527,8 +527,8 @@
 /area/ruin/powered)
 "bY" = (
 /obj/structure/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 1
+	dir = 1;
+	icon_state = "wooden_chair"
 	},
 /mob/living/simple_animal/hostile/retaliate/goat/guard,
 /turf/open/floor/mineral/titanium,

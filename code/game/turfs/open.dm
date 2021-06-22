@@ -331,10 +331,12 @@
 	for(var/mob/living/simple_animal/slime/M in src)
 		M.apply_water()
 
-	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
-	for(var/obj/effect/O in src)
-		if(is_cleanable(O))
-			qdel(O)
+	wash(CLEAN_WASH)
+	for(var/am in src)
+		var/atom/movable/movable_content = am
+		if(ismopable(movable_content)) // Will have already been washed by the wash call above at this point.
+			continue
+		movable_content.wash(CLEAN_WASH)
 	return TRUE
 
 /turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, paralyze_amount, force_drop)
@@ -397,6 +399,12 @@
 	. = ..()
 	if (air.get_moles(/datum/gas/carbon_dioxide) && air.get_moles(/datum/gas/oxygen))
 		pulse_strength = min(pulse_strength,air.get_moles(/datum/gas/carbon_dioxide)*1000,air.get_moles(/datum/gas/oxygen)*2000) //Ensures matter is conserved properly
-		air.set_moles(/datum/gas/carbon_dioxide, max(air.get_moles(/datum/gas/carbon_dioxide)-(pulse_strength/1000),0))
-		air.set_moles(/datum/gas/oxygen, max(air.get_moles(/datum/gas/oxygen)-(pulse_strength/2000),0))
-		air.adjust_moles(/datum/gas/pluoxium, pulse_strength/4000)
+		air.set_moles(/datum/gas/carbon_dioxide, max(air.get_moles(/datum/gas/carbon_dioxide)-(pulse_strength * 0.001),0))
+		air.set_moles(/datum/gas/oxygen, max(air.get_moles(/datum/gas/oxygen)-(pulse_strength * 0.002),0))
+		air.adjust_moles(/datum/gas/pluoxium, pulse_strength * 0.004)
+		air_update_turf()
+	if (air.get_moles(/datum/gas/hydrogen))
+		pulse_strength = min(pulse_strength, air.get_moles(/datum/gas/hydrogen) * 1000)
+		air.set_moles(/datum/gas/hydrogen, max(air.get_moles(/datum/gas/hydrogen) - (pulse_strength * 0.001), 0))
+		air.adjust_moles(/datum/gas/tritium, pulse_strength * 0.001)
+		air_update_turf()

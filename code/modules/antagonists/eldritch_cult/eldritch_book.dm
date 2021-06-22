@@ -7,8 +7,6 @@
 	w_class = WEIGHT_CLASS_SMALL
 	///Last person that touched this
 	var/mob/living/last_user
-	///how many charges do we have?
-	var/charge = 1
 	///Where we cannot create the rune?
 	var/static/list/blacklisted_turfs = typecacheof(list(/turf/closed,/turf/open/space,/turf/open/lava))
 
@@ -21,7 +19,6 @@
 	. = ..()
 	if(!IS_HERETIC(user))
 		return
-	. += "The Tome holds [charge] charges."
 	. += "Use it on the floor to create a transmutation rune, used to perform rituals."
 	. += "Hit an influence in the black part with it to gain a charge."
 	. += "Hit a transmutation rune to destroy it."
@@ -43,7 +40,8 @@
 	to_chat(user, "<span class='danger'>You start drawing power from influence...</span>")
 	if(do_after(user,10 SECONDS,TRUE,RS))
 		qdel(RS)
-		charge += 1
+		var/datum/antagonist/heretic/H = user.mind?.has_antag_datum(/datum/antagonist/heretic)
+		H?.charge += 1
 
 ///Draws a rune on a selected turf
 /obj/item/forbidden_book/proc/draw_rune(atom/target,mob/user)
@@ -61,7 +59,6 @@
 
 ///Removes runes from the selected turf
 /obj/item/forbidden_book/proc/remove_rune(atom/target,mob/user)
-
 	to_chat(user, "<span class='danger'>You start removing a rune...</span>")
 	if(do_after(user,2 SECONDS, target = target))
 		qdel(target)
@@ -74,7 +71,7 @@
 	if(!ui)
 		icon_state = "book_open"
 		flick("book_opening", src)
-		ui = new(user, src, interface = "ForbiddenLore", title = name)
+		ui = new(user, src, "ForbiddenLore", name)
 		ui.open()
 
 /obj/item/forbidden_book/ui_data(mob/user)
@@ -86,7 +83,7 @@
 	var/list/data = list()
 	var/list/lore = list()
 
-	data["charges"] = charge
+	data["charges"] = cultie.charge
 
 	for(var/X in to_know)
 		lore = list()
@@ -94,7 +91,7 @@
 		lore["type"] = EK.type
 		lore["name"] = EK.name
 		lore["cost"] = EK.cost
-		lore["disabled"] = EK.cost <= charge ? FALSE : TRUE
+		lore["disabled"] = EK.cost <= cultie.charge ? FALSE : TRUE
 		lore["path"] = EK.route
 		lore["state"] = "Research"
 		lore["flavour"] = EK.gain_text
@@ -131,7 +128,6 @@
 				if(initial(EK.name) != ekname)
 					continue
 				if(cultie.gain_knowledge(EK))
-					charge -= text2num(params["cost"])
 					return TRUE
 
 	update_icon() // Not applicable to all objects.
@@ -140,6 +136,3 @@
 	flick("book_closing",src)
 	icon_state = initial(icon_state)
 	return ..()
-
-/obj/item/forbidden_book/debug
-	charge = 100

@@ -196,6 +196,15 @@
 /datum/bounty/item/botany/oatz
 	name = "Oats"
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/oat)
-	multiplier = 2
 	foodtype = "batch of oatmeal"
 	bonus_desc = "Squats and oats. We're all out of oats."
+
+/datum/bounty/item/botany/cabbage
+	name = "Cabbages"
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/cabbage)
+	foodtype = "corned beef"
+
+/datum/bounty/item/botany/corn
+	name = "Corn"
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/corn)
+	foodtype = "chowder"

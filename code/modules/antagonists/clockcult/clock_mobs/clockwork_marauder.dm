@@ -7,13 +7,13 @@
 	desc = "The stalwart apparition of a soldier, blazing with crimson flames. It's armed with a gladius and shield."
 	icon_state = "clockwork_marauder"
 	mob_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
-	health = 120
-	maxHealth = 120
+	health = 150
+	maxHealth = 150
 	force_threshold = 8
 	speed = 0
 	obj_damage = 40
-	melee_damage_lower = 12
-	melee_damage_upper = 12
+	melee_damage_lower = 15
+	melee_damage_upper = 15
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	weather_immunities = list("lava")
@@ -57,8 +57,8 @@
 		obj_damage = 100
 		max_shield_health = INFINITY
 	else if(GLOB.ratvar_approaches) //Hefty health bonus and slight attack damage increase
-		melee_damage_upper = 15
-		melee_damage_lower = 15
+		melee_damage_upper = 18
+		melee_damage_lower = 18
 		attacktext = "carves"
 		obj_damage = 50
 		max_shield_health = 4

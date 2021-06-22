@@ -77,7 +77,7 @@
 		var/mob/living/carbon/C = owner
 		if(!C)
 			return
-		if(C.stat == DEAD && !IS_IN_STASIS(C))
+		if(C.stat == DEAD && !(IS_IN_STASIS(C) || HAS_TRAIT(C, TRAIT_PRESERVED_ORGANS)))
 			if(damage >= maxHealth)
 				organ_flags |= ORGAN_FAILING
 				damage = maxHealth

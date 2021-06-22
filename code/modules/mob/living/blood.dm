@@ -119,18 +119,26 @@
 ****************************************************/
 
 //Gets blood from mob to a container or other mob, preserving all data in it.
-/mob/living/proc/transfer_blood_to(atom/movable/AM, amount, forced)
+/mob/living/proc/transfer_blood_to(atom/movable/AM, total_amount, forced)
 	if(!blood_volume || !AM.reagents)
 		return 0
 	if(blood_volume < BLOOD_VOLUME_BAD(src) && !forced)
 		return 0
 
-	if(blood_volume < amount)
-		amount = blood_volume
+	if(blood_volume < total_amount)
+		total_amount = blood_volume
 
 	var/blood_id = get_blood_id()
 	if(!blood_id)
 		return 0
+
+	var/amount = total_amount
+	var/chems_amount = 0
+	var/blood_proportion = (blood_volume > 0 || reagents.total_volume > 0) ? blood_volume / (blood_volume + reagents.total_volume) : 1
+
+	if((1 - blood_proportion) * total_amount >= 0.1)
+		amount = total_amount * blood_proportion
+		chems_amount = total_amount * (1 - blood_proportion)
 
 	blood_volume -= amount
 
@@ -154,6 +162,8 @@
 			return 1
 
 	AM.reagents.add_reagent(blood_id, amount, blood_data, bodytemperature)
+	if(chems_amount)
+		reagents.trans_to(AM, chems_amount)
 	return 1
 
 
@@ -248,11 +258,16 @@
 
 //to add a splatter of blood or other mob liquid.
 /mob/living/proc/add_splatter_floor(turf/T, small_drip)
-	if(get_blood_id() != /datum/reagent/blood)
-		return
 	if(!T)
 		T = get_turf(src)
-
+	if(ispolysmorph(src)) //polysmorphs bleed green blood
+		var/obj/effect/decal/cleanable/xenoblood/B = locate() in T.contents
+		if(!B)
+			B = new(T)
+			B.transfer_mob_blood_dna(src)
+		return
+	if(get_blood_id() != /datum/reagent/blood)
+		return
 	var/list/temp_blood_DNA
 	if(small_drip)
 		// Only a certain number of drips (or one large splatter) can be on a given turf.

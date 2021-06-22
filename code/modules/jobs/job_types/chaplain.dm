@@ -35,6 +35,8 @@
 		H.equip_to_slot_or_del(B, SLOT_IN_BACKPACK)
 		var/nrt = GLOB.holy_weapon_type || /obj/item/nullrod
 		var/obj/item/nullrod/N = new nrt(H)
+		if(GLOB.holy_weapon_type)
+			N.reskinned = TRUE
 		H.put_in_hands(N)
 		if(GLOB.religious_sect)
 			GLOB.religious_sect.on_conversion(H)

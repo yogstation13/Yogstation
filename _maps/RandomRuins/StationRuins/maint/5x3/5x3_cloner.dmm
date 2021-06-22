@@ -23,10 +23,7 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/white,
 /area/template_noop)
-"q" = (
-/obj/structure/table,
-/obj/item/flashlight/lamp,
-/obj/effect/decal/cleanable/cobweb,
+"j" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -38,10 +35,13 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/frame/machine,
 /turf/open/floor/plasteel/white,
 /area/template_noop)
-"w" = (
-/obj/machinery/clonepod/experimental,
+"q" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp,
+/obj/effect/decal/cleanable/cobweb,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -127,7 +127,7 @@ N
 W
 "}
 (2,1,1) = {"
-w
+j
 X
 i
 "}

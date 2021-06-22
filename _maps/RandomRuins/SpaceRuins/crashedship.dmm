@@ -36,8 +36,8 @@
 "ag" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	installation = /obj/item/gun/energy/lasercannon;
+	set_obj_flags = "EMAGGED"
 	},
 /turf/open/floor/engine,
 /area/awaymission/BMPship/Aft)
@@ -543,7 +543,7 @@
 	dir = 1;
 	environ = 0;
 	equipment = 3;
-	pixel_y = 24;
+	pixel_y = 23;
 	req_access = null
 	},
 /turf/open/floor/carpet,
@@ -921,7 +921,7 @@
 	dir = 1;
 	environ = 0;
 	equipment = 3;
-	pixel_y = 24;
+	pixel_y = 23;
 	req_access = null
 	},
 /turf/open/floor/plating,
@@ -1242,7 +1242,7 @@
 	},
 /obj/machinery/power/apc/unlocked{
 	dir = 1;
-	pixel_y = 24;
+	pixel_y = 23;
 	req_access = null
 	},
 /obj/effect/turf_decal/tile/bar,
@@ -2126,8 +2126,8 @@
 "gl" = (
 /obj/machinery/porta_turret{
 	dir = 8;
-	set_obj_flags = "EMAGGED";
-	installation = /obj/item/gun/energy/lasercannon
+	installation = /obj/item/gun/energy/lasercannon;
+	set_obj_flags = "EMAGGED"
 	},
 /turf/open/floor/engine,
 /area/awaymission/BMPship/Fore)

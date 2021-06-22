@@ -269,7 +269,6 @@
 	suffix = "whiteshipdock.dmm"
 	name = "Whiteship Dock"
 	description = "An abandoned but functional vessel parked in deep space, ripe for the taking."
-	// always_place = TRUE - For debugging, remove JUST before merge
 
 /datum/map_template/ruin/space/cat_experiments
 	id = "meow"
@@ -307,14 +306,13 @@
 		of the area exists in any records. After all, it's not like \
 		some doofus with an EVA suit and jetpack can just waltz around \
 		in space and find it..."
+	unpickable = TRUE
 
 /datum/map_template/ruin/space/spacebar
 	id = "spacebar"
 	suffix = "spacebar.dmm"
-	name = "The Rampant Golem and Yellow Hound"
-	description = "No questions asked. No shoes/foot protection, no service. \
-		No tabs. No violence in the inside areas. That's it. Welcome to the \
-		Rampant Golem and Yellow Hound. Can I take your order?"
+	name = "The Space Bar"
+	description = "Technically a Space Bar & Grill, but do you really care about that? No, just about getting drunk and a good (enough) meal."
 
 /datum/map_template/ruin/space/goat_transport
 	id = "goatresearch"
@@ -353,4 +351,10 @@
 	suffix = "bigape.dmm"
 	name = "Big Ape"
 	description = "A gorilla? Out here? But why."
+
+/datum/map_template/ruin/space/cozy_apartment
+	id = "nicelittlenest"
+	suffix = "nicelittlenest.dmm"
+	name = "Cozy Home"
+	description = "A nice little place for travellers to rest. There is even a mint under the pillow!"
 	

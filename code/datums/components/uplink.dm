@@ -130,12 +130,14 @@ GLOBAL_LIST_EMPTY(uplinks)
 	// an unlocked uplink blocks also opening the PDA or headset menu
 	return COMPONENT_NO_INTERACT
 
-/datum/component/uplink/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.inventory_state)
+/datum/component/uplink/ui_state(mob/user)
+	return GLOB.inventory_state
+
+/datum/component/uplink/ui_interact(mob/user, datum/tgui/ui)
 	active = TRUE
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Uplink", name, 620, 580, master_ui, state)
+		ui = new(user, src, "Uplink", name)
 		// This UI is only ever opened by one person,
 		// and never is updated outside of user input.
 		ui.set_autoupdate(FALSE)
@@ -180,8 +182,9 @@ GLOBAL_LIST_EMPTY(uplinks)
 						continue
 			cat["items"] += list(list(
 				"name" = I.name,
-				"cost" = I.cost,
+				"cost" = I.manufacturer && user.mind.is_employee(I.manufacturer) ? CEILING(I.cost * 0.8, 1) : I.cost,
 				"desc" = I.desc,
+				"manufacturer" = I.manufacturer ? initial(I.manufacturer.name) : null,
 			))
 		data["categories"] += list(cat)
 	return data
@@ -217,10 +220,14 @@ GLOBAL_LIST_EMPTY(uplinks)
 		return
 	if (!user || user.incapacitated())
 		return
-
-	if(telecrystals < U.cost || U.limited_stock == 0)
-		return
-	telecrystals -= U.cost
+	if(U.manufacturer && user.mind.is_employee(U.manufacturer))
+		if(telecrystals < CEILING(U.cost*0.8, 1) || U.limited_stock == 0)
+			return
+		telecrystals -= CEILING(U.cost*0.8, 1)
+	else 
+		if(telecrystals < U.cost || U.limited_stock == 0)
+			return
+		telecrystals -= U.cost
 
 	U.purchase(user, src)
 

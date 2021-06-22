@@ -7,8 +7,10 @@
 	can_hijack = HIJACK_HIJACKER
 	var/give_equipment = TRUE
 	var/list/researched_knowledge = list()
+	var/list/transmutations = list()
 	var/total_sacrifices = 0
 	var/ascended = FALSE
+	var/charge = 1
 
 /datum/antagonist/heretic/admin_add(datum/mind/new_owner,mob/admin)
 	give_equipment = FALSE
@@ -23,16 +25,15 @@
 	owner.announce_objectives()
 	to_chat(owner, "<span class='cult'>The book whispers, the forbidden knowledge walks once again!<br>\
 	Your book allows you to research abilities, read it very carefully! you cannot undo what has been done!<br>\
-	You gain charges by either collecitng influences or sacrifcing people tracked by the living heart<br> \
-	You can find a basic guide at : https://tgstation13.org/wiki/Heresy_101 </span>")
+	You gain charges by either collecting influences or sacrifcing people tracked by the living heart<br> \
+	You can find a basic guide at : https://wiki.yogstation.net/wiki/Heretic </span><br>\
+	If you need to quickly check your unlocked transmutation recipes, transmute your Codex Cicatrix.")
 
 /datum/antagonist/heretic/on_gain()
 	var/mob/living/current = owner.current
 	if(ishuman(current))
 		forge_primary_objectives()
-		gain_knowledge(/datum/eldritch_knowledge/spell/basic)
-		gain_knowledge(/datum/eldritch_knowledge/living_heart)
-		gain_knowledge(/datum/eldritch_knowledge/codex_cicatrix)
+		gain_knowledge(/datum/eldritch_knowledge/basic)
 	current.log_message("has been converted to the cult of the forgotten ones!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.AddMind(owner)
 	START_PROCESSING(SSprocessing,src)
@@ -89,30 +90,28 @@
 	for(var/X in researched_knowledge)
 		var/datum/eldritch_knowledge/EK = researched_knowledge[X]
 		EK.on_life(owner.current)
+	for(var/Y in transmutations)
+		var/datum/eldritch_transmutation/ET = Y
+		ET.on_life(owner.current)
 
 /datum/antagonist/heretic/proc/forge_primary_objectives()
-	var/list/assasination = list()
+	var/list/assassination = list()
 	var/list/protection = list()
 	for(var/i in 1 to 2)
-		var/pck = pick("assasinate","stalk","protect")
+		var/pck = pick("assassinate","protect")
 		switch(pck)
-			if("assasinate")
+			if("assassinate")
 				var/datum/objective/assassinate/A = new
 				A.owner = owner
 				var/list/owners = A.get_owners()
 				A.find_target(owners,protection)
-				assasination += A.target
+				assassination += A.target
 				objectives += A
-			if("stalk")
-				var/datum/objective/stalk/S = new
-				S.owner = owner
-				S.find_target()
-				objectives += S
 			if("protect")
 				var/datum/objective/protect/P = new
 				P.owner = owner
 				var/list/owners = P.get_owners()
-				P.find_target(owners,assasination)
+				P.find_target(owners,assassination)
 				protection += P.target
 				objectives += P
 
@@ -147,6 +146,20 @@
 /datum/antagonist/heretic/get_admin_commands()
 	. = ..()
 	.["Equip"] = CALLBACK(src,.proc/equip_cultist)
+	.["Edit Research Points (Current: [charge])"] = CALLBACK(src, .proc/admin_edit_research)
+	.["Give Knowledge"] = CALLBACK(src, .proc/admin_give_knowledge)
+
+/datum/antagonist/heretic/proc/admin_edit_research(mob/admin)
+	var/research2add = input(admin, "Enter an amount to change research by (Negative numbers remove research)", "Research Grant") as null|num
+	if(!research2add)
+		return
+	charge += research2add
+
+/datum/antagonist/heretic/proc/admin_give_knowledge(mob/admin)
+	var/knowledge2add = input(admin, "Select a knowledge to grant", "Scholarship") as null | anything in get_researchable_knowledge()
+	if(!knowledge2add)
+		return
+	gain_knowledge(knowledge2add, TRUE)
 
 /datum/antagonist/heretic/roundend_report()
 	var/list/parts = list()
@@ -188,12 +201,13 @@
 // Knowledge //
 ////////////////
 
-/datum/antagonist/heretic/proc/gain_knowledge(datum/eldritch_knowledge/EK)
+/datum/antagonist/heretic/proc/gain_knowledge(datum/eldritch_knowledge/EK, forced = FALSE)
 	if(get_knowledge(EK))
 		return FALSE
 	var/datum/eldritch_knowledge/initialized_knowledge = new EK
 	researched_knowledge[initialized_knowledge.type] = initialized_knowledge
 	initialized_knowledge.on_gain(owner.current)
+	charge -= initialized_knowledge.cost
 	return TRUE
 
 /datum/antagonist/heretic/proc/get_researchable_knowledge()
@@ -213,37 +227,16 @@
 /datum/antagonist/heretic/proc/get_all_knowledge()
 	return researched_knowledge
 
+/datum/antagonist/heretic/proc/get_transmutation(wanted)
+	return transmutations[wanted]
+
+/datum/antagonist/heretic/proc/get_all_transmutations()
+	return transmutations
+
+
 ////////////////
 // Objectives //
 ////////////////
-
-/datum/objective/stalk
-	name = "spendtime"
-	var/timer = 5 MINUTES
-
-/datum/objective/stalk/process()
-	if(owner?.current.stat != DEAD && target?.current.stat != DEAD && (target.current in view(5,owner.current)))
-		timer -= 1 SECONDS
-	///we don't want to process after the counter reaches 0, otherwise it is wasted processing
-	if(timer <= 0)
-		STOP_PROCESSING(SSprocessing,src)
-
-/datum/objective/stalk/Destroy(force, ...)
-	STOP_PROCESSING(SSprocessing,src)
-	return ..()
-
-/datum/objective/stalk/update_explanation_text()
-	//we want to start processing after we set the timer
-	timer += rand(-3 MINUTES, 3 MINUTES)
-	START_PROCESSING(SSprocessing,src)
-	if(target?.current)
-		explanation_text = "Stalk [target.name] for at least [DisplayTimeText(timer)] while they're alive."
-	else
-		explanation_text = "Free Objective"
-
-/datum/objective/stalk/check_completion()
-	return timer <= 0 || explanation_text == "Free Objective"
-
 /datum/objective/sacrifice_ecult
 	name = "sacrifice"
 

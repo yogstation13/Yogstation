@@ -7,8 +7,6 @@
 	requires_ntnet = FALSE
 	size = 4
 	tgui_id = "NtosCrewManifest"
-	ui_x = 400
-	ui_y = 480
 
 /datum/computer_file/program/crew_manifest/ui_static_data(mob/user)
 	var/list/data = list()
@@ -39,11 +37,17 @@
 	switch(action)
 		if("PRG_print")
 			if(computer && printer) //This option should never be called if there is no printer
-				var/contents = {"<h4>Crew Manifest</h4>
-								<br>
-								[GLOB.data_core ? GLOB.data_core.get_manifest_html(0) : ""]
-								"}
-				if(!printer.print_text(contents,text("crew manifest ([])", station_time_timestamp())))
+				var/contents = "<h2>Crew Manifest\n</h2>"
+				var/manifest = GLOB.data_core.get_manifest() // Keys are string names of departments, values are lists of lists. Each list therein has two elements: "name" and "rank"
+
+				for(var/dep in manifest) // For each department
+					contents += "<br><h3>[dep]</h34><br>"
+					for(var/person in manifest[dep]) // For each individual
+						var/n = person["name"]
+						var/r = person["rank"]
+						contents += "<b>[n]</b> - <i>[r]</i><br>"
+
+				if(!printer.print_text(contents,text("crew manifest ([])", station_time_timestamp()),FALSE))
 					to_chat(usr, "<span class='notice'>Hardware error: Printer was unable to print the file. It may be out of paper.</span>")
 					return
 				else

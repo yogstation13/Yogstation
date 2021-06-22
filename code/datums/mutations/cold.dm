@@ -14,6 +14,7 @@
 	item_type = /obj/item/stack/sheet/mineral/snow
 	charge_max = 50
 	delete_old = FALSE
+	antimagic_allowed = TRUE
 	action_icon_state = "snow"
 
 
@@ -33,6 +34,7 @@
 	charge_max = 150
 	cooldown_min = 150
 	clothes_req = FALSE
+	antimagic_allowed = TRUE
 	range = 3
 	projectile_type = /obj/item/projectile/temp/cryo
 	base_icon_state = "icebeam"

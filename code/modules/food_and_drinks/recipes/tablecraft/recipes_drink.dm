@@ -5,7 +5,7 @@
 /datum/crafting_recipe/kong
 	name = "Kong"
 	result = /obj/item/reagent_containers/food/drinks/bottle/kong
-	time = 30
+	time = 3 SECONDS
 	reqs = list(
 		/datum/reagent/consumable/ethanol/whiskey = 100,
 		/obj/item/reagent_containers/food/snacks/monkeycube = 1,
@@ -16,7 +16,7 @@
 /datum/crafting_recipe/candycornliquor
 	name = "Candy Corn Liquor"
 	result = /obj/item/reagent_containers/food/drinks/bottle/candycornliquor
-	time = 30
+	time = 3 SECONDS
 	reqs = list(
 		/datum/reagent/consumable/ethanol/whiskey = 100,
 		/obj/item/reagent_containers/food/snacks/candy_corn = 1,
@@ -26,7 +26,7 @@
 
 /datum/crafting_recipe/lizardwine
 	name = "Lizard Wine"
-	time = 40
+	time = 4 SECONDS
 	reqs = list(
 		/obj/item/organ/tail/lizard = 1,
 		/datum/reagent/consumable/ethanol = 100,
@@ -37,7 +37,7 @@
 
 /datum/crafting_recipe/moonshinejug
 	name = "Moonshine Jug"
-	time = 30
+	time = 3 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/bottle = 1,
 		/datum/reagent/consumable/ethanol/moonshine = 100
@@ -47,7 +47,7 @@
 
 /datum/crafting_recipe/hoochbottle
 	name = "Hooch Bottle"
-	time = 30
+	time = 3 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/bottle = 1,
 		/obj/item/storage/box/papersack = 1,
@@ -68,7 +68,7 @@
 
 /datum/crafting_recipe/champagnebottle
 	name = "Champagne Bottle"
-	time = 30
+	time = 3 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/bottle = 1,
 		/datum/reagent/consumable/ethanol/champagne = 100
@@ -78,7 +78,7 @@
 
 /datum/crafting_recipe/trappistbottle
 	name = "Trappist Bottle"
-	time = 15
+	time = 1.5 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/bottle/small = 1,
 		/datum/reagent/consumable/ethanol/trappist = 50
@@ -88,7 +88,7 @@
 
 /datum/crafting_recipe/goldschlagerbottle
 	name = "Goldschlager Bottle"
-	time = 30
+	time = 3 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/bottle = 1,
 		/datum/reagent/consumable/ethanol/goldschlager = 100
@@ -98,7 +98,7 @@
 
 /datum/crafting_recipe/patronbottle
 	name = "Patron Bottle"
-	time = 30
+	time = 3 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/bottle = 1,
 		/datum/reagent/consumable/ethanol/patron = 100
@@ -108,7 +108,7 @@
 
 /datum/crafting_recipe/nothingbottle
 	name = "Nothing Bottle"
-	time = 30
+	time = 3 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/bottle = 1,
 		/datum/reagent/consumable/nothing = 100

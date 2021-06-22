@@ -300,6 +300,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/syndicate/Initialize()
 	. = ..()
 	var/datum/action/item_action/chameleon/change/chameleon_action = new(src)
+	chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/card/id
 	chameleon_action.chameleon_name = "ID Card"
 	chameleon_action.initialize_disguises()
@@ -478,6 +479,15 @@ update_label("John Doe", "Clowny")
 	desc = "An Amber Task Force ID card."
 	assignment = "Amber Task Force"
 
+/obj/item/card/id/ert/occupying
+	name = "\improper Occupying Force ID"
+	desc = "An Occupying Force ID card."
+	assignment = "Occupying Officer"
+
+/obj/item/card/id/ert/occupying/Initialize()
+    access = list(ACCESS_SECURITY,ACCESS_BRIG,ACCESS_WEAPONS,ACCESS_SEC_DOORS,ACCESS_MAINT_TUNNELS)+get_ert_access("sec")
+    . = ..()
+    
 /obj/item/card/id/ert/Initialize()
 	access = get_all_accesses()+get_ert_access("commander")-ACCESS_CHANGE_IDS
 	. = ..()

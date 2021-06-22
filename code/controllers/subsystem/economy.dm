@@ -50,6 +50,10 @@ SUBSYSTEM_DEF(economy)
 	var/list/dep_cards = list()
 	///ref to moneysink. Only one should exist on the map. Has its payout() proc called every budget cycle
 	var/obj/item/energy_harvester/moneysink = null
+	///The modifier multiplied to the value of bounties paid out.
+	var/bounty_modifier = 1
+	///The modifier multiplied to the value of cargo pack prices.
+	var/pack_price_modifier = 1
 
 /datum/controller/subsystem/economy/Initialize(timeofday)
 	var/budget_to_hand_out = round(budget_pool / department_accounts.len)
@@ -63,10 +67,17 @@ SUBSYSTEM_DEF(economy)
 	secmedsrv_payout() // Payout based on crew safety, health, and mood.
 	civ_payout() // Payout based on ??? Profit
 	car_payout() // Cargo's natural gain in the cash moneys.
+	var/list/dictionary = list()
+	for(var/datum/corporation/c in GLOB.corporations)
+		dictionary[c] = list()
+		for(var/datum/mind/m in c.employees)
+			dictionary[c] += m.name
 	for(var/A in bank_accounts)
 		var/datum/bank_account/B = A
-		B.payday(1)
-
+		for(var/datum/corporation/c in dictionary)
+			if(B.account_holder in dictionary[c])
+				B.payday(c.paymodifier, TRUE)
+		B.payday(1)	
 
 /datum/controller/subsystem/economy/proc/get_dep_account(dep_id)
 	for(var/datum/bank_account/department/D in generated_accounts)

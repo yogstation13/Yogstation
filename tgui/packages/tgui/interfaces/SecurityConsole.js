@@ -20,7 +20,7 @@ export const SecurityConsole = (props, context) => {
 
   if (data.z > 6) {
     return (
-      <Window resizable theme={theme}>
+      <Window width={775} height={500} resizable theme={theme}>
         <Window.Content scrollable>
           <NoticeBox>
             Unable to establish connection. You are too far away from the station!
@@ -32,7 +32,7 @@ export const SecurityConsole = (props, context) => {
 
   if (!logged_in) {
     return (
-      <Window resizable theme={theme}>
+      <Window width={775} height={500} resizable theme={theme}>
         <Window.Content scrollable>
           <Section title="Welcome">
             <Flex align="center" justify="center" mt="0.5rem">
@@ -40,7 +40,7 @@ export const SecurityConsole = (props, context) => {
                 <Fragment>
                   {data.user_image && (
                     <Fragment style={`position:relative`}>
-                      <img src={"photo_" + data.user_image +"_cropped.png"}
+                      <img src={data.user_image}
                         width="125px" height="125px"
                         style={`-ms-interpolation-mode: nearest-neighbor;
                         border-radius: 50%; border: 3px solid white;
@@ -79,7 +79,7 @@ export const SecurityConsole = (props, context) => {
 
   if (screen === "maint") {
     return (
-      <Window resizable theme={theme}>
+      <Window resizable width={775} height={500} theme={theme}>
         <Window.Content scrollable>
           <Section title="Records Maintenance" buttons={(
             <Button icon="backward" onClick={() => act("back")}>
@@ -97,7 +97,7 @@ export const SecurityConsole = (props, context) => {
 
   if (screen === "record_view") {
     return (
-      <Window resizable theme={theme}>
+      <Window resizable width={775} height={500} theme={theme}>
         <Window.Content scrollable>
           {data.special_message && (
             <NoticeBox>
@@ -178,7 +178,7 @@ export const SecurityConsole = (props, context) => {
                   </LabeledList.Item>
                 </LabeledList>
                 <Box>
-                  <img src={"photo_front_" + data.active_record.id +".png"}
+                  <img src={data.active_record.front_image}
                     width="180px" height="200px"
                     style={`-ms-interpolation-mode: nearest-neighbor`} />
                   <Button icon="print" mr="2px" fluid onClick={() => act("edit_field", {
@@ -188,7 +188,7 @@ export const SecurityConsole = (props, context) => {
                   </Button>
                 </Box>
                 <Box>
-                  <img src={"photo_side_" + data.active_record.id +".png"}
+                  <img src={data.active_record.side_image}
                     width="180px" height="200px"
                     style={`-ms-interpolation-mode: nearest-neighbor`} />
                   <Button icon="print" ml="2px" fluid onClick={() => act("edit_field", {
@@ -414,7 +414,7 @@ export const SecurityConsole = (props, context) => {
   }
 
   return (
-    <Window resizable theme={theme}>
+    <Window resizable width={775} height={500} theme={theme}>
       <Window.Content scrollable>
         {data.special_message && (
           <NoticeBox>

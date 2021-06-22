@@ -1,8 +1,5 @@
 /datum/surgery/healing
 	steps = list(/datum/surgery_step/incise,
-				/datum/surgery_step/retract_skin,
-				/datum/surgery_step/incise,
-				/datum/surgery_step/clamp_bleeders,
 				/datum/surgery_step/heal,
 				/datum/surgery_step/close)
 
@@ -17,15 +14,16 @@
 /datum/surgery/healing/New(surgery_target, surgery_location, surgery_bodypart)
 	..()
 	if(healing_step_type)
-		steps = list(/datum/surgery_step/incise,
+		steps = list(/datum/surgery_step/incise/nobleed,
 					healing_step_type, //hehe cheeky
-					/datum/surgery_step/close)
+					/datum/surgery_step/close/nofail)
 
 /datum/surgery_step/heal
 	name = "repair body"
 	implements = list(/obj/item/hemostat = 100, TOOL_SCREWDRIVER = 65, /obj/item/pen = 55)
 	repeatable = TRUE
 	time = 25
+	fuckup_damage = 0
 	var/brutehealing = 0
 	var/burnhealing = 0
 	var/missinghpbonus = 0 //heals an extra point of damager per X missing damage of type (burn damage for burn healing, brute for brute). Smaller Number = More Healing!
@@ -58,11 +56,11 @@
 	var/urhealedamt_burn = burnhealing
 	if(missinghpbonus)
 		if(target.stat != DEAD)
-			urhealedamt_brute += round((target.getBruteLoss()/ missinghpbonus),0.1)
-			urhealedamt_burn += round((target.getFireLoss()/ missinghpbonus),0.1)
+			urhealedamt_brute += brutehealing ? round((target.getBruteLoss()/ missinghpbonus),0.1) : 0
+			urhealedamt_burn += burnhealing ? round((target.getFireLoss()/ missinghpbonus),0.1) : 0
 		else //less healing bonus for the dead since they're expected to have lots of damage to begin with (to make TW into defib not TOO simple)
-			urhealedamt_brute += round((target.getBruteLoss()/ (missinghpbonus*5)),0.1)
-			urhealedamt_burn += round((target.getFireLoss()/ (missinghpbonus*5)),0.1)
+			urhealedamt_brute += brutehealing ? round((target.getBruteLoss()/ (missinghpbonus*3)),0.1) : 0
+			urhealedamt_burn += burnhealing ? round((target.getFireLoss()/ (missinghpbonus*3)),0.1) : 0
 	if(!get_location_accessible(target, target_zone))
 		urhealedamt_brute *= 0.55
 		urhealedamt_burn *= 0.55

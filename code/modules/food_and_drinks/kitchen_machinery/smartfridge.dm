@@ -301,10 +301,10 @@
 		O.forceMove(drop_location())
 		adjust_item_drop_location(O)
 
-/obj/machinery/smartfridge/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/smartfridge/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "SmartVend", name, 440, 550, master_ui, state)
+		ui = new(user, src, "SmartVend", name)
 		ui.set_autoupdate(FALSE)
 		ui.open()
 
@@ -614,7 +614,7 @@
 	for(var/organ in src)
 		var/obj/item/organ/O = organ
 		if(O)
-			O.damage = max(0, O.damage - repair_rate)
+			O.damage = max(0, O.damage - (O.maxHealth * repair_rate))
 	..()
 
 /obj/machinery/smartfridge/organ/Exited(atom/movable/AM, atom/newLoc)

@@ -113,10 +113,10 @@
 
 /obj/item/toy/plush/goatplushie/angry/ascendedkinggoat/attackby(obj/item/I,mob/living/user,params)
 	if(I.is_sharp())
-		user.visible_message("<span class='notice'>[user] attempts to stab [src]!</span>", "<span class='suicide'>The knife bounces off [src]'s back before breaking into millions of pieces... [src] glares at [user]!</span>") // You fucked up now son
+		user.visible_message("<span class='notice'>[user] attempts to stab [src]!</span>", "<span class='suicide'>[I] bounces off of [src]'s back before breaking into millions of pieces... [src] glares at [user]!</span>") // You fucked up now son
 		I.play_tool_sound(src)
 		qdel(I)
-		user.gib()
+		addtimer(CALLBACK(user, /mob/living/.proc/gib), 3 SECONDS)
 
 /obj/item/toy/plush/goatplushie/angry/kinggoat/attackby(obj/item/I,mob/living/user,params)
 	if(I.is_sharp())

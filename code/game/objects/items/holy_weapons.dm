@@ -11,7 +11,7 @@
 	max_heat_protection_temperature = null
 	clothing_flags = null
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 5, "energy" = 0, "bomb" = 5, "bio" = 0, "fire" = 80, "acid" = 80)
-	slowdown = 0.8
+	slowdown = 0.5
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
 
 /obj/item/clothing/suit/space/hardsuit/darktemplarfollowerchap
@@ -25,7 +25,7 @@
 	max_heat_protection_temperature = null
 	clothing_flags = null
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 5, "energy" = 0, "bomb" = 5, "bio" = 0, "fire" = 80, "acid" = 80)
-	slowdown = 0.8
+	slowdown = 0.33
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
 
 /obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
@@ -61,7 +61,7 @@
 	desc = "Deus Vult."
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
-	armor = list("melee" = 41, "bullet" = 15, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
+	armor = list("melee" = 40, "bullet" = 10, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	strip_delay = 80
@@ -72,6 +72,7 @@
 	desc = "God wills it!"
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
+	armor = list("melee" = 40, "bullet" = 10, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/box/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
 	slowdown = 0
 	blocks_shove_knockdown = FALSE
@@ -211,12 +212,14 @@
 	desc = "Now you're ready for some 50 dollar bling water."
 	icon_state = "chaplain_hoodie_leader"
 	item_state = "chaplain_hoodie_leader"
+	armor = list("melee" = 15, "bullet" = 5, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 25)
 	hoodtype = /obj/item/clothing/head/hooded/chaplain_hood/leader
 
 /obj/item/clothing/head/hooded/chaplain_hood/leader
 	name = "leader hood"
 	desc = "I mean, you don't /have/ to seek bling water. I just think you should."
 	icon_state = "chaplain_hood_leader"
+	armor = list("melee" = 15, "bullet" = 5, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 25)
 
 /obj/item/storage/box/holy/darktemplar
 	name = "Founder Kit of the Black Templars"
@@ -264,8 +267,6 @@
   M : The mob choosing a nullrod reskin
   */
 /obj/item/nullrod/proc/reskin_holy_weapon(mob/M)
-	if(GLOB.holy_weapon_type)
-		return
 	var/list/display_names = list()
 	var/list/nullrod_icons = list()
 	for(var/V in typesof(/obj/item/nullrod))
@@ -322,6 +323,9 @@
 /obj/item/nullrod/godhand/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+
+/obj/item/nullrod/godhand/ignition_effect(atom/A, mob/user)
+	. = "<span class='notice'>[user] grasps [A] with [user.p_their()] flaming hand, igniting it in a burst of holy flame. Holy hot damn, that is badass. </span>"
 
 /obj/item/nullrod/staff
 	icon_state = "godstaff-red"
@@ -793,9 +797,7 @@
 		ADD_TRAIT(G, TRAIT_HOLY, SPECIES_TRAIT)
 		log_game("[key_name(H)] has summoned [key_name(G)], a holoparasite, with a holy tarot deck.")
 		to_chat(H, "<span class='holoparasite'><font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> has been summoned!</span>")
-		H.verbs += /mob/living/proc/guardian_comm
-		H.verbs += /mob/living/proc/guardian_recall
-		H.verbs += /mob/living/proc/guardian_reset
+		add_verb(H, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset))
 		force = 0
 		throwforce = 0
 		to_chat(H, "<span class='warning'>The [src]'s rigid ends become dull from summoning <font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font>!</span>")

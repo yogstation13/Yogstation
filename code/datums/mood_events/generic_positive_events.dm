@@ -103,6 +103,11 @@
 	description = "<span class='nicegreen'>I have seen the truth, praise the almighty one!</span>\n"
 	mood_change = 40 //maybe being a cultist isnt that bad after all
 	hidden = TRUE
+	
+/datum/mood_event/changeling
+	description = "<span class='nicegreen'>No feeling supersedes our hunger.</span>\n" //if i could i'd just make them not get all those human feelings
+	mood_change = 40
+	hidden = TRUE
 
 /datum/mood_event/heretics
 	description = "<span class='nicegreen'>I can't stop here. If I continue my research, I could become immortal!</span>\n"

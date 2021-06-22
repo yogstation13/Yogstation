@@ -20,7 +20,7 @@
 	return attack_hand(user)
 
 /obj/item/dnainjector/proc/inject(mob/living/carbon/M, mob/user)
-	if(M.has_dna() && !HAS_TRAIT(M, TRAIT_RADIMMUNE) && !HAS_TRAIT(M, TRAIT_BADDNA))
+	if(M.has_dna() && !HAS_TRAIT(M, TRAIT_GENELESS) && !HAS_TRAIT(M, TRAIT_BADDNA))
 		M.radiation += rand(20/(damage_coeff  ** 2),50/(damage_coeff  ** 2))
 		var/log_msg = "[key_name(user)] injected [key_name(M)] with the [name]"
 		for(var/HM in remove_mutations)
@@ -83,13 +83,18 @@
 /obj/item/dnainjector/antihulk
 	name = "\improper DNA injector (Anti-Hulk)"
 	desc = "Cures green skin."
-	remove_mutations = list(HULK)
+	remove_mutations = list(HULK, ACTIVE_HULK, GENETICS_HULK)
+
+/obj/item/dnainjector/hulkmut/genetics_hulk
+	name = "\improper DNA injector (Genetics Hulk)"
+	desc = "This will make you big and strong if you get hurt, but give you a bad skin condition."
+	add_mutations = list(GENETICS_HULK)
 
 /obj/item/dnainjector/hulkmut
 	name = "\improper DNA injector (Hulk)"
-	desc = "This will make you big and strong, but give you a bad skin condition."
+	desc = "This will make you big and strong permanently, but give you a bad skin condition."
 	add_mutations = list(HULK)
-	
+
 /obj/item/dnainjector/firebreath
 	name = "\improper DNA injector (Fire Breath)"
 	desc = "Restores the dragon ancestry."
@@ -515,7 +520,7 @@
 	var/filled = FALSE
 
 /obj/item/dnainjector/activator/inject(mob/living/carbon/M, mob/user)
-	if(M.has_dna() && !HAS_TRAIT(M, TRAIT_RADIMMUNE) && !HAS_TRAIT(M, TRAIT_BADDNA))
+	if(M.has_dna() && !HAS_TRAIT(M, TRAIT_GENELESS) && !HAS_TRAIT(M, TRAIT_BADDNA))
 		M.radiation += rand(20/(damage_coeff  ** 2),50/(damage_coeff  ** 2))
 		var/log_msg = "[key_name(user)] injected [key_name(M)] with the [name]"
 		for(var/mutation in add_mutations)

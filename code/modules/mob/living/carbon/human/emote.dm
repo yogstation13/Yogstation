@@ -66,7 +66,7 @@
 	key_third_person = "screams"
 	message = "screams!"
 	emote_type = EMOTE_AUDIBLE
-	only_forced_audio = TRUE
+	cooldown = 10 SECONDS
 	vary = TRUE
 
 /datum/emote/living/carbon/human/scream/get_sound(mob/living/user)
@@ -169,13 +169,17 @@
 	var/mob/living/carbon/human/H = user
 	if(H.dna && H.dna.species && (H.dna.features["wings"] != "None"))
 		return TRUE
-
+		
 /mob/living/carbon/human/proc/OpenWings()
 	if(!dna || !dna.species)
 		return
 	if("wings" in dna.species.mutant_bodyparts)
 		dna.species.mutant_bodyparts -= "wings"
 		dna.species.mutant_bodyparts |= "wingsopen"
+	if("moth_wings" in dna.species.mutant_bodyparts)
+		dna.species.mutant_bodyparts |= "moth_wingsopen"
+		dna.features["moth_wingsopen"] = "moth_wings"
+		dna.species.mutant_bodyparts -= "moth_wings"
 	update_body()
 
 /mob/living/carbon/human/proc/CloseWings()
@@ -184,6 +188,9 @@
 	if("wingsopen" in dna.species.mutant_bodyparts)
 		dna.species.mutant_bodyparts -= "wingsopen"
 		dna.species.mutant_bodyparts |= "wings"
+	if("moth_wingsopen" in dna.species.mutant_bodyparts)
+		dna.species.mutant_bodyparts -= "moth_wingsopen"
+		dna.species.mutant_bodyparts |= "moth_wings"
 	update_body()
 	if(isturf(loc))
 		var/turf/T = loc

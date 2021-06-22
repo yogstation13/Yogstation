@@ -90,7 +90,7 @@
 			bullet_hole.icon_state = "dent"
 		add_overlay(bullet_hole)
 		return BULLET_ACT_HIT
-	return BULLET_ACT_FORCE_PIERCE
+	return BULLET_ACT_PENETRATE // Prevents a unholy exploit where they would just go through walls
 
 #undef DECALTYPE_SCORCH
 #undef DECALTYPE_BULLET

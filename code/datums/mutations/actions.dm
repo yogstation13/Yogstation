@@ -32,6 +32,7 @@
 	desc = "Get a scent off of the item you're currently holding to track it. With an empty hand, you'll track the scent you've remembered."
 	charge_max = 100
 	clothes_req = FALSE
+	antimagic_allowed = TRUE
 	range = -1
 	include_user = TRUE
 	action_icon_state = "nose"
@@ -118,6 +119,7 @@
 	school = "evocation"
 	charge_max = 600
 	clothes_req = FALSE
+	antimagic_allowed = TRUE
 	range = 20
 	projectile_type = /obj/item/projectile/magic/aoe/fireball/firebreath
 	base_icon_state = "fireball"
@@ -177,6 +179,7 @@ obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
 	desc = "A rare genome that attracts odd forces not usually observed. May sometimes pull you in randomly."
 	school = "evocation"
 	clothes_req = FALSE
+	antimagic_allowed = TRUE
 	charge_max = 600
 	invocation = "DOOOOOOOOOOOOOOOOOOOOM!!!"
 	invocation_type = "shout"

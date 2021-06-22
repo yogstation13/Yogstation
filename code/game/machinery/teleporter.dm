@@ -50,6 +50,8 @@
 		to_chat(AM, "You can't use this here.")
 		return
 	if(is_ready())
+		for(var/mob/M in AM.buckled_mobs)
+			teleport(M)
 		teleport(AM)
 
 /obj/machinery/teleport/hub/attackby(obj/item/W, mob/user, params)

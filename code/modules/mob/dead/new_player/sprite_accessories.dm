@@ -1690,8 +1690,16 @@
 	icon_state = "ram"
 
 /datum/sprite_accessory/horns/angler
-	name = "Angeler"
+	name = "Angler"
 	icon_state = "angler"
+
+/datum/sprite_accessory/horns/tiny
+	name = "Tiny"
+	icon_state = "tiny"
+
+/datum/sprite_accessory/horns/long
+	name = "Long"
+	icon_state = "long"
 
 /datum/sprite_accessory/ears
 	icon = 'icons/mob/mutant_bodyparts.dmi'
@@ -1748,6 +1756,40 @@
 	center = TRUE
 	dimension_y = 32
 
+/datum/sprite_accessory/wings/skeleton
+	name = "Skeleton"
+	icon_state = "skele"
+	color_src = 0
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
+	locked = TRUE
+
+/datum/sprite_accessory/wings_open/skeleton
+	name = "Skeleton"
+	icon_state = "skele"
+	color_src = 0
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
+
+/datum/sprite_accessory/wings/robotic
+	name = "Robotic"
+	icon_state = "robotic"
+	color_src = 0
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
+	locked = TRUE
+
+/datum/sprite_accessory/wings_open/robotic
+	name = "Robotic"
+	icon_state = "robotic"
+	color_src = 0
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
+
 /datum/sprite_accessory/frills
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 
@@ -1766,6 +1808,14 @@
 /datum/sprite_accessory/frills/aquatic
 	name = "Aquatic"
 	icon_state = "aqua"
+
+/datum/sprite_accessory/frills/full
+	name = "Full"
+	icon_state = "full"
+
+/datum/sprite_accessory/frills/long
+	name = "Long"
+	icon_state = "long"
 
 /datum/sprite_accessory/spines
 	icon = 'icons/mob/mutant_bodyparts.dmi'
@@ -1841,8 +1891,18 @@
 /datum/sprite_accessory/moth_wings
 	icon = 'yogstation/icons/mob/wings.dmi' //yogs moth sprite fix
 	color_src = null
+	
+/datum/sprite_accessory/moth_wingsopen
+	icon = 'icons/mob/moth_wingsopen.dmi'
+	color_src = null
+	dimension_x = 76
+	center = TRUE
 
 /datum/sprite_accessory/moth_wings/plain
+	name = "Plain"
+	icon_state = "plain"
+
+/datum/sprite_accessory/moth_wingsopen/plain
 	name = "Plain"
 	icon_state = "plain"
 
@@ -1850,7 +1910,15 @@
 	name = "Monarch"
 	icon_state = "monarch"
 
+/datum/sprite_accessory/moth_wingsopen/monarch
+	name = "Monarch"
+	icon_state = "monarch"
+
 /datum/sprite_accessory/moth_wings/luna
+	name = "Luna"
+	icon_state = "luna"
+
+/datum/sprite_accessory/moth_wingsopen/luna
 	name = "Luna"
 	icon_state = "luna"
 
@@ -1858,7 +1926,15 @@
 	name = "Atlas"
 	icon_state = "atlas"
 
+/datum/sprite_accessory/moth_wingsopen/atlas
+	name = "Atlas"
+	icon_state = "atlas"
+
 /datum/sprite_accessory/moth_wings/reddish
+	name = "Reddish"
+	icon_state = "redish"
+
+/datum/sprite_accessory/moth_wingsopen/reddish
 	name = "Reddish"
 	icon_state = "redish"
 
@@ -1866,7 +1942,15 @@
 	name = "Royal"
 	icon_state = "royal"
 
+/datum/sprite_accessory/moth_wingsopen/royal
+	name = "Royal"
+	icon_state = "royal"
+
 /datum/sprite_accessory/moth_wings/gothic
+	name = "Gothic"
+	icon_state = "gothic"
+
+/datum/sprite_accessory/moth_wingsopen/gothic
 	name = "Gothic"
 	icon_state = "gothic"
 
@@ -1874,7 +1958,15 @@
 	name = "Lovers"
 	icon_state = "lovers"
 
+/datum/sprite_accessory/moth_wingsopen/lovers
+	name = "Lovers"
+	icon_state = "lovers"
+
 /datum/sprite_accessory/moth_wings/whitefly
+	name = "White Fly"
+	icon_state = "whitefly"
+
+/datum/sprite_accessory/moth_wingsopen/whitefly
 	name = "White Fly"
 	icon_state = "whitefly"
 
@@ -1887,7 +1979,15 @@
 	name = "Firewatch"
 	icon_state = "firewatch"
 
+/datum/sprite_accessory/moth_wingsopen/firewatch
+	name = "Firewatch"
+	icon_state = "firewatch"
+
 /datum/sprite_accessory/moth_wings/deathhead
+	name = "Deathshead"
+	icon_state = "deathhead"
+
+/datum/sprite_accessory/moth_wingsopen/deathhead
 	name = "Deathshead"
 	icon_state = "deathhead"
 
@@ -1895,7 +1995,15 @@
 	name = "Poison"
 	icon_state = "poison"
 
+/datum/sprite_accessory/moth_wingsopen/poison
+	name = "Poison"
+	icon_state = "poison"
+
 /datum/sprite_accessory/moth_wings/ragged
+	name = "Ragged"
+	icon_state = "ragged"
+
+/datum/sprite_accessory/moth_wingsopen/ragged
 	name = "Ragged"
 	icon_state = "ragged"
 
@@ -1903,7 +2011,15 @@
 	name = "Moon Fly"
 	icon_state = "moonfly"
 
+/datum/sprite_accessory/moth_wingsopen/moonfly
+	name = "Moon Fly"
+	icon_state = "moonfly"
+
 /datum/sprite_accessory/moth_wings/snow
+	name = "Snow"
+	icon_state = "snow"
+
+/datum/sprite_accessory/moth_wingsopen/snow
 	name = "Snow"
 	icon_state = "snow"
 
@@ -1915,22 +2031,6 @@
 	name = "Polys"
 	icon_state = "polys"
 	color_src = null
-
-/datum/sprite_accessory/plasma_vessels
-	icon = 'icons/mob/mutant_bodyparts.dmi'
-	color_src = null
-
-/datum/sprite_accessory/plasma_vessels/none
-	name = "None"
-	icon_state = "none"
-
-/datum/sprite_accessory/plasma_vessels/small
-	name = "Small"
-	icon_state = "small"
-
-/datum/sprite_accessory/plasma_vessels/medium
-	name = "Medium"
-	icon_state = "medium"
 
 /datum/sprite_accessory/teeth
 	icon = 'icons/mob/mutant_bodyparts.dmi'
@@ -1964,14 +2064,26 @@
 	name = "Praetorian"
 	icon_state = "praetorian"
 
+/datum/sprite_accessory/dome/drone
+	name = "Drone"
+	icon_state = "drone"
+
+/datum/sprite_accessory/dome/hunter
+	name = "Hunter"
+	icon_state = "hunter"
+
 /datum/sprite_accessory/dorsal_tubes
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 	color_src = null
 
 /datum/sprite_accessory/dorsal_tubes/none
-	name = "No"
+	name = "None"
 	icon_state = "none"
 
-/datum/sprite_accessory/dorsal_tubes/dtyes
-	name = "Yes"
-	icon_state = "dtyes"
+/datum/sprite_accessory/dorsal_tubes/dtsingle
+	name = "Single"
+	icon_state = "dtsingle"
+
+/datum/sprite_accessory/dorsal_tubes/dtdouble
+	name = "Double"
+	icon_state = "dtdouble"

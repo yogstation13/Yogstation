@@ -271,12 +271,16 @@
 				internal_tank_valve = new_pressure
 				to_chat(usr, "The internal pressure valve has been set to [internal_tank_valve]kPa.")
 
-		if(href_list["add_req_access"] && add_req_access && id_card)
+		if(href_list["add_req_access"])
+			if(!(add_req_access && id_card))
+				return
 			operation_req_access += text2num(href_list["add_req_access"])
 			output_access_dialog(id_card,usr)
 
-		if(href_list["del_req_access"] && add_req_access && id_card)
-			operation_req_access -= text2num(href_list["add_req_access"])
+		if(href_list["del_req_access"])
+			if(!(add_req_access && id_card))
+				return
+			operation_req_access -= text2num(href_list["del_req_access"])
 			output_access_dialog(id_card, usr)
 
 		if(href_list["finish_req_access"])

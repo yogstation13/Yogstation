@@ -1,9 +1,9 @@
-/obj/item/clothing/under/rank/psyche
+/obj/item/clothing/under/yogs/psyche
 	name = "psychedelic jumpsuit"
 	desc = "Groovy!"
-	icon_state = "psyche"
+	icon_state = "psyche_s"
 	item_state = "rainbow"
-	item_color = "psyche"
+	item_color = "psyche_s"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/yogs/scaryclown

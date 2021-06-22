@@ -72,6 +72,8 @@
 	return amt
 
 /obj/structure/frame/machine/attackby(obj/item/P, mob/user, params)
+	if(!istype(user, /mob/living))
+		return
 	switch(state)
 		if(1)
 			if(istype(P, /obj/item/circuitboard/machine))

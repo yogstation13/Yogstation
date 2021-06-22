@@ -18,7 +18,8 @@ SUBSYSTEM_DEF(statpanels)
 			"Round Time: [worldtime2text()]",
 			"Station Time: [station_time_timestamp()]",
 			"Security Alert Level: [get_security_level()]",
-			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)"
+			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)",
+			""
 		)
 
 		if(SSshuttle.emergency)

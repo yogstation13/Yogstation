@@ -18,6 +18,24 @@
 
 	return FALSE
 
+/proc/is_mentor(var/user) //Why is this needed
+	if(is_admin(user))
+		return TRUE
+
+	if(ismob(user))
+		var/mob/temp = user
+		if(temp && temp.client)
+			if(temp.client.is_mentor()) //help
+				return TRUE
+
+	else if(istype(user, /client))
+		var/client/temp = user
+		if(temp)
+			if(temp.is_mentor())
+				return TRUE
+
+	return FALSE
+
 /proc/is_donator(var/user)
 	if(is_admin(user))
 		return TRUE
@@ -53,7 +71,7 @@
 		log_sql("Failed to connect to database in get_donators().")
 		return
 
-	var/datum/DBQuery/query = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("donors")] WHERE (expiration_time > Now()) AND (revoked IS NULL)")
+	var/datum/DBQuery/query = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("donors")] WHERE expiration_time > Now() AND revoked IS NULL AND valid = 1")
 	if(!query.Execute())
 		message_admins("Error loading donators from database.")
 		log_sql("Error loading donators from database.")

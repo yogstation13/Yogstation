@@ -17,14 +17,15 @@
 	. += "<span class='notice'>Paper level: [stored_paper]/[max_paper].</span>"
 
 
-/obj/item/computer_hardware/printer/proc/print_text(var/text_to_print, var/paper_title = "")
+/obj/item/computer_hardware/printer/proc/print_text(var/text_to_print, var/paper_title = "", var/do_encode = TRUE)
 	if(!stored_paper)
 		return FALSE
 	if(!check_functionality())
 		return FALSE
 	
-	text_to_print = html_encode(text_to_print)
-	paper_title = html_encode(paper_title)
+	if(do_encode)
+		text_to_print = html_encode(text_to_print)
+		paper_title = html_encode(paper_title)
 
 	var/obj/item/paper/P = new/obj/item/paper(holder.drop_location())
 

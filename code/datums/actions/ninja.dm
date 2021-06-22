@@ -21,13 +21,13 @@
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
 
 /datum/action/item_action/ninjastar
-	name = "Create Throwing Stars (1E)"
+	name = "Create Throwing Stars (3E)"
 	desc = "Creates some throwing stars"
 	button_icon_state = "throwingstar"
 	icon_icon = 'icons/obj/items_and_weapons.dmi'
 
 /datum/action/item_action/ninjanet
-	name = "Energy Net (20E)"
+	name = "Energy Net (25E)"
 	desc = "Captures a fallen opponent in a net of energy. Will teleport them to a holding facility after 30 seconds."
 	button_icon_state = "energynet"
 	icon_icon = 'icons/effects/effects.dmi'

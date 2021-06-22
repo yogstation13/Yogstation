@@ -100,7 +100,7 @@
 	if(..())
 		return
 	owner.transform = owner.transform.Scale(1, 1.25)
-	passtable_on(owner, GENETIC_MUTATION)
+	passtable_off(owner, GENETIC_MUTATION)
 	owner.visible_message("<span class='danger'>[owner] suddenly grows!</span>", "<span class='notice'>Everything around you seems to shrink..</span>")
 
 
@@ -246,7 +246,7 @@
 //Makes strong actually useful. Somewhat.
 /datum/mutation/human/strong
 	name = "Strength"
-	desc = "The user's muscles slightly expand."
+	desc = "The user's muscles slightly expand, allowing them to move faster while carrying people."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>You feel strong!</span>"
 	text_lose_indication = "<span class='notice'>You feel fairly weak.</span>"

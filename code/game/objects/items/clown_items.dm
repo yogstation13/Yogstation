@@ -79,14 +79,23 @@
 	new /obj/effect/particle_effect/foam(loc)
 	return (TOXLOSS)
 
-/obj/item/soap/proc/decreaseUses(mob/user)
-	uses--
+/obj/item/soap/proc/decreaseUses(mob/user, amount = 1)
+	uses -= amount
 	if(uses <= 0)
 		to_chat(user, "<span class='warning'>[src] crumbles into tiny bits!</span>")
 		qdel(src)
 
 /obj/item/soap/afterattack(atom/target, mob/user, proximity)
 	. = ..()
+	if(iscarbon(target) && user == target && user.zone_selected == BODY_ZONE_PRECISE_MOUTH && user.a_intent == INTENT_HELP) //mmm, soap...
+		var/mob/living/carbon/C = user
+		user.visible_message("<span class='notice'>[user] takes a bite out of [src.name]!</span>", "<span class='notice'>You gnaw on [src]! This can't be good for you...</span>")
+		playsound(get_turf(C), 'sound/items/eatfood.ogg', 25, 0)
+		C.reagents.add_reagent(/datum/reagent/toxin/formaldehyde, 2)
+		C.reagents.add_reagent(/datum/reagent/toxin/chloralhydrate, 3)
+		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "toxic_food", /datum/mood_event/disgusting_food)
+		decreaseUses(user, 20)
+		return
 	if(!proximity || !check_allowed_items(target))
 		return
 	//I couldn't feasibly  fix the overlay bugs caused by cleaning items we are wearing.
@@ -118,10 +127,8 @@
 		user.visible_message("[user] begins to clean \the [target.name] with [src]...", "<span class='notice'>You begin to clean \the [target.name] with [src]...</span>")
 		if(do_after(user, src.cleanspeed, target = target))
 			to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
-			for(var/obj/effect/decal/cleanable/C in target)
-				qdel(C)
+			target.wash(CLEAN_SCRUB)
 			target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-			SEND_SIGNAL(target, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_MEDIUM)
 			target.wash_cream()
 			decreaseUses(user)
 	return

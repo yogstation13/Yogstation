@@ -18,7 +18,7 @@
 	speed = 0
 	maxHealth = 25
 	health = 25
-	a_intent = "harm"
+	a_intent = INTENT_HARM
 	spacewalk = TRUE
 
 	environment_smash = 0

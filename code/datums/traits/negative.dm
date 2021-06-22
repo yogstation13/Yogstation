@@ -57,9 +57,23 @@
 	gain_text = "<span class='danger'>You feel smooth.</span>"
 	lose_text = "<span class='notice'>You feel wrinkled again.</span>"
 	medical_record_text = "Patient has a tumor in their brain that is slowly driving them to brain death."
+	var/where = "at your feet"
 
 /datum/quirk/brainproblems/on_process()
 	quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2)
+
+/datum/quirk/brainproblems/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/mannitolpills = new /obj/item/storage/pill_bottle/mannitol/braintumor(get_turf(quirk_holder))
+	var/list/slots = list(
+		"in your left pocket" = SLOT_L_STORE,
+		"in your right pocket" = SLOT_R_STORE,
+		"in your backpack" = SLOT_IN_BACKPACK
+	)
+	where = H.equip_in_one_of_slots(mannitolpills, slots, FALSE) || "at your feet"
+
+/datum/quirk/brainproblems/post_add()
+	to_chat(quirk_holder, "<span class='boldnotice'>There is a pill bottle of mannitol [where]. You're going to need it.</span>")
 
 /datum/quirk/deafness
 	name = "Deaf"
@@ -267,6 +281,8 @@
 		return //we're tied with the dark, so we don't get scared of it; don't cleanse outright to avoid cheese
 	var/turf/T = get_turf(quirk_holder)
 	var/lums = T.get_lumcount()
+	if(istype(T.loc, /area/shuttle))
+		return
 	if(lums <= 0.2)
 		if(quirk_holder.m_intent == MOVE_INTENT_RUN)
 			to_chat(quirk_holder, "<span class='warning'>Easy, easy, take it slow... you're in the dark...</span>")
@@ -517,6 +533,17 @@
 	else
 		++tick_counter
 
+/datum/quirk/junkie/clone_data()
+	return reagent_id
+
+/datum/quirk/junkie/on_clone(data)
+	var/mob/living/carbon/human/H = quirk_holder
+	reagent_id = data
+	var/datum/reagent/prot_holder = GLOB.chemical_reagents_list[reagent_id]
+	reagent_type = prot_holder.type
+	reagent_instance = new reagent_type()
+	H.reagents.addiction_list.Add(reagent_instance)
+
 /datum/quirk/junkie/smoker
 	name = "Smoker"
 	desc = "Sometimes you just really want a smoke. Probably not great for your lungs."
@@ -536,7 +563,6 @@
 		/obj/item/storage/box/fancy/cigarettes/cigpack_robustgold,
 		/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
 		/obj/item/storage/box/fancy/cigarettes/cigars,
-		/obj/item/storage/box/fancy/cigarettes/cigars/cohiba,
 		/obj/item/storage/box/fancy/cigarettes/cigars/havana)
 	. = ..()
 
@@ -596,7 +622,9 @@
 									/datum/reagent/medicine/oculine,
 									/datum/reagent/medicine/neurine,
 									/datum/reagent/medicine/bicaridine,
-									/datum/reagent/medicine/kelotane) //Everything in the list can be healed from another source round-start
+									/datum/reagent/medicine/kelotane,
+									/datum/reagent/medicine/c2/libital,
+									/datum/reagent/medicine/c2/aiuri) //Everything in the list can be healed from another source round-start
 	var/reagent_id
 	var/cooldown_time = 1 MINUTES //Cant act again until the first wears off
 	var/cooldown = FALSE

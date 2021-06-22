@@ -79,6 +79,7 @@
 	item_state = "lb_suit"
 	item_color = "cargo_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 
@@ -375,6 +376,25 @@
 	icon_state = "mime_skirt"
 	item_state = "mime"
 	item_color = "mime_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS
+	can_adjust = FALSE
+	fitted = FEMALE_UNIFORM_TOP
+
+/obj/item/clothing/under/rank/artist
+	name = "post-modern suit"
+	desc = "Only the most modern of folk have the right to wear this suit."
+	icon_state = "artist"
+	item_state = "artist"
+	item_color = "artist"
+	can_adjust = FALSE
+	fitted = FEMALE_UNIFORM_TOP
+
+/obj/item/clothing/under/rank/artist/skirt
+	name = "post-modern skirt"
+	desc = "Only the most modern of folk have the right to wear this suit."
+	icon_state = "artist_skirt"
+	item_state = "artist"
+	item_color = "artist_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP

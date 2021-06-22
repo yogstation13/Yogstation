@@ -75,6 +75,7 @@
 	INVOKE_ASYNC(src, .proc/begin_the_end)
 
 /obj/singularity/narsie/large/cult/proc/begin_the_end()
+	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span>")
 	sleep(50)
 	priority_announce("An acausal dimensional event has been detected in your sector. Event has been flagged EXTINCTION-CLASS. Directing all available assets toward simulating solutions. SOLUTION ETA: 60 SECONDS.","Central Command Higher Dimensional Affairs", 'sound/misc/airraid.ogg')
 	sleep(500)

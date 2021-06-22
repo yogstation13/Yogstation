@@ -33,7 +33,7 @@
 	integrity_failure = 30
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/obj/structure/table, /obj/structure/table/reinforced)
-	
+
 /** Performs a complex check for toe stubbing as people would scream "IMPROVE DONT REMOVE" if I had my way.
   * Uses an early probability based return for to save cycles which is perfectly valid since the highest probability is 20 anyway.
   * Chance of getting your toe stubbed: (regular = 0.033%, running = 0.1%, blind = 20%, blurry_eyes = 2%, congenitally blind = 1%  )
@@ -45,7 +45,7 @@
 		return
 	if(!istype(H) || H.shoes || !(H.mobility_flags & MOBILITY_STAND) || !H.dna.species.has_toes())
 		return
-	var/speed_multiplier = 2/H.cached_multiplicative_slowdown 
+	var/speed_multiplier = 2/H.cached_multiplicative_slowdown
 	var/blindness_multiplier = 0
 	if(H.eye_blurry)
 		blindness_multiplier = 4
@@ -56,7 +56,7 @@
 	var/chance = 0.5*blindness_multiplier*speed_multiplier
 	if(prob(chance))
 		to_chat(H, "<span class='warning'>You stub your toe on the [name]!</span>")
-		H.visible_message("[H] stubs their toe on the [name].") 
+		H.visible_message("[H] stubs their toe on the [name].")
 		H.emote("scream")
 		var/shiddedleg = pick(BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
 		H.apply_damage(2*speed_multiplier, BRUTE, def_zone = shiddedleg)
@@ -130,7 +130,7 @@
 
 	if(istype(mover) && (mover.pass_flags & PASSTABLE))
 		return TRUE
-		
+
 	if(iscarbon(mover))
 		var/mob/living/carbon/C = mover
 		var/obj/item/tank/jetpack/jetpacktable = C.get_jetpack()
@@ -157,7 +157,7 @@
 
 /obj/structure/table/proc/tablepush(mob/living/user, mob/living/pushed_mob)
 	var/added_passtable = FALSE
-	if(!pushed_mob.pass_flags & PASSTABLE)
+	if(!(pushed_mob.pass_flags & PASSTABLE))
 		added_passtable = TRUE
 		pushed_mob.pass_flags |= PASSTABLE
 	SEND_SIGNAL(user, COMSIG_MOB_TABLING)
@@ -176,14 +176,16 @@
 	SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "table", /datum/mood_event/table)
 
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/rsf)) // Stops RSF from placing itself instead of glasses
+		return
 	if(!(flags_1 & NODECONSTRUCT_1))
-		if(I.tool_behaviour == TOOL_SCREWDRIVER && deconstruction_ready)
+		if(I.tool_behaviour == TOOL_SCREWDRIVER && deconstruction_ready && user.a_intent != INTENT_HELP && user.a_intent != INTENT_HARM)
 			to_chat(user, "<span class='notice'>You start disassembling [src]...</span>")
 			if(I.use_tool(src, user, 20, volume=50))
 				deconstruct(TRUE)
 			return
 
-		if(I.tool_behaviour == TOOL_WRENCH && deconstruction_ready)
+		if(I.tool_behaviour == TOOL_WRENCH && deconstruction_ready && user.a_intent != INTENT_HELP && user.a_intent != INTENT_HARM)
 			to_chat(user, "<span class='notice'>You start deconstructing [src]...</span>")
 			if(I.use_tool(src, user, 40, volume=50))
 				playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
@@ -222,6 +224,19 @@
 			new framestack(T, framestackamount)
 	qdel(src)
 
+/obj/structure/table/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
+	switch(the_rcd.mode)
+		if(RCD_DECONSTRUCT)
+			return list("mode" = RCD_DECONSTRUCT, "delay" = 24, "cost" = 16)
+	return FALSE
+
+/obj/structure/table/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
+	switch(passed_mode)
+		if(RCD_DECONSTRUCT)
+			to_chat(user, "<span class='notice'>You deconstruct the table.</span>")
+			qdel(src)
+			return TRUE
+	return FALSE
 
 /*
  * Glass tables
@@ -585,7 +600,7 @@
 		step(O, get_dir(O, src))
 
 /obj/structure/rack/attackby(obj/item/W, mob/user, params)
-	if (W.tool_behaviour == TOOL_WRENCH && !(flags_1&NODECONSTRUCT_1))
+	if (W.tool_behaviour == TOOL_WRENCH && !(flags_1&NODECONSTRUCT_1) && user.a_intent != INTENT_HELP && user.a_intent != INTENT_HARM)
 		W.play_tool_sound(src)
 		deconstruct(TRUE)
 		return
@@ -640,7 +655,7 @@
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "rack_parts"
 	flags_1 = CONDUCT_1
-	materials = list(MAT_METAL=2000)
+	materials = list(/datum/material/iron=2000)
 	var/building = FALSE
 
 /obj/item/rack_parts/attackby(obj/item/W, mob/user, params)

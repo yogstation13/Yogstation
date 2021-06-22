@@ -12,6 +12,7 @@
 	default_priority = 90
 
 	icon_state = "eal"
+	sing_verb = "whistles melodically"
 
 /datum/language/machine/get_random_name()
 	if(prob(70))

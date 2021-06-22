@@ -11,7 +11,7 @@
 	desc = "Allows for the construction of a spacepod core system, made up of the engine and life support systems."
 	id = "podcore"
 	build_type = PROTOLATHE
-	materials = list(MAT_METAL=5000, MAT_URANIUM=1000, MAT_PLASMA=5000)
+	materials = list(/datum/material/iron=5000, /datum/material/uranium=1000, /datum/material/plasma=5000)
 	build_path = /obj/item/pod_parts/core
 	category = list("Spacepod Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
@@ -21,7 +21,7 @@
 	desc = "Allows for the construction of spacepod armor. This is the civilian version."
 	id = "podarmor_civ"
 	build_type = PROTOLATHE
-	materials = list(MAT_METAL=15000,MAT_GLASS=5000,MAT_PLASMA=10000)
+	materials = list(/datum/material/iron=15000,/datum/material/glass=5000,/datum/material/plasma=10000)
 	build_path = /obj/item/pod_parts/armor
 	category = list("Spacepod Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
@@ -33,7 +33,7 @@
 	build_type = PROTOLATHE
 	build_path = /obj/item/pod_parts/armor/black
 	category = list("Spacepod Designs")
-	materials = list(MAT_METAL=15000,MAT_GLASS=5000,MAT_PLASMA=10000)
+	materials = list(/datum/material/iron=15000,/datum/material/glass=5000,/datum/material/plasma=10000)
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/pod_armor_industrial
@@ -43,7 +43,7 @@
 	build_type = PROTOLATHE
 	build_path = /obj/item/pod_parts/armor/industrial
 	category = list("Spacepod Designs")
-	materials = list(MAT_METAL=15000,MAT_GLASS=5000,MAT_PLASMA=10000,MAT_DIAMOND=5000,MAT_SILVER=7500)
+	materials = list(/datum/material/iron=15000,/datum/material/glass=5000,/datum/material/plasma=10000,/datum/material/diamond=5000,/datum/material/silver=7500)
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/pod_armor_sec
@@ -53,7 +53,7 @@
 	build_type = PROTOLATHE
 	build_path = /obj/item/pod_parts/armor/security
 	category = list("Spacepod Designs")
-	materials = list(MAT_METAL=15000,MAT_GLASS=5000,MAT_PLASMA=10000,MAT_DIAMOND=5000,MAT_SILVER=7500)
+	materials = list(/datum/material/iron=15000,/datum/material/glass=5000,/datum/material/plasma=10000,/datum/material/diamond=5000,/datum/material/silver=7500)
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/pod_armor_gold
@@ -63,7 +63,7 @@
 	build_type = PROTOLATHE
 	build_path = /obj/item/pod_parts/armor/gold
 	category = list("Spacepod Designs")
-	materials = list(MAT_METAL=5000,MAT_GLASS=2500,MAT_PLASMA=7500,MAT_GOLD=10000)
+	materials = list(/datum/material/iron=5000,/datum/material/glass=2500,/datum/material/plasma=7500,/datum/material/gold=10000)
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
 //////////////////////////////////////////
@@ -77,7 +77,7 @@
 	build_type = PROTOLATHE
 	build_path = /obj/item/spacepod_equipment/weaponry/disabler
 	category = list("Spacepod Designs")
-	materials = list(MAT_METAL = 15000)
+	materials = list(/datum/material/iron = 15000)
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/pod_gun_bdisabler
@@ -87,7 +87,7 @@
 	build_type = PROTOLATHE
 	build_path = /obj/item/spacepod_equipment/weaponry/burst_disabler
 	category = list("Spacepod Designs")
-	materials = list(MAT_METAL = 15000,MAT_PLASMA=2000)
+	materials = list(/datum/material/iron = 15000,/datum/material/plasma=2000)
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/pod_gun_laser
@@ -97,7 +97,7 @@
 	build_type = PROTOLATHE
 	build_path = /obj/item/spacepod_equipment/weaponry/laser
 	category = list("Spacepod Designs")
-	materials = list(MAT_METAL=10000,MAT_GLASS=5000,MAT_GOLD=1000,MAT_SILVER=2000)
+	materials = list(/datum/material/iron=10000,/datum/material/glass=5000,/datum/material/gold=1000,/datum/material/silver=2000)
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/pod_ka_basic
@@ -105,7 +105,7 @@
 	desc = "Allows for the construction of a weak spacepod Kinetic Accelerator"
 	id = "pod_ka_basic"
 	build_type = PROTOLATHE
-	materials = list(MAT_METAL = 10000, MAT_GLASS = 5000, MAT_SILVER = 2000, MAT_URANIUM = 2000)
+	materials = list(/datum/material/iron = 10000, /datum/material/glass = 5000, /datum/material/silver = 2000, /datum/material/uranium = 2000)
 	build_path = /obj/item/spacepod_equipment/weaponry/basic_pod_ka
 	category = list("Spacepod Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
@@ -115,7 +115,7 @@
 	desc = "Allows for the construction of a spacepod Kinetic Accelerator."
 	id = "pod_ka"
 	build_type = PROTOLATHE
-	materials = list(MAT_METAL = 10000, MAT_GLASS = 5000, MAT_SILVER = 2000, MAT_GOLD = 2000, MAT_DIAMOND = 2000)
+	materials = list(/datum/material/iron = 10000, /datum/material/glass = 5000, /datum/material/silver = 2000, /datum/material/gold = 2000, /datum/material/diamond = 2000)
 	build_path = /obj/item/spacepod_equipment/weaponry/pod_ka
 	category = list("Spacepod Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
@@ -126,7 +126,7 @@
 	desc = "Allows for the construction of a plasma cutter."
 	id = "pod_plasma_cutter"
 	build_type = PROTOLATHE
-	materials = list(MAT_METAL = 10000, MAT_GLASS = 5000, MAT_SILVER = 2000, MAT_GOLD = 2000, MAT_DIAMOND = 2000)
+	materials = list(/datum/material/iron = 10000, /datum/material/glass = 5000, /datum/material/silver = 2000, /datum/material/gold = 2000, /datum/material/diamond = 2000)
 	build_path = /obj/item/spacepod_equipment/weaponry/plasma_cutter
 	category = list("Spacepod Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
@@ -136,7 +136,7 @@
 	desc = "Allows for the construction of an advanced plasma cutter."
 	id = "pod_adv_plasma_cutter"
 	build_type = PROTOLATHE
-	materials = list(MAT_METAL = 10000, MAT_GLASS = 5000, MAT_SILVER = 4000, MAT_GOLD = 4000, MAT_DIAMOND = 4000)
+	materials = list(/datum/material/iron = 10000, /datum/material/glass = 5000, /datum/material/silver = 4000, /datum/material/gold = 4000, /datum/material/diamond = 4000)
 	build_path = /obj/item/spacepod_equipment/weaponry/plasma_cutter/adv
 	category = list("Spacepod Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
@@ -150,7 +150,7 @@
 	desc = "Allows for the construction of a spacepod tracking module."
 	id = "podmisc_tracker"
 	build_type = PROTOLATHE
-	materials = list(MAT_METAL=5000)
+	materials = list(/datum/material/iron=5000)
 	build_path = /obj/item/spacepod_equipment/tracker
 	category = list("Spacepod Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
@@ -164,7 +164,7 @@
 	desc = "Allows for the construction of a spacepod ore storage module."
 	id = "podcargo_ore"
 	build_type = PROTOLATHE
-	materials = list(MAT_METAL=20000, MAT_GLASS=2000)
+	materials = list(/datum/material/iron=20000, /datum/material/glass=2000)
 	build_path = /obj/item/spacepod_equipment/cargo/large/ore
 	category = list("Spacepod Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
@@ -174,7 +174,7 @@
 	desc = "Allows the construction of a spacepod crate storage module."
 	id = "podcargo_crate"
 	build_type = PROTOLATHE
-	materials = list(MAT_METAL=25000)
+	materials = list(/datum/material/iron=25000)
 	build_path = /obj/item/spacepod_equipment/cargo/large
 	category = list("Spacepod Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
@@ -188,7 +188,7 @@
 	desc = "Allows the construction of a spacepod passenger seat module."
 	id = "podcargo_seat"
 	build_type = PROTOLATHE
-	materials = list(MAT_METAL=7500, MAT_GLASS=2500)
+	materials = list(/datum/material/iron=7500, /datum/material/glass=2500)
 	build_path = /obj/item/spacepod_equipment/cargo/chair
 	category = list("Spacepod Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
@@ -198,7 +198,7 @@
 	desc = "Allows the construction of a spacepod auxillary cargo module."
 	id = "podcargo_lootbox"
 	build_type = PROTOLATHE
-	materials = list(MAT_METAL=7500, MAT_GLASS=2500)
+	materials = list(/datum/material/iron=7500, /datum/material/glass=2500)
 	build_path = /obj/item/spacepod_equipment/cargo/loot_box
 	category = list("Spacepod Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL*/
@@ -211,7 +211,7 @@
 	desc = "Allows for the construction of a tumbler style podlock."
 	id = "podlock_keyed"
 	build_type = PROTOLATHE
-	materials = list(MAT_METAL=4500)
+	materials = list(/datum/material/iron=4500)
 	build_path = /obj/item/spacepod_equipment/lock/keyed
 	category = list("Spacepod Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
@@ -221,7 +221,7 @@
 	desc = "Allows for the construction of a blank key for a podlock."
 	id = "podkey"
 	build_type = PROTOLATHE
-	materials = list(MAT_METAL=500)
+	materials = list(/datum/material/iron=500)
 	build_path = /obj/item/spacepod_key
 	category = list("Spacepod Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
@@ -233,5 +233,5 @@
 	build_type = PROTOLATHE
 	build_path = /obj/item/device/lock_buster
 	category = list("Spacepod Designs")
-	materials = list(MAT_METAL = 15000, MAT_DIAMOND=2500) //it IS a drill!
+	materials = list(/datum/material/iron = 15000, /datum/material/diamond=2500) //it IS a drill!
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY

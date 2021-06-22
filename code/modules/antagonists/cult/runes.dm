@@ -73,6 +73,9 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	if(!iscultist(user))
 		to_chat(user, "<span class='warning'>You aren't able to understand the words of [src].</span>")
 		return
+	if(istype(user, /mob/living/simple_animal/shade))
+		to_chat(user, "<span class='warning'>Your form is not yet strong enough to utilize the [src].</span>")
+		return
 	var/list/invokers = can_invoke(user)
 	if(invokers.len >= req_cultists)
 		invoke(invokers)
@@ -131,6 +134,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 					if((HAS_TRAIT(H, TRAIT_MUTE)) || H.silent)
 						continue
 				if(L.stat)
+					continue
+				if(istype(user, /mob/living/simple_animal/shade))
 					continue
 				invokers += L
 	return invokers
@@ -265,10 +270,18 @@ structure_check() searches for nearby cultist structures required for the invoca
 	</b></span>")
 	if(ishuman(convertee))
 		var/mob/living/carbon/human/H = convertee
+		if(is_banned_from(H.ckey, ROLE_CULTIST))
+			H.ghostize(FALSE) // You're getting ghosted no escape
+			var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as [H.name]?", ROLE_CULTIST, null, ROLE_CULTIST, 5 SECONDS, H)
+			if(LAZYLEN(candidates))
+				var/mob/dead/observer/C = pick(candidates)
+				to_chat(H, "Your mob has been taken over by a ghost! Appeal your job ban if you want to avoid this in the future!")
+				message_admins("[key_name_admin(C)] has taken control of ([key_name_admin(H)]) to replace a jobbanned player.")
+				H.key = C.key
 		H.uncuff()
 		H.stuttering = 0
 		H.cultslurring = 0
-	return 1
+	return TRUE
 
 /obj/effect/rune/convert/proc/do_sacrifice(mob/living/sacrificial, list/invokers)
 	var/mob/living/first_invoker = invokers[1]
@@ -277,7 +290,6 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/datum/antagonist/cult/C = first_invoker.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
 	if(!C)
 		return
-
 
 	var/big_sac = FALSE
 	if((((ishuman(sacrificial) || iscyborg(sacrificial)) && sacrificial.stat != DEAD) || C.cult_team.is_sacrifice_target(sacrificial.mind)) && invokers.len < 3)
@@ -307,6 +319,11 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 	var/obj/item/soulstone/stone = new /obj/item/soulstone(get_turf(src))
 	if(sacrificial.mind && !sacrificial.suiciding)
+		if(ishuman(sacrificial))
+			var/mob/living/carbon/human/H = sacrificial
+			if(is_banned_from(H.ckey, ROLE_CULTIST))
+				H.ghostize(FALSE) // You're getting ghosted no escape
+				H.key = null // Still useful to cult
 		stone.invisibility = INVISIBILITY_MAXIMUM //so it's not picked up during transfer_soul()
 		stone.transfer_soul("FORCE", sacrificial, usr)
 		stone.invisibility = 0
@@ -478,7 +495,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	. = ..()
 	GLOB.poi_list |= src
 	var/area/A = get_area(src)
-	priority_announce("An anomaly in veil physics has appeared in your station according to our scanners, the source being in [A.map_name]. It appears the anomaly is being stabilized by the cult of Nar-Sie!","Central Command Higher Dimensional Affairs", 'sound/ai/spanomalies.ogg')
+	priority_announce("An anomaly in veil physics has appeared in your station according to our scanners, the source being in [A.map_name]. It appears the anomaly is being stabilized by the cult of Nar-Sie!","Central Command Higher Dimensional Affairs", ANNOUNCER_SPANOMALIES)
 
 
 /obj/effect/rune/narsie/Destroy()

@@ -16,9 +16,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	icon_keyboard = "id_key"
 	req_one_access = list(ACCESS_HEADS, ACCESS_CHANGE_IDS)
 	circuit = /obj/item/circuitboard/computer/card
-	var/obj/item/card/id/scan = null
 	var/obj/item/card/id/modify = null
-	var/authenticated = 0
 	var/mode = 0
 	var/printing = null
 	var/list/region_access = null
@@ -58,7 +56,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 
 /obj/machinery/computer/card/examine(mob/user)
 	. = ..()
-	if(scan || modify)
+	if(modify)
 		. += "<span class='notice'>Alt-click to eject the ID card.</span>"
 
 /obj/machinery/computer/card/Initialize()
@@ -68,31 +66,16 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 /obj/machinery/computer/card/attackby(obj/O, mob/user, params)//TODO:SANITY
 	if(istype(O, /obj/item/card/id))
 		var/obj/item/card/id/idcard = O
-		if(check_access(idcard))
-			if(!scan)
-				if (!user.transferItemToLoc(idcard,src))
-					return
-				scan = idcard
-				playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
-			else if(!modify)
-				if (!user.transferItemToLoc(idcard,src))
-					return
-				modify = idcard
-				playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
-		else
-			if(!modify)
-				if (!user.transferItemToLoc(idcard,src))
-					return
-				modify = idcard
-				playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
+		if(!modify)
+			if (!user.transferItemToLoc(idcard,src))
+				return
+			modify = idcard
+			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
 		updateUsrDialog()
 	else
 		return ..()
 
 /obj/machinery/computer/card/Destroy()
-	if(scan)
-		qdel(scan)
-		scan = null
 	if(modify)
 		qdel(modify)
 		modify = null
@@ -100,17 +83,11 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 
 /obj/machinery/computer/card/handle_atom_del(atom/A)
 	..()
-	if(A == scan)
-		scan = null
-		updateUsrDialog()
 	if(A == modify)
 		modify = null
 		updateUsrDialog()
 
 /obj/machinery/computer/card/on_deconstruction()
-	if(scan)
-		scan.forceMove(drop_location())
-		scan = null
 	if(modify)
 		modify.forceMove(drop_location())
 		modify = null
@@ -147,6 +124,15 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 /obj/machinery/computer/card/ui_interact(mob/user)
 	. = ..()
 
+	var/obj/item/worn = null
+	if(istype(user, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = user
+		worn = H.wear_id
+	var/obj/item/card/id/user_id = null
+	if(worn)
+		user_id = worn.GetID()
+
+
 	var/list/dat = list()
 	if (mode == 1) // accessing crew manifest
 		dat += "<tt><b>Crew Manifest:</b><br>Please use security record computer to modify entries.<br><br>"
@@ -156,13 +142,16 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 
 	else if(mode == 2)
 		// JOB MANAGEMENT
+		var/identity_name = "--------"
+		if(user_id)
+			identity_name = html_encode(user_id.name)
 		dat += {"<a href='?src=[REF(src)];choice=return'>Return</a>
 		 || Confirm Identity:
-		<a href='?src=[REF(src)];choice=scan'>[(scan ? html_encode(scan.name) : "--------")]</a>
+		<b>[identity_name]</b>
 		<table><tr><td style='width:25%'><b>Job</b></td><td style='width:25%'><b>Slots</b></td>
 		<td style='width:25%'><b>Open job</b></td><td style='width:25%'><b>Close job</b><td style='width:25%'><b>Prioritize</b></td></td></tr>"}
 		var/ID
-		if(scan && (ACCESS_CHANGE_IDS in scan.access) && !target_dept)
+		if(user_id && (ACCESS_CHANGE_IDS in user_id.access) && !target_dept)
 			ID = 1
 		else
 			ID = 0
@@ -221,7 +210,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	else
 		var/list/header = list()
 
-		var/scan_name = scan ? html_encode(scan.name) : "--------"
+		var/scan_name = user_id ? html_encode(user_id.name) : "--------"
 		var/target_name = modify ? html_encode(modify.name) : "--------"
 		var/target_owner = (modify && modify.registered_name) ? html_encode(modify.registered_name) : "--------"
 		var/target_rank = (modify && modify.assignment) ? html_encode(modify.assignment) : "Unassigned"
@@ -231,11 +220,11 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		if(!authenticated)
 			header += {"<br><i>Please insert the cards into the slots</i><br>
 				Target: <a href='?src=[REF(src)];choice=modify'>[target_name]</a><br>
-				Confirm Identity: <a href='?src=[REF(src)];choice=scan'>[scan_name]</a><br>"}
+				Confirm Identity: <b>[scan_name]</b><br>"}
 		else
 			header += {"<div align='center'><br>
 				<a href='?src=[REF(src)];choice=modify'>Remove [target_name]</a> ||
-				<a href='?src=[REF(src)];choice=scan'>Remove [scan_name]</a><br>
+				<b>Logged in as [scan_name]</b><br>
 				<a href='?src=[REF(src)];choice=mode;mode_target=1'>Access Crew Manifest</a><br>
 				<a href='?src=[REF(src)];choice=logout'>Log Out</a></div>"}
 
@@ -324,12 +313,19 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		dat = list("<tt>", header.Join(), body, "<hr><br></tt>")
 	var/datum/browser/popup = new(user, "id_com", src.name, 900, 620)
 	popup.set_content(dat.Join())
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/computer/card/Topic(href, href_list)
 	if(..())
 		return
+
+	var/obj/item/worn = null
+	if(istype(usr, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = usr
+		worn = H.wear_id
+	var/obj/item/card/id/user_id = null
+	if(worn)
+		user_id = worn.GetID()
 
 	if(!usr.canUseTopic(src, !issilicon(usr)) || !is_operational())
 		usr.unset_machine()
@@ -340,14 +336,12 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	switch(href_list["choice"])
 		if ("modify")
 			eject_id_modify(usr)
-		if ("scan")
-			eject_id_scan(usr)
 		if ("auth")
-			if ((!( authenticated ) && (scan || issilicon(usr)) && (modify || mode)))
-				if (check_access(scan))
+			if ((!( authenticated ) && (user_id || issilicon(usr)) && (modify || mode)))
+				if (check_access(user_id))
 					region_access = list()
 					head_subordinates = list()
-					if(ACCESS_CHANGE_IDS in scan.access)
+					if(ACCESS_CHANGE_IDS in user_id.access)
 						if(target_dept)
 							head_subordinates = get_all_jobs()
 							region_access |= target_dept
@@ -357,20 +351,20 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 						playsound(src, 'sound/machines/terminal_on.ogg', 50, 0)
 
 					else
-						if((ACCESS_HOP in scan.access) && ((target_dept==1) || !target_dept))
+						if((ACCESS_HOP in user_id.access) && ((target_dept==1) || !target_dept))
 							region_access |= 1
 							region_access |= 6
 							get_subordinates("Head of Personnel")
-						if((ACCESS_HOS in scan.access) && ((target_dept==2) || !target_dept))
+						if((ACCESS_HOS in user_id.access) && ((target_dept==2) || !target_dept))
 							region_access |= 2
 							get_subordinates("Head of Security")
-						if((ACCESS_CMO in scan.access) && ((target_dept==3) || !target_dept))
+						if((ACCESS_CMO in user_id.access) && ((target_dept==3) || !target_dept))
 							region_access |= 3
 							get_subordinates("Chief Medical Officer")
-						if((ACCESS_RD in scan.access) && ((target_dept==4) || !target_dept))
+						if((ACCESS_RD in user_id.access) && ((target_dept==4) || !target_dept))
 							region_access |= 4
 							get_subordinates("Research Director")
-						if((ACCESS_CE in scan.access) && ((target_dept==5) || !target_dept))
+						if((ACCESS_CE in user_id.access) && ((target_dept==5) || !target_dept))
 							region_access |= 5
 							get_subordinates("Chief Engineer")
 						if(region_access)
@@ -413,9 +407,11 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 							updateUsrDialog()
 							break
 					if(!jobdatum)
-						to_chat(usr, "<span class='error'>No log exists for this job.</span>")
+						to_chat(usr, "<span class='warning'>No log exists for this job.</span>")
 						updateUsrDialog()
 						return
+					if(!isnull(modify.registered_age) && modify.registered_age < jobdatum.minimal_character_age)
+						to_chat(usr, "<span class='warning'>This individual is too young to hold that Job, per Nanotrasen guidelines. Suggest aborting Job Assignment!</span>")
 					if(modify.registered_account)
 						modify.registered_account.account_job = jobdatum // this is a terrible idea and people will grief but sure whatever
 
@@ -441,7 +437,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 					else if(!isnull(newAge))
 						to_chat(usr, "<span class='alert'>Invalid age entered- age not updated.</span>")
 						updateUsrDialog()
-						
+
 					var/newName = reject_bad_name(href_list["reg"])
 					if(newName)
 						modify.registered_name = newName
@@ -460,7 +456,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 
 		if("make_job_available")
 			// MAKE ANOTHER JOB POSITION AVAILABLE FOR LATE JOINERS
-			if(scan && (ACCESS_CHANGE_IDS in scan.access) && !target_dept)
+			if(user_id && (ACCESS_CHANGE_IDS in user_id.access) && !target_dept)
 				var/edit_job_target = href_list["job"]
 				var/datum/job/j = SSjob.GetJob(edit_job_target)
 				if(!j)
@@ -477,7 +473,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 
 		if("make_job_unavailable")
 			// MAKE JOB POSITION UNAVAILABLE FOR LATE JOINERS
-			if(scan && (ACCESS_CHANGE_IDS in scan.access) && !target_dept)
+			if(user_id && (ACCESS_CHANGE_IDS in user_id.access) && !target_dept)
 				var/edit_job_target = href_list["job"]
 				var/datum/job/j = SSjob.GetJob(edit_job_target)
 				if(!j)
@@ -495,7 +491,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 
 		if ("prioritize_job")
 			// TOGGLE WHETHER JOB APPEARS AS PRIORITIZED IN THE LOBBY
-			if(scan && (ACCESS_CHANGE_IDS in scan.access) && !target_dept)
+			if(user_id && (ACCESS_CHANGE_IDS in user_id.access) && !target_dept)
 				var/priority_target = href_list["job"]
 				var/datum/job/j = SSjob.GetJob(priority_target)
 				if(!j)
@@ -533,29 +529,8 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 /obj/machinery/computer/card/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)) || !is_operational())
 		return
-	if(scan)
-		eject_id_scan(user)
 	if(modify)
 		eject_id_modify(user)
-
-/obj/machinery/computer/card/proc/eject_id_scan(mob/user)
-	if(scan)
-		scan.forceMove(drop_location())
-		if(!issilicon(user) && Adjacent(user))
-			user.put_in_hands(scan)
-		playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
-		scan = null
-	else //switching the ID with the one you're holding
-		if(issilicon(user) || !Adjacent(user))
-			return
-		var/obj/item/I = user.get_active_held_item()
-		if(istype(I, /obj/item/card/id))
-			if(!user.transferItemToLoc(I,src))
-				return
-			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
-			scan = I
-	authenticated = FALSE
-	updateUsrDialog()
 
 /obj/machinery/computer/card/proc/eject_id_modify(mob/user)
 	if(modify)

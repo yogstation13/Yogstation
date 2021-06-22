@@ -18,7 +18,7 @@
 	var/dir = get_dir(user.loc,target.loc)
 
 	if(user.z != target.z)
-		to_chat(user,"<span class='warning>[target.real_name] is ... vertical to you?</span>")
+		to_chat(user,"<span class='warning'>[target.real_name] is ... vertical to you?</span>")
 	else
 		switch(dist)
 			if(0 to 15)
@@ -106,7 +106,7 @@
 /obj/item/melee/sickly_blade/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	var/datum/antagonist/heretic/cultie = user.mind.has_antag_datum(/datum/antagonist/heretic)
-	if(!cultie || !proximity_flag)
+	if(!cultie || !proximity_flag || target == user)
 		return
 	var/list/knowledge = cultie.get_all_knowledge()
 	for(var/X in knowledge)

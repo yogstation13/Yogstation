@@ -8,7 +8,7 @@
 	flags_1 = CONDUCT_1
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
-	materials = list(MAT_METAL=500, MAT_GLASS=500)
+	materials = list(/datum/material/iron=500, /datum/material/glass=500)
 	w_class = WEIGHT_CLASS_SMALL
 	var/turf/pointer_loc
 	var/energy = 5
@@ -82,7 +82,7 @@
 		return
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.dna.check_mutation(HULK))
+		if(H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK))
 			to_chat(user, "<span class='warning'>Your fingers can't press the button!</span>")
 			return
 

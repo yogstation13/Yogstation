@@ -20,3 +20,4 @@
 					"tail", "trim", "tube", "wobble", "roll", "gnarly", "epic")
 
 	icon_state = "beach"
+	sing_verb = "parties"

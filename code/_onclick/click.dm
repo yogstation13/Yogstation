@@ -369,14 +369,14 @@
 	var/turf/T = get_turf(src)
 	if(T && user.TurfAdjacent(T))
 		user.listed_turf = T
-		user.client.statpanel = T.name
+		user.client << output("[url_encode(json_encode(T.name))];", "statbrowser:create_listedturf")
 
 // Use this instead of /mob/proc/AltClickOn(atom/A) where you only want turf content listing without additional atom alt-click interaction
 /atom/proc/AltClickNoInteract(mob/user, atom/A)
 	var/turf/T = get_turf(A)
 	if(T && user.TurfAdjacent(T))
 		user.listed_turf = T
-		user.client.statpanel = T.name
+		user.client << output("[url_encode(json_encode(T.name))];", "statbrowser:create_listedturf")
 
 /mob/proc/TurfAdjacent(turf/T)
 	return T.Adjacent(src)
@@ -495,16 +495,16 @@
 /* MouseWheelOn */
 
 /mob/proc/MouseWheelOn(atom/A, delta_x, delta_y, params)
-	return
+	SEND_SIGNAL(src, COMSIG_MOUSE_SCROLL_ON, A, delta_x, delta_y, params)
 
 /mob/dead/observer/MouseWheelOn(atom/A, delta_x, delta_y, params)
 	var/list/modifier = params2list(params)
 	if(modifier["shift"])
-		var/view = 0
 		if(delta_y > 0)
-			view = -1
+			view -= 1
 		else
-			view = 1
+			view += 1
+		view = clamp(view, 0, 5) // Allows you to scale up 5 times
 		add_view_range(view)
 
 /mob/proc/check_click_intercept(params,A)

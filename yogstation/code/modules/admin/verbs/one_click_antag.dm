@@ -48,11 +48,11 @@
 /client/proc/subtlemessage_faction() // Thanks GenericDM very cool
 	set name = "SM to Faction"
 	set desc = "Allows you to send a mass SM to every member of a particular faction or antagonist type."
-	set category = "Special Verbs"
-	
+	set category = "Admin.Player Interaction"
+
 	var/list/choices = list() //This list includes both factions in the "mob.factions" sense
 	// and also factions as in, types of /datum/antagonist/
-	
+
 	//First, lets generate a list of possible factions for this admin to choose from
 	for(var/mob/living/player in GLOB.player_list)
 		if(player.faction)
@@ -83,7 +83,7 @@
 		text = "<i>You are receiving a message from the masters... <b>[msg]</i></b>"
 	else
 		text = "<i>You hear a booming voice in your head... <b>[msg]</b></i>"
-	
+
 	for(var/mob/living/player in GLOB.player_list)
 		var/done = FALSE
 		if(player.faction)

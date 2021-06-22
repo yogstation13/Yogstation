@@ -210,12 +210,13 @@
 	density = FALSE //allows shuttle airlocks to close, nothing but an approved passenger gets past CanPass
 	locked = TRUE
 	use_power = FALSE
+	resistance_flags = INDESTRUCTIBLE
 	var/threshold = 500
 	var/static/list/approved_passengers = list()
 	var/static/list/check_times = list()
 	var/list/payees = list()
 
-/obj/machinery/scanner_gate/luxury_shuttle/CanAllowThrough(atom/movable/mover, turf/target)
+/obj/machinery/scanner_gate/luxury_shuttle/Cross(atom/movable/mover, turf/target)
 	. = ..()
 	if(mover in approved_passengers)
 		set_scanline("scanning", 10)
@@ -223,6 +224,7 @@
 
 	if(!isliving(mover)) //No stowaways
 		return FALSE
+	return FALSE
 
 /obj/machinery/scanner_gate/luxury_shuttle/auto_scan(atom/movable/AM)
 	return

@@ -66,6 +66,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/reagent_weight = 1
 	///is it currently metabolizing
 	var/metabolizing = FALSE
+	/// is it bad for you? Currently only used for borghypo. C2s and Toxins have it TRUE by default.
+	var/harmful = FALSE
 	/// Are we from a material? We might wanna know that for special stuff. Like metalgen. Is replaced with a ref of the material on New()
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
@@ -95,7 +97,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 /// Called from [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/on_mob_life(mob/living/carbon/M)
 	current_cycle++
-	holder.remove_reagent(type, metabolization_rate * M.metabolism_efficiency) //By default it slowly disappears.
+	if(holder)
+		holder.remove_reagent(type, metabolization_rate * M.metabolism_efficiency) //By default it slowly disappears.
 	return
 
 ///Called after a reagent is transfered

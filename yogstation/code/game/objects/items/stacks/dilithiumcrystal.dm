@@ -14,7 +14,7 @@
 	pixel_x = rand(-5, 5) // Cloned over from bluespace crystals. I guess to make their spawning a bit more scattered?
 	pixel_y = rand(-5, 5)
 
-/obj/item/stack/ore/bluespace_crystal/attack_self(mob/user) // Currently has no effect, besides crushing one of the crystals into dust.
+/obj/item/stack/ore/dilithium_crystal/attack_self(mob/user) // Currently has no effect, besides crushing one of the crystals into dust.
 	user.visible_message("<span class='warning'>[user] crushes [src]!</span>", "<span class='danger'>You crush [src]!</span>")
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, "sparks", 50, 1)

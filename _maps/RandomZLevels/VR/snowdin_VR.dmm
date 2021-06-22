@@ -185,7 +185,7 @@
 "aQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -196,7 +196,7 @@
 "aR" = (
 /obj/structure/bed,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -209,7 +209,7 @@
 "aT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -219,7 +219,7 @@
 "aU" = (
 /obj/structure/bed,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -231,7 +231,7 @@
 "aW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -241,7 +241,7 @@
 "aY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -250,7 +250,7 @@
 "aZ" = (
 /obj/structure/bed,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -260,7 +260,7 @@
 "ba" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -274,7 +274,7 @@
 "bb" = (
 /obj/structure/bed,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -310,7 +310,7 @@
 /area/awaymission/snowdin/cave/cavern)
 "bi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -345,7 +345,7 @@
 /area/awaymission/snowdin/post/dorm)
 "bl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -422,7 +422,7 @@
 /area/awaymission/snowdin/post/research)
 "bt" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -449,7 +449,7 @@
 /area/awaymission/snowdin/post/kitchen)
 "bw" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -458,7 +458,7 @@
 /area/awaymission/snowdin/post/kitchen)
 "bx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -494,7 +494,7 @@
 /area/awaymission/snowdin/post/dorm)
 "bA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -550,7 +550,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -560,7 +560,7 @@
 "bH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -571,7 +571,7 @@
 "bI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -581,7 +581,7 @@
 "bJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -613,7 +613,7 @@
 /area/awaymission/snowdin/post/kitchen)
 "bN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -639,7 +639,7 @@
 /area/awaymission/snowdin/post/dorm)
 "bQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -652,7 +652,7 @@
 /area/awaymission/snowdin/post/dorm)
 "bR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -665,7 +665,7 @@
 /area/awaymission/snowdin/post/dorm)
 "bS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -678,7 +678,7 @@
 /area/awaymission/snowdin/post/dorm)
 "bT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -693,7 +693,7 @@
 /area/awaymission/snowdin/post/dorm)
 "bU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -707,7 +707,7 @@
 "bV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -759,7 +759,7 @@
 /area/awaymission/snowdin/post/kitchen)
 "cc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -792,7 +792,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Kitchen APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -820,7 +820,7 @@
 /area/awaymission/snowdin/post/kitchen)
 "cl" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -852,7 +852,7 @@
 /area/awaymission/snowdin/post/dorm)
 "cp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -885,7 +885,7 @@
 /area/awaymission/snowdin/post/dorm)
 "cs" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -907,7 +907,7 @@
 /area/awaymission/snowdin/post/dorm)
 "cu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -927,7 +927,7 @@
 /area/awaymission/snowdin/post/dorm)
 "cw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -952,7 +952,7 @@
 /area/awaymission/snowdin/post/dorm)
 "cy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -978,7 +978,7 @@
 "cA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1060,7 +1060,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1073,7 +1073,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1090,7 +1090,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1102,7 +1102,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1116,7 +1116,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1135,7 +1135,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1148,7 +1148,7 @@
 "cO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1158,7 +1158,7 @@
 "cP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1169,7 +1169,7 @@
 "cQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1179,7 +1179,7 @@
 "cR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1188,7 +1188,7 @@
 "cS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1217,7 +1217,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1230,7 +1230,7 @@
 "cW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1246,7 +1246,7 @@
 "cX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1260,7 +1260,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 2;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1273,7 +1273,7 @@
 "cZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1290,7 +1290,7 @@
 "da" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1308,7 +1308,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 2;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1320,7 +1320,7 @@
 "dc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1339,7 +1339,7 @@
 "dd" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1351,7 +1351,7 @@
 "de" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1368,7 +1368,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 2;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1379,7 +1379,7 @@
 "dg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1399,7 +1399,7 @@
 "dh" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1415,7 +1415,7 @@
 "di" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1434,7 +1434,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1497,7 +1497,7 @@
 "dt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1627,7 +1627,7 @@
 "dL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1670,7 +1670,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1735,7 +1735,7 @@
 /area/awaymission/snowdin/post/dorm)
 "eb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1798,7 +1798,7 @@
 "eh" = (
 /obj/structure/bed,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1814,7 +1814,7 @@
 "ej" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1841,7 +1841,7 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Gateway APC";
-	pixel_y = -24;
+	pixel_y = -23;
 	req_access = 150
 	},
 /obj/structure/cable/yellow{
@@ -1857,7 +1857,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Research Center APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -1972,7 +1972,7 @@
 "ez" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2057,7 +2057,7 @@
 /area/awaymission/snowdin/post/dorm)
 "eP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2077,7 +2077,7 @@
 "eR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2097,7 +2097,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2110,7 +2110,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2126,7 +2126,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2140,7 +2140,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2150,7 +2150,7 @@
 "eW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2239,7 +2239,7 @@
 "fd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2279,7 +2279,7 @@
 "fj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2360,7 +2360,7 @@
 "fu" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2373,7 +2373,7 @@
 "fv" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2401,7 +2401,7 @@
 "fx" = (
 /obj/item/reagent_containers/blood,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2473,7 +2473,7 @@
 "fD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2570,7 +2570,7 @@
 "fQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2620,7 +2620,7 @@
 /area/awaymission/snowdin/post/hydro)
 "fV" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2698,7 +2698,7 @@
 /area/awaymission/snowdin/post/cavern2)
 "gh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2710,7 +2710,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2756,7 +2756,7 @@
 /area/awaymission/snowdin/post/dorm)
 "gm" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2769,7 +2769,7 @@
 "gn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2785,7 +2785,7 @@
 "go" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2800,7 +2800,7 @@
 "gp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2816,7 +2816,7 @@
 "gq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2854,7 +2854,7 @@
 "gt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2881,7 +2881,7 @@
 /area/awaymission/snowdin/post/gateway)
 "gy" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2925,7 +2925,7 @@
 "gF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -2965,7 +2965,7 @@
 	pixel_x = 11
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3025,7 +3025,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Garage APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -3067,7 +3067,7 @@
 /area/awaymission/snowdin/post/dorm)
 "gY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3084,7 +3084,7 @@
 "gZ" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3105,7 +3105,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3122,7 +3122,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3135,7 +3135,7 @@
 "hc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3147,7 +3147,7 @@
 "hd" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3156,7 +3156,7 @@
 "he" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3191,7 +3191,7 @@
 /area/awaymission/snowdin/post)
 "hh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3244,7 +3244,7 @@
 "hm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3259,7 +3259,7 @@
 "hn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3336,7 +3336,7 @@
 /area/awaymission/snowdin/post/hydro)
 "hA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3397,7 +3397,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3409,7 +3409,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3425,7 +3425,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3442,7 +3442,7 @@
 "hL" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3471,7 +3471,7 @@
 /area/awaymission/snowdin/post)
 "hO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3492,7 +3492,7 @@
 "hP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3517,7 +3517,7 @@
 "hS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3532,7 +3532,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3548,7 +3548,7 @@
 /area/awaymission/snowdin/post/messhall)
 "hW" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3568,7 +3568,7 @@
 "hY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3579,7 +3579,7 @@
 /area/awaymission/snowdin/post/hydro)
 "ib" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3666,7 +3666,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3678,7 +3678,7 @@
 "ip" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3693,7 +3693,7 @@
 "iq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3714,7 +3714,7 @@
 "ir" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3735,7 +3735,7 @@
 "is" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3760,7 +3760,7 @@
 "it" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3781,7 +3781,7 @@
 "iu" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 2;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3803,7 +3803,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3821,7 +3821,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3866,7 +3866,7 @@
 "iA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3880,7 +3880,7 @@
 "iB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3898,7 +3898,7 @@
 "iC" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 2;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3927,7 +3927,7 @@
 /area/awaymission/snowdin/post/messhall)
 "iH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3954,7 +3954,7 @@
 /area/awaymission/snowdin/post/hydro)
 "iL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3981,7 +3981,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -3990,7 +3990,7 @@
 "iO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4009,7 +4009,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4022,7 +4022,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4037,7 +4037,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4049,7 +4049,7 @@
 "iS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4062,7 +4062,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4082,7 +4082,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4095,7 +4095,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4186,7 +4186,7 @@
 /area/awaymission/snowdin/post/dorm)
 "jh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4247,7 +4247,7 @@
 "jp" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4267,7 +4267,7 @@
 "jq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4283,7 +4283,7 @@
 "jr" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4348,7 +4348,7 @@
 "jz" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4362,7 +4362,7 @@
 /area/awaymission/snowdin/post/hydro)
 "jB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4422,7 +4422,7 @@
 "jJ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4431,7 +4431,7 @@
 /area/awaymission/snowdin/post/garage)
 "jK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4463,7 +4463,7 @@
 /area/awaymission/snowdin/cave/cavern)
 "jP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4507,7 +4507,7 @@
 "jV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4562,7 +4562,7 @@
 /area/awaymission/snowdin/post/messhall)
 "kc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4606,7 +4606,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4616,7 +4616,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4628,7 +4628,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4638,7 +4638,7 @@
 "kk" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4702,7 +4702,7 @@
 /area/awaymission/snowdin/cave/mountain)
 "kv" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4714,7 +4714,7 @@
 "kw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4729,7 +4729,7 @@
 "kx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4744,7 +4744,7 @@
 "ky" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4759,7 +4759,7 @@
 "kz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4772,7 +4772,7 @@
 "kA" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4784,7 +4784,7 @@
 /area/awaymission/snowdin/post/dorm)
 "kB" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4802,7 +4802,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Custodials APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -4939,7 +4939,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4972,7 +4972,7 @@
 /area/awaymission/snowdin/post/garage)
 "kZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4992,7 +4992,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5011,7 +5011,7 @@
 "le" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5027,7 +5027,7 @@
 "lf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5053,7 +5053,7 @@
 "li" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5064,7 +5064,7 @@
 "lj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5082,7 +5082,7 @@
 /area/awaymission/snowdin/post/custodials)
 "lm" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5105,7 +5105,7 @@
 "lo" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5127,7 +5127,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5144,7 +5144,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5162,7 +5162,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5179,7 +5179,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5196,7 +5196,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5212,7 +5212,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5229,7 +5229,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5244,7 +5244,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5267,7 +5267,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5280,7 +5280,7 @@
 "lz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5295,7 +5295,7 @@
 "lA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5310,7 +5310,7 @@
 "lB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5328,7 +5328,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5346,7 +5346,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 2;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5358,7 +5358,7 @@
 "lE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5378,7 +5378,7 @@
 "lF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5393,7 +5393,7 @@
 "lG" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 2;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5413,7 +5413,7 @@
 "lH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5427,7 +5427,7 @@
 "lI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5440,7 +5440,7 @@
 "lJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5453,7 +5453,7 @@
 "lK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5464,7 +5464,7 @@
 "lL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5476,7 +5476,7 @@
 /obj/machinery/door/airlock/external/glass,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5492,7 +5492,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5505,7 +5505,7 @@
 "lP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5521,7 +5521,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5533,7 +5533,7 @@
 "lR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5613,7 +5613,7 @@
 "mb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5628,7 +5628,7 @@
 "mc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5649,7 +5649,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5669,7 +5669,7 @@
 "me" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5684,7 +5684,7 @@
 "mf" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5750,7 +5750,7 @@
 "mo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5823,7 +5823,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5832,7 +5832,7 @@
 "my" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5877,7 +5877,7 @@
 "mH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5893,7 +5893,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5904,7 +5904,7 @@
 "mJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5935,7 +5935,7 @@
 "mP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -5970,7 +5970,7 @@
 "mT" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6036,7 +6036,7 @@
 "nc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6056,7 +6056,7 @@
 "ne" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6075,7 +6075,7 @@
 "nf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6091,7 +6091,7 @@
 "ng" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6107,7 +6107,7 @@
 "nh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6119,7 +6119,7 @@
 "ni" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6132,7 +6132,7 @@
 "nj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6142,7 +6142,7 @@
 "nk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6207,7 +6207,7 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6227,7 +6227,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Engineering APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -6325,7 +6325,7 @@
 /area/awaymission/snowdin/post/secpost)
 "nG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6401,7 +6401,7 @@
 /area/awaymission/snowdin/post)
 "nM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6445,7 +6445,7 @@
 /area/awaymission/snowdin/post/engineering)
 "nR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6529,7 +6529,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Security Outpost APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -6544,7 +6544,7 @@
 /area/awaymission/snowdin/post/secpost)
 "of" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6579,7 +6579,7 @@
 /area/awaymission/snowdin/post/secpost)
 "oi" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6613,7 +6613,7 @@
 /area/awaymission/snowdin/post)
 "ok" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6656,7 +6656,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/visible,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 8;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6666,9 +6666,9 @@
 "oo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4;
+	piping_layer = 4;
 	pixel_x = 5;
-	pixel_y = 5;
-	piping_layer = 3
+	pixel_y = 5
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -6676,16 +6676,16 @@
 "op" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4;
+	piping_layer = 4;
 	pixel_x = 5;
-	pixel_y = 5;
-	piping_layer = 3
+	pixel_y = 5
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/engineering)
 "oq" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6779,7 +6779,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6789,7 +6789,7 @@
 "oE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6799,7 +6799,7 @@
 "oF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6810,7 +6810,7 @@
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6849,7 +6849,7 @@
 /area/awaymission/snowdin/post)
 "oK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6864,7 +6864,7 @@
 /area/awaymission/snowdin/post)
 "oL" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -6907,7 +6907,7 @@
 /area/awaymission/snowdin/post/engineering)
 "oO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -7112,7 +7112,7 @@
 "ps" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -7123,7 +7123,7 @@
 "pt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -7147,7 +7147,7 @@
 /area/awaymission/snowdin/post/engineering)
 "pv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -7288,7 +7288,7 @@
 /area/awaymission/snowdin/post)
 "pQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -7328,7 +7328,7 @@
 /area/awaymission/snowdin/post/engineering)
 "pT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -7500,7 +7500,7 @@
 "qs" = (
 /obj/machinery/door/airlock/external/glass,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -7517,7 +7517,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 6;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -7526,7 +7526,7 @@
 "qu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -7681,7 +7681,7 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -7864,7 +7864,7 @@
 "rd" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1;
-	piping_layer = 3
+	piping_layer = 4
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/cavern2)
@@ -7907,7 +7907,7 @@
 "rl" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -7917,7 +7917,7 @@
 "rm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -7934,7 +7934,7 @@
 /area/awaymission/snowdin/post)
 "ro" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -8076,7 +8076,7 @@
 "rI" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos{
 	dir = 1;
-	piping_layer = 3;
+	piping_layer = 4;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -8901,7 +8901,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Main Outpost APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -9621,10 +9621,10 @@
 /area/awaymission/snowdin/post/broken_shuttle)
 "wc" = (
 /obj/machinery/computer{
-	name = "Shuttle Transist Console";
 	desc = "A console meant for calling and sending a transit ferry. It seems iced-over and non-functional.";
 	dir = 1;
-	icon_screen = null
+	icon_screen = null;
+	name = "Shuttle Transist Console"
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/snowdin/post/broken_shuttle)
@@ -9713,9 +9713,9 @@
 "wm" = (
 /obj/machinery/porta_turret/centcom_shuttle/weak{
 	desc = "A turret built with substandard parts and run down further with age.";
-	icon_state = "syndie_off";
 	dir = 9;
-	faction = list("pirate")
+	faction = list("pirate");
+	icon_state = "syndie_off"
 	},
 /turf/open/floor/plating/snowed/smoothed,
 /area/awaymission/snowdin/cave)
@@ -9839,8 +9839,8 @@
 /area/awaymission/snowdin/outside)
 "wC" = (
 /obj/vehicle/ridden/atv{
-	icon_state = "atv";
-	dir = 4
+	dir = 4;
+	icon_state = "atv"
 	},
 /obj/effect/light_emitter{
 	name = "outdoor light";
@@ -10393,7 +10393,7 @@
 "xV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3
+	piping_layer = 4
 	},
 /turf/closed/mineral/snowmountain/cavern,
 /area/awaymission/snowdin/cave/cavern)
@@ -10573,10 +10573,10 @@
 /area/awaymission/snowdin/cave)
 "yu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	name = "toxin out";
 	dir = 8;
+	frequency = 1442;
 	id_tag = "snowdin_toxins_mine_1";
-	frequency = 1442
+	name = "toxin out"
 	},
 /turf/open/floor/engine/vacuum,
 /area/awaymission/snowdin/cave)
@@ -10948,8 +10948,8 @@
 /area/awaymission/snowdin/post/minipost)
 "zq" = (
 /obj/vehicle/ridden/atv{
-	icon_state = "atv";
-	dir = 8
+	dir = 8;
+	icon_state = "atv"
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/minipost)
@@ -11073,7 +11073,7 @@
 "zH" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4;
-	piping_layer = 3
+	piping_layer = 4
 	},
 /obj/machinery/space_heater,
 /obj/structure/sign/warning/xeno_mining{
@@ -11087,7 +11087,7 @@
 "zI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
-	piping_layer = 3
+	piping_layer = 4
 	},
 /turf/closed/wall/ice,
 /area/awaymission/snowdin/post/mining_dock)
@@ -11682,7 +11682,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Recon Post APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -11860,8 +11860,8 @@
 /area/awaymission/snowdin/cave)
 "BO" = (
 /obj/effect/turf_decal/stripes/end{
-	icon_state = "warn_end";
-	dir = 1
+	dir = 1;
+	icon_state = "warn_end"
 	},
 /turf/open/floor/plating/snowed/cavern,
 /area/awaymission/snowdin/cave/cavern)
@@ -11874,8 +11874,8 @@
 /area/awaymission/snowdin/cave/cavern)
 "BQ" = (
 /obj/effect/turf_decal/stripes/end{
-	icon_state = "warn_end";
-	dir = 8
+	dir = 8;
+	icon_state = "warn_end"
 	},
 /turf/open/floor/plating/snowed/cavern,
 /area/awaymission/snowdin/cave/cavern)
@@ -12189,8 +12189,8 @@
 /area/awaymission/snowdin/cave)
 "CP" = (
 /obj/structure/shuttle/engine/heater{
-	icon_state = "heater";
-	dir = 4
+	dir = 4;
+	icon_state = "heater"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -12724,8 +12724,8 @@
 /area/awaymission/snowdin/cave)
 "DU" = (
 /obj/structure/shuttle/engine/heater{
-	icon_state = "heater";
-	dir = 4
+	dir = 4;
+	icon_state = "heater"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -13165,8 +13165,8 @@
 /area/awaymission/snowdin/cave)
 "EN" = (
 /obj/machinery/sleeper/syndie{
-	icon_state = "sleeper_s";
-	dir = 1
+	dir = 1;
+	icon_state = "sleeper_s"
 	},
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
@@ -13178,8 +13178,8 @@
 "EP" = (
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/sleeper/syndie{
-	icon_state = "sleeper_s";
-	dir = 1
+	dir = 1;
+	icon_state = "sleeper_s"
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/snowdin/cave)
@@ -13502,7 +13502,7 @@
 "FK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4;
-	piping_layer = 3
+	piping_layer = 4
 	},
 /obj/structure/sign/warning/xeno_mining{
 	pixel_x = 32
@@ -14429,8 +14429,8 @@
 /area/awaymission/snowdin/post/mining_main)
 "Ix" = (
 /obj/vehicle/ridden/atv{
-	icon_state = "atv";
-	dir = 1
+	dir = 1;
+	icon_state = "atv"
 	},
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
@@ -14568,7 +14568,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Main Outpost APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -14582,7 +14582,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Mechbay APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -15335,7 +15335,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Mining Post APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"

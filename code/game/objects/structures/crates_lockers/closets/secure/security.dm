@@ -14,7 +14,6 @@
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/storage/belt/sabre(src)
 	new /obj/item/door_remote/captain(src)
-	new /obj/item/card/id/captains_spare(src)
 	new /obj/item/storage/photo_album/Captain(src)
 	new /obj/item/clipboard/yog/paperwork/captain(src)
 	new /obj/item/radio/security(src)
@@ -200,6 +199,9 @@
 	..()
 	new /obj/item/clothing/under/rank/prisoner( src )
 	new /obj/item/clothing/shoes/sneakers/orange( src )
+
+/obj/structure/closet/secure_closet/brig/cell
+	name = "cell locker"
 
 /obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"

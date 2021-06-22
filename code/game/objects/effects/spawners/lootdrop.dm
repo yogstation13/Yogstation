@@ -69,6 +69,7 @@
 			/obj/item/trash/popcorn = 1,
 			/obj/item/trash/raisins = 1,
 			/obj/item/trash/sosjerky = 1,
+			/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
 			/obj/item/trash/syndi_cakes = 1)
 
 /obj/effect/spawner/lootdrop/trashbin
@@ -83,6 +84,7 @@
 			/obj/item/trash/popcorn = 1,
 			/obj/item/trash/raisins = 1,
 			/obj/item/trash/sosjerky = 1,
+			/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
 			/obj/item/trash/syndi_cakes = 1)
 
 /obj/effect/spawner/lootdrop/three_course_meal
@@ -120,6 +122,13 @@
 
 /obj/effect/spawner/lootdrop/maintenance/Initialize(mapload)
 	loot = GLOB.maintenance_loot
+	
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_FILLED_MAINT))
+		lootcount = FLOOR(lootcount * 1.5, 1)
+
+	else if(HAS_TRAIT(SSstation, STATION_TRAIT_EMPTY_MAINT))
+		lootcount = FLOOR(lootcount * 0.5, 1)
+
 	. = ..()
 
 /obj/effect/spawner/lootdrop/maintenance/two

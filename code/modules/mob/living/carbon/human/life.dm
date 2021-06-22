@@ -79,6 +79,11 @@
 	else
 		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "brain_damage")
 
+	if(!dna)
+		return
+	if(prob(3) && dna.check_mutation(ACTIVE_HULK))
+		say(pick_list_replacements(BRAIN_DAMAGE_FILE, "hulk"))
+
 /mob/living/carbon/human/handle_mutations_and_radiation()
 	if(!dna || !dna.species.handle_mutations_and_radiation(src))
 		..()

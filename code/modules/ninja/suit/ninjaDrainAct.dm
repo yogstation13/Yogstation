@@ -261,4 +261,4 @@ They *could* go in their appropriate files, but this is supposed to be modular
 		spark_system.set_up(5, 0, loc)
 		playsound(src, "sparks", 50, 1)
 		visible_message("<span class='danger'>[H] electrocutes [src] with [H.p_their()] touch!</span>", "<span class='userdanger'>[H] electrocutes you with [H.p_their()] touch!</span>")
-		electrocute_act(25, H)
+		electrocute_act(15, H)

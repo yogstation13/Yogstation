@@ -164,6 +164,7 @@
 	sharpness = IS_SHARP
 	var/can_drop = FALSE
 	var/fake = FALSE
+	resistance_flags = ACID_PROOF
 
 /obj/item/melee/arm_blade/Initialize(mapload,silent,synthetic)
 	. = ..()
@@ -243,6 +244,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/tentacle
 	fire_sound = 'sound/effects/splat.ogg'
 	force = 0
+	checks_antimagic = FALSE
 	max_charges = 1
 	fire_delay = 1
 	throwforce = 0 //Just to be on the safe side
@@ -530,6 +532,7 @@
 	flags_inv = HIDEJUMPSUIT
 	cold_protection = 0
 	heat_protection = 0
+	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman) // allows ling armor to carry the usual space suit tanks.
 
 /obj/item/clothing/suit/armor/changeling/Initialize()
 	. = ..()

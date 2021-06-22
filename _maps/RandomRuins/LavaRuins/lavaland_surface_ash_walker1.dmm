@@ -188,18 +188,6 @@
 /obj/item/storage/toolbox/syndicate,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
-"aE" = (
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/closet/crate/medical,
-/obj/item/storage/firstaid/regular,
-/obj/item/reagent_containers/blood/random,
-/obj/item/reagent_containers/blood/lizard,
-/obj/item/reagent_containers/blood/lizard,
-/obj/item/stack/sheet/cloth/ten,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered/ash_walkers)
 "aF" = (
 /obj/structure/stone_tile/block{
 	dir = 8
@@ -270,8 +258,8 @@
 /area/ruin/unpowered/ash_walkers)
 "aO" = (
 /obj/structure/stone_tile/surrounding/cracked{
-	icon_state = "cracked_surrounding1";
-	dir = 1
+	dir = 1;
+	icon_state = "cracked_surrounding1"
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
@@ -475,20 +463,6 @@
 	},
 /obj/item/construction/rcd/loaded,
 /turf/open/indestructible/boss,
-/area/ruin/unpowered/ash_walkers)
-"bn" = (
-/obj/structure/closet/crate/radiation,
-/obj/item/flashlight/lantern,
-/obj/item/flashlight/lantern,
-/obj/item/flashlight/lantern,
-/obj/item/flashlight/flare,
-/obj/structure/stone_tile/block/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "bo" = (
 /obj/structure/stone_tile/block{
@@ -991,8 +965,8 @@
 /area/ruin/unpowered/ash_walkers)
 "cA" = (
 /obj/structure/stone_tile/slab/cracked{
-	icon_state = "cracked_slab1";
-	dir = 4
+	dir = 4;
+	icon_state = "cracked_slab1"
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
@@ -1285,11 +1259,6 @@
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"ds" = (
-/obj/structure/stone_tile/block,
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "dt" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 4
@@ -1320,7 +1289,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "dw" = (
-/obj/item/reagent_containers/glass/bucket/wooden, 
+/obj/item/reagent_containers/glass/bucket/wooden,
 /obj/item/cultivator/rake,
 /obj/structure/stone_tile/block/cracked{
 	dir = 4
@@ -1392,6 +1361,41 @@
 	},
 /turf/closed/mineral/volcanic/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"uD" = (
+/obj/structure/stone_tile/block,
+/obj/effect/mapping_helpers/no_lava,
+/obj/item/seeds/bamboo,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ST" = (
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/closet/crate/medical,
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/lizard,
+/obj/item/reagent_containers/blood/lizard,
+/obj/item/stack/sheet/cloth/ten,
+/obj/item/healthanalyzer,
+/obj/item/clothing/glasses/science,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/ash_walkers)
+"Vq" = (
+/obj/structure/closet/crate/radiation,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/flare,
+/obj/structure/stone_tile/block/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/obj/item/hand_labeler,
+/obj/item/hand_labeler_refill,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/ash_walkers)
 
 (1,1,1) = {"
 aa
@@ -1552,10 +1556,10 @@ aa
 aa
 ae
 as
-aE
+ST
 aQ
 am
-bn
+Vq
 bz
 ak
 cb
@@ -1607,7 +1611,7 @@ cg
 cb
 di
 dn
-ds
+uD
 dx
 cK
 dE

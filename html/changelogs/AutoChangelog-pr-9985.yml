@@ -1,6 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "It is now possible to enable the Ragin Mages antag preference from the Game Preferences menu."
-  - bugfix: "Antag Preferences for Ragin and Bullshit Mages now actually work for ghosts."
-  - bugfix: "Ragin and Bullshit job bans now actually function."

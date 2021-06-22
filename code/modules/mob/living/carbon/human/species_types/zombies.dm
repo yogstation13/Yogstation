@@ -8,7 +8,7 @@
 	sexes = 0
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
 	species_traits = list(NOBLOOD,NOZOMBIE,NOTRANSSTING)
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_EASYDISMEMBER,TRAIT_LIMBATTACHMENT,TRAIT_NOBREATH,TRAIT_NODEATH,TRAIT_FAKEDEATH)
+	inherent_traits = list(TRAIT_RESISTCOLD ,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_EASYDISMEMBER,TRAIT_LIMBATTACHMENT,TRAIT_NOBREATH,TRAIT_NODEATH,TRAIT_FAKEDEATH)
 	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
 	mutanttongue = /obj/item/organ/tongue/zombie
 	var/static/list/spooks = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
@@ -49,7 +49,7 @@
 /datum/species/zombie/infectious/spec_life(mob/living/carbon/C)
 	. = ..()
 	C.a_intent = INTENT_HARM // THE SUFFERING MUST FLOW
-	
+
 	//Zombies never actually die, they just fall down until they regenerate enough to rise back up.
 	//They must be restrained, beheaded or gibbed to stop being a threat.
 	if(regen_cooldown < world.time)
@@ -60,7 +60,7 @@
 		C.adjustToxLoss(-heal_amt)
 	if(!C.InCritical() && prob(4))
 		playsound(C, pick(spooks), 50, TRUE, 10)
-		
+
 //Congrats you somehow died so hard you stopped being a zombie
 /datum/species/zombie/infectious/spec_death(mob/living/carbon/C)
 	. = ..()
@@ -91,5 +91,76 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
 	mutanttongue = /obj/item/organ/tongue/zombie
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
+
+//The special zombie you get turned into in the zombie gamemode
+/datum/species/zombie/infectious/gamemode
+	armor = 20
+	brutemod = 0.925
+	burnmod = 0.925
+	speedmod = 1.45
+	mutanthands = /obj/item/zombie_hand/gamemode
+	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTDAMAGESLOWDOWN, TRAIT_STABLELIVER, TRAIT_STABLEHEART,
+	TRAIT_RADIMMUNE, TRAIT_LIMBATTACHMENT, TRAIT_NOBREATH, TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_NOHUNGER, TRAIT_RESISTHEAT, TRAIT_SHOCKIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE, TRAIT_BADDNA)
+	no_equip = list(SLOT_WEAR_MASK, SLOT_GLASSES, SLOT_HEAD)
+
+/datum/species/zombie/infectious/gamemode/runner
+	mutanthands = /obj/item/zombie_hand/gamemode/runner
+	armor = 10 // 110 damage to KO a zombie, which kills it
+	speedmod = 0.45
+	brutemod = 1
+
+/datum/species/zombie/infectious/gamemode/juggernaut
+	mutanthands = /obj/item/zombie_hand/gamemode/tank
+	armor = 30 // 135 damage to KO a zombie, which kills it
+	brutemod = 0.75
+	speedmod = 1.3
+	heal_rate = 1.20
+
+/datum/species/zombie/infectious/gamemode/spitter
+	armor = 5 // 110 damage to KO a zombie, which kills it
+	brutemod = 1
+	burnmod = 1
+
+/datum/species/zombie/infectious/gamemode/spec_stun(mob/living/carbon/human/H,amount)
+	. = 0
+
+/datum/species/zombie/infectious/gamemode/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
+	if(damagetype == STAMINA)
+		return
+	. = ..()
+	if(.)
+		regen_cooldown = world.time + REGENERATION_DELAY
+
+
+/datum/species/zombie/infectious/gamemode/coordinator
+	armor = 17
+	speedmod = 1.2
+
+/datum/species/zombie/infectious/gamemode/necromancer
+	mutanthands = /obj/item/zombie_hand/gamemode/necro
+	armor = 10
+	speedmod = 1.2
+
+/datum/species/zombie/infectious/gamemode/necromanced_minion
+	var/mob/living/carbon/human/master
+	var/max_distance = 1 //Default value
+	armor = 10
+	brutemod = 1.05
+	burnmod = 1.05
+	species_traits = list(NO_UNDERWEAR, NOBLOOD, NOZOMBIE, NOTRANSSTING)
+	inherent_traits = list(TRAIT_EASYDISMEMBER, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE,
+	TRAIT_RADIMMUNE, TRAIT_LIMBATTACHMENT, TRAIT_NOBREATH, TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_NOHUNGER, TRAIT_RESISTHEAT, TRAIT_SHOCKIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE, TRAIT_BADDNA)
+
+/datum/species/zombie/infectious/gamemode/necromanced_minion/spec_life(mob/living/carbon/human/H)
+	. = ..()
+	if(prob(50) && !H.stat)
+		if(get_dist(get_turf(master), get_turf(H)) > max_distance)
+			if(prob(20))
+				to_chat(H, "<span class='userdanger'>You are too far away from your master! You are taking damage!</span>")
+			apply_damage(7.5, BRUTE, null, FALSE, H)
+
+		if(master.stat == DEAD || QDELETED(master))
+			to_chat(H, "<span class='userdanger'>Your master is dead. And with his death, comes yours!</span>")
+			H.dust()
 
 #undef REGENERATION_DELAY

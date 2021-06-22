@@ -13,6 +13,13 @@
 	throw_range = 7
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | LAVA_PROOF
 	var/puzzle_id = null
+	
+//Skeleton key - drops from Legion megafauna, gives access to area behind Legion.
+/obj/item/keycard/necropolis
+	name = "skeleton key"
+	desc = "Legends say it can open any lock. Luckily airlocks today don't have such locks on them."
+	icon_state = "skeleton"
+	puzzle_id = "legion"
 
 //Two test keys for use alongside the two test doors.
 /obj/item/keycard/cheese
@@ -75,6 +82,13 @@
 		else
 			to_chat(user, "<span class='notice'>This door doesn't appear to close.</span>")
 			return
+			
+//Door behind Legion megafauna
+/obj/machinery/door/keycard/necropolis
+	name = "locked door"
+	desc = "A strange looking door. It seems to be watching you. There is a keyhole sticking out of it."
+	icon = 'icons/obj/doors/puzzledoor/necropolis.dmi'
+	puzzle_id = "legion"
 
 //Test doors. Gives admins a few doors to use quickly should they so choose.
 /obj/machinery/door/keycard/cheese
@@ -133,5 +147,4 @@
 	if(trigger_item && istype(AM, specific_item) && !claimed)
 		claimed = TRUE
 		flick("laserbox_burn", AM)
-		sleep(15)
-		qdel(AM)
+		QDEL_IN(AM, 15)

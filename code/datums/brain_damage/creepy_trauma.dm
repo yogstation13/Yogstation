@@ -8,6 +8,7 @@
 	random_gain = FALSE
 	resilience = TRAUMA_RESILIENCE_SURGERY
 	var/mob/living/obsession
+	var/datum/mind/obsessedmind
 	var/datum/objective/spendtime/attachedobsessedobj
 	var/datum/antagonist/obsessed/antagonist
 	var/viewing = FALSE //it's a lot better to store if the owner is watching the obsession than checking it twice between two procs
@@ -25,6 +26,7 @@
 			lose_text = ""
 			qdel(src)
 			return
+	obsessedmind = obsession.mind
 	gain_text = "<span class='warning'>You hear a sickening, raspy voice in your head. It wants one small task of you...</span>"
 	owner.mind.add_antag_datum(/datum/antagonist/obsessed)
 	antagonist = owner.mind.has_antag_datum(/datum/antagonist/obsessed)
@@ -35,6 +37,8 @@
 	antagonist.greet()
 
 /datum/brain_trauma/special/obsessed/on_life()
+	if(obsessedmind.current != obsession) //ensure we keep our target body up to date
+		obsession = obsessedmind.current
 	if(!obsession || obsession.stat == DEAD)
 		viewing = FALSE//important, makes sure you no longer stutter when happy if you murdered them while viewing
 		return
@@ -87,7 +91,7 @@
 			owner.vomit()
 			fail = TRUE
 		if(2)
-			owner.emote("cough")
+			INVOKE_ASYNC(owner, /mob.proc/emote, "cough")
 			owner.dizziness += 10
 			fail = TRUE
 		if(3)

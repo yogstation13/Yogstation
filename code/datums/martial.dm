@@ -10,7 +10,7 @@
 	///the name of the martial art
 	var/name = "Martial Art"
 	///ID, used by mind/has_martialart
-	var/id = "" 
+	var/id = ""
 	///current streak, successful attacks add to this
 	var/streak = ""
 	///longest a streak can be before the oldest attack is forgotten
@@ -142,6 +142,16 @@
 	return TRUE
 
 /**
+  *martial arts handle_throw proc
+  *
+  *does stuff for hitting people while thrown
+  *returns TRUE if the default throw impact shouldn't do anything, FALSE if you still slam into something at mach 20 and eat a stun
+  */
+
+/datum/martial_art/proc/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
+	return FALSE
+
+/**
   * martial art learn proc
   *
   * gives the user the martial art, if it's a temporary one  it will only temporarily override an older martial art rather than replacing it
@@ -160,7 +170,7 @@
 	else if(make_temporary)
 		base = H.mind.default_martial_art
 	if(help_verb)
-		H.verbs += help_verb
+		add_verb(H, help_verb)
 	H.mind.martial_art = src
 	return TRUE
 
@@ -197,5 +207,5 @@
   */
 /datum/martial_art/proc/on_remove(mob/living/carbon/human/H)
 	if(help_verb)
-		H.verbs -= help_verb
+		remove_verb(H, help_verb)
 	return

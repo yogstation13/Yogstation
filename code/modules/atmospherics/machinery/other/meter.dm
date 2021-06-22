@@ -3,7 +3,7 @@
 	desc = "It measures something."
 	icon = 'icons/obj/atmospherics/pipes/meter.dmi'
 	icon_state = "meterX"
-	layer = GAS_PUMP_LAYER
+	layer = GAS_METER_LAYER
 	power_channel = ENVIRON
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
@@ -15,6 +15,11 @@
 	var/id_tag
 	var/target_layer = PIPING_LAYER_DEFAULT
 
+/obj/machinery/meter/atmos/layer2
+	target_layer = 2
+
+/obj/machinery/meter/atmos/layer4
+	target_layer = 4
 /obj/machinery/meter/atmos
 	frequency = FREQ_ATMOS_STORAGE
 

@@ -172,13 +172,6 @@
 /obj/structure/barricade/wooden,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
-"aK" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/turf/open/lava/smooth,
-/area/template_noop)
-"aL" = (
-/turf/open/lava/smooth,
-/area/template_noop)
 "aN" = (
 /obj/machinery/door/airlock/hatch,
 /obj/structure/fans/tiny/invisible,
@@ -467,9 +460,9 @@ ab
 ab
 ab
 ab
-aK
-aL
-aL
+ak
+ab
+ab
 ab
 ab
 ab
@@ -494,9 +487,9 @@ ab
 ab
 ab
 aa
-aL
+ab
 aa
-aL
+ab
 ab
 ab
 ac
@@ -521,8 +514,8 @@ ac
 ab
 ab
 ab
-aL
-aL
+ab
+ab
 ak
 ab
 ab
@@ -548,8 +541,8 @@ ab
 ab
 ab
 nf
-aL
-aL
+ab
+ab
 ab
 ab
 ab

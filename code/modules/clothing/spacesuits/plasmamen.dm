@@ -12,6 +12,7 @@
 	var/next_extinguish = 0
 	var/extinguish_cooldown = 100
 	var/extinguishes_left = 10
+	item_flags = NONE
 
 
 /obj/item/clothing/suit/space/eva/plasmaman/examine(mob/user)

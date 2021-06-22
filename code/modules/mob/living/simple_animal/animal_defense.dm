@@ -3,15 +3,31 @@
 /mob/living/simple_animal/attack_hand(mob/living/carbon/human/M)
 	..()
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			if (health > 0)
 				visible_message("<span class='notice'>[M] [response_help] [src].</span>")
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
-		if("grab")
+		if(INTENT_GRAB)
 			grabbedby(M)
 
-		if("harm", "disarm")
+		if(INTENT_DISARM)
+			M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
+			playsound(src, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
+			var/shove_dir = get_dir(M, src)
+			if(!Move(get_step(src, shove_dir), shove_dir))
+				log_combat(M, src, "shoved", "failing to move it")
+				M.visible_message("<span class='danger'>[M.name] shoves [src]!</span>",
+					"<span class='danger'>You shove [src]!</span>", "<span class='hear'>You hear aggressive shuffling!</span>", COMBAT_MESSAGE_RANGE, list(src))
+				to_chat(src, "<span class='userdanger'>You're shoved by [M.name]!</span>")
+				return TRUE
+			log_combat(M, src, "shoved", "pushing it")
+			M.visible_message("<span class='danger'>[M.name] shoves [src], pushing [p_them()]!</span>",
+				"<span class='danger'>You shove [src], pushing [p_them()]!</span>", "<span class='hear'>You hear aggressive shuffling!</span>", COMBAT_MESSAGE_RANGE, list(src))
+			to_chat(src, "<span class='userdanger'>You're pushed by [name]!</span>")
+			return TRUE
+
+		if(INTENT_HARM)
 			if(HAS_TRAIT(M, TRAIT_PACIFISM))
 				to_chat(M, "<span class='notice'>You don't want to hurt [src]!</span>")
 				return

@@ -860,13 +860,13 @@
 
 /datum/status_effect/eldritch/on_apply()
 	if(owner.mob_size >= MOB_SIZE_HUMAN)
-		owner.underlays += marked_underlay
+		owner.underlays |= marked_underlay
 		//owner.update_icon()
 		return TRUE
 	return FALSE
 
 /datum/status_effect/eldritch/Destroy()
-	owner.underlays -= marked_underlay
+	owner.underlays &= marked_underlay
 	QDEL_NULL(marked_underlay)
 	return ..()
 

@@ -15,7 +15,7 @@
 	name = "Rezadone"
 	id = /datum/reagent/medicine/rezadone
 	results = list(/datum/reagent/medicine/rezadone = 3)
-	required_reagents = list(/datum/reagent/consumable/capsaicin = 1, /datum/reagent/cryptobiolin = 1, /datum/reagent/copper = 1) //yogs: uses the yogs recipe that exchanges carpotoxin with capsaicin
+	required_reagents = list(/datum/reagent/toxin/carpotoxin = 1, /datum/reagent/cryptobiolin = 1, /datum/reagent/copper = 1)
 
 /datum/chemical_reaction/spaceacillin
 	name = "Spaceacillin"
@@ -223,20 +223,20 @@
 /datum/chemical_reaction/bicaridine
 	name = "Bicaridine"
 	id = /datum/reagent/medicine/bicaridine
-	results = list(/datum/reagent/medicine/bicaridine = 3)
-	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/oxygen = 1, /datum/reagent/consumable/sugar = 1)
+	results = list(/datum/reagent/medicine/bicaridine = 4)
+	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/oxygen = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/lemoline = 1)
 
 /datum/chemical_reaction/kelotane
 	name = "Kelotane"
 	id = /datum/reagent/medicine/kelotane
-	results = list(/datum/reagent/medicine/kelotane = 2)
-	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/silicon = 1)
+	results = list(/datum/reagent/medicine/kelotane = 3)
+	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/silicon = 1, /datum/reagent/lemoline = 1)
 
 /datum/chemical_reaction/antitoxin
 	name = "Antitoxin"
 	id = /datum/reagent/medicine/antitoxin
-	results = list(/datum/reagent/medicine/antitoxin = 3)
-	required_reagents = list(/datum/reagent/nitrogen = 1, /datum/reagent/silicon = 1, /datum/reagent/potassium = 1)
+	results = list(/datum/reagent/medicine/antitoxin = 4)
+	required_reagents = list(/datum/reagent/nitrogen = 1, /datum/reagent/silicon = 1, /datum/reagent/potassium = 1, /datum/reagent/lemoline = 1)
 
 /datum/chemical_reaction/tricordrazine
 	name = "Tricordrazine"
@@ -299,3 +299,56 @@
 	mix_message = "The solution partially dissolves, binding the remaining ingredients."
 	results = list(/datum/reagent/medicine/burnmix = 3) // fuel and most ethenol burns away to form BurnMix from remaining ethenol and ash
 	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/consumable/ethanol/beer = 3, /datum/reagent/ash = 2) // Take a booze bottle, drink some , add welding fuel and ash. Heat up with lighter
+
+/datum/chemical_reaction/tribalordrazine // Mushroom stem + ash from an ash pile + cactus fruit + heat the bowl with a welder
+	name = "Tribalordrazine"
+	id = /datum/reagent/medicine/tribalordrazine
+	required_temp = 420
+	mix_message = "The mixture binds together from the heat, releasing a pleasant smelling smoke."
+	results = list(/datum/reagent/medicine/tribalordrazine = 10) // Pretty intensive to get this, so this amount is fair. That and this chem isn't very good.
+	required_reagents = list(/datum/reagent/ash = 5, /datum/reagent/consumable/vitfro = 2, /datum/reagent/consumable/tinlux = 1)
+
+/datum/chemical_reaction/tribaldetox // Mushroom cap + ash from an ash pile + heat the bowl with a welder
+	name = "Cap Mix"
+	id = /datum/reagent/medicine/tribaldetox
+	required_temp = 420
+	mix_message = "The mixture binds together from the heat, releasing a disgusting smelling smoke."
+	results = list(/datum/reagent/medicine/tribaldetox = 10)
+	required_reagents = list(/datum/reagent/ash = 10, /datum/reagent/consumable/entpoly = 1)
+
+///medical stacks
+
+/datum/chemical_reaction/medsuture
+	name = "Medicated Suture"
+	id = "med_suture"
+	required_reagents = list(/datum/reagent/cellulose = 10, /datum/reagent/toxin/formaldehyde = 20, /datum/reagent/medicine/polypyr = 15)
+
+/datum/chemical_reaction/medsuture/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/stack/medical/suture/medicated(location)
+
+/datum/chemical_reaction/medmesh
+	name = "Advanced Mesh"
+	id = "adv_mesh"
+	required_reagents = list(/datum/reagent/cellulose = 20, /datum/reagent/consumable/aloejuice = 20, /datum/reagent/space_cleaner/sterilizine = 10)
+
+/datum/chemical_reaction/medmesh/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/stack/medical/mesh/advanced(location)
+
+/datum/chemical_reaction/poultice
+	name = "poultice"
+	id = "poultice"
+	required_reagents = list(/datum/reagent/toxin/amanitin = 10, /datum/reagent/cellulose = 20, /datum/reagent/consumable/aloejuice = 20)
+
+/datum/chemical_reaction/poultice/alt
+	name = "poultice"
+	id = "poultice_alt"
+	required_reagents = list(/datum/reagent/consumable/entpoly = 15, /datum/reagent/cellulose = 20, /datum/reagent/consumable/tinlux = 12)
+
+/datum/chemical_reaction/poultice/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i in 1 to created_volume)
+		new /obj/item/stack/medical/poultice(location)

@@ -10,9 +10,12 @@ export const BluespaceArtillery = (props, context) => {
     connected,
     unlocked,
     target,
+    ready,
   } = data;
   return (
-    <Window>
+    <Window
+      width={400}
+      height={220}>
       <Window.Content>
         {!!notice && (
           <NoticeBox>
@@ -42,7 +45,7 @@ export const BluespaceArtillery = (props, context) => {
                     fluid
                     content="FIRE"
                     color="bad"
-                    disabled={!target}
+                    disabled={!target || !ready}
                     fontSize="30px"
                     textAlign="center"
                     lineHeight="46px"

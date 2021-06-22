@@ -25,6 +25,17 @@ GLOBAL_VAR_INIT(clones, 0)
 	var/attempting = FALSE //One clone attempt at a time thanks
 	var/speed_coeff
 	var/efficiency
+	// the three variables that handle meatcloning
+	var/biomass = 0 //Start with no biomass inserted.
+	///List of special meat that gives extra/less biomass
+	var/list/accepted_biomass = list(
+		/obj/item/reagent_containers/food/snacks/meat/slab/monkey = 25, 
+		/obj/item/reagent_containers/food/snacks/meat/slab/synthmeat = 34,
+		/obj/item/reagent_containers/food/snacks/meat/slab/human = 50,
+		/obj/item/stack/sheet/animalhide/human = 50
+		)
+	///How much biomass does regular meat that isn't in the above list give
+	var/biomass_per_slab = 20
 
 	var/datum/mind/clonemind
 	var/grab_ghost_when = CLONER_MATURE_CLONE
@@ -81,6 +92,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	. += "<span class='notice'>The <i>linking</i> device can be <i>scanned<i> with a multitool.</span>"
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.<span>"
+		. += "<span class='notice'>The status display reads: Biomass levels at <b>[biomass]%</b><span>" // read out the amount of biomass if you examine
 		if(efficiency > 5)
 			. += "<span class='notice'>Pod has been upgraded to support autoprocessing and apply beneficial mutations.<span>"
 
@@ -109,6 +121,35 @@ GLOBAL_VAR_INIT(clones, 0)
 	. = ..()
 	. += "The write-protect tab is set to [read_only ? "protected" : "unprotected"]."
 
+// Biomass
+
+/obj/machinery/clonepod/proc/handle_biomass(W, tempbiomass, user) // updates the value
+	if(biomass >= 100)
+		to_chat(user, "<span class = 'notice'>[src]'s biomass containers are full!.</span>")
+		return // if biomass is already 100 then yell at those stupid idiots
+	else
+		to_chat(user, "<span class = 'notice'>You insert [W] into [src].</span>") // feel free to fill it.
+		biomass = tempbiomass
+		qdel(W)
+		if(biomass > 100) // hidden check to make sure we don't get an end value of like 106 or something.
+			biomass = 100
+	return
+
+/obj/machinery/clonepod/attackby(obj/item/W, mob/user, params)
+	var/tempbiomass = biomass
+	if(W.type in accepted_biomass)
+		if(istype(W, /obj/item/stack/sheet))
+			var/obj/item/stack/S = W
+			tempbiomass += S.amount * accepted_biomass[W.type] //we need special code because stacks are cringe
+			handle_biomass(W, tempbiomass, user)
+
+		else
+			tempbiomass += accepted_biomass[W.type] // changes biomass to whatever slab it picked
+			handle_biomass(W, tempbiomass, user)
+
+	else if(istype(W, /obj/item/reagent_containers/food/snacks/meat/slab)) // If no special slab was picked it reverts to var/biomass_per_slab
+		tempbiomass += biomass_per_slab
+		handle_biomass(W, tempbiomass, user)
 
 //Clonepod
 
@@ -170,8 +211,15 @@ GLOBAL_VAR_INIT(clones, 0)
 			icon_state = "pod_g"
 			update_icon()
 			return NONE
+		if(clonemind.zombified) //Can't clone the damned x2
+			INVOKE_ASYNC(src, .proc/horrifyingsound)
+			mess = TRUE
+			icon_state = "pod_g"
+			update_icon()
+			return NONE
 		current_insurance = insurance
 	attempting = TRUE //One at a time!!
+	biomass -= 100
 	countdown.start()
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
@@ -195,7 +243,7 @@ GLOBAL_VAR_INIT(clones, 0)
 			H.gender = MALE
 		if((AGENDER in H.dna.species.species_traits) && (H.gender != PLURAL))
 			H.gender = PLURAL
-	
+
 	H.silent = 20 //Prevents an extreme edge case where clones could speak if they said something at exactly the right moment.
 	occupant = H
 

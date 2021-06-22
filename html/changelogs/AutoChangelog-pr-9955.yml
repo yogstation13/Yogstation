@@ -1,6 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "fixes some stupid action button things like blood 101 not having an icon and heretic background not having a name"
-  - bugfix: "some spelling stuff in how to suck blood 101"
-  - rscadd: "vampires now get two abilities, glare and hypnotize. Gaze is an instant short stun while hypnotize is a delayed longer stun-mute that costs blood to use. Neither work through flashproofing."

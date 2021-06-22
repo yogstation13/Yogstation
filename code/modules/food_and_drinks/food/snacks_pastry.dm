@@ -57,6 +57,14 @@
 	extra_reagent = pick(/datum/reagent/consumable/nutriment, /datum/reagent/consumable/capsaicin, /datum/reagent/consumable/frostoil, /datum/reagent/drug/krokodil, /datum/reagent/toxin/plasma, /datum/reagent/consumable/coco, /datum/reagent/toxin/slimejelly, /datum/reagent/consumable/banana, /datum/reagent/consumable/berryjuice, /datum/reagent/medicine/omnizine)
 	reagents.add_reagent(extra_reagent, 3)
 
+/obj/item/reagent_containers/food/snacks/donut/laugh
+	name = "sweet pea donut"
+	desc = "Goes great with a glass of Bastion Burbon!"
+	icon_state = "donut_laugh"
+	bonus_reagents = list(/datum/reagent/consumable/laughter = 3)
+	tastes = list("donut" = 3, "fizzy tutti frutti" = 1,)
+	filling_color = "#803280"
+
 /obj/item/reagent_containers/food/snacks/donut/jelly
 	name = "jelly donut"
 	desc = "You jelly?"
@@ -86,6 +94,14 @@
 	extra_reagent = /datum/reagent/consumable/cherryjelly
 	foodtype = JUNKFOOD | GRAIN | FRIED | FRUIT | BREAKFAST
 
+/obj/item/reagent_containers/food/snacks/donut/jelly/laugh
+	name = "sweet pea jelly donut"
+	desc = "Goes great with a glass of Bastion Burbon!"
+	icon_state = "jelly_laugh"
+	bonus_reagents = list(/datum/reagent/consumable/laughter = 3)
+	tastes = list("jelly" = 3, "donut" = 1, "fizzy tutti frutti" = 1)
+	filling_color = "#803280"
+
 /obj/item/reagent_containers/food/snacks/donut/meat
 	name = "meat donut"
 	desc = "Tastes as gross as it looks."
@@ -94,6 +110,14 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/ketchup = 2)
 	tastes = list("meat" = 1)
 	foodtype = JUNKFOOD | MEAT | GROSS | FRIED | BREAKFAST
+
+/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/laugh
+	name = "sweet pea jelly donut"
+	desc = "Goes great with a glass of Bastion Burbon!"
+	icon_state = "jelly_laugh"
+	bonus_reagents = list(/datum/reagent/consumable/laughter = 3)
+	tastes = list("jelly" = 3, "donut" = 1, "fizzy tutti frutti" = 1)
+	filling_color = "#803280"
 
 
 ////////////////////////////////////////////MUFFINS////////////////////////////////////////////
@@ -420,7 +444,7 @@
 /obj/item/reagent_containers/food/snacks/pancakes/cinnamon
 	name = "cinnamon pancake"
 	desc = "A fluffy and delicious cinnamon pancake."
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "cinpancakes_1"
 	item_state = "cinpancakes"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 2)
@@ -430,7 +454,7 @@
 /obj/item/reagent_containers/food/snacks/cinnamonroll
 	name = "cinnamon roll"
 	desc = "Too perfect for this world, too pure."
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "cinnamonroll"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/cinnamon = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
@@ -439,7 +463,7 @@
 /obj/item/reagent_containers/food/snacks/churro
 	name = "churro"
 	desc = "If you're having food troubles, I feel for you son. I got 99 churros 'cus the clown ate one."
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "churro"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/cinnamon = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)

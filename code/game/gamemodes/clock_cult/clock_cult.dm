@@ -88,6 +88,11 @@ Credit where due:
 
 	. = L.mind.add_antag_datum(C)
 
+	if(.)
+		var/datum/antagonist/clockcult/servant = .
+		var/datum/team/clockcult/cult = servant.get_team()
+		cult.check_size()
+
 	if(!silent && L)
 		if(.)
 			to_chat(L, "<span class='heavy_brass'>The world before you suddenly glows a brilliant yellow. [issilicon(L) ? "You cannot compute this truth!" : \
@@ -378,4 +383,4 @@ Credit where due:
 	round_credits += "<br>"
 
 	round_credits += ..()
-	return round_credits 
+	return round_credits

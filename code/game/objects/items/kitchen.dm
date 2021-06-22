@@ -7,6 +7,7 @@
  *		Butcher's cleaver
  *		Combat Knife
  *		Rolling Pins
+ *		Shank
  */
 
 /obj/item/kitchen
@@ -23,7 +24,7 @@
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 5
-	materials = list(MAT_METAL=80)
+	materials = list(/datum/material/iron=80)
 	flags_1 = CONDUCT_1
 	attack_verb = list("attacked", "stabbed", "poked")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -73,7 +74,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	throw_speed = 3
 	throw_range = 6
-	materials = list(MAT_METAL=12000)
+	materials = list(/datum/material/iron=12000)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharpness = IS_SHARP_ACCURATE
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
@@ -93,10 +94,10 @@
 		return ..()
 
 /obj/item/kitchen/knife/suicide_act(mob/user)
-	user.visible_message(pick("<span class='suicide'>[user] is slitting [user.p_their()] wrists with the [src.name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
-						"<span class='suicide'>[user] is slitting [user.p_their()] throat with the [src.name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
-						"<span class='suicide'>[user] is slitting [user.p_their()] stomach open with the [src.name]! It looks like [user.p_theyre()] trying to commit seppuku.</span>"))
-	return (BRUTELOSS)
+	user.visible_message(pick("<span class='suicide'>[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
+						"<span class='suicide'>[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
+						"<span class='suicide'>[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.</span>"))
+	return BRUTELOSS
 
 /obj/item/kitchen/knife/ritual
 	name = "ritual knife"
@@ -131,7 +132,7 @@
 	flags_1 = CONDUCT_1
 	force = 15
 	throwforce = 10
-	materials = list(MAT_METAL=18000)
+	materials = list(/datum/material/iron=18000)
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_price = 60
@@ -191,6 +192,22 @@
 /obj/item/kitchen/knife/carrotshiv/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] forcefully drives \the [src] into [user.p_their()] eye! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return BRUTELOSS
+	
+// Shank - Makeshift weapon that can embed on throw
+/obj/item/kitchen/knife/shank
+	name = "Shank"
+	desc = "A crude knife fashioned by securing a glass shard and a rod together with cables, and welding them together."
+	icon = 'icons/obj/items_and_weapons.dmi'
+	icon_state = "shank"
+	item_state = "shank"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	force = 6
+	throwforce = 8
+	throw_speed = 5 //yeets
+	armour_penetration = 5
+	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 20, "embedded_fall_chance" = 10) // Incentive to disengage/stop chasing when stuck
+	attack_verb = list("stuck", "shanked", "stabbed", "shivved")
 
 /obj/item/kitchen/rollingpin
 	name = "rolling pin"

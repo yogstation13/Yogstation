@@ -44,6 +44,9 @@
 	var/charge = 0
 	var/last_projectile_params
 
+	var/throwing_range = 5
+	var/throwing_speed = 3
+
 
 /obj/machinery/power/emitter/anchored
 	anchored = TRUE
@@ -202,7 +205,20 @@
 		fire_beam()
 
 /obj/machinery/power/emitter/proc/fire_beam(mob/user)
-	var/obj/item/projectile/P = new projectile_type(get_turf(src))
+	var/obj/item/K = new projectile_type(get_turf(src))
+
+	/// If it isn't a projectile, throw it
+	if(!istype(K, /obj/item/projectile))
+		if(istype(K, /obj/item/grenade))
+			var/obj/item/grenade/I = K
+			I.preprime()
+		K.throw_at(get_edge_target_turf(src, dir), throwing_range, throwing_speed)
+		playsound(get_turf(src), projectile_sound, 50, TRUE)
+		if(prob(35))
+			sparks.start()
+		return K
+
+	var/obj/item/projectile/P = K
 	playsound(get_turf(src), projectile_sound, 50, TRUE)
 	if(prob(35))
 		sparks.start()

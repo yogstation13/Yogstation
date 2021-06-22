@@ -2,27 +2,29 @@
 	account = ACCOUNT_CAR
 
 
-// Have 500 plasteel sheets in the ore silo
-// I'ven't played this game for so long I have no clue how viable this even is.
-// Is this easy? Is this hard? Is the reward too high? Who knows?
-/datum/department_goal/car/uranium
-	name = "Have 500 uranium"
-	desc = "Store 500 uranium sheets in the ore silo"
-	reward = "50000"
+// Have 50 of every (traditional) sheet (not bananium or plastic)
+/datum/department_goal/car/sheets
+	name = "Have 50 of every ore sheet"
+	desc = "Store 50 of every ore sheet in the ore silo"
+	reward = 5000
+	continuous = 3000 // rewards every 5 minutes
 
-/datum/department_goal/car/uranium/check_complete()
+/datum/department_goal/car/sheets/check_complete()
 	var/obj/machinery/ore_silo/O = GLOB.ore_silo_default
 	var/datum/component/material_container/materials = O.GetComponent(/datum/component/material_container)
-	return materials.can_use_amount(500*MINERAL_MATERIAL_AMOUNT, MAT_URANIUM)
-		
-// Setup a tesla in cargo
-/datum/department_goal/car/tesla
-	name = "Create a tesla"
-	desc = "Create a tesla engine in the cargo bay"
-	reward = "50000"
+	var/list/material_list = list(
+		/datum/material/bluespace,
+		/datum/material/diamond,
+		/datum/material/uranium,
+		/datum/material/gold,
+		/datum/material/titanium,
+		/datum/material/silver,
+		/datum/material/plasma,
+		/datum/material/glass,
+		/datum/material/iron)
 
-/datum/department_goal/car/tesla/check_complete()
-	for(var/obj/singularity/energy_ball/e in GLOB.singularities)
-		if(get_area(e) == /area/quartermaster/storage)
-			return TRUE
-	return FALSE
+	for(var/mat in material_list)
+		var/datum/material/M = getmaterialref(mat)
+		if(!materials.has_enough_of_material(M, MINERAL_MATERIAL_AMOUNT, 50))
+			return FALSE
+	return TRUE

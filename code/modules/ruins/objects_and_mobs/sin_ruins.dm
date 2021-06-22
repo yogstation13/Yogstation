@@ -17,7 +17,7 @@
 	obj_flags |= IN_USE
 	user.health -= 20
 	user.maxHealth -= 20
-	if(user.stat)
+	if(user.maxHealth <= 0)
 		to_chat(user, "<span class='userdanger'>No... just one more try...</span>")
 		user.gib()
 	else
@@ -82,7 +82,7 @@
 	icon = 'icons/mob/blob.dmi'
 	color = rgb(145, 150, 0)
 
-/obj/effect/gluttony/CanAllowThrough(atom/movable/mover, turf/target)//So bullets will fly over and stuff.
+/obj/effect/gluttony/Cross(atom/movable/mover, turf/target)//So bullets will fly over and stuff.
 	. = ..()
 	if(ishuman(mover))
 		var/mob/living/carbon/human/H = mover

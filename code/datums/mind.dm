@@ -68,6 +68,8 @@
 	var/list/learned_recipes //List of learned recipe TYPES.
 
 	var/flavour_text = null
+	///Are we zombified/uncloneable?
+	var/zombified = FALSE
 
 /datum/mind/New(key)
 	src.key = key
@@ -78,6 +80,8 @@
 	SSticker.minds -= src
 	if(islist(antag_datums))
 		QDEL_LIST(antag_datums)
+	current = null
+	soulOwner = null
 	return ..()
 
 /datum/mind/proc/get_language_holder()
@@ -139,6 +143,8 @@
 		RegisterSignal(new_character, COMSIG_MOB_SAY, .proc/handle_speech)
 	if(active || force_key_move)
 		new_character.key = key		//now transfer the key to link the client to our new body
+	if(new_character.client)
+		new_character.client.init_verbs() // re-initialize character specific verbs
 	current.update_atom_languages()
 
 /datum/mind/proc/set_death_time()
@@ -629,6 +635,12 @@
 		special_role = ROLE_CHANGELING
 	return C
 
+/datum/mind/proc/make_Heretic()
+	if(quiet_round)
+		return
+	if(!(has_antag_datum(/datum/antagonist/heretic)))
+		add_antag_datum(/datum/antagonist/heretic)
+
 /datum/mind/proc/make_Wizard()
 	// yogs start - Donor features, quiet round
 	if(quiet_round)
@@ -678,6 +690,7 @@
 		if(istype(S, spell))
 			spell_list -= S
 			qdel(S)
+	current?.client << output(null, "statbrowser:check_spells")
 
 /datum/mind/proc/RemoveAllSpells()
 	for(var/obj/effect/proc_holder/S in spell_list)
@@ -697,6 +710,15 @@
 		for(var/datum/action/A in current.actions)
 			A.Grant(new_character)
 	transfer_mindbound_actions(new_character)
+
+//Check if there is a specific spell in mind
+/datum/mind/proc/CheckSpell(var/obj/effect/proc_holder/spell/spell)
+	if(!spell) return
+	for(var/X in spell_list)
+		var/obj/effect/proc_holder/spell/S = X
+		if(istype(S, spell))
+			return TRUE
+	return FALSE
 
 /datum/mind/proc/transfer_mindbound_actions(mob/living/new_character)
 	for(var/X in spell_list)
@@ -732,6 +754,21 @@
 		for(var/O in A.objectives)
 			if(istype(O,objective_type))
 				return TRUE
+
+/datum/mind/proc/add_employee(company)
+	for(var/datum/corporation/c in GLOB.corporations)
+		if(istype(c, company))
+			c.employees += src
+
+/datum/mind/proc/remove_employee(company)
+	for(var/datum/corporation/c in GLOB.corporations)
+		if(istype(c, company))
+			c.employees -= src
+
+/datum/mind/proc/is_employee(company)
+	for(var/datum/corporation/c in GLOB.corporations)
+		if(istype(c, company))
+			return src in c.employees
 
 /mob/proc/sync_mind()
 	mind_initialize()	//updates the mind (or creates and initializes one if one doesn't exist)

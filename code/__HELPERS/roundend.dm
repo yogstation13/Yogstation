@@ -200,7 +200,7 @@
 		send_news_report()
 
 	set_observer_default_invisibility(0, "<span class='warning'>The round is over! You are now visible to the living.</span>")
-	
+
 	CHECK_TICK
 
 	//These need update to actually reflect the real antagonists
@@ -317,7 +317,7 @@
 		parts += "[FOURSPACES]Threat left: [mode.threat]" //yes
 		parts += "[FOURSPACES]Executed rules:"
 		for(var/datum/dynamic_ruleset/rule in mode.executed_rules)
-			parts += "[FOURSPACES][FOURSPACES][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost] threat"
+			parts += "[FOURSPACES][FOURSPACES][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost + rule.scaled_times * rule.scaling_cost] threat"
 	return parts.Join("<br>")
 
 /client/proc/roundend_report_file()
@@ -332,7 +332,7 @@
 	if(!previous)
 		var/list/report_parts = list(personal_report(C), GLOB.common_report)
 		content = report_parts.Join()
-		C.verbs -= /client/proc/show_previous_roundend_report
+		remove_verb(C, /client/proc/show_previous_roundend_report)
 		fdel(filename)
 		text2file(content, filename)
 	else
@@ -443,24 +443,24 @@
 	for(var/datum/department_goal/dg in SSYogs.department_goals)
 		goals[dg.account] += dg.get_result()
 
-	parts += "<br><span class='header'>Engineering department goals:</span>"
+	parts += "<br><span class='header'>Engineering department goals:</span><br>"
 	parts += goals[ACCOUNT_ENG]
 
-	parts += "<br><span class='header'>Science department goals:</span>"
+	parts += "<br><span class='header'>Science department goals:</span><br>"
 	parts += goals[ACCOUNT_SCI]
 
-	parts += "<br><span class='header'>Medical department goals:</span>"
+	parts += "<br><span class='header'>Medical department goals:</span><br>"
 	parts += goals[ACCOUNT_MED]
 
-	parts += "<br><span class='header'>Service department goals:</span>"
+	parts += "<br><span class='header'>Service department goals:</span><br>"
 	parts += goals[ACCOUNT_SRV]
 
-	parts += "<br><span class='header'>Cargo department goals:</span>"
+	parts += "<br><span class='header'>Cargo department goals:</span><br>"
 	parts += goals[ACCOUNT_CAR]
 
-	parts += "<br><span class='header'>Security department goals:</span>"
+	parts += "<br><span class='header'>Security department goals:</span><br>"
 	parts += goals[ACCOUNT_SEC]
-	
+
 	parts += "</ul></div>"
 	return parts.Join()
 
@@ -545,7 +545,7 @@
 			if(player.mind && (player.mind.assigned_role in GLOB.security_positions))
 				result += "<ul class='player report'><b>[player.name]</b> (Played by: <b>[player.mind.key]</b>) [(player.stat != DEAD)? "<span class='greentext'>survived</span> as a <b>[player.mind.assigned_role]</b>" : "<span class='redtext'>fell in the line of duty</span> as a <b>[player.mind.assigned_role]</b>"]<br></ul>"
 
-		return "<div class='panel stationborder', style='text-indent: -.4in'><ul>[result.Join()]</ul></div>"
+		return "<div class='panel stationborder'><ul>[result.Join()]</ul></div>"
 	return ""
 
 /proc/cmp_antag_category(datum/antagonist/A,datum/antagonist/B)

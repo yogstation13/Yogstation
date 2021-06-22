@@ -65,7 +65,7 @@
 		if(world.time < next_spaghetti)
 			return
 		visible_message("<span class='brass'>[user] spins a serving of spaghetti out of [src].", "<span class='brass'>You reach your [I] into [src], pulling out a plateful of spaghetti!</span>")
-		new /obj/item/reagent_containers/food/snacks/spaghetti/pastatomato(user.loc)
+		new /obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti(user.loc)
 		next_spaghetti = world.time + spaghetti_cooldown
 	. = ..()
 
@@ -74,8 +74,6 @@
 		ark_time = 30 //minutes
 	initial_activation_delay = ark_time * 60
 	seconds_until_activation = ark_time * 60 //60 seconds in a minute * number of minutes
-	for(var/obj/item/clockwork/construct_chassis/cogscarab/C in GLOB.all_clockwork_objects)
-		C.infinite_resources = FALSE
 	GLOB.servants_active = TRUE
 	SSshuttle.registerHostileEnvironment(src)
 

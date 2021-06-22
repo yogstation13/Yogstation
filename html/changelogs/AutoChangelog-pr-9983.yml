@@ -1,4 +1,0 @@
-author: "Takahiru"
-delete-after: true 
-changes: 
-  - bugfix: "make the skillcape requirement 18000 minutes instead of 300"

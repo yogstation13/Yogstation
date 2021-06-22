@@ -70,6 +70,7 @@
 	if(do_after(user, 30, 1, target = src))
 		revive(full_heal = 1)
 		user.visible_message("<span class='notice'>[user] reactivates [src]!</span>", "<span class='notice'>You reactivate [src].</span>")
+		var/turf/A = get_area(src)
 		alert_drones(DRONE_NET_CONNECT)
 		if(G)
 			to_chat(G, "<span class='ghostalert'>You([name]) were reactivated by [user]!</span>")

@@ -123,7 +123,7 @@
 /datum/team/gang/h
 	name = "H"
 	color = "#993333"
-	inner_outfits = list(/obj/item/clothing/under/rank/psyche)
+	inner_outfits = list(/obj/item/clothing/under/yogs/psyche)
 	outer_outfits = list(/obj/item/clothing/suit/yogs/jesus) // perfect
 
 /datum/team/gang/rigatonifamily

@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
-/area/space)
+/area/template_noop)
 "b" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "executionfireblast";
@@ -19,7 +19,7 @@
 	req_access_txt = "2"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/security/execution/transfer)
+/area/template_noop)
 "c" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -27,14 +27,14 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
+/area/template_noop)
 "d" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
-/area/security/execution/transfer)
+/area/template_noop)
 "h" = (
 /obj/structure/table,
 /obj/item/storage/backpack/duffelbag/sec/surgery{
@@ -51,7 +51,7 @@
 	pixel_y = -1
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
+/area/template_noop)
 "i" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/tile/red{
@@ -81,7 +81,10 @@
 	pixel_y = -5
 	},
 /turf/open/floor/plasteel/white,
-/area/security/execution/transfer)
+/area/template_noop)
+"j" = (
+/turf/closed/wall/r_wall,
+/area/template_noop)
 "k" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -91,7 +94,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/security/execution/transfer)
+/area/template_noop)
 "o" = (
 /obj/structure/chair{
 	dir = 1
@@ -118,22 +121,22 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
+/area/template_noop)
 "p" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/showroomfloor,
-/area/security/execution/transfer)
+/area/template_noop)
 "q" = (
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
+/area/template_noop)
 "r" = (
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
 /obj/structure/cable{
@@ -144,7 +147,7 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
+/area/template_noop)
 "s" = (
 /obj/structure/table/glass,
 /obj/item/reagent_containers/spray/cleaner{
@@ -169,7 +172,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/security/execution/transfer)
+/area/template_noop)
 "u" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -182,7 +185,7 @@
 	pixel_y = 25
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/security/execution/transfer)
+/area/template_noop)
 "v" = (
 /obj/structure/chair{
 	dir = 1
@@ -203,16 +206,16 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
+/area/template_noop)
 "w" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/security/execution/transfer)
+/area/template_noop)
 "x" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -227,7 +230,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/security/execution/transfer)
+/area/template_noop)
 "y" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "executionfireblast";
@@ -242,7 +245,7 @@
 	},
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
-/area/security/execution/transfer)
+/area/template_noop)
 "B" = (
 /obj/structure/chair{
 	dir = 1
@@ -255,7 +258,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
+/area/template_noop)
 "C" = (
 /obj/structure/chair{
 	dir = 1
@@ -271,11 +274,11 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
+/area/template_noop)
 "D" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
+/area/template_noop)
 "E" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -287,14 +290,14 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
+/area/template_noop)
 "G" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/showroomfloor,
-/area/security/execution/transfer)
+/area/template_noop)
 "I" = (
 /obj/structure/table,
 /obj/item/folder/red{
@@ -307,17 +310,14 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
+/area/template_noop)
 "L" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
 /obj/item/reagent_containers/glass/bucket/wooden,
 /turf/open/floor/plasteel/showroomfloor,
-/area/security/execution/transfer)
-"M" = (
-/turf/closed/wall,
-/area/security/execution/transfer)
+/area/template_noop)
 "N" = (
 /obj/machinery/power/apc{
 	areastring = "/area/security/execution/transfer";
@@ -330,32 +330,32 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
+/area/template_noop)
 "O" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
+/area/template_noop)
 "Q" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
+/area/template_noop)
 "R" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /obj/structure/guillotine,
 /turf/open/floor/plasteel/showroomfloor,
-/area/security/execution/transfer)
+/area/template_noop)
 "T" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp{
@@ -374,16 +374,16 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
+/area/template_noop)
 "U" = (
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
+/area/template_noop)
 "V" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -392,13 +392,13 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/security/execution/transfer)
+/area/template_noop)
 "Y" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
+/area/template_noop)
 "Z" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -410,40 +410,40 @@
 /obj/item/mop,
 /obj/structure/mopbucket,
 /turf/open/floor/plasteel/white,
-/area/security/execution/transfer)
+/area/template_noop)
 
 (1,1,1) = {"
 a
 a
 a
 a
-M
-M
-M
-M
-M
+j
+j
+j
+j
+j
 "}
 (2,1,1) = {"
 a
 a
 a
 a
-M
+j
 s
 i
 Z
-M
+j
 "}
 (3,1,1) = {"
-M
-M
-M
+j
+j
+j
 d
-M
+j
 x
 w
 k
-M
+j
 "}
 (4,1,1) = {"
 u

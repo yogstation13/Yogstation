@@ -9,8 +9,8 @@
 	name = "Mutism"
 	desc = "Patient is completely unable to speak."
 	scan_desc = "extensive damage to the brain's speech center"
-	gain_text = "<span class='warning'>You forget how to speak!</span>"
-	lose_text = "<span class='notice'>You suddenly remember how to speak.</span>"
+	gain_text = ""
+	lose_text = ""
 
 /datum/brain_trauma/severe/mute/on_gain()
 	ADD_TRAIT(owner, TRAIT_MUTE, TRAUMA_TRAIT)
@@ -24,8 +24,8 @@
 	name = "Aphasia"
 	desc = "Patient is unable to speak or understand any language."
 	scan_desc = "extensive damage to the brain's language center"
-	gain_text = "<span class='warning'>You have trouble forming words in your head...</span>"
-	lose_text = "<span class='notice'>You suddenly remember how languages work.</span>"
+	gain_text = ""
+	lose_text = ""
 
 /datum/brain_trauma/severe/aphasia/on_gain()
 	owner.add_blocked_language(subtypesof(/datum/language/) - /datum/language/aphasia, LANGUAGE_APHASIA)
@@ -121,8 +121,8 @@
 	name = "Narcolepsy"
 	desc = "Patient may involuntarily fall asleep during normal activities."
 	scan_desc = "traumatic narcolepsy"
-	gain_text = "<span class='warning'>You have a constant feeling of drowsiness...</span>"
-	lose_text = "<span class='notice'>You feel awake and aware again.</span>"
+	gain_text = ""
+	lose_text = ""
 
 /datum/brain_trauma/severe/narcolepsy/on_life()
 	..()
@@ -145,7 +145,7 @@
 	desc = "Patient feels sick and distressed when not around other people, leading to potentially lethal levels of stress."
 	scan_desc = "monophobia"
 	gain_text = ""
-	lose_text = "<span class='notice'>You feel like you could be safe on your own.</span>"
+	lose_text = ""
 	var/stress = 0
 
 /datum/brain_trauma/severe/monophobia/on_gain()
@@ -223,8 +223,8 @@
 	name = "Discoordination"
 	desc = "Patient is unable to use complex tools or machinery."
 	scan_desc = "extreme discoordination"
-	gain_text = "<span class='warning'>You can barely control your hands!</span>"
-	lose_text = "<span class='notice'>You feel in control of your hands again.</span>"
+	gain_text = ""
+	lose_text = ""
 
 /datum/brain_trauma/severe/discoordination/on_gain()
 	ADD_TRAIT(owner, TRAIT_MONKEYLIKE, TRAUMA_TRAIT)
@@ -238,8 +238,8 @@
 	name = "Traumatic Non-Violence"
 	desc = "Patient is extremely unwilling to harm others in violent ways."
 	scan_desc = "pacific syndrome"
-	gain_text = "<span class='notice'>You feel oddly peaceful.</span>"
-	lose_text = "<span class='notice'>You no longer feel compelled to not harm.</span>"
+	gain_text = ""
+	lose_text = ""
 
 /datum/brain_trauma/severe/pacifism/on_gain()
 	ADD_TRAIT(owner, TRAIT_PACIFISM, TRAUMA_TRAIT)
@@ -253,8 +253,8 @@
 	name = "Hypnotic Stupor"
 	desc = "Patient is prone to episodes of extreme stupor that leaves them extremely suggestible."
 	scan_desc = "oneiric feedback loop"
-	gain_text = "<span class='warning'>You feel somewhat dazed.</span>"
-	lose_text = "<span class='notice'>You feel like a fog was lifted from your mind.</span>"
+	gain_text = ""
+	lose_text = ""
 
 /datum/brain_trauma/severe/hypnotic_stupor/on_lose() //hypnosis must be cleared separately, but brain surgery should get rid of both anyway
 	..()

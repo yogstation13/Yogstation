@@ -95,7 +95,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Jump To Key") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/Getmob(mob/M in GLOB.mob_list - GLOB.dummy_mob_list)
-	set category = "Admin"
+	set category = "Admin.Player Interaction"
 	set name = "Get Mob"
 	set desc = "Mob to teleport"
 	if(!src.holder)
@@ -111,7 +111,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Get Mob") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/Getkey()
-	set category = "Admin"
+	set category = "Admin.Player Interaction"
 	set name = "Get Key"
 	set desc = "Key to teleport"
 
@@ -139,7 +139,7 @@
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Get Key") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/sendmob(mob/M in sortmobs())
-	set category = "Admin"
+	set category = "Admin.Player Interaction"
 	set name = "Send Mob"
 	if(!src.holder)
 		to_chat(src, "Only administrators may use this command.", confidential=TRUE)

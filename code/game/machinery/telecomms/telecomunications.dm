@@ -35,6 +35,8 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	var/generates_heat = TRUE 	//yogs turn off tcomms generating heat
 	var/heatoutput = 2500		//yogs modify power output per trafic removed(usual heat capacity of the air in server room is 1600J/K)
 
+	var/on_icon = "" // used for special cases broadcaster/reciever
+
 
 /obj/machinery/telecomms/proc/relay_information(datum/signal/subspace/signal, filter, copysig, amount = 20)
 	// relay signal to all linked machinery that are of type [filter]. If signal has been sent [amount] times, stop sending
@@ -119,16 +121,18 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 
 /obj/machinery/telecomms/update_icon()
+	cut_overlays()
 	if(on)
-		if(panel_open)
-			icon_state = "[initial(icon_state)]_o"
+		var/mutable_appearance/on_overlay
+		if(on_icon)
+			on_overlay = mutable_appearance(icon, on_icon)
 		else
-			icon_state = initial(icon_state)
+			on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
+		add_overlay(on_overlay)
+	if(panel_open)
+		icon_state = "[initial(icon_state)]_o"
 	else
-		if(panel_open)
-			icon_state = "[initial(icon_state)]_o_off"
-		else
-			icon_state = "[initial(icon_state)]_off"
+		icon_state = initial(icon_state)
 
 /obj/machinery/telecomms/proc/update_power()
 

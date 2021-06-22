@@ -37,7 +37,7 @@
 
 
 /client/proc/debug_variables(datum/D in world)
-	set category = "Debug"
+	set category = "Misc.Server Debug"
 	set name = "View Variables"
 	//set src in world
 	var/static/cookieoffset = rand(1, 9999) //to force cookies to reset after the round.
@@ -1032,6 +1032,12 @@
 				return
 
 			src.cmd_admin_explosion(A)
+
+		else if(href_list["radiate"] && check_rights(R_FUN))
+			var/atom/A = locate(href_list["radiate"])
+			var/strength = input(usr, "Choose the radiation strength.", "Choose the strength.") as num|null
+			if(!isnull(strength))
+				A.AddComponent(/datum/component/radioactive, strength, src)
 
 		else if(href_list["emp"])
 			if(!check_rights(R_FUN))

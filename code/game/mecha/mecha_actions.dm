@@ -191,7 +191,7 @@
 	button_icon_state = "mech_overload_off"
 
 /datum/action/innate/mecha/mech_overload_mode/Activate(forced_state = null)
-	if(chassis.equipment_disabled)
+	if(chassis?.equipment_disabled) // If a EMP or something has messed a mech up return instead of activating -- Moogle
 		return
 	if(!owner || !chassis || chassis.occupant != owner)
 		return

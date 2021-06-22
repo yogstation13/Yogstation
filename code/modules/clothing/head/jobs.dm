@@ -94,7 +94,7 @@
 				candy_cooldown = world.time+1200
 			else
 				to_chat(user, "You just took a candy corn! You should wait a couple minutes, lest you burn through your stash.")
-				
+
 /obj/item/clothing/head/det_hat/evil
 	name = "suspicious fedora"
 	icon_state = "syndicate_fedora"
@@ -123,14 +123,14 @@
 		icon_state = "syndicate_fedora"
 		attack_verb = list("poked", "tipped")
 		hitsound = 'sound/weapons/genhit.ogg'
-		
+
 /obj/item/clothing/head/det_hat/evil/throw_impact(atom/hit_atom,)
 	if(iscarbon(src.loc))
 		return ..()
 	throw_at(thrownby, throw_range+3, throw_speed, null)
 	..()
 
-/obj/item/clothing/head/det_hat/evil/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force)
+/obj/item/clothing/head/det_hat/evil/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force, quickstart = TRUE)
 	if(iscarbon(thrower))
 		var/mob/living/carbon/C = thrower
 		C.throw_mode_on()

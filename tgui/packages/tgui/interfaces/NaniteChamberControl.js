@@ -5,7 +5,10 @@ import { Window } from '../layouts';
 
 export const NaniteChamberControl = (props, context) => {
   return (
-    <Window resizable>
+    <Window
+      width={380}
+      height={570}
+      resizable>
       <Window.Content scrollable>
         <NaniteChamberControlContent />
       </Window.Content>
@@ -149,58 +152,42 @@ export const NaniteChamberControlContent = (props, context) => {
                         </Grid.Column>
                       )}
                     </Grid>
-                    {scan_level >= 2 && (
-                      <Grid>
-                        {!!program.can_trigger && (
-                          <Grid.Column>
-                            <Section
-                              title="Triggers"
-                              level={2}>
-                              <LabeledList>
-                                <LabeledList.Item label="Trigger Cost">
-                                  {program.trigger_cost}
-                                </LabeledList.Item>
-                                <LabeledList.Item label="Trigger Cooldown">
-                                  {program.trigger_cooldown}
-                                </LabeledList.Item>
-                                {!!program.timer_trigger_delay && (
-                                  <LabeledList.Item label="Trigger Delay">
-                                    {program.timer_trigger_delay} s
-                                  </LabeledList.Item>
-                                )}
-                                {!!program.timer_trigger && (
-                                  <LabeledList.Item
-                                    label="Trigger Repeat Timer">
-                                    {program.timer_trigger} s
-                                  </LabeledList.Item>
-                                )}
-                              </LabeledList>
-                            </Section>
-                          </Grid.Column>
-                        )}
-                        {!!(program.timer_restart
-                          || program.timer_shutdown) && (
-                          <Grid.Column>
-                            <Section>
-                              <LabeledList>
-                                {/* I mean, bruh, this indentation level
-                                    is ABSOLUTELY INSANE!!! */}
-                                {program.timer_restart && (
-                                  <LabeledList.Item label="Restart Timer">
-                                    {program.timer_restart} s
-                                  </LabeledList.Item>
-                                )}
-                                {program.timer_shutdown && (
-                                  <LabeledList.Item label="Shutdown Timer">
-                                    {program.timer_shutdown} s
-                                  </LabeledList.Item>
-                                )}
-                              </LabeledList>
-                            </Section>
-                          </Grid.Column>
-                        )}
-                      </Grid>
-                    )}
+                    <Grid>
+                      {scan_level >= 2 && !!program.can_trigger && (
+                        <Grid.Column>
+                          <Section
+                            title="Triggers"
+                            level={2}>
+                            <LabeledList>
+                              <LabeledList.Item label="Trigger Cost">
+                                {program.trigger_cost}
+                              </LabeledList.Item>
+                              <LabeledList.Item label="Trigger Cooldown">
+                                {program.trigger_cooldown}
+                              </LabeledList.Item>
+                            </LabeledList>
+                          </Section>
+                        </Grid.Column>
+                      )}
+                      {scan_level >= 3 && (
+                        <Grid.Column>
+                          <Section
+                            title="Delays"
+                            level={2}>
+                            <LabeledList>
+                              {/* I mean, bruh, this indentation level
+                                  is ABSOLUTELY INSANE!!! */}
+                              <LabeledList.Item label="Set Timer">
+                                {program.timer_type}
+                              </LabeledList.Item>
+                              <LabeledList.Item label="Timer">
+                                {program.timer} s
+                              </LabeledList.Item>
+                            </LabeledList>
+                          </Section>
+                        </Grid.Column>
+                      )}
+                    </Grid>
                     {scan_level >= 3 && (
                       !!program.has_extra_settings && (
                         <Section

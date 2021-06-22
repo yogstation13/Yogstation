@@ -227,12 +227,13 @@
 	if(breath)	// If there's some other shit in the air lets deal with it here.
 
 	// N2O
-
+		REMOVE_TRAIT(H, TRAIT_SURGERY_PREPARED, "N2O")
 		var/SA_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/nitrous_oxide))
 		if(SA_pp > SA_para_min) // Enough to make us stunned for a bit
 			H.Unconscious(60) // 60 gives them one second to wake up and run away a bit!
 			if(SA_pp > SA_sleep_min) // Enough to make us sleep as well
 				H.Sleeping(max(H.AmountSleeping() + 40, 200))
+				ADD_TRAIT(H, TRAIT_SURGERY_PREPARED, "N2O")
 		else if(SA_pp > 0.01)	// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
 			if(prob(20))
 				H.emote(pick("giggle", "laugh"))
@@ -279,6 +280,67 @@
 			H.reagents.add_reagent(/datum/reagent/nitryl,1)
 
 		breath.adjust_moles(/datum/gas/nitryl, -gas_breathed)
+
+// Freon
+		var/freon_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/freon))
+		if (prob(freon_pp))
+			to_chat(H, "<span class='alert'>Your mouth feels like it's burning!</span>")
+		if (freon_pp >40)
+			H.emote("gasp")
+			H.adjustFireLoss(15)
+			if (prob(freon_pp/2))
+				to_chat(H, "<span class='alert'>Your throat closes up!</span>")
+				H.silent = max(H.silent, 3)
+		else
+			H.adjustFireLoss(freon_pp/4)
+		gas_breathed = breath.get_moles(/datum/gas/freon)
+		if (gas_breathed > gas_stimulation_min)
+			H.reagents.add_reagent(/datum/reagent/freon,1)
+
+		breath.adjust_moles(/datum/gas/freon, -gas_breathed)
+
+	// Healium
+		REMOVE_TRAIT(H, TRAIT_SURGERY_PREPARED, "healium")
+		var/healium_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/healium))
+		if(healium_pp > SA_sleep_min)
+			var/existing = H.reagents.get_reagent_amount(/datum/reagent/healium)
+			ADD_TRAIT(H, TRAIT_SURGERY_PREPARED, "healium")
+			H.reagents.add_reagent(/datum/reagent/healium,max(0, 1 - existing))
+			H.adjustFireLoss(-7)
+			H.adjustToxLoss(-5)
+			H.adjustBruteLoss(-5)
+		gas_breathed = breath.get_moles(/datum/gas/healium)
+		breath.adjust_moles(/datum/gas/healium, -gas_breathed)
+
+	// Pluonium
+		// Inert
+
+	// Zauker
+		var/zauker_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/zauker))
+		if(zauker_pp > safe_toxins_max)
+			H.adjustBruteLoss(25)
+			H.adjustOxyLoss(5)
+			H.adjustFireLoss(8)
+			H.adjustToxLoss(8)
+		gas_breathed = breath.get_moles(/datum/gas/zauker)
+		breath.adjust_moles(/datum/gas/zauker, -gas_breathed)
+
+	// Halon
+		gas_breathed = breath.get_moles(/datum/gas/halon)
+		if(gas_breathed > gas_stimulation_min)
+			H.adjustOxyLoss(5)
+			var/existing = H.reagents.get_reagent_amount(/datum/reagent/halon)
+			H.reagents.add_reagent(/datum/reagent/halon,max(0, 1 - existing))
+		gas_breathed = breath.get_moles(/datum/gas/halon)
+		breath.adjust_moles(/datum/gas/halon, -gas_breathed)
+
+	// Hexane
+		gas_breathed = breath.get_moles(/datum/gas/hexane)
+		if(gas_breathed > gas_stimulation_min)
+			H.hallucination += 50
+			H.reagents.add_reagent(/datum/reagent/hexane,5)
+			if(prob(33))
+				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
 
 	// Stimulum
 		gas_breathed = breath.get_moles(/datum/gas/stimulum)

@@ -58,6 +58,8 @@
 /datum/brain_trauma/special/bluespace_prophet/on_life()
 	if(world.time > next_portal)
 		next_portal = world.time + 100
+		if(is_centcom_level(owner.z))
+			return
 		var/list/turf/possible_turfs = list()
 		for(var/turf/T in range(owner, 8))
 			if(!T.density)
@@ -153,11 +155,13 @@
 /datum/brain_trauma/special/tenacity/on_gain()
 	ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, TRAUMA_TRAIT)
 	ADD_TRAIT(owner, TRAIT_NOHARDCRIT, TRAUMA_TRAIT)
+	ADD_TRAIT(owner, TRAIT_SURGERY_PREPARED, TRAUMA_TRAIT)
 	..()
 
 /datum/brain_trauma/special/tenacity/on_lose()
 	REMOVE_TRAIT(owner, TRAIT_NOSOFTCRIT, TRAUMA_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_NOHARDCRIT, TRAUMA_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_SURGERY_PREPARED, TRAUMA_TRAIT)
 	..()
 
 /datum/brain_trauma/special/death_whispers

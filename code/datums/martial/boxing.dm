@@ -1,6 +1,7 @@
 /datum/martial_art/boxing
 	name = "Boxing"
 	id = MARTIALART_BOXING
+	nonlethal = TRUE
 
 /datum/martial_art/boxing/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	to_chat(A, "<span class='warning'>Can't disarm while boxing!</span>")

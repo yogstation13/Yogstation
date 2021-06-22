@@ -1,0 +1,147 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/mopbucket,
+/obj/item/mop,
+/obj/effect/spawner/lootdrop/gloves,
+/turf/open/floor/plating,
+/area/template_noop)
+"i" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"k" = (
+/obj/structure/statue/petrified{
+	dir = 8
+	},
+/obj/item/shield/riot/roman/fake{
+	pixel_x = 3;
+	pixel_y = -6
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/template_noop)
+"p" = (
+/obj/structure/statue/petrified{
+	dir = 1
+	},
+/obj/item/bedsheet/captain{
+	dir = 1;
+	icon = 'icons/mob/neck.dmi'
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"t" = (
+/obj/structure/sign/departments/restroom{
+	pixel_y = -32
+	},
+/obj/effect/spawner/lootdrop/crate_spawner,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/template_noop)
+"u" = (
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"w" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"x" = (
+/obj/item/statuebust{
+	desc = "This bust is of a woman, with snakes for hair. It's incredibly lifelike."
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/template_noop)
+"B" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/template_noop)
+"F" = (
+/obj/structure/toilet,
+/obj/effect/spawner/lootdrop/trashbin,
+/turf/open/floor/plating,
+/area/template_noop)
+"L" = (
+/obj/structure/mirror{
+	broken = 1;
+	icon_state = "mirror_broke";
+	pixel_y = -32
+	},
+/obj/structure/sink{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"M" = (
+/obj/structure/statue/petrified{
+	dir = 4
+	},
+/obj/item/melee/sabre{
+	armour_penetration = 0;
+	block_chance = 10;
+	color = "#808080";
+	desc = "A sword of ancient design. Strangely, the blade is made of stone....";
+	force = 6;
+	materials = list("$metal" = 1);
+	name = "ancient sabre";
+	pixel_x = 8;
+	pixel_y = 4;
+	sharpness = 0;
+	throwforce = 6
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"O" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/template_noop)
+"R" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"T" = (
+/obj/structure/sink{
+	dir = 1
+	},
+/obj/structure/mirror{
+	pixel_y = -32
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+M
+B
+B
+a
+"}
+(2,1,1) = {"
+x
+B
+O
+L
+"}
+(3,1,1) = {"
+B
+R
+p
+w
+"}
+(4,1,1) = {"
+u
+k
+w
+T
+"}
+(5,1,1) = {"
+F
+w
+i
+t
+"}

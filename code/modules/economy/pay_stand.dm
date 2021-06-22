@@ -5,6 +5,7 @@
 	icon_state = "card_scanner"
 	density = TRUE
 	anchored = TRUE
+	circuit = /obj/item/circuitboard/machine/paystand
 	var/locked = FALSE
 	var/obj/item/card/id/my_card
 	var/obj/item/assembly/signaler/signaler //attached signaler, let people attach signalers that get activated if the user's transaction limit is achieved.

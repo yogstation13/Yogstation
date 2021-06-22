@@ -51,7 +51,7 @@
 				var/datum/DBQuery/query_library_list_books = SSdbcore.NewQuery({"
 				SELECT author, title, category, id
 					FROM [format_table_name("library")]
-					WHERE isnull(deleted)
+					WHERE deleted IS NULL
 						AND author LIKE :like_author
 						AND title LIKE :like_title
 						AND (:category = 'Any' OR category = :category)
@@ -72,7 +72,6 @@
 			dat += "<A href='?src=[REF(src)];back=1'>\[Go Back\]</A><BR>"
 	var/datum/browser/popup = new(user, "publiclibrary", name, 600, 400)
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/computer/libraryconsole/Topic(href, href_list)
@@ -101,7 +100,7 @@
 		else
 			author = null
 	if(href_list["search"])
-		SQLquery = "SELECT author, title, category, id FROM [format_table_name("library")] WHERE isnull(deleted) AND "
+		SQLquery = "SELECT author, title, category, id FROM [format_table_name("library")] WHERE deleted IS NULL AND "
 		if(category == "Any")
 			SQLquery += "author LIKE '%[author]%' AND title LIKE '%[title]%'"
 		else
@@ -142,7 +141,7 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 	if(!SSdbcore.Connect())
 		return
 	GLOB.cachedbooks = list()
-	var/datum/DBQuery/query_library_cache = SSdbcore.NewQuery("SELECT id, author, title, category FROM [format_table_name("library")] WHERE isnull(deleted)")
+	var/datum/DBQuery/query_library_cache = SSdbcore.NewQuery("SELECT id, author, title, category FROM [format_table_name("library")] WHERE deleted IS NULL")
 	if(!query_library_cache.Execute())
 		qdel(query_library_cache)
 		return
@@ -317,7 +316,6 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 
 	var/datum/browser/popup = new(user, "library", name, 600, 400)
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/computer/libraryconsole/bookmanagement/proc/findscanner(viewrange)
@@ -326,13 +324,16 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 	return null
 
 /obj/machinery/computer/libraryconsole/bookmanagement/proc/print_forbidden_lore(mob/user)
-	if (prob(50))
-		new /obj/item/melee/cultblade/dagger(get_turf(src))
-		to_chat(user, "<span class='warning'>Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a sinister dagger sitting on the desk. You don't even remember where it came from...</span>")
-	else
-		new /obj/item/clockwork/slab(get_turf(src))
-		to_chat(user, "<span class='warning'>Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a strange metal tablet sitting on the desk. You don't even remember where it came from...</span>")
-
+	switch(rand(1,3))
+		if(1)
+			new /obj/item/melee/cultblade/dagger(get_turf(src))
+			to_chat(user, "<span class='warning'>Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a sinister dagger sitting on the desk. You don't even remember where it came from...</span>")
+		if(2)
+			new /obj/item/clockwork/slab(get_turf(src))
+			to_chat(user, "<span class='warning'>Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a strange metal tablet sitting on the desk. You don't even remember where it came from...</span>")
+		if(3)
+			new /obj/item/forbidden_book(get_turf(src))
+			to_chat(user, "<span class='warning'>You lose your train of thought, the longer you stare into the vault's browsing window, the deeper you reach into timeless eons. You tear away from the screen, and a book fashioned in a strange leather, bound in chains, appears before you...</span>")
 	user.visible_message("[user] stares at the blank screen for a few moments, [user.p_their()] expression frozen in fear. When [user.p_they()] finally awaken[user.p_s()] from it, [user.p_they()] look[user.p_s()] a lot older.", 2)
 
 /obj/machinery/computer/libraryconsole/bookmanagement/attackby(obj/item/W, mob/user, params)
@@ -465,7 +466,7 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 		else
 			cooldown = world.time + PRINTER_COOLDOWN
 			var/datum/DBQuery/query_library_print = SSdbcore.NewQuery(
-				"SELECT * FROM [format_table_name("library")] WHERE id=:id AND isnull(deleted)",
+				"SELECT * FROM [format_table_name("library")] WHERE id=:id AND deleted IS NULL",
 				list("id" = id)
 			)
 			if(!query_library_print.Execute())
@@ -541,7 +542,6 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 		dat += "<BR>"
 	var/datum/browser/popup = new(user, "scanner", name, 600, 400)
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/libraryscanner/Topic(href, href_list)

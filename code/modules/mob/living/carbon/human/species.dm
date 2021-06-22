@@ -1,6 +1,7 @@
 // This code handles different species in the game.
 
 GLOBAL_LIST_EMPTY(roundstart_races)
+GLOBAL_LIST_EMPTY(mentor_races)
 
 /datum/species
 	/// if the game needs to manually check your race to do something not included in a proc here, it will use this
@@ -41,6 +42,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/toxic_food = TOXIC
 	/// slots the race can't equip stuff to
 	var/list/no_equip = list()
+	/// slots the race can't equip stuff to that have been added externally that should be inherited on species change
+	var/list/extra_no_equip = list()
 	/// this is sorta... weird. it basically lets you equip stuff that usually needs jumpsuits without one, like belts and pockets and ids
 	var/nojumpsuit = FALSE
 	/// affects the speech message
@@ -162,11 +165,19 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(S.check_roundstart_eligible())
 			GLOB.roundstart_races += S.id
 			qdel(S)
+		else if(S.check_mentor())
+			GLOB.mentor_races += S.id
+			qdel(S)
 	if(!GLOB.roundstart_races.len)
 		GLOB.roundstart_races += "human"
 
 /datum/species/proc/check_roundstart_eligible()
 	if(id in (CONFIG_GET(keyed_list/roundstart_races)))
+		return TRUE
+	return FALSE
+
+/datum/species/proc/check_mentor()
+	if(id in (CONFIG_GET(keyed_list/mentor_races)))
 		return TRUE
 	return FALSE
 
@@ -186,6 +197,17 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		randname += " [pick(GLOB.last_names)]"
 
 	return randname
+
+//used to add things to the no_equip list that'll get inherited on species changes
+/datum/species/proc/add_no_equip_slot(mob/living/carbon/C, slot)
+	extra_no_equip.Add(slot)
+	var/obj/item/thing = C.get_item_by_slot(slot)
+	if(thing && (!thing.species_exception || !is_type_in_list(src,thing.species_exception)))
+		C.dropItemToGround(thing)
+
+//removes something from the extra_no_equip list as well as the normal no_equip list
+/datum/species/proc/remove_no_equip_slot(mob/living/carbon/C, slot)
+	extra_no_equip.Remove(slot)
 
 //Called when cloning, copies some vars that should be kept
 /datum/species/proc/copy_properties_from(datum/species/old_species)
@@ -332,6 +354,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		C.gender = FEMALE
 	if((MGENDER in species_traits))
 		C.gender = MALE
+	extra_no_equip.Add(old_species.extra_no_equip)
 	for(var/slot_id in no_equip)
 		var/obj/item/thing = C.get_item_by_slot(slot_id)
 		if(thing && (!thing.species_exception || !is_type_in_list(src,thing.species_exception)))
@@ -593,12 +616,17 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(H.underwear)
 			var/datum/sprite_accessory/underwear/underwear = GLOB.underwear_list[H.underwear]
 			if(underwear)
-				standing += mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
+				if(HAS_TRAIT(H, TRAIT_SKINNY))
+					standing += wear_skinny_version(underwear.icon_state, underwear.icon, BODY_LAYER) //Neat, this works
+				else
+					standing += mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
 
 		if(H.undershirt)
 			var/datum/sprite_accessory/undershirt/undershirt = GLOB.undershirt_list[H.undershirt]
 			if(undershirt)
-				if(H.dna.species.sexes && H.gender == FEMALE)
+				if(HAS_TRAIT(H, TRAIT_SKINNY)) //Check for skinny first
+					standing += wear_skinny_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
+				else if(H.dna.species.sexes && H.gender == FEMALE)
 					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else
 					standing += mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
@@ -708,8 +736,23 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(!(DIGITIGRADE in species_traits)) //Someone cut off a digitigrade leg and tacked it on
 			species_traits += DIGITIGRADE
 		var/should_be_squished = FALSE
-		if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) || (H.wear_suit.body_parts_covered & LEGS)) || (H.w_uniform && (H.w_uniform.body_parts_covered & LEGS)))
-			should_be_squished = TRUE
+		if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) || (H.wear_suit.body_parts_covered & LEGS))) //Check for snowflake suit
+			var/obj/item/clothing/suit/A = H.wear_suit
+			if(A.mutantrace_variation != MUTANTRACE_VARIATION)
+				should_be_squished = TRUE
+		if(H.w_uniform && (H.w_uniform.body_parts_covered & LEGS)) //Check for snowflake jumpsuit
+			var/obj/item/clothing/under/U = H.w_uniform
+			if(U.mutantrace_variation != MUTANTRACE_VARIATION)
+				should_be_squished = TRUE
+		if(H.shoes)
+			var/obj/item/clothing/shoes/S = H.shoes
+			if(S.mutantrace_variation != MUTANTRACE_VARIATION)
+				should_be_squished = TRUE
+			if(should_be_squished)
+				S.adjusted = NORMAL_STYLE
+			else
+				S.adjusted = DIGITIGRADE_STYLE
+			H.update_inv_shoes()
 		if(O.use_digitigrade == FULL_DIGITIGRADE && should_be_squished)
 			O.use_digitigrade = SQUISHED_DIGITIGRADE
 			update_needed = TRUE
@@ -764,10 +807,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.legs_list[H.dna.features["legs"]]
 				if("moth_wings")
 					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
+				if("moth_wingsopen")
+					S = GLOB.moth_wingsopen_list[H.dna.features["moth_wings"]]
 				if("caps")
 					S = GLOB.caps_list[H.dna.features["caps"]]
-				if("plasma_vessels")
-					S = GLOB.plasma_vessels_list[H.dna.features["plasma_vessels"]]
 				if("teeth")
 					S = GLOB.teeth_list[H.dna.features["teeth"]]
 				if("dome")
@@ -862,12 +905,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	stop_wagging_tail(H)
 	return
 
-/datum/species/proc/auto_equip(mob/living/carbon/human/H)
-	// handles the equipping of species-specific gear
-	return
-
 /datum/species/proc/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE)
-	if(slot in no_equip)
+	if((slot in no_equip) || (slot in extra_no_equip))
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
 			return FALSE
 
@@ -920,9 +959,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				return FALSE
 			if(num_legs < 2)
 				return FALSE
-			if(DIGITIGRADE in species_traits)
+			var/obj/item/clothing/shoes/S = I
+			if((!S && (DIGITIGRADE in species_traits)) || ((DIGITIGRADE in species_traits) ? S.xenoshoe == NO_DIGIT : S.xenoshoe == YES_DIGIT)) // Checks leg compatibilty with shoe digitigrade or not flag
 				if(!disable_warning)
-					to_chat(H, "<span class='warning'>The footwear around here isn't compatible with your feet!</span>")
+					to_chat(H, "<span class='warning'>This footwear isn't compatible with your feet!</span>")
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_BELT)
@@ -1163,12 +1203,12 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	return 0
 
 /datum/species/proc/handle_mutations_and_radiation(mob/living/carbon/human/H)
+	if(HAS_TRAIT(H, TRAIT_RADIMMUNE))
+		H.radiation = 0
+		return TRUE
+
 	. = FALSE
 	var/radiation = H.radiation
-
-	if(HAS_TRAIT(H, TRAIT_RADIMMUNE))
-		radiation = 0
-		return TRUE
 
 	if(radiation > RAD_MOB_KNOCKDOWN && prob(RAD_MOB_KNOCKDOWN_PROB))
 		if(!H.IsParalyzed())
@@ -1223,7 +1263,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				. += I.slowdown
 		if(!HAS_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN))
 			var/health_deficiency = max(H.maxHealth - H.health, H.staminaloss)
-			if(health_deficiency >= 40)
+			if(HAS_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN))
+				health_deficiency -= H.maxHealth * 0.2 //20% more damage required for slowdown
+			if(health_deficiency >= H.maxHealth * 0.4)
+				if(HAS_TRAIT(H, TRAIT_RESISTDAMAGESLOWDOWN))
+					health_deficiency *= 0.5
 				if(flight)
 					. += (health_deficiency / 75)
 				else
@@ -1488,21 +1532,33 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(M.mind)
 		attacker_style = M.mind.martial_art
 	if((M != H) && M.a_intent != INTENT_HELP && H.check_shields(M, 0, M.name, attack_type = UNARMED_ATTACK))
+		if((M.dna.check_mutation(ACTIVE_HULK) || M.dna.check_mutation(HULK)) && M.a_intent == "disarm")
+			H.check_shields(0, M.name) // We check their shields twice since we are a hulk. Also triggers hitreactions for HULK_ATTACK
+			M.visible_message("<span class='danger'>[M]'s punch knocks the shield out of [H]'s hand.</span>", \
+							"<span class='userdanger'>[M]'s punch knocks the shield out of [H]'s hand.</span>")
+			if(M.dna)
+				playsound(H.loc, M.dna.species.attack_sound, 25, 1, -1)
+			else
+				playsound(H.loc, 'sound/weapons/punch1.ogg', 25, 1, -1)
+			log_combat(M, H, "hulk punched a shield held by")
+			return FALSE
+		if(istype(attacker_style, /datum/martial_art/flyingfang) && M.a_intent == INTENT_DISARM)
+			disarm(M, H, attacker_style)
 		log_combat(M, H, "attempted to touch")
 		H.visible_message("<span class='warning'>[M] attempted to touch [H]!</span>")
 		return 0
 	SEND_SIGNAL(M, COMSIG_MOB_ATTACK_HAND, M, H, attacker_style)
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			help(M, H, attacker_style)
 
-		if("grab")
+		if(INTENT_GRAB)
 			grab(M, H, attacker_style)
 
-		if("harm")
+		if(INTENT_HARM)
 			harm(M, H, attacker_style)
 
-		if("disarm")
+		if(INTENT_DISARM)
 			disarm(M, H, attacker_style)
 
 /datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
@@ -1918,6 +1974,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(isnull(fly))
 		fly = new
 		fly.Grant(H)
+	if(ismoth(H)) //mothpeople don't grow new wings, they already have theirs
+		return
 	if(H.dna.features["wings"] != wings_icon)
 		mutant_bodyparts |= "wings"
 		H.dna.features["wings"] = wings_icon
@@ -1935,8 +1993,14 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 /datum/species/proc/CanFly(mob/living/carbon/human/H)
 	if(H.stat || !(H.mobility_flags & MOBILITY_STAND))
 		return FALSE
+	if(ismoth(H) && H.dna.features["moth_wings"] == "Burnt Off") //this is so tragic can we get an "F" in the chat
+		to_chat(H, "<span>Your crispy wings won't work anymore!</span>")
+		return FALSE
 	if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) && (!H.wear_suit.species_exception || !is_type_in_list(src, H.wear_suit.species_exception))))	//Jumpsuits have tail holes, so it makes sense they have wing holes too
 		to_chat(H, "Your suit blocks your wings from extending!")
+		return FALSE
+	if(isskeleton(H))
+		to_chat(H, "Your wings are just bones; You can't actually fly!")
 		return FALSE
 	var/turf/T = get_turf(H)
 	if(!T)

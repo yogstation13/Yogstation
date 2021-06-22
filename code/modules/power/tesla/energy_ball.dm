@@ -1,6 +1,3 @@
-#define TESLA_DEFAULT_POWER 1738260
-#define TESLA_MINI_POWER 869130
-
 /obj/singularity/energy_ball
 	name = "energy ball"
 	desc = "An energy ball."
@@ -23,6 +20,7 @@
 	var/energy_to_raise = 32
 	var/energy_to_lower = -20
 	var/max_balls = 10
+	var/zap_range = 7
 
 /obj/singularity/energy_ball/Initialize(mapload, starting_energy = 50, is_miniball = FALSE)
 	miniball = is_miniball
@@ -61,12 +59,20 @@
 		pixel_x = 0
 		pixel_y = 0
 
-		tesla_zap(src, 7, TESLA_DEFAULT_POWER, TRUE)
+		tesla_zap(src, zap_range, TESLA_DEFAULT_POWER)
 
 		pixel_x = -32
 		pixel_y = -32
+
+		var/list/RG = range(1, src)
+		for(var/obj/singularity/energy_ball/E in RG)
+			if(!E.miniball && E != src)
+				collide(E)
+
 		for (var/ball in orbiting_balls)
-			var/range = rand(1, clamp(orbiting_balls.len, 3, 7))
+			if(prob(80))  //tesla nerf/reducing lag, each miniball now has only 20% to trigger the zap
+				continue
+			var/range = rand(1, clamp(orbiting_balls.len, 3, zap_range))
 			tesla_zap(ball, range, TESLA_MINI_POWER/7*range)
 	else
 		energy = 0 // ensure we dont have miniballs of miniballs
@@ -75,6 +81,17 @@
 	. = ..()
 	if(orbiting_balls.len)
 		. += "There are [orbiting_balls.len] mini-balls orbiting it."
+
+/obj/singularity/energy_ball/proc/collide(var/obj/singularity/energy_ball/target)
+	if(max_balls < target.max_balls) //we bow down against a stronger tesla
+		return
+	
+	name = "[pick("hypercharged", "super", "powered", "glowing", "unstable", "anomalous", "massive")] [name]"
+	max_balls += target.max_balls - 8 //default 2 more max balls per another tesla, respecting another consumed tesla
+	zap_range += target.zap_range - 6 //also 1 more range for zapping, making it harder to contain
+	add_atom_colour(rgb(255 - max_balls * 10, 255 - max_balls * 10, 255), ADMIN_COLOUR_PRIORITY) //gets more blue with more power
+	playsound(src.loc, 'sound/magic/lightning_chargeup.ogg', 100, 1, extrarange = 30)
+	qdel(target)
 
 
 /obj/singularity/energy_ball/proc/move_the_basket_ball(var/move_amount)

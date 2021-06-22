@@ -6,7 +6,7 @@
 	difficulty = 16
 	text_gain_indication = "<span class='notice'>Your body feels warm!</span>"
 	time_coeff = 5
-	instability = 30
+	instability = 40
 
 /datum/mutation/human/space_adaptation/New(class_ = MUT_OTHER, timer, datum/mutation/human/copymut)
 	..()

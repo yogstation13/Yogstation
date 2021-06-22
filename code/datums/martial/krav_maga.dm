@@ -117,12 +117,6 @@
 	log_combat(A, D, "neck chopped")
 	return 1
 
-/datum/martial_art/krav_maga/grab_act(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
-	if(check_streak(A,D))
-		return 1
-	log_combat(A, D, "grabbed (Krav Maga)")
-	..()
-
 /datum/martial_art/krav_maga/harm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
 	if(check_streak(A,D))
 		return 1

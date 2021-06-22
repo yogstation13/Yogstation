@@ -1,3 +1,15 @@
+/**
+ * # Energy Katana
+ *
+ * The space ninja's katana.
+ *
+ * The katana that only space ninja spawns with.  Comes with 30 force and throwforce, along with a signature special jaunting system.
+ * Upon clicking on a tile with the dash on, the user will teleport to that tile.
+ * The katana has 5 dashes stored at maximum, and upon using the dash, it will return 20 seconds after it was used.
+ * It also has a special feature where if it is tossed at a space ninja who owns it (determined by the ninja suit), the ninja will catch the katana instead of being hit by it.
+ *
+ */
+
 /obj/item/energy_katana
 	name = "energy katana"
 	desc = "A katana infused with strong energy."
@@ -5,8 +17,8 @@
 	item_state = "energy_katana"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 40
-	throwforce = 20
+	force = 30
+	throwforce = 30
 	block_chance = 50
 	armour_penetration = 50
 	w_class = WEIGHT_CLASS_NORMAL
@@ -99,8 +111,8 @@
 	QDEL_NULL(spark_system)
 	return ..()
 
-/datum/action/innate/dash/ninja
-	current_charges = 3
-	max_charges = 3
-	charge_rate = 30
+/datum/action/innate/dash/ninja //Holds a good amount of charges, but charges them slowly. Use them wisely.
+	current_charges = 5
+	max_charges = 5
+	charge_rate = 200
 	recharge_sound = null

@@ -115,6 +115,7 @@
 		. = 1
 
 /mob/living/simple_animal/hostile/mushroom/death(gibbed)
+	GLOB.walkingmushroom -= src
 	..(gibbed)
 	UpdateMushroomCap()
 

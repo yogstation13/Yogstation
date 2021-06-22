@@ -127,8 +127,12 @@
 					to_chat(B.current, "<span class='cultlarge'>[Nominee] could not win the cult's support and shall continue to serve as an acolyte.</span>")
 		return FALSE
 	team.cult_master = Nominee
+	var/datum/antagonist/cult/C = Nominee.mind.has_antag_datum(/datum/antagonist/cult)
+	var/list/saved_spells = C.magic.spells //save our spells...
+	C.magic.spells = list() //...then make sure they don't get deleted
 	SSticker.mode.remove_cultist(Nominee.mind, TRUE)
-	Nominee.mind.add_antag_datum(/datum/antagonist/cult/master)
+	var/datum/antagonist/cult/new_antag = Nominee.mind.add_antag_datum(/datum/antagonist/cult/master)
+	new_antag.magic.spells = saved_spells
 	for(var/datum/mind/B in team.members)
 		if(B.current)
 			for(var/datum/action/innate/cult/mastervote/vote in B.current.actions)

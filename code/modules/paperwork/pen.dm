@@ -21,7 +21,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 7
-	materials = list(MAT_METAL=10)
+	materials = list(/datum/material/iron=10)
 	pressure_resistance = 2
 	grind_results = list(/datum/reagent/iron = 2, /datum/reagent/iodine = 1)
 	var/colour = "black"	//what colour the ink is!
@@ -79,7 +79,7 @@
 	throwforce = 5
 	throw_speed = 4
 	colour = "crimson"
-	materials = list(MAT_GOLD = 750)
+	materials = list(/datum/material/gold = 750)
 	sharpness = IS_SHARP
 	resistance_flags = FIRE_PROOF
 	unique_reskin = list("Oak" = "pen-fountain-o",
@@ -152,6 +152,9 @@
  */
 
 /obj/item/pen/sleepy/attack(mob/living/M, mob/user)
+	if(!is_syndicate(user)) // if non syndicate , it is just a regular pen as they don't know how to activate hidden payload.
+		. = ..()
+		return
 	if(!istype(M))
 		return
 
@@ -164,10 +167,12 @@
 
 /obj/item/pen/sleepy/Initialize()
 	. = ..()
-	create_reagents(45, OPENCONTAINER)
+	create_reagents(75)
 	reagents.add_reagent(/datum/reagent/toxin/chloralhydrate, 20)
 	reagents.add_reagent(/datum/reagent/toxin/mutetoxin, 15)
 	reagents.add_reagent(/datum/reagent/toxin/staminatoxin, 10)
+	reagents.add_reagent(/datum/reagent/toxin/pancuronium, 7)
+	reagents.add_reagent(/datum/reagent/toxin/sodium_thiopental, 23)
 
 /*
  * (Alan) Edaggers
@@ -179,7 +184,7 @@
 /obj/item/pen/edagger/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 60, 100, 0, 'sound/weapons/blade1.ogg', TRUE)
-	
+
 /obj/item/pen/edagger/suicide_act(mob/user)
 	. = BRUTELOSS
 	if(on)
@@ -201,6 +206,9 @@
 		playsound(user, 'sound/weapons/saberoff.ogg', 5, 1)
 		to_chat(user, "<span class='warning'>[src] can now be concealed.</span>")
 	else
+		if(!is_syndicate(user)) // this is just a normal pen to non syndicates as they don't know how to switch it on.
+			. = ..()
+			return 
 		on = TRUE
 		force = 18
 		throw_speed = 4
@@ -226,7 +234,7 @@
 		item_state = initial(item_state)
 		lefthand_file = initial(lefthand_file)
 		righthand_file = initial(righthand_file)
-		
+
 /obj/item/pen/charcoal
 	name = "charcoal stylus"
 	desc = "It's just a wooden stick with some compressed ash on the end. At least it can write."
@@ -239,5 +247,5 @@
 	name = "Charcoal Stylus"
 	result = /obj/item/pen/charcoal
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 1, /datum/reagent/ash = 30)
-	time = 30
+	time = 3 SECONDS
 	category = CAT_PRIMAL
