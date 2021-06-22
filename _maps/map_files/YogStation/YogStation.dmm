@@ -20835,9 +20835,6 @@
 /obj/machinery/airalarm{
 	pixel_y = 24
 	},
-/obj/effect/turf_decal/loading_area{
-	dir = 4
-	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "bkr" = (
@@ -21336,12 +21333,8 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "blY" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/machinery/conveyor{
-	dir = 5;
-	id = "QMLoad2"
+/obj/effect/turf_decal/loading_area{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
