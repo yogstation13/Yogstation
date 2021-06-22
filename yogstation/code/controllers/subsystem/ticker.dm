@@ -12,7 +12,7 @@
 		"https://www.youtube.com/watch?v=KaOC9danxNo", 						// David Bowie - Space Oddity (Cover by Chris Hadfield)
 		"https://www.youtube.com/watch?v=f2cGxy-ZHIs", 						// Ólafur Arnalds - So Close (feat. Arnór Dan)
 		"https://www.youtube.com/watch?v=UaD4AiqYDyA", 						// X-CEED - Flip-Flap
-		"https://www.youtube.com/watch?v=a90kqxX3jPg",						// Monster860 - Orion Trail 
+		"https://www.youtube.com/watch?v=a90kqxX3jPg",						// Monster860 - Orion Trail
 		"https://www.youtube.com/watch?v=dOtCvh-kIUM",						// Snooty Fox - Ritchie Everett
 		"https://www.youtube.com/watch?v=zKxwED8-Hws",						// Monster860 - Journey to Cygni
 		"https://www.youtube.com/watch?v=icy4-CQHVh4", 						// Joseph "Zhaytee" Toscano - Absconditus
@@ -46,6 +46,7 @@
 		"https://www.youtube.com/watch?v=tRcPA7Fzebw",						//David Bowie - Starman
 		"https://www.youtube.com/watch?v=FH2EgYq_NCY",						//Lou Reed - Satellite of Love
 		"https://www.youtube.com/watch?v=zquJ6AqvVNw",						//Dungeons of Dredmor - Diggle Hell
+		"https://www.youtube.com/watch?v=cYUGOSjRs3Q&ab_channel=HDSounDI",   // Blake Robinson - Traitor's Motif
 		"https://www.youtube.com/watch?v=AumYP6Np1eI")						// Ataraxia - Deja Vuzz
 
 	selected_lobby_music = pick(songs)
@@ -79,7 +80,7 @@
 		if(data["title"])
 			login_music_data["title"] = data["title"]
 			login_music_data["url"] = data["url"]
-	
+
 	if(errorlevel)
 		to_chat(world, "<span class='boldwarning'>Youtube-dl failed.</span>")
 		log_world("Could not play lobby song [selected_lobby_music]: [stderr]")
