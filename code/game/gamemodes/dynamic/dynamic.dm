@@ -160,6 +160,10 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	/// The last drafted midround rulesets (without the current one included).
 	/// Used for choosing different midround injections.
 	var/list/current_midround_rulesets
+	
+	/// The amount of threat shown on the piece of paper.
+	/// Can differ from the actual threat amount.
+	var/shown_threat
 
 /datum/game_mode/dynamic/admin_panel()
 	var/list/dat = list("<html><head><title>Game Mode Panel</title></head><body><h1><B>Game Mode Panel</B></h1>")
@@ -267,11 +271,6 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	// communications title for threat management
 	var/desc = "REACH OUT WITH THE FORCE BOY, AND TEAR THAT STAR DESTROYER FROM THE SKY!"
 	// description for threat management
-	var/shown_threat
-	if(prob(FAKE_REPORT_CHANCE))
-		shown_threat = rand(1, 100)
-	else
-		shown_threat = clamp(threat_level + rand(REPORT_NEG_DIVERGENCE, REPORT_POS_DIVERGENCE), 0, 100)
 	switch(round(shown_threat))
 		if(0 to 19)
 			if(!current_players[CURRENT_LIVING_ANTAGS].len)
@@ -376,6 +375,12 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	set_cooldowns()
 	dynamic_log("Dynamic Mode initialized with a Threat Level of... [threat_level]! ([round_start_budget] round start budget)")
 	return TRUE
+	
+/datum/game_mode/dynamic/proc/setup_shown_threat()
+	if (prob(FAKE_REPORT_CHANCE))
+		shown_threat = rand(1, 100)
+	else
+		shown_threat = clamp(threat_level + rand(REPORT_NEG_DIVERGENCE, REPORT_POS_DIVERGENCE), 0, 100)
 
 /datum/game_mode/dynamic/proc/set_cooldowns()
 	var/latejoin_injection_cooldown_middle = 0.5*(latejoin_delay_max + latejoin_delay_min)
@@ -398,6 +403,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 
 	setup_parameters()
 	setup_hijacking()
+	setup_shown_threat()
 
 	var/valid_roundstart_ruleset = 0
 	for (var/rule in subtypesof(/datum/dynamic_ruleset))
