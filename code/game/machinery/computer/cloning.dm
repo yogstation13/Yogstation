@@ -505,6 +505,7 @@
 					else
 						log_cloning("[key_name(usr)] initiated EMPTY cloning of [key_name(C.fields["mindref"])] via [src] at [AREACOORD(src)]. Pod: [pod] at [AREACOORD(pod)].")
 				if(result &	CLONING_DELETE_RECORD)
+					temp = "[C.fields["name"]] => <font class='bad'>Record deleted.</font>"
 					if(active_record == C)
 						active_record = null
 					menu = 1
