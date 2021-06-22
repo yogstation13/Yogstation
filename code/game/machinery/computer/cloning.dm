@@ -492,6 +492,7 @@
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 			else
 				var/result = grow_clone_from_record(pod, C, empty)
+				temp = "[C.fields["name"]] => <font class='bad'>Initialisation failure.</font>"
 				if(result & CLONING_SUCCESS)
 					temp = "[C.fields["name"]] => <font class='good'>Cloning cycle in progress...</font>"
 					playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
@@ -508,10 +509,6 @@
 						active_record = null
 					menu = 1
 					records -= C
-
-			if(!success)
-				temp = "[C.fields["name"]] => <font class='bad'>Initialisation failure.</font>"
-				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 
 		else
 			temp = "<font class='bad'>Data corruption.</font>"
