@@ -8,9 +8,9 @@
 	downicon = "cryo-down-off"
 	bolts = FALSE
 
-	var/idle_power_usage = 60
-	var/active_power_usage = 510
-	var/emag_power_usage = 765
+	var/idle_power_usage = 80
+	var/active_power_usage = 680
+	var/emag_power_usage = 1020
 	var/stasis_enabled = FALSE
 	var/last_stasis_sound = FALSE
 	var/mob/living/carbon/human/patient = null
