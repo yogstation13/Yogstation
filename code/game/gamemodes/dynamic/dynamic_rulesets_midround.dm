@@ -538,7 +538,7 @@
 	if(!candidates.len)
 		return NOT_ENOUGH_PLAYERS
 
-		var/mob/dead/selected = pick(candidates)
+	var/mob/dead/selected = pick(candidates)
 
 	var/datum/mind/player_mind = new /datum/mind(selected.key)
 	player_mind.active = TRUE
