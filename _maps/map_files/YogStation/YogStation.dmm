@@ -22125,7 +22125,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/quartermaster/storage)
 "boK" = (
 /obj/effect/turf_decal/bot,
