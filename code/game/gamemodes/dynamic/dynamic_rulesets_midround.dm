@@ -538,7 +538,7 @@
 	if(!candidates.len)
 		return NOT_ENOUGH_PLAYERS
 
-	var/mob/dead/selected = pick(candidates)
+		var/mob/dead/selected = pick(candidates)
 
 	var/datum/mind/player_mind = new /datum/mind(selected.key)
 	player_mind.active = TRUE
@@ -554,14 +554,13 @@
 		message_admins("No valid spawn locations found, aborting...")
 		return MAP_ERROR
 
-	var/mob/living/carbon/human/M = new ((pick(spawn_locs)))
-	player_mind.transfer_to(M)
+	var/mob/living/carbon/human/S = new ((pick(spawn_locs)))
+	player_mind.transfer_to(S)
 	player_mind.assigned_role = "Zombie"
 	player_mind.special_role = "Zombie"
-	M.set_species(/datum/species/zombie/infectious)
-	playsound(M, 'sound/hallucinations/growl1.ogg', 50, 1, -1)
-	message_admins("[ADMIN_LOOKUPFLW(M)] has been made into a Zombie by an event.")
-	log_game("[key_name(M)] was spawned as a Zombie by an event.")
-	spawned_mobs += M
+	S.set_species(/datum/species/zombie/infectious)
+	playsound(S, 'sound/hallucinations/growl1.ogg', 50, 1, -1)
+	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a Zombie by an event.")
+	log_game("[key_name(S)] was spawned as a Zombie by an event.")
+	spawned_mobs += S
 	return SUCCESSFUL_SPAWN
-
