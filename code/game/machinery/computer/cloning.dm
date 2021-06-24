@@ -473,7 +473,6 @@
 				temp = "<font class='bad'>Cannot initiate regular cloning with body-only scans.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 			var/obj/machinery/clonepod/pod = GetAvailablePod()
-			var/success = FALSE
 			//Can't clone without someone to clone.  Or a pod.  Or if the pod is busy. Or full of gibs. Or if there isn't any meat available.
 			if(!LAZYLEN(pods))
 				temp = "<font class='bad'>No Clonepods detected.</font>"
