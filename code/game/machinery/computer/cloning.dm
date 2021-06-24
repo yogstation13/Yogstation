@@ -492,6 +492,7 @@
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 			else
 				var/result = grow_clone_from_record(pod, C, empty)
+				temp = "[C.fields["name"]] => <font class='bad'>Initialisation failure.</font>"
 				if(result & CLONING_SUCCESS)
 					temp = "[C.fields["name"]] => <font class='good'>Cloning cycle in progress...</font>"
 					playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
@@ -504,15 +505,11 @@
 					else
 						log_cloning("[key_name(usr)] initiated EMPTY cloning of [key_name(C.fields["mindref"])] via [src] at [AREACOORD(src)]. Pod: [pod] at [AREACOORD(pod)].")
 				if(result &	CLONING_DELETE_RECORD)
+					temp = "[C.fields["name"]] => <font class='bad'>Record deleted.</font>"
 					if(active_record == C)
 						active_record = null
 					menu = 1
 					records -= C
-
-			if(!success)
-				temp = "[C.fields["name"]] => <font class='bad'>Initialisation failure.</font>"
-				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-
 		else
 			temp = "<font class='bad'>Data corruption.</font>"
 			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
