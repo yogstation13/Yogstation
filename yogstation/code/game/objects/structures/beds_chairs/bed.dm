@@ -1,11 +1,12 @@
 #define STASIS_TOGGLE_COOLDOWN 50
 /obj/structure/bed/roller/stasis
-	name = "roller bed"
+	name = "stasis roller bed"
+	desc = "A rolling bed with the stabilizing effect of a stasis bed."
 	icon = 'yogstation/icons/obj/rollerbed.dmi'
-	icon_state = "cryo-down-off"
+	icon_state = "stasis-down-off"
 	foldabletype = /obj/item/roller/stasis
-	upicon = "cryo-up-off"
-	downicon = "cryo-down-off"
+	upicon = "stasis-up-off"
+	downicon = "stasis-down-off"
 	bolts = FALSE
 
 	var/idle_power_usage = 80
@@ -17,9 +18,42 @@
 	var/stasis_can_toggle = 0
 	var/use_power = 0
 	var/obj/item/stock_parts/cell/cell = null
+	var/up_overlay = null
+	var/down_overlay = null
 
 /obj/structure/bed/roller/stasis/get_cell()
 	return cell
+
+/obj/structure/bed/roller/stasis/proc/update_overlay()
+	cut_overlays()
+	if(!cell)
+		up_overlay = "stasis-up-nocell"
+		down_overlay = "stasis-down-nocell"
+		if(patient)
+			add_overlay(up_overlay)
+		else
+			add_overlay(down_overlay)
+		return
+	var/chargeleft = cell.percent()
+	if(chargeleft >= 100)
+		up_overlay = "stasis-up-100"
+		down_overlay = "stasis-down-100"
+	else if(chargeleft < 100 && chargeleft >= 75)
+		up_overlay = "stasis-up-75"
+		down_overlay = "stasis-down-75"
+	else if(chargeleft < 75 && chargeleft >= 50)
+		up_overlay = "stasis-up-50"
+		down_overlay = "stasis-down-50"
+	else if(chargeleft < 50 && chargeleft >= 25)
+		up_overlay = "stasis-up-25"
+		down_overlay = "stasis-down-25"
+	else if(chargeleft < 25 && chargeleft > 0)
+		up_overlay = "stasis-up-25"
+		down_overlay = "stasis-down-25"
+	if(patient)
+		add_overlay(up_overlay)
+	else
+		add_overlay(down_overlay)
 
 /obj/structure/bed/roller/stasis/post_buckle_mob(mob/living/M)
 	..()
@@ -27,12 +61,16 @@
 	if(stasis_enabled)
 		chill_out(M)
 	patient = M
+	cut_overlays()
+	add_overlay(up_overlay)
 	update_icon()
 
 /obj/structure/bed/roller/stasis/post_unbuckle_mob(mob/living/M)
 	..()
 	thaw_them(M)
 	patient = null
+	cut_overlays()
+	add_overlay(down_overlay)
 	update_icon()
 
 /obj/structure/bed/roller/stasis/proc/play_power_sound()
@@ -73,8 +111,8 @@
 	if(stasis_enabled)
 		if(patient)
 			thaw_them(patient)
-		upicon = "cryo-up-off"
-		downicon = "cryo-down-off"
+		upicon = "stasis-up-off"
+		downicon = "stasis-down-off"
 		stasis_enabled = FALSE
 		use_power = 0
 		update_bed_icon()
@@ -84,8 +122,8 @@
 	use_power = idle_power_usage
 	if(patient)
 		chill_out(patient)
-	upicon = "cryo-up"
-	downicon = "cryo-down"
+	upicon = "stasis-up"
+	downicon = "stasis-down"
 	stasis_enabled = TRUE
 	update_bed_icon()
 	play_power_sound()
@@ -99,8 +137,11 @@
 /obj/structure/bed/roller/stasis/proc/deductcharge(chrgdeductamt)
 	if(!cell)
 		return
+	. = cell.use(chrgdeductamt)
+	update_overlay()
 	if(stasis_enabled && cell.charge < use_power)
 		switch_states()
+		cut_overlays()
 
 /obj/structure/bed/roller/stasis/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/stock_parts/cell))
@@ -116,6 +157,7 @@
 		cell = W
 		to_chat(user, "<span class='notice'>You install a cell in [src].</span>")
 		update_icon()
+		update_overlay()
 
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(!cell)
@@ -128,7 +170,8 @@
 		if(stasis_enabled)
 			switch_states()
 		update_icon()
-		STOP_PROCESSING(SSobj, src) // no cell, no charge; stop processing for on because it cant be on
+		update_overlay()
+		STOP_PROCESSING(SSobj, src)
 	else
 		return ..()
 
@@ -161,26 +204,26 @@
 	B.last_stasis_sound = last_stasis_sound
 	B.stasis_can_toggle = stasis_can_toggle
 	if(cell)
-		B.icon_state = "cryo-folded-off"
+		B.icon_state = "stasis-folded-off"
 	if(stasis_enabled)
-		B.icon_state = "cryo-folded-on"
+		B.icon_state = "stasis-folded-on"
 		B.use_power = B.idle_power_usage
 	if(obj_flags & EMAGGED)
 		B.obj_flags |= EMAGGED
 	if(obj_flags & EMAGGED && stasis_enabled)
-		B.icon_state = "cryo-folded-emaged"
+		B.icon_state = "stasis-folded-emaged"
 	qdel(src)
 
 /obj/item/roller/stasis
 	name = "stasis roller bed"
-	desc = "A collapsed stasis roller bed that can be carried around to help stabilize critical patients."
+	desc = "A folded rolling bed with the stabilizing effect of a stasis bed."
 	icon = 'yogstation/icons/obj/rollerbed.dmi'
-	icon_state = "cryo-folded-nocell"
+	icon_state = "stasis-folded-nocell"
 	unfoldabletype = /obj/structure/bed/roller/stasis
 
-	var/idle_power_usage = 40
-	var/active_power_usage = 340
-	var/emag_power_usage = 510
+	var/idle_power_usage = 80
+	var/active_power_usage = 680
+	var/emag_power_usage = 1020
 	var/stasis_enabled = FALSE
 	var/last_stasis_sound = FALSE
 	var/stasis_can_toggle = 0
@@ -214,16 +257,16 @@
 
 /obj/item/roller/stasis/proc/switch_states()
 	if(stasis_enabled)
-		icon_state = "cryo-folded-off"
+		icon_state = "stasis-folded-off"
 		stasis_enabled = FALSE
 		use_power = 0
 		play_power_sound()
 		STOP_PROCESSING(SSobj, src)
 		return
 	use_power = idle_power_usage
-	icon_state = "cryo-folded-on"
+	icon_state = "stasis-folded-on"
 	if(obj_flags & EMAGGED)
-		icon_state = "cryo-folded-emaged"
+		icon_state = "stasis-folded-emaged"
 	stasis_enabled = TRUE
 	play_power_sound()
 	START_PROCESSING(SSobj, src)
@@ -251,7 +294,7 @@
 			return
 		cell = W
 		to_chat(user, "<span class='notice'>You install a cell in [src].</span>")
-		icon_state = "cryo-folded-off"
+		icon_state = "stasis-folded-off"
 
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(!cell)
@@ -263,7 +306,7 @@
 		to_chat(user, "<span class='notice'>You remove the cell from [src].</span>")
 		if(stasis_enabled)
 			switch_states()
-		icon_state = "cryo-folded-nocell"
+		icon_state = "stasis-folded-nocell"
 		STOP_PROCESSING(SSobj, src)
 	else
 		return ..()
@@ -282,16 +325,27 @@
 	to_chat(user, "<span class='notice'>You override the roller stasis bed's safeties!</span>")
 	obj_flags |= EMAGGED
 	if(stasis_enabled)
-		icon_state = "cryo-folded-emaged"
+		icon_state = "stasis-folded-emaged"
 
 /obj/item/roller/stasis/deploy_roller(mob/user, atom/location)
-	var/obj/item/roller/stasis/R = new unfoldabletype(location)
+	var/obj/structure/bed/roller/stasis/R = new unfoldabletype(location)
 	R.add_fingerprint(user)
 	R.cell = cell
 	R.last_stasis_sound = last_stasis_sound
 	R.stasis_can_toggle = stasis_can_toggle
 	if(stasis_enabled)
 		R.switch_states()
+	R.update_overlay()
 	if(obj_flags & EMAGGED)
 		R.obj_flags |= EMAGGED
 	qdel(src)
+
+/obj/structure/bed/roller/stasis/prototype
+	name = "stasis roller bed"
+	desc = "An unfolded prototype of a design that combines the mobilitiy of a rolling bed with the stabilizing effect of a stasis bed, given to the station by Nanotrasen for field testing."
+	foldabletype = /obj/item/roller/stasis/prototype
+
+/obj/item/roller/stasis/prototype
+	name = "stasis roller bed"
+	desc = "A folded prototype of a design that combines the mobilitiy of a rolling bed with the stabilizing effect of a stasis bed, given to the station by Nanotrasen for field testing."
+	unfoldabletype = /obj/structure/bed/roller/stasis/prototype
