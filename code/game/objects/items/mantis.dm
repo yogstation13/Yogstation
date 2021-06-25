@@ -39,4 +39,3 @@
 	name = "H.E.P.H.A.E.S.T.U.S. mantis blade"
 	icon_state = "mantis"
 	force = 18
-
