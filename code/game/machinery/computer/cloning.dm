@@ -498,7 +498,6 @@
 					if(active_record == C)
 						active_record = null
 					menu = 1
-					success = TRUE
 					if(!empty)
 						log_cloning("[key_name(usr)] initiated cloning of [key_name(C.fields["mindref"])] via [src] at [AREACOORD(src)]. Pod: [pod] at [AREACOORD(pod)].")
 					else
