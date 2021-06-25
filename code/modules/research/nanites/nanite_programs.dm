@@ -45,6 +45,9 @@
 	//Copying these values is handled by copy_extra_settings_to()
 	var/list/extra_settings = list()
 
+	//Used to determine if the program's use should be logged to the admin log
+	var/list/harmful = FALSE
+
 /datum/nanite_program/triggered
 	use_rate = 0
 	trigger_cost = 5
@@ -195,14 +198,14 @@
 		software_error()
 
 /datum/nanite_program/proc/on_shock(shock_damage)
-	if(!program_flags & NANITE_SHOCK_IMMUNE)
+	if(!(program_flags & NANITE_SHOCK_IMMUNE))
 		if(prob(10))
 			software_error()
 		else if(prob(33))
 			qdel(src)
 
 /datum/nanite_program/proc/on_minor_shock()
-	if(!program_flags & NANITE_SHOCK_IMMUNE)
+	if(!(program_flags & NANITE_SHOCK_IMMUNE))
 		if(prob(10))
 			software_error()
 
@@ -236,12 +239,16 @@
 	if(activation_code && code == activation_code && !activated)
 		activate()
 		host_mob.investigate_log("'s [name] nanite program was activated by [source] with code [code].", INVESTIGATE_NANITES)
+		if(harmful)
+			message_admins("[ADMIN_LOOKUPFLW(host_mob)]'s [name] nanite program was activated by [source] with code [code].")
 	else if(deactivation_code && code == deactivation_code && activated)
 		deactivate()
 		host_mob.investigate_log("'s [name] nanite program was deactivated by [source] with code [code].", INVESTIGATE_NANITES)
 	if(can_trigger && trigger_code && code == trigger_code)
 		trigger()
 		host_mob.investigate_log("'s [name] nanite program was triggered by [source] with code [code].", INVESTIGATE_NANITES)
+		if(harmful)
+			message_admins("[ADMIN_LOOKUPFLW(host_mob)]'s [name] nanite program was triggered by [source] with code [code].")
 	if(kill_code && code == kill_code)
 		host_mob.investigate_log("'s [name] nanite program was deleted by [source] with code [code].", INVESTIGATE_NANITES)
 		qdel(src)

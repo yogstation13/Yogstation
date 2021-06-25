@@ -37,6 +37,7 @@
 /obj/item/organ/tail/lizard
 	name = "lizard tail"
 	desc = "A severed lizard tail. Somewhere, no doubt, a lizard hater is very pleased with themselves."
+	icon_state = "severedlizardtail" //yogs - so the tail uses the correct sprites
 	color = "#116611"
 	tail_type = "Smooth"
 	var/spines = "None"
@@ -67,6 +68,7 @@
 /obj/item/organ/tail/polysmorph
 	name = "polysmorph tail"
 	desc = "A severed polysmorph tail."
+	icon_state = "severedpolytail" //yogs - so the tail uses the correct sprites
 	tail_type = "Polys"
 
 /obj/item/organ/tail/polysmorph/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = FALSE)

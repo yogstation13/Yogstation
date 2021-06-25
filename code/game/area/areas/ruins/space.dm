@@ -247,7 +247,6 @@
 /area/ruin/space/has_grav/ancientstation/atmo
 	name = "Beta Station Atmospherics"
 	icon_state = "red"
-	has_gravity = FALSE
 
 /area/ruin/space/has_grav/ancientstation/betanorth
 	name = "Beta Station North Corridor"

@@ -18,7 +18,6 @@
 	flags_1 = NONE
 	ambientsounds = MINING
 	flora_allowed = FALSE
-	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/mine/unexplored
 	name = "Mine"
@@ -85,7 +84,6 @@
 	has_gravity = STANDARD_GRAVITY
 	flags_1 = NONE
 	flora_allowed = TRUE
-	sound_environment = SOUND_AREA_LAVALAND
 
 /area/lavaland/surface
 	name = "Lavaland"
@@ -137,7 +135,6 @@
 	flags_1 = NONE
 	flora_allowed = TRUE
 	blob_allowed = FALSE
-	sound_environment = SOUND_AREA_ICEMOON
 
 /area/icemoon/surface
 	name = "Icemoon"

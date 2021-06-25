@@ -1,5 +1,7 @@
 // robot_upgrades.dm
 // Contains various borg upgrades.
+#define EXPANDER_MAXIMUM_STACK 2
+
 
 /obj/item/borg/upgrade
 	name = "borg upgrade module."
@@ -678,14 +680,15 @@
 	. = ..()
 	if(.)
 
-		if(R.hasExpanded)
-			to_chat(usr, "<span class='notice'>This unit already has an expand module installed!</span>")
+		if(R.expansion_count >= EXPANDER_MAXIMUM_STACK)
+			to_chat(usr, "<span class='notice'>This unit has already expanded as much as it can!</span>")
 			return FALSE
 
 		R.notransform = TRUE
 		var/prev_lockcharge = R.lockcharge
 		R.SetLockdown(1)
 		R.anchored = TRUE
+		R.expansion_count++
 		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(1, R.loc)
 		smoke.start()
@@ -698,15 +701,14 @@
 		R.anchored = FALSE
 		R.notransform = FALSE
 		R.resize = 2
-		R.hasExpanded = TRUE
 		R.update_transform()
 
 /obj/item/borg/upgrade/expand/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		if (R.hasExpanded)
-			R.hasExpanded = FALSE
+		while(R.expansion_count)
 			R.resize = 0.5
+			R.expansion_count--
 			R.update_transform()
 
 /obj/item/borg/upgrade/rped
@@ -819,5 +821,8 @@
 /obj/item/borg/upgrade/transform/security/action(mob/living/silicon/robot/R, user = usr)
 	if(CONFIG_GET(flag/disable_secborg))
 		to_chat(user, "<span class='warning'>Nanotrasen policy disallows the use of weapons of mass destruction.</span>")
+		return FALSE
+	if(is_banned_from(R.ckey, "Security Officer"))
+		to_chat(user, "<span class='warning'>Nanotrasen has disallowed this unit from becoming this type of module.</span>")
 		return FALSE
 	return ..()

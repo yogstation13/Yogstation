@@ -226,7 +226,7 @@
 /datum/component/riding/human/vehicle_mob_buckle(datum/source, mob/living/M, force = FALSE)
 	. = ..()
 	var/mob/living/carbon/human/AM = parent
-	var/slowdown = HUMAN_CARRY_SLOWDOWN - (AM.dna.check_mutation(STRONG) ? 0.2 : 0)
+	var/slowdown = AM.dna.check_mutation(STRONG) ? 0 : HUMAN_CARRY_SLOWDOWN
 	AM.add_movespeed_modifier(MOVESPEED_ID_HUMAN_CARRYING, multiplicative_slowdown = slowdown)
 
 /datum/component/riding/human/proc/on_host_unarmed_melee(atom/target)
@@ -262,7 +262,7 @@
 /datum/component/riding/human/force_dismount(mob/living/user)
 	var/atom/movable/AM = parent
 	AM.unbuckle_mob(user)
-	user.Paralyze(60)
+	user.Knockdown(60)
 	user.visible_message("<span class='warning'>[AM] pushes [user] off of [AM.p_them()]!</span>")
 
 /datum/component/riding/cyborg
