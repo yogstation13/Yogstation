@@ -46,7 +46,7 @@
 		"https://www.youtube.com/watch?v=tRcPA7Fzebw",						//David Bowie - Starman
 		"https://www.youtube.com/watch?v=FH2EgYq_NCY",						//Lou Reed - Satellite of Love
 		"https://www.youtube.com/watch?v=zquJ6AqvVNw",						//Dungeons of Dredmor - Diggle Hell
-		"https://www.youtube.com/watch?v=cYUGOSjRs3Q&ab_channel=HDSounDI",   // Blake Robinson - Traitor's Motif
+		"https://www.youtube.com/watch?v=cYUGOSjRs3Q",  					// Blake Robinson - Traitor's Motif
 		"https://www.youtube.com/watch?v=AumYP6Np1eI")						// Ataraxia - Deja Vuzz
 
 	selected_lobby_music = pick(songs)
