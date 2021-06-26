@@ -195,7 +195,7 @@
 
 ///Yogs///
 
-///Can cause dilithium effects on use. Used for some batteries and in atmospherics to lower the required temperature for fusion
+///Used for some batteries and in atmospherics to lower the required temperature for fusion
 /datum/material/dilithium
 	name = "dilithium crystal"
 	id = "dilithium_crystal"
