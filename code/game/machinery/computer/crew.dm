@@ -103,8 +103,11 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	if(!z)
 		var/turf/T = get_turf(user)
 		z = T.z
+	var/list/zdata = update_data(z)
 	. = list()
-
+	.["sensors"] = zdata
+	.["link_allowed"] = isAI(user)
+	.["z"] = z
 /datum/crewmonitor/proc/update_data(z)
 	if(data_by_z["[z]"] && last_update["[z]"] && world.time <= last_update["[z]"] + SENSORS_UPDATE_PERIOD)
 		return data_by_z["[z]"]
