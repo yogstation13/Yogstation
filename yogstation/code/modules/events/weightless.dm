@@ -19,8 +19,8 @@
 	for(var/obj/machinery/gravity_generator/main/station/A in GLOB.machines)
 		if(A)
 			A.set_state(0)
-	if(control)
-		control.weight *= 2
+			if(control && A.on)
+				control.weight *= 2		
 
 /datum/round_event/weightless/end()
 	for(var/obj/machinery/gravity_generator/main/station/A in GLOB.machines)
