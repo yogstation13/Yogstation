@@ -464,36 +464,6 @@
 													to_chat(usr, "<span class='notice'>Successfully added a major crime.</span>")
 									return
 
-								if(href_list["view_comment"])
-									if(R)
-										if(!H.canUseHUD())
-											return
-										else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
-											return
-										to_chat(usr, "<b>Comments/Log:</b>")
-										var/counter = 1
-										while(R.fields[text("com_[]", counter)])
-											to_chat(usr, R.fields[text("com_[]", counter)])
-											to_chat(usr, "----------")
-											counter++
-										return
-
-								if(href_list["add_comment"])
-									if(R)
-										var/t1 = stripped_multiline_input("Add Comment:", "Secure. records", null, null)
-										if(R)
-											if (!t1 || !allowed_access)
-												return
-											else if(!H.canUseHUD())
-												return
-											else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
-												return
-											var/counter = 1
-											while(R.fields[text("com_[]", counter)])
-												counter++
-											R.fields[text("com_[]", counter)] = text("Made by [] on [] [], []<BR>[]", allowed_access, station_time_timestamp(), time2text(world.realtime, "MMM DD"), GLOB.year_integer+540, t1)
-											to_chat(usr, "<span class='notice'>Successfully added comment.</span>")
-											return
 							to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
 
 	..() //end of this massive fucking chain. TODO: make the hud chain not spooky.
