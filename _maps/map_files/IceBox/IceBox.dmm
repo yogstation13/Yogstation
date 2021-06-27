@@ -55944,7 +55944,7 @@
 "cBV" = (
 /obj/machinery/door/airlock/security{
 	name = "Security Office";
-	req_access_txt = "1"
+	req_one_access_txt = "1;4"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
