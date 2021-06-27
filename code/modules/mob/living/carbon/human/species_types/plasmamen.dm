@@ -14,6 +14,7 @@
 	burnmod = 1.5
 	heatmod = 1.5
 	brutemod = 1.5
+	payday_modifier = .8 //Useful to NT for plasma research
 	breathid = "tox"
 	damage_overlay_type = ""//let's not show bloody wounds or burns over bones.
 	var/internal_fire = FALSE //If the bones themselves are burning clothes won't help you much
@@ -146,7 +147,7 @@
 
 		if("Assistant")
 			O = new /datum/outfit/job/plasmaman/assistant
-			
+
 		if("Artist")
 			O = new /datum/outfit/job/plasmaman/artist
 

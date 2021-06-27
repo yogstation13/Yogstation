@@ -12,6 +12,7 @@
 	heatmod = 1.5
 	acidmod = 0.2 //Their blood is literally acid
 	burnmod = 1.25
+	payday_modifier = .6 //Negatively viewed by NT
 	damage_overlay_type = "polysmorph"
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'

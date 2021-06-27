@@ -11,6 +11,7 @@
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	burnmod = 1.25
 	heatmod = 1.5
+	payday_modifier = .7 //Neutrally viewed by NT
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	disliked_food = MEAT | DAIRY
 	liked_food = VEGETABLES | FRUIT | GRAIN

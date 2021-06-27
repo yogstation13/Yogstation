@@ -4,6 +4,7 @@
 	say_mod = "flutters"
 	default_color = "00FF00"
 	species_traits = list(LIPS, NOEYESPRITES)
+	payday_modifier = .8 //Useful to NT for biomedical advancements
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID, MOB_BUG)
 	mutant_bodyparts = list("moth_wings")
 	default_features = list("moth_wings" = "Plain")
