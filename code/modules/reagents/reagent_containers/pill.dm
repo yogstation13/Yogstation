@@ -154,6 +154,7 @@
 
 /obj/item/reagent_containers/pill/mutadone/five
 	list_reagents = list(/datum/reagent/medicine/mutadone = 5)
+
 /obj/item/reagent_containers/pill/salicyclic
 	name = "salicylic acid pill"
 	desc = "Used to stimulate bruise healing."
