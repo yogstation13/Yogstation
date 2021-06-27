@@ -84,8 +84,6 @@
 			if(prob(1))
 				return 'sound/voice/human/wilhelm_scream.ogg'
 			return pick('sound/voice/human/malescream_1.ogg', 'sound/voice/human/malescream_2.ogg', 'sound/voice/human/malescream_3.ogg', 'sound/voice/human/malescream_4.ogg', 'sound/voice/human/malescream_5.ogg')
-	else if(iscatperson(H))
-		return pick('sound/voice/feline/scream1.ogg', 'sound/voice/feline/scream2.ogg')
 	else if(ismoth(H))
 		return 'sound/voice/moth/scream_moth.ogg'
 	else if(H.dna?.species?.screamsound) //yogs start: grabs scream from screamsound located in the appropriate species file.
