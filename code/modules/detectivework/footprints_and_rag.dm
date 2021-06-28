@@ -42,3 +42,6 @@
 		if(do_after(user,30, target = A))
 			user.visible_message("[user] finishes wiping off [A]!", "<span class='notice'>You finish wiping off [A].</span>")
 			A.wash(CLEAN_SCRUB)
+			reagents.reaction(A, TOUCH)
+			reagents.clear_reagents()
+
