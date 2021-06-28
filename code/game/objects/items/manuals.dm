@@ -3,6 +3,7 @@
 //Oh god what the fuck I am not good at computer
 /obj/item/book/manual
 	icon = 'icons/obj/library.dmi'
+	w_class = WEIGHT_CLASS_SMALL
 	due_date = 0 // Game time in 1/10th seconds
 	unique = TRUE   // FALSE - Normal book, TRUE - Should not be treated as normal book, unable to be copied, unable to be modified
 
@@ -264,7 +265,6 @@
 /obj/item/book/manual/wiki/security_space_law
 	name = "Space Law"
 	desc = "A set of Nanotrasen guidelines for keeping law and order on their space stations."
-	w_class = WEIGHT_CLASS_SMALL
 	icon_state = "bookSpaceLaw"
 	author = "Nanotrasen"
 	title = "Space Law"
