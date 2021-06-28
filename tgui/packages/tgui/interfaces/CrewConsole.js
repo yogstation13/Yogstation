@@ -166,10 +166,8 @@ export const CrewConsole = (props, context) => {
 
   return (
     <Window
-      title="Crew Monitor"
-      width={1000}
-      height={800}
-      resizable>
+      width={800}
+      height={600}>
       <Window.Content scrollable>
         <CrewConsoleContent />
       </Window.Content>

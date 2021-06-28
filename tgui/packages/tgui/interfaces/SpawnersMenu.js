@@ -1,4 +1,3 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Box, Button, Section } from '../components';
 import { Window } from '../layouts';
@@ -8,7 +7,6 @@ export const SpawnersMenu = (props, context) => {
   const spawners = data.spawners || [];
   return (
     <Window
-      title="Spawners Menu"
       width={700}
       height={600}
       resizable>

@@ -18,7 +18,6 @@ export const NotificationPreferences = (props, context) => {
   });
   return (
     <Window
-      title="Notification Preferences"
       width={270}
       height={360}
       resizable>

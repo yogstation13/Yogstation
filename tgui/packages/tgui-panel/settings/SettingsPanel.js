@@ -6,7 +6,7 @@
 
 import { toFixed } from 'common/math';
 import { useDispatch, useSelector } from 'common/redux';
-import { Box, Button, ColorBox, Divider, Dropdown, Flex, Input, LabeledList, NumberInput, Section, Tabs, TextArea } from 'tgui/components';
+import { Box, Button, ColorBox, Divider, Dropdown, Flex, Input, LabeledList, NumberInput, Section, Stack, Tabs, TextArea, Grid } from 'tgui/components';
 import { ChatPageSettings } from '../chat';
 import { rebuildChat, saveChatToDisk } from '../chat/actions';
 import { THEMES } from '../themes';
@@ -18,8 +18,8 @@ export const SettingsPanel = (props, context) => {
   const activeTab = useSelector(context, selectActiveTab);
   const dispatch = useDispatch(context);
   return (
-    <Flex>
-      <Flex.Item mr={1}>
+    <Stack fill>
+      <Stack.Item>
         <Section fitted fill minHeight="8em">
           <Tabs vertical>
             {SETTINGS_TABS.map(tab => (
@@ -34,16 +34,22 @@ export const SettingsPanel = (props, context) => {
             ))}
           </Tabs>
         </Section>
-      </Flex.Item>
-      <Flex.Item grow={1} basis={0}>
+      </Stack.Item>
+      <Stack.Item grow={1} basis={0}>
         {activeTab === 'general' && (
           <SettingsGeneral />
         )}
         {activeTab === 'chatPage' && (
           <ChatPageSettings />
         )}
-      </Flex.Item>
-    </Flex>
+        {activeTab === 'highlightPage' && (
+          <SettingsHighlight />
+        )}
+        {activeTab === 'statPanelpage' && (
+          <SettingsStat />
+        )}
+      </Stack.Item>
+    </Stack>
   );
 };
 
@@ -59,7 +65,11 @@ export const SettingsGeneral = (props, context) => {
   } = useSelector(context, selectSettings);
   const dispatch = useDispatch(context);
   return (
-    <Section fill>
+    <Section>
+      <Flex bold>
+        General Settings
+      </Flex>
+      <Divider />
       <LabeledList>
         <LabeledList.Item label="Theme">
           <Dropdown

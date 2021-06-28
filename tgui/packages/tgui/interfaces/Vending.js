@@ -116,7 +116,7 @@ export const Vending = (props, context) => {
       title="Vending Machine"
       width={450}
       height={600}
-      resizable>
+      >
       <Window.Content scrollable>
         {product_ad && (
           <Section textAlign="center" textColor="green">
