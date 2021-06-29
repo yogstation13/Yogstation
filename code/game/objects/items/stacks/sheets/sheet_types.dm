@@ -82,25 +82,25 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 		new /datum/stack_recipe("virology airlock assembly", /obj/structure/door_assembly/door_assembly_viro, 4, time = 50, one_per_turf = 1, on_floor = 1), \
 	)), \
 	null, \
+	new/datum/stack_recipe("directional firelock frame", /obj/structure/firelock_frame/border, 3, time = 50, on_floor = TRUE, placement_checks = STACK_CHECK_CARDINALS), \
 	new/datum/stack_recipe("firelock frame", /obj/structure/firelock_frame, 3, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("directonal firelock frame", /obj/structure/firelock_frame/border, 3, time = 50, on_floor = TRUE, placement_checks = STACK_CHECK_CARDINALS), \
-	new/datum/stack_recipe("turret frame", /obj/machinery/porta_turret_construct, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("meatspike frame", /obj/structure/kitchenspike_frame, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("reflector frame", /obj/structure/reflector, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("turret frame", /obj/machinery/porta_turret_construct, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
 	null, \
 	new/datum/stack_recipe("grenade casing", /obj/item/grenade/chem_grenade), \
 	new/datum/stack_recipe("light fixture frame", /obj/item/wallframe/light_fixture, 2), \
 	new/datum/stack_recipe("small light fixture frame", /obj/item/wallframe/light_fixture/small, 1), \
 	null, \
-	new/datum/stack_recipe("apc frame", /obj/item/wallframe/apc, 2), \
 	new/datum/stack_recipe("air alarm frame", /obj/item/wallframe/airalarm, 2), \
 	new/datum/stack_recipe("airlock controller frame", /obj/item/wallframe/advanced_airlock_controller, 2), \
-	new/datum/stack_recipe("fire alarm frame", /obj/item/wallframe/firealarm, 2), \
-	new/datum/stack_recipe("extinguisher cabinet frame", /obj/item/wallframe/extinguisher_cabinet, 2), \
+	new/datum/stack_recipe("apc frame", /obj/item/wallframe/apc, 2), \
 	new/datum/stack_recipe("button frame", /obj/item/wallframe/button, 1), \
+	new/datum/stack_recipe("extinguisher cabinet frame", /obj/item/wallframe/extinguisher_cabinet, 2), \
+	new/datum/stack_recipe("fire alarm frame", /obj/item/wallframe/firealarm, 2), \
 	null, \
-	new/datum/stack_recipe("iron door", /obj/structure/mineral_door/iron, 20, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("floodlight frame", /obj/structure/floodlight_frame, 5, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("iron door", /obj/structure/mineral_door/iron, 20, one_per_turf = TRUE, on_floor = TRUE), \
 ))
 
 /obj/item/stack/sheet/metal
