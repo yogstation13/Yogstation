@@ -92,8 +92,8 @@
 	timeout = 1200
 
 /datum/mood_event/table/add_effects()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
+	if(ishuman(owner.parent))
+		var/mob/living/carbon/human/H = owner.parent
 		if(iscatperson(H))
 			H.dna.species.start_wagging_tail(H)
 			addtimer(CALLBACK(H.dna.species, /datum/species.proc/stop_wagging_tail, H), 30)

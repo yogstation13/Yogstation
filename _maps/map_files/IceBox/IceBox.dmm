@@ -57216,7 +57216,9 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/tcommsat/server)
 "exz" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/library)
 "eyM" = (
@@ -60382,6 +60384,12 @@
 /obj/structure/closet/l3closet,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"nQh" = (
+/obj/machinery/posialert{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/white,
+/area/science/robotics/lab)
 "nTg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -109907,7 +109915,7 @@ blG
 bkr
 cHV
 biL
-biL
+nQh
 box
 bgp
 bnU

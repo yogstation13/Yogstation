@@ -84,7 +84,7 @@
 
 	var/list/upgrades = list()
 
-	var/hasExpanded = FALSE
+	var/expansion_count = 0
 	var/obj/item/hat
 	var/hat_offset = -3
 	var/list/blacklisted_hats = list( //Hats that don't really work on borgos
@@ -280,6 +280,11 @@
 	var/datum/browser/alerts = new(usr, "robotalerts", "Current Station Alerts", 400, 410)
 	alerts.set_content(dat)
 	alerts.open()
+	
+/mob/living/silicon/robot/verb/view_manifest()
+	set name = "View Crew Manifest"
+	set category = "Robot Commands"
+	ai_roster()
 
 /mob/living/silicon/robot/proc/ionpulse()
 	if(!ionpulse_on)
@@ -1022,9 +1027,9 @@
 	if(hud_used)
 		hud_used.update_robot_modules_display()
 
-	if(hasExpanded)
+	while(expansion_count)
 		resize = 0.5
-		hasExpanded = FALSE
+		expansion_count--
 		update_transform()
 	icon = initial(icon) //Should fix invisi-donorborgs ~ Kmc
 	module.transform_to(/obj/item/robot_module)

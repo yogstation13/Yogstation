@@ -2,11 +2,6 @@
 
 GLOBAL_VAR(restart_counter)
 
-/world/proc/enable_debugger()
-    var/dll = (fexists(EXTOOLS) && EXTOOLS)
-    if (dll)
-        call(dll, "debug_initialize")()
-
 /**
   * World creation
   *
@@ -24,8 +19,6 @@ GLOBAL_VAR(restart_counter)
   *
   */
 /world/New()
-	enable_debugger() //This does nothing if you aren't trying to debug
-
 	//Early profile for auto-profiler - will be stopped on profiler init if necessary.
 #if DM_VERSION >= 513 && DM_BUILD >= 1506
 	world.Profile(PROFILE_START)
