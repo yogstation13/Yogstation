@@ -40,7 +40,6 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 		)),
 	null, \
 	new/datum/stack_recipe("closet", /obj/structure/closet, 2, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("rack parts", /obj/item/rack_parts), \
 	new/datum/stack_recipe_list("filing cabinets", list( \
 		new/datum/stack_recipe("blue filing cabinet", /obj/structure/filingcabinet/colored/blue, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
 		new/datum/stack_recipe("gray filing cabinet", /obj/structure/filingcabinet/filingcabinet, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
@@ -49,6 +48,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 		new/datum/stack_recipe("purple filing cabinet", /obj/structure/filingcabinet/colored/purple, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
 		new/datum/stack_recipe("red filing cabinet", /obj/structure/filingcabinet/colored/red, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
 		new/datum/stack_recipe("yellow filing cabinet", /obj/structure/filingcabinet/colored/yellow, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("rack parts", /obj/item/rack_parts), \
 		)), \
 	null, \
 	new/datum/stack_recipe("canister", /obj/machinery/portable_atmospherics/canister/generic, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
@@ -59,8 +59,8 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("wall girders", /obj/structure/girder, 2, time = 40, one_per_turf = TRUE, on_floor = TRUE), \
 	null, \
 	new/datum/stack_recipe("computer frame", /obj/structure/frame/computer, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("modular console", /obj/machinery/modular_computer/console/buildable/, 10, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("machine frame", /obj/structure/frame/machine, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("modular console", /obj/machinery/modular_computer/console/buildable/, 10, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
 	null, \
 	new /datum/stack_recipe_list("airlock assemblies", list( \
 		new /datum/stack_recipe("standard airlock assembly", /obj/structure/door_assembly, 4, time = 50, one_per_turf = 1, on_floor = 1), \
