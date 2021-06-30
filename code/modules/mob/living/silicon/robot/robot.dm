@@ -280,6 +280,11 @@
 	var/datum/browser/alerts = new(usr, "robotalerts", "Current Station Alerts", 400, 410)
 	alerts.set_content(dat)
 	alerts.open()
+	
+/mob/living/silicon/robot/verb/view_manifest()
+	set name = "View Crew Manifest"
+	set category = "Robot Commands"
+	ai_roster()
 
 /mob/living/silicon/robot/proc/ionpulse()
 	if(!ionpulse_on)

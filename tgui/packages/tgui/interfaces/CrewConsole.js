@@ -33,9 +33,15 @@ const jobToColor = jobId => {
   if (jobId >= 50 && jobId < 60) {
     return COLORS.department.cargo;
   }
+  if (jobId >= 60 && jobId < 80) { // Yogs: Extended this to 80 as we have more than 9 civilian jobs
+    return COLORS.department.civilian; // Yogs: Also added a new civilian color
+  }
   if (jobId >= 200 && jobId < 230) {
     return COLORS.department.centcom;
   }
+  if (jobId === 999) { // Yogs Start: Assistants need the new color too
+    return COLORS.department.civilian;
+  } // Yogs End
   return COLORS.department.other;
 };
 
@@ -70,26 +76,6 @@ export const CrewConsole = (props, context) => {
       resizable>
       <Window.Content scrollable>
         <Flex>
-          <Flex.Item>
-            <Section>
-              {data.z === 2 && (
-                <div className="map">
-                  {data["sensors"].map(sensor => (
-                    sensor.pos_x && (
-                      <div className="blip" style={
-                        `left:${
-                          (sensor.pos_x-data.minx)*(600/(data.maxx-data.minx))}px;
-                    top:${
-                      (data.maxy-sensor.pos_y)*(600/(data.maxx-data.minx))}px`
-                      } />
-                    )
-                  ))}
-                  <img src={data.map_filename} width="600px"
-                    style={`-ms-interpolation-mode: nearest-neighbor`} />
-                </div>
-              )}
-            </Section>
-          </Flex.Item>
           <Flex.Item>
             <Section minHeight={90}>
               <Table>
