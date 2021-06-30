@@ -597,15 +597,6 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
-/datum/design/borg_upgrade_freeminer
-	name = "Cyborg Upgrade (Freeminer Firmware Board)"
-	id = "borg_upgrade_restart"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/freeminer
-	materials = list(/datum/material/iron = 20000 , /datum/material/glass = 5000)
-	construction_time = 120
-	category = list("Cyborg Upgrade Modules")
-
 /datum/design/borg_upgrade_vtec
 	name = "Cyborg Upgrade (VTEC Module)"
 	id = "borg_upgrade_vtec"

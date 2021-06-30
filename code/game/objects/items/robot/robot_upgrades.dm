@@ -71,7 +71,7 @@
 	R.revive()
 
 /obj/item/borg/upgrade/freeminer
-	name = "cyborg free miner firmware hack"
+	name = "free miner cyborg firmware hack"
 	desc = "Used to override the default firmware of a cyborg with the freeminer version."
 	icon_state = "cyborg_upgrade2"
 	one_use = TRUE
