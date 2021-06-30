@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - bugfix: "The shuttle catastrophe can no longer happen when the shuttle is off the CC z-level"
