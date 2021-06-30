@@ -133,7 +133,8 @@
 						temp_img = icon('icons/ass/assalien.png')
 					else if(ishuman(ass)) //Suit checks are in check_ass
 						temp_img = icon(ass.gender == FEMALE ? 'icons/ass/assfemale.png' : 'icons/ass/assmale.png')
-						if(iscatperson(ass))
+						var/mob/living/carbon/human/H = ass
+						if(iscatperson(H))
 							temp_img = icon('icons/ass/asscat.png')
 					else if(isdrone(ass)) //Drones are hot
 						temp_img = icon('icons/ass/assdrone.png')
@@ -346,4 +347,3 @@
 	grind_results = list(/datum/reagent/iodine = 40, /datum/reagent/iron = 10)
 	var/charges = 5
 	var/max_charges = 5
-
