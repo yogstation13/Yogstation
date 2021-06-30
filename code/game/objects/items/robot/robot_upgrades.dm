@@ -70,6 +70,15 @@
 
 	R.revive()
 
+/obj/item/borg/upgrade/freeminer
+	name = "cyborg free miner firmware hack"
+	desc = "Used to override the default firmware of a cyborg with the freeminer version."
+	icon_state = "cyborg_upgrade2"
+	one_use = TRUE
+
+/obj/item/borg/upgrade/freeminer/action(mob/living/silicon/robot/R, user = usr)
+	R.req_access = list(ACCESS_FREEMINER_ENGINEER)
+
 /obj/item/borg/upgrade/vtec
 	name = "cyborg VTEC module"
 	desc = "Used to kick in a cyborg's VTEC systems, increasing their speed."
