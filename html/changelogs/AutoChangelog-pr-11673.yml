@@ -1,0 +1,5 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - rscadd: "Added new cyborg upgrade to change id requirements on a borg"
+  - tweak: "Gives free miners access to mining mechs"
