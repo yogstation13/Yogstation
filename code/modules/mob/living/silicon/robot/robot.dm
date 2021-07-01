@@ -652,7 +652,7 @@
 	update_fire()
 
 /mob/living/silicon/robot/proc/self_destruct()
-	if(emagged || istype(src, /mob/living/silicon/robot/modules/syndicate))
+	if(emagged || module.syndicate_module)
 		if(mmi)
 			qdel(mmi)
 		explosion(src.loc,1,2,4,flame_range = 2)

@@ -36,6 +36,8 @@
 	var/allow_riding = TRUE
 	var/canDispose = FALSE // Whether the borg can stuff itself into disposal
 
+	var/syndicate_module = FALSE // If the borg should blow emag size regardless of emag state
+
 /obj/item/robot_module/Initialize()
 	. = ..()
 	for(var/i in basic_modules)
@@ -608,6 +610,7 @@
 	moduleselect_icon = "malf"
 	can_be_pushed = FALSE
 	hat_offset = 3
+	syndicate_module = TRUE
 
 /obj/item/robot_module/syndicate/rebuild_modules()
 	..()
@@ -648,6 +651,7 @@
 	moduleselect_icon = "malf"
 	can_be_pushed = FALSE
 	hat_offset = 3
+	syndicate_module = TRUE
 
 /obj/item/robot_module/saboteur
 	name = "Syndicate Saboteur"
@@ -682,6 +686,7 @@
 	magpulsing = TRUE
 	hat_offset = -4
 	canDispose = TRUE
+	syndicate_module = TRUE
 
 /datum/robot_energy_storage
 	var/name = "Generic energy storage"
