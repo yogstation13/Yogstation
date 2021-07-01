@@ -92,7 +92,8 @@
 		/obj/item/implant,
 		/obj/item/implanter,
 		/obj/item/pinpointer/crew,
-		/obj/item/holosign_creator/medical
+		/obj/item/holosign_creator/medical,
+		/obj/item/book/manual/wiki/medicine
 		))
 
 /obj/item/storage/firstaid/medical/PopulateContents()
@@ -107,7 +108,8 @@
 		/obj/item/surgical_drapes = 1,
 		/obj/item/scalpel = 1,
 		/obj/item/hemostat = 1,
-		/obj/item/cautery = 1)
+		/obj/item/cautery = 1,
+		/obj/item/book/manual/wiki/medicine = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/ancient
