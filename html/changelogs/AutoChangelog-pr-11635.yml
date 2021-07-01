@@ -1,5 +1,0 @@
-author: "Anvilman6"
-delete-after: true 
-changes: 
-  - rscadd: "Varying payscales for different species, see PR table for details!"
-  - experiment: "Payscale code was drafted based on TG's PR 51212 and modified to fit Yog. The modifier numbers are subject to change if enough people desire it, so be sure to give feedback if you would like."
