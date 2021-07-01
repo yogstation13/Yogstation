@@ -6,14 +6,14 @@
 	maxHealth = 100
 	health = 100
 	bubble_icon = "robot"
-	designation = "Default" //used for displaying the prefix & getting the current module of cyborg
+	designation = "Default" ///used for displaying the prefix & getting the current module of cyborg
 	has_limbs = 1
 	hud_type = /datum/hud/robot
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 	var/custom_name = ""
 	var/braintype = "Cyborg"
-	var/obj/item/robot_suit/robot_suit = null //Used for deconstruction to remember what the borg was constructed out of..
+	var/obj/item/robot_suit/robot_suit = null ///Used for deconstruction to remember what the borg was constructed out of..
 	var/obj/item/mmi/mmi = null
 
 	var/shell = FALSE
@@ -32,7 +32,7 @@
 	var/obj/screen/thruster_button = null
 	var/obj/screen/hands = null
 
-	var/shown_robot_modules = 0	//Used to determine whether they have the module menu shown or not
+	var/shown_robot_modules = 0	///Used to determine whether they have the module menu shown or not
 	var/obj/screen/robot_modules_background
 
 //3 Modules can be activated at any one time.
@@ -59,25 +59,25 @@
 
 	var/alarms = list("Motion"=list(), "Fire"=list(), "Atmosphere"=list(), "Power"=list(), "Camera"=list(), "Burglar"=list())
 
-	var/speed = 0 // VTEC speed boost.
-	var/magpulse = FALSE // Magboot-like effect.
-	var/ionpulse = FALSE // Jetpack-like effect.
-	var/ionpulse_on = FALSE // Jetpack-like effect.
-	var/datum/effect_system/trail_follow/ion/ion_trail // Ionpulse effect.
+	var/speed = 0 /// VTEC speed boost.
+	var/magpulse = FALSE /// Magboot-like effect.
+	var/ionpulse = FALSE /// Jetpack-like effect.
+	var/ionpulse_on = FALSE /// Jetpack-like effect.
+	var/datum/effect_system/trail_follow/ion/ion_trail /// Ionpulse effect.
 
-	var/low_power_mode = FALSE //whether the robot has no charge left.
-	var/datum/effect_system/spark_spread/spark_system // So they can initialize sparks whenever/N
+	var/low_power_mode = FALSE ///whether the robot has no charge left.
+	var/datum/effect_system/spark_spread/spark_system /// So they can initialize sparks whenever/N
 
-	var/lawupdate = TRUE //Cyborgs will sync their laws with their AI by default
-	var/scrambledcodes = FALSE // Used to determine if a borg shows up on the robotics console.  Setting to true hides them.
-	var/lockcharge //Boolean of whether the borg is locked down or not
+	var/lawupdate = TRUE ///Cyborgs will sync their laws with their AI by default
+	var/scrambledcodes = FALSE /// Used to determine if a borg shows up on the robotics console.  Setting to true hides them.
+	var/lockcharge ///Boolean of whether the borg is locked down or not
 
 	var/toner = 0
 	var/tonermax = 40
 
-	var/lamp_max = 10 //Maximum brightness of a borg lamp. Set as a var for easy adjusting.
-	var/lamp_intensity = 0 //Luminosity of the headlamp. 0 is off. Higher settings than the minimum require power.
-	var/lamp_cooldown = 0 //Flag for if the lamp is on cooldown after being forcibly disabled.
+	var/lamp_max = 10 ///Maximum brightness of a borg lamp. Set as a var for easy adjusting.
+	var/lamp_intensity = 0 ///Luminosity of the headlamp. 0 is off. Higher settings than the minimum require power.
+	var/lamp_cooldown = 0 ///Flag for if the lamp is on cooldown after being forcibly disabled.
 
 	var/sight_mode = 0
 	hud_possible = list(ANTAG_HUD, DIAG_STAT_HUD, DIAG_HUD, DIAG_BATT_HUD, DIAG_TRACK_HUD)
@@ -87,10 +87,10 @@
 	var/expansion_count = 0
 	var/obj/item/hat
 	var/hat_offset = -3
-	var/list/blacklisted_hats = list( //Hats that don't really work on borgos
+	var/list/blacklisted_hats = list( ///Hats that don't really work on borgos
 	/obj/item/clothing/head/helmet/space/santahat,
 	/obj/item/clothing/head/welding,
-	/obj/item/clothing/head/mob_holder, //I am so very upset that this breaks things
+	/obj/item/clothing/head/mob_holder, ///I am so very upset that this breaks things
 	/obj/item/clothing/head/helmet/space,
 	)
 
