@@ -1,4 +1,4 @@
-/client/proc/browse_files(root="data/logs/", max_iterations=10, list/valid_extensions=list("txt","log","htm", "html", "json"))
+/client/proc/browse_files(root="data/logs/", max_iterations=10, list/valid_extensions=list("txt","log","htm", "html", "json", "aac", "mp3", "ogg", "opus", "wav", "weba"))
 	if(IsAdminAdvancedProcCall())
 		log_admin_private("BROWSEFILES: Admin proc call blocked")
 		message_admins("BROWSEFILES: Admin proc call blocked")
