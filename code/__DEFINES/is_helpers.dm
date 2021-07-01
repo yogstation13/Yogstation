@@ -266,3 +266,5 @@ GLOBAL_LIST_INIT(glass_sheet_types, typecacheof(list(
 
 //Fugitive
 #define isfugitive(M) (istype(M) && M.mind?.has_antag_datum(/datum/antagonist/fugitive))
+
+#define isProbablyWallMounted(O) (O.pixel_x > 20 || O.pixel_x < -20 || O.pixel_y > 20 || O.pixel_y < -20)
