@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - tweak: "devil contract no long needs a cooldown"
