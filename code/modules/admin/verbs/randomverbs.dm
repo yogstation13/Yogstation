@@ -1166,7 +1166,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/confirm = alert(usr, "Sure you want to Warp Whistle them?", "Whistle Message", "Yes", "No")
 			if(confirm == "Yes")
 				var/mob/living/M = target
-				M.whistle(M)
+				M.whistle()
 		if(ADMIN_PUNISHMENT_CLUWNE)
 			var/confirm = alert(usr, "Send Cluwne Message?", "Cluwne Message", "Yes", "No")
 			if(confirm == "Yes")
@@ -1316,8 +1316,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	log_admin("[key_name_admin(usr)] has cleared all radiation.")
 	
 	
-/mob/living/proc/whistle(mob/living/user)
-	var/turf/T = get_turf(user)
+/mob/living/proc/whistle()
+	var/turf/T = get_turf(src)
+	var/mob/living/user = src
 	playsound(T,'sound/magic/warpwhistle.ogg', 200, 1)
 	user.mobility_flags &= ~MOBILITY_MOVE
 	new /obj/effect/temp_visual/tornado(T)
