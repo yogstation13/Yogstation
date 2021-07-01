@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes borgs being unable to deconstruct racks and tables"
