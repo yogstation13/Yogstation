@@ -698,7 +698,7 @@
 
 /mob/MouseDrop_T(atom/dropping, atom/user)
 	. = ..()
-	if(ismob(dropping) && dropping != user)
+	if(ismob(dropping) && dropping != user && user == src)
 		var/mob/M = dropping
 		M.show_inv(user)
 
