@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed ghosts being able to buckle people to borgs"
