@@ -1,0 +1,4 @@
+author: "monster860"
+delete-after: true 
+changes: 
+  - rscadd: "Adds the ability to make voice announcements with a microphone via communications console or AI. Do not abuse this."
