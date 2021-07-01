@@ -990,7 +990,7 @@
 			message_admins("[string]")
 
 /client/proc/cmd_admin_man_up(mob/M in GLOB.mob_list)
-	set category = "Special Verbs"
+	set category = "Misc"
 	set name = "Man Up"
 
 	if(!M)
