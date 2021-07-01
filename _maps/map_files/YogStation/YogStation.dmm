@@ -33117,6 +33117,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"cME" = (
+/obj/structure/tank_dispenser/oxygen,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
 "cMX" = (
 /obj/structure/filingcabinet/chestdrawer,
 /obj/effect/turf_decal/tile/neutral{
@@ -97200,7 +97204,7 @@ abP
 aco
 acO
 abl
-abO
+cME
 abO
 afc
 afQ
