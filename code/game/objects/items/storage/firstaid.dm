@@ -321,7 +321,7 @@
 
 /obj/item/storage/pill_bottle/mutadone/PopulateContents()
 	for(var/i in 1 to 7)
-		new /obj/item/reagent_containers/pill/mutadone(src)
+		new /obj/item/reagent_containers/pill/mutadone/five(src)
 
 /obj/item/storage/pill_bottle/mannitol
 	name = "bottle of mannitol pills"
