@@ -1,0 +1,4 @@
+author: "alexkar598"
+delete-after: true 
+changes: 
+  - tweak: "Instead of doubling the chance of the gravity event happening every time its triggered, it only doubles it if the gravity generator is active when the event ends"
