@@ -44695,7 +44695,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/airlock/security/glass{
 	name = "Security Office";
-	req_access_txt = "1"
+	req_one_access_txt = "1;4"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -49674,7 +49674,7 @@
 "bCv" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Security Office";
-	req_access_txt = "1"
+	req_one_access_txt = "1;4"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -50197,7 +50197,7 @@
 	},
 /obj/machinery/door/airlock/security/glass{
 	name = "Security Office";
-	req_access_txt = "1"
+	req_one_access_txt = "1;4"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -70584,7 +70584,7 @@
 	},
 /obj/machinery/door/airlock/maintenance{
 	name = "security maintenance";
-	req_access_txt = "1"
+	req_one_access_txt = "1;4"
 	},
 /obj/structure/sign/directions/evac{
 	pixel_y = -24
@@ -71313,7 +71313,7 @@
 "cmy" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Security Office";
-	req_access_txt = "1"
+	req_one_access_txt = "1;4"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -90271,7 +90271,7 @@
 "hue" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Security Office";
-	req_access_txt = "1"
+	req_one_access_txt = "1;4"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
