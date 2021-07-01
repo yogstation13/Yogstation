@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - tweak: "adds forensics access to the sec protolathe"
