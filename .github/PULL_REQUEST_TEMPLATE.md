@@ -20,11 +20,8 @@ Important documentation information includes, but is not limited to: any numberi
 
 # Changelog
 
-Edit the changelog at the bottom for changes that are noticeable by the players. Remove it if this isn't the case.
+Edit the changelog below to reflect the changes made by this PR, even if the changes are minor - required for every PR.
 If you add a name after the ':cl', that name will be used in the changelog. Leave it empty to use your GitHub name.
-
-Explain why each change in your pr is beneficial to the server, per category.
-This is less necessary for bugfixes and such, but it is always welcome.
 
 :cl:  
 rscadd: Added new things  
