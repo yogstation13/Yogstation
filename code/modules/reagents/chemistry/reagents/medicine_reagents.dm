@@ -1656,9 +1656,6 @@
 				M.visible_message("<span class='warning'>[M]'s body reacts with the medicine. It seemed to have [RNG_TEXT]!</span>")
 	..()
 
-/datum/reagent/medicine/burnmix/reaction_obj(obj/O, reac_volume)
-	O?.wash(clean_types)
-
 /datum/reagent/medicine/burnmix/reaction_turf(turf/T, reac_volume)
 	if(reac_volume >= 1)
 		T.wash(clean_types)
