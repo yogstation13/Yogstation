@@ -8,17 +8,17 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	flags_1 = CONDUCT_1
 
-	var/list/basic_modules = list() //a list of paths, converted to a list of instances on New()
-	var/list/emag_modules = list() //ditto
-	var/list/ratvar_modules = list() //ditto ditto
-	var/list/modules = list() //holds all the usable modules
-	var/list/added_modules = list() //modules not inherient to the robot module, are kept when the module changes
+	var/list/basic_modules = list() ///a list of paths, converted to a list of instances on New()
+	var/list/emag_modules = list() ///ditto
+	var/list/ratvar_modules = list() ///ditto ditto
+	var/list/modules = list() ///holds all the usable modules
+	var/list/added_modules = list() ///modules not inherient to the robot module, are kept when the module changes
 	var/list/storages = list()
 
 	var/list/radio_channels = list()
 
-	var/cyborg_base_icon = "robot" //produces the icon for the borg and, if no special_light_key is set, the lights
-	var/special_light_key //if we want specific lights, use this instead of copying lights in the dmi
+	var/cyborg_base_icon = "robot" ///produces the icon for the borg and, if no special_light_key is set, the lights
+	var/special_light_key ///if we want specific lights, use this instead of copying lights in the dmi
 
 	var/moduleselect_icon = "nomod"
 
@@ -34,7 +34,9 @@
 	var/list/ride_offset_y = list("north" = 4, "south" = 4, "east" = 3, "west" = 3)
 	var/ride_allow_incapacitated = TRUE
 	var/allow_riding = TRUE
-	var/canDispose = FALSE // Whether the borg can stuff itself into disposal
+	var/canDispose = FALSE /// Whether the borg can stuff itself into disposal
+
+	var/syndicate_module = FALSE /// If the borg should blow emag size regardless of emag state
 
 /obj/item/robot_module/Initialize()
 	. = ..()
@@ -161,7 +163,7 @@
 
 	R.toner = R.tonermax
 
-/obj/item/robot_module/proc/rebuild_modules() //builds the usable module list from the modules we have
+/obj/item/robot_module/proc/rebuild_modules() ///builds the usable module list from the modules we have
 	var/mob/living/silicon/robot/R = loc
 	var/list/held_modules = R.held_items.Copy()
 	var/active_module = R.module_active
@@ -608,6 +610,7 @@
 	moduleselect_icon = "malf"
 	can_be_pushed = FALSE
 	hat_offset = 3
+	syndicate_module = TRUE
 
 /obj/item/robot_module/syndicate/rebuild_modules()
 	..()
@@ -648,6 +651,7 @@
 	moduleselect_icon = "malf"
 	can_be_pushed = FALSE
 	hat_offset = 3
+	syndicate_module = TRUE
 
 /obj/item/robot_module/saboteur
 	name = "Syndicate Saboteur"
@@ -682,6 +686,7 @@
 	magpulsing = TRUE
 	hat_offset = -4
 	canDispose = TRUE
+	syndicate_module = TRUE
 
 /datum/robot_energy_storage
 	var/name = "Generic energy storage"
