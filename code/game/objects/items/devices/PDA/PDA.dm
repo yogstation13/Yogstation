@@ -243,7 +243,6 @@ GLOBAL_LIST_EMPTY(PDAs)
 				dat += "<ul>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=1'>[PDAIMG(notes)]Notekeeper</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=2'>[PDAIMG(mail)]Messenger</a></li>"
-
 				if (cartridge)
 					if (cartridge.access & CART_CLOWN)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=Honk'>[PDAIMG(honk)]Honk Synthesizer</a></li>"
@@ -279,7 +278,10 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 				dat += "<h4>Utilities</h4>"
 				dat += "<ul>"
+
 				if (cartridge)
+					if(ownjob != "Assistant")
+						dat += "<li><a href='byond://?src=[REF(src)];choice=Assistant Pager'>[PDAIMG(dronephone)]Assistant Pager</a></li>"
 					if(cartridge.bot_access_flags)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=54'>[PDAIMG(medbot)]Bots Access</a></li>"
 					if (cartridge.access & CART_JANITOR)
@@ -552,6 +554,9 @@ GLOBAL_LIST_EMPTY(PDAs)
 					var/msg = "<span class='boldnotice'>NON-DRONE PING: [U.name]: [alert_s] priority alert in [A.name]!</span>"
 					_alert_drones(msg, TRUE, U)
 					to_chat(U, msg)
+			if("Assistant Pager")
+				PingAssistants(U)
+
 
 
 //NOTEKEEPER FUNCTIONS===================================
@@ -799,12 +804,42 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	update_icon()
 	add_overlay(icon_alert)
+/obj/item/pda/proc/receive_ping(message)
+	if (!silent)
+		if(HAS_TRAIT(SSstation, STATION_TRAIT_PDA_GLITCHED))
+			playsound(src, pick('sound/machines/twobeep_voice1.ogg', 'sound/machines/twobeep_voice2.ogg'), 50, TRUE)
+		else
+			playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
+		audible_message("[icon2html(src, hearers(src))] *[ttone]*", null, 3)
+
+	var/mob/living/L = null
+	if(loc && isliving(loc))
+		L = loc
+	//Maybe they are a pAI!
+	else
+		L = get(src, /mob/living/silicon)
+
+	if(L && L.stat != UNCONSCIOUS)
+		to_chat(L, message)
 
 /obj/item/pda/proc/send_to_all(mob/living/U)
 	if (last_everyone && world.time < last_everyone + PDA_SPAM_DELAY)
 		to_chat(U,"<span class='warning'>Send To All function is still on cooldown.</span>")
 		return
 	send_message(U,get_viewable_pdas(), TRUE)
+
+/obj/item/pda/proc/PingAssistants (mob/living/U)
+	if (last_everyone && world.time < last_everyone + PDA_SPAM_DELAY)
+		to_chat(U,"<span class='warning'>Function is still on cooldown.</span>")
+		return
+
+	var/area/A = get_area(U)
+	var toSend = stripped_input(U, "Please enter your issue.")
+	toSend = "Assistant requested by [owner] at [A]! Reason: [toSend]"
+	for(var/i in get_viewable_assistant_pdas())
+		receive_ping(toSend)
+
+
 
 /obj/item/pda/proc/create_message(mob/living/U, obj/item/pda/P)
 	send_message(U,list(P))
@@ -1169,6 +1204,15 @@ GLOBAL_LIST_EMPTY(PDAs)
 		if(!P.owner || P.toff || P.hidden)
 			continue
 		. += P
+
+/proc/get_viewable_assistant_pdas()
+	. = list()
+	// Same as above except returns only assistant PDAs
+	for(var/obj/item/pda/P in GLOB.PDAs)
+		if(P.ownjob == "Assistant")
+			if(!P.owner|| P.toff || P.hidden)
+				continue
+			. += P
 
 /obj/item/pda/proc/pda_no_detonate()
 	return COMPONENT_PDA_NO_DETONATE
