@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - bugfix: "fixed boh bomb bombing the outside of the bluespace locker"
