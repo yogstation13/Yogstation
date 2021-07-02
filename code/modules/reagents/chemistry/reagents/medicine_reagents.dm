@@ -1498,7 +1498,7 @@
 	glass_desc = "Looks like some chunky dark red mix."
 	reagent_weight = 4
 	addiction_threshold = 40
-	var/clean_types = CLEAN_WASH // Burnmix can be used to clean turfs and objects but cannot clean mobs like space cleaner.
+	var/clean_types = CLEAN_WASH // Burnmix can be used to clean turfs but cannot clean mobs and objects like space cleaner.
 	// Max healing non OD with best rolls + buffs: 0.2 + 0.15 + 0.2 = 0.55
 	// Max healing with OD + best rolls and all buffs: 0.4 + 0.35 + 0.4 = 1.15
 
