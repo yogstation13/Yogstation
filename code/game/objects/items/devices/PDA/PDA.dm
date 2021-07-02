@@ -834,7 +834,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		return
 
 	var/area/A = get_area(U)
-	var toSend = stripped_input(U, "Please enter your issue.")
+	var/toSend = stripped_input(U, "Please enter your issue.")
 
 	if(!toSend)
 		return
@@ -1240,4 +1240,3 @@ GLOBAL_LIST_EMPTY(PDAs)
 #undef PDA_PRINTING_RESEARCH_REQUEST
 #undef PDA_PRINTING_MECH_REQUEST
 #undef PDA_PRINTING_JOB_REASSIGNMENT_CERTIFICATE
-
