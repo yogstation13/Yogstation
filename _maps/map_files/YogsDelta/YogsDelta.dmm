@@ -21281,6 +21281,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/item/circuitboard/machine/techfab/department/security,
 /obj/item/card/id/departmental_budget/sec,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -41613,11 +41614,10 @@
 /turf/closed/wall/r_wall,
 /area/security/execution/transfer)
 "bnH" = (
-/obj/structure/table/reinforced,
-/obj/machinery/recharger,
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
+/obj/machinery/rnd/production/techfab/department/armory,
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
 "bnI" = (
@@ -64815,7 +64815,9 @@
 /area/crew_quarters/dorms)
 "bVl" = (
 /obj/structure/table/reinforced,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	pixel_x = -7
+	},
 /obj/machinery/newscaster/security_unit{
 	pixel_x = -32
 	},
@@ -64824,6 +64826,9 @@
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/machinery/recharger{
+	pixel_x = 7
 	},
 /turf/open/floor/plasteel,
 /area/security/warden)
