@@ -1317,6 +1317,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	
 	
 /mob/living/proc/whistle()
+	INVOKE_ASYNC(src, .proc/whistletrigger, "whistle")
+
+/mob/living/proc/whistletrigger()
 	var/turf/T = get_turf(src)
 	var/mob/living/user = src
 	playsound(T,'sound/magic/warpwhistle.ogg', 200, 1)
