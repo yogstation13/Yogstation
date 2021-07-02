@@ -6924,7 +6924,7 @@
 /turf/closed/wall,
 /area/maintenance/fore)
 "arQ" = (
-/obj/structure/filingcabinet/chestdrawer,
+/obj/machinery/rnd/production/techfab/department/armory,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "arR" = (
@@ -61185,6 +61185,7 @@
 /area/ai_monitored/turret_protected/ai)
 "vPf" = (
 /obj/structure/rack,
+/obj/item/circuitboard/machine/techfab/department/security,
 /obj/item/storage/lockbox/loyalty,
 /obj/item/card/id/departmental_budget/sec,
 /obj/item/reagent_containers/syringe/lethal/execution,
