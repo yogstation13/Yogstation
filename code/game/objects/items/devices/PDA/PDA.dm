@@ -835,7 +835,12 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	var/area/A = get_area(U)
 	var toSend = stripped_input(U, "Please enter your issue.")
+
+	if(!toSend)
+		return
 	toSend = "Assistant requested by [owner] at [A]! Reason: [toSend]"
+
+	last_everyone = world.time
 	for(var/i in get_viewable_assistant_pdas())
 		receive_ping(toSend)
 
