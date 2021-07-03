@@ -90550,10 +90550,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
-"hON" = (
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating/asteroid,
-/area/space/nearstation)
 "hPe" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/portable_atmospherics/canister/water_vapor,
@@ -99005,6 +99001,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
 /area/maintenance/port/aft)
+"rMi" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/asteroid,
+/area/space/nearstation)
 "rMw" = (
 /obj/item/tank/internals/oxygen/empty,
 /obj/effect/turf_decal/stripes/line{
@@ -110766,7 +110766,7 @@ rJGrJG
 rJGrJG
 cwpcwq
 aLZaLZ
-aLZhON
+aLZrMi
 aLZxjU
 aLZaLZ
 aLZaLZ
