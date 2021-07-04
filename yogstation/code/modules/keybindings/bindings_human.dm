@@ -85,7 +85,7 @@
 				var/obj/item/stored = equipped_suit.contents[equipped_suit.contents.len]
 				if(!stored || stored.on_found(src))
 					return
-				stored.attack_hand(src) // take out thing from backpack
+				stored.attack_hand(src) // take out thing from suit storage
 				return
 
 	return ..()
