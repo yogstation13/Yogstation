@@ -1,4 +1,0 @@
-author: "TheGamerdk"
-delete-after: true 
-changes: 
-  - bugfix: "Removing firing pins from firing-pin-less guns no longer makes the game panic."
