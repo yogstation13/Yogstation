@@ -75,37 +75,21 @@
 					D.adjust_money(amount)
 					return
 
-/datum/datacore/proc/addMinorCrime(id = "", datum/data/crime/crime)
+/datum/datacore/proc/addCrime(id = "", datum/data/crime/crime)
 	for(var/datum/data/record/R in security)
 		if(R.fields["id"] == id)
-			var/list/crimes = R.fields["mi_crim"]
+			var/list/crimes = R.fields["crimes"]
 			crimes |= crime
 			return
 
-/datum/datacore/proc/removeMinorCrime(id, cDataId)
+/datum/datacore/proc/removeCrime(id, cDataId)
 	for(var/datum/data/record/R in security)
 		if(R.fields["id"] == id)
-			var/list/crimes = R.fields["mi_crim"]
+			var/list/crimes = R.fields["crimes"]
 			for(var/datum/data/crime/crime in crimes)
 				if(crime.dataId == text2num(cDataId))
 					crimes -= crime
 					return
-
-/datum/datacore/proc/removeMajorCrime(id, cDataId)
-	for(var/datum/data/record/R in security)
-		if(R.fields["id"] == id)
-			var/list/crimes = R.fields["ma_crim"]
-			for(var/datum/data/crime/crime in crimes)
-				if(crime.dataId == text2num(cDataId))
-					crimes -= crime
-					return
-
-/datum/datacore/proc/addMajorCrime(id = "", datum/data/crime/crime)
-	for(var/datum/data/record/R in security)
-		if(R.fields["id"] == id)
-			var/list/crimes = R.fields["ma_crim"]
-			crimes |= crime
-			return
 
 /datum/datacore/proc/manifest()
 	for(var/mob/dead/new_player/N in GLOB.player_list)

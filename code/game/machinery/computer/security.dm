@@ -217,29 +217,17 @@
 
 				record["citations"] += list(citation)
 
-			record["minor_crimes"] = list()
+			record["crimes"] = list()
 
-			for(var/datum/data/crime/C in active_security_record.fields["mi_crim"])
-				var/list/minor_crime = list()
-				minor_crime["name"] = C.crimeName
-				minor_crime["details"] = C.crimeDetails
-				minor_crime["author"] = C.author
-				minor_crime["time"] = C.time
-				minor_crime["id"] = C.dataId
+			for(var/datum/data/crime/C in active_security_record.fields["crimes"])
+				var/list/crime = list()
+				crime["name"] = C.crimeName
+				crime["details"] = C.crimeDetails
+				crime["author"] = C.author
+				crime["time"] = C.time
+				crime["id"] = C.dataId
 
-				record["minor_crimes"] += list(minor_crime)
-
-			record["major_crimes"] = list()
-
-			for(var/datum/data/crime/C in active_security_record.fields["ma_crim"])
-				var/list/major_crime = list()
-				major_crime["name"] = C.crimeName
-				major_crime["details"] = C.crimeDetails
-				major_crime["author"] = C.author
-				major_crime["time"] = C.time
-				major_crime["id"] = C.dataId
-
-				record["major_crimes"] += list(major_crime)
+				record["crimes"] += list(crime)
 
 			record["notes"] = active_security_record.fields["notes"]
 
@@ -627,39 +615,22 @@
 							var/obj/item/photo/P = active_general_record.fields["photo_side"]
 							print_photo(P.picture.picture_image, active_general_record.fields["name"])
 
-				if("minor_crime_add")
+				if("crime_add")
 					if(istype(active_general_record, /datum/data/record))
-						var/name = stripped_input(usr, "Please input minor crime names:", "Security Records", "", null)
-						var/details = stripped_input(usr, "Please input minor crime details:", "Security Records", "", null)
+						var/name = stripped_input(usr, "Please input crime names:", "Security Records", "", null)
+						var/details = stripped_input(usr, "Please input crime details:", "Security Records", "", null)
 						if(!valid_record_change(usr, name, null, active_security_record))
 							return
 						var/crime = GLOB.data_core.createCrimeEntry(name, details, logged_in, station_time_timestamp())
-						GLOB.data_core.addMinorCrime(active_general_record.fields["id"], crime)
-						investigate_log("New Minor Crime: <strong>[name]</strong>: [details] | Added to [active_general_record.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
+						GLOB.data_core.addCrime(active_general_record.fields["id"], crime)
+						investigate_log("New Crime: <strong>[name]</strong>: [details] | Added to [active_general_record.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
 
-				if("minor_crime_delete")
+				if("crime_delete")
 					if(istype(active_general_record, /datum/data/record))
 						if(params["id"])
 							if(!valid_record_change(usr, "delete", null, active_security_record))
 								return
-							GLOB.data_core.removeMinorCrime(active_general_record.fields["id"], params["id"])
-
-				if("major_crime_add")
-					if(istype(active_general_record, /datum/data/record))
-						var/name = stripped_input(usr, "Please input major crime names:", "Security Records", "", null)
-						var/details = stripped_input(usr, "Please input major crime details:", "Security Records", "", null)
-						if(!valid_record_change(usr, name, null, active_security_record))
-							return
-						var/crime = GLOB.data_core.createCrimeEntry(name, details, logged_in, station_time_timestamp())
-						GLOB.data_core.addMajorCrime(active_general_record.fields["id"], crime)
-						investigate_log("New Major Crime: <strong>[name]</strong>: [details] | Added to [active_general_record.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
-
-				if("major_crime_delete")
-					if(istype(active_general_record, /datum/data/record))
-						if(params["id"])
-							if(!valid_record_change(usr, "delete", null, active_security_record))
-								return
-							GLOB.data_core.removeMajorCrime(active_general_record.fields["id"], params["id"])
+							GLOB.data_core.removeCrime(active_general_record.fields["id"], params["id"])
 
 				if("citation_add")
 					if(istype(active_general_record, /datum/data/record))

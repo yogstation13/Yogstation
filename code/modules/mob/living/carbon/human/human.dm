@@ -430,38 +430,20 @@
 									return
 
 								if(href_list["add_crime"])
-									switch(alert("What crime would you like to add?","Security HUD","Minor Crime","Major Crime","Cancel"))
-										if("Minor Crime")
-											if(R)
-												var/t1 = stripped_input("Please input minor crime names:", "Security HUD", "", null)
-												var/t2 = stripped_multiline_input("Please input minor crime details:", "Security HUD", "", null)
-												if(R)
-													if (!t1 || !t2 || !allowed_access)
-														return
-													else if(!H.canUseHUD())
-														return
-													else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
-														return
-													var/crime = GLOB.data_core.createCrimeEntry(t1, t2, allowed_access, station_time_timestamp())
-													GLOB.data_core.addMinorCrime(R.fields["id"], crime)
-													investigate_log("New Minor Crime: <strong>[t1]</strong>: [t2] | Added to [R.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
-													to_chat(usr, "<span class='notice'>Successfully added a minor crime.</span>")
-													return
-										if("Major Crime")
-											if(R)
-												var/t1 = stripped_input("Please input major crime names:", "Security HUD", "", null)
-												var/t2 = stripped_multiline_input("Please input major crime details:", "Security HUD", "", null)
-												if(R)
-													if (!t1 || !t2 || !allowed_access)
-														return
-													else if (!H.canUseHUD())
-														return
-													else if (!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
-														return
-													var/crime = GLOB.data_core.createCrimeEntry(t1, t2, allowed_access, station_time_timestamp())
-													GLOB.data_core.addMajorCrime(R.fields["id"], crime)
-													investigate_log("New Major Crime: <strong>[t1]</strong>: [t2] | Added to [R.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
-													to_chat(usr, "<span class='notice'>Successfully added a major crime.</span>")
+									if(R)
+										var/t1 = stripped_input("Please input crime names:", "Security HUD", "", null)
+										var/t2 = stripped_multiline_input("Please input crime details:", "Security HUD", "", null)
+										if(R)
+											if (!t1 || !t2 || !allowed_access)
+												return
+											else if(!H.canUseHUD())
+												return
+											else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
+												return
+											var/crime = GLOB.data_core.createCrimeEntry(t1, t2, allowed_access, station_time_timestamp())
+											GLOB.data_core.addCrime(R.fields["id"], crime)
+											investigate_log("New Crime: <strong>[t1]</strong>: [t2] | Added to [R.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
+											to_chat(usr, "<span class='notice'>Successfully added a crime.</span>")
 									return
 
 								if(href_list["view_comment"])

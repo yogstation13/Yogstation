@@ -286,9 +286,9 @@ export const SecurityConsole = (props, context) => {
                     ))}
                   </Table>
                 </Section>
-                <Section title="Major Crimes" buttons={(
+                <Section title="Crimes" buttons={(
                   <Button color="good" icon="plus" onClick={() => act("edit_field", {
-                    field: "major_crime_add",
+                    field: "crime_add",
                   })}>
                     Add Crime
                   </Button>
@@ -311,8 +311,8 @@ export const SecurityConsole = (props, context) => {
                         Delete
                       </TableCell>
                     </TableRow>
-                    {data.active_record.major_crimes
-                    && data.active_record.major_crimes.map(crime => (
+                    {data.active_record.crimes
+                    && data.active_record.crimes.map(crime => (
                       <TableRow key={crime.id}>
                         <TableCell>
                           {crime.name}
@@ -328,58 +328,7 @@ export const SecurityConsole = (props, context) => {
                         </TableCell>
                         <TableCell collapsing>
                           <Button color="bad" onClick={() => act("edit_field", {
-                            field: "major_crime_delete",
-                            id: crime.id,
-                          })}>Delete
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </Table>
-                </Section>
-                <Section title="Minor Crimes" buttons={(
-                  <Button color="good" icon="plus" onClick={() => act("edit_field", {
-                    field: "minor_crime_add",
-                  })}>
-                    Add Crime
-                  </Button>
-                )}>
-                  <Table>
-                    <TableRow color="label">
-                      <TableCell>
-                        Crime
-                      </TableCell>
-                      <TableCell>
-                        Details
-                      </TableCell>
-                      <TableCell>
-                        Author
-                      </TableCell>
-                      <TableCell>
-                        Time Added
-                      </TableCell>
-                      <TableCell collapsing>
-                        Delete
-                      </TableCell>
-                    </TableRow>
-                    {data.active_record.minor_crimes
-                    && data.active_record.minor_crimes.map(crime => (
-                      <TableRow key={crime.id}>
-                        <TableCell>
-                          {crime.name}
-                        </TableCell>
-                        <TableCell>
-                          {crime.details}
-                        </TableCell>
-                        <TableCell>
-                          {crime.author}
-                        </TableCell>
-                        <TableCell>
-                          {crime.time}
-                        </TableCell>
-                        <TableCell collapsing>
-                          <Button color="bad" onClick={() => act("edit_field", {
-                            field: "minor_crime_delete",
+                            field: "crime_delete",
                             id: crime.id,
                           })}>Delete
                           </Button>
