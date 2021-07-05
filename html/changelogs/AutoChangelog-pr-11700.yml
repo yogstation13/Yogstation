@@ -1,5 +1,0 @@
-author: "Hopekz"
-delete-after: true 
-changes: 
-  - rscadd: "Burnmix is now able to clean turfs but is worse than space cleaner because it doesn't clean objects or mobs."
-  - bugfix: "perfluorodecalin overdose fix"
