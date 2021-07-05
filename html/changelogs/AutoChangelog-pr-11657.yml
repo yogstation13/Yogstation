@@ -1,0 +1,6 @@
+author: "Anvilman6"
+delete-after: true 
+changes: 
+  - rscadd: "Adds Medical Doctor specific labcoat, spawns on MDs, found in medi-drobe and from other sources"
+  - imageadd: "Medical Doctor specific labcoat worn and item states"
+  - imageadd: "Little back icons added to existing labcoats worn states"
