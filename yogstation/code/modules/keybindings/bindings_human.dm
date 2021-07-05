@@ -59,7 +59,7 @@
 				stored.attack_hand(src) // take out thing from backpack
 				return
 
-			if(ACTION_DROP) // Put held thing in backpack or take out most recent thing from backpack
+			if(ACTION_DROP) // Put held thing in suit storage or take thing out of suit storage
 				var/obj/item/thing = get_active_held_item()
 				var/obj/item/equipped_suit = get_item_by_slot(SLOT_S_STORE)
 				if(!equipped_suit) 
@@ -75,7 +75,7 @@
 					else
 						to_chat(user, "<span class='notice'>You can't fit anything in.</span>")
 					return
-				if(thing) // put thing in backpack
+				if(thing) // put thing in suit storage
 					if(!SEND_SIGNAL(equipped_suit, COMSIG_TRY_STORAGE_INSERT, thing, user.mob))
 						to_chat(user, "<span class='notice'>You can't fit anything in.</span>")
 					return
