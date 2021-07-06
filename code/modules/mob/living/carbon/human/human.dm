@@ -414,16 +414,15 @@
 										else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 											return
 										to_chat(usr, "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]")
-										to_chat(usr, "<b>Minor Crimes:</b>")
-										for(var/datum/data/crime/c in R.fields["mi_crim"])
+										to_chat(usr, "<b>Crimes:</b>")
+										for(var/datum/data/crime/c in R.fields["crimes"])
 											to_chat(usr, "<b>Crime:</b> [c.crimeName]")
 											to_chat(usr, "<b>Details:</b> [c.crimeDetails]")
 											to_chat(usr, "Added by [c.author] at [c.time]")
 											to_chat(usr, "----------")
-										to_chat(usr, "<b>Major Crimes:</b>")
-										for(var/datum/data/crime/c in R.fields["ma_crim"])
-											to_chat(usr, "<b>Crime:</b> [c.crimeName]")
-											to_chat(usr, "<b>Details:</b> [c.crimeDetails]")
+										to_chat(usr, "<b>Comments:</b>")
+										for(var/datum/data/comment/c in R.fields["comments"])
+											to_chat(usr, "<b>Comment:</b> [c.commentText]")
 											to_chat(usr, "Added by [c.author] at [c.time]")
 											to_chat(usr, "----------")
 										to_chat(usr, "<b>Notes:</b> [R.fields["notes"]]")
@@ -453,11 +452,9 @@
 										else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 											return
 										to_chat(usr, "<b>Comments/Log:</b>")
-										var/counter = 1
-										while(R.fields[text("com_[]", counter)])
-											to_chat(usr, R.fields[text("com_[]", counter)])
+										for(var/datum/data/comment/C in R.fields["comments"])
+											to_chat(usr, text("Made by [] on []<BR>[]", C.author, C.time, C.commentText))
 											to_chat(usr, "----------")
-											counter++
 										return
 
 								if(href_list["add_comment"])
@@ -470,10 +467,8 @@
 												return
 											else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 												return
-											var/counter = 1
-											while(R.fields[text("com_[]", counter)])
-												counter++
-											R.fields[text("com_[]", counter)] = text("Made by [] on [] [], []<BR>[]", allowed_access, station_time_timestamp(), time2text(world.realtime, "MMM DD"), GLOB.year_integer+540, t1)
+											var/comment = GLOB.data_core.createCommentEntry(t1, allowed_access)
+											GLOB.data_core.addComment(R.fields["id"], comment)
 											to_chat(usr, "<span class='notice'>Successfully added comment.</span>")
 											return
 							to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")

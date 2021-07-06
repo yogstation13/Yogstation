@@ -337,6 +337,52 @@ export const SecurityConsole = (props, context) => {
                     ))}
                   </Table>
                 </Section>
+                <Section title="Comments" buttons={(
+                  <Button color="good" icon="plus" onClick={() => act("edit_field", {
+                    field: "comment_add",
+                  })}>
+                    Add Comment
+                  </Button>
+                )}>
+                  <Table>
+                    <TableRow color="label">
+                      <TableCell>
+                        Comment
+                      </TableCell>
+                      <TableCell>
+                        Author
+                      </TableCell>
+                      <TableCell>
+                        Time Added
+                      </TableCell>
+                      <TableCell collapsing>
+                        Delete
+                      </TableCell>
+                    </TableRow>
+                    {data.active_record.comments
+                    && data.active_record.comments.map(crime => (
+                      <TableRow key={crime.id}>
+                        <TableCell>
+                          {crime.name}
+                        </TableCell>
+                        <TableCell>
+                          {crime.author}
+                        </TableCell>
+                        <TableCell>
+                          {crime.time}
+                        </TableCell>
+                        <TableCell collapsing>
+                          <Button color="bad" onClick={() => act("edit_field", {
+                            field: "comment_delete",
+                            id: crime.id,
+                          })}>Delete
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </Table>
+                </Section>
+
 
                 <LabeledList>
                   <LabeledList.Item label="Important Notes">

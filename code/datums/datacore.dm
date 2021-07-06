@@ -6,6 +6,7 @@
 	var/list/security = list()
 	var/securityPrintCount = 0
 	var/securityCrimeCounter = 0
+	var/securityCommentCounter = 0
 	//This list tracks characters spawned in the world and cannot be modified in-game. Currently referenced by respawn_character().
 	var/list/locked = list()
 
@@ -37,6 +38,13 @@
 	var/paid = 0
 	var/dataId = 0
 
+/datum/data/comment
+	name = "comment"
+	var/commentText = ""
+	var/author = ""
+	var/time = ""
+	var/dataId = 0
+
 /datum/datacore/proc/createCrimeEntry(cname = "", cdetails = "", author = "", time = "", fine = 0)
 	var/datum/data/crime/c = new /datum/data/crime
 	c.crimeName = cname
@@ -47,6 +55,14 @@
 	c.paid = 0
 	c.dataId = ++securityCrimeCounter
 	return c
+
+/datum/datacore/proc/createCommentEntry(commentText = "", author = "", time = "")
+	var/datum/data/comment/C = new /datum/data/comment
+	C.commentText = commentText
+	C.author = author
+	C.time = time != "" ? time : text("[] [], []", station_time_timestamp(), time2text(world.realtime, "MMM DD"), GLOB.year_integer+540)
+	C.dataId = ++securityCommentCounter
+	return C
 
 /datum/datacore/proc/addCitation(id = "", datum/data/crime/crime)
 	for(var/datum/data/record/R in security)
@@ -89,6 +105,22 @@
 			for(var/datum/data/crime/crime in crimes)
 				if(crime.dataId == text2num(cDataId))
 					crimes -= crime
+					return
+
+/datum/datacore/proc/addComment(id = "", datum/data/comment/comment)
+	for(var/datum/data/record/R in security)
+		if(R.fields["id"] == id)
+			var/list/comments = R.fields["comments"]
+			comments |= comment
+			return
+
+/datum/datacore/proc/removeComment(id, cDataId)
+	for(var/datum/data/record/R in security)
+		if(R.fields["id"] == id)
+			var/list/comments = R.fields["comments"]
+			for(var/datum/data/comment/comment in comments)
+				if(comment.dataId == text2num(cDataId))
+					comments -= comment
 					return
 
 /datum/datacore/proc/manifest()
@@ -319,8 +351,8 @@
 		S.fields["name"]		= H.real_name
 		S.fields["criminal"]	= "None"
 		S.fields["citation"]	= list()
-		S.fields["mi_crim"]		= list()
-		S.fields["ma_crim"]		= list()
+		S.fields["crimes"]		= list()
+		S.fields["comments"]	= list()
 		S.fields["notes"]		= "No notes."
 		security += S
 
