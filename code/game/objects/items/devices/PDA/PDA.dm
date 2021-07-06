@@ -555,7 +555,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 					_alert_drones(msg, TRUE, U)
 					to_chat(U, msg)
 			if("Assistant Pager")
-				PingAssistants(U)
+				ping_assistants(U)
 
 
 
@@ -804,6 +804,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	update_icon()
 	add_overlay(icon_alert)
+
 /obj/item/pda/proc/receive_ping(message)
 	if (!silent)
 		if(HAS_TRAIT(SSstation, STATION_TRAIT_PDA_GLITCHED))
@@ -828,7 +829,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		return
 	send_message(U,get_viewable_pdas(), TRUE)
 
-/obj/item/pda/proc/PingAssistants (mob/living/U)
+/obj/item/pda/proc/ping_assistants(mob/living/U)
 	if (last_everyone && world.time < last_everyone + PDA_SPAM_DELAY)
 		to_chat(U,"<span class='warning'>Function is still on cooldown.</span>")
 		return
@@ -838,13 +839,12 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	if(!toSend)
 		return
+
 	toSend = "Assistant requested by [owner] at [A]! Reason: [toSend]"
 
 	last_everyone = world.time
-	for(var/i in get_viewable_assistant_pdas())
-		receive_ping(toSend)
-
-
+	for(var/obj/item/pda/P in get_viewable_assistant_pdas())
+		P.receive_ping(toSend)
 
 /obj/item/pda/proc/create_message(mob/living/U, obj/item/pda/P)
 	send_message(U,list(P))
@@ -1240,3 +1240,4 @@ GLOBAL_LIST_EMPTY(PDAs)
 #undef PDA_PRINTING_RESEARCH_REQUEST
 #undef PDA_PRINTING_MECH_REQUEST
 #undef PDA_PRINTING_JOB_REASSIGNMENT_CERTIFICATE
+
