@@ -565,7 +565,7 @@
 
 				if("id")
 					if(istype(active_security_record, /datum/data/record) || istype(active_general_record, /datum/data/record))
-						var/id = stripped_input(usr, "Please input ID:", "Security Records", active_general_record.fields["id"], null)
+						var/id = stripped_input(usr, "Please input ID:", "Security Records", active_general_record.fields["id"])
 						if(!valid_record_change(usr, id, general_record))
 							return
 						if(istype(active_general_record, /datum/data/record))
@@ -575,7 +575,7 @@
 
 				if("fingerprint")
 					if(istype(active_general_record, /datum/data/record))
-						var/fingerprint = stripped_input(usr, "Please input fingerprint hash:", "Security Records", active_general_record.fields["fingerprint"], null)
+						var/fingerprint = stripped_input(usr, "Please input fingerprint hash:", "Security Records", active_general_record.fields["fingerprint"])
 						if(!valid_record_change(usr, fingerprint, general_record))
 							return
 						active_general_record.fields["fingerprint"] = fingerprint
@@ -626,8 +626,8 @@
 
 				if("crime_add")
 					if(istype(active_general_record, /datum/data/record))
-						var/name = stripped_input(usr, "Please input crime name:", "Security Records", "", null)
-						var/details = stripped_input(usr, "Please input crime details:", "Security Records", "", null)
+						var/name = stripped_input(usr, "Please input crime name:", "Security Records", "")
+						var/details = stripped_input(usr, "Please input crime details:", "Security Records", "")
 						if(!valid_record_change(usr, name, null, active_security_record))
 							return
 						var/crime = GLOB.data_core.createCrimeEntry(name, details, logged_in, station_time_timestamp())
@@ -643,17 +643,17 @@
 
 				if("comment_add")
 					if(istype(active_general_record, /datum/data/record))
-						var/t1 = stripped_multiline_input("Add Comment:", "Secure. records", null, null)
+						var/t1 = stripped_multiline_input(usr, "Add Comment:", "Security records")
 						if(!valid_record_change(usr, name, null, active_security_record))
 							return
-						var/crime = GLOB.data_core.createCommentEntry(t1, logged_in)
-						GLOB.data_core.addComment(active_general_record.fields["id"], crime)
+						var/comment = GLOB.data_core.createCommentEntry(t1, logged_in)
+						GLOB.data_core.addComment(active_general_record.fields["id"], comment)
 						investigate_log("New Comment: [t1] | Added to [active_general_record.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
 
 
 				if("citation_add")
 					if(istype(active_general_record, /datum/data/record))
-						var/name = stripped_input(usr, "Please input citation crime:", "Security Records", "", null)
+						var/name = stripped_input(usr, "Please input citation crime:", "Security Records", "")
 						var/fine = FLOOR(input(usr, "Please input citation fine:", "Security Records", 50) as num, 1)
 						if(!fine || fine < 0)
 							to_chat(usr, "<span class='warning'>You're pretty sure that's not how money works.</span>")
@@ -685,7 +685,7 @@
 
 				if("edit_note")
 					if(istype(active_security_record, /datum/data/record))
-						var/name = stripped_input(usr, "Please summarize notes:", "Security Records", active_security_record.fields["notes"], null)
+						var/name = stripped_input(usr, "Please summarize notes:", "Security Records", active_security_record.fields["notes"])
 						if(!valid_record_change(usr, name, null, active_security_record))
 							return
 						active_security_record.fields["notes"] = name

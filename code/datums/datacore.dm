@@ -60,7 +60,7 @@
 	var/datum/data/comment/C = new /datum/data/comment
 	C.commentText = commentText
 	C.author = author
-	C.time = time != "" ? time : text("[] [], []", station_time_timestamp(), time2text(world.realtime, "MMM DD"), GLOB.year_integer+540)
+	C.time = time || station_time_timestamp()
 	C.dataId = ++securityCommentCounter
 	return C
 

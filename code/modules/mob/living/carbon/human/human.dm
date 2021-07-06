@@ -430,18 +430,18 @@
 
 								if(href_list["add_crime"])
 									if(R)
-										var/t1 = stripped_input("Please input crime names:", "Security HUD", "", null)
-										var/t2 = stripped_multiline_input("Please input crime details:", "Security HUD", "", null)
+										var/crimeName = stripped_input("Please input crime name:", "Security HUD", "")
+										var/crimeDetails = stripped_multiline_input("Please input crime details:", "Security HUD", "")
 										if(R)
-											if (!t1 || !t2 || !allowed_access)
+											if (!crimeName || !crimeDetails || !allowed_access)
 												return
 											else if(!H.canUseHUD())
 												return
 											else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 												return
-											var/crime = GLOB.data_core.createCrimeEntry(t1, t2, allowed_access, station_time_timestamp())
+											var/crime = GLOB.data_core.createCrimeEntry(crimeName, crimeDetails, allowed_access, station_time_timestamp())
 											GLOB.data_core.addCrime(R.fields["id"], crime)
-											investigate_log("New Crime: <strong>[t1]</strong>: [t2] | Added to [R.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
+											investigate_log("New Crime: <strong>[crimeName]</strong>: [crimeDetails] | Added to [R.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
 											to_chat(usr, "<span class='notice'>Successfully added a crime.</span>")
 									return
 
@@ -459,15 +459,15 @@
 
 								if(href_list["add_comment"])
 									if(R)
-										var/t1 = stripped_multiline_input("Add Comment:", "Secure. records", null, null)
+										var/commentValue = stripped_multiline_input("Add Comment:", "Security records")
 										if(R)
-											if (!t1 || !allowed_access)
+											if (!commentValue || !allowed_access)
 												return
 											else if(!H.canUseHUD())
 												return
 											else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 												return
-											var/comment = GLOB.data_core.createCommentEntry(t1, allowed_access)
+											var/comment = GLOB.data_core.createCommentEntry(commentValue, allowed_access)
 											GLOB.data_core.addComment(R.fields["id"], comment)
 											to_chat(usr, "<span class='notice'>Successfully added comment.</span>")
 											return
