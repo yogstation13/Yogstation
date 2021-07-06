@@ -355,7 +355,6 @@ export const SecurityConsole = (props, context) => {
                       <TableCell>
                         Time Added
                       </TableCell>
-                        <TableCell>ID</TableCell> 
                       <TableCell collapsing>
                         Delete
                       </TableCell>
@@ -372,7 +371,6 @@ export const SecurityConsole = (props, context) => {
                         <TableCell>
                           {comment.time}
                         </TableCell>
-                        <TableCell>{comment.id}</TableCell>
                         <TableCell collapsing>
                           <Button color="bad" onClick={() => act("edit_field", {
                             field: "comment_delete",
