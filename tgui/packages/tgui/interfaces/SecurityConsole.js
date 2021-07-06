@@ -355,26 +355,28 @@ export const SecurityConsole = (props, context) => {
                       <TableCell>
                         Time Added
                       </TableCell>
+                        <TableCell>ID</TableCell> 
                       <TableCell collapsing>
                         Delete
                       </TableCell>
                     </TableRow>
                     {data.active_record.comments
-                    && data.active_record.comments.map(crime => (
-                      <TableRow key={crime.id}>
+                    && data.active_record.comments.map(comment => (
+                      <TableRow key={comment.id}>
                         <TableCell>
-                          {crime.name}
+                          {comment.content}
                         </TableCell>
                         <TableCell>
-                          {crime.author}
+                          {comment.author}
                         </TableCell>
                         <TableCell>
-                          {crime.time}
+                          {comment.time}
                         </TableCell>
+                        <TableCell>{comment.id}</TableCell>
                         <TableCell collapsing>
                           <Button color="bad" onClick={() => act("edit_field", {
                             field: "comment_delete",
-                            id: crime.id,
+                            id: comment.id,
                           })}>Delete
                           </Button>
                         </TableCell>

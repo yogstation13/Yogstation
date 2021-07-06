@@ -231,11 +231,13 @@
 
 			record["comments"] = list()
 
-			for(var/datum/data/comment/C in active_security_record.fields["crimes"])
+			for(var/datum/data/comment/C in active_security_record.fields["comments"])
 				var/list/comment = list()
 				comment["content"] = C.commentText
 				comment["author"] = C.author
 				comment["time"] = C.time
+				comment["id"] = C.dataId
+
 				record["comments"] += list(comment)
 
 			record["notes"] = active_security_record.fields["notes"]
@@ -615,9 +617,16 @@
 							var/obj/item/photo/P = active_general_record.fields["photo_side"]
 							print_photo(P.picture.picture_image, active_general_record.fields["name"])
 
+				if("crime_delete")
+					if(istype(active_general_record, /datum/data/record))
+						if(params["id"])
+							if(!valid_record_change(usr, "delete", null, active_security_record))
+								return
+							GLOB.data_core.removeCrime(active_general_record.fields["id"], params["id"])
+
 				if("crime_add")
 					if(istype(active_general_record, /datum/data/record))
-						var/name = stripped_input(usr, "Please input crime names:", "Security Records", "", null)
+						var/name = stripped_input(usr, "Please input crime name:", "Security Records", "", null)
 						var/details = stripped_input(usr, "Please input crime details:", "Security Records", "", null)
 						if(!valid_record_change(usr, name, null, active_security_record))
 							return
@@ -641,12 +650,6 @@
 						GLOB.data_core.addComment(active_general_record.fields["id"], crime)
 						investigate_log("New Comment: [t1] | Added to [active_general_record.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
 
-				if("crime_delete")
-					if(istype(active_general_record, /datum/data/record))
-						if(params["id"])
-							if(!valid_record_change(usr, "delete", null, active_security_record))
-								return
-							GLOB.data_core.removeCrime(active_general_record.fields["id"], params["id"])
 
 				if("citation_add")
 					if(istype(active_general_record, /datum/data/record))
