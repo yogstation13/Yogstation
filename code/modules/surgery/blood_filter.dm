@@ -28,7 +28,7 @@
 		var/datum/surgery/blood_filter/the_surgery = surgery
 		if(!the_surgery.antispam)
 			display_results(user, target, "<span class='notice'>You begin filtering [target]'s blood...</span>",
-		"<span class='notice'>[user] uses [tool] to filtering your blood.</span>",
+		"<span class='notice'>[user] uses [tool] to filter your blood.</span>",
 		"<span class='notice'>[user] uses [tool] on [target]'s chest.</span>")
 
 /datum/surgery_step/filter_blood/initiate(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
