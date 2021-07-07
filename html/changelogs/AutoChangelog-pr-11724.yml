@@ -1,8 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - rscadd: "Added security comments to security records console"
-  - bugfix: "fixed security filing cabinet"
-  - bugfix: "fixed pAI security records"
-  - tweak: "tweaked how security comments are stored"
-  - tweak: "removed the distinction between major and minor crimes in the sec records"
