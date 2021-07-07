@@ -1391,7 +1391,8 @@
 		/datum/antagonist/darkspawn,
 		/datum/antagonist/rev,
 		/datum/antagonist/shadowling,
-		/datum/antagonist/veil
+		/datum/antagonist/veil,
+		/datum/antagonist/thrall
 	)
 	for(var/antagcheck in bad_antags)
 		if(mind?.has_antag_datum(antagcheck))
