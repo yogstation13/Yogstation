@@ -1687,7 +1687,7 @@
 	name = "Kinetic Accelerator Mining AoE Mod"
 	desc = "A modification kit for a kinetic accelerator that maximizes the area mined by each projectile."
 	cost = 200
-	contains = list(/obj/item/borg/upgrade/modkit/turfs)
+	contains = list(/obj/item/borg/upgrade/modkit/aoe/turfs)
 
 /datum/supply_pack/clearance/ka_triggermod
 	name = "Kinetic Accelerator Species Equality Trigger Guard Mod"
