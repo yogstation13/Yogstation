@@ -1,0 +1,5 @@
+author: "MaintClown"
+delete-after: true 
+changes: 
+  - rscadd: "admins can now tell people to man up"
+  - soundadd: "adds the sound for the man up command"
