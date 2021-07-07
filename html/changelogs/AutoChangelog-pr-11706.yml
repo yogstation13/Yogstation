@@ -1,4 +1,0 @@
-author: "maxion12345"
-delete-after: true 
-changes: 
-  - rscadd: "Added new keybind: pressing Shift + Drop key (default Q) lets you remove/add items to your suit storage."
