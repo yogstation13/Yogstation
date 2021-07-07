@@ -1,4 +1,0 @@
-author: "maxion12345"
-delete-after: true 
-changes: 
-  - tweak: "Tend-wounds surgery now gives time estimates in the form of messages. Holding a health analyzer in your off-hand during surgery gives exact damage numbers now."
