@@ -1008,7 +1008,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Man Up")
 
 /client/proc/cmd_admin_man_up_global()
-	set category = "Special Verbs"
+	set category = "Misc"
 	set name = "Man Up Global"
 
 	if(!check_rights(R_FUN))
