@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscdel: "sets chance for AI to get DO HARM ion law to 0 by removing it"
