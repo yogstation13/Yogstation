@@ -2,7 +2,7 @@
 /obj/item/clothing/neck/yogs/shawl
 	name = "leather shawl"
 	desc = "A leather shawl made to protect the wearer from the dangers of lavaland."
-	icon_state = "leathershawl"
+	icon_state = "leathershawl" //all of these icons are from or edited versions of the shawls made by Kor in the TG Sprite Dump (https://github.com/tgstation/SS13-sprites)
 	item_state = "leathershawl"
 	actions_types = list(/datum/action/item_action/toggle_hood) //This doesnt work and I dont know why
 	var/suittoggled = FALSE
