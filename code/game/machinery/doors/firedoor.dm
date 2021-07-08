@@ -376,6 +376,8 @@
 		return TRUE
 
 /obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover as mob|obj, turf/target)
+	if(istype(mover) && (mover.pass_flags & PASSDOOR)) // I mean it's a door
+		return TRUE
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return TRUE
 	if(get_dir(loc, target) == dir)

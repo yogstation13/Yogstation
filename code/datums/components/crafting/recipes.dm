@@ -445,7 +445,7 @@
 	name = "Paper Frames"
 	result = /obj/item/stack/sheet/paperframes/five
 	time = 1 SECONDS
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 5, /obj/item/paper = 20)
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 5, /obj/item/paper = 5)
 	category = CAT_MISC
 
 /datum/crafting_recipe/naturalpaper

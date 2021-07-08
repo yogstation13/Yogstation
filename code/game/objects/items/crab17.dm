@@ -40,7 +40,7 @@
 	var/canwalk = FALSE
 
 /obj/structure/checkoutmachine/examine(mob/living/user)
-	..()
+	. = ..()
 	. += "<span class='info'>It's integrated integrity meter reads: <b>HEALTH: [obj_integrity]</b>.</span>"
 
 /obj/structure/checkoutmachine/proc/check_if_finished()
