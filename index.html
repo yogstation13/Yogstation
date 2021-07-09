@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(376 modules,
-    536/6555 macros, 8.2%)</aside></h3>
+<aside>(381 modules,
+    545/6573 macros, 8.3%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -54,6 +54,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/cooldowns.html" title="code&#x2F;__DEFINES&#x2F;cooldowns">cooldowns</a></li>
     <li><a href="code/__DEFINES/cult.html" title="code&#x2F;__DEFINES&#x2F;cult">cult</a></li>
     <li><a href="code/__DEFINES/diseases.html" title="code&#x2F;__DEFINES&#x2F;diseases">diseases</a></li>
+    <li><a href="code/__DEFINES/dynamic.html" title="code&#x2F;__DEFINES&#x2F;dynamic">dynamic</a></li>
     <li><a href="code/__DEFINES/exosuit_fab.html" title="code&#x2F;__DEFINES&#x2F;exosuit_fab">exosuit_fab</a></li>
     <li><a href="code/__DEFINES/flags.html" title="code&#x2F;__DEFINES&#x2F;flags">flags</a></li>
     <li><a href="code/__DEFINES/hud.html" title="code&#x2F;__DEFINES&#x2F;hud">hud</a></li>
@@ -83,6 +84,7 @@ General Public License version 3.
     <li><a href="code/__HELPERS/game.html" title="code&#x2F;__HELPERS&#x2F;game">game</a></li>
     <li><a href="code/__HELPERS/global_lists.html" title="code&#x2F;__HELPERS&#x2F;global_lists">global_lists</a></li>
     <li><a href="code/__HELPERS/icons.html" title="code&#x2F;__HELPERS&#x2F;icons">icons</a></li>
+    <li><a href="code/__HELPERS/mobs.html" title="code&#x2F;__HELPERS&#x2F;mobs">mobs</a></li>
     <li><a href="code/__HELPERS/priority_announce.html" title="code&#x2F;__HELPERS&#x2F;priority_announce">priority_announce</a></li>
     <li><a href="code/__HELPERS/text.html" title="code&#x2F;__HELPERS&#x2F;text">text</a></li>
     <li><a href="code/__HELPERS/type2type.html" title="code&#x2F;__HELPERS&#x2F;type2type">type2type</a></li>
@@ -136,6 +138,7 @@ These materials call on_applied() on whatever item they are applied to, common e
     <li><a href="code/datums/materials/_material.html" title="code&#x2F;datums&#x2F;materials&#x2F;_material">_material</a> - Material datum</li>
     <li><a href="code/datums/materials/basemats.html" title="code&#x2F;datums&#x2F;materials&#x2F;basemats">basemats</a></li>
     </ul></li>
+    <li><span class="no-substance">mocking&#x2F;</span><a href="code/datums/mocking/client.html" title="code&#x2F;datums&#x2F;mocking&#x2F;client">client</a></li>
     <li><a href="code/datums/outfit.html" title="code&#x2F;datums&#x2F;outfit">outfit</a></li>
     <li class="has-children"><span title="code&#x2F;datums&#x2F;station_traits">station_traits</span><ul class="index-tree">
     <li><a href="code/datums/station_traits/_station_trait.html" title="code&#x2F;datums&#x2F;station_traits&#x2F;_station_trait">_station_trait</a></li>
@@ -151,7 +154,9 @@ These materials call on_applied() on whatever item they are applied to, common e
     </ul></li>
     <li><a href="code/game/atoms.html" title="code&#x2F;game&#x2F;atoms">atoms</a> - Tool-specific behavior procs. To be overridden in subtypes.</li>
     <li class="has-children"><span title="code&#x2F;game&#x2F;gamemodes">gamemodes</span><ul class="index-tree">
-    <li><a href="code/game/gamemodes/dynamic.html" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic">DYNAMIC</a></li>
+    <li class="has-children"><a href="code/game/gamemodes/dynamic.html" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic">DYNAMIC</a><ul class="index-tree">
+    <li><a href="code/game/gamemodes/dynamic/dynamic_logging.html" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic_logging">dynamic_logging</a></li>
+    </ul></li>
     <li><a href="code/game/gamemodes/objective.html" title="code&#x2F;game&#x2F;gamemodes&#x2F;objective">objective</a></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;game&#x2F;machinery">machinery</span><ul class="index-tree">
@@ -549,6 +554,7 @@ transformations and other events that cause new languages to become available.</
     <li><a href="code/modules/tgui_panel/telemetry.html" title="code&#x2F;modules&#x2F;tgui_panel&#x2F;telemetry">telemetry</a></li>
     <li><a href="code/modules/tgui_panel/tgui_panel.html" title="code&#x2F;modules&#x2F;tgui_panel&#x2F;tgui_panel">tgui_panel</a></li>
     </ul></li>
+    <li><span class="no-substance">unit_tests&#x2F;</span><a href="code/modules/unit_tests/dynamic_ruleset_sanity.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;dynamic_ruleset_sanity">dynamic_ruleset_sanity</a></li>
     <li><span class="no-substance">uplink&#x2F;</span><a href="code/modules/uplink/uplink_items.html" title="code&#x2F;modules&#x2F;uplink&#x2F;uplink_items">uplink_items</a></li>
     <li><span class="no-substance">vending&#x2F;</span><a href="code/modules/vending/_vending.html" title="code&#x2F;modules&#x2F;vending&#x2F;_vending">_vending</a></li>
     </ul></li>
@@ -591,7 +597,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(329 detailed/859 documented/23209 total, 3.7%)</aside></h3>
+<aside>(334 detailed/865 documented/23216 total, 3.7%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -721,6 +727,7 @@ The namespace folder's name will change if any of the assets change. (excluding 
     <li><span class="no-substance" title="&#x2F;datum&#x2F;chemical_reaction&#x2F;tofu">Tofu</span> - FOOD MIXTURES</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;chemical_reaction&#x2F;virus_food">Virus Food</span> - VIROLOGY</li>
     </ul></li>
+    <li><a href="datum/client_interface.html" title="&#x2F;datum&#x2F;client_interface">client_interface</a> - This should match the interface of /client wherever necessary.</li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;component">component</span><ul class="index-tree">
     <li><span class="no-substance">construction&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;construction&#x2F;mecha">mecha</span> - Construction datums</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;crawl">crawl</span><ul class="index-tree">
@@ -883,8 +890,12 @@ Set our target list with the new set we've generated.</li>
     </ul></li>
     <li class="has-children"><a href="datum/dynamic_ruleset/roundstart.html" title="&#x2F;datum&#x2F;dynamic_ruleset&#x2F;roundstart">roundstart</a><ul class="index-tree">
     <li><a href="datum/dynamic_ruleset/roundstart/revs.html" title="&#x2F;datum&#x2F;dynamic_ruleset&#x2F;roundstart&#x2F;revs">Revolution</a></li>
+    <li><a href="datum/dynamic_ruleset/roundstart/shadowling.html" title="&#x2F;datum&#x2F;dynamic_ruleset&#x2F;roundstart&#x2F;shadowling">Shadowling</a></li>
     </ul></li>
     </ul></li>
+    <li><a href="datum/dynamic_snapshot.html" title="&#x2F;datum&#x2F;dynamic_snapshot">dynamic_snapshot</a> - A &quot;snapshot&quot; of dynamic at an important point in time.
+Exported to JSON in the dynamic.json log file.</li>
+    <li><a href="datum/dynamic_snapshot_ruleset.html" title="&#x2F;datum&#x2F;dynamic_snapshot_ruleset">dynamic_snapshot_ruleset</a> - A ruleset chosen during a snapshot</li>
     <li><span class="no-substance">effect_system&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;effect_system&#x2F;trail_follow">trail_follow</span> - ///// Attach a trail to any object, that spawns when it moves (like for the jetpack)
 just pass in the object to attach it to in set_up
 Then do start() to start it and stop() to stop it, obviously
@@ -1043,7 +1054,7 @@ DRINKS BELOW, Beer is up there though, along with cola. Cap'n Pete's Cuban Spice
     <li><a href="datum/round_event/pirates.html" title="&#x2F;datum&#x2F;round_event&#x2F;pirates">pirates</a></li>
     <li><a href="datum/round_event/stray_cargo.html" title="&#x2F;datum&#x2F;round_event&#x2F;stray_cargo">stray_cargo</a> - Spawns a cargo pod containing a random cargo supply pack on a random area of the station</li>
     </ul></li>
-    <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control">round_event_control</span><ul class="index-tree">
+    <li class="has-children"><a href="datum/round_event_control.html" title="&#x2F;datum&#x2F;round_event_control">round_event_control</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control&#x2F;stray_cargo">Stray Cargo Pod</span> - Spawns a cargo pod containing a random cargo supply pack on a random area of the station</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control&#x2F;supermatter_surge">Supermatter Surge</span> - Places that shouldn't explode
 Subtypes from the above that actually should explode.</li>
@@ -1140,6 +1151,7 @@ SPDX-License-Identifier: MIT</li>
 SPDX-License-Identifier: MIT</li>
     <li><a href="datum/timedevent.html" title="&#x2F;datum&#x2F;timedevent">timedevent</a></li>
     <li><a href="datum/ui_state.html" title="&#x2F;datum&#x2F;ui_state">ui_state</a></li>
+    <li><span class="no-substance">unit_test&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;dynamic_roundstart_ruleset_sanity">dynamic_roundstart_ruleset_sanity</span> - Verifies that roundstart dynamic rulesets are setup properly without external configuration.</li>
     <li class="has-children"><a href="datum/uplink_item.html" title="&#x2F;datum&#x2F;uplink_item">item name</a> - Uplink Items<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;uplink_item&#x2F;dangerous">dangerous</span> - Item re-balancing</li>
     <li><span class="no-substance">race_restricted&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;uplink_item&#x2F;race_restricted&#x2F;xeno_organ_kit">Xenomorph Organ Kit</span> - datum/uplink_item/race_restricted/xeno_infestation_kit //Disabled as creating a xeno infestation is not very helpful, bit left it in here in case you want it</li>
@@ -1792,7 +1804,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/a26a92b6ab545e3a6a161588f35d56eb867875ff">a26a92b</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/b3e490f1a13c79213a323971ced1ff68220e3053">b3e490f</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
