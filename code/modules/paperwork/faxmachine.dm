@@ -199,9 +199,9 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	//message badmins that a fax has arrived
 	switch(destination)
 		if ("Central Command")
-			message_admins(sender, "CENTCOMM FAX", rcvdcopy, "CentcommFaxReply", "#006100")
+			message_admins(sender, "CENTCOM FAX", rcvdcopy, "CentcomFaxReply", "#006100")
 		if ("Sol Government")
-			message_admins(sender, "SOL GOVERNMENT FAX", rcvdcopy, "CentcommFaxReply", "#1F66A0")
+			message_admins(sender, "SOL GOVERNMENT FAX", rcvdcopy, "CentcomFaxReply", "#1F66A0")
 			//message_admins(sender, "SOL GOVERNMENT FAX", rcvdcopy, "SolGovFaxReply", "#1F66A0")
 	
 	sendcooldown = 1800
