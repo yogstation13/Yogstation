@@ -42,7 +42,7 @@ HOSTEDBY Yogstation13-Bot
 FORUMURL http://yogstation.net
 
 ## Wiki address
-WIKIURL https://wiki.yogstation.net/wiki
+WIKIURL https://wiki.yogstation.net
 
 ##Rules address
 RULESURL http://forums.yogstation.net/index.php?pages/rules/
