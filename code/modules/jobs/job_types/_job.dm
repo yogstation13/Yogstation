@@ -217,7 +217,7 @@
 	var/pda_slot = SLOT_BELT
 	var/alt_shoes = /obj/item/clothing/shoes/xeno_wraps // Default digitgrade shoes assignment variable
 	var/alt_shoes_s = /obj/item/clothing/shoes/xeno_wraps/jackboots // Digitigrade shoes for Sec assignment variable
-	var/alt_Shoes_c = /obj/item/clothing/shoes/xeno_wraps/command // command footwraps.
+	var/alt_shoes_c = /obj/item/clothing/shoes/xeno_wraps/command // command footwraps.
 
 /datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	switch(H.backbag)
