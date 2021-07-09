@@ -130,7 +130,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 
-	GLOB.dead_mob_list += src
+	add_to_dead_mob_list()
 
 	for(var/v in GLOB.active_alternate_appearances)
 		if(!v)
@@ -727,7 +727,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		remove_data_huds()
 	else
 		show_data_huds()
-	
+
 	data_huds_on = !data_huds_on
 	to_chat(src, "<span class='notice'>Data HUDs [data_huds_on ? "enabled" : "disabled"].</span>")
 
