@@ -70,6 +70,15 @@
 
 	R.revive()
 
+/obj/item/borg/upgrade/freeminer
+	name = "free miner cyborg firmware hack"
+	desc = "Used to override the default firmware of a cyborg with the freeminer version."
+	icon_state = "cyborg_upgrade2"
+	one_use = TRUE
+
+/obj/item/borg/upgrade/freeminer/action(mob/living/silicon/robot/R, user = usr)
+	R.req_access = list(ACCESS_FREEMINER_ENGINEER)
+
 /obj/item/borg/upgrade/vtec
 	name = "cyborg VTEC module"
 	desc = "Used to kick in a cyborg's VTEC systems, increasing their speed."
@@ -821,5 +830,8 @@
 /obj/item/borg/upgrade/transform/security/action(mob/living/silicon/robot/R, user = usr)
 	if(CONFIG_GET(flag/disable_secborg))
 		to_chat(user, "<span class='warning'>Nanotrasen policy disallows the use of weapons of mass destruction.</span>")
+		return FALSE
+	if(is_banned_from(R.ckey, "Security Officer"))
+		to_chat(user, "<span class='warning'>Nanotrasen has disallowed this unit from becoming this type of module.</span>")
 		return FALSE
 	return ..()

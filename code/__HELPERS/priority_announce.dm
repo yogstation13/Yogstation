@@ -1,4 +1,4 @@
-/proc/priority_announce(text, title = "", sound, type, sender_override, has_important_message)
+/proc/priority_announce(text, title = "", sound, type, sender_override, has_important_message, sanitize = TRUE)
 	if(!text)
 		return
 
@@ -11,7 +11,7 @@
 	if(type == "Priority")
 		announcement += "<h1 class='alert'>Priority Announcement</h1>"
 		if (title && length(title) > 0)
-			announcement += "<br><h2 class='alert'>[html_encode(title)]</h2>"
+			announcement += "<br><h2 class='alert'>[sanitize ? html_encode(title) : title]</h2>"
 	else if(type == "Captain")
 		announcement += "<h1 class='alert'>Captain Announces</h1>"
 		GLOB.news_network.SubmitArticle(text, "Captain's Announcement", "Station Announcements", null)
@@ -22,7 +22,7 @@
 		else
 			announcement += "<h1 class='alert'>[sender_override]</h1>"
 		if (title && length(title) > 0)
-			announcement += "<br><h2 class='alert'>[html_encode(title)]</h2>"
+			announcement += "<br><h2 class='alert'>[sanitize ? html_encode(title) : title]</h2>"
 
 		if(!sender_override)
 			if(title == "")
@@ -34,7 +34,7 @@
 	if(SSstation.announcer.custom_alert_message && !has_important_message)
 		announcement +=  SSstation.announcer.custom_alert_message
 	else
-		announcement += "<br><span class='alert'>[html_encode(text)]</span><br>"
+		announcement += "<br><span class='alert'>[sanitize ? html_encode(text) : text]</span><br>"
 	announcement += "<br>"
 
 	var/s = sound(sound)

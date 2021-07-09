@@ -59,15 +59,13 @@
 	name = "Syndicate Infiltrator"
 	antag_datum = /datum/antagonist/traitor
 	antag_flag = ROLE_TRAITOR
-	protected_roles = list("Security Officer", "Warden", "Head of Personnel", "Detective", "Head of Security", "Captain")
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director")
 	restricted_roles = list("AI","Cyborg")
 	required_candidates = 1
-	weight = 1
-	cost = 5
+	weight = 7
+	cost = 15
 	requirements = list(40,30,20,10,10,10,10,10,10,10)
-	high_population_requirement = 10
 	repeatable = TRUE
-	flags = TRAITOR_RULESET
 
 //////////////////////////////////////////////
 //                                          //
@@ -86,11 +84,9 @@
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 1
-	cost = 20
+	cost = 100000
 	delay = 1 MINUTES
 	requirements = list(80,75,60,60,55,50,40,30,20,20)
-	high_population_requirement = 50
-	flags = HIGHLANDER_RULESET
 	blocking_rules = list(/datum/dynamic_ruleset/roundstart/revs)
 	var/required_heads_of_staff = 3
 	var/finished = FALSE
@@ -197,15 +193,14 @@
 	name = "Vampiric Infiltrator"
 	antag_flag = ROLE_VAMPIRE
 	antag_datum = /datum/antagonist/vampire
-	protected_roles = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel")
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director")
 	restricted_roles = list("AI", "Cyborg")
-	required_candidates = 3
-	weight = 1
+	required_candidates = 1
+	weight = 4
 	cost = 15
 	requirements = list(80,70,60,50,50,45,30,30,20,25)
 	minimum_players = 30
 	repeatable = TRUE
-	flags = TRAITOR_RULESET
 
 
 //////////////////////////////////////////////
@@ -218,10 +213,10 @@
 	name = "Heretic Smuggler"
 	antag_datum = /datum/antagonist/heretic
 	antag_flag = ROLE_HERETIC
-	protected_roles = list("Security Officer", "Warden", "Head of Personnel", "Detective", "Head of Security", "Captain","Prisoner")
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director")
 	restricted_roles = list("AI","Cyborg")
 	required_candidates = 1
-	weight = 4
-	cost = 10
-	requirements = list(40,30,20,10,10,10,10,10,10,10)
+	weight = 3
+	cost = 15
+	requirements = list(101,101,101,10,10,10,10,10,10,10)
 	repeatable = TRUE */

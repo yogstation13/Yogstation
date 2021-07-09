@@ -8,7 +8,7 @@
 	spawn_positions = 5
 	supervisors = "the chief engineer"
 	selection_color = "#fff5cc"
-	exp_requirements = 60
+	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
 
 	outfit = /datum/outfit/job/engineer

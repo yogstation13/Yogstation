@@ -1,0 +1,9 @@
+author: "Asdjky"
+delete-after: true 
+changes: 
+  - bugfix: "Tesla Miniball maximum now properly enforced"
+  - bugfix: "Tesla Coil cooldowns now actually work"
+  - tweak: "Miniball power output no longer tied to zap range"
+  - tweak: "Minimum Miniball zap range increased to 2 (was 1)"
+  - tweak: "Grounding Rod bonus range increase to 3 (was 2)"
+  - tweak: "Tesla Coils no longer cause zaps to jump"
