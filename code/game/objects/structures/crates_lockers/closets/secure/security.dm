@@ -65,7 +65,7 @@
 	new /obj/item/gun/energy/e_gun/hos(src)
 	new /obj/item/flashlight/seclite(src)
 	new /obj/item/pinpointer/nuke(src)
-	new /obj/item/circuitboard/machine/techfab/department/security(src)
+	new /obj/item/circuitboard/machine/techfab/department/armory(src)
 	new /obj/item/storage/photo_album/HoS(src)
 	new /obj/item/clipboard/yog/paperwork/hos(src)
 	new /obj/item/radio/security(src)

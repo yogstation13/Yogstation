@@ -18203,13 +18203,6 @@
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port)
 "aFh" = (
-/obj/machinery/recharger{
-	pixel_x = -7
-	},
-/obj/machinery/recharger{
-	pixel_x = 7
-	},
-/obj/structure/table,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -18221,6 +18214,7 @@
 	pixel_x = 24;
 	pixel_y = -6
 	},
+/obj/machinery/rnd/production/techfab/department/armory,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "aFk" = (
@@ -44695,7 +44689,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/airlock/security/glass{
 	name = "Security Office";
-	req_access_txt = "1"
+	req_one_access_txt = "1;4"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -49674,7 +49668,7 @@
 "bCv" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Security Office";
-	req_access_txt = "1"
+	req_one_access_txt = "1;4"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -50197,7 +50191,7 @@
 	},
 /obj/machinery/door/airlock/security/glass{
 	name = "Security Office";
-	req_access_txt = "1"
+	req_one_access_txt = "1;4"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -51776,7 +51770,6 @@
 /area/hydroponics)
 "bFK" = (
 /obj/structure/table,
-/obj/machinery/recharger,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
@@ -51787,11 +51780,16 @@
 /obj/machinery/status_display/ai{
 	pixel_y = -32
 	},
+/obj/machinery/recharger{
+	pixel_x = 7
+	},
+/obj/machinery/recharger{
+	pixel_x = -7
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "bFL" = (
 /obj/structure/table,
-/obj/machinery/recharger,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
@@ -51800,6 +51798,12 @@
 	},
 /obj/structure/sign/warning/electricshock{
 	pixel_y = -32
+	},
+/obj/machinery/recharger{
+	pixel_x = 7
+	},
+/obj/machinery/recharger{
+	pixel_x = -7
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
@@ -70584,7 +70588,7 @@
 	},
 /obj/machinery/door/airlock/maintenance{
 	name = "security maintenance";
-	req_access_txt = "1"
+	req_one_access_txt = "1;4"
 	},
 /obj/structure/sign/directions/evac{
 	pixel_y = -24
@@ -71313,7 +71317,7 @@
 "cmy" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Security Office";
-	req_access_txt = "1"
+	req_one_access_txt = "1;4"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -90271,7 +90275,7 @@
 "hue" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Security Office";
-	req_access_txt = "1"
+	req_one_access_txt = "1;4"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -94157,6 +94161,7 @@
 	pixel_y = -23
 	},
 /obj/structure/cable/yellow,
+/obj/item/circuitboard/machine/techfab/department/security,
 /obj/item/card/id/departmental_budget/sec,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)

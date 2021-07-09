@@ -557,8 +557,8 @@
 	return TRUE
 
 /datum/reagent/medicine/perfluorodecalin/overdose_process(mob/living/M)
-    metabolization_rate += 1
-    return ..()
+	metabolization_rate += 1
+	return ..()
 
 /datum/reagent/medicine/ephedrine
 	name = "Ephedrine"
@@ -1498,6 +1498,7 @@
 	glass_desc = "Looks like some chunky dark red mix."
 	reagent_weight = 4
 	addiction_threshold = 40
+	var/clean_types = CLEAN_WASH // Burnmix can be used to clean turfs but cannot clean mobs and objects like space cleaner.
 	// Max healing non OD with best rolls + buffs: 0.2 + 0.15 + 0.2 = 0.55
 	// Max healing with OD + best rolls and all buffs: 0.4 + 0.35 + 0.4 = 1.15
 
@@ -1655,5 +1656,13 @@
 				M.visible_message("<span class='warning'>[M]'s body reacts with the medicine. It seemed to have [RNG_TEXT]!</span>")
 	..()
 
+/datum/reagent/medicine/burnmix/reaction_turf(turf/T, reac_volume)
+	if(reac_volume >= 1)
+		T.wash(clean_types)
+		for(var/am in T)
+			var/atom/movable/movable_content = am
+			if(ismopable(movable_content)) // Mopables will be cleaned anyways by the turf wash
+				continue
+			movable_content.wash(clean_types)
 
 #undef PERF_BASE_DAMAGE

@@ -85,7 +85,7 @@
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/security
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
-	mask = /obj/item/clothing/mask/breath
+	mask = /obj/item/clothing/mask/gas/sechailer
 	uniform = /obj/item/clothing/under/plasmaman/security
 	ears = /obj/item/radio/headset/headset_sec/alt
 	gloves = /obj/item/clothing/gloves/color/black
@@ -121,7 +121,7 @@
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/security
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
-	mask = /obj/item/clothing/mask/breath
+	mask = /obj/item/clothing/mask/gas/sechailer
 	uniform = /obj/item/clothing/under/plasmaman/security/warden
 	ears = /obj/item/radio/headset/headset_sec/alt
 	shoes = /obj/item/clothing/shoes/jackboots
@@ -210,7 +210,7 @@
 	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/medical
 	ears = /obj/item/radio/headset/headset_med
-	suit =  /obj/item/clothing/suit/toggle/labcoat
+	suit =  /obj/item/clothing/suit/toggle/labcoat/md
 	l_hand = /obj/item/storage/firstaid/medical
 	suit_store = /obj/item/flashlight/pen
 	backpack = /obj/item/storage/backpack/medic
