@@ -94,6 +94,7 @@
 	key_third_person = "meows"
 	message = "meows."
 	emote_type = EMOTE_AUDIBLE
+	cooldown = 10 SECONDS
 
 /datum/emote/living/carbon/meow/can_run_emote(mob/living/user, status_check = TRUE, intentional)
 	if(!ishuman(user))
@@ -105,7 +106,7 @@
 		return FALSE
 
 /datum/emote/living/carbon/meow/get_sound(mob/living/user)
-	return pick('sound/voice/feline/meow1.ogg', 'sound/voice/feline/meow2.ogg')
+	return pick('sound/voice/feline/meow1.ogg', 'sound/voice/feline/meow2.ogg','sound/effects/meow1.ogg')
 
 /datum/emote/living/carbon/human/pale
 	key = "pale"
