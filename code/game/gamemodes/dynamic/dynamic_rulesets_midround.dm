@@ -528,7 +528,7 @@
 	required_candidates = 1
 	weight = 1
 	cost = 20
-	requirements = list(101,101,101,101,101,101,101,101)
+	requirements = list(90,85,80,75,70,65,60,55)
 	repeatable = TRUE
 	var/list/spawn_locs = list()
 	minimum_players = 40
