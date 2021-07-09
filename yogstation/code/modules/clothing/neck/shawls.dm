@@ -2,7 +2,7 @@
 /obj/item/clothing/neck/yogs/shawl
 	name = "leather shawl"
 	desc = "A leather shawl made to protect the wearer from the dangers of lavaland."
-	icon_state = "leathershawl" //all of these icons are from or edited versions of the shawls made by Kor in the TG Sprite Dump (https://github.com/tgstation/SS13-sprites)
+	icon_state = "leathershawl"
 	item_state = "leathershawl"
 	actions_types = list(/datum/action/item_action/toggle_hood) //This doesnt work and I dont know why
 	var/suittoggled = FALSE
@@ -10,7 +10,6 @@
 	var/hoodtype = /obj/item/clothing/head/yogs/shawl
 	var/with_hood = "leathershawl" 
 	var/without_hood = "leathershawl-hood"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 0) //This may need to be changed
 
 /obj/item/clothing/neck/yogs/shawl/Initialize() //Most of this is copied from code\modules\clothing\suits\toggles.dm so the hoods can be toggled
 	. = ..()
@@ -82,10 +81,10 @@
 	..()
 	ToggleHood()
 
-//Head's Shawls
+//Head's Shawls - These are replacements for the old head cloaks. Leaving them here so I dont have to copy code over for the functionality.
 /obj/item/clothing/neck/yogs/shawl/cap
-	name = "captain's shawl"
-	desc = "A hand crafted shawl made for the captain to protect them from the dangers of the station."
+	name = "captain's cloak"
+	desc = "A hand crafted cloak made for the captain to protect them from the dangers of the station."
 	icon_state = "capshawl"
 	item_state = "capshawl"
 	with_hood = "capshawl"
@@ -94,8 +93,8 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/neck/yogs/shawl/hop
-	name = "head of personnel's shawl"
-	desc = "A hand crafted shawl made for the captain to protect them from the dangers of paperwork."
+	name = "head of personnel's cloak"
+	desc = "A hand crafted cloak made for the captain to protect them from the dangers of paperwork."
 	icon_state = "hopshawl"
 	item_state = "hopshawl"
 	with_hood = "hopshawl"
@@ -104,8 +103,8 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/neck/yogs/shawl/hos
-	name = "head of security's shawl"
-	desc = "A hand crafted shawl made for the head of security to protect them from the dangers of looking unrobust."
+	name = "head of security's cloak"
+	desc = "A hand crafted cloak made for the head of security to protect them from the dangers of looking unrobust."
 	icon_state = "hosshawl"
 	item_state = "hosshawl"
 	with_hood = "hosshawl"
@@ -114,8 +113,8 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/neck/yogs/shawl/cmo
-	name = "chief medical officer's shawl"
-	desc = "A hand crafted shawl made for the chief medical officer to protect them from the dangers of the medicine."
+	name = "chief medical officer's cloak"
+	desc = "A hand crafted cloak made for the chief medical officer to protect them from the dangers of the medicine."
 	icon_state = "cmoshawl"
 	item_state = "cmoshawl"
 	with_hood = "cmoshawl"
@@ -124,8 +123,8 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/neck/yogs/shawl/ce
-	name = "chief engineer's shawl"
-	desc = "A hand crafted shawl made for the chief engineer to protect them from the dangers of the engineering."
+	name = "chief engineer's cloak"
+	desc = "A hand crafted cloak made for the chief engineer to protect them from the dangers of the engineering."
 	icon_state = "ceshawl"
 	item_state = "ceshawl"
 	with_hood = "ceshawl"
@@ -134,8 +133,8 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/neck/yogs/shawl/rd
-	name = "research director's shawl"
-	desc = "A hand crafted shawl made for the research director to protect them from the dangers of the science."
+	name = "research director's cloak"
+	desc = "A hand crafted cloak made for the research director to protect them from the dangers of the science."
 	icon_state = "rdshawl"
 	item_state = "rdshawl"
 	with_hood = "rdshawl"
@@ -144,8 +143,8 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/neck/yogs/shawl/qm
-	name = "quartermaster's shawl"
-	desc = "A hand crafted shawl made for the quarter master to protect them from the dangers of lavaland."
+	name = "quartermaster's cloak"
+	desc = "A hand crafted cloak made for the quarter master to protect them from the dangers of lavaland."
 	icon_state = "qmshawl"
 	item_state = "qmshawl"
 	with_hood = "qmshawl"
@@ -161,7 +160,6 @@
 	item_state = "leather-hood"
 	var/obj/item/clothing/neck/yogs/shawl/shawl = null
 	flags_inv = HIDEEARS|HIDEHAIR
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 0)
 
 /obj/item/clothing/head/yogs/shawl/Destroy()
 	shawl = null
@@ -183,43 +181,50 @@
 
 //Head's Shawls Hoods
 /obj/item/clothing/head/yogs/shawl/cap
-	name = "captain's shawl hood"
+	name = "captain's cloak hood"
+	desc = "A hood attached to the captain's hand crafted cloak."
 	icon_state = "cap-hood"
 	item_state = "cap-hood"
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/head/yogs/shawl/hop
-	name = "head of personnel's shawl hood"
+	name = "head of personnel's cloak hood"
+	desc = "A hood attached to the head of personnel's hand crafted cloak."
 	icon_state = "hop-hood"
 	item_state = "hop-hood"
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/head/yogs/shawl/hos
-	name = "head of security's shawl hood"
+	name = "head of security's cloak hood"
+	desc = "A hood attached to the head of security's hand crafted cloak."
 	icon_state = "hos-hood"
 	item_state = "hos-hood"
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/head/yogs/shawl/cmo
-	name = "chief medical officer's shawl hood"
+	name = "chief medical officer's cloak hood"
+	desc = "A hood attached to the chief medical officer's hand crafted cloak."
 	icon_state = "cmo-hood"
 	item_state = "cmo-hood"
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/head/yogs/shawl/ce
-	name = "chief engineer's shawl hood"
+	name = "chief engineer's cloak hood"
+	desc = "A hood attached to the chief engineer's hand crafted cloak."
 	icon_state = "ce-hood"
 	item_state = "ce-hood"
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/head/yogs/shawl/rd
-	name = "research director's shawl hood"
+	name = "research director's cloak hood"
+	desc = "A hood attached to the research director's hand crafted cloak."
 	icon_state = "rd-hood"
 	item_state = "rd-hood"
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/head/yogs/shawl/qm
-	name = "quartermaster's shawl hood"
+	name = "quartermaster's cloak hood"
+	desc = "A hood attached to the quartermaster's hand crafted cloak."
 	icon_state = "qm-hood"
 	item_state = "qm-hood"
 	resistance_flags = FIRE_PROOF
