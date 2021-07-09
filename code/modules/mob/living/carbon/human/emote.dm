@@ -97,13 +97,7 @@
 	cooldown = 10 SECONDS
 
 /datum/emote/living/carbon/meow/can_run_emote(mob/living/user, status_check = TRUE, intentional)
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/H = user
-	if(iscatperson(H))
-		return TRUE
-	else
-		return FALSE
+		return iscatperson(user)
 
 /datum/emote/living/carbon/meow/get_sound(mob/living/user)
 	return pick('sound/voice/feline/meow1.ogg', 'sound/voice/feline/meow2.ogg','sound/effects/meow1.ogg')
