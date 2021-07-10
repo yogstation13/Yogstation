@@ -88,7 +88,7 @@
 	/// Wire assignment for airlocks in this area
 	var/airlock_wires = /datum/wires/airlock
 
-	var/turf/teleport_achors = list()
+	var/turf/teleport_achors = list()	//ist of tiles we prefer to teleport to. this is for areas that are partially hazardous like for instance atmos_distro
 /**
   * A list of teleport locations
   *
