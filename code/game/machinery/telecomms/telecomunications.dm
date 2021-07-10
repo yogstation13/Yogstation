@@ -149,7 +149,11 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 	// Update the icon
 	update_icon()
+	update_speed()
 
+/obj/machinery/telecomms/update_speed()
+	if(!on)
+		return
 	var/turf/T = get_turf(src) //yogs
 	var/speedloss = 0
 	var/datum/gas_mixture/env = T.return_air()
