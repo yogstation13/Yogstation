@@ -1,0 +1,4 @@
+author: "MaintClown"
+delete-after: true 
+changes: 
+  - tweak: "standardizes mood timeouts"
