@@ -76,7 +76,6 @@
 
 /datum/game_mode/traitor/post_setup()
 	for(var/datum/mind/traitor in pre_traitors)
-		var/datum/antagonist/traitor/new_antag = new antag_datum()
 		addtimer(CALLBACK(src, /datum/game_mode/traitor.proc/add_traitor_delayed, traitor), rand(2 MINUTES, (2 MINUTES + 10 SECONDS)))
 		
 	if(!exchange_blue)
@@ -120,13 +119,13 @@
 			continue
 		if(applicant.mind.assigned_role in restricted_jobs) 
 			continue
-		if(applicant.mind.quiet_mode)
+		if(applicant.mind.quiet_round)
 			continue
 		if(HAS_TRAIT(applicant, TRAIT_MINDSHIELD))
 			continue
 		if(is_banned_from(applicant.ckey, list(antag_flag, ROLE_SYNDICATE)))
 			continue
-		if(!(role in applicant.client.prefs.be_special))
+		if(!(antag_flag in applicant.client.prefs.be_special))
 			continue
 		if(!age_check(applicant.client))
 			continue
