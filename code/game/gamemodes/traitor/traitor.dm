@@ -101,7 +101,7 @@
 						add_latejoin_traitor(character.mind)
 
 /datum/game_mode/traitor/proc/add_traitor_delayed(datum/mind/traitor)
-	if(!traitor)
+	if(!traitor.current.client || (traitor.current.stat != CONSCIOUS))
 		create_new_traitor()
 		return
 	var/datum/antagonist/traitor/new_antag = new antag_datum()
