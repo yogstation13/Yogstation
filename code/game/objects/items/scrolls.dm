@@ -65,7 +65,7 @@
 	smoke.attach(user)
 	smoke.start()
 	var/list/L = list()
-	var/list/achors = thearea.teleport_achors
+	var/list/achors = thearea.teleport_anchors
 	if(achors.len)		//check the areas prefered teleportation list if it is empty just use a random enpty tile like before
 		for(var/turf/T in achors)
 			if(!is_blocked_turf(T))

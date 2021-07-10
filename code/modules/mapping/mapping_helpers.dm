@@ -258,4 +258,4 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 /obj/effect/mapping_helpers/teleport_anchor/Initialize() //add the tile it is on to areas prefered teleportaiton list
 	. = ..()
 	var/area/a = get_area(loc)
-	a.teleport_achors += loc
+	a.teleport_anchors += loc
