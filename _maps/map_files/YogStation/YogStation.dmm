@@ -39734,6 +39734,10 @@
 /obj/structure/rack,
 /obj/item/clothing/shoes/winterboots,
 /obj/item/clothing/suit/hooded/wintercoat,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 5;
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/tcoms)
 "hwl" = (
@@ -54125,13 +54129,6 @@
 	},
 /turf/open/floor/plating,
 /area/storage/tech)
-"qRX" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 5;
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/dark,
-/area/maintenance/department/tcoms)
 "qSp" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 10
@@ -95209,7 +95206,7 @@ lhU
 yeb
 pOT
 ogk
-qRX
+eyT
 bVJ
 pCZ
 qHe
