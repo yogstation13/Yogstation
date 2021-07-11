@@ -76,7 +76,7 @@
 
 /datum/game_mode/traitor/post_setup()
 	for(var/datum/mind/traitor in pre_traitors)
-		addtimer(CALLBACK(src, /datum/game_mode/traitor.proc/add_traitor_delayed, traitor), rand(2 MINUTES, (2 MINUTES + 10 SECONDS)))
+		addtimer(CALLBACK(src, /datum/game_mode/traitor.proc/add_traitor_delayed, traitor), rand(3 MINUTES, (5 MINUTES + 10 SECONDS)))
 		
 	if(!exchange_blue)
 		exchange_blue = -1 //Block latejoiners from getting exchange objectives
@@ -84,7 +84,7 @@
 
 	//We're not actually ready until all traitors are assigned.
 	gamemode_ready = FALSE
-	addtimer(VARSET_CALLBACK(src, gamemode_ready, TRUE), (2 MINUTES + 11 SECONDS))
+	addtimer(VARSET_CALLBACK(src, gamemode_ready, TRUE), (5 MINUTES + 11 SECONDS))
 	return TRUE
 
 /datum/game_mode/traitor/make_antag_chance(mob/living/carbon/human/character) //Assigns traitor to latejoiners
