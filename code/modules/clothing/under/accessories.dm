@@ -373,7 +373,6 @@
 	above_suit = TRUE
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = -5, "fire" = 0, "acid" = 0) //It IS radioactive after all. Watch me get yelled at for powergaming because I'm making this my """donator""" item - Mqiib
 	attachment_slot = null
-	minimize_when_attached = FALSE
 	light_power = 2
 	light_range = 1.4 //Same as cosmic bedsheet
 	light_color = "#9E1F1F" //dim red
