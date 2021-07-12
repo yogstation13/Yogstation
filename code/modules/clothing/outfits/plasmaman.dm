@@ -498,4 +498,38 @@
 	l_pocket = /obj/item/laser_pointer
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
+/datum/outfit/job/plasmaman/ce
+	name = "Plasmaman Chief Engineer"
+
+	id = /obj/item/card/id/silver
+	head = /obj/item/clothing/head/helmet/space/plasmaman/engineering
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
+	uniform = /obj/item/clothing/under/plasmaman/engineering
+	shoes = /obj/item/clothing/shoes/sneakers/brown
+	ears = /obj/item/radio/headset/heads/ce
+	gloves = /obj/item/clothing/gloves/color/black/ce
+	belt = /obj/item/storage/belt/utility/chief/full
+	backpack = /obj/item/storage/backpack/industrial
+	satchel = /obj/item/storage/backpack/satchel/eng
+	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
+	l_pocket = /obj/item/pda/heads/ce
+	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
+
+/datum/outfit/job/plasmaman/rd
+	name = "Plasmaman Research Director"
+
+	id = /obj/item/card/id/silver
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
+	uniform = /obj/item/clothing/under/plasmaman/science
+	shoes = /obj/item/clothing/shoes/sneakers/brown
+	ears = /obj/item/radio/headset/heads/rd
+	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses
+	belt = /obj/item/pda/heads/rd
+	suit = /obj/item/clothing/suit/toggle/labcoat/science
+	backpack = /obj/item/storage/backpack/science
+	satchel = /obj/item/storage/backpack/satchel/tox
+	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 

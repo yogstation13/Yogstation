@@ -521,3 +521,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		sleep(1)
 	if(set_original_dir)
 		AM.setDir(originaldir)
+
+/// Gets the client of the mob, allowing for mocking of the client.
+/// You only need to use this if you know you're going to be mocking clients somewhere else.
+#define GET_CLIENT(mob) (##mob.client || ##mob.mock_client)

@@ -1,4 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - rscadd: "Added special role filter to pick random player admin verb"
