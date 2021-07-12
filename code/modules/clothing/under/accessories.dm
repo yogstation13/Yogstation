@@ -378,3 +378,4 @@
 	light_color = "#9E1F1F" //dim red
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // Good luck destroying a singularity 
+	
