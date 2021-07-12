@@ -371,7 +371,7 @@
 	icon_state = "sing_necklace"
 	item_color = "sing_necklace"
 	above_suit = TRUE
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = -5, "fire" = 0, "acid" = 0) //It IS radioactive after all. Watch me get yelled at for powergaming because I'm making this my """donator""" item - Mqiib
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0) //It IS radioactive after all. Watch me get yelled at for powergaming because I'm making this my """donator""" item - Mqiib
 	attachment_slot = null
 	light_power = 2
 	light_range = 1.4 //Same as cosmic bedsheet
