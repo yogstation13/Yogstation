@@ -367,7 +367,7 @@
 
 /obj/item/clothing/accessory/sing_necklace
 	name = "Singularity Shard Necklace"
-	desc = "The gem mounted inside seems to glow with an unearthly, pulsing light. It is cold to the touch."
+	desc = "The gem mounted inside seems to glow with an unearthly, pulsing light. It is bitter cold to the touch."
 	icon_state = "sing_necklace"
 	item_color = "sing_necklace"
 	above_suit = TRUE
@@ -377,4 +377,4 @@
 	light_range = 1.4 //Same as cosmic bedsheet
 	light_color = "#9E1F1F" //dim red
 	w_class = WEIGHT_CLASS_TINY
-	
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // Good luck destroying a singularity 
