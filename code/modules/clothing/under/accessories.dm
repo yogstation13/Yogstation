@@ -376,3 +376,5 @@
 	light_power = 2
 	light_range = 1.4 //Same as cosmic bedsheet
 	light_color = "#9E1F1F" //dim red
+	w_class = WEIGHT_CLASS_TINY
+	
