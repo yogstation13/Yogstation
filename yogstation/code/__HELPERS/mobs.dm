@@ -37,8 +37,6 @@
 	return FALSE
 
 /proc/is_donator(var/user)
-	if(is_admin(user))
-		return TRUE
 
 	if(CONFIG_GET(flag/everyone_is_donator))
 		return TRUE
