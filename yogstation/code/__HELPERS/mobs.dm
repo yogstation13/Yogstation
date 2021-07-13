@@ -25,7 +25,7 @@
 	if(ismob(user))
 		var/mob/temp = user
 		if(temp && temp.client)
-			if(temp.client.is_mentor()) //help
+			if(temp.client.is_mentor())
 				return TRUE
 
 	else if(istype(user, /client))
