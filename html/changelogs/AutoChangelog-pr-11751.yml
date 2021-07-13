@@ -1,0 +1,5 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - bugfix: "fixed stealthed ghosts being visible sometimes"
+  - tweak: "Stealthmin now uses fake ckey in dchat"
