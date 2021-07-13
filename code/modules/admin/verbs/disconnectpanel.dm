@@ -3,7 +3,7 @@ GLOBAL_LIST_EMPTY(connection_logs)
 /datum/connection_log
 	var/datum/connection_entry/last_data_point
 	var/first_login
-	var/list/datum/connection_log/data_points = list()
+	var/list/datum/connection_entry/data_points = list()
 
 /datum/connection_log/New()
 	first_login = world.time
@@ -12,7 +12,8 @@ GLOBAL_LIST_EMPTY(connection_logs)
 	var/datum/connection_entry/CE = new()
 	CE.disconnected = world.time
 	CE.disconnect_type = C.type
-	CE.living = isliving(C.type)
+	CE.living = isliving(C)
+	CE.job = C.mind?.assigned_role || "Ghost"
 	last_data_point = CE
 	data_points |= CE
 
@@ -25,6 +26,7 @@ GLOBAL_LIST_EMPTY(connection_logs)
 	var/connected
 	var/disconnect_type
 	var/living = FALSE
+	var/job
 
 /client/proc/disconnect_panel()
 	set name = "Disconnection Panel"
@@ -65,12 +67,23 @@ GLOBAL_LIST_EMPTY(connection_logs)
 	.["users"] = list()
 	for(var/ckey in GLOB.connection_logs)
 		var/datum/connection_log/CL = GLOB.connection_logs[ckey]
-		
+		if(!CL.last_data_point)
+			continue
+
 		var/ckey_data = list()
 		ckey_data["ckey"] = ckey
 		ckey_data["connected"] = !!CL.last_data_point.connected
-		ckey_data["disconnect"] = CL.last_data_point.disconnected
-		ckey_data["connect"] = CL.last_data_point.connected
-		ckey_data["type"] = CL.last_data_point.disconnect_type
-		ckey_data["living"] = CL.last_data_point.living
+		ckey_data["last"] = entry2ui(CL.last_data_point)
+
+		for(var/datum/connection_entry/entry in CL.data_points)
+			ckey_data["history"] += list(entry2ui(entry))
+
 		.["users"] += list(ckey_data)
+
+/datum/disconnect_panel/proc/entry2ui(datum/connection_entry/entry)
+	. = list()
+	.["disconnect"] = entry.disconnected
+	.["connect"] = entry.connected
+	.["type"] = entry.disconnect_type
+	.["living"] = entry.living
+	.["job"] = entry.job
