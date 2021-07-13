@@ -798,6 +798,13 @@
 	name = "Mummification Bandages (Body)"
 	result = /obj/item/clothing/under/mummy
 	reqs = list(/obj/item/stack/sheet/cloth = 5)
+	
+/datum/crafting_recipe/footwraps
+	name = "Footwraps"
+	result = /obj/item/clothing/shoes/xeno_wraps
+	time = 1 SECONDS
+	reqs = list(/obj/item/stack/sheet/cloth = 3)
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/guillotine
 	name = "Guillotine"
