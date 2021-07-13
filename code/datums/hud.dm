@@ -121,7 +121,7 @@ GLOBAL_LIST_INIT(huds, list(
 		return
 	if(istype(M, /mob/living/silicon))
 		if(istype(A, /mob))
-			mob/B = A
+			var/mob/B = A
 			if(B.digitalcamo)
 				return
 	for(var/i in hud_icons)
