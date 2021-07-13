@@ -1,0 +1,4 @@
+author: "  Wayland-Smithy"
+delete-after: true 
+changes: 
+  - bugfix: "fixed widescreen being forced"
