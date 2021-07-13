@@ -618,26 +618,48 @@
 
 // Captain gets Capdrobe, other heads need some storage
 
-/obj/item/storage/backpack/duffelbag/hop/clothing
+/obj/item/storage/belt/medical/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 14
+	STR.max_w_class = WEIGHT_CLASS_BULKY
+	STR.max_combined_w_class = 21
+	STR.set_holdable(list(
+
+/obj/item/storage/backpack/duffelbag/clothing
+	name = "Clothing Dufflebag"
+	desc = "Dufflebag designed for clothing in mind"
+
+/obj/item/storage/backpack/duffelbag/clothing/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 30
+	STR.max_w_class = WEIGHT_CLASS_BULKY
+	STR.max_combined_w_class = 50
+	STR.set_holdable(list(/obj/item/clothing)
+
+/obj/item/storage/backpack/duffelbag/clothing/hop
 	name = "Head of Personnels clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
 
-/obj/item/storage/backpack/duffelbag/hop/clothing/PopulateContents()
+/obj/item/storage/backpack/duffelbag/clothing/hop/PopulateContents()
 	new /obj/item/clothing/under/rank/head_of_personnel(src)
 	new /obj/item/clothing/under/rank/head_of_personnel/skirt(src)
 	new /obj/item/clothing/head/hopcap(src)
+	new /obj/item/clothing/neck/cloak/hop(src)
 	new /obj/item/clothing/neck/yogs/shawl/hop(src) //Yogs
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/suit/armor/vest/rurmcoat(src)
 	new /obj/item/clothing/suit/armor/vest/sovietcoat(src)
 	new /obj/item/clothing/under/yogs/hopcasual(src)
 
-/obj/item/storage/backpack/duffelbag/rd/clothing
+/obj/item/storage/backpack/duffelbag/clothing/rd
 	name = "Research Directors clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
 
-/obj/item/storage/backpack/duffelbag/rd/clothing/PopulateContents()
+/obj/item/storage/backpack/duffelbag/clothing/rd/PopulateContents()
 	new /obj/item/clothing/neck/yogs/shawl/rd(src) //Yogs
+	new /obj/item/clothing/neck/cloak/rd(src)
 	new /obj/item/clothing/suit/bio_suit/scientist(src)
 	new /obj/item/clothing/head/bio_hood/scientist(src)
 	new /obj/item/clothing/suit/toggle/labcoat(src)
@@ -650,12 +672,13 @@
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/under/yogs/rdema(src)
 
-/obj/item/storage/backpack/duffelbag/engineering/chief/clothing
+/obj/item/storage/backpack/duffelbag/clothing/ce
 	name = "Chief Engineers clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
 
-/obj/item/storage/backpack/duffelbag/engineering/chief/clothing/PopulateContents()
+/obj/item/storage/backpack/duffelbag/clothing/ce/PopulateContents()
 	new /obj/item/clothing/neck/yogs/shawl/ce(src) //Yogs
+	new /obj/item/clothing/neck/cloak/ce(src)
 	new /obj/item/clothing/under/rank/chief_engineer(src)
 	new /obj/item/clothing/under/rank/chief_engineer/skirt(src)
 	new /obj/item/clothing/head/hardhat/white(src)
@@ -670,11 +693,11 @@
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/clothing/glasses/meson/engine(src)
 
-/obj/item/storage/backpack/duffelbag/sec/detective/clothing
+/obj/item/storage/backpack/duffelbag/clothing/sec/detective
 	name = "Detective's clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
 
-/obj/item/storage/backpack/duffelbag/sec/detective/clothing/PopulateContents()
+/obj/item/storage/backpack/duffelbag/clothing/sec/detective/PopulateContents()
 	new /obj/item/clothing/under/rank/det(src)
 	new /obj/item/clothing/under/rank/det/skirt(src)
 	new /obj/item/clothing/suit/det_suit(src)
@@ -696,11 +719,11 @@
 	new /obj/item/clothing/suit/yogs/detectivecoat(src)
 	new /obj/item/clothing/suit/yogs/bluedetective(src)
 
-/obj/item/storage/backpack/duffelbag/sec/warden/clothing
+/obj/item/storage/backpack/duffelbag/clothing/sec/warden
 	name = "Warden's clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
 
-/obj/item/storage/backpack/duffelbag/sec/warden/clothing/PopulateContents()
+/obj/item/storage/backpack/duffelbag/clothing/sec/warden/PopulateContents()
 	new /obj/item/clothing/under/yogs/ocelot(src)
 	new /obj/item/clothing/under/yogs/krofficer(src)
 	new /obj/item/clothing/head/beret/corpwarden(src)
@@ -713,11 +736,11 @@
 	new /obj/item/clothing/under/rank/warden/skirt(src)
 	new /obj/item/clothing/shoes/jackboots/warden(src)
 
-/obj/item/storage/backpack/duffelbag/sec/head/clothing
+/obj/item/storage/backpack/duffelbag/clothing/sec/head
 	name = "Head of Security's clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
 
-/obj/item/storage/backpack/duffelbag/sec/head/clothing/PopulateContents()
+/obj/item/storage/backpack/duffelbag/clothing/sec/head/PopulateContents()
 	new /obj/item/clothing/under/hosparadefem(src)
 	new /obj/item/clothing/under/hosparademale(src)
 	new /obj/item/clothing/suit/armor/vest/leather(src)
@@ -729,6 +752,7 @@
 	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/gars/supergars(src)
 	new /obj/item/clothing/under/rank/head_of_security/grey(src)
+	new /obj/item/clothing/neck/cloak/hos(src)
 	new /obj/item/clothing/neck/yogs/shawl/hos(src) //Yogs
 	new /obj/item/clothing/under/yogs/lieutgeneral(src)
 	new /obj/item/clothing/under/yogs/dictatorhos(src)
@@ -737,16 +761,17 @@
 	new /obj/item/clothing/under/yogs/hoscasual(src)
 	new /obj/item/clothing/suit/armor/vest/hosjacket(src)
 
-/obj/item/storage/backpack/duffelbag/med/chief/clothing
+/obj/item/storage/backpack/duffelbag/clothing/med/chief
 	name = "Chief Medical Officer's clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
 
-/obj/item/storage/backpack/duffelbag/med/chief/clothing/PopulateContents()
+/obj/item/storage/backpack/duffelbag/clothing/med/chief/PopulateContents()
 	new /obj/item/clothing/suit/bio_suit/cmo(src)
 	new /obj/item/clothing/head/bio_hood/cmo(src)
 	new /obj/item/clothing/suit/toggle/labcoat/cmo(src)
 	new /obj/item/clothing/under/rank/chief_medical_officer(src)
 	new /obj/item/clothing/under/rank/chief_medical_officer/skirt(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
+	new /obj/item/clothing/neck/cloak/cmo(src)
 	new /obj/item/clothing/neck/yogs/shawl/cmo(src) //Yogs
 	new /obj/item/clothing/head/beret/cmo(src)

@@ -243,6 +243,7 @@
 					/obj/item/storage/backpack/captain = 1,
 					/obj/item/storage/backpack/satchel/cap = 1,
 					/obj/item/storage/backpack/duffelbag/captain = 1,
+					/obj/item/clothing/neck/cloak/cap = 1,
 					/obj/item/clothing/neck/yogs/shawl/cap = 1, //Yogs
 					/obj/item/clothing/shoes/sneakers/brown = 1,
 					/obj/item/clothing/under/rank/captain = 1,
