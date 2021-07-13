@@ -111,7 +111,14 @@ GLOBAL_LIST_INIT(huds, list(
 	if(!A)
 		return FALSE
 	hudatoms |= A
+	var/mob/B = null
+	if(istype(A, /mob))
+		B = A
 	for(var/mob/M in hudusers)
+		if(istype(M, /mob/living/silicon))
+			if(B)
+				if(B.digitalcamo)
+					return
 		if(!queued_to_see[M])
 			add_to_single_hud(M, A)
 	return TRUE
@@ -119,11 +126,6 @@ GLOBAL_LIST_INIT(huds, list(
 /datum/atom_hud/proc/add_to_single_hud(mob/M, atom/A) //unsafe, no sanity apart from client
 	if(!M || !M.client || !A)
 		return
-	if(istype(M, /mob/living/silicon))
-		if(istype(A, /mob))
-			var/mob/B = A
-			if(B.digitalcamo)
-				return
 	for(var/i in hud_icons)
 		if(A.hud_list[i])
 			M.client.images |= A.hud_list[i]
