@@ -117,8 +117,8 @@ GLOBAL_LIST_INIT(huds, list(
 		if(B.digitalcamo)
 			has_camo = TRUE
 	for(var/mob/M in hudusers)
-		if(istype(M, /mob/living/silicon))
-			if(has_camo)
+		if(has_camo)
+			if(istype(M, /mob/living/silicon))
 				return
 		if(!queued_to_see[M])
 			add_to_single_hud(M, A)
