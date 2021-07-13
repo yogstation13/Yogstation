@@ -119,6 +119,11 @@ GLOBAL_LIST_INIT(huds, list(
 /datum/atom_hud/proc/add_to_single_hud(mob/M, atom/A) //unsafe, no sanity apart from client
 	if(!M || !M.client || !A)
 		return
+	if(istype(M, /mob/living/silicon))
+		if(istype(A, /mob))
+			mob/B = A
+			if(B.digitalcamo)
+				return
 	for(var/i in hud_icons)
 		if(A.hud_list[i])
 			M.client.images |= A.hud_list[i]
