@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(huds, list(
 	GLOB.all_huds -= src
 	return ..()
 
-/datum/atom_hud/proc/remove_hud_from(mob/M)
+/datum/atom_hud/proc/remove_hud_from(mob/M)	// this is called when something disables HUD
 	if(!M || !hudusers[M])
 		return
 	if (!--hudusers[M])
@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(huds, list(
 			for(var/atom/A in hudatoms)
 				remove_from_single_hud(M, A)
 
-/datum/atom_hud/proc/remove_from_hud(atom/A)
+/datum/atom_hud/proc/remove_from_hud(atom/A)	//this is called when some stops existing or needs HUD removed
 	if(!A)
 		return FALSE
 	for(var/mob/M in hudusers)
@@ -78,13 +78,13 @@ GLOBAL_LIST_INIT(huds, list(
 	hudatoms -= A
 	return TRUE
 
-/datum/atom_hud/proc/remove_from_single_hud(mob/M, atom/A) //unsafe, no sanity apart from client
+/datum/atom_hud/proc/remove_from_single_hud(mob/M, atom/A) //unsafe, no sanity apart from client	this is used to Hide HUD A from mob M
 	if(!M || !M.client || !A)
 		return
 	for(var/i in hud_icons)
 		M.client.images -= A.hud_list[i]
 
-/datum/atom_hud/proc/add_hud_to(mob/M)
+/datum/atom_hud/proc/add_hud_to(mob/M)	// this is called when something activates HUD
 	if(!M)
 		return
 	if(!hudusers[M])
@@ -107,7 +107,7 @@ GLOBAL_LIST_INIT(huds, list(
 		for(var/atom/A in hudatoms)
 			add_to_single_hud(M, A)
 
-/datum/atom_hud/proc/add_to_hud(atom/A)
+/datum/atom_hud/proc/add_to_hud(atom/A)	// something new starts existing or is in a need of a HUD	this is used to show hud A to mob M
 	if(!A)
 		return FALSE
 	hudatoms |= A
