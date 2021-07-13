@@ -1,0 +1,5 @@
+author: "Lostlarry"
+delete-after: true 
+changes: 
+  - bugfix: "tcomms no longer do kentucky fried tcomms when offline"
+  - tweak: "changed the speed calculation between 150K and 1150K to make more consistent"
