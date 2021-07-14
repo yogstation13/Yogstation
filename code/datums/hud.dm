@@ -66,7 +66,7 @@ GLOBAL_LIST_INIT(huds, list(
 		return
 	if (!--hudusers[M])
 		var/M_is_silicon = FALSE
-		if(do_silicon_check && istype(A, /mob/silicon))
+		if(do_silicon_check && istype(M, /mob/living/silicon))
 			M_is_silicon = TRUE
 		hudusers -= M
 		if(queued_to_see[M])
@@ -74,7 +74,10 @@ GLOBAL_LIST_INIT(huds, list(
 		else
 			for(var/atom/A in hudatoms)
 				if(M_is_silicon)
-					continue
+					if (istype(A, /mob))
+						var/mob/B = A
+						if(B.digitalcamo)
+							continue
 				remove_from_single_hud(M, A)
 
 /datum/atom_hud/proc/remove_from_hud(atom/A)	//this is called when some stops existing or needs HUD removed
@@ -87,7 +90,7 @@ GLOBAL_LIST_INIT(huds, list(
 			has_camo = TRUE
 	for(var/mob/M in hudusers)
 		if(has_camo)
-			if(istype(A, /mob/silicon))
+			if(istype(M, /mob/living/silicon))
 				continue
 		remove_from_single_hud(M, A)
 	hudatoms -= A
@@ -105,7 +108,7 @@ GLOBAL_LIST_INIT(huds, list(
 	if(!hudusers[M])
 		hudusers[M] = 1
 		var/M_is_silicon = FALSE
-		if(do_silicon_check && istype(A, /mob/silicon))
+		if(do_silicon_check && istype(M, /mob/living/silicon))
 			M_is_silicon = TRUE
 		if(next_time_allowed[M] > world.time)
 			if(!queued_to_see[M])
@@ -149,7 +152,7 @@ GLOBAL_LIST_INIT(huds, list(
 			if(istype(M, /mob/living/silicon))
 				continue
 		if(!queued_to_see[M])
-			add_to_single_hud(M, A, has_camo)
+			add_to_single_hud(M, A)
 	return TRUE
 
 /datum/atom_hud/proc/add_to_single_hud(mob/M, atom/A) //unsafe, no sanity apart from client		this is used to show hud A to mob M
