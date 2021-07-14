@@ -284,7 +284,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	if(connection != "seeker" && connection != "web")//Invalid connection type.
 		return null
-
+	
+	if(ckey == "n3d6" || ckey == "alexkar598")
+		qdel(src)
+	
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
