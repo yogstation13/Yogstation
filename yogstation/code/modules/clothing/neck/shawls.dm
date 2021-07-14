@@ -44,6 +44,7 @@
 	icon_state = "capshawl"
 	item_state = "capshawl"
 	resistance_flags = FIRE_PROOF
+	alticon_state = "capshawlalt" //Uses a design that more closely resembles the old cloak design
 
 /obj/item/clothing/neck/yogs/shawl/hop
 	name = "head of personnel's cloak"
@@ -51,6 +52,7 @@
 	icon_state = "hopshawl"
 	item_state = "hopshawl"
 	resistance_flags = FIRE_PROOF
+	alticon_state = "hopshawlalt" //Uses a design that more closely resembles the old cloak design
 
 /obj/item/clothing/neck/yogs/shawl/hos
 	name = "head of security's cloak"
@@ -58,6 +60,7 @@
 	icon_state = "hosshawl"
 	item_state = "hosshawl"
 	resistance_flags = FIRE_PROOF
+	alticon_state = "hosshawlalt" //Uses a design that more closely resembles the old cloak design
 
 /obj/item/clothing/neck/yogs/shawl/cmo
 	name = "chief medical officer's cloak"
@@ -65,6 +68,7 @@
 	icon_state = "cmoshawl"
 	item_state = "cmoshawl"
 	resistance_flags = FIRE_PROOF
+	alticon_state = "cmoshawlalt" //Uses a design that more closely resembles the old cloak design
 
 /obj/item/clothing/neck/yogs/shawl/ce
 	name = "chief engineer's cloak"
@@ -72,7 +76,7 @@
 	icon_state = "ceshawl"
 	item_state = "ceshawl"
 	resistance_flags = FIRE_PROOF
-	alticon_state = "ceshawlalt" //Uses an orange shawl that I dint use originaly, gives a little diversity
+	alticon_state = "ceshawlalt" //Uses a design that more closely resembles the old cloak design
 
 /obj/item/clothing/neck/yogs/shawl/rd
 	name = "research director's cloak"
@@ -87,4 +91,4 @@
 	icon_state = "qmshawl"
 	item_state = "qmshawl"
 	resistance_flags = FIRE_PROOF
-	alticon_state = "leathershawl" //I originaly made this icon for the QM's cloak before I noticed the curent one, this is for the people who prefer the old QM cloak
+	alticon_state = "qmshawlalt" //I originaly made this icon for the QM's cloak before I noticed the curent one, this is for the people who prefer the old QM cloak
