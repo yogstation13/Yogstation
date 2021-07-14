@@ -803,7 +803,7 @@
 	name = "Footwraps"
 	result = /obj/item/clothing/shoes/xeno_wraps
 	time = 1 SECONDS
-	reqs = list(/obj/item/stack/sheet/cloth = 3)
+	reqs = list(/obj/item/stack/sheet/leather = 3)
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/guillotine
