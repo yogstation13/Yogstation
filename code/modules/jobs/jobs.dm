@@ -64,7 +64,10 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Head of Security",
 	"Warden",
 	"Detective",
-	"Security Officer"))
+	"Security Officer",
+	//Yogs Start: Yog jobs
+	"Brig Physician"))
+	//Yogs End
 
 
 GLOBAL_LIST_INIT(nonhuman_positions, list(
@@ -129,6 +132,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/static/regex/psych_expand = new("psychiatrist")
 	var/static/regex/clerk_expand = new("clerk")
 	var/static/regex/para_expand = new("paramedic")
+	var/static/regex/phys_expand = new("brig physician")
 	// yogs end
 
 	job = lowertext(job)
@@ -152,5 +156,6 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = psych_expand.Replace(job, "psychiatrist")
 	job = clerk_expand.Replace(job, "clerk")
 	job = para_expand.Replace(job, "paramedic")
+	job = phys_expand.Replace(job, "brig physician")
 	// yogs end
 	return job

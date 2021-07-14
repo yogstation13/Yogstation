@@ -2567,10 +2567,6 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "agM" = (
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/mask/surgical,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/structure/table/glass,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -2580,21 +2576,18 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/structure/table/optable,
+/obj/item/storage/backpack/duffelbag/sec/surgery,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "agN" = (
-/obj/item/storage/firstaid/regular{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/firstaid/regular,
-/obj/structure/table/glass,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/machinery/computer/operating,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "agO" = (
@@ -2768,8 +2761,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/iv_drip,
-/obj/item/reagent_containers/blood,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -2777,6 +2768,9 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/structure/closet/secure_closet/physician,
+/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/mask/surgical,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "ahn" = (
@@ -2841,23 +2835,15 @@
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "ahu" = (
-/obj/item/storage/box/bodybags,
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
 	},
-/obj/item/reagent_containers/syringe{
-	name = "steel point"
-	},
-/obj/item/reagent_containers/glass/bottle/charcoal,
-/obj/item/reagent_containers/glass/bottle/epinephrine,
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/table/glass,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
@@ -3189,12 +3175,17 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "ahW" = (
-/obj/structure/bodycontainer/morgue,
-/obj/machinery/camera{
-	c_tag = "Brig Infirmary";
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/machinery/sleeper{
 	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/white,
 /area/security/brig)
 "ahX" = (
 /obj/machinery/computer/crew{
@@ -3329,15 +3320,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"ain" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "aip" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/red,
@@ -3447,6 +3429,10 @@
 /area/security/prison)
 "aiD" = (
 /obj/structure/bodycontainer/morgue,
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "aiE" = (
@@ -3459,12 +3445,15 @@
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "aiF" = (
-/obj/structure/bed,
-/obj/item/clothing/suit/straight_jacket,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/machinery/vending/wallmed{
+	pixel_y = -30
+	},
+/obj/machinery/iv_drip,
+/obj/structure/bed,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "aiG" = (
@@ -3565,8 +3554,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/bed,
-/obj/item/clothing/suit/straight_jacket,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -3574,6 +3561,8 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/structure/closet/crate/freezer/blood,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "aiQ" = (
@@ -39734,10 +39723,6 @@
 /obj/structure/rack,
 /obj/item/clothing/shoes/winterboots,
 /obj/item/clothing/suit/hooded/wintercoat,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 5;
-	pixel_y = -32
-	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/tcoms)
 "hwl" = (
@@ -55294,6 +55279,13 @@
 	},
 /turf/open/floor/engine/airless,
 /area/escapepodbay)
+"rIp" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 5;
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/maintenance/department/tcoms)
 "rJj" = (
 /obj/structure/closet/l3closet/virology,
 /obj/effect/turf_decal/tile/green,
@@ -55444,6 +55436,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"rPc" = (
+/obj/effect/landmark/start/yogs/brigphsyician,
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "rPi" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -59674,6 +59670,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"uJn" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "uJu" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "Skynet_launch";
@@ -93099,7 +93101,7 @@ agM
 ahu
 ahW
 aiD
-agj
+aaC
 ajg
 akl
 akO
@@ -93353,8 +93355,8 @@ afy
 afH
 agj
 agN
+ahP
 aht
-ain
 aid
 agj
 auA
@@ -93610,10 +93612,10 @@ afr
 afH
 agj
 ahs
-ahP
-ahP
+uJn
+rPc
 aiF
-aaC
+agj
 ajA
 ajG
 akQ
@@ -95206,7 +95208,7 @@ lhU
 yeb
 pOT
 ogk
-eyT
+rIp
 bVJ
 pCZ
 qHe

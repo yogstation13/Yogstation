@@ -45,6 +45,7 @@
 	"Warden" = list("security","black"),
 	"Security Officer" = list("security","red"),
 	"Detective" = list("security","brown"),
+	"Brig Physician" = list("security","blue"),
 	"Lawyer" = list("security","purple")
 	)
 	if(job in idfluff)
