@@ -5132,6 +5132,7 @@
 	dir = 8
 	},
 /obj/structure/table/optable,
+/obj/item/storage/backpack/duffelbag/sec/surgery,
 /turf/open/floor/plasteel/white,
 /area/security/brig/infirmary)
 "aku" = (
@@ -5164,9 +5165,6 @@
 /obj/item/reagent_containers/spray/cleaner{
 	pixel_x = -3;
 	pixel_y = 5
-	},
-/obj/item/storage/backpack/duffelbag/sec/surgery{
-	pixel_y = 3
 	},
 /turf/open/floor/plasteel/white,
 /area/security/brig/infirmary)
@@ -50620,6 +50618,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
+"bWE" = (
+/turf/closed/wall,
+/area/security/brig/infirmary)
 "bWG" = (
 /obj/structure/table/optable,
 /turf/open/floor/plasteel,
@@ -72716,6 +72717,13 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel,
 /area/maintenance/department/science)
+"dro" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "N2O Storage";
+	req_access_txt = "0"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/brig/infirmary)
 "drQ" = (
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
@@ -74119,31 +74127,6 @@
 /obj/structure/lattice,
 /turf/closed/wall,
 /area/crew_quarters/fitness/recreation)
-"fsZ" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/airlock/maintenance{
-	name = "Brig Infirmary Maintenance";
-	req_access_txt = "74"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "ftd" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -74539,9 +74522,6 @@
 	dir = 1
 	},
 /area/engine/atmos)
-"fZV" = (
-/turf/closed/wall/r_wall,
-/area/security/brig/infirmary)
 "gae" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/stripes/line{
@@ -74706,17 +74686,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"gpR" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/physician,
-/turf/open/floor/plasteel/white,
-/area/security/physician)
 "gpT" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/tile/green{
@@ -75239,6 +75208,7 @@
 	pixel_x = -5;
 	pixel_y = -30
 	},
+/obj/machinery/iv_drip,
 /turf/open/floor/plasteel/white,
 /area/security/brig/infirmary)
 "hqG" = (
@@ -75459,24 +75429,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
-"hHR" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "hLU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -75997,6 +75949,31 @@
 	icon_state = "platingdmg2"
 	},
 /area/maintenance/starboard)
+"iNk" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/airlock/maintenance{
+	name = "Brig Infirmary Maintenance";
+	req_access_txt = "74"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "iOj" = (
 /obj/effect/landmark/stationroom/maint/threexthree,
 /turf/template_noop,
@@ -76287,6 +76264,9 @@
 	},
 /turf/template_noop,
 /area/maintenance/fore)
+"jpq" = (
+/turf/closed/wall/r_wall,
+/area/security/physician)
 "jqX" = (
 /obj/effect/landmark/stationroom/maint/threexfive,
 /turf/template_noop,
@@ -76390,6 +76370,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"jJf" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/physician,
+/obj/machinery/camera{
+	c_tag = "Brig Physician's Office";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/security/physician)
 "jJj" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -77493,13 +77488,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"lQa" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "N2O Storage";
-	req_access_txt = "0"
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/brig/infirmary)
 "lQk" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -77617,6 +77605,26 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
+"lZg" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/landmark/start/yogs/brigphsyician,
+/turf/open/floor/plasteel/white,
+/area/security/physician)
 "lZV" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -78483,9 +78491,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"oeF" = (
-/turf/closed/wall,
-/area/security/physician)
 "ofX" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -79110,15 +79115,6 @@
 	},
 /turf/open/floor/carpet,
 /area/medical/psych)
-"pzE" = (
-/obj/structure/bodycontainer/morgue{
-	dir = 2
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/physician)
 "pBX" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -79684,6 +79680,24 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
+"qQw" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "qTp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -79709,9 +79723,6 @@
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"qVu" = (
-/turf/closed/wall/r_wall,
-/area/security/physician)
 "qVw" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -80180,9 +80191,6 @@
 	},
 /turf/closed/wall,
 /area/maintenance/port/aft)
-"rNd" = (
-/turf/closed/wall,
-/area/security/brig/infirmary)
 "rNv" = (
 /obj/machinery/bounty_board,
 /turf/closed/wall/r_wall,
@@ -80904,6 +80912,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"tal" = (
+/obj/structure/bodycontainer/morgue{
+	dir = 2
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/physician)
 "taY" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -81040,6 +81057,9 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
+"toY" = (
+/turf/closed/wall/r_wall,
+/area/security/brig/infirmary)
 "tpc" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -81703,6 +81723,9 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"urO" = (
+/turf/closed/wall,
+/area/security/physician)
 "usR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -82735,7 +82758,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/machinery/iv_drip,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -82747,6 +82769,8 @@
 	dir = 4
 	},
 /obj/machinery/power/apc{
+	areastring = "/area/security/brig/infirmary";
+	name = "Brig Infirmary APC";
 	pixel_y = -27
 	},
 /obj/structure/cable/yellow{
@@ -83153,6 +83177,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"xnc" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer2{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/item/tank/internals/air,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "xop" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
@@ -83348,34 +83380,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
-"xNy" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/landmark/start/yogs/brigphsyician,
-/turf/open/floor/plasteel/white,
-/area/security/physician)
-"xQX" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer2{
-	dir = 4
-	},
-/obj/machinery/portable_atmospherics/canister/air,
-/obj/item/tank/internals/air,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "xRE" = (
@@ -105713,7 +105717,7 @@ aax
 aaa
 fQm
 dne
-xQX
+xnc
 hWi
 doa
 wHp
@@ -105970,7 +105974,7 @@ aax
 aaa
 aaa
 dne
-hHR
+qQw
 mgv
 euO
 dne
@@ -106225,12 +106229,12 @@ aax
 aax
 aax
 aaf
-qVu
-qVu
-fsZ
-qVu
-qVu
-qVu
+jpq
+jpq
+iNk
+jpq
+jpq
+jpq
 aaa
 aaa
 aaa
@@ -106482,12 +106486,12 @@ afW
 aaf
 aaa
 aaa
-qVu
+jpq
 adS
 tvW
 afc
 alL
-qVu
+jpq
 aaa
 aaa
 aaa
@@ -106739,12 +106743,12 @@ aax
 aaf
 aaf
 aaa
-qVu
-gpR
-xNy
+jpq
+jJf
+lZg
 anc
-pzE
-qVu
+tal
+jpq
 aaa
 aaa
 aaa
@@ -106994,14 +106998,14 @@ afh
 abe
 aax
 auO
-fZV
-fZV
-qVu
-oeF
+toY
+toY
+jpq
+urO
 oum
-oeF
-oeF
-qVu
+urO
+urO
+jpq
 aaa
 aaa
 aaa
@@ -107251,14 +107255,14 @@ afI
 abe
 ahu
 air
-rNd
+bWE
 akt
 alM
 and
 jax
-lQa
+dro
 aqX
-fZV
+toY
 aaa
 aaa
 aaa
@@ -107508,12 +107512,12 @@ afK
 abe
 ahv
 ais
-rNd
+bWE
 aku
 akm
 ane
 ajT
-fZV
+toY
 ajm
 ajm
 axF
@@ -107765,12 +107769,12 @@ afY
 abe
 ahw
 air
-rNd
+bWE
 akv
 alE
 alp
 wBM
-rNd
+bWE
 aqY
 asd
 atK
@@ -108022,12 +108026,12 @@ aeT
 agJ
 ahx
 ait
-rNd
+bWE
 akw
 alF
 kYI
 hnY
-rNd
+bWE
 aqZ
 aso
 atL

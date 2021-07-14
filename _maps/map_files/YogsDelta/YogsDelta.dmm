@@ -39496,7 +39496,6 @@
 	pixel_x = -3;
 	pixel_y = 2
 	},
-/obj/item/storage/backpack/duffelbag/sec/surgery,
 /turf/open/floor/plasteel/white,
 /area/security/brig/infirmary)
 "bkl" = (
@@ -124474,6 +124473,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/medical/medbay/central)
+"eAT" = (
+/turf/closed/wall/r_wall,
+/area/security/brig/infirmary)
 "eCM" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -124579,13 +124581,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel,
 /area/medical/morgue)
-"eYe" = (
-/obj/structure/cable/white{
-	icon_state = "0-2"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/security/brig/infirmary)
 "faK" = (
 /obj/machinery/light/small,
 /obj/structure/bodycontainer/morgue{
@@ -124734,6 +124729,29 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"fNx" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/security/brig/infirmary";
+	name = "Brig Infirmary APC";
+	pixel_x = 27
+	},
+/obj/structure/cable/white{
+	icon_state = "0-2"
+	},
+/obj/machinery/light_switch{
+	pixel_x = 26;
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig/infirmary)
 "fOJ" = (
 /obj/structure/cable/white{
 	icon_state = "0-4"
@@ -124824,27 +124842,6 @@
 /obj/item/pen,
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"fYl" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/structure/table/optable,
-/obj/machinery/vending/wallmed{
-	name = "Emergency NanoMed";
-	pixel_x = -26;
-	use_power = 0
-	},
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig/infirmary)
 "gcN" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -125078,17 +125075,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/port)
-"hPe" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/machinery/airalarm/directional/north,
-/obj/machinery/computer/operating,
-/turf/open/floor/plasteel/white,
-/area/security/brig/infirmary)
 "hQw" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -125151,6 +125137,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"hZc" = (
+/obj/structure/cable/white,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/security/brig/infirmary)
 "iaF" = (
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
@@ -125990,29 +125981,6 @@
 /obj/machinery/computer/atmos_sim,
 /turf/open/floor/plasteel/dark,
 /area/science/mixing/chamber)
-"mxg" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/security/brig/infirmary";
-	name = "Brig Infirmary APC";
-	pixel_x = 27
-	},
-/obj/structure/cable/white{
-	icon_state = "0-2"
-	},
-/obj/machinery/light_switch{
-	pixel_x = 26;
-	pixel_y = 10
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig/infirmary)
 "mBX" = (
 /obj/machinery/atmospherics/components/binary/pump,
 /obj/machinery/light/small{
@@ -126083,6 +126051,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/morgue)
+"mJz" = (
+/obj/effect/landmark/start/yogs/brigphsyician,
+/turf/open/floor/plasteel/white,
+/area/security/brig/infirmary)
 "mMY" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/vending/snack/random,
@@ -126360,15 +126332,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/science/storage)
-"omc" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig/infirmary)
 "onw" = (
 /obj/effect/landmark/start/scientist,
 /obj/effect/turf_decal/tile/neutral{
@@ -126663,20 +126626,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"pyn" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/structure/closet/secure_closet/physician,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig/infirmary)
 "pCm" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/disposalpipe/segment{
@@ -127136,6 +127085,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
+"rUW" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig/infirmary)
 "rVB" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "brigprison";
@@ -127162,11 +127120,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"rYg" = (
-/obj/structure/cable/white,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/security/brig/infirmary)
 "rYp" = (
 /obj/structure/table,
 /obj/item/camera,
@@ -127262,6 +127215,13 @@
 /obj/item/folder/white,
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"sER" = (
+/obj/structure/cable/white{
+	icon_state = "0-2"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/security/brig/infirmary)
 "sFC" = (
 /obj/machinery/status_display/evac{
 	pixel_x = 32
@@ -127408,9 +127368,6 @@
 	},
 /turf/open/floor/plating,
 /area/science/robotics/lab)
-"uaK" = (
-/turf/closed/wall/r_wall,
-/area/security/brig/infirmary)
 "uep" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -127542,6 +127499,28 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/morgue)
+"vhn" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/structure/table/optable,
+/obj/machinery/vending/wallmed{
+	name = "Emergency NanoMed";
+	pixel_x = -26;
+	use_power = 0
+	},
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/item/storage/backpack/duffelbag/sec/surgery,
+/turf/open/floor/plasteel/white,
+/area/security/brig/infirmary)
 "vhV" = (
 /obj/structure/table,
 /obj/machinery/power/apc{
@@ -127720,10 +127699,6 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
-"vWD" = (
-/obj/effect/landmark/start/yogs/brigphsyician,
-/turf/open/floor/plasteel/white,
-/area/security/brig/infirmary)
 "vXg" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -127912,6 +127887,20 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/security/brig)
+"wLL" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/structure/closet/secure_closet/physician,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig/infirmary)
 "wQo" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -128033,6 +128022,17 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
+"xCI" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/machinery/airalarm/directional/north,
+/obj/machinery/computer/operating,
+/turf/open/floor/plasteel/white,
+/area/security/brig/infirmary)
 "xDZ" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1
@@ -177934,9 +177934,9 @@ aad
 aaa
 aaa
 aaa
-uaK
-uaK
-uaK
+eAT
+eAT
+eAT
 bnD
 bst
 bta
@@ -178191,9 +178191,9 @@ aFm
 aIc
 aIc
 aFm
-uaK
-fYl
-omc
+eAT
+vhn
+rUW
 biz
 bkk
 bmd
@@ -178448,9 +178448,9 @@ aFm
 aZk
 baZ
 bcJ
-uaK
-hPe
-vWD
+eAT
+xCI
+mJz
 aNx
 aYS
 bme
@@ -178705,9 +178705,9 @@ aFm
 aHJ
 aSd
 bcK
-uaK
-pyn
-mxg
+eAT
+wLL
+fNx
 aOc
 aYU
 bmf
@@ -178962,12 +178962,12 @@ aFm
 aZm
 aSo
 aFm
-uaK
-uaK
-uaK
-eYe
+eAT
+eAT
+eAT
+sER
 aYV
-rYg
+hZc
 aJS
 bpj
 aMb
