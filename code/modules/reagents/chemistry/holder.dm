@@ -343,7 +343,10 @@
 							log_game("[key_name(C)] has become addicted to [R.name] at [R.volume] units.")
 					if(R.overdosed)
 						need_mob_update += R.overdose_process(C)
-						C.overdose_list += R
+						if(R in C.overdose_list)
+							continue
+						else
+							C.overdose_list += R
 					if(is_type_in_list(R,cached_addictions))
 						for(var/addiction in cached_addictions)
 							var/datum/reagent/A = addiction
@@ -397,6 +400,7 @@
 			R.on_mob_end_metabolize(C)
 		if(R in C.overdose_list)
 			C.overdose_list -= R
+			listclearnulls(C.overdose_list)
 /**
   * Calls [/datum/reagent/proc/on_move] on every reagent in this holder
   *
