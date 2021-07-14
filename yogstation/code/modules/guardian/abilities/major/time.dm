@@ -52,7 +52,7 @@
 			var/mob/living/simple_animal/hostile/guardian/G = L
 			G.erased_time = TRUE
 		ADD_TRAIT(L, TRAIT_PACIFISM, "king_crimson")
-		ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "king_crimson")
+		ADD_TRAIT(L, TRAIT_NO_STUN_WEAPONS, "king_crimson")
 		ADD_TRAIT(L, TRAIT_NOINTERACT, "king_crimson") // no touching anything ever
 		L.remove_alt_appearance("king_crimson")
 		L.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/king_crimson, "king_crimson", I, NONE, immune)
