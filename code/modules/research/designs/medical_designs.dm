@@ -654,6 +654,9 @@
 /datum/design/surgery/xeno_dna_recovery
 	name = "Alien DNA Recovery"
 	desc = "An experimental surgical procedure which involves the use of rezadone to fix severe burning on certain alien lifeforms."
+	id = "surgery_xeno_dna_recovery"
+	surgery = /datum/surgery/advanced/dna_recovery/alien
+	research_icon_state = "surgery_head"
 
 /datum/design/surgery/brainwashing
 	name = "Brainwashing"
