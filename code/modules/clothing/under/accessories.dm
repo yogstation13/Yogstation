@@ -366,7 +366,7 @@
 //////////////
 
 /obj/item/clothing/accessory/sing_necklace
-	name = "\improper Singularity Shard Necklace"
+	name = "singularity shard necklace"
 	desc = "The gem mounted inside seems to glow with an unearthly, pulsing light. It is bitter cold to the touch."
 	icon_state = "sing_necklace"
 	item_color = "sing_necklace"
