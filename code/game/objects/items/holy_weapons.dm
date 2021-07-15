@@ -480,10 +480,12 @@
 	item_state = "hypertool"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	force = 7
+	throwforce = 5
 	slot_flags = ITEM_SLOT_BELT
 	name = "hypertool"
 	desc = "A tool so powerful even you cannot perfectly use it."
-	armour_penetration = 35
+	armour_penetration = 10
 	damtype = BRAIN
 	attack_verb = list("pulsed", "mended", "cut")
 	hitsound = 'sound/effects/sparks4.ogg'
