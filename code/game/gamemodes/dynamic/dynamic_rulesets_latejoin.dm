@@ -63,7 +63,7 @@
 	restricted_roles = list("AI","Cyborg")
 	required_candidates = 1
 	weight = 7
-	cost = 15
+	cost = 10
 	requirements = list(40,30,20,10,10,10,10,10,10,10)
 	repeatable = TRUE
 
@@ -198,7 +198,7 @@
 	required_candidates = 1
 	weight = 4
 	cost = 15
-	requirements = list(80,70,60,50,50,45,30,30,20,25)
+	requirements = list(45,40,40,35,30,30,20,20,20,20)
 	minimum_players = 30
 	repeatable = TRUE
 
@@ -209,14 +209,15 @@
 //                                          //
 //////////////////////////////////////////////
 
-/*/datum/dynamic_ruleset/latejoin/heretic_smuggler
+/datum/dynamic_ruleset/latejoin/heretic_smuggler
 	name = "Heretic Smuggler"
 	antag_datum = /datum/antagonist/heretic
 	antag_flag = ROLE_HERETIC
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director")
 	restricted_roles = list("AI","Cyborg")
 	required_candidates = 1
-	weight = 3
+	weight = 2
 	cost = 15
-	requirements = list(101,101,101,10,10,10,10,10,10,10)
-	repeatable = TRUE */
+	requirements = list(45,40,30,30,20,20,15,10,10,10)
+	minimum_players = 36
+	repeatable = TRUE
