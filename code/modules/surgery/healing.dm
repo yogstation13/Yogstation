@@ -46,6 +46,13 @@
 		"<span class='notice'>[user] attempts to patch some of [target]'s [woundtype].</span>",
 		"<span class='notice'>[user] attempts to patch some of [target]'s [woundtype].</span>")
 
+/datum/surgery_step/heal/try_op(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE, ingnore_repeat = FALSE)
+	var/org_bodyparts = target.get_damaged_bodyparts(brutehealing, burnhealing, FALSE, BODYPART_ORGANIC)
+	if (org_bodyparts.len)
+		..()
+	else
+		..(user, target, target_zone, tool, surgery, try_to_fail, FALSE)
+
 /datum/surgery_step/heal/initiate(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	if(..())
 		while((brutehealing && target.getBruteLoss()) || (burnhealing && target.getFireLoss()))

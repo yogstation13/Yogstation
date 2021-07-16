@@ -14,7 +14,7 @@
 	var/fuckup_damage = 10			//base damage dealt on a surgery being done without anesthetics on SURGERY_FUCKUP_CHANCE percent chance
 	var/fuckup_damage_type = BRUTE	//damage type fuckup_damage is dealt as
 
-/datum/surgery_step/proc/try_op(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
+/datum/surgery_step/proc/try_op(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE, repeat = TRUE)
 	var/success = FALSE
 	if(accept_hand)
 		if(!tool)
@@ -57,7 +57,7 @@
 				to_chat(user, "<span class='warning'>You need to expose [target]'s [parse_zone(target_zone)] to perform surgery on it!</span>")
 			return TRUE	//returns TRUE so we don't stab the guy in the dick or wherever.
 
-	if(repeatable)
+	if(repeatable && repeat)
 		var/datum/surgery_step/next_step = surgery.get_surgery_next_step()
 		if(next_step)
 			surgery.status++
