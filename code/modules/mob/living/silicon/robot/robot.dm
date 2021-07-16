@@ -280,7 +280,7 @@
 	var/datum/browser/alerts = new(usr, "robotalerts", "Current Station Alerts", 400, 410)
 	alerts.set_content(dat)
 	alerts.open()
-	
+
 /mob/living/silicon/robot/verb/view_manifest()
 	set name = "View Crew Manifest"
 	set category = "Robot Commands"
@@ -749,6 +749,7 @@
 	update_icons()
 
 /mob/living/silicon/robot/proc/deconstruct()
+	SEND_SIGNAL(src, COMSIG_BORG_SAFE_DECONSTRUCT)
 	var/turf/T = get_turf(src)
 	if (robot_suit)
 		robot_suit.forceMove(T)
@@ -1022,6 +1023,7 @@
 
 
 /mob/living/silicon/robot/proc/ResetModule()
+	SEND_SIGNAL(src, COMSIG_BORG_SAFE_DECONSTRUCT)
 	uneq_all()
 	shown_robot_modules = FALSE
 	if(hud_used)
