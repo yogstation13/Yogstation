@@ -310,3 +310,5 @@
 	new /obj/item/pinpointer/crew(src)
 	new /obj/item/sensor_device(src)
 	new /obj/item/storage/box/bodybags(src)
+	new /obj/item/tank/internals/anesthetic(src)
+	new /obj/item/clothing/mask/breath/medical(src)

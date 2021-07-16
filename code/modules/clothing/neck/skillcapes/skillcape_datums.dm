@@ -108,6 +108,16 @@
     job = "Detective"
     path = /obj/item/clothing/neck/skillcape/trimmed/detective
 
+/datum/skillcape/physician
+    name = "cape of the brig physician"
+    job = "Detective"
+    path = /obj/item/clothing/neck/skillcape/physician
+
+/datum/skillcape/trimmed/physician
+    name = "cape of the grand brig physician"
+    job = "Detective"
+    path = /obj/item/clothing/neck/skillcape/trimmed/physician
+
 /datum/skillcape/signaltech
     name = "cape of the signal technician"
     job = "Signal Technician"
@@ -224,7 +234,7 @@
     path = /obj/item/clothing/neck/skillcape/minemedic
 
 /datum/skillcape/trimmed/minemedic
-    name = "cape of the grand minic medic"
+    name = "cape of the grand mining medic"
     job = "Mining Medic"
     path = /obj/item/clothing/neck/skillcape/trimmed/minemedic
 

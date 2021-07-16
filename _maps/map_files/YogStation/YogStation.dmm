@@ -2588,6 +2588,16 @@
 	dir = 4
 	},
 /obj/machinery/computer/operating,
+/obj/machinery/flasher{
+	id = "briginfirmary";
+	pixel_x = 8;
+	pixel_y = 28
+	},
+/obj/machinery/button/flasher{
+	id = "briginfirmary";
+	pixel_x = -8;
+	pixel_y = 28
+	},
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "agO" = (
@@ -2835,9 +2845,6 @@
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "ahu" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27
-	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -3184,6 +3191,9 @@
 /obj/effect/turf_decal/tile/red,
 /obj/machinery/sleeper{
 	dir = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
 	},
 /turf/open/floor/plasteel/white,
 /area/security/brig)
@@ -45303,6 +45313,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"laZ" = (
+/obj/effect/landmark/start/yogs/brigphsyician,
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "lbh" = (
 /obj/structure/cable,
 /obj/effect/spawner/structure/window/reinforced,
@@ -50125,6 +50139,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"oni" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "ont" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/cable{
@@ -53146,6 +53166,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"qkx" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 5;
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/maintenance/department/tcoms)
 "qlj" = (
 /obj/effect/turf_decal/arrows/white{
 	color = "#99ccff";
@@ -55279,13 +55306,6 @@
 	},
 /turf/open/floor/engine/airless,
 /area/escapepodbay)
-"rIp" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 5;
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/dark,
-/area/maintenance/department/tcoms)
 "rJj" = (
 /obj/structure/closet/l3closet/virology,
 /obj/effect/turf_decal/tile/green,
@@ -55436,10 +55456,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"rPc" = (
-/obj/effect/landmark/start/yogs/brigphsyician,
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "rPi" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -59670,12 +59686,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"uJn" = (
-/obj/structure/chair/office/dark{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "uJu" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "Skynet_launch";
@@ -93612,8 +93622,8 @@ afr
 afH
 agj
 ahs
-uJn
-rPc
+oni
+laZ
 aiF
 agj
 ajA
@@ -95208,7 +95218,7 @@ lhU
 yeb
 pOT
 ogk
-rIp
+qkx
 bVJ
 pCZ
 qHe
