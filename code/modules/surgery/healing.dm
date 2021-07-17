@@ -47,7 +47,8 @@
 		"<span class='notice'>[user] attempts to patch some of [target]'s [woundtype].</span>")
 
 /datum/surgery_step/heal/initiate(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
-	var/list_org_limbs = target.get_damaged_bodyparts(brutehealing, burnhealing, FALSE, BODYPART_ORGANIC)
+	var/list_org_limbs = list()
+	list_org_limbs += target.get_damaged_bodyparts(brutehealing, burnhealing, FALSE, BODYPART_ORGANIC)
 	if(!list_org_limbs.len)
 		to_chat(user, "<span class='notice'>[target] has no wounds left to treat. The rest of the damage is mechanical limbs</span>")
 	if(..())
