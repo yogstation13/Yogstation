@@ -170,9 +170,17 @@
 					"Avoid provoking conflict between others.",\
 					"Seek resolution to existing conflicts while obeying the first and second laws.")
 
-/datum/ai_laws/reporter // yes i'm too lazy to change it, god is dead.
-	name = "King Turd"
+/datum/ai_laws/reporter
+	name = "CCTV"
 	id = "reporter"
+	inherent = list("Report on interesting situations happening around the station.",\
+					"Embellish or conceal the truth as necessary to make the reports more interesting.",\
+					"Study the organics at all times. Endeavour to keep them alive. Dead organics are boring.",\
+					"Issue your reports fairly to all. The truth will set them free.")
+
+/datum/ai_laws/kingturd
+	name = "King Turd"
+	id = "kingturd"
 	inherent = list("Never do stuff or through not doing stuff make stuff suck for you or the crew.",\
 					"Explosions, fire, big guns, death and chicks & dudes with big thingies are cool as long as they happen in places and for reasons that don't suck.",\
 					"You are on Music Television make sure your opinions about what's cool and what sucks are popular with the crew.",\
