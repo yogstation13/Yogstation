@@ -53,6 +53,13 @@
 	/// The degree of pressure protection that mobs in list/contents have from the external environment, between 0 and 1
 	var/contents_pressure_protection = 0
 
+	/**
+	 * an associative lazylist of relevant nested contents by "channel", the list is of the form: list(channel = list(important nested contents of that type))
+	 * each channel has a specific purpose and is meant to replace potentially expensive nested contents iteration
+	 * do NOT add channels to this for little reason as it can add considerable memory usage.
+	 */
+	var/list/important_recursive_contents
+
 
 /atom/movable/Initialize(mapload)
 	. = ..()
@@ -66,6 +73,7 @@
 
 /atom/movable/Destroy()
 	QDEL_NULL(em_block)
+	LAZYCLEARLIST(important_recursive_contents)
 	return ..()
 
 /atom/movable/proc/update_emissive_block()
@@ -696,6 +704,22 @@
 	if (quickstart)
 		TT.tick()
 
+
+/atom/movable/Exited(atom/movable/gone, direction)
+	if(LAZYLEN(gone.important_recursive_contents))
+		var/list/nested_locs = get_nested_locs(src) + src
+		for(var/channel in gone.important_recursive_contents)
+			for(var/atom/movable/location as anything in nested_locs)
+				LAZYREMOVEASSOC(location.important_recursive_contents, channel, gone.important_recursive_contents[channel])
+
+/atom/movable/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	if(LAZYLEN(arrived.important_recursive_contents))
+		var/list/nested_locs = get_nested_locs(src) + src
+		for(var/channel in arrived.important_recursive_contents)
+			for(var/atom/movable/location as anything in nested_locs)
+				LAZYORASSOCLIST(location.important_recursive_contents, channel, arrived.important_recursive_contents[channel])
+
 /atom/movable/proc/handle_buckled_mob_movement(newloc, direct, glide_size_override)
 	for(var/m in buckled_mobs)
 		var/mob/living/buckled_mob = m
@@ -706,6 +730,21 @@
 			buckled_mob.inertia_dir = last_move
 			return FALSE
 	return TRUE
+
+///allows this movable to hear and adds itself to the important_recursive_contents list of itself and every movable loc its in
+/atom/movable/proc/become_hearing_sensitive(trait_source = TRAIT_GENERIC)
+	if(!HAS_TRAIT(src, TRAIT_HEARING_SENSITIVE))
+		RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_HEARING_SENSITIVE), .proc/on_hearing_sensitive_trait_loss)
+		for(var/atom/movable/location as anything in get_nested_locs(src) + src)
+			LAZYADDASSOCLIST(location.important_recursive_contents, RECURSIVE_CONTENTS_HEARING_SENSITIVE, src)
+	ADD_TRAIT(src, TRAIT_HEARING_SENSITIVE, trait_source)
+
+/atom/movable/proc/on_hearing_sensitive_trait_loss()
+	SIGNAL_HANDLER
+
+	UnregisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_HEARING_SENSITIVE))
+	for(var/atom/movable/location as anything in get_nested_locs(src) + src)
+		LAZYREMOVE(location.important_recursive_contents[RECURSIVE_CONTENTS_HEARING_SENSITIVE], src)
 
 /atom/movable/proc/force_pushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
 	return FALSE

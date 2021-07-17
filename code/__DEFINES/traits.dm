@@ -233,6 +233,8 @@
 /// Used for limbs.
 #define TRAIT_DISABLED_BY_WOUND		"disabled-by-wound"
 
+#define TRAIT_HEARING_SENSITIVE "hearing_sensitive"
+
 // item traits
 #define TRAIT_NODROP            "nodrop"
 #define TRAIT_T_RAY_VISIBLE     "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1

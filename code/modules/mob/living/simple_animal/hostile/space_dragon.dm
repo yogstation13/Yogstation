@@ -33,7 +33,7 @@
 	icon_dead = "spacedragon_dead"
 	obj_damage = 50
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	flags_1 = PREVENT_CONTENTS_EXPLOSION_1 | HEAR_1
+	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
 	mob_size = MOB_SIZE_LARGE
 	melee_damage_upper = 35
 	melee_damage_lower = 35

@@ -219,7 +219,6 @@
 			L.offset_x -= change_x
 			change_y = offset_y * L.speed
 			L.offset_y -= change_y
-
 			if(L.offset_x > 240)
 				L.offset_x -= 480
 			if(L.offset_x < -240)
@@ -238,10 +237,9 @@
 
 /atom/movable/proc/update_parallax_contents()
 	if(length(client_mobs_in_contents))
-		for(var/thing in client_mobs_in_contents)
-			var/mob/M = thing
-			if(M && M.client && M.hud_used && length(M.client.parallax_layers))
-				M.hud_used.update_parallax()
+		for(var/mob/client_mob as anything in client_mobs_in_contents)
+			if(length(client_mob?.client?.parallax_layers) && client_mob.hud_used)
+				client_mob.hud_used.update_parallax()
 
 /mob/proc/update_parallax_teleport()	//used for arrivals shuttle
 	if(client && client.eye && hud_used && length(client.parallax_layers))

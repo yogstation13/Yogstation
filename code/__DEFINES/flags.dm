@@ -22,8 +22,6 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 
 //FLAGS BITMASK
 
-/// This flag is what recursive_hear_check() uses to determine wether to add an item to the hearer list or not.
-#define HEAR_1						(1<<3)
 /// Projectiels will check ricochet on things impacted that have this.
 #define CHECK_RICOCHET_1			(1<<4)
 /// conducts electricity (metal etc.)
@@ -59,7 +57,6 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define NO_LAVA_GEN_1				(1<<6)
 /// Blocks ruins spawning on the turf
 #define NO_RUINS_1					(1<<10)
-
 //AREA FLAGS
 /// If blobs can spawn there and if it counts towards their score.
 #define BLOBS_ALLOWED (1<<1)
