@@ -575,11 +575,17 @@ AI MODULES
 	name = "'Robodoctor' Core AI Module"
 	law_id = "hippocratic"
 
-/******************** King Turd *******************/
+/******************** Reporter *******************/
 
 /obj/item/aiModule/core/full/reporter
-	name = "'King Turd' Core AI Module"
+	name = "'Reporter' Core AI Module"
 	law_id = "reporter"
+	
+/******************** King Turd *******************/
+
+/obj/item/aiModule/core/full/kingturd
+	name = "'King Turd' Core AI Module"
+	law_id = "kingturd"
 
 /****************** Thermodynamic *******************/
 
