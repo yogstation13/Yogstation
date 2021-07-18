@@ -487,7 +487,7 @@
 		return 0
 
 /mob/proc/is_overdosed(mob/M = src)
-	for(var/datum/reagent/R in M.reagents.reagent_list)
+	for(var/datum/reagent/R as anything in M.reagents.reagent_list)
 		if(R.overdosed)
 			return TRUE
 	return FALSE
