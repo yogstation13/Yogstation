@@ -16,6 +16,7 @@
 		if(ui)
 			ui.close()
 		return 0
+	return 1
 
 // Operates TGUI
 /obj/item/modular_computer/ui_interact(mob/user, datum/tgui/ui)
