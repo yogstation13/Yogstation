@@ -486,6 +486,12 @@
 	else
 		return 0
 
+/mob/proc/is_overdosed(mob/M = src)
+	for(var/datum/reagent/R in M.reagents.reagent_list)
+		if(R.overdosed)
+			return TRUE
+	return FALSE
+
 ///Clicks a random nearby mob with the source from this mob
 /mob/proc/click_random_mob()
 	var/list/nearby_mobs = list()
