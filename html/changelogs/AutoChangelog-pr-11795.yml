@@ -1,0 +1,4 @@
+author: "Lostlarry"
+delete-after: true 
+changes: 
+  - bugfix: "ui of programs on modular computers actually checks the computer to decide whether it should remain visible"
