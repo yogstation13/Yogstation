@@ -1,0 +1,5 @@
+author: "  Xoxeyos"
+delete-after: true 
+changes: 
+  - rscadd: "Heretics are now enabled for dynamic latejoin."
+  - tweak: "Tweaked heretic weights, traitor costs, and gamemode requirements."
