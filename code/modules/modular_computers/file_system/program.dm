@@ -155,10 +155,8 @@
 
 /datum/computer_file/program/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
-	if(!computer.screen_on && !computer.issilicon(user))
-		if(ui)
-			ui.close()
-		return 0
+	if (!computer.can_show_ui(user, ui))
+		return
 	if(!ui && tgui_id)
 		ui = new(user, src, tgui_id, filedesc)
 		ui.open()
