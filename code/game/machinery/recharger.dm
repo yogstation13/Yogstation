@@ -56,7 +56,7 @@
 			G.light()
 		else
 			to_chat(S, "<span class='warning'>[G] is already lit.</span>")
-	return TRUE
+return TRUE
 	if(G.tool_behaviour == TOOL_WRENCH)
 		if(charging)
 			to_chat(user, "<span class='notice'>Remove the charging item first!</span>")
