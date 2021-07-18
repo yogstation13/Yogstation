@@ -11,12 +11,13 @@
 	materials = list(/datum/material/iron=500, /datum/material/glass=500)
 	w_class = WEIGHT_CLASS_SMALL
 	var/turf/pointer_loc
-	var/energy = 5
-	var/max_energy = 5
-	var/effectchance = 33
+	var/energy = 4
+	var/max_energy = 4
+	var/effectchance = 15
 	var/recharging = 0
 	var/recharge_locked = FALSE
 	var/obj/item/stock_parts/micro_laser/diode //used for upgrading!
+	var/lockout_charges = 0
 
 
 /obj/item/laser_pointer/red
@@ -31,6 +32,9 @@
 /obj/item/laser_pointer/Initialize()
 	. = ..()
 	diode = new(src)
+	max_energy = initial(max_energy) - (diode.rating - 1)
+	if(energy >= max_energy)
+			energy = max_energy
 	if(!pointer_icon_state)
 		pointer_icon_state = pick("red_laser","green_laser","blue_laser","purple_laser")
 
@@ -44,6 +48,9 @@
 			if(!user.transferItemToLoc(W, src))
 				return
 			diode = W
+			max_energy = initial(max_energy) - (diode.rating - 1)
+			if(energy >= max_energy)
+				energy = max_energy
 			to_chat(user, "<span class='notice'>You install a [diode.name] in [src].</span>")
 		else
 			to_chat(user, "<span class='notice'>[src] already has a diode installed.</span>")
@@ -118,10 +125,10 @@
 	else if(iscyborg(target))
 		var/mob/living/silicon/S = target
 		log_combat(user, S, "shone in the sensors", src)
-		//chance to actually hit the eyes depends on internal component
-		if(prob(effectchance * diode.rating))
-			S.flash_act(affect_silicon = 1)
-			S.Paralyze(rand(100,200))
+		//chance to actually hit the eyes depends on internal component, borgs are hard to stun :/
+		if(prob(effectchance * (diode.rating ** 0.75) * 0.75))
+			S.flash_act(affect_silicon = TRUE)
+			S.Paralyze(rand(2.5 SECONDS, 5 SECONDS))
 			to_chat(S, "<span class='danger'>Your sensors were overloaded by a laser!</span>")
 			outmsg = "<span class='notice'>You overload [S] by shining [src] at [S.p_their()] sensors.</span>"
 		else
@@ -182,7 +189,7 @@
 	energy -= 1
 	if(energy <= max_energy)
 		if(!recharging)
-			recharging = 1
+			recharging = TRUE
 			START_PROCESSING(SSobj, src)
 		if(energy <= 0)
 			to_chat(user, "<span class='warning'>[src]'s battery is overused, it needs time to recharge!</span>")
@@ -192,10 +199,15 @@
 	icon_state = "pointer"
 
 /obj/item/laser_pointer/process()
-	if(prob(20 - recharge_locked*5))
+	if(prob(20 - recharge_locked * 10))
 		energy += 1
+		if(recharge_locked)
+			lockout_charges++
+			if(lockout_charges >= initial(max_energy))
+				lockout_charges = 0
+				recharge_locked = FALSE
 		if(energy >= max_energy)
 			energy = max_energy
-			recharging = 0
-			recharge_locked = FALSE
+			recharging = FALSE
 			..()
+		
