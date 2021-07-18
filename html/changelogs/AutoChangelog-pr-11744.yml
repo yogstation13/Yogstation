@@ -1,0 +1,5 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - imageadd: "Readded icons from ThatGuyPhil's \"uniform sprites for digitigrade lizardpeople\" #11017 and added/updated some"
+  - experiment: "Added support for digitigrade uniforms"
