@@ -11,12 +11,18 @@
 	materials = list(/datum/material/iron=500, /datum/material/glass=500)
 	w_class = WEIGHT_CLASS_SMALL
 	var/turf/pointer_loc
+	///How many times the pointer can point
 	var/energy = 4
+	///Max energy we can store
 	var/max_energy = 4
+	///The chance of something happening when we shine at it in %
 	var/effectchance = 15
-	var/recharging = 0
+	///Are we currently recharging?
+	var/recharging = FALSE
+	///If we use all our energy we set this and have to wait for energy to equal max_energy to fire again
 	var/recharge_locked = FALSE
 	var/obj/item/stock_parts/micro_laser/diode //used for upgrading!
+	///Pseudo energy seperate from actual energy only used for recharging logic
 	var/lockout_charges = 0
 
 
