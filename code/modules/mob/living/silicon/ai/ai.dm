@@ -357,7 +357,7 @@
 	view_core()
 
 /mob/living/silicon/ai/verb/wipe_core()
-	set name = "Wipe Core"
+	set name = "Hibernate"
 	set category = "OOC"
 	set desc = "Wipe your core. This is functionally equivalent to cryo, freeing up your job slot."
 
