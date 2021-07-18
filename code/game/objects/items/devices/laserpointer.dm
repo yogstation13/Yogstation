@@ -128,7 +128,8 @@
 		//chance to actually hit the eyes depends on internal component, borgs are hard to stun :/
 		if(prob(effectchance * (diode.rating ** 0.75) * 0.75))
 			S.flash_act(affect_silicon = TRUE)
-			S.Paralyze(rand(2.5 SECONDS, 5 SECONDS))
+			var/stun_modifier = diode.rating >= 4 ? 2 : 1
+			S.Paralyze(rand(2.5 SECONDS * stun_modifier, 5 SECONDS * stun_modifier))
 			to_chat(S, "<span class='danger'>Your sensors were overloaded by a laser!</span>")
 			outmsg = "<span class='notice'>You overload [S] by shining [src] at [S.p_their()] sensors.</span>"
 		else
