@@ -319,6 +319,7 @@
 	AM.unbuckle_mob(M)
 	if(throwcooldown)
 		to_chat(src.parent, "You have to wait for your motors to recharge")
+		return
 	var/turf/target = get_edge_target_turf(AM, AM.dir)
 	var/turf/targetm = get_step(get_turf(AM), AM.dir)
 	M.Move(targetm)
