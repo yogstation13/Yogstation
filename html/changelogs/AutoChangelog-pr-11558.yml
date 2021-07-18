@@ -1,0 +1,6 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - tweak: "Made Dilithium crystal a material"
+  - tweak: "Made some higher tiers of power cells require Dilithium Crystal"
+  - rscadd: "Added Dilithium Polycrystal and Refined Dilithium"
