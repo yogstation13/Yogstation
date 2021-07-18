@@ -428,7 +428,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 			return
 
 	if(mode&BUILD_MODE)
-		if(istype(user.loc.loc, /area/reebe/city_of_cogs))
+		if(istype(get_area(user), /area/reebe/city_of_cogs))
 			to_chat(user, "<span class='notice'>You cannot build on Reebe..</span>")
 			return
 		switch(category) //if we've gotten this var, the target is valid
