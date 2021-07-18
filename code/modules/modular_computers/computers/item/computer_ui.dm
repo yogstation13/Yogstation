@@ -2,8 +2,7 @@
 	. = ..()
 	ui_interact(user)
 
-// Operates TGUI
-/obj/item/modular_computer/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/modular_computer/proc/can_show_ui(mob/user, datum/tgui/ui)
 	if(!enabled)
 		if(ui)
 			ui.close()
@@ -12,13 +11,17 @@
 		if(ui)
 			ui.close()
 		return 0
-
 	// Robots don't really need to see the screen, their wireless connection works as long as computer is on.
 	if(!screen_on && !issilicon(user))
 		if(ui)
 			ui.close()
 		return 0
+	return 1
 
+// Operates TGUI
+/obj/item/modular_computer/ui_interact(mob/user, datum/tgui/ui)
+	if (!can_show_ui(user, ui))
+		return
 	// If we have an active program switch to it now.
 	if(active_program)
 		if(ui) // This is the main laptop screen. Since we are switching to program's UI close it for now.
