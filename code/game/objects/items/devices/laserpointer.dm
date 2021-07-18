@@ -126,7 +126,7 @@
 		var/mob/living/silicon/S = target
 		log_combat(user, S, "shone in the sensors", src)
 		//chance to actually hit the eyes depends on internal component, borgs are hard to stun :/
-		if(prob(effectchance * (diode.rating ** 0.75) * 0.75))
+		if(prob(effectchance * (diode.rating ** 1.35) * 0.75))
 			S.flash_act(affect_silicon = TRUE)
 			var/stun_modifier = diode.rating >= 4 ? 2 : 1
 			S.Paralyze(rand(2.5 SECONDS * stun_modifier, 5 SECONDS * stun_modifier))
