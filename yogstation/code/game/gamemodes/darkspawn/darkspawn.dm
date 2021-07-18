@@ -1,3 +1,4 @@
+#define DARKSPAWN_VEIL_MAXIMUM 10
 /datum/game_mode
 	var/list/datum/mind/darkspawn = list()
 	var/list/datum/mind/veils = list()
@@ -122,6 +123,14 @@
 		Eyes filled with stars.</b>\n\
 		<span class='boldwarning'>It needs to die.</span>")
 		return FALSE
+	if(LAZYLEN(veils) > DARKSPAWN_VEIL_MAXIMUM)
+		src.visible_message("<span class='warning'>[src] seems to resist an unseen force!</span>")
+		to_chat(src, "<b>Your mind falters. Your thoughts hitch. You feel empty. \n\
+		You feel another mind. You dream.\n\
+		Of a vast patch of nothingness.\n\
+		Something sleeps in the darkness. Old. Strange. It watches you with tired eyes.</b>\n\
+		<span class='boldwarning'>You feel no different.</span>")
+		return FALSE
 	return mind.add_antag_datum(/datum/antagonist/veil)
 
 /mob/living/proc/remove_veil()
@@ -143,3 +152,5 @@
 
 	round_credits += ..()
 	return round_credits
+
+#undef DARKSPAWN_VEIL_MAXIMUM
