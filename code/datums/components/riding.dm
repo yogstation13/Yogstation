@@ -316,7 +316,8 @@
 /datum/component/riding/cyborg/force_dismount(mob/living/M)
 	var/atom/movable/AM = parent
 	AM.unbuckle_mob(M)
-	if(AM.throwcooldown)
+	var/mob/living/silicon/robot/S = AM
+	if(S?.throwcooldown)
 		to_chat(AM, "You have to wait for your motors to recharge")
 		return
 	var/turf/target = get_edge_target_turf(AM, AM.dir)
