@@ -256,6 +256,7 @@
 				if(I)
 					I.mining_points += points
 					points = 0
+					playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
 				else
 					to_chat(usr, "<span class='warning'>No valid ID detected.</span>")
 			else
