@@ -52,11 +52,11 @@
 /obj/machinery/recharger/attackby(obj/item/G, mob/user, params)
 	if(istype(G, /obj/item/clothing/mask/cigarette))
 		if(!G.lit)
-			user.visible_message("[user] ignites [G] with a recharger, what a badass."
+			user.visible_message("[user] ignites [G] with a recharger, what a badass.")
 			G.light()
 		else
 			to_chat(S, "<span class='warning'>[G] is already lit.</span>")
-		return 1
+	return TRUE
 	if(G.tool_behaviour == TOOL_WRENCH)
 		if(charging)
 			to_chat(user, "<span class='notice'>Remove the charging item first!</span>")
