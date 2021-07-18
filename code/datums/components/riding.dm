@@ -326,8 +326,8 @@
 	M.visible_message("<span class='warning'>[M] is thrown clear of [AM]!</span>")
 	M.throw_at(target, 14, 5, AM)
 	M.Paralyze(60)
-	AM.throwcooldown = TRUE
-	addtimer(VARSET_CALLBACK(src, AM.throwcooldown, FALSE), 10 SECONDS)
+	S.throwcooldown = TRUE
+	addtimer(VARSET_CALLBACK(S, throwcooldown, FALSE), 10 SECONDS)
 
 /datum/component/riding/proc/equip_buckle_inhands(mob/living/carbon/human/user, amount_required = 1, riding_target_override = null)
 	var/atom/movable/AM = parent
