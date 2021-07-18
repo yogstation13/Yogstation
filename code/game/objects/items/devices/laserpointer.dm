@@ -120,10 +120,11 @@
 		log_combat(user, S, "shone in the sensors", src)
 		//chance to actually hit the eyes depends on internal component
 		if(prob(effectchance * diode.rating))
-			S.overlay_fullscreen("laserpointer", /obj/screen/fullscreen/flash/static)
-			S.uneq_all()
-			S.stop_pulling()
-			addtimer(CALLBACK(S, .proc/clear_fullscreen, "laserpointer", 5 SECONDS))
+			var/mob/living/silicon/robot/R = S
+			R.overlay_fullscreen("laserpointer", /obj/screen/fullscreen/flash/static)
+			R.uneq_all()
+			R.stop_pulling()
+			addtimer(CALLBACK(S, R.clear_fullscreen, "laserpointer", 5 SECONDS))
 			to_chat(S, "<span class='danger'>Your sensors were overloaded by a laser!</span>")
 			outmsg = "<span class='notice'>You overload [S] by shining [src] at [S.p_their()] sensors.</span>"
 		else
