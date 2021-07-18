@@ -645,10 +645,17 @@
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/dna_recovery
-	name= "DNA Recovery"
-	desc= "A surgical procedure which involves using rezadone to salvage a single strand of DNA from the patient, allowing them to be cloned."
+	name = "DNA Recovery"
+	desc = "A surgical procedure which involves using rezadone to salvage a single strand of DNA from the patient, allowing them to be cloned."
 	id = "surgery_dna_recovery"
 	surgery = /datum/surgery/advanced/dna_recovery
+	research_icon_state = "surgery_head"
+
+/datum/design/surgery/xeno_dna_recovery
+	name = "Alien DNA Recovery"
+	desc = "An experimental surgical procedure which involves the use of rezadone to fix severe burning on certain alien lifeforms."
+	id = "surgery_xeno_dna_recovery"
+	surgery = /datum/surgery/advanced/dna_recovery/alien
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/brainwashing
