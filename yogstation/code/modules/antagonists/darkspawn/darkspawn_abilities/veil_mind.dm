@@ -36,9 +36,8 @@
 				to_chat(L, "<span class='warning'>...but you can't hear it!</span>")
 			else
 				if(L.has_status_effect(STATUS_EFFECT_BROKEN_WILL))
-					if(L.add_veil(darkspawn))
+					if(L.add_veil())
 						to_chat(owner, "<span class='velvet'><b>[L.real_name]</b> has become a veil!</span>")
-						darkspawn.veilcount++
 				else
 					to_chat(L, "<span class='boldwarning'>...and it scrambles your thoughts!</span>")
 					L.dir = pick(GLOB.cardinals)
