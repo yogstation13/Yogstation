@@ -1,3 +1,4 @@
+#define DARKSPAWN_VEIL_MAXIMUM 3 //maximum number of veils per darkspawn
 //Converts people within three tiles of the caster into veils. Also confuses noneligible targets and stuns silicons.
 /datum/action/innate/darkspawn/veil_mind
 	name = "Veil Mind"
@@ -36,10 +37,13 @@
 				to_chat(L, "<span class='warning'>...but you can't hear it!</span>")
 			else
 				if(L.has_status_effect(STATUS_EFFECT_BROKEN_WILL))
-					if(L.add_veil())
+					if(darkspawn?.veilcount < DARKSPAWN_VEIL_MAXIMUM && L.add_veil(darkspawn))
 						to_chat(owner, "<span class='velvet'><b>[L.real_name]</b> has become a veil!</span>")
+						darkspawn.veilcount++
 				else
 					to_chat(L, "<span class='boldwarning'>...and it scrambles your thoughts!</span>")
 					L.dir = pick(GLOB.cardinals)
 					L.confused += 2
 	return TRUE
+
+#undef DARKSPAWN_VEIL_MAXIMUM
