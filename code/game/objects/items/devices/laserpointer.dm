@@ -34,7 +34,7 @@
 	diode = new(src)
 	max_energy = initial(max_energy) - (diode.rating - 1)
 	if(energy >= max_energy)
-			energy = max_energy
+		energy = max_energy
 	if(!pointer_icon_state)
 		pointer_icon_state = pick("red_laser","green_laser","blue_laser","purple_laser")
 
