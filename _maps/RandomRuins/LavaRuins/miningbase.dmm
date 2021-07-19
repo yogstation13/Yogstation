@@ -18,7 +18,7 @@
 	name = "Mining Emergency Lockdown";
 	pixel_x = -24
 	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "ak" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -876,8 +876,21 @@
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "hO" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel/white,
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/crate/medical{
+	anchored = 1;
+	name = "emergency medical supplies"
+	},
+/obj/item/storage/firstaid/o2{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/regular{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "hW" = (
 /obj/structure/cable{
@@ -1005,7 +1018,7 @@
 /obj/machinery/firealarm{
 	pixel_y = 32
 	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "iZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -1335,7 +1348,7 @@
 /obj/machinery/computer/security/mining{
 	dir = 8
 	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "og" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -2319,6 +2332,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
+/obj/structure/ore_box,
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
 "DS" = (
@@ -2654,7 +2668,7 @@
 	name = "Station Intercom (General)";
 	pixel_x = 29
 	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "Hy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -2966,7 +2980,7 @@
 	pixel_x = 5
 	},
 /obj/item/storage/backpack/duffelbag/med/surgery,
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "MO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -3254,7 +3268,7 @@
 /area/mine/living_quarters)
 "QQ" = (
 /obj/structure/table,
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "QU" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -3598,7 +3612,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer2{
 	dir = 4
 	},
-/obj/structure/ore_box,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
