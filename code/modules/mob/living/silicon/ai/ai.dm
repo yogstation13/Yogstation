@@ -380,7 +380,7 @@
 		mind.objectives.Cut()
 		mind.special_role = null
 
-	if(!get_ghost(1))
+	if(!get_ghost(TRUE))
 		if(world.time < 30 * 600)//before the 30 minute mark
 			ghostize(0) // Players despawned too early may not re-enter the game
 	else
