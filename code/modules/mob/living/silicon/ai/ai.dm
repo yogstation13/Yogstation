@@ -384,7 +384,7 @@
 		if(world.time < 30 MINUTES)//before the 30 minute mark
 			ghostize(FALSE) // Players despawned too early may not re-enter the game
 	else
-		ghostize(1)
+		ghostize(TRUE)
 
 	QDEL_NULL(src)
 
