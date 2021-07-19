@@ -119,23 +119,25 @@
 #define MUTCOLORS_PARTSONLY	8
 #define NOZOMBIE		9
 /// If we want a race to have a standard color (for now this is only polysmorphs)
-#define NOCOLORCHANGE   20
+#define NOCOLORCHANGE   10
 /// Uses weird leg sprites. Optional for Lizards, required for ashwalkers. Don't give it to other races unless you make sprites for this (see human_parts_greyscale.dmi)
-#define DIGITIGRADE		10
-#define NO_UNDERWEAR	11
-#define NOLIVER			12
-#define NOSTOMACH		13
-#define NO_DNA_COPY     14
-#define DRINKSBLOOD		15
-#define NOFLASH			16
+#define DIGITIGRADE		11
+#define NO_UNDERWEAR	12
+#define NOLIVER			13
+#define NOSTOMACH		14
+#define NO_DNA_COPY     15
+#define DRINKSBLOOD		16
+#define NOFLASH			17
 /// Use this if you want to change the race's color without the player being able to pick their own color. AKA special color shifting
-#define DYNCOLORS		17
+#define DYNCOLORS		18
 /// Forced genders
-#define AGENDER			18
-#define FGENDER         21
-#define MGENDER	        22
+#define AGENDER			19
+#define FGENDER         20
+#define MGENDER	        21
 /// Do not draw eyes or eyeless overlay
-#define NOEYESPRITES	19
+#define NOEYESPRITES	22
+/// If this species can be scarred (fleshy)
+#define CAN_SCAR		23
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
