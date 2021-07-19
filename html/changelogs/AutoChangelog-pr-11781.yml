@@ -1,4 +1,0 @@
-author: "Lostlarry"
-delete-after: true 
-changes: 
-  - bugfix: "damaged synthetic limbs will no longer make treat wounds surgery repeat until cancelled"

@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "the luminescent sepia major effect will now give you a deja vu effect that returns you to your position and health at the time of use after a 1  second channel rather than stopping time in a 5x5 square after a 3 second channel"
-  - tweak: "luminescent sepia major now has a 30 second cooldown down from 90 seconds since it's not as directly useful"

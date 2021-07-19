@@ -1,4 +1,0 @@
-author: "jc-denthead"
-delete-after: true 
-changes: 
-  - rscadd: "the ORM now emits a \"ping\" whenever you claim points"
