@@ -255,7 +255,7 @@
 				/obj/item/bodypart/r_arm/robot = 1,
 				/obj/item/assembly/prox_sensor = 1,
 				/obj/item/tank/internals = 1)
-	time = 4 SECONDS
+	time = 6 SECONDS
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/improvised_pneumatic_cannon //Pretty easy to obtain but
