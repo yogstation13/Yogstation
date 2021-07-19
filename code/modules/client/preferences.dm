@@ -1236,8 +1236,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	switch(href_list["task"])
 		if("random")
-			if(!random_locks(href_list["preference"]))
-				return
 			switch(href_list["preference"])
 				if("name")
 					real_name = pref_species.random_name(gender,1)
@@ -1267,7 +1265,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					random_character()
 
 		if("lock")
-			random_locks(href_list["preference"]) = !random_locks(href_list["preference"])
+			random_locks[href_list["preference"]] = !random_locks[href_list["preference"]]
 
 		if("input")
 
