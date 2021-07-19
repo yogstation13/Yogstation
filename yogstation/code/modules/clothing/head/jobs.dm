@@ -8,12 +8,16 @@
 //Mining Medic
 /obj/item/clothing/head/soft/emt/mining
 	name = "Mining Medic's cap"
-	desc = "It's a baseball hat with a dark turquoise color and a reflective cross on the top.  Has MM embrossed into it."
+	desc = "It's a baseball hat with a dark turquoise color and a reflective cross on the top."
+	icon = 'yogstation/icons/obj/clothing/hats.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+	icon_state = "emtminesoft"
+	item_color = "emtmine"
 
 //Brig Physician
 /obj/item/clothing/head/soft/emt/phys
 	name = "Brig Physician's cap"
-	desc = "It's a baseball hat with a dark brown color and a reflective cross on the top.  Has BP embrossed into it."
+	desc = "It's a baseball hat with a dark brown color and a reflective cross on the top. On the back are "
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
 	icon_state = "emtsecsoft"
@@ -30,4 +34,4 @@
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
 	icon_state = "beret_corporate_phys"
-	armor = list(bio = 20) //So it isnt a direct upgrade over the normal berret
+	armor = list("bio" = 20) //So it isnt a direct upgrade over the normal berret

@@ -21,6 +21,9 @@
 	alt_covers_chest = TRUE
 	sensor_mode = 3
 	random_sensor = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION //I need to clean this code
+	digiversion = TRUE
+	digiadjusted = TRUE
 
 /obj/item/clothing/under/yogs/rank/physician/white
 	name = "white brig physician's jumpsuit"
@@ -31,9 +34,10 @@
 	alt_covers_chest = FALSE
 	random_sensor = TRUE
 	can_adjust = TRUE
+	digiadjusted = TRUE
 
 /obj/item/clothing/under/yogs/rank/physician/white/skirt
-	name = "white brig physician's jumpsuit"
+	name = "white brig physician's jumpskirt"
 	desc = "A classic jumpskirt that connects you to your medsci brothers and sisters."
 	icon_state = "secwhite_skirt"
 	item_state = "secwhite_skirt"
@@ -41,3 +45,5 @@
 	can_adjust = FALSE
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
+	digiversion = FALSE
+	digiadjusted = FALSE
