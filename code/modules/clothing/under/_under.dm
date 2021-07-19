@@ -163,6 +163,10 @@
 			H.update_inv_w_uniform()
 			H.update_inv_wear_suit()
 
+/obj/item/clothing/under/Destroy()
+	if(attached_accessory)
+		remove_accessory(loc)
+	return ..()
 
 /obj/item/clothing/under/examine(mob/user)
 	. = ..()
