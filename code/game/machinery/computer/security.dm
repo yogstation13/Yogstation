@@ -217,29 +217,28 @@
 
 				record["citations"] += list(citation)
 
-			record["minor_crimes"] = list()
+			record["crimes"] = list()
 
-			for(var/datum/data/crime/C in active_security_record.fields["mi_crim"])
-				var/list/minor_crime = list()
-				minor_crime["name"] = C.crimeName
-				minor_crime["details"] = C.crimeDetails
-				minor_crime["author"] = C.author
-				minor_crime["time"] = C.time
-				minor_crime["id"] = C.dataId
+			for(var/datum/data/crime/C in active_security_record.fields["crimes"])
+				var/list/crime = list()
+				crime["name"] = C.crimeName
+				crime["details"] = C.crimeDetails
+				crime["author"] = C.author
+				crime["time"] = C.time
+				crime["id"] = C.dataId
 
-				record["minor_crimes"] += list(minor_crime)
+				record["crimes"] += list(crime)
 
-			record["major_crimes"] = list()
+			record["comments"] = list()
 
-			for(var/datum/data/crime/C in active_security_record.fields["ma_crim"])
-				var/list/major_crime = list()
-				major_crime["name"] = C.crimeName
-				major_crime["details"] = C.crimeDetails
-				major_crime["author"] = C.author
-				major_crime["time"] = C.time
-				major_crime["id"] = C.dataId
+			for(var/datum/data/comment/C in active_security_record.fields["comments"])
+				var/list/comment = list()
+				comment["content"] = C.commentText
+				comment["author"] = C.author
+				comment["time"] = C.time
+				comment["id"] = C.dataId
 
-				record["major_crimes"] += list(major_crime)
+				record["comments"] += list(comment)
 
 			record["notes"] = active_security_record.fields["notes"]
 
@@ -342,7 +341,7 @@
 				if((istype(active_security_record, /datum/data/record) && GLOB.data_core.security.Find(active_security_record)))
 					P.info += text("<BR>\n<CENTER><B>Security Data</B></CENTER><BR>\nCriminal Status: []", active_security_record.fields["criminal"])
 
-					P.info += "<BR>\n<BR>\nMinor Crimes:<BR>\n"
+					P.info += "<BR>\n<BR>\nCrimes:<BR>\n"
 					P.info +={"<table style="text-align:center;" border="1" cellspacing="0" width="100%">
 					<tr>
 						<th>Crime</th>
@@ -351,7 +350,7 @@
 						<th>Time Added</th>
 					</tr>"}
 
-					for(var/datum/data/crime/C in active_security_record.fields["mi_crim"])
+					for(var/datum/data/crime/C in active_security_record.fields["crimes"])
 						P.info += "<tr><td>[C.crimeName]</td>"
 						P.info += "<td>[C.crimeDetails]</td>"
 						P.info += "<td>[C.author]</td>"
@@ -359,18 +358,16 @@
 						P.info += "</tr>"
 					P.info += "</table>"
 
-					P.info += "<BR>\nMajor Crimes: <BR>\n"
+					P.info += "<BR>\nComments: <BR>\n"
 					P.info +={"<table style="text-align:center;" border="1" cellspacing="0" width="100%">
 					<tr>
-						<th>Crime</th>
-						<th>Details</th>
+						<th>Comment</th>
 						<th>Author</th>
 						<th>Time Added</th>
 					</tr>"}
 
-					for(var/datum/data/crime/C in active_security_record.fields["ma_crim"])
-						P.info += "<tr><td>[C.crimeName]</td>"
-						P.info += "<td>[C.crimeDetails]</td>"
+					for(var/datum/data/comment/C in active_security_record.fields["comments"])
+						P.info += "<tr><td>[C.commentText]</td>"
 						P.info += "<td>[C.author]</td>"
 						P.info += "<td>[C.time]</td>"
 						P.info += "</tr>"
@@ -396,18 +393,11 @@
 				var/wanted_name = stripped_input(usr, "Please enter an alias for the criminal:", "Print Wanted Poster", active_general_record.fields["name"])
 				if(wanted_name)
 					var/default_description = "A poster declaring [wanted_name] to be a dangerous individual, wanted by Nanotrasen. Report any sightings to security immediately."
-					var/list/major_crimes = active_security_record.fields["ma_crim"]
-					var/list/minor_crimes = active_security_record.fields["mi_crim"]
-					if(major_crimes.len + minor_crimes.len)
+					var/list/crimes = active_security_record.fields["crimes"]
+					if(crimes.len)
 						default_description += "\n[wanted_name] is wanted for the following crimes:\n"
-					if(minor_crimes.len)
-						default_description += "\nMinor Crimes:"
-						for(var/datum/data/crime/C in active_security_record.fields["mi_crim"])
-							default_description += "\n[C.crimeName]\n"
-							default_description += "[C.crimeDetails]\n"
-					if(major_crimes.len)
-						default_description += "\nMajor Crimes:"
-						for(var/datum/data/crime/C in active_security_record.fields["ma_crim"])
+					if(crimes.len)
+						for(var/datum/data/crime/C in active_security_record.fields["crimes"])
 							default_description += "\n[C.crimeName]\n"
 							default_description += "[C.crimeDetails]\n"
 
@@ -465,8 +455,8 @@
 				R.fields["id"] = active_general_record.fields["id"]
 				R.name = text("Security Record #[]", R.fields["id"])
 				R.fields["criminal"] = "None"
-				R.fields["mi_crim"] = list()
-				R.fields["ma_crim"] = list()
+				R.fields["crimes"] = list()
+				R.fields["comments"] = list()
 				R.fields["notes"] = "No notes."
 				GLOB.data_core.security += R
 				active_security_record = R
@@ -496,8 +486,8 @@
 			R.fields["id"] = active_general_record.fields["id"]
 			R.name = text("Security Record #[]", R.fields["id"])
 			R.fields["criminal"] = "None"
-			R.fields["mi_crim"] = list()
-			R.fields["ma_crim"] = list()
+			R.fields["crimes"] = list()
+			R.fields["comments"] = list()
 			R.fields["notes"] = "No notes."
 			GLOB.data_core.security += R
 			active_security_record = R
@@ -575,7 +565,7 @@
 
 				if("id")
 					if(istype(active_security_record, /datum/data/record) || istype(active_general_record, /datum/data/record))
-						var/id = stripped_input(usr, "Please input ID:", "Security Records", active_general_record.fields["id"], null)
+						var/id = stripped_input(usr, "Please input ID:", "Security Records", active_general_record.fields["id"])
 						if(!valid_record_change(usr, id, general_record))
 							return
 						if(istype(active_general_record, /datum/data/record))
@@ -585,7 +575,7 @@
 
 				if("fingerprint")
 					if(istype(active_general_record, /datum/data/record))
-						var/fingerprint = stripped_input(usr, "Please input fingerprint hash:", "Security Records", active_general_record.fields["fingerprint"], null)
+						var/fingerprint = stripped_input(usr, "Please input fingerprint hash:", "Security Records", active_general_record.fields["fingerprint"])
 						if(!valid_record_change(usr, fingerprint, general_record))
 							return
 						active_general_record.fields["fingerprint"] = fingerprint
@@ -627,43 +617,43 @@
 							var/obj/item/photo/P = active_general_record.fields["photo_side"]
 							print_photo(P.picture.picture_image, active_general_record.fields["name"])
 
-				if("minor_crime_add")
-					if(istype(active_general_record, /datum/data/record))
-						var/name = stripped_input(usr, "Please input minor crime names:", "Security Records", "", null)
-						var/details = stripped_input(usr, "Please input minor crime details:", "Security Records", "", null)
-						if(!valid_record_change(usr, name, null, active_security_record))
-							return
-						var/crime = GLOB.data_core.createCrimeEntry(name, details, logged_in, station_time_timestamp())
-						GLOB.data_core.addMinorCrime(active_general_record.fields["id"], crime)
-						investigate_log("New Minor Crime: <strong>[name]</strong>: [details] | Added to [active_general_record.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
-
-				if("minor_crime_delete")
+				if("crime_delete")
 					if(istype(active_general_record, /datum/data/record))
 						if(params["id"])
 							if(!valid_record_change(usr, "delete", null, active_security_record))
 								return
-							GLOB.data_core.removeMinorCrime(active_general_record.fields["id"], params["id"])
+							GLOB.data_core.removeCrime(active_general_record.fields["id"], params["id"])
 
-				if("major_crime_add")
+				if("crime_add")
 					if(istype(active_general_record, /datum/data/record))
-						var/name = stripped_input(usr, "Please input major crime names:", "Security Records", "", null)
-						var/details = stripped_input(usr, "Please input major crime details:", "Security Records", "", null)
+						var/name = stripped_input(usr, "Please input crime name:", "Security Records", "")
+						var/details = stripped_input(usr, "Please input crime details:", "Security Records", "")
 						if(!valid_record_change(usr, name, null, active_security_record))
 							return
 						var/crime = GLOB.data_core.createCrimeEntry(name, details, logged_in, station_time_timestamp())
-						GLOB.data_core.addMajorCrime(active_general_record.fields["id"], crime)
-						investigate_log("New Major Crime: <strong>[name]</strong>: [details] | Added to [active_general_record.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
+						GLOB.data_core.addCrime(active_general_record.fields["id"], crime)
+						investigate_log("New Crime: <strong>[name]</strong>: [details] | Added to [active_general_record.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
 
-				if("major_crime_delete")
+				if("comment_delete")
 					if(istype(active_general_record, /datum/data/record))
 						if(params["id"])
 							if(!valid_record_change(usr, "delete", null, active_security_record))
 								return
-							GLOB.data_core.removeMajorCrime(active_general_record.fields["id"], params["id"])
+							GLOB.data_core.removeComment(active_general_record.fields["id"], params["id"])
+
+				if("comment_add")
+					if(istype(active_general_record, /datum/data/record))
+						var/t1 = stripped_multiline_input(usr, "Add Comment:", "Security records")
+						if(!valid_record_change(usr, name, null, active_security_record))
+							return
+						var/comment = GLOB.data_core.createCommentEntry(t1, logged_in)
+						GLOB.data_core.addComment(active_general_record.fields["id"], comment)
+						investigate_log("New Comment: [t1] | Added to [active_general_record.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
+
 
 				if("citation_add")
 					if(istype(active_general_record, /datum/data/record))
-						var/name = stripped_input(usr, "Please input citation crime:", "Security Records", "", null)
+						var/name = stripped_input(usr, "Please input citation crime:", "Security Records", "")
 						var/fine = FLOOR(input(usr, "Please input citation fine:", "Security Records", 50) as num, 1)
 						if(!fine || fine < 0)
 							to_chat(usr, "<span class='warning'>You're pretty sure that's not how money works.</span>")
@@ -695,7 +685,7 @@
 
 				if("edit_note")
 					if(istype(active_security_record, /datum/data/record))
-						var/name = stripped_input(usr, "Please summarize notes:", "Security Records", active_security_record.fields["notes"], null)
+						var/name = stripped_input(usr, "Please summarize notes:", "Security Records", active_security_record.fields["notes"])
 						if(!valid_record_change(usr, name, null, active_security_record))
 							return
 						active_security_record.fields["notes"] = name

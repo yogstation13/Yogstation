@@ -224,6 +224,8 @@
 	. = ..()
 	if(!proximity)
 		return
+	if(istype(I, /obj/machinery/smartfridge))
+		return
 	if(contents.len)
 		to_chat(user, "<span class='notice'>[src] already has something inside it.</span>")
 		return
@@ -250,14 +252,17 @@
 /obj/item/organ_storage/attack_self(mob/user)
 	if(contents.len)
 		var/obj/item/I = contents[1]
+		clear_organ()
 		user.visible_message("[user] dumps [I] from [src].", "<span class='notice'>You dump [I] from [src].</span>")
-		cut_overlays()
 		I.forceMove(get_turf(src))
-		icon_state = "evidenceobj"
-		desc = "A container for holding body parts."
 	else
 		to_chat(user, "[src] is empty.")
 	return
+
+/obj/item/organ_storage/proc/clear_organ()
+	cut_overlays()
+	icon_state = "evidenceobj"
+	desc = "A container for holding body parts."
 
 /obj/item/surgical_processor //allows medical cyborgs to scan and initiate advanced surgeries
 	name = "\improper Surgical Processor"

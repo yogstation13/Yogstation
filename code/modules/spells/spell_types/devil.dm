@@ -71,7 +71,9 @@
 				C.put_in_hands(contract)
 		else
 			to_chat(user, "<span class='notice'>[C] seems to not be sentient.  You cannot summon a contract for [C.p_them()].</span>")
-
+			action.UpdateButtonIcon()
+			charge_counter = charge_max
+			recharging = FALSE
 
 /obj/effect/proc_holder/spell/aimed/fireball/hellish
 	name = "Hellfire"

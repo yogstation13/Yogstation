@@ -9,7 +9,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/coco = 2)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 4, "sweetness" = 1)
-	foodtype = JUNKFOOD | SUGAR | EGG
+	foodtype = JUNKFOOD | SUGAR | EGG | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/egg
 	name = "egg"

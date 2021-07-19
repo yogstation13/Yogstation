@@ -62,6 +62,11 @@
 #define RUSTG_HTTP_METHOD_PATCH "patch"
 #define RUSTG_HTTP_METHOD_HEAD "head"
 
+#define rustg_file_read(fname) call(RUST_G, "file_read")("[fname]")
+#define rustg_file_exists(fname) call(RUST_G, "file_exists")("[fname]")
+#define rustg_file_write(text, fname) call(RUST_G, "file_write")(text, "[fname]")
+#define rustg_file_append(text, fname) call(RUST_G, "file_append")(text, "[fname]")
+
 #define rustg_sql_connect_pool(options) call(RUST_G, "sql_connect_pool")(options)
 #define rustg_sql_query_async(handle, query, params) call(RUST_G, "sql_query_async")(handle, query, params)
 #define rustg_sql_query_blocking(handle, query, params) call(RUST_G, "sql_query_blocking")(handle, query, params)

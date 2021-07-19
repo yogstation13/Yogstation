@@ -30,10 +30,9 @@ BONUS
 	symptom_delay_max = 15
 	var/infective = FALSE
 	threshold_descs = list(
-		"Resistance 11" = "The host will drop small items when coughing.",
-		"Resistance 15" = "Occasionally causes coughing fits that stun the host. The extra coughs do not spread the virus.",
+		"Resistance 3" = "The host will drop small items when coughing.",
+		"Resistance 10" = "Occasionally causes coughing fits that stun the host. The extra coughs do not spread the virus.",
 		"Stage Speed 6" = "Increases cough frequency.",
-		"Transmission 7" = "Coughing will now infect bystanders up to 2 tiles away.",
 		"Stealth 4" = "The symptom remains hidden until active.",
 	)
 
