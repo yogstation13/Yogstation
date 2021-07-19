@@ -481,5 +481,5 @@
 	icon = 'icons/effects/atmospherics.dmi'
 	icon_state = "vent_wind"
 	layer = FLY_LAYER
-	duration = 4.8
+	duration = 0.48 SECONDS
 	mouse_opacity = 0
