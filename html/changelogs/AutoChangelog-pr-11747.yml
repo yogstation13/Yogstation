@@ -1,5 +1,0 @@
-author: "Lostlarry"
-delete-after: true 
-changes: 
-  - tweak: "added teleportation_anchor mapping helper, add few of these into the safe parts of partialy hazardous areas"
-  - bugfix: "prevents teleportation into atmos distro on box to teleport player into unsafe areas"
