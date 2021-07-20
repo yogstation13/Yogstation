@@ -429,10 +429,10 @@ GLOBAL_LIST_EMPTY(vending_products)
   . = TRUE
   if(!user.transferItemToLoc(I, src))
     return FALSE
-  if(vending_machine_input[I.name])
-    vending_machine_input[I.name]++
+  if(products[I.type])
+  	products[I.type]++
   else
-    vending_machine_input[I.name] = 1
+  	products[I.type] = 1
   to_chat(user, "<span class='notice'>You insert [I] into [src]'s input compartment.</span>")
 
 
