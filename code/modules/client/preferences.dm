@@ -565,7 +565,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "<h3>Wings</h3>"
 
 					dat += "<a href='?_src_=prefs;preference=wings;task=input'>[features["wings"]]</a>"
-				dat += "<a href ='?_src_=prefs;preference=wings;task=lock'>[random_locks["wings"] ? "Unlock" : "Lock"]</a><BR>"
+					dat += "<a href ='?_src_=prefs;preference=wings;task=lock'>[random_locks["wings"] ? "Unlock" : "Lock"]</a><BR>"
 
 					mutant_category++
 					if(mutant_category >= MAX_MUTANT_ROWS)
@@ -1326,7 +1326,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						"teeth" = 1,
 						"dome" = 1,
 						"dorsal_tubes" = 1,
-					))
+					)
 				else
 					random_locks[href_list["preference"]] = !random_locks[href_list["preference"]]
 
