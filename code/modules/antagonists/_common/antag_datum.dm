@@ -106,6 +106,11 @@ GLOBAL_LIST_EMPTY(antagonists)
 		message_admins("[key_name_admin(C)] has taken control of ([key_name_admin(owner)]) to replace a jobbanned player.")
 		owner.current.ghostize(0)
 		owner.current.key = C.key
+	else
+		to_chat(owner, "Your mob has been taken over by a ghost! Appeal your job ban if you want to avoid this in the future!")
+		message_admins(" [key_name_admin(owner)] is banned from [job_rank] and was unable to be replaced!")
+		owner.current.ghostize(0)
+		owner.current.key = null
 
 //Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
 /datum/antagonist/proc/on_removal()
