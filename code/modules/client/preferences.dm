@@ -232,7 +232,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dispGender = "Female"
 				else
 					dispGender = "Other"
-				dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[dispGender]</a><BR>"
+				dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[dispGender]</a>"
+				dat += "<a href ='?_src_=prefs;preference=gender;task=lock'>[random_locks["gender"] ? "Unlock" : "Lock"]</a><BR>"
 
 			dat += "<b>Age:</b> <a href='?_src_=prefs;preference=age;task=input'>[age]</a><BR>"
 
@@ -1299,8 +1300,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("bag")
 					backbag = pick(GLOB.backbaglist)
 				if("all")
-					random_character()
-
+					random_character(gender)
 		if("lock")
 			switch(href_list["preference"])
 				if("u_all")
@@ -1308,6 +1308,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						random_locks[i] = 0;
 				if("l_all")
 					random_locks = list(
+						"gender" = gender
 						"mcolor" = 1,
 						"ethcolor" = 1,
 						"tail_lizard" = 1,
@@ -1327,6 +1328,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						"dome" = 1,
 						"dorsal_tubes" = 1,
 					)
+				if("gender")
+					random_locks["random_locks"] = gender
 				else
 					random_locks[href_list["preference"]] = !random_locks[href_list["preference"]]
 
