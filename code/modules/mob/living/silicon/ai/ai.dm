@@ -374,12 +374,6 @@
 		var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)
 		announcer.announce("AIWIPE", real_name, mind.assigned_role, list())
 
-	SSjob.FreeRole(mind.assigned_role)
-
-	if(mind.objectives.len)
-		mind.objectives.Cut()
-		mind.special_role = null
-
 	if(!get_ghost(TRUE))
 		if(world.time < 30 MINUTES)//before the 30 minute mark
 			ghostize(FALSE) // Players despawned too early may not re-enter the game
