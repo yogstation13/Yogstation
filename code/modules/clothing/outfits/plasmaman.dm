@@ -31,7 +31,7 @@
 /datum/outfit/job/plasmaman/botanist
 	name = "Plasmaman Botanist"
 	
-	jobtype = /datum/job/botanist
+	jobtype = /datum/job/hydro
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
