@@ -290,7 +290,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Mutant Color</h3>"
 
-				dat += "<span style='border: 1px solid #161616; background-color: #[features["mcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=mutant_color;task=input'>Change</a> <a href ='?_src_=prefs;preference=mutant_color;task=lock'>[random_locks["mutant_color"] ? "Lock" : "Unlock"]</a><BR>"
+				dat += "<span style='border: 1px solid #161616; background-color: #[features["mcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=mcolor;task=input'>Change</a> <a href ='?_src_=prefs;preference=mcolor;task=lock'>[random_locks["mcolor"] ? "Lock" : "Unlock"]</a><BR>"
 
 				mutant_colors = TRUE
 
@@ -301,7 +301,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Ethereal Color</h3>"
 
-				dat += "<span style='border: 1px solid #161616; background-color: #[features["ethcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=color_ethereal;task=input'>Change</a> <a href ='?_src_=prefs;preference=color_ethereal;task=lock'>[random_locks["color_ethereal"] ? "Lock" : "Unlock"]</a><BR>"
+				dat += "<span style='border: 1px solid #161616; background-color: #[features["ethcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=ethcolor;task=input'>Change</a> <a href ='?_src_=prefs;preference=ethcolor;task=lock'>[random_locks["ethcolor"] ? "Lock" : "Unlock"]</a><BR>"
 
 
 			if((EYECOLOR in pref_species.species_traits) && !(NOEYESPRITES in pref_species.species_traits))
@@ -1428,7 +1428,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						if(features["mcolor"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#7F7F7F")[3]))
 							features["mcolor"] = pref_species.default_color
 
-				if("mutant_color")
+				if("mcolor")
 					var/new_mutantcolor = input(user, "Choose your character's alien/mutant color:", "Character Preference","#"+features["mcolor"]) as color|null
 					if(new_mutantcolor)
 						var/temp_hsv = RGBtoHSV(new_mutantcolor)
@@ -1439,7 +1439,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						else
 							to_chat(user, "<span class='danger'>Invalid color. Your color is not bright enough.</span>")
 
-				if("color_ethereal")
+				if("ethcolor")
 					var/new_etherealcolor = input(user, "Choose your ethereal color", "Character Preference") as null|anything in GLOB.color_list_ethereal
 					if(new_etherealcolor)
 						features["ethcolor"] = GLOB.color_list_ethereal[new_etherealcolor]

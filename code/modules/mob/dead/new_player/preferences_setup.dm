@@ -27,9 +27,9 @@
 		var/rando_race = pick(GLOB.roundstart_races)
 		pref_species = new rando_race()
 	var/temp_features = random_features()
-	if(random_locks["mutant_color"])
+	if(random_locks["mcolor"])
 		temp_features["mcolor"] = features["mcolor"]
-	if(random_locks["color_ethereal"])
+	if(random_locks["ethcolor"])
 		temp_features["ethcolor"] = features["ethcolor"]
 	if(random_locks["tail_lizard"])
 		temp_features["tail_lizard"] = features["tail_lizard"]
@@ -51,7 +51,7 @@
 		temp_features["body_markings"] = features["body_markings"]
 	if(random_locks["legs"])
 		temp_features["legs"] = features["legs"]
-	if(random_locks["mutant_color"])
+	if(random_locks["caps"])
 		temp_features["caps"] = features["caps"]
 	if(random_locks["moth_wings"])
 		temp_features["moth_wings"] = features["moth_wings"]
@@ -59,7 +59,7 @@
 		temp_features["tail_polysmorph"] = features["tail_polysmorph"]
 	if(random_locks["teeth"])
 		temp_features["teeth"] = features["teeth"]
-	if(random_locks["mutant_color"])
+	if(random_locks["dome"])
 		temp_features["dome"] = features["dome"]
 	if(random_locks["dorsal_tubes"])
 		temp_features["dorsal_tubes"] = features["dorsal_tubes"]
