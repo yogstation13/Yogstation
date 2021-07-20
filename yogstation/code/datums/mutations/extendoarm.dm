@@ -96,7 +96,7 @@
 	else
 		if(grabbed)
 			ungrab()
-		else if(isitem(target))
+		else if(isitem(target) && !target.anchored)
 			grab(target)
 		go_home()
 
