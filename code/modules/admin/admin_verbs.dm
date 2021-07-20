@@ -674,7 +674,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 /client/proc/deadmin()
 	set name = "Deadmin"
 	set category = "Admin"
-	set desc = "Shed your admin powers."
+	set desc = "Shed your admin and mentor powers."
 
 	if(!holder)
 		return
@@ -685,6 +685,12 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	holder.deactivate()
 
 	to_chat(src, "<span class='interface'>You are now a normal player.</span>", confidential=TRUE)
+	
+	remove_mentor_verbs()
+	mentor_datum = null
+	GLOB.mentors -= src
+	add_verb(src, /client/proc/rementor)
+	
 	log_admin("[src] deadmined themself.")
 	message_admins("[src] deadmined themself.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Deadmin")
