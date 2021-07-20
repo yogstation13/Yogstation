@@ -142,11 +142,11 @@
 			if(3)
 				icon = 'icons/obj/smooth_structures/alien/weeds3.dmi'
 
-/obj/structure/alien/weeds/attack_hand(mob/user)
+/obj/structure/alien/weeds/Click(var/atom/A)
+	var/turf/T = loc
+	if(T)
+		T.Click(A)
 	. = ..()
-	if(.)
-		return 
-	get_turf(src).attack_hand(user)
 
 /obj/structure/alien/weeds/proc/expand()
 	var/turf/U = get_turf(src)
