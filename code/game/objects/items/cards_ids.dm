@@ -120,7 +120,7 @@
 	var/access_txt // mapping aid
 	var/datum/bank_account/registered_account
 	var/obj/machinery/paystand/my_store
-	var/registered_age = 13 // default age for ss13 players
+	var/registered_age = 18 // default age for ss13 players
 
 /obj/item/card/id/Initialize(mapload)
 	. = ..()
