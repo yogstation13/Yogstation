@@ -119,6 +119,7 @@
 /obj/item/card/id/freeminer
 	name = "Free Miner Crewman ID"
 	access = list(ACCESS_MINERAL_STOREROOM, ACCESS_FREEMINER, ACCESS_MECH_FREEMINER)
+	registered_age = 30
 
 /obj/item/card/id/freeminer/engi
 	name = "Free Miner Engineer ID"
