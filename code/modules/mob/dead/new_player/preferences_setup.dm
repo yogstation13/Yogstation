@@ -28,8 +28,8 @@
 		pref_species = new rando_race()
 	var/temp_features = random_features()
 	for(var/i in temp_features)
-		if(random_locks[[i]])
-			i = features[[i]]
+		if(random_locks[i])
+			i = features[i]
 	features = temp_features
 	age = rand(AGE_MIN,AGE_MAX)
 
