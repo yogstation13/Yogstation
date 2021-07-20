@@ -933,7 +933,10 @@
 	. = ..()
 	var/hd = maxHealth - health
 	if(hd > 50)
-		. += hd/100
+		if(has_gravity())
+			. += hd/100
+		else
+			. += hd/150
 
 /mob/living/silicon/robot/update_sight()
 	if(!client)
