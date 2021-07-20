@@ -110,3 +110,4 @@
 			var/obj/item/melee/arm_blade/new_arm = new(target,TRUE,TRUE)
 			target_zone == BODY_ZONE_R_ARM ? target.put_in_r_hand(new_arm) : target.put_in_l_hand(new_arm)
 			return 1
+	target.update_disabled_bodyparts()
