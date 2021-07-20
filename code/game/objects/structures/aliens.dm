@@ -142,6 +142,12 @@
 			if(3)
 				icon = 'icons/obj/smooth_structures/alien/weeds3.dmi'
 
+/obj/structure/alien/weeds/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return 
+	get_turf(src).attack_hand(user)
+
 /obj/structure/alien/weeds/proc/expand()
 	var/turf/U = get_turf(src)
 	if(is_type_in_typecache(U, blacklisted_turfs))
