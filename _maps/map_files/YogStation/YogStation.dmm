@@ -15239,9 +15239,6 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/light_switch{
-	pixel_x = 27
-	},
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/structure/sign/poster/official/pda_ad{
 	pixel_x = 32
@@ -15578,6 +15575,9 @@
 /obj/item/stack/cable_coil,
 /obj/item/paper_bin/construction,
 /obj/item/stack/cable_coil,
+/obj/machinery/light_switch{
+	pixel_x = -27
+	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aSl" = (
