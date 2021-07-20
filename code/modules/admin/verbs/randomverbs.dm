@@ -1084,7 +1084,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 
-	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_PIE, ADMIN_PUNISHMENT_CLUWNE, ADMIN_PUNISHMENT_MCNUGGET)
+	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_PIE, ADMIN_PUNISHMENT_WHISTLE, ADMIN_PUNISHMENT_CLUWNE, ADMIN_PUNISHMENT_MCNUGGET)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
 
@@ -1162,7 +1162,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				to_chat(target, "<span class='clown'>Honk! You probably did something stupid..</span>")
 			var/mob/living/carbon/C = target
 			C.adminpie(target)
-
+		if(ADMIN_PUNISHMENT_WHISTLE)
+			var/confirm = alert(usr, "Sure you want to Warp Whistle them?", "Whistle Message", "Yes", "No")
+			if(confirm == "Yes")
+				var/mob/living/M = target
+				M.whistle()
 		if(ADMIN_PUNISHMENT_CLUWNE)
 			var/confirm = alert(usr, "Send Cluwne Message?", "Cluwne Message", "Yes", "No")
 			if(confirm == "Yes")
@@ -1312,3 +1316,31 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	log_admin("[key_name_admin(usr)] has cleared all radiation.")
 	
 	
+/mob/living/proc/whistle()
+	INVOKE_ASYNC(src, .proc/whistletrigger, "whistle")
+
+/mob/living/proc/whistletrigger()
+	var/turf/T = get_turf(src)
+	var/mob/living/user = src
+	playsound(T,'sound/magic/warpwhistle.ogg', 200, 1)
+	user.mobility_flags &= ~MOBILITY_MOVE
+	new /obj/effect/temp_visual/tornado(T)
+	sleep(20)
+	user.invisibility = INVISIBILITY_MAXIMUM
+	user.status_flags |= GODMODE
+	sleep(20)
+	var/breakout = 0
+	while(breakout < 50)
+		var/turf/potential_T = find_safe_turf()
+		if(T.z != potential_T.z || abs(get_dist_euclidian(potential_T,T)) > 50 - breakout)
+			do_teleport(user, potential_T, channel = TELEPORT_CHANNEL_MAGIC)
+			user.mobility_flags &= ~MOBILITY_MOVE
+			T = potential_T
+			break
+		breakout += 1
+	new /obj/effect/temp_visual/tornado(T)
+	sleep(20)
+	user.invisibility = initial(user.invisibility)
+	user.status_flags &= ~GODMODE
+	user.update_mobility()
+	sleep(40)

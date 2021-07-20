@@ -72,6 +72,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/acidmod = 1
 	/// multiplier for stun duration
 	var/stunmod = 1
+	/// multiplier for money paid at payday, species dependent
+	var/payday_modifier = 1
 	///Type of damage attack does
 	var/attack_type = BRUTE
 	///lowest possible punch damage. if this is set to 0, punches will always miss

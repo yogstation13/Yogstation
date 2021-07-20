@@ -1,4 +1,4 @@
-////////////////////////////////////////////// 
+//////////////////////////////////////////////
 //                                          //
 //            MIDROUND RULESETS             //
 //                                          //
@@ -164,30 +164,36 @@
 	name = "Syndicate Sleeper Agent"
 	antag_datum = /datum/antagonist/traitor
 	antag_flag = ROLE_TRAITOR
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director")
 	restricted_roles = list("Cyborg", "AI", "Positronic Brain")
 	required_candidates = 1
-	weight = 1
+	weight = 7
 	cost = 10
 	requirements = list(50,40,30,20,10,10,10,10,10,10)
 	repeatable = TRUE
-	high_population_requirement = 10
-	flags = TRAITOR_RULESET
 
 /datum/dynamic_ruleset/midround/autotraitor/acceptable(population = 0, threat = 0)
 	var/player_count = mode.current_players[CURRENT_LIVING_PLAYERS].len
 	var/antag_count = mode.current_players[CURRENT_LIVING_ANTAGS].len
 	var/max_traitors = round(player_count / 10) + 1
-	if ((antag_count < max_traitors) && prob(mode.threat_level))//adding traitors if the antag population is getting low
-		return ..()
-	else
+
+	// adding traitors if the antag population is getting low
+	var/too_little_antags = antag_count < max_traitors
+	if (!too_little_antags)
+		log_game("DYNAMIC: Too many living antags compared to living players ([antag_count] living antags, [player_count] living players, [max_traitors] max traitors)")
 		return FALSE
+
+	if (!prob(mode.threat_level))
+		log_game("DYNAMIC: Random chance to roll autotraitor failed, it was a [mode.threat_level]% chance.")
+		return FALSE
+
+	return ..()
 
 /datum/dynamic_ruleset/midround/autotraitor/trim_candidates()
 	..()
 	for(var/mob/living/player in living_players)
 		if(issilicon(player)) // Your assigned role doesn't change when you are turned into a silicon.
-			living_players -= player 
+			living_players -= player
 			continue
 		if(is_centcom_level(player.z))
 			living_players -= player // We don't autotator people in CentCom
@@ -226,10 +232,9 @@
 	exclusive_roles = list("AI")
 	required_enemies = list(4,4,4,4,4,4,2,2,2,0)
 	required_candidates = 1
-	weight = 1
+	weight = 3
 	cost = 35
 	requirements = list(100,100,80,70,60,60,50,50,45,40)
-	high_population_requirement = 35
 	required_type = /mob/living/silicon/ai
 	var/ion_announce = 33
 	var/removeDontImproveChance = 10
@@ -282,7 +287,6 @@
 	weight = 1
 	cost = 20
 	requirements = list(90,90,70,40,30,20,10,10,10,10)
-	high_population_requirement = 50
 	repeatable = TRUE
 
 /datum/dynamic_ruleset/midround/from_ghosts/wizard/ready(forced = FALSE)
@@ -311,13 +315,13 @@
 	enemy_roles = list("AI", "Cyborg", "Security Officer", "Warden","Detective","Head of Security", "Captain")
 	required_enemies = list(3,3,3,3,2,2,1,1,0,0)
 	required_candidates = 5
-	weight = 1
-	cost = 35
+	weight = 2
+	cost = 25
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
-	high_population_requirement = 10
 	var/list/operative_cap = list(2,2,3,3,4,5,5,5,5,5)
 	var/datum/team/nuclear/nuke_team
-	flags = HIGHLANDER_RULESET
+	flags = HIGH_IMPACT_RULESET
+	minimum_players = 40
 
 /datum/dynamic_ruleset/midround/from_ghosts/nuclear/acceptable(population=0, threat=0)
 	if (locate(/datum/dynamic_ruleset/roundstart/nuclear) in mode.executed_rules)
@@ -354,10 +358,9 @@
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
-	weight = 1
-	cost = 30
+	weight = 4
+	cost = 10
 	requirements = list(100,100,100,80,60,50,45,30,20,20)
-	high_population_requirement = 50
 	repeatable = TRUE
 
 /datum/dynamic_ruleset/midround/from_ghosts/blob/generate_ruleset_body(mob/applicant)
@@ -377,12 +380,12 @@
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
-	weight = 1
+	weight = 3
 	cost = 20
 	requirements = list(100,100,100,70,50,40,30,25,20,10)
-	high_population_requirement = 50
 	repeatable = TRUE
 	var/list/vents = list()
+	minimum_players = 30
 
 /datum/dynamic_ruleset/midround/from_ghosts/xenomorph/execute()
 	// 50% chance of being incremented by one
@@ -424,10 +427,9 @@
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
 	required_enemies = list(2,2,1,1,1,1,0,0,0,0)
 	required_candidates = 1
-	weight = 1
+	weight = 4
 	cost = 5
 	requirements = list(90,85,80,70,50,40,30,25,20,10)
-	high_population_requirement = 50
 	repeatable = TRUE
 	var/list/spawn_locs = list()
 
@@ -457,7 +459,7 @@
 	log_game("DYNAMIC: [key_name(S)] was spawned as a Nightmare by the midround ruleset.")
 	return S
 
-//////////////////////////////////////////////	
+//////////////////////////////////////////////
 //                                          //
 //                VAMPIRE                   //
 //                                          //
@@ -467,14 +469,14 @@
 	name = "Vampire"
 	antag_flag = ROLE_VAMPIRE
 	antag_datum = /datum/antagonist/vampire
-	protected_roles = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel")
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director")
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 1
-	weight = 1
+	weight = 5
 	cost = 25
 	requirements = list(80,70,60,50,50,45,30,30,25,25)
-	minimum_players = 30
-	
+	minimum_players = 25
+
 /datum/dynamic_ruleset/midround/autovamp/acceptable(population = 0, threat = 0)
 	var/player_count = mode.current_players[CURRENT_LIVING_PLAYERS].len
 	var/antag_count = mode.current_players[CURRENT_LIVING_ANTAGS].len
@@ -511,7 +513,7 @@
 	var/datum/antagonist/vampire/newVampire = new
 	M.mind.add_antag_datum(newVampire)
 	return TRUE
-	
+
 //////////////////////////////////////////////
 //                                          //
 //              ZOMBIE (GHOST)              //
@@ -525,10 +527,11 @@
 	required_enemies = list(2,2,1,1,1,1,0,0,0,0)
 	required_candidates = 1
 	weight = 1
-	cost = 20
+	cost = 101 // Was 20
 	requirements = list(90,85,80,75,70,65,60,55)
 	repeatable = TRUE
 	var/list/spawn_locs = list()
+	minimum_players = 40
 
 /datum/round_event/ghost_role/zombie/spawn_role()
 	var/list/candidates = get_candidates(ROLE_ZOMBIE, null, ROLE_ZOMBIE)
@@ -551,14 +554,13 @@
 		message_admins("No valid spawn locations found, aborting...")
 		return MAP_ERROR
 
-	var/mob/living/carbon/human/M = new ((pick(spawn_locs)))
-	player_mind.transfer_to(M)
+	var/mob/living/carbon/human/S = new ((pick(spawn_locs)))
+	player_mind.transfer_to(S)
 	player_mind.assigned_role = "Zombie"
 	player_mind.special_role = "Zombie"
-	M.set_species(/datum/species/zombie/infectious)
-	playsound(M, 'sound/hallucinations/growl1.ogg', 50, 1, -1)
-	message_admins("[ADMIN_LOOKUPFLW(M)] has been made into a Zombie by an event.")
-	log_game("[key_name(M)] was spawned as a Zombie by an event.")
-	spawned_mobs += M
+	S.set_species(/datum/species/zombie/infectious)
+	playsound(S, 'sound/hallucinations/growl1.ogg', 50, 1, -1)
+	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a Zombie by an event.")
+	log_game("[key_name(S)] was spawned as a Zombie by an event.")
+	spawned_mobs += S
 	return SUCCESSFUL_SPAWN
-	

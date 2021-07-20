@@ -156,7 +156,7 @@
 	materials = list(/datum/material/iron=6000)
 	construction_time = 20
 	category = list("Exosuit Ammunition", "Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/mech_carbine
 	name = "Exosuit Weapon (FNX-99 \"Hades\" Carbine)"
@@ -177,7 +177,7 @@
 	materials = list(/datum/material/iron=6000)
 	construction_time = 20
 	category = list("Exosuit Ammunition", "Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/mech_ion
 	name = "Exosuit Weapon (MKIV Ion Heavy Cannon)"
@@ -258,7 +258,7 @@
 	materials = list(/datum/material/iron=4000,/datum/material/gold=500,/datum/material/silver=500)
 	construction_time = 20
 	category = list("Exosuit Ammunition", "Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/mech_missile_rack
 	name = "Exosuit Weapon (BRM-6 Missile Rack)"
@@ -271,15 +271,15 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/mech_missile_rack_ammo
-	name = "SRM-8 Missile Rack Ammunition"
-	desc = "Ammunition for the SRM-8 Missile Rack."
+	name = "BRM-8 Missile Rack Ammunition"
+	desc = "Ammunition for the BRM-8 Missile Rack."
 	id = "mech_missile_rack_ammo"
 	build_type = PROTOLATHE | MECHFAB
 	build_path = /obj/item/mecha_ammo/missiles_br
 	materials = list(/datum/material/iron=8000,/datum/material/gold=500,/datum/material/silver=500)
 	construction_time = 20
 	category = list("Exosuit Ammunition", "Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/clusterbang_launcher
 	name = "Exosuit Weapon (SOB-3 Clusterbang Launcher)"
@@ -431,7 +431,7 @@
 	materials = list(/datum/material/iron=4000)
 	construction_time = 20
 	category = list("Exosuit Ammunition", "Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/mech_sleeper
 	name = "Exosuit Medical (Mounted Sleeper)"

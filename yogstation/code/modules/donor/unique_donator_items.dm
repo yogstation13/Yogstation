@@ -120,6 +120,17 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	item_state = "sheetcosmos_green"
 	item_color = "cosmos_green"
 
+/datum/donator_gear/azeelium
+	name = "Utatul-Azeel plushie"
+	ckey = "Anvilman6"
+	unlock_path = /obj/item/toy/plush/lizard/azeel
+
+/datum/donator_gear/mqiib
+	name = "Singularity Necklace"
+	ckey = "Mqiib"
+	unlock_path = /obj/item/clothing/accessory/sing_necklace
+
+
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
 	name = "Beanie"
@@ -397,6 +408,9 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/toyhammer
 	name = "banhammer"
 	unlock_path = /obj/item/banhammer
+/datum/donator_gear/gondolamask
+	name = "gondola mask"
+	unlock_path = /obj/item/clothing/mask/gondola
 /datum/donator_gear/sheetcosmos
 	name = "cosmic space bedsheet"
 	unlock_path = /obj/item/bedsheet/cosmos
@@ -541,7 +555,3 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/sword0
 	name = "toy sword"
 	unlock_path = /obj/item/toy/sword
-/datum/donator_gear/azeelium
-	name = "Utatul-Azeel plushie"
-	ckey = "Anvilman6"
-	unlock_path = /obj/item/toy/plush/lizard/azeel
