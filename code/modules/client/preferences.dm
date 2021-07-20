@@ -1308,7 +1308,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						random_locks[i] = 0;
 				if("l_all")
 					random_locks = list(
-						"gender" = gender
+						"gender" = gender,
 						"mcolor" = 1,
 						"ethcolor" = 1,
 						"tail_lizard" = 1,
