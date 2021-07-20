@@ -102,6 +102,7 @@
 			"[user] finishes attaching [tool]!",
 			"[user] finishes the attachment procedure!")
 		qdel(tool)
+		target.update_disabled_bodyparts()
 		if(istype(tool, /obj/item/twohanded/required/chainsaw))
 			var/obj/item/mounted_chainsaw/new_arm = new(target)
 			target_zone == BODY_ZONE_R_ARM ? target.put_in_r_hand(new_arm) : target.put_in_l_hand(new_arm)
@@ -110,4 +111,3 @@
 			var/obj/item/melee/arm_blade/new_arm = new(target,TRUE,TRUE)
 			target_zone == BODY_ZONE_R_ARM ? target.put_in_r_hand(new_arm) : target.put_in_l_hand(new_arm)
 			return 1
-	target.update_disabled_bodyparts()
