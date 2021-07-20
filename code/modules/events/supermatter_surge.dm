@@ -27,7 +27,7 @@
 	announceWhen = 1
 
 /datum/round_event/supermatter_surge/setup()
-	var/datum/round_event_control/falsealarm/C = control
+	var/datum/round_event_control/supermatter_surge/C = control
 	if(C.forced_power)
 		power = C.forced_power
 	else
