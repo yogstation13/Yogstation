@@ -27,42 +27,9 @@
 		var/rando_race = pick(GLOB.roundstart_races)
 		pref_species = new rando_race()
 	var/temp_features = random_features()
-	if(random_locks["mcolor"])
-		temp_features["mcolor"] = features["mcolor"]
-	if(random_locks["ethcolor"])
-		temp_features["ethcolor"] = features["ethcolor"]
-	if(random_locks["tail_lizard"])
-		temp_features["tail_lizard"] = features["tail_lizard"]
-	if(random_locks["tail_human"])
-		temp_features["tail_human"] = features["tail_human"]
-	if(random_locks["wings"])
-		temp_features["wings"] = features["wings"]
-	if(random_locks["snout"])
-		temp_features["snout"] = features["snout"]
-	if(random_locks["horns"])
-		temp_features["horns"] = features["horns"]
-	if(random_locks["ears"])
-		temp_features["ears"] = features["ears"]
-	if(random_locks["frills"])
-		temp_features["frills"] = features["frills"]
-	if(random_locks["spines"])
-		temp_features["spines"] = features["spines"]
-	if(random_locks["body_markings"])
-		temp_features["body_markings"] = features["body_markings"]
-	if(random_locks["legs"])
-		temp_features["legs"] = features["legs"]
-	if(random_locks["caps"])
-		temp_features["caps"] = features["caps"]
-	if(random_locks["moth_wings"])
-		temp_features["moth_wings"] = features["moth_wings"]
-	if(random_locks["tail_polysmorph"])
-		temp_features["tail_polysmorph"] = features["tail_polysmorph"]
-	if(random_locks["teeth"])
-		temp_features["teeth"] = features["teeth"]
-	if(random_locks["dome"])
-		temp_features["dome"] = features["dome"]
-	if(random_locks["dorsal_tubes"])
-		temp_features["dorsal_tubes"] = features["dorsal_tubes"]
+	for(var/i in temp_features)
+		if(random_locks[[i]])
+			i = features[[i]]
 	features = temp_features
 	age = rand(AGE_MIN,AGE_MAX)
 
