@@ -480,7 +480,7 @@
 	item_state = "hypertool"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
-	force = 7
+	force = 9
 	throwforce = 5
 	slot_flags = ITEM_SLOT_BELT
 	name = "hypertool"
