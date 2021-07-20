@@ -1302,7 +1302,33 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					random_character()
 
 		if("lock")
-			random_locks[href_list["preference"]] = !random_locks[href_list["preference"]]
+			switch(href_list["preference"])
+				if("u_all")
+					for(var/i in random_locks)
+						random_locks[i] = 0;
+				if("l_all")
+					random_locks = list(
+						"mcolor" = 1,
+						"ethcolor" = 1,
+						"tail_lizard" = 1,
+						"tail_human" = 1,
+						"wings" = 1,
+						"snout" = 1,
+						"horns" = 1,
+						"ears" = 1,
+						"frills" = 1,
+						"spines" = 1,
+						"body_markings" = 1,
+						"legs" = 1,
+						"caps" = 1,
+						"moth_wings" = 1,
+						"tail_polysmorph" = 1,
+						"teeth" = 1,
+						"dome" = 1,
+						"dorsal_tubes" = 1,
+					))
+				else
+					random_locks[href_list["preference"]] = !random_locks[href_list["preference"]]
 
 		if("input")
 

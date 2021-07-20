@@ -98,7 +98,8 @@
 		"tail_polysmorph" = "Polys",
 		"teeth" = pick(GLOB.teeth_list),
 		"dome" = pick(GLOB.dome_list),
-		"dorsal_tubes" = pick(GLOB.dorsal_tubes_list)))
+		"dorsal_tubes" = pick(GLOB.dorsal_tubes_list)
+	))
 
 /proc/random_hair_style(gender)
 	switch(gender)
