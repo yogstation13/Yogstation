@@ -349,7 +349,7 @@
 	STR.max_combined_w_class = 200
 	STR.max_items = 50
 	STR.insert_preposition = "in"
-	STR.set_holdable(list(/obj/item/reagent_containers/pill, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/medspray, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/dropper))
+	STR.set_holdable(list(/obj/item/storage/pill_bottle, /obj/item/reagent_containers/pill, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/medspray, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/dropper))
 
 /*
  *  Biowaste bag (mostly for xenobiologists)
