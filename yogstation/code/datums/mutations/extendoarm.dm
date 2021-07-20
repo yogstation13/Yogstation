@@ -96,8 +96,10 @@
 	else
 		if(grabbed)
 			ungrab()
-		else if(isitem(target) && !target.anchored)
-			grab(target)
+		else if(isitem(target))
+			var/obj/item/I = target
+			if(!I.anchored)
+				grab(target)
 		go_home()
 
 /obj/item/projectile/bullet/arm/proc/go_home()
