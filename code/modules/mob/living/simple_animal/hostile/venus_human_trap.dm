@@ -69,10 +69,6 @@
   *
   */
 
-#define VENUS_TRAP_NO_WARNING = 0
-#define	VENUS_TRAP_DMG_WARNING = 1
-#define VENUS_TRAP_HALF_WARNING = 2
-
 /mob/living/simple_animal/hostile/venus_human_trap
 	name = "venus human trap"
 	desc = "Now you know how the fly feels."
@@ -102,14 +98,12 @@
 	var/vine_grab_distance = 5
 	/// Whether or not this plant is ghost possessable
 	var/playable_plant = TRUE
-	/// should we give plyer a warning that they are close to death
-	var/warning_given = VENUS_TRAP_NO_WARNING
 
 /mob/living/simple_animal/hostile/venus_human_trap/Life()
 	. = ..()
 	pull_vines()
 	if(!kudzu_need())
-		adjustHealth(-5)
+		apply_damage(5, BRUTE)
 		if(prob(20))
 			to_chat(src, "<span class='danger'>You wither away without the support of the kudzu...</span>")
 	
@@ -211,28 +205,4 @@
 	for(var/obj/structure/spacevine in view(3,src))
 		return TRUE
 	return FALSE
-
-// actualy call the previous function to slow down venus trap murderboning
-/mob/living/simple_animal/hostile/venus_human_trap/Life(seconds, times_fired)
-	. = ..()
-	if(kudzu_need())
-		warning_given = VENUS_TRAP_NO_WARNING
-		heal_overall_damage(1, 0.2,  0,)
-		return
-	else
-		apply_damage(2, BRUTE)	// not sure how often this is called so lets go with damge equvivalent of minor overheat
-		if(warning_given = VENUS_TRAP_HALF_WARNING)
-			return
-		if(health < (maxHealth * 0.5))
-			to_chat(src, "<span class='warning'>You are groving weak! Return to the vines to restore your strenght!</span>")
-			warning_given = VENUS_TRAP_HALF_WARNING
-			return
-		if(warning_given = VENUS_TRAP_NO_WARNING)
-			to_chat(src, "You are too far from the Kudzu that keeps you alive!")
-			warning_given = VENUS_TRAP_DMG_WARNING
-
-			
-#undef VENUS_TRAP_NO_WARNING
-#undef VENUS_TRAP_DMG_WARNING
-#undef VENUS_TRAP_HALF_WARNING
 		
