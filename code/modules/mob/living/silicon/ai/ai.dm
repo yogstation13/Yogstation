@@ -363,7 +363,7 @@
 
 	// Guard against misclicks, this isn't the sort of thing we want happening accidentally
 	if(alert("WARNING: This will immediately ghost you, removing your character from the round permanently (similar to cryo). Are you entirely sure you want to do this?",
-					"Wipe Core", "No", "No", "Yes") != "Yes")
+					"Hibernate", "No", "No", "Yes") != "Yes")
 		return
 
 	// We warned you.
