@@ -430,7 +430,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(!user.transferItemToLoc(I, src))
 		return FALSE
 	for(var/datum/data/vending_product/R as anything in product_records)
-		if(R.product_path == I.path)
+		if(R.product_path == I.type)
 			R.amount++
 			to_chat(user, "<span class='notice'>You insert [I] into [src]'s input compartment.</span>")
 			qdel(I)
