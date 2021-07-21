@@ -472,10 +472,12 @@
 
 /datum/reagent/drug/ketamine/on_mob_metabolize(mob/living/L)
 	ADD_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+	ADD_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
 	. = ..()
 
 /datum/reagent/drug/ketamine/on_mob_delete(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+	REMOVE_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
 	. = ..()
 
 /datum/reagent/drug/ketamine/on_mob_life(mob/living/carbon/M)
