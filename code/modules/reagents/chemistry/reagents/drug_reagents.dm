@@ -584,9 +584,9 @@
 /datum/reagent/drug/phencyclidine/on_mob_metabolize(mob/living/L)
 	..()
 	ADD_TRAIT(M, TRAIT_SURGERY_PREPARED, type)
-	M.set_screwyhud(SCREWYHUD_HEALTHY)
+	L.set_screwyhud(SCREWYHUD_HEALTHY)
 
 /datum/reagent/drug/phencyclidine/on_mob_end_metabolize(mob/living/L)
 	..()
 	REMOVE_TRAIT(M, TRAIT_SURGERY_PREPARED, type)
-	M.set_screwyhud(SCREWYHUD_HEALTHY)
+	L.set_screwyhud(SCREWYHUD_HEALTHY)
