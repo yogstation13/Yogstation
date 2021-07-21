@@ -581,6 +581,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	addiction_threshold = 15
 	overdose_threshold = 30
+	
 /datum/reagent/drug/phencyclidine/on_mob_metabolize(mob/living/L)
 	..()
 	ADD_TRAIT(M, TRAIT_SURGERY_PREPARED, type)
