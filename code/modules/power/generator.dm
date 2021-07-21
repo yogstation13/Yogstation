@@ -76,14 +76,14 @@
 			if(temp_diff > 0 && cold_air_heat_capacity > 0 && hot_air_heat_capacity > 0)
 				var/efficiency = 0.65
 
-				var/energy_transfer = delta_temperature*hot_air_heat_capacity
+				var/energy_transfer = temp_diff*hot_air_heat_capacity
 				// gives enegry of temp above cold air temp
 
-				var/heat = energy_transfer*(1-efficiency) * (cold_air_heat_capacity + hot_air_heat_capacity)
+				var/delata_temprature = energy_transfer*(1-efficiency) * (cold_air_heat_capacity + hot_air_heat_capacity)	// gives how much tempreature changes
 				lastgen += energy_transfer*efficiency
 
-				hot_air.set_temperature(hot_air.return_temperature() - heat)
-				cold_air.set_temperature(cold_air.return_temperature() + heat)
+				hot_air.set_temperature(hot_air.return_temperature() - delata_temprature)	// this bit may be wrong will need to think about it
+				cold_air.set_temperature(cold_air.return_temperature() + delata_temprature)
 
 				//add_avail(lastgen) This is done in process now
 		// update icon overlays only if displayed level has changed
