@@ -45,6 +45,8 @@
 			add_overlay("teg-panel")
 		return
 		
+	if(!powernet)
+		add_overlay("teg-nogrid")
 	if(stat & (NOPOWER))
 		return 
 	else
@@ -93,7 +95,7 @@
 			var/datum/gas_mixture/cold_circ_air1 = cold_circ.airs[1]
 			cold_circ_air1.merge(cold_air)
 
-		update_icon()
+	update_icon()
 
 	src.updateDialog()
 
