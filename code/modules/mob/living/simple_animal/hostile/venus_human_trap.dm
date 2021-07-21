@@ -146,6 +146,7 @@
 /mob/living/simple_animal/hostile/venus_human_trap/Login()
 	. = ..()
 	to_chat(src, "<span class='boldwarning'>You are a venus human trap! Protect the kudzu at all costs, and feast on those who oppose you!</span>")
+	to_chat(src, "Stay near vines to remain healthy.")
 
 /mob/living/simple_animal/hostile/venus_human_trap/attack_ghost(mob/user)
 	. = ..()
