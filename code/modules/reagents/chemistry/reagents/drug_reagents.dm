@@ -571,3 +571,22 @@
 	if(prob(15))
 		M.adjustToxLoss(2, 0)
 	..()
+	
+	
+/datum/reagent/drug/phencyclidine
+	name = "PCP"
+	description = "A Dissacoitive anesthetic that was originally used instead of ketamine, often times used recreationally for its painkilling and stimulating high."
+	reagent_state = LIQUID
+	color = "#c9c9c9"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	addiction_threshold = 15
+	overdose_threshold = 30
+/datum/reagent/drug/phencyclidine/on_mob_metabolize(mob/living/L)
+	..()
+	ADD_TRAIT(M, TRAIT_SURGERY_PREPARED, type)
+	M.set_screwyhud(SCREWYHUD_HEALTHY)
+
+/datum/reagent/drug/phencyclidine/on_mob_end_metabolize(mob/living/L)
+	..()
+	REMOVE_TRAIT(M, TRAIT_SURGERY_PREPARED, type)
+	M.set_screwyhud(SCREWYHUD_HEALTHY)
