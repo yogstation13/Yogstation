@@ -68,3 +68,9 @@
 	id = /datum/reagent/drug/pumpup
 	results = list(/datum/reagent/drug/pumpup = 5)
 	required_reagents = list(/datum/reagent/medicine/epinephrine = 2, /datum/reagent/consumable/coffee = 5)
+
+/datum/chemical_reaction/phencyclidine
+	name = "PCP"
+	id = /datum/reagent/drug/phencyclidine
+	results = list(/datum/reagent/drug/phencyclidine = 3)
+	required_reagents = list(/datum/reagent/medicine/morphine = 3, /datum/reagent/nitrous_oxide = 3, /datum/reagent/drug/pumpup = 3, /datum/reagent/medicine/epinephrine = 3)
