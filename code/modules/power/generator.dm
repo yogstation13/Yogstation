@@ -82,7 +82,7 @@
 				var/delta_temprature = energy_transfer*(1-efficiency) * (cold_air_heat_capacity + hot_air_heat_capacity)	// gives how much tempreature changes
 				lastgen += energy_transfer*efficiency
 
-				hot_air.set_temperature(hot_air.return_temperature() - delta_temprature)	// this bit may be wrong will need to think about it
+				hot_air.set_temperature(hot_air.return_temperature() - energy_transfer / hot_air_heat_capacity)	// this bit may be wrong will need to think about it
 				cold_air.set_temperature(cold_air.return_temperature() + delta_temprature)
 
 				//add_avail(lastgen) This is done in process now
