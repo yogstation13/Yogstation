@@ -1,4 +1,0 @@
-author: "TheGamerdk"
-delete-after: true 
-changes: 
-  - bugfix: "Ninjas will no longer get a random Nothing objective, it is instead a steal objective like intended"

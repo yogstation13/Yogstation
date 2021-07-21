@@ -1,4 +1,0 @@
-author: "TheGamerdk"
-delete-after: true 
-changes: 
-  - bugfix: "Plasmamen created through select equipment will no longer spawn with a useless ID and PDA"
