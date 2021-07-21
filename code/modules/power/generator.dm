@@ -62,7 +62,7 @@
 		return
 
 	if(powernet)
-		var/datum/gas_mixture/cold_air = cold_circ.return_transfer_air()
+		var/datum/gas_mixture/cold_air = cold_circ.return_transfer_air()		//ciculators decide how much air moves torugh
 		var/datum/gas_mixture/hot_air = hot_circ.return_transfer_air()
 
 		if(cold_air && hot_air)
@@ -70,19 +70,20 @@
 			var/cold_air_heat_capacity = cold_air.heat_capacity()
 			var/hot_air_heat_capacity = hot_air.heat_capacity()
 
-			var/delta_temperature = hot_air.return_temperature() - cold_air.return_temperature()
+			var/temp_diff = hot_air.return_temperature() - cold_air.return_temperature()
 
 
-			if(delta_temperature > 0 && cold_air_heat_capacity > 0 && hot_air_heat_capacity > 0)
+			if(temp_diff > 0 && cold_air_heat_capacity > 0 && hot_air_heat_capacity > 0)
 				var/efficiency = 0.65
 
-				var/energy_transfer = delta_temperature*hot_air_heat_capacity*cold_air_heat_capacity/(hot_air_heat_capacity+cold_air_heat_capacity)
+				var/energy_transfer = delta_temperature*hot_air_heat_capacity
+				// gives enegry of temp above cold air temp
 
-				var/heat = energy_transfer*(1-efficiency)
+				var/heat = energy_transfer*(1-efficiency) * (cold_air_heat_capacity + hot_air_heat_capacity)
 				lastgen += energy_transfer*efficiency
 
-				hot_air.set_temperature(hot_air.return_temperature() - energy_transfer/hot_air_heat_capacity)
-				cold_air.set_temperature(cold_air.return_temperature() + heat/cold_air_heat_capacity)
+				hot_air.set_temperature(hot_air.return_temperature() - heat)
+				cold_air.set_temperature(cold_air.return_temperature() + heat)
 
 				//add_avail(lastgen) This is done in process now
 		// update icon overlays only if displayed level has changed
