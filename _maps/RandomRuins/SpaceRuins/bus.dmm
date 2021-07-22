@@ -323,13 +323,16 @@
 /obj/item/stack/sheet/metal/fifty,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered/no_grav)
-"Wy" = (
+"Pm" = (
 /obj/structure/fluff/bus/passable/seat/driver{
 	icon_state = "driverseat";
 	pixel_y = 17
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/food/drinks/britcup,
+/obj/item/reagent_containers/food/drinks/britcup{
+	pixel_x = -1;
+	pixel_y = 15
+	},
 /turf/open/floor/plasteel/airless/dark{
 	icon_state = "bus"
 	},
@@ -614,7 +617,7 @@ ab
 ah
 ad
 aj
-Wy
+Pm
 aE
 aM
 ad
