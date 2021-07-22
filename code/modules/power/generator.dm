@@ -13,6 +13,9 @@
 	var/lastgen = 0
 	var/lastgenlev = -1
 
+	var/internal_heat_cap = 1000 //needs experimantal data
+	var/internal_temp = T0C
+
 /obj/machinery/power/generator/Initialize(mapload)
 	. = ..()
 	find_circs()
@@ -62,28 +65,36 @@
 		return
 
 	if(powernet)
-		var/datum/gas_mixture/cold_air = cold_circ.return_transfer_air()		//ciculators decide how much air moves torugh
+		var/datum/gas_mixture/cold_air = cold_circ.return_transfer_air()		//circulators give us air that is moving trough
 		var/datum/gas_mixture/hot_air = hot_circ.return_transfer_air()
 
 		if(cold_air && hot_air)
 
-			var/cold_air_heat_capacity = cold_air.heat_capacity()
-			var/hot_air_heat_capacity = hot_air.heat_capacity()
+			var/cold_air_heat_cap = cold_air.heat_capacity()	// not sure if this isnt pointless
+			var/hot_air_heat_cap = hot_air.heat_capacity()
 
-			var/temp_diff = hot_air.return_temperature() - cold_air.return_temperature()
+			var/cold_temp = cold_air.return_temperature()
+			var/hot_temp = hot_air.return_temperature()
 
+			if((hot_temp - cold_temp) > 0 && cold_air_heat_cap > 0 && hot_air_heat_cap > 0)
 
-			if(temp_diff > 0 && cold_air_heat_capacity > 0 && hot_air_heat_capacity > 0)
+				//air moving trough equalises temperature with it subsection
+				var/cold_subsection_temp = (cold_air_heat_cap * cold_temp + internal_heat_cap * internal_temp) / (internal_heat_cap + cold_air_heat_cap)	
+				var/hot_subsection_temp = (hot_air_heat_cap * hot_temp + internal_heat_cap * internal_temp) / (internal_heat_cap + hot_air_heat_cap)
+
+				hot_air.set_temperature(hot_subsection_temp)	// cooled / heated air gets spit back out
+				cold_air.set_temperature(cold_subsection_temp)
+
 				var/efficiency = 0.65
 
-				var/energy_transfer = temp_diff*hot_air_heat_capacity
-				// gives enegry of temp above cold air temp
+				//how much energy do we have stored in temperature differetial
+				var/energy_transfer = (hot_subsection_temp - cold_subsection_temp)*internal_heat_cap
 
-				var/output_temprature = cold_air.return_temperature() +  energy_transfer*(1-efficiency) * (cold_air_heat_capacity + hot_air_heat_capacity)	// gives how much tempreature changes
+				//produce electricity
 				lastgen += energy_transfer*efficiency
 
-				hot_air.set_temperature(output_temprature)	// this bit may be wrong will need to think about it
-				cold_air.set_temperature(output_temprature)
+				//transfer rest of energy into waste heat/chill
+				internal_temp = cold_subsection_temp + energy_transfer * (1 - efficiency) / (internal_heat_cap * 2)
 
 				//add_avail(lastgen) This is done in process now
 		// update icon overlays only if displayed level has changed
