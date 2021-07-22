@@ -132,6 +132,12 @@ GLOBAL_LIST_EMPTY(bounties_list)
 
 	var/pick // instead of creating it a bunch let's go ahead and toss it here, we know we're going to use it for dynamics and subtypes!
 
+	/********************************Progression Gens********************************/
+	var/list/progression_type_list = typesof(/datum/bounty/item/progression)
+
+	for(var/progression_bounty in progression_type_list)
+		try_add_bounty(new progression_bounty)
+
 	/********************************Subtype Gens********************************/
 	var/list/easy_add_list_subtypes = list(/datum/bounty/item/assistant = 3,
 											/datum/bounty/item/mech = 1,
@@ -171,12 +177,6 @@ GLOBAL_LIST_EMPTY(bounties_list)
 	/********************************Cutoff for Non-Low Priority Bounties********************************/
 	var/datum/bounty/B = pick(GLOB.bounties_list)
 	B.mark_high_priority()
-
-	/********************************Progression Gens********************************/
-	var/list/progression_type_list = typesof(/datum/bounty/item/progression)
-
-	for(var/progression_bounty in progression_type_list)
-		try_add_bounty(new progression_bounty)
 
 	/********************************Low Priority Gens********************************/
 	var/list/low_priority_strict_type_list = list(  /datum/bounty/item/alien_organs,
