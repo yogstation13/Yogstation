@@ -426,14 +426,14 @@ GLOBAL_LIST_EMPTY(vending_products)
 		..()
 
 /obj/machinery/vending/proc/loadingAttempt(obj/item/I,mob/user)
-  . = TRUE
-  if(!user.transferItemToLoc(I, src))
-    return FALSE
-  if(vending_machine_input[I.name])
-    vending_machine_input[I.name]++
-  else
-    vending_machine_input[I.name] = 1
-  to_chat(user, "<span class='notice'>You insert [I] into [src]'s input compartment.</span>")
+	. = TRUE
+	if(!user.transferItemToLoc(I, src))
+		return FALSE
+	if(products[I.type])
+		products[I.type]++
+	else
+		products[I.type] = 1
+	to_chat(user, "<span class='notice'>You insert [I] into [src]'s input compartment.</span>")
 
 
 /obj/machinery/vending/exchange_parts(mob/user, obj/item/storage/part_replacer/W)
