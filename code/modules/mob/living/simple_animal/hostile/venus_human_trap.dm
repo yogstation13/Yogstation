@@ -103,9 +103,11 @@
 	. = ..()
 	pull_vines()
 	if(!kudzu_need())
-		apply_damage(5, BRUTE)
+		adjustBruteLoss(5, FALSE) 
 		if(prob(20))
 			to_chat(src, "<span class='danger'>You wither away without the support of the kudzu...</span>")
+	else
+		to_chat(src, "<span class='danger'>you are near kudzu i think</span>") // this is for debug
 	
 /mob/living/simple_animal/hostile/venus_human_trap/AttackingTarget()
 	. = ..()
@@ -202,7 +204,7 @@
   * Damages the mob if not
   */
 /mob/living/simple_animal/hostile/venus_human_trap/proc/kudzu_need()
-	for(var/obj/structure/spacevine in view(3,src))
+	for(var/obj/structure/spacevine/vine_found in view(3,src))
 		return TRUE
 	return FALSE
 		
