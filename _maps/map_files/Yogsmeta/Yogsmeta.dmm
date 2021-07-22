@@ -67680,13 +67680,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"cLT" = (
-/obj/effect/decal/cleanable/cobweb,
-/obj/structure/bodycontainer/morgue{
-	dir = 2
-	},
-/turf/open/floor/plasteel/dark,
-/area/chapel/office)
 "cLU" = (
 /obj/effect/landmark/blobstart,
 /obj/effect/landmark/xeno_spawn,
@@ -73503,13 +73496,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"eFN" = (
-/obj/structure/bodycontainer/crematorium{
-	dir = 1;
-	id = "crematoriumChapel"
-	},
-/turf/open/floor/plasteel/dark,
-/area/chapel/office)
 "eGs" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -77722,6 +77708,12 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space)
+"mDj" = (
+/obj/structure/bodycontainer/morgue{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/chapel/office)
 "mDz" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -83662,6 +83654,14 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"ygk" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/structure/bodycontainer/crematorium{
+	dir = 2;
+	id = "crematoriumChapel"
+	},
+/turf/open/floor/plasteel/dark,
+/area/chapel/office)
 "yiu" = (
 /obj/machinery/bounty_board,
 /turf/closed/wall/r_wall,
@@ -103906,11 +103906,11 @@ cBR
 bTs
 bTs
 cLa
-cLT
+ygk
 cal
 caw
 cTf
-eFN
+mDj
 cMI
 cPC
 djX
