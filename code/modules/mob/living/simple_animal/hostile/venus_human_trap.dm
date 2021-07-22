@@ -106,8 +106,6 @@
 		adjustBruteLoss(5, FALSE) 
 		if(prob(20))
 			to_chat(src, "<span class='danger'>You wither away without the support of the kudzu...</span>")
-	else
-		to_chat(src, "<span class='danger'>you are near kudzu i think</span>") // this is for debug
 	
 /mob/living/simple_animal/hostile/venus_human_trap/AttackingTarget()
 	. = ..()
