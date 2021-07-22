@@ -1962,10 +1962,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
-/mob/living/simple_animal/bot/secbot/pingsky,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/mob/living/simple_animal/bot/secbot/pingsky,
 /turf/open/floor/engine,
 /area/ai_monitored/turret_protected/aisat_interior)
 "adn" = (
@@ -3623,9 +3623,9 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/machinery/computer/operating{
-	dir = 4
-	},
+/obj/structure/table/optable,
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/storage/backpack/duffelbag/sec/surgery,
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
 "age" = (
@@ -6145,12 +6145,13 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/blood/old,
 /obj/machinery/light/small{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
-/obj/effect/landmark/start/yogs/brigphsyician,
+/obj/structure/chair/office{
+	dir = 1
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "akV" = (
@@ -7970,8 +7971,6 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/structure/closet/secure_closet/physician,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "anN" = (
@@ -76663,8 +76662,8 @@
 	pixel_x = 24
 	},
 /obj/effect/turf_decal/tile/red,
-/obj/structure/closet/crate/freezer/blood,
 /obj/machinery/iv_drip,
+/obj/structure/closet/crate/freezer/blood,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "cxv" = (
@@ -87207,10 +87206,10 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/mob/living/simple_animal/spiffles,
 /obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
+/mob/living/simple_animal/spiffles,
 /turf/open/floor/plasteel,
 /area/clerk)
 "emk" = (
@@ -91777,8 +91776,9 @@
 /obj/item/radio/intercom{
 	pixel_x = -28
 	},
-/obj/structure/table/optable,
-/obj/item/storage/backpack/duffelbag/sec/surgery,
+/obj/machinery/computer/operating{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
 "jwf" = (
@@ -93088,10 +93088,10 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/prison)
 "kQv" = (
-/mob/living/simple_animal/hostile/asteroid/hivelord,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/asteroid/hivelord,
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
 "kQQ" = (
@@ -96025,10 +96025,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"ogA" = (
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating/asteroid,
-/area/space/nearstation)
 "ohy" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -101324,6 +101320,10 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/ai_upload)
+"uGY" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/asteroid,
+/area/space/nearstation)
 "uHy" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -110914,7 +110914,7 @@ rJGrJG
 rJGrJG
 cwpcwq
 aLZaLZ
-aLZogA
+aLZuGY
 aLZxjU
 aLZaLZ
 aLZaLZ
@@ -112236,9 +112236,9 @@ bZSbZT
 cbicJi
 cdvaDM
 cemaGN
-cgjcgk
+hAccgk
 aKoaKp
-bYkczX
+bYkspa
 cJrcJI
 bBsbMy
 lYeajd
@@ -116120,11 +116120,11 @@ aaaaaa
 acmacm
 aFIjnt
 ddXePt
-snAuSt
+snAybl
 yldiKH
 qqUqKw
 hGBjoS
-wBltjR
+wBlcXu
 weMxbm
 mqLuSt
 ffigWk
@@ -116637,7 +116637,7 @@ ePthLs
 ylddSs
 spxdSs
 dUruSt
-dUruSt
+dUrybl
 dltuhc
 uStgWk
 onAyld
@@ -116898,7 +116898,7 @@ uhcuSt
 uStuSt
 uStlSg
 ijDuSt
-uhcuhc
+kxQuhc
 kYvcvO
 ulNxAG
 stptKW
@@ -117149,7 +117149,7 @@ aFJaFJ
 aFIeZv
 iNnmIo
 jflcii
-cRpegL
+euUegL
 ozKtXq
 wkmijD
 joanTH
@@ -117410,7 +117410,7 @@ nhVwLg
 vGgfFH
 fbZnpj
 vsjszu
-vMluDj
+ihmuDj
 tFeiBE
 vISuMM
 pBFtVA
@@ -117660,7 +117660,7 @@ cyoaDk
 aFIaFI
 nUEvMd
 nSfnSf
-egLsjl
+egLeJp
 mpSsnc
 tJxsPw
 aFIaFI
@@ -117903,7 +117903,7 @@ bwvbmV
 bGoayG
 kZkaEF
 bUMaGo
-bUScth
+bUScYJ
 bUXcut
 kZkaEF
 bUMcuX
@@ -117911,10 +117911,10 @@ cwjoeI
 cxRxsn
 kZkaEF
 cxTpvy
-cBHsen
+cBHiyc
 cifeDo
 aDlerU
-dDpklh
+dDpkwq
 tmQgqk
 nSjvVz
 egLegL
@@ -118175,7 +118175,7 @@ wREtWV
 vzBeBT
 xVmpTs
 shRpdn
-jfKujK
+jfKlWC
 aFIjnt
 aFIaaa
 acKacK
@@ -118416,12 +118416,12 @@ hwCaFA
 coWbFx
 cpTbFy
 cqOaIl
-crZcsb
+pPXcsb
 mHQaIp
 aLjaIM
 aGgaIP
 aHJaIS
-btxbuV
+utwbuV
 jGfrfS
 yfXbEd
 ntraGt
@@ -118679,7 +118679,7 @@ aDkaDk
 aDkaGu
 aJCaII
 aIUazT
-aGLaGQ
+aGLvbU
 aItaIx
 aHraHv
 aGTaHs
@@ -118929,7 +118929,7 @@ bRTcny
 cKkbEV
 awuaBY
 fLnaCZ
-aEIaCL
+aEIxQf
 csocsd
 aGzaGA
 bxmaMk
@@ -119197,7 +119197,7 @@ aGQaHD
 brmcfH
 aHvaHE
 cjQclv
-kKTwNI
+pTVwNI
 aJIvyW
 ckEacm
 cBzumJ
@@ -119447,12 +119447,12 @@ crUaGC
 cstbyl
 aDlcbZ
 aDkccS
-aDkcdQ
+aDkgCH
 aJScmq
 aMscpc
 aHHcpe
 aIEcpf
-bVUcpg
+uWfcpg
 clIcpj
 szQsOZ
 wNXaMk
@@ -119706,7 +119706,7 @@ bpwaDr
 aEAaCw
 aMpaDk
 aMDaMH
-aMuaJc
+aMuvAI
 aMGbBt
 aIubFj
 aHIaHR
@@ -119958,7 +119958,7 @@ hPeaBQ
 rQraCr
 rykryk
 aSjaHT
-csCcwU
+csCgpz
 ctoctp
 aMmcKQ
 aDlaDk
@@ -120220,7 +120220,7 @@ nrEcts
 jkfcKS
 wPaaMk
 vCgaDv
-qRWbBi
+qRWput
 iyhaHS
 wIraMb
 kSlaJP
@@ -120473,14 +120473,14 @@ coYbWW
 jIrryk
 crXayY
 cPmcee
-cttcvQ
+cttsqT
 aMncKT
 aMoaCw
 aMqaJn
 aMvaDm
 aDyaJO
 aMSaJT
-aJsdld
+xHIdld
 xFIhkK
 aJAciA
 bIeaJH
@@ -121252,7 +121252,7 @@ bfeayK
 bxLbxZ
 azKaxa
 axSaxa
-cfzcfQ
+cfztqY
 axachy
 gitcjq
 axScjI
@@ -121500,21 +121500,21 @@ copcoq
 aGvbXI
 axaaxb
 boFbyF
-ceyaBo
+ceyhrw
 ctNctO
 cPpcBd
 axaaxW
-ghJlZL
+ghJhRC
 itTayJ
 dclaAh
-oVxaAh
+oVxutW
 hagcpz
 jhbcBQ
 oVxcLM
 gfGcPq
 oVxcMc
 oVxcMm
-wckrgn
+wckptQ
 aAQaAR
 mImcBS
 mImcML
@@ -121773,7 +121773,7 @@ aLGaxU
 cMncMo
 pqhczo
 cBiaxW
-cBTcmv
+xKFcmv
 cMUcmx
 cNfcmx
 cPtcmx
@@ -122015,7 +122015,7 @@ caIcaY
 bHeaxb
 aBPaAa
 aBpaLq
-ctSctU
+ctSvKS
 cKWcKX
 axWaxS
 cvccjH
@@ -122276,7 +122276,7 @@ ctVcuC
 aBvcdE
 axaaFB
 cuZcvf
-azqazr
+azqkQQ
 lVhaLt
 ayncgh
 sCFaLw
@@ -122525,11 +122525,11 @@ ckZcJW
 clOclO
 axZbZq
 coKcoL
-cpVaCm
+fTcaCm
 cqSaym
 ctFcne
 ctLays
-cKocPn
+rGLcPn
 czTayz
 axWaxW
 cvgcvg
@@ -122542,10 +122542,10 @@ cxZcLx
 cLNcLx
 axUaxT
 cMtcMu
-czpczK
+hHuczK
 aLKaxW
 sXuflG
-aAMazw
+aAMstD
 aBbgJw
 cmxgJw
 axaaxa
@@ -122786,7 +122786,7 @@ cKtbZu
 axPawC
 cneaLL
 ayEcsU
-cPncPo
+ecDcPo
 ayzcKY
 axWaGq
 cvkiYv
@@ -122958,10 +122958,10 @@ aWNbfy
 alBary
 aeXafl
 bfjbgx
-afIafM
+pXwafM
 afFbfP
 arsaVt
-bfZbfh
+bfZpaO
 bgUbgt
 aWRagz
 aaLafB
@@ -122969,7 +122969,7 @@ ahGbgt
 alwbdI
 cqwbgH
 bgTbdI
-ahGajN
+ahGvJJ
 cERcKB
 alBaeX
 kobcuG
@@ -123048,14 +123048,14 @@ axScKZ
 axaaxa
 ryMsKe
 cBtxgq
-cwkwzh
+npSwzh
 cBtnuu
 cwecwA
 cwIaxV
-cxmaxb
+wowaxb
 cyNcAV
 cyOaxV
-cyVaxa
+xDvaxa
 cAJaxa
 axaaxS
 eCHctM
@@ -123214,7 +123214,7 @@ bdDbho
 vQCbfy
 sVaayL
 iKnafl
-oDvbfK
+qSGbfK
 afOagb
 agebeW
 agnaha
@@ -123223,14 +123223,14 @@ ahobfT
 ahQalk
 agRagT
 agebgo
-bfdbgA
+hMCbgA
 ajkbgO
 bgXbVA
 anKajX
 apZcKC
 aqaafp
 cHAads
-bJOanQ
+mCUanQ
 aroayw
 assanI
 atQayu
@@ -123474,12 +123474,12 @@ afpafa
 bfNafv
 aXabfi
 anbbgu
-ahmaWR
+sVyaWR
 acvbeY
 bgzaew
 aWRbwn
 ajeaja
-ahHahJ
+vaLahJ
 bgMaja
 bgFaWR
 cEQamF
@@ -123492,7 +123492,7 @@ cGnajz
 aZFaZF
 aZFadX
 avLavT
-aZFauN
+aZFoDc
 bdibdi
 aVJaNA
 amVbdm
@@ -123749,7 +123749,7 @@ ajOajU
 baLaZF
 atRaXR
 ayobcx
-axkaWU
+smwaWU
 aytbdi
 azRobe
 aAuaAw
@@ -123802,11 +123802,11 @@ chNcas
 ciHcau
 wYOcav
 cMRcuM
-cNzcuN
+jsLcuN
 cNacww
 cNbbSr
 bWqbWz
-cbLcbS
+cbLlDa
 cAccAE
 bWTbSr
 aeuaeu
@@ -124320,7 +124320,7 @@ bXFbSQ
 bTfbXB
 hIubPe
 bTAbYN
-bWUvkF
+eErvkF
 bTYbXc
 bUfbIr
 lfxlfx
@@ -124578,7 +124578,7 @@ bOcbTZ
 bOcbTo
 bTNbTC
 uslhlp
-cjibWY
+vgJbWY
 bUhbUi
 iNClfx
 pinpNM
@@ -124832,7 +124832,7 @@ cmjcrl
 bXubXC
 bXTbXU
 bYgbYg
-bYxbTq
+bYxsUq
 bTDbTO
 bWUmNl
 bUbdNK
