@@ -45,7 +45,7 @@
 		//1.5 (movespeed as of this change) multiplied by 4 gets 6, which gives you a delay of 3 assuming the user has two arms,
 		//getting the speed of the wheelchair roughly equal to the speed of a scooter based on testing.
 		//if that made no sense this simply makes the wheelchair speed change along with movement speed delay
-		D.vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * 4) / min(user.get_num_arms(), 2)
+		D.vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * 3) / min(user.get_num_arms(), 2)
 	return ..()
 
 /obj/vehicle/ridden/wheelchair/Moved()
