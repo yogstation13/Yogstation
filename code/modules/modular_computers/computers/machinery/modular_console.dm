@@ -63,19 +63,19 @@
 	var/dirlook
 	switch(dir)
 		if(NORTH)
-			move[2] = -3
+			offet_matrix[2] = -3
 			dirlook = SOUTH
 		if(SOUTH)
-			move[2] = 1
+			offet_matrix[2] = 1
 			dirlook = NORTH
 		if(EAST)
-			move[1] = -5
+			offet_matrix[1] = -5
 			dirlook = WEST
 		if(WEST)
-			move[1] = 5
+			offet_matrix[1] = 5
 			dirlook = EAST
 	if(dirlook)
 		T = get_step(T, dirlook)
 		if(istype(T, /turf/closed/wall))
-			pixel_x = move[1]
-			pixel_y = move[2]
+			pixel_x = offet_matrix[1]
+			pixel_y = offet_matrix[2]
