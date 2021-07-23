@@ -74,10 +74,12 @@ GLOBAL_PROTECT(mentor_verbs)
 	set name = "Request Mentor Rat"
 	set category = "Mentor"
 
-	if(src.mob.stat == DEAD)
+	var/mob/living/carbon/human/C = src.mob
+
+	if(C.stat == DEAD)
 		to_chat(src, "You must be alive to get a mentor rat!")
 	else
-		src.mob.gain_trauma(/datum/brain_trauma/special/imaginary_friend/mrat)
+		C.gain_trauma(/datum/brain_trauma/special/imaginary_friend/mrat)
 
 /client/proc/dementor()
 	set name = "Dementor"
