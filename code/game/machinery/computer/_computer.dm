@@ -18,6 +18,8 @@
 
 /obj/machinery/computer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
+	if(mapload)
+		update_icon()
 	power_change()
 	if(!QDELETED(C))
 		qdel(circuit)
@@ -52,6 +54,29 @@
 /obj/machinery/computer/update_icon()
 	cut_overlays()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
+
+	// this bit of code makes the computer hug the wall its next to
+	var/turf/T = get_turf(src)
+	var/list/move = list(0, 0)
+	var/dirlook
+	switch(dir)
+		if(1)
+			move[1] = -3
+			dirlook = 2
+		if(2)
+			move[1] = 1
+			dirlook = 1
+		if(4)
+			move[0] = -5
+			dirlook = 8
+		if(8)
+			move[0] = 5
+			dirlook = 4
+	T = get_step(T, dirlook)
+	if(istype(T, /turf/closed/wall))
+		pixel_x += move[0]
+		pixel_y += move[1]
+	
 	if(stat & NOPOWER)
 		add_overlay("[icon_keyboard]_off")
 		return
