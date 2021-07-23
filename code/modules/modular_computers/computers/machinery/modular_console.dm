@@ -59,7 +59,7 @@
 
 	// this bit of code makes the computer hug the wall its next to
 	var/turf/T = get_turf(src)
-	var/list/offet_matrix = list(0, 0)// the pixel_x is the first one
+	var/list/offet_matrix = list(0, 0)		// stores offset to be added to the console in following order (pixel_x, pixel_y)
 	var/dirlook
 	switch(dir)
 		if(NORTH)
