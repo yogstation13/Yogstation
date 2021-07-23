@@ -78,6 +78,8 @@ GLOBAL_PROTECT(mentor_verbs)
 
 	if(C.stat == DEAD)
 		to_chat(src, "You must be alive to get a mentor rat!")
+	else if(!istype(C, /mob/living/carbon/human))
+		to_chat(src, "You must be humanoid to get a mentor rat!")
 	else
 		C.gain_trauma(/datum/brain_trauma/special/imaginary_friend/mrat)
 
