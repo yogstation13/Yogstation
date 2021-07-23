@@ -70,6 +70,15 @@ GLOBAL_PROTECT(mentor_verbs)
 		msg += "<span class='info'>Mentorhelps are also seen by admins. If no mentors are available in game adminhelp instead and an admin will see it and respond.</span>"
 	to_chat(src, msg, confidential=TRUE)
 
+/client/proc/mrat()
+	set name = "Request Mentor Rat"
+	set category = "Mentor"
+
+	if(src.mob.stat == DEAD)
+		to_chat(src, "You must be alive to get a mentor rat!")
+	else
+		src.mob.gain_trauma(/datum/brain_trauma/special/imaginary_friend/mrat)
+
 /client/proc/dementor()
 	set name = "Dementor"
 	set category = "Mentor"
