@@ -164,6 +164,8 @@
 
 	to_chat(owner, "[rendered]")
 	to_chat(src, "[rendered]")
+	SEND_SOUND(owner, sound('sound/effects/mousesqueek.ogg'))
+	SEND_SOUND(src, sound('sound/effects/mousesqueek.ogg'))
 
 	//speech bubble
 	if(owner.client)

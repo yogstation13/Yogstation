@@ -2,8 +2,8 @@
 	name = "Epistemania"
 	desc = "Patient suffers from a manic pursuit of knowlewdge."
 	scan_desc = "epistemania"
-	gain_text = "<span class='notice'>Requesting mentor rat...</span>"
-	lose_text = "<span class='warning'>Mentor rat not found. Either your mentor rat left you or you didn't find one.</span>"
+	gain_text = "<span class='notice'>Requesting mentor...</span>"
+	lose_text = "<span class='warning'>Mentor not found. Either your mentor left you or one didn't respond.</span>"
 	resilience = TRAUMA_RESILIENCE_ABSOLUTE
 
 /datum/brain_trauma/special/imaginary_friend/mrat/make_friend()
@@ -53,3 +53,10 @@
 /datum/action/innate/mrat_leave/Activate()
 	var/mob/camera/imaginary_friend/I = owner
 	qdel(I.trauma)
+
+/mob/camera/imaginary_friend/mrat/pointed(atom/A as mob|obj|turf in view())
+	if(!..())
+		return FALSE
+	to_chat(owner, "<b>[src]</b> points at [A].")
+	to_chat(src, "<span class='notice'>You point at [A].</span>")
+	return TRUE
