@@ -46,6 +46,7 @@
 		//1.5 (movespeed as of this change) multiplied by 4 gets 6, which gives you a delay of 3 assuming the user has two arms,
 		//getting the speed of the wheelchair roughly equal to the speed of a scooter based on testing.
 		//if that made no sense this simply makes the wheelchair speed change along with movement speed delay
+		//paraplegic quirk users get a halved movedelay to model their life of wheelchair useage - yogs
 		if(user.has_quirk(/datum/quirk/paraplegic))
 			movedelay = 2
 		else
