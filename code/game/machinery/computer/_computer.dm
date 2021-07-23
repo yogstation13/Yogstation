@@ -57,25 +57,26 @@
 
 	// this bit of code makes the computer hug the wall its next to
 	var/turf/T = get_turf(src)
-	var/list/move = list(0, 0)
+	var/list/offet_matrix = list(0, 0)// the pixel_x is the first one
 	var/dirlook
 	switch(dir)
-		if(1)
-			move[1] = -3
-			dirlook = 2
-		if(2)
-			move[1] = 1
-			dirlook = 1
-		if(4)
-			move[0] = -5
-			dirlook = 8
-		if(8)
-			move[0] = 5
-			dirlook = 4
-	T = get_step(T, dirlook)
-	if(istype(T, /turf/closed/wall))
-		pixel_x += move[0]
-		pixel_y += move[1]
+		if(NORTH)
+			move[2] = -3
+			dirlook = SOUTH
+		if(SOUTH)
+			move[2] = 1
+			dirlook = NORTH
+		if(EAST)
+			move[1] = -5
+			dirlook = WEST
+		if(WEST)
+			move[1] = 5
+			dirlook = EAST
+	if(dirlook)
+		T = get_step(T, dirlook)
+		if(istype(T, /turf/closed/wall))
+			pixel_x = move[1]
+			pixel_y = move[2]
 	
 	if(stat & NOPOWER)
 		add_overlay("[icon_keyboard]_off")
