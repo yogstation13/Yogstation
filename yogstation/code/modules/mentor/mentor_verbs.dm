@@ -70,7 +70,7 @@ GLOBAL_PROTECT(mentor_verbs)
 		msg += "<span class='info'>Mentorhelps are also seen by admins. If no mentors are available in game adminhelp instead and an admin will see it and respond.</span>"
 	to_chat(src, msg, confidential=TRUE)
 
-/client/proc/mrat()
+/client/verb/mrat()
 	set name = "Request Mentor Rat"
 	set category = "Mentor"
 
