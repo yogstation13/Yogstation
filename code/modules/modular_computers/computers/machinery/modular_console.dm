@@ -76,6 +76,7 @@
 			dirlook = EAST
 	if(dirlook)
 		T = get_step(T, dirlook)
-		if(istype(T, /turf/closed/wall))
+		var/obj/structure/window/W = locate() in T
+		if(istype(T, /turf/closed/wall) || W)
 			pixel_x = offet_matrix[1]
 			pixel_y = offet_matrix[2]
