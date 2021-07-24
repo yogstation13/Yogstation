@@ -625,9 +625,9 @@
 /obj/item/storage/backpack/duffelbag/clothing/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 30
+	STR.max_items = 35
 	STR.max_w_class = WEIGHT_CLASS_BULKY
-	STR.max_combined_w_class = 50
+	STR.max_combined_w_class = 60
 	STR.set_holdable(list(/obj/item/clothing))
 
 /obj/item/storage/backpack/duffelbag/clothing/hop
