@@ -740,7 +740,7 @@
 			if(prob(30))
 				burndamage += rand(30,40)
 
-		if(HAS_TRAIT(src, TRAIT_SELF_AWARE))
+		if(HAS_TRAIT(src, TRAIT_SELF_AWARE) && hal_screwyhud == SCREWYHUD_NONE)
 			status = "[brutedamage] brute damage and [burndamage] burn damage"
 			if(!brutedamage && !burndamage)
 				status = "no damage"
