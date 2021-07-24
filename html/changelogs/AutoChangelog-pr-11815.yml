@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscadd: "new xeno variant lungs given to polysmorphs, breathe in both oxygen AND plasma."
+  - tweak: "pluoxium's oxygen replacement system has been modularized for easier use with different gasses and lungs. Soon podpeople might be able to breathe................carbon dioxide........."
