@@ -10,7 +10,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/selected_power = input("How severe should it be? Between 1000 and 100000") as num|null
+	var/selected_power = input("How severe should it be? Between 1000 and 100000. Press cancel for random") as num|null
 	if(!selected_power)
 		selected_power = rand(1000, 100000)
 	selected_power = clamp(selected_power, 1000, 100000)
