@@ -1,0 +1,4 @@
+author: "jc-denthead"
+delete-after: true 
+changes: 
+  - tweak: "diagonal movement is faster now"
