@@ -130,7 +130,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 
-	GLOB.dead_mob_list += src
+	add_to_dead_mob_list()
 
 	for(var/v in GLOB.active_alternate_appearances)
 		if(!v)
@@ -273,11 +273,17 @@ Works together with spawning an observer, noted above.
 			stop_sound_channel(CHANNEL_HEARTBEAT) //Stop heartbeat sounds because You Are A Ghost Now
 			if(can_reenter_corpse && client) //yogs start
 				oobe_client = client //yogs end
+			onGhost()
 			var/mob/dead/observer/ghost = new(src)	// Transfer safety to observer spawning proc.
 			SStgui.on_transfer(src, ghost) // Transfer NanoUIs.
 			ghost.can_reenter_corpse = can_reenter_corpse
 			ghost.key = key
 			ghost.client.init_verbs()
+			if(ghost?.client?.holder?.fakekey)
+				ghost.invisibility = INVISIBILITY_MAXIMUM //JUST IN CASE
+				ghost.alpha = 0 //JUUUUST IN CASE
+				ghost.name = " "
+				ghost.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 			return ghost
 
 /*
@@ -727,7 +733,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		remove_data_huds()
 	else
 		show_data_huds()
-	
+
 	data_huds_on = !data_huds_on
 	to_chat(src, "<span class='notice'>Data HUDs [data_huds_on ? "enabled" : "disabled"].</span>")
 

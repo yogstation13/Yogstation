@@ -1,0 +1,4 @@
+author: "Lostlarry"
+delete-after: true 
+changes: 
+  - bugfix: "Venus Human Trap now actualy take damage when not near vines"

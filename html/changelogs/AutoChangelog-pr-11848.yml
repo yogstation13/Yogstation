@@ -1,0 +1,4 @@
+author: "wejengin2"
+delete-after: true 
+changes: 
+  - tweak: "duplicate atmos alert console in meta removed, also names given to the consoles"

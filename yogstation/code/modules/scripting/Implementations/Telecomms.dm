@@ -210,6 +210,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		if(!LAZYFIND(GLOB.allowed_translations, oldlang)) // cleans out any unallowed translations by making sure the new language is on the allowed translation list. Tcomms powergaming is dead! - Hopek
 			newlang = oldlang
 	signal.language = newlang || oldlang
+	signal.data["language"] = newlang || oldlang
 	var/list/setspans 			= script_signal.get_clean_property("filters") //Save the span vector/list to a holder list
 	if(islist(setspans)) //Players cannot be trusted with ANYTHING. At all. Ever.
 		setspans &= GLOB.allowed_custom_spans //Prune out any illegal ones. Go ahead, comment this line out. See the horror you can unleash!
@@ -266,6 +267,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 /datum/signal
 
 /proc/LangBit2Datum(langbits) // Takes in the set language bits, returns the datum to use
+	if(istype(langbits, /datum/language))
+		return langbits
 	switch(langbits)
 		if(HUMAN)
 			return /datum/language/common

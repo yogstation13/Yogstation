@@ -21,5 +21,3 @@ Num1bamf = Council Member
  
 jamied12	=	Head Developer
 theos		=	Head Developer
- 
-alexkar598  =   SysOp

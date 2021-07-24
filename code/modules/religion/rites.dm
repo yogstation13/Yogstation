@@ -123,7 +123,22 @@
 					/obj/item/organ/eyes/robotic/glow)
 	new blessing(altar_turf)
 	return TRUE
-	
+
+/datum/religion_rites/botcreation
+	name = "Lesser Robotic Manufacturing"
+	desc = "Manufacture a robotic companion."
+	ritual_length = 45 SECONDS
+	ritual_invocations = list(
+	"I call upon the machine spirits, aid me in creation...",
+	"... The energy shall take the form of its shell...")
+	invoke_msg = "...AND LET IT BE BORN!!"
+	favor_cost = 50 // two bluespace cells, 80MJ. needs sci and mining to be competent.
+
+/datum/religion_rites/botcreation/invoke_effect(atom/religious_tool, mob/user)
+	var/altar_turf = get_turf(religious_tool)
+	var/chosenbot = pick(/mob/living/simple_animal/bot/medbot, /mob/living/simple_animal/bot/cleanbot, /mob/living/simple_animal/bot/firebot, /obj/item/drone_shell) // nothing too bad.
+	new chosenbot(altar_turf)
+	return TRUE
 
 /*********Capitalists**********/
 

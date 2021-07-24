@@ -1,0 +1,4 @@
+author: "Szyszkrzyneczka"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes Issue #11531 (Botanist Plasmamemes getting an unusable heirloom)"
