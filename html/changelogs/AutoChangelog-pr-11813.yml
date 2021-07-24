@@ -1,5 +1,0 @@
-author: "  Xoxeyos"
-delete-after: true 
-changes: 
-  - tweak: "Latejoiners have less time to spawn, and midrounders no longer spawn quite as early as before."
-  - experiment: "This is experimental, I'm not entirely sure if I got this down properly."
