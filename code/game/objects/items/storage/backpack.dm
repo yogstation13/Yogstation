@@ -667,6 +667,8 @@
 /obj/item/storage/backpack/duffelbag/clothing/ce
 	name = "Chief Engineers clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
+	item_state = "duffel-eng"
+	icon_state = "duffel-eng"
 
 /obj/item/storage/backpack/duffelbag/clothing/ce/PopulateContents()
 	new /obj/item/clothing/neck/yogs/shawl/ce(src) //Yogs
@@ -685,6 +687,9 @@
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/clothing/glasses/meson/engine(src)
 
+/obj/item/storage/backpack/duffelbag/clothing/sec
+	icon_state = "duffel-sec"
+	item_state = "duffel-sec"
 /obj/item/storage/backpack/duffelbag/clothing/sec/detective
 	name = "Detective's clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
@@ -756,6 +761,8 @@
 /obj/item/storage/backpack/duffelbag/clothing/med/chief
 	name = "Chief Medical Officer's clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
+	icon_state = "duffel-med"
+	item_state = "duffel-med"
 
 /obj/item/storage/backpack/duffelbag/clothing/med/chief/PopulateContents()
 	new /obj/item/clothing/suit/bio_suit/cmo(src)
