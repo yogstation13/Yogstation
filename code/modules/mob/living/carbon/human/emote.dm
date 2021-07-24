@@ -76,7 +76,7 @@
 	if(H.mind?.miming)
 		return
 	if(iscatperson(H))
-		return pick('sound/voice/feline/scream1.ogg', 'sound/voice/feline/scream2.ogg')
+		return pick('sound/voice/feline/scream1.ogg', 'sound/voice/feline/scream2.ogg', 'sound/voice/feline/scream3.ogg')
 	else if(ishumanbasic(H))
 		if(user.gender == FEMALE)
 			return pick('sound/voice/human/femalescream_1.ogg', 'sound/voice/human/femalescream_2.ogg', 'sound/voice/human/femalescream_3.ogg', 'sound/voice/human/femalescream_4.ogg', 'sound/voice/human/femalescream_5.ogg')
@@ -100,7 +100,7 @@
 	return iscatperson(user)
 
 /datum/emote/living/carbon/meow/get_sound(mob/living/user)
-	return pick('sound/voice/feline/meow1.ogg', 'sound/voice/feline/meow2.ogg','sound/effects/meow1.ogg')
+	return pick('sound/voice/feline/meow1.ogg', 'sound/voice/feline/meow2.ogg', 'sound/voice/feline/meow3.ogg', 'sound/voice/feline/meow4.ogg', 'sound/effects/meow1.ogg')
 
 /datum/emote/living/carbon/human/pale
 	key = "pale"
