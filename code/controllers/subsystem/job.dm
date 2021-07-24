@@ -444,11 +444,10 @@ SUBSYSTEM_DEF(job)
 		var/spawning_handled = FALSE
 		var/obj/S = null
 		if(HAS_TRAIT(SSstation, STATION_TRAIT_RANDOM_ARRIVALS))
-			DropLandAtRandomHallwayPoint(living_mob)
-			spawning_handled = TRUE
-		else if(length(GLOB.jobspawn_overrides[rank]))
+			spawning_handled = DropLandAtRandomHallwayPoint(living_mob)
+		if(length(GLOB.jobspawn_overrides[rank]) && !spawning_handled)
 			S = pick(GLOB.jobspawn_overrides[rank])
-		else
+		else if(!spawning_handled)
 			for(var/obj/effect/landmark/start/sloc in GLOB.start_landmarks_list)
 				if(sloc.name != rank)
 					S = sloc //so we can revert to spawning them on top of eachother if something goes wrong
@@ -687,11 +686,12 @@ SUBSYSTEM_DEF(job)
 ///Lands specified mob at a random spot in the hallways
 /datum/controller/subsystem/job/proc/DropLandAtRandomHallwayPoint(mob/living/living_mob)
 	var/turf/spawn_turf = get_safe_random_station_turf(typesof(/area/hallway))
-
+	if(!spawn_turf)
+		return FALSE
 	var/obj/structure/closet/supplypod/centcompod/toLaunch = new()
 	living_mob.forceMove(toLaunch)
 	new /obj/effect/DPtarget(spawn_turf, toLaunch)
-
+	return TRUE
 
 ///////////////////////////////////
 //Keeps track of all living heads//
