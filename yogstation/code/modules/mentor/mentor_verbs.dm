@@ -85,7 +85,7 @@ GLOBAL_PROTECT(mentor_verbs)
 		return
 
 	if(M.has_trauma_type(/datum/brain_trauma/special/imaginary_friend/mrat))
-		to_chat(src, "<span class='notice'>You already have or are requesting a mentor rat!</span>")
+		to_chat(src, "<span class='notice'>You already have or are requesting a mentor!</span>")
 		return
 	
 	var/alertresult = alert(M, "This will create a rat-shaped avatar that a mentor can possess and guide you in person. Do you wish to continue?",,"Yes", "No")
