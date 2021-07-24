@@ -1,0 +1,4 @@
+author: "wejengin2"
+delete-after: true 
+changes: 
+  - bugfix: "fixes the luxury shuttle windows having space tiles under it"
