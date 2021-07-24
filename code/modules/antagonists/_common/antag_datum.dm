@@ -106,9 +106,9 @@ GLOBAL_LIST_EMPTY(antagonists)
 	
 	owner.current.ghostize(0)
 	owner.current.key = null
-	
+	var/mob/dead/observer/C
 	if(LAZYLEN(candidates))
-		var/mob/dead/observer/C = pick(candidates)
+		C = pick(candidates)
 	message_admins(" [key_name_admin(owner)] [C ? "has been replaced by [key_name_admin(C)]" : "is banned from [job_rank] and was unable to be replaced!"]")
 	owner.current.key = C.key ? C.key : null
 	
