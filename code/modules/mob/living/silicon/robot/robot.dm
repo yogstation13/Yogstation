@@ -16,7 +16,7 @@
 	var/obj/item/robot_suit/robot_suit = null ///Used for deconstruction to remember what the borg was constructed out of..
 	var/obj/item/mmi/mmi = null
 
-	var/throwcooldown = FALSE
+	var/throwcooldown = FALSE /// Used to determine cooldown for spin.
 
 	var/shell = FALSE
 	var/deployed = FALSE
