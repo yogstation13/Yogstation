@@ -356,7 +356,7 @@
 /mob/living/silicon/ai/cancel_camera()
 	view_core()
 
-/mob/living/silicon/ai/verb/wipe_core()
+/mob/living/silicon/ai/verb/aicryo()
 	set name = "Hibernate"
 	set category = "OOC"
 	set desc = "Put yourself into hibernation. This is functionally equivalent to cryo, freeing up your job slot."
@@ -372,7 +372,7 @@
 
 	if(GLOB.announcement_systems.len)
 		var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)
-		announcer.announce("AIWIPE", real_name, mind.assigned_role, list())
+		announcer.announce("AICRYO", real_name, mind.assigned_role, list())
 
 	if(!get_ghost(TRUE))
 		if(world.time < 30 MINUTES)//before the 30 minute mark
