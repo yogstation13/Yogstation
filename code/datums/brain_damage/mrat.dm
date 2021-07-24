@@ -37,6 +37,7 @@
 
 /mob/camera/imaginary_friend/mrat/Initialize(mapload, _trauma)
 	. = ..()
+	color = "#1ABC9C"
 	leave = new
 	leave.Grant(src)
 
