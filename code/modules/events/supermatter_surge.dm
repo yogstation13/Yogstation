@@ -12,7 +12,7 @@
 
 	var/selected_power = input("How severe should it be? Between 1000 and 100000") as num|null
 	if(!selected_power)
-		selected_power = 1000
+		selected_power = rand(1000, 100000)
 	selected_power = clamp(selected_power, 1000, 100000)
 	forced_power = selected_power
 
