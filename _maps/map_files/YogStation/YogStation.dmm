@@ -52494,12 +52494,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"pMe" = (
-/obj/machinery/camera{
-	c_tag = "Hydroponics North"
-	},
-/turf/template_noop,
-/area/hydroponics)
 "pMt" = (
 /obj/machinery/advanced_airlock_controller{
 	dir = 1;
@@ -52853,13 +52847,6 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"pXY" = (
-/obj/machinery/camera{
-	c_tag = "Hydroponics South";
-	dir = 8
-	},
-/turf/template_noop,
-/area/hydroponics)
 "pYf" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
@@ -107365,7 +107352,7 @@ aIp
 aKI
 aUn
 aIp
-pMe
+nia
 nia
 nia
 nia
@@ -108400,7 +108387,7 @@ nia
 nia
 nia
 nia
-pXY
+nia
 bam
 bfO
 aYV
