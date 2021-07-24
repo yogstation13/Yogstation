@@ -131,6 +131,38 @@
 	new choice(get_turf(M))
 	to_chat(M, "You hear something crackle from the beacon for a moment before a voice speaks.  \"Please stand by for a message from S.E.L.F. Message as follows: <span class='bold'>Item request received. Your package has been transported, use the autosurgeon supplied to apply the upgrade.</span> Message ends.\"")
 
+
+/obj/item/choice_beacon/bar_remote
+	name = "bar remote"
+	desc = "A fancy-looking remote that instructs the bar's nanite systems to construct a layout."
+	uses = 1
+
+/obj/item/choice_beacon/bar_remote/generate_display_names()
+	var/static/list/bar_list
+	if(!bar_list)
+		bar_list = list()
+		var/list/templist = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Clock", "Bar Arcade")
+		for(var/V in templist)
+			bar_list[V] = V
+	return bar_list
+
+/obj/item/choice_beacon/bar_remote/spawn_option(choice,mob/living/M)
+	to_chat(M, "Bar choice locked in. Construction nanites engaged.")
+	var/datum/map_template/template = SSmapping.station_room_templates[choice]
+
+	for(var/obj/effect/landmark/stationroom/box/bar/B in world)
+		template.load(B.loc, centered = FALSE)
+		qdel(B)
+	
+	// Reboots lighting because it breaks on load
+	var/area/K = GLOB.areas_by_type[/area/crew_quarters/kitchen]
+	K.set_dynamic_lighting(DYNAMIC_LIGHTING_DISABLED)
+	K.set_dynamic_lighting()
+	
+	var/area/B = GLOB.areas_by_type[/area/crew_quarters/bar]
+	B.set_dynamic_lighting(DYNAMIC_LIGHTING_DISABLED)
+	B.set_dynamic_lighting()
+
 /obj/item/skub
 	desc = "It's skub."
 	name = "skub"

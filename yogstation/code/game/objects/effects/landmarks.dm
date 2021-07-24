@@ -85,10 +85,11 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	icon = 'yogstation/icons/rooms/box/bar.dmi'
 	icon_state = "bar_box"
 
-/obj/effect/landmark/stationroom/box/bar/choose()
-	. = ..()
-	if(SSevents.holidays && SSevents.holidays["St. Patrick's Day"])
-		return "Bar Irish"
+/obj/effect/landmark/stationroom/box/bar/load(template_name)
+	var/turf/T = get_turf(src)
+	if(!T)
+		return FALSE
+	return TRUE
 
 /obj/effect/landmark/stationroom/box/engine
 	template_names = list("Engine SM", "Engine Singulo And Tesla", "Engine TEG")
