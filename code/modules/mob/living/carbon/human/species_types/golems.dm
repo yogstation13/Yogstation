@@ -1343,3 +1343,28 @@
 		remove_ranged_ability("Something nullifies any teleports in the local area...")
 		return FALSE
 	return TRUE
+
+/datum/species/golem/ruinous //gets a weakened voice of god, is tough, and is holy, but is slower.
+	name = "Ruinous Golem"
+	id = "ruinous golem"
+	fixed_mut_color = "333"
+	speedmod = 2.5 //slower
+	armor = 70 //up from 55
+	meat = /obj/item/reagent_containers/food/snacks/meat/slab/blessed
+	info_text = "As an <span class='danger'>Ruinous Golem</span>, you are made of an ancient powerful metal, which grants you special abilities. You are, however, quite slow."
+	prefix = "Ruinous"
+	special_names = list("One", "Elder", "Watcher", "Walker") //ominous
+	var/obj/effect/proc_holder/spell/voice_of_god/ruinous/ruinous_speak
+
+/datum/species/golem/ruinous/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+	..()
+	ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
+	ruinous_speak = new
+	ruinous_speak.charge_counter = 0
+	C.AddSpell(ruinous_speak)
+
+/datum/species/golem/ruinous/on_species_loss(mob/living/carbon/C)
+	REMOVE_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
+	if(ruinous_speak)
+		C.RemoveSpell(ruinous_speak)
+	..()

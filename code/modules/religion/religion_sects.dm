@@ -292,3 +292,28 @@
 	to_chat(L, "<span class='notice'>[GLOB.deity] happily accepts your offering, and brings the crop to a new home.</span>")
 	qdel(I)
 	return TRUE
+
+/**** Gathering of the Old Ones sect, bless flesh and sacrifice it to gain favor for fancy runes. ****/
+// Blessed meat slabs are the currency of this sect, they use it in order to make fancy structures and runes.
+
+/datum/religion_sect/oldgods
+	name = "Gathering of the Old Ones"
+	desc = "A sect dedicated to the Old Gods."
+	convert_opener = "The great gods of old welcome you to their gathering, acolyte.<br>Bless slabs of meat on your altar and then sacrifice it in the name of the Old Gods."
+	alignment = ALIGNMENT_EVIL //kind of evil?
+	max_favor = 1000
+	desired_items = list(/obj/item/reagent_containers/food/snacks/meat/slab/blessed)
+	rites_list = list(/datum/religion_rites/ruinousknife, /datum/religion_rites/meatbless, /datum/religion_rites/ruinousmetal)
+	altar_icon_state = "convertaltar-black"
+
+//old ones sect bibles don't heal or do anything special apart from the standard holy water blessings
+/datum/religion_sect/oldgods/sect_bless(mob/living/blessed, mob/living/user)
+	return TRUE
+
+/datum/religion_sect/oldgods/on_sacrifice(obj/item/reagent_containers/food/snacks/meat/slab/blessed/offering, mob/living/user)
+	if(!istype(offering))
+		return
+	to_chat(user, "<span class='notice'> An image of [GLOB.deity] flashes in your mind. They look pleased.</span>")
+	adjust_favor(50, user)
+	qdel(offering)
+	return TRUE

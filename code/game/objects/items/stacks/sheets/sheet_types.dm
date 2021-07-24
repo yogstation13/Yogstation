@@ -759,3 +759,25 @@ GLOBAL_LIST_INIT(cheese_recipes, list (
 /obj/item/stack/sheet/cheese/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.cheese_recipes
 	. = ..()
+
+/obj/item/stack/sheet/ruinous_metal
+	name = "ruinous metal"
+	desc = "Metal with a strange aura surrounding it, along with various inscriptions etched onto the surface.."
+	icon_state = "sheet-runed"
+	item_state = "sheet-rune"
+	icon = 'icons/obj/stack_objects.dmi'
+	singular_name = "ruinous metal sheet"
+	sheettype = null
+	max_amount = 20
+	novariants = TRUE
+	grind_results = list(/datum/reagent/iron = 5, /datum/reagent/blood = 15)
+	merge_type = /obj/item/stack/sheet/ruinous_metal
+
+GLOBAL_LIST_INIT(ruinous_metal_recipes, list (
+	new/datum/stack_recipe("holy fountain", /obj/structure/holyfountain, 3, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("altar of the gods", /obj/structure/altar_of_gods, 6, one_per_turf = 1, on_floor = 1 )))
+
+/obj/item/stack/sheet/ruinous_metal/Initialize(mapload, new_amount, merge = TRUE)
+	recipes = GLOB.ruinous_metal_recipes
+	. = ..()
+

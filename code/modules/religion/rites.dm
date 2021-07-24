@@ -344,3 +344,59 @@
 	human2plant.set_species(/datum/species/golem/wood/holy)
 	human2plant.visible_message("<span class='notice'>[human2plant] has been converted by the rite of [name]!</span>")
 	return TRUE
+
+/*********Old Ones**********/
+
+/datum/religion_rites/ruinousknife
+	name = "Ruinous Knife"
+	desc = "Creates a knife that is mostly cosmetic, but is also a weapon."
+	ritual_length = 5 SECONDS
+	invoke_msg = "please, old ones, lend us a tool of holy creation."
+	favor_cost = 50
+
+/datum/religion_rites/ruinousknife/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	new /obj/item/kitchen/knife/ritual/holy(altar_turf)
+	playsound(altar_turf, 'sound/magic/enter_blood.ogg', 50, TRUE)
+	return TRUE
+
+/datum/religion_rites/meatbless
+	name = "Meat Blessing"
+	desc = "Bless a piece of meat. Preps it for sacrifice"
+	ritual_length = 5 SECONDS
+	invoke_msg = "old ones, I bless this flesh in your name."
+	///the piece of meat that will be blessed, only one per rite
+	var/obj/item/reagent_containers/food/snacks/meat/slab/chosen_meat
+
+/datum/religion_rites/meatbless/perform_rite(mob/living/user, atom/religious_tool)
+	for(var/obj/item/reagent_containers/food/snacks/meat/slab/offering in get_turf(religious_tool))
+		if(istype(offering, /obj/item/reagent_containers/food/snacks/meat/slab/blessed))
+			continue //we ignore anything that is already blessed
+		chosen_meat = offering //the meat has been chosen by our lord and savior
+		return ..()
+	return FALSE
+
+/datum/religion_rites/meatbless/invoke_effect(mob/living/user, atom/religious_tool)
+	if(!QDELETED(chosen_meat) && get_turf(religious_tool) == chosen_meat.loc) //check if the same meat is still there
+		var/altar_turf = get_turf(religious_tool)
+		playsound(get_turf(religious_tool), 'sound/magic/enter_blood.ogg', 50, TRUE)
+		qdel(chosen_meat)
+		chosen_meat = null //our lord and savior no longer cares about this meat
+		new /obj/item/reagent_containers/food/snacks/meat/slab/blessed(altar_turf)
+		return TRUE
+	chosen_meat = null
+	to_chat(user, "<span class='warning'>The meat that was chosen for the rite is no longer on the altar!</span>")
+	return FALSE
+
+/datum/religion_rites/ruinousmetal
+	name = "Ruinous Metal"
+	desc = "Creates a piece of metal that can create various holy structures."
+	ritual_length = 5 SECONDS
+	invoke_msg = "please, old ones, lend us some of your holy material."
+	favor_cost = 150
+
+/datum/religion_rites/ruinousmetal/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	new /obj/item/stack/sheet/ruinous_metal(altar_turf)
+	playsound(altar_turf, 'sound/magic/enter_blood.ogg', 50, TRUE)
+	return TRUE

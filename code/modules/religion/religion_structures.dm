@@ -43,3 +43,36 @@
 			icon = sect_to_altar.altar_icon
 		if(sect_to_altar.altar_icon_state)
 			icon_state = sect_to_altar.altar_icon_state
+
+//****Old Gods sect structures****//
+
+/obj/structure/holyfountain //reskinned healing fountain, but different enough i guess
+	name = "blessed fountain"
+	desc = "A dark fountain filled with some kind of strange liquid."
+	icon = 'icons/obj/hand_of_god_structures.dmi'
+	icon_state = "fountain-black"
+	anchored = TRUE
+	density = TRUE
+	var/time_between_uses = 1800
+	var/last_process = 0
+
+/obj/structure/holyfountain/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	if(last_process + time_between_uses > world.time)
+		to_chat(user, "<span class='notice'>The fountain appears to be empty.</span>")
+		return
+	last_process = world.time
+	to_chat(user, "<span class='notice'>The liquid feels warm and soothing as you touch it. The fountain immediately dries up shortly afterwards.</span>")
+	user.reagents.add_reagent(/datum/reagent/medicine/omnizine/godblood,10) //Hurts your brain and makes you go insane
+	user.reagents.add_reagent(/datum/reagent/toxin/mindbreaker,10) //However, it gives rather potent healing.
+	update_icon()
+	addtimer(CALLBACK(src, .proc/update_icon), time_between_uses)
+
+
+/obj/structure/holyfountain/update_icon()
+	if(last_process + time_between_uses > world.time)
+		icon_state = "fountain"
+	else
+		icon_state = "fountain-black"
