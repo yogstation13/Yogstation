@@ -116,19 +116,20 @@
 
 	//robots
 	else if(iscyborg(target))
-		var/mob/living/silicon/S = target
-		log_combat(user, S, "shone in the sensors", src)
+		var/mob/living/silicon/robot/R = target
+		log_combat(user, R, "shone in the sensors", src)
 		//chance to actually hit the eyes depends on internal component
 		if(prob(effectchance * diode.rating))
-			var/mob/living/silicon/robot/R = S
 			R.overlay_fullscreen("laserpointer", /obj/screen/fullscreen/flash/static)
 			R.uneq_all()
 			R.stop_pulling()
-			addtimer(CALLBACK(R, /mob/living/silicon/robot/.proc/clear_fullscreen, "laserpointer"), 5 SECONDS)
-			to_chat(S, "<span class='danger'>Your sensors were overloaded by a laser!</span>")
-			outmsg = "<span class='notice'>You overload [S] by shining [src] at [S.p_their()] sensors.</span>"
+			R.break_all_cyborg_slots(TRUE)
+			addtimer(CALLBACK(R, /mob/living/silicon/robot/.proc/clear_fullscreen, "laserpointer"), 7 SECONDS)
+			addtimer(CALLBACK(R, /mob/living/silicon/robot/.proc/repair_all_cyborg_slots), 7 SECONDS)
+			to_chat(R, "<span class='danger'>Your sensors were overloaded by a laser!</span>")
+			outmsg = "<span class='notice'>You overload [R] by shining [src] at [R.p_their()] sensors.</span>"
 		else
-			outmsg = "<span class='warning'>You fail to overload [S] by shining [src] at [S.p_their()] sensors!</span>"
+			outmsg = "<span class='warning'>You fail to overload [R] by shining [src] at [R.p_their()] sensors!</span>"
 
 	//cameras
 	else if(istype(target, /obj/machinery/camera))
