@@ -150,7 +150,7 @@
 	to_chat(M, "Bar choice locked in. Construction nanites engaged.")
 	var/datum/map_template/template = SSmapping.station_room_templates[choice]
 
-	for(var/obj/effect/landmark/stationroom/box/bar/B in world)
+	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list )
 		template.load(B.loc, centered = FALSE)
 		qdel(B)
 	
