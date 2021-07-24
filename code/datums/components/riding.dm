@@ -317,7 +317,7 @@
 	var/atom/movable/AM = parent
 	AM.unbuckle_mob(M)
 	var/mob/living/silicon/robot/S = AM
-	if(S?.throwcooldown)
+	if(S.throwcooldown)
 		to_chat(S, "You have to wait for your motors to recharge")
 		return
 	var/turf/target = get_edge_target_turf(AM, AM.dir)
