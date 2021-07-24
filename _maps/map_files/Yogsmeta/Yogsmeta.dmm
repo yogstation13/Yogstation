@@ -24619,18 +24619,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/foyer)
-"aXE" = (
-/obj/machinery/computer/atmos_control{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark/corner,
-/area/engine/atmos)
 "aXF" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -39281,38 +39269,6 @@
 	},
 /turf/open/floor/plasteel/dark/corner,
 /area/hallway/primary/starboard)
-"byS" = (
-/obj/machinery/status_display/evac{
-	pixel_y = 32
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/computer/atmos_alert,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark/corner{
-	dir = 1
-	},
-/area/engine/atmos)
-"byT" = (
-/obj/structure/sign/map/left{
-	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
-	icon_state = "map-left-MS";
-	pixel_y = 32
-	},
-/obj/machinery/camera{
-	c_tag = "Atmospherics - Control Room"
-	},
-/obj/machinery/computer/station_alert,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark/corner{
-	dir = 1
-	},
-/area/engine/atmos)
 "byW" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1;
@@ -40008,21 +39964,6 @@
 	},
 /obj/effect/landmark/start/atmospheric_technician,
 /turf/open/floor/plasteel,
-/area/engine/atmos)
-"bAF" = (
-/obj/machinery/computer/atmos_control{
-	dir = 8
-	},
-/obj/machinery/requests_console{
-	department = "Atmospherics";
-	departmentType = 4;
-	name = "Atmos RC";
-	pixel_x = 30
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark/corner,
 /area/engine/atmos)
 "bAG" = (
 /obj/machinery/door/poddoor/preopen{
@@ -73119,6 +73060,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"dZe" = (
+/obj/machinery/status_display/evac{
+	pixel_y = 32
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/computer/atmos_alert{
+	name = "Atmospheric Alert Console"
+	},
+/turf/open/floor/plasteel/dark/corner{
+	dir = 1
+	},
+/area/engine/atmos)
 "ean" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating{
@@ -74067,6 +74025,15 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
+"fJZ" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/corner,
+/area/engine/atmos)
 "fKc" = (
 /obj/structure/chair/office/light{
 	dir = 8
@@ -76170,6 +76137,22 @@
 /obj/machinery/portable_atmospherics/canister/water_vapor,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"jBh" = (
+/obj/machinery/requests_console{
+	department = "Atmospherics";
+	departmentType = 4;
+	name = "Atmos RC";
+	pixel_x = 30
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/computer/atmos_control{
+	dir = 8;
+	name = "Tank Monitor"
+	},
+/turf/open/floor/plasteel/dark/corner,
+/area/engine/atmos)
 "jCV" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
@@ -77766,6 +77749,25 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"mGT" = (
+/obj/structure/sign/map/left{
+	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
+	icon_state = "map-left-MS";
+	pixel_y = 32
+	},
+/obj/machinery/camera{
+	c_tag = "Atmospherics - Control Room"
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/computer/station_alert{
+	name = "Station Alert Console"
+	},
+/turf/open/floor/plasteel/dark/corner{
+	dir = 1
+	},
+/area/engine/atmos)
 "mJk" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
@@ -123898,7 +123900,7 @@ msD
 hkq
 bve
 bxd
-byS
+dZe
 dpk
 aCj
 bhU
@@ -124155,7 +124157,7 @@ owR
 pmZ
 qdT
 bxd
-byT
+mGT
 bhD
 aXv
 byX
@@ -124670,8 +124672,8 @@ bdl
 bvh
 bxd
 sim
-bAF
-aXE
+jBh
+fJZ
 bzd
 btn
 bxc
