@@ -112,6 +112,7 @@
 /obj/item/kitchen/knife/ritual/holy
 	name = "ruinous knife"
 	desc = "The runes inscribed on the knife radiate a strange power."
+	force = 12
 
 /obj/item/kitchen/knife/bloodletter
 	name = "bloodletter"
