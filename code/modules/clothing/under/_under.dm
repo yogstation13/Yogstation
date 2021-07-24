@@ -56,6 +56,11 @@
 		//make the sensor mode favor higher levels, except coords.
 		sensor_mode = pick(SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS, SENSOR_COORDS)
 
+/obj/item/clothing/under/Destroy()
+	if(attached_accessory)
+		remove_accessory(loc, TRUE)
+	return ..()
+
 /obj/item/clothing/under/emp_act()
 	. = ..()
 	if(has_sensor > NO_SENSORS)
@@ -144,20 +149,22 @@
 
 			return TRUE
 
-/obj/item/clothing/under/proc/remove_accessory(mob/user)
-	if(!isliving(user))
+/obj/item/clothing/under/proc/remove_accessory(mob/user, forced)
+	if(!isliving(user) && !forced)
 		return
-	if(!can_use(user))
+	if(!can_use(user) && !forced)
 		return
 
 	if(attached_accessory)
 		var/obj/item/clothing/accessory/A = attached_accessory
 		attached_accessory.detach(src, user)
-		if(user.put_in_hands(A))
+		if(user.put_in_hands(A) && !forced)
 			to_chat(user, "<span class='notice'>You detach [A] from [src].</span>")
-		else
+		else if(!forced)
 			to_chat(user, "<span class='notice'>You detach [A] from [src] and it falls on the floor.</span>")
-
+		else
+			attached_accessory.forceMove(get_turf(src))
+		
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
 			H.update_inv_w_uniform()
