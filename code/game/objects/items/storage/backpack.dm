@@ -690,6 +690,7 @@
 	new /obj/item/clothing/suit/det_suit/noir(src)
 	new /obj/item/clothing/head/fedora(src)
 	new /obj/item/clothing/shoes/laceup(src)
+	new /obj/item/clothing/shoes/xeno_wraps/jackboots(src)
 	new /obj/item/clothing/under/yogs/forensictech(src)
 	new /obj/item/clothing/under/yogs/bluedetective(src)
 	new /obj/item/clothing/under/yogs/golddetective(src)
