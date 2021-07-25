@@ -148,14 +148,6 @@
 	else
 		spawn_option("Random")
 	unusable = TRUE
-	world.log << "BAR DONE"
-	world.log << "BAR DONE"
-	world.log << "BAR DONE"
-	world.log << "BAR DONE"
-	world.log << "BAR DONE"
-	world.log << "BAR DONE"
-	world.log << "BAR DONE"
-	world.log << "BAR DONE"
 
 /obj/item/choice_beacon/bar_remote/generate_display_names()
 	var/static/list/bar_list
