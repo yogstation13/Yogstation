@@ -110,12 +110,12 @@
 
 /datum/skillcape/physician
     name = "cape of the brig physician"
-    job = "Detective"
+    job = "Brig Physician"
     path = /obj/item/clothing/neck/skillcape/physician
 
 /datum/skillcape/trimmed/physician
     name = "cape of the grand brig physician"
-    job = "Detective"
+    job = "Brig Physician"
     path = /obj/item/clothing/neck/skillcape/trimmed/physician
 
 /datum/skillcape/signaltech
