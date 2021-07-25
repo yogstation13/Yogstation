@@ -193,6 +193,7 @@
 	if(!RM.be_transformed_to(src))
 		qdel(RM)
 		return
+	R.special_skin = FALSE
 	R.module = RM
 	R.update_module_innate()
 	RM.rebuild_modules()

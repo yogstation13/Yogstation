@@ -414,54 +414,35 @@
 										else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 											return
 										to_chat(usr, "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]")
-										to_chat(usr, "<b>Minor Crimes:</b>")
-										for(var/datum/data/crime/c in R.fields["mi_crim"])
+										to_chat(usr, "<b>Crimes:</b>")
+										for(var/datum/data/crime/c in R.fields["crimes"])
 											to_chat(usr, "<b>Crime:</b> [c.crimeName]")
 											to_chat(usr, "<b>Details:</b> [c.crimeDetails]")
 											to_chat(usr, "Added by [c.author] at [c.time]")
 											to_chat(usr, "----------")
-										to_chat(usr, "<b>Major Crimes:</b>")
-										for(var/datum/data/crime/c in R.fields["ma_crim"])
-											to_chat(usr, "<b>Crime:</b> [c.crimeName]")
-											to_chat(usr, "<b>Details:</b> [c.crimeDetails]")
+										to_chat(usr, "<b>Comments:</b>")
+										for(var/datum/data/comment/c in R.fields["comments"])
+											to_chat(usr, "<b>Comment:</b> [c.commentText]")
 											to_chat(usr, "Added by [c.author] at [c.time]")
 											to_chat(usr, "----------")
 										to_chat(usr, "<b>Notes:</b> [R.fields["notes"]]")
 									return
 
 								if(href_list["add_crime"])
-									switch(alert("What crime would you like to add?","Security HUD","Minor Crime","Major Crime","Cancel"))
-										if("Minor Crime")
-											if(R)
-												var/t1 = stripped_input("Please input minor crime names:", "Security HUD", "", null)
-												var/t2 = stripped_multiline_input("Please input minor crime details:", "Security HUD", "", null)
-												if(R)
-													if (!t1 || !t2 || !allowed_access)
-														return
-													else if(!H.canUseHUD())
-														return
-													else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
-														return
-													var/crime = GLOB.data_core.createCrimeEntry(t1, t2, allowed_access, station_time_timestamp())
-													GLOB.data_core.addMinorCrime(R.fields["id"], crime)
-													investigate_log("New Minor Crime: <strong>[t1]</strong>: [t2] | Added to [R.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
-													to_chat(usr, "<span class='notice'>Successfully added a minor crime.</span>")
-													return
-										if("Major Crime")
-											if(R)
-												var/t1 = stripped_input("Please input major crime names:", "Security HUD", "", null)
-												var/t2 = stripped_multiline_input("Please input major crime details:", "Security HUD", "", null)
-												if(R)
-													if (!t1 || !t2 || !allowed_access)
-														return
-													else if (!H.canUseHUD())
-														return
-													else if (!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
-														return
-													var/crime = GLOB.data_core.createCrimeEntry(t1, t2, allowed_access, station_time_timestamp())
-													GLOB.data_core.addMajorCrime(R.fields["id"], crime)
-													investigate_log("New Major Crime: <strong>[t1]</strong>: [t2] | Added to [R.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
-													to_chat(usr, "<span class='notice'>Successfully added a major crime.</span>")
+									if(R)
+										var/crimeName = stripped_input("Please input crime name:", "Security HUD", "")
+										var/crimeDetails = stripped_multiline_input("Please input crime details:", "Security HUD", "")
+										if(R)
+											if (!crimeName || !crimeDetails || !allowed_access)
+												return
+											else if(!H.canUseHUD())
+												return
+											else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
+												return
+											var/crime = GLOB.data_core.createCrimeEntry(crimeName, crimeDetails, allowed_access, station_time_timestamp())
+											GLOB.data_core.addCrime(R.fields["id"], crime)
+											investigate_log("New Crime: <strong>[crimeName]</strong>: [crimeDetails] | Added to [R.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
+											to_chat(usr, "<span class='notice'>Successfully added a crime.</span>")
 									return
 
 								if(href_list["view_comment"])
@@ -471,27 +452,23 @@
 										else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 											return
 										to_chat(usr, "<b>Comments/Log:</b>")
-										var/counter = 1
-										while(R.fields[text("com_[]", counter)])
-											to_chat(usr, R.fields[text("com_[]", counter)])
+										for(var/datum/data/comment/C in R.fields["comments"])
+											to_chat(usr, text("Made by [] on []<BR>[]", C.author, C.time, C.commentText))
 											to_chat(usr, "----------")
-											counter++
 										return
 
 								if(href_list["add_comment"])
 									if(R)
-										var/t1 = stripped_multiline_input("Add Comment:", "Secure. records", null, null)
+										var/commentValue = stripped_multiline_input("Add Comment:", "Security records")
 										if(R)
-											if (!t1 || !allowed_access)
+											if (!commentValue || !allowed_access)
 												return
 											else if(!H.canUseHUD())
 												return
 											else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 												return
-											var/counter = 1
-											while(R.fields[text("com_[]", counter)])
-												counter++
-											R.fields[text("com_[]", counter)] = text("Made by [] on [] [], []<BR>[]", allowed_access, station_time_timestamp(), time2text(world.realtime, "MMM DD"), GLOB.year_integer+540, t1)
+											var/comment = GLOB.data_core.createCommentEntry(commentValue, allowed_access)
+											GLOB.data_core.addComment(R.fields["id"], comment)
 											to_chat(usr, "<span class='notice'>Successfully added comment.</span>")
 											return
 							to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")

@@ -412,12 +412,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"aY" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "aZ" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -610,17 +604,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/engine/engineering)
-"bC" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Engineering Supermatter Port";
-	dir = 4;
-	network = list("ss13","engine")
-	},
-/turf/open/floor/engine,
 /area/engine/engineering)
 "bD" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1763,13 +1746,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"eh" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "ei" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -1930,6 +1906,22 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"po" = (
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
+"qr" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Engineering Supermatter Port";
+	dir = 4;
+	network = list("ss13","engine")
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "qJ" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1949,10 +1941,26 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"sK" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4;
+	icon_state = "scrub_map_on-3"
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "tB" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
+/area/engine/engineering)
+"tR" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/engine,
 /area/engine/engineering)
 "vZ" = (
 /obj/structure/cable{
@@ -1983,6 +1991,13 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/engine,
+/area/engine/engineering)
+"CW" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "ET" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden,
@@ -2026,9 +2041,24 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"Gd" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "Jj" = (
 /mob/living/simple_animal/opossum/poppy,
 /turf/open/floor/plasteel/dark,
+/area/engine/engineering)
+"KO" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/engine,
 /area/engine/engineering)
 "Pb" = (
 /obj/effect/turf_decal/stripes/line{
@@ -2043,6 +2073,13 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"Pr" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "SC" = (
@@ -2363,7 +2400,7 @@ ax
 aJ
 aJ
 aJ
-bC
+qr
 bT
 cp
 cA
@@ -2388,7 +2425,7 @@ aa
 ad
 ai
 ay
-aK
+Gd
 aK
 aK
 aK
@@ -2396,7 +2433,7 @@ bU
 cq
 cB
 cN
-cB
+Pr
 dl
 dB
 ad
@@ -2430,7 +2467,7 @@ dC
 ac
 bN
 bN
-eh
+sK
 bN
 bN
 ad
@@ -2725,7 +2762,7 @@ ad
 as
 zQ
 aV
-bo
+tR
 bo
 bo
 cg
@@ -2737,7 +2774,7 @@ dw
 dL
 ad
 ea
-bN
+po
 en
 bN
 ex
@@ -2760,7 +2797,7 @@ ch
 bz
 bz
 cT
-bz
+KO
 dx
 dM
 ad
@@ -2785,7 +2822,7 @@ bb
 ad
 ad
 ci
-bN
+po
 bN
 cU
 bN
@@ -2808,7 +2845,7 @@ aa
 ab
 qV
 UZ
-aY
+CW
 bq
 ac
 bN

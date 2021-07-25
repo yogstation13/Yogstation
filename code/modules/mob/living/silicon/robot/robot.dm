@@ -176,8 +176,8 @@
 		if(mmi.brainmob)
 			if(mmi.brainmob.stat == DEAD)
 				mmi.brainmob.stat = CONSCIOUS
-				GLOB.dead_mob_list -= mmi.brainmob
-				GLOB.alive_mob_list += mmi.brainmob
+				mmi.brainmob.remove_from_dead_mob_list()
+				mmi.brainmob.add_to_alive_mob_list()
 			mind.transfer_to(mmi.brainmob)
 			mmi.update_icon()
 		else
@@ -933,7 +933,10 @@
 	. = ..()
 	var/hd = maxHealth - health
 	if(hd > 50)
-		. += hd/100
+		if(has_gravity())
+			. += hd/100
+		else
+			. += hd/150
 
 /mob/living/silicon/robot/update_sight()
 	if(!client)

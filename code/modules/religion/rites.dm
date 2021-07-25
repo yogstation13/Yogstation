@@ -102,6 +102,44 @@
 	human2borg.visible_message("<span class='notice'>[human2borg] has been converted by the rite of [name]!</span>")
 	return TRUE
 
+/datum/religion_rites/machine_blessing
+	name = "Receive Blessing"
+	desc = "Receive a blessing from the machine god to further your ascension."
+	ritual_length = 5 SECONDS
+	ritual_invocations =list( "Let your will power our forges.",
+							"...Help us in our great conquest!")
+	invoke_msg = "The end of flesh is near!"
+	favor_cost = 200	
+
+/datum/religion_rites/machine_blessing/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	..()
+	var/altar_turf = get_turf(religious_tool)
+	var/blessing = pick(
+					/obj/item/organ/cyberimp/arm/surgery,
+					/obj/item/organ/cyberimp/eyes/hud/diagnostic,
+					/obj/item/organ/cyberimp/eyes/hud/medical,
+					/obj/item/organ/cyberimp/mouth/breathing_tube,
+					/obj/item/organ/cyberimp/chest/thrusters,
+					/obj/item/organ/eyes/robotic/glow)
+	new blessing(altar_turf)
+	return TRUE
+
+/datum/religion_rites/botcreation
+	name = "Lesser Robotic Manufacturing"
+	desc = "Manufacture a robotic companion."
+	ritual_length = 45 SECONDS
+	ritual_invocations = list(
+	"I call upon the machine spirits, aid me in creation...",
+	"... The energy shall take the form of its shell...")
+	invoke_msg = "...AND LET IT BE BORN!!"
+	favor_cost = 50 // two bluespace cells, 80MJ. needs sci and mining to be competent.
+
+/datum/religion_rites/botcreation/invoke_effect(atom/religious_tool, mob/user)
+	var/altar_turf = get_turf(religious_tool)
+	var/chosenbot = pick(/mob/living/simple_animal/bot/medbot, /mob/living/simple_animal/bot/cleanbot, /mob/living/simple_animal/bot/firebot, /obj/item/drone_shell) // nothing too bad.
+	new chosenbot(altar_turf)
+	return TRUE
+
 /*********Capitalists**********/
 
 /*
