@@ -68,6 +68,7 @@
   * Akin to certain spiders, venus human traps can also be possessed and controlled by ghosts.
   *
   */
+
 /mob/living/simple_animal/hostile/venus_human_trap
 	name = "venus human trap"
 	desc = "Now you know how the fly feels."
@@ -102,7 +103,7 @@
 	. = ..()
 	pull_vines()
 	if(!kudzu_need())
-		adjustHealth(-5)
+		adjustHealth(5) 
 		if(prob(20))
 			to_chat(src, "<span class='danger'>You wither away without the support of the kudzu...</span>")
 	
@@ -139,6 +140,7 @@
 /mob/living/simple_animal/hostile/venus_human_trap/Login()
 	. = ..()
 	to_chat(src, "<span class='boldwarning'>You are a venus human trap! Protect the kudzu at all costs, and feast on those who oppose you!</span>")
+	to_chat(src, "Stay near vines to remain healthy.")
 
 /mob/living/simple_animal/hostile/venus_human_trap/attack_ghost(mob/user)
 	. = ..()
@@ -200,7 +202,7 @@
   * Damages the mob if not
   */
 /mob/living/simple_animal/hostile/venus_human_trap/proc/kudzu_need()
-	for(var/obj/structure/spacevine in view(3,src))
+	for(var/obj/structure/spacevine/vine_found in view(3,src))
 		return TRUE
 	return FALSE
 		
