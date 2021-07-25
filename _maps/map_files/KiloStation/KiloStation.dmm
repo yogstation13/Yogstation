@@ -45309,10 +45309,6 @@
 /obj/effect/landmark/start/bartender,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"bvl" = (
-/obj/structure/bookcase/random/adult,
-/turf/open/floor/plasteel/dark,
-/area/library)
 "bvm" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -100725,6 +100721,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/central)
+"tYo" = (
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/library)
 "tYt" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -128922,7 +128924,7 @@ buC
 rRJ
 bgY
 bjk
-bvl
+tYo
 bvb
 rve
 mfB
