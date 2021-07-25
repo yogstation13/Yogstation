@@ -740,7 +740,6 @@
 	new /obj/item/clothing/under/yogs/hoslatenight(src)
 	new /obj/item/clothing/under/yogs/hoscasual(src)
 	new /obj/item/clothing/suit/armor/vest/hosjacket(src)
-	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 
 /obj/item/storage/backpack/duffelbag/med/chief/clothing
 	name = "Chief Medical Officer's clothing duffelbag"
