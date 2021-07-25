@@ -631,7 +631,6 @@
 	new /obj/item/clothing/suit/armor/vest/rurmcoat(src)
 	new /obj/item/clothing/suit/armor/vest/sovietcoat(src)
 	new /obj/item/clothing/under/yogs/hopcasual(src)
-	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 
 /obj/item/storage/backpack/duffelbag/rd/clothing
 	name = "Research Directors clothing duffelbag"
@@ -740,6 +739,7 @@
 	new /obj/item/clothing/under/yogs/hoslatenight(src)
 	new /obj/item/clothing/under/yogs/hoscasual(src)
 	new /obj/item/clothing/suit/armor/vest/hosjacket(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 
 /obj/item/storage/backpack/duffelbag/med/chief/clothing
 	name = "Chief Medical Officer's clothing duffelbag"
