@@ -100,17 +100,15 @@ GLOBAL_LIST_EMPTY(antagonists)
 	set waitfor = FALSE
 
 	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [name]?", "[name]", null, job_rank, 50, owner.current)
-	
-	owner.current.ghostize(0)
-	to_chat(owner, "Your mob has been taken over by a ghost! Appeal your job ban if you want to avoid this in the future!")
-	
-	owner.current.ghostize(0)
-	owner.current.key = null
 	var/mob/dead/observer/C
+	
+	to_chat(owner, "Your mob has been taken over by a ghost! Appeal your job ban if you want to avoid this in the future!")
 	if(LAZYLEN(candidates))
 		C = pick(candidates)
+		
 	message_admins(" [key_name_admin(owner)] [C ? "has been replaced by [key_name_admin(C)]" : "is banned from [job_rank] and was unable to be replaced!"]")
-	owner.current.key = C.key ? C.key : null
+	owner.current.ghostize(0)
+	owner.current.key = C ? C.key : null
 	
 
 //Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
