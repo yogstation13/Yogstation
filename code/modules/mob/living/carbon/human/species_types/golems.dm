@@ -1344,27 +1344,35 @@
 		return FALSE
 	return TRUE
 
-/datum/species/golem/ruinous //gets a weakened voice of god, is tough, and is holy, but is slower.
+/datum/species/golem/ruinous //tougher, gets telepathy, and speaks louder and their text is cult colored
 	name = "Ruinous Golem"
 	id = "ruinous golem"
-	fixed_mut_color = "333"
-	speedmod = 2.5 //slower
+	//limbs_id = "ruingolem" //i cant get it to work, if someone else finds out what the problem is later on, be my guest, and please fix it.
+	//sexes = FALSE
 	armor = 70 //up from 55
+	//species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES) //no mutcolors or eyesprites
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/blessed
-	info_text = "As an <span class='danger'>Ruinous Golem</span>, you are made of an ancient powerful metal, which grants you special abilities. You are, however, quite slow."
+	fixed_mut_color = "333"
+	info_text = "As an <span class='danger'>Ruinous Golem</span>, you are made of an ancient powerful metal, which strengthens you and allows you to telepathically communicate with others, while also talking with a fraction of the power of an elder god."
 	prefix = "Ruinous"
-	special_names = list("One", "Elder", "Watcher", "Walker") //ominous
-	var/obj/effect/proc_holder/spell/voice_of_god/ruinous/ruinous_speak
+	special_names = list("One", "Elder", "Watcher", "Walker") //ominous 
+	var/obj/effect/proc_holder/spell/targeted/telepathy/eldritch/ruinoustelepathy
+
+/datum/species/golem/ruinous/on_species_loss(mob/living/carbon/C)
+	..()
+	UnregisterSignal(C, COMSIG_MOB_SAY)
+	REMOVE_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
+	if(ruinoustelepathy)
+		C.RemoveSpell(ruinoustelepathy)
 
 /datum/species/golem/ruinous/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
+	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)
 	ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
-	ruinous_speak = new
-	ruinous_speak.charge_counter = 0
-	C.AddSpell(ruinous_speak)
+	ruinoustelepathy = new
+	ruinoustelepathy.charge_counter = 0
+	C.AddSpell(ruinoustelepathy)
 
-/datum/species/golem/ruinous/on_species_loss(mob/living/carbon/C)
-	REMOVE_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
-	if(ruinous_speak)
-		C.RemoveSpell(ruinous_speak)
-	..()
+/datum/species/golem/ruinous/proc/handle_speech(datum/source, list/speech_args)
+	speech_args[SPEECH_SPANS] |= SPAN_CULTLARGE
+	playsound(source, 'sound/effects/curseattack.ogg', 100, 1, 1)

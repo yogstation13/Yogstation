@@ -400,3 +400,48 @@
 	new /obj/item/stack/sheet/ruinous_metal(altar_turf)
 	playsound(altar_turf, 'sound/magic/enter_blood.ogg', 50, TRUE)
 	return TRUE
+
+/datum/religion_rites/bodybless
+	name = "Body Blessing"
+	desc = "Convert a human-esque individual into a being of ruinous metal."
+	ritual_length = 1 MINUTES
+	ritual_invocations = list(
+	"Let us call upon the blessings of the old gods...",
+	"... Show them one that is worthy of greatness...",
+	"... And allow them to bless this one with a great power..."
+	)
+	invoke_msg = "... Become one with the blessings of our gods, arise great one!!"
+	favor_cost = 2500 // 50 slabs of blessed meat, more expensive than working with xenobio.
+
+/datum/religion_rites/bodybless/perform_rite(mob/living/user, atom/religious_tool)
+	if(!ismovable(religious_tool))
+		to_chat(user, "<span class='warning'>This rite requires a religious device that individuals can be buckled to.</span>")
+		return FALSE
+	var/atom/movable/movable_reltool = religious_tool
+	if(!movable_reltool)
+		return FALSE
+	if(!LAZYLEN(movable_reltool.buckled_mobs))
+		. = FALSE
+		if(!movable_reltool.can_buckle) //yes, if you have somehow managed to have someone buckled to something that now cannot buckle, we will still let you perform the rite!
+			to_chat(user, "<span class='warning'>This rite requires a religious device that individuals can be buckled to.</span>")
+			return
+		to_chat(user, "<span class='warning'>This rite requires an individual to be buckled to [movable_reltool].</span>")
+		return
+	return ..()
+
+/datum/religion_rites/bodybless/invoke_effect(mob/living/user, atom/religious_tool)
+	if(!ismovable(religious_tool))
+		CRASH("[name]'s perform_rite had a movable atom that has somehow turned into a non-movable!")
+	var/atom/movable/movable_reltool = religious_tool
+	if(!movable_reltool?.buckled_mobs?.len)
+		return FALSE
+	var/mob/living/carbon/human/human2ruinous
+	for(var/i in movable_reltool.buckled_mobs)
+		if(istype(i,/mob/living/carbon/human))
+			human2ruinous = i
+			break
+	if(!human2ruinous)
+		return FALSE
+	human2ruinous.set_species(/datum/species/golem/ruinous)
+	human2ruinous.visible_message("<span class='notice'>[human2ruinous] has been converted by the rite of [name]!</span>")
+	return TRUE

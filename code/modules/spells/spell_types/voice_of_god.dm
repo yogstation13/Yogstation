@@ -43,9 +43,3 @@
 	cooldown_mod = 0.5
 	spans = list("clown")
 	speech_sound = 'sound/spookoween/scary_horn2.ogg'
-
-/obj/effect/proc_holder/spell/voice_of_god/ruinous
-	name = "Voice of Gods"
-	desc = "Speak a message of the elder gods, forcing listeners to obey your commands."
-	power_mod = 0.5
-	cooldown_mod = 1.5
