@@ -80,11 +80,6 @@
 	"<span class='warning'>These rules are at admin discretion and will be heavily enforced.</span>\n"+\
 	"<span class='warning'><u>If you do not have the regular drone laws, follow your laws to the best of your ability.</u></span>"
 
-
-/mob/living/simple_animal/drone/onGhost()
-	new /obj/item/drone_shell(get_turf(src))
-	qdel(src)
-
 /mob/living/simple_animal/drone/get_status_tab_items()
 	. = ..()
 	. += ""
@@ -97,9 +92,9 @@
 	access_card = new /obj/item/card/id(src)
 	var/datum/job/captain/C = new /datum/job/captain
 	access_card.access = C.get_access()
-
+	
 	var/turf/A = get_area(src)
-
+	
 	if(default_storage)
 		var/obj/item/I = new default_storage(src)
 		equip_to_slot_or_del(I, SLOT_GENERC_DEXTROUS_STORAGE)
@@ -162,7 +157,7 @@
 		dropItemToGround(head)
 
 	var/turf/A = get_area(src)
-
+	
 	alert_drones(DRONE_NET_DISCONNECT)
 
 
