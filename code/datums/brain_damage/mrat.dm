@@ -4,6 +4,7 @@
 	scan_desc = "epistemania"
 	gain_text = "<span class='notice'>Requesting mentor...</span>"
 	lose_text = ""
+	random_gain = FALSE 
 	resilience = TRAUMA_RESILIENCE_ABSOLUTE
 
 /datum/brain_trauma/special/imaginary_friend/mrat/make_friend()
