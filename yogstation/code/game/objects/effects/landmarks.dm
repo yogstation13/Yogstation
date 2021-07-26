@@ -86,7 +86,6 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	icon_state = "bar_box"
 
 /obj/effect/landmark/stationroom/box/bar/load(template_name)
-	GLOB.potential_bars = template_names
 	var/turf/T = get_turf(src)
 	if(!T)
 		return FALSE

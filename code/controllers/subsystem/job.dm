@@ -506,6 +506,7 @@ SUBSYSTEM_DEF(job)
 	job.give_donor_stuff(living_mob, M) // yogs - Donor Features
 	job.give_cape(living_mob, M)
 	job.give_map_flare(living_mob, M)
+	job.give_bar_choice(living_mob, M)
 	log_game("[living_mob.real_name]/[M.client.ckey] joined the round as [living_mob.job].") //yogs - Job logging
 
 	return living_mob
