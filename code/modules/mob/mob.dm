@@ -1205,3 +1205,6 @@
 /mob/setMovetype(newval)
 	. = ..()
 	update_movespeed(FALSE)
+
+/mob/proc/onGhost()
+	return

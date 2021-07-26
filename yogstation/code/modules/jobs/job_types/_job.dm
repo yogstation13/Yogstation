@@ -51,6 +51,9 @@
 		C = H.client
 		if(!C)
 			return
+	if(issilicon(H) || issilicon(M))
+		return
+
 	var/S = C.prefs.skillcape
 	if(S != 1)
 		var/datum/skillcape/A = GLOB.skillcapes[S]

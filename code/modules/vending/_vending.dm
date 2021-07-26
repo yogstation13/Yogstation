@@ -429,11 +429,14 @@ GLOBAL_LIST_EMPTY(vending_products)
 	. = TRUE
 	if(!user.transferItemToLoc(I, src))
 		return FALSE
-	if(products[I.type])
-		products[I.type]++
-	else
-		products[I.type] = 1
-	to_chat(user, "<span class='notice'>You insert [I] into [src]'s input compartment.</span>")
+	for(var/datum/data/vending_product/R as anything in product_records)
+		if(R.product_path == I.type)
+			R.amount++
+			to_chat(user, "<span class='notice'>You insert [I] into [src]'s input compartment.</span>")
+			qdel(I)
+			break
+		
+	return FALSE
 
 
 /obj/machinery/vending/exchange_parts(mob/user, obj/item/storage/part_replacer/W)
