@@ -62022,7 +62022,6 @@
 /turf/open/floor/plasteel,
 /area/construction)
 "wnf" = (
-/obj/item/choice_beacon/bar_remote,
 /turf/open/floor/plating,
 /area/template_noop)
 "wnN" = (
