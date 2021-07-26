@@ -273,6 +273,7 @@ Works together with spawning an observer, noted above.
 			stop_sound_channel(CHANNEL_HEARTBEAT) //Stop heartbeat sounds because You Are A Ghost Now
 			if(can_reenter_corpse && client) //yogs start
 				oobe_client = client //yogs end
+			onGhost()
 			var/mob/dead/observer/ghost = new(src)	// Transfer safety to observer spawning proc.
 			SStgui.on_transfer(src, ghost) // Transfer NanoUIs.
 			ghost.can_reenter_corpse = can_reenter_corpse
