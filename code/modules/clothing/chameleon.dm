@@ -682,3 +682,28 @@
 /obj/item/stamp/chameleon/broken/Initialize()
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
+
+/obj/item/storage/belt/military/chameleon
+	var/datum/action/item_action/chameleon/change/chameleon_action
+
+/obj/item/storage/belt/military/chameleon/syndicate
+	syndicate = TRUE
+
+/obj/item/storage/belt/military/chameleon/Initialize()
+	. = ..()
+	chameleon_action = new(src)
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
+	chameleon_action.chameleon_type = /obj/item/storage/belt
+	chameleon_action.chameleon_name = "Belt"
+	chameleon_action.initialize_disguises()
+
+/obj/item/storage/belt/military/chameleon/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+	chameleon_action.emp_randomise()
+
+/obj/item/storage/belt/military/chameleon/broken/Initialize()
+	. = ..()
+	chameleon_action.emp_randomise(INFINITY)
