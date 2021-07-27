@@ -1240,7 +1240,7 @@
 	else if(locked)
 		to_chat(user, "<span class='warning'>The airlock's bolts prevent it from being forced!</span>")
 	else if(brace)
-		to_chat(user, "<span class='warning'>The airlock won't budge</span>")
+		to_chat(user, "<span class='warning'>The airlock won't budge!</span>")
 	else if( !welded && !operating)
 		if(istype(I, /obj/item/twohanded/fireaxe)) //being fireaxe'd
 			var/obj/item/twohanded/fireaxe/F = I
@@ -1266,7 +1266,7 @@
 			return
 
 		if(brace)
-			to_chat(user, "<span class='warning'>The airlock won't budge</span>")
+			to_chat(user, "<span class='warning'>The airlock won't budge!</span>")
 			return
 
 		var/time_to_open = 5
