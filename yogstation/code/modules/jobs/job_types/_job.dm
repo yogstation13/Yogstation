@@ -97,6 +97,14 @@
 			return
 
 	var/choice = C.prefs.bar_choice
+
+	var/confirmed_good_yes_bar = FALSE
+	for(var/A in GLOB.potential_box_bars)
+		if(choice == A)
+			confirmed_good_yes_bar = TRUE
+
+	if(confirmed_good_yes_bar == FALSE)
+		choice == "Random"
 	
 	if(choice == "Random")
 		choice = pick(GLOB.potential_box_bars)
