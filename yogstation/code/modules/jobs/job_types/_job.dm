@@ -104,7 +104,7 @@
 			bar_sanitize = TRUE
 			break
 
-	if(bar_sanitize == FALSE)
+	if(!bar_sanitize)
 		choice = "Random"
 	
 	if(choice == "Random")
