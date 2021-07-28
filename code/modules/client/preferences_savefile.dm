@@ -255,12 +255,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	map				= sanitize_integer(map, FALSE, TRUE, initial(map))
 	flare			= sanitize_integer(flare, FALSE, TRUE, initial(flare))
 	bar_choice	= sanitize_text(bar_choice, initial(bar_choice))
+
 	var/bar_sanitize = FALSE
 	for(var/A in GLOB.potential_box_bars)
 		if(bar_choice == A)
 			bar_sanitize = TRUE
 	if(bar_sanitize == FALSE)
 		bar_choice = "Random"
+	
 	show_credits	= sanitize_integer(show_credits, FALSE, TRUE, initial(show_credits))
 
 	// yogs start - Donor features & yogtoggles
