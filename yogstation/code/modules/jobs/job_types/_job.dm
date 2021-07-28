@@ -96,7 +96,7 @@
 		if(!C)
 			return
 
-	var/choice = C.prefs.map
+	var/choice = C.prefs.bar_choice
 	
 	if(choice == "Random")
 		choice = pick(GLOB.potential_box_bars)
