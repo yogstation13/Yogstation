@@ -1,5 +1,5 @@
 #define PERF_BASE_DAMAGE		0.5
-#define REAGENT_REVIVE_DAMAGE ((HEALTH_THRESHOLD_CRIT + HEALTH_THRESHOLD_DEAD) * 1.2)
+#define REAGENT_REVIVE_DAMAGE (HEALTH_THRESHOLD_CRIT + 20)
 
 /////////////////////////////////////////////////////////////////////////////////////////
 					// MEDICINE REAGENTS
