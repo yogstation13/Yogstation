@@ -104,7 +104,7 @@
 			confirmed_good_yes_bar = TRUE
 
 	if(confirmed_good_yes_bar == FALSE)
-		choice == "Random"
+		choice = "Random"
 	
 	if(choice == "Random")
 		choice = pick(GLOB.potential_box_bars)
