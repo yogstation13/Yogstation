@@ -102,6 +102,7 @@
 	for(var/A in GLOB.potential_box_bars)
 		if(choice == A)
 			bar_sanitize = TRUE
+			break
 
 	if(bar_sanitize == FALSE)
 		choice = "Random"
