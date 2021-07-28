@@ -87,7 +87,7 @@
 				flare.forceMove(BP)
 
 /datum/job/proc/give_bar_choice(mob/living/H, mob/M)
-	if(M.job != "Bartender")
+	if(H.job != "Bartender")
 		return
 
 	var/client/C = M.client
@@ -100,7 +100,7 @@
 	
 	if(choice == "Random")
 		choice = pick(GLOB.potential_box_bars)
-
+	
 	var/datum/map_template/template = SSmapping.station_room_templates[choice]
 
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)

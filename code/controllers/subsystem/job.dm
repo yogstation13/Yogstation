@@ -508,7 +508,31 @@ SUBSYSTEM_DEF(job)
 	job.give_bar_choice(living_mob, M)
 	log_game("[living_mob.real_name]/[M.client.ckey] joined the round as [living_mob.job].") //yogs - Job logging
 
+	addtimer(CALLBACK(src, .proc/check_bartenders), 10)
+
 	return living_mob
+
+/datum/controller/subsystem/job/proc/check_bartenders()
+	var/bartenders = 0
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.job == "Bartender")
+			bartenders++
+	if(!bartenders)
+		var/choice = pick(GLOB.potential_box_bars)
+	
+		var/datum/map_template/template = SSmapping.station_room_templates[choice]
+
+		for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
+			template.load(B.loc, centered = FALSE)
+			qdel(B)
+	
+		// Reboots lighting because it breaks on load
+		var/area/K = GLOB.areas_by_type[/area/crew_quarters/kitchen]
+		K.set_dynamic_lighting(DYNAMIC_LIGHTING_DISABLED)
+		K.set_dynamic_lighting()
+		var/area/B = GLOB.areas_by_type[/area/crew_quarters/bar]
+		B.set_dynamic_lighting(DYNAMIC_LIGHTING_DISABLED)
+		B.set_dynamic_lighting()
 
 /datum/controller/subsystem/job/proc/handle_auto_deadmin_roles(client/C, rank)
 	if(!C?.holder)
