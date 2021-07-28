@@ -91,10 +91,6 @@
 		return
 
 	var/client/C = M.client
-	if(!C)
-		C = H.client
-		if(!C)
-			return
 
 	var/choice = C.prefs.bar_choice
 
