@@ -90,9 +90,16 @@
 	if(H.job != "Bartender")
 		return
 
-	var/client/C = M.client
+	var/choice
 
-	var/choice = C.prefs.bar_choice
+	var/client/C = M.client
+	if(!C)
+		C = H.client
+		if(!C)
+			choice = "Random"
+
+	if(C)
+		choice = C.prefs.bar_choice
 
 	var/bar_sanitize = FALSE
 	for(var/A in GLOB.potential_box_bars)
