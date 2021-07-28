@@ -1,5 +1,5 @@
 #define PERF_BASE_DAMAGE		0.5
-#define HALFWAYCRITDEATH ((HEALTH_THRESHOLD_CRIT + HEALTH_THRESHOLD_DEAD) * 0.5)
+#define REAGENT_REVIVE_DAMAGE ((HEALTH_THRESHOLD_CRIT + HEALTH_THRESHOLD_DEAD) * 1.2)
 
 /////////////////////////////////////////////////////////////////////////////////////////
 					// MEDICINE REAGENTS
@@ -868,7 +868,7 @@
 			M.adjustFireLoss(-100)
 			M.adjustOxyLoss(-20, 0)
 			M.adjustToxLoss(-20, 0)
-			M.adjustCloneLoss(max(HALFWAYCRITDEATH - M.getCloneLoss() - M.getOxyLoss() - M.getToxLoss(), 0))
+			M.adjustCloneLoss(max(REAGENT_REVIVE_DAMAGE - M.getCloneLoss() - M.getOxyLoss() - M.getToxLoss(), 0))
 			M.updatehealth()
 			if(M.revive())
 				M.emote("gasp")
@@ -1670,4 +1670,4 @@
 			movable_content.wash(clean_types)
 
 #undef PERF_BASE_DAMAGE
-#undef HALFWAYCRITDEATH
+#undef REAGENT_REVIVE_DAMAGE
