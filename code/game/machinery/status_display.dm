@@ -362,6 +362,8 @@
 				set_picture("ai_goon_happy")
 			if("Goon Sad")
 				set_picture("ai_goon_sad")
+			if("Gondola")
+				set_picture("ai_gondola")
 		return PROCESS_KILL
 
 	if(mode == SD_AI_BSOD)
