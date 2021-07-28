@@ -261,7 +261,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(bar_choice == A)
 			bar_sanitize = TRUE
 			break
-	if(bar_sanitize == FALSE)
+	if(!bar_sanitize)
 		bar_choice = "Random"
 	
 	show_credits	= sanitize_integer(show_credits, FALSE, TRUE, initial(show_credits))
