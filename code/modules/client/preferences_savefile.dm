@@ -260,6 +260,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	for(var/A in GLOB.potential_box_bars)
 		if(bar_choice == A)
 			bar_sanitize = TRUE
+			break
 	if(bar_sanitize == FALSE)
 		bar_choice = "Random"
 	
