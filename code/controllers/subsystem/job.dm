@@ -505,12 +505,21 @@ SUBSYSTEM_DEF(job)
 	job.give_donor_stuff(living_mob, M) // yogs - Donor Features
 	job.give_cape(living_mob, M)
 	job.give_map_flare(living_mob, M)
-	job.give_bar_choice(living_mob, M)
+	if(SSevents.holidays && SSevents.holidays["St. Patrick's Day"])
+		irish_override() // Assuming direct control.
+	else
+		job.give_bar_choice(living_mob, M)
+		check_bartenders()
 	log_game("[living_mob.real_name]/[M.client.ckey] joined the round as [living_mob.job].") //yogs - Job logging
 
-	addtimer(CALLBACK(src, .proc/check_bartenders), 10)
-
 	return living_mob
+
+/datum/controller/subsystem/job/proc/irish_override()
+	var/datum/map_template/template = SSmapping.station_room_templates["St. Patrick's Day"]
+
+	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
+		template.load(B.loc, centered = FALSE)
+		qdel(B)
 
 /datum/controller/subsystem/job/proc/check_bartenders()
 	var/bartenders = 0
@@ -525,14 +534,6 @@ SUBSYSTEM_DEF(job)
 		for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
 			template.load(B.loc, centered = FALSE)
 			qdel(B)
-	
-		// Reboots lighting because it breaks on load
-		var/area/K = GLOB.areas_by_type[/area/crew_quarters/kitchen]
-		K.set_dynamic_lighting(DYNAMIC_LIGHTING_DISABLED)
-		K.set_dynamic_lighting()
-		var/area/B = GLOB.areas_by_type[/area/crew_quarters/bar]
-		B.set_dynamic_lighting(DYNAMIC_LIGHTING_DISABLED)
-		B.set_dynamic_lighting()
 
 /datum/controller/subsystem/job/proc/handle_auto_deadmin_roles(client/C, rank)
 	if(!C?.holder)

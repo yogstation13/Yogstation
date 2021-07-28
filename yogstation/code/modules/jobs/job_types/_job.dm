@@ -106,11 +106,3 @@
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)
 		qdel(B)
-	
-	// Reboots lighting because it breaks on load
-	var/area/K = GLOB.areas_by_type[/area/crew_quarters/kitchen]
-	K.set_dynamic_lighting(DYNAMIC_LIGHTING_DISABLED)
-	K.set_dynamic_lighting()
-	var/area/B = GLOB.areas_by_type[/area/crew_quarters/bar]
-	B.set_dynamic_lighting(DYNAMIC_LIGHTING_DISABLED)
-	B.set_dynamic_lighting()
