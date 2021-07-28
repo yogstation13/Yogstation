@@ -868,7 +868,7 @@
 			M.adjustFireLoss(-100)
 			M.adjustOxyLoss(-20, 0)
 			M.adjustToxLoss(-20, 0)
-			M.adjustCloneLoss(max(REAGENT_REVIVE_DAMAGE - M.getCloneLoss() - M.getOxyLoss() - M.getToxLoss(), 0))
+			M.adjustCloneLoss(max(M.health - REAGENT_REVIVE_DAMAGE - M.getCloneLoss() - M.getOxyLoss() - M.getToxLoss(), 0))
 			M.updatehealth()
 			if(M.revive())
 				M.emote("gasp")
