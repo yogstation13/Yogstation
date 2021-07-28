@@ -526,6 +526,7 @@ SUBSYSTEM_DEF(job)
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.job == "Bartender")
 			bartenders++
+			break
 	if(!bartenders)
 		var/choice = pick(GLOB.potential_box_bars)
 	
