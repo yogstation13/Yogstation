@@ -87,8 +87,6 @@
 				flare.forceMove(BP)
 
 /datum/job/proc/give_bar_choice(mob/living/H, mob/M)
-	if(H.job != "Bartender")
-		return
 
 	var/choice
 

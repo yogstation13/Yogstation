@@ -508,8 +508,10 @@ SUBSYSTEM_DEF(job)
 	if(SSevents.holidays && SSevents.holidays["St. Patrick's Day"])
 		irish_override() // Assuming direct control.
 	else
-		job.give_bar_choice(living_mob, M)
-		check_bartenders()
+		if(living_mob.job == "Bartender")
+			job.give_bar_choice(living_mob, M)
+		else
+			check_bartenders()
 	log_game("[living_mob.real_name]/[M.client.ckey] joined the round as [living_mob.job].") //yogs - Job logging
 
 	return living_mob
