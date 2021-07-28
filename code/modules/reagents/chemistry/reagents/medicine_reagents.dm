@@ -196,7 +196,7 @@
 	taste_description = "fish"
 
 /datum/reagent/medicine/rezadone/on_mob_life(mob/living/carbon/M)
-	M.adjustCloneLoss(-2) //Rezadone is almost always used over cryoxadone. Hopefully this will change that.
+	M.adjustCloneLoss(-10) //Rezadone is almost always used over cryoxadone. Hopefully this will change that.
 	M.heal_bodypart_damage(1,1)
 	REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 	..()
@@ -868,7 +868,7 @@
 			M.adjustFireLoss(-100)
 			M.adjustOxyLoss(-20, 0)
 			M.adjustToxLoss(-20, 0)
-			M.adjustCloneLoss(max(HALFWAYCRITDEATH - M.getOxyLoss() - M.getToxLoss(), 0))
+			M.adjustCloneLoss(max(HALFWAYCRITDEATH - M.getCloneLoss() - M.getOxyLoss() - M.getToxLoss(), 0))
 			M.updatehealth()
 			if(M.revive())
 				M.emote("gasp")
