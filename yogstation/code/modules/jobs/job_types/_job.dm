@@ -98,12 +98,12 @@
 
 	var/choice = C.prefs.bar_choice
 
-	var/confirmed_good_yes_bar = FALSE
+	var/bar_sanitize = FALSE
 	for(var/A in GLOB.potential_box_bars)
 		if(choice == A)
-			confirmed_good_yes_bar = TRUE
+			bar_sanitize = TRUE
 
-	if(confirmed_good_yes_bar == FALSE)
+	if(bar_sanitize == FALSE)
 		choice = "Random"
 	
 	if(choice == "Random")
