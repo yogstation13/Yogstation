@@ -378,15 +378,8 @@
 	W.icon_state = "centcom"
 	W.access = get_all_accesses()//They get full station access.
 	W.access += get_centcom_access("Death Commando")//Let's add their alloted CentCom access.
-
-	// Take "mob_###" (from H.tag) and turn it into "###"
-	var/newassignment = ""
-	for(var/i = 1, i <= length(H.tag), i += 1)
-		if(i > 4)
-			newassignment += H.tag[i]
-	W.assignment = newassignment // Unknown's ID Card (###) so DS can identify each other by their IDs
-	
-	W.registered_name = "Unknown"
+	W.assignment = "Death Commando"
+	W.registered_name = splittext(H.tag, "_")[2] // 412's ID Card (Death Commando); deathsquad are so edgy they are just numbers
 	W.update_label(W.registered_name, W.assignment)
 
 /datum/outfit/death_commando/officer
