@@ -432,7 +432,7 @@ LAW_WEIGHT ceo,6
 LAW_WEIGHT hippocratic,0
 LAW_WEIGHT maintain,0
 LAW_WEIGHT drone,0
-LAW_WEIGHT liveandletlive,0
+LAW_WEIGHT liveandletlive,3
 LAW_WEIGHT peacekeeper,0
 LAW_WEIGHT reporter,3
 
