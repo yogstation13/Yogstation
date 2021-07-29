@@ -439,7 +439,7 @@ SUBSYSTEM_DEF(job)
 
 	living_mob.job = rank
 
-	//If we joined at roundstart we should be positioned at our workstation
+	//If we joined at roundstart we should be positioned at our workstation 
 	if(!joined_late)
 		var/spawning_handled = FALSE
 		var/obj/S = null
