@@ -262,11 +262,13 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 	if(length(str) > 50)
 		to_chat(user, "<span class='warning'>The provided ship name is too long, blares the [src]</span>")
 		return FALSE
-/*
-	if(OOC_FILTER_CHECK(str))
+//Yogs Start: Runs the name through the petty filter. If they trip it, it will cause the shuttle creation to fail, messages the admins, and put the RSD on cooldown.
+	if(isnotpretty(str))
 		to_chat(user, "<span class='warning'>Nanotrasen prohibited words are in use in this shuttle name, blares the [src] in a slightly offended tone.</span>")
+		message_admins("[ADMIN_LOOKUPFLW(user)] attempted to created a new shuttle with a [src] at [ADMIN_VERBOSEJMP(user)], but failed because of tripping a petty filter")
+		user.create_area_cooldown = world.time + 10
 		return FALSE
-*/
+//Yogs End
 	newS = new /area/shuttle/custom/powered()
 	newS.setup(str)
 	newS.set_dynamic_lighting()
