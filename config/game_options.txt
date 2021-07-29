@@ -429,7 +429,7 @@ LAW_WEIGHT corporate,0
 LAW_WEIGHT ceo,6
 
 ## Quirky laws. Shouldn't cause too much harm
-LAW_WEIGHT hippocratic,0
+LAW_WEIGHT hippocratic,3
 LAW_WEIGHT maintain,0
 LAW_WEIGHT drone,0
 LAW_WEIGHT liveandletlive,0
