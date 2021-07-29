@@ -1,6 +1,0 @@
-author: "cuackles"
-delete-after: true 
-changes: 
-  - tweak: "Changes to the footwraps sprites"
-  - imageadd: "adds new footwraps sprites"
-  - imagedel: "deleted old footwraps sprites"
