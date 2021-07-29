@@ -291,3 +291,64 @@
 	to_chat(L, "<span class='notice'>[GLOB.deity] happily accepts your offering, and brings the crop to a new home.</span>")
 	qdel(I)
 	return TRUE
+
+	BLOOD FOR THE BLOOD GOD
+*/
+/datum/religion_sect/bloodgods
+	name = "The Slaves of Blood"
+	desc = "Anything you need, little demon."
+	convert_opener = "Let the Great Harvest begin! Bring more blood!"
+	alignment = ALIGNMENT_EVIL
+	desired_items = list(/obj/item/weapon/reagent_containers/blood,/obj/item/organ/external,/obj/item/brain)
+	rites_list = list(
+		/datum/religion_rites/lightbending/darkness
+	)
+/datum/religion_sect/bloodgods/can_sacrifice(obj/item/I, mob/living/L)
+	if(!(..()))
+		return FALSE
+	if(istype(I, /obj/item/weapon/reagent_containers/blood))
+		var/blood_am = 0
+		if(I.reagents)
+			return I.reagents.get_reagent_amount("blood") > 0
+	return TRUE
+
+/datum/religion_sect/bloodgods/on_sacrifice(obj/item/I, mob/living/L)
+	if(istype(I, /obj/item/weapon/reagent_containers/blood))
+		var/blood_am = 0
+		if(I.reagents)
+			blood_am = I.reagents.get_reagent_amount("blood")
+		adjust_favor(blood_am, L)
+
+	else if(istype(I, /obj/item/organ/external))
+		adjust_favor(50, L)
+
+	else if(istype(I, /obj/item/brain))
+		adjust_favor(100, L)
+	qdel(I)
+	return TRUE
+
+/*
+	HONK FOR THE HONKMOTHER
+*/
+
+/datum/religion_sect/clown
+	name = "The Jesters Templar"
+	desc = "Anything a real clown needs!"
+	convert_opener = "Honk for the Honkmother, slip for the Slippy Joe!"
+	desired_items = list(/obj/item/weapon/bananapeel/honk,/obj/item/weapon/bananapeel,/obj/item/stack/sheet/mineral/clown,/obj/item/weapon/ore/clown)
+	rites_list = list(
+		/datum/religion_rites/clownconversion
+	)
+
+/datum/religion_sect/bloodgods/on_sacrifice(obj/item/I, mob/living/L)
+	if(istype(I, /obj/item/weapon/bananapeel/honk))
+		adjust_favor(40, L)
+	else if(istype(I, /obj/item/weapon/bananapeel))
+		adjust_favor(30, L)
+	else if(istype(I, /obj/item/stack/sheet/mineral/clown))
+		var/obj/item/stack/sheet/mineral/clown/banan = I
+		adjust_favor(banan.amount * 60,L)
+	else if(istype(I, /obj/item/weapon/ore/clown))
+		adjust_favor(50, L)
+	qdel(I)
+	return TRUE
