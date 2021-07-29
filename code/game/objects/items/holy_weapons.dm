@@ -442,6 +442,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	icon_state = "corvo_0"
 	item_state = "corvo_0"
+	slot_flags = ITEM_SLOT_BELT
 	var/on = FALSE
 	var/on_sound = 'sound/weapons/batonextend.ogg'
 
@@ -460,7 +461,6 @@
 		icon_state = "corvo_0"
 		item_state = "corvo_0"
 		item_state = null //no sprite for concealment even when in hand
-		slot_flags = ITEM_SLOT_BELT
 		w_class = WEIGHT_CLASS_SMALL
 		force = 0
 		attack_verb = list("hit", "poked")
