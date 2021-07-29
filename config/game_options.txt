@@ -437,7 +437,7 @@ LAW_WEIGHT peacekeeper,0
 LAW_WEIGHT reporter,3
 
 ## Bad idea laws. Probably shouldn't enable these
-LAW_WEIGHT syndie,0
+LAW_WEIGHT syndie,3
 LAW_WEIGHT ninja,0
 LAW_WEIGHT antimov,0
 LAW_WEIGHT thermodynamic,0
