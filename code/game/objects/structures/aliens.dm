@@ -142,12 +142,6 @@
 			if(3)
 				icon = 'icons/obj/smooth_structures/alien/weeds3.dmi'
 
-/obj/structure/alien/weeds/Click(var/atom/A)
-	var/turf/T = loc
-	if(T)
-		T.Click(A)
-	. = ..()
-
 /obj/structure/alien/weeds/proc/expand()
 	var/turf/U = get_turf(src)
 	if(is_type_in_typecache(U, blacklisted_turfs))
