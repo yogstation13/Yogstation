@@ -1384,7 +1384,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/military_belt
 	name = "Chameleon Chest Rig"
 	desc = "A robust seven-slot set of webbing that is capable of holding all manner of tactical equipment. This one is capable of disguising itself."
-	item = /obj/item/storage/belt/military/chameleon
+	item = /obj/item/storage/belt/chameleon/syndicate
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear)
 
