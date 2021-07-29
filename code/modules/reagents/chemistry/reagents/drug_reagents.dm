@@ -582,12 +582,12 @@
 	addiction_threshold = 15
 	overdose_threshold = 30
 	
-/datum/reagent/drug/phencyclidine/on_mob_metabolize(mob/living/L)
+/datum/reagent/drug/phencyclidine/on_mob_metabolize(mob/living/M)
 	..()
 	ADD_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
-	L.set_screwyhud(SCREWYHUD_HEALTHY)
+	M.set_screwyhud(SCREWYHUD_HEALTHY)
 
-/datum/reagent/drug/phencyclidine/on_mob_end_metabolize(mob/living/L)
+/datum/reagent/drug/phencyclidine/on_mob_end_metabolize(mob/living/M)
 	..()
 	REMOVE_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
-	L.set_screwyhud(SCREWYHUD_HEALTHY)
+	M.set_screwyhud(SCREWYHUD_HEALTHY)
