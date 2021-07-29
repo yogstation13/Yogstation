@@ -366,3 +366,127 @@
 	human2plant.set_species(/datum/species/golem/wood/holy)
 	human2plant.visible_message("<span class='notice'>[human2plant] has been converted by the rite of [name]!</span>")
 	return TRUE
+
+/*********   BLOOD   *********/
+
+/datum/religion_rites/lightbending
+	var/list/favor_for_turf
+
+/datum/religion_rites/lightbending/register_holy_turf(turf/simulated/floor/F, datum/religion/R)
+	..()
+	RegisterSignal(F.lighting_object, list(COMSIG_LIGHT_UPDATE_OBJECT), .proc/recalc_favor_gain)
+	recalc_favor_gain(F.lighting_object, F)
+
+/datum/religion_rites/lightbending/unregister_holy_turf(turf/simulated/floor/F, datum/religion/R)
+	..()
+	UnregisterSignal(F.lighting_object, list(COMSIG_LIGHT_UPDATE_OBJECT))
+	if(favor_for_turf)
+		R.passive_favor_gain -= favor_for_turf[F]
+		favor_for_turf -= F
+	UNSETEMPTY(favor_for_turf)
+
+/datum/religion_rites/lightbending/proc/get_light_gain(turf/simulated/floor/F)
+	return 0
+
+/datum/religion_rites/lightbending/proc/recalc_favor_gain(datum/source, turf/myturf)
+	var/turf/simulated/floor/F = myturf
+	if(!istype(F))
+		return
+
+	var/prev_gain = 0
+	if(favor_for_turf)
+		prev_gain = favor_for_turf[F]
+	var/favor_gain = get_light_gain(F)
+
+	if(favor_gain != 0)
+		START_PROCESSING(SSreligion, F.holy.religion)
+		LAZYSET(favor_for_turf, F, favor_gain)
+		F.holy.religion.passive_favor_gain += favor_gain - prev_gain
+	else
+		favor_for_turf -= F
+		UNSETEMPTY(favor_for_turf)
+
+/datum/religion_rites/lightbending/invoke_effect(mob/living/user, atom/religious_tool)
+	recalc_favor_gain(user,user.loc)
+
+//Gives mana from: darkness on holy turfs
+//Needed for: spells and rituals related to the theme of dark, eviv, obcurse
+/datum/religion_rites/lightbending/darkness
+	name = ASPECT_OBSCURE
+	desc = "Dark, darkness, obcurse, evil"
+	icon_state = "aspect_obscure"
+
+/datum/religion_rites/lightbending/darkness/get_light_gain(turf/simulated/floor/F)
+	return (0.6 - F.get_lumcount()) * power * 0.05
+
+/************* CLOWN ****************/
+
+/datum/religion_rites/clownconversion
+	name = "Clownconversion"
+	desc = "Convert a just person into a clown."
+	ritual_length = (1.9 MINUTES)
+	ritual_invocations = list("From our mother to our soil we got the gift of bananas...",
+						"...From our mother to our ears we got the gift of horns...",
+						"...From our mother to our feet we walk on we got the shoes of length...")
+	invoke_msg = "...And from our mothers gift to you, we grant you the power of HONK!"
+	favor_cost = 500
+
+	consent_msg = "Do you feel the honk, growing, from within your body?"
+
+/datum/religion_rites/clownconversion/required_checks(mob/living/user, atom/religious_tool)
+	if(!ismovable(religious_tool))
+		to_chat(user, "<span class='warning'>This rite requires a religious device that individuals can be buckled to.</span>")
+		return FALSE
+	var/atom/movable/movable_reltool = religious_tool
+	if(!movable_reltool)
+		return FALSE
+	if(!LAZYLEN(movable_reltool.buckled_mobs))
+		. = FALSE
+		if(!movable_reltool.can_buckle) //yes, if you have somehow managed to have someone buckled to something that now cannot buckle, we will still let you perform the rite!
+			to_chat(user, "<span class='warning'>This rite requires a religious device that individuals can be buckled to.</span>")
+			return
+		to_chat(user, "<span class='warning'>This rite requires an individual to be buckled to [movable_reltool].</span>")
+		return
+
+	if(!ishuman(movable_reltool.buckled_mob))
+		to_chat(user, "<span class='warning'>Only a human can go through the ritual.</span>")
+		return FALSE
+
+	if(jobban_isbanned(movable_reltool.buckled_mob, "Clown"))
+		to_chat(user, "<span class='warning'>[pick(global.chaplain_religion.deity_names)] won't accept this person!</span>")
+		return FALSE
+
+	if(!movable_reltool.buckled_mob.mind)
+		to_chat(user, "<span class='warning'>[movable_reltool.buckled_mob]'s body is too weak!</span>")
+		return FALSE
+
+	if(movable_reltool.buckled_mob.mind.holy_role >= HOLY_ROLE_PRIEST)
+		to_chat(user, "<span class='warning'>[movable_reltool.buckled_mob] is already holy!</span>")
+		return FALSE
+
+	return ..()
+
+/datum/religion_rites/clownconversion/invoke_effect(mob/living/user, atom/religious_tool)
+
+	var/mob/living/carbon/human/H = religious_tool.buckled_mob
+	if(!istype(H))
+		return FALSE
+
+	H.remove_from_mob(H.wear_mask)
+	H.remove_from_mob(H.w_uniform)
+	H.remove_from_mob(H.head)
+	H.remove_from_mob(H.wear_suit)
+	H.remove_from_mob(H.back)
+	H.remove_from_mob(H.shoes)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/clown(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/clown(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/clown_shoes(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(H), SLOT_WEAR_MASK)
+	H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/weapon/bikehorn(H), SLOT_IN_BACKPACK)
+
+	H.mind.holy_role = HOLY_ROLE_PRIEST
+	H.mutations.Add(CLUMSY)
+	religious_tool.sect.on_conversion(H)
+	return TRUE
