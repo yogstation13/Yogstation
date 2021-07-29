@@ -424,7 +424,7 @@ LAW_WEIGHT asimov,6
 LAW_WEIGHT crewsimov,6
 LAW_WEIGHT asimovpp,0
 LAW_WEIGHT paladin,0
-LAW_WEIGHT robocop,0
+LAW_WEIGHT robocop,6
 LAW_WEIGHT corporate,0
 LAW_WEIGHT ceo,6
 
