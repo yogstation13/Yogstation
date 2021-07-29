@@ -99,14 +99,15 @@
 	if(C)
 		choice = C.prefs.bar_choice
 
-	var/bar_sanitize = FALSE
-	for(var/A in GLOB.potential_box_bars)
-		if(choice == A)
-			bar_sanitize = TRUE
-			break
+	if(choice != "Random")
+		var/bar_sanitize = FALSE
+		for(var/A in GLOB.potential_box_bars)
+			if(choice == A)
+				bar_sanitize = TRUE
+				break
 
-	if(!bar_sanitize)
-		choice = "Random"
+		if(!bar_sanitize)
+			choice = "Random"
 	
 	if(choice == "Random")
 		choice = pick(GLOB.potential_box_bars)

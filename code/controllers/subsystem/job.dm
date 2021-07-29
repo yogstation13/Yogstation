@@ -507,11 +507,8 @@ SUBSYSTEM_DEF(job)
 	job.give_map_flare(living_mob, M)
 	if(SSevents.holidays && SSevents.holidays["St. Patrick's Day"])
 		irish_override() // Assuming direct control.
-	else
-		if(living_mob.job == "Bartender")
-			job.give_bar_choice(living_mob, M)
-		else
-			check_bartenders()
+	else if(living_mob.job == "Bartender")
+		job.give_bar_choice(living_mob, M)
 	log_game("[living_mob.real_name]/[M.client.ckey] joined the round as [living_mob.job].") //yogs - Job logging
 
 	return living_mob
@@ -523,20 +520,32 @@ SUBSYSTEM_DEF(job)
 		template.load(B.loc, centered = FALSE)
 		qdel(B)
 
-/datum/controller/subsystem/job/proc/check_bartenders()
-	var/bartenders = 0
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(H.job == "Bartender")
-			bartenders++
-			break
-	if(!bartenders)
-		var/choice = pick(GLOB.potential_box_bars)
-	
-		var/datum/map_template/template = SSmapping.station_room_templates[choice]
+/datum/controller/subsystem/job/proc/random_bar_init()
+	var/list/player_box = list()
+	for(var/mob/H in GLOB.player_list)
+		if(H.client)
+			player_box += H.client.prefs.bar_choice
 
-		for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
-			template.load(B.loc, centered = FALSE)
-			qdel(B)
+	var/choice = pick(player_box)
+
+	if(choice != "Random")
+		var/bar_sanitize = FALSE
+		for(var/A in GLOB.potential_box_bars)
+			if(choice == A)
+				bar_sanitize = TRUE
+				break
+	
+		if(!bar_sanitize)
+			choice = "Random"
+	
+	if(choice == "Random")
+		choice = pick(GLOB.potential_box_bars)
+	
+	var/datum/map_template/template = SSmapping.station_room_templates[choice]
+
+	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
+		template.load(B.loc, centered = FALSE)
+		qdel(B)
 
 /datum/controller/subsystem/job/proc/handle_auto_deadmin_roles(client/C, rank)
 	if(!C?.holder)

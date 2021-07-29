@@ -374,6 +374,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/equip_characters()
 	var/captainless = TRUE
 	var/no_cyborgs = TRUE
+	var/no_bartender = TRUE
 
 	for(var/mob/dead/new_player/N in GLOB.player_list)
 		var/mob/living/carbon/human/player = N.new_character
@@ -382,6 +383,8 @@ SUBSYSTEM_DEF(ticker)
 				captainless = FALSE
 			if(player.mind.assigned_role == "Cyborg")
 				no_cyborgs = FALSE
+			if(player.mind.assigned_role == "Bartender")
+				no_bartender = FALSE
 			if(player.mind.assigned_role != player.mind.special_role)
 				SSjob.EquipRank(N, player.mind.assigned_role, FALSE)
 				if(CONFIG_GET(flag/roundstart_traits) && ishuman(N.new_character))
@@ -406,6 +409,9 @@ SUBSYSTEM_DEF(ticker)
 			if(N.new_character)
 				to_chat(N, "Captainship not forced on anyone.")
 			CHECK_TICK
+	
+	if(no_bartender)
+		SSjob.random_bar_init()
 
 /datum/controller/subsystem/ticker/proc/transfer_characters()
 	var/list/livings = list()
