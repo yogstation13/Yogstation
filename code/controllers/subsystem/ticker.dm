@@ -410,7 +410,7 @@ SUBSYSTEM_DEF(ticker)
 				to_chat(N, "Captainship not forced on anyone.")
 			CHECK_TICK
 	
-	if(no_bartender)
+	if(no_bartender && !(SSevents.holidays && SSevents.holidays["St. Patrick's Day"]))
 		SSjob.random_bar_init()
 
 /datum/controller/subsystem/ticker/proc/transfer_characters()
