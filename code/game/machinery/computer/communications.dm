@@ -304,6 +304,10 @@
 				authorize_name = "Unknown"
 				to_chat(usr, "<span class='warning'>[src] lets out a quiet alarm as its login is overridden.</span>")
 				playsound(src, 'sound/machines/terminal_alert.ogg', 25, FALSE)
+			else if (IsAdminGhost(usr))
+				authenticated = TRUE
+				authorize_access = get_all_accesses()
+				authorize_name = usr.client.holder.admin_signature
 			else
 				var/obj/item/card/id/id_card = usr.get_idcard(hand_first = TRUE)
 				if (check_access(id_card))
