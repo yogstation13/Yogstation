@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "electric shocks now have an 80% chance up from 25% to revive a dead person if the body is in survivable condition"
