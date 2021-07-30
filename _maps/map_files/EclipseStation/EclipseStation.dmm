@@ -955,9 +955,7 @@
 	dir = 4
 	},
 /obj/machinery/vending/wallmed{
-	name = "Emergency NanoMed";
-	pixel_x = -26;
-	use_power = 0
+	pixel_x = -26
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -85790,7 +85788,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/landmark/start/yogs/brigphsyician,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "nEh" = (
@@ -88319,6 +88316,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"tCJ" = (
+/obj/structure/chair/office/dark,
+/obj/effect/landmark/start/yogs/brigphsyician,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "tHu" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -88773,11 +88775,6 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel,
-/area/security/prison)
-"uFZ" = (
-/obj/structure/chair/office/dark,
-/obj/effect/landmark/start/yogs/brigphsyician,
-/turf/open/floor/plasteel/dark,
 /area/security/prison)
 "uGj" = (
 /turf/open/floor/plating/airless,
@@ -128250,7 +128247,7 @@ abC
 abR
 abe
 acq
-uFZ
+tCJ
 aqS
 acF
 adI

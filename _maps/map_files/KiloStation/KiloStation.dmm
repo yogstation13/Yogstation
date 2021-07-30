@@ -86942,6 +86942,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"dRN" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/landmark/start/yogs/brigphsyician,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "dRS" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -92923,6 +92928,10 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/heads/hor)
+"kIy" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/asteroid,
+/area/space/nearstation)
 "kIL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/segment{
@@ -101320,10 +101329,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/ai_upload)
-"uGY" = (
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating/asteroid,
-/area/space/nearstation)
 "uHy" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -110914,7 +110919,7 @@ rJGrJG
 rJGrJG
 cwpcwq
 aLZaLZ
-aLZuGY
+aLZkIy
 aLZxjU
 aLZaLZ
 aLZaLZ
@@ -114033,7 +114038,7 @@ bXpabY
 adzaek
 phdaaT
 cdpiZe
-cnBakT
+dRNakT
 cnBanM
 crzcxu
 aFuagP

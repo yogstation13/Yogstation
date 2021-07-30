@@ -14524,6 +14524,12 @@
 	dir = 4;
 	icon_state = "vent_map_on-1"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aCC" = (
@@ -14764,6 +14770,9 @@
 	id = "PCell 2";
 	pixel_x = 6;
 	pixel_y = 24
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -15294,6 +15303,10 @@
 /obj/machinery/airalarm{
 	dir = 8;
 	pixel_x = 24
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -23740,18 +23753,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"bFt" = (
-/obj/machinery/computer/operating{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "bGm" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Maintenance Storage";
@@ -25613,16 +25614,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"dGf" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Prison Infirmary";
-	req_access_txt = "2"
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "dGx" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/machinery/computer/secure_data,
@@ -29224,9 +29215,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "hsE" = (
@@ -29817,12 +29806,6 @@
 "ibv" = (
 /turf/closed/wall,
 /area/science/xenobiology)
-"ica" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "icA" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/bot,
@@ -30732,23 +30715,6 @@
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"iOM" = (
-/obj/structure/closet/secure_closet/physician,
-/obj/machinery/camera{
-	c_tag = "Prison Infirmary";
-	dir = 1;
-	network = list("ss13","prison")
-	},
-/obj/item/radio/intercom{
-	name = "Station Intercom";
-	pixel_x = 0;
-	pixel_y = -28
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "iOW" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -31713,6 +31679,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
+"jPP" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "jQD" = (
 /obj/machinery/conveyor{
 	dir = 9;
@@ -33691,12 +33669,10 @@
 /obj/structure/cable/white{
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "lXc" = (
@@ -34533,6 +34509,28 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"mXd" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Prison Infirmary";
+	req_access_txt = "2"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "mXs" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -24
@@ -35955,6 +35953,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"owM" = (
+/obj/structure/closet/secure_closet/physician,
+/obj/machinery/camera{
+	c_tag = "Prison Infirmary";
+	dir = 1;
+	network = list("ss13","prison")
+	},
+/obj/item/radio/intercom{
+	name = "Station Intercom";
+	pixel_x = 0;
+	pixel_y = -28
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "oxa" = (
 /obj/structure/cable/white{
 	icon_state = "1-8"
@@ -36471,6 +36486,19 @@
 /obj/item/reagent_containers/food/drinks/bottle/lizardwine,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar/atrium)
+"oRv" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4;
+	icon_state = "vent_map_on-1"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "oSY" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -36500,15 +36528,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"oTT" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "oUR" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -38900,6 +38919,25 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
+"rrL" = (
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for watching Prison Wing holding areas.";
+	name = "Prison Monitor";
+	network = list("prison");
+	pixel_y = 30
+	},
+/obj/machinery/vending/wallmed{
+	pixel_x = -26
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4;
+	icon_state = "scrub_map_on-3"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "rrP" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -39886,13 +39924,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"smz" = (
-/obj/structure/table/optable,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "smH" = (
 /obj/machinery/light,
 /obj/item/radio/intercom{
@@ -43832,6 +43863,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"uLe" = (
+/obj/structure/table/optable,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "uLo" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Atrium"
@@ -46025,6 +46063,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"xpT" = (
+/obj/machinery/computer/operating{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "xqK" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -46765,26 +46815,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"yaB" = (
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching Prison Wing holding areas.";
-	name = "Prison Monitor";
-	network = list("prison");
-	pixel_y = 30
-	},
-/obj/machinery/vending/wallmed{
-	name = "Emergency NanoMed";
-	pixel_x = -26;
-	use_power = 0
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "yaD" = (
 /obj/machinery/light{
 	dir = 4
@@ -80308,8 +80338,8 @@ aad
 aad
 aad
 abO
-yaB
-iOM
+rrL
+owM
 swZ
 aim
 aiR
@@ -80565,8 +80595,8 @@ aad
 aad
 aad
 abO
-oTT
-smz
+jPP
+uLe
 swZ
 ain
 qpM
@@ -80822,8 +80852,8 @@ abO
 aad
 aad
 abO
-ica
-bFt
+oRv
+xpT
 agF
 aio
 pzB
@@ -81079,7 +81109,7 @@ abO
 azo
 abO
 abO
-dGf
+mXd
 agF
 agF
 aip

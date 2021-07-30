@@ -2024,7 +2024,6 @@
 /area/security/prison)
 "afz" = (
 /obj/structure/table,
-/obj/item/restraints/handcuffs,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -2032,6 +2031,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/item/clothing/suit/straight_jacket,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "afA" = (
@@ -2065,6 +2065,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/item/restraints/handcuffs,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "afE" = (
@@ -2829,12 +2830,26 @@
 	pixel_y = 24
 	},
 /obj/structure/table/glass,
-/obj/machinery/computer/med_data/laptop,
+/obj/machinery/computer/med_data/laptop{
+	pixel_x = -3
+	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 4
+	},
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = 11;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = 11;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/syringe{
+	pixel_x = 11;
+	pixel_y = 3
 	},
 /turf/open/floor/plasteel/white,
 /area/security/brig)
@@ -3462,8 +3477,8 @@
 /obj/machinery/vending/wallmed{
 	pixel_y = -30
 	},
-/obj/machinery/iv_drip,
 /obj/structure/bed,
+/obj/item/bedsheet/medical,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "aiG" = (
@@ -3573,6 +3588,7 @@
 	},
 /obj/structure/closet/crate/freezer/blood,
 /obj/item/reagent_containers/spray/cleaner,
+/obj/machinery/iv_drip,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "aiQ" = (
@@ -35039,6 +35055,10 @@
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"dVH" = (
+/obj/effect/landmark/start/yogs/brigphsyician,
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "dVR" = (
 /obj/machinery/computer/cloning{
 	dir = 8
@@ -45357,10 +45377,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"laZ" = (
-/obj/effect/landmark/start/yogs/brigphsyician,
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "lbh" = (
 /obj/structure/cable,
 /obj/effect/spawner/structure/window/reinforced,
@@ -50212,12 +50228,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"oni" = (
-/obj/structure/chair/office/dark{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "ont" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/cable{
@@ -53231,13 +53241,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"qkx" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 5;
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/dark,
-/area/maintenance/department/tcoms)
 "qlj" = (
 /obj/effect/turf_decal/arrows/white{
 	color = "#99ccff";
@@ -59795,6 +59798,13 @@
 /obj/structure/transit_tube/curved,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"uKO" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 5;
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/maintenance/department/tcoms)
 "uLA" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -60746,6 +60756,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"vuj" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "vvi" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/structure/chair,
@@ -93722,8 +93738,8 @@ afr
 afH
 agj
 ahs
-oni
-laZ
+vuj
+dVH
 aiF
 agj
 ajA
@@ -95318,7 +95334,7 @@ lhU
 yeb
 pOT
 ogk
-qkx
+uKO
 bVJ
 pCZ
 qHe
