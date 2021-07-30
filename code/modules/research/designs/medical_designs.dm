@@ -211,7 +211,6 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
-
 /datum/design/laserscalpel
 	name = "Laser Scalpel"
 	desc = "A laser scalpel used for precise cutting."
