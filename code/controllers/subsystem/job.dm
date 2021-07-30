@@ -526,7 +526,11 @@ SUBSYSTEM_DEF(job)
 		if(H.client)
 			player_box += H.client.prefs.bar_choice
 
-	var/choice = pick(player_box)
+	var/choice
+	if(player_box.len == 0)
+		choice = "Random"
+	else
+		choice = pick(player_box)
 
 	if(choice != "Random")
 		var/bar_sanitize = FALSE
