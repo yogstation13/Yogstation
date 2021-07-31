@@ -1,0 +1,5 @@
+author: "jc-denthead"
+delete-after: true 
+changes: 
+  - rscadd: "adds three new AI status displays, you know? those screens around the station"
+  - imageadd: "adds the sprites for the new AI status displays"
