@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - bugfix: "Random Ghost Role events can once again happen"
