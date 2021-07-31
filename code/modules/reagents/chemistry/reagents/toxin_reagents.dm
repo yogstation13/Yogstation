@@ -255,7 +255,7 @@
 			if(!C.wear_mask) // If not wearing a mask
 				var/damage = min(round(0.4*reac_volume, 0.1),10)
 				C.adjustToxLoss(damage)
-		if(istype(M, /mob/living/simple_animal/hostile/venus_human_trap)
+		if(istype(M, /mob/living/simple_animal/hostile/venus_human_trap))
 			M.adjustToxLoss(10)
 
 /datum/reagent/toxin/plantbgone/weedkiller
