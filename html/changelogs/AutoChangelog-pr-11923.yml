@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - bugfix: "Alien Weeds are now once again interactable, but only on non-help intent."
