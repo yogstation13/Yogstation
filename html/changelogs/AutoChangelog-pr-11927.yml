@@ -1,0 +1,4 @@
+author: "jc-denthead"
+delete-after: true 
+changes: 
+  - rscadd: "rollerbeds can now be made at a protolathe, basic biotech node has roller beds"
