@@ -270,6 +270,10 @@
 		M.visible_message("<span class='notice'>[M] gives [src] a pat on the shoulder to make [p_them()] feel better!</span>", \
 					"<span class='notice'>You give [src] a pat on the shoulder to make [p_them()] feel better!</span>")
 
+	else if(check_zone(M.zone_selected) == BODY_ZONE_HEAD)
+		M.visible_message("<span class='notice'>[M] boops [src] on the head!</span>", \
+					"<span class='notice'>You boop [src] on the head!</span>")
+
 	else
 		M.visible_message("<span class='notice'>[M] hugs [src] to make [p_them()] feel better!</span>", \
 					"<span class='notice'>You hug [src] to make [p_them()] feel better!</span>")
