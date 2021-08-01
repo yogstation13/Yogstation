@@ -37,15 +37,15 @@
 		message_admins("Disabling atmospherics to fix air on zlevel")
 		SSair.can_fire = FALSE
 
-	var/list/zlevel_turfs = block(locate(1, 1, T.z), locate(world.maxx, world.maxy, T.z))
-	var/datum/gas_mixture/GM = new
-	for(var/turf/open/F in zlevel_turfs)
-		if(F.blocks_air)
-		//skip walls
-			continue
-		GM.parse_gas_string(F.initial_gas_mix)
-		F.copy_air(GM)
-		F.update_visuals()
+	for(var/x = 1; x <= world.maxx; x++)
+		for(var/y = 1; y <= world.maxy; y++)
+			var/turf/open/F = locate(x, y, T.z)
+			if(F.blocks_air)
+			//skip walls
+				continue
+			F.air.parse_gas_string(F.initial_gas_mix)
+			F.update_visuals()
+			CHECK_TICK 
 
 	if(atmos_enabled)
 		message_admins("Re-enabling atmospherics, air on zlevel fixed")
