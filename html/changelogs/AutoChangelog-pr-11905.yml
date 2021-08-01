@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "tend wounds brute and burn now heal more base damage per cycle, and have had their step time reduced by half a second to 2 seconds flat"
