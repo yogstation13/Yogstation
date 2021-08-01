@@ -1,0 +1,6 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - rscadd: "Added many more digitigrade jumpsuit alts and two suit ones"
+  - tweak: "tweaked the footwrap icons so they cover digitigrade feet"
+  - tweak: "cleaned some code"

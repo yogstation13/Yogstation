@@ -10,6 +10,7 @@
 #define POLYSMORPH 8
 #define DRACONIC 16
 #define BEACHTONGUE 32
+#define SYLVAN 64
 GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND,SPAN_CLOWN))//Span classes that players are allowed to set in a radio transmission.
 //this is fucking broken
 GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/language/machine,/datum/language/draconic))// language datums that players are allowed to translate to in a radio transmission.
@@ -115,7 +116,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		"robot" = ROBOT,
 		"polysmorph" = POLYSMORPH,
 		"draconic" = DRACONIC,
-		"beachtounge" = BEACHTONGUE
+		"beachtounge" = BEACHTONGUE,
+		"sylvan" = SYLVAN
 	)))
 
 	interpreter.Run() // run the thing
@@ -153,6 +155,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		oldlang = DRACONIC
 	else if(oldlang == /datum/language/beachbum)
 		oldlang = BEACHTONGUE
+	else if(oldlang == /datum/language/sylvan)
+		oldlang = SYLVAN
 
 	// Signal data
 
@@ -282,6 +286,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 			return /datum/language/draconic
 		if(BEACHTONGUE)
 			return /datum/language/beachbum
+		if(SYLVAN)
+			return /datum/language/sylvan
 
 /datum/n_function/default/mem
 	name = "mem"
@@ -451,3 +457,4 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 #undef POLYSMORPH
 #undef DRACONIC
 #undef BEACHTONGUE
+#undef SYLVAN
