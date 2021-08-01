@@ -27,7 +27,7 @@
 	if(!holder)
 		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
 		return
-	if(!check_rights(R_ADMIN,1))
+	if(!check_rights(R_ADMIN))
 		return
 
 	if(alert("Do you want to reset air on the entire z level?", "Fix Air- Z level", "No", "Yes") != "Yes")
