@@ -680,7 +680,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	begin_day = 2
 	begin_month = AUGUST
 	drone_hat = /obj/item/clothing/head/beret/atmos
-	lobby_music = list("https://www.youtube.com/watch?v=5WyLhwYFgmk") // Johnny Cash - Ring Of Fire
+	lobby_music = list("https://www.youtube.com/watch?v=QfCOJLRk2D4") // Johnny Cash - Ring Of Fire
 
 /datum/holiday/twofoursixohfive/getStationPrefix()
 	return pick("Class-O","Class-B","Class-A","Class-F","Class-G","Class-K","Class-M","Dwarf","Main Sequence","Giant","Atmospheric")
