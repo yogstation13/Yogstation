@@ -1,0 +1,5 @@
+author: "jc-denthead"
+delete-after: true 
+changes: 
+  - rscadd: "every AI satellite that has no transit tube has a space heater now."
+  - tweak: "moved a few objects in most AI satellites to make space for space heaters"
