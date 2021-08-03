@@ -78,4 +78,4 @@
 		var/msg = "[key_name(client)] has a banned account in connection history! (Matched: [found["ckey"]], [found["address"]], [found["computer_id"]])"
 		message_admins(msg)
 		log_admin_private(msg)
-		owner.add_system_note("Cookie Detection", "Has a cookie from a banned account! (Matched: [found["ckey"]], [found["address"]], [found["computer_id"]])", TRUE)
+		client.add_system_note("Cookie Detection", "Has a cookie from a banned account! (Matched: [found["ckey"]], [found["address"]], [found["computer_id"]])", TRUE)
