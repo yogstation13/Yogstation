@@ -98,5 +98,11 @@
 /obj/item/autosurgeon/medibeam
 	starting_organ = /obj/item/organ/cyberimp/arm/medibeam
 
+/obj/item/autosurgeon/organ/syndicate/syndie_mantis
+	starting_organ = /obj/item/organ/cyberimp/arm/syndie_mantis
+
+/obj/item/autosurgeon/organ/syndicate/syndie_mantis/l
+	starting_organ = /obj/item/organ/cyberimp/arm/syndie_mantis/l
+
 /obj/item/autosurgeon/plasmavessel //Yogs Start: Just an autosurgeon with a plasma vessel in it, used in /obj/item/storage/box/syndie_kit/xeno_organ_kit
 	starting_organ = /obj/item/organ/alien/plasmavessel //Yogs End
