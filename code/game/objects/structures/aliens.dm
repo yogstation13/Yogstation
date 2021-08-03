@@ -145,7 +145,10 @@
 /obj/structure/alien/weeds/Click(var/atom/A)
 	var/turf/T = loc
 	if(T)
-		T.Click(A)
+		if(istype(A, /mob/living/carbon))
+			var/mob/living/carbon/C = A
+			if(C.a_intent == INTENT_HELP)
+				T.Click(A)
 	. = ..()
 
 /obj/structure/alien/weeds/proc/expand()

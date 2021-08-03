@@ -61878,6 +61878,12 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 10
+	},
+/obj/item/storage/toolbox/electrical{
+	pixel_y = 9
+	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
 "bRD" = (
@@ -67772,15 +67778,10 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "cad" = (
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/storage/toolbox/electrical,
-/obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/space_heater,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "cae" = (

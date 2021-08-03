@@ -379,7 +379,7 @@
 	W.access = get_all_accesses()//They get full station access.
 	W.access += get_centcom_access("Death Commando")//Let's add their alloted CentCom access.
 	W.assignment = "Death Commando"
-	W.registered_name = H.real_name
+	W.registered_name = splittext(H.tag, "_")[2] // 412's ID Card (Death Commando); deathsquad are so edgy they are just numbers
 	W.update_label(W.registered_name, W.assignment)
 
 /datum/outfit/death_commando/officer

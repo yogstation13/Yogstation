@@ -38724,6 +38724,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/teleport_anchor,
+/obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "gEr" = (
