@@ -5,7 +5,7 @@
 	max_occurrences = 1
 
 /datum/round_event_control/shuttle_catastrophe/canSpawnEvent(players, gamemode)
-	if((SSshuttle.emergency.name == "Build Your Own Shuttle") || (SSshuttle.emergency.name == "Build Your Own Shuttle, Jr.") || (SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL || SSshuttle.emergency.mode == SHUTTLE_DOCKED || SSshuttle.emergency.mode == SHUTTLE_STRANDED))
+	if(!is_centcom_level(SSshuttle.emergency.z) || (SSshuttle.emergency.name == "Build Your Own Shuttle") || (SSshuttle.emergency.name == "Build Your Own Shuttle, Jr.") || (SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL || SSshuttle.emergency.mode == SHUTTLE_DOCKED || SSshuttle.emergency.mode == SHUTTLE_STRANDED))
 		return FALSE // don't undo manual player engineering, it also would unload people and ghost them, there's just a lot of problems
 	return ..()
 

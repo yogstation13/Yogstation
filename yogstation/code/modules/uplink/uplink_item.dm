@@ -3,7 +3,7 @@
 	var/list/exclude_objectives = list() //objectives to disallow the buyer from buying this item
 	var/surplus_nullcrates
 
-/datum/uplink_item/New()	
+/datum/uplink_item/New()
 	. = ..()
 	if(isnull(surplus_nullcrates))
 		surplus_nullcrates = surplus
@@ -70,7 +70,7 @@
 	cost = 5
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear)
-	
+
 /datum/uplink_item/device_tools/arm/nuke
 	cost = 15
 	exclude_modes = list()
@@ -80,6 +80,13 @@
 	var/limbs = user.held_items.len
 	user.change_number_of_hands(limbs+1)
 	to_chat(user, "You feel more dexterous")
+
+/datum/uplink_item/race_restricted/xeno_organ_kit
+	name = "Xenomorph Organ Kit"
+	desc = "A kit containing the some organs that were... \"donated\" by your ancestors. Contains a autosurgen, plasma vessel, resin spinner, an acid gland, and a neurotoxin gland."
+	cost = 15
+	item = /obj/item/storage/box/syndie_kit/xeno_organ_kit
+	restricted_species = list("polysmorph")
 
 /datum/uplink_item/role_restricted/gondola_meat
 	name = "Gondola meat"

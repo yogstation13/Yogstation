@@ -103,6 +103,8 @@
 							continue //So all they're left with are shoes and uniform.
 						if(W == H.shoes)
 							continue
+						if(H.implants && (W in H.implants))
+							continue
 
 
 					M.transferItemToLoc(W)
@@ -111,7 +113,7 @@
 			var/obj/structure/closet/supplypod/extractionpod/pod = source
 
 			// Handle the pod returning
-			pod.send_up(pod)
+			pod.startExitSequence(pod)
 
 
 

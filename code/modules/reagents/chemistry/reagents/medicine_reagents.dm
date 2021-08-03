@@ -1,4 +1,5 @@
 #define PERF_BASE_DAMAGE		0.5
+#define REAGENT_REVIVE_MINIMUM_HEALTH (HEALTH_THRESHOLD_CRIT + 20)
 
 /////////////////////////////////////////////////////////////////////////////////////////
 					// MEDICINE REAGENTS
@@ -151,8 +152,8 @@
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 
 /datum/reagent/medicine/clonexadone/on_mob_life(mob/living/carbon/M)
-	if(M.bodytemperature < T0C)
-		M.adjustCloneLoss(0.00006 * (M.bodytemperature ** 2) - 6, 0)
+	if(M.bodytemperature < T0C && M.IsSleeping()) //yes you have to be in cryo shut up and drink your corn syrup
+		M.adjustCloneLoss(0.001 * (M.bodytemperature ** 2) - 100, 0)
 		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 		. = 1
 	metabolization_rate = REAGENTS_METABOLISM * (0.000015 * (M.bodytemperature ** 2) + 0.75)
@@ -195,7 +196,7 @@
 	taste_description = "fish"
 
 /datum/reagent/medicine/rezadone/on_mob_life(mob/living/carbon/M)
-	M.setCloneLoss(0) //Rezadone is almost never used in favor of cryoxadone. Hopefully this will change that.
+	M.adjustCloneLoss(-10) //Rezadone is almost always used over cryoxadone. Hopefully this will change that.
 	M.heal_bodypart_damage(1,1)
 	REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 	..()
@@ -557,8 +558,8 @@
 	return TRUE
 
 /datum/reagent/medicine/perfluorodecalin/overdose_process(mob/living/M)
-    metabolization_rate += 1
-    return ..()
+	metabolization_rate += 1
+	return ..()
 
 /datum/reagent/medicine/ephedrine
 	name = "Ephedrine"
@@ -836,7 +837,7 @@
 
 /datum/reagent/medicine/strange_reagent
 	name = "Strange Reagent"
-	description = "A miracle drug capable of bringing the dead back to life. Only functions when applied by patch or spray, if the target has less than 100 brute and burn damage (independent of one another) and hasn't been husked. Causes slight damage to the living."
+	description = "A miracle drug capable of bringing the dead back to life, at a heavy cost to their cellular makeup. Only functions when applied by patch or spray, if the target has less than 100 brute and burn damage and hasn't been husked. Causes slight damage to the living."
 	reagent_state = LIQUID
 	color = "#A0E85E"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -847,7 +848,7 @@
 		if(M.suiciding || M.hellbound) //they are never coming back
 			M.visible_message("<span class='warning'>[M]'s body does not react...</span>")
 			return
-		if(M.getBruteLoss() >= 100 || M.getFireLoss() >= 100 || HAS_TRAIT(M, TRAIT_HUSK)) //body is too damaged to be revived
+		if(M.getBruteLoss() + M.getFireLoss() >= 100 || HAS_TRAIT(M, TRAIT_HUSK)) //body is too damaged to be revived
 			M.visible_message("<span class='warning'>[M]'s body convulses a bit, and then falls still once more.</span>")
 			M.do_jitter_animation(10)
 			return
@@ -863,8 +864,11 @@
 				for(var/organ in H.internal_organs)
 					var/obj/item/organ/O = organ
 					O.setOrganDamage(0)
+			M.adjustBruteLoss(-100)
+			M.adjustFireLoss(-100)
 			M.adjustOxyLoss(-20, 0)
 			M.adjustToxLoss(-20, 0)
+			M.adjustCloneLoss(max(M.health - REAGENT_REVIVE_MINIMUM_HEALTH - M.getCloneLoss() - M.getOxyLoss() - M.getToxLoss(), 0))
 			M.updatehealth()
 			if(M.revive())
 				M.emote("gasp")
@@ -1498,6 +1502,7 @@
 	glass_desc = "Looks like some chunky dark red mix."
 	reagent_weight = 4
 	addiction_threshold = 40
+	var/clean_types = CLEAN_WASH // Burnmix can be used to clean turfs but cannot clean mobs and objects like space cleaner.
 	// Max healing non OD with best rolls + buffs: 0.2 + 0.15 + 0.2 = 0.55
 	// Max healing with OD + best rolls and all buffs: 0.4 + 0.35 + 0.4 = 1.15
 
@@ -1655,5 +1660,14 @@
 				M.visible_message("<span class='warning'>[M]'s body reacts with the medicine. It seemed to have [RNG_TEXT]!</span>")
 	..()
 
+/datum/reagent/medicine/burnmix/reaction_turf(turf/T, reac_volume)
+	if(reac_volume >= 1)
+		T.wash(clean_types)
+		for(var/am in T)
+			var/atom/movable/movable_content = am
+			if(ismopable(movable_content)) // Mopables will be cleaned anyways by the turf wash
+				continue
+			movable_content.wash(clean_types)
 
 #undef PERF_BASE_DAMAGE
+#undef REAGENT_REVIVE_MINIMUM_HEALTH

@@ -20,6 +20,7 @@ export const COLORS = {
     science: '#9b59b6',
     engineering: '#f1c40f',
     cargo: '#f39c12',
+    civilian: '#535353', // Yogs: Added new civilian color
     centcom: '#00c100',
     other: '#c38312',
   },

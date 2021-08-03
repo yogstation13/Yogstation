@@ -17,6 +17,12 @@
 	icon_state = "labcoat_cmo"
 	item_state = "labcoat_cmo"
 
+/obj/item/clothing/suit/toggle/labcoat/md
+	name = "medical doctor's labcoat"
+	desc = "A white labcoat with blue medical crosses."
+	icon_state = "labcoat_md"
+	item_state = "labcoat_md"
+
 /obj/item/clothing/suit/toggle/labcoat/emt
 	name = "\improper EMT's jacket"
 	desc = "A dark blue jacket with reflective strips for emergency medical technicians."
