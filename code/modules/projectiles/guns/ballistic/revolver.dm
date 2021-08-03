@@ -80,7 +80,8 @@
 						"Leopard Spots" = "detective_leopard",
 						"The Peacemaker" = "detective_peacemaker",
 						"Black Panther" = "detective_panther",
-						"Deckards Special" = "detective_bladerunner"
+						"Deckards Special" = "detective_bladerunner",
+						"Slab Revolver" = "detective_slab"
 						)
 
 /obj/item/gun/ballistic/revolver/detective/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
