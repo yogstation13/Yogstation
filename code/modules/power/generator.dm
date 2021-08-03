@@ -65,7 +65,7 @@
 		return
 
 	if(powernet)
-		var/datum/gas_mixture/cold_air = cold_circ.return_transfer_air()		//circulators give us air that is moving trough
+		var/datum/gas_mixture/cold_air = cold_circ.return_transfer_air()		//circulators give us air that is moving through
 		var/datum/gas_mixture/hot_air = hot_circ.return_transfer_air()
 
 		if(cold_air && hot_air)
