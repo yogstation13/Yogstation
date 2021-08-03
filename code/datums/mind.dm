@@ -70,6 +70,8 @@
 	var/flavour_text = null
 	///Are we zombified/uncloneable?
 	var/zombified = FALSE
+	///What character we spawned in as- either at roundstart or latejoin, so we know for persistent scars if we ended as the same person or not
+	var/mob/original_character
 
 /datum/mind/New(key)
 	src.key = key
@@ -91,6 +93,7 @@
 	return language_holder
 
 /datum/mind/proc/transfer_to(mob/new_character, var/force_key_move = 0)
+	original_character = null
 	var/mood_was_enabled = FALSE//Yogs -- Mood Preferences
 	if(current)	// remove ourself from our old body's mind variable
 		// Yogs start -- Mood preferences
@@ -145,6 +148,7 @@
 		new_character.key = key		//now transfer the key to link the client to our new body
 	if(new_character.client)
 		new_character.client.init_verbs() // re-initialize character specific verbs
+		LAZYCLEARLIST(new_character.client.recent_examines)
 	current.update_atom_languages()
 
 /datum/mind/proc/set_death_time()

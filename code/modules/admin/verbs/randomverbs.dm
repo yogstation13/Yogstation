@@ -1084,7 +1084,23 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 
-	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_PIE, ADMIN_PUNISHMENT_WHISTLE, ADMIN_PUNISHMENT_CLUWNE, ADMIN_PUNISHMENT_MCNUGGET)
+	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING,
+									ADMIN_PUNISHMENT_BRAINDAMAGE,
+									ADMIN_PUNISHMENT_GIB,
+									ADMIN_PUNISHMENT_BSA,
+									ADMIN_PUNISHMENT_FIREBALL,
+									ADMIN_PUNISHMENT_ROD,
+									ADMIN_PUNISHMENT_SUPPLYPOD_QUICK,
+									ADMIN_PUNISHMENT_SUPPLYPOD,
+									ADMIN_PUNISHMENT_MAZING,
+									ADMIN_PUNISHMENT_PIE,
+									ADMIN_PUNISHMENT_WHISTLE,
+									ADMIN_PUNISHMENT_CLUWNE,
+									ADMIN_PUNISHMENT_MCNUGGET,
+									ADMIN_PUNISHMENT_CRACK,
+									ADMIN_PUNISHMENT_BLEED,
+									ADMIN_PUNISHMENT_SCARIFY
+									)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
 
@@ -1103,12 +1119,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if(ADMIN_PUNISHMENT_BRAINDAMAGE)
 			target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 199, 199)
 		if(ADMIN_PUNISHMENT_MCNUGGET)
-			if(iscarbon(target)) 
+			if(iscarbon(target))
 				var/mob/living/carbon/CM = target
 				for(var/obj/item/bodypart/bodypart in CM.bodyparts)
 					if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)
 						if(bodypart.dismemberable)
-							bodypart.dismember() 
+							bodypart.dismember()
 		if(ADMIN_PUNISHMENT_GIB)
 			target.gib(FALSE)
 		if(ADMIN_PUNISHMENT_BSA)
@@ -1173,6 +1189,33 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				to_chat(target, "<span class='reallybigphobia'>HENK!! HENK!! HENK!! YOU DID SOMETHING EXTREMELY DUMB, AND MADE GOD MAD. CRY ABOUT IT.</span>")
 			var/mob/living/carbon/human/H = target
 			H?.cluwneify()
+		if(ADMIN_PUNISHMENT_CRACK)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>", confidential = TRUE)
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/squish_part in C.bodyparts)
+				var/type_wound = pick(list(/datum/wound/brute/bone/critical, /datum/wound/brute/bone/severe, /datum/wound/brute/bone/critical, /datum/wound/brute/bone/severe, /datum/wound/brute/bone/moderate))
+				squish_part.force_wound_upwards(type_wound, smited=TRUE)
+		if(ADMIN_PUNISHMENT_BLEED)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>", confidential = TRUE)
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/slice_part in C.bodyparts)
+				var/type_wound = pick(list(/datum/wound/brute/cut/severe, /datum/wound/brute/cut/moderate))
+				slice_part.force_wound_upwards(type_wound, smited=TRUE)
+				type_wound = pick(list(/datum/wound/brute/cut/critical, /datum/wound/brute/cut/severe, /datum/wound/brute/cut/moderate))
+				slice_part.force_wound_upwards(type_wound, smited=TRUE)
+				type_wound = pick(list(/datum/wound/brute/cut/critical, /datum/wound/brute/cut/severe))
+				slice_part.force_wound_upwards(type_wound, smited=TRUE)
+		if(ADMIN_PUNISHMENT_SCARIFY)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>", confidential = TRUE)
+				return
+			var/mob/living/carbon/C = target
+			C.generate_fake_scars(rand(1, 4))
+			to_chat(C, "<span class='warning'>You feel your body grow jaded and torn...</span>")
 	punish_log(target, punishment)
 
 /client/proc/punish_log(var/whom, var/punishment)
@@ -1293,12 +1336,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			A.copy_to(H)
 			H.dna.update_dna_identity()
 			H.equipOutfit(/datum/outfit/centcom/official/nopda)
-			
+
 			var/datum/mind/Mind = new /datum/mind(M.key) // Reusing the mob's original mind actually breaks objectives for any antag who had this person as their target.
 			// For that reason, we're making a new one. This mimics the behavior of, say, lone operatives, and I believe other ghostroles.
 			Mind.active = 1
 			Mind.transfer_to(H)
-			
+
 			var/msg = "[key_name_admin(H)] has spawned in at centcom [ADMIN_VERBOSEJMP(H)]."
 			message_admins(msg)
 			log_admin(msg)
@@ -1314,8 +1357,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		qdel(a)
 	message_admins("[key_name_admin(usr)] has cleared all radiation.")
 	log_admin("[key_name_admin(usr)] has cleared all radiation.")
-	
-	
+
+
 /mob/living/proc/whistle()
 	INVOKE_ASYNC(src, .proc/whistletrigger, "whistle")
 
