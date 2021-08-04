@@ -57,7 +57,7 @@
 		return FALSE
 	if(holidayID && (!SSevents.holidays || !SSevents.holidays[holidayID]))
 		return FALSE
-	if(ispath(typepath, /datum/round_event/ghost_role) && GHOSTROLE_MIDROUND_EVENT)
+	if(ispath(typepath, /datum/round_event/ghost_role) && !(GLOB.ghost_role_flags & GHOSTROLE_MIDROUND_EVENT))
 		return FALSE
 
 	var/datum/game_mode/dynamic/dynamic = SSticker.mode

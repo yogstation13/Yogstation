@@ -705,6 +705,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"abG" = (
+/obj/machinery/newscaster{
+	pixel_x = -32
+	},
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/library)
 "abH" = (
 /obj/structure/table,
 /obj/structure/cable/yellow{
@@ -38761,13 +38770,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"bxU" = (
-/obj/structure/table/wood,
-/obj/machinery/newscaster{
-	pixel_x = -32
-	},
-/turf/open/floor/wood,
-/area/library)
 "bxW" = (
 /turf/open/floor/plasteel/cult,
 /area/library)
@@ -73161,6 +73163,7 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit/departure_lounge)
 "ejI" = (
+/obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "ejP" = (
@@ -102826,7 +102829,7 @@ bqc
 bcq
 bue
 vhL
-bxU
+abG
 bzD
 bBr
 cOq

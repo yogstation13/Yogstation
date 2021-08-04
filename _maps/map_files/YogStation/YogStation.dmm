@@ -13,6 +13,13 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
+"aac" = (
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 1
+	},
+/obj/structure/railing,
+/turf/open/floor/wood,
+/area/library)
 "aad" = (
 /obj/machinery/gulag_processor,
 /turf/open/floor/plasteel,
@@ -38698,6 +38705,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/teleport_anchor,
+/obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "gEr" = (
@@ -55168,11 +55176,6 @@
 /obj/structure/tank_dispenser,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"rCR" = (
-/obj/structure/filingcabinet,
-/obj/structure/railing,
-/turf/open/floor/wood,
-/area/library)
 "rCT" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 4;
@@ -56897,6 +56900,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"sNo" = (
+/obj/effect/landmark/start/cook,
+/turf/template_noop,
+/area/template_noop)
 "sNK" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -57187,6 +57194,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
+"sXZ" = (
+/obj/effect/landmark/start/bartender,
+/turf/template_noop,
+/area/template_noop)
 "sYf" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
@@ -103751,7 +103762,7 @@ aAh
 aFh
 aql
 qQV
-qQV
+sXZ
 qQV
 qQV
 qQV
@@ -106070,8 +106081,8 @@ qQV
 qQV
 qQV
 qQV
-qQV
-qQV
+sNo
+sNo
 qQV
 qQV
 qQV
@@ -109408,7 +109419,7 @@ ihg
 ffH
 jQY
 aIt
-rCR
+aac
 gOa
 aYW
 aYW

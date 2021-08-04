@@ -88,7 +88,7 @@ GLOBAL_PROTECT(mentor_verbs)
 		to_chat(src, "<span class='notice'>You already have or are requesting a mentor!</span>")
 		return
 	
-	var/alertresult = alert(M, "This will create a rat-shaped avatar that a mentor can possess and guide you in person. Do you wish to continue?",,"Yes", "No")
+	var/alertresult = alert(M, "This will create a physical avatar that a mentor can possess and guide you in person. Do you wish to continue?",,"Yes", "No")
 	if(alertresult == "No" || QDELETED(M) || !istype(M) || !M.key)
 		return
 	
