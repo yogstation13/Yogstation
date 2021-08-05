@@ -243,7 +243,8 @@
 	throw_speed = 3
 	throw_range = 4
 	throwforce = 10
-	w_class = WEIGHT_CLASS_TINY
+	slot_flags = ITEM_SLOT_BELT
+	w_class = WEIGHT_CLASS_SMALL
 	obj_flags = UNIQUE_RENAME
 	wound_bonus = -10
 	var/reskinned = FALSE
@@ -434,6 +435,40 @@
 	icon_state = "cutlass1"
 	item_state = "cutlass1"
 	desc = "Convincing HR that your religion involved piracy was no mean feat."
+
+/obj/item/nullrod/claymore/corvo
+	name = "folding blade"
+	desc = "A relic of a fallen empire. Touch of the outsider not included."
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
+	icon_state = "corvo_0"
+	item_state = "corvo_0"
+	slot_flags = ITEM_SLOT_BELT
+	var/on = FALSE
+	var/on_sound = 'sound/weapons/batonextend.ogg'
+
+/obj/item/nullrod/claymore/corvo/attack_self(mob/user)
+	on = !on
+
+	if(on)
+		to_chat(user, "<span class ='warning'>You unfold the sword.</span>")
+		icon_state = "corvo_1"
+		item_state = "nullrod"
+		w_class = WEIGHT_CLASS_NORMAL
+		force = 18
+		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	else
+		to_chat(user, "<span class ='notice'>You fold the sword.</span>")
+		icon_state = "corvo_0"
+		item_state = "corvo_0"
+		item_state = null //no sprite for concealment even when in hand
+		w_class = WEIGHT_CLASS_SMALL
+		force = 0
+		attack_verb = list("hit", "poked")
+
+	playsound(src.loc, on_sound, 50, 1)
+	add_fingerprint(user)
+
 
 /obj/item/nullrod/sord
 	name = "\improper UNREAL SORD"

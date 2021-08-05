@@ -54,6 +54,11 @@
 		//make the sensor mode favor higher levels, except coords.
 		sensor_mode = pick(SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS, SENSOR_COORDS)
 
+/obj/item/clothing/under/Destroy()
+	if(attached_accessory)
+		remove_accessory(loc, TRUE)
+	return ..()
+
 /obj/item/clothing/under/emp_act()
 	. = ..()
 	if(has_sensor > NO_SENSORS)
@@ -70,18 +75,30 @@
 		if(!alt_covers_chest)
 			body_parts_covered |= CHEST
 
-	if(mutantrace_variation && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(DIGITIGRADE in H.dna.species.species_traits)
-			adjusted = DIGITIGRADE_STYLE
-		H.update_inv_w_uniform()
-
 	if(slot == SLOT_W_UNIFORM && freshly_laundered)
 		freshly_laundered = FALSE
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "fresh_laundry", /datum/mood_event/fresh_laundry)
 
-	if(attached_accessory && slot != SLOT_HANDS && ishuman(user))
-		var/mob/living/carbon/human/H = user
+	if(!ishuman(user)) //Yogs Start: Reorganized to reduce repetition
+		return
+	var/mob/living/carbon/human/H = user
+	
+	if(mutantrace_variation == MUTANTRACE_VARIATION)
+		var/is_digi = FALSE
+		if(DIGITIGRADE in H.dna.species.species_traits)
+			is_digi = TRUE
+		
+		if(is_digi && !adjusted == ALT_STYLE && mutantrace_variation)
+			adjusted = DIGITIGRADE_STYLE
+		else if(is_digi && adjusted == ALT_STYLE && mutantrace_variation) //Handles when you are using an alternate style while having digi legs
+			adjusted = DIGIALT_STYLE
+		else if(!is_digi && adjusted == DIGITIGRADE_STYLE)
+			adjusted = NORMAL_STYLE
+		else if(!is_digi && adjusted == DIGIALT_STYLE)
+			adjusted = ALT_STYLE
+		H.update_inv_w_uniform()
+//Yogs End
+	if(attached_accessory && slot != SLOT_HANDS)
 		attached_accessory.on_uniform_equip(src, user)
 		if(attached_accessory.above_suit)
 			H.update_inv_wear_suit()
@@ -130,20 +147,22 @@
 
 			return TRUE
 
-/obj/item/clothing/under/proc/remove_accessory(mob/user)
-	if(!isliving(user))
+/obj/item/clothing/under/proc/remove_accessory(mob/user, forced)
+	if(!isliving(user) && !forced)
 		return
-	if(!can_use(user))
+	if(!can_use(user) && !forced)
 		return
 
 	if(attached_accessory)
 		var/obj/item/clothing/accessory/A = attached_accessory
 		attached_accessory.detach(src, user)
-		if(user.put_in_hands(A))
+		if(user.put_in_hands(A) && !forced)
 			to_chat(user, "<span class='notice'>You detach [A] from [src].</span>")
-		else
+		else if(!forced)
 			to_chat(user, "<span class='notice'>You detach [A] from [src] and it falls on the floor.</span>")
-
+		else
+			attached_accessory.forceMove(get_turf(src))
+		
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
 			H.update_inv_w_uniform()
@@ -157,7 +176,7 @@
 	if(freshly_laundered)
 		. += "It looks fresh and clean."
 	if(can_adjust)
-		if(adjusted == ALT_STYLE)
+		if(adjusted == ALT_STYLE || adjusted == DIGIALT_STYLE)
 			. += "Alt-click on [src] to wear it normally."
 		else
 			. += "Alt-click on [src] to wear it casually."

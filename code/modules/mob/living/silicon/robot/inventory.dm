@@ -131,7 +131,7 @@
   * Arguments
   * * module_num - the slot number being repaired.
   */
-/mob/living/silicon/robot/proc/break_cyborg_slot(module_num)
+/mob/living/silicon/robot/proc/break_cyborg_slot(module_num, quiet)
 	if(is_invalid_module_number(module_num, TRUE))
 		return FALSE
 
@@ -147,9 +147,10 @@
 			inv1.icon_state = "[initial(inv1.icon_state)] +b"
 			disabled_modules |= BORG_MODULE_ALL_DISABLED
 
-			playsound(src, 'sound/machines/warning-buzzer.ogg', 75, TRUE, TRUE)
-			audible_message("<span class='warning'>[src] sounds an alarm! \"CRITICAL ERROR: ALL modules OFFLINE.\"</span>")
-			to_chat(src, "<span class='userdanger'>CRITICAL ERROR: ALL modules OFFLINE.</span>")
+			if(!quiet)
+				playsound(src, 'sound/machines/warning-buzzer.ogg', 75, TRUE, TRUE)
+				audible_message("<span class='warning'>[src] sounds an alarm! \"CRITICAL ERROR: ALL modules OFFLINE.\"</span>")
+				to_chat(src, "<span class='userdanger'>CRITICAL ERROR: ALL modules OFFLINE.</span>")
 
 		if(2)
 			if(disabled_modules & BORG_MODULE_TWO_DISABLED)
@@ -158,9 +159,10 @@
 			inv2.icon_state = "[initial(inv2.icon_state)] +b"
 			disabled_modules |= BORG_MODULE_TWO_DISABLED
 
-			playsound(src, 'sound/machines/warning-buzzer.ogg', 60, TRUE, TRUE)
-			audible_message("<span class='warning'>[src] sounds an alarm! \"SYSTEM ERROR: Module [module_num] OFFLINE.\"</span>")
-			to_chat(src, "<span class='userdanger'>SYSTEM ERROR: Module [module_num] OFFLINE.</span>")
+			if(!quiet)
+				playsound(src, 'sound/machines/warning-buzzer.ogg', 60, TRUE, TRUE)
+				audible_message("<span class='warning'>[src] sounds an alarm! \"SYSTEM ERROR: Module [module_num] OFFLINE.\"</span>")
+				to_chat(src, "<span class='userdanger'>SYSTEM ERROR: Module [module_num] OFFLINE.</span>")
 
 		if(3)
 			if(disabled_modules & BORG_MODULE_THREE_DISABLED)
@@ -169,9 +171,10 @@
 			inv3.icon_state = "[initial(inv3.icon_state)] +b"
 			disabled_modules |= BORG_MODULE_THREE_DISABLED
 
-			playsound(src, 'sound/machines/warning-buzzer.ogg', 50, TRUE, TRUE)
-			audible_message("<span class='warning'>[src] sounds an alarm! \"SYSTEM ERROR: Module [module_num] OFFLINE.\"</span>")
-			to_chat(src, "<span class='userdanger'>SYSTEM ERROR: Module [module_num] OFFLINE.</span>")
+			if(!quiet)
+				playsound(src, 'sound/machines/warning-buzzer.ogg', 50, TRUE, TRUE)
+				audible_message("<span class='warning'>[src] sounds an alarm! \"SYSTEM ERROR: Module [module_num] OFFLINE.\"</span>")
+				to_chat(src, "<span class='userdanger'>SYSTEM ERROR: Module [module_num] OFFLINE.</span>")
 
 	return TRUE
 
@@ -179,9 +182,9 @@
 /**
   * Breaks all of a cyborg's slots.
   */
-/mob/living/silicon/robot/proc/break_all_cyborg_slots()
+/mob/living/silicon/robot/proc/break_all_cyborg_slots(quiet)
 	for(var/cyborg_slot in 1 to 3)
-		break_cyborg_slot(cyborg_slot)
+		break_cyborg_slot(cyborg_slot, quiet)
 
 /**
   * Repairs the slot number, updating the icon.

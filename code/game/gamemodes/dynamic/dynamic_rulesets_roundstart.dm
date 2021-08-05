@@ -923,7 +923,7 @@
 //                                          //
 //////////////////////////////////////////////
 
-/*/datum/dynamic_ruleset/roundstart/darkspawn
+/datum/dynamic_ruleset/roundstart/darkspawn
 	name = "Darkspawn"
 	antag_flag = ROLE_DARKSPAWN
 	antag_datum = /datum/antagonist/darkspawn/
@@ -946,4 +946,4 @@
 		M.mind.special_role = ROLE_DARKSPAWN
 		M.mind.restricted_roles = restricted_roles
 		log_game("[key_name(M)] has been selected as a Darkspawn")
-	return TRUE */
+	return TRUE
