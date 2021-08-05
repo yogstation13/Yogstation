@@ -56915,6 +56915,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"sNo" = (
+/obj/effect/landmark/start/cook,
+/turf/template_noop,
+/area/template_noop)
 "sNK" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -57205,6 +57209,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
+"sXZ" = (
+/obj/effect/landmark/start/bartender,
+/turf/template_noop,
+/area/template_noop)
 "sYf" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
@@ -103782,7 +103790,7 @@ aAh
 aFh
 aql
 qQV
-qQV
+sXZ
 qQV
 qQV
 qQV
@@ -106101,8 +106109,8 @@ qQV
 qQV
 qQV
 qQV
-qQV
-qQV
+sNo
+sNo
 qQV
 qQV
 qQV
