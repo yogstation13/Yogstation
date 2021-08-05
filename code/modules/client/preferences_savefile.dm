@@ -203,6 +203,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["map"], map)
 	READ_FILE(S["flare"], flare)
 	READ_FILE(S["skillcape"], skillcape)
+	READ_FILE(S["bar_choice"], bar_choice)
 	READ_FILE(S["show_credits"], show_credits)
 
 	// yogs start - Donor features
@@ -253,6 +254,16 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	skillcape       = sanitize_integer(skillcape, 1, 82, initial(skillcape))
 	map				= sanitize_integer(map, FALSE, TRUE, initial(map))
 	flare			= sanitize_integer(flare, FALSE, TRUE, initial(flare))
+	bar_choice	= sanitize_text(bar_choice, initial(bar_choice))
+
+	var/bar_sanitize = FALSE
+	for(var/A in GLOB.potential_box_bars)
+		if(bar_choice == A)
+			bar_sanitize = TRUE
+			break
+	if(!bar_sanitize)
+		bar_choice = "Random"
+	
 	show_credits	= sanitize_integer(show_credits, FALSE, TRUE, initial(show_credits))
 
 	// yogs start - Donor features & yogtoggles
@@ -320,6 +331,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["show_credits"], show_credits)
 	WRITE_FILE(S["map"], map)
 	WRITE_FILE(S["flare"], flare)
+	WRITE_FILE(S["bar_choice"], bar_choice)
 
 	// yogs start - Donor features & Yogstoggle
 	WRITE_FILE(S["yogtoggles"], yogtoggles)

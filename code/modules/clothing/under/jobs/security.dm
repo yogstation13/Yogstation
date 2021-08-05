@@ -20,6 +20,7 @@
 	alt_covers_chest = TRUE
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/security/grey
 	name = "grey security jumpsuit"
@@ -37,6 +38,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE //you know now that i think of it if you adjust the skirt and the sprite disappears isn't that just like flashing everyone
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 
 /obj/item/clothing/under/rank/warden
@@ -50,6 +52,7 @@
 	alt_covers_chest = TRUE
 	sensor_mode = 3
 	random_sensor = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/warden/grey
 	name = "grey security suit"
@@ -67,6 +70,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /*
  * Detective
@@ -82,6 +86,7 @@
 	alt_covers_chest = TRUE
 	sensor_mode = 3
 	random_sensor = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/det/skirt
 	name = "detective's suitskirt"
@@ -92,6 +97,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/det/grey
 	name = "noir suit"
@@ -110,6 +116,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /*
  * Head of Security
@@ -125,6 +132,7 @@
 	alt_covers_chest = TRUE
 	sensor_mode = 3
 	random_sensor = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/head_of_security/skirt
 	name = "head of security's jumpskirt"
@@ -135,6 +143,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/head_of_security/grey
 	name = "head of security's grey jumpsuit"
@@ -159,6 +168,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /*
  * Navy uniforms
