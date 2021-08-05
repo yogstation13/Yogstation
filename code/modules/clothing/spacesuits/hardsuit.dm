@@ -103,7 +103,25 @@
 	var/helmettype = /obj/item/clothing/head/helmet/space/hardsuit
 	var/obj/item/tank/jetpack/suit/jetpack = null
 
+	//Modular start
+	var/allowed_modules
+
+	var/initial_modules = list()
+
+	var/datum/modular_hardsuit/mod_suit
+
+	var/datum/action/innate/hardsuit_ui/ui_access
+
+/obj/item/clothing/suit/space/hardsuit/Destroy()
+	mod_suit.suit = null
+	ui_access.suit = null
+	. = ..()
+
 /obj/item/clothing/suit/space/hardsuit/Initialize()
+	mod_suit = new(src)
+	ui_access = new()
+	ui_access.suit = src
+	ui_access.button_icon_state = icon_state
 	if(jetpack && ispath(jetpack))
 		jetpack = new jetpack(src)
 	. = ..()
@@ -148,6 +166,7 @@
 			for(var/X in jetpack.actions)
 				var/datum/action/A = X
 				A.Grant(user)
+	ui_access.Grant(user)
 
 /obj/item/clothing/suit/space/hardsuit/dropped(mob/user)
 	..()
@@ -155,6 +174,7 @@
 		for(var/X in jetpack.actions)
 			var/datum/action/A = X
 			A.Remove(user)
+	ui_access.Remove(user)
 
 /obj/item/clothing/suit/space/hardsuit/item_action_slot_check(slot)
 	if(slot == SLOT_WEAR_SUIT) //we only give the mob the ability to toggle the helmet if he's wearing the hardsuit.
