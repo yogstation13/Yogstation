@@ -223,13 +223,12 @@
 		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
 			msg += "[t_He] look[p_s()] extremely disgusted.\n"
 
-	var/apparent_blood_volume = blood_volume
-	switch(apparent_blood_volume)
-		if(BLOOD_VOLUME_OKAY(src) to BLOOD_VOLUME_SAFE(src))
+	switch(get_blood_state())
+		if(BLOOD_OKAY)
 			msg += "[t_He] [t_has] pale skin.\n"
-		if(BLOOD_VOLUME_BAD(src) to BLOOD_VOLUME_OKAY(src))
+		if(BLOOD_BAD)
 			msg += "<b>[t_He] look[p_s()] like pale death.</b>\n"
-		if(-INFINITY to BLOOD_VOLUME_BAD(src))
+		if(BLOOD_DEAD to BLOOD_SURVIVE)
 			msg += "<span class='deadsay'><b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b></span>\n"
 
 	if(bleedsuppress)
