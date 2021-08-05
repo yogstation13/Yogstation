@@ -3,7 +3,7 @@
 	select_name = "kill"
 
 /obj/item/ammo_casing/energy/laser/hellfire
-	projectile_type = /obj/projectile/beam/laser/hellfire
+	projectile_type = /obj/item/projectile/beam/laser/hellfire
 	e_cost = 130
 	select_name = "maim"
 

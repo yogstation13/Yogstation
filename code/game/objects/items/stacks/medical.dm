@@ -1,7 +1,7 @@
 /obj/item/stack/medical
 	name = "medical pack"
 	singular_name = "medical pack"
-	icon = 'icons/obj/stack_objects.dmi'
+	icon = 'icons/obj/stack_medical.dmi'
 	amount = 6
 	max_amount = 6
 	w_class = WEIGHT_CLASS_TINY
@@ -15,7 +15,6 @@
 	var/self_delay = 50
 	var/other_delay = 0
 	var/repeating = FALSE
-	var/experience_given = 1
 	/// How much brute we heal per application
 	var/heal_brute
 	/// How much burn we heal per application

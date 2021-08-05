@@ -125,7 +125,7 @@
 	else if(istype(I, /obj/item/stack/medical/suture))
 		suture(I, user)
 
-/*datum/wound/brute/cut/try_handling(mob/living/carbon/human/user)
+/*datum/wound/brute/cut/try_handling(mob/living/carbon/human/user) //degenerate bullshit here :eyes::eyes:
 	if(user.pulling != victim || user.zone_selected != limb.body_zone || user.a_intent == INTENT_GRAB)
 		return FALSE
 
