@@ -53,7 +53,6 @@
 			return
 
 	if(heal(M, user))
-		user?.mind.adjust_experience(/datum/skill/healing, experience_given)
 		log_combat(user, M, "healed", src.name)
 		use(1)
 		if(repeating && amount > 0)
@@ -71,17 +70,18 @@
 		to_chat(user, "<span class='warning'>\The [src] won't work on a robotic limb!</span>")
 		return
 	if(affecting.brute_dam && brute || affecting.burn_dam && burn)
-		user.visible_message("<span class='green'>[user] applies \the [src] on [C]'s [affecting.name].</span>", "<span class='green'>You apply \the [src] on [C]'s [affecting.name].</span>")
-		var/brute2heal = brute
-		var/burn2heal = burn
-		var/skill_mod = user?.mind?.get_skill_modifier(/datum/skill/healing, SKILL_SPEED_MODIFIER)
-		if(skill_mod)
-			brute2heal *= (2-skill_mod)
-			burn2heal *= (2-skill_mod)
-		if(affecting.heal_damage(brute2heal, burn2heal))
+		user.visible_message("<span class='infoplain'><span class='green'>[user] applies [src] on [C]'s [affecting.name].</span></span>", "<span class='infoplain'><span class='green'>You apply [src] on [C]'s [affecting.name].</span></span>")
+		var/previous_damage = affecting.get_damage()
+		if(affecting.heal_damage(brute, burn))
 			C.update_damage_overlays()
+		post_heal_effects(max(previous_damage - affecting.get_damage(), 0), C, user)
 		return TRUE
 	to_chat(user, "<span class='warning'>[C]'s [affecting.name] can not be healed with \the [src]!</span>")
+	return FALSE
+
+///Override this proc for special post heal effects.
+/obj/item/stack/medical/proc/post_heal_effects(amount_healed, mob/living/carbon/healed_mob, mob/user)
+	return
 
 
 /obj/item/stack/medical/bruise_pack
@@ -94,7 +94,7 @@
 	heal_brute = 40
 	self_delay = 40
 	other_delay = 20
-	grind_results = list(/datum/reagent/medicine/C2/libital = 10)
+	grind_results = list(/datum/reagent/medicine/c2/libital = 10)
 
 /obj/item/stack/medical/bruise_pack/heal(mob/living/M, mob/user)
 	if(M.stat == DEAD)
@@ -148,7 +148,7 @@
 	amount = 12
 
 /obj/item/stack/medical/gauze/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_WIRECUTTER || I.get_sharpness())
+	if(I.tool_behaviour == TOOL_WIRECUTTER || I.sharpness)
 		if(get_amount() < 2)
 			to_chat(user, "<span class='warning'>You need at least two gauzes to do this!</span>")
 			return
@@ -245,7 +245,7 @@
 	heal_burn = 5
 	flesh_regeneration = 2.5
 	sanitization = 0.3
-	grind_results = list(/datum/reagent/medicine/C2/lenturi = 10)
+	grind_results = list(/datum/reagent/medicine/c2/lenturi = 10)
 
 /obj/item/stack/medical/ointment/heal(mob/living/M, mob/user)
 	if(M.stat == DEAD)
@@ -283,11 +283,11 @@
 		is_open = FALSE
 		update_icon()
 
-/obj/item/stack/medical/mesh/update_icon_state()
+/*obj/item/stack/medical/mesh/update_icon_state()
 	if(!is_open)
 		icon_state = "regen_mesh_closed"
 	else
-		return ..()
+		return ..()*/
 
 /obj/item/stack/medical/mesh/heal(mob/living/M, mob/user)
 	. = ..()
@@ -338,11 +338,11 @@
 	flesh_regeneration = 3.5
 	grind_results = list(/datum/reagent/consumable/aloejuice = 1)
 
-/obj/item/stack/medical/mesh/advanced/update_icon_state()
+/*obj/item/stack/medical/mesh/advanced/update_icon_state()
 	if(!is_open)
 		icon_state = "aloe_mesh_closed"
 	else
-		return ..()
+		return ..()*/
 
 /obj/item/stack/medical/aloe
 	name = "aloe cream"
@@ -398,7 +398,7 @@
 
 	amount = 4
 	self_delay = 20
-	grind_results = list(/datum/reagent/medicine/C2/libital = 10)
+	grind_results = list(/datum/reagent/medicine/c2/libital = 10)
 	novariants = TRUE
 
 /obj/item/stack/medical/bone_gel/attack(mob/living/M, mob/user)
@@ -431,3 +431,28 @@
 	custom_materials = null
 	is_cyborg = 1
 	cost = 250
+
+/obj/item/stack/medical/poultice
+	name = "mourning poultices"
+	singular_name = "mourning poultice"
+	desc = "A type of primitive herbal poultice.\nWhile traditionally used to prepare corpses for the mourning feast, it can also treat scrapes and burns on the living, however, it is liable to cause shortness of breath when employed in this manner.\nIt is imbued with ancient wisdom."
+	icon_state = "poultice"
+	amount = 15
+	max_amount = 15
+	heal_brute = 10
+	heal_burn = 10
+	self_delay = 40
+	other_delay = 10
+	repeating = TRUE
+	hitsound = 'sound/misc/moist_impact.ogg'
+	merge_type = /obj/item/stack/medical/poultice
+
+/obj/item/stack/medical/poultice/heal(mob/living/M, mob/user)
+	if(iscarbon(M))
+		playsound(src, 'sound/misc/soggy.ogg', 30, TRUE)
+		return heal_carbon(M, user, heal_brute, heal_burn)
+	return ..()
+
+/obj/item/stack/medical/poultice/post_heal_effects(amount_healed, mob/living/carbon/healed_mob, mob/user)
+	. = ..()
+	healed_mob.adjustOxyLoss(amount_healed)

@@ -17,6 +17,8 @@
 	damage = 15 // yogs - Nerfed revolver damage
 	//knockdown = 60 //yogs - commented out
 	stamina = 35 // yogs
+	wound_bonus = -35
+	sharpness = TRUE
 
 /obj/item/projectile/bullet/c38/trac
 	name = ".38 TRAC bullet"

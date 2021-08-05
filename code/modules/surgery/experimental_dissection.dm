@@ -53,7 +53,7 @@
 	if(D)
 		D.adjust_money(check_value(target))
 	var/obj/item/bodypart/L = target.get_bodypart(BODY_ZONE_CHEST)
-	target.apply_damage(80, BRUTE, L)
+	target.apply_damage(80, BRUTE, L, wound_bonus=CANT_WOUND)
 	ADD_TRAIT(target, TRAIT_DISSECTED, "surgery")
 	return TRUE
 
@@ -64,6 +64,6 @@
 	if(D)
 		D.adjust_money(check_value(target))
 	var/obj/item/bodypart/L = target.get_bodypart(BODY_ZONE_CHEST)
-	target.apply_damage(80, BRUTE, L)
+	target.apply_damage(80, BRUTE, L, wound_bonus=CANT_WOUND)
 	ADD_TRAIT(target, TRAIT_DISSECTED, "surgery")
 	return TRUE

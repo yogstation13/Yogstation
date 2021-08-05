@@ -12,6 +12,9 @@
 	var/icon_right = "bloodhand_right"
 	hitsound = 'sound/hallucinations/growl1.ogg'
 	force = 21 // Just enough to break airlocks with melee attacks
+	sharpness = IS_SHARP
+	wound_bonus = -30
+	bare_wound_bonus = 15
 	damtype = "brute"
 	var/inserted_organ = /obj/item/organ/zombie_infection
 	var/infect_chance = 100 //Before armor calculations

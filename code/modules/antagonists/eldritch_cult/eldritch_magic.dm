@@ -46,7 +46,7 @@
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
 	catchphrase = "FEAR THE BEYOND"
-	
+
 /obj/item/melee/touch_attack/mansus_fist/ignition_effect(atom/A, mob/user)
 	. = "<span class='notice'>[user] effortlessly snaps [user.p_their()] fingers near [A], igniting it with eldritch energies. Fucking badass!</span>"
 	qdel(src)
@@ -238,7 +238,6 @@
 		//var/obj/item/bodypart/bodypart = pick(target.bodyparts)
 		//var/datum/wound/slash/critical/crit_wound = new
 		//crit_wound.apply_wound(bodypart)
-		target.bleed_rate += 15
 		target.adjustFireLoss(20)
 		new /obj/effect/temp_visual/cleave(target.drop_location())
 

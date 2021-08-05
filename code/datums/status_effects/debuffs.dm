@@ -885,10 +885,9 @@
 	effect_sprite = "emark1"
 
 /datum/status_effect/eldritch/flesh/on_effect()
-
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.bleed_rate += 10
+	//if(ishuman(owner))
+		//var/mob/living/carbon/human/H = owner
+		//H.bleed_rate += 10
 	return ..()
 
 /datum/status_effect/eldritch/ash

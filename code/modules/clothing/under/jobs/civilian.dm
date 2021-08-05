@@ -34,6 +34,7 @@
 	item_color = "captain"
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "wound" = 15)
 
 /obj/item/clothing/under/rank/captain/skirt
 	name = "captain's jumpskirt"
@@ -405,6 +406,7 @@
 	icon_state = "miner"
 	item_state = "miner"
 	item_color = "miner"
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 0, "wound" = 10)
 
 /obj/item/clothing/under/rank/miner/lavaland
 	desc = "A green uniform for operating in hazardous environments."

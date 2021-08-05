@@ -12,7 +12,7 @@
 	wound_type = WOUND_LIST_BONE
 
 	/// The item we're currently splinted with, if there is one
-	var/obj/item/stack/splinted
+	var/obj/item/stack/medical/splinted
 
 	/// Have we been taped?
 	var/taped
@@ -45,7 +45,7 @@
 	RegisterSignal(victim, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, .proc/attack_with_hurt_hand)
 	if(limb.held_index && victim.get_item_for_held_index(limb.held_index) && (disabling || prob(30 * severity)))
 		var/obj/item/I = victim.get_item_for_held_index(limb.held_index)
-		if(istype(I, /obj/item/offhand))
+		if(istype(I, /obj/item/twohanded/offhand))
 			I = victim.get_inactive_held_item()
 
 		if(I && victim.dropItemToGround(I))
@@ -196,7 +196,7 @@
 	BEWARE OF REDUNDANCY AHEAD THAT I MUST PARE DOWN
 */
 
-/datum/wound/brute/bone/proc/splint(obj/item/stack/I, mob/user)
+/datum/wound/brute/bone/proc/splint(obj/item/stack/medical/I, mob/user)
 	if(splinted && splinted.splint_factor >= I.splint_factor)
 		to_chat(user, "<span class='warning'>The splint already on [user == victim ? "your" : "[victim]'s"] [limb.name] is better than you can do with [I].</span>")
 		return
@@ -257,16 +257,10 @@
 
 /// If someone is snapping our dislocated joint back into place by hand with an aggro grab and help intent
 /datum/wound/brute/bone/moderate/proc/chiropractice(mob/living/carbon/human/user)
-	var/time = base_treat_time
-	var/time_mod = user.mind?.get_skill_modifier(/datum/skill/healing, SKILL_SPEED_MODIFIER)
-	var/prob_mod = user.mind?.get_skill_modifier(/datum/skill/healing, SKILL_PROBS_MODIFIER)
-	if(time_mod)
-		time *= time_mod
-
-	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(65 + prob_mod))
+	if(prob(65))
 		user.visible_message("<span class='danger'>[user] snaps [victim]'s dislocated [limb.name] back into place!</span>", "<span class='notice'>You snap [victim]'s dislocated [limb.name] back into place!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] back into place!</span>")
 		victim.emote("scream")
@@ -280,20 +274,14 @@
 
 /// If someone is snapping our dislocated joint into a fracture by hand with an aggro grab and harm or disarm intent
 /datum/wound/brute/bone/moderate/proc/malpractice(mob/living/carbon/human/user)
-	var/time = base_treat_time
-	var/time_mod = user.mind?.get_skill_modifier(/datum/skill/healing, SKILL_SPEED_MODIFIER)
-	var/prob_mod = user.mind?.get_skill_modifier(/datum/skill/healing, SKILL_PROBS_MODIFIER)
-	if(time_mod)
-		time *= time_mod
-
-	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
-	if(prob(65 + prob_mod))
+	if(prob(65))
 		user.visible_message("<span class='danger'>[user] snaps [victim]'s dislocated [limb.name] with a sickening crack!</span>", "<span class='danger'>You snap [victim]'s dislocated [limb.name] with a sickening crack!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] snaps your dislocated [limb.name] with a sickening crack!</span>")
 		victim.emote("scream")
-		limb.receive_damage(brute=25, wound_bonus=30 + prob_mod * 3)
+		limb.receive_damage(brute=25, wound_bonus=30)
 	else
 		user.visible_message("<span class='danger'>[user] wrenches [victim]'s dislocated [limb.name] around painfully!</span>", "<span class='danger'>You wrench [victim]'s dislocated [limb.name] around painfully!</span>", ignored_mobs=victim)
 		to_chat(victim, "<span class='userdanger'>[user] wrenches your dislocated [limb.name] around painfully!</span>")
@@ -337,7 +325,7 @@
 	limp_slowdown = 6
 	threshold_minimum = 60
 	threshold_penalty = 30
-	treatable_by = list(/obj/item/stack/sticky_tape/surgical, /obj/item/stack/medical/gauze, /obj/item/stack/medical/bone_gel)
+	treatable_by = list(/obj/item/stack/medical/gauze, /obj/item/stack/medical/bone_gel)
 	status_effect_type = /datum/status_effect/wound/bone/severe
 	treat_priority = TRUE
 	scarring_descriptions = list("a faded, fist-sized bruise", "a vaguely triangular peel scar")
@@ -358,7 +346,7 @@
 	threshold_minimum = 115
 	threshold_penalty = 50
 	disabling = TRUE
-	treatable_by = list(/obj/item/stack/sticky_tape/surgical, /obj/item/stack/medical/gauze, /obj/item/stack/medical/bone_gel)
+	treatable_by = list(/obj/item/stack/medical/gauze, /obj/item/stack/medical/bone_gel)
 	status_effect_type = /datum/status_effect/wound/bone/critical
 	treat_priority = TRUE
 	scarring_descriptions = list("a section of janky skin lines and badly healed scars", "a large patch of uneven skin tone", "a cluster of calluses")
@@ -409,7 +397,7 @@
 		gelled = TRUE
 
 /// if someone is using surgical tape on our wound
-/datum/wound/brute/bone/proc/tape(obj/item/stack/sticky_tape/surgical/I, mob/user)
+/*datum/wound/brute/bone/proc/tape(obj/item/stack/sticky_tape/surgical/I, mob/user)
 	if(!gelled)
 		to_chat(user, "<span class='warning'>[user == victim ? "Your" : "[victim]'s"] [limb.name] must be coated with bone gel to perform this emergency operation!</span>")
 		return
@@ -432,13 +420,13 @@
 		victim.visible_message("<span class='notice'>[victim] finishes applying [I] to [victim.p_their()] [limb.name], !</span>", "<span class='green'>You finish applying [I] to your [limb.name], and you immediately begin to feel your bones start to reform!</span>")
 
 	taped = TRUE
-	processes = TRUE
+	processes = TRUE*/
 
 /datum/wound/brute/bone/treat(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/medical/bone_gel))
 		gel(I, user)
-	else if(istype(I, /obj/item/stack/sticky_tape/surgical))
-		tape(I, user)
+	//else if(istype(I, /obj/item/stack/sticky_tape/surgical))
+		//tape(I, user)
 	else if(istype(I, /obj/item/stack/medical/gauze))
 		splint(I, user)
 

@@ -36,9 +36,9 @@
 	if(eldritch_effect)
 		. = TRUE
 		eldritch_effect.on_effect()
-		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
-			H.bleed_rate += 7
+		//if(ishuman(target))
+			//var/mob/living/carbon/human/H = target
+			//H.bleed_rate += 7
 
 	if(QDELETED(human_target) || human_target.stat != DEAD)
 		return
@@ -109,9 +109,9 @@
 
 /datum/eldritch_knowledge/flesh_blade_upgrade/on_eldritch_blade(target,user,proximity_flag,click_parameters)
 	. = ..()
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		H.bleed_rate += 3
+	//if(ishuman(target))
+		//var/mob/living/carbon/human/H = target
+		//H.bleed_rate += 3
 
 /datum/eldritch_knowledge/raw_prophet
 	name = "Raw Ritual"

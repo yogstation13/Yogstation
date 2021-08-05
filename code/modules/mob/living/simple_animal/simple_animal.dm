@@ -93,6 +93,13 @@
 
 	var/do_footstep = FALSE
 
+	///How much wounding power it has
+	var/wound_bonus = CANT_WOUND
+	///How much bare wounding power it has
+	var/bare_wound_bonus = 0
+	///If the attacks from this are sharp
+	var/sharpness = FALSE
+
 	var/music_component = null
 	var/music_path = null
 

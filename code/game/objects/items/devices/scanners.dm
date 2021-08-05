@@ -125,12 +125,12 @@ GENE SCANNER
 	user.visible_message("<span class='notice'>[user] has analyzed [M]'s vitals.</span>")
 
 	switch(scanmode)
-	if(SCANMODE_HEALTH)
-		healthscan(user, M, advanced)
-	if(SCANMODE_CHEMICAL)
-		chemscan(user, M)
-	else
-		woundscan(user, M, src)
+		if(SCANMODE_HEALTH)
+			healthscan(user, M, advanced)
+		if(SCANMODE_CHEMICAL)
+			chemscan(user, M)
+		else
+			woundscan(user, M, src)
 
 	add_fingerprint(user)
 
@@ -386,11 +386,12 @@ GENE SCANNER
 		var/list/wounded_parts = C.get_wounded_bodyparts()
 		for(var/i in wounded_parts)
 			var/obj/item/bodypart/wounded_part = i
-			render_list += "<span class='alert ml-1'><b>Warning: Physical trauma[LAZYLEN(wounded_part.wounds) > 1? "s" : ""] detected in [wounded_part.name]</b>"
+			var/render_list = "<span class='alert ml-1'><b>Warning: Physical trauma[LAZYLEN(wounded_part.wounds) > 1? "s" : ""] detected in [wounded_part.name]</b>"
 			for(var/k in wounded_part.wounds)
 				var/datum/wound/W = k
 				render_list += "<div class='ml-2'>Type: [W.name]\nSeverity: [W.severity_text()]\nRecommended Treatment: [W.treat_text]</div>\n" // less lines than in woundscan() so we don't overload people trying to get basic med info
 			render_list += "</span>"
+			to_chat(render_list)
 
 	for(var/thing in M.diseases)
 		var/datum/disease/D = thing

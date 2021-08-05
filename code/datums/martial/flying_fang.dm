@@ -92,7 +92,7 @@
 	A.do_attack_animation(D, ATTACK_EFFECT_BITE)
 	playsound(D, 'sound/weapons/bite.ogg', 50, TRUE, -1)
 	D.apply_damage(30, A.dna.species.attack_type, BODY_ZONE_HEAD, armor_block)
-	D.bleed_rate += 5
+	//D.bleed_rate += 5
 	D.visible_message("<span class='danger'>[A] takes a large bite out of [D]'s neck!</span>", \
 					  "<span class='userdanger'>[A] takes a large bite out of your neck!</span>")
 	if(D.health > 0)
@@ -242,7 +242,7 @@
 	to_chat(usr, "<span class='notice'>Your training has rendered you more resistant to pain, allowing you to keep fighting effectively for longer and reducing the effectiveness of stun and stamina weapons by about a third.</span>")
 	to_chat(usr, "<span class='warning'>However, the primitive instincts gained through this training prevent you from using guns, stun weapons, or armor.</span>")
 	to_chat(usr, "<span class='notice'><b>All of your unarmed attacks deal increased brute damage with a small amount of armor piercing</b></span>")
-	
+
 	to_chat(usr, "<span class='notice'>Disarm Intent</span>: Headbutt your enemy, Deals minor stamina and brute damage, as well as causing eye blurriness. Prevents the target from using ranged weapons effectively for a few seconds if they are not wearing a helmet.")
 
 	to_chat(usr, "<span class='notice'>Tail Slap</span>: Disarm Disarm Disarm. High armor piercing attack that causes a short slow followed by a knockdown. Deals heavy stamina damage.")

@@ -206,9 +206,6 @@
 
 /// Additional beneficial effects when the wound is gained, in case you want to give a temporary boost to allow the victim to try an escape or last stand
 /datum/wound/proc/second_wind()
-	if(HAS_TRAIT(victim, TRAIT_NOMETABOLISM))
-		return
-
 	switch(severity)
 		if(WOUND_SEVERITY_MODERATE)
 			victim.reagents.add_reagent(/datum/reagent/determination, WOUND_DETERMINATION_MODERATE)
@@ -252,9 +249,9 @@
 		return FALSE
 
 	// now that we've determined we have a valid attempt at treating, we can stomp on their dreams if we're already interacting with the patient
-	if(INTERACTING_WITH(user, victim))
-		to_chat(user, "<span class='warning'>You're already interacting with [victim]!</span>")
-		return TRUE
+	//if(INTERACTING_WITH(user, victim))
+		//to_chat(user, "<span class='warning'>You're already interacting with [victim]!</span>")
+		//return TRUE
 
 	// lastly, treat them
 	treat(I, user)

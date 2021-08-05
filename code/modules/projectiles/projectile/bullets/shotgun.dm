@@ -6,6 +6,8 @@
 	name = "beanbag slug"
 	damage = 5
 	stamina = 55
+	wound_bonus = 20
+	sharpness = FALSE
 
 /obj/item/projectile/bullet/incendiary/shotgun
 	name = "incendiary slug"
@@ -61,6 +63,7 @@
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	name = "buckshot pellet"
 	damage = 12.5
+	wound_bonus = -10
 
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubbershot pellet"

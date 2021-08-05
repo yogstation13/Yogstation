@@ -131,7 +131,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(!ispath(donor_item))
 			donor_item = null
 	if(current_version < 31) //Someone doesn't know how to code and make jukebox and autodeadmin the same thing
-		toggles &= ~DEADMIN_ALWAYS 
+		toggles &= ~DEADMIN_ALWAYS
 		toggles &= ~DEADMIN_ANTAGONIST
 		toggles &= ~DEADMIN_POSITION_HEAD
 		toggles &= ~DEADMIN_POSITION_SECURITY
@@ -364,6 +364,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(newtype)
 			pref_species = new newtype
 
+	scars_index = rand(1,5)
+
 	if(!S["features["mcolor"]"] || S["features["mcolor"]"] == "#000")
 		WRITE_FILE(S["features["mcolor"]"]	, "#FFF")
 
@@ -401,6 +403,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["feature_polysmorph_teeth"], features["teeth"])
 	READ_FILE(S["feature_polysmorph_dome"], features["dome"])
 	READ_FILE(S["feature_polysmorph_dorsal_tubes"], features["dorsal_tubes"])
+	READ_FILE(S["persistent_scars"], persistent_scars)
+	READ_FILE(S["scars1"], scars_list["1"])
+	READ_FILE(S["scars2"], scars_list["2"])
+	READ_FILE(S["scars3"], scars_list["3"])
+	READ_FILE(S["scars4"], scars_list["4"])
+	READ_FILE(S["scars5"], scars_list["5"])
 	if(!CONFIG_GET(flag/join_with_mutant_humans))
 		features["tail_human"] = "none"
 		features["ears"] = "none"
@@ -497,6 +505,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["dome"]	= sanitize_inlist(features["dome"], GLOB.dome_list)
 	features["dorsal_tubes"]	= sanitize_inlist(features["dorsal_tubes"], GLOB.dorsal_tubes_list)
 
+	persistent_scars = sanitize_integer(persistent_scars)
+	scars_list["1"] = sanitize_text(scars_list["1"])
+	scars_list["2"] = sanitize_text(scars_list["2"])
+	scars_list["3"] = sanitize_text(scars_list["3"])
+	scars_list["4"] = sanitize_text(scars_list["4"])
+	scars_list["5"] = sanitize_text(scars_list["5"])
+
 	joblessrole	= sanitize_integer(joblessrole, 1, 3, initial(joblessrole))
 	//Validate job prefs
 	for(var/j in job_preferences)
@@ -551,6 +566,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_polysmorph_teeth"]			, features["teeth"])
 	WRITE_FILE(S["feature_polysmorph_dome"]			, features["dome"])
 	WRITE_FILE(S["feature_polysmorph_dorsal_tubes"]			, features["dorsal_tubes"])
+	WRITE_FILE(S["persistent_scars"]			, persistent_scars)
+	WRITE_FILE(S["scars1"]						, scars_list["1"])
+	WRITE_FILE(S["scars2"]						, scars_list["2"])
+	WRITE_FILE(S["scars3"]						, scars_list["3"])
+	WRITE_FILE(S["scars4"]						, scars_list["4"])
+	WRITE_FILE(S["scars5"]						, scars_list["5"])
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)

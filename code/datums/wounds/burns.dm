@@ -28,7 +28,7 @@
 	var/strikes_to_lose_limb = 3
 
 	/// The current bandage we have for this wound (maybe move bandages to the limb?)
-	var/obj/item/stack/current_bandage
+	var/obj/item/stack/medical/current_bandage
 
 /datum/wound/burn/handle_process()
 	. = ..()

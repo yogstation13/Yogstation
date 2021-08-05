@@ -107,6 +107,8 @@
 
 	var/temporary_unstoppable_movement = FALSE
 
+	wound_bonus = CANT_WOUND
+
 /obj/item/projectile/Initialize()
 	. = ..()
 	permutated = list()

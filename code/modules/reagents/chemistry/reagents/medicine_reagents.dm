@@ -138,6 +138,9 @@
 		M.adjustFireLoss(-power, 0)
 		M.adjustToxLoss(-power, 0, TRUE) //heals TOXINLOVERs
 		M.adjustCloneLoss(-power, 0)
+		for(var/i in M.all_wounds)
+			var/datum/wound/W = i
+			W.on_xadone(power)
 		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC) //fixes common causes for disfiguration
 		. = 1
 	metabolization_rate = REAGENTS_METABOLISM * (0.00001 * (M.bodytemperature ** 2) + 0.5)
@@ -182,6 +185,9 @@
 		M.adjustFireLoss(-1.5 * power, 0)
 		M.adjustToxLoss(-power, 0, TRUE)
 		M.adjustCloneLoss(-power, 0)
+		for(var/i in M.all_wounds)
+			var/datum/wound/W = i
+			W.on_xadone(power)
 		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 		. = 1
 	..()
@@ -210,7 +216,7 @@
 
 /datum/reagent/medicine/spaceacillin
 	name = "Spaceacillin"
-	description = "Spaceacillin will prevent a patient from conventionally spreading any diseases they are currently infected with."
+	description = "Spaceacillin will prevent a patient from conventionally spreading any diseases they are currently infected with. Also reduces infection in serious burns."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	metabolization_rate = 0.1 * REAGENTS_METABOLISM
 
@@ -347,7 +353,7 @@
 
 /datum/reagent/medicine/mine_salve
 	name = "Miner's Salve"
-	description = "A powerful painkiller. Restores bruising and burns in addition to making the patient believe they are fully healed."
+	description = "A powerful painkiller. Restores bruising and burns in addition to making the patient believe they are fully healed. Also great for treating severe burn wounds in a pinch."
 	reagent_state = LIQUID
 	color = "#6D6374"
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
@@ -373,7 +379,7 @@
 				// +10% success propability on each step, useful while operating in less-than-perfect conditions
 
 			if(show_message)
-				to_chat(M, "<span class='danger'>You feel your wounds fade away to nothing!</span>" )
+				to_chat(M, "<span class='danger'>You feel your injuries fade away to nothing!</span>" )
 	..()
 
 /datum/reagent/medicine/mine_salve/on_mob_end_metabolize(mob/living/M)
@@ -391,9 +397,12 @@
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume,show_message = 1)
 	var/can_heal = FALSE
 	if(iscarbon(M))
+		var/mob/living/carbon/C = M
 		if (M.stat == DEAD)
 			can_heal = TRUE
 		if((method in list(PATCH, TOUCH)) && can_heal)
+			for(var/datum/wound/burn/burn_wound in C.all_wounds)
+				burn_wound.regenerate_flesh(reac_volume)
 			var/datum/reagent/S = M.reagents.get_reagent(/datum/reagent/medicine/synthflesh)
 			if(!ishuman(M))
 				M.adjustBruteLoss(-1.25 * reac_volume)
@@ -1486,6 +1495,14 @@
 	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 0.5 * REM)
 	..()
 	. = TRUE
+
+// handled in cut wounds process
+/datum/reagent/medicine/coagulant
+	name = "Sanguirite"
+	description = "A coagulant used to help open cuts clot faster."
+	reagent_state = LIQUID
+	color = "#bb2424"
+	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 
 /datum/reagent/medicine/burnmix
 	name = "BurnMix"

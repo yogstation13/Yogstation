@@ -1029,6 +1029,16 @@
 			xylophone=0
 	return
 
+/mob/living/carbon/human/is_bleeding()
+	if(NOBLOOD in dna.species.species_traits || bleedsuppress)
+		return FALSE
+	return ..()
+
+/mob/living/carbon/human/get_total_bleed_rate()
+	if(NOBLOOD in dna.species.species_traits)
+		return FALSE
+	return ..()
+
 /mob/living/carbon/human/species
 	var/race = null
 
