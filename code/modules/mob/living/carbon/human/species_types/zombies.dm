@@ -128,7 +128,7 @@
 /datum/species/zombie/infectious/gamemode/spec_stun(mob/living/carbon/human/H,amount)
 	. = 0
 
-/datum/species/zombie/infectious/gamemode/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
+/datum/species/zombie/infectious/gamemode/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, bare_wound_bonus = 0, sharpness = FALSE)
 	if(damagetype == STAMINA)
 		return
 	. = ..()
