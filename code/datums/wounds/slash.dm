@@ -196,6 +196,7 @@
 	if(!do_after(user, base_treat_time  * self_penalty_mult, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 	var/damage = lasgun.chambered.BB.damage
+	lasgun.chambered.BB.bare_wound_bonus = 0
 	lasgun.chambered.BB.wound_bonus -= 30
 	lasgun.chambered.BB.damage *= self_penalty_mult
 	if(!lasgun.process_fire(victim, victim, TRUE, null, limb.body_zone))

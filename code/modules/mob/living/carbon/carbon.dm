@@ -107,8 +107,8 @@
 			take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
 			victim.Paralyze(20)
 			Paralyze(20)
-			visible_message("<span class='danger'>[src] crashes into [victim] [extra_speed ? "really hard" : ""], knocking them both over!</span>",\
-				"<span class='userdanger'>You violently crash into [victim] [extra_speed ? "extra hard" : ""]!</span>")
+			visible_message("<span class='danger'>[src] crashes into [victim][extra_speed ? "really hard" : ""], knocking them both over!</span>",\
+				"<span class='userdanger'>You violently crash into [victim][extra_speed ? "extra hard" : ""]!</span>")
 		playsound(src,'sound/weapons/punch1.ogg',50,1)
 
 
@@ -147,12 +147,15 @@
 
 	var/atom/movable/thrown_thing
 	var/obj/item/I = get_active_held_item()
+	var/power_throw = 0
 
 	if(!I)
 		if(pulling && isliving(pulling) && grab_state >= GRAB_AGGRESSIVE)
 			var/mob/living/throwable_mob = pulling
 			if(!throwable_mob.buckled)
 				thrown_thing = throwable_mob
+				if(pulling && grab_state >= GRAB_NECK)
+					power_throw++
 				stop_pulling()
 				if(HAS_TRAIT(src, TRAIT_PACIFISM))
 					to_chat(src, "<span class='notice'>You gently let go of [throwable_mob].</span>")
@@ -170,10 +173,7 @@
 			return
 
 	if(thrown_thing)
-		var/power_throw = 0
 		if(HAS_TRAIT(src, TRAIT_HULK))
-			power_throw++
-		if(pulling && grab_state >= GRAB_NECK)
 			power_throw++
 		visible_message("<span class='danger'>[src] throws [thrown_thing][power_throw ? " really hard!" : "."]</span>", \
 						"<span class='danger'>You throw [thrown_thing][power_throw ? " really hard!" : "."]</span>")

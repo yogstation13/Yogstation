@@ -444,9 +444,7 @@
 			L.brutestate = 0
 			L.burnstate = 0
 
-		if(!L.attach_limb(src, 1))
-			qdel(L)
-			return FALSE
+		L.attach_limb(src, 1)
 		var/datum/scar/scaries = new
 		var/datum/wound/loss/phantom_loss = new // stolen valor, really
 		scaries.generate(L, phantom_loss)
