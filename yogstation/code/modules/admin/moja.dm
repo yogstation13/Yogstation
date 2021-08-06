@@ -1,4 +1,7 @@
 /mob/living/proc/moja_divulge()
+	INVOKE_ASYNC(_moja_divulge())
+
+/mob/living/proc/_moja_divulge()
 	visible_message("<span class='warning'>A vortex of violet energies surrounds [src]!</span>", "<span class='velvet'>Your barrier will keep you shielded to a point..</span>")
 	visible_message("<span class='danger'>[src] slowly rises into the air, their belongings falling away, and begins to shimmer...</span>", \
 						"<span class='velvet big'><b>You begin the removal of your human disguise. You will be completely vulnerable during this time.</b></span>")
@@ -6,7 +9,7 @@
 	for(var/obj/item/I in src)
 		dropItemToGround(I)
 	for(var/turf/T in RANGE_TURFS(1, src))
-		new/obj/structure/psionic_barrier(T, 500)
+		new/obj/structure/psionic_barrier(T)
 	for(var/stage in 1 to 3)
 		switch(stage)
 			if(1)
@@ -55,8 +58,6 @@
 	var/mob/living/carbon/human/moja/moja = new /mob/living/carbon/human/moja(src.loc)
 	moja.ckey = (new_key ? new_key : ckey)
 	gib()
-
-/mob/living/carbon/human/moja
 
 /mob/living/carbon/human/moja/Initialize()
 	. = ..()
