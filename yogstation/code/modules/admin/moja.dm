@@ -64,6 +64,8 @@
 	make_moja()
 
 /mob/living/carbon/human/proc/make_moja()
+	if(!ishumanbasic(src))
+		set_species(/datum/species/human)
 	real_name = "Moja Manley"
 	name = real_name
 	gender = "male"
