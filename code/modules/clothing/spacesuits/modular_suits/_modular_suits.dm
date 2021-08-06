@@ -3,13 +3,13 @@
 	var/obj/item/clothing/suit/space/hardsuit/suit
 
 /datum/modular_hardsuit/New(new_suit)
-	if(!new_suit || !istype(new_suit(/obj/item/clothing/suit/space/hardsuit)))
+	if(!new_suit || !istype(new_suit, /obj/item/clothing/suit/space/hardsuit))
 		qdel(src)
 		stack_trace("Modular hardsuit datum initialized with no suit attached!")
 		return
 	suit = new_suit
 	inserted_modules = list()
-	if(suit.initial_modules.length)
+	if(length(suit.initial_modules))
 		initialize_builtin_modules()
 
 
@@ -48,7 +48,6 @@
 	if(!suit)
 		return
 	suit.mod_suit.ui_interact(owner)
-
 
 
 

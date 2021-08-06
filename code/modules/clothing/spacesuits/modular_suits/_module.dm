@@ -15,7 +15,7 @@
 /obj/item/hardsuit_upgrade/proc/toggle(suit)
 	if(!can_toggle())
 		return
-	enabled = !enable
+	enabled = !enabled
 	if(enabled)
 		active_effect(suit)
 	else
@@ -26,4 +26,3 @@
 
 /obj/item/hardsuit_upgrade/proc/disable_effect(suit)
 	return
-
