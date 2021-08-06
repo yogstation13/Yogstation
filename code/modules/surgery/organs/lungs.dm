@@ -487,6 +487,8 @@
 
 /obj/item/organ/lungs/xeno/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H) //handling this externally so I don't have to nerf pluoxium, can't handle it internally without removing perpetual pluox or requiring plasma for breathing
 	. = ..()
+	if(!breath.moles)
+		return .
 	var/breath_amt = breath.get_moles(/datum/gas/plasma)
 	breath.adjust_moles(/datum/gas/plasma, -breath_amt)
 	breath.adjust_moles(/datum/gas/oxygen, breath_amt)
