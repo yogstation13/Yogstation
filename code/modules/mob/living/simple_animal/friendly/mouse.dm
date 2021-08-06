@@ -163,6 +163,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 		visible_message("<span class='danger'>[src] finishes eating up [A]!</span>",
 						 "<span class='notice'>You finish up eating [A].</span>")
 		A.mouse_eat(src)
+		playsound(A.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
 		GLOB.mouse_food_eaten++
 
 	eating = FALSE
