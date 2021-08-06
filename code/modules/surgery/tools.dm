@@ -131,7 +131,8 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
-	bare_wound_bonus = 20
+	wound_bonus = 10
+	bare_wound_bonus = 15
 
 /obj/item/scalpel/Initialize()
 	. = ..()

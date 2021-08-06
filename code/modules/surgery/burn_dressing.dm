@@ -24,6 +24,10 @@
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_SCALPEL = 85, TOOL_SAW = 60, TOOL_WIRECUTTER = 40)
 	time = 30
 	repeatable = TRUE
+	/// How much sanitization is added per step
+	var/sanitization_added = 0.5
+	/// How much infestation is removed per step (positive number)
+	var/infestation_removed = 4
 
 /datum/surgery_step/debride/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(surgery.operated_wound)
@@ -47,8 +51,8 @@
 			"<span class='notice'>[user] successfully excises some of the infected flesh from  [target]'s [parse_zone(target_zone)]!</span>")
 		log_combat(user, target, "excised infected flesh in", addition="INTENT: [uppertext(user.a_intent)]")
 		surgery.operated_bodypart.receive_damage(brute=3, wound_bonus=CANT_WOUND)
-		burn_wound.infestation -= 0.5
-		burn_wound.sanitization += 0.5
+		burn_wound.infestation -= infestation_removed
+		burn_wound.sanitization += sanitization_added
 		if(burn_wound.infestation <= 0)
 			repeatable = FALSE
 	else

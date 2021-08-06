@@ -1590,9 +1590,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		Iwound_bonus = CANT_WOUND
 
 	var/weakness = H.check_weakness(I, user)
-	apply_damage(I.force * weakness, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.sharpness)
 
 	H.send_item_attack_message(I, user, hit_area, affecting)
+
+	apply_damage(I.force * weakness, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.sharpness)
 
 	if(!I.force)
 		return FALSE //item force is zero

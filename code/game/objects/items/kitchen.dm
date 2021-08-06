@@ -81,8 +81,8 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	var/bayonet = TRUE	//Can this be attached to a gun?
 	custom_price = 30
-	wound_bonus = -5
-	bare_wound_bonus = 10
+	wound_bonus = 5
+	bare_wound_bonus = 15
 
 /obj/item/kitchen/knife/Initialize()
 	. = ..()
@@ -140,6 +140,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_price = 60
 	bayonet = TRUE
+	wound_bonus = 15
 
 /obj/item/kitchen/knife/combat
 	name = "combat knife"
@@ -150,6 +151,7 @@
 	throwforce = 20
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "cut")
 	bayonet = TRUE
+	wound_bonus = 10
 
 /obj/item/kitchen/knife/combat/survival
 	name = "survival knife"
