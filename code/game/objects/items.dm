@@ -727,8 +727,11 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	// Run the start check here so we wouldn't have to call it manually.
 	if(!delay && !tool_start_check(user, amount))
 		return
-
+	
 	delay *= toolspeed
+
+	if(IS_ENGINEERING(user)) //if the user is an engineer, they'll use the tool faster.
+		delay *= 0.8
 
 	// Play tool sound at the beginning of tool usage.
 	play_tool_sound(target, volume)
