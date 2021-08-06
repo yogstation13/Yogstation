@@ -1237,7 +1237,7 @@
 	contains = list(/obj/item/storage/firstaid/o2)
 	crate_type = /obj/structure/closet/crate/secure/cheap
 
-/datum/supply_pack/goody/medipen_twopak
+/datum/supply_pack/medical/medipen_twopak
 	name = "Medipen Two-Pak"
 	desc = "Contains one standard epinephrine medipen and one standard emergency first-aid kit medipen. For when you want to prepare for the worst."
 	cost = 500
