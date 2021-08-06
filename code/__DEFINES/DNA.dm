@@ -138,9 +138,9 @@
 #define NOEYESPRITES	22
 /// Used for determining which wounds are applicable to this species.
 /// if we have flesh (can suffer slash/piercing/burn wounds, requires they don't have NOBLOOD)
-#define HAS_FLESH	18
+#define HAS_FLESH	23
 /// if we have bones (can suffer bone wounds)
-#define HAS_BONE	19
+#define HAS_BONE	24
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
