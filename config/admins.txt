@@ -10,14 +10,14 @@
 # and will override any duplicate entries in the database.									  #
 ###############################################################################################
 
-AshCorr	=Host
-Xantam	=Host
+AshCorr	=	Host
+Xantam	=	Host
  
-Lyis	=Council Member
-Ynot01  =Council Member
-Rayisken =Council Member
-MenacingManatee =Council Member
-Num1bamf =Council Member
+Lyis	=	Council Member
+Ynot01  =   Council Member
+Rayisken = Council Member
+MenacingManatee = Council Member
+Num1bamf = Council Member
  
-jamied12	=Head Developer
-theos		=Head Developer
+jamied12	=	Head Developer
+theos		=	Head Developer
