@@ -93,7 +93,6 @@
 				var/obj/O = AM
 				if(O.damtype != STAMINA)
 					apply_damage(I.throwforce, dtype, zone, armor, sharpness=I.get_sharpness())
-					say("thrown item [I] hit with sharpness of [I.get_sharpness()]")
 					if(I.thrownby)
 						log_combat(I.thrownby, src, "threw and hit", I)
 		else
