@@ -1182,12 +1182,28 @@
 	crate_name = "blood freezer"
 	crate_type = /obj/structure/closet/crate/freezer
 
+/datum/supply_pack/medical/medipen_variety
+	name = "Medipen Variety-Pak"
+	desc = "Contains eight different medipens in three different varieties, to assist in quickly treating seriously injured patients."
+	cost = 2000
+	contains = list(/obj/item/reagent_containers/hypospray/medipen/,
+					/obj/item/reagent_containers/hypospray/medipen/,
+					/obj/item/reagent_containers/hypospray/medipen/ekit,
+					/obj/item/reagent_containers/hypospray/medipen/ekit,
+					/obj/item/reagent_containers/hypospray/medipen/ekit,
+					/obj/item/reagent_containers/hypospray/medipen/blood_loss,
+					/obj/item/reagent_containers/hypospray/medipen/blood_loss,
+					/obj/item/reagent_containers/hypospray/medipen/blood_loss
+)
+	crate_name = "medipen crate"
+
 /datum/supply_pack/medical/firstaid_single
 	name = "First Aid Kit Single-Pack"
 	desc = "Contains one first aid kit for healing most types of wounds."
 	cost = 150
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/regular)
+	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/firstaidbruises_single
 	name = "Bruise Treatment Kit Single-Pack"
@@ -1195,6 +1211,7 @@
 	cost = 100
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/brute)
+	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/firstaidburns_single
 	name = "Burn Treatment Kit Single-Pack"
@@ -1202,6 +1219,7 @@
 	cost = 100
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/fire)
+	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/firstaidtoxins_single
 	name = "Toxin Treatment Kit Single-Pack"
@@ -1209,6 +1227,7 @@
 	cost = 100
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/toxin)
+	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/firstaidoxygen_single
 	name = "Oxygen Deprivation Kit Single-Pack"
@@ -1216,6 +1235,14 @@
 	cost = 70 //oxygen damage tends to be far rarer and these kits use perf which is objectively bad without any toxin healing
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/o2)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/goody/medipen_twopak
+	name = "Medipen Two-Pak"
+	desc = "Contains one standard epinephrine medipen and one standard emergency first-aid kit medipen. For when you want to prepare for the worst."
+	cost = 500
+	contains = list(/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/hypospray/medipen/ekit)
+	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/chemical
 	name = "Chemical Starter Kit Crate"
@@ -1671,6 +1698,7 @@
 	group = "Unlocked Clearance"
 	special = TRUE
 	small_item = TRUE
+	crate_type = /obj/structure/closet/crate/secure/cheap //:^
 
 /datum/supply_pack/clearance/ka_damage
 	name = "KA Damage Mods"

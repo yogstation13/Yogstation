@@ -885,9 +885,11 @@
 	effect_sprite = "emark1"
 
 /datum/status_effect/eldritch/flesh/on_effect()
-	//if(ishuman(owner))
-		//var/mob/living/carbon/human/H = owner
-		//H.bleed_rate += 10
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		var/obj/item/bodypart/bodypart = pick(H.bodyparts)
+		var/datum/wound/slash/severe/crit_wound = new
+		crit_wound.apply_wound(bodypart)
 	return ..()
 
 /datum/status_effect/eldritch/ash

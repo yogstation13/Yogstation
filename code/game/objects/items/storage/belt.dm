@@ -186,6 +186,7 @@
 		/obj/item/implant,
 		/obj/item/implanter,
 		/obj/item/pinpointer/crew,
+		/obj/item/stack/medical/bone_gel,
 		/obj/item/holosign_creator/medical
 		))
 

@@ -132,21 +132,29 @@
 	if(!proximity_flag)
 		return
 	playsound(user, 'sound/magic/demon_attack1.ogg', 75, TRUE)
-	if(ishuman(target))
-		var/mob/living/carbon/human/tar = target
-		if(tar.anti_magic_check())
-			tar.visible_message("<span class='danger'>The energies from [user]'s hand jump at [target], but are dispersed!</span>","<span class='danger'>Something jumps off of [user]'s hand, but it disperses on contact with you!</span>")
+	if(iscarbon(target))
+		var/mob/living/carbon/C1 = target
+		if(C1.anti_magic_check())
+			C1.visible_message("<span class='danger'>The energies from [user]'s hand jump at [target], but are dispersed!</span>","<span class='danger'>Something jumps off of [user]'s hand, but it disperses on contact with you!</span>")
 			return ..()
 		var/mob/living/carbon/C2 = user
+		for(var/obj/item/bodypart/bodypart in C2.bodyparts)
+			for(var/i in bodypart.wounds)
+				var/datum/wound/iter_wound = i
+				if(prob(50))
+					continue
+				var/obj/item/bodypart/target_bodypart = locate(bodypart.type) in C1.bodyparts
+				if(!target_bodypart)
+					continue
+				iter_wound.remove_wound()
+				iter_wound.apply_wound(target_bodypart)
 		if(isliving(target))
 			var/mob/living/L = target
 			L.adjustBruteLoss(20)
 			C2.adjustBruteLoss(-20)
-		if(iscarbon(target))
-			var/mob/living/carbon/C1 = target
-			C1.blood_volume -= 20
-			if(C2.blood_volume < BLOOD_VOLUME_MAXIMUM(C2)) //we dont want to explode after all
-				C2.blood_volume += 20
+		C1.blood_volume -= 20
+		if(C2.blood_volume < BLOOD_VOLUME_MAXIMUM(C2)) //we dont want to explode after all
+			C2.blood_volume += 20
 		return ..()
 
 /obj/effect/proc_holder/spell/targeted/projectile/dumbfire/rust_wave
@@ -235,9 +243,9 @@
 
 		target.visible_message("<span class='danger'>[target]'s veins are shredded from within as an unholy blaze erupts from their blood!</span>", \
 							"<span class='danger'>You feel your skin scald as superheated blood bursts from your veins!</span>")
-		//var/obj/item/bodypart/bodypart = pick(target.bodyparts)
-		//var/datum/wound/slash/critical/crit_wound = new
-		//crit_wound.apply_wound(bodypart)
+		var/obj/item/bodypart/bodypart = pick(target.bodyparts)
+		var/datum/wound/slash/critical/crit_wound = new
+		crit_wound.apply_wound(bodypart)
 		target.adjustFireLoss(20)
 		new /obj/effect/temp_visual/cleave(target.drop_location())
 

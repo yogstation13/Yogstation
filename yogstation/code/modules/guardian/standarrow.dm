@@ -7,7 +7,7 @@
 	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
-	sharpness = IS_SHARP
+	sharpness = SHARP_POINTY
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/kill_chance = 50 // people will still chuck these at the nearest security officer anyways, so who cares
 	var/in_use = FALSE

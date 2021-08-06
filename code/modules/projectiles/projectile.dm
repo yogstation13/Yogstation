@@ -12,6 +12,7 @@
 	pass_flags = PASSTABLE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	movement_type = FLYING
+	wound_bonus = CANT_WOUND // can't wound by default
 	hitsound = 'sound/weapons/pierce.ogg'
 	var/hitsound_wall = ""
 
@@ -107,7 +108,8 @@
 
 	var/temporary_unstoppable_movement = FALSE
 
-	wound_bonus = CANT_WOUND
+	///How much we want to drop both wound_bonus and bare_wound_bonus (to a minimum of 0 for the latter) per tile, for falloff purposes
+	var/wound_falloff_tile
 
 /obj/item/projectile/Initialize()
 	. = ..()
@@ -116,6 +118,9 @@
 
 /obj/item/projectile/proc/Range()
 	range--
+	if(wound_bonus != CANT_WOUND)
+		wound_bonus += wound_falloff_tile
+		bare_wound_bonus = max(0, bare_wound_bonus + wound_falloff_tile)
 	if(range <= 0 && loc)
 		on_range()
 

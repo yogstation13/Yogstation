@@ -3,12 +3,16 @@
 /obj/item/projectile/bullet/c45
 	name = ".45 bullet"
 	damage = 30
+	wound_bonus = -10
+	wound_falloff_tile = -10
 
 // 4.6x30mm (Autorifles)
 
 /obj/item/projectile/bullet/c46x30mm
 	name = "4.6x30mm bullet"
 	damage = 20
+	wound_bonus = -5
+	bare_wound_bonus = 5
 	armour_penetration = 20
 
 /obj/item/projectile/bullet/c46x30mm_ap

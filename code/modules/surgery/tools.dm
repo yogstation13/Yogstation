@@ -130,7 +130,7 @@
 	materials = list(/datum/material/iron=4000, /datum/material/glass=1000)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP_ACCURATE
+	sharpness = SHARP_EDGED
 	bare_wound_bonus = 20
 
 /obj/item/scalpel/Initialize()
@@ -151,7 +151,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	toolspeed = 0.5
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP_ACCURATE
+	sharpness = SHARP_EDGED
 
 /obj/item/scalpel/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is slitting [user.p_their()] [pick("wrists", "throat", "stomach")] with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -176,7 +176,7 @@
 	throw_range = 5
 	materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	wound_bonus = 10
 	bare_wound_bonus = 15
 
@@ -199,7 +199,7 @@
 	materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
 	toolspeed = 0.5
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 
 /obj/item/surgical_drapes
 	name = "surgical drapes"
@@ -334,7 +334,7 @@
 	hitsound = 'sound/weapons/blade1.ogg'
 	force = 17
 	toolspeed = 0.7
-	sharpness = IS_SHARP_ACCURATE
+	sharpness = SHARP_EDGED
 	light_color = LIGHT_COLOR_GREEN
 
 /obj/item/circular_saw/advanced/Initialize()

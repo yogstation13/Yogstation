@@ -6,5 +6,10 @@
 	nodamage = FALSE
 	flag = "bullet"
 	hitsound_wall = "ricochet"
-	sharpness = TRUE
+	sharpness = SHARP_POINTY
 	impact_effect_type = /obj/effect/temp_visual/impact_effect
+	wound_falloff_tile = -5
+
+/obj/item/projectile/bullet/smite
+	name = "divine retribution"
+	damage = 10

@@ -93,7 +93,7 @@
 	materials = list(/datum/material/iron = 15000)
 	attack_verb = list("chopped", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 
 /obj/item/hatchet/Initialize()
 	. = ..()
@@ -126,6 +126,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 	hitsound = 'sound/weapons/bladeslice.ogg'
+	sharpness = SHARP_POINTY
 	var/swiping = FALSE
 
 /obj/item/scythe/Initialize()

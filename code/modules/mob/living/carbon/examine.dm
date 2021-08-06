@@ -70,7 +70,8 @@
 
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
-		for(var/datum/wound/W in BP.wounds)
+		for(var/i in BP.wounds)
+			var/datum/wound/W = i
 			msg += "[W.get_examine_description(user)]\n"
 
 	if(HAS_TRAIT(src, TRAIT_DUMB))
@@ -92,7 +93,7 @@
 
 	switch(scar_severity)
 		if(1 to 2)
-			msg += "<span class='smallnotice'>[t_He] [t_has] visible scarring, you can look again to take a closer look...</span>\n"
+			msg += "<span class='smallnoticeital'>[t_He] [t_has] visible scarring, you can look again to take a closer look...</span>\n"
 		if(3 to 4)
 			msg += "<span class='notice'><i>[t_He] [t_has] several bad scars, you can look again to take a closer look...</i></span>\n"
 		if(5 to 6)

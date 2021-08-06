@@ -1,13 +1,15 @@
 /obj/item/projectile/bullet/shotgun_slug
 	name = "12g shotgun slug"
 	damage = 46
+	sharpness = SHARP_POINTY
+	wound_bonus = 0
 
 /obj/item/projectile/bullet/shotgun_beanbag
 	name = "beanbag slug"
 	damage = 5
 	stamina = 55
 	wound_bonus = 20
-	sharpness = FALSE
+	sharpness = SHARP_NONE
 
 /obj/item/projectile/bullet/incendiary/shotgun
 	name = "incendiary slug"
@@ -57,18 +59,21 @@
 	return BULLET_ACT_HIT
 
 /obj/item/projectile/bullet/pellet
-	var/tile_dropoff = 0.75
+	var/tile_dropoff = 0.45
 	var/tile_dropoff_s = 0.5
 
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	name = "buckshot pellet"
-	damage = 12.5
-	wound_bonus = -10
+	damage = 7.5
+	wound_bonus = 5
+	bare_wound_bonus = 5
+	wound_falloff_tile = -2.5 // low damage + additional dropoff will already curb wounding potential anything past point blank
 
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubbershot pellet"
 	damage = 3
 	stamina = 11
+	sharpness = SHARP_NONE
 
 /obj/item/projectile/bullet/pellet/Range()
 	..()
@@ -80,8 +85,10 @@
 		qdel(src)
 
 /obj/item/projectile/bullet/pellet/shotgun_improvised
-	tile_dropoff = 0.55		//Come on it does 6 damage don't be like that.
+	tile_dropoff = 0.35		//Come on it does 6 damage don't be like that.
 	damage = 6
+	wound_bonus = 0
+	bare_wound_bonus = 7.5
 
 /obj/item/projectile/bullet/pellet/shotgun_improvised/Initialize()
 	. = ..()

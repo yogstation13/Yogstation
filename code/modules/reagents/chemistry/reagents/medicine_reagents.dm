@@ -140,8 +140,8 @@
 		M.adjustToxLoss(-power, 0, TRUE) //heals TOXINLOVERs
 		M.adjustCloneLoss(-power, 0)
 		for(var/i in M.all_wounds)
-			var/datum/wound/W = i
-			W.on_xadone(power)
+			var/datum/wound/iter_wound = i
+			iter_wound.on_xadone(power)
 		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC) //fixes common causes for disfiguration
 		. = 1
 	metabolization_rate = REAGENTS_METABOLISM * (0.00001 * (M.bodytemperature ** 2) + 0.5)
@@ -187,8 +187,8 @@
 		M.adjustToxLoss(-power, 0, TRUE)
 		M.adjustCloneLoss(-power, 0)
 		for(var/i in M.all_wounds)
-			var/datum/wound/W = i
-			W.on_xadone(power)
+			var/datum/wound/iter_wound = i
+			iter_wound.on_xadone(power)
 		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 		. = 1
 	..()
@@ -311,7 +311,7 @@
 
 /datum/reagent/medicine/salglu_solution
 	name = "Saline-Glucose Solution"
-	description = "Has a 33% chance per metabolism cycle to heal brute and burn damage. Can be used as a temporary blood substitute."
+	description = "Has a 33% chance per metabolism cycle to heal brute and burn damage. Can be used as a temporary blood substitute, as well as slowly speeding blood regeneration."
 	reagent_state = LIQUID
 	color = "#DCDCDC"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -320,6 +320,7 @@
 	var/last_added = 0
 	var/max_blood_decrement = 10 //Yogs -- How much less than BLOOD_VOLUME_NORMAL(M) is the point where salglu stops refilling blood?
 	//^ Used so that normal blood regeneration can continue with salglu active
+	var/extra_regen = 0.25 // in addition to acting as temporary blood, also add this much to their actual blood per tick
 
 /datum/reagent/medicine/salglu_solution/on_mob_life(mob/living/carbon/M)
 	if(last_added)
@@ -330,7 +331,7 @@
 		var/amount_to_add = min(M.blood_volume, volume*5)
 		var/new_blood_level = min(M.blood_volume + amount_to_add, max_blood)
 		last_added = new_blood_level - M.blood_volume
-		M.blood_volume = new_blood_level
+		M.blood_volume = new_blood_level + extra_regen
 	if(prob(33))
 		M.adjustBruteLoss(-0.5*REM, 0)
 		M.adjustFireLoss(-0.5*REM, 0)
@@ -402,8 +403,9 @@
 		if (M.stat == DEAD)
 			can_heal = TRUE
 		if((method in list(PATCH, TOUCH)) && can_heal)
-			for(var/datum/wound/burn/burn_wound in C.all_wounds)
-				burn_wound.regenerate_flesh(reac_volume)
+			for(var/i in C.all_wounds)
+				var/datum/wound/iter_wound = i
+				iter_wound.on_synthflesh(reac_volume)
 			var/datum/reagent/S = M.reagents.get_reagent(/datum/reagent/medicine/synthflesh)
 			if(!ishuman(M))
 				M.adjustBruteLoss(-1.25 * reac_volume)
@@ -1685,6 +1687,62 @@
 			if(ismopable(movable_content)) // Mopables will be cleaned anyways by the turf wash
 				continue
 			movable_content.wash(clean_types)
+
+// helps bleeding wounds clot faster
+/datum/reagent/medicine/coagulant
+	name = "Sanguirite"
+	description = "A coagulant used to help open cuts clot faster."
+	description = "A proprietary coagulant used to help bleeding wounds clot faster."
+	reagent_state = LIQUID
+	color = "#bb2424"
+	metabolization_rate = 0.25 * REAGENTS_METABOLISM
+	overdose_threshold = 20
+	/// How much base clotting we do per bleeding wound, multiplied by the below number for each bleeding wound
+	var/clot_rate = 0.25
+	/// If we have multiple bleeding wounds, we count the number of bleeding wounds, then multiply the clot rate by this^(n) before applying it to each cut, so more cuts = less clotting per cut (though still more total clotting)
+	var/clot_coeff_per_wound = 0.9
+
+/datum/reagent/medicine/coagulant/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(!M.blood_volume || !M.all_wounds)
+		return
+
+	var/effective_clot_rate = clot_rate
+
+	for(var/i in M.all_wounds)
+		var/datum/wound/iter_wound = i
+		if(iter_wound.blood_flow)
+			effective_clot_rate *= clot_coeff_per_wound
+
+	for(var/i in M.all_wounds)
+		var/datum/wound/iter_wound = i
+		iter_wound.blood_flow = max(0, iter_wound.blood_flow - effective_clot_rate)
+
+/datum/reagent/medicine/coagulant/overdose_process(mob/living/M)
+	. = ..()
+	if(!M.blood_volume)
+		return
+
+	if(prob(15))
+		M.losebreath += rand(2,4)
+		M.adjustOxyLoss(rand(1,3))
+		if(prob(30))
+			to_chat(M, "<span class='danger'>You can feel your blood clotting up in your veins!</span>")
+		else if(prob(10))
+			to_chat(M, "<span class='userdanger'>You feel like your blood has stopped moving!</span>")
+
+		if(prob(50))
+			var/obj/item/organ/lungs/our_lungs = M.getorganslot(ORGAN_SLOT_LUNGS)
+			our_lungs.applyOrganDamage(1)
+		else
+			var/obj/item/organ/heart/our_heart = M.getorganslot(ORGAN_SLOT_HEART)
+			our_heart.applyOrganDamage(1)
+
+// can be synthesized on station rather than bought. made by grinding a banana peel, heating it up, then mixing the banana peel powder with salglu
+/datum/reagent/medicine/coagulant/weak
+	name = "Synthi-Sanguirite"
+	description = "A synthetic coagulant used to help bleeding wounds clot faster. Not quite as effective as name brand Sanguirite, especially on patients with lots of cuts."
+	clot_coeff_per_wound = 0.8
 
 #undef PERF_BASE_DAMAGE
 #undef REAGENT_REVIVE_MINIMUM_HEALTH

@@ -164,7 +164,7 @@
 	item_state = "beer"
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("stabbed", "slashed", "attacked")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	var/static/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 
 /obj/item/broken_bottle/Initialize()
@@ -478,7 +478,7 @@
 	icon_state = "trappistbottle"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/ethanol/trappist = 50)
-	
+
 /obj/item/reagent_containers/food/drinks/bottle/nukacola
 	name = "Nuka Cola"
 	desc = "Don't cry, Don't raise your eye, it's only nuclear wasteland."
@@ -548,7 +548,7 @@
 		to_chat(user, "<span class='info'>You snuff out the flame on [src].</span>")
 		cut_overlay(GLOB.fire_overlay)
 		active = 0
-		
+
 /obj/item/reagent_containers/food/drinks/bottle/maltliquor
 	name = "\improper Rabid Bear malt liquor"
 	desc = "A 40 full of malt liquor. Kicks stronger than, well, a rabid bear."
