@@ -730,7 +730,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	
 	delay *= toolspeed
 
-	if(IS_ENGINEERING(user)) //if the user is an engineer, they'll use the tool faster.
+	if(IS_ENGINEERING(user) & tool_behaviour != TOOL_MINING) //if the user is an engineer, they'll use the tool faster. Doesn't apply to mining tools.
 		delay *= 0.8
 
 	// Play tool sound at the beginning of tool usage.
