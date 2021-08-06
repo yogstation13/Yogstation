@@ -408,9 +408,9 @@
 	. += "<div class='ml-3'>"
 
 	if(!gelled)
-		. += "Alternative Treatment: Apply bone gel directly to injured limb, then apply surgical tape to begin bone regeneration. This is both excruciatingly painful and slow, and only recommended in dire circumstances.\n"
-	else if(!taped)
-		. += "<span class='notice'>Continue Alternative Treatment: Apply surgical tape directly to injured limb to begin bone regeneration. Note, this is both excruciatingly painful and slow.</span>\n"
+		. += "Alternative Treatment: Apply bone gel directly to injured limb. This is both excruciatingly painful and slow, and only recommended in dire circumstances.\n"
+	//else if(!taped)
+		//. += "<span class='notice'>Continue Alternative Treatment: Apply surgical tape directly to injured limb to begin bone regeneration. Note, this is both excruciatingly painful and slow.</span>\n"
 	else
 		. += "<span class='notice'>Note: Bone regeneration in effect. Bone is [round(regen_points_current*100/regen_points_needed)]% regenerated.</span>\n"
 
