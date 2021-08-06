@@ -308,7 +308,7 @@
 			rank_names[R.name] = R
 	var/new_rank = input("Please select a rank", "New rank") as null|anything in rank_names
 	if(new_rank == "*New Rank*")
-		new_rank = ckeyEx(input("Please input a new rank", "New custom rank") as text|null)
+		new_rank = input("Please input a new rank", "New custom rank") as text|null
 	if(!new_rank)
 		return
 	R = rank_names[new_rank]
