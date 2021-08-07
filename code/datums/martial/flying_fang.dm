@@ -41,7 +41,7 @@
 	A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
 	playsound(D, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 	D.apply_damage(25, STAMINA, selected_zone, armor_block)
-	D.apply_damage(8, A.dna.species.attack_type, selected_zone, armor_block)
+	D.apply_damage(15, A.dna.species.attack_type, selected_zone, armor_block)
 	D.visible_message("<span class='danger'>[A] slams into [D], knocking them off balance!</span>", \
 					  "<span class='userdanger'>[A] slams into you, knocking you off  balance!</span>")
 	D.add_movespeed_modifier("tail slap", update=TRUE, priority=101, multiplicative_slowdown=0.9)
@@ -62,7 +62,7 @@
 	for(var/obj/item/I in D.held_items)
 		if(I.block_chance)
 			D.visible_message("<span class='danger'>[A] tail slaps [I] out of [D]'s hands!</span>", \
-							 "<span class='userdanger'>[A] tail slaps your [I]!</span>")
+							 "<span class='userdanger'>[A] tail slaps your [I] out of your hands!</span>")
 			D.dropItemToGround(I)
 			var/atom/throw_target = get_edge_target_turf(D, get_dir(A, get_step_away(D, A)))
 			I.safe_throw_at(throw_target, 5, 2)
@@ -72,7 +72,7 @@
 	var/armor_block = D.run_armor_check(affecting, "melee", armour_penetration = 50)
 	A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
 	D.apply_damage(25, STAMINA, selected_zone, armor_block)
-	D.apply_damage(8, A.dna.species.attack_type, selected_zone, armor_block)
+	D.apply_damage(10, A.dna.species.attack_type, selected_zone, armor_block)
 	D.Knockdown(5 SECONDS)
 	D.Paralyze(2 SECONDS)
 	D.visible_message("<span class='danger'>[A] tail slaps [D]!</span>", \
@@ -92,13 +92,14 @@
 	A.do_attack_animation(D, ATTACK_EFFECT_BITE)
 	playsound(D, 'sound/weapons/bite.ogg', 50, TRUE, -1)
 	D.apply_damage(30, A.dna.species.attack_type, BODY_ZONE_HEAD, armor_block)
-	D.bleed_rate += 5
+	D.bleed_rate += 10
 	D.visible_message("<span class='danger'>[A] takes a large bite out of [D]'s neck!</span>", \
 					  "<span class='userdanger'>[A] takes a large bite out of your neck!</span>")
 	if(D.health > 0)
 		to_chat(A, "<span class='boldwarning'>You feel reinvigorated!</span>")
-		A.heal_overall_damage(15, 8)
+		A.heal_overall_damage(25, 25)
 		A.adjustToxLoss(-8)
+		A.adjustStaminaLoss(-50)
 		A.blood_volume += 30
 	A.Stun(1.5 SECONDS) //actually about 1 second due to the stun resist
 	D.Stun(2 SECONDS)
@@ -142,7 +143,7 @@
 	var/armor_block = D.run_armor_check(affecting, "melee", 10)
 	A.do_attack_animation(D, ATTACK_EFFECT_CLAW)
 	playsound(D, 'sound/weapons/slash.ogg', 50, TRUE, -1)
-	D.apply_damage(rand(7,12), A.dna.species.attack_type, selected_zone, armor_block) //need wounds for sharpness to actually matter here
+	D.apply_damage(12, A.dna.species.attack_type, selected_zone, armor_block) //need wounds for sharpness to actually matter here
 	var/atk_verb = pick("rends", "claws", "slices", "tears at")
 	D.visible_message("<span class='danger'>[A] [atk_verb] [D]!</span>", \
 					  "<span class='userdanger'>[A] [atk_verb] you!</span>")
@@ -213,17 +214,14 @@
 				var/mob/living/carbon/human/H = hit_atom
 				if(H.check_shields(src, 0, "[A]", attack_type = LEAP_ATTACK))
 					blocked = TRUE
-			if(!blocked)
-				L.visible_message("<span class ='danger'>[A] pounces on [L]!</span>", "<span class ='userdanger'>[A] pounces on you!</span>")
-				L.Paralyze(4 SECONDS)
-				L.Knockdown(10 SECONDS)
-				L.Immobilize(6 SECONDS)
-				A.SetKnockdown(0)
-				A.SetImmobilized(10 SECONDS) //due to our stun resistance this is actually about 6.6 seconds
-				sleep(2)//Runtime prevention (infinite bump() calls on hulks)
-				step_towards(src,L)
-			else
-				A.Paralyze(6 SECONDS, 1)
+			L.visible_message("<span class ='danger'>[A] pounces on [L]!</span>", "<span class ='userdanger'>[A] pounces on you!</span>")
+			L.Paralyze(blocked ? 6 SECONDS : 0)
+			L.Knockdown(10 SECONDS)
+			L.Immobilize(6 SECONDS)
+			A.SetKnockdown(0)
+			A.SetImmobilized(10 SECONDS) //due to our stun resistance this is actually about 6.6 seconds
+			sleep(2)//Runtime prevention (infinite bump() calls on hulks)
+			step_towards(src,L)
 		else if(hit_atom.density && !hit_atom.CanPass(A))
 			A.visible_message("<span class ='danger'>[A] smashes into [hit_atom]!</span>", "<span class ='danger'>You smash into [hit_atom]!</span>")
 			A.Paralyze(6 SECONDS, 1)
