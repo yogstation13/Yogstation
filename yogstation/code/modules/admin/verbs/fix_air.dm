@@ -36,11 +36,6 @@
 	message_admins("[key_name_admin(usr)] fixed air on zlevel [mob.z]")
 	log_game("[key_name_admin(usr)] fixed air on zlevel [mob.z]")
 
-	var/atmos_enabled = SSair.can_fire
-	if(atmos_enabled)
-		message_admins("Disabling atmospherics to fix air on zlevel")
-		SSair.can_fire = FALSE
-
 	var/z = mob.z
 	for(var/x=1, x<=world.maxx, x++)
 		for(var/y=1, y<=world.maxy, y++)
@@ -51,8 +46,3 @@
 			if(!istype(T, /turf/open/space) && T.is_openturf && !T.blocks_air)
 				T.air?.parse_gas_string(T.initial_gas_mix)
 				T.update_visuals()
-			CHECK_TICK
-
-	if(atmos_enabled)
-		message_admins("Re-enabling atmospherics, air on zlevel fixed")
-		SSair.can_fire = atmos_enabled
