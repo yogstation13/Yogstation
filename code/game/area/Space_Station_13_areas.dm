@@ -152,6 +152,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/maintenance/department/bridge
 	name = "Bridge Maintenance"
 	icon_state = "maint_bridge"
+	clockwork_warp_allowed = FALSE
 
 /area/maintenance/department/engine
 	name = "Engineering Maintenance"
@@ -266,6 +267,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/hallway/secondary/command
 	name = "Command Hallway"
 	icon_state = "bridge_hallway"
+	clockwork_warp_allowed = FALSE
 
 /area/hallway/secondary/construction
 	name = "Construction Area"
@@ -295,6 +297,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	ambientsounds = list('sound/ambience/signal.ogg')
 	minimap_color = "#0400a2"
 	airlock_wires = /datum/wires/airlock/command
+	clockwork_warp_allowed = FALSE
 
 /area/bridge/meeting_room
 	name = "Heads of Staff Meeting Room"
@@ -315,6 +318,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Captain's Office"
 	icon_state = "captain"
 	minimap_color = "#2900d8"
+	clockwork_warp_allowed = FALSE
 
 /area/crew_quarters/heads/captain/private
 	name = "Captain's Quarters"
@@ -339,6 +343,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Head of Security's Office"
 	icon_state = "hos_office"
 	minimap_color = "#ff6868"
+	clockwork_warp_allowed = FALSE
 
 /area/crew_quarters/heads/hor
 	name = "Research Director's Office"
