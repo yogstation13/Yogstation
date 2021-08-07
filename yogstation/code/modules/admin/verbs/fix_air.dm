@@ -31,7 +31,7 @@
 		return
 
 	if(Master.current_runlevel < RUNLEVEL_GAME)
-		//dipshit alert
+		//jamie alert
 		to_chat(src, "This command may not be used before the game has started!", confidential=TRUE)
 		message_admins("[src] has attempted to fix air before the game has started. Please talk some sense into them.")
 		return
