@@ -509,7 +509,7 @@
 	. = list()
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE_MORE, user, .)
 	if(!LAZYLEN(.)) // lol ..length
-		return list("<span class='notice'><i>You examine [src] closer, but find nothing of interest...</i></span>")
+		return FALSE
 
 /**
   * An atom we are buckled or is contained within us has tried to move
