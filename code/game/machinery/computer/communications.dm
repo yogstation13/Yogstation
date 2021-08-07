@@ -162,7 +162,7 @@
 				return
 			make_announcement(usr)
 		if ("makeVoiceAnnouncement")
-			if (!authenticated_as_non_silicon_captain(usr))
+			if (!authenticated_as_non_silicon_captain(usr) || !IsAdminGhost(usr))
 				return
 			make_voice_announcement(usr)
 		if ("messageAssociates")
@@ -390,7 +390,7 @@
 
 					data["alertLevelTick"] = alert_level_tick
 					data["canMakeAnnouncement"] = TRUE
-					data["canMakeVoiceAnnouncement"] = ishuman(user)
+					data["canMakeVoiceAnnouncement"] = ishuman(user) || IsAdminGhost(user)
 					data["canSetAlertLevel"] = issilicon(user) ? "NO_SWIPE_NEEDED" : "SWIPE_NEEDED"
 
 				if (SSshuttle.emergency.mode != SHUTTLE_IDLE && SSshuttle.emergency.mode != SHUTTLE_RECALL)
