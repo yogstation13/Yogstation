@@ -20,6 +20,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/cmd_admin_pm_panel,		/*admin-pm list*/
 	/client/proc/stop_sounds,
 	/client/proc/fix_air, // yogs - fix air verb
+	/client/proc/fix_air_z,
 	/client/proc/debugstatpanel
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
