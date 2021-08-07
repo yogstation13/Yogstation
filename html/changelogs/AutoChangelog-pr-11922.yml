@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "increased several damage values and healing amounts in the flying fang martial art"
-  - tweak: "flying fang pounces no longer backfire if blocked, instead they will just not hardstun the target, slamming into a window like a doofus still gets you hardstunned."

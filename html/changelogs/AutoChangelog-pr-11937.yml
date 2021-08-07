@@ -1,4 +1,0 @@
-author: "alexkar598"
-delete-after: true 
-changes: 
-  - rscdel: "Removed quantum pad spark effect on teleport."
