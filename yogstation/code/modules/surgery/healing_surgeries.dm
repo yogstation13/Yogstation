@@ -1,7 +1,7 @@
 //debride wounds
 /datum/surgery_step/debride
 	name = "clean wound"
-	implements = list(/obj/item/scalpel = 100, /obj/item/kitchen/knife = 65, /obj/item/shard = 45)
+	implements = list(TOOL_SCALPEL = 100, /obj/item/kitchen/knife = 65, /obj/item/shard = 45)
 	time = 40
 
 /datum/surgery_step/debride/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)

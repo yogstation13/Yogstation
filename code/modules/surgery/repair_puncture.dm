@@ -50,7 +50,7 @@
 		to_chat(user, "<span class='warning'>[target] has no puncture wound there!</span>")
 		return ..()
 
-	display_results(user, target, "<span class='notice'>You successfully realign some of the blood vessels in [target]'s [parse_zone(target_zone)].</span>",
+	display_results(user, target, "<span class='notice'>You successfully realign some of the blood vessels in [target]'s [parse_zone(target_zone)], and prepare to cauterize them shut.</span>",
 		"<span class='notice'>[user] successfully realigns some of the blood vessels in [target]'s [parse_zone(target_zone)] with [tool]!</span>",
 		"<span class='notice'>[user] successfully realigns some of the blood vessels in  [target]'s [parse_zone(target_zone)]!</span>")
 	log_combat(user, target, "excised infected flesh in", addition="INTENT: [uppertext(user.a_intent)]")
@@ -99,7 +99,7 @@
 	pierce_wound.blood_flow -= 0.5
 	if(pierce_wound.blood_flow > 0)
 		surgery.status = REALIGN_INNARDS
-		to_chat(user, "<span class='notice'><i>There still seems to be misaligned blood vessels to finish...<i></span>")
+		to_chat(user, "<span class='notice'><i>You move onto realigning the next set of torn blood vessels...<i></span>")
 	else
 		to_chat(user, "<span class='green'>You've repaired all the internal damage in [target]'s [parse_zone(target_zone)]!</span>")
 	return ..()

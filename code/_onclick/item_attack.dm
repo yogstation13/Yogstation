@@ -73,6 +73,12 @@
 		return TRUE
 
 	if((item_flags & SURGICAL_TOOL) && (user.a_intent != INTENT_HARM)) // checks for if harm intent with surgery tool
+		if(iscarbon(M))
+			var/mob/living/carbon/C = M
+			for(var/i in C.all_wounds)
+				var/datum/wound/W = i
+				if(W.try_treating(src, user))
+					return TRUE
 		to_chat(user, "<span class='warning'>You aren't doing surgery!</span>") //yells at you
 		return TRUE
 

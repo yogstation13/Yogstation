@@ -2,7 +2,7 @@
 //make incision
 /datum/surgery_step/incise
 	name = "make incision"
-	implements = list(/obj/item/scalpel = 100, /obj/item/melee/transforming/energy/sword = 75, /obj/item/kitchen/knife = 65,
+	implements = list(TOOL_SCALPEL = 100, /obj/item/melee/transforming/energy/sword = 75, /obj/item/kitchen/knife = 65,
 		/obj/item/shard = 45, /obj/item = 30) // 30% success with any sharp item.
 	time = 16
 	var/bleeding = 10 //how much bleeding you get from this being done
@@ -42,7 +42,7 @@
 //clamp bleeders
 /datum/surgery_step/clamp_bleeders
 	name = "clamp bleeders"
-	implements = list(/obj/item/hemostat = 100, TOOL_WIRECUTTER = 60, /obj/item/stack/packageWrap = 35, /obj/item/stack/cable_coil = 15)
+	implements = list(TOOL_HEMOSTAT = 100, TOOL_WIRECUTTER = 60, /obj/item/stack/packageWrap = 35, /obj/item/stack/cable_coil = 15)
 	time = 24
 
 /datum/surgery_step/clamp_bleeders/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -63,7 +63,7 @@
 //retract skin
 /datum/surgery_step/retract_skin
 	name = "retract skin"
-	implements = list(/obj/item/retractor = 100, TOOL_SCREWDRIVER = 45, TOOL_WIRECUTTER = 35)
+	implements = list(TOOL_RETRACTOR = 100, TOOL_SCREWDRIVER = 45, TOOL_WIRECUTTER = 35)
 	time = 24
 
 /datum/surgery_step/retract_skin/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -76,7 +76,7 @@
 //close incision
 /datum/surgery_step/close
 	name = "mend incision"
-	implements = list(/obj/item/cautery = 100, /obj/item/gun/energy/laser = 90, TOOL_WELDER = 70,
+	implements = list(TOOL_CAUTERY = 100, /obj/item/gun/energy/laser = 90, TOOL_WELDER = 70,
 		/obj/item = 30) // 30% success with any hot item.
 	time = 24
 	fuckup_damage_type = BURN
@@ -108,7 +108,7 @@
 //saw bone
 /datum/surgery_step/saw
 	name = "saw bone"
-	implements = list(/obj/item/circular_saw = 100, /obj/item/melee/transforming/energy/sword/cyborg/saw = 100,
+	implements = list(TOOL_SAW = 100, /obj/item/melee/transforming/energy/sword/cyborg/saw = 100,
 		/obj/item/melee/arm_blade = 75, /obj/item/mounted_chainsaw = 65, /obj/item/twohanded/required/chainsaw = 50,
 		/obj/item/twohanded/fireaxe = 50, /obj/item/hatchet = 35, /obj/item/kitchen/knife/butcher = 25)
 	time = 54
@@ -129,7 +129,7 @@
 //drill bone
 /datum/surgery_step/drill
 	name = "drill bone"
-	implements = list(/obj/item/surgicaldrill = 100, /obj/item/pickaxe/drill = 60, /obj/item/mecha_parts/mecha_equipment/drill = 60, TOOL_SCREWDRIVER = 20)
+	implements = list(TOOL_DRILL = 100, /obj/item/pickaxe/drill = 60, /obj/item/mecha_parts/mecha_equipment/drill = 60, TOOL_SCREWDRIVER = 20)
 	time = 30
 	fuckup_damage = 15
 

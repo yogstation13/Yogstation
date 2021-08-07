@@ -137,6 +137,7 @@
 	hitcost = 75 //Costs more than a standard cyborg esword
 	w_class = WEIGHT_CLASS_NORMAL
 	sharpness = SHARP_EDGED
+	tool_behaviour = TOOL_SAW
 	light_color = "#40ceff"
 
 /obj/item/melee/transforming/energy/sword/cyborg/saw/cyborg_unequip(mob/user)
