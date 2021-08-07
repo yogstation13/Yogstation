@@ -123,7 +123,10 @@
 			if("Clerk")
 				heirloom_type = pick(/obj/item/coin, /obj/item/coin/gold, /obj/item/coin/iron, /obj/item/coin/silver)
 			if("Botanist")
-				heirloom_type = pick(/obj/item/cultivator, /obj/item/shovel/spade, /obj/item/reagent_containers/glass/bucket/wooden, /obj/item/toy/plush/beeplushie, /obj/item/clothing/mask/cigarette/pipe, /obj/item/clothing/mask/cigarette/pipe/cobpipe)
+				if(is_species(H, /datum/species/plasmaman))
+					heirloom_type = pick(/obj/item/cultivator, /obj/item/shovel/spade, /obj/item/reagent_containers/glass/bucket/wooden, /obj/item/toy/plush/beeplushie)
+				else
+					heirloom_type = pick(/obj/item/cultivator, /obj/item/shovel/spade, /obj/item/reagent_containers/glass/bucket/wooden, /obj/item/toy/plush/beeplushie, /obj/item/clothing/mask/cigarette/pipe, /obj/item/clothing/mask/cigarette/pipe/cobpipe)
 			if("Bartender")
 				heirloom_type = pick(/obj/item/reagent_containers/glass/rag, /obj/item/clothing/head/that, /obj/item/reagent_containers/food/drinks/shaker)
 			if("Curator")
@@ -604,7 +607,7 @@
 /datum/quirk/sheltered/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.remove_language(/datum/language/common)
-	if(!H.can_speak_language(/datum/language/draconic) && !H.can_speak_language(/datum/language/machine))
+	if(!H.can_speak_language(/datum/language/draconic) && !H.can_speak_language(/datum/language/machine) && !H.can_speak_language(/datum/language/sylvan))
 		H.grant_language(/datum/language/japanese)
 
 /datum/quirk/allergic
