@@ -9,6 +9,7 @@
 	materials = list(/datum/material/iron=6000, /datum/material/glass=3000)
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
+	tool_behaviour = TOOL_RETRACTOR
 	w_class = WEIGHT_CLASS_TINY
 
 
@@ -33,6 +34,7 @@
 	materials = list(/datum/material/iron=5000, /datum/material/glass=2500)
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
+	tool_behaviour = TOOL_HEMOSTAT
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("attacked", "pinched")
 
@@ -59,6 +61,7 @@
 	materials = list(/datum/material/iron=2500, /datum/material/glass=750)
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
+	tool_behaviour = TOOL_CAUTERY
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("burnt")
 
@@ -85,6 +88,7 @@
 	materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
+	tool_behaviour = TOOL_DRILL
 	force = 15
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("drilled")
@@ -121,6 +125,7 @@
 	item_state = "scalpel"
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
+	tool_behaviour = TOOL_SCALPEL
 
 	force = 10
 	w_class = WEIGHT_CLASS_TINY
@@ -170,6 +175,7 @@
 	throwhitsound =  'sound/weapons/pierce.ogg'
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
+	tool_behaviour = TOOL_SAW
 	force = 15
 	w_class = WEIGHT_CLASS_NORMAL
 	throwforce = 9
@@ -201,6 +207,20 @@
 	toolspeed = 0.5
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharpness = SHARP_EDGED
+
+/obj/item/bonesetter
+	name = "bonesetter"
+	desc = "For setting things right."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "bone setter"
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	custom_materials = list(/datum/material/iron=5000, /datum/material/glass=2500)
+	flags_1 = CONDUCT_1
+	item_flags = SURGICAL_TOOL
+	tool_behaviour = TOOL_BONESET
+	w_class = WEIGHT_CLASS_SMALL
+	attack_verb = list("corrected", "properly set")
 
 /obj/item/surgical_drapes
 	name = "surgical drapes"
@@ -296,162 +316,63 @@
 
 /obj/item/scalpel/advanced
 	name = "laser scalpel"
-	desc = "An advanced scalpel which uses laser technology to cut. It's set to scalpel mode."
+	desc = "An advanced scalpel which uses laser technology to cut."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "scalpel_a"
 	hitsound = 'sound/weapons/blade1.ogg'
 	force = 16
 	toolspeed = 0.7
 	light_color = LIGHT_COLOR_GREEN
+	sharpness = SHARP_EDGED
 
-/obj/item/scalpel/advanced/Initialize()
-	. = ..()
-	set_light(1)
 
 /obj/item/scalpel/advanced/attack_self(mob/user)
-	playsound(get_turf(user),'sound/machines/click.ogg',50,1)
-	to_chat(user, "<span class='notice'>You increase the power, now it can cut bones.</span>")
-	if(issilicon(user))
-		var/mob/living/silicon/robot/borg = user
-		var/modulenum = borg.get_selected_module()
-		borg.uneq_active()
-		borg.module.remove_module(src, TRUE)
-		var/obj/item/circular_saw/advanced/PC = locate() in borg.module.modules
-		PC = new(borg.module)
-		borg.module.basic_modules += PC
-		borg.module.add_module(PC, FALSE, TRUE)
-		borg.equip_module_to_slot(PC, modulenum)
-		borg.select_module(modulenum)
+	playsound(get_turf(user), 'sound/machines/click.ogg', 50, TRUE)
+	if(tool_behaviour == TOOL_SCALPEL)
+		tool_behaviour = TOOL_SAW
+		to_chat(user, "<span class='notice'>You increase the power, now it can cut bones.</span>")
+		set_light(2)
+		force += 1 //we don't want to ruin sharpened stuff
+		icon_state = "saw_a"
 	else
-		var/obj/item/circular_saw/advanced/saw = new /obj/item/circular_saw/advanced(drop_location())
-		qdel(src)
-		user.put_in_active_hand(saw)
+		tool_behaviour = TOOL_SCALPEL
+		to_chat(user, "<span class='notice'>You lower the power, it can now make precise incisions.</span>")
+		set_light(1)
+		force -= 1
+		icon_state = "scalpel_a"
 
-/obj/item/circular_saw/advanced
-	name = "laser scalpel"
-	desc = "An advanced scalpel which uses laser technology to cut. It's set to saw mode."
-	icon = 'icons/obj/surgery.dmi'
-	icon_state = "saw_a"
-	hitsound = 'sound/weapons/blade1.ogg'
-	force = 17
-	toolspeed = 0.7
-	sharpness = SHARP_EDGED
-	light_color = LIGHT_COLOR_GREEN
-
-/obj/item/circular_saw/advanced/Initialize()
+/obj/item/scalpel/advanced/examine()
 	. = ..()
-	set_light(2)
-
-/obj/item/circular_saw/advanced/attack_self(mob/user)
-	playsound(get_turf(user),'sound/machines/click.ogg',50,1)
-	to_chat(user, "<span class='notice'>You lower the power.</span>")
-	if(issilicon(user))
-		var/mob/living/silicon/robot/borg = user
-		var/modulenum = borg.get_selected_module()
-		borg.uneq_active()
-		borg.module.remove_module(src, TRUE)
-		var/obj/item/scalpel/advanced/PC = locate() in borg.module.modules
-		PC = new(borg.module)
-		borg.module.basic_modules += PC
-		borg.module.add_module(PC, FALSE, TRUE)
-		borg.equip_module_to_slot(PC, modulenum)
-		borg.select_module(modulenum)
-	else
-		var/obj/item/scalpel/advanced/scalpel = new /obj/item/scalpel/advanced(drop_location())
-		qdel(src)
-		user.put_in_active_hand(scalpel)
+	. += " It's set to [tool_behaviour == TOOL_SCALPEL ? "scalpel" : "saw"] mode."
 
 /obj/item/retractor/advanced
 	name = "mechanical pinches"
-	desc = "An agglomerate of rods and gears. It resembles a retractor."
+	desc = "An agglomerate of rods and gears."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "retractor_a"
 	toolspeed = 0.7
 
 /obj/item/retractor/advanced/attack_self(mob/user)
-	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
-	to_chat(user, "<span class='notice'>You set the [src] to hemostat mode.</span>")
-	if(issilicon(user))
-		var/mob/living/silicon/robot/borg = user
-		var/modulenum = borg.get_selected_module()
-		borg.uneq_active()
-		borg.module.remove_module(src, TRUE)
-		var/obj/item/hemostat/advanced/PC = locate() in borg.module.modules
-		PC = new(borg.module)
-		borg.module.basic_modules += PC
-		borg.module.add_module(PC, FALSE, TRUE)
-		borg.equip_module_to_slot(PC, modulenum)
-		borg.select_module(modulenum)
+	playsound(get_turf(user), 'sound/items/change_drill.ogg', 50, TRUE)
+	if(tool_behaviour == TOOL_RETRACTOR)
+		tool_behaviour = TOOL_HEMOSTAT
+		to_chat(user, "<span class='notice'>You set the [src] to hemostat mode.</span>")
+		icon_state = "hemostat_a"
 	else
-		var/obj/item/hemostat/advanced/hemostat = new /obj/item/hemostat/advanced(drop_location())
-		qdel(src)
-		user.put_in_active_hand(hemostat)
+		tool_behaviour = TOOL_RETRACTOR
+		to_chat(user, "<span class='notice'>You set the [src] to retractor mode.</span>")
+		icon_state = "retractor_a"
 
-/obj/item/hemostat/advanced
-	name = "mechanical pinches"
-	desc = "An agglomerate of rods and gears. It resembles an hemostat."
-	icon = 'icons/obj/surgery.dmi'
-	icon_state = "hemostat_a"
-	toolspeed = 0.7
-
-/obj/item/hemostat/advanced/attack_self(mob/user)
-	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
-	to_chat(user, "<span class='notice'>You set the [src] to retractor mode.</span>")
-	if(issilicon(user))
-		var/mob/living/silicon/robot/borg = user
-		var/modulenum = borg.get_selected_module()
-		borg.uneq_active()
-		borg.module.remove_module(src, TRUE)
-		var/obj/item/retractor/advanced/PC = locate() in borg.module.modules
-		PC = new(borg.module)
-		borg.module.basic_modules += PC
-		borg.module.add_module(PC, FALSE, TRUE)
-		borg.equip_module_to_slot(PC, modulenum)
-		borg.select_module(modulenum)
-	else
-		var/obj/item/retractor/advanced/retractor = new /obj/item/retractor/advanced(drop_location())
-		qdel(src)
-		user.put_in_active_hand(retractor)
-
-/obj/item/surgicaldrill/advanced
-	name = "searing tool"
-	desc = "It projects a high power laser used for medical application. It's set to drilling mode."
-	icon = 'icons/obj/surgery.dmi'
-	icon_state = "surgicaldrill_a"
-	hitsound = 'sound/items/welder.ogg'
-	toolspeed = 0.7
-	light_color = LIGHT_COLOR_RED
-
-/obj/item/surgicaldrill/advanced/Initialize()
+/obj/item/retractor/advanced/examine()
 	. = ..()
-	set_light(1)
-
-/obj/item/surgicaldrill/advanced/attack_self(mob/user)
-	playsound(get_turf(user),'sound/weapons/tap.ogg',50,1)
-	to_chat(user, "<span class='notice'>You dilate the lenses, setting it to mending mode.</span>")
-	if(issilicon(user))
-		var/mob/living/silicon/robot/borg = user
-		var/modulenum = borg.get_selected_module()
-		borg.uneq_active()
-		borg.module.remove_module(src, TRUE)
-		var/obj/item/cautery/advanced/PC = locate() in borg.module.modules
-		PC = new(borg.module)
-		borg.module.basic_modules += PC
-		borg.module.add_module(PC, FALSE, TRUE)
-		borg.equip_module_to_slot(PC, modulenum)
-		borg.select_module(modulenum)
-	else
-		var/obj/item/cautery/advanced/cautery = new /obj/item/cautery/advanced(drop_location())
-		qdel(src)
-		user.put_in_active_hand(cautery)
+	. += " It resembles a [tool_behaviour == TOOL_RETRACTOR ? "retractor" : "hemostat"]."
 
 /obj/item/cautery/advanced
 	name = "searing tool"
-	desc = "It projects a high power laser used for medical application. It's set to mending mode."
+	desc = "It projects a high power laser used for medical application."
 	icon = 'icons/obj/surgery.dmi'
-	icon_state = "cautery_a"
-	hitsound = 'sound/items/welder2.ogg'
-	force = 15
+	icon_state = "surgicaldrill_a"
+	hitsound = 'sound/items/welder.ogg'
 	toolspeed = 0.7
 	light_color = LIGHT_COLOR_RED
 
@@ -460,33 +381,18 @@
 	set_light(1)
 
 /obj/item/cautery/advanced/attack_self(mob/user)
-	playsound(get_turf(user),'sound/items/welderdeactivate.ogg',50,1)
-	to_chat(user, "<span class='notice'>You focus the lensess, it is now set to drilling mode.</span>")
-	if(issilicon(user))
-		var/mob/living/silicon/robot/borg = user
-		var/modulenum = borg.get_selected_module()
-		borg.uneq_active()
-		borg.module.remove_module(src, TRUE)
-		var/obj/item/surgicaldrill/advanced/PC = locate() in borg.module.modules
-		PC = new(borg.module)
-		borg.module.basic_modules += PC
-		borg.module.add_module(PC, FALSE, TRUE)
-		borg.equip_module_to_slot(PC, modulenum)
-		borg.select_module(modulenum)
-	else
-		var/obj/item/surgicaldrill/advanced/surgicaldrill = new /obj/item/surgicaldrill/advanced(drop_location())
-		qdel(src)
-		user.put_in_active_hand(surgicaldrill)
 
-/obj/item/bonesetter
-	name = "bonesetter"
-	desc = "For setting things right."
-	icon = 'icons/obj/surgery.dmi'
-	icon_state = "bone setter"
-	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	custom_materials = list(/datum/material/iron=5000, /datum/material/glass=2500)
-	flags_1 = CONDUCT_1
-	item_flags = SURGICAL_TOOL
-	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("corrected", "properly set")
+	if(tool_behaviour == TOOL_CAUTERY)
+		playsound(get_turf(user),'sound/items/welderdeactivate.ogg',50,1)
+		to_chat(user, "<span class='notice'>You focus the lensess, it is now set to drilling mode.</span>")
+		tool_behaviour = TOOL_DRILL
+		icon_state = "surgicaldrill_a"
+	else
+		playsound(get_turf(user),'sound/weapons/tap.ogg',50,1)
+		to_chat(user, "<span class='notice'>You dilate the lenses, setting it to mending mode.</span>")
+		tool_behaviour = TOOL_CAUTERY
+		icon_state = "cautery_a"
+
+/obj/item/cautery/advanced/examine()
+	. = ..()
+	. += " It's set to [tool_behaviour == TOOL_DRILL ? "drilling" : "mending"] mode."
