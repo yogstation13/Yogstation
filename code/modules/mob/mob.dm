@@ -444,7 +444,8 @@
 			result = A.examine(src)
 			addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), EXAMINE_MORE_TIME)
 		else
-			result = A.examine_more(src)
+			var/extra_info = A.examine_more(src)
+			result = extra_info ? extra_info : result
 	else
 		result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
 	to_chat(src, result.Join("\n"))
