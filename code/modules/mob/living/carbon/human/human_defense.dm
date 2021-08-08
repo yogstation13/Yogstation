@@ -705,7 +705,7 @@
 				to_chat(src, "<span class='notice'>You succesfuly remove the durathread strand.</span>")
 				remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
 			return
-		else if(islizard(src) && creamed)
+		else if(istype(src.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/lizard) && creamed)
 			visible_message("<span class='notice'>[src] eats the pie off [p_their()] face with [p_their()] forked tongue.</span>", 
 							"<span class='notice'>You eat the pie off your face with your forked tongue.")
 			reagents.add_reagent(/datum/reagent/consumable/banana, 1)
