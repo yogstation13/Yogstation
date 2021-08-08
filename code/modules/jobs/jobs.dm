@@ -154,3 +154,13 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = para_expand.Replace(job, "paramedic")
 	// yogs end
 	return job
+
+/proc/get_alternate_titles(var/job)
+	var/list/jobs = SSjob.occupations
+	var/list/titles = list()
+
+	for(var/datum/job/J in jobs)
+		if(J.title == job)
+			titles = J.alt_titles
+
+	return titles

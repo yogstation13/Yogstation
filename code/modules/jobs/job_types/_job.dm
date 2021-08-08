@@ -35,6 +35,8 @@
 	//Sellection screen color
 	var/selection_color = "#ffffff"
 
+	//List of alternate titles, if any
+	var/list/alt_titles
 
 	//If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/req_admin_notify
@@ -260,7 +262,10 @@
 		C.access = J.get_access()
 		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
 		C.registered_name = H.real_name
-		C.assignment = J.title
+		if(H.mind?.role_alt_title)
+			C.assignment = H.mind.role_alt_title
+		else
+			C.assignment = J.title
 		if(H.age)
 			C.registered_age = H.age
 		C.update_label()

@@ -674,6 +674,8 @@
 		return
 
 	var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)
+	if(character.mind.role_alt_title)
+		rank = character.mind.role_alt_title
 	announcer.announce("ARRIVAL", character.real_name, rank, list()) //make the list empty to make it announce it in common
 
 /proc/lavaland_equipment_pressure_check(turf/T)
