@@ -57,6 +57,8 @@
 		icon_state = "fork"
 		forkload = null
 	else if(user.zone_selected == BODY_ZONE_HEAD && M == user && ishuman(M) && H.creamed)
+		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
+			return eyestab(M,user)
 		icon_state = "forkloaded_pie"
 		user.visible_message("[user] scoops up the pie with [user.p_their()] fork!", \
 			"<span class='notice'>You scoop up the pie with your fork.</span>")
