@@ -1012,7 +1012,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					prefUpperLevel = 3
 					prefLowerLevel = 1
 			if(job.alt_titles)
-				HTML += "</a><br> <a href=\"byond://?src=\ref[user];preference=job;task=alt_title;job=\ref[job]\">\[[GetPlayerAltTitle(job)]\]</a></td></tr>"
+				HTML += "<a class='white' href='?_src_=prefs;preference=job;task=task=alt_title;job=[rank]'>[GetPlayerAltTitle(job)]</a>"
 
 			HTML += "<a class='white' href='?_src_=prefs;preference=job;task=setJobLevel;level=[prefUpperLevel];text=[rank]' oncontextmenu='javascript:return setJobPrefRedirect([prefLowerLevel], \"[rank]\");'>"
 
