@@ -35828,12 +35828,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing/chamber)
-"eDw" = (
-/obj/structure/fireaxecabinet/spare{
-	pixel_y = 32
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "eDG" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
@@ -41255,6 +41249,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"irH" = (
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "irK" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -45743,6 +45740,27 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"lmQ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 4
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = -4
+	},
+/obj/structure/fireaxecabinet/spare{
+	pixel_x = 32;
+	req_access = list(20)
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "lmY" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/abandoned,
@@ -63707,23 +63725,6 @@
 	},
 /turf/open/floor/wood,
 /area/medical/psych)
-"xBl" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 4
-	},
-/obj/item/storage/firstaid/regular{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/toolbox/mechanical{
-	pixel_y = -4
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "xBH" = (
 /obj/machinery/light{
 	dir = 1;
@@ -96829,7 +96830,7 @@ aJq
 epq
 aPX
 osa
-xBl
+lmQ
 vZH
 euq
 eHd
@@ -97872,7 +97873,7 @@ bfl
 bim
 bjG
 aZV
-eDw
+irH
 qWH
 kSk
 bqH
