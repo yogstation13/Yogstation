@@ -32,9 +32,7 @@
 
 /datum/bank_account/proc/_adjust_money(amt)
 	account_balance += amt
-	if(account_balance < 0)
-		account_balance = 0
-	else if(account_balance > 1000000 && !is_bourgeois) // if we are now a millionaire, give the achievement
+	if(account_balance > 1000000 && !is_bourgeois) // if we are now a millionaire, give the achievement
 		//So we currently only know what is *supposed* to be the real_name of the client's mob. If we can find them, we can get them this achievement.
 		for(var/x in GLOB.player_list)
 			var/mob/M = x

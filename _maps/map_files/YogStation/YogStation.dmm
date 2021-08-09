@@ -13,6 +13,13 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
+"aac" = (
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 1
+	},
+/obj/structure/railing,
+/turf/open/floor/wood,
+/area/library)
 "aad" = (
 /obj/machinery/gulag_processor,
 /turf/open/floor/plasteel,
@@ -15239,9 +15246,6 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/light_switch{
-	pixel_x = 27
-	},
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/structure/sign/poster/official/pda_ad{
 	pixel_x = 32
@@ -15578,6 +15582,9 @@
 /obj/item/stack/cable_coil,
 /obj/item/paper_bin/construction,
 /obj/item/stack/cable_coil,
+/obj/machinery/light_switch{
+	pixel_x = -27
+	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aSl" = (
@@ -38698,6 +38705,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/teleport_anchor,
+/obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "gEr" = (
@@ -52494,12 +52502,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"pMe" = (
-/obj/machinery/camera{
-	c_tag = "Hydroponics North"
-	},
-/turf/template_noop,
-/area/hydroponics)
 "pMt" = (
 /obj/machinery/advanced_airlock_controller{
 	dir = 1;
@@ -52853,13 +52855,6 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"pXY" = (
-/obj/machinery/camera{
-	c_tag = "Hydroponics South";
-	dir = 8
-	},
-/turf/template_noop,
-/area/hydroponics)
 "pYf" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
@@ -55181,11 +55176,6 @@
 /obj/structure/tank_dispenser,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"rCR" = (
-/obj/structure/filingcabinet,
-/obj/structure/railing,
-/turf/open/floor/wood,
-/area/library)
 "rCT" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 4;
@@ -56910,6 +56900,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"sNo" = (
+/obj/effect/landmark/start/cook,
+/turf/template_noop,
+/area/template_noop)
 "sNK" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -57200,6 +57194,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
+"sXZ" = (
+/obj/effect/landmark/start/bartender,
+/turf/template_noop,
+/area/template_noop)
 "sYf" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
@@ -103764,7 +103762,7 @@ aAh
 aFh
 aql
 qQV
-qQV
+sXZ
 qQV
 qQV
 qQV
@@ -106083,8 +106081,8 @@ qQV
 qQV
 qQV
 qQV
-qQV
-qQV
+sNo
+sNo
 qQV
 qQV
 qQV
@@ -107365,7 +107363,7 @@ aIp
 aKI
 aUn
 aIp
-pMe
+nia
 nia
 nia
 nia
@@ -108400,7 +108398,7 @@ nia
 nia
 nia
 nia
-pXY
+nia
 bam
 bfO
 aYV
@@ -109421,7 +109419,7 @@ ihg
 ffH
 jQY
 aIt
-rCR
+aac
 gOa
 aYW
 aYW
