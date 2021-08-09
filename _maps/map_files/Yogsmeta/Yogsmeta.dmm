@@ -73038,6 +73038,13 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/port/fore)
+"dXu" = (
+/obj/structure/table/wood,
+/obj/machinery/recharger{
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "dXC" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -76390,16 +76397,6 @@
 /obj/structure/table/optable,
 /turf/open/floor/plasteel,
 /area/medical/surgery)
-"jYH" = (
-/obj/structure/table/wood,
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
-/obj/structure/fireaxecabinet/spare{
-	pixel_x = 32
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain/private)
 "kac" = (
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/screwdriver{
@@ -81979,6 +81976,20 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"uLS" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/structure/fireaxecabinet/spare{
+	pixel_y = -32;
+	req_access = list(20)
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "uPd" = (
 /obj/structure/girder,
 /obj/structure/grille,
@@ -112334,7 +112345,7 @@ bjf
 bkG
 blU
 boz
-boy
+uLS
 bsU
 bsU
 bsU
@@ -115156,7 +115167,7 @@ aMw
 bcj
 bdN
 yeQ
-jYH
+dXu
 bjk
 pim
 bjg

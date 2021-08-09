@@ -55952,21 +55952,6 @@
 /obj/machinery/status_display/ai,
 /turf/closed/wall,
 /area/bridge)
-"bIU" = (
-/obj/structure/table/reinforced,
-/obj/item/paper_bin,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "bIV" = (
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/captain)
@@ -125949,16 +125934,6 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
-"nkh" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/item/storage/secure/safe{
-	pixel_x = 32
-	},
-/obj/structure/fireaxecabinet/spare{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/grimy,
-/area/crew_quarters/heads/captain/private)
 "now" = (
 /turf/closed/wall,
 /area/storage/art)
@@ -127848,6 +127823,13 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"vKn" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/storage/secure/safe{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/grimy,
+/area/crew_quarters/heads/captain/private)
 "vKq" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8
@@ -128363,6 +128345,25 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/science/research)
+"xOq" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/fireaxecabinet/spare{
+	pixel_y = -32;
+	req_access = list(20)
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "xOV" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/firedoor/border_only{
@@ -168465,7 +168466,7 @@ bzP
 bjk
 aXy
 bHi
-bIU
+xOq
 bKH
 bMF
 bOO
@@ -171302,7 +171303,7 @@ bUQ
 bVT
 dkH
 cbg
-nkh
+vKn
 ceL
 cgy
 bUQ

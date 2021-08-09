@@ -52637,10 +52637,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/port)
-"bHB" = (
-/obj/structure/sign/poster/official/help_others,
-/turf/closed/wall,
-/area/bridge)
 "bHC" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -93600,20 +93596,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/starboard)
-"lpS" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/item/radio/intercom{
-	pixel_y = -28
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/bridge)
 "lqM" = (
 /obj/structure/grille,
 /obj/structure/barricade/wooden,
@@ -94900,6 +94882,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"mSH" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/fireaxecabinet/spare{
+	pixel_y = -32;
+	req_access = list(20)
+	},
+/turf/open/floor/plasteel,
+/area/bridge)
 "mUm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
@@ -95728,6 +95725,17 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/port)
+"nPF" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/captains,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/heads/captain)
 "nRc" = (
 /obj/structure/cable/yellow,
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -99076,20 +99084,6 @@
 	},
 /turf/closed/wall,
 /area/maintenance/disposal/incinerator)
-"seE" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/closet/secure_closet/captains,
-/obj/effect/turf_decal/bot,
-/obj/structure/fireaxecabinet/spare{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/heads/captain)
 "seX" = (
 /obj/machinery/door/airlock/command{
 	name = "Armoury";
@@ -99113,22 +99107,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"sfu" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/bridge)
 "shg" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -100583,6 +100561,25 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
+"tOk" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/item/radio/intercom{
+	pixel_y = -28
+	},
+/turf/open/floor/plasteel,
+/area/bridge)
 "tSG" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -133813,8 +133810,8 @@ bvQ
 bwQ
 aqM
 bEN
-sfu
-bHB
+tOk
+atj
 erC
 auc
 atj
@@ -134841,7 +134838,7 @@ bvV
 bxb
 awh
 bBm
-lpS
+mSH
 atj
 aHU
 auc
@@ -137670,7 +137667,7 @@ bwk
 asx
 omq
 bCz
-seE
+nPF
 epd
 xlT
 brU

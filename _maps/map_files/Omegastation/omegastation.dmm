@@ -724,21 +724,6 @@
 /obj/item/stack/ore/iron,
 /turf/open/floor/plating/asteroid,
 /area/asteroid/nearstation)
-"aaX" = (
-/obj/structure/chair/comfy/black{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable/white{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/carpet/blue,
-/area/bridge)
 "aaY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -2039,14 +2024,6 @@
 /obj/structure/cable/white{
 	icon_state = "0-2"
 	},
-/turf/open/floor/plating,
-/area/ai_monitored/nuke_storage)
-"ada" = (
-/obj/structure/sign/warning/electricshock{
-	pixel_x = 32
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable/white,
 /turf/open/floor/plating,
 /area/ai_monitored/nuke_storage)
 "adb" = (
@@ -30385,6 +30362,25 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"iBz" = (
+/obj/structure/chair/comfy/black{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/fireaxecabinet/spare{
+	pixel_y = -32;
+	req_access = list(20)
+	},
+/turf/open/floor/carpet/blue,
+/area/bridge)
 "iDg" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -88707,7 +88703,7 @@ wqi
 abC
 aci
 aaT
-ada
+adb
 aeA
 sOA
 spw
@@ -88963,7 +88959,7 @@ mpl
 ggq
 ggq
 ach
-aaX
+iBz
 sOx
 aeB
 nEo
