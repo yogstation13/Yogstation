@@ -249,7 +249,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/Atmosbot
-	name = "Atmosbot"
+	name = "Automatic Station Stabilizer Bot"
 	result = /mob/living/simple_animal/bot/atmosbot
 	reqs = list(/obj/item/analyzer = 1,
 				/obj/item/bodypart/r_arm/robot = 1,
