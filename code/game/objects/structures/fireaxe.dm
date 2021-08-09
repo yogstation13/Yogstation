@@ -254,3 +254,20 @@
 	fireaxe = null
 	spareid = new(src)
 	update_icon()
+	req_access = list(ACCESS_CAPTAIN)
+
+/obj/structure/fireaxecabinet/spare/reset_lock(mob/user)
+	//this happens when you hack the lock as a synthetic/AI, or with a multitool.
+	if(obj_flags & EMAGGED)
+		to_chat(user, "<span class='notice'>You try to reset the [name]'s circuits, but they're completely burnt out.</span>")
+		return
+	if(!open)
+		to_chat(user, "<span class = 'caution'>Resetting circuitry...</span>")
+		if(alert)
+			to_chat(user, "<span class='danger'>This will trigger the built in burglary alarm!</span>")
+		if(do_after(user, 15 SECONDS, target = src))
+			to_chat(user, "<span class='caution'>You [locked ? "disable" : "re-enable"] the locking modules.</span>")
+			src.add_fingerprint(user)
+			if(locked)
+				trigger_alarm() //already checks for alert var
+			toggle_lock(user)
