@@ -57915,6 +57915,17 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"gOQ" = (
+/obj/machinery/light_switch{
+	pixel_y = 28
+	},
+/obj/structure/fireaxecabinet/spare{
+	pixel_x = 2;
+	pixel_y = 32;
+	req_access = list(20)
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "gQJ" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/machinery/light/small{
@@ -58804,16 +58815,6 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
-"jrE" = (
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
-/obj/structure/fireaxecabinet/spare{
-	pixel_x = 2;
-	pixel_y = 32
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "jrL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -97253,7 +97254,7 @@ bfl
 bim
 bjG
 aZV
-jrE
+gOQ
 aCd
 bpl
 bqH

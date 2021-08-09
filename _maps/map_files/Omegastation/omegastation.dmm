@@ -20338,20 +20338,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint)
-"aXF" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/cable/white{
-	icon_state = "2-8"
-	},
-/obj/structure/table/wood,
-/obj/item/phone/real,
-/obj/structure/fireaxecabinet/spare{
-	pixel_x = 32
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain/private)
 "aXK" = (
 /obj/structure/closet/firecloset,
 /obj/machinery/light/small{
@@ -37286,6 +37272,21 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"pPm" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/cable/white{
+	icon_state = "2-8"
+	},
+/obj/structure/table/wood,
+/obj/item/phone/real,
+/obj/structure/fireaxecabinet/spare{
+	pixel_x = 32;
+	req_access = list(20)
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "pPL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/engineering/glass/critical{
@@ -86651,7 +86652,7 @@ aae
 abw
 acc
 acS
-aXF
+pPm
 aer
 afo
 msP

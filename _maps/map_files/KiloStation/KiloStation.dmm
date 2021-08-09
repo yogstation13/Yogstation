@@ -91486,6 +91486,21 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/toilet/restrooms)
+"jba" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/captains,
+/obj/effect/turf_decal/bot,
+/obj/structure/fireaxecabinet/spare{
+	pixel_x = 32;
+	req_access = list(20)
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/heads/captain)
 "jeG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line{
@@ -99076,20 +99091,6 @@
 	},
 /turf/closed/wall,
 /area/maintenance/disposal/incinerator)
-"seE" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/closet/secure_closet/captains,
-/obj/effect/turf_decal/bot,
-/obj/structure/fireaxecabinet/spare{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/heads/captain)
 "seX" = (
 /obj/machinery/door/airlock/command{
 	name = "Armoury";
@@ -137670,7 +137671,7 @@ bwk
 asx
 omq
 bCz
-seE
+jba
 epd
 xlT
 brU

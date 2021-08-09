@@ -76390,16 +76390,6 @@
 /obj/structure/table/optable,
 /turf/open/floor/plasteel,
 /area/medical/surgery)
-"jYH" = (
-/obj/structure/table/wood,
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
-/obj/structure/fireaxecabinet/spare{
-	pixel_x = 32
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain/private)
 "kac" = (
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/screwdriver{
@@ -79194,6 +79184,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"pPS" = (
+/obj/structure/table/wood,
+/obj/machinery/recharger{
+	pixel_y = 4
+	},
+/obj/structure/fireaxecabinet/spare{
+	pixel_x = 32;
+	req_access = list(20)
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "pPV" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -115156,7 +115157,7 @@ aMw
 bcj
 bdN
 yeQ
-jYH
+pPS
 bjk
 pim
 bjg

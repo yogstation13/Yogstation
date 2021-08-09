@@ -83667,12 +83667,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"jfR" = (
-/obj/structure/fireaxecabinet/spare{
-	pixel_y = 32
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain/private)
 "jiO" = (
 /obj/structure/closet/firecloset,
 /obj/effect/turf_decal/tile/red{
@@ -87276,6 +87270,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"rpL" = (
+/obj/structure/fireaxecabinet/spare{
+	pixel_y = 32;
+	req_access = list(20)
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "rqB" = (
 /obj/structure/closet,
 /obj/structure/window/reinforced{
@@ -127046,7 +127047,7 @@ aTa
 aTY
 aVe
 aif
-jfR
+rpL
 aZz
 ceY
 aTa

@@ -125949,16 +125949,6 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
-"nkh" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/item/storage/secure/safe{
-	pixel_x = 32
-	},
-/obj/structure/fireaxecabinet/spare{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/grimy,
-/area/crew_quarters/heads/captain/private)
 "now" = (
 /turf/closed/wall,
 /area/storage/art)
@@ -126725,6 +126715,17 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
+"qfL" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/storage/secure/safe{
+	pixel_x = 32
+	},
+/obj/structure/fireaxecabinet/spare{
+	pixel_y = 32;
+	req_access = list(20)
+	},
+/turf/open/floor/plasteel/grimy,
+/area/crew_quarters/heads/captain/private)
 "qhc" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -171302,7 +171303,7 @@ bUQ
 bVT
 dkH
 cbg
-nkh
+qfL
 ceL
 cgy
 bUQ
