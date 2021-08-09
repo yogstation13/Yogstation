@@ -478,13 +478,11 @@
 			if(ertemplate.opendoors)
 				for(var/obj/machinery/door/poddoor/ert/door in GLOB.airlocks)
 					INVOKE_ASYNC(door, /obj/machinery/door/poddoor.proc/open)
-					CHECK_TICK
 
 			//Open the Mech Bay
 			if(ertemplate.openmech)
 				for(var/obj/machinery/door/poddoor/deathsquad/door in GLOB.airlocks)
 					INVOKE_ASYNC(door, /obj/machinery/door/poddoor.proc/open)
-					CHECK_TICK
 			return TRUE
 		else
 			return FALSE
