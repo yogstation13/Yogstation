@@ -78292,7 +78292,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
 /obj/machinery/camera/motion{
-	c_tag = "Captains Office";
+	c_tag = "Captain's Quarters";
 	dir = 8
 	},
 /turf/open/floor/wood,

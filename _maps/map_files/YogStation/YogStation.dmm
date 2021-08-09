@@ -49614,7 +49614,7 @@
 	dir = 4
 	},
 /obj/machinery/camera/motion{
-	c_tag = "Captains Office";
+	c_tag = "Captain's Quarters";
 	dir = 1
 	},
 /turf/open/floor/carpet/blue,
