@@ -343,9 +343,8 @@
 			var/datum/plant_gene/trait/cell_charge/CG = G.seed.get_gene(/datum/plant_gene/trait/cell_charge)
 			if(CG) // Cell charge max is now 40MJ or otherwise known as 400KJ (Same as bluespace powercells)
 				pocell.maxcharge *= CG.rate*100
-				pocell.maxrate *=CG.rate*100
+				pocell.chargerate = G.seed.potency * 40
 			pocell.charge = pocell.maxcharge
-			pocell.rate = pocell.maxrate
 			pocell.name = "[G.name] battery"
 			pocell.desc = "A rechargeable plant-based power cell. This one has a rating of [DisplayEnergy(pocell.maxcharge)], and you should not swallow it."
 
