@@ -22295,16 +22295,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/supply)
-"bpj" = (
-/obj/structure/chair/comfy/brown{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Captain's Quarters";
-	dir = 1
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "bpk" = (
 /obj/structure/closet/secure_closet/captains,
 /turf/open/floor/carpet/blue,
@@ -49619,6 +49609,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/tcoms)
+"nUs" = (
+/obj/structure/chair/comfy/brown{
+	dir = 4
+	},
+/obj/machinery/camera/motion{
+	c_tag = "Captains Office";
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "nUD" = (
 /obj/effect/landmark/start/station_engineer,
 /obj/effect/turf_decal/stripes/corner{
@@ -97617,7 +97617,7 @@ bhG
 blb
 bmy
 bkh
-bpj
+nUs
 bqH
 bsi
 blZ
