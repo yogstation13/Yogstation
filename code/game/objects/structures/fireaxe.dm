@@ -271,3 +271,9 @@
 			if(locked)
 				trigger_alarm() //already checks for alert var
 			toggle_lock(user)
+
+/obj/structure/fireaxecabinet/spare/emag_act(mob/user)
+	. = ..()
+	if(!.)
+		return
+	trigger_alarm()
