@@ -19,8 +19,8 @@
 
 //Floorbot
 /mob/living/simple_animal/bot/atmosbot
-	name = "\improper Atmosbot"
-	desc = "A little robot that just seems happy to keep you alive!"
+	name = "\improper Automatic Station Stabilizer"
+	desc = "Or the A.S.S. for short."
 	icon = 'icons/mob/aibots.dmi'
 	icon_state = "atmosbot0"
 	density = FALSE
