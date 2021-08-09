@@ -248,13 +248,13 @@
 	alert = TRUE
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 0, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
 	axe = FALSE
+	req_access = list(ACCESS_CAPTAIN)
 
 /obj/structure/fireaxecabinet/spare/Initialize()
 	. = ..()
 	fireaxe = null
 	spareid = new(src)
 	update_icon()
-	req_access = list(ACCESS_CAPTAIN)
 
 /obj/structure/fireaxecabinet/spare/reset_lock(mob/user)
 	//this happens when you hack the lock as a synthetic/AI, or with a multitool.
