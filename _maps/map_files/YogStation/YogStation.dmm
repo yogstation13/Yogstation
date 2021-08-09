@@ -35828,12 +35828,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing/chamber)
-"eDw" = (
-/obj/structure/fireaxecabinet/spare{
-	pixel_y = 32
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "eDG" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
@@ -50588,6 +50582,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"ovR" = (
+/obj/structure/fireaxecabinet/spare{
+	pixel_y = 32;
+	req_access = list(20)
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "owV" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -97872,7 +97873,7 @@ bfl
 bim
 bjG
 aZV
-eDw
+ovR
 qWH
 kSk
 bqH
