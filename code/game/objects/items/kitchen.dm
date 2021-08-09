@@ -30,7 +30,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
 	var/datum/reagent/forkload //used to eat omelette
-	var/loaded_egg /// True if the loaded item is an egg, false if its pie
+	var/loaded_food = "nothing" /// The name of the thing on the fork
 
 /obj/item/kitchen/fork/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] stabs \the [src] into [user.p_their()] chest! It looks like [user.p_theyre()] trying to take a bite out of [user.p_them()]self!</span>")
@@ -45,17 +45,18 @@
 
 	if(forkload)
 		if(M == user)
-			M.visible_message("<span class='notice'>[user] eats a delicious forkful of [loaded_egg ? "omlette" : "pie"]!</span>")
+			M.visible_message("<span class='notice'>[user] eats a delicious forkful of [loaded_food]!</span>")
 			M.reagents.add_reagent(forkload.type, 1)
 		else
-			M.visible_message("<span class='notice'>[user] is trying to feed [M] a delicious forkful of [loaded_egg ? "omlette" : "pie"]!</span>") //yogs start
+			M.visible_message("<span class='notice'>[user] is trying to feed [M] a delicious forkful of [loaded_food]!</span>") //yogs start
 			if(!do_mob(user, M))
 				return
-			log_combat(user, M, "fed [loaded_egg ? "omlette" : "pie"]", forkload.type) //yogs end
-			M.visible_message("<span class='notice'>[user] feeds [M] a delicious forkful of [loaded_egg ? "omlette" : "pie"]!</span>")
+			log_combat(user, M, "fed [loaded_food]", forkload.type) //yogs end
+			M.visible_message("<span class='notice'>[user] feeds [M] a delicious forkful of [loaded_food]!</span>")
 			M.reagents.add_reagent(forkload.type, 1)
 		icon_state = "fork"
 		forkload = null
+		loaded_food = "nothing"
 	else if(user.zone_selected == BODY_ZONE_HEAD && M == user && ishuman(M) && H.creamed)
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 			return eyestab(M,user)
@@ -65,7 +66,7 @@
 
 		var/datum/reagent/R = new /datum/reagent/consumable/banana
 		forkload = R
-		loaded_egg = FALSE
+		loaded_food = "pie"
 
 		H.wash_cream()
 	else if(user.zone_selected == BODY_ZONE_PRECISE_EYES)

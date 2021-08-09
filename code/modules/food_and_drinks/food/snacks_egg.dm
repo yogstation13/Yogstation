@@ -142,7 +142,7 @@
 	if(istype(W, /obj/item/kitchen/fork))
 		var/obj/item/kitchen/fork/F = W
 		if(F.forkload)
-			to_chat(user, "<span class='warning'>You already have [F.loaded_egg ? "omlette" : "pie"] on your fork!</span>")
+			to_chat(user, "<span class='warning'>You already have [F.loaded_food] on your fork!</span>")
 		else
 			F.icon_state = "forkloaded_egg"
 			user.visible_message("[user] takes a piece of omelette with [user.p_their()] fork!", \
@@ -151,7 +151,7 @@
 			var/datum/reagent/R = pick(reagents.reagent_list)
 			reagents.remove_reagent(R.type, 1)
 			F.forkload = R
-			F.loaded_egg = TRUE
+			F.loaded_food = "omeletee"
 			if(reagents.total_volume <= 0)
 				qdel(src)
 		return
