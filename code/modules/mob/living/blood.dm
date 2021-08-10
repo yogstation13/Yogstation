@@ -11,7 +11,8 @@
 		var/obj/item/bodypart/BP = X
 		temp_bleed += BP.get_bleed_rate()
 		BP.generic_bleedstacks = max(0, BP.generic_bleedstacks - 1)
-	bleed(temp_bleed)
+	if(temp_bleed)
+		bleed(temp_bleed)
 
 	//Blood regeneration if there is some space
 	if(blood_volume < BLOOD_VOLUME_NORMAL(src))
