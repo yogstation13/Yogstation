@@ -10,7 +10,7 @@
 	name = "Libital"
 	description = "A bruise reliever. Does minor liver damage."
 	color = "#ECEC8D" // rgb: 236 236 141
-	overdose_threshold = 25
+	overdose_threshold = 30
 	taste_description = "bitter with a hint of alcohol"
 	reagent_state = SOLID
 
@@ -93,7 +93,7 @@
 	name = "Aiuri"
 	description = "Used to treat burns. Does minor eye damage."
 	color = "#8C93FF"
-	overdose_threshold = 25
+	overdose_threshold = 30
 	taste_description = "ammonia with a bit of acid"
 	reagent_state = LIQUID
 
