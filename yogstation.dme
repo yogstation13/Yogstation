@@ -2068,6 +2068,7 @@
 #include "code\modules\language\slime.dm"
 #include "code\modules\language\swarmer.dm"
 #include "code\modules\language\sylvan.dm"
+#include "code\modules\language\bonespeak.dm"
 #include "code\modules\language\xenocommon.dm"
 #include "code\modules\library\lib_codex_gigas.dm"
 #include "code\modules\library\lib_items.dm"

@@ -317,6 +317,12 @@ Key procs
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 							/datum/language/sylvan = list(LANGUAGE_ATOM))
 
+/datum/language_holder/plasmaman
+	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+								/datum/language/bonespeak = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+							/datum/language/bonespeak = list(LANGUAGE_ATOM))
+
 /datum/language_holder/pod
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 								/datum/language/sylvan = list(LANGUAGE_ATOM))
