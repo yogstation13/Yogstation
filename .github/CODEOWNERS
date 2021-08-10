@@ -31,9 +31,3 @@
 /rust_g @alexkar598
 *.so @alexkar598
 *.dll @alexkar598
-
-#Art stuff
-
-/code/modules/holidays/holidays.dm @yogstation13/art
-/yogstation/code/modules/holidays/holidays.dm @yogstation13/art
-
