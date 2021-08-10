@@ -15,6 +15,8 @@
 
 /datum/quirk/New(mob/living/quirk_mob, spawn_effects, no_init = FALSE)
 	..()
+	if(IS_COMMAND(quirk_mob) | IS_SECURITY(quirk_mob))
+		return
 	if(no_init) // Yogs -- Allows quirks to be instantiated without all the song & dance below happening
 		not_init = TRUE
 		return
