@@ -155,7 +155,8 @@
 
 /obj/structure/checkoutmachine/proc/start_dumping()
 	accounts_to_rob = SSeconomy.bank_accounts.Copy()
-	accounts_to_rob -= bogdanoff.get_bank_account()
+	if(bogdanoff)
+		accounts_to_rob -= bogdanoff.get_bank_account()
 	for(var/i in accounts_to_rob)
 		var/datum/bank_account/B = i
 		B.dumpeet()
