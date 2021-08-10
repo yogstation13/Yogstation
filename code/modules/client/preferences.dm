@@ -1012,7 +1012,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					prefUpperLevel = 3
 					prefLowerLevel = 1
 			if(job.alt_titles)
-				HTML += "<a class='white' href='?_src_=prefs;preference=job;task=task=alt_title;job=[rank]'>[GetPlayerAltTitle(job)]</a>"
+				HTML += "<a class='white' href='?_src_=prefs;preference=job;task=alt_title;job=[rank]'>[GetPlayerAltTitle(job)]</a>"
 
 			HTML += "<a class='white' href='?_src_=prefs;preference=job;task=setJobLevel;level=[prefUpperLevel];text=[rank]' oncontextmenu='javascript:return setJobPrefRedirect([prefLowerLevel], \"[rank]\");'>"
 
@@ -1249,7 +1249,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						joblessrole = RETURNTOLOBBY
 				SetChoices(user)
 			if ("alt_title")
-				var/datum/job/job = locate(href_list["job"])
+				var/datum/job/job = SSjob.GetJob(href_list["job"])
 				if (job)
 					var/choices = list(job.title) + job.alt_titles
 					var/choice = input("Pick a title for [job.title].", "Character Generation", GetPlayerAltTitle(job)) as anything in choices | null
