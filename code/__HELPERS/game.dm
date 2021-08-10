@@ -667,6 +667,8 @@
 	if(!SSticker.IsRoundInProgress() || QDELETED(character))
 		return
 	var/area/A = get_area(character)
+	if(character.mind.role_alt_title)
+		rank = character.mind.role_alt_title
 	deadchat_broadcast(" has arrived at the station at <span class='name'>[A.name]</span>.", "<span class='game'><span class='name'>[character.real_name]</span> ([rank])", follow_target = character, message_type=DEADCHAT_ARRIVALRATTLE)
 	if((!GLOB.announcement_systems.len) || (!character.mind))
 		return
@@ -674,8 +676,6 @@
 		return
 
 	var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)
-	if(character.mind.role_alt_title)
-		rank = character.mind.role_alt_title
 	announcer.announce("ARRIVAL", character.real_name, rank, list()) //make the list empty to make it announce it in common
 
 /proc/lavaland_equipment_pressure_check(turf/T)

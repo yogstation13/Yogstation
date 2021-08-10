@@ -978,10 +978,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				HTML += "<font color=blue>[rank]</font></td><td><font color=blue><b> \[QUIET\]</b></font></td></tr>"
 				continue
 			// yogs end
-			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
-				HTML += "<b><span class='dark'>[rank]</span></b>"
+
+			var/rank_display
+			if(job.alt_titles)
+				rank_display = "<a class='white' href='?_src_=prefs;preference=job;task=alt_title;job=[rank]'>[GetPlayerAltTitle(job)]</a>"
 			else
-				HTML += "<span class='dark'>[rank]</span>"
+				rank_display = "<span class='dark'>[rank]</span>"
+
+			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
+				HTML += "<b>[rank_display]</b>"
+			else
+				HTML += rank_display
 
 			HTML += "</td><td width='40%'>"
 
@@ -1011,8 +1018,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					prefLevelColor = "red"
 					prefUpperLevel = 3
 					prefLowerLevel = 1
-			if(job.alt_titles)
-				HTML += "<a class='white' href='?_src_=prefs;preference=job;task=alt_title;job=[rank]'>[GetPlayerAltTitle(job)]</a>"
 
 			HTML += "<a class='white' href='?_src_=prefs;preference=job;task=setJobLevel;level=[prefUpperLevel];text=[rank]' oncontextmenu='javascript:return setJobPrefRedirect([prefLowerLevel], \"[rank]\");'>"
 
