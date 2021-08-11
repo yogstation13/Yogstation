@@ -19,6 +19,5 @@ Rayisken = Council Member
 MenacingManatee = Council Member
 Num1bamf = Council Member
  
-jamied12	=	Head Coder
-theos		=	Head Coder
- 
+jamied12	=	Head Developer
+theos		=	Head Developer

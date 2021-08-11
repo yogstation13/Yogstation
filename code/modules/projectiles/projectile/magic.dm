@@ -285,22 +285,51 @@
 	damage_type = BURN
 	nodamage = TRUE
 
-/obj/item/projectile/magic/cheese/on_hit(mob/living/target)
+/obj/item/projectile/magic/cheese/on_hit(mob/living/M)
 	. = ..()
-	if(!istype(target) || target.stat == DEAD || target.notransform || (GODMODE & target.status_flags))
+	if(!istype(M) || M.stat == DEAD || M.notransform || (GODMODE & M.status_flags))
 		return
-	if(istype(target) && target.mind)
-		var/obj/item/reagent_containers/food/snacks/store/cheesewheel/parmesan/P = new(target.loc)
-		var/mob/living/B = new(P)
-		P.desc = "What appears to be [target.real_name] reformed into a wheel of delicious parmesan... recovery is unlikely."
-		P.name = "[target.name] Parmesan"
-		B.real_name = "[target.name] Parmesan"
-		B.name = "[target.name] Parmesan"
-		B.stat = CONSCIOUS
-		target.transfer_observers_to(B)
-		target.mind.transfer_to(B)
-		qdel(target)
+	if(istype(M, /mob/living/simple_animal/cheese))
+		M.revive()
+		return	
+	M.notransform = TRUE
+	M.mobility_flags = NONE
+	M.icon = null
+	M.cut_overlays()
+	M.invisibility = INVISIBILITY_ABSTRACT
 
+	if(iscyborg(M))
+		var/mob/living/silicon/robot/Robot = M
+		if(Robot.mmi)
+			qdel(Robot.mmi)
+		Robot.notify_ai(NEW_BORG)
+	else
+		for(var/obj/item/W in contents)
+			if(!M.dropItemToGround(W))
+				qdel(W)
+	var/mob/living/B
+
+	B = new /mob/living/simple_animal/cheese(M.loc)
+	if(!B)
+		return
+
+	M.log_message("became [B.real_name]", LOG_ATTACK, color="orange")
+	B.desc = "What appears to be [M.real_name] reformed into a wheel of delicious parmesan... recovery is unlikely."
+	B.name = "[M.name] Parmesan"
+	B.real_name = "[M.name] Parmesan"
+	B.stat = CONSCIOUS
+	B.a_intent = INTENT_HARM
+	if(M.mind)
+		M.mind.transfer_to(B)
+	else
+		B.key = M.key
+	var/poly_msg = get_policy(POLICY_POLYMORPH)
+	if(poly_msg)
+		to_chat(B, poly_msg)
+	M.transfer_observers_to(B)
+	to_chat(B, "<span class='big bold'>You are a cheesewheel!</span><b> You're a harmless wheel of parmesan that is remarkably tasty. Careful of people that want to eat you.</b>")
+	qdel(M)
+	return B
 
 /obj/item/projectile/magic/animate
 	name = "bolt of animation"

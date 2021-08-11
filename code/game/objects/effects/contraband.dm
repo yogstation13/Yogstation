@@ -190,18 +190,11 @@
 	var/obj/item/photo/photo = R.fields["photo_front"]
 	var/wanted_name = R.fields["name"]
 	var/description = "A poster declaring [wanted_name] to be a dangerous individual, wanted by Nanotrasen. Report any sightings to security immediately."
-	var/list/major_crimes = S.fields["ma_crim"]
-	var/list/minor_crimes = S.fields["mi_crim"]
-	if(major_crimes.len || minor_crimes.len)
+	var/list/crimes = S.fields["crimes"]
+	if(crimes.len)
 		description += "\n[wanted_name] is wanted for the following crimes:\n"
-	if(minor_crimes.len)
 		description += "\nMinor Crimes:"
-		for(var/datum/data/crime/c in S.fields["mi_crim"])
-			description += "\n[c.crimeName]\n"
-			description += "[c.crimeDetails]\n"
-	if(major_crimes.len)
-		description += "\nMajor Crimes:"
-		for(var/datum/data/crime/c in S.fields["ma_crim"])
+		for(var/datum/data/crime/c in S.fields["crimes"])
 			description += "\n[c.crimeName]\n"
 			description += "[c.crimeDetails]\n"
 	var/obj/structure/sign/poster/wanted/D = new(P, photo.picture.picture_image, wanted_name, description, "WANTED", "#FF0000", "wanted_background", "wanted poster", "A wanted poster for")

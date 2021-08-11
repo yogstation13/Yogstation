@@ -136,9 +136,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if("carp")
 			for(var/type in (subtypesof(/datum/guardianname/carp) - namedatum.type))
 				possible_names += new type
-		if("holy")
-			for(var/type in (subtypesof(/datum/guardianname/holy) - namedatum.type))
-				possible_names += new type
 	namedatum = pick(possible_names)
 	updatetheme(pickedtheme)
 
@@ -338,7 +335,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	playsound(src, projectilesound, 100, 1)
 	if(namedatum)
 		P.color = namedatum.colour
-	P.damage = stats.damage * 1.5
+	P.damage = stats.damage * 3
 	P.starting = startloc
 	P.firer = src
 	P.fired_from = src
@@ -678,8 +675,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	return "F"
 
 /obj/item/projectile/guardian
-	name = "crystal spray"
-	icon_state = "guardian"
-	damage = 5
+	name = "crystal bolt"
+	icon_state = "greyscale_bolt"
+	damage = 10
 	damage_type = BRUTE
 	armour_penetration = 100

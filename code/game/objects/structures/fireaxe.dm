@@ -240,7 +240,7 @@
 		alarmed.burglaralert(src)
 		playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
 
-/obj/structure/fireaxecabinet/spare
+/obj/structure/fireaxecabinet/bridge/spare
 	name = "spare id cabinet"
 	desc = "There is a small label that reads \"For Emergency use only\". <BR>There are bolts under it's glass cover for easy disassembly using a wrench."
 	icon = 'icons/obj/wallmounts.dmi'
@@ -249,8 +249,8 @@
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 0, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
 	axe = FALSE
 
-/obj/structure/fireaxecabinet/spare/Initialize()
+/obj/structure/fireaxecabinet/bridge/spare/Initialize()
 	. = ..()
 	fireaxe = null
-	spareid = new
+	spareid = new(src)
 	update_icon()

@@ -639,3 +639,10 @@
 	id = /datum/reagent/consumable/liquidelectricity
 	results = list(/datum/reagent/consumable/liquidelectricity = 2)
 	required_reagents = list(/datum/reagent/teslium = 1, /datum/reagent/blood = 2)
+
+/datum/chemical_reaction/cellulose_carbonization
+	name = "Cellulose_Carbonization"
+	id = /datum/reagent/carbon
+	results = list(/datum/reagent/carbon = 1)
+	required_reagents = list(/datum/reagent/cellulose = 1)
+	required_temp = 512

@@ -55,6 +55,8 @@
 
 	if(requires_tech)
 		. = FALSE
+		
+	var/obj/item/healthanalyzer/advanced/adv = locate() in user.GetAllContents()
 
 	if(iscyborg(user))
 		var/mob/living/silicon/robot/R = user
@@ -62,6 +64,11 @@
 		if(!SP || (replaced_by in SP.advanced_surgeries))
 			return FALSE
 		if(type in SP.advanced_surgeries)
+			return TRUE
+	if(adv)
+		if((replaced_by in adv.advanced_surgeries))
+			return FALSE
+		if(type in adv.advanced_surgeries)
 			return TRUE
 
 	var/turf/T = get_turf(target)

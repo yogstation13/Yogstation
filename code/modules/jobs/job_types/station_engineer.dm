@@ -8,7 +8,7 @@
 	spawn_positions = 5
 	supervisors = "the chief engineer"
 	selection_color = "#fff5cc"
-	exp_requirements = 60
+	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
 
 	outfit = /datum/outfit/job/engineer
@@ -67,7 +67,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 			accessory = /obj/item/clothing/accessory/armband/science
 		if(ENG_DEPT_SERVICE)
 			ears = /obj/item/radio/headset/headset_eng/department/service
-			dep_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE)
+			dep_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE, ACCESS_MANUFACTURING)
 			accessory =  /obj/item/clothing/accessory/armband/service
 
 	if(accessory)

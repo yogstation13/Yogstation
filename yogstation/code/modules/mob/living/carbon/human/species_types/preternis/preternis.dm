@@ -18,6 +18,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	toxic_food = NONE
 	brutemod = 1.25
 	burnmod = 1.5
+	payday_modifier = 0.8 //Useful to NT for engineering + very close to Human
 	yogs_draw_robot_hair = TRUE
 	mutanteyes = /obj/item/organ/eyes/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
@@ -30,6 +31,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/tesliumtrip = FALSE
 	var/draining = FALSE
 	screamsound = 'goon/sound/robot_scream.ogg'
+	wings_icon = "Robotic"
 	species_language_holder = /datum/language_holder/preternis
 
 /datum/species/preternis/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)

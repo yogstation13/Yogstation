@@ -72,6 +72,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/acidmod = 1
 	/// multiplier for stun duration
 	var/stunmod = 1
+	/// multiplier for money paid at payday, species dependent
+	var/payday_modifier = 1
 	///Type of damage attack does
 	var/attack_type = BRUTE
 	///lowest possible punch damage. if this is set to 0, punches will always miss
@@ -744,6 +746,15 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			var/obj/item/clothing/under/U = H.w_uniform
 			if(U.mutantrace_variation != MUTANTRACE_VARIATION)
 				should_be_squished = TRUE
+		if(H.shoes)
+			var/obj/item/clothing/shoes/S = H.shoes
+			if(S.mutantrace_variation != MUTANTRACE_VARIATION)
+				should_be_squished = TRUE
+			if(should_be_squished)
+				S.adjusted = NORMAL_STYLE
+			else
+				S.adjusted = DIGITIGRADE_STYLE
+			H.update_inv_shoes()
 		if(O.use_digitigrade == FULL_DIGITIGRADE && should_be_squished)
 			O.use_digitigrade = SQUISHED_DIGITIGRADE
 			update_needed = TRUE
@@ -896,10 +907,6 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	stop_wagging_tail(H)
 	return
 
-/datum/species/proc/auto_equip(mob/living/carbon/human/H)
-	// handles the equipping of species-specific gear
-	return
-
 /datum/species/proc/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE)
 	if((slot in no_equip) || (slot in extra_no_equip))
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
@@ -954,9 +961,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				return FALSE
 			if(num_legs < 2)
 				return FALSE
-			if(DIGITIGRADE in species_traits)
+			var/obj/item/clothing/shoes/S = I
+			if((!S && (DIGITIGRADE in species_traits)) || ((DIGITIGRADE in species_traits) ? S.xenoshoe == NO_DIGIT : S.xenoshoe == YES_DIGIT)) // Checks leg compatibilty with shoe digitigrade or not flag
 				if(!disable_warning)
-					to_chat(H, "<span class='warning'>The footwear around here isn't compatible with your feet!</span>")
+					to_chat(H, "<span class='warning'>This footwear isn't compatible with your feet!</span>")
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_BELT)
@@ -1741,10 +1749,11 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		if(loc_temp < H.bodytemperature) //Place is colder than we are
 			thermal_protection -= H.get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 			thermal_protection *= heat_capacity_factor
-			if(H.bodytemperature < BODYTEMP_NORMAL) //we're cold, insulation helps us retain body heat and will reduce the heat we lose to the environment
-				H.adjust_bodytemperature((thermal_protection+1)*natural + max(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_COLD_DIVISOR, BODYTEMP_COOLING_MAX))
-			else //we're sweating, insulation hinders our ability to reduce heat - and it will reduce the amount of cooling you get from the environment
-				H.adjust_bodytemperature(natural*(1/(thermal_protection+1)) + max((thermal_protection * (loc_temp - H.bodytemperature) + BODYTEMP_NORMAL - H.bodytemperature) / BODYTEMP_COLD_DIVISOR , BODYTEMP_COOLING_MAX)) //Extra calculation for hardsuits to bleed off heat
+			if(!HAS_TRAIT(H, TRAIT_NO_PASSIVE_COOLING))
+				if(H.bodytemperature < BODYTEMP_NORMAL) //we're cold, insulation helps us retain body heat and will reduce the heat we lose to the environment
+					H.adjust_bodytemperature((thermal_protection+1)*natural + max(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_COLD_DIVISOR, BODYTEMP_COOLING_MAX))
+				else //we're sweating, insulation hinders our ability to reduce heat - and it will reduce the amount of cooling you get from the environment
+					H.adjust_bodytemperature(natural*(1/(thermal_protection+1)) + max((thermal_protection * (loc_temp - H.bodytemperature) + BODYTEMP_NORMAL - H.bodytemperature) / BODYTEMP_COLD_DIVISOR , BODYTEMP_COOLING_MAX)) //Extra calculation for hardsuits to bleed off heat
 	if (loc_temp > H.bodytemperature) //Place is hotter than we are
 		var/natural = 0
 		if(H.stat != DEAD)
@@ -1752,10 +1761,11 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		var/thermal_protection = 1
 		thermal_protection -= H.get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 		thermal_protection *= heat_capacity_factor
-		if(H.bodytemperature < BODYTEMP_NORMAL) //and we're cold, insulation enhances our ability to retain body heat but reduces the heat we get from the environment
-			H.adjust_bodytemperature((thermal_protection+1)*natural + min(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))
-		else //we're sweating, insulation hinders out ability to reduce heat - but will reduce the amount of heat we get from the environment
-			H.adjust_bodytemperature(natural*(1/(thermal_protection+1)) + min(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))
+		if(!HAS_TRAIT(H, TRAIT_NO_PASSIVE_HEATING))
+			if(H.bodytemperature < BODYTEMP_NORMAL) //and we're cold, insulation enhances our ability to retain body heat but reduces the heat we get from the environment
+				H.adjust_bodytemperature((thermal_protection+1)*natural + min(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))
+			else //we're sweating, insulation hinders out ability to reduce heat - but will reduce the amount of heat we get from the environment
+				H.adjust_bodytemperature(natural*(1/(thermal_protection+1)) + min(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))
 
 	// +/- 50 degrees from 310K is the 'safe' zone, where no damage is dealt.
 	if(H.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT && !HAS_TRAIT(H, TRAIT_RESISTHEAT))
@@ -1992,6 +2002,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		return FALSE
 	if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) && (!H.wear_suit.species_exception || !is_type_in_list(src, H.wear_suit.species_exception))))	//Jumpsuits have tail holes, so it makes sense they have wing holes too
 		to_chat(H, "Your suit blocks your wings from extending!")
+		return FALSE
+	if(isskeleton(H))
+		to_chat(H, "Your wings are just bones; You can't actually fly!")
 		return FALSE
 	var/turf/T = get_turf(H)
 	if(!T)
