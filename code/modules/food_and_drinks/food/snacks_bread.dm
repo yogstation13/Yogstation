@@ -268,6 +268,10 @@
 		QDEL_NULL(trash)
 	..()
 
+/obj/item/reagent_containers/food/snacks/deepfryholder/generate_trash(atom/location)
+	if(trash)
+		QDEL_NULL(trash)
+
 /obj/item/reagent_containers/food/snacks/deepfryholder/proc/fry(cook_time = 30)
 	switch(cook_time)
 		if(0 to 15)

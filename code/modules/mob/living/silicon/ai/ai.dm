@@ -228,7 +228,7 @@
 		if(option == "Random")
 			iconstates[option] = image(icon = initial(src.icon), icon_state = "ai-random") //yogs start - AI donor icons
 			continue
-		
+
 		if(option == "Portrait")
 			iconstates[option] = image(icon = src.icon, icon_state = "ai-portrait")
 			continue
@@ -239,7 +239,7 @@
 			if(S.owner == client.ckey || !S.owner) //We own this skin.
 				iconstates[S] = image(icon = S.icon, icon_state = S.icon_state)
 
-		
+
 
 
 	view_core()
@@ -355,6 +355,32 @@
 
 /mob/living/silicon/ai/cancel_camera()
 	view_core()
+
+/mob/living/silicon/ai/verb/aicryo()
+	set name = "Hibernate"
+	set category = "OOC"
+	set desc = "Put yourself into hibernation. This is functionally equivalent to cryo, freeing up your job slot."
+
+	// Guard against misclicks, this isn't the sort of thing we want happening accidentally
+	if(alert("WARNING: This will immediately ghost you, removing your character from the round permanently (similar to cryo). Are you entirely sure you want to do this?",
+					"Hibernate", "No", "No", "Yes") != "Yes")
+		return
+
+	// We warned you.
+	var/obj/structure/AIcore/latejoin_inactive/inactivecore = new(get_turf(src))
+	transfer_fingerprints_to(inactivecore)
+
+	if(GLOB.announcement_systems.len)
+		var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)
+		announcer.announce("AICRYO", real_name, mind.assigned_role, list())
+
+	if(!get_ghost(TRUE))
+		if(world.time < 30 MINUTES)//before the 30 minute mark
+			ghostize(FALSE) // Players despawned too early may not re-enter the game
+	else
+		ghostize(TRUE)
+
+	QDEL_NULL(src)
 
 /mob/living/silicon/ai/verb/toggle_anchor()
 	set category = "AI Commands"
@@ -628,7 +654,7 @@
 
 	if(incapacitated())
 		return
-	var/list/ai_emotions = list("Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Sad", "BSOD", "Blank", "Problems?", "Awesome", "Facepalm", "Thinking", "Friend Computer", "Dorfy", "Blue Glow", "Red Glow")
+	var/list/ai_emotions = list("Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Sad", "BSOD", "Blank", "Problems?", "Awesome", "Facepalm", "Thinking", "Friend Computer", "Dorfy", "Blue Glow", "Red Glow", "Goon Happy", "Goon Sad", "Gondola")
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
 	for (var/each in GLOB.ai_status_displays) //change status of displays
 		var/obj/machinery/status_display/ai/M = each
@@ -802,6 +828,7 @@
 			to_chat(user, "<span class='warning'>No intelligence patterns detected.</span>"    )
 			return
 		ShutOffDoomsdayDevice()
+		builtInCamera.toggle_cam(user)
 		var/obj/structure/AIcore/new_core = new /obj/structure/AIcore/deactivated(loc)//Spawns a deactivated terminal at AI location.
 		new_core.circuit.battery = battery
 		ai_restore_power()//So the AI initially has power.

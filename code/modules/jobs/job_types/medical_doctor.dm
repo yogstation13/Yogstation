@@ -8,6 +8,8 @@
 	spawn_positions = 3
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
+	exp_requirements = 180
+	exp_type = EXP_TYPE_CREW
 
 	outfit = /datum/outfit/job/doctor
 
@@ -40,7 +42,7 @@
 	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/medical
 	shoes = /obj/item/clothing/shoes/sneakers/white
-	suit =  /obj/item/clothing/suit/toggle/labcoat
+	suit =  /obj/item/clothing/suit/toggle/labcoat/md
 	l_hand = /obj/item/storage/firstaid/medical
 	suit_store = /obj/item/flashlight/pen
 

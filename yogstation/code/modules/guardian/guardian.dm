@@ -136,9 +136,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if("carp")
 			for(var/type in (subtypesof(/datum/guardianname/carp) - namedatum.type))
 				possible_names += new type
-		if("holy")
-			for(var/type in (subtypesof(/datum/guardianname/holy) - namedatum.type))
-				possible_names += new type
 	namedatum = pick(possible_names)
 	updatetheme(pickedtheme)
 

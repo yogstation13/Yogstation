@@ -7,6 +7,7 @@ SUBSYSTEM_DEF(communications)
 
 	var/silicon_message_cooldown
 	var/nonsilicon_message_cooldown
+	var/last_voice_announce_open = 0
 
 /datum/controller/subsystem/communications/proc/can_announce(mob/living/user, is_silicon)
 	if(is_silicon && silicon_message_cooldown > world.time)

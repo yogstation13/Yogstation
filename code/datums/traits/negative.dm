@@ -123,7 +123,10 @@
 			if("Clerk")
 				heirloom_type = pick(/obj/item/coin, /obj/item/coin/gold, /obj/item/coin/iron, /obj/item/coin/silver)
 			if("Botanist")
-				heirloom_type = pick(/obj/item/cultivator, /obj/item/shovel/spade, /obj/item/reagent_containers/glass/bucket/wooden, /obj/item/toy/plush/beeplushie, /obj/item/clothing/mask/cigarette/pipe, /obj/item/clothing/mask/cigarette/pipe/cobpipe)
+				if(is_species(H, /datum/species/plasmaman))
+					heirloom_type = pick(/obj/item/cultivator, /obj/item/shovel/spade, /obj/item/reagent_containers/glass/bucket/wooden, /obj/item/toy/plush/beeplushie)
+				else
+					heirloom_type = pick(/obj/item/cultivator, /obj/item/shovel/spade, /obj/item/reagent_containers/glass/bucket/wooden, /obj/item/toy/plush/beeplushie, /obj/item/clothing/mask/cigarette/pipe, /obj/item/clothing/mask/cigarette/pipe/cobpipe)
 			if("Bartender")
 				heirloom_type = pick(/obj/item/reagent_containers/glass/rag, /obj/item/clothing/head/that, /obj/item/reagent_containers/food/drinks/shaker)
 			if("Curator")
@@ -466,7 +469,7 @@
 	gain_text = "<span class='danger'>You suddenly feel the craving for drugs.</span>"
 	lose_text = "<span class='notice'>You feel like you should kick your drug habit.</span>"
 	medical_record_text = "Patient has a history of hard drugs."
-	var/drug_list = list(/datum/reagent/drug/crank, /datum/reagent/drug/krokodil, /datum/reagent/medicine/morphine, /datum/reagent/drug/happiness, /datum/reagent/drug/methamphetamine) //List of possible IDs
+	var/drug_list = list(/datum/reagent/drug/crank, /datum/reagent/drug/krokodil, /datum/reagent/medicine/morphine, /datum/reagent/drug/happiness, /datum/reagent/drug/methamphetamine, /datum/reagent/drug/ketamine) //List of possible IDs
 	var/reagent_id //ID picked from list
 	var/datum/reagent/reagent_type //If this is defined, reagent_id will be unused and the defined reagent type will be instead.
 	var/datum/reagent/reagent_instance
@@ -604,7 +607,7 @@
 /datum/quirk/sheltered/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.remove_language(/datum/language/common)
-	if(!H.can_speak_language(/datum/language/draconic) && !H.can_speak_language(/datum/language/machine))
+	if(!H.can_speak_language(/datum/language/draconic) && !H.can_speak_language(/datum/language/machine) && !H.can_speak_language(/datum/language/sylvan))
 		H.grant_language(/datum/language/japanese)
 
 /datum/quirk/allergic

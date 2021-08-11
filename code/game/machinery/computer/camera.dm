@@ -232,19 +232,19 @@
 	name = "\improper Head of Security's camera console"
 	desc = "A custom security console with added access to the labor camp network."
 	network = list("ss13", "labor")
-	circuit = null
+	circuit = /obj/item/circuitboard/computer/security/hos
 
 /obj/machinery/computer/security/labor
 	name = "labor camp monitoring"
 	desc = "Used to access the various cameras on the labor camp."
 	network = list("labor")
-	circuit = null
+	circuit = /obj/item/circuitboard/computer/security/labor
 
 /obj/machinery/computer/security/qm
 	name = "\improper Quartermaster's camera console"
 	desc = "A console with access to the mining, auxillary base and vault camera networks."
 	network = list("mine", "auxbase", "vault")
-	circuit = null
+	circuit = /obj/item/circuitboard/computer/security/qm
 
 // TELESCREENS
 

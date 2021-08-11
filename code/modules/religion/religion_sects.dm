@@ -66,7 +66,7 @@
 /datum/religion_sect/proc/adjust_favor(amount = 0, mob/living/L)
 	var/old_favor = favor //store the current favor
 	favor = clamp(favor+amount, 0, max_favor) //ensure we arent going overboard
-	return favor - old_favor //return the difference 
+	return favor - old_favor //return the difference
 
 /// Sets favor to a specific amount. Can provide optional features based on a user.
 /datum/religion_sect/proc/set_favor(amount = 0, mob/living/L)
@@ -112,7 +112,7 @@
 	convert_opener = "May you find peace in a metal shell, acolyte.<br>Bibles now recharge cyborgs and heal robotic limbs if targeted, but they do not heal organic limbs. You can now sacrifice cells, with favor depending on their charge."
 	alignment = ALIGNMENT_NEUT
 	desired_items = list(/obj/item/stock_parts/cell)
-	rites_list = list(/datum/religion_rites/synthconversion)
+	rites_list = list(/datum/religion_rites/synthconversion, /datum/religion_rites/botcreation, /datum/religion_rites/machine_blessing)
 	altar_icon_state = "convertaltar-blue"
 
 /datum/religion_sect/technophile/sect_bless(mob/living/L, mob/living/user)
@@ -141,7 +141,7 @@
 		var/datum/species/preternis/preternis = H.dna.species
 		preternis.charge = clamp(preternis.charge + 3, PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)
 		did_we_charge = TRUE
-	
+
 	//if we're not targetting a robot part we stop early
 	var/obj/item/bodypart/BP = H.get_bodypart(user.zone_selected)
 	if(BP.status != BODYPART_ROBOTIC)
@@ -176,7 +176,7 @@
 	qdel(I)
 	return TRUE
 /*
- * A religious sect based around giving money for favor which can be used to get a cool suit and become a golem. 
+ * A religious sect based around giving money for favor which can be used to get a cool suit and become a golem.
  */
 /datum/religion_sect/capitalists
 	name = "The Cult of St. Credit"
