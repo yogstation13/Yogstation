@@ -2,23 +2,24 @@
 	name = "paper"
 	icon_state = "paper_stack"
 	item_state = "paper"
-	var/copied = 0
-	var/iscopy = 0
+	icon = 'icons/obj/bureaucracy.dmi'
+	var/copied = FALSE
+	var/iscopy = FALSE
 
 
 /obj/item/paper/carbon/update_icon()
 	if(iscopy)
-		if(text)
+		if(written.len)
 			icon_state = "cpaper_words"
 			return
 		icon_state = "cpaper"
 	else if (copied)
-		if(text)
+		if(written.len)
 			icon_state = "paper_words"
 			return
 		icon_state = "paper"
 	else
-		if(text)
+		if(written.len)
 			icon_state = "paper_stack_words"
 			return
 		icon_state = "paper_stack"
@@ -28,29 +29,34 @@
 	set category = "Object"
 	set src in usr
 
-	if (copied == 0)
-		var/obj/item/paper/carbon/copy = src
-		var/obj/item/paper/carbon/c = new /obj/item/paper/carbon (loc)
-		var/copyinfo = copy.info
+	if (!copied)
+		var/obj/item/paper/carbon/copy = new /obj/item/paper/carbon (loc)
+		var/copyinfo = info
 		copyinfo = clearcolor(copyinfo)
-		c.info += copyinfo + "</font>"
+		copy.info += copyinfo + "</font>"
 		//Now for copying the new $written var
-		for(var/L in copy.written)
+		for(var/L in written)
 			if(istype(L,/datum/langtext))
 				var/datum/langtext/oldL = L
 				var/datum/langtext/newL = new(clearcolor(oldL.text),oldL.lang)
-				c.written += newL
+				copy.written += newL
 			else
-				c.written += L
-		c.name = copy.name
-		c.fields = copy.fields
-		c.update_icon()
-		c.stamps = copy.stamps
-		if(copy.stamped)
-			c.stamped = copy.stamped.Copy()
-		c.copy_overlays(copy, TRUE)
+				copy.written += L
+		copy.name = name
+		copy.fields = fields
+		copy.stamps = stamps
+		if(stamped)
+			copy.stamped = stamped.Copy()
+		copy.copy_overlays(src, TRUE)
+
+		copied = TRUE
+		copy.copied = TRUE
+		copy.iscopy = TRUE
+		update_icon()
+		copy.update_icon()
+		usr.put_in_hands(copy)
 	else
-		usr << "There are no more carbon copies attached to this paper!"
+		to_chat(usr, "<span class='warning'>There are no more carbon copies attached to this paper!</span>")
 
 /obj/item/paper/carbon/proc/clearcolor(text) // Breaks all font color spans in the HTML text.
 	return replacetext(replacetext(text, "<font face=\"[CRAYON_FONT]\" color=", "<font face=\"[CRAYON_FONT]\" nocolor="), "<font face=\"[PEN_FONT]\" color=", "<font face=\"[PEN_FONT]\" nocolor=") //This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
