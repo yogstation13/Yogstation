@@ -33,6 +33,7 @@
 			screen = 1
 		user << "<span class='notice'>You add [(P.name == "paper") ? "the paper" : P.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>"
 		user.dropItemToGround(P)
+		P.loc = src
 	else if(istype(W, /obj/item/photo))
 		amount++
 		if(screen == 2)
@@ -40,7 +41,7 @@
 		user << "<span class='notice'>You add [(W.name == "photo") ? "the photo" : W.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>"
 		user.dropItemToGround(W)
 		W.loc = src
-	else if(istype(W, /obj/item/lighter))
+	else if(W.is_hot())
 		burnpaper(W, user)
 	else if(istype(W, /obj/item/paper_bundle))
 		user.dropItemToGround(W)
@@ -51,7 +52,7 @@
 			if(screen == 2)
 				screen = 1
 		user << "<span class='notice'>You add \the [W.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>"
-		del(W)
+		qdel(W)
 	else
 		if(istype(W, /obj/item/pen) || istype(W, /obj/item/toy/crayon))
 			usr << browse("", "window=[name]") //Closes the dialog
@@ -65,28 +66,28 @@
 	return
 
 
-/obj/item/paper_bundle/proc/burnpaper(obj/item/lighter/P, mob/user)
+/obj/item/paper_bundle/proc/burnpaper(obj/item/P, mob/user)
 	var/class = "<span class='warning'>"
 
-	if(P.lit && !user.restrained())
+	if(P.is_hot() && !user.restrained())
 		if(istype(P, /obj/item/lighter))
 			class = "<span class='rose'>"
 
-		user.visible_message("[class][user] holds \the [P] up to \the [src], it looks like \he's trying to burn it!", \
-		"[class]You hold \the [P] up to \the [src], burning it slowly.")
+		user.visible_message("[class][user] holds \the [P] up to \the [src], it looks like \he's trying to burn it!</span>", \
+		"[class]You hold \the [P] up to \the [src], burning it slowly.</span>")
 
-		spawn(20)
-			if(get_dist(src, user) < 2 && user.get_active_hand() == P && P.lit)
-				user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.", \
-				"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.")
+		if(do_after(user, 2 SECONDS, TRUE, src))
+			user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
+			"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
 
-				if(user.get_inactive_hand_index() == src)
-					user.dropItemToGround(src)
-				new /obj/effect/decal/cleanable/ash(src.loc)
-				del(src)
+			if(user.get_inactive_hand_index() == src)
+				user.dropItemToGround(src)
 
-			else
-				user << "\red You must hold \the [P] steady to burn \the [src]."
+			new /obj/effect/decal/cleanable/ash(src.loc)
+			qdel(src)
+
+		else
+			to_chat(user, "<span class='warning'>You must hold \the [P] steady to burn \the [src].</span>")
 
 /obj/item/paper_bundle/examine(mob/user)
 	if(..(user, 1))
@@ -98,25 +99,16 @@
 /obj/item/paper_bundle/proc/show_content(mob/user as mob)
 	var/dat
 	var/obj/item/W = src[page]
-	switch(screen)
-		if(0)
-			dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'></DIV>"
-			dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(W, /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
-			dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV><BR><HR>"
-		if(1)
-			dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV>"
-			dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(W, /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
-			dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV><BR><HR>"
-		if(2)
-			dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV>"
-			dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(W, /obj/item/paper)) ? "paper" : "photo"]</A></DIV><BR><HR>"
-			dat+= "<DIV STYLE='float;left; text-align:right; with:33.33333%'></DIV>"
+	dat += "<DIV STYLE='float:left; text-align:left; width:33.33333%'>[screen != 0 ? "Previous Page" : ""]</DIV>"
+	dat += "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(W, /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
+	dat += "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=\ref[src];next_page=1'>[screen != 2 ? "Next Page" : ""]</A></DIV><BR><HR>"
 	if(istype(src[page], /obj/item/paper))
 		var/obj/item/paper/P = W
-		if(!(istype(usr, /mob/living/carbon/human) || istype(usr, /mob/dead/observer) || istype(usr, /mob/living/silicon)))
-			dat+= "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>"
+		var/dist = get_dist(src, user)
+		if(dist < 2)
+			dat += "[P.render_body(user)]<HR>[P.stamps]"
 		else
-			dat+= "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>"
+			dat += "[stars(P.render_body(user))]<HR>[P.stamps]"
 		user << browse(dat, "window=[name]")
 	else if(istype(src[page], /obj/item/photo))
 		var/obj/item/photo/P = W
@@ -134,27 +126,28 @@
 	update_icon()
 	return
 
+/obj/item/paper_bundle/proc/update_screen()
+	if(page == amount)
+		screen = 2
+	else if(page == 1)
+		screen = 0
+	else
+		screen = 1
+
 /obj/item/paper_bundle/Topic(href, href_list)
 	..()
 	if((src in usr.contents) || (istype(src.loc, /obj/item/folder) && (src.loc in usr.contents)))
 		usr.set_machine(src)
 		if(href_list["next_page"])
-			if(page == amount)
-				screen = 2
-			else if(page == 1)
-				screen = 1
-			else if(page == amount+1)
-				return
 			page++
+			if(page > amount)
+				page = amount
+			update_screen()
 			playsound(src.loc, "pageturn", 50, 1)
 		if(href_list["prev_page"])
-			if(page == 1)
-				return
-			else if(page == 2)
-				screen = 0
-			else if(page == amount+1)
-				screen = 1
 			page--
+			if(page < 1)
+				page = 0
 			playsound(src.loc, "pageturn", 50, 1)
 		if(href_list["remove"])
 			var/obj/item/W = src[page]
@@ -164,7 +157,7 @@
 				var/obj/item/paper/P = src[1]
 				usr.dropItemToGround(src)
 				usr.put_in_hands(P)
-				del(src)
+				qdel(src)
 			else if(page == amount)
 				screen = 2
 			else if(page == amount+1)
@@ -203,7 +196,7 @@
 		O.layer = initial(O.layer)
 		O.add_fingerprint(usr)
 	usr.dropItemToGround(src)
-	del(src)
+	qdel(src)
 	return
 
 

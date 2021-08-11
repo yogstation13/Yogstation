@@ -8,67 +8,48 @@
 	var/max_paper = 10
 	var/paperamount = 0
 
+/obj/machinery/papershredder/proc/try_insert(mob/user, insert_size = 0)
+	if(paperamount <= max_paper - insert_size)
+		paperamount += insert_size
+		update_icon()
+		playsound(src.loc, 'sound/items/pshred.ogg', 75, 1)
+		return TRUE
+	else
+		if(prob(5))
+			var/i
+			var/curpaper = paperamount
+			for(i=1; i<=curpaper; i++)
+				var/obj/item/shreddedp/SP = new /obj/item/shreddedp(usr.loc)
+				SP.pixel_x = rand(-5,5)
+				SP.pixel_y = rand(-5,5)
+				var/ran = rand(1,3)
+				if(ran == 1)
+					SP.color = "#BABABA"
+				if(ran == 2)
+					SP.color = "#7F7F7F"
+				if(ran == 3)
+					SP.color = null
+				paperamount -=1
+			update_icon()
+			to_chat(user, "<span class='warning'>The [src] was too full and shredded paper goes everywhere!</span>")
+		else
+			to_chat(user, "<span class='warning'>The [src] is full please empty it before you continue.</span>")
+		return FALSE
 
-/obj/machinery/papershredder/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/papershredder/attackby(obj/item/W, mob/user)
 	if(default_unfasten_wrench(user, W))
 		return
+	var/shred_amount = 0
 	if (istype(W, /obj/item/paper))
-		if(paperamount == max_paper)
-			if(prob(5))
-				var/i
-				var/curpaper = paperamount
-				for(i=1; i<=curpaper; i++)
-					var/obj/item/shreddedp/SP = new /obj/item/shreddedp(usr.loc)
-					SP.pixel_x = rand(-5,5)
-					SP.pixel_y = rand(-5,5)
-					var/ran = rand(1,3)
-					if(ran == 1)
-						SP.color = "#BABABA"
-					if(ran == 2)
-						SP.color = "#7F7F7F"
-					if(ran == 3)
-						SP.color = null
-					paperamount -=1
-				update_icon()
-				user <<"\red The [src] was too full and shredded paper goes everywhere"
-				return
-			else
-				user << "\red The [src] is full please empty it before you continue"
-				return
-		if(paperamount < max_paper)
-			del(W)
-			paperamount += 1
-			update_icon()
-			playsound(src.loc, 'sound/items/pshred.ogg', 75, 1)
-			return
+		shred_amount = 1
 	else if(istype(W, /obj/item/photo))
-		if(paperamount < max_paper)
-			del(W)
-			paperamount += 1
-			update_icon()
-			playsound(src.loc, 'sound/items/pshred.ogg', 75, 1)
-			return
+		shred_amount = 1
 	else if(istype(W, /obj/item/newspaper))
-		if(paperamount < max_paper-3)
-			del(W)
-			paperamount += 3
-			update_icon()
-			playsound(src.loc, 'sound/items/pshred.ogg', 75, 1)
-			return
+		shred_amount = 3
 	else if(istype(W, /obj/item/card/id))
-		if(paperamount < max_paper-3)
-			del(W)
-			paperamount += 3
-			update_icon()
-			playsound(src.loc, 'sound/items/pshred.ogg', 75, 1)
-			return
+		shred_amount = 3
 	else if(istype(W, /obj/item/paper_bundle))
-		if(paperamount < max_paper-3)
-			del(W)
-			paperamount += 3
-			update_icon()
-			playsound(src.loc, 'sound/items/pshred.ogg', 75, 1)
-			return
+		shred_amount = 3
 	else if(istype(W, /obj/item/storage/bag/trash))
 		var/datum/component/storage/STR = W.GetComponent(/datum/component/storage)
 		var/curpaper = paperamount
@@ -87,19 +68,20 @@
 				paperamount -=1
 				update_icon()
 			else
-				user << "\red The [W] is full"
+				to_chat(user, "<span class='warning'>The [W] is full.</span>")
 				return
 	else if(istype(W, /obj/item/shreddedp))
 		if(paperamount == max_paper)
-			user << "\red The [src] is full please empty it before you continue"
+			to_chat(user, "<span class='warning'>The [src] is full please empty it before you continue.</span>")
 			return
 		if(paperamount < max_paper)
-			del(W)
+			qdel(W)
 			paperamount += 1
 			update_icon()
 			return
-	else
-		return
+	
+	if(shred_amount && try_insert(user, shred_amount))
+		qdel(W)
 
 
 
@@ -151,36 +133,35 @@
 	pressure_resistance = 1
 
 /obj/item/shreddedp/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/lighter))
+	if(W.is_hot())
 		burnpaper(W, user)
 	else
 		..()
 
 
-/obj/item/shreddedp/proc/burnpaper(obj/item/lighter/P, mob/user)
+/obj/item/shreddedp/proc/burnpaper(obj/item/P, mob/user)
 	var/class = "<span class='warning'>"
 
-	if(P.lit && !user.restrained())
+	if(P.is_hot() && !user.restrained())
 		if(istype(P, /obj/item/lighter))
 			class = "<span class='rose'>"
 
-		user.visible_message("[class][user] holds \the [P] up to \the [src], it looks like \he's trying to burn it!", \
-		"[class]You hold \the [P] up to \the [src], burning it slowly.")
+		user.visible_message("[class][user] holds \the [P] up to \the [src], it looks like \he's trying to burn it!</span>", \
+		"[class]You hold \the [P] up to \the [src], burning it slowly.</span>")
 
-		spawn(20)
-			if(get_dist(src, user) < 2 && user.get_active_hand() == P && P.lit)
-				user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.", \
-				"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.")
+		if(do_after(user, 2 SECONDS, TRUE, src))
+			user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
+			"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
 
-				if(user.get_inactive_hand_index() == src)
-					user.dropItemToGround(src)
+			if(user.get_inactive_hand_index() == src)
+				user.dropItemToGround(src)
 
-				new /obj/effect/decal/cleanable/ash(src.loc)
-				del(src)
+			new /obj/effect/decal/cleanable/ash(src.loc)
+			qdel(src)
 
-			else
-				user << "\red You must hold \the [P] steady to burn \the [src]."
+		else
+			to_chat(user, "<span class='warning'>You must hold \the [P] steady to burn \the [src].</span>")
 
 /obj/item/shreddedp/proc/FireBurn()
 	new /obj/effect/decal/cleanable/ash(src.loc)
-	del(src)
+	qdel(src)
