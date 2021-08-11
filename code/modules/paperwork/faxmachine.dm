@@ -1,8 +1,7 @@
-var/list/obj/machinery/photocopier/faxmachine/allfaxes = list()
-var/list/admin_departments = list("Central Command", "Sol Government")
-var/list/alldepartments = list()
-
-var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
+GLOBAL_LIST_EMPTY(allfaxes)
+GLOBAL_LIST_INIT(admin_departments, list("Central Command", "Sol Government"))
+GLOBAL_LIST_EMPTY(alldepartments)
+GLOBAL_LIST_EMPTY(adminfaxes)
 
 /obj/machinery/photocopier/faxmachine
 	name = "fax machine"
@@ -25,10 +24,10 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 /obj/machinery/photocopier/faxmachine/New()
 	..()
-	allfaxes += src
+	GLOB.allfaxes += src
 
-	if( !(("[department]" in alldepartments) || ("[department]" in admin_departments)) )
-		alldepartments |= department
+	if( !(("[department]" in GLOB.alldepartments) || ("[department]" in GLOB.admin_departments)) )
+		GLOB.alldepartments |= department
 
 /obj/machinery/photocopier/faxmachine/attack_hand(mob/user as mob)
 	user.set_machine(src)
@@ -85,7 +84,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 /obj/machinery/photocopier/faxmachine/Topic(href, href_list)
 	if(href_list["send"])
 		if(copy)
-			if (destination in admin_departments)
+			if (destination in GLOB.admin_departments)
 				send_admin_fax(usr, destination)
 			else
 				sendfax(destination)
@@ -121,7 +120,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	if(href_list["dept"])
 		var/lastdestination = destination
-		destination = input(usr, "Which department?", "Choose a department", "") as null|anything in (alldepartments + admin_departments)
+		destination = input(usr, "Which department?", "Choose a department", "") as null|anything in (GLOB.alldepartments + GLOB.admin_departments)
 		if(!destination) destination = lastdestination
 
 	if(href_list["auth"])
@@ -141,7 +140,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	use_power(200)
 	
 	var/success = 0
-	for(var/obj/machinery/photocopier/faxmachine/F in allfaxes)
+	for(var/obj/machinery/photocopier/faxmachine/F in GLOB.allfaxes)
 		if( F.department == destination )
 			success = F.recievefax(copy)
 	
@@ -194,7 +193,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		return
 	
 	rcvdcopy.loc = null //hopefully this shouldn't cause trouble
-	adminfaxes += rcvdcopy
+	GLOB.adminfaxes += rcvdcopy
 	
 	//message badmins that a fax has arrived
 	switch(destination)
