@@ -108,11 +108,11 @@
 
 /obj/item/tape/proc/crumple()
 	if(!crumpled)
-		crumpled = 1
+		crumpled = TRUE
 		icon_state = "[icon_state]_c"
 		name = "crumpled [name]"
 
-/obj/item/tape/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/item/tape/Cross(atom/movable/mover, turf/target)
 	if(!lifted && ismob(mover))
 		var/mob/M = mover
 		add_fingerprint(M)
@@ -128,9 +128,9 @@
 	if (user.a_intent == "help" && src.allowed(user))
 		user.visible_message("<span class='notice'>[user] lifts [src], allowing passage.</span>")
 		crumple()
-		lifted = 1
-		spawn(200)
-			lifted = 0
+		lifted = TRUE
+		sleep(20 SECONDS)
+		lifted = FALSE
 	else
 		breaktape(null, user)
 
