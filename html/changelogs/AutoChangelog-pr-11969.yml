@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "sparks no longer call sleep when late initializing, this might fix some stuff"
