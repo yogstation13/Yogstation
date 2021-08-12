@@ -856,5 +856,5 @@
 /datum/chemical_reaction/ambermoon
     name = "Amber Moon"
     id = /datum/reagent/consumable/ethanol/ambermoon
-    results = list(/datum/reagent/consumable/ethanol/ambermoon = 15)
+    results = list(/datum/reagent/consumable/ethanol/ambermoon = 10)
     required_reagents = list(/datum/reagent/consumable/eggyolk = 5, /datum/reagent/consumable/ethanol/whiskey = 5, /datum/reagent/consumable/capsaicin = 1)
