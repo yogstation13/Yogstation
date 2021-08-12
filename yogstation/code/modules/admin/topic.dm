@@ -45,7 +45,7 @@
 			return
 		qdel(query_get_mentor)
 
-		var/datum/DBQuery/query_add_mentor = SSdbcore.NewQuery("INSERT INTO `[format_table_name("mentor")]` (`id`, `ckey`, `position`) VALUES (null, :ckey, :position)", list("ckey" = ckey))
+		var/datum/DBQuery/query_add_mentor = SSdbcore.NewQuery("INSERT INTO `[format_table_name("mentor")]` (`id`, `ckey`, `position`) VALUES (null, :ckey, :position)", list("ckey" = ckey, "position" = position))
 		if(!query_add_mentor.warn_execute())
 			qdel(query_add_mentor)
 			return

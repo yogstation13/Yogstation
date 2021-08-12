@@ -96,7 +96,7 @@ GLOBAL_PROTECT(mentor_href_token)
 
 		while(query_load_mentors.NextRow())
 			var/ckey = ckey(query_load_mentors.item[1])
-			var/position = ckey(query_load_mentors.item[2])
+			var/position = query_load_mentors.item[2]
 			new /datum/mentors(ckey, position)
 
 		qdel(query_load_mentors)
