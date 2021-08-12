@@ -487,7 +487,11 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 					W.update_icon()
 			else
 				H.equip_to_slot(id,SLOT_WEAR_ID)
-
+	else if(isanimal(M))
+		var/mob/living/simple_animal/SA = M
+		if(!access_card)
+			access_card = new /obj/item/card/id(src)
+		access_card.access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()
 	else
 		alert("Invalid mob")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Grant Full Access") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
