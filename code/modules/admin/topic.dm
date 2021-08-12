@@ -2223,7 +2223,10 @@
 		check_teams()
 	// yogs start - mentors
 	else if(href_list["makementor"])
-		makeMentor(href_list["makementor"])
+		makeMentor(href_list["makementor"], "Mentor")
+
+	else if(href_list["wikimentor"])
+		makeMentor(href_list["wikimentor"], "Wiki Staff")
 
 	else if(href_list["removementor"])
 		removeMentor(href_list["removementor"])

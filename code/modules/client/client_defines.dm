@@ -148,3 +148,4 @@
 
 	var/list/active_music = list()
 	var/datum/music/playing_music = null
+	var/mentor_position = null
