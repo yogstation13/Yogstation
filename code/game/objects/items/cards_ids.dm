@@ -474,6 +474,11 @@ update_label("John Doe", "Clowny")
 	assignment = "Emergency Response Team Commander"
 	registered_age = null
 
+/obj/item/card/id/ert/debug/Initialize()
+	. = ..()
+	access = get_debug_access()
+
+
 /obj/item/card/id/ert/amber
 	name = "\improper Amber Task Force ID"
 	desc = "An Amber Task Force ID card."

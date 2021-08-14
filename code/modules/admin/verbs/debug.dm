@@ -467,10 +467,10 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			id = worn.GetID()
 		if(id)
 			id.icon_state = "id_gold"
-			id.access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()
+			id.access = get_debug_access()
 		else
 			id = new /obj/item/card/id/gold(H.loc)
-			id.access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()
+			id.access = get_debug_access()
 			id.registered_name = H.real_name
 			id.assignment = "Captain"
 			id.update_label()
@@ -489,9 +489,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 				H.equip_to_slot(id,SLOT_WEAR_ID)
 	else if(isanimal(M))
 		var/mob/living/simple_animal/SA = M
-		if(!access_card)
-			access_card = new /obj/item/card/id(src)
-		access_card.access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()
+		SA.access_card = new /obj/item/card/id/ert/debug
 	else
 		alert("Invalid mob")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Grant Full Access") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

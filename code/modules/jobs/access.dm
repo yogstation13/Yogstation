@@ -141,6 +141,11 @@
 /proc/get_all_centcom_access()
 	return list(ACCESS_CENT_GENERAL, ACCESS_CENT_THUNDER, ACCESS_CENT_SPECOPS, ACCESS_CENT_MEDICAL, ACCESS_CENT_LIVING, ACCESS_CENT_STORAGE, ACCESS_CENT_TELEPORTER, ACCESS_CENT_CAPTAIN)
 
+/proc/get_debug_access()
+	. = list()
+	for(var/i = 1; i <= 500; i++)
+		. += i
+
 /proc/get_ert_access(class)
 	switch(class)
 		if("commander")
