@@ -119,6 +119,8 @@
 			continue
 		if(applicant.mind.assigned_role in restricted_jobs) 
 			continue
+		if(!(applicant.mind.assigned_role in GLOB.command_positions + GLOB.engineering_positions + GLOB.medical_positions + GLOB.science_positions + GLOB.supply_positions + GLOB.civilian_positions + GLOB.security_positions + list("AI", "Cyborg")))
+			continue
 		if(applicant.mind.quiet_round)
 			continue
 		if(HAS_TRAIT(applicant, TRAIT_MINDSHIELD))
