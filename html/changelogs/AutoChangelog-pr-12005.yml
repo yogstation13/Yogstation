@@ -1,0 +1,4 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - rscadd: "NTSL's replace() function can now take a 4th argument to mark the maximum amount of replaces can take place. In layman's terms, signal techs are now fully liable for inaccurate and obtrusive swear detectors."
