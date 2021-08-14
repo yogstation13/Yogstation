@@ -6,7 +6,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the chief medical officer and the head of security"
+	supervisors = "the chief medical officer"
 	selection_color = "#ffeeee"
 
 	outfit = /datum/outfit/job/brigphysician
