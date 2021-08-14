@@ -18,13 +18,13 @@
 	id = /datum/reagent/consumable/ethanol/bilk
 	results = list(/datum/reagent/consumable/ethanol/bilk = 2)
 	required_reagents = list(/datum/reagent/consumable/milk = 1, /datum/reagent/consumable/ethanol/beer = 1)
-	
+
 /datum/chemical_reaction/soy_bilk
 	name = "Soy Bilk"
 	id = /datum/reagent/consumable/ethanol/bilk/soy
 	results = list(/datum/reagent/consumable/ethanol/bilk/soy = 2)
 	required_reagents = list(/datum/reagent/consumable/soymilk = 1, /datum/reagent/consumable/ethanol/beer = 1)
-	
+
 /datum/chemical_reaction/icetea
 	name = "Iced Tea"
 	id = /datum/reagent/consumable/icetea
@@ -49,7 +49,7 @@
 	results = list(/datum/reagent/consumable/ethanol/moonshine = 10)
 	required_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/sugar = 5)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
-	
+
 /datum/chemical_reaction/gravedigger
 	name = "Grave-Digger"
 	id = /datum/reagent/consumable/graveyard
@@ -327,7 +327,7 @@
 	id = /datum/reagent/consumable/ethanol/painkiller
 	results = list(/datum/reagent/consumable/ethanol/painkiller = 10)
 	required_reagents = list(/datum/reagent/consumable/ethanol/creme_de_coconut = 5, /datum/reagent/consumable/pineapplejuice = 4, /datum/reagent/consumable/orangejuice = 1)
-	
+
 /datum/chemical_reaction/pina_colada
 	name = "Pina Colada"
 	id = /datum/reagent/consumable/ethanol/pina_colada
@@ -845,3 +845,16 @@
 	id = /datum/reagent/consumable/ethanol/ginger_amaretto
 	results = list(/datum/reagent/consumable/ethanol/ginger_amaretto = 4)
 	required_reagents = list(/datum/reagent/consumable/ethanol/amaretto = 1, /datum/reagent/consumable/sol_dry = 1, /datum/reagent/consumable/ice = 1, /datum/reagent/consumable/lemonjuice = 1)
+
+/datum/chemical_reaction/sangria
+	name = "Sangria"
+	id = /datum/reagent/consumable/ethanol/sangria
+	results = list(/datum/reagent/consumable/ethanol/sangria = 5)
+	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/ethanol/cognac = 1, /datum/reagent/consumable/ethanol/wine = 2, /datum/reagent/consumable/orangejuice = 1)
+
+
+/datum/chemical_reaction/ambermoon
+    name = "Amber Moon"
+    id = /datum/reagent/consumable/ethanol/ambermoon
+    results = list(/datum/reagent/consumable/ethanol/ambermoon = 10)
+    required_reagents = list(/datum/reagent/consumable/eggyolk = 5, /datum/reagent/consumable/ethanol/whiskey = 5, /datum/reagent/consumable/capsaicin = 1)
