@@ -123,7 +123,7 @@ SUBSYSTEM_DEF(ticker)
 		GLOB.syndicate_code_phrase	= generate_code_phrase(return_list=TRUE)
 
 		var/codewords = jointext(GLOB.syndicate_code_phrase, "|")
-		var/regex/codeword_match = new("([codewords])", "ig")
+		var/regex/codeword_match = new("([codewords])(?!\[^<\]*>)", "ig")
 
 		GLOB.syndicate_code_phrase_regex = codeword_match
 
@@ -131,7 +131,7 @@ SUBSYSTEM_DEF(ticker)
 		GLOB.syndicate_code_response = generate_code_phrase(return_list=TRUE)
 
 		var/codewords = jointext(GLOB.syndicate_code_response, "|")
-		var/regex/codeword_match = new("([codewords])", "ig")
+		var/regex/codeword_match = new("([codewords])(?!\[^<\]*>)", "ig")
 
 		GLOB.syndicate_code_response_regex = codeword_match
 
