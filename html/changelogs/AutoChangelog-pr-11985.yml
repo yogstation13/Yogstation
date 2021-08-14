@@ -1,7 +1,0 @@
-author: "Anvilman6"
-delete-after: true 
-changes: 
-  - rscadd: "Overdoses for Libital, Aiuri at 30u"
-  - rscadd: "Aiuri now tastes like ammonia and acid"
-  - tweak: "Aiuri and Libital recipes now take 5u of components and make 5u of product"
-  - experiment: "Numbers subject to change"

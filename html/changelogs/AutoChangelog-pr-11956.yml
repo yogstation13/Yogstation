@@ -1,5 +1,0 @@
-author: "Kaithyl"
-delete-after: true 
-changes: 
-  - rscadd: "Adds Ineloquent as a negative quirk"
-  - tweak: " Tweaked Expressive Aphasia to be more lenient with smaller words."
