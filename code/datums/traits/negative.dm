@@ -669,3 +669,17 @@
 		if(!H.get_active_held_item())
 			to_chat(quirk_holder, "<span class='danger'>You can't keep your eyes off [I.name].</span>")
 			H.UnarmedAttack(I)
+
+/datum/quirk/ineloquent
+	name = "Ineloquent"
+	desc = "Thinking big words makes brain go hurt."
+	value = -1
+	human_only = TRUE
+	gain_text = "You feel your vocabularly slipping away."
+	lose_text = "You regrasp the full extent of your linguistic prowess."
+	medical_record_text = "Patient is affected by partial loss of speech leading to a reduced vocabulary."
+
+/datum/quirk/ineloquent/add()
+	var/datum/brain_trauma/mild/expressive_aphasia/T = new()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
