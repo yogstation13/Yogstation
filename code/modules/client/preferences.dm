@@ -1695,7 +1695,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 								selectablecapes += A
 						if(A.special) //check for special capes
 							if(A.capetype == "max")
-								if(selectablecapes.len >= 72) //72 is the amount of job skillcapes, including trimmed.
+								if(selectablecapes.len >= 74) //74 is the amount of job skillcapes, including trimmed.
 									selectablecapes += A
 					if(!selectablecapes.len)
 						to_chat(user, "You have no availiable skillcapes!")
