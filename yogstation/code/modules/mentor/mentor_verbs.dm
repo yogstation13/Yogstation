@@ -102,7 +102,7 @@ GLOBAL_PROTECT(mentor_verbs)
 	set name = "Dementor"
 	set category = "Mentor"
 	set desc = "Shed your mentor powers."
-	if(mentor_datum.position != "Mentor")
+	if(mentor_datum.position == "Mentor")
 		if(GLOB.mentors.len <= 2)
 			to_chat(src, "<span class='notice'>There are not enough mentors on for you to De-Mentor yourself!</span>", confidential=TRUE)
 			return

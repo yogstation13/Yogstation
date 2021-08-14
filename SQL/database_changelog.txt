@@ -8,6 +8,8 @@ INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (5, 5);
 
 In any query remember to add a prefix to the table names if you use one.
 
+----------------------------------------------------
+
 version 5.5 14 August 2021, by JamieD1
 
 Adds column in mentor for position
