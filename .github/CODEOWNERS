@@ -21,6 +21,8 @@
 /yogstation/SQL/ @yogstation13/head-coders
 /yogstation/icons/ @yogstation13/art
 /yogstation/sound/ @yogstation13/art
+/code/ @yogstation13/code
+/yogstation/code/ @yogstation13/code
 
 #monster860
 
@@ -36,6 +38,6 @@
 
 /code/controllers/subsystem/ticker.dm @yogstation13/art
 /yogstation/code/controllers/subsystem/ticker.dm @yogstation13/art
-/code/modules/holidays/holidays.dm @yogstation13/art
-/yogstation/code/modules/holidays/holidays.dm @yogstation13/art
+/code/modules/holidays/holidays.dm
+/yogstation/code/modules/holidays/holidays.dm
 
