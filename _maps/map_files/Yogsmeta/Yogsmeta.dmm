@@ -6399,14 +6399,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/security/warden)
-"anB" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "anC" = (
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/security/main";
@@ -77184,6 +77176,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/captain/private)
+"lmm" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/regular{
+	pixel_x = -1;
+	pixel_y = 4
+	},
+/obj/item/paper_bin{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "lmt" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -115032,7 +115036,7 @@ adZ
 ajD
 akF
 ajS
-anB
+lmm
 aoH
 apY
 asK

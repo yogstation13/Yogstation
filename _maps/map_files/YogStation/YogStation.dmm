@@ -2488,11 +2488,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"agB" = (
-/obj/structure/table,
-/obj/item/assembly/flash/handheld,
-/turf/open/floor/plasteel,
-/area/security/main)
 "agD" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "Prison Gate";
@@ -58897,6 +58892,18 @@
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"ufI" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/regular{
+	pixel_x = -1;
+	pixel_y = 1
+	},
+/obj/item/assembly/flash/handheld{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "ugv" = (
 /obj/item/radio/intercom{
 	pixel_x = 30
@@ -98878,7 +98885,7 @@ ajK
 akY
 afg
 afV
-agB
+ufI
 ahd
 ahI
 clS
