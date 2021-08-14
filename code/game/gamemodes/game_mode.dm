@@ -67,20 +67,24 @@
 ///Checks to see if the game can be setup and ran with the current number of players or whatnot.
 /datum/game_mode/proc/can_start()
 	var/playerC = 0
+	var/unreadiedPlayers = 0
 	for(var/mob/dead/new_player/player in GLOB.player_list)
-		if((player.client)&&(player.ready == PLAYER_READY_TO_PLAY))
+		if(player.client && (player.ready == PLAYER_READY_TO_PLAY))
 			playerC++
+		else if(player.client && (player.ready == PLAYER_NOT_READY) && !player.client.holder) //Admins don't count :)
+			unreadiedPlayers++
 	if(!GLOB.Debug2)
-		if(playerC < required_players || (maximum_players >= 0 && playerC > maximum_players))
-			return 0
+		var/adjustedPlayerCount = round(playerC + (unreadiedPlayers * UNREADIED_PLAYER_MULTIPLIER), 1)
+		if(adjustedPlayerCount < required_players || (maximum_players >= 0 && playerC > maximum_players))
+			return FALSE
 	antag_candidates = get_players_for_role(antag_flag)
 	if(!GLOB.Debug2)
 		if(antag_candidates.len < required_enemies)
-			return 0
-		return 1
+			return FALSE
+		return TRUE
 	else
 		message_admins("<span class='notice'>DEBUG: GAME STARTING WITHOUT PLAYER NUMBER CHECKS, THIS WILL PROBABLY BREAK SHIT.</span>")
-		return 1
+		return TRUE
 
 
 ///Attempts to select players for special roles the mode might have.
