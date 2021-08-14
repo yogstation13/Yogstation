@@ -7,7 +7,7 @@
  ¤ <a href="https://github.com/yogstation13/Yogstation">GitHub Repo</a>
  ¤ <a href="https://wiki.yogstation.net/wiki/Guide_to_contributing_to_the_wiki">Yogstation Wiki contribution guide</a>.
 </span><br>	
-<span style="font-family: Verdana; margin: 0px; padding: 0px;">We are running a high power server and we need <a href="http://www.yogstation.net/index.php?do=donate">donations to keep the server running</a>. <b>Donators</b> get <i>multiple benefits</i> such as <b>fun hats</b>, <b>custom cyborg skins</b> and <b>Quiet Mode</b>!<br><br> 
+<span style="font-family: Verdana; margin: 0px; padding: 0px;">We are running a high power server and we need <a href="http://www.yogstation.net/donate">donations to keep the server running</a>. <b>Donators</b> get <i>multiple benefits</i> such as <b>fun hats</b>, <b>custom cyborg skins</b> and <b>Quiet Mode</b>!<br><br> 
 <span style="font-family: Verdana; margin: 0px; padding: 0px;">Discord: <a href="https://discord.gg/0keg6hQH05Ha8OfO">https://discord.gg/0keg6hQH05Ha8OfO</a></span><br>
 <span style="font-family: Verdana; margin: 0px; padding: 0px;">If you need to create an account on the forums please use this keyword to register: <b>assistantgreytide</b></a></span><br>
 
