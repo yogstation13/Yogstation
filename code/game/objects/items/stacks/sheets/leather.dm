@@ -232,6 +232,17 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 	w_class = WEIGHT_CLASS_NORMAL
 	layer = MOB_LAYER
 
+/obj/item/stack/sheet/animalhide/carpdragon
+	name = "carp dragon hide"
+	desc = "The strong, scaled hide of a space dragon."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "carpdragon_hide"
+	singular_name = "carp plate"
+	max_amount = 10
+	novariants = TRUE
+	item_flags = NOBLUDGEON
+	w_class = WEIGHT_CLASS_NORMAL
+	layer = MOB_LAYER
 
 //Step one - dehairing.
 
