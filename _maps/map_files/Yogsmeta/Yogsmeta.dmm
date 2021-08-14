@@ -2579,8 +2579,7 @@
 	areastring = "/area/security/physician";
 	dir = 8;
 	name = "Brig Physicians Office APC";
-	pixel_x = 0;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -5620,23 +5619,6 @@
 	dir = 6
 	},
 /obj/machinery/holopad,
-/turf/open/floor/plasteel/white,
-/area/security/brig)
-"alF" = (
-/obj/machinery/door/window/westleft{
-	dir = 4;
-	name = "Infirmary"
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "alG" = (
@@ -72971,6 +72953,27 @@
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"dNs" = (
+/obj/machinery/door/window/westleft{
+	base_state = "right";
+	dir = 4;
+	icon_state = "right";
+	name = "Infirmary";
+	red_alert_access = 1;
+	req_access_txt = "5"
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "dPt" = (
 /obj/machinery/atmospherics/pipe/simple/dark/visible,
 /obj/effect/mapping_helpers/teleport_anchor,
@@ -77098,25 +77101,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"kYI" = (
-/obj/machinery/door/window/westleft{
-	base_state = "right";
-	dir = 4;
-	icon_state = "right";
-	name = "Infirmary"
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "laa" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -82729,6 +82713,25 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"vMZ" = (
+/obj/machinery/door/window/westleft{
+	dir = 4;
+	name = "Infirmary";
+	red_alert_access = 1;
+	req_access_txt = "5"
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "vNW" = (
 /turf/closed/wall,
 /area/science/misc_lab/range)
@@ -108346,8 +108349,8 @@ ahx
 ait
 ahx
 akw
-alF
-kYI
+vMZ
+dNs
 hnY
 ahx
 aqZ

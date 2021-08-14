@@ -26926,6 +26926,29 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"faw" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/airlock/medical/glass{
+	name = "Prison Infirmary";
+	red_alert_access = 1;
+	req_access_txt = "5"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "faQ" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 24
@@ -34503,28 +34526,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"mXd" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Prison Infirmary";
-	req_access_txt = "2"
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "mXs" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -24
@@ -81110,7 +81111,7 @@ abO
 azo
 abO
 abO
-mXd
+faw
 agF
 agF
 aip

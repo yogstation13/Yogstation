@@ -963,14 +963,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
-"acW" = (
-/obj/structure/cable{
-	icon_state = "2-4";
-	tag = ""
-	},
-/obj/machinery/door/window/southleft,
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "acX" = (
 /obj/structure/table,
 /obj/item/paper,
@@ -89790,6 +89782,17 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/department/medical/central)
+"wFk" = (
+/obj/structure/cable{
+	icon_state = "2-4";
+	tag = ""
+	},
+/obj/machinery/door/window/southleft{
+	red_alert_access = 1;
+	req_access_txt = "5"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "wHa" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
@@ -127995,7 +127998,7 @@ cFA
 abe
 acp
 acF
-acW
+wFk
 adr
 adM
 ael
