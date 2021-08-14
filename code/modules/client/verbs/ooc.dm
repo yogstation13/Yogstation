@@ -117,7 +117,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 		if(is_mentor()) // If the speaker is a mentor
 			var mposition = "Mentor"
 			mposition = src.mentor_datum?.position
-			oocmsg = "<span class='ooc'>["
+			oocmsg = "<span class='ooc'>\["
 			oocmsg += "[mentorposition]"
 			oocmsg += "]<font color='[prefs.ooccolor]'>"
 		else
