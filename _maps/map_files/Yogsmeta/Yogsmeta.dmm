@@ -40074,9 +40074,7 @@
 /turf/open/space,
 /area/maintenance/disposal/incinerator)
 "bAY" = (
-/obj/structure/filingcabinet{
-	pixel_x = 3
-	},
+/obj/machinery/vending/wardrobe/sig_wardrobe,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "bAZ" = (
