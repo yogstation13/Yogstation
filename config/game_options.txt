@@ -427,7 +427,6 @@ LAW_WEIGHT paladin,0
 LAW_WEIGHT robocop,0
 LAW_WEIGHT corporate,0
 LAW_WEIGHT ceo,5
-LAW_WEIGHT cowboy,2
 
 ## Quirky laws. Shouldn't cause too much harm
 LAW_WEIGHT hippocratic,0
@@ -436,6 +435,7 @@ LAW_WEIGHT drone,0
 LAW_WEIGHT liveandletlive,0
 LAW_WEIGHT peacekeeper,0
 LAW_WEIGHT reporter,3
+LAW_WEIGHT cowboy,2
 
 ## Bad idea laws. Probably shouldn't enable these
 LAW_WEIGHT syndie,0
