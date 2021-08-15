@@ -46,7 +46,7 @@ export const DisconnectPanel = (props, context) => {
               <Button
                 onClick={() => act('acryo', { ckey: user.ckey })}
                 disabled={user.connected}>
-                  Admin Cryo
+                Admin Cryo
               </Button>
               <Collapsible title="History">
                 {user.history.reverse().map(datapoint => (
