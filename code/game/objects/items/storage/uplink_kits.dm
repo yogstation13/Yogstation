@@ -228,7 +228,7 @@
 	var/datum/mind/owner
 	can_requiem = FALSE
 
-/obj/item/arrow/boss/attack_self(mob/user)
+/obj/item/stand_arrow/boss/attack_self(mob/user)
 	if(owner || !user.mind)
 		return
 	to_chat(user, "<span class='notice'>You prick your finger on the arrow, linking the mindslave nanites to you!</span>")
