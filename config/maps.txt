@@ -14,7 +14,7 @@ Format:
 
 map yogstation
 	voteweight 0.9
-	votable
+	disabled
 endmap
 
 map omegastation
