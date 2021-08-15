@@ -363,7 +363,7 @@
 /datum/religion_rites/meatbless
 	name = "Meat Blessing"
 	desc = "Bless a piece of meat. Preps it for sacrifice"
-	ritual_length = 5 SECONDS
+	ritual_length = 2 SECONDS
 	invoke_msg = "old ones, I bless this flesh in your name."
 	///the piece of meat that will be blessed, only one per rite
 	var/obj/item/reagent_containers/food/snacks/meat/slab/chosen_meat
@@ -411,7 +411,7 @@
 	"... And allow them to bless this one with a great power..."
 	)
 	invoke_msg = "... Become one with the blessings of our gods, arise great one!!"
-	favor_cost = 2500 // 50 slabs of blessed meat, more expensive than working with xenobio.
+	favor_cost = 2000 // 40 slabs of blessed meat, more expensive than working with xenobio.
 
 /datum/religion_rites/bodybless/perform_rite(mob/living/user, atom/religious_tool)
 	if(!ismovable(religious_tool))
