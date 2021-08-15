@@ -4,7 +4,7 @@
 ///// Debride burnt flesh
 /datum/surgery/debride
 	name = "Debride infected flesh"
-	steps = list(/datum/surgery_step/debride, /datum/surgery_step/dress)
+	steps = list(/datum/surgery_step/debride_infected, /datum/surgery_step/dress)
 	target_mobtypes = list(/mob/living/carbon)
 	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)
 	requires_real_bodypart = TRUE
@@ -19,7 +19,7 @@
 //SURGERY STEPS
 
 ///// Debride
-/datum/surgery_step/debride
+/datum/surgery_step/debride_infected
 	name = "excise infection"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_SCALPEL = 85, TOOL_SAW = 60, TOOL_WIRECUTTER = 40)
 	time = 30
