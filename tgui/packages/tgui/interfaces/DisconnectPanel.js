@@ -36,10 +36,11 @@ export const DisconnectPanel = (props, context) => {
                       user.last.job + " - " +
                       sec2time((data.world_time - (user.connected ? user.last.connect : user.last.disconnect))/10)}>
                 <Section>
-                  <Button>Follow</Button>
-                  <Button>Player Panel</Button>
-                  <Button>Private Message</Button>
-                  <Button>Notes</Button>
+                  <Button onClick={() => act('follow', {ckey: user.ckey})}>Follow</Button>
+                  <Button onClick={() => act('player-panel', {ckey: user.ckey})}>Player Panel</Button>
+                  <Button onClick={() => act('pm', {ckey: user.ckey})}>Private Message</Button>
+                  <Button onClick={() => act('notes', {ckey: user.ckey})}>Notes</Button>
+                  <Button onClick={() => act('acryo', {ckey: user.ckey})} disabled={user.connected} >Admin Cryo</Button>
                   <Collapsible title="History">
                     {user.history.reverse().map(datapoint => (
                       <Section

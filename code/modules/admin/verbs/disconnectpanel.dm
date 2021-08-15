@@ -29,7 +29,7 @@ GLOBAL_LIST_EMPTY(connection_logs)
 	var/job
 
 /client/proc/disconnect_panel()
-	set name = "Disconnection Panel"
+	set name = "Disconnect Panel"
 	set desc = "Panel showing information about the currently disconneted players"
 	set category = "Admin"
 	if(!check_rights(R_ADMIN))
@@ -74,11 +74,62 @@ GLOBAL_LIST_EMPTY(connection_logs)
 		ckey_data["ckey"] = ckey
 		ckey_data["connected"] = !!CL.last_data_point.connected
 		ckey_data["last"] = entry2ui(CL.last_data_point)
+		ckey_data["history"] = list()
 
 		for(var/datum/connection_entry/entry in CL.data_points)
 			ckey_data["history"] += list(entry2ui(entry))
 
 		.["users"] += list(ckey_data)
+
+/datum/disconnect_panel/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	var/ckey = params["ckey"]
+	switch(action)
+		if("follow")
+			var/client/C = GLOB.directory[ckey]
+			var/atom/movable/AM
+			if(C)
+				AM = C.mob
+			else
+				for(var/mob/M in GLOB.mob_list)
+					if(M.ckey == ckey)
+						AM = M
+						return
+			if(!AM)
+				return
+			usr.client.holder.observe_follow(AM)
+		if("player-panel")
+			var/client/C = GLOB.directory[ckey]
+			var/mob/M
+			if(C)
+				M = C.mob
+			else
+				for(var/mob/MI in GLOB.mob_list)
+					if(MI.ckey == ckey)
+						M = MI
+						return
+			if(!M)
+				return
+			usr.client.holder.show_player_panel(M)
+		if("pm")
+			usr.client.cmd_admin_pm(ckey)
+		if("notes")
+			if(!check_rights(R_ADMIN))
+				return
+			browse_messages(target_ckey = ckey, agegate = TRUE)
+		if("cryo")
+			var/client/C = GLOB.directory[ckey]
+			var/mob/M
+			if(C)
+				M = C.mob
+			else
+				for(var/mob/MI in GLOB.mob_list)
+					if(MI.ckey == ckey)
+						M = MI
+						return
+			if(!M)
+				return
+			usr.client.admincryo(M)
 
 /datum/disconnect_panel/proc/entry2ui(datum/connection_entry/entry)
 	. = list()
