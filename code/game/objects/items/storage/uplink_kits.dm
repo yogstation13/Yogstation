@@ -231,7 +231,7 @@
 /obj/item/arrow/boss/attack_self(mob/user)
 	if(owner || !user.mind)
 		return
-	to_chat(user, <span class='notice'>You prick your finger on the arrow, linking the mindslave nanites to you!</span>")
+	to_chat(user, "<span class='notice'>You prick your finger on the arrow, linking the mindslave nanites to you!</span>")
 	owner = user.mind
 
 /obj/item/stand_arrow/boss/attack(mob/living/M, mob/living/user)
