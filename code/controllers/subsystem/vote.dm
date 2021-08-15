@@ -266,7 +266,7 @@ SUBSYSTEM_DEF(vote)
 		"lower_admin" = !!user.client?.holder,
 		"generated_actions" = generated_actions,
 		"avm" = CONFIG_GET(flag/allow_vote_mode),
-		"avmap" = CONFIG_GET(flag/allow_vote_map),
+		"avmap" = CONFIG_GET(flag/allow_vote_map) && !SSmapping.next_map_config,
 		"avr" = CONFIG_GET(flag/allow_vote_restart),
 		"selectedChoice" = choice_by_ckey[user.client?.ckey],
 		"upper_admin" = check_rights_for(user.client, R_ADMIN),
@@ -310,7 +310,7 @@ SUBSYSTEM_DEF(vote)
 			if(CONFIG_GET(flag/allow_vote_mode) || usr.client.holder)
 				initiate_vote("gamemode",usr.key)
 		if("map")
-			if(CONFIG_GET(flag/allow_vote_map) || usr.client.holder)
+			if((CONFIG_GET(flag/allow_vote_map) && !SSmapping.next_map_config) || usr.client.holder)
 				initiate_vote("map",usr.key)
 		if("custom")
 			if(usr.client.holder)
