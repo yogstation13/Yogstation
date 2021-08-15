@@ -13,7 +13,7 @@
 /mob/living/carbon/has_hand_for_held_index(i)
 	if(i)
 		var/obj/item/bodypart/L = hand_bodyparts[i]
-		if(L && !L.disabled)
+		if(L && !L.bodypart_disabled)
 			return L
 	return FALSE
 
@@ -39,7 +39,7 @@
 /mob/living/carbon/has_left_hand(check_disabled = TRUE)
 	for(var/obj/item/bodypart/L in hand_bodyparts)
 		if(L.held_index % 2)
-			if(!check_disabled || !L.disabled)
+			if(!check_disabled || !L.bodypart_disabled)
 				return TRUE
 	return FALSE
 
@@ -53,7 +53,7 @@
 /mob/living/carbon/has_right_hand(check_disabled = TRUE)
 	for(var/obj/item/bodypart/L in hand_bodyparts)
 		if(!(L.held_index % 2))
-			if(!check_disabled || !L.disabled)
+			if(!check_disabled || !L.bodypart_disabled)
 				return TRUE
 	return FALSE
 
@@ -71,10 +71,10 @@
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/affecting = X
 		if(affecting.body_part == ARM_RIGHT)
-			if(!check_disabled || !affecting.disabled)
+			if(!check_disabled || !affecting.bodypart_disabled)
 				.++
 		if(affecting.body_part == ARM_LEFT)
-			if(!check_disabled || !affecting.disabled)
+			if(!check_disabled || !affecting.bodypart_disabled)
 				.++
 
 
@@ -94,10 +94,10 @@
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/affecting = X
 		if(affecting.body_part == LEG_RIGHT)
-			if(!check_disabled || !affecting.disabled)
+			if(!check_disabled || !affecting.bodypart_disabled)
 				.++
 		if(affecting.body_part == LEG_LEFT)
-			if(!check_disabled || !affecting.disabled)
+			if(!check_disabled || !affecting.bodypart_disabled)
 				.++
 
 //sometimes we want to ignore that we don't have the required amount of legs.
@@ -137,7 +137,7 @@
 	var/list/disabled = list()
 	for(var/zone in full)
 		var/obj/item/bodypart/affecting = get_bodypart(zone)
-		if(affecting && affecting.disabled)
+		if(affecting && affecting.bodypart_disabled)
 			disabled += zone
 	return disabled
 
@@ -146,7 +146,7 @@
 	var/list/disabled = list()
 	for(var/zone in full)
 		var/obj/item/bodypart/affecting = get_bodypart(zone)
-		if(affecting && affecting.disabled)
+		if(affecting && affecting.bodypart_disabled)
 			disabled += zone
 	return disabled
 

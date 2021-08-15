@@ -71,28 +71,55 @@
 	held_index = 1
 	px_x = -6
 	px_y = 0
+	can_be_disabled = TRUE
 
-/obj/item/bodypart/l_arm/is_disabled()
-	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
-		return BODYPART_DISABLED_PARALYSIS
-	return ..()
+/obj/item/bodypart/l_arm/set_owner(new_owner)
+	. = ..()
+	if(. == FALSE)
+		return
+	var/mob/living/carbon/owner = null
+	if(owner)
+		if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
+			ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_ARM)
+			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_ARM), .proc/on_owner_paralysis_loss)
+		else
+			REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_ARM)
+			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_ARM), .proc/on_owner_paralysis_gain)
+	if(.)
+		var/mob/living/carbon/old_owner = .
+		if(HAS_TRAIT(old_owner, TRAIT_PARALYSIS_L_ARM))
+			UnregisterSignal(old_owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_ARM))
+			if(!owner || !HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
+				REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_ARM)
+		else
+			UnregisterSignal(old_owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_ARM))
+
+
+///Proc to react to the owner gaining the TRAIT_PARALYSIS_L_ARM trait.
+/obj/item/bodypart/l_arm/proc/on_owner_paralysis_gain(mob/living/carbon/source)
+	ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_ARM)
+	UnregisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_ARM))
+	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_ARM), .proc/on_owner_paralysis_loss)
+
+
+///Proc to react to the owner losing the TRAIT_PARALYSIS_L_ARM trait.
+/obj/item/bodypart/l_arm/proc/on_owner_paralysis_loss(mob/living/carbon/source)
+	REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_ARM)
+	UnregisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_ARM))
+	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_ARM), .proc/on_owner_paralysis_gain)
 
 /obj/item/bodypart/l_arm/set_disabled(new_disabled)
 	. = ..()
-	if(!.)
+	if(isnull(.) || !owner)
 		return
-	if(disabled == BODYPART_DISABLED_DAMAGE)
-		if(owner.stat < UNCONSCIOUS)
-			owner.emote("scream")
-		if(owner.stat < DEAD)
-			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
-		if(held_index)
-			owner.dropItemToGround(owner.get_item_for_held_index(held_index))
-	else if(disabled == BODYPART_DISABLED_PARALYSIS)
-		if(owner.stat < DEAD)
-			to_chat(owner, "<span class='userdanger'>You can't feel your [name]!</span>")
+
+	if(!.)
+		if(bodypart_disabled)
+			if(owner.stat < UNCONSCIOUS)
+				to_chat(owner, "<span class='userdanger'>Your lose control of your [name]!</span>")
 			if(held_index)
 				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
+
 	if(owner.hud_used)
 		var/obj/screen/inventory/hand/L = owner.hud_used.hand_slots["[held_index]"]
 		if(L)
@@ -111,14 +138,16 @@
 	icon_state = "alien_l_arm"
 	px_x = 0
 	px_y = 0
-	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
+	dismemberable = FALSE
+	can_be_disabled = FALSE
 
 /obj/item/bodypart/l_arm/devil
-	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
+	dismemberable = FALSE
+	can_be_disabled = FALSE
 
 /obj/item/bodypart/r_arm
 	name = "right arm"
@@ -136,26 +165,53 @@
 	px_x = 6
 	px_y = 0
 	max_stamina_damage = 50
+	can_be_disabled = TRUE
 
-/obj/item/bodypart/r_arm/is_disabled()
-	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_ARM))
-		return BODYPART_DISABLED_PARALYSIS
-	return ..()
+/obj/item/bodypart/r_arm/set_owner(new_owner)
+	. = ..()
+	if(. == FALSE)
+		return
+	var/mob/living/carbon/owner = null
+	if(owner)
+		if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_ARM))
+			ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_ARM)
+			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_ARM), .proc/on_owner_paralysis_loss)
+		else
+			REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_ARM)
+			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_ARM), .proc/on_owner_paralysis_gain)
+	if(.)
+		var/mob/living/carbon/old_owner = .
+		if(HAS_TRAIT(old_owner, TRAIT_PARALYSIS_R_ARM))
+			UnregisterSignal(old_owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_ARM))
+			if(!owner || !HAS_TRAIT(owner, TRAIT_PARALYSIS_R_ARM))
+				REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_ARM)
+		else
+			UnregisterSignal(old_owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_ARM))
+
+
+///Proc to react to the owner gaining the TRAIT_PARALYSIS_R_ARM trait.
+/obj/item/bodypart/r_arm/proc/on_owner_paralysis_gain(mob/living/carbon/source)
+	ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_ARM)
+	UnregisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_ARM))
+	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_ARM), .proc/on_owner_paralysis_loss)
+
+
+///Proc to react to the owner losing the TRAIT_PARALYSIS_R_ARM trait.
+/obj/item/bodypart/r_arm/proc/on_owner_paralysis_loss(mob/living/carbon/source)
+	REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_ARM)
+	UnregisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_ARM))
+	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_ARM), .proc/on_owner_paralysis_gain)
+
 
 /obj/item/bodypart/r_arm/set_disabled(new_disabled)
 	. = ..()
-	if(!.)
+	if(isnull(.) || !owner)
 		return
-	if(disabled == BODYPART_DISABLED_DAMAGE)
-		if(owner.stat < UNCONSCIOUS)
-			owner.emote("scream")
-		if(owner.stat < DEAD)
-			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
-		if(held_index)
-			owner.dropItemToGround(owner.get_item_for_held_index(held_index))
-	else if(disabled == BODYPART_DISABLED_PARALYSIS)
-		if(owner.stat < DEAD)
-			to_chat(owner, "<span class='userdanger'>You can't feel your [name]!</span>")
+
+	if(!.)
+		if(bodypart_disabled)
+			if(owner.stat < UNCONSCIOUS)
+				to_chat(owner, "<span class='userdanger'>Your lose control of your [name]!</span>")
 			if(held_index)
 				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 	if(owner.hud_used)
@@ -176,14 +232,16 @@
 	icon_state = "alien_r_arm"
 	px_x = 0
 	px_y = 0
-	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
+	dismemberable = FALSE
+	can_be_disabled = FALSE
 
 /obj/item/bodypart/r_arm/devil
-	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
+	dismemberable = FALSE
+	can_be_disabled = FALSE
 
 /obj/item/bodypart/l_leg
 	name = "left leg"
@@ -198,24 +256,52 @@
 	px_x = -2
 	px_y = 12
 	max_stamina_damage = 50
+	can_be_disabled = TRUE
 
-/obj/item/bodypart/l_leg/is_disabled()
-	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_LEG))
-		return BODYPART_DISABLED_PARALYSIS
-	return ..()
+/obj/item/bodypart/l_leg/set_owner(new_owner)
+	. = ..()
+	if(. == FALSE)
+		return
+	if(owner)
+		if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_LEG))
+			ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_LEG)
+			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_LEG), .proc/on_owner_paralysis_loss)
+		else
+			REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_LEG)
+			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_LEG), .proc/on_owner_paralysis_gain)
+	if(.)
+		var/mob/living/carbon/old_owner = .
+		if(HAS_TRAIT(old_owner, TRAIT_PARALYSIS_L_LEG))
+			UnregisterSignal(old_owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_LEG))
+			if(!owner || !HAS_TRAIT(owner, TRAIT_PARALYSIS_L_LEG))
+				REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_LEG)
+		else
+			UnregisterSignal(old_owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_LEG))
+
+
+///Proc to react to the owner gaining the TRAIT_PARALYSIS_L_LEG trait.
+/obj/item/bodypart/l_leg/proc/on_owner_paralysis_gain(mob/living/carbon/source)
+	ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_LEG)
+	UnregisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_LEG))
+	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_LEG), .proc/on_owner_paralysis_loss)
+
+
+///Proc to react to the owner losing the TRAIT_PARALYSIS_L_LEG trait.
+/obj/item/bodypart/l_leg/proc/on_owner_paralysis_loss(mob/living/carbon/source)
+	REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_LEG)
+	UnregisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_LEG))
+	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_LEG), .proc/on_owner_paralysis_gain)
+
 
 /obj/item/bodypart/l_leg/set_disabled(new_disabled)
 	. = ..()
-	if(!.)
+	if(isnull(.) || !owner)
 		return
-	if(disabled == BODYPART_DISABLED_DAMAGE)
-		if(owner.stat < UNCONSCIOUS)
-			owner.emote("scream")
-		if(owner.stat < DEAD)
-			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
-	else if(disabled == BODYPART_DISABLED_PARALYSIS)
-		if(owner.stat < DEAD)
-			to_chat(owner, "<span class='userdanger'>You can't feel your [name]!</span>")
+
+	if(!.)
+		if(bodypart_disabled)
+			if(owner.stat < UNCONSCIOUS)
+				to_chat(owner, "<span class='userdanger'>Your lose control of your [name]!</span>")
 
 /obj/item/bodypart/l_leg/digitigrade
 	name = "left digitigrade leg"
@@ -233,14 +319,16 @@
 	icon_state = "alien_l_leg"
 	px_x = 0
 	px_y = 0
-	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
+	dismemberable = FALSE
+	can_be_disabled = FALSE
 
 /obj/item/bodypart/l_leg/devil
-	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
+	dismemberable = FALSE
+	can_be_disabled = FALSE
 
 /obj/item/bodypart/r_leg
 	name = "right leg"
@@ -257,24 +345,52 @@
 	px_x = 2
 	px_y = 12
 	max_stamina_damage = 50
+	can_be_disabled = TRUE
 
-/obj/item/bodypart/r_leg/is_disabled()
-	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))
-		return BODYPART_DISABLED_PARALYSIS
-	return ..()
+/obj/item/bodypart/r_leg/set_owner(new_owner)
+	. = ..()
+	if(. == FALSE)
+		return
+	if(owner)
+		if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))
+			ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_LEG)
+			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_LEG), .proc/on_owner_paralysis_loss)
+		else
+			REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_LEG)
+			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_LEG), .proc/on_owner_paralysis_gain)
+	if(.)
+		var/mob/living/carbon/old_owner = .
+		if(HAS_TRAIT(old_owner, TRAIT_PARALYSIS_R_LEG))
+			UnregisterSignal(old_owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_LEG))
+			if(!owner || !HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))
+				REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_LEG)
+		else
+			UnregisterSignal(old_owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_LEG))
+
+
+///Proc to react to the owner gaining the TRAIT_PARALYSIS_R_LEG trait.
+/obj/item/bodypart/r_leg/proc/on_owner_paralysis_gain(mob/living/carbon/source)
+	ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_LEG)
+	UnregisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_LEG))
+	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_LEG), .proc/on_owner_paralysis_loss)
+
+
+///Proc to react to the owner losing the TRAIT_PARALYSIS_R_LEG trait.
+/obj/item/bodypart/r_leg/proc/on_owner_paralysis_loss(mob/living/carbon/source)
+	REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_LEG)
+	UnregisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_LEG))
+	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_LEG), .proc/on_owner_paralysis_gain)
+
 
 /obj/item/bodypart/r_leg/set_disabled(new_disabled)
 	. = ..()
-	if(!.)
+	if(isnull(.) || !owner)
 		return
-	if(disabled == BODYPART_DISABLED_DAMAGE)
-		if(owner.stat < UNCONSCIOUS)
-			owner.emote("scream")
-		if(owner.stat < DEAD)
-			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
-	else if(disabled == BODYPART_DISABLED_PARALYSIS)
-		if(owner.stat < DEAD)
-			to_chat(owner, "<span class='userdanger'>You can't feel your [name]!</span>")
+
+	if(!.)
+		if(bodypart_disabled)
+			if(owner.stat < UNCONSCIOUS)
+				to_chat(owner, "<span class='userdanger'>Your lose control of your [name]!</span>")
 
 /obj/item/bodypart/r_leg/digitigrade
 	name = "right digitigrade leg"
@@ -292,11 +408,13 @@
 	icon_state = "alien_r_leg"
 	px_x = 0
 	px_y = 0
-	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
+	dismemberable = FALSE
+	can_be_disabled = FALSE
 
 /obj/item/bodypart/r_leg/devil
-	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
+	dismemberable = FALSE
+	can_be_disabled = FALSE

@@ -324,7 +324,7 @@
 				fall_chance_current *= 0.2
 
 			if(prob(fall_chance_current))
-				BP.receive_damage(I.w_class*I.embedding.embedded_fall_pain_multiplier, wound_bonus = SHARP_EDGED) // can wound
+				BP.receive_damage(I.w_class*I.embedding.embedded_fall_pain_multiplier, wound_bonus = CANT_WOUND) // can wound
 				BP.embedded_objects -= I
 				I.forceMove(drop_location())
 				visible_message("<span class='danger'>[I] falls out of [name]'s [BP.name]!</span>","<span class='userdanger'>[I] falls out of your [BP.name]!</span>")

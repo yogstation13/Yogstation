@@ -732,7 +732,7 @@
 		..()
 
 /mob/living/carbon/human/proc/check_self_for_injuries()
-	if(stat == DEAD || stat == UNCONSCIOUS)
+	if(stat >= UNCONSCIOUS)
 		return
 	var/list/combined_msg = list()
 
@@ -745,6 +745,9 @@
 		missing -= LB.body_zone
 		if(LB.is_pseudopart) //don't show injury text for fake bodyparts; ie chainsaw arms or synthetic armblades
 			continue
+		var/self_aware = FALSE
+		if(HAS_TRAIT(src, TRAIT_SELF_AWARE))
+			self_aware = TRUE
 		var/limb_max_damage = LB.max_damage
 		var/status = ""
 		var/brutedamage = LB.brute_dam
@@ -755,7 +758,7 @@
 			if(prob(30))
 				burndamage += rand(30,40)
 
-		if(HAS_TRAIT(src, TRAIT_SELF_AWARE) && hal_screwyhud == SCREWYHUD_NONE)
+		if(HAS_TRAIT(src, TRAIT_SELF_AWARE))
 			status = "[brutedamage] brute damage and [burndamage] burn damage"
 			if(!brutedamage && !burndamage)
 				status = "no damage"
@@ -782,7 +785,14 @@
 		var/no_damage
 		if(status == "OK" || status == "no damage")
 			no_damage = TRUE
-		combined_msg += "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name] [HAS_TRAIT(src, TRAIT_SELF_AWARE) ? "has" : "is"] [status].</span>"
+		var/isdisabled = ""
+		if(LB.bodypart_disabled)
+			isdisabled = " is disabled"
+			if(no_damage)
+				isdisabled += " but otherwise"
+			else
+				isdisabled += " and"
+		combined_msg += "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name][isdisabled][self_aware ? " has " : " is "][status].</span>"
 
 		for(var/thing in LB.wounds)
 			var/datum/wound/W = thing

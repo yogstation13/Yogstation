@@ -35,6 +35,9 @@
 	Overwriting of base procs
 */
 /datum/wound/blunt/wound_injury(datum/wound/old_wound = null)
+	// hook into gaining/losing gauze so crit bone wounds can re-enable/disable depending if they're slung or not
+	RegisterSignal(limb, list(COMSIG_BODYPART_GAUZED, COMSIG_BODYPART_GAUZE_DESTROYED), .proc/update_inefficiencies)
+
 	if(limb.body_zone == BODY_ZONE_HEAD && brain_trauma_group)
 		processes = TRUE
 		active_trauma = victim.gain_trauma_type(brain_trauma_group, TRAUMA_RESILIENCE_WOUND)
@@ -54,6 +57,8 @@
 /datum/wound/blunt/remove_wound(ignore_limb, replaced)
 	limp_slowdown = 0
 	QDEL_NULL(active_trauma)
+	if(limb)
+		UnregisterSignal(limb, list(COMSIG_BODYPART_GAUZED, COMSIG_BODYPART_GAUZE_DESTROYED))
 	if(victim)
 		UnregisterSignal(victim, COMSIG_HUMAN_EARLY_UNARMED_ATTACK)
 	return ..()
@@ -139,14 +144,14 @@
 	else
 		var/sling_condition = ""
 		// how much life we have left in these bandages
-		switch(limb.current_gauze.obj_integrity / limb.current_gauze.max_integrity * 100)
-			if(0 to 25)
+		switch(limb.current_gauze.absorption_capacity)
+			if(0 to 1.25)
 				sling_condition = "just barely"
-			if(25 to 50)
+			if(1.25 to 2.75)
 				sling_condition = "loosely"
-			if(50 to 75)
+			if(2.75 to 4)
 				sling_condition = "mostly"
-			if(75 to INFINITY)
+			if(4 to INFINITY)
 				sling_condition = "tightly"
 
 		msg += "[victim.p_their(TRUE)] [limb.name] is [sling_condition] fastened in a sling of [limb.current_gauze.name]"
@@ -177,7 +182,7 @@
 			interaction_efficiency_penalty = interaction_efficiency_penalty
 
 	if(initial(disabling))
-		disabling = !limb.current_gauze
+		set_disabling(!limb.current_gauze)
 
 	limb.update_wounds()
 

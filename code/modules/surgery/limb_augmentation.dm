@@ -70,5 +70,4 @@
 		to_chat(user, "<span class = 'notice'>The augment uploads diagnostic data to the research cloud, giving a bonus of research points!</span>")
 	else
 		to_chat(user, "<span class='warning'>[target] has no organic [parse_zone(target_zone)] there!</span>")
-	target.update_disabled_bodyparts()
 	return TRUE
