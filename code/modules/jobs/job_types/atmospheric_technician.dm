@@ -10,6 +10,7 @@
 	selection_color = "#fff5cc"
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
+	alt_titles = list("Breach Fixer", "Radiation Creator", "Habitation Technician", "Fire Supression Technician", "Atmospherics Trainee", "Environmental Maintainer")
 
 	outfit = /datum/outfit/job/atmos
 

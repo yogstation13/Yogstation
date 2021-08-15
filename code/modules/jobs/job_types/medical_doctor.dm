@@ -10,6 +10,7 @@
 	selection_color = "#d4ebf2"
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
+	alt_titles = list("Physician", "Surgeon", "Nurse", "Medical Resident", "Attending Physician", "Chief Surgeon", "Attending Physician", "Chief Surgeon", "Medical Subdirector", "General Practitioner")
 
 	outfit = /datum/outfit/job/doctor
 
