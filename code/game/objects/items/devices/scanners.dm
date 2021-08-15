@@ -518,6 +518,9 @@ GENE SCANNER
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
 		if(isliving(user))
 			var/mob/living/L = user
+			if(L.getBruteLoss() >= 10)
+				to_chat(L, "<span class='warning'>\The [src] makes a disappointed buzz, chastizing you for asking it for too much encouragement.</span>")
+				return
 			to_chat(L, "<span class='warning'>\The [src] makes a disappointed buzz and pricks your finger for being greedy. Ow!</span>")
 			L.adjustBruteLoss(4)
 			L.dropItemToGround(src)
