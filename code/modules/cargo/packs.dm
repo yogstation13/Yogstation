@@ -2335,6 +2335,8 @@
 			the_toy = pickweight(GLOB.arcade_prize_pool)
 		else
 			the_toy = pick(subtypesof(/obj/item/toy/plush))
+			if(istype(the_toy, /obj/item/toy/plush/lizard/azeel/snowflake))
+				the_toy = /obj/item/toy/plush/lizard/azeel
 		new the_toy(.)
 
 /datum/supply_pack/costumes_toys/wizard

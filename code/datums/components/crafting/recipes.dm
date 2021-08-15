@@ -485,6 +485,7 @@
 	reqs = 	list(/obj/item/stack/rods = 4, /obj/item/stack/sheet/metal = 1)
 	result = /obj/machinery/shower
 	category = CAT_MISC
+	time = 15 SECONDS
 
 /datum/crafting_recipe/sink
 	name = "Sink"

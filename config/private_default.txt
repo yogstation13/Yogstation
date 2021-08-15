@@ -44,7 +44,7 @@ ENABLE_LOCALHOST_RANK
 # WIKIURL https://wiki.yogstation.net
 
 ##Rules address
-# RULESURL http://forums.yogstation.net/index.php?pages/rules/
+# RULESURL http://forums.yogstation.net/help/rules/
 
 ##Github address
 # GITHUBURL https://www.github.com/yogstation13/yogstation

@@ -20,6 +20,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/cmd_admin_pm_panel,		/*admin-pm list*/
 	/client/proc/stop_sounds,
 	/client/proc/fix_air, // yogs - fix air verb
+	/client/proc/fix_air_z,
 	/client/proc/debugstatpanel
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
@@ -83,6 +84,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/respawn_character,
 	/client/proc/discord_id_manipulation,
 	/datum/admins/proc/open_borgopanel,
+	/datum/admins/proc/change_laws,
 	/datum/admins/proc/restart, //yogs - moved from +server
 	/client/proc/admin_pick_random_player, //yogs
 	/client/proc/get_law_history, //yogs - silicon law history
@@ -492,6 +494,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			if(!new_key)
 				return
 			holder.fakekey = new_key
+			holder.fakename = random_unique_name(prob(50) ? MALE : FEMALE)
 			createStealthKey()
 			if(isobserver(mob))
 				mob.invisibility = INVISIBILITY_MAXIMUM //JUST IN CASE
@@ -674,7 +677,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 /client/proc/deadmin()
 	set name = "Deadmin"
 	set category = "Admin"
-	set desc = "Shed your admin powers."
+	set desc = "Shed your admin and mentor powers."
 
 	if(!holder)
 		return
@@ -685,6 +688,12 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	holder.deactivate()
 
 	to_chat(src, "<span class='interface'>You are now a normal player.</span>", confidential=TRUE)
+	
+	remove_mentor_verbs()
+	mentor_datum = null
+	GLOB.mentors -= src
+	add_verb(src, /client/proc/rementor)
+	
 	log_admin("[src] deadmined themself.")
 	message_admins("[src] deadmined themself.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Deadmin")

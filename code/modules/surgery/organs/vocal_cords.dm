@@ -230,7 +230,6 @@
 	var/static/regex/whoareyou_words = regex("who are you|say your name|state your name|identify")
 	var/static/regex/saymyname_words = regex("say my name|who am i|whoami")
 	var/static/regex/knockknock_words = regex("knock knock")
-	var/static/regex/statelaws_words = regex("state laws|state your laws")
 	var/static/regex/move_words = regex("move|walk")
 	var/static/regex/left_words = regex("left|west|port")
 	var/static/regex/right_words = regex("right|east|starboard")
@@ -390,12 +389,6 @@
 			var/mob/living/L = V
 			addtimer(CALLBACK(L, /atom/movable/proc/say, "Who's there?"), 5 * i)
 			i++
-
-	//STATE LAWS
-	else if((findtext(message, statelaws_words)))
-		cooldown = COOLDOWN_STUN
-		for(var/mob/living/silicon/S in listeners)
-			S.statelaws(force = 1)
 
 	//MOVE
 	else if((findtext(message, move_words)))

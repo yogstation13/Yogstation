@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - tweak: "The cabinet for the Captains spare ID now triggers the area theft alarm when multi-tooled and emagged."
