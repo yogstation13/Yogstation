@@ -1189,7 +1189,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("quiet_round")
 					yogtoggles ^= QUIET_ROUND
 				if("pda")
-					donor_pda = donor_pda % ++GLOB.donor_pdas.len
+					donor_pda = (donor_pda % GLOB.donor_pdas.len) + 1
 				if("purrbation")
 					purrbation = !purrbation
 		else
