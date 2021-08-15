@@ -2,7 +2,7 @@
 	name = "12g shotgun slug"
 	damage = 46
 	sharpness = SHARP_POINTY
-	wound_bonus = 0
+	wound_bonus = -30
 
 /obj/item/projectile/bullet/shotgun_beanbag
 	name = "beanbag slug"
@@ -35,6 +35,8 @@
 	icon_state = "dust"
 	damage = 20
 	paralyze = 80
+	wound_bonus = 0
+	sharpness = SHARP_NONE
 	hitsound = 'sound/effects/meteorimpact.ogg'
 
 /obj/item/projectile/bullet/shotgun_meteorslug/on_hit(atom/target, blocked = FALSE)
@@ -52,6 +54,7 @@
 	name ="frag12 slug"
 	damage = 25
 	paralyze = 50
+	wound_bonus = 0
 
 /obj/item/projectile/bullet/shotgun_frag12/on_hit(atom/target, blocked = FALSE)
 	..()
