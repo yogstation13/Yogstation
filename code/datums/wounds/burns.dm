@@ -26,7 +26,7 @@
 	var/sanitization = 0
 
 	/// Once we reach infestation beyond WOUND_INFESTATION_SEPSIS, we get this many warnings before the limb is completely paralyzed (you'd have to ignore a really bad burn for a really long time for this to happen)
-	var/strikes_to_lose_limb = 3
+	var/strikes_to_lose_limb = 4
 
 
 /datum/wound/burn/handle_process()
@@ -98,7 +98,8 @@
 			else if(prob(4))
 				victim.adjustToxLoss(1)
 		if(WOUND_INFECTION_SEPTIC to INFINITY)
-			if(prob(infestation))
+			if(prob(0.5 * infestation))
+				strikes_to_lose_limb--
 				switch(strikes_to_lose_limb)
 					if(3 to INFINITY)
 						to_chat(victim, "<span class='deadsay'>The skin on your [limb.name] is literally dripping off, you feel awful!</span>")
@@ -111,7 +112,6 @@
 						threshold_penalty = 120 // piss easy to destroy
 						var/datum/brain_trauma/severe/paralysis/sepsis = new (limb.body_zone)
 						victim.gain_trauma(sepsis)
-				strikes_to_lose_limb--
 
 /datum/wound/burn/get_examine_description(mob/user)
 	if(strikes_to_lose_limb <= 0)
@@ -122,13 +122,13 @@
 		var/bandage_condition
 		switch(limb.current_gauze.absorption_capacity)
 			if(0 to 1.25)
-				bandage_condition = "nearly ruined "
+				bandage_condition = "nearly ruined"
 			if(1.25 to 2.75)
-				bandage_condition = "badly worn "
+				bandage_condition = "badly worn"
 			if(2.75 to 4)
-				bandage_condition = "slightly pus-stained "
+				bandage_condition = "slightly pus-stained"
 			if(4 to INFINITY)
-				bandage_condition = "clean "
+				bandage_condition = "clean"
 
 		condition += " underneath a dressing of [bandage_condition] [limb.current_gauze.name]"
 	else
