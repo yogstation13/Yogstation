@@ -66,7 +66,8 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Detective",
 	"Security Officer",
 	//Yogs Start: Yog jobs
-	"Brig Physician"))
+	"Brig Physician"//Break in case of merge of #11973//, "Security Medic", "Security Medical Support", "Penitentiary Medical Care Unit", "Junior Brig Physician", "Detention Center Health Officer"
+	))
 	//Yogs End
 
 
