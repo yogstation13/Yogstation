@@ -25,7 +25,8 @@ GLOBAL_LIST_EMPTY(cinematics)
 	plane = SPLASHSCREEN_PLANE
 	layer = SPLASHSCREEN_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	screen_loc = "1,1"
+	screen_loc = "BOTTOM,LEFT+50%"
+	appearance_flags = APPEARANCE_UI | TILE_BOUND
 
 /datum/cinematic
 	var/id = CINEMATIC_DEFAULT
@@ -76,6 +77,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 			SStgui.close_user_uis(M)
 			if(M.client)
 				watching += M.client
+				M.overlay_fullscreen("cinematic",/obj/screen/fullscreen/cinematic_backdrop)
 				M.client.screen += screen
 		else
 			if(is_global)
