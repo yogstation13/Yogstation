@@ -1168,6 +1168,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/card/id/syndicate
 	cost = 2
 
+/datum/uplink_item/stealthy_tools/agent_card/deluxe
+	name = "Deluxe Agent Identification Card"
+	desc = "Agent cards prevent artificial intelligences from tracking the wearer, and can copy access \
+			from other identification cards. The access is cumulative, so scanning one card does not erase the \
+			access gained from another. In addition, they can be forged to display a new assignment and name. \
+			This can be done an unlimited amount of times. Some Syndicate areas and devices can only be accessed \
+			with these cards. This one ships with full access to the station."
+	item = /obj/item/card/id/syndicate/deluxe
+	cost = 10
+
 /datum/uplink_item/stealthy_tools/ai_detector
 	name = "Artificial Intelligence Detector"
 	desc = "A functional multitool that turns red when it detects an artificial intelligence watching it, and can be \
