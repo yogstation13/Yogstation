@@ -250,6 +250,10 @@ This prevents nesting levels from getting deeper then they need to be.
 	* Areas should not be var-edited on a map to change it's name or attributes. All areas of a single type and it's altered instances are considered the same area within the code, and editing their variables on a map can lead to issues with powernets and event subsystems which are difficult to debug.
 
 
+### Don't create code that hangs references
+
+This is part of the larger issue of hard deletes, read this file for more info: [Guide to Harddels](HARDDEL_GUIDE.md))
+
 ### Other Notes
 * Code should be modular where possible; if you are working on a new addition, then strongly consider putting it in its own file unless it makes sense to put it with similar ones (i.e. a new tool would go in the "tools.dm" file)
 

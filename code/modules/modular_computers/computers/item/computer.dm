@@ -81,6 +81,8 @@
 			CH.holder = null
 			all_components.Remove(CH.device_type)
 			qdel(CH)
+	//Some components will actually try and interact with this, so let's do it later
+	QDEL_NULL(soundloop)
 	physical = null
 	return ..()
 
