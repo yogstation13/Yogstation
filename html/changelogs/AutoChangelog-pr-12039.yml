@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "syndicate mindslave stand arrow now actually mindslaves, use it in hand to link it to yourself then stab people to mindslave them"
