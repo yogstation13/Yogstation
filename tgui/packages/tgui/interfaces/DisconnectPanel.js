@@ -54,8 +54,8 @@ export const DisconnectPanel = (props, context) => {
                     <Section
                       key={user.ckey}
                       color={datapoint.living ? 'yellow' : 'green'}>
-                      {sec2time(datapoint.disconnect)}-{sec2time(datapoint.connect)}
-                      ({sec2time(datapoint.connect - datapoint.disconnect)})
+                      {sec2time(datapoint.disconnect/10)}-{sec2time(datapoint.connect/10)}
+                      ({sec2time(((datapoint.connect || data.world_time) - datapoint.disconnect)/10)})
                       As {datapoint.job} ({datapoint.type})
                     </Section>
                   ))}

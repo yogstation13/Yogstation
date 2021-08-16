@@ -86,28 +86,12 @@ GLOBAL_LIST_EMPTY(connection_logs)
 	var/ckey = params["ckey"]
 	switch(action)
 		if("follow")
-			var/client/C = GLOB.directory[ckey]
-			var/atom/movable/AM
-			if(C)
-				AM = C.mob
-			else
-				for(var/mob/M in GLOB.mob_list)
-					if(M.ckey == ckey)
-						AM = M
-						return
-			if(!AM)
+			var/mob/M = ckey2mob(ckey)
+			if(!M)
 				return
-			usr.client.holder.observe_follow(AM)
+			usr.client.holder.observe_follow(M)
 		if("player-panel")
-			var/client/C = GLOB.directory[ckey]
-			var/mob/M
-			if(C)
-				M = C.mob
-			else
-				for(var/mob/MI in GLOB.mob_list)
-					if(MI.ckey == ckey)
-						M = MI
-						return
+			var/mob/M = ckey2mob(ckey)
 			if(!M)
 				return
 			usr.client.holder.show_player_panel(M)
@@ -118,18 +102,24 @@ GLOBAL_LIST_EMPTY(connection_logs)
 				return
 			browse_messages(target_ckey = ckey, agegate = TRUE)
 		if("cryo")
-			var/client/C = GLOB.directory[ckey]
-			var/mob/M
-			if(C)
-				M = C.mob
-			else
-				for(var/mob/MI in GLOB.mob_list)
-					if(MI.ckey == ckey)
-						M = MI
-						return
+			var/mob/M = ckey2mob(ckey)
 			if(!M)
 				return
 			usr.client.admincryo(M)
+
+/datum/disconnect_panel/proc/ckey2mob(ckey)
+	message_admins("Getting mob from ckey [ckey]")
+	var/client/C = GLOB.directory[ckey]
+	message_admins("Client is [C]")
+	if(C)
+		message_admins("Found mob [C.mob] from client")
+		return C.mob
+	message_admins("Searching mob_list")
+	for(var/mob/M in GLOB.mob_list)
+		if(M.ckey == ckey)
+			message_admins("Mob [M] found")
+			return M
+	message_admins("Mob not found")
 
 /datum/disconnect_panel/proc/entry2ui(datum/connection_entry/entry)
 	. = list()
