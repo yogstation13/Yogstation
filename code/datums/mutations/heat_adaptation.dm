@@ -22,12 +22,12 @@
 		return
 	ADD_TRAIT(owner, TRAIT_RESISTHEAT, "heat_adaptation")
 	ADD_TRAIT(owner, TRAIT_RESISTHIGHPRESSURE, "heat_adaptation")
-	ADD_TRAIT(owner, TRAIT_NO_PASSIVE_COOLING, "heat_adaptation")
+	ADD_TRAIT(owner, TRAIT_NO_PASSIVE_HEATING, "heat_adaptation")
 
 /datum/mutation/human/heat_adaptation/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
 	REMOVE_TRAIT(owner, TRAIT_RESISTHEAT, "heat_adaptation")
 	REMOVE_TRAIT(owner, TRAIT_RESISTHIGHPRESSURE, "heat_adaptation")
-	REMOVE_TRAIT(owner, TRAIT_NO_PASSIVE_COOLING, "heat_adaptation")
+	REMOVE_TRAIT(owner, TRAIT_NO_PASSIVE_HEATING, "heat_adaptation")
 
