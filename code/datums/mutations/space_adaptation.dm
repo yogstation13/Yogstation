@@ -21,7 +21,6 @@
 		return
 	ADD_TRAIT(owner, TRAIT_RESISTCOLD, "space_adaptation")
 	ADD_TRAIT(owner, TRAIT_RESISTLOWPRESSURE, "space_adaptation")
-	ADD_TRAIT(owner, TRAIT_NO_PASSIVE_COOLING, "space_adaptation")
 	ADD_TRAIT(owner, TRAIT_NO_PASSIVE_HEATING, "space_adaptation")
 
 /datum/mutation/human/space_adaptation/on_losing(mob/living/carbon/human/owner)
@@ -29,6 +28,5 @@
 		return
 	REMOVE_TRAIT(owner, TRAIT_RESISTCOLD, "space_adaptation")
 	REMOVE_TRAIT(owner, TRAIT_RESISTLOWPRESSURE, "space_adaptation")
-	REMOVE_TRAIT(owner, TRAIT_NO_PASSIVE_COOLING, "space_adaptation")
 	REMOVE_TRAIT(owner, TRAIT_NO_PASSIVE_HEATING, "space_adaptation")
 

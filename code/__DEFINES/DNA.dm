@@ -8,6 +8,7 @@
 #define GENETICS_HULK	/datum/mutation/human/genetics_hulk
 #define XRAY		/datum/mutation/human/thermal/x_ray
 #define SPACEMUT	/datum/mutation/human/space_adaptation
+#define HEATMUT		/datum/mutation/human/heat_adaptation
 #define TK			/datum/mutation/human/telekinesis
 #define NERVOUS		/datum/mutation/human/nervousness
 #define EPILEPSY	/datum/mutation/human/epilepsy
