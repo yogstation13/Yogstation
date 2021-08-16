@@ -297,7 +297,8 @@ update_label("John Doe", "Clowny")
 	var/anyone = FALSE //Can anyone forge the ID or just syndicate?
 	var/forged = FALSE //have we set a custom name and job assignment, or will we use what we're given when we chameleon change?
 
-/obj/item/card/id/syndicate/deluxe
+/obj/item/card/id/syndicate/deluxe/Initialize()
+	. = ..()
 	access = get_all_accesses() + ACCESS_SYNDICATE
 
 /obj/item/card/id/syndicate/Initialize()
