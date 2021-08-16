@@ -150,10 +150,7 @@
 
 	//MMI stuff. Held togheter by magic. ~Miauw
 	else if(!mmi || !mmi.brainmob)
-		if(mind.role_alt_title != "Cyborg")
-			mmi = new /obj/item/mmi/posibrain
-		else
-			mmi = new (src)
+		mmi = new (src)
 		mmi.brain = new /obj/item/organ/brain(mmi)
 		mmi.brain.name = "[real_name]'s brain"
 		mmi.name = "[initial(mmi.name)]: [real_name]"
