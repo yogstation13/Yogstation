@@ -1,0 +1,4 @@
+author: "  alexkar598"
+delete-after: true 
+changes: 
+  - bugfix: "Pixel shifted computers no longer unshift themselves"
