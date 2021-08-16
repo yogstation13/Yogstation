@@ -60,7 +60,8 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Head of Security", "Security Commander", "Security Chief",
 	"Warden", "Security Overseer", "Brig Superintendent", "Security Lt. Commander",
 	"Detective", "Investigator", "Forensic Analyst", "Investigative Cadet", "Private Eye", "Inspector",
-	"Security Officer", "Security Guard", "Threat Response Officer", "Civilan Protection Officer", "Security Cadet", "Security Staff Sergeant",))
+	"Security Officer", "Security Guard", "Threat Response Officer", "Civilan Protection Officer", "Security Cadet", "Security Staff Sergeant",
+	))
 
 
 GLOBAL_LIST_INIT(nonhuman_positions, list(
