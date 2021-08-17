@@ -3272,6 +3272,7 @@
 #include "yogstation\code\modules\admin\admin_ranks.dm"
 #include "yogstation\code\modules\admin\admin_verbs.dm"
 #include "yogstation\code\modules\admin\holder2.dm"
+#include "yogstation\code\modules\admin\moja.dm"
 #include "yogstation\code\modules\admin\prettyfilter.dm"
 #include "yogstation\code\modules\admin\secrets.dm"
 #include "yogstation\code\modules\admin\sql_message_system.dm"

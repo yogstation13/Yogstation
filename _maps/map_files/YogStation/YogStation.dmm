@@ -35819,7 +35819,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/mixing/chamber)
 "eDw" = (
-/obj/structure/fireaxecabinet/spare{
+/obj/structure/fireaxecabinet/bridge/spare{
 	pixel_y = 32
 	},
 /turf/open/floor/carpet/blue,
@@ -40884,7 +40884,7 @@
 "igi" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/structure/fireaxecabinet{
+/obj/structure/fireaxecabinet/bridge{
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/caution/white{

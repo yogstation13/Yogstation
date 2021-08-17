@@ -35367,7 +35367,7 @@
 /turf/open/space,
 /area/aisat)
 "bqU" = (
-/obj/structure/fireaxecabinet{
+/obj/structure/fireaxecabinet/bridge{
 	pixel_y = -32
 	},
 /obj/item/paper_bin{
@@ -40084,9 +40084,7 @@
 /turf/open/space,
 /area/maintenance/disposal/incinerator)
 "bAY" = (
-/obj/structure/filingcabinet{
-	pixel_x = 3
-	},
+/obj/machinery/vending/wardrobe/sig_wardrobe,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "bAZ" = (
@@ -76487,7 +76485,7 @@
 /obj/machinery/recharger{
 	pixel_y = 4
 	},
-/obj/structure/fireaxecabinet/spare{
+/obj/structure/fireaxecabinet/bridge/spare{
 	pixel_x = 32
 	},
 /turf/open/floor/wood,

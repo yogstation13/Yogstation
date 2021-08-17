@@ -83607,7 +83607,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "jfR" = (
-/obj/structure/fireaxecabinet/spare{
+/obj/structure/fireaxecabinet/bridge/spare{
 	pixel_y = 32
 	},
 /turf/open/floor/wood,

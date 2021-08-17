@@ -54646,8 +54646,8 @@
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "bGZ" = (
-/obj/structure/fireaxecabinet{
-	pixel_y = -28
+/obj/structure/fireaxecabinet/bridge{
+	pixel_y = -32
 	},
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/tile/blue,
@@ -125962,7 +125962,7 @@
 /obj/item/storage/secure/safe{
 	pixel_x = 32
 	},
-/obj/structure/fireaxecabinet/spare{
+/obj/structure/fireaxecabinet/bridge/spare{
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/grimy,

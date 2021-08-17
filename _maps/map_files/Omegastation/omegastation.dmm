@@ -20344,7 +20344,7 @@
 	},
 /obj/structure/table/wood,
 /obj/item/phone/real,
-/obj/structure/fireaxecabinet/spare{
+/obj/structure/fireaxecabinet/bridge/spare{
 	pixel_x = 32
 	},
 /turf/open/floor/wood,
@@ -26549,7 +26549,7 @@
 /obj/structure/cable/white{
 	icon_state = "1-8"
 	},
-/obj/structure/fireaxecabinet{
+/obj/structure/fireaxecabinet/bridge{
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/tile/neutral{

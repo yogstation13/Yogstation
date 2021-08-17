@@ -9863,7 +9863,7 @@
 /obj/item/crowbar/red,
 /obj/item/flashlight,
 /obj/item/flashlight,
-/obj/structure/fireaxecabinet{
+/obj/structure/fireaxecabinet/bridge{
 	pixel_y = -30
 	},
 /obj/machinery/door/window/northright{
@@ -99098,7 +99098,7 @@
 	},
 /obj/structure/closet/secure_closet/captains,
 /obj/effect/turf_decal/bot,
-/obj/structure/fireaxecabinet/spare{
+/obj/structure/fireaxecabinet/bridge/spare{
 	pixel_x = 32
 	},
 /turf/open/floor/plasteel/dark,
