@@ -631,7 +631,7 @@ Difficulty: Very Hard
 	if(ready_to_deploy)
 		var/be_helper = alert("Become a Lightgeist? (Warning, You can no longer be cloned!)",,"Yes","No")
 		if(be_helper == "Yes" && !QDELETED(src) && isobserver(user))
-			var/mob/living/simple_animal/hostile/lightgeist/W = new /mob/living/simple_animal/hostile/lightgeist(get_turf(loc))
+			var/mob/living/simple_animal/hostile/lightgeist/healing/W = new /mob/living/simple_animal/hostile/lightgeist/healing(get_turf(loc))
 			W.key = user.key
 
 
@@ -641,7 +641,7 @@ Difficulty: Very Hard
 		if(istype(ghost))
 			attack_ghost(ghost)
 
-/mob/living/simple_animal/hostile/lightgeist
+/mob/living/simple_animal/hostile/lightgeist //base lightgeist, doesn't heal.
 	name = "lightgeist"
 	desc = "This small floating creature is a completely unknown form of life... being near it fills you with a sense of tranquility."
 	icon_state = "lightgeist"
@@ -655,7 +655,7 @@ Difficulty: Very Hard
 	maxHealth = 2
 	health = 2
 	harm_intent_damage = 1
-	friendly = "mends"
+	friendly = "brushes against"
 	density = FALSE
 	movement_type = FLYING
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB | PASSCOMPUTER
@@ -679,7 +679,23 @@ Difficulty: Very Hard
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	AIStatus = AI_OFF
 	stop_automated_movement = TRUE
+
+/mob/living/simple_animal/hostile/lightgeist/healing
 	var/heal_power = 5
+
+/mob/living/simple_animal/hostile/lightgeist/plantgeist
+	name = "plantgeist"
+	desc = "This small floating creature is a completely unknown form of life... being near it fills you with a sense of tranquility."
+	icon_state = "plantgeist"
+	icon_living = "plantgeist"
+	friendly = "shines on"
+	faction = list("plants")
+	initial_language_holder = /datum/language_holder/venus //they only understand sylvan (plant language)
+	maxHealth = 10 //tough enough to resist a punch or something small, since they cost a fair bit of favor.
+	health = 10
+	light_range = 6
+	ventcrawler = VENTCRAWLER_NONE //they dont really need to be ventcrawling
+	var/heal_power = 3
 
 /mob/living/simple_animal/hostile/lightgeist/Initialize()
 	. = ..()
@@ -688,7 +704,7 @@ Difficulty: Very Hard
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medsensor.add_hud_to(src)
 
-/mob/living/simple_animal/hostile/lightgeist/AttackingTarget()
+/mob/living/simple_animal/hostile/lightgeist/healing/AttackingTarget()
 	. = ..()
 	if(isliving(target) && target != src)
 		var/mob/living/L = target
@@ -696,12 +712,42 @@ Difficulty: Very Hard
 			L.heal_overall_damage(heal_power, heal_power)
 			new /obj/effect/temp_visual/heal(get_turf(target), "#80F5FF")
 
+/mob/living/simple_animal/hostile/lightgeist/plantgeist/AttackingTarget() //plantgeists can only heal plantlike stuff
+	. = ..()
+	if(isliving(target) && target != src)
+		var/mob/living/L = target
+		if(L.stat != DEAD)
+			if(("vines" in L.faction) || ("plants" in L.faction))
+				L.heal_overall_damage(heal_power, heal_power)
+				new /obj/effect/temp_visual/heal(get_turf(target), "#5bf563")
+
+/obj/effect/mob_spawn/plantgeist
+	name = "dormant plantgeist"
+	desc = "A strange plant creature. It seems to be peacefully sleeping and it's mere presence soothes your nerves."
+	icon = 'icons/mob/animal.dmi'
+	icon_state = "dormantplantgeist"
+	density = FALSE
+	anchored = FALSE
+
+	mob_type = /mob/living/simple_animal/hostile/lightgeist/plantgeist
+	mob_name = "plantgeist"
+	death = FALSE
+	roundstart = FALSE
+	short_desc = "You are a plantgeist, a peaceful creature summoned by a plant god"
+	flavour_text = "<b>Try to prevent plant creatures from dying, and listen to your summoner otherwise. You can also click a plantlike creature to heal them.</b>"
+
+/obj/effect/mob_spawn/plantgeist/Initialize()
+	. = ..()
+	var/area/A = get_area(src)
+	if(A)
+		notify_ghosts("A plantgeist has been summoned in [A.name].", 'sound/effects/shovel_dig.ogg', source = src, action = NOTIFY_ATTACKORBIT, flashwindow = FALSE)
+
 /mob/living/simple_animal/hostile/lightgeist/ghostize()
 	. = ..()
 	if(.)
 		death()
 
-/mob/living/simple_animal/hostile/lightgeist/slime
+/mob/living/simple_animal/hostile/lightgeist/healing/slime
 	name = "crystalline lightgeist"
 
 /obj/machinery/anomalous_crystal/refresher //Deletes and recreates a copy of the item, "refreshing" it.

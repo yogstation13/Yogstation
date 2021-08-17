@@ -274,7 +274,7 @@
 	alignment = ALIGNMENT_NEUT
 	max_favor = 10000
 	desired_items = list(/obj/item/reagent_containers/food/snacks/grown)
-	rites_list = list(/datum/religion_rites/plantconversion)
+	rites_list = list(/datum/religion_rites/plantconversion, /datum/religion_rites/plantgeist)
 	altar_icon_state = "convertaltar-green"
 
 //plant sect bibles don't heal or do anything special apart from the standard holy water blessings

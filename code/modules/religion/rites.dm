@@ -366,3 +366,15 @@
 	human2plant.set_species(/datum/species/golem/wood/holy)
 	human2plant.visible_message("<span class='notice'>[human2plant] has been converted by the rite of [name]!</span>")
 	return TRUE
+
+/datum/religion_rites/plantgeist
+	name = "Summon Plantgeist"
+	desc = "Summons forth a holy plantgeist that can heal fellow plant like creatures. Note, it will be dormant till a ghost inhabits it, and it only understands Sylvan."
+	ritual_length = 15 SECONDS
+	invoke_msg = "please, great kudzu, give us an angel to watch over us."
+	favor_cost = 150
+
+/datum/religion_rites/plantgeist/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	new /obj/effect/mob_spawn/plantgeist(altar_turf)
+	return TRUE
