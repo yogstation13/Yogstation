@@ -108,18 +108,12 @@ GLOBAL_LIST_EMPTY(connection_logs)
 			usr.client.admincryo(M)
 
 /datum/disconnect_panel/proc/ckey2mob(ckey)
-	message_admins("Getting mob from ckey [ckey]")
 	var/client/C = GLOB.directory[ckey]
-	message_admins("Client is [C]")
 	if(C)
-		message_admins("Found mob [C.mob] from client")
 		return C.mob
-	message_admins("Searching mob_list")
 	for(var/mob/M in GLOB.mob_list)
 		if(M.ckey == ckey)
-			message_admins("Mob [M] found")
 			return M
-	message_admins("Mob not found")
 
 /datum/disconnect_panel/proc/entry2ui(datum/connection_entry/entry)
 	. = list()
