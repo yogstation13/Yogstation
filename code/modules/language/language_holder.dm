@@ -341,6 +341,11 @@ Key procs
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 								/datum/language/polysmorph = list(LANGUAGE_ATOM))
 
+/datum/language_holder/mothmen
+	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+								/datum/language/mothian = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+								/datum/language/mothian = list(LANGUAGE_ATOM))
 
 /datum/language_holder/clockwork
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
