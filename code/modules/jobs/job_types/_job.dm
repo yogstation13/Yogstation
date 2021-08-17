@@ -285,7 +285,6 @@
 			PDA.ownjob = H.mind.role_alt_title
 		else
 			PDA.ownjob = J.title
-		PDA.ownjob = J.title
 		PDA.update_label()
 
 /datum/outfit/job/get_chameleon_disguise_info()
