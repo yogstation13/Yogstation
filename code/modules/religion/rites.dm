@@ -369,7 +369,7 @@
 
 /datum/religion_rites/plantgeist
 	name = "Summon Plantgeist"
-	desc = "Summons forth a holy plantgeist that can heal fellow plant like creatures. Note, it will be dormant till a ghost inhabits it, and it only understands Sylvan."
+	desc = "Summons forth a holy plantgeist that can heal fellow plant-like creatures. Note, it will be dormant till a ghost inhabits it, and it only understands Sylvan."
 	ritual_length = 15 SECONDS
 	invoke_msg = "please, great kudzu, give us an angel to watch over us."
 	favor_cost = 150

@@ -723,7 +723,7 @@ Difficulty: Very Hard
 
 /obj/effect/mob_spawn/plantgeist
 	name = "dormant plantgeist"
-	desc = "A strange plant creature. It seems to be peacefully sleeping and it's mere presence soothes your nerves."
+	desc = "A strange plant creature. It seems to be peacefully sleeping, and its mere presence soothes your nerves."
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "dormantplantgeist"
 	density = FALSE
@@ -734,7 +734,7 @@ Difficulty: Very Hard
 	death = FALSE
 	roundstart = FALSE
 	short_desc = "You are a plantgeist, a peaceful creature summoned by a plant god"
-	flavour_text = "<b>Try to prevent plant creatures from dying, and listen to your summoner otherwise. You can also click a plantlike creature to heal them.</b>"
+	flavour_text = "<b>Try to prevent plant creatures from dying and listen to your summoner otherwise. You can also click a plantlike creature to heal them.</b>"
 
 /obj/effect/mob_spawn/plantgeist/Initialize()
 	. = ..()
