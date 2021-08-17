@@ -8,6 +8,15 @@ INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (5, 4);
 
 In any query remember to add a prefix to the table names if you use one.
 
+version 5.6 14 August 2021, by alexkar598
+
+Adds index on connection_log
+
+create index idx_review
+	on connection_log (ckey, computerid, ip);
+
+----------------------------------------------------
+
 version 5.4 18 May 2020, by TheGamer01
 
 Adds table for antag tokens

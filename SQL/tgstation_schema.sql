@@ -118,6 +118,7 @@ CREATE TABLE IF NOT EXISTS `connection_log` (
   `ip` int(10) unsigned NOT NULL,
   `computerid` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
+  KEY `idx_review` (`ckey`, `computerid`, `ip`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4192042 DEFAULT CHARSET=utf8;
 
 
