@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(alt_command_positions, list(
 GLOBAL_LIST_INIT(alt_engineering_positions, list(
 	"Head of Engineering", "Engineering Director",
 	"Engine Technician", "Solar Engineer", "Project Engineer", "Junior Engineer", "Construction Specialist",
-	"Habitation Technician", "Fire Supression Technician", "Atmospherics Trainee", "Environmental Maintainer",
+	"Habitation Technician", "Fire Suppression Technician", "Atmospherics Trainee", "Environmental Maintainer",
 	"NTSL Programmer", "Comms Tech", "Station IT Support"
 	))
 
@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(alt_civilian_positions, list(
 
 GLOBAL_LIST_INIT(alt_security_positions, list(
 	"Security Commander", "Security Chief",
-	"Security Overseer", "Brig Superintendent", "Security Lt. Commander", "Security Dispatcher", "Prison Supervisor",
+	"Brig Watchman", "Brig Superintendent", "Security Lt. Commander", "Security Dispatcher", "Prison Supervisor",
 	"Investigator", "Forensic Analyst", "Investigative Cadet", "Private Eye", "Inspector",
 	"Security Guard", "Threat Response Officer", "Civilan Protection Officer", "Security Cadet", "Security Staff Sergeant",
 	))
