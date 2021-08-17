@@ -1,6 +1,6 @@
 /datum/language/bonespeak
 	name = "Bonespeak"
-	desc = "The rhythmic rattling Plasma People use to communicate"
+	desc = "The rhythmic rattling Plasma People use to communicate."
 	speech_verb = "rattles"
 	ask_verb = "clicks"
 	exclaim_verb = "clatters"
