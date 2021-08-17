@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(connection_logs)
 
 /client/proc/disconnect_panel()
 	set name = "Disconnect Panel"
-	set desc = "Panel showing information about the currently disconneted players"
+	set desc = "Panel showing information about the currently disconnected players"
 	set category = "Admin"
 	if(!check_rights(R_ADMIN))
 		return
