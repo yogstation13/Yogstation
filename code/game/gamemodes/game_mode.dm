@@ -75,6 +75,7 @@
 			unreadiedPlayers++
 	if(!GLOB.Debug2)
 		var/adjustedPlayerCount = round(playerC + (unreadiedPlayers * UNREADIED_PLAYER_MULTIPLIER), 1)
+		log_game("Round can_start() with [adjustedPlayerCount] adjusted count, versus [playerC] regular player count. Requirement: [required_players] Gamemode: [name]")
 		if(adjustedPlayerCount < required_players || (maximum_players >= 0 && playerC > maximum_players))
 			return FALSE
 	antag_candidates = get_players_for_role(antag_flag)
