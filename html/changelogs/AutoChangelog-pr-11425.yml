@@ -1,6 +1,0 @@
-author: "  Lovebird"
-delete-after: true 
-changes: 
-  - rscadd: "Shiny new miningbase"
-  - rscdel: "Removed the old miningbase"
-  - imageadd: "Added a few area icons for mapping"
