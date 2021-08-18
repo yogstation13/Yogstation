@@ -683,8 +683,8 @@ Difficulty: Very Hard
 /mob/living/simple_animal/hostile/lightgeist/healing
 	var/heal_power = 5
 
-/mob/living/simple_animal/hostile/lightgeist/plantgeist
-	name = "plantgeist"
+/mob/living/simple_animal/hostile/lightgeist/plantgeist //plantgeist/photogeist pretty interchangable. Also, I am lazy.
+	name = "photogeist"
 	desc = "This small floating creature is a completely unknown form of life... being near it fills you with a sense of tranquility."
 	icon_state = "plantgeist"
 	icon_living = "plantgeist"
@@ -722,7 +722,7 @@ Difficulty: Very Hard
 				new /obj/effect/temp_visual/heal(get_turf(target), "#5bf563")
 
 /obj/effect/mob_spawn/plantgeist
-	name = "dormant plantgeist"
+	name = "dormant photogeist"
 	desc = "A strange plant creature. It seems to be peacefully sleeping, and its mere presence soothes your nerves."
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "dormantplantgeist"
@@ -730,7 +730,7 @@ Difficulty: Very Hard
 	anchored = FALSE
 
 	mob_type = /mob/living/simple_animal/hostile/lightgeist/plantgeist
-	mob_name = "plantgeist"
+	mob_name = "photogeist"
 	death = FALSE
 	roundstart = FALSE
 	short_desc = "You are a plantgeist, a peaceful creature summoned by a plant god"
