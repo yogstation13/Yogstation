@@ -8,7 +8,7 @@
 	user.visible_message("[user] begins to cut off dead flesh around the wound upon [target]'s [parse_zone(target_zone)].", "<span class='notice'>You begin cutting away the dead and damaged tissue on [target]'s [parse_zone(target_zone)], creating a cleaner wound bed...</span>")
 
 /datum/surgery_step/debride/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	target.apply_damage(15, "brute", "[target_zone]")
+	target.apply_damage(15, "brute", "[target_zone]", wound_bonus = CANT_WOUND)
 
 
 	user.visible_message("[user] scrapes [tool] across [target]'s wounds with surgical precision, cleaning the area.", "<span class='notice'>You scrape away the detritus and scarred flesh from [target]'s [parse_zone(target_zone)]. The wound is now fully debrided and ready for dressing.</span>")
