@@ -32,6 +32,7 @@
 	mutanteyes = /obj/item/organ/eyes/night_vision/zombie
 	var/heal_rate = 1
 	var/regen_cooldown = 0
+	var/was_pacifist = FALSE // if TRUE, we'll become pacifist again once we lose the species
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
 
 /datum/species/zombie/infectious/check_roundstart_eligible()
@@ -52,7 +53,14 @@
 
 	//Zombies never actually die, they just fall down until they regenerate enough to rise back up.
 	//They must be restrained, beheaded or gibbed to stop being a threat.
-	if(regen_cooldown < world.time)
+	if(regen_cooldown < world.time)	if(C.has_trait_datum(/datum/trait/nonviolent))
+		was_pacifist = TRUE
+		C.remove_trait_datum(/datum/trait/nonviolent) //we are zombies and thus have no high function to contemplate the morality of cannibalizing living, screaming people
+
+/datum/species/zombie/infectious/on_species_loss(mob/living/carbon/C)
+	. = ..()
+	if(was_pacifist)
+		C.add_trait_datum(/datum/trait/nonviolent)
 		var/heal_amt = heal_rate
 		if(C.InCritical())
 			heal_amt *= 2
@@ -80,7 +88,14 @@
 	if(!infection)
 		infection = new()
 		infection.Insert(C)
+	if(C.has_trait_datum(/datum/trait/nonviolent))
+		was_pacifist = TRUE
+		C.remove_trait_datum(/datum/trait/nonviolent) //we are zombies and thus have no high function to contemplate the morality of cannibalizing living, screaming people
 
+/datum/species/zombie/infectious/on_species_loss(mob/living/carbon/C)
+	. = ..()
+	if(was_pacifist)
+		C.add_trait_datum(/datum/trait/nonviolent)
 
 // Your skin falls off
 /datum/species/krokodil_addict
