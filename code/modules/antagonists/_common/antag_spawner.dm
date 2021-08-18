@@ -21,6 +21,9 @@
 	icon_state ="scroll2"
 
 /obj/item/antag_spawner/contract/attack_self(mob/user)
+	if(!user.mind.has_antag_datum(/datum/antagonist/wizard))
+		to_chat(user, "<span class='warning'>You do not understand the words on this paper.</span>")
+		return
 	user.set_machine(src)
 	var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 	if(used)
