@@ -219,3 +219,5 @@
 
 	/// A mock client, provided by tests and friends
 	var/datum/client_interface/mock_client
+
+	var/create_area_cooldown
