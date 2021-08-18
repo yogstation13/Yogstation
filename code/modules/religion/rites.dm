@@ -364,7 +364,7 @@
 	name = "Meat Blessing"
 	desc = "Bless a piece of meat. Preps it for sacrifice"
 	ritual_length = 2 SECONDS
-	invoke_msg = "old ones, I bless this flesh in your name."
+	//no invoke message, this does a custom one down below in invoke_effect
 	///the piece of meat that will be blessed, only one per rite
 	var/obj/item/reagent_containers/food/snacks/meat/slab/chosen_meat
 
@@ -383,6 +383,8 @@
 		qdel(chosen_meat)
 		chosen_meat = null //our lord and savior no longer cares about this meat
 		new /obj/item/reagent_containers/food/snacks/meat/slab/blessed(altar_turf)
+		var/mb_message = pick("old ones, I bless this meat for you!", "old ones, I bless this flesh in your name", "old ones, I empower this flesh in your name.")
+		user.say(mb_message, forced = "ritual") //chooses one of three invoke messages to say in order to avoid auto mute and add variety.
 		return TRUE
 	chosen_meat = null
 	to_chat(user, "<span class='warning'>The meat that was chosen for the rite is no longer on the altar!</span>")

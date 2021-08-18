@@ -303,7 +303,7 @@
 	alignment = ALIGNMENT_EVIL //kind of evil?
 	max_favor = 3000
 	desired_items = list(/obj/item/reagent_containers/food/snacks/meat/slab/blessed)
-	rites_list = list(/datum/religion_rites/ruinousknife, /datum/religion_rites/meatbless, /datum/religion_rites/ruinousmetal, /datum/religion_rites/bodybless)
+	rites_list = list(/datum/religion_rites/meatbless, /datum/religion_rites/ruinousknife, /datum/religion_rites/ruinousmetal, /datum/religion_rites/bodybless)
 	altar_icon_state = "convertaltar-black"
 
 //old ones sect bibles don't heal or do anything special apart from the standard holy water blessings
