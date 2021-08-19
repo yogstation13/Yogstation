@@ -405,6 +405,8 @@
 	if(!I)
 		return
 	var/jobName = I.assignment
+	if(I.originalassignment)
+		jobName = I.originalassignment
 	if(jobName in get_all_job_icons()) //Check if the job has a hud icon
 		return jobName
 	if(jobName in get_all_centcom_jobs()) //Return with the NT logo if it is a CentCom job

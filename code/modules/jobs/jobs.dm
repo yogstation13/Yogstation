@@ -70,6 +70,15 @@ GLOBAL_LIST_INIT(nonhuman_positions, list(
 	"Cyborg", "Android", "Robot",
 	ROLE_PAI))
 
+GLOBAL_LIST_INIT(command_positions, original_command_positions | alt_command_positions)
+GLOBAL_LIST_INIT(engineering_positions, original_engineering_positions | alt_engineering_positions)
+GLOBAL_LIST_INIT(medical_positions, original_medical_positions | alt_medical_positions)
+GLOBAL_LIST_INIT(science_positions, original_science_positions | alt_science_positions)
+GLOBAL_LIST_INIT(supply_positions, original_supply_positions | alt_supply_positions)
+GLOBAL_LIST_INIT(security_positions, original_security_positions | alt_security_positions)
+GLOBAL_LIST_INIT(nonhuman_positions, original_nonhuman_positions | alt_nonhuman_positions)
+GLOBAL_LIST_INIT(civilian_positions, original_civilian_positions | alt_civilian_positions)
+
 GLOBAL_LIST_INIT(exp_jobsmap, list(
 	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | civilian_positions | nonhuman_positions), // crew positions
 	EXP_TYPE_COMMAND = list("titles" = command_positions),
