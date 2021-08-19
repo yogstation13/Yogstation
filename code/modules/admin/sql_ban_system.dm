@@ -218,7 +218,7 @@
 		output += "<div class='row'><div class='column'><label class='rolegroup command'><input type='checkbox' name='Command' class='hidden' [usr.client.prefs.tgui_fancy ? " onClick='toggle_checkboxes(this, \"_dep\")'" : ""]>Command</label><div class='content'>"
 		//all heads are listed twice so have a javascript call to toggle both their checkboxes when one is pressed
 		//for simplicity this also includes the captain even though it doesn't do anything
-		for(var/job in GLOB.original_command_positions)
+		for(var/job in GLOB.command_positions)
 			if(break_counter > 0 && (break_counter % 3 == 0))
 				output += "<br>"
 			output += {"<label class='inputlabel checkbox'>[job]
@@ -228,11 +228,11 @@
 			break_counter++
 		output += "</div></div>"
 		//standard departments all have identical handling
-		var/list/job_lists = list("Security" = GLOB.original_security_positions,
-							"Engineering" = GLOB.original_engineering_positions,
-							"Medical" = GLOB.original_medical_positions,
-							"Science" = GLOB.original_science_positions,
-							"Supply" = GLOB.original_supply_positions)
+		var/list/job_lists = list("Security" = GLOB.security_positions,
+							"Engineering" = GLOB.engineering_positions,
+							"Medical" = GLOB.medical_positions,
+							"Science" = GLOB.science_positions,
+							"Supply" = GLOB.supply_positions)
 		for(var/department in job_lists)
 			//the first element is the department head so they need the same javascript call as above
 			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [usr.client.prefs.tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
@@ -251,7 +251,7 @@
 				break_counter++
 			output += "</div></div>"
 		//departments/groups that don't have command staff would throw a javascript error since there's no corresponding reference for toggle_head()
-		var/list/headless_job_lists = list("Silicon" = GLOB.original_nonhuman_positions,
+		var/list/headless_job_lists = list("Silicon" = GLOB.nonhuman_positions,
 										"Abstract" = list("Appearance", "Emote", "OOC", "Voice Announcements"))
 		for(var/department in headless_job_lists)
 			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [usr.client.prefs.tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
@@ -265,7 +265,7 @@
 				"}
 				break_counter++
 			output += "</div></div>"
-		var/list/long_job_lists = list("Civilian" = GLOB.original_civilian_positions,
+		var/list/long_job_lists = list("Civilian" = GLOB.civilian_positions,
 									"Ghost and Other Roles" = list(ROLE_BRAINWASHED, ROLE_DEATHSQUAD, ROLE_DRONE, ROLE_FUGITIVE, ROLE_HOLOPARASITE, ROLE_LAVALAND, ROLE_MIND_TRANSFER, ROLE_POSIBRAIN, ROLE_SENTIENCE),
 									"Antagonist Positions" = list(ROLE_ABDUCTOR, ROLE_ALIEN, ROLE_BLOB,
 									ROLE_BROTHER, ROLE_CHANGELING, ROLE_CULTIST,

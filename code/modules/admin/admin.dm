@@ -903,23 +903,6 @@
 	set name = "Create or modify area"
 	create_area(usr)
 
-/datum/admins/proc/observe_follow(atom/movable/AM)
-	if(!isobserver(owner.mob) && !check_rights(R_ADMIN))
-		return
-	var/can_ghost = TRUE
-	if(!isobserver(owner.mob))
-		can_ghost = owner.admin_ghost()
-
-	if(!can_ghost)
-		return
-	var/mob/dead/observer/A = owner.mob
-	var/mob/living/silicon/ai/I = AM //yogs start - adminfollow now follows AI eyes instead of the core
-	if(istype(I) && I.eyeobj)
-		A.ManualFollow(I.eyeobj)
-	else
-		A.ManualFollow(AM) //yogs stop - adminfollow now follows AI eyes instead of the core
-
-
 //
 //
 //ALL DONE

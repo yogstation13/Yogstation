@@ -1242,8 +1242,24 @@
 		show_player_panel(M)
 
 	else if(href_list["adminplayerobservefollow"])
+		if(!isobserver(usr) && !check_rights(R_ADMIN))
+			return
+
 		var/atom/movable/AM = locate(href_list["adminplayerobservefollow"])
-		observe_follow(AM)
+
+		var/client/C = usr.client
+		var/can_ghost = TRUE
+		if(!isobserver(usr))
+			can_ghost = C.admin_ghost()
+
+		if(!can_ghost)
+			return
+		var/mob/dead/observer/A = C.mob
+		var/mob/living/silicon/ai/I = AM //yogs start - adminfollow now follows AI eyes instead of the core
+		if(istype(I) && I.eyeobj)
+			A.ManualFollow(I.eyeobj)
+		else
+			A.ManualFollow(AM) //yogs stop - adminfollow now follows AI eyes instead of the core
 
 	else if(href_list["admingetmovable"])
 		if(!check_rights(R_ADMIN))

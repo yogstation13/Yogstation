@@ -7,7 +7,7 @@
 	ID_fluff()
 
 /obj/item/card/id/proc/ID_fluff()
-	var/job = originalassignment
+	var/job = assignment
 	var/list/idfluff = list(
 	"Assistant" = list("civillian","green"),
 	"Captain" = list("captain","gold"),

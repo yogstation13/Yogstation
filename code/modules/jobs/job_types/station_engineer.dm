@@ -10,7 +10,6 @@
 	selection_color = "#fff5cc"
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
-	alt_titles = list("Engine Technician", "Solar Engineer", "Project Engineer", "Junior Engineer", "Construction Specialist")
 
 	outfit = /datum/outfit/job/engineer
 

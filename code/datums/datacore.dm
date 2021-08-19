@@ -133,16 +133,8 @@
 
 /datum/datacore/proc/manifest_modify(name, assignment)
 	var/datum/data/record/foundrecord = find_record("name", name, GLOB.data_core.general)
-	var/real_title = assignment
-	for(var/datum/job/J in SSjob.occupations)
-		var/list/alttitles = get_alternate_titles(J.title)
-		if(!J)	continue
-		if(assignment in alttitles)
-			real_title = J.title
-			break
 	if(foundrecord)
 		foundrecord.fields["rank"] = assignment
-		foundrecord.fields["real_rank"] = real_title
 
 /datum/datacore/proc/get_manifest()
 	var/list/manifest_out = list()
@@ -291,9 +283,7 @@
 	var/static/list/show_directions = list(SOUTH, WEST)
 	if(H.mind && (H.mind.assigned_role != H.mind.special_role))
 		var/assignment
-		if(H.mind.role_alt_title)
-			assignment = H.mind.role_alt_title
-		else if(H.mind.assigned_role)
+		if(H.mind.assigned_role)
 			assignment = H.mind.assigned_role
 		else if(H.job)
 			assignment = H.job

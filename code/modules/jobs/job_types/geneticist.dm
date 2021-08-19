@@ -10,7 +10,6 @@
 	selection_color = "#d4ebf2"
 	exp_type = EXP_TYPE_CREW
 	exp_requirements = 60
-	alt_titles = list("DNA Mechanic", "Bioengineer", "Junior Geneticist", "Gene Splicer")
 
 	outfit = /datum/outfit/job/geneticist
 

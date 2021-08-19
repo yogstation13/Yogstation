@@ -117,7 +117,6 @@
 	var/list/access = list()
 	var/registered_name = null // The name registered_name on the card
 	var/assignment = null
-	var/originalassignment = null
 	var/access_txt // mapping aid
 	var/datum/bank_account/registered_account
 	var/obj/machinery/paystand/my_store

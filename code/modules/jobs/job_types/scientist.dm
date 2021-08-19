@@ -10,7 +10,7 @@
 	selection_color = "#ffeeff"
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
-	alt_titles = list("Researcher", "Toxins Specialist", "Physicist", "Science Intern", "Anomalist", "Quantum Physicist", "Xenobiologist", "Bomb Specialist")
+
 
 	outfit = /datum/outfit/job/scientist
 

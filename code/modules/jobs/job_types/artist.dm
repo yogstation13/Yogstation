@@ -10,7 +10,7 @@
 	selection_color = "#dddddd"
 
 	outfit = /datum/outfit/job/artist
-	alt_titles = list("Painter", "Composer", "Artisan")
+
 	access = list()
 	minimal_access = list()
 	paycheck = PAYCHECK_ASSISTANT
