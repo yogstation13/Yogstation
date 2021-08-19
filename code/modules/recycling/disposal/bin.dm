@@ -342,7 +342,7 @@
 		if(prob(75))
 			AM.forceMove(src)
 			if(ismob(AM))
-				flush = TRUE
+				doflush()
 				visible_message("<span class='notice'>[AM] lands in [src] and triggers the flush system!.</span>")
 			else
 				visible_message("<span class='notice'>[AM] lands in [src].</span>")
