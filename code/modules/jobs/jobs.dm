@@ -1,85 +1,91 @@
 GLOBAL_LIST_INIT(command_positions, list(
-	"Captain", "Station Commander", "Facility Overseer",
-	"Head of Personnel", "Chief of Staff", "Head of Internal Affairs",
-	"Head of Security", "Security Commander", "Security Chief",
-	"Chief Engineer", "Head of Engineering", "Engineering Director",
-	"Research Director", "Chief Science Officer", "Head of Research",
-	"Chief Medical Officer", "Medical Director", "Head of Medical"))
+	"Captain",
+	"Head of Personnel",
+	"Head of Security",
+	"Chief Engineer",
+	"Research Director",
+	"Chief Medical Officer"))
 
 
 GLOBAL_LIST_INIT(engineering_positions, list(
-	"Chief Engineer", "Head of Engineering", "Engineering Director",
-	"Station Engineer", "Engine Technician", "Solar Engineer", "Project Engineer", "Junior Engineer", "Construction Specialist",
-	"Atmospheric Technician", "Breach Fixer", "Habitation Technician", "Fire Supression Technician", "Atmospherics Trainee", "Environmental Maintainer",
-	"Signal Technician", "NTSL Programmer", "Comms Tech", "Station IT Support"
-	))
+	"Chief Engineer",
+	"Station Engineer",
+	// yogs start - Yog jobs
+	"Atmospheric Technician",
+	"Signal Technician"))
+	// yogs end
 
 
 GLOBAL_LIST_INIT(medical_positions, list(
-	"Chief Medical Officer", "Medical Director", "Head of Medical",
-	"Medical Doctor", "Physician", "Surgeon", "Nurse", "Medical Resident", "Attending Physician", "Chief Surgeon", "Attending Physician", "Chief Surgeon", "Medical Subdirector", "General Practitioner",
-	"Geneticist", "DNA Mechanic", "Bioengineer", "Junior Geneticist", "Gene Splicer",
-	"Virologist", "Microbiologist", "Pathologist", "Junior Disease Researcher", "Epidemiologist",
-	"Chemist", "Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist",
-	"Paramedic", "EMT", "Paramedic Trainee", "Rapid Response Medic",
-	"Psychiatrist", "Councilor", "Therapist", "Mentalist",
-	"Mining Medic", "Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer"))
+	"Chief Medical Officer",
+	"Medical Doctor",
+	"Geneticist",
+	"Virologist",
+	// yogs start - Yog jobs
+	"Chemist",
+	"Paramedic",
+	"Psychiatrist",
+	"Mining Medic"))
+	// yogs end
 
 
 GLOBAL_LIST_INIT(science_positions, list(
-	"Research Director", "Chief Science Officer", "Head of Research",
-	"Scientist", "Researcher", "Toxins Specialist", "Physicist", "Science Intern", "Anomalist", "Quantum Physicist", "Xenobiologist", "Bomb Specialist",
-	"Roboticist", "Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer"))
+	"Research Director",
+	"Scientist",
+	"Roboticist"))
 
 
 GLOBAL_LIST_INIT(supply_positions, list(
-	"Head of Personnel", "Chief of Staff", "Head of Internal Affairs",
-	"Quartermaster", "Stock Controller", "Cargo Coordinator", "Shipping Overseer",
-	"Cargo Technician", "Deliveryperson", "Mail Service", "Exports Handler", "Cargo Trainee", "Crate Pusher",
-	"Shaft Miner", "Lavaland Scout", "Prospector", "Junior Miner", "Major Miner"))
+	"Head of Personnel",
+	"Quartermaster",
+	"Cargo Technician",
+	"Shaft Miner"))
 
 
 GLOBAL_LIST_INIT(civilian_positions, list(
-	"Bartender", "Barkeep", "Tapster", "Barista", "Mixologist",
-	"Botanist", "Ecologist", "Agriculturist", "Botany Greenhorn", "Hydroponicist",
-	"Cook", "Chef", "Hash Slinger", "Sous-chef", "Culinary Artist",
-	"Janitor", "Custodian", "Sanitation Worker", "Cleaner", "Caretaker",
-	"Curator", "Librarian", "Journalist", "Archivist",
-	"Lawyer", "Prosecutor", "Defense Attorney", "Paralegal", "Ace Attorney",
-	"Chaplain", "Priest", "Preacher", "Cleric",
-	"Clown", "Entertainer", "Comedian", "Jester",
-	"Mime", "Mute Entertainer", "Silent Jokester", "Pantomimist",
-	"Assistant", "Intern", "Apprentice", "Subordinate", "Temporary Worker", "Colleague", "Associate",
-	"Clerk", "Salesman", "Gift Shop Attendent", "Retail Worker",
-	"Tourist", "Visitor", "Traveler", "Siteseer",
-	"Artist", "Composer", "Artisan"
-	))
+	"Bartender",
+	"Botanist",
+	"Cook",
+	"Janitor",
+	"Curator",
+	"Lawyer",
+	"Chaplain",
+	"Clown",
+	"Mime",
+	// yogs start - Yog jobs
+	"Assistant",
+	"Clerk",
+	"Tourist",
+	"Artist"))
+	// yogs end
 
 
 GLOBAL_LIST_INIT(security_positions, list(
-	"Head of Security", "Security Commander", "Security Chief",
-	"Warden", "Security Overseer", "Brig Superintendent", "Security Lt. Commander",
-	"Detective", "Investigator", "Forensic Analyst", "Investigative Cadet", "Private Eye", "Inspector",
-	"Security Officer", "Security Guard", "Threat Response Officer", "Civilan Protection Officer", "Security Cadet", "Security Staff Sergeant",
-	"Brig Physician", "Security Medic", "Security Medical Support", "Penitentiary Medical Care Unit", "Junior Brig Physician", "Detention Center Health Officer"
+	"Head of Security",
+	"Warden",
+	"Detective",
+	"Security Officer",
+	//Yogs Start: Yog jobs
+	"Brig Physician"//Break in case of merge of #11973//, "Security Medic", "Security Medical Support", "Penitentiary Medical Care Unit", "Junior Brig Physician", "Detention Center Health Officer"
 	))
+	//Yogs End
 
 
 GLOBAL_LIST_INIT(nonhuman_positions, list(
-	"AI", "Station Central Processor", "Central Silicon Intelligence", "Cyborg Overlord",
-	"Cyborg", "Android", "Robot",
+	"AI",
+	"Cyborg",
 	ROLE_PAI))
 
 GLOBAL_LIST_INIT(exp_jobsmap, list(
-	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | civilian_positions | nonhuman_positions), // crew positions
+	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | civilian_positions | list("AI","Cyborg")), // crew positions
 	EXP_TYPE_COMMAND = list("titles" = command_positions),
 	EXP_TYPE_ENGINEERING = list("titles" = engineering_positions),
 	EXP_TYPE_MEDICAL = list("titles" = medical_positions),
 	EXP_TYPE_SCIENCE = list("titles" = science_positions),
 	EXP_TYPE_SUPPLY = list("titles" = supply_positions),
 	EXP_TYPE_SECURITY = list("titles" = security_positions),
-	EXP_TYPE_SILICON = list("titles" = nonhuman_positions),
-	EXP_TYPE_SERVICE = list("titles" = civilian_positions)
+	EXP_TYPE_SILICON = list("titles" = list("AI","Cyborg")),
+	EXP_TYPE_SERVICE = list("titles" = civilian_positions),
 ))
 
 GLOBAL_LIST_INIT(exp_specialmap, list(
@@ -154,13 +160,3 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = phys_expand.Replace(job, "brig physician")
 	// yogs end
 	return job
-
-/proc/get_alternate_titles(var/job)
-	var/list/jobs = SSjob.occupations
-	var/list/titles = list()
-
-	for(var/datum/job/J in jobs)
-		if(J.title == job)
-			titles = J.alt_titles
-
-	return titles
