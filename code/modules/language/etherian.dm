@@ -8,8 +8,8 @@
 	flags = TONGUELESS_SPEECH
 	space_chance = 70
 	syllables = list(
-		"zap", "pop", "zzzz", "bzzzz", "tzzt", "hmmmm", "mmmm", "dzzzt"
+		"zap", "pop", "zzzz", "bzzzz", "tzzt", "hmmmm", "mmmm", "dzzzt", "ohmm", "zpp"
 	)
-	icon_state = "electrified"
+	icon_state = "electricity"
 	default_priority = 90
 	sing_verb = "hums"
