@@ -15,5 +15,5 @@
     	"incas", "int", "elc", "ent", "aws", "qip", "nas", "vil", "jens", "dila", "fa",
     	"la", "re", "do", "ji", "ae", "so", "qe", "ce", "na", "mo", "ha", "yu"
 	)
-	icon_state = "plant"
+	icon_state = "sylvan"
 	default_priority = 90
