@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "sentient disease shouldn't  be incapable of opening the adaptation menu due to mannerisms"
