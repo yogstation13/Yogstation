@@ -166,7 +166,7 @@
 /datum/component/nanites/proc/set_nanite_bar(remove = FALSE)
 	var/image/holder = host_mob.hud_list[DIAG_NANITE_FULL_HUD]
 	var/icon/I = icon(host_mob.icon, host_mob.icon_state, host_mob.dir)
-	holder.pixel_y = I.Height() - world.icon_size
+	holder.pixel_y = I.Height() - WORLD_ICON_SIZE
 	holder.icon_state = null
 	if(remove || stealth)
 		return //bye icon

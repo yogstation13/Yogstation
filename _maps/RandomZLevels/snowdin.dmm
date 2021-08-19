@@ -186,8 +186,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
@@ -197,8 +197,8 @@
 /obj/structure/bed,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/landmark/awaystart,
 /obj/item/bedsheet/purple,
@@ -211,8 +211,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/item/bedsheet/purple,
 /turf/open/floor/wood,
@@ -221,8 +221,8 @@
 /obj/structure/bed,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/wood,
 /area/awaymission/snowdin/post/dorm)
@@ -233,8 +233,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/wood,
@@ -243,8 +243,8 @@
 /obj/structure/bed,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/landmark/awaystart,
 /turf/open/floor/wood,
@@ -253,8 +253,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/wood,
 /area/awaymission/snowdin/post/dorm)
@@ -262,8 +262,8 @@
 /obj/structure/bed,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/item/bedsheet/orange,
 /turf/open/floor/wood,
@@ -272,11 +272,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/sign/poster/contraband/kudzu{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
@@ -286,8 +286,8 @@
 /obj/structure/bed,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/landmark/awaystart,
 /obj/item/paper/crumpled/ruins/snowdin/dontdeadopeninside,
@@ -323,8 +323,8 @@
 "bi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
@@ -357,8 +357,8 @@
 "bl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
@@ -408,7 +408,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -433,8 +433,8 @@
 "bt" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/light{
 	dir = 1
@@ -460,8 +460,8 @@
 "bw" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/kitchenspike,
 /turf/open/floor/plasteel/freezer,
@@ -469,8 +469,8 @@
 "bx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
@@ -483,7 +483,7 @@
 	id = "snowdindormresearch3";
 	name = "Dorm Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_y = -25;
+	pixel_y = -50;
 	specialfunctions = 4
 	},
 /obj/item/tome,
@@ -497,7 +497,7 @@
 	id = "snowdindormresearch2";
 	name = "Dorm Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_y = -25;
+	pixel_y = -50;
 	specialfunctions = 4
 	},
 /turf/open/floor/wood,
@@ -505,8 +505,8 @@
 "bA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood{
@@ -520,7 +520,7 @@
 	id = "snowdindormresearch1";
 	name = "Dorm Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_y = -25;
+	pixel_y = -50;
 	specialfunctions = 4
 	},
 /turf/open/floor/wood,
@@ -531,7 +531,7 @@
 	id = "snowdindormhydro2";
 	name = "Dorm Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_y = -25;
+	pixel_y = -50;
 	specialfunctions = 4
 	},
 /turf/open/floor/wood,
@@ -544,7 +544,7 @@
 	id = "snowdindormhydro1";
 	name = "Dorm Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_y = -25;
+	pixel_y = -50;
 	specialfunctions = 4
 	},
 /turf/open/floor/wood,
@@ -561,8 +561,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -571,8 +571,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/holopad,
 /obj/effect/decal/cleanable/dirt,
@@ -582,8 +582,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -592,8 +592,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -603,8 +603,8 @@
 /area/awaymission/snowdin/post/research)
 "bK" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 5;
-	pixel_y = -32
+	pixel_x = 10;
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -625,8 +625,8 @@
 "bN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plasteel/freezer,
@@ -641,7 +641,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Dorms APC";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -651,8 +651,8 @@
 "bQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/airlock{
@@ -664,8 +664,8 @@
 "bR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/airlock{
@@ -677,8 +677,8 @@
 "bS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/airlock{
@@ -690,8 +690,8 @@
 "bT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/airlock{
@@ -705,8 +705,8 @@
 "bU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/airlock{
@@ -719,8 +719,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt,
@@ -771,8 +771,8 @@
 "cc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/kitchenspike,
 /obj/structure/spider/stickyweb,
@@ -793,7 +793,7 @@
 /area/awaymission/snowdin/post/kitchen)
 "cf" = (
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/structure/spider/stickyweb,
 /obj/effect/decal/cleanable/dirt,
@@ -803,7 +803,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Kitchen APC";
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -832,8 +832,8 @@
 "cl" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/light{
 	dir = 1
@@ -864,8 +864,8 @@
 "cp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/yellow{
@@ -897,8 +897,8 @@
 "cs" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
@@ -919,8 +919,8 @@
 "cu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -939,8 +939,8 @@
 "cw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/tile/neutral{
@@ -964,8 +964,8 @@
 "cy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -990,8 +990,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1011,7 +1011,7 @@
 /area/awaymission/snowdin/post/research)
 "cD" = (
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral{
@@ -1025,7 +1025,7 @@
 "cE" = (
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral{
@@ -1072,8 +1072,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plasteel/freezer,
@@ -1085,8 +1085,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/door/airlock{
 	name = "Freezer"
@@ -1102,8 +1102,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/kitchen)
@@ -1114,8 +1114,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/item/kitchen/fork,
 /obj/effect/decal/cleanable/dirt,
@@ -1128,8 +1128,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -1147,8 +1147,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -1160,8 +1160,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -1170,8 +1170,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/holopad,
@@ -1181,8 +1181,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -1191,8 +1191,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/kitchen)
@@ -1200,8 +1200,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/food/egg_smudge,
 /obj/effect/decal/cleanable/dirt,
@@ -1229,8 +1229,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -1242,8 +1242,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -1258,8 +1258,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -1272,8 +1272,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 2;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -1285,8 +1285,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -1302,8 +1302,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -1320,8 +1320,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 2;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating{
@@ -1332,16 +1332,16 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 5;
-	pixel_y = -32
+	pixel_x = 10;
+	pixel_y = -64
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
@@ -1351,8 +1351,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -1363,8 +1363,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -1380,8 +1380,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 2;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
@@ -1391,8 +1391,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -1411,8 +1411,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
@@ -1427,8 +1427,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -1446,8 +1446,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -1509,8 +1509,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -1638,8 +1638,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -1681,8 +1681,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -1746,11 +1746,11 @@
 "eb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/sign/poster/contraband/lusty_xenomorph{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/structure/table/wood,
 /obj/item/paper_bin,
@@ -1790,7 +1790,7 @@
 	id = "snowdindormsec";
 	name = "Dorm Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = -25;
+	pixel_x = -50;
 	specialfunctions = 4
 	},
 /obj/effect/decal/cleanable/cobweb,
@@ -1809,8 +1809,8 @@
 /obj/structure/bed,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/landmark/awaystart,
 /obj/item/bedsheet/red,
@@ -1826,8 +1826,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -1852,7 +1852,7 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Gateway APC";
-	pixel_y = -23;
+	pixel_y = -46;
 	req_access = 150
 	},
 /obj/structure/cable/yellow{
@@ -1868,7 +1868,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Research Center APC";
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -1897,7 +1897,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Mess Hall APC";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -1946,7 +1946,7 @@
 /area/awaymission/snowdin/post/messhall)
 "ev" = (
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -1957,7 +1957,7 @@
 "ew" = (
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -1984,8 +1984,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -1996,8 +1996,8 @@
 /area/awaymission/snowdin/post/kitchen)
 "eA" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 5;
-	pixel_y = -32
+	pixel_x = 10;
+	pixel_y = -64
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/kitchen)
@@ -2007,8 +2007,8 @@
 /area/awaymission/snowdin/post/kitchen)
 "eC" = (
 /obj/item/kitchen/knife{
-	pixel_x = 6;
-	pixel_y = 6
+	pixel_x = 12;
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/kitchen)
@@ -2069,8 +2069,8 @@
 "eP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/carpet,
 /area/awaymission/snowdin/post/dorm)
@@ -2089,8 +2089,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
@@ -2109,8 +2109,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -2122,8 +2122,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/door/airlock{
 	id_tag = "snowdindormsec";
@@ -2138,8 +2138,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
@@ -2152,8 +2152,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/item/trash/cheesie,
 /turf/open/floor/wood,
@@ -2162,8 +2162,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/item/trash/cheesie,
 /turf/open/floor/wood,
@@ -2199,7 +2199,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -2213,7 +2213,7 @@
 /obj/structure/table,
 /obj/item/clothing/glasses/hud/health,
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -2225,7 +2225,7 @@
 /area/awaymission/snowdin/post)
 "fb" = (
 /obj/machinery/vending/wallmed{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/blue{
@@ -2251,8 +2251,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -2291,8 +2291,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -2333,12 +2333,12 @@
 /obj/structure/rack,
 /obj/item/grown/log/tree,
 /obj/item/grown/log/tree{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /obj/item/grown/log/tree{
-	pixel_x = -2;
-	pixel_y = 3
+	pixel_x = -4;
+	pixel_y = 6
 	},
 /turf/open/floor/wood,
 /area/awaymission/snowdin/outside)
@@ -2355,7 +2355,7 @@
 /area/awaymission/snowdin/post/dorm)
 "ft" = (
 /obj/structure/sign/poster/official/no_erp{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/machinery/holopad,
 /obj/effect/turf_decal/tile/neutral{
@@ -2372,8 +2372,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/yellow{
@@ -2385,12 +2385,12 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /obj/machinery/light/broken{
 	dir = 4
@@ -2413,8 +2413,8 @@
 /obj/item/reagent_containers/blood,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/blue{
@@ -2485,8 +2485,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -2501,7 +2501,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Outpost Hallway APC";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -2588,8 +2588,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -2619,7 +2619,7 @@
 "fT" = (
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -2638,8 +2638,8 @@
 "fV" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/effect/turf_decal/tile/green{
@@ -2665,8 +2665,8 @@
 /obj/structure/table/wood,
 /obj/item/hatchet,
 /obj/item/hatchet{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
@@ -2675,7 +2675,7 @@
 "ga" = (
 /obj/structure/table/wood,
 /obj/structure/fireaxecabinet{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/spawner/lootdrop/snowdin/dungeonmisc,
 /turf/open/floor/wood,
@@ -2718,8 +2718,8 @@
 "gh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet,
@@ -2730,8 +2730,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -2746,7 +2746,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral,
@@ -2776,8 +2776,8 @@
 "gm" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/closet/crate,
 /obj/item/clothing/shoes/winterboots,
@@ -2789,8 +2789,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/blue{
@@ -2805,8 +2805,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -2820,8 +2820,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/blue{
@@ -2836,8 +2836,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/tile/blue{
@@ -2874,8 +2874,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -2945,11 +2945,11 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/spray/plantbgone{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/item/reagent_containers/spray/plantbgone{
-	pixel_x = 7;
-	pixel_y = 7
+	pixel_x = 14;
+	pixel_y = 14
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/hydro)
@@ -2957,8 +2957,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -2993,12 +2993,12 @@
 "gL" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
@@ -3056,7 +3056,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Garage APC";
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -3099,14 +3099,14 @@
 "gY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/button/door{
 	id = "snowdindormcap";
 	name = "Dorm Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = 25;
+	pixel_x = 50;
 	specialfunctions = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -3116,8 +3116,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
@@ -3137,8 +3137,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral,
@@ -3154,8 +3154,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/door/airlock/maintenance{
 	name = "Misc Storage";
@@ -3167,8 +3167,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -3179,8 +3179,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/dorm)
@@ -3188,8 +3188,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/closet/crate{
 	icon_state = "crateopen"
@@ -3223,13 +3223,13 @@
 "hh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/item/storage/firstaid/o2{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -3242,8 +3242,8 @@
 "hi" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/o2{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -3356,8 +3356,8 @@
 "hA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/hydro)
@@ -3417,8 +3417,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/carpet,
 /area/awaymission/snowdin/post/dorm)
@@ -3429,8 +3429,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/door/airlock{
 	id_tag = "snowdindormcap";
@@ -3445,8 +3445,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -3462,8 +3462,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
@@ -3491,8 +3491,8 @@
 "hO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/firedoor,
@@ -3512,8 +3512,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -3546,8 +3546,8 @@
 "hT" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/landmark/awaystart,
 /obj/effect/decal/cleanable/dirt,
@@ -3564,8 +3564,8 @@
 "hW" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/snowdin/post/messhall)
@@ -3584,8 +3584,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -3595,8 +3595,8 @@
 "ib" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
@@ -3682,8 +3682,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -3694,8 +3694,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -3709,8 +3709,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -3730,8 +3730,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
@@ -3751,8 +3751,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -3776,8 +3776,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -3797,8 +3797,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 2;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /obj/structure/cable/yellow{
@@ -3819,8 +3819,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -3837,14 +3837,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
 /obj/structure/sign/departments/medbay{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
@@ -3873,7 +3873,7 @@
 /obj/structure/table,
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/item/paper_bin,
 /turf/open/floor/plasteel,
@@ -3889,8 +3889,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
@@ -3907,8 +3907,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/landmark/awaystart,
 /turf/open/floor/plasteel,
@@ -3933,8 +3933,8 @@
 "iH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/snowdin/post/messhall)
@@ -3960,8 +3960,8 @@
 "iL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -3987,8 +3987,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/garage)
@@ -3996,14 +3996,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/garage)
@@ -4015,8 +4015,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -4028,8 +4028,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -4043,8 +4043,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -4055,8 +4055,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
@@ -4068,8 +4068,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -4088,8 +4088,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/garage)
@@ -4101,8 +4101,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/garage)
@@ -4112,7 +4112,7 @@
 "iX" = (
 /obj/structure/table,
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/garage)
@@ -4192,8 +4192,8 @@
 "jh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -4253,8 +4253,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
@@ -4273,8 +4273,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -4289,8 +4289,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -4309,8 +4309,8 @@
 /obj/structure/table,
 /obj/machinery/button/door{
 	id = "snowdin_gate";
-	pixel_x = 7;
-	pixel_y = -24
+	pixel_x = 14;
+	pixel_y = -48
 	},
 /obj/item/disk/holodisk/snowdin/welcometodie,
 /turf/open/floor/plasteel,
@@ -4324,8 +4324,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/landmark/awaystart,
 /obj/structure/cable/yellow{
@@ -4339,12 +4339,12 @@
 /obj/structure/table,
 /obj/item/paper/pamphlet/gateway,
 /obj/item/paper/pamphlet/gateway{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/paper/pamphlet/gateway{
 	pixel_x = 4;
 	pixel_y = 4
+	},
+/obj/item/paper/pamphlet/gateway{
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/gateway)
@@ -4354,7 +4354,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/snowdin/post/messhall)
@@ -4367,8 +4367,8 @@
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/item/kitchen/fork,
 /turf/open/floor/plasteel/cafeteria,
@@ -4381,12 +4381,12 @@
 "jB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -4424,8 +4424,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/garage)
@@ -4454,8 +4454,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -4463,8 +4463,8 @@
 "jK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
@@ -4495,8 +4495,8 @@
 "jP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/airlock{
@@ -4539,8 +4539,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -4572,8 +4572,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -4587,7 +4587,7 @@
 "ka" = (
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/snowdin/post/messhall)
@@ -4599,8 +4599,8 @@
 "kc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
@@ -4615,7 +4615,7 @@
 "ke" = (
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -4643,8 +4643,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/garage)
@@ -4653,8 +4653,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
@@ -4665,8 +4665,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/garage)
@@ -4674,8 +4674,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -4686,7 +4686,7 @@
 /area/awaymission/snowdin/post/garage)
 "km" = (
 /obj/structure/sign/poster/contraband/tools{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/structure/closet/crate{
 	icon_state = "crateopen"
@@ -4738,11 +4738,11 @@
 "kv" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/shower{
-	pixel_y = 25
+	pixel_y = 50
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/awaymission/snowdin/post/dorm)
@@ -4750,14 +4750,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
 	},
 /obj/machinery/shower{
-	pixel_y = 25
+	pixel_y = 50
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/awaymission/snowdin/post/dorm)
@@ -4765,14 +4765,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/machinery/shower{
-	pixel_y = 25
+	pixel_y = 50
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/awaymission/snowdin/post/dorm)
@@ -4780,8 +4780,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -4795,8 +4795,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
@@ -4808,8 +4808,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -4820,15 +4820,15 @@
 "kB" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/awaymission/snowdin/post/dorm)
 "kC" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/awaymission/snowdin/post/dorm)
@@ -4837,7 +4837,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Custodials APC";
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -4847,7 +4847,7 @@
 "kE" = (
 /obj/structure/table,
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/snowdin/post/custodials)
@@ -4870,7 +4870,7 @@
 /area/awaymission/snowdin/post)
 "kH" = (
 /obj/structure/noticeboard{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/paper/crumpled/ruins/snowdin/shovel,
 /obj/effect/turf_decal/tile/neutral{
@@ -4903,8 +4903,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -4986,8 +4986,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/garage)
@@ -5019,8 +5019,8 @@
 "kZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
@@ -5029,7 +5029,7 @@
 "la" = (
 /obj/structure/filingcabinet,
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/garage)
@@ -5039,8 +5039,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
@@ -5058,8 +5058,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
@@ -5074,8 +5074,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -5100,8 +5100,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small/broken,
@@ -5111,8 +5111,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/awaymission/snowdin/post/dorm)
@@ -5129,8 +5129,8 @@
 "lm" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/janitorialcart,
 /obj/item/mop,
@@ -5152,8 +5152,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
@@ -5174,8 +5174,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5191,8 +5191,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5209,8 +5209,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5226,8 +5226,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5243,8 +5243,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5259,8 +5259,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5273,8 +5273,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 2;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /obj/structure/cable/yellow{
@@ -5292,8 +5292,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5307,8 +5307,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5330,8 +5330,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5343,8 +5343,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
@@ -5358,8 +5358,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -5373,8 +5373,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -5391,8 +5391,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -5409,8 +5409,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 2;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5421,8 +5421,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -5441,8 +5441,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
@@ -5456,8 +5456,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 2;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -5476,8 +5476,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5490,8 +5490,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5503,8 +5503,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -5516,8 +5516,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
@@ -5527,8 +5527,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
@@ -5539,8 +5539,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
@@ -5555,8 +5555,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
@@ -5568,8 +5568,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -5584,8 +5584,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -5596,8 +5596,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -5676,8 +5676,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -5691,8 +5691,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -5712,8 +5712,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5732,8 +5732,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
@@ -5747,8 +5747,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
@@ -5813,8 +5813,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -5823,8 +5823,8 @@
 /area/awaymission/snowdin/post/messhall)
 "mp" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 5;
-	pixel_y = -32
+	pixel_x = 10;
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/snowdin/post/messhall)
@@ -5861,7 +5861,7 @@
 "mv" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
@@ -5886,8 +5886,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/garage)
@@ -5895,8 +5895,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/garage)
@@ -5948,12 +5948,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
@@ -5964,8 +5964,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
@@ -5975,8 +5975,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -6006,8 +6006,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -6041,8 +6041,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/garage)
@@ -6050,8 +6050,8 @@
 /obj/structure/rack,
 /obj/item/clothing/suit/hooded/wintercoat,
 /obj/item/clothing/shoes/winterboots{
-	pixel_x = 2;
-	pixel_y = -2
+	pixel_x = 4;
+	pixel_y = -4
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/garage)
@@ -6072,8 +6072,8 @@
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/garage)
@@ -6081,8 +6081,8 @@
 /obj/machinery/button/door{
 	id = "snowdingarage1";
 	name = "garage door toggle";
-	pixel_x = -24;
-	pixel_y = -7
+	pixel_x = -48;
+	pixel_y = -14
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/garage)
@@ -6107,8 +6107,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/light/broken,
 /turf/open/floor/plating{
@@ -6127,8 +6127,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
@@ -6146,8 +6146,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -6162,15 +6162,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 5;
-	pixel_y = -32
+	pixel_x = 10;
+	pixel_y = -64
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post)
@@ -6178,8 +6178,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -6190,8 +6190,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
@@ -6203,8 +6203,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -6213,8 +6213,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post)
@@ -6243,7 +6243,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -6278,8 +6278,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/visible,
 /obj/effect/decal/cleanable/dirt,
@@ -6297,7 +6297,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Engineering APC";
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -6347,8 +6347,8 @@
 "ny" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 5;
-	pixel_y = -32
+	pixel_x = 10;
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -6396,8 +6396,8 @@
 "nG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/yellow{
@@ -6472,8 +6472,8 @@
 "nM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -6516,8 +6516,8 @@
 "nR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/visible,
 /obj/effect/decal/cleanable/dirt,
@@ -6591,7 +6591,7 @@
 /obj/item/assembly/flash,
 /obj/item/storage/box/rubbershot,
 /obj/structure/fireaxecabinet{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/secpost)
@@ -6599,7 +6599,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Security Outpost APC";
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -6615,8 +6615,8 @@
 "of" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/yellow{
@@ -6650,11 +6650,11 @@
 "oi" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -6684,8 +6684,8 @@
 "ok" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/door/firedoor,
@@ -6709,7 +6709,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/sign/warning/electricshock{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/engineering)
@@ -6727,8 +6727,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 8;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -6737,8 +6737,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -6747,8 +6747,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/engineering)
@@ -6756,17 +6756,17 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/table,
 /obj/item/stack/sheet/glass/fifty{
-	pixel_x = 1;
-	pixel_y = -1
+	pixel_x = 2;
+	pixel_y = -2
 	},
 /obj/item/stack/sheet/metal/fifty{
-	pixel_x = -1;
-	pixel_y = 1
+	pixel_x = -2;
+	pixel_y = 2
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/engineering)
@@ -6774,15 +6774,15 @@
 /obj/structure/table,
 /obj/item/cultivator,
 /obj/item/cultivator{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/hydro)
 "ot" = (
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/hydro)
@@ -6796,7 +6796,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Hydroponics APC";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -6850,8 +6850,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -6860,8 +6860,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -6870,8 +6870,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -6881,8 +6881,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -6920,8 +6920,8 @@
 "oK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral{
@@ -6935,8 +6935,8 @@
 "oL" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/old,
@@ -6978,8 +6978,8 @@
 "oO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/visible,
 /turf/open/floor/plating,
@@ -6991,20 +6991,20 @@
 "oQ" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/toolbox/mechanical,
 /obj/structure/sign/warning/enginesafety{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/engineering)
 "oR" = (
 /obj/structure/table,
 /obj/item/hatchet{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/hatchet,
 /turf/open/floor/plasteel,
@@ -7052,8 +7052,8 @@
 "pb" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp{
-	pixel_x = -5;
-	pixel_y = 5
+	pixel_x = -10;
+	pixel_y = 10
 	},
 /obj/item/paper_bin,
 /obj/item/pen,
@@ -7103,7 +7103,7 @@
 	dir = 1
 	},
 /obj/structure/sign/poster/official/do_not_question{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/item/wirecutters,
 /obj/effect/turf_decal/tile/red{
@@ -7129,7 +7129,7 @@
 /obj/item/crowbar,
 /obj/structure/noticeboard{
 	dir = 1;
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/item/paper/fluff/awaymissions/snowdin/secnotice,
 /turf/open/floor/plating,
@@ -7183,8 +7183,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -7194,8 +7194,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -7218,8 +7218,8 @@
 "pv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/visible{
 	dir = 8
@@ -7252,8 +7252,8 @@
 /obj/machinery/cell_charger,
 /obj/item/stock_parts/cell/high/plus,
 /obj/item/storage/toolbox/electrical{
-	pixel_x = 4;
-	pixel_y = 8
+	pixel_x = 8;
+	pixel_y = 16
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/engineering)
@@ -7359,8 +7359,8 @@
 "pQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post)
@@ -7399,8 +7399,8 @@
 "pT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/visible{
 	dir = 5
@@ -7539,8 +7539,8 @@
 /obj/structure/table,
 /obj/item/storage/box/donkpockets,
 /obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/snowdin/post/cavern2)
@@ -7575,8 +7575,8 @@
 /obj/machinery/door/airlock/external/glass,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/structure/barricade/wooden/crude,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
@@ -7592,8 +7592,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 6;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/engineering)
@@ -7601,8 +7601,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/engineering)
@@ -7670,7 +7670,7 @@
 /area/awaymission/snowdin/post/engineering)
 "qE" = (
 /obj/structure/sign/nanotrasen{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/machinery/light/small/broken{
 	dir = 4
@@ -7699,8 +7699,8 @@
 /obj/item/storage/box/rubbershot,
 /obj/machinery/light/small,
 /obj/item/storage/box/rubbershot{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/snowdin/post/secpost)
@@ -7708,8 +7708,8 @@
 /obj/structure/rack,
 /obj/item/storage/box/lethalshot,
 /obj/item/storage/box/lethalshot{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/snowdin/post/secpost)
@@ -7756,8 +7756,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/engineering)
@@ -7782,12 +7782,12 @@
 /obj/machinery/button/door{
 	id = "snowdinturbineoutlet";
 	name = "Turbine Outlet Release";
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/button/door{
 	id = "snowdinturbinegas";
 	name = "Turbine Gas Release";
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -7821,14 +7821,14 @@
 	idInterior = "snowdin_turbine_interior";
 	idSelf = "snowdin_turbine_access";
 	name = "Turbine Access Console";
-	pixel_x = -8;
-	pixel_y = -26;
+	pixel_x = -16;
+	pixel_y = -52;
 	req_access_txt = "32"
 	},
 /obj/machinery/button/ignition{
 	id = "snowdin_turbine_ignitor";
-	pixel_x = 6;
-	pixel_y = -24
+	pixel_x = 12;
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -7844,8 +7844,8 @@
 	icon_state = "4-8"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 5;
-	pixel_y = -32
+	pixel_x = 10;
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -7964,7 +7964,7 @@
 /area/awaymission/snowdin/post/cavern2)
 "rg" = (
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/engine/cult,
 /area/awaymission/snowdin/post/cavern2)
@@ -7991,8 +7991,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/machinery/light/small,
 /turf/open/floor/plating,
@@ -8001,8 +8001,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post)
@@ -8010,16 +8010,16 @@
 /obj/structure/rack,
 /obj/item/clothing/suit/hooded/wintercoat,
 /obj/item/clothing/shoes/winterboots{
-	pixel_x = 2;
-	pixel_y = -2
+	pixel_x = 4;
+	pixel_y = -4
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post)
 "ro" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/closed/wall/ice,
 /area/awaymission/snowdin/post/engineering)
@@ -8114,7 +8114,7 @@
 /area/awaymission/snowdin/post/cavern2)
 "rC" = (
 /obj/structure/sign/warning/nosmoking{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/machinery/light/broken{
 	dir = 1
@@ -8165,8 +8165,8 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos{
 	dir = 1;
 	piping_layer = 4;
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/effect/light_emitter{
 	name = "cave light";
@@ -8185,8 +8185,8 @@
 	idSelf = "snowdin_turbine_access";
 	layer = 3.1;
 	name = "Turbine airlock control";
-	pixel_x = 8;
-	pixel_y = -24
+	pixel_x = 16;
+	pixel_y = -48
 	},
 /turf/open/floor/engine,
 /area/awaymission/snowdin/post/engineering)
@@ -8207,11 +8207,11 @@
 	idDoor = "snowdin_turbine_exterior";
 	idSelf = "snowdin_turbine_access";
 	name = "Turbine airlock control";
-	pixel_x = -8;
-	pixel_y = 24
+	pixel_x = -16;
+	pixel_y = 48
 	},
 /obj/structure/sign/warning/fire{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/engine,
 /area/awaymission/snowdin/post/engineering)
@@ -8329,7 +8329,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Main Outpost APC";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/structure/cable/yellow,
 /obj/structure/cable/yellow{
@@ -8421,7 +8421,7 @@
 	dir = 4
 	},
 /obj/structure/sign/nanotrasen{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plating/snowed/cavern,
 /area/awaymission/snowdin/post/cavern2)
@@ -8686,7 +8686,7 @@
 	anchored = 1
 	},
 /obj/item/clothing/head/bowler{
-	pixel_y = 13
+	pixel_y = 26
 	},
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/snowdin/outside)
@@ -8720,7 +8720,7 @@
 "tc" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/awaymission/snowdin/post/cavern2)
@@ -8952,13 +8952,13 @@
 /area/awaymission/snowdin/cave)
 "tT" = (
 /obj/structure/fence{
-	pixel_x = 16
+	pixel_x = 32
 	},
 /turf/open/floor/plating/ice/smooth,
 /area/awaymission/snowdin/outside)
 "tU" = (
 /obj/structure/fence{
-	pixel_x = -16
+	pixel_x = -32
 	},
 /turf/open/floor/plating/ice/smooth,
 /area/awaymission/snowdin/outside)
@@ -8968,13 +8968,13 @@
 /area/awaymission/snowdin/cave/cavern)
 "tW" = (
 /obj/structure/fence{
-	pixel_x = 16
+	pixel_x = 32
 	},
 /turf/open/floor/plating/ice,
 /area/awaymission/snowdin/outside)
 "tX" = (
 /obj/structure/fence{
-	pixel_x = -16
+	pixel_x = -32
 	},
 /turf/open/floor/plating/ice,
 /area/awaymission/snowdin/outside)
@@ -9028,7 +9028,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Main Outpost APC";
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -9114,7 +9114,7 @@
 /area/awaymission/snowdin/post/cavern1)
 "uv" = (
 /obj/structure/fence{
-	pixel_x = 16
+	pixel_x = 32
 	},
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/snowdin/outside)
@@ -9135,7 +9135,7 @@
 /area/awaymission/snowdin/post/cavern1)
 "uy" = (
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/cavern1)
@@ -9173,7 +9173,7 @@
 /area/awaymission/snowdin/post/cavern1)
 "uC" = (
 /obj/structure/fence{
-	pixel_x = -16
+	pixel_x = -32
 	},
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/snowdin/outside)
@@ -9562,7 +9562,7 @@
 "vw" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/awaymission/snowdin/post/cavern1)
@@ -9996,7 +9996,7 @@
 /area/awaymission/snowdin/post/mining_dock)
 "wH" = (
 /obj/structure/sign/warning/electricshock{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -10044,7 +10044,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Main Outpost APC";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
@@ -10089,7 +10089,7 @@
 	dir = 1
 	},
 /obj/structure/sign/warning/docking{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -10101,7 +10101,7 @@
 /area/awaymission/snowdin/post/mining_dock)
 "wV" = (
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -10131,7 +10131,7 @@
 /area/awaymission/snowdin/post/mining_dock)
 "wZ" = (
 /obj/structure/sign/warning/docking{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/machinery/light/broken{
 	dir = 1
@@ -10630,7 +10630,7 @@
 /area/awaymission/snowdin/post/mining_dock)
 "yl" = (
 /obj/structure/sign/warning/nosmoking{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/mining_dock)
@@ -10904,7 +10904,7 @@
 /area/awaymission/snowdin/post/mining_dock)
 "yQ" = (
 /obj/structure/sign/warning/docking{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -10997,8 +10997,8 @@
 /obj/structure/rack,
 /obj/item/pickaxe/drill,
 /obj/item/pickaxe/drill{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /turf/open/floor/plating/snowed,
 /area/awaymission/snowdin/cave)
@@ -11129,8 +11129,8 @@
 /obj/machinery/button/door{
 	id = "snowdingarage2";
 	name = "garage door toggle";
-	pixel_x = -7;
-	pixel_y = -24
+	pixel_x = -14;
+	pixel_y = -48
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/minipost)
@@ -11169,12 +11169,12 @@
 /obj/structure/rack,
 /obj/item/grown/log/tree,
 /obj/item/grown/log/tree{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /obj/item/grown/log/tree{
-	pixel_x = -2;
-	pixel_y = 3
+	pixel_x = -4;
+	pixel_y = 6
 	},
 /turf/open/floor/wood,
 /area/awaymission/snowdin/igloo)
@@ -11206,7 +11206,7 @@
 	},
 /obj/machinery/space_heater,
 /obj/structure/sign/warning/xeno_mining{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -11269,8 +11269,8 @@
 /area/awaymission/snowdin/igloo)
 "zQ" = (
 /obj/item/hatchet{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /turf/open/floor/wood,
 /area/awaymission/snowdin/igloo)
@@ -11359,8 +11359,8 @@
 "Ac" = (
 /obj/structure/table/wood,
 /obj/item/hatchet{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /turf/open/floor/wood,
 /area/awaymission/snowdin/igloo)
@@ -11387,7 +11387,7 @@
 	dir = 1
 	},
 /obj/structure/sign/nanotrasen{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plating/snowed/cavern,
 /area/awaymission/snowdin/cave/cavern)
@@ -11701,7 +11701,7 @@
 	id = "snowdindormabandoned1";
 	name = "Dorm Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = -25;
+	pixel_x = -50;
 	specialfunctions = 4
 	},
 /turf/open/floor/plating/snowed/smoothed,
@@ -11825,7 +11825,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Recon Post APC";
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -13372,8 +13372,8 @@
 /area/awaymission/snowdin/cave/cavern)
 "EX" = (
 /obj/item/pickaxe/drill{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /turf/open/floor/plating/snowed/cavern,
 /area/awaymission/snowdin/cave/cavern)
@@ -13414,7 +13414,7 @@
 	name = "Officer Snowlby"
 	},
 /obj/item/clothing/head/helmet{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/snowdin/outside)
@@ -13502,10 +13502,10 @@
 	name = "Officer Norm"
 	},
 /obj/item/gun/energy/e_gun/mini{
-	pixel_y = -5
+	pixel_y = -10
 	},
 /obj/item/clothing/head/helmet{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/snowdin/outside)
@@ -13528,7 +13528,7 @@
 "Fv" = (
 /obj/machinery/light/small,
 /obj/structure/sign/nanotrasen{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plating/asteroid/snow/ice,
 /area/awaymission/snowdin/post/mining_dock)
@@ -13569,10 +13569,10 @@
 	name = "Officer Norm"
 	},
 /obj/item/clothing/head/helmet{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/item/melee/baton{
-	pixel_x = 4
+	pixel_x = 8
 	},
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/snowdin/outside)
@@ -13602,7 +13602,7 @@
 	name = "Snow-Luc Price"
 	},
 /obj/item/clothing/head/HoS{
-	pixel_y = 10
+	pixel_y = 20
 	},
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/snowdin/outside)
@@ -13644,7 +13644,7 @@
 	piping_layer = 4
 	},
 /obj/structure/sign/warning/xeno_mining{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/mining_dock)
@@ -13722,7 +13722,7 @@
 /area/awaymission/snowdin/post/mining_dock)
 "FV" = (
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13735,7 +13735,7 @@
 /area/awaymission/snowdin/post/mining_dock)
 "FW" = (
 /obj/structure/sign/nanotrasen{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plating/asteroid/snow/ice,
 /area/awaymission/snowdin/cave/cavern)
@@ -13768,8 +13768,8 @@
 	name = "snowman"
 	},
 /obj/item/pickaxe/mini{
-	pixel_x = 5;
-	pixel_y = 3
+	pixel_x = 10;
+	pixel_y = 6
 	},
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/snowdin/outside)
@@ -13919,8 +13919,8 @@
 "Gy" = (
 /obj/structure/table,
 /obj/item/clothing/head/welding{
-	pixel_x = -3;
-	pixel_y = 5
+	pixel_x = -6;
+	pixel_y = 10
 	},
 /obj/item/clothing/glasses/welding,
 /turf/open/floor/plasteel,
@@ -13994,14 +13994,14 @@
 /obj/machinery/button/door{
 	id = "snowdingarageunder2";
 	name = "right garage door toggle";
-	pixel_x = 7;
-	pixel_y = 24
+	pixel_x = 14;
+	pixel_y = 48
 	},
 /obj/machinery/button/door{
 	id = "snowdingarageunder";
 	name = "left garage door toggle";
-	pixel_x = -7;
-	pixel_y = 24
+	pixel_x = -14;
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -14068,12 +14068,12 @@
 "GV" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = 3;
-	pixel_y = 7
+	pixel_x = 6;
+	pixel_y = 14
 	},
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
+	pixel_x = -4;
+	pixel_y = -2
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/mining_main/robotics)
@@ -14111,8 +14111,8 @@
 "Hc" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
+	pixel_x = -4;
+	pixel_y = -2
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/mining_main/mechbay)
@@ -14219,7 +14219,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Robotics APC";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -14330,7 +14330,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/mining_main/robotics)
@@ -14340,8 +14340,8 @@
 	},
 /obj/item/stack/sheet/glass{
 	amount = 20;
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/mining_main/robotics)
@@ -14358,7 +14358,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
@@ -14483,7 +14483,7 @@
 /area/awaymission/snowdin/post/mining_dock)
 "If" = (
 /obj/structure/sign/warning/nosmoking{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/neutral,
@@ -14587,8 +14587,8 @@
 /obj/machinery/button/door{
 	id = "snowdingarage3";
 	name = "garage door toggle";
-	pixel_x = 7;
-	pixel_y = 24
+	pixel_x = 14;
+	pixel_y = 48
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/mining_main)
@@ -14611,8 +14611,8 @@
 "IA" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/electrical{
-	pixel_x = 1;
-	pixel_y = 6
+	pixel_x = 2;
+	pixel_y = 12
 	},
 /obj/item/storage/belt/utility,
 /turf/open/floor/plasteel/white,
@@ -14677,7 +14677,7 @@
 /area/awaymission/snowdin/post/mining_main)
 "IJ" = (
 /obj/structure/sign/warning/electricshock{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/closed/wall,
 /area/awaymission/snowdin/post/mining_main/robotics)
@@ -14733,7 +14733,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Main Outpost APC";
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -14747,7 +14747,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Mechbay APC";
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -15075,7 +15075,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/sign/warning/electricshock{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/mining_dock)
@@ -15315,10 +15315,10 @@
 /area/awaymission/snowdin/post/mining_dock)
 "Kh" = (
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/structure/sign/warning/docking{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -15354,7 +15354,7 @@
 /area/awaymission/snowdin/post/mining_main)
 "Kl" = (
 /obj/structure/sign/warning/docking{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -15501,7 +15501,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Mining Post APC";
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -15551,7 +15551,7 @@
 /area/awaymission/snowdin/post/mining_dock)
 "KG" = (
 /obj/structure/sign/warning/docking{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/mining_dock)
@@ -15568,8 +15568,8 @@
 "KJ" = (
 /obj/structure/table,
 /obj/item/stack/sheet/metal/fifty{
-	pixel_x = -1;
-	pixel_y = 1
+	pixel_x = -2;
+	pixel_y = 2
 	},
 /obj/item/stack/rods,
 /turf/open/floor/plating,
@@ -15598,7 +15598,7 @@
 /area/awaymission/snowdin/post/mining_main)
 "KN" = (
 /obj/structure/sign/warning/docking{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"

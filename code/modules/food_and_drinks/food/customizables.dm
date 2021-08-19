@@ -110,13 +110,13 @@
 
 	switch(ingredients_placement)
 		if(INGREDIENTS_SCATTER)
-			filling.pixel_x = rand(-1,1)
-			filling.pixel_y = rand(-1,1)
+			filling.pixel_x = rand(-1*PIXEL_MULTIPLIER,1*PIXEL_MULTIPLIER)
+			filling.pixel_y = rand(-1*PIXEL_MULTIPLIER,1*PIXEL_MULTIPLIER)
 		if(INGREDIENTS_STACK)
-			filling.pixel_x = rand(-1,1)
+			filling.pixel_x = rand(-1*PIXEL_MULTIPLIER,1*PIXEL_MULTIPLIER)
 			filling.pixel_y = 2 * ingredients.len - 1
 		if(INGREDIENTS_STACKPLUSTOP)
-			filling.pixel_x = rand(-1,1)
+			filling.pixel_x = rand(-1*PIXEL_MULTIPLIER,1*PIXEL_MULTIPLIER)
 			filling.pixel_y = 2 * ingredients.len - 1
 			if(overlays && overlays.len >= ingredients.len) //remove the old top if it exists
 				overlays -= overlays[ingredients.len]
@@ -129,7 +129,7 @@
 			cut_overlays()
 			filling.color = filling_color
 		if(INGREDIENTS_LINE)
-			filling.pixel_x = filling.pixel_y = rand(-8,3)
+			filling.pixel_x = filling.pixel_y = rand(-8*PIXEL_MULTIPLIER,3*PIXEL_MULTIPLIER)
 
 	add_overlay(filling)
 

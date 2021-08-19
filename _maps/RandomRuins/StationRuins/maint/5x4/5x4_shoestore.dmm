@@ -5,7 +5,7 @@
 "w" = (
 /obj/structure/table/wood,
 /obj/item/clothing/shoes/winterboots{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
@@ -17,12 +17,12 @@
 "B" = (
 /obj/structure/table/wood,
 /obj/item/clothing/shoes/yogs/fuzzy_slippers{
-	pixel_x = 1;
-	pixel_y = 6
+	pixel_x = 2;
+	pixel_y = 12
 	},
 /obj/item/shoe_protector/ultra{
-	pixel_x = 15;
-	pixel_y = 2
+	pixel_x = 30;
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
@@ -35,23 +35,23 @@
 /obj/structure/table/wood,
 /obj/item/clothing/shoes/sneakers/white,
 /obj/item/clothing/shoes/yogs/trainers/zebra{
-	pixel_x = 12;
-	pixel_y = 7
+	pixel_x = 24;
+	pixel_y = 14
 	},
 /obj/item/clothing/shoes/yogs/fire_crocs{
-	pixel_x = 30;
-	pixel_y = 13
+	pixel_x = 60;
+	pixel_y = 26
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
 "R" = (
 /obj/structure/table/wood,
 /obj/item/clothing/shoes/sneakers/yellow{
-	pixel_x = -9;
-	pixel_y = -1
+	pixel_x = -18;
+	pixel_y = -2
 	},
 /obj/item/clothing/shoes/yogs/trainers{
-	pixel_x = 13
+	pixel_x = 26
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)

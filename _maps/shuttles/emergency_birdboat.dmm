@@ -21,7 +21,7 @@
 /area/shuttle/escape)
 "af" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
@@ -74,8 +74,8 @@
 "ap" = (
 /obj/structure/table/glass,
 /obj/item/storage/firstaid/brute{
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/item/storage/firstaid/brute,
 /obj/machinery/light{
@@ -109,8 +109,8 @@
 "at" = (
 /obj/structure/table/glass,
 /obj/item/storage/firstaid/fire{
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/item/storage/firstaid/toxin,
 /turf/open/floor/mineral/titanium/white,
@@ -138,7 +138,7 @@
 /area/shuttle/escape)
 "ax" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -27
+	pixel_x = -54
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
@@ -146,8 +146,8 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti{
 	name = "pasghetti";
-	pixel_x = 4;
-	pixel_y = 7
+	pixel_x = 8;
+	pixel_y = 14
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -303,7 +303,7 @@
 /obj/machinery/recharger{
 	active_power_usage = 0;
 	idle_power_usage = 0;
-	pixel_y = 4;
+	pixel_y = 8;
 	use_power = 0
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
@@ -371,7 +371,7 @@
 /obj/structure/table,
 /obj/item/scalpel,
 /obj/item/retractor{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/hemostat,
 /turf/open/floor/mineral/titanium/white,
@@ -381,7 +381,7 @@
 /obj/item/cautery,
 /obj/item/surgicaldrill,
 /obj/item/circular_saw{
-	pixel_y = 9
+	pixel_y = 18
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
@@ -395,7 +395,7 @@
 /obj/structure/chair/comfy/shuttle,
 /obj/structure/window/reinforced{
 	dir = 1;
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -407,7 +407,7 @@
 /obj/structure/chair/comfy/shuttle,
 /obj/structure/window/reinforced{
 	dir = 1;
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/plastitanium,

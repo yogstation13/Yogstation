@@ -19,7 +19,7 @@
 "g" = (
 /obj/structure/table/glass,
 /obj/item/storage/box/rxglasses{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -45,7 +45,7 @@
 "G" = (
 /obj/structure/table/glass,
 /obj/item/sequence_scanner{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,

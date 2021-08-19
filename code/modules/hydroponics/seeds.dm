@@ -38,8 +38,8 @@
 
 /obj/item/seeds/Initialize(loc, nogenes = 0)
 	. = ..()
-	pixel_x = rand(-8, 8)
-	pixel_y = rand(-8, 8)
+	pixel_x = rand(-8*PIXEL_MULTIPLIER, 8*PIXEL_MULTIPLIER)
+	pixel_y = rand(-8*PIXEL_MULTIPLIER, 8*PIXEL_MULTIPLIER)
 
 	if(!icon_grow)
 		icon_grow = "[species]-grow"

@@ -40,6 +40,8 @@
 	icon = 'icons/mob/screen_gen.dmi'
 	name = "souls owned"
 	icon_state = "Devil-6"
+/obj/screen/devil/soul_counter/Initialize()
+	. = ..()
 	screen_loc = ui_devilsouldisplay
 
 /obj/screen/devil/soul_counter/proc/update_counter(souls = 0)
@@ -67,6 +69,8 @@
 
 /obj/screen/ling/sting
 	name = "current sting"
+/obj/screen/ling/sting/Initialize()
+	. = ..()
 	screen_loc = ui_lingstingdisplay
 
 /obj/screen/ling/sting/Click()
@@ -78,6 +82,8 @@
 /obj/screen/ling/chems
 	name = "chemical storage"
 	icon_state = "power_display"
+/obj/screen/ling/chems/Initialize()
+	. = ..()
 	screen_loc = ui_lingchemdisplay
 
 /datum/hud/human/New(mob/living/carbon/human/owner)

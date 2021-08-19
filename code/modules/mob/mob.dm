@@ -517,7 +517,7 @@
 
 	var/turf/our_tile = get_turf(src)
 	var/obj/visual = new /obj/effect/temp_visual/point(our_tile, invisibility)
-	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
+	animate(visual, pixel_x = (tile.x - our_tile.x) * WORLD_ICON_SIZE + A.pixel_x, pixel_y = (tile.y - our_tile.y) * WORLD_ICON_SIZE + A.pixel_y, time = 1.7, easing = EASE_OUT)
 
 	return TRUE
 
@@ -861,7 +861,7 @@
         return FALSE
     if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
         return FALSE
-    if(pixel_x <= 16)
+    if(pixel_x <= 16*PIXEL_MULTIPLIER)
         pixel_x++
         is_shifted = TRUE
 
@@ -871,7 +871,7 @@
         return FALSE
     if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
         return FALSE
-    if(pixel_x >= -16)
+    if(pixel_x >= -16*PIXEL_MULTIPLIER)
         pixel_x--
         is_shifted = TRUE
 
@@ -881,7 +881,7 @@
         return FALSE
     if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
         return FALSE
-    if(pixel_y <= 16)
+    if(pixel_y <= 16*PIXEL_MULTIPLIER)
         pixel_y++
         is_shifted = TRUE
 
@@ -891,7 +891,7 @@
         return FALSE
     if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
         return FALSE
-    if(pixel_y >= -16)
+    if(pixel_y >= -16*PIXEL_MULTIPLIER)
         pixel_y--
         is_shifted = TRUE
 

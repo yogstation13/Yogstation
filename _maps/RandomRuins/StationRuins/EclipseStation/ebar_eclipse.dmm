@@ -26,7 +26,7 @@
 "bS" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck/uno{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/toy/turn_tracker,
 /turf/open/floor/wood,
@@ -147,7 +147,7 @@
 "fL" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/bluecherrycupcake{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -249,14 +249,14 @@
 /area/crew_quarters/bar)
 "io" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -30
+	pixel_y = -60
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "iO" = (
 /obj/machinery/airalarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/theatre)
@@ -289,7 +289,7 @@
 /area/crew_quarters/bar)
 "jZ" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -304,7 +304,7 @@
 /obj/effect/turf_decal/loading_area,
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
@@ -372,10 +372,10 @@
 	dir = 4
 	},
 /obj/structure/sign/plaques/deempisi{
-	pixel_y = 38
+	pixel_y = 76
 	},
 /obj/machinery/firealarm{
-	pixel_y = 26
+	pixel_y = 52
 	},
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -443,8 +443,8 @@
 /obj/structure/table,
 /obj/item/book/manual/chef_recipes,
 /obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -513,7 +513,7 @@
 /area/crew_quarters/bar)
 "rD" = (
 /obj/structure/holohoop{
-	pixel_y = 25
+	pixel_y = 50
 	},
 /obj/item/paper/crumpled{
 	info = "Due to concerns about crew performance, the basketball has been removed from the bar. We do not apologize for the inconvenience.";
@@ -587,7 +587,7 @@
 /area/crew_quarters/bar)
 "tg" = (
 /obj/structure/sink/kitchen{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/machinery/food_cart,
 /turf/open/floor/plasteel/cafeteria,
@@ -595,8 +595,8 @@
 "ts" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/coffee{
-	pixel_x = 1;
-	pixel_y = 2
+	pixel_x = 2;
+	pixel_y = 4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -606,7 +606,7 @@
 /area/crew_quarters/kitchen)
 "uC" = (
 /obj/structure/sink/kitchen{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -618,8 +618,8 @@
 /obj/machinery/button/door{
 	id = "barshutters";
 	name = "Bar Shutters Control";
-	pixel_x = 25;
-	pixel_y = 24
+	pixel_x = 50;
+	pixel_y = 48
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -666,8 +666,8 @@
 /area/crew_quarters/bar)
 "xl" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -5;
-	pixel_y = 30
+	pixel_x = -10;
+	pixel_y = 60
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -709,23 +709,23 @@
 /area/crew_quarters/bar)
 "yU" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "yV" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 5
+	pixel_x = 6;
+	pixel_y = 10
 	},
 /obj/item/storage/box/donkpockets{
-	pixel_x = 2;
-	pixel_y = 1
+	pixel_x = 4;
+	pixel_y = 2
 	},
 /obj/item/reagent_containers/glass/beaker{
-	pixel_x = -5;
-	pixel_y = 3
+	pixel_x = -10;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -752,7 +752,7 @@
 /obj/machinery/processor,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -856,12 +856,12 @@
 "CV" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/soda_cans/tonic{
-	pixel_x = 3;
-	pixel_y = 4
+	pixel_x = 6;
+	pixel_y = 8
 	},
 /obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
-	pixel_x = -2;
-	pixel_y = 2
+	pixel_x = -4;
+	pixel_y = 4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -885,14 +885,14 @@
 /obj/machinery/airalarm{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Eb" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/light{
 	dir = 1
@@ -942,13 +942,13 @@
 "EF" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3;
-	pixel_y = 9
+	pixel_x = -6;
+	pixel_y = 18
 	},
 /obj/item/reagent_containers/food/condiment/peppermill{
 	dir = 1;
-	pixel_x = 3;
-	pixel_y = 9
+	pixel_x = 6;
+	pixel_y = 18
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -981,10 +981,10 @@
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	departmentType = 2;
-	pixel_x = 30
+	pixel_x = 60
 	},
 /obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -992,7 +992,7 @@
 /obj/machinery/requests_console{
 	department = "Bar";
 	departmentType = 2;
-	pixel_x = 30;
+	pixel_x = 60;
 	receive_ore_updates = 1
 	},
 /obj/effect/turf_decal/tile/bar{
@@ -1009,7 +1009,7 @@
 "Gi" = (
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -1110,7 +1110,7 @@
 "KB" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -26
+	pixel_y = -52
 	},
 /obj/machinery/light,
 /turf/open/floor/wood,
@@ -1122,7 +1122,7 @@
 /obj/machinery/button/door{
 	id = "kitchenwindow";
 	name = "Bar Shutter Control";
-	pixel_y = -26;
+	pixel_y = -52;
 	req_access_txt = "28"
 	},
 /obj/machinery/light,
@@ -1185,14 +1185,14 @@
 "OM" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Pa" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -1253,10 +1253,10 @@
 "QB" = (
 /obj/structure/table/wood,
 /obj/item/instrument/guitar{
-	pixel_x = -7
+	pixel_x = -14
 	},
 /obj/item/instrument/eguitar{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -1285,7 +1285,7 @@
 	desc = "A board for pinning important notices upon.";
 	dir = 1;
 	name = "notice board";
-	pixel_y = -27
+	pixel_y = -54
 	},
 /obj/machinery/camera{
 	c_tag = "Bar South";
@@ -1330,7 +1330,7 @@
 	dir = 2
 	},
 /obj/item/radio/intercom{
-	pixel_y = 25
+	pixel_y = 50
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/theatre)
@@ -1349,7 +1349,7 @@
 	dir = 1
 	},
 /obj/machinery/light_switch{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/theatre)
@@ -1387,7 +1387,7 @@
 /area/crew_quarters/bar)
 "Uo" = (
 /obj/item/radio/intercom{
-	pixel_y = 25
+	pixel_y = 50
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -1414,7 +1414,7 @@
 /area/crew_quarters/bar)
 "Uz" = (
 /obj/structure/chair/stool{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/theatre)
@@ -1513,22 +1513,22 @@
 "XA" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -9;
-	pixel_y = 9
+	pixel_x = -18;
+	pixel_y = 18
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3;
-	pixel_y = 9
+	pixel_x = -6;
+	pixel_y = 18
 	},
 /obj/item/reagent_containers/food/condiment/peppermill{
 	dir = 1;
-	pixel_x = -3
+	pixel_x = -6
 	},
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -9
+	pixel_x = -18
 	},
 /obj/item/sharpener{
-	pixel_x = 8
+	pixel_x = 16
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -1548,8 +1548,8 @@
 /obj/machinery/button/door{
 	id = "kitchen";
 	name = "Kitchen Shutters Control";
-	pixel_x = -1;
-	pixel_y = -24;
+	pixel_x = -2;
+	pixel_y = -48;
 	req_access_txt = "28"
 	},
 /obj/structure/disposalpipe/junction/yjunction{

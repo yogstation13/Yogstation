@@ -14,7 +14,7 @@
 /area/template_noop)
 "e" = (
 /obj/structure/flora/ausbushes/reedbush{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /turf/open/floor/grass,
 /area/template_noop)
@@ -53,11 +53,11 @@
 /obj/structure/table/glass,
 /obj/item/plant_analyzer,
 /obj/item/reagent_containers/spray/plantbgone{
-	pixel_x = 6;
-	pixel_y = 6
+	pixel_x = 12;
+	pixel_y = 12
 	},
 /obj/item/cultivator{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/shovel/spade,
 /obj/item/reagent_containers/glass/bucket,

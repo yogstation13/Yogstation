@@ -13,7 +13,7 @@
 	dir = 4
 	},
 /obj/machinery/vending/wallmed{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
@@ -181,7 +181,7 @@
 /area/shuttle/escape)
 "B" = (
 /obj/machinery/vending/wallmed{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)

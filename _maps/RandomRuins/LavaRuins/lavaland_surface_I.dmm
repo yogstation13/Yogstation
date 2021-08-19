@@ -19,7 +19,7 @@
 	icon_state = "monkey_painting";
 	name = "Mr. Deempisi portrait";
 	pixel_x = 0;
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/mineral/diamond,
 /area/ruin/unpowered)

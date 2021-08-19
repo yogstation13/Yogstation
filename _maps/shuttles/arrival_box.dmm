@@ -25,11 +25,11 @@
 /area/shuttle/arrival)
 "e" = (
 /obj/item/storage/toolbox/emergency{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/storage/toolbox/emergency,
 /obj/machinery/status_display/ai{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor/mineral/titanium/blue,
@@ -43,7 +43,7 @@
 	},
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
-	pixel_y = 32;
+	pixel_y = 64;
 	use_power = 0
 	},
 /turf/open/floor/mineral/titanium/blue,
@@ -64,7 +64,7 @@
 /obj/machinery/requests_console{
 	department = "Arrival shuttle";
 	name = "Arrivals Shuttle console";
-	pixel_y = 30
+	pixel_y = 60
 	},
 /obj/machinery/light{
 	dir = 1
@@ -174,21 +174,21 @@
 /obj/item/tank/internals/emergency_oxygen,
 /obj/item/clothing/mask/breath,
 /obj/machinery/status_display/evac{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "y" = (
 /obj/machinery/light,
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -29
+	pixel_y = -58
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "z" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
-	pixel_y = -29
+	pixel_y = -58
 	},
 /obj/machinery/light,
 /turf/open/floor/mineral/titanium/blue,

@@ -14,8 +14,8 @@
 /obj/effect/decal/cleanable/ash/Initialize()
 	. = ..()
 	reagents.add_reagent(/datum/reagent/ash, 30)
-	pixel_x = rand(-5, 5)
-	pixel_y = rand(-5, 5)
+	pixel_x = rand(-5*PIXEL_MULTIPLIER, 5*PIXEL_MULTIPLIER)
+	pixel_y = rand(-5*PIXEL_MULTIPLIER, 5*PIXEL_MULTIPLIER)
 
 /obj/effect/decal/cleanable/ash/crematorium
 //crematoriums need their own ash cause default ash deletes itself if created in an obj
@@ -163,8 +163,8 @@
 		qdel(src)
 
 /obj/effect/decal/cleanable/shreds/Initialize()
-	pixel_x = rand(-10, 10)
-	pixel_y = rand(-10, 10)
+	pixel_x = rand(-10*PIXEL_MULTIPLIER, 10*PIXEL_MULTIPLIER)
+	pixel_y = rand(-10*PIXEL_MULTIPLIER, 10*PIXEL_MULTIPLIER)
 	. = ..()
 
 /obj/effect/decal/cleanable/glitter

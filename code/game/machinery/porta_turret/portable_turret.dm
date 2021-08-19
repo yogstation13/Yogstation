@@ -803,8 +803,8 @@
 	if(built)
 		setDir(ndir)
 		locked = FALSE
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
-		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
+		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24*PIXEL_MULTIPLIER : 24*PIXEL_MULTIPLIER)
+		pixel_y = (dir & 3)? (dir ==1 ? -24*PIXEL_MULTIPLIER : 24*PIXEL_MULTIPLIER) : 0
 	power_change() //Checks power and initial settings
 
 /obj/machinery/turretid/Destroy()

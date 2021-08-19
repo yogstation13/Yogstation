@@ -8,7 +8,7 @@
 	dir = 8
 	},
 /obj/structure/sign/poster/official/love_ian{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)

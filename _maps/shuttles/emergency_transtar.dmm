@@ -5,8 +5,8 @@
 "ab" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/light{
@@ -27,7 +27,7 @@
 	dir = 1
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -27
+	pixel_x = -54
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
@@ -145,7 +145,7 @@
 	id = "starboardescapehatch";
 	name = "Escape Hatch Release";
 	normaldoorcontrol = 1;
-	pixel_x = 25;
+	pixel_x = 50;
 	specialfunctions = 4
 	},
 /turf/open/floor/mineral/titanium/blue,
@@ -171,14 +171,14 @@
 	dir = 4
 	},
 /obj/item/clothing/mask/gas{
-	pixel_x = 5;
-	pixel_y = 32
+	pixel_x = 10;
+	pixel_y = 64
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "li" = (
 /obj/machinery/newscaster{
-	pixel_x = 30
+	pixel_x = 60
 	},
 /turf/open/floor/carpet,
 /area/shuttle/escape)
@@ -216,7 +216,7 @@
 	dir = 1
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -27
+	pixel_x = -54
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
@@ -237,7 +237,7 @@
 	dir = 1
 	},
 /obj/machinery/newscaster{
-	pixel_x = 30
+	pixel_x = 60
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -260,12 +260,12 @@
 "rv" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/mask/gas{
-	pixel_x = -1;
-	pixel_y = 3
+	pixel_x = -2;
+	pixel_y = 6
 	},
 /obj/item/clothing/mask/gas{
-	pixel_x = -7;
-	pixel_y = 7
+	pixel_x = -14;
+	pixel_y = 14
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
@@ -274,7 +274,7 @@
 	dir = 1
 	},
 /obj/machinery/newscaster{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
@@ -345,7 +345,7 @@
 	dir = 1
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -27
+	pixel_x = -54
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
@@ -372,7 +372,7 @@
 "vC" = (
 /obj/structure/table/reinforced,
 /obj/machinery/vending/wallmed{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
@@ -381,7 +381,7 @@
 	dir = 1
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 27
+	pixel_x = 54
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
@@ -397,7 +397,7 @@
 /area/shuttle/escape)
 "wK" = (
 /obj/structure/sink{
-	pixel_y = 26
+	pixel_y = 52
 	},
 /obj/machinery/light/small,
 /turf/open/floor/mineral/titanium/white,
@@ -424,16 +424,16 @@
 	},
 /obj/machinery/flasher{
 	id = "cockpit_flasher";
-	pixel_x = 6;
-	pixel_y = 24
+	pixel_x = 12;
+	pixel_y = 48
 	},
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "xn" = (
 /obj/machinery/button/flasher{
 	id = "cockpit_flasher";
-	pixel_x = 6;
-	pixel_y = -24
+	pixel_x = 12;
+	pixel_y = -48
 	},
 /obj/machinery/light,
 /turf/open/floor/mineral/titanium,
@@ -465,7 +465,7 @@
 	dir = 1
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 27
+	pixel_x = 54
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
@@ -477,8 +477,8 @@
 "Cn" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
@@ -506,7 +506,7 @@
 /area/shuttle/escape)
 "DS" = (
 /obj/machinery/vending/wallmed{
-	pixel_y = -28
+	pixel_y = -56
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
@@ -565,7 +565,7 @@
 	id = "portescapehatch";
 	name = "Escape Hatch Release";
 	normaldoorcontrol = 1;
-	pixel_x = -25;
+	pixel_x = -50;
 	specialfunctions = 4
 	},
 /turf/open/floor/mineral/titanium/blue,
@@ -626,7 +626,7 @@
 	dir = 1
 	},
 /obj/machinery/newscaster{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -638,7 +638,7 @@
 	dir = 1
 	},
 /obj/machinery/newscaster{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -734,7 +734,7 @@
 /area/shuttle/escape)
 "Sg" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -27
+	pixel_x = -54
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
@@ -771,7 +771,7 @@
 	dir = 1
 	},
 /obj/machinery/newscaster{
-	pixel_x = -30
+	pixel_x = -60
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -798,7 +798,7 @@
 /area/shuttle/escape)
 "VR" = (
 /obj/machinery/newscaster{
-	pixel_x = -30
+	pixel_x = -60
 	},
 /turf/open/floor/carpet,
 /area/shuttle/escape)

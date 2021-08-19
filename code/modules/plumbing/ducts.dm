@@ -266,12 +266,12 @@ All the important duct code:
 	icon_state = initial(icon_state)
 	if((connects & NORTH) || (connects & SOUTH))
 		icon_state += "_vertical"
-		pixel_x = -15
-		pixel_y = -15
+		pixel_x = -15*PIXEL_MULTIPLIER
+		pixel_y = -15*PIXEL_MULTIPLIER
 	else
 		icon_state += "_horizontal"
-		pixel_x = -10
-		pixel_y = -12
+		pixel_x = -10*PIXEL_MULTIPLIER
+		pixel_y = -12*PIXEL_MULTIPLIER
 
 /obj/machinery/duct/multilayered/connect_duct(obj/machinery/duct/D, direction, ignore_color)
 	if(istype(D, /obj/machinery/duct/multilayered)) //don't connect to other multilayered stuff because honestly it shouldnt be done and I dont wanna deal with it

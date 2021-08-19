@@ -66,59 +66,59 @@
 	name = "emergency lifejacket"
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/structure/closet/crate/internals,
 /obj/effect/turf_decal/bot,
@@ -132,7 +132,7 @@
 "k" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/emergency{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/bot,
 /obj/item/storage/toolbox/emergency,
@@ -141,11 +141,11 @@
 "l" = (
 /obj/structure/table/reinforced,
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/bot,
 /obj/item/storage/toolbox/emergency{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/storage/toolbox/emergency,
 /turf/open/floor/plasteel,
@@ -207,7 +207,7 @@
 /area/shuttle/arrival)
 "r" = (
 /obj/machinery/status_display/evac{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21"
@@ -230,7 +230,7 @@
 /area/shuttle/arrival)
 "t" = (
 /obj/machinery/status_display/ai{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21"
@@ -293,7 +293,7 @@
 	dir = 8
 	},
 /obj/item/radio/intercom{
-	pixel_x = -30
+	pixel_x = -60
 	},
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
@@ -329,7 +329,7 @@
 	dir = 4
 	},
 /obj/structure/sign/poster/official/random{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
@@ -400,8 +400,8 @@
 "M" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/briefcase{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/secure/briefcase,
 /obj/effect/turf_decal/bot,

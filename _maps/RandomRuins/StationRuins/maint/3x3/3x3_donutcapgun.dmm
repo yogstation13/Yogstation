@@ -12,12 +12,12 @@
 /obj/structure/rack,
 /obj/item/toy/ammo/gun,
 /obj/item/toy/ammo/gun{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/contraband/revolver{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)
@@ -25,8 +25,8 @@
 /obj/structure/rack,
 /obj/item/toy/ammo/gun,
 /obj/item/toy/ammo/gun{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -36,8 +36,8 @@
 /obj/structure/rack,
 /obj/item/toy/gun,
 /obj/item/toy/gun{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)

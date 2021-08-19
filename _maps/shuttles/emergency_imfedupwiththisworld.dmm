@@ -4,8 +4,8 @@
 /area/shuttle/escape)
 "b" = (
 /obj/machinery/light_switch{
-	pixel_x = -4;
-	pixel_y = 24
+	pixel_x = -8;
+	pixel_y = 48
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)

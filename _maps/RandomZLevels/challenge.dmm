@@ -572,7 +572,7 @@
 	dir = 1
 	},
 /obj/machinery/recharger{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/awaymission/challenge/end)
@@ -581,7 +581,7 @@
 	desc = "Used for watching evil areas.";
 	name = "Security Monitor";
 	network = "";
-	pixel_y = 30
+	pixel_y = 60
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
@@ -618,7 +618,7 @@
 	desc = "Used for watching evil areas.";
 	name = "Security Monitor";
 	network = "";
-	pixel_y = 30
+	pixel_y = 60
 	},
 /turf/open/floor/carpet,
 /area/awaymission/challenge/end)
@@ -627,7 +627,7 @@
 /area/awaymission/challenge/end)
 "bZ" = (
 /obj/structure/mirror{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/wood,
 /area/awaymission/challenge/end)
@@ -648,7 +648,7 @@
 	},
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/challenge/end)
@@ -670,7 +670,7 @@
 "cg" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
-	pixel_x = -27
+	pixel_x = -54
 	},
 /turf/open/floor/carpet,
 /area/awaymission/challenge/end)
@@ -684,7 +684,7 @@
 "ci" = (
 /obj/structure/table/wood,
 /obj/machinery/recharger{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /turf/open/floor/carpet,
 /area/awaymission/challenge/end)
@@ -743,8 +743,8 @@
 "cs" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
-	pixel_x = 1;
-	pixel_y = 5
+	pixel_x = 2;
+	pixel_y = 10
 	},
 /turf/open/floor/carpet,
 /area/awaymission/challenge/end)
@@ -1063,7 +1063,7 @@
 "dh" = (
 /obj/structure/table,
 /obj/machinery/recharger{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/challenge/end)
@@ -1071,13 +1071,13 @@
 /obj/structure/table,
 /obj/item/implanter/explosive,
 /obj/item/implanter/explosive{
-	pixel_y = 4
-	},
-/obj/item/implanter/explosive{
 	pixel_y = 8
 	},
 /obj/item/implanter/explosive{
-	pixel_y = 12
+	pixel_y = 16
+	},
+/obj/item/implanter/explosive{
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/challenge/end)

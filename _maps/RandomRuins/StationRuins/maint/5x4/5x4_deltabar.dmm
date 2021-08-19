@@ -4,7 +4,7 @@
 /obj/machinery/chem_dispenser/drinks/beer,
 /obj/structure/table/wood/poker,
 /obj/structure/sign/poster/contraband/random{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/machinery/light/small{
 	dir = 1;
@@ -15,11 +15,11 @@
 "b" = (
 /obj/structure/table/wood/poker,
 /obj/item/reagent_containers/food/drinks/bottle/rum{
-	pixel_x = 6;
-	pixel_y = 3
+	pixel_x = 12;
+	pixel_y = 6
 	},
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_y = 7
+	pixel_y = 14
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
@@ -73,8 +73,8 @@
 "k" = (
 /obj/structure/table/wood/poker,
 /obj/item/storage/box/matches{
-	pixel_x = -3;
-	pixel_y = 5
+	pixel_x = -6;
+	pixel_y = 10
 	},
 /turf/open/floor/wood,
 /area/template_noop)

@@ -36,7 +36,7 @@
 /obj/structure/sink/kitchen{
 	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
 	name = "old sink";
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/item/organ/lungs,
 /turf/open/floor/plasteel,

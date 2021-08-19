@@ -330,8 +330,8 @@
 /area/awaymission/moonoutpost19/syndicate)
 "aS" = (
 /obj/item/stack/ore/iron{
-	pixel_x = 7;
-	pixel_y = -6
+	pixel_x = 14;
+	pixel_y = -12
 	},
 /turf/open/floor/plating/asteroid{
 	heat_capacity = 1e+006;
@@ -343,7 +343,7 @@
 /mob/living/simple_animal/hostile/alien/queen/large{
 	desc = "A gigantic alien who is in charge of the hive and all of its loyal servants.";
 	name = "alien queen";
-	pixel_x = -16;
+	pixel_x = -32;
 	plants_off = 1
 	},
 /turf/open/floor/plating/asteroid{
@@ -447,7 +447,7 @@
 "be" = (
 /obj/machinery/vending/cigarette,
 /obj/structure/sign/poster/contraband/smoke{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/moonoutpost19/syndicate)
@@ -515,7 +515,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/contraband/space_cube{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -537,7 +537,7 @@
 /area/awaymission/moonoutpost19/syndicate)
 "bo" = (
 /obj/machinery/airalarm{
-	pixel_y = 24;
+	pixel_y = 48;
 	req_access = null;
 	req_access_txt = "150"
 	},
@@ -552,8 +552,8 @@
 "bp" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -572,11 +572,11 @@
 	},
 /obj/structure/table,
 /obj/item/radio/off{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /obj/item/radio/off{
-	pixel_x = 2
+	pixel_x = 4
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel{
@@ -589,8 +589,8 @@
 	},
 /obj/structure/table,
 /obj/item/paper_bin{
-	pixel_x = 1;
-	pixel_y = 9
+	pixel_x = 2;
+	pixel_y = 18
 	},
 /obj/item/pen,
 /obj/item/paper/fluff/awaymissions/moonoutpost19/log/personal,
@@ -637,7 +637,7 @@
 	},
 /obj/structure/table,
 /obj/machinery/recharger{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line,
@@ -647,7 +647,7 @@
 /area/awaymission/moonoutpost19/syndicate)
 "bv" = (
 /obj/structure/sink{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -688,7 +688,7 @@
 "bz" = (
 /obj/structure/table,
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/item/trash/plate,
 /obj/item/cigbutt,
@@ -735,7 +735,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24;
+	pixel_x = 48;
 	req_access = null;
 	req_access_txt = "150"
 	},
@@ -870,8 +870,8 @@
 	},
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
+	pixel_x = -4;
+	pixel_y = -2
 	},
 /obj/item/clothing/gloves/color/yellow,
 /obj/item/multitool,
@@ -915,7 +915,7 @@
 "bU" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/machinery/airalarm{
-	pixel_y = 24;
+	pixel_y = 48;
 	req_access = null;
 	req_access_txt = "150"
 	},
@@ -972,7 +972,7 @@
 /area/awaymission/moonoutpost19/syndicate)
 "bZ" = (
 /obj/structure/sign/poster/contraband/syndicate_recruitment{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/loading_area{
 	dir = 8
@@ -1021,7 +1021,7 @@
 /area/awaymission/moonoutpost19/syndicate)
 "cd" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24;
+	pixel_y = 48;
 	req_access = null;
 	req_access_txt = "150"
 	},
@@ -1035,7 +1035,7 @@
 /area/awaymission/moonoutpost19/syndicate)
 "ce" = (
 /obj/structure/sign/warning/biohazard{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/structure/alien/weeds/node,
 /obj/effect/turf_decal/stripes/corner{
@@ -1063,7 +1063,7 @@
 /area/awaymission/moonoutpost19/syndicate)
 "cg" = (
 /obj/structure/sign/warning/securearea{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -1145,7 +1145,7 @@
 	dir = 4
 	},
 /obj/structure/sign/poster/contraband/hacking_guide{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
@@ -1410,7 +1410,7 @@
 	dir = 2;
 	locked = 1;
 	name = "Worn-out APC";
-	pixel_y = -23;
+	pixel_y = -46;
 	req_access = null;
 	req_access_txt = "150";
 	start_charge = 0
@@ -1513,7 +1513,7 @@
 "cS" = (
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24;
+	pixel_x = 48;
 	req_access = null;
 	req_access_txt = "150"
 	},
@@ -1606,7 +1606,7 @@
 	id = "awaydorm4";
 	name = "Door Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_y = 25;
+	pixel_y = 50;
 	specialfunctions = 4
 	},
 /obj/structure/bed,
@@ -1633,7 +1633,7 @@
 	id = "awaydorm5";
 	name = "Door Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_y = 25;
+	pixel_y = 50;
 	specialfunctions = 4
 	},
 /obj/structure/dresser,
@@ -1693,7 +1693,7 @@
 /obj/structure/chair/wood/normal,
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -24;
+	pixel_x = -48;
 	req_access = null;
 	req_access_txt = "150"
 	},
@@ -1723,7 +1723,7 @@
 "dk" = (
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24;
+	pixel_x = 48;
 	req_access = null;
 	req_access_txt = "150"
 	},
@@ -1790,7 +1790,7 @@
 /obj/item/pen,
 /obj/item/paper/fluff/awaymissions/moonoutpost19/log/personal_2,
 /obj/structure/sign/poster/contraband/c20r{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/wood{
 	heat_capacity = 1e+006;
@@ -1849,8 +1849,8 @@
 "dv" = (
 /obj/item/stack/ore/iron,
 /obj/item/stack/ore/iron{
-	pixel_x = -7;
-	pixel_y = -4
+	pixel_x = -14;
+	pixel_y = -8
 	},
 /turf/open/floor/plating/asteroid{
 	heat_capacity = 1e+006;
@@ -1897,8 +1897,8 @@
 /area/awaymission/moonoutpost19/syndicate)
 "dz" = (
 /obj/item/stack/ore/iron{
-	pixel_x = -3;
-	pixel_y = 9
+	pixel_x = -6;
+	pixel_y = 18
 	},
 /turf/open/floor/plating/asteroid{
 	heat_capacity = 1e+006;
@@ -1912,7 +1912,7 @@
 /obj/structure/sign/warning/vacuum{
 	desc = "A warning sign which reads 'HOSTILE ATMOSPHERE AHEAD'";
 	name = "\improper HOSTILE ATMOSPHERE AHEAD";
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/stripes/line{
@@ -2045,8 +2045,8 @@
 /area/awaymission/moonoutpost19/main)
 "dN" = (
 /obj/item/stack/ore/iron{
-	pixel_x = -7;
-	pixel_y = -4
+	pixel_x = -14;
+	pixel_y = -8
 	},
 /turf/open/floor/plating/asteroid{
 	heat_capacity = 1e+006;
@@ -2250,7 +2250,7 @@
 	desc = "A wall-mounted ignition device. This one has been applied with an acid-proof coating.";
 	id = "awayxenobio";
 	name = "Acid-Proof mounted igniter";
-	pixel_y = 25
+	pixel_y = 50
 	},
 /obj/structure/alien/weeds,
 /obj/structure/alien/resin/wall,
@@ -2395,14 +2395,14 @@
 /obj/machinery/button/door{
 	id = "Awaylab";
 	name = "Containment Chamber Blast Doors";
-	pixel_x = 4;
-	pixel_y = -2;
+	pixel_x = 8;
+	pixel_y = -4;
 	req_access_txt = "201"
 	},
 /obj/machinery/button/ignition{
 	id = "awayxenobio";
-	pixel_x = 4;
-	pixel_y = 8
+	pixel_x = 8;
+	pixel_y = 16
 	},
 /obj/structure/alien/weeds,
 /obj/effect/turf_decal/stripes/line{
@@ -2448,7 +2448,7 @@
 	dir = 1
 	},
 /obj/structure/sign/poster/official/build{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
@@ -2462,7 +2462,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24;
+	pixel_y = 48;
 	req_access = null
 	},
 /turf/open/floor/plating{
@@ -2565,7 +2565,7 @@
 /area/awaymission/moonoutpost19/research)
 "fe" = (
 /obj/structure/sign/warning/securearea{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -2594,7 +2594,7 @@
 	dir = 1
 	},
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24;
+	pixel_y = 48;
 	req_access = null
 	},
 /obj/structure/alien/weeds,
@@ -2605,12 +2605,12 @@
 "fh" = (
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/structure/table,
 /obj/item/storage/box/beakers{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /obj/item/storage/box/syringes,
 /obj/structure/alien/weeds,
@@ -2728,7 +2728,7 @@
 /area/awaymission/moonoutpost19/research)
 "fv" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -26
+	pixel_x = -52
 	},
 /obj/effect/decal/cleanable/blood/tracks{
 	desc = "Your instincts say you shouldn't be following these.";
@@ -2996,11 +2996,11 @@
 /obj/item/grenade/flashbang,
 /obj/item/storage/belt/security,
 /obj/item/reagent_containers/food/drinks/beer{
-	pixel_x = -3;
-	pixel_y = -2
+	pixel_x = -6;
+	pixel_y = -4
 	},
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24;
+	pixel_y = 48;
 	req_access = null
 	},
 /obj/effect/turf_decal/tile/red{
@@ -3016,10 +3016,10 @@
 "fU" = (
 /obj/item/radio/off,
 /obj/item/screwdriver{
-	pixel_y = 10
+	pixel_y = 20
 	},
 /obj/structure/sign/poster/official/safety_report{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -3049,7 +3049,7 @@
 /area/awaymission/moonoutpost19/research)
 "fX" = (
 /obj/structure/sign/warning/biohazard{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -3065,7 +3065,7 @@
 "fZ" = (
 /obj/machinery/door/firedoor,
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -29
+	pixel_y = -58
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -3136,7 +3136,7 @@
 /area/awaymission/moonoutpost19/research)
 "gi" = (
 /obj/structure/reagent_dispensers/peppertank{
-	pixel_x = -30
+	pixel_x = -60
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -3184,7 +3184,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = 28
+	pixel_x = 56
 	},
 /obj/structure/alien/weeds,
 /obj/effect/turf_decal/tile/purple{
@@ -3197,11 +3197,11 @@
 "gn" = (
 /obj/structure/table,
 /obj/item/scalpel{
-	pixel_y = 12
+	pixel_y = 24
 	},
 /obj/item/circular_saw,
 /obj/item/razor{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/structure/alien/weeds,
 /obj/effect/turf_decal/stripes/line{
@@ -3244,8 +3244,8 @@
 "gr" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/moonoutpost19/research)
@@ -3349,7 +3349,7 @@
 	dir = 4
 	},
 /obj/machinery/newscaster/security_unit{
-	pixel_x = -30
+	pixel_x = -60
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -3413,7 +3413,7 @@
 	dir = 4;
 	locked = 0;
 	name = "Worn-out APC";
-	pixel_x = 24;
+	pixel_x = 48;
 	req_access = null;
 	start_charge = 100
 	},
@@ -3457,8 +3457,8 @@
 /obj/structure/table/reinforced,
 /obj/structure/alien/weeds,
 /obj/item/paper_bin{
-	pixel_x = 1;
-	pixel_y = 9
+	pixel_x = 2;
+	pixel_y = 18
 	},
 /obj/item/pen,
 /obj/item/radio/off,
@@ -3506,7 +3506,7 @@
 /obj/machinery/button/door{
 	id = "Awaybiohazard";
 	name = "Biohazard Shutter Control";
-	pixel_x = -25;
+	pixel_x = -50;
 	req_access_txt = "201"
 	},
 /obj/machinery/light/small{
@@ -3536,7 +3536,7 @@
 "gQ" = (
 /obj/structure/table,
 /obj/machinery/recharger{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -3560,7 +3560,7 @@
 	},
 /obj/machinery/airalarm/unlocked{
 	dir = 8;
-	pixel_x = 24;
+	pixel_x = 48;
 	req_access = null
 	},
 /obj/effect/turf_decal/tile/purple{
@@ -3663,7 +3663,7 @@
 	desc = "A wall-mounted ignition device. This one has been applied with an acid-proof coating.";
 	id = "awayxenobio";
 	name = "Acid-Proof mounted igniter";
-	pixel_y = -25
+	pixel_y = -50
 	},
 /obj/structure/alien/weeds,
 /obj/structure/alien/resin/wall,
@@ -3700,7 +3700,7 @@
 /obj/structure/table,
 /obj/item/book/manual/wiki/security_space_law,
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -3727,8 +3727,8 @@
 "hi" = (
 /obj/structure/table,
 /obj/item/paper_bin{
-	pixel_x = 1;
-	pixel_y = 9
+	pixel_x = 2;
+	pixel_y = 18
 	},
 /obj/item/pen,
 /obj/effect/turf_decal/tile/red,
@@ -3812,12 +3812,12 @@
 /obj/structure/table,
 /obj/item/cartridge/signal/toxins,
 /obj/item/cartridge/signal/toxins{
-	pixel_x = -4;
-	pixel_y = 2
+	pixel_x = -8;
+	pixel_y = 4
 	},
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -3829,7 +3829,7 @@
 	dir = 1
 	},
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24;
+	pixel_y = 48;
 	req_access = null
 	},
 /obj/item/paper/fluff/awaymissions/moonoutpost19/log/gerald,
@@ -3898,12 +3898,12 @@
 	name = "First-Aid (empty)"
 	},
 /obj/item/healthanalyzer{
-	pixel_x = 6;
-	pixel_y = -5
+	pixel_x = 12;
+	pixel_y = -10
 	},
 /obj/item/assembly/prox_sensor{
-	pixel_x = -5;
-	pixel_y = -2
+	pixel_x = -10;
+	pixel_y = -4
 	},
 /obj/item/bodypart/l_arm/robot,
 /turf/open/floor/plasteel/white{
@@ -3915,7 +3915,7 @@
 /obj/item/storage/firstaid/fire,
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = 28
+	pixel_x = 56
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 8;
@@ -3951,7 +3951,7 @@
 "hE" = (
 /obj/structure/noticeboard{
 	dir = 1;
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/light/small/broken{
 	dir = 2
@@ -3990,7 +3990,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/unlocked{
 	dir = 8;
-	pixel_x = 24;
+	pixel_x = 48;
 	req_access = null
 	},
 /turf/open/floor/plasteel/white/side{
@@ -4067,7 +4067,7 @@
 /area/awaymission/moonoutpost19/arrivals)
 "hR" = (
 /obj/structure/urinal{
-	pixel_y = 29
+	pixel_y = 58
 	},
 /turf/open/floor/plasteel/freezer{
 	heat_capacity = 1e+006
@@ -4076,13 +4076,13 @@
 "hS" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/structure/urinal{
-	pixel_y = 29
+	pixel_y = 58
 	},
 /obj/structure/mirror{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer{
@@ -4091,7 +4091,7 @@
 /area/awaymission/moonoutpost19/arrivals)
 "hT" = (
 /obj/machinery/shower{
-	pixel_y = 16
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/freezer{
 	heat_capacity = 1e+006
@@ -4099,7 +4099,7 @@
 /area/awaymission/moonoutpost19/arrivals)
 "hU" = (
 /obj/machinery/shower{
-	pixel_y = 16
+	pixel_y = 32
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer{
@@ -4132,8 +4132,8 @@
 	},
 /obj/item/folder/white,
 /obj/item/stamp/rd{
-	pixel_x = 3;
-	pixel_y = -2
+	pixel_x = 6;
+	pixel_y = -4
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -4142,8 +4142,8 @@
 "hY" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin{
-	pixel_x = 1;
-	pixel_y = 9
+	pixel_x = 2;
+	pixel_y = 18
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -4188,7 +4188,7 @@
 "ic" = (
 /obj/structure/rack,
 /obj/item/paicard{
-	pixel_x = 4
+	pixel_x = 8
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -4239,7 +4239,7 @@
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /obj/machinery/newscaster{
-	pixel_y = -30
+	pixel_y = -60
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 1;
@@ -4256,7 +4256,7 @@
 "ij" = (
 /obj/machinery/airalarm/unlocked{
 	dir = 4;
-	pixel_x = -24;
+	pixel_x = -48;
 	req_access = null
 	},
 /obj/machinery/light/small{
@@ -4269,11 +4269,11 @@
 "ik" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/structure/mirror{
 	icon_state = "mirror_broke";
-	pixel_x = 28
+	pixel_x = 56
 	},
 /turf/open/floor/plasteel/freezer{
 	heat_capacity = 1e+006
@@ -4315,13 +4315,13 @@
 /obj/machinery/button/door{
 	id = "Awaybiohazard";
 	name = "Biohazard Shutter Control";
-	pixel_y = 8;
+	pixel_y = 16;
 	req_access_txt = "201"
 	},
 /obj/machinery/button/door{
 	id = "AwayRD";
 	name = "Privacy Shutter Control";
-	pixel_y = -2;
+	pixel_y = -4;
 	req_access_txt = "201"
 	},
 /turf/open/floor/plasteel/cafeteria{
@@ -4331,7 +4331,7 @@
 "iq" = (
 /obj/structure/chair/office/light{
 	dir = 1;
-	pixel_y = 3
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -4357,7 +4357,7 @@
 /area/awaymission/moonoutpost19/research)
 "it" = (
 /obj/item/storage/secure/safe{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/item/pen,
@@ -4371,7 +4371,7 @@
 /area/awaymission/moonoutpost19/research)
 "iu" = (
 /obj/structure/sign/warning/securearea{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/machinery/shower{
 	dir = 4;
@@ -4479,7 +4479,7 @@
 /area/awaymission/moonoutpost19/research)
 "iF" = (
 /obj/structure/sink{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -4498,7 +4498,7 @@
 /area/awaymission/moonoutpost19/research)
 "iH" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/light/small/broken{
 	dir = 2
@@ -4514,7 +4514,7 @@
 /area/awaymission/moonoutpost19/research)
 "iI" = (
 /obj/machinery/newscaster{
-	pixel_y = -30
+	pixel_y = -60
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -4552,7 +4552,7 @@
 /obj/structure/table,
 /obj/item/storage/secure/briefcase,
 /obj/item/taperecorder{
-	pixel_x = -3
+	pixel_x = -6
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -4564,8 +4564,8 @@
 "iN" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line{
@@ -4648,8 +4648,8 @@
 "iV" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel{
 	dir = 8;
@@ -4660,8 +4660,8 @@
 "iW" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel{
 	dir = 8;
@@ -4789,10 +4789,10 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
+	pixel_x = -6
 	},
 /obj/machinery/door/poddoor/shutters{
 	id = "awaykitchen";
@@ -4811,7 +4811,7 @@
 "jo" = (
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
@@ -4831,7 +4831,7 @@
 "jq" = (
 /obj/item/twohanded/required/kirbyplants{
 	desc = "A plastic potted plant.";
-	pixel_y = 3
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel{
 	dir = 8;
@@ -4869,7 +4869,7 @@
 /area/awaymission/moonoutpost19/arrivals)
 "jv" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+	pixel_y = 60
 	},
 /turf/open/floor/plasteel{
 	dir = 8;
@@ -4880,7 +4880,7 @@
 "jw" = (
 /obj/machinery/vending/snack,
 /obj/structure/sign/poster/contraband/eat{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel{
 	dir = 8;
@@ -4890,7 +4890,7 @@
 /area/awaymission/moonoutpost19/arrivals)
 "jx" = (
 /obj/structure/sign/departments/science{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/purple{
@@ -4980,7 +4980,7 @@
 	dir = 1;
 	locked = 0;
 	name = "Worn-out APC";
-	pixel_y = 23;
+	pixel_y = 46;
 	req_access = null;
 	start_charge = 100
 	},
@@ -4990,7 +4990,7 @@
 /area/awaymission/moonoutpost19/arrivals)
 "jI" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24;
+	pixel_y = 48;
 	req_access = null
 	},
 /turf/open/floor/plasteel{
@@ -4999,7 +4999,7 @@
 /area/awaymission/moonoutpost19/arrivals)
 "jJ" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+	pixel_y = 60
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel{
@@ -5017,7 +5017,7 @@
 /area/awaymission/moonoutpost19/arrivals)
 "jL" = (
 /obj/structure/noticeboard{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/paper/fluff/awaymissions/moonoutpost19/food_specials,
 /turf/open/floor/plasteel{
@@ -5056,7 +5056,7 @@
 "jP" = (
 /obj/structure/table,
 /obj/item/book/manual/wiki/barman_recipes{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/reagent_containers/food/drinks/shaker,
 /turf/open/floor/plasteel/cafeteria{
@@ -5066,8 +5066,8 @@
 "jQ" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -5135,7 +5135,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24;
+	pixel_y = 48;
 	req_access = null
 	},
 /obj/effect/turf_decal/tile/purple{
@@ -5309,7 +5309,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
 /obj/item/reagent_containers/glass/rag{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/machinery/door/poddoor/shutters{
 	id = "awaykitchen";
@@ -5336,8 +5336,8 @@
 "kq" = (
 /obj/structure/table,
 /obj/item/book/manual/chef_recipes{
-	pixel_x = 2;
-	pixel_y = 6
+	pixel_x = 4;
+	pixel_y = 12
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/cafeteria{
@@ -5357,7 +5357,7 @@
 /obj/machinery/processor,
 /obj/machinery/airalarm/unlocked{
 	dir = 8;
-	pixel_x = 24;
+	pixel_x = 48;
 	req_access = null
 	},
 /turf/open/floor/plasteel/cafeteria{
@@ -5395,7 +5395,7 @@
 "kw" = (
 /obj/machinery/light/small,
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/camera{
 	c_tag = "Arrivals North";
@@ -5411,7 +5411,7 @@
 /area/awaymission/moonoutpost19/arrivals)
 "kx" = (
 /obj/structure/sign/poster/official/nanotrasen_logo{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -5514,7 +5514,7 @@
 "kJ" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel{
@@ -5565,7 +5565,7 @@
 "kO" = (
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel{
@@ -5621,7 +5621,7 @@
 	id = "awaydorm1";
 	name = "Door Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = -25;
+	pixel_x = -50;
 	specialfunctions = 4
 	},
 /turf/open/floor/carpet{
@@ -5657,8 +5657,8 @@
 "kX" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
+	pixel_x = -4;
+	pixel_y = -2
 	},
 /obj/item/multitool,
 /obj/effect/turf_decal/tile/blue,
@@ -5707,7 +5707,7 @@
 /area/awaymission/moonoutpost19/arrivals)
 "lb" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 26
+	pixel_x = 52
 	},
 /obj/machinery/camera{
 	c_tag = "Kitchen";
@@ -5815,7 +5815,7 @@
 /obj/structure/chair/wood/normal,
 /obj/machinery/airalarm/unlocked{
 	dir = 8;
-	pixel_x = 24;
+	pixel_x = 48;
 	req_access = null
 	},
 /turf/open/floor/carpet{
@@ -5836,7 +5836,7 @@
 /obj/item/storage/box,
 /obj/machinery/airalarm/unlocked{
 	dir = 4;
-	pixel_x = -24;
+	pixel_x = -48;
 	req_access = null
 	},
 /obj/effect/turf_decal/tile/bar,
@@ -5862,7 +5862,7 @@
 "ls" = (
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera{
@@ -5882,7 +5882,7 @@
 /obj/machinery/button/door{
 	id = "awaykitchen";
 	name = "Kitchen Shutters Control";
-	pixel_x = -25
+	pixel_x = -50
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/cafeteria{
@@ -5908,7 +5908,7 @@
 /obj/structure/sink/kitchen{
 	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
 	name = "old sink";
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/plasteel/showroomfloor{
 	heat_capacity = 1e+006;
@@ -6007,7 +6007,7 @@
 /obj/structure/table/wood,
 /obj/item/lighter,
 /obj/machinery/newscaster{
-	pixel_x = 30
+	pixel_x = 60
 	},
 /turf/open/floor/carpet{
 	heat_capacity = 1e+006
@@ -6082,7 +6082,7 @@
 /area/awaymission/moonoutpost19/arrivals)
 "lZ" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/awaymission/moonoutpost19/arrivals)
@@ -6106,7 +6106,7 @@
 /area/awaymission/moonoutpost19/arrivals)
 "md" = (
 /obj/machinery/newscaster{
-	pixel_y = 30
+	pixel_y = 60
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -6298,11 +6298,11 @@
 	id = "awaydorm2";
 	name = "Door Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = -25;
+	pixel_x = -50;
 	specialfunctions = 4
 	},
 /obj/machinery/newscaster{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/carpet{
 	heat_capacity = 1e+006
@@ -6330,7 +6330,7 @@
 "mC" = (
 /obj/machinery/vending/cigarette,
 /obj/structure/sign/poster/contraband/smoke{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/moonoutpost19/arrivals)
@@ -6344,15 +6344,15 @@
 "mE" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = -6;
-	pixel_y = 6
+	pixel_x = -12;
+	pixel_y = 12
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 6;
-	pixel_y = 8
+	pixel_x = 12;
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/moonoutpost19/arrivals)
@@ -6418,7 +6418,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/noticeboard{
 	dir = 8;
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/item/paper/fluff/awaymissions/moonoutpost19/welcome,
 /obj/machinery/camera{
@@ -6504,7 +6504,7 @@
 	},
 /obj/machinery/airalarm/unlocked{
 	dir = 8;
-	pixel_x = 24;
+	pixel_x = 48;
 	req_access = null
 	},
 /turf/open/floor/carpet{
@@ -6590,7 +6590,7 @@
 /area/awaymission/moonoutpost19/arrivals)
 "nh" = (
 /obj/machinery/newscaster{
-	pixel_y = -30
+	pixel_y = -60
 	},
 /obj/machinery/light/small,
 /turf/open/floor/mineral/titanium/blue,
@@ -6607,7 +6607,7 @@
 "nj" = (
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plasteel{
 	dir = 8;
@@ -6634,7 +6634,7 @@
 /obj/structure/sign/warning/vacuum{
 	desc = "A warning sign which reads 'HOSTILE ATMOSPHERE AHEAD'";
 	name = "\improper HOSTILE ATMOSPHERE AHEAD";
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
@@ -6748,7 +6748,7 @@
 "ny" = (
 /obj/machinery/airalarm/unlocked{
 	dir = 8;
-	pixel_x = 24;
+	pixel_x = 48;
 	req_access = null
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -6859,7 +6859,7 @@
 	id = "awaydorm3";
 	name = "Door Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = -25;
+	pixel_x = -50;
 	specialfunctions = 4
 	},
 /obj/effect/decal/remains/human{
@@ -6888,7 +6888,7 @@
 /obj/structure/sign/warning/vacuum{
 	desc = "A warning sign which reads 'HOSTILE ATMOSPHERE AHEAD'";
 	name = "\improper HOSTILE ATMOSPHERE AHEAD";
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
@@ -6938,7 +6938,7 @@
 "nP" = (
 /obj/item/pen,
 /obj/item/storage/pill_bottle{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/carpet{
 	heat_capacity = 1e+006
@@ -6981,7 +6981,7 @@
 /area/awaymission/moonoutpost19/arrivals)
 "nU" = (
 /obj/machinery/newscaster{
-	pixel_x = 30
+	pixel_x = 60
 	},
 /turf/open/floor/carpet{
 	heat_capacity = 1e+006
@@ -7052,7 +7052,7 @@
 "ob" = (
 /obj/item/twohanded/required/kirbyplants{
 	desc = "A plastic potted plant.";
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{

@@ -558,11 +558,11 @@
 /obj/structure/sink{
 	dir = 8;
 	icon_state = "sink";
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /obj/structure/mirror{
-	pixel_x = -28
+	pixel_x = -56
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/gasstation)
@@ -753,7 +753,7 @@
 /area/ruin/powered/gasstation)
 "Ut" = (
 /obj/machinery/newscaster{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/lavaland,

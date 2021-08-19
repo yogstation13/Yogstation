@@ -63,16 +63,16 @@
 	var/dirlook
 	switch(dir)
 		if(NORTH)
-			offet_matrix[2] = -3
+			offet_matrix[2] = -3*PIXEL_MULTIPLIER
 			dirlook = SOUTH
 		if(SOUTH)
-			offet_matrix[2] = 1
+			offet_matrix[2] = 1*PIXEL_MULTIPLIER
 			dirlook = NORTH
 		if(EAST)
-			offet_matrix[1] = -5
+			offet_matrix[1] = -5*PIXEL_MULTIPLIER
 			dirlook = WEST
 		if(WEST)
-			offet_matrix[1] = 5
+			offet_matrix[1] = 5*PIXEL_MULTIPLIER
 			dirlook = EAST
 	if(dirlook)
 		T = get_step(T, dirlook)

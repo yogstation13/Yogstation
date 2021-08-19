@@ -70,7 +70,7 @@
 "an" = (
 /obj/structure/table/reinforced,
 /obj/machinery/status_display/evac{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/item/clipboard,
 /obj/machinery/light{
@@ -108,8 +108,8 @@
 /obj/machinery/button/door{
 	id = "syndieshutters";
 	name = "Cockpit View Control";
-	pixel_x = 32;
-	pixel_y = 32;
+	pixel_x = 64;
+	pixel_y = 64;
 	req_access_txt = "150"
 	},
 /turf/open/floor/plasteel/dark,
@@ -124,7 +124,7 @@
 "as" = (
 /obj/structure/table/reinforced,
 /obj/machinery/status_display/ai{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/item/storage/box/fancy/donut_box,
 /obj/machinery/light{
@@ -216,8 +216,8 @@
 "aA" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/handcuffs{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/box/zipties,
 /obj/effect/turf_decal/tile/neutral{
@@ -461,7 +461,7 @@
 /obj/machinery/button/door{
 	id = "smindicate";
 	name = "external door control";
-	pixel_y = 26;
+	pixel_y = 52;
 	req_access_txt = "150"
 	},
 /obj/docking_port/mobile{
@@ -523,7 +523,7 @@
 	},
 /obj/structure/sign/warning/vacuum/external{
 	layer = 4;
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/airlock)
@@ -627,34 +627,34 @@
 /area/shuttle/syndicate/medical)
 "bt" = (
 /obj/item/reagent_containers/glass/bottle/epinephrine{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/charcoal{
-	pixel_x = -3
+	pixel_x = -6
 	},
 /obj/item/reagent_containers/glass/bottle/epinephrine{
-	pixel_x = -3;
-	pixel_y = 8
+	pixel_x = -6;
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/glass/bottle/charcoal{
-	pixel_x = 6;
-	pixel_y = 8
+	pixel_x = 12;
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/syringe/epinephrine{
-	pixel_x = 3;
-	pixel_y = -2
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = 8;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = -4;
+	pixel_y = 10
 	},
 /obj/item/reagent_containers/syringe/epinephrine{
 	pixel_x = 4;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/syringe/epinephrine{
-	pixel_x = -2;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/syringe/epinephrine{
-	pixel_x = 2;
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/bot_white,
@@ -702,8 +702,8 @@
 /area/shuttle/syndicate/airlock)
 "bx" = (
 /obj/item/stock_parts/cell/high{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/stock_parts/cell/high,
 /obj/structure/table/reinforced,
@@ -711,10 +711,10 @@
 /area/shuttle/syndicate/armory)
 "by" = (
 /obj/item/screwdriver{
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/assembly/voice{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
@@ -732,19 +732,19 @@
 /obj/item/assembly/signaler,
 /obj/item/assembly/signaler,
 /obj/item/assembly/prox_sensor{
-	pixel_x = -8;
-	pixel_y = 4
+	pixel_x = -16;
+	pixel_y = 8
 	},
 /obj/item/assembly/prox_sensor{
-	pixel_x = -8;
-	pixel_y = 4
+	pixel_x = -16;
+	pixel_y = 8
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/armory)
 "bB" = (
 /obj/item/weldingtool/largetank{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/item/multitool,
 /obj/structure/table/reinforced,
@@ -839,7 +839,7 @@
 	dir = 8
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -30
+	pixel_x = -60
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/hallway)
@@ -960,13 +960,13 @@
 	dir = 8
 	},
 /obj/item/storage/firstaid/regular{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/firstaid/brute,
 /obj/item/storage/firstaid/regular{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral,
@@ -977,13 +977,13 @@
 /area/shuttle/syndicate/medical)
 "cc" = (
 /obj/item/storage/firstaid/regular{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/regular{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral,
@@ -994,7 +994,7 @@
 /area/shuttle/syndicate/medical)
 "ce" = (
 /obj/item/sbeacondrop/bomb{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/sbeacondrop/bomb,
 /obj/structure/table/reinforced,
@@ -1006,11 +1006,11 @@
 /area/shuttle/syndicate/armory)
 "cf" = (
 /obj/item/grenade/syndieminibomb{
-	pixel_x = 4;
-	pixel_y = 2
+	pixel_x = 8;
+	pixel_y = 4
 	},
 /obj/item/grenade/syndieminibomb{
-	pixel_x = -1
+	pixel_x = -2
 	},
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -1083,10 +1083,10 @@
 "ck" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/structure/mirror{
-	pixel_x = 30
+	pixel_x = 60
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1354,8 +1354,8 @@
 	icon_state = "airlock_control_standby";
 	id = "syndiedriver";
 	name = "Mass Driver Controller";
-	pixel_x = -41;
-	pixel_y = 8
+	pixel_x = -82;
+	pixel_y = 16
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)

@@ -116,7 +116,7 @@
 	var/mask_file = 'icons/obj/doors/airlocks/mask_32x32_airlocks.dmi' // because filters aren't allowed to have icon_states :(
 	var/mask_x = 0
 	var/mask_y = 0
-	var/anim_parts = "left=-14,0;right=13,0"
+	var/anim_parts = "left=-28,0;right=26,0"
 	var/list/part_overlays
 	var/panel_attachment = "right"
 	var/note_attachment = "left"

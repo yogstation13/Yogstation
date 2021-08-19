@@ -10,7 +10,7 @@
 "g" = (
 /obj/effect/decal/remains/human,
 /obj/machinery/vending/wallmed{
-	pixel_y = -28
+	pixel_y = -56
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
@@ -29,16 +29,16 @@
 "k" = (
 /obj/structure/dresser,
 /obj/item/flashlight/lamp{
-	pixel_x = 2;
-	pixel_y = 14
+	pixel_x = 4;
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/template_noop)
 "l" = (
 /obj/structure/table,
 /obj/item/reagent_containers/medspray/sterilizine{
-	pixel_x = -8;
-	pixel_y = 5
+	pixel_x = -16;
+	pixel_y = 10
 	},
 /obj/item/reagent_containers/spray/spraytan,
 /turf/open/floor/plasteel/cafeteria,
@@ -118,7 +118,7 @@
 /obj/structure/table/wood,
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-18";
-	pixel_y = 10
+	pixel_y = 20
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -141,10 +141,10 @@
 "F" = (
 /obj/structure/table,
 /obj/structure/mirror{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/item/razor{
-	pixel_x = -5
+	pixel_x = -10
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel/cafeteria,

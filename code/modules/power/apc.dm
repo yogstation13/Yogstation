@@ -58,8 +58,8 @@
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
 	FASTDMM_PROP(\
 		set_instance_vars(\
-			pixel_x = dir == EAST ? 24 : (dir == WEST ? -25 : INSTANCE_VAR_DEFAULT),\
-			pixel_y = dir == NORTH ? 23 : (dir == SOUTH ? -23 : INSTANCE_VAR_DEFAULT)\
+			pixel_x = dir == EAST ? 24*PIXEL_MULTIPLIER : (dir == WEST ? -25*PIXEL_MULTIPLIER : INSTANCE_VAR_DEFAULT),\
+			pixel_y = dir == NORTH ? 23*PIXEL_MULTIPLIER : (dir == SOUTH ? -23*PIXEL_MULTIPLIER : INSTANCE_VAR_DEFAULT)\
 		),\
 		dir_amount = 4\
     )
@@ -133,19 +133,19 @@
 
 /obj/machinery/power/apc/auto_name/north //Pixel offsets get overwritten on New()
 	dir = NORTH
-	pixel_y = 23
+	pixel_y = 23*PIXEL_MULTIPLIER
 
 /obj/machinery/power/apc/auto_name/south
 	dir = SOUTH
-	pixel_y = -23
+	pixel_y = -23*PIXEL_MULTIPLIER
 
 /obj/machinery/power/apc/auto_name/east
 	dir = EAST
-	pixel_x = 24
+	pixel_x = 24*PIXEL_MULTIPLIER
 
 /obj/machinery/power/apc/auto_name/west
 	dir = WEST
-	pixel_x = -25
+	pixel_x = -25*PIXEL_MULTIPLIER
 
 /obj/machinery/power/apc/get_cell()
 	return cell
@@ -177,21 +177,21 @@
 
 	switch(tdir)
 		if(NORTH)
-			if((pixel_y != initial(pixel_y)) && (pixel_y != 23))
-				log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([tdir] | [uppertext(dir2text(tdir))]) has pixel_y value ([pixel_y] - should be 23.)")
-			pixel_y = 23
+			if((pixel_y != initial(pixel_y)) && (pixel_y != 23*PIXEL_MULTIPLIER))
+				log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([tdir] | [uppertext(dir2text(tdir))]) has pixel_y value ([pixel_y] - should be [23*PIXEL_MULTIPLIER].)")
+			pixel_y = 23*PIXEL_MULTIPLIER
 		if(SOUTH)
-			if((pixel_y != initial(pixel_y)) && (pixel_y != -23))
-				log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([tdir] | [uppertext(dir2text(tdir))]) has pixel_y value ([pixel_y] - should be -23.)")
-			pixel_y = -23
+			if((pixel_y != initial(pixel_y)) && (pixel_y != -23*PIXEL_MULTIPLIER))
+				log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([tdir] | [uppertext(dir2text(tdir))]) has pixel_y value ([pixel_y] - should be -[23*PIXEL_MULTIPLIER].)")
+			pixel_y = -23*PIXEL_MULTIPLIER
 		if(EAST)
-			if((pixel_y != initial(pixel_x)) && (pixel_x != 24))
-				log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([tdir] | [uppertext(dir2text(tdir))]) has pixel_x value ([pixel_x] - should be 24.)")
-			pixel_x = 24
+			if((pixel_y != initial(pixel_x)) && (pixel_x != 24*PIXEL_MULTIPLIER))
+				log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([tdir] | [uppertext(dir2text(tdir))]) has pixel_x value ([pixel_x] - should be [24*PIXEL_MULTIPLIER].)")
+			pixel_x = 24*PIXEL_MULTIPLIER
 		if(WEST)
-			if((pixel_y != initial(pixel_x)) && (pixel_x != -25))
-				log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([tdir] | [uppertext(dir2text(tdir))]) has pixel_x value ([pixel_x] - should be -25.)")
-			pixel_x = -25
+			if((pixel_y != initial(pixel_x)) && (pixel_x != -25*PIXEL_MULTIPLIER))
+				log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([tdir] | [uppertext(dir2text(tdir))]) has pixel_x value ([pixel_x] - should be -[25*PIXEL_MULTIPLIER].)")
+			pixel_x = -25*PIXEL_MULTIPLIER
 	if (building)
 		area = get_area(src)
 		opened = APC_COVER_OPENED

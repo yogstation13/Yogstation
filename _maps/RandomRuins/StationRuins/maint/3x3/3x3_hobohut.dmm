@@ -7,17 +7,17 @@
 /area/template_noop)
 "b" = (
 /obj/item/trash/can{
-	pixel_x = 4;
-	pixel_y = 6
+	pixel_x = 8;
+	pixel_y = 12
 	},
 /obj/structure/table/wood,
 /obj/item/wirecutters{
-	pixel_x = 6;
-	pixel_y = -3
+	pixel_x = 12;
+	pixel_y = -6
 	},
 /obj/item/wrench/medical{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/reagent_containers/syringe,
@@ -44,7 +44,7 @@
 /obj/item/broken_bottle,
 /obj/item/cigbutt,
 /obj/item/cigbutt{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /turf/open/floor/plating,
 /area/template_noop)

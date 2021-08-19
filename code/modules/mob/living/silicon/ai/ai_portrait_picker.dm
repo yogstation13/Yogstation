@@ -55,12 +55,12 @@
 			var/mutable_appearance/MA = mutable_appearance(portrait_icon)
 			if(w == 23 || h == 23)
 				to_chat(ai, "<span class='notice'>Small note: 23x23 Portraits are accepted, but they do not fit perfectly inside the display frame.</span>")
-				MA.pixel_x = 5
-				MA.pixel_y = 5
+				MA.pixel_x = 5*PIXEL_MULTIPLIER
+				MA.pixel_y = 5*PIXEL_MULTIPLIER
 			else if(w == 24 || h == 24)
 				to_chat(ai, "<span class='notice'>Portrait Accepted. Enjoy!</span>")
-				MA.pixel_x = 4
-				MA.pixel_y = 4
+				MA.pixel_x = 4*PIXEL_MULTIPLIER
+				MA.pixel_y = 4*PIXEL_MULTIPLIER
 			else
 				to_chat(ai, "<span class='warning'>Sorry, only 23x23 and 24x24 Portraits are accepted.</span>")
 				return

@@ -29,8 +29,8 @@
 	. = ..()
 	if(projectile_type)
 		BB = new projectile_type(src)
-	pixel_x = rand(-10, 10)
-	pixel_y = rand(-10, 10)
+	pixel_x = rand(-10*PIXEL_MULTIPLIER, 10*PIXEL_MULTIPLIER)
+	pixel_y = rand(-10*PIXEL_MULTIPLIER, 10*PIXEL_MULTIPLIER)
 	setDir(pick(GLOB.alldirs))
 	update_icon()
 

@@ -41,7 +41,7 @@
 "j" = (
 /obj/structure/rack,
 /obj/item/screwdriver{
-	pixel_y = 16
+	pixel_y = 32
 	},
 /obj/item/hand_labeler,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -50,8 +50,8 @@
 "k" = (
 /obj/structure/rack,
 /obj/item/stack/cable_coil{
-	pixel_x = -1;
-	pixel_y = -3
+	pixel_x = -2;
+	pixel_y = -6
 	},
 /obj/item/wrench,
 /obj/item/flashlight/seclite,

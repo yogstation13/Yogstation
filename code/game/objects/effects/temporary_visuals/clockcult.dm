@@ -97,16 +97,16 @@
 
 /obj/effect/temp_visual/ratvar/ocular_warden/Initialize()
 	. = ..()
-	pixel_x = rand(-8, 8)
-	pixel_y = rand(-10, 10)
+	pixel_x = rand(-8*PIXEL_MULTIPLIER, 8*PIXEL_MULTIPLIER)
+	pixel_y = rand(-10*PIXEL_MULTIPLIER, 10*PIXEL_MULTIPLIER)
 	animate(src, alpha = 0, time = duration, easing = EASE_OUT)
 
 /obj/effect/temp_visual/ratvar/prolonging_prism
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "prismhex1"
 	layer = RIPPLE_LAYER
-	pixel_y = -16
-	pixel_x = -16
+	pixel_y = -16*PIXEL_MULTIPLIER
+	pixel_x = -16*PIXEL_MULTIPLIER
 	duration = 30
 
 /obj/effect/temp_visual/ratvar/prolonging_prism/Initialize(mapload, set_appearance)
@@ -119,8 +119,8 @@
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "ratvarspearbreak"
 	layer = BELOW_MOB_LAYER
-	pixel_y = -16
-	pixel_x = -16
+	pixel_y = -16*PIXEL_MULTIPLIER
+	pixel_x = -16*PIXEL_MULTIPLIER
 
 /obj/effect/temp_visual/ratvar/geis_binding
 	icon_state = "geisbinding"
@@ -137,9 +137,9 @@
 /obj/effect/temp_visual/ratvar/component/Initialize()
 	. = ..()
 	transform = matrix()*0.75
-	pixel_x = rand(-10, 10)
-	pixel_y = rand(-10, -2)
-	animate(src, pixel_y = pixel_y + 10, alpha = 50, time = 10, easing = EASE_OUT)
+	pixel_x = rand(-10*PIXEL_MULTIPLIER, 10*PIXEL_MULTIPLIER)
+	pixel_y = rand(-10*PIXEL_MULTIPLIER, -2*PIXEL_MULTIPLIER)
+	animate(src, pixel_y = pixel_y + 10*PIXEL_MULTIPLIER, alpha = 50, time = 10, easing = EASE_OUT)
 
 /obj/effect/temp_visual/ratvar/component/cogwheel
 	icon_state = "vanguard_cogwheel"
@@ -213,15 +213,15 @@
 	var/y_offset = 0
 	switch(dir)
 		if(NORTH)
-			y_offset = 8
+			y_offset = 8*PIXEL_MULTIPLIER
 		if(EAST)
-			x_offset = 4
-			y_offset = 4
+			x_offset = 4*PIXEL_MULTIPLIER
+			y_offset = 4*PIXEL_MULTIPLIER
 		if(SOUTH)
-			y_offset = 2
+			y_offset = 2*PIXEL_MULTIPLIER
 		if(WEST)
-			x_offset = -4
-			y_offset = 4
+			x_offset = -4*PIXEL_MULTIPLIER
+			y_offset = 4*PIXEL_MULTIPLIER
 	animate(src, pixel_x = x_offset, pixel_y = y_offset, alpha = 50, time = 15)
 
 /obj/effect/temp_visual/steam_release

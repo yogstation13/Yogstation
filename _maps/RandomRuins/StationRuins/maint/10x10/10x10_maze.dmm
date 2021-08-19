@@ -62,7 +62,7 @@
 /area/template_noop)
 "D" = (
 /obj/structure/sign/poster/official/random{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plating,
 /area/template_noop)

@@ -124,8 +124,8 @@
 	desc = "Clean off your radiation.";
 	dir = 8;
 	icon_state = "sink";
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -216,8 +216,8 @@
 /area/ruin/powered)
 "bn" = (
 /obj/structure/closet/secure_closet/bar{
-	pixel_x = -3;
-	pixel_y = -1;
+	pixel_x = -6;
+	pixel_y = -2;
 	req_access_txt = "25"
 	},
 /turf/open/floor/wood,

@@ -16,7 +16,7 @@
 /area/ruin/powered)
 "e" = (
 /obj/structure/mirror{
-	pixel_y = -6
+	pixel_y = -12
 	},
 /turf/closed/wall/mineral/titanium,
 /area/ruin/powered)
@@ -44,17 +44,17 @@
 "k" = (
 /obj/structure/table,
 /obj/item/reagent_containers/pill/stimulant{
-	pixel_x = 3;
-	pixel_y = 4
+	pixel_x = 6;
+	pixel_y = 8
 	},
 /obj/item/reagent_containers/pill/stimulant,
 /obj/item/survivalcapsule{
-	pixel_x = -7;
-	pixel_y = 8
+	pixel_x = -14;
+	pixel_y = 16
 	},
 /obj/item/survivalcapsule{
-	pixel_x = -6;
-	pixel_y = 7
+	pixel_x = -12;
+	pixel_y = 14
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -74,13 +74,13 @@
 "n" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/brute{
-	pixel_x = -6;
-	pixel_y = 5
+	pixel_x = -12;
+	pixel_y = 10
 	},
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/toxin{
-	pixel_x = 3;
-	pixel_y = 5
+	pixel_x = 6;
+	pixel_y = 10
 	},
 /obj/item/storage/backpack/duffelbag/clown,
 /turf/open/floor/wood,
@@ -104,10 +104,10 @@
 /obj/item/tank/internals/emergency_oxygen/double,
 /obj/item/clothing/mask/breath,
 /obj/item/flashlight/lantern{
-	pixel_x = -7
+	pixel_x = -14
 	},
 /obj/item/gps/mining{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -119,18 +119,18 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/coffee,
 /obj/item/reagent_containers/food/drinks/coffee{
-	pixel_x = 9;
-	pixel_y = 7
+	pixel_x = 18;
+	pixel_y = 14
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
-	pixel_x = 7
+	pixel_x = 14
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
-	pixel_x = 8;
-	pixel_y = 4
+	pixel_x = 16;
+	pixel_y = 8
 	},
 /obj/item/reagent_containers/food/snacks/burger/bigbite{
-	pixel_x = -3
+	pixel_x = -6
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)

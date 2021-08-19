@@ -18,7 +18,7 @@
 	move_to_delay = 5
 	ranged = TRUE
 	del_on_death = TRUE
-	pixel_x = -16
+	pixel_x = -16*PIXEL_MULTIPLIER
 	internal_type = /obj/item/gps/internal/stalwart
 	loot = list(/obj/structure/closet/crate/sphere/stalwart)
 	deathmessage = "erupts into blue flame, and screeches before violently shattering."

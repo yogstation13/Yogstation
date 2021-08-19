@@ -1,4 +1,4 @@
-#define DRAKE_SWOOP_HEIGHT 270 //how high up drakes go, in pixels
+#define DRAKE_SWOOP_HEIGHT (270*PIXEL_MULTIPLIER) //how high up drakes go, in pixels
 #define DRAKE_SWOOP_DIRECTION_CHANGE_RANGE 5 //the range our x has to be within to not change the direction we slam from
 
 #define SWOOP_DAMAGEABLE 1
@@ -49,7 +49,7 @@ Difficulty: Medium
 	speed = 5
 	move_to_delay = 5
 	ranged = TRUE
-	pixel_x = -16
+	pixel_x = -16*PIXEL_MULTIPLIER
 	crusher_loot = list(/obj/structure/closet/crate/necropolis/dragon/crusher)
 	loot = list(/obj/structure/closet/crate/necropolis/dragon)
 	butcher_results = list(/obj/item/stack/ore/diamond = 5, /obj/item/stack/sheet/sinew = 5, /obj/item/stack/sheet/bone = 30)
@@ -489,8 +489,8 @@ Difficulty: Medium
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "landing"
 	layer = BELOW_MOB_LAYER
-	pixel_x = -32
-	pixel_y = -32
+	pixel_x = -32*PIXEL_MULTIPLIER
+	pixel_y = -32*PIXEL_MULTIPLIER
 	color = "#FF0000"
 	duration = 10
 
@@ -498,7 +498,7 @@ Difficulty: Medium
 	icon = 'icons/mob/lavaland/64x64megafauna.dmi'
 	icon_state = "dragon"
 	layer = ABOVE_ALL_MOB_LAYER
-	pixel_x = -16
+	pixel_x = -16*PIXEL_MULTIPLIER
 	duration = 10
 	randomdir = FALSE
 
@@ -526,9 +526,9 @@ Difficulty: Medium
 /obj/effect/temp_visual/dragon_flight/end/flight(negative)
 	if(negative)
 		pixel_x = -DRAKE_SWOOP_HEIGHT
-		animate(src, pixel_x = -16, pixel_z = 0, time = 5)
+		animate(src, pixel_x = -16*PIXEL_MULTIPLIER, pixel_z = 0, time = 5)
 	else
-		animate(src, pixel_x = -16, pixel_z = 0, time = 5)
+		animate(src, pixel_x = -16*PIXEL_MULTIPLIER, pixel_z = 0, time = 5)
 
 obj/effect/temp_visual/fireball
 	icon = 'icons/obj/wizard.dmi'

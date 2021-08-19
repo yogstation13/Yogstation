@@ -353,8 +353,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/rollie/Initialize()
 	. = ..()
-	pixel_x = rand(-5, 5)
-	pixel_y = rand(-5, 5)
+	pixel_x = rand(-5*PIXEL_MULTIPLIER, 5*PIXEL_MULTIPLIER)
+	pixel_y = rand(-5*PIXEL_MULTIPLIER, 5*PIXEL_MULTIPLIER)
 
 /obj/item/clothing/mask/cigarette/rollie/nicotine
 	list_reagents = list(/datum/reagent/drug/nicotine = 15)
@@ -376,8 +376,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/cigbutt/roach/Initialize()
 	. = ..()
-	pixel_x = rand(-5, 5)
-	pixel_y = rand(-5, 5)
+	pixel_x = rand(-5*PIXEL_MULTIPLIER, 5*PIXEL_MULTIPLIER)
+	pixel_y = rand(-5*PIXEL_MULTIPLIER, 5*PIXEL_MULTIPLIER)
 
 
 ////////////

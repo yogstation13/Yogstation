@@ -601,15 +601,15 @@
 	. = ..()
 	switch(dir)
 		if(NORTH)
-			pixel_x = -64
+			pixel_x = -64*PIXEL_MULTIPLIER
 		if(SOUTH)
-			pixel_x = -64
-			pixel_y = -128
+			pixel_x = -64*PIXEL_MULTIPLIER
+			pixel_y = -128*PIXEL_MULTIPLIER
 		if(EAST)
-			pixel_y = -64
+			pixel_y = -64*PIXEL_MULTIPLIER
 		if(WEST)
-			pixel_y = -64
-			pixel_x = -128
+			pixel_y = -64*PIXEL_MULTIPLIER
+			pixel_x = -128*PIXEL_MULTIPLIER
 
 /obj/effect/glowing_rune
 	icon = 'icons/effects/eldritch.dmi'
@@ -618,8 +618,8 @@
 
 /obj/effect/glowing_rune/Initialize()
 	. = ..()
-	pixel_y = rand(-6,6)
-	pixel_x = rand(-6,6)
+	pixel_y = rand(-6*PIXEL_MULTIPLIER,6*PIXEL_MULTIPLIER)
+	pixel_x = rand(-6*PIXEL_MULTIPLIER,6*PIXEL_MULTIPLIER)
 	icon_state = "small_rune_[rand(12)]"
 	update_icon()
 

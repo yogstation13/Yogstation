@@ -95,35 +95,35 @@
 		if(NORTH)
 			layer = BELOW_MOB_LAYER
 			user.pixel_x = 0
-			user.pixel_y = -14
+			user.pixel_y = -14*PIXEL_MULTIPLIER
 		if(NORTHEAST)
 			layer = BELOW_MOB_LAYER
-			user.pixel_x = -8
-			user.pixel_y = -4
+			user.pixel_x = -8*PIXEL_MULTIPLIER
+			user.pixel_y = -4*PIXEL_MULTIPLIER
 		if(EAST)
 			layer = ABOVE_MOB_LAYER
-			user.pixel_x = -14
+			user.pixel_x = -14*PIXEL_MULTIPLIER
 			user.pixel_y = 0
 		if(SOUTHEAST)
 			layer = BELOW_MOB_LAYER
-			user.pixel_x = -8
-			user.pixel_y = 4
+			user.pixel_x = -8*PIXEL_MULTIPLIER
+			user.pixel_y = 4*PIXEL_MULTIPLIER
 		if(SOUTH)
 			layer = ABOVE_MOB_LAYER
 			user.pixel_x = 0
-			user.pixel_y = 14
+			user.pixel_y = 14*PIXEL_MULTIPLIER
 		if(SOUTHWEST)
 			layer = BELOW_MOB_LAYER
-			user.pixel_x = 8
-			user.pixel_y = 4
+			user.pixel_x = 8*PIXEL_MULTIPLIER
+			user.pixel_y = 4*PIXEL_MULTIPLIER
 		if(WEST)
 			layer = ABOVE_MOB_LAYER
-			user.pixel_x = 14
+			user.pixel_x = 14*PIXEL_MULTIPLIER
 			user.pixel_y = 0
 		if(NORTHWEST)
 			layer = BELOW_MOB_LAYER
-			user.pixel_x = 8
-			user.pixel_y = -4
+			user.pixel_x = 8*PIXEL_MULTIPLIER
+			user.pixel_y = -4*PIXEL_MULTIPLIER
 
 /obj/machinery/manned_turret/proc/checkfire(atom/targeted_atom, mob/user)
 	target = targeted_atom

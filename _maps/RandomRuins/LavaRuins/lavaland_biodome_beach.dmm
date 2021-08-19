@@ -46,13 +46,13 @@
 /area/ruin/powered/beach)
 "al" = (
 /obj/structure/urinal{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/beach)
 "am" = (
 /obj/structure/urinal{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plating,
@@ -67,11 +67,11 @@
 "ao" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/effect/turf_decal/sand,
 /obj/structure/mirror{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/beach)
@@ -458,7 +458,7 @@
 /obj/machinery/button/door{
 	id = "barshutters";
 	name = "Bar Shutters Control";
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/beach)

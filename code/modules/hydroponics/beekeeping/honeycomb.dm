@@ -15,8 +15,8 @@
 
 /obj/item/reagent_containers/honeycomb/Initialize()
 	. = ..()
-	pixel_x = rand(8,-8)
-	pixel_y = rand(8,-8)
+	pixel_x = rand(8*PIXEL_MULTIPLIER,-8*PIXEL_MULTIPLIER)
+	pixel_y = rand(8*PIXEL_MULTIPLIER,-8*PIXEL_MULTIPLIER)
 	update_icon()
 
 

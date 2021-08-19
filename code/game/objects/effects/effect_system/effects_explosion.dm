@@ -26,8 +26,8 @@
 	opacity = 1
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	pixel_x = -32
-	pixel_y = -32
+	pixel_x = -32*PIXEL_MULTIPLIER
+	pixel_y = -32*PIXEL_MULTIPLIER
 
 /obj/effect/explosion/Initialize()
 	. = ..()

@@ -1304,7 +1304,7 @@
 	dir = 2;
 	id = "spacebattlestorage";
 	name = "Secure Storage";
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
@@ -1737,7 +1737,7 @@
 	dir = 2;
 	id = "spacebattlestorage";
 	name = "Secure Storage";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plating,
 /area/awaymission/spacebattle/cruiser)
@@ -2262,7 +2262,7 @@
 "io" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/spacebattle/cruiser)

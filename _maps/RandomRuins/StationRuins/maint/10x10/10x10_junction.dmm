@@ -11,8 +11,8 @@
 /obj/machinery/button/door{
 	id = "junctionshutter";
 	name = "Shutters Control";
-	pixel_x = 26;
-	pixel_y = 4;
+	pixel_x = 52;
+	pixel_y = 8;
 	sync_doors = 0
 	},
 /obj/machinery/light{
@@ -26,8 +26,8 @@
 /obj/machinery/button/door{
 	id = "junctionshutter";
 	name = "Shutters Control";
-	pixel_x = -4;
-	pixel_y = 26;
+	pixel_x = -8;
+	pixel_y = 52;
 	sync_doors = 0
 	},
 /obj/machinery/light{
@@ -61,8 +61,8 @@
 /obj/machinery/button/door{
 	id = "junctionshutter";
 	name = "Shutters Control";
-	pixel_x = -4;
-	pixel_y = -26;
+	pixel_x = -8;
+	pixel_y = -52;
 	sync_doors = 0
 	},
 /obj/machinery/light{
@@ -95,8 +95,8 @@
 /obj/machinery/button/door{
 	id = "junctionshutter";
 	name = "Shutters Control";
-	pixel_x = -26;
-	pixel_y = 4;
+	pixel_x = -52;
+	pixel_y = 8;
 	sync_doors = 0
 	},
 /obj/machinery/light{

@@ -34,8 +34,8 @@
 			icon = alt_icon
 			alt_icon = old_icon
 		icon_state = "alien[caste]_leap"
-		pixel_x = -32
-		pixel_y = -32
+		pixel_x = -32*PIXEL_MULTIPLIER
+		pixel_y = -32*PIXEL_MULTIPLIER
 	else
 		if(alt_icon != initial(alt_icon))
 			var/old_icon = icon

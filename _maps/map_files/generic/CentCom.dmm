@@ -301,21 +301,21 @@
 /area/holodeck/rec_center/lounge)
 "aR" = (
 /obj/item/clothing/under/shorts/red{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/under/shorts/blue{
 	pixel_x = -4;
 	pixel_y = 4
 	},
-/obj/item/clothing/under/shorts/blue{
-	pixel_x = -2;
-	pixel_y = 2
-	},
 /obj/item/clothing/under/shorts/green,
 /obj/item/clothing/under/shorts/grey{
-	pixel_x = 2;
-	pixel_y = -2
+	pixel_x = 4;
+	pixel_y = -4
 	},
 /obj/item/clothing/under/jabroni{
-	pixel_x = 4;
-	pixel_y = 2
+	pixel_x = 8;
+	pixel_y = 4
 	},
 /obj/structure/rack,
 /turf/open/floor/holofloor{
@@ -376,7 +376,7 @@
 "aY" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /turf/open/floor/holofloor/carpet,
 /area/holodeck/rec_center/lounge)
@@ -725,8 +725,8 @@
 /area/holodeck/rec_center/pet_lounge)
 "cc" = (
 /obj/item/shovel/spade{
-	pixel_x = 2;
-	pixel_y = -2
+	pixel_x = 4;
+	pixel_y = -4
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -1098,7 +1098,7 @@
 "dc" = (
 /obj/structure/table/glass,
 /obj/item/scalpel{
-	pixel_y = 10
+	pixel_y = 20
 	},
 /obj/item/circular_saw,
 /obj/effect/turf_decal/tile/red{
@@ -1208,7 +1208,7 @@
 "dq" = (
 /obj/structure/table/wood/fancy,
 /obj/item/clothing/head/crown/fancy{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/thunderdome1218)
@@ -1239,7 +1239,7 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/item/storage/toolbox{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /obj/item/storage/toolbox,
 /obj/machinery/magnetic_controller{
@@ -1471,7 +1471,7 @@
 /area/holodeck/rec_center/thunderdome1218)
 "ei" = (
 /obj/structure/flora/tree/pine{
-	pixel_y = -6
+	pixel_y = -12
 	},
 /turf/open/floor/holofloor/snow,
 /area/holodeck/rec_center/winterwonderland)
@@ -1528,8 +1528,8 @@
 	layer = 2.9
 	},
 /obj/item/reagent_containers/glass/rag{
-	pixel_x = -1;
-	pixel_y = 8
+	pixel_x = -2;
+	pixel_y = 16
 	},
 /turf/open/floor/holofloor{
 	dir = 9;
@@ -1740,7 +1740,7 @@
 "eX" = (
 /obj/structure/table/wood,
 /obj/item/twohanded/required/kirbyplants/random{
-	pixel_y = 12
+	pixel_y = 24
 	},
 /turf/open/floor/holofloor/carpet,
 /area/holodeck/rec_center/lounge)
@@ -1813,7 +1813,7 @@
 /area/holodeck/rec_center/beach)
 "fk" = (
 /obj/item/clothing/shoes/winterboots{
-	pixel_y = 12
+	pixel_y = 24
 	},
 /turf/open/floor/holofloor/snow,
 /area/holodeck/rec_center/winterwonderland)
@@ -1823,8 +1823,8 @@
 /area/holodeck/rec_center/pet_lounge)
 "fp" = (
 /obj/structure/flora/bush{
-	pixel_x = 5;
-	pixel_y = 7
+	pixel_x = 10;
+	pixel_y = 14
 	},
 /turf/open/floor/holofloor/snow,
 /area/holodeck/rec_center/winterwonderland)
@@ -3029,16 +3029,16 @@
 "iv" = (
 /obj/structure/table/reinforced,
 /obj/item/radio{
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/item/radio{
-	pixel_x = -5;
-	pixel_y = 5
+	pixel_x = -10;
+	pixel_y = 10
 	},
 /obj/item/radio,
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
@@ -3054,8 +3054,8 @@
 /area/centcom/control)
 "ix" = (
 /obj/item/storage/box/emps{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/box/flashbangs,
 /obj/item/grenade/plastic/x4,
@@ -3064,7 +3064,7 @@
 /obj/structure/table/reinforced,
 /obj/item/clothing/ears/earmuffs,
 /obj/structure/reagent_dispensers/peppertank{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
@@ -3219,7 +3219,7 @@
 "iS" = (
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -3316,7 +3316,7 @@
 "jd" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "XCCQMLoad2";
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -3343,7 +3343,7 @@
 /area/centcom/supply)
 "jg" = (
 /obj/structure/reagent_dispensers/peppertank{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -3372,7 +3372,7 @@
 "jj" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -3492,15 +3492,15 @@
 	id = "XCCQMLoaddoor";
 	layer = 4;
 	name = "Loading Doors";
-	pixel_x = -27;
-	pixel_y = -5
+	pixel_x = -54;
+	pixel_y = -10
 	},
 /obj/machinery/button/door/indestructible{
 	id = "XCCQMLoaddoor2";
 	layer = 4;
 	name = "Loading Doors";
-	pixel_x = -27;
-	pixel_y = 5
+	pixel_x = -54;
+	pixel_y = 10
 	},
 /obj/machinery/computer/cargo{
 	dir = 4
@@ -3511,7 +3511,7 @@
 "jz" = (
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -3540,7 +3540,7 @@
 "jB" = (
 /obj/structure/noticeboard{
 	dir = 8;
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -3650,7 +3650,7 @@
 /obj/machinery/conveyor_switch/oneway{
 	dir = 8;
 	id = "XCCQMLoad";
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -3664,14 +3664,14 @@
 /obj/structure/closet/secure_closet/quartermaster,
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/centcom/supply)
 "jR" = (
 /obj/machinery/newscaster/security_unit{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -3702,7 +3702,7 @@
 "jV" = (
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -3854,17 +3854,17 @@
 /obj/structure/table/wood,
 /obj/item/phone{
 	desc = "Supposedly a direct line to Nanotrasen Central Command. It's not even plugged in.";
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/clothing/mask/cigarette/cigar/cohiba{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/clothing/mask/cigarette/cigar/havana{
-	pixel_x = 2
+	pixel_x = 4
 	},
 /obj/item/clothing/mask/cigarette/cigar{
-	pixel_x = 4.5
+	pixel_x = 9
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -3882,8 +3882,8 @@
 /obj/item/clipboard,
 /obj/item/folder/red,
 /obj/item/stamp/denied{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/stamp,
 /obj/structure/table/wood,
@@ -3901,8 +3901,8 @@
 /area/centcom/control)
 "kh" = (
 /obj/item/storage/briefcase{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/storage/secure/briefcase,
 /obj/structure/table/wood,
@@ -3962,7 +3962,7 @@
 /area/centcom/control)
 "kn" = (
 /obj/machinery/newscaster/security_unit{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -4040,8 +4040,8 @@
 /obj/item/clipboard,
 /obj/item/folder/red,
 /obj/item/stamp/denied{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/stamp,
 /obj/structure/table/wood,
@@ -4057,7 +4057,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -4136,7 +4136,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -4377,7 +4377,7 @@
 "lp" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -26
+	pixel_y = -52
 	},
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -4440,7 +4440,7 @@
 /area/centcom/control)
 "lx" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -4476,7 +4476,7 @@
 "lA" = (
 /obj/structure/noticeboard{
 	dir = 8;
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -4596,7 +4596,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -4655,7 +4655,7 @@
 	},
 /obj/item/radio/intercom{
 	desc = "Talk smack through this.";
-	pixel_x = -32;
+	pixel_x = -64;
 	syndie = 1
 	},
 /turf/open/floor/plasteel/grimy,
@@ -4708,7 +4708,7 @@
 /area/centcom/supply)
 "mc" = (
 /obj/machinery/computer/auxiliary_base{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -4776,7 +4776,7 @@
 "mh" = (
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/structure/filingcabinet/filingcabinet,
 /obj/effect/turf_decal/tile/neutral{
@@ -4806,7 +4806,7 @@
 "mj" = (
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -4887,7 +4887,7 @@
 	dir = 8
 	},
 /obj/machinery/newscaster{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/machinery/light{
 	dir = 4
@@ -5002,7 +5002,7 @@
 "mJ" = (
 /obj/structure/noticeboard{
 	dir = 8;
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -5045,8 +5045,8 @@
 "mM" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21";
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -5108,8 +5108,8 @@
 /obj/machinery/button/door/indestructible{
 	id = "XCCsec3";
 	name = "XCC Shutter 3 Control";
-	pixel_x = -24;
-	pixel_y = 24
+	pixel_x = -48;
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -5123,8 +5123,8 @@
 	id = "XCCsecdepartment";
 	layer = 3;
 	name = "CC Security Checkpoint Control";
-	pixel_x = 24;
-	pixel_y = 24
+	pixel_x = 48;
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -5162,7 +5162,7 @@
 /area/centcom/control)
 "mW" = (
 /obj/structure/reagent_dispensers/peppertank{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -5215,7 +5215,7 @@
 	dir = 8
 	},
 /obj/machinery/newscaster{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel/grimy,
 /area/centcom/control)
@@ -5272,7 +5272,7 @@
 	dir = 8
 	},
 /obj/machinery/shower{
-	pixel_y = 16
+	pixel_y = 32
 	},
 /obj/structure/curtain,
 /obj/machinery/door/window/brigdoor/southleft{
@@ -5396,7 +5396,7 @@
 /area/centcom/control)
 "nv" = (
 /obj/machinery/newscaster/security_unit{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -5447,10 +5447,10 @@
 "nC" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/structure/mirror{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -5460,8 +5460,8 @@
 "nD" = (
 /obj/item/clipboard,
 /obj/item/stamp/denied{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/stamp,
 /obj/structure/table/reinforced,
@@ -5479,7 +5479,7 @@
 /area/centcom/supply)
 "nE" = (
 /obj/machinery/keycard_auth{
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/structure/table/reinforced,
 /obj/item/stack/packageWrap,
@@ -5499,7 +5499,7 @@
 /area/centcom/supply)
 "nF" = (
 /obj/machinery/newscaster/security_unit{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/computer/cargo{
 	dir = 1
@@ -5536,11 +5536,11 @@
 "nI" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/structure/closet/crate/bin,
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -5557,7 +5557,7 @@
 "nJ" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -26
+	pixel_y = -52
 	},
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -5634,7 +5634,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -5656,7 +5656,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -5797,7 +5797,7 @@
 /obj/item/storage/box/handcuffs,
 /obj/item/flashlight/seclite,
 /obj/structure/noticeboard{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -5816,7 +5816,7 @@
 /obj/item/storage/photo_album,
 /obj/item/camera,
 /obj/structure/reagent_dispensers/peppertank{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -5832,12 +5832,12 @@
 /area/centcom/ferry)
 "oh" = (
 /obj/machinery/status_display/ai{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-15";
-	pixel_x = -6;
-	pixel_y = 12
+	pixel_x = -12;
+	pixel_y = 24
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -5867,7 +5867,7 @@
 /area/centcom/ferry)
 "oj" = (
 /obj/machinery/status_display/evac{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -5903,7 +5903,7 @@
 	department = "Captain's Desk";
 	departmentType = 5;
 	name = "Captain RC";
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
@@ -5922,7 +5922,7 @@
 /obj/item/pen/fourcolor,
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
-	pixel_y = 32;
+	pixel_y = 64;
 	use_power = 0
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -5944,7 +5944,7 @@
 /obj/item/melee/chainofcommand,
 /obj/item/stamp/captain,
 /obj/machinery/newscaster/security_unit{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -5962,8 +5962,8 @@
 /obj/structure/table/wood,
 /obj/machinery/computer/security/wooden_tv,
 /obj/item/storage/secure/safe{
-	pixel_x = 32;
-	pixel_y = 24
+	pixel_x = 64;
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6050,8 +6050,8 @@
 "oy" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21";
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -6065,7 +6065,7 @@
 /obj/item/pen/fourcolor,
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6081,8 +6081,8 @@
 /area/centcom/control)
 "oA" = (
 /obj/item/storage/briefcase{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/storage/secure/briefcase,
 /obj/structure/table/wood,
@@ -6127,8 +6127,8 @@
 /obj/item/clipboard,
 /obj/item/folder/red,
 /obj/item/stamp/denied{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/stamp,
 /turf/open/floor/plasteel/grimy,
@@ -6239,14 +6239,14 @@
 /area/centcom/control)
 "oR" = (
 /obj/item/storage/briefcase{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/storage/secure/briefcase,
 /obj/structure/table/wood,
 /obj/structure/noticeboard{
 	dir = 8;
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6353,17 +6353,17 @@
 /obj/structure/table/wood,
 /obj/item/phone{
 	desc = "Supposedly a direct line to Nanotrasen Central Command. It's not even plugged in.";
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/clothing/mask/cigarette/cigar/cohiba{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/clothing/mask/cigarette/cigar/havana{
-	pixel_x = 2
+	pixel_x = 4
 	},
 /obj/item/clothing/mask/cigarette/cigar{
-	pixel_x = 4.5
+	pixel_x = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
@@ -6393,13 +6393,13 @@
 	dir = 4
 	},
 /obj/machinery/light_switch{
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
 "pf" = (
 /obj/machinery/light_switch{
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
@@ -6414,7 +6414,7 @@
 	dir = 4
 	},
 /obj/structure/mirror{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6523,7 +6523,7 @@
 	},
 /obj/machinery/light,
 /obj/machinery/status_display/evac{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6541,7 +6541,7 @@
 /obj/structure/bookcase/random,
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6558,7 +6558,7 @@
 "pr" = (
 /obj/structure/bookcase/random,
 /obj/machinery/status_display/evac{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6576,7 +6576,7 @@
 /obj/structure/bookcase/random,
 /obj/structure/noticeboard{
 	dir = 1;
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6593,7 +6593,7 @@
 "pt" = (
 /obj/machinery/vending/coffee,
 /obj/machinery/newscaster{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6626,7 +6626,7 @@
 "pv" = (
 /obj/machinery/vending/cigarette,
 /obj/machinery/newscaster{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6645,7 +6645,7 @@
 	icon_state = "plant-22"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6693,10 +6693,10 @@
 /area/centcom/ferry)
 "pC" = (
 /obj/structure/mirror{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/structure/sink{
-	pixel_y = 20
+	pixel_y = 40
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -6785,7 +6785,7 @@
 "pM" = (
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
@@ -6812,7 +6812,7 @@
 /obj/item/clothing/glasses/eyepatch,
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
@@ -6821,7 +6821,7 @@
 /obj/item/book/codex_gigas,
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6838,13 +6838,13 @@
 "pP" = (
 /obj/structure/table/reinforced,
 /obj/item/cartridge/quartermaster{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/item/cartridge/quartermaster{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/cartridge/quartermaster{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/item/gps/mining,
 /obj/effect/turf_decal/stripes/line{
@@ -6943,7 +6943,7 @@
 /obj/item/assembly/flash/handheld,
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6963,7 +6963,7 @@
 /obj/item/lighter,
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6988,7 +6988,7 @@
 	icon_state = "plant-22"
 	},
 /obj/machinery/light_switch{
-	pixel_y = -24
+	pixel_y = -48
 	},
 /turf/open/floor/wood,
 /area/centcom/ferry)
@@ -7023,12 +7023,12 @@
 "qi" = (
 /obj/structure/table/wood,
 /obj/item/storage/secure/briefcase{
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/item/storage/lockbox/medal,
 /obj/machinery/newscaster/security_unit{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -7075,7 +7075,7 @@
 "ql" = (
 /obj/structure/dresser,
 /obj/structure/sign/plaques/golden/captain{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -7107,7 +7107,7 @@
 /obj/structure/filingcabinet/filingcabinet,
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -7118,8 +7118,8 @@
 /obj/structure/table/reinforced,
 /obj/item/folder,
 /obj/item/stamp/denied{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/stamp,
 /obj/effect/turf_decal/stripes/line{
@@ -7131,7 +7131,7 @@
 "qp" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -26
+	pixel_y = -52
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -7149,8 +7149,8 @@
 /obj/machinery/button/door/indestructible{
 	id = "XCCsec3";
 	name = "XCC Shutter 3 Control";
-	pixel_x = 24;
-	pixel_y = -24
+	pixel_x = 48;
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -7293,7 +7293,7 @@
 /area/centcom/testchamber)
 "qH" = (
 /obj/structure/urinal{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
@@ -7335,7 +7335,7 @@
 /area/holodeck/rec_center/gym)
 "qN" = (
 /obj/structure/urinal{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/plasteel/freezer,
 /area/syndicate_mothership/control)
@@ -7349,7 +7349,7 @@
 /area/syndicate_mothership/control)
 "qP" = (
 /obj/structure/mirror{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /obj/item/mop,
 /turf/open/floor/plasteel/freezer,
@@ -7446,7 +7446,7 @@
 	},
 /obj/structure/noticeboard{
 	dir = 4;
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
@@ -7482,11 +7482,11 @@
 /area/syndicate_mothership/control)
 "rj" = (
 /obj/structure/mirror{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /turf/open/floor/plasteel/freezer,
 /area/syndicate_mothership/control)
@@ -7508,7 +7508,7 @@
 /area/centcom/ferry)
 "rl" = (
 /obj/machinery/computer/auxiliary_base{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -7576,7 +7576,7 @@
 "rq" = (
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/structure/filingcabinet/filingcabinet,
 /obj/effect/turf_decal/tile/neutral{
@@ -7608,8 +7608,8 @@
 	},
 /obj/item/stack/sheet/rglass{
 	amount = 50;
-	pixel_x = 2;
-	pixel_y = -2
+	pixel_x = 4;
+	pixel_y = -4
 	},
 /obj/item/stack/rods/fifty,
 /obj/item/stack/cable_coil/white,
@@ -7622,7 +7622,7 @@
 	icon_state = "plant-22"
 	},
 /obj/machinery/newscaster{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -7638,7 +7638,7 @@
 /area/centcom/ferry)
 "ru" = (
 /obj/machinery/light_switch{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/wood,
 /area/centcom/ferry)
@@ -7677,7 +7677,7 @@
 	desc = "Used for watching the RD's goons and the AI's satellite from the safety of his office.";
 	name = "Research Monitor";
 	network = list("rd","minisat");
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
@@ -7701,7 +7701,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Commander's Office APC";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/structure/table/reinforced,
 /obj/item/stack/sheet/metal/fifty,
@@ -7711,8 +7711,8 @@
 	},
 /obj/item/stack/sheet/rglass{
 	amount = 50;
-	pixel_x = 2;
-	pixel_y = -2
+	pixel_x = 4;
+	pixel_y = -4
 	},
 /obj/item/stack/rods/fifty,
 /obj/item/stack/cable_coil/white,
@@ -7730,7 +7730,7 @@
 "rC" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/suit/space/hardsuit/deathsquad{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/clothing/gloves/combat,
 /obj/item/clothing/shoes/combat/swat,
@@ -7755,7 +7755,7 @@
 /obj/item/jawsoflife,
 /obj/item/storage/belt/security/full,
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 26
+	pixel_x = 52
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
@@ -7829,7 +7829,7 @@
 	icon_state = "plant-21"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -7925,16 +7925,16 @@
 /area/centcom/control)
 "rR" = (
 /obj/item/storage/box/ids{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/box/silver_ids,
 /obj/structure/table/reinforced,
 /obj/machinery/newscaster{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/structure/reagent_dispensers/peppertank{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -8019,7 +8019,7 @@
 /area/holodeck/rec_center/gym)
 "sd" = (
 /obj/structure/sign/nanotrasen{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/closed/indestructible/riveted,
 /area/centcom/ferry)
@@ -8156,7 +8156,7 @@
 "sv" = (
 /obj/structure/noticeboard{
 	dir = 8;
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -8183,7 +8183,7 @@
 "sx" = (
 /obj/structure/chair/comfy/black,
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -8492,19 +8492,19 @@
 	},
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/grown/poppy{
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/food/snacks/grown/poppy{
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/food/snacks/grown/poppy{
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/food/snacks/grown/poppy{
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/food/snacks/grown/poppy{
-	pixel_y = 2
+	pixel_y = 4
 	},
 /turf/open/floor/holofloor{
 	icon_state = "darkfull"
@@ -8539,8 +8539,8 @@
 /obj/machinery/light,
 /obj/structure/table,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
@@ -8575,12 +8575,12 @@
 "tf" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/beer{
-	pixel_x = 5;
-	pixel_y = -2
+	pixel_x = 10;
+	pixel_y = -4
 	},
 /obj/item/toy/cards/deck/syndicate{
-	pixel_x = -6;
-	pixel_y = 6
+	pixel_x = -12;
+	pixel_y = 12
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -8737,12 +8737,12 @@
 "ty" = (
 /obj/structure/table/wood,
 /obj/item/toy/cards/deck/cas{
-	pixel_x = -5;
-	pixel_y = 5
+	pixel_x = -10;
+	pixel_y = 10
 	},
 /obj/item/toy/cards/deck/cas/black{
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
@@ -8796,7 +8796,7 @@
 	dir = 4
 	},
 /obj/machinery/newscaster{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -8816,7 +8816,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -8854,7 +8854,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/white{
@@ -8873,7 +8873,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -8886,7 +8886,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -8895,8 +8895,8 @@
 /area/centcom/ferry)
 "tI" = (
 /obj/item/storage/box/emps{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/box/flashbangs,
 /obj/item/grenade/plastic/x4,
@@ -8905,7 +8905,7 @@
 /obj/structure/table/reinforced,
 /obj/item/clothing/ears/earmuffs,
 /obj/structure/reagent_dispensers/peppertank{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -9095,8 +9095,8 @@
 /obj/item/clipboard,
 /obj/item/folder/red,
 /obj/item/stamp/denied{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/stamp,
 /obj/structure/table/reinforced,
@@ -9114,14 +9114,14 @@
 /area/centcom/ferry)
 "uk" = (
 /obj/machinery/keycard_auth{
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
 /obj/machinery/button/door/indestructible{
 	id = "XCCFerry";
 	name = "Hanger Bay Shutters";
-	pixel_y = -38
+	pixel_y = -76
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -9140,7 +9140,7 @@
 	dir = 1
 	},
 /obj/machinery/newscaster/security_unit{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -9174,11 +9174,11 @@
 "uo" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/structure/closet/crate/bin,
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -9197,7 +9197,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
@@ -9236,7 +9236,7 @@
 "uu" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -9282,15 +9282,15 @@
 	id = "XCCcustoms1";
 	layer = 3.5;
 	name = "CC Customs 1 Control";
-	pixel_x = 8;
-	pixel_y = -24
+	pixel_x = 16;
+	pixel_y = -48
 	},
 /obj/machinery/button/door/indestructible{
 	id = "XCCcustoms2";
 	layer = 3.5;
 	name = "CC Customs 2 Control";
-	pixel_x = -8;
-	pixel_y = -24
+	pixel_x = -16;
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -9304,7 +9304,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -9490,7 +9490,7 @@
 /obj/item/pen/fourcolor,
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -9553,7 +9553,7 @@
 "uW" = (
 /obj/structure/closet/crate/bin,
 /obj/machinery/light_switch{
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -9570,18 +9570,18 @@
 "uX" = (
 /obj/structure/table/wood,
 /obj/item/dice/d20{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/dice/d10{
-	pixel_x = -3
+	pixel_x = -6
 	},
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -9818,13 +9818,13 @@
 /area/centcom/ferry)
 "vE" = (
 /obj/machinery/firealarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/structure/chair{
 	dir = 8
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -9880,27 +9880,27 @@
 /obj/machinery/button/door/indestructible{
 	id = "XCCFerry";
 	name = "Hanger Bay Shutters";
-	pixel_x = -8;
-	pixel_y = 24;
+	pixel_x = -16;
+	pixel_y = 48;
 	req_access_txt = "2"
 	},
 /obj/machinery/button/door/indestructible{
 	id = "XCCsec3";
 	name = "CC Main Access Control";
-	pixel_x = 8;
-	pixel_y = 24
+	pixel_x = 16;
+	pixel_y = 48
 	},
 /obj/machinery/button/door/indestructible{
 	id = "XCCsec1";
 	name = "CC Shutter 1 Control";
-	pixel_x = 8;
-	pixel_y = 38
+	pixel_x = 16;
+	pixel_y = 76
 	},
 /obj/machinery/button/door/indestructible{
 	id = "XCCsec3";
 	name = "XCC Shutter 3 Control";
-	pixel_x = -8;
-	pixel_y = 38
+	pixel_x = -16;
+	pixel_y = 76
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -10191,7 +10191,7 @@
 /obj/structure/table/reinforced,
 /obj/item/gun/energy/kinetic_accelerator/crossbow/large{
 	pin = /obj/item/firing_pin;
-	pixel_y = 8
+	pixel_y = 16
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -10322,7 +10322,7 @@
 /obj/machinery/button/door/indestructible{
 	id = "XCCFerry";
 	name = "Hanger Bay Shutters";
-	pixel_y = 24;
+	pixel_y = 48;
 	req_access_txt = "2"
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -10374,12 +10374,12 @@
 "wD" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/red{
-	pixel_x = -2;
-	pixel_y = -2
+	pixel_x = -4;
+	pixel_y = -4
 	},
 /obj/item/folder/blue{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /obj/item/lighter,
 /obj/effect/turf_decal/tile/neutral{
@@ -10565,7 +10565,7 @@
 /area/syndicate_mothership/control)
 "wW" = (
 /obj/structure/sign/map/left{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/structure/rack{
 	icon = 'icons/obj/stationobjs.dmi';
@@ -10577,7 +10577,7 @@
 /area/syndicate_mothership/control)
 "wX" = (
 /obj/structure/sign/map/right{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/structure/rack{
 	icon = 'icons/obj/stationobjs.dmi';
@@ -10799,7 +10799,7 @@
 /area/wizard_station)
 "xv" = (
 /obj/item/statuebust{
-	pixel_y = 12
+	pixel_y = 24
 	},
 /obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
@@ -10941,7 +10941,7 @@
 /obj/machinery/button/door/indestructible{
 	id = "XCCsec1";
 	name = "CC Shutter 1 Control";
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -11149,10 +11149,10 @@
 	dir = 8
 	},
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = -28
+	pixel_y = -56
 	},
 /obj/structure/sign/warning/securearea{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -11178,8 +11178,8 @@
 /area/centcom/control)
 "yt" = (
 /obj/item/storage/box/ids{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/box/silver_ids,
 /obj/structure/table/reinforced,
@@ -11331,7 +11331,7 @@
 /obj/item/clothing/head/wizard/magus,
 /obj/item/staff,
 /obj/structure/mirror/magic{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/machinery/light{
 	dir = 1
@@ -11366,8 +11366,8 @@
 /obj/structure/table,
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid/o2{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/centcom/evac)
@@ -11489,20 +11489,20 @@
 /obj/structure/table/wood,
 /obj/item/phone{
 	desc = "Supposedly a direct line to Nanotrasen Central Command. It's not even plugged in.";
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/clothing/mask/cigarette/cigar/cohiba{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/clothing/mask/cigarette/cigar/havana{
-	pixel_x = 2
+	pixel_x = 4
 	},
 /obj/item/clothing/mask/cigarette/cigar{
-	pixel_x = 4.5
+	pixel_x = 9
 	},
 /obj/machinery/newscaster{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -11583,7 +11583,7 @@
 "ze" = (
 /obj/structure/closet/secure_closet/ertEngi,
 /obj/structure/sign/directions/engineering{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
@@ -11591,7 +11591,7 @@
 "zf" = (
 /obj/structure/closet/secure_closet/ertEngi,
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -11603,7 +11603,7 @@
 /obj/item/gun/ballistic/automatic/wt550,
 /obj/item/flashlight/seclite,
 /obj/structure/noticeboard{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
@@ -11611,13 +11611,13 @@
 "zh" = (
 /obj/structure/table/reinforced,
 /obj/item/grenade/plastic/c4{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/grenade/plastic/c4{
-	pixel_x = -4
+	pixel_x = -8
 	},
 /obj/machinery/firealarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
@@ -11625,12 +11625,12 @@
 "zi" = (
 /obj/structure/rack,
 /obj/item/gun/energy/e_gun{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/gun/energy/e_gun,
 /obj/structure/sign/nanotrasen{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -11640,7 +11640,7 @@
 "zj" = (
 /obj/structure/closet/secure_closet/ertCom,
 /obj/structure/sign/directions/command{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
@@ -11680,8 +11680,8 @@
 	},
 /obj/structure/table/wood,
 /obj/item/storage/firstaid/tactical{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/firstaid/tactical,
 /obj/item/storage/pill_bottle/floorpill/full,
@@ -11774,7 +11774,7 @@
 /obj/structure/table/wood,
 /obj/item/storage/box/drinkingglasses,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -11849,14 +11849,14 @@
 /area/centcom/control)
 "zH" = (
 /obj/item/scalpel{
-	pixel_y = 12
+	pixel_y = 24
 	},
 /obj/item/circular_saw,
 /obj/item/retractor{
-	pixel_x = 4
+	pixel_x = 8
 	},
 /obj/item/hemostat{
-	pixel_x = -4
+	pixel_x = -8
 	},
 /obj/item/clothing/gloves/color/latex,
 /obj/item/clothing/mask/surgical,
@@ -11895,7 +11895,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -12007,7 +12007,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/airalarm/mixingchamber{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -12048,12 +12048,12 @@
 "Ac" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/red{
-	pixel_x = -2;
-	pixel_y = -2
+	pixel_x = -4;
+	pixel_y = -4
 	},
 /obj/item/folder/blue{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /obj/item/lighter,
 /turf/open/floor/plasteel/grimy,
@@ -12146,7 +12146,7 @@
 /area/centcom/ferry)
 "Al" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 26
+	pixel_x = 52
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -12217,7 +12217,7 @@
 	dir = 8
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -12283,30 +12283,30 @@
 /obj/structure/table/reinforced,
 /obj/item/grenade/chem_grenade/holy,
 /obj/item/grenade/chem_grenade/holy{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/grenade/chem_grenade/holy{
 	pixel_x = 8;
 	pixel_y = 8
+	},
+/obj/item/grenade/chem_grenade/holy{
+	pixel_x = 16;
+	pixel_y = 16
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "AE" = (
 /obj/item/assembly/signaler{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/item/assembly/signaler{
-	pixel_x = -8;
-	pixel_y = 5
+	pixel_x = -16;
+	pixel_y = 10
 	},
 /obj/item/assembly/signaler{
-	pixel_x = 6;
-	pixel_y = 5
+	pixel_x = 12;
+	pixel_y = 10
 	},
 /obj/item/assembly/signaler{
-	pixel_x = -2;
-	pixel_y = -2
+	pixel_x = -4;
+	pixel_y = -4
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
@@ -12348,8 +12348,8 @@
 /obj/item/clipboard,
 /obj/item/folder/red,
 /obj/item/stamp/denied{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/stamp,
 /obj/structure/table/reinforced,
@@ -12433,7 +12433,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Briefing Area APC";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -12563,7 +12563,7 @@
 /area/wizard_station)
 "Bj" = (
 /obj/structure/sign/poster/official/random{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
@@ -12571,12 +12571,12 @@
 /obj/structure/table/wood,
 /obj/item/seeds/kudzu,
 /obj/item/seeds/kudzu{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/seeds/kudzu{
 	pixel_x = 6;
 	pixel_y = 6
+	},
+/obj/item/seeds/kudzu{
+	pixel_x = 12;
+	pixel_y = 12
 	},
 /turf/open/floor/wood,
 /area/centcom/testchamber)
@@ -12601,11 +12601,11 @@
 /obj/structure/table/reinforced,
 /obj/item/organ/heart/demon,
 /obj/item/organ/heart/nightmare{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/organ/heart/cursed/wizard{
-	pixel_x = 3;
-	pixel_y = -5
+	pixel_x = 6;
+	pixel_y = -10
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
@@ -12761,7 +12761,7 @@
 /area/centcom/ferry)
 "BD" = (
 /obj/machinery/newscaster/security_unit{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -12796,34 +12796,34 @@
 /area/centcom/control)
 "BG" = (
 /obj/item/reagent_containers/glass/bottle/epinephrine{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/charcoal{
-	pixel_x = -3
+	pixel_x = -6
 	},
 /obj/item/reagent_containers/glass/bottle/epinephrine{
-	pixel_x = -3;
-	pixel_y = 8
+	pixel_x = -6;
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/glass/bottle/charcoal{
-	pixel_x = 6;
-	pixel_y = 8
+	pixel_x = 12;
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/syringe/epinephrine{
-	pixel_x = 3;
-	pixel_y = -2
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = 8;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = -4;
+	pixel_y = 10
 	},
 /obj/item/reagent_containers/syringe/epinephrine{
 	pixel_x = 4;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/syringe/epinephrine{
-	pixel_x = -2;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/syringe/epinephrine{
-	pixel_x = 2;
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/blue{
@@ -12847,7 +12847,7 @@
 /obj/machinery/light,
 /obj/structure/noticeboard{
 	dir = 1;
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -12866,8 +12866,8 @@
 "BK" = (
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/blue{
@@ -12881,13 +12881,13 @@
 "BL" = (
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid/o2{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -12992,8 +12992,8 @@
 /area/syndicate_mothership)
 "BZ" = (
 /obj/structure/flora/bush{
-	pixel_x = -2;
-	pixel_y = 3
+	pixel_x = -4;
+	pixel_y = 6
 	},
 /turf/open/floor/holofloor/snow,
 /area/holodeck/rec_center/winterwonderland)
@@ -13091,8 +13091,8 @@
 	id = "XCCcustoms1";
 	layer = 3;
 	name = "CC Emergency Docks Control";
-	pixel_x = 24;
-	pixel_y = 24
+	pixel_x = 48;
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13244,7 +13244,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "Briefing Room APC";
-	pixel_y = -23
+	pixel_y = -46
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13261,7 +13261,7 @@
 "Cx" = (
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13282,7 +13282,7 @@
 /obj/machinery/light,
 /obj/structure/noticeboard{
 	dir = 1;
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13301,7 +13301,7 @@
 	icon_state = "plant-21"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13317,12 +13317,12 @@
 /area/centcom/ferry)
 "CA" = (
 /obj/item/radio{
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/item/radio{
-	pixel_x = -5;
-	pixel_y = 5
+	pixel_x = -10;
+	pixel_y = 10
 	},
 /obj/item/radio,
 /obj/structure/table/wood,
@@ -13342,7 +13342,7 @@
 /obj/structure/closet/secure_closet/ertMed,
 /obj/structure/sign/directions/medical{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -13353,7 +13353,7 @@
 /obj/structure/closet/secure_closet/ertMed,
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
-	pixel_y = -32;
+	pixel_y = -64;
 	use_power = 0
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -13366,7 +13366,7 @@
 /obj/item/storage/box/emps,
 /obj/item/gun/energy/ionrifle,
 /obj/structure/sign/departments/medbay/alt{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -13378,7 +13378,7 @@
 /obj/item/storage/box/syringes,
 /obj/item/gun/syringe/rapidsyringe,
 /obj/structure/reagent_dispensers/peppertank{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -13396,7 +13396,7 @@
 /obj/structure/closet/secure_closet/ertSec,
 /obj/structure/sign/directions/security{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -13409,7 +13409,7 @@
 /obj/item/taperecorder,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13477,7 +13477,7 @@
 /obj/structure/filingcabinet/medical,
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13547,7 +13547,7 @@
 	dir = 8
 	},
 /obj/machinery/newscaster{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13633,10 +13633,10 @@
 "Da" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/bottle/charcoal{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/epinephrine{
-	pixel_x = -4
+	pixel_x = -8
 	},
 /obj/item/reagent_containers/hypospray/medipen,
 /obj/effect/turf_decal/tile/neutral{
@@ -13723,7 +13723,7 @@
 	icon_state = "plant-21"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13759,8 +13759,8 @@
 /obj/item/clipboard,
 /obj/item/folder/red,
 /obj/item/stamp/denied{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/stamp,
 /obj/structure/table/reinforced,
@@ -13996,13 +13996,13 @@
 /area/centcom/evac)
 "DB" = (
 /obj/item/storage/box/ids{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/box/silver_ids,
 /obj/structure/table/reinforced,
 /obj/structure/reagent_dispensers/peppertank{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -14041,8 +14041,8 @@
 /obj/item/clipboard,
 /obj/item/folder/red,
 /obj/item/stamp/denied{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/stamp,
 /obj/structure/table/reinforced,
@@ -14147,7 +14147,7 @@
 /area/wizard_station)
 "DQ" = (
 /obj/structure/urinal{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/plasteel/white,
 /area/wizard_station)
@@ -14156,10 +14156,10 @@
 /area/wizard_station)
 "DS" = (
 /obj/structure/mirror/magic{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/structure/sink{
-	pixel_y = 20
+	pixel_y = 40
 	},
 /turf/open/floor/plasteel/white,
 /area/wizard_station)
@@ -14171,7 +14171,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -14190,7 +14190,7 @@
 	dir = 1
 	},
 /obj/machinery/newscaster{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -14222,7 +14222,7 @@
 /area/centcom/control)
 "DX" = (
 /obj/machinery/newscaster{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/computer/med_data{
 	dir = 1
@@ -14246,7 +14246,7 @@
 /obj/item/pen/blue,
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -14351,7 +14351,7 @@
 "Eo" = (
 /obj/structure/table/wood/fancy,
 /obj/item/skub{
-	pixel_y = 16
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/white,
 /area/wizard_station)
@@ -14376,8 +14376,8 @@
 "Et" = (
 /obj/item/clipboard,
 /obj/item/stamp/denied{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/stamp,
 /obj/structure/table/reinforced,
@@ -14678,8 +14678,8 @@
 "EY" = (
 /obj/structure/table/wood,
 /obj/item/bikehorn/golden{
-	pixel_x = -8;
-	pixel_y = 8
+	pixel_x = -16;
+	pixel_y = 16
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
@@ -14707,7 +14707,7 @@
 /area/centcom/holding)
 "Fc" = (
 /obj/structure/sign/barsign{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/structure/chair/stool,
 /turf/open/floor/carpet/black,
@@ -15124,10 +15124,10 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/belt/grenade/full,
 /obj/item/storage/belt/grenade/full{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/item/storage/belt/grenade/full{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -15525,7 +15525,7 @@
 "GL" = (
 /obj/structure/table/wood,
 /obj/structure/sign/plaques/golden{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/clothing/accessory/lawyers_badge{
 	desc = "A badge of upmost glory.";
@@ -15555,10 +15555,10 @@
 "GO" = (
 /obj/structure/table/wood,
 /obj/structure/sign/plaques/golden{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/clothing/accessory/medal/silver{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tdome/tdomeobserve)
@@ -15574,7 +15574,7 @@
 /obj/structure/table/wood,
 /obj/machinery/reagentgrinder{
 	desc = "Used to grind things up into raw materials and liquids.";
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -15608,7 +15608,7 @@
 /obj/structure/table/wood,
 /obj/structure/reagent_dispensers/beerkeg,
 /obj/machinery/newscaster{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -15640,7 +15640,7 @@
 /obj/structure/table/wood,
 /obj/item/storage/box/drinkingglasses,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -15705,10 +15705,10 @@
 "Hb" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12
+	pixel_x = -24
 	},
 /obj/structure/mirror{
-	pixel_x = -28
+	pixel_x = -56
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -15759,10 +15759,10 @@
 "Hh" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/structure/mirror{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -15787,10 +15787,10 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/gun/ballistic/automatic/m90/unrestricted{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/item/gun/ballistic/automatic/m90/unrestricted{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -15834,25 +15834,25 @@
 "Hn" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12
+	pixel_x = -24
 	},
 /obj/structure/mirror{
-	pixel_x = -28
+	pixel_x = -56
 	},
 /turf/open/floor/plasteel/white,
 /area/tdome/tdomeobserve)
 "Ho" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -8;
-	pixel_y = 5
+	pixel_x = -16;
+	pixel_y = 10
 	},
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -8
+	pixel_x = -16
 	},
 /obj/item/kitchen/knife,
 /obj/machinery/newscaster{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -15883,18 +15883,18 @@
 "Hq" = (
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plasteel/white,
 /area/tdome/tdomeobserve)
 "Hr" = (
 /obj/structure/table/wood,
 /obj/structure/sign/plaques/thunderdome{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/item/clothing/accessory/medal/gold{
-	pixel_x = 3;
-	pixel_y = 5
+	pixel_x = 6;
+	pixel_y = 10
 	},
 /obj/item/clothing/accessory/medal/gold,
 /turf/open/floor/plasteel/grimy,
@@ -15916,17 +15916,17 @@
 "Ht" = (
 /obj/structure/table/wood,
 /obj/structure/sign/plaques/thunderdome{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/item/clothing/accessory/medal{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tdome/tdomeobserve)
 "Hu" = (
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -15948,7 +15948,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -15965,10 +15965,10 @@
 "Hx" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/structure/mirror{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /turf/open/floor/plasteel/white,
 /area/tdome/tdomeobserve)
@@ -15993,10 +15993,10 @@
 "HA" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12
+	pixel_x = -24
 	},
 /obj/structure/mirror{
-	pixel_x = -28
+	pixel_x = -56
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -16007,7 +16007,7 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/snacks/mint,
 /obj/item/reagent_containers/food/condiment/enzyme{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -16024,7 +16024,7 @@
 "HC" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -16041,7 +16041,7 @@
 "HD" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12
+	pixel_x = -24
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -16071,10 +16071,10 @@
 "HF" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/structure/mirror{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/plasteel/white,
@@ -16093,10 +16093,10 @@
 "HI" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12
+	pixel_x = -24
 	},
 /obj/structure/mirror{
-	pixel_x = -28
+	pixel_x = -56
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -16126,11 +16126,11 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -8;
-	pixel_y = 5
+	pixel_x = -16;
+	pixel_y = 10
 	},
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -8
+	pixel_x = -16
 	},
 /obj/item/reagent_containers/food/drinks/britcup,
 /obj/effect/turf_decal/bot,
@@ -16144,7 +16144,7 @@
 /obj/structure/chair,
 /obj/effect/landmark/thunderdome/observe,
 /obj/structure/sign/barsign{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -16180,7 +16180,7 @@
 	dir = 1
 	},
 /obj/machinery/status_display/ai{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -16204,7 +16204,7 @@
 /obj/structure/sink/kitchen{
 	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
 	name = "sink";
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -16221,10 +16221,10 @@
 "HR" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/structure/mirror{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -16254,7 +16254,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder{
 	desc = "Used to grind things up into raw materials and liquids.";
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/machinery/light{
 	dir = 8
@@ -16360,7 +16360,7 @@
 /obj/machinery/door/firedoor,
 /obj/structure/noticeboard{
 	dir = 1;
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
@@ -16382,10 +16382,10 @@
 /area/tdome/tdomeobserve)
 "Ie" = (
 /obj/item/storage/box/fancy/cigarettes/cigars{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/item/storage/box/fancy/cigarettes/cigars/cohiba{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/item/storage/box/fancy/cigarettes/cigars/havana,
 /obj/structure/table/wood,
@@ -16432,12 +16432,12 @@
 /obj/structure/table/reinforced,
 /obj/machinery/microwave{
 	desc = "Cooks and boils stuff, somehow.";
-	pixel_x = -3;
-	pixel_y = 5
+	pixel_x = -6;
+	pixel_y = 10
 	},
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -16455,11 +16455,11 @@
 /obj/structure/table/reinforced,
 /obj/machinery/microwave{
 	desc = "Cooks and boils stuff, somehow.";
-	pixel_x = -3;
-	pixel_y = 5
+	pixel_x = -6;
+	pixel_y = 10
 	},
 /obj/structure/sign/barsign{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -16505,12 +16505,12 @@
 /area/holodeck/rec_center/lounge)
 "Io" = (
 /obj/item/storage/box/matches{
-	pixel_x = -3;
-	pixel_y = 5
+	pixel_x = -6;
+	pixel_y = 10
 	},
 /obj/structure/table/wood,
 /obj/structure/sign/barsign{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -16526,8 +16526,8 @@
 /area/tdome/tdomeobserve)
 "Ip" = (
 /obj/item/lighter{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/lighter,
 /obj/structure/table/wood,
@@ -16549,7 +16549,7 @@
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/item/reagent_containers/glass/rag,
 /obj/machinery/newscaster{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -16713,8 +16713,8 @@
 	},
 /obj/structure/table/wood/bar,
 /obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = -12;
-	pixel_y = 1
+	pixel_x = -24;
+	pixel_y = 2
 	},
 /turf/open/floor/holofloor{
 	dir = 9;
@@ -16801,7 +16801,7 @@
 /area/tdome/arena)
 "IU" = (
 /obj/machinery/recharger{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /obj/effect/landmark/thunderdome/two,
 /obj/effect/turf_decal/delivery,
@@ -16849,7 +16849,7 @@
 /area/tdome/arena)
 "Ja" = (
 /obj/machinery/recharger{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /obj/effect/landmark/thunderdome/one,
 /obj/effect/turf_decal/delivery,
@@ -16901,8 +16901,8 @@
 /obj/machinery/camera{
 	c_tag = "Red Team";
 	network = list("thunder");
-	pixel_x = 11;
-	pixel_y = -9;
+	pixel_x = 22;
+	pixel_y = -18;
 	resistance_flags = 64
 	},
 /obj/effect/landmark/thunderdome/two,
@@ -16944,8 +16944,8 @@
 /obj/machinery/camera{
 	c_tag = "Green Team";
 	network = list("thunder");
-	pixel_x = 12;
-	pixel_y = -10;
+	pixel_x = 24;
+	pixel_y = -20;
 	resistance_flags = 64
 	},
 /obj/effect/landmark/thunderdome/one,
@@ -16995,7 +16995,7 @@
 /obj/machinery/camera{
 	c_tag = "Arena";
 	network = list("thunder");
-	pixel_x = 10;
+	pixel_x = 20;
 	resistance_flags = 64
 	},
 /turf/open/floor/circuit/green,
@@ -17086,7 +17086,7 @@
 /obj/structure/sink/kitchen{
 	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
 	name = "sink";
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
@@ -17138,7 +17138,7 @@
 /area/holodeck/rec_center/chapelcourt)
 "JK" = (
 /obj/structure/flora/tree/pine{
-	pixel_x = -10
+	pixel_x = -20
 	},
 /turf/open/floor/holofloor/snow,
 /area/holodeck/rec_center/winterwonderland)
@@ -17180,12 +17180,12 @@
 /area/tdome/tdomeadmin)
 "JP" = (
 /obj/item/radio{
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/item/radio{
-	pixel_x = -5;
-	pixel_y = 5
+	pixel_x = -10;
+	pixel_y = 10
 	},
 /obj/item/radio,
 /obj/structure/table/wood,
@@ -17292,7 +17292,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -17361,8 +17361,8 @@
 /obj/structure/table/reinforced,
 /obj/structure/glowshroom/single,
 /obj/item/wisp_lantern{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/wisp_lantern,
 /turf/open/floor/plasteel/bluespace,
@@ -17473,8 +17473,8 @@
 /obj/structure/glowshroom/single,
 /obj/item/pizzabox/infinite,
 /obj/item/book/granter/martial/carp{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/book/granter/martial/plasma_fist,
 /obj/effect/turf_decal/tile/neutral,
@@ -17549,21 +17549,21 @@
 /obj/structure/table/wood,
 /obj/item/phone{
 	desc = "Supposedly a direct line to Nanotrasen Central Command. It's not even plugged in.";
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/clothing/mask/cigarette/cigar/cohiba{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/clothing/mask/cigarette/cigar/havana{
-	pixel_x = 2
+	pixel_x = 4
 	},
 /obj/item/clothing/mask/cigarette/cigar{
-	pixel_x = 4.5
+	pixel_x = 9
 	},
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -17640,7 +17640,7 @@
 /obj/item/folder/red,
 /obj/item/lighter,
 /obj/machinery/newscaster{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -17656,8 +17656,8 @@
 /area/tdome/tdomeadmin)
 "Kw" = (
 /obj/item/storage/briefcase{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/storage/secure/briefcase,
 /obj/structure/table/wood,
@@ -17692,7 +17692,7 @@
 /obj/structure/table/wood,
 /obj/item/storage/box/drinkingglasses,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/neutral{
@@ -17860,8 +17860,8 @@
 	},
 /obj/structure/table/glass,
 /obj/item/storage/box/gloves{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /turf/open/floor/holofloor{
 	icon_state = "white"
@@ -17924,8 +17924,8 @@
 	dir = 4
 	},
 /obj/machinery/defibrillator_mount/loaded{
-	pixel_x = -28;
-	pixel_y = -3
+	pixel_x = -56;
+	pixel_y = -6
 	},
 /obj/machinery/shower{
 	dir = 4
@@ -17960,7 +17960,7 @@
 /obj/structure/window/reinforced,
 /obj/machinery/computer/secure_data/laptop{
 	dir = 1;
-	pixel_y = 4
+	pixel_y = 8
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -18375,16 +18375,16 @@
 "Mn" = (
 /obj/structure/table/reinforced,
 /obj/item/grenade/antigravity{
-	pixel_x = 1;
-	pixel_y = 1
+	pixel_x = 2;
+	pixel_y = 2
 	},
 /obj/item/grenade/antigravity{
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/item/grenade/antigravity{
-	pixel_x = 9;
-	pixel_y = 9
+	pixel_x = 18;
+	pixel_y = 18
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
@@ -18450,8 +18450,8 @@
 /area/centcom/holding)
 "Mv" = (
 /obj/item/clothing/head/collectable/tophat{
-	pixel_x = 9;
-	pixel_y = 7
+	pixel_x = 18;
+	pixel_y = 14
 	},
 /turf/open/floor/holofloor/snow,
 /area/holodeck/rec_center/winterwonderland)
@@ -18491,19 +18491,19 @@
 /area/syndicate_mothership)
 "Mz" = (
 /obj/item/assembly/prox_sensor{
-	pixel_x = -4;
-	pixel_y = 1
-	},
-/obj/item/assembly/prox_sensor{
-	pixel_x = 8;
-	pixel_y = 9
-	},
-/obj/item/assembly/prox_sensor{
-	pixel_x = 9;
-	pixel_y = -2
-	},
-/obj/item/assembly/prox_sensor{
+	pixel_x = -8;
 	pixel_y = 2
+	},
+/obj/item/assembly/prox_sensor{
+	pixel_x = 16;
+	pixel_y = 18
+	},
+/obj/item/assembly/prox_sensor{
+	pixel_x = 18;
+	pixel_y = -4
+	},
+/obj/item/assembly/prox_sensor{
+	pixel_y = 4
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
@@ -18550,7 +18550,7 @@
 /obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'FOURTH WALL'.";
 	name = "\improper FOURTH WALL";
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
@@ -18576,8 +18576,8 @@
 	},
 /obj/structure/table/wood,
 /obj/item/uplink/nuclear/debug{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/uplink/debug,
 /turf/open/floor/plasteel,
@@ -18799,7 +18799,7 @@
 "Ni" = (
 /obj/structure/table/wood,
 /obj/item/twohanded/required/cult_bastard{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/item/twohanded/cult_spear,
 /obj/item/kitchen/knife/envy,
@@ -18904,7 +18904,7 @@
 /obj/structure/table/reinforced,
 /obj/item/wrench,
 /obj/item/screwdriver{
-	pixel_y = 10
+	pixel_y = 20
 	},
 /obj/item/analyzer,
 /obj/item/pipe_dispenser,
@@ -18970,12 +18970,12 @@
 "ND" = (
 /obj/structure/table/wood,
 /obj/item/antag_spawner/nuke_ops/borg_tele/medical{
-	pixel_x = 6;
-	pixel_y = 6
+	pixel_x = 12;
+	pixel_y = 12
 	},
 /obj/item/antag_spawner/nuke_ops/borg_tele/saboteur{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/antag_spawner/nuke_ops/borg_tele/assault,
 /turf/open/floor/wood,
@@ -19168,10 +19168,10 @@
 /obj/item/gun/energy/ionrifle/carbine,
 /obj/item/gun/energy/laser/instakill{
 	pin = /obj/item/firing_pin/clown;
-	pixel_y = -8
+	pixel_y = -16
 	},
 /obj/item/gun/energy/pulse{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -19276,12 +19276,12 @@
 /obj/structure/table/reinforced,
 /obj/item/grenade/chem_grenade/teargas/moustache,
 /obj/item/grenade/chem_grenade/teargas/moustache{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/grenade/chem_grenade/teargas/moustache{
 	pixel_x = 8;
 	pixel_y = 8
+	},
+/obj/item/grenade/chem_grenade/teargas/moustache{
+	pixel_x = 16;
+	pixel_y = 16
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
@@ -19295,7 +19295,7 @@
 "On" = (
 /obj/structure/table/wood,
 /obj/item/twohanded/mjollnir{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/item/twohanded/singularityhammer,
 /obj/item/melee/transforming/cleaving_saw,
@@ -19322,13 +19322,13 @@
 "Op" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /obj/machinery/button/door/indestructible{
 	id = "lmrestroom";
 	name = "Lock Control";
-	pixel_y = -28
+	pixel_y = -56
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
@@ -19459,17 +19459,17 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/bottle/beesease{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/glass/bottle/gbs{
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/glass/bottle/pierrot_throat,
-/obj/item/reagent_containers/glass/bottle/romerol{
+/obj/item/reagent_containers/glass/bottle/gbs{
 	pixel_x = 8;
 	pixel_y = 8
+	},
+/obj/item/reagent_containers/glass/bottle/pierrot_throat,
+/obj/item/reagent_containers/glass/bottle/romerol{
+	pixel_x = 16;
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/glass/bottle/wizarditis,
 /turf/open/floor/plasteel/bluespace,
@@ -19482,8 +19482,8 @@
 "OD" = (
 /obj/machinery/microwave{
 	desc = "Cooks and boils stuff, somehow.";
-	pixel_x = -3;
-	pixel_y = 5
+	pixel_x = -6;
+	pixel_y = 10
 	},
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/dark,
@@ -19577,16 +19577,16 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/gun/ballistic/automatic/gyropistol{
-	pixel_y = -8
+	pixel_y = -16
 	},
 /obj/item/gun/ballistic/automatic/gyropistol{
-	pixel_y = -8
+	pixel_y = -16
 	},
 /obj/item/gun/ballistic/automatic/l6_saw/unrestricted{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/item/gun/ballistic/automatic/l6_saw/unrestricted{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -19701,14 +19701,14 @@
 "Pg" = (
 /obj/structure/table/wood,
 /obj/item/twohanded/dualsaber/purple{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/item/twohanded/dualsaber/green{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/item/twohanded/dualsaber/blue,
 /obj/item/twohanded/dualsaber/red{
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/melee/transforming/energy/blade,
 /obj/item/melee/transforming/energy/blade/hardlight,
@@ -19723,20 +19723,20 @@
 /obj/structure/table/reinforced,
 /obj/item/grenade/clusterbuster/cleaner,
 /obj/item/grenade/clusterbuster/emp{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/grenade/clusterbuster/facid{
 	pixel_x = 8;
 	pixel_y = 8
+	},
+/obj/item/grenade/clusterbuster/facid{
+	pixel_x = 16;
+	pixel_y = 16
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "Pj" = (
 /obj/structure/table/wood,
 /obj/item/storage/belt/wands/full{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/belt/wands/full,
 /obj/item/dragons_blood,
@@ -19744,8 +19744,8 @@
 /area/centcom/testchamber)
 "Pk" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/cola{
-	pixel_x = 8;
-	pixel_y = 1
+	pixel_x = 16;
+	pixel_y = 2
 	},
 /turf/open/floor/holofloor/beach,
 /area/holodeck/rec_center/beach)
@@ -19887,7 +19887,7 @@
 /area/centcom/testchamber)
 "PH" = (
 /obj/structure/chair{
-	pixel_y = -2
+	pixel_y = -4
 	},
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/school)
@@ -19959,7 +19959,7 @@
 	dir = 4
 	},
 /obj/machinery/defibrillator_mount/loaded{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
@@ -20056,8 +20056,8 @@
 "Qf" = (
 /obj/structure/table/wood,
 /obj/item/spellbook{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/spellbook,
 /obj/item/dice/d20/fate,
@@ -20234,36 +20234,36 @@
 "Qy" = (
 /obj/structure/table,
 /obj/item/assembly/igniter{
-	pixel_x = -5;
-	pixel_y = 3
-	},
-/obj/item/assembly/igniter{
-	pixel_x = 5;
-	pixel_y = -4
-	},
-/obj/item/assembly/igniter{
-	pixel_x = 2;
+	pixel_x = -10;
 	pixel_y = 6
 	},
 /obj/item/assembly/igniter{
-	pixel_x = 2;
-	pixel_y = -1
-	},
-/obj/item/assembly/timer{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/assembly/timer{
-	pixel_x = 6;
-	pixel_y = 3
-	},
-/obj/item/assembly/timer{
-	pixel_x = -3;
+	pixel_x = 10;
 	pixel_y = -8
 	},
+/obj/item/assembly/igniter{
+	pixel_x = 4;
+	pixel_y = 12
+	},
+/obj/item/assembly/igniter{
+	pixel_x = 4;
+	pixel_y = -2
+	},
 /obj/item/assembly/timer{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/assembly/timer{
+	pixel_x = 12;
+	pixel_y = 6
+	},
+/obj/item/assembly/timer{
+	pixel_x = -6;
+	pixel_y = -16
+	},
+/obj/item/assembly/timer{
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -20297,10 +20297,10 @@
 /obj/structure/table/reinforced,
 /obj/item/guardiancreator/rare,
 /obj/item/guardiancreator/rare{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/item/guardiancreator/rare{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
@@ -20344,7 +20344,7 @@
 /obj/machinery/chem_master/condimaster{
 	desc = "Used to separate out liquids - useful for purifying botanical extracts. Also dispenses condiments.";
 	name = "BrewMaster 2199";
-	pixel_x = -4
+	pixel_x = -8
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -20501,8 +20501,8 @@
 	dir = 8
 	},
 /obj/item/storage/briefcase{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/storage/secure/briefcase,
 /turf/open/floor/plasteel/dark,
@@ -20642,24 +20642,24 @@
 /obj/structure/table/wood,
 /obj/item/storage/box/donkpockets,
 /obj/item/storage/box/fancy/cigarettes/cigars/cohiba{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/supplypod)
 "Rp" = (
 /obj/item/transfer_valve{
-	pixel_x = -5
+	pixel_x = -10
 	},
 /obj/item/transfer_valve{
-	pixel_x = -5
+	pixel_x = -10
 	},
 /obj/item/transfer_valve,
 /obj/item/transfer_valve,
 /obj/item/transfer_valve{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/transfer_valve{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
@@ -20676,8 +20676,8 @@
 /area/holodeck/rec_center/firingrange)
 "Rs" = (
 /obj/item/clothing/neck/stripedredscarf{
-	pixel_x = -3;
-	pixel_y = -5
+	pixel_x = -6;
+	pixel_y = -10
 	},
 /turf/open/floor/holofloor/snow,
 /area/holodeck/rec_center/winterwonderland)
@@ -20819,7 +20819,7 @@
 	dir = 8
 	},
 /obj/structure/sign/poster/official/random{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
@@ -21207,7 +21207,7 @@
 	dir = 8
 	},
 /obj/machinery/shower{
-	pixel_y = 12
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
@@ -21224,8 +21224,8 @@
 "SE" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /turf/open/floor/holofloor{
 	dir = 9;
@@ -21240,8 +21240,8 @@
 "SG" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
@@ -21276,7 +21276,7 @@
 "SO" = (
 /obj/machinery/microwave{
 	desc = "Cooks and boils stuff, somehow.";
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -21343,10 +21343,10 @@
 	},
 /obj/item/gun/energy/gravity_gun,
 /obj/item/gun/energy/laser/captain/scattershot{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/item/gun/energy/wormhole_projector{
-	pixel_y = -8
+	pixel_y = -16
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -21465,10 +21465,10 @@
 "Tj" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/clothing/mask/cigarette/cigar/havana{
-	pixel_x = 2
+	pixel_x = 4
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
@@ -21516,7 +21516,7 @@
 "Tn" = (
 /obj/structure/table/wood/fancy,
 /obj/item/candle/infinite{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
@@ -21537,8 +21537,8 @@
 /obj/structure/table/reinforced,
 /obj/structure/glowshroom/single,
 /obj/item/upgradescroll/unlimited{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/upgradescroll/unlimited,
 /turf/open/floor/plasteel/bluespace,
@@ -21557,11 +21557,11 @@
 /area/centcom/holding)
 "Ts" = (
 /obj/item/grown/log/tree{
-	pixel_y = -5
+	pixel_y = -10
 	},
 /obj/item/hatchet/wooden{
-	pixel_x = 7;
-	pixel_y = -8
+	pixel_x = 14;
+	pixel_y = -16
 	},
 /turf/open/floor/holofloor/snow,
 /area/holodeck/rec_center/winterwonderland)
@@ -21602,31 +21602,31 @@
 "Tx" = (
 /obj/item/slimepotion/spaceproof,
 /obj/item/slimepotion/spaceproof{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/slimepotion/speed{
 	pixel_x = 4;
 	pixel_y = 4
 	},
 /obj/item/slimepotion/speed{
-	pixel_x = 6;
-	pixel_y = 6
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/slimepotion/speed{
+	pixel_x = 12;
+	pixel_y = 12
 	},
 /obj/item/slimepotion/transference{
-	pixel_x = -10
+	pixel_x = -20
 	},
 /obj/item/slimepotion/transference{
-	pixel_x = -8;
-	pixel_y = 2
-	},
-/obj/item/slimepotion/lavaproof{
-	pixel_x = -6;
+	pixel_x = -16;
 	pixel_y = 4
 	},
 /obj/item/slimepotion/lavaproof{
-	pixel_x = -4;
-	pixel_y = 6
+	pixel_x = -12;
+	pixel_y = 8
+	},
+/obj/item/slimepotion/lavaproof{
+	pixel_x = -8;
+	pixel_y = 12
 	},
 /obj/structure/table/wood,
 /turf/open/floor/wood,
@@ -21683,10 +21683,10 @@
 /obj/structure/table/reinforced,
 /obj/item/gun/ballistic/revolver/mateba,
 /obj/item/gun/ballistic/revolver/nagant{
-	pixel_y = -8
+	pixel_y = -16
 	},
 /obj/item/gun/ballistic/revolver/reverse{
-	pixel_y = 10
+	pixel_y = 20
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -21722,11 +21722,11 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/gun/ballistic/automatic/pistol/APS{
-	pixel_y = -10
+	pixel_y = -20
 	},
 /obj/item/gun/ballistic/automatic/pistol/deagle,
 /obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted{
-	pixel_y = 10
+	pixel_y = 20
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -21738,7 +21738,7 @@
 "TK" = (
 /obj/structure/table/wood/bar,
 /obj/structure/mirror{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
@@ -21913,8 +21913,8 @@
 /obj/item/storage/firstaid/fire,
 /obj/machinery/door/firedoor/border_only,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/centcom/evac)
@@ -22017,12 +22017,12 @@
 /obj/structure/table/reinforced,
 /obj/item/grenade/clusterbuster/inferno,
 /obj/item/grenade/clusterbuster/spawner_spesscarp{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/grenade/clusterbuster/spawner_manhacks{
 	pixel_x = 8;
 	pixel_y = 8
+	},
+/obj/item/grenade/clusterbuster/spawner_manhacks{
+	pixel_x = 16;
+	pixel_y = 16
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
@@ -22041,7 +22041,7 @@
 /obj/item/gun/energy/e_gun/hos,
 /obj/item/gun/energy/e_gun/hos,
 /obj/item/gun/energy/laser/captain{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -22116,13 +22116,13 @@
 /area/centcom/evac)
 "UG" = (
 /obj/item/toy/snowball{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/item/toy/snowball{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/toy/snowball{
-	pixel_x = -4
+	pixel_x = -8
 	},
 /turf/open/floor/holofloor/snow,
 /area/holodeck/rec_center/winterwonderland)
@@ -22145,7 +22145,7 @@
 	dir = 8
 	},
 /obj/structure/mirror/magic/badmin{
-	pixel_y = 30
+	pixel_y = 60
 	},
 /obj/structure/healingfountain,
 /obj/item/skub,
@@ -22156,7 +22156,7 @@
 /area/centcom/testchamber)
 "UJ" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
@@ -22175,10 +22175,10 @@
 /obj/item/gun/ballistic/automatic/ar,
 /obj/item/gun/ballistic/automatic/ar,
 /obj/item/gun/ballistic/automatic/c20r/unrestricted{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/item/gun/ballistic/automatic/c20r/unrestricted{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -22270,10 +22270,10 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/gun/ballistic/automatic/proto/unrestricted{
-	pixel_y = 12
+	pixel_y = 24
 	},
 /obj/item/gun/ballistic/automatic/proto/unrestricted{
-	pixel_y = 12
+	pixel_y = 24
 	},
 /obj/item/gun/ballistic/automatic/sniper_rifle,
 /obj/item/gun/ballistic/automatic/sniper_rifle,
@@ -22486,7 +22486,7 @@
 "Vz" = (
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
-	pixel_y = 28;
+	pixel_y = 56;
 	use_power = 0
 	},
 /turf/open/floor/plasteel/cafeteria,
@@ -22634,8 +22634,8 @@
 /area/centcom/testchamber)
 "VS" = (
 /obj/item/stack/sheet/mineral/coal{
-	pixel_x = -8;
-	pixel_y = -4
+	pixel_x = -16;
+	pixel_y = -8
 	},
 /turf/open/floor/holofloor/snow,
 /area/holodeck/rec_center/winterwonderland)
@@ -22705,12 +22705,12 @@
 	},
 /obj/item/implanter/explosive_macro,
 /obj/item/implanter/explosive_macro{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/implanter/explosive_macro{
 	pixel_x = 6;
 	pixel_y = 6
+	},
+/obj/item/implanter/explosive_macro{
+	pixel_x = 12;
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -22943,13 +22943,13 @@
 "WE" = (
 /obj/structure/rack,
 /obj/item/clothing/mask/luchador{
-	pixel_x = -2;
-	pixel_y = 2
+	pixel_x = -4;
+	pixel_y = 4
 	},
 /obj/item/clothing/mask/luchador/rudos,
 /obj/item/clothing/mask/luchador/tecnicos{
-	pixel_x = 2;
-	pixel_y = -2
+	pixel_x = 4;
+	pixel_y = -4
 	},
 /turf/open/floor/holofloor{
 	icon_state = "darkfull"
@@ -22986,7 +22986,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/gun/ballistic/automatic/pistol/deagle/gold{
-	pixel_y = -6
+	pixel_y = -12
 	},
 /obj/item/gun/ballistic/revolver/golden,
 /obj/item/gun/energy/kinetic_accelerator/crossbow/halloween,
@@ -23008,12 +23008,12 @@
 /obj/structure/table/wood,
 /obj/item/slime_extract/rainbow,
 /obj/item/slime_extract/rainbow{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/slime_extract/rainbow{
 	pixel_x = 6;
 	pixel_y = 6
+	},
+/obj/item/slime_extract/rainbow{
+	pixel_x = 12;
+	pixel_y = 12
 	},
 /turf/open/floor/wood,
 /area/centcom/testchamber)
@@ -23023,13 +23023,13 @@
 /obj/item/grenade/plastic/x4,
 /obj/item/grenade/plastic/x4,
 /obj/item/grenade/plastic/c4{
-	pixel_x = 7
+	pixel_x = 14
 	},
 /obj/item/grenade/plastic/c4{
-	pixel_x = 7
+	pixel_x = 14
 	},
 /obj/item/grenade/plastic/c4{
-	pixel_x = 7
+	pixel_x = 14
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
@@ -23087,7 +23087,7 @@
 	dir = 4
 	},
 /obj/structure/sign/poster/official/random{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
@@ -23095,8 +23095,8 @@
 /obj/structure/table/wood,
 /obj/structure/glowshroom/single,
 /obj/item/storage/backpack/holding{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/backpack/holding,
 /obj/item/desynchronizer,
@@ -23112,7 +23112,7 @@
 /obj/machinery/vending/toyliberationstation{
 	age_restrictions = 0;
 	extended_inventory = 1;
-	pixel_x = -1
+	pixel_x = -2
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
@@ -23303,14 +23303,14 @@
 /obj/machinery/button/door{
 	id = "testvent";
 	name = "Testing Chamber Vent Control";
-	pixel_x = -25;
-	pixel_y = 5;
+	pixel_x = -50;
+	pixel_y = 10;
 	req_access_txt = "7"
 	},
 /obj/machinery/button/ignition{
 	id = "mixingsparker";
-	pixel_x = -25;
-	pixel_y = -5
+	pixel_x = -50;
+	pixel_y = -10
 	},
 /obj/structure/table/reinforced,
 /obj/item/orion_ship,
@@ -23402,7 +23402,7 @@
 /area/centcom/testchamber)
 "XG" = (
 /obj/structure/sign/poster/official/random{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
@@ -23411,7 +23411,7 @@
 /obj/item/folder/red,
 /obj/item/lighter,
 /obj/machinery/newscaster{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -23443,8 +23443,8 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/teleportation_scroll{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/teleportation_scroll,
 /turf/open/floor/plasteel/bluespace,
@@ -23546,8 +23546,8 @@
 /area/bluespace_locker)
 "XW" = (
 /obj/item/clothing/head/ushanka{
-	pixel_x = -5;
-	pixel_y = 6
+	pixel_x = -10;
+	pixel_y = 12
 	},
 /turf/open/floor/holofloor/snow,
 /area/holodeck/rec_center/winterwonderland)
@@ -23575,7 +23575,7 @@
 /obj/item/gun/ballistic/rocketlauncher/unrestricted,
 /obj/item/gun/ballistic/rocketlauncher/unrestricted,
 /obj/item/gun/energy/meteorgun{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -23605,11 +23605,11 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/gun/energy/mindflayer{
-	pixel_y = -8
+	pixel_y = -16
 	},
 /obj/item/gun/energy/xray{
 	pin = /obj/item/firing_pin;
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/item/gun/energy/tesla_revolver{
 	pin = /obj/item/firing_pin
@@ -23638,13 +23638,13 @@
 /area/centcom/evac)
 "Yh" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -27
+	pixel_x = -54
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
 "Yj" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -30
+	pixel_y = -60
 	},
 /turf/open/floor/mineral/titanium,
 /area/centcom/evac)
@@ -23691,7 +23691,7 @@
 	dir = 8
 	},
 /obj/machinery/defibrillator_mount/loaded{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
@@ -23962,7 +23962,7 @@
 /area/holodeck/rec_center/chapelcourt)
 "YX" = (
 /obj/machinery/airalarm/directional/west{
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/machinery/light{
 	dir = 8
@@ -24023,17 +24023,17 @@
 /area/centcom/testchamber)
 "Ze" = (
 /obj/item/clothing/gloves/boxing{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/gloves/boxing/blue{
 	pixel_x = -4;
 	pixel_y = 4
 	},
-/obj/item/clothing/gloves/boxing/blue{
-	pixel_x = -2;
-	pixel_y = 2
-	},
 /obj/item/clothing/gloves/boxing/green,
 /obj/item/clothing/gloves/boxing/yellow{
-	pixel_x = 2;
-	pixel_y = -2
+	pixel_x = 4;
+	pixel_y = -4
 	},
 /obj/structure/rack,
 /turf/open/floor/holofloor{
@@ -24100,7 +24100,7 @@
 /area/holodeck/rec_center/basketball)
 "Zm" = (
 /obj/structure/flora/tree/pine{
-	pixel_x = -21
+	pixel_x = -42
 	},
 /turf/open/floor/holofloor/snow,
 /area/holodeck/rec_center/winterwonderland)
@@ -24161,8 +24161,8 @@
 "Zs" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21";
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
@@ -24363,19 +24363,19 @@
 /obj/structure/table/reinforced,
 /obj/item/grenade/chem_grenade/bioterrorfoam,
 /obj/item/grenade/chem_grenade/bioterrorfoam{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/grenade/chem_grenade/bioterrorfoam{
 	pixel_x = 8;
 	pixel_y = 8
+	},
+/obj/item/grenade/chem_grenade/bioterrorfoam{
+	pixel_x = 16;
+	pixel_y = 16
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "ZO" = (
 /obj/machinery/sparker/toxmix{
 	id = "mixingsparker";
-	pixel_x = 25
+	pixel_x = 50
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4

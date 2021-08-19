@@ -62,6 +62,9 @@
 #define MAX_BYOND_MAJOR 514
 #define MAX_BYOND_MINOR 1556
 
+#define WORLD_ICON_SIZE 64
+#define PIXEL_MULTIPLIER (WORLD_ICON_SIZE/32)
+
 ///Uncomment to bypass the max version check. Note: This will likely break the game, only use if you know what you're doing
 //#define IGNORE_MAX_BYOND_VERSION
 #if ((DM_VERSION > MAX_BYOND_MAJOR) || (DM_BUILD > MAX_BYOND_MINOR)) && !defined(IGNORE_MAX_BYOND_VERSION)

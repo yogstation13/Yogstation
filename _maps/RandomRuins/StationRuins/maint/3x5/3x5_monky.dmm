@@ -24,7 +24,7 @@
 "h" = (
 /obj/structure/sink/puddle,
 /obj/structure/flora/ausbushes/reedbush{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /turf/open/floor/grass,
 /area/template_noop)
@@ -35,7 +35,7 @@
 /area/template_noop)
 "k" = (
 /obj/item/toy/beach_ball{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/grass,
 /area/template_noop)

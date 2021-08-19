@@ -114,8 +114,8 @@
 "an" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /obj/item/storage/firstaid/o2,
 /obj/machinery/light{
@@ -425,7 +425,7 @@
 	},
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
-	pixel_y = -29
+	pixel_y = -58
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -441,7 +441,7 @@
 /area/shuttle/escape)
 "aO" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -30
+	pixel_y = -60
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
@@ -451,7 +451,7 @@
 	},
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
-	pixel_y = -29
+	pixel_y = -58
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -502,7 +502,7 @@
 /obj/structure/table,
 /obj/machinery/recharger,
 /obj/structure/reagent_dispensers/peppertank{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
@@ -523,7 +523,7 @@
 	dir = 4
 	},
 /obj/structure/sign/departments/restroom{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -571,16 +571,16 @@
 	},
 /obj/machinery/flasher{
 	id = "shuttle_flasher";
-	pixel_x = 24;
-	pixel_y = 6
+	pixel_x = 48;
+	pixel_y = 12
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "bg" = (
 /obj/machinery/button/flasher{
 	id = "shuttle_flasher";
-	pixel_x = -24;
-	pixel_y = -6
+	pixel_x = -48;
+	pixel_y = -12
 	},
 /obj/structure/table,
 /obj/machinery/recharger,
@@ -624,8 +624,8 @@
 	},
 /obj/machinery/flasher{
 	id = "shuttle_flasher";
-	pixel_x = -24;
-	pixel_y = 6
+	pixel_x = -48;
+	pixel_y = 12
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
@@ -650,7 +650,7 @@
 	dir = 8
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -28
+	pixel_x = -56
 	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -789,7 +789,7 @@
 /obj/item/radio/intercom{
 	dir = 4;
 	name = "Station Intercom (General)";
-	pixel_y = 27
+	pixel_y = 54
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -936,15 +936,15 @@
 /obj/item/radio/intercom{
 	dir = 4;
 	name = "Station Intercom (General)";
-	pixel_y = 27
+	pixel_y = 54
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bV" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /obj/machinery/light{
 	dir = 4
@@ -1003,7 +1003,7 @@
 /area/shuttle/escape)
 "bZ" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -28
+	pixel_x = -56
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -1015,8 +1015,8 @@
 /area/shuttle/escape)
 "cb" = (
 /obj/structure/sign/departments/medbay/alt{
-	pixel_x = 32;
-	pixel_y = -32
+	pixel_x = 64;
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -1222,8 +1222,8 @@
 "cy" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -1280,7 +1280,7 @@
 	},
 /obj/structure/window/reinforced{
 	dir = 1;
-	pixel_y = 1
+	pixel_y = 2
 	},
 /obj/machinery/iv_drip,
 /obj/effect/turf_decal/tile/blue{
@@ -1301,17 +1301,17 @@
 /obj/item/reagent_containers/blood,
 /obj/item/reagent_containers/blood/AMinus,
 /obj/item/reagent_containers/blood/BMinus{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /obj/item/reagent_containers/blood/BPlus{
-	pixel_x = 1;
-	pixel_y = 2
+	pixel_x = 2;
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/blood/OMinus,
 /obj/item/reagent_containers/blood/OPlus{
-	pixel_x = -2;
-	pixel_y = -1
+	pixel_x = -4;
+	pixel_y = -2
 	},
 /obj/item/reagent_containers/blood/random,
 /obj/item/reagent_containers/blood/random,
@@ -1336,12 +1336,12 @@
 	},
 /obj/item/circular_saw,
 /obj/item/scalpel{
-	pixel_y = 12
+	pixel_y = 24
 	},
 /obj/item/hemostat,
 /obj/item/surgicaldrill,
 /obj/item/cautery{
-	pixel_x = 4
+	pixel_x = 8
 	},
 /obj/item/retractor,
 /obj/effect/turf_decal/tile/blue{
@@ -1434,7 +1434,7 @@
 "cM" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
-	pixel_y = -29
+	pixel_y = -58
 	},
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -1444,7 +1444,7 @@
 /area/shuttle/escape)
 "cO" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -30
+	pixel_y = -60
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1548,11 +1548,11 @@
 "cX" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /obj/structure/mirror{
-	pixel_x = -28
+	pixel_x = -56
 	},
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/escape)
@@ -1621,7 +1621,7 @@
 /area/shuttle/escape)
 "df" = (
 /obj/structure/urinal{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/escape)
@@ -1645,7 +1645,7 @@
 /area/shuttle/escape)
 "di" = (
 /obj/structure/sign/warning/electricshock{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -1678,7 +1678,7 @@
 "dl" = (
 /obj/structure/table,
 /obj/structure/sign/warning/enginesafety{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -1689,7 +1689,7 @@
 "dm" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
-	pixel_y = -29
+	pixel_y = -58
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -1717,7 +1717,7 @@
 /area/shuttle/escape)
 "dp" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -30
+	pixel_y = -60
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{

@@ -62,7 +62,7 @@
 	layer = 4;
 	name = "Lasertag Monitor";
 	network = list("tag");
-	pixel_x = 30
+	pixel_x = 60
 	},
 /obj/structure/chair{
 	dir = 4

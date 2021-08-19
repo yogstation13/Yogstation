@@ -2,8 +2,8 @@
 	name = "Nar-sie's Avatar"
 	desc = "Your mind begins to bubble and ooze as it tries to comprehend what it sees."
 	icon = 'icons/obj/magic_terror.dmi'
-	pixel_x = -89
-	pixel_y = -85
+	pixel_x = -89*PIXEL_MULTIPLIER
+	pixel_y = -85*PIXEL_MULTIPLIER
 	density = FALSE
 	current_size = 9 //It moves/eats like a max-size singulo, aside from range. --NEO
 	contained = 0 //Are we going to move around?
@@ -21,8 +21,8 @@
 	name = "Nar-Sie"
 	icon = 'icons/obj/narsie.dmi'
 	// Pixel stuff centers Narsie.
-	pixel_x = -236
-	pixel_y = -256
+	pixel_x = -236*PIXEL_MULTIPLIER
+	pixel_y = -256*PIXEL_MULTIPLIER
 	current_size = 12
 	grav_pull = 10
 	consume_range = 12 //How many tiles out do we eat

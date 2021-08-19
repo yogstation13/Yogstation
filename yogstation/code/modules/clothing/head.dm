@@ -278,8 +278,8 @@
 	icon = 'yogstation/icons/obj/clothing/1024x1024/hats.dmi'
 	icon_state = "milliondollarhat"
 	item_state = "milliondollarhat"
-	worn_x_dimension = 1024
-	worn_y_dimension = 1024
+	worn_x_dimension = WORLD_ICON_SIZE*32
+	worn_y_dimension = WORLD_ICON_SIZE*32
 	armor = list(melee = 20) //lets say the hat itself doesnt provide any melee protection but people are so shocked at how huge your hat is they unconsciously soften there blows as to not hurt the hat.
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	strip_delay = 120

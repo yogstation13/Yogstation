@@ -40,7 +40,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /mob/living/simple_animal/hostile/syndicate/ranged/smg/space,
 /turf/open/floor/plasteel{
@@ -141,7 +141,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plasteel/dark{
 	initial_gas_mix = "TEMP=2.7"
@@ -211,7 +211,7 @@
 /area/shuttle/caravan/freighter1)
 "bg" = (
 /obj/machinery/airalarm/all_access{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
@@ -241,7 +241,7 @@
 /obj/machinery/button/door{
 	id = "caravantrade1_cargo";
 	name = "Cargo Blast Door Control";
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/mineral/diamond{
@@ -254,7 +254,7 @@
 	dir = 4
 	},
 /obj/structure/sink{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
@@ -315,26 +315,26 @@
 	name = "fridge"
 	},
 /obj/item/reagent_containers/food/drinks/beer{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/reagent_containers/food/drinks/beer,
 /obj/item/reagent_containers/food/drinks/beer{
-	pixel_x = 3;
-	pixel_y = -3
+	pixel_x = 6;
+	pixel_y = -6
 	},
 /obj/item/reagent_containers/glass/beaker/waterbottle{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/reagent_containers/glass/beaker/waterbottle,
 /obj/item/reagent_containers/glass/beaker/waterbottle{
-	pixel_x = 3;
-	pixel_y = -3
+	pixel_x = 6;
+	pixel_y = -6
 	},
 /obj/item/reagent_containers/food/snacks/pizzaslice/margherita{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/reagent_containers/food/snacks/pizzaslice/margherita,
 /obj/item/reagent_containers/food/snacks/chocolatebar,
@@ -433,7 +433,7 @@
 	dir = 8
 	},
 /obj/structure/sign/warning/vacuum{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plating,
 /area/shuttle/caravan/freighter1)
@@ -507,7 +507,7 @@
 "qM" = (
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
@@ -529,11 +529,11 @@
 /obj/item/stack/packageWrap,
 /obj/item/crowbar,
 /obj/item/flashlight{
-	pixel_x = 1;
-	pixel_y = 5
+	pixel_x = 2;
+	pixel_y = 10
 	},
 /obj/machinery/airalarm/all_access{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/airless,
@@ -556,7 +556,7 @@
 /obj/structure/rack,
 /obj/item/storage/belt/utility,
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 29
+	pixel_y = 58
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -584,14 +584,14 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/machinery/button/door{
 	id = "caravantrade1_cabin1";
 	name = "Cabin Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = -25;
-	pixel_y = 6;
+	pixel_x = -50;
+	pixel_y = 12;
 	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -648,8 +648,8 @@
 	id = "caravantrade1_bolt";
 	name = "External Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = -25;
-	pixel_y = 8;
+	pixel_x = -50;
+	pixel_y = 16;
 	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
@@ -698,12 +698,12 @@
 "Bx" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets{
-	pixel_x = 6;
-	pixel_y = 6
+	pixel_x = 12;
+	pixel_y = 12
 	},
 /obj/item/trash/plate{
-	pixel_x = -5;
-	pixel_y = -3
+	pixel_x = -10;
+	pixel_y = -6
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral{
@@ -822,7 +822,7 @@
 "GJ" = (
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
@@ -840,7 +840,7 @@
 	dir = 1
 	},
 /obj/machinery/airalarm/all_access{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -917,7 +917,7 @@
 "NL" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -954,15 +954,15 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
 /obj/item/paper_bin{
-	pixel_x = 6;
-	pixel_y = 6
+	pixel_x = 12;
+	pixel_y = 12
 	},
 /obj/item/pen{
-	pixel_x = 6;
-	pixel_y = 6
+	pixel_x = 12;
+	pixel_y = 12
 	},
 /obj/item/folder/yellow{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/item/gps{
 	gpstag = "Distress Signal"
@@ -1021,14 +1021,14 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/machinery/button/door{
 	id = "caravantrade1_cabin2";
 	name = "Cabin Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = -25;
-	pixel_y = 6;
+	pixel_x = -50;
+	pixel_y = 12;
 	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -1061,7 +1061,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Small Freighter APC";
-	pixel_x = 24;
+	pixel_x = 48;
 	req_access = null;
 	start_charge = 0
 	},
@@ -1074,11 +1074,11 @@
 /obj/machinery/cell_charger,
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/item/stack/cable_coil/yellow{
-	pixel_x = 12;
-	pixel_y = 4
+	pixel_x = 24;
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/airless,
 /area/shuttle/caravan/freighter1)
@@ -1153,7 +1153,7 @@
 "UW" = (
 /obj/machinery/airalarm/all_access{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating/airless{
@@ -1227,7 +1227,7 @@
 "WU" = (
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,

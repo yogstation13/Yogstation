@@ -104,7 +104,7 @@
 	},
 /obj/structure/noticeboard{
 	dir = 1;
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel{
 	icon_state = "grimy"
@@ -265,7 +265,7 @@
 /area/awaymission/academy/academycellar)
 "eI" = (
 /obj/structure/noticeboard{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
@@ -1187,10 +1187,10 @@
 	icon_state = "tile_corner"
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
+	pixel_x = -6
 	},
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /turf/open/floor/plasteel{
 	icon_state = "white"
@@ -1619,7 +1619,7 @@
 	icon_state = "tile_corner"
 	},
 /obj/item/reagent_containers/glass/rag{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel{
 	icon_state = "white"
@@ -1691,7 +1691,7 @@
 "sL" = (
 /obj/machinery/button/door{
 	id = "AcademyAuto";
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
@@ -1754,7 +1754,7 @@
 /area/awaymission/academy/academyaft)
 "tQ" = (
 /obj/structure/noticeboard{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/paper{
 	name = "Pyromancy 250"
@@ -1790,7 +1790,7 @@
 /area/awaymission/academy/academyaft)
 "uo" = (
 /obj/structure/sink/kitchen{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 4;
@@ -2212,7 +2212,7 @@
 /obj/machinery/button/door{
 	id = "AcademyGate";
 	name = "Skeleton Storage Control";
-	pixel_y = -24
+	pixel_y = -48
 	},
 /mob/living/simple_animal/hostile/academywizard/soldier{
 	desc = "What a phony.";
@@ -2315,7 +2315,7 @@
 "FE" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/mirror{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/wood,
 /area/awaymission/academy/academyfore)
@@ -2539,11 +2539,11 @@
 "Ig" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /obj/structure/mirror{
-	pixel_x = -28
+	pixel_x = -56
 	},
 /turf/open/floor/plasteel{
 	dir = 2;
@@ -2584,21 +2584,21 @@
 /obj/structure/table,
 /obj/effect/turf_decal/tile/red,
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
+	pixel_x = -6
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/academy/academyclassroom)
 "IP" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /obj/structure/mirror/magic/lesser{
-	pixel_x = -28
+	pixel_x = -56
 	},
 /turf/open/floor/plasteel{
 	dir = 2;
@@ -2659,7 +2659,7 @@
 /area/awaymission/academy/academyclassroom)
 "Jz" = (
 /obj/structure/noticeboard{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /mob/living/simple_animal/hostile/academywizard,
 /turf/open/floor/plasteel,
@@ -2667,10 +2667,10 @@
 "JF" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/structure/mirror{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /turf/open/floor/plasteel{
 	dir = 2;
@@ -2969,7 +2969,7 @@
 /area/awaymission/academy/academyclassroom)
 "Ov" = (
 /obj/structure/noticeboard{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/paper{
 	name = "Automotive Repair 101"
@@ -3023,7 +3023,7 @@
 /area/awaymission/academy/academycellar)
 "OZ" = (
 /obj/structure/noticeboard{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/paper{
 	name = "Headmaster Office"
@@ -3234,7 +3234,7 @@
 "RJ" = (
 /obj/structure/noticeboard{
 	dir = 8;
-	pixel_x = 27
+	pixel_x = 54
 	},
 /obj/item/paper{
 	name = "Weapon Summoning 201"

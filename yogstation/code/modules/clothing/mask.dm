@@ -209,8 +209,8 @@
 	alternate_worn_icon = 'yogstation/icons/mob/large-worn-icons/64x64/masks.dmi'
 	icon_state = "bananamask"
 	item_state = "bananamask"
-	worn_x_dimension = 64
-	worn_y_dimension = 64
+	worn_x_dimension = WORLD_ICON_SIZE*2
+	worn_y_dimension = WORLD_ICON_SIZE*2
 	flags_cover = MASKCOVERSEYES
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 	resistance_flags = FLAMMABLE

@@ -20,7 +20,7 @@
 	},
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/item/assembly/prox_sensor{
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/machinery/light/small{
 	dir = 1

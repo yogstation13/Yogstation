@@ -7,7 +7,7 @@
 	dir = 4
 	},
 /obj/structure/reagent_dispensers/peppertank{
-	pixel_x = -31
+	pixel_x = -62
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/mineral/plastitanium,
@@ -39,7 +39,7 @@
 /obj/machinery/button/flasher{
 	id = "gulagshuttleflasher";
 	name = "Flash Control";
-	pixel_y = -26;
+	pixel_y = -52;
 	req_access_txt = "1"
 	},
 /obj/machinery/light,
@@ -56,8 +56,8 @@
 "h" = (
 /obj/machinery/mineral/stacking_unit_console{
 	machinedir = 2;
-	pixel_x = 30;
-	pixel_y = 30
+	pixel_x = 60;
+	pixel_y = 60
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -111,7 +111,7 @@
 "n" = (
 /obj/machinery/mineral/labor_claim_console{
 	machinedir = 1;
-	pixel_x = 30
+	pixel_x = 60
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -146,7 +146,7 @@
 "q" = (
 /obj/machinery/flasher{
 	id = "gulagshuttleflasher";
-	pixel_x = 25
+	pixel_x = 50
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{

@@ -120,8 +120,8 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 
 /obj/item/stock_parts/Initialize()
 	. = ..()
-	pixel_x = rand(-5, 5)
-	pixel_y = rand(-5, 5)
+	pixel_x = rand(-5*PIXEL_MULTIPLIER, 5*PIXEL_MULTIPLIER)
+	pixel_y = rand(-5*PIXEL_MULTIPLIER, 5*PIXEL_MULTIPLIER)
 
 /obj/item/stock_parts/get_part_rating()
 	return rating

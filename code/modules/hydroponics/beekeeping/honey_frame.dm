@@ -9,5 +9,5 @@
 
 /obj/item/honey_frame/Initialize()
 	. = ..()
-	pixel_x = rand(8,-8)
-	pixel_y = rand(8,-8)
+	pixel_x = rand(8*PIXEL_MULTIPLIER,-8*PIXEL_MULTIPLIER)
+	pixel_y = rand(8*PIXEL_MULTIPLIER,-8*PIXEL_MULTIPLIER)

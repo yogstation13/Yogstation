@@ -178,7 +178,7 @@
 	speak_chance = 60
 	maxHealth = 150
 	health = 150
-	pixel_x = -16
+	pixel_x = -16*PIXEL_MULTIPLIER
 	speed = 10
 	harm_intent_damage = 5
 	melee_damage_lower = 5
@@ -199,7 +199,7 @@
 	speak_chance = 5
 	maxHealth = 400
 	health = 400
-	pixel_x = -16
+	pixel_x = -16*PIXEL_MULTIPLIER
 	speed = 2
 	harm_intent_damage = 15
 	melee_damage_lower = 15
@@ -304,7 +304,7 @@
 	speak_chance = 10
 	maxHealth = 130
 	health = 130
-	pixel_x = -16
+	pixel_x = -16*PIXEL_MULTIPLIER
 	speed = -5
 	harm_intent_damage = 10
 	melee_damage_lower = 10

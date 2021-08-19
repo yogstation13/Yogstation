@@ -15,8 +15,8 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	opacity = 0
 	dir = NORTH // always points north because why not
 	layer = SPACEPOD_LAYER
-	bound_width = 64
-	bound_height = 64
+	bound_width = WORLD_ICON_SIZE*2
+	bound_height = WORLD_ICON_SIZE*2
 	animate_movement = NO_STEPS // we do our own gliding here
 
 	anchored = TRUE
@@ -672,8 +672,8 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	var/sl_x_list = splittext(sl_list[1], ":")
 	var/sl_y_list = splittext(sl_list[2], ":")
 	var/view_list = isnum(pilot.client.view) ? list("[pilot.client.view*2+1]","[pilot.client.view*2+1]") : splittext(pilot.client.view, "x")
-	var/dx = text2num(sl_x_list[1]) + (text2num(sl_x_list[2]) / world.icon_size) - 1 - text2num(view_list[1]) / 2
-	var/dy = text2num(sl_y_list[1]) + (text2num(sl_y_list[2]) / world.icon_size) - 1 - text2num(view_list[2]) / 2
+	var/dx = text2num(sl_x_list[1]) + (text2num(sl_x_list[2]) / WORLD_ICON_SIZE) - 1 - text2num(view_list[1]) / 2
+	var/dy = text2num(sl_y_list[1]) + (text2num(sl_y_list[2]) / WORLD_ICON_SIZE) - 1 - text2num(view_list[2]) / 2
 	if(sqrt(dx*dx+dy*dy) > 1)
 		desired_angle = 90 - ATAN2(dx, dy)
 	else

@@ -6,8 +6,8 @@
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "time"
 	layer = FLY_LAYER
-	pixel_x = -64
-	pixel_y = -64
+	pixel_x = -64*PIXEL_MULTIPLIER
+	pixel_y = -64*PIXEL_MULTIPLIER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/list/immune = list() // the one who creates the timestop is immune, which includes wizards and the dead slime you murdered to make this chronofield
 	var/turf/target

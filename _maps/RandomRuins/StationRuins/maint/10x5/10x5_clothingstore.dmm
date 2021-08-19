@@ -12,8 +12,8 @@
 	dir = 4
 	},
 /obj/effect/spawner/lootdrop/gloves{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /obj/effect/spawner/lootdrop/gloves,
 /obj/effect/decal/cleanable/dirt,
@@ -149,12 +149,12 @@
 /obj/effect/turf_decal/tile/green,
 /obj/item/stack/wrapping_paper,
 /obj/item/stack/packageWrap{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /obj/item/pen{
 	pixel_x = 0;
-	pixel_y = 8
+	pixel_y = 16
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)
@@ -181,7 +181,7 @@
 "H" = (
 /obj/structure/mirror{
 	pixel_x = 0;
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -260,7 +260,7 @@
 "R" = (
 /obj/structure/mirror{
 	pixel_x = 0;
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -293,12 +293,12 @@
 /obj/effect/turf_decal/tile/green,
 /obj/item/coin,
 /obj/item/coin{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /obj/item/coin{
-	pixel_x = 4;
-	pixel_y = 8
+	pixel_x = 8;
+	pixel_y = 16
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)

@@ -30,7 +30,7 @@
 #define POD_SHAPE_NORML 1
 #define POD_SHAPE_OTHER 2
 
-#define SUPPLYPOD_X_OFFSET -16
+#define SUPPLYPOD_X_OFFSET (-16*PIXEL_MULTIPLIER)
 
 GLOBAL_LIST_EMPTY(supplypod_loading_bays)
 

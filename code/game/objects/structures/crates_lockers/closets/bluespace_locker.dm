@@ -246,21 +246,21 @@
 					vis_contents += get_step(target_turf, odir)
 					add_reset_timer = TRUE
 					if(odir == 8)
-						px = -32
+						px = -WORLD_ICON_SIZE
 					if(odir == 2)
-						py = -32
+						py = -WORLD_ICON_SIZE
 					A = target_turf.loc
 					if(!IS_DYNAMIC_LIGHTING(A))
 						var/obj/effect/fullbright/F = new()
 						switch(odir)
 							if(1)
-								F.pixel_y = 32
+								F.pixel_y = WORLD_ICON_SIZE
 							if(2)
-								F.pixel_y = -32
+								F.pixel_y = -WORLD_ICON_SIZE
 							if(4)
-								F.pixel_x = 32
+								F.pixel_x = WORLD_ICON_SIZE
 							if(8)
-								F.pixel_x = -32
+								F.pixel_x = -WORLD_ICON_SIZE
 						fullbrights += F
 			for(var/V in fullbrights)
 				var/obj/F = V
@@ -271,8 +271,8 @@
 				reset_timer_id = addtimer(CALLBACK(src, /turf/open/space/bluespace_locker_mirage.proc/reset_to_self), world.tick_lag * 4, TIMER_UNIQUE | TIMER_NO_HASH_WAIT | TIMER_OVERRIDE)
 			else if(reset_timer_id)
 				deltimer(reset_timer_id)
-			pixel_x = px + dx*32
-			pixel_y = py + dy*32
+			pixel_x = px + dx*WORLD_ICON_SIZE
+			pixel_y = py + dy*WORLD_ICON_SIZE
 			animate(src, pixel_x = px, pixel_y = py, time = world.tick_lag * 4, flags = ANIMATION_END_NOW)
 	external_origin_prev_time = world.time
 	external_origin_prev_prev = external_origin_prev

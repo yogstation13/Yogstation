@@ -14,7 +14,7 @@
 /obj/machinery/button/door{
 	id = "HippieVan";
 	name = "External Shutters";
-	pixel_y = 25
+	pixel_y = 50
 	},
 /obj/machinery/light/broken{
 	dir = 1

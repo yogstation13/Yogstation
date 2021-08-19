@@ -2,7 +2,7 @@
 "a" = (
 /obj/structure/dresser,
 /obj/structure/mirror{
-	pixel_y = 30
+	pixel_y = 60
 	},
 /turf/open/floor/plating,
 /area/template_noop)

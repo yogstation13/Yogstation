@@ -18,8 +18,8 @@
 
 /obj/item/stack/tile/Initialize(mapload, amount)
 	. = ..()
-	pixel_x = rand(-3, 3)
-	pixel_y = rand(-3, 3) //randomize a little
+	pixel_x = rand(-3*PIXEL_MULTIPLIER, 3*PIXEL_MULTIPLIER)
+	pixel_y = rand(-3*PIXEL_MULTIPLIER, 3*PIXEL_MULTIPLIER) //randomize a little
 
 /obj/item/stack/tile/attackby(obj/item/W, mob/user, params)
 

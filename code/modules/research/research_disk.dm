@@ -8,8 +8,8 @@
 
 /obj/item/disk/tech_disk/Initialize()
 	. = ..()
-	pixel_x = rand(-5, 5)
-	pixel_y = rand(-5, 5)
+	pixel_x = rand(-5*PIXEL_MULTIPLIER, 5*PIXEL_MULTIPLIER)
+	pixel_y = rand(-5*PIXEL_MULTIPLIER, 5*PIXEL_MULTIPLIER)
 	stored_research = new /datum/techweb
 
 /obj/item/disk/tech_disk/debug

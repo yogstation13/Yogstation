@@ -14,8 +14,8 @@
 	item_state = "cultdagger"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	inhand_x_dimension = 32
-	inhand_y_dimension = 32
+	inhand_x_dimension = WORLD_ICON_SIZE
+	inhand_y_dimension = WORLD_ICON_SIZE
 	w_class = WEIGHT_CLASS_SMALL
 	force = 15
 	throwforce = 25
@@ -101,8 +101,8 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
+	inhand_x_dimension = WORLD_ICON_SIZE*2
+	inhand_y_dimension = WORLD_ICON_SIZE*2
 	actions_types = list()
 	item_flags = SLOWS_WHILE_IN_HAND
 	var/datum/action/innate/dash/cult/jaunt

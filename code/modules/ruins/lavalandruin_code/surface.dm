@@ -16,7 +16,7 @@
 	layer = FLY_LAYER
 	anchored = TRUE
 	density = TRUE
-	bound_width = 416
-	bound_height = 64
-	pixel_y = -10
+	bound_width = WORLD_ICON_SIZE*13
+	bound_height = WORLD_ICON_SIZE*2
+	pixel_y = -10*PIXEL_MULTIPLIER
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF

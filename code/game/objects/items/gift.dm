@@ -22,8 +22,8 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 /obj/item/a_gift/Initialize()
 	. = ..()
-	pixel_x = rand(-10,10)
-	pixel_y = rand(-10,10)
+	pixel_x = rand(-10*PIXEL_MULTIPLIER,10*PIXEL_MULTIPLIER)
+	pixel_y = rand(-10*PIXEL_MULTIPLIER,10*PIXEL_MULTIPLIER)
 	icon_state = "giftdeliverypackage[rand(1,5)]"
 
 	contains_type = get_gift_type()

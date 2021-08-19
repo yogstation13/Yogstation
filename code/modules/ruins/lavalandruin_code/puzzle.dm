@@ -160,10 +160,10 @@
 		var/y = width - round((id - 1) / width)
 		var/x = ((id - 1) % width) + 1
 
-		var/x_start = 1 + (x - 1) * world.icon_size
-		var/x_end = x_start + world.icon_size - 1
-		var/y_start = 1 + ((y - 1) * world.icon_size)
-		var/y_end = y_start + world.icon_size - 1
+		var/x_start = 1 + (x - 1) * WORLD_ICON_SIZE
+		var/x_end = x_start + WORLD_ICON_SIZE - 1
+		var/y_start = 1 + ((y - 1) * WORLD_ICON_SIZE)
+		var/y_end = y_start + WORLD_ICON_SIZE - 1
 
 		var/icon/T = new(base_icon)
 		T.Crop(x_start,y_start,x_end,y_end)
@@ -219,8 +219,8 @@
 		C.Scale(19,19)
 		var/mutable_appearance/puzzle_small = new(C)
 		puzzle_small.layer = layer + 0.1
-		puzzle_small.pixel_x = 7
-		puzzle_small.pixel_y = 7
+		puzzle_small.pixel_x = 7*PIXEL_MULTIPLIER
+		puzzle_small.pixel_y = 7*PIXEL_MULTIPLIER
 		add_overlay(puzzle_small)
 
 /obj/structure/puzzle_element/Destroy()
@@ -237,7 +237,7 @@
 	T.add_overlay(MA)
 	//Some basic shaking animation
 	for(var/i in 1 to COLLAPSE_DURATION)
-		animate(src, pixel_x=rand(-5,5), pixel_y=rand(-2,2), time=1)
+		animate(src, pixel_x=rand(-5*PIXEL_MULTIPLIER,5*PIXEL_MULTIPLIER), pixel_y=rand(-2*PIXEL_MULTIPLIER,2*PIXEL_MULTIPLIER), time=1)
 	QDEL_IN(src,COLLAPSE_DURATION)
 
 /obj/structure/puzzle_element/Moved()

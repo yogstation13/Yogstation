@@ -124,10 +124,10 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/enzyme,
 /obj/item/reagent_containers/food/condiment/soysauce{
-	pixel_x = 4
+	pixel_x = 8
 	},
 /obj/machinery/firealarm{
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/deepstorage/kitchen)
@@ -145,7 +145,7 @@
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
 /obj/machinery/airalarm/away{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/deepstorage/kitchen)
@@ -153,8 +153,8 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/peppermill,
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/kitchen/knife,
 /turf/open/floor/plasteel/cafeteria,
@@ -186,7 +186,7 @@
 /obj/machinery/power/apc/away{
 	dir = 2;
 	name = "Recycling APC";
-	pixel_y = -23
+	pixel_y = -46
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/deepstorage/crusher)
@@ -230,7 +230,7 @@
 /obj/item/stack/packageWrap,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/airalarm/away{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -252,20 +252,20 @@
 "aK" = (
 /obj/structure/closet/cardboard,
 /obj/item/stack/sheet/metal/fifty{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /obj/item/stack/sheet/metal/fifty{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /obj/item/stack/sheet/metal/fifty{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /obj/item/stack/sheet/metal/fifty{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /obj/item/stack/rods/fifty,
 /obj/item/stack/rods/fifty,
@@ -415,13 +415,13 @@
 /obj/structure/closet/cardboard,
 /obj/effect/turf_decal/delivery,
 /obj/item/ammo_box/magazine/pistolm9mm{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/ammo_box/magazine/pistolm9mm,
 /obj/item/ammo_box/magazine/pistolm9mm{
-	pixel_x = 3;
-	pixel_y = -3
+	pixel_x = 6;
+	pixel_y = -6
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -444,7 +444,7 @@
 "aZ" = (
 /obj/machinery/vending/hydronutrients,
 /obj/machinery/firealarm{
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/hydroponics)
@@ -457,13 +457,13 @@
 "bb" = (
 /obj/machinery/hydroponics/constructable,
 /obj/machinery/airalarm/away{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/light,
 /area/ruin/space/has_grav/deepstorage/hydroponics)
 "bc" = (
 /obj/structure/sink/kitchen{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/deepstorage/kitchen)
@@ -564,7 +564,7 @@
 "br" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8;
@@ -615,7 +615,7 @@
 /obj/machinery/microwave,
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/deepstorage/kitchen)
@@ -744,7 +744,7 @@
 /obj/machinery/power/apc/away{
 	dir = 2;
 	name = "Kitchen APC";
-	pixel_y = -23
+	pixel_y = -46
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/deepstorage/kitchen)
@@ -760,7 +760,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage)
@@ -776,7 +776,7 @@
 "bR" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/hydroponics)
@@ -787,26 +787,26 @@
 "bT" = (
 /obj/effect/turf_decal/delivery,
 /obj/item/reagent_containers/food/snacks/beans{
-	pixel_x = -5;
-	pixel_y = 3
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/snacks/beans{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/snacks/beans{
+	pixel_x = -4
+	},
+/obj/item/reagent_containers/food/snacks/beans{
+	pixel_x = 10
 	},
 /obj/item/reagent_containers/food/snacks/beans{
 	pixel_x = 2;
-	pixel_y = 3
+	pixel_y = -6
 	},
 /obj/item/reagent_containers/food/snacks/beans{
-	pixel_x = -2
-	},
-/obj/item/reagent_containers/food/snacks/beans{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/food/snacks/beans{
-	pixel_x = 1;
-	pixel_y = -3
-	},
-/obj/item/reagent_containers/food/snacks/beans{
-	pixel_x = 8;
-	pixel_y = -3
+	pixel_x = 16;
+	pixel_y = -6
 	},
 /obj/structure/closet/crate{
 	name = "food crate"
@@ -820,26 +820,26 @@
 "bU" = (
 /obj/effect/turf_decal/delivery,
 /obj/item/reagent_containers/food/snacks/beans{
-	pixel_x = -5;
-	pixel_y = 3
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/snacks/beans{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/snacks/beans{
+	pixel_x = -4
+	},
+/obj/item/reagent_containers/food/snacks/beans{
+	pixel_x = 10
 	},
 /obj/item/reagent_containers/food/snacks/beans{
 	pixel_x = 2;
-	pixel_y = 3
+	pixel_y = -6
 	},
 /obj/item/reagent_containers/food/snacks/beans{
-	pixel_x = -2
-	},
-/obj/item/reagent_containers/food/snacks/beans{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/food/snacks/beans{
-	pixel_x = 1;
-	pixel_y = -3
-	},
-/obj/item/reagent_containers/food/snacks/beans{
-	pixel_x = 8;
-	pixel_y = -3
+	pixel_x = 16;
+	pixel_y = -6
 	},
 /obj/structure/closet/crate{
 	name = "food crate"
@@ -850,7 +850,7 @@
 "bV" = (
 /obj/machinery/airalarm/away{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer2,
@@ -861,7 +861,7 @@
 	dir = 4
 	},
 /obj/structure/sign/barsign{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -890,7 +890,7 @@
 /area/ruin/space/has_grav/deepstorage)
 "bY" = (
 /obj/machinery/airalarm/away{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/freezer,
@@ -898,7 +898,7 @@
 "bZ" = (
 /obj/structure/table,
 /obj/machinery/airalarm/away{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -974,7 +974,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 4;
 	name = "Hydroponics APC";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/hydroponics)
@@ -1002,7 +1002,7 @@
 /area/ruin/space/has_grav/deepstorage)
 "cj" = (
 /obj/structure/noticeboard{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/paper/fluff/ruins/deepstorage/water_concern,
 /obj/item/paper/fluff/ruins/deepstorage/hydro_notice,
@@ -1119,8 +1119,8 @@
 /obj/structure/table,
 /obj/machinery/light,
 /obj/item/reagent_containers/glass/bucket{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plasteel,
@@ -1163,26 +1163,26 @@
 	name = "food crate"
 	},
 /obj/item/reagent_containers/glass/beaker/waterbottle/large{
-	pixel_x = -5;
-	pixel_y = 3
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/beaker/waterbottle/large{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/beaker/waterbottle/large{
+	pixel_x = -4
+	},
+/obj/item/reagent_containers/glass/beaker/waterbottle/large{
+	pixel_x = 10
 	},
 /obj/item/reagent_containers/glass/beaker/waterbottle/large{
 	pixel_x = 2;
-	pixel_y = 3
+	pixel_y = -6
 	},
 /obj/item/reagent_containers/glass/beaker/waterbottle/large{
-	pixel_x = -2
-	},
-/obj/item/reagent_containers/glass/beaker/waterbottle/large{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/glass/beaker/waterbottle/large{
-	pixel_x = 1;
-	pixel_y = -3
-	},
-/obj/item/reagent_containers/glass/beaker/waterbottle/large{
-	pixel_x = 8;
-	pixel_y = -3
+	pixel_x = 16;
+	pixel_y = -6
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -1192,7 +1192,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 4;
 	name = "Storage APC";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -1201,10 +1201,10 @@
 "cD" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/structure/mirror{
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer2,
 /turf/open/floor/plasteel/freezer,
@@ -1241,7 +1241,7 @@
 /obj/machinery/vending/cigarette,
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -1414,8 +1414,8 @@
 "dc" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/plasteel/dark,
@@ -1423,8 +1423,8 @@
 "dd" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/brute{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/storage/firstaid/brute,
 /obj/machinery/light{
@@ -1473,15 +1473,15 @@
 "dj" = (
 /obj/structure/table,
 /obj/item/stack/sheet/metal/fifty{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /obj/item/stack/rods/fifty,
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/deepstorage/armory)
@@ -1595,7 +1595,7 @@
 /area/ruin/space/has_grav/deepstorage)
 "dv" = (
 /obj/machinery/firealarm{
-	pixel_y = 26
+	pixel_y = 52
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -1606,38 +1606,38 @@
 	name = "food crate"
 	},
 /obj/item/storage/box/donkpockets{
-	pixel_x = -5;
-	pixel_y = 3
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = -4
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = 10
 	},
 /obj/item/storage/box/donkpockets{
 	pixel_x = 2;
-	pixel_y = 3
+	pixel_y = -6
 	},
 /obj/item/storage/box/donkpockets{
-	pixel_x = -2
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 5
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 1;
-	pixel_y = -3
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 8;
-	pixel_y = -3
+	pixel_x = 16;
+	pixel_y = -6
 	},
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/item/vending_refill/cigarette{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/vending_refill/cigarette,
 /obj/item/vending_refill/coffee{
-	pixel_x = 3;
-	pixel_y = -3
+	pixel_x = 6;
+	pixel_y = -6
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -1648,35 +1648,35 @@
 	name = "food crate"
 	},
 /obj/item/storage/box/donkpockets{
-	pixel_x = -5;
-	pixel_y = 3
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = -4
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = 10
 	},
 /obj/item/storage/box/donkpockets{
 	pixel_x = 2;
-	pixel_y = 3
+	pixel_y = -6
 	},
 /obj/item/storage/box/donkpockets{
-	pixel_x = -2
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 5
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 1;
-	pixel_y = -3
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 8;
-	pixel_y = -3
+	pixel_x = 16;
+	pixel_y = -6
 	},
 /obj/item/vending_refill/cigarette{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/vending_refill/cigarette,
 /obj/item/vending_refill/coffee{
-	pixel_x = 3;
-	pixel_y = -3
+	pixel_x = 6;
+	pixel_y = -6
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -1686,7 +1686,7 @@
 /obj/machinery/power/apc/away{
 	dir = 2;
 	name = "Main Area APC";
-	pixel_y = -23
+	pixel_y = -46
 	},
 /obj/effect/turf_decal/stripes/corner,
 /obj/effect/decal/cleanable/dirt,
@@ -1872,15 +1872,15 @@
 "dP" = (
 /obj/structure/table,
 /obj/item/radio{
-	pixel_x = -4
+	pixel_x = -8
 	},
 /obj/item/radio,
 /obj/item/radio{
-	pixel_x = 4
+	pixel_x = 8
 	},
 /obj/machinery/airalarm/away{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/deepstorage/armory)
@@ -1919,7 +1919,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/dorm)
@@ -1959,7 +1959,7 @@
 	icon_state = "scrub_map_on-3"
 	},
 /obj/machinery/firealarm{
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/airlock)
@@ -2041,7 +2041,7 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer2,
@@ -2058,7 +2058,7 @@
 "eh" = (
 /obj/structure/table,
 /obj/item/storage/backpack/duffelbag/sec/surgery{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -2066,7 +2066,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 4;
 	name = "Armory APC";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/deepstorage/armory)
@@ -2123,7 +2123,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 4;
 	name = "Dormitory APC";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer2,
@@ -2201,11 +2201,11 @@
 "ex" = (
 /obj/structure/table,
 /obj/structure/reagent_dispensers/peppertank{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/item/gun/ballistic/automatic/wt550,
 /obj/item/ammo_box/magazine/wt550m9{
-	pixel_y = 12
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/deepstorage/armory)
@@ -2237,7 +2237,7 @@
 	network = list("bunker1")
 	},
 /obj/structure/sign/warning/securearea{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -2253,28 +2253,28 @@
 /obj/machinery/button/door{
 	id = "bunkerexterior";
 	name = "exterior blast door access";
-	pixel_x = -24;
-	pixel_y = -8;
+	pixel_x = -48;
+	pixel_y = -16;
 	req_access_txt = "200"
 	},
 /obj/machinery/button/door{
 	id = "bunkerinterior";
 	name = "interior blast door access";
-	pixel_x = -24;
+	pixel_x = -48;
 	req_access_txt = "200"
 	},
 /obj/machinery/button/door{
 	id = "bunkershutter";
 	name = "hallway shutter toggle";
-	pixel_x = -24;
-	pixel_y = 8;
+	pixel_x = -48;
+	pixel_y = 16;
 	req_access_txt = "200"
 	},
 /obj/machinery/computer/security/telescreen{
 	dir = 1;
 	name = "Bunker Entrance monitor";
 	network = list("bunker1");
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -2332,7 +2332,7 @@
 /obj/machinery/power/apc/away{
 	dir = 1;
 	name = "Airlock Control APC";
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -2380,8 +2380,8 @@
 "eN" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/toxin{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/pill_bottle/charcoal,
@@ -2391,12 +2391,12 @@
 "eO" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/combat{
-	pixel_x = -3;
-	pixel_y = 4
+	pixel_x = -6;
+	pixel_y = 8
 	},
 /obj/item/clothing/gloves/combat{
-	pixel_x = 3;
-	pixel_y = -2
+	pixel_x = 6;
+	pixel_y = -4
 	},
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/mask/gas,
@@ -2412,13 +2412,13 @@
 /obj/item/flashlight/flare,
 /obj/item/flashlight/flare,
 /obj/item/flashlight/flare{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/item/flashlight/flare{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/item/flashlight/flare{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/deepstorage/armory)
@@ -2439,7 +2439,7 @@
 /area/ruin/space/has_grav/deepstorage)
 "eS" = (
 /obj/machinery/airalarm/away{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/visible/layer4,
@@ -2479,7 +2479,7 @@
 /obj/machinery/power/apc/away{
 	dir = 8;
 	name = "Power and Atmospherics APC";
-	pixel_x = -25
+	pixel_x = -50
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -2496,7 +2496,7 @@
 "eX" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
@@ -2512,7 +2512,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/power)
@@ -2532,7 +2532,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/sign/warning/electricshock{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/deepstorage/power)
@@ -2679,7 +2679,7 @@
 "fu" = (
 /obj/machinery/airalarm/away{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -2784,7 +2784,7 @@
 	dir = 1
 	},
 /obj/structure/sign/warning/securearea{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -2851,7 +2851,7 @@
 "fP" = (
 /obj/machinery/autolathe,
 /obj/structure/sign/warning/radiation{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -2869,8 +2869,8 @@
 "fR" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/electrical{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/storage/toolbox/electrical,
 /obj/effect/decal/cleanable/dirt,
@@ -2943,7 +2943,7 @@
 	},
 /obj/machinery/airalarm/away{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -2978,7 +2978,7 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -3008,7 +3008,7 @@
 	icon_state = "0-8"
 	},
 /obj/structure/sign/warning/electricshock{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/deepstorage/power)
@@ -3143,8 +3143,8 @@
 "gW" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/storage/toolbox/mechanical,
 /obj/effect/decal/cleanable/dirt,

@@ -58,7 +58,7 @@
 /obj/item/bedsheet/brown,
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 6
@@ -242,7 +242,7 @@
 /obj/item/bedsheet/brown,
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -265,8 +265,8 @@
 	icon_state = "control_kill";
 	lethal = 1;
 	locked = 0;
-	pixel_x = 1;
-	pixel_y = -25;
+	pixel_x = 2;
+	pixel_y = -50;
 	req_access = null
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -405,13 +405,13 @@
 "mI" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/brute{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/firstaid/fire,
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/caravan/pirate)
@@ -438,10 +438,10 @@
 /obj/structure/table,
 /obj/item/circular_saw,
 /obj/item/scalpel{
-	pixel_y = 12
+	pixel_y = 24
 	},
 /obj/item/cautery{
-	pixel_x = 4
+	pixel_x = 8
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -486,10 +486,10 @@
 	name = "Weapon Storage"
 	},
 /obj/item/grenade/smokebomb{
-	pixel_x = -4
+	pixel_x = -8
 	},
 /obj/item/grenade/smokebomb{
-	pixel_x = 2
+	pixel_x = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -537,7 +537,7 @@
 /obj/structure/tank_dispenser/oxygen,
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -568,21 +568,21 @@
 "qC" = (
 /obj/structure/table,
 /obj/item/storage/box/fancy/donut_box{
-	pixel_y = 18
+	pixel_y = 36
 	},
 /obj/item/storage/box/donkpockets{
-	pixel_x = -3;
-	pixel_y = 7
+	pixel_x = -6;
+	pixel_y = 14
 	},
 /obj/item/storage/box/donkpockets{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/item/reagent_containers/food/drinks/bottle/rum{
-	pixel_x = 8;
-	pixel_y = 3
+	pixel_x = 16;
+	pixel_y = 6
 	},
 /obj/structure/sign/poster/contraband/red_rum{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
@@ -612,7 +612,7 @@
 "sW" = (
 /obj/structure/table,
 /obj/machinery/airalarm/all_access{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -630,8 +630,8 @@
 "to" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/bottle/rum{
-	pixel_x = 3;
-	pixel_y = 6
+	pixel_x = 6;
+	pixel_y = 12
 	},
 /obj/item/reagent_containers/food/drinks/bottle/rum,
 /turf/open/floor/plasteel/dark,
@@ -674,8 +674,8 @@
 	id = "caravanpirate_bolt_port";
 	name = "External Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = -4;
-	pixel_y = 25;
+	pixel_x = -8;
+	pixel_y = 50;
 	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -716,7 +716,7 @@
 "xg" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
@@ -758,8 +758,8 @@
 	id = "caravanpirate_bolt_starboard";
 	name = "External Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = -4;
-	pixel_y = -25;
+	pixel_x = -8;
+	pixel_y = -50;
 	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -818,20 +818,20 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Pirate Cutter APC";
-	pixel_x = -25;
+	pixel_x = -50;
 	req_access = null
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/airalarm/all_access{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
 "DY" = (
 /obj/structure/closet/crate/secure/loot,
 /obj/machinery/airalarm/all_access{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
@@ -855,8 +855,8 @@
 	},
 /obj/item/storage/toolbox/mechanical,
 /obj/item/flashlight{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/stack/sheet/mineral/plasma{
 	amount = 20
@@ -876,8 +876,8 @@
 /obj/machinery/button/door{
 	id = "caravanpirate_bridge";
 	name = "Bridge Blast Door Control";
-	pixel_x = 6;
-	pixel_y = -5
+	pixel_x = 12;
+	pixel_y = -10
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -955,7 +955,7 @@
 /obj/effect/turf_decal/delivery,
 /obj/machinery/airalarm/all_access{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/caravan/pirate)
@@ -1002,7 +1002,7 @@
 	dir = 4
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -27
+	pixel_x = -54
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
@@ -1067,7 +1067,7 @@
 	dir = 8
 	},
 /obj/structure/sign/warning/vacuum{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
@@ -1095,7 +1095,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)

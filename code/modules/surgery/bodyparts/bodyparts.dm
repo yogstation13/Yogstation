@@ -116,8 +116,8 @@
 	..()
 	if(status != BODYPART_ROBOTIC)
 		playsound(get_turf(src), 'sound/misc/splort.ogg', 50, 1, -1)
-	pixel_x = rand(-3, 3)
-	pixel_y = rand(-3, 3)
+	pixel_x = rand(-3*PIXEL_MULTIPLIER, 3*PIXEL_MULTIPLIER)
+	pixel_y = rand(-3*PIXEL_MULTIPLIER, 3*PIXEL_MULTIPLIER)
 
 //empties the bodypart from its organs and other things inside it
 /obj/item/bodypart/proc/drop_organs(mob/user, violent_removal)

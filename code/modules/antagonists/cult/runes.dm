@@ -485,8 +485,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 	icon = 'icons/effects/96x96.dmi'
 	color = RUNE_COLOR_DARKRED
 	icon_state = "rune_large"
-	pixel_x = -32 //So the big ol' 96x96 sprite shows up right
-	pixel_y = -32
+	pixel_x = -32*PIXEL_MULTIPLIER //So the big ol' 96x96 sprite shows up right
+	pixel_y = -32*PIXEL_MULTIPLIER
 	scribe_delay = 300 //how long the rune takes to create
 	scribe_damage = 20 //how much damage you take doing it
 	var/used = FALSE
@@ -986,8 +986,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 	invocation = "Ta'gh fara'qha fel d'amar det!"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "apoc"
-	pixel_x = -32
-	pixel_y = -32
+	pixel_x = -32*PIXEL_MULTIPLIER
+	pixel_y = -32*PIXEL_MULTIPLIER
 	color = RUNE_COLOR_DARKRED
 	req_cultists = 3
 	scribe_delay = 100

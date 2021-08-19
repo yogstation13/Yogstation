@@ -31,7 +31,7 @@
 /obj/structure/table,
 /obj/item/clothing/gloves/color/yellow,
 /obj/item/storage/toolbox/electrical{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -91,7 +91,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/tank/internals/emergency_oxygen/engi{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/clothing/gloves/color/black,
 /obj/item/clothing/glasses/meson/engine,
@@ -323,13 +323,13 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -26
+	pixel_y = -52
 	},
 /obj/machinery/camera{
 	c_tag = "Engineering Supermatter Fore";
 	dir = 1;
 	network = list("ss13","engine");
-	pixel_x = 23
+	pixel_x = 46
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/visible{
 	dir = 1
@@ -349,7 +349,7 @@
 /obj/machinery/button/door{
 	id = "engsm";
 	name = "Radiation Shutters Control";
-	pixel_y = -24;
+	pixel_y = -48;
 	req_access_txt = "10"
 	},
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
@@ -525,7 +525,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
+	pixel_x = 52;
 	pixel_y = 0
 	},
 /turf/open/floor/engine,
@@ -533,13 +533,13 @@
 "bq" = (
 /obj/structure/rack,
 /obj/item/clothing/mask/gas{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/mask/gas{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -558,7 +558,7 @@
 	},
 /obj/machinery/airalarm/engine{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine,
@@ -783,7 +783,7 @@
 	c_tag = "Supermatter Chamber";
 	dir = 2;
 	network = list("engine");
-	pixel_x = 23
+	pixel_x = 46
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -941,7 +941,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1146,7 +1146,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
+	pixel_x = 52;
 	pixel_y = 0
 	},
 /turf/open/floor/plasteel/dark,
@@ -1321,7 +1321,7 @@
 	c_tag = "Engineering Supermatter Aft";
 	dir = 2;
 	network = list("ss13","engine");
-	pixel_x = 23
+	pixel_x = 46
 	},
 /obj/effect/turf_decal/delivery,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -1655,8 +1655,8 @@
 "dT" = (
 /obj/structure/table,
 /obj/item/stack/cable_coil{
-	pixel_x = 3;
-	pixel_y = -7
+	pixel_x = 6;
+	pixel_y = -14
 	},
 /obj/item/stack/cable_coil,
 /turf/open/floor/plasteel/dark,
@@ -1742,7 +1742,7 @@
 "eg" = (
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
@@ -1800,7 +1800,7 @@
 "en" = (
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
+	pixel_x = 52;
 	pixel_y = 0
 	},
 /turf/open/floor/plasteel/dark,
@@ -1845,8 +1845,8 @@
 /obj/item/wrench,
 /obj/item/weldingtool,
 /obj/item/clothing/head/welding{
-	pixel_x = -3;
-	pixel_y = 5
+	pixel_x = -6;
+	pixel_y = 10
 	},
 /obj/structure/rack,
 /turf/open/floor/plasteel/dark,
@@ -1873,15 +1873,15 @@
 "eB" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/flashlight{
-	pixel_x = 1;
-	pixel_y = 5
+	pixel_x = 2;
+	pixel_y = 10
 	},
 /obj/item/flashlight{
-	pixel_x = 1;
-	pixel_y = 5
+	pixel_x = 2;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -1929,7 +1929,7 @@
 /obj/structure/closet/emcloset/anchored,
 /obj/machinery/advanced_airlock_controller{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -2097,7 +2097,7 @@
 /area/engine/engineering)
 "Vd" = (
 /obj/structure/sign/warning/vacuum/external{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,

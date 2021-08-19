@@ -16,7 +16,7 @@
 	broken = 1;
 	desc = "This mirror has been shattered. It looks like the bad luck energies spilling from it are taking immediate effect on your surroundings!";
 	icon_state = "mirror_broke";
-	pixel_x = -28
+	pixel_x = -56
 	},
 /obj/item/clothing/suit/hooded/bloated_human,
 /obj/effect/decal/cleanable/blood,
@@ -27,7 +27,7 @@
 	broken = 1;
 	desc = "This mirror has been shattered. It looks like the bad luck energies spilling from it are taking immediate effect on your surroundings!";
 	icon_state = "mirror_broke";
-	pixel_x = 28
+	pixel_x = 56
 	},
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
@@ -39,7 +39,7 @@
 	broken = 1;
 	desc = "This mirror has been shattered. It looks like the bad luck energies spilling from it are taking immediate effect on your surroundings!";
 	icon_state = "mirror_broke";
-	pixel_x = -28
+	pixel_x = -56
 	},
 /turf/open/floor/plating,
 /area/ruin/unpowered)
@@ -59,7 +59,7 @@
 	broken = 1;
 	desc = "This mirror has been shattered. It looks like the bad luck energies spilling from it are taking immediate effect on your surroundings!";
 	icon_state = "mirror_broke";
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/item/kitchen/knife/envy,
 /turf/open/floor/plating,
@@ -69,7 +69,7 @@
 	broken = 1;
 	desc = "This mirror has been shattered. It looks like the bad luck energies spilling from it are taking immediate effect on your surroundings!";
 	icon_state = "mirror_broke";
-	pixel_x = 28
+	pixel_x = 56
 	},
 /turf/open/floor/plating,
 /area/ruin/unpowered)
@@ -78,7 +78,7 @@
 	broken = 1;
 	desc = "This mirror has been shattered. It looks like the bad luck energies spilling from it are taking immediate effect on your surroundings!";
 	icon_state = "mirror_broke";
-	pixel_x = -28
+	pixel_x = -56
 	},
 /turf/open/floor/plating,
 /area/ruin/unpowered)
@@ -92,7 +92,7 @@
 	broken = 1;
 	desc = "This mirror has been shattered. It looks like the bad luck energies spilling from it are taking immediate effect on your surroundings!";
 	icon_state = "mirror_broke";
-	pixel_x = -28
+	pixel_x = -56
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"

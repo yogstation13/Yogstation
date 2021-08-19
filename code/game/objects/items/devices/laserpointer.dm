@@ -171,12 +171,12 @@
 	var/list/click_params = params2list(params)
 	if(click_params)
 		if(click_params["icon-x"])
-			I.pixel_x = (text2num(click_params["icon-x"]) - 16)
+			I.pixel_x = (text2num(click_params["icon-x"]) - WORLD_ICON_SIZE/2)
 		if(click_params["icon-y"])
-			I.pixel_y = (text2num(click_params["icon-y"]) - 16)
+			I.pixel_y = (text2num(click_params["icon-y"]) - WORLD_ICON_SIZE/2)
 	else
-		I.pixel_x = target.pixel_x + rand(-5,5)
-		I.pixel_y = target.pixel_y + rand(-5,5)
+		I.pixel_x = target.pixel_x + rand(-5*PIXEL_MULTIPLIER,5*PIXEL_MULTIPLIER)
+		I.pixel_y = target.pixel_y + rand(-5*PIXEL_MULTIPLIER,5*PIXEL_MULTIPLIER)
 
 	if(outmsg)
 		to_chat(user, outmsg)

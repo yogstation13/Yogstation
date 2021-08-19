@@ -225,54 +225,54 @@
 "cC" = (
 /obj/structure/table/reinforced/brass,
 /obj/item/kitchen/fork{
-	pixel_x = 10
+	pixel_x = 20
 	},
 /obj/item/kitchen/fork{
-	pixel_x = -4
+	pixel_x = -8
 	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 "mj" = (
 /obj/structure/table/reinforced/brass,
 /obj/item/clockwork/slab{
-	pixel_x = 10;
-	pixel_y = 10
+	pixel_x = 20;
+	pixel_y = 20
 	},
 /obj/item/clockwork/slab{
-	pixel_x = 6;
-	pixel_y = 7
+	pixel_x = 12;
+	pixel_y = 14
 	},
 /obj/item/clockwork/slab{
-	pixel_x = 2;
-	pixel_y = 4
+	pixel_x = 4;
+	pixel_y = 8
 	},
 /obj/item/clockwork/slab{
-	pixel_x = -2;
-	pixel_y = 1
+	pixel_x = -4;
+	pixel_y = 2
 	},
 /obj/item/clockwork/slab{
-	pixel_x = -6;
-	pixel_y = -2
+	pixel_x = -12;
+	pixel_y = -4
 	},
 /obj/item/clockwork/slab{
-	pixel_x = -10;
-	pixel_y = -5
+	pixel_x = -20;
+	pixel_y = -10
 	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 "wm" = (
 /obj/structure/table/reinforced/brass,
 /obj/item/kitchen/fork{
-	pixel_x = -4
+	pixel_x = -8
 	},
 /obj/item/kitchen/fork{
-	pixel_x = -11
+	pixel_x = -22
 	},
 /obj/item/kitchen/fork{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/kitchen/fork{
-	pixel_x = 10
+	pixel_x = 20
 	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)

@@ -36,7 +36,7 @@
 /area/crew_quarters/bar)
 "aj" = (
 /obj/structure/sink/kitchen{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -90,7 +90,7 @@
 "aq" = (
 /obj/machinery/airalarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -114,7 +114,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -153,7 +153,7 @@
 /area/crew_quarters/kitchen)
 "aC" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = -31
+	pixel_x = -62
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -182,7 +182,7 @@
 /obj/machinery/airalarm{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/machinery/camera{
 	c_tag = "Bar West";
@@ -199,7 +199,7 @@
 /obj/machinery/airalarm{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -263,7 +263,7 @@
 /obj/machinery/airalarm{
 	dir = 8;
 	icon_state = "alarm0";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/machinery/vending/wardrobe/chef_wardrobe,
 /turf/open/floor/plasteel{
@@ -272,7 +272,7 @@
 /area/crew_quarters/kitchen)
 "aR" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = -31
+	pixel_x = -62
 	},
 /obj/machinery/light{
 	dir = 8
@@ -381,8 +381,8 @@
 /area/crew_quarters/kitchen)
 "bj" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -5;
-	pixel_y = 30
+	pixel_x = -10;
+	pixel_y = 60
 	},
 /obj/machinery/food_cart,
 /turf/open/floor/plasteel/vaporwave,
@@ -396,7 +396,7 @@
 /area/crew_quarters/bar)
 "bl" = (
 /obj/structure/sink/kitchen{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
@@ -489,7 +489,7 @@
 /obj/structure/table,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /obj/machinery/chem_dispenser/drinks/beer{
 	dir = 8
@@ -499,11 +499,11 @@
 "bC" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/light{
 	dir = 1
@@ -529,8 +529,8 @@
 "bE" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /obj/item/storage/box/donkpockets,
 /turf/open/floor/plasteel/vaporwave,
@@ -631,8 +631,8 @@
 /obj/structure/table,
 /obj/item/book/manual/chef_recipes,
 /obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
@@ -654,13 +654,13 @@
 /obj/machinery/processor,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
 "cj" = (
 /obj/machinery/light_switch{
-	pixel_y = -25
+	pixel_y = -50
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
@@ -676,8 +676,8 @@
 /obj/machinery/button/door{
 	id = "kitchen";
 	name = "Kitchen Shutters Control";
-	pixel_x = -1;
-	pixel_y = -24;
+	pixel_x = -2;
+	pixel_y = -48;
 	req_access_txt = "28"
 	},
 /obj/structure/disposalpipe/segment{
@@ -726,7 +726,7 @@
 /obj/machinery/requests_console{
 	department = "Bar";
 	departmentType = 2;
-	pixel_x = 30
+	pixel_x = 60
 	},
 /obj/machinery/camera{
 	c_tag = "Bar";
@@ -779,7 +779,7 @@
 	},
 /obj/structure/noticeboard{
 	dir = 1;
-	pixel_y = -27
+	pixel_y = -54
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -797,7 +797,7 @@
 /obj/machinery/airalarm{
 	dir = 1;
 	icon_state = "alarm0";
-	pixel_y = -24
+	pixel_y = -48
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -837,7 +837,7 @@
 /obj/machinery/light,
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -26
+	pixel_y = -52
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -886,7 +886,7 @@
 /area/crew_quarters/bar)
 "dq" = (
 /obj/machinery/newscaster{
-	pixel_y = -28
+	pixel_y = -56
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -896,7 +896,7 @@
 /area/crew_quarters/bar)
 "dx" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -30
+	pixel_y = -60
 	},
 /obj/structure/statue/sandstone/venus{
 	dir = 1;
@@ -969,8 +969,8 @@
 	name = "kitchen shutters"
 	},
 /obj/item/reagent_containers/food/snacks/butterdog{
-	pixel_x = -1;
-	pixel_y = 3
+	pixel_x = -2;
+	pixel_y = 6
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -1055,16 +1055,16 @@
 "ow" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
-	pixel_x = 4;
-	pixel_y = -2
+	pixel_x = 8;
+	pixel_y = -4
 	},
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -3;
-	pixel_y = 8
+	pixel_x = -6;
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -8;
-	pixel_y = 4
+	pixel_x = -16;
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
@@ -1124,10 +1124,10 @@
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	departmentType = 2;
-	pixel_x = 30
+	pixel_x = 60
 	},
 /obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
@@ -1154,8 +1154,8 @@
 /area/crew_quarters/kitchen)
 "wy" = (
 /obj/item/storage/secure/safe{
-	pixel_x = -2;
-	pixel_y = 4
+	pixel_x = -4;
+	pixel_y = 8
 	},
 /turf/closed/wall,
 /area/crew_quarters/bar)
@@ -1225,8 +1225,8 @@
 "Mi" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
@@ -1262,8 +1262,8 @@
 /obj/machinery/button/door{
 	id = "barshutters";
 	name = "Bar Shutters Control";
-	pixel_x = 1;
-	pixel_y = 23;
+	pixel_x = 2;
+	pixel_y = 46;
 	req_access_txt = "25"
 	},
 /turf/open/floor/plasteel/vaporwave,
@@ -1284,8 +1284,8 @@
 "VM" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 1;
-	pixel_y = 3
+	pixel_x = 2;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)

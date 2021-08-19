@@ -99,7 +99,7 @@
 /area/template_noop)
 "r" = (
 /obj/structure/sink{
-	pixel_y = 20
+	pixel_y = 40
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -136,8 +136,8 @@
 "x" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)
@@ -233,8 +233,8 @@
 /obj/structure/table/glass,
 /obj/item/storage/box/syringes,
 /obj/item/storage/box/beakers{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /obj/machinery/light{
 	dir = 8

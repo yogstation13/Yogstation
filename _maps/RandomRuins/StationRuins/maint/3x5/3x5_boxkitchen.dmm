@@ -14,7 +14,7 @@
 "f" = (
 /obj/structure/sink/kitchen{
 	dir = 8;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -31,13 +31,13 @@
 "i" = (
 /obj/structure/table/glass,
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 2
+	pixel_x = 4
 	},
 /obj/item/reagent_containers/food/snacks/mint{
-	pixel_y = 9
+	pixel_y = 18
 	},
 /turf/open/floor/plating,
 /area/template_noop)

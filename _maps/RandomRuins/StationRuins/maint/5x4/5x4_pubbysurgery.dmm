@@ -86,7 +86,7 @@
 /obj/item/reagent_containers/blood/random,
 /obj/structure/mirror{
 	icon_state = "mirror_broke";
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"

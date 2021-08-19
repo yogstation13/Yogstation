@@ -6,7 +6,7 @@
 "d" = (
 /obj/structure/table_frame,
 /obj/structure/sign/poster/ripped{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/poster/random_contraband,
 /obj/effect/decal/cleanable/ash,
@@ -22,15 +22,15 @@
 "h" = (
 /obj/structure/table,
 /obj/structure/sign/poster/contraband/random{
-	pixel_y = 32
-	},
-/obj/item/poster/random_contraband{
-	pixel_x = 2;
-	pixel_y = 5
+	pixel_y = 64
 	},
 /obj/item/poster/random_contraband{
 	pixel_x = 4;
 	pixel_y = 10
+	},
+/obj/item/poster/random_contraband{
+	pixel_x = 8;
+	pixel_y = 20
 	},
 /obj/item/poster/random_contraband,
 /turf/open/floor/plating,
@@ -43,12 +43,12 @@
 "q" = (
 /obj/structure/rack,
 /obj/item/poster/random_official{
-	pixel_x = 1;
-	pixel_y = 5
+	pixel_x = 2;
+	pixel_y = 10
 	},
 /obj/item/poster/random_official,
 /obj/structure/sign/poster/official/random{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -59,11 +59,11 @@
 "w" = (
 /obj/structure/table,
 /obj/structure/sign/poster/contraband/random{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/poster/random_contraband{
-	pixel_x = 2;
-	pixel_y = 5
+	pixel_x = 4;
+	pixel_y = 10
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -75,7 +75,7 @@
 /obj/structure/rack,
 /obj/item/poster/random_official,
 /obj/structure/sign/poster/official/random{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -102,7 +102,7 @@
 "Y" = (
 /obj/structure/table,
 /obj/structure/sign/poster/contraband/random{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/poster/random_contraband,
 /turf/open/floor/plating,

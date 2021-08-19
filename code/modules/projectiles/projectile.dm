@@ -142,11 +142,11 @@
 	var/hitx
 	var/hity
 	if(target == original)
-		hitx = target.pixel_x + p_x - 16
-		hity = target.pixel_y + p_y - 16
+		hitx = target.pixel_x + p_x - 16*PIXEL_MULTIPLIER
+		hity = target.pixel_y + p_y - 16*PIXEL_MULTIPLIER
 	else
-		hitx = target.pixel_x + rand(-8, 8)
-		hity = target.pixel_y + rand(-8, 8)
+		hitx = target.pixel_x + rand(-8*PIXEL_MULTIPLIER, 8*PIXEL_MULTIPLIER)
+		hity = target.pixel_y + rand(-8*PIXEL_MULTIPLIER, 8*PIXEL_MULTIPLIER)
 
 	if(!nodamage && (damage_type == BRUTE || damage_type == BURN) && iswallturf(target_loca) && prob(75))
 		var/turf/closed/wall/W = target_loca
@@ -624,8 +624,8 @@
 
 		//Calculate the "resolution" of screen based on client's view and world's icon size. This will work if the user can view more tiles than average.
 		var/list/screenview = getviewsize(user.client.view)
-		var/screenviewX = screenview[1] * world.icon_size
-		var/screenviewY = screenview[2] * world.icon_size
+		var/screenviewX = screenview[1] * WORLD_ICON_SIZE
+		var/screenviewY = screenview[2] * WORLD_ICON_SIZE
 
 		var/ox = round(screenviewX/2) - user.client.pixel_x //"origin" x
 		var/oy = round(screenviewY/2) - user.client.pixel_y //"origin" y

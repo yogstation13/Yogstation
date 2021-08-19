@@ -4,7 +4,7 @@
 	dir = 1
 	},
 /obj/structure/sign/nanotrasen{
-	pixel_x = -28
+	pixel_x = -56
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -43,12 +43,12 @@
 "w" = (
 /obj/structure/windoor_assembly,
 /obj/item/stamp/denied{
-	pixel_x = 7;
-	pixel_y = -1
+	pixel_x = 14;
+	pixel_y = -2
 	},
 /obj/item/stamp{
-	pixel_x = -7;
-	pixel_y = -1
+	pixel_x = -14;
+	pixel_y = -2
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only{

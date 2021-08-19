@@ -12,7 +12,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/sign/poster/contraband/random{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
@@ -38,7 +38,7 @@
 /obj/structure/bookcase/random/fiction,
 /obj/structure/noticeboard{
 	dir = 4;
-	pixel_x = -27
+	pixel_x = -54
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
@@ -59,15 +59,15 @@
 "i" = (
 /obj/structure/table/wood,
 /obj/item/folder{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/storage/pill_bottle/dice{
-	pixel_x = -4
+	pixel_x = -8
 	},
 /obj/item/pen/red{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken7"
@@ -126,7 +126,7 @@
 	},
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/sign/poster/contraband/random{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -153,7 +153,7 @@
 "I" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/libraryconsole/bookmanagement{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -165,12 +165,12 @@
 "Q" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/pen,
 /obj/structure/sign/plaques/kiddie/library{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/wood,
 /area/template_noop)

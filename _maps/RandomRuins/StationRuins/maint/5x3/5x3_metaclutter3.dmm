@@ -33,8 +33,8 @@
 "i" = (
 /obj/structure/rack,
 /obj/item/book/manual/wiki/engineering_guide{
-	pixel_x = 3;
-	pixel_y = 4
+	pixel_x = 6;
+	pixel_y = 8
 	},
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/item/storage/box/lights/mixed,
@@ -43,16 +43,16 @@
 "C" = (
 /obj/structure/table,
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = -8
+	pixel_x = -16
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = -8
+	pixel_x = -16
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = 4
+	pixel_x = 8
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = 4
+	pixel_x = 8
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -69,7 +69,7 @@
 /obj/structure/sink/kitchen{
 	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
 	name = "old sink";
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/effect/decal/cleanable/cobweb,
 /obj/item/storage/belt/utility,

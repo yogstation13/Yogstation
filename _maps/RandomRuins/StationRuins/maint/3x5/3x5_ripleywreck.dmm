@@ -34,11 +34,11 @@
 "h" = (
 /obj/structure/table,
 /obj/item/stock_parts/capacitor{
-	pixel_y = -4
+	pixel_y = -8
 	},
 /obj/item/stock_parts/scanning_module{
-	pixel_x = 3;
-	pixel_y = 5
+	pixel_x = 6;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/white,

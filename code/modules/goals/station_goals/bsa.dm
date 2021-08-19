@@ -129,10 +129,10 @@
 	var/ex_power = 3
 	var/power_used_per_shot = 2000000 //enough to kil standard apc - todo : make this use wires instead and scale explosion power with it
 	var/ready
-	pixel_y = -32
-	pixel_x = -192
-	bound_width = 352
-	bound_x = -192
+	pixel_y = -32*PIXEL_MULTIPLIER
+	pixel_x = -192*PIXEL_MULTIPLIER
+	bound_width = WORLD_ICON_SIZE*11
+	bound_x = -WORLD_ICON_SIZE*6
 	appearance_flags = NONE //Removes default TILE_BOUND
 
 /obj/machinery/bsa/full/wrench_act(mob/living/user, obj/item/I)
@@ -168,7 +168,7 @@
 	switch(cannon_direction)
 		if(WEST)
 			setDir(WEST)
-			pixel_x = -192
+			pixel_x = -192*PIXEL_MULTIPLIER
 			top_layer.icon_state = "top_west"
 			icon_state = "cannon_west"
 		if(EAST)

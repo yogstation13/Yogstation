@@ -70,7 +70,7 @@
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/mop,
 /obj/item/storage/bag/trash{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/hunter)
@@ -101,7 +101,7 @@
 "s" = (
 /obj/structure/table,
 /obj/item/storage/box/fancy/cigarettes/cigars/cohiba{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/hunter)

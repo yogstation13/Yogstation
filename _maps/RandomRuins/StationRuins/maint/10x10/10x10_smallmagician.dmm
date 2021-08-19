@@ -67,7 +67,7 @@
 /area/template_noop)
 "p" = (
 /obj/structure/mirror{
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/carpet,
 /area/template_noop)
@@ -93,12 +93,12 @@
 "u" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = -8;
-	pixel_y = 9
+	pixel_x = -16;
+	pixel_y = 18
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = 5;
-	pixel_y = 4
+	pixel_x = 10;
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/template_noop)
@@ -142,8 +142,8 @@
 "C" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/template_noop)
@@ -181,8 +181,8 @@
 	dir = 1
 	},
 /obj/structure/sign/poster/contraband/syndicate_recruitment{
-	pixel_x = 4;
-	pixel_y = 33
+	pixel_x = 8;
+	pixel_y = 66
 	},
 /turf/open/floor/carpet,
 /area/template_noop)

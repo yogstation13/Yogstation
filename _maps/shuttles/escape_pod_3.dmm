@@ -21,10 +21,10 @@
 	dir = 1
 	},
 /obj/machinery/status_display/evac{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/machinery/computer/shuttle/pod{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/pod_3)
@@ -47,10 +47,10 @@
 	dir = 1
 	},
 /obj/item/radio/intercom{
-	pixel_x = 25
+	pixel_x = 50
 	},
 /obj/item/storage/pod{
-	pixel_x = -26
+	pixel_x = -52
 	},
 /obj/machinery/light/small{
 	dir = 8

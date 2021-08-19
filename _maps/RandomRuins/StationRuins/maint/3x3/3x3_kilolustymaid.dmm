@@ -13,7 +13,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/contraband/lusty_xenomorph{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
@@ -39,7 +39,7 @@
 	},
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/mirror{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/structure/closet{
@@ -48,8 +48,8 @@
 /obj/item/clothing/shoes/laceup,
 /obj/item/clothing/gloves/color/white,
 /obj/item/clothing/accessory/maidapron{
-	pixel_x = -4;
-	pixel_y = -4
+	pixel_x = -8;
+	pixel_y = -8
 	},
 /obj/item/clothing/under/maid,
 /turf/open/floor/plasteel/dark,
@@ -58,8 +58,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/mop,
@@ -75,13 +75,13 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/storage/box/lights/mixed{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /obj/item/storage/belt/janitor,
 /obj/item/storage/bag/trash,
 /obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/turf_decal/bot,

@@ -238,7 +238,7 @@
 
 /obj/machinery/reagentgrinder/proc/shake_for(duration)
 	add_overlay("juicer_blend")
-	var/offset = prob(50) ? -2 : 2
+	var/offset = prob(50) ? -2*PIXEL_MULTIPLIER : 2*PIXEL_MULTIPLIER
 	var/old_pixel_x = pixel_x
 	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = -1) //start shaking
 	addtimer(CALLBACK(src, .proc/stop_shaking, old_pixel_x), duration)

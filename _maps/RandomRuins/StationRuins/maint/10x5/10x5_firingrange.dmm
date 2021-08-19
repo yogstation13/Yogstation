@@ -83,8 +83,8 @@
 /obj/structure/table,
 /obj/item/clothing/ears/earmuffs,
 /obj/item/clothing/ears/earmuffs{
-	pixel_x = -3;
-	pixel_y = -2
+	pixel_x = -6;
+	pixel_y = -4
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -159,8 +159,8 @@
 "X" = (
 /obj/structure/table,
 /obj/item/pen{
-	pixel_x = -5;
-	pixel_y = 3
+	pixel_x = -10;
+	pixel_y = 6
 	},
 /obj/item/paper/crumpled,
 /turf/open/floor/plasteel,

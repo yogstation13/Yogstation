@@ -13,7 +13,7 @@
 /area/ruin/unpowered)
 "i" = (
 /obj/item/clothing/head/helmet/stormtrooper{
-	pixel_y = 9
+	pixel_y = 18
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/ruin/unpowered)

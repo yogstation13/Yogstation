@@ -6,7 +6,7 @@
 "e" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,

@@ -31,11 +31,11 @@
 	},
 /obj/structure/table/wood,
 /obj/item/storage/box/evidence{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /obj/item/taperecorder{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -77,8 +77,8 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/machinery/photocopier,
 /obj/item/newspaper{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/newspaper,
 /turf/open/floor/wood{
@@ -104,7 +104,7 @@
 	dir = 1
 	},
 /obj/item/book/manual/wiki/detective{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /obj/item/camera,
 /obj/effect/decal/cleanable/dirt,

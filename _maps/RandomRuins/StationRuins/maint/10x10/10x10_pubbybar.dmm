@@ -34,7 +34,7 @@
 /area/template_noop)
 "i" = (
 /obj/structure/sign/poster/contraband/random{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/wood,
 /area/template_noop)
@@ -60,12 +60,12 @@
 "m" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
-	pixel_x = 6;
-	pixel_y = 10
+	pixel_x = 12;
+	pixel_y = 20
 	},
 /obj/item/reagent_containers/food/drinks/bottle/tequila{
-	pixel_x = -6;
-	pixel_y = 4
+	pixel_x = -12;
+	pixel_y = 8
 	},
 /obj/item/reagent_containers/food/drinks/shaker,
 /turf/open/floor/plating,
@@ -74,7 +74,7 @@
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks/beer,
 /obj/structure/sign/poster/contraband/random{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -87,7 +87,7 @@
 /area/template_noop)
 "q" = (
 /obj/structure/sign/poster/contraband/random{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/carpet,
 /area/template_noop)
@@ -110,14 +110,14 @@
 /area/template_noop)
 "u" = (
 /obj/structure/sign/poster/contraband/random{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/wood,
 /area/template_noop)
 "v" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/wood,
 /area/template_noop)
@@ -151,8 +151,8 @@
 "A" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = 4;
-	pixel_y = 7
+	pixel_x = 8;
+	pixel_y = 14
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
 /obj/machinery/door/firedoor/border_only{
@@ -197,7 +197,7 @@
 /area/template_noop)
 "I" = (
 /obj/structure/sign/poster/contraband/random{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel/stairs/right,
 /area/template_noop)
@@ -228,7 +228,7 @@
 "M" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/bottle/gin{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -280,7 +280,7 @@
 	dir = 8
 	},
 /obj/structure/sign/poster/contraband/random{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/decal/cleanable/oil{
 	icon_state = "floor6"
@@ -303,7 +303,7 @@
 /obj/item/mop,
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,

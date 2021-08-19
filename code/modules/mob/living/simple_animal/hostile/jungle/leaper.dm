@@ -17,7 +17,7 @@
 	projectiletype = /obj/item/projectile/leaper
 	projectilesound = 'sound/weapons/pierce.ogg'
 	ranged_cooldown_time = 30
-	pixel_x = -16
+	pixel_x = -16*PIXEL_MULTIPLIER
 	layer = LARGE_MOB_LAYER
 	speed = 10
 	stat_attack = UNCONSCIOUS
@@ -122,8 +122,8 @@
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "lily_pad"
 	layer = BELOW_MOB_LAYER
-	pixel_x = -32
-	pixel_y = -32
+	pixel_x = -32*PIXEL_MULTIPLIER
+	pixel_y = -32*PIXEL_MULTIPLIER
 	duration = 30
 
 /mob/living/simple_animal/hostile/jungle/leaper/Initialize()

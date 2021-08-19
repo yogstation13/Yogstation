@@ -23,7 +23,7 @@
 /area/crew_quarters/bar)
 "af" = (
 /obj/structure/sink/kitchen{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
@@ -32,19 +32,19 @@
 /area/crew_quarters/bar)
 "ah" = (
 /obj/structure/sign/plaques/deempisi{
-	pixel_y = -4
+	pixel_y = -8
 	},
 /turf/closed/wall,
 /area/crew_quarters/bar)
 "ai" = (
 /obj/machinery/light_switch{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = -31
+	pixel_x = -62
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -90,7 +90,7 @@
 "am" = (
 /obj/machinery/airalarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -182,7 +182,7 @@
 	dir = 4
 	},
 /obj/item/radio/intercom{
-	pixel_y = 25
+	pixel_y = 50
 	},
 /obj/item/twohanded/required/kirbyplants/photosynthetic,
 /turf/open/floor/mineral/titanium/white,
@@ -230,7 +230,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
@@ -420,7 +420,7 @@
 "aP" = (
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -564,7 +564,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/machinery/vending/wardrobe/chef_wardrobe,
 /turf/open/floor/plasteel/showroomfloor,
@@ -689,7 +689,7 @@
 /area/crew_quarters/bar)
 "bB" = (
 /obj/structure/sink/kitchen{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/effect/turf_decal/stripes{
 	dir = 9;
@@ -710,20 +710,20 @@
 "bE" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "bF" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -5;
-	pixel_y = 30
+	pixel_x = -10;
+	pixel_y = 60
 	},
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
@@ -735,7 +735,7 @@
 /area/crew_quarters/kitchen)
 "bH" = (
 /obj/item/radio/intercom{
-	pixel_y = 25
+	pixel_y = 50
 	},
 /obj/machinery/light{
 	dir = 1
@@ -744,7 +744,7 @@
 /area/crew_quarters/kitchen)
 "bI" = (
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/machinery/camera{
@@ -870,7 +870,7 @@
 /obj/machinery/requests_console{
 	department = "Bar";
 	departmentType = 2;
-	pixel_x = 30;
+	pixel_x = 60;
 	receive_ore_updates = 1
 	},
 /obj/machinery/camera{
@@ -916,8 +916,8 @@
 /obj/structure/table,
 /obj/item/book/manual/chef_recipes,
 /obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
@@ -951,7 +951,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /obj/machinery/processor,
 /turf/open/floor/plating,
@@ -982,7 +982,7 @@
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	departmentType = 2;
-	pixel_x = 30
+	pixel_x = 60
 	},
 /obj/effect/turf_decal/stripes{
 	dir = 4;
@@ -990,7 +990,7 @@
 	},
 /obj/structure/table,
 /obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)
@@ -1032,7 +1032,7 @@
 /area/crew_quarters/kitchen)
 "cv" = (
 /obj/machinery/light_switch{
-	pixel_y = -25
+	pixel_y = -50
 	},
 /obj/effect/turf_decal/stripes{
 	dir = 10;
@@ -1062,8 +1062,8 @@
 /obj/machinery/button/door{
 	id = "kitchen";
 	name = "Kitchen Shutters Control";
-	pixel_x = -1;
-	pixel_y = -24;
+	pixel_x = -2;
+	pixel_y = -48;
 	req_access_txt = "28"
 	},
 /turf/open/floor/mineral/titanium,
@@ -1081,7 +1081,7 @@
 /area/crew_quarters/kitchen)
 "cB" = (
 /obj/machinery/newscaster{
-	pixel_y = -28
+	pixel_y = -56
 	},
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/neutral,
@@ -1113,7 +1113,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -26
+	pixel_y = -52
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
@@ -1137,7 +1137,7 @@
 "cE" = (
 /obj/structure/noticeboard{
 	dir = 1;
-	pixel_y = -27
+	pixel_y = -54
 	},
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/neutral,
@@ -1155,7 +1155,7 @@
 "cF" = (
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -1186,7 +1186,7 @@
 /area/crew_quarters/bar)
 "cI" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -30
+	pixel_y = -60
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -1242,8 +1242,8 @@
 "ni" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
@@ -1331,7 +1331,7 @@
 /obj/machinery/button/door{
 	id = "barshutters";
 	name = "Bar Shutters Control";
-	pixel_y = 24;
+	pixel_y = 48;
 	req_access_txt = "25"
 	},
 /turf/open/floor/mineral/titanium/white,
@@ -1414,24 +1414,24 @@
 "MN" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
-	pixel_x = 4;
-	pixel_y = -2
+	pixel_x = 8;
+	pixel_y = -4
 	},
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -3;
-	pixel_y = 8
+	pixel_x = -6;
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -8;
-	pixel_y = 4
+	pixel_x = -16;
+	pixel_y = 8
 	},
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "MS" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 1;
-	pixel_y = 3
+	pixel_x = 2;
+	pixel_y = 6
 	},
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)

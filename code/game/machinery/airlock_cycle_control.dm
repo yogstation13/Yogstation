@@ -176,8 +176,8 @@
 		add_overlay("aac_unlocked")
 
 	if(vis_target)
-		var/f_dx = ((vis_target.pixel_x - pixel_x) / world.icon_size) + (vis_target.x - x)
-		var/f_dy = ((vis_target.pixel_y - pixel_y) / world.icon_size) + (vis_target.y - y)
+		var/f_dx = ((vis_target.pixel_x - pixel_x) / WORLD_ICON_SIZE) + (vis_target.x - x)
+		var/f_dy = ((vis_target.pixel_y - pixel_y) / WORLD_ICON_SIZE) + (vis_target.y - y)
 		var/dist = sqrt(f_dx*f_dx+f_dy*f_dy)
 		var/s_dx = f_dy/dist
 		var/s_dy = -f_dx/dist

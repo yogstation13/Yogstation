@@ -28,8 +28,8 @@
 /obj/structure/table/wood,
 /obj/item/storage/box/fancy/cigarettes/cigars/havana,
 /obj/item/lighter{
-	pixel_x = -4;
-	pixel_y = 6
+	pixel_x = -8;
+	pixel_y = 12
 	},
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape)

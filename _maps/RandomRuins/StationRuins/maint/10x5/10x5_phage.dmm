@@ -140,7 +140,7 @@
 "Q" = (
 /obj/item/ammo_casing/spent,
 /obj/item/ammo_casing/spent{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,

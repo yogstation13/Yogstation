@@ -535,8 +535,8 @@
 
 /obj/item/reagent_containers/food/snacks/pancakes/update_overlays(obj/item/reagent_containers/food/snacks/P)
 	var/mutable_appearance/pancake = mutable_appearance(icon, "[P.item_state]_[rand(1,3)]")
-	pancake.pixel_x = rand(-1,1)
-	pancake.pixel_y = 3 * contents.len - 1
+	pancake.pixel_x = rand(-1*PIXEL_MULTIPLIER,1*PIXEL_MULTIPLIER)
+	pancake.pixel_y = 3*PIXEL_MULTIPLIER * contents.len - PIXEL_MULTIPLIER
 	add_overlay(pancake)
 	update_icon()
 

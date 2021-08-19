@@ -73,8 +73,8 @@
 
 	FASTDMM_PROP(\
 		set_instance_vars(\
-			pixel_x = (dir & 3)? INSTANCE_VAR_DEFAULT : (dir == 4 ? -24 : 24),\
-			pixel_y = (dir & 3)? (dir == 1 ? -24 : 24) : INSTANCE_VAR_DEFAULT\
+			pixel_x = (dir & 3)? INSTANCE_VAR_DEFAULT : (dir == 4 ? -24*PIXEL_MULTIPLIER : 24*PIXEL_MULTIPLIER),\
+			pixel_y = (dir & 3)? (dir == 1 ? -24*PIXEL_MULTIPLIER : 24*PIXEL_MULTIPLIER) : INSTANCE_VAR_DEFAULT\
         ),\
 		dir_amount = 4\
     )
@@ -200,19 +200,19 @@
 
 /obj/machinery/airalarm/directional/north //Pixel offsets get overwritten on New()
 	dir = SOUTH
-	pixel_y = 24
+	pixel_y = 24*PIXEL_MULTIPLIER
 
 /obj/machinery/airalarm/directional/south
 	dir = NORTH
-	pixel_y = -24
+	pixel_y = -24*PIXEL_MULTIPLIER
 
 /obj/machinery/airalarm/directional/east
 	dir = WEST
-	pixel_x = 24
+	pixel_x = 24*PIXEL_MULTIPLIER
 
 /obj/machinery/airalarm/directional/west
 	dir = EAST
-	pixel_x = -24
+	pixel_x = -24*PIXEL_MULTIPLIER
 
 //all air alarms in area are connected via magic
 /area
@@ -230,8 +230,8 @@
 	if(nbuild)
 		buildstage = 0
 		panel_open = TRUE
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
-		pixel_y = (dir & 3)? (dir == 1 ? -24 : 24) : 0
+		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24*PIXEL_MULTIPLIER : 24*PIXEL_MULTIPLIER)
+		pixel_y = (dir & 3)? (dir == 1 ? -24*PIXEL_MULTIPLIER : 24*PIXEL_MULTIPLIER) : 0
 
 	if(name == initial(name))
 		name = "[get_area_name(src)] Air Alarm"

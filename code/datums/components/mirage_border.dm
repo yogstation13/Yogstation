@@ -20,9 +20,9 @@
 	for(var/i in block(southwest, northeast))
 		holder.vis_contents += i
 	if(direction & SOUTH)
-		holder.pixel_y -= world.icon_size * range
+		holder.pixel_y -= WORLD_ICON_SIZE * range
 	if(direction & WEST)
-		holder.pixel_x -= world.icon_size * range
+		holder.pixel_x -= WORLD_ICON_SIZE * range
 
 /datum/component/mirage_border/Destroy()
 	QDEL_NULL(holder)

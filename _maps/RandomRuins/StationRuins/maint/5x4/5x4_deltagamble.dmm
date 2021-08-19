@@ -64,7 +64,7 @@
 /obj/machinery/computer/slot_machine,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/contraband/random{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/machinery/light/small,
 /turf/open/floor/wood{

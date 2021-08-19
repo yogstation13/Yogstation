@@ -5,8 +5,8 @@
 	clockwork_desc = "<span class='large_brass bold italics'>Ratvar, free at last!</span>"
 	icon = 'icons/effects/512x512.dmi'
 	icon_state = "ratvar"
-	pixel_x = -235
-	pixel_y = -248
+	pixel_x = -235*PIXEL_MULTIPLIER
+	pixel_y = -248*PIXEL_MULTIPLIER
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	appearance_flags = 0
 	light_power = 0.7

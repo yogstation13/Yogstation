@@ -204,8 +204,8 @@
 				if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
 					return
 				//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
-				W.pixel_x = clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
-				W.pixel_y = clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
+				W.pixel_x = clamp(text2num(click_params["icon-x"]) - WORLD_ICON_SIZE/2, -(WORLD_ICON_SIZE/2), WORLD_ICON_SIZE/2)
+				W.pixel_y = clamp(text2num(click_params["icon-y"]) - WORLD_ICON_SIZE/2, -(WORLD_ICON_SIZE/2), WORLD_ICON_SIZE/2)
 		else
 			return ..()
 
@@ -220,8 +220,8 @@
 	if(!has_buckled_mobs() && do_after(user, 50, target = src))
 		for(var/I in 1 to 5)
 			var/obj/item/grown/log/L = new /obj/item/grown/log(src.loc)
-			L.pixel_x += rand(1,4)
-			L.pixel_y += rand(1,4)
+			L.pixel_x += rand(1,4)*PIXEL_MULTIPLIER
+			L.pixel_y += rand(1,4)*PIXEL_MULTIPLIER
 		if(can_buckle || grill)
 			new /obj/item/stack/rods(loc, 1)
 		qdel(src)

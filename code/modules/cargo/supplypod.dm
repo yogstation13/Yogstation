@@ -622,8 +622,8 @@
 			smoke_part.icon_state = "smoke_start"
 		smoke_part.transform = matrix().Turn(rotation)
 		smoke_effects[i] = smoke_part
-		smoke_part.pixel_x = sin(rotation)*32 * i
-		smoke_part.pixel_y = abs(cos(rotation))*32 * i
+		smoke_part.pixel_x = sin(rotation) * WORLD_ICON_SIZE * i
+		smoke_part.pixel_y = abs(cos(rotation)) * WORLD_ICON_SIZE * i
 		smoke_part.filters += filter(type = "blur", size = 4)
 		var/time = (pod.fallDuration / length(smoke_effects))*(length(smoke_effects)-i)
 		addtimer(CALLBACK(smoke_part, /obj/effect/supplypod_smoke/.proc/drawSelf, i), time, TIMER_CLIENT_TIME) //Go onto the last step after a very short falling animation

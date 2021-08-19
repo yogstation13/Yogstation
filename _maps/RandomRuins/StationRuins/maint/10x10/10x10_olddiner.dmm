@@ -20,7 +20,7 @@
 /obj/machinery/chem_dispenser/drinks/beer,
 /obj/structure/table/wood,
 /obj/item/radio/intercom{
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -40,8 +40,8 @@
 "fR" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
-	pixel_x = -2;
-	pixel_y = 12
+	pixel_x = -4;
+	pixel_y = 24
 	},
 /turf/open/floor/carpet/royalblack,
 /area/template_noop)
@@ -174,7 +174,7 @@
 /area/template_noop)
 "Ap" = (
 /obj/structure/sign/poster/contraband/random{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/carpet,
 /area/template_noop)
@@ -212,7 +212,7 @@
 /area/template_noop)
 "HA" = (
 /obj/structure/sign/poster/contraband/random{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken"

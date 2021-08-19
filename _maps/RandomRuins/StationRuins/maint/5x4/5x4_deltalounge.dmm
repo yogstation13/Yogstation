@@ -100,15 +100,15 @@
 /obj/structure/table/wood/poker,
 /obj/item/stack/spacecash/c200,
 /obj/item/stack/spacecash/c100{
-	pixel_y = 17
+	pixel_y = 34
 	},
 /turf/open/floor/carpet/green,
 /area/template_noop)
 "U" = (
 /obj/structure/table/wood/poker,
 /obj/item/stack/spacecash/c10{
-	pixel_x = -16;
-	pixel_y = 8
+	pixel_x = -32;
+	pixel_y = 16
 	},
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/carpet/green,

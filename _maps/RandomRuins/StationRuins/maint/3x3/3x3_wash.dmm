@@ -40,7 +40,7 @@
 "R" = (
 /obj/machinery/washing_machine,
 /obj/item/clothing/shoes/laceup{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /turf/open/floor/plating,
 /area/template_noop)

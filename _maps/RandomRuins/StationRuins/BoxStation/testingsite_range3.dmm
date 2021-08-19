@@ -38,7 +38,7 @@
 	dir = 4
 	},
 /obj/item/flashlight/lamp/bananalamp{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /turf/open/floor/plating/airless,
 /area/template_noop)

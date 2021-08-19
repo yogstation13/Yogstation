@@ -18,8 +18,8 @@
 /obj/item/reagent_containers/food/Initialize(mapload)
 	. = ..()
 	if(!mapload)
-		pixel_x = rand(-5, 5)
-		pixel_y = rand(-5, 5)
+		pixel_x = rand(-5*PIXEL_MULTIPLIER, 5*PIXEL_MULTIPLIER)
+		pixel_y = rand(-5*PIXEL_MULTIPLIER, 5*PIXEL_MULTIPLIER)
 
 /obj/item/reagent_containers/food/proc/checkLiked(var/fraction, mob/M)
 	if(last_check_time + 50 < world.time)

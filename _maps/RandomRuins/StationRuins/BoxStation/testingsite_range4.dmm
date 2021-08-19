@@ -163,8 +163,8 @@
 /obj/item/clothing/gloves/color/yellow,
 /obj/item/storage/belt/utility,
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = 2;
-	pixel_y = 1
+	pixel_x = 4;
+	pixel_y = 2
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)
@@ -302,8 +302,8 @@
 /obj/structure/rack,
 /obj/item/instrument/violin,
 /obj/item/instrument/guitar{
-	pixel_x = 5;
-	pixel_y = -1
+	pixel_x = 10;
+	pixel_y = -2
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)

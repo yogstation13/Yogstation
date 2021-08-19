@@ -33,8 +33,8 @@
 		cut_overlays()
 		for(var/i in 1 to difference)
 			var/mutable_appearance/newore = mutable_appearance(icon, icon_state)
-			newore.pixel_x = rand(-8,8)
-			newore.pixel_y = rand(-8,8)
+			newore.pixel_x = rand(-8*PIXEL_MULTIPLIER,8*PIXEL_MULTIPLIER)
+			newore.pixel_y = rand(-8*PIXEL_MULTIPLIER,8*PIXEL_MULTIPLIER)
 			LAZYADD(stack_overlays, newore)
 	if (stack_overlays)
 		add_overlay(stack_overlays)
@@ -285,8 +285,8 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 
 /obj/item/stack/ore/Initialize()
 	. = ..()
-	pixel_x = rand(0,16)-8
-	pixel_y = rand(0,8)-8
+	pixel_x = rand(0,16*PIXEL_MULTIPLIER)-8*PIXEL_MULTIPLIER
+	pixel_y = rand(0,8*PIXEL_MULTIPLIER)-8*PIXEL_MULTIPLIER
 
 /obj/item/stack/ore/ex_act(severity, target)
 	if (!severity || severity >= 2)
@@ -338,8 +338,8 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 
 /obj/item/coin/Initialize()
 	. = ..()
-	pixel_x = rand(0,16)-8
-	pixel_y = rand(0,8)-8
+	pixel_x = rand(0,16*PIXEL_MULTIPLIER)-8*PIXEL_MULTIPLIER
+	pixel_y = rand(0,8*PIXEL_MULTIPLIER)-8*PIXEL_MULTIPLIER
 
 /obj/item/coin/examine(mob/user)
 	. = ..()

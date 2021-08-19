@@ -31,8 +31,8 @@
 	plane = FLOAT_PLANE
 	if(minimize_when_attached)
 		transform *= 0.5	//halve the size so it doesn't overpower the under
-		pixel_x += 8
-		pixel_y -= 8
+		pixel_x += 8*PIXEL_MULTIPLIER
+		pixel_y -= 8*PIXEL_MULTIPLIER
 	U.add_overlay(src)
 
 	if (islist(U.armor) || isnull(U.armor)) 										// This proc can run before /obj/Initialize has run for U and src,
@@ -59,8 +59,8 @@
 
 	if(minimize_when_attached)
 		transform *= 2
-		pixel_x -= 8
-		pixel_y += 8
+		pixel_x -= 8*PIXEL_MULTIPLIER
+		pixel_y += 8*PIXEL_MULTIPLIER
 	layer = initial(layer)
 	plane = initial(plane)
 	U.cut_overlays()

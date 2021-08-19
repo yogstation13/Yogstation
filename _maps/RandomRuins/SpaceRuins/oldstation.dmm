@@ -86,8 +86,8 @@
 /obj/structure/alien/weeds,
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/glass/fifty{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/stack/sheet/plasteel{
 	amount = 30
@@ -356,7 +356,7 @@
 	},
 /obj/machinery/airalarm/all_access{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/machinery/light{
 	dir = 4
@@ -436,7 +436,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/comm)
@@ -461,12 +461,12 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Charlie Station Bridge APC";
-	pixel_y = 23;
+	pixel_y = 46;
 	start_charge = 0
 	},
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/light_switch{
-	pixel_x = -26
+	pixel_x = -52
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -652,7 +652,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Delta Station Artifical Program Core APC";
-	pixel_x = 24;
+	pixel_x = 48;
 	start_charge = 0
 	},
 /obj/effect/decal/cleanable/blood/gibs/old,
@@ -1051,7 +1051,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/mining)
@@ -1069,7 +1069,7 @@
 "cI" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "beta";
-	pixel_x = 9
+	pixel_x = 18
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -1314,7 +1314,7 @@
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "dn" = (
 /obj/machinery/firealarm{
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/betacorridor)
@@ -1376,7 +1376,7 @@
 	},
 /obj/machinery/airalarm/all_access{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -1669,7 +1669,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/hydroponics)
@@ -1739,8 +1739,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
 /obj/item/cultivator{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/cultivator,
 /obj/item/shovel/spade,
@@ -1850,7 +1850,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/rnd)
@@ -1947,7 +1947,7 @@
 	dir = 4
 	},
 /obj/machinery/light_switch{
-	pixel_x = 26
+	pixel_x = 52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
@@ -1957,7 +1957,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Beta Station Main Corridor APC";
-	pixel_y = 23;
+	pixel_y = 46;
 	start_charge = 0
 	},
 /obj/structure/cable{
@@ -2153,7 +2153,7 @@
 /obj/effect/turf_decal/tile/green,
 /obj/machinery/light_switch{
 	pixel_x = 0;
-	pixel_y = -26
+	pixel_y = -52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/hydroponics)
@@ -2165,7 +2165,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
@@ -2264,8 +2264,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/rnd)
@@ -2281,7 +2281,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
@@ -2311,7 +2311,7 @@
 /obj/item/tank/internals/oxygen,
 /obj/machinery/light_switch{
 	pixel_x = 0;
-	pixel_y = -26
+	pixel_y = -52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/mining)
@@ -2370,7 +2370,7 @@
 "fI" = (
 /obj/machinery/power/apc{
 	name = "Beta Station Mining Equipment APC ";
-	pixel_y = -23;
+	pixel_y = -46;
 	start_charge = 0
 	},
 /obj/effect/turf_decal/tile/brown{
@@ -2737,7 +2737,7 @@
 	},
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -2852,7 +2852,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
@@ -2908,7 +2908,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Charlie Security APC";
-	pixel_x = -25;
+	pixel_x = -50;
 	start_charge = 0
 	},
 /obj/effect/turf_decal/tile/red{
@@ -2987,7 +2987,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/old,
@@ -3026,7 +3026,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Delta Station RnD APC";
-	pixel_y = 23;
+	pixel_y = 46;
 	start_charge = 0
 	},
 /obj/structure/cable{
@@ -3074,7 +3074,7 @@
 	},
 /obj/machinery/light_switch{
 	pixel_x = 0;
-	pixel_y = 26
+	pixel_y = 52
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3151,7 +3151,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Beta Station Medbay APC";
-	pixel_y = 23;
+	pixel_y = 46;
 	start_charge = 0
 	},
 /obj/effect/turf_decal/tile/blue,
@@ -3249,8 +3249,8 @@
 	dir = 8
 	},
 /obj/item/clothing/head/welding{
-	pixel_x = -3;
-	pixel_y = 5
+	pixel_x = -6;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
@@ -3276,8 +3276,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/ancientstation/kitchen)
@@ -3303,7 +3303,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/open/floor/plasteel,
@@ -3312,7 +3312,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/rnd)
@@ -3335,10 +3335,10 @@
 "hF" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/aluminium{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/bromine{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow{
@@ -3355,10 +3355,10 @@
 "hG" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/carbon{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/chlorine{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow{
@@ -3372,10 +3372,10 @@
 "hH" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/copper{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/ethanol{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow{
@@ -3399,7 +3399,7 @@
 	},
 /obj/machinery/airalarm/all_access{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3411,7 +3411,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/betacorridor)
@@ -3456,8 +3456,8 @@
 "hP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/head/welding{
-	pixel_x = -3;
-	pixel_y = 5
+	pixel_x = -6;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -3542,13 +3542,13 @@
 "hZ" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/fluorine{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/hydrogen{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/item/reagent_containers/glass/bottle/water{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow,
@@ -3746,18 +3746,18 @@
 "it" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/mercury{
-	pixel_x = 6;
-	pixel_y = 8
+	pixel_x = 12;
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/glass/bottle/nitrogen{
-	pixel_x = -6;
-	pixel_y = 8
+	pixel_x = -12;
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/glass/bottle/oxygen{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/phosphorus{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -3766,13 +3766,13 @@
 "iu" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/iodine{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/glass/bottle/iron{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/lithium{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
@@ -3815,7 +3815,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Charlie Engineering APC";
-	pixel_x = 24;
+	pixel_x = 48;
 	start_charge = 0
 	},
 /obj/effect/turf_decal/tile/yellow,
@@ -3836,12 +3836,12 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
 /obj/item/gun/energy/laser/retro/old{
-	pixel_x = -2;
-	pixel_y = -2
+	pixel_x = -4;
+	pixel_y = -4
 	},
 /obj/item/gun/energy/laser/retro/old{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -3852,7 +3852,7 @@
 	},
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
@@ -3887,7 +3887,7 @@
 /obj/structure/closet/crate/bin,
 /obj/machinery/airalarm/all_access{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3919,13 +3919,13 @@
 "iG" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/potassium{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/radium{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/item/reagent_containers/glass/bottle/welding_fuel{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow,
@@ -3945,7 +3945,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
@@ -3953,12 +3953,12 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -2;
-	pixel_y = 2
+	pixel_x = -4;
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 5;
-	pixel_y = -2
+	pixel_x = 10;
+	pixel_y = -4
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/ancientstation/kitchen)
@@ -4016,10 +4016,10 @@
 "iQ" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/sugar{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/sulfur{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow{
@@ -4034,10 +4034,10 @@
 "iR" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/silver{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/sodium{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -4046,10 +4046,10 @@
 "iS" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/sacid{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/silicon{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow,
@@ -4084,7 +4084,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "Charlie Station Garden APC ";
-	pixel_y = -23;
+	pixel_y = -46;
 	start_charge = 0
 	},
 /obj/item/reagent_containers/glass/bottle/nutrient/ez,
@@ -4364,7 +4364,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -4643,7 +4643,7 @@
 	},
 /obj/machinery/light_switch{
 	pixel_x = 0;
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/proto)
@@ -4681,7 +4681,7 @@
 "kj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/proto)
@@ -4914,7 +4914,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
@@ -5399,7 +5399,7 @@
 	},
 /obj/machinery/airalarm/all_access{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
@@ -5408,7 +5408,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/airalarm/all_access{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -5467,11 +5467,11 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/machinery/light_switch{
 	pixel_x = 0;
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
@@ -5484,7 +5484,7 @@
 	},
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/ancientstation/medbay)
@@ -5589,7 +5589,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
@@ -5608,7 +5608,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Delta Station Corridor APC";
-	pixel_x = 24;
+	pixel_x = 48;
 	start_charge = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -5709,7 +5709,7 @@
 /obj/effect/decal/cleanable/xenoblood/xgibs/up,
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
@@ -5876,12 +5876,12 @@
 "mJ" = (
 /obj/structure/closet/crate,
 /obj/item/cautery{
-	pixel_x = 4
+	pixel_x = 8
 	},
 /obj/item/hemostat,
 /obj/item/circular_saw,
 /obj/item/scalpel{
-	pixel_y = 12
+	pixel_y = 24
 	},
 /obj/item/retractor,
 /obj/item/surgical_drapes,
@@ -5938,7 +5938,7 @@
 	dir = 8
 	},
 /obj/machinery/light_switch{
-	pixel_x = 26
+	pixel_x = 52
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/ancientstation/medbay)
@@ -6098,7 +6098,7 @@
 "nh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/decal/cleanable/food/egg_smudge,
 /obj/structure/cable{
@@ -6153,7 +6153,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Charlie Station Kitchen APC";
-	pixel_y = 23;
+	pixel_y = 46;
 	start_charge = 0
 	},
 /obj/machinery/light/small{
@@ -6207,7 +6207,7 @@
 	dir = 8
 	},
 /obj/machinery/light_switch{
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/atmo)
@@ -6231,7 +6231,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betastorage)
@@ -6248,7 +6248,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/rnd)
@@ -6276,7 +6276,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/ancientstation/kitchen)
@@ -6339,7 +6339,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /mob/living/simple_animal/hostile/alien,
 /turf/open/floor/plasteel,
@@ -6416,7 +6416,7 @@
 /obj/structure/cable,
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
@@ -6487,7 +6487,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -26
+	pixel_y = -52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
@@ -6520,7 +6520,7 @@
 /obj/structure/closet,
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
@@ -6596,8 +6596,8 @@
 "oe" = (
 /obj/structure/table,
 /obj/item/stack/sheet/glass/fifty{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/stack/sheet/metal/fifty,
 /obj/effect/decal/cleanable/dirt,
@@ -6646,8 +6646,8 @@
 /obj/item/stack/sheet/glass,
 /obj/item/stock_parts/matter_bin,
 /obj/item/stock_parts/scanning_module{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -6669,7 +6669,7 @@
 "ok" = (
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/old,
@@ -6688,7 +6688,7 @@
 "om" = (
 /obj/machinery/airalarm/all_access{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -6786,7 +6786,7 @@
 	dir = 4
 	},
 /obj/machinery/light_switch{
-	pixel_x = 26
+	pixel_x = 52
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betastorage)
@@ -6838,7 +6838,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Beta Storage APC";
-	pixel_x = -25;
+	pixel_x = -50;
 	start_charge = 0
 	},
 /obj/structure/cable,
@@ -7144,7 +7144,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/mirror{
 	name = "dusty mirror";
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -7355,7 +7355,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Charlie Main Corridor APC";
-	pixel_x = 24;
+	pixel_x = 48;
 	start_charge = 0
 	},
 /obj/item/stack/sheet/glass{
@@ -7610,7 +7610,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/atmo)
@@ -7748,7 +7748,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Beta Atmospherics APC";
-	pixel_x = 24;
+	pixel_x = 48;
 	start_charge = 0
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -7765,7 +7765,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Delta Prototype Lab APC";
-	pixel_y = 23;
+	pixel_y = 46;
 	start_charge = 0
 	},
 /obj/structure/cable{
@@ -7962,7 +7962,7 @@
 /obj/effect/decal/cleanable/glass,
 /obj/machinery/airalarm/all_access{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg3"
@@ -8084,7 +8084,7 @@
 /obj/machinery/button/door{
 	id = "proto";
 	name = "Prototype Lab Lockdown";
-	pixel_x = 28
+	pixel_x = 56
 	},
 /mob/living/simple_animal/hostile/alien,
 /turf/open/floor/plasteel/white,
@@ -8099,7 +8099,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/proto)
@@ -8304,7 +8304,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light_switch{
 	pixel_x = 0;
-	pixel_y = -26
+	pixel_y = -52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/rnd)
@@ -8373,11 +8373,11 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/structure/mirror{
 	name = "dusty mirror";
-	pixel_x = 26
+	pixel_x = 52
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation)
@@ -8385,7 +8385,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/tracks,
@@ -8472,7 +8472,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/machinery/light{
 	dir = 8
@@ -8554,7 +8554,7 @@
 	dir = 8
 	},
 /obj/machinery/light_switch{
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
@@ -8586,7 +8586,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/departments/restroom{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -8647,7 +8647,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light_switch{
 	pixel_x = 0;
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/ancientstation/kitchen)
@@ -8655,7 +8655,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/mirror{
 	name = "dusty mirror";
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation)

@@ -27,7 +27,7 @@
 	dir = 1
 	},
 /obj/structure/sign/poster/contraband/random{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -109,7 +109,7 @@
 /obj/structure/closet,
 /obj/item/picket_sign,
 /obj/structure/sign/poster/contraband/random{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
@@ -130,7 +130,7 @@
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/item/radio/intercom{
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
@@ -152,7 +152,7 @@
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/structure/sign/poster/contraband/random{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
@@ -222,8 +222,8 @@
 "GW" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
-	pixel_x = -4;
-	pixel_y = 5
+	pixel_x = -8;
+	pixel_y = 10
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -247,7 +247,7 @@
 "LH" = (
 /obj/machinery/shower,
 /obj/structure/sign/poster/contraband/random{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -261,8 +261,8 @@
 "QI" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
-	pixel_x = 4;
-	pixel_y = 7
+	pixel_x = 8;
+	pixel_y = 14
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
@@ -270,8 +270,8 @@
 /obj/structure/closet,
 /obj/structure/window/reinforced/tinted/frosted,
 /obj/item/reagent_containers/food/drinks/bottle/tequila{
-	pixel_x = -6;
-	pixel_y = 4
+	pixel_x = -12;
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
@@ -283,7 +283,7 @@
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/structure/sign/poster/contraband/random{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)

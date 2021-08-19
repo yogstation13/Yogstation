@@ -40,7 +40,7 @@ Difficulty: Very Hard
 	speed = 10
 	move_to_delay = 10
 	ranged = TRUE
-	pixel_x = -32
+	pixel_x = -32*PIXEL_MULTIPLIER
 	del_on_death = TRUE
 	internal_type = /obj/item/gps/internal/colossus
 	crusher_loot = list(/obj/structure/closet/crate/necropolis/colossus/crusher)
@@ -242,10 +242,10 @@ Difficulty: Very Hard
 	if(!stat)
 		var/obj/effect/temp_visual/at_shield/AT = new /obj/effect/temp_visual/at_shield(loc, src)
 		var/random_x = rand(-32, 32)
-		AT.pixel_x += random_x
+		AT.pixel_x += random_x*PIXEL_MULTIPLIER
 
 		var/random_y = rand(0, 72)
-		AT.pixel_y += random_y
+		AT.pixel_y += random_y*PIXEL_MULTIPLIER
 	return ..()
 
 /obj/item/projectile/colossus

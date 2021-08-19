@@ -22,8 +22,8 @@
 	desc = "Oh no. OH NO."
 	freezerange = 4
 	duration = 175
-	pixel_x = -64
-	pixel_y = -64
+	pixel_x = -WORLD_ICON_SIZE*2
+	pixel_y = -WORLD_ICON_SIZE*2
 	start_sound = 'yogstation/sound/effects/unnatural_clock_noises.ogg'
 
 /obj/effect/timestop/berserk/Initialize(mapload, radius, time, list/immune_atoms, start)

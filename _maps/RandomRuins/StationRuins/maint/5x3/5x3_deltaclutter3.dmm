@@ -45,10 +45,10 @@
 "s" = (
 /obj/structure/table/reinforced,
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
@@ -69,13 +69,13 @@
 "A" = (
 /obj/structure/rack,
 /obj/item/book/manual/wiki/engineering_hacking{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/book/manual/wiki/engineering_guide,
 /obj/item/book/manual/wiki/engineering_construction{
-	pixel_x = 3;
-	pixel_y = -3
+	pixel_x = 6;
+	pixel_y = -6
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{

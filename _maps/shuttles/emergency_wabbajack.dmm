@@ -127,8 +127,8 @@
 /obj/structure/table,
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /obj/item/crowbar,
 /turf/open/floor/mineral/titanium,
@@ -140,13 +140,13 @@
 "at" = (
 /obj/machinery/flasher{
 	id = "shuttle_flasher";
-	pixel_x = -24;
-	pixel_y = 6
+	pixel_x = -48;
+	pixel_y = 12
 	},
 /obj/machinery/button/flasher{
 	id = "shuttle_flasher";
-	pixel_x = -24;
-	pixel_y = -6
+	pixel_x = -48;
+	pixel_y = -12
 	},
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -184,8 +184,8 @@
 /obj/structure/table,
 /obj/item/paper_bin,
 /obj/item/pen{
-	pixel_x = -2;
-	pixel_y = 4
+	pixel_x = -4;
+	pixel_y = 8
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
@@ -250,12 +250,12 @@
 /area/shuttle/escape)
 "aG" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 27
+	pixel_x = 54
 	},
 /obj/structure/table/glass,
 /obj/item/storage/box/syringes{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/box/beakers,
 /turf/open/floor/mineral/titanium/white,
@@ -294,8 +294,8 @@
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/storage/firstaid/regular{
-	pixel_x = -1;
-	pixel_y = 1
+	pixel_x = -2;
+	pixel_y = 2
 	},
 /obj/item/wrench/medical,
 /turf/open/floor/mineral/titanium/white,
@@ -320,8 +320,8 @@
 "aT" = (
 /obj/structure/table/glass,
 /obj/item/reagent_containers/glass/bottle/epinephrine{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/glass/bottle/charcoal,
 /turf/open/floor/mineral/titanium/white,

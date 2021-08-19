@@ -40,14 +40,14 @@
 	dir = 2;
 	id = "QMLoaddoor2";
 	name = "Loading Doors";
-	pixel_x = 24;
-	pixel_y = 8
+	pixel_x = 48;
+	pixel_y = 16
 	},
 /obj/machinery/button/door{
 	id = "QMLoaddoor";
 	name = "Loading Doors";
-	pixel_x = 24;
-	pixel_y = -8
+	pixel_x = 48;
+	pixel_y = -16
 	},
 /obj/machinery/light{
 	dir = 4

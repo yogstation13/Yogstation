@@ -22,10 +22,10 @@
 "g" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/aluminium{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/bromine{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow{
@@ -43,10 +43,10 @@
 "h" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/carbon{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/chlorine{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow{
@@ -62,10 +62,10 @@
 "i" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/copper{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/ethanol{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow{
@@ -88,18 +88,18 @@
 "n" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/mercury{
-	pixel_x = 6;
-	pixel_y = 8
+	pixel_x = 12;
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/glass/bottle/nitrogen{
-	pixel_x = -6;
-	pixel_y = 8
+	pixel_x = -12;
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/glass/bottle/oxygen{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/phosphorus{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -116,13 +116,13 @@
 "s" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/iodine{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/glass/bottle/iron{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/lithium{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
@@ -146,10 +146,10 @@
 "w" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/silver{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/sodium{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -158,10 +158,10 @@
 "x" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/sacid{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/silicon{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow,
@@ -176,13 +176,13 @@
 "y" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/potassium{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/radium{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/item/reagent_containers/glass/bottle/welding_fuel{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow,
@@ -194,10 +194,10 @@
 "A" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/sugar{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/sulfur{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow{
@@ -218,13 +218,13 @@
 "C" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/fluorine{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/reagent_containers/glass/bottle/hydrogen{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/item/reagent_containers/glass/bottle/water{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow,

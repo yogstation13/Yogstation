@@ -42,7 +42,7 @@
 "ae" = (
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/syndicate3)
@@ -50,7 +50,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/syndicate3)
@@ -87,7 +87,7 @@
 "al" = (
 /obj/machinery/airalarm/syndicate{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -100,8 +100,8 @@
 	id = "caravansyndicate3_bolt_starboard";
 	name = "External Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = -24;
-	pixel_y = -6;
+	pixel_x = -48;
+	pixel_y = -12;
 	req_access_txt = "150";
 	specialfunctions = 4
 	},
@@ -187,7 +187,7 @@
 /obj/machinery/power/apc/syndicate{
 	dir = 8;
 	name = "Syndicate Drop Ship APC";
-	pixel_x = -25
+	pixel_x = -50
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/dark,
@@ -213,16 +213,16 @@
 /obj/machinery/button/door{
 	id = "caravansyndicate3_bridge";
 	name = "Bridge Blast Door Control";
-	pixel_x = -16;
-	pixel_y = 5;
+	pixel_x = -32;
+	pixel_y = 10;
 	req_access_txt = "150"
 	},
 /obj/machinery/button/door{
 	id = "caravansyndicate3_bolt_bridge";
 	name = "Bridge Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = -16;
-	pixel_y = -5;
+	pixel_x = -32;
+	pixel_y = -10;
 	req_access_txt = "150";
 	specialfunctions = 4
 	},
@@ -347,8 +347,8 @@
 	id = "caravansyndicate3_bolt_port";
 	name = "External Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = -24;
-	pixel_y = 6;
+	pixel_x = -48;
+	pixel_y = 12;
 	req_access_txt = "150";
 	specialfunctions = 4
 	},
@@ -367,7 +367,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -26
+	pixel_y = -52
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/dark,
@@ -405,7 +405,7 @@
 "EO" = (
 /obj/structure/chair/comfy/shuttle,
 /obj/machinery/airalarm/syndicate{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/dark,
@@ -427,7 +427,7 @@
 "Gx" = (
 /obj/machinery/airalarm/syndicate{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/syndicate3)
@@ -436,7 +436,7 @@
 	dir = 8
 	},
 /obj/structure/sign/warning/vacuum{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/syndicate{
@@ -463,7 +463,7 @@
 	icon_state = "control_kill";
 	lethal = 1;
 	name = "Shuttle turret control";
-	pixel_y = 34;
+	pixel_y = 68;
 	req_access = null;
 	req_access_txt = "150"
 	},
@@ -530,7 +530,7 @@
 	anchored = 1
 	},
 /obj/structure/sign/warning/vacuum{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/shoes/sneakers/black,

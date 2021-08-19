@@ -306,7 +306,7 @@
 /obj/structure/sign/warning/pods{
 	desc = "A warning sign which warns of potential mech traffic to and from different levels of the mine.";
 	name = "\improper MECH TUNNEL PASSAGE B1 TO A2";
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plating/asteroid/basalt{
 	initial_gas_mix = "n2=23;o2=14"
@@ -625,7 +625,7 @@
 /obj/structure/sign/warning/pods{
 	desc = "A warning sign which warns of potential mech traffic to and from different levels of the mine.";
 	name = "\improper MECH TUNNEL PASSAGE A2 TO B1";
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/machinery/light/small/built{
 	dir = 4
@@ -710,7 +710,7 @@
 	desc = "A pickaxe thats been left to rust.";
 	force = 1;
 	name = "rusty pickaxe";
-	pixel_x = 5;
+	pixel_x = 10;
 	throwforce = 1
 	},
 /turf/open/floor/plating/asteroid/basalt{
@@ -767,7 +767,7 @@
 /area/awaymission/caves/BMP_asteroid)
 "ck" = (
 /obj/structure/sign/warning/xeno_mining{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plating/asteroid/basalt{
 	initial_gas_mix = "n2=23;o2=14"
@@ -895,7 +895,7 @@
 "cE" = (
 /obj/structure/sign/warning/vacuum{
 	name = "\improper LOW AIR AREA";
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/item/stack/rods,
 /turf/open/floor/plasteel{
@@ -971,7 +971,7 @@
 	desc = "A pickaxe thats been left to rust.";
 	force = 1;
 	name = "rusty pickaxe";
-	pixel_x = 5;
+	pixel_x = 10;
 	throwforce = 1
 	},
 /turf/open/floor/plating/asteroid/basalt{
@@ -1044,7 +1044,7 @@
 "cZ" = (
 /obj/structure/sign/warning/vacuum{
 	name = "\improper LOW AIR AREA";
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel{
 	initial_gas_mix = "n2=23;o2=14"
@@ -1071,7 +1071,7 @@
 /obj/structure/sign/warning/pods{
 	desc = "A warning sign which warns of potential mech traffic to and from different levels of the mine.";
 	name = "\improper MECH TUNNEL PASSAGE A2 TO A1";
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/plating/asteroid/basalt{
 	initial_gas_mix = "n2=23;o2=14"
@@ -1174,7 +1174,7 @@
 	desc = "A pickaxe thats been left to rust.";
 	force = 1;
 	name = "rusty pickaxe";
-	pixel_x = 5;
+	pixel_x = 10;
 	throwforce = 1
 	},
 /turf/open/floor/plasteel,
@@ -1569,7 +1569,7 @@
 	desc = "A pickaxe thats been left to rust.";
 	force = 1;
 	name = "rusty pickaxe";
-	pixel_x = 5;
+	pixel_x = 10;
 	throwforce = 1
 	},
 /obj/item/pickaxe{
@@ -1577,7 +1577,7 @@
 	desc = "A pickaxe thats been left to rust.";
 	force = 1;
 	name = "rusty pickaxe";
-	pixel_x = 5;
+	pixel_x = 10;
 	throwforce = 1
 	},
 /turf/open/floor/plasteel,
@@ -1635,7 +1635,7 @@
 /area/awaymission/caves/listeningpost)
 "fa" = (
 /obj/structure/noticeboard{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/paper/fluff/awaymissions/caves/shipment_notice,
 /obj/item/paper/fluff/awaymissions/caves/safety_notice,
@@ -1742,7 +1742,7 @@
 /obj/structure/sign/warning/pods{
 	desc = "A warning sign which warns of potential mech traffic to and from different levels of the mine.";
 	name = "\improper MECH TUNNEL PASSAGE A1 TO A2";
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -1859,7 +1859,7 @@
 /area/awaymission/caves/BMP_asteroid)
 "fI" = (
 /obj/structure/sign/departments/medbay{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/plating/asteroid/basalt{
 	initial_gas_mix = "n2=23;o2=14"
@@ -1875,7 +1875,7 @@
 /area/awaymission/caves/BMP_asteroid)
 "fL" = (
 /obj/structure/sign/departments/examroom{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/caves/BMP_asteroid)
@@ -1949,7 +1949,7 @@
 	desc = "A pickaxe thats been left to rust.";
 	force = 1;
 	name = "rusty pickaxe";
-	pixel_x = 5;
+	pixel_x = 10;
 	throwforce = 1
 	},
 /obj/item/stack/sheet/mineral/adamantine{

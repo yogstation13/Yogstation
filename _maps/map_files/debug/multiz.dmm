@@ -41,7 +41,7 @@
 /obj/machinery/airalarm{
 	frequency = 1439;
 	locked = 0;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/structure/closet/secure_closet/atmospherics,
 /turf/open/floor/plating,
@@ -71,11 +71,11 @@
 /obj/machinery/airalarm{
 	frequency = 1439;
 	locked = 0;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -50
 	},
 /obj/structure/closet/secure_closet/engineering_electrical,
 /obj/structure/cable{
@@ -101,7 +101,7 @@
 /obj/machinery/airalarm{
 	frequency = 1439;
 	locked = 0;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -115,7 +115,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Gravity Generator APC";
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -286,7 +286,7 @@
 "aS" = (
 /obj/structure/table,
 /obj/item/flashlight{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/airlock_painter,
 /turf/open/floor/plating,
@@ -336,7 +336,7 @@
 /area/engine/gravity_generator)
 "aZ" = (
 /obj/structure/tank_dispenser{
-	pixel_x = -1
+	pixel_x = -2
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
@@ -399,7 +399,7 @@
 "bj" = (
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -50
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -506,7 +506,7 @@
 "bB" = (
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -50
 	},
 /obj/structure/cable,
 /obj/structure/cable{
@@ -515,7 +515,7 @@
 /obj/machinery/airalarm{
 	frequency = 1439;
 	locked = 0;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/structure/closet/jcloset,
 /turf/open/floor/plasteel,
@@ -543,11 +543,11 @@
 /obj/machinery/airalarm{
 	frequency = 1439;
 	locked = 0;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -50
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -625,11 +625,11 @@
 /obj/machinery/airalarm{
 	frequency = 1439;
 	locked = 0;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -50
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -905,8 +905,8 @@
 "cL" = (
 /obj/structure/table,
 /obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
+	pixel_x = -6;
+	pixel_y = 14
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -959,12 +959,12 @@
 /obj/machinery/airalarm{
 	frequency = 1439;
 	locked = 0;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/structure/cable,
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -50
 	},
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
@@ -991,11 +991,11 @@
 /obj/machinery/airalarm{
 	frequency = 1439;
 	locked = 0;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -50
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/line{
@@ -1230,7 +1230,7 @@
 "dR" = (
 /obj/structure/table,
 /obj/item/flashlight{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)

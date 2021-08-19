@@ -47,14 +47,14 @@
 "gG" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/sashimi{
-	pixel_y = 10
+	pixel_y = 20
 	},
 /obj/item/reagent_containers/food/drinks/mug/coco{
-	pixel_x = -10
+	pixel_x = -20
 	},
 /obj/item/reagent_containers/food/drinks/mug/coco{
-	pixel_x = 10;
-	pixel_y = -4
+	pixel_x = 20;
+	pixel_y = -8
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet,
@@ -200,7 +200,7 @@
 "sY" = (
 /obj/structure/sink/kitchen{
 	dir = 4;
-	pixel_x = -12
+	pixel_x = -24
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/checker,
@@ -260,7 +260,7 @@
 /area/icemoon/underground/explored)
 "xN" = (
 /obj/structure/bed/dogbed{
-	pixel_y = 14
+	pixel_y = 28
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet,
@@ -370,8 +370,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/trash/chips,
 /obj/item/trash/semki{
-	pixel_x = 8;
-	pixel_y = -4
+	pixel_x = 16;
+	pixel_y = -8
 	},
 /obj/item/clothing/neck/petcollar,
 /turf/open/floor/plasteel/freezer,
@@ -386,11 +386,11 @@
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/burger/fish,
 /obj/item/reagent_containers/food/drinks/beer{
-	pixel_x = -4
+	pixel_x = -8
 	},
 /obj/item/reagent_containers/food/drinks/beer{
-	pixel_x = 10;
-	pixel_y = 6
+	pixel_x = 20;
+	pixel_y = 12
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -470,14 +470,14 @@
 /obj/effect/decal/cleanable/blood,
 /obj/item/bodypart/head,
 /obj/item/bodypart/l_arm{
-	pixel_x = -9;
-	pixel_y = -9
+	pixel_x = -18;
+	pixel_y = -18
 	},
 /obj/item/bodypart/l_leg,
 /obj/item/bodypart/r_arm,
 /obj/item/bodypart/r_leg{
-	pixel_x = 8;
-	pixel_y = 4
+	pixel_x = 16;
+	pixel_y = 8
 	},
 /obj/item/bodypart/chest,
 /obj/item/organ/heart,
