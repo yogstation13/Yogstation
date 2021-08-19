@@ -20,6 +20,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/cmd_admin_pm_panel,		/*admin-pm list*/
 	/client/proc/stop_sounds,
 	/client/proc/fix_air, // yogs - fix air verb
+	/client/proc/fix_air_z,
 	/client/proc/debugstatpanel
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
@@ -83,6 +84,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/respawn_character,
 	/client/proc/discord_id_manipulation,
 	/datum/admins/proc/open_borgopanel,
+	/datum/admins/proc/change_laws,
 	/datum/admins/proc/restart, //yogs - moved from +server
 	/client/proc/admin_pick_random_player, //yogs
 	/client/proc/get_law_history, //yogs - silicon law history

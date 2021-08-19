@@ -820,7 +820,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Purrbation (Humans only)</b> "
 				dat += "<a href='?_src_=prefs;preference=donor;task=purrbation'>[purrbation ? "Yes" : "No"]</a><BR>"
 			else
-				dat += "<b><a href='http://www.yogstation.net/index.php?do=donate'>Donate here</b>"
+				dat += "<b><a href='http://www.yogstation.net/donate'>Donate here</b>"
 			dat += "</tr></table>"
 		// yogs end
 
@@ -1189,7 +1189,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("quiet_round")
 					yogtoggles ^= QUIET_ROUND
 				if("pda")
-					donor_pda = donor_pda % ++GLOB.donor_pdas.len
+					donor_pda = (donor_pda % GLOB.donor_pdas.len) + 1
 				if("purrbation")
 					purrbation = !purrbation
 		else

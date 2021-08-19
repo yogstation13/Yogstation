@@ -23646,8 +23646,8 @@
 	c_tag = "Bridge Center";
 	dir = 1
 	},
-/obj/structure/fireaxecabinet{
-	pixel_y = -32
+/obj/structure/fireaxecabinet/bridge{
+	pixel_y = -30
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 0
@@ -58808,7 +58808,7 @@
 /obj/machinery/light_switch{
 	pixel_y = 28
 	},
-/obj/structure/fireaxecabinet/spare{
+/obj/structure/fireaxecabinet/bridge/spare{
 	pixel_x = 2;
 	pixel_y = 32
 	},
