@@ -92,6 +92,9 @@
 	force = 15
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("drilled")
+	sharpness = SHARP_POINTY
+	wound_bonus = 10
+	bare_wound_bonus = 10
 
 /obj/item/surgicaldrill/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] rams [src] into [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -184,8 +187,8 @@
 	materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharpness = SHARP_EDGED
-	wound_bonus = 10
-	bare_wound_bonus = 15
+	wound_bonus = 15
+	bare_wound_bonus = 10
 
 /obj/item/circular_saw/Initialize()
 	. = ..()
@@ -371,7 +374,7 @@
 	name = "searing tool"
 	desc = "It projects a high power laser used for medical application."
 	icon = 'icons/obj/surgery.dmi'
-	icon_state = "surgicaldrill_a"
+	icon_state = "cautery_a"
 	hitsound = 'sound/items/welder.ogg'
 	toolspeed = 0.7
 	light_color = LIGHT_COLOR_RED

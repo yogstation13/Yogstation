@@ -214,6 +214,8 @@
 #define TRAIT_SURGERY_PREPARED	"surgery_prepared"
 #define TRAIT_NO_PASSIVE_COOLING "no-passive-cooling"
 #define TRAIT_NO_PASSIVE_HEATING "no-passive-heating"
+#define TRAIT_BLOODY_MESS		"bloody_mess" //from heparin, makes open bleeding wounds rapidly spill more blood
+#define TRAIT_COAGULATING		"coagulating" //from coagulant reagents, this doesn't affect the bleeding itself but does affect the bleed warning messages
 
 //non-mob traits
 /// Used for limb-based paralysis, where replacing the limb will fix it.

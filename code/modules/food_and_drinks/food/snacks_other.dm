@@ -410,7 +410,7 @@
 	throwforce = 10
 	block_chance = 50
 	armour_penetration = 75
-	wound_bonus = -70
+	wound_bonus = -50
 	attack_verb = list("slapped", "slathered")
 	w_class = WEIGHT_CLASS_BULKY
 	tastes = list("cherry" = 1, "crepe" = 1)

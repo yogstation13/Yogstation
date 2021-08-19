@@ -70,8 +70,14 @@
 	var/flavour_text = null
 	///Are we zombified/uncloneable?
 	var/zombified = FALSE
-	///What character we spawned in as- either at roundstart or latejoin, so we know for persistent scars if we ended as the same person or not
+	///What character we joined in as- either at roundstart or latejoin, so we know for persistent scars if we ended as the same person or not
 	var/mob/original_character
+	/// What scar slot we have loaded, so we don't have to constantly check the savefile
+	var/current_scar_slot
+	/// The index for what character slot, if any, we were loaded from, so we can track persistent scars on a per-character basis. Each character slot gets PERSISTENT_SCAR_SLOTS scar slots
+	var/original_character_slot_index
+	/// The index for our current scar slot, so we don't have to constantly check the savefile (unlike the slots themselves, this index is independent of selected char slot, and increments whenever a valid char is joined with)
+	var/current_scar_slot_index
 
 /datum/mind/New(key)
 	src.key = key
