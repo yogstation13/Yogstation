@@ -638,6 +638,7 @@
 		/obj/item/cautery,
 		/obj/item/surgicaldrill,
 		/obj/item/scalpel,
+		/obj/item/bonesetter,
 		/obj/item/melee/transforming/energy/sword/cyborg/saw,
 		/obj/item/roller/robo,
 		/obj/item/card/emag,
