@@ -47,6 +47,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/show_credits = TRUE
 	var/uses_glasses_colour = 0
 
+	var/list/player_alt_titles = new()
+
 	///Whether emotes will be displayed on runechat. Requires chat_on_map to have effect. Boolean.
 	var/see_rc_emotes = TRUE
 
@@ -825,7 +827,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Purrbation (Humans only)</b> "
 				dat += "<a href='?_src_=prefs;preference=donor;task=purrbation'>[purrbation ? "Yes" : "No"]</a><BR>"
 			else
-				dat += "<b><a href='http://www.yogstation.net/index.php?do=donate'>Donate here</b>"
+				dat += "<b><a href='http://www.yogstation.net/donate'>Donate here</b>"
 			dat += "</tr></table>"
 		// yogs end
 
@@ -981,10 +983,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				HTML += "<font color=blue>[rank]</font></td><td><font color=blue><b> \[QUIET\]</b></font></td></tr>"
 				continue
 			// yogs end
-			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
-				HTML += "<b><span class='dark'>[rank]</span></b>"
+
+			var/rank_display
+			if(job.alt_titles)
+				rank_display = "<a class='white' href='?_src_=prefs;preference=job;task=alt_title;job=[rank]'>[GetPlayerAltTitle(job)]</a>"
 			else
-				HTML += "<span class='dark'>[rank]</span>"
+				rank_display = "<span class='dark'>[rank]</span>"
+
+			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
+				HTML += "<b>[rank_display]</b>"
+			else
+				HTML += rank_display
 
 			HTML += "</td><td width='40%'>"
 
@@ -1046,6 +1055,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	popup.set_window_options("can_close=0")
 	popup.set_content(HTML)
 	popup.open(FALSE)
+
+/datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
+	return player_alt_titles.Find(job.title) > 0 \
+		? player_alt_titles[job.title] \
+		: job.title
+
+/datum/preferences/proc/SetPlayerAltTitle(datum/job/job, new_title)
+	// remove existing entry
+	if(player_alt_titles.Find(job.title))
+		player_alt_titles -= job.title
+	// add one if it's not default
+	if(job.title != new_title)
+		player_alt_titles[job.title] = new_title
 
 /datum/preferences/proc/SetJobPreferenceLevel(datum/job/job, level)
 	if (!job)
@@ -1194,7 +1216,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("quiet_round")
 					yogtoggles ^= QUIET_ROUND
 				if("pda")
-					donor_pda = donor_pda % ++GLOB.donor_pdas.len
+					donor_pda = (donor_pda % GLOB.donor_pdas.len) + 1
 				if("purrbation")
 					purrbation = !purrbation
 		else
@@ -1236,6 +1258,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(BERANDOMJOB)
 						joblessrole = RETURNTOLOBBY
 				SetChoices(user)
+			if ("alt_title")
+				var/datum/job/job = SSjob.GetJob(href_list["job"])
+				if (job)
+					var/choices = list(job.title) + job.alt_titles
+					var/choice = input("Pick a title for [job.title].", "Character Generation", GetPlayerAltTitle(job)) as anything in choices | null
+					if(choice)
+						SetPlayerAltTitle(job, choice)
+						SetChoices(user)
 			if("setJobLevel")
 				UpdateJobPreference(user, href_list["text"], text2num(href_list["level"]))
 			else

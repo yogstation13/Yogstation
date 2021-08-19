@@ -15,6 +15,7 @@
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_COMMAND
+	alt_titles = list("Station Commander", "Facility Overseer")
 
 	outfit = /datum/outfit/job/captain
 
