@@ -612,7 +612,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	set name = "Adminlisttickets"
 	set category = "Admin"
 
-	view_tickets_main(TICKET_FLAG_LIST_ALL)
+	if(GLOB.experimental_adminpanel)
+		new /datum/ticket_list_panel
+	else
+		view_tickets_main(TICKET_FLAG_LIST_ALL)
 
 /client/proc/view_tickets_main(var/flag)
 	flag = text2num(flag)
