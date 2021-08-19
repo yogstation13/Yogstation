@@ -41,7 +41,7 @@
 /area/crew_quarters/bar)
 "ai" = (
 /obj/structure/sink/kitchen{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 8;
@@ -91,7 +91,7 @@
 /area/crew_quarters/kitchen)
 "an" = (
 /obj/machinery/light_switch{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
@@ -133,7 +133,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
@@ -234,7 +234,7 @@
 /obj/machinery/airalarm{
 	dir = 8;
 	icon_state = "alarm0";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
@@ -274,7 +274,7 @@
 /obj/machinery/airalarm{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -420,7 +420,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
@@ -515,7 +515,7 @@
 /area/crew_quarters/bar)
 "bj" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = -31
+	pixel_x = -62
 	},
 /obj/machinery/light{
 	dir = 8
@@ -524,7 +524,7 @@
 /area/crew_quarters/bar)
 "bk" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 8;
@@ -564,8 +564,8 @@
 /obj/machinery/button/door{
 	id = "kitchen";
 	name = "Kitchen Shutters Control";
-	pixel_x = -1;
-	pixel_y = -24;
+	pixel_x = -2;
+	pixel_y = -48;
 	req_access_txt = "28"
 	},
 /obj/effect/turf_decal/tile/purple{
@@ -627,7 +627,7 @@
 /area/crew_quarters/kitchen)
 "bv" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = -31
+	pixel_x = -62
 	},
 /obj/item/clothing/gloves/color/purple,
 /obj/item/clothing/head/soft/purple,
@@ -682,7 +682,7 @@
 "bD" = (
 /obj/structure/noticeboard{
 	dir = 1;
-	pixel_y = -27
+	pixel_y = -54
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
@@ -772,8 +772,8 @@
 /area/crew_quarters/kitchen)
 "bQ" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -5;
-	pixel_y = 30
+	pixel_x = -10;
+	pixel_y = 60
 	},
 /obj/machinery/food_cart,
 /obj/effect/turf_decal/tile/purple,
@@ -781,7 +781,7 @@
 /area/crew_quarters/kitchen)
 "bR" = (
 /obj/structure/sink/kitchen{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
@@ -818,11 +818,11 @@
 "bU" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/light{
 	dir = 1
@@ -837,8 +837,8 @@
 "bV" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
@@ -887,8 +887,8 @@
 /obj/structure/table,
 /obj/item/book/manual/chef_recipes,
 /obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/kitchen)
@@ -954,7 +954,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
@@ -962,7 +962,7 @@
 /obj/machinery/requests_console{
 	department = "Bar";
 	departmentType = 2;
-	pixel_x = 30
+	pixel_x = 60
 	},
 /obj/machinery/camera{
 	c_tag = "Bar";
@@ -1023,7 +1023,7 @@
 /obj/machinery/airalarm{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/machinery/camera{
 	c_tag = "Bar West";
@@ -1043,8 +1043,8 @@
 "cE" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 1;
-	pixel_y = 3
+	pixel_x = 2;
+	pixel_y = 6
 	},
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/kitchen)
@@ -1139,7 +1139,7 @@
 /area/crew_quarters/bar)
 "dm" = (
 /obj/machinery/light_switch{
-	pixel_y = -25
+	pixel_y = -50
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 4;
@@ -1203,7 +1203,7 @@
 /area/crew_quarters/bar)
 "dv" = (
 /obj/machinery/newscaster{
-	pixel_y = -28
+	pixel_y = -56
 	},
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
@@ -1212,7 +1212,7 @@
 /obj/machinery/airalarm{
 	dir = 1;
 	icon_state = "alarm0";
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/plasteel/dark,
@@ -1258,16 +1258,16 @@
 "vD" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
-	pixel_x = 4;
-	pixel_y = -2
+	pixel_x = 8;
+	pixel_y = -4
 	},
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -3;
-	pixel_y = 8
+	pixel_x = -6;
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -8;
-	pixel_y = 4
+	pixel_x = -16;
+	pixel_y = 8
 	},
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/kitchen)
@@ -1334,7 +1334,7 @@
 /obj/item/clothing/under/color/lightpurple,
 /obj/item/clothing/neck/scarf/purple,
 /obj/structure/mirror{
-	pixel_x = -28
+	pixel_x = -56
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
@@ -1384,7 +1384,7 @@
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	departmentType = 2;
-	pixel_x = 30
+	pixel_x = 60
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 1;
@@ -1395,7 +1395,7 @@
 	icon_state = "tile_corner"
 	},
 /obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
@@ -1412,8 +1412,8 @@
 "Hw" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/kitchen)
@@ -1455,7 +1455,7 @@
 /area/crew_quarters/bar)
 "Mr" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -30
+	pixel_y = -60
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
@@ -1489,7 +1489,7 @@
 /obj/machinery/button/door{
 	id = "barshutters";
 	name = "Bar Shutters Control";
-	pixel_y = 24;
+	pixel_y = 48;
 	req_access_txt = "25"
 	},
 /turf/open/floor/plasteel/dark,
@@ -1591,8 +1591,8 @@
 /area/maintenance/starboard/fore)
 "YX" = (
 /obj/item/storage/secure/safe{
-	pixel_x = 1;
-	pixel_y = 5
+	pixel_x = 2;
+	pixel_y = 10
 	},
 /turf/closed/wall,
 /area/crew_quarters/bar)

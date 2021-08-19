@@ -77,12 +77,12 @@
 "Z" = (
 /obj/item/lipstick/black,
 /obj/item/lipstick/jade{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /obj/item/lipstick/purple{
-	pixel_x = -2;
-	pixel_y = -2
+	pixel_x = -4;
+	pixel_y = -4
 	},
 /obj/structure/table_frame,
 /turf/open/floor/plating,

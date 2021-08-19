@@ -119,7 +119,7 @@
 "B" = (
 /obj/structure/table/glass,
 /obj/item/paper_bin{
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/pen,
 /turf/open/floor/engine/cult,

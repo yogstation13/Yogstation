@@ -49,8 +49,8 @@
 "Y" = (
 /obj/structure/table/wood,
 /obj/item/toy/figure/wizard{
-	pixel_x = -6;
-	pixel_y = 4
+	pixel_x = -12;
+	pixel_y = 8
 	},
 /obj/item/storage/pill_bottle/dice,
 /turf/open/floor/wood,

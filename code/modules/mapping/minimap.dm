@@ -63,7 +63,7 @@
 	miny = crop_y1
 	maxy = crop_y2
 	overlay_icon = new(map_icon)
-	overlay_icon.Scale(16, 16)
+	overlay_icon.Scale(16*PIXEL_MULTIPLIER, 16*PIXEL_MULTIPLIER)
 
 /obj/item/map
 	name = "map"
@@ -112,8 +112,8 @@
 	var/datum/minimap/map = minimaps[1]
 	if(!map) return
 	var/image/I = image(map.overlay_icon)
-	I.pixel_x = 8
-	I.pixel_y = 8
+	I.pixel_x = 8*PIXEL_MULTIPLIER
+	I.pixel_y = 8*PIXEL_MULTIPLIER
 	add_overlay(I)
 
 /obj/item/map/interact(mob/user)

@@ -19,6 +19,7 @@
 	hub_password = "kMZy3U5jJHSiBQjr"
 	name = "Yogstation 13"
 	fps = 20
+	icon_size = WORLD_ICON_SIZE
 #ifdef FIND_REF_NO_CHECK_TICK
 	loop_checks = FALSE
 #endif

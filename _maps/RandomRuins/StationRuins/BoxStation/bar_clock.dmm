@@ -146,7 +146,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/machinery/vending/wardrobe/chef_wardrobe,
 /turf/open/floor/plasteel/showroomfloor,
@@ -213,7 +213,7 @@
 /area/crew_quarters/kitchen)
 "dT" = (
 /obj/machinery/light_switch{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/machinery/light{
 	dir = 1
@@ -310,7 +310,7 @@
 /area/crew_quarters/bar)
 "ia" = (
 /obj/machinery/light_switch{
-	pixel_y = -25
+	pixel_y = -50
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
@@ -322,7 +322,7 @@
 /obj/machinery/processor,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
@@ -431,7 +431,7 @@
 /area/crew_quarters/kitchen)
 "pv" = (
 /obj/item/radio/intercom{
-	pixel_y = 25
+	pixel_y = 50
 	},
 /obj/machinery/camera{
 	c_tag = "Kitchen";
@@ -452,8 +452,8 @@
 /area/crew_quarters/kitchen)
 "pY" = (
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /obj/structure/table/bronze,
 /turf/open/floor/bronze/reebe,
@@ -554,7 +554,7 @@
 "vK" = (
 /obj/structure/table/bronze,
 /obj/item/reagent_containers/glass/mixbowl{
-	pixel_y = 2
+	pixel_y = 4
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
@@ -581,8 +581,8 @@
 /area/crew_quarters/bar)
 "wO" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -5;
-	pixel_y = 30
+	pixel_x = -10;
+	pixel_y = 60
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
@@ -600,7 +600,7 @@
 "xV" = (
 /obj/machinery/airalarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/theatre)
@@ -627,7 +627,7 @@
 /area/crew_quarters/kitchen)
 "yE" = (
 /obj/item/radio/intercom{
-	pixel_y = 25
+	pixel_y = 50
 	},
 /obj/machinery/camera{
 	c_tag = "Theatre Stage";
@@ -648,7 +648,7 @@
 /area/crew_quarters/bar)
 "zI" = (
 /obj/structure/sink/kitchen{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/machinery/food_cart,
 /turf/open/floor/bronze/reebe,
@@ -691,7 +691,7 @@
 /obj/machinery/requests_console{
 	department = "Bar";
 	departmentType = 2;
-	pixel_x = 30;
+	pixel_x = 60;
 	receive_ore_updates = 1
 	},
 /obj/machinery/camera{
@@ -719,16 +719,16 @@
 /area/crew_quarters/bar)
 "Cz" = (
 /obj/item/kitchen/rollingpin{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/structure/table/bronze,
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -5;
-	pixel_y = 9
+	pixel_x = -10;
+	pixel_y = 18
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -9;
-	pixel_y = 6
+	pixel_x = -18;
+	pixel_y = 12
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
@@ -774,8 +774,8 @@
 /obj/machinery/button/door{
 	id = "kitchen";
 	name = "Kitchen Shutters Control";
-	pixel_x = -1;
-	pixel_y = -24;
+	pixel_x = -2;
+	pixel_y = -48;
 	req_access_txt = "28"
 	},
 /turf/open/floor/bronze,
@@ -785,11 +785,11 @@
 	dir = 8
 	},
 /obj/item/radio/intercom{
-	pixel_y = 25
+	pixel_y = 50
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /obj/structure/table/bronze,
 /turf/open/floor/bronze/reebe,
@@ -825,8 +825,8 @@
 "HF" = (
 /obj/item/book/manual/chef_recipes,
 /obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /obj/structure/table/bronze,
 /turf/open/floor/bronze,
@@ -862,7 +862,7 @@
 /area/crew_quarters/theatre)
 "Ke" = (
 /obj/structure/sink/kitchen{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
@@ -916,7 +916,7 @@
 "MA" = (
 /obj/item/clockwork/alloy_shards,
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
@@ -935,8 +935,8 @@
 /area/crew_quarters/bar)
 "Nx" = (
 /obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/structure/table/bronze,
 /turf/open/floor/bronze,
@@ -967,7 +967,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
@@ -1004,14 +1004,14 @@
 /area/crew_quarters/bar)
 "Re" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -30
+	pixel_y = -60
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
 "Rh" = (
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
@@ -1037,12 +1037,12 @@
 /area/crew_quarters/bar)
 "RS" = (
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 5;
-	pixel_y = -2
+	pixel_x = 10;
+	pixel_y = -4
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -2;
-	pixel_y = 2
+	pixel_x = -4;
+	pixel_y = 4
 	},
 /obj/structure/table/bronze,
 /turf/open/floor/bronze/reebe,
@@ -1076,11 +1076,11 @@
 /area/crew_quarters/kitchen)
 "TA" = (
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/light{
 	dir = 1
@@ -1113,11 +1113,11 @@
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	departmentType = 2;
-	pixel_x = 30
+	pixel_x = 60
 	},
 /obj/structure/table/bronze,
 /obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
@@ -1162,7 +1162,7 @@
 "Xj" = (
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -1184,8 +1184,8 @@
 	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
 	icon_state = "monkey_painting";
 	name = "Mr. Deempisi portrait";
-	pixel_x = -28;
-	pixel_y = -4
+	pixel_x = -56;
+	pixel_y = -8
 	},
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -1196,7 +1196,7 @@
 /obj/machinery/button/door{
 	id = "barshutters";
 	name = "Bar Shutters Control";
-	pixel_y = 25;
+	pixel_y = 50;
 	req_access_txt = "25"
 	},
 /turf/open/floor/bronze,

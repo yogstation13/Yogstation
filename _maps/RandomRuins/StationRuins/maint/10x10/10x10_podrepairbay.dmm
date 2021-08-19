@@ -126,7 +126,7 @@
 	dir = 4
 	},
 /obj/item/storage/pod{
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/template_noop)

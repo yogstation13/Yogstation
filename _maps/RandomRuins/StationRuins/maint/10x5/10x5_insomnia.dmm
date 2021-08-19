@@ -3,31 +3,31 @@
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/coffee{
 	list_reagents = null;
-	pixel_x = 8
+	pixel_x = 16
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
 	list_reagents = null;
-	pixel_x = -9
+	pixel_x = -18
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
 	list_reagents = null;
-	pixel_x = -5;
-	pixel_y = 5
+	pixel_x = -10;
+	pixel_y = 10
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
 	list_reagents = null;
-	pixel_x = 1;
-	pixel_y = 2
+	pixel_x = 2;
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
 	list_reagents = null;
-	pixel_x = 6;
-	pixel_y = 11
+	pixel_x = 12;
+	pixel_y = 22
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
 	list_reagents = null;
-	pixel_x = -2;
-	pixel_y = 13
+	pixel_x = -4;
+	pixel_y = 26
 	},
 /turf/open/floor/carpet,
 /area/template_noop)
@@ -52,27 +52,27 @@
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/coffee{
 	list_reagents = null;
-	pixel_x = 7;
-	pixel_y = -2
+	pixel_x = 14;
+	pixel_y = -4
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
 	list_reagents = null;
-	pixel_x = 1;
-	pixel_y = 2
+	pixel_x = 2;
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
 	list_reagents = null;
-	pixel_x = -5;
-	pixel_y = 5
+	pixel_x = -10;
+	pixel_y = 10
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
 	list_reagents = null;
-	pixel_x = -8
+	pixel_x = -16
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
 	list_reagents = null;
-	pixel_x = 6;
-	pixel_y = 11
+	pixel_x = 12;
+	pixel_y = 22
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
 	list_reagents = null
@@ -125,29 +125,29 @@
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/coffee{
 	list_reagents = null;
-	pixel_x = 8
+	pixel_x = 16
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
 	list_reagents = null;
-	pixel_x = -8
+	pixel_x = -16
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
 	list_reagents = null;
-	pixel_x = -5;
-	pixel_y = 5
+	pixel_x = -10;
+	pixel_y = 10
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
 	list_reagents = null
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
 	list_reagents = null;
-	pixel_x = 6;
-	pixel_y = 11
+	pixel_x = 12;
+	pixel_y = 22
 	},
 /obj/item/reagent_containers/food/drinks/mug/tea{
 	list_reagents = null;
-	pixel_x = -12;
-	pixel_y = 12
+	pixel_x = -24;
+	pixel_y = 24
 	},
 /turf/open/floor/carpet,
 /area/template_noop)
@@ -157,12 +157,12 @@
 "N" = (
 /obj/structure/table/wood,
 /obj/item/modular_computer/laptop{
-	pixel_y = 7
+	pixel_y = 14
 	},
 /obj/item/reagent_containers/food/drinks/mug/tea{
 	list_reagents = null;
-	pixel_x = -10;
-	pixel_y = -5
+	pixel_x = -20;
+	pixel_y = -10
 	},
 /turf/open/floor/carpet,
 /area/template_noop)

@@ -97,12 +97,12 @@
 "aw" = (
 /obj/structure/table/wood,
 /obj/item/toy/cards/deck/cas{
-	pixel_x = -5;
-	pixel_y = 5
+	pixel_x = -10;
+	pixel_y = 10
 	},
 /obj/item/toy/cards/deck/cas/black{
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/carpet,
 /area/template_noop)

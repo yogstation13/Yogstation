@@ -109,8 +109,8 @@
 	desc = "This isn't right."
 	icon = 'icons/effects/224x224.dmi'
 	icon_state = "reality"
-	pixel_x = -96
-	pixel_y = -96
+	pixel_x = -96*PIXEL_MULTIPLIER
+	pixel_y = -96*PIXEL_MULTIPLIER
 	dissipate = 0
 	move_self = 0
 	consume_range = 3
@@ -470,8 +470,8 @@
 	layer = FLY_LAYER
 	randomdir = 0
 	duration = 40
-	pixel_x = 500
+	pixel_x = 500*PIXEL_MULTIPLIER
 
 /obj/effect/temp_visual/tornado/Initialize()
 	. = ..()
-	animate(src, pixel_x = -500, time = 40)
+	animate(src, pixel_x = -500*PIXEL_MULTIPLIER, time = 40)

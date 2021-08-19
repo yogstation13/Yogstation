@@ -1,13 +1,13 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "m" = (
 /obj/item/clothing/neck/tie/red{
-	pixel_x = -5;
-	pixel_y = 3
+	pixel_x = -10;
+	pixel_y = 6
 	},
 /obj/item/clothing/neck/tie/horrible,
 /obj/item/clothing/neck/tie/blue{
-	pixel_x = 5;
-	pixel_y = -2
+	pixel_x = 10;
+	pixel_y = -4
 	},
 /obj/item/dice/d8,
 /obj/item/healthanalyzer,
@@ -31,8 +31,8 @@
 	dir = 8
 	},
 /obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
+	pixel_x = -6;
+	pixel_y = 14
 	},
 /obj/item/poster/random_official,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -51,8 +51,8 @@
 "w" = (
 /obj/item/soap/deluxe,
 /obj/item/storage/secure/safe{
-	pixel_x = 6;
-	pixel_y = 28
+	pixel_x = 12;
+	pixel_y = 56
 	},
 /obj/item/kitchen/rollingpin,
 /obj/structure/closet/crate,
@@ -72,12 +72,12 @@
 /area/template_noop)
 "M" = (
 /obj/item/stack/medical/ointment{
-	pixel_x = 3;
-	pixel_y = -2
+	pixel_x = 6;
+	pixel_y = -4
 	},
 /obj/item/stack/medical/bruise_pack{
-	pixel_x = -3;
-	pixel_y = 2
+	pixel_x = -6;
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/syringe/epinephrine,
 /obj/item/restraints/handcuffs/cable/pink,

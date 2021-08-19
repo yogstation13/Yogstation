@@ -1191,7 +1191,7 @@ GLOBAL_DATUM_INIT(dummySave, /savefile, new("tmp/dummySave.sav")) //Cache of ico
 		var/icon/I = thing
 		var/icon_base64 = icon2base64(I)
 
-		if (I.Height() > world.icon_size || I.Width() > world.icon_size)
+		if (I.Height() > WORLD_ICON_SIZE || I.Width() > WORLD_ICON_SIZE)
 			var/icon_md5 = md5(icon_base64)
 			icon_base64 = bicon_cache[icon_md5]
 			if (!icon_base64) // Doesn't exist yet, make it.

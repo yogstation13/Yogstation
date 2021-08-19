@@ -76,7 +76,7 @@
 /area/template_noop)
 "J" = (
 /obj/machinery/status_display/ai{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plating,
 /area/template_noop)

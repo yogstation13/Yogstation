@@ -107,7 +107,7 @@
 /obj/structure/table,
 /obj/item/clothing/under/soviet,
 /obj/item/clothing/head/ushanka{
-	pixel_y = 10
+	pixel_y = 20
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)

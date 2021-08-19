@@ -25,8 +25,8 @@
 "f" = (
 /obj/structure/table,
 /obj/item/stack/sheet/metal/fifty{
-	pixel_x = 1;
-	pixel_y = 1
+	pixel_x = 2;
+	pixel_y = 2
 	},
 /obj/item/stack/rods/fifty,
 /turf/open/floor/plating,
@@ -34,52 +34,52 @@
 "i" = (
 /obj/structure/table,
 /obj/item/storage/box/lights/mixed{
-	pixel_x = -4;
-	pixel_y = 8
+	pixel_x = -8;
+	pixel_y = 16
 	},
 /obj/item/electronics/airalarm{
-	pixel_x = 8
+	pixel_x = 16
 	},
 /obj/item/electronics/airalarm{
-	pixel_x = 8
+	pixel_x = 16
 	},
 /obj/item/electronics/airalarm{
-	pixel_x = 8
+	pixel_x = 16
 	},
 /obj/item/electronics/airalarm{
-	pixel_x = 8
+	pixel_x = 16
 	},
 /obj/item/electronics/airlock{
-	pixel_x = -6;
-	pixel_y = -6
+	pixel_x = -12;
+	pixel_y = -12
 	},
 /obj/item/electronics/airlock{
-	pixel_x = -6;
-	pixel_y = -6
+	pixel_x = -12;
+	pixel_y = -12
 	},
 /obj/item/electronics/airlock{
-	pixel_x = -6;
-	pixel_y = -6
+	pixel_x = -12;
+	pixel_y = -12
 	},
 /obj/item/electronics/airlock{
-	pixel_x = -6;
-	pixel_y = -6
+	pixel_x = -12;
+	pixel_y = -12
 	},
 /obj/item/electronics/airlock{
-	pixel_x = -6;
-	pixel_y = -6
+	pixel_x = -12;
+	pixel_y = -12
 	},
 /obj/item/electronics/airlock{
-	pixel_x = -6;
-	pixel_y = -6
+	pixel_x = -12;
+	pixel_y = -12
 	},
 /obj/item/electronics/airlock{
-	pixel_x = -6;
-	pixel_y = -6
+	pixel_x = -12;
+	pixel_y = -12
 	},
 /obj/item/electronics/airlock{
-	pixel_x = -6;
-	pixel_y = -6
+	pixel_x = -12;
+	pixel_y = -12
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
@@ -109,11 +109,11 @@
 "n" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = -3;
-	pixel_y = -2
+	pixel_x = -6;
+	pixel_y = -4
 	},
 /obj/item/airlock_painter,
 /turf/open/floor/plating,
@@ -142,12 +142,12 @@
 /obj/structure/table,
 /obj/item/storage/toolbox/electrical,
 /obj/item/clothing/gloves/color/yellow{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/item/storage/toolbox/electrical,
 /obj/item/multitool{
-	pixel_x = 2;
-	pixel_y = -4
+	pixel_x = 4;
+	pixel_y = -8
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
@@ -172,20 +172,20 @@
 "U" = (
 /obj/structure/table,
 /obj/item/stack/sheet/glass/fifty{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/stack/sheet/titaniumglass{
-	pixel_x = -2;
-	pixel_y = -2
+	pixel_x = -4;
+	pixel_y = -4
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "X" = (
 /obj/structure/table,
 /obj/item/stack/sheet/mineral/titanium/fifty{
-	pixel_x = 1;
-	pixel_y = 2
+	pixel_x = 2;
+	pixel_y = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)

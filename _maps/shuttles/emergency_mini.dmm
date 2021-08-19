@@ -55,7 +55,7 @@
 	},
 /obj/effect/turf_decal/bot,
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -92,7 +92,7 @@
 /obj/effect/turf_decal/bot,
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
-	pixel_x = -28
+	pixel_x = -56
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -106,7 +106,7 @@
 /obj/effect/turf_decal/bot,
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
-	pixel_x = 28
+	pixel_x = 56
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -144,8 +144,8 @@
 "jC" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /obj/item/storage/firstaid/fire,
 /obj/item/crowbar,
@@ -233,59 +233,59 @@
 /area/shuttle/escape)
 "mK" = (
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/clothing/suit/hazardvest{
 	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
@@ -395,16 +395,16 @@
 	},
 /obj/item/radio/intercom{
 	name = "Station Intercom";
-	pixel_x = -26
+	pixel_x = -52
 	},
 /obj/structure/table,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /obj/item/storage/firstaid/regular{
-	pixel_x = -2;
-	pixel_y = -1
+	pixel_x = -4;
+	pixel_y = -2
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
@@ -501,7 +501,7 @@
 "yx" = (
 /obj/structure/table,
 /obj/item/clothing/suit/apron/surgical{
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/effect/turf_decal/tile/blue{
@@ -563,7 +563,7 @@
 "zU" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -579,7 +579,7 @@
 /area/shuttle/escape)
 "zX" = (
 /obj/machinery/status_display/evac{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -601,7 +601,7 @@
 "Ap" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom";
-	pixel_x = 26
+	pixel_x = 52
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
@@ -690,7 +690,7 @@
 	},
 /obj/effect/turf_decal/bot,
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 26
+	pixel_x = 52
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -750,13 +750,13 @@
 	},
 /obj/machinery/button/flasher{
 	id = "shuttle_flasher";
-	pixel_x = -24;
-	pixel_y = -6
+	pixel_x = -48;
+	pixel_y = -12
 	},
 /obj/machinery/flasher{
 	id = "shuttle_flasher";
-	pixel_x = -24;
-	pixel_y = 6
+	pixel_x = -48;
+	pixel_y = 12
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
@@ -840,7 +840,7 @@
 "UI" = (
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
-	pixel_x = 28
+	pixel_x = 56
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -873,16 +873,16 @@
 	dir = 8
 	},
 /obj/item/storage/firstaid/o2{
-	pixel_x = 3;
-	pixel_y = 4
+	pixel_x = 6;
+	pixel_y = 8
 	},
 /obj/item/storage/firstaid/toxin{
-	pixel_x = 1;
-	pixel_y = 3
+	pixel_x = 2;
+	pixel_y = 6
 	},
 /obj/item/storage/firstaid/fire{
-	pixel_x = -1;
-	pixel_y = 2
+	pixel_x = -2;
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)

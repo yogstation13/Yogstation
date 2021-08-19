@@ -46,17 +46,17 @@
 		switch(dir)
 			if(NORTH)
 				turret.pixel_x = 0
-				turret.pixel_y = 4
+				turret.pixel_y = 4*PIXEL_MULTIPLIER
 				turret.layer = ABOVE_MOB_LAYER
 			if(EAST)
-				turret.pixel_x = -12
-				turret.pixel_y = 4
+				turret.pixel_x = -12*PIXEL_MULTIPLIER
+				turret.pixel_y = 4*PIXEL_MULTIPLIER
 				turret.layer = OBJ_LAYER
 			if(SOUTH)
 				turret.pixel_x = 0
-				turret.pixel_y = 4
+				turret.pixel_y = 4*PIXEL_MULTIPLIER
 				turret.layer = OBJ_LAYER
 			if(WEST)
-				turret.pixel_x = 12
-				turret.pixel_y = 4
+				turret.pixel_x = 12*PIXEL_MULTIPLIER
+				turret.pixel_y = 4*PIXEL_MULTIPLIER
 				turret.layer = OBJ_LAYER

@@ -136,16 +136,16 @@
 	id = "QMLoaddoor";
 	layer = 4;
 	name = "Off Ramp Toggle";
-	pixel_x = -24;
-	pixel_y = 6;
+	pixel_x = -48;
+	pixel_y = 12;
 	req_access_txt = "31"
 	},
 /obj/machinery/button/door{
 	id = "QMLoaddoor2";
 	layer = 4;
 	name = "On Ramp Toggle";
-	pixel_x = -24;
-	pixel_y = -6;
+	pixel_x = -48;
+	pixel_y = -12;
 	req_access_txt = "31"
 	},
 /turf/open/floor/mineral/titanium/yellow,
@@ -159,7 +159,7 @@
 	dir = 4
 	},
 /obj/structure/sign/departments/cargo{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/supply)

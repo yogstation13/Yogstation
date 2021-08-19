@@ -52,8 +52,8 @@
 /obj/structure/sink{
 	dir = 8;
 	icon_state = "sink";
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
@@ -194,7 +194,7 @@
 /obj/structure/sink{
 	dir = 4;
 	icon_state = "sink";
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -206,7 +206,7 @@
 /area/ruin/powered)
 "aE" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 4
+	pixel_x = 8
 	},
 /turf/closed/wall/mineral/titanium,
 /area/ruin/powered)
@@ -966,8 +966,8 @@
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/item/reagent_containers/food/snacks/donut/jelly{
-	pixel_x = -6;
-	pixel_y = 5
+	pixel_x = -12;
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{

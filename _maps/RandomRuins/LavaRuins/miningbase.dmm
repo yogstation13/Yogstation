@@ -5,7 +5,7 @@
 "ai" = (
 /obj/machinery/light/small,
 /obj/structure/sign/departments/minsky/supply/mining{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/mine/eva_secondary)
@@ -16,7 +16,7 @@
 /obj/machinery/button/door{
 	id = "mining1";
 	name = "Mining Emergency Lockdown";
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
@@ -63,7 +63,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Mining Secondary EVA APC";
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -150,10 +150,10 @@
 /area/mine/eva_secondary)
 "bl" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/newscaster{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -164,7 +164,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Mining Storage APC";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -210,7 +210,7 @@
 /obj/item/clothing/mask/breath,
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
@@ -258,7 +258,7 @@
 	dir = 8
 	},
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
@@ -274,7 +274,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
@@ -374,7 +374,7 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/light_switch{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel,
 /area/mine/vacant)
@@ -405,7 +405,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Mining Vacant Room APC";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
@@ -536,7 +536,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/machinery/light{
 	dir = 4
@@ -594,7 +594,7 @@
 	dir = 4
 	},
 /obj/machinery/computer/cryopod{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -605,7 +605,7 @@
 	network = list("mine")
 	},
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -648,10 +648,10 @@
 /obj/structure/bed,
 /obj/item/bedsheet/green,
 /obj/machinery/newscaster{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/machinery/light_switch{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -678,7 +678,7 @@
 /area/mine/break_room)
 "fp" = (
 /obj/machinery/newscaster{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
@@ -713,7 +713,7 @@
 /area/mine/living_quarters)
 "fG" = (
 /obj/machinery/newscaster{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -736,7 +736,7 @@
 /area/mine/living_quarters)
 "fY" = (
 /obj/structure/reagent_dispensers/peppertank{
-	pixel_x = 30
+	pixel_x = 60
 	},
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -762,11 +762,11 @@
 /area/mine/vacant)
 "gm" = (
 /obj/structure/mirror{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /turf/open/floor/plasteel/freezer,
 /area/mine/living_quarters)
@@ -786,7 +786,7 @@
 /obj/machinery/light,
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
-	pixel_y = -26
+	pixel_y = -52
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -797,26 +797,26 @@
 /obj/item/reagent_containers/blood/random,
 /obj/item/reagent_containers/blood/APlus,
 /obj/item/reagent_containers/blood/BMinus{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /obj/item/reagent_containers/blood/random,
 /obj/item/reagent_containers/blood/random,
 /obj/item/reagent_containers/blood/OPlus{
-	pixel_x = -2;
-	pixel_y = -1
+	pixel_x = -4;
+	pixel_y = -2
 	},
 /obj/item/reagent_containers/blood/OMinus,
 /obj/item/reagent_containers/blood/BPlus{
-	pixel_x = 1;
-	pixel_y = 2
+	pixel_x = 2;
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/blood/AMinus,
 /obj/item/reagent_containers/blood,
 /obj/item/reagent_containers/blood,
 /obj/machinery/iv_drip,
 /obj/machinery/light_switch{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/effect/turf_decal/bot,
 /obj/item/tank/internals/anesthetic,
@@ -826,7 +826,7 @@
 "gV" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/vacant)
@@ -850,7 +850,7 @@
 /area/mine/living_quarters)
 "hq" = (
 /obj/structure/sign/departments/minsky/supply/mining{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -882,13 +882,13 @@
 	name = "emergency medical supplies"
 	},
 /obj/item/storage/firstaid/o2{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid/regular{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
@@ -907,7 +907,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Mining Production APC";
-	pixel_x = -25
+	pixel_x = -50
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -917,7 +917,7 @@
 "id" = (
 /obj/structure/chair/comfy/brown,
 /obj/machinery/firealarm{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -1013,10 +1013,10 @@
 	dir = 8
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/machinery/firealarm{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
@@ -1061,7 +1061,7 @@
 /obj/machinery/button/door{
 	id = "mining1";
 	name = "Mining Emergency Lockdown";
-	pixel_y = -24
+	pixel_y = -48
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
@@ -1084,7 +1084,7 @@
 /area/mine/eva)
 "jW" = (
 /obj/structure/sign/poster/random{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/structure/bodycontainer/morgue{
 	dir = 8
@@ -1147,7 +1147,7 @@
 "kT" = (
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/vacant)
@@ -1192,7 +1192,7 @@
 /obj/item/stack/packageWrap,
 /obj/item/hand_labeler,
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -1229,7 +1229,7 @@
 /area/mine/living_quarters)
 "lP" = (
 /obj/machinery/firealarm{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -1285,7 +1285,7 @@
 "mO" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/light,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -1324,7 +1324,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "Mining Break Room APC";
-	pixel_y = -23
+	pixel_y = -46
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/wood/corner{
@@ -1377,7 +1377,7 @@
 /obj/machinery/space_heater,
 /obj/structure/window/spawner/east,
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/light/small,
 /obj/effect/turf_decal/delivery,
@@ -1410,7 +1410,7 @@
 /area/mine/living_quarters)
 "pl" = (
 /obj/machinery/light_switch{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/effect/turf_decal/siding/wood/corner,
 /turf/open/floor/plasteel/cafeteria,
@@ -1448,7 +1448,7 @@
 "pM" = (
 /obj/structure/curtain,
 /obj/machinery/shower{
-	pixel_y = 22
+	pixel_y = 44
 	},
 /obj/item/soap/nanotrasen,
 /turf/open/floor/plasteel/freezer,
@@ -1571,7 +1571,7 @@
 /area/mine/vacant)
 "rv" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/vacant)
@@ -1597,7 +1597,7 @@
 /area/mine/infirmary)
 "sO" = (
 /obj/structure/sign/departments/minsky/medical/medical2{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
@@ -1720,7 +1720,7 @@
 "vd" = (
 /obj/machinery/airalarm/unlocked{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/machinery/atmospherics/pipe/simple/violet/visible,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1729,7 +1729,7 @@
 "vg" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,
 /obj/machinery/firealarm{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
@@ -1749,7 +1749,7 @@
 /area/mine/living_quarters)
 "vC" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 30
+	pixel_x = 60
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -1851,7 +1851,7 @@
 /obj/machinery/button/door{
 	id = "mining1";
 	name = "Mining Emergency Lockdown";
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -1899,7 +1899,7 @@
 	icon_state = "1-8"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/camera{
 	c_tag = "Secondary EVA";
@@ -2022,7 +2022,7 @@
 /area/mine/break_room)
 "Ax" = (
 /obj/structure/sign/poster/random{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel/freezer,
 /area/mine/living_quarters)
@@ -2070,7 +2070,7 @@
 	anchored = 1
 	},
 /obj/machinery/light_switch{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
@@ -2104,7 +2104,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/sign/poster/official/random{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -2123,7 +2123,7 @@
 /area/mine/living_quarters)
 "Br" = (
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -2133,7 +2133,7 @@
 "Bt" = (
 /obj/structure/rack,
 /obj/machinery/newscaster{
-	pixel_x = -30
+	pixel_x = -60
 	},
 /obj/item/restraints/handcuffs/cable/red,
 /turf/open/floor/plasteel,
@@ -2202,7 +2202,7 @@
 /area/mine/production)
 "BM" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -2360,7 +2360,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light_switch{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -2433,25 +2433,25 @@
 	},
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
-	pixel_y = -26
+	pixel_y = -52
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
 "EJ" = (
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
 "EQ" = (
 /obj/structure/table,
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -2464,13 +2464,13 @@
 	input_dir = 4
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
 "EW" = (
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -2492,7 +2492,7 @@
 	icon_state = "crateopen"
 	},
 /obj/machinery/light_switch{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
@@ -2505,7 +2505,7 @@
 /obj/structure/table,
 /obj/machinery/recharger,
 /obj/structure/sign/poster/official/random{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -2520,14 +2520,14 @@
 "FR" = (
 /obj/structure/table,
 /obj/structure/sign/poster/official/random{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
 "FS" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -2592,7 +2592,7 @@
 	},
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
-	pixel_x = 29
+	pixel_x = 58
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -2659,14 +2659,14 @@
 	},
 /obj/machinery/power/apc{
 	name = "Mining Infirmary APC";
-	pixel_y = -23
+	pixel_y = -46
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
-	pixel_x = 29
+	pixel_x = 58
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
@@ -2738,7 +2738,7 @@
 	},
 /obj/machinery/advanced_airlock_controller/lavaland{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -2775,7 +2775,7 @@
 /obj/machinery/computer/security/mining,
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
-	pixel_y = 20
+	pixel_y = 40
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -2878,7 +2878,7 @@
 "Lk" = (
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -2906,7 +2906,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light_switch{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -2944,7 +2944,7 @@
 /area/mine/eva)
 "Mi" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+	pixel_y = 60
 	},
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
@@ -2953,7 +2953,7 @@
 "Mq" = (
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -2977,7 +2977,7 @@
 "ML" = (
 /obj/structure/table,
 /obj/item/book/manual/wiki/surgery{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel/dark,
@@ -3002,7 +3002,7 @@
 "Np" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/machinery/light_switch{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
@@ -3048,7 +3048,7 @@
 /area/mine/break_room)
 "Or" = (
 /obj/machinery/newscaster{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel/freezer,
 /area/mine/living_quarters)
@@ -3138,7 +3138,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Mining EVA APC";
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8;
@@ -3177,7 +3177,7 @@
 	},
 /obj/machinery/portable_atmospherics/pump,
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
@@ -3297,7 +3297,7 @@
 	dir = 8
 	},
 /obj/structure/sign/warning/deathsposal{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/stripes/box,
 /turf/open/floor/plasteel,
@@ -3308,13 +3308,13 @@
 /obj/item/mop,
 /obj/structure/sink/kitchen{
 	dir = 8;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/break_room)
 "RH" = (
 /obj/machinery/light_switch{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	name = "Aux Waste Port"
@@ -3398,7 +3398,7 @@
 "SI" = (
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plating,
 /area/mine/storage)
@@ -3500,7 +3500,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Mining Engineering APC";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/machinery/camera{
 	c_tag = "Power and Telecommunications";
@@ -3508,22 +3508,22 @@
 	network = list("mine")
 	},
 /obj/machinery/light_switch{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/item/storage/box/lights/mixed,
 /obj/item/storage/toolbox/electrical{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -2
+	pixel_x = -4;
+	pixel_y = -4
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
 "UX" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -3539,7 +3539,7 @@
 	anchored = 1
 	},
 /obj/machinery/light_switch{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/white,
@@ -3547,7 +3547,7 @@
 "Vp" = (
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -3557,7 +3557,7 @@
 "Vu" = (
 /obj/structure/table,
 /obj/machinery/newscaster{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/book/random,
 /turf/open/floor/plasteel/white,
@@ -3590,7 +3590,7 @@
 	anchored = 1
 	},
 /obj/machinery/newscaster{
-	pixel_x = -30
+	pixel_x = -60
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
@@ -3624,7 +3624,7 @@
 "WT" = (
 /obj/machinery/power/apc{
 	name = "Mining Docking Foyer APC";
-	pixel_y = -23
+	pixel_y = -46
 	},
 /obj/structure/cable,
 /turf/open/floor/plasteel,
@@ -3637,7 +3637,7 @@
 /obj/machinery/button/door{
 	id = "mining1";
 	name = "Mining Emergency Lockdown";
-	pixel_y = -24
+	pixel_y = -48
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -3704,7 +3704,7 @@
 	},
 /obj/machinery/advanced_airlock_controller/lavaland{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -3718,7 +3718,7 @@
 	dir = 4
 	},
 /obj/structure/sign/poster/official/random{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/wood,
 /area/mine/break_room)

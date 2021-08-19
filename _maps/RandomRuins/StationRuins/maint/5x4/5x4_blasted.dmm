@@ -2,7 +2,7 @@
 "a" = (
 /obj/item/stack/sheet/mineral/plasma,
 /obj/structure/sign/warning/nosmoking/circle{
-	pixel_y = -26
+	pixel_y = -52
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -31,7 +31,7 @@
 /area/template_noop)
 "w" = (
 /obj/item/wallframe/firealarm{
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/plating{
 	icon_state = "panelscorched"

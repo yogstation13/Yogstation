@@ -56,8 +56,8 @@
 "k" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/o2{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/storage/firstaid/regular,
 /obj/item/crowbar,
@@ -188,15 +188,15 @@
 	dir = 4
 	},
 /obj/item/radio{
-	pixel_x = -6;
-	pixel_y = 6
+	pixel_x = -12;
+	pixel_y = 12
 	},
 /obj/item/radio{
-	pixel_x = 6;
-	pixel_y = 6
+	pixel_x = 12;
+	pixel_y = 12
 	},
 /obj/item/radio{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /obj/machinery/light{
 	dir = 8

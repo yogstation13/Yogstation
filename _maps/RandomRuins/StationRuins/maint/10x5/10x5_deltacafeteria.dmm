@@ -33,7 +33,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/structure/sign/poster/contraband/random{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -103,8 +103,8 @@
 	},
 /obj/machinery/microwave{
 	desc = "Cooks and boils stuff, somehow.";
-	pixel_x = -3;
-	pixel_y = 5
+	pixel_x = -6;
+	pixel_y = 10
 	},
 /obj/structure/table,
 /turf/open/floor/plasteel,
@@ -178,7 +178,7 @@
 /area/template_noop)
 "r" = (
 /obj/item/chair/stool/bar{
-	pixel_y = -8
+	pixel_y = -16
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/vomit/old,
@@ -252,7 +252,7 @@
 /obj/structure/sink/kitchen{
 	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
 	name = "old sink";
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/effect/decal/cleanable/dirt,
@@ -268,8 +268,8 @@
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/food/snacks/meat/slab/human{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/reagent_containers/food/snacks/meat/slab/human,
 /obj/effect/turf_decal/delivery,
@@ -296,11 +296,11 @@
 "H" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -8;
-	pixel_y = 5
+	pixel_x = -16;
+	pixel_y = 10
 	},
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -8
+	pixel_x = -16
 	},
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/firedoor/border_only{

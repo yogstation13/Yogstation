@@ -20,8 +20,8 @@
 		acid_level = min(acid_amt*acid_pwr, 12000) //capped so the acid effect doesn't last a half hour on the floor.
 
 	//handle APCs and newscasters and stuff nicely
-	pixel_x = target.pixel_x + rand(-4,4)
-	pixel_y = target.pixel_y + rand(-4,4)
+	pixel_x = target.pixel_x + rand(-4*PIXEL_MULTIPLIER,4*PIXEL_MULTIPLIER)
+	pixel_y = target.pixel_y + rand(-4*PIXEL_MULTIPLIER,4*PIXEL_MULTIPLIER)
 
 	START_PROCESSING(SSobj, src)
 

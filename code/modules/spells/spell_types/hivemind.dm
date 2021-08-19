@@ -892,8 +892,8 @@
 	name = "Telekinetic Field"
 	desc = "You think, therefore it is."
 	timeleft = 300
-	pixel_x = -32 //Centres the 96x96 sprite
-	pixel_y = -32
+	pixel_x = -32*PIXEL_MULTIPLIER //Centres the 96x96 sprite
+	pixel_y = -32*PIXEL_MULTIPLIER
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "hive_shield"
 	layer = ABOVE_ALL_MOB_LAYER

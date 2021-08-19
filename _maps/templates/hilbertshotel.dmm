@@ -37,7 +37,7 @@
 "i" = (
 /obj/structure/table/wood/fancy,
 /obj/structure/mirror{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -113,7 +113,7 @@
 /area/hilbertshotel)
 "v" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/indestructible/hotelwood,
 /area/hilbertshotel)
@@ -134,12 +134,12 @@
 /area/hilbertshotel)
 "A" = (
 /obj/structure/mirror{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /turf/open/indestructible/hoteltile,
 /area/hilbertshotel)
@@ -155,7 +155,7 @@
 /area/hilbertshotel)
 "D" = (
 /obj/machinery/light_switch{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/indestructible/hotelwood,
 /area/hilbertshotel)
@@ -175,7 +175,7 @@
 /area/hilbertshotel)
 "G" = (
 /obj/machinery/light_switch{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/indestructible/hotelwood,
 /area/hilbertshotel)

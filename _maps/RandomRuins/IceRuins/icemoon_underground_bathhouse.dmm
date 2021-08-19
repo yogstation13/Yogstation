@@ -10,7 +10,7 @@
 /area/ruin/powered/bathhouse)
 "c" = (
 /obj/machinery/shower{
-	pixel_y = 16
+	pixel_y = 32
 	},
 /obj/structure/curtain,
 /turf/open/floor/plasteel/white,
@@ -20,10 +20,10 @@
 /area/icemoon/underground/explored)
 "e" = (
 /obj/structure/mirror{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/structure/sink{
-	pixel_y = 20
+	pixel_y = 40
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/bathhouse)

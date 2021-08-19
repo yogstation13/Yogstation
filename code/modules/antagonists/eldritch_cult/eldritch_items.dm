@@ -72,8 +72,8 @@
 	item_state = "eldritch_blade"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
+	inhand_x_dimension = WORLD_ICON_SIZE*2
+	inhand_y_dimension = WORLD_ICON_SIZE*2
 	flags_1 = CONDUCT_1
 	sharpness = IS_SHARP
 	w_class = WEIGHT_CLASS_NORMAL

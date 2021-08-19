@@ -14,7 +14,7 @@
 "c" = (
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
@@ -45,50 +45,50 @@
 	dir = 8
 	},
 /obj/item/healthanalyzer{
-	pixel_y = 18
+	pixel_y = 36
 	},
 /obj/item/reagent_containers/glass/rag{
 	color = "#FFFF00";
 	desc = "I didn't know the sponge was supposed to be wet.";
 	name = "sponge";
-	pixel_x = -6;
-	pixel_y = 13
+	pixel_x = -12;
+	pixel_y = 26
 	},
 /obj/item/assembly/signaler{
 	code = 3;
 	frequency = 1399;
-	pixel_x = 11;
-	pixel_y = 8
+	pixel_x = 22;
+	pixel_y = 16
 	},
 /obj/item/paper{
 	info = "Connect the helmet to the electropack, connect the assembly to the chair in the transfer chamber, use the preset signaler to apply an electric shock.";
 	name = "Electric chair assembly instructions";
-	pixel_x = 1;
-	pixel_y = -3
+	pixel_x = 2;
+	pixel_y = -6
 	},
 /turf/open/floor/plasteel/white,
 /area/template_noop)
 "h" = (
 /obj/structure/table,
 /obj/item/storage/backpack/duffelbag/sec/surgery{
-	pixel_x = 8;
-	pixel_y = 2
+	pixel_x = 16;
+	pixel_y = 4
 	},
 /obj/item/razor{
-	pixel_x = -23;
-	pixel_y = -2
+	pixel_x = -46;
+	pixel_y = -4
 	},
 /obj/machinery/light,
 /obj/item/clothing/suit/straight_jacket{
-	pixel_x = -8;
-	pixel_y = -1
+	pixel_x = -16;
+	pixel_y = -2
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "i" = (
 /obj/machinery/flasher{
 	id = "executionflash";
-	pixel_y = 25
+	pixel_y = 50
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -111,11 +111,11 @@
 /obj/item/electropack{
 	code = 3;
 	frequency = 1399;
-	pixel_x = -3
+	pixel_x = -6
 	},
 /obj/item/clothing/head/helmet{
-	pixel_x = 8;
-	pixel_y = 1
+	pixel_x = 16;
+	pixel_y = 2
 	},
 /turf/open/floor/plasteel/white,
 /area/template_noop)
@@ -126,14 +126,14 @@
 /obj/machinery/button/door{
 	id = "executionfireblast";
 	name = "Transfer Area Lockdown";
-	pixel_x = 25;
-	pixel_y = -5;
+	pixel_x = 50;
+	pixel_y = -10;
 	req_access_txt = "2"
 	},
 /obj/machinery/button/flasher{
 	id = "executionflash";
-	pixel_x = 24;
-	pixel_y = 5
+	pixel_x = 48;
+	pixel_y = 10
 	},
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -178,16 +178,16 @@
 "s" = (
 /obj/structure/table/glass,
 /obj/item/reagent_containers/spray/cleaner{
-	pixel_x = -8;
-	pixel_y = 2
-	},
-/obj/item/storage/box/bodybags{
-	pixel_x = 6;
+	pixel_x = -16;
 	pixel_y = 4
 	},
+/obj/item/storage/box/bodybags{
+	pixel_x = 12;
+	pixel_y = 8
+	},
 /obj/item/pen{
-	pixel_x = 6;
-	pixel_y = 3
+	pixel_x = 12;
+	pixel_y = 6
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -251,7 +251,7 @@
 	dir = 1
 	},
 /obj/machinery/light_switch{
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/machinery/light{
@@ -265,7 +265,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -290,7 +290,7 @@
 	dir = 4
 	},
 /obj/structure/sink{
-	pixel_y = 20
+	pixel_y = 40
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -300,12 +300,12 @@
 "I" = (
 /obj/structure/table,
 /obj/item/folder/red{
-	pixel_x = 8;
-	pixel_y = 2
+	pixel_x = 16;
+	pixel_y = 4
 	},
 /obj/item/taperecorder{
-	pixel_x = -5;
-	pixel_y = 2
+	pixel_x = -10;
+	pixel_y = 4
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
@@ -342,7 +342,7 @@
 	areastring = "/area/security/execution/transfer";
 	dir = 4;
 	name = "Prisoner Transfer Centre";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red{
@@ -374,16 +374,16 @@
 "T" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp{
-	pixel_x = -4;
-	pixel_y = 5
+	pixel_x = -8;
+	pixel_y = 10
 	},
 /obj/item/restraints/handcuffs{
-	pixel_x = 11;
-	pixel_y = 6
+	pixel_x = 22;
+	pixel_y = 12
 	},
 /obj/item/assembly/flash/handheld{
-	pixel_x = -8;
-	pixel_y = -3
+	pixel_x = -16;
+	pixel_y = -6
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8

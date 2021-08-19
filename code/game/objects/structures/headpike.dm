@@ -25,7 +25,7 @@
 
 /obj/structure/headpike/Initialize()
 	. = ..()
-	pixel_x = rand(-8, 8)
+	pixel_x = rand(-8*PIXEL_MULTIPLIER, 8*PIXEL_MULTIPLIER)
 
 /obj/structure/headpike/update_icon()
 	..()

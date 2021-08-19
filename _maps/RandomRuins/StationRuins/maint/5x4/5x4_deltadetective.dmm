@@ -24,7 +24,7 @@
 	},
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/structure/sign/poster/official/do_not_question{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -93,8 +93,8 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/item/folder/red,
 /obj/item/folder/white{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /turf/open/floor/carpet/red,
 /area/template_noop)
@@ -111,7 +111,7 @@
 	dir = 4
 	},
 /obj/machinery/status_display/evac{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/machinery/light/small,
 /turf/open/floor/carpet/red,
@@ -135,8 +135,8 @@
 /area/template_noop)
 "X" = (
 /obj/item/storage/briefcase{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/storage/secure/briefcase,
 /obj/effect/decal/cleanable/dirt,

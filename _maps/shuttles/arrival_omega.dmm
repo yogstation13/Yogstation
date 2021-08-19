@@ -50,13 +50,13 @@
 	anchored = 1
 	},
 /obj/machinery/vending/wallmed{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/storage/toolbox/emergency{
-	pixel_y = -2
+	pixel_y = -4
 	},
 /obj/item/storage/toolbox/emergency{
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/item/clothing/suit/hazardvest,
 /obj/item/clothing/suit/hazardvest,
@@ -133,13 +133,13 @@
 	dir = 8
 	},
 /obj/structure/sign/poster/official/random{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "n" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -26
+	pixel_x = -52
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -152,7 +152,7 @@
 	dir = 1
 	},
 /obj/machinery/status_display/ai{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
@@ -173,7 +173,7 @@
 "s" = (
 /obj/structure/table/reinforced,
 /obj/item/radio/intercom{
-	pixel_x = -30
+	pixel_x = -60
 	},
 /obj/item/paper_bin,
 /obj/item/pen,
@@ -192,7 +192,7 @@
 	dir = 8
 	},
 /obj/machinery/status_display/evac{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
@@ -258,14 +258,14 @@
 "C" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/pill_bottle/dice{
-	pixel_x = -2;
-	pixel_y = 8
+	pixel_x = -4;
+	pixel_y = 16
 	},
 /obj/item/toy/cards/deck,
 /obj/machinery/requests_console{
 	department = "Arrival shuttle";
 	name = "Arrival shuttle requests console";
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)

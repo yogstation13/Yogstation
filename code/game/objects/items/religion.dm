@@ -283,8 +283,8 @@
 	alternate_worn_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
 	flags_1 = 0
 	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 50, "bomb" = 70, "bio" = 50, "rad" = 50, "fire" = 60, "acid" = 60) //religion protects you from disease and radiation, honk.
-	worn_x_dimension = 64
-	worn_y_dimension = 64
+	worn_x_dimension = WORLD_ICON_SIZE*2
+	worn_y_dimension = WORLD_ICON_SIZE*2
 
 /obj/item/clothing/head/helmet/plate/crusader/prophet/red
 	icon_state = "prophet-red"

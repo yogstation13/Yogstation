@@ -357,8 +357,8 @@
 /obj/structure/sign/directions/security{
 	dir = 1;
 	icon_state = "direction_sec";
-	pixel_x = 32;
-	pixel_y = 40
+	pixel_x = 64;
+	pixel_y = 80
 	},
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
@@ -412,8 +412,8 @@
 /obj/structure/sign/directions/medical{
 	dir = 4;
 	icon_state = "direction_med";
-	pixel_x = -32;
-	pixel_y = -24
+	pixel_x = -64;
+	pixel_y = -48
 	},
 /turf/open/floor/engine{
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
@@ -650,7 +650,7 @@
 "xz" = (
 /obj/structure/table/reinforced,
 /obj/item/melee/baton/loaded{
-	pixel_x = 2
+	pixel_x = 4
 	},
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
@@ -1203,7 +1203,7 @@
 /obj/machinery/shower{
 	desc = "A showerhead found in school science labs and medbays alike, used to quickly wash off any dangerous fluids covering a person.";
 	name = "emergency shower";
-	pixel_y = 15
+	pixel_y = 30
 	},
 /turf/open/floor/plasteel/white/lavaland,
 /area/ruin/unpowered)

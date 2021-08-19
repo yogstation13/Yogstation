@@ -90,7 +90,7 @@
 	resistance_flags = 3
 	},
 /obj/structure/shuttle/engine/propulsion{
-	pixel_y = -31
+	pixel_y = -62
 	},
 /turf/closed/indestructible/necropolis,
 /area/shuttle/escape/arena)
@@ -102,7 +102,7 @@
 /area/shuttle/escape/arena)
 "P" = (
 /obj/structure/shuttle/engine/propulsion{
-	pixel_y = -31
+	pixel_y = -62
 	},
 /obj/structure/shuttle/engine/heater{
 	resistance_flags = 3

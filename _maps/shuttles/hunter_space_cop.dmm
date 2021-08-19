@@ -139,7 +139,7 @@
 "r" = (
 /obj/machinery/button/door{
 	id = "Interpolship";
-	pixel_y = 26
+	pixel_y = 52
 	},
 /obj/effect/turf_decal/stripes{
 	dir = 8;

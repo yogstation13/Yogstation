@@ -4,7 +4,7 @@
 	icon_state = "2-8"
 	},
 /obj/structure/sign/departments/science{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -33,7 +33,7 @@
 "h" = (
 /obj/structure/closet/secure_closet/freezer/meat/open,
 /obj/structure/sign/departments/science{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/kitchen/knife,
 /turf/open/floor/plating,
@@ -164,7 +164,7 @@
 	icon_state = "0-8"
 	},
 /obj/structure/sign/warning{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/shieldwallgen/xenobiologyaccess,
 /turf/open/floor/plating,
@@ -210,7 +210,7 @@
 /area/template_noop)
 "P" = (
 /obj/structure/sign/warning{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/shieldwallgen/xenobiologyaccess,
 /turf/open/floor/plating,
@@ -226,7 +226,7 @@
 	icon_state = "0-4"
 	},
 /obj/structure/sign/warning{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/shieldwallgen/xenobiologyaccess,
 /obj/structure/cable/yellow,

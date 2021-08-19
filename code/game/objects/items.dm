@@ -15,11 +15,11 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	//Dimensions of the icon file used when this item is worn, eg: hats.dmi
 	//eg: 32x32 sprite, 64x64 sprite, etc.
 	//allows inhands/worn sprites to be of any size, but still centered on a mob properly
-	var/worn_x_dimension = 32
-	var/worn_y_dimension = 32
+	var/worn_x_dimension = WORLD_ICON_SIZE
+	var/worn_y_dimension = WORLD_ICON_SIZE
 	//Same as above but for inhands, uses the lefthand_ and righthand_ file vars
-	var/inhand_x_dimension = 32
-	var/inhand_y_dimension = 32
+	var/inhand_x_dimension = WORLD_ICON_SIZE
+	var/inhand_y_dimension = WORLD_ICON_SIZE
 
 	//Not on /clothing because for some reason any /obj/item can technically be "worn" with enough fuckery.
 	var/icon/alternate_worn_icon = null//If this is set, update_icons() will find on mob (WORN, NOT INHANDS) states in this file instead, primary use: badminnery/events
@@ -661,8 +661,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(!QDELETED(src))
 		var/turf/T = get_turf(src)
 		var/obj/effect/decal/cleanable/molten_object/MO = new(T)
-		MO.pixel_x = rand(-16,16)
-		MO.pixel_y = rand(-16,16)
+		MO.pixel_x = rand(-16*PIXEL_MULTIPLIER,16*PIXEL_MULTIPLIER)
+		MO.pixel_y = rand(-16*PIXEL_MULTIPLIER,16*PIXEL_MULTIPLIER)
 		MO.desc = "Looks like this was \an [src] some time ago."
 		..()
 

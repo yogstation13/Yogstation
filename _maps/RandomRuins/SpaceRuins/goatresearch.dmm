@@ -162,7 +162,7 @@
 /area/ruin/powered)
 "aK" = (
 /obj/structure/sign/departments/chemistry{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/powered)
@@ -228,7 +228,7 @@
 	dir = 1
 	},
 /obj/structure/sign/departments/medbay/alt{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
@@ -249,7 +249,7 @@
 /area/ruin/powered)
 "ba" = (
 /obj/structure/sign/warning/vacuum{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /mob/living/simple_animal/hostile/retaliate/goat/guard,
 /turf/open/floor/mineral/titanium,
@@ -282,7 +282,7 @@
 	},
 /obj/machinery/button{
 	id = "goatshutters";
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/ruin/powered)

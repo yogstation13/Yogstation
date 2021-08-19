@@ -7,7 +7,7 @@
 /obj/structure/table,
 /obj/machinery/microwave,
 /obj/structure/sign/poster/contraband/random{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -16,7 +16,7 @@
 /area/template_noop)
 "d" = (
 /obj/structure/sink/kitchen{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/plating,
 /area/template_noop)

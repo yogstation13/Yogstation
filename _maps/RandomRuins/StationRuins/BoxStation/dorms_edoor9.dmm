@@ -2,7 +2,7 @@
 "l" = (
 /obj/structure/bed,
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -58,7 +58,7 @@
 /area/template_noop)
 "R" = (
 /obj/structure/chair/stool{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,

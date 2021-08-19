@@ -7,7 +7,7 @@
 /obj/item/clothing/shoes/sandal,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/mirror{
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
@@ -36,7 +36,7 @@
 /obj/machinery/vending/autodrobe/all_access,
 /obj/structure/noticeboard{
 	dir = 4;
-	pixel_x = -27
+	pixel_x = -54
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -70,7 +70,7 @@
 	},
 /obj/item/clothing/shoes/jackboots,
 /obj/item/clothing/glasses/eyepatch{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table_frame/wood,

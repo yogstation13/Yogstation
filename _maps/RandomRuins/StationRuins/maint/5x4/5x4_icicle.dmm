@@ -9,8 +9,8 @@
 "o" = (
 /obj/item/clothing/suit/snowman,
 /obj/item/clothing/head/snowman{
-	pixel_x = -1;
-	pixel_y = 12
+	pixel_x = -2;
+	pixel_y = 24
 	},
 /turf/open/floor/plating/snowed/smoothed{
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";

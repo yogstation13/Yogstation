@@ -518,8 +518,8 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 	if(cable_colors[item_color])
 		item_color = cable_colors[item_color]
 
-	pixel_x = rand(-2,2)
-	pixel_y = rand(-2,2)
+	pixel_x = rand(-2*PIXEL_MULTIPLIER,2*PIXEL_MULTIPLIER)
+	pixel_y = rand(-2*PIXEL_MULTIPLIER,2*PIXEL_MULTIPLIER)
 	update_icon()
 	recipes = GLOB.cable_coil_recipes
 
@@ -814,8 +814,8 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 	. = ..()
 	if(!amount)
 		amount = rand(1,2)
-	pixel_x = rand(-2,2)
-	pixel_y = rand(-2,2)
+	pixel_x = rand(-2*PIXEL_MULTIPLIER,2*PIXEL_MULTIPLIER)
+	pixel_y = rand(-2*PIXEL_MULTIPLIER,2*PIXEL_MULTIPLIER)
 	update_icon()
 
 /obj/item/stack/cable_coil/cut/red

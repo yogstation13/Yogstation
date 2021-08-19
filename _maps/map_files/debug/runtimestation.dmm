@@ -62,11 +62,11 @@
 /area/space/nearstation)
 "ap" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -50
 	},
 /obj/structure/closet/secure_closet/engineering_electrical{
 	locked = 0
@@ -98,7 +98,7 @@
 	charge = 5e+006
 	},
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -112,7 +112,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Gravity Generator APC";
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -129,7 +129,7 @@
 "au" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/radiation/rad_area{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plating,
 /area/engine/gravity_generator)
@@ -290,7 +290,7 @@
 "aS" = (
 /obj/structure/table,
 /obj/item/flashlight{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/storage/toolbox/syndicate,
 /obj/item/stock_parts/cell/infinite,
@@ -476,7 +476,7 @@
 /area/engine/gravity_generator)
 "bs" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/rnd/destructive_analyzer,
 /turf/open/floor/plasteel,
@@ -538,11 +538,11 @@
 /area/science)
 "bG" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -50
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -555,8 +555,8 @@
 	},
 /obj/structure/table,
 /obj/item/uplink/debug{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /obj/item/uplink/nuclear/debug,
 /turf/open/floor/plasteel,
@@ -574,13 +574,13 @@
 "bJ" = (
 /obj/structure/table,
 /obj/item/card/id/ert{
-	pixel_x = 6;
-	pixel_y = -6
+	pixel_x = 12;
+	pixel_y = -12
 	},
 /obj/item/card/id/syndicate/nuke_leader,
 /obj/item/card/id/captains_spare{
-	pixel_x = -6;
-	pixel_y = 6
+	pixel_x = -12;
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel,
 /area/bridge)
@@ -620,7 +620,7 @@
 /area/hallway/primary/central)
 "bP" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
@@ -642,17 +642,17 @@
 "bT" = (
 /obj/machinery/gulag_item_reclaimer{
 	dir = 8;
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "bU" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -50
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -963,7 +963,7 @@
 /obj/structure/table,
 /obj/item/gun/magic/wand/resurrection/debug,
 /obj/item/gun/magic/wand/death/debug{
-	pixel_y = 10
+	pixel_y = 20
 	},
 /turf/open/floor/plasteel/white/corner{
 	dir = 1
@@ -972,7 +972,7 @@
 "cI" = (
 /obj/machinery/power/apc{
 	dir = 4;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -1041,12 +1041,12 @@
 /area/storage/primary)
 "cW" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/structure/cable,
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -50
 	},
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
@@ -1089,11 +1089,11 @@
 /area/storage/primary)
 "dd" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -50
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable{
@@ -1114,7 +1114,7 @@
 /area/security/brig)
 "dg" = (
 /obj/machinery/airalarm/directional/east{
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -1594,7 +1594,7 @@
 "eF" = (
 /obj/machinery/power/apc{
 	dir = 4;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -1603,7 +1603,7 @@
 /area/hallway/secondary/entry)
 "eG" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
@@ -1647,7 +1647,7 @@
 /area/hallway/secondary/entry)
 "eM" = (
 /obj/machinery/airalarm/directional/east{
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -1664,7 +1664,7 @@
 	},
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -50
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
@@ -1714,7 +1714,7 @@
 /area/quartermaster/storage)
 "eU" = (
 /obj/structure/sign/warning/vacuum/external{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel,
 /area/medical/medbay)
@@ -1791,15 +1791,15 @@
 	id = "cargounload";
 	layer = 4;
 	name = "Loading Doors";
-	pixel_x = 24;
-	pixel_y = 8
+	pixel_x = 48;
+	pixel_y = 16
 	},
 /obj/machinery/button/door{
 	id = "cargoload";
 	layer = 4;
 	name = "Loading Doors";
-	pixel_x = 24;
-	pixel_y = -8
+	pixel_x = 48;
+	pixel_y = -16
 	},
 /obj/machinery/computer/cargo{
 	dir = 8
@@ -2097,16 +2097,16 @@
 "fM" = (
 /obj/structure/sign/directions/supply{
 	dir = 4;
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/structure/sign/directions/engineering{
 	dir = 1;
-	pixel_x = 32;
-	pixel_y = 7
+	pixel_x = 64;
+	pixel_y = 14
 	},
 /obj/structure/sign/directions/evac{
-	pixel_x = 32;
-	pixel_y = -7
+	pixel_x = 64;
+	pixel_y = -14
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -2128,14 +2128,14 @@
 	dir = 1
 	},
 /obj/machinery/keycard_auth{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "fQ" = (
 /obj/machinery/computer/communications,
 /obj/machinery/status_display/evac{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
@@ -2150,7 +2150,7 @@
 "fS" = (
 /obj/machinery/power/apc{
 	dir = 1;
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -2169,7 +2169,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
@@ -2197,16 +2197,16 @@
 "fX" = (
 /obj/structure/sign/directions/supply{
 	dir = 4;
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/structure/sign/directions/engineering{
 	dir = 1;
-	pixel_x = -32;
-	pixel_y = 7
+	pixel_x = -64;
+	pixel_y = 14
 	},
 /obj/structure/sign/directions/evac{
-	pixel_x = -32;
-	pixel_y = -7
+	pixel_x = -64;
+	pixel_y = -14
 	},
 /turf/open/floor/plating,
 /area/storage/primary)
@@ -2256,16 +2256,16 @@
 "gg" = (
 /obj/structure/sign/directions/supply{
 	dir = 4;
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/structure/sign/directions/engineering{
 	dir = 1;
-	pixel_x = 32;
-	pixel_y = 7
+	pixel_x = 64;
+	pixel_y = 14
 	},
 /obj/structure/sign/directions/evac{
-	pixel_x = 32;
-	pixel_y = -7
+	pixel_x = 64;
+	pixel_y = -14
 	},
 /turf/open/floor/plating,
 /area/storage/primary)
@@ -2284,10 +2284,10 @@
 	},
 /obj/machinery/power/apc{
 	dir = 1;
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
@@ -2413,7 +2413,7 @@
 /obj/structure/table,
 /obj/item/card/id/captains_spare,
 /obj/machinery/keycard_auth{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
@@ -2507,7 +2507,7 @@
 "hD" = (
 /obj/machinery/power/apc{
 	dir = 1;
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -2522,7 +2522,7 @@
 	dir = 4
 	},
 /obj/machinery/light_switch{
-	pixel_x = -20
+	pixel_x = -40
 	},
 /turf/open/floor/plasteel,
 /area/construction)
@@ -2562,7 +2562,7 @@
 	},
 /obj/machinery/power/apc{
 	dir = 1;
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -2597,7 +2597,7 @@
 /area/storage/primary)
 "ou" = (
 /obj/machinery/airalarm/directional/west{
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
@@ -2687,13 +2687,13 @@
 	dir = 4
 	},
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "zo" = (
 /obj/machinery/power/apc/auto_name/south{
-	pixel_y = -23
+	pixel_y = -46
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -2756,7 +2756,7 @@
 	dir = 8
 	},
 /obj/machinery/light_switch{
-	pixel_x = 20
+	pixel_x = 40
 	},
 /turf/open/floor/plasteel,
 /area/construction)
@@ -2785,7 +2785,7 @@
 	},
 /obj/structure/table,
 /obj/item/screwdriver{
-	pixel_y = 10
+	pixel_y = 20
 	},
 /turf/open/floor/plasteel,
 /area/medical/chemistry)
@@ -2879,7 +2879,7 @@
 /area/maintenance/aft)
 "TT" = (
 /obj/structure/tank_dispenser{
-	pixel_x = -1
+	pixel_x = -2
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -2898,16 +2898,16 @@
 /obj/structure/table,
 /obj/item/transfer_valve,
 /obj/item/transfer_valve{
-	pixel_x = 5;
-	pixel_y = -1
+	pixel_x = 10;
+	pixel_y = -2
 	},
 /obj/item/transfer_valve{
-	pixel_x = -6;
-	pixel_y = 3
+	pixel_x = -12;
+	pixel_y = 6
 	},
 /obj/item/transfer_valve{
-	pixel_x = 6;
-	pixel_y = 5
+	pixel_x = 12;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -2961,7 +2961,7 @@
 "Xp" = (
 /obj/machinery/light,
 /obj/structure/tank_dispenser{
-	pixel_x = -1
+	pixel_x = -2
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -2993,7 +2993,7 @@
 	},
 /obj/machinery/rnd/production/circuit_imprinter/department,
 /obj/machinery/power/apc/auto_name/north{
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable{
 	icon_state = "0-8"

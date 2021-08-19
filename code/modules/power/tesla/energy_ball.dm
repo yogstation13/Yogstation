@@ -3,8 +3,8 @@
 	desc = "An energy ball."
 	icon = 'icons/obj/tesla_engine/energy_ball.dmi'
 	icon_state = "energy_ball"
-	pixel_x = -32
-	pixel_y = -32
+	pixel_x = -32*PIXEL_MULTIPLIER
+	pixel_y = -32*PIXEL_MULTIPLIER
 	current_size = STAGE_TWO
 	move_self = 1
 	grav_pull = 0
@@ -61,8 +61,8 @@
 
 		tesla_zap(src, zap_range, TESLA_DEFAULT_POWER)
 
-		pixel_x = -32
-		pixel_y = -32
+		pixel_x = -32*PIXEL_MULTIPLIER
+		pixel_y = -32*PIXEL_MULTIPLIER
 
 		var/list/RG = range(1, src)
 		for(var/obj/singularity/energy_ball/E in RG)
@@ -140,7 +140,7 @@
 	var/icon/I = icon(icon,icon_state,dir)
 
 	var/orbitsize = (I.Width() + I.Height()) * pick(0.4, 0.5, 0.6, 0.7, 0.8)
-	orbitsize -= (orbitsize / world.icon_size) * (world.icon_size * 0.25)
+	orbitsize -= (orbitsize / WORLD_ICON_SIZE) * (WORLD_ICON_SIZE * 0.25)
 
 	EB.orbit(src, orbitsize, pick(FALSE, TRUE), rand(10, 25), pick(3, 4, 5, 6, 36))
 

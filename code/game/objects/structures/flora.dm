@@ -8,7 +8,7 @@
 	name = "tree"
 	desc = "A large tree."
 	density = TRUE
-	pixel_x = -16
+	pixel_x = -16*PIXEL_MULTIPLIER
 	layer = FLY_LAYER
 	var/log_amount = 10
 
@@ -38,7 +38,7 @@
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "tree_stump"
 	density = FALSE
-	pixel_x = -16
+	pixel_x = -16*PIXEL_MULTIPLIER
 
 /obj/structure/flora/tree/pine
 	name = "pine tree"
@@ -133,8 +133,8 @@
 	icon_state = "tree"
 	desc = "It's seriously hampering your view of the jungle."
 	icon = 'icons/obj/flora/jungletrees.dmi'
-	pixel_x = -48
-	pixel_y = -20
+	pixel_x = -48*PIXEL_MULTIPLIER
+	pixel_y = -20*PIXEL_MULTIPLIER
 
 /obj/structure/flora/tree/jungle/Initialize()
 	icon_state = "[icon_state][rand(1, 6)]"
@@ -142,7 +142,7 @@
 
 /obj/structure/flora/tree/jungle/small
 	pixel_y = 0
-	pixel_x = -32
+	pixel_x = -32*PIXEL_MULTIPLIER
 	icon = 'icons/obj/flora/jungletreesmall.dmi'
 
 //grass
@@ -448,8 +448,8 @@
 /obj/structure/flora/junglebush/large
 	icon_state = "bush"
 	icon = 'icons/obj/flora/largejungleflora.dmi'
-	pixel_x = -16
-	pixel_y = -12
+	pixel_x = -16*PIXEL_MULTIPLIER
+	pixel_y = -12*PIXEL_MULTIPLIER
 	layer = ABOVE_ALL_MOB_LAYER
 
 /obj/structure/flora/rock/pile/largejungle
@@ -457,8 +457,8 @@
 	icon_state = "rocks"
 	icon = 'icons/obj/flora/largejungleflora.dmi'
 	density = FALSE
-	pixel_x = -16
-	pixel_y = -16
+	pixel_x = -16*PIXEL_MULTIPLIER
+	pixel_y = -16*PIXEL_MULTIPLIER
 
 /obj/structure/flora/rock/pile/largejungle/Initialize()
 	. = ..()

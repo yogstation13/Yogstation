@@ -278,8 +278,8 @@
 "X" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 6;
-	pixel_y = -5
+	pixel_x = 12;
+	pixel_y = -10
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/space/has_grav/whiteship/box)

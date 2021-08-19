@@ -88,7 +88,7 @@
 /obj/structure/table/survival_pod,
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/brute{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /turf/open/floor/pod,
 /area/survivalpod)
@@ -110,24 +110,24 @@
 	},
 /obj/structure/table/wood/fancy/black,
 /obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 7;
-	pixel_y = 2
+	pixel_x = 14;
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/food/drinks/bottle/wine{
-	pixel_x = -6;
-	pixel_y = 10
+	pixel_x = -12;
+	pixel_y = 20
 	},
 /turf/open/floor/carpet/black,
 /area/survivalpod)
 "t" = (
 /obj/machinery/microwave{
-	pixel_y = -2
+	pixel_y = -4
 	},
 /obj/structure/window/reinforced/survival_pod{
 	dir = 1
 	},
 /obj/structure/table/wood/fancy/black{
-	pixel_y = -9
+	pixel_y = -18
 	},
 /turf/open/floor/carpet/black,
 /area/survivalpod)
@@ -145,7 +145,7 @@
 /obj/structure/displaycase{
 	alert = 0;
 	desc = "A display case containing an expensive forgery, probably.";
-	pixel_y = -4;
+	pixel_y = -8;
 	req_access_txt = "48";
 	start_showpiece_type = /obj/item/fakeartefact
 	},
@@ -161,8 +161,8 @@
 "x" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 7;
-	pixel_y = 2
+	pixel_x = 14;
+	pixel_y = 4
 	},
 /obj/effect/spawner/lootdrop/three_course_meal,
 /turf/open/floor/carpet/black,
@@ -171,7 +171,7 @@
 /obj/structure/sink/kitchen{
 	dir = 4;
 	icon_state = "sink_alt";
-	pixel_x = -13
+	pixel_x = -26
 	},
 /turf/open/floor/carpet/black,
 /area/survivalpod)

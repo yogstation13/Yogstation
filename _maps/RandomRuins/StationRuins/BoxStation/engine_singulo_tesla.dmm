@@ -51,7 +51,7 @@
 /obj/structure/table,
 /obj/item/clothing/gloves/color/yellow,
 /obj/item/storage/toolbox/electrical{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -203,15 +203,15 @@
 "aD" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/flashlight{
-	pixel_x = 1;
-	pixel_y = 5
+	pixel_x = 2;
+	pixel_y = 10
 	},
 /obj/item/flashlight{
-	pixel_x = 1;
-	pixel_y = 5
+	pixel_x = 2;
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
@@ -480,7 +480,7 @@
 	dir = 4;
 	id = "engsm";
 	name = "Radiation Shutters Control";
-	pixel_x = 24;
+	pixel_x = 48;
 	pixel_y = 0;
 	req_access_txt = "10"
 	},
@@ -544,7 +544,7 @@
 /area/engine/engineering)
 "ca" = (
 /obj/item/tank/internals/emergency_oxygen/engi{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/clothing/gloves/color/black,
 /obj/item/clothing/glasses/meson/engine,
@@ -581,7 +581,7 @@
 	dir = 4;
 	id = "engsm";
 	name = "Radiation Shutters Control";
-	pixel_x = 24;
+	pixel_x = 48;
 	pixel_y = 0;
 	req_access_txt = "10"
 	},
@@ -596,7 +596,7 @@
 	dir = 8;
 	id = "engsm";
 	name = "Radiation Shutters Control";
-	pixel_x = -24;
+	pixel_x = -48;
 	pixel_y = 0;
 	req_access_txt = "10"
 	},
@@ -718,7 +718,7 @@
 	dir = 8;
 	id = "engsm";
 	name = "Radiation Shutters Control";
-	pixel_x = -24;
+	pixel_x = -48;
 	pixel_y = 0;
 	req_access_txt = "10"
 	},
@@ -841,7 +841,7 @@
 	},
 /obj/machinery/advanced_airlock_controller{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -892,7 +892,7 @@
 	},
 /obj/machinery/advanced_airlock_controller{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -920,7 +920,7 @@
 /area/space/nearstation)
 "Ma" = (
 /obj/structure/sign/warning/vacuum/external{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1006,7 +1006,7 @@
 /area/engine/engineering)
 "Vm" = (
 /obj/structure/sign/warning/vacuum/external{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/structure/cable{
 	icon_state = "1-2"

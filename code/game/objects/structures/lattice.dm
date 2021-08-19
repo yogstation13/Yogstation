@@ -84,8 +84,8 @@
 /obj/structure/lattice/clockwork/ratvar_act()
 	if(ISODD(x+y))
 		icon = 'icons/obj/smooth_structures/lattice_clockwork_large.dmi'
-		pixel_x = -9
-		pixel_y = -9
+		pixel_x = -9*PIXEL_MULTIPLIER
+		pixel_y = -9*PIXEL_MULTIPLIER
 	else
 		icon = 'icons/obj/smooth_structures/lattice_clockwork.dmi'
 		pixel_x = 0
@@ -141,8 +141,8 @@
 /obj/structure/lattice/catwalk/clockwork/ratvar_act()
 	if(ISODD(x+y))
 		icon = 'icons/obj/smooth_structures/catwalk_clockwork_large.dmi'
-		pixel_x = -9
-		pixel_y = -9
+		pixel_x = -9*PIXEL_MULTIPLIER
+		pixel_y = -9*PIXEL_MULTIPLIER
 	else
 		icon = 'icons/obj/smooth_structures/catwalk_clockwork.dmi'
 		pixel_x = 0

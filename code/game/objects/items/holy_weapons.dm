@@ -137,8 +137,8 @@
 	alternate_worn_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
 	icon_state = "cage"
 	item_state = "cage"
-	worn_x_dimension = 64
-	worn_y_dimension = 64
+	worn_x_dimension = WORLD_ICON_SIZE*2
+	worn_y_dimension = WORLD_ICON_SIZE*2
 	dynamic_hair_suffix = ""
 
 /obj/item/storage/box/holy/sentinel

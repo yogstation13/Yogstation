@@ -66,8 +66,8 @@
 
 
 	for(var/atom/A in sorted)
-		var/xo = (A.x - center.x) * world.icon_size + A.pixel_x + xcomp
-		var/yo = (A.y - center.y) * world.icon_size + A.pixel_y + ycomp
+		var/xo = (A.x - center.x) * WORLD_ICON_SIZE + A.pixel_x + xcomp
+		var/yo = (A.y - center.y) * WORLD_ICON_SIZE + A.pixel_y + ycomp
 		if(ismovable(A))
 			var/atom/movable/AM = A
 			xo += AM.step_x

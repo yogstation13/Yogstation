@@ -93,10 +93,10 @@
 "t" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/customizable/sandwich{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/item/reagent_containers/food/snacks/customizable/sandwich{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/item/reagent_containers/food/snacks/cheesewedge,
 /turf/open/floor/plating/asteroid/basalt/lava,

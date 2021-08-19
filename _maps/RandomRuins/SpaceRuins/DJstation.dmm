@@ -44,8 +44,8 @@
 /area/ruin/space/djstation)
 "al" = (
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
+	pixel_x = -4;
+	pixel_y = -2
 	},
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
@@ -75,7 +75,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "Worn-out APC";
-	pixel_y = -23
+	pixel_y = -46
 	},
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
@@ -85,7 +85,7 @@
 	},
 /obj/item/storage/box/lights/mixed,
 /obj/structure/sign/warning/electricshock{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
@@ -122,13 +122,13 @@
 /area/ruin/space/djstation)
 "ax" = (
 /obj/machinery/light_switch{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)
 "ay" = (
 /obj/machinery/newscaster{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)
@@ -154,7 +154,7 @@
 /area/ruin/space/djstation)
 "aC" = (
 /obj/machinery/light_switch{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/djstation)
@@ -171,7 +171,7 @@
 "aF" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -330,30 +330,30 @@
 "be" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/djstation)
 "bf" = (
 /obj/structure/toilet{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/djstation)
 "bg" = (
 /obj/structure/table,
 /obj/item/paper_bin{
-	pixel_x = 1;
-	pixel_y = 9
+	pixel_x = 2;
+	pixel_y = 18
 	},
 /obj/item/pen,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)
 "bh" = (
 /obj/structure/sign/warning/vacuum/external{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)

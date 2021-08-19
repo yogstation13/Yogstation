@@ -197,16 +197,16 @@
 	var/matrix/mat_to = new()
 	mat_to.Turn(angle)
 	transform = mat_from
-	pixel_x = last_offset_x*32
-	pixel_y = last_offset_y*32
-	animate(src, transform=mat_to, pixel_x = offset_x*32, pixel_y = offset_y*32, time = time*10, flags=ANIMATION_END_NOW)
+	pixel_x = last_offset_x*WORLD_ICON_SIZE
+	pixel_y = last_offset_y*WORLD_ICON_SIZE
+	animate(src, transform=mat_to, pixel_x = offset_x*WORLD_ICON_SIZE, pixel_y = offset_y*WORLD_ICON_SIZE, time = time*10, flags=ANIMATION_END_NOW)
 	for(var/mob/living/M in contents)
 		var/client/C = M.client
 		if(!C)
 			continue
-		C.pixel_x = last_offset_x*32
-		C.pixel_y = last_offset_y*32
-		animate(C, pixel_x = offset_x*32, pixel_y = offset_y*32, time = time*10, flags=ANIMATION_END_NOW)
+		C.pixel_x = last_offset_x*WORLD_ICON_SIZE
+		C.pixel_y = last_offset_y*WORLD_ICON_SIZE
+		animate(C, pixel_x = offset_x*WORLD_ICON_SIZE, pixel_y = offset_y*WORLD_ICON_SIZE, time = time*10, flags=ANIMATION_END_NOW)
 	user_thrust_dir = 0
 	update_icon()
 

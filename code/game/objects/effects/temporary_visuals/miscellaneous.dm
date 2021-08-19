@@ -21,27 +21,27 @@
 	var/target_pixel_y = 0
 	switch(set_dir)
 		if(NORTH)
-			target_pixel_y = 16
+			target_pixel_y = 16*PIXEL_MULTIPLIER
 		if(SOUTH)
-			target_pixel_y = -16
+			target_pixel_y = -16*PIXEL_MULTIPLIER
 			layer = ABOVE_MOB_LAYER
 		if(EAST)
-			target_pixel_x = 16
+			target_pixel_x = 16*PIXEL_MULTIPLIER
 		if(WEST)
-			target_pixel_x = -16
+			target_pixel_x = -16*PIXEL_MULTIPLIER
 		if(NORTHEAST)
-			target_pixel_x = 16
-			target_pixel_y = 16
+			target_pixel_x = 16*PIXEL_MULTIPLIER
+			target_pixel_y = 16*PIXEL_MULTIPLIER
 		if(NORTHWEST)
-			target_pixel_x = -16
-			target_pixel_y = 16
+			target_pixel_x = -16*PIXEL_MULTIPLIER
+			target_pixel_y = 16*PIXEL_MULTIPLIER
 		if(SOUTHEAST)
-			target_pixel_x = 16
-			target_pixel_y = -16
+			target_pixel_x = 16*PIXEL_MULTIPLIER
+			target_pixel_y = -16*PIXEL_MULTIPLIER
 			layer = ABOVE_MOB_LAYER
 		if(SOUTHWEST)
-			target_pixel_x = -16
-			target_pixel_y = -16
+			target_pixel_x = -16*PIXEL_MULTIPLIER
+			target_pixel_y = -16*PIXEL_MULTIPLIER
 			layer = ABOVE_MOB_LAYER
 	animate(src, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = duration)
 
@@ -67,14 +67,14 @@
 	switch(newdir)
 		if(NORTH)
 			layer = BELOW_MOB_LAYER
-			pixel_x = rand(-3,3)
-			pixel_y = rand(4,6)
+			pixel_x = rand(-3*PIXEL_MULTIPLIER,3*PIXEL_MULTIPLIER)
+			pixel_y = rand(4*PIXEL_MULTIPLIER,6*PIXEL_MULTIPLIER)
 		if(SOUTH)
-			pixel_x = rand(-3,3)
-			pixel_y = rand(-1,1)
+			pixel_x = rand(-3*PIXEL_MULTIPLIER,3*PIXEL_MULTIPLIER)
+			pixel_y = rand(-1*PIXEL_MULTIPLIER,1*PIXEL_MULTIPLIER)
 		else
-			pixel_x = rand(-1,1)
-			pixel_y = rand(-1,1)
+			pixel_x = rand(-1*PIXEL_MULTIPLIER,1*PIXEL_MULTIPLIER)
+			pixel_y = rand(-1*PIXEL_MULTIPLIER,1*PIXEL_MULTIPLIER)
 	..()
 
 /obj/effect/temp_visual/dir_setting/firing_effect/energy
@@ -133,8 +133,8 @@
 /obj/effect/temp_visual/dir_setting/curse/grasp_portal
 	icon = 'icons/effects/64x64.dmi'
 	layer = LARGE_MOB_LAYER
-	pixel_y = -16
-	pixel_x = -16
+	pixel_y = -WORLD_ICON_SIZE/2
+	pixel_x = -WORLD_ICON_SIZE/2
 	duration = 32
 	fades = FALSE
 
@@ -309,8 +309,8 @@
 	if(set_color)
 		add_atom_colour(set_color, FIXED_COLOUR_PRIORITY)
 	. = ..()
-	pixel_x = rand(-12, 12)
-	pixel_y = rand(-9, 0)
+	pixel_x = rand(-12*PIXEL_MULTIPLIER, 12*PIXEL_MULTIPLIER)
+	pixel_y = rand(-9*PIXEL_MULTIPLIER, 0)
 
 /obj/effect/temp_visual/kinetic_blast
 	name = "kinetic explosion"
@@ -323,8 +323,8 @@
 	name = "explosion"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "explosion"
-	pixel_x = -32
-	pixel_y = -32
+	pixel_x = -WORLD_ICON_SIZE
+	pixel_y = -WORLD_ICON_SIZE
 	duration = 8
 
 /obj/effect/temp_visual/explosion/fast
@@ -384,8 +384,8 @@
 
 /obj/effect/temp_visual/heart/Initialize(mapload)
 	. = ..()
-	pixel_x = rand(-4,4)
-	pixel_y = rand(-4,4)
+	pixel_x = rand(-4*PIXEL_MULTIPLIER,4*PIXEL_MULTIPLIER)
+	pixel_y = rand(-4*PIXEL_MULTIPLIER,4*PIXEL_MULTIPLIER)
 	animate(src, pixel_y = pixel_y + 32, alpha = 0, time = 25)
 
 /obj/effect/temp_visual/love_heart
@@ -396,8 +396,8 @@
 
 /obj/effect/temp_visual/love_heart/Initialize(mapload)
 	. = ..()
-	pixel_x = rand(-10,10)
-	pixel_y = rand(-10,10)
+	pixel_x = rand(-10*PIXEL_MULTIPLIER,10*PIXEL_MULTIPLIER)
+	pixel_y = rand(-10*PIXEL_MULTIPLIER,10*PIXEL_MULTIPLIER)
 	animate(src, pixel_y = pixel_y + 32, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/love_heart/invisible
@@ -424,7 +424,7 @@
 	if(size_calc_target)
 		layer = size_calc_target.layer + 0.01
 		var/icon/I = icon(size_calc_target.icon, size_calc_target.icon_state, size_calc_target.dir)
-		size_matrix = matrix() * (I.Height()/world.icon_size)
+		size_matrix = matrix() * (I.Height()/WORLD_ICON_SIZE)
 		transform = size_matrix //scale the bleed overlay's size based on the target's icon size
 	var/matrix/M = transform
 	if(shrink)

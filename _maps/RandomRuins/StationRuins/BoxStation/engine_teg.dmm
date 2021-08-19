@@ -17,7 +17,7 @@
 /obj/structure/table,
 /obj/item/clothing/gloves/color/yellow,
 /obj/item/storage/toolbox/electrical{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -99,13 +99,13 @@
 "bq" = (
 /obj/structure/rack,
 /obj/item/clothing/mask/gas{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/mask/gas{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -221,14 +221,14 @@
 /obj/structure/window/plasma/reinforced,
 /obj/machinery/button/ignition{
 	id = "teghotburn";
-	pixel_x = -26;
-	pixel_y = -2
+	pixel_x = -52;
+	pixel_y = -4
 	},
 /obj/machinery/button/door{
 	id = "teghot";
 	name = "Hot Chamber Vent";
-	pixel_x = -26;
-	pixel_y = 8;
+	pixel_x = -52;
+	pixel_y = 16;
 	req_access_txt = "10"
 	},
 /mob/living/simple_animal/opossum/poppy,
@@ -257,7 +257,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /obj/machinery/light{
 	dir = 8
@@ -493,18 +493,18 @@
 "oi" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/flashlight{
-	pixel_x = 1;
-	pixel_y = 5
+	pixel_x = 2;
+	pixel_y = 10
 	},
 /obj/item/flashlight{
-	pixel_x = 1;
-	pixel_y = 5
+	pixel_x = 2;
+	pixel_y = 10
 	},
 /obj/structure/sign/warning/vacuum/external{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -517,7 +517,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible,
 /turf/open/floor/engine,
@@ -556,7 +556,7 @@
 /obj/structure/closet/emcloset/anchored,
 /obj/machinery/advanced_airlock_controller{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -717,7 +717,7 @@
 	dir = 4
 	},
 /obj/structure/sign/poster/official/build{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 8
@@ -774,12 +774,12 @@
 /obj/structure/window/plasma/reinforced,
 /obj/structure/table,
 /obj/item/paper_bin{
-	pixel_x = -7;
-	pixel_y = 5
+	pixel_x = -14;
+	pixel_y = 10
 	},
 /obj/item/pen{
-	pixel_x = -8;
-	pixel_y = 3
+	pixel_x = -16;
+	pixel_y = 6
 	},
 /obj/machinery/door/firedoor/window,
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
@@ -814,7 +814,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 8
@@ -856,7 +856,7 @@
 /obj/machinery/button/door{
 	id = "teghot";
 	name = "Hot Chamber Vent";
-	pixel_x = 26;
+	pixel_x = 52;
 	req_access_txt = "10"
 	},
 /obj/structure/lattice/catwalk,
@@ -895,7 +895,7 @@
 	network = list("ss13","engine")
 	},
 /obj/machinery/status_display/ai{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -930,7 +930,7 @@
 	c_tag = "Engineering TEG Aft";
 	dir = 1;
 	network = list("ss13","engine");
-	pixel_x = 23
+	pixel_x = 46
 	},
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
 	dir = 4
@@ -970,14 +970,14 @@
 /obj/machinery/camera{
 	c_tag = "Engineering TEG Fore";
 	network = list("ss13","engine");
-	pixel_x = 23
+	pixel_x = 46
 	},
 /obj/item/pipe_dispenser,
 /obj/item/pipe_dispenser{
-	pixel_y = -9
+	pixel_y = -18
 	},
 /obj/item/pipe_dispenser{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1167,7 +1167,7 @@
 /obj/structure/closet/emcloset/anchored,
 /obj/machinery/advanced_airlock_controller{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/box,
 /turf/open/floor/plating,
@@ -1191,11 +1191,11 @@
 /obj/item/clothing/gloves/color/black,
 /obj/item/clothing/glasses/meson/engine,
 /obj/item/tank/internals/emergency_oxygen/engi{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/holosign_creator/atmos,
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1278,7 +1278,7 @@
 /area/engine/engineering)
 "LZ" = (
 /obj/structure/sign/warning/fire{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/structure/lattice/catwalk,
 /turf/template_noop,
@@ -1318,7 +1318,7 @@
 /area/engine/engineering)
 "Nc" = (
 /obj/structure/sign/warning/vacuum/external{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark/side{
@@ -1394,7 +1394,7 @@
 /area/engine/engineering)
 "OX" = (
 /obj/machinery/status_display/ai{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -1470,7 +1470,7 @@
 "Sg" = (
 /obj/structure/table/reinforced,
 /obj/structure/sign/warning/enginesafety{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -1590,7 +1590,7 @@
 	dir = 1
 	},
 /obj/structure/sign/warning/fire{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/stack/sheet/metal/twenty,
 /obj/item/stack/cable_coil,
@@ -1600,7 +1600,7 @@
 "Uu" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/sign/warning/fire{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine,
@@ -1631,7 +1631,7 @@
 /area/engine/engineering)
 "Vd" = (
 /obj/structure/sign/warning/vacuum/external{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -1654,7 +1654,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/status_display/ai{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/atmospherics/pipe/manifold/purple/visible,
 /turf/open/floor/engine,
@@ -1665,7 +1665,7 @@
 	dir = 4
 	},
 /obj/structure/sign/poster/official/safety_eye_protection{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1713,7 +1713,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{

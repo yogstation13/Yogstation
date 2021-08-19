@@ -13,7 +13,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/clown,
 /obj/machinery/light_switch{
-	pixel_x = 20
+	pixel_x = 40
 	},
 /turf/open/floor/carpet/orange,
 /area/template_noop)
@@ -23,8 +23,8 @@
 "B" = (
 /obj/structure/dresser,
 /obj/item/flashlight/lamp/bananalamp{
-	pixel_x = -2;
-	pixel_y = 17
+	pixel_x = -4;
+	pixel_y = 34
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/template_noop)

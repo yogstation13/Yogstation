@@ -46,180 +46,180 @@
 "eS" = (
 /obj/structure/table/wood,
 /obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
+	pixel_x = 14;
+	pixel_y = -8
 	},
 /obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
+	pixel_x = 14;
+	pixel_y = -8
 	},
 /obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
+	pixel_x = 14;
+	pixel_y = -8
 	},
 /obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
+	pixel_x = 14;
+	pixel_y = -8
 	},
 /obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
+	pixel_x = 14;
+	pixel_y = -8
 	},
 /obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
+	pixel_x = 14;
+	pixel_y = -8
 	},
 /obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
+	pixel_x = 14;
+	pixel_y = -8
 	},
 /obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
+	pixel_x = 14;
+	pixel_y = -8
 	},
 /obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
+	pixel_x = 14;
+	pixel_y = -8
 	},
 /obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
+	pixel_x = 14;
+	pixel_y = -8
 	},
 /obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
+	pixel_x = 12;
+	pixel_y = 10
 	},
 /obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
+	pixel_x = 12;
+	pixel_y = 10
 	},
 /obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
+	pixel_x = 12;
+	pixel_y = 10
 	},
 /obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
+	pixel_x = 12;
+	pixel_y = 10
 	},
 /obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
+	pixel_x = 12;
+	pixel_y = 10
 	},
 /obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
+	pixel_x = 12;
+	pixel_y = 10
 	},
 /obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
+	pixel_x = 12;
+	pixel_y = 10
 	},
 /obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
+	pixel_x = 12;
+	pixel_y = 10
 	},
 /obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
+	pixel_x = 12;
+	pixel_y = 10
 	},
 /obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
+	pixel_x = 10;
+	pixel_y = 28
 	},
 /obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
+	pixel_x = 10;
+	pixel_y = 28
 	},
 /obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
+	pixel_x = 10;
+	pixel_y = 28
 	},
 /obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
+	pixel_x = 10;
+	pixel_y = 28
 	},
 /obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
+	pixel_x = 10;
+	pixel_y = 28
 	},
 /obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
+	pixel_x = 10;
+	pixel_y = 28
 	},
 /obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
+	pixel_x = 10;
+	pixel_y = 28
 	},
 /obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
+	pixel_x = 10;
+	pixel_y = 28
 	},
 /obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
+	pixel_x = 10;
+	pixel_y = 28
 	},
 /obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
+	pixel_x = 10;
+	pixel_y = 28
 	},
 /obj/item/stack/spacecash/c50{
-	pixel_x = -7;
-	pixel_y = -4
+	pixel_x = -14;
+	pixel_y = -8
 	},
 /obj/item/stack/spacecash/c50{
-	pixel_x = -7;
-	pixel_y = -4
+	pixel_x = -14;
+	pixel_y = -8
 	},
 /obj/item/stack/spacecash/c50{
-	pixel_x = -7;
-	pixel_y = -4
+	pixel_x = -14;
+	pixel_y = -8
 	},
 /obj/item/stack/spacecash/c50{
-	pixel_x = -7;
-	pixel_y = -4
+	pixel_x = -14;
+	pixel_y = -8
 	},
 /obj/item/stack/spacecash/c50{
-	pixel_x = -7;
-	pixel_y = -4
+	pixel_x = -14;
+	pixel_y = -8
 	},
 /obj/item/stack/spacecash/c100{
-	pixel_x = -8;
-	pixel_y = 4
+	pixel_x = -16;
+	pixel_y = 8
 	},
 /obj/item/stack/spacecash/c100{
-	pixel_x = -8;
-	pixel_y = 4
+	pixel_x = -16;
+	pixel_y = 8
 	},
 /obj/item/stack/spacecash/c100{
-	pixel_x = -8;
-	pixel_y = 4
+	pixel_x = -16;
+	pixel_y = 8
 	},
 /obj/item/stack/spacecash/c100{
-	pixel_x = -8;
-	pixel_y = 4
+	pixel_x = -16;
+	pixel_y = 8
 	},
 /obj/item/stack/spacecash/c100{
-	pixel_x = -8;
-	pixel_y = 4
+	pixel_x = -16;
+	pixel_y = 8
 	},
 /obj/item/stack/spacecash/c200{
-	pixel_x = -10;
-	pixel_y = 13
+	pixel_x = -20;
+	pixel_y = 26
 	},
 /obj/item/stack/spacecash/c200{
-	pixel_x = -10;
-	pixel_y = 13
+	pixel_x = -20;
+	pixel_y = 26
 	},
 /obj/item/stack/spacecash/c200{
-	pixel_x = -10;
-	pixel_y = 13
+	pixel_x = -20;
+	pixel_y = 26
 	},
 /obj/item/stack/spacecash/c200{
-	pixel_x = -10;
-	pixel_y = 13
+	pixel_x = -20;
+	pixel_y = 26
 	},
 /obj/item/stack/spacecash/c200{
-	pixel_x = -10;
-	pixel_y = 13
+	pixel_x = -20;
+	pixel_y = 26
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/gaming)
@@ -237,7 +237,7 @@
 /obj/structure/rack,
 /obj/item/storage/toolbox/syndicate,
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+	pixel_y = 60
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
@@ -249,8 +249,8 @@
 /obj/machinery/button/door{
 	id = "snack_vault";
 	name = "Secure Snack Storage Lockdown";
-	pixel_x = 23;
-	pixel_y = -21;
+	pixel_x = 46;
+	pixel_y = -42;
 	req_access_txt = "200"
 	},
 /turf/open/floor/carpet,
@@ -261,11 +261,11 @@
 /area/ruin/unpowered/no_grav)
 "iC" = (
 /obj/item/kitchen/knife{
-	pixel_x = -5
+	pixel_x = -10
 	},
 /obj/structure/table,
 /obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 7
+	pixel_x = 14
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/gaming)
@@ -283,35 +283,35 @@
 "lJ" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
-	pixel_x = -7
+	pixel_x = -14
 	},
 /obj/item/pen{
-	pixel_x = -8;
-	pixel_y = -2
-	},
-/obj/item/pen{
-	pixel_x = 8;
-	pixel_y = 8
-	},
-/obj/item/pen{
-	pixel_x = -1;
-	pixel_y = 8
-	},
-/obj/item/pen{
-	pixel_x = -9;
-	pixel_y = 8
-	},
-/obj/item/folder/yellow{
-	pixel_x = 7;
+	pixel_x = -16;
 	pixel_y = -4
 	},
 /obj/item/pen{
-	pixel_x = 1;
-	pixel_y = -2
+	pixel_x = 16;
+	pixel_y = 16
 	},
 /obj/item/pen{
-	pixel_x = 9;
-	pixel_y = -2
+	pixel_x = -2;
+	pixel_y = 16
+	},
+/obj/item/pen{
+	pixel_x = -18;
+	pixel_y = 16
+	},
+/obj/item/folder/yellow{
+	pixel_x = 14;
+	pixel_y = -8
+	},
+/obj/item/pen{
+	pixel_x = 2;
+	pixel_y = -4
+	},
+/obj/item/pen{
+	pixel_x = 18;
+	pixel_y = -4
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/gaming)
@@ -328,35 +328,35 @@
 "mf" = (
 /obj/structure/table/wood,
 /obj/item/stack/spacecash/c1000{
-	pixel_x = 6;
-	pixel_y = 10
+	pixel_x = 12;
+	pixel_y = 20
 	},
 /obj/item/stack/spacecash/c500{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/stack/spacecash/c500{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/stack/spacecash/c500{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/stack/spacecash/c500{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/stack/spacecash/c500{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/stack/spacecash/c1000{
-	pixel_x = 6;
-	pixel_y = 10
+	pixel_x = 12;
+	pixel_y = 20
 	},
 /obj/item/stack/spacecash/c1000{
-	pixel_x = 6;
-	pixel_y = 10
+	pixel_x = 12;
+	pixel_y = 20
 	},
 /obj/item/toy/cards/deck{
-	pixel_x = -12;
-	pixel_y = 6
+	pixel_x = -24;
+	pixel_y = 12
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/gaming)
@@ -367,52 +367,52 @@
 "nL" = (
 /obj/structure/closet/crate,
 /obj/item/reagent_containers/food/drinks/soda_cans/cola{
-	pixel_x = 9;
-	pixel_y = -5
+	pixel_x = 18;
+	pixel_y = -10
 	},
 /obj/item/reagent_containers/food/drinks/soda_cans/cola{
-	pixel_x = 4;
-	pixel_y = -6
+	pixel_x = 8;
+	pixel_y = -12
 	},
 /obj/item/reagent_containers/food/drinks/soda_cans/cola{
-	pixel_x = -2;
-	pixel_y = -6
+	pixel_x = -4;
+	pixel_y = -12
 	},
 /obj/item/reagent_containers/food/drinks/soda_cans/cola{
-	pixel_x = -6;
-	pixel_y = -6
+	pixel_x = -12;
+	pixel_y = -12
 	},
 /obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
-	pixel_x = 3;
-	pixel_y = 6
+	pixel_x = 6;
+	pixel_y = 12
 	},
 /obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
-	pixel_x = 10;
+	pixel_x = 20;
+	pixel_y = 16
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
+	pixel_x = 14;
+	pixel_y = 18
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
+	pixel_x = 22;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
+	pixel_x = -14;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
-	pixel_x = 7;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
-	pixel_x = 11;
-	pixel_y = 5
+/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
-	pixel_x = -7;
-	pixel_y = 4
+	pixel_x = -20;
+	pixel_y = 14
 	},
 /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
-	pixel_x = -3;
+	pixel_x = -20;
 	pixel_y = 6
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
-	pixel_x = -10;
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
-	pixel_x = -10;
-	pixel_y = 3
 	},
 /turf/open/floor/circuit,
 /area/ruin/space/has_grav/powered/gaming)
@@ -420,7 +420,7 @@
 /obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'SECURE SNACK STORAGE'.";
 	name = "Secure Snack Storage";
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/item/card/id/away{
 	desc = "A key to the Secure Snack Storage";
@@ -462,11 +462,11 @@
 /area/ruin/space/has_grav/powered/gaming)
 "qA" = (
 /obj/item/storage/pill_bottle/dice{
-	pixel_x = -7
+	pixel_x = -14
 	},
 /obj/structure/table/wood,
 /obj/item/hourglass{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/gaming)
@@ -477,7 +477,7 @@
 "rX" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/gaming)
@@ -509,60 +509,60 @@
 "wv" = (
 /obj/structure/closet/crate,
 /obj/item/reagent_containers/food/snacks/chips{
-	pixel_x = -6;
-	pixel_y = -7
+	pixel_x = -12;
+	pixel_y = -14
 	},
 /obj/item/reagent_containers/food/snacks/chips{
-	pixel_x = 3;
-	pixel_y = -6
+	pixel_x = 6;
+	pixel_y = -12
 	},
 /obj/item/reagent_containers/food/snacks/chips{
-	pixel_x = 11;
-	pixel_y = -6
+	pixel_x = 22;
+	pixel_y = -12
 	},
 /obj/item/reagent_containers/food/snacks/chips{
-	pixel_x = 2;
-	pixel_y = -6
+	pixel_x = 4;
+	pixel_y = -12
 	},
 /obj/item/reagent_containers/food/snacks/chips{
-	pixel_x = -9;
-	pixel_y = -4
+	pixel_x = -18;
+	pixel_y = -8
 	},
 /obj/item/reagent_containers/food/snacks/cheesiehonkers{
-	pixel_x = 2;
-	pixel_y = 5
+	pixel_x = 4;
+	pixel_y = 10
 	},
 /obj/item/reagent_containers/food/snacks/cheesiehonkers{
-	pixel_x = 8;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/food/snacks/cheesiehonkers{
-	pixel_x = 1;
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/food/snacks/cheesiehonkers{
-	pixel_x = 7;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/snacks/cheesiehonkers{
-	pixel_x = 5;
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/food/drinks/dry_ramen{
-	pixel_x = -5;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/food/drinks/dry_ramen{
-	pixel_x = -8;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/food/drinks/dry_ramen{
-	pixel_x = -9;
+	pixel_x = 16;
 	pixel_y = 6
 	},
+/obj/item/reagent_containers/food/snacks/cheesiehonkers{
+	pixel_x = 2;
+	pixel_y = 14
+	},
+/obj/item/reagent_containers/food/snacks/cheesiehonkers{
+	pixel_x = 14;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/snacks/cheesiehonkers{
+	pixel_x = 10;
+	pixel_y = 14
+	},
 /obj/item/reagent_containers/food/drinks/dry_ramen{
-	pixel_x = -11;
-	pixel_y = 4
+	pixel_x = -10;
+	pixel_y = 16
+	},
+/obj/item/reagent_containers/food/drinks/dry_ramen{
+	pixel_x = -16;
+	pixel_y = 16
+	},
+/obj/item/reagent_containers/food/drinks/dry_ramen{
+	pixel_x = -18;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/dry_ramen{
+	pixel_x = -22;
+	pixel_y = 8
 	},
 /turf/open/floor/circuit,
 /area/ruin/space/has_grav/powered/gaming)
@@ -579,7 +579,7 @@
 /obj/item/pizzabox/infinite{
 	desc = "You will never have to order and wait for more pizza when you have this thing";
 	name = "Infinite Pizza Box";
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -593,7 +593,7 @@
 "yR" = (
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
-	pixel_x = -32;
+	pixel_x = -64;
 	req_access_txt = "0";
 	use_power = 0
 	},
@@ -627,12 +627,12 @@
 "AU" = (
 /obj/structure/table/wood/poker,
 /obj/item/reagent_containers/food/snacks/chips{
-	pixel_x = -5;
-	pixel_y = 1
+	pixel_x = -10;
+	pixel_y = 2
 	},
 /obj/item/reagent_containers/food/drinks/soda_cans/cola{
-	pixel_x = 7;
-	pixel_y = 3
+	pixel_x = 14;
+	pixel_y = 6
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/gaming)
@@ -663,12 +663,12 @@
 "Cf" = (
 /obj/structure/table/wood,
 /obj/item/toy/cards/deck/syndicate{
-	pixel_x = -6;
-	pixel_y = 5
+	pixel_x = -12;
+	pixel_y = 10
 	},
 /obj/item/toy/cards/deck{
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/gaming)
@@ -714,12 +714,12 @@
 "GV" = (
 /obj/structure/table/wood,
 /obj/item/toy/cards/deck/uno{
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/item/toy/turn_tracker{
-	pixel_x = -7;
-	pixel_y = 4
+	pixel_x = -14;
+	pixel_y = 8
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/gaming)
@@ -814,7 +814,7 @@
 /obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'SECURE SNACK STORAGE'.";
 	name = "Secure Snack Storage";
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
@@ -835,64 +835,64 @@
 /obj/item/reagent_containers/food/drinks/soda_cans/grey_bull,
 /obj/item/reagent_containers/food/drinks/soda_cans/grey_bull,
 /obj/item/reagent_containers/food/drinks/soda_cans/pwr_game{
-	pixel_x = 9;
-	pixel_y = -5
+	pixel_x = 18;
+	pixel_y = -10
 	},
 /obj/item/reagent_containers/food/drinks/soda_cans/pwr_game{
-	pixel_x = 3;
-	pixel_y = -5
+	pixel_x = 6;
+	pixel_y = -10
 	},
 /obj/item/reagent_containers/food/drinks/soda_cans/pwr_game{
-	pixel_x = -2;
-	pixel_y = -6
+	pixel_x = -4;
+	pixel_y = -12
 	},
 /obj/item/reagent_containers/food/drinks/soda_cans/pwr_game{
-	pixel_x = -8;
-	pixel_y = -6
+	pixel_x = -16;
+	pixel_y = -12
 	},
 /obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry{
-	pixel_x = 7;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry{
-	pixel_x = 11;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry{
-	pixel_x = 7;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry{
-	pixel_x = 11;
+	pixel_x = 14;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/soda_cans/starkist{
-	pixel_x = -2;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/starkist{
-	pixel_x = -9;
+/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry{
+	pixel_x = 22;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/drinks/soda_cans/starkist{
-	pixel_x = -5;
-	pixel_y = 7
+/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry{
+	pixel_x = 14;
+	pixel_y = 18
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry{
+	pixel_x = 22;
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/food/drinks/soda_cans/starkist{
-	pixel_x = -9;
-	pixel_y = 6
+	pixel_x = -4;
+	pixel_y = 18
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/starkist{
+	pixel_x = -18;
+	pixel_y = 16
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/starkist{
+	pixel_x = -10;
+	pixel_y = 14
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/starkist{
+	pixel_x = -18;
+	pixel_y = 12
 	},
 /turf/open/floor/circuit,
 /area/ruin/space/has_grav/powered/gaming)
 "PE" = (
 /obj/structure/table/wood,
 /obj/item/toy/cards/deck/cas/black{
-	pixel_x = -6;
-	pixel_y = 5
+	pixel_x = -12;
+	pixel_y = 10
 	},
 /obj/item/toy/cards/deck/cas{
-	pixel_x = 5;
-	pixel_y = 6
+	pixel_x = 10;
+	pixel_y = 12
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/gaming)
@@ -916,8 +916,8 @@
 /obj/machinery/button/door{
 	id = "snack_vault";
 	name = "Secure Snack Storage Lockdown";
-	pixel_x = -22;
-	pixel_y = -21;
+	pixel_x = -44;
+	pixel_y = -42;
 	req_access_txt = "200"
 	},
 /turf/open/floor/plasteel/dark,
@@ -934,44 +934,44 @@
 "Tv" = (
 /obj/structure/closet/crate,
 /obj/item/reagent_containers/food/snacks/chocolatebar{
-	pixel_x = -9;
-	pixel_y = -8
+	pixel_x = -18;
+	pixel_y = -16
 	},
 /obj/item/reagent_containers/food/snacks/chocolatebar{
-	pixel_x = -4;
-	pixel_y = -9
+	pixel_x = -8;
+	pixel_y = -18
 	},
 /obj/item/reagent_containers/food/snacks/chocolatebar{
-	pixel_x = 2;
-	pixel_y = -9
+	pixel_x = 4;
+	pixel_y = -18
 	},
 /obj/item/reagent_containers/food/snacks/chocolatebar{
-	pixel_x = 6;
-	pixel_y = -9
+	pixel_x = 12;
+	pixel_y = -18
+	},
+/obj/item/reagent_containers/food/snacks/no_raisin{
+	pixel_x = -20;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/snacks/no_raisin{
+	pixel_x = -18;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/snacks/no_raisin{
+	pixel_x = -14;
+	pixel_y = 14
 	},
 /obj/item/reagent_containers/food/snacks/no_raisin{
 	pixel_x = -10;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/snacks/no_raisin{
-	pixel_x = -9;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/food/snacks/no_raisin{
-	pixel_x = -7;
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/food/snacks/no_raisin{
-	pixel_x = -5;
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/item/storage/box/donkpockets{
-	pixel_x = 6;
-	pixel_y = 7
+	pixel_x = 12;
+	pixel_y = 14
 	},
 /obj/item/storage/box/donkpockets{
-	pixel_x = 7;
-	pixel_y = 8
+	pixel_x = 14;
+	pixel_y = 16
 	},
 /turf/open/floor/circuit,
 /area/ruin/space/has_grav/powered/gaming)
@@ -987,8 +987,8 @@
 /area/ruin/space/has_grav/powered/gaming)
 "US" = (
 /obj/machinery/light_switch{
-	pixel_x = -21;
-	pixel_y = -9
+	pixel_x = -42;
+	pixel_y = -18
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
@@ -1006,7 +1006,7 @@
 /area/ruin/space/has_grav/powered/gaming)
 "Xt" = (
 /obj/structure/sink{
-	pixel_y = 20
+	pixel_y = 40
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/gaming)
@@ -1015,10 +1015,10 @@
 /area/ruin/space/has_grav/powered/gaming)
 "XM" = (
 /obj/structure/mirror{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/structure/sink{
-	pixel_y = 20
+	pixel_y = 40
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered/gaming)

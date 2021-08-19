@@ -14,6 +14,8 @@
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "power_display2"
 	name = "plasma stored"
+/obj/screen/alien/plasma_display/Initialize()
+	. = ..()
 	screen_loc = ui_alienplasmadisplay
 
 
@@ -22,6 +24,8 @@
 	icon_state = "queen_finder"
 	name = "queen sense"
 	desc = "Allows you to sense the general direction of your Queen."
+/obj/screen/alien/alien_queen_finder/Initialize()
+	. = ..()
 	screen_loc = ui_alien_queen_finder
 
 /datum/hud/alien

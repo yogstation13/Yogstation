@@ -2,7 +2,7 @@
 "a" = (
 /obj/structure/table,
 /obj/structure/sign/departments/medbay{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/reagent_containers/glass/beaker/large,
 /turf/open/floor/plating,
@@ -10,16 +10,16 @@
 "d" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 4;
-	pixel_y = 5
+	pixel_x = 8;
+	pixel_y = 10
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 6;
-	pixel_y = -1
+	pixel_x = 12;
+	pixel_y = -2
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = -4;
-	pixel_y = 6
+	pixel_x = -8;
+	pixel_y = 12
 	},
 /obj/item/reagent_containers/dropper,
 /obj/item/reagent_containers/dropper,
@@ -54,14 +54,14 @@
 "m" = (
 /obj/structure/table,
 /obj/structure/bedsheetbin{
-	pixel_x = 2
+	pixel_x = 4
 	},
 /obj/item/clothing/mask/muzzle,
 /turf/open/floor/plating,
 /area/template_noop)
 "p" = (
 /obj/machinery/chem_master{
-	pixel_x = -4
+	pixel_x = -8
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -96,13 +96,13 @@
 /area/template_noop)
 "O" = (
 /obj/item/reagent_containers/glass/bottle/toxin{
-	pixel_x = 4;
-	pixel_y = 2
+	pixel_x = 8;
+	pixel_y = 4
 	},
 /obj/structure/table,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/machinery/reagentgrinder{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -110,7 +110,7 @@
 /obj/structure/sink/kitchen{
 	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
 	name = "old sink";
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating,

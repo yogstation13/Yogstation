@@ -142,8 +142,8 @@
 	if(!popup_name)
 		return
 	clear_map("[popup_name]_map")
-	var/x_value = world.icon_size * tilesize * width
-	var/y_value = world.icon_size * tilesize * height
+	var/x_value = WORLD_ICON_SIZE * tilesize * width
+	var/y_value = WORLD_ICON_SIZE * tilesize * height
 	var/map_name = create_popup(popup_name, x_value, y_value)
 
 	var/obj/screen/background/background = new

@@ -109,14 +109,14 @@
 /obj/structure/table,
 /obj/item/circular_saw,
 /obj/item/scalpel{
-	pixel_y = 12
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/animal_hospital)
 "aq" = (
 /obj/structure/table,
 /obj/item/cautery{
-	pixel_x = 4
+	pixel_x = 8
 	},
 /obj/item/surgicaldrill,
 /turf/open/floor/plasteel/white,
@@ -192,11 +192,11 @@
 "ay" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /obj/structure/mirror{
-	pixel_x = -28
+	pixel_x = -56
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -207,7 +207,7 @@
 "az" = (
 /obj/structure/noticeboard{
 	dir = 1;
-	pixel_y = -27
+	pixel_y = -54
 	},
 /obj/item/paper/fluff/stations/lavaland/surface/henderson_report,
 /obj/effect/turf_decal/tile/blue{
@@ -361,7 +361,7 @@
 /area/ruin/powered/animal_hospital)
 "aW" = (
 /obj/machinery/vending/wallmed{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/animal_hospital)
@@ -403,8 +403,8 @@
 /obj/structure/table/glass,
 /obj/item/storage/box/gloves,
 /obj/item/storage/box/masks{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/machinery/light{
 	dir = 4

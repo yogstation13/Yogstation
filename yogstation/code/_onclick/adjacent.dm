@@ -11,7 +11,7 @@
 
 	if(istype(neighbor, /atom/movable)) //fml
 		var/atom/movable/AM = neighbor
-		if((AM.bound_width != world.icon_size || AM.bound_height != world.icon_size) && (islist(AM.locs) && AM.locs.len > 1))
+		if((AM.bound_width != WORLD_ICON_SIZE || AM.bound_height != WORLD_ICON_SIZE) && (islist(AM.locs) && AM.locs.len > 1))
 			for(var/turf/T in AM.locs)
 				if(Adjacent(T, target, mover))
 					return TRUE
@@ -29,7 +29,7 @@
 	var/turf/T = loc
 	if(!istype(T))
 		return FALSE
-	if((islist(locs) && locs.len > 1) && (bound_width != world.icon_size || bound_height != world.icon_size))
+	if((islist(locs) && locs.len > 1) && (bound_width != WORLD_ICON_SIZE || bound_height != WORLD_ICON_SIZE))
 		for(var/turf/place in locs) //this is to handle multi tile objects
 			if(place.Adjacent(neighbor, src, src))
 				return TRUE

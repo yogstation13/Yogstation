@@ -14,8 +14,8 @@
 	. = ..()
 	if(building)
 		setDir(ndir)
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -27 : 27)
-		pixel_y = (dir & 3)? (dir ==1 ? -30 : 30) : 0
+		pixel_x = (dir & 3)? 0 : (dir == 4 ? -27*PIXEL_MULTIPLIER : 27*PIXEL_MULTIPLIER)
+		pixel_y = (dir & 3)? (dir ==1 ? -30*PIXEL_MULTIPLIER : 30*PIXEL_MULTIPLIER) : 0
 		opened = TRUE
 		icon_state = "extinguisher_empty"
 	else

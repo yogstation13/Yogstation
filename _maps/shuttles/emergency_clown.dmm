@@ -30,8 +30,8 @@
 "ah" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /obj/item/crowbar,
 /turf/open/floor/mineral/bananium,
@@ -75,14 +75,14 @@
 	dir = 8
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -30
+	pixel_y = -60
 	},
 /turf/open/floor/bluespace,
 /area/shuttle/escape)
 "ap" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
-	pixel_y = -29
+	pixel_y = -58
 	},
 /obj/item/toy/snappop/phoenix,
 /turf/open/floor/bluespace,
@@ -118,14 +118,14 @@
 	},
 /obj/machinery/flasher{
 	id = "cockpit_flasher";
-	pixel_x = 6;
-	pixel_y = 24
+	pixel_x = 12;
+	pixel_y = 48
 	},
 /turf/open/floor/mineral/bananium,
 /area/shuttle/escape)
 "aw" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+	pixel_y = 60
 	},
 /obj/item/toy/snappop/phoenix,
 /turf/open/floor/bluespace,
@@ -134,8 +134,8 @@
 /obj/structure/table,
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /obj/item/crowbar,
 /turf/open/floor/mineral/bananium,
@@ -229,7 +229,7 @@
 /area/shuttle/escape)
 "aL" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 27
+	pixel_x = 54
 	},
 /obj/item/toy/snappop/phoenix,
 /obj/machinery/light/small{
@@ -288,7 +288,7 @@
 /area/shuttle/escape)
 "aS" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -30
+	pixel_y = -60
 	},
 /obj/item/toy/snappop/phoenix,
 /turf/open/floor/bluespace,
@@ -318,7 +318,7 @@
 /area/shuttle/escape)
 "aW" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 27
+	pixel_x = 54
 	},
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/mineral/bananium,
@@ -341,12 +341,12 @@
 /obj/structure/table,
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /obj/item/crowbar,
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 27
+	pixel_x = 54
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -416,8 +416,8 @@
 /obj/machinery/light,
 /obj/machinery/button/flasher{
 	id = "cockpit_flasher";
-	pixel_x = 6;
-	pixel_y = -24
+	pixel_x = 12;
+	pixel_y = -48
 	},
 /turf/open/floor/bluespace,
 /area/shuttle/escape)
@@ -468,13 +468,13 @@
 "tr" = (
 /obj/machinery/flasher{
 	id = "shuttle_flasher";
-	pixel_x = -24;
-	pixel_y = 6
+	pixel_x = -48;
+	pixel_y = 12
 	},
 /obj/machinery/button/flasher{
 	id = "shuttle_flasher";
-	pixel_x = -24;
-	pixel_y = -6
+	pixel_x = -48;
+	pixel_y = -12
 	},
 /obj/machinery/light/small{
 	brightness = 3;

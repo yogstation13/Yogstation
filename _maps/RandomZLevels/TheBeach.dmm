@@ -75,8 +75,8 @@
 /area/awaymission/beach)
 "an" = (
 /obj/effect/overlay/coconut{
-	pixel_x = 17;
-	pixel_y = 7
+	pixel_x = 34;
+	pixel_y = 14
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
@@ -212,8 +212,8 @@
 /area/awaymission/beach)
 "aH" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
-	pixel_x = -17;
-	pixel_y = 17
+	pixel_x = -34;
+	pixel_y = 34
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
@@ -222,16 +222,16 @@
 	color = "#6666ff";
 	desc = "Yes, surf boards have wheels. Stop laughing.";
 	name = "surf board";
-	pixel_x = -15;
-	pixel_y = 1
+	pixel_x = -30;
+	pixel_y = 2
 	},
 /turf/open/floor/plating/beach/water,
 /area/awaymission/beach)
 "aJ" = (
 /obj/item/reagent_containers/food/drinks/beer/light{
 	pixel_w = 0;
-	pixel_x = -14;
-	pixel_y = 15
+	pixel_x = -28;
+	pixel_y = 30
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
@@ -300,8 +300,8 @@
 /area/awaymission/beach)
 "aS" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime{
-	pixel_x = -12;
-	pixel_y = 14
+	pixel_x = -24;
+	pixel_y = 28
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
@@ -357,13 +357,13 @@
 "bb" = (
 /obj/structure/dresser{
 	density = 0;
-	pixel_y = 18
+	pixel_y = 36
 	},
 /turf/open/floor/wood,
 /area/awaymission/beach)
 "bc" = (
 /obj/structure/mirror{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/wood,
 /area/awaymission/beach)
@@ -372,7 +372,7 @@
 /area/awaymission/beach)
 "be" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/wood,
 /area/awaymission/beach)
@@ -402,7 +402,7 @@
 	id = "changlinhut2";
 	name = "changing room lock";
 	normaldoorcontrol = 1;
-	pixel_x = 24;
+	pixel_x = 48;
 	specialfunctions = 4
 	},
 /turf/open/floor/wood,
@@ -412,7 +412,7 @@
 	id = "changlinhut1";
 	name = "changing room lock";
 	normaldoorcontrol = 1;
-	pixel_x = -24;
+	pixel_x = -48;
 	specialfunctions = 4
 	},
 /turf/open/floor/wood,
@@ -428,7 +428,7 @@
 	id = "theloveshack1";
 	name = "door lock";
 	normaldoorcontrol = 1;
-	pixel_x = 24;
+	pixel_x = 48;
 	specialfunctions = 4
 	},
 /obj/item/bedsheet/dorms,
@@ -440,7 +440,7 @@
 	id = "theloveshack2";
 	name = "door lock";
 	normaldoorcontrol = 1;
-	pixel_x = 24;
+	pixel_x = 48;
 	specialfunctions = 4
 	},
 /obj/item/bedsheet/dorms,
@@ -452,7 +452,7 @@
 	id = "theloveshack3";
 	name = "door lock";
 	normaldoorcontrol = 1;
-	pixel_x = 24;
+	pixel_x = 48;
 	specialfunctions = 4
 	},
 /obj/item/bedsheet/dorms,
@@ -562,11 +562,11 @@
 /area/awaymission/beach)
 "bE" = (
 /obj/effect/overlay/palmtree_l{
-	pixel_y = 25
+	pixel_y = 50
 	},
 /obj/effect/overlay/coconut{
-	pixel_x = -7;
-	pixel_y = 7
+	pixel_x = -14;
+	pixel_y = 14
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
@@ -614,30 +614,30 @@
 /area/awaymission/beach)
 "bL" = (
 /obj/structure/toilet{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/white,
 /area/awaymission/beach)
 "bM" = (
 /obj/structure/mirror{
-	pixel_x = 28;
+	pixel_x = 56;
 	pixel_y = 0
 	},
 /obj/effect/turf_decal/sand,
 /obj/structure/sink{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/beach)
 "bN" = (
 /obj/structure/mirror{
-	pixel_x = -28;
+	pixel_x = -56;
 	pixel_y = 0
 	},
 /obj/effect/turf_decal/sand,
 /obj/structure/sink{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/beach)
@@ -648,8 +648,8 @@
 /area/awaymission/beach)
 "bP" = (
 /obj/item/trash/chips{
-	pixel_x = -18;
-	pixel_y = 7
+	pixel_x = -36;
+	pixel_y = 14
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
@@ -662,7 +662,7 @@
 	id = "toilet1";
 	name = "restroom lock";
 	normaldoorcontrol = 1;
-	pixel_x = 24;
+	pixel_x = 48;
 	specialfunctions = 4
 	},
 /obj/effect/turf_decal/sand,
@@ -673,7 +673,7 @@
 	id = "toilet2";
 	name = "restroom lock";
 	normaldoorcontrol = 1;
-	pixel_x = -24;
+	pixel_x = -48;
 	specialfunctions = 4
 	},
 /obj/effect/turf_decal/sand,
@@ -685,7 +685,7 @@
 	id = "loveshack";
 	name = "love shack lock";
 	normaldoorcontrol = 1;
-	pixel_x = 24;
+	pixel_x = 48;
 	specialfunctions = 4
 	},
 /obj/item/bedsheet/red,
@@ -697,7 +697,7 @@
 	id = "theloveshack4";
 	name = "door lock";
 	normaldoorcontrol = 1;
-	pixel_x = 24;
+	pixel_x = 48;
 	specialfunctions = 4
 	},
 /obj/item/bedsheet/dorms,
@@ -705,7 +705,7 @@
 /area/awaymission/beach)
 "bV" = (
 /obj/structure/sign/poster/ripped{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
@@ -715,7 +715,7 @@
 	id = "theloveshack5";
 	name = "door lock";
 	normaldoorcontrol = 1;
-	pixel_x = 24;
+	pixel_x = 48;
 	specialfunctions = 4
 	},
 /obj/item/bedsheet/dorms,
@@ -746,20 +746,20 @@
 /area/awaymission/beach)
 "ca" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/wood,
 /area/awaymission/beach)
 "cb" = (
 /obj/structure/sign/poster/contraband/syndicate_recruitment{
-	pixel_x = -28
+	pixel_x = -56
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
 "cc" = (
 /obj/item/trash/can{
-	pixel_x = 14;
-	pixel_y = 7
+	pixel_x = 28;
+	pixel_y = 14
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
@@ -777,7 +777,7 @@
 /obj/effect/turf_decal/sand,
 /obj/machinery/vending/cigarette,
 /obj/structure/sign/poster/contraband/smoke{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
@@ -831,7 +831,7 @@
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks/fullupgrade,
 /obj/structure/sign/picture_frame{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/wood,
 /area/awaymission/beach)
@@ -921,7 +921,7 @@
 "cD" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/glass/rag{
-	pixel_y = 7
+	pixel_y = 14
 	},
 /turf/open/floor/wood,
 /area/awaymission/beach)
@@ -946,7 +946,7 @@
 /area/awaymission/beach)
 "cI" = (
 /obj/structure/sign/barsign{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plating/beach/sand,
@@ -973,7 +973,7 @@
 /obj/item/clothing/under/color/rainbow,
 /obj/item/clothing/glasses/sunglasses,
 /obj/item/clothing/head/collectable/petehat{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
@@ -998,31 +998,31 @@
 /area/awaymission/beach)
 "cP" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime{
-	pixel_x = -12
+	pixel_x = -24
 	},
 /obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
-	pixel_x = 13
+	pixel_x = 26
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
 "cQ" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/starkist{
-	pixel_x = -12;
-	pixel_y = 3
+	pixel_x = -24;
+	pixel_y = 6
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
 "cR" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/cola{
-	pixel_x = -8;
-	pixel_y = -4
+	pixel_x = -16;
+	pixel_y = -8
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
 "cS" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
-	pixel_x = -9;
-	pixel_y = -7
+	pixel_x = -18;
+	pixel_y = -14
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
@@ -1032,36 +1032,36 @@
 /area/awaymission/beach)
 "cU" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/cola{
-	pixel_x = -8;
-	pixel_y = -4
+	pixel_x = -16;
+	pixel_y = -8
 	},
 /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
-	pixel_x = 15
+	pixel_x = 30
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
 "cV" = (
 /obj/effect/overlay/coconut{
-	pixel_x = -5;
-	pixel_y = 4
+	pixel_x = -10;
+	pixel_y = 8
 	},
 /turf/open/floor/plating/beach/coastline_t/sandwater_inner,
 /area/awaymission/beach)
 "cW" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime{
-	pixel_x = -12
+	pixel_x = -24
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
 "cX" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/cola{
-	pixel_x = -5
+	pixel_x = -10
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
 "cY" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/starkist{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)

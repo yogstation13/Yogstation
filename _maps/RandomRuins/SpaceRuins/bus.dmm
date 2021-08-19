@@ -80,7 +80,7 @@
 "ap" = (
 /obj/structure/fluff/bus/passable/seat{
 	icon_state = "backseat";
-	pixel_y = 15
+	pixel_y = 30
 	},
 /turf/open/floor/plasteel/airless/dark{
 	icon_state = "bus"
@@ -288,7 +288,7 @@
 "aW" = (
 /obj/structure/fluff/bus/passable/seat/driver{
 	icon_state = "driverseat";
-	pixel_y = 17
+	pixel_y = 34
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/airless/dark{
@@ -326,12 +326,12 @@
 "Pm" = (
 /obj/structure/fluff/bus/passable/seat/driver{
 	icon_state = "driverseat";
-	pixel_y = 17
+	pixel_y = 34
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/food/drinks/britcup{
-	pixel_x = -1;
-	pixel_y = 15
+	pixel_x = -2;
+	pixel_y = 30
 	},
 /turf/open/floor/plasteel/airless/dark{
 	icon_state = "bus"

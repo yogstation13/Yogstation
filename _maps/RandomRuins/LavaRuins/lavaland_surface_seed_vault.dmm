@@ -28,7 +28,7 @@
 /area/ruin/powered/seedvault)
 "f" = (
 /obj/machinery/plantgenes/seedvault{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/freezer,
@@ -36,7 +36,7 @@
 "g" = (
 /obj/structure/table/wood,
 /obj/machinery/smartfridge/disks{
-	pixel_y = 2
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
@@ -129,8 +129,8 @@
 "u" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
@@ -142,7 +142,7 @@
 /area/ruin/powered/seedvault)
 "x" = (
 /obj/machinery/reagentgrinder{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/structure/table/glass,
 /obj/item/reagent_containers/glass/beaker/bluespace,
@@ -154,7 +154,7 @@
 "y" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)

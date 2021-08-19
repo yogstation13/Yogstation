@@ -35,7 +35,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 	var/obj/screen/devil/soul_counter/devilsouldisplay
 
-	var/obj/screen/action_intent
+	var/obj/screen/act_intent/action_intent
 	var/obj/screen/zone_select
 	var/obj/screen/pull_icon
 	var/obj/screen/rest_icon
@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 			screenmob.client.screen += hide_actions_toggle
 
 			if(action_intent)
-				action_intent.screen_loc = initial(action_intent.screen_loc) //Restore intent selection to the original position
+				action_intent.reset_screen_loc() //Restore intent selection to the original position
 
 		if(HUD_STYLE_REDUCED)	//Reduced HUD
 			hud_shown = FALSE	//Governs behavior of other procs

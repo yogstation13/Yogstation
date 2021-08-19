@@ -928,7 +928,7 @@
 
 	var/k = overlay_cards == 2 ? 1 : overlay_cards - 2
 	for(var/i = k; i <= overlay_cards; i++)
-		var/card_overlay = image(icon=src.icon,icon_state="sc_[currenthand[i]]_[deckstyle]",pixel_x=(1-i+k)*3,pixel_y=(1-i+k)*3)
+		var/card_overlay = image(icon=src.icon,icon_state="sc_[currenthand[i]]_[deckstyle]",pixel_x=(1-i+k)*3*PIXEL_MULTIPLIER,pixel_y=(1-i+k)*3*PIXEL_MULTIPLIER)
 		add_overlay(card_overlay)
 
 /obj/item/toy/cards/singlecard
@@ -939,7 +939,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/cardname = null
 	var/flipped = 0
-	pixel_x = -5
+	pixel_x = -5*PIXEL_MULTIPLIER
 
 /obj/item/toy/cards/singlecard/examine(mob/user)
 	. = ..()
@@ -964,12 +964,12 @@
 		else
 			src.icon_state = "sc_Ace of Spades_[deckstyle]"
 			src.name = "What Card"
-		src.pixel_x = 5
+		src.pixel_x = 5*PIXEL_MULTIPLIER
 	else if(flipped)
 		src.flipped = 0
 		src.icon_state = "singlecard_down_[deckstyle]"
 		src.name = "card"
-		src.pixel_x = -5
+		src.pixel_x = -5*PIXEL_MULTIPLIER
 
 /obj/item/toy/cards/singlecard/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/toy/cards/singlecard/))

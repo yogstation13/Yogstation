@@ -608,8 +608,8 @@ Difficulty: Hard
 /obj/effect/temp_visual/hierophant/telegraph
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "hierophant_telegraph"
-	pixel_x = -32
-	pixel_y = -32
+	pixel_x = -32*PIXEL_MULTIPLIER
+	pixel_y = -32*PIXEL_MULTIPLIER
 	duration = 3
 
 /obj/effect/temp_visual/hierophant/telegraph/diagonal

@@ -33,8 +33,8 @@
 "ah" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/o2{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/storage/firstaid/regular,
 /obj/item/crowbar,
@@ -163,7 +163,7 @@
 	dir = 8
 	},
 /obj/machinery/keycard_auth{
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
@@ -174,8 +174,8 @@
 	dir = 1
 	},
 /obj/item/folder/red{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/folder/blue,
 /obj/item/gun/energy/e_gun/mini,
@@ -196,7 +196,7 @@
 	dir = 4
 	},
 /obj/machinery/keycard_auth{
-	pixel_x = 24
+	pixel_x = 48
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
@@ -231,7 +231,7 @@
 	dir = 4
 	},
 /obj/structure/sign/warning/vacuum/external{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
@@ -449,26 +449,26 @@
 	name = "emergency lifejacket"
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/structure/closet/crate/internals,
 /obj/effect/turf_decal/delivery,
@@ -643,7 +643,7 @@
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/item/storage/box/zipties{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /obj/item/restraints/handcuffs,
 /obj/item/restraints/handcuffs,
@@ -716,14 +716,14 @@
 "bo" = (
 /obj/structure/table,
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = -4
+	pixel_x = -8
 	},
 /obj/item/tank/internals/air{
-	pixel_x = 4
+	pixel_x = 8
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/clothing/mask/breath,
 /turf/open/floor/mineral/plastitanium,
@@ -804,7 +804,7 @@
 /area/shuttle/escape)
 "bv" = (
 /obj/structure/sign/departments/security{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/machinery/light{
 	dir = 1
@@ -839,7 +839,7 @@
 /area/shuttle/escape)
 "by" = (
 /obj/structure/sign/departments/engineering{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/machinery/light{
 	dir = 1
@@ -883,7 +883,7 @@
 	dir = 4
 	},
 /obj/machinery/status_display/evac{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -956,7 +956,7 @@
 	dir = 8
 	},
 /obj/machinery/status_display/evac{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -1181,7 +1181,7 @@
 	dir = 1
 	},
 /obj/item/radio/intercom{
-	pixel_y = -28
+	pixel_y = -56
 	},
 /obj/machinery/light,
 /obj/machinery/door/firedoor/border_only{
@@ -1303,12 +1303,12 @@
 /obj/item/storage/toolbox/emergency,
 /obj/item/storage/toolbox/emergency,
 /obj/item/flashlight/flare/signal{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/flashlight/flare/signal{
-	pixel_x = -6;
-	pixel_y = -2
+	pixel_x = -12;
+	pixel_y = -4
 	},
 /obj/item/crowbar,
 /obj/item/wrench,
@@ -1341,15 +1341,15 @@
 	dir = 4
 	},
 /obj/item/radio{
-	pixel_x = -6;
-	pixel_y = 6
+	pixel_x = -12;
+	pixel_y = 12
 	},
 /obj/item/radio{
-	pixel_x = 6;
-	pixel_y = 6
+	pixel_x = 12;
+	pixel_y = 12
 	},
 /obj/item/radio{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
@@ -1404,23 +1404,23 @@
 	},
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/o2{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/firstaid/toxin{
-	pixel_x = -4;
-	pixel_y = 3
+	pixel_x = -8;
+	pixel_y = 6
 	},
 /obj/item/healthanalyzer{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/lazarus_injector,
 /obj/effect/turf_decal/bot,
 /mob/living/simple_animal/bot/medbot{
 	name = "\improper emergency medibot";
-	pixel_x = -3;
-	pixel_y = 2
+	pixel_x = -6;
+	pixel_y = 4
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
@@ -1497,15 +1497,15 @@
 "cD" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/electrical{
-	pixel_x = -3;
-	pixel_y = 1
+	pixel_x = -6;
+	pixel_y = 2
 	},
 /obj/item/storage/toolbox/mechanical{
-	pixel_y = -1
+	pixel_y = -2
 	},
 /obj/item/storage/toolbox/emergency{
-	pixel_x = 3;
-	pixel_y = -5
+	pixel_x = 6;
+	pixel_y = -10
 	},
 /obj/effect/turf_decal/bot,
 /obj/machinery/light{
@@ -1523,8 +1523,8 @@
 	},
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
@@ -1565,7 +1565,7 @@
 	},
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
@@ -1579,26 +1579,26 @@
 	name = "emergency lifejacket"
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/structure/closet/crate/internals,
 /obj/effect/turf_decal/delivery,
@@ -1666,7 +1666,7 @@
 /obj/structure/table,
 /obj/item/circular_saw,
 /obj/item/scalpel{
-	pixel_y = 16
+	pixel_y = 32
 	},
 /obj/item/hemostat,
 /obj/machinery/light{
@@ -1693,12 +1693,12 @@
 "cW" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/fire{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/mineral/plastitanium,
@@ -1708,10 +1708,10 @@
 /obj/item/clipboard,
 /obj/item/reagent_containers/hypospray/medipen,
 /obj/item/reagent_containers/hypospray/medipen{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/item/reagent_containers/hypospray/medipen{
-	pixel_y = -6
+	pixel_y = -12
 	},
 /obj/item/reagent_containers/glass/bottle/charcoal,
 /turf/open/floor/mineral/plastitanium,
@@ -1857,7 +1857,7 @@
 	dir = 4
 	},
 /obj/machinery/status_display/evac{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -1932,7 +1932,7 @@
 	dir = 8
 	},
 /obj/machinery/status_display/evac{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8

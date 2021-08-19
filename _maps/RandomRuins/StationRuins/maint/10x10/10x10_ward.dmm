@@ -112,8 +112,8 @@
 /obj/machinery/button/door{
 	id = "MaintIncin";
 	name = "Shutters Control";
-	pixel_x = -4;
-	pixel_y = -26
+	pixel_x = -8;
+	pixel_y = -52
 	},
 /obj/machinery/light/broken,
 /turf/open/floor/plating{
@@ -139,8 +139,8 @@
 "qm" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /turf/open/floor/plating,
 /area/template_noop)

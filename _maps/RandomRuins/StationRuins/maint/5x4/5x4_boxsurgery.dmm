@@ -14,7 +14,7 @@
 "d" = (
 /obj/structure/mirror{
 	icon_state = "mirror_broke";
-	pixel_y = 28
+	pixel_y = 56
 	},
 /obj/item/shard{
 	icon_state = "medium"

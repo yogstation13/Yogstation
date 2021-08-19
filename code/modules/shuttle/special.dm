@@ -358,8 +358,8 @@
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "communist"
 	layer = ABOVE_OPEN_TURF_LAYER
-	pixel_x = -32
-	pixel_y = -32
+	pixel_x = -32*PIXEL_MULTIPLIER
+	pixel_y = -32*PIXEL_MULTIPLIER
 
 /obj/effect/decal/hammerandsickle/shuttleRotate(rotation)
 	setDir(angle2dir(rotation+dir2angle(dir))) // No parentcall, rest of the rotate code breaks the pixel offset.

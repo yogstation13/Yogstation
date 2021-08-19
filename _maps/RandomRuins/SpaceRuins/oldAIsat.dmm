@@ -46,7 +46,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Worn-out APC";
-	pixel_y = 23
+	pixel_y = 46
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -530,7 +530,7 @@
 "bN" = (
 /obj/effect/decal/cleanable/blood,
 /obj/item/scalpel{
-	pixel_y = 12
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel/airless/dark,
 /area/tcommsat/oldaisat)
@@ -607,7 +607,7 @@
 /obj/structure/table,
 /obj/item/reagent_containers/syringe/lethal/choral,
 /obj/item/reagent_containers/syringe/lethal{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/airless/dark,
 /area/tcommsat/oldaisat)
@@ -866,8 +866,8 @@
 /area/tcommsat/oldaisat)
 "cV" = (
 /obj/item/storage/toolbox/electrical{
-	pixel_x = 1;
-	pixel_y = -1
+	pixel_x = 2;
+	pixel_y = -2
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 10

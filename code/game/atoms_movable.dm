@@ -122,7 +122,7 @@
 	var/static/list/careful_edits = list("bound_x", "bound_y", "bound_width", "bound_height")
 	if(var_name in banned_edits)
 		return FALSE	//PLEASE no.
-	if((var_name in careful_edits) && (var_value % world.icon_size) != 0)
+	if((var_name in careful_edits) && (var_value % WORLD_ICON_SIZE) != 0)
 		return FALSE
 	switch(var_name)
 		if("x")
@@ -261,8 +261,8 @@
 	setDir(direct)
 
 	// yogs start - multi tile object handling
-	if(bound_width != world.icon_size || bound_height != world.icon_size)
-		var/list/newlocs = isturf(newloc) ? block(locate(newloc.x+(-bound_x)/world.icon_size,newloc.y+(-bound_y)/world.icon_size,newloc.z),locate(newloc.x+(-bound_x+bound_width)/world.icon_size-1,newloc.y+(-bound_y+bound_height)/world.icon_size-1,newloc.z)) : list(newloc)
+	if(bound_width != WORLD_ICON_SIZE || bound_height != WORLD_ICON_SIZE)
+		var/list/newlocs = isturf(newloc) ? block(locate(newloc.x+(-bound_x)/WORLD_ICON_SIZE,newloc.y+(-bound_y)/WORLD_ICON_SIZE,newloc.z),locate(newloc.x+(-bound_x+bound_width)/WORLD_ICON_SIZE-1,newloc.y+(-bound_y+bound_height)/WORLD_ICON_SIZE-1,newloc.z)) : list(newloc)
 		if(!newlocs)
 			return // we're trying to cross into the edge of space
 		var/bothturfs = isturf(newloc) && isturf(loc)

@@ -22,11 +22,11 @@
 	name = "medical crate"
 	},
 /obj/item/storage/firstaid/o2{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/roller{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /obj/item/healthanalyzer,
 /obj/effect/decal/cleanable/dirt,
@@ -68,12 +68,12 @@
 /area/shuttle/abandoned)
 "aj" = (
 /obj/structure/mirror{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /obj/structure/sink{
 	dir = 4;
 	icon_state = "sink";
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -100,8 +100,8 @@
 	},
 /obj/item/storage/toolbox/emergency,
 /obj/item/flashlight/flare{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/wrench,
 /obj/item/extinguisher,
@@ -116,7 +116,7 @@
 /area/shuttle/abandoned)
 "an" = (
 /obj/structure/toilet{
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/greenglow{
@@ -170,7 +170,7 @@
 /area/shuttle/abandoned)
 "at" = (
 /obj/structure/mirror{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
@@ -181,15 +181,15 @@
 "au" = (
 /obj/structure/tank_dispenser/oxygen{
 	layer = 2.7;
-	pixel_x = -1;
-	pixel_y = 2
+	pixel_x = -2;
+	pixel_y = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "aw" = (
 /obj/structure/sign/warning/vacuum{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium,
@@ -265,8 +265,8 @@
 /obj/structure/table,
 /obj/item/megaphone,
 /obj/item/clothing/glasses/meson{
-	pixel_x = 7;
-	pixel_y = 5
+	pixel_x = 14;
+	pixel_y = 10
 	},
 /obj/machinery/light,
 /turf/open/floor/mineral/titanium/white,
@@ -282,8 +282,8 @@
 "aJ" = (
 /obj/structure/closet/crate/freezer,
 /obj/item/reagent_containers/blood/random{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/reagent_containers/blood/OMinus,
 /obj/item/reagent_containers/blood/random,
@@ -315,7 +315,7 @@
 "aO" = (
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
-	pixel_x = -28;
+	pixel_x = -56;
 	req_access_txt = "0"
 	},
 /obj/machinery/light{
@@ -392,14 +392,14 @@
 "bv" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/structure/sign/warning/vacuum{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "bw" = (
 /obj/machinery/vending/coffee{
-	pixel_x = -2
+	pixel_x = -4
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
@@ -484,7 +484,7 @@
 /area/shuttle/abandoned)
 "bT" = (
 /obj/machinery/vending/cola{
-	pixel_x = -1
+	pixel_x = -2
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
@@ -497,7 +497,7 @@
 /area/shuttle/abandoned)
 "bZ" = (
 /obj/machinery/vending/snack{
-	pixel_x = -1
+	pixel_x = -2
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
@@ -548,15 +548,15 @@
 /obj/item/storage/bag/plants/portaseeder,
 /obj/structure/table,
 /obj/item/reagent_containers/spray/plantbgone{
-	pixel_x = 13;
-	pixel_y = 5
+	pixel_x = 26;
+	pixel_y = 10
 	},
 /obj/item/reagent_containers/glass/bottle/nutrient/ez,
 /obj/item/reagent_containers/glass/bottle/nutrient/ez,
 /obj/item/reagent_containers/glass/bottle/nutrient/ez,
 /obj/item/reagent_containers/glass/bottle/nutrient/rh{
-	pixel_x = -2;
-	pixel_y = 3
+	pixel_x = -4;
+	pixel_y = 6
 	},
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/dirt,
@@ -570,7 +570,7 @@
 /area/shuttle/abandoned)
 "cn" = (
 /obj/machinery/vending/hydroseeds{
-	pixel_x = 2
+	pixel_x = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium/white,
@@ -584,8 +584,8 @@
 "cq" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /obj/item/storage/box/donkpockets,
 /obj/effect/decal/cleanable/dirt,
@@ -596,7 +596,7 @@
 /obj/structure/sink{
 	dir = 4;
 	icon_state = "sink";
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium,
@@ -609,8 +609,8 @@
 /obj/structure/sink{
 	dir = 8;
 	icon_state = "sink";
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium,
@@ -635,7 +635,7 @@
 "cJ" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium/white,
@@ -643,23 +643,23 @@
 "cL" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/epinephrine{
-	pixel_x = 2
+	pixel_x = 4
 	},
 /obj/item/reagent_containers/glass/bottle/charcoal{
-	pixel_x = -8
+	pixel_x = -16
 	},
 /obj/item/reagent_containers/syringe{
-	pixel_x = -5
+	pixel_x = -10
 	},
 /obj/item/stock_parts/cell/high{
-	pixel_x = -15;
-	pixel_y = 5
+	pixel_x = -30;
+	pixel_y = 10
 	},
 /obj/item/paper/crumpled{
 	inertia_dir = 0;
 	info = "Finally got a cell charger for the defib. next time someone dies because they forgot to turn on their oxygen, we won't have to wire the defib to the ships engines.<br><br>-D";
-	pixel_x = 1;
-	pixel_y = 6
+	pixel_x = 2;
+	pixel_y = 12
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
@@ -692,12 +692,12 @@
 	},
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3;
-	pixel_y = 4
+	pixel_x = 6;
+	pixel_y = 8
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3;
-	pixel_y = 4
+	pixel_x = -6;
+	pixel_y = 8
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium/white,
@@ -719,15 +719,15 @@
 /obj/effect/decal/cleanable/xenoblood,
 /obj/machinery/iv_drip{
 	density = 0;
-	pixel_x = -8
+	pixel_x = -16
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "ho" = (
 /obj/structure/table,
 /obj/item/paper_bin{
-	pixel_x = -1;
-	pixel_y = 6
+	pixel_x = -2;
+	pixel_y = 12
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
@@ -738,16 +738,16 @@
 /obj/item/paper/crumpled{
 	inertia_dir = 0;
 	info = "HA! FINALLY! All those years of hoarding parts finally payed off! All I have to do is take this old wreck apart with a welder, crowbar out the boards, and I can have my own mech! I can't let myself forget to DNA lock it so those damn miners don't steal it. Hopefully we don't fly through another rad storm that scrambles all our genes after I do.<br><br>-E";
-	pixel_x = 4;
-	pixel_y = 6
+	pixel_x = 8;
+	pixel_y = 12
 	},
 /obj/item/clothing/head/welding{
-	pixel_x = -3;
-	pixel_y = 5
+	pixel_x = -6;
+	pixel_y = 10
 	},
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
+	pixel_x = -4;
+	pixel_y = -2
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
@@ -762,28 +762,28 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/paper/crumpled{
 	info = "WHO THE FUCK ORDERED SO MUCH SALT?<br><br>-K";
-	pixel_x = 4;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -10;
+	pixel_x = 8;
 	pixel_y = 12
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -5;
-	pixel_y = 12
+	pixel_x = -20;
+	pixel_y = 24
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
 	pixel_x = -10;
-	pixel_y = 4
+	pixel_y = 24
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -10;
-	pixel_y = 4
+	pixel_x = -20;
+	pixel_y = 8
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -10;
-	pixel_y = 4
+	pixel_x = -20;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -20;
+	pixel_y = 8
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium/white,
@@ -804,8 +804,8 @@
 /obj/item/radio/off,
 /obj/item/paper/crumpled{
 	info = "Note to self - do not forget to turn internals on before leaving the airlock.<br><br>-M";
-	pixel_x = 4;
-	pixel_y = 6
+	pixel_x = 8;
+	pixel_y = 12
 	},
 /obj/item/mining_scanner,
 /obj/item/mining_scanner,
@@ -842,14 +842,14 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/storage/box/fancy/egg_box{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3;
-	pixel_y = 4
+	pixel_x = -6;
+	pixel_y = 8
 	},
 /obj/item/storage/box/monkeycubes{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
@@ -886,7 +886,7 @@
 "oK" = (
 /obj/structure/table,
 /obj/item/storage/backpack/duffelbag/med/surgery{
-	pixel_x = 2
+	pixel_x = 4
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
@@ -904,7 +904,7 @@
 "pg" = (
 /obj/structure/table,
 /obj/item/radio/off{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
@@ -948,24 +948,24 @@
 "qR" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/color/latex{
-	pixel_x = 9
+	pixel_x = 18
 	},
 /obj/item/clothing/suit/apron/surgical{
-	pixel_x = 12
+	pixel_x = 24
 	},
 /obj/item/tank/internals/anesthetic{
-	pixel_x = -13;
-	pixel_y = 1
+	pixel_x = -26;
+	pixel_y = 2
 	},
 /obj/item/clothing/mask/breath/medical{
-	pixel_x = -13
+	pixel_x = -26
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "ry" = (
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -8;
-	pixel_y = 6
+	pixel_x = -16;
+	pixel_y = 12
 	},
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/flour,
@@ -1057,18 +1057,18 @@
 /area/shuttle/abandoned)
 "DY" = (
 /obj/item/storage/box/ids/free_miners{
-	pixel_y = 15
+	pixel_y = 30
 	},
 /obj/structure/table,
 /obj/item/paper/crumpled{
 	info = "Damn corporates. Finally managed to scrap together enough parts for an ore redemption machine, so we can actually start cashing in on the ore we mine. Still have to put it together in the cargo bay. The catch is, the only place to sell anything around here is a Nanotrasen outpost - some screaming metal deathtrap called Space Station 13. If we want to get anything that is not in the vendor, we will have to go there.<br><br>-C";
-	pixel_x = 4;
-	pixel_y = 6
+	pixel_x = 8;
+	pixel_y = 12
 	},
 /obj/item/gps{
 	gpstag = "NTREC1";
-	pixel_x = -1;
-	pixel_y = 2
+	pixel_x = -2;
+	pixel_y = 4
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
@@ -1080,15 +1080,15 @@
 /obj/structure/rack{
 	dir = 8;
 	layer = 2.9;
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/item/storage/toolbox/electrical{
-	pixel_x = 1;
-	pixel_y = 6
+	pixel_x = 2;
+	pixel_y = 12
 	},
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
+	pixel_x = -4;
+	pixel_y = -2
 	},
 /obj/item/clothing/glasses/welding,
 /obj/effect/decal/cleanable/dirt,
@@ -1097,7 +1097,7 @@
 "Gy" = (
 /obj/structure/table,
 /obj/item/storage/pill_bottle/dice{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
@@ -1112,8 +1112,8 @@
 /area/shuttle/abandoned)
 "LC" = (
 /obj/item/storage/toolbox/emergency{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/storage/toolbox/emergency,
 /obj/effect/decal/cleanable/dirt,
@@ -1129,7 +1129,7 @@
 /obj/structure/sink{
 	dir = 4;
 	icon_state = "sink";
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/effect/decal/cleanable/xenoblood/xgibs/limb,
 /turf/open/floor/mineral/titanium,
@@ -1142,7 +1142,7 @@
 /obj/item/stock_parts/cell/high{
 	charge = 100;
 	maxcharge = 15000;
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/dirt,
@@ -1174,8 +1174,8 @@
 /obj/structure/table,
 /obj/item/stack/sheet/glass{
 	amount = 25;
-	pixel_x = -2;
-	pixel_y = 2
+	pixel_x = -4;
+	pixel_y = 4
 	},
 /obj/item/stack/rods{
 	amount = 50
@@ -1187,7 +1187,7 @@
 "Xh" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/beaker{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
@@ -1195,7 +1195,7 @@
 /obj/item/reagent_containers/dropper,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = 12
+	pixel_x = 24
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)

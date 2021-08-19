@@ -24,10 +24,10 @@
 "G" = (
 /obj/structure/table,
 /obj/item/candle{
-	pixel_x = -5
+	pixel_x = -10
 	},
 /obj/item/candle{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/effect/turf_decal/arrows,
 /obj/item/fakeartefact,

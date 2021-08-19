@@ -77,7 +77,7 @@
 "ar" = (
 /obj/machinery/power/apc{
 	name = "Worn-out APC";
-	pixel_y = -23
+	pixel_y = -46
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/turretedoutpost)
@@ -168,7 +168,7 @@
 "aC" = (
 /obj/structure/table/reinforced,
 /obj/structure/reagent_dispensers/peppertank{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/turretedoutpost)
@@ -330,11 +330,11 @@
 "aV" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/turretedoutpost)

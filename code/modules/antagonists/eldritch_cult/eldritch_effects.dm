@@ -96,8 +96,8 @@
 	name = "Transmutation rune"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "eldritch_rune1"
-	pixel_x = -32 //So the big ol' 96x96 sprite shows up right
-	pixel_y = -32
+	pixel_x = -32*PIXEL_MULTIPLIER //So the big ol' 96x96 sprite shows up right
+	pixel_y = -32*PIXEL_MULTIPLIER
 
 /**
   * #Reality smash tracker

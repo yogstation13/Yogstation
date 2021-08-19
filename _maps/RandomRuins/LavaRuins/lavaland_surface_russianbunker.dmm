@@ -100,8 +100,8 @@
 /obj/item/reagent_containers/food/snacks/burger/bearger,
 /obj/item/reagent_containers/food/snacks/burger/bearger,
 /obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
-	pixel_x = -9;
-	pixel_y = -4
+	pixel_x = -18;
+	pixel_y = -8
 	},
 /mob/living/simple_animal/hostile/viscerator{
 	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
@@ -162,8 +162,8 @@
 	icon_state = "control_kill";
 	lethal = 1;
 	name = "Shuttle turret control";
-	pixel_x = 32;
-	pixel_y = -28;
+	pixel_x = 64;
+	pixel_y = -56;
 	req_access = null;
 	req_access_txt = "150"
 	},
@@ -334,7 +334,7 @@
 /area/ruin/unpowered/russianbunker)
 "br" = (
 /obj/machinery/keycard_auth{
-	pixel_y = -7
+	pixel_y = -14
 	},
 /turf/closed/wall/r_wall,
 /area/ruin/unpowered/russianbunker)
@@ -437,8 +437,8 @@
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/meat/steak/bear,
 /obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
-	pixel_x = -9;
-	pixel_y = -4
+	pixel_x = -18;
+	pixel_y = -8
 	},
 /turf/open/floor/wood,
 /area/ruin/unpowered/russianbunker)

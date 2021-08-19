@@ -136,8 +136,8 @@
 	icon = 'icons/obj/2x2.dmi'
 	icon_state = "large_engine"
 	desc = "A very large bluespace engine used to propel very large ships."
-	bound_width = 64
-	bound_height = 64
+	bound_width = WORLD_ICON_SIZE*2
+	bound_height = WORLD_ICON_SIZE*2
 	appearance_flags = 0
 
 /obj/structure/shuttle/engine/huge
@@ -146,8 +146,8 @@
 	icon = 'icons/obj/3x3.dmi'
 	icon_state = "huge_engine"
 	desc = "An extremely large bluespace engine used to propel extremely large ships."
-	bound_width = 96
-	bound_height = 96
+	bound_width = WORLD_ICON_SIZE*3
+	bound_height = WORLD_ICON_SIZE*3
 	appearance_flags = 0
 
 #undef ENGINE_UNWRENCHED

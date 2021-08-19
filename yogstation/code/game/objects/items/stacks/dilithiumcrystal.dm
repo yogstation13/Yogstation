@@ -17,8 +17,8 @@
 
 /obj/item/stack/ore/dilithium_crystal/Initialize()
 	. = ..()
-	pixel_x = rand(-5, 5) // Cloned over from bluespace crystals. I guess to make their spawning a bit more scattered?
-	pixel_y = rand(-5, 5)
+	pixel_x = rand(-5*PIXEL_MULTIPLIER, 5*PIXEL_MULTIPLIER) // Cloned over from bluespace crystals. I guess to make their spawning a bit more scattered?
+	pixel_y = rand(-5*PIXEL_MULTIPLIER, 5*PIXEL_MULTIPLIER)
 
 /obj/item/stack/ore/dilithium_crystal/attack_self(mob/user) // Currently has no effect, besides crushing one of the crystals into dust.
 	user.visible_message("<span class='warning'>[user] crushes [src]!</span>", "<span class='danger'>You crush [src]!</span>")

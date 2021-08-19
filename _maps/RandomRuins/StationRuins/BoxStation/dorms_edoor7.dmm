@@ -2,7 +2,7 @@
 "c" = (
 /obj/structure/bed,
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -22,7 +22,7 @@
 /area/template_noop)
 "C" = (
 /obj/structure/chair/stool{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /turf/open/floor/carpet/orange,
 /area/template_noop)

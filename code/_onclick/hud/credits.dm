@@ -1,6 +1,6 @@
 #define CREDIT_ROLL_SPEED 60
 #define CREDIT_SPAWN_SPEED 4
-#define CREDIT_ANIMATE_HEIGHT (16 * world.icon_size) //13 would cause credits to get stacked at the top of the screen, so we let them go past the top edge
+#define CREDIT_ANIMATE_HEIGHT (16 * WORLD_ICON_SIZE) //13 would cause credits to get stacked at the top of the screen, so we let them go past the top edge
 #define CREDIT_EASE_DURATION 12
 
 GLOBAL_LIST(end_titles)
@@ -40,8 +40,8 @@ GLOBAL_LIST(end_titles)
 /obj/screen/credit/Initialize(mapload, credited)
 	. = ..()
 	maptext = "<font face='Verdana'>[credited]</font>"
-	maptext_height = world.icon_size * 2
-	maptext_width = world.icon_size * 13
+	maptext_height = WORLD_ICON_SIZE * 2
+	maptext_width = WORLD_ICON_SIZE * 13
 	var/matrix/M = matrix(transform)
 	M.Translate(0, CREDIT_ANIMATE_HEIGHT)
 	animate(src, transform = M, time = CREDIT_ROLL_SPEED)

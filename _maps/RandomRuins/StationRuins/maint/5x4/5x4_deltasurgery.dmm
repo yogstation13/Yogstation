@@ -114,7 +114,7 @@
 /obj/item/reagent_containers/blood/random,
 /obj/item/reagent_containers/blood/random,
 /obj/item/reagent_containers/syringe/epinephrine{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/reagent_containers/syringe,
 /obj/item/clothing/neck/stethoscope,
@@ -205,7 +205,7 @@
 /obj/effect/turf_decal/tile/blue,
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
-	pixel_x = 26;
+	pixel_x = 52;
 	use_power = 0
 	},
 /turf/open/floor/plasteel/white,

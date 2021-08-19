@@ -710,13 +710,13 @@ Turf and target are separate in case you want to teleport some distance from a t
 	var/icon/AMicon = icon(AM.icon, AM.icon_state)
 	var/AMiconheight = AMicon.Height()
 	var/AMiconwidth = AMicon.Width()
-	if(AMiconheight != world.icon_size || AMiconwidth != world.icon_size)
-		pixel_x_offset += ((AMiconwidth/world.icon_size)-1)*(world.icon_size*0.5)
-		pixel_y_offset += ((AMiconheight/world.icon_size)-1)*(world.icon_size*0.5)
+	if(AMiconheight != WORLD_ICON_SIZE || AMiconwidth != WORLD_ICON_SIZE)
+		pixel_x_offset += ((AMiconwidth/WORLD_ICON_SIZE)-1)*(WORLD_ICON_SIZE*0.5)
+		pixel_y_offset += ((AMiconheight/WORLD_ICON_SIZE)-1)*(WORLD_ICON_SIZE*0.5)
 
 	//DY and DX
-	var/rough_x = round(round(pixel_x_offset,world.icon_size)/world.icon_size)
-	var/rough_y = round(round(pixel_y_offset,world.icon_size)/world.icon_size)
+	var/rough_x = round(round(pixel_x_offset,WORLD_ICON_SIZE)/WORLD_ICON_SIZE)
+	var/rough_y = round(round(pixel_y_offset,WORLD_ICON_SIZE)/WORLD_ICON_SIZE)
 
 	//Find coordinates
 	var/turf/T = get_turf(AM) //use AM's turfs, as it's coords are the same as AM's AND AM's coords are lost if it is inside another atom
@@ -731,13 +731,13 @@ Turf and target are separate in case you want to teleport some distance from a t
 //Finds the distance between two atoms, in pixels
 //centered = FALSE counts from turf edge to edge
 //centered = TRUE counts from turf center to turf center
-//of course mathematically this is just adding world.icon_size on again
+//of course mathematically this is just adding WORLD_ICON_SIZE on again
 /proc/getPixelDistance(atom/A, atom/B, centered = TRUE)
 	if(!istype(A)||!istype(B))
 		return 0
 	. = bounds_dist(A, B) + sqrt((((A.pixel_x+B.pixel_x)**2) + ((A.pixel_y+B.pixel_y)**2)))
 	if(centered)
-		. += world.icon_size
+		. += WORLD_ICON_SIZE
 
 /proc/get(atom/loc, type)
 	while(loc)
@@ -947,19 +947,19 @@ B --><-- A
 	if(!x_dimension || !y_dimension)
 		return
 
-	if((x_dimension == world.icon_size) && (y_dimension == world.icon_size))
+	if((x_dimension == WORLD_ICON_SIZE) && (y_dimension == WORLD_ICON_SIZE))
 		return I
 
 	//Offset the image so that it's bottom left corner is shifted this many pixels
 	//This makes it infinitely easier to draw larger inhands/images larger than world.iconsize
 	//but still use them in game
-	var/x_offset = -((x_dimension/world.icon_size)-1)*(world.icon_size*0.5)
-	var/y_offset = -((y_dimension/world.icon_size)-1)*(world.icon_size*0.5)
+	var/x_offset = -((x_dimension/WORLD_ICON_SIZE)-1)*(WORLD_ICON_SIZE*0.5)
+	var/y_offset = -((y_dimension/WORLD_ICON_SIZE)-1)*(WORLD_ICON_SIZE*0.5)
 
-	//Correct values under world.icon_size
-	if(x_dimension < world.icon_size)
+	//Correct values under WORLD_ICON_SIZE
+	if(x_dimension < WORLD_ICON_SIZE)
 		x_offset *= -1
-	if(y_dimension < world.icon_size)
+	if(y_dimension < WORLD_ICON_SIZE)
 		y_offset *= -1
 
 	I.pixel_x = x_offset

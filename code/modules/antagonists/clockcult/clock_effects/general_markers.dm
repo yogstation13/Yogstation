@@ -26,8 +26,8 @@
 	merged her soul with those of the Cogs slain with her on the battlefield."
 	icon = 'icons/effects/119x268.dmi'
 	icon_state = "inath-neq"
-	pixel_x = -59
-	pixel_y = -134
+	pixel_x = -59*PIXEL_MULTIPLIER
+	pixel_y = -134*PIXEL_MULTIPLIER
 
 /obj/effect/clockwork/general_marker/nezbere
 	name = "Nezbere, the Brass Eidolon"
@@ -37,8 +37,8 @@
 	but by taking his own life so that the device could never be replicated. Nezbere's zealotry is unmatched."
 	icon = 'icons/effects/237x321.dmi'
 	icon_state = "nezbere"
-	pixel_x = -118
-	pixel_y = -160
+	pixel_x = -118*PIXEL_MULTIPLIER
+	pixel_y = -160*PIXEL_MULTIPLIER
 
 /obj/effect/clockwork/general_marker/sevtug
 	name = "Sevtug, the Formless Pariah"
@@ -48,8 +48,8 @@
 	the one being made a fool of."
 	icon = 'icons/effects/166x195.dmi'
 	icon_state = "sevtug"
-	pixel_x = -83
-	pixel_y = -97
+	pixel_x = -83*PIXEL_MULTIPLIER
+	pixel_y = -97*PIXEL_MULTIPLIER
 
 /obj/effect/clockwork/general_marker/nzcrentr
 	name = "Nzcrentr, the Eternal Thunderbolt"
@@ -59,5 +59,5 @@
 	Nzcrentr now serves loyally, though even one of Nezbere's finest creations was not enough to totally eliminate its will."
 	icon = 'icons/effects/274x385.dmi'
 	icon_state = "nzcrentr"
-	pixel_x = -137
-	pixel_y = -145
+	pixel_x = -137*PIXEL_MULTIPLIER
+	pixel_y = -145*PIXEL_MULTIPLIER

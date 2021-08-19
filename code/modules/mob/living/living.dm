@@ -853,7 +853,7 @@
 		step_towards(src,S)
 
 /mob/living/proc/do_jitter_animation(jitteriness)
-	var/amplitude = min(4, (jitteriness/100) + 1)
+	var/amplitude = min(4, (jitteriness/100) + 1) * PIXEL_MULTIPLIER
 	var/pixel_x_diff = rand(-amplitude, amplitude)
 	var/pixel_y_diff = rand(-amplitude/3, amplitude/3)
 	var/final_pixel_x = get_standard_pixel_x_offset(lying)

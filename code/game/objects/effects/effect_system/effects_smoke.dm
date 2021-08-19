@@ -6,8 +6,8 @@
 	name = "smoke"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "smoke"
-	pixel_x = -32
-	pixel_y = -32
+	pixel_x = -32*PIXEL_MULTIPLIER
+	pixel_y = -32*PIXEL_MULTIPLIER
 	opacity = 0
 	layer = FLY_LAYER
 	anchored = TRUE

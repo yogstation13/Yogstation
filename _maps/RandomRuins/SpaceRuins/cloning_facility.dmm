@@ -25,7 +25,7 @@
 	dir = 8
 	},
 /obj/machinery/defibrillator_mount/loaded{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/ancient_shuttle)

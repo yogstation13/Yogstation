@@ -30,8 +30,8 @@
 "ah" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /obj/item/crowbar,
 /turf/open/floor/mineral/titanium/blue,
@@ -59,8 +59,8 @@
 /obj/structure/table,
 /obj/item/storage/box/fancy/cigarettes/cigars/cohiba,
 /obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
-	pixel_x = 5;
-	pixel_y = 18
+	pixel_x = 10;
+	pixel_y = 36
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
@@ -73,8 +73,8 @@
 "ao" = (
 /obj/machinery/button/flasher{
 	id = "cockpit_flasher";
-	pixel_x = 6;
-	pixel_y = -24
+	pixel_x = 12;
+	pixel_y = -48
 	},
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
@@ -84,7 +84,7 @@
 "ap" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
-	pixel_y = -29
+	pixel_y = -58
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light,
@@ -98,16 +98,16 @@
 /obj/machinery/button/door{
 	id = "ohnorevs";
 	name = "window shutters";
-	pixel_x = 26;
-	pixel_y = -6;
+	pixel_x = 52;
+	pixel_y = -12;
 	req_access_txt = "19"
 	},
 /obj/structure/chair/comfy/shuttle,
 /obj/machinery/button/door{
 	id = "bearsbearsbears";
 	name = "release bears";
-	pixel_x = 26;
-	pixel_y = 6;
+	pixel_x = 52;
+	pixel_y = 12;
 	req_access_txt = "20"
 	},
 /turf/open/floor/mineral/titanium/blue,
@@ -145,8 +145,8 @@
 "aw" = (
 /obj/machinery/flasher{
 	id = "cockpit_flasher";
-	pixel_x = 6;
-	pixel_y = 24
+	pixel_x = 12;
+	pixel_y = 48
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
@@ -183,13 +183,13 @@
 "aF" = (
 /obj/machinery/flasher{
 	id = "shuttle_flasher";
-	pixel_x = -24;
-	pixel_y = 6
+	pixel_x = -48;
+	pixel_y = 12
 	},
 /obj/machinery/button/flasher{
 	id = "shuttle_flasher";
-	pixel_x = -24;
-	pixel_y = -6
+	pixel_x = -48;
+	pixel_y = -12
 	},
 /obj/machinery/light/small{
 	brightness = 3;
@@ -324,8 +324,8 @@
 /area/shuttle/escape)
 "aX" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -5;
-	pixel_y = 30
+	pixel_x = -10;
+	pixel_y = 60
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
@@ -411,8 +411,8 @@
 "bi" = (
 /obj/structure/table,
 /obj/item/stack/medical/bruise_pack{
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/item/stack/medical/bruise_pack,
 /obj/machinery/door/firedoor/border_only,
@@ -438,8 +438,8 @@
 "bn" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/boxing{
-	pixel_x = 4;
-	pixel_y = 7
+	pixel_x = 8;
+	pixel_y = 14
 	},
 /obj/item/clothing/gloves/boxing,
 /turf/open/floor/mineral/plastitanium,
@@ -447,10 +447,10 @@
 "bo" = (
 /obj/structure/table,
 /obj/item/melee/baseball_bat{
-	pixel_x = -5
+	pixel_x = -10
 	},
 /obj/item/crowbar/large{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
@@ -478,13 +478,13 @@
 /area/shuttle/escape)
 "bs" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -30
+	pixel_y = -60
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
 "bt" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 27
+	pixel_x = 54
 	},
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
@@ -523,7 +523,7 @@
 /area/shuttle/escape)
 "bz" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 27
+	pixel_x = 54
 	},
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating,
@@ -539,7 +539,7 @@
 /area/shuttle/escape)
 "bC" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+	pixel_y = 60
 	},
 /obj/effect/decal/cleanable/blood/old,
 /obj/machinery/light/small{
@@ -552,8 +552,8 @@
 /obj/structure/table,
 /obj/item/storage/firstaid/brute,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /obj/item/crowbar,
 /obj/effect/decal/cleanable/dirt,

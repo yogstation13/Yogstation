@@ -151,13 +151,13 @@
 		tube_overlay.icon_state = "decorative_diag"
 		switch(shift_dir)
 			if(NORTH)
-				tube_overlay.pixel_y = 32
+				tube_overlay.pixel_y = 32*PIXEL_MULTIPLIER
 			if(SOUTH)
-				tube_overlay.pixel_y = -32
+				tube_overlay.pixel_y = -32*PIXEL_MULTIPLIER
 			if(EAST)
-				tube_overlay.pixel_x = 32
+				tube_overlay.pixel_x = 32*PIXEL_MULTIPLIER
 			if(WEST)
-				tube_overlay.pixel_x = -32
+				tube_overlay.pixel_x = -32*PIXEL_MULTIPLIER
 	else
 		tube_overlay.icon_state = "decorative"
 	add_overlay(tube_overlay)

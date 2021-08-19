@@ -10,7 +10,7 @@
 /area/template_noop)
 "k" = (
 /obj/structure/chair/stool{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /turf/open/floor/carpet,
 /area/template_noop)
@@ -38,7 +38,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet,
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8

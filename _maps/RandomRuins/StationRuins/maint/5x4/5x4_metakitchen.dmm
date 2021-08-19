@@ -14,8 +14,8 @@
 "d" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -45,8 +45,8 @@
 "k" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -95,10 +95,10 @@
 /area/template_noop)
 "T" = (
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
+	pixel_x = -6
 	},
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/structure/table_frame,
 /turf/open/floor/plating,

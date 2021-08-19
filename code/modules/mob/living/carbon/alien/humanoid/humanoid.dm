@@ -84,7 +84,7 @@
 
 /mob/living/carbon/alien/humanoid/get_standard_pixel_x_offset(lying = 0)
 	if(leaping)
-		return -32
+		return -WORLD_ICON_SIZE
 	else if(custom_pixel_x_offset)
 		return custom_pixel_x_offset
 	else

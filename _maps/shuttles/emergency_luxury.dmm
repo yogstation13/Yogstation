@@ -8,7 +8,7 @@
 /obj/machinery/chem_dispenser/drinks/beer{
 	dir = 4;
 	name = "aperitif fountain";
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -18,7 +18,7 @@
 /area/template_noop)
 "ca" = (
 /obj/item/reagent_containers/food/snacks/bearsteak{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/structure/table/wood/fancy/black,
 /obj/machinery/door/firedoor/border_only{
@@ -59,21 +59,21 @@
 /area/shuttle/escape/luxury)
 "cy" = (
 /obj/item/reagent_containers/food/snacks/dulcedebatataslice{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "cA" = (
 /obj/item/reagent_containers/food/snacks/candiedapple{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "cL" = (
 /obj/item/reagent_containers/food/snacks/pie/grapetart{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -98,18 +98,18 @@
 "dD" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/storage/box/fancy/cigarettes/cigars/havana{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = -10;
-	pixel_y = 7
+	pixel_x = -20;
+	pixel_y = 14
 	},
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "dG" = (
 /obj/item/reagent_containers/food/snacks/eggplantparm{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -171,14 +171,14 @@
 /area/shuttle/escape/luxury)
 "kk" = (
 /obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "kn" = (
 /obj/item/reagent_containers/food/snacks/cherrycupcake{
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -194,14 +194,14 @@
 /area/shuttle/escape/luxury)
 "lu" = (
 /obj/item/reagent_containers/food/snacks/kebab/tofu{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "lw" = (
 /obj/item/reagent_containers/food/snacks/customizable/pizza{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -214,7 +214,7 @@
 /area/shuttle/escape/luxury)
 "mc" = (
 /obj/item/reagent_containers/food/snacks/notasandwich{
-	pixel_y = 11
+	pixel_y = 22
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -224,7 +224,7 @@
 /area/shuttle/escape/luxury)
 "mT" = (
 /obj/item/reagent_containers/food/snacks/grilledcheese{
-	pixel_y = 11
+	pixel_y = 22
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -242,7 +242,7 @@
 /area/shuttle/escape/luxury)
 "oP" = (
 /obj/machinery/vending/wallmed{
-	pixel_x = -28
+	pixel_x = -56
 	},
 /turf/open/floor/mineral/gold{
 	dir = 4
@@ -250,7 +250,7 @@
 /area/shuttle/escape/luxury)
 "pg" = (
 /obj/item/reagent_containers/food/snacks/spaghetti/pastatomato{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -258,25 +258,25 @@
 "pk" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/storage/box/drinkingglasses{
-	pixel_x = -1;
-	pixel_y = 4
+	pixel_x = -2;
+	pixel_y = 8
 	},
 /obj/item/storage/box/drinkingglasses{
-	pixel_x = 2;
-	pixel_y = 7
+	pixel_x = 4;
+	pixel_y = 14
 	},
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "pl" = (
 /obj/item/reagent_containers/food/snacks/benedict{
-	pixel_y = 1
+	pixel_y = 2
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "pm" = (
 /obj/item/reagent_containers/food/snacks/spaghetti/copypasta{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -310,7 +310,7 @@
 /area/shuttle/escape/luxury)
 "rj" = (
 /obj/item/reagent_containers/food/snacks/cakeslice/slimecake{
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -322,7 +322,7 @@
 /area/shuttle/escape/luxury)
 "rw" = (
 /obj/structure/sign/poster/official/fruit_bowl{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/mineral/gold{
 	dir = 4
@@ -330,7 +330,7 @@
 /area/shuttle/escape/luxury)
 "sh" = (
 /obj/item/reagent_containers/food/snacks/burger/superbite{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -339,16 +339,16 @@
 /obj/structure/sink{
 	color = "#FFD700";
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/structure/mirror{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/escape/luxury)
 "tm" = (
 /obj/item/reagent_containers/food/snacks/jelliedtoast/cherry{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -422,7 +422,7 @@
 /area/shuttle/escape/luxury)
 "yR" = (
 /obj/item/reagent_containers/food/snacks/carneburrito{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -438,7 +438,7 @@
 /area/shuttle/escape/luxury)
 "zA" = (
 /obj/structure/sign/poster/official/high_class_martini{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/mineral/gold{
 	dir = 4
@@ -484,7 +484,7 @@
 /area/shuttle/escape/luxury)
 "Da" = (
 /obj/item/reagent_containers/food/snacks/burger/baconburger{
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/structure/table/wood/fancy/black,
 /obj/machinery/door/firedoor/border_only{
@@ -513,7 +513,7 @@
 /area/shuttle/escape/luxury)
 "EA" = (
 /obj/item/reagent_containers/food/snacks/melonfruitbowl{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -550,7 +550,7 @@
 /area/shuttle/escape/luxury)
 "HK" = (
 /obj/item/reagent_containers/food/snacks/honkdae{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -585,14 +585,14 @@
 /area/shuttle/escape/luxury)
 "Kp" = (
 /obj/item/reagent_containers/food/snacks/salad/validsalad{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "KQ" = (
 /obj/item/reagent_containers/food/snacks/khachapuri{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -603,7 +603,7 @@
 /area/shuttle/escape/luxury)
 "LR" = (
 /obj/item/reagent_containers/food/snacks/enchiladas{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -646,7 +646,7 @@
 /area/shuttle/escape/luxury)
 "OM" = (
 /obj/item/reagent_containers/food/snacks/spaghetti/meatballspaghetti{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -666,14 +666,14 @@
 /area/shuttle/escape/luxury)
 "Pl" = (
 /obj/item/reagent_containers/food/snacks/cakeslice/chocolate{
-	pixel_y = 1
+	pixel_y = 2
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "Qv" = (
 /obj/item/reagent_containers/food/snacks/chawanmushi{
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -707,7 +707,7 @@
 /area/shuttle/escape/luxury)
 "SO" = (
 /obj/item/reagent_containers/food/snacks/hotdog{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -725,18 +725,18 @@
 "Uj" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/reagent_containers/food/drinks/bottle/champagne{
-	pixel_x = -7;
-	pixel_y = 9
+	pixel_x = -14;
+	pixel_y = 18
 	},
 /obj/item/reagent_containers/food/drinks/bottle/champagne{
-	pixel_x = 10;
-	pixel_y = 9
+	pixel_x = 20;
+	pixel_y = 18
 	},
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "Ul" = (
 /obj/item/reagent_containers/food/snacks/honeybun{
-	pixel_y = 1
+	pixel_y = 2
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -786,7 +786,7 @@
 /area/shuttle/escape/luxury)
 "WA" = (
 /obj/item/reagent_containers/food/snacks/spaghetti/chowmein{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
@@ -798,8 +798,8 @@
 /obj/machinery/button/door{
 	id = "ohnopoors";
 	name = "window shutters";
-	pixel_x = -23;
-	pixel_y = -9;
+	pixel_x = -46;
+	pixel_y = -18;
 	req_access_txt = "0"
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -819,7 +819,7 @@
 /obj/machinery/chem_dispenser/drinks{
 	dir = 4;
 	name = "soda fountain";
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,

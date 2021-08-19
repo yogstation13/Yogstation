@@ -26,7 +26,7 @@
 /obj/machinery/power/apc/highcap/fifteen_k{
 	dir = 8;
 	name = "Syndicate Fighter APC";
-	pixel_x = -25;
+	pixel_x = -50;
 	req_access = null;
 	req_access_txt = "150"
 	},
@@ -77,8 +77,8 @@
 	icon_state = "control_kill";
 	lethal = 1;
 	name = "Shuttle turret control";
-	pixel_x = 32;
-	pixel_y = -28;
+	pixel_x = 64;
+	pixel_y = -56;
 	req_access = null;
 	req_access_txt = "150"
 	},
@@ -103,7 +103,7 @@
 	c_tag = "External View";
 	dir = 4;
 	network = list("caravansyndicate1");
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/caravan/syndicate1)
@@ -112,7 +112,7 @@
 	id = "caravansyndicate1_bolt";
 	name = "External Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = -25;
+	pixel_x = -50;
 	req_access_txt = "150";
 	specialfunctions = 4
 	},

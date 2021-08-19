@@ -64,12 +64,16 @@
 	name = "crafting menu"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "craft"
+/obj/screen/craft/Initialize()
+	. = ..()
 	screen_loc = ui_crafting
 
 /obj/screen/area_creator
 	name = "create new area"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "area_edit"
+/obj/screen/area_creator/Initialize()
+	. = ..()
 	screen_loc = ui_building
 
 /obj/screen/area_creator/Click()
@@ -85,6 +89,8 @@
 	name = "language menu"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "talk_wheel"
+/obj/screen/language_menu/Initialize()
+	. = ..()
 	screen_loc = ui_language_menu
 
 /obj/screen/language_menu/Click()
@@ -96,13 +102,16 @@
 	name = "pAI Candidate"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "pai_setup"
+/obj/screen/ghost/pai/Initialize()
+	. = ..()
 	screen_loc = ui_ghost_pai
 
 /obj/screen/ghost/pai/Click()
 	var/mob/dead/observer/G = usr
 	G.register_pai()
 
-/obj/screen/language_menu/ghost
+/obj/screen/language_menu/ghost/Initialize()
+	. = ..()
 	screen_loc = ui_ghost_language_menu
 
 /obj/screen/inventory
@@ -247,41 +256,49 @@
 /obj/screen/act_intent
 	name = "intent"
 	icon_state = "help"
+/obj/screen/act_intent/proc/reset_screen_loc()
 	screen_loc = ui_acti
+/obj/screen/act_intent/Initialize()
+	. = ..()
+	reset_screen_loc()
 
 /obj/screen/act_intent/Click(location, control, params)
 	usr.a_intent_change(INTENT_HOTKEY_RIGHT)
 
 /obj/screen/act_intent/segmented/Click(location, control, params)
 	if(usr.client.prefs.toggles & INTENT_STYLE)
-		var/_x = text2num(params2list(params)["icon-x"])
-		var/_y = text2num(params2list(params)["icon-y"])
+		var/_x = text2num(params2list(params)["icon-x"])/PIXEL_MULTIPLIER
+		var/_y = text2num(params2list(params)["icon-y"])/PIXEL_MULTIPLIER
 
 		if(_x<=16 && _y<=16)
 			usr.a_intent_change(INTENT_HARM)
 
-		else if(_x<=16 && _y>=17)
+		else if(_x<=16 && _y>16)
 			usr.a_intent_change(INTENT_HELP)
 
-		else if(_x>=17 && _y<=16)
+		else if(_x>16 && _y<=16)
 			usr.a_intent_change(INTENT_GRAB)
 
-		else if(_x>=17 && _y>=17)
+		else if(_x>16 && _y>16)
 			usr.a_intent_change(INTENT_DISARM)
 	else
 		return ..()
 
 /obj/screen/act_intent/alien
 	icon = 'icons/mob/screen_alien.dmi'
+/obj/screen/act_intent/alien/reset_screen_loc()
 	screen_loc = ui_movi
 
 /obj/screen/act_intent/robot
 	icon = 'icons/mob/screen_cyborg.dmi'
+/obj/screen/act_intent/robot/reset_screen_loc()
 	screen_loc = ui_borg_intents
 
 /obj/screen/internals
 	name = "toggle internals"
 	icon_state = "internal0"
+/obj/screen/internals/Initialize()
+	. = ..()
 	screen_loc = ui_internal
 
 /obj/screen/internals/Click()
@@ -451,10 +468,12 @@
 /obj/screen/zone_sel
 	name = "damage zone"
 	icon_state = "zone_sel"
-	screen_loc = ui_zonesel
 	var/selecting = BODY_ZONE_CHEST
 	var/static/list/hover_overlays_cache = list()
 	var/hovering
+/obj/screen/zone_sel/Initialize()
+	. = ..()
+	screen_loc = ui_zonesel
 
 /obj/screen/zone_sel/Click(location, control,params)
 	if(isobserver(usr))
@@ -507,6 +526,8 @@
 		hovering = null
 
 /obj/screen/zone_sel/proc/get_zone_at(icon_x, icon_y)
+	icon_x = (icon_x - 1) / PIXEL_MULTIPLIER + 1
+	icon_y = (icon_y - 1) / PIXEL_MULTIPLIER + 1
 	switch(icon_y)
 		if(1 to 9) //Legs
 			switch(icon_x)
@@ -591,21 +612,29 @@
 /obj/screen/healths
 	name = "health"
 	icon_state = "health0"
+/obj/screen/healths/Initialize()
+	. = ..()
 	screen_loc = ui_health
 
 /obj/screen/healths/alien
 	icon = 'icons/mob/screen_alien.dmi'
+/obj/screen/healths/alien/Initialize()
+	. = ..()
 	screen_loc = ui_alien_health
 
 /obj/screen/healths/robot
 	icon = 'icons/mob/screen_cyborg.dmi'
+/obj/screen/healths/robot/Initialize()
+	. = ..()
 	screen_loc = ui_borg_health
 
 /obj/screen/healths/blob
 	name = "blob health"
 	icon_state = "block"
-	screen_loc = ui_internal
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+/obj/screen/healths/blob/Initialize()
+	. = ..()
+	screen_loc = ui_internal
 
 /obj/screen/healths/blob/naut
 	name = "health"
@@ -614,54 +643,72 @@
 
 /obj/screen/healths/blob/naut/core
 	name = "overmind health"
-	screen_loc = ui_health
 	icon_state = "corehealth"
+/obj/screen/healths/blob/naut/core/Initialize()
+	. = ..()
+	screen_loc = ui_health
 
 /obj/screen/healths/guardian
 	name = "summoner health"
 	icon = 'icons/mob/guardian.dmi'
 	icon_state = "base"
-	screen_loc = ui_health
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+/obj/screen/healths/guardian/Initialize()
+	. = ..()
+	screen_loc = ui_health
 
 /obj/screen/healths/clock
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "bg_clock"
-	screen_loc = ui_health
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+/obj/screen/healths/clock/Initialize()
+	. = ..()
+	screen_loc = ui_health
 
 /obj/screen/healths/clock/gear
 	icon = 'icons/mob/clockwork_mobs.dmi'
 	icon_state = "bg_gear"
+/obj/screen/healths/clock/gear/Initialize()
+	. = ..()
 	screen_loc = ui_internal
 
 /obj/screen/healths/revenant
 	name = "essence"
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "bg_revenant"
-	screen_loc = ui_health
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+/obj/screen/healths/revenant/Initialize()
+	. = ..()
+	screen_loc = ui_health
 
 /obj/screen/healths/construct
 	icon = 'icons/mob/screen_construct.dmi'
 	icon_state = "artificer_health0"
-	screen_loc = ui_construct_health
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+/obj/screen/healths/construct/Initialize()
+	. = ..()
+	screen_loc = ui_construct_health
 
 /obj/screen/healths/slime
 	icon = 'icons/mob/screen_slime.dmi'
 	icon_state = "slime_health0"
-	screen_loc = ui_slime_health
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+/obj/screen/healths/slime/Initialize()
+	. = ..()
+	screen_loc = ui_slime_health
 
 /obj/screen/healths/lavaland_elite
 	icon = 'icons/mob/screen_elite.dmi'
 	icon_state = "elite_health0"
-	screen_loc = ui_health
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+/obj/screen/healths/lavaland_elite/Initialize()
+	. = ..()
+	screen_loc = ui_health
 
 /obj/screen/healthdoll
 	name = "health doll"
+/obj/screen/healthdoll/Initialize()
+	. = ..()
 	screen_loc = ui_healthdoll
 
 /obj/screen/healthdoll/Click()
@@ -672,11 +719,15 @@
 /obj/screen/mood
 	name = "mood"
 	icon_state = "mood5"
+/obj/screen/mood/Initialize()
+	. = ..()
 	screen_loc = ui_mood
 
 /obj/screen/sanity
 	name = "sanity"
 	icon_state = "sanity3"
+/obj/screen/sanity/Initialize()
+	. = ..()
 	screen_loc = ui_mood
 
 /obj/screen/splash

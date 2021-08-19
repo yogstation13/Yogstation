@@ -70,8 +70,8 @@
 	dir = 8
 	},
 /obj/item/storage/box/holy/follower{
-	pixel_x = -4;
-	pixel_y = 7
+	pixel_x = -8;
+	pixel_y = 14
 	},
 /turf/open/floor/carpet/royalblue,
 /area/template_noop)
@@ -164,7 +164,7 @@
 	icon = 'icons/obj/tesla_engine/tesla_generator.dmi';
 	icon_state = "TheSingGen";
 	name = "energy ball generator";
-	pixel_y = 12
+	pixel_y = 24
 	},
 /turf/open/floor/pod/light,
 /area/template_noop)
@@ -174,7 +174,7 @@
 /area/template_noop)
 "K" = (
 /obj/item/radio/intercom{
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/carpet/royalblue,
 /area/template_noop)
@@ -191,7 +191,7 @@
 /area/template_noop)
 "N" = (
 /obj/structure/sign/poster/contraband/random{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"

@@ -15,10 +15,10 @@
 	dir = 4
 	},
 /obj/machinery/newscaster/security_unit{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/structure/reagent_dispensers/peppertank{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
@@ -32,7 +32,7 @@
 	},
 /obj/item/radio/intercom{
 	name = "Station Intercom";
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
@@ -40,7 +40,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
 /obj/machinery/status_display/evac{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -102,7 +102,7 @@
 	dir = 4
 	},
 /obj/machinery/status_display/evac{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/machinery/light{
 	dir = 8
@@ -204,8 +204,8 @@
 "as" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21";
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -241,7 +241,7 @@
 	dir = 8
 	},
 /obj/machinery/status_display/ai{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -340,12 +340,12 @@
 "aC" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21";
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/radio/intercom{
 	name = "Station Intercom";
-	pixel_x = 26
+	pixel_x = 52
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -355,7 +355,7 @@
 	dir = 4
 	},
 /obj/machinery/status_display/evac{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/effect/turf_decal/bot,
 /obj/machinery/door/firedoor/border_only{
@@ -413,59 +413,59 @@
 	name = "emergency lifejacket"
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/clothing/head/hardhat/orange{
 	name = "protective hat";
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/structure/closet/crate/internals,
 /obj/effect/turf_decal/bot,
@@ -619,24 +619,24 @@
 	},
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/o2{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/storage/firstaid/toxin{
-	pixel_x = -4;
-	pixel_y = 3
+	pixel_x = -8;
+	pixel_y = 6
 	},
 /obj/item/healthanalyzer{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/lazarus_injector,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/bot,
 /mob/living/simple_animal/bot/medbot{
 	name = "\improper emergency medibot";
-	pixel_x = -3;
-	pixel_y = 2
+	pixel_x = -6;
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -646,7 +646,7 @@
 "ba" = (
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
-	pixel_x = -26;
+	pixel_x = -52;
 	use_power = 0
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -670,7 +670,7 @@
 "bc" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom";
-	pixel_x = 26
+	pixel_x = 52
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -684,7 +684,7 @@
 "bd" = (
 /obj/machinery/recharge_station,
 /obj/machinery/status_display/evac{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
@@ -713,12 +713,12 @@
 /obj/item/storage/toolbox/emergency,
 /obj/item/storage/toolbox/emergency,
 /obj/item/flashlight/flare/signal{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/flashlight/flare/signal{
-	pixel_x = -6;
-	pixel_y = -2
+	pixel_x = -12;
+	pixel_y = -4
 	},
 /obj/item/crowbar,
 /obj/item/wrench,
@@ -744,12 +744,12 @@
 "bi" = (
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid/o2{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/status_display/evac{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/machinery/light{
 	dir = 4
@@ -770,11 +770,11 @@
 /obj/item/pen,
 /obj/item/hand_labeler_refill,
 /obj/structure/sign/warning/nosmoking/circle{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/item/radio/intercom{
 	name = "Station Intercom";
-	pixel_y = -26
+	pixel_y = -52
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/bot,
@@ -789,15 +789,15 @@
 "bl" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/electrical{
-	pixel_x = -3;
-	pixel_y = 1
+	pixel_x = -6;
+	pixel_y = 2
 	},
 /obj/item/storage/toolbox/mechanical{
-	pixel_y = -1
+	pixel_y = -2
 	},
 /obj/item/storage/toolbox/emergency{
-	pixel_x = 3;
-	pixel_y = -5
+	pixel_x = 6;
+	pixel_y = -10
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
@@ -807,7 +807,7 @@
 /obj/machinery/cell_charger,
 /obj/item/stock_parts/cell/high,
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/bot,
@@ -815,20 +815,20 @@
 /area/shuttle/escape)
 "bn" = (
 /obj/item/scalpel{
-	pixel_y = 12
+	pixel_y = 24
 	},
 /obj/item/circular_saw,
 /obj/item/retractor{
-	pixel_x = 4
+	pixel_x = 8
 	},
 /obj/item/hemostat{
-	pixel_x = -4
+	pixel_x = -8
 	},
 /obj/item/clothing/gloves/color/latex,
 /obj/item/clothing/mask/surgical,
 /obj/structure/table/reinforced,
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -865,8 +865,8 @@
 "bq" = (
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/blue,
@@ -920,11 +920,11 @@
 "by" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21";
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 27
+	pixel_x = 54
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -980,7 +980,7 @@
 	dir = 4
 	},
 /obj/machinery/status_display/evac{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/effect/turf_decal/bot,
 /obj/machinery/door/firedoor/border_only,

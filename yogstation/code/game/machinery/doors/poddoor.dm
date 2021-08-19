@@ -31,30 +31,30 @@
 
 /obj/machinery/door/poddoor/multi_tile/four_tile_ver/
 	icon = 'yogstation/icons/obj/doors/1x4blast_vert.dmi'
-	bound_height = 128
+	bound_height = WORLD_ICON_SIZE*4
 	dir = NORTH
 
 /obj/machinery/door/poddoor/multi_tile/three_tile_ver/
 	icon = 'yogstation/icons/obj/doors/1x3blast_vert.dmi'
-	bound_height = 96
+	bound_height = WORLD_ICON_SIZE*3
 	dir = NORTH
 
 /obj/machinery/door/poddoor/multi_tile/two_tile_ver/
 	icon = 'yogstation/icons/obj/doors/1x2blast_vert.dmi'
-	bound_height = 64
+	bound_height = WORLD_ICON_SIZE*2
 	dir = NORTH
 
 /obj/machinery/door/poddoor/multi_tile/four_tile_hor/
 	icon = 'yogstation/icons/obj/doors/1x4blast_hor.dmi'
-	bound_width = 128
+	bound_width = WORLD_ICON_SIZE*4
 	dir = EAST
 
 /obj/machinery/door/poddoor/multi_tile/three_tile_hor/
 	icon = 'yogstation/icons/obj/doors/1x3blast_hor.dmi'
-	bound_width = 96
+	bound_width = WORLD_ICON_SIZE*3
 	dir = EAST
 
 /obj/machinery/door/poddoor/multi_tile/two_tile_hor/
 	icon = 'yogstation/icons/obj/doors/1x2blast_hor.dmi'
-	bound_width = 64
+	bound_width = WORLD_ICON_SIZE*2
 	dir = EAST

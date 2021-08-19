@@ -154,11 +154,11 @@
 				var/obj/item/clothing/accessory/medal/M = contents[i]
 				var/mutable_appearance/medalicon = mutable_appearance(initial(icon), M.medaltype)
 				if(i > 1 && i <= 5)
-					medalicon.pixel_x += ((i-1)*3)
+					medalicon.pixel_x += ((i-1)*3)*PIXEL_MULTIPLIER
 				else if(i > 5)
-					medalicon.pixel_y -= 7
-					medalicon.pixel_x -= 2
-					medalicon.pixel_x += ((i-6)*3)
+					medalicon.pixel_y -= 7*PIXEL_MULTIPLIER
+					medalicon.pixel_x -= 2*PIXEL_MULTIPLIER
+					medalicon.pixel_x += ((i-6)*3)*PIXEL_MULTIPLIER
 				add_overlay(medalicon)
 
 /obj/item/storage/lockbox/medal/sec

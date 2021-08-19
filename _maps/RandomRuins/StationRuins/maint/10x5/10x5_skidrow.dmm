@@ -21,7 +21,7 @@
 /area/template_noop)
 "g" = (
 /obj/item/trash/semki{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -29,7 +29,7 @@
 /obj/effect/decal/cleanable/glass,
 /obj/structure/table_frame/wood,
 /obj/item/trash/tray{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -39,8 +39,8 @@
 /obj/item/reagent_containers/glass/bottle/killer/pestkiller,
 /obj/item/reagent_containers/syringe,
 /obj/item/flashlight/lamp/green{
-	pixel_x = -5;
-	pixel_y = -2
+	pixel_x = -10;
+	pixel_y = -4
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -91,8 +91,8 @@
 /area/template_noop)
 "t" = (
 /obj/item/trash/chips{
-	pixel_x = 3;
-	pixel_y = 12
+	pixel_x = 6;
+	pixel_y = 24
 	},
 /obj/effect/spawner/lootdrop/grille_or_trash,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -105,8 +105,8 @@
 /area/template_noop)
 "w" = (
 /obj/item/wirecutters{
-	pixel_x = 6;
-	pixel_y = -3
+	pixel_x = 12;
+	pixel_y = -6
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
@@ -118,16 +118,16 @@
 /area/template_noop)
 "y" = (
 /obj/item/storage/bag/trash{
-	pixel_x = 13;
-	pixel_y = -12
+	pixel_x = 26;
+	pixel_y = -24
 	},
 /obj/effect/decal/cleanable/food/tomato_smudge,
 /turf/open/floor/plating,
 /area/template_noop)
 "z" = (
 /obj/item/stack/ore/slag{
-	pixel_x = 13;
-	pixel_y = -6
+	pixel_x = 26;
+	pixel_y = -12
 	},
 /turf/open/floor/plating,
 /area/template_noop)

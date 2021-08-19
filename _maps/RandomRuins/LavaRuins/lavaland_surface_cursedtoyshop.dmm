@@ -96,16 +96,16 @@
 "ar" = (
 /obj/structure/table/wood,
 /obj/item/toy/sword{
-	pixel_y = 9
+	pixel_y = 18
 	},
 /obj/item/toy/sword{
-	pixel_x = 6;
-	pixel_y = 7
+	pixel_x = 12;
+	pixel_y = 14
 	},
 /obj/item/toy/sword,
 /obj/item/melee/transforming/energy/sword/bananium{
-	pixel_x = 6;
-	pixel_y = 12
+	pixel_x = 12;
+	pixel_y = 24
 	},
 /obj/item/toy/sword{
 	desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up.";
@@ -116,27 +116,27 @@
 "as" = (
 /obj/structure/table/wood,
 /obj/item/toy/talking/griffin{
-	pixel_x = -5;
-	pixel_y = 8
+	pixel_x = -10;
+	pixel_y = 16
 	},
 /obj/item/toy/talking/owl{
-	pixel_x = 5;
-	pixel_y = 8
+	pixel_x = 10;
+	pixel_y = 16
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
 "at" = (
 /obj/structure/table/wood,
 /obj/item/grenade/smokebomb{
-	pixel_x = 6;
-	pixel_y = 5
+	pixel_x = 12;
+	pixel_y = 10
 	},
 /obj/item/grenade/smokebomb{
-	pixel_x = -6;
-	pixel_y = 8
+	pixel_x = -12;
+	pixel_y = 16
 	},
 /obj/item/grenade/smokebomb{
-	pixel_x = -5
+	pixel_x = -10
 	},
 /obj/item/grenade/smokebomb,
 /turf/open/floor/wood,
@@ -223,15 +223,15 @@
 "aH" = (
 /obj/structure/table/wood,
 /obj/item/toy/toyballoon{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/item/toy/toyballoon,
 /obj/item/toy/toyballoon{
-	pixel_x = 6;
-	pixel_y = 4
+	pixel_x = 12;
+	pixel_y = 8
 	},
 /obj/item/toy/toyballoon{
-	pixel_x = 4
+	pixel_x = 8
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -239,28 +239,28 @@
 /obj/structure/table/wood,
 /obj/item/gun/magic/wand,
 /obj/item/gun/magic/wand{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/gun/magic/wand/fireball/inert{
 	desc = "It's not just a stick, it's a MAGIC stick!";
 	icon_state = "nothingwand";
 	name = "wand of nothing";
-	pixel_x = -6
+	pixel_x = -12
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
 "aJ" = (
 /obj/structure/table/wood,
 /obj/item/toy/xmas_cracker{
-	pixel_x = 3;
-	pixel_y = 6
+	pixel_x = 6;
+	pixel_y = 12
 	},
 /obj/item/toy/xmas_cracker,
 /obj/item/toy/xmas_cracker{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/toy/xmas_cracker{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -268,24 +268,24 @@
 /obj/structure/table/wood,
 /obj/item/clothing/gloves/boxing,
 /obj/item/clothing/gloves/boxing{
-	pixel_x = -5
+	pixel_x = -10
 	},
 /obj/item/clothing/gloves/boxing/yellow{
-	pixel_x = 3;
-	pixel_y = 6
+	pixel_x = 6;
+	pixel_y = 12
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
 "aL" = (
 /obj/structure/table/wood,
 /obj/item/clothing/gloves/boxing/green{
-	pixel_x = -8;
-	pixel_y = 4
+	pixel_x = -16;
+	pixel_y = 8
 	},
 /obj/item/clothing/gloves/boxing/green,
 /obj/item/clothing/gloves/boxing/blue{
-	pixel_x = 6;
-	pixel_y = 4
+	pixel_x = 12;
+	pixel_y = 8
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -293,68 +293,68 @@
 /obj/structure/table/wood,
 /obj/item/toy/figure/assistant,
 /obj/item/toy/figure/bartender{
-	pixel_x = 8;
-	pixel_y = 5
+	pixel_x = 16;
+	pixel_y = 10
 	},
 /obj/item/toy/figure/botanist{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/item/toy/figure/chaplain{
-	pixel_x = 5;
-	pixel_y = -6
+	pixel_x = 10;
+	pixel_y = -12
 	},
 /obj/item/toy/figure/chef{
-	pixel_x = -5;
-	pixel_y = 4
+	pixel_x = -10;
+	pixel_y = 8
 	},
 /obj/item/toy/figure/janitor{
-	pixel_x = -5
+	pixel_x = -10
 	},
 /obj/item/toy/figure/curator{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
 "aN" = (
 /obj/structure/table/wood,
 /obj/item/toy/figure/atmos{
-	pixel_x = -7
+	pixel_x = -14
 	},
 /obj/item/toy/figure/ce,
 /obj/item/toy/figure/engineer{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
 "aO" = (
 /obj/structure/table/wood,
 /obj/item/toy/figure/borg{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/toy/talking/AI{
-	pixel_x = -5;
-	pixel_y = 4
+	pixel_x = -10;
+	pixel_y = 8
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
 "aP" = (
 /obj/structure/table/wood,
 /obj/item/toy/figure/detective{
-	pixel_y = 7
+	pixel_y = 14
 	},
 /obj/item/toy/figure/hos{
-	pixel_x = 6;
-	pixel_y = 5
+	pixel_x = 12;
+	pixel_y = 10
 	},
 /obj/item/toy/figure/lawyer{
-	pixel_x = -7;
-	pixel_y = 4
+	pixel_x = -14;
+	pixel_y = 8
 	},
 /obj/item/toy/figure/secofficer{
-	pixel_x = -5
+	pixel_x = -10
 	},
 /obj/item/toy/figure/warden{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/toy/figure/captain,
 /turf/open/floor/wood,
@@ -373,20 +373,20 @@
 /obj/structure/table/wood,
 /obj/item/toy/heartballoon,
 /obj/item/toy/heartballoon{
-	pixel_x = -2;
-	pixel_y = 9
+	pixel_x = -4;
+	pixel_y = 18
 	},
 /obj/item/toy/heartballoon{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/obj/item/toy/heartballoon{
-	pixel_x = 2;
-	pixel_y = 4
+	pixel_x = -12;
+	pixel_y = 10
 	},
 /obj/item/toy/heartballoon{
 	pixel_x = 4;
-	pixel_y = 4
+	pixel_y = 8
+	},
+/obj/item/toy/heartballoon{
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/machinery/light{
 	dir = 8
@@ -411,13 +411,13 @@
 "aW" = (
 /obj/structure/table/wood,
 /obj/item/toy/figure/cargotech{
-	pixel_y = 7
+	pixel_y = 14
 	},
 /obj/item/toy/figure/miner{
-	pixel_x = -5
+	pixel_x = -10
 	},
 /obj/item/toy/figure/qm{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/toy/figure/hop,
 /turf/open/floor/wood,
@@ -429,35 +429,35 @@
 /obj/structure/table/wood,
 /obj/item/toy/toygrenade,
 /obj/item/toy/toygrenade{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /obj/item/toy/toygrenade{
-	pixel_x = 4;
-	pixel_y = 11
+	pixel_x = 8;
+	pixel_y = 22
 	},
 /obj/item/toy/toygrenade{
-	pixel_y = 7
+	pixel_y = 14
 	},
 /obj/item/toy/toygrenade{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
 "aZ" = (
 /obj/structure/table/wood,
 /obj/item/toy/figure/chemist{
-	pixel_x = -6;
-	pixel_y = 5
+	pixel_x = -12;
+	pixel_y = 10
 	},
 /obj/item/toy/figure/md{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /obj/item/toy/figure/virologist{
-	pixel_x = -5
+	pixel_x = -10
 	},
 /obj/item/toy/figure/geneticist{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/toy/figure/cmo,
 /obj/machinery/light{
@@ -469,10 +469,10 @@
 "ba" = (
 /obj/structure/table/wood,
 /obj/item/toy/syndicateballoon{
-	pixel_x = -6
+	pixel_x = -12
 	},
 /obj/item/toy/syndicateballoon{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/toy/syndicateballoon,
 /turf/open/floor/wood,
@@ -481,7 +481,7 @@
 /obj/structure/table/wood,
 /obj/item/twohanded/dualsaber/toy,
 /obj/item/toy/katana{
-	pixel_x = 6
+	pixel_x = 12
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -489,28 +489,28 @@
 /obj/structure/table/wood,
 /obj/item/toy/snappop,
 /obj/item/toy/snappop{
-	pixel_x = 1;
-	pixel_y = 7
+	pixel_x = 2;
+	pixel_y = 14
 	},
 /obj/item/toy/snappop{
-	pixel_x = 5;
-	pixel_y = 3
+	pixel_x = 10;
+	pixel_y = 6
 	},
 /obj/item/toy/snappop{
-	pixel_x = -6;
-	pixel_y = 7
+	pixel_x = -12;
+	pixel_y = 14
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
 "bd" = (
 /obj/structure/table/wood,
 /obj/item/toy/figure/clown{
-	pixel_x = -4;
-	pixel_y = 6
+	pixel_x = -8;
+	pixel_y = 12
 	},
 /obj/item/toy/figure/ian{
-	pixel_x = 5;
-	pixel_y = 3
+	pixel_x = 10;
+	pixel_y = 6
 	},
 /obj/item/toy/figure/mime,
 /turf/open/floor/wood,
@@ -518,28 +518,28 @@
 "be" = (
 /obj/structure/table/wood,
 /obj/item/toy/figure/syndie{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/item/toy/figure/wizard{
-	pixel_x = 7
+	pixel_x = 14
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
 "bf" = (
 /obj/structure/table/wood,
 /obj/item/toy/figure/rd{
-	pixel_x = -5
+	pixel_x = -10
 	},
 /obj/item/toy/figure/roboticist,
 /obj/item/toy/figure/scientist{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
 "bg" = (
 /obj/structure/table/wood,
 /obj/item/toy/figure/dsquad{
-	pixel_x = 5
+	pixel_x = 10
 	},
 /obj/item/toy/figure/ninja,
 /turf/open/floor/wood,
@@ -552,7 +552,7 @@
 "bj" = (
 /obj/structure/table/wood,
 /obj/item/clothing/mask/facehugger/toy{
-	pixel_y = 7
+	pixel_y = 14
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -560,25 +560,25 @@
 /obj/structure/table/wood,
 /obj/item/toy/minimeteor,
 /obj/item/toy/minimeteor{
-	pixel_x = -6;
-	pixel_y = -5
+	pixel_x = -12;
+	pixel_y = -10
 	},
 /obj/item/toy/minimeteor{
-	pixel_x = -9;
-	pixel_y = 6
+	pixel_x = -18;
+	pixel_y = 12
 	},
 /obj/item/toy/minimeteor{
-	pixel_x = 4;
-	pixel_y = 2
+	pixel_x = 8;
+	pixel_y = 4
 	},
 /obj/item/toy/minimeteor,
 /obj/item/toy/minimeteor{
-	pixel_x = 7;
-	pixel_y = -5
+	pixel_x = 14;
+	pixel_y = -10
 	},
 /obj/item/toy/minimeteor{
-	pixel_x = 6;
-	pixel_y = 4
+	pixel_x = 12;
+	pixel_y = 8
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -597,8 +597,8 @@
 "bo" = (
 /obj/structure/table/wood,
 /obj/item/toy/plush/stuffedmonkey{
-	pixel_x = 6;
-	pixel_y = 4
+	pixel_x = 12;
+	pixel_y = 8
 	},
 /obj/item/toy/plush/stuffedmonkey,
 /turf/open/floor/wood,
@@ -618,8 +618,8 @@
 /obj/structure/table/wood,
 /obj/item/clothing/mask/horsehead,
 /obj/item/clothing/mask/pig{
-	pixel_x = -5;
-	pixel_y = 3
+	pixel_x = -10;
+	pixel_y = 6
 	},
 /obj/item/clothing/mask/cowmask,
 /obj/item/clothing/mask/fakemoustache,
@@ -633,8 +633,8 @@
 /obj/structure/window/reinforced,
 /obj/structure/table/wood,
 /obj/item/toy/prize/fireripley{
-	pixel_x = -7;
-	pixel_y = 6
+	pixel_x = -14;
+	pixel_y = 12
 	},
 /obj/item/toy/prize/ripley,
 /obj/item/toy/prize/deathripley,
@@ -644,8 +644,8 @@
 /obj/structure/window/reinforced,
 /obj/structure/table/wood,
 /obj/item/toy/prize/honk{
-	pixel_x = 4;
-	pixel_y = 6
+	pixel_x = 8;
+	pixel_y = 12
 	},
 /obj/item/toy/prize/reticence,
 /turf/open/floor/wood,
@@ -659,12 +659,12 @@
 "bx" = (
 /obj/structure/table/wood,
 /obj/item/toy/prize/marauder{
-	pixel_x = -6;
-	pixel_y = 4
+	pixel_x = -12;
+	pixel_y = 8
 	},
 /obj/item/toy/prize/phazon{
-	pixel_x = 6;
-	pixel_y = 7
+	pixel_x = 12;
+	pixel_y = 14
 	},
 /obj/item/toy/prize/durand,
 /turf/open/floor/wood,
@@ -686,22 +686,22 @@
 "bC" = (
 /obj/structure/table/wood,
 /obj/item/toy/prize/mauler{
-	pixel_x = -5;
-	pixel_y = 6
+	pixel_x = -10;
+	pixel_y = 12
 	},
 /obj/item/toy/prize/seraph{
-	pixel_x = 4;
-	pixel_y = 5
+	pixel_x = 8;
+	pixel_y = 10
 	},
 /obj/item/toy/prize/gygax{
-	pixel_y = 7
+	pixel_y = 14
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
 "bD" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /obj/item/pen,
 /turf/open/floor/wood,
@@ -730,7 +730,7 @@
 	},
 /obj/structure/noticeboard{
 	dir = 4;
-	pixel_x = -27;
+	pixel_x = -54;
 	pixel_y = 0
 	},
 /turf/open/floor/wood,

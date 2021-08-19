@@ -3,10 +3,10 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/paper_bin{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /obj/item/pen{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /turf/open/floor/plating,
 /area/template_noop)

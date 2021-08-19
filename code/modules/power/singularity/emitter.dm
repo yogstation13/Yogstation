@@ -488,35 +488,35 @@
 		if(NORTH)
 			E.layer = 3.9
 			user.pixel_x = 0
-			user.pixel_y = -14
+			user.pixel_y = -14*PIXEL_MULTIPLIER
 		if(NORTHEAST)
 			E.layer = 3.9
-			user.pixel_x = -8
-			user.pixel_y = -12
+			user.pixel_x = -8*PIXEL_MULTIPLIER
+			user.pixel_y = -12*PIXEL_MULTIPLIER
 		if(EAST)
 			E.layer = 4.1
-			user.pixel_x = -14
+			user.pixel_x = -14*PIXEL_MULTIPLIER
 			user.pixel_y = 0
 		if(SOUTHEAST)
 			E.layer = 3.9
-			user.pixel_x = -8
-			user.pixel_y = 12
+			user.pixel_x = -8*PIXEL_MULTIPLIER
+			user.pixel_y = 12*PIXEL_MULTIPLIER
 		if(SOUTH)
 			E.layer = 4.1
 			user.pixel_x = 0
-			user.pixel_y = 14
+			user.pixel_y = 14*PIXEL_MULTIPLIER
 		if(SOUTHWEST)
 			E.layer = 3.9
-			user.pixel_x = 8
-			user.pixel_y = 12
+			user.pixel_x = 8*PIXEL_MULTIPLIER
+			user.pixel_y = 12*PIXEL_MULTIPLIER
 		if(WEST)
 			E.layer = 4.1
-			user.pixel_x = 14
+			user.pixel_x = 14*PIXEL_MULTIPLIER
 			user.pixel_y = 0
 		if(NORTHWEST)
 			E.layer = 3.9
-			user.pixel_x = 8
-			user.pixel_y = -12
+			user.pixel_x = 8*PIXEL_MULTIPLIER
+			user.pixel_y = -12*PIXEL_MULTIPLIER
 
 	E.last_projectile_params = calculate_projectile_angle_and_pixel_offsets(user, clickparams)
 

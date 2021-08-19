@@ -147,7 +147,7 @@
 	operating = TRUE
 	update_icon()
 
-	var/offset = prob(50) ? -2 : 2
+	var/offset = prob(50) ? -2*PIXEL_MULTIPLIER : 2*PIXEL_MULTIPLIER
 	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = 200) //start shaking
 	var/mob/living/mob_occupant = occupant
 	var/sourcename = mob_occupant.real_name

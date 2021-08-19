@@ -83,7 +83,7 @@
 /area/template_noop)
 "P" = (
 /obj/machinery/light_switch{
-	pixel_x = 27
+	pixel_x = 54
 	},
 /obj/structure/cloth_curtain,
 /turf/open/floor/wood,

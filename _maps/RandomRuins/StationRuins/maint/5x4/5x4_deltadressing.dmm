@@ -44,7 +44,7 @@
 /area/template_noop)
 "h" = (
 /obj/structure/mirror{
-	pixel_x = -28
+	pixel_x = -56
 	},
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt,
@@ -123,16 +123,16 @@
 "G" = (
 /obj/structure/table/wood,
 /obj/item/lipstick/random{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/lipstick/random{
-	pixel_x = -3;
-	pixel_y = -3
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /obj/item/lipstick/random,
 /obj/structure/sign/poster/contraband/random{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/template_noop)

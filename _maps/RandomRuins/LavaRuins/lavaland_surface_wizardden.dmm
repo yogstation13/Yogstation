@@ -10,41 +10,41 @@
 "e" = (
 /obj/structure/table/wood,
 /obj/item/clothing/head/wizard{
-	pixel_x = 5;
-	pixel_y = 5
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /obj/item/clothing/head/wizard/black{
-	pixel_x = -5;
-	pixel_y = 8
+	pixel_x = -10;
+	pixel_y = 16
 	},
 /obj/item/clothing/head/wizard/yellow,
 /obj/item/clothing/head/wizard/red{
-	pixel_x = -7
+	pixel_x = -14
 	},
 /obj/item/clothing/head/wizard/marisa{
-	pixel_x = 8;
-	pixel_y = -7
+	pixel_x = 16;
+	pixel_y = -14
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
 "f" = (
 /obj/structure/table/wood,
 /obj/item/clothing/suit/wizrobe/black{
-	pixel_x = 7;
-	pixel_y = 6
+	pixel_x = 14;
+	pixel_y = 12
 	},
 /obj/item/clothing/suit/wizrobe,
 /obj/item/clothing/suit/wizrobe/red{
-	pixel_x = 3;
-	pixel_y = -8
+	pixel_x = 6;
+	pixel_y = -16
 	},
 /obj/item/clothing/suit/wizrobe/yellow{
-	pixel_x = -7;
-	pixel_y = 5
+	pixel_x = -14;
+	pixel_y = 10
 	},
 /obj/item/clothing/suit/wizrobe/marisa{
-	pixel_x = 7;
-	pixel_y = -6
+	pixel_x = 14;
+	pixel_y = -12
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)

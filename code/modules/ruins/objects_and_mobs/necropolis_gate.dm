@@ -9,8 +9,8 @@
 	layer = TABLE_LAYER
 	anchored = TRUE
 	density = TRUE
-	pixel_x = -32
-	pixel_y = -32
+	pixel_x = -32*PIXEL_MULTIPLIER
+	pixel_y = -32*PIXEL_MULTIPLIER
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	light_range = 8
 	light_color = LIGHT_COLOR_LAVA
@@ -70,8 +70,8 @@
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "gate_blocker"
 	layer = EDGED_TURF_LAYER
-	pixel_x = -32
-	pixel_y = -32
+	pixel_x = -32*PIXEL_MULTIPLIER
+	pixel_y = -32*PIXEL_MULTIPLIER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	opacity = TRUE
 	anchored = TRUE
@@ -201,8 +201,8 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 	appearance_flags = 0
 	duration = 6
 	layer = EDGED_TURF_LAYER
-	pixel_x = -32
-	pixel_y = -32
+	pixel_x = -32*PIXEL_MULTIPLIER
+	pixel_y = -32*PIXEL_MULTIPLIER
 
 /obj/effect/temp_visual/necropolis/open
 	icon_state = "door_opening"
@@ -216,8 +216,8 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 	appearance_flags = 0
 	layer = TABLE_LAYER
 	anchored = TRUE
-	pixel_x = -64
-	pixel_y = -40
+	pixel_x = -64*PIXEL_MULTIPLIER
+	pixel_y = -40*PIXEL_MULTIPLIER
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/open = FALSE
 	var/static/mutable_appearance/top_overlay
@@ -308,7 +308,7 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 
 /obj/structure/stone_tile/proc/rebuild()
 	pixel_x = initial(pixel_x)
-	pixel_y = initial(pixel_y) - 5
+	pixel_y = initial(pixel_y) - 5*PIXEL_MULTIPLIER
 	animate(src, alpha = initial(alpha), pixel_x = initial(pixel_x), pixel_y = initial(pixel_y), time = 30)
 	sleep(30)
 	falling = FALSE

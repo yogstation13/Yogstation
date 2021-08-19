@@ -38,14 +38,14 @@
 "G" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni{
-	pixel_y = -9
+	pixel_y = -18
 	},
 /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni{
-	pixel_x = 9
+	pixel_x = 18
 	},
 /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni{
-	pixel_x = -4;
-	pixel_y = 3
+	pixel_x = -8;
+	pixel_y = 6
 	},
 /turf/open/floor/carpet/red,
 /area/template_noop)
@@ -76,12 +76,12 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/soda_cans/space_up,
 /obj/item/reagent_containers/food/drinks/soda_cans/cola{
-	pixel_x = -3;
-	pixel_y = 4
+	pixel_x = -6;
+	pixel_y = 8
 	},
 /obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime{
-	pixel_x = 6;
-	pixel_y = 6
+	pixel_x = 12;
+	pixel_y = 12
 	},
 /turf/open/floor/carpet/red,
 /area/template_noop)

@@ -2,5 +2,7 @@
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "power_display"
 	name = "usable blood"
-	screen_loc = ui_lingchemdisplay
 	invisibility = INVISIBILITY_ABSTRACT
+/obj/screen/vampire/Initialize()
+	. = ..()
+	screen_loc = ui_lingchemdisplay

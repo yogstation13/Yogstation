@@ -15,8 +15,8 @@
 "h" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
-	pixel_x = 1;
-	pixel_y = 9
+	pixel_x = 2;
+	pixel_y = 18
 	},
 /obj/item/pen,
 /obj/item/folder/white,
@@ -81,7 +81,7 @@
 "A" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp{
-	pixel_y = 2
+	pixel_y = 4
 	},
 /obj/structure/window/reinforced/tinted/frosted{
 	dir = 4
@@ -108,8 +108,8 @@
 "F" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
-	pixel_x = 1;
-	pixel_y = 9
+	pixel_x = 2;
+	pixel_y = 18
 	},
 /obj/item/pen,
 /obj/item/folder/white,
@@ -131,8 +131,8 @@
 "I" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp{
-	pixel_x = 3;
-	pixel_y = -4
+	pixel_x = 6;
+	pixel_y = -8
 	},
 /obj/structure/window/reinforced/tinted/frosted{
 	dir = 1
@@ -149,7 +149,7 @@
 	},
 /obj/structure/window/reinforced/tinted/frosted,
 /obj/item/flashlight/lamp{
-	pixel_y = 2
+	pixel_y = 4
 	},
 /turf/open/floor/wood,
 /area/template_noop)
@@ -170,8 +170,8 @@
 "M" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp{
-	pixel_x = -2;
-	pixel_y = -3
+	pixel_x = -4;
+	pixel_y = -6
 	},
 /obj/structure/window/reinforced/tinted/frosted{
 	dir = 1
@@ -196,8 +196,8 @@
 "T" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
-	pixel_x = 1;
-	pixel_y = 9
+	pixel_x = 2;
+	pixel_y = 18
 	},
 /obj/item/pen,
 /obj/item/folder/white,
@@ -209,8 +209,8 @@
 "U" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp{
-	pixel_x = 2;
-	pixel_y = -2
+	pixel_x = 4;
+	pixel_y = -4
 	},
 /obj/structure/window/reinforced/tinted/frosted{
 	dir = 8

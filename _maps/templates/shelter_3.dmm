@@ -95,8 +95,8 @@
 "s" = (
 /obj/structure/table/reinforced,
 /obj/item/lighter{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /obj/item/lighter,
 /turf/open/floor/pod/dark,
@@ -108,8 +108,8 @@
 "u" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/matches{
-	pixel_x = -4;
-	pixel_y = 8
+	pixel_x = -8;
+	pixel_y = 16
 	},
 /turf/open/floor/pod/dark,
 /area/survivalpod)
@@ -172,18 +172,18 @@
 "F" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -4;
-	pixel_y = 12
+	pixel_x = -8;
+	pixel_y = 24
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /turf/open/floor/carpet/black,
 /area/survivalpod)
 "G" = (
 /obj/structure/urinal{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /turf/open/floor/pod/light,
 /area/survivalpod)
@@ -242,17 +242,17 @@
 /obj/structure/table/wood/fancy/black,
 /obj/item/storage/box/fancy/cigarettes/cigars/cohiba,
 /obj/item/storage/box/fancy/cigarettes/cigars/havana{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/storage/box/fancy/cigarettes/cigars{
-	pixel_y = 10
+	pixel_y = 20
 	},
 /turf/open/floor/pod/dark,
 /area/survivalpod)
 "X" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/machinery/light/small{
 	dir = 1

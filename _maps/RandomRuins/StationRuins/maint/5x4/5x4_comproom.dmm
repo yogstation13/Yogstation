@@ -95,7 +95,7 @@
 /obj/structure/filingcabinet,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/machinery/status_display/evac{
-	pixel_y = 25
+	pixel_y = 50
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
@@ -110,7 +110,7 @@
 /obj/item/wallframe/camera,
 /obj/item/stack/cable_coil/random/five,
 /obj/machinery/status_display/evac{
-	pixel_y = 25
+	pixel_y = 50
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)

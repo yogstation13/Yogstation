@@ -39,8 +39,8 @@ Difficulty: Medium
 	var/size = 5
 	var/charging = FALSE
 	internal_type = /obj/item/gps/internal/legion
-	pixel_y = -90
-	pixel_x = -75
+	pixel_y = -90*PIXEL_MULTIPLIER
+	pixel_x = -75*PIXEL_MULTIPLIER
 	loot = list(/obj/item/stack/sheet/bone = 3)
 	vision_range = 13
 	wander = FALSE

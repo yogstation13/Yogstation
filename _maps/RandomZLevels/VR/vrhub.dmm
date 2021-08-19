@@ -510,8 +510,8 @@
 	light_power = 1;
 	light_range = 10;
 	name = "obvious reference";
-	pixel_x = -96;
-	pixel_y = -64;
+	pixel_x = -192;
+	pixel_y = -128;
 	worn_x_dimension = 32
 	},
 /turf/open/floor/fakespace,
@@ -696,7 +696,7 @@
 /area/awaymission/vr/syndicate)
 "fy" = (
 /obj/machinery/recharger{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
@@ -747,7 +747,7 @@
 "gk" = (
 /obj/structure/table,
 /obj/machinery/recharger{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
@@ -792,11 +792,11 @@
 "gT" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular{
-	pixel_x = 2
+	pixel_x = 4
 	},
 /obj/item/storage/firstaid/regular{
-	pixel_x = -2;
-	pixel_y = 4
+	pixel_x = -4;
+	pixel_y = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/syndicate)
@@ -915,7 +915,7 @@
 /obj/machinery/button/massdriver/indestructible{
 	id = "XCCMechs";
 	name = "XCC Mechbay Mass Driver";
-	pixel_x = 25
+	pixel_x = 50
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
@@ -938,7 +938,7 @@
 	dir = 4
 	},
 /obj/item/radio/intercom{
-	pixel_y = 25
+	pixel_y = 50
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/syndicate)
@@ -1230,7 +1230,7 @@
 /area/awaymission/vr/syndicate)
 "oZ" = (
 /obj/machinery/button/crematorium/indestructible{
-	pixel_y = 25
+	pixel_y = 50
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
@@ -1265,8 +1265,8 @@
 "py" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/toxin{
-	pixel_x = -2;
-	pixel_y = 4
+	pixel_x = -4;
+	pixel_y = 8
 	},
 /obj/item/storage/firstaid/toxin,
 /turf/open/floor/mineral/titanium/blue,
@@ -1314,7 +1314,7 @@
 "qs" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/plantbgone{
-	pixel_y = 3
+	pixel_y = 6
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
@@ -1395,7 +1395,7 @@
 /obj/structure/table,
 /obj/item/clothing/gloves/color/yellow,
 /obj/item/storage/toolbox/electrical{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
@@ -1405,7 +1405,7 @@
 /area/awaymission/vr/syndicate)
 "rT" = (
 /obj/structure/sink/kitchen{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
@@ -1592,7 +1592,7 @@
 "vn" = (
 /obj/structure/table,
 /obj/item/book/manual/wiki/barman_recipes{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/effect/light_emitter/vr_hub,
@@ -1804,7 +1804,7 @@
 "zc" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/matches{
-	pixel_y = 5
+	pixel_y = 10
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/hub)
@@ -1854,11 +1854,11 @@
 /area/awaymission/vr/syndicate)
 "zR" = (
 /obj/structure/mirror{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
@@ -1996,7 +1996,7 @@
 	c_tag = "Virtual Reality";
 	dir = 1;
 	network = list("ss13","virtual");
-	pixel_x = 16;
+	pixel_x = 32;
 	pixel_y = 0;
 	resistance_flags = 64
 	},
@@ -2015,7 +2015,7 @@
 /area/awaymission/vr/syndicate)
 "Cv" = (
 /obj/structure/urinal{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
@@ -2096,8 +2096,8 @@
 /obj/structure/table,
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/fire{
-	pixel_x = -2;
-	pixel_y = 4
+	pixel_x = -4;
+	pixel_y = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/syndicate)
@@ -2191,8 +2191,8 @@
 /obj/machinery/button/door/indestructible{
 	id = "XCCHangar1";
 	name = "Hangar Bay Blast Doors";
-	pixel_x = -28;
-	pixel_y = 7;
+	pixel_x = -56;
+	pixel_y = 14;
 	req_access_txt = "2"
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -2299,8 +2299,8 @@
 "HI" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
@@ -2325,7 +2325,7 @@
 	dir = 8;
 	network = list("ss13","virtual");
 	pixel_x = 0;
-	pixel_y = -16;
+	pixel_y = -32;
 	resistance_flags = 64
 	},
 /turf/open/indestructible,
@@ -2420,8 +2420,8 @@
 "Jz" = (
 /obj/structure/rack,
 /obj/item/clothing/ears/earmuffs{
-	pixel_x = -3;
-	pixel_y = -2
+	pixel_x = -6;
+	pixel_y = -4
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
@@ -2644,8 +2644,8 @@
 "NI" = (
 /obj/structure/rack,
 /obj/item/clothing/ears/earmuffs{
-	pixel_x = -3;
-	pixel_y = -2
+	pixel_x = -6;
+	pixel_y = -4
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -2901,8 +2901,8 @@
 /obj/machinery/button/door/indestructible{
 	id = "XCCFerry";
 	name = "Hangar Bay Shutters";
-	pixel_x = -28;
-	pixel_y = 7;
+	pixel_x = -56;
+	pixel_y = 14;
 	req_access_txt = "2"
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -3147,7 +3147,7 @@
 "Ww" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger{
-	pixel_y = 4
+	pixel_y = 8
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
@@ -3171,8 +3171,8 @@
 "WM" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /obj/item/kitchen/rollingpin,
 /turf/open/indestructible,
@@ -3230,11 +3230,11 @@
 "XG" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -24;
+	pixel_y = 4
 	},
 /obj/structure/mirror{
-	pixel_x = -28
+	pixel_x = -56
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
@@ -3247,7 +3247,7 @@
 "XO" = (
 /obj/structure/table,
 /obj/machinery/processor{
-	pixel_y = 10
+	pixel_y = 20
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
@@ -3289,10 +3289,10 @@
 "XZ" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
+	pixel_x = 6
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
+	pixel_x = -6
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/hub)
@@ -3303,7 +3303,7 @@
 /area/awaymission/vr/syndicate)
 "Yr" = (
 /obj/structure/chair/stool{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)

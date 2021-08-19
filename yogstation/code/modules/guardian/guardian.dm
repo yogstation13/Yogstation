@@ -79,7 +79,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if(summoner?.current)
 		var/image/holder = hud_list[STATUS_HUD]
 		var/icon/I = icon(icon, icon_state, dir)
-		holder.pixel_y = I.Height() - world.icon_size
+		holder.pixel_y = I.Height() - WORLD_ICON_SIZE
 		if(summoner?.current.stat == DEAD)
 			holder.icon_state = "huddead"
 		else
@@ -258,16 +258,16 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 				setDir(summoner.current.dir)
 				switch(dir)
 					if(NORTH)
-						pixel_y = -16
+						pixel_y = -16*PIXEL_MULTIPLIER
 						layer = summoner.current.layer + 0.1
 					if(SOUTH)
-						pixel_y = 16
+						pixel_y = 16*PIXEL_MULTIPLIER
 						layer = summoner.current.layer - 0.1
 					if(EAST)
-						pixel_x = -16
+						pixel_x = -16*PIXEL_MULTIPLIER
 						layer = summoner.current.layer
 					if(WEST)
-						pixel_x = 16
+						pixel_x = 16*PIXEL_MULTIPLIER
 						layer = summoner.current.layer
 			return
 	. = ..()
@@ -293,16 +293,16 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 				setDir(summoner.current.dir)
 				switch(dir)
 					if(NORTH)
-						pixel_y = -16
+						pixel_y = -16*PIXEL_MULTIPLIER
 						layer = summoner.current.layer + 0.1
 					if(SOUTH)
-						pixel_y = 16
+						pixel_y = 16*PIXEL_MULTIPLIER
 						layer = summoner.current.layer - 0.1
 					if(EAST)
-						pixel_x = -16
+						pixel_x = -16*PIXEL_MULTIPLIER
 						layer = summoner.current.layer
 					if(WEST)
-						pixel_x = 16
+						pixel_x = 16*PIXEL_MULTIPLIER
 						layer = summoner.current.layer
 			return
 		if(get_dist(get_turf(summoner.current),get_turf(src)) <= range)

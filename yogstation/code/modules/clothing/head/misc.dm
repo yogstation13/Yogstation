@@ -53,8 +53,8 @@
 	alternate_worn_icon = 'yogstation/icons/mob/large-worn-icons/64x64/head.dmi'
 	icon_state = "goatpope"
 	item_state = "goatpope"
-	worn_x_dimension = 64
-	worn_y_dimension = 64
+	worn_x_dimension = WORLD_ICON_SIZE*2
+	worn_y_dimension = WORLD_ICON_SIZE*2
 	resistance_flags = FLAMMABLE
 
 /obj/item/clothing/head/yogs/goatpope/equipped(mob/living/carbon/human/user, slot)

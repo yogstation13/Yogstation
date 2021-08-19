@@ -55,11 +55,11 @@
 	var/no_save = FALSE
 
 	// Painting overlay offset when framed
-	var/framed_offset_x = 11
-	var/framed_offset_y = 10
+	var/framed_offset_x = 11*PIXEL_MULTIPLIER
+	var/framed_offset_y = 10*PIXEL_MULTIPLIER
 
-	pixel_x = 10
-	pixel_y = 9
+	pixel_x = 10*PIXEL_MULTIPLIER
+	pixel_y = 9*PIXEL_MULTIPLIER
 
 /obj/item/canvas/Initialize()
 	. = ..()
@@ -137,13 +137,14 @@
 	if(!icon_generated)
 		if(used)
 			var/mutable_appearance/detail = mutable_appearance(icon,"[icon_state]wip")
-			detail.pixel_x = 1
-			detail.pixel_y = 1
+			detail.pixel_x = 1*PIXEL_MULTIPLIER
+			detail.pixel_y = 1*PIXEL_MULTIPLIER
 			add_overlay(detail)
 	else
 		var/mutable_appearance/detail = mutable_appearance(generated_icon)
-		detail.pixel_x = 1
-		detail.pixel_y = 1
+		detail.transform = matrix(PIXEL_MULTIPLIER, 0, 0, 0, PIXEL_MULTIPLIER, 0)
+		detail.pixel_x = 1*PIXEL_MULTIPLIER
+		detail.pixel_y = 1*PIXEL_MULTIPLIER
 		add_overlay(detail)
 
 /obj/item/canvas/proc/generate_proper_overlay()
@@ -194,28 +195,28 @@
 	icon_state = "19x19"
 	width = 19
 	height = 19
-	pixel_x = 6
-	pixel_y = 9
-	framed_offset_x = 8
-	framed_offset_y = 9
+	pixel_x = 6*PIXEL_MULTIPLIER
+	pixel_y = 9*PIXEL_MULTIPLIER
+	framed_offset_x = 8*PIXEL_MULTIPLIER
+	framed_offset_y = 9*PIXEL_MULTIPLIER
 
 /obj/item/canvas/twentythreeXnineteen
 	icon_state = "23x19"
 	width = 23
 	height = 19
-	pixel_x = 4
-	pixel_y = 10
-	framed_offset_x = 6
-	framed_offset_y = 8
+	pixel_x = 4*PIXEL_MULTIPLIER
+	pixel_y = 10*PIXEL_MULTIPLIER
+	framed_offset_x = 6*PIXEL_MULTIPLIER
+	framed_offset_y = 8*PIXEL_MULTIPLIER
 
 /obj/item/canvas/twentythreeXtwentythree
 	icon_state = "23x23"
 	width = 23
 	height = 23
-	pixel_x = 5
-	pixel_y = 9
-	framed_offset_x = 5
-	framed_offset_y = 6
+	pixel_x = 5*PIXEL_MULTIPLIER
+	pixel_y = 9*PIXEL_MULTIPLIER
+	framed_offset_x = 5*PIXEL_MULTIPLIER
+	framed_offset_y = 6*PIXEL_MULTIPLIER
 
 /obj/item/canvas/twentyfour_twentyfour
 	name = "ai universal standard canvas"
@@ -223,10 +224,10 @@
 	icon_state = "24x24"
 	width = 24
 	height = 24
-	pixel_x = 2
-	pixel_y = 1
-	framed_offset_x = 4
-	framed_offset_y = 5
+	pixel_x = 2*PIXEL_MULTIPLIER
+	pixel_y = 1*PIXEL_MULTIPLIER
+	framed_offset_x = 4*PIXEL_MULTIPLIER
+	framed_offset_y = 5*PIXEL_MULTIPLIER
 
 /obj/item/wallframe/painting
 	name = "painting frame"
@@ -252,8 +253,8 @@
 	if(dir)
 		setDir(dir)
 	if(building)
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -30 : 30)
-		pixel_y = (dir & 3)? (dir ==1 ? -30 : 30) : 0
+		pixel_x = (dir & 3)? 0 : (dir == 4 ? -30*PIXEL_MULTIPLIER : 30*PIXEL_MULTIPLIER)
+		pixel_y = (dir & 3)? (dir ==1 ? -30*PIXEL_MULTIPLIER : 30*PIXEL_MULTIPLIER) : 0
 
 /obj/structure/sign/painting/Destroy()
 	. = ..()
@@ -311,8 +312,8 @@
 		MA.pixel_y = C.framed_offset_y
 		add_overlay(MA)
 		var/mutable_appearance/frame = mutable_appearance(C.icon,"[C.icon_state]frame")
-		frame.pixel_x = C.framed_offset_x - 1
-		frame.pixel_y = C.framed_offset_y - 1
+		frame.pixel_x = C.framed_offset_x - 1*PIXEL_MULTIPLIER
+		frame.pixel_y = C.framed_offset_y - 1*PIXEL_MULTIPLIER
 		add_overlay(frame)
 
 /**

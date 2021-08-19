@@ -14,7 +14,7 @@
 /obj/machinery/computer/libraryconsole/bookmanagement,
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation)
@@ -27,12 +27,12 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/newscaster{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Syndicate Radio Intercom";
-	pixel_x = -30
+	pixel_x = -60
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation)
@@ -87,13 +87,13 @@
 "ar" = (
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 22
 	},
 /obj/structure/toilet{
-	pixel_y = 18
+	pixel_y = 36
 	},
 /obj/structure/mirror{
-	pixel_x = 28
+	pixel_x = 56
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
@@ -225,7 +225,7 @@
 /area/ruin/space/has_grav/listeningstation)
 "aJ" = (
 /obj/machinery/washing_machine{
-	pixel_x = 4
+	pixel_x = 8
 	},
 /obj/structure/window{
 	dir = 8
@@ -265,7 +265,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -52
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation)
@@ -321,7 +321,7 @@
 /area/ruin/space/has_grav/listeningstation)
 "aU" = (
 /obj/machinery/airalarm/syndicate{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/baseturf_helper/asteroid/airless,
@@ -360,7 +360,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 26
+	pixel_y = 52
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -398,7 +398,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/contraband/random{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -408,22 +408,22 @@
 "aZ" = (
 /obj/structure/table,
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = -30
+	pixel_x = -60
 	},
 /obj/item/reagent_containers/food/drinks/beer{
-	pixel_x = -4;
-	pixel_y = 14
+	pixel_x = -8;
+	pixel_y = 28
 	},
 /obj/item/reagent_containers/food/drinks/beer{
-	pixel_x = 3;
-	pixel_y = 11
+	pixel_x = 6;
+	pixel_y = 22
 	},
 /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate{
-	pixel_x = -3
+	pixel_x = -6
 	},
 /obj/item/lighter{
-	pixel_x = 7;
-	pixel_y = -3
+	pixel_x = 14;
+	pixel_y = -6
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral{
@@ -453,7 +453,7 @@
 	},
 /obj/machinery/airalarm/syndicate{
 	dir = 8;
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -492,7 +492,7 @@
 	req_access_txt = "150"
 	},
 /obj/structure/sign/warning/explosives/alt{
-	pixel_x = 32
+	pixel_x = 64
 	},
 /turf/open/floor/circuit/red,
 /area/ruin/space/has_grav/listeningstation)
@@ -524,7 +524,7 @@
 /obj/machinery/power/apc/syndicate{
 	dir = 4;
 	name = "Syndicate Listening Post APC";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -544,29 +544,29 @@
 	name = "wardrobe"
 	},
 /obj/item/clothing/under/color/black{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/clothing/under/color/black{
-	pixel_x = 1;
-	pixel_y = -1
+	pixel_x = 2;
+	pixel_y = -2
 	},
 /obj/item/clothing/head/soft/black{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/clothing/head/soft/black{
-	pixel_x = 1;
-	pixel_y = -1
+	pixel_x = 2;
+	pixel_y = -2
 	},
 /obj/item/clothing/gloves/fingerless,
 /obj/item/clothing/shoes/sneakers/black{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/clothing/shoes/sneakers/black{
-	pixel_x = 1;
-	pixel_y = -1
+	pixel_x = 2;
+	pixel_y = -2
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/storage/photo_album,
@@ -787,7 +787,7 @@
 /obj/machinery/light/small,
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12
+	pixel_x = -24
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 10
@@ -834,12 +834,12 @@
 "tz" = (
 /obj/machinery/light/small,
 /obj/structure/sign/warning/vacuum{
-	pixel_y = 32
+	pixel_y = 64
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/advanced_airlock_controller{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2{
 	dir = 4
@@ -863,17 +863,17 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/syndicate{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
 /obj/item/flashlight{
-	pixel_y = -4
+	pixel_y = -8
 	},
 /obj/item/stack/cable_coil{
-	pixel_x = -2;
-	pixel_y = 4
+	pixel_x = -4;
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation)
@@ -903,7 +903,7 @@
 "wp" = (
 /obj/structure/curtain,
 /obj/machinery/shower{
-	pixel_y = 14
+	pixel_y = 28
 	},
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
@@ -950,7 +950,7 @@
 	dir = 2
 	},
 /obj/machinery/airalarm/syndicate{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -962,7 +962,7 @@
 /area/ruin/space/has_grav/listeningstation)
 "EM" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -29
+	pixel_y = -58
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/listeningstation)
@@ -1013,7 +1013,7 @@
 	id = "syndie_listeningpost_external";
 	name = "External Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = 24;
+	pixel_x = 48;
 	req_access_txt = "150";
 	specialfunctions = 4
 	},
@@ -1058,12 +1058,12 @@
 "Mw" = (
 /obj/structure/closet/crate/freezer,
 /obj/item/reagent_containers/blood/OMinus{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/reagent_containers/blood/OMinus{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 4
@@ -1089,8 +1089,8 @@
 	dir = 8
 	},
 /obj/item/clothing/mask/gas{
-	pixel_x = -3;
-	pixel_y = 3
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/item/clothing/mask/gas,
@@ -1123,7 +1123,7 @@
 	icon_state = "scrub_map_on-3"
 	},
 /obj/structure/sign/departments/medbay/alt{
-	pixel_y = -32
+	pixel_y = -64
 	},
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/white/corner,
@@ -1153,7 +1153,7 @@
 /obj/machinery/iv_drip,
 /obj/machinery/airalarm/syndicate{
 	dir = 4;
-	pixel_x = -24
+	pixel_x = -48
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 8
@@ -1174,7 +1174,7 @@
 /area/ruin/space/has_grav/listeningstation)
 "VQ" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 25
+	pixel_x = 50
 	},
 /obj/structure/table,
 /obj/item/paper_bin,
@@ -1189,18 +1189,18 @@
 	dir = 8
 	},
 /obj/item/storage/box/donkpockets{
-	pixel_x = -2;
+	pixel_x = -4;
+	pixel_y = 12
+	},
+/obj/item/storage/box/donkpockets{
 	pixel_y = 6
 	},
 /obj/item/storage/box/donkpockets{
-	pixel_y = 3
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 2
+	pixel_x = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/contraband/random{
-	pixel_x = -32
+	pixel_x = -64
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1218,8 +1218,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/bin,
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -27;
-	pixel_y = 1
+	pixel_x = -54;
+	pixel_y = 2
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1

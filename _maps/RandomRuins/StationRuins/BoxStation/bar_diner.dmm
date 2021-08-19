@@ -25,7 +25,7 @@
 /area/crew_quarters/bar)
 "ah" = (
 /obj/structure/sink/kitchen{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -84,7 +84,7 @@
 "ao" = (
 /obj/machinery/airalarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
@@ -117,7 +117,7 @@
 /obj/effect/turf_decal/ameritard,
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 26
+	pixel_y = 52
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -187,7 +187,7 @@
 /area/crew_quarters/bar)
 "aE" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = -31
+	pixel_x = -62
 	},
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
@@ -205,7 +205,7 @@
 /obj/machinery/airalarm{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -278,7 +278,7 @@
 /obj/machinery/airalarm{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	pixel_x = -48
 	},
 /obj/machinery/camera{
 	c_tag = "Bar West";
@@ -290,7 +290,7 @@
 /area/crew_quarters/bar)
 "aQ" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = -31
+	pixel_x = -62
 	},
 /obj/machinery/light{
 	dir = 8
@@ -358,7 +358,7 @@
 /obj/machinery/airalarm{
 	dir = 8;
 	icon_state = "alarm0";
-	pixel_x = 24
+	pixel_x = 48
 	},
 /obj/machinery/vending/wardrobe/chef_wardrobe,
 /turf/open/floor/plasteel{
@@ -432,8 +432,8 @@
 /area/crew_quarters/kitchen)
 "bm" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -5;
-	pixel_y = 30
+	pixel_x = -10;
+	pixel_y = 60
 	},
 /obj/machinery/food_cart,
 /turf/open/floor/plasteel{
@@ -442,7 +442,7 @@
 /area/crew_quarters/kitchen)
 "bn" = (
 /obj/structure/sink/kitchen{
-	pixel_y = 28
+	pixel_y = 56
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -460,7 +460,7 @@
 /obj/structure/table,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /obj/machinery/chem_dispenser/drinks/beer{
 	dir = 8
@@ -499,11 +499,11 @@
 "bt" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /obj/machinery/airalarm{
-	pixel_y = 24
+	pixel_y = 48
 	},
 /obj/machinery/light{
 	dir = 1
@@ -524,8 +524,8 @@
 "bv" = (
 /obj/structure/table,
 /obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /obj/item/storage/box/donkpockets,
 /turf/open/floor/plasteel{
@@ -567,8 +567,8 @@
 /obj/structure/table,
 /obj/item/book/manual/chef_recipes,
 /obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_x = -4;
-	pixel_y = 4
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -635,7 +635,7 @@
 /obj/machinery/processor,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26
+	pixel_x = 52
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -665,8 +665,8 @@
 "bO" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 1;
-	pixel_y = 3
+	pixel_x = 2;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -713,7 +713,7 @@
 /obj/machinery/requests_console{
 	department = "Bar";
 	departmentType = 2;
-	pixel_x = 30
+	pixel_x = 60
 	},
 /obj/machinery/camera{
 	c_tag = "Bar";
@@ -764,7 +764,7 @@
 /area/crew_quarters/bar)
 "ch" = (
 /obj/machinery/light_switch{
-	pixel_y = -25
+	pixel_y = -50
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -786,8 +786,8 @@
 /obj/machinery/button/door{
 	id = "kitchen";
 	name = "Kitchen Shutters Control";
-	pixel_x = -1;
-	pixel_y = -24;
+	pixel_x = -2;
+	pixel_y = -48;
 	req_access_txt = "28"
 	},
 /obj/structure/disposalpipe/segment{
@@ -843,7 +843,7 @@
 /area/crew_quarters/bar)
 "da" = (
 /obj/machinery/newscaster{
-	pixel_y = -28
+	pixel_y = -56
 	},
 /obj/structure/musician/piano,
 /obj/effect/turf_decal/ameritard,
@@ -876,14 +876,14 @@
 /obj/machinery/airalarm{
 	dir = 1;
 	icon_state = "alarm0";
-	pixel_y = -24
+	pixel_y = -48
 	},
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "dh" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -30
+	pixel_y = -60
 	},
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
@@ -939,7 +939,7 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mint,
 /obj/item/reagent_containers/food/snacks/burger/baseball{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -965,7 +965,7 @@
 /area/crew_quarters/bar)
 "iA" = (
 /obj/item/storage/secure/safe{
-	pixel_x = -7
+	pixel_x = -14
 	},
 /turf/closed/wall,
 /area/crew_quarters/bar)
@@ -1005,8 +1005,8 @@
 /obj/machinery/button/door{
 	id = "barshutters";
 	name = "Bar Shutters Control";
-	pixel_x = 4;
-	pixel_y = 24;
+	pixel_x = 8;
+	pixel_y = 48;
 	req_access_txt = "25"
 	},
 /turf/open/floor/plasteel{
@@ -1036,16 +1036,16 @@
 "vo" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
-	pixel_x = 4;
-	pixel_y = -2
+	pixel_x = 8;
+	pixel_y = -4
 	},
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -3;
-	pixel_y = 8
+	pixel_x = -6;
+	pixel_y = 16
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -8;
-	pixel_y = 4
+	pixel_x = -16;
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -1090,10 +1090,10 @@
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	departmentType = 2;
-	pixel_x = 30
+	pixel_x = 60
 	},
 /obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 6
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -1269,8 +1269,8 @@
 "Vc" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
+	pixel_x = 6;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"

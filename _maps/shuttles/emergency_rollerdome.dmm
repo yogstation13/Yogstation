@@ -163,8 +163,8 @@
 "vJ" = (
 /obj/structure/table/wood,
 /obj/item/lighter{
-	pixel_x = -4;
-	pixel_y = 6
+	pixel_x = -8;
+	pixel_y = 12
 	},
 /obj/item/storage/box/fancy/cigarettes/cigars/havana,
 /turf/open/floor/wood,

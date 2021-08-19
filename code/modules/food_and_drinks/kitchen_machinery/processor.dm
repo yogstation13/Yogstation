@@ -114,7 +114,7 @@
 			log_admin("DEBUG: [O] in processor doesn't have a suitable recipe. How did it get in there? Please report it immediately!!!")
 			continue
 		total_time += P.time
-	var/offset = prob(50) ? -2 : 2
+	var/offset = prob(50) ? -2*PIXEL_MULTIPLIER : 2*PIXEL_MULTIPLIER
 	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = (total_time / rating_speed)*5) //start shaking
 	sleep(total_time / rating_speed)
 	for(var/atom/movable/O in src.contents)
@@ -165,12 +165,12 @@
 	if(!(i = slimecores.Find(AM.type))) // If the item is not found
 		return
 	if (i <= 16) // If in the first 12 slots
-		AM.pixel_x = -12 + ((i%4)*8)
-		AM.pixel_y = -12 + (round(i/4)*8)
+		AM.pixel_x = (-12 + ((i%4)*8))*PIXEL_MULTIPLIER
+		AM.pixel_y = (-12 + (round(i/4)*8))*PIXEL_MULTIPLIER
 		return i
 	var/ii = i - 16
-	AM.pixel_x = -8 + ((ii%3)*8)
-	AM.pixel_y = -8 + (round(ii/3)*8)
+	AM.pixel_x = (-8 + ((ii%3)*8))*PIXEL_MULTIPLIER
+	AM.pixel_y = (-8 + (round(ii/3)*8))*PIXEL_MULTIPLIER
 	return i
 
 /obj/machinery/processor/slime/process()

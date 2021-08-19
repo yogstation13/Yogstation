@@ -76,27 +76,27 @@
 	var/target_pixel_y = 0
 	switch(set_dir)
 		if(NORTH)
-			target_pixel_y = 16
+			target_pixel_y = 16*PIXEL_MULTIPLIER
 		if(SOUTH)
-			target_pixel_y = -16
+			target_pixel_y = -16*PIXEL_MULTIPLIER
 			layer = ABOVE_MOB_LAYER
 		if(EAST)
-			target_pixel_x = 16
+			target_pixel_x = 16*PIXEL_MULTIPLIER
 		if(WEST)
-			target_pixel_x = -16
+			target_pixel_x = -16*PIXEL_MULTIPLIER
 		if(NORTHEAST)
-			target_pixel_x = 16
-			target_pixel_y = 16
+			target_pixel_x = 16*PIXEL_MULTIPLIER
+			target_pixel_y = 16*PIXEL_MULTIPLIER
 		if(NORTHWEST)
-			target_pixel_x = -16
-			target_pixel_y = 16
+			target_pixel_x = -16*PIXEL_MULTIPLIER
+			target_pixel_y = 16*PIXEL_MULTIPLIER
 		if(SOUTHEAST)
-			target_pixel_x = 16
-			target_pixel_y = -16
+			target_pixel_x = 16*PIXEL_MULTIPLIER
+			target_pixel_y = -16*PIXEL_MULTIPLIER
 			layer = ABOVE_MOB_LAYER
 		if(SOUTHWEST)
-			target_pixel_x = -16
-			target_pixel_y = -16
+			target_pixel_x = -16*PIXEL_MULTIPLIER
+			target_pixel_y = -16*PIXEL_MULTIPLIER
 			layer = ABOVE_MOB_LAYER
 	hal_target.client.images += blood
 	animate(blood, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = 5)
@@ -112,8 +112,8 @@
 		return
 
 	var/image/hit_effect = image('icons/effects/blood.dmi', A, is_wall ? hal_impact_effect_wall : hal_impact_effect, ABOVE_MOB_LAYER)
-	hit_effect.pixel_x = A.pixel_x + rand(-4,4)
-	hit_effect.pixel_y = A.pixel_y + rand(-4,4)
+	hit_effect.pixel_x = A.pixel_x + rand(-4*PIXEL_MULTIPLIER,4*PIXEL_MULTIPLIER)
+	hit_effect.pixel_y = A.pixel_y + rand(-4*PIXEL_MULTIPLIER,4*PIXEL_MULTIPLIER)
 	hal_target.client.images += hit_effect
 	sleep(is_wall ? hit_duration_wall : hit_duration)
 	hal_target.client.images -= hit_effect

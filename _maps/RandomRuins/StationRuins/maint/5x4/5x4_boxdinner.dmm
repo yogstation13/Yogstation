@@ -5,8 +5,8 @@
 "b" = (
 /obj/structure/table,
 /obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
+	pixel_x = -6;
+	pixel_y = 14
 	},
 /turf/open/floor/plating,
 /area/template_noop)
@@ -22,7 +22,7 @@
 /area/template_noop)
 "e" = (
 /obj/structure/chair/stool{
-	pixel_y = 8
+	pixel_y = 16
 	},
 /turf/open/floor/plating,
 /area/template_noop)

@@ -15,8 +15,8 @@
 	melee_damage_upper = 40
 	move_to_delay = 10
 	speed = 1
-	pixel_x = -48
-	pixel_y = -32
+	pixel_x = -48*PIXEL_MULTIPLIER
+	pixel_y = -32*PIXEL_MULTIPLIER
 	sentience_type = SENTIENCE_BOSS
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
 	obj_damage = 100
