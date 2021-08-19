@@ -613,7 +613,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	set category = "Admin"
 
 	if(GLOB.experimental_adminpanel)
-		new /datum/ticket_list_panel
+		new /datum/ticket_list_panel(src)
 	else
 		view_tickets_main(TICKET_FLAG_LIST_ALL)
 
