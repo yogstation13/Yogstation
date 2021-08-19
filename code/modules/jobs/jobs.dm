@@ -135,15 +135,15 @@ GLOBAL_LIST_INIT(nonhuman_positions, original_nonhuman_positions | alt_nonhuman_
 GLOBAL_LIST_INIT(civilian_positions, original_civilian_positions | alt_civilian_positions)
 
 GLOBAL_LIST_INIT(exp_jobsmap, list(
-	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | civilian_positions | list("AI","Cyborg")), // crew positions
+	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | civilian_positions | nonhuman_positions), // crew positions
 	EXP_TYPE_COMMAND = list("titles" = command_positions),
 	EXP_TYPE_ENGINEERING = list("titles" = engineering_positions),
 	EXP_TYPE_MEDICAL = list("titles" = medical_positions),
 	EXP_TYPE_SCIENCE = list("titles" = science_positions),
 	EXP_TYPE_SUPPLY = list("titles" = supply_positions),
 	EXP_TYPE_SECURITY = list("titles" = security_positions),
-	EXP_TYPE_SILICON = list("titles" = list("AI","Cyborg")),
-	EXP_TYPE_SERVICE = list("titles" = civilian_positions),
+	EXP_TYPE_SILICON = list("titles" = nonhuman_positions),
+	EXP_TYPE_SERVICE = list("titles" = civilian_positions)
 ))
 
 GLOBAL_LIST_INIT(exp_specialmap, list(
@@ -218,3 +218,13 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = phys_expand.Replace(job, "brig physician")
 	// yogs end
 	return job
+
+/proc/get_alternate_titles(var/job)
+	var/list/jobs = SSjob.occupations
+	var/list/titles = list()
+
+	for(var/datum/job/J in jobs)
+		if(J.title == job)
+			titles = J.alt_titles
+
+	return titles
