@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(original_nonhuman_positions, list(
 	ROLE_PAI))
 
 GLOBAL_LIST_INIT(alt_command_positions, list(
-	"Station Commander", "Facility Overseer",
+	"Station Commander", "Facility Director",
 	"Chief of Staff", "Head of Internal Affairs", "First Officer",
 	"Security Commander", "Security Chief",
 	"Head of Engineering", "Engineering Director",
