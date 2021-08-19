@@ -10,6 +10,6 @@
 	syllables = list(
 		"tktk", "creak", "krt", "clack", "rattle", "krr"
 	)
-	icon_state = "bone"
+	icon_state = "plasmaman"
 	default_priority = 90
 	sing_verb = "crackles"
