@@ -10,6 +10,6 @@
 	syllables = list(
 		"zap", "pop", "zzzz", "bzzzz", "tzzt", "hmmmm", "mmmm", "dzzzt", "ohmm", "zpp"
 	)
-	icon_state = "etherian"
+	icon_state = "ethereal"
 	default_priority = 90
 	sing_verb = "hums"
