@@ -1,6 +1,6 @@
 /datum/language/mothian
 	name = "Mothian"
-	desc = "The native language of the Moths."
+	desc = "The native language of the Moth people."
 	speech_verb = "flutters"
 	ask_verb = "chirps"
 	exclaim_verb = "buzzes loudly"
