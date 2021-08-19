@@ -13,6 +13,8 @@
 #define SYLVAN 64
 #define ETHEREAN 128
 #define BONE 256
+#define MOTH 512
+
 GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND,SPAN_CLOWN))//Span classes that players are allowed to set in a radio transmission.
 //this is fucking broken
 GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/language/machine,/datum/language/draconic))// language datums that players are allowed to translate to in a radio transmission.
@@ -121,7 +123,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		"beachtounge" = BEACHTONGUE,
 		"sylvan" = SYLVAN,
 		"etherean" = ETHEREAN,
-		"bonespeak" = BONE
+		"bonespeak" = BONE,
+		"mothian" = MOTH
 	)))
 
 	interpreter.Run() // run the thing
@@ -165,6 +168,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		oldlang = ETHEREAN
 	else if(oldlang == /datum/language/bonespeak)
 		oldlang = BONE
+	else if(oldlang == /datum/language/mothian)
+		oldlang = MOTH
 	// Signal data
 
 	var/datum/n_struct/signal/script_signal = new(list(
@@ -299,6 +304,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 			return /datum/language/etherean
 		if(BONE)
 			return /datum/language/bonespeak
+		if(MOTH)
+			return /datum/language/mothian
 
 /datum/n_function/default/mem
 	name = "mem"
@@ -471,3 +478,4 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 #undef SYLVAN
 #undef ETHEREAN
 #undef BONE
+#undef MOTH
