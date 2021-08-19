@@ -1,5 +1,5 @@
-/datum/language/etherian
-	name = "Etherian"
+/datum/language/etherean
+	name = "Etherean"
 	desc = "The native language of the Ethereals."
 	speech_verb = "crackles"
 	ask_verb = "pops"
