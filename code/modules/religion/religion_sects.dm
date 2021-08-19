@@ -314,6 +314,9 @@
 	if(!istype(offering))
 		return
 	to_chat(user, "<span class='notice'> An image of [GLOB.deity] flashes in your mind. They look pleased.</span>")
-	adjust_favor(50, user)
+	if(istype(offering, /obj/item/reagent_containers/food/snacks/meat/slab/blessed/weak))
+		adjust_favor(10, user)
+	else
+		adjust_favor(75, user)
 	qdel(offering)
 	return TRUE

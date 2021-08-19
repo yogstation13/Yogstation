@@ -107,3 +107,34 @@
 	M.Stun(40)
 	M.petrify()
 	return ..()
+
+/obj/item/melee/touch_attack/flagellate
+	name = "\improper flagellating touch"
+	desc = "I'd like to see them greytide me now."
+	catchphrase = "RETRIBUTION!!"
+	on_use_sound = 'sound/magic/wandodeath.ogg'
+	icon_state = "flagellate"
+	item_state = "hivehand"
+
+/obj/item/melee/touch_attack/flagellate/afterattack(atom/target, mob/living/carbon/user, proximity)
+	if(!proximity || target == user || !isliving(target) || !iscarbon(user)) //flagellating your own mind painfully wouldn't be THAT bad but still bad
+		return
+	if(!(user.mobility_flags & MOBILITY_USE))
+		to_chat(user, "<span class='warning'>You can't reach out!</span>")
+		return
+	if(!user.can_speak_vocal())
+		to_chat(user, "<span class='notice'>You can't get the words out!</span>")
+		return
+	var/mob/living/M = target
+	if(M.anti_magic_check())
+		to_chat(user, "<span class='warning'>The spell can't seem to affect [M]!</span>")
+		to_chat(M, "<span class='warning'>You feel faint energies trying to get into your head, before they suddenly vanish!</span>")
+		..()
+		return
+	M.adjustStaminaLoss(40)
+	M.blur_eyes(10)
+	M.confused = max(M.confused, 6)
+	M.visible_message("<span class='danger'>[M] cringes in pain as they hold their head for a second!</span>")
+	M.emote("scream")
+	to_chat(M, "<span class='warning'>You feel an explosion of pain erupt in your mind!</span>")
+	return ..()

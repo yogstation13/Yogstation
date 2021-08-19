@@ -1344,7 +1344,7 @@
 		return FALSE
 	return TRUE
 
-/datum/species/golem/ruinous //tougher, gets telepathy, and speaks louder and their text is cult colored
+/datum/species/golem/ruinous //slightly weaker and faster,gets telepathy,speaks louder, and their text is cult colored
 	name = "Ruinous Golem"
 	id = "ruinous golem"
 	//limbs_id = "ruingolem" //i cant get it to work, if someone else finds out what the problem is later on, be my guest, and please fix it.
@@ -1358,6 +1358,7 @@
 	prefix = "Ruinous"
 	special_names = list("One", "Elder", "Watcher", "Walker") //ominous 
 	var/obj/effect/proc_holder/spell/targeted/telepathy/eldritch/ruinoustelepathy
+	var/obj/effect/proc_holder/spell/targeted/touch/flagellate/flagellate
 
 /datum/species/golem/ruinous/on_species_loss(mob/living/carbon/C)
 	..()
@@ -1365,6 +1366,8 @@
 	REMOVE_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 	if(ruinoustelepathy)
 		C.RemoveSpell(ruinoustelepathy)
+	if(flagellate)
+		C.RemoveSpell(flagellate)
 
 /datum/species/golem/ruinous/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
@@ -1373,6 +1376,9 @@
 	ruinoustelepathy = new
 	ruinoustelepathy.charge_counter = 0
 	C.AddSpell(ruinoustelepathy)
+	flagellate = new
+	flagellate.charge_counter = 0
+	C.AddSpell(flagellate)
 
 /datum/species/golem/ruinous/proc/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_CULTLARGE

@@ -307,6 +307,11 @@
 	tastes = list("holyness" = 1, "meat" = 1, "dread" = 1)
 	foodtype = MEAT | RAW | GROSS //they just don't understand how tasty it really is
 
+/obj/item/reagent_containers/food/snacks/meat/slab/blessed/weak
+	name = "lesser blessed meat"
+	icon_state = "shadowmeat"
+	desc = "It is covered in a strange darkness. This slab's magical properties appear to be drastically weakened due to the synthetic nature of the meat."
+
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
 

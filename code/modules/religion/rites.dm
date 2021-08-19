@@ -380,9 +380,12 @@
 	if(!QDELETED(chosen_meat) && get_turf(religious_tool) == chosen_meat.loc) //check if the same meat is still there
 		var/altar_turf = get_turf(religious_tool)
 		playsound(get_turf(religious_tool), 'sound/magic/enter_blood.ogg', 50, TRUE)
+		if(istype(chosen_meat, /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat))
+			new /obj/item/reagent_containers/food/snacks/meat/slab/blessed/weak(altar_turf)
+		else
+			new /obj/item/reagent_containers/food/snacks/meat/slab/blessed(altar_turf)
 		qdel(chosen_meat)
 		chosen_meat = null //our lord and savior no longer cares about this meat
-		new /obj/item/reagent_containers/food/snacks/meat/slab/blessed(altar_turf)
 		var/mb_message = pick("old ones, I bless this meat for you!", "old ones, I bless this flesh in your name", "old ones, I empower this flesh in your name.")
 		user.say(mb_message, forced = "ritual") //chooses one of three invoke messages to say in order to avoid auto mute and add variety.
 		return TRUE
@@ -413,7 +416,7 @@
 	"... And allow them to bless this one with a great power..."
 	)
 	invoke_msg = "... Become one with the blessings of our gods, arise great one!!"
-	favor_cost = 2000 // 40 slabs of blessed meat, more expensive than working with xenobio.
+	favor_cost = 2000 // 27 slabs of blessed meat/200 blessed synthetic meat, more expensive than working with xenobio.
 
 /datum/religion_rites/bodybless/perform_rite(mob/living/user, atom/religious_tool)
 	if(!ismovable(religious_tool))
