@@ -113,7 +113,7 @@
 	desc = "I'd like to see them greytide me now."
 	catchphrase = "RETRIBUTION!!"
 	on_use_sound = 'sound/magic/wandodeath.ogg'
-	icon_state = "flagellate"
+	icon_state = "flagellation"
 	item_state = "hivehand"
 
 /obj/item/melee/touch_attack/flagellate/afterattack(atom/target, mob/living/carbon/user, proximity)
