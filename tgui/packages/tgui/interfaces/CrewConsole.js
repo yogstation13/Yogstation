@@ -71,7 +71,7 @@ export const CrewConsole = (props, context) => {
   return (
     <Window
       title="Crew Monitor"
-      width={1400}
+      width={1000}
       height={800}
       resizable>
       <Window.Content scrollable>
@@ -109,7 +109,7 @@ export const CrewConsole = (props, context) => {
                           ? healthToColor(
                             sensor.oxydam,
                             sensor.toxdam,
-                            sensor.brutedam,
+                            sensor.burndam,
                             sensor.brutedam) : (
                             sensor.life_status
                               ? HEALTH_COLOR_BY_LEVEL[0]
