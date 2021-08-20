@@ -7,7 +7,7 @@ import { KEY_ENTER } from 'common/keycodes';
 export const TicketPanel = (props, context) => {
   const { act, data } = useBackend(context);
 
-  if(data.is_admin) {
+  if (data.is_admin) {
     return (
       <Window
         title="Ticket Viewer"
@@ -22,13 +22,13 @@ export const TicketPanel = (props, context) => {
               Is{data.is_resolved ? "" : " not"} resolved
             </span>
             <Section
-              level = "2">
+              level="2">
               Job: {data.role} <br />
               Antag: {data.antag || "No"}<br />
               Location: {data.location}
             </Section>
             <Section
-              level = "2">
+              level="2">
               <Button
                 enabled={data.has_mob}
                 onClick={() => act('adminmoreinfo')}>
@@ -93,7 +93,7 @@ export const TicketPanel = (props, context) => {
           </Section>
           <TicketMessages
             ticket={data}
-            title="Messages"/>
+            title="Messages" />
         </Window.Content>
       </Window>
     );
@@ -107,7 +107,7 @@ export const TicketPanel = (props, context) => {
       <Window.Content scrollable>
         <TicketMessages
           title={data.name}
-          ticket={data}/>
+          ticket={data} />
       </Window.Content>
     </Window>
   );
@@ -141,19 +141,18 @@ export const TicketMessages = (props, context) => {
         selfclear
         value={message}
         onChange={(e, value) => {
-          if(e.keyCode === KEY_ENTER) {
-            setMessage('')
-            e.target.value = message
-            act('send_message', {'message': value})
+          if (e.keyCode === KEY_ENTER) {
+            setMessage('');
+            e.target.value = message;
+            act('send_message', { 'message': value });
           } else {
-            setMessage(value)
+            setMessage(value);
           }
-        }}>
-      </Input>
+        }} />
       <Button
         onClick={() => {
-          act('send_message', {'message': message})
-          setMessage('')
+          act('send_message', { 'message': message });
+          setMessage('');
         }}>
         Send Message
       </Button>
