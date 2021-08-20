@@ -185,7 +185,7 @@
 /// if someone is using ointment or mesh on our burns
 /datum/wound/burn/proc/ointmentmesh(obj/item/stack/medical/I, mob/user)
 	user.visible_message("<span class='notice'>[user] begins applying [I] to [victim]'s [limb.name]...</span>", "<span class='notice'>You begin applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.name]...</span>")
-	if(!do_after(user, (user == victim ? I.self_delay : I.other_delay), extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, (user == victim ? I.self_delay : I.other_delay), target = victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
 	limb.heal_damage(I.heal_brute, I.heal_burn)
