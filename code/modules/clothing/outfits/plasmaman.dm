@@ -496,6 +496,28 @@
 	ears = /obj/item/radio/headset/headset_med
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
+/datum/outfit/job/plasmaman/brigphysician
+	name = "Plasmaman Brig Physician"
+	
+	jobtype = /datum/job/brigphysician
+
+	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
+	backpack_contents = list(/obj/item/roller = 1,\
+		/obj/item/storage/box/plasmaman = 1)
+	belt = /obj/item/pda/physician
+	ears = /obj/item/radio/headset/headset_medsec
+	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
+	shoes = /obj/item/clothing/shoes/jackboots
+	uniform = /obj/item/clothing/under/plasmaman/medical
+	suit = /obj/item/clothing/suit/toggle/labcoat/emt/physician
+	l_hand = /obj/item/storage/firstaid/regular
+	gloves = /obj/item/clothing/gloves/color/latex
+	backpack = /obj/item/storage/backpack/medic
+	satchel = /obj/item/storage/backpack/satchel/med
+	duffelbag = /obj/item/storage/backpack/duffelbag/med
+
 /datum/outfit/job/plasmaman/clerk
 	name = "Plasmaman Clerk"
 	
