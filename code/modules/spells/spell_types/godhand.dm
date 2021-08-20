@@ -131,7 +131,7 @@
 		to_chat(M, "<span class='warning'>You feel faint energies trying to get into your head, before they suddenly vanish!</span>")
 		..()
 		return
-	M.adjustStaminaLoss(40)
+	M.adjustBruteLoss(18) //same as nullrod, but with a large cooldown, so it should be fine
 	M.blur_eyes(10)
 	M.confused = max(M.confused, 6)
 	M.visible_message("<span class='danger'>[M] cringes in pain as they hold their head for a second!</span>")
