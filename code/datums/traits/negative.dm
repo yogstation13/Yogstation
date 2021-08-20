@@ -123,7 +123,10 @@
 			if("Clerk")
 				heirloom_type = pick(/obj/item/coin, /obj/item/coin/gold, /obj/item/coin/iron, /obj/item/coin/silver)
 			if("Botanist")
-				heirloom_type = pick(/obj/item/cultivator, /obj/item/shovel/spade, /obj/item/reagent_containers/glass/bucket/wooden, /obj/item/toy/plush/beeplushie, /obj/item/clothing/mask/cigarette/pipe, /obj/item/clothing/mask/cigarette/pipe/cobpipe)
+				if(is_species(H, /datum/species/plasmaman))
+					heirloom_type = pick(/obj/item/cultivator, /obj/item/shovel/spade, /obj/item/reagent_containers/glass/bucket/wooden, /obj/item/toy/plush/beeplushie)
+				else
+					heirloom_type = pick(/obj/item/cultivator, /obj/item/shovel/spade, /obj/item/reagent_containers/glass/bucket/wooden, /obj/item/toy/plush/beeplushie, /obj/item/clothing/mask/cigarette/pipe, /obj/item/clothing/mask/cigarette/pipe/cobpipe)
 			if("Bartender")
 				heirloom_type = pick(/obj/item/reagent_containers/glass/rag, /obj/item/clothing/head/that, /obj/item/reagent_containers/food/drinks/shaker)
 			if("Curator")
@@ -603,8 +606,8 @@
 
 /datum/quirk/sheltered/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
-	H.remove_language(/datum/language/common)
-	if(!H.can_speak_language(/datum/language/draconic) && !H.can_speak_language(/datum/language/machine))
+	H.remove_language(/datum/language/common, FALSE, TRUE)
+	if(!H.can_speak_language(/datum/language/draconic) && !H.can_speak_language(/datum/language/machine) && !H.can_speak_language(/datum/language/sylvan))
 		H.grant_language(/datum/language/japanese)
 
 /datum/quirk/allergic
@@ -666,3 +669,17 @@
 		if(!H.get_active_held_item())
 			to_chat(quirk_holder, "<span class='danger'>You can't keep your eyes off [I.name].</span>")
 			H.UnarmedAttack(I)
+
+/datum/quirk/ineloquent
+	name = "Ineloquent"
+	desc = "Thinking big words makes brain go hurt."
+	value = -1
+	human_only = TRUE
+	gain_text = "You feel your vocabularly slipping away."
+	lose_text = "You regrasp the full extent of your linguistic prowess."
+	medical_record_text = "Patient is affected by partial loss of speech leading to a reduced vocabulary."
+
+/datum/quirk/ineloquent/add()
+	var/datum/brain_trauma/mild/expressive_aphasia/T = new()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)

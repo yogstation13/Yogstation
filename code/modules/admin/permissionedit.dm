@@ -299,6 +299,8 @@
 	return TRUE
 
 /datum/admins/proc/change_admin_rank(admin_ckey, admin_key, use_db, datum/admins/D, legacy_only)
+	if(!check_rights(R_PERMISSIONS))
+		return
 	var/datum/admin_rank/R
 	var/list/rank_names = list()
 	if(!use_db || (use_db && !legacy_only))
@@ -308,7 +310,7 @@
 			rank_names[R.name] = R
 	var/new_rank = input("Please select a rank", "New rank") as null|anything in rank_names
 	if(new_rank == "*New Rank*")
-		new_rank = ckeyEx(input("Please input a new rank", "New custom rank") as text|null)
+		new_rank = trim(input("Please input a new rank", "New custom rank") as text|null)
 	if(!new_rank)
 		return
 	R = rank_names[new_rank]

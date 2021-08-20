@@ -2,6 +2,9 @@
 	req_access = list(ACCESS_ATMOSPHERICS) //adds ATMOSPHERICS access requirement for the lock on the cabinet.
 	var/datum/effect_system/spark_spread/spark_system	//the spark system, used for generating... sparks?
 
+/obj/structure/fireaxecabinet/bridge
+	req_access = list(ACCESS_CAPTAIN)
+
 /obj/structure/fireaxecabinet/Initialize()//<-- mirrored/overwritten proc
 	. = ..()
 	fireaxe = new

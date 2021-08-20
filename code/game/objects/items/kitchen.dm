@@ -31,6 +31,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
 	var/datum/reagent/forkload //used to eat omelette
+	var/loaded_food = "nothing" /// The name of the thing on the fork
 
 /obj/item/kitchen/fork/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] stabs \the [src] into [user.p_their()] chest! It looks like [user.p_theyre()] trying to take a bite out of [user.p_them()]self!</span>")
@@ -41,20 +42,34 @@
 	if(!istype(M))
 		return ..()
 
+	var/mob/living/carbon/human/H = M // For use in a later if, placed here so it can be used in the else-if chain
+
 	if(forkload)
 		if(M == user)
-			M.visible_message("<span class='notice'>[user] eats a delicious forkful of omelette!</span>")
+			M.visible_message("<span class='notice'>[user] eats a delicious forkful of [loaded_food]!</span>")
 			M.reagents.add_reagent(forkload.type, 1)
 		else
-			M.visible_message("<span class='notice'>[user] is trying to feed [M] a delicious forkful of omelette!</span>") //yogs start
+			M.visible_message("<span class='notice'>[user] is trying to feed [M] a delicious forkful of [loaded_food]!</span>") //yogs start
 			if(!do_mob(user, M))
 				return
-			log_combat(user, M, "fed omelette", forkload.type) //yogs end
-			M.visible_message("<span class='notice'>[user] feeds [M] a delicious forkful of omelette!</span>")
+			log_combat(user, M, "fed [loaded_food]", forkload.type) //yogs end
+			M.visible_message("<span class='notice'>[user] feeds [M] a delicious forkful of [loaded_food]!</span>")
 			M.reagents.add_reagent(forkload.type, 1)
 		icon_state = "fork"
 		forkload = null
+		loaded_food = "nothing"
+	else if(user.zone_selected == BODY_ZONE_HEAD && M == user && ishuman(M) && H.creamed)
+		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
+			return eyestab(M,user)
+		icon_state = "forkloaded_pie"
+		user.visible_message("[user] scoops up the pie with [user.p_their()] fork!", \
+			"<span class='notice'>You scoop up the pie with your fork.</span>")
 
+		var/datum/reagent/R = new /datum/reagent/consumable/banana
+		forkload = R
+		loaded_food = "pie"
+
+		H.wash_cream()
 	else if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 			M = user
@@ -206,6 +221,7 @@
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "shank"
 	item_state = "shank"
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_EARS
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	force = 6

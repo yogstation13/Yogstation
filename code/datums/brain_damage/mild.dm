@@ -194,6 +194,7 @@
 
 /datum/brain_trauma/mild/expressive_aphasia/handle_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
+
 	if(message)
 		var/list/message_split = splittext(message, " ")
 		var/list/new_message = list()
@@ -206,21 +207,21 @@
 				if(suffix_foundon)
 					suffix = potential_suffix
 					break
-				
+
 			if(suffix_foundon)
 				word = copytext(word, 1, suffix_foundon)
 
 			word = html_decode(word)
 
-			if(lowertext(word) in common_words)
+			if((length(word) < 5) || (lowertext(word) in common_words))
 				new_message += word + suffix
 			else
-				if(prob(30) && message_split.len > 2)
+				if(prob(60) && message_split.len > 2)
 					new_message += pick("uh","erm")
 					break
 				else
 					var/list/charlist = text2charlist(word) // Stupid shit code
-					
+
 					charlist.len = round(charlist.len * 0.5,1)
 					shuffle_inplace(charlist)
 					new_message += jointext(charlist,"") + suffix

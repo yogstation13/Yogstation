@@ -1588,11 +1588,6 @@
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
 "acJ" = (
-/obj/structure/table,
-/obj/item/crowbar/red,
-/obj/item/radio{
-	pixel_y = 5
-	},
 /obj/machinery/light_switch{
 	pixel_x = 24
 	},
@@ -1603,6 +1598,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/space_heater,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/atmos)
 "acK" = (
@@ -9878,7 +9874,7 @@
 /obj/item/crowbar/red,
 /obj/item/flashlight,
 /obj/item/flashlight,
-/obj/structure/fireaxecabinet{
+/obj/structure/fireaxecabinet/bridge{
 	pixel_y = -30
 	},
 /obj/machinery/door/window/northright{
@@ -13763,6 +13759,8 @@
 	dir = 1
 	},
 /obj/item/tank/internals/oxygen,
+/obj/item/radio,
+/obj/item/crowbar/red,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/atmos)
 "axC" = (
@@ -45309,10 +45307,6 @@
 /obj/effect/landmark/start/bartender,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"bvl" = (
-/obj/structure/bookcase/random/adult,
-/turf/open/floor/plasteel/dark,
-/area/library)
 "bvm" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -99091,7 +99085,7 @@
 	},
 /obj/structure/closet/secure_closet/captains,
 /obj/effect/turf_decal/bot,
-/obj/structure/fireaxecabinet/spare{
+/obj/structure/fireaxecabinet/bridge/spare{
 	pixel_x = 32
 	},
 /turf/open/floor/plasteel/dark,
@@ -100725,6 +100719,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/central)
+"tYo" = (
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/library)
 "tYt" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -128922,7 +128922,7 @@ buC
 rRJ
 bgY
 bjk
-bvl
+tYo
 bvb
 rve
 mfB
