@@ -63,30 +63,35 @@ export const TicketSummary = (props, context) => {
           View
         </Button>
         <Button
+          enabled={ticket.has_mob}
           onClick={() => act('adminmoreinfo', {
             'id': ticket.id
           })}>
           ?
         </Button>
         <Button
+          enabled={ticket.has_mob}
           onClick={() => act('VV', {
             'id': ticket.id
           })}>
           VV
         </Button>
         <Button
+          enabled={ticket.has_mob}
           onClick={() => act('PP', {
             'id': ticket.id
           })}>
           PP
         </Button>
         <Button
+          enabled={ticket.has_mob}
           onClick={() => act('SM', {
             'id': ticket.id
           })}>
           SM
         </Button>
         <Button
+          enabled={ticket.has_mob}
           onClick={() => act('FLW', {
             'id': ticket.id
           })}>
@@ -105,6 +110,7 @@ export const TicketSummary = (props, context) => {
           Resolve
         </Button>
         <Button
+          enabled={ticket.has_client}
           onClick={() => act('Reject', {
             'id': ticket.id
           })}>
@@ -116,6 +122,7 @@ export const TicketSummary = (props, context) => {
           Close
         </Button>
         <Button
+          enabled={ticket.has_client}
           onClick={() => act('IC', {
             'id': ticket.id
           })}>
