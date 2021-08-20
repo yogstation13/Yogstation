@@ -395,3 +395,7 @@
 ///Subsystem signals
 ///From base of datum/controller/subsystem/Initialize: (start_timeofday)
 #define COMSIG_SUBSYSTEM_POST_INITIALIZE "subsystem_post_initialize"
+
+/// called by datum/cinematic/play() : (datum/cinematic/new_cinematic)
+#define COMSIG_GLOB_PLAY_CINEMATIC "!play_cinematic"
+	#define COMPONENT_GLOB_BLOCK_CINEMATIC (1<<0)
