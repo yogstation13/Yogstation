@@ -1,17 +1,17 @@
 /datum/job/brigphysician
 	title = "Brig Physician"
-	flag = BRIGPHYS // check this
+	flag = BRIGPHYS
 	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the chief medical officer"
-	selection_color = "#ffeeee"
+	selection_color = "#d4ebf2"
 
 	outfit = /datum/outfit/job/brigphysician
 
-//Break in case of merge of #11973//	alt_titles = list("Security Medic", "Security Medical Support", "Penitentiary Medical Care Unit", "Junior Brig Physician", "Detention Center Health Officer") 
+	alt_titles = list("Security Medic", "Security Medical Support", "Penitentiary Medical Care Unit", "Junior Brig Physician", "Detention Center Health Officer") 
 
 	minimal_character_age = 24 // "According to age statistics published by the Association of American Medical Colleges, the average age among medical students who matriculated at U.S. medical schools in the 2017-2018 school year was 24"
 

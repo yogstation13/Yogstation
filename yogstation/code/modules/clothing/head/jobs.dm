@@ -11,8 +11,6 @@
 	desc = "It's a baseball hat with a dark turquoise color and a reflective cross on the top."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
-	icon_state = "emtminesoft"
-	item_color = "emtmine"
 
 //Brig Physician
 /obj/item/clothing/head/soft/emt/phys

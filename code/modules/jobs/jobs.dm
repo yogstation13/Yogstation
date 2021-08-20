@@ -20,7 +20,8 @@ GLOBAL_LIST_INIT(original_medical_positions, list(
 	"Chemist",
 	"Paramedic",
 	"Psychiatrist",
-	"Mining Medic"))
+	"Mining Medic",
+	"Brig Physician"))
 
 GLOBAL_LIST_INIT(original_science_positions, list(
 	"Research Director",
@@ -52,8 +53,7 @@ GLOBAL_LIST_INIT(original_security_positions, list(
 	"Head of Security",
 	"Warden",
 	"Detective",
-	"Security Officer",
-	"Brig Physician"))
+	"Security Officer"))
 
 GLOBAL_LIST_INIT(original_nonhuman_positions, list(
 	"AI",
@@ -83,7 +83,8 @@ GLOBAL_LIST_INIT(alt_medical_positions, list(
 	"Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist",
 	"EMT", "Paramedic Trainee", "Rapid Response Medic",
 	"Councilor", "Therapist", "Mentalist",
-	"Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer"))
+	"Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer",
+	"Security Medic", "Security Medical Support", "Penitentiary Medical Care Unit", "Junior Brig Physician", "Detention Center Health Officer",))
 
 GLOBAL_LIST_INIT(alt_science_positions, list(
 	"Chief Science Officer", "Head of Research",
@@ -116,8 +117,7 @@ GLOBAL_LIST_INIT(alt_security_positions, list(
 	"Security Commander", "Security Chief",
 	"Brig Watchman", "Brig Superintendent", "Security Lt. Commander", "Security Dispatcher", "Prison Supervisor",
 	"Investigator", "Forensic Analyst", "Investigative Cadet", "Private Eye", "Inspector",
-	"Security Guard", "Threat Response Officer", "Civilan Protection Officer", "Security Cadet", "Security Staff Sergeant",
-	"Security Medic", "Security Medical Support", "Penitentiary Medical Care Unit", "Junior Brig Physician", "Detention Center Health Officer",
+	"Security Guard", "Threat Response Officer", "Civilan Protection Officer", "Security Cadet", "Security Staff Sergeant"
 	))
 
 GLOBAL_LIST_INIT(alt_nonhuman_positions, list(
