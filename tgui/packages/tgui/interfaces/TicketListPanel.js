@@ -54,7 +54,7 @@ export const TicketSummary = (props, context) => {
       Owner: {ticket.initiator_key_name} <br />
       Admin: {ticket.admin_key ? ticket.admin_key : "UNCLAIMED"}
       <Section
-        level = "2">
+        level="2">
         <Button
           onClick={() => act('view', {
             'id': ticket.id,

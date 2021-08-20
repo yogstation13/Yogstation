@@ -115,7 +115,7 @@ export const TicketPanel = (props, context) => {
 };
 
 export const TicketMessages = (props, context) => {
-  const { ticket, title } = props
+  const { ticket, title } = props;
   const { act } = useBackend(context);
 
   const [
@@ -157,6 +157,6 @@ export const TicketMessages = (props, context) => {
         Send Message
       </Button>
     </Section>
-  )
+  );
 
 };
