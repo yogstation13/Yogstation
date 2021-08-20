@@ -1,4 +1,4 @@
-a//DEFINITIONS FOR ASSET DATUMS START HERE.
+//DEFINITIONS FOR ASSET DATUMS START HERE.
 
 /datum/asset/simple/tgui_common
 	keep_local_name = TRUE

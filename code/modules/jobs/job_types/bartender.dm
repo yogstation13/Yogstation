@@ -10,6 +10,8 @@
 	selection_color = "#bbe291"
 	exp_type_department = EXP_TYPE_SERVICE // This is so the jobs menu can work properly
 
+	alt_titles = list("Barkeep", "Tapster", "Barista", "Mixologist")
+
 	outfit = /datum/outfit/job/bartender
 
 	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM)

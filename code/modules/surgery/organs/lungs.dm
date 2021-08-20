@@ -29,6 +29,8 @@
 	var/SA_sleep_min = 5 //Sleeping agent
 	var/BZ_trip_balls_min = 1 //BZ gas
 	var/gas_stimulation_min = 0.002 //Nitryl and Stimulum
+	///list of gasses that can be used in place of oxygen and the amount they are multiplied by, i.e. 1 pp pluox = 8 pp oxygen
+	var/list/oxygen_substitutes = list(/datum/gas/pluoxium = 8)
 
 	var/oxy_breath_dam_min = MIN_TOXIC_GAS_DAMAGE
 	var/oxy_breath_dam_max = MAX_TOXIC_GAS_DAMAGE
@@ -92,7 +94,9 @@
 	var/gas_breathed = 0
 
 	//Partial pressures in our breath
-	var/O2_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/oxygen))+(8*breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/pluoxium)))
+	var/O2_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/oxygen))
+	for(var/i in oxygen_substitutes)
+		O2_pp += oxygen_substitutes[i] * breath.get_breath_partial_pressure(breath.get_moles(i))
 	var/N2_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/nitrogen))
 	var/Toxins_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/plasma))
 	var/CO2_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/carbon_dioxide))
@@ -469,6 +473,25 @@
 	safe_oxygen_min = 0 //We don't breath this
 	safe_toxins_min = 16 //We breath THIS!
 	safe_toxins_max = 0
+
+/obj/item/organ/lungs/xeno
+	name = "devolved plasma vessel"
+	desc = "A lung-shaped organ vaguely similar to a plasma vessel, restructured from a storage system to a respiratory one."
+	icon_state = "lungs-x"
+
+	safe_toxins_max = 0 //lmoa~
+	oxygen_substitutes = list(/datum/gas/pluoxium = 8, /datum/gas/plasma = 1)
+	heat_level_1_threshold = 313
+	heat_level_2_threshold = 353
+	heat_level_3_threshold = 600
+
+/obj/item/organ/lungs/xeno/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H) //handling this externally so I don't have to nerf pluoxium, can't handle it internally without removing perpetual pluox or requiring plasma for breathing
+	. = ..()
+	if(!breath.total_moles())
+		return .
+	var/breath_amt = breath.get_moles(/datum/gas/plasma)
+	breath.adjust_moles(/datum/gas/plasma, -breath_amt)
+	breath.adjust_moles(/datum/gas/oxygen, breath_amt)
 
 /obj/item/organ/lungs/slime
 	name = "vacuole"

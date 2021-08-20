@@ -92,6 +92,12 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aan" = (
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/library)
 "aao" = (
 /obj/machinery/light{
 	dir = 4
@@ -23640,8 +23646,8 @@
 	c_tag = "Bridge Center";
 	dir = 1
 	},
-/obj/structure/fireaxecabinet{
-	pixel_y = -32
+/obj/structure/fireaxecabinet/bridge{
+	pixel_y = -30
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 0
@@ -58802,7 +58808,7 @@
 /obj/machinery/light_switch{
 	pixel_y = 28
 	},
-/obj/structure/fireaxecabinet/spare{
+/obj/structure/fireaxecabinet/bridge/spare{
 	pixel_x = 2;
 	pixel_y = 32
 	},
@@ -110077,7 +110083,7 @@ aHd
 aIx
 aJF
 aLh
-aIt
+aan
 aNV
 aNS
 aIt

@@ -705,6 +705,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"abG" = (
+/obj/machinery/newscaster{
+	pixel_x = -32
+	},
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/library)
 "abH" = (
 /obj/structure/table,
 /obj/structure/cable/yellow{
@@ -24619,18 +24628,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/foyer)
-"aXE" = (
-/obj/machinery/computer/atmos_control{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark/corner,
-/area/engine/atmos)
 "aXF" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -35360,7 +35357,7 @@
 /turf/open/space,
 /area/aisat)
 "bqU" = (
-/obj/structure/fireaxecabinet{
+/obj/structure/fireaxecabinet/bridge{
 	pixel_y = -32
 	},
 /obj/item/paper_bin{
@@ -38773,13 +38770,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"bxU" = (
-/obj/structure/table/wood,
-/obj/machinery/newscaster{
-	pixel_x = -32
-	},
-/turf/open/floor/wood,
-/area/library)
 "bxW" = (
 /turf/open/floor/plasteel/cult,
 /area/library)
@@ -39281,38 +39271,6 @@
 	},
 /turf/open/floor/plasteel/dark/corner,
 /area/hallway/primary/starboard)
-"byS" = (
-/obj/machinery/status_display/evac{
-	pixel_y = 32
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/computer/atmos_alert,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark/corner{
-	dir = 1
-	},
-/area/engine/atmos)
-"byT" = (
-/obj/structure/sign/map/left{
-	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
-	icon_state = "map-left-MS";
-	pixel_y = 32
-	},
-/obj/machinery/camera{
-	c_tag = "Atmospherics - Control Room"
-	},
-/obj/machinery/computer/station_alert,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark/corner{
-	dir = 1
-	},
-/area/engine/atmos)
 "byW" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1;
@@ -40009,21 +39967,6 @@
 /obj/effect/landmark/start/atmospheric_technician,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"bAF" = (
-/obj/machinery/computer/atmos_control{
-	dir = 8
-	},
-/obj/machinery/requests_console{
-	department = "Atmospherics";
-	departmentType = 4;
-	name = "Atmos RC";
-	pixel_x = 30
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark/corner,
-/area/engine/atmos)
 "bAG" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "atmos";
@@ -40131,9 +40074,7 @@
 /turf/open/space,
 /area/maintenance/disposal/incinerator)
 "bAY" = (
-/obj/structure/filingcabinet{
-	pixel_x = 3
-	},
+/obj/machinery/vending/wardrobe/sig_wardrobe,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "bAZ" = (
@@ -67680,13 +67621,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"cLT" = (
-/obj/effect/decal/cleanable/cobweb,
-/obj/structure/bodycontainer/morgue{
-	dir = 2
-	},
-/turf/open/floor/plasteel/dark,
-/area/chapel/office)
 "cLU" = (
 /obj/effect/landmark/blobstart,
 /obj/effect/landmark/xeno_spawn,
@@ -73119,6 +73053,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"dZe" = (
+/obj/machinery/status_display/evac{
+	pixel_y = 32
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/computer/atmos_alert{
+	name = "Atmospheric Alert Console"
+	},
+/turf/open/floor/plasteel/dark/corner{
+	dir = 1
+	},
+/area/engine/atmos)
 "ean" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating{
@@ -73210,6 +73161,7 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit/departure_lounge)
 "ejI" = (
+/obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
 "ejP" = (
@@ -73503,13 +73455,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"eFN" = (
-/obj/structure/bodycontainer/crematorium{
-	dir = 1;
-	id = "crematoriumChapel"
-	},
-/turf/open/floor/plasteel/dark,
-/area/chapel/office)
 "eGs" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -74067,6 +74012,15 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
+"fJZ" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/corner,
+/area/engine/atmos)
 "fKc" = (
 /obj/structure/chair/office/light{
 	dir = 8
@@ -76170,6 +76124,22 @@
 /obj/machinery/portable_atmospherics/canister/water_vapor,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"jBh" = (
+/obj/machinery/requests_console{
+	department = "Atmospherics";
+	departmentType = 4;
+	name = "Atmos RC";
+	pixel_x = 30
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/computer/atmos_control{
+	dir = 8;
+	name = "Tank Monitor"
+	},
+/turf/open/floor/plasteel/dark/corner,
+/area/engine/atmos)
 "jCV" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
@@ -76423,7 +76393,7 @@
 /obj/machinery/recharger{
 	pixel_y = 4
 	},
-/obj/structure/fireaxecabinet/spare{
+/obj/structure/fireaxecabinet/bridge/spare{
 	pixel_x = 32
 	},
 /turf/open/floor/wood,
@@ -77722,6 +77692,12 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space)
+"mDj" = (
+/obj/structure/bodycontainer/morgue{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/chapel/office)
 "mDz" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -77766,6 +77742,25 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"mGT" = (
+/obj/structure/sign/map/left{
+	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
+	icon_state = "map-left-MS";
+	pixel_y = 32
+	},
+/obj/machinery/camera{
+	c_tag = "Atmospherics - Control Room"
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/computer/station_alert{
+	name = "Station Alert Console"
+	},
+/turf/open/floor/plasteel/dark/corner{
+	dir = 1
+	},
+/area/engine/atmos)
 "mJk" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
@@ -83662,6 +83657,14 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"ygk" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/structure/bodycontainer/crematorium{
+	dir = 2;
+	id = "crematoriumChapel"
+	},
+/turf/open/floor/plasteel/dark,
+/area/chapel/office)
 "yiu" = (
 /obj/machinery/bounty_board,
 /turf/closed/wall/r_wall,
@@ -102824,7 +102827,7 @@ bqc
 bcq
 bue
 vhL
-bxU
+abG
 bzD
 bBr
 cOq
@@ -103906,11 +103909,11 @@ cBR
 bTs
 bTs
 cLa
-cLT
+ygk
 cal
 caw
 cTf
-eFN
+mDj
 cMI
 cPC
 djX
@@ -123898,7 +123901,7 @@ msD
 hkq
 bve
 bxd
-byS
+dZe
 dpk
 aCj
 bhU
@@ -124155,7 +124158,7 @@ owR
 pmZ
 qdT
 bxd
-byT
+mGT
 bhD
 aXv
 byX
@@ -124670,8 +124673,8 @@ bdl
 bvh
 bxd
 sim
-bAF
-aXE
+jBh
+fJZ
 bzd
 btn
 bxc
