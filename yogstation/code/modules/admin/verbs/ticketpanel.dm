@@ -115,12 +115,14 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 	.["role"] = initiator_mind && initiator_mind.assigned_role
 	.["antag"] = initiator_mind && initiator_mind.special_role
 
-	var/turf/T = get_turf(initiator.mob)
-	var/location = "([initiator.mob.loc == T ? "at " : "in [initiator.mob.loc] at "] [T.x], [T.y], [T.z]"
-	if(isturf(T))
-		if(isarea(T.loc))
-			location += " in area [T.loc]"
-	location += ")"
+	var/location = ""
+	if(initiator_mob)
+		var/turf/T = get_turf(initiator.mob)
+		location = "([initiator.mob.loc == T ? "at " : "in [initiator.mob.loc] at "] [T.x], [T.y], [T.z]"
+		if(isturf(T))
+			if(isarea(T.loc))
+				location += " in area [T.loc]"
+		location += ")"
 	.["location"] = location
 
 	.["log"] = list()
