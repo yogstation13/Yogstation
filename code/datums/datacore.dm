@@ -6,6 +6,7 @@
 	var/list/security = list()
 	var/securityPrintCount = 0
 	var/securityCrimeCounter = 0
+	var/securityCommentCounter = 0
 	//This list tracks characters spawned in the world and cannot be modified in-game. Currently referenced by respawn_character().
 	var/list/locked = list()
 
@@ -37,6 +38,13 @@
 	var/paid = 0
 	var/dataId = 0
 
+/datum/data/comment
+	name = "comment"
+	var/commentText = ""
+	var/author = ""
+	var/time = ""
+	var/dataId = 0
+
 /datum/datacore/proc/createCrimeEntry(cname = "", cdetails = "", author = "", time = "", fine = 0)
 	var/datum/data/crime/c = new /datum/data/crime
 	c.crimeName = cname
@@ -47,6 +55,14 @@
 	c.paid = 0
 	c.dataId = ++securityCrimeCounter
 	return c
+
+/datum/datacore/proc/createCommentEntry(commentText = "", author = "", time = "")
+	var/datum/data/comment/C = new /datum/data/comment
+	C.commentText = commentText
+	C.author = author
+	C.time = time || station_time_timestamp()
+	C.dataId = ++securityCommentCounter
+	return C
 
 /datum/datacore/proc/addCitation(id = "", datum/data/crime/crime)
 	for(var/datum/data/record/R in security)
@@ -75,37 +91,37 @@
 					D.adjust_money(amount)
 					return
 
-/datum/datacore/proc/addMinorCrime(id = "", datum/data/crime/crime)
+/datum/datacore/proc/addCrime(id = "", datum/data/crime/crime)
 	for(var/datum/data/record/R in security)
 		if(R.fields["id"] == id)
-			var/list/crimes = R.fields["mi_crim"]
+			var/list/crimes = R.fields["crimes"]
 			crimes |= crime
 			return
 
-/datum/datacore/proc/removeMinorCrime(id, cDataId)
+/datum/datacore/proc/removeCrime(id, cDataId)
 	for(var/datum/data/record/R in security)
 		if(R.fields["id"] == id)
-			var/list/crimes = R.fields["mi_crim"]
+			var/list/crimes = R.fields["crimes"]
 			for(var/datum/data/crime/crime in crimes)
 				if(crime.dataId == text2num(cDataId))
 					crimes -= crime
 					return
 
-/datum/datacore/proc/removeMajorCrime(id, cDataId)
+/datum/datacore/proc/addComment(id = "", datum/data/comment/comment)
 	for(var/datum/data/record/R in security)
 		if(R.fields["id"] == id)
-			var/list/crimes = R.fields["ma_crim"]
-			for(var/datum/data/crime/crime in crimes)
-				if(crime.dataId == text2num(cDataId))
-					crimes -= crime
-					return
-
-/datum/datacore/proc/addMajorCrime(id = "", datum/data/crime/crime)
-	for(var/datum/data/record/R in security)
-		if(R.fields["id"] == id)
-			var/list/crimes = R.fields["ma_crim"]
-			crimes |= crime
+			var/list/comments = R.fields["comments"]
+			comments |= comment
 			return
+
+/datum/datacore/proc/removeComment(id, cDataId)
+	for(var/datum/data/record/R in security)
+		if(R.fields["id"] == id)
+			var/list/comments = R.fields["comments"]
+			for(var/datum/data/comment/comment in comments)
+				if(comment.dataId == text2num(cDataId))
+					comments -= comment
+					return
 
 /datum/datacore/proc/manifest()
 	for(var/mob/dead/new_player/N in GLOB.player_list)
@@ -117,8 +133,16 @@
 
 /datum/datacore/proc/manifest_modify(name, assignment)
 	var/datum/data/record/foundrecord = find_record("name", name, GLOB.data_core.general)
+	var/real_title = assignment
+	for(var/datum/job/J in SSjob.occupations)
+		var/list/alttitles = get_alternate_titles(J.title)
+		if(!J)	continue
+		if(assignment in alttitles)
+			real_title = J.title
+			break
 	if(foundrecord)
 		foundrecord.fields["rank"] = assignment
+		foundrecord.fields["real_rank"] = real_title
 
 /datum/datacore/proc/get_manifest()
 	var/list/manifest_out = list()
@@ -267,7 +291,9 @@
 	var/static/list/show_directions = list(SOUTH, WEST)
 	if(H.mind && (H.mind.assigned_role != H.mind.special_role))
 		var/assignment
-		if(H.mind.assigned_role)
+		if(H.mind.role_alt_title)
+			assignment = H.mind.role_alt_title
+		else if(H.mind.assigned_role)
 			assignment = H.mind.assigned_role
 		else if(H.job)
 			assignment = H.job
@@ -335,8 +361,8 @@
 		S.fields["name"]		= H.real_name
 		S.fields["criminal"]	= "None"
 		S.fields["citation"]	= list()
-		S.fields["mi_crim"]		= list()
-		S.fields["ma_crim"]		= list()
+		S.fields["crimes"]		= list()
+		S.fields["comments"]	= list()
 		S.fields["notes"]		= "No notes."
 		security += S
 

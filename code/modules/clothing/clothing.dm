@@ -214,7 +214,7 @@ BLIND     // can't see anything
 		to_chat(usr, "<span class='warning'>You have moved too far away!</span>")
 		return
 	sensor_mode = modes.Find(switchMode) - 1
-
+	set_sensor_glob()
 	if (src.loc == usr)
 		switch(sensor_mode)
 			if(0)
@@ -271,11 +271,17 @@ BLIND     // can't see anything
 		H.update_inv_w_uniform()
 		H.update_body()
 
-/obj/item/clothing/under/proc/toggle_jumpsuit_adjust()
-	if(adjusted == DIGITIGRADE_STYLE)
-		return
-	adjusted = !adjusted
-	if(adjusted)
+/obj/item/clothing/under/proc/toggle_jumpsuit_adjust() //Yogs Start: Reworking this to allow for Digialt to function
+	switch(adjusted)
+		if(NORMAL_STYLE)
+			adjusted = ALT_STYLE
+		if(ALT_STYLE)
+			adjusted = NORMAL_STYLE
+		if(DIGITIGRADE_STYLE)
+			adjusted = DIGIALT_STYLE
+		if(DIGIALT_STYLE)
+			adjusted = DIGITIGRADE_STYLE
+	if(adjusted == NORMAL_STYLE || adjusted == DIGIALT_STYLE) //Yogs End
 		if(fitted != FEMALE_UNIFORM_TOP)
 			fitted = NO_FEMALE_UNIFORM
 		if(!alt_covers_chest) // for the special snowflake suits that expose the chest when adjusted
@@ -330,3 +336,17 @@ BLIND     // can't see anything
 		deconstruct(FALSE)
 	else
 		..()
+		
+/obj/item/clothing/proc/set_sensor_glob()
+	var/mob/living/carbon/human/H = src.loc
+
+	if (istype(H.w_uniform, /obj/item/clothing/under))
+		var/obj/item/clothing/under/U = H.w_uniform
+		if (U.has_sensor && U.sensor_mode && U.has_sensor != BROKEN_SENSORS)
+			GLOB.suit_sensors_list |= H
+
+		else 
+			GLOB.suit_sensors_list -= H
+
+	else 
+		GLOB.suit_sensors_list -= H	

@@ -4,8 +4,8 @@
 /datum/chemical_reaction/medicine/libital
 	name = "libital"
 	id = /datum/reagent/medicine/c2/libital
-	results = list(/datum/reagent/medicine/c2/libital = 3)
-	required_reagents = list(/datum/reagent/phenol = 1, /datum/reagent/oxygen = 1, /datum/reagent/nitrogen = 1)
+	results = list(/datum/reagent/medicine/c2/libital = 5)
+	required_reagents = list(/datum/reagent/phenol = 3, /datum/reagent/oxygen = 1, /datum/reagent/nitrogen = 1)
 
 /datum/chemical_reaction/medicine/probital
 	name = "probital"
@@ -24,8 +24,8 @@
 /datum/chemical_reaction/medicine/aiuri
 	name = "aiuri"
 	id = /datum/reagent/medicine/c2/aiuri
-	results = list(/datum/reagent/medicine/c2/aiuri = 4)
-	required_reagents = list(/datum/reagent/ammonia = 1, /datum/reagent/toxin/acid = 1, /datum/reagent/hydrogen = 2)
+	results = list(/datum/reagent/medicine/c2/aiuri = 5)
+	required_reagents = list(/datum/reagent/ammonia = 2, /datum/reagent/toxin/acid = 1, /datum/reagent/hydrogen = 2)
 
 /datum/chemical_reaction/medicine/rhigoxane
 	name = "rhigoxane"

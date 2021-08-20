@@ -40,7 +40,7 @@
 	var/canwalk = FALSE
 
 /obj/structure/checkoutmachine/examine(mob/living/user)
-	..()
+	. = ..()
 	. += "<span class='info'>It's integrated integrity meter reads: <b>HEALTH: [obj_integrity]</b>.</span>"
 
 /obj/structure/checkoutmachine/proc/check_if_finished()
@@ -155,7 +155,8 @@
 
 /obj/structure/checkoutmachine/proc/start_dumping()
 	accounts_to_rob = SSeconomy.bank_accounts.Copy()
-	accounts_to_rob -= bogdanoff.get_bank_account()
+	if(bogdanoff)
+		accounts_to_rob -= bogdanoff.get_bank_account()
 	for(var/i in accounts_to_rob)
 		var/datum/bank_account/B = i
 		B.dumpeet()
@@ -168,7 +169,9 @@
 		if(!B.being_dumped)
 			continue
 		var/amount = B.account_balance * percentage_lost
-		var/datum/bank_account/account = bogdanoff.get_bank_account()
+		var/datum/bank_account/account
+		if(bogdanoff)
+			account = bogdanoff.get_bank_account()
 		if (account) // get_bank_account() may return FALSE
 			account.transfer_money(B, amount)
 			B.bank_card_talk("You have lost [percentage_lost * 100]% of your funds! A spacecoin credit deposit machine is located at: [get_area(src)].")

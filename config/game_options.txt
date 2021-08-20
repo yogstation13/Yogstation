@@ -14,6 +14,17 @@ REVIVAL_CLONING
 ## amount of time (in hundredths of seconds) for which a brain retains the "spark of life" after the person's death (set to -1 for infinite)
 REVIVAL_BRAIN_LIFE -1
 
+## JOB_SPECIES_WHITELIST ##
+## Creates Command roles species based exceptions; comma delineated list - /datum/job/[JOB] [SPECIES 1],[SPECIES 2], etc.
+
+JOB_SPECIES_WHITELIST /datum/job/captain human
+JOB_SPECIES_WHITELIST /datum/job/hop human
+JOB_SPECIES_WHITELIST /datum/job/hos human,lizard
+JOB_SPECIES_WHITELIST /datum/job/chief_engineer human,plasmaman,moth,ethereal,preternis, polysmorph
+JOB_SPECIES_WHITELIST /datum/job/rd human,pod,plasmaman,ethereal,preternis,polysmorph
+JOB_SPECIES_WHITELIST /datum/job/cmo human,lizard,pod,moth
+
+
 ## OOC DURING ROUND ###
 ## Comment this out if you want OOC to be automatically disabled during the round, it will be enabled during the lobby and after the round end results.
 OOC_DURING_ROUND
@@ -409,13 +420,13 @@ RANDOM_LAWS reporter
 LAW_WEIGHT custom,0
 
 ## standard-ish laws. These are fairly ok to run
-LAW_WEIGHT asimov,6
-LAW_WEIGHT crewsimov,6
+LAW_WEIGHT asimov,5
+LAW_WEIGHT crewsimov,5
 LAW_WEIGHT asimovpp,0
 LAW_WEIGHT paladin,0
 LAW_WEIGHT robocop,0
 LAW_WEIGHT corporate,0
-LAW_WEIGHT ceo,6
+LAW_WEIGHT ceo,5
 
 ## Quirky laws. Shouldn't cause too much harm
 LAW_WEIGHT hippocratic,0
@@ -424,6 +435,7 @@ LAW_WEIGHT drone,0
 LAW_WEIGHT liveandletlive,0
 LAW_WEIGHT peacekeeper,0
 LAW_WEIGHT reporter,3
+LAW_WEIGHT cowboy,2
 
 ## Bad idea laws. Probably shouldn't enable these
 LAW_WEIGHT syndie,0

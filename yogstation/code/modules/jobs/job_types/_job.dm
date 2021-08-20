@@ -51,6 +51,9 @@
 		C = H.client
 		if(!C)
 			return
+	if(issilicon(H) || issilicon(M))
+		return
+
 	var/S = C.prefs.skillcape
 	if(S != 1)
 		var/datum/skillcape/A = GLOB.skillcapes[S]
@@ -82,3 +85,35 @@
 				flare.forceMove(box)
 			else
 				flare.forceMove(BP)
+
+/datum/job/proc/give_bar_choice(mob/living/H, mob/M)
+
+	var/choice
+
+	var/client/C = M.client
+	if(!C)
+		C = H.client
+		if(!C)
+			choice = "Random"
+
+	if(C)
+		choice = C.prefs.bar_choice
+
+	if(choice != "Random")
+		var/bar_sanitize = FALSE
+		for(var/A in GLOB.potential_box_bars)
+			if(choice == A)
+				bar_sanitize = TRUE
+				break
+
+		if(!bar_sanitize)
+			choice = "Random"
+	
+	if(choice == "Random")
+		choice = pick(GLOB.potential_box_bars)
+	
+	var/datum/map_template/template = SSmapping.station_room_templates[choice]
+
+	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
+		template.load(B.loc, centered = FALSE)
+		qdel(B)

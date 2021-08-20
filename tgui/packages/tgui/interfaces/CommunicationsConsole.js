@@ -268,6 +268,7 @@ const PageMain = (props, context) => {
     callShuttleReasonMinLength,
     canBuyShuttles,
     canMakeAnnouncement,
+    canMakeVoiceAnnouncement,
     canMessageAssociates,
     canRecallShuttles,
     canRequestNuke,
@@ -378,6 +379,12 @@ const PageMain = (props, context) => {
             icon="bullhorn"
             content="Make Priority Announcement"
             onClick={() => act("makePriorityAnnouncement")}
+          />}
+
+          {!!canMakeVoiceAnnouncement && <Button
+            icon="bullhorn"
+            content="Make Voice Announcement"
+            onClick={() => act("makeVoiceAnnouncement")}
           />}
 
           {!!canToggleEmergencyAccess && <Button.Confirm

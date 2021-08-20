@@ -166,6 +166,10 @@
 			if(prob(10))
 				LO.emp_act(2)
 			continue
+		if(istype(LO, /obj/mecha))
+			var/obj/mecha/M = LO
+			M.set_light(0)
+			M.lights = FALSE
 	for(var/obj/structure/glowshroom/G in orange(7, user)) //High radius because glowshroom spam wrecks shadowlings
 		if(!istype(G, /obj/structure/glowshroom/shadowshroom))
 			var/obj/structure/glowshroom/shadowshroom/S = new /obj/structure/glowshroom/shadowshroom(G.loc) //I CAN FEEL THE WARP OVERTAKING ME! IT IS A GOOD PAIN!

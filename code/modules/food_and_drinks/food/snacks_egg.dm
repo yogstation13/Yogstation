@@ -9,7 +9,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/coco = 2)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 4, "sweetness" = 1)
-	foodtype = JUNKFOOD | SUGAR | EGG
+	foodtype = JUNKFOOD | SUGAR | EGG | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/egg
 	name = "egg"
@@ -142,15 +142,16 @@
 	if(istype(W, /obj/item/kitchen/fork))
 		var/obj/item/kitchen/fork/F = W
 		if(F.forkload)
-			to_chat(user, "<span class='warning'>You already have omelette on your fork!</span>")
+			to_chat(user, "<span class='warning'>You already have [F.loaded_food] on your fork!</span>")
 		else
-			F.icon_state = "forkloaded"
+			F.icon_state = "forkloaded_egg"
 			user.visible_message("[user] takes a piece of omelette with [user.p_their()] fork!", \
 				"<span class='notice'>You take a piece of omelette with your fork.</span>")
 
 			var/datum/reagent/R = pick(reagents.reagent_list)
 			reagents.remove_reagent(R.type, 1)
 			F.forkload = R
+			F.loaded_food = "omeletee"
 			if(reagents.total_volume <= 0)
 				qdel(src)
 		return

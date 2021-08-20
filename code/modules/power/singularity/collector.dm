@@ -53,11 +53,13 @@
 			add_avail(power_produced)
 			stored_power-=power_produced
 	else if(is_station_level(z) && SSresearch.science_tech)
-		if(!loaded_tank.air_contents.get_moles(/datum/gas/tritium) || !loaded_tank.air_contents.get_moles(/datum/gas/oxygen))
+		var/trit_amount = loaded_tank.air_contents.get_moles(/datum/gas/tritium)
+		var/oxy_amount = loaded_tank.air_contents.get_moles(/datum/gas/oxygen)
+		if(!trit_amount || !oxy_amount)
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
 			eject()
 		else
-			var/gasdrained = bitcoinproduction_drain*drainratio
+			var/gasdrained = min(bitcoinproduction_drain*drainratio, min(trit_amount, oxy_amount))
 			loaded_tank.air_contents.adjust_moles(/datum/gas/tritium, -gasdrained)
 			loaded_tank.air_contents.adjust_moles(/datum/gas/oxygen, -gasdrained)
 			loaded_tank.air_contents.adjust_moles(/datum/gas/carbon_dioxide, gasdrained*2)
@@ -117,6 +119,12 @@
 			return TRUE
 	else
 		return ..()
+
+/obj/machinery/power/rad_collector/MouseDrop_T(atom/dropping, mob/user)
+	if(istype(dropping, /obj/item/tank/internals/plasma))
+		attackby(dropping, user)
+	else
+		..()
 
 /obj/machinery/power/rad_collector/proc/togglelock(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE))

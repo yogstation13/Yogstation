@@ -47,6 +47,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/show_credits = TRUE
 	var/uses_glasses_colour = 0
 
+	var/list/player_alt_titles = new()
+
 	///Whether emotes will be displayed on runechat. Requires chat_on_map to have effect. Boolean.
 	var/see_rc_emotes = TRUE
 
@@ -71,6 +73,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/features = list("mcolor" = "FFF", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No")
 	var/list/genders = list(MALE, FEMALE, PLURAL)
 	var/list/friendlyGenders = list("Male" = "male", "Female" = "female", "Other" = "plural")
+
+	var/list/random_locks = list()
 
 	var/list/custom_names = list()
 	var/preferred_ai_core_display = "Blue"
@@ -113,6 +117,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/map = 1
 	var/flare = 1
+
+	var/bar_choice = "Random"
 
 	var/list/exp = list()
 	var/list/menuoptions
@@ -230,7 +236,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dispGender = "Female"
 				else
 					dispGender = "Other"
-				dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[dispGender]</a><BR>"
+				dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[dispGender]</a>"
+				dat += "<a href ='?_src_=prefs;preference=gender;task=lock'>[random_locks["gender"] ? "Unlock" : "Lock"]</a><BR>"
 
 			dat += "<b>Age:</b> <a href='?_src_=prefs;preference=age;task=input'>[age]</a><BR>"
 
@@ -258,17 +265,27 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "</tr></table>"
 
 			dat += "<h2>Body</h2>"
-			dat += "<a href='?_src_=prefs;preference=all;task=random'>Random Body</A> "
-			dat += "<a href='?_src_=prefs;preference=all'>Always Random Body: [be_random_body ? "Yes" : "No"]</A><br>"
+			dat += "<a href='?_src_=prefs;preference=all;task=random'>Random Body</a> "
+			dat += "<a href='?_src_=prefs;preference=all'>Always Random Body: [be_random_body ? "Yes" : "No"]</a>"
+			dat += "<a href='?_src_=prefs;preference=u_all;task=lock'>Unlock all</a><br>"
+			dat += "<a href='?_src_=prefs;preference=l_all;task=lock'>Lock all</a><br>"
 
 			dat += "<table width='100%'><tr><td width='24%' valign='top'>"
 
-			dat += "<b>Species:</b><BR><a href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a><BR>"
+			dat += "<b>Species:</b><BR><a href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a>"
+			dat += "<a href ='?_src_=prefs;preference=species;task=lock'>[random_locks["species"] ? "Unlock" : "Lock"]</a><BR>"
 
-			dat += "<b>Underwear:</b><BR><a href ='?_src_=prefs;preference=underwear;task=input'>[underwear]</a><BR>"
-			dat += "<b>Undershirt:</b><BR><a href ='?_src_=prefs;preference=undershirt;task=input'>[undershirt]</a><BR>"
-			dat += "<b>Socks:</b><BR><a href ='?_src_=prefs;preference=socks;task=input'>[socks]</a><BR>"
-			dat += "<b>Backpack:</b><BR><a href ='?_src_=prefs;preference=bag;task=input'>[backbag]</a><BR>"
+			dat += "<b>Underwear:</b><BR><a href ='?_src_=prefs;preference=underwear;task=input'>[underwear]</a>"
+			dat += "<a href ='?_src_=prefs;preference=underwear;task=lock'>[random_locks["underwear"] ? "Unlock" : "Lock"]</a><BR>"
+
+			dat += "<b>Undershirt:</b><BR><a href ='?_src_=prefs;preference=undershirt;task=input'>[undershirt]</a>"
+			dat += "<a href ='?_src_=prefs;preference=undershirt;task=lock'>[random_locks["undershirt"] ? "Unlock" : "Lock"]</a><BR>"
+
+			dat += "<b>Socks:</b><BR><a href ='?_src_=prefs;preference=socks;task=input'>[socks]</a>"
+			dat += "<a href ='?_src_=prefs;preference=socks;task=lock'>[random_locks["socks"] ? "Unlock" : "Lock"]</a><BR>"
+
+			dat += "<b>Backpack:</b><BR><a href ='?_src_=prefs;preference=bag;task=input'>[backbag]</a>"
+			dat += "<a href ='?_src_=prefs;preference=bag;task=lock'>[random_locks["bag"] ? "Unlock" : "Lock"]</a><BR>"
 			dat += "<b>Uplink Spawn Location:</b><BR><a href ='?_src_=prefs;preference=uplink_loc;task=input'>[uplink_spawn_loc]</a><BR></td>"
 
 			var/use_skintones = pref_species.use_skintones
@@ -278,7 +295,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Skin Tone</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=s_tone;task=input'>[skin_tone]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=s_tone;task=input'>[skin_tone]</a>"
+				dat += "<a href ='?_src_=prefs;preference=underwear;task=lock'>[random_locks["underwear"] ? "Unlock" : "Lock"]</a><BR>"
 
 			var/mutant_colors
 			if((((MUTCOLORS in pref_species.species_traits) && !(NOCOLORCHANGE in pref_species.species_traits))) || (MUTCOLORS_PARTSONLY in pref_species.species_traits))
@@ -288,7 +306,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Mutant Color</h3>"
 
-				dat += "<span style='border: 1px solid #161616; background-color: #[features["mcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=mutant_color;task=input'>Change</a><BR>"
+				dat += "<span style='border: 1px solid #161616; background-color: #[features["mcolor"]];'>&nbsp;&nbsp;&nbsp;</span>"
+				dat += "<a href='?_src_=prefs;preference=mcolor;task=input'>Change</a> <a href ='?_src_=prefs;preference=mcolor;task=lock'>[random_locks["mcolor"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_colors = TRUE
 
@@ -299,7 +318,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Ethereal Color</h3>"
 
-				dat += "<span style='border: 1px solid #161616; background-color: #[features["ethcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=color_ethereal;task=input'>Change</a><BR>"
+				dat += "<span style='border: 1px solid #161616; background-color: #[features["ethcolor"]];'>&nbsp;&nbsp;&nbsp;</span>"
+				dat += "<a href='?_src_=prefs;preference=ethcolor;task=input'>Change</a> <a href ='?_src_=prefs;preference=ethcolor;task=lock'>[random_locks["ethcolor"] ? "Unlock" : "Lock"]</a><BR>"
 
 
 			if((EYECOLOR in pref_species.species_traits) && !(NOEYESPRITES in pref_species.species_traits))
@@ -309,7 +329,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Eye Color</h3>"
 
-				dat += "<span style='border: 1px solid #161616; background-color: #[eye_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=eyes;task=input'>Change</a><BR>"
+				dat += "<span style='border: 1px solid #161616; background-color: #[eye_color];'>&nbsp;&nbsp;&nbsp;</span>"
+				dat += "<a href='?_src_=prefs;preference=eyes;task=input'>Change</a> <a href ='?_src_=prefs;preference=eyes;task=lock'>[random_locks["eyes"] ? "Unlock" : "Lock"]</a><BR>"
 
 				dat += "</td>"
 			else if(use_skintones || mutant_colors)
@@ -321,15 +342,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Hair Style</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=hair_style;task=input'>[hair_style]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=hair_style;task=input'>[hair_style]</a>"
+				dat += "<a href ='?_src_=prefs;preference=hair_style;task=lock'>[random_locks["hair_style"] ? "Unlock" : "Lock"]</a><BR>"
+
 				dat += "<a href='?_src_=prefs;preference=previous_hair_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_style;task=input'>&gt;</a><BR>"
-				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair;task=input'>Change</a><BR>"
+
+				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair;task=input'>Change</a>"
+				dat += "<a href ='?_src_=prefs;preference=hair_color;task=lock'>[random_locks["hair"] ? "Unlock" : "Lock"]</a><BR>"
 
 				dat += "<h3>Facial Hair Style</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=facial_hair_style;task=input'>[facial_hair_style]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=facial_hair_style;task=input'>[facial_hair_style]</a>"
+				dat += "<a href ='?_src_=prefs;preference=facial_hair_style;task=lock'>[random_locks["facial_hair_style"] ? "Unlock" : "Lock"]</a><BR>"
+
 				dat += "<a href='?_src_=prefs;preference=previous_facehair_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_facehair_style;task=input'>&gt;</a><BR>"
-				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Change</a><BR>"
+
+				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Change</a>"
+				dat += "<a href ='?_src_=prefs;preference=facial_hair_style_color;task=lock'>[random_locks["facial"] ? "Unlock" : "Lock"]</a><BR>"
 
 				dat += "</td>"
 
@@ -342,7 +371,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Tail</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=tail_lizard;task=input'>[features["tail_lizard"]]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=tail_lizard;task=input'>[features["tail_lizard"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=tail_lizard;task=lock'>[random_locks["tail_lizard"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -355,7 +385,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Tail</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=tail_polysmorph;task=input'>[features["tail_polysmorph"]]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=tail_polysmorph;task=input'>[features["tail_polysmorph"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=tail_polysmorph;task=lock'>[random_locks["tail_polysmorph"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -368,7 +399,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Snout</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=snout;task=input'>[features["snout"]]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=snout;task=input'>[features["snout"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=snout;task=lock'>[random_locks["snout"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -381,7 +413,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Horns</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=horns;task=input'>[features["horns"]]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=horns;task=input'>[features["horns"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=horns;task=lock'>[random_locks["horns"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -394,7 +427,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Frills</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=frills;task=input'>[features["frills"]]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=frills;task=input'>[features["frills"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=frills;task=lock'>[random_locks["frills"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -407,7 +441,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Spines</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=spines;task=input'>[features["spines"]]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=spines;task=input'>[features["spines"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=spines;task=lock'>[random_locks["spines"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -420,7 +455,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Body Markings</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=body_markings;task=input'>[features["body_markings"]]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=body_markings;task=input'>[features["body_markings"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=body_markings;task=lock'>[random_locks["body_markings"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -433,7 +469,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Legs</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=legs;task=input'>[features["legs"]]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=legs;task=input'>[features["legs"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=legs;task=lock'>[random_locks["legs"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -446,7 +483,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Moth wings</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=moth_wings;task=input'>[features["moth_wings"]]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=moth_wings;task=input'>[features["moth_wings"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=moth_wings;task=lock'>[random_locks["moth_wings"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -459,7 +497,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Teeth</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=teeth;task=input'>[features["teeth"]]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=teeth;task=input'>[features["teeth"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=teeth;task=lock'>[random_locks["teeth"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -472,7 +511,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Dome</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=dome;task=input'>[features["dome"]]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=dome;task=input'>[features["dome"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=dome;task=lock'>[random_locks["dome"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -485,7 +525,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Dorsal Tubes</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=dorsal_tubes;task=input'>[features["dorsal_tubes"]]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=dorsal_tubes;task=input'>[features["dorsal_tubes"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=dorsal_tubes;task=lock'>[random_locks["dorsal_tubes"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -498,7 +539,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Tail</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=tail_human;task=input'>[features["tail_human"]]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=tail_human;task=input'>[features["tail_human"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=tail_human;task=lock'>[random_locks["tail_human"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -511,7 +553,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Ears</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=ears;task=input'>[features["ears"]]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=ears;task=input'>[features["ears"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=ears;task=lock'>[random_locks["ears"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -526,7 +569,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 					dat += "<h3>Wings</h3>"
 
-					dat += "<a href='?_src_=prefs;preference=wings;task=input'>[features["wings"]]</a><BR>"
+					dat += "<a href='?_src_=prefs;preference=wings;task=input'>[features["wings"]]</a>"
+					dat += "<a href ='?_src_=prefs;preference=wings;task=lock'>[random_locks["wings"] ? "Unlock" : "Lock"]</a><BR>"
 
 					mutant_category++
 					if(mutant_category >= MAX_MUTANT_ROWS)
@@ -558,6 +602,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Skillcape:</b> <a href='?_src_=prefs;task=input;preference=skillcape'>[(skillcape != 1) ? "[GLOB.skillcapes[skillcape]]" : "none"] </a><br>"
 			dat += "<b>Flare:</b> <a href='?_src_=prefs;task=input;preference=flare'>[flare ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Map:</b> <a href='?_src_=prefs;task=input;preference=map'>[map ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>Preferred Box Bar:</b> <a href='?_src_=prefs;task=input;preference=bar_choice'>[bar_choice]</a><br>"
 			dat += "<br>"
 			dat += "<b>Ghost Ears:</b> <a href='?_src_=prefs;preference=ghost_ears'>[(chat_toggles & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</a><br>"
 			dat += "<b>Ghost Radio:</b> <a href='?_src_=prefs;preference=ghost_radio'>[(chat_toggles & CHAT_GHOSTRADIO) ? "All Messages":"No Messages"]</a><br>"
@@ -777,7 +822,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Purrbation (Humans only)</b> "
 				dat += "<a href='?_src_=prefs;preference=donor;task=purrbation'>[purrbation ? "Yes" : "No"]</a><BR>"
 			else
-				dat += "<b><a href='http://www.yogstation.net/index.php?do=donate'>Donate here</b>"
+				dat += "<b><a href='http://www.yogstation.net/donate'>Donate here</b>"
 			dat += "</tr></table>"
 		// yogs end
 
@@ -933,10 +978,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				HTML += "<font color=blue>[rank]</font></td><td><font color=blue><b> \[QUIET\]</b></font></td></tr>"
 				continue
 			// yogs end
-			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
-				HTML += "<b><span class='dark'>[rank]</span></b>"
+
+			var/rank_display
+			if(job.alt_titles)
+				rank_display = "<a class='white' href='?_src_=prefs;preference=job;task=alt_title;job=[rank]'>[GetPlayerAltTitle(job)]</a>"
 			else
-				HTML += "<span class='dark'>[rank]</span>"
+				rank_display = "<span class='dark'>[rank]</span>"
+
+			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
+				HTML += "<b>[rank_display]</b>"
+			else
+				HTML += rank_display
 
 			HTML += "</td><td width='40%'>"
 
@@ -998,6 +1050,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	popup.set_window_options("can_close=0")
 	popup.set_content(HTML)
 	popup.open(FALSE)
+
+/datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
+	return player_alt_titles.Find(job.title) > 0 \
+		? player_alt_titles[job.title] \
+		: job.title
+
+/datum/preferences/proc/SetPlayerAltTitle(datum/job/job, new_title)
+	// remove existing entry
+	if(player_alt_titles.Find(job.title))
+		player_alt_titles -= job.title
+	// add one if it's not default
+	if(job.title != new_title)
+		player_alt_titles[job.title] = new_title
 
 /datum/preferences/proc/SetJobPreferenceLevel(datum/job/job, level)
 	if (!job)
@@ -1146,7 +1211,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("quiet_round")
 					yogtoggles ^= QUIET_ROUND
 				if("pda")
-					donor_pda = donor_pda % ++GLOB.donor_pdas.len
+					donor_pda = (donor_pda % GLOB.donor_pdas.len) + 1
 				if("purrbation")
 					purrbation = !purrbation
 		else
@@ -1188,6 +1253,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(BERANDOMJOB)
 						joblessrole = RETURNTOLOBBY
 				SetChoices(user)
+			if ("alt_title")
+				var/datum/job/job = SSjob.GetJob(href_list["job"])
+				if (job)
+					var/choices = list(job.title) + job.alt_titles
+					var/choice = input("Pick a title for [job.title].", "Character Generation", GetPlayerAltTitle(job)) as anything in choices | null
+					if(choice)
+						SetPlayerAltTitle(job, choice)
+						SetChoices(user)
 			if("setJobLevel")
 				UpdateJobPreference(user, href_list["text"], text2num(href_list["level"]))
 			else
@@ -1260,7 +1333,38 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("bag")
 					backbag = pick(GLOB.backbaglist)
 				if("all")
-					random_character()
+					random_character(gender)
+		if("lock")
+			switch(href_list["preference"])
+				if("u_all")
+					for(var/i in random_locks)
+						random_locks[i] = 0;
+				if("l_all")
+					random_locks = list(
+						"gender" = gender,
+						"mcolor" = 1,
+						"ethcolor" = 1,
+						"tail_lizard" = 1,
+						"tail_human" = 1,
+						"wings" = 1,
+						"snout" = 1,
+						"horns" = 1,
+						"ears" = 1,
+						"frills" = 1,
+						"spines" = 1,
+						"body_markings" = 1,
+						"legs" = 1,
+						"caps" = 1,
+						"moth_wings" = 1,
+						"tail_polysmorph" = 1,
+						"teeth" = 1,
+						"dome" = 1,
+						"dorsal_tubes" = 1,
+					)
+				if("gender")
+					random_locks["random_locks"] = gender
+				else
+					random_locks[href_list["preference"]] = !random_locks[href_list["preference"]]
 
 		if("input")
 
@@ -1423,7 +1527,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						if(features["mcolor"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#7F7F7F")[3]))
 							features["mcolor"] = pref_species.default_color
 
-				if("mutant_color")
+				if("mcolor")
 					var/new_mutantcolor = input(user, "Choose your character's alien/mutant color:", "Character Preference","#"+features["mcolor"]) as color|null
 					if(new_mutantcolor)
 						var/temp_hsv = RGBtoHSV(new_mutantcolor)
@@ -1434,7 +1538,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						else
 							to_chat(user, "<span class='danger'>Invalid color. Your color is not bright enough.</span>")
 
-				if("color_ethereal")
+				if("ethcolor")
 					var/new_etherealcolor = input(user, "Choose your ethereal color", "Character Preference") as null|anything in GLOB.color_list_ethereal
 					if(new_etherealcolor)
 						features["ethcolor"] = GLOB.color_list_ethereal[new_etherealcolor]
@@ -1638,6 +1742,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					flare = !flare
 				if("map")
 					map = !map
+				if("bar_choice")
+					var/list/selectablebars = GLOB.potential_box_bars
+					selectablebars += "Random"
+					var/pickedbar = input(user, "Choose your bar.", "Character Preference", bar_choice) as null|anything in GLOB.potential_box_bars
+					bar_choice = pickedbar
 				if ("max_chat_length")
 					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
 					if (!isnull(desiredlength))
