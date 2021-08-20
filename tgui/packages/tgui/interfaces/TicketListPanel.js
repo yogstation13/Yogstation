@@ -19,13 +19,13 @@ export const TicketListPanel = (props, context) => {
       <Window.Content scrollable>
         <Collapsible
           className="Section__titleText"
-          color={open_count == 0 ? 'default' : 'red'}
+          color={open_count === 0 ? 'default' : 'red'}
           open
           title={"Unresolved Tickets (" + open_count + "/" + total_count + ")"}>
           {data.unresolved_tickets.map(ticket => (
             <TicketSummary
               key={ticket.id}
-              ticket={ticket}/>
+              ticket={ticket} />
           ))}
         </Collapsible>
         <Collapsible
@@ -34,8 +34,8 @@ export const TicketListPanel = (props, context) => {
           title={"Resolved Tickets (" + closed_count + "/" + total_count + ")"}>
           {data.resolved_tickets.map(ticket => (
             <TicketSummary
-            key={ticket.id}
-            ticket={ticket}/>
+              key={ticket.id}
+              ticket={ticket} />
           ))}
         </Collapsible>
       </Window.Content>
@@ -44,13 +44,12 @@ export const TicketListPanel = (props, context) => {
 };
 
 export const TicketSummary = (props, context) => {
-  const { ticket } = props
+  const { ticket } = props;
   const { act } = useBackend(context);
 
   return (
     <Section
-      className = "clown"
-      backgroundColor = {ticket.admin_key || !ticket.active ? "" : "bad"}
+      backgroundColor={ticket.admin_key || !ticket.active ? "" : "bad"}
       title={"#" + ticket.id + ": " + ticket.name}>
       Owner: {ticket.initiator_key_name} <br />
       Admin: {ticket.admin_key ? ticket.admin_key : "UNCLAIMED"}
@@ -58,77 +57,78 @@ export const TicketSummary = (props, context) => {
         level = "2">
         <Button
           onClick={() => act('view', {
-            'id': ticket.id
+            'id': ticket.id,
           })}>
           View
         </Button>
         <Button
           enabled={ticket.has_mob}
           onClick={() => act('adminmoreinfo', {
-            'id': ticket.id
+            'id': ticket.id,
           })}>
           ?
         </Button>
         <Button
           enabled={ticket.has_mob}
           onClick={() => act('VV', {
-            'id': ticket.id
+            'id': ticket.id,
           })}>
           VV
         </Button>
         <Button
           enabled={ticket.has_mob}
           onClick={() => act('PP', {
-            'id': ticket.id
+            'id': ticket.id,
           })}>
           PP
         </Button>
         <Button
           enabled={ticket.has_mob}
           onClick={() => act('SM', {
-            'id': ticket.id
+            'id': ticket.id,
           })}>
           SM
         </Button>
         <Button
           enabled={ticket.has_mob}
           onClick={() => act('FLW', {
-            'id': ticket.id
+            'id': ticket.id,
           })}>
           FLW
         </Button>
         <Button
           onClick={() => act('CA', {
-            'id': ticket.id
+            'id': ticket.id,
           })}>
           CA
         </Button>
         <Button
           onClick={() => act('Resolve', {
-            'id': ticket.id
+            'id': ticket.id,
           })}>
           Resolve
         </Button>
         <Button
           enabled={ticket.has_client}
           onClick={() => act('Reject', {
-            'id': ticket.id
+            'id': ticket.id,
           })}>
           Reject
-        </Button><Button
+        </Button>
+        <Button
           onClick={() => act('Close', {
-            'id': ticket.id
+            'id': ticket.id,
           })}>
           Close
         </Button>
         <Button
           enabled={ticket.has_client}
           onClick={() => act('IC', {
-            'id': ticket.id
+            'id': ticket.id,
           })}>
           IC
         </Button>
       </Section>
     </Section>
-  )
-}
+  );
+};
