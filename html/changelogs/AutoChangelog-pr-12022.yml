@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - experiment: "For gamemode population calculations an unreadied player now counts as 50% of a readied one."
