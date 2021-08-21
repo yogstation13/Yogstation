@@ -591,7 +591,8 @@
 /area/maintenance/disposal)
 "aaO" = (
 /obj/machinery/door/airlock/silver{
-	name = "Bathroom"
+	name = "Bathroom";
+	req_access_txt = "20"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -2454,18 +2455,6 @@
 /area/maintenance/port)
 "adH" = (
 /turf/closed/wall,
-/area/crew_quarters/heads/captain/private)
-"adI" = (
-/obj/structure/cable/white{
-	icon_state = "2-4"
-	},
-/obj/machinery/camera{
-	c_tag = "Bridge - Captain's Quarters";
-	dir = 4;
-	name = "command camera"
-	},
-/obj/machinery/vending/autodrobe/capdrobe,
-/turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
 "adJ" = (
 /obj/structure/cable/white{
@@ -30800,6 +30789,17 @@
 /obj/machinery/disposal/bin,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"iWq" = (
+/obj/structure/cable/white{
+	icon_state = "2-4"
+	},
+/obj/machinery/vending/autodrobe/capdrobe,
+/obj/machinery/camera/motion{
+	c_tag = "Armory External";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "iWN" = (
 /obj/machinery/light{
 	dir = 1
@@ -85880,7 +85880,7 @@ aad
 abw
 abZ
 aaP
-adI
+iWq
 aef
 afl
 afZ

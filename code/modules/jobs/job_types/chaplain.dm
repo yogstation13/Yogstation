@@ -11,7 +11,7 @@
 
 	outfit = /datum/outfit/job/chaplain
 
-	alt_titles = list("Priest", "Preacher", "Cleric")
+	alt_titles = list("Priest", "Preacher", "Cleric", "Exorcist")
 
 	access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_THEATRE)
 	minimal_access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_THEATRE)

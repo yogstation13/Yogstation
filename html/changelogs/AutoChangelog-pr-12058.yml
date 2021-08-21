@@ -1,0 +1,4 @@
+author: "  Hopek"
+delete-after: true 
+changes: 
+  - tweak: "Specialized belts are back to not automatically starting with 14 slots anymore. This is not affecting the storage size, only the amount of maximum slots."

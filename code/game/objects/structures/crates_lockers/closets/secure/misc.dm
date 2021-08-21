@@ -64,4 +64,4 @@
 	new /obj/item/clothing/shoes/magboots(src)
 	new /obj/item/storage/box/smart_metal_foam(src)
 	for(var/i in 1 to 3)
-		new /obj/item/rcd_ammo/large(src)
+		new /obj/item/rcd_ammo(src)
