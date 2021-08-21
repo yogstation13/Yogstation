@@ -32,7 +32,7 @@
 	gold_core_spawnable = NO_SPAWN
 	butcher_results = list(/obj/item/stack/ore/diamond = 3) //you MONSTER
 	tame = TRUE
-	can_buckle = 1
+	can_buckle = TRUE
 	buckle_lying = 0
 	var/attack_cooldown = 0
 	var/list/food_items = list(/obj/item/reagent_containers/food/snacks/meat/slab/goliath = 20, /obj/item/reagent_containers/food/snacks/meat/steak/goliath = 40)
