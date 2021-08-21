@@ -28,6 +28,8 @@
 	var/list/gamemode_whitelist = list() // Event will happen ONLY in these gamemodes if not empty
 
 	var/triggering	//admin cancellation
+	/// Should we allow this event to be triggered on alert levels above red? (Gamma, Epsilon, Delta)
+	var/security_level_override = FALSE
 
 	/// Whether or not dynamic should hijack this event
 	var/dynamic_should_hijack = FALSE
@@ -59,7 +61,7 @@
 		return FALSE
 	if(ispath(typepath, /datum/round_event/ghost_role) && !(GLOB.ghost_role_flags & GHOSTROLE_MIDROUND_EVENT))
 		return FALSE
-	if(GLOB.security_level >= SEC_LEVEL_GAMMA)
+	if(GLOB.security_level >= SEC_LEVEL_GAMMA && !security_level_override)
 		return FALSE
 
 	var/datum/game_mode/dynamic/dynamic = SSticker.mode
