@@ -579,9 +579,9 @@
 /area/bridge)
 "bL" = (
 /obj/structure/table,
-/obj/item/rcd_ammo/large,
-/obj/item/rcd_ammo/large,
-/obj/item/rcd_ammo/large,
+/obj/item/rcd_ammo,
+/obj/item/rcd_ammo,
+/obj/item/rcd_ammo,
 /obj/item/construction/rcd,
 /turf/open/floor/plasteel,
 /area/bridge)
