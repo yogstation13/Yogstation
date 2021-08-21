@@ -20,8 +20,13 @@
 	icon = 'icons/obj/wizard.dmi'
 	icon_state ="scroll2"
 
+	var/unlocked = FALSE
+
+/obj/item/antag_spawner/contract/unlocked
+	var/unlocked = TRUE
+
 /obj/item/antag_spawner/contract/attack_self(mob/user)
-	if(!user.mind.has_antag_datum(/datum/antagonist/wizard))
+	if(!unlocked && !user.mind.has_antag_datum(/datum/antagonist/wizard))
 		to_chat(user, "<span class='warning'>You do not understand the words on this paper.</span>")
 		return
 	user.set_machine(src)
