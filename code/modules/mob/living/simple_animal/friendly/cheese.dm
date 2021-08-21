@@ -21,6 +21,7 @@
 	speed = 5
 	can_be_held = TRUE
 	density = FALSE
+	var/mob/living/carbon/human/stored_mob
 
 /mob/living/simple_animal/cheese/Life()
 	..()
@@ -59,5 +60,10 @@
 		var/obj/item/clothing/head/mob_holder/cheese/P = new(get_turf(src), src, null, null, null, null, FALSE)
 		L.put_in_hands(P)
 
-
-
+/mob/living/simple_animal/cheese/death(gibbed)
+	for(var/i = 0; i < 4; i++)
+		new /obj/item/reagent_containers/food/snacks/cheesewedge/parmesan(loc)
+	if(stored_mob)
+		uncheeseify(src)
+	. = ..()
+	
