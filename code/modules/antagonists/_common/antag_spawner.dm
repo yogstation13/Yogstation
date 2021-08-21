@@ -23,7 +23,7 @@
 	var/unlocked = FALSE
 
 /obj/item/antag_spawner/contract/unlocked
-	var/unlocked = TRUE
+	unlocked = TRUE
 
 /obj/item/antag_spawner/contract/attack_self(mob/user)
 	if(!unlocked && !user.mind.has_antag_datum(/datum/antagonist/wizard))
