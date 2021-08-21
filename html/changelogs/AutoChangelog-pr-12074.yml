@@ -1,7 +1,0 @@
-author: "  MacBlaze1, Cenrus, nichlas0010, nmajask"
-delete-after: true 
-changes: 
-  - bugfix: "fixed ghosts not being able to view crew monitors"
-  - bugfix: "fixed the crew monitor vital square not taking into account burn damage"
-  - bugfix: "potentially fixed random duplicate unknowns of people appearing on the crew monitor"
-  - tweak: "tweaked the appearance of the crew monitor UI"
