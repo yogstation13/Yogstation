@@ -16,6 +16,7 @@
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SCIENCE
+	alt_titles = list("Chief Science Officer", "Head of Research")
 
 	outfit = /datum/outfit/job/rd
 

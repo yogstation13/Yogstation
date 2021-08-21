@@ -38,6 +38,9 @@
 	var/memory
 
 	var/assigned_role
+
+	var/role_alt_title
+	
 	var/special_role
 	var/list/restricted_roles = list()
 	var/list/datum/objective/objectives = list()
