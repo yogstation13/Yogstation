@@ -60,8 +60,8 @@ GLOBAL_LIST_INIT(original_nonhuman_positions, list(
 	ROLE_PAI))
 
 GLOBAL_LIST_INIT(alt_command_positions, list(
-	"Station Commander", "Facility Overseer",
-	"Chief of Staff", "Head of Internal Affairs",
+	"Station Commander", "Facility Director",
+	"Chief of Staff", "Head of Internal Affairs", "First Officer",
 	"Security Commander", "Security Chief",
 	"Head of Engineering", "Engineering Director",
 	"Chief Science Officer", "Head of Research",
@@ -70,13 +70,13 @@ GLOBAL_LIST_INIT(alt_command_positions, list(
 GLOBAL_LIST_INIT(alt_engineering_positions, list(
 	"Head of Engineering", "Engineering Director",
 	"Engine Technician", "Solar Engineer", "Project Engineer", "Junior Engineer", "Construction Specialist",
-	"Habitation Technician", "Fire Suppression Technician", "Atmospherics Trainee", "Environmental Maintainer",
+	"Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer",
 	"NTSL Programmer", "Comms Tech", "Station IT Support"
 	))
 
 GLOBAL_LIST_INIT(alt_medical_positions, list(
 	"Medical Director", "Head of Medical",
-	"Physician", "Surgeon", "Nurse", "Medical Resident", "Attending Physician", "Chief Surgeon", "Attending Physician", "Chief Surgeon", "Medical Subdirector", "General Practitioner",
+	"Physician", "Surgeon", "Nurse", "Medical Resident", "Attending Physician", "Chief Surgeon", "Chief Surgeon", "Medical Subdirector", "General Practitioner",
 	"DNA Mechanic", "Bioengineer", "Junior Geneticist", "Gene Splicer",
 	"Microbiologist", "Pathologist", "Junior Disease Researcher", "Epidemiologist",
 	"Pharmacist", "Chemical Analyst", "Chemistry Lab Technician", "Chemical Specialist",
@@ -86,7 +86,7 @@ GLOBAL_LIST_INIT(alt_medical_positions, list(
 
 GLOBAL_LIST_INIT(alt_science_positions, list(
 	"Chief Science Officer", "Head of Research",
-	"Researcher", "Toxins Specialist", "Physicist", "Science Intern", "Anomalist", "Quantum Physicist", "Xenobiologist", "Bomb Specialist",
+	"Researcher", "Toxins Specialist", "Physicist", "Test Associate", "Anomalist", "Quantum Physicist", "Xenobiologist", "Explosives Technician",
 	"Augmentation Theorist", "Cyborg Maintainer", "Robotics Intern", "Biomechanical Engineer", "Mechatronic Engineer"))
 
 GLOBAL_LIST_INIT(alt_supply_positions, list(
@@ -102,10 +102,10 @@ GLOBAL_LIST_INIT(alt_civilian_positions, list(
 	"Custodian", "Sanitation Worker", "Cleaner", "Caretaker",
 	"Librarian", "Journalist", "Archivist",
 	"Prosecutor", "Defense Attorney", "Paralegal", "Ace Attorney",
-	"Priest", "Preacher", "Cleric",
+	"Priest", "Preacher", "Cleric", "Exorcist",
 	"Entertainer", "Comedian", "Jester",
 	"Mute Entertainer", "Silent Jokester", "Pantomimist",
-	"Intern", "Apprentice", "Subordinate", "Temporary Worker", "Colleague", "Associate",
+	"Intern", "Apprentice", "Subordinate", "Temporary Worker", "Associate",
 	"Salesman", "Gift Shop Attendent", "Retail Worker",
 	"Visitor", "Traveler", "Siteseer",
 	"Composer", "Artisan"
@@ -113,14 +113,14 @@ GLOBAL_LIST_INIT(alt_civilian_positions, list(
 
 GLOBAL_LIST_INIT(alt_security_positions, list(
 	"Security Commander", "Security Chief",
-	"Brig Watchman", "Brig Superintendent", "Security Lt. Commander", "Security Dispatcher", "Prison Supervisor",
+	"Brig Watchman", "Brig Superintendent", "Security Staff Sergeant", "Security Dispatcher", "Prison Supervisor",
 	"Investigator", "Forensic Analyst", "Investigative Cadet", "Private Eye", "Inspector",
-	"Security Guard", "Threat Response Officer", "Civilan Protection Officer", "Security Cadet", "Security Staff Sergeant",
+	"Threat Response Officer", "Civilan Protection Officer", "Security Cadet", "Corporate Marine",
 	))
 
 GLOBAL_LIST_INIT(alt_nonhuman_positions, list(
 	"Station Central Processor", "Central Silicon Intelligence", "Station Super Computer",
-	"Android", "Robot",
+	"Droid", "Robot", "Automaton",
 	ROLE_PAI))
 
 GLOBAL_LIST_INIT(command_positions, original_command_positions | alt_command_positions)
