@@ -481,7 +481,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 	item_color = "red"
 	desc = "A coil of insulated power cable."
 	throwforce = 0
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 5
 	materials = list(/datum/material/iron=10, /datum/material/glass=5)
@@ -489,7 +489,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 	slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	singular_name = "cable piece"
-	full_w_class = WEIGHT_CLASS_SMALL
+	full_w_class = WEIGHT_CLASS_NORMAL
 	grind_results = list(/datum/reagent/copper = 2) //2 copper per cable in the coil
 	usesound = 'sound/items/deconstruct.ogg'
 
