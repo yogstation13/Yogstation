@@ -13,11 +13,21 @@ export const TicketListPanel = (props, context) => {
   return (
     <Window
       title="Admin Ticket Viewer"
-      width={700}
+      width={310}
       height={700}
       resizable>
       <Window.Content scrollable>
-        <Collapsible
+
+      </Window.Content>
+    </Window>
+  );
+};
+
+export const TicketListView = (prop, context) => {
+  const { data, filter_type } = prop
+  return (
+    <Fragment>
+      <Collapsible
           className="Section__titleText"
           color={open_count === 0 ? 'default' : 'red'}
           open
@@ -38,10 +48,9 @@ export const TicketListPanel = (props, context) => {
               ticket={ticket} />
           ))}
         </Collapsible>
-      </Window.Content>
-    </Window>
-  );
-};
+    </Fragment>
+  )
+}
 
 export const TicketSummary = (props, context) => {
   const { ticket } = props;

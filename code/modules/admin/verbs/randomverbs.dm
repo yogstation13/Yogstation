@@ -41,7 +41,7 @@
 				to_chat(M, "<i>You hear a voice in your head... <b>[msg]</i></b>")
 
 	log_admin("SubtlePM: [key_name(usr)] -> [key_name(M)] : [msg]")
-	msg = "<b> SubtleMessage: [key_name(usr)] -> [key_name(M)] :</b> [msg]" // yogs - Yog Tickets
+	msg = "SubtleMessage: [key_name(usr)] -> [key_name(M)] : [msg]" // yogs - Yog Tickets
 	message_admins(msg)
 	admin_ticket_log(M, msg)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Subtle Message") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

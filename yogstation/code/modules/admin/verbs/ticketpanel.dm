@@ -118,7 +118,7 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 	var/location = ""
 	if(initiator_mob)
 		var/turf/T = get_turf(initiator.mob)
-		location = "([initiator.mob.loc == T ? "at " : "in [initiator.mob.loc] at "] [T.x], [T.y], [T.z]"
+		location = "([initiator.mob.loc == T ? "" : "in [initiator.mob.loc] at "][T.x], [T.y], [T.z]"
 		if(isturf(T))
 			if(isarea(T.loc))
 				location += " in area [T.loc]"
@@ -129,7 +129,9 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 
 	for(var/datum/ticket_log/TL as anything in _interactions)
 		var/log_data = list()
-		log_data["text"] = TL.toSanitizedString()
+		log_data["time"] = TL.gametime
+		log_data["user"] = TL.user
+		log_data["text"] = TL.text
 		log_data["for_admins"] = TL.for_admins
 		.["log"] += list(log_data)
 
@@ -194,6 +196,30 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 		if("Administer")
 			Administer()
 			return
+		if("Wiki")
+			WikiIssue()
+			return
+		if("Bug")
+			GithubIssue()
+			return
+		if("TP")
+			if(!initiator)
+				to_chat(usr, "<span class='warning'>Client not found</span>")
+				return
+			usr.client.holder.show_traitor_panel(initiator.mob)
+			return
+		if("Logs")
+			if(!initiator)
+				to_chat(usr, "<span class='warning'>Client not found</span>")
+				return
+			show_individual_logging_panel(initiator.mob)
+			return
+		if("Smite")
+			if(!initiator)
+				to_chat(usr, "<span class='warning'>Client not found</span>")
+				return
+			usr.client.smite(initiator.mob)
+			return
 		if("send_message")
 			var/message = params["message"]
 			if(usr.client.holder)
@@ -205,5 +231,7 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 				usr.client.cmd_admin_pm(handling_admin, message)
 			else
 				MessageNoRecipient(message)
+			return
+	return FALSE
 
 
