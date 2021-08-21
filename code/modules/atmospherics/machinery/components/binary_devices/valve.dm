@@ -24,6 +24,16 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 
 	var/switching = FALSE
 
+/obj/machinery/atmospherics/components/binary/valve/Destroy()
+	//Should only happen on extreme circumstances
+	if(on)
+		//Let's give presumably now-severed pipenets a chance to scramble for what's happening at next SSair fire()
+		if(parents[1])
+			parents[1].update = PIPENET_UPDATE_STATUS_RECONCILE_NEEDED
+		if(parents[2])
+			parents[2].update = PIPENET_UPDATE_STATUS_RECONCILE_NEEDED
+	. = ..()
+
 /obj/machinery/atmospherics/components/binary/valve/update_icon_nopipes(animation = FALSE)
 	normalize_cardinal_directions()
 	if(animation)
@@ -44,6 +54,8 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 		parent1.reconcile_air()
 		investigate_log("was opened by [usr ? key_name(usr) : "a remote signal"]", INVESTIGATE_ATMOS)
 		investigate_log("was opened by [usr ? key_name(usr) : "a remote signal"]", INVESTIGATE_SUPERMATTER) // yogs - Makes supermatter invest useful
+	update_icon_nopipes()
+	update_parents()
 
 /obj/machinery/atmospherics/components/binary/valve/interact(mob/user)
 	add_fingerprint(usr)

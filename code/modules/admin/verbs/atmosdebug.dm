@@ -20,6 +20,14 @@
 	for(var/obj/machinery/atmospherics/pipe/simple/pipe in GLOB.machines)
 		if(pipe.z && (!pipe.nodes || !pipe.nodes.len || (null in pipe.nodes)))
 			to_chat(usr, "Unconnected [pipe.name] located at [ADMIN_VERBOSEJMP(pipe)]", confidential=TRUE)
+	
+	//Erroneous Connections, e.g. duplicate pipes
+	//This uses pipeline_expansion(), so you can detect some atmos machineries causing problems at pipenet code.
+	for (var/obj/machinery/atmospherics/AM in GLOB.machines)
+		for (var/obj/machinery/atmospherics/AMT in AM.pipeline_expansion())
+			if (!(AM in AMT.pipeline_expansion()))
+				to_chat(usr, "Errorneous connections around [AM.name]. Duplicate or rogue pipes suspected at or around [ADMIN_VERBOSEJMP(AM)]")
+
 
 /client/proc/powerdebug()
 	set category = "Misc.Server Debug"
