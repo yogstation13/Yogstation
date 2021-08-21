@@ -476,7 +476,7 @@ BLIND     // can't see anything
 	if(prob(0.2))
 		to_chat(L, "<span class='warning'>The damaged threads on your [src.name] chafe!</span>")
 		
-/obj/item/clothing/proc/set_sensor_glob()
+/*obj/item/clothing/proc/set_sensor_glob()
 	var/mob/living/carbon/human/H = src.loc
 
 	if (istype(H.w_uniform, /obj/item/clothing/under))
@@ -488,4 +488,4 @@ BLIND     // can't see anything
 			GLOB.suit_sensors_list -= H
 
 	else 
-		GLOB.suit_sensors_list -= H	
+		GLOB.suit_sensors_list -= H	*/
