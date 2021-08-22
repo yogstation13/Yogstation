@@ -3,7 +3,7 @@
 	desc = "A mechanical door that permits one-way access to an area."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "turnstile_map"
-	power_channel = AREA_USAGE_ENVIRON
+	power_channel = ENVIRON
 	density = TRUE
 	obj_integrity = 250
 	max_integrity = 250
@@ -17,11 +17,11 @@
 
 /obj/machinery/turnstile/hop
 	name = "HOP line turnstile"
-
+	req_one_access = list(ACCESS_HEADS)
 /obj/machinery/turnstile/brig
 	name = "Brig turnstile"
 	//Seccies and brig phys may always pass, either way.
-	req_one_acces = list(ACCESS_BRIG)
+	req_one_access = list(ACCESS_BRIG)
 	
 /obj/machinery/turnstile/Initialize()
 	. = ..()
