@@ -152,8 +152,8 @@
 	back = /obj/item/storage/backpack/ert/engineer
 	belt = /obj/item/storage/belt/utility/full
 	mask = /obj/item/clothing/mask/gas/sechailer
-	l_pocket = /obj/item/rcd_ammo/large
-	r_pocket= /obj/item/rcd_ammo/large
+	l_pocket = /obj/item/rcd_ammo
+	r_pocket= /obj/item/rcd_ammo
 	backpack_contents = list(
 		/obj/item/reagent_containers/hypospray/medipen=1,
 		/obj/item/melee/classic_baton/telescopic=1,

@@ -21387,7 +21387,8 @@
 /area/crew_quarters/heads/captain)
 "bmA" = (
 /obj/machinery/door/airlock{
-	name = "Private Restroom"
+	name = "Private Restroom";
+	req_access_txt = "20"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -22295,16 +22296,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/supply)
-"bpj" = (
-/obj/structure/chair/comfy/brown{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Captain's Quarters";
-	dir = 1
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/captain)
 "bpk" = (
 /obj/structure/closet/secure_closet/captains,
 /turf/open/floor/carpet/blue,
@@ -49633,6 +49624,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/tcoms)
+"nUs" = (
+/obj/structure/chair/comfy/brown{
+	dir = 4
+	},
+/obj/machinery/camera/motion{
+	c_tag = "Captain's Quarters";
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/captain)
 "nUD" = (
 /obj/effect/landmark/start/station_engineer,
 /obj/effect/turf_decal/stripes/corner{
@@ -97628,7 +97629,7 @@ bhG
 blb
 bmy
 bkh
-bpj
+nUs
 bqH
 bsi
 blZ
@@ -98141,8 +98142,8 @@ bbw
 tBu
 aZV
 bmA
-bmx
-bmx
+aZV
+aZV
 bqH
 bpX
 bmc
@@ -98654,9 +98655,9 @@ bfq
 bbw
 biI
 aZV
-bmx
-bmx
-bmx
+aZV
+aZV
+aZV
 bqH
 aCE
 bmf
