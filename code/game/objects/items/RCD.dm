@@ -729,12 +729,8 @@ RLD
 	w_class = WEIGHT_CLASS_TINY
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
-	materials = list(/datum/material/iron=12000, /datum/material/glass=8000)
-	var/ammoamt = 40
-
-/obj/item/rcd_ammo/large
 	materials = list(/datum/material/iron=48000, /datum/material/glass=32000)
-	ammoamt = 160
+	var/ammoamt = 160
 
 
 /obj/item/construction/rcd/combat/admin

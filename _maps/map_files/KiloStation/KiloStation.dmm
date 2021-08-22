@@ -9874,7 +9874,7 @@
 /obj/item/crowbar/red,
 /obj/item/flashlight,
 /obj/item/flashlight,
-/obj/structure/fireaxecabinet{
+/obj/structure/fireaxecabinet/bridge{
 	pixel_y = -30
 	},
 /obj/machinery/door/window/northright{
@@ -81530,21 +81530,6 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
-"cIu" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 30
-	},
-/obj/machinery/camera{
-	c_tag = "Captain's Office";
-	name = "command camera"
-	},
-/obj/structure/chair/comfy/brown{
-	buildstackamount = 0;
-	color = "#c45c57";
-	dir = 8
-	},
-/turf/open/floor/carpet/royalblue,
-/area/crew_quarters/heads/captain)
 "cIv" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -99085,7 +99070,7 @@
 	},
 /obj/structure/closet/secure_closet/captains,
 /obj/effect/turf_decal/bot,
-/obj/structure/fireaxecabinet/spare{
+/obj/structure/fireaxecabinet/bridge/spare{
 	pixel_x = 32
 	},
 /turf/open/floor/plasteel/dark,
@@ -101531,6 +101516,20 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
+"uVx" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/obj/structure/chair/comfy/brown{
+	buildstackamount = 0;
+	color = "#c45c57";
+	dir = 8
+	},
+/obj/machinery/camera/motion{
+	c_tag = "Armory Motion Sensor"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/crew_quarters/heads/captain)
 "uWd" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12";
@@ -137154,7 +137153,7 @@ byy
 bvD
 bAA
 asx
-cIu
+uVx
 cIx
 bHG
 cIF

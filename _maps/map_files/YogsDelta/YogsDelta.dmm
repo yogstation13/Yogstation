@@ -43807,19 +43807,6 @@
 	},
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/tcommsat/server)
-"bru" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/obj/machinery/camera{
-	c_tag = "Bridge - Captain's Quarters";
-	dir = 1;
-	name = "command camera"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain/private)
 "brv" = (
 /obj/structure/chair{
 	dir = 4
@@ -54714,8 +54701,8 @@
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "bGZ" = (
-/obj/structure/fireaxecabinet{
-	pixel_y = -28
+/obj/structure/fireaxecabinet/bridge{
+	pixel_y = -32
 	},
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/tile/blue,
@@ -109514,7 +109501,8 @@
 /area/crew_quarters/heads/captain/private)
 "dlB" = (
 /obj/machinery/door/airlock/silver{
-	name = "Bathroom"
+	name = "Bathroom";
+	req_access_txt = "20"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/firedoor/border_only{
@@ -125954,7 +125942,7 @@
 /obj/item/storage/secure/safe{
 	pixel_x = 32
 	},
-/obj/structure/fireaxecabinet/spare{
+/obj/structure/fireaxecabinet/bridge/spare{
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/grimy,
@@ -127542,6 +127530,18 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"uLu" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/machinery/camera/motion{
+	c_tag = "Captain's Quarters";
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "uNP" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/effect/turf_decal/stripes/line{
@@ -170533,7 +170533,7 @@ bZn
 cbf
 bnX
 bvr
-bru
+uLu
 bUQ
 cdP
 cjL

@@ -13,7 +13,7 @@ Format:
 	votable (is this map votable)
 
 map yogstation
-	voteweight 0.9
+	voteweight 0.7
 	votable
 endmap
 
@@ -24,7 +24,6 @@ endmap
 
 map yogsmeta
 	minplayers 25
-	voteweight 1.3
 	votable
 endmap
 

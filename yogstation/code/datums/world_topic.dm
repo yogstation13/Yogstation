@@ -77,7 +77,7 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 	var/client/C = GLOB.directory[ckey(whom)]
 	if(!C)
 		return 0
-	if(GLOB.mentornoot)
+	if(GLOB.mentornoot || prob(1))
 		SEND_SOUND(C, sound('sound/misc/nootnoot.ogg'))
 	else
 		SEND_SOUND(C, sound('sound/items/bikehorn.ogg'))
