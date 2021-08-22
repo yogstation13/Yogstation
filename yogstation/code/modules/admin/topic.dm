@@ -18,7 +18,7 @@
 		usr << browse(edit_log,"window=mentormemoeditlist")
 	qdel(query_memoedits)
 
-/datum/admins/proc/makeMentor(ckey)
+/datum/admins/proc/makeMentor(ckey, position)
 	if(!usr.client)
 		return
 
@@ -34,7 +34,7 @@
 			to_chat(usr, "<span class='danger'>The client chosen is an admin! Cannot mentorize.</span>", confidential=TRUE)
 			return
 
-		new /datum/mentors(ckey)
+		new /datum/mentors(ckey, position)
 
 	if(SSdbcore.Connect())
 		var/datum/DBQuery/query_get_mentor = SSdbcore.NewQuery("SELECT id FROM `[format_table_name("mentor")]` WHERE `ckey` = :ckey", list("ckey" = ckey))
@@ -45,7 +45,7 @@
 			return
 		qdel(query_get_mentor)
 
-		var/datum/DBQuery/query_add_mentor = SSdbcore.NewQuery("INSERT INTO `[format_table_name("mentor")]` (`id`, `ckey`) VALUES (null, :ckey)", list("ckey" = ckey))
+		var/datum/DBQuery/query_add_mentor = SSdbcore.NewQuery("INSERT INTO `[format_table_name("mentor")]` (`id`, `ckey`, `position`) VALUES (null, :ckey, :position)", list("ckey" = ckey, "position" = position))
 		if(!query_add_mentor.warn_execute())
 			qdel(query_add_mentor)
 			return
@@ -65,8 +65,8 @@
 	else
 		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>", confidential=TRUE)
 
-	message_admins("[key_name_admin(usr)] added new mentor: [ckey]")
-	log_admin("[key_name(usr)] added new mentor: [ckey]")
+	message_admins("[key_name_admin(usr)] added new [position]: [ckey]")
+	log_admin("[key_name(usr)] added new [position]: [ckey]")
 
 /datum/admins/proc/removeMentor(ckey)
 	if(!usr.client)

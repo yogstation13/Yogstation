@@ -338,10 +338,14 @@
 
 
 /obj/machinery/disposal/bin/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
-	if(isitem(AM) && AM.CanEnterDisposals())
+	if(AM.CanEnterDisposals())
 		if(prob(75))
 			AM.forceMove(src)
-			visible_message("<span class='notice'>[AM] lands in [src].</span>")
+			if(ismob(AM))
+				do_flush()
+				visible_message("<span class='notice'>[AM] lands in [src] and triggers the flush system!.</span>")
+			else
+				visible_message("<span class='notice'>[AM] lands in [src].</span>")
 			update_icon()
 		else
 			visible_message("<span class='notice'>[AM] bounces off of [src]'s rim!</span>")
