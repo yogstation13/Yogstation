@@ -790,7 +790,7 @@
 			
 			
 /obj/item/borg/upgrade/holofan
-	name = "Engineering cybrog ATMOS holofan projector"
+	name = "Engineering cyborg ATMOS holofan projector"
 	desc = "A ATMOS holofan projector for the cyborg."
 	icon_state = "cyborg_upgrade2"
 	require_module = TRUE
