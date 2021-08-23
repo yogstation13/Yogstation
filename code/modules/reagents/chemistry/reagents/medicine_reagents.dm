@@ -1,5 +1,7 @@
 #define PERF_BASE_DAMAGE		0.5
 #define REAGENT_REVIVE_MINIMUM_HEALTH (HEALTH_THRESHOLD_CRIT + 20)
+/// Required strange reagent for revival. Incredibly long define
+#define REQUIRED_STRANGE_REAGENT_FOR_REVIVAL 20
 
 /////////////////////////////////////////////////////////////////////////////////////////
 					// MEDICINE REAGENTS
@@ -845,7 +847,7 @@
 
 /datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	var/datum/reagent/S = M.reagents.get_reagent(/datum/reagent/medicine/strange_reagent)
-	if((S?.volume + reac_volume) < 20)
+	if((S?.volume + reac_volume) < REQUIRED_STRANGE_REAGENT_FOR_REVIVAL)
 		return ..()
 	if(M.stat == DEAD)
 		if(M.suiciding || M.hellbound) //they are never coming back
@@ -1674,3 +1676,4 @@
 
 #undef PERF_BASE_DAMAGE
 #undef REAGENT_REVIVE_MINIMUM_HEALTH
+#undef REQUIRED_STRANGE_REAGENT_FOR_REVIVAL
