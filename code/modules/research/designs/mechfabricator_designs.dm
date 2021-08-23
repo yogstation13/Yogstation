@@ -793,7 +793,7 @@
 	id = "borg_upgrade_upgraded_rped"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/upgraded_rped
-	materials = list(/datum/material/iron = 10000, /datum/material/glass = 5000)
+	materials = list(/datum/material/iron = 15000, /datum/material/glass = 5000, /datum/material/silver = 2500)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
