@@ -113,7 +113,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/uplink_spawn_loc = UPLINK_PDA
 
-	var/skillcape = 1
+	var/skillcape = 1 /// Old skillcape value
+	var/skillcape_id = "None" /// Typepath of selected skillcape, null for none
 
 	var/map = 1
 	var/flare = 1
@@ -599,7 +600,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
-			dat += "<b>Skillcape:</b> <a href='?_src_=prefs;task=input;preference=skillcape'>[(skillcape != 1) ? "[GLOB.skillcapes[skillcape]]" : "none"] </a><br>"
+			dat += "<b>Skillcape:</b> <a href='?_src_=prefs;task=input;preference=skillcape'>[(skillcape_id != "None") ? "[GLOB.skillcapes[skillcape_id]]" : "None"] </a><br>"
 			dat += "<b>Flare:</b> <a href='?_src_=prefs;task=input;preference=flare'>[flare ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Map:</b> <a href='?_src_=prefs;task=input;preference=map'>[map ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Preferred Box Bar:</b> <a href='?_src_=prefs;task=input;preference=bar_choice'>[bar_choice]</a><br>"
@@ -1719,25 +1720,29 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						pda_color = pickedPDAColor
 				if("skillcape")
 					var/list/selectablecapes = list()
+					var/max_eligable = TRUE
 					for(var/datum/skillcape/A in GLOB.skillcapes)
+						if(!A.job)
+							continue
 						if(user.client.prefs.exp[A.job] >= A.minutes)
-							if(!A.special)
-								selectablecapes += A
-						if(A.special) //check for special capes
-							if(A.capetype == "max")
-								if(selectablecapes.len >= 72) //72 is the amount of job skillcapes, including trimmed.
-									selectablecapes += A
+							selectablecapes += A
+						else
+							max_eligable = FALSE
+		
+					if(max_eligable)
+						selectablecapes += GLOB.skillcapes[/datum/skillcape/maximum]
+
 					if(!selectablecapes.len)
 						to_chat(user, "You have no availiable skillcapes!")
 						return
-					var/pickedskillcape = input(user, "Choose your Skillcape.", "Character Preference", skillcape) as null|anything in selectablecapes
-					var/count = 1
-					for(var/A in GLOB.skillcapes)
-						if(A == pickedskillcape)
-							break
-						count++
-					if(pickedskillcape)
-						skillcape = count //im saving it as an int
+					var/pickedskillcape = input(user, "Choose your Skillcape.", "Character Preference") as null|anything in (selectablecapes + "None")
+					if(!pickedskillcape)
+						return
+					if(pickedskillcape == "None")
+						skillcape_id = "None"
+					else
+						var/datum/skillcape/cape = pickedskillcape
+						skillcape_id = cape.id
 				if("flare")
 					flare = !flare
 				if("map")

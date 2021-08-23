@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	31
+#define SAVEFILE_VERSION_MAX	32
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -136,6 +136,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		toggles &= ~DEADMIN_POSITION_HEAD
 		toggles &= ~DEADMIN_POSITION_SECURITY
 		toggles &= ~DEADMIN_POSITION_SILICON //This last one is technically a no-op but it looks cleaner and less like someone forgot
+	if(current_version < 32) // Changed skillcape storage
+		if(skillcape != 1)
+			var/path = subtypesof(/datum/skillcape)[skillcape]
+			var/datum/skillcape/cape = new path()
+			skillcape_id = cape.id
+			qdel(cape)
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -200,9 +206,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["pda_color"], pda_color)
 
 	READ_FILE(S["skillcape"], skillcape)
+	READ_FILE(S["skillcape_id"], skillcape_id)
 	READ_FILE(S["map"], map)
 	READ_FILE(S["flare"], flare)
-	READ_FILE(S["skillcape"], skillcape)
 	READ_FILE(S["bar_choice"], bar_choice)
 	READ_FILE(S["show_credits"], show_credits)
 
@@ -252,6 +258,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	pda_style			= sanitize_inlist(pda_style, GLOB.pda_styles, initial(pda_style))
 	pda_color			= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
 	skillcape       	= sanitize_integer(skillcape, 1, 82, initial(skillcape))
+	skillcape_id		= sanitize_text(skillcape_id, initial(skillcape_id))
+
+	if(skillcape_id != "None" && !(skillcape_id in GLOB.skillcapes))
+		skillcape_id = "None"
+
 	map					= sanitize_integer(map, FALSE, TRUE, initial(map))
 	flare				= sanitize_integer(flare, FALSE, TRUE, initial(flare))
 	bar_choice			= sanitize_text(bar_choice, initial(bar_choice))
@@ -331,6 +342,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
 	WRITE_FILE(S["skillcape"], skillcape)
+	WRITE_FILE(S["skillcape_id"], skillcape_id)
 	WRITE_FILE(S["show_credits"], show_credits)
 	WRITE_FILE(S["map"], map)
 	WRITE_FILE(S["flare"], flare)
