@@ -747,6 +747,55 @@
 	if (.)
 		for(var/obj/item/storage/part_replacer/cyborg/RPED in R.module.modules)
 			R.module.remove_module(RPED, TRUE)
+			
+			
+			
+			
+			
+			
+			
+/obj/item/borg/upgrade/upgraded_rped
+	name = "engineering cyborg bluepsace RPED"
+	desc = "An upgraded version of the rapid part exchange device for the engineering cyborg, which replaces the old one."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "BS_RPED"
+	require_module = TRUE
+	module_type = /obj/item/robot_module/engineering
+	module_flags = BORG_MODULE_ENGINEERING
+	
+/obj/item/borg/upgrade/upgraded_rped/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(.)
+		// Removes old RPED
+		for(var/obj/item/storage/part_replacer/cyborg/RPED in R.module.modules) 
+			R.module.remove_module(RPED, TRUE)
+
+		var/obj/item/storage/part_replacer/cyborg/BSRPED = locate() in R.module.modules
+		if(BSRPED)
+			to_chat(user, "<span class='warning'>This unit is already equipped with a Bluespace RPED module.</span>")
+			return FALSE
+
+		// Puts in Bluespace RPED
+		BSRPED = new(R.module)
+		R.module.basic_modules += BSRPED
+		R.module.add_module(BSRPED, FALSE, TRUE)
+
+/obj/item/borg/upgrade/upgraded_rped/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		for(var/obj/item/storage/part_replacer/cyborg/BSRPED in R.module.modules)
+			R.module.remove_module(BSRPED, TRUE)
+			
+			
+			
+			
+/obj/item/borg/upgrade/holofan
+	name = "Engineering cybrog ATMOS holofan projector"
+	desc = "A ATMOS holofan projector for the cyborg."
+	icon_state = "cyborg_upgrade2"
+	require_module = TRUE
+	module_type = /obj/item/robot_module/engineering
+	module_flags = BORG_MODULE_ENGINEERING
 
 /obj/item/borg/upgrade/plasmacutter
 	name = "mining cyborg plasma cutter"
