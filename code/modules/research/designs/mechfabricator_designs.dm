@@ -802,7 +802,8 @@
 	id = "borg_upgrade_upgraded_tools"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/upgraded_tools
-	materials = list(/datum/material/iron = 10000)
+	/// Combined materials of all 3 experimentals tools
+	materials = list(/datum/material/iron = 8500, /datum/material/silver = 4300, /datum/material/gold=300, /datum/material/titanium = 6000)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
@@ -811,8 +812,8 @@
 	id = "borg_upgrade_holofan"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/holofan
-	materials = list(/datum/material/iron = 10000, /datum/material/glass = 500)
-	construction_time = 120
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500)
+	construction_time = 140
 	category = list("Cyborg Upgrade Modules")
 	
 /datum/design/borg_upgrade_pinpointer
