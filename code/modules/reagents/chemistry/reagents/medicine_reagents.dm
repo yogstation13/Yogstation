@@ -845,46 +845,46 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "magnets"
 
-/datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	var/datum/reagent/S = M.reagents.get_reagent(/datum/reagent/medicine/strange_reagent)
-	if((S?.volume + reac_volume) < REQUIRED_STRANGE_REAGENT_FOR_REVIVAL)
-		return ..()
-	if(M.stat == DEAD)
-		if(M.suiciding || M.hellbound) //they are never coming back
-			M.visible_message("<span class='warning'>[M]'s body does not react...</span>")
-			return
-		if(M.getBruteLoss() + M.getFireLoss() >= 100 || HAS_TRAIT(M, TRAIT_HUSK)) //body is too damaged to be revived
-			M.visible_message("<span class='warning'>[M]'s body convulses a bit, and then falls still once more.</span>")
-			M.do_jitter_animation(10)
-			return
-		else
-			M.visible_message("<span class='warning'>[M]'s body starts convulsing!</span>")
-			M.notify_ghost_cloning(source = M)
-			M.do_jitter_animation(10)
-			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 40) //jitter immediately, then again after 4 and 8 seconds
-			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 80)
-			sleep(100) //so the ghost has time to re-enter
-			if(iscarbon(M))
-				var/mob/living/carbon/H = M
-				for(var/organ in H.internal_organs)
-					var/obj/item/organ/O = organ
-					O.setOrganDamage(0)
-			M.adjustBruteLoss(-100)
-			M.adjustFireLoss(-100)
-			M.adjustOxyLoss(-20, 0)
-			M.adjustToxLoss(-20, 0)
-			M.adjustCloneLoss(max(M.health - REAGENT_REVIVE_MINIMUM_HEALTH - M.getCloneLoss() - M.getOxyLoss() - M.getToxLoss(), 0))
-			M.updatehealth()
-			if(M.revive())
-				M.emote("gasp")
-				log_combat(M, M, "revived", src)
-	..()
+/datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, method=TOUCH, reac_volume)///Jamies Code
+	var/datum/reagent/S = M.reagents.get_reagent(/datum/reagent/medicine/strange_reagent)///Jamies Code
+	if((S?.volume + reac_volume) < REQUIRED_STRANGE_REAGENT_FOR_REVIVAL)///Jamies Code
+		return ..()///Jamies Code
+	if(M.stat == DEAD)///Jamies Code
+		if(M.suiciding || M.hellbound) //they are never coming back ///Jamies Code
+			M.visible_message("<span class='warning'>[M]'s body does not react...</span>")///Jamies Code
+			return///Jamies Code
+		if(M.getBruteLoss() + M.getFireLoss() >= 100 || HAS_TRAIT(M, TRAIT_HUSK)) //body is too damaged to be revived///Jamies Code
+			M.visible_message("<span class='warning'>[M]'s body convulses a bit, and then falls still once more.</span>")///Jamies Code
+			M.do_jitter_animation(10)///Jamies Code
+			return///Jamies Code
+		else///Jamies Code
+			M.visible_message("<span class='warning'>[M]'s body starts convulsing!</span>")///Jamies Code
+			M.notify_ghost_cloning(source = M)///Jamies Code
+			M.do_jitter_animation(10)///Jamies Code
+			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 40) //jitter immediately, then again after 4 and 8 seconds///Jamies Code
+			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 80)///Jamies Code
+			sleep(100) //so the ghost has time to re-enter///Jamies Code
+			if(iscarbon(M))///Jamies Code
+				var/mob/living/carbon/H = M///Jamies Code
+				for(var/organ in H.internal_organs)///Jamies Code
+					var/obj/item/organ/O = organ///Jamies Code
+					O.setOrganDamage(0)///Jamies Code
+			M.adjustBruteLoss(-100)///Jamies Code
+			M.adjustFireLoss(-100)///Jamies Code
+			M.adjustOxyLoss(-20, 0)///Jamies Code
+			M.adjustToxLoss(-20, 0)///Jamies Code
+			M.adjustCloneLoss(max(M.health - REAGENT_REVIVE_MINIMUM_HEALTH - M.getCloneLoss() - M.getOxyLoss() - M.getToxLoss(), 0))///Jamies Code
+			M.updatehealth()///Jamies Code
+			if(M.revive())///Jamies Code
+				M.emote("gasp")///Jamies Code
+				log_combat(M, M, "revived", src)///Jamies Code
+	..()///Jamies Code
 
-/datum/reagent/medicine/strange_reagent/on_mob_life(mob/living/carbon/M)
-	M.adjustBruteLoss(0.5*REM, 0)
-	M.adjustFireLoss(0.5*REM, 0)
-	..()
-	. = 1
+/datum/reagent/medicine/strange_reagent/on_mob_life(mob/living/carbon/M)///Jamies Code
+	M.adjustBruteLoss(0.5*REM, 0)///Jamies Code
+	M.adjustFireLoss(0.5*REM, 0)///Jamies Code
+	..()///Jamies Code
+	. = 1///Jamies Code
 
 /datum/reagent/medicine/mannitol
 	name = "Mannitol"
