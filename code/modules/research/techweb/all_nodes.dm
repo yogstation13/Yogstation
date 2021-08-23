@@ -322,7 +322,7 @@
 	display_name = "Cyborg Upgrades: Advance Utility"
 	description = "Advance Utility upgrades for cyborgs."
 	prereq_ids = list("engineering", "cyborg_upg_util")
-	design_ids = list("borg_upgrade_upgraded_rped")
+	design_ids = list("borg_upgrade_upgradedrped")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
 	export_price = 4000
 
