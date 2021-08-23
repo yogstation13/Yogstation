@@ -1,7 +1,7 @@
 #define PERF_BASE_DAMAGE		0.5
 #define REAGENT_REVIVE_MINIMUM_HEALTH (HEALTH_THRESHOLD_CRIT + 20)
 /// Required strange reagent for revival.
-#define REQUIRED_STRANGE_REAGENT_FOR_REVIVAL 5
+#define REQUIRED_STRANGE_REAGENT_FOR_REVIVAL 10
 
 /////////////////////////////////////////////////////////////////////////////////////////
 					// MEDICINE REAGENTS
