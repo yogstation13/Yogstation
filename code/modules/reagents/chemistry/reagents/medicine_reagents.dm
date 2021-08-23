@@ -844,8 +844,8 @@
 	taste_description = "magnets"
 
 /datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	for(var/datum/reagent/medicine/strange_reagent/R in M.cached_reagents)
-		if(R.total_volume > 20)
+	for(var/datum/reagent/medicine/strange_reagent/R in M.reagents.reagent_list)
+		if(R.volume > 20)
 			if(M.stat == DEAD)
 				if(M.suiciding || M.hellbound) //they are never coming back
 					M.visible_message("<span class='warning'>[M]'s body does not react...</span>")
