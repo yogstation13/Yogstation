@@ -114,6 +114,10 @@
 	
 	var/datum/map_template/template = SSmapping.station_room_templates[choice]
 
+	if(!template)
+		log_game("BAR FAILED TO LOAD!!! [C.ckey]/([M.name]) attempted to load [choice]. Loading Bar Arcade as backup.")
+		template = SSmapping.station_room_templates["Bar Arcade"]
+
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)
 		qdel(B)
