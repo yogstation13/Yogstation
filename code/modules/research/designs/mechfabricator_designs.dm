@@ -788,6 +788,15 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/borg_upgrade_upgraded_rped
+	name = "Cyborg Upgrade (BSRPED)"
+	id = "borg_upgrade_upgraded_rped"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/upgraded_rped
+	materials = list(/datum/material/iron = 10000, /datum/material/glass = 5000)
+	construction_time = 120
+	category = list("Cyborg Upgrade Modules")
+
 /datum/design/borg_upgrade_pinpointer
 	name = "Cyborg Upgrade (Crew pinpointer)"
 	id = "borg_upgrade_pinpointer"
