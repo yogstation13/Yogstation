@@ -16,6 +16,8 @@
 	var/obj/item/robot_suit/robot_suit = null ///Used for deconstruction to remember what the borg was constructed out of..
 	var/obj/item/mmi/mmi = null
 
+	var/throwcooldown = FALSE /// Used to determine cooldown for spin.
+
 	var/shell = FALSE
 	var/deployed = FALSE
 	var/mob/living/silicon/ai/mainframe = null
@@ -176,8 +178,8 @@
 		if(mmi.brainmob)
 			if(mmi.brainmob.stat == DEAD)
 				mmi.brainmob.stat = CONSCIOUS
-				GLOB.dead_mob_list -= mmi.brainmob
-				GLOB.alive_mob_list += mmi.brainmob
+				mmi.brainmob.remove_from_dead_mob_list()
+				mmi.brainmob.add_to_alive_mob_list()
 			mind.transfer_to(mmi.brainmob)
 			mmi.update_icon()
 		else
@@ -933,7 +935,10 @@
 	. = ..()
 	var/hd = maxHealth - health
 	if(hd > 50)
-		. += hd/100
+		if(has_gravity())
+			. += hd/100
+		else
+			. += hd/150
 
 /mob/living/silicon/robot/update_sight()
 	if(!client)

@@ -65,6 +65,41 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
+"l" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "executionfireblast";
+	name = "Transfer Area Lockdown";
+	pixel_x = 25;
+	pixel_y = -5;
+	req_access_txt = "2"
+	},
+/obj/machinery/button/flasher{
+	id = "executionflash";
+	pixel_x = 24;
+	pixel_y = 5
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "executionspaceblast";
+	name = "Vent to Space";
+	pixel_x = 25;
+	pixel_y = -15;
+	req_access_txt = "2"
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
 "n" = (
 /obj/machinery/door/poddoor{
 	id = "executionspaceblast";
@@ -239,38 +274,15 @@
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "D" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "executionfireblast";
-	name = "Transfer Area Lockdown";
-	pixel_x = 25;
-	pixel_y = -5;
-	req_access_txt = "2"
-	},
-/obj/machinery/button/flasher{
-	id = "executionflash";
-	pixel_x = 24;
-	pixel_y = 5
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
 /obj/effect/turf_decal/tile/red{
-	dir = 1
+	dir = 8
 	},
-/obj/effect/turf_decal/tile/red{
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/machinery/button/door{
-	id = "executionspaceblast";
-	name = "Vent to Space";
-	pixel_x = 25;
-	pixel_y = -15;
-	req_access_txt = "2"
-	},
-/turf/open/floor/plasteel/dark,
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/plasteel/white,
 /area/template_noop)
 "E" = (
 /obj/structure/bed,
@@ -310,16 +322,6 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
-/area/template_noop)
-"J" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
 /area/template_noop)
 "K" = (
 /obj/effect/turf_decal/stripes/line{
@@ -462,7 +464,7 @@ d
 Y
 p
 A
-J
+D
 Y
 "}
 (4,1,1) = {"
@@ -491,7 +493,7 @@ h
 S
 f
 y
-D
+l
 B
 c
 r

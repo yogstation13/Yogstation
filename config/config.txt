@@ -49,7 +49,7 @@ USE_EXP_RESTRICTIONS_HEADS
 ## Unhash this to change head jobs' playtime requirements so that they're based on department playtime, rather than crew playtime.
 USE_EXP_RESTRICTIONS_HEADS_DEPARTMENT
 ## Unhash this to enable playtime requirements for certain non-head jobs, like Engineer and Scientist.
-#USE_EXP_RESTRICTIONS_OTHER
+USE_EXP_RESTRICTIONS_OTHER
 ## Allows admins to bypass job playtime requirements.
 USE_EXP_RESTRICTIONS_ADMIN_BYPASS
 
@@ -302,7 +302,7 @@ PREFERENCE_MAP_VOTING 1
 ## This is the chance of map rotation factored to the round length.
 ## A value of 1 would mean the map rotation chance is the round length in minutes (hour long round == 60% rotation chance)
 ## A value of 0.5 would mean the map rotation chance is half of the round length in minutes (hour long round == 30% rotation chance)
-MAPROTATIONCHANCEDELTA 0
+MAPROTATIONCHANCEDELTA 1
 
 ## AUTOADMIN
 ## The default admin rank
@@ -435,7 +435,7 @@ DEFAULT_VIEW_SQUARE 15x15
 ## More API details can be found here: https://centcom.melonmesa.com
 CENTCOM_BAN_DB https://centcom.melonmesa.com/ban/search
 
-AUTO_PROFILE
+#AUTO_PROFILE
 
 ## Uncomment to disable hard deleting garbage collection failures. (Hard deleting GC failures causes lag in order to bring memory usage down and keep bugged objects from hanging around and causing bugs in other things.) You can safely enable this for performance on production if the lag spikes are too disruptive)
 #DISABLE_GC_FAILURE_HARD_DELETES

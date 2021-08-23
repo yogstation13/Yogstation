@@ -268,6 +268,7 @@ DROP TABLE IF EXISTS `SS13_mentor`;
 CREATE TABLE IF NOT EXISTS `SS13_mentor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ckey` varchar(32) NOT NULL,
+  `position` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
 

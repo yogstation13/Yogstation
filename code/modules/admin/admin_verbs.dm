@@ -20,6 +20,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/cmd_admin_pm_panel,		/*admin-pm list*/
 	/client/proc/stop_sounds,
 	/client/proc/fix_air, // yogs - fix air verb
+	/client/proc/fix_air_z,
 	/client/proc/debugstatpanel
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
@@ -33,6 +34,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/datum/verbs/menu/Admin/verb/playerpanel,
 	/client/proc/game_panel,			/*game panel, allows to change game-mode etc*/
 	/client/proc/check_ai_laws,			/*shows AI and borg laws*/
+	/client/proc/ghost_pool_protection,	/*opens a menu for toggling ghost roles*/
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
 	/datum/admins/proc/togglelooc,		/*toggles looc on/off for everyone*/ // yogs - LOOC
@@ -82,6 +84,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/respawn_character,
 	/client/proc/discord_id_manipulation,
 	/datum/admins/proc/open_borgopanel,
+	/datum/admins/proc/change_laws,
 	/datum/admins/proc/restart, //yogs - moved from +server
 	/client/proc/admin_pick_random_player, //yogs
 	/client/proc/get_law_history, //yogs - silicon law history
@@ -98,7 +101,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/datum/admins/proc/cmd_create_centcom,
 	/datum/admins/proc/cmd_admin_fuckrads,
   	/client/proc/admincryo,
-	/client/proc/cmd_admin_dress
+	/client/proc/cmd_admin_dress,
+	/client/proc/disconnect_panel
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -169,7 +173,11 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
 	/client/proc/callproc_datum,
-	/client/proc/cmd_admin_list_open_jobs
+	/client/proc/cmd_admin_list_open_jobs,
+	#ifdef TESTING //Xoxeyos 3/14/2021
+	/client/proc/export_dynamic_json,
+	/client/proc/run_dynamic_simulations,
+	#endif
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/release))
 GLOBAL_PROTECT(admin_verbs_possess)
@@ -486,6 +494,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			if(!new_key)
 				return
 			holder.fakekey = new_key
+			holder.fakename = random_unique_name(prob(50) ? MALE : FEMALE)
 			createStealthKey()
 			if(isobserver(mob))
 				mob.invisibility = INVISIBILITY_MAXIMUM //JUST IN CASE
@@ -668,7 +677,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 /client/proc/deadmin()
 	set name = "Deadmin"
 	set category = "Admin"
-	set desc = "Shed your admin powers."
+	set desc = "Shed your admin and mentor powers."
 
 	if(!holder)
 		return
@@ -679,6 +688,12 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	holder.deactivate()
 
 	to_chat(src, "<span class='interface'>You are now a normal player.</span>", confidential=TRUE)
+	
+	remove_mentor_verbs()
+	mentor_datum = null
+	GLOB.mentors -= src
+	add_verb(src, /client/proc/rementor)
+	
 	log_admin("[src] deadmined themself.")
 	message_admins("[src] deadmined themself.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Deadmin")

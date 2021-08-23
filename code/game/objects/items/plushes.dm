@@ -574,3 +574,6 @@
 	attack_verb = list("clawed", "hissed", "tail slapped", "malpracticed")
 	icon_state = "plush_utatul"
 	item_state = "plush_utatul"
+
+/obj/item/toy/plush/lizard/azeel/snowflake
+	desc = "An adorable plushie resembling an adorable lizard. He seems to be held together by stitches and pure stress. This one seems to have \"U-A\" embroidered on it."

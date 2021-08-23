@@ -120,6 +120,12 @@
 	else
 		return ..()
 
+/obj/machinery/power/rad_collector/MouseDrop_T(atom/dropping, mob/user)
+	if(istype(dropping, /obj/item/tank/internals/plasma))
+		attackby(dropping, user)
+	else
+		..()
+
 /obj/machinery/power/rad_collector/proc/togglelock(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE))
 		return

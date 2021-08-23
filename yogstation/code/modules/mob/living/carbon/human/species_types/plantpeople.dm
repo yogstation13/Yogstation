@@ -18,7 +18,8 @@
 	disliked_food = MEAT | DAIRY
 	liked_food = VEGETABLES | FRUIT | GRAIN
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
-
+	species_language_holder = /datum/language_holder/pod
+	
 	var/no_light_heal = FALSE
 	var/light_heal_multiplier = 1
 	var/dark_damage_multiplier = 1
@@ -31,7 +32,7 @@
 	to_chat(H, "<span class='info'>Symbiotic plant-cells suffuse your skin and provide a protective layer that keeps you alive, and affords you regeneration unmatched by any other race.</span>")
 	to_chat(H, "<span class='info'>Darkness is your greatest foe. Even the cold expanses of space are lit by neighbouring stars, but the darkest recesses of the station's interior may prove to be your greatest foe.</span>")
 	to_chat(H, "<span class='info'>Heat and cold will damage your epidermis far faster than your natural regeneration can match.</span>")
-	to_chat(H, "<span class='info'>For more information on your race, see https://wiki.yogstation.net/index.php?title=Phytosian</span>")
+	to_chat(H, "<span class='info'>For more information on your race, see https://wiki.yogstation.net/wiki/Phytosian</span>")
 
 /datum/species/pod/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()

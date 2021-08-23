@@ -78,6 +78,9 @@ SUBSYSTEM_DEF(job)
 		SetupOccupations()
 	return type_occupations[jobtype]
 
+/datum/controller/subsystem/job/proc/GetPlayerAltTitle(mob/dead/new_player/player, rank)
+	return player.client.prefs.GetPlayerAltTitle(GetJob(rank))
+
 // Attempts to Assign player to Role
 /datum/controller/subsystem/job/proc/AssignRole(mob/dead/new_player/player, rank, latejoin = FALSE)
 	JobDebug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
@@ -96,6 +99,7 @@ SUBSYSTEM_DEF(job)
 			position_limit = job.spawn_positions
 		JobDebug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
 		player.mind.assigned_role = rank
+		player.mind.role_alt_title = GetPlayerAltTitle(player, rank)
 		unassigned -= player
 		job.current_positions++
 		return TRUE
@@ -439,16 +443,15 @@ SUBSYSTEM_DEF(job)
 
 	living_mob.job = rank
 
-	//If we joined at roundstart we should be positioned at our workstation
+	//If we joined at roundstart we should be positioned at our workstation 
 	if(!joined_late)
 		var/spawning_handled = FALSE
 		var/obj/S = null
 		if(HAS_TRAIT(SSstation, STATION_TRAIT_RANDOM_ARRIVALS))
-			DropLandAtRandomHallwayPoint(living_mob)
-			spawning_handled = TRUE
-		else if(length(GLOB.jobspawn_overrides[rank]))
+			spawning_handled = DropLandAtRandomHallwayPoint(living_mob)
+		if(length(GLOB.jobspawn_overrides[rank]) && !spawning_handled)
 			S = pick(GLOB.jobspawn_overrides[rank])
-		else
+		else if(!spawning_handled)
 			for(var/obj/effect/landmark/start/sloc in GLOB.start_landmarks_list)
 				if(sloc.name != rank)
 					S = sloc //so we can revert to spawning them on top of eachother if something goes wrong
@@ -464,10 +467,11 @@ SUBSYSTEM_DEF(job)
 			log_world("Couldn't find a round start spawn point for [rank]")
 			SendToLateJoin(living_mob)
 
-
+	var/alt_title = null
 	if(living_mob.mind)
 		living_mob.mind.assigned_role = rank
-	to_chat(M, "<b>You are the [rank].</b>")
+		alt_title = living_mob.mind.role_alt_title
+	to_chat(M, "<b>You are the [alt_title ? alt_title : rank].</b>")
 	if(job)
 		var/new_mob = job.equip(living_mob, null, null, joined_late , null, M.client)
 		if(ismob(new_mob))
@@ -484,7 +488,7 @@ SUBSYSTEM_DEF(job)
 				M.client.holder.auto_deadmin()
 			else
 				handle_auto_deadmin_roles(M.client, rank)
-		to_chat(M, "<b>As the [rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
+		to_chat(M, "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
 		job.radio_help_message(M)
 		if(job.req_admin_notify)
 			to_chat(M, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
@@ -506,9 +510,51 @@ SUBSYSTEM_DEF(job)
 	job.give_donor_stuff(living_mob, M) // yogs - Donor Features
 	job.give_cape(living_mob, M)
 	job.give_map_flare(living_mob, M)
+	if(SSevents.holidays && SSevents.holidays["St. Patrick's Day"])
+		irish_override() // Assuming direct control.
+	else if(living_mob.job == "Bartender")
+		job.give_bar_choice(living_mob, M)
 	log_game("[living_mob.real_name]/[M.client.ckey] joined the round as [living_mob.job].") //yogs - Job logging
 
 	return living_mob
+
+/datum/controller/subsystem/job/proc/irish_override()
+	var/datum/map_template/template = SSmapping.station_room_templates["St. Patrick's Day"]
+
+	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
+		template.load(B.loc, centered = FALSE)
+		qdel(B)
+
+/datum/controller/subsystem/job/proc/random_bar_init()
+	var/list/player_box = list()
+	for(var/mob/H in GLOB.player_list)
+		if(H.client)
+			player_box += H.client.prefs.bar_choice
+
+	var/choice
+	if(player_box.len == 0)
+		choice = "Random"
+	else
+		choice = pick(player_box)
+
+	if(choice != "Random")
+		var/bar_sanitize = FALSE
+		for(var/A in GLOB.potential_box_bars)
+			if(choice == A)
+				bar_sanitize = TRUE
+				break
+	
+		if(!bar_sanitize)
+			choice = "Random"
+	
+	if(choice == "Random")
+		choice = pick(GLOB.potential_box_bars)
+	
+	var/datum/map_template/template = SSmapping.station_room_templates[choice]
+
+	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
+		template.load(B.loc, centered = FALSE)
+		qdel(B)
 
 /datum/controller/subsystem/job/proc/handle_auto_deadmin_roles(client/C, rank)
 	if(!C?.holder)
@@ -687,11 +733,12 @@ SUBSYSTEM_DEF(job)
 ///Lands specified mob at a random spot in the hallways
 /datum/controller/subsystem/job/proc/DropLandAtRandomHallwayPoint(mob/living/living_mob)
 	var/turf/spawn_turf = get_safe_random_station_turf(typesof(/area/hallway))
-
+	if(!spawn_turf)
+		return FALSE
 	var/obj/structure/closet/supplypod/centcompod/toLaunch = new()
 	living_mob.forceMove(toLaunch)
 	new /obj/effect/DPtarget(spawn_turf, toLaunch)
-
+	return TRUE
 
 ///////////////////////////////////
 //Keeps track of all living heads//
