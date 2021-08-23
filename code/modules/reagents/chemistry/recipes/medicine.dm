@@ -162,7 +162,7 @@
 	name = "Strange Reagent"
 	id = /datum/reagent/medicine/strange_reagent
 	results = list(/datum/reagent/medicine/strange_reagent = 3)
-	required_reagents = list(/datum/reagent/medicine/omnizine = 1, /datum/reagent/water/holywater = 1, /datum/reagent/toxin/mutagen = 1)
+	required_reagents = list(/datum/reagent/toxin/carpotoxin = 1, /datum/reagent/water/holywater = 1, /datum/reagent/toxin/mutagen = 1)
 
 /datum/chemical_reaction/mannitol
 	name = "Mannitol"
