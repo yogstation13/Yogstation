@@ -590,6 +590,10 @@
 	if(client.prefs.be_special.len > 0)
 		has_antags = TRUE
 	if(client.prefs.job_preferences.len == 0)
+		if(mind && mind.antag_datums.len > 0)
+			message_admins("[src.ckey] has no jobs enabled, but rolled antag. This shouldn't happen, notify coders.")
+			log_admin("[src.ckey] has rolled antag with no jobs enabled")
+			return TRUE
 		if(!ineligible_for_roles)
 			to_chat(src, "<span class='danger'>You have no jobs enabled, along with return to lobby if job is unavailable. This makes you ineligible for any round start role, please update your job preferences.</span>")
 		ineligible_for_roles = TRUE
