@@ -30,7 +30,7 @@
 /obj/machinery/turnstile/CanAtmosPass(turf/T)
 	return TRUE
 
-/obj/machinery/turnstile/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/turnstile/CanCross(atom/movable/mover, turf/target)
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return TRUE
 	if(!isliving(mover))
