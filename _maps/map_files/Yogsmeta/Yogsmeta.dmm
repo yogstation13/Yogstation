@@ -39431,15 +39431,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"bzm" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/machinery/shower{
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "bzn" = (
 /obj/machinery/computer/message_monitor{
 	dir = 4
@@ -50666,24 +50657,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
-"bXx" = (
-/obj/machinery/shower{
-	dir = 8;
-	name = "emergency shower"
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "bXz" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/camera{
@@ -73352,6 +73325,25 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/foyer)
+"eAZ" = (
+/obj/machinery/shower{
+	dir = 8;
+	name = "emergency shower"
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/noslip,
+/area/medical/sleeper)
 "eCd" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
 	dir = 8
@@ -83090,6 +83082,16 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/storage_shared)
+"wQw" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/shower{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/noslip,
+/area/medical/medbay/central)
 "wQA" = (
 /turf/closed/wall/r_wall,
 /area/science/mixing/chamber)
@@ -105678,7 +105680,7 @@ bvd
 cdp
 cev
 cfK
-bXx
+eAZ
 byM
 otH
 trc
@@ -108249,7 +108251,7 @@ cdw
 czE
 cfS
 cdw
-bzm
+wQw
 coF
 clp
 cmu

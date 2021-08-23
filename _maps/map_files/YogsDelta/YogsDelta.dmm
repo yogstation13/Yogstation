@@ -103366,17 +103366,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/medbay/central)
-"ddg" = (
-/obj/machinery/shower{
-	dir = 8;
-	name = "emergency shower"
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 26
-	},
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "ddh" = (
 /obj/structure/table/wood,
 /obj/item/folder/white,
@@ -124451,6 +124440,18 @@
 /obj/structure/bookcase/manuals/medical,
 /turf/open/floor/wood,
 /area/medical/psych)
+"hjO" = (
+/obj/machinery/shower{
+	dir = 8;
+	name = "emergency shower"
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 26
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/noslip,
+/area/medical/medbay/central)
 "hqU" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -175961,7 +175962,7 @@ cye
 cRe
 cZK
 dbu
-ddg
+hjO
 wyO
 cNz
 cPv
