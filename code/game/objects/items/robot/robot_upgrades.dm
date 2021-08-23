@@ -766,7 +766,7 @@
 /obj/item/borg/upgrade/upgraded_rped/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		// Removes old RPED
+		/// Removes old RPED
 		for(var/obj/item/storage/part_replacer/cyborg/RPED in R.module.modules) 
 			R.module.remove_module(RPED, TRUE)
 
@@ -775,7 +775,7 @@
 			to_chat(user, "<span class='warning'>This unit is already equipped with a Bluespace RPED module.</span>")
 			return FALSE
 
-		// Puts in Bluespace RPED
+		/// Puts in Bluespace RPED
 		BSRPED = new(R.module)
 		R.module.basic_modules += BSRPED
 		R.module.add_module(BSRPED, FALSE, TRUE)
@@ -791,7 +791,7 @@
 			
 /obj/item/borg/upgrade/holofan
 	name = "Engineering cyborg ATMOS holofan projector"
-	desc = "A ATMOS holofan projector for the cyborg."
+	desc = "An ATMOS holofan projector for the cyborg."
 	icon_state = "cyborg_upgrade2"
 	require_module = TRUE
 	module_type = /obj/item/robot_module/engineering
