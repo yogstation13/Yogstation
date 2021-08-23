@@ -18,6 +18,7 @@
 	special = TRUE
 	capetype = "max"
 	path = /obj/item/clothing/neck/skillcape/maximum
+	id = "max"
 
 /datum/skillcape/captain
 	name = "cape of the captain"

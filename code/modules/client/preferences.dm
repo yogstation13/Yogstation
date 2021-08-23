@@ -1731,7 +1731,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							max_eligable = FALSE
 		
 					if(max_eligable)
-						selectablecapes += GLOB.skillcapes[/datum/skillcape/maximum]
+						selectablecapes += GLOB.skillcapes["max"]
 
 					if(!selectablecapes.len)
 						to_chat(user, "You have no availiable skillcapes!")
