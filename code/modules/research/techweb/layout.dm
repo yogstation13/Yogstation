@@ -148,7 +148,7 @@
         ui_y = 160
 
 /datum/techweb_node/adv_cyborg_upg_util
-		ui_x = -120
+		ui_x = -32
 		ui_y = 160
 /datum/techweb_node/basic_mining
         ui_x = 96

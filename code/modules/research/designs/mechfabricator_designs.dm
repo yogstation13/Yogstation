@@ -797,12 +797,21 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/borg_upgrade_upgraded_tools
+	name = "Cyborg Upgrade (Advanced tools)"
+	id = "borg_upgrade_upgraded_tools"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/upgraded_tools
+	materials = list(/datum/material/iron = 10000)
+	construction_time = 120
+	category = list("Cyborg Upgrade Modules")
+
 /datum/design/borg_upgrade_holosign
 	name = "cyborg ATMOS holofan projector"
 	id = "borg_upgrade_holofan"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/holofan
-	materials = list(/datum/material/iron = 10000, /datum/material/glass = 5000)
+	materials = list(/datum/material/iron = 10000, /datum/material/glass = 500)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 	

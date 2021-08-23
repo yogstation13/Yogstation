@@ -319,12 +319,12 @@
 
 /datum/techweb_node/adv_cyborg_upg_util
 	id = "adv_cyborg_upg_util"
-	display_name = "Cyborg Upgrades: Advance Utility"
-	description = "Advance Utility upgrades for cyborgs."
+	display_name = "Cyborg Upgrades: Advanced Utility"
+	description = "Advanced Utility upgrade for cyborgs."
 	prereq_ids = list("engineering", "cyborg_upg_util")
-	design_ids = list("borg_upgrade_upgradedrped")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
-	export_price = 4000
+	design_ids = list("borg_upgrade_upgraded_rped", "borg_upgrade_upgraded_tools")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
+	export_price = 5000
 
 /datum/techweb_node/cyborg_upg_med
 	id = "cyborg_upg_med"

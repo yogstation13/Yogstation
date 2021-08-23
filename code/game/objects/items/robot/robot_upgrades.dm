@@ -748,12 +748,6 @@
 		for(var/obj/item/storage/part_replacer/cyborg/RPED in R.module.modules)
 			R.module.remove_module(RPED, TRUE)
 			
-			
-			
-			
-			
-			
-			
 /obj/item/borg/upgrade/upgraded_rped
 	name = "engineering cyborg bluepsace RPED"
 	desc = "An upgraded version of the rapid part exchange device for the engineering cyborg, which replaces the old one."
@@ -770,7 +764,7 @@
 		for(var/obj/item/storage/part_replacer/cyborg/RPED in R.module.modules) 
 			R.module.remove_module(RPED, TRUE)
 
-		var/obj/item/storage/part_replacer/cyborg/BSRPED = locate() in R.module.modules
+		var/obj/item/storage/part_replacer/bluespace/cyborg/BSRPED = locate() in R.module.modules
 		if(BSRPED)
 			to_chat(user, "<span class='warning'>This unit is already equipped with a Bluespace RPED module.</span>")
 			return FALSE
@@ -783,12 +777,111 @@
 /obj/item/borg/upgrade/upgraded_rped/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(var/obj/item/storage/part_replacer/cyborg/BSRPED in R.module.modules)
+		for(var/obj/item/storage/part_replacer/bluespace/cyborg/BSRPED in R.module.modules)
 			R.module.remove_module(BSRPED, TRUE)
+		
+		var/obj/item/storage/part_replacer/cyborg/RPED = locate() in R.module.modules
+		RPED = new(R.module)
+		R.module.basic_modules += RPED
+		R.module.add_module(RPED, FALSE, TRUE)
+
+/obj/item/borg/upgrade/upgraded_tools
+	name = "engineering cyborg advanced tools."
+	desc = "An upgraded version of the basic tools for the engineering cyborg, which replaces the old one."
+	icon_state = "cyborg_upgrade3"
+	require_module = TRUE
+	module_type = /obj/item/robot_module/engineering
+	module_flags = BORG_MODULE_ENGINEERING
+	
+/obj/item/borg/upgrade/upgraded_tools/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(.)
+		/// Removes old tools
+		for(var/obj/item/screwdriver/cyborg/SC in R.module.modules) 
+			R.module.remove_module(SC, TRUE)
+
+		for(var/obj/item/wrench/cyborg/W in R.module.modules) 
+			R.module.remove_module(W, TRUE)
+
+		for(var/obj/item/crowbar/cyborg/CB in R.module.modules) 
+			R.module.remove_module(CB, TRUE)
+
+		for(var/obj/item/wirecutters/cyborg/WC in R.module.modules) 
+			R.module.remove_module(WC, TRUE)
+
+		for(var/obj/item/multitool/cyborg/MT in R.module.modules) 
+			R.module.remove_module(MT, TRUE)
+
+		for(var/obj/item/t_scanner/TS in R.module.modules) 
+			R.module.remove_module(TS, TRUE)
+
+		for(var/obj/item/analyzer/AL in R.module.modules) 
+			R.module.remove_module(AL, TRUE)
+
+		/// Puts in Advance tools
+		var/obj/item/jawsoflife/JL = new(R.module)
+		R.module.basic_modules += JL
+		R.module.add_module(JL, FALSE, TRUE)
+
+		var/obj/item/handdrill/HD = new(R.module)
+		R.module.basic_modules += HD
+		R.module.add_module(HD, FALSE, TRUE)
+
+		var/obj/item/multitool/tricorder/TC = new(R.module)
+		R.module.basic_modules += TC
+		R.module.add_module(TC, FALSE, TRUE)
+
+/obj/item/borg/upgrade/upgraded_tools/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		for(var/obj/item/jawsoflife/JL in R.module.modules)
+			R.module.basic_modules -= JL
+			R.module.remove_module(JL, TRUE)
 			
-			
-			
-			
+		for(var/obj/item/handdrill/HD in R.module.modules)
+			R.module.basic_modules -= HD
+			R.module.remove_module(HD, TRUE)
+
+		for(var/obj/item/multitool/tricorder/TC in R.module.modules)
+			R.module.basic_modules -= TC
+			R.module.remove_module(TC, TRUE)
+	
+
+		var/obj/item/screwdriver/cyborg/SC = locate() in R.module.modules
+		SC = new(R.module)
+		R.module.basic_modules += SC
+		R.module.add_module(SC, FALSE, TRUE)
+
+		var/obj/item/wrench/cyborg/W = locate() in R.module.modules
+		W = new(R.module)
+		R.module.basic_modules += W
+		R.module.add_module(W, FALSE, TRUE)
+
+		var/obj/item/crowbar/cyborg/CB = locate() in R.module.modules
+		CB = new(R.module)
+		R.module.basic_modules += CB
+		R.module.add_module(CB, FALSE, TRUE)
+
+		var/obj/item/wirecutters/cyborg/WC = locate() in R.module.modules
+		WC = new(R.module)
+		R.module.basic_modules += WC
+		R.module.add_module(WC, FALSE, TRUE)
+
+		var/obj/item/multitool/cyborg/MT = locate() in R.module.modules
+		MT = new(R.module)
+		R.module.basic_modules += MT
+		R.module.add_module(MT, FALSE, TRUE)
+
+		var/obj/item/t_scanner/TS = locate() in R.module.modules
+		TS = new(R.module)
+		R.module.basic_modules += TS
+		R.module.add_module(TS, FALSE, TRUE)
+
+		var/obj/item/analyzer/AL = locate() in R.module.modules
+		AL = new(R.module)
+		R.module.basic_modules += AL
+		R.module.add_module(AL, FALSE, TRUE)
+
 /obj/item/borg/upgrade/holofan
 	name = "Engineering cyborg ATMOS holofan projector"
 	desc = "An ATMOS holofan projector for the cyborg."
@@ -797,6 +890,25 @@
 	module_type = /obj/item/robot_module/engineering
 	module_flags = BORG_MODULE_ENGINEERING
 
+/obj/item/borg/upgrade/holofan/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(.)
+
+		var/obj/item/holosign_creator/atmos/holofan = locate() in R.module.modules
+		if(holofan)
+			to_chat(user, "<span class='warning'>This unit is already equipped with a holofan module.</span>")
+			return FALSE
+
+		holofan = new(R.module)
+		R.module.basic_modules += holofan
+		R.module.add_module(holofan, FALSE, TRUE)
+
+/obj/item/borg/upgrade/holofan/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		for(var/obj/item/holosign_creator/atmos/holofan in R.module.modules)
+			R.module.remove_module(holofan, TRUE)
+			
 /obj/item/borg/upgrade/plasmacutter
 	name = "mining cyborg plasma cutter"
 	desc = "A plasma cutter module for the mining cyborg."
