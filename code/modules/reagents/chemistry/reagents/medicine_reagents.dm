@@ -844,39 +844,38 @@
 	taste_description = "magnets"
 
 /datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	for(var/datum/reagent/medicine/strange_reagent/R in M.reagents.reagent_list)
-		if(R.volume > 20)
-			if(M.stat == DEAD)
-				if(M.suiciding || M.hellbound) //they are never coming back
-					M.visible_message("<span class='warning'>[M]'s body does not react...</span>")
-					return
-				if(M.getBruteLoss() + M.getFireLoss() >= 100 || HAS_TRAIT(M, TRAIT_HUSK)) //body is too damaged to be revived
-					M.visible_message("<span class='warning'>[M]'s body convulses a bit, and then falls still once more.</span>")
-					M.do_jitter_animation(10)
-					return
-				else
-					M.visible_message("<span class='warning'>[M]'s body starts convulsing!</span>")
-					M.notify_ghost_cloning(source = M)
-					M.do_jitter_animation(10)
-					addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 40) //jitter immediately, then again after 4 and 8 seconds
-					addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 80)
-					sleep(100) //so the ghost has time to re-enter
-					if(iscarbon(M))
-						var/mob/living/carbon/H = M
-						for(var/organ in H.internal_organs)
-							var/obj/item/organ/O = organ
-							O.setOrganDamage(0)
-					M.adjustBruteLoss(-100)
-					M.adjustFireLoss(-100)
-					M.adjustOxyLoss(-20, 0)
-					M.adjustToxLoss(-20, 0)
-					M.adjustCloneLoss(max(M.health - REAGENT_REVIVE_MINIMUM_HEALTH - M.getCloneLoss() - M.getOxyLoss() - M.getToxLoss(), 0))
-					M.updatehealth()
-					if(M.revive())
-						M.emote("gasp")
-						log_combat(M, M, "revived", src)
-		else
+	var/datum/reagent/S = M.reagents.get_reagent(/datum/reagent/medicine/strange_reagent)
+	if((S?.volume + reac_volume) < 20)
+		return ..()
+	if(M.stat == DEAD)
+		if(M.suiciding || M.hellbound) //they are never coming back
+			M.visible_message("<span class='warning'>[M]'s body does not react...</span>")
 			return
+		if(M.getBruteLoss() + M.getFireLoss() >= 100 || HAS_TRAIT(M, TRAIT_HUSK)) //body is too damaged to be revived
+			M.visible_message("<span class='warning'>[M]'s body convulses a bit, and then falls still once more.</span>")
+			M.do_jitter_animation(10)
+			return
+		else
+			M.visible_message("<span class='warning'>[M]'s body starts convulsing!</span>")
+			M.notify_ghost_cloning(source = M)
+			M.do_jitter_animation(10)
+			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 40) //jitter immediately, then again after 4 and 8 seconds
+			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 80)
+			sleep(100) //so the ghost has time to re-enter
+			if(iscarbon(M))
+				var/mob/living/carbon/H = M
+				for(var/organ in H.internal_organs)
+					var/obj/item/organ/O = organ
+					O.setOrganDamage(0)
+			M.adjustBruteLoss(-100)
+			M.adjustFireLoss(-100)
+			M.adjustOxyLoss(-20, 0)
+			M.adjustToxLoss(-20, 0)
+			M.adjustCloneLoss(max(M.health - REAGENT_REVIVE_MINIMUM_HEALTH - M.getCloneLoss() - M.getOxyLoss() - M.getToxLoss(), 0))
+			M.updatehealth()
+			if(M.revive())
+				M.emote("gasp")
+				log_combat(M, M, "revived", src)
 	..()
 
 /datum/reagent/medicine/strange_reagent/on_mob_life(mob/living/carbon/M)
