@@ -126191,6 +126191,16 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/closed/wall/r_wall,
 /area/engine/atmospherics_engine)
+"oyv" = (
+/obj/machinery/shower{
+	dir = 8;
+	name = "emergency shower"
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 26
+	},
+/turf/open/floor/noslip,
+/area/medical/medbay/central)
 "oGu" = (
 /obj/machinery/newscaster{
 	pixel_x = 32
@@ -128035,16 +128045,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"wpc" = (
-/obj/machinery/shower{
-	dir = 8;
-	name = "emergency shower"
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 26
-	},
-/turf/open/floor/noslip,
-/area/medical/medbay/central)
 "wrp" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/tile/neutral{
@@ -175960,7 +175960,7 @@ cye
 cRe
 cZK
 dbu
-wpc
+oyv
 wyO
 cNz
 cPv

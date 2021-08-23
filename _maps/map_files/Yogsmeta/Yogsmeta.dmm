@@ -56830,6 +56830,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"cjL" = (
+/obj/machinery/shower{
+	pixel_y = 24
+	},
+/turf/open/floor/noslip,
+/area/medical/medbay/central)
 "cjN" = (
 /obj/machinery/light/small,
 /obj/effect/turf_decal/tile/purple,
@@ -72842,6 +72848,17 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"dKX" = (
+/obj/machinery/shower{
+	dir = 8;
+	name = "emergency shower"
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/open/floor/noslip,
+/area/medical/sleeper)
 "dLl" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = -32
@@ -75202,12 +75219,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
-"hIf" = (
-/obj/machinery/shower{
-	pixel_y = 24
-	},
-/turf/open/floor/noslip,
-/area/medical/medbay/central)
 "hLU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -82834,17 +82845,6 @@
 	icon_state = "platingdmg2"
 	},
 /area/maintenance/port)
-"wwS" = (
-/obj/machinery/shower{
-	dir = 8;
-	name = "emergency shower"
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/turf/open/floor/noslip,
-/area/medical/sleeper)
 "wxJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
@@ -105668,7 +105668,7 @@ bvd
 cdp
 cev
 cfK
-wwS
+dKX
 byM
 otH
 trc
@@ -108239,7 +108239,7 @@ cdw
 czE
 cfS
 cdw
-hIf
+cjL
 coF
 clp
 cmu
