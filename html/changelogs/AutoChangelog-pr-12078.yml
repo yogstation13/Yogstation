@@ -1,0 +1,6 @@
+author: "UselessTheremin"
+delete-after: true 
+changes: 
+  - bugfix: "you can no longer get the chaplain armblade stuck on your belt"
+  - bugfix: "ash drake will now PROBABLY stay rideable once revived"
+  - bugfix: "morphs can no longer turn into airlocks and become invisible godless homunculi"
