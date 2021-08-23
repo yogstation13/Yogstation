@@ -1208,6 +1208,10 @@
 		else
 			M.visible_message("<span class='boldwarning'>[M] can't climb onto [src] because [M.p_their()] hands are full!</span>")
 		return
+	M.viisble_message("<span class='warning'>[M] begins to [M == user ? "climb onto" : "be buckled to"] [src]...</span>")
+	if(!do_after(M, 1.5 SECONDS, target = src))
+		M.visible_message("<span class='boldwarning'>[M] was prevented from buckling to [src]!</span>")
+		return
 	. = ..(M, force, check_loc)
 
 /mob/living/silicon/robot/unbuckle_mob(mob/user, force=FALSE)
