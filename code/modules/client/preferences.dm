@@ -1721,7 +1721,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("skillcape")
 					var/list/selectablecapes = list()
 					var/max_eligable = TRUE
-					for(var/datum/skillcape/A in GLOB.skillcapes)
+					for(var/id in GLOB.skillcapes)
+						var/datum/skillcape/A = GLOB.skillcapes[id]
 						if(!A.job)
 							continue
 						if(user.client.prefs.exp[A.job] >= A.minutes)
@@ -1735,7 +1736,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(!selectablecapes.len)
 						to_chat(user, "You have no availiable skillcapes!")
 						return
-					var/pickedskillcape = input(user, "Choose your Skillcape.", "Character Preference") as null|anything in (selectablecapes + "None")
+					var/pickedskillcape = input(user, "Choose your Skillcape.", "Character Preference") as null|anything in (list("None") + selectablecapes)
 					if(!pickedskillcape)
 						return
 					if(pickedskillcape == "None")
