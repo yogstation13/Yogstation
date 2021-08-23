@@ -9,7 +9,7 @@
 
 // where all the reagents related to medicine go.
 
-/datum/reagent/medicinee
+/datum/reagent/medicine
 	name = "Medicine"
 	taste_description = "bitterness"
 
