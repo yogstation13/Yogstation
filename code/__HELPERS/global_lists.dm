@@ -51,7 +51,9 @@
 	//Skillcapes
 	for(var/path in subtypesof(/datum/skillcape))
 		var/datum/skillcape/A = new path()
-		GLOB.skillcapes += A
+		if(!A.id)
+			continue
+		GLOB.skillcapes[A.id] = A
 
 	init_subtypes(/datum/crafting_recipe, GLOB.crafting_recipes)
 
