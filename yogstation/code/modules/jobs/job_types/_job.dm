@@ -54,8 +54,8 @@
 	if(issilicon(H) || issilicon(M))
 		return
 
-	var/S = C.prefs.skillcape
-	if(S != 1)
+	var/S = C.prefs.skillcape_id
+	if(S != "None")
 		var/datum/skillcape/A = GLOB.skillcapes[S]
 		var/type = A.path
 		var/obj/item/clothing/neck/skillcape/B = new type(get_turf(H))
