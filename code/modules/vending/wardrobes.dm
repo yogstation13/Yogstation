@@ -186,8 +186,7 @@
 					/obj/item/clothing/shoes/sneakers/black = 2,
 					/obj/item/clothing/gloves/fingerless = 2,
 					/obj/item/clothing/head/soft/black = 2,
-					/obj/item/clothing/mask/bandana/skull = 2,
-					/obj/item/clothing/suit/hooded/techpriest = 2)
+					/obj/item/clothing/mask/bandana/skull = 2)
 	contraband = list(/obj/item/organ/tongue/robot = 2,
 					  /obj/item/toy/talking/AI = 2,
 					  /obj/item/card/emagfake = 2)
@@ -413,7 +412,8 @@
 					/obj/item/clothing/head/kippah = 3,
 					/obj/item/clothing/suit/chaplainsuit/whiterobe = 1,
 					/obj/item/clothing/head/taqiyahwhite = 1,
-					/obj/item/clothing/head/taqiyahred = 3)
+					/obj/item/clothing/head/taqiyahred = 3,
+					/obj/item/clothing/suit/hooded/techpriest = 2)
 	contraband = list(/obj/item/toy/plush/plushvar = 1,
 					/obj/item/toy/plush/narplush = 1,
 					/obj/item/clothing/head/medievaljewhat = 3,
