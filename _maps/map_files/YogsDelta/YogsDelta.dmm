@@ -103366,17 +103366,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/medbay/central)
-"ddg" = (
-/obj/machinery/shower{
-	dir = 8;
-	name = "emergency shower"
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 26
-	},
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "ddh" = (
 /obj/structure/table/wood,
 /obj/item/folder/white,
@@ -126202,6 +126191,16 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/closed/wall/r_wall,
 /area/engine/atmospherics_engine)
+"oyv" = (
+/obj/machinery/shower{
+	dir = 8;
+	name = "emergency shower"
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 26
+	},
+/turf/open/floor/noslip,
+/area/medical/medbay/central)
 "oGu" = (
 /obj/machinery/newscaster{
 	pixel_x = 32
@@ -175961,7 +175960,7 @@ cye
 cRe
 cZK
 dbu
-ddg
+oyv
 wyO
 cNz
 cPv
