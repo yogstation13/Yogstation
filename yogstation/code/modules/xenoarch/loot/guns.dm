@@ -42,7 +42,6 @@
 
 	if(chargesound != oldsound)
 		playsound(src, chargesound, 100)
-		sleep(1)
 		playsound(src, chargesound, 75)
 	return
 

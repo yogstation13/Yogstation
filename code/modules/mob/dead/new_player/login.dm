@@ -22,8 +22,11 @@
 
 	sight |= SEE_TURFS
 
-	new_player_panel()
 	client.playtitlemusic()
+
+	var/datum/asset/asset_datum = get_asset_datum(/datum/asset/simple/lobby)
+	asset_datum.send(client)
+
 	if(SSticker.current_state < GAME_STATE_SETTING_UP)
 		var/tl = SSticker.GetTimeLeft()
 		var/postfix
