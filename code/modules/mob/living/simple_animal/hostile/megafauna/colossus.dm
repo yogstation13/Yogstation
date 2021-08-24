@@ -683,11 +683,11 @@ Difficulty: Very Hard
 /mob/living/simple_animal/hostile/lightgeist/healing
 	var/heal_power = 5
 
-/mob/living/simple_animal/hostile/lightgeist/plantgeist //plantgeist/photogeist pretty interchangable. Also, I am lazy.
+/mob/living/simple_animal/hostile/lightgeist/photogeist
 	name = "photogeist"
 	desc = "This small floating creature is a completely unknown form of life... being near it fills you with a sense of tranquility."
-	icon_state = "plantgeist"
-	icon_living = "plantgeist"
+	icon_state = "photogeist"
+	icon_living = "photogeist"
 	friendly = "shines on"
 	faction = list("plants")
 	initial_language_holder = /datum/language_holder/venus //they only understand sylvan (plant language)
@@ -712,7 +712,7 @@ Difficulty: Very Hard
 			L.heal_overall_damage(heal_power, heal_power)
 			new /obj/effect/temp_visual/heal(get_turf(target), "#80F5FF")
 
-/mob/living/simple_animal/hostile/lightgeist/plantgeist/AttackingTarget() //plantgeists can only heal plantlike stuff
+/mob/living/simple_animal/hostile/lightgeist/photogeist/AttackingTarget() //photogeists can only heal plantlike stuff
 	. = ..()
 	if(isliving(target) && target != src)
 		var/mob/living/L = target
@@ -721,26 +721,26 @@ Difficulty: Very Hard
 				L.heal_overall_damage(heal_power, heal_power)
 				new /obj/effect/temp_visual/heal(get_turf(target), "#5bf563")
 
-/obj/effect/mob_spawn/plantgeist
+/obj/effect/mob_spawn/photogeist
 	name = "dormant photogeist"
 	desc = "A strange plant creature. It seems to be peacefully sleeping, and its mere presence soothes your nerves."
 	icon = 'icons/mob/animal.dmi'
-	icon_state = "dormantplantgeist"
+	icon_state = "dormantphotogeist"
 	density = FALSE
 	anchored = FALSE
 
-	mob_type = /mob/living/simple_animal/hostile/lightgeist/plantgeist
+	mob_type = /mob/living/simple_animal/hostile/lightgeist/photogeist
 	mob_name = "photogeist"
 	death = FALSE
 	roundstart = FALSE
-	short_desc = "You are a plantgeist, a peaceful creature summoned by a plant god"
+	short_desc = "You are a photogeist, a peaceful creature summoned by a plant god"
 	flavour_text = "<b>Try to prevent plant creatures from dying and listen to your summoner otherwise. You can also click a plantlike creature to heal them.</b>"
 
-/obj/effect/mob_spawn/plantgeist/Initialize()
+/obj/effect/mob_spawn/photogeist/Initialize()
 	. = ..()
 	var/area/A = get_area(src)
 	if(A)
-		notify_ghosts("A plantgeist has been summoned in [A.name].", 'sound/effects/shovel_dig.ogg', source = src, action = NOTIFY_ATTACKORBIT, flashwindow = FALSE)
+		notify_ghosts("A photogeist has been summoned in [A.name].", 'sound/effects/shovel_dig.ogg', source = src, action = NOTIFY_ATTACKORBIT, flashwindow = FALSE)
 
 /mob/living/simple_animal/hostile/lightgeist/ghostize()
 	. = ..()
