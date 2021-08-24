@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "Drunkenness reaching 41 will remove the chance to screw up a surgery step and cause damage"
