@@ -1,6 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - bugfix: "fixed max cape not working"
-  - bugfix: "fixed grand commander cape not working"
-  - tweak: "tweaked how skill cape prefs are stored, shouldn't break in future"
