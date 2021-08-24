@@ -268,6 +268,7 @@ DROP TABLE IF EXISTS `mentor`;
 CREATE TABLE IF NOT EXISTS `mentor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ckey` varchar(32) NOT NULL,
+	`position` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
 

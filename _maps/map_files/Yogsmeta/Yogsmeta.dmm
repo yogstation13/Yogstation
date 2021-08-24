@@ -39434,15 +39434,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"bzm" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/machinery/shower{
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "bzn" = (
 /obj/machinery/computer/message_monitor{
 	dir = 4
@@ -50669,24 +50660,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
-"bXx" = (
-/obj/machinery/shower{
-	dir = 8;
-	name = "emergency shower"
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "bXz" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/camera{
@@ -56860,6 +56833,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"cjL" = (
+/obj/machinery/shower{
+	pixel_y = 24
+	},
+/turf/open/floor/noslip,
+/area/medical/medbay/central)
 "cjN" = (
 /obj/machinery/light/small,
 /obj/effect/turf_decal/tile/purple,
@@ -72892,6 +72871,17 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"dKX" = (
+/obj/machinery/shower{
+	dir = 8;
+	name = "emergency shower"
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/open/floor/noslip,
+/area/medical/sleeper)
 "dLl" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = -32
@@ -78412,6 +78402,15 @@
 /obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/plasteel,
 /area/medical/surgery)
+"nQn" = (
+/obj/structure/bed,
+/obj/item/bedsheet/captain,
+/obj/machinery/camera/motion{
+	c_tag = "Captain's Quarters";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "nSt" = (
 /obj/machinery/door/airlock/external{
 	name = "Departure Lounge Airlock"
@@ -83810,15 +83809,6 @@
 	dir = 1
 	},
 /area/engine/atmos)
-"yeQ" = (
-/obj/structure/bed,
-/obj/item/bedsheet/captain,
-/obj/machinery/camera{
-	c_tag = "Captain's Quarters";
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain/private)
 "yfM" = (
 /obj/machinery/vending/engivend,
 /obj/effect/turf_decal/delivery,
@@ -105845,7 +105835,7 @@ bvd
 cdp
 cev
 cfK
-bXx
+dKX
 byM
 otH
 trc
@@ -108416,7 +108406,7 @@ cdw
 czE
 cfS
 cdw
-bzm
+cjL
 coF
 clp
 cmu
@@ -115320,7 +115310,7 @@ aVE
 aMw
 bcj
 bdN
-yeQ
+nQn
 jYH
 bjk
 pim

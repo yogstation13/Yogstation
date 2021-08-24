@@ -43739,19 +43739,6 @@
 	},
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/tcommsat/server)
-"bru" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/obj/machinery/camera{
-	c_tag = "Bridge - Captain's Quarters";
-	dir = 1;
-	name = "command camera"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain/private)
 "brv" = (
 /obj/structure/chair{
 	dir = 4
@@ -103311,17 +103298,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/medbay/central)
-"ddg" = (
-/obj/machinery/shower{
-	dir = 8;
-	name = "emergency shower"
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 26
-	},
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "ddh" = (
 /obj/structure/table/wood,
 /obj/item/folder/white,
@@ -109446,7 +109422,8 @@
 /area/crew_quarters/heads/captain/private)
 "dlB" = (
 /obj/machinery/door/airlock/silver{
-	name = "Bathroom"
+	name = "Bathroom";
+	req_access_txt = "20"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/firedoor/border_only{
@@ -126225,6 +126202,16 @@
 "oFI" = (
 /turf/closed/wall/r_wall,
 /area/security/brig/infirmary)
+"oyv" = (
+/obj/machinery/shower{
+	dir = 8;
+	name = "emergency shower"
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 26
+	},
+/turf/open/floor/noslip,
+/area/medical/medbay/central)
 "oGu" = (
 /obj/machinery/newscaster{
 	pixel_x = 32
@@ -127564,6 +127551,18 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"uLu" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/machinery/camera/motion{
+	c_tag = "Captain's Quarters";
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "uNP" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/effect/turf_decal/stripes/line{
@@ -170615,7 +170614,7 @@ bZn
 cbf
 bnX
 bvr
-bru
+uLu
 bUQ
 cdP
 cjL
@@ -176043,7 +176042,7 @@ cye
 cRe
 cZK
 dbu
-ddg
+oyv
 wyO
 cNz
 cPv
