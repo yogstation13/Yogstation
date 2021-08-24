@@ -262,7 +262,7 @@
 	name = "Argus"
 	icon_state = "argus"
 	owner = "slicerv"
-	module_locked = null
+	module_locked = "Engineering"
 
 //Begin AI skins://
 /* These follow the same format as borg skins*/
