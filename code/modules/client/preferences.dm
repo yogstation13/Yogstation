@@ -1726,12 +1726,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						if(!A.job)
 							continue
 						if(user.client.prefs.exp[A.job] >= A.minutes)
-							if(!A.special)
-								selectablecapes += A
-						if(A.special) //check for special capes
-							if(A.capetype == "max")
-								if(selectablecapes.len >= 74) //74 is the amount of job skillcapes, including trimmed.
-									selectablecapes += A
 							selectablecapes += A
 						else
 							max_eligable = FALSE
