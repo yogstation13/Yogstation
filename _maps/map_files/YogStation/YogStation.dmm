@@ -27635,11 +27635,6 @@
 /obj/effect/turf_decal/loading_area,
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"bKh" = (
-/obj/structure/table/wood,
-/obj/item/storage/book/bible/booze,
-/turf/open/floor/carpet,
-/area/crew_quarters/locker)
 "bKj" = (
 /obj/machinery/camera{
 	c_tag = "Mining Dock External";
@@ -33909,6 +33904,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"dlB" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/locker)
 "dlO" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -36287,14 +36291,6 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness)
-"eTx" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 27
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel,
-/area/crew_quarters/locker)
 "eUm" = (
 /obj/machinery/libraryscanner,
 /obj/machinery/light/small{
@@ -36748,6 +36744,14 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/starboard/fore)
+"fjc" = (
+/obj/structure/sign/plaques/kiddie{
+	desc = "The Nanotrasen Mental Health Room is for employees to have a place to be alone and practice mental health regimes. ";
+	name = "Nanotrasen Mental Health Room";
+	pixel_y = -33
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/locker)
 "fjd" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only{
@@ -37759,12 +37763,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
-"fXG" = (
-/obj/machinery/door/morgue{
-	name = "Nanotrasen Mental Health Room"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/locker)
 "fXK" = (
 /obj/effect/turf_decal/stripes,
 /obj/structure/railing/corner,
@@ -38553,6 +38551,9 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/space/basic,
 /area/space/nearstation)
+"gAx" = (
+/turf/open/floor/carpet,
+/area/crew_quarters/locker)
 "gAz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -38863,13 +38864,6 @@
 /obj/machinery/computer/operating,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
-"gKw" = (
-/obj/structure/sign/plaques/kiddie{
-	desc = "The Nanotrasen Mental Health Room is for employees to have a place to be alone and practice mental health regimes. ";
-	name = "Nanotrasen Mental Health Room"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/locker)
 "gLk" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plasteel/dark,
@@ -39621,15 +39615,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"htj" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/locker)
 "htC" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -40053,11 +40038,6 @@
 	},
 /turf/open/floor/plating,
 /area/clerk)
-"hDD" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp,
-/turf/open/floor/carpet,
-/area/crew_quarters/locker)
 "hDX" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -44307,6 +44287,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"kod" = (
+/obj/machinery/door/morgue{
+	name = "Nanotrasen Mental Health Room"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/locker)
 "kou" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -45414,12 +45400,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/science/server)
-"lcZ" = (
-/obj/structure/chair/office/dark{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/locker)
 "lda" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -46937,9 +46917,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"mlw" = (
-/turf/open/floor/carpet,
-/area/crew_quarters/locker)
 "mlD" = (
 /obj/machinery/light,
 /obj/structure/sign/departments/minsky/medical/medical2{
@@ -47287,6 +47264,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"mxA" = (
+/obj/structure/chair/office/dark{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/locker)
 "mxE" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -54224,14 +54207,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
-"qTW" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/locker)
 "qTZ" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/circuit/telecomms,
@@ -57922,6 +57897,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/engine/atmos_distro)
+"tza" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp,
+/turf/open/floor/carpet,
+/area/crew_quarters/locker)
 "tzC" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
@@ -58160,6 +58140,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"tIR" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/locker)
 "tIW" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -58525,6 +58513,10 @@
 /obj/structure/bookcase/random/reference,
 /turf/open/floor/carpet,
 /area/medical/psych)
+"tSP" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/carpet,
+/area/crew_quarters/locker)
 "tTv" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
@@ -63640,10 +63632,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"xyo" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/carpet,
-/area/crew_quarters/locker)
 "xyU" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -64306,6 +64294,14 @@
 /obj/item/toy/figure/cmo,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
+"xUO" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/crew_quarters/locker)
 "xUV" = (
 /obj/structure/window/reinforced,
 /obj/structure/cable{
@@ -64337,6 +64333,11 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"xXH" = (
+/obj/structure/table/wood,
+/obj/item/storage/book/bible/booze,
+/turf/open/floor/carpet,
+/area/crew_quarters/locker)
 "xXT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -85524,10 +85525,10 @@ aQN
 aQN
 bbg
 aQN
-fXG
-mlw
-lcZ
-xyo
+kod
+gAx
+mxA
+tSP
 aPA
 beV
 doh
@@ -85780,11 +85781,11 @@ aQN
 aQN
 aQN
 bbg
-gKw
+fjc
 aPA
 aPA
-bKh
-hDD
+xXH
+tza
 aPA
 aSg
 mXm
@@ -86038,7 +86039,7 @@ aQN
 aQN
 bbq
 aYU
-htj
+dlB
 aPA
 aPA
 aPA
@@ -86296,8 +86297,8 @@ aQW
 aQW
 aQW
 bbq
-eTx
-qTW
+xUO
+tIR
 bbr
 bcu
 bfe
