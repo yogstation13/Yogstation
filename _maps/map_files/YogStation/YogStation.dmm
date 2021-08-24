@@ -30094,6 +30094,22 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"cbh" = (
+/obj/structure/closet/secure_closet/CMO,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/clothing/glasses/hud/health,
+/obj/machinery/camera{
+	c_tag = "Chief Medical Office";
+	network = list("ss13","medbay")
+	},
+/obj/item/sensor_device,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/cmo)
 "cbp" = (
 /obj/structure/closet/secure_closet/engineering_chief,
 /obj/machinery/power/apc/highcap/five_k{
@@ -33848,6 +33864,27 @@
 /obj/item/toy/figure/qm,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
+"ddu" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 6
+	},
+/obj/structure/rack,
+/obj/item/sensor_device{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/sensor_device,
+/obj/item/pinpointer/crew{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/item/pinpointer/crew{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/healthanalyzer,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "ddA" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner,
 /turf/open/floor/plasteel/white,
@@ -36239,13 +36276,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"eQN" = (
-/obj/machinery/vending/medical,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "eQU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -49836,23 +49866,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"obb" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/item/clothing/neck/stethoscope,
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_y = -12
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/storage)
 "ocv" = (
 /obj/effect/landmark/stationroom/maint/fivexfour,
 /turf/template_noop,
@@ -61317,6 +61330,27 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"vQV" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/item/vending_refill/medical{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_y = -12
+	},
+/obj/item/clothing/neck/stethoscope,
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "vRI" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "13"
@@ -64189,21 +64223,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"xRT" = (
-/obj/structure/closet/secure_closet/CMO,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/item/clothing/glasses/hud/health,
-/obj/machinery/camera{
-	c_tag = "Chief Medical Office";
-	network = list("ss13","medbay")
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/heads/cmo)
 "xSk" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -102257,7 +102276,7 @@ rtl
 shz
 daW
 dCe
-obb
+vQV
 wHA
 jdO
 btU
@@ -105836,7 +105855,7 @@ aYV
 aYV
 aYV
 kiy
-xRT
+cbh
 pVd
 kUQ
 iQI
@@ -106872,7 +106891,7 @@ sKm
 bfL
 czn
 tIW
-eQN
+ddu
 bon
 bpE
 bon
