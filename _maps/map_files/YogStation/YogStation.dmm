@@ -52343,19 +52343,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/satellite)
-"pGD" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/shower{
-	pixel_y = 20
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/noslip,
-/area/medical/sleeper)
 "pGM" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -53295,6 +53282,15 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
+/area/medical/sleeper)
+"qmI" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/shower{
+	pixel_y = 20
+	},
+/turf/open/floor/noslip,
 /area/medical/sleeper)
 "qmS" = (
 /obj/machinery/door/firedoor/border_only{
@@ -103552,7 +103548,7 @@ hHy
 kub
 taG
 bvj
-pGD
+qmI
 xOh
 bDR
 waN
