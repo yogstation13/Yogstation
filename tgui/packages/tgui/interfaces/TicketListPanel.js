@@ -150,7 +150,7 @@ export const TicketSummary = (props, context) => {
           FLW
         </Button>
         <Button
-          icon="fire"
+          icon="book-dead"
           disabled={!ticket.has_mob}
           onClick={() => act('TP', {
             'id': ticket.id,

@@ -62,7 +62,7 @@ export const TicketPanel = (props, context) => {
                 FLW
               </Button>
               <Button
-                icon="fire"
+                icon="book-dead"
                 disabled={!data.has_mob}
                 onClick={() => act('TP')}>
                 TP
@@ -84,6 +84,7 @@ export const TicketPanel = (props, context) => {
                 onClick={() => act('CA')}>
                 CA
               </Button>
+              <br />
               <Button
                 icon="folder-open"
                 onClick={() => act('Administer')}>
