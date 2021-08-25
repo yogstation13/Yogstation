@@ -592,6 +592,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/mining
 	name = "mining ID"
 	access = list(ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MECH_MINING, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM)
+
 /obj/item/card/id/genpop
 	name = "Genpop Prisoner ID card"
 	desc = "You are a number, you are not a free man."
@@ -602,6 +603,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Prisoner"
 	registered_name = "Scum"
 	registered_age = null
+	
 /obj/item/card/id/away
 	name = "a perfectly generic identification card"
 	desc = "A perfectly generic identification card. Looks like it could use some flavor."
