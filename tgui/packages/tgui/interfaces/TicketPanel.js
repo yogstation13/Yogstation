@@ -13,12 +13,11 @@ export const TicketPanel = (props, context) => {
         title="Ticket Viewer"
         width={700}
         height={700}
-        resizable
-        backgroundColor='pink'>
+        resizable>
         <Window.Content scrollable>
           <Section
             title={data.initiator_key_name + ": " + data.name}>
-            <span class='Section__titleText' style="font-weight:normal">
+            <span class="Section__titleText" style={{ "font-weight": "normal" }}>
             Assigned Admin: <b>{data.admin || "Unassigned"}</b><br />
             <span class={data.is_resolved ? "color-good" : "color-bad"}>
               Is{data.is_resolved ? "" : " not"} resolved

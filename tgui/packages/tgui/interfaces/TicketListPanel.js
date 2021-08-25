@@ -2,6 +2,7 @@
 import { useBackend, useLocalState } from '../backend';
 import { Section, Collapsible, Button, Tabs } from '../components';
 import { Window } from '../layouts';
+import { Fragment } from 'inferno';
 
 export const TicketListPanel = (props, context) => {
   const { act, data } = useBackend(context);
@@ -9,10 +10,10 @@ export const TicketListPanel = (props, context) => {
   const FILTERS = [
     "ALL",
     "MY TICKETS",
-    "UNCLAIMED"
-  ]
+    "UNCLAIMED",
+  ];
 
-  const [filterType, setFilterType] = useLocalState(context, 'filterType', FILTERS[0])
+  const [filterType, setFilterType] = useLocalState(context, 'filterType', FILTERS[0]);
 
   return (
     <Window
@@ -22,7 +23,7 @@ export const TicketListPanel = (props, context) => {
       resizable>
       <Window.Content scrollable>
         <Tabs>
-          {FILTERS.map((filter) => (
+          {FILTERS.map(filter => (
             <Tabs.Tab
               key={filter}
               selected={filter === filterType}
@@ -47,39 +48,39 @@ export const TicketListView = (props, context) => {
   const closed_count = data.resolved_tickets.length;
   const total_count = open_count + closed_count;
 
-  const filterTicket = function(ticket) {
-    if(filter_type === "ALL") return true
-    if(filter_type === "MY TICKETS" && ticket.admin_key == data.user_key) return true
-    if(filter_type === "UNCLAIMED" && !ticket.admin_key) return true
-    return false
-  }
+  const filterTicket = function (ticket) {
+    if (filter_type === "ALL") return true;
+    if (filter_type === "MY TICKETS" && ticket.admin_key === data.user_key) return true;
+    if (filter_type === "UNCLAIMED" && !ticket.admin_key) return true;
+    return false;
+  };
 
   return (
     <Fragment>
       <Collapsible
-          className="Section__titleText"
-          color={open_count === 0 ? 'default' : 'red'}
-          open
-          title={"Unresolved Tickets (" + open_count + "/" + total_count + ")"}>
-          {data.unresolved_tickets.filter(filterTicket).map(ticket => (
-            <TicketSummary
-              key={ticket.id}
-              ticket={ticket} />
-          ))}
+        className="Section__titleText"
+        color={open_count === 0 ? 'default' : 'red'}
+        open
+        title={"Unresolved Tickets (" + open_count + "/" + total_count + ")"}>
+        {data.unresolved_tickets.filter(filterTicket).map(ticket => (
+        <TicketSummary
+          key={ticket.id}
+          ticket={ticket} />
+        ))}
         </Collapsible>
         <Collapsible
           className="Section__titleText"
           color="green"
           title={"Resolved Tickets (" + closed_count + "/" + total_count + ")"}>
           {data.resolved_tickets.filter(filterTicket).map(ticket => (
-            <TicketSummary
-              key={ticket.id}
-              ticket={ticket} />
+          <TicketSummary
+            key={ticket.id}
+            ticket={ticket} />
           ))}
         </Collapsible>
     </Fragment>
-  )
-}
+  );
+};
 
 export const TicketSummary = (props, context) => {
   const { ticket } = props;
