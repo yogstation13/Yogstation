@@ -1,6 +1,6 @@
 import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
-import { Button, Section, ProgressBar } from '../components';
+import { Button, Section, ProgressBar, Flex } from '../components';
 import { Window } from '../layouts';
 import { toFixed } from 'common/math';
 
@@ -62,17 +62,23 @@ export const GenPop = (props, context) => {
             content="Long"
             onClick={() => act('preset', { preset: 'long' })} />
           <br />
+        </Section>
+        <Section title="Crimes">
           {Object.keys(data.allCrimes).map(key => {
             let value = data.allCrimes[key];
             return (
-              <Button
-                key={key}
-                content={value.name}
-                color={value.colour}
-                icon={value.icon}
-                tooltip={value.tooltip}
-                onClick={() => act('presetCrime', { preset: value.sentence, crime: value.name })}
-              />
+              <Flex direction="column">
+                <Flex.Item grow={1}>
+                  <Button
+                    key={key}
+                    content={value.name}
+                    color={value.colour}
+                    icon={value.icon}
+                    tooltip={value.tooltip}
+                    onClick={() => act('presetCrime', { preset: value.sentence, crime: value.name })}
+                  />
+                </Flex.Item>
+              </Flex>
             );
           })}
         </Section>
