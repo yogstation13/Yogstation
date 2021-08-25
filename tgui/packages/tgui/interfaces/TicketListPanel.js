@@ -89,17 +89,15 @@ export const TicketSummary = (props, context) => {
   return (
     <Section
       backgroundColor={ticket.admin_key || !ticket.active ? "" : "bad"}
-      title={"#" + ticket.id + ": " + ticket.name}
-      buttons={(
-        <Button
-          icon="reply"
-          onClick={() => act('reply', {
-            'id': ticket.id,
-          })}>
-          Reply
-        </Button>
-      )}>
-      Owner: {ticket.initiator_key_name}<br />
+      title={"#" + ticket.id + ": " + ticket.name}>
+      Owner:
+      <Button
+        icon="reply"
+        onClick={() => act('reply', {
+          'id': ticket.id,
+        })}>
+        {ticket.initiator_key_name}
+      </Button><br />
       Admin: {ticket.admin_key ? ticket.admin_key : "UNCLAIMED"}<br />
       <span class="color-bad">{!ticket.has_client ? "DISCONNECTED" : ""}</span>
       <Section
