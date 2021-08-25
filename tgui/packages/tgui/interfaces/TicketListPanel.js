@@ -63,21 +63,21 @@ export const TicketListView = (props, context) => {
         open
         title={"Unresolved Tickets (" + open_count + "/" + total_count + ")"}>
         {data.unresolved_tickets.filter(filterTicket).map(ticket => (
-        <TicketSummary
-          key={ticket.id}
-          ticket={ticket} />
-        ))}
-        </Collapsible>
-        <Collapsible
-          className="Section__titleText"
-          color="green"
-          title={"Resolved Tickets (" + closed_count + "/" + total_count + ")"}>
-          {data.resolved_tickets.filter(filterTicket).map(ticket => (
           <TicketSummary
             key={ticket.id}
             ticket={ticket} />
-          ))}
-        </Collapsible>
+        ))}
+      </Collapsible>
+      <Collapsible
+        className="Section__titleText"
+        color="green"
+        title={"Resolved Tickets (" + closed_count + "/" + total_count + ")"}>
+        {data.resolved_tickets.filter(filterTicket).map(ticket => (
+          <TicketSummary
+            key={ticket.id}
+            ticket={ticket} />
+        ))}
+      </Collapsible>
     </Fragment>
   );
 };
