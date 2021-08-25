@@ -264,9 +264,9 @@
 	owner = "slicerv"
 	module_locked = "Engineering"
 
-/datum/borg_skin/medicalrobot
-	name = "Medical Robot"
-	icon_state = "medicalrobot"
+/datum/borg_skin/adamsogm_med_borg
+	name = "Snowflake Medical Robot"
+	icon_state = "adamsogm_med_borg"
 	owner = "adamsogm"
 	module_locked = "Medical"
 
