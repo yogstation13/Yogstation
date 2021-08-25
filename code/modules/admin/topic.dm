@@ -1242,24 +1242,8 @@
 		show_player_panel(M)
 
 	else if(href_list["adminplayerobservefollow"])
-		if(!isobserver(usr) && !check_rights(R_ADMIN))
-			return
-
 		var/atom/movable/AM = locate(href_list["adminplayerobservefollow"])
-
-		var/client/C = usr.client
-		var/can_ghost = TRUE
-		if(!isobserver(usr))
-			can_ghost = C.admin_ghost()
-
-		if(!can_ghost)
-			return
-		var/mob/dead/observer/A = C.mob
-		var/mob/living/silicon/ai/I = AM //yogs start - adminfollow now follows AI eyes instead of the core
-		if(istype(I) && I.eyeobj)
-			A.ManualFollow(I.eyeobj)
-		else
-			A.ManualFollow(AM) //yogs stop - adminfollow now follows AI eyes instead of the core
+		observe_follow(AM)
 
 	else if(href_list["admingetmovable"])
 		if(!check_rights(R_ADMIN))
@@ -2223,7 +2207,10 @@
 		check_teams()
 	// yogs start - mentors
 	else if(href_list["makementor"])
-		makeMentor(href_list["makementor"])
+		makeMentor(href_list["makementor"], "Mentor")
+
+	else if(href_list["wikimentor"])
+		makeMentor(href_list["wikimentor"], "Wiki Staff")
 
 	else if(href_list["removementor"])
 		removeMentor(href_list["removementor"])

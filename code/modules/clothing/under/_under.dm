@@ -109,7 +109,6 @@
 			var/mob/living/carbon/human/H = user
 			if(attached_accessory.above_suit)
 				H.update_inv_wear_suit()
-
 	..()
 
 /obj/item/clothing/under/proc/attach_accessory(obj/item/I, mob/user, notifyAttach = 1)

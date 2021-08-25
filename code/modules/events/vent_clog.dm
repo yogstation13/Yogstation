@@ -79,6 +79,14 @@
 	typepath = /datum/round_event/vent_clog/beer
 	max_occurrences = 0
 
+/datum/round_event_control/vent_clog/cleaner
+	name = "Cleaner stationwide"
+	typepath = /datum/round_event/vent_clog/cleaner
+	max_occurrences = 0
+	weight = 10
+	min_players = 5
+	max_occurrences = 1
+
 /datum/round_event_control/vent_clog/plasma_decon
 	name = "Plasma decontamination"
 	typepath = /datum/round_event/vent_clog/plasma_decon
@@ -96,6 +104,24 @@
 			var/datum/reagents/R = new/datum/reagents(1000)
 			R.my_atom = vent
 			R.add_reagent(/datum/reagent/consumable/ethanol/beer, reagentsAmount)
+
+			var/datum/effect_system/foam_spread/foam = new
+			foam.set_up(200, get_turf(vent), R)
+			foam.start()
+		CHECK_TICK
+
+/datum/round_event/vent_clog/cleaner
+	reagentsAmount = 100
+
+/datum/round_event/vent_clog/cleaner/announce()
+	priority_announce("The scrubbers network cleaning cycle has been triggered. Some ejection of contents may occur.", "Atmospherics alert")
+
+/datum/round_event/vent_clog/cleaner/start()
+	for(var/obj/machinery/atmospherics/components/unary/vent in vents)
+		if(vent && vent.loc)
+			var/datum/reagents/R = new/datum/reagents(1000)
+			R.my_atom = vent
+			R.add_reagent(/datum/reagent/space_cleaner, reagentsAmount)
 
 			var/datum/effect_system/foam_spread/foam = new
 			foam.set_up(200, get_turf(vent), R)

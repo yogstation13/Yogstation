@@ -16,7 +16,7 @@
 /obj/machinery/computer/crew/syndie
 	icon_keyboard = "syndie_key"
 
-/obj/machinery/computer/crew/interact(mob/user)
+/obj/machinery/computer/crew/ui_interact(mob/user)
 	GLOB.crewmonitor.show(user,src)
 
 GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
@@ -67,6 +67,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	jobs["Clerk"] = 71 //Yogs: Added IDs for this job, also need to skip 70 or it clerk would be considered a head job
 	jobs["Tourist"] = 72 //Yogs: Added IDs for this job
 	jobs["Artist"] = 73 //Yogs: Added IDs for this job
+	jobs["Assistant"] = 74 //Yogs: Assistants are with the other civilians
 	jobs["Admiral"] = 200
 	jobs["CentCom Commander"] = 210
 	jobs["Custodian"] = 211
@@ -76,7 +77,6 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	jobs["Security Response Officer"] = 221
 	jobs["Engineer Response Officer"] = 222
 	jobs["Medical Response Officer"] = 223
-	jobs["Assistant"] = 999 //Unknowns/custom jobs should appear after civilians, and before assistants
 
 	src.jobs = jobs
 
@@ -142,7 +142,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				pos = H.z == 0 || (nanite_sensors || U.sensor_mode == SENSOR_COORDS) ? get_turf(H) : null
 
 				// Special case: If the mob is inside an object confirm the z-level on turf level.
-				if (H.z == 0 && (!pos || pos.z != z))
+				if (H.z == 0 && (!pos || (pos.z != z) && !(is_station_level(pos.z) && is_station_level(z))))
 					continue
 
 				I = H.wear_id ? H.wear_id.GetID() : null
