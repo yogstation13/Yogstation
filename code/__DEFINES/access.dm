@@ -146,3 +146,5 @@
 #define ACCESS_MECH_SCIENCE 303
 #define ACCESS_MECH_ENGINE 304
 #define ACCESS_MECH_FREEMINER 310
+//Prisoner access for the genpop system
+#define ACCESS_PRISONER 311
