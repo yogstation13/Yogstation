@@ -21,6 +21,7 @@
 	disliked_food = FRUIT
 	liked_food = VEGETABLES | GRILLED
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
+	species_language_holder = /datum/language_holder/plasmaman
 
 /datum/species/plasmaman/spec_life(mob/living/carbon/human/H)
 	var/datum/gas_mixture/environment = H.loc.return_air()
