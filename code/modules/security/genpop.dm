@@ -289,7 +289,7 @@ GLOBAL_LIST_EMPTY(prisoner_ids)
 /obj/item/card/id/genpop/examine(mob/user)
 	. = ..()
 	if(sentence)
-		. += "<span class='notice'>You have served [served_time] out of [sentence] seconds.</span>"
+		. += "<span class='notice'>The card indicates the holder has served [served_time] out of [sentence] seconds.</span>"
 	if(crime)
 		. += "<span class='warning'>It appears its holder was convicted of: <b>[crime]</b></span>"
 
