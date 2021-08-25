@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "borg riding now has a delay of 1.5 seconds before being buckled to the borg"
