@@ -62,7 +62,7 @@ export const TicketListView = (props, context) => {
         color={open_count === 0 ? 'default' : 'red'}
         open
         title={"Unresolved Tickets (" + open_count + "/" + total_count + ")"}>
-        {data.unresolved_tickets.filter(filterTicket).map(ticket => (
+        {data.unresolved_tickets.filter(filterTicket).reverse().map(ticket => (
           <TicketSummary
             key={ticket.id}
             ticket={ticket} />
@@ -72,7 +72,7 @@ export const TicketListView = (props, context) => {
         className="Section__titleText"
         color="green"
         title={"Resolved Tickets (" + closed_count + "/" + total_count + ")"}>
-        {data.resolved_tickets.filter(filterTicket).map(ticket => (
+        {data.resolved_tickets.filter(filterTicket).reverse().map(ticket => (
           <TicketSummary
             key={ticket.id}
             ticket={ticket} />
