@@ -1,4 +1,0 @@
-author: "  Identification"
-delete-after: true 
-changes: 
-  - bugfix: "Sangria will no longer act as if the sprite fills the entire tile."

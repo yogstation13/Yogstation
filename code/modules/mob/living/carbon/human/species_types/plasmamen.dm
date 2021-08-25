@@ -140,6 +140,9 @@
 		if("Psychiatrist")
 			O = new /datum/outfit/job/plasmaman/psych
 
+		if("Brig Physician")
+			O = new /datum/outfit/job/plasmaman/brigphysician
+
 		if("Clerk")
 			O = new /datum/outfit/job/plasmaman/clerk
 
