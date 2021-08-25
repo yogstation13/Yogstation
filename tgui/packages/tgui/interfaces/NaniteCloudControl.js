@@ -43,10 +43,8 @@ export const NaniteInfoBox = (props, context) => {
     deactivation_code,
     kill_code,
     trigger_code,
-    timer_restart,
-    timer_shutdown,
-    timer_trigger,
-    timer_trigger_delay,
+    timer,
+    timer_type,
   } = program;
   const extra_settings = program.extra_settings || [];
   return (
@@ -113,22 +111,12 @@ export const NaniteInfoBox = (props, context) => {
             level={3}
             mr={1}>
             <LabeledList>
-              <LabeledList.Item label="Restart">
-                {timer_restart} s
+              <LabeledList.Item label="Set Timer">
+                {timer_type}
               </LabeledList.Item>
-              <LabeledList.Item label="Shutdown">
-                {timer_shutdown} s
+              <LabeledList.Item label="Timer">
+                {timer} s
               </LabeledList.Item>
-              {!!can_trigger && (
-                <Fragment>
-                  <LabeledList.Item label="Trigger">
-                    {timer_trigger} s
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Trigger Delay">
-                    {timer_trigger_delay} s
-                  </LabeledList.Item>
-                </Fragment>
-              )}
             </LabeledList>
           </Section>
         </Grid.Column>
@@ -138,15 +126,9 @@ export const NaniteInfoBox = (props, context) => {
         level={3}>
         <LabeledList>
           {extra_settings.map(setting => {
-            const naniteTypesDisplayMap = {
-              number: <Fragment>{setting.value}{setting.unit}</Fragment>,
-              text: setting.value,
-              type: setting.value,
-              boolean: (setting.value ? setting.true_text : setting.false_text),
-            };
             return (
               <LabeledList.Item key={setting.name} label={setting.name}>
-                {naniteTypesDisplayMap[setting.type]}
+                {setting.value}
               </LabeledList.Item>
             );
           })}

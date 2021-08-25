@@ -19,7 +19,10 @@
 	r_pocket = /obj/item/pda/heads
 	l_hand = /obj/item/clipboard
 	id = /obj/item/card/id/centcom
-	backpack_contents = list(/obj/item/restraints/handcuffs/cable/zipties=1)
+	backpack_contents = list(/obj/item/restraints/handcuffs/cable/zipties=1, /obj/item/stamp/cent = 1,)
+
+
+	chameleon_extras = /obj/item/stamp/cent
 
 /datum/outfit/centcom/official/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)

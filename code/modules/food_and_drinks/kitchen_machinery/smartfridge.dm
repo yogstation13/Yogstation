@@ -238,9 +238,8 @@
 
 		//Adding items from a bag
 		if(istype(O, /obj/item/storage/bag))
-			var/obj/item/storage/P = O
 			var/loaded = 0
-			for(var/obj/G in P.contents)
+			for(var/obj/G in O.contents)
 				if(contents.len >= max_n_of_items)
 					break
 				if(accept_check(G))
@@ -263,6 +262,21 @@
 			else
 				to_chat(user, "<span class='warning'>There is nothing in [O] to put in [src]!</span>")
 				return FALSE
+
+		//Adding items from a borg's organ storage
+		if(istype(O, /obj/item/organ_storage))
+			var/obj/item/organ_storage/OS = O
+			var/obj/organ = O.contents[1]
+			
+			if(accept_check(organ))
+				load(organ)
+				OS.clear_organ()
+				user.visible_message("[user] has added \the [organ] to \the [src].", "<span class='notice'>You add \the [organ] to \the [src].</span>")
+				update_icon()
+				updateUsrDialog()
+				if(contents.len >= max_n_of_items)
+					indicate_full()
+				return TRUE
 
 		if(user.a_intent != INTENT_HARM)
 			to_chat(user, "<span class='warning'>\The [src] smartly refuses [O].</span>")

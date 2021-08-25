@@ -445,7 +445,7 @@
 	name = "Paper Frames"
 	result = /obj/item/stack/sheet/paperframes/five
 	time = 1 SECONDS
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 5, /obj/item/paper = 20)
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 5, /obj/item/paper = 5)
 	category = CAT_MISC
 
 /datum/crafting_recipe/naturalpaper
@@ -485,6 +485,7 @@
 	reqs = 	list(/obj/item/stack/rods = 4, /obj/item/stack/sheet/metal = 1)
 	result = /obj/machinery/shower
 	category = CAT_MISC
+	time = 15 SECONDS
 
 /datum/crafting_recipe/sink
 	name = "Sink"
@@ -884,3 +885,13 @@
 				)
 	category = CAT_MISC
 
+// Shank - Makeshift weapon that can embed on throw
+/datum/crafting_recipe/shank
+	name = "Shank"
+	reqs = list(/obj/item/shard = 1,
+				/obj/item/stack/rods = 1,
+				/obj/item/stack/cable_coil = 10)
+	result = /obj/item/kitchen/knife/shank
+	time = 10
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON

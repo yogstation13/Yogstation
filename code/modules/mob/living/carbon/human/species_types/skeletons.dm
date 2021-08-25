@@ -10,6 +10,7 @@
 	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
 	mutanttongue = /obj/item/organ/tongue/bone
 	damage_overlay_type = ""//let's not show bloody wounds or burns over bones.
+	wings_icon = "Skeleton"
 	disliked_food = NONE
 	liked_food = GROSS | MEAT | RAW
 	//They can technically be in an ERT

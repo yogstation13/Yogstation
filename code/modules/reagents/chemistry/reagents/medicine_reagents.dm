@@ -1,4 +1,5 @@
 #define PERF_BASE_DAMAGE		0.5
+#define REAGENT_REVIVE_MINIMUM_HEALTH (HEALTH_THRESHOLD_CRIT + 20)
 
 /////////////////////////////////////////////////////////////////////////////////////////
 					// MEDICINE REAGENTS
@@ -151,8 +152,8 @@
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 
 /datum/reagent/medicine/clonexadone/on_mob_life(mob/living/carbon/M)
-	if(M.bodytemperature < T0C)
-		M.adjustCloneLoss(0.00006 * (M.bodytemperature ** 2) - 6, 0)
+	if(M.bodytemperature < T0C && M.IsSleeping()) //yes you have to be in cryo shut up and drink your corn syrup
+		M.adjustCloneLoss(0.001 * (M.bodytemperature ** 2) - 100, 0)
 		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 		. = 1
 	metabolization_rate = REAGENTS_METABOLISM * (0.000015 * (M.bodytemperature ** 2) + 0.75)
@@ -195,7 +196,7 @@
 	taste_description = "fish"
 
 /datum/reagent/medicine/rezadone/on_mob_life(mob/living/carbon/M)
-	M.setCloneLoss(0) //Rezadone is almost never used in favor of cryoxadone. Hopefully this will change that.
+	M.adjustCloneLoss(-10) //Rezadone is almost always used over cryoxadone. Hopefully this will change that.
 	M.heal_bodypart_damage(1,1)
 	REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 	..()
@@ -430,13 +431,14 @@
 	reagent_state = LIQUID
 	color = "#DCDCDC"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
+	var/healing = 0.5
 	overdose_threshold = 30
 
 /datum/reagent/medicine/omnizine/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(-0.5*REM, 0)
-	M.adjustOxyLoss(-0.5*REM, 0)
-	M.adjustBruteLoss(-0.5*REM, 0)
-	M.adjustFireLoss(-0.5*REM, 0)
+	M.adjustToxLoss(-healing*REM, 0)
+	M.adjustOxyLoss(-healing*REM, 0)
+	M.adjustBruteLoss(-healing*REM, 0)
+	M.adjustFireLoss(-healing*REM, 0)
 	..()
 	. = 1
 
@@ -447,6 +449,12 @@
 	M.adjustFireLoss(1.5*REM, FALSE, FALSE, BODYPART_ORGANIC)
 	..()
 	. = 1
+
+/datum/reagent/medicine/omnizine/protozine
+	name = "Protozine"
+	description = "A less environmentally friendly and somewhat weaker variant of omnizine."
+	color = "#d8c7b7"
+	healing = 0.2
 
 /datum/reagent/medicine/calomel
 	name = "Calomel"
@@ -550,8 +558,8 @@
 	return TRUE
 
 /datum/reagent/medicine/perfluorodecalin/overdose_process(mob/living/M)
-    metabolization_rate += 1
-    return ..()
+	metabolization_rate += 1
+	return ..()
 
 /datum/reagent/medicine/ephedrine
 	name = "Ephedrine"
@@ -829,7 +837,7 @@
 
 /datum/reagent/medicine/strange_reagent
 	name = "Strange Reagent"
-	description = "A miracle drug capable of bringing the dead back to life. Only functions when applied by patch or spray, if the target has less than 100 brute and burn damage (independent of one another) and hasn't been husked. Causes slight damage to the living."
+	description = "A miracle drug capable of bringing the dead back to life, at a heavy cost to their cellular makeup. Only functions when applied by patch or spray, if the target has less than 100 brute and burn damage and hasn't been husked. Causes slight damage to the living."
 	reagent_state = LIQUID
 	color = "#A0E85E"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -840,7 +848,7 @@
 		if(M.suiciding || M.hellbound) //they are never coming back
 			M.visible_message("<span class='warning'>[M]'s body does not react...</span>")
 			return
-		if(M.getBruteLoss() >= 100 || M.getFireLoss() >= 100 || HAS_TRAIT(M, TRAIT_HUSK)) //body is too damaged to be revived
+		if(M.getBruteLoss() + M.getFireLoss() >= 100 || HAS_TRAIT(M, TRAIT_HUSK)) //body is too damaged to be revived
 			M.visible_message("<span class='warning'>[M]'s body convulses a bit, and then falls still once more.</span>")
 			M.do_jitter_animation(10)
 			return
@@ -856,8 +864,11 @@
 				for(var/organ in H.internal_organs)
 					var/obj/item/organ/O = organ
 					O.setOrganDamage(0)
+			M.adjustBruteLoss(-100)
+			M.adjustFireLoss(-100)
 			M.adjustOxyLoss(-20, 0)
 			M.adjustToxLoss(-20, 0)
+			M.adjustCloneLoss(max(M.health - REAGENT_REVIVE_MINIMUM_HEALTH - M.getCloneLoss() - M.getOxyLoss() - M.getToxLoss(), 0))
 			M.updatehealth()
 			if(M.revive())
 				M.emote("gasp")
@@ -1424,6 +1435,61 @@
 	..()
 	. = 1
 
+/datum/reagent/medicine/metafactor
+	name = "Mitogen Metabolism Factor"
+	description = "This enzyme catalyzes the conversion of nutricious food into healing peptides."
+	metabolization_rate = 0.0625  * REAGENTS_METABOLISM //slow metabolism rate so the patient can self heal with food even after the troph has metabolized away for amazing reagent efficency.
+	reagent_state = SOLID
+	color = "#FFBE00"
+	overdose_threshold = 10
+
+/datum/reagent/medicine/metafactor/overdose_start(mob/living/carbon/M)
+	metabolization_rate = 2  * REAGENTS_METABOLISM
+
+/datum/reagent/medicine/metafactor/overdose_process(mob/living/carbon/M)
+	if(prob(13))
+		M.vomit()
+	..()
+
+/datum/reagent/medicine/silibinin
+	name = "Silibinin"
+	description = "A thistle derrived hepatoprotective flavolignan mixture that help reverse damage to the liver."
+	reagent_state = SOLID
+	color = "#FFFFD0"
+	metabolization_rate = 1.5 * REAGENTS_METABOLISM
+
+/datum/reagent/medicine/silibinin/on_mob_life(mob/living/carbon/M)
+	M.adjustOrganLoss(ORGAN_SLOT_LIVER, -2 * REM)//Add a chance to cure liver trauma once implemented.
+	..()
+	. = TRUE
+
+/datum/reagent/medicine/polypyr  //This is intended to be an ingredient in advanced chems.
+	name = "Polypyrylium Oligomers"
+	description = "A purple mixture of short polyelectrolyte chains not easily synthesized in the laboratory. It is valued as an intermediate in the synthesis of the cutting edge pharmaceuticals."
+	reagent_state = SOLID
+	color = "#9423FF"
+	metabolization_rate = 0.25 * REAGENTS_METABOLISM
+	overdose_threshold = 50
+	taste_description = "numbing bitterness"
+
+/datum/reagent/medicine/polypyr/on_mob_life(mob/living/carbon/M) //I wanted a collection of small positive effects, this is as hard to obtain as coniine after all.
+	. = ..()
+	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, -0.25 * REM)
+	M.adjustBruteLoss(-0.35 * REM, 0)
+	return TRUE
+
+/datum/reagent/medicine/polypyr/reaction_mob(mob/living/carbon/human/exposed_human, methods=TOUCH, reac_volume)
+	. = ..()
+	if(!(methods & (TOUCH|VAPOR)) || !ishuman(exposed_human) || (reac_volume < 0.5))
+		return
+	exposed_human.hair_color = "92f"
+	exposed_human.facial_hair_color = "92f"
+	exposed_human.update_hair()
+
+/datum/reagent/medicine/polypyr/overdose_process(mob/living/M)
+	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 0.5 * REM)
+	..()
+	. = TRUE
 
 /datum/reagent/medicine/burnmix
 	name = "BurnMix"
@@ -1436,6 +1502,7 @@
 	glass_desc = "Looks like some chunky dark red mix."
 	reagent_weight = 4
 	addiction_threshold = 40
+	var/clean_types = CLEAN_WASH // Burnmix can be used to clean turfs but cannot clean mobs and objects like space cleaner.
 	// Max healing non OD with best rolls + buffs: 0.2 + 0.15 + 0.2 = 0.55
 	// Max healing with OD + best rolls and all buffs: 0.4 + 0.35 + 0.4 = 1.15
 
@@ -1593,5 +1660,14 @@
 				M.visible_message("<span class='warning'>[M]'s body reacts with the medicine. It seemed to have [RNG_TEXT]!</span>")
 	..()
 
+/datum/reagent/medicine/burnmix/reaction_turf(turf/T, reac_volume)
+	if(reac_volume >= 1)
+		T.wash(clean_types)
+		for(var/am in T)
+			var/atom/movable/movable_content = am
+			if(ismopable(movable_content)) // Mopables will be cleaned anyways by the turf wash
+				continue
+			movable_content.wash(clean_types)
 
 #undef PERF_BASE_DAMAGE
+#undef REAGENT_REVIVE_MINIMUM_HEALTH

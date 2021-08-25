@@ -14,6 +14,7 @@
 	burnmod = 1.5
 	heatmod = 1.5
 	brutemod = 1.5
+	payday_modifier = 0.8 //Useful to NT for plasma research
 	breathid = "tox"
 	damage_overlay_type = ""//let's not show bloody wounds or burns over bones.
 	var/internal_fire = FALSE //If the bones themselves are burning clothes won't help you much
@@ -138,6 +139,9 @@
 		if("Psychiatrist")
 			O = new /datum/outfit/job/plasmaman/psych
 
+		if("Brig Physician")
+			O = new /datum/outfit/job/plasmaman/brigphysician
+
 		if("Clerk")
 			O = new /datum/outfit/job/plasmaman/clerk
 
@@ -146,6 +150,15 @@
 
 		if("Assistant")
 			O = new /datum/outfit/job/plasmaman/assistant
+
+		if("Artist")
+			O = new /datum/outfit/job/plasmaman/artist
+
+		if("Chief Engineer")
+			O = new /datum/outfit/job/plasmaman/ce
+
+		if("Research Director")
+			O = new /datum/outfit/job/plasmaman/rd
 
 	H.equipOutfit(O, visualsOnly)
 	H.internal = H.get_item_for_held_index(2)

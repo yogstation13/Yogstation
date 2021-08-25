@@ -507,8 +507,8 @@
 	if(full_heal)
 		fully_heal(admin_revive)
 	if(stat == DEAD && can_be_revived()) //in some cases you can't revive (e.g. no brain)
-		GLOB.dead_mob_list -= src
-		GLOB.alive_mob_list += src
+		remove_from_dead_mob_list()
+		add_to_alive_mob_list()
 		set_suicide(FALSE)
 		stat = UNCONSCIOUS //the mob starts unconscious,
 		blind_eyes(1)
@@ -645,8 +645,12 @@
 
 /mob/living/proc/getTrail()
 	if(getBruteLoss() < 300)
+		if(ispolysmorph(src))
+			return pick("xltrails_1", "xltrails_2")
 		return pick("ltrails_1", "ltrails_2")
 	else
+		if(ispolysmorph(src))
+			return pick("xttrails_1", "xttrails_2")
 		return pick("trails_1", "trails_2")
 
 /mob/living/experience_pressure_difference(pressure_difference, direction, pressure_resistance_prob_delta = 0)
@@ -1340,11 +1344,11 @@
 				return FALSE
 		if("stat")
 			if((stat == DEAD) && (var_value < DEAD))//Bringing the dead back to life
-				GLOB.dead_mob_list -= src
-				GLOB.alive_mob_list += src
+				remove_from_dead_mob_list()
+				add_to_alive_mob_list()
 			if((stat < DEAD) && (var_value == DEAD))//Kill he
-				GLOB.alive_mob_list -= src
-				GLOB.dead_mob_list += src
+				remove_from_dead_mob_list()
+				add_to_alive_mob_list()
 	. = ..()
 	switch(var_name)
 		if("knockdown")
@@ -1369,7 +1373,7 @@
 			update_transform()
 		if("lighting_alpha")
 			sync_lighting_plane_alpha()
-			
+
 /mob/living/proc/is_convert_antag()
     var/list/bad_antags = list(
         /datum/antagonist/clockcult,
@@ -1383,4 +1387,4 @@
         if(mind?.has_antag_datum(antagcheck))
             return TRUE
     return FALSE
-	
+

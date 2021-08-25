@@ -28,18 +28,6 @@
 /obj/item/radio/intercom,
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"ag" = (
-/obj/item/reagent_containers/food/drinks/shaker,
-/obj/structure/table/wood,
-/obj/item/stack/sheet/metal{
-	amount = 50
-	},
-/obj/item/stack/sheet/glass{
-	amount = 50
-	},
-/obj/item/stack/cable_coil,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "ah" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/purple{
@@ -182,23 +170,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"ay" = (
-/obj/structure/closet/secure_closet/freezer/meat,
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
 "az" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -782,18 +753,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"bN" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/obj/structure/table/reinforced{
-	color = "purple"
-	},
-/obj/item/reagent_containers/food/snacks/burger/purple,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/kitchen)
 "bO" = (
 /obj/machinery/vending/boozeomat,
 /obj/effect/turf_decal/tile/purple{
@@ -895,30 +854,6 @@
 	dir = 8;
 	icon_state = "tile_corner"
 	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/kitchen)
-"bX" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/obj/structure/table/reinforced{
-	color = "purple"
-	},
-/obj/item/storage/box/fancy/donut_box,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/kitchen)
-"bY" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/obj/structure/table/reinforced{
-	color = "purple"
-	},
-/obj/item/reagent_containers/food/snacks/mint,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
 "bZ" = (
@@ -1305,6 +1240,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"mp" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/structure/table/reinforced{
+	color = "purple"
+	},
+/obj/item/reagent_containers/food/snacks/burger/purple,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
 "vD" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
@@ -1333,12 +1283,45 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"Be" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/structure/table/reinforced{
+	color = "purple"
+	},
+/obj/item/storage/box/fancy/donut_box,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
 "BD" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"CX" = (
+/obj/structure/closet/secure_closet/freezer/meat,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/item/toy/figure/chef,
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "Dl" = (
 /obj/item/clothing/gloves/color/purple,
 /obj/item/clothing/head/soft/purple,
@@ -1362,6 +1345,21 @@
 	},
 /obj/item/stack/packageWrap,
 /turf/open/floor/mineral/titanium/purple,
+/area/crew_quarters/kitchen)
+"Ef" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/structure/table/reinforced{
+	color = "purple"
+	},
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
 "Eq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -1459,6 +1457,19 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
 	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
+"OF" = (
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/structure/table/wood,
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/obj/item/stack/sheet/glass{
+	amount = 50
+	},
+/obj/item/stack/cable_coil,
+/obj/item/toy/figure/bartender,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "Px" = (
@@ -1779,7 +1790,7 @@ ar
 ab
 "}
 (13,1,1) = {"
-ag
+OF
 au
 aK
 ba
@@ -1876,7 +1887,7 @@ aa
 "}
 (19,1,1) = {"
 ak
-ay
+CX
 aO
 bd
 br
@@ -1887,7 +1898,7 @@ Jf
 DJ
 db
 do
-bN
+mp
 aa
 "}
 (20,1,1) = {"
@@ -1903,7 +1914,7 @@ cE
 Hw
 cP
 do
-bX
+Be
 aa
 "}
 (21,1,1) = {"
@@ -1919,7 +1930,7 @@ vD
 cD
 db
 dp
-bY
+Ef
 aa
 "}
 (22,1,1) = {"
@@ -1935,7 +1946,7 @@ cc
 cD
 db
 do
-bN
+mp
 aa
 "}
 (23,1,1) = {"

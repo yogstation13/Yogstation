@@ -384,7 +384,7 @@
 		for(var/obj/item/vomitcrawl/B in C)
 			qdel(B)
 	..()
-	UnregisterSignal(enteredvomit, COMSIG_PARENT_PREQDELETED, .proc/throw_out)
+	UnregisterSignal(enteredvomit, COMSIG_PARENT_PREQDELETED)
 	enteredvomit = null
 	user.visible_message("<span class='warning'><B>[user] rises out of the pool of vomit!?</B></span>")
 	exit_vomit_effect(target, user)

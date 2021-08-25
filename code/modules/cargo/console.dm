@@ -7,7 +7,7 @@
 	var/contraband = FALSE
 	var/safety_warning = "For safety reasons, the automated supply shuttle \
 		cannot transport live organisms, human remains, classified nuclear weaponry \
-		or homing beacons."
+		or homing beacons. Additionally, remove any privately ordered crates from the shuttle."
 	var/blockade_warning = "Bluespace instability detected. Shuttle movement impossible."
 
 	light_color = "#E2853D"//orange

@@ -22,7 +22,7 @@
 	var/obj/item/twohanded/shockpaddles/paddles
 	var/obj/item/stock_parts/cell/high/cell
 	var/combat = FALSE //can we revive through space suits?
-	var/grab_ghost = FALSE // Do we pull the ghost back into their body?
+	var/grab_ghost = TRUE // Do we pull the ghost back into their body?
 
 /obj/item/defibrillator/get_cell()
 	return cell
@@ -305,7 +305,7 @@
 	var/obj/item/defibrillator/defib
 	var/req_defib = TRUE
 	var/combat = FALSE //If it penetrates armor and gives additional functionality
-	var/grab_ghost = FALSE
+	var/grab_ghost = TRUE
 	var/tlimit = DEFIB_TIME_LIMIT * 10
 
 	var/mob/listeningTo

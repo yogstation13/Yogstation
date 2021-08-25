@@ -209,6 +209,14 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"dA" = (
+/obj/machinery/atmospherics/components/binary/valve/digital{
+	dir = 4;
+	name = "Cold to Waste"
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "dD" = (
 /obj/structure/window/plasma/reinforced,
 /obj/machinery/button/ignition{
@@ -239,6 +247,24 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"ec" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -26
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "ei" = (
 /obj/structure/lattice/catwalk,
 /turf/template_noop,
@@ -263,6 +289,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"fo" = (
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "fF" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -283,6 +316,13 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
+/area/engine/engineering)
+"hN" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/obj/machinery/meter,
+/turf/open/floor/engine,
 /area/engine/engineering)
 "ia" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
@@ -388,6 +428,7 @@
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "External Gas to Cold Loop"
 	},
+/obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "lZ" = (
@@ -408,23 +449,6 @@
 "mW" = (
 /obj/machinery/atmospherics/pipe/manifold/orange/visible{
 	dir = 1
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"mZ" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -26
-	},
-/obj/machinery/light{
-	dir = 8
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -525,13 +549,6 @@
 	},
 /turf/open/floor/engine/airless,
 /area/engine/engineering)
-"qx" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "qJ" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -590,12 +607,6 @@
 	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"sf" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 4
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -752,6 +763,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"wd" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "we" = (
 /obj/structure/window/plasma/reinforced,
 /obj/structure/table,
@@ -814,13 +832,6 @@
 "xP" = (
 /obj/machinery/atmospherics/pipe/simple/dark/visible{
 	dir = 9
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"xQ" = (
-/obj/machinery/atmospherics/components/binary/valve/digital{
-	dir = 4;
-	name = "Cold to Waste"
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1710,6 +1721,14 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"WW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "Xf" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
 	dir = 4
@@ -2057,7 +2076,7 @@ ac
 ah
 Np
 lZ
-mZ
+ec
 Tc
 zp
 SQ
@@ -2090,7 +2109,7 @@ lw
 Rl
 Xf
 sY
-lw
+wd
 oK
 ad
 ei
@@ -2196,7 +2215,7 @@ dG
 ad
 Sg
 bC
-vW
+fo
 sN
 JG
 Rp
@@ -2230,7 +2249,7 @@ vI
 Md
 fb
 aQ
-xQ
+dA
 Uu
 ad
 dG
@@ -2284,7 +2303,7 @@ US
 AD
 Ji
 te
-sf
+hN
 nQ
 Dr
 xW
@@ -2511,7 +2530,7 @@ WB
 DJ
 bN
 hk
-qx
+WW
 bN
 Nc
 bb

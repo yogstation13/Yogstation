@@ -37,6 +37,10 @@
 		if(ACTION_OOC)
 			get_ooc()
 			return
+		if(ACTION_MENTORCHAT)
+			if(is_mentor(src))
+				get_mentor_say()
+			return
 		if(ACTION_LOOC)
 			get_looc()
 			return

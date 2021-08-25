@@ -10,6 +10,18 @@
 
 	possible_locs = list(BODY_ZONE_HEAD)
 
+/datum/surgery/advanced/dna_recovery/alien
+	name = "Alien DNA recovery"
+	target_mobtypes = list(/mob/living/carbon/alien/humanoid)
+	steps = list(
+		/datum/surgery_step/saw,
+		/datum/surgery_step/incise,
+		/datum/surgery_step/retract_skin,
+		/datum/surgery_step/saw,
+		/datum/surgery_step/clamp_bleeders,
+		/datum/surgery_step/dna_recovery,
+		/datum/surgery_step/close
+		)
 
 /datum/surgery/advanced/dna_recovery/can_start(mob/user, mob/living/carbon/target)
 	if(!..())

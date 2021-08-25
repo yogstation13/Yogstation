@@ -27,6 +27,10 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	name = "Tourist"
 	icon_state = "Tourist"
 
+/obj/effect/landmark/start/yogs/brigphsyician
+	name = "Brig Physician"
+	icon_state = "Brig Physician"
+
 /obj/effect/landmark/stationroom
 	var/list/template_names = list()
 	/// Whether or not we can choose templates that have already been chosen
@@ -85,10 +89,9 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	icon = 'yogstation/icons/rooms/box/bar.dmi'
 	icon_state = "bar_box"
 
-/obj/effect/landmark/stationroom/box/bar/choose()
-	. = ..()
-	if(SSevents.holidays && SSevents.holidays["St. Patrick's Day"])
-		return "Bar Irish"
+/obj/effect/landmark/stationroom/box/bar/load(template_name)
+	GLOB.stationroom_landmarks -= src
+	return TRUE
 
 /obj/effect/landmark/stationroom/box/engine
 	template_names = list("Engine SM", "Engine Singulo And Tesla", "Engine TEG")
@@ -112,8 +115,6 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		if(4)
 			return "Engine TEG"
 
-/obj/effect/landmark/stationroom/box/xenobridge
-	template_names = list("Xenobiology Bridge", "Xenobiology Lattice")
 
 /obj/effect/landmark/stationroom/box/testingsite
 	template_names = list("Bunker Bomb Range","Syndicate Bomb Range","Clown Bomb Range", "Clerk Bomb Range")

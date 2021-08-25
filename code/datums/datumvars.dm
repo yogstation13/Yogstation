@@ -643,7 +643,7 @@
 		C.debug_variables(thing)
 	// yogs start - offer control can now be used by mods
 	else if(href_list["offer_control"])
-		if(!check_rights(NONE))
+		if(!check_rights(R_ADMIN))
 			return
 
 		var/mob/M = locate(href_list["offer_control"]) in GLOB.mob_list

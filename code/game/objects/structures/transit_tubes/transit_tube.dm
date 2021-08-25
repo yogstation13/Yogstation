@@ -13,6 +13,7 @@
 	var/exit_delay = 1
 	var/enter_delay = 0
 	var/const/time_to_unwrench = 2 SECONDS
+	max_integrity = 75
 
 /obj/structure/transit_tube/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

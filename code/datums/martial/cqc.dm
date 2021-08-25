@@ -35,6 +35,7 @@
 
 /datum/martial_art/cqc/under_siege
 	name = "Close Quarters Cooking"
+	id = MARTIALART_CQC_COOK
 	just_a_cook = TRUE
 
 /datum/martial_art/cqc/can_use(mob/living/carbon/human/H) //this is used to make chef CQC only work in kitchen
@@ -51,7 +52,7 @@
   * otherwise returns false
   */
 /datum/martial_art/cqc/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!can_use(A))
+	if(!(can_use(A) || can_use(D)))
 		return FALSE
 	if(findtext(streak,SLAM_COMBO))
 		streak = ""
@@ -192,7 +193,7 @@
 
 ///CQC grab, stuns for 1.5 seconds on use
 /datum/martial_art/cqc/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(A.a_intent == INTENT_GRAB && A!=D && can_use(A)) // A!=D prevents grabbing yourself
+	if(A.a_intent == INTENT_GRAB && A!=D && (can_use(A) && can_use(D))) // A!=D prevents grabbing yourself
 		add_to_streak("G",D)
 		if(check_streak(A,D)) //if a combo is made no grab upgrade is done
 			return TRUE
@@ -206,7 +207,7 @@
 
 ///CQC harm intent, deals 15 stamina damage and immobilizes for 1.5 seconds, if the attacker is prone, they knock the defender down and stand up
 /datum/martial_art/cqc/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!can_use(A))
+	if(!(can_use(A) || can_use(D)))
 		return FALSE
 	add_to_streak("H",D)
 	if(check_streak(A,D))
@@ -234,7 +235,7 @@
 
 ///CQC disarm, 65% chance to instantly pick up the opponent's weapon and deal 5 stamina damage, also used for choke attack
 /datum/martial_art/cqc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!can_use(A))
+	if(!(can_use(A) || can_use(D)))
 		return FALSE
 	add_to_streak("D",D)
 	var/obj/item/I = null

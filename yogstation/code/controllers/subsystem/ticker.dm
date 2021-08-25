@@ -12,7 +12,7 @@
 		"https://www.youtube.com/watch?v=KaOC9danxNo", 						// David Bowie - Space Oddity (Cover by Chris Hadfield)
 		"https://www.youtube.com/watch?v=f2cGxy-ZHIs", 						// Ólafur Arnalds - So Close (feat. Arnór Dan)
 		"https://www.youtube.com/watch?v=UaD4AiqYDyA", 						// X-CEED - Flip-Flap
-		"https://www.youtube.com/watch?v=a90kqxX3jPg",						// Monster860 - Orion Trail 
+		"https://www.youtube.com/watch?v=a90kqxX3jPg",						// Monster860 - Orion Trail
 		"https://www.youtube.com/watch?v=dOtCvh-kIUM",						// Snooty Fox - Ritchie Everett
 		"https://www.youtube.com/watch?v=zKxwED8-Hws",						// Monster860 - Journey to Cygni
 		"https://www.youtube.com/watch?v=icy4-CQHVh4", 						// Joseph "Zhaytee" Toscano - Absconditus
@@ -26,11 +26,11 @@
 		"https://www.youtube.com/watch?v=WcWix770cvQ",						// Wintergatan - Local Cluster
 		"https://www.youtube.com/watch?v=w5hBQDepXOE",						// Michael Giacchino - Main Theme (STAR TREK Beyond)
 		"https://www.youtube.com/watch?v=orT5RN3Zwak",						// Kirk Franklin - Revolution
-		"https://www.youtube.com/watch?v=d2xkpz-26jM",						// Admiral Hippie - Clown.wmv
+		"https://www.youtube.com/watch?v=9whQIbNmu9s",						// Admiral Hippie - Clown.wmv
 		"https://www.youtube.com/watch?v=UlHGGKgzgzI",						// Elbow - Leaders of the Free World
 		"https://www.youtube.com/watch?v=ysPtBjY8o_A",						// Chris Christodoulou - Risk of Rain Coalescence
 		"https://www.youtube.com/watch?v=SQOdPQQf2Uo",						// Star Trek The Motion Picture: Main Theme Album Style Edit
-		"https://www.youtube.com/watch?v=NQPUMvP2fyM",						// Chris Remo - The Wizard
+		"https://www.youtube.com/watch?v=jJDAV9vSmYc",						// Chris Remo - The Wizard
 		"https://www.youtube.com/watch?v=nRjLv1L0WF8",						// Blue Oyster Cult - Sole Survivor
 		"https://www.youtube.com/watch?v=51Uw-9lNl08",						// fIREHOSE - Brave Captain
 		"https://www.youtube.com/watch?v=RnQofA9CNww",						// minomus of DOMU - Winds of Fjords
@@ -45,7 +45,9 @@
 		"https://www.youtube.com/watch?v=iZB8XXYePy0",						//The Kinks - Super Sonic Ship
 		"https://www.youtube.com/watch?v=tRcPA7Fzebw",						//David Bowie - Starman
 		"https://www.youtube.com/watch?v=FH2EgYq_NCY",						//Lou Reed - Satellite of Love
-		"https://www.youtube.com/watch?v=AumYP6Np1eI")						// Ataraxia - Deja Vu
+		"https://www.youtube.com/watch?v=zquJ6AqvVNw",						//Dungeons of Dredmor - Diggle Hell
+		"https://www.youtube.com/watch?v=cYUGOSjRs3Q",  					// Blake Robinson - Traitor's Motif
+		"https://www.youtube.com/watch?v=AumYP6Np1eI")						// Ataraxia - Deja Vuzz
 
 	selected_lobby_music = pick(songs)
 
@@ -78,7 +80,7 @@
 		if(data["title"])
 			login_music_data["title"] = data["title"]
 			login_music_data["url"] = data["url"]
-	
+
 	if(errorlevel)
 		to_chat(world, "<span class='boldwarning'>Youtube-dl failed.</span>")
 		log_world("Could not play lobby song [selected_lobby_music]: [stderr]")

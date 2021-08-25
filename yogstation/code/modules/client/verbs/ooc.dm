@@ -21,6 +21,15 @@
 		if("RetiredAdmin")
 			return "\[Retmin\]"
 
+		if("Administrator-Mainterino")
+			return "\[Admin-tainer\]"
+
+		if("Moderator-Mainterino")
+			return "\[Mod-tainer\]"
+			
+		if("Retmin-Maintainerino")
+			return "\[Retmin-tainer\]"
+
 		else
 			return "\[[C.holder.rank.name]\]"
 

@@ -10205,10 +10205,6 @@
 	opacity = 0
 	},
 /area/bluespace_locker)
-"wk" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plasteel/dark,
-/area/centcom/supplypod)
 "wl" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
@@ -22687,6 +22683,10 @@
 /obj/effect/landmark/shuttle_import,
 /turf/open/space/basic,
 /area/space)
+"VY" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/centcom/supplypod)
 "Wa" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -23449,10 +23449,6 @@
 /obj/item/teleportation_scroll,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"XK" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plasteel,
-/area/centcom/supplypod)
 "XL" = (
 /obj/machinery/door/airlock/wood,
 /turf/open/floor/wood,
@@ -23533,10 +23529,6 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/testchamber)
-"XT" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/space/basic,
-/area/centcom/supplypod)
 "XU" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
@@ -74030,7 +74022,7 @@ Yn
 NE
 NE
 NE
-XK
+VY
 aa
 aa
 aa
@@ -74287,7 +74279,7 @@ Yn
 NE
 NE
 NE
-XK
+VY
 aa
 aa
 aa
@@ -75572,7 +75564,7 @@ Yn
 NE
 NE
 NE
-XK
+VY
 aa
 aa
 aa
@@ -75829,7 +75821,7 @@ Yn
 NE
 NE
 NE
-XK
+VY
 aa
 aa
 aa
@@ -77091,8 +77083,8 @@ ZM
 qx
 qx
 qx
-XT
-XT
+VY
+VY
 Yn
 Yn
 Yn
@@ -77101,8 +77093,8 @@ Yn
 Yn
 Yn
 Yn
-wk
-wk
+VY
+VY
 Yn
 Yn
 Yn
@@ -77111,10 +77103,10 @@ Yn
 Yn
 Yn
 Yn
-XK
-XK
+VY
+VY
 Yn
-aa
+Yn
 aa
 aa
 aa

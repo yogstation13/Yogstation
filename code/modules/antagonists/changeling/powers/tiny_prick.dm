@@ -115,7 +115,7 @@
 /datum/action/changeling/sting/false_armblade
 	name = "False Armblade Sting"
 	desc = "We silently sting a human, injecting a retrovirus that mutates their arm to temporarily appear as an armblade. Costs 20 chemicals."
-	helptext = "The victim will form an armblade much like a changeling would, except the armblade is dull and useless."
+	helptext = "The victim will form an armblade much like a changeling would, except the armblade is less sharp and powerful."
 	button_icon_state = "sting_armblade"
 	sting_icon = "sting_armblade"
 	chemical_cost = 20
@@ -123,7 +123,7 @@
 
 /obj/item/melee/arm_blade/false
 	desc = "A grotesque mass of flesh that used to be your arm. On the bright side, at least you can cut wood with this."
-	force = 30 //yogs -- Prevents dual-stinging people with this sting to render them defenseless.
+	force = 20 //yogs -- worse than armblade but still not terrible
 	//daily reminder that xantam is a closet furry
 	fake = TRUE
 

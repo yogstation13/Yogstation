@@ -18,5 +18,3 @@ GLOBAL_LIST_EMPTY(powernets)
 GLOBAL_VAR_INIT(bsa_unlock, FALSE)	//BSA unlocked by head ID swipes
 
 GLOBAL_LIST_EMPTY(player_details)	// ckey -> /datum/player_details
-
-GLOBAL_VAR_INIT(internal_tick_usage, 0.2 * world.tick_lag)

@@ -613,8 +613,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	slur as if inebriated. It can produce an infinite number \
 	of bolts, but takes time to automatically recharge after each shot."
 	item = /obj/item/gun/energy/kinetic_accelerator/crossbow
-	cost = 11
+	cost = 10
 	surplus = 50
+	limited_stock = 1
 	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_weapons/origami_kit
@@ -1271,6 +1272,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	surplus = 30
 
+/datum/uplink_item/stealthy_tools/armorpolish
+	name = "Armor Polish"
+	desc = "This two use polish will strengthen clothing to be as strong as a standard-issue armor vest.  \
+			Reinforced with nanite technology, you are able to stay looking good while bashing heads in. \
+			Beware, you can only polish suits and headgear!"
+	item = /obj/item/armorpolish
+	cost = 6
+
+
+
 //Space Suits and Hardsuits
 /datum/uplink_item/suits
 	category = "Space Suits"
@@ -1372,9 +1383,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 90
 
 /datum/uplink_item/device_tools/military_belt
-	name = "Chest Rig"
-	desc = "A robust seven-slot set of webbing that is capable of holding all manner of tactical equipment."
-	item = /obj/item/storage/belt/military
+	name = "Chameleon Chest Rig"
+	desc = "A robust seven-slot set of webbing that is capable of holding all manner of tactical equipment. This one is capable of disguising itself."
+	item = /obj/item/storage/belt/chameleon/syndicate
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear)
 
@@ -1700,6 +1711,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
+/datum/uplink_item/implants/mantis_kit
+	name = "G.O.R.L.E.X.. Mantis Blades Kit"
+	desc = "Comes with 2 G.O.R.L.E.X. Mantis blades. All packaged with autosurgeons."
+	item = /obj/item/storage/briefcase/syndie_mantis
+	cost = 16
+	surplus = 0
+
 //Race-specific items
 /datum/uplink_item/race_restricted
 	category = "Species-Restricted"
@@ -1795,7 +1813,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Arm Mounted Medical Beamgun"
 	desc = "An arm mounted medical beamgun to heal your best buds (disclaimer: does not come with friends)."
 	item = /obj/item/autosurgeon/medibeam
-	restricted_roles = list("Medical Doctor", "Chief Medical Officer")
+	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Paramedic", "Mining Medic") //yogs
 	cost = 8
 	manufacturer = /datum/corporation/traitor/cybersun
 
@@ -1832,7 +1850,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A disk containing the procedure to perform a brainwashing surgery, allowing you to implant an objective onto a target. \
 	Insert into an Operating Console to enable the procedure."
 	item = /obj/item/disk/surgery/brainwashing
-	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Roboticist")
+	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Roboticist", "Mining Medic") //yogs
 	cost = 5
 	manufacturer = /datum/corporation/traitor/cybersun
 
@@ -1940,7 +1958,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 5 //you need two for full damage, so total of 10 for maximum damage
 	manufacturer = /datum/corporation/traitor/donkco // Unless you're donk co, then it's 8
 	limited_stock = 2 //you can't use more than two!
-	restricted_roles = list("Shaft Miner")
+	restricted_roles = list("Shaft Miner", "Mining Medic") //yogs
 
 /datum/uplink_item/role_restricted/magillitis_serum
 	name = "Magillitis Serum Autoinjector"

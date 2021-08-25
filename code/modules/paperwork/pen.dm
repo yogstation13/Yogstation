@@ -238,6 +238,7 @@
 /obj/item/pen/charcoal
 	name = "charcoal stylus"
 	desc = "It's just a wooden stick with some compressed ash on the end. At least it can write."
+	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "pen-charcoal"
 	colour = "dimgray"
 	font = CHARCOAL_FONT

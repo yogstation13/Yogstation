@@ -201,6 +201,7 @@
 			desc = "A delicious [cone_type] cone filled with vanilla ice cream. All the other ice creams take content from it."
 		if ("chocolate")
 			desc = "A delicious [cone_type] cone filled with chocolate ice cream. Surprisingly, made with real cocoa."
+			foodtype = DAIRY | CHOCOLATE
 			reagents.add_reagent(/datum/reagent/consumable/coco, 2)
 		if ("strawberry")
 			desc = "A delicious [cone_type] cone filled with strawberry ice cream. Definitely not made with real strawberries."

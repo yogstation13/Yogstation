@@ -134,5 +134,5 @@
 	name = "green EMT cap"
 	desc = "It's a baseball hat with a green color and a reflective cross on the top."
 	icon_state = "emtgrsoft"
-	item_color = "emt"
+	item_color = "emtgr"
 	dog_fashion = null

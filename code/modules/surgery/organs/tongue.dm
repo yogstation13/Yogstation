@@ -44,7 +44,7 @@
 	..()
 	if(say_mod && M.dna && M.dna.species)
 		M.dna.species.say_mod = initial(M.dna.species.say_mod)
-	UnregisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+	UnregisterSignal(M, COMSIG_MOB_SAY)
 	M.RegisterSignal(M, COMSIG_MOB_SAY, /mob/living/carbon/.proc/handle_tongueless_speech)
 
 /obj/item/organ/tongue/could_speak_language(language)

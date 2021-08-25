@@ -247,13 +247,13 @@
 				cooling = -rand(10,20)
 		if(25 to 35)
 			cooling = -30 * TEMPERATURE_DAMAGE_COEFFICIENT
-			if(prob(1))
+			if(prob(1) && !HAS_TRAIT(M, TRAIT_RESISTCOLD))
 				M.emote("shiver")
 			if(isslime(M))
 				cooling = -rand(15,20)
 		if(35 to INFINITY)
 			cooling = -40 * TEMPERATURE_DAMAGE_COEFFICIENT
-			if(prob(5))
+			if(prob(5) && !HAS_TRAIT(M, TRAIT_RESISTCOLD))
 				M.emote("shiver")
 			if(isslime(M))
 				cooling = -rand(20,25)
@@ -742,6 +742,15 @@
 	quality = FOOD_AMAZING
 	taste_mult = 100
 	can_synth = FALSE
+
+/datum/reagent/consumable/nutriment/peptides
+	name = "Peptides"
+	color = "#BBD4D9"
+	taste_description = "mint frosting"
+	description = "These restorative peptides not only speed up wound healing, but are nutritious as well!"
+	nutriment_factor = 10 * REAGENTS_METABOLISM // 33% less than nutriment to reduce weight gain
+	brute_heal = 3
+	burn_heal = 1
 
 /datum/reagent/consumable/caramel
 	name = "Caramel"

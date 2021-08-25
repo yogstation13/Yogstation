@@ -438,3 +438,11 @@
 	cost = 5
 	always_place = TRUE
 	allow_duplicates = TRUE
+
+/datum/map_template/ruin/lavaland/doorstuck
+	name = "Door Stuck"
+	id = "doorstuck"
+	description = "A sad tale of inability to move on."
+	suffix = "lavaland_surface_doorstuck.dmm"
+	allow_duplicates = FALSE
+	cost = 5

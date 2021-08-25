@@ -170,7 +170,8 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 	var/on_store_name = "Cryogenic Oversight"
 
 	// 5 minutes-ish safe period before being despawned.
-	var/time_till_despawn = 5 MINUTES // This is reduced to 30 seconds if a player manually enters cryo
+	var/time_till_despawn = 15 MINUTES // Time if a player gets forced into cryo
+	var/time_till_despawn_online = 30 SECONDS // Time if a player manually enters cryo
 
 	var/obj/machinery/computer/cryopod/control_computer
 	var/cooldown = FALSE
@@ -213,13 +214,15 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 		var/mob/living/mob_occupant = occupant
 		if(mob_occupant && mob_occupant.stat != DEAD)
 			to_chat(occupant, "<span class='boldnotice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
-		var/offer = alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", "Yes", "No")
-		if(offer == "Yes" && offer_control(occupant))
-			return
 		if(!occupant) //Check they still exist
 			return
 		if(mob_occupant.client)//if they're logged in
-			addtimer(VARSET_CALLBACK(src, ready, TRUE), (time_till_despawn * 0.1)) // This gives them 30 seconds
+			var/offertimer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn_online, TIMER_STOPPABLE)
+			if(alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", "Yes", "No") == "Yes")
+				deltimer(offertimer) //Player wants to offer, cancel the timer
+				if(!offer_control(occupant))
+					//Player is a jackass that noone wants the body of, restart the timer
+					addtimer(VARSET_CALLBACK(src, ready, TRUE), (time_till_despawn * 0.1))
 		else
 			addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn)
 

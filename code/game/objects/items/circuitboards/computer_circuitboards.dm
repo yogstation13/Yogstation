@@ -415,6 +415,21 @@
 	icon_state = "security"
 	build_path = /obj/machinery/computer/security
 
+/obj/item/circuitboard/computer/security/labor
+	name = "Labor Security Cameras (Computer Board)"
+	icon_state = "security"
+	build_path = /obj/machinery/computer/security/labor
+
+/obj/item/circuitboard/computer/security/hos
+	name = "HOS Security Cameras (Computer Board)"
+	icon_state = "security"
+	build_path = /obj/machinery/computer/security/hos
+
+/obj/item/circuitboard/computer/security/qm
+	name = "QM Security Cameras (Computer Board)"
+	icon_state = "supply"
+	build_path = /obj/machinery/computer/security/qm
+
 //Service
 
 //Supply

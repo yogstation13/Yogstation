@@ -155,6 +155,7 @@
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
 	item_flags = NEEDS_PERMIT | ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
+	tool_behaviour = TOOL_MINING
 	force = 25
 	throwforce = 0 //Just to be on the safe side
 	throw_range = 0
@@ -244,6 +245,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/tentacle
 	fire_sound = 'sound/effects/splat.ogg'
 	force = 0
+	checks_antimagic = FALSE
 	max_charges = 1
 	fire_delay = 1
 	throwforce = 0 //Just to be on the safe side
