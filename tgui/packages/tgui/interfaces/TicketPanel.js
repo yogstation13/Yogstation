@@ -36,47 +36,47 @@ export const TicketPanel = (props, context) => {
               level="2">
               <Button
                 icon="question"
-                enabled={data.has_mob}
+                disabled={!data.has_mob}
                 onClick={() => act('adminmoreinfo')} />
               <Button
                 icon="user"
-                enabled={data.has_mob}
+                disabled={!data.has_mob}
                 onClick={() => act('PP')}>
                 PP
               </Button>
               <Button
                 icon="cog"
-                enabled={data.has_mob}
+                disabled={!data.has_mob}
                 onClick={() => act('VV')}>
                 VV
               </Button>
               <Button
                 icon="envelope"
-                enabled={data.has_mob}
+                disabled={!data.has_mob}
                 onClick={() => act('SM')}>
                 SM
               </Button>
               <Button
                 icon="arrow-up"
-                enabled={data.has_mob}
+                disabled={!data.has_mob}
                 onClick={() => act('FLW')}>
                 FLW
               </Button>
               <Button
                 icon="fire"
-                enabled={data.has_mob}
+                disabled={!data.has_mob}
                 onClick={() => act('TP')}>
                 TP
               </Button>
               <Button
                 icon="file"
-                enabled={data.has_mob}
+                disabled={!data.has_mob}
                 onClick={() => act('Logs')}>
                 Logs
               </Button>
               <Button
                 icon="bolt"
-                enabled={data.has_mob}
+                disabled={!data.has_mob}
                 onClick={() => act('Smite')}>
                 Smite
               </Button>
@@ -97,7 +97,7 @@ export const TicketPanel = (props, context) => {
               </Button>
               <Button
                 icon="ban"
-                enabled={data.has_client}
+                disabled={!data.has_client}
                 onClick={() => act('Reject')}>
                 Reject
               </Button>
@@ -108,25 +108,25 @@ export const TicketPanel = (props, context) => {
               </Button>
               <Button
                 icon="male"
-                enabled={data.has_client}
+                disabled={!data.has_client}
                 onClick={() => act('IC')}>
                 IC
               </Button>
               <Button
                 icon="film"
-                enabled={data.has_mob}
+                disabled={!data.has_mob}
                 onClick={() => act('Wiki')}>
                 Wiki
               </Button>
               <Button
                 icon="bug"
-                enabled={data.has_mob}
+                disabled={!data.has_mob}
                 onClick={() => act('Bug')}>
                 Bug
               </Button>
               <Button
                 icon="info"
-                enabled={data.has_client}
+                disabled={!data.has_client}
                 onClick={() => act('MHelp')}>
                 MHelp
               </Button>

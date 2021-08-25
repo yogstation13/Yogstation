@@ -13,6 +13,7 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 	. = list()
 	.["unresolved_tickets"] = list()
 	.["resolved_tickets"] = list()
+	.["user_key"] = user.key
 
 	for(var/datum/admin_help/ahelp as anything in GLOB.ahelp_tickets.tickets_list)
 		var/ticket_data = list()
@@ -36,56 +37,18 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 	if(.)
 		return
 	var/datum/admin_help/ticket = tickets_list[params["id"]]
+	if(!ticket)
+		return FALSE
 
 	. = TRUE
+	if(ticket_ui_act(action, ticket))
+		return
 	switch(action)
 		if("view")
 			ticket.TicketPanel()
 			return
-		if("adminmoreinfo")
-			if(!ticket.initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
-				return
-			usr.client.holder.adminmoreinfo(ticket.initiator.mob)
-			return
-		if("PP")
-			if(!ticket.initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
-				return
-			usr.client.holder.show_player_panel(ticket.initiator.mob)
-			return
-		if("VV")
-			if(!ticket.initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
-				return
-			usr.client.debug_variables(ticket.initiator.mob)
-			return
-		if("SM")
-			if(!ticket.initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
-				return
-			usr.client.cmd_admin_subtle_message(ticket.initiator.mob)
-			return
-		if("FLW")
-			if(!ticket.initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
-				return
-			usr.client.holder.observe_follow(ticket.initiator.mob)
-			return
-		if("CA")
-			usr.client.check_antagonists()
-			return
-		if("Resolve")
-			ticket.Resolve()
-			return
-		if("Reject")
-			ticket.Reject()
-			return
-		if("Close")
-			ticket.Close()
-			return
-		if("IC")
-			ticket.ICIssue()
+		if("reply")
+			usr.client.cmd_admin_pm(ticket.initiator)
 			return
 	return FALSE
 
@@ -141,85 +104,10 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 	if(.)
 		return
 	. = TRUE
+	if(ticket_ui_act(action, src))
+		return
+
 	switch(action)
-		if("adminmoreinfo")
-			if(!initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
-				return
-			usr.client.holder.adminmoreinfo(initiator.mob)
-			return
-		if("PP")
-			if(!initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
-				return
-			usr.client.holder.show_player_panel(initiator.mob)
-			return
-		if("VV")
-			if(!initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
-				return
-			usr.client.debug_variables(initiator.mob)
-			return
-		if("SM")
-			if(!initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
-				return
-			usr.client.cmd_admin_subtle_message(initiator.mob)
-			return
-		if("FLW")
-			if(!initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
-				return
-			usr.client.holder.observe_follow(initiator.mob)
-			return
-		if("CA")
-			usr.client.check_antagonists()
-			return
-		if("Resolve")
-			Resolve()
-			return
-		if("Reject")
-			Reject()
-			return
-		if("Close")
-			Close()
-			return
-		if("IC")
-			ICIssue()
-			return
-		if("MHelp")
-			MhelpQuestion()
-			return
-		if("togglePopups")
-			PopUps()
-			return
-		if("Administer")
-			Administer()
-			return
-		if("Wiki")
-			WikiIssue()
-			return
-		if("Bug")
-			GithubIssue()
-			return
-		if("TP")
-			if(!initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
-				return
-			usr.client.holder.show_traitor_panel(initiator.mob)
-			return
-		if("Logs")
-			if(!initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
-				return
-			show_individual_logging_panel(initiator.mob)
-			return
-		if("Smite")
-			if(!initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
-				return
-			usr.client.smite(initiator.mob)
-			return
 		if("send_message")
 			var/message = params["message"]
 			if(usr.client.holder)
@@ -234,4 +122,88 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 			return
 	return FALSE
 
-
+/proc/ticket_ui_act(action, T)
+	var/datum/admin_help/ticket = T
+	if(!ticket)
+		return
+	. = TRUE
+	switch(action)
+		if("adminmoreinfo")
+			if(!ticket.initiator)
+				to_chat(usr, "<span class='warning'>Client not found</span>")
+				return
+			usr.client.holder.adminmoreinfo(ticket.initiator.mob)
+			return
+		if("PP")
+			if(!ticket.initiator)
+				to_chat(usr, "<span class='warning'>Client not found</span>")
+				return
+			usr.client.holder.show_player_panel(ticket.initiator.mob)
+			return
+		if("VV")
+			if(!ticket.initiator)
+				to_chat(usr, "<span class='warning'>Client not found</span>")
+				return
+			usr.client.debug_variables(ticket.initiator.mob)
+			return
+		if("SM")
+			if(!ticket.initiator)
+				to_chat(usr, "<span class='warning'>Client not found</span>")
+				return
+			usr.client.cmd_admin_subtle_message(ticket.initiator.mob)
+			return
+		if("FLW")
+			if(!ticket.initiator)
+				to_chat(usr, "<span class='warning'>Client not found</span>")
+				return
+			usr.client.holder.observe_follow(ticket.initiator.mob)
+			return
+		if("CA")
+			usr.client.check_antagonists()
+			return
+		if("Resolve")
+			ticket.Resolve()
+			return
+		if("Reject")
+			ticket.Reject()
+			return
+		if("Close")
+			ticket.Close()
+			return
+		if("IC")
+			ticket.ICIssue()
+			return
+		if("MHelp")
+			ticket.MhelpQuestion()
+			return
+		if("togglePopups")
+			ticket.PopUps()
+			return
+		if("Administer")
+			ticket.Administer()
+			return
+		if("Wiki")
+			ticket.WikiIssue()
+			return
+		if("Bug")
+			ticket.GithubIssue()
+			return
+		if("TP")
+			if(!ticket.initiator)
+				to_chat(usr, "<span class='warning'>Client not found</span>")
+				return
+			usr.client.holder.show_traitor_panel(ticket.initiator.mob)
+			return
+		if("Logs")
+			if(!ticket.initiator)
+				to_chat(usr, "<span class='warning'>Client not found</span>")
+				return
+			show_individual_logging_panel(ticket.initiator.mob)
+			return
+		if("Smite")
+			if(!ticket.initiator)
+				to_chat(usr, "<span class='warning'>Client not found</span>")
+				return
+			usr.client.smite(ticket.initiator.mob)
+			return
+	return FALSE
