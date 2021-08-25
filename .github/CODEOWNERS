@@ -23,6 +23,9 @@
 /code/modules/client/preferences.dm @yogstation13/head-coders
 /code/modules/client/preferences_savefile.dm @yogstation13/head-coders
 
+/code/ @yogstation13/code
+/yogstation/code/ @yogstation13/code
+
 #monster860
 
 /code/modules/atmospherics/ @monster860
