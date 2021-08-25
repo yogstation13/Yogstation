@@ -78286,6 +78286,15 @@
 /obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/plasteel,
 /area/medical/surgery)
+"nQn" = (
+/obj/structure/bed,
+/obj/item/bedsheet/captain,
+/obj/machinery/camera/motion{
+	c_tag = "Captain's Quarters";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "nSt" = (
 /obj/machinery/door/airlock/external{
 	name = "Departure Lounge Airlock"
@@ -83643,15 +83652,6 @@
 	dir = 1
 	},
 /area/engine/atmos)
-"yeQ" = (
-/obj/structure/bed,
-/obj/item/bedsheet/captain,
-/obj/machinery/camera{
-	c_tag = "Captain's Quarters";
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain/private)
 "yfM" = (
 /obj/machinery/vending/engivend,
 /obj/effect/turf_decal/delivery,
@@ -115153,7 +115153,7 @@ aVE
 aMw
 bcj
 bdN
-yeQ
+nQn
 jYH
 bjk
 pim
