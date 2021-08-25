@@ -1,0 +1,8 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - rscadd: "Bloodcult triggers gamma alert when bloodstones are triggered."
+  - rscadd: "Nuclear operatives and clock cult war ops now trigger gamma alert"
+  - rscadd: "Clock cult forced mass recall now triggers gamma alert"
+  - rscadd: "Ascending heretics, shadowlings, and darkspawn now trigger gamma alert."
+  - tweak: "Greytide won't red alert on gamma now"
