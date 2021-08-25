@@ -22,6 +22,7 @@
 
 /code/modules/client/preferences.dm @yogstation13/head-coders
 /code/modules/client/preferences_savefile.dm @yogstation13/head-coders
+/html/templates/ @yogstation13/head-coders
 
 #monster860
 
