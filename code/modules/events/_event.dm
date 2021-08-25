@@ -65,7 +65,7 @@
 	if(ispath(typepath, /datum/round_event/ghost_role) && !(GLOB.ghost_role_flags & GHOSTROLE_MIDROUND_EVENT))
 		return FALSE
 	if(GLOB.security_level >= SEC_LEVEL_GAMMA && !security_level_override)
-    return FALSE
+		return FALSE
 	if(GLOB.security_level > max_alert)
 		return FALSE
 	if(GLOB.security_level < min_alert)
