@@ -1,0 +1,4 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - tweak: "Removed Ashwalker's ability to speak common"
