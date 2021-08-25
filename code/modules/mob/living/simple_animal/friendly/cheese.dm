@@ -21,7 +21,7 @@
 	speed = 5
 	can_be_held = TRUE
 	density = FALSE
-	var/mob/living/carbon/human/stored_mob
+	var/mob/living/stored_mob
 
 /mob/living/simple_animal/cheese/Life()
 	..()
