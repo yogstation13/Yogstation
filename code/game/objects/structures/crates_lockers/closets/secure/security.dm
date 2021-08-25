@@ -290,3 +290,25 @@
 	..()
 	for(var/i in 1 to 3)
 		new /obj/item/storage/box/lethalshot(src)
+
+//Yogs Start: Brig Pysh Closet
+/obj/structure/closet/secure_closet/physician
+	name = "\improper brig physician's cabinet"
+	req_access = list(ACCESS_BRIG_PHYS)
+	icon = 'yogstation/icons/obj/closet.dmi'
+	icon_state = "physician"
+	resistance_flags = FLAMMABLE
+	max_integrity = 70
+	door_anim_time = 0
+
+/obj/structure/closet/secure_closet/physician/PopulateContents()
+	..()
+	new /obj/item/storage/backpack/duffelbag/sec/physician/clothing(src)
+	new /obj/item/cartridge/medical(src)
+	new /obj/item/radio/headset/headset_medsec(src)
+	new /obj/item/storage/belt/medical(src)
+	new /obj/item/pinpointer/crew(src)
+	new /obj/item/sensor_device(src)
+	new /obj/item/storage/box/bodybags(src)
+	new /obj/item/tank/internals/anesthetic(src)
+	new /obj/item/clothing/mask/breath/medical(src)
