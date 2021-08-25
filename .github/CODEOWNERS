@@ -33,8 +33,6 @@
 
 #Art stuff
 
-/code/controllers/subsystem/ticker.dm @yogstation13/art
-/yogstation/code/controllers/subsystem/ticker.dm @yogstation13/art
 /code/modules/holidays/holidays.dm
 /yogstation/code/modules/holidays/holidays.dm
 
