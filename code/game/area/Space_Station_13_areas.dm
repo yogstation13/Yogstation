@@ -310,6 +310,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/crew_quarters/heads
 	airlock_wires = /datum/wires/airlock/command
+	clockwork_warp_allowed = FALSE
 
 /area/crew_quarters/heads/captain
 	name = "Captain's Office"
