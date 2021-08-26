@@ -1,0 +1,6 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - rscadd: "Adds new racial languages for Moths, Plasmamen, and Ethereans, so that spacemen of all kinds have their own racial language"
+  - tweak: "tweaked how the sheltered trait determines if the trait holder needs Space Japanese to a cleaner method than an unbelievably thicc if-statement"
+  - imageadd: "added icons for Etherean, Sylvan, and Bonespeak"

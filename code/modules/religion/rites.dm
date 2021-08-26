@@ -367,6 +367,18 @@
 	human2plant.visible_message("<span class='notice'>[human2plant] has been converted by the rite of [name]!</span>")
 	return TRUE
 
+/datum/religion_rites/photogeist
+	name = "Summon Photogeist"
+	desc = "Summons forth a holy photogeist that can heal fellow plant-like creatures. Note, it will be dormant till a ghost inhabits it, and it only understands Sylvan."
+	ritual_length = 15 SECONDS
+	invoke_msg = "please, great kudzu, give us an angel to watch over us."
+	favor_cost = 150
+
+/datum/religion_rites/photogeist/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	new /obj/effect/mob_spawn/photogeist(altar_turf)
+	return TRUE
+
 /*********Old Ones**********/
 
 /datum/religion_rites/ruinousknife
@@ -471,4 +483,3 @@
 		return FALSE
 	human2ruinous.set_species(/datum/species/golem/ruinous)
 	human2ruinous.visible_message("<span class='notice'>[human2ruinous] has been converted by the rite of [name]!</span>")
-	return TRUE

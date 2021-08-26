@@ -143,7 +143,7 @@
 	            ACCESS_THEATRE, ACCESS_RESEARCH, ACCESS_MINING, ACCESS_MAILSORTING, ACCESS_WEAPONS,
 				ACCESS_MECH_MINING, ACCESS_MECH_ENGINE, ACCESS_MECH_SCIENCE, ACCESS_MECH_SECURITY, ACCESS_MECH_MEDICAL,
 	            ACCESS_VAULT, ACCESS_MINING_STATION, ACCESS_XENOBIOLOGY, ACCESS_CE, ACCESS_HOP, ACCESS_HOS, ACCESS_RC_ANNOUNCE,
-	            ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_GATEWAY, ACCESS_MINERAL_STOREROOM, ACCESS_MINISAT, ACCESS_NETWORK, ACCESS_CLONING, ACCESS_TCOM_ADMIN, ACCESS_PARAMEDIC, ACCESS_MANUFACTURING) //YOGS - yogs jobs
+	            ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_GATEWAY, ACCESS_MINERAL_STOREROOM, ACCESS_MINISAT, ACCESS_NETWORK, ACCESS_CLONING, ACCESS_TCOM_ADMIN, ACCESS_PARAMEDIC, ACCESS_MANUFACTURING, ACCESS_BRIG_PHYS) //YOGS - yogs jobs
 
 /// Gets all centcom accesses
 /proc/get_all_centcom_access()
@@ -181,7 +181,7 @@
 		if(2) //security
 			return list(ACCESS_SEC_DOORS, ACCESS_WEAPONS, ACCESS_SECURITY, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, ACCESS_COURT, ACCESS_MECH_SECURITY, ACCESS_HOS)
 		if(3) //medbay
-			return list(ACCESS_MEDICAL, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_MORGUE, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_SURGERY, ACCESS_MECH_MEDICAL, ACCESS_CMO, ACCESS_PARAMEDIC) // yogs - Yog jobs
+			return list(ACCESS_MEDICAL, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_MORGUE, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_SURGERY, ACCESS_MECH_MEDICAL, ACCESS_CMO, ACCESS_PARAMEDIC, ACCESS_BRIG_PHYS) // yogs - Yog jobs
 		if(4) //research
 			return list(ACCESS_RESEARCH, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_GENETICS, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_MECH_SCIENCE, ACCESS_MINISAT, ACCESS_RD, ACCESS_NETWORK, ACCESS_AI_UPLOAD)
 		if(5) //engineering and maintenance
@@ -351,6 +351,8 @@
 			return "Tcomms Admin"
 		if(ACCESS_MANUFACTURING)
 			return "Clerk"
+		if(ACCESS_BRIG_PHYS)
+			return "Brig Physician"
 		// yogs end
 
 /// Get descriptions for centcom accesses
@@ -382,7 +384,7 @@
 				"Atmospheric Technician", "Chief Medical Officer", "Medical Doctor", "Chemist", "Geneticist", "Virologist",
 				// yogs start - Yog jobs
 				"Research Director", "Scientist", "Roboticist", "Head of Security", "Warden", "Detective", "Security Officer",
-				"Signal Technician", "Mining Medic", "Paramedic", "Psychiatrist", "Clerk", "Tourist", "Space Bartender", "Artist")
+				"Signal Technician", "Mining Medic", "Paramedic", "Psychiatrist", "Clerk", "Tourist", "Space Bartender", "Artist", "Brig Physician")
 				// yogs end
 
 /// Gets all jobs with hud icons

@@ -1,5 +1,7 @@
 #define PERF_BASE_DAMAGE		0.5
 #define REAGENT_REVIVE_MINIMUM_HEALTH (HEALTH_THRESHOLD_CRIT + 20)
+/// Required strange reagent for revival.
+#define REQUIRED_STRANGE_REAGENT_FOR_REVIVAL 10 ///Adam Sucks
 
 /////////////////////////////////////////////////////////////////////////////////////////
 					// MEDICINE REAGENTS
@@ -844,6 +846,9 @@
 	taste_description = "magnets"
 
 /datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+	var/datum/reagent/S = M.reagents.get_reagent(/datum/reagent/medicine/strange_reagent)
+	if((S?.volume + reac_volume) < REQUIRED_STRANGE_REAGENT_FOR_REVIVAL)
+		return ..()
 	if(M.stat == DEAD)
 		if(M.suiciding || M.hellbound) //they are never coming back
 			M.visible_message("<span class='warning'>[M]'s body does not react...</span>")
@@ -866,9 +871,9 @@
 					O.setOrganDamage(0)
 			M.adjustBruteLoss(-100)
 			M.adjustFireLoss(-100)
-			M.adjustOxyLoss(-20, 0)
-			M.adjustToxLoss(-20, 0)
-			M.adjustCloneLoss(max(M.health - REAGENT_REVIVE_MINIMUM_HEALTH - M.getCloneLoss() - M.getOxyLoss() - M.getToxLoss(), 0))
+			M.adjustOxyLoss(-200, 0)
+			M.adjustToxLoss(-200, 0)
+			M.adjustCloneLoss(max(REAGENT_REVIVE_MINIMUM_HEALTH - M.getCloneLoss(), 0))
 			M.updatehealth()
 			if(M.revive())
 				M.emote("gasp")
@@ -1671,3 +1676,4 @@
 
 #undef PERF_BASE_DAMAGE
 #undef REAGENT_REVIVE_MINIMUM_HEALTH
+#undef REQUIRED_STRANGE_REAGENT_FOR_REVIVAL
