@@ -1,0 +1,4 @@
+author: "jc-denthead"
+delete-after: true 
+changes: 
+  - spellcheck: "fixes an \"ermegency\" typo in the hugbox engine"
