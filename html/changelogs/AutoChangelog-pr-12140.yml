@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - bugfix: "fixed badmins being able to put in naughty values"
