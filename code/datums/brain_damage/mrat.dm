@@ -90,14 +90,14 @@
 			SEND_SOUND(owner, sound('sound/machines/uplinkpurchase.ogg'))
 			SEND_SOUND(src, sound('sound/machines/uplinkpurchase.ogg'))
 		if("Hologram")
-			SEND_SOUND(owner, sound('sound/machines/ping.ogg'))
-			SEND_SOUND(src, sound('sound/machines/ping.ogg'))
+			SEND_SOUND(owner, sound('sound/machines/ping.ogg', volume = 50))
+			SEND_SOUND(src, sound('sound/machines/ping.ogg', volume = 50))
 		if("Spaceman")
-			SEND_SOUND(owner, sound('sound/machines/buzz-sigh.ogg'))
-			SEND_SOUND(src, sound('sound/machines/buzz-sigh.ogg'))
+			SEND_SOUND(owner, sound('sound/machines/buzz-sigh.ogg', volume = 50))
+			SEND_SOUND(src, sound('sound/machines/buzz-sigh.ogg', volume = 50))
 		if("Cheese")
-			SEND_SOUND(owner, sound('sound/misc/soggy.ogg'))
-			SEND_SOUND(src, sound('sound/misc/soggy.ogg'))
+			SEND_SOUND(owner, sound('sound/misc/soggy.ogg', volume = 50))
+			SEND_SOUND(src, sound('sound/misc/soggy.ogg', volume = 50))
 
 /mob/camera/imaginary_friend/mrat/greet()
 	to_chat(src, "<span class='notice'><b>You are the mentor rat of [owner]!</b></span>")
@@ -111,6 +111,7 @@
 	costume.Grant(src)
 	leave = new
 	leave.Grant(src)
+	grant_all_languages()
 
 /mob/camera/imaginary_friend/mrat/setup_friend()
 	human_image = null

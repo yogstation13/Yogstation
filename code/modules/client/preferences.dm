@@ -47,6 +47,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/show_credits = TRUE
 	var/uses_glasses_colour = 0
 
+	var/list/player_alt_titles = new()
+
 	///Whether emotes will be displayed on runechat. Requires chat_on_map to have effect. Boolean.
 	var/see_rc_emotes = TRUE
 
@@ -111,10 +113,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/uplink_spawn_loc = UPLINK_PDA
 
-	var/skillcape = 1
+	var/skillcape = 1 /// Old skillcape value
+	var/skillcape_id = "None" /// Typepath of selected skillcape, null for none
 
 	var/map = 1
 	var/flare = 1
+
+	var/bar_choice = "Random"
 
 	var/list/exp = list()
 	var/list/menuoptions
@@ -595,9 +600,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
-			dat += "<b>Skillcape:</b> <a href='?_src_=prefs;task=input;preference=skillcape'>[(skillcape != 1) ? "[GLOB.skillcapes[skillcape]]" : "none"] </a><br>"
+			dat += "<b>Skillcape:</b> <a href='?_src_=prefs;task=input;preference=skillcape'>[(skillcape_id != "None") ? "[GLOB.skillcapes[skillcape_id]]" : "None"] </a><br>"
 			dat += "<b>Flare:</b> <a href='?_src_=prefs;task=input;preference=flare'>[flare ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Map:</b> <a href='?_src_=prefs;task=input;preference=map'>[map ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>Preferred Box Bar:</b> <a href='?_src_=prefs;task=input;preference=bar_choice'>[bar_choice]</a><br>"
 			dat += "<br>"
 			dat += "<b>Ghost Ears:</b> <a href='?_src_=prefs;preference=ghost_ears'>[(chat_toggles & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</a><br>"
 			dat += "<b>Ghost Radio:</b> <a href='?_src_=prefs;preference=ghost_radio'>[(chat_toggles & CHAT_GHOSTRADIO) ? "All Messages":"No Messages"]</a><br>"
@@ -817,7 +823,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Purrbation (Humans only)</b> "
 				dat += "<a href='?_src_=prefs;preference=donor;task=purrbation'>[purrbation ? "Yes" : "No"]</a><BR>"
 			else
-				dat += "<b><a href='http://www.yogstation.net/index.php?do=donate'>Donate here</b>"
+				dat += "<b><a href='http://www.yogstation.net/donate'>Donate here</b>"
 			dat += "</tr></table>"
 		// yogs end
 
@@ -973,10 +979,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				HTML += "<font color=blue>[rank]</font></td><td><font color=blue><b> \[QUIET\]</b></font></td></tr>"
 				continue
 			// yogs end
-			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
-				HTML += "<b><span class='dark'>[rank]</span></b>"
+
+			var/rank_display
+			if(job.alt_titles)
+				rank_display = "<a class='white' href='?_src_=prefs;preference=job;task=alt_title;job=[rank]'>[GetPlayerAltTitle(job)]</a>"
 			else
-				HTML += "<span class='dark'>[rank]</span>"
+				rank_display = "<span class='dark'>[rank]</span>"
+
+			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
+				HTML += "<b>[rank_display]</b>"
+			else
+				HTML += rank_display
 
 			HTML += "</td><td width='40%'>"
 
@@ -1038,6 +1051,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	popup.set_window_options("can_close=0")
 	popup.set_content(HTML)
 	popup.open(FALSE)
+
+/datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
+	return player_alt_titles.Find(job.title) > 0 \
+		? player_alt_titles[job.title] \
+		: job.title
+
+/datum/preferences/proc/SetPlayerAltTitle(datum/job/job, new_title)
+	// remove existing entry
+	if(player_alt_titles.Find(job.title))
+		player_alt_titles -= job.title
+	// add one if it's not default
+	if(job.title != new_title)
+		player_alt_titles[job.title] = new_title
 
 /datum/preferences/proc/SetJobPreferenceLevel(datum/job/job, level)
 	if (!job)
@@ -1186,7 +1212,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("quiet_round")
 					yogtoggles ^= QUIET_ROUND
 				if("pda")
-					donor_pda = donor_pda % ++GLOB.donor_pdas.len
+					donor_pda = (donor_pda % GLOB.donor_pdas.len) + 1
 				if("purrbation")
 					purrbation = !purrbation
 		else
@@ -1228,6 +1254,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(BERANDOMJOB)
 						joblessrole = RETURNTOLOBBY
 				SetChoices(user)
+			if ("alt_title")
+				var/datum/job/job = SSjob.GetJob(href_list["job"])
+				if (job)
+					var/choices = list(job.title) + job.alt_titles
+					var/choice = input("Pick a title for [job.title].", "Character Generation", GetPlayerAltTitle(job)) as anything in choices | null
+					if(choice)
+						SetPlayerAltTitle(job, choice)
+						SetChoices(user)
 			if("setJobLevel")
 				UpdateJobPreference(user, href_list["text"], text2num(href_list["level"]))
 			else
@@ -1686,29 +1720,38 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						pda_color = pickedPDAColor
 				if("skillcape")
 					var/list/selectablecapes = list()
-					for(var/datum/skillcape/A in GLOB.skillcapes)
+					var/max_eligable = TRUE
+					for(var/id in GLOB.skillcapes)
+						var/datum/skillcape/A = GLOB.skillcapes[id]
+						if(!A.job)
+							continue
 						if(user.client.prefs.exp[A.job] >= A.minutes)
-							if(!A.special)
-								selectablecapes += A
-						if(A.special) //check for special capes
-							if(A.capetype == "max")
-								if(selectablecapes.len >= 72) //72 is the amount of job skillcapes, including trimmed.
-									selectablecapes += A
+							selectablecapes += A
+						else
+							max_eligable = FALSE
+					if(max_eligable)
+						selectablecapes += GLOB.skillcapes["max"]
+
 					if(!selectablecapes.len)
 						to_chat(user, "You have no availiable skillcapes!")
 						return
-					var/pickedskillcape = input(user, "Choose your Skillcape.", "Character Preference", skillcape) as null|anything in selectablecapes
-					var/count = 1
-					for(var/A in GLOB.skillcapes)
-						if(A == pickedskillcape)
-							break
-						count++
-					if(pickedskillcape)
-						skillcape = count //im saving it as an int
+					var/pickedskillcape = input(user, "Choose your Skillcape.", "Character Preference") as null|anything in (list("None") + selectablecapes)
+					if(!pickedskillcape)
+						return
+					if(pickedskillcape == "None")
+						skillcape_id = "None"
+					else
+						var/datum/skillcape/cape = pickedskillcape
+						skillcape_id = cape.id
 				if("flare")
 					flare = !flare
 				if("map")
 					map = !map
+				if("bar_choice")
+					var/list/selectablebars = GLOB.potential_box_bars
+					selectablebars += "Random"
+					var/pickedbar = input(user, "Choose your bar.", "Character Preference", bar_choice) as null|anything in GLOB.potential_box_bars
+					bar_choice = pickedbar
 				if ("max_chat_length")
 					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
 					if (!isnull(desiredlength))
