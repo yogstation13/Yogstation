@@ -156,10 +156,9 @@
 		attached_accessory.detach(src, user)
 		if(user.put_in_hands(A) && !forced)
 			to_chat(user, "<span class='notice'>You detach [A] from [src].</span>")
-		else if(!forced)
-			to_chat(user, "<span class='notice'>You detach [A] from [src] and it falls on the floor.</span>")
 		else
-			attached_accessory.forceMove(get_turf(src))
+			to_chat(user, "<span class='notice'>You detach [A] from [src] and it falls on the floor.</span>")
+			A.forceMove(get_turf(src))
 		
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
