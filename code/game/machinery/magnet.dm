@@ -181,6 +181,11 @@
 					continue
 				step_towards(S, center)
 
+		if(electricity_level > 12)
+			electricity_level = 12
+		else if(electricity_level < 1)
+			electricity_level = 1
+
 		use_power(electricity_level * 5)
 		sleep(13 - electricity_level)
 
@@ -359,6 +364,12 @@
 		// Broadcast the signal
 		spawn()
 			radio_connection.post_signal(src, signal, filter = RADIO_MAGNETS)
+
+		// Code to catch shitminnery
+		if(speed > 10)
+			speed = 10
+		else if(speed < 1)
+			speed = 1
 
 		if(speed == 10)
 			sleep(1)
