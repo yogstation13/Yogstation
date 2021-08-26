@@ -103,7 +103,7 @@
 		return
 
 	var/atom/loc = get_turf(usr)
-	message_admins("[key_name_admin(usr)] teleported [ADMIN_LOOKUPFLW(M)] to [ADMIN_VERBOSEJMP(loc)]"
+	message_admins("[key_name_admin(usr)] teleported [ADMIN_LOOKUPFLW(M)] to [ADMIN_VERBOSEJMP(loc)]")
 	var/msg = "[key_name(usr)] teleported [key_name(M)] to [AREACOORD(loc)]"
 	log_admin(msg)
 	admin_ticket_log(M, msg)
