@@ -512,7 +512,7 @@
 	..()
 	switch(build_step)
 		if(ASSEMBLY_FIRST_STEP)
-			if(istype(I, /obj/item/tank/internals))
+			if(istype(I, /obj/item/grenade/chem_grenade/smart_metal_foam))
 				if(!user.temporarilyRemoveItemFromInventory(I))
 					return
 				to_chat(user,"<span class='notice'>You add the [I] to [src]!</span>")

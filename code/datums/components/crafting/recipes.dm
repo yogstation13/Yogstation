@@ -254,7 +254,7 @@
 	reqs = list(/obj/item/analyzer = 1,
 				/obj/item/bodypart/r_arm/robot = 1,
 				/obj/item/assembly/prox_sensor = 1,
-				/obj/item/tank/internals = 1)
+				/obj/item/grenade/chem_grenade/smart_metal_foam = 1)
 	time = 6 SECONDS
 	category = CAT_ROBOT
 
