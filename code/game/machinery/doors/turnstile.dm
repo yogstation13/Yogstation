@@ -39,7 +39,7 @@
 	//Sec can drag you out unceremoniously.
 	if(!allowed && mover.pulledby)
 		allowed = allowed(mover.pulledby)
-	if(get_dir(loc, target) == dir || allowed) //Make sure looking at appropriate border
+	if(get_dir(mover.loc, target) == dir || allowed) //Make sure looking at appropriate border
 		flick("operate", src)
 		playsound(src,'sound/items/ratchet.ogg',50,0,3)
 		return TRUE
