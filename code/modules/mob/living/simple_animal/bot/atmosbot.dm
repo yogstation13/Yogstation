@@ -100,10 +100,8 @@
 					path = list()
 					return
 			//Do foam here
-			if(ATMOSBOT_DEPLOY_FOAM)
-				deploy_smartmetal()
-				target = get_vent_turf()
-			return
+			deploy_smartmetal()
+			
 
 		if(!LAZYLEN(path))
 			var/turf/target_turf = get_turf(target)
@@ -141,19 +139,6 @@
 	var/oxygen_moles = gas_mix.get_moles(/datum/gas/oxygen) * partial_pressure
 	if(oxygen_moles < 20 || gas_mix.return_pressure() < WARNING_LOW_PRESSURE)
 		return ATMOSBOT_LOW_OXYGEN
-
-/mob/living/simple_animal/bot/atmosbot/proc/get_vent_turf()
-	var/turf/target_turf = get_turf(src)
-	var/blocked = FALSE
-	for(var/obj/structure/holosign/barrier/atmos/A in target_turf)
-		blocked = TRUE
-		break
-	if(!target_turf.CanAtmosPass(target_turf) || blocked)
-		//Pressumable from being inside a holobarrier, move somewhere nearby
-		var/turf/open/floor/floor_turf = pick(view(3, src))
-		if(floor_turf && istype(floor_turf))
-			target_turf = floor_turf
-	return target_turf
 
 //Returns the closest turf that needs a holoprojection set up
 /mob/living/simple_animal/bot/atmosbot/proc/return_nearest_breach()
