@@ -30,7 +30,8 @@
 /obj/machinery/turnstile/CanAtmosPass(turf/T)
 	return TRUE
 
-/obj/machinery/turnstile/Cross(atom/movable/mover, turf/target)
+/obj/machinery/turnstile/Cross(atom/movable/mover)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return TRUE
 	if(!isliving(mover))
@@ -39,7 +40,8 @@
 	//Sec can drag you out unceremoniously.
 	if(!allowed && mover.pulledby)
 		allowed = allowed(mover.pulledby)
-	if(get_dir(mover.loc, target) == dir || allowed) //Make sure looking at appropriate border
+
+	if(get_dir(loc, mover.loc) == dir || allowed) //Make sure looking at appropriate border, loc is first so the turnstyle faces the mover
 		flick("operate", src)
 		playsound(src,'sound/items/ratchet.ogg',50,0,3)
 		return TRUE
