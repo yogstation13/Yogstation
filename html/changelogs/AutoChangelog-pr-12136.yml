@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "SR now heals all oxy and toxin damage"
-  - bugfix: "SR now properly deals up to 80 clone damage on use"

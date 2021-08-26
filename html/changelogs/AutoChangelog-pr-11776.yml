@@ -1,6 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - rscadd: "Added the Brig Physician as a new job"
-  - tweak: "Tweaked the infirmary in the brig in multiple maps"
-  - tweak: "Mining medics now start with their jackets, have a custom PDA color, and have their own hat"
