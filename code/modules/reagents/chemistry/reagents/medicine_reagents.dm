@@ -872,7 +872,7 @@
 			M.adjustBruteLoss(-100)
 			M.adjustFireLoss(-100)
 			M.adjustOxyLoss(-200, 0)
-			M.adjustToxLoss(-200, 0)
+			M.adjustToxLoss(-200, 0, TRUE)
 			M.adjustCloneLoss(max(REAGENT_REVIVE_MINIMUM_HEALTH - M.getCloneLoss(), 0))
 			M.updatehealth()
 			if(M.revive())
