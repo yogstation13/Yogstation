@@ -20,9 +20,6 @@
 		/datum/language/aphasia,
 		/datum/language/piratespeak,
 		/datum/language/sylvan,
-		/datum/language/bonespeak,
-		/datum/language/mothian,
-		/datum/language/etherean,
 		/datum/language/japanese,
 		/datum/language/machine, //yogs
 		/datum/language/darkspawn, //also yogs
