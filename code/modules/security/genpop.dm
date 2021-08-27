@@ -96,23 +96,43 @@
 	var/desired_name = null
 	var/obj/item/radio/Radio //needed to send messages to sec radio
 	//Preset crimes that you can set, without having to remember times
-	var/static/list/crimes = list(
-		list(name="Petty Theft", tooltip="To take items from areas one does not have access to or to take items belonging to others or the station as a whole.", colour="good",icon="car-crash",sentence="1"),
-		list(name="Vandalism (Cosmetic)", tooltip="To deliberately vandalize the station.", colour="good",icon="car-crash",sentence="1"),
-		list(name="Resisting Arrest", tooltip="To not cooperate with an officer who attempts a proper arrest.", colour="good",icon="car-crash",sentence="1"),
-		list(name="Drug Possession", tooltip="To possess space drugs or other narcotics by unauthorized personnel.", colour="good",icon="car-crash",sentence="1"),
-		list(name="Indecent Exposure", tooltip="To be intentionally and publicly unclothed.", colour="good",icon="car-crash",sentence="1"),
-		list(name="Trespass", tooltip="To be in an area which a person does not have access to. This counts for general areas of the ship, and trespass in restricted areas is a more serious crime.", colour="good",icon="car-crash",sentence="1"),
+	var/static/list/crimespetty = list(
+		list(name="Petty Theft", tooltip="To take items from areas one does not have access to or to take items belonging to others or the station as a whole.", colour="yellow",icon="car-crash",sentence="1"),
+		list(name="Vandalism (Cosmetic)", tooltip="To deliberately vandalize the station.", colour="yellow",icon="car-crash",sentence="1"),
+		list(name="Resisting Arrest", tooltip="To not cooperate with an officer who attempts a proper arrest.", colour="yellow",icon="car-crash",sentence="1"),
+		list(name="Drug Possession", tooltip="To possess space drugs or other narcotics by unauthorized personnel.", colour="yellow",icon="car-crash",sentence="1"),
+		list(name="Indecent Exposure", tooltip="To be intentionally and publicly unclothed.", colour="yellow",icon="car-crash",sentence="1"),
+		list(name="Trespass", tooltip="To be in an area which a person does not have access to. This counts for general areas of the ship, and trespass in restricted areas is a more serious crime.", colour="yellow",icon="car-crash",sentence="1")
+	)
+	var/static/list/crimesminor = list(
 		list(name="Vandalism (Destructive)", tooltip="To deliberately damage the station without malicious intent.", colour="average",icon="first-aid",sentence="3"),
 		list(name="Narcotics Distribution", tooltip="To distribute narcotics and other controlled substances.", colour="average",icon="first-aid",sentence="3"),
 		list(name="Possession of a Weapon", tooltip="To be in possession of a dangerous item that is not part of their job role.", colour="average",icon="first-aid",sentence="3"),
 		list(name="Possession, Contraband", tooltip="To be in possession of illegal or prohibited goods.", colour="average",icon="first-aid",sentence="3"),
-		list(name="Assault", tooltip="To use physical force against someone without the apparent intent to kill them.", colour="average",icon="fist-raised",sentence="3"),
+		list(name="Assault", tooltip="To use physical force against someone without the apparent intent to kill them.", colour="average",icon="fist-raised",sentence="3")
+	)
+	var/static/list/crimesmoderate = list(
 		list(name="Theft", tooltip="To steal restricted or dangerous items",colour="average",icon="bomb",sentence="5"),
 		list(name="Rioting", tooltip="To partake in an unauthorized and disruptive assembly of crewmen that refuse to disperse.",colour="average",icon="bomb",sentence="5"),
 		list(name="Creating a workplace hazard", tooltip="To endanger the crew or station through negligent or irresponsible, but not deliberately malicious, actions.",colour="average",icon="bomb",sentence="5"),
 		list(name="Breaking and Entry", tooltip="Forced entry to areas where the subject does not have access to. This counts for general areas, and breaking into restricted areas is a more serious crime.",colour="average",icon="bomb",sentence="5"),
-		list(name="Insubordination", tooltip="To disobey a lawful direct order from one's superior officer.",colour="average",icon="bomb",sentence="5"),
+		list(name="Insubordination", tooltip="To disobey a lawful direct order from one's superior officer.",colour="average",icon="bomb",sentence="5")
+	)
+	var/static/list/crimesmajor = list(
+		list(name="Assault, Officer", tooltip="To use physical force against a Department Head or member of Security without the apparent intent to kill them.",colour="bad",icon="bomb",sentence="7"),
+		list(name="Possession, restricted weapon", tooltip="To be in possession of a restricted weapon without prior authorization, such as guns, batons, flashes, grenades, etc.",colour="bad",icon="bomb",sentence="7"),
+		list(name="Possession, Explosives", tooltip="To be in possession of an explosive device.",colour="bad",icon="bomb",sentence="7"),
+		list(name="Inciting a Riot", tooltip="To attempt to stir the crew into a riot",colour="bad",icon="bomb",sentence="7"),
+		list(name="Sabotage", tooltip="To hinder the work of the crew or station through malicious actions.",colour="bad",icon="bomb",sentence="7"),
+		list(name="Major Trespass", tooltip="Being in a restricted area without prior authorization. This includes any Security Area, Command area (including EVA), The Engine Room, Atmos, or Toxins Research.",colour="bad",icon="bomb",sentence="7")
+	)
+	var/static/list/crimessevere = list(
+		list(name="Assault With a Deadly Weapon", tooltip="	To use physical force, through a deadly weapon, against someone without the apparent intent to kill them.",colour="bad",icon="bomb",sentence="10"),
+		list(name="Manslaughter", tooltip="To unintentionally kill someone through negligent, but not malicious, actions.",colour="bad",icon="bomb",sentence="10"),
+		list(name="Possession, Syndicate Contraband", tooltip="To be in unauthorized possession of syndicate or other PTE technology.",colour="bad",icon="bomb",sentence="10"),
+		list(name="Embezzlement", tooltip="To misuse a security or command position to steal money from the crew.",colour="bad",icon="bomb",sentence="10"),
+		list(name="B&E of a Restricted Area", tooltip="This is breaking into any Security area, Command area (Bridge, EVA, Captains Quarters, Teleporter, etc.), the Engine Room, Atmos, or Toxins research.",colour="bad",icon="bomb",sentence="10"),
+		list(name="Dereliction of Duty", tooltip="To willfully abandon an obligation that is critical to the station's continued operation.",colour="bad",icon="bomb",sentence="10")
 	)
 
 /obj/item/circuitboard/machine/genpop_interface
@@ -160,7 +180,11 @@
 	data["desired_crime"] = desired_crime
 	data["sentence"] = desired_sentence
 	data["canPrint"] = world.time >= next_print
-	data["allCrimes"] = crimes
+	data["pettyCrimes"] = crimespetty
+	data["minorCrimes"] = crimesminor
+	data["moderateCrimes"] = crimesmoderate
+	data["majorCrimes"] = crimesmajor
+	data["severeCrimes"] = crimessevere
 	var/list/L = data["allPrisoners"]
 	for(var/obj/item/card/id/genpop/ID in GLOB.prisoner_ids)
 		var/list/id_info = list()
