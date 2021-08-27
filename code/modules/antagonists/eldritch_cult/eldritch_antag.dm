@@ -223,9 +223,11 @@
 	if(!initialized_knowledge.tier == TIER_NONE && knowledge_tier != TIER_ASCEND)
 		if(IS_EXCLUSIVE_KNOWLEDGE(initialized_knowledge))
 			knowledge_tier++
+			to_chat(owner, "<span class='cultbold'>Your new knowledge brings you a breakthrough! you are now able to research a new group of subjects.</span>")
 		else if(initialized_knowledge.tier == knowledge_tier && ++tier_counter == 3)
 			knowledge_tier++
 			tier_counter = 0
+			to_chat(owner, "<span class='cultbold'>Your studies are bearing fruit, you are on the edge of a breakthrough...</span>")
 	return TRUE
 
 /datum/antagonist/heretic/proc/get_researchable_knowledge()
