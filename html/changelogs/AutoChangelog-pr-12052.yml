@@ -1,4 +1,0 @@
-author: "alexkar598"
-delete-after: true 
-changes: 
-  - rscadd: "Splits space adaptation into two mutations: Space adaptation and Heat adaptation."
