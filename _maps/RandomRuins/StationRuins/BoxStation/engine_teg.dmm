@@ -187,6 +187,12 @@
 	},
 /turf/template_noop,
 /area/space/nearstation)
+"cI" = (
+/obj/machinery/atmospherics/pipe/manifold/orange/visible{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "cL" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 5
@@ -513,6 +519,16 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /turf/template_noop,
 /area/space/nearstation)
+"oD" = (
+/obj/effect/turf_decal/trimline/red/filled/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/thermomachine/heater{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "oK" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/airalarm{
@@ -981,13 +997,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"AD" = (
-/obj/effect/turf_decal/trimline/red/filled/corner{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "Bf" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -1070,12 +1079,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"EE" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 1
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -2300,7 +2303,7 @@ Zn
 MF
 DR
 US
-AD
+oD
 Ji
 te
 hN
@@ -2328,7 +2331,7 @@ ad
 Ar
 bC
 Bh
-EE
+cI
 PV
 pP
 Ic
