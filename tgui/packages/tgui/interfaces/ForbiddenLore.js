@@ -34,7 +34,7 @@ export const ForbiddenLore = (props, context) => {
                   <Button
                     content={knowledge.state}
                     disabled={knowledge.disabled}
-                    color = {knowledge.progression ? 'green' : 'blue'}
+                    color={knowledge.progression ? 'green' : 'blue'}
                     onClick={() => act('research', {
                       name: knowledge.name,
                       cost: knowledge.cost,
