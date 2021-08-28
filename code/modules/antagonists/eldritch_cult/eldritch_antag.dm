@@ -11,6 +11,18 @@
 	var/total_sacrifices = 0
 	var/ascended = FALSE
 	var/charge = 1
+///current tier of knowledge this heretic is on, each level unlocks new knowledge bits
+	var/knowledge_tier = TIER_PATH //oh boy this is going to be fun
+///tracks the number of knowledges to next tier, currently 3
+	var/tier_counter = 0
+///list of knowledges available, by path. every odd tier is an exclusive upgrade, and every even one is a set of upgrades of which 3 need to be picked to move on.
+	var/list/knowledges = list(	TIER_PATH = list(/datum/eldritch_knowledge/base_ash, /datum/eldritch_knowledge/base_flesh, /datum/eldritch_knowledge/base_rust),
+	 							TIER_1 = list(/datum/eldritch_knowledge/ashen_shift, /datum/eldritch_knowledge/ashen_eyes, /datum/eldritch_knowledge/flesh_ghoul, /datum/eldritch_knowledge/rust_regen, /datum/eldritch_knowledge/armor, /datum/eldritch_knowledge/essence),
+	 							TIER_MARK = list(/datum/eldritch_knowledge/ash_mark, /datum/eldritch_knowledge/flesh_mark, /datum/eldritch_knowledge/rust_mark),
+	 							TIER_2 = list(/datum/eldritch_knowledge/blindness, /datum/eldritch_knowledge/corrosion, /datum/eldritch_knowledge/paralysis, /datum/eldritch_knowledge/raw_prophet, /datum/eldritch_knowledge/blood_siphon, /datum/eldritch_knowledge/area_conversion),
+	 							TIER_BLADE = list(/datum/eldritch_knowledge/ash_blade_upgrade, /datum/eldritch_knowledge/flesh_blade_upgrade, /datum/eldritch_knowledge/rust_blade_upgrade),
+	 							TIER_3 = list(/datum/eldritch_knowledge/flame_birth, /datum/eldritch_knowledge/cleave, /datum/eldritch_knowledge/stalker, /datum/eldritch_knowledge/ashy, /datum/eldritch_knowledge/rusty, /datum/eldritch_knowledge/entropic_plume),
+	 							TIER_ASCEND = list(/datum/eldritch_knowledge/ash_final, /datum/eldritch_knowledge/flesh_final, /datum/eldritch_knowledge/rust_final))
 
 /datum/antagonist/heretic/admin_add(datum/mind/new_owner,mob/admin)
 	give_equipment = FALSE
@@ -208,6 +220,14 @@
 	researched_knowledge[initialized_knowledge.type] = initialized_knowledge
 	initialized_knowledge.on_gain(owner.current)
 	charge -= initialized_knowledge.cost
+	if(!initialized_knowledge.tier == TIER_NONE && knowledge_tier != TIER_ASCEND)
+		if(IS_EXCLUSIVE_KNOWLEDGE(initialized_knowledge))
+			knowledge_tier++
+			to_chat(owner, "<span class='cultbold'>Your new knowledge brings you a breakthrough! you are now able to research a new group of subjects.</span>")
+		else if(initialized_knowledge.tier == knowledge_tier && ++tier_counter == 3)
+			knowledge_tier++
+			tier_counter = 0
+			to_chat(owner, "<span class='cultbold'>Your studies are bearing fruit, you are on the edge of a breakthrough...</span>")
 	return TRUE
 
 /datum/antagonist/heretic/proc/get_researchable_knowledge()
@@ -215,9 +235,11 @@
 	var/list/banned_knowledge = list()
 	for(var/X in researched_knowledge)
 		var/datum/eldritch_knowledge/EK = researched_knowledge[X]
-		researchable_knowledge |= EK.next_knowledge
 		banned_knowledge |= EK.banned_knowledge
 		banned_knowledge |= EK.type
+	for(var/i in TIER_PATH to knowledge_tier)
+		for(var/knowledge in knowledges[i])
+			researchable_knowledge += knowledge
 	researchable_knowledge -= banned_knowledge
 	return researchable_knowledge
 

@@ -91,6 +91,7 @@
 		lore["type"] = EK.type
 		lore["name"] = EK.name
 		lore["cost"] = EK.cost
+		lore["progression"] = EK.tier == cultie.knowledge_tier
 		lore["disabled"] = EK.cost <= cultie.charge ? FALSE : TRUE
 		lore["path"] = EK.route
 		lore["state"] = "Research"
