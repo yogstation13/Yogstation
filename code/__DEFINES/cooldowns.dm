@@ -28,6 +28,8 @@
 //INDEXES
 #define COOLDOWN_BORG_SELF_REPAIR	"borg_self_repair"
 
+// item cooldowns
+#define COOLDOWN_SIGNALLER_SEND "cooldown_signaller_send"
 
 //TIMER COOLDOWN MACROS
 
