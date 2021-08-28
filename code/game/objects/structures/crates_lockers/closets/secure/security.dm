@@ -42,7 +42,7 @@
 	new /obj/item/storage/photo_album/HoP(src)
 	new /obj/item/clipboard/yog/paperwork/hop(src)
 	new /obj/item/gun/energy/e_gun/mini(src) //hop doesn't get a proper gun
-	new /obj/item/storage/backpack/duffelbag/hop/clothing(src)
+	new /obj/item/storage/backpack/duffelbag/clothing/hop(src)
 
 /obj/structure/closet/secure_closet/hos
 	name = "\proper head of security's locker"
@@ -69,7 +69,7 @@
 	new /obj/item/storage/photo_album/HoS(src)
 	new /obj/item/clipboard/yog/paperwork/hos(src)
 	new /obj/item/radio/security(src)
-	new /obj/item/storage/backpack/duffelbag/sec/head/clothing(src)
+	new /obj/item/storage/backpack/duffelbag/clothing/sec/head(src)
 
 /obj/structure/closet/secure_closet/warden
 	name = "\proper warden's locker"
@@ -93,7 +93,7 @@
 	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src)
 	new /obj/item/clipboard/yog/paperwork/warden(src)
 	new /obj/item/radio/security(src)
-	new /obj/item/storage/backpack/duffelbag/sec/warden/clothing(src)
+	new /obj/item/storage/backpack/duffelbag/clothing/sec/warden(src)
 
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"
@@ -172,7 +172,7 @@
 	new /obj/item/storage/belt/holster/full(src)
 	new /obj/item/pinpointer/crew(src)
 	new /obj/item/twohanded/binoculars(src)
-	new /obj/item/storage/backpack/duffelbag/sec/detective/clothing(src)
+	new /obj/item/storage/backpack/duffelbag/clothing/sec/detective(src)
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections"
