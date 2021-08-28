@@ -362,7 +362,6 @@
 	user.mind.transfer_to(progenitor)
 	progenitor.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/progenitor_curse(null))
 	if(!SSticker.mode.sacrament_done)
-		set_security_level(SEC_LEVEL_GAMMA)
 		addtimer(CALLBACK(src, .proc/sacrament_shuttle_call), 50)
 	for(var/V in abilities)
 		remove_ability(abilities[V], TRUE)

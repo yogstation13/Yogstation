@@ -89,7 +89,7 @@
 					continue
 				if(!GLOB.emergency_access)
 					make_maint_all_access()
-				else if(GLOB.security_level < SEC_LEVEL_RED)
+				else if(GLOB.security_level != SEC_LEVEL_DELTA)
 					set_security_level(SEC_LEVEL_RED)
 
 
