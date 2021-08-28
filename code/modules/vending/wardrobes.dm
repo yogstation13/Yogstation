@@ -187,6 +187,9 @@
 					/obj/item/clothing/gloves/fingerless = 2,
 					/obj/item/clothing/head/soft/black = 2,
 					/obj/item/clothing/mask/bandana/skull = 2)
+	contraband = list(/obj/item/organ/tongue/robot = 2,
+					  /obj/item/toy/talking/AI = 2,
+					  /obj/item/card/emagfake = 2)
 	refill_canister = /obj/item/vending_refill/wardrobe/robo_wardrobe
 	payment_department = ACCOUNT_SCI
 /obj/item/vending_refill/wardrobe/robo_wardrobe
@@ -409,7 +412,8 @@
 					/obj/item/clothing/head/kippah = 3,
 					/obj/item/clothing/suit/chaplainsuit/whiterobe = 1,
 					/obj/item/clothing/head/taqiyahwhite = 1,
-					/obj/item/clothing/head/taqiyahred = 3)
+					/obj/item/clothing/head/taqiyahred = 3,
+					/obj/item/clothing/suit/hooded/techpriest = 2)
 	contraband = list(/obj/item/toy/plush/plushvar = 1,
 					/obj/item/toy/plush/narplush = 1,
 					/obj/item/clothing/head/medievaljewhat = 3,
