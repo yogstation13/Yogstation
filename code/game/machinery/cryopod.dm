@@ -155,12 +155,14 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 	updateUsrDialog()
 	return
 
+GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
+
 //Cryopods themselves.
 /obj/machinery/cryopod
 	name = "cryogenic freezer"
 	desc = "Suited for Cyborgs and Humanoids, the pod is a safe place for personnel affected by the Space Sleep Disorder to get some rest."
 	icon = 'icons/obj/machines/sleeper.dmi'
-	icon_state = "cryopod-open"
+	icon_state = "cryopod-off"
 	density = TRUE
 	anchored = TRUE
 	state_open = TRUE
@@ -188,6 +190,10 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 /obj/machinery/cryopod/LateInitialize()
 	update_icon()
 	find_control_computer()
+
+/obj/machinery/cryopod/proc/PowerOn()
+	if(!occupant)
+		open_machine()
 
 /obj/machinery/cryopod/proc/find_control_computer(urgent = 0)
 	for(var/M in GLOB.cryopod_computers)
@@ -228,7 +234,7 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 
 /obj/machinery/cryopod/open_machine()
 	..()
-	icon_state = "cryopod-open"
+	icon_state = GLOB.cryopods_enabled ? "cryopod-open" : "cryopod-off"
 	density = TRUE
 	name = initial(name)
 
@@ -353,6 +359,10 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 
 /obj/machinery/cryopod/MouseDrop_T(mob/living/target, mob/user)
 	if(!istype(target) || user.incapacitated() || !target.Adjacent(user) || !Adjacent(user) || !ismob(target) || (!ishuman(user) && !iscyborg(user)) || !istype(user.loc, /turf) || target.buckled)
+		return
+
+	if(!GLOB.cryopods_enabled)
+		to_chat(user, "<span class='boldnotice'>[src] is currently disabled. It will be enabled in [round(((30 MINUTES) - world.time) / (1 MINUTES))] minutes</span>")
 		return
 
 	if(occupant)
