@@ -108,6 +108,9 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 
+/obj/item/storage/part_replacer/bluespace/cyborg
+	desc = "A version of the Bluepspace RPED for engineering cyborgs."
+
 /proc/cmp_rped_sort(obj/item/A, obj/item/B)
 	return B.get_part_rating() - A.get_part_rating()
 

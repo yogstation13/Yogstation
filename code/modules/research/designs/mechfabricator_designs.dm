@@ -788,6 +788,34 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/borg_upgrade_upgraded_rped
+	name = "Cyborg Upgrade (BSRPED)"
+	id = "borg_upgrade_upgraded_rped"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/upgraded_rped
+	materials = list(/datum/material/iron = 15000, /datum/material/glass = 5000, /datum/material/silver = 2500)
+	construction_time = 120
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/borg_upgrade_upgraded_tools
+	name = "Cyborg Upgrade (Advanced tools)"
+	id = "borg_upgrade_upgraded_tools"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/upgraded_tools
+	/// Combined materials of all 3 experimentals tools
+	materials = list(/datum/material/iron = 8500, /datum/material/silver = 4300, /datum/material/gold=300, /datum/material/titanium = 6000)
+	construction_time = 120
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/borg_upgrade_holosign
+	name = "cyborg ATMOS holofan projector"
+	id = "borg_upgrade_holofan"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/holofan
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500)
+	construction_time = 140
+	category = list("Cyborg Upgrade Modules")
+	
 /datum/design/borg_upgrade_pinpointer
 	name = "Cyborg Upgrade (Crew pinpointer)"
 	id = "borg_upgrade_pinpointer"
