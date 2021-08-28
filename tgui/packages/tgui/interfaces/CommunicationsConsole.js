@@ -283,6 +283,7 @@ const PageMain = (props, context) => {
     shuttleCalledPreviously,
     shuttleCanEvacOrFailReason,
     shuttleLastCalled,
+    canPrintId,
     shuttleRecallable,
   } = data;
 
@@ -385,6 +386,12 @@ const PageMain = (props, context) => {
             icon="bullhorn"
             content="Make Voice Announcement"
             onClick={() => act("makeVoiceAnnouncement")}
+          />}
+
+          {!!canPrintId && <Button
+            icon="id-card"
+            content="Print Emergency ID"
+            onClick={() => act("printSpare")}
           />}
 
           {!!canToggleEmergencyAccess && <Button.Confirm
