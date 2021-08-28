@@ -2,7 +2,7 @@
 	name = "Cosmic Ashwalker"
 	var/rebirth
 	var/rebirthcount = 0
-	species_traits = list(MUTCOLORS,EYECOLOR,LIPS)
+	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,HAS_FLESH,HAS_BONE)
 
 /datum/species/lizard/ashwalker/cosmic/spec_life(mob/living/carbon/human/H)
 	. = ..()

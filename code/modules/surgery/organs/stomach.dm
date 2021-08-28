@@ -8,7 +8,7 @@
 	desc = "Onaka ga suite imasu."
 
 	healing_factor = STANDARD_ORGAN_HEALING
-	decay_factor = STANDARD_ORGAN_DECAY
+	decay_factor = STANDARD_ORGAN_DECAY * 1.15 // ~13 minutes, the stomach is one of the first organs to die
 
 	low_threshold_passed = "<span class='info'>Your stomach flashes with pain before subsiding. Food doesn't seem like a good idea right now.</span>"
 	high_threshold_passed = "<span class='warning'>Your stomach flares up with constant pain- you can hardly stomach the idea of food right now!</span>"
@@ -125,7 +125,7 @@
 
 /obj/item/organ/stomach/ethereal/proc/adjust_charge(amount)
 	crystal_charge = clamp(crystal_charge + amount, ETHEREAL_CHARGE_NONE, ETHEREAL_CHARGE_FULL)
-	
+
 /obj/item/organ/stomach/cursed
 	name = "cursed stomach"
 	icon_state = "stomach-cursed"

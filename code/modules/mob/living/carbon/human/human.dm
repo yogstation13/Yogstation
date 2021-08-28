@@ -240,7 +240,7 @@
 			if(!I || !L || I.loc != src || !(I in L.embedded_objects))
 				return
 			L.embedded_objects -= I
-			L.receive_damage(I.embedding.embedded_unsafe_removal_pain_multiplier*I.w_class)//It hurts to rip it out, get surgery you dingus.
+			L.receive_damage(I.embedding.embedded_unsafe_removal_pain_multiplier*I.w_class, sharpness=SHARP_EDGED)//It hurts to rip it out, get surgery you dingus.
 			I.forceMove(get_turf(src))
 			usr.put_in_hands(I)
 			usr.emote("scream")
@@ -1029,6 +1029,16 @@
 			xylophone=0
 	return
 
+/mob/living/carbon/human/is_bleeding()
+	if(NOBLOOD in dna.species.species_traits || bleedsuppress)
+		return FALSE
+	return ..()
+
+/mob/living/carbon/human/get_total_bleed_rate()
+	if(NOBLOOD in dna.species.species_traits)
+		return FALSE
+	return ..()
+
 /mob/living/carbon/human/species
 	var/race = null
 
@@ -1146,7 +1156,7 @@
 
 /mob/living/carbon/human/species/golem/cheese
 	race = /datum/species/golem/cheese
-	
+
 /mob/living/carbon/human/species/golem/mhydrogen
 	race = /datum/species/golem/mhydrogen
 

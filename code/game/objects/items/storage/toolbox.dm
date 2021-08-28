@@ -17,6 +17,7 @@
 	custom_materials = list(/datum/material/iron = 500) //Toolboxes by default use iron as their core, custom material.
 	var/latches = "single_latch"
 	var/has_latches = TRUE
+	wound_bonus = 5
 
 /obj/item/storage/toolbox/Initialize()
 	. = ..()

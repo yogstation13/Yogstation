@@ -616,15 +616,6 @@
 		for(var/obj/item/cautery/advanced/CE in R.module.modules)
 			R.module.remove_module(CE, TRUE)
 
-		for(var/obj/item/circular_saw/advanced/CA in R.module.modules)
-			R.module.remove_module(CA, TRUE)
-
-		for(var/obj/item/hemostat/advanced/HA in R.module.modules)
-			R.module.remove_module(HA, TRUE)
-
-		for(var/obj/item/surgicaldrill/advanced/SI in R.module.modules)
-			R.module.remove_module(SI, TRUE)
-
 		/// Puts in old surgery tools
 		var/obj/item/retractor/RT = locate() in R.module.modules
 		RT = new(R.module)

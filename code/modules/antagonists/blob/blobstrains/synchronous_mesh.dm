@@ -35,4 +35,4 @@
 		for(var/obj/structure/blob/B in range(1, M)) //if the target is completely surrounded, this is 2.4*reac_volume bonus damage, total of 2.6*reac_volume
 			if(M)
 				B.blob_attack_animation(M) //show them they're getting a bad time
-				M.apply_damage(0.3*reac_volume, BRUTE)
+				M.apply_damage(0.3*reac_volume, BRUTE, wound_bonus=CANT_WOUND)

@@ -14,6 +14,7 @@
 	var/proj_piercing = 0 //does it pierce through thick clothes when shot with syringe gun
 	materials = list(/datum/material/iron=10, /datum/material/glass=20)
 	reagent_flags = TRANSPARENT
+	sharpness = SHARP_POINTY
 
 /obj/item/reagent_containers/syringe/Initialize()
 	. = ..()

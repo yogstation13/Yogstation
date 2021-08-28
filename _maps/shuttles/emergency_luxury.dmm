@@ -78,18 +78,6 @@
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
-"cZ" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "ohnopoors"
-	},
-/obj/structure/window/plastitanium{
-	desc = "A durable looking window made of an alloy of of plasma and titanium. Appears to have poor people tears smudged all over it.";
-	flags_1 = 2177;
-	resistance_flags = 64
-	},
-/obj/structure/grille/indestructable,
-/turf/open/floor/plating,
-/area/shuttle/escape/luxury)
 "dl" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -233,6 +221,18 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape/luxury)
+"oo" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "ohnopoors"
+	},
+/obj/structure/grille/indestructable,
+/obj/structure/window/plastitanium{
+	desc = "A durable looking window made of an alloy of of plasma and titanium. Appears to have poor people tears smudged all over it.";
+	flags_1 = 2177;
+	resistance_flags = 64
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape/luxury)
 "or" = (
 /obj/structure/shuttle/engine/heater,
 /obj/structure/window/reinforced{
@@ -283,7 +283,7 @@
 /area/shuttle/escape/luxury)
 "pv" = (
 /obj/structure/table/glass,
-/obj/item/surgicaldrill/advanced,
+/obj/item/cautery/advanced,
 /obj/item/scalpel/advanced,
 /obj/item/retractor/advanced,
 /turf/open/floor/mineral/gold{
@@ -559,16 +559,16 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/shuttle/escape/luxury)
-"IL" = (
+"JI" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "ohnopoors"
 	},
-/obj/structure/grille/indestructable,
 /obj/structure/window/plastitanium{
 	desc = "A durable looking window made of an alloy of of plasma and titanium. Appears to have poor people tears smudged all over it.";
 	flags_1 = 2177;
 	resistance_flags = 64
 	},
+/obj/structure/grille/indestructable,
 /turf/open/floor/plating,
 /area/shuttle/escape/luxury)
 "Kn" = (
@@ -968,15 +968,15 @@ eL
 eL
 eL
 mt
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-cZ
+oo
+oo
+oo
+oo
+oo
+oo
+oo
+oo
+JI
 mt
 mt
 mt

@@ -1084,7 +1084,24 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 
-	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_PIE, ADMIN_PUNISHMENT_WHISTLE, ADMIN_PUNISHMENT_CLUWNE, ADMIN_PUNISHMENT_MCNUGGET)
+	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING,
+									ADMIN_PUNISHMENT_BRAINDAMAGE,
+									ADMIN_PUNISHMENT_GIB,
+									ADMIN_PUNISHMENT_BSA,
+									ADMIN_PUNISHMENT_FIREBALL,
+									ADMIN_PUNISHMENT_ROD,
+									ADMIN_PUNISHMENT_SUPPLYPOD_QUICK,
+									ADMIN_PUNISHMENT_SUPPLYPOD,
+									ADMIN_PUNISHMENT_MAZING,
+									ADMIN_PUNISHMENT_PIE,
+									ADMIN_PUNISHMENT_WHISTLE,
+									ADMIN_PUNISHMENT_CLUWNE,
+									ADMIN_PUNISHMENT_MCNUGGET,
+									ADMIN_PUNISHMENT_CRACK,
+									ADMIN_PUNISHMENT_BLEED,
+									ADMIN_PUNISHMENT_PERFORATE,
+									ADMIN_PUNISHMENT_SCARIFY
+									)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
 
@@ -1103,12 +1120,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if(ADMIN_PUNISHMENT_BRAINDAMAGE)
 			target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 199, 199)
 		if(ADMIN_PUNISHMENT_MCNUGGET)
-			if(iscarbon(target)) 
+			if(iscarbon(target))
 				var/mob/living/carbon/CM = target
 				for(var/obj/item/bodypart/bodypart in CM.bodyparts)
 					if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)
 						if(bodypart.dismemberable)
-							bodypart.dismember() 
+							bodypart.dismember()
 		if(ADMIN_PUNISHMENT_GIB)
 			target.gib(FALSE)
 		if(ADMIN_PUNISHMENT_BSA)
@@ -1173,7 +1190,104 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				to_chat(target, "<span class='reallybigphobia'>HENK!! HENK!! HENK!! YOU DID SOMETHING EXTREMELY DUMB, AND MADE GOD MAD. CRY ABOUT IT.</span>")
 			var/mob/living/carbon/human/H = target
 			H?.cluwneify()
+		if(ADMIN_PUNISHMENT_CRACK)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>", confidential = TRUE)
+				return
+			var/mob/living/carbon/C = target
+			for(var/i in C.bodyparts)
+				var/obj/item/bodypart/squish_part = i
+				var/type_wound = pick(list(/datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/moderate))
+				squish_part.force_wound_upwards(type_wound, smited=TRUE)
+		if(ADMIN_PUNISHMENT_BLEED)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>", confidential = TRUE)
+				return
+			var/mob/living/carbon/C = target
+			for(var/obj/item/bodypart/slice_part in C.bodyparts)
+				var/type_wound = pick(list(/datum/wound/slash/severe, /datum/wound/slash/moderate))
+				slice_part.force_wound_upwards(type_wound, smited=TRUE)
+				type_wound = pick(list(/datum/wound/slash/critical, /datum/wound/slash/severe, /datum/wound/slash/moderate))
+				slice_part.force_wound_upwards(type_wound, smited=TRUE)
+				type_wound = pick(list(/datum/wound/slash/critical, /datum/wound/slash/severe))
+				slice_part.force_wound_upwards(type_wound, smited=TRUE)
+		if(ADMIN_PUNISHMENT_PERFORATE)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>", confidential = TRUE)
+				return
+
+			var/list/how_fucked_is_this_dude = list("A little", "A lot", "So fucking much", "FUCK THIS DUDE")
+			var/hatred = input("How much do you hate this guy?") in how_fucked_is_this_dude
+			var/repetitions
+			var/shots_per_limb_per_rep = 2
+			var/damage
+			switch(hatred)
+				if("A little")
+					repetitions = 1
+					damage = 5
+				if("A lot")
+					repetitions = 2
+					damage = 8
+				if("So fucking much")
+					repetitions = 3
+					damage = 10
+				if("FUCK THIS DUDE")
+					repetitions = 4
+					damage = 10
+
+			var/mob/living/carbon/dude = target
+			var/list/open_adj_turfs = get_adjacent_open_turfs(dude)
+			var/list/wound_bonuses = list(15, 70, 110, 250)
+
+			var/delay_per_shot = 1
+			var/delay_counter = 1
+
+			dude.Immobilize(5 SECONDS)
+			for(var/wound_bonus_rep in 1 to repetitions)
+				for(var/i in dude.bodyparts)
+					var/obj/item/bodypart/slice_part = i
+					var/shots_this_limb = 0
+					for(var/t in shuffle(open_adj_turfs))
+						var/turf/iter_turf = t
+						addtimer(CALLBACK(GLOBAL_PROC, .proc/firing_squad, dude, iter_turf, slice_part.body_zone, wound_bonuses[wound_bonus_rep], damage), delay_counter)
+						delay_counter += delay_per_shot
+						shots_this_limb++
+						if(shots_this_limb > shots_per_limb_per_rep)
+							break
+
+		if(ADMIN_PUNISHMENT_SCARIFY)
+			if(!iscarbon(target))
+				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>", confidential = TRUE)
+				return
+			var/mob/living/carbon/C = target
+			C.generate_fake_scars(rand(1, 4))
+			to_chat(C, "<span class='warning'>You feel your body grow jaded and torn...</span>")
 	punish_log(target, punishment)
+
+/**
+  * firing_squad is a proc for the :B:erforate smite to shoot each individual bullet at them, so that we can add actual delays without sleep() nonsense
+  *
+  * Hilariously, if you drag someone away mid smite, the bullets will still chase after them from the original spot, possibly hitting other people. Too funny to fix imo
+  *
+  * Arguments:
+  * * target- guy we're shooting obviously
+  * * source_turf- where the bullet begins, preferably on a turf next to the target
+  * * body_zone- which bodypart we're aiming for, if there is one there
+  * * wound_bonus- the wounding power we're assigning to the bullet, since we don't care about the base one
+  * * damage- the damage we're assigning to the bullet, since we don't care about the base one
+  */
+/proc/firing_squad(mob/living/carbon/target, turf/source_turf, body_zone, wound_bonus, damage)
+	if(!target.get_bodypart(body_zone))
+		return
+	playsound(target, 'sound/weapons/revolver357shot.ogg', 100)
+	var/obj/item/projectile/bullet/smite/divine_wrath = new(source_turf)
+	divine_wrath.damage = damage
+	divine_wrath.wound_bonus = wound_bonus
+	divine_wrath.original = target
+	divine_wrath.def_zone = body_zone
+	divine_wrath.spread = 0
+	divine_wrath.preparePixelProjectile(target, source_turf)
+	divine_wrath.fire()
 
 /client/proc/punish_log(var/whom, var/punishment)
 	var/msg = "[key_name(usr)] punished [key_name_admin(whom)] with [punishment]." //yogs - Yog tickets
@@ -1293,12 +1407,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			A.copy_to(H)
 			H.dna.update_dna_identity()
 			H.equipOutfit(/datum/outfit/centcom/official/nopda)
-			
+
 			var/datum/mind/Mind = new /datum/mind(M.key) // Reusing the mob's original mind actually breaks objectives for any antag who had this person as their target.
 			// For that reason, we're making a new one. This mimics the behavior of, say, lone operatives, and I believe other ghostroles.
 			Mind.active = 1
 			Mind.transfer_to(H)
-			
+
 			var/msg = "[key_name_admin(H)] has spawned in at centcom [ADMIN_VERBOSEJMP(H)]."
 			message_admins(msg)
 			log_admin(msg)
@@ -1314,8 +1428,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		qdel(a)
 	message_admins("[key_name_admin(usr)] has cleared all radiation.")
 	log_admin("[key_name_admin(usr)] has cleared all radiation.")
-	
-	
+
+
 /mob/living/proc/whistle()
 	INVOKE_ASYNC(src, .proc/whistletrigger, "whistle")
 

@@ -129,6 +129,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/chat_on_map = TRUE
 	var/max_chat_length = CHAT_MESSAGE_MAX_LENGTH
 	var/see_chat_non_mob = TRUE
+	/// If we have persistent scars enabled
+	var/persistent_scars = TRUE
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -287,6 +289,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<b>Backpack:</b><BR><a href ='?_src_=prefs;preference=bag;task=input'>[backbag]</a>"
 			dat += "<a href ='?_src_=prefs;preference=bag;task=lock'>[random_locks["bag"] ? "Unlock" : "Lock"]</a><BR>"
+			if((HAS_FLESH in pref_species.species_traits) || (HAS_BONE in pref_species.species_traits))
+				dat += "<BR><b>Temporal Scarring:</b><BR><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? "Enabled" : "Disabled"]</A>"
+				dat += "<a href='?_src_=prefs;preference=clear_scars'>Clear scar slots</A><BR>"
 			dat += "<b>Uplink Spawn Location:</b><BR><a href ='?_src_=prefs;preference=uplink_loc;task=input'>[uplink_spawn_loc]</a><BR></td>"
 
 			var/use_skintones = pref_species.use_skintones
@@ -1837,6 +1842,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("all")
 					be_random_body = !be_random_body
+
+				if("persistent_scars")
+					persistent_scars = !persistent_scars
+
+				if("clear_scars")
+					var/path = "data/player_saves/[user.ckey[1]]/[user.ckey]/scars.sav"
+					fdel(path)
+					to_chat(user, "<span class='notice'>All scar slots cleared.</span>")
 
 				if("hear_midis")
 					toggles ^= SOUND_MIDI

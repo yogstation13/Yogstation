@@ -183,6 +183,11 @@
 		M.ExtinguishMob()
 	..()
 
+/datum/reagent/water/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(M.blood_volume)
+		M.blood_volume += 0.1 // water is good for you!
+
 /datum/reagent/water/holywater
 	name = "Holy Water"
 	description = "Water blessed by some deity."
@@ -206,6 +211,8 @@
 	..()
 
 /datum/reagent/water/holywater/on_mob_life(mob/living/carbon/M)
+	if(M.blood_volume)
+		M.blood_volume += 0.1 // water is good for you!
 	if(!data)
 		data = list("misc" = 1)
 	data["misc"]++
@@ -1955,3 +1962,39 @@
 	description = "Synthesized in off-station laboratories, used in several high-quality medicines."
 	color ="#FFF44F"
 	taste_description = "lemony"
+
+/datum/reagent/determination
+	name = "Determination"
+	description = "For when you need to push on a little more. Do NOT allow near plants."
+	reagent_state = LIQUID
+	color = "#D2FFFA"
+	metabolization_rate = 0.75 * REAGENTS_METABOLISM // 5u (WOUND_DETERMINATION_CRITICAL) will last for ~17 ticks
+	self_consuming = TRUE
+	/// Whether we've had at least WOUND_DETERMINATION_SEVERE (2.5u) of determination at any given time. No damage slowdown immunity or indication we're having a second wind if it's just a single moderate wound
+	var/significant = FALSE
+
+// "Second wind" reagent generated when someone suffers a wound. Epinephrine, adrenaline, and stimulants are all already taken so here we are
+/datum/reagent/determination/on_mob_end_metabolize(mob/living/carbon/M)
+	if(significant)
+		var/stam_crash = 0
+		for(var/thing in M.all_wounds)
+			var/datum/wound/W = thing
+			stam_crash += (W.severity + 1) * 3 // spike of 3 stam damage per wound severity (moderate = 6, severe = 9, critical = 12) when the determination wears off if it was a combat rush
+		M.adjustStaminaLoss(stam_crash)
+	M.remove_status_effect(STATUS_EFFECT_DETERMINED)
+	..()
+
+/datum/reagent/determination/on_mob_life(mob/living/carbon/M)
+	if(!significant && volume >= WOUND_DETERMINATION_SEVERE)
+		significant = TRUE
+		M.apply_status_effect(STATUS_EFFECT_DETERMINED) // in addition to the slight healing, limping cooldowns are divided by 4 during the combat high
+
+	volume = min(volume, WOUND_DETERMINATION_MAX)
+
+	for(var/thing in M.all_wounds)
+		var/datum/wound/W = thing
+		var/obj/item/bodypart/wounded_part = W.limb
+		if(wounded_part)
+			wounded_part.heal_damage(0.25, 0.25)
+		M.adjustStaminaLoss(-0.25*REM) // the more wounds, the more stamina regen
+	..()

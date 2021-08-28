@@ -71,8 +71,14 @@
 	if(force && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
 		return TRUE
-	
+
 	if((item_flags & SURGICAL_TOOL) && (user.a_intent != INTENT_HARM)) // checks for if harm intent with surgery tool
+		if(iscarbon(M))
+			var/mob/living/carbon/C = M
+			for(var/i in C.all_wounds)
+				var/datum/wound/W = i
+				if(W.try_treating(src, user))
+					return TRUE
 		to_chat(user, "<span class='warning'>You aren't doing surgery!</span>") //yells at you
 		return TRUE
 
@@ -144,9 +150,9 @@
 		else
 			return clamp(w_class * 6, 10, 100) // Multiply the item's weight class by 6, then clamp the value between 10 and 100
 
-/mob/living/proc/send_item_attack_message(obj/item/I, mob/living/user, hit_area)
+/mob/living/proc/send_item_attack_message(obj/item/I, mob/living/user, hit_area, obj/item/bodypart/hit_bodypart)
 	var/message_verb = "attacked"
-	if(I.attack_verb && I.attack_verb.len)
+	if(length(I.attack_verb))
 		message_verb = "[pick(I.attack_verb)]"
 	else if(!I.force)
 		return

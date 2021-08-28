@@ -11,6 +11,7 @@
 /obj/item/stack
 	icon = 'yogstation/icons/obj/stack_objects.dmi' // yogs -- use yog icons instead of tg
 	gender = PLURAL
+	max_integrity = 100
 	var/list/datum/stack_recipe/recipes
 	var/singular_name
 	var/amount = 1

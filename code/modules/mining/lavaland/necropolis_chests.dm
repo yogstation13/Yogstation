@@ -581,7 +581,7 @@
 	force = 28
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	damtype = BRUTE
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	hitsound = 'yogstation/sound/weapons/rs_slash.ogg'
 	attack_verb = list("slashed","pk'd","atk'd")
 
@@ -692,7 +692,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	hitsound_on = 'sound/weapons/bladeslice.ogg'
 	w_class = WEIGHT_CLASS_BULKY
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	faction_bonus_force = 30
 	nemesis_factions = list("mining", "boss")
 	var/transform_cooldown
@@ -796,7 +796,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	flags_1 = CONDUCT_1
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_BULKY
 	force = 1
 	throwforce = 1
