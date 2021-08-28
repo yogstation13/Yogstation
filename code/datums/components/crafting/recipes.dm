@@ -673,6 +673,15 @@
 				/obj/item/stack/sheet/animalhide/ashdrake = 5)
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/carpsuit
+	name = "Space Dragon Armour"
+	result = /obj/item/clothing/suit/space/hardsuit/carp/dragon
+	time = 6 SECONDS
+	reqs = list(/obj/item/stack/sheet/bone = 10,
+				/obj/item/stack/sheet/sinew = 2,
+				/obj/item/stack/sheet/animalhide/carpdragon = 5)
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/firebrand
 	name = "Firebrand"
 	result = /obj/item/match/firebrand

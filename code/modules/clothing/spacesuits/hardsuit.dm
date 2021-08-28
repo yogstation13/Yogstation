@@ -427,6 +427,27 @@
 	if (user.head == src)
 		user.faction -= "carp"
 
+// space dragon hardsuit
+
+/obj/item/clothing/head/helmet/space/hardsuit/carp/dragon
+	name = "dragon helmet"
+	desc = "A scaley heat resistant helm sporting a fearsome carp dragon look and smell."
+	icon_state = "carpdragon_helm"
+	item_state = "carpdragon_helm"
+	armor = list("melee" = 50, "bullet" = 30, "laser" = 50, "energy" = 30, "bomb" = 50, "bio" = 100, "rad" = 90, "fire" = 100, "acid" = 100) //not so whimpy now
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+
+/obj/item/clothing/suit/space/hardsuit/carp/dragon
+	name = "dragon space suit"
+	desc = "A tough, space and heat resistant suit patched together with space dragon scales."
+	icon_state = "carpdragon"
+	item_state = "carpdragon"
+	armor = list("melee" = 50, "bullet" = 30, "laser" = 50, "energy" = 30, "bomb" = 50, "bio" = 100, "rad" = 90, "fire" = 100, "acid" = 100)
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/carp/dragon
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+
 
 	//Wizard hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/wizard
