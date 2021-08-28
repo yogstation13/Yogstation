@@ -264,6 +264,12 @@
 	owner = "slicerv"
 	module_locked = "Engineering"
 
+/datum/borg_skin/adamsogm_med_borg
+	name = "Snowflake Medical Robot"
+	icon_state = "adamsogm_med_borg"
+	owner = "adamsogm"
+	module_locked = "Medical"
+
 //Begin AI skins://
 /* These follow the same format as borg skins*/
 
