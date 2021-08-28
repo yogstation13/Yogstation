@@ -21,7 +21,10 @@
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_BRIG_PHYSICIAN
 
-	changed_maps = list("EclipseStation")
+	changed_maps = list("OmegaStation", "EclipseStation")
+
+/datum/job/brigphysician/proc/OmegaStationChanges()
+	return TRUE
 
 /datum/job/brigphysician/proc/EclipseStationChanges()
 	total_positions = 2
