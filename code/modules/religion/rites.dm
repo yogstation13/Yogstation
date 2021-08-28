@@ -60,7 +60,7 @@
 /datum/religion_rites/synthconversion
 	name = "Synthetic Conversion"
 	desc = "Convert a human-esque individual into a (superior) Android."
-	ritual_length = 1 MINUTES
+	ritual_length = 30 SECONDS
 	ritual_invocations = list(
 	"By the inner workings of our god...",
 	"... We call upon you, in the face of adversity...",
@@ -148,7 +148,7 @@
 /datum/religion_rites/toppercent
 	name = "Reaching the Top Percent"
 	desc = "Help a moneybag to get even richer."
-	ritual_length = 1 MINUTES
+	ritual_length = 30 SECONDS
 	ritual_invocations = list("%Money, money, money...",
 						"%... Must be funny...",
 						"%... In the rich man's world...")
@@ -325,7 +325,7 @@
 /datum/religion_rites/plantconversion
 	name = "Ent Conversion"
 	desc = "Convert a human-esque individual into a treelike golem."
-	ritual_length = 1 MINUTES
+	ritual_length = 30 SECONDS
 	ritual_invocations = list(
 	"Let us call upon the vines that protect...",
 	"... Allow them to strip away that which is undesirable...",
@@ -443,7 +443,7 @@
 /datum/religion_rites/bodybless
 	name = "Body Blessing"
 	desc = "Convert a human-esque individual into a being of ruinous metal."
-	ritual_length = 1 MINUTES
+	ritual_length = 30 SECONDS
 	ritual_invocations = list(
 	"Let us call upon the blessings of the old gods...",
 	"... Show them one that is worthy of greatness...",
