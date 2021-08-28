@@ -130,7 +130,7 @@
 			if("Bartender")
 				heirloom_type = pick(/obj/item/reagent_containers/glass/rag, /obj/item/clothing/head/that, /obj/item/reagent_containers/food/drinks/shaker)
 			if("Curator")
-				heirloom_type = pick(/obj/item/pen/fountain, /obj/item/storage/pill_bottle/dice)
+				heirloom_type = pick(/obj/item/pen/fountain, /obj/item/storage/pill_bottle/dice, /obj/item/towel)
 			if("Assistant")
 				heirloom_type = /obj/item/storage/toolbox/mechanical/old/heirloom
 			//Security/Command
@@ -181,7 +181,8 @@
 		heirloom_type = pick(
 		/obj/item/toy/cards/deck,
 		/obj/item/lighter,
-		/obj/item/dice/d20)
+		/obj/item/dice/d20,
+		/obj/item/towel)
 	heirloom = new heirloom_type(get_turf(quirk_holder))
 	var/list/slots = list(
 		"in your left pocket" = SLOT_L_STORE,
