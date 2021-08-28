@@ -7,16 +7,14 @@
 /client/verb/show_tickets()
 	set name = "Tickets"
 	set desc = "Show list of tickets"
-	set hidden = 1
+	set hidden = TRUE
 
 	if(holder)
 		view_tickets()
 	else
-		for(var/I in GLOB.ahelp_tickets.tickets_list)
-			var/datum/admin_help/T = I
-			if(compare_ckey(T.initiator_ckey, usr) && T.state == AHELP_ACTIVE)
-				T.TicketPanel()
-				return
+		if(current_ticket && current_ticket.state == AHELP_ACTIVE)
+			current_ticket.TicketPanel()
+			return
 
 		to_chat(src, "<span class='danger'>You have no open tickets!</span>")
 	return
