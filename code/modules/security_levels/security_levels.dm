@@ -2,8 +2,8 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 //SEC_LEVEL_GREEN = code green
 //SEC_LEVEL_BLUE = code blue
 //SEC_LEVEL_RED = code red
-//SEC_LEVEL_GAMMA = code gamma
-//SEC_LEVEL_EPSILON = code epsilon
+//SEC_LEVEL_BLACK = code black
+//SEC_LEVEL_OMEGA = code omega
 //SEC_LEVEL_DELTA = code delta
 
 //config.alert_desc_blue_downto
@@ -16,10 +16,10 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 			level = SEC_LEVEL_BLUE
 		if("red")
 			level = SEC_LEVEL_RED
-		if("gamma")
-			level = SEC_LEVEL_GAMMA
-		if("epsilon")
-			level = SEC_LEVEL_EPSILON
+		if("black")
+			level = SEC_LEVEL_BLACK
+		if("omega")
+			level = SEC_LEVEL_OMEGA
 		if("delta")
 			level = SEC_LEVEL_DELTA
 
@@ -33,7 +33,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					modTimer = 4
 				else
 					modTimer = 2
-				
+
 			if(SEC_LEVEL_BLUE)
 				if(GLOB.security_level < SEC_LEVEL_BLUE)
 					minor_announce(CONFIG_GET(string/alert_blue_upto), "Attention! Security level elevated to blue:", TRUE)
@@ -51,11 +51,11 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 						modTimer = 0.5
 				else
 					minor_announce(CONFIG_GET(string/alert_red_downto), "Attention! Code red!")
-					if(GLOB.security_level == SEC_LEVEL_GAMMA)
+					if(GLOB.security_level == SEC_LEVEL_BLACK)
 						modTimer = 2
-          
-			if(SEC_LEVEL_GAMMA)
-				minor_announce(CONFIG_GET(string/alert_gamma), "Attention! Gamma security level activated!", TRUE)
+
+			if(SEC_LEVEL_BLACK)
+				minor_announce(CONFIG_GET(string/alert_black), "Attention! Code black!", TRUE)
 				SEND_SOUND(world, 'sound/misc/gamma_alert.ogg')
 				if(GLOB.security_level == SEC_LEVEL_GREEN)
 					modTimer = 0.25
@@ -63,12 +63,12 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					modTimer = 0.50
 				else if(GLOB.security_level == SEC_LEVEL_RED)
 					modTimer = 0.75
-						
-			if(SEC_LEVEL_EPSILON)
-				minor_announce(CONFIG_GET(string/alert_epsilon), "Attention! Epsilon security level reached!", TRUE)
+
+			if(SEC_LEVEL_OMEGA)
+				minor_announce(CONFIG_GET(string/alert_omega), "Attention! Code omega issued!", TRUE)
 				SEND_SOUND(world, 'sound/misc/epsilon_alert.ogg')
-				to_chat(world, "<span class='notice'>You get a bad feeling as you hear the Epsilon alert siren.</span>")
-				if(GLOB.security_level < SEC_LEVEL_EPSILON)
+				to_chat(world, "<span class='notice'>You get a bad feeling as you hear the omega alert siren.</span>")
+				if(GLOB.security_level < SEC_LEVEL_OMEGA)
 					modTimer = 1
 
 			if(SEC_LEVEL_DELTA)
@@ -108,10 +108,10 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 			return "blue"
 		if(SEC_LEVEL_RED)
 			return "red"
-		if(SEC_LEVEL_GAMMA)
-			return "gamma"
-		if(SEC_LEVEL_EPSILON)
-			return "epsilon"
+		if(SEC_LEVEL_BLACK)
+			return "black"
+		if(SEC_LEVEL_OMEGA)
+			return "omega"
 		if(SEC_LEVEL_DELTA)
 			return "delta"
 
@@ -123,10 +123,10 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 			return "blue"
 		if(SEC_LEVEL_RED)
 			return "red"
-		if(SEC_LEVEL_GAMMA)
-			return "gamma"
-		if(SEC_LEVEL_EPSILON)
-			return "epsilon"
+		if(SEC_LEVEL_BLACK)
+			return "black"
+		if(SEC_LEVEL_OMEGA)
+			return "omega"
 		if(SEC_LEVEL_DELTA)
 			return "delta"
 
@@ -138,9 +138,9 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 			return SEC_LEVEL_BLUE
 		if("red")
 			return SEC_LEVEL_RED
-		if("gamma")
-			return SEC_LEVEL_GAMMA
-		if("epsilon")
-			return SEC_LEVEL_EPSILON
+		if("black")
+			return SEC_LEVEL_BLACK
+		if("omega")
+			return SEC_LEVEL_OMEGA
 		if("delta")
 			return SEC_LEVEL_DELTA

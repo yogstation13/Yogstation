@@ -864,7 +864,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/level = input("Select security level to change to","Set Security Level") as null|anything in list("green","blue","red","gamma","epsilon","delta")
+	var/level = input("Select security level to change to","Set Security Level") as null|anything in list("green","blue","red","black","omega","delta")
 	if(level)
 		set_security_level(level)
 
@@ -1103,12 +1103,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if(ADMIN_PUNISHMENT_BRAINDAMAGE)
 			target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 199, 199)
 		if(ADMIN_PUNISHMENT_MCNUGGET)
-			if(iscarbon(target)) 
+			if(iscarbon(target))
 				var/mob/living/carbon/CM = target
 				for(var/obj/item/bodypart/bodypart in CM.bodyparts)
 					if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)
 						if(bodypart.dismemberable)
-							bodypart.dismember() 
+							bodypart.dismember()
 		if(ADMIN_PUNISHMENT_GIB)
 			target.gib(FALSE)
 		if(ADMIN_PUNISHMENT_BSA)
@@ -1293,12 +1293,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			A.copy_to(H)
 			H.dna.update_dna_identity()
 			H.equipOutfit(/datum/outfit/centcom/official/nopda)
-			
+
 			var/datum/mind/Mind = new /datum/mind(M.key) // Reusing the mob's original mind actually breaks objectives for any antag who had this person as their target.
 			// For that reason, we're making a new one. This mimics the behavior of, say, lone operatives, and I believe other ghostroles.
 			Mind.active = 1
 			Mind.transfer_to(H)
-			
+
 			var/msg = "[key_name_admin(H)] has spawned in at centcom [ADMIN_VERBOSEJMP(H)]."
 			message_admins(msg)
 			log_admin(msg)
@@ -1314,8 +1314,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		qdel(a)
 	message_admins("[key_name_admin(usr)] has cleared all radiation.")
 	log_admin("[key_name_admin(usr)] has cleared all radiation.")
-	
-	
+
+
 /mob/living/proc/whistle()
 	INVOKE_ASYNC(src, .proc/whistletrigger, "whistle")
 

@@ -181,28 +181,28 @@
 /datum/config_entry/flag/arrivals_shuttle_require_safe_latejoin	//Require the arrivals shuttle to be operational in order for latejoiners to join
 
 /datum/config_entry/string/alert_green
-	config_entry_value = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
+	config_entry_value = "All threats to the station have passed. Security staff may now stand down, privacy laws are once again fully enforced."
 
 /datum/config_entry/string/alert_blue_upto
-	config_entry_value = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
+	config_entry_value = "Caution! The station has received reliable information of possible hostile activity on the station. Security staff are to be alert, random searches are permitted."
 
 /datum/config_entry/string/alert_blue_downto
-	config_entry_value = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
+	config_entry_value = "The immediate threat has passed. Security staff may return to their normal positions, but must remain alert. Random searches are still permitted."
 
 /datum/config_entry/string/alert_red_upto
-	config_entry_value = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
+	config_entry_value = "Alert! There is an immediate threat onboard the station! Security staff may pacify the enemy with lethal force. Random searches are advised."
 
 /datum/config_entry/string/alert_red_downto
-	config_entry_value = "The station's destruction has been averted. There is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
+	config_entry_value = "The station's destruction has been averted. However, hostile activity is still present. Security staff may pacify the enemy with letal force. Random searches are allowed and advised."
 
-/datum/config_entry/string/alert_gamma
-	config_entry_value = "Central Command has ordered the Gamma security level on the station. Security is to have weapons equipped at all times, and all civilians are to immediately seek their nearest head for transportation to a secure location. Violating orders is punishable by death."
+/datum/config_entry/string/alert_black
+	config_entry_value = "High alert! There is a serious risk to the station's integrity! Security staff must eliminate all hostile elements by any means. Insubordination is punishable by death."
 
-/datum/config_entry/string/alert_epsilon
-	config_entry_value = "Central Command has ordered the Epsilon security level on the station. Consider all contracts terminated."
+/datum/config_entry/string/alert_omega
+	config_entry_value = "All crew this is CC! Your station has been issued code Omega! All contracts are hereby terminated!"
 
 /datum/config_entry/string/alert_delta
-	config_entry_value = "Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
+	config_entry_value = "Destruction of the station is imminent! All crew are instructed evacuate immediately! Any violations of space law are punishable by death! This is not a drill!"
 
 /datum/config_entry/flag/revival_pod_plants
 
