@@ -155,7 +155,7 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 	updateUsrDialog()
 	return
 
-GLOBAL_VAR_INIT(cyropods_enabled, FALSE)
+GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 //Cryopods themselves.
 /obj/machinery/cryopod
@@ -234,7 +234,7 @@ GLOBAL_VAR_INIT(cyropods_enabled, FALSE)
 
 /obj/machinery/cryopod/open_machine()
 	..()
-	icon_state = GLOB.cyropods_enabled ? "cryopod-open" : "cryopod-off"
+	icon_state = GLOB.cryopods_enabled ? "cryopod-open" : "cryopod-off"
 	density = TRUE
 	name = initial(name)
 
@@ -361,8 +361,8 @@ GLOBAL_VAR_INIT(cyropods_enabled, FALSE)
 	if(!istype(target) || user.incapacitated() || !target.Adjacent(user) || !Adjacent(user) || !ismob(target) || (!ishuman(user) && !iscyborg(user)) || !istype(user.loc, /turf) || target.buckled)
 		return
 
-	if(!GLOB.cyropods_enabled)
-		to_chat(user, "<span class='boldnotice'>The cryogenics pod is currently disabled. It will be enabled in [round(((30 MINUTES) - world.time) / (1 MINUTES))] minutes</span>")
+	if(!GLOB.cryopods_enabled)
+		to_chat(user, "<span class='boldnotice'>[src] is currently disabled. It will be enabled in [round(((30 MINUTES) - world.time) / (1 MINUTES))] minutes</span>")
 		return
 
 	if(occupant)

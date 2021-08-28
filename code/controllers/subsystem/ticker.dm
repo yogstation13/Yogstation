@@ -143,8 +143,8 @@ SUBSYSTEM_DEF(ticker)
 	return ..()
 
 /datum/controller/subsystem/ticker/fire()
-	if(world.time > 30 MINUTES && !GLOB.cyropods_enabled)
-		GLOB.cyropods_enabled = TRUE
+	if(world.time > 30 MINUTES && !GLOB.cryopods_enabled)
+		GLOB.cryopods_enabled = TRUE
 		for(var/obj/machinery/cryopod/pod as anything in GLOB.cryopods)
 			pod.PowerOn()
 
