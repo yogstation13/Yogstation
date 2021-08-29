@@ -1202,6 +1202,11 @@
 		if(!module.allow_riding)
 			M.visible_message("<span class='boldwarning'>Unfortunately, [M] just can't seem to hold onto [src]!</span>")
 			return
+
+	if(!do_after(M, 1.5 SECONDS, target = src))
+		M.visible_message("<span class='boldwarning'>[M] was prevented from buckling to [src]!</span>")
+		return
+
 	if(iscarbon(M) && !M.incapacitated() && !riding_datum.equip_buckle_inhands(M, 1))
 		if(M.get_num_arms() <= 0)
 			M.visible_message("<span class='boldwarning'>[M] can't climb onto [src] because [M.p_they()] don't have any usable arms!</span>")
@@ -1209,9 +1214,6 @@
 			M.visible_message("<span class='boldwarning'>[M] can't climb onto [src] because [M.p_their()] hands are full!</span>")
 		return
 	M.visible_message("<span class='warning'>[M] begins to [M == usr ? "climb onto" : "be buckled to"] [src]...</span>")
-	if(!do_after(M, 1.5 SECONDS, target = src))
-		M.visible_message("<span class='boldwarning'>[M] was prevented from buckling to [src]!</span>")
-		return
 	. = ..(M, force, check_loc)
 
 /mob/living/silicon/robot/unbuckle_mob(mob/user, force=FALSE)
