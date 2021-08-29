@@ -1,6 +1,6 @@
 
 import { useBackend, useLocalState } from '../backend';
-import { Section, Collapsible, Button, Tabs } from '../components';
+import { Section, Collapsible, Button, Tabs, Flex } from '../components';
 import { Window } from '../layouts';
 import { Fragment } from 'inferno';
 
@@ -17,8 +17,9 @@ export const TicketListPanel = (props, context) => {
 
   return (
     <Window
+    theme="admintickets"
       title="Admin Ticket Viewer"
-      width={640}
+      width={520}
       height={700}
       resizable>
       <Window.Content scrollable>
@@ -58,24 +59,26 @@ export const TicketListView = (props, context) => {
   return (
     <Fragment>
       <Collapsible
-        className="Section__titleText"
+        className="ticket_section"
         color={open_count === 0 ? 'default' : 'red'}
         open
         title={"Unresolved Tickets (" + open_count + "/" + total_count + ")"}>
         {data.unresolved_tickets.filter(filterTicket).reverse().map(ticket => (
           <TicketSummary
             key={ticket.id}
-            ticket={ticket} />
+            ticket={ticket}
+            user={data.user_key} />
         ))}
       </Collapsible>
       <Collapsible
-        className="Section__titleText"
+        className="ticket_section"
         color="green"
         title={"Resolved Tickets (" + closed_count + "/" + total_count + ")"}>
         {data.resolved_tickets.filter(filterTicket).reverse().map(ticket => (
           <TicketSummary
             key={ticket.id}
-            ticket={ticket} />
+            ticket={ticket}
+            user={data.user_key} />
         ))}
       </Collapsible>
     </Fragment>
@@ -83,11 +86,87 @@ export const TicketListView = (props, context) => {
 };
 
 export const TicketSummary = (props, context) => {
-  const { ticket } = props;
+  const { ticket, user } = props;
   const { act } = useBackend(context);
+
+  const buttons = [
+    [
+      {
+        name: 'View',
+        act: 'view',
+        icon: 'eye',
+      },
+      {
+        name: '',
+        act: 'adminmoreinfo',
+        icon: 'question',
+        disabled: !ticket.has_mob,
+      },
+      {
+        name: 'PP',
+        act: 'PP',
+        icon: 'user',
+        disabled: !ticket.has_mob,
+      },
+      {
+        name: 'VV',
+        act: 'VV',
+        icon: 'cog',
+        disabled: !ticket.has_mob,
+      },
+      {
+        name: 'FLW',
+        act: 'FLW',
+        icon: 'arrow-up',
+        disabled: !ticket.has_mob,
+      },
+      {
+        name: 'TP',
+        act: 'TP',
+        icon: 'book-dead',
+        disabled: !ticket.has_mob,
+      },
+      {
+        name: 'Logs',
+        act: 'Logs',
+        icon: 'file',
+        disabled: !ticket.has_mob,
+      },
+    ],
+    [
+      {
+        name: 'Administer',
+        act: 'Administer',
+        icon: 'folder-open',
+      },
+      {
+        name: 'Reject',
+        act: 'Reject',
+        icon: 'ban',
+      },
+      {
+        name: ticket.is_resolved ? 'Unresolve' : 'Resolve',
+        act: 'Resolve',
+        icon: 'check',
+      },
+      {
+        name: 'IC',
+        act: 'IC',
+        icon: 'male',
+        disabled: !ticket.has_client
+      },
+      {
+        name: 'MHelp',
+        act: 'MHelp',
+        icon: 'info',
+        disabled: !ticket.has_client,
+      },
+    ],
+  ];
 
   return (
     <Section
+      className={user === ticket.admin_key ? "myticket" : ""}
       backgroundColor={ticket.admin_key || !ticket.active ? "" : "bad"}
       title={"#" + ticket.id + ": " + ticket.name}>
       Owner:
@@ -102,112 +181,23 @@ export const TicketSummary = (props, context) => {
       <span class="color-bad">{!ticket.has_client ? "DISCONNECTED" : ""}</span>
       <Section
         level="2">
-        <Button
-          icon="eye"
-          onClick={() => act('view', {
-            'id': ticket.id,
-          })}>
-          View
-        </Button>
-        <Button
-          icon="question"
-          disabled={!ticket.has_mob}
-          onClick={() => act('adminmoreinfo', {
-            'id': ticket.id,
-          })} />
-        <Button
-          icon="user"
-          disabled={!ticket.has_mob}
-          onClick={() => act('PP', {
-            'id': ticket.id,
-          })}>
-          PP
-        </Button>
-        <Button
-          icon="cog"
-          disabled={!ticket.has_mob}
-          onClick={() => act('VV', {
-            'id': ticket.id,
-          })}>
-          VV
-        </Button>
-        <Button
-          icon="envelope"
-          disabled={!ticket.has_mob}
-          onClick={() => act('SM', {
-            'id': ticket.id,
-          })}>
-          SM
-        </Button>
-        <Button
-          icon="arrow-up"
-          disabled={!ticket.has_mob}
-          onClick={() => act('FLW', {
-            'id': ticket.id,
-          })}>
-          FLW
-        </Button>
-        <Button
-          icon="book-dead"
-          disabled={!ticket.has_mob}
-          onClick={() => act('TP', {
-            'id': ticket.id,
-          })}>
-          TP
-        </Button>
-        <Button
-          icon="file"
-          disabled={!ticket.has_mob}
-          onClick={() => act('Logs', {
-            'id': ticket.id,
-          })}>
-          Logs
-        </Button>
-        <Button
-          icon="users"
-          onClick={() => act('CA', {
-            'id': ticket.id,
-          })}>
-          CA
-        </Button>
-        <Button
-          icon="folder-open"
-          onClick={() => act('Administer', {
-            'id': ticket.id,
-          })}>
-          Administer
-        </Button>
-        <Button
-          icon="check"
-          onClick={() => act('Resolve', {
-            'id': ticket.id,
-          })}>
-          {ticket.is_resolved ? "Unresolve" : "Resolve"}
-        </Button>
-        <Button
-          icon="ban"
-          disabled={!ticket.has_client}
-          onClick={() => act('Reject', {
-            'id': ticket.id,
-          })}>
-          Reject
-        </Button>
-        <Button
-          icon="male"
-          disabled={!ticket.has_client}
-          onClick={() => act('IC', {
-            'id': ticket.id,
-          })}>
-          IC
-        </Button>
-        <Button
-          icon="info"
-          disabled={!ticket.has_client}
-          onClick={() => act('MHelp', {
-            'id': ticket.id,
-          })}>
-          MHelp
-        </Button>
+        {buttons.map(button_row => (
+          <Flex direction='row'>
+            {button_row.map(button => (
+              <Flex.Item grow={1}>
+                <Button fluid m='2.5px'
+                  icon={button.icon}
+                  disabled={button.disabled}
+                  selected={button.selected}
+                  onClick={(val => () => act(val, {
+                    'id': ticket.id,
+                  }))(button.act)}>
+                  {button.name}
+                </Button>
+              </Flex.Item>
+            ))}
+          </Flex>
+        ))}
       </Section>
     </Section>
   );
