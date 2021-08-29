@@ -180,6 +180,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/maintenance/central/secondary
 	name = "Central Maintenance"
 	icon_state = "maintcentral"
+	clockwork_warp_allowed = FALSE
 
 /area/maintenance/fore
 	name = "Fore Maintenance"
