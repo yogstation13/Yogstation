@@ -17,7 +17,7 @@ export const TicketListPanel = (props, context) => {
 
   return (
     <Window
-    theme="admintickets"
+      theme="admintickets"
       title="Admin Ticket Viewer"
       width={520}
       height={700}
@@ -153,7 +153,7 @@ export const TicketSummary = (props, context) => {
         name: 'IC',
         act: 'IC',
         icon: 'male',
-        disabled: !ticket.has_client
+        disabled: !ticket.has_client,
       },
       {
         name: 'MHelp',
@@ -181,11 +181,11 @@ export const TicketSummary = (props, context) => {
       <span class="color-bad">{!ticket.has_client ? "DISCONNECTED" : ""}</span>
       <Section
         level="2">
-        {buttons.map(button_row => (
-          <Flex direction='row'>
+        {buttons.map((button_row, i) => (
+          <Flex direction="row" key={i}>
             {button_row.map(button => (
-              <Flex.Item grow={1}>
-                <Button fluid m='2.5px'
+              <Flex.Item key={button.act} grow={1}>
+                <Button key={button.act} fluid m="2.5px"
                   icon={button.icon}
                   disabled={button.disabled}
                   selected={button.selected}

@@ -80,13 +80,13 @@ export const TicketPanel = (props, context) => {
         name: 'IC',
         act: 'IC',
         icon: 'male',
-        disabled: !data.has_client
+        disabled: !data.has_client,
       },
       {
         name: 'Wiki',
         act: 'Wiki',
         icon: 'film',
-        disabled: !data.has_mob
+        disabled: !data.has_mob,
       },
       {
         name: 'Bug',
@@ -105,37 +105,36 @@ export const TicketPanel = (props, context) => {
   if (data.is_admin) {
     return (
       <Window
-        theme='admintickets'
-        title='Ticket Viewer'
+        theme="admintickets"
+        title="Ticket Viewer"
         width={700}
         height={700}
         resizable>
         <Window.Content scrollable>
           <Section
             title={data.initiator_key_name + ': ' + data.name}>
-            <span class='Section__titleText' style={{ 'font-weight': 'normal' }}>
+            <span class="Section__titleText" style={{ 'font-weight': 'normal' }}>
               Assigned Admin: <b>{data.admin || 'Unassigned'}</b><br />
               <span class={data.is_resolved ? 'color-good' : 'color-bad'}>
                 Is{data.is_resolved ? '' : ' not'} resolved
               </span>
             </span>
             <Section
-              level='2'
-              m='-5px'>
+              level="2"
+              m="-5px">
               Job: <b>{data.role}</b> <br />
               Antag: <b>{data.antag || 'No'}</b><br />
               Location: <b>{data.location}</b>
             </Section>
             <Section
-              m='-5px'
-              level='2'
-              inline='true'
-              >
-              {buttons.map(button_row => (
-                <Flex direction='row'>
+              m="-5px"
+              level="2"
+              inline="true">
+              {buttons.map((button_row, i) => (
+                <Flex key={i} direction="row">
                   {button_row.map(button => (
-                    <Flex.Item grow={1}>
-                      <Button fluid m='2.5px'
+                    <Flex.Item key={button.act} grow={1}>
+                      <Button fluid m="2.5px"
                         icon={button.icon}
                         disabled={button.disabled}
                         selected={button.selected}
@@ -150,14 +149,14 @@ export const TicketPanel = (props, context) => {
           </Section>
           <TicketMessages
             ticket={data}
-            title='Messages' />
+            title="Messages" />
         </Window.Content>
       </Window>
     );
   }
   return (
     <Window
-      title='Ticket Viewer'
+      title="Ticket Viewer"
       width={700}
       height={700}
       resizable>
@@ -185,13 +184,13 @@ export const TicketMessages = (props, context) => {
       lineHeight={1.25}
       title={title}>
       {ticket.log.map(entry => (!entry.for_admins || ticket.is_admin) && (
-        <Box key={entry.time} m='2px'>
+        <Box key={entry.time} m="2px">
           {entry.time} - <b>{entry.user}</b> - {entry.text}
         </Box>
       ) || '')}
       <Input
         fluid
-        placeholder='Message to send'
+        placeholder="Message to send"
         selfclear
         value={message}
         className="replybox"
@@ -205,7 +204,7 @@ export const TicketMessages = (props, context) => {
           }
         }} />
       <Button
-        mt='5px'
+        mt="5px"
         onClick={() => {
           act('send_message', { 'message': message });
           setMessage('');
