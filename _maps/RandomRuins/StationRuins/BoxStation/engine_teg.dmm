@@ -9,10 +9,6 @@
 "ad" = (
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
-"af" = (
-/obj/structure/closet/radiation,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "ag" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/color/yellow,
@@ -277,6 +273,13 @@
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"er" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "eu" = (
 /turf/closed/wall/r_wall,
 /area/space/nearstation)
@@ -452,6 +455,10 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"na" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/heater,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "nh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/visible,
@@ -520,6 +527,21 @@
 	pixel_y = -24
 	},
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible,
+/turf/open/floor/engine,
+/area/engine/engineering)
+"oW" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 1
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "pq" = (
@@ -995,13 +1017,6 @@
 	},
 /turf/template_noop,
 /area/space/nearstation)
-"Bh" = (
-/obj/machinery/atmospherics/pipe/manifold/orange/visible{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "Bi" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
 	dir = 1
@@ -1034,6 +1049,28 @@
 	dir = 1
 	},
 /obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/engine,
+/area/engine/engineering)
+"Cw" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/clothing/gloves/color/black,
+/obj/item/clothing/glasses/meson/engine,
+/obj/item/tank/internals/emergency_oxygen/engi{
+	pixel_x = 5
+	},
+/obj/item/holosign_creator/atmos,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "CM" = (
@@ -1177,25 +1214,6 @@
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
 	name = "Atmos to External Gas"
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"IV" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/clothing/gloves/color/black,
-/obj/item/clothing/glasses/meson/engine,
-/obj/item/tank/internals/emergency_oxygen/engi{
-	pixel_x = 5
-	},
-/obj/item/holosign_creator/atmos,
-/obj/machinery/airalarm{
-	pixel_y = 24
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1376,6 +1394,11 @@
 	dir = 4
 	},
 /area/engine/engineering)
+"Ow" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold4w/orange/visible,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "OB" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -1400,6 +1423,11 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark/corner,
+/area/engine/engineering)
+"Pw" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/firecloset,
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "PH" = (
 /obj/structure/grille,
@@ -1569,13 +1597,6 @@
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "External Gas to Burn Chamber"
 	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"TP" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/structure/closet/firecloset,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Um" = (
@@ -2325,9 +2346,9 @@ dG
 "}
 (20,1,1) = {"
 ad
-Ar
-bC
-Bh
+na
+oW
+Ow
 EE
 PV
 pP
@@ -2353,7 +2374,7 @@ dG
 "}
 (21,1,1) = {"
 ad
-IV
+Ar
 bC
 ZP
 pw
@@ -2381,7 +2402,7 @@ dG
 "}
 (22,1,1) = {"
 ac
-Ci
+Cw
 bp
 zv
 xP
@@ -2437,7 +2458,7 @@ dG
 "}
 (24,1,1) = {"
 ad
-TP
+er
 bJ
 Mi
 tJ
@@ -2492,7 +2513,7 @@ IF
 dG
 "}
 (26,1,1) = {"
-af
+Pw
 ac
 tl
 aX
