@@ -1,0 +1,6 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - tweak: "gave brig phys a defib"
+  - tweak: "removed map changes to omega"
+  - tweak: "removed the brig phys from being able chosen on omega"

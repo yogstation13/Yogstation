@@ -1,0 +1,4 @@
+author: "  TiviPlus"
+delete-after: true 
+changes: 
+  - bugfix: "fixed exploit with signallers"
