@@ -1,4 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - bugfix: "fixed crew monitors not handling alt titles correctly"

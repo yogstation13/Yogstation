@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "the syndicate  fedora no longer attempts to embed itself in the person who threw it if it doesn't embed in the person it hits"
