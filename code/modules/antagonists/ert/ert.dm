@@ -224,4 +224,4 @@
 		missiondesc += " Follow orders given to you by your squad leader in order to ensure maximum laughs."
 
 		missiondesc += " Be the funniest Prankster possible!"
-	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/hornin.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
+	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/hornin.ogg', 100, FALSE, pressure_affected = FALSE)

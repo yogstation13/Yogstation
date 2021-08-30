@@ -8,9 +8,9 @@
 	spawn_positions = 3
 	supervisors = "the research director"
 	selection_color = "#ffeeff"
-	exp_requirements = 60
+	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
-
+	alt_titles = list("Researcher", "Toxins Specialist", "Physicist", "Test Associate", "Anomalist", "Quantum Physicist", "Xenobiologist", "Explosives Technician")
 
 	outfit = /datum/outfit/job/scientist
 

@@ -78,6 +78,9 @@
 
 	var/chat_color_darkened // A luminescence-shifted value of the last color calculated for chatmessage overlays
 
+	///Mobs that are currently do_after'ing this atom, to be cleared from on Destroy()
+	var/list/targeted_by
+
 	var/atom/orbit_target //Reference to atom being orbited
 /**
   * Called when an atom is created in byond (built in engine proc)
@@ -215,6 +218,12 @@
 	LAZYCLEARLIST(overlays)
 	LAZYCLEARLIST(priority_overlays)
 
+	for(var/i in targeted_by)
+		var/mob/M = i
+		LAZYREMOVE(M.do_afters, src)
+
+	targeted_by = null
+	
 	QDEL_NULL(light)
 
 	return ..()
@@ -1162,6 +1171,22 @@
   * Override this if you want custom behaviour in whatever gets hit by the rust
   */
 /atom/proc/rust_heretic_act()
+	return
+
+/**
+ * Used to set something as 'open' if it's being used as a supplypod
+ *
+ * Override this if you want an atom to be usable as a supplypod.
+ */
+/atom/proc/setOpened()
+	return
+
+/**
+ * Used to set something as 'closed' if it's being used as a supplypod
+ *
+ * Override this if you want an atom to be usable as a supplypod.
+ */
+/atom/proc/setClosed()
 	return
 
 /**

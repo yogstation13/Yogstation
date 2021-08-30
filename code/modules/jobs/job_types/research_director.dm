@@ -15,6 +15,8 @@
 	exp_type_department = EXP_TYPE_SCIENCE
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
+	exp_type_department = EXP_TYPE_SCIENCE
+	alt_titles = list("Chief Science Officer", "Head of Research")
 
 	outfit = /datum/outfit/job/rd
 
@@ -48,6 +50,7 @@
 	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses
 	uniform = /obj/item/clothing/under/rank/research_director
 	shoes = /obj/item/clothing/shoes/sneakers/brown
+	alt_shoes = /obj/item/clothing/shoes/xeno_wraps/command // Provides Command shoes to digitigrade species
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	l_hand = /obj/item/clipboard
 	l_pocket = /obj/item/laser_pointer

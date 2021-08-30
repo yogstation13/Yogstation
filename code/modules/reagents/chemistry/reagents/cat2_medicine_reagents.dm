@@ -10,6 +10,7 @@
 	name = "Libital"
 	description = "A bruise reliever. Does minor liver damage."
 	color = "#ECEC8D" // rgb: 236 236 141
+	overdose_threshold = 30
 	taste_description = "bitter with a hint of alcohol"
 	reagent_state = SOLID
 
@@ -18,6 +19,12 @@
 	M.adjustBruteLoss(-3 * REM)
 	..()
 	return TRUE
+
+/datum/reagent/medicine/c2/libital/overdose_process(mob/living/M)
+	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 0.9 * REM)
+	M.adjustOrganLoss(ORGAN_SLOT_STOMACH, 0.5 * REM)
+	..()
+	. = TRUE
 
 /datum/reagent/medicine/c2/probital
 	name = "Probital"
@@ -51,12 +58,12 @@
 	..()
 	. = TRUE
 
-/datum/reagent/medicine/c2/probital/on_transfer(atom/A, methods=INGEST, trans_volume)
-	if(!(methods & INGEST) || !iscarbon(A))
+/datum/reagent/medicine/c2/probital/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+	if(method != INGEST || !iscarbon(L))
 		return
 
-	A.reagents.remove_reagent(/datum/reagent/medicine/c2/probital, trans_volume * 0.05)
-	A.reagents.add_reagent(/datum/reagent/medicine/metafactor, trans_volume * 0.25)
+	L.reagents.remove_reagent(/datum/reagent/medicine/c2/probital, reac_volume * 0.05)
+	L.reagents.add_reagent(/datum/reagent/medicine/metafactor, reac_volume * 0.25)
 
 	..()
 
@@ -85,14 +92,22 @@
 /datum/reagent/medicine/c2/aiuri
 	name = "Aiuri"
 	description = "Used to treat burns. Does minor eye damage."
-	reagent_state = LIQUID
 	color = "#8C93FF"
+	overdose_threshold = 30
+	taste_description = "ammonia with a bit of acid"
+	reagent_state = LIQUID
 
 /datum/reagent/medicine/c2/aiuri/on_mob_life(mob/living/carbon/M)
 	M.adjustFireLoss(-2 * REM)
 	M.adjustOrganLoss(ORGAN_SLOT_EYES, 0.25 * REM)
 	..()
 	return TRUE
+
+/datum/reagent/medicine/c2/aiuri/overdose_process(mob/living/M)
+	M.adjustOrganLoss(ORGAN_SLOT_EYES, 0.75 * REM)
+	M.adjustOrganLoss(ORGAN_SLOT_STOMACH, 0.4 * REM)
+	..()
+	. = TRUE
 
 /datum/reagent/medicine/c2/rhigoxane
 	name = "Rhigoxane"
@@ -204,16 +219,16 @@
 	overdose_threshold = 6
 	var/conversion_amount
 
-/datum/reagent/medicine/c2/thializid/on_transfer(atom/A, methods=INJECT, trans_volume)
-	if(!(methods & INJECT) || !iscarbon(A))
+/datum/reagent/medicine/c2/thializid/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+	if(method != INJECT || !iscarbon(L))
 		return
-	var/mob/living/carbon/C = A
-	if(trans_volume >= 0.6) //prevents cheesing with ultralow doses.
-		C.adjustToxLoss(-1.5 * min(2, trans_volume) * REM, 0)   //This is to promote iv pole use for that chemotherapy feel.
-	var/obj/item/organ/liver/L = C.internal_organs_slot[ORGAN_SLOT_LIVER]
-	if((L.organ_flags & ORGAN_FAILING) || !L)
+	var/mob/living/carbon/C = L
+	if(reac_volume >= 0.6) //prevents cheesing with ultralow doses.
+		C.adjustToxLoss(-1.5 * min(2, reac_volume) * REM, 0)   //This is to promote iv pole use for that chemotherapy feel.
+	var/obj/item/organ/liver/Lword = C.internal_organs_slot[ORGAN_SLOT_LIVER]
+	if((Lword.organ_flags & ORGAN_FAILING) || !Lword)
 		return
-	conversion_amount = trans_volume * (min(100 -C.getOrganLoss(ORGAN_SLOT_LIVER), 80) / 100) //the more damaged the liver the worse we metabolize.
+	conversion_amount = reac_volume * (min(100 -C.getOrganLoss(ORGAN_SLOT_LIVER), 80) / 100) //the more damaged the liver the worse we metabolize.
 	C.reagents.remove_reagent(/datum/reagent/medicine/c2/thializid, conversion_amount)
 	C.reagents.add_reagent(/datum/reagent/medicine/c2/musiver, conversion_amount)
 	..()

@@ -2,18 +2,6 @@
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
-"ab" = (
-/obj/item/reagent_containers/food/drinks/shaker,
-/obj/structure/table/wood,
-/obj/item/stack/sheet/metal{
-	amount = 50
-	},
-/obj/item/stack/sheet/glass{
-	amount = 50
-	},
-/obj/item/stack/cable_coil,
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/bar)
 "ac" = (
 /obj/machinery/door/airlock{
 	name = "Theatre Backstage";
@@ -159,12 +147,6 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
-"ax" = (
-/obj/structure/closet/secure_closet/freezer/meat,
-/turf/open/floor/plasteel{
-	icon_state = "showroomfloor"
-	},
-/area/crew_quarters/kitchen)
 "ay" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -527,16 +509,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"bx" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/obj/item/storage/box/fancy/donut_box,
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "by" = (
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/light/colour_cycle/dancefloor_a,
@@ -549,25 +521,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"bA" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
-"bB" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "bC" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Diner"
@@ -861,6 +814,19 @@
 /obj/effect/spawner/xmastree,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"li" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/item/storage/box/fancy/donut_box,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "nK" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -869,6 +835,19 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"pp" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "pw" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -926,6 +905,18 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"DX" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "Eq" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/head/that,
@@ -948,6 +939,22 @@
 /obj/item/reagent_containers/food/condiment/saltshaker{
 	pixel_x = -8;
 	pixel_y = 4
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
+"Gr" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/item/reagent_containers/food/snacks/salad/fruit{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
@@ -982,6 +989,19 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
+"Lk" = (
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/structure/table/wood,
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/obj/item/stack/sheet/glass{
+	amount = 50
+	},
+/obj/item/stack/cable_coil,
+/obj/item/toy/figure/bartender,
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/bar)
 "Mm" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/wiki/barman_recipes,
@@ -1015,18 +1035,12 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
-"RL" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
+"OZ" = (
+/obj/structure/closet/secure_closet/freezer/meat,
+/obj/item/toy/figure/chef,
+/turf/open/floor/plasteel{
+	icon_state = "showroomfloor"
 	},
-/obj/item/reagent_containers/food/snacks/salad/fruit{
-	pixel_x = 1;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "SI" = (
 /obj/machinery/door/airlock{
@@ -1264,7 +1278,7 @@ HK
 ai
 "}
 (13,1,1) = {"
-ab
+Lk
 au
 aI
 aW
@@ -1361,7 +1375,7 @@ aa
 "}
 (19,1,1) = {"
 ak
-ax
+OZ
 aL
 aY
 bj
@@ -1372,7 +1386,7 @@ xw
 Zg
 cy
 cy
-bx
+li
 aa
 "}
 (20,1,1) = {"
@@ -1388,7 +1402,7 @@ cp
 BD
 cA
 cy
-bA
+pp
 aa
 "}
 (21,1,1) = {"
@@ -1404,7 +1418,7 @@ FH
 co
 cy
 cU
-bB
+DX
 aa
 "}
 (22,1,1) = {"
@@ -1420,7 +1434,7 @@ bn
 co
 cy
 cy
-RL
+Gr
 aa
 "}
 (23,1,1) = {"

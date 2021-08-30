@@ -52,10 +52,15 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/proc/specialization(datum/mind/new_owner)
 	return src
 
+ //Called by the transfer_to() mind proc after the mind (mind.current and new_character.mind) has moved but before the player (key and client) is transfered.
 /datum/antagonist/proc/on_body_transfer(mob/living/old_body, mob/living/new_body)
 	SHOULD_CALL_PARENT(TRUE)
 	remove_innate_effects(old_body)
+	if(old_body.stat != DEAD && !LAZYLEN(old_body.mind?.antag_datums))
+		old_body.remove_from_current_living_antags()
 	apply_innate_effects(new_body)
+	if(new_body.stat != DEAD)
+		new_body.add_to_current_living_antags()
 
 //This handles the application of antag huds/special abilities
 /datum/antagonist/proc/apply_innate_effects(mob/living/mob_override)
@@ -69,18 +74,22 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/proc/create_team(datum/team/team)
 	return
 
-//Proc called when the datum is given to a mind.
+//Called by the add_antag_datum() mind proc after the instanced datum is added to the mind's antag_datums list.
 /datum/antagonist/proc/on_gain()
 	SHOULD_CALL_PARENT(TRUE)
-	if(owner && owner.current)
-		if(!silent)
-			greet()
-		apply_innate_effects()
-		give_antag_moodies()
-		if(is_banned(owner.current) && replace_banned)
-			replace_banned_player()
-		else if(owner.current.client?.holder && (CONFIG_GET(flag/auto_deadmin_antagonists) || owner.current.client.prefs?.toggles & DEADMIN_ANTAGONIST))
-			owner.current.client.holder.auto_deadmin()
+	if(!owner)
+		CRASH("[src] ran on_gain() without a mind")
+	if(!owner.current)
+		CRASH("[src] ran on_gain() on a mind without a mob")
+	greet()
+	apply_innate_effects()
+	give_antag_moodies()
+	if(is_banned(owner.current) && replace_banned)
+		replace_banned_player()
+	else if(owner.current.client?.holder && (CONFIG_GET(flag/auto_deadmin_antagonists) || owner.current.client.prefs?.toggles & DEADMIN_ANTAGONIST))
+		owner.current.client.holder.auto_deadmin()
+	if(owner.current.stat != DEAD)
+		owner.current.add_to_current_living_antags()
 
 /datum/antagonist/proc/is_banned(mob/M)
 	if(!M)
@@ -91,19 +100,26 @@ GLOBAL_LIST_EMPTY(antagonists)
 	set waitfor = FALSE
 
 	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [name]?", "[name]", null, job_rank, 50, owner.current)
+	var/mob/dead/observer/C
+	
+	to_chat(owner, "Your mob has been taken over by a ghost! Appeal your job ban if you want to avoid this in the future!")
 	if(LAZYLEN(candidates))
-		var/mob/dead/observer/C = pick(candidates)
-		to_chat(owner, "Your mob has been taken over by a ghost! Appeal your job ban if you want to avoid this in the future!")
-		message_admins("[key_name_admin(C)] has taken control of ([key_name_admin(owner)]) to replace a jobbanned player.")
-		owner.current.ghostize(0)
-		owner.current.key = C.key
+		C = pick(candidates)
+		
+	message_admins(" [key_name_admin(owner)] [C ? "has been replaced by [key_name_admin(C)]" : "is banned from [job_rank] and was unable to be replaced!"]")
+	owner.current.ghostize(0)
+	owner.current.key = C ? C.key : null
+	
 
+//Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
 /datum/antagonist/proc/on_removal()
 	SHOULD_CALL_PARENT(TRUE)
 	remove_innate_effects()
 	clear_antag_moodies()
 	if(owner)
 		LAZYREMOVE(owner.antag_datums, src)
+		if(!LAZYLEN(owner.antag_datums))
+			owner.current.remove_from_current_living_antags()
 		if(!silent && owner.current)
 			farewell()
 	var/datum/team/team = get_team()

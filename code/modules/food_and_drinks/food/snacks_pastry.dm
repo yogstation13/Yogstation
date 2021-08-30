@@ -348,7 +348,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
 	filling_color = "#FFE4C4"
 	tastes = list("biscuit" = 3, "chocolate" = 1)
-	foodtype = GRAIN | JUNKFOOD
+	foodtype = GRAIN | JUNKFOOD | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/oatmealcookie
 	name = "oatmeal cookie"
@@ -439,6 +439,7 @@
 	item_state = "ccpancakes"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
+	foodtype = GRAIN | SUGAR | BREAKFAST | CHOCOLATE
 	tastes = list("pancakes" = 1, "chocolate" = 1)
 
 /obj/item/reagent_containers/food/snacks/pancakes/cinnamon

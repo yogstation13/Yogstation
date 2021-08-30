@@ -2,13 +2,6 @@
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
-"ac" = (
-/obj/item/reagent_containers/food/drinks/shaker,
-/obj/item/stack/spacecash/c10,
-/obj/item/stack/spacecash/c100,
-/obj/structure/table,
-/turf/open/floor/mineral/titanium,
-/area/crew_quarters/bar)
 "ad" = (
 /obj/machinery/door/airlock{
 	name = "Theatre Backstage";
@@ -563,13 +556,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
-"bg" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/closet/secure_closet/freezer/meat,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "bh" = (
@@ -1214,25 +1200,6 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
-"cJ" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
-"cK" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
 "cL" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -1279,6 +1246,26 @@
 	pixel_y = 3
 	},
 /turf/open/floor/mineral/titanium,
+/area/crew_quarters/kitchen)
+"nE" = (
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/stack/spacecash/c10,
+/obj/item/stack/spacecash/c100,
+/obj/structure/table,
+/obj/item/toy/figure/bartender,
+/turf/open/floor/mineral/titanium,
+/area/crew_quarters/bar)
+"nZ" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "oK" = (
 /obj/structure/grille,
@@ -1416,6 +1403,14 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
+"JG" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/freezer/meat,
+/obj/item/toy/figure/chef,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
 "MN" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
@@ -1460,6 +1455,19 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
+"Nw" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/fancy/donut_box,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "Pz" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -1706,7 +1714,7 @@ cE
 ag
 "}
 (13,1,1) = {"
-ac
+nE
 ay
 aP
 aZ
@@ -1805,7 +1813,7 @@ aa
 al
 aF
 aQ
-bg
+JG
 bo
 al
 bF
@@ -1814,7 +1822,7 @@ cc
 cj
 bQ
 bQ
-cJ
+Nw
 aa
 "}
 (20,1,1) = {"
@@ -1830,7 +1838,7 @@ MS
 ni
 cq
 bQ
-cK
+nZ
 aa
 "}
 (21,1,1) = {"
@@ -1846,7 +1854,7 @@ MN
 cm
 bQ
 cy
-cK
+nZ
 aa
 "}
 (22,1,1) = {"
@@ -1862,7 +1870,7 @@ cf
 cm
 bQ
 bQ
-cK
+nZ
 aa
 "}
 (23,1,1) = {"

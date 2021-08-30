@@ -27,7 +27,7 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	var/mob/living/M = mob_override || owner.current
 	for(var/obj/item/implant/explosive/E in M.implants)
 		if(E)
-			UnregisterSignal(M, COMSIG_IMPLANT_ACTIVATED, .proc/on_death)
+			UnregisterSignal(M, COMSIG_IMPLANT_ACTIVATED)
 	update_ninja_icons_removed(M)
 
 /datum/antagonist/ninja/proc/equip_space_ninja(mob/living/carbon/human/H = owner.current)
@@ -62,6 +62,7 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 			if(2)	//steal
 				var/datum/objective/steal/special/O = new /datum/objective/steal/special()
 				O.owner = owner
+				O.find_target()
 				objectives += O
 
 			if(3)	//protect/kill

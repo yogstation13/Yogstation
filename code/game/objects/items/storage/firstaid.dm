@@ -31,8 +31,8 @@
 		return
 	var/static/items_inside = list(
 		/obj/item/stack/medical/gauze = 1,
-		/obj/item/stack/medical/bruise_pack = 2,
-		/obj/item/stack/medical/ointment = 2,
+		/obj/item/stack/medical/suture = 2,
+		/obj/item/stack/medical/mesh = 2,
 		/obj/item/reagent_containers/hypospray/medipen = 1,
 		/obj/item/healthanalyzer = 1)
 	generate_items_inside(items_inside,src)
@@ -92,7 +92,8 @@
 		/obj/item/implant,
 		/obj/item/implanter,
 		/obj/item/pinpointer/crew,
-		/obj/item/holosign_creator/medical
+		/obj/item/holosign_creator/medical,
+		/obj/item/book/manual/wiki/medicine
 		))
 
 /obj/item/storage/firstaid/medical/PopulateContents()
@@ -100,14 +101,15 @@
 		return
 	var/static/items_inside = list(
 		/obj/item/stack/medical/gauze = 1,
-		/obj/item/stack/medical/bruise_pack = 2,
-		/obj/item/stack/medical/ointment = 2,
+		/obj/item/stack/medical/suture = 2,
+		/obj/item/stack/medical/mesh = 2,
 		/obj/item/reagent_containers/hypospray/medipen = 1,
 		/obj/item/healthanalyzer = 1,
 		/obj/item/surgical_drapes = 1,
 		/obj/item/scalpel = 1,
 		/obj/item/hemostat = 1,
-		/obj/item/cautery = 1)
+		/obj/item/cautery = 1,
+		/obj/item/book/manual/wiki/medicine = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/ancient
@@ -321,7 +323,7 @@
 
 /obj/item/storage/pill_bottle/mutadone/PopulateContents()
 	for(var/i in 1 to 7)
-		new /obj/item/reagent_containers/pill/mutadone(src)
+		new /obj/item/reagent_containers/pill/mutadone/five(src)
 
 /obj/item/storage/pill_bottle/mannitol
 	name = "bottle of mannitol pills"
@@ -330,6 +332,13 @@
 /obj/item/storage/pill_bottle/mannitol/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/mannitol(src)
+
+/obj/item/storage/pill_bottle/mannitol/braintumor //For the brain tumor quirk
+	desc = "Generously supplied by your Nanotrasen health insurance to treat that pesky tumor in your brain."
+
+/obj/item/storage/pill_bottle/mannitol/braintumor/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/reagent_containers/pill/mannitol/braintumor(src)
 
 /obj/item/storage/pill_bottle/stimulant
 	name = "bottle of stimulant pills"

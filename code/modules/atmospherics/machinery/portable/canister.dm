@@ -562,6 +562,7 @@
 			valve_open = !valve_open
 			if(valve_open)
 				logmsg = "Valve was <b>opened</b> by [key_name(usr)], starting a transfer into \the [holding || "air"].<br>"
+				investigate_log(logmsg, INVESTIGATE_ATMOS)
 				if(!holding)
 					var/list/danger = list()
 					for(var/id in air_contents.get_gases())
@@ -573,13 +574,15 @@
 					if(danger.len)
 						message_admins("[ADMIN_LOOKUPFLW(usr)] opened a canister that contains the following at [ADMIN_VERBOSEJMP(src)]:")
 						log_admin("[key_name(usr)] opened a canister that contains the following at [AREACOORD(src)]:")
+						investigate_log("Contents:", INVESTIGATE_ATMOS)
 						for(var/name in danger)
 							var/msg = "[name]: [danger[name]] moles."
 							log_admin(msg)
 							message_admins(msg)
+							investigate_log(msg, INVESTIGATE_ATMOS)
 			else
 				logmsg = "Valve was <b>closed</b> by [key_name(usr)], stopping the transfer into \the [holding || "air"].<br>"
-			investigate_log(logmsg, INVESTIGATE_ATMOS)
+				investigate_log(logmsg, INVESTIGATE_ATMOS)
 			release_log += logmsg
 			. = TRUE
 		if("timer")

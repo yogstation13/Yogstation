@@ -17,11 +17,13 @@
 	speedmod = 1.1 //Light and energy move quickly
 	punchdamagehigh  = 11 //Fire hand more painful
 	punchstunthreshold = 11 //Still stuns on max hit, but subsequently lower chance to stun overall
+  payday_modifier = 0.7 //Neutrally useful to NT
 	attack_type = BURN //burn bish
 	damage_overlay_type = "" //We are too cool for regular damage overlays
 	species_traits = list(DYNCOLORS, AGENDER, NO_UNDERWEAR)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER)
+	species_language_holder = /datum/language_holder/ethereal
 	sexes = FALSE //no fetish content allowed
 	toxic_food = NONE
 	inert_mutation = SHOCKTOUCH

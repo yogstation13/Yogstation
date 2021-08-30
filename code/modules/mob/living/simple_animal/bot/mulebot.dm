@@ -49,6 +49,9 @@
 	var/obj/item/stock_parts/cell/cell
 	var/bloodiness = 0
 
+	///The amount of steps we should take until we rest for a time.
+	var/num_steps = 0
+	
 /mob/living/simple_animal/bot/mulebot/Initialize()
 	. = ..()
 	wires = new /datum/wires/mulebot(src)
@@ -448,27 +451,16 @@
 		return
 	if(on)
 		var/speed = (wires.is_cut(WIRE_MOTOR1) ? 0 : 1) + (wires.is_cut(WIRE_MOTOR2) ? 0 : 2)
-		var/num_steps = 0
-		switch(speed)
-			if(0)
-				// do nothing
-			if(1)
-				num_steps = 10
-			if(2)
-				num_steps = 5
-			if(3)
-				num_steps = 3
+		if(!speed)//Devide by zero man bad
+			return
+		num_steps = round(10/speed) //10, 5, or 3 steps, depending on how many wires we have cut
+		if(mode != BOT_IDLE)
+			START_PROCESSING(SSfastprocess, src)
 
-		if(num_steps)
-			process_bot()
-			num_steps--
-			if(mode != BOT_IDLE)
-				spawn(0)
-					for(var/i=num_steps,i>0,i--)
-						sleep(2)
-						process_bot()
-
-/mob/living/simple_animal/bot/mulebot/proc/process_bot()
+/mob/living/simple_animal/bot/mulebot/process()
+	if(num_steps <= 0)
+		return PROCESS_KILL
+	num_steps--
 	if(!on || client)
 		return
 	update_icon()

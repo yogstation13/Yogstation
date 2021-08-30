@@ -5,19 +5,32 @@
 		gender = gender_override
 	else
 		gender = pick(MALE,FEMALE)
-	underwear = random_underwear(gender)
-	undershirt = random_undershirt(gender)
-	socks = random_socks()
-	skin_tone = random_skin_tone()
-	hair_style = random_hair_style(gender)
-	facial_hair_style = random_facial_hair_style(gender)
-	hair_color = random_short_color()
-	facial_hair_color = hair_color
-	eye_color = random_eye_color()
+	if(!random_locks["underwear"])
+		underwear = random_underwear(gender)
+	if(!random_locks["undershirt"])
+		undershirt = random_undershirt(gender)
+	if(!random_locks["socks"])
+		socks = random_socks()
+	if(!random_locks["skin_tone"])
+		skin_tone = random_skin_tone()
+	if(!random_locks["hair_style"])
+		hair_style = random_hair_style(gender)
+	if(!random_locks["facial_hair_style"])
+		facial_hair_style = random_facial_hair_style(gender)
+	if(!random_locks["hair"])
+		hair_color = random_short_color()
+	if(!random_locks["facial"])
+		facial_hair_color = hair_color
+	if(!random_locks["eye_color"])
+		eye_color = random_eye_color()
 	if(!pref_species)
 		var/rando_race = pick(GLOB.roundstart_races)
 		pref_species = new rando_race()
-	features = random_features()
+	var/temp_features = random_features()
+	for(var/i in temp_features)
+		if(random_locks[i])
+			i = features[i]
+	features = temp_features
 	age = rand(AGE_MIN,AGE_MAX)
 
 /datum/preferences/proc/update_preview_icon()

@@ -142,12 +142,18 @@
 	list_reagents = list(/datum/reagent/medicine/mannitol = 50)
 	rename_with_volume = TRUE
 
+/obj/item/reagent_containers/pill/mannitol/braintumor
+	list_reagents = list(/datum/reagent/medicine/mannitol = 20)
+
 /obj/item/reagent_containers/pill/mutadone
 	name = "mutadone pill"
 	desc = "Used to treat genetic damage."
 	icon_state = "pill20"
 	list_reagents = list(/datum/reagent/medicine/mutadone = 50)
 	rename_with_volume = TRUE
+
+/obj/item/reagent_containers/pill/mutadone/five
+	list_reagents = list(/datum/reagent/medicine/mutadone = 5)
 
 /obj/item/reagent_containers/pill/salicyclic
 	name = "salicylic acid pill"

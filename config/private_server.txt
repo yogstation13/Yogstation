@@ -42,10 +42,10 @@ HOSTEDBY Yogstation13-Bot
 FORUMURL http://yogstation.net
 
 ## Wiki address
-WIKIURL https://wiki.yogstation.net/wiki
+WIKIURL https://wiki.yogstation.net
 
 ##Rules address
-RULESURL http://forums.yogstation.net/index.php?pages/rules/
+RULESURL http://forums.yogstation.net/help/rules/
 
 ##Github address
 GITHUBURL https://www.github.com/yogstation13/yogstation
@@ -62,7 +62,7 @@ DEMOURL https://yogstation13.github.io/demo-viewer/?roundid=
 GITHUBREPOID 120966336
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-BANAPPEALS https://forums.yogstation.net/index.php?form/2/select
+BANAPPEALS https://forums.yogstation.net/form/2/select
 
 ## System command that invokes youtube-dl, used by Play Internet Sound.
 ## You can install youtube-dl with
@@ -86,3 +86,6 @@ SQL_ENABLED
 ##	FEEDBACK_TABLEPREFIX SS13_
 ## Remove "SS13_" if you are using the standard schema file.
 FEEDBACK_TABLEPREFIX erro_
+
+VOICE_ANNOUNCE_URL_BASE https://www.yogstation.net/voice_announce/
+VOICE_ANNOUNCE_DIR data/voice_announcements

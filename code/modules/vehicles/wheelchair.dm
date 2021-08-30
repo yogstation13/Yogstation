@@ -9,6 +9,7 @@
 	legs_required = 0	//You'll probably be using this if you don't have legs
 	canmove = TRUE
 	density = FALSE		//Thought I couldn't fix this one easily, phew
+	movedelay = 4
 
 /obj/vehicle/ridden/wheelchair/Initialize()
 	. = ..()
@@ -45,7 +46,12 @@
 		//1.5 (movespeed as of this change) multiplied by 4 gets 6, which gives you a delay of 3 assuming the user has two arms,
 		//getting the speed of the wheelchair roughly equal to the speed of a scooter based on testing.
 		//if that made no sense this simply makes the wheelchair speed change along with movement speed delay
-		D.vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * 4) / min(user.get_num_arms(), 2)
+		//paraplegic quirk users get a halved movedelay to model their life of wheelchair useage - yogs
+		if(user.has_quirk(/datum/quirk/paraplegic))
+			movedelay = 2
+		else
+			movedelay = 4
+		D.vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * movedelay) / min(user.get_num_arms(), 2)
 	return ..()
 
 /obj/vehicle/ridden/wheelchair/Moved()

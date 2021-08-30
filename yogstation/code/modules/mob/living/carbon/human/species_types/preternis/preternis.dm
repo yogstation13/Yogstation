@@ -22,6 +22,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	heatmod = 1.5 //Again, computers don't like heat
 	punchstunthreshold = 9 //Stun range 9-10 on punch, you are being slugged in the brain by a metal robot fist.
 	siemens_coeff = 1.75 //Computers REALLY don't like being shorted out
+	payday_modifier = 0.8 //Useful to NT for engineering + very close to Human
 	yogs_draw_robot_hair = TRUE
 	mutanteyes = /obj/item/organ/eyes/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
@@ -34,6 +35,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/tesliumtrip = FALSE
 	var/draining = FALSE
 	screamsound = 'goon/sound/robot_scream.ogg'
+	wings_icon = "Robotic"
 	species_language_holder = /datum/language_holder/preternis
 
 /datum/species/preternis/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)

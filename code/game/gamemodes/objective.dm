@@ -185,7 +185,7 @@ GLOBAL_LIST_EMPTY(objectives)
 				H.equip_in_one_of_slots(O, slots)
 
 /datum/objective/assassinate
-	name = "assasinate"
+	name = "assassinate"
 	var/target_role_type=FALSE
 	martyr_compatible = 1
 
@@ -385,7 +385,7 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/purge
 	name = "no mutants on shuttle"
-	explanation_text = "Ensure no mutant humanoids or nonhuman species are present aboard the escape shuttle."
+	explanation_text = "Ensure no mutant humanoids or nonhuman species are present aboard the escape shuttle. Felinids/Catpeople do NOT count as nonhuman."
 	martyr_compatible = 1
 
 /datum/objective/purge/check_completion()
@@ -394,7 +394,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	for(var/mob/living/player in GLOB.player_list)
 		if((get_area(player) in SSshuttle.emergency.shuttle_areas) && player.mind && player.stat != DEAD && ishuman(player))
 			var/mob/living/carbon/human/H = player
-			if(H.dna.species.id != "human")
+			if(!ishumanbasic(H))
 				return FALSE
 	return TRUE
 

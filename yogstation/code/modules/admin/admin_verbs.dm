@@ -42,6 +42,10 @@
 	if(!choose_from_dead)
 		return
 
+	var/special_role_req = input(src, "Special role enabled?", "Selection", "Everyone") as null|anything in list("Everyone")|GLOB.special_roles
+	if(!special_role_req)
+		return
+
 	if(choose_from_dead != "Dead Only")
 		for(var/mob/M in GLOB.alive_mob_list)
 			if(M.mind)
@@ -58,6 +62,12 @@
 	else if(what_group == "Non-Antags Only")
 		for(var/mob/M in mobs)
 			if(M.mind.special_role)
+				mobs -= M
+
+	if(special_role_req != "Everyone")
+		to_chat(src, "<span class='warning'>Selecting for players with [special_role_req] enabled</span>")
+		for(var/mob/M in mobs)
+			if(!M.client || !(special_role_req in M.client.prefs.be_special))
 				mobs -= M
 
 	if(!mobs.len)

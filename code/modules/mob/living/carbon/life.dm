@@ -514,6 +514,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	if(hallucination)
 		handle_hallucinations()
 
+	REMOVE_TRAIT(src, TRAIT_SURGERY_PREPARED, "drunk")
 	if(drunkenness)
 		drunkenness = max(drunkenness - (drunkenness * 0.04) - 0.01, 0)
 		if(drunkenness >= 6)
@@ -525,11 +526,9 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			if(HAS_TRAIT(src, TRAIT_DRUNK_HEALING))
 				adjustBruteLoss(-0.12, FALSE)
 				adjustFireLoss(-0.06, FALSE)
-			sound_environment_override = SOUND_ENVIRONMENT_PSYCHOTIC
 		else
 			SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "drunk")
 			clear_alert("drunk")
-			sound_environment_override = SOUND_ENVIRONMENT_NONE
 
 		if(drunkenness >= 11 && slurring < 5)
 			slurring += 1.2
@@ -558,6 +557,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			if(HAS_TRAIT(src, TRAIT_DRUNK_HEALING)) // effects stack with lower tiers
 				adjustBruteLoss(-0.3, FALSE)
 				adjustFireLoss(-0.15, FALSE)
+			ADD_TRAIT(src, TRAIT_SURGERY_PREPARED, "drunk")
 
 		if(drunkenness >= 51)
 			if(prob(3))

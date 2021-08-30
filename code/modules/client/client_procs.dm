@@ -549,7 +549,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	view_size = new(src, getScreenSize(prefs.widescreenpref))
 	view_size.resetFormat()
 	view_size.setZoomMode()
-	fit_viewport()
 	Master.UpdateTickRate()
 
 	//Client needs to exists for what follows
@@ -560,6 +559,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(params["discordlink"])
 		do_discord_link(params["discordlink"])
 
+	var/datum/connection_log/CL = GLOB.connection_logs[ckey]
+	if(CL)
+		CL.login()
+	else
+		GLOB.connection_logs[ckey] = new/datum/connection_log()
 
 //////////////
 //DISCONNECT//
@@ -594,6 +598,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
+
+	var/datum/connection_log/CL = GLOB.connection_logs[ckey]
+	if(CL)
+		CL.logout(mob)
+
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
 	if(movingmob != null)
 		movingmob.client_mobs_in_contents -= mob
@@ -601,6 +610,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	seen_messages = null
 	Master.UpdateTickRate()
 	world.sync_logout_with_db(connection_number) // yogs - logout logging
+
 	return ..()
 
 /client/proc/set_client_age_from_db(connectiontopic)

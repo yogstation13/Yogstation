@@ -8,8 +8,9 @@
 	spawn_positions = 2
 	supervisors = "the chief engineer"
 	selection_color = "#fff5cc"
-	exp_requirements = 60
+	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
+	alt_titles = list("Life-support Technician", "Fire Suppression Specialist", "Atmospherics Trainee", "Environmental Maintainer")
 
 	outfit = /datum/outfit/job/atmos
 

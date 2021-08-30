@@ -19,7 +19,7 @@
 	log_admin("[key_name(admin)] has heresized [key_name(new_owner)].")
 
 /datum/antagonist/heretic/greet()
-	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ecult_op.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)//subject to change
+	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ecult_op.ogg', 100, FALSE, pressure_affected = FALSE)//subject to change
 	to_chat(owner, "<span class='boldannounce'>You are the Heretic!</span><br>\
 	<B>The old ones gave you these tasks to fulfill:</B>")
 	owner.announce_objectives()
@@ -95,23 +95,23 @@
 		ET.on_life(owner.current)
 
 /datum/antagonist/heretic/proc/forge_primary_objectives()
-	var/list/assasination = list()
+	var/list/assassination = list()
 	var/list/protection = list()
 	for(var/i in 1 to 2)
-		var/pck = pick("assasinate","protect")
+		var/pck = pick("assassinate","protect")
 		switch(pck)
-			if("assasinate")
+			if("assassinate")
 				var/datum/objective/assassinate/A = new
 				A.owner = owner
 				var/list/owners = A.get_owners()
 				A.find_target(owners,protection)
-				assasination += A.target
+				assassination += A.target
 				objectives += A
 			if("protect")
 				var/datum/objective/protect/P = new
 				P.owner = owner
 				var/list/owners = P.get_owners()
-				P.find_target(owners,assasination)
+				P.find_target(owners,assassination)
 				protection += P.target
 				objectives += P
 

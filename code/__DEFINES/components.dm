@@ -45,6 +45,11 @@
 // signals from globally accessible objects
 /// from SSsun when the sun changes position : (azimuth)
 #define COMSIG_SUN_MOVED "sun_moved"
+/// Random event is trying to roll. (/datum/round_event_control/random_event)
+/// Called by (/datum/round_event_control/preRunEvent).
+#define COMSIG_GLOB_PRE_RANDOM_EVENT "!pre_random_event"
+	/// Do not allow this random event to continue.
+	#define CANCEL_PRE_RANDOM_EVENT (1<<0)
 
 //////////////////////////////////////////////////////////////////
 

@@ -589,10 +589,10 @@
 			return 150
 
 		if(SLIME_ACTIVATE_MAJOR)
-			to_chat(user, "<span class='warning'>You feel time slow down...</span>")
-			if(do_after(user, 30, target = user))
-				new /obj/effect/timestop(get_turf(user), 2, 50, list(user))
-				return 900
+			to_chat(user, "<span class='warning'>You begin to anchor yourself to your current chronicity...</span>")
+			if(do_after(user, 10, target = user))
+				user.AddComponent(/datum/component/dejavu)
+				return 300
 
 /obj/item/slime_extract/rainbow
 	name = "rainbow slime extract"

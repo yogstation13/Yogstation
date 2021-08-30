@@ -129,3 +129,9 @@
 		reagents.clear_reagents()
 		return
 
+/obj/item/reagent_containers/glass/gromitmug
+	name = "Gromit Mug"
+	desc = "Gromit Mug."
+	icon = 'icons/obj/drinks.dmi'
+	icon_state = "gromitmug"
+	volume = 30

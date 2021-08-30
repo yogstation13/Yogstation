@@ -285,22 +285,53 @@
 	damage_type = BURN
 	nodamage = TRUE
 
-/obj/item/projectile/magic/cheese/on_hit(mob/living/target)
+/obj/item/projectile/magic/cheese/on_hit(mob/living/M)
 	. = ..()
-	if(!istype(target) || target.stat == DEAD || target.notransform || (GODMODE & target.status_flags))
-		return
-	if(istype(target) && target.mind)
-		var/obj/item/reagent_containers/food/snacks/store/cheesewheel/parmesan/P = new(target.loc)
-		var/mob/living/B = new(P)
-		P.desc = "What appears to be [target.real_name] reformed into a wheel of delicious parmesan... recovery is unlikely."
-		P.name = "[target.name] Parmesan"
-		B.real_name = "[target.name] Parmesan"
-		B.name = "[target.name] Parmesan"
-		B.stat = CONSCIOUS
-		target.transfer_observers_to(B)
-		target.mind.transfer_to(B)
-		qdel(target)
+	cheeseify(M, FALSE)
 
+/proc/cheeseify(mob/living/M, forced)
+	if(!istype(M) || M.stat == DEAD || M.notransform || (GODMODE & M.status_flags))
+		return
+	if(istype(M, /mob/living/simple_animal/cheese))
+		M.revive()
+		return
+	var/mob/living/simple_animal/cheese/B = new(M.loc)
+	if(!B)
+		return
+	B.stored_mob = M
+	M.forceMove(B)	
+	M.log_message("became [B.real_name]", LOG_ATTACK, color="orange")
+	B.desc = "What appears to be [M.real_name] reformed into a wheel of delicious parmesan..."
+	B.name = "[M.name] Parmesan"
+	B.real_name = "[M.name] Parmesan"
+	B.stat = CONSCIOUS
+	B.a_intent = INTENT_HARM
+	if(M.mind)
+		M.mind.transfer_to(B)
+	else
+		B.key = M.key
+	var/poly_msg = get_policy(POLICY_POLYMORPH)
+	if(poly_msg)
+		to_chat(B, poly_msg)
+	M.transfer_observers_to(B)
+	to_chat(B, "<span class='big bold'>You are a cheesewheel!</span><b> You're a harmless wheel of parmesan that is remarkably tasty. Careful of people that want to eat you.</b>")
+	if(!forced)
+		addtimer(CALLBACK(B, .proc/uncheeseify), 1 MINUTES)
+	return B
+
+/proc/uncheeseify(mob/living/simple_animal/cheese/cheese)
+	if(cheese.stored_mob)
+		var/mob/living/L = cheese.stored_mob
+		var/mob/living/simple_animal/cheese/C = cheese
+		L.forceMove(get_turf(C))
+		C.stored_mob = null
+		to_chat(L, "<span class='big bold'>You have fallen out of the cheese wheel!</b>")
+		if(L.mind)
+			C.mind.transfer_to(L)
+		else
+			L.key = C.key
+		C.transfer_observers_to(L)
+		C.death()
 
 /obj/item/projectile/magic/animate
 	name = "bolt of animation"

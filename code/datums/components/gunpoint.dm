@@ -29,7 +29,8 @@
 	var/mob/living/shooter = parent
 	target = targ
 	weapon = wep
-	RegisterSignal(targ, list(COMSIG_MOB_ATTACK_HAND, COMSIG_MOB_FIRED_GUN, COMSIG_MOB_THROW, COMSIG_MOB_ITEM_ATTACK, COMSIG_MOVABLE_MOVED), .proc/trigger_reaction, TRUE) //any actions by the hostage will trigger the shot no exceptions
+	RegisterSignal(targ, list(COMSIG_MOB_ATTACK_HAND, COMSIG_MOB_FIRED_GUN, COMSIG_MOB_THROW, COMSIG_MOB_ITEM_ATTACK), .proc/trigger_reaction, TRUE) //any actions by the hostage will trigger the shot no exceptions
+	RegisterSignal(targ, COMSIG_MOVABLE_MOVED, .proc/trigger_reaction) //except this one
 	RegisterSignal(weapon, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), .proc/cancel)
 
 	shooter.visible_message("<span class='danger'>[shooter] aims [weapon] point blank at [target]!</span>", \

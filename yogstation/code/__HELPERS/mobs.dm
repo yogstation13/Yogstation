@@ -25,7 +25,7 @@
 	if(ismob(user))
 		var/mob/temp = user
 		if(temp && temp.client)
-			if(temp.client.is_mentor()) //help
+			if(temp.client.is_mentor())
 				return TRUE
 
 	else if(istype(user, /client))
@@ -36,8 +36,24 @@
 
 	return FALSE
 
+/proc/is_deadmin(var/user)
+	if(ismob(user))
+		var/mob/temp = user
+		if(temp)
+			return (temp.ckey in GLOB.deadmins)
+	
+	if(istype(user, /client))
+		var/client/temp = user
+		if(temp)
+			return (temp.ckey in GLOB.deadmins)
+
+	return FALSE
+
 /proc/is_donator(var/user)
 	if(is_admin(user))
+		return TRUE
+
+	if(is_deadmin(user))
 		return TRUE
 
 	if(CONFIG_GET(flag/everyone_is_donator))
@@ -46,7 +62,7 @@
 	if(ismob(user))
 		var/mob/temp = user
 		if(temp && temp.client)
-			if(temp.client.is_mentor())
+			if(temp.client.is_mentor()) //Mentors are donors
 				return TRUE
 			if(temp.client.prefs)
 				return (temp.client.prefs.unlock_content & 2)
@@ -54,7 +70,7 @@
 	else if(istype(user, /client))
 		var/client/temp = user
 		if(temp)
-			if(temp.is_mentor())
+			if(temp.is_mentor()) //Mentors are donors
 				return TRUE
 			if(temp.prefs)
 				return (temp.prefs.unlock_content & 2)

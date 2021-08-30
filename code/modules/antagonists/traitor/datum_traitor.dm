@@ -60,7 +60,7 @@
 			A.malf_picker.remove_malf_verbs(A)
 			qdel(A.malf_picker)
 	owner.remove_employee(company)
-	UnregisterSignal(owner.current, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
+	UnregisterSignal(owner.current, COMSIG_MOVABLE_HEAR)
 	SSticker.mode.traitors -= owner
 	if(!silent && owner.current)
 		to_chat(owner.current,"<span class='userdanger'> You are no longer the [special_role]! </span>")

@@ -1,29 +1,4 @@
-
-///Default override for echo
-/sound
-	echo = list(
-		0, // Direct
-		0, // DirectHF
-		-10000, // Room, -10000 means no low frequency sound reverb
-		-10000, // RoomHF, -10000 means no high frequency sound reverb
-		0, // Obstruction
-		0, // ObstructionLFRatio
-		0, // Occlusion
-		0.25, // OcclusionLFRatio
-		1.5, // OcclusionRoomRatio
-		1.0, // OcclusionDirectRatio
-		0, // Exclusion
-		1.0, // ExclusionLFRatio
-		0, // OutsideVolumeHF
-		0, // DopplerFactor
-		0, // RolloffFactor
-		0, // RoomRolloffFactor
-		1.0, // AirAbsorptionFactor
-		0, // Flags (1 = Auto Direct, 2 = Auto Room, 4 = Auto RoomHF)
-	)
-	environment = SOUND_ENVIRONMENT_NONE //Default to none so sounds without overrides dont get reverb
-
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, use_reverb = TRUE	)
+/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE)
 	if(isarea(source))
 		CRASH("playsound(): source is an area")
 
@@ -51,7 +26,7 @@
 		if(get_dist(M, turf_source) <= maxdistance)
 			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, channel, pressure_affected, S)
 
-/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, channel = 0, pressure_affected = TRUE, sound/S, distance_multiplier = 1, use_reverb = TRUE)
+/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, channel = 0, pressure_affected = TRUE, sound/S, distance_multiplier = 1)
 	if(!client || !can_hear())
 		return
 
@@ -108,18 +83,6 @@
 		S.y = dy
 
 		S.falloff = (falloff ? falloff : FALLOFF_SOUNDS)
-		
-		if(S.environment == SOUND_ENVIRONMENT_NONE)
-			if(sound_environment_override != SOUND_ENVIRONMENT_NONE)
-				S.environment = sound_environment_override
-			else
-				var/area/A = get_area(src)
-				if(A.sound_environment != SOUND_ENVIRONMENT_NONE)
-					S.environment = A.sound_environment
-
-		if(use_reverb && S.environment != SOUND_ENVIRONMENT_NONE) //We have reverb, reset our echo setting
-			S.echo[3] = 0 //Room setting, 0 means normal reverb
-			S.echo[4] = 0 //RoomHF setting, 0 means normal reverb.
 
 	SEND_SOUND(src, S)
 

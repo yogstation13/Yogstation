@@ -108,3 +108,6 @@ GLOBAL_VAR_INIT(cmp_field, "name")
 
 /proc/cmp_mob_realname_dsc(mob/A,mob/B)
 	return sorttext(A.real_name,B.real_name)
+
+/proc/cmp_typepaths_asc(A, B)
+	return sorttext("[B]","[A]")

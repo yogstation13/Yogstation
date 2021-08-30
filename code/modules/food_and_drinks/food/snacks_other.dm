@@ -34,7 +34,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/coco = 2)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 1)
-	foodtype = JUNKFOOD | SUGAR
+	foodtype = JUNKFOOD | SUGAR | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/candy_strawberry
 	name = "strawberry flavored candy"
@@ -214,7 +214,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/coco = 1)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 1)
-	foodtype = JUNKFOOD | SUGAR
+	foodtype = JUNKFOOD | SUGAR | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/fudgedice
 	name = "fudge dice"
@@ -225,7 +225,7 @@
 	filling_color = "#A0522D"
 	trash = /obj/item/dice/fudge
 	tastes = list("fudge" = 1)
-	foodtype = JUNKFOOD | SUGAR
+	foodtype = JUNKFOOD | SUGAR | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/chocoorange
 	name = "chocolate orange"
@@ -235,7 +235,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 1)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 3, "oranges" = 1)
-	foodtype = JUNKFOOD | SUGAR
+	foodtype = JUNKFOOD | SUGAR | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/eggplantparm
 	name = "eggplant parmigiana"
@@ -547,7 +547,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/coco = 1)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 1)
-	foodtype = JUNKFOOD | SUGAR
+	foodtype = JUNKFOOD | SUGAR | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/cannedpeaches
 	name = "Canned Peaches"

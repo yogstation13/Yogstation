@@ -4,6 +4,7 @@
 	say_mod = "flutters"
 	default_color = "00FF00"
 	species_traits = list(LIPS, NOEYESPRITES)
+	payday_modifier = 0.8 //Useful to NT for biomedical advancements
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID, MOB_BUG)
 	mutant_bodyparts = list("moth_wings")
 	default_features = list("moth_wings" = "Plain")
@@ -20,6 +21,7 @@
 	punchstunthreshold = 10 //No stun punches
 	mutanteyes = /obj/item/organ/eyes/moth
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
+	species_language_holder = /datum/language_holder/mothmen
 
 /datum/species/moth/regenerate_organs(mob/living/carbon/C,datum/species/old_species,replace_current=TRUE)
 	. = ..()

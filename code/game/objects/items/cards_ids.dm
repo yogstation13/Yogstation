@@ -117,10 +117,11 @@
 	var/list/access = list()
 	var/registered_name = null // The name registered_name on the card
 	var/assignment = null
+	var/originalassignment = null
 	var/access_txt // mapping aid
 	var/datum/bank_account/registered_account
 	var/obj/machinery/paystand/my_store
-	var/registered_age = 13 // default age for ss13 players
+	var/registered_age = 21 // default age for ss13 players
 
 /obj/item/card/id/Initialize(mapload)
 	. = ..()
@@ -473,6 +474,10 @@ update_label("John Doe", "Clowny")
 	registered_name = "Emergency Response Team Commander"
 	assignment = "Emergency Response Team Commander"
 	registered_age = null
+
+/obj/item/card/id/ert/debug/Initialize()
+	. = ..()
+	access = get_debug_access()
 
 /obj/item/card/id/ert/amber
 	name = "\improper Amber Task Force ID"

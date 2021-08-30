@@ -179,7 +179,7 @@ BLIND     // can't see anything
 
 /proc/generate_female_clothing(index,t_color,icon,type) //In a shellnut, blends the uniform sprite with a pre-made sprite in uniform.dmi that's mostly white pixels with a few empty ones to trim off the pixels in the empty spots
 	var/icon/female_clothing_icon	= icon(icon, t_color) // and make the uniform the "female" shape. female_s is either the top-only one (for jumpskirts and the like) or the full one (for jumpsuits)
-	var/icon/female_s				= icon('icons/mob/uniform.dmi', "[(type == FEMALE_UNIFORM_FULL) ? "female_full" : "female_top"]") 
+	var/icon/female_s				= icon('icons/mob/uniform.dmi', "[(type == FEMALE_UNIFORM_FULL) ? "female_full" : "female_top"]")
 	female_clothing_icon.Blend(female_s, ICON_MULTIPLY)
 	GLOB.female_clothing_icons[index] = fcopy_rsc(female_clothing_icon) //Then it saves the icon in a global list so it doesn't have to make it again
 
@@ -271,11 +271,17 @@ BLIND     // can't see anything
 		H.update_inv_w_uniform()
 		H.update_body()
 
-/obj/item/clothing/under/proc/toggle_jumpsuit_adjust()
-	if(adjusted == DIGITIGRADE_STYLE)
-		return
-	adjusted = !adjusted
-	if(adjusted)
+/obj/item/clothing/under/proc/toggle_jumpsuit_adjust() //Yogs Start: Reworking this to allow for Digialt to function
+	switch(adjusted)
+		if(NORMAL_STYLE)
+			adjusted = ALT_STYLE
+		if(ALT_STYLE)
+			adjusted = NORMAL_STYLE
+		if(DIGITIGRADE_STYLE)
+			adjusted = DIGIALT_STYLE
+		if(DIGIALT_STYLE)
+			adjusted = DIGITIGRADE_STYLE
+	if(adjusted == NORMAL_STYLE || adjusted == DIGIALT_STYLE) //Yogs End
 		if(fitted != FEMALE_UNIFORM_TOP)
 			fitted = NO_FEMALE_UNIFORM
 		if(!alt_covers_chest) // for the special snowflake suits that expose the chest when adjusted

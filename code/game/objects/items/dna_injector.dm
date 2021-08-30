@@ -181,15 +181,25 @@
 	desc = "Fixes that speaking impairment."
 	remove_mutations = list(NERVOUS)
 
-/obj/item/dnainjector/antifire
-	name = "\improper DNA injector (Anti-Fire)"
-	desc = "Cures fire."
+/obj/item/dnainjector/antispace
+	name = "\improper DNA injector (Anti-Space Adaptation)"
+	desc = "Cures space adaptation."
 	remove_mutations = list(SPACEMUT)
 
-/obj/item/dnainjector/firemut
-	name = "\improper DNA injector (Fire)"
-	desc = "Gives you fire."
+/obj/item/dnainjector/spacemut
+	name = "\improper DNA injector (Space Adaptation)"
+	desc = "Gives you space adaptation."
 	add_mutations = list(SPACEMUT)
+
+/obj/item/dnainjector/antiheat
+	name = "\improper DNA injector (Anti-Heat Adaptation)"
+	desc = "Cures heat adaptation."
+	remove_mutations = list(HEATMUT)
+
+/obj/item/dnainjector/heatmut
+	name = "\improper DNA injector (Heat Adaptation)"
+	desc = "Gives you heat adaptation."
+	add_mutations = list(HEATMUT)
 
 /obj/item/dnainjector/blindmut
 	name = "\improper DNA injector (Blind)"

@@ -54,13 +54,12 @@
 	toggle(user)
 
 /obj/structure/falsewall/proc/toggle(mob/user)
-	opening = TRUE
-	update_icon()
 	if(!density)
 		var/srcturf = get_turf(src)
 		for(var/mob/living/obstacle in srcturf) //Stop people from using this as a shield
-			opening = FALSE
 			return
+	opening = TRUE
+	update_icon()
 	addtimer(CALLBACK(src, /obj/structure/falsewall/proc/toggle_open), 5)
 
 /obj/structure/falsewall/proc/toggle_open()
