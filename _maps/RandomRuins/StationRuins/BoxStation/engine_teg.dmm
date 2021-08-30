@@ -324,16 +324,17 @@
 /obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"hW" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/thermomachine/heater,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "ia" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"is" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -408,6 +409,21 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"kE" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "la" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
@@ -446,12 +462,6 @@
 	},
 /turf/template_noop,
 /area/space/nearstation)
-"mW" = (
-/obj/machinery/atmospherics/pipe/manifold/orange/visible{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "nh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/visible,
@@ -1637,6 +1647,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"VN" = (
+/obj/machinery/atmospherics/pipe/manifold4w/orange/visible,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "VS" = (
 /obj/machinery/atmospherics/components/binary/valve/digital{
 	dir = 4
@@ -2269,9 +2283,9 @@ dG
 "}
 (18,1,1) = {"
 ac
-is
-bC
-mW
+hW
+kE
+VN
 kD
 kB
 kp
