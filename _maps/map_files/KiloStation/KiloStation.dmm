@@ -59623,6 +59623,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bTB" = (
@@ -59649,6 +59650,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bTD" = (
@@ -59656,6 +59658,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral,
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bTF" = (
@@ -59804,6 +59807,7 @@
 	c_tag = "Arrivals Dock";
 	name = "shuttle camera"
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bTO" = (
@@ -59929,6 +59933,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bTZ" = (
@@ -59941,6 +59946,7 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/stripes/corner,
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bUf" = (
@@ -61525,6 +61531,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bWV" = (
@@ -61562,6 +61569,7 @@
 /area/engine/break_room)
 "bWY" = (
 /obj/effect/turf_decal/tile/red,
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bXa" = (
@@ -61586,6 +61594,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/box,
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bXe" = (
@@ -62709,6 +62718,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bYO" = (
@@ -87583,6 +87593,7 @@
 	dir = 8
 	},
 /obj/effect/mapping_helpers/teleport_anchor,
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "eEz" = (
@@ -89685,6 +89696,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "hlD" = (
@@ -101053,6 +101065,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "utg" = (
@@ -101735,6 +101748,7 @@
 	},
 /obj/effect/landmark/start/assistant,
 /obj/effect/mapping_helpers/teleport_anchor,
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "viV" = (
@@ -101808,6 +101822,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "vkK" = (

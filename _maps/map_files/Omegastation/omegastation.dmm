@@ -19508,6 +19508,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aUp" = (
@@ -22044,6 +22045,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bfz" = (
@@ -34540,6 +34542,15 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"nab" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "nbm" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -36715,6 +36726,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/security/checkpoint)
+"poe" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "pon" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
@@ -45480,6 +45498,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
+"wGc" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "wHx" = (
 /obj/structure/closet/secure_closet/paramedic,
 /obj/item/storage/firstaid/toxin,
@@ -86460,17 +86487,17 @@ mQm
 kld
 mai
 mXs
-qlH
+wGc
 iqG
 eLe
 qlH
 qlH
-aTQ
+nab
 uNd
 qlH
 qlH
 qlH
-qlH
+wGc
 qlH
 aTQ
 qlH
@@ -86720,12 +86747,12 @@ aSP
 aTm
 aTm
 aTv
-aTm
+poe
 aTm
 fbm
 aUn
 aTm
-aTm
+poe
 aTm
 aTm
 aTm

@@ -4,7 +4,7 @@
 	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = -1
-	spawn_positions = 0
+	spawn_positions = -1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
 	access = list()
@@ -14,6 +14,8 @@
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CIV
 	display_order = JOB_DISPLAY_ORDER_TOURIST
+	exp_max = 3000 // 50 hours
+	exp_type = EXP_TYPE_CREW
 
 /datum/outfit/job/tourist
 	name = "Tourist"

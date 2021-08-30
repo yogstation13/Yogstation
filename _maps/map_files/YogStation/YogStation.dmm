@@ -11432,6 +11432,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
 "aFH" = (
@@ -13969,6 +13970,7 @@
 /area/hallway/secondary/exit)
 "aNb" = (
 /obj/machinery/holopad,
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aNc" = (
@@ -16067,6 +16069,7 @@
 	c_tag = "Arrivals Bay 2";
 	dir = 8
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aUN" = (
@@ -31090,6 +31093,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+"ckA" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel/white/corner{
+	dir = 1
+	},
+/area/hallway/secondary/entry)
 "ckB" = (
 /obj/machinery/field/generator,
 /turf/open/floor/plating,
@@ -49764,6 +49776,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel/white/corner{
 	dir = 1
 	},
@@ -52423,6 +52436,21 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
+"pKh" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel/white/corner{
+	dir = 1
+	},
+/area/hallway/secondary/entry)
 "pLf" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 8
@@ -59396,6 +59424,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "uxu" = (
@@ -62994,6 +63023,13 @@
 /obj/structure/sign/warning/biohazard,
 /turf/closed/wall/r_wall,
 /area/science/xenobiology)
+"wUd" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel/white/corner,
+/area/hallway/secondary/entry)
 "wUw" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -76647,7 +76683,7 @@ aaa
 aaa
 aaa
 aSm
-vDC
+pKh
 ayk
 awW
 asE
@@ -77137,7 +77173,7 @@ apN
 apN
 apN
 apJ
-bXA
+ckA
 csQ
 bAX
 aAE
@@ -77410,7 +77446,7 @@ aSm
 aOh
 csL
 tfB
-aRY
+wUd
 aSm
 aaa
 aaa

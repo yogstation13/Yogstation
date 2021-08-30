@@ -24232,6 +24232,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aWX" = (
@@ -27503,6 +27504,7 @@
 	dir = 4;
 	pixel_x = -26
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bcA" = (
@@ -69712,6 +69714,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "cXz" = (
@@ -72492,6 +72495,13 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"dAD" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "dBe" = (
 /obj/structure/girder,
 /obj/structure/grille,
@@ -74616,6 +74626,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
 "gFp" = (
@@ -75849,6 +75860,17 @@
 /obj/item/clothing/head/festive,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"iII" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "iKc" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Cryogenics"
@@ -76408,6 +76430,18 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"jTW" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel/white/corner,
+/area/hallway/secondary/entry)
 "jVu" = (
 /obj/effect/landmark/start/yogs/paramedic,
 /obj/item/radio/intercom{
@@ -78364,6 +78398,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "nOu" = (
@@ -79738,6 +79773,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "qFb" = (
@@ -81164,6 +81200,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/range)
+"tcI" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "tdd" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -81194,6 +81236,19 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"tfn" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "tgV" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -93459,7 +93514,7 @@ aaa
 dIe
 bsk
 aUc
-aVu
+dAD
 aWU
 aYC
 aaa
@@ -93989,7 +94044,7 @@ aaa
 aaa
 aRA
 bvC
-bxt
+tcI
 aYC
 aaa
 aaa
@@ -94745,7 +94800,7 @@ aRD
 aSJ
 aDb
 aGI
-aSK
+iII
 aVs
 aRA
 alr
@@ -94768,7 +94823,7 @@ aaa
 aaa
 aaa
 alr
-ifq
+tfn
 bMu
 aRA
 aaa
@@ -97577,7 +97632,7 @@ aUV
 aYY
 aZo
 aUL
-aZo
+jTW
 bcE
 bhd
 bjE

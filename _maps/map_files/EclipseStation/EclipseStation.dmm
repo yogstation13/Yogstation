@@ -32065,6 +32065,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bpJ" = (
@@ -41605,6 +41606,7 @@
 /obj/effect/turf_decal/tile/white{
 	dir = 1
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bIy" = (
@@ -67158,6 +67160,7 @@
 /obj/effect/turf_decal/tile/white{
 	dir = 1
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "cIR" = (
@@ -81067,6 +81070,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"dSX" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/white{
+	dir = 1
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "dUo" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -81650,6 +81663,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
+"flg" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "fnz" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -82722,6 +82745,23 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"hvf" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/white,
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "hvn" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular{
@@ -83422,6 +83462,18 @@
 	},
 /turf/open/space/basic,
 /area/security/physician)
+"iIJ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/white{
+	dir = 1
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "iKX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
@@ -84770,6 +84822,14 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"lEv" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/white,
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "lFR" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -86556,6 +86616,16 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"plt" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/white{
+	dir = 1
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "pmh" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -86607,6 +86677,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"ppj" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/white,
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "pqy" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -89289,6 +89372,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"vmj" = (
+/obj/effect/turf_decal/tile/white,
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "vmp" = (
 /obj/structure/table/reinforced,
 /obj/item/wrench,
@@ -89563,6 +89651,22 @@
 /obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
+"vLy" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/white{
+	dir = 1
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "vMT" = (
 /obj/machinery/door/window/eastright,
 /turf/open/floor/engine{
@@ -90331,6 +90435,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"xln" = (
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "xlq" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/tile/red{
@@ -110411,7 +110519,7 @@ aaa
 awy
 aaa
 aXP
-bAU
+vmj
 bHH
 aXP
 awy
@@ -111168,7 +111276,7 @@ aYu
 aYu
 aff
 bAZ
-bHW
+plt
 aYu
 afi
 aYu
@@ -111183,7 +111291,7 @@ aYu
 afi
 aYu
 cFV
-cIz
+vLy
 aff
 aYu
 aYu
@@ -111438,7 +111546,7 @@ aaa
 aaa
 aYu
 aHr
-aff
+xln
 cHa
 cIF
 aff
@@ -111680,7 +111788,7 @@ aaa
 aaa
 aYu
 boY
-aff
+xln
 bBO
 bHW
 aff
@@ -111698,7 +111806,7 @@ boY
 aff
 cFV
 cIz
-aff
+xln
 cOv
 aYu
 aaa
@@ -111939,7 +112047,7 @@ aYu
 bcj
 aff
 bBO
-bHW
+plt
 aff
 boY
 aYu
@@ -111953,7 +112061,7 @@ aaa
 aYu
 bRi
 aff
-cFV
+lEv
 cIz
 aff
 boY
@@ -112710,7 +112818,7 @@ aaa
 aYu
 aYu
 bCz
-bHX
+iIJ
 bsq
 phO
 bvB
@@ -113744,14 +113852,14 @@ bLT
 bOG
 bOW
 bOW
-bOW
+ppj
 cbn
-bOW
+ppj
 bOW
 bOW
 bOW
 bLT
-bKV
+hvf
 cHi
 cJH
 afi
@@ -113998,14 +114106,14 @@ rSJ
 bJO
 bJO
 bLW
-bJO
+dSX
 bJO
 bJO
 bJO
 cbq
 bJO
 bJO
-bJO
+dSX
 bJO
 bLW
 bJO
@@ -114770,7 +114878,7 @@ baR
 baQ
 bfg
 aff
-aff
+xln
 aff
 cfZ
 ctm
@@ -115540,7 +115648,7 @@ afi
 baR
 baT
 bfg
-aff
+xln
 aff
 aff
 aff
@@ -115803,7 +115911,7 @@ aff
 aff
 aZq
 aff
-aff
+xln
 bhg
 cOt
 aff
@@ -116058,7 +116166,7 @@ aZu
 aZu
 bPH
 aff
-aZq
+flg
 aff
 cnI
 boK
@@ -116830,7 +116938,7 @@ lJe
 bQx
 bde
 aZq
-aff
+xln
 cnI
 bzP
 cFM
@@ -117600,7 +117708,7 @@ bff
 lJe
 bQx
 bde
-aff
+xln
 aff
 cnK
 boK

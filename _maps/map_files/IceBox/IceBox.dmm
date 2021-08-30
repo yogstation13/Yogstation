@@ -11327,6 +11327,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "axj" = (
@@ -15569,6 +15570,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
 "aFH" = (
@@ -26360,6 +26362,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
 	},
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bcx" = (
@@ -26914,6 +26917,7 @@
 "bdB" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bdC" = (
@@ -56746,6 +56750,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"dzb" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "dzR" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -57139,6 +57150,21 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"eUy" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel/white/corner{
+	dir = 1
+	},
+/area/hallway/secondary/entry)
 "eVv" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -59639,6 +59665,18 @@
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall,
 /area/science/nanite)
+"lBe" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel/white/corner{
+	dir = 1
+	},
+/area/hallway/secondary/entry)
 "lEC" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -60604,6 +60642,13 @@
 "oAh" = (
 /turf/closed/wall,
 /area/maintenance/solars/port/aft)
+"oCP" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "oDr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -61393,6 +61438,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"qWq" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "qWw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -61644,6 +61699,11 @@
 /obj/structure/sign/departments/minsky/research/research,
 /turf/closed/wall/r_wall,
 /area/science/lab)
+"ryB" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "ryN" = (
 /obj/machinery/camera{
 	c_tag = "Medbay Treatment Center";
@@ -62568,6 +62628,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
+"txu" = (
+/obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "typ" = (
@@ -63971,6 +64035,19 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/engine/atmos)
+"xLk" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/landmark/start/yogs/tourist,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "xLr" = (
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
@@ -75917,7 +75994,7 @@ aae
 aae
 aSm
 pjL
-ayk
+ryB
 awW
 asE
 aSm
@@ -76149,7 +76226,7 @@ apN
 apN
 apN
 apJ
-uAm
+lBe
 pgM
 azz
 aAF
@@ -76408,7 +76485,7 @@ apN
 apJ
 uAm
 aFS
-ayl
+txu
 aAE
 aSm
 abY
@@ -76421,7 +76498,7 @@ abY
 aSm
 aOe
 ayl
-izC
+qWq
 aRY
 aSm
 aae
@@ -76688,7 +76765,7 @@ aae
 aae
 aSm
 pjL
-ayl
+txu
 ayl
 bgi
 aSm
@@ -77192,7 +77269,7 @@ abY
 aSm
 asE
 awW
-awV
+xLk
 aRY
 aSm
 aae
@@ -77201,7 +77278,7 @@ aae
 aae
 aae
 aSm
-pjL
+eUy
 ayk
 awW
 asE
@@ -77973,7 +78050,7 @@ asE
 aSm
 arB
 pjL
-aym
+dzb
 azB
 aSm
 aag
@@ -78220,7 +78297,7 @@ arB
 arB
 arB
 aPv
-izC
+qWq
 aRZ
 asE
 aAF
@@ -78464,7 +78541,7 @@ apJ
 apJ
 axn
 ayl
-aym
+dzb
 aAI
 aBH
 azz
@@ -78475,10 +78552,10 @@ azz
 azz
 aIS
 aBH
-azz
+oCP
 aPu
 izC
-ayl
+txu
 xML
 aym
 nMn
