@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "SMES emp takes up less lines of code (no gameplay interaction)"
-  - bugfix: "the magical SMES's name now uses proper terminology"
