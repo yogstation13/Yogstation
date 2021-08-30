@@ -17,9 +17,7 @@
 		useblacklist = FALSE
 
 	if(imp_in)
-
 		var/turf/T = get_turf_global(imp_in)
-
 		if(!is_centcom_level(T.z)) //teleporting doesn't work on centcom
 
 			if(blacklist.len && useblacklist)
@@ -43,7 +41,6 @@
 							on = TRUE //we're on a whitelisted z, start blocking
 							pointofreturn = T //we'll teleport back here if we go out of bounds
 						return // we're allowed here, stop
-
 				if(on && pointofreturn)
 					retrieve_exile()
 
@@ -91,7 +88,6 @@
 	if(usewhitelist && !whitelist.len)
 		whitelist += T.z
 		pointofreturn = T
-
 	return 1
 
 /obj/item/implant/teleporter/removed(mob/living/source, silent = 0, special = 0)
