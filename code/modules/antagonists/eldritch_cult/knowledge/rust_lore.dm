@@ -2,7 +2,7 @@
 	name = "Blacksmith's Tale"
 	desc = "Opens up the path of rust to you. Allows you to transmute a knife with any trash item into a Rusty Blade. Additionally, your mansus grasp now deal 500 damage to inorganic matter. Rusts any surface it's used on, and destroys any surface that is already rusty."
 	gain_text = "Let me tell you a story, The Blacksmith said as he gazed into his rusty blade."
-	banned_knowledge = list(/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_flesh,/datum/eldritch_knowledge/ash_final,/datum/eldritch_knowledge/flesh_final)
+	banned_knowledge = list(/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_flesh,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/ash_final,/datum/eldritch_knowledge/flesh_final)
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/rust_blade)
 	route = PATH_RUST
