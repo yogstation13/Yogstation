@@ -5,7 +5,6 @@
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
 	default_features = list("mcolor" = "FFF", "wings" = "None")
 	use_skintones = 1
-	punchdamagehigh = 11 //Catch these hands, stuns 10-11. Humanity forever.
 	skinned_type = /obj/item/stack/sheet/animalhide/human
 	disliked_food = GROSS | RAW
 	liked_food = JUNKFOOD | FRIED | GRILLED
