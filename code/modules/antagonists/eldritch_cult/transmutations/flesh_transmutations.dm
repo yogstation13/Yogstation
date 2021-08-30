@@ -109,6 +109,7 @@
 			ghoul2.max_amt *= 3
 			var/mob/dead/observer/ghost_candidate = pick(candidates)
 			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the dark, for Vassal of Arms has ascended! The Terror of the Night has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
+			set_security_level(SEC_LEVEL_GAMMA)
 			log_game("[key_name_admin(ghost_candidate)] has taken control of ([key_name_admin(summoned)]).")
 			summoned.ghostize(FALSE)
 			summoned.key = ghost_candidate.key
@@ -126,6 +127,7 @@
 					user.mind.spell_list.Remove(S)
 					qdel(S)
 			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the dark, for King of Arms has ascended! Our Lord of the Night has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
+			set_security_level(SEC_LEVEL_GAMMA)
 			log_game("[user.real_name] ascended as [summoned.real_name]")
 			var/mob/living/carbon/carbon_user = user
 			var/datum/antagonist/heretic/ascension = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)
