@@ -381,8 +381,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 
 	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as an IC issue by [usr.client.holder?.fakekey ? "an Administrator" : key_name(usr, 0, 0)]! -</b></font><br>"
-	msg += "<font color='red'><b>Losing is part of the game!</b></font><br>"
-	msg += "<font color='red'>Your character will frequently die, sometimes without even a possibility of avoiding it. Events will often be out of your control. No matter how good or prepared you are, sometimes you just lose.</font>"
+	msg += "<font color='red'>Unfortunately your issue does not warrant admin intervention, usually because none of the involved parties are breaking any OOC rules. You can however still attempt to find an IC solution to your problem.</font>"
 
 	if(initiator)
 		to_chat(initiator, msg, confidential=TRUE)
