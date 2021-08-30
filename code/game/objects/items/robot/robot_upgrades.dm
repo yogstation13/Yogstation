@@ -812,8 +812,6 @@
 		for(var/obj/item/multitool/cyborg/MT in R.module.modules) 
 			R.module.remove_module(MT, TRUE)
 
-		for(var/obj/item/t_scanner/TS in R.module.modules) 
-			R.module.remove_module(TS, TRUE)
 
 		for(var/obj/item/analyzer/AL in R.module.modules) 
 			R.module.remove_module(AL, TRUE)
@@ -871,11 +869,6 @@
 		MT = new(R.module)
 		R.module.basic_modules += MT
 		R.module.add_module(MT, FALSE, TRUE)
-
-		var/obj/item/t_scanner/TS = locate() in R.module.modules
-		TS = new(R.module)
-		R.module.basic_modules += TS
-		R.module.add_module(TS, FALSE, TRUE)
 
 		var/obj/item/analyzer/AL = locate() in R.module.modules
 		AL = new(R.module)
