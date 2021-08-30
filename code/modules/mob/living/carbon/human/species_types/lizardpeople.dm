@@ -12,7 +12,7 @@
 	coldmod = 1.75 //Desert-born race
 	heatmod = 0.75 //Desert-born race
 	stunmod = 1.05 //Lazy lizards don't want to get up
-  payday_modifier = 0.6 //Negatively viewed by NT
+	payday_modifier = 0.6 //Negatively viewed by NT
 	default_features = list("mcolor" = "0F0", "tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	attack_verb = "slash"
