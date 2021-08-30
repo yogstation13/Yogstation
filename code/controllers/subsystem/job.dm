@@ -126,7 +126,7 @@ SUBSYSTEM_DEF(job)
 			JobDebug("FOC player not old enough, Player: [player]")
 			continue
 		if(job.required_playtime_remaining(player.client))
-			JobDebug("FOC player not enough xp, Player: [player]")
+			JobDebug("FOC player not enough or too much xp, Player: [player]")
 			continue
 		if(flag && (!(flag in player.client.prefs.be_special)))
 			JobDebug("FOC flag failed, Player: [player], Flag: [flag], ")
@@ -169,7 +169,7 @@ SUBSYSTEM_DEF(job)
 			continue
 
 		if(job.required_playtime_remaining(player.client))
-			JobDebug("GRJ player not enough xp, Player: [player]")
+			JobDebug("GRJ player not enough or too much xp, Player: [player]")
 			continue
 
 		if(player.mind && (job.title in player.mind.restricted_roles))
@@ -357,7 +357,7 @@ SUBSYSTEM_DEF(job)
 					continue
 
 				if(job.required_playtime_remaining(player.client))
-					JobDebug("DO player not enough xp, Player: [player], Job:[job.title]")
+					JobDebug("DO player not enough or too much xp, Player: [player], Job:[job.title]")
 					continue
 
 				if(player.mind && (job.title in player.mind.restricted_roles))

@@ -964,6 +964,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;bancheck=[rank]'> BANNED</a></td></tr>"
 				continue
 			var/required_playtime_remaining = job.required_playtime_remaining(user.client)
+			if(required_playtime_remaining < 0)
+				HTML += "<font color=red>[rank]</font></td><td><font color=red> \[ Too many hours \] </font></td></tr>"
+				continue
 			if(required_playtime_remaining)
 				HTML += "<font color=red>[rank]</font></td><td><font color=red> \[ [get_exp_format(required_playtime_remaining)] as [job.get_exp_req_type()] \] </font></td></tr>"
 				continue
