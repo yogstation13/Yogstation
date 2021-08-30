@@ -320,6 +320,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"ht" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/item/clothing/gloves/color/black,
+/obj/item/clothing/glasses/meson/engine,
+/obj/item/tank/internals/emergency_oxygen/engi{
+	pixel_x = 5
+	},
+/obj/item/holosign_creator/atmos,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "hN" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -409,23 +422,6 @@
 /obj/machinery/meter,
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/engine,
-/area/engine/engineering)
-"kH" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/item/pipe_dispenser,
-/obj/item/pipe_dispenser{
-	pixel_y = -9
-	},
-/obj/item/pipe_dispenser{
-	pixel_y = 8
-	},
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "la" = (
@@ -1152,22 +1148,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"HX" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/clothing/gloves/color/black,
-/obj/item/clothing/glasses/meson/engine,
-/obj/item/tank/internals/emergency_oxygen/engi{
-	pixel_x = 5
-	},
-/obj/item/holosign_creator/atmos,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "Ic" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/orange/visible{
@@ -1264,6 +1244,26 @@
 /turf/open/floor/plasteel/dark/side{
 	dir = 4
 	},
+/area/engine/engineering)
+"KJ" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/item/pipe_dispenser,
+/obj/item/pipe_dispenser{
+	pixel_y = -9
+	},
+/obj/item/pipe_dispenser{
+	pixel_y = 8
+	},
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/engine,
 /area/engine/engineering)
 "KV" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -2374,7 +2374,7 @@ dG
 "}
 (21,1,1) = {"
 ad
-kH
+KJ
 bC
 ZP
 pw
@@ -2402,7 +2402,7 @@ dG
 "}
 (22,1,1) = {"
 ac
-HX
+ht
 bp
 zv
 xP
