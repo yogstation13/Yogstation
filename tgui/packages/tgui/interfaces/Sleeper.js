@@ -113,8 +113,8 @@ export const Sleeper = (props, context) => {
             <Button
               key={chem.name}
               icon="flask"
-              tooltip={chem.desc}
-              tooltipPosition="top"
+              tooltip={data.knowledge ? chem.desc : 'You don\'t know what this chemical does!'}
+              tooltipPosition='top'
               content={chem.name}
               disabled={!(occupied && chem.allowed)}
               width="350px"

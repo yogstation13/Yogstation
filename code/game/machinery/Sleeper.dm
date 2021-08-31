@@ -161,8 +161,9 @@
 /obj/machinery/sleeper/nap_violation(mob/violator)
 	open_machine()
 
-/obj/machinery/sleeper/ui_data()
+/obj/machinery/sleeper/ui_data(mob/user)
 	var/list/data = list()
+	data["knowledge"] = IS_MEDICAL(user)
 	data["occupied"] = occupant ? 1 : 0
 	data["open"] = state_open
 
