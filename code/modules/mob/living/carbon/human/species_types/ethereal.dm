@@ -14,7 +14,7 @@
 	burnmod = 0.8 //Bodies are resilient to heat and energy
 	heatmod = 0.5 //Bodies are resilient to heat and energy
 	coldmod = 2.0 //Don't extinguish the stars
-	speedmod = 1.1 //Light and energy move quickly
+	speedmod = -0.1 //Light and energy move quickly
 	punchdamagehigh  = 11 //Fire hand more painful
 	punchstunthreshold = 11 //Still stuns on max hit, but subsequently lower chance to stun overall
 	payday_modifier = 0.7 //Neutrally useful to NT
