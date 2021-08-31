@@ -5,6 +5,20 @@
 "ab" = (
 /turf/closed/indestructible/riveted,
 /area/space)
+"ac" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/vending/liberationstation,
+/turf/open/floor/plasteel,
+/area/centcom/evac)
 "ad" = (
 /turf/open/space,
 /area/space)
@@ -74760,7 +74774,7 @@ uB
 vh
 vg
 vY
-vY
+ac
 vY
 yB
 vh
