@@ -10,6 +10,7 @@
 	new /obj/item/radio/headset/heads/ce(src)
 	new /obj/item/storage/toolbox/mechanical(src)
 	new /obj/item/megaphone/command(src)
+	new /obj/item/clothing/neck/cloak/ce(src)
 	new /obj/item/areaeditor/blueprints(src)
 	new /obj/item/airlock_painter(src)
 	new /obj/item/holosign_creator/atmos(src)
