@@ -1,21 +1,4 @@
 //predominantly negative traits
-
-/datum/quirk/badback
-	name = "Bad Back"
-	desc = "Thanks to your poor posture, backpacks and other bags never sit right on your back. More evenly weighted objects are fine, though."
-	value = -2
-	mood_quirk = TRUE
-	gain_text = "<span class='danger'>Your back REALLY hurts!</span>"
-	lose_text = "<span class='notice'>Your back feels better.</span>"
-	medical_record_text = "Patient scans indicate severe and chronic back pain."
-
-/datum/quirk/badback/on_process()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H.back && istype(H.back, /obj/item/storage/backpack))
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "back_pain", /datum/mood_event/back_pain)
-	else
-		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "back_pain")
-
 /datum/quirk/blooddeficiency
 	name = "Blood Deficiency"
 	desc = "Your body can't produce enough blood to sustain itself."
@@ -31,58 +14,6 @@
 	else
 		if (H.blood_volume > (BLOOD_VOLUME_SAFE(H) - 25)) // just barely survivable without treatment
 			H.blood_volume -= 0.275
-
-/datum/quirk/blindness
-	name = "Blind"
-	desc = "You are completely blind, nothing can counteract this."
-	value = -4
-	gain_text = "<span class='danger'>You can't see anything.</span>"
-	lose_text = "<span class='notice'>You miraculously gain back your vision.</span>"
-	medical_record_text = "Patient has permanent blindness."
-
-/datum/quirk/blindness/add()
-	quirk_holder.become_blind(ROUNDSTART_TRAIT)
-
-/datum/quirk/blindness/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/clothing/glasses/blindfold/white/B = new(get_turf(H))
-	if(!H.equip_to_slot_if_possible(B, SLOT_GLASSES, bypass_equip_delay_self = TRUE)) //if you can't put it on the user's eyes, put it in their hands, otherwise put it on their eyes
-		H.put_in_hands(B)
-	H.regenerate_icons()
-
-/datum/quirk/brainproblems
-	name = "Brain Tumor"
-	desc = "You have a little friend in your brain that is slowly destroying it. Better bring some mannitol!"
-	value = -3
-	gain_text = "<span class='danger'>You feel smooth.</span>"
-	lose_text = "<span class='notice'>You feel wrinkled again.</span>"
-	medical_record_text = "Patient has a tumor in their brain that is slowly driving them to brain death."
-	var/where = "at your feet"
-
-/datum/quirk/brainproblems/on_process()
-	quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2)
-
-/datum/quirk/brainproblems/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/mannitolpills = new /obj/item/storage/pill_bottle/mannitol/braintumor(get_turf(quirk_holder))
-	var/list/slots = list(
-		"in your left pocket" = SLOT_L_STORE,
-		"in your right pocket" = SLOT_R_STORE,
-		"in your backpack" = SLOT_IN_BACKPACK
-	)
-	where = H.equip_in_one_of_slots(mannitolpills, slots, FALSE) || "at your feet"
-
-/datum/quirk/brainproblems/post_add()
-	to_chat(quirk_holder, "<span class='boldnotice'>There is a pill bottle of mannitol [where]. You're going to need it.</span>")
-
-/datum/quirk/deafness
-	name = "Deaf"
-	desc = "You are incurably deaf."
-	value = -2
-	mob_trait = TRAIT_DEAF
-	gain_text = "<span class='danger'>You can't hear anything.</span>"
-	lose_text = "<span class='notice'>You're able to hear again!</span>"
-	medical_record_text = "Patient's cochlear nerve is incurably damaged."
 
 /datum/quirk/depression
 	name = "Depression"
@@ -294,51 +225,6 @@
 	else
 		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "nyctophobia")
 
-/datum/quirk/nonviolent
-	name = "Pacifist"
-	desc = "The thought of violence makes you sick. So much so, in fact, that you can't hurt anyone."
-	value = -2
-	mob_trait = TRAIT_PACIFISM
-	gain_text = "<span class='danger'>You feel repulsed by the thought of violence!</span>"
-	lose_text = "<span class='notice'>You think you can defend yourself again.</span>"
-	medical_record_text = "Patient is unusually pacifistic and cannot bring themselves to cause physical harm."
-
-
-/datum/quirk/paraplegic
-	name = "Paraplegic"
-	desc = "Your legs do not function. Nothing will ever fix this. But hey, free wheelchair!"
-	value = -3
-	human_only = TRUE
-	gain_text = null // Handled by trauma.
-	lose_text = null
-	medical_record_text = "Patient has an untreatable impairment in motor function in the lower extremities."
-
-/datum/quirk/paraplegic/add()
-	var/datum/brain_trauma/severe/paralysis/paraplegic/T = new()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
-
-/datum/quirk/paraplegic/on_spawn()
-	if(quirk_holder.buckled) // Handle late joins being buckled to arrival shuttle chairs.
-		quirk_holder.buckled.unbuckle_mob(quirk_holder)
-
-	var/turf/T = get_turf(quirk_holder)
-	var/obj/structure/chair/spawn_chair = locate() in T
-
-	var/obj/vehicle/ridden/wheelchair/wheels = new(T)
-	if(spawn_chair) // Makes spawning on the arrivals shuttle more consistent looking
-		wheels.setDir(spawn_chair.dir)
-
-	wheels.buckle_mob(quirk_holder)
-
-	// During the spawning process, they may have dropped what they were holding, due to the paralysis
-	// So put the things back in their hands.
-
-	for(var/obj/item/I in T)
-		if(I.fingerprintslast == quirk_holder.ckey)
-			quirk_holder.put_in_hands(I)
-
-
 /datum/quirk/poor_aim
 	name = "Poor Aim"
 	desc = "You're terrible with guns and can't line up a straight shot to save your life. Dual-wielding is right out."
@@ -435,73 +321,33 @@
 	to_chat(quirk_holder, "<span class='big bold info'>Please note that your dissociation syndrome does NOT give you the right to attack people or otherwise cause any interference to \
 	the round. You are not an antagonist, and the rules will treat you the same as other crewmembers.</span>")
 
-/datum/quirk/social_anxiety
-	name = "Social Anxiety"
-	desc = "Talking to people is very difficult for you, and you often stutter or even lock up."
+/datum/quirk/smoker
+	name = "Smoker"
+	desc = "Sometimes you just really want a smoke. Probably not great for your lungs."
 	value = -1
-	gain_text = "<span class='danger'>You start worrying about what you're saying.</span>"
-	lose_text = "<span class='notice'>You feel easier about talking again.</span>" //if only it were that easy!
-	medical_record_text = "Patient is usually anxious in social encounters and prefers to avoid them."
-	var/dumb_thing = TRUE
+	mood_quirk = TRUE
+	gain_text = "<span class='danger'>You could really go for a smoke right about now.</span>"
+	lose_text = "<span class='notice'>You feel like you should quit smoking.</span>"
+	medical_record_text = "Patient is a current smoker."
+	var/reagent_type = /datum/reagent/drug/nicotine
+	var/accessory_type = /obj/item/lighter/greyscale
 
-/datum/quirk/social_anxiety/on_process()
-	var/nearby_people = 0
-	for(var/mob/living/carbon/human/H in oview(3, quirk_holder))
-		if(H.client)
-			nearby_people++
+/datum/quirk/junkie/smoker/on_spawn()
+	drug_container_type = pick(/obj/item/storage/box/fancy/cigarettes,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_midori,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_uplift,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_robust,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_robustgold,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
+		/obj/item/storage/box/fancy/cigarettes/cigars,
+		/obj/item/storage/box/fancy/cigarettes/cigars/havana)
 	var/mob/living/carbon/human/H = quirk_holder
-	if(prob(2 + nearby_people))
-		H.stuttering = max(3, H.stuttering)
-	else if(prob(min(3, nearby_people)) && !H.silent)
-		to_chat(H, "<span class='danger'>You retreat into yourself. You <i>really</i> don't feel up to talking.</span>")
-		H.silent = max(10, H.silent)
-	else if(prob(0.5) && dumb_thing)
-		to_chat(H, "<span class='userdanger'>You think of a dumb thing you said a long time ago and scream internally.</span>")
-		dumb_thing = FALSE //only once per life
-		if(prob(1))
-			new/obj/item/reagent_containers/food/snacks/spaghetti/pastatomato(get_turf(H)) //now that's what I call spaghetti code
-
-//If you want to make some kind of junkie variant, just extend this quirk.
-/datum/quirk/junkie
-	name = "Junkie"
-	desc = "You can't get enough of hard drugs."
-	value = -2
-	gain_text = "<span class='danger'>You suddenly feel the craving for drugs.</span>"
-	lose_text = "<span class='notice'>You feel like you should kick your drug habit.</span>"
-	medical_record_text = "Patient has a history of hard drugs."
-	var/drug_list = list(/datum/reagent/drug/crank, /datum/reagent/drug/krokodil, /datum/reagent/medicine/morphine, /datum/reagent/drug/happiness, /datum/reagent/drug/methamphetamine, /datum/reagent/drug/ketamine) //List of possible IDs
-	var/reagent_id //ID picked from list
-	var/datum/reagent/reagent_type //If this is defined, reagent_id will be unused and the defined reagent type will be instead.
-	var/datum/reagent/reagent_instance
-	var/where_drug
-	var/obj/item/drug_container_type //If this is defined before pill generation, pill generation will be skipped. This is the type of the pill bottle.
-	var/obj/item/drug_instance
-	var/where_accessory
-	var/obj/item/accessory_type //If this is null, it won't be spawned.
-	var/obj/item/accessory_instance
-	var/tick_counter = 0
-
-/datum/quirk/junkie/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	reagent_id = pick(drug_list)
-	if (!reagent_type)
-		var/datum/reagent/prot_holder = GLOB.chemical_reagents_list[reagent_id]
-		reagent_type = prot_holder.type
 	reagent_instance = new reagent_type()
 	H.reagents.addiction_list.Add(reagent_instance)
 	var/current_turf = get_turf(quirk_holder)
-	if (!drug_container_type)
-		drug_container_type = /obj/item/storage/pill_bottle
 	drug_instance = new drug_container_type(current_turf)
-	if (istype(drug_instance, /obj/item/storage/pill_bottle))
-		var/pill_state = "pill[rand(1,20)]"
-		for(var/i in 1 to 7)
-			var/obj/item/reagent_containers/pill/P = new(drug_instance)
-			P.icon_state = pill_state
-			P.reagents.add_reagent(reagent_id, 1)
 
-	if (accessory_type)
-		accessory_instance = new accessory_type(current_turf)
+	accessory_instance = new accessory_type(current_turf)
 	var/list/slots = list(
 		"in your left pocket" = SLOT_L_STORE,
 		"in your right pocket" = SLOT_R_STORE,
@@ -512,15 +358,12 @@
 		where_accessory = H.equip_in_one_of_slots(accessory_instance, slots, FALSE) || "at your feet"
 	announce_drugs()
 
-/datum/quirk/junkie/post_add()
+/datum/quirk/smoker/post_add()
 	if(where_drug == "in your backpack" || where_accessory == "in your backpack")
 		var/mob/living/carbon/human/H = quirk_holder
 		SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_SHOW, H)
 
-/datum/quirk/junkie/proc/announce_drugs()
-	to_chat(quirk_holder, "<span class='boldnotice'>There is a [drug_instance.name] of [reagent_instance.name] [where_drug]. Better hope you don't run out...</span>")
-
-/datum/quirk/junkie/on_process()
+/datum/quirk/smoker/on_process()
 	var/mob/living/carbon/human/H = quirk_holder
 	if (tick_counter == 60) //Halfassed optimization, increase this if there's slowdown due to this quirk
 		var/in_list = FALSE
@@ -536,40 +379,12 @@
 	else
 		++tick_counter
 
-/datum/quirk/junkie/clone_data()
-	return reagent_id
-
-/datum/quirk/junkie/on_clone(data)
+/datum/quirk/smoker/on_clone(data)
 	var/mob/living/carbon/human/H = quirk_holder
-	reagent_id = data
-	var/datum/reagent/prot_holder = GLOB.chemical_reagents_list[reagent_id]
-	reagent_type = prot_holder.type
 	reagent_instance = new reagent_type()
 	H.reagents.addiction_list.Add(reagent_instance)
 
-/datum/quirk/junkie/smoker
-	name = "Smoker"
-	desc = "Sometimes you just really want a smoke. Probably not great for your lungs."
-	value = -1
-	mood_quirk = TRUE
-	gain_text = "<span class='danger'>You could really go for a smoke right about now.</span>"
-	lose_text = "<span class='notice'>You feel like you should quit smoking.</span>"
-	medical_record_text = "Patient is a current smoker."
-	reagent_type = /datum/reagent/drug/nicotine
-	accessory_type = /obj/item/lighter/greyscale
-
-/datum/quirk/junkie/smoker/on_spawn()
-	drug_container_type = pick(/obj/item/storage/box/fancy/cigarettes,
-		/obj/item/storage/box/fancy/cigarettes/cigpack_midori,
-		/obj/item/storage/box/fancy/cigarettes/cigpack_uplift,
-		/obj/item/storage/box/fancy/cigarettes/cigpack_robust,
-		/obj/item/storage/box/fancy/cigarettes/cigpack_robustgold,
-		/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
-		/obj/item/storage/box/fancy/cigarettes/cigars,
-		/obj/item/storage/box/fancy/cigarettes/cigars/havana)
-	. = ..()
-
-/datum/quirk/junkie/smoker/announce_drugs()
+/datum/quirk/smoker/proc/announce_drugs()
 	to_chat(quirk_holder, "<span class='boldnotice'>There is a [drug_instance.name] [where_drug], and a lighter [where_accessory]. Make sure you get your favorite brand when you run out.</span>")
 
 
@@ -583,32 +398,6 @@
 			SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "wrong_cigs")
 			return
 		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "wrong_cigs", /datum/mood_event/wrong_brand)
-
-/datum/quirk/unstable
-	name = "Unstable"
-	desc = "Due to past troubles, you are unable to recover your sanity if you lose it. Be very careful managing your mood!"
-	value = -2
-	mood_quirk = TRUE
-	mob_trait = TRAIT_UNSTABLE
-	gain_text = "<span class='danger'>There's a lot on your mind right now.</span>"
-	lose_text = "<span class='notice'>Your mind finally feels calm.</span>"
-	medical_record_text = "Patient's mind is in a vulnerable state, and cannot recover from traumatic events."
-
-/datum/quirk/sheltered
-	name = "Sheltered"
-	desc = "You never learned galactic common."
-	value = -3
-	mob_trait = TRAIT_SHELTERED
-	gain_text = "<span class='danger'>You do not understand galactic common.</span>"
-	lose_text = "<span class='notice'>You start to put together what people are saying in galactic common.</span>"
-	medical_record_text = "Patient looks perplexed when questioned in galactic common."
-
-
-/datum/quirk/sheltered/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.remove_language(/datum/language/common, FALSE, TRUE)
-	if(!H.get_selected_language())
-		H.grant_language(/datum/language/japanese)
 
 /datum/quirk/allergic
 	name = "Allergic Reaction"
@@ -646,40 +435,3 @@
 		H.reagents.add_reagent(/datum/reagent/toxin/histamine, rand(5,10))
 		cooldown = TRUE
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), cooldown_time)
-
-/datum/quirk/kleptomaniac
-	name = "Kleptomaniac"
-	desc = "You have an uncontrollable urge to pick up things you see. Even things that don't belong to you."
-	value = -1
-	mob_trait = TRAIT_KLEPTOMANIAC
-	gain_text = "<span class='danger'>You have an unmistakeable urge to grab nearby objects.</span>"
-	lose_text = "<span class='notice'>You no feel the urge to steal.</span>"
-	medical_record_text = "Patient has an uncontrollable urge to steal."
-
-/datum/quirk/kleptomaniac/on_process()
-	if(prob(3))
-		var/mob/living/carbon/H = quirk_holder
-		var/obj/item/I = locate(/obj/item/) in oview(1, H)
-		if(!I || I.anchored || H.incapacitated() || !I.Adjacent(H))
-			return
-		if(isliving(quirk_holder))
-			var/mob/living/L = quirk_holder
-			if(!(L.mobility_flags & MOBILITY_PICKUP))
-				return
-		if(!H.get_active_held_item())
-			to_chat(quirk_holder, "<span class='danger'>You can't keep your eyes off [I.name].</span>")
-			H.UnarmedAttack(I)
-
-/datum/quirk/ineloquent
-	name = "Ineloquent"
-	desc = "Thinking big words makes brain go hurt."
-	value = -1
-	human_only = TRUE
-	gain_text = "You feel your vocabularly slipping away."
-	lose_text = "You regrasp the full extent of your linguistic prowess."
-	medical_record_text = "Patient is affected by partial loss of speech leading to a reduced vocabulary."
-
-/datum/quirk/ineloquent/add()
-	var/datum/brain_trauma/mild/expressive_aphasia/T = new()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
