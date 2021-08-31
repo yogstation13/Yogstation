@@ -46,7 +46,7 @@
 	item_flags = NO_MAT_REDEMPTION
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 60, "acid" = 50)
 	component_type = /datum/component/storage/concrete/bluespace/bag_of_holding
-	
+
 /obj/item/storage/backpack/holding/clown
 	name = "bag of honking"
 	desc = "An advanced clowning backpack for holding large quantities of pranking gear."
@@ -626,7 +626,6 @@
 	new /obj/item/clothing/under/rank/head_of_personnel(src)
 	new /obj/item/clothing/under/rank/head_of_personnel/skirt(src)
 	new /obj/item/clothing/head/hopcap(src)
-	new /obj/item/clothing/neck/yogs/shawl/hop(src) //Yogs
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/suit/armor/vest/rurmcoat(src)
 	new /obj/item/clothing/suit/armor/vest/sovietcoat(src)
@@ -637,7 +636,6 @@
 	desc = "A large duffel bag filled with clothing."
 
 /obj/item/storage/backpack/duffelbag/rd/clothing/PopulateContents()
-	new /obj/item/clothing/neck/yogs/shawl/rd(src) //Yogs
 	new /obj/item/clothing/suit/bio_suit/scientist(src)
 	new /obj/item/clothing/head/bio_hood/scientist(src)
 	new /obj/item/clothing/suit/toggle/labcoat(src)
@@ -656,7 +654,6 @@
 	desc = "A large duffel bag filled with clothing."
 
 /obj/item/storage/backpack/duffelbag/engineering/chief/clothing/PopulateContents()
-	new /obj/item/clothing/neck/yogs/shawl/ce(src) //Yogs
 	new /obj/item/clothing/under/rank/chief_engineer(src)
 	new /obj/item/clothing/under/rank/chief_engineer/skirt(src)
 	new /obj/item/clothing/head/hardhat/white(src)
@@ -732,7 +729,6 @@
 	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/gars/supergars(src)
 	new /obj/item/clothing/under/rank/head_of_security/grey(src)
-	new /obj/item/clothing/neck/yogs/shawl/hos(src) //Yogs
 	new /obj/item/clothing/under/yogs/lieutgeneral(src)
 	new /obj/item/clothing/under/yogs/dictatorhos(src)
 	new /obj/item/clothing/suit/armor/hos/germancoat(src)
@@ -752,6 +748,5 @@
 	new /obj/item/clothing/under/rank/chief_medical_officer(src)
 	new /obj/item/clothing/under/rank/chief_medical_officer/skirt(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
-	new /obj/item/clothing/neck/yogs/shawl/cmo(src) //Yogs
 	new /obj/item/clothing/head/beret/cmo(src)
 	new /obj/item/clothing/shoes/xeno_wraps/command(src)
