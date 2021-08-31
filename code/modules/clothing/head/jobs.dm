@@ -124,10 +124,10 @@
 		attack_verb = list("poked", "tipped")
 		hitsound = 'sound/weapons/genhit.ogg'
 
-/obj/item/clothing/head/det_hat/evil/throw_impact(atom/hit_atom,)
-	if(iscarbon(src.loc))
+/obj/item/clothing/head/det_hat/evil/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	if(iscarbon(loc) || !iscarbon(thrownby))
 		return ..()
-	throw_at(thrownby, throw_range+3, throw_speed, null)
+	throw_at(thrownby, throw_range+3, 3, null)
 	..()
 
 /obj/item/clothing/head/det_hat/evil/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force, quickstart = TRUE)

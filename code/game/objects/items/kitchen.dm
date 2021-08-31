@@ -3,6 +3,7 @@
  *		Fork
  *		Kitchen knives
  *		Ritual Knife
+ *		Holy Ritual Knife
  *		Bloodletter
  *		Butcher's cleaver
  *		Combat Knife
@@ -125,6 +126,11 @@
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/kitchen/knife/ritual/holy
+	name = "ruinous knife"
+	desc = "The runes inscribed on the knife radiate a strange power."
+	force = 12
 
 /obj/item/kitchen/knife/bloodletter
 	name = "bloodletter"

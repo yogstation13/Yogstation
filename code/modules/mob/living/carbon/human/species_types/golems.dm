@@ -1344,3 +1344,43 @@
 		remove_ranged_ability("Something nullifies any teleports in the local area...")
 		return FALSE
 	return TRUE
+
+/datum/species/golem/ruinous //slightly weaker and faster,gets telepathy,speaks louder, and their text is cult colored
+	name = "Ruinous Golem"
+	id = "ruinous golem"
+	//limbs_id = "ruingolem" //i cant get it to work, if someone else finds out what the problem is later on, be my guest, and please fix it.
+	//sexes = FALSE
+	armor = 40 //down from 55
+	//species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES) //no mutcolors or eyesprites
+	speedmod = 1.5 //inbetween gold golem and iron
+	meat = /obj/item/reagent_containers/food/snacks/meat/slab/blessed
+	fixed_mut_color = "333"
+	info_text = "As an <span class='danger'>Ruinous Golem</span>, you are made of an ancient powerful metal. While not particularly tough, you have a connection with the old gods that grants you a selection of abilities."
+	prefix = "Ruinous"
+	special_names = list("One", "Elder", "Watcher", "Walker") //ominous 
+	var/obj/effect/proc_holder/spell/targeted/telepathy/eldritch/ruinoustelepathy
+	var/obj/effect/proc_holder/spell/targeted/touch/flagellate/flagellate
+
+/datum/species/golem/ruinous/on_species_loss(mob/living/carbon/C)
+	..()
+	UnregisterSignal(C, COMSIG_MOB_SAY)
+	REMOVE_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
+	if(ruinoustelepathy)
+		C.RemoveSpell(ruinoustelepathy)
+	if(flagellate)
+		C.RemoveSpell(flagellate)
+
+/datum/species/golem/ruinous/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+	..()
+	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)
+	ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
+	ruinoustelepathy = new
+	ruinoustelepathy.charge_counter = 0
+	C.AddSpell(ruinoustelepathy)
+	flagellate = new
+	flagellate.charge_counter = 0
+	C.AddSpell(flagellate)
+
+/datum/species/golem/ruinous/proc/handle_speech(datum/source, list/speech_args)
+	speech_args[SPEECH_SPANS] |= SPAN_CULTLARGE
+	playsound(source, 'sound/effects/curseattack.ogg', 100, 1, 1)

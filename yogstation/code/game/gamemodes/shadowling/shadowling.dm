@@ -211,9 +211,10 @@ Made by Xhuis
 	id = "l_shadowling"
 	say_mod = "chitters"
 	species_traits = list(NOBLOOD,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
-	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RADIMMUNE)
-	burnmod = 1.1
-	heatmod = 1.1
+	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_PIERCEIMMUNE, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTCOLD)
+	burnmod = 1.25
+	heatmod = 1.25
+	brutemod = 0.75
 
 /datum/species/shadow/ling/lesser/spec_life(mob/living/carbon/human/H)
 	H.nutrition = NUTRITION_LEVEL_WELL_FED //i aint never get hongry
@@ -223,7 +224,7 @@ Made by Xhuis
 		if(light_amount > LIGHT_DAM_THRESHOLD && !H.incorporeal_move)
 			H.take_overall_damage(0, LIGHT_DAMAGE_TAKEN/2)
 		else if (light_amount < LIGHT_HEAL_THRESHOLD)
-			H.heal_overall_damage(3,3)
+			H.heal_overall_damage(4,4)
 			H.adjustToxLoss(-5)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, -25)
 			H.adjustCloneLoss(-1)
