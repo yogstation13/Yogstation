@@ -330,8 +330,14 @@
 	lose_text = "<span class='notice'>You feel like you should quit smoking.</span>"
 	medical_record_text = "Patient is a current smoker."
 	var/reagent_type = /datum/reagent/drug/nicotine
+	var/datum/reagent/reagent_type //If this is defined, reagent_id will be unused and the defined reagent type will be instead.
+	var/datum/reagent/reagent_instance
+	var/where_drug
+	var/drug_container_type = /obj/item/storage/box/fancy/cigarettes //If this is defined before pill generation, pill generation will be skipped. This is the type of the pill bottle.
+	var/obj/item/drug_instance
+	var/where_accessory
 	var/accessory_type = /obj/item/lighter/greyscale
-	var/drug_container_type = /obj/item/storage/box/fancy/cigarettes
+	var/obj/item/accessory_instance
 
 /datum/quirk/smoker/on_spawn()
 	drug_container_type = pick(/obj/item/storage/box/fancy/cigarettes,
