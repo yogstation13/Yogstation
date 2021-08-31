@@ -147,7 +147,6 @@
 #define TRAIT_UNINTELLIGIBLE_SPEECH "unintelligible-speech"
 #define TRAIT_UNSTABLE			"unstable"
 #define TRAIT_OIL_FRIED			"oil_fried"
-#define TRAIT_SHELTERED			"sheltered"
 #define TRAIT_RANDOM_ACCENT		"random_accent"
 #define TRAIT_MEDICALIGNORE     "medical_ignore"
 #define TRAIT_PASSTABLE			"passtable"
@@ -188,7 +187,6 @@
 #define TRAIT_EMPATH			"empath"
 #define TRAIT_FRIENDLY			"friendly"
 #define TRAIT_ALLERGIC			"allergic"
-#define TRAIT_KLEPTOMANIAC		"kleptomaniac"
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
