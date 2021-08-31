@@ -331,6 +331,7 @@
 	medical_record_text = "Patient is a current smoker."
 	var/reagent_type = /datum/reagent/drug/nicotine
 	var/accessory_type = /obj/item/lighter/greyscale
+	var/drug_container_type = /obj/item/storage/box/fancy/cigarettes
 
 /datum/quirk/junkie/smoker/on_spawn()
 	drug_container_type = pick(/obj/item/storage/box/fancy/cigarettes,
