@@ -329,8 +329,7 @@
 	gain_text = "<span class='danger'>You could really go for a smoke right about now.</span>"
 	lose_text = "<span class='notice'>You feel like you should quit smoking.</span>"
 	medical_record_text = "Patient is a current smoker."
-	var/reagent_type = /datum/reagent/drug/nicotine
-	var/datum/reagent/reagent_type //If this is defined, reagent_id will be unused and the defined reagent type will be instead.
+	var/datum/reagent/reagent_type = /datum/reagent/drug/nicotine //If this is defined, reagent_id will be unused and the defined reagent type will be instead.
 	var/datum/reagent/reagent_instance
 	var/where_drug
 	var/drug_container_type = /obj/item/storage/box/fancy/cigarettes //If this is defined before pill generation, pill generation will be skipped. This is the type of the pill bottle.
@@ -386,7 +385,6 @@
 		tick_counter = 0
 	else
 		++tick_counter
-	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/I = H.get_item_by_slot(SLOT_WEAR_MASK)
 	if (istype(I, /obj/item/clothing/mask/cigarette))
 		var/obj/item/storage/box/fancy/cigarettes/C = drug_instance
