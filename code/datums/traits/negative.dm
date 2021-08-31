@@ -338,6 +338,7 @@
 	var/where_accessory
 	var/accessory_type = /obj/item/lighter/greyscale
 	var/obj/item/accessory_instance
+	var/tick_counter = 0
 
 /datum/quirk/smoker/on_spawn()
 	drug_container_type = pick(/obj/item/storage/box/fancy/cigarettes,
