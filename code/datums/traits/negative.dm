@@ -333,7 +333,7 @@
 	var/accessory_type = /obj/item/lighter/greyscale
 	var/drug_container_type = /obj/item/storage/box/fancy/cigarettes
 
-/datum/quirk/junkie/smoker/on_spawn()
+/datum/quirk/smoker/on_spawn()
 	drug_container_type = pick(/obj/item/storage/box/fancy/cigarettes,
 		/obj/item/storage/box/fancy/cigarettes/cigpack_midori,
 		/obj/item/storage/box/fancy/cigarettes/cigpack_uplift,
@@ -379,18 +379,6 @@
 		tick_counter = 0
 	else
 		++tick_counter
-
-/datum/quirk/smoker/on_clone(data)
-	var/mob/living/carbon/human/H = quirk_holder
-	reagent_instance = new reagent_type()
-	H.reagents.addiction_list.Add(reagent_instance)
-
-/datum/quirk/smoker/proc/announce_drugs()
-	to_chat(quirk_holder, "<span class='boldnotice'>There is a [drug_instance.name] [where_drug], and a lighter [where_accessory]. Make sure you get your favorite brand when you run out.</span>")
-
-
-/datum/quirk/junkie/smoker/on_process()
-	. = ..()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/I = H.get_item_by_slot(SLOT_WEAR_MASK)
 	if (istype(I, /obj/item/clothing/mask/cigarette))
@@ -400,6 +388,13 @@
 			return
 		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "wrong_cigs", /datum/mood_event/wrong_brand)
 
+/datum/quirk/smoker/on_clone(data)
+	var/mob/living/carbon/human/H = quirk_holder
+	reagent_instance = new reagent_type()
+	H.reagents.addiction_list.Add(reagent_instance)
+
+/datum/quirk/smoker/proc/announce_drugs()
+	to_chat(quirk_holder, "<span class='boldnotice'>There is a [drug_instance.name] [where_drug], and a lighter [where_accessory]. Make sure you get your favorite brand when you run out.</span>")
 /datum/quirk/allergic
 	name = "Allergic Reaction"
 	desc = "You have had an allergic reaction to medicine in the past. Better stay away from it!"
