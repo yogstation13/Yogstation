@@ -4,6 +4,7 @@
 	icon = 'icons/mob/human.dmi'
 	icon_state = "human_basic"
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
+	var/last_gravity = 1
 
 /mob/living/carbon/human/Initialize()
 	add_verb(src, /mob/living/proc/mob_sleep)
@@ -859,6 +860,9 @@
 /mob/living/carbon/human/update_gravity(has_gravity,override = 0)
 	if(dna && dna.species) //prevents a runtime while a human is being monkeyfied
 		override = dna.species.override_float
+	if(has_gravity > last_gravity && !dna.check_mutation(STRONG))
+		Knockdown(2 SECONDS)
+	last_gravity = has_gravity
 	..()
 
 /mob/living/carbon/human/vomit(lost_nutrition = 10, blood = 0, stun = 1, distance = 0, message = 1, toxic = 0)
