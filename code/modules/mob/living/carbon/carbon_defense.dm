@@ -454,9 +454,9 @@
 		to_chat(src, "<span class='danger'>You can't grasp your [grasped_part.name] with itself!</span>")
 		return
 
-	to_chat(src, "<span class='warning'>You try grasping at your [grasped_part.name], trying to stop the bleeding...</span>")
-	if(!do_after(src, 1.5 SECONDS))
-		to_chat(src, "<span class='danger'>You fail to grasp your [grasped_part.name].</span>")
+	to_chat(src, "<span class='warning'>You grasp at your [grasped_part.name], trying to stop the bleeding...</span>")
+	if(!do_after(src, 1.5 SECONDS, target = src))
+		to_chat(src, "<span class='danger'>You can't get a good enough grip to slow the bleeding on [grasped_part.name].</span>")
 		return
 
 	var/obj/item/self_grasp/grasp = new
