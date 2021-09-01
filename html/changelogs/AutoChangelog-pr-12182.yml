@@ -1,0 +1,4 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - tweak: "removed the ability for abductors from using bluespace bodybags to bypass marking targets."
