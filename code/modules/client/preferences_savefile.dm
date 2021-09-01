@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	32
+#define SAVEFILE_VERSION_MAX	33
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -142,6 +142,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			var/datum/skillcape/cape = new path()
 			skillcape_id = cape.id
 			qdel(cape)
+	if(current_version < 33) //Reset map preference to no choice
+		if(preferred_map)
+			to_chat(parent, "<span class='userdanger'>Your preferred map has been reset to nothing. Please set it to the map you wish to play on.</span>")
+		preferred_map = null
+		
+		
+		
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
