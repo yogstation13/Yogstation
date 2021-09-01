@@ -1,6 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "heretics are now required to purchase 3 abilities from each set before purchasing the next set of abilities"
-  - tweak: "heretics now have a nice green/blue indicator for which abilities will allow them to progress"
-  - tweak: "heretics no longer need to purchase their mansus grasp upgrade seperate from their path selection, reducing the cost of progression by 1 point"
