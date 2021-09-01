@@ -115,10 +115,9 @@ const CryoContent = (props, context) => {
         buttons={(
           <Button
             icon="eject"
-            disabled={!data.isBeakerLoaded}
+            disabled={!data.isBeakerLoaded || !data.allowed}
             onClick={() => act('ejectbeaker')}
-            content="Eject"
-            disabled={!data.allowed} />
+            content="Eject" />
         )}>
         <BeakerContents
           beakerLoaded={data.isBeakerLoaded}
