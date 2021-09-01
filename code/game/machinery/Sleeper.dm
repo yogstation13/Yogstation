@@ -224,6 +224,7 @@
 			if(!is_operational() || !mob_occupant || isnull(chem))
 				return
 			if(!allowed(usr))
+				return
 			if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
 				return
 			if(inject_chem(chem, usr))
