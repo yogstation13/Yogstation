@@ -880,7 +880,10 @@ Nothing else in the console has ID requirements.
 		say("Resynced with nearby devices.")
 	if(ls["back_screen"])
 		back = text2num(ls["back_screen"])
-	if(ls["build"]) //Causes the Protolathe to build something.
+	if(ls["build"]) //Causes the Protolathe to build something
+		if(!allowed(usr))
+			to_chat(usr, "<span class='boldwarning'>Unauthorized Access<span>")
+			return
 		if(QDELETED(linked_lathe))
 			say("No Protolathe Linked!")
 			return
@@ -889,6 +892,9 @@ Nothing else in the console has ID requirements.
 		else
 			linked_lathe.user_try_print_id(ls["build"], ls["amount"])
 	if(ls["imprint"])
+		if(!allowed(usr))
+			to_chat(usr, "<span class='boldwarning'>Unauthorized Access<span>")
+			return
 		if(QDELETED(linked_imprinter))
 			say("No Circuit Imprinter Linked!")
 			return
@@ -974,6 +980,9 @@ Nothing else in the console has ID requirements.
 	if(ls["disk_slot"])
 		disk_slot_selected = text2num(ls["disk_slot"])
 	if(ls["research_node"])
+		if(!allowed(usr))
+			to_chat(usr, "<span class='boldwarning'>Unauthorized Access<span>")
+			return
 		if(!research_control)
 			return				//honestly should call them out for href exploiting :^)
 		if(!SSresearch.science_tech.available_nodes[ls["research_node"]])
