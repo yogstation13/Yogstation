@@ -168,7 +168,7 @@
 	var/list/data = list()
 	data["occupied"] = occupant ? 1 : 0
 	data["open"] = state_open
-	data["canuse"] = IS_MEDICAL(user) || issilicon(user) || !req_job
+	data["canuse"] = IS_MEDICAL(user) || issilicon(user) || !req_job || !CONFIG_GET(flag/jobs_have_minimal_access)
 
 	data["chems"] = list()
 	for(var/chem in available_chems)
@@ -221,7 +221,9 @@
 			. = TRUE
 		if("inject")
 			var/chem = text2path(params["chem"])
-			if(!is_operational() || !mob_occupant || isnull(chem))
+			if(!(IS_MEDICAL(user) || issilicon(user) || !req_job || !CONFIG_GET(flag/jobs_have_minimal_access)))
+				return
+			if(!is_operational() || !mob_occupant || isnull(chem) || !canuse)
 				return
 			if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
 				return
