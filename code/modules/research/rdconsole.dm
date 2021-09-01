@@ -881,9 +881,6 @@ Nothing else in the console has ID requirements.
 	if(ls["back_screen"])
 		back = text2num(ls["back_screen"])
 	if(ls["build"]) //Causes the Protolathe to build something
-		if(!allowed(usr))
-			to_chat(usr, "<span class='boldwarning'>Unauthorized Access<span>")
-			return
 		if(QDELETED(linked_lathe))
 			say("No Protolathe Linked!")
 			return
@@ -892,9 +889,6 @@ Nothing else in the console has ID requirements.
 		else
 			linked_lathe.user_try_print_id(ls["build"], ls["amount"])
 	if(ls["imprint"])
-		if(!allowed(usr))
-			to_chat(usr, "<span class='boldwarning'>Unauthorized Access<span>")
-			return
 		if(QDELETED(linked_imprinter))
 			say("No Circuit Imprinter Linked!")
 			return
@@ -1149,8 +1143,6 @@ Nothing else in the console has ID requirements.
 
 /obj/machinery/computer/rdconsole/robotics
 	name = "Robotics R&D Console"
-	req_access = null
-	req_access_txt = "29"
 
 /obj/machinery/computer/rdconsole/robotics/Initialize()
 	. = ..()
