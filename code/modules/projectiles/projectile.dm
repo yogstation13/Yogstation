@@ -179,7 +179,7 @@
 				splatter_dir = get_dir(starting, target_loca)
 			if(isalien(L) || ispolysmorph(L))
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter(target_loca, splatter_dir)
-			else if (!(NOBLOOD in C.dna.species.species_traits))
+			else if (!iscarbon(L) || (NOBLOOD in C.dna.species.species_traits))
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir)
 			else
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter/genericsplatter(target_loca, splatter_dir)
@@ -248,6 +248,9 @@
 	beam_segments[beam_index] = null
 
 /obj/item/projectile/Bump(atom/A)
+	if(!trajectory)
+		qdel(src)
+		return
 	var/datum/point/pcache = trajectory.copy_to()
 	var/turf/T = get_turf(A)
 	if(check_ricochet(A) && check_ricochet_flag(A) && ricochets < ricochets_max)

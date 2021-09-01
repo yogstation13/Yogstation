@@ -191,7 +191,7 @@
 	/// Our current UV cooldown
 	var/uv_cooldown = 0
 	/// How long between UV fryings
-	var/uv_cooldown_length = 1 MINUTES
+	var/uv_cooldown_length = 30 SECONDS
 	/// How much sanitization to apply to the burn wound
 	var/uv_power = 1
 

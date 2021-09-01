@@ -90,6 +90,8 @@
 	var/generic_bleedstacks
 	/// If we have a gauze wrapping currently applied (not including splints)
 	var/obj/item/stack/medical/current_gauze
+	/// If something is currently grasping this bodypart and trying to staunch bleeding (see [/obj/item/grasp_self])
+	var/obj/item/self_grasp/grasped_by
 	///If we have a bandage on (yoggite)
 	var/bandaged = FALSE
 
@@ -178,13 +180,15 @@
 ///since organs aren't actually stored in the bodypart themselves while attached to a person, we have to query the owner for what we should have
 /obj/item/bodypart/proc/get_organs()
 	if(!owner)
-		return
-	. = list()
+		return FALSE
+
+	var/list/bodypart_organs
 	for(var/i in owner.internal_organs) //internal organs inside the dismembered limb are dropped.
 		var/obj/item/organ/organ_check = i
 		if(check_zone(organ_check.zone) == body_zone)
-			. += organ_check
+			LAZYADD(bodypart_organs, organ_check) // this way if we don't have any, it'll just return null
 
+	return bodypart_organs
 //Return TRUE to get whatever mob this is in to update health.
 /obj/item/bodypart/proc/on_life(stam_regen)
 	if(stamina_dam > DAMAGE_PRECISION && stam_regen)					//DO NOT update health here, it'll be done in the carbon's life.
@@ -373,6 +377,11 @@
 	var/injury_roll = base_roll
 	injury_roll += check_wounding_mods(woundtype, damage, wound_bonus, bare_wound_bonus)
 	var/list/wounds_checking = GLOB.global_wound_types[woundtype]
+
+	if(injury_roll > WOUND_DISMEMBER_OUTRIGHT_THRESH && (get_damage() / max_damage * 50))
+		var/datum/wound/loss/dismembering = new
+		dismembering.apply_dismember(src, woundtype, outright=TRUE)
+		return
 
 	// quick re-check to see if bare_wound_bonus applies, for the benefit of log_wound(), see about getting the check from check_wounding_mods() somehow
 	if(ishuman(owner))
@@ -906,6 +915,12 @@
 
 	if(owner.mobility_flags & ~MOBILITY_STAND)
 		bleed_rate *= 0.75
+
+	if(grasped_by)
+		bleed_rate *= 0.7
+
+	if(!bleed_rate)
+		QDEL_NULL(grasped_by)
 	return bleed_rate
 
 /**

@@ -51,6 +51,7 @@
 	obj_flags = UNIQUE_RENAME
 	force = 15
 	throwforce = 10
+	wound_bonus = 10
 	w_class = WEIGHT_CLASS_BULKY
 	block_chance = 50
 	armour_penetration = 75
