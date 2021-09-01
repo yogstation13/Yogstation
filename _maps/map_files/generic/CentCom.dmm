@@ -745,22 +745,6 @@
 /obj/item/clothing/head/beekeeper_head,
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/anthophila)
-"cf" = (
-/obj/item/storage/box/fancy/donut_box,
-/obj/structure/table/reinforced,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/carpet/green,
-/area/centcom/ferry)
 "cg" = (
 /obj/machinery/shower{
 	dir = 4
@@ -1418,28 +1402,6 @@
 	icon_state = "chapel"
 	},
 /area/holodeck/rec_center/chapelcourt)
-"dW" = (
-/obj/item/paper_bin,
-/obj/item/pen/fourcolor,
-/obj/structure/table/reinforced,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/newscaster{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/carpet/green,
-/area/centcom/ferry)
 "dX" = (
 /obj/structure/table/wood,
 /obj/item/folder,
@@ -1790,6 +1752,12 @@
 "eV" = (
 /turf/open/floor/holofloor/carpet,
 /area/holodeck/rec_center/beach)
+"eW" = (
+/obj/item/storage/box/fancy/donut_box,
+/obj/structure/table/reinforced,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/carpet/green,
+/area/centcom/ferry)
 "eX" = (
 /obj/structure/table/wood,
 /obj/item/twohanded/required/kirbyplants/random{
@@ -7329,6 +7297,18 @@
 /obj/mecha/combat/durand,
 /turf/open/floor/engine,
 /area/centcom/testchamber)
+"rc" = (
+/obj/item/paper_bin,
+/obj/item/pen/fourcolor,
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/newscaster{
+	pixel_x = 32
+	},
+/turf/open/floor/carpet/green,
+/area/centcom/ferry)
 "rd" = (
 /obj/structure/flora/grass/brown,
 /obj/effect/light_emitter{
@@ -7533,6 +7513,11 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
+"rw" = (
+/obj/item/flashlight/lamp,
+/obj/structure/table/reinforced,
+/turf/open/floor/carpet/green,
 /area/centcom/ferry)
 "rx" = (
 /obj/machinery/light_switch{
@@ -17052,21 +17037,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
-"JV" = (
-/obj/item/flashlight/lamp,
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/carpet/green,
-/area/centcom/ferry)
 "JX" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/stripes/line{
@@ -17194,6 +17164,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/tdomeadmin)
+"Ki" = (
+/obj/structure/table/reinforced,
+/obj/item/folder/red,
+/obj/item/restraints/handcuffs,
+/obj/item/assembly/flash/handheld,
+/turf/open/floor/carpet/green,
+/area/centcom/ferry)
 "Kj" = (
 /obj/machinery/door/airlock/external{
 	name = "Backup Emergency Escape Shuttle"
@@ -22766,6 +22743,18 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
+"Ws" = (
+/obj/item/clipboard,
+/obj/structure/table/reinforced,
+/obj/item/detective_scanner,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/turf/open/floor/carpet/green,
+/area/centcom/ferry)
 "Wt" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -22773,23 +22762,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
-"Wu" = (
-/obj/structure/table/reinforced,
-/obj/item/folder/red,
-/obj/item/restraints/handcuffs,
-/obj/item/assembly/flash/handheld,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/carpet/green,
-/area/centcom/ferry)
 "Ww" = (
 /obj/machinery/chem_master,
 /obj/effect/turf_decal/tile/yellow{
@@ -23577,28 +23549,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Yi" = (
-/obj/item/clipboard,
-/obj/structure/table/reinforced,
-/obj/item/detective_scanner,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/structure/cable/white{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/carpet/green,
-/area/centcom/ferry)
 "Yj" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -62680,9 +62630,9 @@ Us
 Bp
 qg
 mE
-JV
-Yi
-Wu
+rw
+Ws
+Ki
 oB
 uV
 rz
@@ -62939,7 +62889,7 @@ ok
 qQ
 sy
 sx
-cf
+eW
 us
 uW
 mD
@@ -63196,7 +63146,7 @@ qi
 mD
 fo
 tC
-dW
+rc
 oB
 uX
 mD
