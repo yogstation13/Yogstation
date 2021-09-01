@@ -1846,8 +1846,8 @@
 /obj/machinery/computer/card/centcom,
 /obj/item/card/id/centcom,
 /obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the RD's goons and the AI's satellite from the safety of his office.";
-	name = "Security Cameras";
+	desc = "Used for spying on the people of the station all from the comfort of your chair.";
+	name = "Security Camera";
 	network = list("ss13");
 	pixel_y = 28
 	},
