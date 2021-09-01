@@ -87,7 +87,7 @@ const CryoContent = (props, context) => {
           <LabeledList.Item label="Power">
             <Button
               icon={data.isOperating ? "power-off" : "times"}
-              disabled={data.isOpen}
+              disabled={data.isOpen || !data.allowed}
               onClick={() => act('power')}
               color={data.isOperating && 'green'}>
               {data.isOperating ? "On" : "Off"}
@@ -100,11 +100,13 @@ const CryoContent = (props, context) => {
             <Button
               icon={data.isOpen ? "unlock" : "lock"}
               onClick={() => act('door')}
-              content={data.isOpen ? "Open" : "Closed"} />
+              content={data.isOpen ? "Open" : "Closed"}
+              disabled={!data.allowed} />
             <Button
               icon={data.autoEject ? "sign-out-alt" : "sign-in-alt"}
               onClick={() => act('autoeject')}
-              content={data.autoEject ? "Auto" : "Manual"} />
+              content={data.autoEject ? "Auto" : "Manual"}
+              disabled={!data.allowed} />
           </LabeledList.Item>
         </LabeledList>
       </Section>
@@ -115,7 +117,8 @@ const CryoContent = (props, context) => {
             icon="eject"
             disabled={!data.isBeakerLoaded}
             onClick={() => act('ejectbeaker')}
-            content="Eject" />
+            content="Eject"
+            disabled={!data.allowed} />
         )}>
         <BeakerContents
           beakerLoaded={data.isBeakerLoaded}

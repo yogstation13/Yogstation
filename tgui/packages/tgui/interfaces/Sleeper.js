@@ -10,6 +10,7 @@ export const Sleeper = (props, context) => {
     open,
     occupant = {},
     occupied,
+    allowed,
   } = data;
 
   const chems = data.chems || [];
@@ -114,7 +115,7 @@ export const Sleeper = (props, context) => {
               key={chem.name}
               icon="flask"
               content={chem.name}
-              disabled={!(occupied && chem.allowed)}
+              disabled={!(occupied && chem.allowed && allowed)}
               width="350px"
               onClick={() => act('inject', {
                 chem: chem.id,

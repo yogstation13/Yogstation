@@ -12,6 +12,7 @@
 	density = FALSE
 	state_open = TRUE
 	circuit = /obj/item/circuitboard/machine/sleeper
+	req_access = list(ACCESS_MEDICAL_MACHINERY)
 
 	var/efficiency = 1
 	var/min_health = -25
@@ -161,8 +162,11 @@
 /obj/machinery/sleeper/nap_violation(mob/violator)
 	open_machine()
 
-/obj/machinery/sleeper/ui_data()
+/obj/machinery/sleeper/ui_data(mob/user)
 	var/list/data = list()
+
+	data["allowed"] = allowed(user)
+
 	data["occupied"] = occupant ? 1 : 0
 	data["open"] = state_open
 
@@ -219,6 +223,7 @@
 			var/chem = text2path(params["chem"])
 			if(!is_operational() || !mob_occupant || isnull(chem))
 				return
+			if(!allowed(usr))
 			if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
 				return
 			if(inject_chem(chem, usr))

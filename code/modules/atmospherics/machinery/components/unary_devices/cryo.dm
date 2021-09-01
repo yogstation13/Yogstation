@@ -13,6 +13,8 @@
 	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
 	occupant_typecache = list(/mob/living/carbon, /mob/living/simple_animal)
 
+	req_access = list(ACCESS_MEDICAL_MACHINERY)
+
 	var/autoeject = TRUE
 	var/volume = 100
 
@@ -347,8 +349,9 @@
 		ui = new(user, src, "Cryo", name)
 		ui.open()
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/ui_data()
+/obj/machinery/atmospherics/components/unary/cryo_cell/ui_data(mob/user)
 	var/list/data = list()
+	data["allowed"] = allowed(user)
 	data["isOperating"] = on
 	data["hasOccupant"] = occupant ? TRUE : FALSE
 	data["isOpen"] = state_open
@@ -400,6 +403,8 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/ui_act(action, params)
 	if(..())
 		return
+	if(!allowed(usr))
+		return FALSE
 	switch(action)
 		if("power")
 			if(on)
