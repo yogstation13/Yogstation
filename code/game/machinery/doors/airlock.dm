@@ -1239,6 +1239,8 @@
 		to_chat(user, "<span class='warning'>The airlock's motors resist your efforts to force it!</span>")
 	else if(locked)
 		to_chat(user, "<span class='warning'>The airlock's bolts prevent it from being forced!</span>")
+	else if(brace)
+		to_chat(user, "<span class='warning'>The airlock won't budge!</span>")
 	else if( !welded && !operating)
 		if(istype(I, /obj/item/twohanded/fireaxe)) //being fireaxe'd
 			var/obj/item/twohanded/fireaxe/F = I
@@ -1261,6 +1263,10 @@
 
 		if(welded)
 			to_chat(user, "<span class='warning'>It's welded, it won't budge!</span>")
+			return
+
+		if(brace)
+			to_chat(user, "<span class='warning'>The airlock won't budge!</span>")
 			return
 
 		var/time_to_open = 5
@@ -1313,6 +1319,8 @@
 			to_chat(user, "<span class='warning'>The bolts are down, and it's welded.Forcing the bolts and breaking the seal will take a long while...</span>")
 			time_to_open = 200 * door_time_multiplier
 
+		if(brace)
+			time_to_open *= 1.5
 
 		if(hasPower())
 			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?

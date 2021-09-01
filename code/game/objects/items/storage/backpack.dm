@@ -649,6 +649,7 @@
 	new /obj/item/clothing/under/rank/research_director/turtleneck/skirt(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/under/yogs/rdema(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 
 /obj/item/storage/backpack/duffelbag/engineering/chief/clothing
 	name = "Chief Engineers clothing duffelbag"
@@ -669,6 +670,7 @@
 	new /obj/item/clothing/suit/hazardvest(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/clothing/glasses/meson/engine(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 
 /obj/item/storage/backpack/duffelbag/sec/detective/clothing
 	name = "Detective's clothing duffelbag"
@@ -687,6 +689,7 @@
 	new /obj/item/clothing/suit/det_suit/noir(src)
 	new /obj/item/clothing/head/fedora(src)
 	new /obj/item/clothing/shoes/laceup(src)
+	new /obj/item/clothing/shoes/xeno_wraps/jackboots(src)
 	new /obj/item/clothing/under/yogs/forensictech(src)
 	new /obj/item/clothing/under/yogs/bluedetective(src)
 	new /obj/item/clothing/under/yogs/golddetective(src)
@@ -736,6 +739,7 @@
 	new /obj/item/clothing/under/yogs/hoslatenight(src)
 	new /obj/item/clothing/under/yogs/hoscasual(src)
 	new /obj/item/clothing/suit/armor/vest/hosjacket(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 
 /obj/item/storage/backpack/duffelbag/med/chief/clothing
 	name = "Chief Medical Officer's clothing duffelbag"
@@ -750,3 +754,4 @@
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/neck/yogs/shawl/cmo(src) //Yogs
 	new /obj/item/clothing/head/beret/cmo(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)

@@ -16,6 +16,8 @@
 	var/obj/item/robot_suit/robot_suit = null ///Used for deconstruction to remember what the borg was constructed out of..
 	var/obj/item/mmi/mmi = null
 
+	var/throwcooldown = FALSE /// Used to determine cooldown for spin.
+
 	var/shell = FALSE
 	var/deployed = FALSE
 	var/mob/living/silicon/ai/mainframe = null
@@ -1200,6 +1202,11 @@
 		if(!module.allow_riding)
 			M.visible_message("<span class='boldwarning'>Unfortunately, [M] just can't seem to hold onto [src]!</span>")
 			return
+	M.visible_message("<span class='warning'>[M] begins to [M == usr ? "climb onto" : "be buckled to"] [src]...</span>")
+	if(!do_after(M, 1.5 SECONDS, target = src))
+		M.visible_message("<span class='boldwarning'>[M] was prevented from buckling to [src]!</span>")
+		return
+
 	if(iscarbon(M) && !M.incapacitated() && !riding_datum.equip_buckle_inhands(M, 1))
 		if(M.get_num_arms() <= 0)
 			M.visible_message("<span class='boldwarning'>[M] can't climb onto [src] because [M.p_they()] don't have any usable arms!</span>")

@@ -109,7 +109,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	var/higher_injection_chance = 15
 
 	/// If below this threat, decrease the chance of injection
-	var/lower_injection_chance_minimum_threat = 10
+	var/lower_injection_chance_minimum_threat = 30
 
 	/// The chance of injection decrease when above lower_injection_chance_minimum_threat
 	var/lower_injection_chance = 15

@@ -53,3 +53,30 @@
 	if(cpu)
 		cpu.screen_on = 1
 	update_icon()
+
+/obj/machinery/modular_computer/console/update_icon()
+	. = ..()
+
+	// this bit of code makes the computer hug the wall its next to
+	var/turf/T = get_turf(src)
+	var/list/offet_matrix = list(0, 0)		// stores offset to be added to the console in following order (pixel_x, pixel_y)
+	var/dirlook
+	switch(dir)
+		if(NORTH)
+			offet_matrix[2] = -3
+			dirlook = SOUTH
+		if(SOUTH)
+			offet_matrix[2] = 1
+			dirlook = NORTH
+		if(EAST)
+			offet_matrix[1] = -5
+			dirlook = WEST
+		if(WEST)
+			offet_matrix[1] = 5
+			dirlook = EAST
+	if(dirlook)
+		T = get_step(T, dirlook)
+		var/obj/structure/window/W = locate() in T
+		if(istype(T, /turf/closed/wall) || W)
+			pixel_x = offet_matrix[1]
+			pixel_y = offet_matrix[2]

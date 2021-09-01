@@ -623,6 +623,7 @@ obj/effect/temp_visual/fireball
 	loot = list()
 	crusher_loot = list()
 	butcher_results = list(/obj/item/stack/ore/diamond = 5, /obj/item/stack/sheet/sinew = 5, /obj/item/stack/sheet/bone = 30)
+	guaranteed_butcher_results = list(/obj/item/stack/sheet/animalhide/carpdragon = 10)
 	move_force = MOVE_FORCE_NORMAL
 	move_resist = MOVE_FORCE_NORMAL
 	pull_force = MOVE_FORCE_NORMAL
