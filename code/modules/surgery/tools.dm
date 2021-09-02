@@ -90,7 +90,7 @@
 	attack_verb = list("drilled")
 
 /obj/item/surgicaldrill/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] rams [src] into [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] rams [src] into [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide!"))
 	addtimer(CALLBACK(user, /mob/living/carbon.proc/gib, null, null, TRUE, TRUE), 25)
 	user.SpinAnimation(3, 10)
 	playsound(user, 'sound/machines/juicer.ogg', 20, TRUE)
@@ -153,7 +153,7 @@
 	sharpness = IS_SHARP_ACCURATE
 
 /obj/item/scalpel/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is slitting [user.p_their()] [pick("wrists", "throat", "stomach")] with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is slitting [user.p_their()] [pick("wrists", "throat", "stomach")] with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (BRUTELOSS)
 
 
@@ -227,13 +227,13 @@
 	if(istype(I, /obj/machinery/smartfridge))
 		return
 	if(contents.len)
-		to_chat(user, "<span class='notice'>[src] already has something inside it.</span>")
+		to_chat(user, span_notice("[src] already has something inside it."))
 		return
 	if(!isorgan(I) && !isbodypart(I))
-		to_chat(user, "<span class='notice'>[src] can only hold body parts!</span>")
+		to_chat(user, span_notice("[src] can only hold body parts!"))
 		return
 
-	user.visible_message("[user] puts [I] into [src].", "<span class='notice'>You put [I] inside [src].</span>")
+	user.visible_message("[user] puts [I] into [src].", span_notice("You put [I] inside [src]."))
 	icon_state = "evidence"
 	var/xx = I.pixel_x
 	var/yy = I.pixel_y
@@ -253,7 +253,7 @@
 	if(contents.len)
 		var/obj/item/I = contents[1]
 		clear_organ()
-		user.visible_message("[user] dumps [I] from [src].", "<span class='notice'>You dump [I] from [src].</span>")
+		user.visible_message("[user] dumps [I] from [src].", span_notice("You dump [I] from [src]."))
 		I.forceMove(get_turf(src))
 	else
 		to_chat(user, "[src] is empty.")
@@ -277,13 +277,13 @@
 	if(!proximity)
 		return
 	if(istype(O, /obj/item/disk/surgery))
-		to_chat(user, "<span class='notice'>You load the surgery protocol from [O] into [src].</span>")
+		to_chat(user, span_notice("You load the surgery protocol from [O] into [src]."))
 		var/obj/item/disk/surgery/D = O
 		if(do_after(user, 10, target = O))
 			advanced_surgeries |= D.surgeries
 		return TRUE
 	if(istype(O, /obj/machinery/computer/operating))
-		to_chat(user, "<span class='notice'>You copy surgery protocols from [O] into [src].</span>")
+		to_chat(user, span_notice("You copy surgery protocols from [O] into [src]."))
 		var/obj/machinery/computer/operating/OC = O
 		if(do_after(user, 10, target = O))
 			advanced_surgeries |= OC.advanced_surgeries
@@ -306,7 +306,7 @@
 
 /obj/item/scalpel/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/machines/click.ogg',50,1)
-	to_chat(user, "<span class='notice'>You increase the power, now it can cut bones.</span>")
+	to_chat(user, span_notice("You increase the power, now it can cut bones."))
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
 		var/modulenum = borg.get_selected_module()
@@ -340,7 +340,7 @@
 
 /obj/item/circular_saw/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/machines/click.ogg',50,1)
-	to_chat(user, "<span class='notice'>You lower the power.</span>")
+	to_chat(user, span_notice("You lower the power."))
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
 		var/modulenum = borg.get_selected_module()
@@ -366,7 +366,7 @@
 
 /obj/item/retractor/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
-	to_chat(user, "<span class='notice'>You set the [src] to hemostat mode.</span>")
+	to_chat(user, span_notice("You set the [src] to hemostat mode."))
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
 		var/modulenum = borg.get_selected_module()
@@ -392,7 +392,7 @@
 
 /obj/item/hemostat/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
-	to_chat(user, "<span class='notice'>You set the [src] to retractor mode.</span>")
+	to_chat(user, span_notice("You set the [src] to retractor mode."))
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
 		var/modulenum = borg.get_selected_module()
@@ -424,7 +424,7 @@
 
 /obj/item/surgicaldrill/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/weapons/tap.ogg',50,1)
-	to_chat(user, "<span class='notice'>You dilate the lenses, setting it to mending mode.</span>")
+	to_chat(user, span_notice("You dilate the lenses, setting it to mending mode."))
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
 		var/modulenum = borg.get_selected_module()
@@ -457,7 +457,7 @@
 
 /obj/item/cautery/advanced/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/welderdeactivate.ogg',50,1)
-	to_chat(user, "<span class='notice'>You focus the lensess, it is now set to drilling mode.</span>")
+	to_chat(user, span_notice("You focus the lensess, it is now set to drilling mode."))
 	if(issilicon(user))
 		var/mob/living/silicon/robot/borg = user
 		var/modulenum = borg.get_selected_module()

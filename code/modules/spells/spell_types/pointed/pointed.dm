@@ -17,11 +17,11 @@
 		return
 	var/msg
 	if(!can_cast(user))
-		msg = "<span class='warning'>You can no longer cast [name]!</span>"
+		msg = span_warning("You can no longer cast [name]!")
 		remove_ranged_ability(msg)
 		return
 	if(active)
-		msg = "<span class='notice'>[deactive_msg]</span>"
+		msg = span_notice("[deactive_msg]")
 		remove_ranged_ability(msg)
 	else
 		msg = "<span class='notice'>[active_msg] <B>Left-click to activate spell on a target!</B></span>"
@@ -94,11 +94,11 @@
 /obj/effect/proc_holder/spell/pointed/proc/intercept_check(mob/user, atom/target, silent = FALSE)
 	if(!self_castable && target == user)
 		if(!silent)
-			to_chat(user, "<span class='warning'>You cannot cast the spell on yourself!</span>")
+			to_chat(user, span_warning("You cannot cast the spell on yourself!"))
 		return FALSE
 	if(!(target in view_or_range(range, user, selection_type)))
 		if(!silent)
-			to_chat(user, "<span class='warning'>[target.p_theyre(TRUE)] too far away!</span>")
+			to_chat(user, span_warning("[target.p_theyre(TRUE)] too far away!"))
 		return FALSE
 	if(!can_target(target, user, silent))
 		return FALSE

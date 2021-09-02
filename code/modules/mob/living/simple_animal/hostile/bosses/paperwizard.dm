@@ -115,7 +115,7 @@
 				qdel(c)
 		for(var/mob/living/carbon/L in range(5,src))
 			L.apply_damage(40)
-			to_chat(L, "<span class='userdanger'>The damaged clone showers you with paper cuts!</span>")
+			to_chat(L, span_userdanger("The damaged clone showers you with paper cuts!"))
 		qdel(src)
 	else
 		. = ..()
@@ -156,7 +156,7 @@
 
 /obj/effect/temp_visual/paperwiz_dying/Initialize()
 	. = ..()
-	visible_message("<span class='boldannounce'>The wizard cries out in pain as a gate appears behind him, sucking him in!</span>")
+	visible_message(span_boldannounce("The wizard cries out in pain as a gate appears behind him, sucking him in!"))
 	playsound(get_turf(src),'sound/magic/mandswap.ogg', 50, 1, 1)
 	playsound(get_turf(src),'sound/hallucinations/wail.ogg', 50, 1, 1)
 

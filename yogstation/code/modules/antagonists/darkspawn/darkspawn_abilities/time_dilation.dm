@@ -16,7 +16,7 @@
 /datum/action/innate/darkspawn/time_dilation/Activate()
 	var/mob/living/L = owner
 	L.apply_status_effect(STATUS_EFFECT_TIME_DILATION)
-	L.visible_message("<span class='warning'>[L] howls as their body moves at wild speeds!</span>", \
+	L.visible_message(span_warning("[L] howls as their body moves at wild speeds!"), \
 	"<span class='velvet'><b>ckppw ck bwop</b><br>Your sigils howl out light as your body moves at incredible speed!</span>")
 	playsound(L, 'yogstation/sound/creatures/darkspawn_howl.ogg', 50, TRUE)
 	return TRUE

@@ -39,7 +39,7 @@
 	return
 
 /turf/open/floor/engine/wrench_act(mob/living/user, obj/item/I)
-	to_chat(user, "<span class='notice'>You begin removing rods...</span>")
+	to_chat(user, span_notice("You begin removing rods..."))
 	if(I.use_tool(src, user, 30, volume=80))
 		if(!istype(src, /turf/open/floor/engine))
 			return TRUE

@@ -189,11 +189,11 @@ obj/machinery/holopad/secure/Initialize()
 
 	if(istype(P,/obj/item/disk/holodisk))
 		if(disk)
-			to_chat(user,"<span class='warning'>There's already a disk inside [src]!</span>")
+			to_chat(user,span_warning("There's already a disk inside [src]!"))
 			return
 		if (!user.transferItemToLoc(P,src))
 			return
-		to_chat(user,"<span class='notice'>You insert [P] into [src].</span>")
+		to_chat(user,span_notice("You insert [P] into [src]."))
 		disk = P
 		return
 
@@ -243,7 +243,7 @@ obj/machinery/holopad/secure/Initialize()
 		if("AIrequest")
 			if(last_request + 200 < world.time)
 				last_request = world.time
-				to_chat(usr, "<span class='info'>You requested an AI's presence.</span>")
+				to_chat(usr, span_info("You requested an AI's presence."))
 				var/area/area = get_area(src)
 				for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
 					if(!AI.client)
@@ -251,7 +251,7 @@ obj/machinery/holopad/secure/Initialize()
 					to_chat(AI, "<span class='info'>Your presence is requested at <a href='?src=[REF(AI)];jumptoholopad=[REF(src)]'>\the [area]</a>.</span>")
 				return TRUE
 			else
-				to_chat(usr, "<span class='info'>A request for AI presence was already sent recently.</span>")
+				to_chat(usr, span_info("A request for AI presence was already sent recently."))
 				return
 		if("holocall")
 			if(outgoing_call)
@@ -273,7 +273,7 @@ obj/machinery/holopad/secure/Initialize()
 					calling = TRUE
 					return TRUE
 			else
-				to_chat(usr, "<span class='warning'>You must stand on the holopad to make a call!</span>")
+				to_chat(usr, span_warning("You must stand on the holopad to make a call!"))
 		if("connectcall")
 			var/datum/holocall/call_to_connect = locate(params["holopad"]) in holo_calls
 			if(!QDELETED(call_to_connect))
@@ -412,7 +412,7 @@ obj/machinery/holopad/secure/Initialize()
 		move_hologram()
 
 		set_holo(user, Hologram)
-		visible_message("<span class='notice'>A holographic image of [user] flickers to life before your eyes!</span>")
+		visible_message(span_notice("A holographic image of [user] flickers to life before your eyes!"))
 
 		return Hologram
 	else
@@ -567,7 +567,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	Hologram.setAnchored(TRUE)//So space wind cannot drag it.
 	Hologram.name = "[record.caller_name] (Hologram)"//If someone decides to right click.
 	Hologram.set_light(2)	//hologram lighting
-	visible_message("<span class='notice'>A holographic image of [record.caller_name] flickers to life before your eyes!</span>")
+	visible_message(span_notice("A holographic image of [record.caller_name] flickers to life before your eyes!"))
 	return Hologram
 
 /obj/machinery/holopad/proc/replay_start()

@@ -311,10 +311,10 @@
 
 /obj/machinery/computer/camera_advanced/ratvar/can_use(mob/living/user)
 	if(!is_servant_of_ratvar(user))
-		to_chat(user, "<span class='warning'>[src]'s keys are in a language foreign to you, and you don't understand anything on its screen.</span>")
+		to_chat(user, span_warning("[src]'s keys are in a language foreign to you, and you don't understand anything on its screen."))
 		return
 	if(clockwork_ark_active())
-		to_chat(user, "<span class='warning'>The Ark is active, and [src] has shut down.</span>")
+		to_chat(user, span_warning("The Ark is active, and [src] has shut down."))
 		return
 	. = ..()
 
@@ -362,7 +362,7 @@
 		return
 	do_sparks(5, TRUE, user)
 	do_sparks(5, TRUE, T)
-	user.visible_message("<span class='warning'>[user]'s [target.name] flares!</span>", "<span class='bold sevtug_small'>You begin warping to [AR]...</span>")
+	user.visible_message(span_warning("[user]'s [target.name] flares!"), "<span class='bold sevtug_small'>You begin warping to [AR]...</span>")
 	button_icon_state = "warp_cancel"
 	owner.update_action_buttons()
 	var/warp_time = 50
@@ -379,7 +379,7 @@
 		return
 	button_icon_state = "warp_down"
 	owner.update_action_buttons()
-	T.visible_message("<span class='warning'>[user] warps in!</span>")
+	T.visible_message(span_warning("[user] warps in!"))
 	playsound(user, 'sound/magic/magic_missile.ogg', 50, TRUE)
 	playsound(T, 'sound/magic/magic_missile.ogg', 50, TRUE)
 	user.forceMove(get_turf(T))

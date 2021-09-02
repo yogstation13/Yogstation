@@ -31,17 +31,17 @@
 		if(!GLOB.ratvar_awakens)
 			if(locate(/obj/effect/blessing, T))
 				if(last_failed_turf != T)
-					T.visible_message("<span class='warning'>[T] suddenly emits a ringing sound!</span>", null, null, null, src)
+					T.visible_message(span_warning("[T] suddenly emits a ringing sound!"), null, null, null, src)
 					playsound(T, 'sound/machines/clockcult/ark_damage.ogg', 75, FALSE)
 					last_failed_turf = T
 				if((world.time - lastWarning) >= 30)
 					lastWarning = world.time
-					to_chat(src, "<span class='warning'>This turf is consecrated and can't be crossed!</span>")
+					to_chat(src, span_warning("This turf is consecrated and can't be crossed!"))
 				return
 			if(istype(get_area(T), /area/chapel))
 				if((world.time - lastWarning) >= 30)
 					lastWarning = world.time
-					to_chat(src, "<span class='warning'>The Chapel is hallowed ground under a heretical deity, and can't be accessed!</span>")
+					to_chat(src, span_warning("The Chapel is hallowed ground under a heretical deity, and can't be accessed!"))
 				return
 		else
 			for(var/turf/TT in range(5, src))
@@ -65,9 +65,9 @@
 		else
 			C.clock_team.eminence = src
 	to_chat(src, "<span class='bold large_brass'>You have been selected as the Eminence!</span>")
-	to_chat(src, "<span class='brass'>As the Eminence, you lead the servants. Anything you say will be heard by the entire cult.</span>")
-	to_chat(src, "<span class='brass'>Though you can move through walls, you're also incorporeal, and largely can't interact with the world except for a few ways.</span>")
-	to_chat(src, "<span class='brass'>Additionally, unless the herald's beacon is activated, you can't understand any speech while away from Reebe.</span>")
+	to_chat(src, span_brass("As the Eminence, you lead the servants. Anything you say will be heard by the entire cult."))
+	to_chat(src, span_brass("Though you can move through walls, you're also incorporeal, and largely can't interact with the world except for a few ways."))
+	to_chat(src, span_brass("Additionally, unless the herald's beacon is activated, you can't understand any speech while away from Reebe."))
 	eminence_help()
 	for(var/V in actions)
 		var/datum/action/A = V
@@ -122,15 +122,15 @@
 		if(G.recalling)
 			return
 		if(!G.recalls_remaining)
-			to_chat(src, "<span class='warning'>The Ark can no longer recall!</span>")
+			to_chat(src, span_warning("The Ark can no longer recall!"))
 			return
 		if(alert(src, "Initiate mass recall?", "Mass Recall", "Yes", "No") != "Yes" || QDELETED(src) || QDELETED(G) || !G.obj_integrity)
 			return
 		G.initiate_mass_recall() //wHOOPS LOOKS LIKE A HULK GOT THROUGH
 	else if(istype(A, /obj/structure/destructible/clockwork/trap/trigger))
 		var/obj/structure/destructible/clockwork/trap/trigger/T = A
-		T.visible_message("<span class='danger'>[T] clunks as it's activated remotely.</span>")
-		to_chat(src, "<span class='brass'>You activate [T].</span>")
+		T.visible_message(span_danger("[T] clunks as it's activated remotely."))
+		to_chat(src, span_brass("You activate [T]."))
 		T.activate()
 
 /mob/camera/eminence/ratvar_act()
@@ -204,7 +204,7 @@
 	if(!istype(wall))
 		return
 	if(superheated_walls >= SUPERHEATED_CLOCKWORK_WALL_LIMIT && !wall.heated)
-		to_chat(src, "<span class='warning'>You're exerting all of your power superheating this many walls already! Cool some down first!</span>")
+		to_chat(src, span_warning("You're exerting all of your power superheating this many walls already! Cool some down first!"))
 		return
 	wall.turn_up_the_heat()
 	if(wall.heated)
@@ -262,7 +262,7 @@
 		owner.playsound_local(owner, 'sound/magic/magic_missile.ogg', 50, TRUE)
 		flash_color(owner, flash_color = "#AF0AAF", flash_time = 25)
 	else
-		to_chat(owner, "<span class='warning'>There is no Ark!</span>")
+		to_chat(owner, span_warning("There is no Ark!"))
 
 //Warps to the Station
 /datum/action/innate/eminence/station_jump
@@ -276,7 +276,7 @@
 		owner.playsound_local(owner, 'sound/magic/magic_missile.ogg', 50, TRUE)
 		flash_color(owner, flash_color = "#AF0AAF", flash_time = 25)
 	else
-		to_chat(owner, "<span class='warning'>You're already on the station!</span>")
+		to_chat(owner, span_warning("You're already on the station!"))
 
 //A quick-use button for recalling the servants to the Ark
 /datum/action/innate/eminence/mass_recall

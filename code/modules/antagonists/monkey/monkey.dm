@@ -205,9 +205,9 @@
 	var/list/monkeys = get_antag_minds(/datum/antagonist/monkey, TRUE)
 
 	if(LAZYLEN(leaders))
-		parts += "<span class='header'>The monkey leaders were:</span>"
+		parts += span_header("The monkey leaders were:")
 		parts += printplayerlist(SSticker.mode.ape_leaders)
 	if(LAZYLEN(monkeys))
-		parts += "<span class='header'>The monkeys were:</span>"
+		parts += span_header("The monkeys were:")
 		parts += printplayerlist(SSticker.mode.ape_infectees)
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"

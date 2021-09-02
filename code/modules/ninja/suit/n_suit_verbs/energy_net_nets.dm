@@ -34,7 +34,7 @@ It is possible to destroy the net by the occupant or someone else.
 /obj/structure/energy_net/Destroy()
 	if(!success)
 		if(!QDELETED(affecting))
-			affecting.visible_message("[affecting.name] was recovered from the energy net!", "You were recovered from the energy net!", "<span class='italics'>You hear a grunt.</span>")
+			affecting.visible_message("[affecting.name] was recovered from the energy net!", "You were recovered from the energy net!", span_italics("You hear a grunt."))
 		if(!QDELETED(master))//As long as they still exist.
 			to_chat(master, "<span class='userdanger'>ERROR</span>: unable to initiate capture protocol. Procedure terminated.")
 	return ..()
@@ -65,7 +65,7 @@ It is possible to destroy the net by the occupant or someone else.
 	visible_message("[affecting] suddenly vanishes!")
 	affecting.forceMove(pick(GLOB.holdingfacility)) //Throw mob in to the holding facility.
 	GLOB.ninja_capture += affecting
-	to_chat(affecting, "<span class='danger'>You appear in a strange place. You feel very trapped.</span>")
+	to_chat(affecting, span_danger("You appear in a strange place. You feel very trapped."))
 
 	if(!QDELETED(master))//As long as they still exist.
 		to_chat(master, "<span class='notice'><b>SUCCESS</b>: capture procedure of [affecting] complete.</span>")

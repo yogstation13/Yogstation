@@ -23,7 +23,7 @@
 	var/list/queue = SSticker.queued_players
 	
 	if(!queue.len)
-		to_chat(usr,"<span class='warning'>There is nobody in the server queue!</span>", confidential=TRUE)
+		to_chat(usr,span_warning("There is nobody in the server queue!"), confidential=TRUE)
 		return
 	
 	if(alert("Are you sure you want to allow [queue.len] people to skip the queue and join the game?",,"Yes","No") != "Yes")

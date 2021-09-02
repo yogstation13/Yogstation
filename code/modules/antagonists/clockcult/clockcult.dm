@@ -71,12 +71,12 @@
 				to_chat(R, "<span class='boldwarning'>You have been desynced from your master AI.<br>\
 				In addition, your onboard camera is no longer active and you have gained additional equipment, including a limited clockwork slab.</span>")
 			else
-				to_chat(R, "<span class='boldwarning'>Your onboard camera is no longer active and you have gained additional equipment, including a limited clockwork slab.</span>")
+				to_chat(R, span_boldwarning("Your onboard camera is no longer active and you have gained additional equipment, including a limited clockwork slab."))
 		if(isAI(current))
-			to_chat(current, "<span class='boldwarning'>You are now able to use your cameras to listen in on conversations, but can no longer speak in anything but Ratvarian.</span>")
+			to_chat(current, span_boldwarning("You are now able to use your cameras to listen in on conversations, but can no longer speak in anything but Ratvarian."))
 		to_chat(current, "<span class='heavy_brass'>You can communicate with other servants by using the Hierophant Network action button in the upper left.</span>")
 	else if(isbrain(current) || isclockmob(current))
-		to_chat(current, "<span class='nezbere'>You can communicate with other servants by using the Hierophant Network action button in the upper left.</span>")
+		to_chat(current, span_nezbere("You can communicate with other servants by using the Hierophant Network action button in the upper left."))
 	..()
 	to_chat(current, "<b>This is Ratvar's will:</b> [CLOCKCULT_OBJECTIVE]")
 	antag_memory += "<b>Ratvar's will:</b> [CLOCKCULT_OBJECTIVE]<br>" //Memorize the objectives
@@ -169,11 +169,11 @@
 	SSticker.mode.update_servant_icons_removed(owner)
 	if(!silent)
 		owner.current.visible_message("<span class='deconversion_message'>[owner.current] seems to have remembered [owner.current.p_their()] true allegiance!</span>", null, null, null, owner.current)
-		to_chat(owner, "<span class='userdanger'>A cold, cold darkness flows through your mind, extinguishing the Justiciar's light and all of your memories as his servant.</span>")
+		to_chat(owner, span_userdanger("A cold, cold darkness flows through your mind, extinguishing the Justiciar's light and all of your memories as his servant."))
 	owner.current.log_message("has renounced the cult of Ratvar!", LOG_ATTACK, color="#BE8700")
 	owner.special_role = null
 	if(iscyborg(owner.current))
-		to_chat(owner.current, "<span class='warning'>Despite your freedom from Ratvar's influence, you are still irreparably damaged and no longer possess certain functions such as AI linking.</span>")
+		to_chat(owner.current, span_warning("Despite your freedom from Ratvar's influence, you are still irreparably damaged and no longer possess certain functions such as AI linking."))
 	. = ..()
 
 
@@ -193,9 +193,9 @@
 
 /datum/antagonist/clockcult/proc/admin_give_slab(mob/admin)
 	if(!SSticker.mode.equip_servant(owner.current))
-		to_chat(admin, "<span class='warning'>Failed to outfit [owner.current]!</span>")
+		to_chat(admin, span_warning("Failed to outfit [owner.current]!"))
 	else
-		to_chat(admin, "<span class='notice'>Successfully gave [owner.current] servant equipment!</span>")
+		to_chat(admin, span_notice("Successfully gave [owner.current] servant equipment!"))
 
 /datum/team/clockcult
 	name = "Clockcult"
@@ -240,7 +240,7 @@
 	if(eminence)
 		parts += "<span class='header'>The Eminence was:</span> [printplayer(eminence)]"
 	if(members.len)
-		parts += "<span class='header'>Ratvar's servants were:</span>"
+		parts += span_header("Ratvar's servants were:")
 		parts += printplayerlist(members - eminence)
 
 	return "<div class='panel clockborder'>[parts.Join("<br>")]</div>"

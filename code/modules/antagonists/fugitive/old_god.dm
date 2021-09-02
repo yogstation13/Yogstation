@@ -51,12 +51,12 @@
 	if(locate(/obj/effect/blessing, T))
 		if((world.time - lastWarning) >= 30)
 			lastWarning = world.time
-			to_chat(src, "<span class='warning'>This turf is consecrated and can't be crossed!</span>")
+			to_chat(src, span_warning("This turf is consecrated and can't be crossed!"))
 		return
 	if(istype(get_area(T), /area/chapel))
 		if((world.time - lastWarning) >= 30)
 			lastWarning = world.time
-			to_chat(src, "<span class='warning'>The Chapel is hallowed ground under a much, MUCH stronger deity, and can't be accessed!</span>")
+			to_chat(src, span_warning("The Chapel is hallowed ground under a much, MUCH stronger deity, and can't be accessed!"))
 		return
 	forceMove(T)
 	Moved(OldLoc, direct)
@@ -91,7 +91,7 @@
 			safe = TRUE
 			break
 	if(!safe)
-		to_chat(src, "<span class='userdanger'>All of your followers are gone. That means you cease to exist.</span>")
+		to_chat(src, span_userdanger("All of your followers are gone. That means you cease to exist."))
 		qdel(src)
 
 /datum/action/innate/yalp_transmit
@@ -107,7 +107,7 @@
 		if(istype(M))
 			possible_targets += M
 	if(!possible_targets.len)
-		to_chat(owner, "<span class='warning'>Nobody in range to talk to!</span>")
+		to_chat(owner, span_warning("Nobody in range to talk to!"))
 		return FALSE
 
 	var/mob/living/target
@@ -154,7 +154,7 @@
 			continue
 		faithful += V
 	if(!faithful.len)
-		to_chat(owner, "<span class='warning'>You have nobody to jump to!</span>")
+		to_chat(owner, span_warning("You have nobody to jump to!"))
 		return FALSE
 	if(faithful.len == 1)
 		target = faithful[1]
@@ -165,7 +165,7 @@
 	if(target && T)
 		owner.forceMove(T)
 		return TRUE
-	to_chat(owner, "<span class='warning'>Something horrible just happened to your target!</span>")
+	to_chat(owner, span_warning("Something horrible just happened to your target!"))
 	return FALSE
 
 

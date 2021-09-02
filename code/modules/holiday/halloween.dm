@@ -90,7 +90,7 @@
 		trapped = 0
 
 	else if(trapped == ANGRY_FAITHLESS)
-		visible_message("<span class='userdanger'>The closet bursts open!</span>")
+		visible_message(span_userdanger("The closet bursts open!"))
 		visible_message("<span class='userdanger'><font size='5'>THIS BEING RADIATES PURE EVIL! YOU BETTER RUN!!!</font></span>")
 		playsound(loc, 'sound/hallucinations/wail.ogg', 300, 1)
 		var/mob/living/simple_animal/hostile/faithless/F = new(loc)
@@ -236,7 +236,7 @@
 			playsound(loc, 'sound/spookoween/insane_low_laugh.ogg', 300, 1)
 			qdel(src)
 		else
-			visible_message("<span class='danger'>[src] seems to be resisting the effect!</span>")
+			visible_message(span_danger("[src] seems to be resisting the effect!"))
 	else
 		..()
 

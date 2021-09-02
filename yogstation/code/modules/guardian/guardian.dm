@@ -169,8 +169,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		to_chat(src, "<span class='holoparasite bold'>For some reason, somehow, you have no summoner. Please report this bug immediately.</span>")
 		return
 	to_chat(src, "<span class='holoparasite'>You are <font color=\"[namedatum.colour]\"><b>[real_name]</b></font>, bound to serve [summoner.current.real_name].</span>")
-	to_chat(src, "<span class='holoparasite'>You are capable of manifesting or recalling to your master with the buttons on your HUD. You will also find a button to communicate with [summoner.current.p_them()] privately there.</span>")
-	to_chat(src, "<span class='holoparasite'>While personally invincible, you will die if [summoner.current.real_name] does, and any damage dealt to you will have a portion passed on to [summoner.current.p_them()] as you feed upon [summoner.current.p_them()] to sustain yourself.</span>")
+	to_chat(src, span_holoparasite("You are capable of manifesting or recalling to your master with the buttons on your HUD. You will also find a button to communicate with [summoner.current.p_them()] privately there."))
+	to_chat(src, span_holoparasite("While personally invincible, you will die if [summoner.current.real_name] does, and any damage dealt to you will have a portion passed on to [summoner.current.p_them()] as you feed upon [summoner.current.p_them()] to sustain yourself."))
 	setup_barriers()
 
 /mob/living/simple_animal/hostile/guardian/Life() //Dies if the summoner dies
@@ -186,7 +186,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 				GoBerserk()
 			else
 				forceMove(summoner.current)
-				to_chat(src, "<span class='danger'>Your summoner has died!</span>")
+				to_chat(src, span_danger("Your summoner has died!"))
 				visible_message("<span class='danger'><B>\The [src] dies along with its user!</B></span>")
 				summoner.current.visible_message("<span class='danger'><B>[summoner.current]'s body is completely consumed by the strain of sustaining [src]!</B></span>")
 				for(var/obj/item/W in summoner.current)
@@ -198,7 +198,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if(transforming)
 			GoBerserk()
 		else
-			to_chat(src, "<span class='danger'>Your summoner has died!</span>")
+			to_chat(src, span_danger("Your summoner has died!"))
 			visible_message("<span class='danger'><B>[src] dies along with its user!</B></span>")
 			death(TRUE)
 	snapback()
@@ -308,8 +308,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if(get_dist(get_turf(summoner.current),get_turf(src)) <= range)
 			return
 		else
-			to_chat(src, "<span class='holoparasite'>You moved out of range, and were pulled back! You can only move [range] meters from [summoner.current.real_name]!</span>")
-			visible_message("<span class='danger'>\The [src] jumps back to its user.</span>")
+			to_chat(src, span_holoparasite("You moved out of range, and were pulled back! You can only move [range] meters from [summoner.current.real_name]!"))
+			visible_message(span_danger("\The [src] jumps back to its user."))
 			if(istype(summoner.current.loc, /obj/effect))
 				Recall(TRUE)
 			else
@@ -353,7 +353,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		to_chat(src, "<span class='holoparasite italics'>No... no... you can't!</span>")
 		return
 	if(erased_time)
-		to_chat(src, "<span class='danger'>There is no time, and you cannot intefere!</span>")
+		to_chat(src, span_danger("There is no time, and you cannot intefere!"))
 		return
 	if(stats.ability && stats.ability.RangedAttack(A))
 		return
@@ -364,7 +364,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		to_chat(src, "<span class='holoparasite italics'>No... no... you can't!</span>")
 		return FALSE
 	if(erased_time)
-		to_chat(src, "<span class='danger'>There is no time, and you cannot intefere!</span>")
+		to_chat(src, span_danger("There is no time, and you cannot intefere!"))
 		return FALSE
 	if(stats.ability && stats.ability.Attack(target))
 		return FALSE
@@ -524,10 +524,10 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 /mob/living/simple_animal/hostile/guardian/proc/ToggleLight()
 	if(light_range<3)
-		to_chat(src, "<span class='notice'>You activate your light.</span>")
+		to_chat(src, span_notice("You activate your light."))
 		set_light(3)
 	else
-		to_chat(src, "<span class='notice'>You deactivate your light.</span>")
+		to_chat(src, span_notice("You deactivate your light."))
 		set_light(0)
 
 /mob/living/simple_animal/hostile/guardian/verb/show_detail()
@@ -624,7 +624,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as [src.real_name]'s [G.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100)
 			if(LAZYLEN(candidates))
 				var/mob/dead/observer/C = pick(candidates)
-				to_chat(G, "<span class='holoparasite'>Your user reset you, and your body was taken over by a ghost. Looks like they weren't happy with your performance.</span>")
+				to_chat(G, span_holoparasite("Your user reset you, and your body was taken over by a ghost. Looks like they weren't happy with your performance."))
 				to_chat(src, "<span class='holoparasite bold'>Your <font color=\"[G.namedatum.colour]\">[G.real_name]</font> has been successfully reset.</span>")
 				log_game("[key_name(src)] has reset their holoparasite, it is now [key_name(G)].")
 				G.ghostize(FALSE)
@@ -643,7 +643,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			else
 				to_chat(src, "<span class='holoparasite'>There were no ghosts willing to take control of <font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font>. Looks like you're stuck with it for now.</span>")
 		else
-			to_chat(src, "<span class='holoparasite'>You decide not to reset [guardians.len > 1 ? "any of your guardians":"your guardian"].</span>")
+			to_chat(src, span_holoparasite("You decide not to reset [guardians.len > 1 ? "any of your guardians":"your guardian"]."))
 	else
 		remove_verb(src, /mob/living/proc/guardian_reset)
 

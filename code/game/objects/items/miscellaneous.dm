@@ -47,7 +47,7 @@
 	if(!uses)
 		qdel(src)
 	else
-		to_chat(M, "<span class='notice'>[uses] use[uses > 1 ? "s" : ""] remaining on the [src].</span>")
+		to_chat(M, span_notice("[uses] use[uses > 1 ? "s" : ""] remaining on the [src]."))
 
 /obj/item/choice_beacon/proc/spawn_option(obj/choice,mob/living/M)
 	var/obj/new_item = new choice()
@@ -148,7 +148,7 @@
 	throw_speed = 0.01
 
 /obj/item/skub/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] has declared themself as anti-skub! The skub tears them apart!</span>")
+	user.visible_message(span_suicide("[user] has declared themself as anti-skub! The skub tears them apart!"))
 
 	user.gib()
 	playsound(src, 'sound/items/eatfood.ogg', 50, 1, -1)

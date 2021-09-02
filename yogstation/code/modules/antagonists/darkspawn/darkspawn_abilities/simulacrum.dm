@@ -11,11 +11,11 @@
 /datum/action/innate/darkspawn/simulacrum/Activate()
 	if(isliving(owner.loc))
 		var/mob/living/L = owner.loc
-		L.visible_message("<span class='warning'>[owner] breaks away from [L]'s shadow!</span>", \
-		"<span class='userdanger'>You feel a sense of freezing cold pass through you!</span>")
+		L.visible_message(span_warning("[owner] breaks away from [L]'s shadow!"), \
+		span_userdanger("You feel a sense of freezing cold pass through you!"))
 		to_chat(owner, "<span class='velvet'><b>zayaera</b><br>You create an illusion of yourself.</span>")
 	else
-		owner.visible_message("<span class='warning'>[owner] splits in two!</span>", \
+		owner.visible_message(span_warning("[owner] splits in two!"), \
 		"<span class='velvet'><b>zayaera</b><br>You create an illusion of yourself.</span>")
 	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
 	var/obj/effect/simulacrum/simulacrum = new(get_turf(owner))

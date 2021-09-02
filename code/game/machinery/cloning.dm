@@ -115,7 +115,7 @@ GLOBAL_VAR_INIT(clones, 0)
 
 /obj/item/disk/data/attack_self(mob/user)
 	read_only = !read_only
-	to_chat(user, "<span class='notice'>You flip the write-protect tab to [read_only ? "protected" : "unprotected"].</span>")
+	to_chat(user, span_notice("You flip the write-protect tab to [read_only ? "protected" : "unprotected"]."))
 
 /obj/item/disk/data/examine(mob/user)
 	. = ..()
@@ -271,7 +271,7 @@ GLOBAL_VAR_INIT(clones, 0)
 
 		if(grab_ghost_when == CLONER_MATURE_CLONE)
 			H.ghostize(TRUE)	//Only does anything if they were still in their old body and not already a ghost
-			to_chat(H.get_ghost(TRUE), "<span class='notice'>Your body is beginning to regenerate in a cloning pod. You will become conscious when it is complete.</span>")
+			to_chat(H.get_ghost(TRUE), span_notice("Your body is beginning to regenerate in a cloning pod. You will become conscious when it is complete."))
 
 	if(H)
 		H.faction |= factions
@@ -410,10 +410,10 @@ GLOBAL_VAR_INIT(clones, 0)
 	var/mob/living/mob_occupant = occupant
 	if(W.GetID())
 		if(!check_access(W))
-			to_chat(user, "<span class='danger'>Access Denied.</span>")
+			to_chat(user, span_danger("Access Denied."))
 			return
 		if(!(mob_occupant || mess))
-			to_chat(user, "<span class='danger'>Error: Pod has no occupant.</span>")
+			to_chat(user, span_danger("Error: Pod has no occupant."))
 			return
 		else
 			add_fingerprint(user)
@@ -421,7 +421,7 @@ GLOBAL_VAR_INIT(clones, 0)
 			log_combat(user, mob_occupant, "ejected", W, "from [src]")
 			connected_message("Emergency Ejection")
 			SPEAK("An emergency ejection of [clonemind.name] has occurred. Survival not guaranteed.")
-			to_chat(user, "<span class='notice'>You force an emergency ejection. </span>")
+			to_chat(user, span_notice("You force an emergency ejection. "))
 			go_out()
 	else
 		return ..()
@@ -429,7 +429,7 @@ GLOBAL_VAR_INIT(clones, 0)
 /obj/machinery/clonepod/emag_act(mob/user)
 	if(!occupant)
 		return
-	to_chat(user, "<span class='warning'>You corrupt the genetic compiler.</span>")
+	to_chat(user, span_warning("You corrupt the genetic compiler."))
 	malfunction()
 	add_fingerprint(user)
 	log_cloning("[key_name(user)] emagged [src] at [AREACOORD(src)], causing it to malfunction.")
@@ -460,7 +460,7 @@ GLOBAL_VAR_INIT(clones, 0)
 		unattached_flesh.Cut()
 		mess = FALSE
 		new /obj/effect/gibspawner/generic(get_turf(src), mob_occupant)
-		audible_message("<span class='italics'>You hear a splat.</span>")
+		audible_message(span_italics("You hear a splat."))
 		icon_state = "pod_0"
 		return
 

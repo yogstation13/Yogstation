@@ -3,7 +3,7 @@
 	description = "A gorilla-ing toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/gorilla
-	mutationtext = "<span class='danger'>The pain subsides. You feel... damn dirty.</span>"
+	mutationtext = span_danger("The pain subsides. You feel... damn dirty.")
 
 /datum/reagent/cluwnification
 	name = "Cluwne Tears"

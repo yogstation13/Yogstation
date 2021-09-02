@@ -84,7 +84,7 @@ Credit where due:
 		if(R.deployed)
 			var/mob/living/silicon/ai/AI = R.mainframe
 			R.undeploy()
-			to_chat(AI, "<span class='userdanger'>Anomaly Detected. Returned to core!</span>") //The AI needs to be in its core to properly be converted
+			to_chat(AI, span_userdanger("Anomaly Detected. Returned to core!")) //The AI needs to be in its core to properly be converted
 
 	. = L.mind.add_antag_datum(C)
 
@@ -100,7 +100,7 @@ Credit where due:
 			Ratvar, the Clockwork Justiciar, [GLOB.ratvar_awakens ? "has been freed from his eternal prison" : "lies in exile, derelict and forgotten in an unseen realm"].</span>")
 			flash_color(L, flash_color = list("#BE8700", "#BE8700", "#BE8700", rgb(0,0,0)), flash_time = 50)
 		else
-			L.visible_message("<span class='boldwarning'>[L] seems to resist an unseen force!</span>", null, null, 7, L)
+			L.visible_message(span_boldwarning("[L] seems to resist an unseen force!"), null, null, 7, L)
 			to_chat(L, "<span class='heavy_brass'>The world before you suddenly glows a brilliant yellow. [issilicon(L) ? "You cannot compute this truth!" : \
 			"Your mind is racing!"] You hear the whooshing steam and cl[pick("ank", "ink", "unk", "ang")]ing cogs of a billion billion machines, and the sound</span> <span class='boldwarning'>\
 			is a meaningless cacophony.</span><br>\
@@ -354,7 +354,7 @@ Credit where due:
 /obj/item/paper/servant_primer/examine(mob/user)
 	. = ..()
 	if(!is_servant_of_ratvar(user) && !isobserver(user))
-		. += "<span class='danger'>You can't understand any of the words on [src].</span>"
+		. += span_danger("You can't understand any of the words on [src].")
 
 /obj/effect/spawner/lootdrop/clockcult
 	name = "clock tile"

@@ -43,4 +43,4 @@
 		O.blob_mobs.Add(BS)
 		BS.Zombify(M)
 		O.add_points(points)
-		to_chat(O, "<span class='notice'>Gained [points] resources from the zombification of [M].</span>")
+		to_chat(O, span_notice("Gained [points] resources from the zombification of [M]."))

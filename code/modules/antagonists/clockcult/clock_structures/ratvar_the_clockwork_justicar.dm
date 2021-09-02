@@ -26,9 +26,9 @@
 		M.ratvar_act()
 	START_PROCESSING(SSobj, src)
 	if(prob(25))
-		send_to_playing_players("<span class='ratvar'>[text2ratvar("COGGERS")]!</span>")
+		send_to_playing_players(span_ratvar("[text2ratvar("COGGERS")]!"))
 	else
-		send_to_playing_players("<span class='ratvar'>[text2ratvar("ONCE AGAIN MY LIGHT SHINES AMONG THESE PATHETIC STARS")]</span>")
+		send_to_playing_players(span_ratvar("[text2ratvar("ONCE AGAIN MY LIGHT SHINES AMONG THESE PATHETIC STARS")]"))
 
 	sound_to_playing_players('sound/effects/ratvar_reveal.ogg')
 	var/mutable_appearance/alert_overlay = mutable_appearance('icons/effects/clockwork_effects.dmi', "ratvar_alert")

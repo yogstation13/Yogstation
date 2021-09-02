@@ -15,7 +15,7 @@
 	var/real_cost = get_cost(user, gang, gangtool)
 	if(!spawn_item(user, gang, gangtool))
 		gang.adjust_influence(-real_cost)
-		to_chat(user, "<span class='notice'>You bought \the [name].</span>")
+		to_chat(user, span_notice("You bought \the [name]."))
 		return TRUE
 
 /datum/gang_item/proc/weapon_purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool, check_canbuy_weapon = TRUE)
@@ -24,7 +24,7 @@
 	var/actual_cost = get_weapon_cost(user, gang, gangtool)
 	if(!spawn_item(user, gang, gangtool))
 		gang.adjust_uniform_influence(-actual_cost)
-		to_chat(user, "<span class='notice'>You bought \the [name].</span>")
+		to_chat(user, span_notice("You bought \the [name]."))
 		return TRUE
 
 /datum/gang_item/proc/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool) // If this returns anything other than null, something fucked up and influence won't lower.
@@ -385,7 +385,7 @@
 		return FALSE
 	for(var/obj/obj in get_turf(user))
 		if(obj.density)
-			to_chat(user, "<span class='warning'>There's not enough room here!</span>")
+			to_chat(user, span_warning("There's not enough room here!"))
 			return FALSE
 
 	return ..()

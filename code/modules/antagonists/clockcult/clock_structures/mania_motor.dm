@@ -8,7 +8,7 @@
 	inactive_icon = "mania_motor_inactive"
 	unanchored_icon = "mania_motor_unwrenched"
 	construction_value = 20
-	break_message = "<span class='warning'>The antenna break off, leaving a pile of shards!</span>"
+	break_message = span_warning("The antenna break off, leaving a pile of shards!")
 	max_integrity = 100
 	light_color = "#AF0AAF"
 	debris = list(/obj/item/clockwork/alloy_shards/large = 2, \
@@ -25,7 +25,7 @@
 	if(active)
 		if(bad_effects)
 			try_use_power(MIN_CLOCKCULT_POWER*4)
-		visible_message("<span class='warning'>[src] hums loudly, then the sockets at its base fall dark!</span>")
+		visible_message(span_warning("[src] hums loudly, then the sockets at its base fall dark!"))
 		playsound(src, 'sound/effects/screech.ogg', 40, 1)
 		toggle()
 		return TRUE
@@ -36,7 +36,7 @@
 		return
 	if(user.canUseTopic(src, !issilicon(user), NO_DEXTERY) && is_servant_of_ratvar(user))
 		if(!can_access_clockwork_power(src, mania_cost))
-			to_chat(user, "<span class='warning'>[src] needs more power to function!</span>")
+			to_chat(user, span_warning("[src] needs more power to function!"))
 			return 0
 		toggle(0, user)
 

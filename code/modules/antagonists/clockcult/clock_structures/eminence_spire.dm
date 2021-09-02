@@ -5,7 +5,7 @@
 	clockwork_desc = "This spire is used to become the Eminence, who functions as an invisible leader of the cult. Activate it to nominate yourself or propose that the Eminence should be \
 	selected from available ghosts. Once an Eminence is selected, they can't normally be changed."
 	icon_state = "tinkerers_daemon"
-	break_message = "<span class='warning'>The spire screeches with crackling power and collapses into scrap!</span>"
+	break_message = span_warning("The spire screeches with crackling power and collapses into scrap!")
 	max_integrity = 400
 	var/mob/eminence_nominee
 	var/selection_timer //Timer ID; this is canceled if the vote is canceled
@@ -16,7 +16,7 @@
 	if(.)
 		return
 	if(!is_servant_of_ratvar(user))
-		to_chat(user, "<span class='notice'>You can tell how powerful [src] is; you know better than to touch it.</span>")
+		to_chat(user, span_notice("You can tell how powerful [src] is; you know better than to touch it."))
 		return
 	if(kingmaking)
 		return
@@ -25,10 +25,10 @@
 	if(!C || !C.clock_team)
 		return
 	if(C.clock_team.eminence)
-		to_chat(user, "<span class='warning'>There's already an Eminence!</span>")
+		to_chat(user, span_warning("There's already an Eminence!"))
 		return
 	if(!GLOB.servants_active)
-		to_chat(user, "<span class='warning'>The Ark isn't active!</span>")
+		to_chat(user, span_warning("The Ark isn't active!"))
 		return
 	if(eminence_nominee) //This could be one large proc, but is split into three for ease of reading
 		if(eminence_nominee == user)
@@ -42,7 +42,7 @@
 	if(!is_servant_of_ratvar(user))
 		..()
 	else
-		to_chat(user, "<span class='warning'>You feel the omniscient gaze turn into a puzzled frown. Perhaps you should just stick to building.</span>")
+		to_chat(user, span_warning("You feel the omniscient gaze turn into a puzzled frown. Perhaps you should just stick to building."))
 		return
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
@@ -54,14 +54,14 @@
 	if(rando)
 		var/datum/antagonist/clockcult/random_cultist = rando.has_antag_datum(/datum/antagonist/clockcult)
 		if(random_cultist && random_cultist.clock_team && random_cultist.clock_team.eminence)
-			to_chat(user, "<span class='warning'>There's already an Eminence - too late!</span>")
+			to_chat(user, span_warning("There's already an Eminence - too late!"))
 			return
 	if(!GLOB.servants_active)
-		to_chat(user, "<span class='warning'>The Ark must be active first!</span>")
+		to_chat(user, span_warning("The Ark must be active first!"))
 		return
 	if(alert(user, "Become the Eminence using admin?", "Become Eminence", "Yes", "No") != "Yes")
 		return
-	message_admins("<span class='danger'>Admin [key_name_admin(user)] directly became the Eminence of the cult!</span>")
+	message_admins(span_danger("Admin [key_name_admin(user)] directly became the Eminence of the cult!"))
 	log_admin("Admin [key_name(user)] made themselves the Eminence.")
 	var/mob/camera/eminence/eminence = new(get_turf(src))
 	eminence.key = user.key
@@ -115,8 +115,8 @@
 			eminence_nominee = null
 			return
 		playsound(eminence_nominee, 'sound/machines/clockcult/ark_damage.ogg', 50, FALSE)
-		eminence_nominee.visible_message("<span class='warning'>A blast of white-hot light flows into [eminence_nominee], vaporizing [eminence_nominee.p_them()] in an instant!</span>", \
-		"<span class='userdanger'>allthelightintheuniverseflowing.into.YOU</span>")
+		eminence_nominee.visible_message(span_warning("A blast of white-hot light flows into [eminence_nominee], vaporizing [eminence_nominee.p_them()] in an instant!"), \
+		span_userdanger("allthelightintheuniverseflowing.into.YOU"))
 		for(var/obj/item/I in eminence_nominee)
 			eminence_nominee.dropItemToGround(I)
 		var/mob/camera/eminence/eminence = new(get_turf(src))
@@ -134,7 +134,7 @@
 			hierophant_message("<span class='brass'><b>No ghosts accepted the offer!</b> The eminence spire has been reset.</span>")
 			eminence_nominee = null
 			return
-		visible_message("<span class='warning'>A blast of white-hot light spirals from [src] in waves!</span>")
+		visible_message(span_warning("A blast of white-hot light spirals from [src] in waves!"))
 		playsound(src, 'sound/machines/clockcult/ark_damage.ogg', 50, FALSE)
 		var/mob/camera/eminence/eminence = new(get_turf(src))
 		eminence_nominee = pick(candidates)

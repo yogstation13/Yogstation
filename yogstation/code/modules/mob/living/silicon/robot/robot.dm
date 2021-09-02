@@ -2,14 +2,14 @@
 	icon = initial(icon) //Redundancy in case they repick a skin after modulechange
 	if(!GLOB.DonorBorgHolder)
 		message_admins("[client.ckey] just tried to change their borg skin, but there is no borg skin holder datum! (Has the game not started yet?)")
-		to_chat(src, "<span class='warning'>An error occured, if the game has not started yet, please try again after it has. The admins have been notified about this.</span>")
+		to_chat(src, span_warning("An error occured, if the game has not started yet, please try again after it has. The admins have been notified about this."))
 		return FALSE
 	if(forced || is_donator(client))//First off, are we even meant to have this verb? or is an admin bruteforcing it onto a non donator for some reason?
 		if(module.name == "Default")
 			to_chat(src, "Please choose a module first! (Standard works too)")
 			return FALSE
 		if(ROLE_SYNDICATE in faction)
-			to_chat(src, "<span class='warning'>You cannot reskin as a syndicate cyborg!</span>")
+			to_chat(src, span_warning("You cannot reskin as a syndicate cyborg!"))
 			return FALSE
 		var/datum/borg_skin/skins = list("default" = icon(icon = src.icon, icon_state = module.cyborg_base_icon))
 		for(var/T in GLOB.DonorBorgHolder.skins)
@@ -33,7 +33,7 @@
 		eye_lights.icon = A.icon
 		eye_lights.icon_state = "[icon_state]_e[is_servant_of_ratvar(src) ? "_r" : ""]"
 		add_overlay(eye_lights)
-		to_chat(src, "<span class='notice'>You have successfully applied the skin: [A.name]</span>")
+		to_chat(src, span_notice("You have successfully applied the skin: [A.name]"))
 		special_skin = TRUE
 		return TRUE
 
@@ -80,11 +80,11 @@
 		return
 
 	if(usr.stat == DEAD)
-		to_chat(usr, "<span class='danger'>You are already dead.</span>")
+		to_chat(usr, span_danger("You are already dead."))
 		return //won't work if dead
 
 	var/turf/T = get_turf(usr)
-	message_admins("<span class='notice'>[ADMIN_LOOKUPFLW(usr)] detonated themselves at [ADMIN_VERBOSEJMP(T)]!</span>")
+	message_admins(span_notice("[ADMIN_LOOKUPFLW(usr)] detonated themselves at [ADMIN_VERBOSEJMP(T)]!"))
 	log_game("\<span class='notice'>[key_name(usr)] detonated themselves!</span>")
 	if(connected_ai)
 		to_chat(connected_ai, "<br><br><span class='alert'>ALERT - Cyborg detonation detected: [usr]</span><br>")

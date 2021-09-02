@@ -53,10 +53,10 @@
 	if(locate(/obj/structure/table) in src)
 		return FALSE
 	if(locate(/obj/structure/falsewall) in contents)
-		to_chat(user, "<span class='warning'>There is a false wall in the way, preventing you from fabricating a clockwork wall on [src].</span>")
+		to_chat(user, span_warning("There is a false wall in the way, preventing you from fabricating a clockwork wall on [src]."))
 		return
 	if(is_blocked_turf(src, TRUE))
-		to_chat(user, "<span class='warning'>Something is in the way, preventing you from fabricating a clockwork wall on [src].</span>")
+		to_chat(user, span_warning("Something is in the way, preventing you from fabricating a clockwork wall on [src]."))
 		return TRUE
 	var/operation_time = 100
 	if(!GLOB.ratvar_awakens && fabricator.speed_multiplier > 0) //if ratvar isn't awake, this always takes 10 seconds
@@ -232,8 +232,8 @@
 	var/list/repair_values = list()
 	if(!fabricator.fabricator_repair_checks(repair_values, src, user))
 		return
-	user.visible_message("<span class='notice'>[user]'s [fabricator.name] starts covering [src] in glowing orange energy...</span>", \
-	"<span class='alloy'>You start repairing [src]...</span>")
+	user.visible_message(span_notice("[user]'s [fabricator.name] starts covering [src] in glowing orange energy..."), \
+	span_alloy("You start repairing [src]..."))
 	fabricator.repairing = src
 	while(fabricator && user && src)
 		if(!do_after(user, repair_values["healing_for_cycle"] * fabricator.speed_multiplier, target = src, \
@@ -246,7 +246,7 @@
 	if(fabricator)
 		fabricator.repairing = null
 		if(user)
-			user.visible_message("<span class='notice'>[user]'s [fabricator.name] stops covering [src] with glowing orange energy.</span>", \
+			user.visible_message(span_notice("[user]'s [fabricator.name] stops covering [src] with glowing orange energy."), \
 			"<span class='alloy'>You finish repairing [src]. It is now at <b>[obj_integrity]/[max_integrity]</b> integrity.</span>")
 
 //Fabricator mob heal proc, to avoid as much copypaste as possible.
@@ -254,8 +254,8 @@
 	var/list/repair_values = list()
 	if(!fabricator.fabricator_repair_checks(repair_values, src, user))
 		return
-	user.visible_message("<span class='notice'>[user]'s [fabricator.name] starts covering [src == user ? "[user.p_them()]" : "[src]"] in glowing orange energy...</span>", \
-	"<span class='alloy'>You start repairing [src == user ? "yourself" : "[src]"]...</span>")
+	user.visible_message(span_notice("[user]'s [fabricator.name] starts covering [src == user ? "[user.p_them()]" : "[src]"] in glowing orange energy..."), \
+	span_alloy("You start repairing [src == user ? "yourself" : "[src]"]..."))
 	fabricator.repairing = src
 	while(fabricator && user && src)
 		if(!do_after(user, repair_values["healing_for_cycle"] * fabricator.speed_multiplier, target = src, \
@@ -283,7 +283,7 @@
 	if(health == maxHealth) //if we're at maximum health, replace the turf under us
 		return FALSE
 	else if(fabricator_heal(user, fabricator) && user)
-		user.visible_message("<span class='notice'>[user]'s [fabricator.name] stops covering [src == user ? "[user.p_them()]" : "[src]"] with glowing orange energy.</span>", \
+		user.visible_message(span_notice("[user]'s [fabricator.name] stops covering [src == user ? "[user.p_them()]" : "[src]"] with glowing orange energy."), \
 		"<span class='alloy'>You finish repairin[src == user ? "g yourself. You are":"g [src]. [p_theyre(TRUE)]"] now at <b>[abs(HEALTH_THRESHOLD_DEAD - health)]/[abs(HEALTH_THRESHOLD_DEAD - maxHealth)]</b> health.</span>")
 
 //Same with clockwork mobs.
@@ -292,7 +292,7 @@
 	if(health == maxHealth) //if we're at maximum health, replace the turf under us
 		return FALSE
 	else if(fabricator_heal(user, fabricator) && user)
-		user.visible_message("<span class='notice'>[user]'s [fabricator.name] stops covering [src == user ? "[user.p_them()]" : "[src]"] with glowing orange energy.</span>", \
+		user.visible_message(span_notice("[user]'s [fabricator.name] stops covering [src == user ? "[user.p_them()]" : "[src]"] with glowing orange energy."), \
 		"<span class='alloy'>You finish repairin[src == user ? "g yourself. You are":"g [src]. [p_theyre(TRUE)]"] now at <b>[health]/[maxHealth]</b> health.</span>")
 
 //Cogscarabs get special interaction because they're drones and have innate self-heals/revives.
@@ -304,13 +304,13 @@
 	if(health == maxHealth)
 		return FALSE
 	else if(!(flags_1 & GODMODE))
-		user.visible_message("<span class='notice'>[user]'s [fabricator.name] starts covering [src == user ? "[user.p_them()]" : "[src]"] in glowing orange energy...</span>", \
-		"<span class='alloy'>You start repairing [src == user ? "yourself" : "[src]"]...</span>")
+		user.visible_message(span_notice("[user]'s [fabricator.name] starts covering [src == user ? "[user.p_them()]" : "[src]"] in glowing orange energy..."), \
+		span_alloy("You start repairing [src == user ? "yourself" : "[src]"]..."))
 		fabricator.repairing = src
 		if(do_after(user, (maxHealth - health)*2, target=src))
 			adjustHealth(-maxHealth)
-			user.visible_message("<span class='notice'>[user]'s [fabricator.name] stops covering [src == user ? "[user.p_them()]" : "[src]"] with glowing orange energy.</span>", \
-			"<span class='alloy'>You finish repairing [src == user ? "yourself" : "[src]"].</span>")
+			user.visible_message(span_notice("[user]'s [fabricator.name] stops covering [src == user ? "[user.p_them()]" : "[src]"] with glowing orange energy."), \
+			span_alloy("You finish repairing [src == user ? "yourself" : "[src]"]."))
 		if(fabricator)
 			fabricator.repairing = null
 

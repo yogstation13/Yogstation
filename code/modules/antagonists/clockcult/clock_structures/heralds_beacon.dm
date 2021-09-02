@@ -7,7 +7,7 @@
 	permanently empowering many clockwork objects and reducing all power costs by 50%, but alerting the crew to your presence. It doesn't have enough \
 	energy to sustain itself for long, and if not activated within five minutes, it will permanently shut down."
 	icon_state = "interdiction_lens"
-	break_message = "<span class='warning'>The beacon crackles with power before collapsing into pieces!</span>"
+	break_message = span_warning("The beacon crackles with power before collapsing into pieces!")
 	max_integrity = 250
 	light_color = "#EF078E"
 	var/time_remaining = 300 //Amount of seconds left to vote on whether or not to activate the beacon
@@ -63,10 +63,10 @@
 	if(.)
 		return
 	if(!is_servant_of_ratvar(user))
-		to_chat(user, "<span class='notice'>You can tell how powerful [src] is; you know better than to touch it.</span>")
+		to_chat(user, span_notice("You can tell how powerful [src] is; you know better than to touch it."))
 		return
 	if(!available)
-		to_chat(user, "<span class='danger'>You can no longer vote with [src].</span>")
+		to_chat(user, span_danger("You can no longer vote with [src]."))
 		return
 	var/voting = !(user.key in voters)
 	if(alert(user, "[voting ? "Cast a" : "Undo your"] vote to activate the beacon?", "Herald's Beacon", "Change Vote", "Cancel") == "Cancel")

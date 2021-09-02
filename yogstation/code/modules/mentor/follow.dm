@@ -26,7 +26,7 @@
 		mentor_datum.following = M
 
 	to_chat(GLOB.admins, "<span class='mentor'><span class='prefix'>MENTOR:</span> <EM>[key_name(usr)]</EM> is now following <EM>[key_name(M)]</span>", confidential=TRUE)
-	to_chat(usr, "<span class='info'>Click the \"Stop Following\" button in the Mentor tab to stop following [key_name(M)].</span>", confidential=TRUE)
+	to_chat(usr, span_info("Click the \"Stop Following\" button in the Mentor tab to stop following [key_name(M)]."), confidential=TRUE)
 	log_mentor("[key_name(usr)] began following [key_name(M)]")
 
 /client/proc/mentor_unfollow()

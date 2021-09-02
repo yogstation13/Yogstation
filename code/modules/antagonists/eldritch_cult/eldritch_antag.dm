@@ -61,7 +61,7 @@
 		EK.on_lose(owner.current)
 
 	if(!silent)
-		to_chat(owner.current, "<span class='userdanger'>Your mind begins to flare as the otherwordly knowledge escapes your grasp!</span>")
+		to_chat(owner.current, span_userdanger("Your mind begins to flare as the otherwordly knowledge escapes your grasp!"))
 		owner.current.log_message("has renounced the cult of the old ones!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.RemoveMind(owner)
 	STOP_PROCESSING(SSprocessing,src)
@@ -89,10 +89,10 @@
 	var/item_name = initial(item_path.name)
 	var/where = H.equip_in_one_of_slots(T, slots)
 	if(!where)
-		to_chat(H, "<span class='userdanger'>Unfortunately, you weren't able to get a [item_name]. This is very bad and you should adminhelp immediately (press F1).</span>")
+		to_chat(H, span_userdanger("Unfortunately, you weren't able to get a [item_name]. This is very bad and you should adminhelp immediately (press F1)."))
 		return FALSE
 	else
-		to_chat(H, "<span class='danger'>You have a [item_name] in your [where].</span>")
+		to_chat(H, span_danger("You have a [item_name] in your [where]."))
 		if(where == "backpack")
 			SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_SHOW, H)
 		return TRUE
@@ -195,9 +195,9 @@
 		parts += "<span class='greentext big'>HERETIC HAS ASCENDED!</span>"
 	else
 		if(cultiewin)
-			parts += "<span class='greentext'>The heretic was successful!</span>"
+			parts += span_greentext("The heretic was successful!")
 		else
-			parts += "<span class='redtext'>The heretic has failed.</span>"
+			parts += span_redtext("The heretic has failed.")
 
 	parts += "<b>Knowledge Researched:</b> "
 
@@ -223,11 +223,11 @@
 	if(!initialized_knowledge.tier == TIER_NONE && knowledge_tier != TIER_ASCEND)
 		if(IS_EXCLUSIVE_KNOWLEDGE(initialized_knowledge))
 			knowledge_tier++
-			to_chat(owner, "<span class='cultbold'>Your new knowledge brings you a breakthrough! you are now able to research a new group of subjects.</span>")
+			to_chat(owner, span_cultbold("Your new knowledge brings you a breakthrough! you are now able to research a new group of subjects."))
 		else if(initialized_knowledge.tier == knowledge_tier && ++tier_counter == 3)
 			knowledge_tier++
 			tier_counter = 0
-			to_chat(owner, "<span class='cultbold'>Your studies are bearing fruit, you are on the edge of a breakthrough...</span>")
+			to_chat(owner, span_cultbold("Your studies are bearing fruit, you are on the edge of a breakthrough..."))
 	return TRUE
 
 /datum/antagonist/heretic/proc/get_researchable_knowledge()

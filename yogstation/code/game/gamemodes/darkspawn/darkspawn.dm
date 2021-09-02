@@ -114,7 +114,7 @@
 	if(!istype(mind))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
-		src.visible_message("<span class='warning'>[src] seems to resist an unseen force!</span>")
+		src.visible_message(span_warning("[src] seems to resist an unseen force!"))
 		to_chat(src, "<b>Your mind goes numb. Your thoughts go blank. You feel utterly empty. \n\
 		A mind brushes against your own. You dream.\n\
 		Of a vast, empty Void in the deep of space.\n\

@@ -60,7 +60,7 @@
 
 /obj/item/detective_scanner/attack_self(mob/user)
 	if(scanning)
-		to_chat(user, "<span class='notice'>[src] is in use.</span>")
+		to_chat(user, span_notice("[src] is in use."))
 		return
 	radial_generate()
 	if(icons_available)
@@ -73,7 +73,7 @@
 			return
 		
 		if(selection == "Volume on" || selection == "Volume off")
-			to_chat(user, "<span class='notice'>You turn the volume [sound_on ? "down":"up"].</span>")
+			to_chat(user, span_notice("You turn the volume [sound_on ? "down":"up"]."))
 			sound_on = !sound_on
 			return
 
@@ -89,24 +89,24 @@
 	if(log.len && !scanning)
 		scanning = 1
 		scan_animation()
-		to_chat(user, "<span class='notice'>Printing report, please wait...</span>")
+		to_chat(user, span_notice("Printing report, please wait..."))
 		if(admin)
 			PrintReport() // admin scanner bypasses print wait
 		else
 			addtimer(CALLBACK(src, .proc/PrintReport), (scan_speed * 25) )
 	else
-		to_chat(user, "<span class='notice'>The scanner has no logs or is in use.</span>")
+		to_chat(user, span_notice("The scanner has no logs or is in use."))
 
 /obj/item/detective_scanner/proc/option_clearlogs(mob/user)
 	if(!user.canUseTopic(src, be_close=TRUE) && !admin) // Best way for checking if a player can use while not incapacitated, etc. Admin scanner doesn't care
 		return
 	if(!LAZYLEN(log))
-		to_chat(user, "<span class='notice'>Cannot clear logs, the scanner has no logs.</span>")
+		to_chat(user, span_notice("Cannot clear logs, the scanner has no logs."))
 		return
 	if(scanning)
-		to_chat(user, "<span class='notice'>Cannot clear logs, the scanner is in use.</span>")
+		to_chat(user, span_notice("Cannot clear logs, the scanner is in use."))
 		return
-	to_chat(user, "<span class='notice'>The scanner logs have been cleared.</span>")
+	to_chat(user, span_notice("The scanner logs have been cleared."))
 	log.Cut()
 
 /obj/item/detective_scanner/attack(mob/living/M, mob/user)
@@ -142,7 +142,7 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		M.put_in_hands(P)
-		to_chat(M, "<span class='notice'>Report printed. Log cleared.</span>")
+		to_chat(M, span_notice("Report printed. Log cleared."))
 
 	// Clear the logs
 	log = list()
@@ -165,7 +165,7 @@
 		scan_animation()
 
 		user.visible_message("\The [user] points the [src.name] at \the [A] and performs a forensic scan.")
-		to_chat(user, "<span class='notice'>You scan \the [A]. The scanner is now analysing the results...</span>")
+		to_chat(user, span_notice("You scan \the [A]. The scanner is now analysing the results..."))
 
 		// GATHER INFORMATION
 		//Make our lists
@@ -256,11 +256,11 @@
 			feedback(sound_scanner_nomatch)
 			add_log("<I># No forensic traces found #</I>", 0) // Don't display this to the holder user
 			if(holder)
-				to_chat(holder, "<span class='warning'>Unable to locate any fingerprints, materials, fibers, or blood on \the [target_name]!</span>")
+				to_chat(holder, span_warning("Unable to locate any fingerprints, materials, fibers, or blood on \the [target_name]!"))
 		else
 			feedback(sound_scanner_match)
 			if(holder)
-				to_chat(holder, "<span class='notice'>You finish scanning \the [target_name].</span>")
+				to_chat(holder, span_notice("You finish scanning \the [target_name]."))
 
 		add_log("---------------------------------------------------------", 0)
 		scanning = 0
@@ -285,15 +285,15 @@
 /obj/item/detective_scanner/examine(mob/user)
 	. = ..()
 	if(LAZYLEN(log) && !scanning)
-		. += "<span class='notice'>Alt-click to clear scanner logs.</span>"
+		. += span_notice("Alt-click to clear scanner logs.")
 
 /obj/item/detective_scanner/proc/displayDetectiveScanResults(mob/living/user)
 	// No need for can-use checks since the action button should do proper checks
 	if(!LAZYLEN(log))
-		to_chat(user, "<span class='notice'>Cannot display logs, the scanner has no logs.</span>")
+		to_chat(user, span_notice("Cannot display logs, the scanner has no logs."))
 		return
 	if(scanning)
-		to_chat(user, "<span class='notice'>Cannot display logs, the scanner is in use.</span>")
+		to_chat(user, span_notice("Cannot display logs, the scanner is in use."))
 		return
 	to_chat(user, "<span class='notice'><B>Scanner Report</B></span>")
 	for(var/iterLog in log)

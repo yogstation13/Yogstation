@@ -38,13 +38,13 @@
 	if(user.mind && (user.mind in immune_minds))
 		return
 	if(get_dist(user, src) <= 1)
-		. += "<span class='notice'>You reveal [src]!</span>"
+		. += span_notice("You reveal [src]!")
 		flare()
 
 /obj/structure/trap/proc/flare()
 	// Makes the trap visible, and starts the cooldown until it's
 	// able to be triggered again.
-	visible_message("<span class='warning'>[src] flares brightly!</span>")
+	visible_message(span_warning("[src] flares brightly!"))
 	spark_system.start()
 	alpha = 200
 	last_trigger = world.time

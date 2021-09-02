@@ -21,13 +21,13 @@
 	var/hatch_or_no = alert(H,"Are you sure you want to hatch? You cannot undo this!",,"Yes","No")
 	switch(hatch_or_no)
 		if("No")
-			to_chat(H, "<span class='warning'>You decide against hatching for now.</span>")
+			to_chat(H, span_warning("You decide against hatching for now."))
 			charge_counter = charge_max
 			return
 		if("Yes")
 			H.notransform = TRUE
-			H.visible_message("<span class='warning'>[H]'s things suddenly slip off. They hunch over and vomit up a copious amount of purple goo which begins to shape around them!</span>", \
-							"<span class='shadowling'>You remove any equipment which would hinder your hatching and begin regurgitating the resin which will protect you.</span>")
+			H.visible_message(span_warning("[H]'s things suddenly slip off. They hunch over and vomit up a copious amount of purple goo which begins to shape around them!"), \
+							span_shadowling("You remove any equipment which would hinder your hatching and begin regurgitating the resin which will protect you."))
 			var/temp_flags = H.status_flags
 			H.status_flags |= GODMODE //Can't die while hatching
 			H.unequip_everything()
@@ -39,16 +39,16 @@
 			for(var/obj/structure/alien/resin/wall/shadowling/R in shadowturf) //extremely hacky
 				qdel(R)
 				new /obj/structure/alien/weeds/node(shadowturf) //Dim lighting in the chrysalis -- removes itself afterwards
-			H.visible_message("<span class='warning'>A chrysalis forms around [H], sealing them inside.</span>", \
-							"<span class='shadowling'>You create your chrysalis and begin to contort within.</span>")
+			H.visible_message(span_warning("A chrysalis forms around [H], sealing them inside."), \
+							span_shadowling("You create your chrysalis and begin to contort within."))
 			if(!do_mob(H,H,100,1))
 				return
 			H.visible_message("<span class='warning'><b>The skin on [H]'s back begins to split apart. Black spines slowly emerge from the divide.</b></span>", \
-							"<span class='shadowling'>Spines pierce your back. Your claws break apart your fingers. You feel excruciating pain as your true form begins its exit.</span>")
+							span_shadowling("Spines pierce your back. Your claws break apart your fingers. You feel excruciating pain as your true form begins its exit."))
 			if(!do_mob(H,H,90,1))
 				return
 			H.visible_message("<span class='warning'><b>[H], skin shifting, begins tearing at the walls around them.</b></span>", \
-							"<span class='shadowling'>Your false skin slips away. You begin tearing at the fragile membrane protecting you.</span>")
+							span_shadowling("Your false skin slips away. You begin tearing at the fragile membrane protecting you."))
 			if(!do_mob(H,H,80,1))
 				return
 			playsound(H.loc, 'sound/weapons/slash.ogg', 25, 1)
@@ -85,7 +85,7 @@
 				qdel(W)
 			for(var/obj/structure/alien/weeds/node/N in shadowturf)
 				qdel(N)
-			H.visible_message("<span class='warning'>The chrysalis explodes in a shower of purple flesh and fluid!</span>")
+			H.visible_message(span_warning("The chrysalis explodes in a shower of purple flesh and fluid!"))
 			H.underwear = "Nude"
 			H.undershirt = "Nude"
 			H.socks = "Nude"
@@ -125,27 +125,27 @@
 	var/hatch_or_no = alert(H,"It is time to ascend. Are you sure about this?",,"Yes","No")
 	switch(hatch_or_no)
 		if("No")
-			to_chat(H, "<span class='warning'>You decide against ascending for now.</span>")
+			to_chat(H, span_warning("You decide against ascending for now."))
 			charge_counter = charge_max
 			return
 		if("Yes")
 			H.notransform = 1
-			H.visible_message("<span class='warning'>[H]'s things suddenly slip off. They gently rise into the air, red light glowing in their eyes.</span>", \
-							"<span class='shadowling'>You rise into the air and get ready for your transformation.</span>")
+			H.visible_message(span_warning("[H]'s things suddenly slip off. They gently rise into the air, red light glowing in their eyes."), \
+							span_shadowling("You rise into the air and get ready for your transformation."))
 			for(var/obj/item/I in H) //drops all items
 				H.unequip_everything(I)
 			if(!do_mob(H,H,50,1))
 				return
-			H.visible_message("<span class='warning'>[H]'s skin begins to crack and harden.</span>", \
-							"<span class='shadowling'>Your flesh begins creating a shield around yourself.</span>")
+			H.visible_message(span_warning("[H]'s skin begins to crack and harden."), \
+							span_shadowling("Your flesh begins creating a shield around yourself."))
 			if(!do_mob(H,H,100,1))
 				return
-			H.visible_message("<span class='warning'>The small horns on [H]'s head slowly grow and elongate.</span>", \
-								"<span class='shadowling'>Your body continues to mutate. Your telepathic abilities grow.</span>") //y-your horns are so big, senpai...!~
+			H.visible_message(span_warning("The small horns on [H]'s head slowly grow and elongate."), \
+								span_shadowling("Your body continues to mutate. Your telepathic abilities grow.")) //y-your horns are so big, senpai...!~
 			if(!do_mob(H,H,90,1))
 				return
-			H.visible_message("<span class='warning'>[H]'s body begins to violently stretch and contort.</span>", \
-								"<span class='shadowling'>You begin to rend apart the final barriers to godhood.</span>")
+			H.visible_message(span_warning("[H]'s body begins to violently stretch and contort."), \
+								span_shadowling("You begin to rend apart the final barriers to godhood."))
 			if(!do_mob(H,H,40,1))
 				return
 			to_chat(H, "<i><b>Yes!</b></i>")
@@ -159,7 +159,7 @@
 				return
 			for(var/mob/living/M in orange(7, H))
 				M.Knockdown(10)
-				to_chat(M, "<span class='userdanger'>An immense pressure slams you onto the ground!</span>")
+				to_chat(M, span_userdanger("An immense pressure slams you onto the ground!"))
 			to_chat(world, "<font size=5><span class='shadowling'><b>\"VYSHA NERADA YEKHEZET U'RUU!!\"</font></span>")
 			for(var/mob/M in GLOB.player_list)
 				SEND_SOUND(M, sound('sound/hallucinations/veryfar_noise.ogg'))

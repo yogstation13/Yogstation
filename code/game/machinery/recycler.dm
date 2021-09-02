@@ -69,7 +69,7 @@
 		safety_mode = FALSE
 		update_icon()
 	playsound(src, "sparks", 75, TRUE, -1)
-	to_chat(user, "<span class='notice'>You use the cryptographic sequencer on [src].</span>")
+	to_chat(user, span_notice("You use the cryptographic sequencer on [src]."))
 
 /obj/machinery/recycler/update_icon()
 	..()

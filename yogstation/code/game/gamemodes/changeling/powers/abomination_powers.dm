@@ -21,7 +21,7 @@
 			var/distance = max(1,get_dist(usr,H))
 			if(istype(H.ears, /obj/item/clothing/ears/earmuffs))//only the true power of earmuffs may block the power of the screech
 				continue
-			to_chat(M, "<span class='userdanger'>You freeze in terror, your blood turning cold from the sound of the scream!</span>")
+			to_chat(M, span_userdanger("You freeze in terror, your blood turning cold from the sound of the scream!"))
 			M.Stun(max(7/distance, 1))
 		for(var/mob/living/silicon/M in T.contents)
 			M.Paralyze(10)

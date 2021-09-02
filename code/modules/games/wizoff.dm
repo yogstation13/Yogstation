@@ -13,7 +13,7 @@
 		cards += "[card]"
 
 /obj/item/toy/cards/deck/wizoff/examine(mob/user)
-	var/list/msg = list("<span class='notice'>Remember the rules of Wiz-Off!</span>")
+	var/list/msg = list(span_notice("Remember the rules of Wiz-Off!"))
 	msg += "\t<span class='info'>Each player draws 5 cards.</span>"
 	msg += "\t<span class='info'>There are five rounds. Each round, a player selects a card to play, and the winner is selected based on the following rules:</span>"
 	msg += "\t<span class='info'>Defensive beats Offensive!</span>"

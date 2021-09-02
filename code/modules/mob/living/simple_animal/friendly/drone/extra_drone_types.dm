@@ -38,7 +38,7 @@
 
 /mob/living/simple_animal/drone/syndrone/Login()
 	..()
-	to_chat(src, "<span class='notice'>You can kill and eat other drones to increase your health!</span>" )
+	to_chat(src, span_notice("You can kill and eat other drones to increase your health!") )
 
 /mob/living/simple_animal/drone/syndrone/badass
 	name = "Badass Syndrone"
@@ -150,7 +150,7 @@
 //Cogscarabs being able to be picked up during war
 /mob/living/simple_animal/drone/cogscarab/attack_hand(mob/user)
 	if(!is_servant_of_ratvar(user))
-		to_chat(user, "<span class='warning'>[src] wriggles out of your hands! You can't pick it up!</span>")
+		to_chat(user, span_warning("[src] wriggles out of your hands! You can't pick it up!"))
 		return
 	if(!GLOB.ratvar_approaches) 
 		return
@@ -180,7 +180,7 @@
 
 /mob/living/simple_animal/drone/cogscarab/try_reactivate(mob/living/user)
 	if(!is_servant_of_ratvar(user))
-		to_chat(user, "<span class='warning'>You fiddle around with [src] to no avail.</span>")
+		to_chat(user, span_warning("You fiddle around with [src] to no avail."))
 	else
 		..()
 

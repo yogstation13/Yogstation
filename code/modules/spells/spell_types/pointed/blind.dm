@@ -6,7 +6,7 @@
 	clothes_req = FALSE
 	invocation = "STI KALY"
 	invocation_type = "whisper"
-	message = "<span class='notice'>Your eyes cry out in pain!</span>"
+	message = span_notice("Your eyes cry out in pain!")
 	cooldown_min = 50 //12 deciseconds reduction per rank
 	ranged_mousepointer = 'icons/effects/mouse_pointers/blind_target.dmi'
 	action_icon_state = "blind"
@@ -29,6 +29,6 @@
 		return FALSE
 	if(!isliving(target))
 		if(!silent)
-			to_chat(user, "<span class='warning'>You can only blind living beings!</span>")
+			to_chat(user, span_warning("You can only blind living beings!"))
 		return FALSE
 	return TRUE

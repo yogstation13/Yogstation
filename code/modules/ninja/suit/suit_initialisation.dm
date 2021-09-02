@@ -12,18 +12,18 @@
 	if(!U.mind)
 		return //Not sure how this could happen.
 	s_busy = TRUE
-	to_chat(U, "<span class='notice'>Now initializing...</span>")
+	to_chat(U, span_notice("Now initializing..."))
 	addtimer(CALLBACK(src, .proc/ninitialize_two, delay, U), delay)
 
 /obj/item/clothing/suit/space/space_ninja/proc/ninitialize_two(delay, mob/living/carbon/human/U)
 	if(!lock_suit(U))//To lock the suit onto wearer.
 		s_busy = FALSE
 		return
-	to_chat(U, "<span class='notice'>Securing external locking mechanism...\nNeural-net established.</span>")
+	to_chat(U, span_notice("Securing external locking mechanism...\nNeural-net established."))
 	addtimer(CALLBACK(src, .proc/ninitialize_three, delay, U), delay)
 
 /obj/item/clothing/suit/space/space_ninja/proc/ninitialize_three(delay, mob/living/carbon/human/U)
-	to_chat(U, "<span class='notice'>Extending neural-net interface...\nNow monitoring brain wave pattern...</span>")
+	to_chat(U, span_notice("Extending neural-net interface...\nNow monitoring brain wave pattern..."))
 	addtimer(CALLBACK(src, .proc/ninitialize_four, delay, U), delay)
 
 /obj/item/clothing/suit/space/space_ninja/proc/ninitialize_four(delay, mob/living/carbon/human/U)
@@ -62,7 +62,7 @@
 		addtimer(CALLBACK(src, .proc/deinitialize_two, delay, U), delay)
 
 /obj/item/clothing/suit/space/space_ninja/proc/deinitialize_two(delay, mob/living/carbon/human/U)
-	to_chat(U, "<span class='notice'>Now de-initializing...</span>")
+	to_chat(U, span_notice("Now de-initializing..."))
 	addtimer(CALLBACK(src, .proc/deinitialize_three, delay, U), delay)
 
 /obj/item/clothing/suit/space/space_ninja/proc/deinitialize_three(delay, mob/living/carbon/human/U)

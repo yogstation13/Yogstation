@@ -43,10 +43,10 @@
 				factions = B.data["factions"]
 				quirks = B.data["quirks"]
 				contains_sample = TRUE
-				visible_message("<span class='notice'>The [src] is injected with a fresh blood sample.</span>")
+				visible_message(span_notice("The [src] is injected with a fresh blood sample."))
 				log_cloning("[key_name(mind)]'s cloning record was added to [src] at [AREACOORD(src)].")
 			else
-				visible_message("<span class='warning'>The [src] rejects the sample!</span>")
+				visible_message(span_warning("The [src] rejects the sample!"))
 
 	if(!reagents.has_reagent(/datum/reagent/blood))
 		mind = null

@@ -131,7 +131,7 @@
 	if(trash)
 		generate_trash(T)
 
-	visible_message("<span class='warning'>[src] has been squashed.</span>","<span class='italics'>You hear a smack.</span>")
+	visible_message(span_warning("[src] has been squashed."),span_italics("You hear a smack."))
 	if(seed)
 		for(var/datum/plant_gene/trait/trait in seed.genes)
 			trait.on_squash(src, target)
@@ -158,7 +158,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/grind_requirements()
 	if(dry_grind && !dry)
-		to_chat(usr, "<span class='warning'>[src] needs to be dry before it can be ground up!</span>")
+		to_chat(usr, span_warning("[src] needs to be dry before it can be ground up!"))
 		return
 	return TRUE
 
@@ -185,4 +185,4 @@
 		T = generate_trash()
 		qdel(src)
 		user.putItemFromInventoryInHandIfPossible(T, user.active_hand_index, TRUE)
-		to_chat(user, "<span class='notice'>You open [src]\'s shell, revealing \a [T].</span>")
+		to_chat(user, span_notice("You open [src]\'s shell, revealing \a [T]."))

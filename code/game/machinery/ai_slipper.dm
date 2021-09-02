@@ -27,10 +27,10 @@
 
 /obj/machinery/ai_slipper/interact(mob/user)
 	if(!allowed(user))
-		to_chat(user, "<span class='danger'>Access denied.</span>")
+		to_chat(user, span_danger("Access denied."))
 		return
 	if(!uses)
-		to_chat(user, "<span class='danger'>[src] is out of foam and cannot be activated.</span>")
+		to_chat(user, span_danger("[src] is out of foam and cannot be activated."))
 		return
 	if(cooldown_time > world.time)
 		to_chat(user, "<span class='danger'>[src] cannot be activated for <b>[DisplayTimeText(world.time - cooldown_time)]</b>.</span>")

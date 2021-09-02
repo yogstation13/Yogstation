@@ -183,7 +183,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 /mob/camera/blob/Login()
 	..()
-	to_chat(src, "<span class='notice'>You are the overmind!</span>")
+	to_chat(src, span_notice("You are the overmind!"))
 	blob_help()
 	update_health_hud()
 	add_points(0)

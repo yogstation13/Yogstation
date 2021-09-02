@@ -12,7 +12,7 @@
 /mob/living/carbon/human/proc/resume_bleeding()
 	bleedsuppress = 0
 	if(stat != DEAD && bleed_rate)
-		to_chat(src, "<span class='warning'>The blood soaks through your bandage.</span>")
+		to_chat(src, span_warning("The blood soaks through your bandage."))
 
 
 /mob/living/carbon/monkey/handle_blood()
@@ -56,18 +56,18 @@
 		switch(get_blood_state())
 			if(BLOOD_OKAY)
 				if(prob(5))
-					to_chat(src, "<span class='warning'>You feel [word].</span>")
+					to_chat(src, span_warning("You feel [word]."))
 				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL(src) - blood_volume) * 0.01, 1))
 			if(BLOOD_BAD)
 				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL(src) - blood_volume) * 0.02, 1))
 				if(prob(5))
 					blur_eyes(6)
-					to_chat(src, "<span class='warning'>You feel very [word].</span>")
+					to_chat(src, span_warning("You feel very [word]."))
 			if(BLOOD_SURVIVE)
 				adjustOxyLoss(5)
 				if(prob(15))
 					Unconscious(rand(20,60))
-					to_chat(src, "<span class='warning'>You feel extremely [word].</span>")
+					to_chat(src, span_warning("You feel extremely [word]."))
 			if(BLOOD_DEAD) // This little bit of code here is pretty much the only reason why BLOOD_DEAD exists at all
 				if(!HAS_TRAIT(src, TRAIT_NODEATH))
 					death()

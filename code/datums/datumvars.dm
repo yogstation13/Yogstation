@@ -43,7 +43,7 @@
 	var/static/cookieoffset = rand(1, 9999) //to force cookies to reset after the round.
 
 	if(!usr.client || !usr.client.holder) //The usr vs src abuse in this proc is intentional and must not be changed
-		to_chat(usr, "<span class='danger'>You need to be an administrator to access this.</span>")
+		to_chat(usr, span_danger("You need to be an administrator to access this."))
 		return
 
 	if(!D)
@@ -937,7 +937,7 @@
 			                  fire = text2num(result["values"]["fire"]),\
 			                  acid = text2num(result["values"]["acid"]))
 				log_admin("[key_name(usr)] modified the armor on [O] ([O.type]) to melee: [O.armor.melee], bullet: [O.armor.bullet], laser: [O.armor.laser], energy: [O.armor.energy], bomb: [O.armor.bomb], bio: [O.armor.bio], rad: [O.armor.rad], fire: [O.armor.fire], acid: [O.armor.acid]")
-				message_admins("<span class='notice'>[key_name_admin(usr)] modified the armor on [O] ([O.type]) to melee: [O.armor.melee], bullet: [O.armor.bullet], laser: [O.armor.laser], energy: [O.armor.energy], bomb: [O.armor.bomb], bio: [O.armor.bio], rad: [O.armor.rad], fire: [O.armor.fire], acid: [O.armor.acid]</span>")
+				message_admins(span_notice("[key_name_admin(usr)] modified the armor on [O] ([O.type]) to melee: [O.armor.melee], bullet: [O.armor.bullet], laser: [O.armor.laser], energy: [O.armor.energy], bomb: [O.armor.bomb], bio: [O.armor.bio], rad: [O.armor.rad], fire: [O.armor.fire], acid: [O.armor.acid]"))
 			else
 				return
 
@@ -973,7 +973,7 @@
 						to_chat(usr, "No objects of this type exist")
 						return
 					log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
-					message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) </span>")
+					message_admins(span_notice("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) "))
 				if("Type and subtypes")
 					var/i = 0
 					for(var/obj/Obj in world)
@@ -985,7 +985,7 @@
 						to_chat(usr, "No objects of this type exist")
 						return
 					log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
-					message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) </span>")
+					message_admins(span_notice("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) "))
 
 		else if(href_list["addreagent"])
 			if(!check_rights(NONE))
@@ -1012,7 +1012,7 @@
 								if(ID == chosen_id)
 									valid_id = 1
 							if(!valid_id)
-								to_chat(usr, "<span class='warning'>A reagent with that ID doesn't exist!</span>")
+								to_chat(usr, span_warning("A reagent with that ID doesn't exist!"))
 					if("Choose ID")
 						chosen_id = input(usr, "Choose a reagent to add.", "Choose a reagent.") as null|anything in reagent_options
 				if(chosen_id)
@@ -1020,7 +1020,7 @@
 					if(amount)
 						A.reagents.add_reagent(chosen_id, amount)
 						log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]")
-						message_admins("<span class='notice'>[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]</span>")
+						message_admins(span_notice("[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]"))
 
 		else if(href_list["explode"])
 			if(!check_rights(R_FUN))
@@ -1131,7 +1131,7 @@
 				var/datum/martial_art/MA = new chosenart
 				MA.teach(C)
 				log_admin("[key_name(usr)] has taught [MA] to [key_name(C)].")
-				message_admins("<span class='notice'>[key_name_admin(usr)] has taught [MA] to [key_name_admin(C)].</span>")
+				message_admins(span_notice("[key_name_admin(usr)] has taught [MA] to [key_name_admin(C)]."))
 
 		else if(href_list["givetrauma"])
 			if(!check_rights(NONE))
@@ -1156,7 +1156,7 @@
 			var/datum/brain_trauma/BT = C.gain_trauma(result)
 			if(BT)
 				log_admin("[key_name(usr)] has traumatized [key_name(C)] with [BT.name]")
-				message_admins("<span class='notice'>[key_name_admin(usr)] has traumatized [key_name_admin(C)] with [BT.name].</span>")
+				message_admins(span_notice("[key_name_admin(usr)] has traumatized [key_name_admin(C)] with [BT.name]."))
 
 		else if(href_list["curetraumas"])
 			if(!check_rights(NONE))
@@ -1169,7 +1169,7 @@
 
 			C.cure_all_traumas(TRAUMA_RESILIENCE_ABSOLUTE)
 			log_admin("[key_name(usr)] has cured all traumas from [key_name(C)].")
-			message_admins("<span class='notice'>[key_name_admin(usr)] has cured all traumas from [key_name_admin(C)].</span>")
+			message_admins(span_notice("[key_name_admin(usr)] has cured all traumas from [key_name_admin(C)]."))
 
 		else if(href_list["hallucinate"])
 			if(!check_rights(NONE))
@@ -1399,7 +1399,7 @@
 				to_chat(usr, "Mob doesn't exist anymore")
 				return
 			H.cluwneify()
-			message_admins("<span class='notice'>[key_name(usr)] has made [key_name(H)] into a Cluwne.</span>")
+			message_admins(span_notice("[key_name(usr)] has made [key_name(H)] into a Cluwne."))
 			return // yogs end
 
 		else if(href_list["makepacman"])
@@ -1508,7 +1508,7 @@
 
 			var/mob/user = usr
 			if(!P.persistence_id || !P.C)
-				to_chat(user,"<span class='warning'>This is not a persistent painting.</span>")
+				to_chat(user,span_warning("This is not a persistent painting."))
 				return
 			var/md5 = md5(P.C.get_data_string())
 			var/author = P.C.author_ckey
@@ -1523,4 +1523,4 @@
 				if(PA.C && md5(PA.C.get_data_string()) == md5)
 					QDEL_NULL(PA.C)
 			log_admin("[key_name(user)] has deleted a persistent painting made by [author].")
-			message_admins("<span class='notice'>[key_name_admin(user)] has deleted persistent painting made by [author].</span>")
+			message_admins(span_notice("[key_name_admin(user)] has deleted persistent painting made by [author]."))

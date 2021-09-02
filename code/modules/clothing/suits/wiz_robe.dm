@@ -165,7 +165,7 @@
 	if(!isliving(usr))
 		return
 	if(!robe_charge)
-		to_chat(usr, "<span class='warning'>\The robe's internal magic supply is still recharging!</span>")
+		to_chat(usr, span_warning("\The robe's internal magic supply is still recharging!"))
 		return
 
 	usr.say("Rise, my creation! Off your page into this realm!", forced = "stickman summoning")
@@ -176,7 +176,7 @@
 	src.robe_charge = FALSE
 	sleep(30)
 	src.robe_charge = TRUE
-	to_chat(usr, "<span class='notice'>\The robe hums, its internal magic supply restored.</span>")
+	to_chat(usr, span_notice("\The robe hums, its internal magic supply restored."))
 
 
 //Shielded Armour
@@ -228,10 +228,10 @@
 /obj/item/wizard_armour_charge/afterattack(obj/item/clothing/suit/wizrobe/armor/W, mob/user)
 	. = ..()
 	if(!istype(W))
-		to_chat(user, "<span class='warning'>The rune can only be used on battlemage armour!</span>")
+		to_chat(user, span_warning("The rune can only be used on battlemage armour!"))
 		return
 	W.current_charges += 8
-	to_chat(user, "<span class='notice'>You charge \the [W]. It can now absorb [W.current_charges] hits.</span>")
+	to_chat(user, span_notice("You charge \the [W]. It can now absorb [W.current_charges] hits."))
 	qdel(src)
 
 /obj/item/clothing/suit/wizrobe/armor/Initialize()
@@ -245,7 +245,7 @@
 		var/datum/effect_system/spark_spread/s = new
 		s.set_up(2, 1, src)
 		s.start()
-		owner.visible_message("<span class='danger'>[owner]'s shields deflect [attack_text] in a shower of sparks!</span>")
+		owner.visible_message(span_danger("[owner]'s shields deflect [attack_text] in a shower of sparks!"))
 		current_charges--
 		if(recharge_rate)
 			START_PROCESSING(SSobj, src)

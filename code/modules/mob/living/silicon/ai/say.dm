@@ -21,7 +21,7 @@
 	if(incapacitated())
 		return FALSE
 	if(!radio_enabled) //AI cannot speak if radio is disabled (via intellicard) or depowered.
-		to_chat(src, "<span class='danger'>Your radio transmitter is offline!</span>")
+		to_chat(src, span_danger("Your radio transmitter is offline!"))
 		return FALSE
 	..()
 
@@ -87,12 +87,12 @@
 
 /mob/living/silicon/ai/proc/voice_announce()
 	if(GLOB.announcing_vox > world.time)
-		to_chat(src, "<span class='notice'>Please wait [DisplayTimeText(GLOB.announcing_vox - world.time)].</span>")
+		to_chat(src, span_notice("Please wait [DisplayTimeText(GLOB.announcing_vox - world.time)]."))
 		return
 	if(incapacitated())
 		return
 	if(control_disabled)
-		to_chat(src, "<span class='warning'>Wireless interface disabled, unable to interact with announcement PA.</span>")
+		to_chat(src, span_warning("Wireless interface disabled, unable to interact with announcement PA."))
 		return
 
 	var/datum/voice_announce/ai/announce_datum = new(client)
@@ -102,7 +102,7 @@ GLOBAL_VAR_INIT(announcing_vox, 0)
 
 /mob/living/silicon/ai/proc/announcement()
 	if(GLOB.announcing_vox > world.time)
-		to_chat(src, "<span class='notice'>Please wait [DisplayTimeText(GLOB.announcing_vox - world.time)].</span>")
+		to_chat(src, span_notice("Please wait [DisplayTimeText(GLOB.announcing_vox - world.time)]."))
 		return
 
 	var/list/types_list = list("Victor (male)", "Verity (female)", "Oscar (military)") //Victor is vox_sounds_male, Verity is vox_sounds, Oscar is vox_sounds_military
@@ -125,7 +125,7 @@ GLOBAL_VAR_INIT(announcing_vox, 0)
 		return
 
 	if(control_disabled)
-		to_chat(src, "<span class='warning'>Wireless interface disabled, unable to interact with announcement PA.</span>")
+		to_chat(src, span_warning("Wireless interface disabled, unable to interact with announcement PA."))
 		return
 
 	var/list/words = splittext(trim(message), " ")
@@ -147,7 +147,7 @@ GLOBAL_VAR_INIT(announcing_vox, 0)
 			incorrect_words += word
 
 	if(incorrect_words.len)
-		to_chat(src, "<span class='notice'>These words are not available on the announcement system: [english_list(incorrect_words)].</span>")
+		to_chat(src, span_notice("These words are not available on the announcement system: [english_list(incorrect_words)]."))
 		return
 
 	GLOB.announcing_vox = world.time + VOX_DELAY

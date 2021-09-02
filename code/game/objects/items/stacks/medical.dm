@@ -34,16 +34,16 @@
 	if(!patient.can_inject(user, TRUE))
 		return
 	if(!corpse_healing && patient.stat == DEAD)
-		to_chat(user, "<span class='warning'>[patient] is dead! You can not help [patient.p_them()].</span>")
+		to_chat(user, span_warning("[patient] is dead! You can not help [patient.p_them()]."))
 		return
 	if(patient == user)
 		if(!silent)
-			user.visible_message("<span class='notice'>[user] starts to apply \the [src] on [user.p_them()]self...</span>", "<span class='notice'>You begin applying \the [src] on yourself...</span>")
+			user.visible_message(span_notice("[user] starts to apply \the [src] on [user.p_them()]self..."), span_notice("You begin applying \the [src] on yourself..."))
 		if(!do_mob(user, patient, self_delay, extra_checks=CALLBACK(patient, /mob/living/proc/can_inject, user, TRUE)))
 			return
 	else if(other_delay)
 		if(!silent)
-			user.visible_message("<span class='notice'>[user] starts to apply \the [src] on [patient].</span>", "<span class='notice'>You begin applying \the [src] on [patient]...</span>")
+			user.visible_message(span_notice("[user] starts to apply \the [src] on [patient]."), span_notice("You begin applying \the [src] on [patient]..."))
 		if(!do_mob(user, patient, other_delay, extra_checks=CALLBACK(patient, /mob/living/proc/can_inject, user, TRUE)))
 			return
 
@@ -56,40 +56,40 @@
 /// In which we print the message that we're starting to heal someone, then we try healing them. Does the do_after whether or not it can actually succeed on a targeted mob
 /obj/item/stack/medical/proc/heal(mob/living/patient, mob/user)
 	if(patient.stat == DEAD)
-		to_chat(user, "<span class='warning'>[patient] is dead! You can not help [patient.p_them()].</span>")
+		to_chat(user, span_warning("[patient] is dead! You can not help [patient.p_them()]."))
 		return
 	if(isanimal(patient) && heal_brute) // only brute can heal
 		var/mob/living/simple_animal/critter = patient
 		if (!critter.healable)
-			to_chat(user, "<span class='warning'>You cannot use [src] on [patient]!</span>")
+			to_chat(user, span_warning("You cannot use [src] on [patient]!"))
 			return FALSE
 		else if (critter.health == critter.maxHealth)
-			to_chat(user, "<span class='notice'>[patient] is at full health.</span>")
+			to_chat(user, span_notice("[patient] is at full health."))
 			return FALSE
-		user.visible_message("<span class='green'>[user] applies [src] on [patient].</span>", "<span class='green'>You apply [src] on [patient].</span>")
+		user.visible_message(span_green("[user] applies [src] on [patient]."), span_green("You apply [src] on [patient]."))
 		patient.heal_bodypart_damage((heal_brute * 0.5))
 		return TRUE
 	if(iscarbon(patient))
 		return heal_carbon(patient, user, heal_brute, heal_burn)
-	to_chat(user, "<span class='warning'>You can't heal [patient] with [src]!</span>")
+	to_chat(user, span_warning("You can't heal [patient] with [src]!"))
 
 /// The healing effects on a carbon patient. Since we have extra details for dealing with bodyparts, we get our own fancy proc. Still returns TRUE on success and FALSE on fail
 /obj/item/stack/medical/proc/heal_carbon(mob/living/carbon/C, mob/user, brute, burn)
 	var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
 	if(!affecting) //Missing limb?
-		to_chat(user, "<span class='warning'>[C] doesn't have \a [parse_zone(user.zone_selected)]!</span>")
+		to_chat(user, span_warning("[C] doesn't have \a [parse_zone(user.zone_selected)]!"))
 		return
 	if(affecting.status != BODYPART_ORGANIC) //Limb must be organic to be healed - RR
-		to_chat(user, "<span class='warning'>[src] won't work on a robotic limb!</span>")
+		to_chat(user, span_warning("[src] won't work on a robotic limb!"))
 		return FALSE
 	if(affecting.brute_dam && brute || affecting.burn_dam && burn)
-		user.visible_message("<span class='green'>[user] applies [src] on [C]'s [affecting.name].</span>", "<span class='green'>You apply [src] on [C]'s [affecting.name].</span>")
+		user.visible_message(span_green("[user] applies [src] on [C]'s [affecting.name]."), span_green("You apply [src] on [C]'s [affecting.name]."))
 		var/previous_damage = affecting.get_damage()
 		if(affecting.heal_damage(brute, burn))
 			C.update_damage_overlays()
 		post_heal_effects(max(previous_damage - affecting.get_damage(), 0), C, user)
 		return TRUE
-	to_chat(user, "<span class='warning'>[C]'s [affecting.name] can not be healed with \the [src]!</span>")
+	to_chat(user, span_warning("[C]'s [affecting.name] can not be healed with \the [src]!"))
 
 ///Override this proc for special post heal effects.
 /obj/item/stack/medical/proc/post_heal_effects(amount_healed, mob/living/carbon/healed_mob, mob/user)
@@ -107,7 +107,7 @@
 	grind_results = list(/datum/reagent/medicine/c2/libital = 10)
 
 /obj/item/stack/medical/bruise_pack/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is bludgeoning [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is bludgeoning [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (BRUTELOSS)
 
 /obj/item/stack/medical/gauze
@@ -126,25 +126,25 @@
 		var/mob/living/carbon/human/H = M
 		if(!H.bleedsuppress && H.bleed_rate) //so you can't stack bleed suppression
 			H.suppress_bloodloss(stop_bleeding)
-			to_chat(user, "<span class='notice'>You stop the bleeding of [M]!</span>")
+			to_chat(user, span_notice("You stop the bleeding of [M]!"))
 			return TRUE
-	to_chat(user, "<span class='warning'>You can not use \the [src] on [M]!</span>")
+	to_chat(user, span_warning("You can not use \the [src] on [M]!"))
 
 /obj/item/stack/medical/gauze/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_WIRECUTTER || I.is_sharp())
 		if(get_amount() < 2)
-			to_chat(user, "<span class='warning'>You need at least two gauzes to do this!</span>")
+			to_chat(user, span_warning("You need at least two gauzes to do this!"))
 			return
 		new /obj/item/stack/sheet/cloth(user.drop_location())
-		user.visible_message("<span class='notice'>[user] cuts [src] into pieces of cloth with [I].</span>", \
-					 "<span class='notice'>You cut [src] into pieces of cloth with [I].</span>", \
-					 "<span class='hear'>You hear cutting.</span>")
+		user.visible_message(span_notice("[user] cuts [src] into pieces of cloth with [I]."), \
+					 span_notice("You cut [src] into pieces of cloth with [I]."), \
+					 span_hear("You hear cutting."))
 		use(2)
 	else
 		return ..()
 
 /obj/item/stack/medical/gauze/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] begins tightening \the [src] around [user.p_their()] neck! It looks like [user.p_they()] forgot how to use medical supplies!</span>")
+	user.visible_message(span_suicide("[user] begins tightening \the [src] around [user.p_their()] neck! It looks like [user.p_they()] forgot how to use medical supplies!"))
 	return OXYLOSS
 
 /obj/item/stack/medical/gauze/improvised
@@ -171,7 +171,7 @@
 	grind_results = list(/datum/reagent/medicine/c2/lenturi = 10)
 
 /obj/item/stack/medical/ointment/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] is squeezing \the [src] into [user.p_their()] mouth! [user.p_do(TRUE)]n't [user.p_they()] know that stuff is toxic?</span>")
+	user.visible_message(span_suicide("[user] is squeezing \the [src] into [user.p_their()] mouth! [user.p_do(TRUE)]n't [user.p_they()] know that stuff is toxic?"))
 	return TOXLOSS
 
 	/*
@@ -232,26 +232,26 @@
 
 /obj/item/stack/medical/mesh/try_heal(mob/living/M, mob/user, silent = FALSE)
 	if(!is_open)
-		to_chat(user, "<span class='warning'>You need to open [src] first.</span>")
+		to_chat(user, span_warning("You need to open [src] first."))
 		return
 	return ..()
 
 /obj/item/stack/medical/mesh/AltClick(mob/living/user)
 	if(!is_open)
-		to_chat(user, "<span class='warning'>You need to open [src] first.</span>")
+		to_chat(user, span_warning("You need to open [src] first."))
 		return
 	return ..()
 
 /obj/item/stack/medical/mesh/attack_hand(mob/user)
 	if(!is_open && user.get_inactive_held_item() == src)
-		to_chat(user, "<span class='warning'>You need to open [src] first.</span>")
+		to_chat(user, span_warning("You need to open [src] first."))
 		return
 	return ..()
 
 /obj/item/stack/medical/mesh/attack_self(mob/user)
 	if(!is_open)
 		is_open = TRUE
-		to_chat(user, "<span class='notice'>You open the sterile mesh package.</span>")
+		to_chat(user, span_notice("You open the sterile mesh package."))
 		update_icon()
 		playsound(src, 'sound/items/poster_ripped.ogg', 20, TRUE)
 		return

@@ -19,8 +19,8 @@
 	. = ..()
 
 /datum/antagonist/disease/greet()
-	to_chat(owner.current, "<span class='notice'>You are the [owner.special_role]!</span>")
-	to_chat(owner.current, "<span class='notice'>Infect members of the crew to gain adaptation points, and spread your infection further.</span>")
+	to_chat(owner.current, span_notice("You are the [owner.special_role]!"))
+	to_chat(owner.current, span_notice("Infect members of the crew to gain adaptation points, and spread your infection further."))
 	owner.announce_objectives()
 
 /datum/antagonist/disease/apply_innate_effects(mob/living/mob_override)
@@ -57,11 +57,11 @@
 	var/special_role_text = lowertext(name)
 
 	if(win)
-		result += "<span class='greentext'>The [special_role_text] was successful!</span>"
+		result += span_greentext("The [special_role_text] was successful!")
 		if(istype(owner.current, /mob/camera/disease))
 			SSachievements.unlock_achievement(/datum/achievement/greentext/disease,owner.current.client)
 	else
-		result += "<span class='redtext'>The [special_role_text] has failed!</span>"
+		result += span_redtext("The [special_role_text] has failed!")
 
 	if(istype(owner.current, /mob/camera/disease))
 		var/mob/camera/disease/D = owner.current

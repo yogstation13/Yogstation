@@ -40,6 +40,6 @@
 				break
 
 	if(objectives_complete)
-		return "<span class='greentext'>[owner.name] protected their date!</span>"
+		return span_greentext("[owner.name] protected their date!")
 	else
-		return "<span class='redtext'>[owner.name] failed their date!</span>"
+		return span_redtext("[owner.name] failed their date!")

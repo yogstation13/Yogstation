@@ -77,7 +77,7 @@
 		return FALSE
 	if(repairing)
 		if(!silent)
-			to_chat(user, "<span class='warning'>You are currently repairing [repairing] with [src]!</span>")
+			to_chat(user, span_warning("You are currently repairing [repairing] with [src]!"))
 		return FALSE
 	var/list/fabrication_values = target.fabrication_vals(user, src, silent) //relevant values for fabricating stuff, given as an associated list
 	if(!islist(fabrication_values))
@@ -85,7 +85,7 @@
 			if(!isturf(target)) //otherwise, if we didn't get TRUE and the original target wasn't a turf, try to fabricate the turf
 				return fabricate(get_turf(target), user, no_table_check)
 			if(!silent)
-				to_chat(user, "<span class='warning'>[target] cannot be fabricated!</span>")
+				to_chat(user, span_warning("[target] cannot be fabricated!"))
 			if(!no_table_check)
 				return TRUE
 		return FALSE
@@ -110,30 +110,30 @@
 		if(!silent)
 			var/atom/A = fabrication_values["new_obj_type"]
 			if(A)
-				user.visible_message("<span class='warning'>[user]'s [name] starts ripping [target] apart!</span>", \
-				"<span class='brass'>You start fabricating \a [initial(A.name)] from [target]...</span>")
+				user.visible_message(span_warning("[user]'s [name] starts ripping [target] apart!"), \
+				span_brass("You start fabricating \a [initial(A.name)] from [target]..."))
 			else
-				user.visible_message("<span class='warning'>[user]'s [name] starts consuming [target]!</span>", \
-				"<span class='brass'>Your [name] starts consuming [target]...</span>")
+				user.visible_message(span_warning("[user]'s [name] starts consuming [target]!"), \
+				span_brass("Your [name] starts consuming [target]..."))
 		if(!do_after(user, fabrication_values["operation_time"], target = target, extra_checks = CALLBACK(src, .proc/fabricate_checks, fabrication_values, target, target_type, user, TRUE)))
 			return FALSE
 		if(!silent)
 			var/atom/A = fabrication_values["new_obj_type"]
 			if(A)
-				user.visible_message("<span class='warning'>[user]'s [name] replaces [target] with \a [initial(A.name)]!</span>", \
-				"<span class='brass'>You fabricate \a [initial(A.name)] from [target].</span>")
+				user.visible_message(span_warning("[user]'s [name] replaces [target] with \a [initial(A.name)]!"), \
+				span_brass("You fabricate \a [initial(A.name)] from [target]."))
 			else
-				user.visible_message("<span class='warning'>[user]'s [name] consumes [target]!</span>", \
-				"<span class='brass'>Your [name] consumes [target].</span>")
+				user.visible_message(span_warning("[user]'s [name] consumes [target]!"), \
+				span_brass("Your [name] consumes [target]."))
 	else
 		if(!silent)
 			var/atom/A = fabrication_values["new_obj_type"]
 			if(A)
-				user.visible_message("<span class='warning'>[user]'s [name] rips apart [target], replacing it with \a [initial(A.name)]!</span>", \
-				"<span class='brass'>You fabricate \a [initial(A.name)] from [target].</span>")
+				user.visible_message(span_warning("[user]'s [name] rips apart [target], replacing it with \a [initial(A.name)]!"), \
+				span_brass("You fabricate \a [initial(A.name)] from [target]."))
 			else
-				user.visible_message("<span class='warning'>[user]'s [name] rapidly consumes [target]!</span>", \
-				"<span class='brass'>Your [name] consumes [target].</span>")
+				user.visible_message(span_warning("[user]'s [name] rapidly consumes [target]!"), \
+				span_brass("Your [name] consumes [target]."))
 
 	playsound(target, 'sound/items/deconstruct.ogg', 50, 1)
 	var/new_thing_type = fabrication_values["new_obj_type"]
@@ -189,11 +189,11 @@
 		var/mob/living/L = target
 		if(!is_servant_of_ratvar(L))
 			if(!silent)
-				to_chat(user, "<span class='warning'>[L] does not serve Ratvar!</span>")
+				to_chat(user, span_warning("[L] does not serve Ratvar!"))
 			return FALSE
 		if(L.health >= L.maxHealth || (L.flags_1 & GODMODE))
 			if(!silent)
-				to_chat(user, "<span class='warning'>[L == user ? "You are" : "[L] is"] at maximum health!</span>")
+				to_chat(user, span_warning("[L == user ? "You are" : "[L] is"] at maximum health!"))
 			return FALSE
 		repair_values["amount_to_heal"] = L.maxHealth - L.health
 	else if(isobj(target))
@@ -201,12 +201,12 @@
 			var/obj/structure/destructible/clockwork/C = target
 			if(!C.can_be_repaired)
 				if(!silent)
-					to_chat(user, "<span class='warning'>[C] cannot be repaired!</span>")
+					to_chat(user, span_warning("[C] cannot be repaired!"))
 				return FALSE
 		var/obj/O = target
 		if(O.obj_integrity >= O.max_integrity)
 			if(!silent)
-				to_chat(user, "<span class='warning'>[O] is at maximum integrity!</span>")
+				to_chat(user, span_warning("[O] is at maximum integrity!"))
 			return FALSE
 		repair_values["amount_to_heal"] = O.max_integrity - O.obj_integrity
 	else

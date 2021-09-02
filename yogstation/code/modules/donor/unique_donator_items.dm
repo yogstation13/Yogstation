@@ -15,7 +15,7 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 
 /client/proc/custom_donator_item()
 	if(!is_donator(src))
-		to_chat(src, "<span class='warning'>You're not a donator! To access this feature, considering donating today!</span>")
+		to_chat(src, span_warning("You're not a donator! To access this feature, considering donating today!"))
 		return
 	GLOB.donator_gear.ui_interact(usr)//datum has a tgui component, here we open the window
 

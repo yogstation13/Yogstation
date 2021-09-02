@@ -3,7 +3,7 @@
 	if (dead_can_hear && source)
 		for (var/mob/M in GLOB.dead_mob_list)
 			var/link = FOLLOW_LINK(M, source)
-			to_chat(M, "<span class='dronesay'>[link] [msg]</span>")
+			to_chat(M, span_dronesay("[link] [msg]"))
 	for(var/i in GLOB.drones_list)
 		var/mob/living/simple_animal/drone/D = i
 		if(istype(D) && D.stat != DEAD)

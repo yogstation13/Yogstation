@@ -187,7 +187,7 @@
 		if(!(selected_category in D.category))
 			continue
 		if(disabled || !can_build(D))
-			dat += "<span class='linkOff'>[D.name]</span>"
+			dat += span_linkOff("[D.name]")
 		else
 			dat += "<a href='?src=[REF(src)];make=[D.id];multiplier=1'>[D.name]</a>"
 		dat += "[get_design_cost(D)]<br>"
@@ -228,5 +228,5 @@
 		var/datum/design/D = SSresearch.techweb_design_by_id(id)
 		if((D.build_type & LIMBGROWER) && ("emagged" in D.category))
 			stored_research.add_design(D)
-	to_chat(user, "<span class='warning'>A warning flashes onto the screen, stating that safety overrides have been deactivated!</span>")
+	to_chat(user, span_warning("A warning flashes onto the screen, stating that safety overrides have been deactivated!"))
 	obj_flags |= EMAGGED

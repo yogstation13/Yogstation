@@ -18,5 +18,5 @@
 				T.TicketPanel()
 				return
 
-		to_chat(src, "<span class='danger'>You have no open tickets!</span>")
+		to_chat(src, span_danger("You have no open tickets!"))
 	return

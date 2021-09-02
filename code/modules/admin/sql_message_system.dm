@@ -1,7 +1,7 @@
 //YOGS - FILE MOVED TO yogstation/code/modules/admin/sql_message_system.dm
 /proc/create_message(type, target_key, admin_ckey, text, timestamp, server, secret, logged = 1, browse, expiry, note_severity)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(usr, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 	if(!type)
 		return
@@ -112,7 +112,7 @@
 
 /proc/delete_message(message_id, logged = 1, browse)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(usr, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -157,7 +157,7 @@
 
 /proc/edit_message(message_id, browse)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(usr, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -207,7 +207,7 @@
 
 /proc/edit_message_expiry(message_id, browse)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(usr, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -278,7 +278,7 @@
 
 /proc/edit_message_severity(message_id)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(usr, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -329,7 +329,7 @@
 
 /proc/toggle_message_secrecy(message_id)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(usr, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -373,7 +373,7 @@
 
 /proc/browse_messages(type, target_ckey, index, linkless = FALSE, filter, agegate = FALSE)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(usr, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 	var/list/output = list()
 	var/ruler = "<hr style='background:#000000; border:0; height:3px'>"
@@ -619,7 +619,7 @@
 
 /proc/get_message_output(type, target_ckey)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(usr, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 	if(!type)
 		return
