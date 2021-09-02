@@ -1,3 +1,7 @@
+#define SLEEPER_TEND		"Treat Injuries"
+#define SLEEPER_ORGANS		"Repair Organs"
+#define SLEEPER_CHEMPURGE	"Purge Chemicals"
+
 /obj/machinery/sleep_console
 	name = "sleeper console"
 	icon = 'icons/obj/machines/sleeper.dmi'
@@ -13,18 +17,25 @@
 	state_open = TRUE
 	circuit = /obj/item/circuitboard/machine/sleeper
 
+	///efficiency, used to increase the effect of some healing methods
 	var/efficiency = 1
-	var/min_health = -25
-	var/list/available_chems
+	///maximum health stasis will activate at, occurs automatically
+	var/stasis_health = -30
+	///treatments currently available for use
+	var/list/available_treatments
+	///if the patient is able to use the sleeper's controls
 	var/controls_inside = FALSE
-	var/list/possible_chems = list(
-		list(/datum/reagent/medicine/epinephrine, /datum/reagent/medicine/morphine, /datum/reagent/medicine/perfluorodecalin, /datum/reagent/medicine/c2/libital, /datum/reagent/medicine/c2/aiuri),
-		list(/datum/reagent/medicine/potass_iodide),
-		list(/datum/reagent/medicine/charcoal, /datum/reagent/medicine/salbutamol),
-		list(/datum/reagent/medicine/omnizine)
+	///treatments unlocked by manipulator by tier
+	var/list/treatments = list(
+		list(SLEEPER_TEND),
+		list(SLEEPER_ORGANS),
+		list(SLEEPER_CHEMPURGE),
+		list()
 	)
-	var/list/chem_buttons	//Used when emagged to scramble which chem is used, eg: mutadone -> morphine
-	var/scrambled_chems = FALSE //Are chem buttons scrambled? used as a warning
+	///the current active treatment
+	var/active_treatment = null
+	///if the sleeper puts its patient into stasis
+	var/stasis = FALSE
 	var/enter_message = "<span class='notice'><b>You feel cool air surround you. You go numb as your senses turn inward.</b></span>"
 	payment_department = ACCOUNT_MED
 	fair_market_price = 5
@@ -33,7 +44,6 @@
 	. = ..()
 	occupant_typecache = GLOB.typecache_living
 	update_icon()
-	reset_chem_buttons()
 
 /obj/machinery/sleeper/RefreshParts()
 	var/E
@@ -44,11 +54,12 @@
 		I += M.rating
 
 	efficiency = initial(efficiency)* E
-	min_health = initial(min_health) * E
-	available_chems = list()
+	available_treatments = list()
 	for(var/i in 1 to I)
-		available_chems |= possible_chems[i]
-	reset_chem_buttons()
+		if(!length(treatments[i]))
+			continue
+		available_treatments |= treatments[i]
+	stasis = (I >= 4)
 
 /obj/machinery/sleeper/update_icon()
 	if(state_open)
@@ -71,6 +82,9 @@
 
 /obj/machinery/sleeper/open_machine()
 	if(!state_open && !panel_open)
+		active_treatment = null
+		var/mob/living/mob_occupant = occupant
+		mob_occupant.remove_status_effect(STATUS_EFFECT_STASIS)
 		flick("[initial(icon_state)]-anim", src)
 		..()
 
@@ -81,6 +95,8 @@
 		var/mob/living/mob_occupant = occupant
 		if(mob_occupant && mob_occupant.stat != DEAD)
 			to_chat(occupant, "[enter_message]")
+		if(mob_occupant && stasis)
+			mob_occupant.ExtinguishMob()
 
 /obj/machinery/sleeper/emp_act(severity)
 	. = ..()
@@ -157,6 +173,31 @@
 /obj/machinery/sleeper/process()
 	..()
 	check_nap_violations()
+	var/mob/living/carbon/C = occupant
+	if(C)
+		if(stasis && C.health <= stasis_health)
+			C.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE)
+		else
+			C.remove_status_effect(STATUS_EFFECT_STASIS)
+		switch(active_treatment)
+			if(SLEEPER_TEND)
+				C.heal_bodypart_damage(1,1) //this is slow as hell, use the rest of medbay you chumps
+				if(prob(5))
+					to_chat(C, "<span class='notice'>You feel the curious sensation of your numb flesh being tugged at as it is repaired...</span>")
+			if(SLEEPER_ORGANS)
+				var/list/organs = list(ORGAN_SLOT_BRAIN,ORGAN_SLOT_EARS,ORGAN_SLOT_EYES,ORGAN_SLOT_LIVER,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_HEART)
+				for(var/i in 1 to efficiency)
+					organs = shuffle(organs)
+					for(var/o in organs)
+						var/obj/item/organ/heal_target = C.getorganslot(o)
+						if(heal_target.damage >= 1)
+							heal_target.applyOrganDamage(-1)
+			if(SLEEPER_CHEMPURGE)
+				C.adjustToxLoss(-1)
+				for(var/datum/reagent/R in C.reagents.reagent_list)
+					C.reagents.remove_reagent(R.type,efficiency)
+			else
+				active_treatment = null
 
 /obj/machinery/sleeper/nap_violation(mob/violator)
 	open_machine()
@@ -165,11 +206,12 @@
 	var/list/data = list()
 	data["occupied"] = occupant ? 1 : 0
 	data["open"] = state_open
+	data["active_treatment"] = active_treatment
+	data["can_sedate"] = can_sedate()
 
-	data["chems"] = list()
-	for(var/chem in available_chems)
-		var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
-		data["chems"] += list(list("name" = R.name, "id" = R.type, "allowed" = chem_allowed(chem)))
+	data["treatments"] = list()
+	for(var/T in available_treatments)
+		data["treatments"] += T
 
 	data["occupant"] = list()
 	var/mob/living/mob_occupant = occupant
@@ -215,48 +257,27 @@
 			else
 				open_machine()
 			. = TRUE
-		if("inject")
-			var/chem = text2path(params["chem"])
-			if(!is_operational() || !mob_occupant || isnull(chem))
+		if("set")
+			var/treatment = params["treatment"]
+			if(!is_operational() || !mob_occupant || isnull(treatment))
 				return
-			if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
-				return
-			if(inject_chem(chem, usr))
+			active_treatment = treatment
+			. = TRUE
+		if("sedate")
+			if(can_sedate())
+				mob_occupant.reagents.add_reagent(/datum/reagent/medicine/morphine, 10)
+				if(usr)
+					log_combat(usr,occupant, "injected morphine into", addition = "via [src]")
 				. = TRUE
-				if(scrambled_chems && prob(5))
-					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
 
-/obj/machinery/sleeper/emag_act(mob/user)
-	scramble_chem_buttons()
-	to_chat(user, "<span class='warning'>You scramble the sleeper's user interface!</span>")
-
-/obj/machinery/sleeper/proc/inject_chem(chem, mob/user)
-	if((chem in available_chems) && chem_allowed(chem))
-		occupant.reagents.add_reagent(chem_buttons[chem], 10) //emag effect kicks in here so that the "intended" chem is used for all checks, for extra FUUU
-		if(user)
-			log_combat(user, occupant, "injected [chem] into", addition = "via [src]")
-		return TRUE
-
-/obj/machinery/sleeper/proc/chem_allowed(chem)
+/obj/machinery/sleeper/proc/can_sedate()
 	var/mob/living/mob_occupant = occupant
 	if(!mob_occupant || !mob_occupant.reagents)
 		return
-	var/amount = mob_occupant.reagents.get_reagent_amount(chem) + 10 <= 20 * efficiency
-	var/occ_health = mob_occupant.health > min_health || chem == /datum/reagent/medicine/epinephrine
-	return amount && occ_health
+	return mob_occupant.reagents.get_reagent_amount(/datum/reagent/medicine/morphine) + 10 <= 20
 
-/obj/machinery/sleeper/proc/reset_chem_buttons()
-	scrambled_chems = FALSE
-	LAZYINITLIST(chem_buttons)
-	for(var/chem in available_chems)
-		chem_buttons[chem] = chem
-
-/obj/machinery/sleeper/proc/scramble_chem_buttons()
-	scrambled_chems = TRUE
-	var/list/av_chem = available_chems.Copy()
-	for(var/chem in av_chem)
-		chem_buttons[chem] = pick_n_take(av_chem) //no dupes, allow for random buttons to still be correct
-
+/obj/machinery/sleeper/emag_act(mob/user)
+	to_chat(user, "<span class='warning'>You scramble the sleeper's user interface!</span>")
 
 /obj/machinery/sleeper/syndie
 	icon_state = "sleeper_s"
@@ -277,7 +298,6 @@
 	desc = "A large cryogenics unit built from brass. Its surface is pleasantly cool the touch."
 	icon_state = "sleeper_clockwork"
 	enter_message = "<span class='bold inathneq_small'>You hear the gentle hum and click of machinery, and are lulled into a sense of peace.</span>"
-	possible_chems = list(list(/datum/reagent/medicine/epinephrine, /datum/reagent/medicine/salbutamol, /datum/reagent/medicine/bicaridine, /datum/reagent/medicine/kelotane, /datum/reagent/medicine/oculine, /datum/reagent/medicine/inacusiate, /datum/reagent/medicine/mannitol))
 
 /obj/machinery/sleeper/clockwork/process()
 	if(occupant && isliving(occupant))

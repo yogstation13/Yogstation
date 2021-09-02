@@ -10,9 +10,11 @@ export const Sleeper = (props, context) => {
     open,
     occupant = {},
     occupied,
+    active_treatment,
+    can_sedate,
   } = data;
 
-  const chems = data.chems || [];
+  const treatments = data.treatments || [];
 
   const damageTypes = [
     {
@@ -86,7 +88,17 @@ export const Sleeper = (props, context) => {
           )}
         </Section>
         {!!occupied && (
-          <Section title="Reagents" minHeight="50px">
+          <Section
+           title="Reagents"
+           minHeight="50px"
+           buttons={(
+              <Button
+              icon={'flask'}
+              content={'Sedate'}
+              disabled={!can_sedate}
+              onClick={() => act('sedate'
+              )} />
+           )} >
             {occupant.reagents.map(reagent => (
               <Box key={reagent.name}>
                 {reagent.name} -
@@ -101,7 +113,7 @@ export const Sleeper = (props, context) => {
           </Section>
         )}
         <Section
-          title="Medicines"
+          title="Treatments"
           minHeight="205px"
           buttons={(
             <Button
@@ -109,15 +121,16 @@ export const Sleeper = (props, context) => {
               content={open ? 'Open' : 'Closed'}
               onClick={() => act('door')} />
           )}>
-          {chems.map(chem => (
+          {treatments.map(treatment => (
             <Button
-              key={chem.name}
-              icon="flask"
-              content={chem.name}
-              disabled={!(occupied && chem.allowed)}
+              key={treatment}
+              icon="first-aid"
+              content={treatment}
+              disabled={!occupied}
+              color={active_treatment===treatment ? 'green' : null}
               width="350px"
-              onClick={() => act('inject', {
-                chem: chem.id,
+              onClick={() => act('set', {
+                treatment: treatment,
               })}
             />
           ))}
