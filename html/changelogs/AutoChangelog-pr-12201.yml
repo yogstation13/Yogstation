@@ -1,4 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - bugfix: "gravgen event now checks the grav gen state before rebooting the grav gen"
