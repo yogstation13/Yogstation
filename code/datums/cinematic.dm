@@ -18,7 +18,7 @@
 	playing.play(watcher)
 	qdel(playing)
 
-/atom/movable/screen/cinematic
+/obj/screen/cinematic
 	icon = 'icons/effects/station_explosion.dmi'
 	icon_state = "station_intact"
 	plane = SPLASHSCREEN_PLANE
@@ -26,13 +26,14 @@
 	layer = SPLASHSCREEN_LAYER
 	screen_loc = "BOTTOM,LEFT+50%"
 	appearance_flags = APPEARANCE_UI | TILE_BOUND
+	show_when_dead = TRUE
 
 /datum/cinematic
 	var/id = CINEMATIC_DEFAULT
 	var/list/watching = list() //List of clients watching this
 	var/list/locked = list() //Who had notransform set during the cinematic
 	var/is_global = FALSE //Global cinematics will override mob-specific ones
-	var/atom/movable/screen/cinematic/screen
+	var/obj/screen/cinematic/screen
 	var/datum/callback/special_callback //For special effects synced with animation (explosions after the countdown etc)
 	var/cleanup_time = 300 //How long for the final screen to remain
 	var/stop_ooc = TRUE //Turns off ooc when played globally.

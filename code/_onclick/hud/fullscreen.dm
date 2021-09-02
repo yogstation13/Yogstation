@@ -167,6 +167,10 @@
 	color = "#000000"
 	show_when_dead = TRUE
 
+/obj/screen/fullscreen/cinematic_backdrop/Initialize()
+	. = ..()
+	layer = SPLASHSCREEN_LAYER - 1
+
 /obj/screen/fullscreen/lighting_backdrop
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "flash"
