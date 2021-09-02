@@ -19,8 +19,8 @@
 
 	///efficiency, used to increase the effect of some healing methods
 	var/efficiency = 1
-	///maximum health stasis will activate at, occurs automatically
-	var/stasis_health = -30
+	///maximum status stasis will activate at, occurs automatically
+	var/stasis_health = UNCONSCIOUS
 	///treatments currently available for use
 	var/list/available_treatments
 	///if the patient is able to use the sleeper's controls
@@ -175,7 +175,7 @@
 	check_nap_violations()
 	var/mob/living/carbon/C = occupant
 	if(C)
-		if(stasis && C.health <= stasis_health)
+		if(stasis && C.stat >= stasis_health)
 			C.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE)
 		else
 			C.remove_status_effect(STATUS_EFFECT_STASIS)
