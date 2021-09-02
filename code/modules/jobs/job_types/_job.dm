@@ -241,13 +241,13 @@
 
 	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
 		box = null
-
-	if((DIGITIGRADE in H.dna.species.species_traits) && (IS_COMMAND(H))) // command gets snowflake shoes too.
-		shoes = alt_shoes_c
-	else if((DIGITIGRADE in H.dna.species.species_traits) && (IS_SECURITY(H))) // Special shoes for sec, roll first to avoid defaulting
-		shoes = alt_shoes_s
-	else if(DIGITIGRADE in H.dna.species.species_traits) // Check to assign default digitigrade shoes
-		shoes = alt_shoes
+	if(DIGITIGRADE in H.dna.species.species_traits)
+		if(IS_COMMAND(H)) // command gets snowflake shoes too.
+			shoes = alt_shoes_c
+		else if(IS_SECURITY(H)) // Special shoes for sec, roll first to avoid defaulting
+			shoes = alt_shoes_s
+		else if(find_job(H) == "Shaft Miner" || find_job(H) == "Mining Medic" || IS_ENGINEERING(H)) // Check to assign default digitigrade shoes
+			shoes = alt_shoes
 
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
