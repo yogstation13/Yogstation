@@ -61,31 +61,6 @@
 		check_weapon(user, I)
 	..()
 
-/datum/action/changeling/weapon/sting_action(mob/living/user)
-	var/obj/item/held = user.get_active_held_item()
-	if(held && !user.dropItemToGround(held))
-		to_chat(user, "<span class='warning'>[held] is stuck to your hand, you cannot grow a [weapon_name_simple] over it!</span>")
-		return
-	..()
-	var/limb_regen = 0
-	if(user.active_hand_index % 2 == 0) //we regen the arm before changing it into the weapon
-		limb_regen = user.regenerate_limb(BODY_ZONE_R_ARM, 1)
-	else
-		limb_regen = user.regenerate_limb(BODY_ZONE_L_ARM, 1)
-	if(limb_regen)
-		user.visible_message("<span class='warning'>[user]'s missing arm reforms, making a loud, grotesque sound!</span>", "<span class='userdanger'>Your arm regrows, making a loud, crunchy sound and giving you great pain!</span>", "<span class='italics'>You hear organic matter ripping and tearing!</span>")
-		user.emote("scream")
-	var/obj/item/W = new weapon_type(user, silent)
-	user.put_in_hands(W)
-	if(!silent)
-		playsound(user, 'sound/effects/blobattack.ogg', 30, 1)
-	return W
-
-/datum/action/changeling/weapon/Remove(mob/user)
-	for(var/obj/item/I in user.held_items)
-		check_weapon(user, I)
-	..()
-
 
 //Parent to space suits and armor.
 /datum/action/changeling/suit
