@@ -185,7 +185,7 @@
 			if(SLEEPER_ORGANS)
 				var/heal_reps = efficiency * 2
 				var/list/organs = list(ORGAN_SLOT_EARS,ORGAN_SLOT_EYES,ORGAN_SLOT_LIVER,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_HEART)
-				for(var/i in 1 to heal_amt)
+				for(var/i in 1 to heal_reps)
 					organs = shuffle(organs)
 					for(var/o in organs)
 						var/healed = FALSE
