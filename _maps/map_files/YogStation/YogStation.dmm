@@ -29931,6 +29931,24 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/starboard/aft)
+"cah" = (
+/obj/machinery/door/window{
+	base_state = "rightsecure";
+	icon_state = "rightsecure";
+	name = "Primary AI Core Access";
+	obj_integrity = 300;
+	req_access_txt = "16"
+	},
+/obj/machinery/camera{
+	c_tag = "AI Chamber - Core";
+	dir = 8;
+	network = list("aicore")
+	},
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
 "cay" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -36035,27 +36053,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/medical/morgue)
-"eJX" = (
-/obj/machinery/door/window{
-	base_state = "rightsecure";
-	icon_state = "rightsecure";
-	name = "Primary AI Core Access";
-	obj_integrity = 300;
-	req_access_txt = "16"
-	},
-/obj/machinery/camera{
-	c_tag = "AI Chamber - Core";
-	dir = 8;
-	network = list("aicore")
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/ai_monitored/turret_protected/ai";
-	dir = 4;
-	name = "AI Chamber APC";
-	pixel_x = 24
-	},
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/ai)
 "eKh" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -39093,14 +39090,6 @@
 /obj/effect/spawner/lootdrop/gloves,
 /turf/open/floor/plasteel,
 /area/clerk)
-"gUZ" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "AI Core shutters";
-	name = "AI core shutters"
-	},
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/ai)
 "gVe" = (
 /obj/machinery/suit_storage_unit/atmos,
 /turf/open/floor/plasteel/dark,
@@ -40299,6 +40288,15 @@
 /obj/item/clothing/under/color/lightpurple,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"hLc" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
 "hLI" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/white,
@@ -45693,6 +45691,14 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
+"llu" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "AI Core shutters";
+	name = "AI core shutters"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai)
 "lly" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -54840,6 +54846,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"rmc" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/white{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai)
 "rne" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -57601,6 +57616,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"tnX" = (
+/obj/machinery/power/apc{
+	areastring = "/area/ai_monitored/turret_protected/ai";
+	name = "AI Chamber APC";
+	pixel_y = -23
+	},
+/obj/structure/cable/white{
+	icon_state = "0-8"
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
 "toj" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -59251,6 +59277,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
+"uqS" = (
+/obj/machinery/holopad,
+/obj/structure/cable/white{
+	icon_state = "2-4"
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
 "uru" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
@@ -59296,21 +59329,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"urx" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/ai_monitored/turret_protected/ai";
-	dir = 1;
-	name = "AI Chamber APC";
-	pixel_y = 23
-	},
-/obj/structure/cable/white{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/ai)
 "usD" = (
 /obj/machinery/door/airlock/research{
 	name = "Robotics Lab";
@@ -61324,10 +61342,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"vOk" = (
-/obj/machinery/holopad,
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/ai)
 "vPf" = (
 /obj/structure/rack,
 /obj/item/circuitboard/machine/techfab/department/security,
@@ -62812,6 +62826,12 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
+"wKv" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai)
 "wKy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
@@ -63486,6 +63506,10 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
+"xpg" = (
+/obj/structure/grille,
+/turf/open/floor/plating/airless,
+/area/space)
 "xpw" = (
 /obj/machinery/door/airlock/medical{
 	name = "Paramedic Staging Area";
@@ -107569,7 +107593,7 @@ iwT
 cva
 cva
 cva
-urx
+wKv
 mAR
 cva
 cva
@@ -107826,7 +107850,7 @@ iwT
 cva
 kvZ
 gpn
-kvW
+wKv
 eSF
 cva
 cva
@@ -108081,9 +108105,9 @@ dpR
 iCG
 iwT
 xrs
-vOk
-eJX
-kvW
+uqS
+cah
+rmc
 qFg
 kbP
 cva
@@ -108328,7 +108352,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+xpg
 aaa
 aaa
 pEf
@@ -108338,7 +108362,7 @@ cva
 qLf
 iwT
 cva
-gUZ
+tnX
 cva
 kvW
 azM
@@ -108589,19 +108613,19 @@ aKN
 gXs
 gXs
 pEf
-pEf
 cva
 cva
-sni
+cva
+aet
 mqK
-aes
-dEa
-diN
-wHY
-dgo
+cva
+llu
+cva
+hLc
+aet
 cva
 cva
-pEf
+cva
 pEf
 gXs
 gXs
@@ -108845,17 +108869,17 @@ aaa
 aKN
 aaa
 gXs
-gXs
+pEf
 pEf
 cva
 cva
-cva
-xAd
-aet
-lOC
-fMt
-lJM
-cva
+sni
+mqK
+aes
+dEa
+diN
+wHY
+dgo
 cva
 cva
 pEf
@@ -109104,17 +109128,17 @@ gXs
 gXs
 aaa
 pEf
-taP
 cva
 cva
 cva
+xAd
+aet
+lOC
+fMt
+lJM
 cva
-fhv
-ykL
 cva
 cva
-cva
-xcs
 pEf
 aaa
 aaa
@@ -109361,18 +109385,18 @@ aaa
 gXs
 gXs
 gXs
+taP
+cva
+cva
+cva
+cva
+fhv
+ykL
+cva
+cva
+cva
+xcs
 pEf
-pEf
-cva
-cva
-cva
-cva
-cva
-cva
-cva
-pEf
-pEf
-aaa
 aaa
 aaa
 aaa
@@ -109618,7 +109642,6 @@ aaa
 aaa
 aaa
 gXs
-gXs
 pEf
 pEf
 cva
@@ -109626,9 +109649,10 @@ cva
 cva
 cva
 cva
+cva
+cva
 pEf
 pEf
-gXs
 aaa
 aaa
 aaa
@@ -109876,15 +109900,15 @@ aKN
 aKN
 aKN
 gXs
-gXs
 pEf
 pEf
+cva
+cva
+cva
+cva
+cva
 pEf
-dbp
 pEf
-pEf
-pEf
-aaa
 gXs
 aKN
 aKN
@@ -110132,17 +110156,17 @@ aaa
 aaa
 aaa
 aaa
+gXs
+gXs
+pEf
+pEf
+pEf
+dbp
+pEf
+pEf
+pEf
 aaa
 gXs
-aKN
-aKN
-aKN
-gXs
-aKN
-aKN
-aKN
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -110390,14 +110414,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+gXs
 aKN
 aKN
 aKN
-aaa
-aaa
+gXs
+aKN
+aKN
+aKN
 aaa
 aaa
 aaa
@@ -110650,9 +110674,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+aKN
+aKN
+aKN
 aaa
 aaa
 aaa
