@@ -14,10 +14,12 @@
 	idle_power_usage = 2
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	layer = OPEN_DOOR_LAYER
+	climbable = FALSE
 
 /obj/machinery/turnstile/hop
 	name = "HOP line turnstile"
 	req_one_access = list(ACCESS_HEADS)
+	climbable = TRUE
 /obj/machinery/turnstile/brig
 	name = "Brig turnstile"
 	//Seccies and brig phys may always pass, either way.
