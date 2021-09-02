@@ -1,0 +1,5 @@
+author: "Aquizit"
+delete-after: true 
+changes: 
+  - rscadd: "Added Heater to TEG Heating Loop"
+  - tweak: "Shifted some things around to make it fit nicely at wej's suggestion"
