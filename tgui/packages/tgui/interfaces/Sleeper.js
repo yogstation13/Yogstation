@@ -89,16 +89,16 @@ export const Sleeper = (props, context) => {
         </Section>
         {!!occupied && (
           <Section
-           title="Reagents"
-           minHeight="50px"
-           buttons={(
-              <Button
-              icon={'flask'}
-              content={'Sedate'}
-              disabled={!can_sedate}
-              onClick={() => act('sedate'
-              )} />
-           )} >
+            title="Reagents"
+            minHeight="50px"
+            buttons={(
+               <Button
+               icon={'flask'}
+               content={'Sedate'}
+               disabled={!can_sedate}
+               onClick={() => act('sedate'
+               )} />
+            )} >
             {occupant.reagents.map(reagent => (
               <Box key={reagent.name}>
                 {reagent.name} -
