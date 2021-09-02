@@ -51,7 +51,7 @@
 /obj/machinery/igniter/examine(mob/user)
 	. = ..()
 	if(panel_open)
-		. += "<span class='<span class='notice'>The maintenance panel is [panel_open ? "opened" : "closed"].</span>"
+		. += "<span class='[span_notice("The maintenance panel is [panel_open ? "opened" : "closed"].")]"
 
 /obj/machinery/igniter/process()	//ugh why is this even in process()?
 	if(safety || panel_open)

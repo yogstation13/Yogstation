@@ -302,7 +302,7 @@
 /obj/machinery/hydroponics/examine(user)
 	. = ..()
 	if(myseed)
-		. += "<span class='info'>It has <span class='name'>[myseed.plantname]</span> planted.</span>"
+		. += "<span class='info'>It has [span_name("[myseed.plantname]")] planted.</span>"
 		if (dead)
 			. += span_warning("It's dead!")
 		else if (harvest)
@@ -313,7 +313,7 @@
 		. += span_info("It's empty.")
 
 	if(!self_sustaining)
-		. += "<span class='info'>Water: [waterlevel]/[maxwater].</span>\n"+\
+		. += "[span_info("Water: [waterlevel]/[maxwater].")]\n"+\
 		span_info("Nutrient: [nutrilevel]/[maxnutri].")
 		if(self_sufficiency_progress > 0)
 			var/percent_progress = round(self_sufficiency_progress * 100 / self_sufficiency_req)
@@ -690,17 +690,17 @@
 /obj/machinery/hydroponics/attack_ghost(mob/user)
 	if(myseed)
 		to_chat(user, "*** <B>[myseed.plantname]</B> ***" )
-		to_chat(user, "- Plant Age: <span class='notice'>[age]</span>")
+		to_chat(user, "- Plant Age: [span_notice("[age]")]")
 		var/list/text_string = myseed.get_analyzer_text()
 		if(text_string)
 			to_chat(user, text_string)
 	else
 		to_chat(user, "<B>No plant found.</B>")
-	to_chat(user, "- Weed level: <span class='notice'>[weedlevel] / 10</span>")
-	to_chat(user, "- Pest level: <span class='notice'>[pestlevel] / 10</span>")
-	to_chat(user, "- Toxicity level: <span class='notice'>[toxic] / 100</span>")
-	to_chat(user, "- Water level: <span class='notice'>[waterlevel] / [maxwater]</span>")
-	to_chat(user, "- Nutrition level: <span class='notice'>[nutrilevel] / [maxnutri]</span>")
+	to_chat(user, "- Weed level: [span_notice("[weedlevel] / 10")]")
+	to_chat(user, "- Pest level: [span_notice("[pestlevel] / 10")]")
+	to_chat(user, "- Toxicity level: [span_notice("[toxic] / 100")]")
+	to_chat(user, "- Water level: [span_notice("[waterlevel] / [maxwater]")]")
+	to_chat(user, "- Nutrition level: [span_notice("[nutrilevel] / [maxnutri]")]")
 	to_chat(user, "")
 
 /obj/machinery/hydroponics/attackby(obj/item/O, mob/user, params)
@@ -798,17 +798,17 @@
 	else if(istype(O, /obj/item/plant_analyzer))
 		if(myseed)
 			to_chat(user, "*** <B>[myseed.plantname]</B> ***" )
-			to_chat(user, "- Plant Age: <span class='notice'>[age]</span>")
+			to_chat(user, "- Plant Age: [span_notice("[age]")]")
 			var/list/text_string = myseed.get_analyzer_text()
 			if(text_string)
 				to_chat(user, text_string)
 		else
 			to_chat(user, "<B>No plant found.</B>")
-		to_chat(user, "- Weed level: <span class='notice'>[weedlevel] / 10</span>")
-		to_chat(user, "- Pest level: <span class='notice'>[pestlevel] / 10</span>")
-		to_chat(user, "- Toxicity level: <span class='notice'>[toxic] / 100</span>")
-		to_chat(user, "- Water level: <span class='notice'>[waterlevel] / [maxwater]</span>")
-		to_chat(user, "- Nutrition level: <span class='notice'>[nutrilevel] / [maxnutri]</span>")
+		to_chat(user, "- Weed level: [span_notice("[weedlevel] / 10")]")
+		to_chat(user, "- Pest level: [span_notice("[pestlevel] / 10")]")
+		to_chat(user, "- Toxicity level: [span_notice("[toxic] / 100")]")
+		to_chat(user, "- Water level: [span_notice("[waterlevel] / [maxwater]")]")
+		to_chat(user, "- Nutrition level: [span_notice("[nutrilevel] / [maxnutri]")]")
 		to_chat(user, "")
 
 	else if(istype(O, /obj/item/cultivator))

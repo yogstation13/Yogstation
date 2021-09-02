@@ -53,7 +53,7 @@
 /datum/antagonist/clockcult/greet()
 	if(!owner.current || silent)
 		return
-	owner.current.visible_message("<span class='heavy_brass'>[owner.current]'s eyes glow a blazing yellow!</span>", null, null, 7, owner.current) //don't show the owner this message
+	owner.current.visible_message("[span_heavy_brass("[owner.current]'s eyes glow a blazing yellow!")]", null, null, 7, owner.current) //don't show the owner this message
 	to_chat(owner.current, "<span class='heavy_brass'>Assist your new companions in their righteous efforts. Your goal is theirs, and theirs yours. You serve the Clockwork \
 	Justiciar above all else. Perform his every whim without hesitation.</span>")
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/clockcultalr.ogg', 70, FALSE, pressure_affected = FALSE)
@@ -74,7 +74,7 @@
 				to_chat(R, span_boldwarning("Your onboard camera is no longer active and you have gained additional equipment, including a limited clockwork slab."))
 		if(isAI(current))
 			to_chat(current, span_boldwarning("You are now able to use your cameras to listen in on conversations, but can no longer speak in anything but Ratvarian."))
-		to_chat(current, "<span class='heavy_brass'>You can communicate with other servants by using the Hierophant Network action button in the upper left.</span>")
+		to_chat(current, "[span_heavy_brass("You can communicate with other servants by using the Hierophant Network action button in the upper left.")]")
 	else if(isbrain(current) || isclockmob(current))
 		to_chat(current, span_nezbere("You can communicate with other servants by using the Hierophant Network action button in the upper left."))
 	..()
@@ -168,7 +168,7 @@
 	SSticker.mode.servants_of_ratvar -= owner
 	SSticker.mode.update_servant_icons_removed(owner)
 	if(!silent)
-		owner.current.visible_message("<span class='deconversion_message'>[owner.current] seems to have remembered [owner.current.p_their()] true allegiance!</span>", null, null, null, owner.current)
+		owner.current.visible_message("[span_deconversion_message("[owner.current] seems to have remembered [owner.current.p_their()] true allegiance!")]", null, null, null, owner.current)
 		to_chat(owner, span_userdanger("A cold, cold darkness flows through your mind, extinguishing the Justiciar's light and all of your memories as his servant."))
 	owner.current.log_message("has renounced the cult of Ratvar!", LOG_ATTACK, color="#BE8700")
 	owner.special_role = null
@@ -238,7 +238,7 @@
 		if(i != SCRIPTURE_DRIVER)
 			parts += "<b>[i] scripture</b> was: <b>[GLOB.scripture_states[i] ? "UN":""]LOCKED</b>"
 	if(eminence)
-		parts += "<span class='header'>The Eminence was:</span> [printplayer(eminence)]"
+		parts += "[span_header("The Eminence was:")] [printplayer(eminence)]"
 	if(members.len)
 		parts += span_header("Ratvar's servants were:")
 		parts += printplayerlist(members - eminence)

@@ -291,11 +291,11 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	sleep(10)
 	if(!D)
 		return
-	to_chat(D, "<i><b><span class='big'>YES!!</span></b></i>")
+	to_chat(D, "<i><b>[span_big("YES!!")]</b></i>")
 	sleep(10)
 	if(!D)
 		return
-	to_chat(D, "<i><b><span class='reallybig'>YE--</span></b></i>")
+	to_chat(D, "<i><b>[span_reallybig("YE--")]</b></i>")
 	sleep(1)
 	if(!D)
 		return
@@ -494,7 +494,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	to_chat(owner.current, GLOB.lawlorify[LAW][ban])
 	to_chat(owner.current, GLOB.lawlorify[LAW][obligation])
 	to_chat(owner.current, GLOB.lawlorify[LAW][banish])
-	to_chat(owner.current, "<span class='warning'>Remember, the crew can research your weaknesses if they find out your devil name.</span><br>")
+	to_chat(owner.current, "[span_warning("Remember, the crew can research your weaknesses if they find out your devil name.")]<br>")
 	.=..()
 
 /datum/antagonist/devil/on_gain()

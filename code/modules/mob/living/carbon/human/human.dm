@@ -333,7 +333,7 @@
 							return
 						if(href_list["evaluation"])
 							if(!getBruteLoss() && !getFireLoss() && !getOxyLoss() && getToxLoss() < 20)
-								to_chat(usr, "<span class='notice'>No external injuries detected.</span><br>")
+								to_chat(usr, "[span_notice("No external injuries detected.")]<br>")
 								return
 							var/span = "notice"
 							var/status = ""

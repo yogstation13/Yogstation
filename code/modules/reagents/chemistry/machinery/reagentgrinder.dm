@@ -78,7 +78,7 @@
 			. += span_notice("- \A [O.name].")
 
 	if(!(stat & (NOPOWER|BROKEN)))
-		. += "<span class='notice'>The status display reads:</span>\n"+\
+		. += "[span_notice("The status display reads:")]\n"+\
 		"<span class='notice'>- Grinding reagents at <b>[speed*100]%</b>.</span>"
 		if(container)
 			for(var/datum/reagent/R in container.reagents.reagent_list)

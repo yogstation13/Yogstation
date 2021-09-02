@@ -16,7 +16,7 @@
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 				user.visible_message("[user.name] secures [src] to the floor.", \
 				span_notice("You secure [src] to the floor."), \
-			"	<span class='italics'>You hear a ratchet</span>")
+			"	[span_italics("You hear a ratchet")]")
 				src.anchored = 1
 			if(1)
 				anchored = 0

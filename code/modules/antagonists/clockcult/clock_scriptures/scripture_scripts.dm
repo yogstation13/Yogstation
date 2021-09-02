@@ -173,7 +173,7 @@
 	if(remove_item_if_better(I, owner))
 		do_message += owner.equip_to_slot_or_del(new/obj/item/clothing/shoes/clockwork(null), SLOT_SHOES)
 	if(do_message)
-		owner.visible_message(span_warning("Strange armor appears on [owner]!"), "<span class='heavy_brass'>A bright shimmer runs down your body, equipping you with Ratvarian armor.</span>")
+		owner.visible_message(span_warning("Strange armor appears on [owner]!"), "[span_heavy_brass("A bright shimmer runs down your body, equipping you with Ratvarian armor.")]")
 		playsound(owner, 'sound/magic/clockwork/fellowship_armory.ogg', 15 * do_message, TRUE) //get sound loudness based on how much we equipped
 	cooldown = CLOCKWORK_ARMOR_COOLDOWN + world.time
 	owner.update_action_buttons_icon()

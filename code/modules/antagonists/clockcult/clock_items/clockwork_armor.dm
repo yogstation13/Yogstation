@@ -39,13 +39,13 @@
 	..()
 	if(slot == SLOT_HEAD && !is_servant_of_ratvar(user))
 		if(!iscultist(user))
-			to_chat(user, "<span class='heavy_brass'>\"Now now, this is for my servants, not you.\"</span>")
+			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] head!"), span_warning("The helmet flickers off your head, leaving only nausea!"))
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.vomit(20)
 		else
-			to_chat(user, "<span class='heavy_brass'>\"Do you have a hole in your head? You're about to.\"</span>")
+			to_chat(user, "[span_heavy_brass("\"Do you have a hole in your head? You're about to.\"")]")
 			to_chat(user, span_userdanger("The helmet tries to drive a spike through your head as you scramble to remove it!"))
 			user.emote("scream")
 			user.apply_damage(30, BRUTE, BODY_ZONE_HEAD)
@@ -105,13 +105,13 @@
 	..()
 	if(slot == SLOT_WEAR_SUIT && !is_servant_of_ratvar(user))
 		if(!iscultist(user))
-			to_chat(user, "<span class='heavy_brass'>\"Now now, this is for my servants, not you.\"</span>")
+			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] body!"), span_warning("The cuirass flickers off your body, leaving only nausea!"))
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.vomit(20)
 		else
-			to_chat(user, "<span class='heavy_brass'>\"I think this armor is too hot for you to handle.\"</span>")
+			to_chat(user, "[span_heavy_brass("\"I think this armor is too hot for you to handle.\"")]")
 			to_chat(user, span_userdanger("The cuirass emits a burst of flame as you scramble to get it off!"))
 			user.emote("scream")
 			user.apply_damage(15, BURN, BODY_ZONE_CHEST)
@@ -166,13 +166,13 @@
 	..()
 	if(slot == SLOT_GLOVES && !is_servant_of_ratvar(user))
 		if(!iscultist(user))
-			to_chat(user, "<span class='heavy_brass'>\"Now now, this is for my servants, not you.\"</span>")
+			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] arms!"), span_warning("The gauntlets flicker off your arms, leaving only nausea!"))
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.vomit()
 		else
-			to_chat(user, "<span class='heavy_brass'>\"Did you like having arms?\"</span>")
+			to_chat(user, "[span_heavy_brass("\"Did you like having arms?\"")]")
 			to_chat(user, span_userdanger("The gauntlets suddenly squeeze tight, crushing your arms before you manage to get them off!"))
 			user.emote("scream")
 			user.apply_damage(7, BRUTE, BODY_ZONE_L_ARM)
@@ -216,13 +216,13 @@
 	..()
 	if(slot == SLOT_SHOES && !is_servant_of_ratvar(user))
 		if(!iscultist(user))
-			to_chat(user, "<span class='heavy_brass'>\"Now now, this is for my servants, not you.\"</span>")
+			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] feet!"), span_warning("The treads flicker off your feet, leaving only nausea!"))
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.vomit()
 		else
-			to_chat(user, "<span class='heavy_brass'>\"Let's see if you can dance with these.\"</span>")
+			to_chat(user, "[span_heavy_brass("\"Let's see if you can dance with these.\"")]")
 			to_chat(user, span_userdanger("The treads turn searing hot as you scramble to get them off!"))
 			user.emote("scream")
 			user.apply_damage(7, BURN, BODY_ZONE_L_LEG)

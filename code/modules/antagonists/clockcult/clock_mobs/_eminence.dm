@@ -193,7 +193,7 @@
 	if(marker_icon)
 		new/obj/effect/temp_visual/ratvar/command_point(get_turf(A), marker_icon)
 		for(var/mob/M in servants_and_ghosts())
-			to_chat(M, "<span class='large_brass'>[replacetext(command_text, "GETDIR", dir2text(get_dir(M, command_location)))]</span>")
+			to_chat(M, "[span_large_brass("[replacetext(command_text, "GETDIR", dir2text(get_dir(M, command_location)))]")]")
 			M.playsound_local(M, 'sound/machines/clockcult/eminence_command.ogg', 75, FALSE, pressure_affected = FALSE)
 	else
 		hierophant_message("<span class='bold large_brass'>[command_text]</span>")

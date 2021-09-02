@@ -252,7 +252,7 @@
 	if(prob(60))
 		forceMove(get_step_towards(src, victim))
 		if(prob(5))
-			to_chat(victim, "<span class='name'>[name]</span> exclaims, \"" + span_robotic("Level 10 infraction alert!") + "\"")
+			to_chat(victim, "[span_name("[name]")] exclaims, \"" + span_robotic("Level 10 infraction alert!") + "\"")
 
 /obj/effect/hallucination/simple/securitron/Destroy()
 	STOP_PROCESSING(SSfastprocess,src)

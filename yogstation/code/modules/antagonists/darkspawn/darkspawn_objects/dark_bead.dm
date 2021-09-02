@@ -58,7 +58,7 @@
 	eating = TRUE
 	if(user.loc != L)
 		user.visible_message(span_warning("[user] grabs [L] and leans in close..."), "<span class='velvet bold'>cera qo...</span><br>\
-		<span class='danger'>You begin siphoning [L]'s mental energy...</span>")
+		[span_danger("You begin siphoning [L]'s mental energy...")]")
 		to_chat(L, "<span class='userdanger'><i>AAAAAAAAAAAAAA-</i></span>")
 		L.Stun(50)
 		L.silent += 4
@@ -84,8 +84,8 @@
 	user.visible_message(span_warning("[user] gently lowers [L] to the ground..."), "<span class='velvet'><b>...aranupdejc</b><br>\
 	You devour [L]'s will. Your Psi has been [!full_restore ? "partially restored." : "fully restored.\n\
 	Additionally, you have gained one lucidity. Use it to purchase and upgrade abilities."]<br>\
-	<span class='warning'>[L] is now severely weakened and will take some time to recover.</span> \
-	<span class='warning'>Additionally, you can not drain them again without first draining someone else.</span>")
+	[span_warning("[L] is now severely weakened and will take some time to recover.")] \
+	[span_warning("Additionally, you can not drain them again without first draining someone else.")]")
 	playsound(L, 'yogstation/sound/magic/devour_will_victim.ogg', 50, FALSE)
 	if(full_restore)
 		darkspawn.psi = darkspawn.psi_cap

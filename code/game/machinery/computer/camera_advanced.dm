@@ -343,20 +343,20 @@
 	if(!is_reebe(user.z) || !is_station_level(T.z))
 		return
 	if(isclosedturf(T))
-		to_chat(user, "<span class='sevtug_small'>You can't teleport into a wall.</span>")
+		to_chat(user, "[span_sevtug_small("You can't teleport into a wall.")]")
 		return
 	else if(isspaceturf(T))
-		to_chat(user, "<span class='sevtug_small'>[prob(1) ? "Servant cannot into space." : "You can't teleport into space."]</span>")
+		to_chat(user, "[span_sevtug_small("[prob(1) ? "Servant cannot into space." : "You can't teleport into space."]")]")
 		return
 	else if(T.flags_1 & NOJAUNT_1)
-		to_chat(user, "<span class='sevtug_small'>This tile is blessed by strange energies and deflects the warp.</span>")
+		to_chat(user, "[span_sevtug_small("This tile is blessed by strange energies and deflects the warp.")]")
 		return
 	else if(locate(/obj/effect/blessing, T))
-		to_chat(user, "<span class='sevtug_small'>This tile is blessed by holy water and deflects the warp.</span>")
+		to_chat(user, "[span_sevtug_small("This tile is blessed by holy water and deflects the warp.")]")
 		return
 	var/area/AR = get_area(T)
 	if(!AR.clockwork_warp_allowed)
-		to_chat(user, "<span class='sevtug_small'>[AR.clockwork_warp_fail]</span>")
+		to_chat(user, "[span_sevtug_small("[AR.clockwork_warp_fail]")]")
 		return
 	if(alert(user, "Are you sure you want to warp to [AR]?", target.name, "Warp", "Cancel") == "Cancel" || QDELETED(R) || !user.canUseTopic(R))
 		return
@@ -367,7 +367,7 @@
 	owner.update_action_buttons()
 	var/warp_time = 50
 	if(!istype(T, /turf/open/floor/clockwork) && GLOB.clockwork_hardmode_active)
-		to_chat(user, "<span class='sevtug_small'>The [target.name]'s inner machinery protests vehemently as it attempts to warp you to a non-brass tile, this will take time...</span>")
+		to_chat(user, "[span_sevtug_small("The [target.name]'s inner machinery protests vehemently as it attempts to warp you to a non-brass tile, this will take time...")]")
 		warp_time = 300
 	warping = new(T, user, warp_time)
 	if(!do_after(user, warp_time, target = warping, extra_checks = CALLBACK(src, .proc/is_canceled)))

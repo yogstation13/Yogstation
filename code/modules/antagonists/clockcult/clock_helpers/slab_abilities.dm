@@ -51,13 +51,13 @@
 		
 		playsound(loc, 'sound/weapons/handcuffs.ogg', 30, TRUE)
 		ranged_ability_user.visible_message(span_danger("[ranged_ability_user] begins forming manacles around [L]'s wrists!"), \
-		"<span class='neovgre_small'>You begin shaping replicant alloy into manacles around [L]'s wrists...</span>")
+		"[span_neovgre_small("You begin shaping replicant alloy into manacles around [L]'s wrists...")]")
 		to_chat(L, span_userdanger("[ranged_ability_user] begins forming manacles around your wrists!"))
 		if(do_mob(ranged_ability_user, L, 30))
 			if(!(istype(L.handcuffed,/obj/item/restraints/handcuffs/clockwork)))
 				L.handcuffed = new/obj/item/restraints/handcuffs/clockwork(L)
 				L.update_handcuffed()
-				to_chat(ranged_ability_user, "<span class='neovgre_small'>You shackle [L].</span>")
+				to_chat(ranged_ability_user, "[span_neovgre_small("You shackle [L].")]")
 				log_combat(ranged_ability_user, L, "handcuffed")
 		else
 			to_chat(ranged_ability_user, span_warning("You fail to shackle [L]."))
@@ -124,12 +124,12 @@
 			clockwork_say(ranged_ability_user, text2ratvar("[has_holy_water ? "Heal tainted" : "Mend wounded"] flesh!"))
 			log_combat(ranged_ability_user, L, "healed with Sentinel's Compromise")
 			L.visible_message(span_warning("A blue light washes over [L], [has_holy_water ? "causing [L.p_them()] to briefly glow as it mends" : " mending"] [L.p_their()] bruises and burns!"), \
-			"<span class='heavy_brass'>You feel Inath-neq's power healing your wounds[has_holy_water ? " and purging the darkness within you" : ""], but a deep nausea overcomes you!</span>")
+			"[span_heavy_brass("You feel Inath-neq's power healing your wounds[has_holy_water ? " and purging the darkness within you" : ""], but a deep nausea overcomes you!")]")
 		else
 			clockwork_say(ranged_ability_user, text2ratvar("Purge foul darkness!"))
 			log_combat(ranged_ability_user, L, "purged of holy water with Sentinel's Compromise")
 			L.visible_message(span_warning("A blue light washes over [L], causing [L.p_them()] to briefly glow!"), \
-			"<span class='heavy_brass'>You feel Inath-neq's power purging the darkness within you!</span>")
+			"[span_heavy_brass("You feel Inath-neq's power purging the darkness within you!")]")
 		playsound(targetturf, 'sound/magic/staff_healing.ogg', 50, 1)
 
 		if(has_holy_water)
@@ -267,7 +267,7 @@
 
 		clockwork_say(ranged_ability_user, text2ratvar("Kneel, heathens!"))
 		ranged_ability_user.visible_message(span_warning("[ranged_ability_user]'s eyes fire a stream of energy at [target], creating a strange mark!"), \
-		"<span class='heavy_brass'>You direct the judicial force to [target].</span>")
+		"[span_heavy_brass("You direct the judicial force to [target].")]")
 		var/turf/targetturf = get_turf(target)
 		new/obj/effect/clockwork/judicial_marker(targetturf, ranged_ability_user)
 		log_combat(ranged_ability_user, targetturf, "created a judicial marker")

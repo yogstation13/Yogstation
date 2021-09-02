@@ -151,10 +151,10 @@
 			to_chat(H, "<i><b>Yes!</b></i>")
 			if(!do_mob(H,H,10,1))
 				return
-			to_chat(H, "<i><b><span class='big'>YES!!</span></b></i>")
+			to_chat(H, "<i><b>[span_big("YES!!")]</b></i>")
 			if(!do_mob(H,H,10,1))
 				return
-			to_chat(H, "<i><b><span class='reallybig'>YE--</span></b></i>")
+			to_chat(H, "<i><b>[span_reallybig("YE--")]</b></i>")
 			if(!do_mob(H,H,1,1))
 				return
 			for(var/mob/living/M in orange(7, H))

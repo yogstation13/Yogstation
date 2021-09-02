@@ -169,7 +169,7 @@
 	if(msg == DRONE_NET_CONNECT)
 		msg = "<span class='brass'><i>Hierophant Network:</i> [name] activated.</span>"
 	else if(msg == DRONE_NET_DISCONNECT)
-		msg = "<span class='brass'><i>Hierophant Network:</i></span> <span class='alloy'>[name] disabled.</span>"
+		msg = "<span class='brass'><i>Hierophant Network:</i></span> [span_alloy("[name] disabled.")]"
 	..()
 
 /mob/living/simple_animal/drone/attackby(obj/item/I, mob/user)

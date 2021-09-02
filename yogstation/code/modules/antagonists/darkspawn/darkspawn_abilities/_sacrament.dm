@@ -22,7 +22,7 @@
 			unpurchased_upgrades += initial(D.name)
 	if(unpurchased_upgrades.len)
 		var/upgrade_string = unpurchased_upgrades.Join(", ")
-		to_chat(usr, "<span class='warning'>You have not purchased all passive upgrades! You are missing:</span> <span class='danger'>[upgrade_string].</span>")
+		to_chat(usr, "[span_warning("You have not purchased all passive upgrades! You are missing:")] [span_danger("[upgrade_string].")]")
 		return
 	if(alert(usr, "The Sacrament is ready! Are you prepared?", name, "Yes", "No") == "No")
 		return

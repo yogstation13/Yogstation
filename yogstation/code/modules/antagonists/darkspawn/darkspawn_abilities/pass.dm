@@ -27,7 +27,7 @@
 	var/list/hands_free = owner.get_empty_held_indexes()
 	if(!darkspawn.upgrades["twin_tendrils"] || hands_free.len < 2)
 		owner.visible_message(span_warning("[owner]'s arm contorts into tentacles!"), "<span class='velvet bold'>ikna</span><br>\
-		<span class='notice'>You transform your arm into umbral tendrils. Examine them to see possible uses.</span>")
+		[span_notice("You transform your arm into umbral tendrils. Examine them to see possible uses.")]")
 		playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
 		var/obj/item/umbral_tendrils/T = new(owner, darkspawn)
 		owner.put_in_hands(T)
@@ -43,7 +43,7 @@
 
 /datum/action/innate/darkspawn/pass/Deactivate()
 	owner.visible_message(span_warning("[owner]'s tentacles transform back!"), "<span class='velvet bold'>haoo</span><br>\
-	<span class='notice'>You dispel the tendrils.</span>")
+	[span_notice("You dispel the tendrils.")]")
 	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
 	for(var/obj/item/umbral_tendrils/T in owner)
 		qdel(T)

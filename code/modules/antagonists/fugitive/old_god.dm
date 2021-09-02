@@ -127,14 +127,14 @@
 	if(!message)
 		return
 	log_directed_talk(user, target, message, LOG_SAY, "[name]")
-	to_chat(user, "<span class='boldnotice'>You transmit to [target]:</span> <span class='notice'>[message]</span>")
-	to_chat(target, "<span class='boldnotice'>You hear something behind you talking...</span> <span class='notice'>[message]</span>")
+	to_chat(user, "[span_boldnotice("You transmit to [target]:")] [span_notice("[message]")]")
+	to_chat(target, "[span_boldnotice("You hear something behind you talking...")] [span_notice("[message]")]")
 	for(var/ded in GLOB.dead_mob_list)
 		if(!isobserver(ded))
 			continue
 		var/follow_rev = FOLLOW_LINK(ded, user)
 		var/follow_whispee = FOLLOW_LINK(ded, target)
-		to_chat(ded, "[follow_rev] <span class='boldnotice'>[user] [name]:</span> <span class='notice'>\"[message]\" to</span> [follow_whispee] <span class='name'>[target]</span>")
+		to_chat(ded, "[follow_rev] [span_boldnotice("[user] [name]:")] [span_notice("\"[message]\" to")] [follow_whispee] [span_name("[target]")]")
 
 /datum/action/innate/yalp_transport
 	name = "Guidance"

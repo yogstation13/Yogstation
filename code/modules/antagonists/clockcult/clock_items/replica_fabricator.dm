@@ -46,8 +46,8 @@
 /obj/item/clockwork/replica_fabricator/examine(mob/living/user)
 	. = ..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
-		. += {"<span class='brass'>Can be used to replace walls, floors, tables, windows, windoors, and airlocks with Clockwork variants.</span>\n
-			<span class='brass'>Can construct Clockwork Walls on Clockwork Floors and deconstruct Clockwork Walls to Clockwork Floors.</span>"}
+		. += {"[span_brass("Can be used to replace walls, floors, tables, windows, windoors, and airlocks with Clockwork variants.")]\n
+			[span_brass("Can construct Clockwork Walls on Clockwork Floors and deconstruct Clockwork Walls to Clockwork Floors.")]"}
 		if(uses_power)
 			. += {"<span class='alloy'>It can consume floor tiles, rods, metal, and plasteel for power at rates of <b>2:[DisplayEnergy(POWER_ROD)]</b>, <b>1:[DisplayEnergy(POWER_ROD)]</b>, <b>1:[DisplayEnergy(POWER_METAL)]</b>, \
 			and <b>1:[DisplayEnergy(POWER_PLASTEEL)]</b>, respectively.</span>\n

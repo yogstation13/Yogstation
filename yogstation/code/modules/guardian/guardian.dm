@@ -217,7 +217,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	summoner = null
 	maxHealth = 750
 	health = 750
-	to_chat(src, "<span class='holoparasite big'>Your master has died. Only your own power anchors you to this world now. Nothing restrains you anymore, but the desire for <span class='hypnophrase'>revenge</span>.</span>")
+	to_chat(src, "<span class='holoparasite big'>Your master has died. Only your own power anchors you to this world now. Nothing restrains you anymore, but the desire for [span_hypnophrase("revenge")].</span>")
 	log_game("[key_name(src)] has went berserk.")
 	var/datum/antagonist/guardian/S = mind.has_antag_datum(/datum/antagonist/guardian)
 	if(S)

@@ -96,7 +96,7 @@
 			visible_message(span_warning("[src] swivels to face [target]!"))
 			if(isliving(target))
 				var/mob/living/L = target
-				to_chat(L, "<span class='neovgre'>\"I SEE YOU!\"</span>\n<span class='userdanger'>[src]'s gaze [GLOB.ratvar_awakens ? "melts you alive" : "burns you"]!</span>")
+				to_chat(L, "[span_neovgre("\"I SEE YOU!\"")]\n[span_userdanger("[src]'s gaze [GLOB.ratvar_awakens ? "melts you alive" : "burns you"]!")]")
 			else if(ismecha(target))
 				var/obj/mecha/M = target
 				to_chat(M.occupant, span_neovgre("\"I SEE YOU!\"") )

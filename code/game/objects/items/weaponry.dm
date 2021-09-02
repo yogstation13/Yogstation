@@ -164,11 +164,11 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 			new_name = "double-notched claymore"
 			add_atom_colour(rgb(255, 235, 235), ADMIN_COLOUR_PRIORITY)
 		if(3)
-			to_chat(user, "<span class='notice'>You're beginning to</span> <span class='danger'><b>relish</b> the <b>thrill</b> of <b>battle.</b></span>")
+			to_chat(user, "[span_notice("You're beginning to")] <span class='danger'><b>relish</b> the <b>thrill</b> of <b>battle.</b></span>")
 			new_name = "triple-notched claymore"
 			add_atom_colour(rgb(255, 215, 215), ADMIN_COLOUR_PRIORITY)
 		if(4)
-			to_chat(user, "<span class='notice'>You've lost count of</span> <span class='boldannounce'>how many you've killed.</span>")
+			to_chat(user, "[span_notice("You've lost count of")] [span_boldannounce("how many you've killed.")]")
 			new_name = "many-notched claymore"
 			add_atom_colour(rgb(255, 195, 195), ADMIN_COLOUR_PRIORITY)
 		if(5)
@@ -370,7 +370,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	message_syndicate(input, usr)
 	to_chat(usr, span_danger("Message sent. Pray you made the right choice."))
 	usr.log_talk(input, LOG_SAY, tag="Syndicate announcement")
-	deadchat_broadcast(" has messaged the Syndicate using the red phone, \"[input]\" at <span class='name'>[get_area_name(usr, TRUE)]</span>.", span_name("[usr.real_name]"), usr)
+	deadchat_broadcast(" has messaged the Syndicate using the red phone, \"[input]\" at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr)
 
 /obj/item/phone/banana
 	name = "banana phone"
@@ -393,7 +393,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	Clown_announce(input, usr)
 	to_chat(usr, span_danger("Message sent. The Clown Planet will judge your message."))
 	usr.log_talk(input, LOG_SAY, tag="Clown Planet announcement")
-	deadchat_broadcast(" has messaged the Clown Planet using the banana phone, \"[input]\" at <span class='name'>[get_area_name(usr, TRUE)]</span>.", span_name("[usr.real_name]"), usr)
+	deadchat_broadcast(" has messaged the Clown Planet using the banana phone, \"[input]\" at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr)
 
 /obj/item/cane
 	name = "cane"

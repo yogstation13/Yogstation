@@ -79,7 +79,7 @@ a.updated {
 			var/mystocks = 0
 			if (logged_in && (logged_in in S.shareholders))
 				mystocks = S.shareholders[logged_in]
-			dat += "<hr /><div class='stock'><span class='company'>[S.name]</span> <span class='s_company'>([S.short_name])</span>[S.bankrupt ? " <b style='color:red'>BANKRUPT</b>" : null]<br>"
+			dat += "<hr /><div class='stock'>[span_company("[S.name]")] [span_s_company("([S.short_name])")][S.bankrupt ? " <b style='color:red'>BANKRUPT</b>" : null]<br>"
 			if (S.last_unification)
 				dat += "<b>Unified shares</b> [DisplayTimeText(world.time - S.last_unification)] ago.<br>"
 			dat += "<b>Current value per share:</b> [S.current_value] | <a href='?src=[REF(src)];viewhistory=[REF(S)]'>View history</a><br><br>"
@@ -156,7 +156,7 @@ a.updated {
 							break
 			dat += "<td>"
 			if (S.bankrupt)
-				dat += "<span class='linkOff'>+</span> <span class='linkOff'>-</span> "
+				dat += "[span_linkOff("+")] [span_linkOff("-")] "
 			else
 				dat += "<a href='?src=[REF(src)];buyshares=[REF(S)]'>+</a> <a href='?src=[REF(src)];sellshares=[REF(S)]'>-</a> "
 			dat += "<a href='?src=[REF(src)];archive=[REF(S)]' class='[news ? "updated" : "default"]'>(A)</a> <a href='?src=[REF(src)];viewhistory=[REF(S)]'>(H)</a></td>"

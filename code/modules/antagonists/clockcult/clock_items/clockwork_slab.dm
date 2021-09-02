@@ -139,7 +139,7 @@
 //Scripture Recital
 /obj/item/clockwork/slab/attack_self(mob/living/user)
 	if(iscultist(user))
-		to_chat(user, "<span class='heavy_brass'>\"You reek of blood. You've got a lot of nerve to even look at that slab.\"</span>")
+		to_chat(user, "[span_heavy_brass("\"You reek of blood. You've got a lot of nerve to even look at that slab.\"")]")
 		user.visible_message(span_warning("A sizzling sound comes from [user]'s hands!"), span_userdanger("[src] suddenly grows extremely hot in your hands!"))
 		playsound(get_turf(user), 'sound/weapons/sear.ogg', 50, 1)
 		user.dropItemToGround(src)

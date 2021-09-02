@@ -85,7 +85,7 @@
 
 	var/turf/T = get_turf(usr)
 	message_admins(span_notice("[ADMIN_LOOKUPFLW(usr)] detonated themselves at [ADMIN_VERBOSEJMP(T)]!"))
-	log_game("\<span class='notice'>[key_name(usr)] detonated themselves!</span>")
+	log_game("[span_notice("[key_name(usr)] detonated themselves!")]")
 	if(connected_ai)
-		to_chat(connected_ai, "<br><br><span class='alert'>ALERT - Cyborg detonation detected: [usr]</span><br>")
+		to_chat(connected_ai, "<br><br>[span_alert("ALERT - Cyborg detonation detected: [usr]")]<br>")
 	self_destruct()

@@ -132,7 +132,7 @@
 
 	playstyle_string = "<span class='big bold'>You are a laughter \
 	demon,</span><B> a wonderful creature from another realm. You have a single \
-	desire: <span class='clown'>To hug and tickle.</span><BR>\
+	desire: [span_clown("To hug and tickle.")]<BR>\
 	You may use the \"Blood Crawl\" ability near blood pools to travel \
 	through them, appearing and disappearing from the station at will. \
 	Pulling a dead or unconscious mob while you enter a pool will pull \

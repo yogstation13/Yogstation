@@ -88,7 +88,7 @@
 		qdel(src)
 		return TRUE
 	if(istype(I, /obj/item/clockwork/slab))
-		to_chat(user, "<span class='heavy_brass'>\"I don't think you want to drop your slab into that.\"\n\"If you really want to, try throwing it.\"</span>")
+		to_chat(user, "[span_heavy_brass("\"I don't think you want to drop your slab into that.\"\n\"If you really want to, try throwing it.\"")]")
 		return TRUE
 	if(uses && user.dropItemToGround(I))
 		user.visible_message(span_warning("[user] drops [I] into [src]!"), span_danger("You drop [I] into [src]!"))

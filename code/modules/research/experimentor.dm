@@ -518,7 +518,7 @@
 		playsound(src, 'sound/effects/supermatter.ogg', 50, 3, -1)
 		var/obj/item/relic/R = loaded_item
 		R.reveal()
-		investigate_log("Experimentor has revealed a relic with <span class='danger'>[R.realProc]</span> effect.", INVESTIGATE_EXPERIMENTOR)
+		investigate_log("Experimentor has revealed a relic with [span_danger("[R.realProc]")] effect.", INVESTIGATE_EXPERIMENTOR)
 		ejectItem()
 
 	var/badThingCoeffIfSuccess = (exp == FAIL) ? 0 : badThingCoeff

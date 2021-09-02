@@ -28,8 +28,8 @@
 		return
 
 	if(charging)
-		. += {"<span class='notice'>\The [src] contains:</span>
-		<span class='notice'>- \A [charging].</span>"}
+		. += {"[span_notice("\The [src] contains:")]
+		[span_notice("- \A [charging].")]"}
 
 	if(!(stat & (NOPOWER|BROKEN)))
 		. += "<span class='notice'>The status display reads:<span>"

@@ -55,19 +55,19 @@
 	if(awakened)
 		switch(bloodthirst)
 			if(HIS_GRACE_SATIATED to HIS_GRACE_PECKISH)
-				. += "<span class='his_grace'>[src] isn't very hungry. Not yet.</span>"
+				. += "[span_his_grace("[src] isn't very hungry. Not yet.")]"
 			if(HIS_GRACE_PECKISH to HIS_GRACE_HUNGRY)
-				. += "<span class='his_grace'>[src] would like a snack.</span>"
+				. += "[span_his_grace("[src] would like a snack.")]"
 			if(HIS_GRACE_HUNGRY to HIS_GRACE_FAMISHED)
-				. += "<span class='his_grace'>[src] is quite hungry now.</span>"
+				. += "[span_his_grace("[src] is quite hungry now.")]"
 			if(HIS_GRACE_FAMISHED to HIS_GRACE_STARVING)
-				. += "<span class='his_grace'>[src] is openly salivating at the sight of you. Be careful.</span>"
+				. += "[span_his_grace("[src] is openly salivating at the sight of you. Be careful.")]"
 			if(HIS_GRACE_STARVING to HIS_GRACE_CONSUME_OWNER)
 				. += "<span class='his_grace bold'>You walk a fine line. [src] is very close to devouring you.</span>"
 			if(HIS_GRACE_CONSUME_OWNER to HIS_GRACE_FALL_ASLEEP)
 				. += "<span class='his_grace bold'>[src] is shaking violently and staring directly at you.</span>"
 	else
-		. += "<span class='his_grace'>[src] is latched closed.</span>"
+		. += "[span_his_grace("[src] is latched closed.")]"
 
 /obj/item/his_grace/relaymove(mob/living/user) //Allows changelings, etc. to climb out of Him after they revive, provided He isn't active
 	if(!awakened)
@@ -125,7 +125,7 @@
 	if(awakened)
 		return
 	awakened = TRUE
-	user.visible_message(span_boldwarning("[src] begins to rattle. He thirsts."), "<span class='his_grace'>You flick [src]'s latch up. You hope this is a good idea.</span>")
+	user.visible_message(span_boldwarning("[src] begins to rattle. He thirsts."), "[span_his_grace("You flick [src]'s latch up. You hope this is a good idea.")]")
 	name = "His Grace"
 	desc = "A bloodthirsty artifact created by a profane rite."
 	gender = MALE
@@ -228,10 +228,10 @@
 				[force_bonus < 5 ? " His power grows.":""]</span>")
 				force_bonus = max(force_bonus, 5)
 			if(prev_bloodthirst >= HIS_GRACE_FAMISHED)
-				master.visible_message(span_warning("[src] is now only somewhat hungry."), "<span class='his_grace'>[src]'s hunger recedes a little...</span>")
+				master.visible_message(span_warning("[src] is now only somewhat hungry."), "[span_his_grace("[src]'s hunger recedes a little...")]")
 		if(HIS_GRACE_PECKISH to HIS_GRACE_HUNGRY)
 			if(HIS_GRACE_PECKISH > prev_bloodthirst)
-				master.visible_message(span_warning("[src] is feeling snackish."), "<span class='his_grace'>[src] begins to hunger.</span>")
+				master.visible_message(span_warning("[src] is feeling snackish."), "[span_his_grace("[src] begins to hunger.")]")
 			if(prev_bloodthirst >= HIS_GRACE_HUNGRY)
 				master.visible_message(span_warning("[src] is now only a little peckish."), "<span class='his_grace big'>[src]'s hunger recedes somewhat...</span>")
 		if(HIS_GRACE_SATIATED to HIS_GRACE_PECKISH)

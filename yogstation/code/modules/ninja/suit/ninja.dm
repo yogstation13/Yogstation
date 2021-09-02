@@ -61,7 +61,7 @@
 		return ..()
 
 	if(!istype(H.wear_mask, /obj/item/clothing/mask/gas/space_ninja))
-		to_chat(H, "<span class='userdanger'>ERROR</span>: 10453 UNABLE TO LOCATE FACE MASK\nABORTING...")
+		to_chat(H, "[span_userdanger("ERROR")]: 10453 UNABLE TO LOCATE FACE MASK\nABORTING...")
 		return FALSE
 
 	.=..()

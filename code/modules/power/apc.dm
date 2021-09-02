@@ -706,8 +706,8 @@
 			if(!do_after(user, 70, target = src))
 				return
 			user.visible_message(span_warning("[user] installs [W] in [src]!"), \
-			"<span class='alloy'>Replicant alloy rapidly covers the APC's innards, replacing the machinery.</span><br>\
-			<span class='brass'>This APC will now passively provide power for the cult!</span>")
+			"[span_alloy("Replicant alloy rapidly covers the APC's innards, replacing the machinery.")]<br>\
+			[span_brass("This APC will now passively provide power for the cult!")]")
 			playsound(user, 'sound/machines/clockcult/integration_cog_install.ogg', 50, TRUE)
 			user.transferItemToLoc(W, src)
 			integration_cog = W

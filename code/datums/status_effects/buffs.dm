@@ -101,7 +101,7 @@
 			owner.Paralyze(stuns_blocked)
 			message_to_owner = span_boldwarning("The weight of the Vanguard's protection crashes down upon you!")
 			if(stuns_blocked >= 300)
-				message_to_owner += "\n<span class='userdanger'>You faint from the exertion!</span>"
+				message_to_owner += "\n[span_userdanger("You faint from the exertion!")]"
 				stuns_blocked *= 2
 				owner.Unconscious(stuns_blocked)
 		else

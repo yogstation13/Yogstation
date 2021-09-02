@@ -119,7 +119,7 @@
 				sentmsg = oocmsg_toadmins // Get the admin one
 			else
 				sentmsg = oocmsg
-			sentmsg = "<span class='prefix'>RELAY: [input["source"]]</span> " + sentmsg
+			sentmsg = "[span_prefix("RELAY: [input["source"]]")] " + sentmsg
 			//no pinging across servers, thats intentional
 			to_chat(C,sentmsg)
 

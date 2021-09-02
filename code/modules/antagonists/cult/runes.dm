@@ -229,7 +229,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		if(is_clock)
 			L.visible_message(span_warning("[L]'s eyes glow a defiant yellow!"), \
 			"<span class='cultlarge'>\"Stop resisting. You <i>will</i> be mi-\"</span>\n\
-			<span class='large_brass'>\"Give up and you will feel pain unlike anything you've ever felt!\"</span>")
+			[span_large_brass("\"Give up and you will feel pain unlike anything you've ever felt!\"")]")
 			L.Paralyze(80)
 		else if(is_convertable)
 			do_convert(L, invokers)

@@ -14,12 +14,12 @@
 		to_chat(H, span_warning("You can't speak!"))
 		return
 	owner.visible_message(span_warning("[owner]'s sigils flare as they inhale..."), "<span class='velvet bold'>dawn kqn okjc...</span><br>\
-	<span class='notice'>You take a deep breath...</span>")
+	[span_notice("You take a deep breath...")]")
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
 	if(!do_after(owner, 10, target = owner))
 		return
 	owner.visible_message(span_boldwarning("[owner] lets out a chilling cry!"), "<span class='velvet bold'>...wjz oanra</span><br>\
-	<span class='notice'>You veil the minds of everyone nearby.</span>")
+	[span_notice("You veil the minds of everyone nearby.")]")
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
 	for(var/mob/living/L in view(3, owner))
 		if(L == owner)

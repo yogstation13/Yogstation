@@ -167,7 +167,7 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 	var/z_level = console_turf.z
 	SScommunications.nonsilicon_message_cooldown = world.time + 300
 	var/mob/living/user = client.mob
-	deadchat_broadcast(" made a priority announcement from <span class='name'>[get_area_name(user, TRUE)]</span>.", span_name("[user.real_name]"), user)
+	deadchat_broadcast(" made a priority announcement from [span_name("[get_area_name(user, TRUE)]")].", span_name("[user.real_name]"), user)
 	var/sound/sound1 = sound('sound/misc/announce.ogg')
 	var/sound/sound2 = sound(snd, channel = CHANNEL_VOICE_ANNOUNCE, volume = 70)
 	do_announce_sound(sound1, sound2, 15, z_level)

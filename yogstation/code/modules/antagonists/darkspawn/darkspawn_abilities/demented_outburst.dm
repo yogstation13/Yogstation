@@ -11,7 +11,7 @@
 /datum/action/innate/darkspawn/demented_outburst/Activate()
 	in_use = TRUE
 	owner.visible_message(span_boldwarning("[owner] begins to growl as their chitin hardens..."), "<span class='velvet bold'>cap...</span><br>\
-	<span class='danger'>You begin harnessing your power...</span>")
+	[span_danger("You begin harnessing your power...")]")
 	playsound(owner, 'yogstation/sound/magic/demented_outburst_charge.ogg', 50, 0)
 	addtimer(CALLBACK(src, .proc/outburst, owner), 50)
 	addtimer(CALLBACK(src, .proc/reset), 50)
@@ -27,7 +27,7 @@
 	if(!owner || owner.stat)
 		return
 	owner.visible_message(span_userdanger("[owner] lets out a deafening scream!"), "<span class='velvet bold italics'>WSWU!</span><br>\
-	<span class='danger'>You let out a deafening outburst!</span>")
+	[span_danger("You let out a deafening outburst!")]")
 	playsound(owner, 'yogstation/sound/magic/demented_outburst_scream.ogg', 75, 0)
 	var/list/thrown_atoms = list()
 	for(var/turf/T in view(5, owner))

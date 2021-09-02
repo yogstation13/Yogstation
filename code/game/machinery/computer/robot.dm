@@ -83,9 +83,9 @@
 				if(can_control(usr, R) && !..())
 					var/turf/T = get_turf(R)
 					message_admins(span_notice("[ADMIN_LOOKUPFLW(usr)] detonated [key_name_admin(R, R.client)] at [ADMIN_VERBOSEJMP(T)]!"))
-					log_game("\<span class='notice'>[key_name(usr)] detonated [key_name(R)]!</span>")
+					log_game("[span_notice("[key_name(usr)] detonated [key_name(R)]!")]")
 					if(R.connected_ai)
-						to_chat(R.connected_ai, "<br><br><span class='alert'>ALERT - Cyborg detonation detected: [R.name]</span><br>")
+						to_chat(R.connected_ai, "<br><br>[span_alert("ALERT - Cyborg detonation detected: [R.name]")]<br>")
 					R.self_destruct()
 			else
 				to_chat(usr, span_danger("Access Denied."))

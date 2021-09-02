@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/space/space_ninja/proc/toggle_on_off()
 	if(s_busy)
-		to_chat(loc, "<span class='userdanger'>ERROR</span>: You cannot use this function at this time.")
+		to_chat(loc, "[span_userdanger("ERROR")]: You cannot use this function at this time.")
 		return FALSE
 	if(s_initialized)
 		deinitialize()
@@ -34,7 +34,7 @@
 		return
 	lockIcons(U)//Check for icons.
 	U.regenerate_icons()
-	to_chat(U, "<span class='notice'>Linking neural-net interface...\nPattern</span>\green <B>GREEN</B><span class='notice'>, continuing operation.</span>")
+	to_chat(U, "[span_notice("Linking neural-net interface...\nPattern")]\green <B>GREEN</B>[span_notice(", continuing operation.")]")
 	addtimer(CALLBACK(src, .proc/ninitialize_five, delay, U), delay)
 
 /obj/item/clothing/suit/space/space_ninja/proc/ninitialize_five(delay, mob/living/carbon/human/U)
@@ -79,11 +79,11 @@
 	addtimer(CALLBACK(src, .proc/deinitialize_six, delay, U), delay)
 
 /obj/item/clothing/suit/space/space_ninja/proc/deinitialize_six(delay, mob/living/carbon/human/U)
-	to_chat(U, "<span class='notice'>Disconnecting neural-net interface...</span>\green<B>Success</B><span class='notice'>.</span>")
+	to_chat(U, "[span_notice("Disconnecting neural-net interface...")]\green<B>Success</B>[span_notice(".")]")
 	addtimer(CALLBACK(src, .proc/deinitialize_seven, delay, U), delay)
 
 /obj/item/clothing/suit/space/space_ninja/proc/deinitialize_seven(delay, mob/living/carbon/human/U)
-	to_chat(U, "<span class='notice'>Disengaging neural-net interface...</span>\green<B>Success</B><span class='notice'>.</span>")
+	to_chat(U, "[span_notice("Disengaging neural-net interface...")]\green<B>Success</B>[span_notice(".")]")
 	addtimer(CALLBACK(src, .proc/deinitialize_eight, delay, U), delay)
 
 /obj/item/clothing/suit/space/space_ninja/proc/deinitialize_eight(delay, mob/living/carbon/human/U)

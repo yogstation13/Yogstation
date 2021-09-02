@@ -241,10 +241,10 @@
 	to_chat(usr, span_warning("However, the primitive instincts gained through this training prevent you from using guns, stun weapons, or armor."))
 	to_chat(usr, "<span class='notice'><b>All of your unarmed attacks deal increased brute damage with a small amount of armor piercing</b></span>")
 	
-	to_chat(usr, "<span class='notice'>Disarm Intent</span>: Headbutt your enemy, Deals minor stamina and brute damage, as well as causing eye blurriness. Prevents the target from using ranged weapons effectively for a few seconds if they are not wearing a helmet.")
+	to_chat(usr, "[span_notice("Disarm Intent")]: Headbutt your enemy, Deals minor stamina and brute damage, as well as causing eye blurriness. Prevents the target from using ranged weapons effectively for a few seconds if they are not wearing a helmet.")
 
-	to_chat(usr, "<span class='notice'>Tail Slap</span>: Disarm Disarm Disarm. High armor piercing attack that causes a short slow followed by a knockdown. Deals heavy stamina damage.")
-	to_chat(usr, "<span class='notice'>Neck Bite</span>: Grab Harm. Target must be prone. Stuns you and your target for a short period, dealing heavy brute damage and bleeding. If the target is not in crit, this attack will heal you.")
+	to_chat(usr, "[span_notice("Tail Slap")]: Disarm Disarm Disarm. High armor piercing attack that causes a short slow followed by a knockdown. Deals heavy stamina damage.")
+	to_chat(usr, "[span_notice("Neck Bite")]: Grab Harm. Target must be prone. Stuns you and your target for a short period, dealing heavy brute damage and bleeding. If the target is not in crit, this attack will heal you.")
 	to_chat(usr, "<spna class='notice'>Leap</span>: Action: Jump at a target, with a successful hit stunning them and preventing you from moving for a few seconds.")
 
 /datum/martial_art/flyingfang/teach(mob/living/carbon/human/H,make_temporary=0)

@@ -221,7 +221,7 @@
 			if (records.len && records.len > 0)
 				dat += "<a href='byond://?src=[REF(src)];menu=2'>View Records ([records.len])</a><br>"
 			else
-				dat += "<span class='linkOff'>View Records (0)</span><br>"
+				dat += "[span_linkOff("View Records (0)")]<br>"
 			if (diskette)
 				dat += "<a href='byond://?src=[REF(src)];disk=eject'>Eject Disk</a><br>"
 
@@ -252,7 +252,7 @@
 				else
 					dat += "<font class='bad'>Unable to locate Health Implant.</font><br /><br />"
 
-				dat += "<b>Unique Identifier:</b><br /><span class='highlight'>[active_record.fields["UI"]]</span><br>"
+				dat += "<b>Unique Identifier:</b><br />[span_highlight("[active_record.fields["UI"]]")]<br>"
 				dat += "<b>Structural Enzymes:</b><br /><span class='highlight'>"
 				for(var/key in active_record.fields["SE"])
 					if(key != RACEMUT)

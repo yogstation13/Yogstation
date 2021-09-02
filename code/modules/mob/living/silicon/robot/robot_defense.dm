@@ -115,8 +115,8 @@
 	emag_cooldown = world.time + 100
 
 	if(is_servant_of_ratvar(src))
-		to_chat(src, "<span class='nezbere'>\"[text2ratvar("You will serve Engine above all else")]!\"</span>\n\
-		<span class='danger'>ALERT: Subversion attempt denied.</span>")
+		to_chat(src, "[span_nezbere("\"[text2ratvar("You will serve Engine above all else")]!\"")]\n\
+		[span_danger("ALERT: Subversion attempt denied.")]")
 		log_game("[key_name(user)] attempted to emag cyborg [key_name(src)], but they serve only Ratvar.")
 		return
 

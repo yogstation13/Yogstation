@@ -271,7 +271,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 			O.team.objectives -= O
 			qdel(O)
 			for(var/datum/mind/M in O.team.members)
-				to_chat(M.current, "<BR><span class='userdanger'>Your target is no longer within reach. Objective removed!</span>")
+				to_chat(M.current, "<BR>[span_userdanger("Your target is no longer within reach. Objective removed!")]")
 				M.announce_objectives()
 		else if(O.target == mob_occupant.mind)
 			O.target = null
@@ -285,7 +285,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 			for(var/M in owners)
 				var/datum/mind/own = M
-				to_chat(own.current, "<BR><span class='userdanger'>You get the feeling your target is no longer within reach. Time for Plan [pick("A","B","C","D","X","Y","Z")]. Objectives updated!</span>")
+				to_chat(own.current, "<BR>[span_userdanger("You get the feeling your target is no longer within reach. Time for Plan [pick("A","B","C","D","X","Y","Z")]. Objectives updated!")]")
 				O.owner.announce_objectives()
 
 // This function can not be undone; do not call this unless you are sure

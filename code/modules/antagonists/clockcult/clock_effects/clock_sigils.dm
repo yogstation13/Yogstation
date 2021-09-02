@@ -78,7 +78,7 @@
 		if(!is_servant_of_ratvar(M) && M != L)
 			M.flash_act()
 	if(iscultist(L))
-		to_chat(L, "<span class='heavy_brass'>\"Watch your step, wretch.\"</span>")
+		to_chat(L, "[span_heavy_brass("\"Watch your step, wretch.\"")]")
 		L.adjustBruteLoss(10)
 		L.Paralyze(80, FALSE)
 	L.visible_message(span_warning("[src] appears around [L] in a burst of light!"), \
@@ -138,7 +138,7 @@
 		visible_message(span_warning("[src] slowly stops glowing!"))
 		return
 	if(is_eligible_servant(L))
-		to_chat(L, "<span class='heavy_brass'>\"You belong to me now.\"</span>")
+		to_chat(L, "[span_heavy_brass("\"You belong to me now.\"")]")
 		if(!GLOB.application_scripture_unlocked)
 			GLOB.application_scripture_unlocked = TRUE
 			hierophant_message("<span class='large_brass bold'>With the conversion of a new servant the Ark's power grows. Application scriptures are now available.</span>")
@@ -151,16 +151,16 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.silent += 5
-	var/message = "[sigil_name] in [get_area(src)] <span class='sevtug'>[is_servant_of_ratvar(L) ? "successfully converted" : "failed to convert"]</span>"
+	var/message = "[sigil_name] in [get_area(src)] [span_sevtug("[is_servant_of_ratvar(L) ? "successfully converted" : "failed to convert"]")]"
 	for(var/M in GLOB.mob_list)
 		if(isobserver(M))
 			var/link = FOLLOW_LINK(M, L)
-			to_chat(M,  "[link] <span class='heavy_brass'>[message] [L.real_name]!</span>")
+			to_chat(M,  "[link] [span_heavy_brass("[message] [L.real_name]!")]")
 		else if(is_servant_of_ratvar(M))
 			if(M == L)
-				to_chat(M, "<span class='heavy_brass'>[message] you!</span>")
+				to_chat(M, "[span_heavy_brass("[message] you!")]")
 			else
-				to_chat(M, "<span class='heavy_brass'>[message] [L.real_name]!</span>")
+				to_chat(M, "[span_heavy_brass("[message] [L.real_name]!")]")
 	animate(src, color = oldcolor, time = 20, flags = ANIMATION_END_NOW)
 	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 20)
 	visible_message(span_warning("[src] slowly stops glowing!"))
@@ -278,7 +278,7 @@
 	if(is_servant_of_ratvar(user) || isobserver(user))
 		. += "<span class='[GLOB.clockwork_vitality ? "inathneq_small":"alloy"]'>It has access to <b>[GLOB.ratvar_awakens ? "INFINITE":GLOB.clockwork_vitality]</b> units of vitality.</span>"
 		if(GLOB.ratvar_awakens)
-			. += "<span class='inathneq_small'>It can revive Servants at no cost!</span>"
+			. += "[span_inathneq_small("It can revive Servants at no cost!")]"
 		else
 			. += "<span class='inathneq_small'>It can revive Servants at a cost of <b>[revive_cost]</b> vitality.</span>"
 
@@ -304,7 +304,7 @@
 				animate(V, alpha = 0, transform = matrix()*2, time = 8)
 				playsound(L, 'sound/magic/wandodeath.ogg', 50, 1)
 				L.visible_message(span_warning("[L] collapses in on [L.p_them()]self as [src] flares bright blue!"))
-				to_chat(L, "<span class='inathneq_large'>\"[text2ratvar("Your life will not be wasted.")]\"</span>")
+				to_chat(L, "[span_inathneq_large("\"[text2ratvar("Your life will not be wasted.")]\"")]")
 				for(var/obj/item/W in L)
 					if(!L.dropItemToGround(W))
 						qdel(W)

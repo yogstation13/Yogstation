@@ -221,11 +221,11 @@ Difficulty: Insanely Hard
 			//	melee_damage_type = BURN // meh too lazy
 
 		else if(prob(5)) //earthquake spell
-			visible_message("<B><span class='danger'>\The [src]' eyes begin to glow ominously as dust and debris in the area is kicked up in a light breeze!!</span></B>")
+			visible_message("<B>[span_danger("\The [src]' eyes begin to glow ominously as dust and debris in the area is kicked up in a light breeze!!")]</B>")
 			stop_automated_movement = TRUE
 			if(do_after(src, 6 SECONDS, src))
 				var/health_holder = getBruteLoss()
-				visible_message("<B><span class='cult'>\The [src] raises its fore-hooves and stomps them into the ground with incredible force!!</span></B>")
+				visible_message("<B>[span_cult("\The [src] raises its fore-hooves and stomps them into the ground with incredible force!!")]</B>")
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 2, 2, 3, 6)
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 1, 4, 4, 6)
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 3, 4, 3, 6)

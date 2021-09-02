@@ -62,5 +62,5 @@
 	var/static/list/yogemojis = icon_states(icon('yogstation/icons/emoji.dmi'))
 	var/static/list/tgemojis = icon_states(icon('icons/emoji.dmi')) - yogemojis // If we have emojis of the same name, they override the TG ones. (https://github.com/yogstation13/Yogstation/pull/5788)
 	
-	to_chat(src,"<b><span class='notice'>List of Emojis:</span></b>")
+	to_chat(src,"<b>[span_notice("List of Emojis:")]</b>")
 	to_chat(src,span_notice("[jointext(sortList(yogemojis + tgemojis),", ")]"))

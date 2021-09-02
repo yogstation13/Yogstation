@@ -239,7 +239,7 @@
 		if(!user.temporarilyRemoveItemFromInventory(c))
 			return
 		credits += c.value
-		visible_message("<span class='info'><span class='name'>[user]</span> inserts [c.value] credits into [src].</span>")
+		visible_message("<span class='info'>[span_name("[user]")] inserts [c.value] credits into [src].</span>")
 		qdel(c)
 		return
 	else if(istype(I, /obj/item/holochip))

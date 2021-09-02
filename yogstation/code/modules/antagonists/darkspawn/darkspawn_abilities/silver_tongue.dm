@@ -24,7 +24,7 @@
 		return
 	owner.visible_message(span_warning("[owner] briefly touches [src]'s screen, and the keys begin to move by themselves!"), \
 	"<span class='velvet bold'>[pick("Oknnu. Pda ywlpwej swo hkccaz ej.", "Pda aiancajyu eo kran. Oknnu bkn swopejc ukqn peia.", "We swo knzanaz xu Hws Psk. Whh ckkz jks.")]</span><br>\
-	<span class='velvet'>You begin transmitting a recall message to Central Command...</span>")
+	[span_velvet("You begin transmitting a recall message to Central Command...")]")
 	play_recall_sounds(C)
 	if(!do_after(owner, 80, target = C))
 		in_use = FALSE

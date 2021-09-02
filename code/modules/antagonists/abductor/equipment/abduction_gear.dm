@@ -358,7 +358,7 @@
 		if(QDELETED(L) || L.stat == DEAD)
 			return
 
-		to_chat(L, "<span class='italics'>You hear a voice in your head saying: </span><span class='abductor'>[message]</span>")
+		to_chat(L, "[span_italics("You hear a voice in your head saying: ")][span_abductor("[message]")]")
 		to_chat(user, span_notice("You send the message to your target."))
 		log_directed_talk(user, L, message, LOG_SAY, "abductor whisper")
 
@@ -577,7 +577,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 			else
 				helptext = span_warning("Subject unsuitable for experiments.")
 
-	to_chat(user, "<span class='notice'>Probing result:</span>[species]")
+	to_chat(user, "[span_notice("Probing result:")][species]")
 	to_chat(user, "[helptext]")
 
 /obj/item/restraints/handcuffs/energy

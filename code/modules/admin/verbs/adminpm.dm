@@ -181,7 +181,7 @@
 	var/keywordparsedmsg = keywords_lookup(msg)
 
 	if(irc)
-		to_chat(src, "<span class='notice'>PM to-<b>Admins</b>: <span class='linkify'>[rawmsg]</span></span>", confidential=TRUE)
+		to_chat(src, "<span class='notice'>PM to-<b>Admins</b>: [span_linkify("[rawmsg]")]</span>", confidential=TRUE)
 		var/datum/admin_help/AH = admin_ticket_log(src, keywordparsedmsg) // yogs - Yog Tickets
 		ircreplyamount--
 		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", rawmsg)
@@ -190,11 +190,11 @@
 			if(holder)
 				to_chat(recipient,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = "<span class='danger'>Admin PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>",
+					html = "<span class='danger'>Admin PM from-<b>[key_name(src, recipient, 1)]</b>: [span_linkify("[keywordparsedmsg]")]</span>",
 					confidential = TRUE)
 				to_chat(src,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = "<span class='notice'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>",
+					html = "<span class='notice'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: [span_linkify("[keywordparsedmsg]")]</span>",
 					confidential = TRUE)
 
 				//omg this is dumb, just fill in both their tickets
@@ -212,8 +212,8 @@
 					to_chat(src, span_notice("Ticket closed, please make a new one before trying to contact admins!"), confidential=TRUE)
 					return
 				admin_ticket_log(src, msg, FALSE)
-				to_chat(recipient, "<span class='danger'>Reply PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>", confidential=TRUE)
-				to_chat(src, "<span class='notice'>-- [key_name(src, null, 0)] -> <b>Admins</b>: <span class='linkify'>[msg]</span></span>", confidential=TRUE)
+				to_chat(recipient, "<span class='danger'>Reply PM from-<b>[key_name(src, recipient, 1)]</b>: [span_linkify("[keywordparsedmsg]")]</span>", confidential=TRUE)
+				to_chat(src, "<span class='notice'>-- [key_name(src, null, 0)] -> <b>Admins</b>: [span_linkify("[msg]")]</span>", confidential=TRUE)
 				//YOGS END
 
 			//play the receiving admin the adminhelp sound (if they have them enabled)
@@ -228,9 +228,9 @@
 					recipient.current_ticket.Administer(src) // yogs - Yog Tickets
 
 				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>", confidential=TRUE)
-				to_chat(recipient, "<span class='adminsay'>Admin PM from-<b>[key_name(src, recipient, 0)]</b>: <span class='linkify'>[msg]</span></span>", confidential=TRUE)
+				to_chat(recipient, "<span class='adminsay'>Admin PM from-<b>[key_name(src, recipient, 0)]</b>: [span_linkify("[msg]")]</span>", confidential=TRUE)
 				to_chat(recipient, "<span class='adminsay'><i>Click on the administrator's name to reply.</i></span>", confidential=TRUE)
-				to_chat(src, "<span class='notice'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[msg]</span></span>", confidential=TRUE)
+				to_chat(src, "<span class='notice'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: [span_linkify("[msg]")]</span>", confidential=TRUE)
 
 				admin_ticket_log(recipient, "PM From [src]: [msg]", FALSE)// yogs - Yog Tickets
 
