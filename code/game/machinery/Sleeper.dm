@@ -182,16 +182,22 @@
 		switch(active_treatment)
 			if(SLEEPER_TEND)
 				C.heal_bodypart_damage(1,1) //this is slow as hell, use the rest of medbay you chumps
-				if(prob(5))
-					to_chat(C, "<span class='notice'>You feel the curious sensation of your numb flesh being tugged at as it is repaired...</span>")
 			if(SLEEPER_ORGANS)
-				var/list/organs = list(ORGAN_SLOT_BRAIN,ORGAN_SLOT_EARS,ORGAN_SLOT_EYES,ORGAN_SLOT_LIVER,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_HEART)
-				for(var/i in 1 to efficiency)
+				var/heal_reps = efficiency * 2
+				var/list/organs = list(ORGAN_SLOT_EARS,ORGAN_SLOT_EYES,ORGAN_SLOT_LIVER,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_HEART)
+				for(var/i in 1 to heal_amt)
 					organs = shuffle(organs)
 					for(var/o in organs)
+						var/healed = FALSE
 						var/obj/item/organ/heal_target = C.getorganslot(o)
 						if(heal_target.damage >= 1)
-							heal_target.applyOrganDamage(-1)
+							var/organ_healing = 0.5
+							if(C.stat == DEAD)
+								organ_healing = 0.05
+							heal_target.applyOrganDamage(-organ_healing)
+							healed = TRUE
+						if(healed)
+							break
 			if(SLEEPER_CHEMPURGE)
 				C.adjustToxLoss(-1)
 				for(var/datum/reagent/R in C.reagents.reagent_list)
