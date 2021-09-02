@@ -1203,8 +1203,8 @@
 			M.visible_message("<span class='boldwarning'>Unfortunately, [M] just can't seem to hold onto [src]!</span>")
 			return
 	M.visible_message("<span class='warning'>[M] begins to [M == usr ? "climb onto" : "be buckled to"] [src]...</span>")
-	if(!do_after(M, 1.5 SECONDS, target = src))
-		M.visible_message("<span class='boldwarning'>[M] was prevented from buckling to [src]!</span>")
+	if(!do_after(usr, 1.5 SECONDS, target = M))
+		visible_message("<span class='boldwarning'>[M] was prevented from buckling to [src]!</span>")
 		return
 
 	if(iscarbon(M) && !M.incapacitated() && !riding_datum.equip_buckle_inhands(M, 1))
