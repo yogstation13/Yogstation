@@ -903,6 +903,23 @@
 	set name = "Create or modify area"
 	create_area(usr)
 
+/datum/admins/proc/observe_follow(atom/movable/AM)
+	if(!isobserver(owner.mob) && !check_rights(R_ADMIN))
+		return
+	var/can_ghost = TRUE
+	if(!isobserver(owner.mob))
+		can_ghost = owner.admin_ghost()
+
+	if(!can_ghost)
+		return
+	var/mob/dead/observer/A = owner.mob
+	var/mob/living/silicon/ai/I = AM //yogs start - adminfollow now follows AI eyes instead of the core
+	if(istype(I) && I.eyeobj)
+		A.ManualFollow(I.eyeobj)
+	else
+		A.ManualFollow(AM) //yogs stop - adminfollow now follows AI eyes instead of the core
+
+
 //
 //
 //ALL DONE
@@ -973,36 +990,3 @@
 				"Admin login: [key_name(src)]")
 		if(string)
 			message_admins("[string]")
-
-/client/proc/cmd_admin_man_up(mob/M in GLOB.mob_list)
-	set category = "Misc"
-	set name = "Man Up"
-
-	if(!M)
-		return
-	if(!check_rights(R_FUN))
-		return
-
-	to_chat(M, "<span class='warning bold reallybig'>Man up, and deal with it.</span><br><span class='warning big'>Move on.</span>")
-	M.playsound_local(M, 'sound/misc/manup.ogg', 50, FALSE, pressure_affected = FALSE)
-
-	log_admin("Man up: [key_name(usr)] told [key_name(M)] to man up")
-	var/message = "<span class='adminnotice'>[key_name_admin(usr)] told [key_name_admin(M)] to man up.</span>"
-	message_admins(message)
-	admin_ticket_log(M, message)
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Man Up")
-
-/client/proc/cmd_admin_man_up_global()
-	set category = "Misc"
-	set name = "Man Up Global"
-
-	if(!check_rights(R_FUN))
-		return
-
-	to_chat(world, "<span class='warning bold reallybig'>Man up, and deal with it.</span><br><span class='warning big'>Move on.</span>")
-	for(var/mob/M in GLOB.player_list)
-		M.playsound_local(M, 'sound/misc/manup.ogg', 50, FALSE, pressure_affected = FALSE)
-
-	log_admin("Man up global: [key_name(usr)] told everybody to man up")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] told everybody to man up.</span>")
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Man Up Global")

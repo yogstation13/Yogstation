@@ -123,7 +123,7 @@ SUBSYSTEM_DEF(ticker)
 		GLOB.syndicate_code_phrase	= generate_code_phrase(return_list=TRUE)
 
 		var/codewords = jointext(GLOB.syndicate_code_phrase, "|")
-		var/regex/codeword_match = new("([codewords])", "ig")
+		var/regex/codeword_match = new("([codewords])(?!\[^<\]*>)", "ig")
 
 		GLOB.syndicate_code_phrase_regex = codeword_match
 
@@ -131,7 +131,7 @@ SUBSYSTEM_DEF(ticker)
 		GLOB.syndicate_code_response = generate_code_phrase(return_list=TRUE)
 
 		var/codewords = jointext(GLOB.syndicate_code_response, "|")
-		var/regex/codeword_match = new("([codewords])", "ig")
+		var/regex/codeword_match = new("([codewords])(?!\[^<\]*>)", "ig")
 
 		GLOB.syndicate_code_response_regex = codeword_match
 
@@ -143,6 +143,11 @@ SUBSYSTEM_DEF(ticker)
 	return ..()
 
 /datum/controller/subsystem/ticker/fire()
+	if(world.time > 30 MINUTES && !GLOB.cryopods_enabled)
+		GLOB.cryopods_enabled = TRUE
+		for(var/obj/machinery/cryopod/pod as anything in GLOB.cryopods)
+			pod.PowerOn()
+
 	switch(current_state)
 		if(GAME_STATE_STARTUP)
 			if(Master.initializations_finished_with_no_players_logged_in)

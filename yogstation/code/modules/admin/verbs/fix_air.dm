@@ -30,16 +30,16 @@
 	if(!check_rights(R_ADMIN))
 		return
 
+	if(Master.current_runlevel < RUNLEVEL_GAME)
+		to_chat(src, "This command may not be used before the game has started!", confidential=TRUE)
+		message_admins("[src] has attempted to fix air before the game has started.")
+		return
+
 	if(alert("Do you want to reset air on the entire z level?", "Fix Air- Z level", "No", "Yes") != "Yes")
 		return
 
 	message_admins("[key_name_admin(usr)] fixed air on zlevel [mob.z]")
 	log_game("[key_name_admin(usr)] fixed air on zlevel [mob.z]")
-
-	var/atmos_enabled = SSair.can_fire
-	if(atmos_enabled)
-		message_admins("Disabling atmospherics to fix air on zlevel")
-		SSair.can_fire = FALSE
 
 	var/z = mob.z
 	for(var/x=1, x<=world.maxx, x++)
@@ -51,8 +51,3 @@
 			if(!istype(T, /turf/open/space) && T.is_openturf && !T.blocks_air)
 				T.air?.parse_gas_string(T.initial_gas_mix)
 				T.update_visuals()
-			CHECK_TICK
-
-	if(atmos_enabled)
-		message_admins("Re-enabling atmospherics, air on zlevel fixed")
-		SSair.can_fire = atmos_enabled

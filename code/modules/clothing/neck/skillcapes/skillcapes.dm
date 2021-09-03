@@ -164,6 +164,16 @@
 	icon_state = "det-trimmed"
 	item_state = "det-trimmed"
 
+/obj/item/clothing/neck/skillcape/physician
+	name = "cape of the brig physician"
+	icon_state = "brigphys-skillcape"
+	item_state = "brigphys-skillcape"
+
+/obj/item/clothing/neck/skillcape/trimmed/physician
+	name = "cape of the grand brig physician"
+	icon_state = "brigphys-trimmed"
+	item_state = "brigphys-trimmed"
+
 /obj/item/clothing/neck/skillcape/signaltech
 	name = "cape of the signal technician"
 	icon_state = "signal-skillcape"
@@ -280,7 +290,7 @@
 	item_state = "minemed-skillcape"
 
 /obj/item/clothing/neck/skillcape/trimmed/minemedic
-	name = "cape of the grand minic medic"
+	name = "cape of the grand mining medic"
 	icon_state = "minemed-trimmed"
 	item_state = "minemed-trimmed"
 

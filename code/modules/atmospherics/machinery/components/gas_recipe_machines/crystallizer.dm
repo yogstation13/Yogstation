@@ -136,6 +136,11 @@
 
 ///Calculation for the heat of the various gas mixes and controls the quality of the item
 /obj/machinery/atmospherics/components/binary/crystallizer/proc/heat_calculations()
+	if(selected_recipe.reaction_type == "endothermic")
+		internal.set_temperature(max(internal.return_temperature() - (selected_recipe.energy_release / internal.heat_capacity()), TCMB))
+	else if(selected_recipe.reaction_type == "exothermic")
+		internal.set_temperature(max(internal.return_temperature() + (selected_recipe.energy_release / internal.heat_capacity()), TCMB))
+
 	var/datum/gas_mixture/cooling_port = airs[1]
 	if(cooling_port.total_moles() > MINIMUM_MOLE_COUNT)
 		if(internal.total_moles() > 0)
@@ -154,11 +159,6 @@
 	var/median_temperature = (selected_recipe.max_temp - selected_recipe.min_temp) * 0.5
 	if(internal.return_temperature() >= (median_temperature * MIN_DEVIATION_RATE) && internal.return_temperature() <= (median_temperature * MAX_DEVIATION_RATE))
 		quality_loss = max(quality_loss - 5.5, 100)
-
-	if(selected_recipe.reaction_type == "endothermic")
-		internal.set_temperature(max(internal.return_temperature() - (selected_recipe.energy_release / internal.heat_capacity()), TCMB))
-	else if(selected_recipe.reaction_type == "exothermic")
-		internal.set_temperature(max(internal.return_temperature() + (selected_recipe.energy_release / internal.heat_capacity()), TCMB))
 
 ///Calculate the total moles needed for the recipe
 /obj/machinery/atmospherics/components/binary/crystallizer/proc/moles_calculations()

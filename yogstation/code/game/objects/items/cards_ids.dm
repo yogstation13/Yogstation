@@ -7,7 +7,7 @@
 	ID_fluff()
 
 /obj/item/card/id/proc/ID_fluff()
-	var/job = assignment
+	var/job = originalassignment
 	var/list/idfluff = list(
 	"Assistant" = list("civillian","green"),
 	"Captain" = list("captain","gold"),
@@ -45,6 +45,7 @@
 	"Warden" = list("security","black"),
 	"Security Officer" = list("security","red"),
 	"Detective" = list("security","brown"),
+	"Brig Physician" = list("security","blue"),
 	"Lawyer" = list("security","purple")
 	)
 	if(job in idfluff)
