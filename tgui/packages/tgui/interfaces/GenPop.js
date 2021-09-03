@@ -80,7 +80,7 @@ export const GenPop = (props, context) => {
               })}
             </Flex.Item>
             <Flex.Item>
-              <hr/>
+              <hr />
               {Object.keys(data.minorCrimes).map(minor => {
                 let value = data.minorCrimes[minor];
                 return (
@@ -95,7 +95,7 @@ export const GenPop = (props, context) => {
               })}
             </Flex.Item>
             <Flex.Item>
-              <hr/>
+              <hr />
               {Object.keys(data.moderateCrimes).map(moderate => {
                 let value = data.moderateCrimes[moderate];
                 return (
@@ -110,7 +110,7 @@ export const GenPop = (props, context) => {
               })}
             </Flex.Item>
             <Flex.Item>
-              <hr/>
+              <hr />
               {Object.keys(data.majorCrimes).map(major => {
                 let value = data.majorCrimes[major];
                 return (
@@ -125,7 +125,7 @@ export const GenPop = (props, context) => {
               })}
             </Flex.Item>
             <Flex.Item>
-              <hr/>
+              <hr />
               {Object.keys(data.severeCrimes).map(severe => {
                 let value = data.severeCrimes[severe];
                 return (
