@@ -295,6 +295,23 @@
 	filling_color = "#B22222"
 	tastes = list("beef" = 1, "cod fish" = 1)
 
+/obj/item/reagent_containers/food/snacks/meat/slab/blessed
+	name = "blessed meat"
+	icon_state = "shadowmeat"
+	desc = "It is covered in a strange darkness."
+	bitesize = 2
+	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3) //pretty healthy, chap could start a cult diner.
+	slice_path = null  //its perfect as it is, why would you want to defile it
+	cooked_type = null
+	filling_color = "#202020"
+	tastes = list("holyness" = 1, "meat" = 1, "dread" = 1)
+	foodtype = MEAT | RAW | GROSS //they just don't understand how tasty it really is
+
+/obj/item/reagent_containers/food/snacks/meat/slab/blessed/weak
+	name = "lesser blessed meat"
+	icon_state = "shadowmeat"
+	desc = "It is covered in a strange darkness. This slab's magical properties appear to be drastically weakened due to the synthetic nature of the meat."
+
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
 
