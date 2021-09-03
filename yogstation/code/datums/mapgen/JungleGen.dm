@@ -25,7 +25,7 @@
 						MED_HUMIDITY = /datum/biome/jungleland/dry_swamp, 
 						HIGH_HUMIDITY = /datum/biome/jungleland/dying_forest),
 
-		BIOME_TOXIC = list(	LOW_HUMIDITY = /datum/biome/jungleland/toxic_rocks,
+		BIOME_TOXIC = list(	LOW_HUMIDITY = /datum/biome/jungleland/toxic_pit,
 						MED_HUMIDITY = /datum/biome/jungleland/toxic_pit,
 						HIGH_HUMIDITY = /datum/biome/jungleland/jungle),
 	)
@@ -84,9 +84,9 @@
 		var/toxicity = text2num(rustg_noise_get_at_coordinates("[toxic_seed]", "[gen_x]", "[gen_y]"))
 		var/humidity = text2num(rustg_noise_get_at_coordinates("[humid_seed]", "[gen_x]", "[gen_y]"))
 
-		var/toxic_pick = toxicity > 0.4 ? BIOME_TOXIC : BIOME_BARREN
+		var/toxic_pick = toxicity > 0.3 ? BIOME_TOXIC : BIOME_BARREN
 
-		var/humid_pick = humidity > 0.5 ? HIGH_HUMIDITY : (humidity > 0.25 ? MED_HUMIDITY : LOW_HUMIDITY)
+		var/humid_pick = humidity > 0.4 ? HIGH_HUMIDITY : (humidity > 0.2 ? MED_HUMIDITY : LOW_HUMIDITY)
 
 		var/datum/biome/selected_biome = possible_biomes[toxic_pick][humid_pick]
 

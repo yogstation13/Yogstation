@@ -35,7 +35,7 @@
 /obj/structure/flora/stump
 	name = "stump"
 	desc = "This represents our promise to the crew, and the station itself, to cut down as many trees as possible." //running naked through the trees
-	icon = 'icons/obj/flora/pinetrees.dmi'
+	icon = 'icons/obj/flora/deadtrees.dmi' //yog
 	icon_state = "tree_stump"
 	density = FALSE
 	pixel_x = -16
