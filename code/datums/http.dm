@@ -21,13 +21,13 @@
 	src.headers = headers
 
 /datum/http_request/proc/execute_blocking()
-	_raw_response = rustg_http_request_blocking(method, url, body, headers)
+	_raw_response = rustg_http_request_blocking(method, url, body, headers,null)
 
 /datum/http_request/proc/begin_async()
 	if (in_progress)
 		CRASH("Attempted to re-use a request object.")
 
-	id = rustg_http_request_async(method, url, body, headers)
+	id = rustg_http_request_async(method, url, body, headers,null)
 
 	if (isnull(text2num(id)))
 		stack_trace("Proc error: [id]")
