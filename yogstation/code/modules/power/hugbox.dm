@@ -41,7 +41,7 @@
 		return
 	if(has_buckled_mobs())
 		var/mob/living/carbon/H = buckled_mobs[1]
-		to_chat(C, "<span class='notice'>You press the ermegency release button.</span>")
+		to_chat(C, "<span class='notice'>You press the emergency release button.</span>")
 		unbuckle_mob(H)
 		return
 	if(obj_flags & EMAGGED)

@@ -27,6 +27,10 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	name = "Tourist"
 	icon_state = "Tourist"
 
+/obj/effect/landmark/start/yogs/brigphsyician
+	name = "Brig Physician"
+	icon_state = "Brig Physician"
+
 /obj/effect/landmark/stationroom
 	var/list/template_names = list()
 	/// Whether or not we can choose templates that have already been chosen

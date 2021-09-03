@@ -83,7 +83,8 @@
 		/obj/item/stack/sheet/cheese				= /datum/species/golem/cheese,
 		/obj/item/stack/telecrystal					= /datum/species/golem/telecrystal,
 		/obj/item/stack/telecrystal/five			= /datum/species/golem/telecrystal,
-		/obj/item/stack/telecrystal/twenty			= /datum/species/golem/telecrystal)
+		/obj/item/stack/telecrystal/twenty			= /datum/species/golem/telecrystal,
+		/obj/item/stack/sheet/ruinous_metal			= /datum/species/golem/ruinous)
 
 	if(istype(I, /obj/item/stack))
 		var/obj/item/stack/O = I

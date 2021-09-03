@@ -31609,7 +31609,8 @@
 /area/crew_quarters/heads/captain)
 "bmA" = (
 /obj/machinery/door/airlock{
-	name = "Private Restroom"
+	name = "Private Restroom";
+	req_access_txt = "20"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -96482,9 +96483,9 @@ bgS
 bik
 aZV
 aZV
-bmx
-bmx
-bmx
+aZV
+aZV
+aZV
 bqH
 bsh
 bsh
@@ -97511,8 +97512,8 @@ bbw
 bbw
 aZV
 bmA
-bmx
-bmx
+aZV
+aZV
 bqH
 bpX
 bmc
@@ -98024,9 +98025,9 @@ bfq
 bbw
 biI
 aZV
-bmx
-bmx
-bmx
+aZV
+aZV
+aZV
 bqH
 aCE
 bmf

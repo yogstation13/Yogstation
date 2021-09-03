@@ -36,8 +36,24 @@
 
 	return FALSE
 
+/proc/is_deadmin(var/user)
+	if(ismob(user))
+		var/mob/temp = user
+		if(temp)
+			return (temp.ckey in GLOB.deadmins)
+	
+	if(istype(user, /client))
+		var/client/temp = user
+		if(temp)
+			return (temp.ckey in GLOB.deadmins)
+
+	return FALSE
+
 /proc/is_donator(var/user)
 	if(is_admin(user))
+		return TRUE
+
+	if(is_deadmin(user))
 		return TRUE
 
 	if(CONFIG_GET(flag/everyone_is_donator))
