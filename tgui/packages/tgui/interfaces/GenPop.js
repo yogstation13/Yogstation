@@ -66,17 +66,16 @@ export const GenPop = (props, context) => {
         <Section title="Crimes">
           <Flex direction="column">
             <Flex.Item grow={1}>
-             {Object.keys(data.pettyCrimes).map(petty => {
-            let value = data.pettyCrimes[petty];
-            return (
+              {Object.keys(data.pettyCrimes).map(petty => {
+                let value = data.pettyCrimes[petty];
+                return (
                  <Button
                    key={petty}
                    content={value.name}
                    color={value.colour}
                    icon={value.icon}
                    tooltip={value.tooltip}
-                   onClick={() => act('presetCrime', { preset: value.sentence, crime: value.name })}
-                  />
+                   onClick={() => act('presetCrime', { preset: value.sentence, crime: value.name })} />
                    );
                   })}
             </Flex.Item>
