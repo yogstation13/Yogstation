@@ -91,7 +91,7 @@
 	maptext_y = -1
 	circuit = /obj/item/circuitboard/machine/genpop_interface
 	var/next_print = 0
-	var/desired_sentence = 60 //What sentence do you want to give them?
+	var/desired_sentence = 0 //What sentence do you want to give them?
 	var/desired_crime = null //What is their crime?
 	var/desired_name = null
 	var/obj/item/radio/Radio //needed to send messages to sec radio
@@ -218,7 +218,7 @@
 	Radio.talk_into(src, "Prisoner [id.registered_name] has been incarcerated for [desired_sentence / 60] minute(s).", FREQ_SECURITY)
 	var/obj/item/paper/paperwork = new /obj/item/paper(get_turf(src))
 	paperwork.info = "<h1 id='record-of-incarceration'>Record Of Incarceration:</h1> <hr> <h2 id='name'>Name: </h2> <p>[desired_name]</p> <h2 id='crime'>Crime: </h2> <p>[desired_crime]</p> <h2 id='sentence-min'>Sentence (Min)</h2> <p>[desired_sentence/60]</p> <p>Nanotrasen Security Forces</p>"
-	desired_sentence = 60
+	desired_sentence = 0
 	desired_crime = null
 	desired_name = null
 	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
@@ -261,17 +261,15 @@
 					preset_time = PRESET_MEDIUM
 				if("long")
 					preset_time = PRESET_LONG
-				if("perma")
-					preset_time = MAX_TIMER
 
 			desired_sentence = preset_time
 			desired_sentence /= 10
 		if("presetCrime")
 			var/preset_time = text2num(params["preset"])
 			var/preset_crime = params["crime"]
-			desired_sentence = preset_time MINUTES
-			desired_sentence /= 10
-			desired_crime = preset_crime
+			desired_sentence += preset_time*60
+			desired_crime += preset_crime + ", "
+			desired_sentence = clamp(desired_sentence,0,MAX_TIMER)
 
 		if("release")
 			var/obj/item/card/id/genpop/id = locate(params["id"])
