@@ -46230,29 +46230,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"lEM" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table/wood,
-/obj/item/toy/crayon/rainbow{
-	pixel_x = -8;
-	pixel_y = 2
-	},
-/obj/item/toy/crayon/rainbow{
-	pixel_x = -7;
-	pixel_y = -4
-	},
-/obj/item/toy/crayon/rainbow{
-	pixel_x = -7;
-	pixel_y = 9
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "lFe" = (
 /turf/closed/wall,
 /area/tcommsat/computer)
@@ -46401,6 +46378,17 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"lIU" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/wood,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "lJp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
@@ -94847,7 +94835,7 @@ agn
 aiI
 ajH
 tSM
-lEM
+lIU
 cpL
 uaA
 amS
