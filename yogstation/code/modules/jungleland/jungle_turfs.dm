@@ -28,3 +28,8 @@
 
 /turf/open/floor/plating/dirt/jungleland/jungle
 	icon_state = "jungle"
+
+
+/turf/open/water/toxic_pit
+	name = "sulphuric pit"
+	color = "#003a00"
