@@ -210,3 +210,19 @@
 	alternate_worn_icon = 'yogstation/icons/mob/back.dmi'
 	icon_state = "clownfacebackpack"
 	item_state = "clownfacebackpack"
+
+//Clothing Bags
+/obj/item/storage/backpack/duffelbag/sec/physician/clothing
+	name = "Brig Physician's clothing duffelbag"
+	desc = "A large duffel bag filled with clothing."
+
+/obj/item/storage/backpack/duffelbag/sec/physician/clothing/PopulateContents()
+	new /obj/item/clothing/under/yogs/rank/physician(src)
+	new /obj/item/clothing/suit/toggle/labcoat/emt/physician(src)
+	new /obj/item/clothing/head/soft/emt/phys(src)
+	new /obj/item/clothing/under/rank/medical/purple(src)
+	new /obj/item/clothing/under/yogs/rank/physician/white(src)
+	new /obj/item/clothing/under/yogs/rank/physician/white/skirt(src)
+	new /obj/item/clothing/suit/toggle/labcoat/physician(src)
+	new /obj/item/clothing/head/beret/med/phys(src)
+	new /obj/item/clothing/head/beret/corpsec/phys(src)

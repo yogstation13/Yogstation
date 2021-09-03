@@ -6,6 +6,13 @@
 	var/turf/teleport_target
 
 /obj/machinery/abductor/pad/proc/Warp(mob/living/target)
+	if(istype(target, /mob/living/carbon))
+		var/mob/living/carbon/C = target
+		var/list/inventory = C.get_all_gear()
+		for(var/atom/A in inventory)
+			if(istype(A, /obj/item/bodybag/bluespace))
+				to_chat(target, "<span class='warning'>[A] colapses in on it's self!</span>")
+				qdel(A)
 	if(!target.buckled)
 		target.forceMove(get_turf(src))
 

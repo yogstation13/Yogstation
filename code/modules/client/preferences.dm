@@ -1729,7 +1729,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							selectablecapes += A
 						else
 							max_eligable = FALSE
-		
 					if(max_eligable)
 						selectablecapes += GLOB.skillcapes["max"]
 
