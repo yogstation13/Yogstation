@@ -1,6 +1,6 @@
 #define SLEEPER_TEND		"Treat Injuries"
 #define SLEEPER_ORGANS		"Repair Organs"
-#define SLEEPER_CHEMPURGE	"Purge Chemicals"
+#define SLEEPER_CHEMPURGE	"Purge Toxins"
 
 /obj/machinery/sleep_console
 	name = "sleeper console"
@@ -202,7 +202,10 @@
 			if(SLEEPER_CHEMPURGE)
 				C.adjustToxLoss(-1)
 				for(var/datum/reagent/R in C.reagents.reagent_list)
-					C.reagents.remove_reagent(R.type,efficiency)
+					if(istype(R, /datum/reagent/toxin)
+						C.reagents.remove_reagent(R.type,efficiency)
+					if(R.overdosed)
+						C.reagents.remove_reagent(R.type,efficiency)
 			else
 				active_treatment = null
 
