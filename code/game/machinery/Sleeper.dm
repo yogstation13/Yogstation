@@ -84,7 +84,8 @@
 	if(!state_open && !panel_open)
 		active_treatment = null
 		var/mob/living/mob_occupant = occupant
-		mob_occupant.remove_status_effect(STATUS_EFFECT_STASIS)
+		if(mob_occupant)
+			mob_occupant.remove_status_effect(STATUS_EFFECT_STASIS)
 		flick("[initial(icon_state)]-anim", src)
 		..()
 
