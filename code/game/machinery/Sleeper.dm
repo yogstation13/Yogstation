@@ -202,7 +202,7 @@
 			if(SLEEPER_CHEMPURGE)
 				C.adjustToxLoss(-1)
 				for(var/datum/reagent/R in C.reagents.reagent_list)
-					if(istype(R, /datum/reagent/toxin)
+					if(istype(R, /datum/reagent/toxin))
 						C.reagents.remove_reagent(R.type,efficiency)
 					if(R.overdosed)
 						C.reagents.remove_reagent(R.type,efficiency)
