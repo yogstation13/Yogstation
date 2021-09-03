@@ -26,7 +26,6 @@
 	layer = SPLASHSCREEN_LAYER
 	screen_loc = "BOTTOM,LEFT+50%"
 	appearance_flags = APPEARANCE_UI | TILE_BOUND
-	show_when_dead = TRUE
 
 /datum/cinematic
 	var/id = CINEMATIC_DEFAULT
