@@ -584,7 +584,5 @@
 	gender = MALE
 	icon_state = "blahaj"
 	item_state = "blahaj"
-	attack_verb = list("chomps", "gnawed", "bites")
+	attack_verb = list("chomped", "gnawed", "bit")
 	squeak_override = list('sound/weapons/bite.ogg'= 1)
-///Used to track how many people killed themselves with item/toy/plush/moth
-	var/suicide_count = 0
