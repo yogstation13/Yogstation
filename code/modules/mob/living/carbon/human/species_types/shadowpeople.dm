@@ -168,6 +168,7 @@
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
 	item_flags = ABSTRACT | DROPDEL
+	tool_behaviour = TOOL_MINING
 	w_class = WEIGHT_CLASS_HUGE
 	sharpness = IS_SHARP
 	resistance_flags = ACID_PROOF

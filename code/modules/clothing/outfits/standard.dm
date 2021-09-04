@@ -405,7 +405,7 @@
 	mask = /obj/item/clothing/mask/gas/syndicate
 	belt = /obj/item/storage/belt/utility/chief/full
 	gloves = /obj/item/clothing/gloves/combat
-	id = /obj/item/card/id/ert
+	id = /obj/item/card/id/ert/debug
 	glasses = /obj/item/clothing/glasses/meson/night
 	ears = /obj/item/radio/headset/headset_cent/commander
 	back = /obj/item/storage/backpack/holding

@@ -67,8 +67,6 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/cmd_admin_direct_narrate,	/*send text directly to a player with no padding. Useful for narratives and fluff-text*/
 	/client/proc/cmd_admin_world_narrate,	/*sends text to all players with no padding*/
 	/client/proc/cmd_admin_local_narrate,	/*sends text to all mobs within view of atom*/
-	/client/proc/cmd_admin_man_up,
-	/client/proc/cmd_admin_man_up_global,
 	/client/proc/cmd_admin_create_centcom_report,
 	/client/proc/cmd_change_command_name,
 	/client/proc/cmd_admin_check_player_exp, /* shows players by playtime */
@@ -101,7 +99,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/datum/admins/proc/cmd_create_centcom,
 	/datum/admins/proc/cmd_admin_fuckrads,
   	/client/proc/admincryo,
-	/client/proc/cmd_admin_dress
+	/client/proc/cmd_admin_dress,
+	/client/proc/disconnect_panel
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -252,8 +251,6 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/cmd_display_del_log,
 	/client/proc/toggle_combo_hud,
 	/client/proc/debug_huds,
-	/client/proc/cmd_admin_man_up,
-	/client/proc/cmd_admin_man_up_global,
 	/client/proc/admincryo
 	))
 GLOBAL_PROTECT(admin_verbs_hideable)
@@ -392,7 +389,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 /client/proc/check_antagonists()
 	set name = "Check Antagonists"
 	set category = "Admin"
-	if(holder)
+	if(check_rights(R_ADMIN))
 	// yogs start
 		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
 		if((!isobserver(usr) && SSticker.HasRoundStarted()) || !check_rights(R_VAREDIT))
