@@ -63,7 +63,7 @@
 		src << browse(file('html/statbrowser.html'), "window=statbrowser")  /// Reloads the statpanel as well
 		initialize() /// Lets just start again
 		var/mob/dead/new_player/M = client.mob
-		if(istype(M)
+		if(istype(M))
 			M.login()
 
 /**
