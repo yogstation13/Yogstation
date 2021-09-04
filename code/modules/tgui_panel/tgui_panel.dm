@@ -64,7 +64,7 @@
 		initialize() /// Lets just start again
 		var/mob/dead/new_player/M = client.mob
 		if(istype(M))
-			M.login()
+			M.Login()
 
 /**
  * private
