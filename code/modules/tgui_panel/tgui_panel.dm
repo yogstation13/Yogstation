@@ -58,11 +58,11 @@
 	if(!telemetry_connections) /// Somethings fucked lets try again.
 		world.log << "Shits fucked attempt [retries]"
 		if(retries > 2)
-			winset(usr, null, "command=.reconnect") /// Kitchen Sink
+			winset(client, null, "command=.reconnect") /// Kitchen Sink
 		retries++
 		src << browse(file('html/statbrowser.html'), "window=statbrowser")  /// Reloads the statpanel as well
 		initialize() /// Lets just start again
-		var/mob/dead/new_player/M = client.mob
+		var/mob/dead/new_player/M = client?.mob
 		if(istype(M))
 			M.Login()
 
