@@ -7,6 +7,7 @@
 		var/atom/movable/screen/lobbyscreen = new button()
 		lobbyscreen.hud = src
 		static_inventory += lobbyscreen
+		lobbyscreen.postInit()
 
 /*
 	Screen objects
@@ -40,6 +41,8 @@
 	 * But for now, this works.
 	 */
 	var/del_on_map_removal = TRUE
+
+/atom/movable/screen/proc/postInit()
 
 /atom/movable/screen/Destroy()
 	master = null
@@ -304,3 +307,133 @@
 		return
 	var/mob/dead/new_player/new_player = hud.mymob
 	new_player.handle_player_polling()
+
+/atom/movable/screen/lobby/timer
+	icon = 'icons/hud/lobby/countdown_background.dmi'
+	icon_state = "hidden"
+	screen_loc = "TOP,RIGHT"
+
+	var/list/atom/movable/screen/lobby/display/displays = list()
+
+	var/delayed = FALSE
+	var/active = FALSE
+	var/show_numbers = FALSE
+
+	var/list/display_screen_locs = list(
+		"TOP:-7,RIGHT:-64", 
+		"TOP:-7,RIGHT:-44", 
+		"TOP:-7,RIGHT:-31"
+	)
+
+GLOBAL_LIST_EMPTY(lobby_timers)
+
+/atom/movable/screen/lobby/timer/New(loc, ...)
+	. = ..()
+	for(var/screen_loc as anything in display_screen_locs)
+		var/atom/movable/screen/lobby/display/D = new()
+		D.screen_loc = screen_loc
+		displays += D
+	
+	if(SSticker.current_state > GAME_STATE_STARTUP)
+		set_active(TRUE)
+	else
+		RegisterSignal(SSticker, COMSIG_TICKER_ENTER_PREGAME, .proc/activate)
+
+/atom/movable/screen/lobby/timer/proc/set_active(new_active)
+	if(new_active == active)
+		return
+	active = new_active
+
+	if(active)
+		flick("show_[delayed ? "delayed" : "eta"]", src)
+		addtimer(VARSET_CALLBACK(src, show_numbers, 13))
+		RegisterSignal(SSticker, COMSIG_TICKER_ENTER_SETTING_UP, .proc/deactivate)
+		START_PROCESSING(SSlobbyprocess, src)
+	else
+		flick("hide_[delayed ? "delayed" : "eta"]", src)
+		show_numbers = FALSE
+		hide_numbers()
+		STOP_PROCESSING(SSlobbyprocess, src)
+	update_icon()
+
+/atom/movable/screen/lobby/timer/proc/activate()
+	UnregisterSignal(SSticker, COMSIG_TICKER_ENTER_PREGAME)
+	set_active(TRUE)
+
+/atom/movable/screen/lobby/timer/proc/deactivate()
+	UnregisterSignal(SSticker, COMSIG_TICKER_ENTER_SETTING_UP)
+	set_active(FALSE)
+
+/atom/movable/screen/lobby/timer/Destroy()
+	. = ..()
+	GLOB.lobby_timers -= src
+
+/atom/movable/screen/lobby/timer/process()
+
+	var/time = SSticker.GetTimeLeft()
+	if(time == -10)
+		if(!delayed)
+			delay()
+		return
+	if(delayed)
+		undelay()
+
+	if(!show_numbers)
+		return
+
+	if(time < 0)
+		time = 0
+
+	var/seconds = round(time/10)
+	if(seconds > 639)
+		seconds = 639
+
+	var/minutes = round(seconds/60)
+	if(minutes > 9)
+		minutes = 9
+	seconds -= minutes * 60
+
+	var/tens_seconds = round(seconds/10)
+	var/single_seconds = seconds % 10
+
+	displays[1].icon_state = "[minutes]-green"
+	displays[2].icon_state = "[tens_seconds]-green"
+	displays[3].icon_state = "[single_seconds]-green"
+
+/atom/movable/screen/lobby/timer/postInit()
+	. = ..()
+	for(var/atom/movable/screen/lobby/display/D as anything in displays)
+		D.hud = hud
+		hud.static_inventory += D
+	GLOB.lobby_timers += src
+
+/atom/movable/screen/lobby/timer/proc/hide_numbers()
+	for(var/atom/movable/screen/lobby/display/D as anything in displays)
+		D.icon_state = ""
+
+/atom/movable/screen/lobby/timer/proc/delay()
+	if(delayed) return
+	delayed = TRUE
+	hide_numbers()
+	flick("eta_delay", src)
+	show_numbers = FALSE
+	update_icon()
+
+/atom/movable/screen/lobby/timer/proc/undelay()
+	if(!delayed) return
+	delayed = FALSE
+	flick("delay_eta", src)
+	addtimer(VARSET_CALLBACK(src, show_numbers, 6))
+	update_icon()
+
+/atom/movable/screen/lobby/timer/proc/update_icon()
+	if(!active)
+		icon_state = "hidden"
+		return
+	if(delayed)
+		icon_state = "delayed"
+	else
+		icon_state = "eta"
+
+/atom/movable/screen/lobby/display
+	icon = 'icons/hud/lobby/countdown_letters.dmi'
