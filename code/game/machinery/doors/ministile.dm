@@ -1,33 +1,33 @@
-/obj/machinery/turnstile
-	name = "turnstile"
+/obj/machinery/ministile
+	name = "ministile"
 	desc = "A mechanical door that permits one-way access to an area."
 	icon = 'icons/obj/objects.dmi'
-	icon_state = "turnstile_map"
+	icon_state = "ministile_map"
 	power_channel = ENVIRON
 	density = TRUE
-	obj_integrity = 250
-	max_integrity = 250
-	//Robust! It'll be tough to break...
-	armor = list("melee" = 50, "bullet" = 20, "laser" = 0, "energy" = 80, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
+	obj_integrity = 150
+	max_integrity = 150
+	//Smaller turnstile easier to smash
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 0, "energy" = 60, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
 	anchored = TRUE
 	use_power = FALSE
 	idle_power_usage = 2
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	layer = OPEN_DOOR_LAYER
-	climbable = FALSE
-/obj/machinery/turnstile/brig
-	name = "Brig turnstile"
-	//Seccies and brig phys may always pass, either way.
-	req_one_access = list(ACCESS_BRIG)
-	
-/obj/machinery/turnstile/Initialize()
-	. = ..()
-	icon_state = "turnstile"
+	climbable = TRUE
 
-/obj/machinery/turnstile/CanAtmosPass(turf/T)
+/obj/machinery/ministile/hop
+	name = "HOP line turnstile"
+	req_one_access = list(ACCESS_HEADS)
+	
+/obj/machinery/ministile/Initialize()
+	. = ..()
+	icon_state = "ministile"
+
+/obj/machinery/ministile/CanAtmosPass(turf/T)
 	return TRUE
 
-/obj/machinery/turnstile/Cross(atom/movable/mover)
+/obj/machinery/ministile/Cross(atom/movable/mover)
 	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return TRUE
@@ -39,10 +39,10 @@
 		allowed = allowed(mover.pulledby)
 
 	if(get_dir(loc, mover.loc) == dir || allowed || mover==machineclimber) //Make sure looking at appropriate border, loc is first so the turnstyle faces the mover
-		flick("operate", src)
+		flick("ministile_operate", src)
 		playsound(src,'sound/items/ratchet.ogg',50,0,3)
 		return TRUE
 	else
-		flick("deny", src)
+		flick("ministile_deny", src)
 		playsound(src,'sound/machines/deniedbeep.ogg',50,0,3)
 		return FALSE
