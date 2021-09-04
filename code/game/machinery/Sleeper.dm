@@ -326,3 +326,7 @@
 
 /obj/machinery/sleeper/old
 	icon_state = "oldpod"
+
+#undef SLEEPER_TEND
+#undef SLEEPER_ORGANS
+#undef SLEEPER_CHEMPURGE
