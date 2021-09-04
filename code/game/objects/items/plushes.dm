@@ -580,7 +580,7 @@
 
 /obj/item/toy/plush/blahaj
 	name = "shark plushie"
-	desc = "A loveable and huggable shark plush."
+	desc = "A smaller, friendlier, and fluffier version of the real thing."
 	gender = MALE
 	icon_state = "blahaj"
 	item_state = "blahaj"
