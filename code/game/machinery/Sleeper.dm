@@ -327,7 +327,9 @@
 			L.adjustOxyLoss(-5)
 
 /obj/machinery/sleeper/clockwork/RefreshParts()
-	return
+	available_treatments |= treatments[1]
+	stasis = TRUE
+	efficiency = 3
 
 /obj/machinery/sleeper/old
 	icon_state = "oldpod"
