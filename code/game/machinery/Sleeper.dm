@@ -1,6 +1,7 @@
 #define SLEEPER_TEND		"Treat Injuries"
 #define SLEEPER_ORGANS		"Repair Organs"
 #define SLEEPER_CHEMPURGE	"Purge Toxins"
+#define SLEEPER_HEAL_RATE 2
 
 /obj/machinery/sleep_console
 	name = "sleeper console"
@@ -182,7 +183,7 @@
 			C.remove_status_effect(STATUS_EFFECT_STASIS)
 		switch(active_treatment)
 			if(SLEEPER_TEND)
-				C.heal_bodypart_damage(1,1) //this is slow as hell, use the rest of medbay you chumps
+				C.heal_bodypart_damage(SLEEPER_HEAL_RATE,SLEEPER_HEAL_RATE) //this is slow as hell, use the rest of medbay you chumps
 			if(SLEEPER_ORGANS)
 				var/heal_reps = efficiency * 2
 				var/list/organs = list(ORGAN_SLOT_EARS,ORGAN_SLOT_EYES,ORGAN_SLOT_LIVER,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_HEART)
@@ -192,7 +193,7 @@
 						var/healed = FALSE
 						var/obj/item/organ/heal_target = C.getorganslot(o)
 						if(heal_target?.damage >= 1)
-							var/organ_healing = 0.5
+							var/organ_healing = 0.2
 							if(C.stat == DEAD)
 								organ_healing = 0.05
 							heal_target.applyOrganDamage(-organ_healing)
@@ -200,7 +201,7 @@
 						if(healed)
 							break
 			if(SLEEPER_CHEMPURGE)
-				C.adjustToxLoss(-1)
+				C.adjustToxLoss(-SLEEPER_HEAL_RATE)
 				for(var/datum/reagent/R in C.reagents.reagent_list)
 					if(istype(R, /datum/reagent/toxin))
 						C.reagents.remove_reagent(R.type,efficiency)
@@ -330,3 +331,4 @@
 #undef SLEEPER_TEND
 #undef SLEEPER_ORGANS
 #undef SLEEPER_CHEMPURGE
+#undef SLEEPER_HEAL_RATE
