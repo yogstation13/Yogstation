@@ -29,7 +29,10 @@
 		if(!old_eye_blind)
 			if(stat == CONSCIOUS || stat == SOFT_CRIT)
 				throw_alert("blind", /obj/screen/alert/blind)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+			if(stat != CONSCIOUS && HAS_TRAIT(src, TRAIT_HEAVY_SLEEPER))
+				overlay_fullscreen("blind", /obj/screen/fullscreen/black)
+			else
+				overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 
 /**
   * Adjust a mobs blindness by an amount
@@ -43,7 +46,10 @@
 		if(!old_eye_blind)
 			if(stat == CONSCIOUS || stat == SOFT_CRIT)
 				throw_alert("blind", /obj/screen/alert/blind)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+			if(stat != CONSCIOUS && HAS_TRAIT(src, TRAIT_HEAVY_SLEEPER))
+				overlay_fullscreen("blind", /obj/screen/fullscreen/black)
+			else
+				overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 	else if(eye_blind)
 		var/blind_minimum = 0
 		if((stat != CONSCIOUS && stat != SOFT_CRIT))
@@ -66,7 +72,10 @@
 		if(client && !old_eye_blind)
 			if(stat == CONSCIOUS || stat == SOFT_CRIT)
 				throw_alert("blind", /obj/screen/alert/blind)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+			if(stat != CONSCIOUS && HAS_TRAIT(src, TRAIT_HEAVY_SLEEPER))
+				overlay_fullscreen("blind", /obj/screen/fullscreen/black)
+			else
+				overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 	else if(eye_blind)
 		var/blind_minimum = 0
 		if(stat != CONSCIOUS && stat != SOFT_CRIT)

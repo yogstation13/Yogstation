@@ -20,6 +20,14 @@
 	name = "Clerks office"
 	icon_state = "cafeteria"
 
+/area/security/brig/infirmary
+	name = "Brig Infirmary"
+	icon_state = "brig_infirmary"
+
+/area/security/physician
+	name = "Brig Physician's Office"
+	icon_state = "physician"
+
 /area/maintenance
 	ambientsounds = list('sound/ambience/ambimaint1.ogg',
 						 'sound/ambience/ambimaint2.ogg',

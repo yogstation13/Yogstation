@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "strange reagent now has a failure message when the dosage is below the required amount to revive"
