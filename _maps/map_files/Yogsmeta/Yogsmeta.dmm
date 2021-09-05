@@ -67000,6 +67000,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"cJt" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/genpop,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "cJJ" = (
 /obj/machinery/computer/operating{
 	dir = 1;
@@ -72011,6 +72018,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"dpZ" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 2
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "dqe" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
@@ -73911,6 +73927,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"fNM" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "fOs" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -76984,6 +77007,26 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"kZm" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 2
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "laa" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -77803,6 +77846,24 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/starboard/aft)
+"mNB" = (
+/obj/machinery/camera{
+	c_tag = "Brig Central";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/light,
+/obj/machinery/genpop_interface{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "mOt" = (
 /obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
@@ -79412,6 +79473,27 @@
 	dir = 1
 	},
 /area/medical/surgery)
+"qcF" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 2
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "qdT" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -80676,6 +80758,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"ssm" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/genpop,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "sto" = (
 /obj/machinery/advanced_airlock_controller{
 	dir = 8;
@@ -80936,6 +81025,27 @@
 /obj/machinery/vending/gifts,
 /turf/open/floor/wood,
 /area/clerk)
+"sLM" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/junction/flip{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 2
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "sLU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
@@ -109699,7 +109809,15 @@ asp
 anr
 alW
 asx
+<<<<<<< HEAD
+<<<<<<< HEAD
 asj
+=======
+dpZ
+>>>>>>> parent of e0dde21466e (i angrily commit more maps)
+=======
+asj
+>>>>>>> parent of a26f8b924e2 (cleans up decals)
 aiq
 ghK
 hnC
@@ -110213,7 +110331,15 @@ asr
 anr
 alW
 asx
+<<<<<<< HEAD
+<<<<<<< HEAD
 asm
+=======
+fNM
+>>>>>>> parent of e0dde21466e (i angrily commit more maps)
+=======
+asm
+>>>>>>> parent of a26f8b924e2 (cleans up decals)
 dBG
 qCx
 aws
@@ -110469,8 +110595,18 @@ apZ
 asn
 adY
 alW
+<<<<<<< HEAD
+<<<<<<< HEAD
 asx
 iqR
+=======
+qcF
+cJt
+>>>>>>> parent of e0dde21466e (i angrily commit more maps)
+=======
+asx
+iqR
+>>>>>>> parent of a26f8b924e2 (cleans up decals)
 ixN
 qTe
 lRw
@@ -110726,8 +110862,18 @@ arN
 ass
 adY
 alW
+<<<<<<< HEAD
+<<<<<<< HEAD
 asx
 upr
+=======
+qcF
+iLl
+>>>>>>> parent of e0dde21466e (i angrily commit more maps)
+=======
+asx
+upr
+>>>>>>> parent of a26f8b924e2 (cleans up decals)
 wid
 snR
 eba
@@ -110983,7 +111129,15 @@ arO
 asu
 atQ
 apJ
+<<<<<<< HEAD
+<<<<<<< HEAD
 jUV
+=======
+sLM
+>>>>>>> parent of e0dde21466e (i angrily commit more maps)
+=======
+jUV
+>>>>>>> parent of a26f8b924e2 (cleans up decals)
 iLl
 xma
 aws
@@ -111240,8 +111394,18 @@ arP
 avi
 awL
 ayz
+<<<<<<< HEAD
+<<<<<<< HEAD
 aAH
 eUz
+=======
+kZm
+ssm
+>>>>>>> parent of e0dde21466e (i angrily commit more maps)
+=======
+aAH
+eUz
+>>>>>>> parent of a26f8b924e2 (cleans up decals)
 jfW
 ayL
 oRu
@@ -111498,7 +111662,15 @@ asw
 anr
 alW
 asx
+<<<<<<< HEAD
+<<<<<<< HEAD
 rDo
+=======
+mNB
+>>>>>>> parent of e0dde21466e (i angrily commit more maps)
+=======
+rDo
+>>>>>>> parent of a26f8b924e2 (cleans up decals)
 ahx
 ahx
 ahx
