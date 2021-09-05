@@ -113,7 +113,7 @@
 
 /obj/item/firing_pin/implant/pindicate
 	name = "syndicate firing pin"
-	desc = "War has changed. It’s no longer about nations, ideologies, or ethnicity. It’s an endless series of proxy battles fought by mercenaries and machines. War – and its consumption of life – has become a well-oiled machine. War has changed. ID-tagged soldiers carry ID-tagged weapons, use ID-tagged gear. Nanomachines inside their bodies enhance and regulate their abilities. Genetic control. Information control. Emotion control. Battlefiled control. Everything is monitored and kept under control. War has changed. The age of deterrence has become the age of control . . . All in the name of averting catastrophe from weapons of mass destruction. And he who controls the battlefield . . . controls history. War has changed. When the battlefield is under total control . . . War becomes routine."
+	desc = "War has changed. It’s no longer about nations, ideologies, or ethnicity. It’s an endless series of proxy battles fought by mercenaries and machines. War – and its consumption of life – has become a well-oiled machine. War has changed. ID-tagged soldiers carry ID-tagged weapons, use ID-tagged gear. Nanomachines inside their bodies enhance and regulate their abilities. Genetic control. Information control. Emotion control. Battlefield control. Everything is monitored and kept under control. War has changed. The age of deterrence has become the age of control . . . All in the name of averting catastrophe from weapons of mass destruction. And he who controls the battlefield . . . controls history. War has changed. When the battlefield is under total control . . . War becomes routine."
 	icon_state = "firing_pin_pindi"
 	req_implant = /obj/item/implant/weapons_auth
 
