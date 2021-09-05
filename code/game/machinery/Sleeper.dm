@@ -225,9 +225,9 @@
 	for(var/T in available_treatments)
 		data["treatments"] += T
 	data["chems"] = list()
-	for(var/chem in available_chems)
+	/*for(var/chem in available_chems)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
-		data["chems"] += list(list("name" = R.name, "id" = R.type, "allowed" = chem_allowed(chem), "desc" = R.description))
+		data["chems"] += list(list("name" = R.name, "id" = R.type, "allowed" = chem_allowed(chem), "desc" = R.description))*/
 
 	data["occupant"] = list()
 	var/mob/living/mob_occupant = occupant
