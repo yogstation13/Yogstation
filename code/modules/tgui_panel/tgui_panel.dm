@@ -58,7 +58,8 @@
 	if(!telemetry_connections) /// Somethings fucked lets try again.
 		world.log << "Shits fucked attempt [retries]"
 		if(retries > 2)
-			winset(client, null, "command=.reconnect") /// Kitchen Sink
+			if(client && istype(client))
+				winset(client, null, "command=.reconnect") /// Kitchen Sink
 		retries++
 		src << browse(file('html/statbrowser.html'), "window=statbrowser")  /// Reloads the statpanel as well
 		initialize() /// Lets just start again
