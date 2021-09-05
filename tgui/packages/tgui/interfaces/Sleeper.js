@@ -127,7 +127,7 @@ export const Sleeper = (props, context) => {
               content={treatment}
               disabled={!occupied}
               color={active_treatment===treatment ? 'green' : null}
-              /*key={chem.name}
+              /* key={chem.name}
               icon="flask"
               tooltip={data.knowledge ? chem.desc : "You don\'t know what this chemical does!"}
               tooltipPosition="top"
