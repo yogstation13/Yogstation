@@ -96,6 +96,6 @@
 			to_chat(C, "<span class='notice'>Shuttle created!</span>")
 		//Remove eye control
 		var/obj/machinery/computer/camera_advanced/shuttle_creator/internal_console = target
-		internal_console.remove_eye_control()
+		internal_console.remove_eye_control(C)
 		qdel(internal_console)
 		return

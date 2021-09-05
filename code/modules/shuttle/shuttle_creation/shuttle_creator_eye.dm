@@ -1,8 +1,8 @@
 //===============Camera Eye================
 /mob/camera/aiEye/remote/shuttle_creation
 	name = "shuttle holo-drone"
-	icon = 'icons/obj/tools.dmi'
-	icon_state = "shuttle_drone"
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "construction_drone"
 	visible_icon =  FALSE
 	acceleration = 0
 	var/turf/source_turf
@@ -11,6 +11,7 @@
 /mob/camera/aiEye/remote/shuttle_creation/Initialize()
 	. = ..()
 	setLoc(get_turf(source_turf))
+	icon_state = "construction_drone"
 
 /mob/camera/aiEye/remote/shuttle_creation/update_remote_sight(mob/living/user)
 	user.sight = BLIND|SEE_TURFS

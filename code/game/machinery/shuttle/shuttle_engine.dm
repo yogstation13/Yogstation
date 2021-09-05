@@ -119,6 +119,9 @@
 	var/req_power = abs(env.return_temperature() - ENGINE_HEAT_TARGET) * heat_cap
 	req_power = min(req_power, ENGINE_HEATING_POWER)
 	var/deltaTemperature = req_power / heat_cap
+	var/deltaTemperature = 0
+	if(!heat_cap == 0)
+		deltaTemperature = req_power / heat_cap
 	if(deltaTemperature < 0)
 		return
 	env.set_temperature(env.return_temperature() + deltaTemperature)
