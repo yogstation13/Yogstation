@@ -14,124 +14,89 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	idle_power_usage = 30
 	active_power_usage = 200
 
-	var/obj/item/card/id/scan = null // identification
-	var/authenticated = 0
+	var/authenticated = FALSE
+	var/auth_name
 	var/sendcooldown = 0 // to avoid spamming fax messages
 
 	var/department = "Unknown" // our department
 
 	var/destination = "Central Command" // the department we're sending to
 
-/obj/machinery/photocopier/faxmachine/New()
-	..()
+/obj/machinery/photocopier/faxmachine/Initialize()
+	. = ..()
 	GLOB.allfaxes += src
 
 	if( !(("[department]" in GLOB.alldepartments) || ("[department]" in GLOB.admin_departments)) )
 		GLOB.alldepartments |= department
 
-/obj/machinery/photocopier/faxmachine/attack_hand(mob/user as mob)
-	user.set_machine(src)
+/obj/machinery/photocopier/faxmachine/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "FaxMachine", name)
+		ui.open()
 
-	var/dat = "Fax Machine<BR>"
+/obj/machinery/photocopier/faxmachine/ui_state(mob/user)
+	return GLOB.default_state
+	
+/obj/machinery/photocopier/faxmachine/ui_data(mob/user)
+	. = list()
+	.["authenticated"] = authenticated
+	.["auth_name"] = auth_name
+	.["has_copy"] = !!copy
+	.["copy_name"] = copy?.name
+	.["cooldown"] = sendcooldown
+	.["depts"] = (GLOB.alldepartments + GLOB.admin_departments)
+	.["destination"] = destination
 
-	var/scan_name
-	if(scan)
-		scan_name = scan.name
-	else
-		scan_name = "--------"
-
-	dat += "Confirm Identity: <a href='byond://?src=\ref[src];scan=1'>[scan_name]</a><br>"
-
-	if(authenticated)
-		dat += "<a href='byond://?src=\ref[src];logout=1'>{Log Out}</a>"
-	else
-		dat += "<a href='byond://?src=\ref[src];auth=1'>{Log In}</a>"
-
-	dat += "<hr>"
-
-	if(authenticated)
-		dat += "<b>Logged in to:</b> Central Command Quantum Entanglement Network<br><br>"
-
-		if(copy)
-			dat += "<a href='byond://?src=\ref[src];remove=1'>Remove Item</a><br><br>"
-
-			if(sendcooldown)
-				dat += "<b>Transmitter arrays realigning. Please stand by.</b><br>"
-
-			else
+/obj/machinery/photocopier/faxmachine/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	. = TRUE
+	switch(action)
+		if("send")
+			if(copy)
+				if (destination in GLOB.admin_departments)
+					send_admin_fax(usr, destination)
+				else
+					sendfax(destination)
 				
-				dat += "<a href='byond://?src=\ref[src];send=1'>Send</a><br>"
-				dat += "<b>Currently sending:</b> [copy.name]<br>"
-				dat += "<b>Sending to:</b> <a href='byond://?src=\ref[src];dept=1'>[destination]</a><br>"
+				// if (sendcooldown)
+				// 	spawn(sendcooldown) // cooldown time
+				// 		sendcooldown = 0
+			return
+		if("remove")
+			if(copy)
+				copy.loc = usr.loc
+				usr.put_in_hands(copy)
+				to_chat(usr, "<span class='notice'>You take \the [copy] out of \the [src].</span>")
+				copy = null
+				return
+		if("dept")
+			var/lastdestination = destination
+			destination = input(usr, "Which department?", "Choose a department", "") as null|anything in (GLOB.alldepartments + GLOB.admin_departments)
+			if(!destination) destination = lastdestination
+			return
+		if("set_dept")
+			destination = params["dept"]
+			return
+		if("auth")
+			if (IsAdminGhost(usr))
+				authenticated = TRUE
+				auth_name = usr.client.holder.admin_signature
+				return
+			var/obj/item/card/id/id_card = usr.get_idcard(hand_first = TRUE)
+			if (check_access(id_card))
+				authenticated = TRUE
+				auth_name = "[id_card.registered_name] - [id_card.assignment]"
+			return
 
-		else
-			if(sendcooldown)
-				dat += "Please insert paper to send via secure connection.<br><br>"
-				dat += "<b>Transmitter arrays realigning. Please stand by.</b><br>"
-			else
-				dat += "Please insert paper to send via secure connection.<br><br>"
+		if("logout")
+			authenticated = FALSE
+			auth_name = null
+			return
 
-	else
-		dat += "Proper authentication is required to use this device.<br><br>"
-
-		if(copy)
-			dat += "<a href ='byond://?src=\ref[src];remove=1'>Remove Item</a><br>"
-
-	user << browse(dat, "window=copier")
-	onclose(user, "copier")
-	return
-
-/obj/machinery/photocopier/faxmachine/Topic(href, href_list)
-	if(href_list["send"])
-		if(copy)
-			if (destination in GLOB.admin_departments)
-				send_admin_fax(usr, destination)
-			else
-				sendfax(destination)
-			
-			if (sendcooldown)
-				spawn(sendcooldown) // cooldown time
-					sendcooldown = 0
-
-	else if(href_list["remove"])
-		if(copy)
-			copy.loc = usr.loc
-			usr.put_in_hands(copy)
-			usr << "<span class='notice'>You take \the [copy] out of \the [src].</span>"
-			copy = null
-			updateUsrDialog()
-
-	if(href_list["scan"])
-		if (scan)
-			if(ishuman(usr))
-				scan.loc = usr.loc
-				if(!usr.get_active_hand())
-					usr.put_in_hands(scan)
-				scan = null
-			else
-				scan.loc = src.loc
-				scan = null
-		else
-			var/obj/item/I = usr.get_active_hand()
-			if (istype(I, /obj/item/card/id))
-				I.loc = src
-				scan = I
-		authenticated = 0
-
-	if(href_list["dept"])
-		var/lastdestination = destination
-		destination = input(usr, "Which department?", "Choose a department", "") as null|anything in (GLOB.alldepartments + GLOB.admin_departments)
-		if(!destination) destination = lastdestination
-
-	if(href_list["auth"])
-		if ( (!( authenticated ) && (scan)) )
-			if (check_access(scan))
-				authenticated = 1
-
-	if(href_list["logout"])
-		authenticated = 0
-
-	updateUsrDialog()
+	return FALSE
 
 /obj/machinery/photocopier/faxmachine/proc/sendfax(var/destination)
 	if(stat & (BROKEN|NOPOWER))
@@ -178,7 +143,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 /obj/machinery/photocopier/faxmachine/proc/send_admin_fax(var/mob/sender, var/destination)
 	if(stat & (BROKEN|NOPOWER))
 		return
-	
+
 	use_power(200)
 
 	var/obj/item/rcvdcopy
@@ -191,26 +156,25 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	else
 		visible_message("[src] beeps, \"Error transmitting message.\"")
 		return
-	
+
 	rcvdcopy.loc = null //hopefully this shouldn't cause trouble
 	GLOB.adminfaxes += rcvdcopy
 	
 	//message badmins that a fax has arrived
 	switch(destination)
 		if ("Central Command")
-			message_admins(sender, "CENTCOM FAX", rcvdcopy, "CentcomFaxReply", "#006100")
+			send_adminmessage(sender, "CENTCOM FAX", rcvdcopy, "CentcomFaxReply", "#006100")
 		if ("Sol Government")
-			message_admins(sender, "SOL GOVERNMENT FAX", rcvdcopy, "CentcomFaxReply", "#1F66A0")
-			//message_admins(sender, "SOL GOVERNMENT FAX", rcvdcopy, "SolGovFaxReply", "#1F66A0")
-	
+			send_adminmessage(sender, "SOL GOVERNMENT FAX", rcvdcopy, "CentcomFaxReply", "#1F66A0")
 	sendcooldown = 1800
-	sleep(50)
+	// sleep(50)
 	visible_message("[src] beeps, \"Message transmitted successfully.\"")
 	
 
-/obj/machinery/photocopier/faxmachine/proc/message_admins(var/mob/sender, var/faxname, var/obj/item/sent, var/reply_type, font_colour="#006100")
-	var/msg = "\blue <b><font color='[font_colour]'>[faxname]: </font>[key_name(sender, 1)] (<A HREF='?_src_=holder;adminplayeropts=\ref[sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[sender]'>JMP</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;[reply_type]=\ref[sender];originfax=\ref[src]'>REPLY</a>)</b>: Receiving '[sent.name]' via secure connection ... <a href='?_src_=holder;AdminFaxView=\ref[sent]'>view message</a>"
+/obj/machinery/photocopier/faxmachine/proc/send_adminmessage(var/mob/sender, var/faxname, var/obj/item/sent, var/reply_type, font_colour="#006100")
+	var/msg = "<font color='admin'><b><font color='[font_colour]'>[faxname]: </font>[key_name(sender, 1)] (<A HREF='?_src_=holder;[HrefToken()];adminplayeropts=\ref[sender]'>PP</A>) (<A HREF='?_src_=vars;[HrefToken()];Vars=\ref[sender]'>VV</A>) (<A HREF='?_src_=holder;[HrefToken()];subtlemessage=\ref[sender]'>SM</A>) (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservefollow=\ref[sender]'>JMP</A>) (<a href='?_src_=holder;[HrefToken()];[reply_type]=\ref[sender];originfax=\ref[src]'>REPLY</a>)</b>: Receiving '[sent.name]' via secure connection ... <a href='?_src_=holder;[HrefToken()];AdminFaxView=\ref[sent]'>view message</a></font>"
 
-	for(var/client/C in GLOB.admins)
-		if(check_rights(R_ADMIN))
-			C << msg
+	to_chat(GLOB.admins,
+		type = MESSAGE_TYPE_ADMINLOG,
+		html = msg,
+		confidential = TRUE)
