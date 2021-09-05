@@ -103,7 +103,7 @@
 			H.physiology.brute_mod *= 0.5
 			H.physiology.burn_mod *= 0.5
 			var/datum/antagonist/heretic/heretic = user.mind.has_antag_datum(/datum/antagonist/heretic)
-			var/datum/eldritch_knowledge/flesh_grasp/ghoul1 = heretic.get_knowledge(/datum/eldritch_knowledge/flesh_grasp)
+			var/datum/eldritch_knowledge/base_flesh/ghoul1 = heretic.get_knowledge(/datum/eldritch_knowledge/base_flesh)
 			ghoul1.ghoul_amt *= 3
 			var/datum/eldritch_transmutation/voiceless_dead/ghoul2 = heretic.get_transmutation(/datum/eldritch_transmutation/voiceless_dead)
 			ghoul2.max_amt *= 3

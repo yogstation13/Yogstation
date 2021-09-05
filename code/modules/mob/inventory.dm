@@ -392,6 +392,7 @@
 
 	for(var/obj/item/I in get_equipped_items())
 		hidden_slots |= I.flags_inv
+		hidden_slots |= I.flags_prot
 		if(transparent_protection)
 			hidden_slots |= I.transparent_protection
 

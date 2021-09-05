@@ -389,7 +389,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 /client/proc/check_antagonists()
 	set name = "Check Antagonists"
 	set category = "Admin"
-	if(holder)
+	if(check_rights(R_ADMIN))
 	// yogs start
 		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
 		if((!isobserver(usr) && SSticker.HasRoundStarted()) || !check_rights(R_VAREDIT))
