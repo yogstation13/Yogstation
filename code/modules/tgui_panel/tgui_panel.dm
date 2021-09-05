@@ -51,7 +51,8 @@
 	window.send_asset(get_asset_datum(/datum/asset/spritesheet/chat))
 	request_telemetry()
 	world.log << "Trying to initialize"
-	addtimer(CALLBACK(src, .proc/check_telemetry), 2 SECONDS)
+	if(!telemetry_connections && retries < 6)
+		addtimer(CALLBACK(src, .proc/check_telemetry), 2 SECONDS)
 	addtimer(CALLBACK(src, .proc/on_initialize_timed_out), 2 SECONDS)
 
 /datum/tgui_panel/proc/check_telemetry()
@@ -60,7 +61,13 @@
 		if(retries > 2)
 			if(client && istype(client))
 				winset(client, null, "command=.reconnect") /// Kitchen Sink
-		retries++
+				qdel(client)
+		if(retries > 3)
+			qdel(client)
+		if(retries > 5)
+			return // I give up
+		if(retries < 6)
+			retries++
 		src << browse(file('html/statbrowser.html'), "window=statbrowser")  /// Reloads the statpanel as well
 		initialize() /// Lets just start again
 		var/mob/dead/new_player/M = client?.mob
