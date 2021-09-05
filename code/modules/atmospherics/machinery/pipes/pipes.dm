@@ -12,6 +12,7 @@
 	can_buckle = 1
 	buckle_requires_restraints = 1
 	buckle_lying = -1
+
 	FASTDMM_PROP(\
 		set_instance_vars(\
 			icon_state = INSTANCE_VAR_DEFAULT\
@@ -54,7 +55,12 @@
 		air_update_turf()
 
 /obj/machinery/atmospherics/pipe/return_air()
-	return parent.air
+	if(parent)
+		return parent.air
+
+/obj/machinery/atmospherics/pipe/return_analyzable_air()
+	if(parent)
+		return parent.air
 
 /obj/machinery/atmospherics/pipe/remove_air(amount)
 	return parent.air.remove(amount)
@@ -67,16 +73,9 @@
 	else
 		return ..()
 
-/obj/machinery/atmospherics/pipe/analyzer_act(mob/living/user, obj/item/I)
-	atmosanalyzer_scan(parent.air, user, src)
-
-/obj/machinery/atmospherics/pipe/examine(mob/dead/observer/user)
-	if(istype(user))
-		analyzer_act(user, src)
-	return ..()
-
 /obj/machinery/atmospherics/pipe/returnPipenet()
-	return parent
+	if(parent)
+		return parent.air
 
 /obj/machinery/atmospherics/pipe/setPipenet(datum/pipeline/P)
 	parent = P
