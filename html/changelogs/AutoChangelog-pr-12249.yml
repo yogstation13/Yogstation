@@ -1,0 +1,4 @@
+author: "  Identification"
+delete-after: true 
+changes: 
+  - tweak: "Syndicate firing pin has a unique description on examination."
