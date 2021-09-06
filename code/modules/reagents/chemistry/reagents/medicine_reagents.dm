@@ -134,7 +134,7 @@
 	taste_description = "sludge"
 
 /datum/reagent/medicine/cryoxadone/on_mob_life(mob/living/carbon/M)
-	var/power = -0.00003 * (M.bodytemperature ** 2) + 3
+	var/power = -0.00006 * (M.bodytemperature ** 2) + 6
 	if(M.bodytemperature < T0C)
 		M.adjustOxyLoss(-3 * power, 0)
 		M.adjustBruteLoss(-power, 0)
