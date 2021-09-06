@@ -106,6 +106,7 @@
 		"stamp-law" = 'icons/stamp_icons/large_stamp-law.png',
 		"stamp-mime" = 'icons/stamp_icons/large_stamp-mime.png',
 		"stamp-cent" = 'icons/stamp_icons/large_stamp-cent.png',
+		"stamp-syndicate" = 'icons/stamp_icons/large_stamp-syndicate.png`,
 	)
 
 
@@ -382,7 +383,7 @@
 
 	// Special case to handle Bluespace Crystals
 	Insert("polycrystal", 'icons/obj/telescience.dmi', "polycrystal")
-	
+
 	Insert("dilithium_polycrystal", 'yogstation/icons/obj/telescience.dmi', "dilithium_polycrystal") //yogs: same as above but for dilithium
 	..()
 
