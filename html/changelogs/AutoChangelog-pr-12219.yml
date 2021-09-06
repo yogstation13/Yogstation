@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - rscadd: "Added descriptions to free miner access, allowing them to actually be used"
