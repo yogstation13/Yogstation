@@ -1,0 +1,5 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - bugfix: "fixed the mining medic cap not using an icon"
+  - spellcheck: "fixed the description for the mining medic and brig phys caps"
