@@ -75567,6 +75567,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
+"ioW" = (
+/obj/structure/easel,
+/obj/structure/rack,
+/obj/item/storage/belt{
+	desc = "Can hold quite a lot of stuff.";
+	name = "multi-belt"
+	},
+/obj/item/clothing/gloves/color/fyellow,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "ipa" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/plasteel/dark/telecomms,
@@ -77372,10 +77383,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"lKa" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/closed/wall,
-/area/maintenance/starboard/fore)
 "lKN" = (
 /obj/structure/chair/comfy/brown{
 	dir = 8
@@ -80916,22 +80923,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
-"sNu" = (
-/obj/structure/easel,
-/obj/structure/rack,
-/obj/item/storage/belt{
-	desc = "Can hold quite a lot of stuff.";
-	name = "multi-belt"
-	},
-/obj/item/clothing/gloves/color/fyellow,
-/obj/effect/spawner/lootdrop/maintenance,
-/obj/structure/sink/kitchen{
-	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
-	name = "old sink";
-	pixel_y = 28
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "sNV" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 1
@@ -125030,8 +125021,8 @@ mCZ
 iWR
 mCZ
 uGU
-lKa
-sNu
+bfq
+ioW
 dnS
 dnS
 xdc
