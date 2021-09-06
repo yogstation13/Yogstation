@@ -465,6 +465,11 @@
 	icon_state = "wood"
 	},
 /area/holodeck/rec_center/lounge)
+"bs" = (
+/obj/structure/table/wood,
+/obj/item/stamp/syndiround,
+/turf/open/floor/wood,
+/area/syndicate_mothership/control)
 "bt" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -42633,7 +42638,7 @@ sg
 tf
 pZ
 Nl
-vv
+bs
 wn
 wW
 ku
