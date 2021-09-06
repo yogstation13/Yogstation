@@ -57,6 +57,12 @@
 		return TRUE
 	return ACCESS_CAPTAIN in authorize_access
 
+/// Are we NOT a silicon, AND we're logged in as a head
+/obj/machinery/computer/communications/proc/authenticated_as_non_silicon_head(mob/user)
+	if(issilicon(user))
+		return FALSE
+	return ACCESS_HEADS in authorize_access
+
 /// Are we a silicon, OR logged in?
 /obj/machinery/computer/communications/proc/authenticated(mob/user)
 	if (issilicon(user))
@@ -331,7 +337,7 @@
 				message_admins("[ADMIN_LOOKUPFLW(usr)] enabled emergency maintenance access.")
 				deadchat_broadcast(" enabled emergency maintenance access at <span class='name'>[get_area_name(usr, TRUE)]</span>.", "<span class='name'>[usr.real_name]</span>", usr)
 		if ("printSpare")
-			if (!issilicon(usr) && (ACCESS_HEADS in authorize_access))
+			if (authenticated_as_non_silicon_head(usr))
 				playsound(loc, 'sound/items/poster_being_created.ogg', 100, 1)
 				new /obj/item/card/id/captains_spare/temporary(loc)
 				priority_announce("The emergency spare ID has been printed by [authorize_name].", "Emergency Spare ID Warning System", SSstation.announcer.get_rand_report_sound())
