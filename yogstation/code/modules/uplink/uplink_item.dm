@@ -140,7 +140,7 @@
 	surplus = 0
 
 /datum/uplink_item/badass/syndistamp
-	name = "An Authentic Syndicate Stamp"
+	name = "Syndicate Stamp"
 	desc = "Even evil needs to do paperwork."
 	item = /obj/item/stamp/syndiround
 	cost = 1
