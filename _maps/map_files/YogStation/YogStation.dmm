@@ -3491,22 +3491,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/security/warden)
-"aiO" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/structure/closet/crate/freezer/blood,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/machinery/iv_drip,
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "aiQ" = (
 /obj/machinery/camera{
 	c_tag = "Brig East"
@@ -15189,29 +15173,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
-"aRf" = (
-/obj/structure/table/glass,
-/obj/item/clothing/gloves/color/latex,
-/obj/machinery/requests_console{
-	department = "Virology";
-	name = "Virology Requests Console";
-	pixel_x = -32;
-	receive_ore_updates = 1
-	},
-/obj/item/healthanalyzer,
-/obj/item/clothing/glasses/hud/health,
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
-	},
-/obj/item/clothing/glasses/science,
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "aRh" = (
 /obj/structure/sign/warning/electricshock,
 /turf/closed/wall,
@@ -16258,6 +16219,30 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"aVt" = (
+/obj/structure/table/glass,
+/obj/item/clothing/gloves/color/latex,
+/obj/machinery/requests_console{
+	department = "Virology";
+	name = "Virology Requests Console";
+	pixel_x = -32;
+	receive_ore_updates = 1
+	},
+/obj/item/healthanalyzer,
+/obj/item/clothing/glasses/hud/health,
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/item/clothing/glasses/science,
+/obj/item/radio/headset/headset_med,
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "aVv" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/bottle/epinephrine,
@@ -31948,6 +31933,23 @@
 	},
 /turf/open/space,
 /area/solar/starboard/aft)
+"ctf" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/structure/closet/crate/freezer/blood,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/machinery/iv_drip,
+/obj/item/storage/lockbox/vialbox/blood,
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "ctu" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/firedoor/border_only,
@@ -40677,6 +40679,18 @@
 /obj/structure/transit_tube/crossing/horizontal,
 /turf/open/space/basic,
 /area/space/nearstation)
+"icm" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/item/storage/lockbox/vialbox/virology{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "ics" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/costume,
@@ -43284,19 +43298,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"jDD" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -2;
-	pixel_y = 5
-	},
-/obj/item/pen/red,
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "jFA" = (
 /obj/structure/sign/departments/minsky/command/charge{
 	pixel_x = 32
@@ -53240,6 +53241,20 @@
 /obj/item/reagent_containers/food/snacks/grown/banana,
 /turf/open/floor/grass,
 /area/medical/genetics)
+"qkt" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/pen/red,
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/item/hand_labeler,
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "qkv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -64161,16 +64176,6 @@
 /obj/machinery/teleport/hub,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
-"xLv" = (
-/obj/structure/table,
-/obj/item/hand_labeler,
-/obj/item/radio/headset/headset_med,
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "xLY" = (
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
@@ -94128,7 +94133,7 @@ agj
 ahm
 xit
 xng
-aiO
+ctf
 agj
 ajA
 akm
@@ -105771,7 +105776,7 @@ bNd
 bvU
 bvV
 bVa
-aRf
+aVt
 qqA
 rvc
 bNd
@@ -106542,8 +106547,8 @@ bNd
 bMe
 bvW
 bNh
-xLv
-jDD
+icm
+qkt
 gnZ
 bNd
 bNd
