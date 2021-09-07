@@ -39976,25 +39976,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"hDi" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/pen,
-/obj/machinery/newscaster{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel,
-/area/vacant_room/commissary)
 "hDw" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -52677,6 +52658,26 @@
 /obj/effect/landmark/start/chief_engineer,
 /turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
+"pRP" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/pen,
+/obj/machinery/newscaster{
+	pixel_x = 32
+	},
+/obj/item/stamp/syndi,
+/turf/open/floor/plasteel,
+/area/vacant_room/commissary)
 "pRT" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -88761,7 +88762,7 @@ arP
 kVU
 aye
 wUw
-hDi
+pRP
 aAm
 gDT
 fxA
