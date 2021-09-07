@@ -77,7 +77,7 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 	var/client/C = GLOB.directory[ckey(whom)]
 	if(!C)
 		return 0
-	if(GLOB.mentornoot)
+	if(GLOB.mentornoot || prob(1))
 		SEND_SOUND(C, sound('sound/misc/nootnoot.ogg'))
 	else
 		SEND_SOUND(C, sound('sound/items/bikehorn.ogg'))
@@ -85,7 +85,7 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 	var/show_char_recip = !C.is_mentor() && CONFIG_GET(flag/mentors_mobname_only)
 	for(var/client/X in GLOB.mentors | GLOB.admins)
 		if(X != C)
-			to_chat(X, "<B><font color='green'>Mentor PM: [discord_mentor_link(from, from_id)]-&gt;[key_name_mentor(C, X, 0, 0, show_char_recip)]:</B> <font color ='blue'> [msg]</font>")
+			to_chat(X, "<B><font color='green'>Mentor PM: [discord_mentor_link(from, from_id)]-&gt;[key_name_mentor(C, X, 0, 0, show_char_recip)]:</B> <font color ='cyan'> [msg]</font>")
 	return 1
 
 /datum/world_topic/unlink

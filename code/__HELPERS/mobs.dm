@@ -79,8 +79,27 @@
 	if(!GLOB.dorsal_tubes_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/dorsal_tubes, GLOB.dorsal_tubes_list)
 
-	//For now we will always return none for tail_human and ears.
-	return(list("mcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),"ethcolor" = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)], "tail_lizard" = pick(GLOB.tails_list_lizard), "tail_human" = "None", "wings" = "None", "snout" = pick(GLOB.snouts_list), "horns" = pick(GLOB.horns_list), "ears" = "None", "frills" = pick(GLOB.frills_list), "spines" = pick(GLOB.spines_list), "body_markings" = pick(GLOB.body_markings_list), "legs" = "Normal Legs", "caps" = pick(GLOB.caps_list), "moth_wings" = pick(GLOB.moth_wings_list), "tail_polysmorph" = "Polys", "teeth" = pick(GLOB.teeth_list), "dome" = pick(GLOB.dome_list), "dorsal_tubes" = pick(GLOB.dorsal_tubes_list)))
+	//For now we will always return none for tail_human and ears.		this shit was unreadable if you do somethign like this make it at least readable
+	return(list(
+		"mcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
+		"ethcolor" = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)],
+		"tail_lizard" = pick(GLOB.tails_list_lizard),
+		"tail_human" = "None",
+		"wings" = "None",
+		"snout" = pick(GLOB.snouts_list),
+		"horns" = pick(GLOB.horns_list),
+		"ears" = "None",
+		"frills" = pick(GLOB.frills_list),
+		"spines" = pick(GLOB.spines_list),
+		"body_markings" = pick(GLOB.body_markings_list),
+		"legs" = "Normal Legs",
+		"caps" = pick(GLOB.caps_list),
+		"moth_wings" = pick(GLOB.moth_wings_list),
+		"tail_polysmorph" = "Polys",
+		"teeth" = pick(GLOB.teeth_list),
+		"dome" = pick(GLOB.dome_list),
+		"dorsal_tubes" = pick(GLOB.dorsal_tubes_list)
+	))
 
 /proc/random_hair_style(gender)
 	switch(gender)

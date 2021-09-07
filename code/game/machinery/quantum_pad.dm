@@ -118,10 +118,12 @@
 	add_fingerprint(user)
 	doteleport(user, target_pad)
 
+/* Disabled on 2021-08-02 due to lag caused by particles over time. This kills the server when the sparks are used alot over the course of the round.
 /obj/machinery/quantumpad/proc/sparks()
 	var/datum/effect_system/spark_spread/quantum/s = new /datum/effect_system/spark_spread/quantum
 	s.set_up(5, 1, get_turf(src))
 	s.start()
+*/
 
 /obj/machinery/quantumpad/attack_ghost(mob/dead/observer/ghost)
 	. = ..()
@@ -155,8 +157,8 @@
 
 			// use a lot of power
 			use_power(10000 / power_efficiency)
-			sparks()
-			target_pad.sparks()
+			//sparks()
+			//target_pad.sparks()
 
 			flick("qpad-beam", src)
 			playsound(get_turf(src), 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)

@@ -7,5 +7,6 @@
 #define MARTIALART_MUSHPUNCH "mushroom punch"
 #define MARTIALART_KRAVMAGA "krav maga"
 #define MARTIALART_CQC "CQC"
+#define MARTIALART_CQC_COOK "CQC cook"
 #define MARTIALART_PLASMAFIST "plasma fist"
 #define MARTIALART_FLYINGFANG "flying fang"

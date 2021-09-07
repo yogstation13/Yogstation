@@ -240,7 +240,7 @@
 		alarmed.burglaralert(src)
 		playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
 
-/obj/structure/fireaxecabinet/spare
+/obj/structure/fireaxecabinet/bridge/spare
 	name = "spare id cabinet"
 	desc = "There is a small label that reads \"For Emergency use only\". <BR>There are bolts under it's glass cover for easy disassembly using a wrench."
 	icon = 'icons/obj/wallmounts.dmi'
@@ -249,8 +249,30 @@
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 0, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
 	axe = FALSE
 
-/obj/structure/fireaxecabinet/spare/Initialize()
+/obj/structure/fireaxecabinet/bridge/spare/Initialize()
 	. = ..()
 	fireaxe = null
 	spareid = new(src)
 	update_icon()
+	
+/obj/structure/fireaxecabinet/bridge/spare/reset_lock(mob/user)
+	//this happens when you hack the lock as a synthetic/AI, or with a multitool.
+	if(obj_flags & EMAGGED)
+		to_chat(user, "<span class='notice'>You try to reset the [name]'s circuits, but they're completely burnt out.</span>")
+		return
+	if(!open)
+		to_chat(user, "<span class = 'caution'>Resetting circuitry...</span>")
+		if(alert)
+			to_chat(user, "<span class='danger'>This will trigger the built in burglary alarm!</span>")
+		if(do_after(user, 15 SECONDS, target = src))
+			to_chat(user, "<span class='caution'>You [locked ? "disable" : "re-enable"] the locking modules.</span>")
+			src.add_fingerprint(user)
+			if(locked)
+				trigger_alarm() //already checks for alert var
+			toggle_lock(user)
+
+/obj/structure/fireaxecabinet/bridge/spare/emag_act(mob/user)
+	. = ..()
+	if(!.)
+		return
+	trigger_alarm()

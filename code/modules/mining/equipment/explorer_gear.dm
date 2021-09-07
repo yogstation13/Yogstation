@@ -9,11 +9,13 @@
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|LEGS|ARMS
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_inv = HIDEGLOVES|HIDESHOES
+	flags_prot = HIDEJUMPSUIT
 	hoodtype = /obj/item/clothing/head/hooded/explorer
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 50)
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe)
 	resistance_flags = FIRE_PROOF
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/head/hooded/explorer
 	name = "explorer hood"
@@ -21,10 +23,30 @@
 	icon_state = "explorer"
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
+	flags_prot = HIDEHAIR|HIDEFACE
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 50)
 	resistance_flags = FIRE_PROOF
+	var/adjusted = NORMAL_STYLE
+
+/obj/item/clothing/head/hooded/explorer/verb/hood_adjust()
+	set name = "Adjust Hood Style"
+	set category = null
+	set src in usr
+	switch(adjusted)
+		if(NORMAL_STYLE)
+			adjusted = ALT_STYLE
+			to_chat(usr, "<span class='notice'>You adjust the hood to wear it more casually.</span>")
+			flags_inv &= ~(HIDEHAIR|HIDEFACE)
+		if(ALT_STYLE)
+			adjusted = NORMAL_STYLE
+			to_chat(usr, "<span class='notice'>You adjust the hood back to normal.</span>")
+			flags_inv |= (HIDEHAIR|HIDEFACE)
+	if(ishuman(usr))
+		var/mob/living/carbon/human/H = usr
+		H.update_hair()
+		H.update_body()
 
 /obj/item/clothing/suit/hooded/explorer/Initialize()
 	. = ..()

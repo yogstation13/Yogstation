@@ -156,6 +156,8 @@
 #define TRAIT_PRESERVED_ORGANS	"preserved_organs"
 #define TRAIT_SKINNY			"skinny"  //For those with a slightly thinner torso sprite
 #define TRAIT_SURGERY_PREPARED	"surgery_prepared"
+#define TRAIT_NO_PASSIVE_COOLING "no-passive-cooling"
+#define TRAIT_NO_PASSIVE_HEATING "no-passive-heating"
 
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it

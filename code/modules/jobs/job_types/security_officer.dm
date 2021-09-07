@@ -15,6 +15,8 @@
 
 	outfit = /datum/outfit/job/security
 
+	alt_titles = list("Threat Response Officer", "Civilan Protection Officer", "Security Cadet", "Corporate Marine")
+
 	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MECH_SECURITY, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MECH_SECURITY, ACCESS_MINERAL_STOREROOM) // See /datum/job/officer/get_access()
 	paycheck = PAYCHECK_HARD
@@ -91,7 +93,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 			accessory = /obj/item/clothing/accessory/armband/science
 		if(SEC_DEPT_SERVICE)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/service
-			dep_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE)
+			dep_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE, ACCESS_MANUFACTURING )
 			destination = /area/security/checkpoint/service
 			spawn_point = locate(/obj/effect/landmark/start/depsec/service) in GLOB.department_security_spawns
 			accessory =  /obj/item/clothing/accessory/armband/service

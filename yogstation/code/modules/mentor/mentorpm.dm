@@ -53,12 +53,12 @@
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
-		if(mentor_datum)
+		if(is_mentor())
 			to_chat((GLOB.admins - GLOB.deadmins) | GLOB.mentors, "<b><span class='purple mentor'>[key_name_mentor(src)] has started answering [key_name_mentor(C)]'s mentorhelp.</span></b>", confidential=TRUE)
 		msg = input(src,"Message:", "Private message") as text|null
 
 		if(!msg)
-			if(mentor_datum)
+			if(is_mentor())
 				to_chat((GLOB.admins - GLOB.deadmins) | GLOB.mentors, "<b><span class='purple mentor'>[key_name_mentor(src)] has decided not to answer [key_name_mentor(C)]'s mentorhelp.</span></b>", confidential=TRUE)
 			return
 

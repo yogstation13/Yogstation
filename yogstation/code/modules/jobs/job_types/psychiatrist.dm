@@ -8,6 +8,7 @@
 	spawn_positions = 1
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
+	alt_titles = list("Counsellor", "Therapist", "Mentalist")
 
 	outfit = /datum/outfit/job/psych
 
