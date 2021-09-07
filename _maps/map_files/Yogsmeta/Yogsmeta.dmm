@@ -5087,51 +5087,6 @@
 /obj/machinery/computer/operating,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
-"akv" = (
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/item/folder/white{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/obj/item/folder/red{
-	pixel_x = -3
-	},
-/obj/item/healthanalyzer{
-	pixel_y = -2
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
-"akw" = (
-/obj/structure/table,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/pen,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/machinery/vending/wallmed{
-	pixel_y = 27
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "akx" = (
 /obj/machinery/light{
 	dir = 4
@@ -65957,36 +65912,6 @@
 	},
 /turf/open/floor/plating,
 /area/medical/virology)
-"cDF" = (
-/obj/item/storage/box/beakers{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/storage/box/syringes,
-/obj/machinery/power/apc/highcap/five_k{
-	areastring = "/area/medical/virology";
-	dir = 1;
-	name = "Virology APC";
-	pixel_y = 23
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/obj/structure/table/glass,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "cDG" = (
 /obj/item/book/manual/wiki/infections{
 	pixel_y = 7
@@ -66221,32 +66146,6 @@
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
-"cEM" = (
-/obj/item/folder/white{
-	pixel_x = 4;
-	pixel_y = -3
-	},
-/obj/item/folder/white{
-	pixel_x = 4;
-	pixel_y = -3
-	},
-/obj/item/pen/red,
-/obj/machinery/requests_console{
-	department = "Virology";
-	name = "Virology Requests Console";
-	pixel_x = 29;
-	receive_ore_updates = 1
-	},
-/obj/item/stack/sheet/mineral/plasma,
-/obj/item/stack/sheet/mineral/plasma,
-/obj/item/stack/sheet/mineral/plasma,
-/obj/structure/table/glass,
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
@@ -72846,6 +72745,35 @@
 	dir = 1
 	},
 /area/engine/atmos)
+"ebk" = (
+/obj/item/folder/white{
+	pixel_x = 4;
+	pixel_y = -3
+	},
+/obj/item/folder/white{
+	pixel_x = 4;
+	pixel_y = -3
+	},
+/obj/item/pen/red,
+/obj/machinery/requests_console{
+	department = "Virology";
+	name = "Virology Requests Console";
+	pixel_x = 29;
+	receive_ore_updates = 1
+	},
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/structure/table/glass,
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/item/clothing/glasses/science{
+	pixel_y = 15
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "ecF" = (
 /obj/structure/sign/directions/evac,
 /turf/closed/wall,
@@ -77920,6 +77848,39 @@
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
+"nli" = (
+/obj/item/storage/box/beakers{
+	pixel_x = -7;
+	pixel_y = 11
+	},
+/obj/item/storage/box/syringes{
+	pixel_x = -7;
+	pixel_y = 3
+	},
+/obj/machinery/power/apc/highcap/five_k{
+	areastring = "/area/medical/virology";
+	dir = 1;
+	name = "Virology APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/table/glass,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "nqi" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -78145,29 +78106,6 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
-"nCK" = (
-/obj/item/paper_bin{
-	pixel_x = -2;
-	pixel_y = 5
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/table/glass,
-/obj/structure/sign/warning/deathsposal{
-	pixel_x = -30
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/item/clothing/glasses/science{
-	pixel_y = 15
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "nEg" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -79094,6 +79032,27 @@
 /obj/item/reagent_containers/syringe,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
+"pss" = (
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/storage/lockbox/vialbox/virology{
+	pixel_x = -4;
+	pixel_y = 11
+	},
+/obj/item/healthanalyzer{
+	pixel_x = 3;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "pvm" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -83028,6 +82987,35 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/solars/starboard/aft)
+"woV" = (
+/obj/structure/table,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/vending/wallmed{
+	pixel_y = 27
+	},
+/obj/item/folder/white{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/item/folder/red{
+	pixel_x = -3
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "wrD" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -83904,6 +83892,30 @@
 	dir = 1
 	},
 /area/engine/atmos)
+"yeO" = (
+/obj/item/paper_bin{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/table/glass,
+/obj/structure/sign/warning/deathsposal{
+	pixel_x = -30
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/item/storage/lockbox/vialbox/virology{
+	pixel_x = 10;
+	pixel_y = 40
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "yfM" = (
 /obj/machinery/vending/engivend,
 /obj/effect/turf_decal/delivery,
@@ -101848,8 +101860,8 @@ qek
 dux
 aaa
 cBR
-cDF
-nCK
+nli
+yeO
 gpT
 rny
 bRW
@@ -102877,7 +102889,7 @@ dux
 aaa
 cBR
 cDJ
-cEM
+ebk
 bQp
 ctE
 bRY
@@ -108183,7 +108195,7 @@ abe
 ahw
 air
 ahx
-akv
+pss
 alE
 alp
 wBM
@@ -108440,7 +108452,7 @@ agJ
 ahx
 ait
 ahx
-akw
+woV
 vMZ
 dNs
 hnY
