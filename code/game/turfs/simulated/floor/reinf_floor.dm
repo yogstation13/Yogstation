@@ -24,6 +24,10 @@
 /turf/open/floor/engine/burn_tile()
 	return //unburnable
 
+/turf/open/floor/engine/Melt()
+	to_be_destroyed = FALSE
+	return src
+
 /turf/open/floor/engine/make_plating(force = 0)
 	if(force)
 		..()

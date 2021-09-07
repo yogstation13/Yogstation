@@ -161,15 +161,16 @@
 /obj/machinery/sleeper/nap_violation(mob/violator)
 	open_machine()
 
-/obj/machinery/sleeper/ui_data()
+/obj/machinery/sleeper/ui_data(mob/user)
 	var/list/data = list()
+	data["knowledge"] = IS_MEDICAL(user)
 	data["occupied"] = occupant ? 1 : 0
 	data["open"] = state_open
 
 	data["chems"] = list()
 	for(var/chem in available_chems)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
-		data["chems"] += list(list("name" = R.name, "id" = R.type, "allowed" = chem_allowed(chem)))
+		data["chems"] += list(list("name" = R.name, "id" = R.type, "allowed" = chem_allowed(chem), "desc" = R.description))
 
 	data["occupant"] = list()
 	var/mob/living/mob_occupant = occupant

@@ -454,6 +454,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //Show the ticket panel
 /datum/admin_help/proc/TicketPanel()
+	if(GLOB.experimental_adminpanel)
+		ui_interact(usr)
+		return
+
 	var/reply_link = "<a href='?_src_=holder;[HrefToken(TRUE)];user=[REF(usr)];ahelp=[REF(src)];ahelp_action=reply'><img border='0' width='16' height='16' class='uiIcon16 icon-comment' /> Reply</a>"
 	var/refresh_link = "<a href='?_src_=holder;[HrefToken(TRUE)];user=[REF(usr)];ahelp=[REF(src)];ahelp_action=ticket'><img border='0' width='16' height='16' class='uiIcon16 icon-refresh' /> Refresh</a>"
 
@@ -611,7 +615,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	set name = "Adminlisttickets"
 	set category = "Admin"
 
-	view_tickets_main(TICKET_FLAG_LIST_ALL)
+	if(GLOB.experimental_adminpanel)
+		GLOB.ahelp_tickets.ui_interact(usr)
+	else
+		view_tickets_main(TICKET_FLAG_LIST_ALL)
 
 /client/proc/view_tickets_main(var/flag)
 	flag = text2num(flag)
