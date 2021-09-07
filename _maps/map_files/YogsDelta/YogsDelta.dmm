@@ -122179,6 +122179,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"dYP" = (
+/obj/structure/table/glass,
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/item/storage/box/beakers{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/syringes,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/medical/virology)
 "dYQ" = (
 /obj/structure/table/glass,
 /obj/structure/sign/warning/deathsposal{
@@ -125178,24 +125193,6 @@
 /mob/living/simple_animal/hostile/retaliate/goose/vomit,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"iBB" = (
-/obj/structure/cable/white{
-	icon_state = "4-8"
-	},
-/obj/structure/table/glass,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/item/storage/lockbox/vialbox/virology{
-	pixel_x = 4;
-	pixel_y = 11
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig/infirmary)
 "iBZ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -126363,27 +126360,6 @@
 /obj/item/extinguisher,
 /turf/open/floor/circuit/green,
 /area/science/xenobiology)
-"nXs" = (
-/obj/structure/table/glass,
-/obj/structure/cable/white{
-	icon_state = "1-2"
-	},
-/obj/item/storage/box/beakers{
-	pixel_x = -6;
-	pixel_y = 7
-	},
-/obj/item/storage/box/syringes{
-	pixel_x = -6
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/item/storage/lockbox/vialbox/virology{
-	pixel_x = 11;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel,
-/area/medical/virology)
 "nYG" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -174428,7 +174404,7 @@ dVt
 dWm
 dXa
 dXU
-nXs
+dYP
 dsJ
 aad
 aaa
@@ -180015,10 +179991,6 @@ bXy
 brH
 bsH
 bZN
-iBB
-fKD
-kPZ
-oFI
 bBm
 dmu
 bxg
