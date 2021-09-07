@@ -352,7 +352,7 @@
 
 
 /obj/machinery/photocopier/proc/photocopy(var/obj/item/photo/photocopy)
-	new /obj/item/photo (loc, photocopy.picture.Copy(greytoggle == "Greyscale"? TRUE : FALSE))
+	. = new /obj/item/photo (loc, photocopy.picture.Copy(greytoggle == "Greyscale"? TRUE : FALSE))
 	toner -= 5	//photos use a lot of ink!
 	if(toner < 0)
 		toner = 0

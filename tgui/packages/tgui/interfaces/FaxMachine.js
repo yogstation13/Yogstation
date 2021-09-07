@@ -13,16 +13,17 @@ export const FaxMachine = (props, context) => {
     cooldown,
     depts,
     destination,
-  } = data
+  } = data;
   return (
     <Window
-      width={700}
-      height={700}
+      width={420}
+      height={215}
       resizable>
       <Window.Content scrollable>
         {!authenticated && (
           <Section>
             <Button
+              icon="sign-in-alt"
               onClick={() => act('auth')}>
               Log in
             </Button>
@@ -31,10 +32,13 @@ export const FaxMachine = (props, context) => {
         {!!authenticated && (
           <Section
             title="Fax Machine"
+            fill
             buttons={(
               <Button
+                icon="sign-out-alt"
+                color="bad"
                 onClick={() => act('logout')}>
-                Log Out
+                Log Out ({auth_name})
               </Button>
             )}>
             {!has_copy && (
@@ -43,16 +47,24 @@ export const FaxMachine = (props, context) => {
             {!!has_copy && (
               <Section
                 level={2}>
-                <Button icon="eject" onClick={() => act('remove')}>Eject '{copy_name}'</Button><br />
-                Department: 
-                <Dropdown 
+                <Button icon="eject" onClick={() => act('remove')}>Eject &apos;{copy_name}&apos;</Button><br /><br />
+                <Dropdown
                   options={depts}
                   selected={destination}
                   width="250px"
                   onSelected={value => act('set_dept', {
                     dept: value,
-                  })}/><br />
-                <Button onClick={() => act('send')}>Send!</Button>
+                  })} /><br />
+                <Button
+                  disabled={cooldown > 0}
+                  onClick={() => act('send')}>
+                  Send!
+                </Button><br />
+                {cooldown > 0 && (
+                  <div>
+                    Transmitter Recharged In: {Math.floor(cooldown / 10)}s
+                  </div>
+                )}
               </Section>
             )}
           </Section>

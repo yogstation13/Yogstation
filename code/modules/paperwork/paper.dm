@@ -75,13 +75,13 @@
 	icon_state = "paper"
 
 
-/obj/item/paper/examine(mob/user)
+/obj/item/paper/examine(mob/user, force = FALSE)
 	. = ..()
 	var/datum/asset/assets = get_asset_datum(/datum/asset/spritesheet/simple/paper)
 	assets.send(user)
 
-	if(in_range(user, src) || isobserver(user))
-		if(user.is_literate())
+	if(in_range(user, src) || isobserver(user) || force)
+		if(user.is_literate() || force)
 			user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[render_body(user)]<HR>[stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 		else

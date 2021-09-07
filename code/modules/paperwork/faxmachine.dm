@@ -1,5 +1,5 @@
 GLOBAL_LIST_EMPTY(allfaxes)
-GLOBAL_LIST_INIT(admin_departments, list("Central Command", "Sol Government"))
+GLOBAL_LIST_INIT(admin_departments, list("Central Command"))
 GLOBAL_LIST_EMPTY(alldepartments)
 GLOBAL_LIST_EMPTY(adminfaxes)
 
@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	.["auth_name"] = auth_name
 	.["has_copy"] = !copier_empty()
 	.["copy_name"] = copy?.name || photocopy?.name || doccopy?.name
-	.["cooldown"] = sendcooldown
+	.["cooldown"] = sendcooldown - world.time
 	.["depts"] = (GLOB.alldepartments + GLOB.admin_departments)
 	.["destination"] = destination
 
@@ -56,14 +56,13 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	switch(action)
 		if("send")
 			if(!copier_empty())
+				if(sendcooldown - world.time > 0)
+					to_chat(usr, "<span class='warning'>Transmitter recharging</span>")
+					return
 				if (destination in GLOB.admin_departments)
 					send_admin_fax(usr, destination)
 				else
-					sendfax(destination)
-				
-				// if (sendcooldown)
-				// 	spawn(sendcooldown) // cooldown time
-				// 		sendcooldown = 0
+					INVOKE_ASYNC(src, .proc/sendfax, destination)
 			return
 		if("remove")
 			if(copy)
@@ -71,6 +70,12 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 				usr.put_in_hands(copy)
 				to_chat(usr, "<span class='notice'>You take \the [copy] out of \the [src].</span>")
 				copy = null
+				return
+			if(photocopy)
+				photocopy.loc = usr.loc
+				usr.put_in_hands(photocopy)
+				to_chat(usr, "<span class='notice'>You take \the [photocopy] out of \the [src].</span>")
+				photocopy = null
 				return
 		if("dept")
 			var/lastdestination = destination
@@ -111,7 +116,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	
 	if (success)
 		visible_message("[src] beeps, \"Message transmitted successfully.\"")
-		//sendcooldown = 600
+		sendcooldown = world.time + 1 MINUTES
 	else
 		visible_message("[src] beeps, \"Error transmitting message.\"")
 
@@ -126,7 +131,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	playsound(loc, "sound/items/polaroid1.ogg", 50, 1)
 	
 	// give the sprite some time to flick
-	sleep(20)
+	sleep(23)
 	
 	if (istype(incoming, /obj/item/paper))
 		copy(incoming)
@@ -135,10 +140,10 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	else if (istype(incoming, /obj/item/paper_bundle))
 		bundlecopy(incoming)
 	else
-		return 0
+		return FALSE
 
 	use_power(active_power_usage)
-	return 1
+	return TRUE
 
 /obj/machinery/photocopier/faxmachine/proc/send_admin_fax(var/mob/sender, var/destination)
 	if(stat & (BROKEN|NOPOWER))
@@ -152,7 +157,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	else if (copy)
 		rcvdcopy = copy(copy)
 	else if (photocopy)
-		rcvdcopy = photocopy(copy)
+		rcvdcopy = photocopy(photocopy)
 	else
 		visible_message("[src] beeps, \"Error transmitting message.\"")
 		return
@@ -164,10 +169,8 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	switch(destination)
 		if ("Central Command")
 			send_adminmessage(sender, "CENTCOM FAX", rcvdcopy, "CentcomFaxReply", "#006100")
-		if ("Sol Government")
-			send_adminmessage(sender, "SOL GOVERNMENT FAX", rcvdcopy, "CentcomFaxReply", "#1F66A0")
-	sendcooldown = 1800
-	// sleep(50)
+	sendcooldown = world.time + 1 MINUTES
+	sleep(50)
 	visible_message("[src] beeps, \"Message transmitted successfully.\"")
 	
 
