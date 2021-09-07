@@ -599,7 +599,6 @@
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "eO" = (
-/obj/machinery/washing_machine,
 /obj/machinery/camera{
 	c_tag = "Dormitories";
 	network = list("mine")
@@ -607,6 +606,10 @@
 /obj/machinery/airalarm{
 	pixel_y = 24
 	},
+/obj/machinery/photocopier/faxmachine{
+	department = "Mining Base"
+	},
+/obj/structure/table,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "eP" = (
@@ -823,6 +826,10 @@
 /obj/item/clothing/mask/breath/medical,
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
+"gK" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "gV" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -1189,10 +1196,24 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/structure/table,
-/obj/item/stack/packageWrap,
-/obj/item/hand_labeler,
+/obj/item/stack/packageWrap{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/hand_labeler{
+	pixel_x = -6;
+	pixel_y = 9
+	},
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 32
+	},
+/obj/item/paper_bin{
+	pixel_x = 4;
+	pixel_y = 1
+	},
+/obj/item/pen{
+	pixel_x = 6;
+	pixel_y = -1
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -1551,6 +1572,24 @@
 	open = 0
 	},
 /turf/open/floor/plating,
+/area/mine/living_quarters)
+"ra" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/airlock/glass{
+	name = "Dormitories"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "rm" = (
 /obj/structure/closet/emcloset/anchored,
@@ -3021,21 +3060,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/break_room)
 "NS" = (
-/obj/machinery/door/airlock/glass{
-	name = "Dormitories"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
+/obj/machinery/washing_machine,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "NV" = (
@@ -4309,9 +4334,9 @@ wv
 bs
 el
 zW
-mx
 NS
-mx
+vS
+jE
 zW
 OD
 bP
@@ -4351,9 +4376,9 @@ cz
 YA
 YA
 zW
-iC
-vS
-iC
+gK
+ra
+gK
 zW
 kJ
 kJ
