@@ -23435,7 +23435,6 @@
 /area/quartermaster/office)
 "btB" = (
 /obj/structure/table,
-/obj/machinery/recharger,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -23445,15 +23444,24 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/photocopier/faxmachine{
+	department = "Head of Personnel"
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "btD" = (
 /obj/structure/table,
 /obj/item/paper_bin{
-	pixel_x = -3;
+	pixel_x = 5;
 	pixel_y = 7
 	},
-/obj/item/pen,
+/obj/item/pen{
+	pixel_x = 8;
+	pixel_y = 5
+	},
+/obj/machinery/recharger{
+	pixel_x = -10
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "btE" = (
@@ -29559,6 +29567,13 @@
 "bWC" = (
 /turf/open/space/basic,
 /area/space/nearstation)
+"bWG" = (
+/obj/machinery/photocopier/faxmachine{
+	department = "Conference Room"
+	},
+/obj/structure/table,
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
 "bWJ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -94172,7 +94187,7 @@ aZP
 bbh
 bcc
 bdd
-bbX
+bWG
 bfr
 bgM
 bif

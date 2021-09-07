@@ -42,8 +42,8 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	. = list()
 	.["authenticated"] = authenticated
 	.["auth_name"] = auth_name
-	.["has_copy"] = !!copy
-	.["copy_name"] = copy?.name
+	.["has_copy"] = !copier_empty()
+	.["copy_name"] = copy?.name || photocopy?.name || doccopy?.name
 	.["cooldown"] = sendcooldown
 	.["depts"] = (GLOB.alldepartments + GLOB.admin_departments)
 	.["destination"] = destination
@@ -55,7 +55,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	. = TRUE
 	switch(action)
 		if("send")
-			if(copy)
+			if(!copier_empty())
 				if (destination in GLOB.admin_departments)
 					send_admin_fax(usr, destination)
 				else
@@ -104,10 +104,10 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	
 	use_power(200)
 	
-	var/success = 0
+	var/success = FALSE
 	for(var/obj/machinery/photocopier/faxmachine/F in GLOB.allfaxes)
 		if( F.department == destination )
-			success = F.recievefax(copy)
+			success ||= F.recievefax(copy || photocopy)
 	
 	if (success)
 		visible_message("[src] beeps, \"Message transmitted successfully.\"")
@@ -117,10 +117,10 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 
 /obj/machinery/photocopier/faxmachine/proc/recievefax(var/obj/item/incoming)
 	if(stat & (BROKEN|NOPOWER))
-		return 0
+		return FALSE
 	
 	if(department == "Unknown")
-		return 0	//You can't send faxes to "Unknown"
+		return FALSE	//You can't send faxes to "Unknown"
 
 	flick("faxreceive", src)
 	playsound(loc, "sound/items/polaroid1.ogg", 50, 1)
@@ -147,12 +147,12 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	use_power(200)
 
 	var/obj/item/rcvdcopy
-	if (istype(copy, /obj/item/paper))
-		rcvdcopy = copy(copy)
-	else if (istype(copy, /obj/item/photo))
-		rcvdcopy = photocopy(copy)
-	else if (istype(copy, /obj/item/paper_bundle))
+	if (istype(copy, /obj/item/paper_bundle))
 		rcvdcopy = bundlecopy(copy)
+	else if (copy)
+		rcvdcopy = copy(copy)
+	else if (photocopy)
+		rcvdcopy = photocopy(copy)
 	else
 		visible_message("[src] beeps, \"Error transmitting message.\"")
 		return
@@ -178,3 +178,6 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
 		confidential = TRUE)
+
+/obj/machinery/photocopier/faxmachine/check_ass()
+	return FALSE // No ass here
