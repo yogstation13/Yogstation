@@ -368,11 +368,7 @@
 		html = "<span class='adminsay'><i>Click on the administrator's name to reply.</i></span>",
 		confidential = TRUE) // yogs - Yog Tickets
 
-<<<<<<< HEAD
-	admin_ticket_log(C, span_notice("PM From [irc_tagged]: [msg]")) // yogs - Yog Tickets
-=======
 	admin_ticket_log(C, "PM From [irc_tagged]: [msg]") // yogs - Yog Tickets
->>>>>>> origin/master
 
 	window_flash(C, ignorepref = TRUE)
 	//always play non-admin recipients the adminhelp sound
