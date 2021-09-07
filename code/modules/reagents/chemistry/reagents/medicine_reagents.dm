@@ -1,7 +1,7 @@
 #define PERF_BASE_DAMAGE		0.5
 #define REAGENT_REVIVE_MINIMUM_HEALTH (HEALTH_THRESHOLD_CRIT + 20)
 /// Required strange reagent for revival.
-#define REQUIRED_STRANGE_REAGENT_FOR_REVIVAL 10 ///Adam Sucks
+#define REQUIRED_STRANGE_REAGENT_FOR_REVIVAL 2
 
 /////////////////////////////////////////////////////////////////////////////////////////
 					// MEDICINE REAGENTS
@@ -134,7 +134,7 @@
 	taste_description = "sludge"
 
 /datum/reagent/medicine/cryoxadone/on_mob_life(mob/living/carbon/M)
-	var/power = -0.00003 * (M.bodytemperature ** 2) + 3
+	var/power = -0.00006 * (M.bodytemperature ** 2) + 6
 	if(M.bodytemperature < T0C)
 		M.adjustOxyLoss(-3 * power, 0)
 		M.adjustBruteLoss(-power, 0)
@@ -848,6 +848,7 @@
 /datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	var/datum/reagent/S = M.reagents.get_reagent(/datum/reagent/medicine/strange_reagent)
 	if((S?.volume + reac_volume) < REQUIRED_STRANGE_REAGENT_FOR_REVIVAL)
+		M.visible_message("<span class='warning'>[M]'s body shivers slightly, maybe the dose wasn't enough...</span>")
 		return ..()
 	if(M.stat == DEAD)
 		if(M.suiciding || M.hellbound) //they are never coming back

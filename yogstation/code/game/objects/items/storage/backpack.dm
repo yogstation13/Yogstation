@@ -226,3 +226,4 @@
 	new /obj/item/clothing/suit/toggle/labcoat/physician(src)
 	new /obj/item/clothing/head/beret/med/phys(src)
 	new /obj/item/clothing/head/beret/corpsec/phys(src)
+	new /obj/item/clothing/shoes/xeno_wraps/jackboots(src)
