@@ -1231,6 +1231,10 @@
 	},
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/gym)
+"dt" = (
+/obj/effect/spawner/template/infiltrator,
+/turf/open/space/basic,
+/area/space)
 "dx" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -60207,7 +60211,7 @@ aa
 aa
 aa
 aa
-aa
+dt
 aa
 aa
 aa

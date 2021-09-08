@@ -245,8 +245,9 @@ GLOBAL_LIST_EMPTY(uplinks)
 	interact(null, implant.imp_in)
 
 /datum/component/uplink/proc/implanting(datum/source, list/arguments)
-	var/mob/user = arguments[2]
-	owner = "[user.key]"
+	var/mob/target = arguments[1]
+	var/mob/user = arguments[2] // YOGS START -- Fix runtime when implanting infiltrators
+	owner = "[user ? user.key : target.key]" // YOGS END
 
 /datum/component/uplink/proc/old_implant(datum/source, list/arguments, obj/item/implant/new_implant)
 	// It kinda has to be weird like this until implants are components
