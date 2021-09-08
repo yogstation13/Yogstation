@@ -50,14 +50,12 @@
 	window.send_asset(get_asset_datum(/datum/asset/simple/namespaced/fontawesome))
 	window.send_asset(get_asset_datum(/datum/asset/spritesheet/chat))
 	request_telemetry()
-	world.log << "Trying to initialize"
 	if(!telemetry_connections && retries < 6)
 		addtimer(CALLBACK(src, .proc/check_telemetry), 2 SECONDS)
 	addtimer(CALLBACK(src, .proc/on_initialize_timed_out), 2 SECONDS)
 
 /datum/tgui_panel/proc/check_telemetry()
 	if(!telemetry_connections) /// Somethings fucked lets try again.
-		world.log << "Shits fucked attempt [retries]"
 		if(retries > 2)
 			if(client && istype(client))
 				winset(client, null, "command=.reconnect") /// Kitchen Sink
