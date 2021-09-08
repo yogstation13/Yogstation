@@ -202,11 +202,12 @@
 							break
 			if(SLEEPER_CHEMPURGE)
 				C.adjustToxLoss(-SLEEPER_HEAL_RATE)
+				var/purge_rate = 0.5 * efficiency
 				for(var/datum/reagent/R in C.reagents.reagent_list)
 					if(istype(R, /datum/reagent/toxin))
-						C.reagents.remove_reagent(R.type,efficiency)
+						C.reagents.remove_reagent(R.type,purge_rate)
 					if(R.overdosed)
-						C.reagents.remove_reagent(R.type,efficiency)
+						C.reagents.remove_reagent(R.type,purge_rate)
 			else
 				active_treatment = null
 
