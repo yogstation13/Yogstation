@@ -1,4 +1,3 @@
-##JamieD12
 ## Yogstation codebase
 
 [![Build Status](https://github.com/yogstation13/Yogstation/workflows/Turdis/badge.svg?branch=master)](https://github.com/yogstation13/Yogstation/actions?query=workflow%3ATurdis+branch%3Amaster)
