@@ -38,7 +38,7 @@
 	var/can_be_carded = TRUE
 	var/alarms = list("Motion"=list(), "Fire"=list(), "Atmosphere"=list(), "Power"=list(), "Camera"=list(), "Burglar"=list())
 	var/viewalerts = 0
-	var/icon/holo_icon//Default is assigned when AI is created.
+	var/icon/holo_icon //Default is assigned when AI is created.
 	var/obj/mecha/controlled_mech //For controlled_mech a mech, to determine whether to relaymove or use the AI eye.
 	var/radio_enabled = TRUE //Determins if a carded AI can speak with its built in radio or not.
 	radiomod = ";" //AIs will, by default, state their laws on the internal radio.
@@ -102,7 +102,7 @@
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai)
 	. = ..()
 	if(!target_ai) //If there is no player/brain inside.
-		new/obj/structure/AIcore/deactivated(loc) //New empty terminal.
+		// new/obj/structure/AIcore/deactivated(loc) //New empty terminal.
 		return INITIALIZE_HINT_QDEL //Delete AI.
 
 	if(L && istype(L, /datum/ai_laws))
@@ -198,6 +198,8 @@
 	SSshuttle.autoEvac()
 	qdel(eyeobj) // No AI, no Eye
 	malfhack = null
+
+	GLOB.ai_os.remove_ai(src)
 
 	. = ..()
 
@@ -365,10 +367,6 @@
 	if(alert("WARNING: This will immediately ghost you, removing your character from the round permanently (similar to cryo). Are you entirely sure you want to do this?",
 					"Hibernate", "No", "No", "Yes") != "Yes")
 		return
-
-	// We warned you.
-	var/obj/structure/AIcore/latejoin_inactive/inactivecore = new(get_turf(src))
-	transfer_fingerprints_to(inactivecore)
 
 	if(GLOB.announcement_systems.len)
 		var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)
@@ -924,7 +922,7 @@
 			client.eye = A
 		else
 			end_multicam()
-			if(isturf(loc))
+			if(isturf(loc) || istype(loc, /obj/machinery/ai/data_core))
 				if(eyeobj)
 					client.eye = eyeobj
 					client.perspective = EYE_PERSPECTIVE

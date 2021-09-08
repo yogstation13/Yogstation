@@ -25,7 +25,9 @@
 
 /datum/job/ai/after_spawn(mob/H, mob/M, latejoin)
 	. = ..()
+	/*
 	if(latejoin)
+			
 		var/obj/structure/AIcore/latejoin_inactive/lateJoinCore
 		for(var/obj/structure/AIcore/latejoin_inactive/P in GLOB.latejoin_ai_cores)
 			if(P.is_available())
@@ -36,7 +38,11 @@
 			lateJoinCore.available = FALSE
 			H.forceMove(lateJoinCore.loc)
 			qdel(lateJoinCore)
+			*/
 	var/mob/living/silicon/ai/AI = H
+
+	AI.relocate(TRUE)
+
 	AI.apply_pref_name("ai", M.client)			//If this runtimes oh well jobcode is fucked.
 	AI.set_core_display_icon(null, M.client)
 
