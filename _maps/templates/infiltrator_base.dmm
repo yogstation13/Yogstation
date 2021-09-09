@@ -130,7 +130,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plasteel,
-/area/centcom/control)
+/area/yogs/infiltrator_base)
 "ao" = (
 /turf/open/floor/plasteel/dark,
 /area/yogs/infiltrator_base)
@@ -631,14 +631,12 @@
 	},
 /area/yogs/infiltrator_base/jail)
 "br" = (
-/obj/machinery/vending/cigarette{
-	products = list(/obj/item/storage/box/fancy/cigarettes/cigpack_syndicate = 7, /obj/item/storage/fancy/cigarettes/cigpack_uplift = 3, /obj/item/storage/fancy/cigarettes/cigpack_robust = 2, /obj/item/storage/fancy/cigarettes/cigpack_carp = 3, /obj/item/storage/fancy/cigarettes/cigpack_midori = 1, /obj/item/storage/box/matches = 10, /obj/item/lighter/greyscale = 4, /obj/item/storage/fancy/rollingpapers = 5)
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
+/obj/machinery/vending/cigarette/syndicate,
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
 "bs" = (
@@ -1638,13 +1636,13 @@
 /area/yogs/infiltrator_base)
 "dj" = (
 /obj/docking_port/stationary{
-	roundstart_template = /datum/map_template/shuttle/infiltrator/cutter;
 	area_type = /area/yogs/infiltrator_base/outside;
 	dir = 2;
 	dwidth = 14;
 	height = 13;
 	id = "syndicatecutter_home";
 	name = "Syndicate Home Outpost";
+	roundstart_template = /datum/map_template/shuttle/infiltrator/cutter;
 	width = 22
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
@@ -1693,6 +1691,10 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/yogs/infiltrator_base/outside)
+"Lx" = (
+/obj/machinery/vending/cigarette/syndicate,
+/turf/closed/indestructible/riveted,
+/area/yogs/infiltrator_base)
 
 (1,1,1) = {"
 aa
@@ -2098,7 +2100,7 @@ ae
 ae
 ag
 ad
-ab
+Lx
 ab
 an
 ar
