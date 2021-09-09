@@ -15,6 +15,9 @@ GLOBAL_LIST_INIT(infiltrator_kidnap_areas, typecacheof(list(/area/shuttle/yogs/s
 			if(!(item_type in T.contents))
 				new item_type(T)
 
+/datum/objective/infiltrator/proc/is_possible()
+	return TRUE
+
 /datum/objective/infiltrator/exploit
 	explanation_text = "Ensure there is at least 1 hijacked AI."
 	item_type = /obj/item/ai_hijack_device
@@ -26,6 +29,9 @@ GLOBAL_LIST_INIT(infiltrator_kidnap_areas, typecacheof(list(/area/shuttle/yogs/s
 	target = target_ai.mind
 	update_explanation_text()
 	return target
+
+/datum/objective/infiltrator/exploit/is_possible()
+	return LAZYLEN(active_ais())
 
 /datum/objective/infiltrator/exploit/update_explanation_text()
 	..()
@@ -68,14 +74,26 @@ GLOBAL_LIST_INIT(infiltrator_kidnap_areas, typecacheof(list(/area/shuttle/yogs/s
 /datum/objective/infiltrator/kidnap
 	explanation_text = "You were supposed to kidnap someone, but we couldn't find anyone to kidnap!"
 
-/datum/objective/infiltrator/kidnap/find_target(dupe_search_range)
-	var/list/possible_targets = SSjob.get_living_heads()
+/datum/objective/infiltrator/kidnap/proc/potential_targets()
+	var/list/possible_targets = list()
 	for(var/datum/mind/M in SSticker.minds)
-		if(!M || !considered_alive(M) || considered_afk(M) || !M.current || !M.current.client)
+		if(!M || !considered_alive(M) || considered_afk(M) || !M.current || !M.current.client || !ishuman(M.current))
 			continue
-		if("Head of Security" in get_department_heads(M.assigned_role))
-			possible_targets += M
-	target = pick(possible_targets)
+		if (M.has_antag_datum(/datum/antagonist/infiltrator) || M.has_antag_datum(/datum/antagonist/traitor) || M.has_antag_datum(/datum/antagonist/nukeop))
+			continue
+		if(M.assigned_role in GLOB.command_positions)
+			possible_targets[M] = 25
+		else if("Head of Security" in get_department_heads(M.assigned_role))
+			possible_targets[M] = 5
+		else
+			possible_targets[M] = 1
+	return possible_targets
+
+/datum/objective/infiltrator/kidnap/is_possible()
+	return LAZYLEN(potential_targets())
+
+/datum/objective/infiltrator/kidnap/find_target(dupe_search_range)
+	target = pickweight(potential_targets())
 	update_explanation_text()
 	return target
 

@@ -55,7 +55,9 @@
 			add_objective(/datum/objective/steal)
 
 /datum/team/infiltrator/proc/add_objective(type)
-	var/datum/objective/O = new type
+	var/datum/objective/O = type
+	if (ispath(type))
+		O = new type
 	O.find_target()
 	O.team = src
 	objectives |= O
@@ -74,7 +76,12 @@
 	var/major = rand(MIN_MAJOR_OBJECTIVES, MAX_MAJOR_OBJECTIVES)
 	var/minor = rand(MIN_MINOR_OBJECTIVES, MAX_MINOR_OBJECTIVES)
 	for(var/i in 1 to major)
-		add_objective(pick_n_take(major_objectives))
+		var/objective_type = pick_n_take(major_objectives)
+		var/datum/objective/infiltrator/objective = new objective_type
+		if (objective.is_possible())
+			add_objective(objective)
+		else
+			qdel(objective)
 	for(var/i in 1 to minor)
 		forge_single_objective()
 	for(var/datum/mind/M in members)

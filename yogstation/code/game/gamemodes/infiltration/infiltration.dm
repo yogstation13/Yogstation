@@ -30,10 +30,9 @@
 			new_sit.special_role = "Syndicate Infiltrator"
 			log_game("[key_name(new_sit)] has been selected as a syndicate infiltrator")
 		return TRUE
-	else
-		setup_error = "Not enough infiltrator candidates"
-		message_admins("Not enough infiltrator candidates! Was making [n_agents], but we need [required_enemies]!")
-		return FALSE
+	setup_error = "Not enough infiltrator candidates"
+	message_admins("Not enough infiltrator candidates! Was making [n_agents], but we need [required_enemies]!")
+	return FALSE
 
 /datum/game_mode/infiltration/post_setup()
 	sit_team = new /datum/team/infiltrator
