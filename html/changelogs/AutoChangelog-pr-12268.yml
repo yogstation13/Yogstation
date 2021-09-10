@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "cryo is like 200% more reliable, chemicals will be injected as soon as they are allowed to be whenever a person is loaded into a cryotube and it is turned on, rather than having an effectively random delay that gets extremely long"
