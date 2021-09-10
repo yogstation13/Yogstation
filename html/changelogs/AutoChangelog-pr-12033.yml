@@ -1,4 +1,0 @@
-author: "JamieD1"
-delete-after: true 
-changes: 
-  - bugfix: "Makes Yogs Widescreen better - End screen fades properly without weird tiles, should also make round end sounds play 85% of the time."
