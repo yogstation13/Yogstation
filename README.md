@@ -1,6 +1,6 @@
-## Yogstation codebase
+## Pogstation codebase
 
-[![Build Status](https://github.com/yogstation13/Yogstation/workflows/Turdis/badge.svg?branch=master)](https://github.com/yogstation13/Yogstation/actions?query=workflow%3ATurdis+branch%3Amaster)
+[![Build Status](https://github.com/Pogstation13/Pogstation/workflows/Turdis/badge.svg?branch=master)](https://github.com/Pogstation13/Pogstation/actions?query=workflow%3ATurdis+branch%3Amaster)
 [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
 ![badge?](https://forthebadge.com/images/badges/0-percent-optimized.svg)
@@ -14,38 +14,38 @@
 ![b-a-d-g-e](https://forthebadge.com/images/badges/uses-git.svg)
 ![B.A.D.G.E.](https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)
 
-[**Website**](https://yogstation.net)
+[**Website**](https://pogstation.net)
 
-[**Code**](https://github.com/yogstation13/yogstation)
+[**Code**](https://github.com/pogstation13/pogstation)
 
-[**Wiki**](https://wiki.yogstation.net)
+[**Wiki**](https://wiki.pogstation.net)
 
 [**Discord**](https://discord.gg/0keg6hQH05Ha8OfO)
 
  
 ## DOWNLOADING
 
-There are a number of ways to download the source code. Some are described here, an alternative all-inclusive guide is also located at https://wiki.yogstation.net/wiki/Downloading_the_source_code
+There are a number of ways to download the source code. Some are described here, an alternative all-inclusive guide is also located at https://wiki.pogstation.net/wiki/Downloading_the_source_code
 
 Option 1:
-Follow this: https://wiki.yogstation.net/wiki/Setting_up_git
+Follow this: https://wiki.pogstation.net/wiki/Setting_up_git
 
 Option 2: Download the source code as a zip by clicking the ZIP button in the
-code tab of https://github.com/yogstation13/Yogstation
+code tab of https://github.com/pogstation13/Pogstation
 (note: this will use a lot of bandwidth if you wish to update and is a lot of
 hassle if you want to make any changes at all, so it's not recommended.)
 
-## The Yogstation codebase recommends compiling using version [514.1566](https://www.byond.com/download/build/514/514.1566_byond.exe) and may potentially NOT work on newer or older versions.
+## The Pogstation codebase recommends compiling using version [514.1566](https://www.byond.com/download/build/514/514.1566_byond.exe) and may potentially NOT work on newer or older versions.
 
 ## :exclamation: How to compile :exclamation:
 
 Recently we have changed the way to compile the codebase.
 
-Find `BUILD.bat` here in the root folder of yogstation, and double click it to initiate the build. It consists of multiple steps and might take around 1-5 minutes to compile.
+Find `BUILD.bat` here in the root folder of pogstation, and double click it to initiate the build. It consists of multiple steps and might take around 1-5 minutes to compile.
 
-After it finishes, you can then setup the server normally by opening `yogstation.dmb` in DreamDaemon. See further down for instructions
+After it finishes, you can then setup the server normally by opening `pogstation.dmb` in DreamDaemon. See further down for instructions
 
-**Building yogstation in DreamMaker directly is now deprecated and might produce errors**, such as `'tgui.bundle.js': cannot find file`.
+**Building pogstation in DreamMaker directly is now deprecated and might produce errors**, such as `'tgui.bundle.js': cannot find file`.
 
 ## INSTALLATION
 
@@ -86,7 +86,7 @@ and install it themselves. Directions can be found at the [rust-g
 repo](https://github.com/tgstation/rust-g).
 
 Finally, to start the server, run Dream Daemon and enter the path to your
-compiled yogstation.dmb file. Make sure to set the port to the one you
+compiled pogstation.dmb file. Make sure to set the port to the one you
 specified in the config.txt, and set the Security box to 'Trusted'. Then press GO
 and the server should start up and be ready to join. It is also recommended that
 you set up the SQL backend (see below).
@@ -110,13 +110,13 @@ https://github.com/tgstation/tgstation-server
 
 ## MAPS
 
-Yogstation currently comes equipped with the following maps.
+Pogstation currently comes equipped with the following maps.
 
-* [BoxStation (default)](https://wiki.yogstation.net/wiki/BoxStation)
-* [DeltaStation](https://wiki.yogstation.net/wiki/DeltaStation)
-* [EclipseStation](https://wiki.yogstation.net/wiki/Maps)
-* [MetaStation](https://wiki.yogstation.net/wiki/MetaStation)
-* [OmegaStation](https://wiki.yogstation.net/wiki/OmegaStation)
+* [BoxStation (default)](https://wiki.pogstation.net/wiki/BoxStation)
+* [DeltaStation](https://wiki.pogstation.net/wiki/DeltaStation)
+* [EclipseStation](https://wiki.pogstation.net/wiki/Maps)
+* [MetaStation](https://wiki.pogstation.net/wiki/MetaStation)
+* [OmegaStation](https://wiki.pogstation.net/wiki/OmegaStation)
 
 
 All maps have their own code file that is in the base of the _maps directory. Maps are loaded dynamically when the game starts. Follow this guideline when adding your own map, to your fork, for easy compatibility.
@@ -129,7 +129,7 @@ Anytime you want to make changes to a map it's imperative you use the [Map Mergi
 
 ## AWAY MISSIONS
 
-Yogstation supports loading away missions however they are disabled by default.
+Pogstation supports loading away missions however they are disabled by default.
 
 Map files for away missions are located in the _maps/RandomZLevels directory. Each away mission includes it's own code definitions located in /code/modules/awaymissions/mission_code. These files must be included and compiled with the server beforehand otherwise the server will crash upon trying to load away missions that lack their code.
 
