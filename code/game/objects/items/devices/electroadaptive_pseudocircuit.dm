@@ -55,7 +55,7 @@
 	circuits++
 	maptext = "[circuits]"
 	user.visible_message(span_notice("User breaks down [target] with [src]."), \
-	"<span class='notice'>You recycle [target] into [src]. It now has material for <b>[circuits]</b> circuits.</span>")
+	span_notice("You recycle [target] into [src]. It now has material for <b>[circuits]</b> circuits."))
 	playsound(user, 'sound/items/deconstruct.ogg', 50, TRUE)
 	qdel(target)
 

@@ -5,7 +5,7 @@ GLOBAL_VAR_INIT(highlander, FALSE)
 		return
 	GLOB.highlander = TRUE
 
-	send_to_playing_players("<span class='boldannounce'><font size=6>THERE CAN BE ONLY ONE</font></span>")
+	send_to_playing_players(span_boldannounce("<font size=6>THERE CAN BE ONLY ONE</font>"))
 
 	for(var/obj/item/disk/nuclear/N in GLOB.poi_list)
 		var/datum/component/stationloving/component = N.GetComponent(/datum/component/stationloving)

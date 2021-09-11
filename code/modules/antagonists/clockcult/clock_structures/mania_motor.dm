@@ -19,7 +19,7 @@
 /obj/structure/destructible/clockwork/powered/mania_motor/examine(mob/user)
 	. = ..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
-		. += "<span class='sevtug_small'>It requires <b>[DisplayEnergy(mania_cost)]</b> to run.</span>"
+		. += span_sevtug_small("It requires <b>[DisplayEnergy(mania_cost)]</b> to run.")
 
 /obj/structure/destructible/clockwork/powered/mania_motor/forced_disable(bad_effects)
 	if(active)

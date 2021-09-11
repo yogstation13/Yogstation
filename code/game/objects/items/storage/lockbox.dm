@@ -254,9 +254,9 @@
 			open = (open ? FALSE : TRUE)
 			update_icon()
 			if(open)
-				to_chat(user, "<span class='danger'>You open the lid on [src.name].</span>")
+				to_chat(user, span_danger("You open the lid on [src.name]."))
 			else
-				to_chat(user, "<span class='danger'>You put the lid on [src.name].</span>")
+				to_chat(user, span_danger("You put the lid on [src.name]."))
 
 /obj/item/storage/lockbox/vialbox/attackby(obj/item/W, mob/user, params)
 	. = ..()

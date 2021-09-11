@@ -117,7 +117,7 @@
 
 /datum/antagonist/zombie/proc/add_button_timed()
 	zombify.Grant(owner.current)
-	to_chat(owner.current, "<span class='userdanger'><b>You can now turn into a zombie! The ability INSTANTLY kills you, and starts the process of turning into a zombie. IN 5 MINUTES YOU WILL FORCIBLY BE ZOMBIFIED IF YOU HAVEN'T.<b></span>")
+	to_chat(owner.current, span_userdanger("<b>You can now turn into a zombie! The ability INSTANTLY kills you, and starts the process of turning into a zombie. IN 5 MINUTES YOU WILL FORCIBLY BE ZOMBIFIED IF YOU HAVEN'T.<b>"))
 	addtimer(CALLBACK(src, .proc/force_zombify), 5 MINUTES)
 
 /datum/antagonist/zombie/proc/force_zombify()
@@ -148,7 +148,7 @@
 /datum/antagonist/zombie/proc/finish_evolution_2()
 	evolution_ready = TRUE
 	evolution2.Grant(owner.current)
-	to_chat(owner.current, "<span class='userdanger'><b>You can now evolve into a Tier 2 zombie! There can only be tier 2 zombies equal to the amount of starting zombies!<b></span>")
+	to_chat(owner.current, span_userdanger("<b>You can now evolve into a Tier 2 zombie! There can only be tier 2 zombies equal to the amount of starting zombies!<b>"))
 
 /datum/team/zombie
 	name = "Zombies"

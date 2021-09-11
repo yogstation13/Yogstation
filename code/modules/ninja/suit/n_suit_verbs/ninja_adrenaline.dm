@@ -16,7 +16,7 @@
 		H.reagents.add_reagent(/datum/reagent/medicine/stimulants, 5)
 		H.say(pick("A CORNERED FOX IS MORE DANGEROUS THAN A JACKAL!","HURT ME MOOORRREEE!","IMPRESSIVE!"), forced = "ninjaboost")
 		a_boost--
-		to_chat(H, "<span class='notice'>There are <B>[a_boost]</B> adrenaline boosts remaining.</span>")
+		to_chat(H, span_notice("There are <B>[a_boost]</B> adrenaline boosts remaining."))
 		s_coold = 3
 		addtimer(CALLBACK(src, .proc/ninjaboost_after), 70)
 

@@ -287,7 +287,7 @@
 		usable_blood += blood * 0.75	//75% usable blood since it's actually used for stuff
 		check_vampire_upgrade()
 		if(old_bloodtotal != total_blood)
-			to_chat(O, "<span class='notice'><b>You have accumulated [total_blood] [total_blood > 1 ? "units" : "unit"] of blood[usable_blood != old_bloodusable ? ", and have [usable_blood] left to use" : ""].</b></span>")
+			to_chat(O, span_notice("<b>You have accumulated [total_blood] [total_blood > 1 ? "units" : "unit"] of blood[usable_blood != old_bloodusable ? ", and have [usable_blood] left to use" : ""].</b>"))
 		H.blood_volume = max(H.blood_volume - blood_to_take, 0)
 		if(silent && !warned && (H.blood_volume <= (BLOOD_VOLUME_SAFE(H) + 20)))
 			to_chat(O, span_boldwarning("Their blood is at a dangerously low level, they will likely begin to feel the effects if you continue..."))

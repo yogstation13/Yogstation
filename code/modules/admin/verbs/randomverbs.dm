@@ -192,7 +192,7 @@
 		to_chat(M, msg)
 
 	log_admin("LocalNarrate: [key_name(usr)] at [AREACOORD(A)]: [msg]")
-	message_admins("<span class='adminnotice'><b> LocalNarrate: [key_name_admin(usr)] at [ADMIN_VERBOSEJMP(A)]:</b> [msg]<BR></span>")
+	message_admins(span_adminnotice("<b> LocalNarrate: [key_name_admin(usr)] at [ADMIN_VERBOSEJMP(A)]:</b> [msg]<BR>"))
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Local Narrate") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_godmode(mob/M in GLOB.mob_list)
@@ -1192,7 +1192,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			H?.cluwneify()
 		if(ADMIN_PUNISHMENT_CRACK)
 			if(!iscarbon(target))
-				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>", confidential = TRUE)
+				to_chat(usr,span_warning("This must be used on a carbon mob."), confidential = TRUE)
 				return
 			var/mob/living/carbon/C = target
 			for(var/i in C.bodyparts)
@@ -1201,7 +1201,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				squish_part.force_wound_upwards(type_wound, smited=TRUE)
 		if(ADMIN_PUNISHMENT_BLEED)
 			if(!iscarbon(target))
-				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>", confidential = TRUE)
+				to_chat(usr,span_warning("This must be used on a carbon mob."), confidential = TRUE)
 				return
 			var/mob/living/carbon/C = target
 			for(var/obj/item/bodypart/slice_part in C.bodyparts)
@@ -1213,7 +1213,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				slice_part.force_wound_upwards(type_wound, smited=TRUE)
 		if(ADMIN_PUNISHMENT_PERFORATE)
 			if(!iscarbon(target))
-				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>", confidential = TRUE)
+				to_chat(usr,span_warning("This must be used on a carbon mob."), confidential = TRUE)
 				return
 
 			var/list/how_fucked_is_this_dude = list("A little", "A lot", "So fucking much", "FUCK THIS DUDE")
@@ -1257,11 +1257,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 		if(ADMIN_PUNISHMENT_SCARIFY)
 			if(!iscarbon(target))
-				to_chat(usr,"<span class='warning'>This must be used on a carbon mob.</span>", confidential = TRUE)
+				to_chat(usr,span_warning("This must be used on a carbon mob."), confidential = TRUE)
 				return
 			var/mob/living/carbon/C = target
 			C.generate_fake_scars(rand(1, 4))
-			to_chat(C, "<span class='warning'>You feel your body grow jaded and torn...</span>")
+			to_chat(C, span_warning("You feel your body grow jaded and torn..."))
 	punish_log(target, punishment)
 
 /**

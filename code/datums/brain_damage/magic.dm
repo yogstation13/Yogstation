@@ -20,7 +20,7 @@
 		var/light_amount = T.get_lumcount()
 		if(light_amount > SHADOW_SPECIES_LIGHT_THRESHOLD) //if there's enough light, start dying
 			if(world.time > next_damage_warning)
-				to_chat(owner, "<span class='warning'><b>The light burns you!</b></span>")
+				to_chat(owner, span_warning("<b>The light burns you!</b>"))
 				next_damage_warning = world.time + 100 //Avoid spamming
 			owner.take_overall_damage(0,3)
 

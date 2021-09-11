@@ -239,7 +239,7 @@
 
 	to_chat(usr, span_notice("Your training has rendered you more resistant to pain, allowing you to keep fighting effectively for longer and reducing the effectiveness of stun and stamina weapons by about a third."))
 	to_chat(usr, span_warning("However, the primitive instincts gained through this training prevent you from using guns, stun weapons, or armor."))
-	to_chat(usr, "<span class='notice'><b>All of your unarmed attacks deal increased brute damage with a small amount of armor piercing</b></span>")
+	to_chat(usr, span_notice("<b>All of your unarmed attacks deal increased brute damage with a small amount of armor piercing</b>"))
 	
 	to_chat(usr, "[span_notice("Disarm Intent")]: Headbutt your enemy, Deals minor stamina and brute damage, as well as causing eye blurriness. Prevents the target from using ranged weapons effectively for a few seconds if they are not wearing a helmet.")
 

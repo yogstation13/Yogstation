@@ -17,7 +17,7 @@
 /datum/saymode/changeling/handle_message(mob/living/user, message, datum/language/language)
 	switch(user.lingcheck())
 		if(LINGHIVE_LINK)
-			var/msg = "<span class='changeling'><b>[user.mind]:</b> [message]</span>"
+			var/msg = span_changeling("<b>[user.mind]:</b> [message]")
 			for(var/_M in GLOB.player_list)
 				var/mob/M = _M
 				if(M in GLOB.dead_mob_list)
@@ -39,7 +39,7 @@
 				to_chat(user, span_warning("The poison in the air hinders our ability to interact with the hivemind."))
 				return FALSE
 			var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
-			var/msg = "<span class='changeling'><b>[changeling.changelingID]:</b> [message]</span>"
+			var/msg = span_changeling("<b>[changeling.changelingID]:</b> [message]")
 			user.log_talk(message, LOG_SAY, tag="changeling [changeling.changelingID]")
 			for(var/_M in GLOB.player_list)
 				var/mob/M = _M
@@ -152,7 +152,7 @@
 		return TRUE
 	if(is_darkspawn_or_veil(user))
 		user.log_talk(message, LOG_SAY, tag="darkspawn")
-		var/msg = "<span class='velvet'><b>\[Mindlink\] [user.real_name]:</b> \"[message]\"</span>"
+		var/msg = span_velvet("<b>\[Mindlink\] [user.real_name]:</b> \"[message]\"")
 		for(var/mob/M in GLOB.player_list)
 			if(M in GLOB.dead_mob_list)
 				var/link = FOLLOW_LINK(M, user)

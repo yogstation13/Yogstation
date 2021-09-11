@@ -227,7 +227,7 @@
 /datum/action/innate/cult/master/cultmark/IsAvailable()
 	if(cooldown > world.time)
 		if(!CM.active)
-			to_chat(owner, "<span class='cultlarge'><b>You need to wait [DisplayTimeText(cooldown - world.time)] before you can mark another target!</b></span>")
+			to_chat(owner, span_cultlarge("<b>You need to wait [DisplayTimeText(cooldown - world.time)] before you can mark another target!</b>"))
 		return FALSE
 	return ..()
 
@@ -280,7 +280,7 @@
 		C.cult_team.blood_target_image.pixel_y = -target.pixel_y
 		for(var/datum/mind/B in SSticker.mode.cult)
 			if(B.current && B.current.stat != DEAD && B.current.client)
-				to_chat(B.current, "<span class='cultlarge'><b>[ranged_ability_user] has marked [C.cult_team.blood_target] in the [A.name] as the cult's top priority, get there immediately!</b></span>")
+				to_chat(B.current, span_cultlarge("<b>[ranged_ability_user] has marked [C.cult_team.blood_target] in the [A.name] as the cult's top priority, get there immediately!</b>"))
 				SEND_SOUND(B.current, sound(pick('sound/hallucinations/over_here2.ogg','sound/hallucinations/over_here3.ogg'),0,1,75))
 				B.current.client.images += C.cult_team.blood_target_image
 		attached_action.owner.update_action_buttons_icon()
@@ -293,7 +293,7 @@
 	for(var/datum/mind/B in team.members)
 		if(B.current && B.current.stat != DEAD && B.current.client)
 			if(team.blood_target)
-				to_chat(B.current,"<span class='cultlarge'><b>The blood mark has expired!</b></span>")
+				to_chat(B.current,span_cultlarge("<b>The blood mark has expired!</b>"))
 			B.current.client.images -= team.blood_target_image
 	QDEL_NULL(team.blood_target_image)
 	team.blood_target = null
@@ -361,7 +361,7 @@
 	owner.client.images += C.cult_team.blood_target_image
 	for(var/datum/mind/B in SSticker.mode.cult)
 		if(B.current && B.current.stat != DEAD && B.current.client)
-			to_chat(B.current, "<span class='cultlarge'><b>[owner] has marked [C.cult_team.blood_target] in the [A.name] as the cult's top priority, get there immediately!</b></span>")
+			to_chat(B.current, span_cultlarge("<b>[owner] has marked [C.cult_team.blood_target] in the [A.name] as the cult's top priority, get there immediately!</b>"))
 			SEND_SOUND(B.current, sound(pick('sound/hallucinations/over_here2.ogg','sound/hallucinations/over_here3.ogg'),0,1,75))
 			B.current.client.images += C.cult_team.blood_target_image
 	to_chat(owner,span_cultbold("You have marked the [target] for the cult! It will last for [DisplayTimeText(base_cooldown)]."))
@@ -398,7 +398,7 @@
 		return FALSE
 	if(cooldown > world.time)
 		if(!PM.active)
-			to_chat(owner, "<span class='cultlarge'><b>You need to wait [DisplayTimeText(cooldown - world.time)] before you can pulse again!</b></span>")
+			to_chat(owner, span_cultlarge("<b>You need to wait [DisplayTimeText(cooldown - world.time)] before you can pulse again!</b>"))
 		return FALSE
 	return ..()
 
@@ -445,7 +445,7 @@
 			attached_action.throwing = TRUE
 			attached_action.throwee = target
 			SEND_SOUND(ranged_ability_user, sound('sound/weapons/thudswoosh.ogg'))
-			to_chat(ranged_ability_user,"<span class='cult'><b>You reach through the veil with your mind's eye and seize [target]!</b></span>")
+			to_chat(ranged_ability_user,span_cult("<b>You reach through the veil with your mind's eye and seize [target]!</b>"))
 			return
 		else
 			new /obj/effect/temp_visual/cult/sparks(get_turf(attached_action.throwee), ranged_ability_user.dir)

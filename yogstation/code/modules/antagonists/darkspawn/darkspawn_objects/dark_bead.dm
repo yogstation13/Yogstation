@@ -59,7 +59,7 @@
 	if(user.loc != L)
 		user.visible_message(span_warning("[user] grabs [L] and leans in close..."), "<span class='velvet bold'>cera qo...</span><br>\
 		[span_danger("You begin siphoning [L]'s mental energy...")]")
-		to_chat(L, "<span class='userdanger'><i>AAAAAAAAAAAAAA-</i></span>")
+		to_chat(L, span_userdanger("<i>AAAAAAAAAAAAAA-</i>"))
 		L.Stun(50)
 		L.silent += 4
 		playsound(L, 'yogstation/sound/magic/devour_will.ogg', 65, FALSE) //T A S T Y   S O U L S
@@ -72,7 +72,7 @@
 	else
 		L.visible_message("<span class='userdanger italics'>[L] suddenly howls and clutches as their face as violet light screams from their eyes!</span>", \
 		"<span class='userdanger italics'>AAAAAAAAAAAAAAA-</span>")
-		to_chat(user, "<span class='velvet'><b>cera qo...</b><br>You begin siphoning [L]'s will...</span>")
+		to_chat(user, span_velvet("<b>cera qo...</b><br>You begin siphoning [L]'s will..."))
 		L.Stun(50)
 		playsound(L, 'yogstation/sound/magic/devour_will_long.ogg', 65, FALSE)
 		if(!do_mob(user, L, 50))

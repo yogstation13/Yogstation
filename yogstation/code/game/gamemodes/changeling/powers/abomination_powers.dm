@@ -12,7 +12,7 @@
 		revert_cast()
 		return
 	playMagSound()
-	user.visible_message("<span class='warning'><b>[usr] unhinges their jaw and releases a horrifying shriek!</span>")
+	user.visible_message(span_warning("<b>[usr] unhinges their jaw and releases a horrifying shriek!"))
 	for(var/turf/T in targets)
 		for(var/mob/living/carbon/M in T.contents)
 			if(M == user) //No message for the user, of course

@@ -43,11 +43,11 @@
 							span_shadowling("You create your chrysalis and begin to contort within."))
 			if(!do_mob(H,H,100,1))
 				return
-			H.visible_message("<span class='warning'><b>The skin on [H]'s back begins to split apart. Black spines slowly emerge from the divide.</b></span>", \
+			H.visible_message(span_warning("<b>The skin on [H]'s back begins to split apart. Black spines slowly emerge from the divide.</b>"), \
 							span_shadowling("Spines pierce your back. Your claws break apart your fingers. You feel excruciating pain as your true form begins its exit."))
 			if(!do_mob(H,H,90,1))
 				return
-			H.visible_message("<span class='warning'><b>[H], skin shifting, begins tearing at the walls around them.</b></span>", \
+			H.visible_message(span_warning("<b>[H], skin shifting, begins tearing at the walls around them.</b>"), \
 							span_shadowling("Your false skin slips away. You begin tearing at the fragile membrane protecting you."))
 			if(!do_mob(H,H,80,1))
 				return
@@ -98,7 +98,7 @@
 			H.mind.RemoveSpell(src)
 			if(!do_mob(H,H,10,1))
 				return
-			to_chat(H, "<span class='shadowling'><b><i>Your powers are awoken. You may now live to your fullest extent. Remember your goal. Cooperate with your thralls and allies.</b></i></span>")
+			to_chat(H, span_shadowling("<b><i>Your powers are awoken. You may now live to your fullest extent. Remember your goal. Cooperate with your thralls and allies.</b></i>"))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/enthrall(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/glare(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/veil(null))

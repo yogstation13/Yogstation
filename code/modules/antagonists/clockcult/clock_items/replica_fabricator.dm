@@ -59,12 +59,12 @@
 	if(is_servant_of_ratvar(user))
 		if(uses_power)
 			if(!get_clockwork_power(POWER_WALL_TOTAL))
-				to_chat(user, "<span class='warning'>[src] requires <b>[DisplayEnergy(POWER_WALL_TOTAL)]</b> of power to produce brass sheets!</span>")
+				to_chat(user, span_warning("[src] requires <b>[DisplayEnergy(POWER_WALL_TOTAL)]</b> of power to produce brass sheets!"))
 				return
 			adjust_clockwork_power(-POWER_WALL_TOTAL)
 		playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 		new/obj/item/stack/tile/brass(user.loc, 5)
-		to_chat(user, "<span class='brass'>You use [get_clockwork_power() ? "some":"all"] of [src]'s power to produce <b>5</b> brass sheets. It now has access to <b>[DisplayEnergy(get_clockwork_power())]</b> of power.</span>")
+		to_chat(user, span_brass("You use [get_clockwork_power() ? "some":"all"] of [src]'s power to produce <b>5</b> brass sheets. It now has access to <b>[DisplayEnergy(get_clockwork_power())]</b> of power."))
 
 /obj/item/clockwork/replica_fabricator/pre_attack(atom/target, mob/living/user, params)
 	if(!target || !user || !is_servant_of_ratvar(user) || istype(target, /obj/item/storage))
@@ -177,7 +177,7 @@
 			if(!silent)
 				var/atom/A = fabrication_values["new_obj_type"]
 				if(A)
-					to_chat(user, "<span class='warning'>You need <b>[DisplayEnergy(fabrication_values["power_cost"])]</b> power to fabricate \a [initial(A.name)] from [target]!</span>")
+					to_chat(user, span_warning("You need <b>[DisplayEnergy(fabrication_values["power_cost"])]</b> power to fabricate \a [initial(A.name)] from [target]!"))
 		return FALSE
 	return TRUE
 

@@ -455,7 +455,7 @@ update_label("John Doe", "Clowny")
 	addtimer(CALLBACK(src, .proc/wipe_id), 50 SECONDS)
 
 /obj/item/card/id/captains_spare/temporary/proc/wipe_id()
-	visible_message("<span class='danger'>The temporary spare begins to smolder</span>", "<span class='userdanger'>The temporary spare begins to smolder</span>", "<span class='userdanger'>The temporary spare begins to smolder</span>")
+	visible_message(span_danger("The temporary spare begins to smolder"), span_userdanger("The temporary spare begins to smolder"), span_userdanger("The temporary spare begins to smolder"))
 	sleep(10 SECONDS)
 	if(isliving(loc))
 		var/mob/living/M = loc

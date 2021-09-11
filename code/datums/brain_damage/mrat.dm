@@ -100,7 +100,7 @@
 			SEND_SOUND(src, sound('sound/misc/soggy.ogg', volume = 50))
 
 /mob/camera/imaginary_friend/mrat/greet()
-	to_chat(src, "<span class='notice'><b>You are the mentor rat of [owner]!</b></span>")
+	to_chat(src, span_notice("<b>You are the mentor rat of [owner]!</b>"))
 	to_chat(src, span_notice("Do not give [owner] any OOC information from your time as a ghost."))
 	to_chat(src, span_notice("Your job is to answer [owner]'s question(s) and you are given this form to assist in that."))
 	to_chat(src, span_notice("Don't be stupid with this or you will face the consequences."))

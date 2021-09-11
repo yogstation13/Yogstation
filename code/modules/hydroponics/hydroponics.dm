@@ -302,7 +302,7 @@
 /obj/machinery/hydroponics/examine(user)
 	. = ..()
 	if(myseed)
-		. += "<span class='info'>It has [span_name("[myseed.plantname]")] planted.</span>"
+		. += span_info("It has [span_name("[myseed.plantname]")] planted.")
 		if (dead)
 			. += span_warning("It's dead!")
 		else if (harvest)

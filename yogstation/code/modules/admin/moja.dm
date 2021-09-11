@@ -14,7 +14,7 @@
 		switch(stage)
 			if(1)
 				visible_message(span_userdanger("Vibrations pass through the air. [src]'s eyes begin to glow a deep violet."), \
-									"<span class='velvet'>Psi floods into your consciousness. You feel your mind growing more powerful... <i>expanding.</i></span>")
+									span_velvet("Psi floods into your consciousness. You feel your mind growing more powerful... <i>expanding.</i>"))
 				playsound(src, 'yogstation/sound/magic/divulge_01.ogg', 30, 0)
 			if(2)
 				visible_message(span_userdanger("Gravity fluctuates. Psychic tendrils extend outward and feel blindly around the area."), \

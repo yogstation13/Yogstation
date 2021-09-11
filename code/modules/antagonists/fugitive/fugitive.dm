@@ -117,7 +117,7 @@
 	if(!message)
 		return
 	user.whisper(html_decode(message), language = /datum/language/common) // yogs
-	var/my_message = "<span class='boldnotice'><b>Brother [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]</span>"
+	var/my_message = span_boldnotice("<b>Brother [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]")
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
 		if(isfugitive(M))

@@ -11,13 +11,13 @@
 		if (getBruteLoss() < maxHealth*0.5)
 			. += span_warning("It looks slightly dented.")
 		else
-			. += "<span class='warning'><B>It looks severely dented!</B></span>"
+			. += span_warning("<B>It looks severely dented!</B>")
 	if (getFireLoss() || getToxLoss())
 		var/overall_fireloss = getFireLoss() + getToxLoss()
 		if (overall_fireloss < maxHealth * 0.5)
 			. += span_warning("It looks slightly charred.")
 		else
-			. += "<span class='warning'><B>It looks severely burnt and heat-warped!</B></span>"
+			. += span_warning("<B>It looks severely burnt and heat-warped!</B>")
 	if (health < -maxHealth*0.5)
 		. += span_warning("It looks barely operational.")
 	if (fire_stacks < 0)

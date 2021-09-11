@@ -977,7 +977,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 			H.faction = list("cult")
 			H.GiveTarget(owner)
 			H.move_to_delay = owner.movement_delay()
-			to_chat(owner, "<span class='danger'><b>[src] betrays you!</b></span>")
+			to_chat(owner, span_danger("<b>[src] betrays you!</b>"))
 		return FALSE
 
 /obj/item/shield/mirror/proc/readd()

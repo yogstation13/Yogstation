@@ -98,7 +98,7 @@
 		var/regex/reg = regex("(\\b|\\A)[REGEX_QUOTE(word)]'?s*(\\b|\\Z)", "i")
 
 		if(findtext(speech_args[SPEECH_MESSAGE], reg))
-			to_chat(owner, "<span class='warning'>You can't bring yourself to say the word \"[span_phobia("[word]")]\"!</span>")
+			to_chat(owner, span_warning("You can't bring yourself to say the word \"[span_phobia("[word]")]\"!"))
 			speech_args[SPEECH_MESSAGE] = ""
 
 /datum/brain_trauma/mild/phobia/proc/freak_out(atom/reason, trigger_word)

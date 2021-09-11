@@ -172,4 +172,4 @@
 		eyes.applyOrganDamage(eyes.maxHealth)
 
 	if(prob(min(20, 5 + eye_damage_done)))
-		to_chat(H, "<span class='nzcrentr_small'><i>Your eyes continue to burn.</i></span>")
+		to_chat(H, span_nzcrentr_small("<i>Your eyes continue to burn.</i>"))

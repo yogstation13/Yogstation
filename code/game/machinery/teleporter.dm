@@ -131,9 +131,9 @@
 /obj/machinery/teleport/station/examine(mob/user)
 	. = ..()
 	if(!panel_open)
-		. += "<span class='notice'>The panel is <i>screwed</i> in, obstructing the linking device and wiring panel.</span>"
+		. += span_notice("The panel is <i>screwed</i> in, obstructing the linking device and wiring panel.")
 	else
-		. += "<span class='notice'>The <i>linking</i> device is now able to be <i>scanned</i> with a multitool.<br>The <i>wiring</i> can be <i>connected<i> to a nearby console and hub with a pair of wirecutters.</span>"
+		. += span_notice("The <i>linking</i> device is now able to be <i>scanned</i> with a multitool.<br>The <i>wiring</i> can be <i>connected<i> to a nearby console and hub with a pair of wirecutters.")
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: This station can be linked to <b>[efficiency]</b> other station(s).<span>"
 

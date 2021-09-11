@@ -339,7 +339,7 @@
 		icon_state = "saw_a"
 	else
 		tool_behaviour = TOOL_SCALPEL
-		to_chat(user, "<span class='notice'>You lower the power, it can now make precise incisions.</span>")
+		to_chat(user, span_notice("You lower the power, it can now make precise incisions."))
 		set_light(1)
 		force -= 1
 		icon_state = "scalpel_a"
@@ -359,11 +359,11 @@
 	playsound(get_turf(user), 'sound/items/change_drill.ogg', 50, TRUE)
 	if(tool_behaviour == TOOL_RETRACTOR)
 		tool_behaviour = TOOL_HEMOSTAT
-		to_chat(user, "<span class='notice'>You set the [src] to hemostat mode.</span>")
+		to_chat(user, span_notice("You set the [src] to hemostat mode."))
 		icon_state = "hemostat_a"
 	else
 		tool_behaviour = TOOL_RETRACTOR
-		to_chat(user, "<span class='notice'>You set the [src] to retractor mode.</span>")
+		to_chat(user, span_notice("You set the [src] to retractor mode."))
 		icon_state = "retractor_a"
 
 /obj/item/retractor/advanced/examine()
@@ -387,12 +387,12 @@
 
 	if(tool_behaviour == TOOL_CAUTERY)
 		playsound(get_turf(user),'sound/items/welderdeactivate.ogg',50,1)
-		to_chat(user, "<span class='notice'>You focus the lensess, it is now set to drilling mode.</span>")
+		to_chat(user, span_notice("You focus the lensess, it is now set to drilling mode."))
 		tool_behaviour = TOOL_DRILL
 		icon_state = "surgicaldrill_a"
 	else
 		playsound(get_turf(user),'sound/weapons/tap.ogg',50,1)
-		to_chat(user, "<span class='notice'>You dilate the lenses, setting it to mending mode.</span>")
+		to_chat(user, span_notice("You dilate the lenses, setting it to mending mode."))
 		tool_behaviour = TOOL_CAUTERY
 		icon_state = "cautery_a"
 

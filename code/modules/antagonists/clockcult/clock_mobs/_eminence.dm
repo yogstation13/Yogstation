@@ -89,7 +89,7 @@
 		return
 	src.log_talk(message, LOG_SAY, tag="clockwork eminence")
 	if(GLOB.ratvar_awakens)
-		visible_message("<span class='brass'><b>You feel light slam into your mind and form words:</b> \"[capitalize(message)]\"</span>")
+		visible_message(span_brass("<b>You feel light slam into your mind and form words:</b> \"[capitalize(message)]\""))
 		playsound(src, 'sound/machines/clockcult/ark_scream.ogg', 50, FALSE)
 	message = "<span class='big brass'><b>The [GLOB.ratvar_awakens ? "Radiance" : "Eminence"]:</b> \"[message]\"</span>"
 	for(var/mob/M in servants_and_ghosts())
@@ -209,10 +209,10 @@
 	wall.turn_up_the_heat()
 	if(wall.heated)
 		superheated_walls++
-		to_chat(src, "<span class='neovgre_small'>You superheat [wall]. <b>Superheated walls:</b> [superheated_walls]/[SUPERHEATED_CLOCKWORK_WALL_LIMIT]</span>")
+		to_chat(src, span_neovgre_small("You superheat [wall]. <b>Superheated walls:</b> [superheated_walls]/[SUPERHEATED_CLOCKWORK_WALL_LIMIT]"))
 	else
 		superheated_walls--
-		to_chat(src, "<span class='neovgre_small'>You cool [wall]. <b>Superheated walls:</b> [superheated_walls]/[SUPERHEATED_CLOCKWORK_WALL_LIMIT]</span>")
+		to_chat(src, span_neovgre_small("You cool [wall]. <b>Superheated walls:</b> [superheated_walls]/[SUPERHEATED_CLOCKWORK_WALL_LIMIT]"))
 
 /mob/camera/eminence/proc/eminence_help()
 	to_chat(src, "<span class='bold alloy'>You can make use of certain shortcuts to perform different actions:</span>")

@@ -72,7 +72,7 @@
 	if(!message)
 		return
 	src.log_talk(message, LOG_SAY, tag="fugitive god")
-	message = "<span class='boldnotice'><b>[name]:</b> \"[capitalize(message)]\"</span>"
+	message = span_boldnotice("<b>[name]:</b> \"[capitalize(message)]\"")
 	for(var/mob/V in GLOB.player_list)
 		if(V.mind.has_antag_datum(/datum/antagonist/fugitive))
 			to_chat(V, "[message]")

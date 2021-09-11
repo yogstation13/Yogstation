@@ -238,12 +238,12 @@
 	icon_state = initial(icon_state)
 	if(is_servant_of_ratvar(user) || isobserver(user))
 		if(!active)
-			to_chat(user, "<span class='big'><b>Time until the Ark's activation:</b> [DisplayTimeText(get_arrival_time())]</span>")
+			to_chat(user, span_big("<b>Time until the Ark's activation:</b> [DisplayTimeText(get_arrival_time())]"))
 		else
 			if(grace_period)
-				to_chat(user, "<span class='big'><b>Crew grace period time remaining:</b> [DisplayTimeText(get_arrival_time())]</span>")
+				to_chat(user, span_big("<b>Crew grace period time remaining:</b> [DisplayTimeText(get_arrival_time())]"))
 			else
-				to_chat(user, "<span class='big'><b>Time until Ratvar's arrival:</b> [DisplayTimeText(get_arrival_time())]</span>")
+				to_chat(user, span_big("<b>Time until Ratvar's arrival:</b> [DisplayTimeText(get_arrival_time())]"))
 				switch(progress_in_seconds)
 					if(-INFINITY to GATEWAY_REEBE_FOUND)
 						to_chat(user, "[span_heavy_brass("The Ark is feeding power into the bluespace field.")]")
@@ -284,7 +284,7 @@
 			if(!isnewplayer(M))
 				var/turf/T = get_turf(M)
 				if(T && T.z == z)
-					to_chat(M, "<span class='warning'><b>You hear otherworldly sounds from the [dir2text(get_dir(get_turf(M), get_turf(src)))]...</span>")
+					to_chat(M, span_warning("<b>You hear otherworldly sounds from the [dir2text(get_dir(get_turf(M), get_turf(src)))]..."))
 				else
 					to_chat(M, span_boldwarning("You hear otherworldly sounds from all around you..."))
 	if(!obj_integrity)

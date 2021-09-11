@@ -148,7 +148,7 @@
 			clashing = FALSE
 			qdel(narsie)
 		if("Nar-Sie")
-			send_to_playing_players("<span class='cult'><font size=5>\"<b>[pick("Ha.", "Ra'sha fonn dest.", "You fool. To come here.")]</b>\"</font></span>") //Broken English
+			send_to_playing_players(span_cult("<font size=5>\"<b>[pick("Ha.", "Ra'sha fonn dest.", "You fool. To come here.")]</b>\"</font>")) //Broken English
 			sound_to_playing_players('sound/magic/demon_attack1.ogg')
 			sound_to_playing_players('sound/magic/clockwork/anima_fragment_death.ogg', 62)
 			narsie.clashing = FALSE

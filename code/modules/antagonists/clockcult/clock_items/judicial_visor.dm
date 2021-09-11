@@ -109,7 +109,7 @@
 		message = span_brass("You dispel the power of [visor].")
 		remove_ranged_ability(message)
 	else
-		message = "<span class='brass'><i>You harness [visor]'s power.</i> <b>Left-click to place a judicial marker!</b></span>"
+		message = span_brass("<i>You harness [visor]'s power.</i> <b>Left-click to place a judicial marker!</b>")
 		add_ranged_ability(user, message)
 
 /obj/effect/proc_holder/judicial_visor/InterceptClickOn(mob/living/caller, params, atom/target)
@@ -210,7 +210,7 @@
 		if(!QDELETED(L))
 			L.adjustBruteLoss(20) //does a decent amount of damage
 		log_combat(user, L, "struck with a judicial blast")
-	to_chat(user, "<span class='brass'><b>[targetsjudged ? "Successfully judged [span_neovgre("[targetsjudged]")]":"Judged no"] heretic[targetsjudged == 1 ? "":"s"].</b></span>")
+	to_chat(user, span_brass("<b>[targetsjudged ? "Successfully judged [span_neovgre("[targetsjudged]")]":"Judged no"] heretic[targetsjudged == 1 ? "":"s"].</b>"))
 	sleep(3) //so the animation completes properly
 	qdel(src)
 

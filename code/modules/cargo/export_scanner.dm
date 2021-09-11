@@ -38,7 +38,7 @@
 			price += ex.total_value[x]
 
 		if(price)
-			to_chat(user, "<span class='notice'>Scanned [O], value: <b>[price]</b> credits[O.contents.len ? " (contents included)" : ""].</span>")
+			to_chat(user, span_notice("Scanned [O], value: <b>[price]</b> credits[O.contents.len ? " (contents included)" : ""]."))
 		else
 			to_chat(user, span_warning("Scanned [O], no export value."))
 		if(bounty_ship_item_and_contents(O, dry_run=TRUE))

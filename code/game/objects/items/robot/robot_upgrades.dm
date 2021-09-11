@@ -430,7 +430,7 @@
 				msgmode = "critical"
 			else if(cyborg.health < cyborg.maxHealth)
 				msgmode = "normal"
-			to_chat(cyborg, "<span class='notice'>Self-repair is active in [span_boldnotice("[msgmode]")] mode.</span>")
+			to_chat(cyborg, span_notice("Self-repair is active in [span_boldnotice("[msgmode]")] mode."))
 			msg_cooldown = world.time
 	else
 		deactivate_sr()

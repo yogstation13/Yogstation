@@ -105,7 +105,7 @@
 
 	if(canFail && prob((quality - 9)*10))
 		var/turf/place = get_turf(parent)
-		place.visible_message("<span class='danger'>[parent] [span_inathneq_large("violently glows blue")] for a while, then evaporates.</span>")
+		place.visible_message(span_danger("[parent] [span_inathneq_large("violently glows blue")] for a while, then evaporates."))
 		master.burn()
 		return
 	else if(announce)

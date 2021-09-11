@@ -51,9 +51,9 @@
 /obj/item/radio/intercom/examine(mob/user)
 	. = ..()
 	if(!unfastened)
-		. += "<span class='notice'>It's <b>screwed</b> and secured to the wall.</span>"
+		. += span_notice("It's <b>screwed</b> and secured to the wall.")
 	else
-		. += "<span class='notice'>It's <i>unscrewed</i> from the wall, and can be <b>detached</b>.</span>"
+		. += span_notice("It's <i>unscrewed</i> from the wall, and can be <b>detached</b>.")
 
 /obj/item/radio/intercom/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)

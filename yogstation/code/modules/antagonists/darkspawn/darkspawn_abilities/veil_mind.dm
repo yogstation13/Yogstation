@@ -25,7 +25,7 @@
 		if(L == owner)
 			continue
 		if(issilicon(L))
-			to_chat(L, "<span class='ownerdanger'>$@!) ERR: RECEPTOR OVERLOAD ^!</</span>")
+			to_chat(L, span_ownerdanger("$@!) ERR: RECEPTOR OVERLOAD ^!</"))
 			SEND_SOUND(L, sound('sound/misc/interference.ogg', volume = 50))
 			L.emote("alarm")
 			L.Stun(20)
@@ -37,7 +37,7 @@
 			else
 				if(L.has_status_effect(STATUS_EFFECT_BROKEN_WILL))
 					if(L.add_veil())
-						to_chat(owner, "<span class='velvet'><b>[L.real_name]</b> has become a veil!</span>")
+						to_chat(owner, span_velvet("<b>[L.real_name]</b> has become a veil!"))
 				else
 					to_chat(L, span_boldwarning("...and it scrambles your thoughts!"))
 					L.dir = pick(GLOB.cardinals)

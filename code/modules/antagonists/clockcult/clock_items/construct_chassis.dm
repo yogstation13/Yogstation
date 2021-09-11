@@ -72,7 +72,7 @@
 	desc = "A pile of sleek and well-polished brass armor. A small red gemstone sits in its faceplate."
 	icon_state = "marauder_armor"
 	construct_name = "clockwork marauder"
-	construct_desc = "<span class='neovgre_small'>It will become a <b>clockwork marauder,</b> a well-rounded frontline combatant.</span>"
+	construct_desc = span_neovgre_small("It will become a <b>clockwork marauder,</b> a well-rounded frontline combatant.")
 	creation_message = "<span class='neovgre_small bold'>Crimson fire begins to rage in the armor as it rises into the air with its armaments!</span>"
 	construct_type = /mob/living/simple_animal/hostile/clockwork/marauder
 
@@ -83,7 +83,7 @@
 	desc = "A small, complex shell that resembles a repair drone, but much larger and made out of brass."
 	icon_state = "cogscarab_shell"
 	construct_name = "cogscarab"
-	construct_desc = "<span class='alloy'>It will become a <b>cogscarab,</b> a small and fragile drone that builds, repairs, and maintains.</span>"
+	construct_desc = span_alloy("It will become a <b>cogscarab,</b> a small and fragile drone that builds, repairs, and maintains.")
 	creation_message = "<span class='alloy bold'>The cogscarab clicks and whirrs as it hops up and springs to life!</span>"
 	construct_type = /mob/living/simple_animal/drone/cogscarab
 	w_class = WEIGHT_CLASS_SMALL

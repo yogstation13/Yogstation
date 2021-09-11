@@ -44,7 +44,7 @@
 
 /obj/item/organ/internal/shadowtumor/Remove(mob/living/carbon/M, special)
 	if(M.dna.species.id == "l_shadowling") //Empowered thralls cannot be deconverted
-		to_chat(M, "<span class='shadowling'><b><i>NOT LIKE THIS!</i></b></span>")
+		to_chat(M, span_shadowling("<b><i>NOT LIKE THIS!</i></b>"))
 		M.visible_message(span_danger("[M] suddenly slams upward and knocks down everyone!"))
 		M.resting = FALSE //Remove all stuns
 		M.SetStun(0, 0)

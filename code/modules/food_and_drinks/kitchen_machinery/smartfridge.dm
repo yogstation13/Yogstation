@@ -67,9 +67,9 @@
 	if(in_range(user, src) || isobserver(user))
 		if(!stat)//machine must be operable
 			if (contents.len >= max_n_of_items)
-				. += "<span class='notice'>The status display reads: <b>Inventory full!</b> Please remove items or upgrade the parts of this storage unit.</span>"
+				. += span_notice("The status display reads: <b>Inventory full!</b> Please remove items or upgrade the parts of this storage unit.")
 			else
-				. += "<span class='notice'>The status display reads: Inventory quantity is currently <b>[contents.len] out of [max_n_of_items]</b> items.</span>"
+				. += span_notice("The status display reads: Inventory quantity is currently <b>[contents.len] out of [max_n_of_items]</b> items.")
 		else
 			if(!(stat & BROKEN))
 				. += span_notice("The status display is off.")

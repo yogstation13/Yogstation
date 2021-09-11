@@ -133,9 +133,9 @@ GLOBAL_LIST_EMPTY(lockers)
 	if(welded)
 		. += span_notice("It's welded shut.")
 	if(anchored)
-		. += "<span class='notice'>It is <b>bolted</b> to the ground.</span>"
+		. += span_notice("It is <b>bolted</b> to the ground.")
 	if(opened)
-		. += "<span class='notice'>The parts are <b>welded</b> together.</span>"
+		. += span_notice("The parts are <b>welded</b> together.")
 	else if(secure && !opened)
 		. += span_notice("Alt-click to [locked ? "unlock" : "lock"].")
 	if(isliving(user))

@@ -229,7 +229,7 @@ All foods are distributed among various categories. Use common sense.
 		to_chat(user, span_warning("You cannot slice [src] here! You need a table or at least a tray."))
 		return FALSE
 
-	user.visible_message("[user] slices [src].", "<span class='notice'>You slice [src].</span>")
+	user.visible_message("[user] slices [src].", span_notice("You slice [src]."))
 
 	var/reagents_per_slice = reagents.total_volume/slices_num
 	for(var/i in 1 to slices_num)

@@ -190,7 +190,7 @@ Regenerative extracts:
 	effect_desc = "Partially heals the target and injects them with some ephedrine."
 
 /obj/item/slimecross/regenerative/red/core_effect(mob/living/target, mob/user)
-	to_chat(target, "<span class='notice'>You feel... <i>faster.</i></span>")
+	to_chat(target, span_notice("You feel... <i>faster.</i>"))
 	target.reagents.add_reagent(/datum/reagent/medicine/ephedrine,3)
 
 /obj/item/slimecross/regenerative/green

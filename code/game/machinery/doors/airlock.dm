@@ -1140,7 +1140,7 @@
 				if(!T.darkspawn.has_psi(15))
 					to_chat(user, span_warning("You need at least 15 Psi to force open an airlock!"))
 					return
-				user.visible_message(span_warning("[user] starts forcing open [src]!"), "<span class='velvet'><b>ueahz</b><br>You begin forcing open [src]...</span>")
+				user.visible_message(span_warning("[user] starts forcing open [src]!"), span_velvet("<b>ueahz</b><br>You begin forcing open [src]..."))
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE)
 				if(!T.twin)
 					if(!do_after(user, 75, target = src))

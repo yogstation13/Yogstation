@@ -47,7 +47,7 @@
 				to_chat(user, span_warning("These two objects are already connected!"))
 				return
 			if(F.linking.z != z)
-				to_chat(user, "<span class='warning'>You'd need a <b>much</b> tougher slab to link two objects in different sectors.</span>")
+				to_chat(user, span_warning("You'd need a <b>much</b> tougher slab to link two objects in different sectors."))
 				return
 			to_chat(user, span_notice("You link [F.linking] with [src]."))
 			wired_to += F.linking

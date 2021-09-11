@@ -859,7 +859,7 @@
 /datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	var/datum/reagent/S = M.reagents.get_reagent(/datum/reagent/medicine/strange_reagent)
 	if((S?.volume + reac_volume) < REQUIRED_STRANGE_REAGENT_FOR_REVIVAL)
-		M.visible_message("<span class='warning'>[M]'s body shivers slightly, maybe the dose wasn't enough...</span>")
+		M.visible_message(span_warning("[M]'s body shivers slightly, maybe the dose wasn't enough..."))
 		return ..()
 	if(M.stat == DEAD)
 		if(M.suiciding || M.hellbound) //they are never coming back
@@ -1547,7 +1547,7 @@
 
 	if(bloodiest_wound)
 		if(!was_working)
-			to_chat(M, "<span class='green'>You can feel your flowing blood start thickening!</span>")
+			to_chat(M, span_green("You can feel your flowing blood start thickening!"))
 			was_working = TRUE
 		bloodiest_wound.blood_flow = max(0, bloodiest_wound.blood_flow - clot_rate)
 	else if(was_working)
@@ -1562,9 +1562,9 @@
 		M.losebreath += rand(2,4)
 		M.adjustOxyLoss(rand(1,3))
 		if(prob(30))
-			to_chat(M, "<span class='danger'>You can feel your blood clotting up in your veins!</span>")
+			to_chat(M, span_danger("You can feel your blood clotting up in your veins!"))
 		else if(prob(10))
-			to_chat(M, "<span class='userdanger'>You feel like your blood has stopped moving!</span>")
+			to_chat(M, span_userdanger("You feel like your blood has stopped moving!"))
 
 		if(prob(50))
 			var/obj/item/organ/lungs/our_lungs = M.getorganslot(ORGAN_SLOT_LUNGS)
@@ -1582,7 +1582,7 @@
 
 /datum/reagent/medicine/coagulant/on_mob_end_metabolize(mob/living/M)
 	if(was_working)
-		to_chat(M, "<span class='warning'>The medicine thickening your blood loses its effect!</span>")
+		to_chat(M, span_warning("The medicine thickening your blood loses its effect!"))
 	if(!ishuman(M))
 		return
 

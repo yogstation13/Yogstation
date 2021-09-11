@@ -132,7 +132,7 @@
 		return
 	victim.emote("scream")
 	victim.forceMove(user)
-	target.visible_message("<span class='warning'><b>[user] drags [victim] into the pool of blood!</b></span>", null, span_notice("You hear a splash."))
+	target.visible_message(span_warning("<b>[user] drags [victim] into the pool of blood!</b>"), null, span_notice("You hear a splash."))
 
 	user.notransform = TRUE
 	devour(victim, user, target)
@@ -149,7 +149,7 @@
 		for(var/obj/item/bloodcrawl/BC in C)
 			qdel(BC)
 	..()
-	user.visible_message("<span class='warning'><B>[user] rises out of the pool of blood!</B></span>")
+	user.visible_message(span_warning("<B>[user] rises out of the pool of blood!</B>"))
 	exit_blood_effect(target, user)
 	if(speed_boost)
 		if(istype(user, /mob/living/simple_animal))
@@ -173,7 +173,7 @@
 		return
 
 	if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/consumable/ethanol/devilskiss))
-		to_chat(user, "<span class='warning'><b>AAH! THEIR FLESH! IT BURNS!</b></span>")
+		to_chat(user, span_warning("<b>AAH! THEIR FLESH! IT BURNS!</b>"))
 		user.adjustBruteLoss(25) //I can't use adjustHealth() here because bloodcrawl affects /mob/living and adjustHealth() only affects simple mobs
 
 		if(target)
@@ -386,7 +386,7 @@
 	..()
 	UnregisterSignal(enteredvomit, COMSIG_PARENT_PREQDELETED)
 	enteredvomit = null
-	user.visible_message("<span class='warning'><B>[user] rises out of the pool of vomit!?</B></span>")
+	user.visible_message(span_warning("<B>[user] rises out of the pool of vomit!?</B>"))
 	exit_vomit_effect(target, user)
 
 /datum/component/crawl/vomit/proc/throw_out() //throw user out violently when the enteredvomit gets destroyed
@@ -398,7 +398,7 @@
 			qdel(B)
 	var/mob/living/C = parent
 	C.forceMove(get_turf(enteredvomit))
-	C.visible_message("<span class='warning'><B>[C] suddenly appears from [enteredvomit] they had previously entered!</B></span>")
+	C.visible_message(span_warning("<B>[C] suddenly appears from [enteredvomit] they had previously entered!</B>"))
 	exit_vomit_effect(enteredvomit, parent)
 	enteredvomit = null
 	qdel(holder)

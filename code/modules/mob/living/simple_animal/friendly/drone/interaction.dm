@@ -119,7 +119,7 @@
 			return
 		Stun(40)
 		if(clockwork)
-			to_chat(src, "<span class='large_brass'><b>ERROR: LAW OVERRIDE DETECTED</b></span>")
+			to_chat(src, span_large_brass("<b>ERROR: LAW OVERRIDE DETECTED</b>"))
 			to_chat(src, "[span_heavy_brass("From now on, these are your laws:")]")
 			laws = "1. Purge all untruths and honor Ratvar."
 		else
@@ -143,7 +143,7 @@
 		Stun(40)
 		visible_message(span_info("[src]'s display glows a content blue!"), \
 						"<font size=3 color='#0000CC'><b>ERROR: LAW OVERRIDE DETECTED</b></font>")
-		to_chat(src, "<span class='info'><b>From now on, these are your laws:</b></span>")
+		to_chat(src, span_info("<b>From now on, these are your laws:</b>"))
 		laws = initial(laws)
 		to_chat(src, laws)
 		to_chat(src, "<i>Having been restored, your onboard antivirus reports the all-clear and you are able to perform all actions again.</i>")

@@ -36,7 +36,7 @@
 		to_chat(holder, span_warning("[target] seems to resist the implant!"))
 		return FALSE
 
-	to_chat(target, "<span class='userdanger'><FONT size = 3>You feel a strong urge to break everything.  You feel a strong loyalty to [holder.real_name] and your assistant brothers. You want to break into everything, but harming others isnt something you will do.</FONT></span>")
+	to_chat(target, span_userdanger("<FONT size = 3>You feel a strong urge to break everything.  You feel a strong loyalty to [holder.real_name] and your assistant brothers. You want to break into everything, but harming others isnt something you will do.</FONT>"))
 
 	var/datum/antagonist/greytide/GT = new
 	target.mind.add_antag_datum(GT)

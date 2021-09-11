@@ -32,9 +32,9 @@
 /obj/structure/deployed_brace/examine(mob/user)
 	. = ..()
 	if(!cover_open)
-		. += "<span class='notice'>The cover is <b>screwed</b> in place.</span>"
+		. += span_notice("The cover is <b>screwed</b> in place.")
 	else
-		. += "<span class='notice'>The inside is filled with <b>pipes</b>.</span>"
+		. += span_notice("The inside is filled with <b>pipes</b>.")
 
 /obj/structure/deployed_brace/attackby(obj/item/I, mob/user, params)
 	if(get_dist(user, placed_on) > 1)

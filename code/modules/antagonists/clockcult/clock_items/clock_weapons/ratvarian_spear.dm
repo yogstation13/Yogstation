@@ -29,7 +29,7 @@
 /obj/item/clockwork/weapon/ratvarian_spear/examine(mob/user)
 	. = ..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
-		. += "<span class='inathneq_small'>Attacks on living non-Servants will generate <b>[bonus_burn]</b> units of vitality.</span>"
+		. += span_inathneq_small("Attacks on living non-Servants will generate <b>[bonus_burn]</b> units of vitality.")
 		if(!iscyborg(user))
 			. += span_brass("Throwing the spear will do massive damage, break the spear, and knock down the target.")
 

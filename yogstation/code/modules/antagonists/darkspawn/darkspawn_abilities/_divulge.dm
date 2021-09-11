@@ -44,7 +44,7 @@
 		switch(stage)
 			if(1)
 				user.visible_message(span_userdanger("Vibrations pass through the air. [user]'s eyes begin to glow a deep violet."), \
-									"<span class='velvet'>Psi floods into your consciousness. You feel your mind growing more powerful... <i>expanding.</i></span>")
+									span_velvet("Psi floods into your consciousness. You feel your mind growing more powerful... <i>expanding.</i>"))
 				playsound(user, 'yogstation/sound/magic/divulge_01.ogg', 30, 0)
 			if(2)
 				user.visible_message(span_userdanger("Gravity fluctuates. Psychic tendrils extend outward and feel blindly around the area."), \
@@ -79,7 +79,7 @@
 		L.Knockdown(50)
 	var/old_name = user.real_name
 	darkspawn.divulge()
-	var/processed_message = "<span class='velvet'><b>\[Mindlink\] [old_name] has removed their human disguise and is now [user.real_name].</b></span>"
+	var/processed_message = span_velvet("<b>\[Mindlink\] [old_name] has removed their human disguise and is now [user.real_name].</b>")
 	for(var/T in GLOB.alive_mob_list)
 		var/mob/M = T
 		if(is_darkspawn_or_veil(M))

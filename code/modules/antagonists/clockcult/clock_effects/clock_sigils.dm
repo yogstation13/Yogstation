@@ -280,7 +280,7 @@
 		if(GLOB.ratvar_awakens)
 			. += "[span_inathneq_small("It can revive Servants at no cost!")]"
 		else
-			. += "<span class='inathneq_small'>It can revive Servants at a cost of <b>[revive_cost]</b> vitality.</span>"
+			. += span_inathneq_small("It can revive Servants at a cost of <b>[revive_cost]</b> vitality.")
 
 /obj/effect/clockwork/sigil/vitality/sigil_effects(mob/living/L)
 	if((is_servant_of_ratvar(L) && L.suiciding) || sigil_active)

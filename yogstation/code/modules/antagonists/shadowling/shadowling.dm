@@ -41,7 +41,7 @@
 		to_chat(M,span_userdanger("You have been turned into a[ iscyborg(M) ? " cyborg" : "n AI" ]! You are no longer a shadowling! Though you try, you cannot remember anything about your time as one..."))
 	else
 		M.visible_message(span_big("[M] screams and contorts!"))
-		to_chat(M,"<span class='userdanger'>THE LIGHT-- YOUR MIND-- <i>BURNS--</i></span>")
+		to_chat(M,span_userdanger("THE LIGHT-- YOUR MIND-- <i>BURNS--</i>"))
 		spawn(30)
 			if(QDELETED(M))
 				return

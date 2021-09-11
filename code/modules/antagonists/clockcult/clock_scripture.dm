@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 		else
 			for(var/invocation in invocations)
 				clockwork_say(invoker, text2ratvar(invocation), whispered)
-	to_chat(invoker, "<span class='brass'>You [channel_time <= 0 ? "recite" : "begin reciting"] a piece of scripture entitled \"[name]\".</span>")
+	to_chat(invoker, span_brass("You [channel_time <= 0 ? "recite" : "begin reciting"] a piece of scripture entitled \"[name]\"."))
 	if(!channel_time)
 		return TRUE
 	if(chant_slowdown)

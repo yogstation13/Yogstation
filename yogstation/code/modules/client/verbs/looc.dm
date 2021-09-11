@@ -72,7 +72,7 @@
 				clients_to_hear += mob.client
 
 	var/message_admin = span_looc("LOOC: [ADMIN_LOOKUPFLW(mob)]: [msg]")
-	var/message_admin_remote = "<span class='looc'><font color='black'>(R)</font>LOOC: [ADMIN_LOOKUPFLW(mob)]: [msg]</span>"
+	var/message_admin_remote = span_looc("<font color='black'>(R)</font>LOOC: [ADMIN_LOOKUPFLW(mob)]: [msg]")
 	var/message_regular
 	if(isobserver(mob)) //if you're a spooky ghost
 		var/key_to_print = mob.key

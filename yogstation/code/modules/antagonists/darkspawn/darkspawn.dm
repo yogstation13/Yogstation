@@ -278,7 +278,7 @@
 			action.darkspawn = src
 			abilities[id] = action
 			if(!silent)
-				to_chat(owner.current, "<span class='velvet'>You have learned the <b>[action.name]</b> ability.</span>")
+				to_chat(owner.current, span_velvet("You have learned the <b>[action.name]</b> ability."))
 			if(!no_cost)
 				lucidity = max(0, lucidity - action.lucidity_price)
 			return TRUE
@@ -288,7 +288,7 @@
 		return
 	var/datum/action/innate/darkspawn/D = abilities[id]
 	if(!silent)
-		to_chat(owner.current, "<span class='velvet'>You have lost the <b>[D.name]</b> ability.</span>")
+		to_chat(owner.current, span_velvet("You have lost the <b>[D.name]</b> ability."))
 	QDEL_NULL(abilities[id])
 	abilities -= abilities[id]
 	return TRUE
@@ -330,7 +330,7 @@
 	span_userdanger("You can't maintain your disguise any more! It begins sloughing off!"))
 	playsound(H, 'yogstation/sound/creatures/darkspawn_force_divulge.ogg', 50, FALSE)
 	H.do_jitter_animation(1000)
-	var/processed_message = "<span class='velvet'><b>\[Mindlink\] [H.real_name] has not divulged in time and is now forcefully divulging.</b></span>"
+	var/processed_message = span_velvet("<b>\[Mindlink\] [H.real_name] has not divulged in time and is now forcefully divulging.</b>")
 	for(var/mob/M in GLOB.player_list)
 		if(M.stat == DEAD)
 			var/link = FOLLOW_LINK(M, H)

@@ -37,28 +37,28 @@
 		. += "It has electromagnetic interference shielding installed."
 		has_upgrades = TRUE
 	else if(state == STATE_WIRED)
-		. += "<span class='info'>It can be shielded against electromagnetic interference with some <b>plasma</b>.</span>"
+		. += span_info("It can be shielded against electromagnetic interference with some <b>plasma</b>.")
 	if(xray_module)
 		. += "It has an X-ray photodiode installed."
 		has_upgrades = TRUE
 	else if(state == STATE_WIRED)
-		. += "<span class='info'>It can be upgraded with an X-ray photodiode with an <b>analyzer</b>.</span>"
+		. += span_info("It can be upgraded with an X-ray photodiode with an <b>analyzer</b>.")
 	if(proxy_module)
 		. += "It has a proximity sensor installed."
 		has_upgrades = TRUE
 	else if(state == STATE_WIRED)
-		. += "<span class='info'>It can be upgraded with a <b>proximity sensor</b>.</span>"
+		. += span_info("It can be upgraded with a <b>proximity sensor</b>.")
 
 	//construction states
 	switch(state)
 		if(STATE_WRENCHED)
-			. += "<span class='info'>You can secure it in place with a <b>welder</b>, or removed with a <b>wrench</b>.</span>"
+			. += span_info("You can secure it in place with a <b>welder</b>, or removed with a <b>wrench</b>.")
 		if(STATE_WELDED)
-			. += "<span class='info'>You can add <b>wires</b> to it, or <b>unweld</b> it from the wall.</span>"
+			. += span_info("You can add <b>wires</b> to it, or <b>unweld</b> it from the wall.")
 		if(STATE_WIRED)
 			if(has_upgrades)
-				. += "<span class='info'>You can remove the contained upgrades with a <b>crowbar</b>.</span>"
-			. += "<span class='info'>You can complete it with a <b>screwdriver</b>, or <b>unwire</b> it to start removal.</span>"
+				. += span_info("You can remove the contained upgrades with a <b>crowbar</b>.")
+			. += span_info("You can complete it with a <b>screwdriver</b>, or <b>unwire</b> it to start removal.")
 		if(STATE_FINISHED)
 			. += span_boldwarning("You shouldn't be seeing this, tell a coder!")
 

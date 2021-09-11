@@ -160,7 +160,7 @@
 		if(!can_access_clockwork_power(src))
 			. += span_alloy("It has no access to the power network! Create a sigil of transmission nearby.")
 		else
-			. += "<span class='brass'>It has access to <b>[DisplayEnergy(get_clockwork_power())]</b> of power.</span>"
+			. += span_brass("It has access to <b>[DisplayEnergy(get_clockwork_power())]</b> of power.")
 
 /obj/structure/destructible/clockwork/powered/Destroy()
 	SSfastprocess.processing -= src

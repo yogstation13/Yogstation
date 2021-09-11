@@ -78,10 +78,10 @@
 			return
 		if("Nominate Yourself")
 			eminence_nominee = nominee
-			hierophant_message("<span class='brass'><b>[nominee] nominates [nominee.p_them()]self as the Eminence!</b> You may object by interacting with the eminence spire. The vote will otherwise pass in 30 seconds.</span>")
+			hierophant_message(span_brass("<b>[nominee] nominates [nominee.p_them()]self as the Eminence!</b> You may object by interacting with the eminence spire. The vote will otherwise pass in 30 seconds."))
 		if("Nominate Ghosts")
 			eminence_nominee = "ghosts"
-			hierophant_message("<span class='brass'><b>[nominee] proposes selecting an Eminence from ghosts!</b> You may object by interacting with the eminence spire. The vote will otherwise pass in 30 seconds.</span>")
+			hierophant_message(span_brass("<b>[nominee] proposes selecting an Eminence from ghosts!</b> You may object by interacting with the eminence spire. The vote will otherwise pass in 30 seconds."))
 	for(var/mob/M in servants_and_ghosts())
 		M.playsound_local(M, 'sound/machines/clockcult/ocularwarden-target.ogg', 50, FALSE)
 	selection_timer = addtimer(CALLBACK(src, .proc/kingmaker), 300, TIMER_STOPPABLE)
@@ -89,7 +89,7 @@
 /obj/structure/destructible/clockwork/eminence_spire/proc/objection(mob/living/wright)
 	if(alert(wright, "Object to the selection of [eminence_nominee] as Eminence?", "Objection!", "Object", "Cancel") == "Cancel" || !is_servant_of_ratvar(wright) || !wright.canUseTopic(src) || !eminence_nominee)
 		return
-	hierophant_message("<span class='brass'><b>[wright] objects to the nomination of [eminence_nominee]!</b> The eminence spire has been reset.</span>")
+	hierophant_message(span_brass("<b>[wright] objects to the nomination of [eminence_nominee]!</b> The eminence spire has been reset."))
 	for(var/mob/M in servants_and_ghosts())
 		M.playsound_local(M, 'sound/machines/clockcult/integration_cog_install.ogg', 50, FALSE)
 	eminence_nominee = null
@@ -98,7 +98,7 @@
 /obj/structure/destructible/clockwork/eminence_spire/proc/cancelation(mob/living/cold_feet)
 	if(alert(cold_feet, "Cancel your nomination?", "Cancel Nomination", "Withdraw Nomination", "Cancel") == "Cancel" || !is_servant_of_ratvar(cold_feet) || !cold_feet.canUseTopic(src) || !eminence_nominee)
 		return
-	hierophant_message("<span class='brass'><b>[eminence_nominee] has withdrawn their nomination!</b> The eminence spire has been reset.</span>")
+	hierophant_message(span_brass("<b>[eminence_nominee] has withdrawn their nomination!</b> The eminence spire has been reset."))
 	for(var/mob/M in servants_and_ghosts())
 		M.playsound_local(M, 'sound/machines/clockcult/integration_cog_install.ogg', 50, FALSE)
 	eminence_nominee = null
@@ -109,7 +109,7 @@
 		return
 	if(ismob(eminence_nominee))
 		if(!eminence_nominee.client || !eminence_nominee.mind)
-			hierophant_message("<span class='brass'><b>[eminence_nominee] somehow lost their sentience!</b> The eminence spire has been reset.</span>")
+			hierophant_message(span_brass("<b>[eminence_nominee] somehow lost their sentience!</b> The eminence spire has been reset."))
 			for(var/mob/M in servants_and_ghosts())
 				M.playsound_local(M, 'sound/machines/clockcult/integration_cog_install.ogg', 50, FALSE)
 			eminence_nominee = null
@@ -125,13 +125,13 @@
 		hierophant_message("<span class='bold large_brass'>[eminence_nominee] has ascended into the Eminence!</span>")
 	else if(eminence_nominee == "ghosts")
 		kingmaking = TRUE
-		hierophant_message("<span class='brass'><b>The eminence spire is now selecting a ghost to be the Eminence...</b></span>")
+		hierophant_message(span_brass("<b>The eminence spire is now selecting a ghost to be the Eminence...</b>"))
 		var/list/candidates = pollGhostCandidates("Would you like to play as the servants' Eminence?", ROLE_SERVANT_OF_RATVAR, null, ROLE_SERVANT_OF_RATVAR, poll_time = 100)
 		kingmaking = FALSE
 		if(!LAZYLEN(candidates))
 			for(var/mob/M in servants_and_ghosts())
 				M.playsound_local(M, 'sound/machines/clockcult/integration_cog_install.ogg', 50, FALSE)
-			hierophant_message("<span class='brass'><b>No ghosts accepted the offer!</b> The eminence spire has been reset.</span>")
+			hierophant_message(span_brass("<b>No ghosts accepted the offer!</b> The eminence spire has been reset."))
 			eminence_nominee = null
 			return
 		visible_message(span_warning("A blast of white-hot light spirals from [src] in waves!"))

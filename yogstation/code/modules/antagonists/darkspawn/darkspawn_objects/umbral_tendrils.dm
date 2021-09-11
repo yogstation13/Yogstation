@@ -34,9 +34,9 @@
 	. = ..()
 	if(isobserver(user) || isdarkspawn(user))
 		to_chat(user, "<span class='velvet bold'>Functions:<span>")
-		to_chat(user, "<span class='velvet'><b>Help intent:</b> Click on an open tile within seven tiles to jump to it for 10 Psi.</span>")
-		to_chat(user, "<span class='velvet'><b>Disarm intent:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)</span>")
-		to_chat(user, "<span class='velvet'><b>Harm intent:</b> Fire a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck.</span>")
+		to_chat(user, span_velvet("<b>Help intent:</b> Click on an open tile within seven tiles to jump to it for 10 Psi."))
+		to_chat(user, span_velvet("<b>Disarm intent:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)"))
+		to_chat(user, span_velvet("<b>Harm intent:</b> Fire a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck."))
 		to_chat(user, span_velvet("The tendrils will break any lights hit in melee,"))
 		to_chat(user, span_velvet("The tendrils will shatter light fixtures instantly, as opposed to in several attacks."))
 		to_chat(user, span_velvet("Also functions to pry open depowered airlocks on any intent other than harm."))
@@ -105,7 +105,7 @@
 		to_chat(user, span_warning("[target] is already knocked down!"))
 		return
 	user.visible_message(span_warning("[user] draws back [src] and swings them towards [target]!"), \
-	"<span class='velvet'><b>opehhjaoo</b><br>You swing your tendrils towards [target]!</span>")
+	span_velvet("<b>opehhjaoo</b><br>You swing your tendrils towards [target]!"))
 	playsound(user, 'sound/magic/tail_swing.ogg', 50, TRUE)
 	var/obj/item/projectile/umbral_tendrils/T = new(get_turf(user))
 	T.preparePixelProjectile(target, user)

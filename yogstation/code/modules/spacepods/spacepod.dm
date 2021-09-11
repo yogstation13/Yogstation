@@ -488,7 +488,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		var/mob/living/M = A
 		if(M != user && !locked)
 			if(passengers.len >= max_passengers && !pilot)
-				to_chat(user, "<span class='danger'><b>[A.p_they()] can't fly the pod!</b></span>")
+				to_chat(user, span_danger("<b>[A.p_they()] can't fly the pod!</b>"))
 				return
 			if(passengers.len < max_passengers)
 				visible_message(span_danger("[user] starts loading [M] into [src]!"))

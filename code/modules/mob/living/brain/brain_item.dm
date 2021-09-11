@@ -144,17 +144,17 @@
 			if(brain_death || brainmob.health <= HEALTH_THRESHOLD_DEAD)
 				. += span_info("It's lifeless and severely damaged.")
 			else if(organ_flags & ORGAN_FAILING)
-				. += "<span class='info'>It seems to still have a bit of energy within it, but it's rather damaged... You may be able to restore it with some <b>mannitol</b>.</span>"
+				. += span_info("It seems to still have a bit of energy within it, but it's rather damaged... You may be able to restore it with some <b>mannitol</b>.")
 			else
 				. += span_info("You can feel the small spark of life still left in this one.")
 		else if(organ_flags & ORGAN_FAILING)
-			. += "<span class='info'>It seems particularly lifeless and is rather damaged... You may be able to restore it with some <b>mannitol</b> incase it becomes functional again later.</span>"
+			. += span_info("It seems particularly lifeless and is rather damaged... You may be able to restore it with some <b>mannitol</b> incase it becomes functional again later.")
 		else
 			. += span_info("This one seems particularly lifeless. Perhaps it will regain some of its luster later.")
 	else
 		if(decoy_override)
 			if(organ_flags & ORGAN_FAILING)
-				. += "<span class='info'>It seems particularly lifeless and is rather damaged... You may be able to restore it with some <b>mannitol</b> incase it becomes functional again later.</span>"
+				. += span_info("It seems particularly lifeless and is rather damaged... You may be able to restore it with some <b>mannitol</b> incase it becomes functional again later.")
 			else
 				. += span_info("This one seems particularly lifeless. Perhaps it will regain some of its luster later.")
 		else

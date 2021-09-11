@@ -159,9 +159,9 @@
 				var/datum/language/paperlang = GLOB.language_datum_instances[X.lang]
 				text += paperlang.scramble_HTML(X.text)
 		else if(links)
-			text += "<span class=\"paper_field\">" + "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=[i]'>write</A></font>" + "</span>"
+			text += span_paper_field("" + "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=[i]'>write</A></font>" + "")
 	if(links)
-		text += "<span class=\"paper_field\">" + "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=end'>write</A></font>" + "</span>"
+		text += span_paper_field("" + "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=end'>write</A></font>" + "")
 	if(coloroverride)
 		text += "</font>"
 	return text

@@ -404,7 +404,7 @@
 
 /obj/machinery/computer/arcade/minesweeper/proc/explode_EVERYTHING()
 	var/mob/living/user = usr
-	to_chat(user, "<span class='warning'><font size='2'><b>You feel a great sense of dread wash over you. You feel as if you just unleashed armageddon upon yourself!</b></span>")
+	to_chat(user, span_warning("<font size='2'><b>You feel a great sense of dread wash over you. You feel as if you just unleashed armageddon upon yourself!</b>"))
 	var/row_limit = rows-1
 	var/column_limit = columns-1
 	var/mine_limit_v2 = mine_limit

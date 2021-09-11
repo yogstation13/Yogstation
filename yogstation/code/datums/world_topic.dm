@@ -5,7 +5,7 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 	require_comms_key = TRUE
 
 /datum/world_topic/asay/Run(list/input)
-	to_chat(GLOB.admins, "<span class='adminsay'>[span_prefix("DISCORD:")] <EM>[input["admin"]]</EM>: [span_message("[input["asay"]]")]</span>", confidential=TRUE)
+	to_chat(GLOB.admins, span_adminsay("[span_prefix("DISCORD:")] <EM>[input["admin"]]</EM>: [span_message("[input["asay"]]")]"), confidential=TRUE)
 
 /datum/world_topic/ooc
 	keyword = "ooc"
@@ -50,7 +50,7 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 	var/id = input["id"]
 	var/link = "https://github.com/yogstation13/Yogstation/pull/[id]"
 
-	var/final_composed = "<span class='announce'>PR: <a href=[link]>[msgTitle]</a> by [author]</span>"
+	var/final_composed = span_announce("PR: <a href=[link]>[msgTitle]</a> by [author]")
 	for(var/client/C in GLOB.clients)
 		C.AnnouncePR(final_composed)
 

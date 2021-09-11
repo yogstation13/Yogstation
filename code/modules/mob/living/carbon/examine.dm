@@ -35,9 +35,9 @@
 	var/list/missing = get_missing_limbs()
 	for(var/t in missing)
 		if(t==BODY_ZONE_HEAD)
-			. += "<span class='deadsay'><B>[t_His] [parse_zone(t)] is missing!</B></span>"
+			. += span_deadsay("<B>[t_His] [parse_zone(t)] is missing!</B>")
 			continue
-		. += "<span class='warning'><B>[t_His] [parse_zone(t)] is missing!</B></span>"
+		. += span_warning("<B>[t_His] [parse_zone(t)] is missing!</B>")
 
 	var/list/msg = list("<span class='warning'>")
 	var/temp = getBruteLoss()
@@ -148,7 +148,7 @@
 	if(!visible_scars)
 		return ..()
 
-	var/msg = list("<span class='notice'><i>You examine [src] closer, and note the following...</i></span>")
+	var/msg = list(span_notice("<i>You examine [src] closer, and note the following...</i>"))
 	for(var/i in visible_scars)
 		var/datum/scar/S = i
 		var/scar_text = S.get_examine_description(user)

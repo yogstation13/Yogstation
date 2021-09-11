@@ -64,7 +64,7 @@
 		else
 			. += span_notice("In the event of a red alert, its access requirements will automatically lift.")
 	if(!poddoor)
-		. += "<span class='notice'>Its maintenance panel is <b>screwed</b> in place.</span>"
+		. += span_notice("Its maintenance panel is <b>screwed</b> in place.")
 	if(!isdead(user))
 		var/userDir = turn(get_dir(src, user), 180)
 		var/turf/T = get_step(src, userDir)

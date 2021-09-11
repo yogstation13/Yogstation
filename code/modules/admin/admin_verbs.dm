@@ -384,7 +384,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			to_chat(mob, span_boldannounce("Invisimin off. Invisibility reset."))
 		else
 			mob.invisibility = INVISIBILITY_MAXIMUM
-			to_chat(mob, "<span class='adminnotice'><b>Invisimin on. You are now invisible.</b></span>")
+			to_chat(mob, span_adminnotice("<b>Invisimin on. You are now invisible.</b>"))
 
 /client/proc/check_antagonists()
 	set name = "Check Antagonists"

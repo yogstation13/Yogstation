@@ -68,7 +68,7 @@ It is possible to destroy the net by the occupant or someone else.
 	to_chat(affecting, span_danger("You appear in a strange place. You feel very trapped."))
 
 	if(!QDELETED(master))//As long as they still exist.
-		to_chat(master, "<span class='notice'><b>SUCCESS</b>: capture procedure of [affecting] complete.</span>")
+		to_chat(master, span_notice("<b>SUCCESS</b>: capture procedure of [affecting] complete."))
 	do_sparks(5, FALSE, affecting)
 	playsound(affecting, 'sound/effects/phasein.ogg', 25, 1)
 	playsound(affecting, 'sound/effects/sparks2.ogg', 50, 1)

@@ -158,7 +158,7 @@
 		var/datum/antagonist/gang/G = user.mind.has_antag_datum(/datum/antagonist/gang)
 		if(!G)
 			return
-		var/ping = "<span class='danger'><B><i>[gang.name] [G.message_name] [user.real_name]</i>: [message]</B></span>"
+		var/ping = span_danger("<B><i>[gang.name] [G.message_name] [user.real_name]</i>: [message]</B>")
 		for(var/datum/mind/ganger in gang.members)
 			if(ganger.current && is_station_level(ganger.current.z) && (ganger.current.stat == CONSCIOUS))
 				to_chat(ganger.current, ping)

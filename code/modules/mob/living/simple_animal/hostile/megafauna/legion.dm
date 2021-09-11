@@ -90,7 +90,7 @@ Difficulty: Medium
 	A.faction = faction
 
 /mob/living/simple_animal/hostile/megafauna/legion/proc/charge_target()
-	visible_message("<span class='warning'><b>[src] charges!</b></span>")
+	visible_message(span_warning("<b>[src] charges!</b>"))
 	SpinAnimation(speed = 20, loops = 5)
 	ranged = FALSE
 	retreat_distance = 0

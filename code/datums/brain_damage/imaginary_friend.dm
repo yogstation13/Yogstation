@@ -80,7 +80,7 @@
 	Show()
 
 /mob/camera/imaginary_friend/proc/greet()
-		to_chat(src, "<span class='notice'><b>You are the imaginary friend of [owner]!</b></span>")
+		to_chat(src, span_notice("<b>You are the imaginary friend of [owner]!</b>"))
 		to_chat(src, span_notice("You are absolutely loyal to your friend, no matter what."))
 		to_chat(src, span_notice("You cannot directly influence the world around you, but you can see what [owner] cannot."))
 
@@ -262,7 +262,7 @@
 	desc = "The previous host of this body."
 
 /mob/camera/imaginary_friend/trapped/greet()
-	to_chat(src, "<span class='notice'><b>You have managed to hold on as a figment of the new host's imagination!</b></span>")
+	to_chat(src, span_notice("<b>You have managed to hold on as a figment of the new host's imagination!</b>"))
 	to_chat(src, span_notice("All hope is lost for you, but at least you may interact with your host. You do not have to be loyal to them."))
 	to_chat(src, span_notice("You cannot directly influence the world around you, but you can see what the host cannot."))
 

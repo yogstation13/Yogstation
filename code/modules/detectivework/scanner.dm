@@ -214,7 +214,7 @@
 		// Fingerprints
 		feedback(sound_scanner_scan)
 		if(length(fingerprints))
-			add_log("<span class='info'><B>Prints:</B></span>")
+			add_log(span_info("<B>Prints:</B>"))
 			for(var/finger in fingerprints)
 				add_log("[finger]")
 			found_something = 1
@@ -224,7 +224,7 @@
 		feedback(sound_scanner_scan)
 		if (length(blood))
 			feedback(sound_scanner_positive)
-			add_log("<span class='info'><B>Blood:</B></span>")
+			add_log(span_info("<B>Blood:</B>"))
 			for(var/B in blood)
 				add_log("Type: <font color='red'>[blood[B]]</font> DNA: <font color='red'>[B]</font>")
 				found_something = 1
@@ -233,7 +233,7 @@
 		feedback(sound_scanner_scan)
 		if(length(fibers))
 			feedback(sound_scanner_positive)
-			add_log("<span class='info'><B>Fibers:</B></span>")
+			add_log(span_info("<B>Fibers:</B>"))
 			for(var/fiber in fibers)
 				add_log("[fiber]")
 			found_something = 1
@@ -241,7 +241,7 @@
 		//Reagents
 		feedback(sound_scanner_scan)
 		if(length(reagents))
-			add_log("<span class='info'><B>Reagents:</B></span>")
+			add_log(span_info("<B>Reagents:</B>"))
 			for(var/R in reagents)
 				add_log("Reagent: <font color='red'>[R]</font> Volume: <font color='red'>[reagents[R]]</font>")
 			found_something = 1
@@ -295,7 +295,7 @@
 	if(scanning)
 		to_chat(user, span_notice("Cannot display logs, the scanner is in use."))
 		return
-	to_chat(user, "<span class='notice'><B>Scanner Report</B></span>")
+	to_chat(user, span_notice("<B>Scanner Report</B>"))
 	for(var/iterLog in log)
 		to_chat(user, iterLog)
 

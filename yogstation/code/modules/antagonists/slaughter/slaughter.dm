@@ -68,17 +68,17 @@
 	if(!isliving(A))
 		return ..()
 	if(!Adjacent(A))
-		to_chat(src, "<span class='warning'>You are too far away to use your slam attack on [A]!</span>")
+		to_chat(src, span_warning("You are too far away to use your slam attack on [A]!"))
 		return
 	if(slam_cooldown + slam_cooldown_time > world.time)
-		to_chat(src, "<span class='warning'>Your slam ability is still on cooldown!</span>")
+		to_chat(src, span_warning("Your slam ability is still on cooldown!"))
 		return
 
 	face_atom(A)
 	var/mob/living/victim = A
 	victim.take_bodypart_damage(brute=20, wound_bonus=wound_bonus) // don't worry, there's more punishment when they hit something
-	visible_message("<span class='danger'>[src] slams into [victim] with monstrous strength!</span>", "<span class='danger'>You slam into [victim] with monstrous strength!</span>", ignored_mobs=victim)
-	to_chat(victim, "<span class='userdanger'>[src] slams into you with monstrous strength, sending you flying like a ragdoll!</span>")
+	visible_message(span_danger("[src] slams into [victim] with monstrous strength!"), span_danger("You slam into [victim] with monstrous strength!"), ignored_mobs=victim)
+	to_chat(victim, span_userdanger("[src] slams into you with monstrous strength, sending you flying like a ragdoll!"))
 	var/turf/yeet_target = get_edge_target_turf(victim, dir)
 	victim.throw_at(yeet_target, 10, 5, src)
 	slam_cooldown = world.time

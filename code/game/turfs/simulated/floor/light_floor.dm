@@ -15,7 +15,7 @@
 
 /turf/open/floor/light/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>There's a <b>small crack</b> on the edge of it.</span>"
+	. += span_notice("There's a <b>small crack</b> on the edge of it.")
 
 /turf/open/floor/light/proc/populate_lighttile_designs()
 	lighttile_designs = list(

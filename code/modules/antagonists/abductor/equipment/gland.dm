@@ -67,7 +67,7 @@
 /obj/item/organ/heart/gland/proc/clear_mind_control()
 	if(!ownerCheck() || !active_mind_control)
 		return FALSE
-	to_chat(owner, "<span class='userdanger'>You feel the compulsion fade, and you <i>completely forget</i> about your previous orders.</span>")
+	to_chat(owner, span_userdanger("You feel the compulsion fade, and you <i>completely forget</i> about your previous orders."))
 	owner.clear_alert("mind_control")
 	active_mind_control = FALSE
 	return TRUE
@@ -205,7 +205,7 @@
 		return FALSE
 	for(var/M in broadcasted_mobs)
 		var/mob/living/carbon/human/H = M
-		to_chat(H, "<span class='userdanger'>You feel the compulsion fade, and you <i>completely forget</i> about your previous orders.</span>")
+		to_chat(H, span_userdanger("You feel the compulsion fade, and you <i>completely forget</i> about your previous orders."))
 		H.clear_alert("mind_control")
 	active_mind_control = FALSE
 	return TRUE

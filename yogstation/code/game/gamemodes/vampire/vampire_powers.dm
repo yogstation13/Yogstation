@@ -44,7 +44,7 @@
 			targets.Cut()
 
 		if(LAZYLEN(targets))
-			to_chat(usr, "<span class='notice'><b>You have [vampire.usable_blood] left to use.</b></span>")
+			to_chat(usr, span_notice("<b>You have [vampire.usable_blood] left to use.</b>"))
 
 
 /obj/effect/proc_holder/spell/can_target(mob/living/target)
@@ -366,7 +366,7 @@
 	for(var/mob/living/carbon/C in hearers(4))
 		if(!C == user  || !is_vampire(C))
 			if(ishuman(C) && C.soundbang_act(1, 0))
-				to_chat(C, "<span class='warning'><font size='3'><b>You hear a ear piercing shriek and your senses dull!</font></b></span>")
+				to_chat(C, span_warning("<font size='3'><b>You hear a ear piercing shriek and your senses dull!</font></b>"))
 				C.Knockdown(40)
 				C.adjustEarDamage(0, 30)
 				C.stuttering = 250

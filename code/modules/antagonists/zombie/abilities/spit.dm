@@ -10,7 +10,7 @@
 	if(active)
 		remove_ranged_ability(span_notice("You close your neurotoxin reserves."))
 	else
-		add_ranged_ability(user, "<span class='notice'>You open your neurotoxin reserves. <B>Left-click to fire at a target!</B></span>", TRUE)
+		add_ranged_ability(user, span_notice("You open your neurotoxin reserves. <B>Left-click to fire at a target!</B>"), TRUE)
 
 /obj/effect/proc_holder/zombie/spit/update_icon()
 	action.button_icon_state = "alien_neurotoxin_[active]"

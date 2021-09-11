@@ -540,7 +540,7 @@
 			sec |= player.mind
 	if (sec.len)
 		var/list/result = list()
-		result += "<span class='header'>Security Officers:<br></span>"
+		result += span_header("Security Officers:<br>")
 		for(var/mob/living/carbon/human/player in GLOB.carbon_list)
 			if(player.mind && (player.mind.assigned_role in GLOB.security_positions))
 				result += "<ul class='player report'><b>[player.name]</b> (Played by: <b>[player.mind.key]</b>) [(player.stat != DEAD)? "[span_greentext("survived")] as a <b>[player.mind.assigned_role]</b>" : "[span_redtext("fell in the line of duty")] as a <b>[player.mind.assigned_role]</b>"]<br></ul>"

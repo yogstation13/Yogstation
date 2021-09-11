@@ -141,7 +141,7 @@
 		return FALSE
 	if(isliving(A))
 		var/mob/living/user = A
-		to_chat(user, "<span class='warning'><b>You pass through [src] and appear elsewhere!</b></span>")
+		to_chat(user, span_warning("<b>You pass through [src] and appear elsewhere!</b>"))
 	linked_gateway.visible_message(span_warning("A shape appears in [linked_gateway] before emerging!"))
 	playsound(src, 'sound/effects/empulse.ogg', 50, 1)
 	playsound(linked_gateway, 'sound/effects/empulse.ogg', 50, 1)

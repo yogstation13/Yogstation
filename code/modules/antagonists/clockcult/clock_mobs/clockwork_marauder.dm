@@ -42,7 +42,7 @@
 		speed = initial(speed)
 	if(shield_health < max_shield_health && world.time >= shield_health_regen)
 		shield_health_regen = world.time + MARAUDER_SHIELD_REGEN_TIME
-		to_chat(src, "<span class='neovgre'>Your shield has recovered, <b>[shield_health]</b> blocks remaining!</span>")
+		to_chat(src, span_neovgre("Your shield has recovered, <b>[shield_health]</b> blocks remaining!"))
 		playsound_local(src, "shatter", 75, TRUE, frequency = -1)
 		shield_health++
 
@@ -90,7 +90,7 @@
 		return
 	var/energy_projectile = istype(P, /obj/item/projectile/energy) || istype(P, /obj/item/projectile/beam)
 	visible_message(span_danger("[src] deflects [P] with [p_their()] shield!"), \
-	"<span class='danger'>You block [P] with your shield! <i>Blocks left:</i> <b>[shield_health - 1]</b></span>")
+	span_danger("You block [P] with your shield! <i>Blocks left:</i> <b>[shield_health - 1]</b>"))
 	if(energy_projectile)
 		playsound(src, 'sound/weapons/effects/searwall.ogg', 50, TRUE)
 	else
