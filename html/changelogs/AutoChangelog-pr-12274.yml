@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "scanning seeds with an export scanner no longer reduces their price substantially"
+  - bugfix: "seed samples being sold at cargo now don't conflict with eachother's prices because wtf (this is a botany buff)"
