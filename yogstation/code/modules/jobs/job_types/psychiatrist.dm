@@ -6,6 +6,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
+	minimum_pop = 20
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
 	alt_titles = list("Counsellor", "Therapist", "Mentalist")

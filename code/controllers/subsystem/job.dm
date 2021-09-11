@@ -285,6 +285,7 @@ SUBSYSTEM_DEF(job)
 
 	//Scale number of open security officer slots to population
 	setup_officer_positions()
+	check_minimum_pop()
 
 	//Jobs will have fewer access permissions if the number of players exceeds the threshold defined in game_options.txt
 	var/mat = CONFIG_GET(number/minimal_access_threshold)
@@ -582,6 +583,11 @@ SUBSYSTEM_DEF(job)
 			J.total_positions = officer_positions
 			J.spawn_positions = officer_positions
 
+	var/datum/job/phy = SSjob.GetJob("Brig Physician")
+	if(J.total_positions > 1)
+		phy.total_positions = 1
+		phy.spawn_positions = 1
+
 	//Spawn some extra eqipment lockers if we have more than 5 officers
 	var/equip_needed = J.total_positions
 	if(equip_needed < 0) // -1: infinite available slots
@@ -594,6 +600,11 @@ SUBSYSTEM_DEF(job)
 		else //We ran out of spare locker spawns!
 			break
 
+/datum/controller/subsystem/job/proc/check_minimum_pop()
+	for(var/datum/job/job in SSjob.occupations)
+		if(job.minimum_pop < SSjob.unassigned.len)
+			job.total_positions = 0
+			job.spawn_positions = 0
 
 /datum/controller/subsystem/job/proc/LoadJobs()
 	var/jobstext = file2text("[global.config.directory]/jobs.txt")

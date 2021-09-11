@@ -1,54 +1,57 @@
 /datum/job
-	//The name of the job , used for preferences, bans and more. Make sure you know what you're doing before changing this.
+	///The name of the job , used for preferences, bans and more. Make sure you know what you're doing before changing this.
 	var/title = "NOPE"
 
-	//Job access. The use of minimal_access or access is determined by a config setting: config.jobs_have_minimal_access
-	var/list/minimal_access = list()		//Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
-	var/list/access = list()				//Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
+	///Job access. The use of minimal_access or access is determined by a config setting: config.jobs_have_minimal_access
+	var/list/minimal_access = list()		///Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
+	var/list/access = list()				///Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
 
-	//Determines who can demote this position
+	///Determines who can demote this position
 	var/department_head = list()
 
-	//Tells the given channels that the given mob is the new department head. See communications.dm for valid channels.
+	///Tells the given channels that the given mob is the new department head. See communications.dm for valid channels.
 	var/list/head_announce = null
 
-	//Bitflags for the job
-	var/department_flag = NONE //Deprecated
-	var/flag = NONE //Deprecated
+	///Bitflags for the job
+	var/department_flag = NONE ///Deprecated
+	var/flag = NONE ///Deprecated
 	var/auto_deadmin_role_flags = NONE
 
-	//Players will be allowed to spawn in as jobs that are set to "Station"
+	///Players will be allowed to spawn in as jobs that are set to "Station"
 	var/faction = "None"
 
-	//How many players can be this job
+	///How many players can be this job
 	var/total_positions = 0
 
-	//How many players can spawn in as this job
+	///How many players can spawn in as this job
 	var/spawn_positions = 0
 
-	//How many players have this job
+	///How many players have this job
 	var/current_positions = 0
 
-	//Supervisors, who this person answers to directly
+	//// Min pop for job
+	var/minimum_pop = 0
+
+	///Supervisors, who this person answers to directly
 	var/supervisors = ""
 
-	//Sellection screen color
+	///Sellection screen color
 	var/selection_color = "#ffffff"
 
-	//List of alternate titles, if any
+	///List of alternate titles, if any
 	var/list/alt_titles
 
-	//If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
+	///If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/req_admin_notify
 
-	//Yogs start
-	//If this is set to 1, a text is printed to the player when jobs are assigned, telling them that space law has been updated.
+	///Yogs start
+	///If this is set to 1, a text is printed to the player when jobs are assigned, telling them that space law has been updated.
 	var/space_law_notify
-	//Yogs end
+	///Yogs end
 
-	//If you have the use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
+	///If you have the use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
 	var/minimal_player_age = 0
-	var/minimal_character_age = 0 // This is the IC age requirement for the players' *character* in order to be this job.
+	var/minimal_character_age = 0 /// This is the IC age requirement for the players' *character* in order to be this job.
 
 	var/outfit = null
 
@@ -57,18 +60,18 @@
 	var/exp_type = ""
 	var/exp_type_department = ""
 
-	//The amount of good boy points playing this role will earn you towards a higher chance to roll antagonist next round
-	//can be overridden by antag_rep.txt config
+	///The amount of good boy points playing this role will earn you towards a higher chance to roll antagonist next round
+	///can be overridden by antag_rep.txt config
 	var/antag_rep = 10
 
 	var/paycheck = PAYCHECK_MINIMAL
 	var/paycheck_department = ACCOUNT_CIV
 
-	var/list/mind_traits // Traits added to the mind of the mob assigned this job
+	var/list/mind_traits /// Traits added to the mind of the mob assigned this job
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 
-	var/list/changed_maps = list() // Maps on which the job is changed. Should use the same name as the mapping config
+	var/list/changed_maps = list() /// Maps on which the job is changed. Should use the same name as the mapping config
 
 /*
 	If you want to change a job on a specific map with this system, you will want to go onto that job datum
@@ -100,10 +103,10 @@
 		for(var/map in changed_maps)
 			RegisterSignal(src, map, text2path("[type]/proc/[map]Changes"))
 
-//Only override this proc
-//H is usually a human unless an /equip override transformed it
+///Only override this proc
+///H is usually a human unless an /equip override transformed it
 /datum/job/proc/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
-	//do actions on H but send messages to M as the key may not have been transferred_yet
+	///do actions on H but send messages to M as the key may not have been transferred_yet
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JOB_AFTER_SPAWN, src, H, M, latejoin)
 	if(mind_traits)
 		for(var/t in mind_traits)
@@ -114,10 +117,10 @@
 	if(head_announce)
 		announce_head(H, head_announce)
 
-/datum/job/proc/override_latejoin_spawn(mob/living/carbon/human/H)		//Return TRUE to force latejoining to not automatically place the person in latejoin shuttle/whatever.
+/datum/job/proc/override_latejoin_spawn(mob/living/carbon/human/H)		///Return TRUE to force latejoining to not automatically place the person in latejoin shuttle/whatever.
 	return FALSE
 
-//Used for a special check of whether to allow a client to latejoin as this job.
+///Used for a special check of whether to allow a client to latejoin as this job.
 /datum/job/proc/special_check_latejoin(client/C)
 	return TRUE
 
@@ -126,12 +129,12 @@
 	if(. == null)
 		return antag_rep
 
-//Don't override this unless the job transforms into a non-human (Silicons do this for example)
+///Don't override this unless the job transforms into a non-human (Silicons do this for example)
 /datum/job/proc/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
 	if(!H)
 		return FALSE
 
-//This reads Command placement exceptions in code/controllers/configuration/entries/game_options to allow non-Humans in specified Command roles. If the combination of species and command role is invalid, default to Human.
+///This reads Command placement exceptions in code/controllers/configuration/entries/game_options to allow non-Humans in specified Command roles. If the combination of species and command role is invalid, default to Human.
 	if(CONFIG_GET(keyed_list/job_species_whitelist)[type] && !splittext(CONFIG_GET(keyed_list/job_species_whitelist)[type], ",").Find(H.dna.species.id))
 		if(H.dna.species.id != "human")
 			H.set_species(/datum/species/human)
@@ -142,7 +145,7 @@
 		bank_account.payday(STARTING_PAYCHECKS, TRUE)
 		H.account_id = bank_account.account_id
 
-	//Equip the rest of the gear
+	///Equip the rest of the gear
 	H.dna.species.before_equip_job(src, H, visualsOnly)
 
 	if(outfit_override || outfit)
@@ -154,7 +157,7 @@
 		announce(H)
 
 /datum/job/proc/get_access()
-	if(!config)	//Needed for robots.
+	if(!config)	///Needed for robots.
 		return src.minimal_access.Copy()
 
 	. = list()
@@ -164,18 +167,18 @@
 	else
 		. = src.access.Copy()
 
-	if(CONFIG_GET(flag/everyone_has_maint_access)) //Config has global maint access set
+	if(CONFIG_GET(flag/everyone_has_maint_access)) ///Config has global maint access set
 		. |= list(ACCESS_MAINT_TUNNELS)
 
-/datum/job/proc/announce_head(var/mob/living/carbon/human/H, var/channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
+/datum/job/proc/announce_head(var/mob/living/carbon/human/H, var/channels) ///tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
 	if(H && GLOB.announcement_systems.len)
-		//timer because these should come after the captain announcement
+		///timer because these should come after the captain announcement
 		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/addtimer, CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
 
-//If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
+///If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/C)
 	if(available_in_days(C) == 0)
-		return TRUE	//Available in 0 days = available right now = player is old enough to play.
+		return TRUE	///Available in 0 days = available right now = player is old enough to play.
 	return FALSE
 
 
@@ -185,7 +188,7 @@
 	if(!CONFIG_GET(flag/use_age_restriction_for_jobs))
 		return 0
 	if(!SSdbcore.Connect())
-		return 0 //Without a database connection we can't get a player's age so we'll assume they're old enough for all jobs
+		return 0 ///Without a database connection we can't get a player's age so we'll assume they're old enough for all jobs
 	if(!isnum(minimal_player_age))
 		return 0
 
@@ -218,35 +221,35 @@
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
 
 	var/pda_slot = SLOT_BELT
-	var/alt_shoes = /obj/item/clothing/shoes/xeno_wraps // Default digitgrade shoes assignment variable
-	var/alt_shoes_s = /obj/item/clothing/shoes/xeno_wraps/jackboots // Digitigrade shoes for Sec assignment variable
-	var/alt_shoes_c = /obj/item/clothing/shoes/xeno_wraps/command // command footwraps.
+	var/alt_shoes = /obj/item/clothing/shoes/xeno_wraps /// Default digitgrade shoes assignment variable
+	var/alt_shoes_s = /obj/item/clothing/shoes/xeno_wraps/jackboots /// Digitigrade shoes for Sec assignment variable
+	var/alt_shoes_c = /obj/item/clothing/shoes/xeno_wraps/command /// command footwraps.
 
 /datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	switch(H.backbag)
 		if(GBACKPACK)
-			back = /obj/item/storage/backpack //Grey backpack
+			back = /obj/item/storage/backpack ///Grey backpack
 		if(GSATCHEL)
-			back = /obj/item/storage/backpack/satchel //Grey satchel
+			back = /obj/item/storage/backpack/satchel ///Grey satchel
 		if(GDUFFELBAG)
-			back = /obj/item/storage/backpack/duffelbag //Grey Duffel bag
+			back = /obj/item/storage/backpack/duffelbag ///Grey Duffel bag
 		if(LSATCHEL)
-			back = /obj/item/storage/backpack/satchel/leather //Leather Satchel
+			back = /obj/item/storage/backpack/satchel/leather ///Leather Satchel
 		if(DSATCHEL)
-			back = satchel //Department satchel
+			back = satchel ///Department satchel
 		if(DDUFFELBAG)
-			back = duffelbag //Department duffel bag
+			back = duffelbag ///Department duffel bag
 		else
-			back = backpack //Department backpack
+			back = backpack ///Department backpack
 
-	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
+	if (isplasmaman(H) && !(visualsOnly)) ///this is a plasmaman fix to stop having two boxes
 		box = null
 	if(DIGITIGRADE in H.dna.species.species_traits)
-		if(IS_COMMAND(H)) // command gets snowflake shoes too.
+		if(IS_COMMAND(H)) /// command gets snowflake shoes too.
 			shoes = alt_shoes_c
-		else if(IS_SECURITY(H) || find_job(H) == "Brig Physician") // Special shoes for sec and brig phys, roll first to avoid defaulting
+		else if(IS_SECURITY(H) || find_job(H) == "Brig Physician") /// Special shoes for sec and brig phys, roll first to avoid defaulting
 			shoes = alt_shoes_s
-		else if(find_job(H) == "Shaft Miner" || find_job(H) == "Mining Medic" || IS_ENGINEERING(H)) // Check to assign default digitigrade shoes to special cases
+		else if(find_job(H) == "Shaft Miner" || find_job(H) == "Mining Medic" || IS_ENGINEERING(H)) /// Check to assign default digitigrade shoes to special cases
 			shoes = alt_shoes
 
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -260,7 +263,7 @@
 	var/obj/item/card/id/C = H.wear_id
 	if(istype(C))
 		C.access = J.get_access()
-		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
+		shuffle_inplace(C.access) /// Shuffle access list to make NTNet passkeys less predictable
 		C.registered_name = H.real_name
 		if(H.mind?.role_alt_title)
 			C.assignment = H.mind.role_alt_title
@@ -290,13 +293,13 @@
 
 /datum/outfit/job/get_chameleon_disguise_info()
 	var/list/types = ..()
-	types -= /obj/item/storage/backpack //otherwise this will override the actual backpacks
+	types -= /obj/item/storage/backpack ///otherwise this will override the actual backpacks
 	types += backpack
 	types += satchel
 	types += duffelbag
 	return types
 
-//Warden and regular officers add this result to their get_access()
+///Warden and regular officers add this result to their get_access()
 /datum/job/proc/check_config_for_sec_maint()
 	if(CONFIG_GET(flag/security_has_maint_access))
 		return list(ACCESS_MAINT_TUNNELS)

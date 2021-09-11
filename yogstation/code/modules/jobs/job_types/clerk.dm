@@ -16,6 +16,8 @@
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_CLERK
 
+	minimum_pop = 20
+
 	changed_maps = list("EclipseStation", "OmegaStation")
 
 /datum/job/clerk/proc/EclipseStationChanges()
