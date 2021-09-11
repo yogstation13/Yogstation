@@ -1,8 +1,16 @@
-#define GUNPOINT_SHOOTER_STRAY_RANGE 3
-#define GUNPOINT_DELAY_STAGE_2 25
-#define GUNPOINT_DELAY_STAGE_3 85 // cumulative with past stages, so 100 deciseconds
+/// How many tiles around the target the shooter can roam without losing their shot
+#define GUNPOINT_SHOOTER_STRAY_RANGE 2
+/// How long it takes from the gunpoint is initiated to reach stage 2
+#define GUNPOINT_DELAY_STAGE_2 2.5 SECONDS
+/// How long it takes from stage 2 starting to move up to stage 3
+#define GUNPOINT_DELAY_STAGE_3 7.5 SECONDS
+/// If the projectile doesn't have a wound_bonus of CANT_WOUND, we add (this * the stage mult) to their wound_bonus and bare_wound_bonus upon triggering
+#define GUNPOINT_BASE_WOUND_BONUS	5
+/// How much the damage and wound bonus mod is multiplied when you're on stage 1
 #define GUNPOINT_MULT_STAGE_1 1
+/// As above, for stage 2
 #define GUNPOINT_MULT_STAGE_2 2
+/// As above, for stage 3
 #define GUNPOINT_MULT_STAGE_3 2.5
 
 
@@ -29,8 +37,8 @@
 	var/mob/living/shooter = parent
 	target = targ
 	weapon = wep
+	RegisterSignal(targ, COMSIG_MOVABLE_MOVED, .proc/check_movement, FALSE) //except this one
 	RegisterSignal(targ, list(COMSIG_MOB_ATTACK_HAND, COMSIG_MOB_FIRED_GUN, COMSIG_MOB_THROW, COMSIG_MOB_ITEM_ATTACK), .proc/trigger_reaction, TRUE) //any actions by the hostage will trigger the shot no exceptions
-	RegisterSignal(targ, COMSIG_MOVABLE_MOVED, .proc/trigger_reaction) //except this one
 	RegisterSignal(weapon, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), .proc/cancel)
 
 	shooter.visible_message("<span class='danger'>[shooter] aims [weapon] point blank at [target]!</span>", \
@@ -64,7 +72,7 @@
 	UnregisterSignal(parent, COMSIG_HUMAN_DISARM_HIT)
 	UnregisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOB_THROW, COMSIG_MOB_FIRED_GUN, COMSIG_MOB_TABLING))
 
-// if you're gonna try to break away from a holdup, better to do it right away
+///Update the damage multiplier for whatever stage we're entering into
 /datum/component/gunpoint/proc/update_stage(new_stage)
 	stage = new_stage
 	if(stage == 2)
@@ -81,16 +89,15 @@
 	if(!can_see(parent, target, GUNPOINT_SHOOTER_STRAY_RANGE - 1))
 		cancel()
 
-/datum/component/gunpoint/proc/trigger_reaction(var/forced)
+/datum/component/gunpoint/proc/trigger_reaction()
 	var/mob/living/shooter = parent
-
-	if(!forced && shooter.pulling == target) //target won't get shot if they're being moved by the shooter
-		return
 	if(disrupted)
 		return
 	if(point_of_no_return)
 		return
 	point_of_no_return = TRUE
+	shooter.remove_status_effect(STATUS_EFFECT_HOLDUP) // try doing these before the trigger gets pulled since the target (or shooter even) may not exist after pulling the trigger, dig?
+	target.remove_status_effect(STATUS_EFFECT_HELDUP)
 
 	if(!weapon.can_shoot() || !weapon.can_trigger_gun(shooter) || (weapon.weapon_weight == WEAPON_HEAVY && shooter.get_inactive_held_item()))
 		shooter.visible_message("<span class='danger'>[shooter] fumbles [weapon]!</span>", \
@@ -103,10 +110,19 @@
 	if(weapon.chambered && weapon.chambered.BB)
 		weapon.chambered.BB.damage *= damage_mult
 		weapon.chambered.BB.stamina *= damage_mult
+		if(weapon.chambered.BB.wound_bonus != CANT_WOUND)
+			weapon.chambered.BB.wound_bonus += damage_mult * GUNPOINT_BASE_WOUND_BONUS
+			weapon.chambered.BB.bare_wound_bonus += damage_mult * GUNPOINT_BASE_WOUND_BONUS
 
-	weapon.process_fire(target, shooter)
+	var/fired = weapon.process_fire(target, shooter)
+	if(!fired && weapon.chambered?.BB)
+		weapon.chambered.BB.damage /= damage_mult
+		if(weapon.chambered.BB.wound_bonus != CANT_WOUND)
+			weapon.chambered.BB.wound_bonus -= damage_mult * GUNPOINT_BASE_WOUND_BONUS
+			weapon.chambered.BB.bare_wound_bonus -= damage_mult * GUNPOINT_BASE_WOUND_BONUS
 	qdel(src)
 
+///called if the shooter does anything that would cause the target to move, preventing a charged shot from being fired for a short duration
 /datum/component/gunpoint/proc/noshooted()
 	if(!disrupted)
 		disrupted = TRUE
@@ -123,8 +139,16 @@
 	to_chat(target, "<span class='userdanger'>[shooter] breaks [shooter.p_their()] aim on you!</span>")
 	qdel(src)
 
-/datum/component/gunpoint/proc/flinch(damage, damagetype, def_zone)
+/datum/component/gunpoint/proc/check_movement()
 	var/mob/living/shooter = parent
+	if(!(shooter.pulling == target)) //target won't get shot if they're being moved by the shooter
+		trigger_reaction()
+
+///If the shooter is hit by an attack, they have a 50% chance to flinch and fire. If it hit the arm holding the trigger, it's an 80% chance to fire instead
+/datum/component/gunpoint/proc/flinch(attacker, damage, damagetype, def_zone)
+	var/mob/living/shooter = parent
+	if(attacker == shooter)
+		return // somehow this wasn't checked for months but no one tried punching themselves to initiate the shot, amazing
 
 	var/flinch_chance = 50
 	var/gun_hand = LEFT_HANDS
@@ -138,7 +162,7 @@
 	if(prob(flinch_chance))
 		shooter.visible_message("<span class='danger'>[shooter] flinches!</span>", \
 			"<span class='danger'>You flinch!</span>")
-		trigger_reaction(TRUE) //flinching will always result in firing at the target
+		trigger_reaction() //flinching will always result in firing at the target
 
 /datum/component/gunpoint/proc/flinch_disarm(attacker,zone_targeted)
 	var/mob/living/shooter = parent
@@ -160,6 +184,7 @@
 #undef GUNPOINT_SHOOTER_STRAY_RANGE
 #undef GUNPOINT_DELAY_STAGE_2
 #undef GUNPOINT_DELAY_STAGE_3
+#undef GUNPOINT_BASE_WOUND_BONUS
 #undef GUNPOINT_MULT_STAGE_1
 #undef GUNPOINT_MULT_STAGE_2
 #undef GUNPOINT_MULT_STAGE_3
