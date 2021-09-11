@@ -672,6 +672,8 @@ SUBSYSTEM_DEF(ticker)
 	 //yogs end - yogs tickets
 
 	to_chat(world, "<span class='boldannounce'>Rebooting World in [DisplayTimeText(delay)]. [reason]</span>")
+	play_roundend()
+	SStitle.fadeout()
 	webhook_send_roundstatus("endgame") //yogs - webhook support
 
 	var/start_wait = world.time
@@ -695,10 +697,7 @@ SUBSYSTEM_DEF(ticker)
 
 	world.Reboot()
 
-/datum/controller/subsystem/ticker/Shutdown()
-	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
-	save_admin_data()
-	update_everything_flag_in_db()
+/datum/controller/subsystem/ticker/play_roundend()
 	if(!round_end_sound)
 		round_end_sound = pick(\
 		'sound/roundend/newroundsexy.ogg',
@@ -722,3 +721,8 @@ SUBSYSTEM_DEF(ticker)
 
 	SEND_SOUND(world, sound(round_end_sound))
 	text2file(login_music, "data/last_round_lobby_music.txt")
+
+/datum/controller/subsystem/ticker/Shutdown()
+	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
+	save_admin_data()
+	update_everything_flag_in_db()
