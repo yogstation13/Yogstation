@@ -157,6 +157,10 @@
 	. = ..()
 
 /obj/item/hand_tele/attack_self(mob/user)
+	to_chat(user, "You charge the hand teleporter!")
+	if(!do_after(user, 2 SECONDS))
+		to_chat(user, "You were interupted!")
+		return
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	var/area/current_area = current_location.loc
 	if(!current_location || current_area.noteleport || is_away_level(current_location.z) || !isturf(user.loc))//If turf was not found or they're on z level 2 or >7 which does not currently exist. or if user is not located on a turf
@@ -173,7 +177,7 @@
 			else
 				L["[get_area(com.target)] (Inactive)"] = com.target
 	var/list/turfs = list(	)
-	for(var/turf/T in urange(10, orange=1))
+	for(var/turf/T in urange(120, orange=1))
 		if(T.x>world.maxx-8 || T.x<8)
 			continue	//putting them at the edge is dumb
 		if(T.y>world.maxy-8 || T.y<8)
