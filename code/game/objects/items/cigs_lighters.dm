@@ -931,4 +931,3 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/cigarette/lit/Initialize()
     . = ..()
     light() // These cigarettes start lit.
-    
