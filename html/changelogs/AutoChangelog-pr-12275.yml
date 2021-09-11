@@ -1,0 +1,5 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - tweak: "gives rarity values to seeds from mutated plants that didn't have one previously."
+  - tweak: "Ambrosia Gaia and Deus got their rarity values flipped because Deus shouldn't be considered more rare than Gaia"
