@@ -675,7 +675,6 @@ SUBSYSTEM_DEF(ticker)
 	play_roundend()
 	SStitle.fadeout()
 	webhook_send_roundstatus("endgame") //yogs - webhook support
-
 	var/start_wait = world.time
 	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2))	//don't wait forever
 	sleep(delay - (world.time - start_wait))
@@ -697,7 +696,7 @@ SUBSYSTEM_DEF(ticker)
 
 	world.Reboot()
 
-/datum/controller/subsystem/ticker/play_roundend()
+/datum/controller/subsystem/ticker/proc/play_roundend()
 	if(!round_end_sound)
 		round_end_sound = pick(\
 		'sound/roundend/newroundsexy.ogg',

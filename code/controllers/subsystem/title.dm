@@ -51,7 +51,7 @@ SUBSYSTEM_DEF(title)
 				if(splash_turf)
 					splash_turf.icon = icon
 
-/datum/controller/subsystem/title/fadeout()
+/datum/controller/subsystem/title/proc/fadeout()
 	for(var/thing in GLOB.clients)
 		if(!thing)
 			continue
