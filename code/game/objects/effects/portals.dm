@@ -9,6 +9,7 @@
 		return
 	P1.link_portal(P2)
 	P1.hardlinked = TRUE
+	P2.density = TRUE
 	return list(P1, P2)
 
 /obj/effect/portal

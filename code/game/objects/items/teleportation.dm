@@ -133,7 +133,7 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/list/active_portal_pairs
-	var/max_portal_pairs = 3
+	var/max_portal_pairs = 1
 	var/atmos_link_override
 
 /obj/item/hand_tele/Initialize()
@@ -146,9 +146,12 @@
 	return ..()
 
 /obj/item/hand_tele/proc/try_dispel_portal(atom/target, mob/user)
+	to_chat(user, "<span class='notice'>You attempt to dispel [target] with \the [src]!</span>")
+	if(!do_after(user, 2 SECONDS))
+		to_chat(user, "You were interupted!")
+		return
 	if(is_parent_of_portal(target))
 		qdel(target)
-		to_chat(user, "<span class='notice'>You dispel [target] with \the [src]!</span>")
 		return TRUE
 	return FALSE
 
@@ -158,9 +161,6 @@
 
 /obj/item/hand_tele/attack_self(mob/user)
 	to_chat(user, "You charge the hand teleporter!")
-	if(!do_after(user, 2 SECONDS))
-		to_chat(user, "You were interupted!")
-		return
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	var/area/current_area = current_location.loc
 	if(!current_location || current_area.noteleport || is_away_level(current_location.z) || !isturf(user.loc))//If turf was not found or they're on z level 2 or >7 which does not currently exist. or if user is not located on a turf
@@ -177,7 +177,7 @@
 			else
 				L["[get_area(com.target)] (Inactive)"] = com.target
 	var/list/turfs = list(	)
-	for(var/turf/T in urange(120, orange=1))
+	for(var/turf/T in urange(20, orange=1))
 		if(T.x>world.maxx-8 || T.x<8)
 			continue	//putting them at the edge is dumb
 		if(T.y>world.maxy-8 || T.y<8)
