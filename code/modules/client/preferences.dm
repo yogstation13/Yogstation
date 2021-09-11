@@ -796,6 +796,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						else
 							dat += "<b>As Silicon:</b> FORCED<br>"
 
+						if(!CONFIG_GET(flag/auto_deadmin_critical))
+							dat += "<b>As Critical Roles:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_critical'>[(toggles & DEADMIN_POSITION_CRITICAL)?"Deadmin":"Keep Admin"]</a><br>"
+						else
+							dat += "<b>As Critical Roles:</b> FORCED<br>"
+
 				dat += "</td>"
 			dat += "</tr></table>"
 		// yogs start - Donor features
@@ -1823,6 +1828,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					toggles ^= DEADMIN_POSITION_SECURITY
 				if("toggle_deadmin_silicon")
 					toggles ^= DEADMIN_POSITION_SILICON
+				if("toggle_deadmin_critical")
+					toggles ^= DEADMIN_POSITION_CRITICAL
 
 
 				if("be_special")
