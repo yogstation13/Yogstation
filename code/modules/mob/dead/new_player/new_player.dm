@@ -29,7 +29,7 @@
 	ComponentInitialize()
 
 	. = ..()
-	
+
 	GLOB.new_player_list += src
 
 /mob/dead/new_player/Destroy()
@@ -311,9 +311,12 @@
 			to_chat(humanc, "<span class='userdanger'><i>THERE CAN BE ONLY ONE!!!</i></span>")
 			humanc.make_scottish()
 
+		humanc.increment_scar_slot()
+		humanc.load_persistent_scars()
+
 		if(GLOB.curse_of_madness_triggered)
 			give_madness(humanc, GLOB.curse_of_madness_triggered)
-			
+
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CREWMEMBER_JOINED, humanc, rank)
 
 	GLOB.joined_player_list += character.ckey
@@ -407,6 +410,8 @@
 		client.prefs.random_character()
 		client.prefs.real_name = client.prefs.pref_species.random_name(gender,1)
 	client.prefs.copy_to(H)
+
+	client.prefs.copy_to(H)
 	H.dna.update_dna_identity()
 	if(mind)
 		if(mind.assigned_role)
@@ -416,10 +421,12 @@
 				H.age = J.minimal_character_age
 		if(transfer_after)
 			mind.late_joiner = TRUE
-		mind.active = 0					//we wish to transfer the key manually
+		mind.active = FALSE					//we wish to transfer the key manually
+		mind.original_character_slot_index = client.prefs.default_slot
 		if(!HAS_TRAIT(H,TRAIT_RANDOM_ACCENT))
 			mind.accent_name = client.prefs.accent
 		mind.transfer_to(H)					//won't transfer key since the mind is not active
+		mind.original_character = H
 
 	H.name = real_name
 	client.init_verbs()

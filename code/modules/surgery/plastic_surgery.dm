@@ -6,7 +6,7 @@
 //reshape_face
 /datum/surgery_step/reshape_face
 	name = "reshape face"
-	implements = list(/obj/item/scalpel = 100, /obj/item/kitchen/knife = 50, TOOL_WIRECUTTER = 35)
+	implements = list(TOOL_SCALPEL = 100, /obj/item/kitchen/knife = 50, TOOL_WIRECUTTER = 35)
 	time = 64
 	fuckup_damage = 0
 
