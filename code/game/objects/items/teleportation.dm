@@ -148,7 +148,7 @@
 /obj/item/hand_tele/proc/try_dispel_portal(atom/target, mob/user)
 	to_chat(user, "<span class='notice'>You attempt to dispel [target] with \the [src]!</span>")
 	if(!do_after(user, 2 SECONDS))
-		to_chat(user, "You were interupted!")
+		to_chat(user, "You were interrupted!")
 		return
 	if(is_parent_of_portal(target))
 		qdel(target)
