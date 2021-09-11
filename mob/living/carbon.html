@@ -16,32 +16,53 @@
 <h1>/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/367731221fc3ac762bcfec1c8b2b2ab818dd6cd6/code/modules/mob/living/carbon/carbon.dm#L1">
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/carbon/carbon.dm#L1">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon.dm 1"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="mob/living/carbon.html#var/all_scars">all_scars</a></th><td>All of the scars a carbon has afflicted throughout their limbs</td></tr>
+            <tr><th><a href="mob/living/carbon.html#var/all_wounds">all_wounds</a></th><td>All of the wounds a carbon has afflicted throughout their limbs</td></tr>
             <tr><th><a href="mob/living/carbon.html#var/transformation_timer">transformation_timer</a></th><td>Timer id of any transformation</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
             <tr><th><a href="mob/living/carbon.html#proc/adjustOrganLoss">adjustOrganLoss</a></th><td></td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/bleed_warn">bleed_warn</a></th><td>bleed_warn() is used to for carbons with an active client to occasionally receive messages warning them about their bleeding status (if applicable)</td></tr>
             <tr><th><a href="mob/living/carbon.html#proc/check_virus">check_virus</a></th><td>Medical HUD! Basic mode needs suit sensors on.</td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/generate_fake_scars">generate_fake_scars</a></th><td>generate_fake_scars()- for when you want to scar someone, but you don't want to hurt them first. These scars don't count for temporal scarring (hence, fake)</td></tr>
             <tr><th><a href="mob/living/carbon.html#proc/getOrganLoss">getOrganLoss</a></th><td></td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/get_biological_state">get_biological_state</a></th><td>get_biological_state is a helper used to see what kind of wounds we roll for. By default we just assume carbons (read:monkeys) are flesh and bone, but humans rely on their species datums</td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/get_bleed_rate">get_bleed_rate</a></th><td>A helper to see how much blood we're losing per tick</td></tr>
             <tr><th><a href="mob/living/carbon.html#proc/get_blood_dna_list">get_blood_dna_list</a></th><td>Get the mobs dna list</td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/get_total_bleed_rate">get_total_bleed_rate</a></th><td>get our total bleedrate</td></tr>
             <tr><th><a href="mob/living/carbon.html#proc/get_traumas">get_traumas</a></th><td>TRAUMAS</td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/get_wounded_bodyparts">get_wounded_bodyparts</a></th><td>Returns a list of bodyparts with wounds (in case someone has a wound on an otherwise fully healed limb)</td></tr>
             <tr><th><a href="mob/living/carbon.html#proc/handle_liver">handle_liver</a></th><td>Decides if the liver is failing or not.</td></tr>
             <tr><th><a href="mob/living/carbon.html#proc/humanize">humanize</a></th><td>Humanize</td></tr>
             <tr><th><a href="mob/living/carbon.html#proc/immortality">immortality</a></th><td>For the Wishgranter</td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/is_bleeding">is_bleeding</a></th><td>if any of our bodyparts are bleeding</td></tr>
             <tr><th><a href="mob/living/carbon.html#proc/setOrganLoss">setOrganLoss</a></th><td></td></tr>
             <tr><th><a href="mob/living/carbon.html#proc/should_electrocute">should_electrocute</a></th><td>Returns whether or not the carbon should be able to be shocked</td></tr>
             <tr><th><a href="mob/living/carbon.html#proc/wearing_shock_proof_gloves">wearing_shock_proof_gloves</a></th><td>Returns if the carbon is wearing shock proof gloves</td></tr></table>
-    <h2 id="var">Var Details</h2><h3 id="var/transformation_timer"><aside class="declaration">var </aside>transformation_timer
+    <h2 id="var">Var Details</h2><h3 id="var/all_scars"><aside class="declaration">var </aside>all_scars
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/carbon/carbon_defines.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defines.dm 73"/></a></h3>
+        <p>All of the scars a carbon has afflicted throughout their limbs</p><h3 id="var/all_wounds"><aside class="declaration">var </aside>all_wounds
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/carbon/carbon_defines.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defines.dm 71"/></a></h3>
+        <p>All of the wounds a carbon has afflicted throughout their limbs</p><h3 id="var/transformation_timer"><aside class="declaration">var </aside>transformation_timer
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/367731221fc3ac762bcfec1c8b2b2ab818dd6cd6/code/modules/mob/living/carbon/carbon_defines.dm#L19">
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/carbon/carbon_defines.dm#L19">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defines.dm 19"/></a></h3>
         <p>Timer id of any transformation</p><h2 id="proc">Proc Details</h2><h3 id="proc/adjustOrganLoss">adjustOrganLoss<aside>(slot, amount, maximum) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/367731221fc3ac762bcfec1c8b2b2ab818dd6cd6/code/modules/mob/living/carbon/damage_procs.dm#L117">
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/carbon/damage_procs.dm#L117">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;damage_procs.dm 117"/></a></aside>
         </h3>
         <ul>
@@ -52,16 +73,39 @@
 <li>description: If an organ exists in the slot requested, and we are capable of taking damage (we don't have GODMODE on), call the damage proc on that organ.</li>
 </ul>
 </li>
+</ul><h3 id="proc/bleed_warn"><aside class="declaration">proc </aside>bleed_warn<aside>(bleed_amt, forced) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/blood.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;blood.dm 124"/></a></aside>
+        </h3>
+        <p>bleed_warn() is used to for carbons with an active client to occasionally receive messages warning them about their bleeding status (if applicable)</p>
+<p>Arguments:</p>
+<ul>
+<li>bleed_amt- When we run this from [/mob/living/carbon/human/proc/handle_blood] we already know how much blood we're losing this tick, so we can skip tallying it again with this</li>
+<li>forced-</li>
 </ul><h3 id="proc/check_virus"><aside class="declaration">proc </aside>check_virus<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/367731221fc3ac762bcfec1c8b2b2ab818dd6cd6/code/game/data_huds.dm#L95">
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/game/data_huds.dm#L95">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;data_huds.dm 95"/></a></aside>
         </h3>
-        <p>Medical HUD! Basic mode needs suit sensors on.</p><h3 id="proc/getOrganLoss">getOrganLoss<aside>(slot) 
+        <p>Medical HUD! Basic mode needs suit sensors on.</p><h3 id="proc/generate_fake_scars"><aside class="declaration">proc </aside>generate_fake_scars<aside>(num_scars, forced_type) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/367731221fc3ac762bcfec1c8b2b2ab818dd6cd6/code/modules/mob/living/carbon/damage_procs.dm#L138">
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/carbon/carbon.dm#L1074">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon.dm 1074"/></a></aside>
+        </h3>
+        <p>generate_fake_scars()- for when you want to scar someone, but you don't want to hurt them first. These scars don't count for temporal scarring (hence, fake)</p>
+<p>If you want a specific wound scar, pass that wound type as the second arg, otherwise you can pass a list like WOUND_LIST_SLASH to generate a random cut scar.</p>
+<p>Arguments:</p>
+<ul>
+<li>num_scars- A number for how many scars you want to add</li>
+<li>forced_type- Which wound or category of wounds you want to choose from, WOUND_LIST_BLUNT, WOUND_LIST_SLASH, or WOUND_LIST_BURN (or some combination). If passed a list, picks randomly from the listed wounds. Defaults to all 3 types</li>
+</ul><h3 id="proc/getOrganLoss">getOrganLoss<aside>(slot) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/carbon/damage_procs.dm#L138">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;damage_procs.dm 138"/></a></aside>
         </h3>
         <ul>
@@ -72,40 +116,71 @@
 <li>description: If an organ exists in the slot requested, return the amount of damage that organ has</li>
 </ul>
 </li>
-</ul><h3 id="proc/get_blood_dna_list"><aside class="parent"><a title="/mob/living" href="mob/living.html#proc/get_blood_dna_list">&uarr;</a></aside>get_blood_dna_list<aside>() 
+</ul><h3 id="proc/get_biological_state"><aside class="declaration">proc </aside>get_biological_state<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/367731221fc3ac762bcfec1c8b2b2ab818dd6cd6/code/game/atoms.dm#L573">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms.dm 573"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/carbon/carbon.dm#L1098">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon.dm 1098"/></a></aside>
         </h3>
-        <p>Get the mobs dna list</p><h3 id="proc/get_traumas"><aside class="declaration">proc </aside>get_traumas<aside>() 
+        <p>get_biological_state is a helper used to see what kind of wounds we roll for. By default we just assume carbons (read:monkeys) are flesh and bone, but humans rely on their species datums</p>
+<p>go look at the species def for more info <a href="datum/species.html#proc/get_biological_state" title="/datum/species">/datum/species/proc/get_biological_state</a></p><h3 id="proc/get_bleed_rate"><aside class="declaration">proc </aside>get_bleed_rate<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/367731221fc3ac762bcfec1c8b2b2ab818dd6cd6/code/modules/mob/living/carbon/status_procs.dm#L48">
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/blood.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;blood.dm 102"/></a></aside>
+        </h3>
+        <p>A helper to see how much blood we're losing per tick</p><h3 id="proc/get_blood_dna_list"><aside class="parent"><a title="/mob/living" href="mob/living.html#proc/get_blood_dna_list">&uarr;</a></aside>get_blood_dna_list<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/game/atoms.dm#L587">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms.dm 587"/></a></aside>
+        </h3>
+        <p>Get the mobs dna list</p><h3 id="proc/get_total_bleed_rate"><aside class="declaration">proc </aside>get_total_bleed_rate<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/carbon/carbon.dm#L1057">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon.dm 1057"/></a></aside>
+        </h3>
+        <p>get our total bleedrate</p><h3 id="proc/get_traumas"><aside class="declaration">proc </aside>get_traumas<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/carbon/status_procs.dm#L48">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;status_procs.dm 48"/></a></aside>
         </h3>
-        <p>TRAUMAS</p><h3 id="proc/handle_liver"><aside class="declaration">proc </aside>handle_liver<aside>() 
+        <p>TRAUMAS</p><h3 id="proc/get_wounded_bodyparts"><aside class="declaration">proc </aside>get_wounded_bodyparts<aside>(brute, burn, stamina, status) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/367731221fc3ac762bcfec1c8b2b2ab818dd6cd6/code/modules/mob/living/carbon/life.dm#L614">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;life.dm 614"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/carbon/damage_procs.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;damage_procs.dm 157"/></a></aside>
+        </h3>
+        <p>Returns a list of bodyparts with wounds (in case someone has a wound on an otherwise fully healed limb)</p><h3 id="proc/handle_liver"><aside class="declaration">proc </aside>handle_liver<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/carbon/life.dm#L620">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;life.dm 620"/></a></aside>
         </h3>
         <p>Decides if the liver is failing or not.</p><h3 id="proc/humanize"><aside class="declaration">proc </aside>humanize<aside>(tr_flags) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/367731221fc3ac762bcfec1c8b2b2ab818dd6cd6/code/modules/mob/transform_procs.dm#L177">
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/transform_procs.dm#L177">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;transform_procs.dm 177"/></a></aside>
         </h3>
         <p>Humanize</p><h3 id="proc/immortality"><aside class="declaration">proc </aside>immortality<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/367731221fc3ac762bcfec1c8b2b2ab818dd6cd6/code/modules/awaymissions/mission_code/wildwest.dm#L159">
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/awaymissions/mission_code/wildwest.dm#L159">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;awaymissions&#x2F;mission_code&#x2F;wildwest.dm 159"/></a></aside>
         </h3>
-        <p>For the Wishgranter</p><h3 id="proc/setOrganLoss">setOrganLoss<aside>(slot, amount) 
+        <p>For the Wishgranter</p><h3 id="proc/is_bleeding"><aside class="declaration">proc </aside>is_bleeding<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/367731221fc3ac762bcfec1c8b2b2ab818dd6cd6/code/modules/mob/living/carbon/damage_procs.dm#L128">
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/carbon/carbon.dm#L1050">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon.dm 1050"/></a></aside>
+        </h3>
+        <p>if any of our bodyparts are bleeding</p><h3 id="proc/setOrganLoss">setOrganLoss<aside>(slot, amount) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/carbon/damage_procs.dm#L128">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;damage_procs.dm 128"/></a></aside>
         </h3>
         <ul>
@@ -123,19 +198,19 @@
 </ul><h3 id="proc/should_electrocute"><aside class="declaration">proc </aside>should_electrocute<aside>(power_source) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/367731221fc3ac762bcfec1c8b2b2ab818dd6cd6/code/modules/mob/living/carbon/carbon.dm#L967">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon.dm 967"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/carbon/carbon.dm#L991">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon.dm 991"/></a></aside>
         </h3>
         <p>Returns whether or not the carbon should be able to be shocked</p><h3 id="proc/wearing_shock_proof_gloves"><aside class="declaration">proc </aside>wearing_shock_proof_gloves<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/367731221fc3ac762bcfec1c8b2b2ab818dd6cd6/code/modules/mob/living/carbon/carbon.dm#L983">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon.dm 983"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/mob/living/carbon/carbon.dm#L1007">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon.dm 1007"/></a></aside>
         </h3>
         <p>Returns if the carbon is wearing shock proof gloves</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/367731221fc3ac762bcfec1c8b2b2ab818dd6cd6">3677312</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/06ad002579a30448d5ec0fd9095b5559a69ac9e3">06ad002</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>

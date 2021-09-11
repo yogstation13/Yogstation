@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;clothing - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/clothing.html#var">Var Details</a> - <a href="obj/item/clothing.html#proc">Proc Details</a></header>
+<main>
+<h1>clothing <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/clothing.html">clothing</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/clothing/clothing.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/clothing.html#var/damage_by_parts">damage_by_parts</a></th><td>How much clothing damage has been dealt to each of the limbs of the clothing, assuming it covers more than one limb</td></tr>
+            <tr><th><a href="obj/item/clothing.html#var/limb_integrity">limb_integrity</a></th><td>How much integrity is in a specific limb before that limb is disabled (for use in <a href="obj/item/clothing.html#proc/take_damage_zone" title="/obj/item/clothing">/obj/item/clothing/proc/take_damage_zone</a>, and only if we cover multiple zones.) Set to 0 to disable shredding.</td></tr>
+            <tr><th><a href="obj/item/clothing.html#var/repairable_by">repairable_by</a></th><td>What items can be consumed to repair this clothing (must by an /obj/item/stack)</td></tr>
+            <tr><th><a href="obj/item/clothing.html#var/zones_disabled">zones_disabled</a></th><td>How many zones (body parts, not precise) we have disabled so far, for naming purposes</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/clothing.html#proc/bristle">bristle</a></th><td>If we're a clothing with at least 1 shredded/disabled zone, give the wearer a periodic heads up letting them know their clothes are damaged</td></tr>
+            <tr><th><a href="obj/item/clothing.html#proc/disable_zone">disable_zone</a></th><td>disable_zone() is used to disable a given bodypart's protection on our clothing item, mainly from [/obj/item/clothing/proc/take_damage_zone()]</td></tr>
+            <tr><th><a href="obj/item/clothing.html#proc/repair">repair</a></th><td>Set the clothing's integrity back to 100%, remove all damage to bodyparts, and generally fix it up</td></tr>
+            <tr><th><a href="obj/item/clothing.html#proc/take_damage_zone">take_damage_zone</a></th><td>take_damage_zone() is used for dealing damage to specific bodyparts on a worn piece of clothing, meant to be called from [/obj/item/bodypart/proc/check_woundings_mods()]</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/damage_by_parts"><aside class="declaration">var </aside>damage_by_parts
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/clothing/clothing.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 48"/></a></h3>
+        <p>How much clothing damage has been dealt to each of the limbs of the clothing, assuming it covers more than one limb</p><h3 id="var/limb_integrity"><aside class="declaration">var </aside>limb_integrity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/clothing/clothing.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 50"/></a></h3>
+        <p>How much integrity is in a specific limb before that limb is disabled (for use in <a href="obj/item/clothing.html#proc/take_damage_zone" title="/obj/item/clothing">/obj/item/clothing/proc/take_damage_zone</a>, and only if we cover multiple zones.) Set to 0 to disable shredding.</p><h3 id="var/repairable_by"><aside class="declaration">var </aside>repairable_by
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/clothing/clothing.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 29"/></a></h3>
+        <p>What items can be consumed to repair this clothing (must by an /obj/item/stack)</p><h3 id="var/zones_disabled"><aside class="declaration">var </aside>zones_disabled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/clothing/clothing.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 54"/></a></h3>
+        <p>How many zones (body parts, not precise) we have disabled so far, for naming purposes</p><h2 id="proc">Proc Details</h2><h3 id="proc/bristle"><aside class="declaration">proc </aside>bristle<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/clothing/clothing.dm#L473">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 473"/></a></aside>
+        </h3>
+        <p>If we're a clothing with at least 1 shredded/disabled zone, give the wearer a periodic heads up letting them know their clothes are damaged</p><h3 id="proc/disable_zone"><aside class="declaration">proc </aside>disable_zone<aside>(def_zone, damage_type) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/clothing/clothing.dm#L158">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 158"/></a></aside>
+        </h3>
+        <p>disable_zone() is used to disable a given bodypart's protection on our clothing item, mainly from [/obj/item/clothing/proc/take_damage_zone()]</p>
+<p>This proc disables all protection on the specified bodypart for this piece of clothing: it'll be as if it doesn't cover it at all anymore (because it won't!)
+If every possible bodypart has been disabled on the clothing, we put it out of commission entirely and mark it as shredded, whereby it will have to be repaired in
+order to equip it again. Also note we only consider it damaged if there's more than one bodypart disabled.</p>
+<p>Arguments:</p>
+<ul>
+<li>def_zone: The bodypart zone we're disabling</li>
+<li>damage_type: Only really relevant for the verb for describing the breaking, and maybe obj_destruction()</li>
+</ul><h3 id="proc/repair"><aside class="declaration">proc </aside>repair<aside>(/<a href="mob.html">mob</a>/user, params) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/clothing/clothing.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 109"/></a></aside>
+        </h3>
+        <p>Set the clothing's integrity back to 100%, remove all damage to bodyparts, and generally fix it up</p><h3 id="proc/take_damage_zone"><aside class="declaration">proc </aside>take_damage_zone<aside>(def_zone, damage_amount, damage_type, armour_penetration) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/06ad002579a30448d5ec0fd9095b5559a69ac9e3/code/modules/clothing/clothing.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;clothing.dm 134"/></a></aside>
+        </h3>
+        <p>take_damage_zone() is used for dealing damage to specific bodyparts on a worn piece of clothing, meant to be called from [/obj/item/bodypart/proc/check_woundings_mods()]</p>
+<pre><code>This proc only matters when a bodypart that this clothing is covering is harmed by a direct attack (being on fire or in space need not apply), and only if this clothing covers
+</code></pre>
+<p>more than one bodypart to begin with. No point in tracking damage by zone for a hat, and I'm not cruel enough to let you fully break them in a few shots.
+Also if limb_integrity is 0, then this clothing doesn't have bodypart damage enabled so skip it.</p>
+<p>Arguments:</p>
+<ul>
+<li>def_zone: The bodypart zone in question</li>
+<li>damage_amount: Incoming damage</li>
+<li>damage_type: BRUTE or BURN</li>
+<li>armour_penetration: If the attack had armour_penetration</li>
+</ul></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/06ad002579a30448d5ec0fd9095b5559a69ac9e3">06ad002</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
+</body>
+</html>
