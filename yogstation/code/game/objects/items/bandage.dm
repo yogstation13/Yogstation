@@ -8,7 +8,6 @@
 	throw_range = 7
 	var/healtype = BRUTE //determines what damage type the item heals
 	var/healamount = 70 //determines how much it heals OVERALL (over duration)
-	var/staunch_bleeding = 600 //does it stop bleeding and if so, how much?
 	var/duration = 40 //duration in ticks of healing effect (these roughly equate to 1.5s each)
 	var/activefor = 1
 	var/used = FALSE //has the bandage been used or not?
@@ -36,8 +35,6 @@
 					to_chat(H, "<span class='notice'>The burns on your [src.healing_limb.name] feel much better, and seem to be completely healed.</span>")
 		if (success)
 			H.update_damage_overlays()
-		if (staunch_bleeding && !H.bleedsuppress)
-			H.suppress_bloodloss(staunch_bleeding)
 		if (activefor <= src.duration)
 			activefor += 1
 		else
@@ -132,7 +129,6 @@
 	healtype = BRUTE
 	healamount = 30
 	duration = 30
-	staunch_bleeding = 240
 
 /obj/item/medical/bandage/improvised_soaked
 	name = "soaked improvised bandage"
@@ -141,5 +137,3 @@
 	color = "blue"
 	healamount = 30
 	duration = 30
-	staunch_bleeding = 0
-	
