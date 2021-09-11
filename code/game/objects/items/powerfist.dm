@@ -70,42 +70,42 @@
 
 
 /obj/item/melee/powerfist/attack(mob/living/target, mob/living/user)
-    if(!tank)
-        to_chat(user, span_warning("\The [src] can't operate without a source of gas!"))
-        return
-    var/datum/gas_mixture/gasused = tank.air_contents.remove(gasperfist * fisto_setting)
-    var/turf/T = get_turf(src)
-    if(!T)
-        return
-    T.assume_air(gasused)
-    T.air_update_turf()
-    if(!gasused)
-        to_chat(user, span_warning("\The [src]'s tank is empty!"))
-        target.apply_damage((force / 5), BRUTE)
-        playsound(loc, 'sound/weapons/punch1.ogg', 50, 1)
-        target.visible_message(span_danger("[user]'s powerfist lets out a dull thunk as [user.p_they()] punch[user.p_es()] [target.name]!"), \
-            span_userdanger("[user]'s punches you!"))
-        return
-    if(gasused.total_moles() < gasperfist * fisto_setting)
-        to_chat(user, span_warning("\The [src]'s piston-ram lets out a weak hiss, it needs more gas!"))
-        playsound(loc, 'sound/weapons/punch4.ogg', 50, 1)
-        target.apply_damage((force / 2), BRUTE)
-        target.visible_message(span_danger("[user]'s powerfist lets out a weak hiss as [user.p_they()] punch[user.p_es()] [target.name]!"), \
-            span_userdanger("[user]'s punch strikes with force!"))
-        return
-    target.apply_damage(force * fisto_setting, BRUTE)
-    target.visible_message(span_danger("[user]'s powerfist lets out a loud hiss as [user.p_they()] punch[user.p_es()] [target.name]!"), \
-        span_userdanger("You cry out in pain as [user]'s punch flings you backwards!"))
-    new /obj/effect/temp_visual/kinetic_blast(target.loc)
-    playsound(loc, 'sound/weapons/resonator_blast.ogg', 50, 1)
-    playsound(loc, 'sound/weapons/genhit2.ogg', 50, 1)
+	if(!tank)
+		to_chat(user, span_warning("\The [src] can't operate without a source of gas!"))
+		return
+	var/datum/gas_mixture/gasused = tank.air_contents.remove(gasperfist * fisto_setting)
+	var/turf/T = get_turf(src)
+	if(!T)
+		return
+	T.assume_air(gasused)
+	T.air_update_turf()
+	if(!gasused)
+		to_chat(user, span_warning("\The [src]'s tank is empty!"))
+		target.apply_damage((force / 5), BRUTE)
+		playsound(loc, 'sound/weapons/punch1.ogg', 50, 1)
+		target.visible_message(span_danger("[user]'s powerfist lets out a dull thunk as [user.p_they()] punch[user.p_es()] [target.name]!"), \
+			span_userdanger("[user]'s punches you!"))
+		return
+	if(gasused.total_moles() < gasperfist * fisto_setting)
+		to_chat(user, span_warning("\The [src]'s piston-ram lets out a weak hiss, it needs more gas!"))
+		playsound(loc, 'sound/weapons/punch4.ogg', 50, 1)
+		target.apply_damage((force / 2), BRUTE)
+		target.visible_message(span_danger("[user]'s powerfist lets out a weak hiss as [user.p_they()] punch[user.p_es()] [target.name]!"), \
+			span_userdanger("[user]'s punch strikes with force!"))
+		return
+	target.apply_damage(force * fisto_setting, BRUTE, wound_bonus = CANT_WOUND)
+	target.visible_message(span_danger("[user]'s powerfist lets out a loud hiss as [user.p_they()] punch[user.p_es()] [target.name]!"), \
+		span_userdanger("You cry out in pain as [user]'s punch flings you backwards!"))
+	new /obj/effect/temp_visual/kinetic_blast(target.loc)
+	playsound(loc, 'sound/weapons/resonator_blast.ogg', 50, 1)
+	playsound(loc, 'sound/weapons/genhit2.ogg', 50, 1)
 
-    var/atom/throw_target = get_edge_target_turf(target, get_dir(src, get_step_away(target, src)))
+	var/atom/throw_target = get_edge_target_turf(target, get_dir(src, get_step_away(target, src)))
 
-    target.throw_at(throw_target, 5 * fisto_setting, 0.5 + (fisto_setting / 2))
+	target.throw_at(throw_target, 5 * fisto_setting, 0.5 + (fisto_setting / 2))
 
-    log_combat(user, target, "power fisted", src)
+	log_combat(user, target, "power fisted", src)
 
-    user.changeNext_move(CLICK_CD_MELEE * click_delay)
+	user.changeNext_move(CLICK_CD_MELEE * click_delay)
 
-    return
+	return

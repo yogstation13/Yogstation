@@ -189,6 +189,6 @@
 		return
 	user.visible_message(span_boldwarning("[target] flinches, bumping [user]'s [tool ? tool.name : "hand"] into something important!"), span_boldwarning("[target]  flinches, bumping your [tool ? tool.name : "hand"] into something important!"))
 	target.apply_damage(fuckup_damage, fuckup_damage_type, target_zone)
-	if(ishuman(target) &&fuckup_damage_type == BRUTE && prob(final_ouchie_chance/2))
-		var/mob/living/carbon/human/H = target
-		H.bleed_rate += min(fuckup_damage/4, 10)
+	//if(ishuman(target) &&fuckup_damage_type == BRUTE && prob(final_ouchie_chance/2))
+		//var/mob/living/carbon/human/H = target
+		//H.bleed_rate += min(fuckup_damage/4, 10)

@@ -436,9 +436,26 @@
 		return
 
 	face_atom(A)
-	var/list/result = A.examine(src)
+	var/list/result
+	if(client)
+		LAZYINITLIST(client.recent_examines)
+		if(!(isnull(client.recent_examines[A]) || client.recent_examines[A] < world.time)) // originally this wasn't an assoc list, but sometimes the timer failed and atoms stayed in a client's recent_examines, so we check here manually
+			var/extra_info = A.examine_more(src)
+			result = extra_info
+		if(!result)
+			client.recent_examines[A] = world.time + EXAMINE_MORE_TIME
+			result = A.examine(src)
+			addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), EXAMINE_MORE_TIME)
+			
+	else
+		result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
 	to_chat(src, result.Join("\n"))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
+
+/mob/proc/clear_from_recent_examines(atom/A)
+	if(QDELETED(A) || !client)
+		return
+	LAZYREMOVE(client.recent_examines, A)
 
 /mob/proc/blind_examine_check(atom/examined_thing)
 	return TRUE
@@ -457,7 +474,7 @@
 	//you can only initiate exaimines if you have a hand, it's not disabled, and only as many examines as you have hands
 	/// our active hand, to check if it's disabled/detatched
 	var/obj/item/bodypart/active_hand = has_active_hand()? get_active_hand() : null
-	if(!active_hand || active_hand.is_disabled() || LAZYLEN(do_afters) >= get_num_arms())
+	if(!active_hand || active_hand.bodypart_disabled || LAZYLEN(do_afters) >= get_num_arms())
 		to_chat(src, span_warning("You don't have a free hand to examine this!"))
 		return FALSE
 
@@ -487,7 +504,6 @@
 	a_intent = previous_intent
 
 	return TRUE
-
 
 /**
   * Point at an atom

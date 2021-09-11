@@ -194,6 +194,8 @@ Difficulty: Medium
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	force = 25
+	wound_bonus = -40
+	bare_wound_bonus = 20
 	damtype = BURN
 	hitsound = 'sound/weapons/sear.ogg'
 	var/storm_type = /datum/weather/ash_storm

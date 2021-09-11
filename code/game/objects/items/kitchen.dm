@@ -20,7 +20,7 @@
 	name = "fork"
 	desc = "Pointy."
 	icon_state = "fork"
-	force = 5
+	force = 4
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	throw_speed = 3
@@ -30,6 +30,7 @@
 	attack_verb = list("attacked", "stabbed", "poked")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
+	sharpness = SHARP_POINTY
 	var/datum/reagent/forkload //used to eat omelette
 	var/loaded_food = "nothing" /// The name of the thing on the fork
 
@@ -92,10 +93,12 @@
 	throw_range = 6
 	materials = list(/datum/material/iron=12000)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	sharpness = IS_SHARP_ACCURATE
+	sharpness = SHARP_EDGED
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	var/bayonet = TRUE	//Can this be attached to a gun?
 	custom_price = 30
+	wound_bonus = 5
+	bare_wound_bonus = 15
 
 /obj/item/kitchen/knife/Initialize()
 	. = ..()
@@ -158,6 +161,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_price = 60
 	bayonet = TRUE
+	wound_bonus = 15
 
 /obj/item/kitchen/knife/combat
 	name = "combat knife"
@@ -168,6 +172,7 @@
 	throwforce = 20
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "cut")
 	bayonet = TRUE
+	wound_bonus = 10
 
 /obj/item/kitchen/knife/combat/survival
 	name = "survival knife"
@@ -213,7 +218,7 @@
 /obj/item/kitchen/knife/carrotshiv/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] forcefully drives \the [src] into [user.p_their()] eye! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
-	
+
 // Shank - Makeshift weapon that can embed on throw
 /obj/item/kitchen/knife/shank
 	name = "Shank"

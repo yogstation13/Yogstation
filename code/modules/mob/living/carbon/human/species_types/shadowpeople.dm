@@ -170,7 +170,9 @@
 	item_flags = ABSTRACT | DROPDEL
 	tool_behaviour = TOOL_MINING
 	w_class = WEIGHT_CLASS_HUGE
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
+	wound_bonus = -30
+	bare_wound_bonus = 20
 	resistance_flags = ACID_PROOF
 
 /obj/item/light_eater/Initialize()

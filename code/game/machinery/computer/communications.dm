@@ -57,6 +57,12 @@
 		return TRUE
 	return ACCESS_CAPTAIN in authorize_access
 
+/// Are we NOT a silicon, AND we're logged in as a head
+/obj/machinery/computer/communications/proc/authenticated_as_non_silicon_head(mob/user)
+	if(issilicon(user))
+		return FALSE
+	return ACCESS_HEADS in authorize_access
+
 /// Are we a silicon, OR logged in?
 /obj/machinery/computer/communications/proc/authenticated(mob/user)
 	if (issilicon(user))
@@ -330,6 +336,11 @@
 				log_game("[key_name(usr)] enabled emergency maintenance access.")
 				message_admins("[ADMIN_LOOKUPFLW(usr)] enabled emergency maintenance access.")
 				deadchat_broadcast(" enabled emergency maintenance access at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr)
+		if ("printSpare")
+			if (authenticated_as_non_silicon_head(usr))
+				playsound(loc, 'sound/items/poster_being_created.ogg', 100, 1)
+				new /obj/item/card/id/captains_spare/temporary(loc)
+				priority_announce("The emergency spare ID has been printed by [authorize_name].", "Emergency Spare ID Warning System", SSstation.announcer.get_rand_report_sound())
 
 /obj/machinery/computer/communications/ui_data(mob/user)
 	var/list/data = list(
@@ -361,6 +372,7 @@
 				data["importantActionReady"] = COOLDOWN_FINISHED(src, important_action_cooldown)
 				data["shuttleCalled"] = FALSE
 				data["shuttleLastCalled"] = FALSE
+				data["canPrintId"] = FALSE
 
 				data["alertLevel"] = get_security_level()
 				data["authorizeName"] = authorize_name
@@ -370,6 +382,9 @@
 				if (authenticated_as_non_silicon_captain(user))
 					data["canMessageAssociates"] = TRUE
 					data["canRequestNuke"] = TRUE
+
+				if (!issilicon(user))
+					data["canPrintId"] = TRUE
 
 				if (can_send_messages_to_other_sectors(user))
 					data["canSendToSectors"] = TRUE

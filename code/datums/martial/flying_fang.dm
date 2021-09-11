@@ -92,7 +92,7 @@
 	A.do_attack_animation(D, ATTACK_EFFECT_BITE)
 	playsound(D, 'sound/weapons/bite.ogg', 50, TRUE, -1)
 	D.apply_damage(30, A.dna.species.attack_type, BODY_ZONE_HEAD, armor_block)
-	D.bleed_rate += 10
+	// D.bleed_rate += 10
 	D.visible_message(span_danger("[A] takes a large bite out of [D]'s neck!"), \
 					  span_userdanger("[A] takes a large bite out of your neck!"))
 	if(D.health > 0)

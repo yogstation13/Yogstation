@@ -19,6 +19,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 	force = 15
 	throwforce = 25
+	wound_bonus = -10
+	bare_wound_bonus = 20
 	armour_penetration = 35
 	actions_types = list(/datum/action/item_action/cult_dagger)
 
@@ -36,10 +38,12 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	flags_1 = CONDUCT_1
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_BULKY
 	force = 25
 	throwforce = 10
+	wound_bonus = -80
+	bare_wound_bonus = 30
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "rended")
 
@@ -93,7 +97,7 @@
 	armour_penetration = 45
 	throw_speed = 1
 	throw_range = 3
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	light_color = "#ff0000"
 	attack_verb = list("cleaved", "slashed", "torn", "hacked", "ripped", "diced", "carved")
 	icon_state = "cultbastard"
@@ -666,7 +670,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	armour_penetration = 30
 	block_chance = 30
 	attack_verb = list("attacked", "impaled", "stabbed", "torn", "gored")
-	sharpness = IS_SHARP
+	sharpness = SHARP_POINTY
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	var/datum/action/innate/cult/spear/spear_act
 
@@ -965,7 +969,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 				new /obj/effect/temp_visual/cult/sparks(T)
 				qdel(src)
 			return TRUE
-				
+
 	else
 		if(prob(50))
 			var/mob/living/simple_animal/hostile/illusion/H = new(owner.loc)

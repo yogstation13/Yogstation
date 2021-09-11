@@ -12,7 +12,7 @@
 //cut fat
 /datum/surgery_step/cut_fat
 	name = "cut excess fat"
-	implements = list(/obj/item/circular_saw = 100, /obj/item/melee/transforming/energy/sword/cyborg/saw = 100, /obj/item/hatchet = 35, /obj/item/kitchen/knife/butcher = 25)
+	implements = list(TOOL_SAW = 100, /obj/item/hatchet = 35, /obj/item/kitchen/knife/butcher = 25)
 	time = 64
 
 /datum/surgery_step/cut_fat/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)

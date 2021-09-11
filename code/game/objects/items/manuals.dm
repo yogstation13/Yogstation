@@ -211,15 +211,15 @@
 	var/wikiurl = CONFIG_GET(string/wikiurl)
 	if(wikiurl)
 		dat = {"
-			<iframe 
-				id='ext_frame' 
-				src='[wikiurl]/frame.html' 
+			<iframe
+				id='ext_frame'
+				src='[wikiurl]/frame.html'
 				style='border: none; width: 100vw; height: 100vh;'>
 			</iframe>
 			<style>
-			html, body { 
+			html, body {
 				height: 100vh;
-				width: 100vw; 
+				width: 100vw;
 				margin: 0;
 				overflow: hidden;
 			}
@@ -420,7 +420,9 @@
 			if(prob(50))
 				step(W, pick(GLOB.alldirs))
 		ADD_TRAIT(H, TRAIT_DISFIGURED, TRAIT_GENERIC)
-		H.bleed_rate = 5
+		for(var/i in H.bodyparts)
+			var/obj/item/bodypart/BP = i
+			BP.generic_bleedstacks += 5
 		H.gib_animation()
 		sleep(3)
 		H.adjustBruteLoss(1000) //to make the body super-bloody

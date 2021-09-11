@@ -37,6 +37,7 @@
 	plantname = "Lily Plants"
 	product = /obj/item/reagent_containers/food/snacks/grown/poppy/lily
 	mutatelist = list(/obj/item/seeds/bee_balm, /obj/item/seeds/poppy/lily/trumpet)
+	rarity = 10
 
 /obj/item/reagent_containers/food/snacks/grown/poppy/lily
 	seed = /obj/item/seeds/poppy/lily
@@ -87,6 +88,7 @@
 	plantname = "Geranium Plants"
 	product = /obj/item/reagent_containers/food/snacks/grown/poppy/geranium
 	mutatelist = list()
+	rarity = 10
 
 /obj/item/reagent_containers/food/snacks/grown/poppy/geranium
 	seed = /obj/item/seeds/poppy/geranium
@@ -266,6 +268,7 @@
 	icon_dead = "bee_balm-dead"
 	mutatelist = list(/obj/item/seeds/poppy/geranium, /obj/item/seeds/bee_balm/honey) //Lower odds of becoming honey
 	reagents_add = list(/datum/reagent/medicine/spaceacillin = 0.1, /datum/reagent/space_cleaner/sterilizine = 0.05)
+	rarity = 20
 
 /obj/item/reagent_containers/food/snacks/grown/bee_balm
 	seed = /obj/item/seeds/bee_balm

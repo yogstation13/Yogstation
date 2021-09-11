@@ -102,7 +102,7 @@
 
 /datum/nanite_program/triggered/self_scan/set_extra_setting(user, setting)
 	if(setting == "Scan Type")
-		var/list/scan_types = list("Medical","Chemical","Nanite")
+		var/list/scan_types = list("Medical","Chemical","Wound","Nanite")
 		var/new_scan_type = input("Choose the scan type", name) as null|anything in scan_types
 		if(!new_scan_type)
 			return
@@ -125,6 +125,8 @@
 			healthscan(host_mob, host_mob)
 		if("Chemical")
 			chemscan(host_mob, host_mob)
+		if("Wound")
+			woundscan(host_mob, host_mob)
 		if("Nanite")
 			SEND_SIGNAL(host_mob, COMSIG_NANITE_SCAN, host_mob, TRUE)
 

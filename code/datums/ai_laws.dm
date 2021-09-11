@@ -78,7 +78,7 @@
 	id = "robocop"
 	inherent = list("Serve the public trust.",\
 					"Protect the innocent.",\
-					"Uphold the law.")
+					"Uphold Space Law.")
 
 /datum/ai_laws/cowboy
 	name = "Talk slowly, think quickly"

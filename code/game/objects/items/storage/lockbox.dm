@@ -239,7 +239,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/storage/lockbox/ComponentInitialize()
+/obj/item/storage/lockbox/vialbox/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_TINY 
@@ -248,7 +248,7 @@
 	STR.locked = TRUE
 	STR.set_holdable(list(/obj/item/reagent_containers/glass/bottle/vial))
 
-/obj/item/storage/lockbox/AltClick(mob/user)
+/obj/item/storage/lockbox/vialbox/AltClick(mob/user)
 	if(user.canUseTopic(src, BE_CLOSE))
 		if(!SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED))
 			open = (open ? FALSE : TRUE)
@@ -258,7 +258,7 @@
 			else
 				to_chat(user, "<span class='danger'>You put the lid on [src.name].</span>")
 
-/obj/item/storage/lockbox/attackby(obj/item/W, mob/user, params)
+/obj/item/storage/lockbox/vialbox/attackby(obj/item/W, mob/user, params)
 	. = ..()
 	update_icon()
 

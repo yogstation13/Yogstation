@@ -35,6 +35,19 @@
 	protection += physiology.armor.getRating(d_type)
 	return protection
 
+///Get all the clothing on a specific body part
+/mob/living/carbon/human/proc/clothingonpart(obj/item/bodypart/def_zone)
+	var/list/covering_part = list()
+	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform, back, gloves, shoes, belt, s_store, glasses, ears, wear_id, wear_neck) //Everything but pockets. Pockets are l_store and r_store. (if pockets were allowed, putting something armored, gloves or hats for example, would double up on the armor)
+	for(var/bp in body_parts)
+		if(!bp)
+			continue
+		if(bp && istype(bp , /obj/item/clothing))
+			var/obj/item/clothing/C = bp
+			if(C.body_parts_covered & def_zone.body_part)
+				covering_part += C
+	return covering_part
+
 /mob/living/carbon/human/on_hit(obj/item/projectile/P)
 	if(dna && dna.species)
 		dna.species.on_hit(P, src)
@@ -165,8 +178,8 @@
 					L.embedded_objects |= I
 					I.add_mob_blood(src)//it embedded itself in you, of course it's bloody!
 					I.forceMove(src)
-					L.receive_damage(I.w_class*I.embedding.embedded_impact_pain_multiplier)
-					visible_message(span_danger("[I] embeds itself in [src]'s [L.name]!"),span_userdanger("[I] embeds itself in your [L.name]!"))
+					L.receive_damage(I.w_class*I.embedding.embedded_impact_pain_multiplier, wound_bonus=-30, sharpness = TRUE)
+					visible_message("<span class='danger'>[I] embeds itself in [src]'s [L.name]!</span>","<span class='userdanger'>[I] embeds itself in your [L.name]!</span>")
 					SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "embedded", /datum/mood_event/embedded)
 					hitpush = FALSE
 					skipcatch = TRUE //can't catch the now embedded item
@@ -187,7 +200,10 @@
 	if(user == src)
 		affecting = get_bodypart(check_zone(user.zone_selected)) //stabbing yourself always hits the right target
 	else
-		affecting = get_bodypart(ran_zone(user.zone_selected))
+		var/zone_hit_chance = 80
+		if(!(mobility_flags & MOBILITY_STAND)) // half as likely to hit a different zone if they're on the ground
+			zone_hit_chance += 10
+		affecting = get_bodypart(ran_zone(user.zone_selected, zone_hit_chance))
 	var/target_area = parse_zone(check_zone(user.zone_selected)) //our intended target
 
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
@@ -207,9 +223,9 @@
 		..(user, 1)
 		playsound(loc, user.dna.species.attack_sound, 25, 1, -1)
 		var/message = "[user] has [hulk_verb]ed [src]!"
-		visible_message(span_danger("[message]"), \
-								span_userdanger("[message]"))
-		adjustBruteLoss(15)
+		visible_message("<span class='danger'>[message]</span>", \
+								"<span class='userdanger'>[message]</span>")
+		apply_damage(15, BRUTE, wound_bonus=10)
 		return 1
 
 /mob/living/carbon/human/attack_hand(mob/user)
@@ -343,14 +359,16 @@
 		if(!affecting)
 			affecting = get_bodypart(BODY_ZONE_CHEST)
 		var/armor = run_armor_check(affecting, "melee", armour_penetration = M.armour_penetration)
-		apply_damage(damage, M.melee_damage_type, affecting, armor)
+		apply_damage(damage, M.melee_damage_type, affecting, armor, wound_bonus = M.wound_bonus, bare_wound_bonus = M.bare_wound_bonus, sharpness = M.sharpness)
 
 
 /mob/living/carbon/human/attack_slime(mob/living/simple_animal/slime/M)
 	if(..()) //successful slime attack
 		var/damage = rand(5, 25)
+		var/wound_mod = -45 // 25^1.4=90, 90-45=45
 		if(M.is_adult)
 			damage = rand(10, 35)
+			wound_mod = -90 // 35^1.4=145, 145-90=55
 
 		if(check_shields(M, damage, "the [M.name]"))
 			return 0
@@ -363,7 +381,7 @@
 		if(!affecting)
 			affecting = get_bodypart(BODY_ZONE_CHEST)
 		var/armor_block = run_armor_check(affecting, "melee")
-		apply_damage(damage, BRUTE, affecting, armor_block)
+		apply_damage(damage, BRUTE, affecting, armor_block, wound_bonus=wound_mod)
 
 /mob/living/carbon/human/mech_melee_attack(obj/mecha/M)
 
@@ -723,7 +741,7 @@
 		..()
 
 /mob/living/carbon/human/proc/check_self_for_injuries()
-	if(stat == DEAD || stat == UNCONSCIOUS)
+	if(stat >= UNCONSCIOUS)
 		return
 	var/list/combined_msg = list()
 
@@ -736,6 +754,9 @@
 		missing -= LB.body_zone
 		if(LB.is_pseudopart) //don't show injury text for fake bodyparts; ie chainsaw arms or synthetic armblades
 			continue
+		var/self_aware = FALSE
+		if(HAS_TRAIT(src, TRAIT_SELF_AWARE))
+			self_aware = TRUE
 		var/limb_max_damage = LB.max_damage
 		var/status = ""
 		var/brutedamage = LB.brute_dam
@@ -746,7 +767,7 @@
 			if(prob(30))
 				burndamage += rand(30,40)
 
-		if(HAS_TRAIT(src, TRAIT_SELF_AWARE) && hal_screwyhud == SCREWYHUD_NONE)
+		if(HAS_TRAIT(src, TRAIT_SELF_AWARE))
 			status = "[brutedamage] brute damage and [burndamage] burn damage"
 			if(!brutedamage && !burndamage)
 				status = "no damage"
@@ -773,7 +794,28 @@
 		var/no_damage
 		if(status == "OK" || status == "no damage")
 			no_damage = TRUE
-		combined_msg += "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name] [HAS_TRAIT(src, TRAIT_SELF_AWARE) ? "has" : "is"] [status].</span>"
+		var/isdisabled = ""
+		if(LB.bodypart_disabled)
+			isdisabled = " is disabled"
+			if(no_damage)
+				isdisabled += " but otherwise"
+			else
+				isdisabled += " and"
+		combined_msg += "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name][isdisabled][self_aware ? " has " : " is "][status].</span>"
+
+		for(var/thing in LB.wounds)
+			var/datum/wound/W = thing
+			var/msg
+			switch(W.severity)
+				if(WOUND_SEVERITY_TRIVIAL)
+					msg = "\t <span class='danger'>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)].</span>"
+				if(WOUND_SEVERITY_MODERATE)
+					msg = "\t <span class='warning'>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)]!</span>"
+				if(WOUND_SEVERITY_SEVERE)
+					msg = "\t <span class='warning'><b>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)]!</b></span>"
+				if(WOUND_SEVERITY_CRITICAL)
+					msg = "\t <span class='warning'><b>Your [LB.name] is suffering [W.a_or_from] [lowertext(W.name)]!!</b></span>"
+			to_chat(src, msg)
 
 		for(var/obj/item/I in LB.embedded_objects)
 			combined_msg += "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>"
@@ -781,8 +823,26 @@
 	for(var/t in missing)
 		combined_msg += span_boldannounce("Your [parse_zone(t)] is missing!")
 
-	if(bleed_rate)
-		combined_msg += span_danger("You are bleeding!")
+	if(is_bleeding())
+		var/list/obj/item/bodypart/bleeding_limbs = list()
+		for(var/i in bodyparts)
+			var/obj/item/bodypart/BP = i
+			if(BP.get_bleed_rate())
+				bleeding_limbs += BP
+
+		var/num_bleeds = LAZYLEN(bleeding_limbs)
+		var/bleed_text = "<span class='danger'>You are bleeding from your"
+		switch(num_bleeds)
+			if(1 to 2)
+				bleed_text += " [bleeding_limbs[1].name][num_bleeds == 2 ? " and [bleeding_limbs[2].name]" : ""]"
+			if(3 to INFINITY)
+				for(var/i in 1 to (num_bleeds - 1))
+					var/obj/item/bodypart/BP = bleeding_limbs[i]
+					bleed_text += " [BP.name],"
+				bleed_text += " and [bleeding_limbs[num_bleeds].name]"
+		bleed_text += "!</span>"
+		to_chat(src, bleed_text)
+
 	if(getStaminaLoss())
 		if(getStaminaLoss() > 30)
 			combined_msg += span_info("You're completely exhausted.")

@@ -19,6 +19,7 @@
 	flags_1 = CONDUCT_1
 	icon_state = "borg_l_arm"
 	status = BODYPART_ROBOTIC
+	disable_threshold = 1
 
 	brute_reduction = 5
 	burn_reduction = 4
@@ -40,6 +41,7 @@
 	flags_1 = CONDUCT_1
 	icon_state = "borg_r_arm"
 	status = BODYPART_ROBOTIC
+	disable_threshold = 1
 
 	brute_reduction = 5
 	burn_reduction = 4
@@ -61,6 +63,7 @@
 	flags_1 = CONDUCT_1
 	icon_state = "borg_l_leg"
 	status = BODYPART_ROBOTIC
+	disable_threshold = 1
 
 	brute_reduction = 5
 	burn_reduction = 4
@@ -82,6 +85,7 @@
 	flags_1 = CONDUCT_1
 	icon_state = "borg_r_leg"
 	status = BODYPART_ROBOTIC
+	disable_threshold = 1
 
 	brute_reduction = 5
 	burn_reduction = 4
