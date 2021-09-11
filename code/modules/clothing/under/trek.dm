@@ -3,6 +3,7 @@
 
 /obj/item/clothing/under/trek
 	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 
 //TOS

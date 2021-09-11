@@ -7,7 +7,7 @@
 
 	//yogs start - pretty filter
 	if(isnotpretty(message))
-		to_chat(usr, "<span class='notice'>You fumble over your words. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
+		to_chat(usr, "<span class='notice'>You fumble over your words. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 		message_admins("[key_name(usr)] just tripped a pretty filter: '[message]'.")
 		return
 	if(isliving(src))
@@ -26,7 +26,7 @@
 
 	//yogs start - pretty filter
 	if(isnotpretty(message))
-		to_chat(usr, "<span class='notice'>You fumble over your words. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
+		to_chat(usr, "<span class='notice'>You fumble over your words. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 		message_admins("[key_name(usr)] just tripped a pretty filter: '[message]'.")
 		return
 	message = to_utf8(minor_filter(message)) //yogs end - pretty filter
@@ -62,7 +62,7 @@
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
 
-	var/jb = is_banned_from(ckey, "OOC")
+	var/jb = is_banned_from(ckey, "DEAD")
 	if(QDELETED(src))
 		return
 

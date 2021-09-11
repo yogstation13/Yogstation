@@ -49,6 +49,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
 	var/flags_inv //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	var/flags_prot //This flag acts like flags_inv except it allows the items to still be rendered.
 	var/transparent_protection = NONE //you can see someone's mask through their transparent visor, but you can't reach it
 
 	var/interaction_flags_item = INTERACT_ITEM_ATTACK_HAND_PICKUP
@@ -727,8 +728,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	// Run the start check here so we wouldn't have to call it manually.
 	if(!delay && !tool_start_check(user, amount))
 		return
-
 	delay *= toolspeed
+
+	if(IS_ENGINEERING(user) && tool_behaviour != TOOL_MINING) //if the user is an engineer, they'll use the tool faster. Doesn't apply to mining tools.
+		delay *= 0.8
 
 	// Play tool sound at the beginning of tool usage.
 	play_tool_sound(target, volume)

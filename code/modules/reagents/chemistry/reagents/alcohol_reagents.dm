@@ -2334,3 +2334,28 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "rotting vegetables"
 	glass_name = "glass of pea wine"
 	glass_desc = "A freezing glass of pea wine."
+
+/datum/reagent/consumable/ethanol/sangria
+	name = "Sangria"
+	description = "A fruity alcoholic delight made from delicate wine and sweet orange juice."
+	color = "#90061d"
+	boozepwr = 15
+	quality = DRINK_FANTASTIC
+	taste_description = "a hot summer day in Iberia"
+	glass_icon_state = "sangriaglass"
+	glass_name = "Glass of Sangria"
+	glass_desc = "A cold cup of fruity cocktail. Deliciosoa!"
+	shot_glass_icon_state = "shotglassangria"
+
+/datum/reagent/consumable/ethanol/ambermoon
+	name = "Amber Moon"
+	description = "A diabolical cocktail."
+	color = "#e3b45f"
+	boozepwr = 25
+	quality = DRINK_GOOD
+	taste_description = "pure torment"
+	glass_icon_state = "ambermoonglass"
+	glass_name = "Glass of Amber Moon"
+	glass_desc = "A strange cocktail with a cracked egg believed to treat hangovers."
+	shot_glass_icon_state = "ambermoonshotglass"
+

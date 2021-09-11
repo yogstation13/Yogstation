@@ -74,6 +74,31 @@
 /obj/item/storage/firstaid/fire,
 /turf/open/floor/plasteel/white,
 /area/template_noop)
+"m" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"n" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/plasteel/white,
+/area/template_noop)
 "o" = (
 /obj/structure/chair{
 	dir = 1
@@ -215,17 +240,14 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "B" = (
-/obj/structure/chair{
-	dir = 1
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
 	},
-/obj/machinery/light_switch{
-	pixel_x = 24
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/machinery/light{
+/obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/plating,
 /area/template_noop)
 "C" = (
 /turf/closed/wall/r_wall,
@@ -314,16 +336,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"P" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/template_noop)
 "Q" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -338,15 +350,6 @@
 /area/template_noop)
 "R" = (
 /obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating,
-/area/template_noop)
-"S" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
 /turf/open/floor/plating,
 /area/template_noop)
 "T" = (
@@ -440,7 +443,7 @@ d
 C
 w
 Y
-P
+n
 C
 "}
 (4,1,1) = {"
@@ -466,11 +469,11 @@ q
 h
 "}
 (6,1,1) = {"
-S
+B
 f
 y
 o
-B
+m
 c
 r
 N

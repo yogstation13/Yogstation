@@ -22,7 +22,7 @@
 	name = "repair body"
 	implements = list(/obj/item/hemostat = 100, TOOL_SCREWDRIVER = 65, /obj/item/pen = 55)
 	repeatable = TRUE
-	time = 25
+	time = 2 SECONDS
 	fuckup_damage = 0
 	var/brutehealing = 0
 	var/burnhealing = 0
@@ -47,8 +47,15 @@
 		"<span class='notice'>[user] attempts to patch some of [target]'s [woundtype].</span>")
 
 /datum/surgery_step/heal/initiate(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
+	var/list/list_org_limbs = target.get_damaged_bodyparts(brutehealing, burnhealing, FALSE, BODYPART_ORGANIC)
+	if(!list_org_limbs.len)
+		to_chat(user, "<span class='notice'>[target] has no wounds left to treat. The rest of the damage is mechanical limbs</span>")
 	if(..())
 		while((brutehealing && target.getBruteLoss()) || (burnhealing && target.getFireLoss()))
+			list_org_limbs = target.get_damaged_bodyparts(brutehealing, burnhealing, FALSE, BODYPART_ORGANIC)
+			if(!list_org_limbs.len) // if there are no organic bodypart with damage we should stop
+				to_chat(user, "<span class='notice'>[target] has no wounds left to treat. The rest of the damage is mechanical limbs</span>")
+				break
 			if(!..())
 				break
 
@@ -151,11 +158,11 @@
 	missinghpbonus = 15
 
 /datum/surgery_step/heal/brute/upgraded
-	brutehealing = 5
+	brutehealing = 7.5
 	missinghpbonus = 10
 
 /datum/surgery_step/heal/brute/upgraded/femto
-	brutehealing = 5
+	brutehealing = 10
 	missinghpbonus = 5
 
 /***************************BURN***************************/
@@ -216,11 +223,11 @@
 	missinghpbonus = 15
 
 /datum/surgery_step/heal/burn/upgraded
-	burnhealing = 5
+	burnhealing = 7.5
 	missinghpbonus = 10
 
 /datum/surgery_step/heal/burn/upgraded/femto
-	burnhealing = 5
+	burnhealing = 10
 	missinghpbonus = 5
 
 /***************************COMBO***************************/
@@ -284,7 +291,7 @@
 	brutehealing = 3
 	burnhealing = 3
 	missinghpbonus = 15
-	time = 10
+	time = 1 SECONDS
 
 /datum/surgery_step/heal/combo/upgraded
 	brutehealing = 3

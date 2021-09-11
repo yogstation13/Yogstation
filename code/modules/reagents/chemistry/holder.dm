@@ -394,7 +394,6 @@
 		if(R.metabolizing)
 			R.metabolizing = FALSE
 			R.on_mob_end_metabolize(C)
-
 /**
   * Calls [/datum/reagent/proc/on_move] on every reagent in this holder
   *

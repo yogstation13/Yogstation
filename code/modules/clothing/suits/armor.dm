@@ -78,6 +78,7 @@
 	name = "warden's armored jacket"
 	desc = "A red jacket with silver rank pips and body armor strapped on top."
 	icon_state = "warden_jacket"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/suit/armor/vest/leather
 	name = "security overcoat"

@@ -4,6 +4,7 @@
 	max_occurrences = 1
 	weight = 1
 	earliest_start = 5 MINUTES
+	max_alert = SEC_LEVEL_DELTA
 
 /datum/round_event_control/aurora_caelus/canSpawnEvent(players, gamemode)
 	if(!CONFIG_GET(flag/starlight))
@@ -31,7 +32,7 @@
 		var/area/A = area
 		if(initial(A.dynamic_lighting) == DYNAMIC_LIGHTING_IFSTARLIGHT)
 			for(var/turf/open/space/S in A)
-				S.set_light(S.light_range * 3, S.light_power * 0.5)
+				S.set_light(S.light_range * 3, S.light_power * 2)
 
 /datum/round_event/aurora_caelus/tick()
 	if(activeFor % 5 == 0)

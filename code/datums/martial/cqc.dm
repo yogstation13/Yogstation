@@ -35,6 +35,7 @@
 
 /datum/martial_art/cqc/under_siege
 	name = "Close Quarters Cooking"
+	id = MARTIALART_CQC_COOK
 	just_a_cook = TRUE
 
 /datum/martial_art/cqc/can_use(mob/living/carbon/human/H) //this is used to make chef CQC only work in kitchen

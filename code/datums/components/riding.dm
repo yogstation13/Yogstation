@@ -316,12 +316,18 @@
 /datum/component/riding/cyborg/force_dismount(mob/living/M)
 	var/atom/movable/AM = parent
 	AM.unbuckle_mob(M)
+	var/mob/living/silicon/robot/S = AM
+	if(S.throwcooldown)
+		to_chat(S, "You have to wait for your motors to recharge")
+		return
 	var/turf/target = get_edge_target_turf(AM, AM.dir)
 	var/turf/targetm = get_step(get_turf(AM), AM.dir)
 	M.Move(targetm)
 	M.visible_message("<span class='warning'>[M] is thrown clear of [AM]!</span>")
 	M.throw_at(target, 14, 5, AM)
 	M.Paralyze(60)
+	S.throwcooldown = TRUE
+	addtimer(VARSET_CALLBACK(S, throwcooldown, FALSE), 10 SECONDS)
 
 /datum/component/riding/proc/equip_buckle_inhands(mob/living/carbon/human/user, amount_required = 1, riding_target_override = null)
 	var/atom/movable/AM = parent

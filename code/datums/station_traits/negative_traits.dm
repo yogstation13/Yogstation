@@ -25,20 +25,6 @@
 	report_message = "Sorry for that, we missed your station by a few miles, so we just launched you towards your station in pods. Hope you don't mind!"
 	trait_to_give = STATION_TRAIT_RANDOM_ARRIVALS
 
-/datum/station_trait/blackout
-	name = "Blackout"
-	trait_type = STATION_TRAIT_NEGATIVE
-	weight = 3
-	show_in_report = TRUE
-	report_message = "Station lights seem to be damaged, be safe when starting your shift today."
-
-/datum/station_trait/blackout/on_round_start()
-	. = ..()
-	for(var/a in GLOB.apcs_list)
-		var/obj/machinery/power/apc/current_apc = a
-		if(prob(60))
-			current_apc.overload_lighting()
-
 /datum/station_trait/empty_maint
 	name = "Cleaned out maintenance"
 	trait_type = STATION_TRAIT_NEGATIVE
@@ -54,7 +40,7 @@
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	show_in_report = TRUE
-	var/list/jobs_to_use = list("Clown", "Bartender", "Cook", "Botanist", "Cargo Technician", "Mime", "Janitor", "Prisoner")
+	var/list/jobs_to_use = list("Clown", "Bartender", "Cook", "Botanist", "Cargo Technician", "Mime", "Janitor")
 	var/chosen_job
 
 /datum/station_trait/overflow_job_bureacracy/New()
