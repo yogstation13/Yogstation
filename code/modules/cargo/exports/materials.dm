@@ -61,6 +61,7 @@
 
 /datum/export/material/silver
 	cost = 100
+	export_limit = 500
 	material_id = /datum/material/silver
 	message = "cm3 of silver"
 
