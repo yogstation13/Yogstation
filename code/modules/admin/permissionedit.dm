@@ -291,7 +291,7 @@
 	D.deactivate() //after logs so the deadmined admin can see the message.
 
 /datum/admins/proc/auto_deadmin()
-	if(GLOB.admins.len <= CONFIG_GET(number/auto_deadmin_threshold))
+	if(GLOB.admins.len < CONFIG_GET(number/auto_deadmin_threshold))
 		log_admin("[owner] auto-deadmin failed due to low admin count.")
 		to_chat(owner, "<span class='userdanger'>You have not be auto-deadminned due to lack of admins on the server, you can still deadmin manually</span>")
 		return FALSE

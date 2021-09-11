@@ -324,8 +324,8 @@ MAPROTATIONCHANCEDELTA 1
 #AUTO_DEADMIN_SILICONS
 #AUTO_DEADMIN_CRITICAL
 
-## The number of admins at which it auto-deadminning will be disabled, includes the admin trying to auto-deadmin
-AUTO_DEADMIN_THRESHOLD 3
+## The minimum nubmer of admins to allow for auto deadminning, includes the deadminning admin
+AUTO_DEADMIN_THRESHOLD 4
 
 ## CLIENT VERSION CONTROL
 ## This allows you to configure the minimum required client version, as well as a warning version, and message for both.
