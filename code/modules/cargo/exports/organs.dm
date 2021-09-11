@@ -102,7 +102,7 @@
 // If they would be sellable, X-Porter cannon's finishing move (selling victim's organs) will be instakill with no revive. //remind me to add the X-porter cannon in like a month or something itll be funny i swear
 
 /datum/export/organ/human
-	contraband = TRUE
+	export_category = EXPORT_CONTRABAND
 	include_subtypes = FALSE
 
 /datum/export/organ/human/heart
