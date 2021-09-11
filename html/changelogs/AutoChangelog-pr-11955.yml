@@ -1,0 +1,5 @@
+author: "  theos for porting, ryll ryll for the whole wounds system and a bunch of tg coders for assorted fixes and balancing"
+delete-after: true 
+changes: 
+  - rscadd: "ports wounds from tg, I said I'd do this like a few months ago and was not lying"
+  - bugfix: "holdup fixed to not cause pulling the target to fire turns out my old method was stupid and didn't work"
