@@ -47,7 +47,7 @@
 			return
 	else if(other_delay)
 		if(!silent)
-			user.visible_message(span_notice("[user] starts to apply \the [src] on [patient]."), span_notice("You begin applying \the [src] on [patient]..."))
+			user.visible_message(span_notice("[user] starts to apply \the [src] on [M]."), span_notice("You begin applying \the [src] on [M]..."))
 		if(!do_mob(user, M, other_delay, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
 			return
 
