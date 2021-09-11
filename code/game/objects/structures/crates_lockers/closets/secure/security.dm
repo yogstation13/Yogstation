@@ -303,7 +303,7 @@
 
 /obj/structure/closet/secure_closet/physician/PopulateContents()
 	..()
-	new /obj/item/storage/backpack/duffelbag/sec/physician/clothing(src)
+	new /obj/item/storage/backpack/duffelbag/clothing/sec/physician(src)
 	new /obj/item/cartridge/medical(src)
 	new /obj/item/radio/headset/headset_medsec(src)
 	new /obj/item/storage/belt/medical(src)
