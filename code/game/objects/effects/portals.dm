@@ -67,6 +67,8 @@
 	. = ..()
 	if(.)
 		return
+	if(density)
+		return
 	if(get_turf(user) == get_turf(src))
 		teleport(user)
 	if(Adjacent(user))
