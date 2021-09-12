@@ -19,10 +19,9 @@
 	W.implant(H)
 	var/obj/item/implant/dusting/E = new/obj/item/implant/dusting(H)
 	E.implant(H)
-	var/obj/item/implant/uplink/infiltrator/U = new/obj/item/implant/uplink/infiltrator(H)
+	var/obj/item/implant/uplink/infiltrator/U = new/obj/item/implant/uplink/infiltrator(H, H.key)
 	U.implant(H)
 	var/datum/component/uplink/uplink = U.GetComponent(/datum/component/uplink)
-	uplink.owner = H.key
 	uplink.set_gamemode(/datum/game_mode/infiltration)
 	var/obj/item/implant/radio/syndicate/S = new/obj/item/implant/radio/syndicate(H)
 	S.implant(H)
