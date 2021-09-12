@@ -1,2 +1,2 @@
 /obj/item/implant/uplink/infiltrator
-	starting_tc = 30
+	starting_tc = 20
