@@ -1754,8 +1754,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					map = !map
 				if("bar_choice")
 					var/list/selectablebars = GLOB.potential_box_bars
-					selectablebars += "Random"
-					var/pickedbar = input(user, "Choose your bar.", "Character Preference", bar_choice) as null|anything in GLOB.potential_box_bars
+					var/pickedbar = input(user, "Choose your bar.", "Character Preference", bar_choice) as null|anything in GLOB.potential_box_bars|"Random"
+					if(!pickedbar)
+						return
 					bar_choice = pickedbar
 				if ("max_chat_length")
 					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
