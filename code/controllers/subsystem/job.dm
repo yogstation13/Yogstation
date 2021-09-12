@@ -552,6 +552,19 @@ SUBSYSTEM_DEF(job)
 	
 	var/datum/map_template/template = SSmapping.station_room_templates[choice]
 
+	if(isnull(template))
+		message_admins("WARNING: BAR TEMPLATE [choice] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+		for(var/backup_bar in GLOB.potential_box_bars)
+			template = SSmapping.station_room_templates[backup_bar]
+			if(isnull(template))
+				message_admins("WARNING: BAR TEMPLATE [backup_bar] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+			else
+				break
+
+	if(isnull(template))
+		message_admins("WARNING: BAR RECOVERY FAILED! THERE WILL BE NO BAR FOR THIS ROUND!")
+		return
+
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)
 		qdel(B)
