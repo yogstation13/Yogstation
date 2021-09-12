@@ -652,7 +652,6 @@ SUBSYSTEM_DEF(ticker)
 		if(!check_rights(R_SERVER, TRUE))
 			return
 // yogs end
-
 	if(!delay)
 		delay = CONFIG_GET(number/round_end_countdown) * 10
 
@@ -670,30 +669,31 @@ SUBSYSTEM_DEF(ticker)
 		else
 			to_chat(world, "<span class='boldannounce'>Round ended, but there were still active tickets. Please submit a player complaint if you did not receive a response.</span>")
 	 //yogs end - yogs tickets
-
 	to_chat(world, "<span class='boldannounce'>Rebooting World in [DisplayTimeText(delay)]. [reason]</span>")
-	play_roundend()
-	SStitle.fadeout()
 	webhook_send_roundstatus("endgame") //yogs - webhook support
 	var/start_wait = world.time
 	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2))	//don't wait forever
-	sleep(delay - (world.time - start_wait))
-
+	var/newdelay = (delay - (world.time - start_wait) - 10 SECONDS)
+	if(delay > 10 SECONDS) /// JJJJJJJJJJJJJJJJJJJJAAAAAAAAANNNNNNNNKKKKKKKKK
+		sleep(newdelay)
 	if(delay_end && !skip_delay)
 		to_chat(world, "<span class='boldannounce'>Reboot was cancelled by an admin.</span>")
 		return
+	play_roundend()
+	SStitle.fadeout()
+	if(newdelay)
+		sleep(10 SECONDS)
+	else
+		sleep(delay - (world.time - start_wait))
 	if(end_string)
 		end_state = end_string
-
 	var/statspage = CONFIG_GET(string/roundstatsurl)
 	var/gamelogloc = CONFIG_GET(string/gamelogurl)
 	if(statspage)
 		to_chat(world, "<span class='info'>Round statistics and logs can be viewed <a href=\"[statspage][GLOB.round_id]\">at this website!</a></span>")
 	else if(gamelogloc)
 		to_chat(world, "<span class='info'>Round logs can be located <a href=\"[gamelogloc]\">at this website!</a></span>")
-
 	log_game("<span class='boldannounce'>Rebooting World. [reason]</span>")
-
 	world.Reboot()
 
 /datum/controller/subsystem/ticker/proc/play_roundend()
