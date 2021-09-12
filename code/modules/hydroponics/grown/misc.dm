@@ -39,6 +39,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
 	genes = list()
 	mutatelist = list()
+	rarity = 20 //atmospheric anomaly plant gets a little bit better rarity
 
 /obj/item/seeds/starthistle/corpse_flower/pre_attack(obj/machinery/hydroponics/I)
 	if(istype(I, /obj/machinery/hydroponics))
@@ -80,6 +81,7 @@
 	genes = list(/datum/plant_gene/trait/plant_type/weed_hardy)
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.05, /datum/reagent/medicine/silibinin = 0.1)
+	rarity = 10
 
 /obj/item/reagent_containers/food/snacks/grown/galaxythistle
 	seed = /obj/item/seeds/galaxythistle
