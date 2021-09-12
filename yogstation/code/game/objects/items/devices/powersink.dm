@@ -2,7 +2,7 @@ GLOBAL_VAR_INIT(powersink_transmitted, 0)
 
 /obj/item/powersink/examine(mob/user)
 	. = ..()
-	. += "The power dial reads [num2text(power_drained)]J/[num2text(max_power)]J."
+	. += "The power dial reads [DisplayEnergy(power_drained)]J/[DisplayEnergy(max_power)]J."
 
 /obj/item/powersink/process()
 	if(!attached)
