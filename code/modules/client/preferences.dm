@@ -1753,8 +1753,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("map")
 					map = !map
 				if("bar_choice")
-					var/list/selectablebars = GLOB.potential_box_bars
-					var/pickedbar = input(user, "Choose your bar.", "Character Preference", bar_choice) as null|anything in GLOB.potential_box_bars|"Random"
+					var/pickedbar = input(user, "Choose your bar.", "Character Preference", bar_choice) as null|anything in (GLOB.potential_box_bars|"Random")
 					if(!pickedbar)
 						return
 					bar_choice = pickedbar
