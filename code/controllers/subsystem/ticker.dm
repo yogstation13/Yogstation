@@ -680,8 +680,7 @@ SUBSYSTEM_DEF(ticker)
 		to_chat(world, "<span class='boldannounce'>Reboot was cancelled by an admin.</span>")
 		return
 	play_roundend()
-	SStitle.fadeout()
-	if(newdelay)
+	if(newdelay > 0)
 		sleep(10 SECONDS)
 	else
 		sleep(delay - (world.time - start_wait))
@@ -719,6 +718,7 @@ SUBSYSTEM_DEF(ticker)
 		)
 
 	SEND_SOUND(world, sound(round_end_sound))
+	SStitle.fadeout()
 	text2file(login_music, "data/last_round_lobby_music.txt")
 
 /datum/controller/subsystem/ticker/Shutdown()
