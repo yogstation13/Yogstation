@@ -212,7 +212,7 @@
 		thing.update_slot_icon()
 	UpdateButtonIcon()
 
-/datum/action/item_action/chameleon/change/proc/update_item(obj/item/picked_item, obj/item/target = target) //yogs -- add support for cham hardsuits
+/datum/action/item_action/chameleon/change/proc/update_item(obj/item/picked_item, obj/item/target = src.target) //yogs -- add support for cham hardsuits
 	target.name = initial(picked_item.name)
 	target.desc = initial(picked_item.desc)
 	target.icon_state = initial(picked_item.icon_state)
