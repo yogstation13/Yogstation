@@ -132,16 +132,3 @@
 	cost = 40
 	cant_discount = TRUE
 
-/datum/uplink_item/implants/mantis_kit
-	name = "G.O.R.L.E.X.  Mantis Blades Kit"
-	desc = "Comes with 2 G.O.R.L.E.X.  Mantis blades. All packaged with autosurgeons."
-	item = /obj/item/storage/briefcase/syndie_mantis
-	cost = 18
-	surplus = 0
-
-/datum/uplink_item/badass/syndistamp
-	name = "Syndicate Stamp"
-	desc = "Even evil needs to do paperwork."
-	item = /obj/item/stamp/syndiround
-	cost = 1
-	illegal_tech = FALSE

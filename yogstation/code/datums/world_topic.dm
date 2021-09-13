@@ -12,6 +12,9 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 	require_comms_key = TRUE
 
 /datum/world_topic/ooc/Run(list/input)
+	if(!GLOB.ooc_allowed)
+		return
+	input["ooc"] = pretty_filter(input["ooc"])
 	for(var/client/C in GLOB.clients)
 		to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>DISCORD OOC:</span> <EM>[input["admin"]]:</EM> <span class='message'>[input["ooc"]]</span></span></font>")
 
