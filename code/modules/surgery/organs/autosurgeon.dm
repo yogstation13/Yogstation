@@ -98,8 +98,11 @@
 /obj/item/autosurgeon/medibeam
 	starting_organ = /obj/item/organ/cyberimp/arm/medibeam
 
-///obj/item/autosurgeon/hivenode //Yogs Start: put this here as putting it in a copy put in the yougs folder will caue it to be loaded too late
-//	starting_organ = /obj/item/organ/alien/hivenode //disabled as it is ony used for /obj/item/storage/box/syndie_kit/xeno_infestation_kit, which is disabled too. Obviosly uncomment this if you want to use the other, or delete this if delete xeno_infestation_kit
+/obj/item/autosurgeon/organ/syndicate/syndie_mantis
+	starting_organ = /obj/item/organ/cyberimp/arm/syndie_mantis
 
-/obj/item/autosurgeon/plasmavessel //Just an autosurgeon with a plasma vessel in it, used in /obj/item/storage/box/syndie_kit/xeno_organ_kit
+/obj/item/autosurgeon/organ/syndicate/syndie_mantis/l
+	starting_organ = /obj/item/organ/cyberimp/arm/syndie_mantis/l
+
+/obj/item/autosurgeon/plasmavessel //Yogs Start: Just an autosurgeon with a plasma vessel in it, used in /obj/item/storage/box/syndie_kit/xeno_organ_kit
 	starting_organ = /obj/item/organ/alien/plasmavessel //Yogs End

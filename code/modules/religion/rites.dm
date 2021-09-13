@@ -60,7 +60,7 @@
 /datum/religion_rites/synthconversion
 	name = "Synthetic Conversion"
 	desc = "Convert a human-esque individual into a (superior) Android."
-	ritual_length = 1 MINUTES
+	ritual_length = 30 SECONDS
 	ritual_invocations = list(
 	"By the inner workings of our god...",
 	"... We call upon you, in the face of adversity...",
@@ -102,6 +102,28 @@
 	human2borg.visible_message("<span class='notice'>[human2borg] has been converted by the rite of [name]!</span>")
 	return TRUE
 
+/datum/religion_rites/machine_blessing
+	name = "Receive Blessing"
+	desc = "Receive a blessing from the machine god to further your ascension."
+	ritual_length = 5 SECONDS
+	ritual_invocations =list( "Let your will power our forges.",
+							"...Help us in our great conquest!")
+	invoke_msg = "The end of flesh is near!"
+	favor_cost = 200	
+
+/datum/religion_rites/machine_blessing/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	..()
+	var/altar_turf = get_turf(religious_tool)
+	var/blessing = pick(
+					/obj/item/organ/cyberimp/arm/surgery,
+					/obj/item/organ/cyberimp/eyes/hud/diagnostic,
+					/obj/item/organ/cyberimp/eyes/hud/medical,
+					/obj/item/organ/cyberimp/mouth/breathing_tube,
+					/obj/item/organ/cyberimp/chest/thrusters,
+					/obj/item/organ/eyes/robotic/glow)
+	new blessing(altar_turf)
+	return TRUE
+
 /datum/religion_rites/botcreation
 	name = "Lesser Robotic Manufacturing"
 	desc = "Manufacture a robotic companion."
@@ -126,7 +148,7 @@
 /datum/religion_rites/toppercent
 	name = "Reaching the Top Percent"
 	desc = "Help a moneybag to get even richer."
-	ritual_length = 1 MINUTES
+	ritual_length = 30 SECONDS
 	ritual_invocations = list("%Money, money, money...",
 						"%... Must be funny...",
 						"%... In the rich man's world...")
@@ -303,7 +325,7 @@
 /datum/religion_rites/plantconversion
 	name = "Ent Conversion"
 	desc = "Convert a human-esque individual into a treelike golem."
-	ritual_length = 1 MINUTES
+	ritual_length = 30 SECONDS
 	ritual_invocations = list(
 	"Let us call upon the vines that protect...",
 	"... Allow them to strip away that which is undesirable...",
@@ -344,3 +366,120 @@
 	human2plant.set_species(/datum/species/golem/wood/holy)
 	human2plant.visible_message("<span class='notice'>[human2plant] has been converted by the rite of [name]!</span>")
 	return TRUE
+
+/datum/religion_rites/photogeist
+	name = "Summon Photogeist"
+	desc = "Summons forth a holy photogeist that can heal fellow plant-like creatures. Note, it will be dormant till a ghost inhabits it, and it only understands Sylvan."
+	ritual_length = 15 SECONDS
+	invoke_msg = "please, great kudzu, give us an angel to watch over us."
+	favor_cost = 150
+
+/datum/religion_rites/photogeist/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	new /obj/effect/mob_spawn/photogeist(altar_turf)
+	return TRUE
+
+/*********Old Ones**********/
+
+/datum/religion_rites/ruinousknife
+	name = "Ruinous Knife"
+	desc = "Creates a knife that is mostly cosmetic, but is also a weapon."
+	ritual_length = 5 SECONDS
+	invoke_msg = "please, old ones, lend us a tool of holy creation."
+	favor_cost = 50
+
+/datum/religion_rites/ruinousknife/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	new /obj/item/kitchen/knife/ritual/holy(altar_turf)
+	playsound(altar_turf, 'sound/magic/enter_blood.ogg', 50, TRUE)
+	return TRUE
+
+/datum/religion_rites/meatbless
+	name = "Meat Blessing"
+	desc = "Bless a piece of meat. Preps it for sacrifice"
+	ritual_length = 2 SECONDS
+	//no invoke message, this does a custom one down below in invoke_effect
+	///the piece of meat that will be blessed, only one per rite
+	var/obj/item/reagent_containers/food/snacks/meat/slab/chosen_meat
+
+/datum/religion_rites/meatbless/perform_rite(mob/living/user, atom/religious_tool)
+	for(var/obj/item/reagent_containers/food/snacks/meat/slab/offering in get_turf(religious_tool))
+		if(istype(offering, /obj/item/reagent_containers/food/snacks/meat/slab/blessed))
+			continue //we ignore anything that is already blessed
+		chosen_meat = offering //the meat has been chosen by our lord and savior
+		return ..()
+	return FALSE
+
+/datum/religion_rites/meatbless/invoke_effect(mob/living/user, atom/religious_tool)
+	if(!QDELETED(chosen_meat) && get_turf(religious_tool) == chosen_meat.loc) //check if the same meat is still there
+		var/altar_turf = get_turf(religious_tool)
+		playsound(get_turf(religious_tool), 'sound/magic/enter_blood.ogg', 50, TRUE)
+		if(istype(chosen_meat, /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat))
+			new /obj/item/reagent_containers/food/snacks/meat/slab/blessed/weak(altar_turf)
+		else
+			new /obj/item/reagent_containers/food/snacks/meat/slab/blessed(altar_turf)
+		qdel(chosen_meat)
+		chosen_meat = null //our lord and savior no longer cares about this meat
+		var/mb_message = pick("old ones, I bless this meat for you!", "old ones, I bless this flesh in your name", "old ones, I empower this flesh in your name.")
+		user.say(mb_message, forced = "ritual") //chooses one of three invoke messages to say in order to avoid auto mute and add variety.
+		return TRUE
+	chosen_meat = null
+	to_chat(user, "<span class='warning'>The meat that was chosen for the rite is no longer on the altar!</span>")
+	return FALSE
+
+/datum/religion_rites/ruinousmetal
+	name = "Ruinous Metal"
+	desc = "Creates a piece of metal that can create various holy structures."
+	ritual_length = 5 SECONDS
+	invoke_msg = "please, old ones, lend us some of your holy material."
+	favor_cost = 150
+
+/datum/religion_rites/ruinousmetal/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	new /obj/item/stack/sheet/ruinous_metal(altar_turf)
+	playsound(altar_turf, 'sound/magic/enter_blood.ogg', 50, TRUE)
+	return TRUE
+
+/datum/religion_rites/bodybless
+	name = "Body Blessing"
+	desc = "Convert a human-esque individual into a being of ruinous metal."
+	ritual_length = 30 SECONDS
+	ritual_invocations = list(
+	"Let us call upon the blessings of the old gods...",
+	"... Show them one that is worthy of greatness...",
+	"... And allow them to bless this one with a great power..."
+	)
+	invoke_msg = "... Become one with the blessings of our gods, arise great one!!"
+	favor_cost = 2000 // 27 slabs of blessed meat/200 blessed synthetic meat, more expensive than working with xenobio.
+
+/datum/religion_rites/bodybless/perform_rite(mob/living/user, atom/religious_tool)
+	if(!ismovable(religious_tool))
+		to_chat(user, "<span class='warning'>This rite requires a religious device that individuals can be buckled to.</span>")
+		return FALSE
+	var/atom/movable/movable_reltool = religious_tool
+	if(!movable_reltool)
+		return FALSE
+	if(!LAZYLEN(movable_reltool.buckled_mobs))
+		. = FALSE
+		if(!movable_reltool.can_buckle) //yes, if you have somehow managed to have someone buckled to something that now cannot buckle, we will still let you perform the rite!
+			to_chat(user, "<span class='warning'>This rite requires a religious device that individuals can be buckled to.</span>")
+			return
+		to_chat(user, "<span class='warning'>This rite requires an individual to be buckled to [movable_reltool].</span>")
+		return
+	return ..()
+
+/datum/religion_rites/bodybless/invoke_effect(mob/living/user, atom/religious_tool)
+	if(!ismovable(religious_tool))
+		CRASH("[name]'s perform_rite had a movable atom that has somehow turned into a non-movable!")
+	var/atom/movable/movable_reltool = religious_tool
+	if(!movable_reltool?.buckled_mobs?.len)
+		return FALSE
+	var/mob/living/carbon/human/human2ruinous
+	for(var/i in movable_reltool.buckled_mobs)
+		if(istype(i,/mob/living/carbon/human))
+			human2ruinous = i
+			break
+	if(!human2ruinous)
+		return FALSE
+	human2ruinous.set_species(/datum/species/golem/ruinous)
+	human2ruinous.visible_message("<span class='notice'>[human2ruinous] has been converted by the rite of [name]!</span>")

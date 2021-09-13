@@ -591,7 +591,8 @@
 /area/maintenance/disposal)
 "aaO" = (
 /obj/machinery/door/airlock/silver{
-	name = "Bathroom"
+	name = "Bathroom";
+	req_access_txt = "20"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -2455,18 +2456,6 @@
 "adH" = (
 /turf/closed/wall,
 /area/crew_quarters/heads/captain/private)
-"adI" = (
-/obj/structure/cable/white{
-	icon_state = "2-4"
-	},
-/obj/machinery/camera{
-	c_tag = "Bridge - Captain's Quarters";
-	dir = 4;
-	name = "command camera"
-	},
-/obj/machinery/vending/autodrobe/capdrobe,
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain/private)
 "adJ" = (
 /obj/structure/cable/white{
 	icon_state = "2-4"
@@ -3696,15 +3685,9 @@
 	},
 /area/crew_quarters/heads/captain/private)
 "afp" = (
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/storage/toolbox/electrical,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/structure/table,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -3713,7 +3696,7 @@
 	dir = 1;
 	pixel_y = -26
 	},
-/obj/item/flashlight/flare/signal,
+/obj/machinery/space_heater,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "afq" = (
@@ -20353,7 +20336,7 @@
 	},
 /obj/structure/table/wood,
 /obj/item/phone/real,
-/obj/structure/fireaxecabinet/spare{
+/obj/structure/fireaxecabinet/bridge/spare{
 	pixel_x = 32
 	},
 /turf/open/floor/wood,
@@ -26558,7 +26541,7 @@
 /obj/structure/cable/white{
 	icon_state = "1-8"
 	},
-/obj/structure/fireaxecabinet{
+/obj/structure/fireaxecabinet/bridge{
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -30806,6 +30789,17 @@
 /obj/machinery/disposal/bin,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"iWq" = (
+/obj/structure/cable/white{
+	icon_state = "2-4"
+	},
+/obj/machinery/vending/autodrobe/capdrobe,
+/obj/machinery/camera/motion{
+	c_tag = "Armory External";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "iWN" = (
 /obj/machinery/light{
 	dir = 1
@@ -41617,6 +41611,13 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/item/flashlight/flare/signal,
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 10
+	},
+/obj/item/storage/toolbox/electrical{
+	pixel_y = 9
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -85879,7 +85880,7 @@ aad
 abw
 abZ
 aaP
-adI
+iWq
 aef
 afl
 afZ

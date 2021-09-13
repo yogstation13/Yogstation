@@ -1,7 +1,7 @@
 /datum/surgery/advanced/bioware/ligament_reinforcement
 	name = "Ligament Reinforcement"
 	desc = "A surgical procedure which adds a protective tissue and bone cage around the connections between the torso and limbs, preventing dismemberment. \
-	However, the nerve connections as a result are more easily interrupted, making it easier to disable limbs with damage."
+	However, the nerve connections as a result are more easily interrupted, making it easier to wound limbs with damage."
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/clamp_bleeders,
@@ -37,9 +37,9 @@
 /datum/bioware/reinforced_ligaments/on_gain()
 	..()
 	ADD_TRAIT(owner, TRAIT_NODISMEMBER, "reinforced_ligaments")
-	ADD_TRAIT(owner, TRAIT_EASYLIMBDISABLE, "reinforced_ligaments")
+	ADD_TRAIT(owner, TRAIT_EASILY_WOUNDED, "reinforced_ligaments")
 
 /datum/bioware/reinforced_ligaments/on_lose()
 	..()
 	REMOVE_TRAIT(owner, TRAIT_NODISMEMBER, "reinforced_ligaments")
-	REMOVE_TRAIT(owner, TRAIT_EASYLIMBDISABLE, "reinforced_ligaments")
+	REMOVE_TRAIT(owner, TRAIT_EASILY_WOUNDED, "reinforced_ligaments")

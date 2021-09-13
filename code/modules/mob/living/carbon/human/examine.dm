@@ -129,21 +129,26 @@
 	var/list/missing = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	var/list/disabled = list()
 	for(var/X in bodyparts)
-		var/obj/item/bodypart/BP = X
-		if(BP.disabled)
-			disabled += BP
-		missing -= BP.body_zone
-		for(var/obj/item/I in BP.embedded_objects)
-			msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]!</B>\n"
+		var/obj/item/bodypart/body_part = X
+		if(body_part.bodypart_disabled)
+			disabled += body_part
+		missing -= body_part.body_zone
+		for(var/obj/item/I in body_part.embedded_objects)
+			msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [body_part.name]!</B>\n"
+		for(var/i in body_part.wounds)
+			var/datum/wound/iter_wound = i
+			msg += "[iter_wound.get_examine_description(user)]\n"
 
 	for(var/X in disabled)
-		var/obj/item/bodypart/BP = X
+		var/obj/item/bodypart/body_part = X
 		var/damage_text
-		if(!(BP.get_damage(include_stamina = FALSE) >= BP.max_damage)) //Stamina is disabling the limb
+		if(HAS_TRAIT(body_part, TRAIT_DISABLED_BY_WOUND))
+			continue // skip if it's disabled by a wound (cuz we'll be able to see the bone sticking out!)
+		if(!(body_part.get_damage(include_stamina = FALSE) >= body_part.max_damage)) //we don't care if it's stamcritted
 			damage_text = "limp and lifeless"
 		else
-			damage_text = (BP.brute_dam >= BP.burn_dam) ? BP.heavy_brute_msg : BP.heavy_burn_msg
-		msg += "<B>[capitalize(t_his)] [BP.name] is [damage_text]!</B>\n"
+			damage_text = (body_part.brute_dam >= body_part.burn_dam) ? body_part.heavy_brute_msg : body_part.heavy_burn_msg
+		msg += "<B>[capitalize(t_his)] [body_part.name] is [damage_text]!</B>\n"
 
 	//stores missing limbs
 	var/l_limbs_missing = 0
@@ -220,16 +225,53 @@
 		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
 			msg += "[t_He] look[p_s()] extremely disgusted.\n"
 
-	if(blood_volume < BLOOD_VOLUME_SAFE(src))
-		msg += "[t_He] [t_has] pale skin.\n"
+	switch(get_blood_state())
+		if(BLOOD_OKAY)
+			msg += "[t_He] [t_has] pale skin.\n"
+		if(BLOOD_BAD)
+			msg += "<b>[t_He] look[p_s()] like pale death.</b>\n"
+		if(BLOOD_DEAD to BLOOD_SURVIVE)
+			msg += "<span class='deadsay'><b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b></span>\n"
 
 	if(bleedsuppress)
-		msg += "[t_He] [t_is] bandaged with something.\n"
-	else if(bleed_rate)
-		if(reagents.has_reagent(/datum/reagent/toxin/heparin, needs_metabolizing = TRUE))
-			msg += "<b>[t_He] [t_is] bleeding uncontrollably!</b>\n"
+		msg += "[t_He] [t_is] embued with a power that defies bleeding.\n" // only statues and highlander sword can cause this so whatever
+	else if(is_bleeding())
+		var/list/obj/item/bodypart/bleeding_limbs = list()
+		var/list/obj/item/bodypart/grasped_limbs = list()
+
+		for(var/i in bodyparts)
+			var/obj/item/bodypart/body_part = i
+			if(body_part.get_bleed_rate())
+				bleeding_limbs += body_part
+			if(body_part.grasped_by)
+				grasped_limbs += body_part
+
+		var/num_bleeds = LAZYLEN(bleeding_limbs)
+		var/list/bleed_text
+		if(appears_dead)
+			bleed_text = list("<span class='deadsay'><B>Blood is visible in [t_his] open")
 		else
-			msg += "<B>[t_He] [t_is] bleeding!</B>\n"
+			bleed_text = list("<B>[t_He] [t_is] bleeding from [t_his]")
+		switch(num_bleeds)
+			if(1 to 2)
+				bleed_text += " [bleeding_limbs[1].name][num_bleeds == 2 ? " and [bleeding_limbs[2].name]" : ""]"
+			if(3 to INFINITY)
+				for(var/i in 1 to (num_bleeds - 1))
+					var/obj/item/bodypart/body_part = bleeding_limbs[i]
+					bleed_text += " [body_part.name],"
+				bleed_text += " and [bleeding_limbs[num_bleeds].name]"
+		if(appears_dead)
+			bleed_text += ", but it has pooled and is not flowing.</span></B>\n"
+		else
+			if(reagents.has_reagent(/datum/reagent/toxin/heparin, needs_metabolizing = TRUE))
+				bleed_text += " incredibly quickly"
+
+			bleed_text += "!</B>\n"
+		msg += bleed_text.Join()
+
+		for(var/i in grasped_limbs)
+			var/obj/item/bodypart/grasped_part = i
+			bleed_text += "[t_He] [t_is] holding [t_his] [grasped_part.name] to slow the bleeding!\n"
 
 	if(reagents.has_reagent(/datum/reagent/teslium, needs_metabolizing = TRUE))
 		msg += "[t_He] [t_is] emitting a gentle blue glow!\n"
@@ -296,6 +338,22 @@
 
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
+
+	var/scar_severity = 0
+	for(var/i in all_scars)
+		var/datum/scar/S = i
+		if(S.is_visible(user))
+			scar_severity += S.severity
+
+	switch(scar_severity)
+		if(1 to 4)
+			msg += "<span class='tinynoticeital'>[t_He] [t_has] visible scarring, you can look again to take a closer look...</span>\n"
+		if(5 to 8)
+			msg += "<span class='smallnoticeital'>[t_He] [t_has] several bad scars, you can look again to take a closer look...</span>\n"
+		if(9 to 11)
+			msg += "<span class='notice'><i>[t_He] [t_has] significantly disfiguring scarring, you can look again to take a closer look...</i></span>\n"
+		if(12 to INFINITY)
+			msg += "<span class='notice'><b><i>[t_He] [t_is] just absolutely fucked up, you can look again to take a closer look...</i></b></span>\n"
 
 	if (length(msg))
 		. += "<span class='warning'>[msg.Join("")]</span>"

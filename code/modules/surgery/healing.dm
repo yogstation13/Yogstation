@@ -20,9 +20,9 @@
 
 /datum/surgery_step/heal
 	name = "repair body"
-	implements = list(/obj/item/hemostat = 100, TOOL_SCREWDRIVER = 65, /obj/item/pen = 55)
+	implements = list(TOOL_HEMOSTAT = 100, TOOL_SCREWDRIVER = 65, /obj/item/pen = 55)
 	repeatable = TRUE
-	time = 25
+	time = 2 SECONDS
 	fuckup_damage = 0
 	var/brutehealing = 0
 	var/burnhealing = 0
@@ -97,7 +97,7 @@
 		urdamageamt_brute += round((target.getBruteLoss()/ (missinghpbonus*2)),0.1)
 		urdamageamt_burn += round((target.getFireLoss()/ (missinghpbonus*2)),0.1)
 
-	target.take_bodypart_damage(urdamageamt_brute, urdamageamt_burn)
+	target.take_bodypart_damage(urdamageamt_brute, urdamageamt_burn, wound_bonus=CANT_WOUND)
 	return FALSE
 
 /***************************BRUTE***************************/
@@ -158,11 +158,11 @@
 	missinghpbonus = 15
 
 /datum/surgery_step/heal/brute/upgraded
-	brutehealing = 5
+	brutehealing = 7.5
 	missinghpbonus = 10
 
 /datum/surgery_step/heal/brute/upgraded/femto
-	brutehealing = 5
+	brutehealing = 10
 	missinghpbonus = 5
 
 /***************************BURN***************************/
@@ -223,11 +223,11 @@
 	missinghpbonus = 15
 
 /datum/surgery_step/heal/burn/upgraded
-	burnhealing = 5
+	burnhealing = 7.5
 	missinghpbonus = 10
 
 /datum/surgery_step/heal/burn/upgraded/femto
-	burnhealing = 5
+	burnhealing = 10
 	missinghpbonus = 5
 
 /***************************COMBO***************************/
@@ -291,7 +291,7 @@
 	brutehealing = 3
 	burnhealing = 3
 	missinghpbonus = 15
-	time = 10
+	time = 1 SECONDS
 
 /datum/surgery_step/heal/combo/upgraded
 	brutehealing = 3

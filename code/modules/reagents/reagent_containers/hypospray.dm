@@ -69,7 +69,9 @@
 				log_game("[user.real_name] ([user.ckey]) injected [M.real_name] ([M.ckey]) with [viruslist]")
 // yogs end
 /obj/item/reagent_containers/hypospray/CMO
-	list_reagents = list(/datum/reagent/medicine/omnizine = 30)
+	list_reagents = list(/datum/reagent/medicine/c2/libital = 10,
+						/datum/reagent/medicine/c2/aiuri = 10,
+						/datum/reagent/medicine/salbutamol = 10)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/reagent_containers/hypospray/combat
@@ -103,12 +105,12 @@
 	item_state = "medipen"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	amount_per_transfer_from_this = 13
-	volume = 13
+	amount_per_transfer_from_this = 15
+	volume = 15
 	ignore_flags = 1 //so you can medipen through hardsuits
 	reagent_flags = DRAWABLE
 	flags_1 = null
-	list_reagents = list(/datum/reagent/medicine/epinephrine = 10, /datum/reagent/toxin/formaldehyde = 3)
+	list_reagents = list(/datum/reagent/medicine/epinephrine = 10, /datum/reagent/toxin/formaldehyde = 3, /datum/reagent/medicine/coagulant = 2)
 	custom_price = 40
 
 /obj/item/reagent_containers/hypospray/medipen/suicide_act(mob/living/carbon/user)
@@ -206,6 +208,20 @@
 	amount_per_transfer_from_this = 15
 	list_reagents = list(/datum/reagent/drug/pumpup = 15)
 	icon_state = "maintenance"
+
+/obj/item/reagent_containers/hypospray/medipen/ekit
+	name = "emergency first-aid autoinjector"
+	desc = "An epinephrine medipen with extra coagulant and antibiotics to help stabilize bad cuts and burns."
+	volume = 15
+	amount_per_transfer_from_this = 15
+	list_reagents = list(/datum/reagent/medicine/epinephrine = 12, /datum/reagent/medicine/coagulant = 2.5, /datum/reagent/medicine/spaceacillin = 0.5)
+
+/obj/item/reagent_containers/hypospray/medipen/blood_loss
+	name = "hypovolemic-response autoinjector"
+	desc = "A medipen designed to stabilize and rapidly reverse severe bloodloss."
+	volume = 15
+	amount_per_transfer_from_this = 15
+	list_reagents = list(/datum/reagent/medicine/epinephrine = 5, /datum/reagent/medicine/coagulant = 2.5, /datum/reagent/iron = 3.5, /datum/reagent/medicine/salglu_solution = 4)
 
 /*/obj/item/reagent_containers/hypospray/medipen/snail
 	name = "snail shot"
