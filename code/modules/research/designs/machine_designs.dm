@@ -26,6 +26,14 @@
 	category = list ("Shuttle Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 	
+/datum/design/board/spaceship_navigation_beacon
+	name = "Machine Design (Bluespace Navigation Gigabeacon)"
+	desc = "The circuit board for a Bluespace Navigation Gigabeacon."
+	id = "spaceship_navigation_beacon"
+	build_path = /obj/item/circuitboard/machine/spaceship_navigation_beacon
+	category = list ("Teleportation Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+	
 /datum/design/board/smes
 	name = "Machine Design (SMES Board)"
 	desc = "The circuit board for an SMES."
