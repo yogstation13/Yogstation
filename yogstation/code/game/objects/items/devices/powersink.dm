@@ -2,7 +2,7 @@ GLOBAL_VAR_INIT(powersink_transmitted, 0)
 
 /obj/item/powersink/examine(mob/user)
 	. = ..()
-	. += "The power dial reads [DisplayEnergy(power_drained)] out of [DisplayEnergy(max_power)]."
+	. += "The power dial reads [DisplayPower(power_drained)] out of [DisplayPower(max_power)]."
 
 /obj/item/powersink/process()
 	if(!attached)
