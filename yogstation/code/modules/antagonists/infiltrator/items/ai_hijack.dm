@@ -4,6 +4,11 @@
 	icon = 'yogstation/icons/obj/module.dmi'
 	icon_state = "ai_hijack"
 
+/obj/item/ai_hijack_device/examine(mob/living/user)
+	. = ..()
+	if (user?.mind.?.has_antag_datum(/datum/antagonist/infiltrator))
+		. += "<span class='notice'>To use, attach to the core of an AI unit and wait. <i>This will alert the victim AI!</i></span>"
+
 /obj/item/ai_hijack_device/afterattack(atom/O, mob/user, proximity)
 	if(isAI(O))
 		var/mob/living/silicon/ai/A = O
