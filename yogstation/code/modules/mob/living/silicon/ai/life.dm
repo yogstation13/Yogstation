@@ -7,6 +7,7 @@
 		if(world.time >= hijack_start+HIJACK_TIME && mind)
 			mind.add_antag_datum(ANTAG_DATUM_HIJACKEDAI)
 			message_admins("[ADMIN_LOOKUPFLW(src)] has been hijacked!")
+			icon_state = "ai-red"
 			QDEL_NULL(hijacking)
 			cut_overlays()
 
