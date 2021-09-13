@@ -450,11 +450,11 @@
 	flags_cover = HEADCOVERSEYES
 
 /obj/item/clothing/head/helmet/stormtrooper/equipped(mob/living/user)
-	ADD_TRAIT(TRAIT_POOR_AIM, CLOTHING_TRAIT)
+	ADD_TRAIT(user, TRAIT_POOR_AIM, CLOTHING_TRAIT)
 	..()
 
 /obj/item/clothing/head/helmet/stormtrooper/dropped(mob/living/user)
-	REMOVE_TRAIT(TRAIT_POOR_AIM, CLOTHING_TRAIT)
+	REMOVE_TRAIT(user, TRAIT_POOR_AIM, CLOTHING_TRAIT)
 	..()
 
 /obj/item/clothing/head/helmet/shaman
