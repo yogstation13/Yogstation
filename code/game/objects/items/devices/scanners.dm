@@ -95,16 +95,18 @@ GENE SCANNER
 	return BRUTELOSS
 
 /obj/item/healthanalyzer/attack_self(mob/user)
-	if(!scanmode)
-		to_chat(user, "<span class='notice'>You switch the health analyzer to scan chemical contents.</span>")
-		scanmode = 1
-	else
-		to_chat(user, "<span class='notice'>You switch the health analyzer to check physical health.</span>")
-		scanmode = 0
+	if(do_after(user, required_skill = SKILL_MEDICINE, required_skill_level = SKILLLEVEL_BASIC, skill_delay_scaling = list(SKILLLEVEL_UNSKILLED = 10, SKILLLEVEL_BASIC = 10, SKILLLEVEL_TRAINED = 5, SKILLLEVEL_EXPERIENCED = 0, SKILLLEVEL_MASTER = 0)))
+		if(!scanmode)
+			to_chat(user, "<span class='notice'>You switch the health analyzer to scan chemical contents.</span>")
+			scanmode = 1
+		else
+			to_chat(user, "<span class='notice'>You switch the health analyzer to check physical health.</span>")
+			scanmode = 0
 
 /obj/item/healthanalyzer/attack(mob/living/M, mob/living/carbon/human/user)
 	flick("[icon_state]-scan", src)	//makes it so that it plays the scan animation upon scanning, including clumsy scanning
-
+	if(!do_after(user, target = M, required_skill = SKILL_MEDICINE, required_skill_level = SKILLLEVEL_BASIC, skill_delay_scaling = list(SKILLLEVEL_UNSKILLED = 10, SKILLLEVEL_BASIC = 10, SKILLLEVEL_TRAINED = 5, SKILLLEVEL_EXPERIENCED = 0, SKILLLEVEL_MASTER = 0)))
+		return
 	// Clumsiness/brain damage check
 	if ((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(50))
 		to_chat(user, "<span class='notice'>You stupidly try to analyze the floor's vitals!</span>")
@@ -252,9 +254,27 @@ GENE SCANNER
 		var/mob/living/carbon/C = M
 		var/list/damaged = C.get_damaged_bodyparts(1,1)
 		if(length(damaged)>0 || oxy_loss>0 || tox_loss>0 || fire_loss>0)
-			to_chat(user, "<span class='info'>\tDamage: <span class='info'><font color='red'>Brute</font></span>-<font color='#FF8000'>Burn</font>-<font color='green'>Toxin</font>-<font color='blue'>Suffocation</font>\n\t\tSpecifics: <font color='red'>[brute_loss]</font>-<font color='#FF8000'>[fire_loss]</font>-<font color='green'>[tox_loss]</font>-<font color='blue'>[oxy_loss]</font></span>")
-			for(var/obj/item/bodypart/org in damaged)
-				to_chat(user, "\t\t<span class='info'>[capitalize(org.name)]: [(org.brute_dam > 0) ? "<font color='red'>[org.brute_dam]</font></span>" : "<font color='red'>0</font>"]-[(org.burn_dam > 0) ? "<font color='#FF8000'>[org.burn_dam]</font>" : "<font color='#FF8000'>0</font>"]")
+			var/list/dmgreport = list()
+			dmgreport += "<table style='margin-left:3em'><tr><font face='Verdana'>\
+							<td style='width:7em;'><font color='#0000CC'>Damage:</font></td>\
+							<td style='width:5em;'><font color='red'><b>Brute</b></font></td>\
+							<td style='width:4em;'><font color='orange'><b>Burn</b></font></td>\
+							<td style='width:4em;'><font color='green'><b>Toxin</b></font></td>\
+							<td style='width:8em;'><font color='purple'><b>Suffocation</b></font></td></tr>\
+
+							<tr><td><font color='#0000CC'>Overall:</font></td>\
+							<td><font color='red'>[round(brute_loss,1)]</font></td>\
+							<td><font color='orange'>[round(fire_loss,1)]</font></td>\
+							<td><font color='green'>[round(tox_loss,1)]</font></td>\
+							<td><font color='purple'>[round(oxy_loss,1)]</font></td></tr>"
+
+			for(var/o in damaged)
+				var/obj/item/bodypart/org = o //head, left arm, right arm, etc.
+				dmgreport += "<tr><td><font color='#0000CC'>[capitalize(org.name)]:</font></td>\
+								<td><font color='red'>[(org.brute_dam > 0) ? "[round(org.brute_dam,1)]" : "0"]</font></td>\
+								<td><font color='orange'>[(org.burn_dam > 0) ? "[round(org.burn_dam,1)]" : "0"]</font></td></tr>"
+			dmgreport += "</font></table>"
+			to_chat(user, dmgreport.Join())
 
 	//Organ damages report
 	if(ishuman(M))
@@ -821,3 +841,5 @@ GENE SCANNER
 		return  "[HM.name] ([HM.alias])"
 	else
 		return HM.alias
+
+//Yogs: Appraiser, a device that allows you to see the skills of a mob

@@ -92,6 +92,16 @@
 	var/datum/language_holder/H = M.get_language_holder()
 	H.open_language_menu(usr)
 
+/obj/screen/skill_menu
+	name = "skill menu"
+	icon = 'icons/mob/screen_midnight.dmi'
+	icon_state = "skills"
+	screen_loc = ui_skill_menu
+
+/obj/screen/skill_menu/Click()
+	var/datum/skillset/S = find_skillset(usr)
+	S.open_skill_menu(usr)
+
 /obj/screen/ghost/pai
 	name = "pAI Candidate"
 	icon = 'icons/mob/screen_midnight.dmi'

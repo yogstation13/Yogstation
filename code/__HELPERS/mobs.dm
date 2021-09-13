@@ -266,10 +266,48 @@ GLOBAL_LIST_EMPTY(species_list)
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null, stayStill = TRUE)
+/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null, stayStill = TRUE, required_skill = null, required_skill_level = SKILLLEVEL_UNSKILLED, var/list/skill_delay_scaling = list())
 	if(!user)
 		return 0
 	var/atom/Tloc = null
+	if(required_skill != null)
+		var/user_skill = find_skill_level(user, required_skill)
+		if(SKILL_CHECK(user, required_skill, required_skill_level))
+			if(skill_delay_scaling.len > 0)
+				var/skill_delay = skill_delay_scaling[user_skill]
+				if(skill_delay > 0)
+					switch(required_skill)
+						if(SKILL_STRENGHT)
+							to_chat(user,"<span class='notice'> You struggle as you are not strong enough.")
+						if(SKILL_DEXTERITY)
+							to_chat(user,"<span class='notice'> You struggle as you are not dexterous enough.")
+						if(SKILL_ENDURANCE)
+							to_chat(user,"<span class='notice'> You struggle as you are not resilient enough.")
+						else
+							to_chat(user,"<span class='notice'> You struggle as you lack the knowledge in [required_skill].")
+				else if(skill_delay < 0)
+					switch(required_skill)
+						if(SKILL_STRENGHT)
+							to_chat(user,"<span class='notice'> You quickly preform the task due to your strength.")
+						if(SKILL_DEXTERITY)
+							to_chat(user,"<span class='notice'> You quickly preform the task due to your strength.")
+						if(SKILL_ENDURANCE)
+							to_chat(user,"<span class='notice'> You quickly preform the task due to your strength.")
+						else
+							to_chat(user,"<span class='notice'> You quickly preform the task due to your knowledge in [required_skill].")
+				delay += skill_delay
+		else
+			switch(required_skill)
+				if(SKILL_STRENGHT)
+					to_chat(user,"<span class='notice'> You are incapable of doing this as you are not strong enough.")
+				if(SKILL_DEXTERITY)
+					to_chat(user,"<span class='notice'> You are incapable of doing this as you are not dexterous enough.")
+				if(SKILL_ENDURANCE)
+					to_chat(user,"<span class='notice'> You are incapable of doing this as you are not resilient enough.")
+				else
+					to_chat(user,"<span class='notice'> You dont know how to do this as you lack the knowledge in [required_skill].")
+			return 0
+
 	if(target && !isturf(target))
 		Tloc = target.loc
 

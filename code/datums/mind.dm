@@ -68,6 +68,7 @@
 
 	var/force_escaped = FALSE  // Set by Into The Sunset command of the shuttle manipulator
 
+	var/datum/skillset/skillset
 	var/list/learned_recipes //List of learned recipe TYPES.
 
 	var/flavour_text = null
@@ -92,6 +93,12 @@
 		language_holder = new (src)
 
 	return language_holder
+
+/datum/mind/proc/get_skillset()
+	if(!skillset)
+		skillset = new (src)
+
+	return skillset
 
 /datum/mind/proc/transfer_to(mob/new_character, var/force_key_move = 0)
 	var/mood_was_enabled = FALSE//Yogs -- Mood Preferences
