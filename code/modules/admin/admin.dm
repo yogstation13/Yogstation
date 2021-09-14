@@ -761,6 +761,9 @@
 	set desc = "Edit mobs's memory and role"
 	set name = "Show Traitor Panel"
 
+	if(!check_rights(R_ADMIN))
+		return
+
 	if(!istype(M))
 		to_chat(usr, "This can only be used on instances of type /mob", confidential=TRUE)
 		return
@@ -903,6 +906,23 @@
 	set name = "Create or modify area"
 	create_area(usr)
 
+/datum/admins/proc/observe_follow(atom/movable/AM)
+	if(!isobserver(owner.mob) && !check_rights(R_ADMIN))
+		return
+	var/can_ghost = TRUE
+	if(!isobserver(owner.mob))
+		can_ghost = owner.admin_ghost()
+
+	if(!can_ghost)
+		return
+	var/mob/dead/observer/A = owner.mob
+	var/mob/living/silicon/ai/I = AM //yogs start - adminfollow now follows AI eyes instead of the core
+	if(istype(I) && I.eyeobj)
+		A.ManualFollow(I.eyeobj)
+	else
+		A.ManualFollow(AM) //yogs stop - adminfollow now follows AI eyes instead of the core
+
+
 //
 //
 //ALL DONE
@@ -962,6 +982,62 @@
 
 	return 1
 
+/datum/admins/proc/adminmoreinfo(mob/M)
+	if(!ismob(M))
+		to_chat(usr, "This can only be used on instances of type /mob.", confidential=TRUE)
+		return
+
+	var/location_description = ""
+	var/special_role_description = ""
+	var/health_description = ""
+	var/gender_description = ""
+	var/turf/T = get_turf(M)
+
+	//Location
+	if(isturf(T))
+		if(isarea(T.loc))
+			location_description = "([M.loc == T ? "at coordinates " : "in [M.loc] at coordinates "] [T.x], [T.y], [T.z] in area <b>[T.loc]</b>)"
+		else
+			location_description = "([M.loc == T ? "at coordinates " : "in [M.loc] at coordinates "] [T.x], [T.y], [T.z])"
+
+	//Job + antagonist
+	if(M.mind)
+		special_role_description = "Role: <b>[M.mind.assigned_role]</b>; Antagonist: <font color='red'><b>[M.mind.special_role]</b></font>"
+	else
+		special_role_description = "Role: <i>Mind datum missing</i> Antagonist: <i>Mind datum missing</i>"
+
+	//Health
+	if(isliving(M))
+		var/mob/living/L = M
+		var/status
+		switch (M.stat)
+			if(CONSCIOUS)
+				status = "Alive"
+			if(SOFT_CRIT)
+				status = "<font color='orange'><b>Dying</b></font>"
+			if(UNCONSCIOUS)
+				status = "<font color='orange'><b>[L.InCritical() ? "Unconscious and Dying" : "Unconscious"]</b></font>"
+			if(DEAD)
+				status = "<font color='red'><b>Dead</b></font>"
+		health_description = "Status = [status]"
+		health_description += "<BR>Oxy: [L.getOxyLoss()] - Tox: [L.getToxLoss()] - Fire: [L.getFireLoss()] - Brute: [L.getBruteLoss()] - Clone: [L.getCloneLoss()] - Brain: [L.getOrganLoss(ORGAN_SLOT_BRAIN)] - Stamina: [L.getStaminaLoss()]"
+	else
+		health_description = "This mob type has no health to speak of."
+
+	//Gender
+	switch(M.gender)
+		if(MALE,FEMALE)
+			gender_description = "[M.gender]"
+		else
+			gender_description = "<font color='red'><b>[M.gender]</b></font>"
+
+	to_chat(src.owner, "<b>Info about [M.name]:</b> ", confidential=TRUE)
+	to_chat(src.owner, "Mob type = [M.type]; Gender = [gender_description] Damage = [health_description]", confidential=TRUE)
+	to_chat(src.owner, "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind?"[M.mind.name]":""]; Key = <b>[M.key]</b>;", confidential=TRUE)
+	to_chat(src.owner, "Location = [location_description];", confidential=TRUE)
+	to_chat(src.owner, "[special_role_description]", confidential=TRUE)
+	to_chat(src.owner, ADMIN_FULLMONTY_NONAME(M), confidential=TRUE)
+
 /client/proc/adminGreet(logout)
 	if(SSticker.HasRoundStarted())
 		var/string
@@ -973,36 +1049,3 @@
 				"Admin login: [key_name(src)]")
 		if(string)
 			message_admins("[string]")
-
-/client/proc/cmd_admin_man_up(mob/M in GLOB.mob_list)
-	set category = "Misc"
-	set name = "Man Up"
-
-	if(!M)
-		return
-	if(!check_rights(R_FUN))
-		return
-
-	to_chat(M, "<span class='warning bold reallybig'>Man up, and deal with it.</span><br><span class='warning big'>Move on.</span>")
-	M.playsound_local(M, 'sound/misc/manup.ogg', 50, FALSE, pressure_affected = FALSE)
-
-	log_admin("Man up: [key_name(usr)] told [key_name(M)] to man up")
-	var/message = "<span class='adminnotice'>[key_name_admin(usr)] told [key_name_admin(M)] to man up.</span>"
-	message_admins(message)
-	admin_ticket_log(M, message)
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Man Up")
-
-/client/proc/cmd_admin_man_up_global()
-	set category = "Misc"
-	set name = "Man Up Global"
-
-	if(!check_rights(R_FUN))
-		return
-
-	to_chat(world, "<span class='warning bold reallybig'>Man up, and deal with it.</span><br><span class='warning big'>Move on.</span>")
-	for(var/mob/M in GLOB.player_list)
-		M.playsound_local(M, 'sound/misc/manup.ogg', 50, FALSE, pressure_affected = FALSE)
-
-	log_admin("Man up global: [key_name(usr)] told everybody to man up")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] told everybody to man up.</span>")
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Man Up Global")

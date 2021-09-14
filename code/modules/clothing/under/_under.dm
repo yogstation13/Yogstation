@@ -4,7 +4,8 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	permeability_coefficient = 0.9
 	slot_flags = ITEM_SLOT_ICLOTHING
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "wound" = 5)
+	limb_integrity = 30
 	var/fitted = FEMALE_UNIFORM_FULL // For use in alternate clothing styles for women
 	var/has_sensor = HAS_SENSORS // For the crew computer
 	var/random_sensor = TRUE
@@ -18,9 +19,6 @@
 	var/freshly_laundered = FALSE
 	var/dodgy_colours = FALSE
 	tearable = TRUE //all jumpsuits can be torn down and used for cloth in an emergency | yogs
-	
-	var/digiversion = FALSE //Yogs Start: Does this peice of clothing have a digitigrade alt? It should have _l at the end or things will break
-	var/digiadjusted = FALSE //Yogs End: Does this peice of clothing have an adjusted digitigrade alt? It should have _d_l at the end or things will break
 
 /obj/item/clothing/under/worn_overlays(isinhands = FALSE)
 	. = list()
@@ -42,19 +40,26 @@
 	if(!attach_accessory(I, user))
 		return ..()
 
-/obj/item/clothing/under/update_clothes_damaged_state(damaging = TRUE)
+/obj/item/clothing/under/update_clothes_damaged_state(damaged_state = CLOTHING_DAMAGED)
 	..()
 	if(ismob(loc))
 		var/mob/M = loc
 		M.update_inv_w_uniform()
-	if(has_sensor > NO_SENSORS)
+	if(damaged_state == CLOTHING_SHREDDED && has_sensor > NO_SENSORS)
 		has_sensor = BROKEN_SENSORS
+	else if(damaged_state == CLOTHING_PRISTINE && has_sensor == BROKEN_SENSORS)
+		has_sensor = HAS_SENSORS
 
 /obj/item/clothing/under/Initialize()
 	. = ..()
 	if(random_sensor)
 		//make the sensor mode favor higher levels, except coords.
 		sensor_mode = pick(SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS, SENSOR_COORDS)
+
+/obj/item/clothing/under/Destroy()
+	if(attached_accessory)
+		remove_accessory(loc, TRUE)
+	return ..()
 
 /obj/item/clothing/under/emp_act()
 	. = ..()
@@ -80,18 +85,18 @@
 		return
 	var/mob/living/carbon/human/H = user
 	
-	if(mutantrace_variation || digiversion || digiadjusted)
+	if(mutantrace_variation == MUTANTRACE_VARIATION)
 		var/is_digi = FALSE
 		if(DIGITIGRADE in H.dna.species.species_traits)
 			is_digi = TRUE
 		
-		if((is_digi && !adjusted == ALT_STYLE) && (mutantrace_variation || digiversion))
+		if(is_digi && !adjusted == ALT_STYLE && mutantrace_variation)
 			adjusted = DIGITIGRADE_STYLE
-		else if(is_digi && adjusted == ALT_STYLE && digiadjusted) //Handles when you are using an alternate style while having digi legs
+		else if(is_digi && adjusted == ALT_STYLE && mutantrace_variation) //Handles when you are using an alternate style while having digi legs
 			adjusted = DIGIALT_STYLE
-		else if(!(is_digi) && adjusted == DIGITIGRADE_STYLE)
+		else if(!is_digi && adjusted == DIGITIGRADE_STYLE)
 			adjusted = NORMAL_STYLE
-		else if(!(is_digi) && adjusted == DIGIALT_STYLE)
+		else if(!is_digi && adjusted == DIGIALT_STYLE)
 			adjusted = ALT_STYLE
 		H.update_inv_w_uniform()
 //Yogs End
@@ -107,7 +112,6 @@
 			var/mob/living/carbon/human/H = user
 			if(attached_accessory.above_suit)
 				H.update_inv_wear_suit()
-
 	..()
 
 /obj/item/clothing/under/proc/attach_accessory(obj/item/I, mob/user, notifyAttach = 1)
@@ -144,20 +148,21 @@
 
 			return TRUE
 
-/obj/item/clothing/under/proc/remove_accessory(mob/user)
-	if(!isliving(user))
+/obj/item/clothing/under/proc/remove_accessory(mob/user, forced)
+	if(!isliving(user) && !forced)
 		return
-	if(!can_use(user))
+	if(!can_use(user) && !forced)
 		return
 
 	if(attached_accessory)
 		var/obj/item/clothing/accessory/A = attached_accessory
 		attached_accessory.detach(src, user)
-		if(user.put_in_hands(A))
+		if(user.put_in_hands(A) && !forced)
 			to_chat(user, "<span class='notice'>You detach [A] from [src].</span>")
 		else
 			to_chat(user, "<span class='notice'>You detach [A] from [src] and it falls on the floor.</span>")
-
+			A.forceMove(get_turf(src))
+		
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
 			H.update_inv_w_uniform()

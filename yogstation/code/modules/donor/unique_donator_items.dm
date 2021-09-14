@@ -123,7 +123,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/azeelium
 	name = "Utatul-Azeel plushie"
 	ckey = "Anvilman6"
-	unlock_path = /obj/item/toy/plush/lizard/azeel
+	unlock_path = /obj/item/toy/plush/lizard/azeel/snowflake
 
 /datum/donator_gear/mqiib
 	name = "Singularity Necklace"
@@ -552,6 +552,9 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/narplush
 	name = "Nar'Sie plushie"
 	unlock_path = /obj/item/toy/plush/narplush
+/datum/donator_gear/blahajplush
+	name = "Shark plushie"
+	unlock_path = /obj/item/toy/plush/blahaj
 /datum/donator_gear/sword0
 	name = "toy sword"
 	unlock_path = /obj/item/toy/sword

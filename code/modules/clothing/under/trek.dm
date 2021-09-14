@@ -3,8 +3,7 @@
 
 /obj/item/clothing/under/trek
 	can_adjust = FALSE
-	mutantrace_variation = MUTANTRACE_VARIATION //Yogs Start: Digilegs alt stuff
-	digiversion = TRUE //Yogs End
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 
 //TOS

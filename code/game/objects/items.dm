@@ -49,6 +49,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
 	var/flags_inv //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	var/flags_prot //This flag acts like flags_inv except it allows the items to still be rendered.
 	var/transparent_protection = NONE //you can see someone's mask through their transparent visor, but you can't reach it
 
 	var/interaction_flags_item = INTERACT_ITEM_ATTACK_HAND_PICKUP
@@ -79,7 +80,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	var/flags_cover = 0 //for flags such as GLASSESCOVERSEYES
 	var/heat = 0
-	var/sharpness = IS_BLUNT
+	///All items with sharpness of SHARP_EDGED or higher will automatically get the butchering component.
+	var/sharpness = SHARP_NONE
 
 	var/tool_behaviour = NONE
 	var/toolspeed = 1
@@ -129,6 +131,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(GLOB.rpg_loot_items)
 		AddComponent(/datum/component/fantasy)
 
+	if(sharpness && force > 5) //give sharp objects butchering functionality, for consistency
+		AddComponent(/datum/component/butchering, 80 * toolspeed)
+
 	if(force_string)
 		item_flags |= FORCE_STRING_OVERRIDE
 
@@ -173,6 +178,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 //Output a creative message and then return the damagetype done
 /obj/item/proc/suicide_act(mob/user)
 	return
+
+/obj/item/proc/get_sharpness()
+	return sharpness
 
 /obj/item/verb/move_to_top()
 	set name = "Move To Top"
@@ -604,11 +612,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/proc/is_sharp()
 	return sharpness
 
-/obj/item/proc/get_dismemberment_chance(obj/item/bodypart/affecting)
-	if(affecting.can_dismember(src))
-		if((sharpness || damtype == BURN) && w_class >= WEIGHT_CLASS_NORMAL && force >= 10)
-			. = force * (affecting.get_damage() / affecting.max_damage)
-
 /obj/item/proc/get_dismember_sound()
 	if(damtype == BURN)
 		. = 'sound/weapons/sear.ogg'
@@ -727,8 +730,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	// Run the start check here so we wouldn't have to call it manually.
 	if(!delay && !tool_start_check(user, amount))
 		return
-
 	delay *= toolspeed
+
+	if(IS_ENGINEERING(user) && tool_behaviour != TOOL_MINING) //if the user is an engineer, they'll use the tool faster. Doesn't apply to mining tools.
+		delay *= 0.8
 
 	// Play tool sound at the beginning of tool usage.
 	play_tool_sound(target, volume)

@@ -49,7 +49,7 @@ USE_EXP_RESTRICTIONS_HEADS
 ## Unhash this to change head jobs' playtime requirements so that they're based on department playtime, rather than crew playtime.
 USE_EXP_RESTRICTIONS_HEADS_DEPARTMENT
 ## Unhash this to enable playtime requirements for certain non-head jobs, like Engineer and Scientist.
-#USE_EXP_RESTRICTIONS_OTHER
+USE_EXP_RESTRICTIONS_OTHER
 ## Allows admins to bypass job playtime requirements.
 USE_EXP_RESTRICTIONS_ADMIN_BYPASS
 
@@ -332,10 +332,10 @@ MAPROTATIONCHANCEDELTA 1
 #CLIENT_WARN_VERSION 511
 #CLIENT_WARN_POPUP
 #CLIENT_WARN_MESSAGE Byond released 511 as the stable release. You can set the framerate your client runs at, which makes the game feel very different and cool. Shortly after its release we will end up using 511 client features and you will be forced to update.
-CLIENT_ERROR_VERSION 511
+CLIENT_ERROR_VERSION 513
 CLIENT_ERROR_MESSAGE Your version of byond is not supported. Please upgrade.
 ## The minimum build needed for joining the server, if using 512, a good minimum build would be 1421 as that disables the Middle Mouse Button exploit.
-CLIENT_ERROR_BUILD 1421
+CLIENT_ERROR_BUILD 1542
 
 ## TOPIC RATE LIMITING
 ## This allows you to limit how many topic calls (clicking on an interface window) the client can do in any given game second and/or game minute.
@@ -435,7 +435,7 @@ DEFAULT_VIEW_SQUARE 15x15
 ## More API details can be found here: https://centcom.melonmesa.com
 CENTCOM_BAN_DB https://centcom.melonmesa.com/ban/search
 
-AUTO_PROFILE
+#AUTO_PROFILE
 
 ## Uncomment to disable hard deleting garbage collection failures. (Hard deleting GC failures causes lag in order to bring memory usage down and keep bugged objects from hanging around and causing bugs in other things.) You can safely enable this for performance on production if the lag spikes are too disruptive)
 #DISABLE_GC_FAILURE_HARD_DELETES

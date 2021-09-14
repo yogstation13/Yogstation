@@ -31,8 +31,8 @@
 	if(istype(hand_item, weapon_type))
 		user.temporarilyRemoveItemFromInventory(hand_item, TRUE) //DROPDEL will delete the item
 		if(!silent)
-			playsound(user, 'sound/effects/blobattack.ogg', 30, 1)
-			user.visible_message("<span class='warning'>With a sickening crunch, [user] reforms [user.p_their()] [weapon_name_simple] into an arm!</span>", "<span class='notice'>We assimilate the [weapon_name_simple] back into our body.</span>", "<span class='italics>You hear organic matter ripping and tearing!</span>")
+			playsound(user, 'sound/effects/blobattack.ogg', 30, TRUE)
+			user.visible_message("<span class='warning'>With a sickening crunch, [user] reforms [user.p_their()] [weapon_name_simple] into an arm!</span>", "<span class = 'notice'>We assimilate the [weapon_name_simple] back into our body.</span>", "<span class='italics'>You hear organic matter ripping and tearing!</span>")
 		user.update_inv_hands()
 		return 1
 
@@ -53,7 +53,7 @@
 	var/obj/item/W = new weapon_type(user, silent)
 	user.put_in_hands(W)
 	if(!silent)
-		playsound(user, 'sound/effects/blobattack.ogg', 30, 1)
+		playsound(user, 'sound/effects/blobattack.ogg', 30, TRUE)
 	return W
 
 /datum/action/changeling/weapon/Remove(mob/user)
@@ -155,13 +155,16 @@
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
 	item_flags = NEEDS_PERMIT | ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
+	tool_behaviour = TOOL_MINING
 	force = 25
 	throwforce = 0 //Just to be on the safe side
 	throw_range = 0
 	throw_speed = 0
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
+	wound_bonus = -20
+	bare_wound_bonus = 20
 	var/can_drop = FALSE
 	var/fake = FALSE
 	resistance_flags = ACID_PROOF
