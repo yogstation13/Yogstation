@@ -14,11 +14,13 @@ export const AiResources = (props, context) => {
       <Window.Content scrollable>
 
         <Section title="Cloud CPU Resources">
-          <ProgressBar ranges={{
-            good: [-Infinity, data.total_cpu],
-            bad: [data.total_cpu, Infinity]
-          }}
-          value={data.total_assigned_cpu}
+          <ProgressBar
+            value={data.total_assigned_cpu}
+            ranges={{
+              good: [data.total_cpu, Infinity],
+              average: [1, data.total_cpu],
+              bad: [-Infinity, 0],
+            }}
           maxValue={data.total_cpu}>{data.total_assigned_cpu}/{data.total_cpu} THz</ProgressBar>
           </Section>
           <Section title="Cloud RAM Resources">
@@ -35,11 +37,14 @@ export const AiResources = (props, context) => {
 
         {data.ais.map(ai => {
               return (
-                <Section title={ai.name}>
+                <Section title={ai.name}
+                  buttons={(
+                    <Button icon="trash" onClick={() => act("clear_ai_resources", { targetAI: ai.ref })}>Clear AI Resources</Button>
+                  )}>
                   <LabeledList.Item>
                     CPU Capacity:
                     <Flex>
-                      <ProgressBar minValue={0} value={data.assigned_cpu[ai.name]} maxValue={data.total_cpu} >{data.assigned_cpu[ai.name] ? data.assigned_cpu[ai] : 0} THz</ProgressBar>
+                      <ProgressBar minValue={0} value={data.assigned_cpu[ai.ref]} maxValue={data.total_cpu} >{data.assigned_cpu[ai.ref] ? data.assigned_cpu[ai.ref] : 0} THz</ProgressBar>
                       <Button mr={1} ml={1} height={1.75} icon="plus" onClick={() => act("add_cpu", {
                         targetAI: ai.ref
                       })}></Button>
@@ -52,7 +57,7 @@ export const AiResources = (props, context) => {
                   <LabeledList.Item>
                     RAM Capacity:
                     <Flex>
-                      <ProgressBar minValue={0} value={data.assigned_ram[ai.name]} maxValue={data.total_rap} >{data.assigned_ram[ai.name] ? data.assigned_ram[ai] : 0} TB</ProgressBar>
+                      <ProgressBar minValue={0} value={data.assigned_ram[ai.ref]} maxValue={data.total_ram} >{data.assigned_ram[ai.ref] ? data.assigned_ram[ai.ref] : 0} TB</ProgressBar>
                       <Button mr={1} ml={1} height={1.75} icon="plus" onClick={() => act("add_ram", {
                         targetAI: ai.ref
                       })}></Button>

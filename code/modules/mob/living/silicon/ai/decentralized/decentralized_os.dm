@@ -23,6 +23,18 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 	ram_assigned.Remove(AI)
 
 
+/datum/ai_os/proc/total_cpu_assigned()
+	var/total = 0
+	for(var/N in cpu_assigned)
+		total += cpu_assigned[N]
+	return total
+
+/datum/ai_os/proc/total_ram_assigned()
+	var/total = 0
+	for(var/N in ram_assigned)
+		total += ram_assigned[N]
+	return total
+
 /datum/ai_os/proc/update_hardware()
 	previous_cpu = total_cpu
 	previous_ram = total_ram
@@ -74,3 +86,50 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 	
 	for(var/A in affected_AIs)
 		to_chat(A, "<span class='warning'>You have been deducted processing capabilities. Please contact your network administrator if you believe this to be an error.</span>")
+
+/datum/ai_os/proc/add_cpu(mob/living/silicon/ai/AI, amount)
+	if(!AI || !amount)
+		return
+	if(!istype(AI))
+		return
+	cpu_assigned[AI] += amount
+
+	update_allocations()
+
+/datum/ai_os/proc/remove_cpu(mob/living/silicon/ai/AI, amount)
+	if(!AI || !amount)
+		return
+	if(!istype(AI))
+		return
+	cpu_assigned[AI] -= amount
+
+	update_allocations()
+
+/datum/ai_os/proc/add_ram(mob/living/silicon/ai/AI, amount)
+	if(!AI || !amount)
+		return
+	if(!istype(AI))
+		return
+	ram_assigned[AI] += amount
+
+	update_allocations()
+
+/datum/ai_os/proc/remove_ram(mob/living/silicon/ai/AI, amount)
+	if(!AI || !amount)
+		return
+	if(!istype(AI))
+		return
+	ram_assigned[AI] -= amount
+
+	update_allocations()
+
+
+/datum/ai_os/proc/clear_ai_resources(mob/living/silicon/ai/AI)
+	if(!AI || !amount)
+		return
+	if(!istype(AI))
+		return
+	remove_ram(AI, ram_assigned[AI])
+	remove_cpu(AI, cpu_assigned[AI])
+
+	update_allocations()
