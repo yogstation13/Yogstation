@@ -11,6 +11,12 @@
 	var/obj/item/charging = null
 	var/recharge_coeff = 1
 
+	var/icon_state_off = "rechargeroff"
+	var/icon_state_idle = "recharger0"
+	var/icon_state_charging = "recharger1"
+	var/icon_state_recharged = "recharger2"
+	var/icon_state_open = "rechargeropen"
+
 	var/static/list/allowed_devices = typecacheof(list(
 		/obj/item/gun/energy,
 		/obj/item/melee/baton,
@@ -158,18 +164,33 @@
 
 /obj/machinery/recharger/update_icon(using_power = 0, scan)	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
 	if(stat & (NOPOWER|BROKEN) || !anchored)
-		icon_state = "rechargeroff"
+		icon_state = icon_state_off
 		return
 	if(scan)
-		icon_state = "rechargeroff"
+		icon_state = icon_state_idle
 		return
 	if(panel_open)
-		icon_state = "rechargeropen"
+		icon_state = icon_state_open
 		return
 	if(charging)
 		if(using_power)
-			icon_state = "recharger1"
+			icon_state = icon_state_charging
 		else
-			icon_state = "recharger2"
+			icon_state = icon_state_recharged
 		return
-	icon_state = "recharger0"
+	icon_state = icon_state_idle
+
+/obj/machinery/recharger/wallrecharger
+	name = "recharger"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "wrecharger0"
+	desc = "A charging dock for energy based weaponry."
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 5
+	active_power_usage = 400
+
+	icon_state_off = "rechargeroff"
+	icon_state_idle = "wrecharger0"
+	icon_state_charging = "wrecharger1"
+	icon_state_recharged = "wrecharger2"
+	icon_state_open = "wrechargeropen"
