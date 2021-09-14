@@ -52,12 +52,22 @@
 
 	data["available_projects"] = list()
 
+	var/turf/current_turf = get_step(src, 0)
+
+	data["integrity"] = owner.health
+
+	data["location_name"] = get_area(current_turf)
+
+	data["location_coords"] = "[current_turf.x], [current_turf.y], [current_turf.z]"
+
+	data["temperature"] = current_turf?.air.return_temperature()
+
 	for(var/datum/ai_project/AP as anything in available_projects)
 		data["available_projects"] += list(list("name" = AP.name, "description" = AP.description, "ram_required" = AP.ram_required, "available" = AP.available(), "research_requirements" = AP.research_requirements))
 
 
 	data["completed_projects"] = list()
-	for(var/datum/ai_project/P as anything in completed_projects)
+	for(var/datum/ai_project/P as anything in completed_upgrades)
 		data["completed_projects"] += list(list("name" = P.name, "description" = P.description, "ram_required" = P.ram_required, "running" = P.running))
 
 	return data

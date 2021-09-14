@@ -125,10 +125,9 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 
 
 /datum/ai_os/proc/clear_ai_resources(mob/living/silicon/ai/AI)
-	if(!AI || !amount)
+	if(!AI || !istype(AI))
 		return
-	if(!istype(AI))
-		return
+
 	remove_ram(AI, ram_assigned[AI])
 	remove_cpu(AI, cpu_assigned[AI])
 

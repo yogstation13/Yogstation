@@ -99,6 +99,8 @@
 
 	var/datum/robot_control/robot_control
 
+	var/datum/ai_dashboard/dashboard
+
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai)
 	. = ..()
 	if(!target_ai) //If there is no player/brain inside.
@@ -157,6 +159,8 @@
 	aicamera = new/obj/item/camera/siliconcam/ai_camera(src)
 
 	deploy_action.Grant(src)
+
+	dashboard = new(src)
 
 	if(isturf(loc))
 		add_verb(src, list(/mob/living/silicon/ai/proc/ai_network_change, \
@@ -855,7 +859,7 @@
 	return can_see(M) //stop AIs from leaving windows open and using then after they lose vision
 
 /mob/living/silicon/ai/proc/can_see(atom/A)
-	if(isturf(loc)) //AI in core, check if on cameras
+	if(isturf(loc) || istype(loc, /obj/machinery/ai/data_core)) //AI in core, check if on cameras
 		//get_turf_pixel() is because APCs in maint aren't actually in view of the inner camera
 		//apc_override is needed here because AIs use their own APC when depowered
 		return (GLOB.cameranet && GLOB.cameranet.checkTurfVis(get_turf_pixel(A))) || apc_override

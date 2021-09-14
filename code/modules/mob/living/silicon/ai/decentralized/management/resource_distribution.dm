@@ -7,8 +7,7 @@
 	icon_screen = "ai-fixer"
 	light_color = LIGHT_COLOR_PINK
 
-	var/authenticated = FALSE
-
+	authenticated = FALSE
 
 
 /obj/machinery/computer/ai_resource_distribution/ui_interact(mob/user, datum/tgui/ui)
@@ -27,11 +26,12 @@
 	data["total_cpu"] = GLOB.ai_os.total_cpu
 	data["total_ram"] = GLOB.ai_os.total_ram
 
+	data["assigned_cpu"] = GLOB.ai_os.cpu_assigned
+	data["assigned_ram"] = GLOB.ai_os.ram_assigned
+	
 
-	data["assigned_ram"] = GLOB.ai_os.total_ram_assigned()
-	data["assigned_cpu"] = GLOB.ai_os.total_cpu_assigned()
-	data["total_assigned_cpu"] = total_assigned_cpu
-	data["total_assigned_ram"] = total_assigned_ram
+	data["total_assigned_cpu"] = GLOB.ai_os.total_cpu_assigned()
+	data["total_assigned_ram"] = GLOB.ai_os.total_ram_assigned()
 
 	for(var/AI in data["assigned_cpu"])
 		data["assigned_cpu"][AI].name = REF(AI)
