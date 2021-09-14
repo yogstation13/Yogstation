@@ -34,7 +34,10 @@
 	data["total_assigned_cpu"] = total_assigned_cpu
 	data["total_assigned_ram"] = total_assigned_ram
 
-	data["ais"] = GLOB.ai_list
+	data["ais"] = list()
+
+	for(var/mob/living/silicon/ai/A in GLOB.ai_list)
+		data["ais"] += list("name" = A.name, "ref" = REF(A))
 
 	return data
 
@@ -43,4 +46,16 @@
 		return
 
 	switch(action)
+		if("add_cpu")
+			var/target_ai = params["targetAI"]
+			message_admins(target_ai)
+			message_admins(GLOB.ai_os.cpu_assigned[locate(target_ai)].type)
+
+
+		if("remove_cpu")
+
+		if("add_ram")
+
+		if("remove_ram")
 		
+
