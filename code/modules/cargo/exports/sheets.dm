@@ -15,7 +15,7 @@
 	export_types = list(/obj/item/stack/sheet/animalhide/monkey)
 
 /datum/export/stack/skin/human
-	cost = 1000
+	cost = 500	//surprisingly easy to get human skin who would have thought
 	export_limit = 50
 	export_category = EXPORT_CONTRABAND
 	unit_name = "piece"
