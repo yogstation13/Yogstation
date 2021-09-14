@@ -101,23 +101,23 @@
 // Do not put human brains here, they are not sellable for a purpose.
 // If they would be sellable, X-Porter cannon's finishing move (selling victim's organs) will be instakill with no revive. //remind me to add the X-porter cannon in like a month or something itll be funny i swear
 
-/datum/export/organ/human
+/datum/export/organ/human //it is regrettably easy to get human organs with very little moral dubiation so the prices have to be quite small to still allow organ farms
 	export_category = EXPORT_CONTRABAND
 	include_subtypes = FALSE
 
 /datum/export/organ/human/heart
-	cost = 500
+	cost = 100
 	unit_name = "heart"
 	export_types = list(/obj/item/organ/heart)
 
 /datum/export/organ/human/lungs
-	cost = 400
+	cost = 50
 	unit_name = "pair"
 	message = "of lungs"
 	export_types = list(/obj/item/organ/lungs)
 
 /datum/export/organ/human/appendix
-	cost = 50
+	cost = 10
 	unit_name = "appendix"
 	export_types = list(/obj/item/organ/appendix)
 
