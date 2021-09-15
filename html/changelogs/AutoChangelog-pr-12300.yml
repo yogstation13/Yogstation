@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - spellcheck: "fixed message when doing burn healing surgery with a med scanner"
