@@ -61114,6 +61114,25 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
+"bWp" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/door_timer{
+	id = "Cell 6";
+	name = "Cell 6";
+	pixel_x = -32
+	},
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 6";
+	name = "Cell 6 Locker"
+	},
+/turf/open/floor/plasteel,
+/area/security/warden)
 "bWq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -61151,6 +61170,44 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit/departure_lounge)
+"bWu" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/door_timer{
+	id = "Cell 5";
+	name = "Cell 5";
+	pixel_x = -32
+	},
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 5";
+	name = "Cell 5 Locker"
+	},
+/turf/open/floor/plasteel,
+/area/security/warden)
+"bWv" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/door_timer{
+	id = "Cell 4";
+	name = "Cell 4";
+	pixel_x = -32
+	},
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 4";
+	name = "Cell 4 Locker"
+	},
+/turf/open/floor/plasteel,
+/area/security/warden)
 "bWw" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -61221,6 +61278,28 @@
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/security/warden)
+"bWB" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/machinery/door_timer{
+	id = "Cell 3";
+	name = "Cell 3";
+	pixel_x = -32
+	},
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 3";
+	name = "Cell 3 Locker"
+	},
 /turf/open/floor/plasteel,
 /area/security/warden)
 "bWC" = (
@@ -61294,6 +61373,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"bWG" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/door_timer{
+	id = "Cell 2";
+	name = "Cell 2";
+	pixel_x = -32
+	},
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 2";
+	name = "Cell 2 Locker"
+	},
+/turf/open/floor/plasteel,
+/area/security/warden)
 "bWH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -61306,6 +61404,25 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port/aft)
+"bWI" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/door_timer{
+	id = "Cell 1";
+	name = "Cell 1";
+	pixel_x = -32
+	},
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 1";
+	name = "Cell 1 Locker"
+	},
+/turf/open/floor/plasteel,
+/area/security/warden)
 "bWJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/yellow{
@@ -91116,26 +91233,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
-"iTY" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/secure_closet/genpop,
-/obj/machinery/genpop_interface{
-	pixel_x = -32;
-	pixel_y = 3
-	},
-/obj/machinery/button/flasher{
-	id = "Cell 6";
-	pixel_x = -32;
-	pixel_y = -11
-	},
-/turf/open/floor/plasteel,
-/area/security/warden)
 "iUy" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -96023,26 +96120,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"osi" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/secure_closet/genpop,
-/obj/machinery/genpop_interface{
-	pixel_x = -32;
-	pixel_y = 3
-	},
-/obj/machinery/button/flasher{
-	id = "Cell 2";
-	pixel_x = -32;
-	pixel_y = -11
-	},
-/turf/open/floor/plasteel,
-/area/security/warden)
 "otw" = (
 /obj/machinery/door/airlock/external{
 	name = "Atmospherics External Airlock";
@@ -98698,26 +98775,6 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/fore)
-"rEL" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/secure_closet/genpop,
-/obj/machinery/genpop_interface{
-	pixel_x = -32;
-	pixel_y = 3
-	},
-/obj/machinery/button/flasher{
-	id = "Cell 5";
-	pixel_x = -32;
-	pixel_y = -11
-	},
-/turf/open/floor/plasteel,
-/area/security/warden)
 "rGm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/yellow{
@@ -99708,29 +99765,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
-"sJN" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/structure/closet/secure_closet/genpop,
-/obj/machinery/genpop_interface{
-	pixel_x = -32;
-	pixel_y = 3
-	},
-/obj/machinery/button/flasher{
-	id = "Cell 3";
-	pixel_x = -32;
-	pixel_y = -11
-	},
-/turf/open/floor/plasteel,
-/area/security/warden)
 "sKe" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
@@ -101837,26 +101871,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port/aft)
-"vpA" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/secure_closet/genpop,
-/obj/machinery/genpop_interface{
-	pixel_x = -32;
-	pixel_y = 3
-	},
-/obj/machinery/button/flasher{
-	id = "Cell 4";
-	pixel_x = -32;
-	pixel_y = -11
-	},
-/turf/open/floor/plasteel,
-/area/security/warden)
 "vpZ" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -103717,26 +103731,6 @@
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
-"xAQ" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/secure_closet/genpop,
-/obj/machinery/genpop_interface{
-	pixel_x = -32;
-	pixel_y = 3
-	},
-/obj/machinery/button/flasher{
-	id = "Cell 1";
-	pixel_x = -32;
-	pixel_y = -11
-	},
-/turf/open/floor/plasteel,
-/area/security/warden)
 "xCH" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -122275,7 +122269,7 @@ tDS
 aai
 aeI
 aaT
-iTY
+bWp
 ajZ
 bTp
 bVY
@@ -123046,7 +123040,7 @@ avb
 aal
 aeI
 aaT
-rEL
+bWu
 abY
 adp
 ael
@@ -123817,7 +123811,7 @@ avb
 aan
 aeI
 aaT
-vpA
+bWv
 abY
 aek
 aaT
@@ -124588,7 +124582,7 @@ avb
 adS
 aaS
 aaT
-sJN
+bWB
 bSR
 byA
 gEa
@@ -125359,7 +125353,7 @@ avb
 aas
 aaS
 aaT
-osi
+bWG
 aft
 bYF
 cbv
@@ -126130,7 +126124,7 @@ avb
 adY
 aaS
 aaT
-xAQ
+bWI
 acf
 rZn
 cbw
