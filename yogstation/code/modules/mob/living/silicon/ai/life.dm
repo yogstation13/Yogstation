@@ -9,6 +9,6 @@
 			message_admins("[ADMIN_LOOKUPFLW(src)] has been hijacked!")
 			icon_state = "ai-red"
 			QDEL_NULL(hijacking)
-			cut_overlays()
+			update_icons()
 
 #undef HIJACK_TIME 

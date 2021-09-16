@@ -18,6 +18,7 @@
 			hijacking.forceMove(loc)
 			hijacking = null
 			hijack_start = 0
+			update_icons()
 		else
 			to_chat(user, "<span class='notice'>You fail to remove the device.</span>")
 		return

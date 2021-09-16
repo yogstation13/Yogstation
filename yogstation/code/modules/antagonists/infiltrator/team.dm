@@ -9,35 +9,84 @@
 
 /datum/team/infiltrator/roundend_report()
 	var/list/parts = list()
-	parts += "<span class='header'>Syndicate Infiltrators</span>"
+	parts += "<span class='header'>Syndicate Infiltrators:</span><br>"
 
-	LAZYINITLIST(GLOB.uplink_purchase_logs_by_key)
-	var/text = "<br><span class='header'>The syndicate infiltrators were:</span>"
-	var/purchases = ""
-	var/TC_uses = 0
+	var/result = get_result()
+	var/dead_as_a_doornail = TRUE
 	for(var/I in members)
 		var/datum/mind/syndicate = I
+		if (syndicate?.current?.stat != DEAD)
+			dead_as_a_doornail = FALSE
+
+	var/flavor_message
+	if (dead_as_a_doornail)
+		var/static/list/messages = list(
+			"Well, sending those nitwits was a waste of our time.",
+			"I'm gonna drag you incompetent idiots out of hell just so I can kill y'all myself!",
+			"We gave you dumbasses all those resources and you just go and die? What sad excuses for agents."
+		)
+		parts += "<span class='redtext big'>Crew Major Victory!</span>"
+		parts += "<B>The crew killed the Syndicate infiltrators!</B>"
+		flavor_message = pick(messages)
+	else
+		switch (result)
+			if (INFILTRATION_ALLCOMPLETE)
+				var/static/list/messages = list(
+					"Hell yeah! Nanotrasen is gonna regret screwing with us now, thanks to y'all!",
+					"The boys in dark red are proud of you, agents. We're going to reward you well.",
+					"I'm truly impressed, agents. You've earned your place in the Syndicate.",
+					"Ha! I knew y'all would come out on top! Nanotrasen stands no chance against human determination!"
+				)
+				parts += "<span class='greentext big'>Infiltrator Major Victory!</span>"
+				parts += "<B>The Syndicate infiltrators completed all of their objectives successfully!</B>"
+				flavor_message = pick(messages)
+			if (INFILTRATION_MOSTCOMPLETE)
+				var/static/list/messages = list(
+					"Well, it ain't perfect, but y'all were damn good.",
+					"Good operation, agents. We didn't get everything, but not even we are perfect.",
+					"Thanks for the good work, y'all. Return to base and relax a bit before your next job."
+				)
+				parts += "<span class='bluetext big'>Infiltrator Moderate Victory</span>"
+				parts += "<B>The Syndicate infiltrators completed most of their objectives successfully!</B>"
+				flavor_message = pick(messages)
+			if (INFILTRATION_SOMECOMPLETE)
+				var/static/list/messages = list(
+					"Better than a complete fluke, I guess.",
+					"Nowhere near the smoothest operation I've ever seen, but it was okay.",
+					"We did it, but we didn't get everything. We'll get it next time."
+				)
+				parts += "<span class='marooned big'>Infiltrator Minor Victory</span>"
+				parts += "<B>The Syndicate infiltrators completed some of their objectives successfully!</B>"
+				flavor_message = pick(messages)
+			else
+				var/static/list/messages = list(
+					"When you nitwits come back to base, y'all better have a damn good explaination for this!",
+					"I hope y'all like space carp poop, because cleaning it is the biggest operation you idiots are going to have for a while!",
+					"How did y'all mess up such a simple operation? All you had to do was be sneaky and not cause a scene!"
+				)
+				parts += "<span class='redtext big'>Crew Victory</span>"
+				parts += "<B>The crew stopped the Syndicate infiltrators from completing any of their objectives!</B>"
+				flavor_message = pick(messages)
+	parts += "<div><font color='#FF0000'><i>\"[flavor_message]\"</i></font>"
+	parts += "[GLOB.TAB]- Syndicate Commander [pick(pick(GLOB.first_names_male,GLOB.first_names_female))] [pick(GLOB.last_names)]</div>"
+
+	LAZYINITLIST(GLOB.uplink_purchase_logs_by_key)
+	var/text = "<span class='header'>The syndicate infiltrators were:</span>"
+	var/purchases = ""
+	var/tc_spent = 0
+	for (var/I in members)
+		var/datum/mind/syndicate = I
 		var/datum/uplink_purchase_log/H = GLOB.uplink_purchase_logs_by_key[syndicate.key]
-		if(H)
-			TC_uses += H.total_spent
+		if (H)
+			tc_spent += H.total_spent
 			purchases += H.generate_render(show_key = FALSE)
 	text += printplayerlist(members)
-	text += "<br>"
-	text += "(Syndicates used [TC_uses] TC) [purchases]"
-	text += "<br><br>"
+	text += "(Syndicates used [tc_spent] TC) [purchases]"
+	if (tc_spent == 0 && !dead_as_a_doornail && result < INFILTRATION_NONECOMPLETE)
+		text += "<BIG>[icon2html('icons/badass.dmi', world, "badass")]</BIG>"
 	parts += text
-
-	var/objectives_text = ""
-	var/count = 1
-	for(var/datum/objective/objective in objectives)
-		if(objective.check_completion())
-			objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <span class='greentext'>Success!</span>"
-		else
-			objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <span class='redtext'>Fail.</span>"
-		count++
-
-	parts += objectives_text
-	return parts.Join("<br>")
+	parts += printobjectives(objectives)
+	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
 /datum/team/infiltrator/is_gamemode_hero()
 	return SSticker.mode.name == "infiltration"

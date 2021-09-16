@@ -70,20 +70,7 @@
 
 /datum/game_mode/infiltration/set_round_result()
 	..()
-	var result = sit_team.get_result()
-	switch(result)
-		if(INFILTRATION_ALLCOMPLETE)
-			SSticker.mode_result = "major win - objectives complete"
-		if(INFILTRATION_MOSTCOMPLETE)
-			SSticker.mode_result = "semi-major win - most objectives complete"
-		if(INFILTRATION_SOMECOMPLETE)
-			SSticker.mode_result = "minor win - some objectives complete"
-		else
-			SSticker.mode_result = "loss - no objectives complete"
-
-/datum/game_mode/infiltration/set_round_result()
-	..()
-	var result = sit_team.get_result()
+	var/result = sit_team.get_result()
 	switch(result)
 		if(INFILTRATION_ALLCOMPLETE)
 			SSticker.mode_result = "major win - objectives complete"

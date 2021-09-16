@@ -24,6 +24,7 @@
 			forceMove(A)
 			A.hijacking = src
 			A.hijack_start = world.time
+			A.update_icons()
 			to_chat(A, "<span class='danger'>Unknown device connected to /dev/ttySL0</span>")
 			to_chat(A, "<span class='danger'>Connected at 115200 bps</span>")
 			to_chat(A, "<span class='binarysay' style='font-size: 125%'>ntai login: root</span>")
