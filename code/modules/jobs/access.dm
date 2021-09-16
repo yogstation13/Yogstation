@@ -353,6 +353,14 @@
 			return "Clerk"
 		if(ACCESS_BRIG_PHYS)
 			return "Brig Physician"
+		if(ACCESS_MECH_FREEMINER)
+			return "Freeminer Mech"
+		if(ACCESS_FREEMINER)
+			return "Freeminer"
+		if(ACCESS_FREEMINER_ENGINEER)
+			return "Freeminer Engineer"
+		if(ACCESS_FREEMINER_CAPTAIN)
+			return "Freeminer Captain"
 		// yogs end
 
 /// Get descriptions for centcom accesses
