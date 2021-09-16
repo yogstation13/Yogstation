@@ -113,7 +113,10 @@
 		to_chat(owner, "<span class='notice bold'>You are not required to obey other vampires, however, you have gained a respect for them.</span>")
 	if(LAZYLEN(objectives_given))
 		owner.announce_objectives()
-	owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/newvampire.ogg',80,0)
+	if(prob(10))
+		owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/newvampire_alt.ogg',80,0)
+	else
+		owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/newvampire.ogg',80,0)
 
 /datum/antagonist/vampire/proc/give_objectives()
 	if(full_vampire)
