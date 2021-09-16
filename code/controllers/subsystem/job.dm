@@ -556,7 +556,9 @@ SUBSYSTEM_DEF(job)
 		message_admins("WARNING: BAR TEMPLATE [choice] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
 		for(var/backup_bar in GLOB.potential_box_bars)
 			template = SSmapping.station_room_templates[backup_bar]
-			if(isnull(template))
+			if(!isnull(template))
+				break
+			message_admins("WARNING: BAR TEMPLATE [backup_bar] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
 				message_admins("WARNING: BAR TEMPLATE [backup_bar] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
 			else
 				break
