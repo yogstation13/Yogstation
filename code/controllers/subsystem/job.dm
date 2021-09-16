@@ -554,14 +554,17 @@ SUBSYSTEM_DEF(job)
 
 	if(isnull(template))
 		message_admins("WARNING: BAR TEMPLATE [choice] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+		log_game("WARNING: BAR TEMPLATE [choice] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
 		for(var/backup_bar in GLOB.potential_box_bars)
 			template = SSmapping.station_room_templates[backup_bar]
 			if(!isnull(template))
 				break
 			message_admins("WARNING: BAR TEMPLATE [backup_bar] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+			log_game("WARNING: BAR TEMPLATE [backup_bar] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
 
 	if(isnull(template))
 		message_admins("WARNING: BAR RECOVERY FAILED! THERE WILL BE NO BAR FOR THIS ROUND!")
+		log_game("WARNING: BAR TEMPLATE [backup_bar] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
 		return
 
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
