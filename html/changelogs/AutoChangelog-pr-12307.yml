@@ -1,0 +1,4 @@
+author: "JamieD1"
+delete-after: true 
+changes: 
+  - rscadd: "Wall Rechargers, they are normal rechargers except they go on the wall, you place a gun into the item which is on the wall and it rechargers the internal power cell, whilst this is happening the sprite changes to indicate charging. Once it is done the sprite changes to a flashing yellow one which indicates the item you have placed has stopped charging and is ready to be picked up again. After which the sprite returns to a normal slow flashing red. They cannot currently be constructed, however they drop a normal recharger board IF deconstructed. They can also be upgraded like normal rechargers."
