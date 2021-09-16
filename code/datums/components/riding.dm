@@ -339,6 +339,9 @@
 		else
 			inhand.rider = riding_target_override
 		inhand.parent = AM
+		for(var/obj/item/I in user.held_items) // delete any hand items like slappers that could still totally be used to grab on
+			if((I.obj_flags & HAND_ITEM))
+				qdel(I)
 		if(user.put_in_hands(inhand, TRUE))
 			amount_equipped++
 		else

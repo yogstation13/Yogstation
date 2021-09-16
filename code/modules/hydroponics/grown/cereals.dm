@@ -35,6 +35,7 @@
 	plantname = "Oat Stalks"
 	product = /obj/item/reagent_containers/food/snacks/grown/oat
 	mutatelist = list()
+	rarity = 10
 
 /obj/item/reagent_containers/food/snacks/grown/oat
 	seed = /obj/item/seeds/wheat/oat
@@ -82,6 +83,7 @@
 	plantname = "Meatwheat"
 	product = /obj/item/reagent_containers/food/snacks/grown/meatwheat
 	mutatelist = list()
+	rarity = 20 //it's literally growing meat, this is a bit of a standout
 
 /obj/item/reagent_containers/food/snacks/grown/meatwheat
 	name = "meatwheat"
