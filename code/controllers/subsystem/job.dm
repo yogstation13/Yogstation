@@ -564,7 +564,7 @@ SUBSYSTEM_DEF(job)
 
 	if(isnull(template))
 		message_admins("WARNING: BAR RECOVERY FAILED! THERE WILL BE NO BAR FOR THIS ROUND!")
-		log_game("WARNING: BAR TEMPLATE [backup_bar] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+		log_game("WARNING: BAR RECOVERY FAILED! THERE WILL BE NO BAR FOR THIS ROUND!")
 		return
 
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
