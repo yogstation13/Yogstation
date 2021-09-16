@@ -559,9 +559,6 @@ SUBSYSTEM_DEF(job)
 			if(!isnull(template))
 				break
 			message_admins("WARNING: BAR TEMPLATE [backup_bar] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
-				message_admins("WARNING: BAR TEMPLATE [backup_bar] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
-			else
-				break
 
 	if(isnull(template))
 		message_admins("WARNING: BAR RECOVERY FAILED! THERE WILL BE NO BAR FOR THIS ROUND!")
