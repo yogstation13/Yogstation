@@ -22,7 +22,7 @@
 
 /datum/surgery_step/dissection
 	name = "dissection"
-	implements = list(TOOL_SCALPEL = 60, /obj/item/kitchen/knife = 30, /obj/item/shard = 15)
+	implements = list(/obj/item/scalpel = 60, /obj/item/kitchen/knife = 30, /obj/item/shard = 15)
 	time = 125
 
 /datum/surgery_step/dissection/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -53,7 +53,7 @@
 	if(D)
 		D.adjust_money(check_value(target))
 	var/obj/item/bodypart/L = target.get_bodypart(BODY_ZONE_CHEST)
-	target.apply_damage(80, BRUTE, L, wound_bonus=CANT_WOUND)
+	target.apply_damage(80, BRUTE, L)
 	ADD_TRAIT(target, TRAIT_DISSECTED, "surgery")
 	return TRUE
 
@@ -64,6 +64,6 @@
 	if(D)
 		D.adjust_money(check_value(target))
 	var/obj/item/bodypart/L = target.get_bodypart(BODY_ZONE_CHEST)
-	target.apply_damage(80, BRUTE, L, wound_bonus=CANT_WOUND)
+	target.apply_damage(80, BRUTE, L)
 	ADD_TRAIT(target, TRAIT_DISSECTED, "surgery")
 	return TRUE

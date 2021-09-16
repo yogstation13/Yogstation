@@ -46,7 +46,6 @@
 	icon_dead = "carrot-dead"
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.05)
-	rarity = 10
 
 /obj/item/reagent_containers/food/snacks/grown/parsnip
 	seed = /obj/item/seeds/carrot/parsnip
@@ -100,7 +99,6 @@
 	icon_dead = "whitebeet-dead"
 	genes = list(/datum/plant_gene/trait/maxchem)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.05)
-	rarity = 20 //noteworthy for being the usual source of densified chems trait
 
 /obj/item/reagent_containers/food/snacks/grown/redbeet
 	seed = /obj/item/seeds/redbeet

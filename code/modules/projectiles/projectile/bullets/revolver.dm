@@ -17,8 +17,6 @@
 	damage = 15 // yogs - Nerfed revolver damage
 	//knockdown = 60 //yogs - commented out
 	stamina = 35 // yogs
-	wound_bonus = -20
-	bare_wound_bonus = 10
 
 /obj/item/projectile/bullet/c38/trac
 	name = ".38 TRAC bullet"
@@ -62,4 +60,3 @@
 /obj/item/projectile/bullet/a357
 	name = ".357 bullet"
 	damage = 60
-	wound_bonus = -70

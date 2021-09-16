@@ -25,10 +25,8 @@
 
 /obj/item/projectile/bullet/mm712x82
 	name = "7.12x82mm bullet"
-	damage = 40
+	damage = 45
 	armour_penetration = 5
-	wound_bonus = -50
-	wound_falloff_tile = 0
 
 /obj/item/projectile/bullet/mm712x82_ap
 	name = "7.12x82mm armor-piercing bullet"
@@ -37,12 +35,8 @@
 
 /obj/item/projectile/bullet/mm712x82_hp
 	name = "7.12x82mm hollow-point bullet"
-	damage = 50
+	damage = 60
 	armour_penetration = -60
-	sharpness = SHARP_EDGED
-	wound_bonus = -40
-	bare_wound_bonus = 30
-	wound_falloff_tile = -8
 
 /obj/item/projectile/bullet/incendiary/mm712x82
 	name = "7.12x82mm incendiary bullet"

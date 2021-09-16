@@ -577,12 +577,3 @@
 
 /obj/item/toy/plush/lizard/azeel/snowflake
 	desc = "An adorable plushie resembling an adorable lizard. He seems to be held together by stitches and pure stress. This one seems to have \"U-A\" embroidered on it."
-
-/obj/item/toy/plush/blahaj
-	name = "shark plushie"
-	desc = "A smaller, friendlier, and fluffier version of the real thing."
-	gender = MALE
-	icon_state = "blahaj"
-	item_state = "blahaj"
-	attack_verb = list("chomped", "gnawed", "bit")
-	squeak_override = list('sound/weapons/bite.ogg'= 1)

@@ -46,7 +46,7 @@
 	item_flags = NO_MAT_REDEMPTION
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 60, "acid" = 50)
 	component_type = /datum/component/storage/concrete/bluespace/bag_of_holding
-
+	
 /obj/item/storage/backpack/holding/clown
 	name = "bag of honking"
 	desc = "An advanced clowning backpack for holding large quantities of pranking gear."
@@ -369,7 +369,6 @@
 	new /obj/item/circular_saw(src)
 	new /obj/item/surgicaldrill(src)
 	new /obj/item/cautery(src)
-	new /obj/item/bonesetter(src)
 	new /obj/item/surgical_drapes(src)
 	new /obj/item/clothing/mask/surgical(src)
 	new /obj/item/razor(src)
@@ -389,7 +388,6 @@
 	new /obj/item/hemostat(src)
 	new /obj/item/retractor(src)
 	new /obj/item/circular_saw(src)
-	new /obj/item/bonesetter(src)
 	new /obj/item/surgicaldrill(src)
 	new /obj/item/cautery(src)
 	new /obj/item/surgical_drapes(src)
@@ -475,14 +473,12 @@
 	new /obj/item/hemostat(src)
 	new /obj/item/retractor(src)
 	new /obj/item/circular_saw(src)
-	new /obj/item/bonesetter(src)
 	new /obj/item/surgicaldrill(src)
 	new /obj/item/cautery(src)
 	new /obj/item/surgical_drapes(src)
 	new /obj/item/clothing/suit/straight_jacket(src)
 	new /obj/item/clothing/mask/muzzle(src)
 	new /obj/item/mmi/syndie(src)
-	new /obj/item/stack/medical/bone_gel(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo
 	name = "ammunition duffel bag"
@@ -622,23 +618,11 @@
 
 // Captain gets Capdrobe, other heads need some storage
 
-/obj/item/storage/backpack/duffelbag/clothing
-	name = "Clothing Dufflebag"
-	desc = "Dufflebag designed for clothing in mind"
-
-/obj/item/storage/backpack/duffelbag/clothing/ComponentInitialize()
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 35
-	STR.max_w_class = WEIGHT_CLASS_BULKY
-	STR.max_combined_w_class = 60
-	STR.set_holdable(list(/obj/item/clothing))
-
-/obj/item/storage/backpack/duffelbag/clothing/hop
+/obj/item/storage/backpack/duffelbag/hop/clothing
 	name = "Head of Personnels clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
 
-/obj/item/storage/backpack/duffelbag/clothing/hop/PopulateContents()
+/obj/item/storage/backpack/duffelbag/hop/clothing/PopulateContents()
 	new /obj/item/clothing/under/rank/head_of_personnel(src)
 	new /obj/item/clothing/under/rank/head_of_personnel/skirt(src)
 	new /obj/item/clothing/head/hopcap(src)
@@ -648,11 +632,11 @@
 	new /obj/item/clothing/suit/armor/vest/sovietcoat(src)
 	new /obj/item/clothing/under/yogs/hopcasual(src)
 
-/obj/item/storage/backpack/duffelbag/clothing/rd
+/obj/item/storage/backpack/duffelbag/rd/clothing
 	name = "Research Directors clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
 
-/obj/item/storage/backpack/duffelbag/clothing/rd/PopulateContents()
+/obj/item/storage/backpack/duffelbag/rd/clothing/PopulateContents()
 	new /obj/item/clothing/neck/yogs/shawl/rd(src) //Yogs
 	new /obj/item/clothing/suit/bio_suit/scientist(src)
 	new /obj/item/clothing/head/bio_hood/scientist(src)
@@ -665,14 +649,13 @@
 	new /obj/item/clothing/under/rank/research_director/turtleneck/skirt(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/under/yogs/rdema(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 
-/obj/item/storage/backpack/duffelbag/clothing/ce
+/obj/item/storage/backpack/duffelbag/engineering/chief/clothing
 	name = "Chief Engineers clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
-	item_state = "duffel-eng"
-	icon_state = "duffel-eng"
 
-/obj/item/storage/backpack/duffelbag/clothing/ce/PopulateContents()
+/obj/item/storage/backpack/duffelbag/engineering/chief/clothing/PopulateContents()
 	new /obj/item/clothing/neck/yogs/shawl/ce(src) //Yogs
 	new /obj/item/clothing/under/rank/chief_engineer(src)
 	new /obj/item/clothing/under/rank/chief_engineer/skirt(src)
@@ -687,15 +670,13 @@
 	new /obj/item/clothing/suit/hazardvest(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/clothing/glasses/meson/engine(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 
-/obj/item/storage/backpack/duffelbag/clothing/sec
-	icon_state = "duffel-sec"
-	item_state = "duffel-sec"
-/obj/item/storage/backpack/duffelbag/clothing/sec/detective
+/obj/item/storage/backpack/duffelbag/sec/detective/clothing
 	name = "Detective's clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
 
-/obj/item/storage/backpack/duffelbag/clothing/sec/detective/PopulateContents()
+/obj/item/storage/backpack/duffelbag/sec/detective/clothing/PopulateContents()
 	new /obj/item/clothing/under/rank/det(src)
 	new /obj/item/clothing/under/rank/det/skirt(src)
 	new /obj/item/clothing/suit/det_suit(src)
@@ -708,6 +689,7 @@
 	new /obj/item/clothing/suit/det_suit/noir(src)
 	new /obj/item/clothing/head/fedora(src)
 	new /obj/item/clothing/shoes/laceup(src)
+	new /obj/item/clothing/shoes/xeno_wraps/jackboots(src)
 	new /obj/item/clothing/under/yogs/forensictech(src)
 	new /obj/item/clothing/under/yogs/bluedetective(src)
 	new /obj/item/clothing/under/yogs/golddetective(src)
@@ -717,11 +699,11 @@
 	new /obj/item/clothing/suit/yogs/detectivecoat(src)
 	new /obj/item/clothing/suit/yogs/bluedetective(src)
 
-/obj/item/storage/backpack/duffelbag/clothing/sec/warden
+/obj/item/storage/backpack/duffelbag/sec/warden/clothing
 	name = "Warden's clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
 
-/obj/item/storage/backpack/duffelbag/clothing/sec/warden/PopulateContents()
+/obj/item/storage/backpack/duffelbag/sec/warden/clothing/PopulateContents()
 	new /obj/item/clothing/under/yogs/ocelot(src)
 	new /obj/item/clothing/under/yogs/krofficer(src)
 	new /obj/item/clothing/head/beret/corpwarden(src)
@@ -734,11 +716,11 @@
 	new /obj/item/clothing/under/rank/warden/skirt(src)
 	new /obj/item/clothing/shoes/jackboots/warden(src)
 
-/obj/item/storage/backpack/duffelbag/clothing/sec/head
+/obj/item/storage/backpack/duffelbag/sec/head/clothing
 	name = "Head of Security's clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
 
-/obj/item/storage/backpack/duffelbag/clothing/sec/head/PopulateContents()
+/obj/item/storage/backpack/duffelbag/sec/head/clothing/PopulateContents()
 	new /obj/item/clothing/under/hosparadefem(src)
 	new /obj/item/clothing/under/hosparademale(src)
 	new /obj/item/clothing/suit/armor/vest/leather(src)
@@ -757,14 +739,13 @@
 	new /obj/item/clothing/under/yogs/hoslatenight(src)
 	new /obj/item/clothing/under/yogs/hoscasual(src)
 	new /obj/item/clothing/suit/armor/vest/hosjacket(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 
-/obj/item/storage/backpack/duffelbag/clothing/med/chief
+/obj/item/storage/backpack/duffelbag/med/chief/clothing
 	name = "Chief Medical Officer's clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
-	icon_state = "duffel-med"
-	item_state = "duffel-med"
 
-/obj/item/storage/backpack/duffelbag/clothing/med/chief/PopulateContents()
+/obj/item/storage/backpack/duffelbag/med/chief/clothing/PopulateContents()
 	new /obj/item/clothing/suit/bio_suit/cmo(src)
 	new /obj/item/clothing/head/bio_hood/cmo(src)
 	new /obj/item/clothing/suit/toggle/labcoat/cmo(src)
@@ -773,3 +754,4 @@
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/neck/yogs/shawl/cmo(src) //Yogs
 	new /obj/item/clothing/head/beret/cmo(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)

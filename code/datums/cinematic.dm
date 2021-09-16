@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(cinematics)
+
 // Use to play cinematics.
 // Watcher can be world,mob, or a list of mobs
 // Blocks until sequence is done.
@@ -16,16 +18,14 @@
 		playing.is_global = TRUE
 		watcher = GLOB.mob_list
 	playing.play(watcher)
-	qdel(playing)
 
 /obj/screen/cinematic
 	icon = 'icons/effects/station_explosion.dmi'
 	icon_state = "station_intact"
 	plane = SPLASHSCREEN_PLANE
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = SPLASHSCREEN_LAYER
-	screen_loc = "BOTTOM,LEFT+50%"
-	appearance_flags = APPEARANCE_UI | TILE_BOUND
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	screen_loc = "1,1"
 
 /datum/cinematic
 	var/id = CINEMATIC_DEFAULT
@@ -38,35 +38,28 @@
 	var/stop_ooc = TRUE //Turns off ooc when played globally.
 
 /datum/cinematic/New()
+	GLOB.cinematics += src
 	screen = new(src)
 
 /datum/cinematic/Destroy()
-	for(var/CC in watching)
-		if(!CC)
-			continue
-		var/client/C = CC
-		C.mob.clear_fullscreen("cinematic")
-		C.screen -= screen
-	watching = null
+	GLOB.cinematics -= src
 	QDEL_NULL(screen)
-	QDEL_NULL(special_callback)
-	for(var/MM in locked)
-		if(!MM)
-			continue
-		var/mob/M = MM
+	for(var/mob/M in locked)
 		M.notransform = FALSE
-	locked = null
 	return ..()
 
 /datum/cinematic/proc/play(watchers)
-	//Check if cinematic can actually play (stop mob cinematics for global ones)
-	if(SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PLAY_CINEMATIC, src) & COMPONENT_GLOB_BLOCK_CINEMATIC)
-		return
+	//Check if you can actually play it (stop mob cinematics for global ones) and create screen objects
+	for(var/A in GLOB.cinematics)
+		var/datum/cinematic/C = A
+		if(C == src)
+			continue
+		if(C.is_global || !is_global)
+			return //Can't play two global or local cinematics at the same time
 
-	//We are now playing this cinematic
-
-	//Handle what happens when a different cinematic tries to play over us
-	RegisterSignal(SSdcs, COMSIG_GLOB_PLAY_CINEMATIC, .proc/replacement_cinematic)
+	//Close all open windows if global
+	if(is_global)
+		SStgui.close_all_uis()
 
 	//Pause OOC
 	var/ooc_toggled = FALSE
@@ -74,17 +67,24 @@
 		ooc_toggled = TRUE
 		toggle_ooc(FALSE)
 
-	//Place /atom/movable/screen/cinematic into everyone's screens, prevent them from moving
-	for(var/MM in watchers)
-		var/mob/M = MM
-		show_to(M, M.client)
-		RegisterSignal(M, COMSIG_MOB_CLIENT_LOGIN, .proc/show_to)
-		//Close watcher ui's
-		SStgui.close_user_uis(M)
+
+	for(var/mob/M in GLOB.mob_list)
+		if(M in watchers)
+			M.notransform = TRUE //Should this be done for non-global cinematics or even at all ?
+			locked += M
+			//Close watcher ui's
+			SStgui.close_user_uis(M)
+			if(M.client)
+				watching += M.client
+				M.client.screen += screen
+		else
+			if(is_global)
+				M.notransform = TRUE
+				locked += M
 
 	//Actually play it
 	content()
-
+	
 	//Cleanup
 	sleep(cleanup_time)
 
@@ -92,15 +92,7 @@
 	if(ooc_toggled)
 		toggle_ooc(TRUE)
 
-/datum/cinematic/proc/show_to(mob/M, client/C)
-	if(!M.notransform)
-		locked += M
-		M.notransform = TRUE //Should this be done for non-global cinematics or even at all ?
-	if(!C)
-		return
-	watching += C
-	M.overlay_fullscreen("cinematic",/obj/screen/fullscreen/cinematic_backdrop)
-	C.screen += screen
+	qdel(src)
 
 //Sound helper
 /datum/cinematic/proc/cinematic_sound(s)
@@ -118,11 +110,6 @@
 //Actual cinematic goes in here
 /datum/cinematic/proc/content()
 	sleep(50)
-
-/datum/cinematic/proc/replacement_cinematic(datum/source, datum/cinematic/other)
-	if(!is_global && other.is_global) //Allow it to play if we're local and it's global
-		return NONE
-	return COMPONENT_GLOB_BLOCK_CINEMATIC
 
 /datum/cinematic/nuke_win
 	id = CINEMATIC_NUKE_WIN

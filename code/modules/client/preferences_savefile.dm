@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	33
+#define SAVEFILE_VERSION_MAX	32
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -131,7 +131,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(!ispath(donor_item))
 			donor_item = null
 	if(current_version < 31) //Someone doesn't know how to code and make jukebox and autodeadmin the same thing
-		toggles &= ~DEADMIN_ALWAYS
+		toggles &= ~DEADMIN_ALWAYS 
 		toggles &= ~DEADMIN_ANTAGONIST
 		toggles &= ~DEADMIN_POSITION_HEAD
 		toggles &= ~DEADMIN_POSITION_SECURITY
@@ -142,13 +142,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			var/datum/skillcape/cape = new path()
 			skillcape_id = cape.id
 			qdel(cape)
-	if(current_version < 33) //Reset map preference to no choice
-		if(preferred_map)
-			to_chat(parent, "<span class='userdanger'>Your preferred map has been reset to nothing. Please set it to the map you wish to play on.</span>")
-		preferred_map = null
-		
-		
-		
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -281,7 +274,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			break
 	if(!bar_sanitize)
 		bar_choice = "Random"
+	
 	if(!player_alt_titles) player_alt_titles = new()
+
 	show_credits	= sanitize_integer(show_credits, FALSE, TRUE, initial(show_credits))
 
 	// yogs start - Donor features & yogtoggles
@@ -433,7 +428,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["feature_polysmorph_teeth"], features["teeth"])
 	READ_FILE(S["feature_polysmorph_dome"], features["dome"])
 	READ_FILE(S["feature_polysmorph_dorsal_tubes"], features["dorsal_tubes"])
-	READ_FILE(S["persistent_scars"], persistent_scars)
 	if(!CONFIG_GET(flag/join_with_mutant_humans))
 		features["tail_human"] = "none"
 		features["ears"] = "none"
@@ -530,8 +524,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["dome"]	= sanitize_inlist(features["dome"], GLOB.dome_list)
 	features["dorsal_tubes"]	= sanitize_inlist(features["dorsal_tubes"], GLOB.dorsal_tubes_list)
 
-	persistent_scars = sanitize_integer(persistent_scars)
-
 	joblessrole	= sanitize_integer(joblessrole, 1, 3, initial(joblessrole))
 	//Validate job prefs
 	for(var/j in job_preferences)
@@ -586,7 +578,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_polysmorph_teeth"]			, features["teeth"])
 	WRITE_FILE(S["feature_polysmorph_dome"]			, features["dome"])
 	WRITE_FILE(S["feature_polysmorph_dorsal_tubes"]			, features["dorsal_tubes"])
-	WRITE_FILE(S["persistent_scars"]			, persistent_scars)
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)

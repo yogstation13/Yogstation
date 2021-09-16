@@ -10,7 +10,6 @@
 	var/suittoggled = FALSE
 	var/mutantrace_variation = NO_MUTANTRACE_VARIATION
 	var/adjusted = NORMAL_STYLE
-	limb_integrity = 0 // disabled for most exo-suits
 
 
 /obj/item/clothing/suit/worn_overlays(isinhands = FALSE)
@@ -28,7 +27,7 @@
 				if(A.above_suit)
 					. += U.accessory_overlay
 
-/obj/item/clothing/suit/update_clothes_damaged_state()
+/obj/item/clothing/suit/update_clothes_damaged_state(damaging = TRUE)
 	..()
 	if(ismob(loc))
 		var/mob/M = loc

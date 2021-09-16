@@ -1,6 +1,5 @@
 /obj/item/melee/transforming
-	sharpness = SHARP_EDGED
-	bare_wound_bonus = 20
+	sharpness = IS_SHARP
 	var/active = FALSE
 	var/force_on = 30 //force when active
 	var/faction_bonus_force = 0 //Bonus force dealt against certain factions

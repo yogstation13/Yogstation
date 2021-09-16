@@ -9,7 +9,6 @@ Donatello
 Eater
 Ermac
 Fox
-Gaiden
 Goemon
 Hanzo
 Hayabusa
@@ -26,7 +25,6 @@ McNinja
 Michaelangelo
 Midnight
 Null
-Ocelot
 Ogre
 Phantom
 Raiden

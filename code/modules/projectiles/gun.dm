@@ -201,12 +201,6 @@
 					return
 			user.AddComponent(/datum/component/gunpoint, target, src)
 			return
-		if(iscarbon(target))
-			var/mob/living/carbon/C = target
-			for(var/i in C.all_wounds)
-				var/datum/wound/W = i
-				if(W.try_treating(src, user))
-					return // another coward cured!
 
 	if(istype(user))//Check if the user can use the gun, if the user isn't alive(turrets) assume it can.
 		var/mob/living/L = user
@@ -558,14 +552,10 @@
 
 	if(chambered && chambered.BB)
 		chambered.BB.damage *= 5
-		if(chambered.BB.wound_bonus != CANT_WOUND)
-			chambered.BB.wound_bonus += 5
 
 	var/fired = process_fire(target, user, TRUE, params, BODY_ZONE_HEAD)
 	if(!fired && chambered?.BB)
 		chambered.BB.damage /= 5
-		if(chambered.BB.wound_bonus != CANT_WOUND)
-			chambered.BB.wound_bonus -= 5
 
 /obj/item/gun/proc/unlock() //used in summon guns and as a convience for admins
 	if(pin)

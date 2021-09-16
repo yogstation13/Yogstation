@@ -75,19 +75,7 @@
 /obj/item/stamp/cent
 	name = "centcom rubber stamp"
 	icon_state = "stamp-cent"
-	item_color = "redcoat"
-
-/obj/item/stamp/syndi
-	name = "knock-off syndicate rubber stamp"
-	desc = "Not a syndicate ripoff!"
-	icon_state = "stamp-syndi"
-	item_color =  "hosred"
-
-	
-/obj/item/stamp/syndiround
-	name = "syndicate rubber stamp"
-	icon_state = "stamp-syndiround"
-	item_color =  "hosred"
+	item_color = "cent"
 
 /obj/item/stamp/attack_paw(mob/user)
 	return attack_hand(user)

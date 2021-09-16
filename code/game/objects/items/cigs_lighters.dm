@@ -333,7 +333,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	list_reagents = list(/datum/reagent/drug/nicotine = 20, /datum/reagent/medicine/regen_jelly = 15, /datum/reagent/drug/krokodil = 4)
 
 /obj/item/clothing/mask/cigarette/nonico
-	desc = "A tobacco-free cigarette, it contains chamomile, lemon balm, and catnip."
+	desc = "A nicotine-free cigarette."
 	list_reagents = list(/datum/reagent/carbon = 15)
 
 // Rollies.
@@ -931,3 +931,4 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/cigarette/lit/Initialize()
     . = ..()
     light() // These cigarettes start lit.
+    

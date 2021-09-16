@@ -552,9 +552,6 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/narplush
 	name = "Nar'Sie plushie"
 	unlock_path = /obj/item/toy/plush/narplush
-/datum/donator_gear/blahajplush
-	name = "Shark plushie"
-	unlock_path = /obj/item/toy/plush/blahaj
 /datum/donator_gear/sword0
 	name = "toy sword"
 	unlock_path = /obj/item/toy/sword

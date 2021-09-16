@@ -119,7 +119,7 @@ obj/item/pickaxe/bonepickaxe
 	w_class = WEIGHT_CLASS_NORMAL
 	materials = list(/datum/material/iron=50)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 
 /obj/item/shovel/Initialize()
 	. = ..()

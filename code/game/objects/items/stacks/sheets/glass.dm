@@ -266,7 +266,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	resistance_flags = ACID_PROOF
 	armor = list("melee" = 100, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 100)
 	max_integrity = 40
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP
 	grind_results = list(/datum/reagent/silicon = 20)
 	var/icon_prefix
 

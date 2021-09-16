@@ -315,14 +315,13 @@
 		cooldown = COOLDOWN_DAMAGE
 		for(var/V in listeners)
 			var/mob/living/L = V
-			L.apply_damage(15 * power_multiplier, def_zone = BODY_ZONE_CHEST, wound_bonus=CANT_WOUND)
+			L.apply_damage(15 * power_multiplier, def_zone = BODY_ZONE_CHEST)
 
 	//BLEED
 	else if((findtext(message, bleed_words)))
 		cooldown = COOLDOWN_DAMAGE
 		for(var/mob/living/carbon/human/H in listeners)
-			var/obj/item/bodypart/BP = pick(H.bodyparts)
-			BP.generic_bleedstacks += 5 * power_multiplier
+			H.bleed_rate += (5 * power_multiplier)
 
 	//FIRE
 	else if((findtext(message, burn_words)))

@@ -13,7 +13,7 @@
 		"https://www.youtube.com/watch?v=f2cGxy-ZHIs", 						// Ólafur Arnalds - So Close (feat. Arnór Dan)
 		"https://www.youtube.com/watch?v=UaD4AiqYDyA", 						// X-CEED - Flip-Flap
 		"https://www.youtube.com/watch?v=a90kqxX3jPg",						// Monster860 - Orion Trail
-		"https://www.youtube.com/watch?v=xLUxhkwXsDE",						// Snooty Fox - Ritchie Everett
+		"https://www.youtube.com/watch?v=dOtCvh-kIUM",						// Snooty Fox - Ritchie Everett
 		"https://www.youtube.com/watch?v=zKxwED8-Hws",						// Monster860 - Journey to Cygni
 		"https://www.youtube.com/watch?v=icy4-CQHVh4", 						// Joseph "Zhaytee" Toscano - Absconditus
 		"https://www.youtube.com/watch?v=dCPWE4WexM8", 						// Hiroaki Yoshida, Hitomi Komatsu - Robocop Theme (Remix by Cboyardee)
@@ -41,13 +41,13 @@
 		"https://www.youtube.com/watch?v=YGulLVWu-s0",						// God Hand "Rock a Bay"
 		"https://www.youtube.com/watch?v=IhEqUKBTffU",						// Streets Of Rogue - 5-1
 		"https://www.youtube.com/watch?v=fXvxnDmwB_I",						// Rain World THS - Action Scene
-		"https://www.youtube.com/watch?v=cklpO4kYZKs",						//The Kinks - Apeman
-		"https://www.youtube.com/watch?v=MPPCNM85eRY",						//The Kinks - Super Sonic Ship
+		"https://www.youtube.com/watch?v=1ye2nI7L_0g",						//The Kinks - Apeman
+		"https://www.youtube.com/watch?v=iZB8XXYePy0",						//The Kinks - Super Sonic Ship
 		"https://www.youtube.com/watch?v=tRcPA7Fzebw",						//David Bowie - Starman
 		"https://www.youtube.com/watch?v=FH2EgYq_NCY",						//Lou Reed - Satellite of Love
 		"https://www.youtube.com/watch?v=zquJ6AqvVNw",						//Dungeons of Dredmor - Diggle Hell
 		"https://www.youtube.com/watch?v=cYUGOSjRs3Q",  					// Blake Robinson - Traitor's Motif
-		"https://www.youtube.com/watch?v=7F_xOzLWy5U")						// Ataraxia - Deja Vuzz
+		"https://www.youtube.com/watch?v=AumYP6Np1eI")						// Ataraxia - Deja Vuzz
 
 	selected_lobby_music = pick(songs)
 

@@ -64,7 +64,7 @@
 
 /datum/holotool_mode/knife/on_set(var/obj/item/holotool/H)
 	..()
-	H.sharpness = SHARP_EDGED
+	H.sharpness = IS_SHARP
 	H.force = 17
 	H.attack_verb = list("sliced", "torn", "cut")
 	H.armour_penetration = 45
