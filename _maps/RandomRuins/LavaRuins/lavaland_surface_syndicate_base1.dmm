@@ -145,6 +145,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/arrivals)
+"cg" = (
+/obj/structure/table,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/item/stamp/syndiround,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/syndicate_lava_base/cargo)
 "cF" = (
 /obj/machinery/door/poddoor{
 	id = "lavalandsyndi_arrivals"
@@ -1408,16 +1419,6 @@
 	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/unpowered/syndicate_lava_base/cargo)
-"gb" = (
-/obj/structure/table,
-/obj/item/paper_bin,
-/obj/item/pen,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/cargo)
@@ -6617,7 +6618,7 @@
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/chemistry)
-"XT" = (
+"WQ" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6630,6 +6631,7 @@
 	dir = 8
 	},
 /obj/item/folder/red,
+/obj/item/stamp/syndiround,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "XW" = (
@@ -7223,7 +7225,7 @@ Oh
 IO
 nl
 Zi
-XT
+WQ
 ov
 mn
 ab
@@ -8550,7 +8552,7 @@ ee
 eB
 fb
 fu
-gb
+cg
 gQ
 hl
 gQ

@@ -348,7 +348,7 @@
 		var/mob/living/carbon/human/H = owner
 		prot = H.get_thermal_protection()
 
-	
+
 	if(owner.on_fire && (prot < FIRE_IMMUNITY_MAX_TEMP_PROTECT))
 		linked_alert.icon_state = "fleshmend_fire"
 		return
@@ -357,6 +357,10 @@
 	owner.adjustBruteLoss(-10, FALSE)
 	owner.adjustFireLoss(-5, FALSE)
 	owner.adjustOxyLoss(-10)
+	if(!iscarbon(owner))
+		return
+	var/mob/living/carbon/C = owner
+	QDEL_LIST(C.all_scars)
 
 /obj/screen/alert/status_effect/fleshmend
 	name = "Fleshmend"
