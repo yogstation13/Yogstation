@@ -2100,3 +2100,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/clothing/neck/skillcape/trimmed/antag
 	cost = 20
 	illegal_tech = FALSE
+
+/datum/uplink_item/badass/syndistamp
+	name = "Syndicate Stamp"
+	desc = "Even evil needs to do paperwork."
+	item = /obj/item/stamp/syndiround
+	cost = 1
+	illegal_tech = FALSE

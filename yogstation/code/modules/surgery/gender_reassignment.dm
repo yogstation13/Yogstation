@@ -1,8 +1,8 @@
 /datum/surgery/gender_reassignment
 	name = "gender reassignment"
-	steps = list(/datum/surgery_step/incise, 
-				 /datum/surgery_step/clamp_bleeders, 
-				 /datum/surgery_step/reshape_genitals, 
+	steps = list(/datum/surgery_step/incise,
+				 /datum/surgery_step/clamp_bleeders,
+				 /datum/surgery_step/reshape_genitals,
 				 /datum/surgery_step/close)
 	possible_locs = list("groin")
 
@@ -10,7 +10,7 @@
 //reshape_genitals
 /datum/surgery_step/reshape_genitals
 	name = "reshape genitals"
-	implements = list(/obj/item/scalpel = 100, /obj/item/melee/transforming/energy/sword = 15, /obj/item/kitchen/knife = 35, /obj/item/shard = 25)	
+	implements = list(TOOL_SCALPEL = 100, /obj/item/melee/transforming/energy/sword = 15, /obj/item/kitchen/knife = 35, /obj/item/shard = 25)
 	time = 64
 
 /datum/surgery/gender_reassignment/can_start(mob/user, mob/living/carbon/target)

@@ -212,11 +212,11 @@
 	item_state = "clownfacebackpack"
 
 //Clothing Bags
-/obj/item/storage/backpack/duffelbag/sec/physician/clothing
+/obj/item/storage/backpack/duffelbag/clothing/sec/physician
 	name = "Brig Physician's clothing duffelbag"
 	desc = "A large duffel bag filled with clothing."
 
-/obj/item/storage/backpack/duffelbag/sec/physician/clothing/PopulateContents()
+/obj/item/storage/backpack/duffelbag/clothing/sec/physician/PopulateContents()
 	new /obj/item/clothing/under/yogs/rank/physician(src)
 	new /obj/item/clothing/suit/toggle/labcoat/emt/physician(src)
 	new /obj/item/clothing/head/soft/emt/phys(src)
@@ -226,3 +226,4 @@
 	new /obj/item/clothing/suit/toggle/labcoat/physician(src)
 	new /obj/item/clothing/head/beret/med/phys(src)
 	new /obj/item/clothing/head/beret/corpsec/phys(src)
+	new /obj/item/clothing/shoes/xeno_wraps/jackboots(src)

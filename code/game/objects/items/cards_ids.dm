@@ -443,6 +443,28 @@ update_label("John Doe", "Clowny")
 	access = J.get_access()
 	. = ..()
 
+/obj/item/card/id/captains_spare/temporary
+	name = "emergency id card"
+	desc = "A temporary ID for access to secure areas in the event of an emergency"
+	resistance_flags = FLAMMABLE
+
+/obj/item/card/id/captains_spare/temporary/Initialize()
+	. = ..()
+	access -= ACCESS_CHANGE_IDS
+	access -= ACCESS_HEADS
+	addtimer(CALLBACK(src, .proc/wipe_id), 50 SECONDS)
+
+/obj/item/card/id/captains_spare/temporary/proc/wipe_id()
+	visible_message("<span class='danger'>The temporary spare begins to smolder</span>", "<span class='userdanger'>The temporary spare begins to smolder</span>", "<span class='userdanger'>The temporary spare begins to smolder</span>")
+	sleep(10 SECONDS)
+	if(isliving(loc))
+		var/mob/living/M = loc
+		M.adjust_fire_stacks(1)
+		M.IgniteMob()
+	fire_act()
+	sleep(2 SECONDS)
+	burn()
+
 /obj/item/card/id/centcom
 	name = "\improper CentCom ID"
 	desc = "An ID straight from Central Command."
