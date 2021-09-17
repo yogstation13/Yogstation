@@ -64,7 +64,7 @@
 	if((val < 1) || (val > light_setting_list.len))
 		return
 	active_power_usage = light_setting_list[val]
-	if(!avail(active_power_usage))
+	if(active_power_usage && !avail(active_power_usage))
 		return change_setting(val - 1)
 	setting = val
 	set_light(light_setting_list[val])
