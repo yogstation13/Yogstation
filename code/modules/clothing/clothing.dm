@@ -96,9 +96,9 @@
 				repair(user, params)
 			if(CLOTHING_SHREDDED)
 				if(S.amount < 3)
-					to_chat(user, "<span class='warning'>You require 3 [S.name] to repair [src].</span>")
+					to_chat(user, span_warning("You require 3 [S.name] to repair [src]."))
 					return
-				to_chat(user, "<span class='notice'>You begin fixing the damage to [src] with [S]...</span>")
+				to_chat(user, span_notice("You begin fixing the damage to [src] with [S]..."))
 				if(do_after(user, 6 SECONDS, TRUE, src))
 					if(S.use(3))
 						repair(user, params)
@@ -116,7 +116,7 @@
 	damage_by_parts = null
 	if(user)
 		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-		to_chat(user, "<span class='notice'>You fix the damage on [src].</span>")
+		to_chat(user, span_notice("You fix the damage on [src]."))
 
 /**
   * take_damage_zone() is used for dealing damage to specific bodyparts on a worn piece of clothing, meant to be called from [/obj/item/bodypart/proc/check_woundings_mods()]
@@ -165,7 +165,7 @@
 
 	if(iscarbon(loc))
 		var/mob/living/carbon/C = loc
-		C.visible_message("<span class='danger'>The [zone_name] on [C]'s [src.name] is [break_verb] away!</span>", "<span class='userdanger'>The [zone_name] on your [src.name] is [break_verb] away!</span>", vision_distance = COMBAT_MESSAGE_RANGE)
+		C.visible_message(span_danger("The [zone_name] on [C]'s [src.name] is [break_verb] away!"), span_userdanger("The [zone_name] on your [src.name] is [break_verb] away!"), vision_distance = COMBAT_MESSAGE_RANGE)
 		RegisterSignal(C, COMSIG_MOVABLE_MOVED, .proc/bristle, override = TRUE)
 
 	zones_disabled++
@@ -219,7 +219,7 @@
 /obj/item/clothing/examine(mob/user)
 	. = ..()
 	if(damaged_clothes == CLOTHING_SHREDDED)
-		. += "<span class='warning'><b>It is completely shredded and requires mending before it can be worn again!</b></span>"
+		. += span_warning("<b>It is completely shredded and requires mending before it can be worn again!</b>")
 		return
 	switch (max_heat_protection_temperature)
 		if (400 to 1000)
@@ -233,11 +233,11 @@
 		var/zone_name = parse_zone(zone)
 		switch(pct_damage_part)
 			if(100 to INFINITY)
-				. += "<span class='warning'><b>The [zone_name] is useless and requires mending!</b></span>"
+				. += span_warning("<b>The [zone_name] is useless and requires mending!</b>")
 			if(60 to 99)
-				. += "<span class='warning'>The [zone_name] is heavily shredded!</span>"
+				. += span_warning("The [zone_name] is heavily shredded!")
 			if(30 to 59)
-				. += "<span class='danger'>The [zone_name] is partially shredded.</span>"
+				. += span_danger("The [zone_name] is partially shredded.")
 	var/datum/component/storage/pockets = GetComponent(/datum/component/storage)
 	if(pockets)
 		var/list/how_cool_are_your_threads = list("<span class='notice'>")
@@ -261,7 +261,7 @@
 	update_clothes_damaged_state()
 	if(ismob(loc)) //It's not important enough to warrant a message if nobody's wearing it
 		var/mob/M = loc
-		to_chat(M, "<span class='warning'>Your [name] starts to fall apart!</span>")
+		to_chat(M, span_warning("Your [name] starts to fall apart!"))
 
 /obj/item/clothing/proc/update_clothes_damaged_state(damaging = TRUE)
 	var/index = "[REF(initial(icon))]-[initial(icon_state)]"
@@ -325,20 +325,20 @@ BLIND     // can't see anything
 	var/list/modes = list("Off", "Binary vitals", "Exact vitals", "Tracking beacon")
 	var/switchMode = input("Select a sensor mode:", "Suit Sensor Mode", modes[sensor_mode + 1]) in modes
 	if(get_dist(usr, src) > 1)
-		to_chat(usr, "<span class='warning'>You have moved too far away!</span>")
+		to_chat(usr, span_warning("You have moved too far away!"))
 		return
 	sensor_mode = modes.Find(switchMode) - 1
 
 	if (src.loc == usr)
 		switch(sensor_mode)
 			if(0)
-				to_chat(usr, "<span class='notice'>You disable your suit's remote sensing equipment.</span>")
+				to_chat(usr, span_notice("You disable your suit's remote sensing equipment."))
 			if(1)
-				to_chat(usr, "<span class='notice'>Your suit will now only report whether you are alive or dead.</span>")
+				to_chat(usr, span_notice("Your suit will now only report whether you are alive or dead."))
 			if(2)
-				to_chat(usr, "<span class='notice'>Your suit will now only report your exact vital lifesigns.</span>")
+				to_chat(usr, span_notice("Your suit will now only report your exact vital lifesigns."))
 			if(3)
-				to_chat(usr, "<span class='notice'>Your suit will now report your exact vital lifesigns as well as your coordinate position.</span>")
+				to_chat(usr, span_notice("Your suit will now report your exact vital lifesigns as well as your coordinate position."))
 
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
@@ -374,12 +374,12 @@ BLIND     // can't see anything
 	if(!can_use(usr))
 		return
 	if(!can_adjust)
-		to_chat(usr, "<span class='warning'>You cannot wear this suit any differently!</span>")
+		to_chat(usr, span_warning("You cannot wear this suit any differently!"))
 		return
 	if(toggle_jumpsuit_adjust())
-		to_chat(usr, "<span class='notice'>You adjust the suit to wear it more casually.</span>")
+		to_chat(usr, span_notice("You adjust the suit to wear it more casually."))
 	else
-		to_chat(usr, "<span class='notice'>You adjust the suit back to normal.</span>")
+		to_chat(usr, span_notice("You adjust the suit back to normal."))
 	if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		H.update_inv_w_uniform()
@@ -420,7 +420,7 @@ BLIND     // can't see anything
 
 	visor_toggling()
 
-	to_chat(user, "<span class='notice'>You adjust \the [src] [up ? "up" : "down"].</span>")
+	to_chat(user, span_notice("You adjust \the [src] [up ? "up" : "down"]."))
 
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
@@ -464,7 +464,7 @@ BLIND     // can't see anything
 		update_clothes_damaged_state()
 		if(ismob(loc))
 			var/mob/M = loc
-			M.visible_message("<span class='danger'>[M]'s [src.name] falls off, completely shredded!</span>", "<span class='warning'><b>Your [src.name] falls off, completely shredded!</b></span>", vision_distance = COMBAT_MESSAGE_RANGE)
+			M.visible_message(span_danger("[M]'s [src.name] falls off, completely shredded!"), span_warning("<b>Your [src.name] falls off, completely shredded!</b>"), vision_distance = COMBAT_MESSAGE_RANGE)
 			M.dropItemToGround(src)
 	else
 		..()
@@ -474,7 +474,7 @@ BLIND     // can't see anything
 	if(!istype(L))
 		return
 	if(prob(0.2))
-		to_chat(L, "<span class='warning'>The damaged threads on your [src.name] chafe!</span>")
+		to_chat(L, span_warning("The damaged threads on your [src.name] chafe!"))
 		
 /*obj/item/clothing/proc/set_sensor_glob()
 	var/mob/living/carbon/human/H = src.loc

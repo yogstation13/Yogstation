@@ -130,31 +130,31 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 	switch(action)
 		if("adminmoreinfo")
 			if(!ticket.initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
+				to_chat(usr, span_warning("Client not found"))
 				return
 			usr.client.holder.adminmoreinfo(ticket.initiator.mob)
 			return
 		if("PP")
 			if(!ticket.initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
+				to_chat(usr, span_warning("Client not found"))
 				return
 			usr.client.holder.show_player_panel(ticket.initiator.mob)
 			return
 		if("VV")
 			if(!ticket.initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
+				to_chat(usr, span_warning("Client not found"))
 				return
 			usr.client.debug_variables(ticket.initiator.mob)
 			return
 		if("SM")
 			if(!ticket.initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
+				to_chat(usr, span_warning("Client not found"))
 				return
 			usr.client.cmd_admin_subtle_message(ticket.initiator.mob)
 			return
 		if("FLW")
 			if(!ticket.initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
+				to_chat(usr, span_warning("Client not found"))
 				return
 			usr.client.holder.observe_follow(ticket.initiator.mob)
 			return
@@ -190,19 +190,19 @@ GLOBAL_VAR_INIT(experimental_adminpanel, TRUE)
 			return
 		if("TP")
 			if(!ticket.initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
+				to_chat(usr, span_warning("Client not found"))
 				return
 			usr.client.holder.show_traitor_panel(ticket.initiator.mob)
 			return
 		if("Logs")
 			if(!ticket.initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
+				to_chat(usr, span_warning("Client not found"))
 				return
 			show_individual_logging_panel(ticket.initiator.mob)
 			return
 		if("Smite")
 			if(!ticket.initiator)
-				to_chat(usr, "<span class='warning'>Client not found</span>")
+				to_chat(usr, span_warning("Client not found"))
 				return
 			usr.client.smite(ticket.initiator.mob)
 			return

@@ -41,9 +41,9 @@
 				occur_text = "is completely incinerated, falling to dust!"
 	victim = dismembered_part.owner
 
-	var/msg = "<span class='bolddanger'>[victim]'s [dismembered_part.name] [occur_text]!</span>"
+	var/msg = span_bolddanger("[victim]'s [dismembered_part.name] [occur_text]!")
 
-	victim.visible_message(msg, "<span class='userdanger'>Your [dismembered_part.name] [occur_text]!</span>")
+	victim.visible_message(msg, span_userdanger("Your [dismembered_part.name] [occur_text]!"))
 
 	set_limb(dismembered_part)
 	second_wind()

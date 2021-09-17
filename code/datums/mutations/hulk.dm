@@ -5,7 +5,7 @@
 	quality = POSITIVE
 	locked = TRUE
 	difficulty = 16
-	text_gain_indication = "<span class='notice'>Your muscles hurt!</span>"
+	text_gain_indication = span_notice("Your muscles hurt!")
 	species_allowed = list("human") //no skeleton/lizard hulk
 	health_req = 25
 	instability = 65
@@ -28,7 +28,7 @@
 /datum/mutation/human/hulk/on_life()
 	if(owner.health < 0)
 		on_losing(owner)
-		to_chat(owner, "<span class='danger'>You suddenly feel very weak.</span>")
+		to_chat(owner, span_danger("You suddenly feel very weak."))
 
 /datum/mutation/human/hulk/on_losing(mob/living/carbon/human/owner)
 	if(..())
@@ -52,7 +52,7 @@
 	quality = POSITIVE
 	get_chance = 10
 	lowest_value = 256 * 14
-	text_gain_indication = "<span class='notice'>You suddenly feel very angry.</span>"
+	text_gain_indication = span_notice("You suddenly feel very angry.")
 	species_allowed = list("human") //no skeleton/lizard hulk
 	health_req = 25
 
@@ -61,7 +61,7 @@
 	quality = POSITIVE
 	class = MUT_OTHER
 	locked = TRUE
-	text_gain_indication = "<span class='notice'>Your muscles hurt!</span>"
+	text_gain_indication = span_notice("Your muscles hurt!")
 	species_allowed = list("human") //no skeleton/lizard hulk
 	health_req = 1
 	var/health_based = 0
@@ -79,7 +79,7 @@
 	if(istype(owner.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = owner.w_uniform
 		if(owner.canUnEquip(U))
-			owner.visible_message("[U] falls apart!", "<span class='warning'>You tear your clothes up in anger!</span>")
+			owner.visible_message("[U] falls apart!", span_warning("You tear your clothes up in anger!"))
 			qdel(U)
 	if(istype(owner.wear_suit, /obj/item/clothing/suit))
 		var/obj/item/clothing/suit/S = owner.wear_suit

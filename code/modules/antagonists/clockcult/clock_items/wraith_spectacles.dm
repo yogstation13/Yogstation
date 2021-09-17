@@ -33,24 +33,24 @@
 		var/mob/living/carbon/human/H = loc
 		if(src == H.glasses && !up)
 			if(HAS_TRAIT(H, TRAIT_BLIND))
-				to_chat(H, "<span class='heavy_brass'>\"You're blind, idiot. Stop embarrassing yourself.\"</span>")
+				to_chat(H, "[span_heavy_brass("\"You're blind, idiot. Stop embarrassing yourself.\"")]")
 				return
 			if(blind_cultist(H))
 				return
 			if(is_servant_of_ratvar(H))
-				to_chat(H, "<span class='heavy_brass'>You push the spectacles down, and all is revealed to you.[GLOB.ratvar_awakens ? "" : " Your eyes begin to itch - you cannot do this for long."]</span>")
+				to_chat(H, "[span_heavy_brass("You push the spectacles down, and all is revealed to you.[GLOB.ratvar_awakens ? "" : " Your eyes begin to itch - you cannot do this for long."]")]")
 				var/datum/status_effect/wraith_spectacles/WS = H.has_status_effect(STATUS_EFFECT_WRAITHSPECS)
 				if(WS)
 					WS.apply_eye_damage(H)
 				H.apply_status_effect(STATUS_EFFECT_WRAITHSPECS)
 			else
-				to_chat(H, "<span class='heavy_brass'>You push the spectacles down, but you can't see through the glass.</span>")
+				to_chat(H, "[span_heavy_brass("You push the spectacles down, but you can't see through the glass.")]")
 
 /obj/item/clothing/glasses/wraith_spectacles/proc/blind_cultist(mob/living/victim)
 	var/obj/item/organ/eyes/eyes = victim.getorganslot(ORGAN_SLOT_EYES)
 	if(iscultist(victim))
-		to_chat(victim, "<span class='heavy_brass'>\"It looks like Nar-Sie's dogs really don't value their eyes.\"</span>")
-		to_chat(victim, "<span class='userdanger'>Your eyes explode with horrific pain!</span>")
+		to_chat(victim, "[span_heavy_brass("\"It looks like Nar-Sie's dogs really don't value their eyes.\"")]")
+		to_chat(victim, span_userdanger("Your eyes explode with horrific pain!"))
 		victim.emote("scream")
 		eyes.applyOrganDamage(eyes.maxHealth)
 		victim.adjust_blurriness(30)
@@ -78,19 +78,19 @@
 	if(slot != SLOT_GLASSES || up)
 		return
 	if(HAS_TRAIT(user, TRAIT_BLIND))
-		to_chat(user, "<span class='heavy_brass'>\"You're blind, idiot. Stop embarrassing yourself.\"</span>" )
+		to_chat(user, "[span_heavy_brass("\"You're blind, idiot. Stop embarrassing yourself.\"")]" )
 		return
 	if(blind_cultist(user)) //Cultists instantly go blind
 		return
 	set_vision_vars(TRUE)
 	if(is_servant_of_ratvar(user))
-		to_chat(user, "<span class='heavy_brass'>As you put on the spectacles, all is revealed to you.[GLOB.ratvar_awakens || GLOB.ratvar_approaches ? "" : " Your eyes begin to itch - you cannot do this for long."]</span>")
+		to_chat(user, "[span_heavy_brass("As you put on the spectacles, all is revealed to you.[GLOB.ratvar_awakens || GLOB.ratvar_approaches ? "" : " Your eyes begin to itch - you cannot do this for long."]")]")
 		var/datum/status_effect/wraith_spectacles/WS = user.has_status_effect(STATUS_EFFECT_WRAITHSPECS)
 		if(WS)
 			WS.apply_eye_damage(user)
 		user.apply_status_effect(STATUS_EFFECT_WRAITHSPECS)
 	else
-		to_chat(user, "<span class='heavy_brass'>You put on the spectacles, but you can't see through the glass.</span>")
+		to_chat(user, "[span_heavy_brass("You put on the spectacles, but you can't see through the glass.")]")
 
 //The effect that causes/repairs the damage the spectacles cause.
 /datum/status_effect/wraith_spectacles
@@ -164,12 +164,12 @@
 		H.adjust_blurriness(2)
 	if(eye_damage_done >= nearsight_breakpoint)
 		if(!HAS_TRAIT(H, TRAIT_NEARSIGHT))
-			to_chat(H, "<span class='nzcrentr'>Your vision doubles, then trembles. Darkness begins to close in. You can't keep this up!</span>")
+			to_chat(H, span_nzcrentr("Your vision doubles, then trembles. Darkness begins to close in. You can't keep this up!"))
 		H.become_nearsighted(EYE_DAMAGE)
 	if(eye_damage_done >= blind_breakpoint)
 		if(!HAS_TRAIT(H, TRAIT_BLIND))
-			to_chat(H, "<span class='nzcrentr_large'>A piercing white light floods your vision. Suddenly, all goes dark!</span>")
+			to_chat(H, "[span_nzcrentr_large("A piercing white light floods your vision. Suddenly, all goes dark!")]")
 		eyes.applyOrganDamage(eyes.maxHealth)
 
 	if(prob(min(20, 5 + eye_damage_done)))
-		to_chat(H, "<span class='nzcrentr_small'><i>Your eyes continue to burn.</i></span>")
+		to_chat(H, span_nzcrentr_small("<i>Your eyes continue to burn.</i>"))
