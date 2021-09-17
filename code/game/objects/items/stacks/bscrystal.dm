@@ -50,7 +50,6 @@
 	M.visible_message("[M] starts sputtering in and out of reality!")
 	sleep(0.25 SECONDS)
 	blink_mob(M)
-	
 
 //Artificial bluespace crystal, doesn't give you much research.
 /obj/item/stack/ore/bluespace_crystal/artificial
