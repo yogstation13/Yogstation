@@ -16,13 +16,13 @@
 	switch(rand(1, 3))
 		if(1)
 			stuttering = 1
-			to_chat(src, "<span class='danger'>Warning: Feedback loop detected in speech module.</span>")
+			to_chat(src, span_danger("Warning: Feedback loop detected in speech module."))
 		if(2)
 			slurring = 1
-			to_chat(src, "<span class='danger'>Warning: Audio synthesizer CPU stuck.</span>")
+			to_chat(src, span_danger("Warning: Audio synthesizer CPU stuck."))
 		if(3)
 			derpspeech = 1
-			to_chat(src, "<span class='danger'>Warning: Vocabulary databank corrupted.</span>")
+			to_chat(src, span_danger("Warning: Vocabulary databank corrupted."))
 	if(prob(40))
 		mind.language_holder.selected_language = get_random_spoken_language()
 
@@ -43,32 +43,32 @@
 /mob/living/silicon/pai/attack_hand(mob/living/carbon/human/user)
 	switch(user.a_intent)
 		if(INTENT_HELP)
-			visible_message("<span class='notice'>[user] gently pats [src] on the head, eliciting an off-putting buzzing from its holographic field.</span>")
+			visible_message(span_notice("[user] gently pats [src] on the head, eliciting an off-putting buzzing from its holographic field."))
 		if(INTENT_DISARM)
-			visible_message("<span class='notice'>[user] boops [src] on the head!</span>")
+			visible_message(span_notice("[user] boops [src] on the head!"))
 		if(INTENT_HARM)
 			user.do_attack_animation(src)
 			if (user.name == master)
-				visible_message("<span class='notice'>Responding to its master's touch, [src] disengages its holochassis emitter, rapidly losing coherence.</span>")
+				visible_message(span_notice("Responding to its master's touch, [src] disengages its holochassis emitter, rapidly losing coherence."))
 				spawn(10)
 					fold_in()
 					if(user.put_in_hands(card))
-						user.visible_message("<span class='notice'>[user] promptly scoops up [user.p_their()] pAI's card.</span>")
+						user.visible_message(span_notice("[user] promptly scoops up [user.p_their()] pAI's card."))
 			else
-				visible_message("<span class='danger'>[user] stomps on [src]!.</span>")
+				visible_message(span_danger("[user] stomps on [src]!."))
 				take_holo_damage(2)
 
 /mob/living/silicon/pai/bullet_act(obj/item/projectile/Proj)
 	if(Proj.stun)
 		fold_in(force = TRUE)
-		src.visible_message("<span class='warning'>The electrically-charged projectile disrupts [src]'s holomatrix, forcing [src] to fold in!</span>")
+		src.visible_message(span_warning("The electrically-charged projectile disrupts [src]'s holomatrix, forcing [src] to fold in!"))
 	. = ..(Proj)
 
 /mob/living/silicon/pai/stripPanelUnequip(obj/item/what, mob/who, where) //prevents stripping
-	to_chat(src, "<span class='warning'>Your holochassis stutters and warps intensely as you attempt to interact with the object, forcing you to cease lest the field fail.</span>")
+	to_chat(src, span_warning("Your holochassis stutters and warps intensely as you attempt to interact with the object, forcing you to cease lest the field fail."))
 
 /mob/living/silicon/pai/stripPanelEquip(obj/item/what, mob/who, where) //prevents stripping
-	to_chat(src, "<span class='warning'>Your holochassis stutters and warps intensely as you attempt to interact with the object, forcing you to cease lest the field fail.</span>")
+	to_chat(src, span_warning("Your holochassis stutters and warps intensely as you attempt to interact with the object, forcing you to cease lest the field fail."))
 
 /mob/living/silicon/pai/IgniteMob(var/mob/living/silicon/pai/P)
 	return FALSE //No we're not flammable
@@ -77,7 +77,7 @@
 	emitterhealth = clamp((emitterhealth - amount), -50, emittermaxhealth)
 	if(emitterhealth < 0)
 		fold_in(force = TRUE)
-	to_chat(src, "<span class='userdanger'>The impact degrades your holochassis!</span>")
+	to_chat(src, span_userdanger("The impact degrades your holochassis!"))
 	return amount
 
 /mob/living/silicon/pai/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE)

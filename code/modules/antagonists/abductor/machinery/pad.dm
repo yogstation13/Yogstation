@@ -11,7 +11,7 @@
 		var/list/inventory = C.get_all_gear()
 		for(var/atom/A in inventory)
 			if(istype(A, /obj/item/bodybag/bluespace))
-				to_chat(target, "<span class='warning'>[A] collapses in on itself!</span>")
+				to_chat(target, span_warning("[A] colapses in on it's self!"))
 				qdel(A)
 	if(!target.buckled)
 		target.forceMove(get_turf(src))
@@ -23,7 +23,7 @@
 	for(var/mob/living/target in loc)
 		target.forceMove(teleport_target)
 		new /obj/effect/temp_visual/dir_setting/ninja(get_turf(target), target.dir)
-		to_chat(target, "<span class='warning'>The instability of the warp leaves you disoriented!</span>")
+		to_chat(target, span_warning("The instability of the warp leaves you disoriented!"))
 		target.Stun(60)
 
 /obj/machinery/abductor/pad/proc/Retrieve(mob/living/target)

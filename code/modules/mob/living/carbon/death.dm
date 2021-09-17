@@ -25,7 +25,7 @@
 			stomach_contents.Remove(M)
 		//yogs end
 		M.forceMove(Tsec)
-		visible_message("<span class='danger'>[M] bursts out of [src]!</span>")
+		visible_message(span_danger("[M] bursts out of [src]!"))
 	..()
 
 /mob/living/carbon/spill_organs(no_brain, no_organs, no_bodyparts)
