@@ -148,7 +148,7 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 				var/mob/living/LI = L
 				LI.Knockdown(120)
 				LI.blind_eyes(10)
-				to_chat(L, "<span class='danger'>You lose your footing as the dojo suddenly disappears. You're free!</span>")
+				to_chat(L, span_danger("You lose your footing as the dojo suddenly disappears. You're free!"))
 				playsound(L, 'sound/effects/phasein.ogg', 25, 1)
 				playsound(L, 'sound/effects/sparks2.ogg', 50, 1)
 		GLOB.ninja_capture -= L

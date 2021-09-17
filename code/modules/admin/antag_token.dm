@@ -3,7 +3,7 @@
 		return
 
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(usr, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 
 	var/datum/browser/token_panel = new(usr, "tokenpanel", "Antag Token Panel", 850, 600)
@@ -64,7 +64,7 @@
 		return
 
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(usr, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 
 	if(!ckey)
@@ -109,7 +109,7 @@
 		return
 
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(usr, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 	if(!ckey)
 		return
@@ -138,7 +138,7 @@
 			qdel(query_antag_token_redeem)
 			return
 
-		to_chat(usr, "<span class='notice'>Token Redeemed</span>")
+		to_chat(usr, span_notice("Token Redeemed"))
 		qdel(query_antag_token_redeem)
 
 		var/admin_key = key_name_admin(usr)
@@ -166,7 +166,7 @@
 		return
 
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(usr, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 	if(!id)
 		return
@@ -210,7 +210,7 @@
 		return
 
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(usr, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 
 	if(!id)
@@ -258,7 +258,7 @@
 		return
 
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(usr, span_danger("Failed to establish database connection."), confidential=TRUE)
 		return
 
 	var/datum/browser/token_panel = new(usr, "redeemabletokenpanel", "Antag Token Panel", 850, 600)

@@ -18,7 +18,7 @@
 
 /datum/component/art/proc/apply_moodlet(mob/M, impress)
 	M.visible_message("[M] stops to admire [parent].", \
-						 "<span class='notice'>You take in [parent], admiring the fine craftsmanship.</span>")
+						 span_notice("You take in [parent], admiring the fine craftsmanship."))
 	switch(impress)
 		if(GREAT_ART to INFINITY)
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "artgreat", /datum/mood_event/artgreat)
