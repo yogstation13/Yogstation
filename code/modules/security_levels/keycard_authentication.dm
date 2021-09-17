@@ -53,10 +53,10 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	if(isanimal(user))
 		var/mob/living/simple_animal/A = user
 		if(!A.dextrous)
-			to_chat(user, "<span class='warning'>You are too primitive to use this device!</span>")
+			to_chat(user, span_warning("You are too primitive to use this device!"))
 			return UI_CLOSE
 	if(isdrone(user))
-		to_chat(user, "<span class='warning'>You are unable to interface with this device!</span>")
+		to_chat(user, span_warning("You are unable to interface with this device!"))
 		return UI_CLOSE
 	return ..()
 
@@ -64,7 +64,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	if(..() || waiting || !allowed(usr))
 		return
 	if(!check_access(usr.get_active_held_item()))
-		to_chat(usr, "<span class='warning'>You need to swipe your ID!</span>")
+		to_chat(usr, span_warning("You need to swipe your ID!"))
 		return
 	switch(action)
 		if("red_alert")
@@ -119,10 +119,10 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	message_admins("[ADMIN_LOOKUPFLW(triggerer)] triggered and [ADMIN_LOOKUPFLW(confirmer)] confirmed event [event]")
 
 	var/area/A1 = get_area(triggerer)
-	deadchat_broadcast(" triggered [event] at <span class='name'>[A1.name]</span>.", "<span class='name'>[triggerer]</span>", triggerer)
+	deadchat_broadcast(" triggered [event] at [span_name("[A1.name]")].", span_name("[triggerer]"), triggerer)
 
 	var/area/A2 = get_area(confirmer)
-	deadchat_broadcast(" confirmed [event] at <span class='name'>[A2.name]</span>.", "<span class='name'>[confirmer]</span>", confirmer)
+	deadchat_broadcast(" confirmed [event] at [span_name("[A2.name]")].", span_name("[confirmer]"), confirmer)
 	switch(event)
 		if(KEYCARD_RED_ALERT)
 			set_security_level(SEC_LEVEL_RED)

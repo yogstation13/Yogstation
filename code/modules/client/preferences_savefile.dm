@@ -144,7 +144,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			qdel(cape)
 	if(current_version < 33) //Reset map preference to no choice
 		if(preferred_map)
-			to_chat(parent, "<span class='userdanger'>Your preferred map has been reset to nothing. Please set it to the map you wish to play on.</span>")
+			to_chat(parent, span_userdanger("Your preferred map has been reset to nothing. Please set it to the map you wish to play on."))
 		preferred_map = null
 		
 		

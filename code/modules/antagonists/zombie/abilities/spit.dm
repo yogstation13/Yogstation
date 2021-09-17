@@ -8,9 +8,9 @@
 
 /obj/effect/proc_holder/zombie/spit/fire(mob/living/carbon/user)
 	if(active)
-		remove_ranged_ability("<span class='notice'>You close your neurotoxin reserves.</span>")
+		remove_ranged_ability(span_notice("You close your neurotoxin reserves."))
 	else
-		add_ranged_ability(user, "<span class='notice'>You open your neurotoxin reserves. <B>Left-click to fire at a target!</B></span>", TRUE)
+		add_ranged_ability(user, span_notice("You open your neurotoxin reserves. <B>Left-click to fire at a target!</B>"), TRUE)
 
 /obj/effect/proc_holder/zombie/spit/update_icon()
 	action.button_icon_state = "alien_neurotoxin_[active]"
@@ -26,7 +26,7 @@
 	var/mob/living/carbon/user = ranged_ability_user
 
 	if(!ready)
-		to_chat(user, "<span class='warning'>You cannot currently spit. You can spit again in [(cooldown_ends - world.time) / 10] seconds</span>")
+		to_chat(user, span_warning("You cannot currently spit. You can spit again in [(cooldown_ends - world.time) / 10] seconds"))
 		remove_ranged_ability()
 		return FALSE
 
@@ -35,7 +35,7 @@
 	if(!U || !T)
 		return FALSE
 
-	user.visible_message("<span class='danger'>[user] spits neurotoxin!", "<span class='alertalien'>You spit neurotoxin.</span>")
+	user.visible_message("<span class='danger'>[user] spits neurotoxin!", span_alertalien("You spit neurotoxin."))
 	var/obj/item/projectile/bullet/neurotoxin/spitter/A = new /obj/item/projectile/bullet/neurotoxin/spitter(user.loc)
 	A.preparePixelProjectile(target, user, params)
 	A.fire()

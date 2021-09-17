@@ -1,14 +1,14 @@
 
 ////////////////////////////////
 /proc/message_admins(msg)
-	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
+	msg = span_admin("<span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">[msg]</span>")
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
 		confidential = TRUE)
 
 /proc/relay_msg_admins(msg)
-	msg = "<span class=\"admin\"><span class=\"prefix\">RELAY:</span> <span class=\"message linkify\">[msg]</span></span>"
+	msg = span_admin("<span class=\"prefix\">RELAY:</span> <span class=\"message linkify\">[msg]</span>")
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
@@ -35,7 +35,7 @@
 		if(M.oobe_client.mob)
 			.(M.oobe_client.mob) //using . because show_player_panel(M.oobe_client.mob) caused "Runtime in admin.dm,30: undefined proc or verb /client/Show Player Panel()."
 		else
-			to_chat(usr, "<span class='warning'>Cannot open player panel because [key_name(M)] has (a)ghosted, but does not appear to have a mob.</span>", confidential=TRUE)
+			to_chat(usr, span_warning("Cannot open player panel because [key_name(M)] has (a)ghosted, but does not appear to have a mob."), confidential=TRUE)
 		return //yogs end
 
 	var/body = "<html><head><meta charset='UTF-8'><title>Options for [M.key]</title></head>"
@@ -602,10 +602,10 @@
 	GLOB.enter_allowed = !( GLOB.enter_allowed )
 	if (!( GLOB.enter_allowed ))
 		to_chat(world, "<B>New players may no longer enter the game.</B>")
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] toggled new player game entering, no players may enter.</span>")
+		message_admins(span_adminnotice("[key_name_admin(usr)] toggled new player game entering, no players may enter."))
 	else
 		to_chat(world, "<B>New players may now enter the game.</B>")
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] toggled new player game entering, players can now enter the game freely.</span>")
+		message_admins(span_adminnotice("[key_name_admin(usr)] toggled new player game entering, players can now enter the game freely."))
 	log_admin("[key_name(usr)] toggled new player game entering.")
 	world.update_status()
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Entering", "[GLOB.enter_allowed ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -634,7 +634,7 @@
 		to_chat(world, "<B>You may now respawn.</B>")
 	else
 		to_chat(world, "<B>You may no longer respawn :(</B>")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] toggled respawn to [!new_nores ? "On" : "Off"].</span>")
+	message_admins(span_adminnotice("[key_name_admin(usr)] toggled respawn to [!new_nores ? "On" : "Off"]."))
 	log_admin("[key_name(usr)] toggled respawn to [!new_nores ? "On" : "Off"].")
 	world.update_status()
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Respawn", "[!new_nores ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -799,7 +799,7 @@
 	else
 		to_chat(world, "<B>Guests may now enter the game.</B>")
 	log_admin("[key_name(usr)] toggled guests game entering [!new_guest_ban ? "" : "dis"]allowed.")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] toggled guests game entering [!new_guest_ban ? "" : "dis"]allowed.</span>")
+	message_admins(span_adminnotice("[key_name_admin(usr)] toggled guests game entering [!new_guest_ban ? "" : "dis"]allowed."))
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Guests", "[!new_guest_ban ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/output_ai_laws()
@@ -973,7 +973,7 @@
 
 	tomob.ghostize(0)
 
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] has put [frommob.key] in control of [tomob.name].</span>")
+	message_admins(span_adminnotice("[key_name_admin(usr)] has put [frommob.key] in control of [tomob.name]."))
 	log_admin("[key_name(usr)] stuffed [frommob.key] into [tomob.name].")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Ghost Drag Control")
 

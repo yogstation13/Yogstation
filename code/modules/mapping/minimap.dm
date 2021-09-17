@@ -82,8 +82,8 @@
 /obj/item/map/attackby(obj/item/P, mob/living/carbon/human/user, params)
 	if(P.is_hot())
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))
-			user.visible_message("<span class='warning'>[user] accidentally ignites [user.p_them()]self!</span>", \
-								"<span class='userdanger'>You miss the map and accidentally light yourself on fire!</span>")
+			user.visible_message(span_warning("[user] accidentally ignites [user.p_them()]self!"), \
+								span_userdanger("You miss the map and accidentally light yourself on fire!"))
 			user.dropItemToGround(P)
 			user.adjust_fire_stacks(1)
 			user.IgniteMob()
@@ -93,7 +93,7 @@
 			return
 
 		user.dropItemToGround(src)
-		user.visible_message("<span class='danger'>[user] lights [src] ablaze with [P]!</span>", "<span class='danger'>You light [src] on fire!</span>")
+		user.visible_message(span_danger("[user] lights [src] ablaze with [P]!"), span_danger("You light [src] on fire!"))
 		fire_act()
 		return
 	return ..()
@@ -118,10 +118,10 @@
 
 /obj/item/map/interact(mob/user)
 	if(!in_range(user, src) && !isobserver(user))
-		to_chat(user, "<span class='warning'>You're too far away to read it!</span>")
+		to_chat(user, span_warning("You're too far away to read it!"))
 		return
 	if(!minimaps || !minimaps.len)
-		to_chat(user, "<span class='warning'>This map is blank!</span>")
+		to_chat(user, span_warning("This map is blank!"))
 		return
 	var/datum/minimap/first_map = minimaps[1]
 	var/info = ""
