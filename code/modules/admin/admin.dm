@@ -476,9 +476,11 @@
 	if (!usr.client.holder)
 		return
 
-	var/list/options = list("Regular Restart", "Hard Restart (No Delay/Feeback Reason)", "Hardest Restart (No actions, just reboot)")
-	if(world.TgsAvailable())
-		options += "Server Restart (Kill and restart DD)";
+	var/list/options = list("Regular Restart")
+	if(check_rights(R_SERVER, FALSE))
+		options += list("Hard Restart (No Delay/Feeback Reason)", "Hardest Restart (No actions, just reboot)")
+		if(world.TgsAvailable())
+			options += "Server Restart (Kill and restart DD)";
 
 	var/rebootconfirm
 	if(SSticker.admin_delay_notice)
@@ -493,7 +495,7 @@
 			var/init_by = "Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]."
 			switch(result)
 				if("Regular Restart")
-					SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", 10)
+					SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", 10 SECONDS, check_rights(R_SERVER, FALSE)) // Force if they have +SERVER
 				if("Hard Restart (No Delay, No Feeback Reason)")
 					to_chat(world, "World reboot - [init_by]")
 					world.Reboot()
