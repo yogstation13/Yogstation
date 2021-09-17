@@ -378,9 +378,9 @@
 			ui_interact(usr)
 			var/fail_msg = construct_item(usr, TR)
 			if(!fail_msg)
-				to_chat(usr, "<span class='notice'>[TR.name] constructed.</span>")
+				to_chat(usr, span_notice("[TR.name] constructed."))
 			else
-				to_chat(usr, "<span class='warning'>Construction failed[fail_msg]</span>")
+				to_chat(usr, span_warning("Construction failed[fail_msg]"))
 			busy = FALSE
 		if("toggle_recipes")
 			display_craftable_only = !display_craftable_only

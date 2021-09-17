@@ -19,7 +19,7 @@
 		cell.use(.) //Better than a power sink!
 		if(!cell.charge && !shorted)
 			shorted = 1
-			visible_message("<span class='warning'>The [name]'s screen blurs with static.</span>")
+			visible_message(span_warning("The [name]'s screen blurs with static."))
 		update()
 		update_icon()
 
@@ -31,7 +31,7 @@
 			panel_open = TRUE
 			icon_state = "[initial(icon_state)]-o"
 			do_sparks(10, FALSE, src)
-			visible_message("<span class='warning'>[src]'s panel flies open with a flurry of sparks!</span>")
+			visible_message(span_warning("[src]'s panel flies open with a flurry of sparks!"))
 		update_icon()
 
 /obj/item/stock_parts/cell/power_drain(clockcult_user)

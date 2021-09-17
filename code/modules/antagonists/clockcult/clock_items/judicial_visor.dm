@@ -44,8 +44,8 @@
 	else
 		update_status(FALSE)
 	if(iscultist(user)) //Cultists spontaneously combust
-		to_chat(user, "<span class='heavy_brass'>\"Consider yourself judged, whelp.\"</span>")
-		to_chat(user, "<span class='userdanger'>You suddenly catch fire!</span>")
+		to_chat(user, "[span_heavy_brass("\"Consider yourself judged, whelp.\"")]")
+		to_chat(user, span_userdanger("You suddenly catch fire!"))
 		user.adjust_fire_stacks(5)
 		user.IgniteMob()
 	return 1
@@ -79,10 +79,10 @@
 		return 0
 	switch(active)
 		if(TRUE)
-			to_chat(L, "<span class='notice'>As you put on [src], its lens begins to glow, information flashing before your eyes.</span>\n\
-			<span class='heavy_brass'>Judicial visor active. Use the action button to gain the ability to smite the unworthy.</span>")
+			to_chat(L, "[span_notice("As you put on [src], its lens begins to glow, information flashing before your eyes.")]\n\
+			[span_heavy_brass("Judicial visor active. Use the action button to gain the ability to smite the unworthy.")]")
 		if(FALSE)
-			to_chat(L, "<span class='notice'>As you take off [src], its lens darkens once more.</span>")
+			to_chat(L, span_notice("As you take off [src], its lens darkens once more."))
 	return 1
 
 /obj/item/clothing/glasses/judicial_visor/proc/recharge_visor(mob/living/user)
@@ -90,7 +90,7 @@
 		return 0
 	recharging = FALSE
 	if(user && src == user.get_item_by_slot(SLOT_GLASSES))
-		to_chat(user, "<span class='brass'>Your [name] hums. It is ready.</span>")
+		to_chat(user, span_brass("Your [name] hums. It is ready."))
 	else
 		active = FALSE
 	icon_state = "judicial_visor_[active]"
@@ -106,10 +106,10 @@
 /obj/effect/proc_holder/judicial_visor/proc/toggle(mob/user)
 	var/message
 	if(active)
-		message = "<span class='brass'>You dispel the power of [visor].</span>"
+		message = span_brass("You dispel the power of [visor].")
 		remove_ranged_ability(message)
 	else
-		message = "<span class='brass'><i>You harness [visor]'s power.</i> <b>Left-click to place a judicial marker!</b></span>"
+		message = span_brass("<i>You harness [visor]'s power.</i> <b>Left-click to place a judicial marker!</b>")
 		add_ranged_ability(user, message)
 
 /obj/effect/proc_holder/judicial_visor/InterceptClickOn(mob/living/caller, params, atom/target)
@@ -133,7 +133,7 @@
 			V.update_status()
 			addtimer(CALLBACK(V, /obj/item/clothing/glasses/judicial_visor.proc/recharge_visor, ranged_ability_user), (GLOB.ratvar_awakens ? visor.recharge_cooldown*0.1 : visor.recharge_cooldown) * 2)
 		clockwork_say(ranged_ability_user, text2ratvar("Kneel, heathens!"))
-		ranged_ability_user.visible_message("<span class='warning'>[ranged_ability_user]'s judicial visor fires a stream of energy at [target], creating a strange mark!</span>", "<span class='heavy_brass'>You direct [visor]'s power to [target]. You must wait for some time before doing this again.</span>")
+		ranged_ability_user.visible_message(span_warning("[ranged_ability_user]'s judicial visor fires a stream of energy at [target], creating a strange mark!"), "[span_heavy_brass("You direct [visor]'s power to [target]. You must wait for some time before doing this again.")]")
 		var/turf/targetturf = get_turf(target)
 		new/obj/effect/clockwork/judicial_marker(targetturf, ranged_ability_user)
 		log_combat(ranged_ability_user, targetturf, "created a judicial marker")
@@ -193,16 +193,16 @@
 		var/atom/I = L.anti_magic_check()
 		if(I)
 			if(isitem(I))
-				L.visible_message("<span class='warning'>Strange energy flows into [L]'s [I.name]!</span>", \
-				"<span class='userdanger'>Your [I.name] shields you from [src]!</span>")
+				L.visible_message(span_warning("Strange energy flows into [L]'s [I.name]!"), \
+				span_userdanger("Your [I.name] shields you from [src]!"))
 			continue
 		L.Paralyze(15) //knocks down briefly when exploding
 		if(!iscultist(L))
-			L.visible_message("<span class='warning'>[L] is struck by a judicial explosion!</span>", \
-			"<span class='userdanger'>[!issilicon(L) ? "An unseen force slams you into the ground!" : "ERROR: Motor servos disabled by external source!"]</span>")
+			L.visible_message(span_warning("[L] is struck by a judicial explosion!"), \
+			span_userdanger("[!issilicon(L) ? "An unseen force slams you into the ground!" : "ERROR: Motor servos disabled by external source!"]"))
 		else
-			L.visible_message("<span class='warning'>[L] is struck by a judicial explosion!</span>", \
-			"<span class='heavy_brass'>\"Keep an eye out, filth.\"</span>\n<span class='userdanger'>A burst of heat crushes you against the ground!</span>")
+			L.visible_message(span_warning("[L] is struck by a judicial explosion!"), \
+			"[span_heavy_brass("\"Keep an eye out, filth.\"")]\n[span_userdanger("A burst of heat crushes you against the ground!")]")
 			L.adjust_fire_stacks(2) //sets cultist targets on fire
 			L.IgniteMob()
 			L.adjustFireLoss(5)
@@ -210,7 +210,7 @@
 		if(!QDELETED(L))
 			L.adjustBruteLoss(20) //does a decent amount of damage
 		log_combat(user, L, "struck with a judicial blast")
-	to_chat(user, "<span class='brass'><b>[targetsjudged ? "Successfully judged <span class='neovgre'>[targetsjudged]</span>":"Judged no"] heretic[targetsjudged == 1 ? "":"s"].</b></span>")
+	to_chat(user, span_brass("<b>[targetsjudged ? "Successfully judged [span_neovgre("[targetsjudged]")]":"Judged no"] heretic[targetsjudged == 1 ? "":"s"].</b>"))
 	sleep(3) //so the animation completes properly
 	qdel(src)
 

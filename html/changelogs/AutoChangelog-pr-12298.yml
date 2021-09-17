@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - bugfix: "fixed a bug that would sometimes cause the bar to not laod"

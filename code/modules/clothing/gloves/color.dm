@@ -21,11 +21,11 @@
 
 /obj/item/clothing/gloves/color/fyellow/proc/get_shocked()
 	if(damaged)
-		to_chat(loc, "<span class='warning'>Your gloves catch fire and disintegrate!</span>")
+		to_chat(loc, span_warning("Your gloves catch fire and disintegrate!"))
 		new/obj/effect/decal/cleanable/ash(src)
 		qdel(src)
 	else
-		to_chat(loc, "<span class='warning'>Your gloves begin to melt!</span>")
+		to_chat(loc, span_warning("Your gloves begin to melt!"))
 		damaged = TRUE
 
 /obj/item/clothing/gloves/color/fyellow/old
@@ -60,7 +60,7 @@
 /obj/item/clothing/gloves/color/black/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_WIRECUTTER)
 		if(can_be_cut && icon_state == initial(icon_state))//only if not dyed
-			to_chat(user, "<span class='notice'>You snip the fingertips off of [src].</span>")
+			to_chat(user, span_notice("You snip the fingertips off of [src]."))
 			I.play_tool_sound(src)
 			new /obj/item/clothing/gloves/fingerless(drop_location())
 			qdel(src)
