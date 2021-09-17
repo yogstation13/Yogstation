@@ -88,7 +88,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 
 /datum/component/uplink/proc/LoadTC(mob/user, obj/item/stack/telecrystal/TC, silent = FALSE)
 	if(!silent)
-		to_chat(user, "<span class='notice'>You slot [TC] into [parent] and charge its internal uplink.</span>")
+		to_chat(user, span_notice("You slot [TC] into [parent] and charge its internal uplink."))
 	var/amt = TC.amount
 	telecrystals += amt
 	TC.use(amt)
@@ -118,7 +118,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	telecrystals += cost
 	if(purchase_log)
 		purchase_log.total_spent -= cost
-		to_chat(user, "<span class='notice'>[I] refunded.</span>")
+		to_chat(user, span_notice("[I] refunded."))
 	qdel(I)
 
 /datum/component/uplink/proc/interact(datum/source, mob/user)
@@ -245,8 +245,9 @@ GLOBAL_LIST_EMPTY(uplinks)
 	interact(null, implant.imp_in)
 
 /datum/component/uplink/proc/implanting(datum/source, list/arguments)
-	var/mob/user = arguments[2]
-	owner = "[user.key]"
+	var/mob/target = arguments[1]
+	var/mob/user = arguments[2] // YOGS START -- Fix runtime when implanting infiltrators
+	owner = "[user ? user.key : target.key]" // YOGS END
 
 /datum/component/uplink/proc/old_implant(datum/source, list/arguments, obj/item/implant/new_implant)
 	// It kinda has to be weird like this until implants are components
@@ -301,7 +302,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 		previous_attempts.Cut()
 		master.degrees = 0
 		interact(null, user)
-		to_chat(user, "<span class='warning'>Your pen makes a clicking noise, before quickly rotating back to 0 degrees!</span>")
+		to_chat(user, span_warning("Your pen makes a clicking noise, before quickly rotating back to 0 degrees!"))
 
 	else if(compare_list(previous_attempts, failsafe_code))
 		failsafe()

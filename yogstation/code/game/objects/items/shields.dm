@@ -4,5 +4,5 @@
 		return FALSE
 	if(!is_A_facing_B(owner, hitby))
 		return FALSE
-	owner.visible_message("<span class='danger'>[owner] blocks [attack_text] with [src]!</span>")
+	owner.visible_message(span_danger("[owner] blocks [attack_text] with [src]!"))
 	return TRUE

@@ -1,12 +1,3 @@
-/datum/admins/proc/hippie_makeVampire(datum/admins/sr)
-	if(sr.makeVampire())
-		message_admins("[key_name(usr)] created a vampire.")
-		log_admin("[key_name(usr)] created a vampire.")
-	else
-		message_admins("[key_name_admin(usr)] tried to create a vampire. Unfortunately, there were no candidates available.")
-		log_admin("[key_name(usr)] failed to create a vampire.")
-//why is this called hippie stop it thats bad
-
 /datum/admins/proc/checkMentorEditList(ckey)
 	var/datum/DBQuery/query_memoedits = SSdbcore.NewQuery("SELECT edits FROM [format_table_name("mentor_memo")] WHERE (ckey = :key)", list("key" = ckey))
 	if(!query_memoedits.warn_execute())
@@ -31,7 +22,7 @@
 	var/client/C = GLOB.directory[ckey]
 	if(C)
 		if(check_rights_for(C, R_ADMIN,0))
-			to_chat(usr, "<span class='danger'>The client chosen is an admin! Cannot mentorize.</span>", confidential=TRUE)
+			to_chat(usr, span_danger("The client chosen is an admin! Cannot mentorize."), confidential=TRUE)
 			return
 
 		new /datum/mentors(ckey, position)
@@ -40,7 +31,7 @@
 		var/datum/DBQuery/query_get_mentor = SSdbcore.NewQuery("SELECT id FROM `[format_table_name("mentor")]` WHERE `ckey` = :ckey", list("ckey" = ckey))
 		query_get_mentor.warn_execute()
 		if(query_get_mentor.NextRow())
-			to_chat(usr, "<span class='danger'>[ckey] is already a mentor.</span>", confidential=TRUE)
+			to_chat(usr, span_danger("[ckey] is already a mentor."), confidential=TRUE)
 			qdel(query_get_mentor)
 			return
 		qdel(query_get_mentor)
@@ -63,7 +54,7 @@
 		webhook_send_mchange(owner.ckey, C.ckey, "add")
 
 	else
-		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>", confidential=TRUE)
+		to_chat(usr, span_danger("Failed to establish database connection. The changes will last only for the current round."), confidential=TRUE)
 
 	message_admins("[key_name_admin(usr)] added new [position]: [ckey]")
 	log_admin("[key_name(usr)] added new [position]: [ckey]")
@@ -81,7 +72,7 @@
 	var/client/C = GLOB.directory[ckey]
 	if(C)
 		if(check_rights_for(C, R_ADMIN,0))
-			to_chat(usr, "<span class='danger'>The client chosen is an admin, not a mentor! Cannot de-mentorize.</span>", confidential=TRUE)
+			to_chat(usr, span_danger("The client chosen is an admin, not a mentor! Cannot de-mentorize."), confidential=TRUE)
 			return
 
 		C.remove_mentor_verbs()
@@ -96,7 +87,7 @@
 		webhook_send_mchange(owner.ckey, C.ckey, "remove")
 
 	else
-		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>", confidential=TRUE)
+		to_chat(usr, span_danger("Failed to establish database connection. The changes will last only for the current round."), confidential=TRUE)
 
 	message_admins("[key_name_admin(usr)] removed mentor: [ckey]")
 	log_admin("[key_name(usr)] removed mentor: [ckey]")

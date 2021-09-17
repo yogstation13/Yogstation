@@ -3,6 +3,7 @@
  *		Fork
  *		Kitchen knives
  *		Ritual Knife
+ *		Holy Ritual Knife
  *		Bloodletter
  *		Butcher's cleaver
  *		Combat Knife
@@ -19,7 +20,7 @@
 	name = "fork"
 	desc = "Pointy."
 	icon_state = "fork"
-	force = 5
+	force = 4
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	throw_speed = 3
@@ -29,11 +30,12 @@
 	attack_verb = list("attacked", "stabbed", "poked")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
+	sharpness = SHARP_POINTY
 	var/datum/reagent/forkload //used to eat omelette
 	var/loaded_food = "nothing" /// The name of the thing on the fork
 
 /obj/item/kitchen/fork/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] stabs \the [src] into [user.p_their()] chest! It looks like [user.p_theyre()] trying to take a bite out of [user.p_them()]self!</span>")
+	user.visible_message(span_suicide("[user] stabs \the [src] into [user.p_their()] chest! It looks like [user.p_theyre()] trying to take a bite out of [user.p_them()]self!"))
 	playsound(src, 'sound/items/eatfood.ogg', 50, 1)
 	return BRUTELOSS
 
@@ -45,14 +47,14 @@
 
 	if(forkload)
 		if(M == user)
-			M.visible_message("<span class='notice'>[user] eats a delicious forkful of [loaded_food]!</span>")
+			M.visible_message(span_notice("[user] eats a delicious forkful of [loaded_food]!"))
 			M.reagents.add_reagent(forkload.type, 1)
 		else
-			M.visible_message("<span class='notice'>[user] is trying to feed [M] a delicious forkful of [loaded_food]!</span>") //yogs start
+			M.visible_message(span_notice("[user] is trying to feed [M] a delicious forkful of [loaded_food]!")) //yogs start
 			if(!do_mob(user, M))
 				return
 			log_combat(user, M, "fed [loaded_food]", forkload.type) //yogs end
-			M.visible_message("<span class='notice'>[user] feeds [M] a delicious forkful of [loaded_food]!</span>")
+			M.visible_message(span_notice("[user] feeds [M] a delicious forkful of [loaded_food]!"))
 			M.reagents.add_reagent(forkload.type, 1)
 		icon_state = "fork"
 		forkload = null
@@ -62,7 +64,7 @@
 			return eyestab(M,user)
 		icon_state = "forkloaded_pie"
 		user.visible_message("[user] scoops up the pie with [user.p_their()] fork!", \
-			"<span class='notice'>You scoop up the pie with your fork.</span>")
+			span_notice("You scoop up the pie with your fork."))
 
 		var/datum/reagent/R = new /datum/reagent/consumable/banana
 		forkload = R
@@ -91,10 +93,12 @@
 	throw_range = 6
 	materials = list(/datum/material/iron=12000)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	sharpness = IS_SHARP_ACCURATE
+	sharpness = SHARP_EDGED
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	var/bayonet = TRUE	//Can this be attached to a gun?
 	custom_price = 30
+	wound_bonus = 5
+	bare_wound_bonus = 15
 
 /obj/item/kitchen/knife/Initialize()
 	. = ..()
@@ -109,9 +113,9 @@
 		return ..()
 
 /obj/item/kitchen/knife/suicide_act(mob/user)
-	user.visible_message(pick("<span class='suicide'>[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
-						"<span class='suicide'>[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
-						"<span class='suicide'>[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.</span>"))
+	user.visible_message(pick(span_suicide("[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \
+						span_suicide("[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \
+						span_suicide("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.")))
 	return BRUTELOSS
 
 /obj/item/kitchen/knife/ritual
@@ -122,6 +126,11 @@
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/kitchen/knife/ritual/holy
+	name = "ruinous knife"
+	desc = "The runes inscribed on the knife radiate a strange power."
+	force = 12
 
 /obj/item/kitchen/knife/bloodletter
 	name = "bloodletter"
@@ -152,6 +161,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_price = 60
 	bayonet = TRUE
+	wound_bonus = 15
 
 /obj/item/kitchen/knife/combat
 	name = "combat knife"
@@ -162,6 +172,7 @@
 	throwforce = 20
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "cut")
 	bayonet = TRUE
+	wound_bonus = 10
 
 /obj/item/kitchen/knife/combat/survival
 	name = "survival knife"
@@ -205,9 +216,9 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 /obj/item/kitchen/knife/carrotshiv/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] forcefully drives \the [src] into [user.p_their()] eye! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] forcefully drives \the [src] into [user.p_their()] eye! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
-	
+
 // Shank - Makeshift weapon that can embed on throw
 /obj/item/kitchen/knife/shank
 	name = "Shank"
@@ -238,6 +249,6 @@
 	custom_price = 20
 
 /obj/item/kitchen/rollingpin/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] begins flattening [user.p_their()] head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins flattening [user.p_their()] head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 /* Trays  moved to /obj/item/storage/bag */

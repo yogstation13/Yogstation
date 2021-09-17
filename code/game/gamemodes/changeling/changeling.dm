@@ -12,7 +12,7 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	antag_flag = ROLE_CHANGELING
 	false_report_weight = 10
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel") //YOGS - added hop
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Brig Physician") //YOGS - added hop and brig physician
 	required_players = 15
 	required_enemies = 1
 	recommended_enemies = 4
@@ -118,6 +118,12 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	user.update_body()
 	user.domutcheck()
 
+	// get rid of any scars from previous changeling-ing
+	for(var/i in user.all_scars)
+		var/datum/scar/iter_scar = i
+		if(iter_scar.fake)
+			qdel(iter_scar)
+
 	//vars hackery. not pretty, but better than the alternative.
 	for(var/slot in GLOB.slots)
 		if(istype(user.vars[slot], GLOB.slot2type[slot]) && !(chosen_prof.exists_list[slot])) //remove unnecessary flesh items
@@ -144,6 +150,10 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 		C.item_state = chosen_prof.item_state_list[slot]
 		if(equip)
 			user.equip_to_slot_or_del(C, GLOB.slot2slot[slot])
+	for(var/stored_scar_line in chosen_prof.stored_scars)
+		var/datum/scar/attempted_fake_scar = user.load_scar(stored_scar_line)
+		if(attempted_fake_scar)
+			attempted_fake_scar.fake = TRUE
 
 	user.regenerate_icons()
 
@@ -162,4 +172,4 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	round_credits += "<br>"
 
 	round_credits += ..()
-	return round_credits 
+	return round_credits

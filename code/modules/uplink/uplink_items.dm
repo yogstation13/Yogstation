@@ -210,7 +210,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndicate/contract_kit
 	cost = 20
 	player_minimum = 20
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/bundles_TC/bundle_A
 	name = "Syndi-kit Tactical"
@@ -219,7 +219,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			you will receive. May contain discontinued and/or exotic items."
 	item = /obj/item/storage/box/syndicate/bundle_A
 	cost = 20
-	exclude_modes = list(/datum/game_mode/nuclear)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/bundles_TC/bundle_B
 	name = "Syndi-kit Special"
@@ -227,7 +227,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			In Syndi-kit Special, you will receive items used by famous syndicate agents of the past. Collectively worth more than 20 telecrystals, the syndicate loves a good throwback."
 	item = /obj/item/storage/box/syndicate/bundle_B
 	cost = 20
-	exclude_modes = list(/datum/game_mode/nuclear)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/bundles_TC/surplus
 	name = "Syndicate Surplus Crate"
@@ -236,7 +236,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/structure/closet/crate
 	cost = 20
 	player_minimum = 25
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 	var/starting_crate_value = 50
 
 /datum/uplink_item/bundles_TC/surplus/super
@@ -409,13 +409,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			pocketed when inactive. Activating it produces a loud, distinctive noise."
 	item = /obj/item/melee/transforming/energy/sword/saber
 	cost = 8
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/dangerous/bostaff
 	name = "Bo Staff"
 	desc = "A wielded wooden staff that can be used to incapacitate opponents if intending to disarm."
 	item = /obj/item/twohanded/bostaff
 	cost = 8
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/dangerous/shield
 	name = "Energy Shield"
@@ -440,6 +441,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "These gloves let the user punch people very fast. Does not improve weapon attack speed or the meaty fists of a hulk."
 	item = /obj/item/clothing/gloves/rapid
 	cost = 8
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/dangerous/guardian
 	name = "Holoparasites"
@@ -492,6 +494,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/melee/powerfist
 	cost = 6
 	manufacturer = /datum/corporation/traitor/waffleco
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/dangerous/sniper
 	name = "Sniper Rifle"
@@ -571,6 +574,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/book/granter/martial/cqc
 	cost = 13
 	surplus = 0
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/stealthy_weapons/dart_pistol
 	name = "Dart Pistol"
@@ -587,6 +591,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/toy/plush/carpplushie/dehy_carp
 	cost = 1
 	manufacturer = /datum/corporation/traitor/donkco
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/stealthy_weapons/edagger
 	name = "Energy Dagger"
@@ -602,7 +607,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/book/granter/martial/carp
 	cost = 14
 	surplus = 0
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/stealthy_weapons/crossbow
 	name = "Miniature Energy Crossbow"
@@ -643,6 +648,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/romerol
 	cost = 25
 	cant_discount = TRUE
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/stealthy_weapons/sleepy_pen
 	name = "Sleepy Pen"
@@ -934,6 +940,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/backpack/duffelbag/syndie/c4
 	cost = 8 //20% discount!
 	cant_discount = TRUE
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/explosives/x4bag
 	name = "Bag of X-4 explosives"
@@ -943,6 +950,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/backpack/duffelbag/syndie/x4
 	cost = 4
 	cant_discount = TRUE
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/explosives/clown_bomb_clownops
 	name = "Clown Bomb"
@@ -966,6 +974,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 6
 	manufacturer = /datum/corporation/traitor/cybersun
 	restricted = TRUE
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/explosives/emp
 	name = "EMP Grenades and Implanter Kit"
@@ -1026,6 +1035,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/grenade/clusterbuster/soap
 	cost = 3
 	manufacturer = /datum/corporation/traitor/waffleco
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/explosives/syndicate_bomb
 	name = "Syndicate Bomb"
@@ -1037,6 +1047,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			The bomb core can be pried out and manually detonated with other explosives."
 	item = /obj/item/sbeacondrop/bomb
 	cost = 11
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/explosives/syndicate_bomb/emp
 	name = "Syndicate EMP Bomb"
@@ -1060,7 +1071,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			in addition to dealing high amounts of damage to nearby personnel."
 	item = /obj/item/grenade/syndieminibomb
 	cost = 6
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/explosives/tearstache
 	name = "Tearstache Grenade"
@@ -1424,14 +1435,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 0
 	restricted = TRUE
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // Yogs: infiltration
 
 /datum/uplink_item/device_tools/failsafe/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	if(!U)
 		return
 	U.failsafe_code = U.generate_code()
 	var/code = "[islist(U.failsafe_code) ? english_list(U.failsafe_code) : U.failsafe_code]"
-	to_chat(user, "<span class='warning'>The new failsafe code for this uplink is now : [code].</span>")
+	to_chat(user, span_warning("The new failsafe code for this uplink is now : [code]."))
 	if(user.mind)
 		user.mind.store_memory("Failsafe code for [U.parent] : [code]")
 	return U.parent //For log icon
@@ -1486,6 +1497,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 10
 	manufacturer = /datum/corporation/traitor/waffleco
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/device_tools/supermatter_delaminator
 	name = "Antinoblium Shard"
@@ -1497,6 +1509,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 10
 	manufacturer = /datum/corporation/traitor/waffleco
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/device_tools/powersink
 	name = "Power Sink"
@@ -1506,6 +1519,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/powersink
 	cost = 8
 	manufacturer = /datum/corporation/traitor/waffleco
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/device_tools/rad_laser
 	name = "Radioactive Microlaser"
@@ -1594,6 +1608,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 7
 	manufacturer = /datum/corporation/traitor/waffleco
 	limited_stock = 1
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 // Implants
 /datum/uplink_item/implants
@@ -1710,6 +1725,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 10
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/implants/mantis_kit
+	name = "G.O.R.L.E.X.. Mantis Blades Kit"
+	desc = "Comes with 2 G.O.R.L.E.X. Mantis blades. All packaged with autosurgeons."
+	item = /obj/item/storage/briefcase/syndie_mantis
+	cost = 16
+	surplus = 0
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 //Race-specific items
 /datum/uplink_item/race_restricted
@@ -2092,4 +2115,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A cape to show off your grand villainous deeds."
 	item = /obj/item/clothing/neck/skillcape/trimmed/antag
 	cost = 20
+	illegal_tech = FALSE
+
+/datum/uplink_item/badass/syndistamp
+	name = "Syndicate Stamp"
+	desc = "Even evil needs to do paperwork."
+	item = /obj/item/stamp/syndiround
+	cost = 1
 	illegal_tech = FALSE
