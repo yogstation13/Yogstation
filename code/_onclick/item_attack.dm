@@ -22,7 +22,7 @@
 // Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
 /obj/item/proc/attack_self(mob/user)
 	if(HAS_TRAIT(user, TRAIT_NOINTERACT)) //sorry no using grenades
-		to_chat(user, "<span class='notice'>You can't use things!</span>")
+		to_chat(user, span_notice("You can't use things!"))
 		return
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
 		return
@@ -50,7 +50,7 @@
 	if(user.a_intent == INTENT_HARM && stat == DEAD && (butcher_results || guaranteed_butcher_results)) //can we butcher it?
 		var/datum/component/butchering/butchering = I.GetComponent(/datum/component/butchering)
 		if(butchering && butchering.butchering_enabled)
-			to_chat(user, "<span class='notice'>You begin to butcher [src]...</span>")
+			to_chat(user, span_notice("You begin to butcher [src]..."))
 			playsound(loc, butchering.butcher_sound, 50, TRUE, -1)
 			if(do_mob(user, src, butchering.speed) && Adjacent(I))
 				butchering.Butcher(user, src)
@@ -69,7 +69,7 @@
 		return
 
 	if(force && HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
+		to_chat(user, span_warning("You don't want to harm other living beings!"))
 		return TRUE
 
 	if((item_flags & SURGICAL_TOOL) && (user.a_intent != INTENT_HARM)) // checks for if harm intent with surgery tool
@@ -79,7 +79,7 @@
 				var/datum/wound/W = i
 				if(W.try_treating(src, user))
 					return TRUE
-		to_chat(user, "<span class='warning'>You aren't doing surgery!</span>") //yells at you
+		to_chat(user, span_warning("You aren't doing surgery!")) //yells at you
 		return TRUE
 
 	if(!force)
@@ -112,7 +112,7 @@
 
 /obj/attacked_by(obj/item/I, mob/living/user)
 	if(I.force)
-		visible_message("<span class='danger'>[user] has hit [src] with [I]!</span>", null, null, COMBAT_MESSAGE_RANGE)
+		visible_message(span_danger("[user] has hit [src] with [I]!"), null, null, COMBAT_MESSAGE_RANGE)
 		//only witnesses close by and the victim see a hit message.
 		log_combat(user, src, "attacked", I)
 	take_damage(I.force, I.damtype, "melee", 1)
@@ -162,6 +162,6 @@
 	var/attack_message = "[src] has been [message_verb][message_hit_area] with [I]."
 	if(user in viewers(src, null))
 		attack_message = "[user] has [message_verb] [src][message_hit_area] with [I]!"
-	visible_message("<span class='danger'>[attack_message]</span>",\
-		"<span class='userdanger'>[attack_message]</span>", null, COMBAT_MESSAGE_RANGE)
+	visible_message(span_danger("[attack_message]"),\
+		span_userdanger("[attack_message]"), null, COMBAT_MESSAGE_RANGE)
 	return 1

@@ -35,7 +35,7 @@
 		var/obj/item/stack/cable_coil/C = I
 		C.use(1)
 		has_sensor = HAS_SENSORS
-		to_chat(user,"<span class='notice'>You repair the suit sensors on [src] with [C].</span>")
+		to_chat(user,span_notice("You repair the suit sensors on [src] with [C]."))
 		return 1
 	if(!attach_accessory(I, user))
 		return ..()
@@ -67,7 +67,7 @@
 		sensor_mode = pick(SENSOR_OFF, SENSOR_OFF, SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS)
 		if(ismob(loc))
 			var/mob/M = loc
-			to_chat(M,"<span class='warning'>The sensors on the [src] change rapidly!</span>")
+			to_chat(M,span_warning("The sensors on the [src] change rapidly!"))
 
 /obj/item/clothing/under/equipped(mob/user, slot)
 	..()
@@ -120,7 +120,7 @@
 		var/obj/item/clothing/accessory/A = I
 		if(attached_accessory)
 			if(user)
-				to_chat(user, "<span class='warning'>[src] already has an accessory.</span>")
+				to_chat(user, span_warning("[src] already has an accessory."))
 			return
 		else
 
@@ -132,7 +132,7 @@
 				return
 
 			if(user && notifyAttach)
-				to_chat(user, "<span class='notice'>You attach [I] to [src].</span>")
+				to_chat(user, span_notice("You attach [I] to [src]."))
 
 			var/accessory_color = attached_accessory.item_color
 			if(!accessory_color)
@@ -158,9 +158,9 @@
 		var/obj/item/clothing/accessory/A = attached_accessory
 		attached_accessory.detach(src, user)
 		if(user.put_in_hands(A) && !forced)
-			to_chat(user, "<span class='notice'>You detach [A] from [src].</span>")
+			to_chat(user, span_notice("You detach [A] from [src]."))
 		else
-			to_chat(user, "<span class='notice'>You detach [A] from [src] and it falls on the floor.</span>")
+			to_chat(user, span_notice("You detach [A] from [src] and it falls on the floor."))
 			A.forceMove(get_turf(src))
 		
 		if(ishuman(loc))
