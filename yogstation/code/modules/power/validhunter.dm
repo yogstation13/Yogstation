@@ -24,16 +24,16 @@
 /obj/machinery/power/validhunter_engine/wrench_act(mob/living/user, obj/item/I)
 	if(!anchored && !isinspace())
 		connect_to_network()
-		to_chat(user, "<span class='notice'>You secure [src] to the floor.</span>")
+		to_chat(user, span_notice("You secure [src] to the floor."))
 		anchored = TRUE
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 	else if(anchored)
 		if(operating)
-			to_chat(user, "<span class='warning'>You can't detach [src] from the floor, it's holding on too tightly!</span>")
+			to_chat(user, span_warning("You can't detach [src] from the floor, it's holding on too tightly!"))
 			return TRUE
 
 		disconnect_from_network()
-		to_chat(user, "<span class='notice'>You unsecure [src] from the floor.</span>")
+		to_chat(user, span_notice("You unsecure [src] from the floor."))
 		anchored = FALSE
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 
@@ -44,7 +44,7 @@
 		return
 
 	obj_flags |= EMAGGED
-	to_chat(user, "<span class='warning'>You overload the syndicate chip.</span>")
+	to_chat(user, span_warning("You overload the syndicate chip."))
 
 /obj/machinery/power/validhunter_engine/attack_hand(mob/user)
 	. = ..()
@@ -52,24 +52,24 @@
 		return
 	
 	if(operating)
-		to_chat(user, "<span class='danger'>It's locked and running.</span>")
+		to_chat(user, span_danger("It's locked and running."))
 		return
 
 	if(!anchored)
-		to_chat(user, "<span class='notice'>[src] cannot be used unless bolted to the ground.</span>")
+		to_chat(user, span_notice("[src] cannot be used unless bolted to the ground."))
 		return
 	
 	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
 		var/mob/living/L = user.pulling
 		if(L.buckled ||L.has_buckled_mobs())
-			to_chat(user, "<span class='warning'>[L] is attached to something!</span>")
+			to_chat(user, span_warning("[L] is attached to something!"))
 			return
 
-		user.visible_message("<span class='danger'>[user] starts to put [L] into the engine!</span>")
+		user.visible_message(span_danger("[user] starts to put [L] into the engine!"))
 		add_fingerprint(user)
 		if(do_after(user, gibtime, target = src))
 			if(L && user.pulling == L && !L.buckled && !L.has_buckled_mobs())
-				user.visible_message("<span class='danger'>[user] stuffs [L] into the engine!</span>")
+				user.visible_message(span_danger("[user] stuffs [L] into the engine!"))
 				process_mob(L, user)
 
 /obj/machinery/power/validhunter_engine/proc/process_mob(mob/living/L, mob/user)
@@ -78,7 +78,7 @@
 	
 	playsound(src.loc, 'sound/machines/terminal_on.ogg', 50, 1)
 	L.forceMove(src)
-	visible_message("<span class='italics'>You hear a loud squelchy grinding sound.</span>")
+	visible_message(span_italics("You hear a loud squelchy grinding sound."))
 	playsound(src.loc, 'sound/machines/juicer.ogg', 50, 1)
 	var/offset = prob(50) ? -2 : 2
 	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = 200) //start shaking
@@ -163,7 +163,7 @@
 
 /obj/machinery/power/validhunter_engine/proc/fake_gib(mob/living/L)
 	playsound(src.loc, 'sound/machines/terminal_off.ogg', 50, 1)
-	visible_message("<span class='warning'>The machine spits the inhabitant back out.</span>")
+	visible_message(span_warning("The machine spits the inhabitant back out."))
 	dropContents()
 
 	operating = FALSE

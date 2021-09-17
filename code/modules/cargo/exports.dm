@@ -1,6 +1,6 @@
 /* How it works:
  The shuttle arrives at CentCom dock and calls sell(), which recursively loops through all the shuttle contents that are unanchored.
- 
+
  Each object in the loop is checked for applies_to() of various export datums, except the invalid ones.
 */
 
@@ -19,6 +19,8 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
  then the player gets the profit from selling his own wasted time.
 */
 
+#define NO_LIMIT INFINITY
+
 // Simple holder datum to pass export results around
 /datum/export_report
 	var/list/exported_atoms = list()	//names of atoms sold/deleted by export
@@ -26,12 +28,12 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 	var/list/total_value = list()		//export instance => total value of sold objects
 
 // external_report works as "transaction" object, pass same one in if you're doing more than one export in single go
-/proc/export_item_and_contents(atom/movable/AM, allowed_categories = EXPORT_CARGO, apply_elastic = TRUE, delete_unsold = TRUE, dry_run=FALSE, datum/export_report/external_report)
+/proc/export_item_and_contents(atom/movable/AM, allowed_categories = EXPORT_CARGO, apply_limit = TRUE, delete_unsold = TRUE, dry_run=FALSE, datum/export_report/external_report)
 	if(!GLOB.exports_list.len)
 		setupExports()
 
 	var/list/contents = AM.GetAllContents()
-	
+
 	var/datum/export_report/report = external_report
 	if(!report) //If we don't have any longer transaction going on
 		report = new
@@ -45,8 +47,8 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 		for(var/datum/export/E in GLOB.exports_list)
 			if(!E)
 				continue
-			if(E.applies_to(thing, allowed_categories, apply_elastic))
-				sold = E.sell_object(thing, report, dry_run, allowed_categories , apply_elastic)
+			if(E.applies_to(thing, allowed_categories, apply_limit))
+				sold = E.sell_object(thing, report, dry_run, allowed_categories , apply_limit)
 				report.exported_atoms += " [thing.name]"
 				break
 		if(!dry_run && (sold || delete_unsold))
@@ -60,21 +62,16 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 	var/unit_name = ""				// Unit name. Only used in "Received [total_amount] [name]s [message]." message
 	var/message = ""
 	var/cost = 100					// Cost of item, in cargo credits. Must not alow for infinite price dupes, see above.
-	var/k_elasticity = 1/30			//coefficient used in marginal price calculation that roughly corresponds to the inverse of price elasticity, or "quantity elasticity"
+	var/export_limit = NO_LIMIT		//how many times this export can be sold.
 	var/list/export_types = list()	// Type of the exported object. If none, the export datum is considered base type.
 	var/include_subtypes = TRUE		// Set to FALSE to make the datum apply only to a strict type.
 	var/list/exclude_types = list()	// Types excluded from export
-
-	//cost includes elasticity, this does not.
-	var/init_cost
 
 	//All these need to be present in export call parameter for this to apply.
 	var/export_category = EXPORT_CARGO
 
 /datum/export/New()
 	..()
-	SSprocessing.processing += src
-	init_cost = cost
 	export_types = typecacheof(export_types)
 	exclude_types = typecacheof(exclude_types)
 
@@ -82,22 +79,13 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 	SSprocessing.processing -= src
 	return ..()
 
-/datum/export/process()
-	..()
-	cost *= NUM_E**(k_elasticity * (1/30))
-	if(cost > init_cost)
-		cost = init_cost
-
 // Checks the cost. 0 cost items are skipped in export.
-/datum/export/proc/get_cost(obj/O, allowed_categories = NONE, apply_elastic = TRUE)
+/datum/export/proc/get_cost(obj/O, allowed_categories = NONE, apply_limit = TRUE)
 	var/amount = get_amount(O)
-	if(apply_elastic)
-		if(k_elasticity!=0)
-			return round((cost/k_elasticity) * (1 - NUM_E**(-1 * k_elasticity * amount)))	//anti-derivative of the marginal cost function
-		else
-			return round(cost * amount)	//alternative form derived from L'Hopital to avoid division by 0
+	if(apply_limit && export_limit != NO_LIMIT)
+		return clamp(amount, 0, export_limit) * cost
 	else
-		return round(init_cost * amount)
+		return round(cost * amount)
 
 // Checks the amount of exportable in object. Credits in the bill, sheets in the stack, etc.
 // Usually acts as a multiplier for a cost, so item that has 0 amount will be skipped in export.
@@ -121,23 +109,23 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 // Called only once, when the object is actually sold by the datum.
 // Adds item's cost and amount to the current export cycle.
 // get_cost, get_amount and applies_to do not neccesary mean a successful sale.
-/datum/export/proc/sell_object(obj/O, datum/export_report/report, dry_run = TRUE, allowed_categories = EXPORT_CARGO , apply_elastic = TRUE)
-	var/the_cost = get_cost(O, allowed_categories , apply_elastic)
+/datum/export/proc/sell_object(obj/O, datum/export_report/report, dry_run = TRUE, allowed_categories = EXPORT_CARGO , apply_limit = TRUE)
+	var/the_cost = get_cost(O, allowed_categories , apply_limit)
 	var/amount = get_amount(O)
 
-	if(amount <=0 || the_cost <=0)
+	if(amount <=0 || the_cost <=0  || export_limit <=0)
 		return FALSE
-	
+
 	report.total_value[src] += the_cost
-	
-	if(istype(O, /datum/export/material))
+
+	if(istype(src, /datum/export/material))
 		report.total_amount[src] += amount*MINERAL_MATERIAL_AMOUNT
 	else
 		report.total_amount[src] += amount
 
 	if(!dry_run)
-		if(apply_elastic)
-			cost *= NUM_E**(-1*k_elasticity*amount)		//marginal cost modifier
+		if(apply_limit && export_limit != NO_LIMIT)
+			export_limit-= amount
 		SSblackbox.record_feedback("nested tally", "export_sold_cost", 1, list("[O.type]", "[the_cost]"))
 	return TRUE
 
@@ -150,7 +138,7 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 
 	var/total_value = ex.total_value[src]
 	var/total_amount = ex.total_amount[src]
-	
+
 	var/msg = "[total_value] credits: Received [total_amount] "
 	if(total_value > 0)
 		msg = "+" + msg
@@ -166,6 +154,9 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 		msg += message
 
 	msg += "."
+
+	if(export_limit <= 0)
+		msg += " No further units are required."
 	return msg
 
 GLOBAL_LIST_EMPTY(exports_list)

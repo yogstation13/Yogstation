@@ -29,7 +29,7 @@ RLD
 	var/datum/effect_system/spark_spread/spark_system
 	var/matter = 0
 	var/max_matter = 100
-	var/no_ammo_message = "<span class='warning'>The \'Low Ammo\' light on the device blinks yellow.</span>"
+	var/no_ammo_message = span_warning("The \'Low Ammo\' light on the device blinks yellow.")
 	var/has_ammobar = FALSE	//controls whether or not does update_icon apply ammo indicator overlays
 	var/ammo_sections = 10	//amount of divisions in the ammo indicator overlay/number of ammo indicator states
 	/// Bitflags for upgrades
@@ -79,10 +79,10 @@ RLD
 /// Installs an upgrade into the RCD checking if it is already installed, or if it is a banned upgrade
 /obj/item/construction/proc/install_upgrade(obj/item/rcd_upgrade/rcd_up, mob/user)
 	if(rcd_up.upgrade & upgrade)
-		to_chat(user, "<span class='warning'>[src] has already installed this upgrade!</span>")
+		to_chat(user, span_warning("[src] has already installed this upgrade!"))
 		return
 	if(rcd_up.upgrade & banned_upgrades)
-		to_chat(user, "<span class='warning'>[src] can't install this upgrade!</span>")
+		to_chat(user, span_warning("[src] can't install this upgrade!"))
 		return
 	upgrade |= rcd_up.upgrade
 	if((rcd_up.upgrade & RCD_UPGRADE_SILO_LINK) && !silo_mats)
@@ -99,7 +99,7 @@ RLD
 		var/obj/item/rcd_ammo/R = O
 		var/load = min(R.ammoamt, max_matter - matter)
 		if(load <= 0)
-			to_chat(user, "<span class='warning'>[src] can't hold any more matter-units!</span>")
+			to_chat(user, span_warning("[src] can't hold any more matter-units!"))
 			return FALSE
 		R.ammoamt -= load
 		if(R.ammoamt <= 0)
@@ -110,14 +110,14 @@ RLD
 	else if(istype(O, /obj/item/stack))
 		loaded = loadwithsheets(O, user)
 	if(loaded)
-		to_chat(user, "<span class='notice'>[src] now holds [matter]/[max_matter] matter-units.</span>")
+		to_chat(user, span_notice("[src] now holds [matter]/[max_matter] matter-units."))
 		update_icon()	//ensures that ammo counters (if present) get updated
 	return loaded
 
 /obj/item/construction/proc/loadwithsheets(obj/item/stack/S, mob/user)
 	var/value = S.matter_amount
 	if(value <= 0)
-		to_chat(user, "<span class='notice'>You can't insert [S.name] into [src]!</span>")
+		to_chat(user, span_notice("You can't insert [S.name] into [src]!"))
 		return FALSE
 	var/maxsheets = round((max_matter-matter)/value)    //calculate the max number of sheets that will fit in RCD
 	if(maxsheets > 0)
@@ -125,9 +125,9 @@ RLD
 		S.use(amount_to_use)
 		matter += value*amount_to_use
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-		to_chat(user, "<span class='notice'>You insert [amount_to_use] [S.name] sheets into [src]. </span>")
+		to_chat(user, span_notice("You insert [amount_to_use] [S.name] sheets into [src]. "))
 		return TRUE
-	to_chat(user, "<span class='warning'>You can't insert any more [S.name] sheets into [src]!</span>")
+	to_chat(user, span_warning("You can't insert any more [S.name] sheets into [src]!"))
 	return FALSE
 
 /obj/item/construction/proc/activate()
@@ -150,10 +150,10 @@ RLD
 	else
 		if(silo_mats.on_hold())
 			if(user)
-				to_chat(user, "<span class='alert'>Mineral access is on hold, please contact the quartermaster.</span>")
+				to_chat(user, span_alert("Mineral access is on hold, please contact the quartermaster."))
 			return FALSE
 		if(!silo_mats.mat_container)
-			to_chat(user, "<span class='alert'>No silo link detected. Connect to silo via multitool.</span>")
+			to_chat(user, span_alert("No silo link detected. Connect to silo via multitool."))
 			return FALSE
 		if(!silo_mats.mat_container.has_materials(list(/datum/material/iron = 500), amount))
 			if(user)
@@ -172,7 +172,7 @@ RLD
 	else
 		if(silo_mats.on_hold())
 			if(user)
-				to_chat(user, "<span class='alert'>Mineral access is on hold, please contact the quartermaster.</span>")
+				to_chat(user, span_alert("Mineral access is on hold, please contact the quartermaster."))
 			return FALSE
 		. = silo_mats.mat_container.has_materials(list(/datum/material/iron = 500), amount)
 	if(!. && user)
@@ -183,7 +183,7 @@ RLD
 
 /obj/item/construction/proc/range_check(atom/A, mob/user)
 	if(!(A in view(7, get_turf(user))))
-		to_chat(user, "<span class='warning'>The \'Out of Range\' light on [src] blinks red.</span>")
+		to_chat(user, span_warning("The \'Out of Range\' light on [src] blinks red."))
 		return FALSE
 	else
 		return TRUE
@@ -241,7 +241,7 @@ RLD
 	var/obj/item/electronics/airlock/airlock_electronics
 
 /obj/item/construction/rcd/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] sets the RCD to 'Wall' and points it down [user.p_their()] throat! It looks like [user.p_theyre()] trying to commit suicide..</span>")
+	user.visible_message(span_suicide("[user] sets the RCD to 'Wall' and points it down [user.p_their()] throat! It looks like [user.p_theyre()] trying to commit suicide.."))
 	return (BRUTELOSS)
 
 /obj/item/construction/rcd/verb/toggle_window_glass_verb()
@@ -311,17 +311,17 @@ RLD
 		else
 			window_type = /obj/structure/window/fulltile
 
-	to_chat(user, "<span class='notice'>You change \the [src]'s window mode to [window_size] [window_glass] window.</span>")
+	to_chat(user, span_notice("You change \the [src]'s window mode to [window_size] [window_glass] window."))
 
 /obj/item/construction/rcd/proc/toggle_silo_link(mob/user)
 	if(silo_mats)
 		if(!silo_mats.mat_container)
-			to_chat(user, "<span class='alert'>No silo link detected. Connect to silo via multitool.</span>")
+			to_chat(user, span_alert("No silo link detected. Connect to silo via multitool."))
 			return FALSE
 		silo_link = !silo_link
-		to_chat(user, "<span class='notice'>You change \the [src]'s storage link state: [silo_link ? "ON" : "OFF"].</span>")
+		to_chat(user, span_notice("You change \the [src]'s storage link state: [silo_link ? "ON" : "OFF"]."))
 	else
-		to_chat(user, "<span class='warning'>\the [src] doesn't have remote storage connection.</span>")
+		to_chat(user, span_warning("\the [src] doesn't have remote storage connection."))
 
 /obj/item/construction/rcd/proc/get_airlock_image(airlock_type)
 	var/obj/machinery/door/airlock/proto = airlock_type
@@ -634,7 +634,7 @@ RLD
 		else
 			return
 	playsound(src, 'sound/effects/pop.ogg', 50, FALSE)
-	to_chat(user, "<span class='notice'>You change RCD's mode to '[choice]'.</span>")
+	to_chat(user, span_notice("You change RCD's mode to '[choice]'."))
 
 /obj/item/construction/rcd/proc/target_check(atom/A, mob/user) // only returns true for stuff the device can actually work with
 	if((isturf(A) && A.density && mode==RCD_DECONSTRUCT) || (isturf(A) && !A.density) || (istype(A, /obj/machinery/door/airlock) && mode==RCD_DECONSTRUCT) || istype(A, /obj/structure/grille) || (istype(A, /obj/structure/window) && mode==RCD_DECONSTRUCT) || istype(A, /obj/structure/girder))
@@ -671,7 +671,7 @@ RLD
 	update_icon()
 
 /obj/item/construction/rcd/borg
-	no_ammo_message = "<span class='warning'>Insufficient charge.</span>"
+	no_ammo_message = span_warning("Insufficient charge.")
 	desc = "A device used to rapidly build walls and floors."
 	canRturf = TRUE
 	banned_upgrades = RCD_UPGRADE_SILO_LINK
@@ -810,13 +810,13 @@ RLD
 	switch(mode)
 		if(REMOVE_MODE)
 			mode = LIGHT_MODE
-			to_chat(user, "<span class='notice'>You change RLD's mode to 'Permanent Light Construction'.</span>")
+			to_chat(user, span_notice("You change RLD's mode to 'Permanent Light Construction'."))
 		if(LIGHT_MODE)
 			mode = GLOW_MODE
-			to_chat(user, "<span class='notice'>You change RLD's mode to 'Light Launcher'.</span>")
+			to_chat(user, span_notice("You change RLD's mode to 'Light Launcher'."))
 		if(GLOW_MODE)
 			mode = REMOVE_MODE
-			to_chat(user, "<span class='notice'>You change RLD's mode to 'Deconstruct'.</span>")
+			to_chat(user, span_notice("You change RLD's mode to 'Deconstruct'."))
 
 
 /obj/item/construction/rld/proc/checkdupes(var/target)
@@ -836,7 +836,7 @@ RLD
 		if(REMOVE_MODE)
 			if(istype(A, /obj/machinery/light/))
 				if(checkResource(deconcost, user))
-					to_chat(user, "<span class='notice'>You start deconstructing [A]...</span>")
+					to_chat(user, span_notice("You start deconstructing [A]..."))
 					user.Beam(A,icon_state="nzcrentrs_power",time=15)
 					playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 					if(do_after(user, decondelay, target = A))
@@ -850,7 +850,7 @@ RLD
 			if(iswallturf(A))
 				var/turf/closed/wall/W = A
 				if(checkResource(floorcost, user))
-					to_chat(user, "<span class='notice'>You start building a wall light...</span>")
+					to_chat(user, span_notice("You start building a wall light..."))
 					user.Beam(A,icon_state="nzcrentrs_power",time=15)
 					playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 					playsound(src.loc, 'sound/effects/light_flicker.ogg', 50, FALSE)
@@ -866,7 +866,7 @@ RLD
 							if(start.CanAtmosPass(C) && !dupes.len)
 								candidates += C
 						if(!candidates.len)
-							to_chat(user, "<span class='warning'>Valid target not found...</span>")
+							to_chat(user, span_warning("Valid target not found..."))
 							playsound(src.loc, 'sound/misc/compiler-failure.ogg', 30, TRUE)
 							return FALSE
 						for(var/turf/open/O in candidates)
@@ -896,7 +896,7 @@ RLD
 			if(isfloorturf(A))
 				var/turf/open/floor/F = A
 				if(checkResource(floorcost, user))
-					to_chat(user, "<span class='notice'>You start building a floor light...</span>")
+					to_chat(user, span_notice("You start building a floor light..."))
 					user.Beam(A,icon_state="light_beam",time=15)
 					playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 					playsound(src.loc, 'sound/effects/light_flicker.ogg', 50, TRUE)
@@ -916,7 +916,7 @@ RLD
 		if(GLOW_MODE)
 			if(useResource(launchcost, user))
 				activate()
-				to_chat(user, "<span class='notice'>You fire a glowstick!</span>")
+				to_chat(user, span_notice("You fire a glowstick!"))
 				var/obj/item/flashlight/glowstick/G  = new /obj/item/flashlight/glowstick(start)
 				G.color = color_choice
 				G.light_color = G.color

@@ -12,6 +12,9 @@
 	var/icon_right = "bloodhand_right"
 	hitsound = 'sound/hallucinations/growl1.ogg'
 	force = 21 // Just enough to break airlocks with melee attacks
+	sharpness = SHARP_EDGED
+	wound_bonus = -30
+	bare_wound_bonus = 15
 	damtype = "brute"
 	var/inserted_organ = /obj/item/organ/zombie_infection
 	var/infect_chance = 100 //Before armor calculations
@@ -79,7 +82,7 @@
 
 
 /obj/item/zombie_hand/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is ripping [user.p_their()] brains out! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is ripping [user.p_their()] brains out! It looks like [user.p_theyre()] trying to commit suicide!"))
 	if(isliving(user))
 		var/mob/living/L = user
 		var/obj/item/bodypart/O = L.get_bodypart(BODY_ZONE_HEAD)

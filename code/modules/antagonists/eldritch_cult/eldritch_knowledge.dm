@@ -32,7 +32,7 @@
   * This proc is called whenever a new eldritch knowledge is added to an antag datum
   */
 /datum/eldritch_knowledge/proc/on_gain(mob/user)
-	to_chat(user, "<span class='warning'>[gain_text]</span>")
+	to_chat(user, span_warning("[gain_text]"))
 	for(var/S in spells_to_add)
 		var/obj/effect/proc_holder/spell/spell2add = new S
 		user.mind.AddSpell(spell2add)

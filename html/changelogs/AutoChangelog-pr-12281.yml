@@ -1,0 +1,4 @@
+author: "Darthkill"
+delete-after: true 
+changes: 
+  - tweak: "Added power zones in space so that camera repairs are less painful."

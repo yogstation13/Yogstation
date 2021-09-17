@@ -96,7 +96,7 @@
 			var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [summoned.real_name]", ROLE_HERETIC, null, ROLE_HERETIC, 100,summoned)
 			user.SetImmobilized(0)
 			if(LAZYLEN(candidates) == 0)
-				to_chat(user,"<span class='warning'>No ghost could be found...</span>")
+				to_chat(user,span_warning("No ghost could be found..."))
 				qdel(summoned)
 				return FALSE
 			var/mob/living/carbon/human/H = user
