@@ -1,5 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - bugfix: "fixed floodlights not turning off"
-  - bugfix: "fixed sling veil not working on floodlights"
