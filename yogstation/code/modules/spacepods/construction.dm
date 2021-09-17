@@ -2,40 +2,40 @@
 	. = ..()
 	switch(construction_state) // more construction states than r-walls!
 		if(SPACEPOD_EMPTY)
-			. += "<span class='notice'>The struts holding it together can be <b>cut</b> and it is missing <i>wires</i>.</span>"
+			. += span_notice("The struts holding it together can be <b>cut</b> and it is missing <i>wires</i>.")
 		if(SPACEPOD_WIRES_LOOSE)
-			. += "<span class='notice'>The <b>wires</b> need to be <i>screwed</i> on.</span>"
+			. += span_notice("The <b>wires</b> need to be <i>screwed</i> on.")
 		if(SPACEPOD_WIRES_SECURED)
-			. += "<span class='notice'>The wires are <b>screwed</b> on and need a <i>circuit board</i>.</span>"
+			. += span_notice("The wires are <b>screwed</b> on and need a <i>circuit board</i>.")
 		if(SPACEPOD_CIRCUIT_LOOSE)
-			. += "<span class='notice'>The circuit board is <b>loosely attached</b> and needs to be <i>screwed</i> on.</span>"
+			. += span_notice("The circuit board is <b>loosely attached</b> and needs to be <i>screwed</i> on.")
 		if(SPACEPOD_CIRCUIT_SECURED)
-			. += "<span class='notice'>The circuit board is <b>screwed</b> on, and there is space for a <i>core</i>.</span>"
+			. += span_notice("The circuit board is <b>screwed</b> on, and there is space for a <i>core</i>.")
 		if(SPACEPOD_CORE_LOOSE)
-			. += "<span class='notice'>The core is <b>loosely attached</b> and needs to be <i>bolted</i> on.</span>"
+			. += span_notice("The core is <b>loosely attached</b> and needs to be <i>bolted</i> on.")
 		if(SPACEPOD_CORE_SECURED)
-			. += "<span class='notice'>The core is <b>bolted</b> on and the <i>metal</i> bulkhead can be attached.</span>"
+			. += span_notice("The core is <b>bolted</b> on and the <i>metal</i> bulkhead can be attached.")
 		if(SPACEPOD_BULKHEAD_LOOSE)
-			. += "<span class='notice'>The bulkhead is <b>loosely attached</b> and can be <i>bolted</i> down.</span>"
+			. += span_notice("The bulkhead is <b>loosely attached</b> and can be <i>bolted</i> down.")
 		if(SPACEPOD_BULKHEAD_SECURED)
-			. += "<span class='notice'>The bulkhead is <b>bolted</b> on but not <i>welded</i> on.</span>"
+			. += span_notice("The bulkhead is <b>bolted</b> on but not <i>welded</i> on.")
 		if(SPACEPOD_BULKHEAD_WELDED)
-			. += "<span class='notice'>The bulkhead is <b>welded</b> on and <i>armor</i> can be attached.</span>"
+			. += span_notice("The bulkhead is <b>welded</b> on and <i>armor</i> can be attached.")
 		if(SPACEPOD_ARMOR_LOOSE)
-			. += "<span class='notice'>The armor is <b>loosely attached</b> and can be <i>bolted</i> down.</span>"
+			. += span_notice("The armor is <b>loosely attached</b> and can be <i>bolted</i> down.")
 		if(SPACEPOD_ARMOR_SECURED)
-			. += "<span class='notice'>The armor is <b>bolted</b> on but not <i>welded</i> on.</span>"
+			. += span_notice("The armor is <b>bolted</b> on but not <i>welded</i> on.")
 		if(SPACEPOD_ARMOR_WELDED)
 			if(hatch_open)
 				if(cell || internal_tank || equipment.len)
-					. += "<span class='notice'>The maintenance hatch is <i>pried</i> open and there are parts inside that can be <b>removed</b>.</span>"
+					. += span_notice("The maintenance hatch is <i>pried</i> open and there are parts inside that can be <b>removed</b>.")
 				else
-					. += "<span class='notice'>The maintenance hatch is <i>pried</i> open and the armor is <b>welded</b> on.</span>"
+					. += span_notice("The maintenance hatch is <i>pried</i> open and the armor is <b>welded</b> on.")
 			else
 				if(locked)
-					. += "<span class='notice'>[src] is <b>locked</b>.</span>"
+					. += span_notice("[src] is <b>locked</b>.")
 				else
-					. += "<span class='notice'>The maintenance hatch is <b>closed</b>.</span>"
+					. += span_notice("The maintenance hatch is <b>closed</b>.")
 
 /obj/spacepod/proc/handle_spacepod_construction(obj/item/W, mob/living/user)
 	// time for a construction/deconstruction process to rival r-walls
@@ -53,7 +53,7 @@
 					user.visible_message("[user] wires [src].", "You wire [src].")
 					construction_state++
 				else
-					to_chat(user, "<span class='warning'>You need 10 wires for this!</span>")
+					to_chat(user, span_warning("You need 10 wires for this!"))
 		if(SPACEPOD_WIRES_LOOSE)
 			if(W.tool_behaviour == TOOL_WIRECUTTER)
 				. = TRUE
@@ -81,7 +81,7 @@
 					construction_state++
 					user.visible_message("[user] inserts the mainboard into [src].", "You insert the mainboard into [src].")
 				else
-					to_chat(user, "<span class='warning'>[W] is stuck to your hand!</span>")
+					to_chat(user, span_warning("[W] is stuck to your hand!"))
 		if(SPACEPOD_CIRCUIT_LOOSE)
 			if(W.tool_behaviour == TOOL_CROWBAR)
 				. = TRUE
@@ -108,7 +108,7 @@
 					construction_state++
 					user.visible_message("[user] inserts the core into [src].", "You carefully insert the core into [src].")
 				else
-					to_chat(user, "<span class='warning'>[W] is stuck to your hand!</span>")
+					to_chat(user, span_warning("[W] is stuck to your hand!"))
 		if(SPACEPOD_CORE_LOOSE)
 			if(W.tool_behaviour == TOOL_CROWBAR)
 				. = TRUE
@@ -134,7 +134,7 @@
 					user.visible_message("[user] fabricates a pressure bulkhead for [src].", "You frabricate a pressure bulkhead for [src].")
 					construction_state++
 				else
-					to_chat(user, "<span class='warning'>You need 5 metal for this!</span>")
+					to_chat(user, span_warning("You need 5 metal for this!"))
 		if(SPACEPOD_BULKHEAD_LOOSE)
 			if(W.tool_behaviour == TOOL_CROWBAR)
 				. = TRUE

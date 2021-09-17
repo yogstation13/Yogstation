@@ -6,7 +6,7 @@
 		return
 
 	if(!SSdbcore.IsConnected())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, span_danger("Failed to establish database connection."))
 		return
 
 	var/datum/DBQuery/query_poll_get = SSdbcore.NewQuery("SELECT id, question FROM [format_table_name("poll_question")] WHERE Now() > starttime ORDER BY starttime DESC")
@@ -36,7 +36,7 @@
 	if(!pollid)
 		return
 	if(!SSdbcore.IsConnected())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, span_danger("Failed to establish database connection."))
 		return
 	var/datum/DBQuery/select_query = SSdbcore.NewQuery("SELECT polltype, question, adminonly, multiplechoiceoptions, starttime, endtime FROM [format_table_name("poll_question")] WHERE id = :pollid", list("pollid" = pollid))
 	select_query.Execute()
@@ -58,7 +58,7 @@
 		break
 	qdel(select_query)
 	if(!found)
-		to_chat(src, "<span class='warning'>Poll question details not found.</span>")
+		to_chat(src, span_warning("Poll question details not found."))
 		return
 
 	if(polltype == POLLTYPE_MULTI)

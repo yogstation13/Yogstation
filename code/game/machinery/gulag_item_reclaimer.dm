@@ -35,10 +35,10 @@
 			if(!user.transferItemToLoc(I, src))
 				return
 			inserted_id = I
-			to_chat(user, "<span class='notice'>You insert [I].</span>")
+			to_chat(user, span_notice("You insert [I]."))
 			return
 		else
-			to_chat(user, "<span class='notice'>There's an ID inserted already.</span>")
+			to_chat(user, span_notice("There's an ID inserted already."))
 	return ..()
 
 /obj/machinery/gulag_item_reclaimer/ui_interact(mob/user, datum/tgui/ui)
@@ -87,7 +87,7 @@
 		if("release_items")
 			var/mob/living/carbon/human/H = locate(params["mobref"]) in stored_items
 			if(H != usr && !allowed(usr))
-				to_chat(usr, "<span class='warning'>Access denied.</span>")
+				to_chat(usr, span_warning("Access denied."))
 				return
 			drop_items(H)
 			. = TRUE

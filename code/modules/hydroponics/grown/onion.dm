@@ -37,6 +37,7 @@
 	weed_chance = 1
 	product = /obj/item/reagent_containers/food/snacks/grown/onion/red
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1, /datum/reagent/consumable/tearjuice = 0.05)
+	rarity = 10
 
 /obj/item/reagent_containers/food/snacks/grown/onion/red
 	seed = /obj/item/seeds/onion/red
