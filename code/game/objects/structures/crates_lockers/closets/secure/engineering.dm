@@ -25,7 +25,7 @@
 	new /obj/item/energy_harvester(src)
 	new /obj/item/clipboard/yog/paperwork/ce(src)
 	new /obj/item/poster/firstsingularity(src)
-	new /obj/item/storage/backpack/duffelbag/engineering/chief/clothing(src)
+	new /obj/item/storage/backpack/duffelbag/clothing/ce(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies locker"

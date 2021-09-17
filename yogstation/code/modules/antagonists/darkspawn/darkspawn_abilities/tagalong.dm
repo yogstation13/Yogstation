@@ -23,7 +23,7 @@
 		QDEL_NULL(tagalong)
 		return
 	if(owner.get_active_held_item() || owner.get_inactive_held_item())
-		to_chat(owner, "<span class='warning'>Your hands must be empty to accompany someone!</span>")
+		to_chat(owner, span_warning("Your hands must be empty to accompany someone!"))
 		return
 	var/list/targets = list()
 	var/mob/living/target
@@ -33,7 +33,7 @@
 		if(!isdarkspawn(L) && L.stat != DEAD && T.get_lumcount() >= DARKSPAWN_DIM_LIGHT)
 			targets += L
 	if(!targets.len)
-		to_chat(owner, "<span class='warning'>There is nobody nearby in any lit areas!</span>")
+		to_chat(owner, span_warning("There is nobody nearby in any lit areas!"))
 		return
 	if(targets.len == 1)
 		target = targets[1]

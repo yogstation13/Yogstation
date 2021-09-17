@@ -558,9 +558,9 @@
 	if(!M)
 		return 0
 	to_chat(M, "<span class='bold large_brass'>You are a servant of Ratvar, the Clockwork Justiciar!</span>")
-	to_chat(M, "<span class='brass'>You have approximately <b>[ark_time]</b> minutes until the Ark activates.</span>")
-	to_chat(M, "<span class='brass'>Unlock <b>Script</b> scripture by converting a new servant.</span>")
-	to_chat(M, "<span class='brass'><b>Application</b> scripture will be unlocked halfway until the Ark's activation.</span>")
+	to_chat(M, span_brass("You have approximately <b>[ark_time]</b> minutes until the Ark activates."))
+	to_chat(M, span_brass("Unlock <b>Script</b> scripture by converting a new servant."))
+	to_chat(M, span_brass("<b>Application</b> scripture will be unlocked halfway until the Ark's activation."))
 	M.playsound_local(get_turf(M), 'sound/ambience/antag/clockcultalr.ogg', 100, FALSE, pressure_affected = FALSE)
 	return 1
 

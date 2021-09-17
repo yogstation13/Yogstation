@@ -4,7 +4,7 @@
 	desc = "A strange mutation that renders the host immune to the heat of a plasma fire. Does not grant immunity to fire itself."
 	quality = POSITIVE
 	difficulty = 16
-	text_gain_indication = "<span class='notice'>Your body feels cold!</span>"
+	text_gain_indication = span_notice("Your body feels cold!")
 	time_coeff = 5
 	instability = 40
 	conflicts = list(SPACEMUT)

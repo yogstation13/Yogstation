@@ -46,7 +46,7 @@
 	starting_node = TRUE
 	display_name = "Basic Tools"
 	description = "Basic mechanical, electronic, surgical and botanical tools."
-	design_ids = list("screwdriver", "wrench", "wirecutters", "crowbar", "multitool", "welding_tool", "tscanner", "analyzer", "cable_coil", "pipe_painter", "airlock_painter", "scalpel", "circular_saw", "surgicaldrill", "retractor", "cautery", "hemostat", "surgical_drapes", "syringe", "cultivator", "plant_analyzer", "shovel", "spade", "hatchet",  "mop")
+	design_ids = list("screwdriver", "wrench", "wirecutters", "crowbar", "multitool", "welding_tool", "tscanner", "analyzer", "cable_coil", "pipe_painter", "airlock_painter", "scalpel", "circular_saw", "bonesetter", "surgicaldrill", "retractor", "cautery", "hemostat", "surgical_drapes", "syringe", "cultivator", "plant_analyzer", "shovel", "spade", "hatchet",  "mop")
 
 /////////////////////////Biotech/////////////////////////
 /datum/techweb_node/biotech
@@ -54,7 +54,7 @@
 	display_name = "Biological Technology"
 	description = "What makes us tick."	//the MC, silly!
 	prereq_ids = list("base")
-	design_ids = list("chem_heater", "chem_master", "chem_dispenser", "sleeper", "pandemic", "defibrillator", "defibmount", "operating", "soda_dispenser", "beer_dispenser", "healthanalyzer", "medspray", "genescanner", "stasis", "rollerbed")
+	design_ids = list("chem_heater", "chem_master", "chem_dispenser", "sleeper", "pandemic", "defibrillator", "defibmount", "operating", "soda_dispenser", "beer_dispenser", "healthanalyzer", "medspray", "genescanner", "rollerbed")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -503,7 +503,7 @@
 	display_name = "Cryostasis Technology"
 	description = "Smart freezing of objects to preserve them!"
 	prereq_ids = list("adv_engi", "biotech")
-	design_ids = list("splitbeaker", "noreactsyringe", "cryotube", "cryo_Grenade")
+	design_ids = list("splitbeaker", "noreactsyringe", "cryotube", "cryo_Grenade", "stasis")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 	export_price = 4000
 

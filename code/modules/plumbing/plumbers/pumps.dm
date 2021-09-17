@@ -35,8 +35,8 @@
 /obj/machinery/power/liquid_pump/proc/toggle_active(mob/user, obj/item/I) //we split this in a seperate proc so we can also deactivate if we got no geyser under us
 	geyser = null
 	if(user)
-		user.visible_message("<span class='notice'>[user.name] [anchored ? "fasten" : "unfasten"] [src]</span>", \
-		"<span class='notice'>You [anchored ? "fasten" : "unfasten"] [src]</span>")
+		user.visible_message(span_notice("[user.name] [anchored ? "fasten" : "unfasten"] [src]"), \
+		span_notice("You [anchored ? "fasten" : "unfasten"] [src]"))
 	var/datum/component/plumbing/P = GetComponent(/datum/component/plumbing)
 	if(anchored)
 		P.start()
@@ -54,7 +54,7 @@
 		if(!geyser) //we didnt find one, abort
 			toggle_active()
 			anchored = FALSE
-			visible_message("<span class='warning'>The [name] makes a sad beep!</span>")
+			visible_message(span_warning("The [name] makes a sad beep!"))
 			playsound(src, 'sound/machines/buzz-sigh.ogg', 50)
 			return
 

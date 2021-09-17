@@ -1,0 +1,5 @@
+author: "Lostlarry"
+delete-after: true 
+changes: 
+  - tweak: "changed TEG energy calculation so it doesn't break laws of thermodynamics"
+  - imageadd: "adds new overlay for TEG for when it has no power grid"

@@ -67,7 +67,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 			if(SEC_LEVEL_EPSILON)
 				minor_announce(CONFIG_GET(string/alert_epsilon), "Attention! Epsilon security level reached!", TRUE)
 				SEND_SOUND(world, 'sound/misc/epsilon_alert.ogg')
-				to_chat(world, "<span class='notice'>You get a bad feeling as you hear the Epsilon alert siren.</span>")
+				to_chat(world, span_notice("You get a bad feeling as you hear the Epsilon alert siren."))
 				if(GLOB.security_level < SEC_LEVEL_EPSILON)
 					modTimer = 1
 
@@ -89,7 +89,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 				pod.admin_controlled = FALSE
 			for(var/obj/machinery/door/D in GLOB.machines)
 				if(D.red_alert_access)
-					D.visible_message("<span class='notice'>[D] whirrs as it automatically lifts access requirements!</span>")
+					D.visible_message(span_notice("[D] whirrs as it automatically lifts access requirements!"))
 					playsound(D, 'sound/machines/boltsup.ogg', 50, TRUE)
 
 		if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
