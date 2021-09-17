@@ -583,11 +583,6 @@ SUBSYSTEM_DEF(job)
 			J.total_positions = officer_positions
 			J.spawn_positions = officer_positions
 
-	var/datum/job/phy = SSjob.GetJob("Brig Physician")
-	if(J.total_positions > 1)
-		phy.total_positions = 1
-		phy.spawn_positions = 1
-
 	//Spawn some extra eqipment lockers if we have more than 5 officers
 	var/equip_needed = J.total_positions
 	if(equip_needed < 0) // -1: infinite available slots
