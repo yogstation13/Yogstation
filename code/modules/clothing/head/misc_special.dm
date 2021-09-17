@@ -330,6 +330,9 @@
 	. = ..()
 	if(!warped)
 		warp_up()
+	visible_message(M, span_danger("[M] starts to fizzle!"))
+	sleep(0.25 SECONDS)
+	explosion(get_turf(M), 0, 0, 0, 5)
 
 /obj/item/clothing/head/franks_hat
 	name = "Frank's Hat"
