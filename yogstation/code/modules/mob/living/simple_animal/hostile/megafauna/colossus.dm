@@ -15,7 +15,7 @@
 
 	if(enrage(target))
 		if(move_to_delay == initial(move_to_delay))
-			visible_message("<span class='colossus'>\"<b>You can't dodge.</b>\"</span>")
+			visible_message(span_colossus("\"<b>You can't dodge.</b>\""))
 		ranged_cooldown = world.time + 30
 		telegraph()
 		dir_shots(GLOB.alldirs)
@@ -30,13 +30,13 @@
 		if(health < maxHealth/3)
 			INVOKE_ASYNC(src, .proc/double_spiral)
 		else
-			visible_message("<span class='colossus'>\"<b>Judgement.</b>\"</span>")
+			visible_message(span_colossus("\"<b>Judgement.</b>\""))
 			INVOKE_ASYNC(src, .proc/spiral_shoot, pick(TRUE, FALSE))
 	//Yogs begin - Added health gate and telegraph
 	else if(prob(20) && health < maxHealth/2)
 		telegraph()
 		COLOSSUS_SLEEP(3)
-		visible_message("<span class='colossus'>\"<b>Bow.</b>\"</span>")
+		visible_message(span_colossus("\"<b>Bow.</b>\""))
 	//Yogs end
 		ranged_cooldown = world.time + 30
 		random_shots()

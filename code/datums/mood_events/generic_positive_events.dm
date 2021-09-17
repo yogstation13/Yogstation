@@ -138,7 +138,7 @@
 	timeout = 3 MINUTES
 
 /datum/mood_event/religiously_comforted
-	description = "<span class='nicegreen'>You are comforted by the presence of a holy person.</span>"
+	description = span_nicegreen("You are comforted by the presence of a holy person.")
 	mood_change = 3
 	timeout = 5 MINUTES
 
