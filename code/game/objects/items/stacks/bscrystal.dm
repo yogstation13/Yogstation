@@ -47,7 +47,7 @@
 		use(1)
 
 /obj/item/stack/ore/bluespace_crystal/microwave_act(obj/machinery/microwave/M)
-	M.visible_message("[M] starts sputtering in and out of reality!")
+	M.visible_message(span_danger("[M] starts sputtering in and out of reality!"))
 	sleep(0.25 SECONDS)
 	blink_mob(M)
 
