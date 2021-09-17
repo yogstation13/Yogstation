@@ -82,6 +82,9 @@
 	var/list/targeted_by
 
 	var/atom/orbit_target //Reference to atom being orbited
+
+	/// Used for changing icon state for different base sprites
+	var/base_icon_state
 /**
   * Called when an atom is created in byond (built in engine proc)
   *

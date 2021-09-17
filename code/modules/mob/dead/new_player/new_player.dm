@@ -1,19 +1,19 @@
-#define LINKIFY_READY(string, value) "<a href='byond://?src=[REF(src)];ready=[value]'>[string]</a>"
-
 /mob/dead/new_player
-	var/ready = 0
-	var/spawning = 0//Referenced when you want to delete the new_player later on in the code.
-
 	flags_1 = NONE
 
 	invisibility = INVISIBILITY_ABSTRACT
 
 	density = FALSE
 	stat = DEAD
+	hud_type = /datum/hud/new_player
+	hud_possible = list()
 
-	var/mob/living/new_character	//for instant transfer once the round is set up
-
-	//Used to make sure someone doesn't get spammed with messages if they're ineligible for roles
+	var/ready = FALSE
+	/// Referenced when you want to delete the new_player later on in the code.
+	var/spawning = FALSE
+	/// For instant transfer once the round is set up
+	var/mob/living/new_character
+	///Used to make sure someone doesn't get spammed with messages if they're ineligible for roles.
 	var/ineligible_for_roles = FALSE
 
 /mob/dead/new_player/Initialize()
@@ -39,64 +39,6 @@
 /mob/dead/new_player/prepare_huds()
 	return
 
-/mob/dead/new_player/proc/new_player_panel()
-	var/datum/asset/asset_datum = get_asset_datum(/datum/asset/simple/lobby)
-	asset_datum.send(client)
-	var/output = "<center><p><a href='byond://?src=[REF(src)];show_preferences=1'>Setup Character</a></p>"
-
-	if(SSticker.current_state <= GAME_STATE_PREGAME)
-		switch(ready)
-			if(PLAYER_NOT_READY)
-				output += "<p>\[ [LINKIFY_READY("Ready", PLAYER_READY_TO_PLAY)] | <b>Not Ready</b> | [LINKIFY_READY("Observe", PLAYER_READY_TO_OBSERVE)] \]</p>"
-			if(PLAYER_READY_TO_PLAY)
-				output += "<p>\[ <b>Ready</b> | [LINKIFY_READY("Not Ready", PLAYER_NOT_READY)] | [LINKIFY_READY("Observe", PLAYER_READY_TO_OBSERVE)] \]</p>"
-			if(PLAYER_READY_TO_OBSERVE)
-				output += "<p>\[ [LINKIFY_READY("Ready", PLAYER_READY_TO_PLAY)] | [LINKIFY_READY("Not Ready", PLAYER_NOT_READY)] | <b> Observe </b> \]</p>"
-	else
-		output += "<p><a href='byond://?src=[REF(src)];manifest=1'>View the Crew Manifest</a></p>"
-		output += "<p><a href='byond://?src=[REF(src)];late_join=1'>Join Game!</a></p>"
-		output += "<p>[LINKIFY_READY("Observe", PLAYER_READY_TO_OBSERVE)]</p>"
-
-	if(!IsGuestKey(src.key))
-		if (SSdbcore.Connect())
-			var/isadmin = 0
-			if(src.client && src.client.holder)
-				isadmin = 1
-			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery({"
-				SELECT id FROM [format_table_name("poll_question")]
-				WHERE (adminonly = 0 OR :isadmin = 1)
-				AND Now() BETWEEN starttime AND endtime
-				AND id NOT IN (
-					SELECT pollid FROM [format_table_name("poll_vote")]
-					WHERE ckey = :ckey
-				)
-				AND id NOT IN (
-					SELECT pollid FROM [format_table_name("poll_textreply")]
-					WHERE ckey = :ckey
-				)
-			"}, list("isadmin" = isadmin, "ckey" = ckey))
-			var/rs = REF(src)
-			if(query_get_new_polls.Execute())
-				var/newpoll = 0
-				if(query_get_new_polls.NextRow())
-					newpoll = 1
-
-				if(newpoll)
-					output += "<p><b><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
-				else
-					output += "<p><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A></p>"
-			qdel(query_get_new_polls)
-			if(QDELETED(src))
-				return
-
-	output += "</center>"
-
-	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>New Player Options</div>", 250, 265)
-	popup.set_window_options("can_close=0")
-	popup.set_content(output)
-	popup.open(FALSE)
-
-// List of possible actions user has chosen on the New Players menus
 /mob/dead/new_player/Topic(href, href_list[])
 	if(src != usr)
 		return 0
@@ -104,67 +46,13 @@
 	if(!client)
 		return 0
 
-	//Determines Relevent Population Cap
-	var/relevant_cap
-	var/hpc = CONFIG_GET(number/hard_popcap)
-	var/epc = CONFIG_GET(number/extreme_popcap)
-	if(hpc && epc)
-		relevant_cap = min(hpc, epc)
-	else
-		relevant_cap = max(hpc, epc)
-
-	if(href_list["show_preferences"])
-		client.prefs.ShowChoices(src)
-		return 1
-
-	if(href_list["ready"])
-		var/tready = text2num(href_list["ready"])
-		//Avoid updating ready if we're after PREGAME (they should use latejoin instead)
-		//This is likely not an actual issue but I don't have time to prove that this
-		//no longer is required
-		if(SSticker.current_state <= GAME_STATE_PREGAME)
-			ready = tready
-		//if it's post initialisation and they're trying to observe we do the needful
-		if(!SSticker.current_state < GAME_STATE_PREGAME && tready == PLAYER_READY_TO_OBSERVE)
-			ready = tready
-			make_me_an_observer()
-			return
-
-	if(href_list["refresh"])
-		src << browse(null, "window=playersetup") //closes the player setup window
-		new_player_panel()
-
-	if(href_list["late_join"])
-		if(!SSticker || !SSticker.IsRoundInProgress())
-			to_chat(usr, span_danger("The round is either not ready, or has already finished..."))
-			return
-
-		if(href_list["late_join"] == "override")
-			LateChoices()
-			return
-
-		if(SSticker.queued_players.len || (relevant_cap && living_player_count() >= relevant_cap && !(ckey(key) in GLOB.admin_datums)))
-			//yogs start -- donors bypassing the queue
-			if(ckey(key) in get_donators())
-				to_chat(usr, span_notice("Because you are a donator, you have bypassed the queue! Thank you for donating!"))
-				LateChoices()
-				return
-			//yogs end
-			to_chat(usr, span_danger("[CONFIG_GET(string/hard_popcap_message)]"))
-
-			var/queue_position = SSticker.queued_players.Find(usr)
-			if(queue_position == 1)
-				to_chat(usr, span_notice("You are next in line to join the game. You will be notified when a slot opens up."))
-			else if(queue_position)
-				to_chat(usr, span_notice("There are [queue_position-1] players in front of you in the queue to join the game."))
-			else
-				SSticker.queued_players += usr
-				to_chat(usr, span_notice("You have been added to the queue to join the game. Your position in queue is [SSticker.queued_players.len]."))
-			return
+	
+	if(href_list["late_join"]) //This still exists for queue messages in chat
+		if(!SSticker?.IsRoundInProgress())
+			to_chat(usr, span_boldwarning("The round is either not ready, or has already finished..."))
+			return		
 		LateChoices()
-
-	if(href_list["manifest"])
-		ViewManifest()
+		return
 
 	if(href_list["SelectedJob"])
 
@@ -175,6 +63,17 @@
 		if(!GLOB.enter_allowed)
 			to_chat(usr, span_notice("There is an administrative lock on entering the game!"))
 			return
+
+		//Determines Relevent Population Cap
+		var/relevant_cap
+		var/hpc = CONFIG_GET(number/hard_popcap)
+		var/epc = CONFIG_GET(number/extreme_popcap)
+		if(hpc && epc)
+			relevant_cap = min(hpc, epc)
+		else
+			relevant_cap = max(hpc, epc)
+
+
 
 		if(SSticker.queued_players.len && !(ckey(key) in GLOB.admin_datums))
 			if((living_player_count() >= relevant_cap) || (src != SSticker.queued_players[1]))
@@ -192,19 +91,8 @@
 		AttemptLateSpawn(href_list["SelectedJob"])
 		return
 
-	else if(!href_list["late_join"])
-		new_player_panel()
-
 	if(href_list["showpoll"])
 		handle_player_polling()
-		return
-
-	if(href_list["pollid"])
-		var/pollid = href_list["pollid"]
-		if(istext(pollid))
-			pollid = text2num(pollid)
-		if(isnum(pollid) && ISINTEGER(pollid))
-			src.poll_player(pollid)
 		return
 
 	if(href_list["votepollid"] && href_list["votetype"])
@@ -290,7 +178,6 @@
 	if(QDELETED(src) || !src.client || this_is_like_playing_right != "Yes")
 		ready = PLAYER_NOT_READY
 		src << browse(null, "window=playersetup") //closes the player setup window
-		new_player_panel()
 		return FALSE
 
 	var/mob/dead/observer/observer = new()
