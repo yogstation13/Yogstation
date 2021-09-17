@@ -649,7 +649,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay, force = FALSE)
 	set waitfor = FALSE
 	if(usr && !force)
-		if(!check_rights(R_SERVER, TRUE))
+		if(!check_rights(R_ADMIN, TRUE))
 			return
 // yogs end
 	if(!delay)
@@ -663,7 +663,7 @@ SUBSYSTEM_DEF(ticker)
 	if(GLOB.ahelp_tickets && GLOB.ahelp_tickets.ticketAmount)
 		var/list/adm = get_admin_counts(R_BAN)
 		var/list/activemins = adm["present"]
-		if(activemins.len > 0)
+		if(activemins.len > 0 && !force) // Ignore tickets if forced
 			to_chat(world, span_boldannounce("Not all tickets have been resolved. Server restart delayed."))
 			return
 		else
