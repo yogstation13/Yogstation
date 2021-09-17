@@ -46,6 +46,12 @@
 			blink_mob(hit_atom)
 		use(1)
 
+/obj/item/stack/ore/bluespace_crystal/microwave_act(obj/machinery/microwave/M)
+	M.visible_message("[M] starts sputtering in and out of reality!")
+	sleep(0.25 SECONDS)
+	blink_mob(M)
+	
+
 //Artificial bluespace crystal, doesn't give you much research.
 /obj/item/stack/ore/bluespace_crystal/artificial
 	name = "artificial bluespace crystal"
