@@ -46,63 +46,11 @@
 	if(!client)
 		return 0
 
-	//Determines Relevent Population Cap
-	var/relevant_cap
-	var/hpc = CONFIG_GET(number/hard_popcap)
-	var/epc = CONFIG_GET(number/extreme_popcap)
-	if(hpc && epc)
-		relevant_cap = min(hpc, epc)
-	else
-		relevant_cap = max(hpc, epc)
-
-	if(href_list["show_preferences"])
-		client.prefs.ShowChoices(src)
-		return 1
-
-	if(href_list["ready"])
-		var/tready = text2num(href_list["ready"])
-		//Avoid updating ready if we're after PREGAME (they should use latejoin instead)
-		//This is likely not an actual issue but I don't have time to prove that this
-		//no longer is required
-		if(SSticker.current_state <= GAME_STATE_PREGAME)
-			ready = tready
-		//if it's post initialisation and they're trying to observe we do the needful
-		if(!SSticker.current_state < GAME_STATE_PREGAME && tready == PLAYER_READY_TO_OBSERVE)
-			ready = tready
-			make_me_an_observer()
-			return
-
-	if(href_list["refresh"])
-		src << browse(null, "window=playersetup") //closes the player setup window
-		new_player_panel()
-
-	if(href_list["late_join"])
-		if(!SSticker || !SSticker.IsRoundInProgress())
-			to_chat(usr, span_danger("The round is either not ready, or has already finished..."))
-			return
-
-		if(href_list["late_join"] == "override")
-			LateChoices()
-			return
-
-		if(SSticker.queued_players.len || (relevant_cap && living_player_count() >= relevant_cap && !(ckey(key) in GLOB.admin_datums)))
-			//yogs start -- donors bypassing the queue
-			if(ckey(key) in get_donators())
-				to_chat(usr, span_notice("Because you are a donator, you have bypassed the queue! Thank you for donating!"))
-				LateChoices()
-				return
-			//yogs end
-			to_chat(usr, span_danger("[CONFIG_GET(string/hard_popcap_message)]"))
-
-			var/queue_position = SSticker.queued_players.Find(usr)
-			if(queue_position == 1)
-				to_chat(usr, span_notice("You are next in line to join the game. You will be notified when a slot opens up."))
-			else if(queue_position)
-				to_chat(usr, span_notice("There are [queue_position-1] players in front of you in the queue to join the game."))
-			else
-				SSticker.queued_players += usr
-				to_chat(usr, span_notice("You have been added to the queue to join the game. Your position in queue is [SSticker.queued_players.len]."))
-			return
+	
+	if(href_list["late_join"]) //This still exists for queue messages in chat
+		if(!SSticker?.IsRoundInProgress())
+			to_chat(usr, span_boldwarning("The round is either not ready, or has already finished..."))
+			return		
 		LateChoices()
 		return
 
