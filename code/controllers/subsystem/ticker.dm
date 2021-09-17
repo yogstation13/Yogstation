@@ -652,7 +652,6 @@ SUBSYSTEM_DEF(ticker)
 		if(!check_rights(R_SERVER, TRUE))
 			return
 // yogs end
-
 	if(!delay)
 		delay = CONFIG_GET(number/round_end_countdown) * 10
 
@@ -670,35 +669,33 @@ SUBSYSTEM_DEF(ticker)
 		else
 			to_chat(world, span_boldannounce("Round ended, but there were still active tickets. Please submit a player complaint if you did not receive a response."))
 	 //yogs end - yogs tickets
-
 	to_chat(world, span_boldannounce("Rebooting World in [DisplayTimeText(delay)]. [reason]"))
 	webhook_send_roundstatus("endgame") //yogs - webhook support
-
 	var/start_wait = world.time
 	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2))	//don't wait forever
-	sleep(delay - (world.time - start_wait))
-
+	var/newdelay = (delay - (world.time - start_wait) - 10 SECONDS)
+	if(delay > 10 SECONDS) /// JJJJJJJJJJJJJJJJJJJJAAAAAAAAANNNNNNNNKKKKKKKKK
+		sleep(newdelay)
 	if(delay_end && !skip_delay)
 		to_chat(world, span_boldannounce("Reboot was cancelled by an admin."))
 		return
+	play_roundend()
+	if(newdelay > 0)
+		sleep(10 SECONDS)
+	else
+		sleep(delay - (world.time - start_wait))
 	if(end_string)
 		end_state = end_string
-
 	var/statspage = CONFIG_GET(string/roundstatsurl)
 	var/gamelogloc = CONFIG_GET(string/gamelogurl)
 	if(statspage)
 		to_chat(world, span_info("Round statistics and logs can be viewed <a href=\"[statspage][GLOB.round_id]\">at this website!</a>"))
 	else if(gamelogloc)
 		to_chat(world, span_info("Round logs can be located <a href=\"[gamelogloc]\">at this website!</a>"))
-
 	log_game(span_boldannounce("Rebooting World. [reason]"))
-
 	world.Reboot()
 
-/datum/controller/subsystem/ticker/Shutdown()
-	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
-	save_admin_data()
-	update_everything_flag_in_db()
+/datum/controller/subsystem/ticker/proc/play_roundend()
 	if(!round_end_sound)
 		round_end_sound = pick(\
 		'sound/roundend/newroundsexy.ogg',
@@ -721,4 +718,10 @@ SUBSYSTEM_DEF(ticker)
 		)
 
 	SEND_SOUND(world, sound(round_end_sound))
+	SStitle.fadeout()
 	text2file(login_music, "data/last_round_lobby_music.txt")
+
+/datum/controller/subsystem/ticker/Shutdown()
+	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
+	save_admin_data()
+	update_everything_flag_in_db()
