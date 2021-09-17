@@ -577,6 +577,8 @@ SUBSYSTEM_DEF(job)
 	var/datum/job/job = GetJob(rank)
 	if(!job)
 		return
+	if((job.auto_deadmin_role_flags & DEADMIN_POSITION_CRITICAL) && (CONFIG_GET(flag/auto_deadmin_critical) || (C.prefs?.toggles & DEADMIN_POSITION_CRITICAL)))
+		return C.holder.auto_deadmin()
 	if((job.auto_deadmin_role_flags & DEADMIN_POSITION_HEAD) && (CONFIG_GET(flag/auto_deadmin_heads) || (C.prefs?.toggles & DEADMIN_POSITION_HEAD)))
 		return C.holder.auto_deadmin()
 	else if((job.auto_deadmin_role_flags & DEADMIN_POSITION_SECURITY) && (CONFIG_GET(flag/auto_deadmin_security) || (C.prefs?.toggles & DEADMIN_POSITION_SECURITY)))
