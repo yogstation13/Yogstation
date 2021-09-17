@@ -416,7 +416,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	// Initialize tgui panel
 	tgui_panel.initialize()
 	src << browse(file('html/statbrowser.html'), "window=statbrowser")
-	addtimer(CALLBACK(src, .proc/check_panel_loaded), 10 SECONDS)
+	addtimer(CALLBACK(src, .proc/check_panel_loaded), 5 SECONDS)
 
 
 	if(alert_mob_dupe_login)
