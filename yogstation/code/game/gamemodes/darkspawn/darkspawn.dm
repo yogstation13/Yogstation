@@ -19,7 +19,7 @@
 
 /datum/game_mode/darkspawn/announce()
 	to_chat(world, "<b>The current game mode is - Darkspawn!</b>")
-	to_chat(world, "<b>There are alien <span class='velvet'>darkspawn</span> on the station. Crew: Kill the darkspawn before they can complete the Sacrament. Darkspawn: Consume enough lucidity to complete the Sacrament and become the ultimate lifeform.</b>")
+	to_chat(world, "<b>There are alien [span_velvet("darkspawn")] on the station. Crew: Kill the darkspawn before they can complete the Sacrament. Darkspawn: Consume enough lucidity to complete the Sacrament and become the ultimate lifeform.</b>")
 
 /datum/game_mode/darkspawn/pre_setup()
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
@@ -114,13 +114,13 @@
 	if(!istype(mind))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
-		src.visible_message("<span class='warning'>[src] seems to resist an unseen force!</span>")
+		src.visible_message(span_warning("[src] seems to resist an unseen force!"))
 		to_chat(src, "<b>Your mind goes numb. Your thoughts go blank. You feel utterly empty. \n\
 		A mind brushes against your own. You dream.\n\
 		Of a vast, empty Void in the deep of space.\n\
 		Something lies in the Void. Ancient. Unknowable. It watches you with hungry eyes. \n\
 		Eyes filled with stars.</b>\n\
-		<span class='boldwarning'>It needs to die.</span>")
+		[span_boldwarning("It needs to die.")]")
 		return FALSE
 	return mind.add_antag_datum(/datum/antagonist/veil)
 

@@ -55,13 +55,13 @@
 		tickets.len = screenNum //this helps prevents runtimes that happen due to mapping stuff. Just an extra safety
 
 	if(!(obj_flags & EMAGGED) && tickets[screenNum]) //if the ticket actually, you know, exists and all
-		tickets[screenNum].audible_message("<span class='rose'>\the [tickets[screenNum]] dings!</span>",hearing_distance=1)
+		tickets[screenNum].audible_message(span_rose("\the [tickets[screenNum]] dings!"),hearing_distance=1)
 		playsound(tickets[screenNum], 'sound/machines/twobeep_high.ogg', 10, 0 ,1-world.view) //The sound travels world.view+extraRange tiles. This last value is the extra range, which means the total range will be 1.
 
 /obj/machinery/ticket_machine/emag_act(mob/user) //Emag the ticket machine to dispense burning tickets, as well as randomize its customer number to destroy the HOP's mind.
 	if(obj_flags & EMAGGED)
 		return
-	to_chat(user, "<span class='warning'>You overload [src]'s bureaucratic logic circuitry to its MAXIMUM setting.</span>")
+	to_chat(user, span_warning("You overload [src]'s bureaucratic logic circuitry to its MAXIMUM setting."))
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(12, 1, src)
 	s.start()
@@ -77,7 +77,7 @@
 	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 100, 0)
 	addtimer(VARSET_CALLBACK(src, ready, TRUE), cooldown) //Small cooldown to prevent the clown from ripping out every ticket
 	currentNum ++
-	to_chat(user, "<span class='notice'>You take a ticket from [src], looks like you're customer #[currentNum]...</span>")
+	to_chat(user, span_notice("You take a ticket from [src], looks like you're customer #[currentNum]..."))
 	var/obj/item/ticket_machine_ticket/theirticket = new /obj/item/ticket_machine_ticket(get_turf(src))
 	theirticket.name = "Ticket #[currentNum]"
 	theirticket.source = src
@@ -111,16 +111,16 @@
 			var/obj/item/ticket_machine_remote/Z = O //typecasting!!
 			if (!Z.connection)
 				Z.connection=src
-				to_chat(user,"<span class='info'>You link the remote to the machine.</span>")
+				to_chat(user,span_info("You link the remote to the machine."))
 				linked = TRUE
 				return TRUE
-			to_chat(user,"<span class='warning'>The remote is already linked to a ticket machine!</span>")
+			to_chat(user,span_warning("The remote is already linked to a ticket machine!"))
 
 		else
-			to_chat(user,"<span class='warning'>The ticket machine is already linked to a remote!</span>")
+			to_chat(user,span_warning("The ticket machine is already linked to a remote!"))
 
 	if(istype(O, /obj/item/ticket_machine_ticket))
-		to_chat(user, "<span class='warning'>You put [O] into the ticket machine's recycling bin.</span>")
+		to_chat(user, span_warning("You put [O] into the ticket machine's recycling bin."))
 		qdel(O) //KMC put a delay here. I'm not so forgiving. You accidently shred your ticket, you cry. (Also the delay felt really clunky)
 		return TRUE
 
@@ -160,7 +160,7 @@
 	..()
 	if(P.is_hot())
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))
-			user.visible_message("<span class='warning'>[user] accidentally ignites [user.p_them()]self!</span>", "<span class='userdanger'>You miss the ticket and accidentally light yourself on fire!</span>")
+			user.visible_message(span_warning("[user] accidentally ignites [user.p_them()]self!"), span_userdanger("You miss the ticket and accidentally light yourself on fire!"))
 			user.dropItemToGround(P)
 			user.adjust_fire_stacks(1)
 			user.IgniteMob()
@@ -170,7 +170,7 @@
 			return
 
 		user.dropItemToGround(src)
-		user.visible_message("<span class='danger'>[user] lights [src] ablaze with [P]!</span>", "<span class='danger'>You light [src] on fire!</span>")
+		user.visible_message(span_danger("[user] lights [src] ablaze with [P]!"), span_danger("You light [src] on fire!"))
 		src.fire_act()
 
 /obj/item/ticket_machine_ticket/extinguish()
@@ -193,7 +193,7 @@
 	if(!ready)
 		return
 	if(!connection)
-		to_chat(user,"<span class='warning'>The remote isn't linked to a ticket machine!</span>")
+		to_chat(user,span_warning("The remote isn't linked to a ticket machine!"))
 		return
 	ready = FALSE
 	addtimer(VARSET_CALLBACK(src, ready, TRUE), cooldown)
@@ -204,11 +204,11 @@
 	if(connection)
 		connection.linked = FALSE
 		connection = null
-		to_chat(user,"<span class='info'>You unlink the remote from all connections.</span>")
+		to_chat(user,span_info("You unlink the remote from all connections."))
 
 /obj/item/ticket_machine_remote/examine(mob/user)
 	.=..()
 	if(connection)
-		.+= "<span class='info'>The remote is currently connected to a ticket machine.\nAlt click the remote to sever this connection.</span>"
+		.+= span_info("The remote is currently connected to a ticket machine.\nAlt click the remote to sever this connection.")
 	else
-		.+= "<span class='info'>Click on a ticket machine with this remote to link them.</span>"
+		.+= span_info("Click on a ticket machine with this remote to link them.")

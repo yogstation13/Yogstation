@@ -166,7 +166,7 @@ VOTE_PERIOD 600
 # NO_DEAD_VOTE
 
 ## players' votes default to "No vote" (otherwise,  default to "No change")
-DEFAULT_NO_VOTE
+# DEFAULT_NO_VOTE
 
 ## disable abandon mob
 NORESPAWN
@@ -322,7 +322,10 @@ MAPROTATIONCHANCEDELTA 1
 #AUTO_DEADMIN_HEADS
 #AUTO_DEADMIN_SECURITY
 #AUTO_DEADMIN_SILICONS
+#AUTO_DEADMIN_CRITICAL
 
+## The minimum nubmer of admins to allow for auto deadminning, includes the deadminning admin
+AUTO_DEADMIN_THRESHOLD 4
 
 ## CLIENT VERSION CONTROL
 ## This allows you to configure the minimum required client version, as well as a warning version, and message for both.
