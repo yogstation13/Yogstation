@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(custom_portals)
 		return
 	var/turf/real_target = get_link_target_turf()
 	if(!real_target)
-		to_chat(M, "<span class='warning'>This portal has no linked portal!</span>")
+		to_chat(M, span_warning("This portal has no linked portal!"))
 	if(!force && (!ismecha(M) && !istype(M, /obj/item/projectile) && M.anchored))
 		return
 	if(ismegafauna(M))

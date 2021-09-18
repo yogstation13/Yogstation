@@ -79,7 +79,7 @@ a.updated {
 			var/mystocks = 0
 			if (logged_in && (logged_in in S.shareholders))
 				mystocks = S.shareholders[logged_in]
-			dat += "<hr /><div class='stock'><span class='company'>[S.name]</span> <span class='s_company'>([S.short_name])</span>[S.bankrupt ? " <b style='color:red'>BANKRUPT</b>" : null]<br>"
+			dat += "<hr /><div class='stock'>[span_company("[S.name]")] [span_s_company("([S.short_name])")][S.bankrupt ? " <b style='color:red'>BANKRUPT</b>" : null]<br>"
 			if (S.last_unification)
 				dat += "<b>Unified shares</b> [DisplayTimeText(world.time - S.last_unification)] ago.<br>"
 			dat += "<b>Current value per share:</b> [S.current_value] | <a href='?src=[REF(src)];viewhistory=[REF(S)]'>View history</a><br><br>"
@@ -156,7 +156,7 @@ a.updated {
 							break
 			dat += "<td>"
 			if (S.bankrupt)
-				dat += "<span class='linkOff'>+</span> <span class='linkOff'>-</span> "
+				dat += "[span_linkOff("+")] [span_linkOff("-")] "
 			else
 				dat += "<a href='?src=[REF(src)];buyshares=[REF(S)]'>+</a> <a href='?src=[REF(src)];sellshares=[REF(S)]'>-</a> "
 			dat += "<a href='?src=[REF(src)];archive=[REF(S)]' class='[news ? "updated" : "default"]'>(A)</a> <a href='?src=[REF(src)];viewhistory=[REF(S)]'>(H)</a></td>"
@@ -176,13 +176,13 @@ a.updated {
 		return
 	var/li = logged_in
 	if (!li)
-		to_chat(user, "<span class='danger'>No active account on the console!</span>")
+		to_chat(user, span_danger("No active account on the console!"))
 		return
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	var/b = D.account_balance
 	var/avail = S.shareholders[logged_in]
 	if (!avail)
-		to_chat(user, "<span class='danger'>This account does not own any shares of [S.name]!</span>")
+		to_chat(user, span_danger("This account does not own any shares of [S.name]!"))
 		return
 	var/price = S.current_value
 	var/amt = round(input(user, "How many shares? \n(Have: [avail], unit price: [price])", "Sell shares in [S.name]", 0) as num|null)
@@ -196,14 +196,14 @@ a.updated {
 		return
 	b = D.account_balance
 	if (!isnum(b))
-		to_chat(user, "<span class='danger'>No active account on the console!</span>")
+		to_chat(user, span_danger("No active account on the console!"))
 		return
 
 	var/total = amt * S.current_value
 	if (!S.sellShares(logged_in, amt))
-		to_chat(user, "<span class='danger'>Could not complete transaction.</span>")
+		to_chat(user, span_danger("Could not complete transaction."))
 		return
-	to_chat(user, "<span class='notice'>Sold [amt] shares of [S.name] at [S.current_value] a share for [total] credits.</span>")
+	to_chat(user, span_notice("Sold [amt] shares of [S.name] at [S.current_value] a share for [total] credits."))
 	GLOB.stockExchange.add_log(/datum/stock_log/sell, user.name, S.name, amt, S.current_value, total)
 
 /obj/machinery/computer/stockexchange/proc/buy_some_shares(var/datum/stock/S, var/mob/user)
@@ -211,11 +211,11 @@ a.updated {
 		return
 	var/li = logged_in
 	if (!li)
-		to_chat(user, "<span class='danger'>No active account on the console!</span>")
+		to_chat(user, span_danger("No active account on the console!"))
 		return
 	var/b = balance()
 	if (!isnum(b))
-		to_chat(user, "<span class='danger'>No active account on the console!</span>")
+		to_chat(user, span_danger("No active account on the console!"))
 		return
 	var/avail = S.available_shares
 	var/price = S.current_value
@@ -227,26 +227,26 @@ a.updated {
 		return
 	b = balance()
 	if (!isnum(b))
-		to_chat(user, "<span class='danger'>No active account on the console!</span>")
+		to_chat(user, span_danger("No active account on the console!"))
 		return
 
 	amt = min(amt, S.available_shares, round(b / S.current_value))
 	if (!amt)
 		return
 	if (!S.buyShares(logged_in, amt))
-		to_chat(user, "<span class='danger'>Could not complete transaction.</span>")
+		to_chat(user, span_danger("Could not complete transaction."))
 		return
 
 	var/total = amt * S.current_value
-	to_chat(user, "<span class='notice'>Bought [amt] shares of [S.name] at [S.current_value] a share for [total] credits.</span>")
+	to_chat(user, span_notice("Bought [amt] shares of [S.name] at [S.current_value] a share for [total] credits."))
 	GLOB.stockExchange.add_log(/datum/stock_log/buy, user.name, S.name, amt, S.current_value,  total)
 
 /obj/machinery/computer/stockexchange/proc/do_borrowing_deal(var/datum/borrow/B, var/mob/user)
 	if (B.stock.borrow(B, logged_in))
-		to_chat(user, "<span class='notice'>You successfully borrowed [B.share_amount] shares. Deposit: [B.deposit].</span>")
+		to_chat(user, span_notice("You successfully borrowed [B.share_amount] shares. Deposit: [B.deposit]."))
 		GLOB.stockExchange.add_log(/datum/stock_log/borrow, user.name, B.stock.name, B.share_amount, B.deposit)
 	else
-		to_chat(user, "<span class='danger'>Could not complete transaction. Check your account balance.</span>")
+		to_chat(user, span_danger("Could not complete transaction. Check your account balance."))
 
 /obj/machinery/computer/stockexchange/Topic(href, href_list)
 	if (..())

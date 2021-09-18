@@ -21936,22 +21936,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"boX" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "hopqueue";
-	name = "HoP Queue Shutters"
-	},
-/obj/effect/turf_decal/loading_area{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "boY" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -24106,22 +24090,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
-"bwg" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "hopqueue";
-	name = "HoP Queue Shutters"
-	},
-/obj/effect/turf_decal/loading_area{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "bwh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -33403,15 +33371,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"dbp" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Starboard";
-	dir = 4;
-	network = list("minisat","ss13")
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "dbt" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -36220,6 +36179,25 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/solar/port/aft)
+"fan" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "hopqueue";
+	name = "HoP Queue Shutters"
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/ministile/hop{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "faE" = (
 /obj/structure/closet/crate/freezer,
 /obj/item/reagent_containers/blood,
@@ -36386,18 +36364,6 @@
 	},
 /turf/open/floor/wood,
 /area/library)
-"ffJ" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Port Aft";
-	dir = 8;
-	network = list("minisat","ss13")
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "fgc" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/plasteel/grimy,
@@ -37258,6 +37224,25 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
+"fMu" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "hopqueue";
+	name = "HoP Queue Shutters"
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/ministile/hop{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "fMS" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -39777,6 +39762,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"hBY" = (
+/obj/structure/window/reinforced,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior Access";
+	dir = 8;
+	network = list("minisat","ss13")
+	},
+/turf/open/space/basic,
+/area/ai_monitored/turret_protected/aisat_interior)
 "hCS" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -40868,14 +40862,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"inY" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Aft";
-	network = list("minisat","ss13")
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "ioi" = (
 /obj/effect/landmark/start/artist,
 /turf/open/floor/plasteel/vaporwave,
@@ -44565,19 +44551,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"kHj" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Port Fore";
-	dir = 8;
-	network = list("minisat")
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/space/basic,
-/area/space/nearstation)
 "kHL" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
@@ -46514,6 +46487,15 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
+"mao" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Fore";
+	dir = 1;
+	network = list("minisat")
+	},
+/turf/open/space/basic,
+/area/ai_monitored/turret_protected/ai)
 "maQ" = (
 /obj/machinery/camera{
 	c_tag = "Library South";
@@ -47471,6 +47453,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"mGQ" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Aft";
+	network = list("minisat","ss13")
+	},
+/turf/open/space/basic,
+/area/ai_monitored/turret_protected/ai)
 "mGV" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -49827,15 +49817,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/carpet/purple,
 /area/chapel/main)
-"oel" = (
-/obj/structure/window/reinforced,
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior Access";
-	dir = 8;
-	network = list("minisat","ss13")
-	},
-/turf/open/space/basic,
-/area/space)
 "ofJ" = (
 /obj/structure/sign/plaques/atmos{
 	pixel_y = 32
@@ -50762,14 +50743,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"oET" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Aft Port";
-	network = list("minisat")
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "oEY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -50938,6 +50911,27 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"oKC" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Starboard";
+	dir = 4;
+	network = list("minisat","ss13")
+	},
+/turf/open/space/basic,
+/area/ai_monitored/turret_protected/ai)
+"oKL" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Port Aft";
+	dir = 8;
+	network = list("minisat","ss13")
+	},
+/turf/open/space/basic,
+/area/ai_monitored/turret_protected/aisat_interior)
 "oLx" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
 	dir = 1
@@ -51976,6 +51970,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/nanite)
+"pyG" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Port Fore";
+	dir = 8;
+	network = list("minisat")
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/space/basic,
+/area/ai_monitored/storage/satellite)
 "pyZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -54641,6 +54648,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"rfJ" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Fore Starboard";
+	dir = 1;
+	network = list("minisat")
+	},
+/turf/open/space/basic,
+/area/ai_monitored/turret_protected/ai)
 "rfW" = (
 /obj/structure/closet/crate,
 /turf/open/floor/plating,
@@ -57311,15 +57327,6 @@
 /obj/structure/bed/roller,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"taP" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Fore Starboard";
-	dir = 1;
-	network = list("minisat")
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "taW" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27;
@@ -58600,15 +58607,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"tRN" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Fore";
-	dir = 1;
-	network = list("minisat")
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "tSv" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/cable{
@@ -59972,6 +59970,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"uNj" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Aft Starboard";
+	network = list("minisat")
+	},
+/turf/open/space/basic,
+/area/ai_monitored/turret_protected/ai)
 "uNu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/cryopod{
@@ -61311,6 +61317,18 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"vKT" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Fore Port";
+	dir = 1;
+	network = list("minisat")
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/space/basic,
+/area/ai_monitored/storage/satellite)
 "vKX" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/abandoned,
@@ -62959,18 +62977,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
-"wLQ" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Fore Port";
-	dir = 1;
-	network = list("minisat")
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "wMq" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner,
 /turf/open/floor/plasteel/white,
@@ -63235,14 +63241,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"xcs" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Aft Starboard";
-	network = list("minisat")
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "xcL" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -64662,6 +64660,14 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
+"yco" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Aft Port";
+	network = list("minisat")
+	},
+/turf/open/space/basic,
+/area/ai_monitored/turret_protected/aisat_interior)
 "ydd" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -92200,12 +92206,12 @@ mlj
 bkT
 mlj
 mlj
-boX
+fan
 nfX
 ehN
 vZM
 cmg
-bwg
+fMu
 aJw
 aJq
 aJq
@@ -103828,7 +103834,7 @@ aaa
 ucZ
 gXs
 aaa
-oel
+hBY
 ewX
 ndo
 ody
@@ -104338,7 +104344,7 @@ aaa
 aaa
 aaa
 cBP
-kHj
+pyG
 xgS
 tEt
 cxv
@@ -104350,7 +104356,7 @@ qlI
 hhC
 oCj
 pEf
-ffJ
+oKL
 pEf
 gXs
 aaa
@@ -105620,7 +105626,7 @@ cSf
 nkd
 aaa
 aaa
-wLQ
+vKT
 tgv
 tgv
 tgv
@@ -105638,7 +105644,7 @@ nnx
 gtB
 gtB
 gtB
-oET
+yco
 aaa
 aKN
 aaa
@@ -107935,7 +107941,7 @@ aaa
 aaa
 aaa
 aaa
-tRN
+mao
 cva
 cva
 cva
@@ -107949,7 +107955,7 @@ eSF
 cva
 cva
 cva
-inY
+mGQ
 aaa
 aKN
 aKN
@@ -109222,7 +109228,7 @@ gXs
 gXs
 aaa
 pEf
-taP
+rfJ
 cva
 cva
 cva
@@ -109232,7 +109238,7 @@ ykL
 cva
 cva
 cva
-xcs
+uNj
 pEf
 aaa
 aaa
@@ -109998,7 +110004,7 @@ gXs
 pEf
 pEf
 pEf
-dbp
+oKC
 pEf
 pEf
 pEf

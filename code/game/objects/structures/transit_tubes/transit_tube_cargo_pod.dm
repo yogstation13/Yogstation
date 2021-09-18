@@ -16,7 +16,7 @@
 		if(user)
 			location = user.loc
 			add_fingerprint(user)
-			user.visible_message("[user] removes [src].", "<span class='notice'>You remove [src].</span>")
+			user.visible_message("[user] removes [src].", span_notice("You remove [src]."))
 		var/obj/structure/c_transit_tube_pod/cargo/R = new/obj/structure/c_transit_tube_pod/cargo(location)
 		transfer_fingerprints_to(R)
 		R.setDir(dir)

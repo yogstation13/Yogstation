@@ -863,7 +863,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		var/mob/new_target = input(admin,"Select target:", "Objective target") as null|anything in possible_targets
 		target = new_target.mind
 	else
-		to_chat(admin, "<span class='warning'>No active AIs with minds!</span>")
+		to_chat(admin, span_warning("No active AIs with minds!"))
 	update_explanation_text()
 
 /datum/objective/destroy/internal
@@ -1147,7 +1147,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			return
 		pet = selected_pet
 	else
-		to_chat(admin, "<span class='warning'>No living pets!</span>")
+		to_chat(admin, span_warning("No living pets!"))
 	update_explanation_text()
 
 /datum/objective/minor/pet/update_explanation_text()
