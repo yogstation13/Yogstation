@@ -22,7 +22,7 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 2500
 	prereq_ids = list("base")
-	design_ids = list("podcore", "podarmor_civ", "podarmor_dark", "spacepod_main")
+	design_ids = list("podcore", "podarmor_civ", "podarmor_dark", "spacepod_main", "spaceship_navigation_beacon")
 
 /datum/techweb_node/spacepod_lock
 	id = "spacepod_lock"
