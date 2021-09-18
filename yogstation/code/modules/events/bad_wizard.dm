@@ -28,7 +28,7 @@
 	outfit_type = /datum/outfit/memewiznerd
 
 /datum/antagonist/wizard/meme/greet()
-	to_chat(owner, "<span class='boldannounce'>You are the Space Wizard!</span>")
+	to_chat(owner, span_boldannounce("You are the Space Wizard!"))
 	to_chat(owner, "<B>The Space Wizards Federation has given you the following tasks:</B>")
 	owner.announce_objectives()
 	to_chat(owner, "In your pockets you will find a teleport scroll. Use it as needed.")

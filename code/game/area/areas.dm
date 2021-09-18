@@ -43,7 +43,7 @@
 	/// Bonus mood for being in this area
 	var/mood_bonus = 0
 	/// Mood message for being here, only shows up if mood_bonus != 0
-	var/mood_message = "<span class='nicegreen'>This area is pretty nice!\n</span>"
+	var/mood_message = span_nicegreen("This area is pretty nice!\n")
 
 	var/power_equip = TRUE
 	var/power_light = TRUE
@@ -431,6 +431,14 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		if(SILICON.triggerAlarm("Burglar", src, cameras, trigger))
 			//Cancel silicon alert after 1 minute
 			addtimer(CALLBACK(SILICON, /mob/living/silicon.proc/cancelAlarm,"Burglar",src,trigger), 600)
+
+	var/obj/item/radio/radio = new /obj/item/radio(trigger)
+	radio.set_frequency(FREQ_SECURITY)
+	radio.use_command = TRUE
+	radio.independent = TRUE
+	radio.name = "burglar alarm"
+	radio.talk_into(radio, "Warning: Burglar alarm triggered in [src]!! Break in of [trigger]!!")
+	qdel(radio)
 
 /**
   * Trigger the fire alarm visual affects in an area

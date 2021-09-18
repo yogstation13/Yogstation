@@ -29,6 +29,9 @@
 
 	var/triggering	//admin cancellation
 
+	var/max_alert = SEC_LEVEL_RED /// Highest alert level the event will trigger at
+	var/min_alert = SEC_LEVEL_GREEN /// Lowest alert level the event will trigger at
+
 	/// Whether or not dynamic should hijack this event
 	var/dynamic_should_hijack = FALSE
 
@@ -58,6 +61,10 @@
 	if(holidayID && (!SSevents.holidays || !SSevents.holidays[holidayID]))
 		return FALSE
 	if(ispath(typepath, /datum/round_event/ghost_role) && !(GLOB.ghost_role_flags & GHOSTROLE_MIDROUND_EVENT))
+		return FALSE
+	if(GLOB.security_level > max_alert)
+		return FALSE
+	if(GLOB.security_level < min_alert)
 		return FALSE
 
 	var/datum/game_mode/dynamic/dynamic = SSticker.mode
@@ -93,7 +100,7 @@
 	..()
 	if(href_list["cancel"])
 		if(!triggering)
-			to_chat(usr, "<span class='admin'>You are too late to cancel that event</span>")
+			to_chat(usr, span_admin("You are too late to cancel that event"))
 			return
 		triggering = FALSE
 		message_admins("[key_name_admin(usr)] cancelled event [name].")

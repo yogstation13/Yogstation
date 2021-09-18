@@ -1,14 +1,14 @@
 
 ////////////////////////////////
 /proc/message_admins(msg)
-	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
+	msg = span_admin("<span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">[msg]</span>")
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
 		confidential = TRUE)
 
 /proc/relay_msg_admins(msg)
-	msg = "<span class=\"admin\"><span class=\"prefix\">RELAY:</span> <span class=\"message linkify\">[msg]</span></span>"
+	msg = span_admin("<span class=\"prefix\">RELAY:</span> <span class=\"message linkify\">[msg]</span>")
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
@@ -35,7 +35,7 @@
 		if(M.oobe_client.mob)
 			.(M.oobe_client.mob) //using . because show_player_panel(M.oobe_client.mob) caused "Runtime in admin.dm,30: undefined proc or verb /client/Show Player Panel()."
 		else
-			to_chat(usr, "<span class='warning'>Cannot open player panel because [key_name(M)] has (a)ghosted, but does not appear to have a mob.</span>", confidential=TRUE)
+			to_chat(usr, span_warning("Cannot open player panel because [key_name(M)] has (a)ghosted, but does not appear to have a mob."), confidential=TRUE)
 		return //yogs end
 
 	var/body = "<html><head><meta charset='UTF-8'><title>Options for [M.key]</title></head>"
@@ -476,9 +476,11 @@
 	if (!usr.client.holder)
 		return
 
-	var/list/options = list("Regular Restart", "Hard Restart (No Delay/Feeback Reason)", "Hardest Restart (No actions, just reboot)")
-	if(world.TgsAvailable())
-		options += "Server Restart (Kill and restart DD)";
+	var/list/options = list("Regular Restart")
+	if(check_rights(R_SERVER, FALSE))
+		options += list("Hard Restart (No Delay/Feeback Reason)", "Hardest Restart (No actions, just reboot)")
+		if(world.TgsAvailable())
+			options += "Server Restart (Kill and restart DD)";
 
 	var/rebootconfirm
 	if(SSticker.admin_delay_notice)
@@ -493,7 +495,7 @@
 			var/init_by = "Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]."
 			switch(result)
 				if("Regular Restart")
-					SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", 10)
+					SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", 10 SECONDS, check_rights(R_SERVER, FALSE)) // Force if they have +SERVER
 				if("Hard Restart (No Delay, No Feeback Reason)")
 					to_chat(world, "World reboot - [init_by]")
 					world.Reboot()
@@ -602,10 +604,10 @@
 	GLOB.enter_allowed = !( GLOB.enter_allowed )
 	if (!( GLOB.enter_allowed ))
 		to_chat(world, "<B>New players may no longer enter the game.</B>")
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] toggled new player game entering, no players may enter.</span>")
+		message_admins(span_adminnotice("[key_name_admin(usr)] toggled new player game entering, no players may enter."))
 	else
 		to_chat(world, "<B>New players may now enter the game.</B>")
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] toggled new player game entering, players can now enter the game freely.</span>")
+		message_admins(span_adminnotice("[key_name_admin(usr)] toggled new player game entering, players can now enter the game freely."))
 	log_admin("[key_name(usr)] toggled new player game entering.")
 	world.update_status()
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Entering", "[GLOB.enter_allowed ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -634,7 +636,7 @@
 		to_chat(world, "<B>You may now respawn.</B>")
 	else
 		to_chat(world, "<B>You may no longer respawn :(</B>")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] toggled respawn to [!new_nores ? "On" : "Off"].</span>")
+	message_admins(span_adminnotice("[key_name_admin(usr)] toggled respawn to [!new_nores ? "On" : "Off"]."))
 	log_admin("[key_name(usr)] toggled respawn to [!new_nores ? "On" : "Off"].")
 	world.update_status()
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Respawn", "[!new_nores ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -761,6 +763,9 @@
 	set desc = "Edit mobs's memory and role"
 	set name = "Show Traitor Panel"
 
+	if(!check_rights(R_ADMIN))
+		return
+
 	if(!istype(M))
 		to_chat(usr, "This can only be used on instances of type /mob", confidential=TRUE)
 		return
@@ -796,7 +801,7 @@
 	else
 		to_chat(world, "<B>Guests may now enter the game.</B>")
 	log_admin("[key_name(usr)] toggled guests game entering [!new_guest_ban ? "" : "dis"]allowed.")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] toggled guests game entering [!new_guest_ban ? "" : "dis"]allowed.</span>")
+	message_admins(span_adminnotice("[key_name_admin(usr)] toggled guests game entering [!new_guest_ban ? "" : "dis"]allowed."))
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Guests", "[!new_guest_ban ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/output_ai_laws()
@@ -903,6 +908,23 @@
 	set name = "Create or modify area"
 	create_area(usr)
 
+/datum/admins/proc/observe_follow(atom/movable/AM)
+	if(!isobserver(owner.mob) && !check_rights(R_ADMIN))
+		return
+	var/can_ghost = TRUE
+	if(!isobserver(owner.mob))
+		can_ghost = owner.admin_ghost()
+
+	if(!can_ghost)
+		return
+	var/mob/dead/observer/A = owner.mob
+	var/mob/living/silicon/ai/I = AM //yogs start - adminfollow now follows AI eyes instead of the core
+	if(istype(I) && I.eyeobj)
+		A.ManualFollow(I.eyeobj)
+	else
+		A.ManualFollow(AM) //yogs stop - adminfollow now follows AI eyes instead of the core
+
+
 //
 //
 //ALL DONE
@@ -953,7 +975,7 @@
 
 	tomob.ghostize(0)
 
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] has put [frommob.key] in control of [tomob.name].</span>")
+	message_admins(span_adminnotice("[key_name_admin(usr)] has put [frommob.key] in control of [tomob.name]."))
 	log_admin("[key_name(usr)] stuffed [frommob.key] into [tomob.name].")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Ghost Drag Control")
 
@@ -961,6 +983,62 @@
 	qdel(frommob)
 
 	return 1
+
+/datum/admins/proc/adminmoreinfo(mob/M)
+	if(!ismob(M))
+		to_chat(usr, "This can only be used on instances of type /mob.", confidential=TRUE)
+		return
+
+	var/location_description = ""
+	var/special_role_description = ""
+	var/health_description = ""
+	var/gender_description = ""
+	var/turf/T = get_turf(M)
+
+	//Location
+	if(isturf(T))
+		if(isarea(T.loc))
+			location_description = "([M.loc == T ? "at coordinates " : "in [M.loc] at coordinates "] [T.x], [T.y], [T.z] in area <b>[T.loc]</b>)"
+		else
+			location_description = "([M.loc == T ? "at coordinates " : "in [M.loc] at coordinates "] [T.x], [T.y], [T.z])"
+
+	//Job + antagonist
+	if(M.mind)
+		special_role_description = "Role: <b>[M.mind.assigned_role]</b>; Antagonist: <font color='red'><b>[M.mind.special_role]</b></font>"
+	else
+		special_role_description = "Role: <i>Mind datum missing</i> Antagonist: <i>Mind datum missing</i>"
+
+	//Health
+	if(isliving(M))
+		var/mob/living/L = M
+		var/status
+		switch (M.stat)
+			if(CONSCIOUS)
+				status = "Alive"
+			if(SOFT_CRIT)
+				status = "<font color='orange'><b>Dying</b></font>"
+			if(UNCONSCIOUS)
+				status = "<font color='orange'><b>[L.InCritical() ? "Unconscious and Dying" : "Unconscious"]</b></font>"
+			if(DEAD)
+				status = "<font color='red'><b>Dead</b></font>"
+		health_description = "Status = [status]"
+		health_description += "<BR>Oxy: [L.getOxyLoss()] - Tox: [L.getToxLoss()] - Fire: [L.getFireLoss()] - Brute: [L.getBruteLoss()] - Clone: [L.getCloneLoss()] - Brain: [L.getOrganLoss(ORGAN_SLOT_BRAIN)] - Stamina: [L.getStaminaLoss()]"
+	else
+		health_description = "This mob type has no health to speak of."
+
+	//Gender
+	switch(M.gender)
+		if(MALE,FEMALE)
+			gender_description = "[M.gender]"
+		else
+			gender_description = "<font color='red'><b>[M.gender]</b></font>"
+
+	to_chat(src.owner, "<b>Info about [M.name]:</b> ", confidential=TRUE)
+	to_chat(src.owner, "Mob type = [M.type]; Gender = [gender_description] Damage = [health_description]", confidential=TRUE)
+	to_chat(src.owner, "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind?"[M.mind.name]":""]; Key = <b>[M.key]</b>;", confidential=TRUE)
+	to_chat(src.owner, "Location = [location_description];", confidential=TRUE)
+	to_chat(src.owner, "[special_role_description]", confidential=TRUE)
+	to_chat(src.owner, ADMIN_FULLMONTY_NONAME(M), confidential=TRUE)
 
 /client/proc/adminGreet(logout)
 	if(SSticker.HasRoundStarted())
@@ -973,36 +1051,3 @@
 				"Admin login: [key_name(src)]")
 		if(string)
 			message_admins("[string]")
-
-/client/proc/cmd_admin_man_up(mob/M in GLOB.mob_list)
-	set category = "Misc"
-	set name = "Man Up"
-
-	if(!M)
-		return
-	if(!check_rights(R_FUN))
-		return
-
-	to_chat(M, "<span class='warning bold reallybig'>Man up, and deal with it.</span><br><span class='warning big'>Move on.</span>")
-	M.playsound_local(M, 'sound/misc/manup.ogg', 50, FALSE, pressure_affected = FALSE)
-
-	log_admin("Man up: [key_name(usr)] told [key_name(M)] to man up")
-	var/message = "<span class='adminnotice'>[key_name_admin(usr)] told [key_name_admin(M)] to man up.</span>"
-	message_admins(message)
-	admin_ticket_log(M, message)
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Man Up")
-
-/client/proc/cmd_admin_man_up_global()
-	set category = "Misc"
-	set name = "Man Up Global"
-
-	if(!check_rights(R_FUN))
-		return
-
-	to_chat(world, "<span class='warning bold reallybig'>Man up, and deal with it.</span><br><span class='warning big'>Move on.</span>")
-	for(var/mob/M in GLOB.player_list)
-		M.playsound_local(M, 'sound/misc/manup.ogg', 50, FALSE, pressure_affected = FALSE)
-
-	log_admin("Man up global: [key_name(usr)] told everybody to man up")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] told everybody to man up.</span>")
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Man Up Global")

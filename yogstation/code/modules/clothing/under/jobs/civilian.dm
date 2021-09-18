@@ -5,9 +5,7 @@
 	item_state = "gy_suit"
 	item_color = "tourist"
 	can_adjust = FALSE
-	mutantrace_variation = MUTANTRACE_VARIATION //Yogs Start: Digilegs alt stuff
-	digiversion = TRUE //Yogs End
-
+	mutantrace_variation = MUTANTRACE_VARIATION
 /obj/item/clothing/under/yogs/rank/clerk
 	desc = "Oh, look it comes with its own vest."
 	name = "clerk's uniform"
@@ -15,8 +13,7 @@
 	item_state = "clerk"
 	item_color = "clerk"
 	can_adjust = FALSE
-	mutantrace_variation = MUTANTRACE_VARIATION //Yogs Start: Digilegs alt stuff
-	digiversion = TRUE //Yogs End
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/yogs/rank/clerk/skirt
 	desc = "Oh, look it comes with its own vest."
@@ -26,7 +23,7 @@
 	item_color = "clerk_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
-	digiversion = FALSE //Yogs: Digilegs alt stuff
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/yogs/rank/miner/medic
 	desc = "A verstile blue and white uniform honored to hard working recovery medics in hazardous environments. It has minor protection against biohazards."
@@ -38,5 +35,4 @@
 	sensor_mode = 3
 	random_sensor = 0
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 15, rad = 0)
-	mutantrace_variation = MUTANTRACE_VARIATION //Yogs Start: Digilegs alt stuff
-	digiversion = TRUE //Yogs End
+	mutantrace_variation = MUTANTRACE_VARIATION

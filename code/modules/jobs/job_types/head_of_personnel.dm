@@ -15,6 +15,7 @@
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SUPPLY
+	alt_titles = list("Chief of Staff", "Head of Internal Affairs", "First Officer")
 
 	outfit = /datum/outfit/job/hop
 
