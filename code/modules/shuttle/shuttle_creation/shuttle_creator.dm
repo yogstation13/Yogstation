@@ -30,6 +30,8 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 	//pre-designation
 	var/override_max_shuttles = FALSE
 	var/obj/machinery/computer/camera_advanced/shuttle_creator/internal_shuttle_creator
+	var/ignore_max_shuttle_size = FALSE
+	var/ignore_area = FALSE
 	//During designation
 	var/overwritten_area = /area/space
 	var/list/loggedTurfs = list()
@@ -237,7 +239,7 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 
 	port.register()
 
-	icon_state = "rsd_used"
+	icon_state = initial(icon_state) + "_used"
 
 	//Select shuttle fly direction. 
 	select_preferred_direction(user)
@@ -270,7 +272,7 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 //Yogs Start: Runs the name through the petty filter. If they trip it, it will cause the shuttle creation to fail, messages the admins, and put the RSD on cooldown.
 	if(isnotpretty(str))
 		to_chat(user, "<span class='warning'>Nanotrasen prohibited words are in use in this shuttle name, blares the [src] in a slightly offended tone.</span>")
-		message_admins("[ADMIN_LOOKUPFLW(user)] attempted to created a new shuttle with a [src] at [ADMIN_VERBOSEJMP(user)], but failed because of tripping a petty filter")
+		message_admins("[ADMIN_LOOKUPFLW(user)] attempted to created a new shuttle with a [src] at [ADMIN_VERBOSEJMP(user)], but failed because of not passing the pretty filter")
 		user.create_area_cooldown = world.time + 10
 		return FALSE
 //Yogs End
@@ -312,7 +314,7 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 	if(!turfs)
 		to_chat(usr, "<span class='warning'>Shuttles must be created in an airtight space, ensure that the shuttle is airtight, including corners.</span>")
 		return FALSE
-	if(turfs.len > SHUTTLE_CREATOR_MAX_SIZE)
+	if(turfs.len > SHUTTLE_CREATOR_MAX_SIZE && !ignore_max_shuttle_size)
 		to_chat(usr, "<span class='warning'>The [src]'s internal cooling system wizzes violently and a message appears on the screen, \"Caution, this device can only handle the creation of shuttles up to [SHUTTLE_CREATOR_MAX_SIZE] units in size. Please reduce your shuttle by [turfs.len-SHUTTLE_CREATOR_MAX_SIZE]. Sorry for the inconvinience\"</span>")
 		return FALSE
 	//Check to see if it's a valid shuttle
@@ -326,6 +328,8 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 			overwritten_area = /area/space
 		else if(istype(place, /area/lavaland/surface/outdoors))
 			overwritten_area = /area/lavaland/surface/outdoors
+		else if(ignore_area)
+			overwritten_area = place
 		else
 			to_chat(usr, "<span class='warning'>Caution, shuttle must not use any material connected to the station. Your shuttle is currenly overlapping with [place.name]</span>")
 			return FALSE
@@ -383,6 +387,15 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 	overlay_holder.clear_highlights()
 	loggedTurfs.Cut()
 	to_chat(usr, "<span class='notice'>You reset the area buffer on the [src].</span>")
+
+//Yogs: Admin RSD for bussing and messing around. I am not liable for any crashed servers this may cause. This one removes the size and area limits, allowing you to turn the entire station into a shuttle if you want.
+/obj/item/shuttle_creator/admin
+	name = "Admin Rapid Shuttle Designator"
+	icon_state = "arsd"
+	desc = "An experimental RSD with the size and area limits disabled. It is covered in warning of what not to do."
+	override_max_shuttles = TRUE
+	ignore_max_shuttle_size = TRUE
+	ignore_area = TRUE
 
 #undef CARDINAL_DIRECTIONS_X
 #undef CARDINAL_DIRECTIONS_Y

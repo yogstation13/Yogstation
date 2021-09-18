@@ -98,7 +98,7 @@
 		ui_interact(usr)
 		return
 
-/obj/machinery/computer/custom_shuttle/proc/calculateDistance(var/obj/docking_port/stationary/port)
+/obj/machinery/computer/custom_shuttle/proc/calculateDistance(var/obj/port)
 	var/deltaX = port.x - x
 	var/deltaY = port.y - y
 	var/deltaZ = (port.z - z) * Z_DIST
@@ -223,7 +223,7 @@
 
 //Custom shuttle docker locations
 /obj/machinery/computer/camera_advanced/shuttle_docker/custom
-	name = "Shuttle Navigation Computer"
+	name = "Shuttle Zoning Designator"
 	desc = "Used to designate a precise transit location for private ships."
 	lock_override = NONE
 	whitelist_turfs = list(/turf/open/space,
