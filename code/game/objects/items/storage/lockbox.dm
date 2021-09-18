@@ -28,26 +28,26 @@
 	if(!locked)
 		return ..()
 	else
-		to_chat(user, "<span class='danger'>It's locked!</span>")
+		to_chat(user, span_danger("It's locked!"))
 
 /obj/item/storage/lockbox/proc/togglelock(mob/living/user, silent)
 	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
 	if(broken)
-		to_chat(user, "<span class='danger'>It appears to be broken.</span>")
+		to_chat(user, span_danger("It appears to be broken."))
 		return
 	if(allowed(user))
 		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, !locked)
 		locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
 		if(locked)
 			icon_state = icon_locked
-			to_chat(user, "<span class='danger'>You lock the [src.name]!</span>")
+			to_chat(user, span_danger("You lock the [src.name]!"))
 			SEND_SIGNAL(src, COMSIG_TRY_STORAGE_HIDE_ALL)
 		else
 			icon_state = icon_closed
-			to_chat(user, "<span class='danger'>You unlock the [src.name]!</span>")
+			to_chat(user, span_danger("You unlock the [src.name]!"))
 			return
 	else
-		to_chat(user, "<span class='danger'>Access Denied.</span>")
+		to_chat(user, span_danger("Access Denied."))
 		return
 
 /obj/item/storage/lockbox/emag_act(mob/user)
@@ -57,7 +57,7 @@
 		desc += "It appears to be broken."
 		icon_state = src.icon_broken
 		if(user)
-			visible_message("<span class='warning'>\The [src] has been broken by [user] with an electromagnetic card!</span>")
+			visible_message(span_warning("\The [src] has been broken by [user] with an electromagnetic card!"))
 			return
 
 /obj/item/storage/lockbox/Entered()
@@ -117,7 +117,7 @@
 /obj/item/storage/lockbox/medal/examine(mob/user)
 	. = ..()
 	if(!SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED))
-		. += "<span class='notice'>Alt-click to [open ? "close":"open"] it.</span>"
+		. += span_notice("Alt-click to [open ? "close":"open"] it.")
 
 /obj/item/storage/lockbox/medal/AltClick(mob/user)
 	if(user.canUseTopic(src, BE_CLOSE))
@@ -254,9 +254,9 @@
 			open = (open ? FALSE : TRUE)
 			update_icon()
 			if(open)
-				to_chat(user, "<span class='danger'>You open the lid on [src.name].</span>")
+				to_chat(user, span_danger("You open the lid on [src.name]."))
 			else
-				to_chat(user, "<span class='danger'>You put the lid on [src.name].</span>")
+				to_chat(user, span_danger("You put the lid on [src.name]."))
 
 /obj/item/storage/lockbox/vialbox/attackby(obj/item/W, mob/user, params)
 	. = ..()

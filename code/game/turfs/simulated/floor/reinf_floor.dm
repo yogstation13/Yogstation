@@ -13,7 +13,7 @@
 
 /turf/open/floor/engine/examine(mob/user)
 	. += ..()
-	. += "<span class='notice'>The reinforcement rods are <b>wrenched</b> firmly in place.</span>"
+	. += span_notice("The reinforcement rods are <b>wrenched</b> firmly in place.")
 
 /turf/open/floor/engine/airless
 	initial_gas_mix = AIRLESS_ATMOS
@@ -43,7 +43,7 @@
 	return
 
 /turf/open/floor/engine/wrench_act(mob/living/user, obj/item/I)
-	to_chat(user, "<span class='notice'>You begin removing rods...</span>")
+	to_chat(user, span_notice("You begin removing rods..."))
 	if(I.use_tool(src, user, 30, volume=80))
 		if(!istype(src, /turf/open/floor/engine))
 			return TRUE

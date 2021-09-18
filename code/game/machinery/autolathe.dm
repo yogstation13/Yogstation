@@ -140,11 +140,11 @@
 			if((autoqueue.len + 1) < queue_max_len)
 				add_to_queue(request, multiplier) // Add item to queue for processing
 			else
-				to_chat(usr, "<span class='warning'>The autolathe queue is full!</span>")
+				to_chat(usr, span_warning("The autolathe queue is full!"))
 		if("eject")
 			request = stored_research.isDesignResearchedID(params["item_id"])
 			if(processing_queue)
-				to_chat(usr, "<span class='warning'>The autolathe queue is processing, please stop before ejecting material</span>")
+				to_chat(usr, span_warning("The autolathe queue is processing, please stop before ejecting material"))
 			if(!request)
 				return
 			var/multiplier = text2num(params["multiplier"])

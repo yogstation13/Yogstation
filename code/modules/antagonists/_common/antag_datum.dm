@@ -178,7 +178,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 //Displayed at the start of roundend_category section, default to roundend_category header
 /datum/antagonist/proc/roundend_report_header()
 	var/list/report = list()
-	report +="<span class='header'>The [roundend_category] were:</span><br>"
+	report +="[span_header("The [roundend_category] were:")]<br>"
 	report +="<br>"
 
 	return report

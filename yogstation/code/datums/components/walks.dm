@@ -77,17 +77,17 @@
 
 /datum/component/walk/jaunt/can_walk(mob/living/user, turf/destination)
 	for(var/obj/effect/decal/cleanable/food/salt/S in destination)
-		to_chat(user, "<span class='warning'>[S] bars your passage!</span>")
+		to_chat(user, span_warning("[S] bars your passage!"))
 		if(isrevenant(user))
 			var/mob/living/simple_animal/revenant/R = user
 			R.reveal(20)
 			R.stun(20)
 		return MOVE_NOT_ALLOWED
 	if(destination.flags_1 & NOJAUNT_1)
-		to_chat(user, "<span class='warning'>Some strange aura is blocking the way.</span>")
+		to_chat(user, span_warning("Some strange aura is blocking the way."))
 		return MOVE_NOT_ALLOWED
 	if (locate(/obj/effect/blessing, destination))
-		to_chat(user, "<span class='warning'>Holy energies block your path!</span>")
+		to_chat(user, span_warning("Holy energies block your path!"))
 		return MOVE_NOT_ALLOWED
 	return MOVE_ALLOWED
 
