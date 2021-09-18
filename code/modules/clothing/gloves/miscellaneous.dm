@@ -89,6 +89,6 @@
 	if(M.a_intent == INTENT_HELP)
 		M.changeNext_move(CLICK_CD_RAPID)
 	else
-		to_chat(M, "<span class='warning'>You don't want to hurt anyone, just give them hugs!</span>")
+		to_chat(M, span_warning("You don't want to hurt anyone, just give them hugs!"))
 		M.a_intent = INTENT_HELP
 	.= FALSE
