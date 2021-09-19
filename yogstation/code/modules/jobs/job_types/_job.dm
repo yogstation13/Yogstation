@@ -54,8 +54,8 @@
 	if(issilicon(H) || issilicon(M))
 		return
 
-	var/S = C.prefs.skillcape
-	if(S != 1)
+	var/S = C.prefs.skillcape_id
+	if(S != "None")
 		var/datum/skillcape/A = GLOB.skillcapes[S]
 		var/type = A.path
 		var/obj/item/clothing/neck/skillcape/B = new type(get_turf(H))
@@ -113,6 +113,11 @@
 		choice = pick(GLOB.potential_box_bars)
 	
 	var/datum/map_template/template = SSmapping.station_room_templates[choice]
+
+	if(!template)
+		log_game("BAR FAILED TO LOAD!!! [C.ckey]/([M.name]) attempted to load [choice]. Loading Bar Arcade as backup.")
+		message_admins("BAR FAILED TO LOAD!!! [C.ckey]/([M.name]) attempted to load [choice]. Loading Bar Arcade as backup.")
+		template = SSmapping.station_room_templates["Bar Arcade"]
 
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)

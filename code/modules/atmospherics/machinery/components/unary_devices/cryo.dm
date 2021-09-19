@@ -172,6 +172,9 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/process()
 	..()
 
+	if(state_open)
+		reagent_transfer = 0
+		return
 	if(!on)
 		return
 	if(!is_operational())

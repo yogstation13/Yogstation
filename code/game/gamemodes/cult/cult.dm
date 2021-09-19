@@ -42,7 +42,7 @@
 	report_type = "cult"
 	antag_flag = ROLE_CULTIST
 	false_report_weight = 10
-	restricted_jobs = list("Chaplain","AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer")
+	restricted_jobs = list("Chaplain","AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician") //Yogs: Added Brig Physician
 	protected_jobs = list()
 	required_players = 29
 	required_enemies = 4
@@ -187,6 +187,7 @@
 		bloodstone_areas.Add(A.map_name)
 	priority_announce("Figments of an eldritch god are being pulled through the veil anomaly in [bloodstone_areas[1]], [bloodstone_areas[2]], [bloodstone_areas[3]], and [bloodstone_areas[4]]! Destroy any occult structures located in those areas!","Central Command Higher Dimensional Affairs")
 	addtimer(CALLBACK(src, .proc/increase_bloodstone_power), 30 SECONDS)
+	set_security_level(SEC_LEVEL_GAMMA)
 
 /datum/game_mode/proc/increase_bloodstone_power()
 	if(!bloodstone_list.len) //check if we somehow ran out of bloodstones
