@@ -29,9 +29,10 @@
 	on_use_sound = 'sound/weapons/zapbang.ogg'
 	icon_state = "zapper"
 	item_state = "zapper"
+	var/far = FALSE
 
 /obj/item/melee/touch_attack/shock/afterattack(atom/target, mob/living/carbon/user, proximity)
-	if(!proximity)
+	if(!proximity && !far)
 		return
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
