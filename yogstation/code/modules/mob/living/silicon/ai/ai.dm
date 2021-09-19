@@ -13,14 +13,15 @@
 
 /mob/living/silicon/ai/attack_hand(mob/user)
 	if(hijacking)
-		user.visible_message("<span class='danger'>[user] attempts to disconnect the circuit board from [src].</span>", "<span class='notice'>There appears to be something connected to [src]'s ports! You attempt to disconnect it...</span>")
+		user.visible_message(span_danger("[user] attempts to disconnect the circuit board from [src]"), span_notice("There appears to be something connected to [src]'s ports! You attempt to disconnect it..."))
 		if (do_after(user,100,target = src))
 			hijacking.forceMove(loc)
 			hijacking = null
 			hijack_start = 0
 			update_icons()
+			to_chat(src, span_bolddanger("Unknown device disconnected. Systems confirmed secure."))
 		else
-			to_chat(user, "<span class='notice'>You fail to remove the device.</span>")
+			to_chat(user, span_notice("You fail to remove the device."))
 		return
 	return ..()
 
@@ -36,3 +37,13 @@
 		icon_state = "ai-static"
 	else if(!hijacking && hijack_overlay)
 		QDEL_NULL(hijack_overlay)
+
+
+/mob/living/silicon/ai/transfer_ai(interaction, mob/user, mob/living/silicon/ai/AI, obj/item/aicard/card)
+	. = ..()
+	if(istype(card) && interaction == AI_TRANS_TO_CARD && hijacking)
+		hijacking.forceMove(get_turf(card))
+		hijacking.visible_message(span_warning("[hijacking] falls off of [AI] as it's transferred to [card]!"))
+		hijacking = null
+		hijack_start = 0
+		to_chat(src, span_bolddanger("Unknown device disconnected. Systems confirmed secure."))

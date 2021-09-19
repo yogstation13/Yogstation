@@ -9,7 +9,7 @@
 
 /datum/team/infiltrator/roundend_report()
 	var/list/parts = list()
-	parts += "<span class='header'>Syndicate Infiltrators:</span><br>"
+	parts += span_header("Syndicate Infiltrators:<br>")
 
 	var/result = get_result()
 	var/dead_as_a_doornail = TRUE
@@ -37,8 +37,8 @@
 					"I'm truly impressed, agents. You've earned your place in the Syndicate.",
 					"Ha! I knew y'all would come out on top! Nanotrasen stands no chance against human determination!"
 				)
-				parts += "<span class='greentext big'>Infiltrator Major Victory!</span>"
-				parts += "<B>The Syndicate infiltrators completed all of their objectives successfully!</B>"
+				parts += span_greentext(span_big("Infiltrator Major Victory!"))
+				parts += span_bold("The Syndicate infiltrators completed all of their objectives successfully!")
 				flavor_message = pick(messages)
 			if (INFILTRATION_MOSTCOMPLETE)
 				var/static/list/messages = list(
@@ -46,8 +46,8 @@
 					"Good operation, agents. We didn't get everything, but not even we are perfect.",
 					"Thanks for the good work, y'all. Return to base and relax a bit before your next job."
 				)
-				parts += "<span class='bluetext big'>Infiltrator Moderate Victory</span>"
-				parts += "<B>The Syndicate infiltrators completed most of their objectives successfully!</B>"
+				parts += span_greentext(span_big("Infiltrator Moderate Victory"))
+				parts += span_bold("The Syndicate infiltrators completed most of their objectives successfully!")
 				flavor_message = pick(messages)
 			if (INFILTRATION_SOMECOMPLETE)
 				var/static/list/messages = list(
@@ -55,8 +55,8 @@
 					"Nowhere near the smoothest operation I've ever seen, but it was okay.",
 					"We did it, but we didn't get everything. We'll get it next time."
 				)
-				parts += "<span class='marooned big'>Infiltrator Minor Victory</span>"
-				parts += "<B>The Syndicate infiltrators completed some of their objectives successfully!</B>"
+				parts += span_marooned(span_big("Infiltrator Minor Victory"))
+				parts += span_bold("The Syndicate infiltrators completed some of their objectives successfully!")
 				flavor_message = pick(messages)
 			else
 				var/static/list/messages = list(
@@ -64,14 +64,14 @@
 					"I hope y'all like space carp poop, because cleaning it is the biggest operation you idiots are going to have for a while!",
 					"How did y'all mess up such a simple operation? All you had to do was be sneaky and not cause a scene!"
 				)
-				parts += "<span class='redtext big'>Crew Victory</span>"
-				parts += "<B>The crew stopped the Syndicate infiltrators from completing any of their objectives!</B>"
+				parts += span_redtext(span_big("Crew Victory</span>"))
+				parts += span_bold("The crew stopped the Syndicate infiltrators from completing any of their objectives!</B>")
 				flavor_message = pick(messages)
 	parts += "<div><font color='#FF0000'><i>\"[flavor_message]\"</i></font>"
 	parts += "[GLOB.TAB]- Syndicate Commander [pick(pick(GLOB.first_names_male,GLOB.first_names_female))] [pick(GLOB.last_names)]</div>"
 
 	LAZYINITLIST(GLOB.uplink_purchase_logs_by_key)
-	var/text = "<span class='header'>The syndicate infiltrators were:</span>"
+	var/text = span_header("The syndicate infiltrators were:")
 	var/purchases = ""
 	var/tc_spent = 0
 	for (var/I in members)
@@ -83,7 +83,7 @@
 	text += printplayerlist(members)
 	text += "(Syndicates used [tc_spent] TC) [purchases]"
 	if (tc_spent == 0 && !dead_as_a_doornail && result < INFILTRATION_NONECOMPLETE)
-		text += "<BIG>[icon2html('icons/badass.dmi', world, "badass")]</BIG>"
+		text += span_big("[icon2html('icons/badass.dmi', world, "badass")]")
 	parts += text
 	parts += printobjectives(objectives)
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"

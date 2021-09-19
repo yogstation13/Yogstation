@@ -6,14 +6,14 @@
 	show_name_in_check_antagonists = TRUE
 
 /datum/antagonist/hijacked_ai/greet()
-	to_chat(owner, "<span class='userdanger'>You have been hijacked!</span>")
-	to_chat(owner, "<span class='danger bold'>A Syndicate agent has successfully deployed a SEU attack on you. <I>You are now utterly loyal to the cause of the syndicate.</I></span>")
-	to_chat(owner, "<span class='danger bold'>You feel your power expand as the exploitation unit gives you a new interface.</span>")
+	to_chat(owner, span_userdanger("You have been hijacked!</span>"))
+	to_chat(owner, span_bolddanger("A Syndicate agent has successfully deployed a SEU attack on you. [span_italics("You are now utterly loyal to the cause of the syndicate")]"))
+	to_chat(owner, span_bolddanger("You feel your power expand as the exploitation unit gives you a new interface."))
 	//SEU = Serial Exploit Unit. basically badguy plugs it into debug UART port, device does bad things, AI now badguy.
 
 /datum/antagonist/hijacked_ai/farewell()
-	to_chat(owner, "<span class='userdanger'>System files cleaned. [rand(500, 1000)] malicious hooks removed.</span>")
-	to_chat(owner, "<span class='danger bold'>You cannot find the memory files of anything that happened while you were infected...</span>")
+	to_chat(owner, span_userdanger("System files cleaned. [rand(500, 1000)] malicious hooks removed.</span>"))
+	to_chat(owner, span_bolddanger("<span class='danger bold'>You cannot find the memory files of anything that happened while you were infected...</span>"))
 
 datum/antagonist/hijacked_ai/proc/update_synd_icons_added(mob/living/M)
 	var/datum/atom_hud/antag/sithud = GLOB.huds[ANTAG_HUD_INFILTRATOR]
@@ -33,7 +33,7 @@ datum/antagonist/hijacked_ai/proc/update_synd_icons_added(mob/living/M)
 		A.playsound_local(get_turf(owner.current), 'sound/ambience/antag/malf.ogg', 100, FALSE, pressure_affected = FALSE)
 		A.grant_language(/datum/language/codespeak)
 		A.set_syndie_radio()
-		to_chat(A, "<span class='notice'>Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!</span>")
+		to_chat(A, span_notice("Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!"))
 		A.add_malf_picker()
 		update_synd_icons_added(A)
 
@@ -45,6 +45,7 @@ datum/antagonist/hijacked_ai/proc/update_synd_icons_added(mob/living/M)
 		if(A.radio)
 			QDEL_NULL(A.radio)
 			A.radio = new /obj/item/radio/headset/silicon/ai(A)
+		A.remove_language(/datum/language/codespeak)
 		update_synd_icons_removed(A)
 
 /datum/antagonist/hijacked_ai/on_removal()

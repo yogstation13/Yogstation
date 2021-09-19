@@ -79,7 +79,7 @@
 		icon = 'yogstation/icons/obj/device.dmi'
 		icon_state = "pinpointer_upgraded"
 		upgraded = TRUE
-		to_chat(user, "<span class='notice'>You attach the new antenna to [src].</span>")
+		to_chat(user, span_notice("You attach the new antenna to [src]"))
 		qdel(I)
 	else
 		return ..()

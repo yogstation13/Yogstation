@@ -17,13 +17,13 @@ GLOBAL_VAR_INIT(next_button_push, 0)
 		var/mob/living/carbon/human/H = user
 		var/obj/item/card/id/ID = H.wear_id.GetID()
 		if(!ID)
-			to_chat(user, "<span class='notice'>You need to wear your ID to properly spoof the manifest! Try again.</span>")
+			to_chat(user, span_notice("You need to wear your ID to properly spoof the manifest! Try again."))
 			return
 		if(alert(user, "Are you sure you want your crew manifest entry to be [H.real_name], [ID.assignment]?", "", "Yes", "No") == "Yes")
 			var/list/all_jobs = (GLOB.command_positions + GLOB.engineering_positions + GLOB.medical_positions + GLOB.science_positions + GLOB.supply_positions + GLOB.civilian_positions + GLOB.security_positions)
 			if((ID.assignment in all_jobs) || (alert(user, "Are you sure you want your job to be '[ID.assignment]'? This is not a default job, and may look strange on the manifest!", "", "Yes", "No") == "Yes"))
 				GLOB.data_core.manifest_inject(H, H.client, ID.assignment)
-				to_chat(user, "<span class='notice'>Added to manifest.</span>")
+				to_chat(user, span_notice("Added to manifest."))
 				do_sparks(2, FALSE, src)
 				qdel(src)
 
