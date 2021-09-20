@@ -75082,6 +75082,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"hRH" = (
+/obj/machinery/door/airlock/external{
+	req_one_access_txt = "13,8"
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "hSj" = (
 /obj/machinery/camera{
 	c_tag = "Arrivals - Middle Arm";
@@ -77436,14 +77444,6 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/port)
-"mfe" = (
-/obj/machinery/door/airlock/external{
-	req_one_access_txt = "13,8"
-	},
-/obj/machinery/atmospherics/pipe/layer_manifold,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/turf/open/space/basic,
-/area/maintenance/starboard/fore)
 "mfF" = (
 /obj/structure/closet/emcloset/anchored,
 /obj/effect/turf_decal/stripes/end,
@@ -124641,7 +124641,7 @@ aaa
 aaa
 aaa
 aaf
-mfe
+hRH
 dMm
 gFp
 amT
