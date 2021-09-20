@@ -33,7 +33,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					modTimer = 4
 				else
 					modTimer = 2
-				
+
 			if(SEC_LEVEL_BLUE)
 				if(GLOB.security_level < SEC_LEVEL_BLUE)
 					minor_announce(CONFIG_GET(string/alert_blue_upto), "Attention! Security level elevated to blue:", TRUE)
@@ -53,7 +53,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					minor_announce(CONFIG_GET(string/alert_red_downto), "Attention! Code red!")
 					if(GLOB.security_level == SEC_LEVEL_GAMMA)
 						modTimer = 2
-          
+
 			if(SEC_LEVEL_GAMMA)
 				minor_announce(CONFIG_GET(string/alert_gamma), "Attention! Gamma security level activated!", TRUE)
 				SEND_SOUND(world, 'sound/misc/gamma_alert.ogg')
@@ -63,7 +63,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					modTimer = 0.50
 				else if(GLOB.security_level == SEC_LEVEL_RED)
 					modTimer = 0.75
-						
+
 			if(SEC_LEVEL_EPSILON)
 				minor_announce(CONFIG_GET(string/alert_epsilon), "Attention! Epsilon security level reached!", TRUE)
 				SEND_SOUND(world, 'sound/misc/epsilon_alert.ogg')
@@ -73,6 +73,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 
 			if(SEC_LEVEL_DELTA)
 				minor_announce(CONFIG_GET(string/alert_delta), "Attention! Delta security level reached!", TRUE)
+				SEND_SOUND(world, 'sound/misc/delta_alert.ogg')
 				if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 					if(GLOB.security_level == SEC_LEVEL_GREEN)
 						modTimer = 0.25
