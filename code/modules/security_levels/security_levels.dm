@@ -37,6 +37,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 			if(SEC_LEVEL_BLUE)
 				if(GLOB.security_level < SEC_LEVEL_BLUE)
 					minor_announce(CONFIG_GET(string/alert_blue_upto), "Attention! Security level elevated to blue:", TRUE)
+					SEND_SOUND(world, 'sound/misc/notice1.ogg')
 					modTimer = 0.5
 				else
 					minor_announce(CONFIG_GET(string/alert_blue_downto), "Attention! Security level lowered to blue:")
@@ -45,6 +46,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 			if(SEC_LEVEL_RED)
 				if(GLOB.security_level < SEC_LEVEL_RED)
 					minor_announce(CONFIG_GET(string/alert_red_upto), "Attention! Code red!", TRUE)
+					SEND_SOUND(world, 'sound/misc/notice1.ogg')
 					if(GLOB.security_level == SEC_LEVEL_GREEN)
 						modTimer = 0.25
 					else
