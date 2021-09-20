@@ -129,6 +129,7 @@
 	build_path = /obj/item/circuitboard/computer/launchpad_console
 	category = list ("Teleportation Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+	locked = TRUE
 
 /datum/design/board/teleconsole
 	name = "Computer Design (Teleporter Console)"
@@ -185,6 +186,7 @@
 	build_path = /obj/item/circuitboard/machine/smoke_machine
 	category = list ("Medical Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+	locked = TRUE
 
 /datum/design/board/reagentgrinder
 	name = "Machine Design (All-In-One Grinder)"
@@ -353,6 +355,7 @@
 	build_path = /obj/item/circuitboard/machine/gibber
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+	locked = TRUE
 
 /datum/design/board/smartfridge
 	name = "Machine Design (Smartfridge Board)"

@@ -41,6 +41,7 @@
 	build_path = /obj/item/circuitboard/mecha/gygax/main
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+	locked = TRUE
 
 /datum/design/board/gygax_peri
 	name = "\"Gygax\" Peripherals Control module"
@@ -65,6 +66,7 @@
 	build_path = /obj/item/circuitboard/mecha/durand/main
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+	locked = TRUE
 
 /datum/design/board/durand_peri
 	name = "\"Durand\" Peripherals Control module"
@@ -89,6 +91,7 @@
 	build_path = /obj/item/circuitboard/mecha/honker/main
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+	locked = TRUE
 
 /datum/design/board/honker_peri
 	name = "\"H.O.N.K\" Peripherals Control module"
@@ -114,6 +117,7 @@
 	build_path = /obj/item/circuitboard/mecha/phazon/main
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+	locked = TRUE
 
 /datum/design/board/phazon_peri
 	name = "\"Phazon\" Peripherals Control module"

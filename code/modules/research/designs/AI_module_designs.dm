@@ -9,6 +9,7 @@
 	build_path = /obj/item/circuitboard/aicore
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+	locked = TRUE
 
 /datum/design/board/safeguard_module
 	name = "Module Design (Safeguard)"

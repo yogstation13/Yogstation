@@ -81,7 +81,7 @@
 		reagents.trans_to(G, G.reagents.maximum_volume)
 	return ..()
 
-/obj/machinery/rnd/production/proc/do_print(path, amount, list/matlist, notify_admins)
+/obj/machinery/rnd/production/proc/do_print(path, amount, list/matlist, notify_admins, locked)
 	if(notify_admins)
 		investigate_log("[key_name(usr)] built [amount] of [path] at [src]([type]).", INVESTIGATE_RESEARCH)
 		message_admins("[ADMIN_LOOKUPFLW(usr)] has built [amount] of [path] at \a [src]([type]).")
@@ -89,6 +89,12 @@
 		var/obj/item/I = new path(get_turf(src))
 		if(efficient_with(I.type))
 			I.materials = matlist.Copy()
+		if(locked)
+			var/obj/item/storage/lockbox/L = new/obj/item/storage/lockbox(src.loc)
+			I.loc = L
+			L.name += " ([I.name])"
+			L.req_access = list()
+			L.req_one_access = list(ACCESS_ARMORY, ACCESS_HEADS)
 	SSblackbox.record_feedback("nested tally", "item_printed", amount, list("[type]", "[path]"))
 
 /obj/machinery/rnd/production/proc/check_mat(datum/design/being_built, var/mat)	// now returns how many times the item can be built with the material
@@ -156,7 +162,7 @@
 		flick(production_animation, src)
 	var/timecoeff = D.lathe_time_factor / efficiency_coeff
 	addtimer(CALLBACK(src, .proc/reset_busy), (30 * timecoeff * amount) ** 0.5)
-	addtimer(CALLBACK(src, .proc/do_print, D.build_path, amount, efficient_mats, D.dangerous_construction), (32 * timecoeff * amount) ** 0.8)
+	addtimer(CALLBACK(src, .proc/do_print, D.build_path, amount, efficient_mats, D.dangerous_construction, D.locked), (32 * timecoeff * amount) ** 0.8)
 	return TRUE
 
 /obj/machinery/rnd/production/proc/search(string)

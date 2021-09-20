@@ -220,6 +220,7 @@
 	materials = list(/datum/material/iron = 6000, /datum/material/glass = 1500, /datum/material/silver = 2000, /datum/material/gold = 1500, /datum/material/diamond = 200, /datum/material/titanium = 4000)
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+	locked = TRUE
 
 /datum/design/mechanicalpinches
 	name = "Mechanical Pinches"
@@ -321,6 +322,7 @@
 	build_path = /obj/item/organ/cyberimp/eyes/hud/security
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+	locked = TRUE
 
 /datum/design/cyberimp_diagnostic_hud
 	name = "Diagnostic HUD Implant"
@@ -464,6 +466,7 @@
 	build_path = /obj/item/implantcase/chem
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
+	locked = TRUE
 
 /datum/design/implant_tracking
 	name = "Tracking Implant Case"
@@ -474,6 +477,7 @@
 	build_path = /obj/item/implantcase/tracking
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
+	locked = TRUE
 
 //Cybernetic organs
 
@@ -674,6 +678,7 @@
 	id = "surgery_brainwashing"
 	surgery = /datum/surgery/advanced/brainwashing
 	research_icon_state = "surgery_head"
+	locked = TRUE
 
 /datum/design/surgery/nerve_splicing
 	name = "Nerve Splicing"

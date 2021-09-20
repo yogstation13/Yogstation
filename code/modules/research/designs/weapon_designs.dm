@@ -173,6 +173,7 @@
 	build_path = /obj/item/gun/energy/e_gun/nuclear
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+	locked = TRUE
 
 /datum/design/tele_shield
 	name = "Telescopic Riot Shield"
@@ -193,6 +194,7 @@
 	build_path = /obj/item/gun/energy/beam_rifle
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+	locked = TRUE
 
 /datum/design/decloner
 	name = "Decloner"
@@ -204,6 +206,7 @@
 	build_path = /obj/item/gun/energy/decloner
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+	locked = TRUE
 
 /datum/design/rapidsyringe
 	name = "Rapid Syringe Gun"
@@ -214,6 +217,7 @@
 	build_path = /obj/item/gun/syringe/rapidsyringe
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL		//uwu
+	locked = TRUE
 
 /datum/design/temp_gun
 	name = "Temperature Gun"
@@ -224,6 +228,7 @@
 	build_path = /obj/item/gun/energy/temperature
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	locked = TRUE
 
 /datum/design/flora_gun
 	name = "Floral Somatoray"
@@ -285,6 +290,7 @@
 	build_path = /obj/item/gun/energy/xray
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+	locked = TRUE
 
 /datum/design/ioncarbine
 	name = "Ion Carbine"
@@ -295,6 +301,7 @@
 	build_path = /obj/item/gun/energy/ionrifle/carbine
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	locked = TRUE
 
 /datum/design/wormhole_projector
 	name = "Bluespace Wormhole Projector"
@@ -305,6 +312,7 @@
 	build_path = /obj/item/gun/energy/wormhole_projector
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+	locked = TRUE
 
 //WT550 Mags
 
@@ -381,6 +389,7 @@
 	build_path = /obj/item/gun/energy/gravity_gun
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+	locked = TRUE
 
 /datum/design/largecrossbow
 	name = "Energy Crossbow"
@@ -391,6 +400,7 @@
 	build_path = /obj/item/gun/energy/kinetic_accelerator/crossbow/large
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+	locked = TRUE
 
 /datum/design/cryostatis_shotgun_dart
 	name = "Cryostatis Shotgun Dart"

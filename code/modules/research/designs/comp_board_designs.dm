@@ -29,6 +29,7 @@
 	build_path = /obj/item/circuitboard/computer/security
 	category = list("Computer Boards")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	locked = TRUE
 
 /datum/design/board/rdcamera
 	name = "Computer Design (Research Monitor)"
@@ -85,6 +86,7 @@
 	build_path = /obj/item/circuitboard/computer/communications
 	category = list("Computer Boards")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SECURITY				//Honestly should have a bridge techfab for this sometime.
+	locked = TRUE
 
 /datum/design/board/idcardconsole
 	name = "Computer Design (ID Console)"
@@ -93,6 +95,7 @@
 	build_path = /obj/item/circuitboard/computer/card
 	category = list("Computer Boards")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SECURITY				//Honestly should have a bridge techfab for this sometime.
+	locked = TRUE
 
 /datum/design/board/crewconsole
 	name = "Computer Design (Crew monitoring computer)"
@@ -101,6 +104,7 @@
 	build_path = /obj/item/circuitboard/computer/crew
 	category = list("Computer Boards")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
+	locked = TRUE
 
 /datum/design/board/secdata
 	name = "Computer Design (Security Records Console)"
@@ -109,6 +113,7 @@
 	build_path = /obj/item/circuitboard/computer/secure_data
 	category = list("Computer Boards")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	locked = TRUE
 
 /datum/design/board/atmosalerts
 	name = "Computer Design (Atmosphere Alert)"
@@ -133,6 +138,7 @@
 	build_path = /obj/item/circuitboard/computer/robotics
 	category = list("Computer Boards")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+	locked = TRUE
 
 /datum/design/board/slot_machine
 	name = "Computer Design (Slot Machine)"
@@ -269,6 +275,7 @@
 	build_path = /obj/item/circuitboard/computer/apc_control
 	category = list("Computer Boards")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+	locked = TRUE
 
 /datum/design/board/nanite_chamber_control
 	name = "Computer Design (Nanite Chamber Control)"
@@ -285,3 +292,4 @@
 	build_path = /obj/item/circuitboard/computer/nanite_cloud_controller
 	category = list("Computer Boards")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+	locked = TRUE
