@@ -77,7 +77,7 @@
 		return
 
 	regen_ticks_current++
-	if(victim.mobility_flags & MOBILITY_STAND)
+	if(!(victim.mobility_flags & MOBILITY_STAND))
 		if(prob(50))
 			regen_ticks_current += 0.5
 		if(victim.IsSleeping() && prob(50))
