@@ -321,7 +321,7 @@
 		return
 	M.visible_message("<span class='warning'>[AM] queues their servos to fling [M]!</span>")
 	playsound(AM,'sound/misc/borg/fling_start.ogg',80,1,-1)
-	if(!do_after(AM, 2 SECONDS, target = M))
+	if(!do_after(AM, 1 SECONDS, target = M))
 		M.visible_message("<span class='boldwarning'>[AM]'s servos disengage!</span>")
 		playsound(AM,'sound/misc/borg/fling_cancel.ogg',80,1,-1)
 		return
