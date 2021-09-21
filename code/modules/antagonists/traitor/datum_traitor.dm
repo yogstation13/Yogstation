@@ -18,9 +18,10 @@
 	can_hijack = HIJACK_HIJACKER
 
 /datum/antagonist/traitor/on_gain()
-	if(owner.current && isAIShell(owner.current))
-		var/mob/living/silicon/robot/shell/shell = owner.current
-		shell.undeploy()
+	if(owner.current && iscyborg(owner.current))
+		var/mob/living/silicon/robot/robot = owner.current
+		if(robot.shell)
+			robot.undeploy()
 
 	if(owner.current && isAI(owner.current))
 		traitor_kind = TRAITOR_AI
