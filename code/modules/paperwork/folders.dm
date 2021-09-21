@@ -8,7 +8,7 @@
 	resistance_flags = FLAMMABLE
 
 /obj/item/folder/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] begins filing an imaginary death warrant! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins filing an imaginary death warrant! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return OXYLOSS
 
 /obj/item/folder/blue
@@ -38,11 +38,11 @@
 	if(istype(W, /obj/item/paper) || istype(W, /obj/item/photo) || istype(W, /obj/item/documents))
 		if(!user.transferItemToLoc(W, src))
 			return
-		to_chat(user, "<span class='notice'>You put [W] into [src].</span>")
+		to_chat(user, span_notice("You put [W] into [src]."))
 		update_icon()
 	else if(istype(W, /obj/item/pen))
 		if(!user.is_literate())
-			to_chat(user, "<span class='notice'>You scribble illegibly on the cover of [src]!</span>")
+			to_chat(user, span_notice("You scribble illegibly on the cover of [src]!"))
 			return
 		var/inputvalue = stripped_input(user, "What would you like to label the folder?", "Folder Labelling", "", MAX_NAME_LEN)
 
@@ -67,9 +67,9 @@
 	if(!user.canUseTopic(src, BE_CLOSE))
 		return
 	if(contents.len)
-		to_chat(user, "<span class='warning'>You can't fold this folder with something still inside!</span>")
+		to_chat(user, span_warning("You can't fold this folder with something still inside!"))
 		return
-	to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
+	to_chat(user, span_notice("You fold [src] flat."))
 	var/obj/item/I = new /obj/item/stack/sheet/cardboard
 	qdel(src)
 	user.put_in_hands(I)

@@ -2,4 +2,4 @@
 	. = ..()
 	if(obj_integrity > 0)
 		if(overmind) //we should have an overmind, but...
-			to_chat(overmind, "<span class='userdanger'>Your core is under attack!</span>")
+			to_chat(overmind, span_userdanger("Your core is under attack!"))
