@@ -158,6 +158,10 @@
 
 /datum/objective/assassinate/jealous //assassinate, but it changes the target to someone else in the previous target's department. cool, right?
 	var/datum/mind/old //the target the coworker was picked from.
+	var/list/viable_coworkers = list()
+	var/list/all_coworkers = list()
+	var/chosen_department
+	var/their_chosen_department
 
 /datum/objective/assassinate/jealous/update_explanation_text()
 	..()
@@ -171,10 +175,6 @@
 /datum/objective/assassinate/jealous/proc/find_coworker(datum/mind/oldmind)//returning null = free objective
 	if(!oldmind.assigned_role)
 		return
-	var/list/viable_coworkers = list()
-	var/list/all_coworkers = list()
-	var/chosen_department
-	var/their_chosen_department
 	//note that command and sillycone are gone because borgs can't be obsessions and the heads have their respective department. Sorry cap, your place is more with centcom or something
 	if(oldmind.assigned_role in GLOB.security_positions)
 		chosen_department = "security"
