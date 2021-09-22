@@ -319,15 +319,15 @@
 	if(S.throwcooldown)
 		to_chat(S, "You have to wait for your motors to recharge")
 		return
-	M.visible_message("<span class='warning'>[AM] queues their servos to fling [M]!</span>")
+	M.visible_message(span_warning("[AM] queues their servos to fling [M]!"))
 	playsound(AM,'sound/misc/borg/fling_start.ogg',80,1,-1)
 	if(!do_after(AM, 1 SECONDS, target = M))
-		M.visible_message("<span class='boldwarning'>[AM]'s servos disengage!</span>")
+		M.visible_message(span_boldwarning("[AM]'s servos disengage!"))
 		playsound(AM,'sound/misc/borg/fling_cancel.ogg',80,1,-1)
 		return
 	//sanity check after the timer to make sure they're still buckled
 	if(!S.has_buckled_mobs()) 
-		M.visible_message("<span class='boldwarning'>[AM]'s servos pop!</span>")
+		M.visible_message(span_boldwarning("[AM]'s servos pop!"))
 		playsound(AM,'sound/misc/borg/fling_pop.ogg',80,1,-1)
 		//consider adding some damage as a borg if you mess up your timing
 		return;
