@@ -55,13 +55,13 @@
 	turf_type = /turf/open/floor/plating/asteroid
 	closed_turf = /turf/open/floor/plating/asteroid
 	dense_flora = list(/obj/structure/flora/stump=1,/obj/structure/flora/tree/dead/jungle = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/tree/jungle/small = 1)
-	dense_flora_density = 25
+	dense_flora_density = 70
 
 
 /datum/biome/jungleland/jungle
 	turf_type = /turf/open/floor/plating/dirt
 	closed_turf = /turf/open/floor/plating/dirt
 	cellular_noise_map_id = HIGH_DENSITY
-	dense_flora = list(/obj/structure/flora/tree/jungle = 2, /obj/structure/flora/rock/jungle = 1, /obj/structure/flora/junglebush = 1, /obj/structure/flora/junglebush/b = 1, /obj/structure/flora/junglebush/c = 1, /obj/structure/flora/junglebush/large = 1, /obj/structure/flora/rock/pile/largejungle = 1)
+	dense_flora = list(/obj/structure/flora/tree/jungle/small = 2,/obj/structure/flora/tree/jungle = 2, /obj/structure/flora/rock/jungle = 1, /obj/structure/flora/junglebush = 1, /obj/structure/flora/junglebush/b = 1, /obj/structure/flora/junglebush/c = 1, /obj/structure/flora/junglebush/large = 1, /obj/structure/flora/rock/pile/largejungle = 1)
 	loose_flora = list(/obj/structure/flora/grass/jungle = 2,/obj/structure/flora/grass/jungle/b = 2,/obj/structure/flora/grass/brown = 1,/obj/structure/flora/bush = 1,/obj/structure/flora/ausbushes = 1,/obj/structure/flora/ausbushes/leafybush = 1,/obj/structure/flora/ausbushes/sparsegrass = 1,/obj/structure/flora/ausbushes/fullgrass = 1)
 	loose_flora_density = 60
