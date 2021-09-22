@@ -1204,7 +1204,7 @@
 			return
 	M.visible_message(span_warning("[M] begins to [M == usr ? "climb onto" : "be buckled to"] [src]..."))
 	if(!do_after(M, 0.75 SECONDS, target = src))
-		M.visible_message(span_boldwarning'>("[M] was prevented from buckling to [src]!"))
+		M.visible_message(span_boldwarning("[M] was prevented from buckling to [src]!"))
 		return
 		
 	if(iscarbon(M) && !M.incapacitated() && !riding_datum.equip_buckle_inhands(M, 1))
