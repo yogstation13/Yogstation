@@ -8,9 +8,9 @@
 	var/experience_modifier = 1
 	var/datum/skill_menu/skill_menu
 
-/datum/skillset/New(/datum/mind/owner)
-	message_admins("Starting skill_list gen")
-	
+/datum/skillset/New(var/datum/mind/new_owner)
+	owner = new_owner
+
 	skill_list = list(
 		SKILL_STRENGHT = new /datum/skill/strength,
 		SKILL_DEXTERITY = new /datum/skill/dexterity,
@@ -19,6 +19,8 @@
 		SKILL_COOKING = new /datum/skill/cooking,
 		SKILL_CREATIVITY = new /datum/skill/creativity,
 		SKILL_SURVIVAL = new /datum/skill/survival,
+		SKILL_PILOTING = new /datum/skill/piloting,
+		SKILL_LEADERSHIP = new /datum/skill/leadership,
 		SKILL_FORENSICS = new /datum/skill/forensics,
 		SKILL_HAND_TO_HAND = new /datum/skill/hand_to_hand,
 		SKILL_MELEE_WEAPONS = new /datum/skill/melee,
@@ -35,9 +37,11 @@
 		SKILL_ATMOSPHERICS = new /datum/skill/atmospherics
 	)
 
-	skill_menu = new(src)
+	for(var/current_item in GLOB.all_skill_ids)
+		var/datum/skill/current_skill = skill_list[current_item]
+		current_skill.parent = src
 
-	message_admins("[skill_list]")
+	skill_menu = new(src)
 	..()
 
 /datum/skillset/Destroy()
@@ -47,8 +51,27 @@
 /datum/skillset/proc/get_skill(skill_id)
 	return skill_list[skill_id]
 
+/datum/skillset/proc/set_skill_level(skill_id, new_level, var/silent = FALSE)
+	return skill_list[skill_id].set_level(new_level, silent)
+
+/datum/skillset/proc/adjust_skill_level(skill_id, change, var/silent = FALSE)
+	return skill_list[skill_id].adjust_level(change, silent)
+
 /datum/skillset/proc/get_skill_level(skill_id)
 	return skill_list[skill_id].current_level
+
+/datum/skillset/proc/set_skill_list(skill_id, var/list/skill_list, var/silent = FALSE)
+	set_skill_level(skill_id, skill_list[skill_id], silent)
+
+/datum/skillset/proc/set_skill_levels(var/list/skill_list, var/silent = FALSE)
+	for(var/skill_id in GLOB.all_skill_ids)
+		set_skill_level(skill_id, skill_list[skill_id], silent)
+
+/datum/skillset/proc/get_skill_levels()
+	var/list/skill_list = list()
+	for(var/skill_id in GLOB.all_skill_ids)
+		skill_list[skill_id] = get_skill(skill_id)
+	return skill_list
 
 /datum/skillset/proc/open_skill_menu(mob/user)
 	if(!skill_menu)

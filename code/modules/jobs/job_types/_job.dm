@@ -70,6 +70,33 @@
 
 	var/list/changed_maps = list() // Maps on which the job is changed. Should use the same name as the mapping config
 
+	var/uses_skills = TRUE
+	var/skillpoints = 30
+	var/list/default_skill_list = list(
+		SKILL_STRENGHT = SKILLLEVEL_UNSKILLED,
+		SKILL_DEXTERITY = SKILLLEVEL_UNSKILLED,
+		SKILL_ENDURANCE = SKILLLEVEL_UNSKILLED,
+		SKILL_BOTANY = SKILLLEVEL_UNSKILLED,
+		SKILL_COOKING = SKILLLEVEL_UNSKILLED,
+		SKILL_CREATIVITY = SKILLLEVEL_UNSKILLED,
+		SKILL_SURVIVAL = SKILLLEVEL_UNSKILLED,
+		SKILL_PILOTING = SKILLLEVEL_UNSKILLED,
+		SKILL_LEADERSHIP = SKILLLEVEL_UNSKILLED,
+		SKILL_FORENSICS = SKILLLEVEL_UNSKILLED,
+		SKILL_HAND_TO_HAND = SKILLLEVEL_UNSKILLED,
+		SKILL_MELEE_WEAPONS = SKILLLEVEL_UNSKILLED,
+		SKILL_RANGED_WEAPONS = SKILLLEVEL_UNSKILLED,
+		SKILL_MEDICINE = SKILLLEVEL_UNSKILLED,
+		SKILL_ANATOMY = SKILLLEVEL_UNSKILLED,
+		SKILL_CHEMISTRY = SKILLLEVEL_UNSKILLED,
+		SKILL_PHSYCHOLOGY = SKILLLEVEL_UNSKILLED,
+		SKILL_DESIGN = SKILLLEVEL_UNSKILLED,
+		SKILL_ROBOTICS = SKILLLEVEL_UNSKILLED,
+		SKILL_BIOLOGY = SKILLLEVEL_UNSKILLED,
+		SKILL_MECHANICS = SKILLLEVEL_UNSKILLED,
+		SKILL_IT = SKILLLEVEL_UNSKILLED,
+		SKILL_ATMOSPHERICS = SKILLLEVEL_UNSKILLED)
+
 /*
 	If you want to change a job on a specific map with this system, you will want to go onto that job datum
 	and add said map's name to the changed_maps list, like so:
@@ -108,6 +135,9 @@
 	if(mind_traits)
 		for(var/t in mind_traits)
 			ADD_TRAIT(H.mind, t, JOB_TRAIT)
+	if(uses_skills)
+		var/datum/skillset/skillset = find_skillset(H.mind)
+		skillset.set_skill_levels(default_skill_list)
 	H.mind.add_employee(/datum/corporation/nanotrasen)
 
 /datum/job/proc/announce(mob/living/carbon/human/H)

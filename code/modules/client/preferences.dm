@@ -90,6 +90,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		// Want randomjob if preferences already filled - Donkie
 	var/joblessrole = BERANDOMJOB  //defaults to 1 for fewer assistants
 
+	var/job_skills = list()
+
 	// 0 = character settings, 1 = game preferences
 	var/current_tab = 0
 
@@ -210,7 +212,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</center>"
 
 			dat += "<center><h2>Occupation Choices</h2>"
-			dat += "<a href='?_src_=prefs;preference=job;task=menu'>Set Occupation Preferences</a><br></center>"
+			dat += "<a href='?_src_=prefs;preference=job;task=menu'>Set Occupation Preferences</a><br>"
+
+			//Yogs Start: Skills for each job
+			dat += "<a href='?_src_=prefs;preference=skills;task=menu'>Set Skills</a><br></center>"
+
 			if(CONFIG_GET(flag/roundstart_traits))
 				dat += "<center><h2>Quirk Setup</h2>"
 				dat += "<a href='?_src_=prefs;preference=trait;task=menu'>Configure Quirks</a><br></center>"
@@ -1057,6 +1063,81 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	popup.set_content(HTML)
 	popup.open(FALSE)
 
+/datum/preferences/proc/SetSkills(mob/user)
+	if(!SSjob)
+		return
+
+	//limit - The amount of jobs allowed per column. Defaults to 17 to make it look nice.
+	//splitJobs - Allows you split the table by job. You can make different tables for each department by including their heads. Defaults to CE to make it look nice.
+	//widthPerColumn - Screen's width for every column.
+	//height - Screen's height.
+	var/current_job = "Assistant"
+
+	var/list/dat = list()
+	if(SSjob.occupations.len <= 0)
+		dat += "The job SSticker is not yet finished creating jobs, please try again later"
+		dat += "<center><a href='?_src_=prefs;preference=skills;task=close'>Done</a></center><br>" // Easier to press up here.
+	else
+		dat += "<center><b>Choose a skill setup</b></center><br>"
+		dat += "<div align='center'>select the job you would like to edit, then left click to select which level you want, making sure to keep within the allowed number of points.</div>"
+		dat += "<center><a href='?_src_=prefs;preference=skills;task=switch_job'>[current_job]</a>"
+		dat += "<a href='?_src_=prefs;preference=skills;task=close'>Done</a></center>"
+		dat += "<hr>"
+		
+		var/list/skilllist_data = GetPlayerTempSkilllist(current_job)
+
+//		dat += "<b>Skill points remaining:</b> [GetSkillBallance(current_job, skilllist_data)]</center><br>"
+
+		for(var/skill_id in GLOB.all_skill_ids)
+			var/list/skill_data = skilllist_data[skill_id]
+			dat += "<center><b>[skill_data["skill_name"]]</b><br>\
+			[skill_data["skill_desc"]]</center>"
+			dat += "<center> Skill Levels: "
+			dat += "<a href='?_src_=prefs;preference=skills;task=change_skill'>Unskilled</a>"
+			dat += "<a href='?_src_=prefs;preference=skills;task=change_skill'>Basic</a>"
+			dat += "<a href='?_src_=prefs;preference=skills;task=change_skill'>Trained</a>"
+			dat += "<a href='?_src_=prefs;preference=skills;task=change_skill'>Experienced</a>"
+			dat += "<a href='?_src_=prefs;preference=skills;task=change_skill'>Master</a></center><br>"
+
+		dat += "<br><center><a href='?_src_=prefs;preference=skills;task=reset'>Reset Skills</a></center>"
+
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Skill Preferences</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
+	popup.set_window_options("can_close=0")
+	popup.set_content(dat.Join())
+	popup.open(FALSE)
+
+/datum/preferences/proc/GetPlayerTempSkilllist(job)
+	var/list/skill_data = list()
+	for(var/V in GLOB.all_skill_paths)
+		var/datum/skill/S = new V
+		var/list/current_data = list()
+		message_admins(S.name)
+		message_admins(S.desc)
+		current_data["skill_name"] = S.name
+		current_data["skill_desc"] = S.desc
+		/*
+		var/list/skill_cost = list()
+		for(var/skill_level in GLOB.all_skill_levels)
+			skill_cost[skill_level] = S.get_cost(skill_level, job)
+		*/
+		current_data["skill_cost"] = list(	SKILLLEVEL_UNSKILLED = S.get_cost(SKILLLEVEL_UNSKILLED, job),
+											SKILLLEVEL_BASIC = S.get_cost(SKILLLEVEL_BASIC, job),
+											SKILLLEVEL_TRAINED = S.get_cost(SKILLLEVEL_TRAINED, job),
+											SKILLLEVEL_EXPERIENCED = S.get_cost(SKILLLEVEL_EXPERIENCED, job),
+											SKILLLEVEL_MASTER = S.get_cost(SKILLLEVEL_MASTER, job),
+										)
+		
+		skill_data[S.id] = current_data
+		qdel(S)
+	
+	message_admins(skill_data)
+	return skill_data
+/*
+/datum/preferences/proc/GetSkillBallance(job, var/list/skilllist_data)
+	for(var/V in GLOB.all_skill_ids)
+		skilllist_data[V]
+	*/
+
 /datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
 	return player_alt_titles.Find(job.title) > 0 \
 		? player_alt_titles[job.title] \
@@ -1272,6 +1353,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			else
 				SetChoices(user)
 		return 1
+	else if(href_list["preference"] == "skills")
+		switch(href_list["task"])
+			if("close")
+				user << browse(null, "window=mob_occupation")
+			else
+				SetSkills(user)
 
 	else if(href_list["preference"] == "trait")
 		switch(href_list["task"])

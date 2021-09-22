@@ -1,5 +1,6 @@
 /datum/skill_menu
 	var/datum/skillset/skillset
+	var/current_skill = SKILL_STRENGHT
 
 /datum/skill_menu/New(_skillset)
 	skillset = _skillset
@@ -19,6 +20,16 @@
 
 /datum/skill_menu/ui_data(mob/user)
 	var/list/data = list()
+	var/datum/mind/target = skillset.owner
+	data["name"] = target.name
+	data["job"] = target.assigned_role
+	data["job_title"] = target.role_alt_title
+	data["show_job_title"] = target.assigned_role == target.role_alt_title
+	if(ishuman(target.current))
+		var/mob/living/carbon/human/H = target.current
+		data["gender"] = H.gender
+		data["species"] = H.dna.species.name
+		data["age"] = H.age
 
 	var/atom/movable/AM = skillset.get_atom()
 	if(isliving(AM))
@@ -27,25 +38,34 @@
 		data["is_living"] = FALSE
 
 	data["skills"] = list()
-	for(var/skill_id in GLOB.all_skills)
-		var/result = skillset.get_skill(skill_id)
-		if(!result)
-			continue
-		var/datum/skill/skill = result
+	for(var/skill_id in GLOB.all_skill_ids)
 		var/list/S = list()
+		var/datum/skill/skill = skillset.get_skill(skill_id)
 
 		S["name"] = skill.name
 		S["id"] = skill.id
+		S["icon"] = skill.icon
 		S["desc"] = skill.desc
 		S["level"] = skill.current_level
 		S["experience"] = skill.experience
-		S["is_default"] = skill.difficulty
+		S["difficulty"] = skill.find_active_difficulty()
 		S["level_desc"] = skill.level_descriptions[skill.current_level]
+		S["selected"] = skill.id == current_skill
 
 		data["skills"] += list(S)
 
-		data["disable_skills"] = skillset.use_skills
-		data["experience_mod"] = skillset.experience_modifier
+		if(skill.id == current_skill)
+			data["current_name"] = skill.name
+			data["current_id"] = skill.id
+			data["current_icon"] = skill.icon
+			data["current_desc"] = skill.desc
+			data["current_level"] = skill.current_level
+			data["current_experience"] = skill.experience
+			data["current_difficulty"] = skill.find_active_difficulty()
+			data["current_level_desc"] = skill.level_descriptions[skill.current_level]
+
+	data["disable_skills"] = skillset.use_skills
+	data["skill_freeze"] = skillset.experience_modifier == 0
 
 	if(check_rights_for(user.client, R_ADMIN) || isobserver(AM))
 		data["admin_mode"] = TRUE
@@ -54,66 +74,37 @@
 /datum/skill_menu/ui_act(action, params)
 	if(..())
 		return
-/*
 	var/mob/user = usr
 	var/atom/movable/AM = skillset.get_atom()
 
-	var/language_name = params["language_name"]
-	var/datum/language/language_datum
-	for(var/lang in GLOB.all_languages)
-		var/datum/language/language = lang
-		if(language_name == initial(language.name))
-			language_datum = language
+	var/datum/skill/skill = skillset.get_skill(current_skill)
+	
 	var/is_admin = check_rights_for(user.client, R_ADMIN)
 
 	switch(action)
-		if("select_default")
-			if(language_datum && AM.can_speak_language(language_datum))
-				skillset.selected_language = language_datum
+		if("increase_level")
+			if(is_admin && !isnull(skill))
+				skill.adjust_level(1)
 				. = TRUE
-		if("grant_language")
-			if((is_admin || isobserver(AM)) && language_datum)
-				var/list/choices = list("Only Spoken", "Only Understood", "Both")
-				var/choice = input(user,"How do you want to add this language?","[language_datum]",null) as null|anything in choices
-				var/spoken = FALSE
-				var/understood = FALSE
-				switch(choice)
-					if("Only Spoken")
-						spoken = TRUE
-					if("Only Understood")
-						understood = TRUE
-					if("Both")
-						spoken = TRUE
-						understood = TRUE
-				skillset.grant_language(language_datum, understood, spoken)
-				if(is_admin)
-					message_admins("[key_name_admin(user)] granted the [language_name] language to [key_name_admin(AM)].")
-					log_admin("[key_name(user)] granted the language [language_name] to [key_name(AM)].")
+		if("decrease_level")
+			if(is_admin && !isnull(skill))
+				skill.adjust_level(-1)
 				. = TRUE
-		if("remove_language")
-			if((is_admin || isobserver(AM)) && language_datum)
-				var/list/choices = list("Only Spoken", "Only Understood", "Both")
-				var/choice = input(user,"Which part do you wish to remove?","[language_datum]",null) as null|anything in choices
-				var/spoken = FALSE
-				var/understood = FALSE
-				switch(choice)
-					if("Only Spoken")
-						spoken = TRUE
-					if("Only Understood")
-						understood = TRUE
-					if("Both")
-						spoken = TRUE
-						understood = TRUE
-				skillset.remove_language(language_datum, understood, spoken)
-				if(is_admin)
-					message_admins("[key_name_admin(user)] removed the [language_name] language to [key_name_admin(AM)].")
-					log_admin("[key_name(user)] removed the language [language_name] to [key_name(AM)].")
+		if("change_current_skill")
+			current_skill = params["id"]
+			message_admins(params["id"])
+			. = TRUE
+		if("toggle_use_skills")
+			if(is_admin)
+				skillset.use_skills = !skillset.use_skills
 				. = TRUE
-		if("toggle_omnitongue")
-			if(is_admin || isobserver(AM))
-				skillset.omnitongue = !skillset.omnitongue
-				if(is_admin)
-					message_admins("[key_name_admin(user)] [skillset.omnitongue ? "enabled" : "disabled"] the ability to speak all languages (that they know) of [key_name_admin(AM)].")
-					log_admin("[key_name(user)] [skillset.omnitongue ? "enabled" : "disabled"] the ability to speak all languages (that_they know) of [key_name(AM)].")
+		if("debug_variables_skillset")
+			if(is_admin)
+				var/client/C = user.client
+				C.debug_variables(skillset)
 				. = TRUE
-*/
+		if("debug_variables_skill")
+			if(is_admin)
+				var/client/C = user.client
+				C.debug_variables(skill)
+				. = TRUE

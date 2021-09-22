@@ -455,6 +455,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Load prefs
 
 	READ_FILE(S["job_preferences"], job_preferences)
+	READ_FILE(S["job_skills"], job_skills)
 
 	if(!job_preferences)
 		job_preferences = list()
@@ -601,6 +602,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["joblessrole"]		, joblessrole)
 	//Write prefs
 	WRITE_FILE(S["job_preferences"] , job_preferences)
+	WRITE_FILE(S["job_skills"], job_skills)
 
 	//Quirks
 	WRITE_FILE(S["all_quirks"]			, all_quirks)
