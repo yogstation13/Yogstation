@@ -103,3 +103,24 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 		return "[ckey] has been unlinked!"
 	else
 		return "Account not unlinked! Please contact a coder."
+
+/datum/world_topic/mfa_verify
+	keyword = "mfa_verify"
+	require_comms_key = TRUE
+
+/datum/world_topic/mfa_verify/Run(list/input)
+	var/ckey = input["ckey"]
+	var/ip = input["ip"]
+	var/cid = input["cid"]
+	
+	var/datum/DBQuery/mfa_addverify = SSdbcore.NewQuery(
+		"INSERT INTO [format_table_name("mfa_logins")] (ckey, ip, cid) VALUE (:ckey, INET_ATON(:address), :cid)",
+		list("ckey" = ckey, "address" = ip, "cid" = cid)
+	)
+
+	if(!mfa_addverify.Execute())
+		message_admins("Failed to add login info for [ckey], they will be unable to login")
+		return
+
+	var/datum/admins/admin = GLOB.deadmins[ckey] || GLOB.admin_datums[ckey]
+	admin.activate()

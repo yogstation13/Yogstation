@@ -29,6 +29,9 @@ GLOBAL_PROTECT(href_token)
 
 	var/deadmined
 
+	var/ip_cache
+	var/cid_cache
+
 
 /datum/admins/New(datum/admin_rank/R, ckey, force_active = FALSE, protected)
 	if(IsAdminAdvancedProcCall())
@@ -95,27 +98,60 @@ GLOBAL_PROTECT(href_token)
 		disassociate()
 		add_verb(C, /client/proc/readmin)
 
+/datum/admins/proc/check_mfa(client/C)
+	if(CONFIG_GET(flag/mfa_enabled))
+
+		if(cid_cache == C.computer_id && ip_cache == C.address)
+			return TRUE
+
+		var/datum/DBQuery/query_mfa_check = SSdbcore.NewQuery(
+			"SELECT COUNT(1) FROM [format_table_name("mfa_logins")] WHERE ckey = :ckey AND ip = INET_ATON(:address) AND cid = :cid",
+			list("ckey" = target, "address" = C.address, "cid" = C.computer_id)
+		)
+		if(query_mfa_check.Execute() && query_mfa_check.NextRow() && text2num(query_mfa_check.item[1]) > 0) // Check if they have connected before from this IP/CID
+			qdel(query_mfa_check)
+			return TRUE
+		else // Need to run MFA
+			qdel(query_mfa_check)
+			webhook_request_mfa(target, C.address, C.computer_id)
+			to_chat(C, span_userdanger("New connection detected, please confirm your identity in discord."))
+			message_admins("[target] is attempting to admin from a new connection, MFA request sent")
+
+			if(!deadmined)
+				deactivate()
+
+			return FALSE
+
+	return TRUE
+
 /datum/admins/proc/associate(client/C)
 	if(IsAdminAdvancedProcCall())
 		var/msg = " has tried to elevate permissions!"
 		message_admins("[key_name_admin(usr)][msg]")
 		log_admin("[key_name(usr)][msg]")
-		return
+		return FALSE
 
 	if(istype(C))
 		if(C.ckey != target)
 			var/msg = " has attempted to associate with [target]'s admin datum"
 			message_admins("[key_name_admin(C)][msg]")
 			log_admin("[key_name(C)][msg]")
-			return
+			return FALSE
+
+		if(!check_mfa(C))
+			return FALSE
+
 		if (deadmined)
 			activate()
 		owner = C
+		ip_cache = C.address
+		cid_cache = C.computer_id
 		owner.holder = src
 		owner.add_admin_verbs()	//TODO <--- todo what? the proc clearly exists and works since its the backbone to our entire admin system
 		remove_verb(owner, /client/proc/readmin)
 		owner.init_verbs() //re-initialize the verb list
 		GLOB.admins |= C
+		return TRUE
 
 /datum/admins/proc/disassociate()
 	if(IsAdminAdvancedProcCall())
