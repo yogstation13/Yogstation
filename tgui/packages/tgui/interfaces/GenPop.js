@@ -18,7 +18,7 @@ export const GenPop = (props, context) => {
             <Fragment>
               <Button
                 icon="cogs"
-                content={data.desired_crime ? data.desired_crime : "Enter A Crime"}
+                content="Enter a Custom Crime"
                 onClick={() => act("crime")} />
               <Button
                 icon="id-card-alt"
@@ -30,38 +30,46 @@ export const GenPop = (props, context) => {
                 color="average"
                 disabled={!data.canPrint}
                 onClick={() => act('print')} />
-
             </Fragment>
           )}>
-          <Button
-            icon="fast-backward"
-            onClick={() => act('time', { adjust: -120 })} />
-          <Button
-            icon="backward"
-            onClick={() => act('time', { adjust: -60 })} />
-          {' '}
-          {String(data.sentence / 60)} min:
-          {' '}
-          <Button
-            icon="forward"
-            onClick={() => act('time', { adjust: 60 })} />
-          <Button
-            icon="fast-forward"
-            onClick={() => act('time', { adjust: 120 })} />
-          <br />
-          <Button
-            icon="hourglass-start"
-            content="Short"
-            onClick={() => act('preset', { preset: 'short' })} />
-          <Button
-            icon="hourglass-start"
-            content="Medium"
-            onClick={() => act('preset', { preset: 'medium' })} />
-          <Button
-            icon="hourglass-start"
-            content="Long"
-            onClick={() => act('preset', { preset: 'long' })} />
-          <br />
+          <Flex>
+            <Flex.Item>
+              <Button
+                icon="fast-backward"
+                onClick={() => act('time', { adjust: -120 })} />
+              <Button
+                icon="backward"
+                onClick={() => act('time', { adjust: -60 })} />
+              {' '}
+              {String(data.sentence / 60)} min:
+              {' '}
+              <Button
+                icon="forward"
+                onClick={() => act('time', { adjust: 60 })} />
+              <Button
+                icon="fast-forward"
+                onClick={() => act('time', { adjust: 120 })} />
+              <br />
+              <Button
+                icon="hourglass-start"
+                content="Short"
+                onClick={() => act('preset', { preset: 'short' })} />
+              <Button
+                icon="hourglass-start"
+                content="Medium"
+                onClick={() => act('preset', { preset: 'medium' })} />
+              <Button
+                icon="hourglass-start"
+                content="Long"
+                onClick={() => act('preset', { preset: 'long' })} />
+              <br />
+            </Flex.Item>
+            <Flex.Item>
+              <Section title="Current Inputted Crimes" width="385px">
+                {data.desired_crime}
+              </Section>
+            </Flex.Item>
+          </Flex>
         </Section>
         <Section title="Crimes">
           <Flex direction="column">
