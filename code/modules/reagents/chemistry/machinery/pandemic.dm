@@ -195,10 +195,7 @@
 				var/new_name = html_encode(params["name"])
 				if(!new_name || ..())
 					return
-				if(length(new_name) < MAX_NAME_LEN)
-					A.AssignName(new_name)
-				else
-					to_chat(usr, span_warning("That name is too long!"))
+				A.AssignName(new_name)
 				. = TRUE
 		if("create_culture_bottle")
 			if (wait)
