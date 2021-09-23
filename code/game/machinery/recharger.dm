@@ -181,10 +181,10 @@
 	icon_state = icon_state_idle
 
 /obj/machinery/recharger/wallrecharger
-	name = "recharger"
+	name = "wall recharger"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "wrecharger0"
-	desc = "A charging dock for energy based weaponry."
+	desc = "A wall mounted charging dock for energy based weaponry."
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 400
