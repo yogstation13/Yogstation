@@ -6,9 +6,9 @@ name: Turdis
 # events but only for the master branch
 on:
   pull_request:
-    branches: master
+    branches: [master, beta]
   push:
-    branches: master
+    branches: [master, beta]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:

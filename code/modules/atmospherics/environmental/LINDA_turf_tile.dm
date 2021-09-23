@@ -238,6 +238,8 @@
 			if(throw_target && (get_dir(src, throw_target) & direction))
 				throw_turf = get_turf(throw_target)
 			var/throw_speed = clamp(round(move_force / 2000), 1, 10)
+			if(iscarbon(src))
+				throw_speed = min(throw_speed, 4)
 			throw_at(throw_turf, move_force / 2000, throw_speed)
 		else
 			step(src, direction)

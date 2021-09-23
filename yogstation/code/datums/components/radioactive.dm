@@ -14,9 +14,9 @@
 		if(RAD_AMOUNT_MEDIUM to RAD_AMOUNT_HIGH)
 			to_chat(user, "[master] seems to be glowing a bit.")
 		if(RAD_AMOUNT_HIGH to RAD_AMOUNT_EXTREME) //At this level the object can contaminate other objects
-			to_chat(user, "<span class='warning'>[master] hurts to look at.</span>")
+			to_chat(user, span_warning("[master] hurts to look at."))
 		if(RAD_AMOUNT_EXTREME to INFINITY)
-			to_chat(user, "<span class='warning'>[master] burns to look at!</span>")
+			to_chat(user, span_warning("[master] burns to look at!"))
 	
 #undef RAD_AMOUNT_LOW
 #undef RAD_AMOUNT_MEDIUM

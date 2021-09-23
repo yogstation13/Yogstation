@@ -76,9 +76,9 @@
 	message_admins("SubtleMessage Faction: [key_name_admin(src)] -> Faction [chosen] : [msg]")
 	var/text // The real HTML-and-text we will send to the SM'd.
 	if(chosen == "Clock Cultist")
-		text = "<span class='large_brass'>You hear a booming voice in your head... </span><span class='heavy_brass'>[msg]</span>"
+		text = "[span_large_brass("You hear a booming voice in your head... ")][span_heavy_brass("[msg]")]"
 	else if(chosen == "Cultist")
-		text = "<span class='cultlarge'>You hear a booming voice in your head... </span><span class='cult'>[msg]</span>"
+		text = "[span_cultlarge("You hear a booming voice in your head... ")][span_cult("[msg]")]"
 	else if(chosen == "swarmer")
 		text = "<i>You are receiving a message from the masters... <b>[msg]</i></b>"
 	else

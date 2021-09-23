@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "bone gel heals bones 50% faster when lying down instead of when standing"
