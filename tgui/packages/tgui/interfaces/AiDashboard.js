@@ -1,6 +1,6 @@
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Tabs, ProgressBar, Section, Divider, LabeledControls } from '../components';
+import { Box, Button, Tabs, ProgressBar, Section, Divider, LabeledControls, NumberInput } from '../components';
 import { Window } from '../layouts';
 
 export const AiDashboard = (props, context) => {
@@ -24,12 +24,11 @@ export const AiDashboard = (props, context) => {
                 average: [25, 50],
                 bad: [0, 25]
               }}
-
               value={(data.integrity + 100) * 0.5}
               maxValue={100}>{(data.integrity + 100) * 0.5}%</ProgressBar>
             System Integrity
             </LabeledControls.Item>
-            <LabeledControls.Item>
+            <LabeledControls.Item >
 
              <Box bold color="average">
               {data.location_name}
@@ -51,7 +50,7 @@ export const AiDashboard = (props, context) => {
               value={data.temperature}
 
               maxValue={750}>{data.temperature}K</ProgressBar>
-              Current Uplink Temperature
+              Uplink Temperature
             </LabeledControls.Item>
           </LabeledControls>
           <Divider />
@@ -63,9 +62,9 @@ export const AiDashboard = (props, context) => {
                   average: [250, 750],
                   bad: [750, Infinity]
                 }}
-              value={data.temperature}
+              value={data.current_cpu}
 
-              maxValue={750}>{data.temperature}K</ProgressBar>
+              maxValue={data.max_cpu}>{data.current_cpu ? data.current_cpu : 0} THz</ProgressBar>
               Utilized CPU Power
             </LabeledControls.Item>
             <LabeledControls.Item>
@@ -75,9 +74,9 @@ export const AiDashboard = (props, context) => {
                   average: [250, 750],
                   bad: [750, Infinity]
                 }}
-              value={data.temperature}
+              value={data.current_ram}
 
-              maxValue={750}>{data.temperature}K</ProgressBar>
+              maxValue={data.max_ram}>{data.current_ram ? data.current_ram : 0} TB</ProgressBar>
               Utilized RAM Capacity
             </LabeledControls.Item>
           </LabeledControls>
@@ -101,6 +100,27 @@ export const AiDashboard = (props, context) => {
             Cloud Resources
           </Tabs.Tab>
         </Tabs>
+        {tab === 1 && (
+          <Section title="Available Projects">
+              {data.available_projects && data.available_projects.map(project => (
+                <Section title={project.name} buttons={(
+                  <Fragment>
+                    <Box inline bold>Assigned CPU:&nbsp;</Box>
+                    <NumberInput value={0} minValue={0} maxValue={data.current_cpu}></NumberInput>
+                    <Box inline bold>&nbsp;THz</Box>
+                  </Fragment>
+                )}>
+                  <Box bold>Research Cost: {project.research_cost} THz</Box>
+                  <Box bold>RAM Requiremnt: {project.ram_required} TB</Box>
+                  <Box bold>Research Requirements: <Box inline>{project.research_requirements}</Box></Box>
+
+                  {project.description}
+
+                  <ProgressBar value={project.research_progress / project.research_cost}></ProgressBar>
+                </Section>
+              ))}
+          </Section>
+        )}
         {tab === 3 && (
             <Section title="Computing Resources">
               <Section title="CPU Resources">

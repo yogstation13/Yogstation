@@ -1,7 +1,10 @@
 /datum/ai_dashboard
 	var/mob/living/silicon/ai/owner
 
-	var/available_projects 
+	var/available_projects
+
+	var/cpu_usage
+	var/ram_usage 
 
 	var/completed_upgrades
 
@@ -11,8 +14,11 @@
 	if(!istype(new_owner))
 		qdel(src)
 	owner = new_owner
+	available_projects = list()
 	completed_upgrades = list()
 	running_upgrades = list()
+	cpu_usage = list()
+	ram_usage = list()
 
 	for(var/path in subtypesof(/datum/ai_project))
 		available_projects += new path()
@@ -44,15 +50,26 @@
 		return
 	var/list/data = list()
 
-	data["current_cpu"] = GLOB.ai_os.cpu_assigned[owner]
-	data["current_ram"] = GLOB.ai_os.ram_assigned[owner]
+	data["current_cpu"] = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.cpu_assigned[owner] : 0
+	data["current_ram"] = GLOB.ai_os.ram_assigned[owner] ? GLOB.ai_os.ram_assigned[owner] : 0
+
+	var/total_cpu_used = 0
+	for(var/I in cpu_usage)
+		total_cpu_used += cpu_usage[I]
+
+	var/total_ram_used = 0
+	for(var/I in ram_usage)
+		total_ram_used += ram_usage[I]
+
+	data["used_cpu"] = total_cpu_used
+	data["used_ram"] = total_ram_used
 
 	data["max_cpu"] = GLOB.ai_os.total_cpu
 	data["max_ram"] = GLOB.ai_os.total_ram
 
 	data["available_projects"] = list()
 
-	var/turf/current_turf = get_step(src, 0)
+	var/turf/current_turf = get_turf(owner)
 
 	data["integrity"] = owner.health
 
@@ -63,7 +80,8 @@
 	data["temperature"] = env.return_temperature()
 
 	for(var/datum/ai_project/AP as anything in available_projects)
-		data["available_projects"] += list(list("name" = AP.name, "description" = AP.description, "ram_required" = AP.ram_required, "available" = AP.available(), "research_requirements" = AP.research_requirements))
+		data["available_projects"] += list(list("name" = AP.name, "description" = AP.description, "ram_required" = AP.ram_required, "available" = AP.available(), "research_cost" = AP.research_cost, "research_progress" = AP.research_progress, 
+		"assigned_cpu" = cpu_usage[AP.name] ? cpu_usage[AP.name] : 0, "research_requirements" = AP.research_requirements))
 
 
 	data["completed_projects"] = list()
@@ -79,4 +97,13 @@
 		return
 
 	switch(action)
-		
+		if("haha")
+			return
+
+
+
+/datum/ai_dashboard/proc/has_completed_projects(project_name)
+	for(var/datum/ai_project/P as anything in completed_upgrades)
+		if(P.name == project_name)
+			return TRUE
+	return FALSE
