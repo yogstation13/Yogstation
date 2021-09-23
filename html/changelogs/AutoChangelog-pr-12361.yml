@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - bugfix: "Pandemic machines can no longer give infinitely long names to diseases"
