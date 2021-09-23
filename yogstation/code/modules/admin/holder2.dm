@@ -1,5 +1,5 @@
 /datum/admins/associate(client/C)
-	..()
+	. = ..()
 	if(istype(C))
 		C.mentor_datum_set(TRUE)
 

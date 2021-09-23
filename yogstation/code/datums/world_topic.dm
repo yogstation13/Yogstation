@@ -122,5 +122,7 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 		message_admins("Failed to add login info for [ckey], they will be unable to login")
 		return
 
+	qdel(mfa_addverify)
+
 	var/datum/admins/admin = GLOB.deadmins[ckey] || GLOB.admin_datums[ckey]
 	admin.activate()
