@@ -308,7 +308,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   KEY `idx_msg_type_ckey_time_odr` (`type`,`targetckey`,`timestamp`,`deleted`)
 ) ENGINE=InnoDB AUTO_INCREMENT=75629 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `mfa_logins`
+DROP TABLE IF EXISTS `mfa_logins`;
 CREATE TABLE IF NOT EXISTS `mfa_logins` (
 	`ckey` varchar(32) NOT NULL,
 	`ip` int(10) unsigned NOT NULL,

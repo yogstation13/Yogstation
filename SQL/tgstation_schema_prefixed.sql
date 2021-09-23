@@ -308,7 +308,7 @@ CREATE TABLE IF NOT EXISTS `SS13_messages` (
   KEY `idx_msg_type_ckey_time_odr` (`type`,`targetckey`,`timestamp`,`deleted`)
 ) ENGINE=InnoDB AUTO_INCREMENT=75629 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `SS13_mfa_logins`
+DROP TABLE IF EXISTS `SS13_mfa_logins`;
 CREATE TABLE IF NOT EXISTS `SS13_mfa_logins` (
 	`ckey` varchar(32) NOT NULL,
 	`ip` int(10) unsigned NOT NULL,
