@@ -173,7 +173,6 @@ export const GenPop = (props, context) => {
             );
           })}
         </Section>
-
       </Window.Content>
     </Window>
   );
