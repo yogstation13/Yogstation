@@ -37512,8 +37512,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/mob/living/simple_animal/bot/cleanbot{
-	name = "Scrubs, MD";
+/mob/living/simple_animal/bot/cleanbot/medical{
 	on = 0
 	},
 /turf/open/floor/plasteel/white,
