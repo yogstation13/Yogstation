@@ -1,4 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - tweak: "deadminning will no longer strip admins of donor access"

@@ -25,7 +25,7 @@
 /obj/structure/destructible/honkmother/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
-	send_to_playing_players("<span class='clown'>HONK!</span>")
+	send_to_playing_players(span_clown("HONK!"))
 	//mine now bitch
 	sound_to_playing_players('sound/effects/ratvar_reveal.ogg')
 	var/mutable_appearance/alert_overlay = mutable_appearance('icons/obj/items_and_weapons.dmi', "bike_horn")
@@ -41,7 +41,7 @@
 		return FALSE
 	var/type = pick(typesof(/mob/living/simple_animal/hostile/retaliate/clown))
 	var/mob/R = new type(get_turf(src))
-	R.visible_message("<span class='warning'>[R] awakens!</span>")
+	R.visible_message(span_warning("[R] awakens!"))
 	R.key = O.key
 
 //moves and turns things into BANANIUM

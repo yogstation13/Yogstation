@@ -82,7 +82,7 @@
 	if(.)
 		return
 	if(!allowed(usr))
-		to_chat(usr, "<span class='danger'>Access denied.</span>")
+		to_chat(usr, span_danger("Access denied."))
 		return
 
 	switch(action)
@@ -91,14 +91,14 @@
 				return
 			var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 			if(M.launch_status == ENDGAME_LAUNCHED)
-				to_chat(usr, "<span class='warning'>You've already escaped. Never going back to that place again!</span>")
+				to_chat(usr, span_warning("You've already escaped. Never going back to that place again!"))
 				return
 			if(no_destination_swap)
 				if(M.mode == SHUTTLE_RECHARGING)
-					to_chat(usr, "<span class='warning'>Shuttle engines are not ready for use.</span>")
+					to_chat(usr, span_warning("Shuttle engines are not ready for use."))
 					return
 				if(M.mode != SHUTTLE_IDLE)
-					to_chat(usr, "<span class='warning'>Shuttle already in transit.</span>")
+					to_chat(usr, span_warning("Shuttle already in transit."))
 					return
 			var/list/options = params2list(possible_destinations)
 			if(!(params["shuttle_id"] in options))
@@ -110,9 +110,9 @@
 					say("Shuttle departing. Please stand away from the doors.")
 					return TRUE
 				if(1)
-					to_chat(usr, "<span class='warning'>Invalid shuttle requested.</span>")
+					to_chat(usr, span_warning("Invalid shuttle requested."))
 				else
-					to_chat(usr, "<span class='warning'>Unable to comply.</span>")
+					to_chat(usr, span_warning("Unable to comply."))
 		if("set_destination")
 			var/target_destination = params["destination"]
 			if(target_destination)
@@ -120,10 +120,10 @@
 				return TRUE
 		if("request")
 			if(!COOLDOWN_FINISHED(src, request_cooldown))
-				to_chat(usr, "<span class='warning'>CentCom is still processing last authorization request!</span>")
+				to_chat(usr, span_warning("CentCom is still processing last authorization request!"))
 				return
 			COOLDOWN_START(src, request_cooldown, 1 MINUTES)
-			to_chat(usr, "<span class='notice'>Your request has been received by CentCom.</span>")
+			to_chat(usr, span_notice("Your request has been received by CentCom."))
 			to_chat(GLOB.admins, "<b>FERRY: <font color='#3d5bc3'>[ADMIN_LOOKUPFLW(usr)] (<A HREF='?_src_=holder;[HrefToken()];secrets=moveferry'>Move Ferry</a>)</b> is requesting to move the transport ferry to CentCom.</font>")
 			return TRUE
 
@@ -132,7 +132,7 @@
 		return
 	req_access = list()
 	obj_flags |= EMAGGED
-	to_chat(user, "<span class='notice'>You fried the consoles ID checking system.</span>")
+	to_chat(user, span_notice("You fried the consoles ID checking system."))
 
 /obj/machinery/computer/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(port && (shuttleId == initial(shuttleId) || override))
