@@ -44,3 +44,4 @@ One day while Andy was masturbating=BAN ME ADMINS!
 XEzwgBD=BAN ME ADMINS!
 
 \b(?:https?:\/\/)?(?:www|i)?\.?(?!yogstation\.net|github\.com)\w{4,128}\.\w{2}\.?\w{0,2}\b\S*=[Link Removed]
+[^ -ÿ]+=​

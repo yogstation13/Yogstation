@@ -37,10 +37,9 @@
 					var/list/listhaystack = haystack
 					return listhaystack.Find(needle, start, end)
 
-		else
-			if(istext(haystack))
-				if(length(haystack) >= end && start > 0)
-					return findtext(haystack, needle, start, end)
+		else if(istext(haystack))
+			if(length(haystack) >= end && start > 0)
+				return findtext(haystack, needle, start, end)
 
 //Returns a substring of the string
 /datum/n_function/default/substr
@@ -321,23 +320,28 @@
 	var/text = params.len >= 1 ? params[1] : null
 	var/find = params.len >= 2 ? params[2] : null
 	var/replacement = params.len >= 3 ? params[3] : null
-	if(istext(text) && istext(find) && istext(replacement))
-		var/find_len = length(find)
-		if(find_len < 1)	return text
-		. = ""
-		var/last_found = 1
-		var/count = 0
-		while(1)
-			count += 1
-			if(count >  SCRIPT_MAX_REPLACEMENTS_ALLOWED)
-				break
-			var/found = findtext(text, find, last_found, 0)
-			. += copytext(text, last_found, found)
-			if(found)
-				. += replacement
-				last_found = found + find_len
-				continue
-			return
+	if(!istext(text) || !istext(find) || !istext(replacement))
+		return
+	var/find_len = length(find)
+	if(!find_len)
+		return text
+
+	var/max_count
+	if(params.len >= 4 && isnum(params[4]))
+		max_count = min(params[4],SCRIPT_MAX_REPLACEMENTS_ALLOWED)
+	else
+		max_count = SCRIPT_MAX_REPLACEMENTS_ALLOWED
+
+	. = ""
+	var/last_found = 1
+	for(var/count = 0; count < max_count; ++count)
+		var/found = findtext(text, find, last_found, 0)
+		if(!found)
+			break
+		. += replacement
+		last_found = found + find_len
+	return . + copytext(text,last_found)
+			
 
 #undef SCRIPT_MAX_REPLACEMENTS_ALLOWED
 

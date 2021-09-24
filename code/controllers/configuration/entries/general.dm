@@ -20,6 +20,11 @@
 /datum/config_entry/flag/auto_deadmin_security
 	protection = CONFIG_ENTRY_LOCKED
 
+/datum/config_entry/flag/auto_deadmin_critical
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/number/auto_deadmin_threshold
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/string/servername	// server name (the name of the game window)
 
@@ -204,10 +209,10 @@
 	config_entry_value = "https://wiki.yogstation.net/" // yogs - Old Tickets
 
 /datum/config_entry/string/forumurl
-	config_entry_value = "https://forums.yogstation.net/index.php" // yogs - Old Tickets
+	config_entry_value = "https://forums.yogstation.net" // yogs - Old Tickets
 
 /datum/config_entry/string/rulesurl
-	config_entry_value = "https://forums.yogstation.net/index.php?pages/rules/" // yogs - Old Tickets
+	config_entry_value = "https://forums.yogstation.net/help/rules/" // yogs - Old Tickets
 
 /datum/config_entry/string/githuburl
 	config_entry_value = "https://github.com/yogstation13/Yogstation" // yogs - Old Tickets

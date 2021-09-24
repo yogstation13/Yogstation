@@ -96,19 +96,20 @@
 			var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [summoned.real_name]", ROLE_HERETIC, null, ROLE_HERETIC, 100,summoned)
 			user.SetImmobilized(0)
 			if(LAZYLEN(candidates) == 0)
-				to_chat(user,"<span class='warning'>No ghost could be found...</span>")
+				to_chat(user,span_warning("No ghost could be found..."))
 				qdel(summoned)
 				return FALSE
 			var/mob/living/carbon/human/H = user
 			H.physiology.brute_mod *= 0.5
 			H.physiology.burn_mod *= 0.5
 			var/datum/antagonist/heretic/heretic = user.mind.has_antag_datum(/datum/antagonist/heretic)
-			var/datum/eldritch_knowledge/flesh_grasp/ghoul1 = heretic.get_knowledge(/datum/eldritch_knowledge/flesh_grasp)
+			var/datum/eldritch_knowledge/base_flesh/ghoul1 = heretic.get_knowledge(/datum/eldritch_knowledge/base_flesh)
 			ghoul1.ghoul_amt *= 3
 			var/datum/eldritch_transmutation/voiceless_dead/ghoul2 = heretic.get_transmutation(/datum/eldritch_transmutation/voiceless_dead)
 			ghoul2.max_amt *= 3
 			var/mob/dead/observer/ghost_candidate = pick(candidates)
 			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the dark, for Vassal of Arms has ascended! The Terror of the Night has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
+			set_security_level(SEC_LEVEL_GAMMA)
 			log_game("[key_name_admin(ghost_candidate)] has taken control of ([key_name_admin(summoned)]).")
 			summoned.ghostize(FALSE)
 			summoned.key = ghost_candidate.key
@@ -126,6 +127,7 @@
 					user.mind.spell_list.Remove(S)
 					qdel(S)
 			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the dark, for King of Arms has ascended! Our Lord of the Night has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
+			set_security_level(SEC_LEVEL_GAMMA)
 			log_game("[user.real_name] ascended as [summoned.real_name]")
 			var/mob/living/carbon/carbon_user = user
 			var/datum/antagonist/heretic/ascension = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)
