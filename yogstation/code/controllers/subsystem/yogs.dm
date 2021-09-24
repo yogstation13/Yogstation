@@ -15,6 +15,14 @@ SUBSYSTEM_DEF(Yogs)
 /datum/controller/subsystem/Yogs/Initialize()
 	mentortickets = list()
 
+	//JOAO
+	if(fexists(EXTOOLS)){
+		var/result = call(EXTOOLS,"init_joao")();
+		if(result != "ok") {CRASH(result);}
+	} else {
+		CRASH("byond-extools.dll does not exist!");
+	}
+
 	//PRIZEPOOL MODIFIER THING
 	GLOB.arcade_prize_pool[/obj/item/grenade/plastic/glitterbomb/pink] = 1
 	GLOB.arcade_prize_pool[/obj/item/toy/plush/goatplushie/angry] = 2

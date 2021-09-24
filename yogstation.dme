@@ -3570,6 +3570,7 @@
 #include "yogstation\code\modules\ruins\lavaland_ruin_code.dm"
 #include "yogstation\code\modules\scripting\Errors.dm"
 #include "yogstation\code\modules\scripting\IDE.dm"
+#include "yogstation\code\modules\scripting\Joao\joao.dm"
 #include "yogstation\code\modules\scripting\Options.dm"
 #include "yogstation\code\modules\scripting\stack.dm"
 #include "yogstation\code\modules\scripting\AST\AST Nodes.dm"
