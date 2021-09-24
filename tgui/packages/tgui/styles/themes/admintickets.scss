@@ -1,0 +1,30 @@
+@use '../base.scss';
+@use 'sass:meta';
+
+.theme-admintickets {
+  .Layout__content {
+    background-image: none;
+    font-size: base.em(15px);
+  }
+
+  @include meta.load-css('../components/Input.scss');
+
+  .replybox {
+    margin-top: 10px;
+    line-height: 2;
+
+    .Input__input {
+      top: base.em(3px)
+    }
+  }
+
+  .myticket {
+    .Section__titleText {
+      color: rgb(224, 213, 60);
+    }
+  }
+
+  .ticket_section {
+    font-size: base.em(14px);
+  }
+}

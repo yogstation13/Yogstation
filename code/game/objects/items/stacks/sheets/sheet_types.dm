@@ -149,7 +149,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	return ..()
 
 /obj/item/stack/sheet/metal/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] begins whacking [user.p_them()]self over the head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins whacking [user.p_them()]self over the head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
 /*
@@ -219,10 +219,10 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("winged wooden chair", /obj/structure/chair/wood/wings, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("wood floor tile", /obj/item/stack/tile/wood, 1, 4, 20), \
 	new/datum/stack_recipe("wood table frame", /obj/structure/table_frame/wood, 2, time = 10), \
-	new/datum/stack_recipe("wooden chair", /obj/structure/chair/wood/, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("wooden barricade", /obj/structure/barricade/wooden, 5, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("wooden bucket", /obj/item/reagent_containers/glass/bucket/wooden, 3, time = 10),\
 	new/datum/stack_recipe("wooden buckler", /obj/item/shield/riot/buckler, 20, time = 40), \
+	new/datum/stack_recipe("wooden chair", /obj/structure/chair/wood/, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("wooden crate", /obj/structure/closet/crate/wooden, 6, time = 50, one_per_turf = TRUE, on_floor = TRUE),\
 	new/datum/stack_recipe("wooden door", /obj/structure/mineral_door/wood, 10, time = 20, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("wooden sandals", /obj/item/clothing/shoes/sandal, 1), \
@@ -468,9 +468,23 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 		var/atom/droploc = drop_location()
 		if(use(1))
 			playsound(I, 'sound/items/bikehorn.ogg', 50, 1, -1)
-			to_chat(user, "<span class='notice'>You stamp the cardboard! It's a clown box! Honk!</span>")
+			to_chat(user, span_notice("You stamp the cardboard! It's a clown box! Honk!"))
 			if (amount >= 0)
 				new/obj/item/storage/box/clown(droploc) //bugfix
+
+	if(istype(I, /obj/item/stamp/chameleon) && !istype(loc, /obj/item/storage))
+		var/atom/droploc = drop_location()
+		if(use(1))
+			to_chat(user, span_notice("You stamp the cardboard in a sinister way"))
+			if (amount >= 0)
+				new/obj/item/storage/box/syndie_kit(droploc)
+	
+	if(istype(I, /obj/item/stamp/syndiround) && !istype(loc, /obj/item/storage))
+		var/atom/droploc = drop_location()
+		if(use(1))
+			to_chat(user, span_notice("You stamp the cardboard in a sinister way"))
+			if (amount >= 0)
+				new/obj/item/storage/box/syndie_kit(droploc)
 
 	else if(I.is_hot())
 		fire_act(I.is_hot())
@@ -509,12 +523,12 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list ( \
 
 /obj/item/stack/sheet/runed_metal/attack_self(mob/living/user)
 	if(!iscultist(user))
-		to_chat(user, "<span class='warning'>Only one with forbidden knowledge could hope to work this metal...</span>")
+		to_chat(user, span_warning("Only one with forbidden knowledge could hope to work this metal..."))
 		return
 	var/turf/T = get_turf(user) //we may have moved. adjust as needed...
 	var/area/A = get_area(user)
 	if((!is_station_level(T.z) && !is_mining_level(T.z) && !is_reebe(T.z)) || (A && !A.blob_allowed))
-		to_chat(user, "<span class='warning'>The veil is not weak enough here.</span>")
+		to_chat(user, span_warning("The veil is not weak enough here."))
 		return FALSE
 	return ..()
 
@@ -577,7 +591,7 @@ GLOBAL_LIST_INIT(brass_recipes, list ( \
 
 /obj/item/stack/tile/brass/attack_self(mob/living/user)
 	if(!is_servant_of_ratvar(user))
-		to_chat(user, "<span class='danger'>[src] seems far too fragile and rigid to build with.</span>") //haha that's because it's actually replicant alloy you DUMMY
+		to_chat(user, span_danger("[src] seems far too fragile and rigid to build with.")) //haha that's because it's actually replicant alloy you DUMMY
 		return
 	..()
 
@@ -626,7 +640,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 
 /obj/item/stack/tile/bronze/attack_self(mob/living/user)
 	if(is_servant_of_ratvar(user)) //still lets them build with it, just gives a message
-		to_chat(user, "<span class='danger'>Wha... what is this cheap imitation crap? This isn't brass at all!</span>")
+		to_chat(user, span_danger("Wha... what is this cheap imitation crap? This isn't brass at all!"))
 	..()
 
 /obj/item/stack/tile/bronze/Initialize(mapload, new_amount, merge = TRUE)
@@ -759,3 +773,25 @@ GLOBAL_LIST_INIT(cheese_recipes, list (
 /obj/item/stack/sheet/cheese/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.cheese_recipes
 	. = ..()
+
+/obj/item/stack/sheet/ruinous_metal
+	name = "ruinous metal"
+	desc = "Metal with a strange aura surrounding it, along with various inscriptions etched onto the surface.."
+	icon_state = "sheet-runed"
+	item_state = "sheet-rune"
+	icon = 'icons/obj/stack_objects.dmi'
+	singular_name = "ruinous metal sheet"
+	sheettype = null
+	max_amount = 20
+	novariants = TRUE
+	grind_results = list(/datum/reagent/iron = 5, /datum/reagent/blood = 15)
+	merge_type = /obj/item/stack/sheet/ruinous_metal
+
+GLOBAL_LIST_INIT(ruinous_metal_recipes, list (
+	new/datum/stack_recipe("holy fountain", /obj/structure/holyfountain, 3, one_per_turf = 1, on_floor = 1, time = 40), \
+	new/datum/stack_recipe("altar of the gods", /obj/structure/altar_of_gods, 6, one_per_turf = 1, on_floor = 1, time = 40 )))
+
+/obj/item/stack/sheet/ruinous_metal/Initialize(mapload, new_amount, merge = TRUE)
+	recipes = GLOB.ruinous_metal_recipes
+	. = ..()
+

@@ -35,6 +35,8 @@
 	//Sellection screen color
 	var/selection_color = "#ffffff"
 
+	//List of alternate titles, if any
+	var/list/alt_titles
 
 	//If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/req_admin_notify
@@ -239,13 +241,13 @@
 
 	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
 		box = null
-
-	if((DIGITIGRADE in H.dna.species.species_traits) && (IS_COMMAND(H))) // command gets snowflake shoes too.
-		shoes = alt_shoes_c
-	else if((DIGITIGRADE in H.dna.species.species_traits) && (IS_SECURITY(H))) // Special shoes for sec, roll first to avoid defaulting
-		shoes = alt_shoes_s
-	else if(DIGITIGRADE in H.dna.species.species_traits) // Check to assign default digitigrade shoes
-		shoes = alt_shoes
+	if(DIGITIGRADE in H.dna.species.species_traits)
+		if(IS_COMMAND(H)) // command gets snowflake shoes too.
+			shoes = alt_shoes_c
+		else if(IS_SECURITY(H) || find_job(H) == "Brig Physician") // Special shoes for sec and brig phys, roll first to avoid defaulting
+			shoes = alt_shoes_s
+		else if(find_job(H) == "Shaft Miner" || find_job(H) == "Mining Medic" || IS_ENGINEERING(H)) // Check to assign default digitigrade shoes to special cases
+			shoes = alt_shoes
 
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -260,7 +262,12 @@
 		C.access = J.get_access()
 		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
 		C.registered_name = H.real_name
-		C.assignment = J.title
+		if(H.mind?.role_alt_title)
+			C.assignment = H.mind.role_alt_title
+		else
+			C.assignment = J.title
+		if(H.mind?.assigned_role)
+			C.originalassignment = H.mind.assigned_role
 		if(H.age)
 			C.registered_age = H.age
 		C.update_label()
@@ -275,7 +282,10 @@
 	var/obj/item/pda/PDA = H.get_item_by_slot(pda_slot)
 	if(istype(PDA))
 		PDA.owner = H.real_name
-		PDA.ownjob = J.title
+		if(H.mind?.role_alt_title)
+			PDA.ownjob = H.mind.role_alt_title
+		else
+			PDA.ownjob = J.title
 		PDA.update_label()
 
 /datum/outfit/job/get_chameleon_disguise_info()

@@ -25,7 +25,7 @@
 	)
 	var/list/chem_buttons	//Used when emagged to scramble which chem is used, eg: mutadone -> morphine
 	var/scrambled_chems = FALSE //Are chem buttons scrambled? used as a warning
-	var/enter_message = "<span class='notice'><b>You feel cool air surround you. You go numb as your senses turn inward.</b></span>"
+	var/enter_message = span_notice("<b>You feel cool air surround you. You go numb as your senses turn inward.</b>")
 	payment_department = ACCOUNT_MED
 	fair_market_price = 5
 
@@ -57,8 +57,8 @@
 		icon_state = initial(icon_state)
 
 /obj/machinery/sleeper/container_resist(mob/living/user)
-	visible_message("<span class='notice'>[occupant] emerges from [src]!</span>",
-		"<span class='notice'>You climb out of [src]!</span>")
+	visible_message(span_notice("[occupant] emerges from [src]!"),
+		span_notice("You climb out of [src]!"))
 	open_machine()
 
 /obj/machinery/sleeper/Exited(atom/movable/user)
@@ -103,10 +103,10 @@
 	if(..())
 		return
 	if(occupant)
-		to_chat(user, "<span class='warning'>[src] is currently occupied!</span>")
+		to_chat(user, span_warning("[src] is currently occupied!"))
 		return
 	if(state_open)
-		to_chat(user, "<span class='warning'>[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!</span>")
+		to_chat(user, span_warning("[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!"))
 		return
 	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]-o", initial(icon_state), I))
 		return
@@ -128,7 +128,7 @@
 	. = !(state_open || panel_open || (flags_1 & NODECONSTRUCT_1)) && I.tool_behaviour == TOOL_CROWBAR
 	if(.)
 		I.play_tool_sound(src, 50)
-		visible_message("<span class='notice'>[usr] pries open [src].</span>", "<span class='notice'>You pry open [src].</span>")
+		visible_message(span_notice("[usr] pries open [src]."), span_notice("You pry open [src]."))
 		open_machine()
 
 /obj/machinery/sleeper/ui_state(mob/user)
@@ -152,7 +152,7 @@
 
 /obj/machinery/sleeper/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Alt-click [src] to [state_open ? "close" : "open"] it.</span>"
+	. += span_notice("Alt-click [src] to [state_open ? "close" : "open"] it.")
 
 /obj/machinery/sleeper/process()
 	..()
@@ -161,15 +161,16 @@
 /obj/machinery/sleeper/nap_violation(mob/violator)
 	open_machine()
 
-/obj/machinery/sleeper/ui_data()
+/obj/machinery/sleeper/ui_data(mob/user)
 	var/list/data = list()
+	data["knowledge"] = IS_MEDICAL(user)
 	data["occupied"] = occupant ? 1 : 0
 	data["open"] = state_open
 
 	data["chems"] = list()
 	for(var/chem in available_chems)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
-		data["chems"] += list(list("name" = R.name, "id" = R.type, "allowed" = chem_allowed(chem)))
+		data["chems"] += list(list("name" = R.name, "id" = R.type, "allowed" = chem_allowed(chem), "desc" = R.description))
 
 	data["occupant"] = list()
 	var/mob/living/mob_occupant = occupant
@@ -224,11 +225,11 @@
 			if(inject_chem(chem, usr))
 				. = TRUE
 				if(scrambled_chems && prob(5))
-					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+					to_chat(usr, span_warning("Chemical system re-route detected, results may not be as expected!"))
 
 /obj/machinery/sleeper/emag_act(mob/user)
 	scramble_chem_buttons()
-	to_chat(user, "<span class='warning'>You scramble the sleeper's user interface!</span>")
+	to_chat(user, span_warning("You scramble the sleeper's user interface!"))
 
 /obj/machinery/sleeper/proc/inject_chem(chem, mob/user)
 	if((chem in available_chems) && chem_allowed(chem))

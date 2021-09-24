@@ -16,7 +16,7 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		if(L.anti_magic_check())
-			L.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			L.visible_message(span_warning("[src] vanishes on contact with [target]!"))
 			qdel(src)
 			return FALSE
 
@@ -48,9 +48,9 @@
 			C.regenerate_organs()
 		if(target.revive(full_heal = 1))
 			target.grab_ghost(force = TRUE) // even suicides
-			to_chat(target, "<span class='notice'>You rise with a start, you're alive!!!</span>")
+			to_chat(target, span_notice("You rise with a start, you're alive!!!"))
 		else if(target.stat != DEAD)
-			to_chat(target, "<span class='notice'>You feel great!</span>")
+			to_chat(target, span_notice("You feel great!"))
 
 /obj/item/projectile/magic/teleport
 	name = "bolt of teleportation"
@@ -267,7 +267,7 @@
 
 	M.wabbajack_act(new_mob)
 
-	to_chat(new_mob, "<span class='warning'>Your form morphs into that of a [randomize].</span>")
+	to_chat(new_mob, span_warning("Your form morphs into that of a [randomize]."))
 
 	var/poly_msg = get_policy(POLICY_POLYMORPH)
 	if(poly_msg)
@@ -287,34 +287,21 @@
 
 /obj/item/projectile/magic/cheese/on_hit(mob/living/M)
 	. = ..()
+	cheeseify(M, FALSE)
+
+/proc/cheeseify(mob/living/M, forced)
 	if(!istype(M) || M.stat == DEAD || M.notransform || (GODMODE & M.status_flags))
 		return
 	if(istype(M, /mob/living/simple_animal/cheese))
 		M.revive()
-		return	
-	M.notransform = TRUE
-	M.mobility_flags = NONE
-	M.icon = null
-	M.cut_overlays()
-	M.invisibility = INVISIBILITY_ABSTRACT
-
-	if(iscyborg(M))
-		var/mob/living/silicon/robot/Robot = M
-		if(Robot.mmi)
-			qdel(Robot.mmi)
-		Robot.notify_ai(NEW_BORG)
-	else
-		for(var/obj/item/W in contents)
-			if(!M.dropItemToGround(W))
-				qdel(W)
-	var/mob/living/B
-
-	B = new /mob/living/simple_animal/cheese(M.loc)
+		return
+	var/mob/living/simple_animal/cheese/B = new(M.loc)
 	if(!B)
 		return
-
+	B.stored_mob = M
+	M.forceMove(B)	
 	M.log_message("became [B.real_name]", LOG_ATTACK, color="orange")
-	B.desc = "What appears to be [M.real_name] reformed into a wheel of delicious parmesan... recovery is unlikely."
+	B.desc = "What appears to be [M.real_name] reformed into a wheel of delicious parmesan..."
 	B.name = "[M.name] Parmesan"
 	B.real_name = "[M.name] Parmesan"
 	B.stat = CONSCIOUS
@@ -328,8 +315,23 @@
 		to_chat(B, poly_msg)
 	M.transfer_observers_to(B)
 	to_chat(B, "<span class='big bold'>You are a cheesewheel!</span><b> You're a harmless wheel of parmesan that is remarkably tasty. Careful of people that want to eat you.</b>")
-	qdel(M)
+	if(!forced)
+		addtimer(CALLBACK(B, .proc/uncheeseify), 1 MINUTES)
 	return B
+
+/proc/uncheeseify(mob/living/simple_animal/cheese/cheese)
+	if(cheese.stored_mob)
+		var/mob/living/L = cheese.stored_mob
+		var/mob/living/simple_animal/cheese/C = cheese
+		L.forceMove(get_turf(C))
+		C.stored_mob = null
+		to_chat(L, "<span class='big bold'>You have fallen out of the cheese wheel!</b>")
+		if(L.mind)
+			C.mind.transfer_to(L)
+		else
+			L.key = C.key
+		C.transfer_observers_to(L)
+		C.death()
 
 /obj/item/projectile/magic/animate
 	name = "bolt of animation"
@@ -360,7 +362,7 @@
 				if(L.mind)
 					L.mind.transfer_to(S)
 					if(owner)
-						to_chat(S, "<span class='userdanger'>You are an animate statue. You cannot move when monitored, but are nearly invincible and deadly when unobserved! Do not harm [owner], your creator.</span>")
+						to_chat(S, span_userdanger("You are an animate statue. You cannot move when monitored, but are nearly invincible and deadly when unobserved! Do not harm [owner], your creator."))
 				P.forceMove(S)
 				return
 		else
@@ -512,7 +514,7 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		if(L.anti_magic_check() || !firer)
-			L.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			L.visible_message(span_warning("[src] vanishes on contact with [target]!"))
 			return BULLET_ACT_BLOCK
 		var/atom/throw_target = get_edge_target_turf(L, get_dir(L, firer))
 		L.throw_at(throw_target, 200, 4)
@@ -536,13 +538,13 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		if(L.anti_magic_check() || !L.mind || !L.mind.hasSoul)
-			L.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			L.visible_message(span_warning("[src] vanishes on contact with [target]!"))
 			return BULLET_ACT_BLOCK
-		to_chat(L, "<span class='danger'>Your body feels drained and there is a burning pain in your chest.</span>")
+		to_chat(L, span_danger("Your body feels drained and there is a burning pain in your chest."))
 		L.maxHealth -= 20
 		L.health = min(L.health, L.maxHealth)
 		if(L.maxHealth <= 0)
-			to_chat(L, "<span class='userdanger'>Your weakened soul is completely consumed by the [src]!</span>")
+			to_chat(L, span_userdanger("Your weakened soul is completely consumed by the [src]!"))
 			L.mind.hasSoul = FALSE
 		for(var/obj/effect/proc_holder/spell/spell in L.mind.spell_list)
 			spell.charge_counter = spell.charge_max
@@ -559,9 +561,9 @@
 		var/mob/living/carbon/M = target
 		for(var/x in M.get_traumas())//checks to see if the victim is already going through possession
 			if(istype(x, /datum/brain_trauma/special/imaginary_friend/trapped_owner))
-				M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+				M.visible_message(span_warning("[src] vanishes on contact with [target]!"))
 				return BULLET_ACT_BLOCK
-		to_chat(M, "<span class='warning'>Your mind has been opened to possession!</span>")
+		to_chat(M, span_warning("Your mind has been opened to possession!"))
 		possession_test(M)
 		return BULLET_ACT_HIT
 
@@ -590,7 +592,7 @@
 		trauma.friend.Show()
 		trauma.friend_initialized = TRUE
 	else
-		to_chat(M, "<span class='notice'>Your mind has managed to go unnoticed in the spirit world.</span>")
+		to_chat(M, span_notice("Your mind has managed to go unnoticed in the spirit world."))
 		qdel(trauma)
 
 /obj/item/projectile/magic/aoe
@@ -710,7 +712,7 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
 		X.Paralyze(30)
-		X.visible_message("<span class='warning'>Tentacle wraps around [target]!</span>")
+		X.visible_message(span_warning("Tentacle wraps around [target]!"))
 		X.adjustBruteLoss(6)
 		new /obj/effect/temp_visual/goliath_tentacle/original(target)
 

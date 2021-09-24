@@ -47,6 +47,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/show_credits = TRUE
 	var/uses_glasses_colour = 0
 
+	var/list/player_alt_titles = new()
+
 	///Whether emotes will be displayed on runechat. Requires chat_on_map to have effect. Boolean.
 	var/see_rc_emotes = TRUE
 
@@ -111,7 +113,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/uplink_spawn_loc = UPLINK_PDA
 
-	var/skillcape = 1
+	var/skillcape = 1 /// Old skillcape value
+	var/skillcape_id = "None" /// Typepath of selected skillcape, null for none
 
 	var/map = 1
 	var/flare = 1
@@ -126,6 +129,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/chat_on_map = TRUE
 	var/max_chat_length = CHAT_MESSAGE_MAX_LENGTH
 	var/see_chat_non_mob = TRUE
+	/// If we have persistent scars enabled
+	var/persistent_scars = TRUE
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -165,7 +170,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		return
 
 	if(!SSjob || (SSjob.occupations.len <= 0))
-		to_chat(user, "<span class='notice'>The job SSticker is not yet finished creating jobs, please try again later</span>")
+		to_chat(user, span_notice("The job SSticker is not yet finished creating jobs, please try again later"))
 		return
 
 	update_preview_icon()
@@ -284,6 +289,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<b>Backpack:</b><BR><a href ='?_src_=prefs;preference=bag;task=input'>[backbag]</a>"
 			dat += "<a href ='?_src_=prefs;preference=bag;task=lock'>[random_locks["bag"] ? "Unlock" : "Lock"]</a><BR>"
+			if((HAS_FLESH in pref_species.species_traits) || (HAS_BONE in pref_species.species_traits))
+				dat += "<BR><b>Temporal Scarring:</b><BR><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? "Enabled" : "Disabled"]</A>"
+				dat += "<a href='?_src_=prefs;preference=clear_scars'>Clear scar slots</A><BR>"
 			dat += "<b>Uplink Spawn Location:</b><BR><a href ='?_src_=prefs;preference=uplink_loc;task=input'>[uplink_spawn_loc]</a><BR></td>"
 
 			var/use_skintones = pref_species.use_skintones
@@ -597,7 +605,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
-			dat += "<b>Skillcape:</b> <a href='?_src_=prefs;task=input;preference=skillcape'>[(skillcape != 1) ? "[GLOB.skillcapes[skillcape]]" : "none"] </a><br>"
+			dat += "<b>Skillcape:</b> <a href='?_src_=prefs;task=input;preference=skillcape'>[(skillcape_id != "None") ? "[GLOB.skillcapes[skillcape_id]]" : "None"] </a><br>"
 			dat += "<b>Flare:</b> <a href='?_src_=prefs;task=input;preference=flare'>[flare ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Map:</b> <a href='?_src_=prefs;task=input;preference=map'>[map ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Preferred Box Bar:</b> <a href='?_src_=prefs;task=input;preference=bar_choice'>[bar_choice]</a><br>"
@@ -793,6 +801,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						else
 							dat += "<b>As Silicon:</b> FORCED<br>"
 
+						if(!CONFIG_GET(flag/auto_deadmin_critical))
+							dat += "<b>As Critical Roles:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_critical'>[(toggles & DEADMIN_POSITION_CRITICAL)?"Deadmin":"Keep Admin"]</a><br>"
+						else
+							dat += "<b>As Critical Roles:</b> FORCED<br>"
+
 				dat += "</td>"
 			dat += "</tr></table>"
 		// yogs start - Donor features
@@ -820,7 +833,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Purrbation (Humans only)</b> "
 				dat += "<a href='?_src_=prefs;preference=donor;task=purrbation'>[purrbation ? "Yes" : "No"]</a><BR>"
 			else
-				dat += "<b><a href='http://www.yogstation.net/index.php?do=donate'>Donate here</b>"
+				dat += "<b><a href='http://www.yogstation.net/donate'>Donate here</b>"
 			dat += "</tr></table>"
 		// yogs end
 
@@ -976,10 +989,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				HTML += "<font color=blue>[rank]</font></td><td><font color=blue><b> \[QUIET\]</b></font></td></tr>"
 				continue
 			// yogs end
-			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
-				HTML += "<b><span class='dark'>[rank]</span></b>"
+
+			var/rank_display
+			if(job.alt_titles)
+				rank_display = "<a class='white' href='?_src_=prefs;preference=job;task=alt_title;job=[rank]'>[GetPlayerAltTitle(job)]</a>"
 			else
-				HTML += "<span class='dark'>[rank]</span>"
+				rank_display = span_dark("[rank]")
+
+			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
+				HTML += "<b>[rank_display]</b>"
+			else
+				HTML += rank_display
 
 			HTML += "</td><td width='40%'>"
 
@@ -1042,6 +1062,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	popup.set_content(HTML)
 	popup.open(FALSE)
 
+/datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
+	return player_alt_titles.Find(job.title) > 0 \
+		? player_alt_titles[job.title] \
+		: job.title
+
+/datum/preferences/proc/SetPlayerAltTitle(datum/job/job, new_title)
+	// remove existing entry
+	if(player_alt_titles.Find(job.title))
+		player_alt_titles -= job.title
+	// add one if it's not default
+	if(job.title != new_title)
+		player_alt_titles[job.title] = new_title
+
 /datum/preferences/proc/SetJobPreferenceLevel(datum/job/job, level)
 	if (!job)
 		return FALSE
@@ -1067,7 +1100,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		return
 
 	if (!isnum(desiredLvl))
-		to_chat(user, "<span class='danger'>UpdateJobPreference - desired level was not a number. Please notify coders!</span>")
+		to_chat(user, span_danger("UpdateJobPreference - desired level was not a number. Please notify coders!"))
 		ShowChoices(user)
 		return
 
@@ -1097,7 +1130,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/proc/SetQuirks(mob/user)
 	if(!SSquirks)
-		to_chat(user, "<span class='danger'>The quirk subsystem is still initializing! Try again in a minute.</span>")
+		to_chat(user, span_danger("The quirk subsystem is still initializing! Try again in a minute."))
 		return
 
 	var/list/dat = list()
@@ -1189,7 +1222,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("quiet_round")
 					yogtoggles ^= QUIET_ROUND
 				if("pda")
-					donor_pda = donor_pda % ++GLOB.donor_pdas.len
+					donor_pda = (donor_pda % GLOB.donor_pdas.len) + 1
 				if("purrbation")
 					purrbation = !purrbation
 		else
@@ -1209,7 +1242,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/expires = "This is a permanent ban."
 			if(ban_details["expiration_time"])
 				expires = " The ban is for [DisplayTimeText(text2num(ban_details["duration"]) MINUTES)] and expires on [ban_details["expiration_time"]] (server time)."
-			to_chat(user, "<span class='danger'>You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [href_list["bancheck"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]</span>")
+			to_chat(user, span_danger("You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [href_list["bancheck"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]"))
 			return
 	if(href_list["preference"] == "job")
 		switch(href_list["task"])
@@ -1231,6 +1264,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(BERANDOMJOB)
 						joblessrole = RETURNTOLOBBY
 				SetChoices(user)
+			if ("alt_title")
+				var/datum/job/job = SSjob.GetJob(href_list["job"])
+				if (job)
+					var/choices = list(job.title) + job.alt_titles
+					var/choice = input("Pick a title for [job.title].", "Character Generation", GetPlayerAltTitle(job)) as anything in choices | null
+					if(choice)
+						SetPlayerAltTitle(job, choice)
+						SetChoices(user)
 			if("setJobLevel")
 				UpdateJobPreference(user, href_list["text"], text2num(href_list["level"]))
 			else
@@ -1250,21 +1291,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/list/L = V
 					for(var/Q in all_quirks)
 						if((quirk in L) && (Q in L) && !(Q == quirk)) //two quirks have lined up in the list of the list of quirks that conflict with each other, so return (see quirks.dm for more details)
-							to_chat(user, "<span class='danger'>[quirk] is incompatible with [Q].</span>")
+							to_chat(user, span_danger("[quirk] is incompatible with [Q]."))
 							return
 				var/value = SSquirks.quirk_points[quirk]
 				var/balance = GetQuirkBalance()
 				if(quirk in all_quirks)
 					if(balance + value < 0)
-						to_chat(user, "<span class='warning'>Refunding this would cause you to go below your balance!</span>")
+						to_chat(user, span_warning("Refunding this would cause you to go below your balance!"))
 						return
 					all_quirks -= quirk
 				else
 					if(GetPositiveQuirkCount() >= MAX_QUIRKS)
-						to_chat(user, "<span class='warning'>You can't have more than [MAX_QUIRKS] positive quirks!</span>")
+						to_chat(user, span_warning("You can't have more than [MAX_QUIRKS] positive quirks!"))
 						return
 					if(balance - value < 0)
-						to_chat(user, "<span class='warning'>You don't have enough balance to gain this quirk!</span>")
+						to_chat(user, span_warning("You don't have enough balance to gain this quirk!"))
 						return
 					all_quirks += quirk
 				SetQuirks(user)
@@ -1506,7 +1547,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						else if((MUTCOLORS_PARTSONLY in pref_species.species_traits) || ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright, but only if they affect the skin
 							features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
 						else
-							to_chat(user, "<span class='danger'>Invalid color. Your color is not bright enough.</span>")
+							to_chat(user, span_danger("Invalid color. Your color is not bright enough."))
 
 				if("ethcolor")
 					var/new_etherealcolor = input(user, "Choose your ethereal color", "Character Preference") as null|anything in GLOB.color_list_ethereal
@@ -1689,33 +1730,37 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						pda_color = pickedPDAColor
 				if("skillcape")
 					var/list/selectablecapes = list()
-					for(var/datum/skillcape/A in GLOB.skillcapes)
+					var/max_eligable = TRUE
+					for(var/id in GLOB.skillcapes)
+						var/datum/skillcape/A = GLOB.skillcapes[id]
+						if(!A.job)
+							continue
 						if(user.client.prefs.exp[A.job] >= A.minutes)
-							if(!A.special)
-								selectablecapes += A
-						if(A.special) //check for special capes
-							if(A.capetype == "max")
-								if(selectablecapes.len >= 72) //72 is the amount of job skillcapes, including trimmed.
-									selectablecapes += A
+							selectablecapes += A
+						else
+							max_eligable = FALSE
+					if(max_eligable)
+						selectablecapes += GLOB.skillcapes["max"]
+
 					if(!selectablecapes.len)
 						to_chat(user, "You have no availiable skillcapes!")
 						return
-					var/pickedskillcape = input(user, "Choose your Skillcape.", "Character Preference", skillcape) as null|anything in selectablecapes
-					var/count = 1
-					for(var/A in GLOB.skillcapes)
-						if(A == pickedskillcape)
-							break
-						count++
-					if(pickedskillcape)
-						skillcape = count //im saving it as an int
+					var/pickedskillcape = input(user, "Choose your Skillcape.", "Character Preference") as null|anything in (list("None") + selectablecapes)
+					if(!pickedskillcape)
+						return
+					if(pickedskillcape == "None")
+						skillcape_id = "None"
+					else
+						var/datum/skillcape/cape = pickedskillcape
+						skillcape_id = cape.id
 				if("flare")
 					flare = !flare
 				if("map")
 					map = !map
 				if("bar_choice")
-					var/list/selectablebars = GLOB.potential_box_bars
-					selectablebars += "Random"
-					var/pickedbar = input(user, "Choose your bar.", "Character Preference", bar_choice) as null|anything in GLOB.potential_box_bars
+					var/pickedbar = input(user, "Choose your bar.", "Character Preference", bar_choice) as null|anything in (GLOB.potential_box_bars|"Random")
+					if(!pickedbar)
+						return
 					bar_choice = pickedbar
 				if ("max_chat_length")
 					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
@@ -1788,6 +1833,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					toggles ^= DEADMIN_POSITION_SECURITY
 				if("toggle_deadmin_silicon")
 					toggles ^= DEADMIN_POSITION_SILICON
+				if("toggle_deadmin_critical")
+					toggles ^= DEADMIN_POSITION_CRITICAL
 
 
 				if("be_special")
@@ -1802,6 +1849,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("all")
 					be_random_body = !be_random_body
+
+				if("persistent_scars")
+					persistent_scars = !persistent_scars
+
+				if("clear_scars")
+					var/path = "data/player_saves/[user.ckey[1]]/[user.ckey]/scars.sav"
+					fdel(path)
+					to_chat(user, span_notice("All scar slots cleared."))
 
 				if("hear_midis")
 					toggles ^= SOUND_MIDI

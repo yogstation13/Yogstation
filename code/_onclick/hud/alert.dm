@@ -227,7 +227,7 @@ or something covering your eyes."
 
 /obj/screen/alert/mind_control/Click()
 	var/mob/living/L = usr
-	to_chat(L, "<span class='mind_control'>[command]</span>")
+	to_chat(L, "[span_mind_control("[command]")]")
 
 /obj/screen/alert/drunk
 	name = "Drunk"
@@ -292,7 +292,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	RegisterSignal(taker, COMSIG_MOVABLE_MOVED, /obj/screen/alert/give/.proc/removeAlert)
 
 /obj/screen/alert/give/proc/removeAlert()
-	to_chat(mob_viewer, "<span class='warning'>You moved out of range of [giver]!</span>")
+	to_chat(mob_viewer, span_warning("You moved out of range of [giver]!"))
 	mob_viewer.clear_alert("[giver]")
 
 /obj/screen/alert/give/Click(location, control, params)
@@ -450,7 +450,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 
 /obj/screen/alert/clockwork/infodump/MouseEntered(location,control,params)
 	if(GLOB.ratvar_awakens)
-		desc = "<font size=3><b>CHETR<br>NYY<br>HAGEHUGF-NAQ-UBABE<br>RATVAR.</b></font>"
+		desc = "<font size=3><b>CHETR<br>NYY<br>HAGEHGUF-NAQ-UBABE<br>RATVAR.</b></font>"
 	else
 		var/servants = 0
 		var/list/textlist = list()
@@ -680,7 +680,7 @@ so as to remain in compliance with the most up-to-date laws."
 		return
 	var/paramslist = params2list(params)
 	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff so we'll cheat
-		to_chat(usr, "<span class='boldnotice'>[name]</span> - <span class='info'>[desc]</span>")
+		to_chat(usr, "[span_boldnotice("[name]")] - [span_info("[desc]")]")
 		return
 	if(master)
 		return usr.client.Click(master, location, control, params)
