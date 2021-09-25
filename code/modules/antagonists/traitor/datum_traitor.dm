@@ -139,6 +139,14 @@
 			if(minorObjective)
 				add_objective(minorObjective)
 		if(prob(50) && length(GLOB.admins) > 0)
+			var/FunAdmin = FALSE
+			for(var/client/A in GLOB.admins)
+				if(check_rights_for(X,R_FUN))
+					FunAdmin = TRUE
+			
+			if(!FunAdmin)
+				return
+
 			//Give them a custom objective
 			var/datum/objective/usercustom/custom_objective = new
 			add_objective(custom_objective)
