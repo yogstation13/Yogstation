@@ -1287,3 +1287,9 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/area/target_area = get_area(target)
 
 	return (istype(user_area, dropoff) && istype(target_area, dropoff))
+
+/datum/objective/usercustom
+	name = "custom"
+
+/datum/objective/usercustom/check_completion()
+	return TRUE

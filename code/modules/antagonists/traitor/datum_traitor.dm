@@ -138,6 +138,27 @@
 					minorObjective = null
 			if(minorObjective)
 				add_objective(minorObjective)
+		if(prob(50) && length(GLOB.admins) > 0)
+			//Give them a custom objective
+			var/datum/objective/usercustom/custom_objective = new
+			add_objective(custom_objective)
+			var/custom_request = input(owner, "Enter your custom objective:", "Custom Objective Request", "Nothing.")
+			var/client/C = owner.current.client
+			if(!C)
+				return
+
+			var/R = ""
+			if(C && C.holder && C.holder.fakekey)
+				R = "(<a href='?priv_msg=[C.findStealthKey()]'>REPLY</a>)"
+			else
+				R = "(<a href='?priv_msg=[ckey]'>REPLY</a>)"
+			
+			if(custom_request != "Nothing." && custom_request != "")
+				for(var/client/X in GLOB.admins)
+					if(check_rights_for(X,R_FUN))
+						SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
+						to_chat(GLOB.admins, "<b>CUSTOM OBJECTIVE: <font color='#e04414'>[ADMIN_LOOKUPFLW(owner)] [R]</b> is requesting the custom objective: [custom_request]</font>")
+
 		if(!(locate(/datum/objective/escape) in objectives))
 			var/datum/objective/escape/escape_objective = new
 			escape_objective.owner = owner
@@ -365,32 +386,22 @@
 		var/count = 1
 		for(var/datum/objective/objective in objectives)
 			if(objective.check_completion())
-				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [span_greentext("Success!")]"
+				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text]"
 			else
-				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [span_redtext("Fail.")]"
+				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text]"
 				traitorwin = FALSE
 			count++
 
 	if(uplink_true)
 		var/uplink_text = "(used [TC_uses] TC) [purchases]"
 		if(TC_uses==0 && traitorwin)
-			var/static/icon/badass = icon('icons/badass.dmi', "badass")
-			uplink_text += "<BIG>[icon2html(badass, world)]</BIG>"
 			SSachievements.unlock_achievement(/datum/achievement/badass, owner.current.client)
 		result += uplink_text
 
 	result += objectives_text
 
-	var/special_role_text = lowertext(name)
-
 	if (contractor_hub)
 		result += contractor_round_end()
-
-	if(traitorwin)
-		result += span_greentext("The [special_role_text] was successful!")
-	else
-		result += span_redtext("The [special_role_text] has failed!")
-		SEND_SOUND(owner.current, 'sound/ambience/ambifailure.ogg')
 
 	return result.Join("<br>")
 
