@@ -143,6 +143,7 @@
 			for(var/client/A in GLOB.admins)
 				if(check_rights_for(X,R_FUN))
 					FunAdmin = TRUE
+					break
 			
 			if(!FunAdmin)
 				return
