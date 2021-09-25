@@ -222,6 +222,7 @@
  * Fireaxe
  */
 /obj/item/twohanded/fireaxe  // DEM AXES MAN, marker -Agouri
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "fireaxe0"
 	lefthand_file = 'icons/mob/inhands/weapons/axes_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/axes_righthand.dmi'
@@ -585,6 +586,7 @@
 /obj/item/twohanded/required/chainsaw
 	name = "chainsaw"
 	desc = "A versatile power tool. Useful for limbing trees and delimbing humans."
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "chainsaw_off"
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
@@ -861,6 +863,7 @@
 /obj/item/twohanded/binoculars
 	name = "binoculars"
 	desc = "Used for long-distance surveillance."
+	icon = 'icons/obj/tools.dmi'
 	item_state = "binoculars"
 	icon_state = "binoculars"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
