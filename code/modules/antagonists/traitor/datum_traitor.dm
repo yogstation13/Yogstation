@@ -151,7 +151,7 @@
 			if(C && C.holder && C.holder.fakekey)
 				R = "(<a href='?priv_msg=[C.findStealthKey()]'>REPLY</a>)"
 			else
-				R = "(<a href='?priv_msg=[ckey]'>REPLY</a>)"
+				R = "(<a href='?priv_msg=[C.ckey]'>REPLY</a>)"
 			
 			if(custom_request != "Nothing." && custom_request != "")
 				for(var/client/X in GLOB.admins)
