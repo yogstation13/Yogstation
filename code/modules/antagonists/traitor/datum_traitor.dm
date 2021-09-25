@@ -141,7 +141,7 @@
 		if(prob(50) && length(GLOB.admins) > 0)
 			var/FunAdmin = FALSE
 			for(var/client/A in GLOB.admins)
-				if(check_rights_for(X,R_FUN))
+				if(check_rights_for(A,R_FUN))
 					FunAdmin = TRUE
 					break
 			
