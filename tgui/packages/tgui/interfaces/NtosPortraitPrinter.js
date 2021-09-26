@@ -1,3 +1,4 @@
+import { Fragment } from 'inferno';
 import { resolveAsset } from '../assets';
 import { useBackend, useLocalState } from '../backend';
 import { Button, NoticeBox, Section, Flex, Tabs, Box, Input } from '../components';
@@ -135,47 +136,49 @@ export const NtosPortraitPrinter = (props, context) => {
               </Flex.Item>
             </Fragment>
           ) || (
-            <Fragment>
-              <Flex.Item grow={2}>
-                <Section fill>
-                  <Flex
-                    height="100%"
-                    direction="column">
-                    <Flex.Item align="center" basis="10%">
-                      <Input
-                        value={searchterms}
-                        width="300px"
-                        placeholder="Search.."
-                        onInput={(e, value) => setSearchText(value)} />
-                    </Flex.Item>
-                      {tab2list.map((painting, index) => {
-                        return {
-                          painting: painting,
-                          index: index
-                        }
-                      }).filter(painting => {
-                        const searchTerm = searchterms.toLowerCase();
-                        const searchableString = String(painting.painting.title).toLowerCase();
-                        return (searchterms.length < 2 ? (
-                          null
-                        ) : (
-                          (searchableString.match(new RegExp(searchterms, "i")))
-                        ));
-                      }).map((painting) => (
-                        <Flex.Item mb={0.5}>
-                        <Button onClick={() => {
+            <Flex.Item grow={2}>
+              <Section fill>
+                <Flex
+                  height="100%"
+                  direction="column">
+                  <Flex.Item align="center" basis="10%">
+                    <Input
+                      value={searchterms}
+                      width="300px"
+                      placeholder="Search.."
+                      onInput={(e, value) => setSearchText(value)} />
+                  </Flex.Item>
+                  {tab2list.map((painting, index) => {
+                    return {
+                      painting: painting,
+                      index: index,
+                    };
+                  }).filter(painting => {
+                    const searchTerm = searchterms.toLowerCase();
+                    const searchableString = String(painting.painting.title).toLowerCase();
+                    return (searchterms.length < 2 ? (
+                      null
+                    ) : (
+                      (searchableString.match(new RegExp(searchterms, "i")))
+                    ));
+                  }).map(painting => (
+                    <Flex.Item mb={0.5} key={painting.index}>
+                      <Button
+                        onClick={() => {
                           setListIndex(painting.index);
                           setTabIndex(0);
                         }}
                         width="100%">
-                          <Box bold inline>{painting.painting.title}</Box> (by {painting.painting.ckey})
-                        </Button>
-                        </Flex.Item>
-                      ))}
-                  </Flex>
-                </Section>
-              </Flex.Item>
-            </Fragment>
+                        <Box bold inline>
+                          {painting.painting.title}
+                        </Box>
+                        (by {painting.painting.ckey})
+                      </Button>
+                    </Flex.Item>
+                  ))}
+                </Flex>
+              </Section>
+            </Flex.Item>
           )}
         </Flex>
       </NtosWindow.Content>
