@@ -18,7 +18,12 @@
 /obj/machinery/turnstile/brig
 	name = "Brig turnstile"
 	//Seccies and brig phys may always pass, either way.
-	req_one_access = list(ACCESS_BRIG)
+	req_one_access = list(ACCESS_SEC_DOORS)
+
+/obj/machinery/turnstile/genpop
+	name = "Cell turnstile"
+	//used for the actually cells
+	req_one_access = list(ACCESS_BRIG, ACCESS_PRISONER)
 	
 /obj/machinery/turnstile/Initialize()
 	. = ..()
