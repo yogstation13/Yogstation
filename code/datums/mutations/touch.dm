@@ -33,6 +33,7 @@
 
 /obj/item/melee/touch_attack/shock/afterattack(atom/target, mob/living/carbon/user, proximity)
 	if((!proximity && !far) || !can_see(target) || get_dist(target, user) > 5)
+		user.visible_message("<span class='notice'>[user]'s hand does something funny.</span>")
 		return
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
