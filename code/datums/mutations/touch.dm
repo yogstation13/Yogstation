@@ -32,7 +32,7 @@
 	var/far = FALSE
 
 /obj/item/melee/touch_attack/shock/afterattack(atom/target, mob/living/carbon/user, proximity)
-	if(!proximity && !far)
+	if((!proximity && !far) || !can_see(target) || get_dist(target, user) > 5)
 		return
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
