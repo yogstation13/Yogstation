@@ -155,7 +155,7 @@ export const NtosPortraitPrinter = (props, context) => {
                     };
                   }).filter(painting => {
                     const searchTerm = searchterms.toLowerCase();
-                    const searchableString = String(painting.painting.title).toLowerCase();
+                    const searchableString = String(painting.painting.title + " " + painting.painting.ckey).toLowerCase();
                     return (searchterms.length < 2 ? (
                       null
                     ) : (
