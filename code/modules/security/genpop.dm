@@ -330,7 +330,7 @@ GLOBAL_LIST_EMPTY(prisoner_ids)
 			R.fields["criminal"] = "Discharged"
 
 		if(isliving(loc))
-			to_chat(loc, "<span class='boldnotice'>You have served your sentence! You may now exit prison through the turnstiles and collect your belongings.</span>")
+			to_chat(loc, "<big><span class='boldnotice'>You have served your sentence! You may now exit prison through the turnstiles and collect your belongings.</span>")
 		return PROCESS_KILL
 
 
