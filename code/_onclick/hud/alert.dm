@@ -268,6 +268,11 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	desc = "You're on fire. Click to stop, drop and roll to put the fire out or move to a vacuum area."
 	icon_state = "fire"
 
+/obj/screen/alert/brainwashed
+	name = "Brainwashed"
+	desc = "You've been brainwashed! Check your notes to see your objective."
+	icon_state = "hypnosis"
+
 /obj/screen/alert/fire/Click()
 	var/mob/living/L = usr
 	if(!istype(L) || !L.can_resist())

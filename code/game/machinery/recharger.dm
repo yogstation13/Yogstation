@@ -165,6 +165,8 @@
 /obj/machinery/recharger/update_icon(using_power = 0, scan)	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		icon_state = icon_state_off
+		pixel_x = 0
+		pixel_y = 0
 		return
 	if(scan)
 		icon_state = icon_state_idle
@@ -189,7 +191,7 @@
 	idle_power_usage = 5
 	active_power_usage = 400
 
-	icon_state_off = "rechargeroff"
+	icon_state_off = "wrechargeroff"
 	icon_state_idle = "wrecharger0"
 	icon_state_charging = "wrecharger1"
 	icon_state_recharged = "wrecharger2"

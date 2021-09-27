@@ -1,0 +1,5 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - tweak: "showers on default temp stabilize temperature of occupants"
+  - tweak: "showers on boiling do not harm people with heat adaptation"

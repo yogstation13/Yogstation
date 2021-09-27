@@ -1,0 +1,5 @@
+author: "JamieD1"
+delete-after: true 
+changes: 
+  - bugfix: "fixed weird icon behaviour with wall rechargers"
+  - tweak: "Lowered amount of wall rechargers in brig"
