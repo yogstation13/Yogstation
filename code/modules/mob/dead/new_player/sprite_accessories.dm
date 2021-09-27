@@ -1691,7 +1691,7 @@
 
 /datum/sprite_accessory/horns/angler
 	name = "Angler"
-	icon_state = "angler"
+	icon_state = "doodlybopper" //TRUE NAME
 
 /datum/sprite_accessory/horns/tiny
 	name = "Tiny"
