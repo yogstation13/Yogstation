@@ -117,7 +117,8 @@
 		list(name="Rioting", tooltip="To partake in an unauthorized and disruptive assembly of crewmen that refuse to disperse.",colour="average",icon="users",sentence="5"),
 		list(name="Creating a workplace hazard", tooltip="To endanger the crew or station through negligent or irresponsible, but not deliberately malicious, actions.",colour="average",icon="bomb",sentence="5"),
 		list(name="Breaking and Entry", tooltip="Forced entry to areas where the subject does not have access to. This counts for general areas, and breaking into restricted areas is a more serious crime.",colour="average",icon="door-closed",sentence="5"),
-		list(name="Insubordination", tooltip="To disobey a lawful direct order from one's superior officer.",colour="average",icon="user-minus",sentence="5")
+		list(name="Insubordination", tooltip="To disobey a lawful direct order from one's superior officer.",colour="average",icon="user-minus",sentence="5"),
+		list(name="Animal Cruelty", tooltip="To kill an animal for reasons other than research, food purposes, self-defense purposes, or as a resolution to animal overpopulation.",colour="average",icon="user-minus",sentence="5")
 	)
 	var/static/list/crimesmajor = list(
 		list(name="Assault, Officer", tooltip="To use physical force against a Department Head or member of Security without the apparent intent to kill them.",colour="bad",icon="gavel",sentence="7"),
@@ -317,7 +318,7 @@ GLOBAL_LIST_EMPTY(prisoner_ids)
 		. += "<span class='warning'>It appears its holder was convicted of: <b>[crime]</b></span>"
 
 /obj/item/card/id/genpop/process()
-	served_time ++ //Maybe 2?
+	served_time+=2 //set to 2 to offset lag, before each second was roughly one half real second
 
 	if (served_time >= sentence) //FREEDOM!
 		assignment = "Ex-Convict"
@@ -330,7 +331,7 @@ GLOBAL_LIST_EMPTY(prisoner_ids)
 			R.fields["criminal"] = "Discharged"
 
 		if(isliving(loc))
-			to_chat(loc, "<big><span class='boldnotice'>You have served your sentence! You may now exit prison through the turnstiles and collect your belongings.</span>")
+			to_chat(loc, "<big><span class='boldnotice'>You have served your sentence! You may now exit prison through the turnstiles and collect your belongings by slotting the ID into your locker.</span>")
 		return PROCESS_KILL
 
 
