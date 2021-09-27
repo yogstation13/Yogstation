@@ -128,9 +128,15 @@
 	else if(current_temperature == SHOWER_BOILING)
 		if(iscarbon(L))
 			C.adjust_bodytemperature(35, 0, 500)
-		L.adjustFireLoss(5)
+		if(!HAS_TRAIT(L, TRAIT_RESISTHEAT))
+			L.adjustFireLoss(5)
 		to_chat(L, span_danger("[src] is searing!"))
-
+	else
+		if(iscarbon(L))
+			if(C.bodytemperature < 288) // 15C
+				C.adjust_bodytemperature(10)
+			if(C.bodytemperature > 298) // 25C
+				C.adjust_bodytemperature(-10)
 
 /obj/effect/mist
 	name = "mist"
