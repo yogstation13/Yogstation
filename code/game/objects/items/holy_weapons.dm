@@ -310,6 +310,7 @@
 	return TRUE
 
 /obj/item/nullrod/godhand
+	icon = 'icons/obj/wizard.dmi'
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
@@ -687,6 +688,7 @@
 /obj/item/nullrod/armblade
 	name = "dark blessing"
 	desc = "Particularly twisted deities grant gifts of dubious value."
+	icon = 'icons/obj/changeling.dmi'
 	icon_state = "arm_blade"
 	item_state = "arm_blade"
 	tool_behaviour = TOOL_MINING
