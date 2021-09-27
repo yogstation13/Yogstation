@@ -1,4 +1,0 @@
-author: "N3D6"
-delete-after: true 
-changes: 
-  - bugfix: "Directional firelocks can now be built on the same tile as another"
