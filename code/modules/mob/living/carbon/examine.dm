@@ -10,7 +10,7 @@
 	var/list/obscured = check_obscured_slots()
 
 	if (handcuffed)
-		. += "<span class='warning'>[t_He] [t_is] [icon2html(handcuffed, user)] handcuffed!</span>"
+		. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] handcuffed!")
 	if (head)
 		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head. "
 	if(wear_mask && !(SLOT_WEAR_MASK in obscured))
@@ -28,16 +28,16 @@
 	if (stat == DEAD)
 		appears_dead = 1
 		if(getorgan(/obj/item/organ/brain))
-			. += "<span class='deadsay'>[t_He] [t_is] limp and unresponsive, with no signs of life.</span>"
+			. += span_deadsay("[t_He] [t_is] limp and unresponsive, with no signs of life.")
 		else if(get_bodypart(BODY_ZONE_HEAD))
-			. += "<span class='deadsay'>It appears that [t_his] brain is missing...</span>"
+			. += span_deadsay("It appears that [t_his] brain is missing...")
 
 	var/list/missing = get_missing_limbs()
 	for(var/t in missing)
 		if(t==BODY_ZONE_HEAD)
-			. += "<span class='deadsay'><B>[t_His] [parse_zone(t)] is missing!</B></span>"
+			. += span_deadsay("<B>[t_His] [parse_zone(t)] is missing!</B>")
 			continue
-		. += "<span class='warning'><B>[t_His] [parse_zone(t)] is missing!</B></span>"
+		. += span_warning("<B>[t_His] [parse_zone(t)] is missing!</B>")
 
 	var/list/msg = list("<span class='warning'>")
 	var/temp = getBruteLoss()
@@ -148,7 +148,7 @@
 	if(!visible_scars)
 		return ..()
 
-	var/msg = list("<span class='notice'><i>You examine [src] closer, and note the following...</i></span>")
+	var/msg = list(span_notice("<i>You examine [src] closer, and note the following...</i>"))
 	for(var/i in visible_scars)
 		var/datum/scar/S = i
 		var/scar_text = S.get_examine_description(user)

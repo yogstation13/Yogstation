@@ -317,7 +317,7 @@
 				pain_chance_current *= 0.2
 			if(prob(pain_chance_current))
 				BP.receive_damage(I.w_class*I.embedding.embedded_pain_multiplier, wound_bonus = CANT_WOUND)
-				to_chat(src, "<span class='userdanger'>[I] embedded in your [BP.name] hurts!</span>")
+				to_chat(src, span_userdanger("[I] embedded in your [BP.name] hurts!"))
 
 			var/fall_chance_current = I.embedding.embedded_fall_chance
 			if(mobility_flags & ~MOBILITY_STAND)
@@ -327,7 +327,7 @@
 				BP.receive_damage(I.w_class*I.embedding.embedded_fall_pain_multiplier, wound_bonus = CANT_WOUND) // can wound
 				BP.embedded_objects -= I
 				I.forceMove(drop_location())
-				visible_message("<span class='danger'>[I] falls out of [name]'s [BP.name]!</span>","<span class='userdanger'>[I] falls out of your [BP.name]!</span>")
+				visible_message(span_danger("[I] falls out of [name]'s [BP.name]!"),span_userdanger("[I] falls out of your [BP.name]!"))
 				if(!has_embedded_objects())
 					clear_alert("embeddedobject")
 					SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")

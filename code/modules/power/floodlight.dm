@@ -11,27 +11,27 @@
 /obj/structure/floodlight_frame/attackby(obj/item/O, mob/user, params)
 	if(O.tool_behaviour == TOOL_WRENCH && (state == FLOODLIGHT_NEEDS_WRENCHING))
 		O.play_tool_sound(src, 50)
-		to_chat(user, "<span class='notice'>You secure [src].</span>")
+		to_chat(user, span_notice("You secure [src]."))
 		anchored = TRUE
 		state = FLOODLIGHT_NEEDS_WIRES
 		desc = "A bare metal frame looking vaguely like a floodlight. Requires wiring."
 	else if(istype(O, /obj/item/stack/cable_coil) && (state == FLOODLIGHT_NEEDS_WIRES))
 		var/obj/item/stack/S = O
 		if(S.use(5))
-			to_chat(user, "<span class='notice'>You wire [src].</span>")
+			to_chat(user, span_notice("You wire [src]."))
 			name = "wired [name]"
 			desc = "A bare metal frame looking vaguely like a floodlight. Requires securing with a screwdriver."
 			icon_state = "floodlight_c2"
 			state = FLOODLIGHT_NEEDS_SECURING
 	else if(istype(O, /obj/item/light/tube) && (state == FLOODLIGHT_NEEDS_LIGHTS))
 		if(user.transferItemToLoc(O))
-			to_chat(user, "<span class='notice'>You put lights in [src].</span>")
+			to_chat(user, span_notice("You put lights in [src]."))
 			var/obj/machinery/power/floodlight/light = new(src.loc)
 			light.connect_to_network()
 			qdel(src)
 	else if(O.tool_behaviour == TOOL_SCREWDRIVER && (state == FLOODLIGHT_NEEDS_SECURING))
 		O.play_tool_sound(src, 50)
-		to_chat(user, "<span class='notice'>You fasten the wiring and electronics in [src].</span>")
+		to_chat(user, span_notice("You fasten the wiring and electronics in [src]."))
 		name = "secured [name]"
 		desc = "A bare metal frame that looks like a floodlight. Requires light tubes."
 		icon_state = "floodlight_c3"
@@ -64,7 +64,7 @@
 	if((val < 1) || (val > light_setting_list.len))
 		return
 	active_power_usage = light_setting_list[val]
-	if(!avail(active_power_usage))
+	if(active_power_usage && !avail(active_power_usage))
 		return change_setting(val - 1)
 	setting = val
 	set_light(light_setting_list[val])
