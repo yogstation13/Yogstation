@@ -161,8 +161,7 @@
 
 /datum/objective/assassinate/jealous/update_explanation_text()
 	..()
-	old = target
-	target = find_coworker(old)
+	old = find_coworker(target)
 	if(target && target.current && old)
 		explanation_text = "Murder [target.name], [old]'s coworker."
 	else
