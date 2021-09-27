@@ -221,3 +221,6 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 extools.dll
 tgui/.pnp.js
 tgui/.yarn/*
+
+# Common build tooling
+!/tools/build

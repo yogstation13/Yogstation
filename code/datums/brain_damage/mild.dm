@@ -95,10 +95,10 @@
 			if(6 to 9)
 				owner.slurring += 30
 			if(10)
-				to_chat(owner, "<span class='notice'>You forget for a moment what you were doing.</span>")
+				to_chat(owner, span_notice("You forget for a moment what you were doing."))
 				owner.Stun(20)
 			if(11)
-				to_chat(owner, "<span class='warning'>You faint.</span>")
+				to_chat(owner, span_warning("You faint."))
 				owner.Unconscious(80)
 
 	..()
@@ -135,7 +135,7 @@
 	if(owner.m_intent == MOVE_INTENT_RUN)
 		fall_chance += 2
 	if(prob(fall_chance) && (owner.mobility_flags & MOBILITY_STAND))
-		to_chat(owner, "<span class='warning'>Your leg gives out!</span>")
+		to_chat(owner, span_warning("Your leg gives out!"))
 		owner.Paralyze(35)
 
 	else if(owner.get_active_held_item())
@@ -143,10 +143,10 @@
 		var/obj/item/I = owner.get_active_held_item()
 		drop_chance += I.w_class
 		if(prob(drop_chance) && owner.dropItemToGround(I))
-			to_chat(owner, "<span class='warning'>You drop [I]!</span>")
+			to_chat(owner, span_warning("You drop [I]!"))
 
 	else if(prob(3))
-		to_chat(owner, "<span class='warning'>You feel a sudden weakness in your muscles!</span>")
+		to_chat(owner, span_warning("You feel a sudden weakness in your muscles!"))
 		owner.adjustStaminaLoss(50)
 	..()
 
@@ -169,8 +169,8 @@
 	name = "Nervous Cough"
 	desc = "Patient feels a constant need to cough."
 	scan_desc = "nervous cough"
-	gain_text = "<span class='warning'>Your throat itches incessantly...</span>"
-	lose_text = "<span class='notice'>Your throat stops itching.</span>"
+	gain_text = span_warning("Your throat itches incessantly...")
+	lose_text = span_notice("Your throat stops itching.")
 
 /datum/brain_trauma/mild/nervous_cough/on_life()
 	if(prob(12) && !HAS_TRAIT(owner, TRAIT_SOOTHED_THROAT))
@@ -194,6 +194,7 @@
 
 /datum/brain_trauma/mild/expressive_aphasia/handle_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
+
 	if(message)
 		var/list/message_split = splittext(message, " ")
 		var/list/new_message = list()
@@ -206,21 +207,21 @@
 				if(suffix_foundon)
 					suffix = potential_suffix
 					break
-				
+
 			if(suffix_foundon)
 				word = copytext(word, 1, suffix_foundon)
 
 			word = html_decode(word)
 
-			if(lowertext(word) in common_words)
+			if((length(word) < 5) || (lowertext(word) in common_words))
 				new_message += word + suffix
 			else
-				if(prob(30) && message_split.len > 2)
+				if(prob(60) && message_split.len > 2)
 					new_message += pick("uh","erm")
 					break
 				else
 					var/list/charlist = text2charlist(word) // Stupid shit code
-					
+
 					charlist.len = round(charlist.len * 0.5,1)
 					shuffle_inplace(charlist)
 					new_message += jointext(charlist,"") + suffix

@@ -3,6 +3,7 @@
 //Oh god what the fuck I am not good at computer
 /obj/item/book/manual
 	icon = 'icons/obj/library.dmi'
+	w_class = WEIGHT_CLASS_SMALL
 	due_date = 0 // Game time in 1/10th seconds
 	unique = TRUE   // FALSE - Normal book, TRUE - Should not be treated as normal book, unable to be copied, unable to be modified
 
@@ -210,27 +211,27 @@
 	var/wikiurl = CONFIG_GET(string/wikiurl)
 	if(wikiurl)
 		dat = {"
-
-			<html><head>
+			<iframe
+				id='ext_frame'
+				src='[wikiurl]/frame.html'
+				style='border: none; width: 100vw; height: 100vh;'>
+			</iframe>
 			<style>
-				iframe {
-					display: none;
+			html, body {
+				height: 100vh;
+				width: 100vw;
+				margin: 0;
+				overflow: hidden;
+			}
+			body > :not(iframe) {
+				display: none;
 				}
 			</style>
-			</head>
-			<body>
-			<script type="text/javascript">
-				function pageloaded(myframe) {
-					document.getElementById("loading").style.display = "none";
-					myframe.style.display = "inline";
-    			}
+			<script>
+				window.onmessage = function() {
+					document.getElementById('ext_frame').contentWindow.postMessage('[page_link]', '*')
+				}
 			</script>
-			<p id='loading'>You start skimming through the manual...</p>
-			<iframe width='100%' height='97%' onload="pageloaded(this)" src="[wikiurl]/[page_link]?printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
-			</body>
-
-			</html>
-
 			"}
 
 /obj/item/book/manual/wiki/chemistry
@@ -238,21 +239,21 @@
 	icon_state ="chemistrybook"
 	author = "Nanotrasen"
 	title = "Chemistry Textbook"
-	page_link = "Guide_to_chemistry"
+	page_link = "Guide_to_Chemistry"
 
 /obj/item/book/manual/wiki/engineering_construction
 	name = "Station Repairs and Construction"
 	icon_state ="bookEngineering"
 	author = "Engineering Encyclopedia"
 	title = "Station Repairs and Construction"
-	page_link = "Guide_to_construction"
+	page_link = "Guide_to_Construction"
 
 /obj/item/book/manual/wiki/engineering_guide
 	name = "Engineering Textbook"
 	icon_state ="bookEngineering2"
 	author = "Engineering Encyclopedia"
 	title = "Engineering Textbook"
-	page_link = "Guide_to_engineering"
+	page_link = "Guide_to_Engineering"
 
 /obj/item/book/manual/wiki/engineering_singulo_tesla
 	name = "Singularity and Tesla for Dummies"
@@ -270,7 +271,7 @@
 	page_link = "Space_Law"
 
 /obj/item/book/manual/wiki/security_space_law/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] pretends to read \the [src] intently... then promptly dies of laughter!</span>")
+	user.visible_message(span_suicide("[user] pretends to read \the [src] intently... then promptly dies of laughter!"))
 	return OXYLOSS
 
 /obj/item/book/manual/wiki/infections
@@ -306,7 +307,7 @@
 	icon_state = "barbook"
 	author = "Sir John Rose"
 	title = "Barman Recipes: Mixing Drinks and Changing Lives"
-	page_link = "Guide_to_drinks"
+	page_link = "Guide_to_Drinks"
 
 /obj/item/book/manual/wiki/hydroponicsguide
 	name = "Botany: An Introduction"
@@ -341,21 +342,21 @@
 	icon_state = "rdbook"
 	author = "Dr. H.P. Kritz"
 	title = "Mentoring your Experiments"
-	page_link = "Experimentor"
+	page_link = "E.X.P.E.R.I-MENTOR"
 
 /obj/item/book/manual/wiki/medical_cloning
 	name = "Cloning techniques of the 26th century"
 	icon_state ="bookCloning"
 	author = "Medical Journal, volume 3"
 	title = "Cloning techniques of the 26th century"
-	page_link = "Guide_to_genetics#Cloning"
+	page_link = "Guide_to_Genetics"
 
 /obj/item/book/manual/wiki/medical_genetics
 	name = "Genetics of the 26th century"
 	icon_state ="bookCloning"
 	author = "Dr. Likes-The-Powers "
 	title = "Genetics of the 26th century"
-	page_link = "Guide_to_genetics"
+	page_link = "Guide_to_Genetics"
 
 /obj/item/book/manual/wiki/cooking_to_serve_man
 	name = "To Serve Man"
@@ -409,7 +410,7 @@
 
 /obj/item/book/manual/wiki/toxins/suicide_act(mob/user)
 	var/mob/living/carbon/human/H = user
-	user.visible_message("<span class='suicide'>[user] starts dancing to the Rhumba Beat! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] starts dancing to the Rhumba Beat! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(loc, 'sound/effects/spray.ogg', 10, 1, -3)
 	if (!QDELETED(H))
 		H.emote("spin")
@@ -419,7 +420,9 @@
 			if(prob(50))
 				step(W, pick(GLOB.alldirs))
 		ADD_TRAIT(H, TRAIT_DISFIGURED, TRAIT_GENERIC)
-		H.bleed_rate = 5
+		for(var/i in H.bodyparts)
+			var/obj/item/bodypart/BP = i
+			BP.generic_bleedstacks += 5
 		H.gib_animation()
 		sleep(3)
 		H.adjustBruteLoss(1000) //to make the body super-bloody

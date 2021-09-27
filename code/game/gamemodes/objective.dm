@@ -185,7 +185,7 @@ GLOBAL_LIST_EMPTY(objectives)
 				H.equip_in_one_of_slots(O, slots)
 
 /datum/objective/assassinate
-	name = "assasinate"
+	name = "assassinate"
 	var/target_role_type=FALSE
 	martyr_compatible = 1
 
@@ -418,7 +418,7 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/purge
 	name = "no mutants on shuttle"
-	explanation_text = "Ensure no mutant humanoids or nonhuman species are present aboard the escape shuttle."
+	explanation_text = "Ensure no mutant humanoids or nonhuman species are present aboard the escape shuttle. Felinids/Catpeople do NOT count as nonhuman."
 	martyr_compatible = 1
 
 /datum/objective/purge/check_completion()
@@ -427,7 +427,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	for(var/mob/living/player in GLOB.player_list)
 		if((get_area(player) in SSshuttle.emergency.shuttle_areas) && player.mind && player.stat != DEAD && ishuman(player))
 			var/mob/living/carbon/human/H = player
-			if(H.dna.species.id != "human")
+			if(!ishumanbasic(H))
 				return FALSE
 	return TRUE
 
@@ -896,7 +896,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		var/mob/new_target = input(admin,"Select target:", "Objective target") as null|anything in possible_targets
 		target = new_target.mind
 	else
-		to_chat(admin, "<span class='warning'>No active AIs with minds!</span>")
+		to_chat(admin, span_warning("No active AIs with minds!"))
 	update_explanation_text()
 
 /datum/objective/destroy/internal
@@ -1137,10 +1137,17 @@ GLOBAL_LIST_EMPTY(possible_items_special)
   * Kill Pet
   */
 /datum/objective/minor/pet
-	name = "Kill Ian."
+	name = "assasinate-pet"
 	explanation_text = "Assassinate the HoP's assistant, Ian."
 	/// Pet
-	var/mob/Ian
+	var/mob/living/pet
+	var/list/pets = list(/mob/living/simple_animal/pet/dog/corgi/Ian,
+						 /mob/living/simple_animal/pet/cat/Runtime,
+						 /mob/living/simple_animal/pet/penguin/emperor/shamebrero,
+						 /mob/living/carbon/monkey/punpun,
+						 /mob/living/simple_animal/parrot/Poly,
+						 /mob/living/simple_animal/pet/fox/Renault,
+						 /mob/living/simple_animal/pet/fox/fennec/Autumn)
 
 /**
   * Chooses and finds pet.area
@@ -1148,46 +1155,42 @@ GLOBAL_LIST_EMPTY(possible_items_special)
   * Choices are: Ian, Runtime, Anadear, Pun pun, Poly, Renault, Autumn.
   */
 /datum/objective/minor/pet/finalize()
-	var/list/pets = list("ian", "runtime", "anadear", "pun-pun", "poly", "renault", "autumn")
-	while(pets.len && !Ian)
-		var/pet = rand(1, pets.len)
-		switch(pets[pet])
-			if("ian")
-				Ian = locate(/mob/living/simple_animal/pet/dog/corgi/Ian) in GLOB.mob_living_list
-				name = "Kill Ian."
-				explanation_text = "Assassinate the HoP's assistant, Ian."
-			if("runtime")
-				Ian = locate(/mob/living/simple_animal/pet/cat/Runtime) in GLOB.mob_living_list
-				name = "Kill Runtime."
-				explanation_text = "Assassinate the CMO's assistant, Runtime."
-			if("anadear")
-				Ian = locate(/mob/living/simple_animal/pet/penguin/emperor/shamebrero) in GLOB.mob_living_list
-				name = "Kill Anadear."
-				explanation_text = "Assassinate the RD's assistant, Anadear."
-			if("pun-pun")
-				Ian = locate(/mob/living/carbon/monkey/punpun) in GLOB.mob_living_list
-				name = "Kill Pun Pun."
-				explanation_text = "Assassinate the barkeep's assistant, Pun Pun."
-			if("poly")
-				Ian = locate(/mob/living/simple_animal/parrot/Poly) in GLOB.mob_living_list
-				name = "Kill Poly."
-				explanation_text = "Assassinate the CE's assistant, Poly."
-			if("renault")
-				Ian = locate(/mob/living/simple_animal/pet/fox/Renault) in GLOB.mob_living_list
-				name = "Kill Renault."
-				explanation_text = "Assassinate the Captain's asssistant, Renault."
-			if("autumn")
-				Ian = locate(/mob/living/simple_animal/pet/fox/fennec/Autumn) in GLOB.mob_living_list
-				name = "Kill Autumn."
-				explanation_text = "Assassinate the QM's assistant, Autumn."
-		pets -= pets[pet]
-	return Ian
+	var/list/possible_pets = list()
+	for(var/P in pets)
+		var/mob/A = locate(P) in GLOB.mob_living_list
+		if(A && is_station_level(A.z))
+			possible_pets += P
+	if(!possible_pets)
+		return
+	var/chosen_pet = rand(1, possible_pets.len)
+	pet = locate(possible_pets[chosen_pet]) in GLOB.mob_living_list
+	name = "Kill [pet.name]]"
+	explanation_text = "Assasinate the important animal, [pet.name]"
+	return pet
 
+/datum/objective/minor/pet/admin_edit(mob/admin)
+	var/list/possible_targets = list()
+	for(var/P in pets)
+		var/A = locate(P) in GLOB.mob_living_list
+		if(A)
+			possible_targets += A
+	if(possible_targets.len)
+		var/selected_pet = input(admin,"Select target:", "Objective target") as null|anything in possible_targets
+		if(!selected_pet)
+			return
+		pet = selected_pet
+	else
+		to_chat(admin, span_warning("No living pets!"))
+	update_explanation_text()
+
+/datum/objective/minor/pet/update_explanation_text()
+	explanation_text = "Assassinate the important animal, [pet.name]"
+	
 /**
   * Check whether Pet is dead
   */
 /datum/objective/minor/pet/check_completion()
-	return (!Ian || Ian.stat == DEAD)
+	return (!pet || pet.stat == DEAD)
 
 /**
   * # Take a picture of your target's dead body
@@ -1291,6 +1294,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/nuclear,
 		/datum/objective/capture,
 		/datum/objective/absorb,
+		/datum/objective/minor/pet,
 		/datum/objective/custom
 	)
 

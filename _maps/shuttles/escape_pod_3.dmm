@@ -1,0 +1,78 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Escape Pod Airlock"
+	},
+/obj/docking_port/mobile/pod{
+	dwidth = 1;
+	height = 4;
+	id = "pod3";
+	port_direction = 2;
+	width = 3
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/pod_3)
+"f" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/machinery/status_display/evac{
+	pixel_x = 32
+	},
+/obj/machinery/computer/shuttle/pod{
+	pixel_x = -32
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/pod_3)
+"u" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/pod_3)
+"x" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/pod_3)
+"P" = (
+/obj/structure/shuttle/engine/propulsion/burst,
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/pod_3)
+"X" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/item/radio/intercom{
+	pixel_x = 25
+	},
+/obj/item/storage/pod{
+	pixel_x = -26
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/pod_3)
+
+(1,1,1) = {"
+u
+u
+u
+P
+"}
+(2,1,1) = {"
+x
+f
+X
+a
+"}
+(3,1,1) = {"
+u
+u
+u
+P
+"}

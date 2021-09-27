@@ -59,28 +59,28 @@ Difficulty: Very Hard
 	name = "Spiral Shots"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
-	chosen_message = "<span class='colossus'>You are now firing in a spiral.</span>"
+	chosen_message = span_colossus("You are now firing in a spiral.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/aoe_attack
 	name = "All Directions"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "at_shield2"
-	chosen_message = "<span class='colossus'>You are now firing in all directions.</span>"
+	chosen_message = span_colossus("You are now firing in all directions.")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/shotgun
 	name = "Shotgun Fire"
 	icon_icon = 'icons/obj/guns/projectile.dmi'
 	button_icon_state = "shotgun"
-	chosen_message = "<span class='colossus'>You are now firing shotgun shots where you aim.</span>"
+	chosen_message = span_colossus("You are now firing shotgun shots where you aim.")
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/alternating_cardinals
 	name = "Alternating Shots"
 	icon_icon = 'icons/obj/guns/projectile.dmi'
 	button_icon_state = "pistol"
-	chosen_message = "<span class='colossus'>You are now firing in alternating cardinal directions.</span>"
+	chosen_message = span_colossus("You are now firing in alternating cardinal directions.")
 	chosen_attack_num = 4
 
 /mob/living/simple_animal/hostile/megafauna/colossus/OpenFire()
@@ -101,7 +101,7 @@ Difficulty: Very Hard
 
 	if(enrage(target))
 		if(move_to_delay == initial(move_to_delay))
-			visible_message("<span class='colossus'>\"<b>You can't dodge.</b>\"</span>")
+			visible_message(span_colossus("\"<b>You can't dodge.</b>\""))
 		ranged_cooldown = world.time + 30
 		telegraph()
 		dir_shots(GLOB.alldirs)
@@ -141,11 +141,11 @@ Difficulty: Very Hard
 	telegraph()
 	if(health < maxHealth/3)
 		return double_spiral()
-	visible_message("<span class='colossus'>\"<b>Judgement.</b>\"</span>")
+	visible_message(span_colossus("\"<b>Judgement.</b>\""))
 	return spiral_shoot()
 
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/double_spiral()
-	visible_message("<span class='colossus'>\"<b>Die.</b>\"</span>")
+	visible_message(span_colossus("\"<b>Die.</b>\""))
 
 	SLEEP_CHECK_DEATH(10)
 	INVOKE_ASYNC(src, .proc/spiral_shoot, FALSE)
@@ -220,7 +220,7 @@ Difficulty: Very Hard
 	. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/colossus/devour(mob/living/L)
-	visible_message("<span class='colossus'>[src] disintegrates [L]!</span>")
+	visible_message(span_colossus("[src] disintegrates [L]!"))
 	L.dust()
 
 /obj/effect/temp_visual/at_shield
@@ -301,7 +301,7 @@ Difficulty: Very Hard
 	if(!istype(O))
 		return FALSE
 	if(blacklist[O])
-		visible_message("<span class='boldwarning'>[src] ripples as it rejects [O]. The device will not accept items that have been removed from it.</span>")
+		visible_message(span_boldwarning("[src] ripples as it rejects [O]. The device will not accept items that have been removed from it."))
 		return FALSE
 	return TRUE
 
@@ -631,7 +631,7 @@ Difficulty: Very Hard
 	if(ready_to_deploy)
 		var/be_helper = alert("Become a Lightgeist? (Warning, You can no longer be cloned!)",,"Yes","No")
 		if(be_helper == "Yes" && !QDELETED(src) && isobserver(user))
-			var/mob/living/simple_animal/hostile/lightgeist/W = new /mob/living/simple_animal/hostile/lightgeist(get_turf(loc))
+			var/mob/living/simple_animal/hostile/lightgeist/healing/W = new /mob/living/simple_animal/hostile/lightgeist/healing(get_turf(loc))
 			W.key = user.key
 
 
@@ -641,7 +641,7 @@ Difficulty: Very Hard
 		if(istype(ghost))
 			attack_ghost(ghost)
 
-/mob/living/simple_animal/hostile/lightgeist
+/mob/living/simple_animal/hostile/lightgeist //base lightgeist, doesn't heal.
 	name = "lightgeist"
 	desc = "This small floating creature is a completely unknown form of life... being near it fills you with a sense of tranquility."
 	icon_state = "lightgeist"
@@ -655,7 +655,7 @@ Difficulty: Very Hard
 	maxHealth = 2
 	health = 2
 	harm_intent_damage = 1
-	friendly = "mends"
+	friendly = "brushes against"
 	density = FALSE
 	movement_type = FLYING
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB | PASSCOMPUTER
@@ -679,7 +679,23 @@ Difficulty: Very Hard
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	AIStatus = AI_OFF
 	stop_automated_movement = TRUE
+
+/mob/living/simple_animal/hostile/lightgeist/healing
 	var/heal_power = 5
+
+/mob/living/simple_animal/hostile/lightgeist/photogeist
+	name = "photogeist"
+	desc = "This small floating creature is a completely unknown form of life... being near it fills you with a sense of tranquility."
+	icon_state = "photogeist"
+	icon_living = "photogeist"
+	friendly = "shines on"
+	faction = list("plants")
+	initial_language_holder = /datum/language_holder/venus //they only understand sylvan (plant language)
+	maxHealth = 10 //tough enough to resist a punch or something small, since they cost a fair bit of favor.
+	health = 10
+	light_range = 6
+	ventcrawler = VENTCRAWLER_NONE //they dont really need to be ventcrawling
+	var/heal_power = 3
 
 /mob/living/simple_animal/hostile/lightgeist/Initialize()
 	. = ..()
@@ -688,7 +704,7 @@ Difficulty: Very Hard
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medsensor.add_hud_to(src)
 
-/mob/living/simple_animal/hostile/lightgeist/AttackingTarget()
+/mob/living/simple_animal/hostile/lightgeist/healing/AttackingTarget()
 	. = ..()
 	if(isliving(target) && target != src)
 		var/mob/living/L = target
@@ -696,12 +712,42 @@ Difficulty: Very Hard
 			L.heal_overall_damage(heal_power, heal_power)
 			new /obj/effect/temp_visual/heal(get_turf(target), "#80F5FF")
 
+/mob/living/simple_animal/hostile/lightgeist/photogeist/AttackingTarget() //photogeists can only heal plantlike stuff
+	. = ..()
+	if(isliving(target) && target != src)
+		var/mob/living/L = target
+		if(L.stat != DEAD)
+			if(("vines" in L.faction) || ("plants" in L.faction))
+				L.heal_overall_damage(heal_power, heal_power)
+				new /obj/effect/temp_visual/heal(get_turf(target), "#5bf563")
+
+/obj/effect/mob_spawn/photogeist
+	name = "dormant photogeist"
+	desc = "A strange plant creature. It seems to be peacefully sleeping, and its mere presence soothes your nerves."
+	icon = 'icons/mob/animal.dmi'
+	icon_state = "dormantphotogeist"
+	density = FALSE
+	anchored = FALSE
+
+	mob_type = /mob/living/simple_animal/hostile/lightgeist/photogeist
+	mob_name = "photogeist"
+	death = FALSE
+	roundstart = FALSE
+	short_desc = "You are a photogeist, a peaceful creature summoned by a plant god"
+	flavour_text = "<b>Try to prevent plant creatures from dying and listen to your summoner otherwise. You can also click a plantlike creature to heal them.</b>"
+
+/obj/effect/mob_spawn/photogeist/Initialize()
+	. = ..()
+	var/area/A = get_area(src)
+	if(A)
+		notify_ghosts("A photogeist has been summoned in [A.name].", 'sound/effects/shovel_dig.ogg', source = src, action = NOTIFY_ATTACKORBIT, flashwindow = FALSE)
+
 /mob/living/simple_animal/hostile/lightgeist/ghostize()
 	. = ..()
 	if(.)
 		death()
 
-/mob/living/simple_animal/hostile/lightgeist/slime
+/mob/living/simple_animal/hostile/lightgeist/healing/slime
 	name = "crystalline lightgeist"
 
 /obj/machinery/anomalous_crystal/refresher //Deletes and recreates a copy of the item, "refreshing" it.

@@ -336,3 +336,17 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/stuffedlegion
 	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/candy_strawberry
+	name = "Strawberry Flavored Candy"
+	time = 2 SECONDS
+	reqs = list (
+		/datum/reagent/blood = 5, //Close enough to strawberries
+		/datum/reagent/consumable/sugar = 5,
+		/obj/item/paper = 1 //This is normal paper used as wrapping paper, its intentional
+	)
+	tools = list(
+		/obj/item/toy/crayon
+	)
+	result = /obj/item/reagent_containers/food/snacks/candy_strawberry
+	subcategory = CAT_MISCFOOD

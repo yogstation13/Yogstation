@@ -77,6 +77,7 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	"Nanotrasen",
 	"Not Malf",
 	"Plain",
+	"Portrait",
 	"President",
 	"Random",
 	"Rainbow",
@@ -96,6 +97,10 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	else
 		if(input == "Random")
 			input = pick(GLOB.ai_core_display_screens - "Random")
+		if(input == "Portrait")
+			var/datum/portrait_picker/tgui  = new(usr)//create the datum
+			tgui.ui_interact(usr)//datum has a tgui component, here we open the window
+			return "ai-portrait" //just take this until they decide
 		return "ai-[lowertext(input)]"
 
 GLOBAL_LIST_INIT(security_depts_prefs, list(SEC_DEPT_RANDOM, SEC_DEPT_NONE, SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY, SEC_DEPT_SERVICE))
@@ -120,6 +125,9 @@ GLOBAL_LIST_INIT(uplink_spawn_loc_list, list(UPLINK_PDA, UPLINK_RADIO, UPLINK_PE
 
 	//Female Uniforms
 GLOBAL_LIST_EMPTY(female_clothing_icons)
+
+	//Skinny Uniforms
+GLOBAL_LIST_EMPTY(skinny_clothing_icons)
 
 	//radical shit
 GLOBAL_LIST_INIT(hit_appends, list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF"))

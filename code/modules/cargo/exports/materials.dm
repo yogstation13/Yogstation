@@ -30,33 +30,38 @@
 // Materials. Nothing but plasma is really worth selling. Better leave it all to RnD and sell some plasma instead.
 
 /datum/export/material/bananium
-	cost = 1000
+	cost = 2500
+	export_limit = 50
 	material_id = /datum/material/bananium
 	message = "cm3 of bananium"
 
 /datum/export/material/diamond
-	cost = 500
+	cost = 1000
+	export_limit = 100
 	material_id = /datum/material/diamond
 	message = "cm3 of diamonds"
 
 /datum/export/material/plasma
 	cost = 200
-	k_elasticity = 0
+
 	material_id = /datum/material/plasma
 	message = "cm3 of plasma"
 
 /datum/export/material/uranium
-	cost = 100
+	cost = 400
+	export_limit = 300
 	material_id = /datum/material/uranium
 	message = "cm3 of uranium"
 
 /datum/export/material/gold
-	cost = 125
+	cost = 250
+	export_limit = 500
 	material_id = /datum/material/gold
 	message = "cm3 of gold"
 
 /datum/export/material/silver
-	cost = 50
+	cost = 100
+	export_limit = 500
 	material_id = /datum/material/silver
 	message = "cm3 of silver"
 
@@ -87,6 +92,7 @@
 
 /datum/export/material/hot_ice
 	cost = 400
+	export_limit = 250
 	message = "cm3 of Hot Ice"
 	material_id = /datum/material/hot_ice
 	export_types = list(/obj/item/stack/sheet/hot_ice)
@@ -96,3 +102,8 @@
 	unit_name = "of metallic hydrogen"
 	material_id = /datum/material/metalhydrogen
 	export_types = list(/obj/item/stack/sheet/mineral/metal_hydrogen)
+
+/datum/export/material/zaukerite
+	cost = 900
+	material_id = /datum/material/zaukerite
+	export_types = list(/obj/item/stack/sheet/mineral/zaukerite)

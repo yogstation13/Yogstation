@@ -268,6 +268,7 @@ const PageMain = (props, context) => {
     callShuttleReasonMinLength,
     canBuyShuttles,
     canMakeAnnouncement,
+    canMakeVoiceAnnouncement,
     canMessageAssociates,
     canRecallShuttles,
     canRequestNuke,
@@ -282,6 +283,7 @@ const PageMain = (props, context) => {
     shuttleCalledPreviously,
     shuttleCanEvacOrFailReason,
     shuttleLastCalled,
+    canPrintId,
     shuttleRecallable,
   } = data;
 
@@ -378,6 +380,18 @@ const PageMain = (props, context) => {
             icon="bullhorn"
             content="Make Priority Announcement"
             onClick={() => act("makePriorityAnnouncement")}
+          />}
+
+          {!!canMakeVoiceAnnouncement && <Button
+            icon="bullhorn"
+            content="Make Voice Announcement"
+            onClick={() => act("makeVoiceAnnouncement")}
+          />}
+
+          {!!canPrintId && <Button
+            icon="id-card"
+            content="Print Emergency ID"
+            onClick={() => act("printSpare")}
           />}
 
           {!!canToggleEmergencyAccess && <Button.Confirm

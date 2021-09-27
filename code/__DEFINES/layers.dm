@@ -26,7 +26,7 @@
 #define BULLET_HOLE_LAYER 2.06
 #define ABOVE_NORMAL_TURF_LAYER 2.08
 #define LATTICE_LAYER 2.2
-#define DISPOSAL_PIPE_LAYER 2.3
+#define DISPOSAL_PIPE_LAYER 2.25
 #define GAS_PIPE_HIDDEN_LAYER 2.35 //layer = initial(layer) + piping_layer / 1000 in atmospherics/update_icon() to determine order of pipe overlap
 #define WIRE_LAYER 2.4
 #define WIRE_TERMINAL_LAYER 2.45

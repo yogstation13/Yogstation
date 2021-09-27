@@ -83,3 +83,7 @@
 //Shuttle defaults
 #define SHUTTLE_DEFAULT_SHUTTLE_AREA_TYPE /area/shuttle
 #define SHUTTLE_DEFAULT_UNDERLYING_AREA /area/space
+
+///Check for arena shuttle, if the bubblegum has died this round
+GLOBAL_VAR_INIT(bubblegum_dead, FALSE)
+

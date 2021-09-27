@@ -117,7 +117,8 @@ CREATE TABLE IF NOT EXISTS `SS13_connection_log` (
   `ckey` varchar(45) DEFAULT NULL,
   `ip` int(10) unsigned NOT NULL,
   `computerid` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `idx_review` (`ckey`, `computerid`, `ip`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4192042 DEFAULT CHARSET=utf8;
 
 
@@ -160,10 +161,14 @@ CREATE TABLE IF NOT EXISTS `SS13_donors` (
   `transaction_id` varchar(70) NOT NULL,
   `amount` decimal(10,2) NOT NULL,
   `datetime` timestamp NOT NULL DEFAULT current_timestamp(),
-  `expiration_time` datetime NOT NULL,
+  `expiration_time` datetime DEFAULT NULL,
   `revoked` int(11) DEFAULT NULL,
   `revoked_ckey` varchar(32) DEFAULT NULL,
   `revoked_time` datetime DEFAULT NULL,
+  `payer_email` varchar(256) DEFAULT NULL,
+  `status` varchar(32) NOT NULL,
+  `notes` varchar(1024) DEFAULT NULL,
+  `valid` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `transaction_id` (`transaction_id`),
@@ -264,6 +269,7 @@ DROP TABLE IF EXISTS `SS13_mentor`;
 CREATE TABLE IF NOT EXISTS `SS13_mentor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ckey` varchar(32) NOT NULL,
+  `position` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
 

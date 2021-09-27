@@ -16,6 +16,8 @@
 				return real_name
 		else
 			return real_name
+	if(istype(wear_mask, /obj/item/clothing/mask/gas/sechailer/swat/encrypted))
+		return splittext(src.tag, "_")[2] // Voice name will show up as their tag numbers to match ID
 	if(mind)
 		var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
 		if(changeling && changeling.mimicing )

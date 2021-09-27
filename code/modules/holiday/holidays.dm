@@ -276,13 +276,14 @@
 	begin_month = JULY
 	drone_hat = /obj/item/clothing/mask/facehugger/dead
 	lobby_music = list(
-		"https://www.youtube.com/watch?v=X8cmbmwFAl8", // Clutch - X-Ray Visions
-		"https://www.youtube.com/watch?v=sYkvpNR8BGU", // Blue Oyster Cult: E.T.I. (Extra Terraestrial Intelligence)
-		"https://www.youtube.com/watch?v=Pyu89NHSniU", // Blood And Rockets: Movement I, Saga Of Jack Parsons - Movement II, Too The Moon
-		"https://www.youtube.com/watch?v=BYDd0TTx4nE", // Nyctophilliac - Blunted Session
-		"https://www.youtube.com/watch?v=n8cCDoDYgc0", // Ballad of a Spaceman - Julia Ecklar
-		"https://www.youtube.com/watch?v=I1VLuZ9Smf0", // Elektronik Supersonik - ZLAD
-		"https://www.youtube.com/watch?v=KvQ0zWHtnN4"  // The Mechanisms - Once Upon a Time - 06 Pump Shanty
+		"https://www.youtube.com/watch?v=X8cmbmwFAl8",	// Clutch - X-Ray Visions
+		"https://www.youtube.com/watch?v=sYkvpNR8BGU",	// Blue Oyster Cult: E.T.I. (Extra Terraestrial Intelligence)
+		"https://www.youtube.com/watch?v=Pyu89NHSniU",	// Blood And Rockets: Movement I, Saga Of Jack Parsons - Movement II, Too The Moon
+		"https://www.youtube.com/watch?v=BYDd0TTx4nE",	// Nyctophilliac - Blunted Session
+		"https://www.youtube.com/watch?v=n8cCDoDYgc0",	// Ballad of a Spaceman - Julia Ecklar
+		"https://www.youtube.com/watch?v=I1VLuZ9Smf0",	// Elektronik Supersonik - ZLAD
+		"https://www.youtube.com/watch?v=KvQ0zWHtnN4",	// The Mechanisms - Once Upon a Time - 06 Pump Shanty
+		"https://www.youtube.com/watch?v=4hutvW-eSFY"	// Bryan Scary and the Shedding Tears - Venus Ambassador
 	)
 
 /datum/holiday/UFO/getStationPrefix() //Is such a thing even possible?
@@ -659,15 +660,27 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=XYpGVnpujOQ", // I burn - Toadies
 		"https://www.youtube.com/watch?v=hLRo06NCOAo", // When He Died - Lemon Demon
 		"https://www.youtube.com/watch?v=MfQ1zGsZOiI", // Enter the Temple - Nyctophilliac
-		"https://www.youtube.com/watch?v=w-N1tjMfk4Y", // No Way - The Darkest of Hillside Thickets
+		"https://www.youtube.com/watch?v=w-N1tjMfk4Y", // The Darkest of Hillside Thickets - No Way
 		"https://www.youtube.com/watch?v=27gmVUixXfs", // Ragnarok I: Runaway - The Mechanisms
 		"https://www.youtube.com/watch?v=Q5tYxsjjpsU", // Ragnarok II - The Calling - The Mechanisms
 		"https://www.youtube.com/watch?v=56pccCkgsdk", // Merlin - Kathy Mar
 		"https://www.youtube.com/watch?v=XRnjPSkVdt8", // Blood Ceremony - Goodbye Gemini
-		"https://www.youtube.com/watch?v=I8JtQDPT3-E", // Ascension - Hallas
+		"https://www.youtube.com/watch?v=hX05LywQlPw", // The Darkest of Hillside Thickets - Cultists Onboard
 		"https://www.youtube.com/watch?v=Nl95A7on4iI", // The Astral Seer - Hallas
 		"https://www.youtube.com/watch?v=xHAeJSwUbaw", // Demon Sultan Azathoth - The H.P. Lovecraft Historical Society
 		"https://www.youtube.com/watch?v=KSvsy11PHxM", // I saw mommy kissing Yog-Sothoth - The H.P. Lovecraft Historical Society
 		"https://www.youtube.com/watch?v=61MR40PG8K4", // What Do You Do with an Innsmouth Sailor? - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
-		"https://www.youtube.com/watch?v=P2csnVNai-o"  // Tentacles! - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
+		"https://www.youtube.com/watch?v=P2csnVNai-o", // Tentacles! - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
+		"https://www.youtube.com/watch?v=Jr5DG6QheEc",  // Look! Professor Angell Brings - H. P. Lovecraft Historical Society - An Even Scarier Solstice
+		"https://www.youtube.com/watch?v=LA4TMacjYMw"  // Slay Ride - H. P. Lovecraft Historical Society - An Even Scarier Solstice
 		)
+
+/datum/holiday/twofoursixohfive
+	name = "24605 Anniversary"
+	begin_day = 2
+	begin_month = AUGUST
+	drone_hat = /obj/item/clothing/head/beret/atmos
+	lobby_music = list("https://www.youtube.com/watch?v=QfCOJLRk2D4") // Johnny Cash - Ring Of Fire
+
+/datum/holiday/twofoursixohfive/getStationPrefix()
+	return pick("Class-O","Class-B","Class-A","Class-F","Class-G","Class-K","Class-M","Dwarf","Main Sequence","Giant","Atmospheric")

@@ -176,7 +176,30 @@
 	name = "Metal Hydrogen"
 	desc = "Solid metallic hydrogen. Some say it should be impossible"
 	color = "#f2d5d7"
-	alpha = 150
+	alpha = 240
 	categories = list(MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/metal_hydrogen
 	strength_modifier = 1.2
+
+/datum/material/zaukerite
+	name = "zaukerite"
+	desc = "A light absorbing crystal"
+	color = COLOR_ALMOST_BLACK
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
+	sheet_type = /obj/item/stack/sheet/mineral/zaukerite
+
+/datum/material/zaukerite/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
+	victim.apply_damage(30, BURN, BODY_ZONE_HEAD)
+	source_item?.reagents?.add_reagent(/datum/reagent/toxin/plasma, source_item.reagents.total_volume*5)
+	return TRUE
+
+///Yogs///
+
+///Used for some batteries and in atmospherics to lower the required temperature for fusion
+/datum/material/dilithium
+	name = "dilithium crystal"
+	id = "dilithium_crystal"
+	desc = "Crystals with dilithium properties"
+	color = "#506bc7"
+	categories = list(MAT_CATEGORY_ORE = TRUE)
+	sheet_type = /obj/item/stack/sheet/dilithium_crystal

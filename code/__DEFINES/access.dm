@@ -85,6 +85,9 @@
 #define ACCESS_TCOM_ADMIN 70
 #define ACCESS_FREEMINER 71
 #define ACCESS_FREEMINER_CAPTAIN 72
+#define ACCESS_FREEMINER_ENGINEER 73
+//Yogs: Brig Physician access, used for their locker and offices if one is added
+#define ACCESS_BRIG_PHYS 74
 
 	//BEGIN CENTCOM ACCESS
 	/*Should leave plenty of room if we need to add more access levels.
@@ -144,3 +147,4 @@
 #define ACCESS_MECH_SECURITY 302
 #define ACCESS_MECH_SCIENCE 303
 #define ACCESS_MECH_ENGINE 304
+#define ACCESS_MECH_FREEMINER 310

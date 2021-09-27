@@ -9,6 +9,7 @@
 	legs_required = 0	//You'll probably be using this if you don't have legs
 	canmove = TRUE
 	density = FALSE		//Thought I couldn't fix this one easily, phew
+	movedelay = 4
 
 /obj/vehicle/ridden/wheelchair/Initialize()
 	. = ..()
@@ -37,7 +38,7 @@
 /obj/vehicle/ridden/wheelchair/driver_move(mob/living/user, direction)
 	if(istype(user))
 		if(canmove && (user.get_num_arms() < arms_required))
-			to_chat(user, "<span class='warning'>You don't have enough arms to operate the wheels!</span>")
+			to_chat(user, span_warning("You don't have enough arms to operate the wheels!"))
 			canmove = FALSE
 			addtimer(VARSET_CALLBACK(src, canmove, TRUE), 20)
 			return FALSE
@@ -45,7 +46,12 @@
 		//1.5 (movespeed as of this change) multiplied by 4 gets 6, which gives you a delay of 3 assuming the user has two arms,
 		//getting the speed of the wheelchair roughly equal to the speed of a scooter based on testing.
 		//if that made no sense this simply makes the wheelchair speed change along with movement speed delay
-		D.vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * 4) / min(user.get_num_arms(), 2)
+		//paraplegic quirk users get a halved movedelay to model their life of wheelchair useage - yogs
+		if(user.has_quirk(/datum/quirk/paraplegic))
+			movedelay = 2
+		else
+			movedelay = 4
+		D.vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * movedelay) / min(user.get_num_arms(), 2)
 	return ..()
 
 /obj/vehicle/ridden/wheelchair/Moved()
@@ -69,9 +75,9 @@
 	handle_rotation(newdir)
 
 /obj/vehicle/ridden/wheelchair/wrench_act(mob/living/user, obj/item/I)	//Attackby should stop it attacking the wheelchair after moving away during decon
-	to_chat(user, "<span class='notice'>You begin to detach the wheels...</span>")
+	to_chat(user, span_notice("You begin to detach the wheels..."))
 	if(I.use_tool(src, user, 40, volume=50))
-		to_chat(user, "<span class='notice'>You detach the wheels and deconstruct the chair.</span>")
+		to_chat(user, span_notice("You detach the wheels and deconstruct the chair."))
 		new /obj/item/stack/rods(drop_location(), 6)
 		new /obj/item/stack/sheet/metal(drop_location(), 4)
 		qdel(src)

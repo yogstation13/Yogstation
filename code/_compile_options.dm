@@ -32,11 +32,11 @@
 #endif
 
 //Update this whenever you need to take advantage of more recent byond features
-#define MIN_COMPILER_VERSION 513
+#define MIN_COMPILER_VERSION 514
 #if DM_VERSION < MIN_COMPILER_VERSION
 //Don't forget to update this part
 #error Your version of BYOND is too out-of-date to compile this project. Go to https://secure.byond.com/download and update.
-#error You need version 513 or higher
+#error You need version 514 or higher
 #endif
 
 //Additional code for the above flags.
@@ -58,10 +58,28 @@
 
 #define EXTOOLS (world.system_type == MS_WINDOWS ? "byond-extools.dll" : "libbyond-extools.so")
 
-#if (DM_VERSION == 513) && (DM_BUILD == 1537)
-#error ============WARNING===============
-#error BYOND version 513.1537 contains a bug that prevents the codebase from compiling properly. Please upgrade/downgrade your BYOND version
-#error BYOND version 513.1537 contains a bug that prevents the codebase from compiling properly. Please upgrade/downgrade your BYOND version
-#error BYOND version 513.1537 contains a bug that prevents the codebase from compiling properly. Please upgrade/downgrade your BYOND version
-#error ==================================
+//If you update these values, update the message in the #error
+#define MAX_BYOND_MAJOR 514
+#define MAX_BYOND_MINOR 1566
+
+///Uncomment to bypass the max version check. Note: This will likely break the game, only use if you know what you're doing
+//#define IGNORE_MAX_BYOND_VERSION
+#if ((DM_VERSION > MAX_BYOND_MAJOR) || (DM_BUILD > MAX_BYOND_MINOR)) && !defined(IGNORE_MAX_BYOND_VERSION)
+#error Your version of BYOND is too new to compile this project. Download version 514.1566 at www.byond.com/download/build/514/514.1566_byond.exe
+#endif
+
+#ifdef TRAVISBUILDING
+// Turdis is special :)
+#define CBT
+#endif
+
+#ifdef TGS
+// TGS performs its own build of dm.exe, but includes a prepended TGS define.
+#define CBT
+#endif
+
+#if !defined(CBT) && !defined(SPACEMAN_DMM)
+#warn "Building with Dream Maker is no longer supported and may result in errors."
+#warn "In order to build, run BUILD.bat in the root directory."
+#warn "Consider switching to VSCode editor instead, where you can press Ctrl+Shift+B to build."
 #endif
