@@ -2545,6 +2545,7 @@
 #include "code\modules\ninja\suit\n_suit_verbs\ninja_smoke.dm"
 #include "code\modules\ninja\suit\n_suit_verbs\ninja_stars.dm"
 #include "code\modules\ninja\suit\n_suit_verbs\ninja_stealth.dm"
+#include "code\modules\ninja\suit\n_suit_verbs\ninja_stimshot.dm"
 #include "code\modules\ninja\suit\n_suit_verbs\ninja_sword_recall.dm"
 #include "code\modules\NTNet\netdata.dm"
 #include "code\modules\NTNet\network.dm"

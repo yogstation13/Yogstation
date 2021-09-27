@@ -22,7 +22,7 @@ Contents:
 	armor = list("melee" = 50, "bullet" = 40, "laser" = 30,"energy" = 15, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 100, "acid" = 100)
 	strip_delay = 12
 
-	actions_types = list(/datum/action/item_action/initialize_ninja_suit, /datum/action/item_action/ninjasmoke, /datum/action/item_action/ninjaboost, /datum/action/item_action/ninjapulse, /datum/action/item_action/ninjastar, /datum/action/item_action/ninjanet, /datum/action/item_action/ninja_sword_recall, /datum/action/item_action/ninja_stealth, /datum/action/item_action/toggle_glove)
+	actions_types = list(/datum/action/item_action/initialize_ninja_suit, /datum/action/item_action/ninjasmoke, /datum/action/item_action/ninjastim,  /datum/action/item_action/ninjaboost, /datum/action/item_action/ninjapulse, /datum/action/item_action/ninjastar, /datum/action/item_action/ninjanet, /datum/action/item_action/ninja_sword_recall, /datum/action/item_action/ninja_stealth, /datum/action/item_action/toggle_glove)
 
 		//Important parts of the suit.
 	var/mob/living/carbon/human/affecting = null
@@ -46,6 +46,7 @@ Contents:
 	var/a_transfer = 20//How much radium is used per adrenaline boost.
 	var/a_maxamount = 7//Maximum number of adrenaline boosts.
 	var/s_maxamount = 20//Maximum number of smoke bombs.
+	var/st_maxamount = 4//Maximum number of stimshots.
 	var/do_gib = TRUE // yogs
 
 		//Support function variables.
@@ -55,6 +56,7 @@ Contents:
 		//Ability function variables.
 	var/s_bombs = 10//Number of smoke bombs.
 	var/a_boost = 3//Number of adrenaline boosters.
+	var/s_shots = 2//Number of stim shots.
 
 
 /obj/item/clothing/suit/space/space_ninja/get_cell()
@@ -92,6 +94,7 @@ Contents:
 	s_delay = rand(10,100)
 	s_bombs = rand(5,20)
 	a_boost = rand(1,7)
+	s_shots = rand(2,4)
 
 
 //This proc prevents the suit from being taken off.
@@ -155,6 +158,7 @@ Contents:
 			. += "All systems operational. Current energy capacity: <B>[DisplayEnergy(cell.charge)]</B>.\n"+\
 			"The CLOAK-tech device is <B>[stealth?"active":"inactive"]</B>.\n"+\
 			"There are <B>[s_bombs]</B> smoke bomb\s remaining.\n"+\
+			"There are <B>[s_shots]</B> stim shot\s remaining.\n"+\
 			"There are <B>[a_boost]</B> adrenaline booster\s remaining."
 
 /obj/item/clothing/suit/space/space_ninja/ui_action_click(mob/user, action)
@@ -166,6 +170,9 @@ Contents:
 		return FALSE
 	if(istype(action, /datum/action/item_action/ninjasmoke))
 		ninjasmoke()
+		return TRUE
+	if(istype(action, /datum/action/item_action/ninjastim))
+		ninjastim()
 		return TRUE
 	if(istype(action, /datum/action/item_action/ninjaboost))
 		ninjaboost()

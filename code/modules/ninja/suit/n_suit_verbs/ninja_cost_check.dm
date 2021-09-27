@@ -22,4 +22,8 @@
 			if(!a_boost)
 				to_chat(H, "<span class='danger'>You do not have any more adrenaline boosters.</span>")
 				return 1
+		if(N_STIM)
+			if(!s_shots)
+				to_chat(H, "<span class='danger'>You do not have any more stim shots.</span>")
+				return 1
 	return (s_coold)//Returns the value of the variable which counts down to zero.

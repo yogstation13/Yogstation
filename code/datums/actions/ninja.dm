@@ -14,6 +14,13 @@
 	button_icon_state = "repulse"
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
 
+/datum/action/item_action/ninjastim
+	check_flags = NONE
+	name = "Stim Shot"
+	desc = "Inject a chemical cocktail that heals slash wounds and helps to stabilize blood loss."
+	button_icon_state = "fleshmend"
+	icon_icon = 'icons/mob/actions/actions_changeling.dmi'
+
 /datum/action/item_action/ninjapulse
 	name = "EM Burst (25E)"
 	desc = "Disable any nearby technology with an electro-magnetic pulse."
