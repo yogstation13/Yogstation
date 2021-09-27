@@ -1817,6 +1817,10 @@
 	name = "Long"
 	icon_state = "long"
 
+/datum/sprite_accessory/frills/split
+	name = "Split"
+	icon_state = "split"
+
 /datum/sprite_accessory/spines
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 
