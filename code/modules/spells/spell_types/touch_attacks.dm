@@ -23,7 +23,7 @@
 /obj/effect/proc_holder/spell/targeted/touch/cast(list/targets,mob/user = usr)
 	if(!QDELETED(attached_hand))
 		remove_hand(TRUE)
-		to_chat(user, "<span class='notice'>[dropmessage]</span>")
+		to_chat(user, span_notice("[dropmessage]"))
 		return
 
 	for(var/mob/living/carbon/C in targets)
@@ -44,11 +44,11 @@
 	if(!user.put_in_hands(attached_hand))
 		remove_hand(TRUE)
 		if (user.get_num_arms() <= 0)
-			to_chat(user, "<span class='warning'>You dont have any usable hands!</span>")
+			to_chat(user, span_warning("You dont have any usable hands!"))
 		else
-			to_chat(user, "<span class='warning'>Your hands are full!</span>")
+			to_chat(user, span_warning("Your hands are full!"))
 		return FALSE
-	to_chat(user, "<span class='notice'>[drawmessage]</span>")
+	to_chat(user, span_notice("[drawmessage]"))
 	return TRUE
 
 

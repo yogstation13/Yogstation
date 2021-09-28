@@ -40,9 +40,9 @@ LINEN BINS
 			sheet.dream_messages = dream_messages
 			qdel(src)
 			user.put_in_active_hand(sheet)
-			to_chat(user, "<span class='notice'>You adjust the bedsheet to be worn on your head!</span>")
+			to_chat(user, span_notice("You adjust the bedsheet to be worn on your head!"))
 	else
-		to_chat(user, "<span class='notice'>You cannot adjust this bedsheet!</span>")
+		to_chat(user, span_notice("You cannot adjust this bedsheet!"))
 
 /obj/item/bedsheet/AltClick(mob/user)
 	if(!user.CanReach(src))		//No telekenetic grabbing.
@@ -51,17 +51,17 @@ LINEN BINS
 		return
 	if(layer == initial(layer))
 		layer = ABOVE_MOB_LAYER
-		to_chat(user, "<span class='notice'>You cover yourself with [src].</span>")
+		to_chat(user, span_notice("You cover yourself with [src]."))
 	else
 		layer = initial(layer)
-		to_chat(user, "<span class='notice'>You smooth [src] out beneath you.</span>")
+		to_chat(user, span_notice("You smooth [src] out beneath you."))
 	add_fingerprint(user)
 	return
 
 /obj/item/bedsheet/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_WIRECUTTER || I.is_sharp())
 		// yogs start - disable infinite holocloth
-		to_chat(user, "<span class='notice'>You tear [src] up.</span>")
+		to_chat(user, span_notice("You tear [src] up."))
 		if(flags_1 & HOLOGRAM_1)
 			qdel(src)
 			return
@@ -392,7 +392,7 @@ LINEN BINS
 			return
 		sheets.Add(I)
 		amount++
-		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		to_chat(user, span_notice("You put [I] in [src]."))
 		update_icon()
 
 	else if(default_unfasten_wrench(user, I, 5))
@@ -411,10 +411,10 @@ LINEN BINS
 
 	else if(amount && !hidden && I.w_class < WEIGHT_CLASS_BULKY)	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
 		if(!user.transferItemToLoc(I, src))
-			to_chat(user, "<span class='warning'>\The [I] is stuck to your hand, you cannot hide it among the sheets!</span>")
+			to_chat(user, span_warning("\The [I] is stuck to your hand, you cannot hide it among the sheets!"))
 			return
 		hidden = I
-		to_chat(user, "<span class='notice'>You hide [I] among the sheets.</span>")
+		to_chat(user, span_notice("You hide [I] among the sheets."))
 
 
 /obj/structure/bedsheetbin/attack_paw(mob/user)
@@ -441,12 +441,12 @@ LINEN BINS
 
 		B.forceMove(drop_location())
 		user.put_in_hands(B)
-		to_chat(user, "<span class='notice'>You take [B] out of [src].</span>")
+		to_chat(user, span_notice("You take [B] out of [src]."))
 		update_icon()
 
 		if(hidden)
 			hidden.forceMove(drop_location())
-			to_chat(user, "<span class='notice'>[hidden] falls out of [B]!</span>")
+			to_chat(user, span_notice("[hidden] falls out of [B]!"))
 			hidden = null
 
 
@@ -464,7 +464,7 @@ LINEN BINS
 			B = new /obj/item/bedsheet(loc)
 
 		B.forceMove(drop_location())
-		to_chat(user, "<span class='notice'>You telekinetically remove [B] from [src].</span>")
+		to_chat(user, span_notice("You telekinetically remove [B] from [src]."))
 		update_icon()
 
 		if(hidden)
@@ -487,9 +487,9 @@ LINEN BINS
 		if(sheet)
 			qdel(src)
 			user.put_in_active_hand(sheet)
-			to_chat(user, "<span class='notice'>You adjust the bedsheet to be worn on your neck!</span>")
+			to_chat(user, span_notice("You adjust the bedsheet to be worn on your neck!"))
 	else
-		to_chat(user, "<span class='notice'>You cannot adjust this bedsheet!</span>")
+		to_chat(user, span_notice("You cannot adjust this bedsheet!"))
 
 /obj/item/bedsheet/adjusted/blue
 	oldbedpath = /obj/item/bedsheet/blue

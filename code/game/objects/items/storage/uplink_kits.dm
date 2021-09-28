@@ -231,12 +231,12 @@
 /obj/item/stand_arrow/boss/attack_self(mob/user)
 	if(owner || !user.mind)
 		return
-	to_chat(user, "<span class='notice'>You prick your finger on the arrow, linking the mindslave nanites to you!</span>")
+	to_chat(user, span_notice("You prick your finger on the arrow, linking the mindslave nanites to you!"))
 	owner = user.mind
 
 /obj/item/stand_arrow/boss/attack(mob/living/M, mob/living/user)
 	if(owner && owner.current == M && user == M) //you have a holoparasite injector for this exact purpose
-		to_chat(M, "<span class='warning'>Implanting yourself with mindslave nanites is probably a bad idea...</span>")
+		to_chat(M, span_warning("Implanting yourself with mindslave nanites is probably a bad idea..."))
 		return
 	. = ..()
 

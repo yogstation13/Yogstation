@@ -3,7 +3,7 @@
 	id = "moth"
 	say_mod = "flutters"
 	default_color = "00FF00"
-	species_traits = list(LIPS, NOEYESPRITES)
+	species_traits = list(LIPS, NOEYESPRITES,HAS_FLESH,HAS_BONE)
 	payday_modifier = 0.8 //Useful to NT for biomedical advancements
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID, MOB_BUG)
 	mutant_bodyparts = list("moth_wings")
@@ -41,7 +41,7 @@
 	if(.) //if the mob is immune to fire, don't burn wings off.
 		return
 	if(H.dna.features["moth_wings"] != "Burnt Off" && H.bodytemperature >= 800 && H.fire_stacks > 0) //do not go into the extremely hot light. you will not survive
-		to_chat(H, "<span class='danger'>Your precious wings burn to a crisp!</span>")
+		to_chat(H, span_danger("Your precious wings burn to a crisp!"))
 		H.dna.features["moth_wings"] = "Burnt Off"
 		handle_mutant_bodyparts(H)
 

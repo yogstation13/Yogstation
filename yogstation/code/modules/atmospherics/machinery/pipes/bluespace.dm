@@ -38,7 +38,7 @@ GLOBAL_LIST_EMPTY(bluespace_pipe_networks)
 
 /obj/machinery/atmospherics/pipe/bluespace/examine(user)
 	. = ..()
-	. += "<span class='notice'>This one is connected to the \"[html_encode(bluespace_network_name)]\" network.</span>"
+	. += span_notice("This one is connected to the \"[html_encode(bluespace_network_name)]\" network.")
 
 /obj/machinery/atmospherics/pipe/bluespace/SetInitDirections()
 	initialize_directions = dir
