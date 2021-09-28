@@ -9,6 +9,7 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 	icon_state = "away"
 	has_gravity = STANDARD_GRAVITY
 	ambientsounds = AWAY_MISSION
+	area_flags = UNIQUE_AREA|NO_ALERTS
 
 /area/awaymission/beach
 	name = "Beach"
@@ -30,3 +31,6 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	var/pacifist = TRUE // if when you enter this zone, you become a pacifist or not
 	var/death = FALSE // if when you enter this zone, you die
+
+/area/awaymission/secret
+	area_flags = UNIQUE_AREA|NOTELEPORT|HIDDEN_AREA|NO_ALERTS
