@@ -40,7 +40,7 @@ RSF
 
 /obj/item/rsf/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>It currently holds [matter]/[max_matter] matter-units.</span>"
+	. += span_notice("It currently holds [matter]/[max_matter] matter-units.")
 
 /obj/item/rsf/cyborg
 	matter = 50
@@ -50,7 +50,7 @@ RSF
 	if(istype(W, /obj/item/rcd_ammo))//If the thing we got hit by is in our matter list
 		var/tempMatter = matter + 10
 		if(tempMatter > max_matter)
-			to_chat(user, "<span class='warning'>\The [src] can't hold any more matter-units!</span>")
+			to_chat(user, span_warning("\The [src] can't hold any more matter-units!"))
 			return
 		qdel(W)
 		matter = tempMatter //We add its value
@@ -63,7 +63,7 @@ RSF
 		return ..()
 
 	if(loaded)
-		to_chat(user, "<span class='notice'>[src] now holds [matter]/[max_matter] matter-units.</span>")
+		to_chat(user, span_notice("[src] now holds [matter]/[max_matter] matter-units."))
 		icon_state = initial(icon_state)//and set the icon state to the initial value it had
 		playsound(src.loc, 'sound/machines/click.ogg', 10, 1)
 
@@ -90,16 +90,16 @@ RSF
 /obj/item/rsf/proc/loadwithsheets(obj/item/stack/S, mob/user)
 	var/value = S.matter_amount
 	if(value <= 0)
-		to_chat(user, "<span class='notice'>You can't insert [S.name] into [src]!</span>")
+		to_chat(user, span_notice("You can't insert [S.name] into [src]!"))
 		return FALSE
 	var/maxsheets = round((max_matter-matter)/value)    //calculate the max number of sheets that will fit in RCD
 	if(maxsheets > 0)
 		var/amount_to_use = min(S.amount, maxsheets)
 		S.use(amount_to_use)
 		matter += value*amount_to_use
-		to_chat(user, "<span class='notice'>You insert [amount_to_use] [S.name] sheets into [src]. </span>")
+		to_chat(user, span_notice("You insert [amount_to_use] [S.name] sheets into [src]. "))
 		return TRUE
-	to_chat(user, "<span class='warning'>You can't insert any more [S.name] sheets into [src]!</span>")
+	to_chat(user, span_warning("You can't insert any more [S.name] sheets into [src]!"))
 	return FALSE
 
 ///Forms a radial menu based off an object in a list, or a list's associated object
@@ -125,7 +125,7 @@ RSF
 	if(use_matter(dispense_cost, user))//If we can charge that amount of charge, we do so and return true
 		playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
 		var/atom/meme = new to_dispense(get_turf(A))
-		to_chat(user, "<span class='notice'>[action_type] [meme.name]...</span>")
+		to_chat(user, span_notice("[action_type] [meme.name]..."))
 
 ///A helper proc. checks to see if we can afford the amount of charge that is passed, and if we can docs the charge from our base, and returns TRUE. If we can't we return FALSE
 /obj/item/rsf/proc/use_matter(charge, mob/user)
@@ -133,18 +133,18 @@ RSF
 		var/mob/living/silicon/robot/R = user
 		var/end_charge = R.cell.charge - charge
 		if(end_charge < 0)
-			to_chat(user, "<span class='warning'>You do not have enough power to use [src].</span>")
+			to_chat(user, span_warning("You do not have enough power to use [src]."))
 			icon_state = spent_icon_state
 			return FALSE
 		R.cell.charge = end_charge
 		return TRUE
 	else
 		if(matter - 1 < 0)
-			to_chat(user, "<span class='warning'>\The [src] doesn't have enough matter-units left.</span>")
+			to_chat(user, span_warning("\The [src] doesn't have enough matter-units left."))
 			icon_state = spent_icon_state
 			return FALSE
 		matter--
-		to_chat(user, "<span class='notice'>\The [src] now holds [matter]/[max_matter] matter-units.</span>")
+		to_chat(user, span_notice("\The [src] now holds [matter]/[max_matter] matter-units."))
 		return TRUE
 
 ///Helper proc that iterates through all the things we are allowed to spawn on, and sees if the passed atom is one of them
@@ -153,7 +153,7 @@ RSF
 		if(istype(to_check, sort))
 			return TRUE
 
-	to_chat(user, "<span class='warning'>\The [src] is unable to place this here!</span>")
+	to_chat(user, span_warning("\The [src] is unable to place this here!"))
 	return FALSE
 
 /obj/item/rsf/cookiesynth
@@ -184,9 +184,9 @@ RSF
 /obj/item/rsf/cookiesynth/emag_act(mob/user)
 	obj_flags ^= EMAGGED
 	if(obj_flags & EMAGGED)
-		to_chat(user, "<span class='warning'>You short out [src]'s reagent safety checker!</span>")
+		to_chat(user, span_warning("You short out [src]'s reagent safety checker!"))
 	else
-		to_chat(user, "<span class='warning'>You reset [src]'s reagent safety checker!</span>")
+		to_chat(user, span_warning("You reset [src]'s reagent safety checker!"))
 
 /obj/item/rsf/cookiesynth/attack_self(mob/user)
 	var/mob/living/silicon/robot/P = null
@@ -239,12 +239,12 @@ RSF
 	if (!(istype(A, /obj/structure/table) || isfloorturf(A)))
 		return
 	if(matter < 1)
-		to_chat(user, "<span class='warning'>[src] doesn't have enough matter left. Wait for it to recharge!</span>")
+		to_chat(user, span_warning("[src] doesn't have enough matter left. Wait for it to recharge!"))
 		return
 	if(iscyborg(user))
 		var/mob/living/silicon/robot/R = user
 		if(!R.cell || R.cell.charge < 400)
-			to_chat(user, "<span class='warning'>You do not have enough power to use [src].</span>")
+			to_chat(user, span_warning("You do not have enough power to use [src]."))
 			return
 	var/turf/T = get_turf(A)
 	playsound(src.loc, 'sound/machines/click.ogg', 10, 1)

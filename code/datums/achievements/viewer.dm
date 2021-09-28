@@ -84,7 +84,7 @@
 	set desc = "See all of your achivements"
 
 	if(!SSachievements.initialized)
-		to_chat(src, "<span class='warning'>SSachievements has not initialized yet, please wait.</span>")
+		to_chat(src, span_warning("SSachievements has not initialized yet, please wait."))
 		return
 
 	var/datum/achievement_browser/achievement_browser = SSachievements.get_browser(src)
