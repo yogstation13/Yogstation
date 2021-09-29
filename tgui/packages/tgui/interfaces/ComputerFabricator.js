@@ -281,7 +281,7 @@ const CfStep2 = (props, context) => {
               })} />
           </Table.Cell>
         </Table.Row>
-        {data.devtype == 1 && (
+        {data.devtype === 1 && (
           <Fragment>
             <Table.Row>
               <Table.Cell bold position="relative">
