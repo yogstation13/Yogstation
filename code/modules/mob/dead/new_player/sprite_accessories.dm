@@ -1691,7 +1691,7 @@
 
 /datum/sprite_accessory/horns/angler
 	name = "Angler"
-	icon_state = "angler"
+	icon_state = "doodlybopper" //TRUE NAME
 
 /datum/sprite_accessory/horns/tiny
 	name = "Tiny"
@@ -1816,6 +1816,10 @@
 /datum/sprite_accessory/frills/long
 	name = "Long"
 	icon_state = "long"
+
+/datum/sprite_accessory/frills/split
+	name = "Split"
+	icon_state = "split"
 
 /datum/sprite_accessory/spines
 	icon = 'icons/mob/mutant_bodyparts.dmi'
