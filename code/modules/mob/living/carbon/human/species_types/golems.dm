@@ -1266,16 +1266,17 @@
 			else
 				integrity = integrity - 0.4
 
+//Tougher than diamond, can burn but it doesn't damage them
 /datum/species/golem/mhydrogen
 	name = "Metallic Hydrogen Golem"
 	id = "Metallic Hydrogen golem"
 	fixed_mut_color = "ddd"
-	info_text = "As a <span class='danger'>Metallic Hydrogen Golem</span>, you were forged in the highest pressures and the highest heats. Your unique mineral makeup makes you tougher than diamond."
+	info_text = "As a <span class='danger'>Metallic Hydrogen Golem</span>, you were forged in the highest pressures and the highest heats. Your exotic makeup makes you tougher than diamond."
 	prefix = "Metallic Hydrogen"
 	stunmod = 0.6 //as opposed to plasteel's 0.4
 	special_names = list("Primordial","Atomic","Indivisible","Protonic")
 	armor = 75 //5 more than diamond, 20 more than base golem. balance as necessary, this just seems right
-	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS) //added virusimmune because they're too tough for disease, removed NOFIRE because hydrogen burns and they come from the fire department
+	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS) //removed NOFIRE because hydrogen burns and they come from the fire department
 
 /datum/species/golem/mhydrogen/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
