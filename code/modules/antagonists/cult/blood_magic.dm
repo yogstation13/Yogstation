@@ -40,6 +40,7 @@
 		break
 	if(rune)
 		limit = MAX_BLOODCHARGE
+	listclearnulls(spells)
 	if(spells.len >= limit)
 		if(rune)
 			to_chat(owner, span_cultitalic("You cannot store more than [MAX_BLOODCHARGE] spells. <b>Pick a spell to remove.</b>"))
