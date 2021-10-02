@@ -1237,7 +1237,8 @@
 	info_text = "As a <span class='danger'>Metallic Hydrogen Golem</span>, you were forged in the highest pressures and the highest heats. Your unique mineral makeup makes you tougher than diamond."
 	prefix = "Metallic Hydrogen"
 	stunmod = 0.6 //as opposed to plasteel's 0.4
-	special_names = ("Primordial","Atomic","Indivisible","Protonic")
+	special_names = list("Primordial","Atomic","Indivisible","Protonic")
+	primodrial atomic indivisible protonic
 	armor = 75 //5 more than diamond, 20 more than base golem. balance as necessary, this just seems right
 	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS) //added virusimmune because they're too tough for disease
 
