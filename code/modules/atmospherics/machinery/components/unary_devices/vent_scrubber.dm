@@ -14,7 +14,7 @@
 	level = 1
 	layer = GAS_SCRUBBER_LAYER
 	shift_underlay_only = FALSE
-
+	showpipe = FALSE
 	var/id_tag = null
 	var/scrubbing = SCRUBBING //0 = siphoning, 1 = scrubbing
 
@@ -253,7 +253,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/welder_act(mob/living/user, obj/item/I)
 	if(!I.tool_start_check(user, amount=0))
 		return TRUE
-	to_chat(user, "<span class='notice'>Now welding the scrubber.</span>")
+	to_chat(user, span_notice("Now welding the scrubber."))
 	if(I.use_tool(src, user, 20, volume=50))
 		if(!welded)
 			user.visible_message("[user] welds the scrubber shut.","You weld the scrubber shut.", "You hear welding.")
@@ -271,7 +271,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational())
-		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")
+		to_chat(user, span_warning("You cannot unwrench [src], turn it off first!"))
 		return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/examine(mob/user)
@@ -308,10 +308,12 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2
 	piping_layer = 2
 	icon_state = "scrub_map_on-2"
+	showpipe = FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4
 	piping_layer = 4
 	icon_state = "scrub_map_on-4"
+	showpipe = FALSE
 
 #undef SIPHONING
 #undef SCRUBBING

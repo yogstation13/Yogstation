@@ -220,20 +220,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"aF" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 1;
-	light_color = "#c1caff"
-	},
-/obj/machinery/camera/emp_proof{
-	c_tag = "Engineering Particle Accelerator";
-	network = list("ss13","engine")
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "aG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -292,18 +278,6 @@
 	icon_state = "2-4"
 	},
 /obj/structure/grille,
-/turf/open/floor/plating/airless,
-/area/engine/engineering)
-"aW" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating/airless,
-/area/engine/engineering)
-"aX" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
 "aY" = (
@@ -476,23 +450,6 @@
 /obj/item/screwdriver,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"bC" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/item/wirecutters,
-/turf/open/floor/engine,
-/area/engine/engineering)
-"bD" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "bE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -663,11 +620,6 @@
 /obj/structure/sign/warning/radiation/rad_area,
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
-"ey" = (
-/obj/machinery/door/firedoor/window,
-/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "gm" = (
 /turf/open/space/basic,
 /area/engine/engineering)
@@ -792,6 +744,16 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"uq" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "wH" = (
 /obj/machinery/camera/emp_proof{
 	c_tag = "Engineering Singularity Northeast";
@@ -805,6 +767,12 @@
 	req_access_txt = "10;13"
 	},
 /turf/open/floor/plating/airless,
+/area/engine/engineering)
+"xO" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/item/wirecutters,
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/engine,
 /area/engine/engineering)
 "yi" = (
 /turf/open/floor/plating/airless,
@@ -944,6 +912,12 @@
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"Ls" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 "Ma" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = -32
@@ -995,6 +969,34 @@
 /obj/machinery/the_singularitygen,
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"Sn" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"Ty" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#c1caff"
+	},
+/obj/machinery/camera/emp_proof{
+	c_tag = "Engineering Particle Accelerator";
+	network = list("ss13","engine")
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "Uz" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8;
@@ -1035,6 +1037,12 @@
 /obj/machinery/the_singularitygen/tesla,
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"YV" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 
 (1,1,1) = {"
 ab
@@ -1269,7 +1277,7 @@ nL
 Vm
 Fx
 MU
-aW
+YV
 bd
 bm
 bm
@@ -1348,7 +1356,7 @@ aa
 ac
 ac
 aC
-bF
+uq
 bv
 ag
 Jt
@@ -1408,7 +1416,7 @@ bG
 ac
 aE
 Gt
-ey
+Rl
 kU
 sd
 gm
@@ -1436,7 +1444,7 @@ ad
 ad
 zh
 zh
-ey
+Rl
 kU
 gm
 gm
@@ -1514,12 +1522,12 @@ aa
 "}
 (18,1,1) = {"
 ad
-aF
+Ty
 az
 au
 aL
 aP
-bC
+xO
 Rl
 kU
 gm
@@ -1604,7 +1612,7 @@ ad
 ad
 zh
 zh
-ey
+Rl
 kU
 gm
 gm
@@ -1632,7 +1640,7 @@ ci
 ac
 aE
 Gt
-ey
+Rl
 kU
 sd
 gm
@@ -1683,7 +1691,7 @@ aa
 (24,1,1) = {"
 ac
 ac
-bD
+Sn
 bF
 bv
 ag
@@ -1773,7 +1781,7 @@ nL
 Ma
 Io
 MU
-aX
+Ls
 bn
 bm
 bm

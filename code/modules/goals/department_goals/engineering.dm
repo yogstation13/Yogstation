@@ -4,8 +4,8 @@
 // Store like 70e6 joules
 // Which is like, 14 roundstart SMES' worth (so requires upgrades)
 /datum/department_goal/eng/SMES
-	name = "Store 70MW"
-	desc = "Store 70MW of energy in the station's SMES'"
+	name = "Store 70MJ"
+	desc = "Store 70MJ of energy in the station's SMES'"
 	reward = "50000"
 
 /datum/department_goal/eng/SMES/check_complete()
@@ -40,5 +40,17 @@
 /datum/department_goal/eng/additional_singularity/check_complete()
 	for(var/obj/singularity/s in GLOB.singularities)
 		if(is_station_level(s.z) && !istype(s, /obj/singularity/energy_ball))
+			return TRUE
+	return FALSE
+
+// Set up a tesla
+/datum/department_goal/eng/tesla
+	name = "Create a tesla"
+	desc = "Create a tesla engine using a tesla generator"
+	reward = "50000"
+
+/datum/department_goal/eng/tesla/check_complete()
+	for(var/obj/singularity/energy_ball/e in GLOB.singularities)
+		if(is_station_level(e.z))
 			return TRUE
 	return FALSE

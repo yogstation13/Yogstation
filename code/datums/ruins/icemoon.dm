@@ -31,6 +31,12 @@
 	description = "Just relax and take a dip, nothing will go wrong, I swear!"
 	suffix = "icemoon_surface_hotsprings.dmm"
 
+/datum/map_template/ruin/icemoon/icemoon_underground_abandoned_village
+	name = "Inn"
+	id = "inn"
+	description = "A small wooden inn with food, drinks, and a place to rest, all maintained by the innkeeper."
+	suffix = "icemoon_surface_inn.dmm"
+
 // above and below ground together
 
 /datum/map_template/ruin/icemoon/mining_site
@@ -88,6 +94,7 @@
 	id = "bathhouse"
 	description = "A taste of paradise, locked in the hell of the Ice Moon."
 	suffix = "icemoon_underground_bathhouse.dmm"
+
 /datum/map_template/ruin/icemoon/underground/wampacave
 	name = "Wampa Cave"
 	id = "wampacave"

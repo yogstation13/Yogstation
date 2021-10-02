@@ -69,7 +69,7 @@
 /datum/computer_file/program/proc/is_supported_by_hardware(hardware_flag = 0, loud = 0, mob/user = null)
 	if(!(hardware_flag & usage_flags))
 		if(loud && computer && user)
-			to_chat(user, "<span class='danger'>\The [computer] flashes an \"Hardware Error - Incompatible software\" warning.</span>")
+			to_chat(user, span_danger("\The [computer] flashes an \"Hardware Error - Incompatible software\" warning."))
 		return 0
 	return 1
 
@@ -115,7 +115,7 @@
 
 		if(!I && !D)
 			if(loud)
-				to_chat(user, "<span class='danger'>\The [computer] flashes an \"RFID Error - Unable to scan ID\" warning.</span>")
+				to_chat(user, span_danger("\The [computer] flashes an \"RFID Error - Unable to scan ID\" warning."))
 			return FALSE
 
 		if(I)
@@ -125,7 +125,7 @@
 			if(access_to_check in D.GetAccess())
 				return TRUE
 		if(loud)
-			to_chat(user, "<span class='danger'>\The [computer] flashes an \"Access Denied\" warning.</span>")
+			to_chat(user, span_danger("\The [computer] flashes an \"Access Denied\" warning."))
 	return 0
 
 // This attempts to retrieve header data for UIs. If implementing completely new device of different type than existing ones
@@ -155,6 +155,8 @@
 
 /datum/computer_file/program/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
+	if (!computer.can_show_ui(user, ui))
+		return
 	if(!ui && tgui_id)
 		ui = new(user, src, tgui_id, filedesc)
 		ui.open()

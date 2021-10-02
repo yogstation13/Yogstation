@@ -83,6 +83,7 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard
 	icon_state = "lizardmeat"
 	desc = "Delicious dino damage."
+	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/plain/human/lizard
 	filling_color = "#6B8E23"
 	tastes = list("meat" = 4, "scales" = 1)
 	foodtype = MEAT | RAW
@@ -145,12 +146,17 @@
 
 /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
 	name = "synthmeat"
+	icon_state = "meat_old"
+	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/synth
 	desc = "A synthetic slab of meat."
 	foodtype = RAW | MEAT //hurr durr chemicals we're harmed in the production of this meat thus its non-vegan.
 
 /obj/item/reagent_containers/food/snacks/meat/slab/meatproduct
 	name = "meat product"
+	icon_state = "meatproduct"
 	desc = "A slab of station reclaimed and chemically processed meat product."
+	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/meatproduct
+	tastes = list("meat flavoring" = 2, "modified starches" = 2, "natural & artificial dyes" = 1, "butyric acid" = 1)
 	foodtype = RAW | MEAT
 
 /obj/item/reagent_containers/food/snacks/meat/slab/monkey
@@ -281,12 +287,30 @@
 
 /obj/item/reagent_containers/food/snacks/meat/slab/penguin
 	name = "penguin meat"
+	icon_state = "birdmeat"
 	desc = "A slab of penguin meat."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/cooking_oil = 3)
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/penguin
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/penguin
 	filling_color = "#B22222"
 	tastes = list("beef" = 1, "cod fish" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/slab/blessed
+	name = "blessed meat"
+	icon_state = "shadowmeat"
+	desc = "It is covered in a strange darkness."
+	bitesize = 2
+	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3) //pretty healthy, chap could start a cult diner.
+	slice_path = null  //its perfect as it is, why would you want to defile it
+	cooked_type = null
+	filling_color = "#202020"
+	tastes = list("holyness" = 1, "meat" = 1, "dread" = 1)
+	foodtype = MEAT | RAW | GROSS //they just don't understand how tasty it really is
+
+/obj/item/reagent_containers/food/snacks/meat/slab/blessed/weak
+	name = "lesser blessed meat"
+	icon_state = "shadowmeat"
+	desc = "It is covered in a strange darkness. This slab's magical properties appear to be drastically weakened due to the synthetic nature of the meat."
 
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
@@ -342,7 +366,25 @@
 
 /obj/item/reagent_containers/food/snacks/meat/steak/penguin
 	name = "penguin steak"
+	icon_state = "birdsteak"
 	tastes = list("beef" = 1, "cod fish" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/steak/plain/human/lizard
+	name = "lizard steak"
+	icon_state = "birdsteak"
+	tastes = list("juicy chicken" = 3, "scales" = 1)
+	foodtype = MEAT
+
+/obj/item/reagent_containers/food/snacks/meat/steak/meatproduct
+	name = "thermally processed meat product"
+	icon_state = "meatproductsteak"
+	tastes = list("enhanced char" = 2, "suspicious tenderness" = 2, "natural & artificial dyes" = 2, "emulsifying agents" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/steak/synth
+	name = "synthsteak"
+	desc = "A synthetic meat steak. It doesn't look quite right, now does it?"
+	icon_state = "meatsteak_old"
+	tastes = list("meat" = 4, "cryoxandone" = 1)
 
 //////////////////////////////// MEAT CUTLETS ///////////////////////////////////////////////////////
 

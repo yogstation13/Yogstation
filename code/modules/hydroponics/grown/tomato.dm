@@ -12,7 +12,7 @@
 	icon_dead = "tomato-dead"
 	genes = list(/datum/plant_gene/trait/squash, /datum/plant_gene/trait/repeated_harvest)
 	mutatelist = list(/obj/item/seeds/tomato/blue, /obj/item/seeds/tomato/blood, /obj/item/seeds/tomato/killer)
-	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/reagent_containers/food/snacks/grown/tomato
 	seed = /obj/item/seeds/tomato
@@ -36,7 +36,7 @@
 	plantname = "Blood-Tomato Plants"
 	product = /obj/item/reagent_containers/food/snacks/grown/tomato/blood
 	mutatelist = list()
-	reagents_add = list(/datum/reagent/blood = 0.2, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
+	reagents_add = list(/datum/reagent/blood = 0.2, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 20
 
 /obj/item/reagent_containers/food/snacks/grown/tomato/blood
@@ -62,7 +62,7 @@
 	icon_grow = "bluetomato-grow"
 	mutatelist = list(/obj/item/seeds/tomato/blue/bluespace)
 	genes = list(/datum/plant_gene/trait/slip, /datum/plant_gene/trait/repeated_harvest)
-	reagents_add = list(/datum/reagent/lube = 0.2, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
+	reagents_add = list(/datum/reagent/lube = 0.2, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 20
 
 /obj/item/reagent_containers/food/snacks/grown/tomato/blue
@@ -85,7 +85,7 @@
 	yield = 2
 	mutatelist = list()
 	genes = list(/datum/plant_gene/trait/squash, /datum/plant_gene/trait/slip, /datum/plant_gene/trait/teleport, /datum/plant_gene/trait/repeated_harvest)
-	reagents_add = list(/datum/reagent/lube = 0.2, /datum/reagent/bluespace = 0.2, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
+	reagents_add = list(/datum/reagent/lube = 0.2, /datum/reagent/bluespace = 0.2, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 50
 
 /obj/item/reagent_containers/food/snacks/grown/tomato/blue/bluespace
@@ -124,14 +124,14 @@
 
 /obj/item/reagent_containers/food/snacks/grown/tomato/killer/attack(mob/M, mob/user, def_zone)
 	if(awakening)
-		to_chat(user, "<span class='warning'>The tomato is twitching and shaking, preventing you from eating it.</span>")
+		to_chat(user, span_warning("The tomato is twitching and shaking, preventing you from eating it."))
 		return
 	..()
 
 /obj/item/reagent_containers/food/snacks/grown/tomato/killer/attack_self(mob/user)
 	if(awakening || isspaceturf(user.loc))
 		return
-	to_chat(user, "<span class='notice'>You begin to awaken the Killer Tomato...</span>")
+	to_chat(user, span_notice("You begin to awaken the Killer Tomato..."))
 	awakening = 1
 
 	spawn(30)
@@ -142,6 +142,6 @@
 			K.melee_damage_upper += round(seed.potency / 15)
 			K.move_to_delay -= round(seed.production / 50)
 			K.health = K.maxHealth
-			K.visible_message("<span class='notice'>The Killer Tomato growls as it suddenly awakens.</span>")
+			K.visible_message(span_notice("The Killer Tomato growls as it suddenly awakens."))
 			log_game("[key_name(usr)] activated a killer tomato at [AREACOORD(src)].")
 			qdel(src)

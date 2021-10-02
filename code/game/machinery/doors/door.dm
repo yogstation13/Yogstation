@@ -16,42 +16,60 @@
 
 	interaction_flags_atom = INTERACT_ATOM_UI_INTERACT
 
-	var/air_tight = FALSE	//TRUE means density will be set as soon as the door begins to close
+	/// TRUE means density will be set as soon as the door begins to close
+	var/air_tight = FALSE
+	/// How long is this door electrified for
 	var/secondsElectrified = MACHINE_NOT_ELECTRIFIED
+	/// Logs for EMPs, Electrifications or Hostile Lockdowns
 	var/shockedby
+	/// Can you see through it without glass
 	var/visible = TRUE
+	/// Is it currently opening/closing
 	var/operating = FALSE
+	/// Can you see through it
 	var/glass = FALSE
+	/// Is it welded shut
 	var/welded = FALSE
-	var/normalspeed = 1
-	var/heat_proof = FALSE // For rglass-windowed airlocks and firedoors
-	var/emergency = FALSE // Emergency access override
-	var/sub_door = FALSE // true if it's meant to go under another door.
+	/// Does it close at a normal speed
+	var/normalspeed = TRUE
+	/// Does it block superconduction
+	var/heat_proof = FALSE
+	/// Is it on emergency access mode
+	var/emergency = FALSE
+	/// Is it's meant to go under another door.
+	var/sub_door = FALSE
+	/// Layer the door closes on
 	var/closingLayer = CLOSED_DOOR_LAYER
-	var/autoclose = FALSE //does it automatically close after some time
-	var/safe = TRUE //whether the door detects things and mobs in its way and reopen or crushes them.
-	var/locked = FALSE //whether the door is bolted or not.
-	var/assemblytype //the type of door frame to drop during deconstruction
+	/// Does it automatically close after some time
+	var/autoclose = FALSE
+	/// Whether the door detects things and mobs in its way and reopen or crushes them.
+	var/safe = TRUE
+	/// Is the door bolted?
+	var/locked = FALSE
+	/// The type of door frame to drop during deconstruction
+	var/assemblytype
 	var/datum/effect_system/spark_spread/spark_system
 	var/real_explosion_block	//ignore this, just use explosion_block
+	/// Will the door unlock on red alert
 	var/red_alert_access = FALSE //if TRUE, this door will always open on red alert
 	var/poddoor = FALSE
-	var/unres_sides = 0 //Unrestricted sides. A bitflag for which direction (if any) can open the door with no access
+	/// Unrestricted sides. A bitflag for which direction (if any) can open the door with no access
+	var/unres_sides = 0
 
 /obj/machinery/door/examine(mob/user)
 	. = ..()
 	if(red_alert_access)
 		if(GLOB.security_level >= SEC_LEVEL_RED)
-			. += "<span class='notice'>Due to a security threat, its access requirements have been lifted!</span>"
+			. += span_notice("Due to a security threat, its access requirements have been lifted!")
 		else
-			. += "<span class='notice'>In the event of a red alert, its access requirements will automatically lift.</span>"
+			. += span_notice("In the event of a red alert, its access requirements will automatically lift.")
 	if(!poddoor)
-		. += "<span class='notice'>Its maintenance panel is <b>screwed</b> in place.</span>"
+		. += span_notice("Its maintenance panel is <b>screwed</b> in place.")
 	if(!isdead(user))
 		var/userDir = turn(get_dir(src, user), 180)
 		var/turf/T = get_step(src, userDir)
 		var/areaName = T.loc.name
-		. += "<span class='notice'>It leads into [areaName].</span>"
+		. += span_notice("It leads into [areaName].")
 
 /obj/machinery/door/check_access_list(list/access_list)
 	if(red_alert_access && GLOB.security_level >= SEC_LEVEL_RED)
@@ -223,6 +241,9 @@
 	if(user.a_intent != INTENT_HARM && (I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/twohanded/fireaxe)))
 		try_to_crowbar(I, user)
 		return 1
+	else if(istype(I, /obj/item/zombie_hand/gamemode))
+		try_to_crowbar(I, user)
+		return TRUE
 	else if(I.tool_behaviour == TOOL_WELDER)
 		try_to_weld(I, user)
 		return 1
@@ -289,7 +310,7 @@
 
 /obj/machinery/door/proc/open()
 	if(!density)
-		return 1
+		return TRUE
 	if(operating)
 		return
 	operating = TRUE
@@ -307,7 +328,7 @@
 	if(autoclose)
 		spawn(autoclose)
 			close()
-	return 1
+	return TRUE
 
 /obj/machinery/door/proc/close()
 	if(density)
@@ -340,7 +361,7 @@
 		CheckForMobs()
 	else if(!(flags_1 & ON_BORDER_1))
 		crush()
-	return 1
+	return TRUE
 
 /obj/machinery/door/proc/CheckForMobs()
 	if(locate(/mob/living) in get_turf(src))
@@ -349,7 +370,12 @@
 
 /obj/machinery/door/proc/crush()
 	for(var/mob/living/L in get_turf(src))
-		L.visible_message("<span class='warning'>[src] closes on [L], crushing [L.p_them()]!</span>", "<span class='userdanger'>[src] closes on you and crushes you!</span>")
+		L.visible_message(span_warning("[src] closes on [L], crushing [L.p_them()]!"), span_userdanger("[src] closes on you and crushes you!"))
+		if(iscarbon(L))
+			var/mob/living/carbon/C = L
+			for(var/i in C.all_wounds) // should probably replace with signal
+				var/datum/wound/W = i
+				W.crush(DOOR_CRUSH_DAMAGE)
 		if(isalien(L))  //For xenos
 			L.adjustBruteLoss(DOOR_CRUSH_DAMAGE * 1.5) //Xenos go into crit after aproximately the same amount of crushes as humans.
 			L.emote("roar")
@@ -376,7 +402,7 @@
 	addtimer(CALLBACK(src, .proc/autoclose), wait, TIMER_UNIQUE | TIMER_NO_HASH_WAIT | TIMER_OVERRIDE)
 
 /obj/machinery/door/proc/requiresID()
-	return 1
+	return TRUE
 
 /obj/machinery/door/proc/hasPower()
 	return !(stat & NOPOWER)
@@ -387,8 +413,8 @@
 
 /obj/machinery/door/BlockSuperconductivity() // All non-glass airlocks block heat, this is intended.
 	if(opacity || heat_proof)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'

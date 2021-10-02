@@ -8,16 +8,26 @@
 "c" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"d" = (
-/obj/mecha/working/ripley/mining{
+"u" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"w" = (
+/obj/item/clothing/under/rank/miner/lavaland,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"K" = (
+/obj/item/clothing/shoes/workboots/mining,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"O" = (
+/obj/mecha/working/ripley/firefighter{
 	ruin_mecha = 1
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"e" = (
-/obj/item/clothing/shoes/workboots/mining,
-/obj/item/clothing/under/rank/miner/lavaland,
-/obj/effect/decal/remains/human,
+"V" = (
+/obj/item/mecha_parts/mecha_equipment/drill,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 
@@ -32,20 +42,20 @@ a
 b
 c
 b
-c
+w
 b
 "}
 (3,1,1) = {"
 b
 c
-d
-e
+O
+u
 b
 "}
 (4,1,1) = {"
 b
-c
-c
+K
+V
 b
 b
 "}

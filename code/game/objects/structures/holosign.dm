@@ -75,7 +75,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "holosign"
 
-/obj/structure/holosign/barrier/wetsign/CanPass(atom/movable/mover, turf/target)
+/obj/structure/holosign/barrier/wetsign/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(istype(mover, /obj/vehicle/ridden/janicart))
 		return TRUE
@@ -133,7 +133,7 @@
 
 /obj/structure/holosign/barrier/medical/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>The biometric scanners are <b>[force_allaccess ? "off" : "on"]</b>.</span>"
+	. += span_notice("The biometric scanners are <b>[force_allaccess ? "off" : "on"]</b>.")
 
 /obj/structure/holosign/barrier/medical/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -160,7 +160,7 @@
 /obj/structure/holosign/barrier/medical/attack_hand(mob/living/user)
 	if(CanPass(user) && user.a_intent == INTENT_HELP)
 		force_allaccess = !force_allaccess
-		to_chat(user, "<span class='warning'>You [force_allaccess ? "deactivate" : "activate"] the biometric scanners.</span>") //warning spans because you can make the station sick!
+		to_chat(user, span_warning("You [force_allaccess ? "deactivate" : "activate"] the biometric scanners.")) //warning spans because you can make the station sick!
 	else
 		return ..()
 

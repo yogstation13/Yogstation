@@ -32,11 +32,12 @@ Bonus
 	)
 
 /datum/symptom/narcolepsy/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
-	if(A.properties["transmittable"] >= 7) //stamina damage
+	if(A.totalTransmittable() >= 7) //stamina damage
 		stamina = TRUE
-	if(A.properties["resistance"] >= 10) //act more often
+	if(A.totalResistance() >= 10) //act more often
 		symptom_delay_min = 10
 		symptom_delay_max = 60
 
@@ -57,34 +58,35 @@ Bonus
 	else
 		sleep_level = 0
 
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 
 	switch(A.stage)
 		if(1)
 			if(prob(10))
-				to_chat(M, "<span class='warning'>You feel tired.</span>")
+				to_chat(M, span_warning("You feel tired."))
 		if(2)
 			if(prob(10))
-				to_chat(M, "<span class='warning'>You feel very tired.</span>")
+				to_chat(M, span_warning("You feel very tired."))
 				sleepy_ticks += rand(10,14)
 				if(stamina)
 					M.adjustStaminaLoss(10)
 		if(3)
 			if(prob(15))
-				to_chat(M, "<span class='warning'>You try to focus on staying awake.</span>")
+				to_chat(M, span_warning("You try to focus on staying awake."))
 				sleepy_ticks += rand(10,14)
 				if(stamina)
 					M.adjustStaminaLoss(15)
 		if(4)
 			if(prob(20))
-				to_chat(M, "<span class='warning'>You nod off for a moment.</span>")
+				to_chat(M, span_warning("You nod off for a moment."))
 				sleepy_ticks += rand(10,14)
 				if(stamina)
 					M.adjustStaminaLoss(20)
 		if(5)
 			if(prob(25))
-				to_chat(M, "<span class='warning'>[pick("So tired...","You feel very sleepy.","You have a hard time keeping your eyes open.","You try to stay awake.")]</span>")
+				to_chat(M, span_warning("[pick("So tired...","You feel very sleepy.","You have a hard time keeping your eyes open.","You try to stay awake.")]"))
 				M.drowsyness = max(M.drowsyness, 2)
 				sleepy_ticks += rand(10,14)
 				if(stamina)

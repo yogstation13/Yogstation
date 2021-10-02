@@ -37,25 +37,27 @@ Bonus
 	)
 
 /datum/symptom/voice_change/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
-	if(A.properties["stealth"] >= 3)
+	if(A.totalStealth() >= 3)
 		suppress_warning = TRUE
-	if(A.properties["stage_rate"] >= 7) //faster change of voice
+	if(A.totalStageSpeed() >= 7) //faster change of voice
 		base_message_chance = 25
 		symptom_delay_min = 25
 		symptom_delay_max = 85
-	if(A.properties["transmittable"] >= 14) //random language
+	if(A.totalTransmittable() >= 14) //random language
 		scramble_language = TRUE
 
 /datum/symptom/voice_change/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)
 		if(1, 2, 3, 4)
 			if(prob(base_message_chance) && !suppress_warning)
-				to_chat(M, "<span class='warning'>[pick("Your throat hurts.", "You clear your throat.")]</span>")
+				to_chat(M, span_warning("[pick("Your throat hurts.", "You clear your throat.")]"))
 		else
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M

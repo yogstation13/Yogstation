@@ -33,7 +33,7 @@
 	if(ismob(target))
 		var/mob/M = target
 		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			M.visible_message(span_warning("[src] vanishes on contact with [target]!"))
 			return BULLET_ACT_BLOCK
 	. = ..()
 
@@ -280,13 +280,13 @@
 				var/mob/living/M = AM
 				M.Paralyze(100)
 				M.adjustBruteLoss(5)
-				to_chat(M, "<span class='userdanger'>You're slammed into the floor by [user]!</span>")
+				to_chat(M, span_userdanger("You're slammed into the floor by [user]!"))
 		else
 			new sparkle_path(get_turf(AM), get_dir(user, AM)) //created sparkles will disappear on their own
 			if(isliving(AM))
 				var/mob/living/M = AM
 				M.Paralyze(stun_amt)
-				to_chat(M, "<span class='userdanger'>You're thrown back by [user]!</span>")
+				to_chat(M, span_userdanger("You're thrown back by [user]!"))
 			AM.safe_throw_at(throwtarget, ((clamp((maxthrow - (clamp(distfromcaster - 2, 0, distfromcaster))), 3, maxthrow))), 1,user, force = repulse_force, quickstart = TRUE)//So stuff gets tossed around at the same time.
 
 /obj/effect/proc_holder/spell/aoe_turf/repulse/xeno //i fixed conflicts only to find out that this is in the WIZARD file instead of the xeno file?!
@@ -369,3 +369,23 @@
 	if(ishuman(thrower))
 		var/mob/living/carbon/human/H = thrower
 		H.say("LIGHTNINGBOLT!!", forced = "spell")
+
+/obj/effect/proc_holder/spell/aoe_turf/repulse/hulk
+	name = "Ground Smash"
+	desc = "Smash the ground to throw your enemies back!"
+	sound = 'sound/magic/Repulse.ogg'
+	charge_max = 150
+	clothes_req = FALSE
+	range = 1
+	cooldown_min = 150
+	invocation = "HULK SMASH!!"
+	action_icon = 'icons/mob/actions.dmi'
+	action_icon_state = "green_hand"
+	action_background_icon_state = "bg_default"
+
+/obj/effect/proc_holder/spell/aoe_turf/repulse/hulk/cast(list/targets,mob/user = usr)
+	var/turf/open/floor/T = get_turf(usr)
+	if(istype(T))
+		T.break_tile()
+	playsound(usr.loc, 'sound/effects/meteorimpact.ogg', 30, 1, 2)
+	..()

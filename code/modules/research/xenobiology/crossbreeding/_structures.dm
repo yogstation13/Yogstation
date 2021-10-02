@@ -3,20 +3,27 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 /obj/structure/slime_crystal
 	name = "slimic pylon"
 	desc = "Glassy, pure, transparent. Powerful artifact that relays the slimecore's influence onto space around it."
-	max_integrity = 5
+	max_integrity = 30
 	anchored = TRUE
 	density = TRUE
 	icon = 'icons/obj/slimecrossing.dmi'
 	icon_state = "slime_pylon"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+	///Description of the crystal's effects.
+	var/effect_desc
 	///Assoc list of affected mobs, the key is the mob while the value of the map is the amount of ticks spent inside of the zone.
 	var/list/affected_mobs = list()
-	///Used to determine wether we use view or range
+	///Used to determine wether we use view or range.
 	var/range_type = "range"
 	///What color is it?
 	var/colour
 	///Does it use process?
 	var/uses_process = TRUE
+
+/obj/structure/slime_crystal/examine(mob/user)
+	. = ..()
+	if(effect_desc)
+		. += span_notice("[effect_desc]")
 
 /obj/structure/slime_crystal/New(loc, obj/structure/slime_crystal/master_crystal, ...)
 	. = ..()
@@ -75,6 +82,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 		START_PROCESSING(SSobj, src)
 
 /obj/structure/slime_crystal/Destroy()
+	new /obj/effect/decal/cleanable/glass/plasma(src)
 	if(uses_process)
 		STOP_PROCESSING(SSobj, src)
 	for(var/X in affected_mobs)
@@ -109,6 +117,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/grey
 	colour = "grey"
+	effect_desc = "It's slowly feeding nearby slimes."
 	range_type = "view"
 
 /obj/structure/slime_crystal/grey/on_mob_effect(mob/living/affected_mob)
@@ -119,6 +128,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/orange
 	colour = "orange"
+	effect_desc = "Ignites anyone in range of the crystal and heats the surrounding air. Effect is blocked by walls."
 	range_type = "view"
 
 /obj/structure/slime_crystal/orange/on_mob_effect(mob/living/affected_mob)
@@ -139,6 +149,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/purple
 	colour = "purple"
+	effect_desc = "It's slowly healing humans and creatures in range of all types of damage."
 	var/heal_amt = 2
 
 /obj/structure/slime_crystal/purple/on_mob_effect(mob/living/affected_mob)
@@ -165,6 +176,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/blue
 	colour = "blue"
+	effect_desc = "It stabilizes air around it to the standard O2/N2 mixture, and stabilizes the temperature. Effect is blocked by walls."
 	range_type = "view"
 
 /obj/structure/slime_crystal/blue/process()
@@ -177,6 +189,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/metal
 	colour = "metal"
+	effect_desc = "Slowly heals cyborgs in range."
 	var/heal_amt = 1
 
 /obj/structure/slime_crystal/metal/on_mob_effect(mob/living/affected_mob)
@@ -187,6 +200,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/yellow
 	colour = "yellow"
+	effect_desc = "When struck by a cell, the cell will be instantly charged. Fully charged cells will explode when striking the crystal."
 	light_color = LIGHT_COLOR_YELLOW //a good, sickly atmosphere
 	light_power = 0.75
 	uses_process = FALSE
@@ -210,6 +224,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/darkpurple
 	colour = "dark purple"
+	effect_desc = "It consumes plasma in the air, converting it into plasma sheets. Crystal releases and ignites a small amount of plasma when destroyed."
 
 /obj/structure/slime_crystal/darkpurple/process()
 	var/turf/T = get_turf(src)
@@ -227,6 +242,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/darkblue
 	colour = "dark blue"
+	effect_desc = "Cleans and dries tiles in the area around it."
 
 /obj/structure/slime_crystal/darkblue/process()
 	var/list/listie = range(5,src)
@@ -241,6 +257,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/silver
 	colour = "silver"
+	effect_desc = "Plants grow faster in the area around it. Crystal also prevents weeds and pests from growing at all."
 
 /obj/structure/slime_crystal/silver/process()
 	for(var/obj/machinery/hydroponics/hydr in range(5,src))
@@ -250,6 +267,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/bluespace
 	colour = "bluespace"
+	effect_desc = "Acts as a beacon to other crystals of this type. Click with an empty hand to teleport between them."
 	density = FALSE
 	uses_process = FALSE
 	///Is it in use?
@@ -292,6 +310,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/sepia
 	colour = "sepia"
+	effect_desc = "Everything in the area around it is put in stasis as if on a stasis bed. Does not stun like a stasis bed."
 
 /obj/structure/slime_crystal/sepia/on_mob_enter(mob/living/affected_mob)
 	ADD_TRAIT(affected_mob,TRAIT_NOBREATH,type)
@@ -344,6 +363,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/cerulean
 	colour = "cerulean"
+	effect_desc = "Nearby tiles will gradually grow slime crystals. These slime crystals, when harvested, may be combined with any material sheet to increase its stack size by 5."
 
 /obj/structure/slime_crystal/cerulean/process()
 	for(var/turf/T in range(2,src))
@@ -356,6 +376,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/pyrite
 	colour = "pyrite"
+	effect_desc = "It causes nearby floor tiles to be randomly colored."
 	uses_process = FALSE
 
 /obj/structure/slime_crystal/pyrite/Initialize()
@@ -371,26 +392,39 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/red
 	colour = "red"
+	effect_desc = "This crystal cleans blood from the ground in a wide area and may store up to 300u of gathered blood. Touching the crystal will consume 50u blood and create a piece of meat or a random functional organ. Containers may also be used on the crystal to transfer blood directly out of it."
 	var/blood_amt = 0
 	var/max_blood_amt = 300
 /obj/structure/slime_crystal/red/examine(mob/user)
 	. = ..()
 	. += "It has [blood_amt] u of blood."
 
+
 /obj/structure/slime_crystal/red/process()
 	if(blood_amt == max_blood_amt)
 		return
-	for(var/obj/effect/decal/cleanable/blood/B in range(3,src))
-		qdel(B)
-		blood_amt++
-		if(blood_amt == max_blood_amt)
-			return
+	for(var/obj/effect/decal/cleanable/B in range(5,src))
+		if(istype(B, /obj/effect/decal/cleanable/blood))
+			blood_amt += 10
+			if(blood_amt > max_blood_amt)
+				blood_amt = max_blood_amt
+				break
+			qdel(B)
+		else if (istype(B, /obj/effect/decal/cleanable/trail_holder))
+			blood_amt += 3
+			if(blood_amt > max_blood_amt)
+				blood_amt = max_blood_amt
+				break
+			qdel(B)
+		return
 
 /obj/structure/slime_crystal/red/attack_hand(mob/user)
-	if(blood_amt < 100)
+	if(blood_amt < 50)
 		return ..()
-	blood_amt -= 100
-	var/type = pick(/obj/item/reagent_containers/food/snacks/meat/slab,/obj/item/organ/heart,/obj/item/organ/lungs,/obj/item/organ/liver,/obj/item/organ/eyes,/obj/item/organ/tongue,/obj/item/organ/stomach,/obj/item/organ/ears)
+	blood_amt -= 50
+	to_chat(user, span_notice("You touch the crystal, and see blood transforming into an organ!"))
+	playsound(src, 'sound/magic/demon_consume.ogg', 50, 1)
+	var/type = pick(/obj/item/reagent_containers/food/snacks/meat/slab,/obj/item/organ/heart,/obj/item/organ/heart/freedom,/obj/item/organ/lungs,/obj/item/organ/lungs/plasmaman,/obj/item/organ/lungs/slime,/obj/item/organ/liver,/obj/item/organ/liver/plasmaman,/obj/item/organ/liver/alien,/obj/item/organ/eyes,/obj/item/organ/eyes/night_vision/alien,/obj/item/organ/eyes/night_vision,/obj/item/organ/eyes/night_vision/mushroom,/obj/item/organ/tongue,/obj/item/organ/stomach,/obj/item/organ/stomach/plasmaman,/obj/item/organ/stomach/ethereal,/obj/item/organ/ears,/obj/item/organ/ears/cat,/obj/item/organ/ears/penguin)
 	new type(get_turf(src))
 
 /obj/structure/slime_crystal/red/attacked_by(obj/item/I, mob/living/user)
@@ -403,8 +437,11 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 		return ..()
 	blood_amt -= 10
 	item_beaker.reagents.add_reagent(/datum/reagent/blood,10)
+	to_chat(user, span_notice("You transfer some of strored blood into [I]!"))
+
 /obj/structure/slime_crystal/green
 	colour = "green"
+	effect_desc = "Crystal stores one random mutation from the last player who interacted with it (starts with none). People standing near it are gradually cured of their mutations but will be forcefully given the mutation stored in the crystal"
 	var/datum/mutation/stored_mutation
 
 /obj/structure/slime_crystal/green/examine(mob/user)
@@ -448,6 +485,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/pink
 	colour = "pink"
+	effect_desc = "Anyone near this crystal is pacified."
 
 /obj/structure/slime_crystal/pink/on_mob_enter(mob/living/affected_mob)
 	ADD_TRAIT(affected_mob,TRAIT_PACIFISM,type)
@@ -457,29 +495,43 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/gold
 	colour = "gold"
+	effect_desc = "Touching it will transform you into a random pet. Effects are undone when leaving the area."
+	var/list/gold_pet_options = list(/mob/living/simple_animal/pet/dog/corgi , /mob/living/simple_animal/pet/dog/pug , /mob/living/simple_animal/pet/dog/bullterrier , /mob/living/simple_animal/crab , /mob/living/simple_animal/pet/fox , /mob/living/simple_animal/pet/cat/kitten , /mob/living/simple_animal/pet/cat/space , /mob/living/simple_animal/pet/penguin/emperor , /mob/living/simple_animal/pet/penguin/baby)
 
 /obj/structure/slime_crystal/gold/attack_hand(mob/user)
 	. = ..()
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/human_mob = user
-	var/mob/living/simple_animal/pet/chosen_pet = pick(/mob/living/simple_animal/pet/dog/corgi,/mob/living/simple_animal/pet/dog/pug,/mob/living/simple_animal/pet/dog/bullterrier,/mob/living/simple_animal/pet/fox,/mob/living/simple_animal/pet/cat/kitten,/mob/living/simple_animal/pet/cat/space,/mob/living/simple_animal/pet,/mob/living/simple_animal/pet/penguin)
+	var/mob/living/simple_animal/chosen_pet = pick(gold_pet_options)
 	chosen_pet = new chosen_pet(get_turf(human_mob))
-	human_mob.forceMove(chosen_pet)
-	human_mob.mind.transfer_to(chosen_pet)
+	if(chosen_pet)
+		to_chat(user, span_notice("You touch the crystal, and become a small animal!"))
+		playsound(src, 'sound/magic/fireball.ogg', 50, 1)
+		human_mob.forceMove(chosen_pet)
+		human_mob.notransform = 1
+		ADD_TRAIT(human_mob, TRAIT_MUTE, STASIS_MUTE)
+		human_mob.status_flags |= GODMODE
+		human_mob.mind.transfer_to(chosen_pet)
 
 /obj/structure/slime_crystal/gold/on_mob_leave(mob/living/affected_mob)
-	if(!istype(affected_mob,/mob/living/simple_animal/pet))
+	if(!is_type_in_list(affected_mob, gold_pet_options))
 		return
 	var/mob/living/carbon/human/human_mob = locate() in affected_mob
 	if(!human_mob)
 		return
+	REMOVE_TRAIT(human_mob, TRAIT_MUTE, STASIS_MUTE)
+	human_mob.status_flags &= ~GODMODE
+	human_mob.notransform = 0
 	affected_mob.mind.transfer_to(human_mob)
 	human_mob.forceMove(get_turf(affected_mob))
 	qdel(affected_mob)
 
+
+
 /obj/structure/slime_crystal/oil
 	colour = "oil"
+	effect_desc = "It's covering nearbly floors with lube."
 
 /obj/structure/slime_crystal/oil/process()
 	for(var/T in RANGE_TURFS(3,src))
@@ -490,12 +542,13 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/black
 	colour = "black"
+	effect_desc = "People standing near this crystal will begin slowly transforming into a random slimeperson. Has no effect on slimepeople."
 
 /obj/structure/slime_crystal/black/on_mob_effect(mob/living/affected_mob)
 	if(!ishuman(affected_mob) || isjellyperson(affected_mob))
 		return
 
-	if(affected_mobs[affected_mob] < 60) //Around 2 minutes
+	if(affected_mobs[affected_mob] < 30) //Around a minute
 		return
 
 	var/mob/living/carbon/human/human_transformed = affected_mob
@@ -503,41 +556,45 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/lightpink
 	colour = "light pink"
+	effect_desc = "Crystal converts lost souls into harmless, healing lightgheists that disappear when too far away from the crystal."
 
 /obj/structure/slime_crystal/lightpink/attack_ghost(mob/user)
 	. = ..()
-	var/mob/living/simple_animal/hostile/lightgeist/slime/L = new(get_turf(src))
+	var/mob/living/simple_animal/hostile/lightgeist/healing/slime/L = new(get_turf(src))
 	L.ckey = user.ckey
 	affected_mobs[L] = 0
 	ADD_TRAIT(L,TRAIT_MUTE,type)
 	ADD_TRAIT(L,TRAIT_EMOTEMUTE,type)
 
 /obj/structure/slime_crystal/lightpink/on_mob_leave(mob/living/affected_mob)
-	if(istype(affected_mob,/mob/living/simple_animal/hostile/lightgeist/slime))
+	if(istype(affected_mob,/mob/living/simple_animal/hostile/lightgeist/healing/slime))
 		affected_mob.ghostize(TRUE)
 		qdel(affected_mob)
 
 /obj/structure/slime_crystal/adamantine
 	colour = "adamantine"
+	effect_desc = "It makes everyone nearby more resistant."
+	max_integrity = 70 //Crystal is more resistant itself
 
 /obj/structure/slime_crystal/adamantine/on_mob_enter(mob/living/affected_mob)
 	if(!ishuman(affected_mob))
 		return
 
 	var/mob/living/carbon/human/human = affected_mob
-	human.dna.species.brutemod -= 0.1
-	human.dna.species.burnmod -= 0.1
+	human.dna.species.brutemod *= 0.5  //Hefty resistance, great for point defence.
+	human.dna.species.burnmod *= 0.5
 
 /obj/structure/slime_crystal/adamantine/on_mob_leave(mob/living/affected_mob)
 	if(!ishuman(affected_mob))
 		return
 	var/mob/living/carbon/human/human = affected_mob
-	human.dna.species.brutemod += 0.1
-	human.dna.species.burnmod += 0.1
-
+	human.dna.species.brutemod *= 2
+	human.dna.species.burnmod *= 2
 /obj/structure/slime_crystal/rainbow
 	colour = "rainbow"
+	effect_desc = "It absorbs other crystal slime cores and combines their powers."
 	uses_process = FALSE
+	max_integrity = 100 //It would suck destroying this by accident
 	var/list/inserted_cores = list()
 
 /obj/structure/slime_crystal/rainbow/Initialize()

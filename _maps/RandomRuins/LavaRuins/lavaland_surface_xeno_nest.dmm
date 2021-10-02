@@ -40,13 +40,6 @@
 /obj/structure/alien/weeds/node,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/xenonest)
-"o" = (
-/obj/structure/alien/weeds,
-/obj/structure/bed/nest,
-/obj/effect/decal/cleanable/blood/gibs,
-/obj/item/gun/ballistic/automatic/pistol,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered/xenonest)
 "r" = (
 /obj/structure/alien/weeds,
 /obj/structure/alien/resin/wall,
@@ -77,16 +70,6 @@
 "y" = (
 /obj/structure/alien/weeds/node,
 /obj/structure/alien/resin/wall,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered/xenonest)
-"z" = (
-/obj/structure/alien/weeds,
-/obj/structure/bed/nest,
-/obj/effect/decal/cleanable/blood/gibs,
-/obj/item/clothing/under/rank/security,
-/obj/item/clothing/suit/armor/vest,
-/obj/item/melee/baton/loaded,
-/obj/item/clothing/head/helmet,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/xenonest)
 "B" = (
@@ -172,6 +155,22 @@
 "R" = (
 /obj/structure/alien/weeds,
 /turf/template_noop,
+/area/ruin/unpowered/xenonest)
+"T" = (
+/obj/structure/alien/weeds,
+/obj/structure/bed/nest,
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvised,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/xenonest)
+"W" = (
+/obj/structure/alien/weeds,
+/obj/structure/bed/nest,
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/item/clothing/under/rank/security,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/head/helmet,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/xenonest)
 
 (1,1,1) = {"
@@ -435,7 +434,7 @@ a
 a
 G
 b
-o
+T
 v
 g
 b
@@ -1077,7 +1076,7 @@ a
 a
 a
 b
-z
+W
 C
 j
 g

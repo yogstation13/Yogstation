@@ -5,10 +5,22 @@
 
 #define RADIO_EXTENSION "department specific"
 #define RADIO_KEY "department specific key"
+
 #define LANGUAGE_EXTENSION "language specific"
+#define LANGUAGE_EXTENSION_KEY ","
 
 //Message modes. Each one defines a radio channel, more or less.
 #define MODE_HEADSET "headset"
+#define MODE_KEY_HEADSET ";"
+
+#define MODE_SING "sing"
+#define MODE_KEY_SING "%"
+
+#define WHISPER_MODE "the type of whisper"
+#define MODE_WHISPER "whisper"
+#define MODE_KEY_WHISPER "#"
+#define MODE_WHISPER_CRIT "whispercrit"
+
 #define MODE_ROBOT "robot"
 
 #define MODE_R_HAND "right hand"
@@ -20,14 +32,6 @@
 #define MODE_INTERCOM "intercom"
 #define MODE_KEY_INTERCOM "i"
 
-#define MODE_BINARY "binary"
-#define MODE_KEY_BINARY "b"
-#define MODE_TOKEN_BINARY ":b"
-
-#define WHISPER_MODE "the type of whisper"
-#define MODE_WHISPER "whisper"
-#define MODE_WHISPER_CRIT "whispercrit"
-
 #define MODE_DEPARTMENT "department"
 #define MODE_KEY_DEPARTMENT "h"
 #define MODE_TOKEN_DEPARTMENT ":h"
@@ -38,11 +42,17 @@
 #define MODE_DEADMIN "deadmin"
 #define MODE_KEY_DEADMIN "d"
 
+#define MODE_BINARY "binary"
+#define MODE_KEY_BINARY "b"
+#define MODE_TOKEN_BINARY ":b"
+
 #define MODE_ALIEN "alientalk"
 #define MODE_KEY_ALIEN "a"
 #define MODE_TOKEN_ALIEN ":a"
 
 #define MODE_HOLOPAD "holopad"
+#define MODE_KEY_HOLOPAD "h"
+#define MODE_TOKEN_HOLOPAD ":h"
 
 #define MODE_CHANGELING "changeling"
 #define MODE_KEY_CHANGELING "g"
@@ -52,10 +62,12 @@
 #define MODE_KEY_VOCALCORDS "x"
 
 #define MODE_MONKEY "monkeyhive"
-
-#define MODE_SING "sing"
+#define MODE_KEY_MONKEY  "k"
+#define MODE_TOKEN_MONKEY  ":k"
 
 #define MODE_DARKSPAWN "mindlink"
+#define MODE_KEY_DARKSPAWN  "w"
+#define MODE_TOKEN_DARKSPAWN  ":w"
 
 //Spans. Robot speech, italics, etc. Applied in compose_message().
 #define SPAN_ROBOT "robot"
@@ -67,6 +79,7 @@
 #define SPAN_COMMAND "command_headset"
 #define SPAN_CLOWN "clown"
 #define SPAN_SINGING "singing"
+#define SPAN_CULTLARGE "cultlarge"
 
 //bitflag #defines for return value of the radio() proc.
 #define ITALICS			(1<<0)

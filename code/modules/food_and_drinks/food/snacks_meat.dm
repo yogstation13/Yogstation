@@ -43,7 +43,7 @@
 	desc = "Not so delicious rat meat, on a stick."
 	icon_state = "ratkebab"
 	w_class = WEIGHT_CLASS_NORMAL
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("rat meat" = 1, "metal" = 1)
 	foodtype = MEAT | GROSS
 
@@ -51,7 +51,7 @@
 	name = "double rat kebab"
 	icon_state = "doubleratkebab"
 	tastes = list("rat meat" = 2, "metal" = 1)
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
 
 ////////////////////////////////////////////FISH////////////////////////////////////////////
 
@@ -288,7 +288,7 @@
 /obj/item/reagent_containers/food/snacks/dolphinmeat/Initialize()
   . = ..()
   eatverb = pick("bite","chew","choke down","gnaw","swallow","chomp")
-  
+
 /obj/item/reagent_containers/food/snacks/meatclown
 	name = "meat clown"
 	desc = "A delicious, round piece of meat clown. How horrifying."
@@ -322,23 +322,23 @@
 	if(faction)
 		bananas.faction = faction
 	if (!QDELETED(bananas))
-		visible_message("<span class='notice'>[src] expands!</span>")
+		visible_message(span_notice("[src] expands!"))
 		bananas.log_message("Spawned via [src] at [AREACOORD(src)], Last attached mob: [key_name(spammer)].", LOG_ATTACK)
 	else if (!spammer) // Visible message in case there are no fingerprints
-		visible_message("<span class='notice'>[src] fails to expand!</span>")
+		visible_message(span_notice("[src] fails to expand!"))
 	qdel(src)
-	
+
 /obj/item/reagent_containers/food/snacks/monkeycube/suicide_act(mob/living/M)
-	M.visible_message("<span class='suicide'>[M] is putting [src] in [M.p_their()] mouth! It looks like [M.p_theyre()] trying to commit suicide!</span>")
+	M.visible_message(span_suicide("[M] is putting [src] in [M.p_their()] mouth! It looks like [M.p_theyre()] trying to commit suicide!"))
 	var/eating_success = do_after(M, 10, TRUE, src, TRUE)
 	if(QDELETED(M)) //qdeletion: the nuclear option of self-harm
 		return SHAME
 	if(!eating_success || QDELETED(src)) //checks if src is gone or if they failed to wait for a second
-		M.visible_message("<span class='suicide'>[M] chickens out!</span>")
+		M.visible_message(span_suicide("[M] chickens out!"))
 		return SHAME
 	if(HAS_TRAIT(M, TRAIT_NOHUNGER)) //plasmamen don't have saliva/stomach acid
-		M.visible_message("<span class='suicide'>[M] realizes [M.p_their()] body won't activate [src]!</span>"
-		,"<span class='warning'>Your body won't activate [src]...</span>")
+		M.visible_message(span_suicide("[M] realizes [M.p_their()] body won't activate [src]!")
+		,span_warning("Your body won't activate [src]..."))
 		return SHAME
 	playsound(M, 'sound/items/eatfood.ogg', rand(10,50), TRUE)
 	M.temporarilyRemoveItemFromInventory(src) //removes from hands, keeps in M
@@ -349,10 +349,10 @@
 	if(QDELETED(M) || QDELETED(src))
 		return
 	if((src.loc != M)) //how the hell did you manage this
-		to_chat(M, "<span class='warning'>Something happened to [src]...</span>")
+		to_chat(M, span_warning("Something happened to [src]..."))
 		return
 	Expand()
-	M.visible_message("<span class='danger'>[M]'s torso bursts open as a primate emerges!</span>")
+	M.visible_message(span_danger("[M]'s torso bursts open as a primate emerges!"))
 	M.gib(null, TRUE, null, TRUE)
 
 /obj/item/reagent_containers/food/snacks/monkeycube/syndicate
@@ -385,7 +385,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/goat
 	name = "goat cube"
 	desc = "A Goat Tech Industries goat cube. Just add water!"
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "goatcube"
 	bitesize = 20
 	list_reagents = list(/datum/reagent/consumable/nutriment = 15)

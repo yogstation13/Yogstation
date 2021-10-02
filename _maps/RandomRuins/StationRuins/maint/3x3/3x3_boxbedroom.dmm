@@ -14,10 +14,9 @@
 /obj/item/trash/sosjerky,
 /turf/open/floor/plating,
 /area/template_noop)
-"o" = (
+"q" = (
 /obj/structure/bed,
 /obj/item/bedsheet/dorms,
-/obj/effect/decal/cleanable/food/pie_smudge,
 /turf/open/floor/plating,
 /area/template_noop)
 "H" = (
@@ -38,7 +37,7 @@ b
 b
 "}
 (3,1,1) = {"
-o
+q
 b
 H
 "}

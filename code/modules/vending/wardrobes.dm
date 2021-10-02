@@ -23,6 +23,7 @@
 					/obj/item/clothing/under/rank/security = 3,
 					/obj/item/clothing/under/yogs/armyuniform = 3,
 					/obj/item/clothing/shoes/jackboots = 3,
+					/obj/item/clothing/shoes/xeno_wraps/jackboots = 3,
 					/obj/item/clothing/head/beret/sec = 3,
 					/obj/item/clothing/head/beret/corpsec = 3,
 					/obj/item/clothing/head/soft/sec = 3,
@@ -70,7 +71,7 @@
 					/obj/item/clothing/under/rank/medical/green = 4,
 					/obj/item/clothing/under/rank/medical/purple = 4,
 					/obj/item/clothing/under/rank/medical = 4,
-					/obj/item/clothing/suit/toggle/labcoat = 4,
+					/obj/item/clothing/suit/toggle/labcoat/md = 4,
 					/obj/item/clothing/suit/toggle/labcoat/emt = 4,
 					/obj/item/clothing/shoes/sneakers/white = 4,
 					/obj/item/clothing/head/soft/emt = 4,
@@ -408,7 +409,8 @@
 					/obj/item/clothing/head/kippah = 3,
 					/obj/item/clothing/suit/chaplainsuit/whiterobe = 1,
 					/obj/item/clothing/head/taqiyahwhite = 1,
-					/obj/item/clothing/head/taqiyahred = 3)
+					/obj/item/clothing/head/taqiyahred = 3,
+					/obj/item/clothing/suit/hooded/techpriest = 2)
 	contraband = list(/obj/item/toy/plush/plushvar = 1,
 					/obj/item/toy/plush/narplush = 1,
 					/obj/item/clothing/head/medievaljewhat = 3,

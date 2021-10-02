@@ -5,7 +5,7 @@ GLOBAL_DATUM_INIT(DonorBorgHolder, /datum/borg_skin_holder, new)
 
 /datum/borg_skin_holder
 	var/name = "Donator Borg Skin Datumbase"
-	var/datum/borg_skin/skins = list()
+	var/list/datum/borg_skin/skins = list()
 
 /datum/borg_skin_holder/New()
 	generate_borg_skins()

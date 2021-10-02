@@ -32,6 +32,7 @@
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/wings, GLOB.r_wings_list,roundstart = TRUE)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/caps, GLOB.caps_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wings, GLOB.moth_wings_list)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wingsopen, GLOB.moth_wingsopen_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/teeth, GLOB.teeth_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/dome, GLOB.dome_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/dorsal_tubes, GLOB.dorsal_tubes_list)
@@ -50,7 +51,9 @@
 	//Skillcapes
 	for(var/path in subtypesof(/datum/skillcape))
 		var/datum/skillcape/A = new path()
-		GLOB.skillcapes += A
+		if(!A.id)
+			continue
+		GLOB.skillcapes[A.id] = A
 
 	init_subtypes(/datum/crafting_recipe, GLOB.crafting_recipes)
 

@@ -34,6 +34,16 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/coco = 2)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 1)
+	foodtype = JUNKFOOD | SUGAR | CHOCOLATE
+
+/obj/item/reagent_containers/food/snacks/candy_strawberry
+	name = "strawberry flavored candy"
+	desc = "You aren't sure if thats strawberries or blood."
+	icon_state = "candy_strawberry"
+	trash = /obj/item/trash/candy
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 1) //Really crappy because it can easily be mass produced
+	filling_color = "#FF0000"
+	tastes = list("candy" = 10, "strawberries" = 5, "blood" = 1)
 	foodtype = JUNKFOOD | SUGAR
 
 /obj/item/reagent_containers/food/snacks/hugemushroomslice
@@ -204,7 +214,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/coco = 1)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 1)
-	foodtype = JUNKFOOD | SUGAR
+	foodtype = JUNKFOOD | SUGAR | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/fudgedice
 	name = "fudge dice"
@@ -215,7 +225,7 @@
 	filling_color = "#A0522D"
 	trash = /obj/item/dice/fudge
 	tastes = list("fudge" = 1)
-	foodtype = JUNKFOOD | SUGAR
+	foodtype = JUNKFOOD | SUGAR | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/chocoorange
 	name = "chocolate orange"
@@ -225,7 +235,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 1)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 3, "oranges" = 1)
-	foodtype = JUNKFOOD | SUGAR
+	foodtype = JUNKFOOD | SUGAR | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/eggplantparm
 	name = "eggplant parmigiana"
@@ -400,6 +410,7 @@
 	throwforce = 10
 	block_chance = 50
 	armour_penetration = 75
+	wound_bonus = -50
 	attack_verb = list("slapped", "slathered")
 	w_class = WEIGHT_CLASS_BULKY
 	tastes = list("cherry" = 1, "crepe" = 1)
@@ -452,7 +463,7 @@
 	desc = "A colorful, sugary gumball."
 	icon = 'icons/obj/lollipop.dmi'
 	icon_state = "gumball"
-	list_reagents = list(/datum/reagent/consumable/sugar = 5, /datum/reagent/medicine/bicaridine = 2, /datum/reagent/medicine/kelotane = 2)	//Kek
+	list_reagents = list(/datum/reagent/consumable/sugar = 5, /datum/reagent/medicine/c2/libital = 2, /datum/reagent/medicine/c2/aiuri = 2)	//Kek
 	tastes = list("candy")
 	foodtype = JUNKFOOD
 
@@ -537,14 +548,15 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/coco = 1)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 1)
-	foodtype = JUNKFOOD | SUGAR
+	foodtype = JUNKFOOD | SUGAR | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/cannedpeaches
 	name = "Canned Peaches"
 	desc = "A nice can of ripe peaches swimming in their own juices, somehow left untouched."
 	icon_state = "peachcan"
-	grind_results = null
+	list_reagents = list(/datum/reagent/consumable/peachjuice = 8, /datum/reagent/consumable/sugar = 4, /datum/reagent/consumable/nutriment = 4)
 	juice_results = list(/datum/reagent/consumable/peachjuice = 20, /datum/reagent/consumable/sugar = 8, /datum/reagent/consumable/nutriment = 2)
+	grind_results = null
 	filling_color = "#ffdf26"
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("peaches" = 7, "tin" = 1)
@@ -559,7 +571,7 @@
 /obj/item/reagent_containers/food/snacks/dolphincereal
 	name = "dolphin cereal"
 	desc = "Finest dolphin skin flakes. This looks flippin' disgusting."
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "dolphincereal"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -568,7 +580,7 @@
 /obj/item/reagent_containers/food/snacks/dolphinandchips
 	name = "dolphin and chips"
 	desc = "Dolphin and chips, wrapped in the finest newspaper from the clown's newscaster channel."
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "dolphinandchips"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -577,7 +589,7 @@
 /obj/item/reagent_containers/food/snacks/youmonster
 	name = "full dolphin platter"
 	desc = "A whole dolphin. Good luck eating this. (WARNING: do not consume any wafer thin mints after consumption)"
-	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "youmonster"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 100, /datum/reagent/consumable/nutriment/vitamin = 2)

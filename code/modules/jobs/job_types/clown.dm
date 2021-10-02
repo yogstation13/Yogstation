@@ -11,6 +11,8 @@
 
 	outfit = /datum/outfit/job/clown
 
+	alt_titles = list("Entertainer", "Comedian", "Jester")
+
 	access = list(ACCESS_THEATRE)
 	minimal_access = list(ACCESS_THEATRE)
 	paycheck = PAYCHECK_MINIMAL
@@ -49,6 +51,11 @@
 	box = /obj/item/storage/box/hug/survival
 
 	chameleon_extras = /obj/item/stamp/clown
+	
+/datum/outfit/job/clown/pre_equip(mob/living/carbon/human/H, visualsOnly)
+	. = ..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_BANANIUM_SHIPMENTS))
+		backpack_contents[/obj/item/stack/sheet/mineral/bananium/five] = 1
 
 /datum/outfit/job/clown/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()

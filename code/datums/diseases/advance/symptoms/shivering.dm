@@ -33,22 +33,24 @@ Bonus
 	)
 
 /datum/symptom/fever/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
-	if(A.properties["stage_rate"] >= 5) //dangerous cold
+	if(A.totalStageSpeed() >= 5) //dangerous cold
 		power = 1.5
 		unsafe = TRUE
-	if(A.properties["stage_rate"] >= 10)
+	if(A.totalStageSpeed() >= 10)
 		power = 2.5
 
 /datum/symptom/shivering/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	if(!unsafe || A.stage < 4)
-		to_chat(M, "<span class='warning'>[pick("You feel cold.", "You shiver.")]</span>")
+		to_chat(M, span_warning("[pick("You feel cold.", "You shiver.")]"))
 	else
-		to_chat(M, "<span class='userdanger'>[pick("You feel your blood run cold.", "You feel ice in your veins.", "You feel like you can't heat up.", "You shiver violently." )]</span>")
+		to_chat(M, span_userdanger("[pick("You feel your blood run cold.", "You feel ice in your veins.", "You feel like you can't heat up.", "You shiver violently." )]"))
 	if(M.bodytemperature > BODYTEMP_COLD_DAMAGE_LIMIT || unsafe)
 		Chill(M, A)
 

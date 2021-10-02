@@ -16,7 +16,7 @@
 	icon_dead = "potato-dead"
 	genes = list(/datum/plant_gene/trait/battery)
 	mutatelist = list(/obj/item/seeds/potato/sweet)
-	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/reagent_containers/food/snacks/grown/potato
 	seed = /obj/item/seeds/potato
@@ -39,7 +39,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/potato/attackby(obj/item/W, mob/user, params)
 	if(W.is_sharp())
-		to_chat(user, "<span class='notice'>You cut the potato into wedges with [W].</span>")
+		to_chat(user, span_notice("You cut the potato into wedges with [W]."))
 		var/obj/item/reagent_containers/food/snacks/grown/potato/wedges/Wedges = new /obj/item/reagent_containers/food/snacks/grown/potato/wedges
 		remove_item_from_storage(user)
 		qdel(src)
@@ -57,7 +57,8 @@
 	plantname = "Sweet Potato Plants"
 	product = /obj/item/reagent_containers/food/snacks/grown/potato/sweet
 	mutatelist = list()
-	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.1, /datum/reagent/consumable/sugar = 0.1, /datum/reagent/consumable/nutriment = 0.1)
+	reagents_add = list(/datum/reagent/consumable/sugar = 0.1, /datum/reagent/consumable/nutriment = 0.1)
+	rarity = 10
 
 /obj/item/reagent_containers/food/snacks/grown/potato/sweet
 	seed = /obj/item/seeds/potato/sweet

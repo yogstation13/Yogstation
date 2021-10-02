@@ -22,15 +22,17 @@
 	var/tentacle_recheck_cooldown = 100
 
 /datum/symptom/necroseed/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
-	if(A.properties["resistance"] >= 15)
+	if(A.totalResistance() >= 15)
 		tendrils = TRUE
-	if(A.properties["resistance"] >= 20)
+	if(A.totalResistance() >= 20)
 		fireproof = TRUE
 
 /datum/symptom/necroseed/Activate(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)
@@ -38,12 +40,12 @@
 			if(tendrils)
 				tendril(A)
 			if(prob(base_message_chance))
-				to_chat(M, "<span class='notice'>Your skin feels scaly</span>")
+				to_chat(M, span_notice("Your skin feels scaly"))
 		if(3, 4)
 			if(tendrils)
 				tendril(A)
 			if(prob(base_message_chance))
-				to_chat(M, "<span class='notice'>[pick("Your skin is hard.", "You feel stronger.", "You feel powerful.")]</span>")
+				to_chat(M, span_notice("[pick("Your skin is hard.", "You feel stronger.", "You feel powerful.")]"))
 		if(5)
 			if(tendrils)
 				tendril(A)
@@ -62,7 +64,7 @@
 				M.weather_immunities |= "lava"
 		else
 			if(prob(base_message_chance))
-				to_chat(M, "<span class='notice'>[pick("Your skin has become a hardened carapace", "Your strength is superhuman.", "You feel invincible.")]</span>")
+				to_chat(M, span_notice("[pick("Your skin has become a hardened carapace", "Your strength is superhuman.", "You feel invincible.")]"))
 			if(tendrils)
 				tendril(A)
 	return
@@ -85,10 +87,11 @@
 				cached_tentacle_turfs -= t
 
 /datum/symptom/necroseed/End(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
-	to_chat(M, "<span class='danger'>You feel weakened as the necropolis' blessing leaves your body.</span>")
+	to_chat(M, span_danger("You feel weakened as the necropolis' blessing leaves your body."))
 	M.remove_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN)
 	M.dna.species.punchdamagelow = initial(M.dna.species.punchdamagelow)
 	M.dna.species.punchdamagehigh = initial(M.dna.species.punchdamagehigh)

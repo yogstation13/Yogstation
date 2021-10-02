@@ -9,11 +9,11 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 	healing_factor = STANDARD_ORGAN_HEALING
-	decay_factor = STANDARD_ORGAN_DECAY
+	decay_factor = STANDARD_ORGAN_DECAY * 0.9 // fails around 16.5 minutes, lungs are one of the last organs to die (of the ones we have)
 
-	high_threshold_passed = "<span class='warning'>You feel some sort of constriction around your chest as your breathing becomes shallow and rapid.</span>"
-	now_fixed = "<span class='warning'>Your lungs seem to once again be able to hold air.</span>"
-	high_threshold_cleared = "<span class='info'>The constriction around your chest loosens as your breathing calms down.</span>"
+	high_threshold_passed = span_warning("You feel some sort of constriction around your chest as your breathing becomes shallow and rapid.")
+	now_fixed = span_warning("Your lungs seem to once again be able to hold air.")
+	high_threshold_cleared = span_info("The constriction around your chest loosens as your breathing calms down.")
 
 	//Breath damage
 
@@ -29,6 +29,8 @@
 	var/SA_sleep_min = 5 //Sleeping agent
 	var/BZ_trip_balls_min = 1 //BZ gas
 	var/gas_stimulation_min = 0.002 //Nitryl and Stimulum
+	///list of gasses that can be used in place of oxygen and the amount they are multiplied by, i.e. 1 pp pluox = 8 pp oxygen
+	var/list/oxygen_substitutes = list(/datum/gas/pluoxium = 8)
 
 	var/oxy_breath_dam_min = MIN_TOXIC_GAS_DAMAGE
 	var/oxy_breath_dam_max = MAX_TOXIC_GAS_DAMAGE
@@ -92,7 +94,9 @@
 	var/gas_breathed = 0
 
 	//Partial pressures in our breath
-	var/O2_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/oxygen))+(8*breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/pluoxium)))
+	var/O2_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/oxygen))
+	for(var/i in oxygen_substitutes)
+		O2_pp += oxygen_substitutes[i] * breath.get_breath_partial_pressure(breath.get_moles(i))
 	var/N2_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/nitrogen))
 	var/Toxins_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/plasma))
 	var/CO2_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/carbon_dioxide))
@@ -227,12 +231,13 @@
 	if(breath)	// If there's some other shit in the air lets deal with it here.
 
 	// N2O
-
+		REMOVE_TRAIT(H, TRAIT_SURGERY_PREPARED, "N2O")
 		var/SA_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/nitrous_oxide))
 		if(SA_pp > SA_para_min) // Enough to make us stunned for a bit
 			H.Unconscious(60) // 60 gives them one second to wake up and run away a bit!
 			if(SA_pp > SA_sleep_min) // Enough to make us sleep as well
 				H.Sleeping(max(H.AmountSleeping() + 40, 200))
+				ADD_TRAIT(H, TRAIT_SURGERY_PREPARED, "N2O")
 		else if(SA_pp > 0.01)	// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
 			if(prob(20))
 				H.emote(pick("giggle", "laugh"))
@@ -265,12 +270,12 @@
 	// Nitryl
 		var/nitryl_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/nitryl))
 		if (prob(nitryl_pp))
-			to_chat(H, "<span class='alert'>Your mouth feels like it's burning!</span>")
+			to_chat(H, span_alert("Your mouth feels like it's burning!"))
 		if (nitryl_pp >40)
 			H.emote("gasp")
 			H.adjustFireLoss(10)
 			if (prob(nitryl_pp/2))
-				to_chat(H, "<span class='alert'>Your throat closes up!</span>")
+				to_chat(H, span_alert("Your throat closes up!"))
 				H.silent = max(H.silent, 3)
 		else
 			H.adjustFireLoss(nitryl_pp/4)
@@ -283,12 +288,12 @@
 // Freon
 		var/freon_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/freon))
 		if (prob(freon_pp))
-			to_chat(H, "<span class='alert'>Your mouth feels like it's burning!</span>")
+			to_chat(H, span_alert("Your mouth feels like it's burning!"))
 		if (freon_pp >40)
 			H.emote("gasp")
 			H.adjustFireLoss(15)
 			if (prob(freon_pp/2))
-				to_chat(H, "<span class='alert'>Your throat closes up!</span>")
+				to_chat(H, span_alert("Your throat closes up!"))
 				H.silent = max(H.silent, 3)
 		else
 			H.adjustFireLoss(freon_pp/4)
@@ -299,9 +304,11 @@
 		breath.adjust_moles(/datum/gas/freon, -gas_breathed)
 
 	// Healium
+		REMOVE_TRAIT(H, TRAIT_SURGERY_PREPARED, "healium")
 		var/healium_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/healium))
-		if(healium_pp > gas_stimulation_min)
+		if(healium_pp > SA_sleep_min)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/healium)
+			ADD_TRAIT(H, TRAIT_SURGERY_PREPARED, "healium")
 			H.reagents.add_reagent(/datum/reagent/healium,max(0, 1 - existing))
 			H.adjustFireLoss(-7)
 			H.adjustToxLoss(-5)
@@ -314,7 +321,7 @@
 
 	// Zauker
 		var/zauker_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/zauker))
-		if(zauker_pp > gas_stimulation_min)
+		if(zauker_pp > safe_toxins_max)
 			H.adjustBruteLoss(25)
 			H.adjustOxyLoss(5)
 			H.adjustFireLoss(8)
@@ -323,8 +330,8 @@
 		breath.adjust_moles(/datum/gas/zauker, -gas_breathed)
 
 	// Halon
-		var/halon_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/halon))
-		if(halon_pp > gas_stimulation_min)
+		gas_breathed = breath.get_moles(/datum/gas/halon)
+		if(gas_breathed > gas_stimulation_min)
 			H.adjustOxyLoss(5)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/halon)
 			H.reagents.add_reagent(/datum/reagent/halon,max(0, 1 - existing))
@@ -332,8 +339,8 @@
 		breath.adjust_moles(/datum/gas/halon, -gas_breathed)
 
 	// Hexane
-		var/hexane_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/hexane))
-		if(hexane_pp > gas_stimulation_min)
+		gas_breathed = breath.get_moles(/datum/gas/hexane)
+		if(gas_breathed > gas_stimulation_min)
 			H.hallucination += 50
 			H.reagents.add_reagent(/datum/reagent/hexane,5)
 			if(prob(33))
@@ -364,22 +371,22 @@
 					// At lower pp, give out a little warning
 					SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "smell")
 					if(prob(5))
-						to_chat(owner, "<span class='notice'>There is an unpleasant smell in the air.</span>")
+						to_chat(owner, span_notice("There is an unpleasant smell in the air."))
 				if(5 to 15)
 					//At somewhat higher pp, warning becomes more obvious
 					if(prob(15))
-						to_chat(owner, "<span class='warning'>You smell something horribly decayed inside this room.</span>")
+						to_chat(owner, span_warning("You smell something horribly decayed inside this room."))
 						SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "smell", /datum/mood_event/disgust/bad_smell)
 				if(15 to 30)
 					//Small chance to vomit. By now, people have internals on anyway
 					if(prob(5))
-						to_chat(owner, "<span class='warning'>The stench of rotting carcasses is unbearable!</span>")
+						to_chat(owner, span_warning("The stench of rotting carcasses is unbearable!"))
 						SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "smell", /datum/mood_event/disgust/nauseating_stench)
 						owner.vomit()
 				if(30 to INFINITY)
 					//Higher chance to vomit. Let the horror start
 					if(prob(15))
-						to_chat(owner, "<span class='warning'>The stench of rotting carcasses is unbearable!</span>")
+						to_chat(owner, span_warning("The stench of rotting carcasses is unbearable!"))
 						SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "smell", /datum/mood_event/disgust/nauseating_stench)
 						owner.vomit()
 				else
@@ -429,7 +436,7 @@
 			H.apply_damage_type(cold_level_1_damage*cold_modifier, cold_damage_type)
 		if(breath_temperature < cold_level_1_threshold)
 			if(prob(20))
-				to_chat(H, "<span class='warning'>You feel [cold_message] in your [name]!</span>")
+				to_chat(H, span_warning("You feel [cold_message] in your [name]!"))
 
 	if(!HAS_TRAIT(H, TRAIT_RESISTHEAT)) // HEAT DAMAGE
 		var/heat_modifier = H.dna.species.heatmod
@@ -441,13 +448,13 @@
 			H.apply_damage_type(heat_level_3_damage*heat_modifier, heat_damage_type)
 		if(breath_temperature > heat_level_1_threshold)
 			if(prob(20))
-				to_chat(H, "<span class='warning'>You feel [hot_message] in your [name]!</span>")
+				to_chat(H, span_warning("You feel [hot_message] in your [name]!"))
 
 /obj/item/organ/lungs/on_life()
 	..()
 	if((!failed) && ((organ_flags & ORGAN_FAILING)))
 		if(owner.stat == CONSCIOUS)
-			owner.visible_message("<span class='userdanger'>[owner] grabs [owner.p_their()] throat, struggling for breath!</span>")
+			owner.visible_message(span_userdanger("[owner] grabs [owner.p_their()] throat, struggling for breath!"))
 		failed = TRUE
 	else if(!(organ_flags & ORGAN_FAILING))
 		failed = FALSE
@@ -466,6 +473,25 @@
 	safe_oxygen_min = 0 //We don't breath this
 	safe_toxins_min = 16 //We breath THIS!
 	safe_toxins_max = 0
+
+/obj/item/organ/lungs/xeno
+	name = "devolved plasma vessel"
+	desc = "A lung-shaped organ vaguely similar to a plasma vessel, restructured from a storage system to a respiratory one."
+	icon_state = "lungs-x"
+
+	safe_toxins_max = 0 //lmoa~
+	oxygen_substitutes = list(/datum/gas/pluoxium = 8, /datum/gas/plasma = 1)
+	heat_level_1_threshold = 313
+	heat_level_2_threshold = 353
+	heat_level_3_threshold = 600
+
+/obj/item/organ/lungs/xeno/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H) //handling this externally so I don't have to nerf pluoxium, can't handle it internally without removing perpetual pluox or requiring plasma for breathing
+	. = ..()
+	if(!breath.total_moles())
+		return .
+	var/breath_amt = breath.get_moles(/datum/gas/plasma)
+	breath.adjust_moles(/datum/gas/plasma, -breath_amt)
+	breath.adjust_moles(/datum/gas/oxygen, breath_amt)
 
 /obj/item/organ/lungs/slime
 	name = "vacuole"

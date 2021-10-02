@@ -12,6 +12,7 @@
 	pass_flags = PASSTABLE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	movement_type = FLYING
+	wound_bonus = CANT_WOUND // can't wound by default
 	hitsound = 'sound/weapons/pierce.ogg'
 	var/hitsound_wall = ""
 
@@ -107,6 +108,9 @@
 
 	var/temporary_unstoppable_movement = FALSE
 
+	///How much we want to drop both wound_bonus and bare_wound_bonus (to a minimum of 0 for the latter) per tile, for falloff purposes
+	var/wound_falloff_tile
+
 /obj/item/projectile/Initialize()
 	. = ..()
 	permutated = list()
@@ -114,6 +118,9 @@
 
 /obj/item/projectile/proc/Range()
 	range--
+	if(wound_bonus != CANT_WOUND)
+		wound_bonus += wound_falloff_tile
+		bare_wound_bonus = max(0, bare_wound_bonus + wound_falloff_tile)
 	if(range <= 0 && loc)
 		on_range()
 
@@ -166,13 +173,16 @@
 
 	if(blocked != 100) // not completely blocked
 		if(damage && L.blood_volume && damage_type == BRUTE)
+			var/mob/living/carbon/C = L
 			var/splatter_dir = dir
 			if(starting)
 				splatter_dir = get_dir(starting, target_loca)
-			if(isalien(L))
+			if(isalien(L) || ispolysmorph(L))
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter(target_loca, splatter_dir)
-			else
+			else if (iscarbon(L) && !(NOBLOOD in C.dna.species.species_traits))
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir)
+			else
+				new /obj/effect/temp_visual/dir_setting/bloodsplatter/genericsplatter(target_loca, splatter_dir)
 			if(prob(33))
 				L.add_splatter_floor(target_loca)
 		else if(impact_effect_type && !hitscan)
@@ -184,13 +194,13 @@
 			organ_hit_text = " in \the [parse_zone(limb_hit)]"
 		if(suppressed)
 			playsound(loc, hitsound, 5, 1, -1)
-			to_chat(L, "<span class='userdanger'>You're shot by \a [src][organ_hit_text]!</span>")
+			to_chat(L, span_userdanger("You're shot by \a [src][organ_hit_text]!"))
 		else
 			if(hitsound)
 				var/volume = vol_by_damage()
 				playsound(loc, hitsound, volume, 1, -1)
-			L.visible_message("<span class='danger'>[L] is hit by \a [src][organ_hit_text]!</span>", \
-					"<span class='userdanger'>[L] is hit by \a [src][organ_hit_text]!</span>", null, COMBAT_MESSAGE_RANGE)
+			L.visible_message(span_danger("[L] is hit by \a [src][organ_hit_text]!"), \
+					span_userdanger("[L] is hit by \a [src][organ_hit_text]!"), null, COMBAT_MESSAGE_RANGE)
 		L.on_hit(src)
 	var/viruslist = "" // yogs - adds viruslist variable
 	var/reagent_note
@@ -238,6 +248,9 @@
 	beam_segments[beam_index] = null
 
 /obj/item/projectile/Bump(atom/A)
+	if(!trajectory)
+		qdel(src)
+		return
 	var/datum/point/pcache = trajectory.copy_to()
 	var/turf/T = get_turf(A)
 	if(check_ricochet(A) && check_ricochet_flag(A) && ricochets < ricochets_max)
@@ -280,6 +293,8 @@
 			temporary_unstoppable_movement = TRUE
 			ENABLE_BITFIELD(movement_type, UNSTOPPABLE)
 		return process_hit(T, select_target(T), qdel_self, TRUE)		//Hit whatever else we can since we're piercing through but we're still on the same tile.
+	else if(result == BULLET_ACT_PENETRATE) // This is slightly different from ACT_TURF in that it goes through the first thing
+		return process_hit(T, select_target(T), qdel_self, TRUE)
 	else if(result == BULLET_ACT_TURF)									//We hit the turf but instead we're going to also hit something else on it.
 		return process_hit(T, select_target(T), QDEL_SELF, TRUE)
 	else		//Whether it hit or blocked, we're done!

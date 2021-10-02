@@ -277,12 +277,14 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define DEADCHAT_ARRIVALRATTLE "arrivalrattle"
 #define DEADCHAT_DEATHRATTLE "deathrattle"
 #define DEADCHAT_REGULAR "regular-deadchat"
+#define DEADCHAT_ANNOUNCEMENT "announcement"
 
 // Bluespace shelter deploy checks
 #define SHELTER_DEPLOY_ALLOWED "allowed"
 #define SHELTER_DEPLOY_BAD_TURFS "bad turfs"
 #define SHELTER_DEPLOY_BAD_AREA "bad area"
 #define SHELTER_DEPLOY_ANCHORED_OBJECTS "anchored objects"
+#define SHELTER_DEPLOY_OUTSIDE_MAP "outside map"
 
 //debug printing macros
 #define debug_world(msg) if (GLOB.Debug2) to_chat(world, \
@@ -405,6 +407,9 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define PIRATE_NAMES_FILE "pirates.json"
 #define REDPILL_FILE "redpill.json"
 #define WANTED_FILE "wanted_message.json"
+#define FLESH_SCAR_FILE "wounds/flesh_scar_desc.json"
+#define BONE_SCAR_FILE "wounds/bone_scar_desc.json"
+#define SCAR_LOC_FILE "wounds/scar_loc.json"
 
 //Fullscreen overlay resolution in tiles.
 #define FULLSCREEN_OVERLAY_RESOLUTION_X 15

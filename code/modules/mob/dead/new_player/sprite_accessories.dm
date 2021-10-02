@@ -1691,7 +1691,7 @@
 
 /datum/sprite_accessory/horns/angler
 	name = "Angler"
-	icon_state = "angler"
+	icon_state = "doodlybopper" //TRUE NAME
 
 /datum/sprite_accessory/horns/tiny
 	name = "Tiny"
@@ -1756,6 +1756,40 @@
 	center = TRUE
 	dimension_y = 32
 
+/datum/sprite_accessory/wings/skeleton
+	name = "Skeleton"
+	icon_state = "skele"
+	color_src = 0
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
+	locked = TRUE
+
+/datum/sprite_accessory/wings_open/skeleton
+	name = "Skeleton"
+	icon_state = "skele"
+	color_src = 0
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
+
+/datum/sprite_accessory/wings/robotic
+	name = "Robotic"
+	icon_state = "robotic"
+	color_src = 0
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
+	locked = TRUE
+
+/datum/sprite_accessory/wings_open/robotic
+	name = "Robotic"
+	icon_state = "robotic"
+	color_src = 0
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
+
 /datum/sprite_accessory/frills
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 
@@ -1782,6 +1816,10 @@
 /datum/sprite_accessory/frills/long
 	name = "Long"
 	icon_state = "long"
+
+/datum/sprite_accessory/frills/split
+	name = "Split"
+	icon_state = "split"
 
 /datum/sprite_accessory/spines
 	icon = 'icons/mob/mutant_bodyparts.dmi'
@@ -1857,8 +1895,18 @@
 /datum/sprite_accessory/moth_wings
 	icon = 'yogstation/icons/mob/wings.dmi' //yogs moth sprite fix
 	color_src = null
+	
+/datum/sprite_accessory/moth_wingsopen
+	icon = 'icons/mob/moth_wingsopen.dmi'
+	color_src = null
+	dimension_x = 76
+	center = TRUE
 
 /datum/sprite_accessory/moth_wings/plain
+	name = "Plain"
+	icon_state = "plain"
+
+/datum/sprite_accessory/moth_wingsopen/plain
 	name = "Plain"
 	icon_state = "plain"
 
@@ -1866,7 +1914,15 @@
 	name = "Monarch"
 	icon_state = "monarch"
 
+/datum/sprite_accessory/moth_wingsopen/monarch
+	name = "Monarch"
+	icon_state = "monarch"
+
 /datum/sprite_accessory/moth_wings/luna
+	name = "Luna"
+	icon_state = "luna"
+
+/datum/sprite_accessory/moth_wingsopen/luna
 	name = "Luna"
 	icon_state = "luna"
 
@@ -1874,7 +1930,15 @@
 	name = "Atlas"
 	icon_state = "atlas"
 
+/datum/sprite_accessory/moth_wingsopen/atlas
+	name = "Atlas"
+	icon_state = "atlas"
+
 /datum/sprite_accessory/moth_wings/reddish
+	name = "Reddish"
+	icon_state = "redish"
+
+/datum/sprite_accessory/moth_wingsopen/reddish
 	name = "Reddish"
 	icon_state = "redish"
 
@@ -1882,7 +1946,15 @@
 	name = "Royal"
 	icon_state = "royal"
 
+/datum/sprite_accessory/moth_wingsopen/royal
+	name = "Royal"
+	icon_state = "royal"
+
 /datum/sprite_accessory/moth_wings/gothic
+	name = "Gothic"
+	icon_state = "gothic"
+
+/datum/sprite_accessory/moth_wingsopen/gothic
 	name = "Gothic"
 	icon_state = "gothic"
 
@@ -1890,7 +1962,15 @@
 	name = "Lovers"
 	icon_state = "lovers"
 
+/datum/sprite_accessory/moth_wingsopen/lovers
+	name = "Lovers"
+	icon_state = "lovers"
+
 /datum/sprite_accessory/moth_wings/whitefly
+	name = "White Fly"
+	icon_state = "whitefly"
+
+/datum/sprite_accessory/moth_wingsopen/whitefly
 	name = "White Fly"
 	icon_state = "whitefly"
 
@@ -1903,7 +1983,15 @@
 	name = "Firewatch"
 	icon_state = "firewatch"
 
+/datum/sprite_accessory/moth_wingsopen/firewatch
+	name = "Firewatch"
+	icon_state = "firewatch"
+
 /datum/sprite_accessory/moth_wings/deathhead
+	name = "Deathshead"
+	icon_state = "deathhead"
+
+/datum/sprite_accessory/moth_wingsopen/deathhead
 	name = "Deathshead"
 	icon_state = "deathhead"
 
@@ -1911,7 +1999,15 @@
 	name = "Poison"
 	icon_state = "poison"
 
+/datum/sprite_accessory/moth_wingsopen/poison
+	name = "Poison"
+	icon_state = "poison"
+
 /datum/sprite_accessory/moth_wings/ragged
+	name = "Ragged"
+	icon_state = "ragged"
+
+/datum/sprite_accessory/moth_wingsopen/ragged
 	name = "Ragged"
 	icon_state = "ragged"
 
@@ -1919,7 +2015,15 @@
 	name = "Moon Fly"
 	icon_state = "moonfly"
 
+/datum/sprite_accessory/moth_wingsopen/moonfly
+	name = "Moon Fly"
+	icon_state = "moonfly"
+
 /datum/sprite_accessory/moth_wings/snow
+	name = "Snow"
+	icon_state = "snow"
+
+/datum/sprite_accessory/moth_wingsopen/snow
 	name = "Snow"
 	icon_state = "snow"
 

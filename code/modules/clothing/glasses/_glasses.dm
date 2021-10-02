@@ -19,13 +19,13 @@
 	var/glass_colour_type //colors your vision when worn
 
 /obj/item/clothing/glasses/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] is stabbing \the [src] into [user.p_their()] eyes! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is stabbing \the [src] into [user.p_their()] eyes! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
 /obj/item/clothing/glasses/examine(mob/user)
 	. = ..()
 	if(glass_colour_type && ishuman(user))
-		. += "<span class='notice'>Alt-click to toggle its colors.</span>"
+		. += span_notice("Alt-click to toggle its colors.")
 
 /obj/item/clothing/glasses/visor_toggling()
 	..()
@@ -48,7 +48,7 @@
 		var/obj/item/organ/eyes/eyes = H.getorganslot(ORGAN_SLOT_EYES)
 		if(!(HAS_TRAIT(H, TRAIT_BLIND)))
 			if(H.glasses == src)
-				to_chat(H, "<span class='danger'>[src] overloads and blinds you!</span>")
+				to_chat(H, span_danger("[src] overloads and blinds you!"))
 				H.flash_act(visual = 1)
 				H.blind_eyes(3)
 				H.blur_eyes(5)
@@ -65,7 +65,7 @@
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
 
 /obj/item/clothing/glasses/meson/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] is putting \the [src] to [user.p_their()] eyes and overloading the brightness! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is putting \the [src] to [user.p_their()] eyes and overloading the brightness! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
 /obj/item/clothing/glasses/meson/night
@@ -88,7 +88,7 @@
 	throw_speed = 4
 	attack_verb = list("sliced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 
 /obj/item/clothing/glasses/science
 	name = "science goggles"
@@ -116,7 +116,7 @@
 	glass_colour_type = /datum/client_colour/glass_colour/green
 
 /obj/item/clothing/glasses/science/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] is tightening \the [src]'s straps around [user.p_their()] neck! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] is tightening \the [src]'s straps around [user.p_their()] neck! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return OXYLOSS
 
 /obj/item/clothing/glasses/eyepatch
@@ -132,7 +132,7 @@
 	item_state = "headset" // lol
 	vision_correction = 1
 
-	
+
 
 /obj/item/clothing/glasses/material
 	name = "optical material scanner"
@@ -159,7 +159,7 @@
 	throw_speed = 4
 	attack_verb = list("sliced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
 
 /obj/item/clothing/glasses/regular
@@ -224,7 +224,7 @@
 	throw_speed = 4
 	attack_verb = list("sliced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 
 /obj/item/clothing/glasses/sunglasses/garb/supergarb
 	name = "black giga gar glasses"
@@ -244,7 +244,7 @@
 	throw_speed = 4
 	attack_verb = list("sliced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	glass_colour_type = /datum/client_colour/glass_colour/orange
 
 /obj/item/clothing/glasses/sunglasses/gar/supergar
@@ -348,12 +348,15 @@
 /obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
 	name = "chameleon thermals"
 	desc = "A pair of thermal optic goggles with an onboard chameleon generator."
+	syndicate = TRUE
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
 /obj/item/clothing/glasses/thermal/syndi/Initialize()
 	. = ..()
 	chameleon_action = new(src)
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
 	chameleon_action.chameleon_type = /obj/item/clothing/glasses
 	chameleon_action.chameleon_name = "Glasses"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/glasses/changeling, only_root_path = TRUE)
@@ -436,7 +439,7 @@
 				var/mob/living/carbon/C = user
 				C.update_inv_wear_mask()
 		else
-			to_chat(user, "<span class='notice'>The eye winks at you and vanishes into the abyss, you feel really unlucky.</span>")
+			to_chat(user, span_notice("The eye winks at you and vanishes into the abyss, you feel really unlucky."))
 		qdel(src)
 	..()
 

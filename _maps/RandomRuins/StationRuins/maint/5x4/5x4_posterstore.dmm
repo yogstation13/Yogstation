@@ -21,7 +21,7 @@
 /area/template_noop)
 "h" = (
 /obj/structure/table,
-/obj/structure/sign/poster/contraband{
+/obj/structure/sign/poster/contraband/random{
 	pixel_y = 32
 	},
 /obj/item/poster/random_contraband{
@@ -47,7 +47,7 @@
 	pixel_y = 5
 	},
 /obj/item/poster/random_official,
-/obj/structure/sign/poster/official{
+/obj/structure/sign/poster/official/random{
 	pixel_y = -32
 	},
 /turf/open/floor/plating,
@@ -58,7 +58,7 @@
 /area/template_noop)
 "w" = (
 /obj/structure/table,
-/obj/structure/sign/poster/contraband{
+/obj/structure/sign/poster/contraband/random{
 	pixel_y = 32
 	},
 /obj/item/poster/random_contraband{
@@ -74,7 +74,7 @@
 "A" = (
 /obj/structure/rack,
 /obj/item/poster/random_official,
-/obj/structure/sign/poster/official{
+/obj/structure/sign/poster/official/random{
 	pixel_y = -32
 	},
 /turf/open/floor/plating,
@@ -101,7 +101,7 @@
 /area/template_noop)
 "Y" = (
 /obj/structure/table,
-/obj/structure/sign/poster/contraband{
+/obj/structure/sign/poster/contraband/random{
 	pixel_y = 32
 	},
 /obj/item/poster/random_contraband,

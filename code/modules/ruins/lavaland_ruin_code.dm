@@ -10,8 +10,7 @@
 	name = "seed vault seeds"
 	lootcount = 1
 
-	loot = list(/obj/item/seeds/gatfruit = 10,
-				/obj/item/seeds/cherry/bomb = 10,
+	loot = list(/obj/item/seeds/cherry/bomb = 10,
 				/obj/item/seeds/berry/glow = 10,
 				/obj/item/seeds/sunflower/moonflower = 8
 				)
@@ -62,6 +61,7 @@
 		/obj/item/stack/sheet/mineral/bananium	    = /datum/species/golem/bananium,
 		/obj/item/stack/sheet/mineral/titanium	    = /datum/species/golem/titanium,
 		/obj/item/stack/sheet/mineral/plastitanium	= /datum/species/golem/plastitanium,
+		/obj/item/stack/sheet/mineral/metal_hydrogen= /datum/species/golem/mhydrogen,
 		/obj/item/stack/sheet/mineral/abductor	    = /datum/species/golem/alloy,
 		/obj/item/stack/sheet/mineral/wood	        = /datum/species/golem/wood,
 		/obj/item/stack/sheet/bluespace_crystal	    = /datum/species/golem/bluespace,
@@ -80,18 +80,16 @@
 		/obj/item/stack/sheet/mineral/snow			= /datum/species/golem/snow,
 		/obj/item/stack/sheet/capitalisium			= /datum/species/golem/capitalist,
 		/obj/item/stack/sheet/stalinium				= /datum/species/golem/soviet,
-		/obj/item/stack/sheet/cheese				= /datum/species/golem/cheese)
+		/obj/item/stack/sheet/cheese				= /datum/species/golem/cheese,
+		/obj/item/stack/telecrystal					= /datum/species/golem/telecrystal,
+		/obj/item/stack/telecrystal/five			= /datum/species/golem/telecrystal,
+		/obj/item/stack/telecrystal/twenty			= /datum/species/golem/telecrystal,
+		/obj/item/stack/sheet/ruinous_metal			= /datum/species/golem/ruinous)
 
 	if(istype(I, /obj/item/stack))
 		var/obj/item/stack/O = I
 		var/species = golem_shell_species_types[O.merge_type]
 		if(species)
-			if(istype(O, /obj/item/stack/sheet/runed_metal) && !iscultist(user))
-				to_chat(user, "<span class='warning'>Only one with forbidden knowledge could hope to work this metal...</span>")
-				return
-			if(istype(O, /obj/item/stack/tile/brass) && !is_servant_of_ratvar(user))
-				to_chat(user, "<span class='danger'>[src] seems far too fragile and rigid to build with.</span>")
-				return
 			if(O.use(10))
 				to_chat(user, "You finish up the golem shell with ten sheets of [O].")
 				new shell_type(get_turf(src), species, user)
@@ -125,7 +123,7 @@
 
 /datum/outfit/lavaland_syndicate
 	name = "Lavaland Syndicate Agent"
-	r_hand = /obj/item/gun/ballistic/automatic/sniper_rifle
+	r_hand = /obj/item/gun/ballistic/automatic/sniper_rifle/ultrasecure
 	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	shoes = /obj/item/clothing/shoes/combat

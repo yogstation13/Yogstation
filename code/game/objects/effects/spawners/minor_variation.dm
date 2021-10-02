@@ -18,6 +18,10 @@ This is mainly to prevent creating new map files when creating smaller variation
 /obj/effect/variation/Initialize()
 	. = ..()
 	chosen = FALSE
+	placement()
+
+/obj/effect/variation/proc/placement()
+	return
 
 /obj/effect/variation/proc/place(x = 0, y = 0 , item , direction)
 	if(!x)

@@ -38,6 +38,9 @@
 	var/memory
 
 	var/assigned_role
+
+	var/role_alt_title
+	
 	var/special_role
 	var/list/restricted_roles = list()
 	var/list/datum/objective/objectives = list()
@@ -68,6 +71,16 @@
 	var/list/learned_recipes //List of learned recipe TYPES.
 
 	var/flavour_text = null
+	///Are we zombified/uncloneable?
+	var/zombified = FALSE
+	///What character we joined in as- either at roundstart or latejoin, so we know for persistent scars if we ended as the same person or not
+	var/mob/original_character
+	/// What scar slot we have loaded, so we don't have to constantly check the savefile
+	var/current_scar_slot
+	/// The index for what character slot, if any, we were loaded from, so we can track persistent scars on a per-character basis. Each character slot gets PERSISTENT_SCAR_SLOTS scar slots
+	var/original_character_slot_index
+	/// The index for our current scar slot, so we don't have to constantly check the savefile (unlike the slots themselves, this index is independent of selected char slot, and increments whenever a valid char is joined with)
+	var/current_scar_slot_index
 
 /datum/mind/New(key)
 	src.key = key
@@ -89,6 +102,7 @@
 	return language_holder
 
 /datum/mind/proc/transfer_to(mob/new_character, var/force_key_move = 0)
+	original_character = null
 	var/mood_was_enabled = FALSE//Yogs -- Mood Preferences
 	if(current)	// remove ourself from our old body's mind variable
 		// Yogs start -- Mood preferences
@@ -143,6 +157,7 @@
 		new_character.key = key		//now transfer the key to link the client to our new body
 	if(new_character.client)
 		new_character.client.init_verbs() // re-initialize character specific verbs
+		LAZYCLEARLIST(new_character.client.recent_examines)
 	current.update_atom_languages()
 
 /datum/mind/proc/set_death_time()
@@ -368,7 +383,7 @@
 
 	if(creator.mind.special_role)
 		message_admins("[ADMIN_LOOKUPFLW(current)] has been created by [ADMIN_LOOKUPFLW(creator)], an antagonist.")
-		to_chat(current, "<span class='userdanger'>Despite your creators current allegiances, your true master remains [creator.real_name]. If their loyalties change, so do yours. This will never change unless your creator's body is destroyed.</span>")
+		to_chat(current, span_userdanger("Despite your creators current allegiances, your true master remains [creator.real_name]. If their loyalties change, so do yours. This will never change unless your creator's body is destroyed."))
 
 /datum/mind/proc/show_memory(mob/recipient, window=1)
 	if(!recipient)
@@ -412,7 +427,7 @@
 	if(href_list["remove_antag"])
 		var/datum/antagonist/A = locate(href_list["remove_antag"]) in antag_datums
 		if(!istype(A))
-			to_chat(usr,"<span class='warning'>Invalid antagonist ref to be removed.</span>")
+			to_chat(usr,span_warning("Invalid antagonist ref to be removed."))
 			return
 		A.admin_remove(usr)
 
@@ -564,7 +579,7 @@
 							log_admin("[key_name(usr)] changed [current]'s telecrystal count to [crystals].")
 			if("uplink")
 				if(!equip_traitor())
-					to_chat(usr, "<span class='danger'>Equipping a syndicate failed!</span>")
+					to_chat(usr, span_danger("Equipping a syndicate failed!"))
 					log_admin("[key_name(usr)] tried and failed to give [current] an uplink.")
 				else
 					log_admin("[key_name(usr)] gave [current] an uplink.")
@@ -593,7 +608,7 @@
 
 /datum/mind/proc/announce_objectives()
 	var/obj_count = 1
-	to_chat(current, "<span class='notice'>Your current objectives:</span>")
+	to_chat(current, span_notice("Your current objectives:"))
 	for(var/objective in get_all_objectives())
 		var/datum/objective/O = objective
 		to_chat(current, "<B>Objective #[obj_count]</B>: [O.explanation_text]")
@@ -632,6 +647,12 @@
 		C = add_antag_datum(/datum/antagonist/changeling)
 		special_role = ROLE_CHANGELING
 	return C
+
+/datum/mind/proc/make_Heretic()
+	if(quiet_round)
+		return
+	if(!(has_antag_datum(/datum/antagonist/heretic)))
+		add_antag_datum(/datum/antagonist/heretic)
 
 /datum/mind/proc/make_Wizard()
 	// yogs start - Donor features, quiet round
@@ -702,6 +723,15 @@
 		for(var/datum/action/A in current.actions)
 			A.Grant(new_character)
 	transfer_mindbound_actions(new_character)
+
+//Check if there is a specific spell in mind
+/datum/mind/proc/CheckSpell(var/obj/effect/proc_holder/spell/spell)
+	if(!spell) return
+	for(var/X in spell_list)
+		var/obj/effect/proc_holder/spell/S = X
+		if(istype(S, spell))
+			return TRUE
+	return FALSE
 
 /datum/mind/proc/transfer_mindbound_actions(mob/living/new_character)
 	for(var/X in spell_list)

@@ -191,6 +191,7 @@ export const backendMiddleware = store => {
     if (type === 'backend/update' && suspended) {
       // Show the payload
       logger.log('backend/update', payload);
+      logger.log('update', payload);
       // Signal renderer that we have resumed
       resumeRenderer();
       // Setup drag

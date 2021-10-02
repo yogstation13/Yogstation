@@ -31,7 +31,7 @@ All ShuttleMove procs go here
 				if(M.pulledby)
 					M.pulledby.stop_pulling()
 				M.stop_pulling()
-				M.visible_message("<span class='warning'>[shuttle] slams into [M]!</span>")
+				M.visible_message(span_warning("[shuttle] slams into [M]!"))
 				SSblackbox.record_feedback("tally", "shuttle_gib", 1, M.type)
 				M.gib()
 
@@ -212,7 +212,7 @@ All ShuttleMove procs go here
 	if(pipe_vision_img)
 		pipe_vision_img.loc = loc
 
-/obj/machinery/computer/auxillary_base/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
+/obj/machinery/computer/auxiliary_base/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
 	if(is_mining_level(z)) //Avoids double logging and landing on other Z-levels due to badminnery
 		SSblackbox.record_feedback("associative", "colonies_dropped", 1, list("x" = x, "y" = y, "z" = z))

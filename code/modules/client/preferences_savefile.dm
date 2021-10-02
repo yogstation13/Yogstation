@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	29
+#define SAVEFILE_VERSION_MAX	33
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -125,6 +125,30 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			job_preferences = list()
 	if(current_version < 29)
 		purrbation = FALSE
+	if(current_version < 30) //Someone doesn't know how to code and make savefiles get corrupted
+		if(!ispath(donor_hat))
+			donor_hat = null
+		if(!ispath(donor_item))
+			donor_item = null
+	if(current_version < 31) //Someone doesn't know how to code and make jukebox and autodeadmin the same thing
+		toggles &= ~DEADMIN_ALWAYS
+		toggles &= ~DEADMIN_ANTAGONIST
+		toggles &= ~DEADMIN_POSITION_HEAD
+		toggles &= ~DEADMIN_POSITION_SECURITY
+		toggles &= ~DEADMIN_POSITION_SILICON //This last one is technically a no-op but it looks cleaner and less like someone forgot
+	if(current_version < 32) // Changed skillcape storage
+		if(skillcape != 1)
+			var/path = subtypesof(/datum/skillcape)[skillcape]
+			var/datum/skillcape/cape = new path()
+			skillcape_id = cape.id
+			qdel(cape)
+	if(current_version < 33) //Reset map preference to no choice
+		if(preferred_map)
+			to_chat(parent, span_userdanger("Your preferred map has been reset to nothing. Please set it to the map you wish to play on."))
+		preferred_map = null
+		
+		
+		
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -161,7 +185,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["buttons_locked"], buttons_locked)
 	READ_FILE(S["windowflash"], windowflashing)
 	READ_FILE(S["be_special"] , be_special)
-
+	READ_FILE(S["player_alt_titles"], player_alt_titles)
 
 	READ_FILE(S["default_slot"], default_slot)
 	READ_FILE(S["chat_toggles"], chat_toggles)
@@ -189,9 +213,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["pda_color"], pda_color)
 
 	READ_FILE(S["skillcape"], skillcape)
+	READ_FILE(S["skillcape_id"], skillcape_id)
 	READ_FILE(S["map"], map)
 	READ_FILE(S["flare"], flare)
-	READ_FILE(S["skillcape"], skillcape)
+	READ_FILE(S["bar_choice"], bar_choice)
 	READ_FILE(S["show_credits"], show_credits)
 
 	// yogs start - Donor features
@@ -209,46 +234,59 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		update_preferences(needs_update, S)		//needs_update = savefile_version if we need an update (positive integer)
 
 	//Sanitize
-	asaycolor		= sanitize_ooccolor(sanitize_hexcolor(asaycolor, 6, 1, initial(asaycolor)))
-	ooccolor		= sanitize_ooccolor(sanitize_hexcolor(ooccolor, 6, 1, initial(ooccolor)))
-	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
-	UI_style		= sanitize_inlist(UI_style, GLOB.available_ui_styles, GLOB.available_ui_styles[1])
-	hotkeys			= sanitize_integer(hotkeys, FALSE, TRUE, initial(hotkeys))
-	chat_on_map		= sanitize_integer(chat_on_map, FALSE, TRUE, initial(chat_on_map))
-	max_chat_length = sanitize_integer(max_chat_length, 1, CHAT_MESSAGE_MAX_LENGTH, initial(max_chat_length))
+	asaycolor			= sanitize_ooccolor(sanitize_hexcolor(asaycolor, 6, 1, initial(asaycolor)))
+	ooccolor			= sanitize_ooccolor(sanitize_hexcolor(ooccolor, 6, 1, initial(ooccolor)))
+	lastchangelog		= sanitize_text(lastchangelog, initial(lastchangelog))
+	UI_style			= sanitize_inlist(UI_style, GLOB.available_ui_styles, GLOB.available_ui_styles[1])
+	hotkeys				= sanitize_integer(hotkeys, FALSE, TRUE, initial(hotkeys))
+	chat_on_map			= sanitize_integer(chat_on_map, FALSE, TRUE, initial(chat_on_map))
+	max_chat_length 	= sanitize_integer(max_chat_length, 1, CHAT_MESSAGE_MAX_LENGTH, initial(max_chat_length))	
 	see_chat_non_mob	= sanitize_integer(see_chat_non_mob, FALSE, TRUE, initial(see_chat_non_mob))
-	see_rc_emotes	= sanitize_integer(see_rc_emotes, FALSE, TRUE, initial(see_rc_emotes))
-	tgui_fancy		= sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_fancy))
-	tgui_lock		= sanitize_integer(tgui_lock, FALSE, TRUE, initial(tgui_lock))
-	buttons_locked	= sanitize_integer(buttons_locked, FALSE, TRUE, initial(buttons_locked))
-	windowflashing	= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
-	default_slot	= sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
-	toggles			= sanitize_integer(toggles, 0, (1 << 23), initial(toggles)) // Yogs -- Fixes toggles not having >16 bits of flagspace
-	clientfps		= sanitize_integer(clientfps, 0, 1000, 0)
-	parallax		= sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
+	see_rc_emotes		= sanitize_integer(see_rc_emotes, FALSE, TRUE, initial(see_rc_emotes))
+	tgui_fancy			= sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_fancy))
+	tgui_lock			= sanitize_integer(tgui_lock, FALSE, TRUE, initial(tgui_lock))
+	buttons_locked		= sanitize_integer(buttons_locked, FALSE, TRUE, initial(buttons_locked))
+	windowflashing		= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
+	default_slot		= sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
+	toggles				= sanitize_integer(toggles, 0, (1 << 23), initial(toggles)) // Yogs -- Fixes toggles not having >16 bits of flagspace
+	clientfps			= sanitize_integer(clientfps, 0, 1000, 0)
+	parallax			= sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	ambientocclusion	= sanitize_integer(ambientocclusion, FALSE, TRUE, initial(ambientocclusion))
 	auto_fit_viewport	= sanitize_integer(auto_fit_viewport, FALSE, TRUE, initial(auto_fit_viewport))
-	widescreenpref  = sanitize_integer(widescreenpref, FALSE, TRUE, initial(widescreenpref))
-	pixel_size		= sanitize_integer(pixel_size, PIXEL_SCALING_AUTO, PIXEL_SCALING_3X, initial(pixel_size))
-	scaling_method  = sanitize_text(scaling_method, initial(scaling_method))
-	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
-	ghost_orbit 	= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
-	ghost_accs		= sanitize_inlist(ghost_accs, GLOB.ghost_accs_options, GHOST_ACCS_DEFAULT_OPTION)
-	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, GHOST_OTHERS_DEFAULT_OPTION)
-	menuoptions		= SANITIZE_LIST(menuoptions)
-	be_special		= SANITIZE_LIST(be_special)
-	pda_style		= sanitize_inlist(pda_style, GLOB.pda_styles, initial(pda_style))
-	pda_color		= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
-	skillcape       = sanitize_integer(skillcape, 1, 82, initial(skillcape))
-	map				= sanitize_integer(map, FALSE, TRUE, initial(map))
-	flare			= sanitize_integer(flare, FALSE, TRUE, initial(flare))
+	widescreenpref  	= sanitize_integer(widescreenpref, FALSE, TRUE, initial(widescreenpref))
+	pixel_size			= sanitize_integer(pixel_size, PIXEL_SCALING_AUTO, PIXEL_SCALING_3X, initial(pixel_size))
+	scaling_method  	= sanitize_text(scaling_method, initial(scaling_method))
+	ghost_form			= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
+	ghost_orbit 		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
+	ghost_accs			= sanitize_inlist(ghost_accs, GLOB.ghost_accs_options, GHOST_ACCS_DEFAULT_OPTION)
+	ghost_others		= sanitize_inlist(ghost_others, GLOB.ghost_others_options, GHOST_OTHERS_DEFAULT_OPTION)
+	menuoptions			= SANITIZE_LIST(menuoptions)
+	be_special			= SANITIZE_LIST(be_special)
+	pda_style			= sanitize_inlist(pda_style, GLOB.pda_styles, initial(pda_style))
+	pda_color			= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
+	skillcape       	= sanitize_integer(skillcape, 1, 82, initial(skillcape))
+	skillcape_id		= sanitize_text(skillcape_id, initial(skillcape_id))
+
+	if(skillcape_id != "None" && !(skillcape_id in GLOB.skillcapes))
+		skillcape_id = "None"
+
+	map					= sanitize_integer(map, FALSE, TRUE, initial(map))
+	flare				= sanitize_integer(flare, FALSE, TRUE, initial(flare))
+	bar_choice			= sanitize_text(bar_choice, initial(bar_choice))
+
+	var/bar_sanitize = FALSE
+	for(var/A in GLOB.potential_box_bars)
+		if(bar_choice == A)
+			bar_sanitize = TRUE
+			break
+	if(!bar_sanitize)
+		bar_choice = "Random"
+	if(!player_alt_titles) player_alt_titles = new()
 	show_credits	= sanitize_integer(show_credits, FALSE, TRUE, initial(show_credits))
 
 	// yogs start - Donor features & yogtoggles
 	yogtoggles		= sanitize_integer(yogtoggles, 0, (1 << 23), initial(yogtoggles))
 	donor_pda		= sanitize_integer(donor_pda, 1, GLOB.donor_pdas.len, 1)
-	donor_hat       = sanitize(donor_hat)
-	donor_item      = sanitize(donor_item)
 	purrbation      = sanitize_integer(purrbation, FALSE, TRUE, initial(purrbation))
 
 	accent			= sanitize_text(accent, initial(accent)) // Can't use sanitize_inlist since it doesn't support falsely default values.
@@ -283,6 +321,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["buttons_locked"], buttons_locked)
 	WRITE_FILE(S["windowflash"], windowflashing)
 	WRITE_FILE(S["be_special"], be_special)
+	WRITE_FILE(S["player_alt_titles"], player_alt_titles)
 	WRITE_FILE(S["default_slot"], default_slot)
 	WRITE_FILE(S["toggles"], toggles)
 	WRITE_FILE(S["chat_toggles"], chat_toggles)
@@ -308,9 +347,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
 	WRITE_FILE(S["skillcape"], skillcape)
+	WRITE_FILE(S["skillcape_id"], skillcape_id)
 	WRITE_FILE(S["show_credits"], show_credits)
 	WRITE_FILE(S["map"], map)
 	WRITE_FILE(S["flare"], flare)
+	WRITE_FILE(S["bar_choice"], bar_choice)
 
 	// yogs start - Donor features & Yogstoggle
 	WRITE_FILE(S["yogtoggles"], yogtoggles)
@@ -392,6 +433,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["feature_polysmorph_teeth"], features["teeth"])
 	READ_FILE(S["feature_polysmorph_dome"], features["dome"])
 	READ_FILE(S["feature_polysmorph_dorsal_tubes"], features["dorsal_tubes"])
+	READ_FILE(S["persistent_scars"], persistent_scars)
 	if(!CONFIG_GET(flag/join_with_mutant_humans))
 		features["tail_human"] = "none"
 		features["ears"] = "none"
@@ -488,6 +530,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["dome"]	= sanitize_inlist(features["dome"], GLOB.dome_list)
 	features["dorsal_tubes"]	= sanitize_inlist(features["dorsal_tubes"], GLOB.dorsal_tubes_list)
 
+	persistent_scars = sanitize_integer(persistent_scars)
+
 	joblessrole	= sanitize_integer(joblessrole, 1, 3, initial(joblessrole))
 	//Validate job prefs
 	for(var/j in job_preferences)
@@ -542,6 +586,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_polysmorph_teeth"]			, features["teeth"])
 	WRITE_FILE(S["feature_polysmorph_dome"]			, features["dome"])
 	WRITE_FILE(S["feature_polysmorph_dorsal_tubes"]			, features["dorsal_tubes"])
+	WRITE_FILE(S["persistent_scars"]			, persistent_scars)
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)

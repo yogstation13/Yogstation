@@ -11,6 +11,8 @@
 
 	outfit = /datum/outfit/job/cargo_tech
 
+	alt_titles = list("Deliveryperson", "Mail Service", "Exports Handler", "Cargo Trainee", "Crate Pusher")
+
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_EASY

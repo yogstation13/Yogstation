@@ -92,6 +92,24 @@
 	tastes = list("cake" = 4, "cream cheese" = 3)
 	foodtype = GRAIN | DAIRY
 
+/obj/item/reagent_containers/food/snacks/store/cake/chocolatecheese
+	name = "chocolate cheese cake"
+	desc = "Has science gone too far? Nope!"
+	icon_state = "chocolatecheesecake"
+	slice_path = /obj/item/reagent_containers/food/snacks/cakeslice/chocolatecheese
+	slices_num = 5
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 15)
+	tastes = list("cake" = 4, "cream cheese" = 3, "sweetness" = 1, "chocolate" = 4)
+	foodtype = GRAIN | DAIRY | CHOCOLATE
+
+/obj/item/reagent_containers/food/snacks/cakeslice/chocolatecheese
+	name = "Chocolate cheese cake slice"
+	desc = "Slice of pure science, and cheese."
+	icon_state = "chocolatecheesecake_slice"
+	filling_color = "#FFFACD"
+	tastes = list("cake" = 4, "cream cheese" = 3, "sweetness" = 1, "chocolate" = 4)
+	foodtype = GRAIN | DAIRY | CHOCOLATE
+
 /obj/item/reagent_containers/food/snacks/store/cake/donk
 	name = "donk cake"
 	desc = "Who thought this would be a good idea?"
@@ -173,7 +191,7 @@
 	slices_num = 5
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 10)
 	tastes = list("cake" = 5, "sweetness" = 1, "chocolate" = 4)
-	foodtype = GRAIN | DAIRY | JUNKFOOD | SUGAR
+	foodtype = GRAIN | DAIRY | JUNKFOOD | SUGAR | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/cakeslice/chocolate
 	name = "chocolate cake slice"
@@ -181,7 +199,7 @@
 	icon_state = "chocolatecake_slice"
 	filling_color = "#A0522D"
 	tastes = list("cake" = 5, "sweetness" = 1, "chocolate" = 4)
-	foodtype = GRAIN | DAIRY | JUNKFOOD | SUGAR
+	foodtype = GRAIN | DAIRY | JUNKFOOD | SUGAR | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/store/cake/birthday
 	name = "birthday cake"

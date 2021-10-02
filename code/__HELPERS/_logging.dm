@@ -29,7 +29,7 @@
 #define testing(msg)
 #endif
 
-#ifdef UNIT_TESTS
+#if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
 /proc/log_test(text)
 	WRITE_LOG(GLOB.test_log, text)
 	SEND_TEXT(world.log, text)
@@ -91,6 +91,10 @@
 /proc/log_attack(text)
 	if (CONFIG_GET(flag/log_attack))
 		WRITE_LOG(GLOB.world_attack_log, "ATTACK: [text]")
+
+/proc/log_wounded(text)
+	if (CONFIG_GET(flag/log_attack))
+		WRITE_LOG(GLOB.world_attack_log, "WOUND: [text]")
 
 /proc/log_manifest(ckey, datum/mind/mind,mob/body, latejoin = FALSE)
 	if (CONFIG_GET(flag/log_manifest))

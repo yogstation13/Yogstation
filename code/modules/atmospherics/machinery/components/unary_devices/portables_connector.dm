@@ -1,5 +1,5 @@
 /obj/machinery/atmospherics/components/unary/portables_connector
-	icon_state = "connector_map-3"
+	icon_state = "connector"
 	name = "connector port"
 	desc = "For connecting portables devices related to atmospherics control."
 	can_unwrench = TRUE
@@ -10,6 +10,7 @@
 	pipe_flags = PIPING_ONE_PER_TURF
 	pipe_state = "connector"
 	piping_layer = 3
+	showpipe = TRUE
 
 	var/obj/machinery/portable_atmospherics/connected_device
 
@@ -18,19 +19,15 @@
 	var/datum/gas_mixture/air_contents = airs[1]
 	air_contents.set_volume(0)
 
-/obj/machinery/atmospherics/components/unary/portables_connector/Initialize()
-	. = ..()
-	update_icon()
-	update_icon_nopipes()
-
 /obj/machinery/atmospherics/components/unary/portables_connector/Destroy()
 	if(connected_device)
 		connected_device.disconnect()
 	return ..()
 
 /obj/machinery/atmospherics/components/unary/portables_connector/update_icon_nopipes()
-	icon_state = "connector_map-[piping_layer]"
+	icon_state = "connector"
 	if(showpipe)
+		cut_overlays()
 		var/image/cap = getpipeimage(icon, "connector_cap", initialize_directions)
 		add_overlay(cap)
 
@@ -42,7 +39,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/can_unwrench(mob/user)
 	. = ..()
 	if(. && connected_device)
-		to_chat(user, "<span class='warning'>You cannot unwrench [src], detach [connected_device] first!</span>")
+		to_chat(user, span_warning("You cannot unwrench [src], detach [connected_device] first!"))
 		return FALSE
 
 /obj/machinery/atmospherics/components/unary/portables_connector/layer2

@@ -66,6 +66,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/reagent_weight = 1
 	///is it currently metabolizing
 	var/metabolizing = FALSE
+	/// is it bad for you? Currently only used for borghypo. C2s and Toxins have it TRUE by default.
+	var/harmful = FALSE
 	/// Are we from a material? We might wanna know that for special stuff. Like metalgen. Is replaced with a ref of the material on New()
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
@@ -95,7 +97,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 /// Called from [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/on_mob_life(mob/living/carbon/M)
 	current_cycle++
-	holder.remove_reagent(type, metabolization_rate * M.metabolism_efficiency) //By default it slowly disappears.
+	if(holder)
+		holder.remove_reagent(type, metabolization_rate * M.metabolism_efficiency) //By default it slowly disappears.
 	return
 
 ///Called after a reagent is transfered
@@ -142,7 +145,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 /// Called when an overdose starts
 /datum/reagent/proc/overdose_start(mob/living/M)
-	to_chat(M, "<span class='userdanger'>You feel like you took too much of [name]!</span>")
+	to_chat(M, span_userdanger("You feel like you took too much of [name]!"))
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/overdose, name)
 	return
 
@@ -150,28 +153,28 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 /datum/reagent/proc/addiction_act_stage1(mob/living/M)
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_light, name)
 	if(prob(30))
-		to_chat(M, "<span class='notice'>You feel like having some [name] right about now.</span>")
+		to_chat(M, span_notice("You feel like having some [name] right about now."))
 	return
 
 /// Called when addiction hits stage2, see [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/addiction_act_stage2(mob/living/M)
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_medium, name)
 	if(prob(30))
-		to_chat(M, "<span class='notice'>You feel like you need [name]. You just can't get enough.</span>")
+		to_chat(M, span_notice("You feel like you need [name]. You just can't get enough."))
 	return
 
 /// Called when addiction hits stage3, see [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/addiction_act_stage3(mob/living/M)
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_severe, name)
 	if(prob(30))
-		to_chat(M, "<span class='danger'>You have an intense craving for [name].</span>")
+		to_chat(M, span_danger("You have an intense craving for [name]."))
 	return
 
 /// Called when addiction hits stage4, see [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/addiction_act_stage4(mob/living/M)
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_critical, name)
 	if(prob(30))
-		to_chat(M, "<span class='boldannounce'>You're not feeling good at all! You really need some [name].</span>")
+		to_chat(M, span_boldannounce("You're not feeling good at all! You really need some [name]."))
 	return
 
 /proc/pretty_string_from_reagent_list(list/reagent_list)

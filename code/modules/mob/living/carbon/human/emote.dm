@@ -66,7 +66,7 @@
 	key_third_person = "screams"
 	message = "screams!"
 	emote_type = EMOTE_AUDIBLE
-	only_forced_audio = TRUE
+	cooldown = 10 SECONDS
 	vary = TRUE
 
 /datum/emote/living/carbon/human/scream/get_sound(mob/living/user)
@@ -75,7 +75,9 @@
 	var/mob/living/carbon/human/H = user
 	if(H.mind?.miming)
 		return
-	if(ishumanbasic(H) || iscatperson(H))
+	if(iscatperson(H))
+		return pick('sound/voice/feline/scream1.ogg', 'sound/voice/feline/scream2.ogg', 'sound/voice/feline/scream3.ogg')
+	else if(ishumanbasic(H))
 		if(user.gender == FEMALE)
 			return pick('sound/voice/human/femalescream_1.ogg', 'sound/voice/human/femalescream_2.ogg', 'sound/voice/human/femalescream_3.ogg', 'sound/voice/human/femalescream_4.ogg', 'sound/voice/human/femalescream_5.ogg')
 		else
@@ -87,6 +89,18 @@
 	else if(H.dna?.species?.screamsound) //yogs start: grabs scream from screamsound located in the appropriate species file.
 		return H.dna.species.screamsound //yogs end - current added screams: lizard, preternis.
 
+/datum/emote/living/carbon/meow
+	key = "meow"
+	key_third_person = "meows"
+	message = "meows."
+	emote_type = EMOTE_AUDIBLE
+	cooldown = 10 SECONDS
+
+/datum/emote/living/carbon/meow/can_run_emote(mob/living/user, status_check = TRUE, intentional)
+	return iscatperson(user)
+
+/datum/emote/living/carbon/meow/get_sound(mob/living/user)
+	return pick('sound/voice/feline/meow1.ogg', 'sound/voice/feline/meow2.ogg', 'sound/voice/feline/meow3.ogg', 'sound/voice/feline/meow4.ogg', 'sound/effects/meow1.ogg')
 
 /datum/emote/living/carbon/human/pale
 	key = "pale"
@@ -169,13 +183,17 @@
 	var/mob/living/carbon/human/H = user
 	if(H.dna && H.dna.species && (H.dna.features["wings"] != "None"))
 		return TRUE
-
+		
 /mob/living/carbon/human/proc/OpenWings()
 	if(!dna || !dna.species)
 		return
 	if("wings" in dna.species.mutant_bodyparts)
 		dna.species.mutant_bodyparts -= "wings"
 		dna.species.mutant_bodyparts |= "wingsopen"
+	if("moth_wings" in dna.species.mutant_bodyparts)
+		dna.species.mutant_bodyparts |= "moth_wingsopen"
+		dna.features["moth_wingsopen"] = "moth_wings"
+		dna.species.mutant_bodyparts -= "moth_wings"
 	update_body()
 
 /mob/living/carbon/human/proc/CloseWings()
@@ -184,6 +202,9 @@
 	if("wingsopen" in dna.species.mutant_bodyparts)
 		dna.species.mutant_bodyparts -= "wingsopen"
 		dna.species.mutant_bodyparts |= "wings"
+	if("moth_wingsopen" in dna.species.mutant_bodyparts)
+		dna.species.mutant_bodyparts -= "moth_wingsopen"
+		dna.species.mutant_bodyparts |= "moth_wings"
 	update_body()
 	if(isturf(loc))
 		var/turf/T = loc

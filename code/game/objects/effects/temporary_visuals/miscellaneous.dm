@@ -48,6 +48,9 @@
 /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter
 	splatter_type = "xsplatter"
 
+/obj/effect/temp_visual/dir_setting/bloodsplatter/genericsplatter
+	splatter_type = "genericsplatter"
+
 /obj/effect/temp_visual/dir_setting/speedbike_trail
 	name = "speedbike trails"
 	icon_state = "ion_fade"

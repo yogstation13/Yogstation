@@ -491,6 +491,10 @@ h1.alert, h2.alert {
   color: #ff5050;
 }
 
+.velvet {
+  color: #631f3a;
+}
+
 .info {
   color: #0000CC;
 }
@@ -500,18 +504,23 @@ h1.alert, h2.alert {
 }
 
 .tinynotice {
-  color: #000099;
+  color: #6685f5;
+  font-size: 85%;
+}
+
+.tinynoticeital {
+  color: #6685f5;
   font-style: italic;
   font-size: 85%;
 }
 
 .smallnotice {
-  color: #000099;
+  color: #6685f5;
   font-size: 90%;
 }
 
 .smallnoticeital {
-  color: #000099;
+  color: #6685f5;
   font-style: italic;
   font-size: 90%;
 }
@@ -606,24 +615,24 @@ h1.alert, h2.alert {
   color: #BE8700;
 }
 .heavy_brass {
-  color: #BE8700; 
-  font-weight: bold; 
+  color: #BE8700;
+  font-weight: bold;
   font-style: italic;
 }
 .large_brass {
-  color: #BE8700; 
+  color: #BE8700;
   font-size: 185%;
 }
 .big_brass {
-  color: #BE8700; 
-  font-size: 185%; 
-  font-weight: bold; 
+  color: #BE8700;
+  font-size: 185%;
+  font-weight: bold;
   font-style: italic;
 }
 .ratvar	{
-  color: #BE8700; 
-  font-size: 925%; 
-  font-weight: bold; 
+  color: #BE8700;
+  font-size: 925%;
+  font-weight: bold;
   font-style: italic;
 }
 

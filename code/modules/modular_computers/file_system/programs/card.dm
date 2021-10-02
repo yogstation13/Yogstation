@@ -141,11 +141,11 @@
 					contents += "  [get_access_desc(A)]"
 
 			if(!printer.print_text(contents,"access report"))
-				to_chat(usr, "<span class='notice'>Hardware error: Printer was unable to print the file. It may be out of paper.</span>")
+				to_chat(usr, span_notice("Hardware error: Printer was unable to print the file. It may be out of paper."))
 				return
 			else
 				playsound(computer, 'sound/machines/terminal_on.ogg', 50, FALSE)
-				computer.visible_message("<span class='notice'>\The [computer] prints out a paper.</span>")
+				computer.visible_message(span_notice("\The [computer] prints out a paper."))
 			return TRUE
 		if("PRG_eject")
 			if(!computer || !card_slot)
@@ -209,7 +209,7 @@
 							job = J
 							break
 					if(!job)
-						to_chat(user, "<span class='warning'>No class exists for this job: [target]</span>")
+						to_chat(user, span_warning("No class exists for this job: [target]"))
 						return
 					new_access = job.get_access()
 				id_card.access -= get_all_centcom_access() + get_all_accesses()
@@ -274,12 +274,12 @@
 	else if(isnull(departments))
 		departments = list(
 			CARDCON_DEPARTMENT_COMMAND = list("Captain"),//lol
-			CARDCON_DEPARTMENT_ENGINEERING = GLOB.engineering_positions,
-			CARDCON_DEPARTMENT_MEDICAL = GLOB.medical_positions,
-			CARDCON_DEPARTMENT_SCIENCE = GLOB.science_positions,
-			CARDCON_DEPARTMENT_SECURITY = GLOB.security_positions,
-			CARDCON_DEPARTMENT_SUPPLY = GLOB.supply_positions,
-			CARDCON_DEPARTMENT_SERVICE = GLOB.civilian_positions
+			CARDCON_DEPARTMENT_ENGINEERING = GLOB.original_engineering_positions,
+			CARDCON_DEPARTMENT_MEDICAL = GLOB.original_medical_positions,
+			CARDCON_DEPARTMENT_SCIENCE = GLOB.original_science_positions,
+			CARDCON_DEPARTMENT_SECURITY = GLOB.original_security_positions,
+			CARDCON_DEPARTMENT_SUPPLY = GLOB.original_supply_positions,
+			CARDCON_DEPARTMENT_SERVICE = GLOB.original_civilian_positions
 		)
 	data["jobs"] = list()
 	for(var/department in departments)

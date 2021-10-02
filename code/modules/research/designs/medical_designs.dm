@@ -158,7 +158,7 @@
 	id = "defibrillator_compact"
 	build_type = PROTOLATHE
 	build_path = /obj/item/defibrillator/compact
-	materials = list(/datum/material/iron = 16000, /datum/material/glass = 8000, /datum/material/silver = 6000, /datum/material/gold = 3000)
+	materials = list(/datum/material/iron = 8000, /datum/material/glass = 8000, /datum/material/silver = 6000, /datum/material/gold = 3000, /datum/material/plastic = 8000)
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -168,7 +168,7 @@
 	id = "genescanner"
 	build_path = /obj/item/sequence_scanner
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500)
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500, /datum/material/plastic = 250)
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -178,7 +178,7 @@
 	id = "healthanalyzer_advanced"
 	build_path = /obj/item/healthanalyzer/advanced
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500, /datum/material/silver = 2000, /datum/material/gold = 1500)
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500, /datum/material/silver = 2000, /datum/material/gold = 1500, /datum/material/plastic = 1000)
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -198,6 +198,16 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plastic = 2000)
 	build_path = /obj/item/surgical_drapes
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/rollerbed
+	name = "Roller Bed"
+	desc = "A foldable rolling bed that can be carried around."
+	id = "rollerbed"
+	build_path = /obj/item/roller
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 8000, /datum/material/plastic = 2000) // balancing is a bitch, what does this even mean? i don't really know.
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
@@ -296,7 +306,7 @@
 	id = "ci-medhud"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 500, /datum/material/gold = 500)
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 500, /datum/material/gold = 500, /datum/material/plastic = 150)
 	build_path = /obj/item/organ/cyberimp/eyes/hud/medical
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
@@ -307,7 +317,7 @@
 	id = "ci-sechud"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 750, /datum/material/gold = 750)
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 750, /datum/material/gold = 750, /datum/material/plastic = 150)
 	build_path = /obj/item/organ/cyberimp/eyes/hud/security
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
@@ -318,7 +328,7 @@
 	id = "ci-diaghud"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600)
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plastic = 150)
 	build_path = /obj/item/organ/cyberimp/eyes/hud/diagnostic
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
@@ -617,7 +627,7 @@
 
 /datum/design/surgery/healing/burn_upgrade_2
 	name = "Tend Wounds (Burn) Upgrade"
-	surgery = /datum/surgery/healing/brute/upgraded/femto
+	surgery = /datum/surgery/healing/burn/upgraded/femto
 	id = "surgery_heal_burn_upgrade_femto"
 
 /datum/design/surgery/healing/combo
@@ -645,10 +655,17 @@
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/dna_recovery
-	name= "DNA Recovery"
-	desc= "A surgical procedure which involves using rezadone to salvage a single strand of DNA from the patient, allowing them to be cloned."
+	name = "DNA Recovery"
+	desc = "A surgical procedure which involves using rezadone to salvage a single strand of DNA from the patient, allowing them to be cloned."
 	id = "surgery_dna_recovery"
 	surgery = /datum/surgery/advanced/dna_recovery
+	research_icon_state = "surgery_head"
+
+/datum/design/surgery/xeno_dna_recovery
+	name = "Alien DNA Recovery"
+	desc = "An experimental surgical procedure which involves the use of rezadone to fix severe burning on certain alien lifeforms."
+	id = "surgery_xeno_dna_recovery"
+	surgery = /datum/surgery/advanced/dna_recovery/alien
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/brainwashing

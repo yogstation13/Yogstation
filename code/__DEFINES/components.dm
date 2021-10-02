@@ -40,9 +40,16 @@
 #define COMSIG_GLOB_LIVING_SAY_SPECIAL "!say_special"
 /// called after an explosion happened : (epicenter, devastation_range, heavy_impact_range, light_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)
 #define COMSIG_GLOB_EXPLOSION "!explosion"
+/// crewmember joined the game (mob/living, rank)
+#define COMSIG_GLOB_CREWMEMBER_JOINED "!crewmember_joined"
 // signals from globally accessible objects
 /// from SSsun when the sun changes position : (azimuth)
 #define COMSIG_SUN_MOVED "sun_moved"
+/// Random event is trying to roll. (/datum/round_event_control/random_event)
+/// Called by (/datum/round_event_control/preRunEvent).
+#define COMSIG_GLOB_PRE_RANDOM_EVENT "!pre_random_event"
+	/// Do not allow this random event to continue.
+	#define CANCEL_PRE_RANDOM_EVENT (1<<0)
 
 //////////////////////////////////////////////////////////////////
 
@@ -64,6 +71,7 @@
 #define COMSIG_ATOM_HULK_ATTACK "hulk_attack"					//from base of atom/attack_hulk(): (/mob/living/carbon/human)
 #define COMSIG_PARENT_EXAMINE "atom_examine"                    //from base of atom/examine(): (/mob)
 #define COMSIG_ATOM_GET_EXAMINE_NAME "atom_examine_name"		//from base of atom/get_examine_name(): (/mob, list/overrides)
+#define COMSIG_PARENT_EXAMINE_MORE "atom_examine_more"			//from base of atom/examine_more(): (/mob)
 	//Positions for overrides list
 #define EXAMINE_POSITION_ARTICLE 1
 #define EXAMINE_POSITION_BEFORE 2
@@ -221,9 +229,17 @@
 #define COMSIG_LIVING_STATUS_SLEEP "living_sleeping"			//from base of mob/living/Sleeping() (amount, update, ignore)
 #define COMPONENT_NO_STUN 1			//For all of them
 
-// /mob/living/carbon signals
+// /mob/living/carbon physiology signals
+#define COMSIG_CARBON_GAIN_WOUND "carbon_gain_wound"				//from /datum/wound/proc/apply_wound() (/mob/living/carbon/C, /datum/wound/W, /obj/item/bodypart/L)
+#define COMSIG_CARBON_LOSE_WOUND "carbon_lose_wound"				//from /datum/wound/proc/remove_wound() (/mob/living/carbon/C, /datum/wound/W, /obj/item/bodypart/L)
+///from base of /obj/item/bodypart/proc/attach_limb(): (new_limb, special) allows you to fail limb attachment
+#define COMSIG_CARBON_ATTACH_LIMB "carbon_attach_limb"
+	#define COMPONENT_NO_ATTACH (1<<0)
+#define COMSIG_CARBON_REMOVE_LIMB "carbon_remove_limb"			//from base of /obj/item/bodypart/proc/drop_limb(special, dismembered)
 #define COMSIG_CARBON_SOUNDBANG "carbon_soundbang"					//from base of mob/living/carbon/soundbang_act(): (list(intensity))
 #define COMSIG_CARBON_STATUS_STAMCRIT "living_stamcrit"				//from base of mob/living/carbon/enter_stamcrit()
+#define COMSIG_BODYPART_GAUZED	"bodypart_gauzed" // from /obj/item/bodypart/proc/apply_gauze(/obj/item/stack/gauze)
+#define COMSIG_BODYPART_GAUZE_DESTROYED	"bodypart_degauzed" // from [/obj/item/bodypart/proc/seep_gauze] when it runs out of absorption
 
 // /mob/living/simple_animal/hostile signals
 #define COMSIG_HOSTILE_ATTACKINGTARGET "hostile_attackingtarget"
@@ -292,6 +308,7 @@
 
 
 // /mob/living/carbon/human signals
+#define COMSIG_HUMAN_EARLY_UNARMED_ATTACK "human_early_unarmed_attack"			//from mob/living/carbon/human/UnarmedAttack(): (atom/target, proximity, modifiers)
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"			//from mob/living/carbon/human/UnarmedAttack(): (atom/target)
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACKBY "human_melee_unarmed_attackby"		//from mob/living/carbon/human/UnarmedAttack(): (mob/living/carbon/human/attacker)
 #define COMSIG_HUMAN_DISARM_HIT	"human_disarm_hit"	//Hit by successful disarm attack (mob/living/carbon/human/attacker,zone_targeted)
@@ -381,3 +398,14 @@
 #define COMSIG_XENO_TURF_CLICK_SHIFT "xeno_turf_click_shift"				//from turf ShiftClickOn(): (/mob)
 #define COMSIG_XENO_TURF_CLICK_CTRL "xeno_turf_click_alt"					//from turf AltClickOn(): (/mob)
 #define COMSIG_XENO_MONKEY_CLICK_CTRL "xeno_monkey_click_ctrl"				//from monkey CtrlClickOn(): (/mob)
+
+/// job subsystem has spawned and equipped a new mob
+#define COMSIG_GLOB_JOB_AFTER_SPAWN "!job_after_spawn"
+
+///Subsystem signals
+///From base of datum/controller/subsystem/Initialize: (start_timeofday)
+#define COMSIG_SUBSYSTEM_POST_INITIALIZE "subsystem_post_initialize"
+
+/// called by datum/cinematic/play() : (datum/cinematic/new_cinematic)
+#define COMSIG_GLOB_PLAY_CINEMATIC "!play_cinematic"
+#define COMPONENT_GLOB_BLOCK_CINEMATIC (1<<0)
