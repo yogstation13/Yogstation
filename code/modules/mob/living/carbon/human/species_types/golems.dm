@@ -1272,10 +1272,10 @@
 	id = "Metallic Hydrogen golem"
 	fixed_mut_color = "ddd"
 	info_text = "As a <span class='danger'>Metallic Hydrogen Golem</span>, you were forged in the highest pressures and the highest heats. Your exotic makeup makes you tougher than diamond."
-	prefix = "Metallic Hydrogen"
+	prefix = "Hydrogen"
 	stunmod = 0.6 //as opposed to plasteel's 0.4
-	special_names = list("Primordial","Atomic","Indivisible","Protonic")
-	armor = 75 //5 more than diamond, 20 more than base golem. balance as necessary, this just seems right
+	special_names = list("Primordial","Indivisible","Proton", "Superconductor","Supersolid","Metastable") //the first element, in an exotic and theoretical state
+	armor = 75 //5 more than diamond, 20 more than base golem
 	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS) //removed NOFIRE because hydrogen burns and they come from the fire department
 
 /datum/species/golem/mhydrogen/on_species_gain(mob/living/carbon/C, datum/species/old_species)
