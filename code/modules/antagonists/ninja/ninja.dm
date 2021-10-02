@@ -124,6 +124,10 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	to_chat(owner.current, "I am an elite mercenary assassin of the mighty Spider Clan. A <font color='red'><B>SPACE NINJA</B></font>!")
 	to_chat(owner.current, "Surprise is my weapon. Shadows are my armor. Without them, I am nothing. (//initialize your suit by right clicking on it, to use abilities like stealth)!")
 	to_chat(owner.current, "Officially, [helping_station?"Nanotrasen":"The Syndicate"] are my employer.")
+	to_chat(owner.current, "<b>If you are new to playing the Space Ninja, please review the <a href='https://wiki.yogstation.net/wiki/Space_Ninja'>Space Ninja</a> wiki entry for explanations and abilities.</b>") //Yogs
+	if(helping_station) {
+		to_chat(owner.current, "<b>As a Nanotrasen ninja, you are beholden to <a href='https://forums.yogstation.net/help/rules/#rule-3_1_1'>rule 3.1.1</a>: Do not murderbone.</b>")
+	}
 	owner.announce_objectives()
 	return
 
