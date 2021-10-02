@@ -342,6 +342,8 @@ CREATE TABLE IF NOT EXISTS `player` (
   `credits` bigint(20) unsigned NOT NULL DEFAULT 0,
   `antag_weight` mediumint(8) unsigned NOT NULL DEFAULT 100,
   `job_whitelisted` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `totp_seed` varchar(20),
+  `mfa_backup` varchar(128),
   PRIMARY KEY (`ckey`),
   KEY `idx_player_cid_ckey` (`computerid`,`ckey`),
   KEY `idx_player_ip_ckey` (`ip`,`ckey`)

@@ -10,9 +10,13 @@ In any query remember to add a prefix to the table names if you use one.
 
 version 5.7 23 September 2021, by adamsogm
 
-Adds table for storing mfa logins
+Adds table for storing mfa login cache and a column for storing TOTP seeds and one for mfa backup code
 
-DROP TABLE IF EXISTS `mfa_logins`
+ALTER TABLE ss13_player
+ADD COLUMN totp_seed varchar(20),
+ADD COLUMN mfa_backup varchar(128);
+
+DROP TABLE IF EXISTS `mfa_logins`;
 CREATE TABLE IF NOT EXISTS `mfa_logins` (
 	`ckey` varchar(32) NOT NULL,
 	`ip` int(10) unsigned NOT NULL,

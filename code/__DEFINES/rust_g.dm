@@ -77,3 +77,6 @@
 #define rustg_http_request_blocking(method, url, body, headers) call(RUST_G, "http_request_blocking")(method, url, body, headers)
 #define rustg_http_request_async(method, url, body, headers) call(RUST_G, "http_request_async")(method, url, body, headers)
 #define rustg_http_check_request(req_id) call(RUST_G, "http_check_request")(req_id)
+
+#define rustg_hash_generate_totp(seed) call(RUST_G, "generate_totp")(seed)
+#define rustg_hash_string(algorithm, input) call(RUST_G, "hash_string")(algorithm, input)

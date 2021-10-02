@@ -46,8 +46,3 @@
 	var/query = list("ckey" = url_encode(ckey), "ckey2" = url_encode(ckey2), "action" = url_encode(action))
 	webhook_send("mchange", query)
 
-
-///////////// MFA /////////////
-/proc/webhook_request_mfa(var/ckey, var/ip, var/cid)
-	var/query = list("ckey" = ckey, "ip" = ip, "cid" = cid)
-	webhook_send("mfarequest", query)

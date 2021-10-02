@@ -98,32 +98,6 @@ GLOBAL_PROTECT(href_token)
 		disassociate()
 		add_verb(C, /client/proc/readmin)
 
-/datum/admins/proc/check_mfa(client/C)
-	if(CONFIG_GET(flag/mfa_enabled))
-
-		if(cid_cache == C.computer_id && ip_cache == C.address)
-			return TRUE
-
-		var/datum/DBQuery/query_mfa_check = SSdbcore.NewQuery(
-			"SELECT COUNT(1) FROM [format_table_name("mfa_logins")] WHERE ckey = :ckey AND ip = INET_ATON(:address) AND cid = :cid",
-			list("ckey" = target, "address" = C.address, "cid" = C.computer_id)
-		)
-		if(query_mfa_check.Execute() && query_mfa_check.NextRow() && text2num(query_mfa_check.item[1]) > 0) // Check if they have connected before from this IP/CID
-			qdel(query_mfa_check)
-			return TRUE
-		else // Need to run MFA
-			qdel(query_mfa_check)
-			webhook_request_mfa(target, C.address, C.computer_id)
-			to_chat(C, span_userdanger("New connection detected, please confirm your identity in discord."))
-			message_admins("[target] is attempting to admin from a new connection, MFA request sent")
-
-			if(!deadmined)
-				deactivate()
-
-			return FALSE
-
-	return TRUE
-
 /datum/admins/proc/associate(client/C)
 	if(IsAdminAdvancedProcCall())
 		var/msg = " has tried to elevate permissions!"
@@ -138,7 +112,7 @@ GLOBAL_PROTECT(href_token)
 			log_admin("[key_name(C)][msg]")
 			return FALSE
 
-		if(!check_mfa(C))
+		if(!handle_mfa(C))
 			return FALSE
 
 		if (deadmined)
