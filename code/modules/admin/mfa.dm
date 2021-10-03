@@ -75,8 +75,8 @@
 	var/code = input(C, "Please enter your authentication code", "MFA Check") as null|num
 
 	if(code)
-		var/generated_code = rustg_hash_generate_totp(seed)
-		if(num2text(code) == generated_code)
+		var/generated_codes = json_decode(rustg_hash_generate_totp_tolerance(seed, 1))
+		if(num2text(code) in generated_codes)
 			login_mfa(C)
 			return
 
@@ -86,10 +86,13 @@
 		return
 
 	if(response == "Retry TOTP")
-		query_mfa()
+		query_mfa(C)
 		return
 	else if(response == "Backup Code")
-		query_mfa_backup()
+		if(alert(C, "Using the backup code will forgot all previous logins and require re-enrolling in MFA, Do you wish to continue?", "Confirmation", "Cancel", "Yes") != "Yes")
+			query_mfa(C)
+			return
+		query_mfa_backup(C)
 	else
 		CRASH("INVALID RESPONSE TO QUERY")
 
@@ -132,7 +135,7 @@
 	var/code_b32 = ""
 	for(var/i = 0; i<16; i++) // Generate 16 character base 32 number
 		code_b32 += pick(base32lookup)
-	
+	code_b32 = "XWKNDDHV7B2U6JIK" // TODO: Remove this
 	var/code_b2 = ""
 	for(var/char in splittext(code_b32, ""))
 		code_b2 += num2text(base32lookup[char], 5, 2)
@@ -141,16 +144,16 @@
 	for(var/byte in splittext(code_b2,regex(@"([01]{4})")))
 		if(byte == "")
 			continue
-		code_b16 = num2text(text2num(code_b2, 2), 0, 16)
+		code_b16 += num2text(text2num(byte, 2), 1, 16)
 
 	to_chat(C, span_userdanger("Your 2FA code is [code_b32]!"), confidential = TRUE)
 
 	while(TRUE)
 		var/code = input(C, "Please verify your authentication code", "MFA Check") as null|num
-
 		if(code)
-			var/generated_code = rustg_hash_generate_totp(code_b16)
-			if(num2text(code) == generated_code)
+			var/json_codes = rustg_hash_generate_totp_tolerance(code_b16, "1")
+			var/generated_codes = json_decode(json_codes)
+			if(num2text(code) in generated_codes)
 				break
 		else
 			return
@@ -161,7 +164,7 @@
 	for(var/i = 0; i < 16; i++) // Generate 16 character base 32 number
 		raw_backup += pick(alphabet)
 	
-	var/backup_hash = rustg_hash_string("sha512", raw_backup)
+	var/backup_hash = rustg_hash_string(RUSTG_HASH_SHA512, raw_backup)
 	to_chat(C, span_userdanger("Your 2FA backup code is [raw_backup]. This can be used to recover your account in the event you lose your 2FA device."), confidential=TRUE)
 
 	var/datum/DBQuery/query_set_totp_seed = SSdbcore.NewQuery(
@@ -183,7 +186,7 @@
 
 	var/datum/DBQuery/query_mfa_backup = SSdbcore.NewQuery(
 		"SELECT COUNT(1) FROM [format_table_name("player")] WHERE ckey = :ckey AND mfa_backup = :code",
-		list("ckey" = target, "code" = rustg_hash_string("sha512", mfa_backup))
+		list("ckey" = target, "code" = rustg_hash_string(RUSTG_HASH_SHA512, mfa_backup))
 	)
 
 	if(!query_mfa_backup.warn_execute() || !query_mfa_backup.NextRow())
@@ -193,7 +196,20 @@
 	var/authed = query_mfa_backup.item[1] > 0
 	qdel(query_mfa_backup)
 	if(authed)
-		login_mfa(C)
+		message_admins("[target] logged in with their backup code!")
+		var/datum/DBQuery/query_clear_mfa = SSdbcore.NewQuery(
+			"DELETE FROM [format_table_name("mfa_logins")] WHERE ckey = :ckey",
+			list("ckey" = target)
+		)
+		query_clear_mfa.warn_execute()
+		qdel(query_clear_mfa)
+		query_clear_mfa = SSdbcore.NewQuery(
+			"UPDATE [format_table_name("player")] SET totp_seed = NULL, mfa_backup = NULL WHERE ckey = :ckey",
+			list("ckey" = target)
+		)
+		query_clear_mfa.warn_execute()
+		qdel(query_clear_mfa)
+		enroll_mfa(C)
 	else
 		to_chat(C, span_warning("Failed to validate backup code"))
 	
