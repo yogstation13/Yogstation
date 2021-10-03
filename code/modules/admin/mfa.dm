@@ -270,17 +270,21 @@
 		log_admin("[key_name(usr)][msg]")
 		return
 
-	var/datum/DBQuery/mfa_addverify = SSdbcore.NewQuery(
-		"INSERT INTO [format_table_name("mfa_logins")] (ckey, ip, cid) VALUE (:ckey, INET_ATON(:address), :cid)",
-		list("ckey" = target, "address" = C.address, "cid" = C.computer_id)
-	)
+	// These values are cached even if the user says not to remember the session, but are only used if the DB is down during admin loading
+	cid_cache = C.computer_id
+	ip_cache = C.address
 
-	if(!mfa_addverify.Execute())
+	if(alert(C, "Do you wish to remember this connection?", "Remember Me", "Yes", "No") == "Yes")
+		var/datum/DBQuery/mfa_addverify = SSdbcore.NewQuery(
+			"INSERT INTO [format_table_name("mfa_logins")] (ckey, ip, cid) VALUE (:ckey, INET_ATON(:address), :cid)",
+			list("ckey" = target, "address" = C.address, "cid" = C.computer_id)
+		)
+
+		if(!mfa_addverify.Execute())
+			qdel(mfa_addverify)
+			message_admins("Failed to add login info for [target], they will be unable to login")
+			return
+
 		qdel(mfa_addverify)
-		message_admins("Failed to add login info for [target], they will be unable to login")
-		return
 
-	qdel(mfa_addverify)
-
-	var/datum/admins/admin = GLOB.deadmins[target] || GLOB.admin_datums[target]
-	admin.activate()
+	activate()
