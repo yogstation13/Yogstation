@@ -734,6 +734,10 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/capture/living
 	name = "capture living"
 
+/datum/objective/capture/living/update_explanation_text()
+	. = ..()
+	explanation_text = "Capture [target_amount] living lifeform\s with an energy net. Only alive specimens count."
+
 /datum/objective/protect_object
 	name = "protect object"
 	var/obj/protect_target

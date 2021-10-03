@@ -98,7 +98,12 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 					O.explanation_text = "Steal the brain of [M.current.real_name]."
 					objectives += O
 				else										//capture
-					var/datum/objective/capture/O = new /datum/objective/capture()
+					var/datum/objective/capture/O
+					if(helping_station) {
+						O = new /datum/objective/capture()
+					} else {
+						O = new /datum/objective/capture/living()
+					}
 					O.owner = owner
 					O.gen_amount_goal()
 					objectives += O
