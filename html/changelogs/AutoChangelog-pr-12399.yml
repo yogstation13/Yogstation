@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "nonexistent bloodcult spells will no longer prevent new spells from being added"
