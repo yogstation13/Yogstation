@@ -86,7 +86,11 @@
 	var/code = input(C, "Please enter your authentication code", "MFA Check") as null|num
 
 	if(code)
-		var/generated_codes = json_decode(rustg_hash_generate_totp_tolerance(seed, 1))
+		var/json_codes = rustg_hash_generate_totp_tolerance(seed, 1)
+		if(findtext(json_codes, "ERROR") != 0) // Something went wrong, exit
+			message_admins("Error with TOTP: [json_codes]")
+			return FALSE
+		var/generated_codes = json_decode(json_codes)
 		if(num2text(code) in generated_codes)
 			return TRUE
 
@@ -183,6 +187,9 @@
 		var/code = input(C, "Please verify your authentication code", "MFA Check") as null|num
 		if(code)
 			var/json_codes = rustg_hash_generate_totp_tolerance(code_b16, "1")
+			if(findtext(json_codes, "ERROR") != 0) // Something went wrong, exit
+				message_admins("Error with TOTP: [json_codes]")
+				return FALSE
 			var/generated_codes = json_decode(json_codes)
 			if(num2text(code) in generated_codes)
 				break
