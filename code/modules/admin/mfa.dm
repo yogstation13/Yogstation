@@ -1,4 +1,4 @@
-/datum/admins/proc/handle_mfa(client/C)
+/datum/admins/proc/handle_mfa(client/C, allow_query = TRUE)
 	if(IsAdminAdvancedProcCall())
 		var/msg = " has tried to elevate permissions!"
 		message_admins("[key_name_admin(usr)][msg]")
@@ -9,7 +9,10 @@
 		if(check_mfa_cache(C))
 			return TRUE
 		else // Need to run MFA
-			INVOKE_ASYNC(src, .proc/query_mfa, C) // Don't want to hang while the user inputs their TOTP code
+			if(allow_query)
+				INVOKE_ASYNC(src, .proc/login_query_mfa, C) // Don't want to hang while the user inputs their TOTP code
+			else
+				to_chat(C, span_userdanger("New connection detected, use the readmin verb to authenticate!"))
 
 			if(!deadmined)
 				deactivate()
@@ -40,15 +43,24 @@
 	qdel(query_mfa_check)
 	return success
 
+/datum/admins/proc/login_query_mfa(client/C)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return FALSE
+	if(query_mfa(C))
+		login_mfa(C)
+
 /datum/admins/proc/query_mfa(client/C)
 	if(IsAdminAdvancedProcCall())
 		var/msg = " has tried to elevate permissions!"
 		message_admins("[key_name_admin(usr)][msg]")
 		log_admin("[key_name(usr)][msg]")
-		return
+		return FALSE
 	
 	if(!C)
-		return
+		return FALSE
 
 	var/datum/DBQuery/query_totp_seed = SSdbcore.NewQuery(
 		"SELECT totp_seed FROM [format_table_name("player")] WHERE ckey = :ckey",
@@ -58,27 +70,25 @@
 	if(!query_totp_seed.warn_execute())
 		qdel(query_totp_seed)
 		message_admins("SQL Error getting TOTP seed for [target]")
-		return
+		return FALSE
 
 	if(!query_totp_seed.NextRow())
 		qdel(query_totp_seed)
 		message_admins("Cannot find DB entry for [target] who is attempting to use MFA, this shouldn't be possible.")
-		return
+		return FALSE
 
 	var/seed = query_totp_seed.item[1]
 	qdel(query_totp_seed)
 
 	if(!seed)
-		enroll_mfa(C)
-		return
+		return enroll_mfa(C)
 
 	var/code = input(C, "Please enter your authentication code", "MFA Check") as null|num
 
 	if(code)
 		var/generated_codes = json_decode(rustg_hash_generate_totp_tolerance(seed, 1))
 		if(num2text(code) in generated_codes)
-			login_mfa(C)
-			return
+			return TRUE
 
 	var/response = alert(C, "How would you like to proceed?", "Authentication Error", "Retry TOTP", "Backup Code", "Cancel")
 
@@ -86,17 +96,21 @@
 		return
 
 	if(response == "Retry TOTP")
-		query_mfa(C)
-		return
+		return query_mfa(C)
 	else if(response == "Backup Code")
-		if(alert(C, "Using the backup code will forgot all previous logins and require re-enrolling in MFA, Do you wish to continue?", "Confirmation", "Cancel", "Yes") != "Yes")
-			query_mfa(C)
-			return
-		query_mfa_backup(C)
+		if(alert(C, "Using the backup code will forget all previous logins and require re-enrolling in MFA, Do you wish to continue?", "Confirmation", "Cancel", "Yes") != "Yes")
+			return query_mfa(C)
+		return query_mfa_backup(C)
 	else
 		CRASH("INVALID RESPONSE TO QUERY")
 
 /datum/admins/proc/enroll_mfa(client/C)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return FALSE
+
 	var/list/base32lookup = list(
 		"A" = 0,
 		"B" = 1,
@@ -135,7 +149,6 @@
 	var/code_b32 = ""
 	for(var/i = 0; i<16; i++) // Generate 16 character base 32 number
 		code_b32 += pick(base32lookup)
-	code_b32 = "XWKNDDHV7B2U6JIK" // TODO: Remove this
 	var/code_b2 = ""
 	for(var/char in splittext(code_b32, ""))
 		code_b2 += num2text(base32lookup[char], 5, 2)
@@ -146,7 +159,25 @@
 			continue
 		code_b16 += num2text(text2num(byte, 2), 1, 16)
 
-	to_chat(C, span_userdanger("Your 2FA code is [code_b32]!"), confidential = TRUE)
+	var/alphabet = splittext("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", "")
+
+	var/raw_backup = ""
+	for(var/i = 0; i < 16; i++) // Generate 16 character base 32 number
+		raw_backup += pick(alphabet)
+	
+	var/backup_hash = rustg_hash_string(RUSTG_HASH_SHA512, raw_backup)
+
+	var/mfa_uri = "otpauth://totp/[target]?secret=[code_b32]&issuer=Yogstation13"
+
+	var/qr_image = "<img src=\"https://api.qrserver.com/v1/create-qr-code/?data=[url_encode(mfa_uri)]&size=200x200\" />"
+
+	var/heading = "<h2>2FA Setup</h2>"
+
+	var/instructions = "Use the below QR Code or TOTP code in a 2FA app like Google Authenticator."
+
+	var/codes = "TOTP CODE: [code_b32]<br>Backup code for if you lose your 2FA device: [raw_backup]"
+
+	C << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>QR Code</TITLE></HEAD><BODY>[heading][instructions]<br>[qr_image]<br>[codes]</BODY></HTML>", "window=MFA_QR")
 
 	while(TRUE)
 		var/code = input(C, "Please verify your authentication code", "MFA Check") as null|num
@@ -156,16 +187,7 @@
 			if(num2text(code) in generated_codes)
 				break
 		else
-			return
-	
-	var/alphabet = splittext("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", "")
-
-	var/raw_backup = ""
-	for(var/i = 0; i < 16; i++) // Generate 16 character base 32 number
-		raw_backup += pick(alphabet)
-	
-	var/backup_hash = rustg_hash_string(RUSTG_HASH_SHA512, raw_backup)
-	to_chat(C, span_userdanger("Your 2FA backup code is [raw_backup]. This can be used to recover your account in the event you lose your 2FA device."), confidential=TRUE)
+			return FALSE
 
 	var/datum/DBQuery/query_set_totp_seed = SSdbcore.NewQuery(
 		"UPDATE [format_table_name("player")] SET totp_seed = :totp_seed, mfa_backup = :mfa_backup WHERE ckey = :ckey",
@@ -174,11 +196,17 @@
 
 	if(!query_set_totp_seed.warn_execute())
 		qdel(query_set_totp_seed)
-		return
+		return FALSE
 	qdel(query_set_totp_seed)
-	login_mfa(C)
+	return TRUE
 
 /datum/admins/proc/query_mfa_backup(client/C)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return FALSE
+
 	var/mfa_backup = input(C, "Please enter your authentication code", "MFA Check") as null|text
 	
 	if(!mfa_backup)
@@ -192,27 +220,41 @@
 	if(!query_mfa_backup.warn_execute() || !query_mfa_backup.NextRow())
 		qdel(query_mfa_backup)
 		message_admins("Unable to fetch backup codes for [target]!")
+		to_chat(C, span_warning("Unable to fetch batckup codes"))
+		return FALSE
 
 	var/authed = query_mfa_backup.item[1] > 0
 	qdel(query_mfa_backup)
 	if(authed)
 		message_admins("[target] logged in with their backup code!")
-		var/datum/DBQuery/query_clear_mfa = SSdbcore.NewQuery(
-			"DELETE FROM [format_table_name("mfa_logins")] WHERE ckey = :ckey",
-			list("ckey" = target)
-		)
-		query_clear_mfa.warn_execute()
-		qdel(query_clear_mfa)
-		query_clear_mfa = SSdbcore.NewQuery(
-			"UPDATE [format_table_name("player")] SET totp_seed = NULL, mfa_backup = NULL WHERE ckey = :ckey",
-			list("ckey" = target)
-		)
-		query_clear_mfa.warn_execute()
-		qdel(query_clear_mfa)
-		enroll_mfa(C)
+		mfa_reset(C)
+		return enroll_mfa(C)
 	else
 		to_chat(C, span_warning("Failed to validate backup code"))
-	
+		return FALSE
+
+/datum/admins/proc/mfa_reset()
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return FALSE
+
+	message_admins("MFA for [src] has been reset by [usr]!")
+	log_admin("MFA Reset for [src] by [usr]!")
+
+	var/datum/DBQuery/query_clear_mfa = SSdbcore.NewQuery(
+		"DELETE FROM [format_table_name("mfa_logins")] WHERE ckey = :ckey",
+		list("ckey" = target)
+	)
+	query_clear_mfa.warn_execute()
+	qdel(query_clear_mfa)
+	query_clear_mfa = SSdbcore.NewQuery(
+		"UPDATE [format_table_name("player")] SET totp_seed = NULL, mfa_backup = NULL WHERE ckey = :ckey",
+		list("ckey" = target)
+	)
+	query_clear_mfa.warn_execute()
+	qdel(query_clear_mfa)	
 
 /datum/admins/proc/login_mfa(client/C)
 	if(IsAdminAdvancedProcCall())
