@@ -35,7 +35,7 @@
 		return TRUE
 
 	var/datum/DBQuery/query_mfa_check = SSdbcore.NewQuery(
-		"SELECT COUNT(1) FROM [format_table_name("mfa_logins")] WHERE ckey = :ckey AND ip = INET_ATON(:address) AND cid = :cid",
+		"SELECT COUNT(1) FROM [format_table_name("mfa_logins")] WHERE ckey = :ckey AND ip = INET_ATON(:address) AND cid = :cid AND datetime > current_timestamp() - INTERVAL 30 DAY;",
 		list("ckey" = target, "address" = C.address, "cid" = C.computer_id)
 	)
 
