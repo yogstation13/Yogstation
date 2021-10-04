@@ -1,0 +1,5 @@
+author: "Lovebird-Frungy"
+delete-after: true 
+changes: 
+  - rscadd: "Added a cleanbot to omegastation medical"
+  - tweak: "Medical Staff can now access the medical cleanbot's controls"
