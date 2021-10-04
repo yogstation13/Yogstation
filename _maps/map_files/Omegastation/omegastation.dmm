@@ -24779,6 +24779,9 @@
 	dir = 4;
 	pixel_x = -24
 	},
+/mob/living/simple_animal/bot/cleanbot/medical{
+	on = 0
+	},
 /turf/open/floor/plasteel/white,
 /area/medical)
 "cHM" = (
