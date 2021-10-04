@@ -1,5 +1,0 @@
-author: " AndrewMontagne, NSV13, Adamsong & Maxim"
-delete-after: true 
-changes: 
-  - rscadd: "Added turnstiles that allow people to pass only in one direction. If you have the set access, you can pass in both directions."
-  - rscadd: "Yogstation HoP now has turnstiles to keep the gray masses moving in one direction."

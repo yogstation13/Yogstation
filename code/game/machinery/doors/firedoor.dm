@@ -504,16 +504,26 @@
 				update_icon()
 				return
 			if(C.tool_behaviour == TOOL_WRENCH)
-				if(locate(/obj/machinery/door/firedoor) in get_turf(src))
-					to_chat(user, span_warning("There's already a firelock there."))
-					return
+				for(var/obj/machinery/door/firedoor/door in get_turf(src)) //go through each obj/machinery/door/firedoor in the turf
+					if(istype(door,/obj/machinery/door/firedoor/border_only)) //check if it's a full-tile or a directional one
+						if(door.dir == dir) //check if the direction of the firelock is the same as the one we wanna make
+							to_chat(user,span_warning("There is already a directional firelock there.")) //if it is then then them there's already one here
+							return //cancel construction
+					else //since we know there's a fulltile here we just cancel it then
+						to_chat(user, span_warning("There's already a firelock there."))
+						return    
 				C.play_tool_sound(src)
 				user.visible_message(span_notice("[user] starts bolting down [src]..."), \
 									 span_notice("You begin bolting [src]..."))
 				if(!C.use_tool(src, user, 30))
 					return
-				if(locate(/obj/machinery/door/firedoor) in get_turf(src))
-					return
+				//sanity check time, do this dumb ass check again SOMEBODY FIX THIS
+				for(var/obj/machinery/door/firedoor/door in get_turf(src)) 
+					if(istype(door,/obj/machinery/door/firedoor/border_only)) 
+						if(door.dir == dir) 
+							return 
+					else 
+						return    
 				user.visible_message(span_notice("[user] finishes the firelock."), \
 									 span_notice("You finish the firelock."))
 				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
