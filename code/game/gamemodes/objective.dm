@@ -698,11 +698,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/captured_amount = 0
 	var/area/centcom/holding/A = GLOB.areas_by_type[/area/centcom/holding]
 	for(var/mob/living/carbon/human/M in A)//Humans.
-		if(!istype(src,/datum/objective/capture/living))
-			if(M.stat == DEAD)//Dead folks are worth less (or not at all if you need to capture living)
+		if(!istype(src,/datum/objective/capture/living) && M.stat == DEAD)
 				captured_amount+=0.5
-			else
-				captured_amount+=1
 		else
 			captured_amount+= 1 //dont care if they are dead or alive in living capture because you shouldn't be able to capture them if they dead
 	for(var/mob/living/carbon/monkey/M in A)//Monkeys are almost worthless, you failure.
