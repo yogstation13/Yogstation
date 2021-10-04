@@ -1,4 +1,0 @@
-author: "JamieD1"
-delete-after: true 
-changes: 
-  - bugfix: "Makes the Chat/Verbs actually work after reconnect *hopefully*"

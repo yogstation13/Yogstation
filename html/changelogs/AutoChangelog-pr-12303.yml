@@ -1,6 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - rscadd: "Added a population based number of forced sec personnel"
-  - bugfix: "fixed some head rolling not using playtime weights"
-  - bugfix: "fixed head rolling using alt titles, slowing it down"
