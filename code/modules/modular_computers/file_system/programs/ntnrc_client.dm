@@ -38,7 +38,7 @@
 				return
 			//yogs start
 			if(isnotpretty(message))
-				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
+				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 				message_admins("[key_name(usr)] just tripped a pretty filter: '[message]'.")
 				return
 			//yogs end
@@ -76,7 +76,7 @@
 				return
 			//yogs start
 			if(isnotpretty(channel_title))
-				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
+				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 				message_admins("[key_name(usr)] just tripped a pretty filter: '[channel_title]'.")
 				return
 			//yogs end
@@ -105,7 +105,7 @@
 				return
 			//yogs start
 			if(isnotpretty(newname))
-				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
+				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 				message_admins("[key_name(usr)] just tripped a pretty filter: '[newname]'.")
 				return
 			//yogs end
@@ -147,7 +147,7 @@
 				return
 			//yogs start
 			if(isnotpretty(newname))
-				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
+				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 				message_admins("[key_name(usr)] just tripped a pretty filter: '[newname]'.")
 				return
 			//yogs end
@@ -169,7 +169,7 @@
 
 			//yogs start
 			if(isnotpretty(new_password))
-				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
+				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 				message_admins("[key_name(usr)] just tripped a pretty filter: '[new_password]'.")
 				return
 			//yogs end
