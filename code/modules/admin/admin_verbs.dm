@@ -21,7 +21,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/stop_sounds,
 	/client/proc/fix_air, // yogs - fix air verb
 	/client/proc/fix_air_z,
-	/client/proc/debugstatpanel
+	/client/proc/debugstatpanel,
+	/client/proc/clear_mfa,
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -694,7 +695,15 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	message_admins("[src] deadmined themself.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Deadmin")
 
+/client/proc/clear_mfa()
+	set name = "Forget 2FA logins"
+	set category = "Admin"
+	set desc= "Forgets all saved 2FA logins"
 
+	if(!holder)
+		return
+	
+	holder.mfa_reset()
 
 /client/proc/readmin()
 	set name = "Readmin"

@@ -247,9 +247,6 @@
 		log_admin("[key_name(usr)][msg]")
 		return FALSE
 
-	message_admins("MFA for [src] has been reset by [usr]!")
-	log_admin("MFA Reset for [src] by [usr]!")
-
 	var/datum/DBQuery/query_clear_mfa = SSdbcore.NewQuery(
 		"DELETE FROM [format_table_name("mfa_logins")] WHERE ckey = :ckey",
 		list("ckey" = target)

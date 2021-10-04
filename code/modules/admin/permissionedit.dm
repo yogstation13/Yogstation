@@ -210,6 +210,8 @@
 				return
 			if(!query_mfa(target))
 				return
+			message_admins("MFA for [src] has been reset by [usr]!")
+			log_admin("MFA Reset for [src] by [usr]!")
 			D.mfa_reset()
 	edit_admin_permissions()
 
