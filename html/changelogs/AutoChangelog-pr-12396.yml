@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "crystallizer now applies the temperature pipe's temperature constantly instead of only to counteract temperature difference from recipes"
