@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - tweak: "Paintings can now be searched using the curators painting console. Please keep in mind you need the title of the painting to search for."
