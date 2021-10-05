@@ -61,7 +61,7 @@
 				current_temperature = SHOWER_NORMAL
 		user.visible_message(span_notice("[user] adjusts the shower."), span_notice("You adjust the shower to [current_temperature] temperature."))
 		user.log_message("has adjusted a shower at [AREACOORD(src)] to [current_temperature].", LOG_ATTACK)
-		add_fingrprint(user)
+		add_fingerprint(user)
 	handle_mist()
 	return TRUE
 
