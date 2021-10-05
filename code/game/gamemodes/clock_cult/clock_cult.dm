@@ -279,7 +279,7 @@ Credit where due:
 	belt = /obj/item/storage/belt/utility/servant
 	backpack_contents = list(/obj/item/storage/box/engineer = 1, \
 	/obj/item/clockwork/replica_fabricator = 1, /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1)
-	id = /obj/item/pda
+	id = /obj/item/card/id
 	var/plasmaman //We use this to determine if we should activate internals in post_equip()
 
 /datum/outfit/servant_of_ratvar/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -291,8 +291,7 @@ Credit where due:
 		plasmaman = TRUE
 
 /datum/outfit/servant_of_ratvar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	var/obj/item/card/id/W = new(H)
-	var/obj/item/pda/PDA = H.wear_id
+	var/obj/item/card/id/W = H.wear_id
 	W.assignment = "Assistant"
 	W.access += ACCESS_MAINT_TUNNELS
 	W.registered_name = H.real_name
@@ -300,10 +299,6 @@ Credit where due:
 	if(plasmaman && !visualsOnly) //If we need to breathe from the plasma tank, we should probably start doing that
 		H.internal = H.get_item_for_held_index(2)
 		H.update_internals_hud_icon(1)
-	PDA.owner = H.real_name
-	PDA.ownjob = "Assistant"
-	PDA.update_label()
-	PDA.id_check(H, W)
 	H.sec_hud_set_ID()
 
 
