@@ -2,7 +2,7 @@
 	set category = "Server"
 	set name = "Permissions Panel"
 	set desc = "Edit admin permissions"
-	if(!check_rights(R_PERMISSIONS) || !holder.query_mfa(src)) // Require MFA to access the permissions panel
+	if(!check_rights(R_PERMISSIONS) || !mfa_query()) // Require MFA to access the permissions panel
 		return
 	usr.client.holder.edit_admin_permissions()
 
@@ -208,11 +208,11 @@
 				return
 			if(alert("If you have been requested to reset the MFA credentials for someone, please confirm that you have verified their identity. Resetting MFA for an unverified person can result in a break of server security.", "Confirmation", "I Understand", "Cancel") != "I Understand")
 				return
-			if(!query_mfa(target))
+			if(!owner.mfa_query())
 				return
 			message_admins("MFA for [src] has been reset by [usr]!")
 			log_admin("MFA Reset for [src] by [usr]!")
-			D.mfa_reset()
+			mfa_reset(admin_ckey)
 	edit_admin_permissions()
 
 /datum/admins/proc/add_admin(admin_ckey, admin_key, use_db)

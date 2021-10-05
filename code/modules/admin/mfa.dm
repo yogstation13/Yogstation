@@ -1,89 +1,72 @@
-/datum/admins/proc/handle_mfa(client/C, allow_query = TRUE)
-	if(IsAdminAdvancedProcCall())
-		var/msg = " has tried to elevate permissions!"
-		message_admins("[key_name_admin(usr)][msg]")
-		log_admin("[key_name(usr)][msg]")
-		return
+#define CHECK_MFA_ENABLED if(!CONFIG_GET(flag/mfa_enabled)) return TRUE
 
-	if(CONFIG_GET(flag/mfa_enabled))
-		if(check_mfa_cache(C))
-			return TRUE
-		else // Need to run MFA
-			if(allow_query)
-				INVOKE_ASYNC(src, .proc/login_query_mfa, C) // Don't want to hang while the user inputs their TOTP code
-			else
-				to_chat(C, span_userdanger("New connection detected, use the readmin verb to authenticate!"))
+/// Checks the MFA for the client, then logs them in if they succeed
+/// Returns true if login successful, false otherwise
+/// The argument is TRUE if the user should be promted, false if not, useful for on login when the client may not be
+/// prepared for the query
+/client/proc/mfa_check(allow_query = TRUE)
+	CHECK_MFA_ENABLED
 
-			if(!deadmined)
-				deactivate()
+	if(mfa_check_cache())
+		return TRUE
+	else // Need to run MFA
+		if(allow_query)
+			INVOKE_ASYNC(src, .proc/mfa_query_login) // Don't want to hang while the user inputs their TOTP code
+		else
+			to_chat(src, span_userdanger("New connection detected, use the readmin verb to authenticate!"))
 
-			return FALSE
-
-	return TRUE
-
-/datum/admins/proc/check_mfa_cache(client/C)
-	if(IsAdminAdvancedProcCall())
-		var/msg = " has tried to elevate permissions!"
-		message_admins("[key_name_admin(usr)][msg]")
-		log_admin("[key_name(usr)][msg]")
 		return FALSE
 
-	if(!C)
-		return FALSE
+/// Check if the login from this location is from an existing session
+/client/proc/mfa_check_cache()
+	CHECK_MFA_ENABLED
 
-	if(cid_cache == C.computer_id && ip_cache == C.address)
+	var/datum/admins/tmp_holder = GLOB.admin_datums[ckey] || GLOB.deadmins[ckey]
+	if(tmp_holder && tmp_holder.cid_cache == computer_id && tmp_holder.ip_cache == address)
 		return TRUE
 
 	var/datum/DBQuery/query_mfa_check = SSdbcore.NewQuery(
 		"SELECT COUNT(1) FROM [format_table_name("mfa_logins")] WHERE ckey = :ckey AND ip = INET_ATON(:address) AND cid = :cid AND datetime > current_timestamp() - INTERVAL 30 DAY;",
-		list("ckey" = target, "address" = C.address, "cid" = C.computer_id)
+		list("ckey" = ckey, "address" = address, "cid" = computer_id)
 	)
 
 	var/success = (query_mfa_check.warn_execute() && query_mfa_check.NextRow() && text2num(query_mfa_check.item[1]) > 0) // Check if they have connected before from this IP/CID
 	qdel(query_mfa_check)
 	return success
 
-/datum/admins/proc/login_query_mfa(client/C)
-	if(IsAdminAdvancedProcCall())
-		var/msg = " has tried to elevate permissions!"
-		message_admins("[key_name_admin(usr)][msg]")
-		log_admin("[key_name(usr)][msg]")
-		return FALSE
-	if(query_mfa(C))
-		login_mfa(C)
+/// Queries the user for their MFA credentials, then logs them in if they are correct
+/client/proc/mfa_query_login()
+	CHECK_MFA_ENABLED
 
-/datum/admins/proc/query_mfa(client/C)
-	if(IsAdminAdvancedProcCall())
-		var/msg = " has tried to elevate permissions!"
-		message_admins("[key_name_admin(usr)][msg]")
-		log_admin("[key_name(usr)][msg]")
-		return FALSE
-	
-	if(!C)
-		return FALSE
+	if(mfa_query())
+		mfa_login()
+
+/// Asks the user for their 2FA code
+/client/proc/mfa_query()
+	CHECK_MFA_ENABLED
 
 	var/datum/DBQuery/query_totp_seed = SSdbcore.NewQuery(
 		"SELECT totp_seed FROM [format_table_name("player")] WHERE ckey = :ckey",
-		list("ckey" = target)
+		list("ckey" = ckey)
 	)
 
 	if(!query_totp_seed.warn_execute())
 		qdel(query_totp_seed)
-		message_admins("SQL Error getting TOTP seed for [target]")
+		message_admins("SQL Error getting TOTP seed for [ckey]")
 		return FALSE
 
 	if(!query_totp_seed.NextRow())
 		qdel(query_totp_seed)
-		message_admins("Cannot find DB entry for [target] who is attempting to use MFA, this shouldn't be possible.")
+		message_admins("Cannot find DB entry for [ckey] who is attempting to use MFA, this shouldn't be possible.")
 		return FALSE
 
 	var/seed = query_totp_seed.item[1]
 	qdel(query_totp_seed)
 
 	if(!seed)
-		return enroll_mfa(C)
+		return mfa_enroll()
 
-	var/code = input(C, "Please enter your authentication code", "MFA Check") as null|num
+	var/code = input(src, "Please enter your authentication code", "MFA Check") as null|num
 
 	if(code)
 		var/json_codes = rustg_hash_generate_totp_tolerance(seed, 1)
@@ -94,21 +77,24 @@
 		if(num2text(code) in generated_codes)
 			return TRUE
 
-	var/response = alert(C, "How would you like to proceed?", "Authentication Error", "Retry TOTP", "Backup Code", "Cancel")
+	var/response = alert(src, "How would you like to proceed?", "Authentication Error", "Retry TOTP", "Backup Code", "Cancel")
 
 	if(response == "Cancel")
 		return
 
 	if(response == "Retry TOTP")
-		return query_mfa(C)
+		return mfa_query()
 	else if(response == "Backup Code")
-		if(alert(C, "Using the backup code will forget all previous logins and require re-enrolling in MFA, Do you wish to continue?", "Confirmation", "Cancel", "Yes") != "Yes")
-			return query_mfa(C)
-		return query_mfa_backup(C)
+		if(alert(src, "Using the backup code will forget all previous logins and require re-enrolling in MFA, Do you wish to continue?", "Confirmation", "Cancel", "Yes") != "Yes")
+			return mfa_query()
+		return mfa_backup_query()
 	else
 		CRASH("INVALID RESPONSE TO QUERY")
 
-/datum/admins/proc/enroll_mfa(client/C)
+/// Enrolls a user the in MFA system, assigning them a TOTP seed and backup code
+/client/proc/mfa_enroll()
+	CHECK_MFA_ENABLED
+
 	if(IsAdminAdvancedProcCall())
 		var/msg = " has tried to elevate permissions!"
 		message_admins("[key_name_admin(usr)][msg]")
@@ -171,7 +157,7 @@
 	
 	var/backup_hash = rustg_hash_string(RUSTG_HASH_SHA512, raw_backup)
 
-	var/mfa_uri = "otpauth://totp/[target]?secret=[code_b32]&issuer=Yogstation13"
+	var/mfa_uri = "otpauth://totp/[ckey]?secret=[code_b32]&issuer=Yogstation13"
 
 	var/qr_image = "<img src=\"https://api.qrserver.com/v1/create-qr-code/?data=[url_encode(mfa_uri)]&size=200x200\" />"
 
@@ -181,10 +167,10 @@
 
 	var/codes = "TOTP CODE: [code_b32]<br>Backup code for if you lose your 2FA device: [raw_backup]"
 
-	C << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>QR Code</TITLE></HEAD><BODY>[heading][instructions]<br>[qr_image]<br>[codes]</BODY></HTML>", "window=MFA_QR")
+	src << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>QR Code</TITLE></HEAD><BODY>[heading][instructions]<br>[qr_image]<br>[codes]</BODY></HTML>", "window=MFA_QR")
 
 	while(TRUE)
-		var/code = input(C, "Please verify your authentication code", "MFA Check") as null|num
+		var/code = input(src, "Please verify your authentication code", "MFA Check") as null|num
 		if(code)
 			var/json_codes = rustg_hash_generate_totp_tolerance(code_b16, "1")
 			if(findtext(json_codes, "ERROR") != 0) // Something went wrong, exit
@@ -198,49 +184,47 @@
 
 	var/datum/DBQuery/query_set_totp_seed = SSdbcore.NewQuery(
 		"UPDATE [format_table_name("player")] SET totp_seed = :totp_seed, mfa_backup = :mfa_backup WHERE ckey = :ckey",
-		list("totp_seed" = code_b16, "mfa_backup" = backup_hash, "ckey" = target)
+		list("totp_seed" = code_b16, "mfa_backup" = backup_hash, "ckey" = ckey)
 	)
 
-	if(!query_set_totp_seed.warn_execute())
-		qdel(query_set_totp_seed)
-		return FALSE
+	var/result = query_set_totp_seed.warn_execute()
 	qdel(query_set_totp_seed)
-	return TRUE
+	return result
 
-/datum/admins/proc/query_mfa_backup(client/C)
-	if(IsAdminAdvancedProcCall())
-		var/msg = " has tried to elevate permissions!"
-		message_admins("[key_name_admin(usr)][msg]")
-		log_admin("[key_name(usr)][msg]")
-		return FALSE
+/// Asks the user for their backup codes, then resets the login and re-enrolls the user on success
+/client/proc/mfa_backup_query()
+	CHECK_MFA_ENABLED
 
-	var/mfa_backup = input(C, "Please enter your authentication code", "MFA Check") as null|text
+	var/mfa_backup = input(src, "Please enter your authentication code", "MFA Check") as null|text
 	
 	if(!mfa_backup)
 		return
 
 	var/datum/DBQuery/query_mfa_backup = SSdbcore.NewQuery(
 		"SELECT COUNT(1) FROM [format_table_name("player")] WHERE ckey = :ckey AND mfa_backup = :code",
-		list("ckey" = target, "code" = rustg_hash_string(RUSTG_HASH_SHA512, mfa_backup))
+		list("ckey" = ckey, "code" = rustg_hash_string(RUSTG_HASH_SHA512, mfa_backup))
 	)
 
 	if(!query_mfa_backup.warn_execute() || !query_mfa_backup.NextRow())
 		qdel(query_mfa_backup)
-		message_admins("Unable to fetch backup codes for [target]!")
-		to_chat(C, span_warning("Unable to fetch batckup codes"))
+		message_admins("Unable to fetch backup codes for [ckey]!")
+		to_chat(src, span_warning("Unable to fetch batckup codes"))
 		return FALSE
 
 	var/authed = query_mfa_backup.item[1] > 0
 	qdel(query_mfa_backup)
 	if(authed)
-		message_admins("[target] logged in with their backup code!")
-		mfa_reset(C)
-		return enroll_mfa(C)
+		message_admins("[ckey] logged in with their backup code!")
+		mfa_reset(ckey)
+		return mfa_enroll()
 	else
-		to_chat(C, span_warning("Failed to validate backup code"))
+		to_chat(src, span_warning("Failed to validate backup code"))
 		return FALSE
 
-/datum/admins/proc/mfa_reset()
+/// Reset MFA, clear sessions and login credentials
+/proc/mfa_reset(ckey, session_only = FALSE)
+	CHECK_MFA_ENABLED
+
 	if(IsAdminAdvancedProcCall())
 		var/msg = " has tried to elevate permissions!"
 		message_admins("[key_name_admin(usr)][msg]")
@@ -249,39 +233,47 @@
 
 	var/datum/DBQuery/query_clear_mfa = SSdbcore.NewQuery(
 		"DELETE FROM [format_table_name("mfa_logins")] WHERE ckey = :ckey",
-		list("ckey" = target)
+		list("ckey" = ckey)
 	)
 	query_clear_mfa.warn_execute()
 	qdel(query_clear_mfa)
-	query_clear_mfa = SSdbcore.NewQuery(
-		"UPDATE [format_table_name("player")] SET totp_seed = NULL, mfa_backup = NULL WHERE ckey = :ckey",
-		list("ckey" = target)
-	)
-	query_clear_mfa.warn_execute()
-	qdel(query_clear_mfa)	
 
-/datum/admins/proc/login_mfa(client/C)
+	if(!session_only)
+		query_clear_mfa = SSdbcore.NewQuery(
+			"UPDATE [format_table_name("player")] SET totp_seed = NULL, mfa_backup = NULL WHERE ckey = :ckey",
+			list("ckey" = ckey)
+		)
+		query_clear_mfa.warn_execute()
+		qdel(query_clear_mfa)	
+
+/client/proc/mfa_login()
+	CHECK_MFA_ENABLED
+
 	if(IsAdminAdvancedProcCall())
 		var/msg = " has tried to elevate permissions!"
 		message_admins("[key_name_admin(usr)][msg]")
 		log_admin("[key_name(usr)][msg]")
 		return
 
-	// These values are cached even if the user says not to remember the session, but are only used if the DB is down during admin loading
-	cid_cache = C.computer_id
-	ip_cache = C.address
-
-	if(alert(C, "Do you wish to remember this connection?", "Remember Me", "Yes", "No") == "Yes")
+	if(alert(src, "Do you wish to remember this connection?", "Remember Me", "Yes", "No") == "Yes")
 		var/datum/DBQuery/mfa_addverify = SSdbcore.NewQuery(
 			"INSERT INTO [format_table_name("mfa_logins")] (ckey, ip, cid) VALUE (:ckey, INET_ATON(:address), :cid)",
-			list("ckey" = target, "address" = C.address, "cid" = C.computer_id)
+			list("ckey" = ckey, "address" = address, "cid" = computer_id)
 		)
 
 		if(!mfa_addverify.Execute())
 			qdel(mfa_addverify)
-			message_admins("Failed to add login info for [target], they will be unable to login")
+			message_admins("Failed to add login info for [ckey], they will be unable to login")
 			return
 
 		qdel(mfa_addverify)
 
-	activate()
+	var/datum/admins/tmp_holder = GLOB.admin_datums[ckey] || GLOB.deadmins[ckey]
+	if(tmp_holder)
+		// These values are cached even if the user says not to remember the session, but are only used if the DB is down during admin loading
+		tmp_holder.cid_cache = computer_id
+		tmp_holder.ip_cache = address
+
+		tmp_holder.activate()
+
+#undef CHECK_MFA_ENABLED

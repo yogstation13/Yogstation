@@ -703,7 +703,8 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(!holder)
 		return
 	
-	holder.mfa_reset()
+	if(alert("Are you sure? This will forget all the previously saved 2FA logins", "Confirmation", "Yes", "No") == "Yes")
+		mfa_reset(ckey, TRUE)
 
 /client/proc/readmin()
 	set name = "Readmin"

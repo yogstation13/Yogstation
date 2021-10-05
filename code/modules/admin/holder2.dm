@@ -98,7 +98,7 @@ GLOBAL_PROTECT(href_token)
 		disassociate()
 		add_verb(C, /client/proc/readmin)
 
-/datum/admins/proc/associate(client/C, allow_query = TRUE)
+/datum/admins/proc/associate(client/C, allow_mfa_query = TRUE)
 	if(IsAdminAdvancedProcCall())
 		var/msg = " has tried to elevate permissions!"
 		message_admins("[key_name_admin(usr)][msg]")
@@ -112,7 +112,9 @@ GLOBAL_PROTECT(href_token)
 			log_admin("[key_name(C)][msg]")
 			return FALSE
 
-		if(!handle_mfa(C, allow_query))
+		if(!C.mfa_check(allow_mfa_query))
+			if(!deadmined)
+				deactivate()
 			return FALSE
 
 		if (deadmined)
