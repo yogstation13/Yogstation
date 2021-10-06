@@ -61,6 +61,20 @@
 	message = "mumbles!"
 	emote_type = EMOTE_AUDIBLE
 
+/datum/emote/living/carbon/human/lipsmack
+	key = "lipsmack"
+	key_third_person = "smacks their lips"
+	message = "smacks their lips."
+	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/voice/lipsmack.ogg'
+
+/datum/emote/living/carbon/human/sheesh
+	key = "sheesh"
+	key_third_person = "extends an arm while placing their fingers over their elbow"
+	message = "extends an arm while placing their fingers over their elbow."
+	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/voice/sheesh.ogg'
+
 /datum/emote/living/carbon/human/scream
 	key = "scream"
 	key_third_person = "screams"
