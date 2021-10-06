@@ -1,0 +1,6 @@
+author: "  PowerfulBacon, Dennok"
+delete-after: true 
+changes: 
+  - rscadd: "Added custom shuttles"
+  - rscadd: "Added in new circuit boards, machines, techs, icons, and a tool for creating custom shuttles"
+  - rscadd: "Created 2 new config options defining shuttle max size and count of shuttles"
