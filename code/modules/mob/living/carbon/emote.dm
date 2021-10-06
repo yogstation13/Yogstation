@@ -106,8 +106,8 @@
 /datum/emote/living/carbon/wink
 	key = "wink"
 	key_third_person = "winks"
+	message_param = "winks at %t."
 	message = "winks."
-
 /datum/emote/living/snap
 	key = "snap"
 	key_third_person = "snaps"

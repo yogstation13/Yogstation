@@ -16,8 +16,9 @@
 
 /datum/emote/living/carbon/human/eyebrow
 	key = "eyebrow"
+	key_third_person = "raises an eyebrow"
 	message = "raises an eyebrow."
-
+	sound = 'sound/voice/thud.ogg'
 /datum/emote/living/carbon/human/grumble
 	key = "grumble"
 	key_third_person = "grumbles"
@@ -74,6 +75,7 @@
 	message = "extends an arm while placing their fingers over their elbow."
 	emote_type = EMOTE_AUDIBLE
 	sound = 'sound/voice/sheesh.ogg'
+	cooldown = 6 SECONDS
 
 /datum/emote/living/carbon/human/scream
 	key = "scream"

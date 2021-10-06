@@ -41,12 +41,16 @@
 	key_third_person = "whistles"
 	message = "whistles."
 	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/voice/whistle.ogg'
+	cooldown = 6 SECONDS
 
 /datum/emote/living/iwhistle
 	key = "iwhistle"
 	key_third_person = "iwhistles"
 	message = "innocently whistles."
 	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/voice/iwhistle.ogg'
+	cooldown = 6 SECONDS
 
 /datum/emote/living/smirk
 	key = "smirk"
