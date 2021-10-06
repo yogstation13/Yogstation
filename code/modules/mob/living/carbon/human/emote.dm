@@ -18,6 +18,7 @@
 	key = "eyebrow"
 	key_third_person = "raises an eyebrow"
 	message = "raises an eyebrow."
+	message_param = "raises an eyebrow at %t."
 	sound = 'sound/voice/thud.ogg'
 /datum/emote/living/carbon/human/grumble
 	key = "grumble"

@@ -40,6 +40,7 @@
 	key = "whistle"
 	key_third_person = "whistles"
 	message = "whistles."
+	message_param = "whistles at %t."
 	emote_type = EMOTE_AUDIBLE
 	sound = 'sound/voice/whistle.ogg'
 	cooldown = 6 SECONDS
