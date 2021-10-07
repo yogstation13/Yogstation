@@ -284,4 +284,7 @@
 		playsound(L, 'sound/voice/cpvoicelines/anticitizen.ogg', 50, FALSE)
 	else if(findtext(message, "Apply", 1, 6))
 		playsound(L, 'sound/voice/cpvoicelines/apply.ogg', 50, FALSE)
+	else if(findtext(message, "Hehe", 1, 5))
+		playsound(L, 'sound/voice/cpvoicelines/chuckle.ogg', 50, FALSE)
+	
 
