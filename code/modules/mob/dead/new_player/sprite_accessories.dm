@@ -2034,7 +2034,7 @@
 /datum/sprite_accessory/tails/polysmorph/polys
 	name = "Polys"
 	icon_state = "polys"
-	color_src = null
+	color_src = MUTCOLORS
 
 /datum/sprite_accessory/teeth
 	icon = 'icons/mob/mutant_bodyparts.dmi'
@@ -2054,7 +2054,7 @@
 
 /datum/sprite_accessory/dome
 	icon = 'icons/mob/mutant_bodyparts.dmi'
-	color_src = null
+	color_src = MUTCOLORS
 
 /datum/sprite_accessory/dome/none
 	name = "None"
@@ -2078,7 +2078,7 @@
 
 /datum/sprite_accessory/dorsal_tubes
 	icon = 'icons/mob/mutant_bodyparts.dmi'
-	color_src = null
+	color_src = MUTCOLORS
 
 /datum/sprite_accessory/dorsal_tubes/none
 	name = "None"
