@@ -308,3 +308,11 @@ Maintenance panel panel is [open ? "opened" : "closed"]"})
 				drawn = !drawn
 		get_targets()
 		update_controls()
+
+/mob/living/simple_animal/bot/cleanbot/medical
+    name = "Scrubs, MD"
+    desc = "A little cleaning robot, he looks so excited! This one can be configured by medbay staff."
+
+/mob/living/simple_animal/bot/cleanbot/medical/Initialize()
+    . = ..()
+    bot_core.req_one_access = list(ACCESS_JANITOR, ACCESS_ROBOTICS, ACCESS_MEDICAL)
