@@ -74,7 +74,7 @@
 			if(ismovable(A))
 				var/atom/movable/AM = A
 				AM.throw_at(throw_target, 4, 3)
-			visible_message("<span class='danger'>[src] crashes into [A]!</span>")
+			visible_message(span_danger("[src] crashes into [A]!"))
 			playsound(src, 'sound/effects/bang.ogg', 50, 1)
 		if(ishuman(A))
 			var/mob/living/carbon/human/H = A
@@ -83,7 +83,7 @@
 			H.apply_damage(rand(20,35), BRUTE)
 			if(!crash_all)
 				H.throw_at(throw_target, 4, 3)
-				visible_message("<span class='danger'>[src] crashes into [H]!</span>")
+				visible_message(span_danger("[src] crashes into [H]!"))
 				playsound(src, 'sound/effects/bang.ogg', 50, 1)
 
 /obj/vehicle/ridden/space/speedwagon/Moved()

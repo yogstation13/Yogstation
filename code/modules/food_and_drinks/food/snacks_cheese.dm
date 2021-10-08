@@ -113,8 +113,8 @@
 		if(W.use_tool(src, user, 0, volume=40))
 			var/obj/item/stack/sheet/cheese/new_item = new(usr.loc, 5)
 			user.visible_message("[user.name] shaped [src] into a sturdier looking cheese with [W].", \
-						 "<span class='notice'>You shape [src] into a sturdier looking cheese with [W].</span>", \
-						 "<span class='italics'>You hear welding.</span>")
+						 span_notice("You shape [src] into a sturdier looking cheese with [W]."), \
+						 span_italics("You hear welding."))
 			var/obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar/R = src
 			qdel(src)
 			var/replace = (user.get_inactive_held_item()==R)

@@ -28,7 +28,7 @@
 /obj/item/clothing/mask/gas/sechailer/proc/dispatch(mob/user)
 	var/area/A = get_area(src)
 	if(world.time < last_dispatch + dispatch_cooldown)
-		to_chat(user, "<span class='notice'>Dispatch radio broadcasting systems are recharging.</span>")
+		to_chat(user, span_notice("Dispatch radio broadcasting systems are recharging."))
 		return FALSE
 	var/list/options = list()
 	for(var/option in list("601 (Murder)", "101 (Resisting arrest)", "310 (Breaking and entering)", "306 (Riot)", "401 (Assault, Officer)")) //Just hardcoded for now!

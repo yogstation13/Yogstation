@@ -41,9 +41,9 @@
 	RegisterSignal(targ, list(COMSIG_MOB_ATTACK_HAND, COMSIG_MOB_FIRED_GUN, COMSIG_MOB_THROW, COMSIG_MOB_ITEM_ATTACK), .proc/trigger_reaction, TRUE) //any actions by the hostage will trigger the shot no exceptions
 	RegisterSignal(weapon, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), .proc/cancel)
 
-	shooter.visible_message("<span class='danger'>[shooter] aims [weapon] point blank at [target]!</span>", \
-		"<span class='danger'>You aim [weapon] point blank at [target]!</span>", target)
-	to_chat(target, "<span class='userdanger'>[shooter] aims [weapon] point blank at you!</span>")
+	shooter.visible_message(span_danger("[shooter] aims [weapon] point blank at [target]!"), \
+		span_danger("You aim [weapon] point blank at [target]!"), target)
+	to_chat(target, span_userdanger("[shooter] aims [weapon] point blank at you!"))
 	if(!target.has_status_effect(STATUS_EFFECT_NOTSCARED))
 		target.Immobilize(10) //short immobilize to let them know they're getting shot at
 		target.apply_status_effect(STATUS_EFFECT_NOTSCARED)//this can only trigger once per minute so you can't use it to meme people a bunch in a fight
@@ -76,13 +76,13 @@
 /datum/component/gunpoint/proc/update_stage(new_stage)
 	stage = new_stage
 	if(stage == 2)
-		to_chat(parent, "<span class='danger'>You steady [weapon] on [target].</span>")
-		to_chat(target, "<span class='userdanger'>[parent] has steadied [weapon] on you!</span>")
+		to_chat(parent, span_danger("You steady [weapon] on [target]."))
+		to_chat(target, span_userdanger("[parent] has steadied [weapon] on you!"))
 		damage_mult = GUNPOINT_MULT_STAGE_2
 		addtimer(CALLBACK(src, .proc/update_stage, 3), GUNPOINT_DELAY_STAGE_3)
 	else if(stage == 3)
-		to_chat(parent, "<span class='danger'>You have fully steadied [weapon] on [target].</span>")
-		to_chat(target, "<span class='userdanger'>[parent] has fully steadied [weapon] on you!</span>")
+		to_chat(parent, span_danger("You have fully steadied [weapon] on [target]."))
+		to_chat(target, span_userdanger("[parent] has fully steadied [weapon] on you!"))
 		damage_mult = GUNPOINT_MULT_STAGE_3
 
 /datum/component/gunpoint/proc/check_deescalate()
@@ -100,9 +100,9 @@
 	target.remove_status_effect(STATUS_EFFECT_HELDUP)
 
 	if(!weapon.can_shoot() || !weapon.can_trigger_gun(shooter) || (weapon.weapon_weight == WEAPON_HEAVY && shooter.get_inactive_held_item()))
-		shooter.visible_message("<span class='danger'>[shooter] fumbles [weapon]!</span>", \
-			"<span class='danger'>You fumble [weapon] and fail to fire at [target]!</span>", target)
-		to_chat(target, "<span class='userdanger'>[shooter] fumbles [weapon] and fails to fire at you!</span>")
+		shooter.visible_message(span_danger("[shooter] fumbles [weapon]!"), \
+			span_danger("You fumble [weapon] and fail to fire at [target]!"), target)
+		to_chat(target, span_userdanger("[shooter] fumbles [weapon] and fails to fire at you!"))
 		qdel(src)
 		return
 	if(weapon.check_botched(shooter))
@@ -127,16 +127,16 @@
 	if(!disrupted)
 		disrupted = TRUE
 		addtimer(CALLBACK(src, .proc/reshooted), 5)
-		to_chat(parent, "<span class='boldwarning'>You lose your aim for a second, try not to bump into things or throw stuff.</span>")
+		to_chat(parent, span_boldwarning("You lose your aim for a second, try not to bump into things or throw stuff."))
 
 /datum/component/gunpoint/proc/reshooted()
 	disrupted = FALSE
 
 /datum/component/gunpoint/proc/cancel()
 	var/mob/living/shooter = parent
-	shooter.visible_message("<span class='danger'>[shooter] breaks [shooter.p_their()] aim on [target]!</span>", \
-		"<span class='danger'>You are no longer aiming [weapon] at [target].</span>", target)
-	to_chat(target, "<span class='userdanger'>[shooter] breaks [shooter.p_their()] aim on you!</span>")
+	shooter.visible_message(span_danger("[shooter] breaks [shooter.p_their()] aim on [target]!"), \
+		span_danger("You are no longer aiming [weapon] at [target]."), target)
+	to_chat(target, span_userdanger("[shooter] breaks [shooter.p_their()] aim on you!"))
 	qdel(src)
 
 /datum/component/gunpoint/proc/check_movement()
@@ -160,8 +160,8 @@
 		flinch_chance = 80
 
 	if(prob(flinch_chance))
-		shooter.visible_message("<span class='danger'>[shooter] flinches!</span>", \
-			"<span class='danger'>You flinch!</span>")
+		shooter.visible_message(span_danger("[shooter] flinches!"), \
+			span_danger("You flinch!"))
 		trigger_reaction() //flinching will always result in firing at the target
 
 /datum/component/gunpoint/proc/flinch_disarm(attacker,zone_targeted)
@@ -177,8 +177,8 @@
 		flinch_chance = 80
 
 	if(prob(flinch_chance))
-		shooter.visible_message("<span class='danger'>[shooter] flinches!</span>", \
-			"<span class='danger'>You flinch!</span>")
+		shooter.visible_message(span_danger("[shooter] flinches!"), \
+			span_danger("You flinch!"))
 		trigger_reaction(TRUE) //flinching will always result in firing at the target
 
 #undef GUNPOINT_SHOOTER_STRAY_RANGE

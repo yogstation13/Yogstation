@@ -13,7 +13,7 @@
 	power_cost = 250
 	whispered = TRUE
 	object_path = /obj/item/clockwork/replica_fabricator
-	creator_message = "<span class='brass'>You form a replica fabricator.</span>"
+	creator_message = span_brass("You form a replica fabricator.")
 	usage_tip = "Clockwork Walls cause nearby Tinkerer's Caches to generate components passively, making this a vital tool. Clockwork Floors heal toxin damage in Servants standing on them."
 	tier = SCRIPTURE_SCRIPT
 	space_allowed = TRUE
@@ -33,8 +33,8 @@
 	channel_time = 100
 	power_cost = 250
 	object_path = /obj/structure/destructible/clockwork/ocular_warden
-	creator_message = "<span class='brass'>You form an ocular warden, which will automatically attack nearby unrestrained non-Servants that can see it.</span>"
-	observer_message = "<span class='warning'>A brass eye takes shape and slowly rises into the air, its red iris glaring!</span>"
+	creator_message = span_brass("You form an ocular warden, which will automatically attack nearby unrestrained non-Servants that can see it.")
+	observer_message = span_warning("A brass eye takes shape and slowly rises into the air, its red iris glaring!")
 	usage_tip = "Although powerful, the warden is very fragile and should optimally be placed behind barricades."
 	tier = SCRIPTURE_SCRIPT
 	one_per_tile = TRUE
@@ -46,7 +46,7 @@
 
 /datum/clockwork_scripture/create_object/ocular_warden/check_special_requirements()
 	for(var/obj/structure/destructible/clockwork/ocular_warden/W in range(OCULAR_WARDEN_EXCLUSION_RANGE, invoker))
-		to_chat(invoker, "<span class='neovgre'>You sense another ocular warden too near this location. Placing another this close would cause them to fight.</span>" )
+		to_chat(invoker, span_neovgre("You sense another ocular warden too near this location. Placing another this close would cause them to fight.") )
 		return FALSE
 	return ..()
 
@@ -62,7 +62,7 @@
 	power_cost = 1000
 	whispered = TRUE
 	object_path = /obj/effect/clockwork/sigil/vitality
-	creator_message = "<span class='brass'>A vitality matrix appears below you. It will drain life from non-Servants and heal Servants that cross it.</span>"
+	creator_message = span_brass("A vitality matrix appears below you. It will drain life from non-Servants and heal Servants that cross it.")
 	usage_tip = "The sigil will be consumed upon reviving a Servant."
 	tier = SCRIPTURE_SCRIPT
 	one_per_tile = TRUE
@@ -73,7 +73,7 @@
 
 /datum/clockwork_scripture/create_object/vitality_matrix/check_special_requirements()
 	if(locate(object_path) in range(1, invoker))
-		to_chat(invoker, "<span class='danger'>Vitality matrices placed next to each other could interfere and cause a feedback loop! Move away from the other ones!</span>")
+		to_chat(invoker, span_danger("Vitality matrices placed next to each other could interfere and cause a feedback loop! Move away from the other ones!"))
 		return FALSE
 	return ..()
 
@@ -88,7 +88,7 @@
 	power_cost = 400
 	whispered = TRUE
 	object_path = /obj/item/clothing/glasses/judicial_visor
-	creator_message = "<span class='brass'>You form a judicial visor, which is capable of smiting a small area.</span>"
+	creator_message = span_brass("You form a judicial visor, which is capable of smiting a small area.")
 	usage_tip = "The visor has a thirty-second cooldown once used."
 	tier = SCRIPTURE_SCRIPT
 	space_allowed = TRUE
@@ -117,13 +117,13 @@
 
 /datum/clockwork_scripture/clockwork_armaments/check_special_requirements()
 	for(var/datum/action/innate/clockwork_armaments/F in invoker.actions)
-		to_chat(invoker, "<span class='warning'>You have already bound a Ratvarian spear to yourself!</span>")
+		to_chat(invoker, span_warning("You have already bound a Ratvarian spear to yourself!"))
 		return FALSE
 	return invoker.can_hold_items()
 
 /datum/clockwork_scripture/clockwork_armaments/scripture_effects()
-	invoker.visible_message("<span class='warning'>A shimmer of yellow light infuses [invoker]!</span>", \
-	"<span class='brass'>You bind clockwork equipment to yourself. Use Clockwork Armaments and Call Spear to summon them.</span>")
+	invoker.visible_message(span_warning("A shimmer of yellow light infuses [invoker]!"), \
+	span_brass("You bind clockwork equipment to yourself. Use Clockwork Armaments and Call Spear to summon them."))
 	var/datum/action/innate/call_weapon/ratvarian_spear/S = new()
 	S.Grant(invoker)
 	var/datum/action/innate/clockwork_armaments/A = new()
@@ -173,7 +173,7 @@
 	if(remove_item_if_better(I, owner))
 		do_message += owner.equip_to_slot_or_del(new/obj/item/clothing/shoes/clockwork(null), SLOT_SHOES)
 	if(do_message)
-		owner.visible_message("<span class='warning'>Strange armor appears on [owner]!</span>", "<span class='heavy_brass'>A bright shimmer runs down your body, equipping you with Ratvarian armor.</span>")
+		owner.visible_message(span_warning("Strange armor appears on [owner]!"), "[span_heavy_brass("A bright shimmer runs down your body, equipping you with Ratvarian armor.")]")
 		playsound(owner, 'sound/magic/clockwork/fellowship_armory.ogg', 15 * do_message, TRUE) //get sound loudness based on how much we equipped
 	cooldown = CLOCKWORK_ARMOR_COOLDOWN + world.time
 	owner.update_action_buttons_icon()
@@ -216,7 +216,7 @@
 
 /datum/clockwork_scripture/spatial_gateway/check_special_requirements()
 	if(!isturf(invoker.loc))
-		to_chat(invoker, "<span class='warning'>You must not be inside an object to use this scripture!</span>")
+		to_chat(invoker, span_warning("You must not be inside an object to use this scripture!"))
 		return FALSE
 	var/other_servants = 0
 	for(var/mob/living/L in GLOB.alive_mob_list)
@@ -226,7 +226,7 @@
 		if(O.anchored)
 			other_servants++
 	if(!other_servants)
-		to_chat(invoker, "<span class='warning'>There are no other conscious servants or anchored clockwork obelisks!</span>")
+		to_chat(invoker, span_warning("There are no other conscious servants or anchored clockwork obelisks!"))
 		return FALSE
 	return TRUE
 

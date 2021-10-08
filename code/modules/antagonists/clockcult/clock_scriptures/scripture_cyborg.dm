@@ -18,7 +18,7 @@
 
 /datum/clockwork_scripture/ranged_ability/linked_vanguard/check_special_requirements()
 	if(!GLOB.ratvar_awakens && islist(invoker.stun_absorption) && invoker.stun_absorption["vanguard"] && invoker.stun_absorption["vanguard"]["end_time"] > world.time)
-		to_chat(invoker, "<span class='warning'>You are already shielded by a Vanguard!</span>")
+		to_chat(invoker, span_warning("You are already shielded by a Vanguard!"))
 		return FALSE
 	return TRUE
 
