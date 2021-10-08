@@ -1,14 +1,14 @@
 import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
-import { Button, Section } from '../components';
+import { Button, Section, Flex } from '../components';
 import { Window } from '../layouts';
 
 export const BrigTimer = (props, context) => {
   const { act, data } = useBackend(context);
   return (
     <Window
-      width={300}
-      height={138}
+      width={460}
+      height={510}
       resizable>
       <Window.Content scrollable>
         <Section
@@ -56,6 +56,84 @@ export const BrigTimer = (props, context) => {
             icon="hourglass-start"
             content="Long"
             onClick={() => act('preset', { preset: 'long' })} />
+        </Section>
+        <Section title="Crimes">
+          <Flex direction="column">
+            <Flex.Item grow={1}>
+              {Object.keys(data.pettyCrimes).map(petty => {
+                let value = data.pettyCrimes[petty];
+                return (
+                  <Button
+                    key={petty}
+                    content={value.name}
+                    color={value.colour}
+                    icon={value.icon}
+                    tooltip={value.tooltip}
+                    onClick={() => act('time', { adjust: 600 })} />
+                );
+              })}
+            </Flex.Item>
+            <Flex.Item>
+              <hr />
+              {Object.keys(data.minorCrimes).map(minor => {
+                let value = data.minorCrimes[minor];
+                return (
+                  <Button
+                    key={minor}
+                    content={value.name}
+                    color={value.colour}
+                    icon={value.icon}
+                    tooltip={value.tooltip}
+                    onClick={() => act('time', { adjust: 1800 })} />
+                );
+              })}
+            </Flex.Item>
+            <Flex.Item>
+              <hr />
+              {Object.keys(data.moderateCrimes).map(moderate => {
+                let value = data.moderateCrimes[moderate];
+                return (
+                  <Button
+                    key={moderate}
+                    content={value.name}
+                    color={value.colour}
+                    icon={value.icon}
+                    tooltip={value.tooltip}
+                    onClick={() => act('time', { adjust: 3000 })} />
+                );
+              })}
+            </Flex.Item>
+            <Flex.Item>
+              <hr />
+              {Object.keys(data.majorCrimes).map(major => {
+                let value = data.majorCrimes[major];
+                return (
+                  <Button
+                    key={major}
+                    content={value.name}
+                    color={value.colour}
+                    icon={value.icon}
+                    tooltip={value.tooltip}
+                    onClick={() => act('time', { adjust: 4200 })} />
+                );
+              })}
+            </Flex.Item>
+            <Flex.Item>
+              <hr />
+              {Object.keys(data.severeCrimes).map(severe => {
+                let value = data.severeCrimes[severe];
+                return (
+                  <Button
+                    key={severe}
+                    content={value.name}
+                    color={value.colour}
+                    icon={value.icon}
+                    tooltip={value.tooltip}
+                    onClick={() => act('time', { adjust: 6000 })} />
+                );
+              })}
+            </Flex.Item>
+          </Flex>
         </Section>
       </Window.Content>
     </Window>

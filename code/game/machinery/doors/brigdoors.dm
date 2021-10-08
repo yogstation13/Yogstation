@@ -2,7 +2,7 @@
 #define FONT_SIZE "5pt"
 #define FONT_COLOR "#09f"
 #define FONT_STYLE "Small Fonts"
-#define MAX_TIMER 12000 //yogs - changed 9000 to 12000
+#define MAX_TIMER 15000 //yogs - changed 9000 to 15000
 
 #define PRESET_SHORT 1800 //yogs - changed 1200 to 1800
 #define PRESET_MEDIUM 3000 //yogs - changed 1800 to 3000
@@ -33,6 +33,46 @@
 	var/timing = FALSE		// boolean, true/1 timer is on, false/0 means it's not timing
 	var/list/obj/machinery/targets = list()
 	var/obj/item/radio/Radio //needed to send messages to sec radio
+
+	var/static/list/crimespetty = list(
+		list(name="Petty Theft", tooltip="To take items from areas one does not have access to or to take items belonging to others or the station as a whole.", colour="good",icon="hand-holding",sentence="1"),
+		list(name="Vandalism (Cosmetic)", tooltip="To deliberately vandalize the station.", colour="good",icon="spray-can",sentence="1"),
+		list(name="Resisting Arrest", tooltip="To not cooperate with an officer who attempts a proper arrest.", colour="good",icon="running",sentence="1"),
+		list(name="Drug Possession", tooltip="To possess space drugs or other narcotics by unauthorized personnel.", colour="good",icon="joint",sentence="1"),
+		list(name="Indecent Exposure", tooltip="To be intentionally and publicly unclothed.", colour="good",icon="flushed",sentence="1"),
+		list(name="Trespass", tooltip="To be in an area which a person does not have access to. This counts for general areas of the ship, and trespass in restricted areas is a more serious crime.", colour="good",icon="door-open",sentence="1")
+	)
+	var/static/list/crimesminor = list(
+		list(name="Vandalism (Destructive)", tooltip="To deliberately damage the station without malicious intent.", colour="average",icon="car-crash",sentence="3"),
+		list(name="Narcotics Distribution", tooltip="To distribute narcotics and other controlled substances.", colour="average",icon="tablets",sentence="3"),
+		list(name="Possession of a Weapon", tooltip="To be in possession of a dangerous item that is not part of their job role.", colour="average",icon="bolt",sentence="3"),
+		list(name="Possession, Contraband", tooltip="To be in possession of illegal or prohibited goods.", colour="average",icon="syringe",sentence="3"),
+		list(name="Assault", tooltip="To use physical force against someone without the apparent intent to kill them.", colour="average",icon="fist-raised",sentence="3")
+	)
+	var/static/list/crimesmoderate = list(
+		list(name="Theft", tooltip="To steal restricted or dangerous items",colour="average",icon="people-carry",sentence="5"),
+		list(name="Rioting", tooltip="To partake in an unauthorized and disruptive assembly of crewmen that refuse to disperse.",colour="average",icon="users",sentence="5"),
+		list(name="Creating a workplace hazard", tooltip="To endanger the crew or station through negligent or irresponsible, but not deliberately malicious, actions.",colour="average",icon="bomb",sentence="5"),
+		list(name="Breaking and Entry", tooltip="Forced entry to areas where the subject does not have access to. This counts for general areas, and breaking into restricted areas is a more serious crime.",colour="average",icon="door-closed",sentence="5"),
+		list(name="Insubordination", tooltip="To disobey a lawful direct order from one's superior officer.",colour="average",icon="user-minus",sentence="5"),
+		list(name="Animal Cruelty", tooltip="To kill an animal for reasons other than research, food purposes, self-defense purposes, or as a resolution to animal overpopulation.",colour="average",icon="user-minus",sentence="5")
+	)
+	var/static/list/crimesmajor = list(
+		list(name="Assault, Officer", tooltip="To use physical force against a Department Head or member of Security without the apparent intent to kill them.",colour="bad",icon="gavel",sentence="7"),
+		list(name="Possession, restricted weapon", tooltip="To be in possession of a restricted weapon without prior authorization, such as guns, batons, flashes, grenades, etc.",colour="bad",icon="exclamation",sentence="7"),
+		list(name="Possession, Explosives", tooltip="To be in possession of an explosive device.",colour="bad",icon="bomb",sentence="7"),
+		list(name="Inciting a Riot", tooltip="To attempt to stir the crew into a riot",colour="bad",icon="bullhorn",sentence="7"),
+		list(name="Sabotage", tooltip="To hinder the work of the crew or station through malicious actions.",colour="bad",icon="fire",sentence="7"),
+		list(name="Major Trespass", tooltip="Being in a restricted area without prior authorization. This includes any Security Area, Command area (including EVA), The Engine Room, Atmos, or Toxins Research.",colour="bad",icon="key",sentence="7")
+	)
+	var/static/list/crimessevere = list(
+		list(name="Assault With a Deadly Weapon", tooltip="	To use physical force, through a deadly weapon, against someone without the apparent intent to kill them.",colour="bad",icon="user-injured",sentence="10"),
+		list(name="Manslaughter", tooltip="To unintentionally kill someone through negligent, but not malicious, actions.",colour="bad",icon="skull-crossbones",sentence="10"),
+		list(name="Possession, Syndicate Contraband", tooltip="To be in unauthorized possession of syndicate or other PTE technology.",colour="bad",icon="bomb",sentence="10"),
+		list(name="Embezzlement", tooltip="To misuse a security or command position to steal money from the crew.",colour="bad",icon="dollar-sign",sentence="10"),
+		list(name="B&E of a Restricted Area", tooltip="This is breaking into any Security area, Command area (Bridge, EVA, Captains Quarters, Teleporter, etc.), the Engine Room, Atmos, or Toxins research.",colour="bad",icon="id-card",sentence="10"),
+		list(name="Dereliction of Duty", tooltip="To willfully abandon an obligation that is critical to the station's continued operation.",colour="bad",icon="walking",sentence="10")
+	)
 
 	maptext_height = 26
 	maptext_width = 32
@@ -196,6 +236,11 @@
 	data["minutes"] = round((time_left - data["seconds"]) / 60)
 	data["timing"] = timing
 	data["flash_charging"] = FALSE
+	data["pettyCrimes"] = crimespetty
+	data["minorCrimes"] = crimesminor
+	data["moderateCrimes"] = crimesmoderate
+	data["majorCrimes"] = crimesmajor
+	data["severeCrimes"] = crimessevere
 	for(var/obj/machinery/flasher/F in targets)
 		if(F.last_flash && (F.last_flash + 150) > world.time)
 			data["flash_charging"] = TRUE
