@@ -17854,35 +17854,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"aNL" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/airlock/hatch{
-	name = "Telecomms Control Room";
-	req_access_txt = "61"
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/tcommsat/server)
 "aNM" = (
 /obj/machinery/vending/wardrobe/sig_wardrobe,
 /turf/open/floor/plasteel/grimy,
@@ -24065,23 +24036,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"bTx" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/door/airlock/hatch{
-	name = "Telecomms Control Room";
-	req_access_txt = "61"
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/server)
 "bTM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -29517,6 +29471,26 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
+"hOa" = (
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Atmospherics Maintenance";
+	req_one_access_txt = "24;10"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/maintenance/port/fore)
 "hOC" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -29707,6 +29681,23 @@
 /obj/machinery/bounty_board,
 /turf/closed/wall,
 /area/security/brig)
+"hWi" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/airlock/hatch{
+	name = "Telecomms Control Room";
+	req_one_access_txt = "10"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/server)
 "hWy" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "L4"
@@ -32083,6 +32074,21 @@
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"kkh" = (
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Atmospherics Maintenance";
+	req_one_access_txt = "24;10"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port)
 "klc" = (
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -36994,18 +37000,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
-"pzQ" = (
-/obj/machinery/door/airlock/hatch{
-	name = "Telecomms Control Room";
-	req_access_txt = "61"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel,
-/area/tcommsat/server)
 "pAu" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -37982,6 +37976,35 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/starboard/aft)
+"qCx" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/airlock/hatch{
+	name = "Telecomms Control Room";
+	req_one_access_txt = "10"
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
 "qCI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -41076,6 +41099,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
+"sLT" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Telecomms Control Room";
+	req_one_access_txt = "10"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/tcommsat/server)
 "sLV" = (
 /obj/item/radio/intercom{
 	broadcasting = 0;
@@ -44630,22 +44665,6 @@
 	},
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/science/server)
-"vGU" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Maintenance Hatch";
-	req_access_txt = "24";
-	req_one_access_txt = "0"
-	},
-/obj/structure/cable/white{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/port)
 "vHJ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only{
@@ -45042,26 +45061,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"wnq" = (
-/obj/structure/cable/white{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Atmospherics Maintenance";
-	req_access_txt = "24"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/maintenance/port/fore)
 "woe" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge Access";
@@ -75383,13 +75382,13 @@ dht
 pdR
 heh
 hAS
-pzQ
+sLT
 jcz
 nWd
 aNV
-bTx
+hWi
 aRD
-aNL
+qCx
 aTY
 aUP
 buL
@@ -79222,7 +79221,7 @@ kxQ
 agF
 atL
 atS
-wnq
+hOa
 pAL
 avC
 ahk
@@ -79999,7 +79998,7 @@ avD
 nYD
 eQA
 gMY
-vGU
+kkh
 ayD
 azj
 aAf
