@@ -25,8 +25,14 @@ export const BrigTimer = (props, context) => {
                 content={data.flash_charging ? 'Recharging' : 'Flash'}
                 disabled={data.flash_charging}
                 onClick={() => act('flash')} />
+              <Button
+                icon="id-card-alt"
+                content={data.desired_name ? data.desired_name : "Enter Prisoner Name"}
+                onClick={() => act("prisoner_name")} />
             </Fragment>
           )}>
+          <Flex>
+            <Flex.Item>
           <Button
             icon="fast-backward"
             onClick={() => act('time', { adjust: -600 })} />
@@ -56,6 +62,13 @@ export const BrigTimer = (props, context) => {
             icon="hourglass-start"
             content="Long"
             onClick={() => act('preset', { preset: 'long' })} />
+          </Flex.Item>
+          <Flex.Item>
+            <Section title="Current Inputted Crimes">
+            {data.desired_crime}
+            </Section>
+          </Flex.Item>
+        </Flex>
         </Section>
         <Section title="Crimes">
           <Flex direction="column">
@@ -69,7 +82,7 @@ export const BrigTimer = (props, context) => {
                     color={value.colour}
                     icon={value.icon}
                     tooltip={value.tooltip}
-                    onClick={() => act('time', { adjust: 600 })} />
+                    onClick={() => act('presetCrime', { preset: value.sentence, crime: value.name })} />
                 );
               })}
             </Flex.Item>
@@ -84,7 +97,7 @@ export const BrigTimer = (props, context) => {
                     color={value.colour}
                     icon={value.icon}
                     tooltip={value.tooltip}
-                    onClick={() => act('time', { adjust: 1800 })} />
+                    onClick={() => act('presetCrime', { preset: value.sentence, crime: value.name })} />
                 );
               })}
             </Flex.Item>
@@ -99,7 +112,7 @@ export const BrigTimer = (props, context) => {
                     color={value.colour}
                     icon={value.icon}
                     tooltip={value.tooltip}
-                    onClick={() => act('time', { adjust: 3000 })} />
+                    onClick={() => act('presetCrime', { preset: value.sentence, crime: value.name })} />
                 );
               })}
             </Flex.Item>
@@ -114,7 +127,7 @@ export const BrigTimer = (props, context) => {
                     color={value.colour}
                     icon={value.icon}
                     tooltip={value.tooltip}
-                    onClick={() => act('time', { adjust: 4200 })} />
+                    onClick={() => act('presetCrime', { preset: value.sentence, crime: value.name })} />
                 );
               })}
             </Flex.Item>
@@ -129,7 +142,7 @@ export const BrigTimer = (props, context) => {
                     color={value.colour}
                     icon={value.icon}
                     tooltip={value.tooltip}
-                    onClick={() => act('time', { adjust: 6000 })} />
+                    onClick={() => act('presetCrime', { preset: value.sentence, crime: value.name })} />
                 );
               })}
             </Flex.Item>
