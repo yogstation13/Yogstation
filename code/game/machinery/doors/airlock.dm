@@ -963,7 +963,7 @@
 						to_chat(user, span_warning("You need at least 2 metal sheets to reinforce [src]."))
 						return
 					to_chat(user, span_notice("You start reinforcing [src]."))
-					if(do_after(user, 20, TRUE, src))
+					if(do_after(user, 2 SECONDS, TRUE, src))
 						if(!panel_open || !S.use(2))
 							return
 						user.visible_message(span_notice("[user] reinforces \the [src] with metal."),
@@ -977,7 +977,7 @@
 						to_chat(user, span_warning("You need at least 2 plasteel sheets to reinforce [src]."))
 						return
 					to_chat(user, span_notice("You start reinforcing [src]."))
-					if(do_after(user, 20, TRUE, src))
+					if(do_after(user, 2 SECONDS, TRUE, src))
 						if(!panel_open || !S.use(2))
 							return
 						user.visible_message(span_notice("[user] reinforces \the [src] with plasteel."),
@@ -1143,10 +1143,10 @@
 				user.visible_message(span_warning("[user] starts forcing open [src]!"), span_velvet("<b>ueahz</b><br>You begin forcing open [src]..."))
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE)
 				if(!T.twin)
-					if(!do_after(user, 75, target = src))
+					if(!do_after(user, 7.5 SECONDS, target = src))
 						return
 				else
-					if(!do_after(user, 50, target = src))
+					if(!do_after(user, 5 SECONDS, target = src))
 						return
 				open(2)
 				if(density && !open(2))
