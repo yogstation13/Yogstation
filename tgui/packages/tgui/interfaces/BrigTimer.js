@@ -33,42 +33,42 @@ export const BrigTimer = (props, context) => {
           )}>
           <Flex>
             <Flex.Item>
-          <Button
-            icon="fast-backward"
-            onClick={() => act('time', { adjust: -600 })} />
-          <Button
-            icon="backward"
-            onClick={() => act('time', { adjust: -100 })} />
-          {' '}
-          {String(data.minutes).padStart(2, '0')}:
-          {String(data.seconds).padStart(2, '0')}
-          {' '}
-          <Button
-            icon="forward"
-            onClick={() => act('time', { adjust: 100 })} />
-          <Button
-            icon="fast-forward"
-            onClick={() => act('time', { adjust: 600 })} />
-          <br />
-          <Button
-            icon="hourglass-start"
-            content="Short"
-            onClick={() => act('preset', { preset: 'short' })} />
-          <Button
-            icon="hourglass-start"
-            content="Medium"
-            onClick={() => act('preset', { preset: 'medium' })} />
-          <Button
-            icon="hourglass-start"
-            content="Long"
-            onClick={() => act('preset', { preset: 'long' })} />
-          </Flex.Item>
-          <Flex.Item>
-            <Section title="Current Inputted Crimes">
-            {data.desired_crime}
-            </Section>
-          </Flex.Item>
-        </Flex>
+              <Button
+                icon="fast-backward"
+                onClick={() => act('time', { adjust: -600 })} />
+              <Button
+                icon="backward"
+                onClick={() => act('time', { adjust: -100 })} />
+              {' '}
+              {String(data.minutes).padStart(2, '0')}:
+              {String(data.seconds).padStart(2, '0')}
+              {' '}
+              <Button
+                icon="forward"
+                onClick={() => act('time', { adjust: 100 })} />
+              <Button
+                icon="fast-forward"
+                onClick={() => act('time', { adjust: 600 })} />
+              <br />
+              <Button
+                icon="hourglass-start"
+                content="Short"
+                onClick={() => act('preset', { preset: 'short' })} />
+              <Button
+                icon="hourglass-start"
+                content="Medium"
+                onClick={() => act('preset', { preset: 'medium' })} />
+              <Button
+                icon="hourglass-start"
+                content="Long"
+                onClick={() => act('preset', { preset: 'long' })} />
+            </Flex.Item>
+            <Flex.Item>
+              <Section title="Current Inputted Crimes">
+                {data.desired_crime}
+              </Section>
+            </Flex.Item>
+          </Flex>
         </Section>
         <Section title="Crimes">
           <Flex direction="column">
