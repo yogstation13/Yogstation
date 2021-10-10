@@ -268,6 +268,8 @@
 	explanation_text = "Sacrifice at least [target_amount] people."
 
 /datum/objective/sacrifice_ecult/check_completion()
+	if(..())
+		return TRUE
 	if(!owner)
 		return FALSE
 	var/datum/antagonist/heretic/cultie = owner.has_antag_datum(/datum/antagonist/heretic)
