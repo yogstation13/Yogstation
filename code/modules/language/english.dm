@@ -11,7 +11,7 @@
 	syllables = list(
 	"I say","good sir","schilling","mate","tosspot","bobby","lift","tele","queen",
 	"king","biscuit","tea","crumpet","arse","mum","trolly","quid","twat",
-	"bloke","chap","chav","football"
+	"bloke","chap","chav","football","blimey","bloody"
 	)
 	icon_state = "english"
 	sing_verb = "sings"
