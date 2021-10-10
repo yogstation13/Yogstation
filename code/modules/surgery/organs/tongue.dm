@@ -63,6 +63,13 @@
 /obj/item/organ/tongue/could_speak_language(language)
 	return is_type_in_typecache(language, languages_possible)
 
+/obj/item/organ/tongue/honked // allows admins to spawn honked tongues from the item menu vs having to change the variable.
+	honked = TRUE
+
+/obj/item/organ/tongue/Initialize() // this only exists to make sure the spawned tongue has a horn inside of it visually
+	. = ..()
+	update_icon()
+
 /obj/item/organ/tongue/lizard
 	name = "forked tongue"
 	desc = "A thin and long muscle typically found in reptilian races, apparently moonlights as a nose."
