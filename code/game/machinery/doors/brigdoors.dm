@@ -121,7 +121,8 @@
 
 	if(timing)
 		if(world.time - activation_time >= timer_duration)
-			timer_end() // open doors, reset timer, clear status screen
+			timer_end()
+			 // open doors, reset timer, clear status screen
 		update_icon()
 
 // open/closedoor checks if door_timer has power, if so it checks if the
@@ -132,20 +133,6 @@
 
 	activation_time = world.time
 	timing = TRUE
-
-	if(desired_crime)
-		var/datum/data/record/R = find_record("name", desired_name, GLOB.data_core.security)
-		if(R)
-			R.fields["criminal"] = "Incarcerated"
-			var/crime = GLOB.data_core.createCrimeEntry(desired_crime, null, user.real_name, station_time_timestamp())
-			GLOB.data_core.addCrime(R.fields["id"], crime)
-			investigate_log("New Crime: <strong>[desired_crime]</strong> | Added to [R.fields["name"]] by [key_name(user)]", INVESTIGATE_RECORDS)
-			say("Criminal record for [R.fields["name"]] successfully updated with inputted crime.")
-			playsound(loc, 'sound/machines/ping.ogg', 50, 1)
-			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
-				H.sec_hud_set_security_status()
-		else if(desired_name == null)
-			say("No prisoner name inputted, security record not updated.")
 
 	for(var/obj/machinery/door/window/brigdoor/door in targets)
 		if(door.density)
@@ -159,6 +146,19 @@
 			continue
 		C.locked = TRUE
 		C.update_icon()
+
+	if(desired_crime)
+		var/datum/data/record/R = find_record("name", desired_name, GLOB.data_core.security)
+		if(R)
+			R.fields["criminal"] = "Incarcerated"
+			var/crime = GLOB.data_core.createCrimeEntry(desired_crime, null, user.real_name, station_time_timestamp())
+			GLOB.data_core.addCrime(R.fields["id"], crime)
+			investigate_log("New Crime: <strong>[desired_crime]</strong> | Added to [R.fields["name"]] by [key_name(user)]", INVESTIGATE_RECORDS)
+			say("Criminal record for [R.fields["name"]] successfully updated with inputted crime.")
+			playsound(loc, 'sound/machines/ping.ogg', 50, 1)
+		else if(desired_name == null)
+			say("No prisoner name inputted, security record not updated.")
+			
 	return 1
 
 
@@ -178,8 +178,8 @@
 	var/datum/data/record/R = find_record("name", desired_name, GLOB.data_core.security)
 	if(R)
 		R.fields["criminal"] = "Discharged"
-	desired_crime = null
-	desired_name = null
+	for(var/mob/living/carbon/human/H in GLOB.carbon_list)
+		H.sec_hud_set_security_status()
 
 	for(var/obj/machinery/door/window/brigdoor/door in targets)
 		if(!door.density)
@@ -193,6 +193,9 @@
 			continue
 		C.locked = FALSE
 		C.update_icon()
+
+	desired_crime = null
+	desired_name = null
 
 	return 1
 
@@ -293,8 +296,12 @@
 				. = set_timer(time_left()+value)
 		if("start")
 			timer_start()
+			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
+				H.sec_hud_set_security_status()
 		if("stop")
 			timer_end(forced = TRUE)
+			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
+				H.sec_hud_set_security_status()
 		if("flash")
 			for(var/obj/machinery/flasher/F in targets)
 				F.flash()
