@@ -38,3 +38,23 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 	unique = TRUE
 	hidden = TRUE
 
+
+/area/awaymission/secret/unpowered
+	always_unpowered = TRUE
+
+/area/awaymission/secret/unpowered/outdoors
+	outdoors = TRUE
+
+/area/awaymission/secret/unpowered/no_grav
+	has_gravity = FALSE
+
+/area/awaymission/secret/fullbright
+	static_lighting = FALSE
+	base_lighting_alpha = 255
+
+/area/awaymission/secret/powered
+	requires_power = FALSE
+
+/area/awaymission/secret/powered/fullbright
+	static_lighting = FALSE
+	base_lighting_alpha = 255

@@ -495,7 +495,7 @@
 		var/turf/new_turf = get_turf(destination)
 		if(ismob(src))
 			var/mob/M = src
-			if(SSmapping.level_trait(new_turf.z, ZTRAIT_SECRET) && !M.client?.holder)
+			if(is_secret_level(new_turf.z) && !M.client?.holder)
 				return
 
 		. = doMove(destination)
