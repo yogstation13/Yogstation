@@ -9,7 +9,7 @@
 	space_chance = 100
 	default_priority = 90
 	syllables = list(
-	"I say","good sir","schilling","mate","tosspot","bobby","lift","tele","queen",
+	"I say","good sir","shilling","mate","tosspot","bobby","lift","telly","queen",
 	"king","biscuit","tea","crumpet","arse","mum","trolly","quid","twat",
 	"bloke","chap","chav","football","blimey","bloody"
 	)
