@@ -162,7 +162,6 @@
 		target.update_icon()
 		qdel(src)
 
-
 /obj/item/bikehorn/Initialize()
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
