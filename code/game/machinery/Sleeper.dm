@@ -107,6 +107,12 @@
 	if(is_operational() && occupant)
 		open_machine()
 
+/obj/machinery/particle_accelerator/control_box/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		return
+	to_chat(user, span_danger("You disable the chemical injection inhibitors on the sleeper..."))
+	obj_flags |= EMAGGED
+
 /obj/machinery/sleeper/MouseDrop_T(mob/target, mob/user)
 	if(user.stat || !Adjacent(user) || !user.Adjacent(target) || !iscarbon(target) || !user.IsAdvancedToolUser())
 		return
@@ -181,6 +187,8 @@
 			C.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE)
 		else
 			C.remove_status_effect(STATUS_EFFECT_STASIS)
+		if(obj_flags & EMAGGED)
+			C.reagents.add_reagent(/datum/reagent/toxin/amanitin, max(0, 1 - existing)) //this should be enough that you immediately eat shit on exiting but not before
 		switch(active_treatment)
 			if(SLEEPER_TEND)
 				C.heal_bodypart_damage(SLEEPER_HEAL_RATE,SLEEPER_HEAL_RATE) //this is slow as hell, use the rest of medbay you chumps
@@ -193,9 +201,7 @@
 						var/healed = FALSE
 						var/obj/item/organ/heal_target = C.getorganslot(o)
 						if(heal_target?.damage >= 1)
-							var/organ_healing = 0.2
-							if(C.stat == DEAD)
-								organ_healing = 0.05
+							var/organ_healing = C.stat == DEAD ? 0.05 : 0.2
 							heal_target.applyOrganDamage(-organ_healing)
 							healed = TRUE
 						if(healed)
