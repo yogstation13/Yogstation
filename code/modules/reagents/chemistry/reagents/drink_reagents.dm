@@ -350,16 +350,37 @@
 	. = 1
 
 /datum/reagent/consumable/tea
-	name = "Tea"
+	name = "Black Tea"
 	description = "Tasty black tea, it has antioxidants, it's good for you!"
 	color = "#101000" // rgb: 16, 16, 0
 	nutriment_factor = 0
 	taste_description = "tart black tea"
 	glass_icon_state = "teaglass"
-	glass_name = "glass of tea"
+	glass_name = "glass of black tea"
 	glass_desc = "Drinking it from here would not seem right."
 
 /datum/reagent/consumable/tea/on_mob_life(mob/living/carbon/M)
+	M.dizziness = max(0,M.dizziness-2)
+	M.drowsyness = max(0,M.drowsyness-1)
+	M.jitteriness = max(0,M.jitteriness-3)
+	M.AdjustSleeping(-20, FALSE)
+	if(M.getToxLoss() && prob(20))
+		M.adjustToxLoss(-1, 0)
+	M.adjust_bodytemperature(20 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
+	..()
+	. = 1
+
+/datum/reagent/consumable/tea/red
+	name = "Rooibos Tea"
+	description = "A reddish-brown tea with needles submerged at the bottom."
+	color = "bc6f63" // rgb: 188, 111, 99
+	nutriment_factor = 0
+	taste_description = "slightly sweet and nutty"
+	glass_icon_state = "rooibosteaglass"
+	glass_name = "glass of rooibos tea"
+	glass_desc = "Drinking it from here would not seem right."
+
+/datum/reagent/consumable/tea/red/on_mob_life(mob/living/carbon/M)
 	M.dizziness = max(0,M.dizziness-2)
 	M.drowsyness = max(0,M.drowsyness-1)
 	M.jitteriness = max(0,M.jitteriness-3)
