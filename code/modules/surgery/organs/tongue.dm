@@ -41,7 +41,6 @@
 		add_overlay("honked")
 
 /obj/item/organ/tongue/proc/handle_speech(datum/source, list/speech_args)
-	..()
 	if(honked) // you have a bike horn inside of your tongue. Time to honk
 		playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
 
