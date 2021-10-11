@@ -41,9 +41,7 @@
 		add_overlay("honked")
 
 /obj/item/organ/tongue/proc/handle_speech(datum/source, list/speech_args)
-	message_admins("I made it to the original speech proc at least")
 	if(honked) // you have a bike horn inside of your tongue. Time to honk
-		message_admins("i should have honked here")
 		playsound(source, 'sound/items/bikehorn.ogg', 50, TRUE)
 
 /obj/item/organ/tongue/Insert(mob/living/carbon/M, special = 0)
