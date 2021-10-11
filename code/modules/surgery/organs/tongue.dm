@@ -70,6 +70,11 @@
 	. = ..()
 	update_icon()
 
+/obj/item/organ/tongue/examine(mob/user)
+	. = ..()
+	if(honked)
+		. += "It seems to have a bikehorn shoved inside, HONK!"
+
 /obj/item/organ/tongue/lizard
 	name = "forked tongue"
 	desc = "A thin and long muscle typically found in reptilian races, apparently moonlights as a nose."
