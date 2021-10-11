@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "yes this is a fucking bugfix: you will no longer have confusion between someone who has logged out of the game as a ghost and a body that has no player inhabitant at all, because one of these is recoverable and the other is extremely not recoverable and they SHOULDN'T LOOK THE EXACT SAME"
