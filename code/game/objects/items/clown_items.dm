@@ -157,10 +157,13 @@
 /obj/item/bikehorn/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(istype(target, /obj/item/organ/tongue))
-		user.visible_message(span_alert("[user] shoves [src] inside of [target]!"))
-		target.honked = TRUE
-		target.update_icon()
-		qdel(src)
+		var/obj/item/organ/tongue/T = target
+		if(T) // this would be awkward if there wasn't a tongue here at this point
+			user.visible_message(span_alert("[user] shoves [src] inside of [T]!"))
+			T = /obj/item/organ/tongue
+			T.honked = TRUE
+			T.update_icon()
+			qdel(src)
 
 /obj/item/bikehorn/Initialize()
 	. = ..()
