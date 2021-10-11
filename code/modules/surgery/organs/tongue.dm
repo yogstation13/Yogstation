@@ -8,7 +8,7 @@
 	var/list/languages_possible
 	var/say_mod = null
 	var/taste_sensitivity = 15 // lower is more sensitive.
-	var/modifies_speech = FALSE
+	var/modifies_speech = TRUE // set to TRUE now because otherwise default tongues can't be honked. Not even sure why this would ever be set to false since it doesn't do anything.
 	var/honked = FALSE // This tongue has a bike horn jammed inside of it and will honk every time something is spoken.
 	var/static/list/languages_possible_base = typecacheof(list(
 		/datum/language/common,
@@ -41,8 +41,10 @@
 		add_overlay("honked")
 
 /obj/item/organ/tongue/proc/handle_speech(datum/source, list/speech_args)
+	message_admins("I made it to the original speech proc at least")
 	if(honked) // you have a bike horn inside of your tongue. Time to honk
-		playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
+		message_admins("i should have honked here")
+		playsound(source, 'sound/items/bikehorn.ogg', 50, TRUE)
 
 /obj/item/organ/tongue/Insert(mob/living/carbon/M, special = 0)
 	..()
