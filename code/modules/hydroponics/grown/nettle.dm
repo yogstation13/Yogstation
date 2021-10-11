@@ -103,7 +103,9 @@
 			to_chat(user, span_userdanger("You are stunned by the Deathnettle as you try picking it up!"))
 
 /obj/item/reagent_containers/food/snacks/grown/nettle/death/attack(mob/living/carbon/M, mob/user)
-	if(!..())
+	if(..())
+		return
+	if(user.a_intent != INTENT_HARM)
 		return
 	if(isliving(M))
 		to_chat(M, span_danger("You are stunned by the powerful acid of the Deathnettle!"))
@@ -111,6 +113,6 @@
 
 		M.adjust_blurriness(force/7)
 		if(prob(20))
-			M.Unconscious(force / 0.3)
-			M.Paralyze(force / 0.75)
+			M.Unconscious(force / 0.6)
+			M.Paralyze(force / 1.5)
 		M.drop_all_held_items()
