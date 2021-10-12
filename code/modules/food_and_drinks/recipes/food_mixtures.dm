@@ -64,6 +64,12 @@
 	results = list(/datum/reagent/consumable/tea = 5)
 	required_reagents = list(/datum/reagent/toxin/teapowder = 1, /datum/reagent/water = 5)
 
+/datum/chemical_reaction/tea/red
+	name = "Rooibos Tea"
+	id = /datum/reagent/consumable/tea/red
+	results = list(/datum/reagent/consumable/tea/red = 5)
+	required_reagents = list(/datum/reagent/toxin/teapowder/red = 1, /datum/reagent/water = 5)
+
 /datum/chemical_reaction/soysauce
 	name = "Soy Sauce"
 	id = /datum/reagent/consumable/soysauce

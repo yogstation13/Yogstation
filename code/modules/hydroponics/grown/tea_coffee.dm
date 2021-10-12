@@ -13,7 +13,7 @@
 	growthstages = 5
 	icon_dead = "tea-dead"
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
-	mutatelist = list(/obj/item/seeds/tea/astra)
+	mutatelist = list(/obj/item/seeds/tea/astra, /obj/item/seeds/tea/red)
 
 /obj/item/reagent_containers/food/snacks/grown/tea
 	seed = /obj/item/seeds/tea
@@ -43,6 +43,24 @@
 	filling_color = "#4582B4"
 	grind_results = list(/datum/reagent/toxin/teapowder = 0, /datum/reagent/medicine/salglu_solution = 0)
 
+// Rooibos Tea
+/obj/item/seeds/tea/red
+	name = "pack of tea roobios seeds"
+	icon_state = "seed-rooibos"
+	species = "rooibos"
+	plantname = "Tea Roobios Plant"
+	product = /obj/item/reagent_containers/food/snacks/grown/tea/red
+	mutatelist = list()
+	reagents_add = list(/datum/reagent/toxin/teapowder/red = 0.1)
+	rarity = 15
+	icon_dead = "rooibos-dead"
+
+/obj/item/reagent_containers/food/snacks/grown/tea/red
+	seed = /obj/item/seeds/tea/red
+	name = "Tea Rooibos tips"
+	icon_state = "tea_aspera_leaves" //placeholder
+	filling_color = "#b44545" //placeholder
+	grind_results = list(/datum/reagent/toxin/teapowder/red = 0) //nothing good until it's dried
 
 // Coffee
 /obj/item/seeds/coffee

@@ -358,6 +358,13 @@
 	color = "#7F8400" // rgb: 127, 132, 0
 	toxpwr = 0.5
 
+/datum/reagent/toxin/teapowder/red
+	name = "Ground Rooibos Tea Leaves"
+	description = "Finely shredded rooibos tea leaves, used for making tea."
+	reagent_state = SOLID
+	color = "#571e07" // rgb: 87, 30, 7
+	toxpwr = 0.5
+
 /datum/reagent/toxin/mutetoxin //the new zombie powder.
 	name = "Mute Toxin"
 	description = "A nonlethal poison that inhibits speech in its victim."
