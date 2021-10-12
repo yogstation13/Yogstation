@@ -108,11 +108,7 @@
 	if(user.a_intent != INTENT_HARM)
 		return
 	if(isliving(M))
-		to_chat(M, span_danger("You are stunned by the powerful acid of the Deathnettle!"))
+		to_chat(M, span_danger("You are blinded by the powerful acid of [src]!"))
 		log_combat(user, M, "attacked", src)
 
 		M.adjust_blurriness(force/7)
-		if(prob(20))
-			M.Unconscious(force / 0.6)
-			M.Paralyze(force / 1.5)
-		M.drop_all_held_items()
