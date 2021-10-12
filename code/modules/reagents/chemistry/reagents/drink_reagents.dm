@@ -376,11 +376,96 @@
 	color = "bc6f63" // rgb: 188, 111, 99
 	nutriment_factor = 0
 	taste_description = "slightly sweet and nutty"
-	glass_icon_state = "rooibosteaglass"
+	glass_icon_state = "teaglass"
 	glass_name = "glass of rooibos tea"
-	glass_desc = "Drinking it from here would not seem right."
+	glass_desc = "You can see small pins and needles swirling at the bottom."
 
 /datum/reagent/consumable/tea/red/on_mob_life(mob/living/carbon/M)
+	M.dizziness = max(0,M.dizziness-2)
+	M.drowsyness = max(0,M.drowsyness-1)
+	M.jitteriness = max(0,M.jitteriness-3)
+	M.AdjustSleeping(-20, FALSE)
+	if(M.getToxLoss() && prob(20))
+		M.adjustToxLoss(-1, 0)
+	M.adjust_bodytemperature(20 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
+	..()
+	. = 1
+
+/datum/reagent/consumable/tea/rice
+	name = "Genmaicha Tea"
+	description = "A traditional Japanese tea consisting of popped brown rice. You feel a sense of calm holding this."
+	color = "bc6f63" // rgb: 188, 111, 99
+	nutriment_factor = 0
+	taste_description = "toasted rice"
+	glass_icon_state = "teaglass"
+	glass_name = "glass of genmaicha tea"
+	glass_desc = "Bits of green leaves and brown rice are scattered."
+
+/datum/reagent/consumable/tea/rice/on_mob_life(mob/living/carbon/M)
+	M.dizziness = max(0,M.dizziness-2)
+	M.drowsyness = max(0,M.drowsyness-1)
+	M.jitteriness = max(0,M.jitteriness-3)
+	M.AdjustSleeping(-20, FALSE)
+	if(M.getToxLoss() && prob(20))
+		M.adjustToxLoss(-1, 0)
+	M.adjust_bodytemperature(20 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
+	..()
+	. = 1
+
+
+/datum/reagent/consumable/tea/green
+	name = "Ryokucha Tea"
+	description = "A type of tea originating from China, passed onto the entirety of East Asia."
+	color = "bc6f63" // rgb: 188, 111, 99
+	nutriment_factor = 0
+	taste_description = "green leaves and calmness"
+	glass_icon_state = "teaglass"
+	glass_name = "glass of ryokucha tea"
+	glass_desc = "Some tea never goes wrong."
+
+/datum/reagent/consumable/tea/tea/on_mob_life(mob/living/carbon/M)
+	M.dizziness = max(0,M.dizziness-2)
+	M.drowsyness = max(0,M.drowsyness-1)
+	M.jitteriness = max(0,M.jitteriness-3)
+	M.AdjustSleeping(-20, FALSE)
+	if(M.getToxLoss() && prob(20))
+		M.adjustToxLoss(-1, 0)
+	M.adjust_bodytemperature(20 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
+	..()
+	. = 1
+
+/datum/reagent/consumable/tea/rice
+	name = "Genmaicha Tea"
+	description = "A traditional Japanese tea consisting of popped brown rice. You feel a sense of calm holding this."
+	color = "bc6f63" // rgb: 188, 111, 99
+	nutriment_factor = 0
+	taste_description = "toasted rice"
+	glass_icon_state = "teaglass"
+	glass_name = "glass of genmaicha tea"
+	glass_desc = "Bits of green leaves and brown rice are scattered."
+
+/datum/reagent/consumable/tea/rice/on_mob_life(mob/living/carbon/M)
+	M.dizziness = max(0,M.dizziness-2)
+	M.drowsyness = max(0,M.drowsyness-1)
+	M.jitteriness = max(0,M.jitteriness-3)
+	M.AdjustSleeping(-20, FALSE)
+	if(M.getToxLoss() && prob(20))
+		M.adjustToxLoss(-1, 0)
+	M.adjust_bodytemperature(20 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
+	..()
+	. = 1
+
+/datum/reagent/consumable/tea/mint
+	name = "Peppermint Tea"
+	description = "A refreshing tea made of peppermint leaves."
+	color = "bc6f63" // rgb: 188, 111, 99
+	nutriment_factor = 0
+	taste_description = "sweet mint"
+	glass_icon_state = "teaglass"
+	glass_name = "glass of peppermint tea"
+	glass_desc = "drink this before a date."
+
+/datum/reagent/consumable/tea/rice/on_mob_life(mob/living/carbon/M)
 	M.dizziness = max(0,M.dizziness-2)
 	M.drowsyness = max(0,M.drowsyness-1)
 	M.jitteriness = max(0,M.jitteriness-3)
