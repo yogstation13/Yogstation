@@ -327,7 +327,7 @@
 /datum/chemical_reaction/medsuture/alt
 	name = "Trek Suture"
 	id = "med_suture_alt"
-	required_reagents = list(/datum/reagent/medicine/bicaridine = 10, /datum/reagent/medicine/c2/probital = 20, /datum/reagent/space_cleaner/sterilizine = 10)
+	required_reagents = list(/datum/reagent/medicine/bicaridine = 10, /datum/reagent/medicine/c2/probital = 20, /datum/reagent/medicine/spaceacillin  = 10)
 
 /datum/chemical_reaction/medsuture/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
