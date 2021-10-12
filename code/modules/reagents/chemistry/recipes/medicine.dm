@@ -327,7 +327,7 @@
 /datum/chemical_reaction/medsuture/alt
 	name = "Trek Suture"
 	id = "med_suture_alt"
-	required_reagents = list(/datum/reagent/bicaridine = 10, /datum/reagent/medicine/c2/probital = 20, /datum/reagent/space_cleaner/sterilizine = 10)
+	required_reagents = list(/datum/reagent/medicine/bicaridine = 10, /datum/reagent/medicine/c2/probital = 20, /datum/reagent/space_cleaner/sterilizine = 10)
 
 /datum/chemical_reaction/medsuture/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
@@ -372,7 +372,7 @@
 	mob_react = FALSE
 	mix_message = "The solution congeals into a blue gel."
 
-/datum/chemical_reaction/bone_gelon_reaction/(datum/reagents/holder, created_volume)
+/datum/chemical_reaction/bone_gel/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/stack/medical/bone_gel(location)
