@@ -378,9 +378,6 @@
 	glass_icon_state = "teaglass"
 	glass_name = "glass of rooibos tea"
 	glass_desc = "You can see small pins and needles swirling at the bottom."
-
-/datum/reagent/consumable/tea/red/on_mob_life(mob/living/carbon/M)
-	.=..()
 	
 /datum/reagent/consumable/tea/rice
 	name = "Genmaicha Tea"
@@ -390,9 +387,6 @@
 	glass_icon_state = "teaglass"
 	glass_name = "glass of genmaicha tea"
 	glass_desc = "Bits of green leaves and brown rice are scattered."
-
-/datum/reagent/consumable/tea/rice/on_mob_life(mob/living/carbon/M)
-	.=..()
 	
 /datum/reagent/consumable/tea/green
 	name = "Ryokucha Tea"
@@ -402,9 +396,6 @@
 	glass_icon_state = "teaglass"
 	glass_name = "glass of ryokucha tea"
 	glass_desc = "Some tea never goes wrong."
-
-/datum/reagent/consumable/tea/green/on_mob_life(mob/living/carbon/M)
-	.=..()
 	
 
 /datum/reagent/consumable/tea/rice
@@ -415,9 +406,6 @@
 	glass_icon_state = "teaglass"
 	glass_name = "glass of genmaicha tea"
 	glass_desc = "Bits of green leaves and brown rice are scattered."
-
-/datum/reagent/consumable/tea/rice/on_mob_life(mob/living/carbon/M)
-	.=..()
 	
 
 /datum/reagent/consumable/tea/mint
@@ -429,9 +417,6 @@
 	glass_icon_state = "teaglass"
 	glass_name = "glass of peppermint tea"
 	glass_desc = "drink this before a date."
-
-/datum/reagent/consumable/tea/mint/on_mob_life(mob/living/carbon/M)
-	.=..()
 
 
 /datum/reagent/consumable/aloejuice
