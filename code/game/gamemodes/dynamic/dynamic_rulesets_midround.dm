@@ -238,6 +238,7 @@
 	required_type = /mob/living/silicon/ai
 	var/ion_announce = 33
 	var/removeDontImproveChance = 10
+	blocking_rules = list(/datum/dynamic_ruleset/roundstart/malf_ai)
 
 /datum/dynamic_ruleset/midround/malf/trim_candidates()
 	..()
