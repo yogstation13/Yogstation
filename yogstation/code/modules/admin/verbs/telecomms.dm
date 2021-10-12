@@ -16,6 +16,6 @@
 			S.autoruncode = FALSE
 			C.Compile("")
 		for(var/obj/machinery/computer/telecomms/traffic/T in GLOB.traffic_comps)
-			T.storedcode = ""
+			T.codestr = ""
 		log_game("[key_name_admin(usr)] blanked all telecomms scripts.")
 		message_admins("[key_name_admin(usr)] blanked all telecomms scripts.")

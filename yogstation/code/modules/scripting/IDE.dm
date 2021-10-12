@@ -1,3 +1,4 @@
+/*
 /client/verb/tcssave()
 	set hidden = 1
 	if(is_banned_from(usr.ckey, "Signal Technician"))
@@ -230,3 +231,4 @@
 	if(mob && istype(mob.machine, /obj/machinery/computer/telecomms/traffic) && in_range(mob.machine, mob) || issilicon(mob) && istype(mob.machine, /obj/machinery/computer/telecomms/traffic))
 		return 1
 	return 0
+*/
