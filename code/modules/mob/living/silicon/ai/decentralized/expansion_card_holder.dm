@@ -15,6 +15,7 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 	..()
 	installed_cards = list()
 	GLOB.expansion_card_holders += src
+	update_icon()
 
 /obj/machinery/ai/expansion_card_holder/Destroy()
 	installed_cards = list()
@@ -25,6 +26,13 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 		AI.update_hardware() */
 	GLOB.ai_os.update_hardware()
 	..()
+
+/obj/machinery/ai/expansion_card_holder/update_icon()
+	cut_overlays()
+	
+	if(!(stat & (BROKEN|NOPOWER|EMPED)))
+		var/mutable_appearance/on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
+		add_overlay(on_overlay)
 
 /obj/machinery/ai/expansion_card_holder/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/processing_card) || istype(W, /obj/item/memory_card))

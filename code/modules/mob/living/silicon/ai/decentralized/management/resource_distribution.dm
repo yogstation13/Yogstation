@@ -1,7 +1,7 @@
 /obj/machinery/computer/ai_resource_distribution
 	name = "\improper AI system resource distribution"
 	desc = "Used for distributing processing resources across the current artificial intelligences."
-	req_access = list(ACCESS_CAPTAIN, ACCESS_ROBOTICS, ACCESS_HEADS)
+	req_access = list(ACCESS_ROBOTICS)
 	circuit = /obj/item/circuitboard/computer/aifixer
 	icon_keyboard = "tech_key"
 	icon_screen = "ai-fixer"
@@ -16,12 +16,50 @@
 		ui = new(user, src, "AiResources", name)
 		ui.open()
 
-/obj/machinery/computer/ai_resource_distribution/ui_data(mob/user)
+/obj/machinery/computer/ai_resource_distribution/ui_data(mob/living/carbon/human/user)
 	var/list/data = list()
 
-	data["authenticated"] = authenticated;
+	data["authenticated"] = authenticated
+
+	if(issilicon(user))
+		var/mob/living/silicon/borg = user
+		data["username"] = borg.name
+		data["has_access"] = TRUE
+
+	if(IsAdminGhost(user))
+		data["username"] = user.client.holder.admin_signature
+		data["has_access"] = TRUE
+
+	if(ishuman(user))
+		var/username = user.get_authentification_name("Unknown")
+		data["username"] = user.get_authentification_name("Unknown")
+		if(username != "Unknown")
+			var/datum/data/record/record
+			for(var/RP in GLOB.data_core.general)
+				var/datum/data/record/R = RP
+
+				if(!istype(R))
+					continue
+				if(R.fields["name"] == username)
+					record = R
+					break
+			if(record)
+				if(istype(record.fields["photo_front"], /obj/item/photo))
+					var/obj/item/photo/P1 = record.fields["photo_front"]
+					var/icon/picture = icon(P1.picture.picture_image)
+					picture.Crop(10, 32, 22, 22)
+					var/md5 = md5(fcopy_rsc(picture))
+
+					if(!SSassets.cache["photo_[md5]_cropped.png"])
+						SSassets.transport.register_asset("photo_[md5]_cropped.png", picture)
+					SSassets.transport.send_assets(user, list("photo_[md5]_cropped.png" = picture))
+
+					data["user_image"] = SSassets.transport.get_asset_url("photo_[md5]_cropped.png")
+		data["has_access"] = check_access(user.get_idcard())
+
 	if(!authenticated)
 		return data
+
 
 	data["total_cpu"] = GLOB.ai_os.total_cpu
 	data["total_ram"] = GLOB.ai_os.total_ram
@@ -33,15 +71,11 @@
 	data["total_assigned_cpu"] = GLOB.ai_os.total_cpu_assigned()
 	data["total_assigned_ram"] = GLOB.ai_os.total_ram_assigned()
 
-	for(var/AI in data["assigned_cpu"])
-		data["assigned_cpu"][AI].name = REF(AI)
-	for(var/AI in data["assigned_ram"])
-		data["assigned_ram"][AI].name = REF(AI)
 
 	data["ais"] = list()
 
 	for(var/mob/living/silicon/ai/A in GLOB.ai_list)
-		data["ais"] += list(list("name" = A.name, "ref" = REF(A)))
+		data["ais"] += list(list("name" = A.name, "ref" = REF(A), "assigned_cpu" = data["assigned_cpu"][A] ? data["assigned_cpu"][A] : 0, "assigned_ram" = data["assigned_ram"][A] ? data["assigned_ram"][A] : 0))
 
 	return data
 
@@ -50,9 +84,30 @@
 		return
 
 	if(!authenticated)
+		if(action == "log_in")
+			if(issilicon(usr))
+				authenticated = TRUE
+				return
+
+			if(IsAdminGhost(usr))
+				authenticated = TRUE
+
+
+
+
+			var/mob/living/carbon/human/H = usr
+			if(!istype(H))
+				return
+
+			if(check_access(H.get_idcard()))
+				authenticated = TRUE
 		return
 
 	switch(action)
+		if("log_out")
+			authenticated = FALSE
+			. = TRUE
+
 		if("clear_ai_resources")
 			var/mob/living/silicon/ai/target_ai = locate(params["targetAI"])
 			if(!istype(target_ai))
