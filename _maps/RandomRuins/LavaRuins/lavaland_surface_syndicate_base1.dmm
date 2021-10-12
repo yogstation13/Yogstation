@@ -1128,26 +1128,6 @@
 	dir = 10
 	},
 /area/ruin/unpowered/syndicate_lava_base/virology)
-"fi" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/beakers{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/storage/box/syringes,
-/obj/machinery/power/apc/syndicate{
-	dir = 1;
-	name = "Virology APC";
-	pixel_y = 23
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/white/side{
-	dir = 9
-	},
-/area/ruin/unpowered/syndicate_lava_base/virology)
 "fj" = (
 /obj/structure/table/glass,
 /obj/structure/reagent_dispensers/virusfood{
@@ -5279,6 +5259,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
+"ts" = (
+/obj/docking_port/stationary{
+	dir = 2;
+	dwidth = 6;
+	height = 6;
+	id = "syndicatelavalandbase_arivals";
+	name = "Syndicate Lavaland Base: Arivals Dock";
+	width = 13
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "tU" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -5382,6 +5373,21 @@
 /obj/structure/tank_dispenser/oxygen,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/unpowered/syndicate_lava_base/arrivals)
+"wu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/defibrillator/compact/combat/loaded{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/obj/item/healthanalyzer{
+	pixel_x = -4;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 4
+	},
+/area/ruin/unpowered/syndicate_lava_base/medbay)
 "xd" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -5559,6 +5565,33 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/dormitories)
+"Ct" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/beakers{
+	pixel_x = 6;
+	pixel_y = 9
+	},
+/obj/item/storage/box/syringes{
+	pixel_x = -8;
+	pixel_y = 10
+	},
+/obj/machinery/power/apc/syndicate{
+	dir = 1;
+	name = "Virology APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/lockbox/vialbox/virology{
+	pixel_x = -7;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 9
+	},
+/area/ruin/unpowered/syndicate_lava_base/virology)
 "CG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
@@ -5594,6 +5627,12 @@
 	},
 /obj/structure/closet/crate/bin,
 /turf/open/floor/plasteel,
+/area/ruin/unpowered/syndicate_lava_base/main)
+"DC" = (
+/obj/machinery/porta_turret/syndicate,
+/obj/machinery/porta_turret/syndicate,
+/obj/machinery/porta_turret/syndicate,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/syndicate_lava_base/main)
 "Ec" = (
 /obj/machinery/door/firedoor/border_only{
@@ -6160,6 +6199,25 @@
 /obj/item/stock_parts/cell/bluespace,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/cargo)
+"NT" = (
+/obj/structure/table/reinforced,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/disk/surgery/brainwashing{
+	pixel_x = -11;
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/syringe{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/glass/bottle/morphine{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 6
+	},
+/area/ruin/unpowered/syndicate_lava_base/medbay)
 "Ob" = (
 /obj/structure/table/wood,
 /obj/structure/cable/yellow{
@@ -6248,17 +6306,6 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/white,
-/area/ruin/unpowered/syndicate_lava_base/medbay)
-"PM" = (
-/obj/structure/table/reinforced,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/disk/surgery/brainwashing{
-	pixel_x = -11;
-	pixel_y = -3
-	},
-/turf/open/floor/plasteel/white/side{
-	dir = 6
-	},
 /area/ruin/unpowered/syndicate_lava_base/medbay)
 "PW" = (
 /obj/machinery/light/small{
@@ -6449,17 +6496,6 @@
 /obj/item/storage/toolbox/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
-"SI" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/defibrillator{
-	pixel_x = 1;
-	pixel_y = 2
-	},
-/obj/structure/table,
-/turf/open/floor/plasteel/white/side{
-	dir = 4
-	},
-/area/ruin/unpowered/syndicate_lava_base/medbay)
 "Tc" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -6726,6 +6762,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
+"Zr" = (
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 5;
+	height = 5;
+	id = "syndicatelavalandbase_cargo";
+	name = "Syndicate Lavaland Base: Cargo Bay Dock";
+	width = 11
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "ZV" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "lavalandsyndi_bar"
@@ -6927,7 +6974,7 @@ mn
 mn
 mn
 mn
-mn
+LH
 ab
 ab
 ab
@@ -7051,12 +7098,12 @@ ab
 ab
 ab
 ab
+DC
 eh
 eh
 eh
 eh
 eh
-LH
 ab
 ab
 ab
@@ -7186,7 +7233,7 @@ ab
 ab
 ab
 ab
-ab
+aa
 "}
 (10,1,1) = {"
 aa
@@ -7236,7 +7283,7 @@ ab
 ab
 ab
 ab
-ab
+aa
 "}
 (11,1,1) = {"
 aa
@@ -7403,7 +7450,7 @@ ab
 ab
 ac
 eh
-fi
+Ct
 fA
 gu
 gV
@@ -7500,7 +7547,7 @@ ac
 ab
 ac
 ac
-LH
+ae
 ae
 ae
 ae
@@ -7581,19 +7628,19 @@ EZ
 oI
 oD
 St
+ts
 ab
 ab
 ab
 ab
 ab
-aa
 "}
 (18,1,1) = {"
 ab
 ab
 ab
 ab
-ae
+LH
 ae
 aq
 aq
@@ -7636,7 +7683,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 "}
 (19,1,1) = {"
 ab
@@ -7685,8 +7732,8 @@ ab
 ab
 ab
 ab
-aa
-aa
+ab
+ab
 "}
 (20,1,1) = {"
 aa
@@ -7736,7 +7783,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 "}
 (21,1,1) = {"
 aa
@@ -8421,11 +8468,11 @@ kj
 kw
 kT
 tU
-SI
+wu
 kQ
 Tc
 Je
-PM
+NT
 kQ
 ac
 ab
@@ -8904,7 +8951,7 @@ ab
 ab
 ab
 ab
-ab
+Zr
 ab
 ab
 ab
@@ -8996,7 +9043,7 @@ aa
 aa
 ab
 ab
-aa
+ab
 ab
 ab
 ab
@@ -9047,8 +9094,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+ab
+ab
 ab
 ab
 ab
@@ -9099,22 +9146,22 @@ aa
 aa
 aa
 aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 aa
 aa
-aa
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
 ab
 ab
 ab
