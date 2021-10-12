@@ -36,6 +36,7 @@
 	sleep(0.5 SECONDS)
 	to_chat(src, "<span class='danger'>System shutdown complete. Thank you for using NTOS.</span>")
 	sleep(1.5 SECONDS)
-	qdel(src)
 
+	adjustOxyLoss(200) //Die!!
 
+	QDEL_IN(src, 5 SECONDS)

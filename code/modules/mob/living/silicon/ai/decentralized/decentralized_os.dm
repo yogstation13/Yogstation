@@ -87,6 +87,7 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 	for(var/A in affected_AIs)
 		to_chat(A, "<span class='warning'>You have been deducted processing capabilities. Please contact your network administrator if you believe this to be an error.</span>")
 
+
 /datum/ai_os/proc/add_cpu(mob/living/silicon/ai/AI, amount)
 	if(!AI || !amount)
 		return
