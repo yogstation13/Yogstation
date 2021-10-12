@@ -96,14 +96,14 @@
 			var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [summoned.real_name]", ROLE_HERETIC, null, ROLE_HERETIC, 100,summoned)
 			user.SetImmobilized(0)
 			if(LAZYLEN(candidates) == 0)
-				to_chat(user,"<span class='warning'>No ghost could be found...</span>")
+				to_chat(user,span_warning("No ghost could be found..."))
 				qdel(summoned)
 				return FALSE
 			var/mob/living/carbon/human/H = user
 			H.physiology.brute_mod *= 0.5
 			H.physiology.burn_mod *= 0.5
 			var/datum/antagonist/heretic/heretic = user.mind.has_antag_datum(/datum/antagonist/heretic)
-			var/datum/eldritch_knowledge/flesh_grasp/ghoul1 = heretic.get_knowledge(/datum/eldritch_knowledge/flesh_grasp)
+			var/datum/eldritch_knowledge/base_flesh/ghoul1 = heretic.get_knowledge(/datum/eldritch_knowledge/base_flesh)
 			ghoul1.ghoul_amt *= 3
 			var/datum/eldritch_transmutation/voiceless_dead/ghoul2 = heretic.get_transmutation(/datum/eldritch_transmutation/voiceless_dead)
 			ghoul2.max_amt *= 3

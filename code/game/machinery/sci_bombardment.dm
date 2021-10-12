@@ -79,12 +79,12 @@
 		if(!scibomb)
 			scibomb = B
 			playsound(src, 'sound/effects/bin_close.ogg', 100, 1)
-			to_chat(usr, "<span class='notice'>You load [B] into the firing mechanism.</span>")
+			to_chat(usr, span_notice("You load [B] into the firing mechanism."))
 			update_icon()
 		else
-			to_chat(usr, "<span class='warning'>There is already a transfer valve loaded in the firing mechanism!</span>")
+			to_chat(usr, span_warning("There is already a transfer valve loaded in the firing mechanism!"))
 	else
-		to_chat(usr, "<span class='warning'>[B] is refused, as it is invalid or incomplete.</span>")
+		to_chat(usr, span_warning("[B] is refused, as it is invalid or incomplete."))
 	return
 
 /**
@@ -201,7 +201,7 @@
 					locked = !locked
 					radio.talk_into(src, "Controls [locked ? "locked" : "unlocked"] by [I.registered_name].",)
 				else
-					to_chat(usr, "<span class='warning'>Access denied. Please seek assistance from station AI or Research Director.</span>")
+					to_chat(usr, span_warning("Access denied. Please seek assistance from station AI or Research Director."))
 			update_icon()
 			. = TRUE
 		if("count")//Prompts user to change countdown timer (Minimum based on var/mincount)
@@ -209,17 +209,17 @@
 				return
 			var/a = text2num(stripped_input(usr, "Set a new countdown timer. (Minimum [mincount])", name, mincount))
 			countdown = max(a, mincount)
-			to_chat(usr, "<span class='notice'>Countdown set to [countdown] seconds.</span>")
+			to_chat(usr, span_notice("Countdown set to [countdown] seconds."))
 			. = TRUE
 		if("unload")//If unlocked, allows user to remove TTV from the machine, if present
 			if(!scibomb || locked)
 				return
 			if(!stopcount)
 				playsound(src, 'sound/misc/box_deploy.ogg', 80, 0.5)
-				to_chat(usr, "<span class='warning'>It's too late to do that now! There's only [tick] seconds remaining! Abort!</span>")
+				to_chat(usr, span_warning("It's too late to do that now! There's only [tick] seconds remaining! Abort!"))
 				return
 			playsound(src, 'sound/machines/blastdoor.ogg', 75, 0)
-			to_chat(usr, "<span class='notice'>[scibomb] is ejected from the loading chamber.</span>")
+			to_chat(usr, span_notice("[scibomb] is ejected from the loading chamber."))
 			scibomb.forceMove(drop_location())
 			scibomb = null
 			update_icon()
