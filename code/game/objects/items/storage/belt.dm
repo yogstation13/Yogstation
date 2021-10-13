@@ -71,7 +71,8 @@
 		/obj/item/grenade/chem_grenade/metalfoam,
 		/obj/item/storage/bag/construction,
 		/obj/item/handdrill,
-		/obj/item/jawsoflife
+		/obj/item/jawsoflife,
+		/obj/item/shuttle_creator //Yogs: Added this here cause I felt it fits
 		))
 
 /obj/item/storage/belt/utility/chief
@@ -89,6 +90,18 @@
 	new /obj/item/extinguisher/mini(src)
 	new /obj/item/holosign_creator/multi/CE(src)
 	//much roomier now that we've managed to remove two tools
+
+/obj/item/storage/belt/utility/chief/admin/full/PopulateContents()
+	new /obj/item/construction/rcd/combat/admin(src)
+	new /obj/item/pipe_dispenser(src)
+	new /obj/item/shuttle_creator/admin(src)
+	new /obj/item/handdrill(src)
+	new /obj/item/jawsoflife(src)
+	new /obj/item/weldingtool/experimental(src)//This can be changed if this is too much
+	new /obj/item/multitool/tricorder(src)	//yogs: changes the multitool to the tricorder and removes the analyzer
+	new /obj/item/storage/bag/construction/admin/full(src)
+	new /obj/item/extinguisher/mini(src)
+	new /obj/item/holosign_creator/multi/CE(src)
 
 /obj/item/storage/belt/utility/full/PopulateContents()
 	new /obj/item/screwdriver(src)
