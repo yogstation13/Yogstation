@@ -1026,8 +1026,6 @@
 	QDEL_NULL(mob_overlay)
 
 /datum/status_effect/exposed
-//	name = "Exposed"
-//	desc = "Your weaknesses have been exposed! You take 15% more damage from all sources."
 	id = "exposed"
 	duration = 10 SECONDS
 	///damage multiplier
