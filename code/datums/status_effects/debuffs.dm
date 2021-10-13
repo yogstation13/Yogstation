@@ -1030,6 +1030,7 @@
 	duration = 10 SECONDS
 	///damage multiplier
 	var/power = 1.15
+
 /datum/status_effect/exposed/on_apply()
 	. = ..()
 	if(.)
