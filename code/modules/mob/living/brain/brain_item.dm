@@ -118,7 +118,7 @@
 			return
 
 		user.visible_message("[user] starts to pour the contents of [O] onto [src].", span_notice("You start to slowly pour the contents of [O] onto [src]."))
-		if(!do_after(user, 60, TRUE, src))
+		if(!do_after(user, 6 SECONDS, TRUE, src))
 			to_chat(user, span_warning("You failed to pour [O] onto [src]!"))
 			return
 

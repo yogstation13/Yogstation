@@ -978,7 +978,7 @@
 
 	visible_message(span_notice("[user] starts to insert an MMI into [name]."))
 
-	if(do_after(user, 40, target = src))
+	if(do_after(user, 4 SECONDS, target = src))
 		if(!occupant)
 			return mmi_moved_inside(mmi_as_oc, user)
 		else

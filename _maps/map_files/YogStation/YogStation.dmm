@@ -31867,15 +31867,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
-"cyr" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/machinery/door/airlock/external{
-	name = "Cargo Escape Airlock"
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/exit)
 "cyv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -38591,6 +38582,21 @@
 /obj/machinery/computer/operating,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
+"gLg" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/airlock/external{
+	name = "Escape Airlock"
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/exit)
 "gLk" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plasteel/dark,
@@ -48773,21 +48779,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"nxw" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/machinery/door/airlock/external{
-	name = "Cargo Escape Airlock"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/exit)
 "nxy" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -117572,7 +117563,7 @@ aRW
 aRW
 mXC
 aNa
-nxw
+gLg
 aRW
 aRW
 hoc
@@ -118857,7 +118848,7 @@ aaa
 aRW
 aTo
 bOH
-cyr
+aTo
 aRW
 aaa
 aaa
