@@ -426,7 +426,7 @@
 	clothing_flags = SCAN_REAGENTS
 	var/obj/effect/proc_holder/expose/expose_ability
 
-/obj/item/clothing/glasses/godeye/Initialize(mapload)
+/obj/item/clothing/glasses/godeye/Initialize()
 	. = ..()
 	expose_ability = new(expose_ability)
 
