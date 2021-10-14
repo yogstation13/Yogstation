@@ -6,6 +6,12 @@
 	var/show_alpha = 255
 	var/hide_alpha = 0
 
+//YOGS EDIT
+/obj/screen/plane_master/proc/get_render_target()
+	render_target = "[name]_TARGET"
+	return render_target
+//END YOGS EDIT
+
 /obj/screen/plane_master/proc/Show(override)
 	alpha = override || show_alpha
 
@@ -63,7 +69,7 @@
 
 	//OG TG CODE <--- this is absolutely fucking stupid, why manually destroy all filters? for what??? all i know is that this causes add_filter to break when trying to add filters the proper way.
 	//tldr dont add filters directly for the love of god, use add_filter instead.
-	
+
 	/*filters = list()
 	if(istype(mymob) && mymob.client && mymob.client.prefs && mymob.client.prefs.ambientocclusion)
 		filters += AMBIENT_OCCLUSION

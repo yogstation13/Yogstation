@@ -24,11 +24,29 @@ GLOBAL_DATUM_INIT(herb_manager,/datum/herb_manager,new)
 //screen shit
 
 /obj/screen/fullscreen/trip
-	icon_state = "trip0"
+	icon_state = "trip"
 	layer = TRIP_LAYER
-	plane = FULLSCREEN_PLANE
 	alpha = 0 //we animate it ourselves
 
+//floor trip
+/obj/screen/fullscreen/ftrip
+	icon_state = "ftrip"
+	icon = 'yogstation/icons/mob/screen_full_big.dmi'
+	screen_loc = "CENTER-9,CENTER-7"
+	appearance_flags = TILE_BOUND
+	layer = ABOVE_OPEN_TURF_LAYER
+	plane = BLACKNESS_PLANE
+	alpha = 0 //we animate it ourselves
+
+//wall trip
+/obj/screen/fullscreen/gtrip
+	icon_state = "gtrip"
+	icon = 'yogstation/icons/mob/screen_full_big.dmi'	
+	screen_loc = "CENTER-9,CENTER-7"
+	appearance_flags = TILE_BOUND
+	layer = BELOW_MOB_LAYER
+	plane = BLACKNESS_PLANE 
+	alpha = 0 //we animate it ourselves
 
 // reagents
 
@@ -62,6 +80,8 @@ GLOBAL_DATUM_INIT(herb_manager,/datum/herb_manager,new)
 
 	var/offset = 0;
 	var/obj/screen/fullscreen/trip/cached_screen
+	var/obj/screen/fullscreen/ftrip/cached_screen_floor
+	var/obj/screen/fullscreen/gtrip/cached_screen_game
 
 /datum/reagent/jungle/polybycin/on_mob_metabolize(mob/living/L)
 	. = ..()
@@ -79,50 +99,33 @@ GLOBAL_DATUM_INIT(herb_manager,/datum/herb_manager,new)
 /datum/reagent/jungle/polybycin/proc/add_filters(mob/living/L)
 	if(!L.client)
 		return
-	//get all relevant planes
 	var/obj/screen/plane_master/game_world/game_plane = locate(/obj/screen/plane_master/game_world) in L.client.screen
 	var/obj/screen/plane_master/floor/floor_plane  = locate(/obj/screen/plane_master/floor) in L.client.screen
-	var/obj/screen/plane_master/lighting/light_plane  = locate(/obj/screen/plane_master/lighting) in L.client.screen
 
-	//add our shit
-	game_plane.add_filter("polybycin_wave",1,list("type"="wave", "x"=64, "y"=64, "size"=0, "offset"=offset, "flags" = WAVE_BOUNDED))
-	floor_plane.add_filter("polybycin_wave",1,list("type"="wave", "x"=64, "y"=64, "size"=0, "offset"=offset, "flags" = WAVE_BOUNDED))
-	light_plane.add_filter("polybycin_wave",1,list("type"="wave", "x"=64, "y"=64, "size"=0, "offset"=offset, "flags" = WAVE_BOUNDED))
 	cached_screen = L.overlay_fullscreen("polycybin_trip",/obj/screen/fullscreen/trip)
+	cached_screen_floor = L.overlay_fullscreen("polycybin_ftrip",/obj/screen/fullscreen/ftrip)
+	cached_screen_game = L.overlay_fullscreen("polycybin_gtrip",/obj/screen/fullscreen/gtrip)
+
+	cached_screen_floor.add_filter("polycybin_ftrip",1,list("type"="alpha","render_source"=floor_plane.get_render_target()))
+	cached_screen_game.add_filter("polycybin_gtrip",1,list("type"="alpha","render_source"=game_plane.get_render_target()))
 
 /datum/reagent/jungle/polybycin/proc/remove_filters(mob/living/L)
 	if(!L.client)
 		return
-	//get all relevant planes
-	var/obj/screen/plane_master/game_world/game_plane = locate(/obj/screen/plane_master/game_world) in L.client.screen
-	var/obj/screen/plane_master/floor/floor_plane  = locate(/obj/screen/plane_master/floor) in L.client.screen
-	var/obj/screen/plane_master/lighting/light_plane  = locate(/obj/screen/plane_master/lighting) in L.client.screen
-
-	//remove our shit
-	game_plane.remove_filter("polybycin_wave")
-	floor_plane.remove_filter("polybycin_wave")
-	light_plane.remove_filter("polybycin_wave")
+	
 	cached_screen = null
+	cached_screen_floor = null
+	cached_screen_game = null
+	
 	L.clear_fullscreen("polycybin_trip")
+	L.clear_fullscreen("polycybin_ftrip")
+	L.clear_fullscreen("polycybin_gtrip")
 	
 
 /datum/reagent/jungle/polybycin/proc/update_filters(mob/living/L)
 	if(!L.client)
 		return
-	//we have to do this way, otherwise simple log-relog would cause all of filters to vanish into the void
-	var/obj/screen/plane_master/game_world/game_plane = locate(/obj/screen/plane_master/game_world) in L.client.screen
-	var/obj/screen/plane_master/floor/floor_plane  = locate(/obj/screen/plane_master/floor) in L.client.screen
-	var/obj/screen/plane_master/lighting/light_plane  = locate(/obj/screen/plane_master/lighting) in L.client.screen
-	if(!game_plane.get_filter("polybycin_wave") || !floor_plane.get_filter("polybycin_wave") || !light_plane.get_filter("polybycin_wave") )
-		add_filters(L)
 
-	//update the variables required for the filters
-	offset++
-	var/new_x = game_plane.get_filter("polybycin_wave"):x + rand(-1,1)
-	var/new_y = game_plane.get_filter("polybycin_wave"):y + rand(-1,1)
-
-	//animate filters
-	animate(game_plane.get_filter("polybycin_wave"), offset=offset, size = min(current_cycle,volume)/3, x = new_x, y = new_y , time = 2 SECONDS)
-	animate(floor_plane.get_filter("polybycin_wave"), offset=offset, size = min(current_cycle,volume)/3,x = new_x, y = new_y , time = 2 SECONDS)
-	animate(light_plane.get_filter("polybycin_wave"), offset=offset, size = min(current_cycle,volume)/3,x = new_x, y = new_y , time = 2 SECONDS)
 	animate(cached_screen, alpha = min(min(current_cycle,volume)/25,1)*255, time = 2 SECONDS)
+	animate(cached_screen_floor, alpha = min(min(current_cycle,volume)/25,1)*255, time = 2 SECONDS)
+	animate(cached_screen_game, alpha = min(min(current_cycle,volume)/25,1)*255, time = 2 SECONDS)
