@@ -82,7 +82,7 @@
 	data["temperature"] = env.return_temperature()
 
 	for(var/datum/ai_project/AP as anything in available_projects)
-		data["available_projects"] += list(list("name" = AP.name, "description" = AP.description, "ram_required" = AP.ram_required, "available" = AP.available(), "research_cost" = AP.research_cost, "research_progress" = AP.research_progress, 
+		data["available_projects"] += list(list("name" = AP.name, "description" = AP.description, "ram_required" = AP.ram_required, "available" = AP.canResearch(), "research_cost" = AP.research_cost, "research_progress" = AP.research_progress, 
 		"assigned_cpu" = cpu_usage[AP.name] ? cpu_usage[AP.name] : 0, "research_requirements" = AP.research_requirements))
 
 
@@ -99,13 +99,6 @@
 		return
 
 	switch(action)
-		if("add_project_cpu")
-			if(!add_project_cpu(params["project_name"]))
-				to_chat(owner, "<span class='warning'>Unable to add CPU to [params["project_name"]].</span>")
-			. = TRUE
-		if("remove_project_cpu")
-			remove_project_cpu(params["project_name"]) // Can't fail (hopefully), so no failure check
-			. = TRUE
 		if("run_project")
 			if(!run_project(params["project_name"]))
 				to_chat(owner, "<span class='warning'>Unable to run the program '[params["project_name"]].'</span>")
@@ -116,22 +109,29 @@
 			stop_project(params["project_name"]) // Can't fail (hopefully), so no failure check
 			to_chat(owner, "<span class='notice'>Instance of [params["project_name"]] succesfully ended.</span>")
 			. = TRUE
+		if("allocate_cpu")
+			if(!set_project_cpu(params["project_name"], text2num(params["amount"])))
+				to_chat(owner, "<span class='warning'>Unable to add CPU to [params["project_name"]]. Either not enough free CPU or project is unavailable.</span>")
+			. = TRUE
 			
 
 
-/datum/ai_dashboard/proc/add_project_cpu(datum/ai_project/project)
+/datum/ai_dashboard/proc/set_project_cpu(datum/ai_project/project, amount)
 	var/current_cpu = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.cpu_assigned[owner] : 0
 	if(!project.canResearch())
 		return FALSE
 
-	if(current_cpu > 0)
-		cpu_usage[project.name]++
-		return TRUE
+	var/total_cpu_used = 0
+	for(var/I in cpu_usage)
+		if(I == project.name)
+			continue
+		total_cpu_used += cpu_usage[I]
 
-/datum/ai_dashboard/proc/remove_project_cpu(datum/ai_project/project)
-	if(cpu_usage[project.name])
-		cpu_usage[project.name]--
-	return TRUE
+
+	if((current_cpu - total_cpu_used) > amount)
+		cpu_usage[project.name] += amount
+		return TRUE
+	return FALSE
 
 
 /datum/ai_dashboard/proc/run_project(datum/ai_project/project)

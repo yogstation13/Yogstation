@@ -27,8 +27,6 @@ GLOBAL_LIST_EMPTY(ai_projects)
 /datum/ai_project/proc/canResearch()
 	return TRUE
 
-/datum/ai_project/proc/available()
-	return TRUE
 
 /datum/ai_project/proc/run_project(force_run = FALSE)
 	if(!force_run)
