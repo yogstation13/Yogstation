@@ -130,6 +130,7 @@
 #include "code\__DEFINES\{yogs_defines}\is_helpers.dm"
 #include "code\__DEFINES\{yogs_defines}\jobs.dm"
 #include "code\__DEFINES\{yogs_defines}\keybindings.dm"
+#include "code\__DEFINES\{yogs_defines}\layers.dm"
 #include "code\__DEFINES\{yogs_defines}\logging.dm"
 #include "code\__DEFINES\{yogs_defines}\mentor.dm"
 #include "code\__DEFINES\{yogs_defines}\misc.dm"
