@@ -367,6 +367,7 @@
 		new /obj/item/stack/medical/poultice(location)
 
 /datum/chemical_reaction/bone_gel
+	id = "bone_gel"
 	required_reagents = list(/datum/reagent/consumable/milk = 10, /datum/reagent/carbon = 10) //good for bones and calcium
 	required_temp = 630
 	mob_react = FALSE
