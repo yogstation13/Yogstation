@@ -200,6 +200,8 @@
 	explanation_text = "Become lucid and perform the Sacrament. You will need to devour [SSticker.mode.required_succs] different people's wills and purchase all passive upgrades to do so."
 
 /datum/objective/darkspawn/check_completion()
+	if(..())
+		return TRUE
 	return (SSticker.mode.sacrament_done)
 
 /datum/antagonist/darkspawn/proc/adjust_darkspawn_hud(add_hud)
