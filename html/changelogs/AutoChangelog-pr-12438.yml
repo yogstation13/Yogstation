@@ -1,0 +1,5 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "made novaflowers and death nettles actually trigger attack effects"
+  - rscdel: "deathnettles no longer have the capacity to stun people"
