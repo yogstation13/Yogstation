@@ -233,6 +233,18 @@
 	else
 		to_chat(usr, span_notice("You enable the security mask's voice modulator."))
 		voicetoggled = TRUE
+	
+/obj/item/clothing/mask/gas/sechailer/verb/viewkeywords()
+	set name = "View voice modulator keywords"
+	set category = "Object"
+	set src in usr
+	var/mob/M = usr
+	if (istype(M, /mob/dead/))
+		return
+	if (!can_use(M))
+		return
+	to_chat(usr, span_notice("The security mask quickly relays a list of recognized keywords"))
+	to_chat(usr, span_notice("Affirmative; Copy; Alright, you can go; Backup; Citizen; Get down; Get out of here; Grenade; Help; Hold it; In position; I said move along; Keep moving; Lookout; Move along; Move back right now; Move it; Now get out of here; Pick up that can; I said pick up the can; Suspect prepare to receive civil judgement; Now put it in the trash can; Responding; Roger that; Shit; Take cover; You knocked it over, pick it up; Searching for suspect; First warning, move away; Sentence delivered; Issuing malcompliant citation; Anticitizen; Apply; Hehe"))
 
 /obj/item/clothing/mask/gas/sechailer/on_mob_say(mob/living/carbon/L, message, message_range)
 	if(voicetoggled == FALSE)
