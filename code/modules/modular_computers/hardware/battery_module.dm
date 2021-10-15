@@ -85,7 +85,7 @@
 	name = "super battery"
 	desc = "An advanced power cell, often used in high-end laptops."
 	icon_state = "cell"
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_NORMAL
 	maxcharge = 2000
 
 /obj/item/stock_parts/cell/computer/micro
