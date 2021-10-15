@@ -234,6 +234,13 @@
 	desc = "An insult to Duke Purple is an insult to the Space Queen! Any proper gentleman will fight you, if you sully this tea."
 	list_reagents = list(/datum/reagent/consumable/tea = 30)
 
+/obj/item/reagent_containers/food/drinks/teacup/red
+	name = "Rooibos Tea"
+	icon_state = "RooibosT"
+	desc = "A cup with dried Rooibos leaves in it, add water before consumption."
+	list_reagents = list(/datum/reagent/toxin/teapowder/red = 4)
+	spillable = TRUE
+
 /obj/item/reagent_containers/food/drinks/mug/coco
 	name = "Dutch hot coco"
 	desc = "Made in Space South America."
