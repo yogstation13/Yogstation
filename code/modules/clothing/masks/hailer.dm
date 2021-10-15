@@ -20,6 +20,7 @@
 	var/recent_uses = 0
 	var/broken_hailer = 0
 	var/safety = TRUE
+	var/voicetoggled = TRUE
 
 /obj/item/clothing/mask/gas/sechailer/swat
 	name = "\improper SWAT mask"
@@ -217,7 +218,25 @@
 	. = ..()
 	playsound(loc, pick('sound/voice/cpdeath/die1.ogg', 'sound/voice/cpdeath/die2.ogg', 'sound/voice/cpdeath/die3.ogg', 'sound/voice/cpdeath/die4.ogg'), 50, 0) //lost biosignal for protection team unit 4, remaining units contain 
 
+/obj/item/clothing/mask/gas/sechailer/verb/toggle()
+	set name = "Toggle voice modulator"
+	set category = "Object"
+	set src in usr
+	var/mob/M = usr
+	if (istype(M, /mob/dead/))
+		return
+	if (!can_use(M))
+		return
+	if(voicetoggled == TRUE)
+		to_chat(usr, span_notice("You disable the security mask's voice modulator."))
+		voicetoggled = FALSE
+	else
+		to_chat(usr, span_notice("You enable the security mask's voice modulator."))
+		voicetoggled = TRUE
+
 /obj/item/clothing/mask/gas/sechailer/on_mob_say(mob/living/carbon/L, message, message_range)
+	if(voicetoggled == FALSE)
+		return 1
 	if(findtext(message, "Affirmative", 1, 12))
 		playsound(L, 'sound/voice/cpvoicelines/affirmative.ogg', 50, FALSE)
 	else if(findtext(message, "Copy", 1, 5))
