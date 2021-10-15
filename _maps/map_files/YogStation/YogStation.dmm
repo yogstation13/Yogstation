@@ -14590,6 +14590,18 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"aQj" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
 "aQl" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/tile/blue{
@@ -36018,6 +36030,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"eYk" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
 "eYm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/window/reinforced,
@@ -40447,6 +40464,12 @@
 /obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
+"ibn" = (
+/obj/structure/rack,
+/obj/item/pipe_dispenser,
+/obj/item/shuttle_creator,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
 "ibw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -47684,6 +47707,25 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
+"mIK" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/poddoor{
+	id = "Secure Storage";
+	name = "secure storage"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
 "mJy" = (
 /obj/effect/turf_decal/stripes/end{
 	dir = 1
@@ -47876,16 +47918,6 @@
 /obj/machinery/telecomms/hub/preset,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
-"mQv" = (
-/obj/structure/rack,
-/obj/item/circuitboard/machine/spaceship_navigation_beacon{
-	pixel_x = 3;
-	pixel_y = 6
-	},
-/obj/item/pipe_dispenser,
-/obj/item/shuttle_creator,
-/turf/open/floor/plating,
-/area/construction/mining/aux_base)
 "mRf" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -48576,6 +48608,17 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
+"nhp" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
 "nhP" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -50768,6 +50811,35 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"oBd" = (
+/obj/structure/rack,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/circuitboard/computer/shuttle/flight_control{
+	pixel_x = -2;
+	pixel_y = 3
+	},
+/obj/item/circuitboard/machine/shuttle/engine{
+	pixel_x = 1
+	},
+/obj/item/circuitboard/machine/shuttle/heater{
+	pixel_x = 4;
+	pixel_y = -3
+	},
+/obj/machinery/camera{
+	c_tag = "Auxillary Base Construction Storage";
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
 "oBE" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -51726,42 +51798,6 @@
 /obj/effect/spawner/lootdrop/aimodule_harmful,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
-"phu" = (
-/obj/structure/rack,
-/obj/item/electronics/airlock,
-/obj/item/electronics/airlock,
-/obj/item/electronics/airlock,
-/obj/item/electronics/airlock,
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/circuitboard/computer/shuttle/flight_control{
-	pixel_x = -2;
-	pixel_y = 3
-	},
-/obj/item/circuitboard/machine/shuttle/engine{
-	pixel_x = 1
-	},
-/obj/item/circuitboard/machine/shuttle/engine{
-	pixel_x = 1
-	},
-/obj/item/circuitboard/machine/shuttle/heater{
-	pixel_x = 4;
-	pixel_y = -3
-	},
-/obj/item/circuitboard/machine/shuttle/heater{
-	pixel_x = 4;
-	pixel_y = -3
-	},
-/obj/machinery/camera{
-	c_tag = "Auxillary Base Construction Storage";
-	dir = 5
-	},
-/turf/open/floor/plating,
-/area/construction/mining/aux_base)
 "phB" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/abandoned,
@@ -52786,6 +52822,37 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"pRl" = (
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/item/pickaxe{
+	pixel_x = 5
+	},
+/obj/item/pickaxe{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/pickaxe{
+	pixel_x = 2;
+	pixel_y = 1
+	},
+/obj/item/shovel{
+	pixel_x = -5
+	},
+/obj/item/shovel{
+	pixel_x = -3;
+	pixel_y = -2
+	},
+/obj/item/shovel{
+	pixel_x = -1;
+	pixel_y = -4
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
 "pRt" = (
 /obj/machinery/cell_charger,
 /obj/structure/table,
@@ -53347,34 +53414,6 @@
 /obj/effect/spawner/structure/solars/solar_96,
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/starboard/fore)
-"qhp" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/poddoor{
-	id = "Secure Storage";
-	name = "secure storage"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/construction/mining/aux_base)
 "qhA" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -59970,36 +60009,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"uAv" = (
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/structure/rack,
-/obj/item/pickaxe{
-	pixel_x = 5
-	},
-/obj/item/pickaxe{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/obj/item/pickaxe{
-	pixel_x = 2;
-	pixel_y = 1
-	},
-/obj/item/shovel{
-	pixel_x = -5
-	},
-/obj/item/shovel{
-	pixel_x = -3;
-	pixel_y = -2
-	},
-/obj/item/shovel{
-	pixel_x = -1;
-	pixel_y = -4
-	},
-/turf/open/floor/plasteel,
-/area/construction/mining/aux_base)
 "uAL" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 1
@@ -60697,6 +60706,22 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"uXH" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/components/binary/pump/layer2{
+	dir = 1;
+	name = "distro to shuttle"
+	},
+/obj/machinery/atmospherics/components/binary/pump/layer4{
+	name = "shuttle waste"
+	},
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 1;
+	name = "fuel to shuttle"
+	},
+/turf/open/space/basic,
+/area/solar/port/fore)
 "uXZ" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "QMLoad"
@@ -65583,18 +65608,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
-"ykQ" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/components/binary/pump/layer2{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/binary/pump/layer4,
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 1
-	},
-/turf/open/space/basic,
-/area/solar/port/fore)
 "ykZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -78584,7 +78597,7 @@ eqs
 oCs
 eec
 uQg
-atI
+aQj
 fEY
 apJ
 apN
@@ -80382,9 +80395,9 @@ xEJ
 hJL
 pPX
 hDJ
-lTO
-tWf
-uAv
+nhp
+eYk
+pRl
 apJ
 lFj
 lFj
@@ -81411,7 +81424,7 @@ cus
 vZq
 xmv
 xmv
-qhp
+mIK
 xmv
 xmv
 alU
@@ -81666,10 +81679,10 @@ aaa
 aaa
 ebi
 liu
-arp
+xmv
 fKP
 tsO
-phu
+oBd
 xmv
 alF
 anj
@@ -81922,11 +81935,11 @@ aaa
 aaa
 aaa
 hcf
-ykQ
+uXH
 tFK
 mym
 vsp
-mQv
+ibn
 xmv
 alF
 oOf
