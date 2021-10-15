@@ -1065,11 +1065,3 @@
 	materials = list(/datum/material/iron = 20000)
 	build_path = /obj/item/ammo_box/a762
 	category = list("hacked", "Security")
-
-/datum/design/m10mm
-	name = "Rifle magazine (10mm)"
-	id = "m10mm"
-	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 28000)
-	build_path = /obj/item/ammo_box/magazine/m10mm/rifle
-	category = list("hacked", "Security")
