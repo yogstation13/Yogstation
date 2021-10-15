@@ -7,6 +7,7 @@
 	vend_reply = "Game on!"
 	products = list(/obj/item/modular_computer/laptop = 4,
 					/obj/item/modular_computer/tablet = 4,
+					/obj/item/modular_computer/tablet/phone = 4,
 					/obj/item/computer_hardware/hard_drive = 4,
 					/obj/item/computer_hardware/hard_drive/small = 4,
 					/obj/item/computer_hardware/network_card = 8,
@@ -16,9 +17,9 @@
 					/obj/item/computer_hardware/processor_unit = 4,
 					/obj/item/computer_hardware/processor_unit/small = 4)
 	premium = list(/obj/item/computer_hardware/card_slot = 2,
-		           /obj/item/computer_hardware/ai_slot = 2,
-		           /obj/item/computer_hardware/printer/mini = 2,
-		           /obj/item/computer_hardware/recharger/APC = 2)
+					/obj/item/computer_hardware/ai_slot = 2,
+					/obj/item/computer_hardware/printer/mini = 2,
+					/obj/item/computer_hardware/recharger/APC = 2)
 	refill_canister = /obj/item/vending_refill/modularpc
 	default_price = 30
 	extra_price = 250
