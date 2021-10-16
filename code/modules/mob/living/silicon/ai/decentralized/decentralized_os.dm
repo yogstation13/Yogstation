@@ -41,6 +41,8 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 	total_cpu = 0;
 	total_ram = 0;
 	for(var/obj/machinery/ai/expansion_card_holder/C in GLOB.expansion_card_holders)
+		if(!C.valid_holder())
+			continue
 		for(var/CARD in C.installed_cards)
 			if(istype(CARD, /obj/item/processing_card))
 				var/obj/item/processing_card/PC = CARD

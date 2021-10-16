@@ -1,5 +1,5 @@
 /obj/item/processing_card
-	name = "\improper AI Processing Card"
+	name = "AI Processing Card"
 	desc = "An external processing card for crucial AI computational operations."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_mod"
@@ -19,7 +19,7 @@
 
 
 /obj/item/memory_card
-	name = "\improper AI Memory Card"
+	name = "AI Memory Card"
 	desc = "An external memory card for crucial AI process management."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_mod"

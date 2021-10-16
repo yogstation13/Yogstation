@@ -100,21 +100,35 @@
 
 	switch(action)
 		if("run_project")
-			if(!run_project(params["project_name"]))
+			var/datum/ai_project/project = get_project_by_name(params["project_name"])
+			if(!project || !run_project(project))
 				to_chat(owner, "<span class='warning'>Unable to run the program '[params["project_name"]].'</span>")
 			else
 				to_chat(owner, "<span class='notice'>Spinning up instance of [params["project_name"]]...</span>")
 				. = TRUE
 		if("stop_project")
-			stop_project(params["project_name"]) // Can't fail (hopefully), so no failure check
-			to_chat(owner, "<span class='notice'>Instance of [params["project_name"]] succesfully ended.</span>")
-			. = TRUE
+			var/datum/ai_project/project = get_project_by_name(params["project_name"])
+			if(project)
+				stop_project(project) 
+				to_chat(owner, "<span class='notice'>Instance of [params["project_name"]] succesfully ended.</span>")
+				. = TRUE
 		if("allocate_cpu")
-			if(!set_project_cpu(params["project_name"], text2num(params["amount"])))
+			var/datum/ai_project/project = get_project_by_name(params["project_name"])
+
+			if(!project || !set_project_cpu(project, text2num(params["amount"])))
 				to_chat(owner, "<span class='warning'>Unable to add CPU to [params["project_name"]]. Either not enough free CPU or project is unavailable.</span>")
 			. = TRUE
 			
+/datum/ai_dashboard/proc/get_project_by_name(project_name, only_available = FALSE)
+	for(var/datum/ai_project/AP as anything in available_projects)
+		if(AP.name == project_name)
+			return AP
+	if(!only_available)
+		for(var/datum/ai_project/AP as anything in completed_projects)
+			if(AP.name == project_name)
+				return AP
 
+	return FALSE
 
 /datum/ai_dashboard/proc/set_project_cpu(datum/ai_project/project, amount)
 	var/current_cpu = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.cpu_assigned[owner] : 0
@@ -128,7 +142,7 @@
 		total_cpu_used += cpu_usage[I]
 
 
-	if((current_cpu - total_cpu_used) > amount)
+	if((current_cpu - total_cpu_used) >= amount)
 		cpu_usage[project.name] += amount
 		return TRUE
 	return FALSE
@@ -141,7 +155,7 @@
 	for(var/I in ram_usage)
 		total_ram_used += ram_usage[I]
 
-	if(current_ram - total_ram_used > project.ram_required && project.canRun())
+	if(current_ram - total_ram_used >= project.ram_required && project.canRun())
 		project.run_project()
 		ram_usage[project.name] += project.ram_required
 		return TRUE
@@ -171,13 +185,43 @@
 
 //Stuff is handled in here per tick :)
 /datum/ai_dashboard/proc/tick(seconds)
+	var/current_cpu = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.cpu_assigned[owner] : 0
+	var/current_ram = GLOB.ai_os.ram_assigned[owner] ? GLOB.ai_os.ram_assigned[owner] : 0
+
+	var/total_ram_used = 0
+	for(var/I in ram_usage)
+		total_ram_used += ram_usage[I]
+	var/total_cpu_used = 0
+	for(var/I in cpu_usage)
+		total_cpu_used += cpu_usage[I]
+
+	var/reduction_of_resources = FALSE
+
+	if(total_ram_used > current_ram)
+		while(total_ram_used > current_ram)
+			for(var/I in ram_usage)
+				var/datum/ai_project/project = get_project_by_name(I)
+				stop_project(project)
+				reduction_of_resources = TRUE
+
+	if(total_cpu_used > current_cpu)
+		while(total_cpu_used > current_cpu)
+			for(var/I in cpu_usage)
+				if(cpu_usage[I] > 0)
+					cpu_usage[I]--
+					reduction_of_resources = TRUE
+
+	if(reduction_of_resources)
+		to_chat(owner, "<span class='warning'>Lack of computational capacity. Some programs may have been stopped.</span>")
+
 	for(var/project_being_researched in cpu_usage)
 		if(!cpu_usage[project_being_researched])
 			continue
 		var/used_cpu = round(cpu_usage[project_being_researched] * seconds, 1)
-		var/datum/ai_project/project = locate(project_being_researched) in completed_projects
+		var/datum/ai_project/project = get_project_by_name(project_being_researched, TRUE)
 		if(!project)
 			cpu_usage[project_being_researched] = 0
+			continue
 		project.research_progress += used_cpu
 		if(project.research_progress > project.research_cost)
 			finish_project(project)

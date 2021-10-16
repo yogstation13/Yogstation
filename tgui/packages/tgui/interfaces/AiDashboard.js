@@ -58,25 +58,25 @@ export const AiDashboard = (props, context) => {
           <LabeledControls.Item>
               <ProgressBar
                 ranges={{
-                  good: [data.max_cpu * 0.7, Infinity],
-                  average: [data.max_cpu * 0.3, data.max_cpu * 0.7],
-                  bad: [0, data.max_cpu * 0.3]
+                  good: [data.current_cpu * 0.7, Infinity],
+                  average: [data.current_cpu * 0.3, data.current_cpu * 0.7],
+                  bad: [0, data.current_cpu * 0.3]
                 }}
               value={data.used_cpu}
 
-              maxValue={data.max_cpu}>{data.used_cpu ? data.used_cpu : 0}/{data.max_cpu} THz</ProgressBar>
+              maxValue={data.current_cpu}>{data.used_cpu ? data.used_cpu : 0}/{data.current_cpu} THz</ProgressBar>
               Utilized CPU Power
             </LabeledControls.Item>
             <LabeledControls.Item>
               <ProgressBar
                 ranges={{
-                  good: [data.max_ram * 0.7, Infinity],
-                  average: [data.max_ram * 0.3, data.max_ram * 0.7],
-                  bad: [0, data.max_ram * 0.3]
+                  good: [data.current_ram * 0.7, Infinity],
+                  average: [data.current_ram * 0.3, data.current_ram * 0.7],
+                  bad: [0, data.current_ram * 0.3]
                 }}
               value={data.used_ram}
 
-              maxValue={data.max_ram}>{data.used_ram ? data.used_ram : 0}/{data.max_ram} TB</ProgressBar>
+              maxValue={data.current_ram}>{data.used_ram ? data.used_ram : 0}/{data.current_ram} TB</ProgressBar>
               Utilized RAM Capacity
             </LabeledControls.Item>
           </LabeledControls>
@@ -106,20 +106,36 @@ export const AiDashboard = (props, context) => {
                 <Section title={(<Box inline color={project.available ? "lightgreen" : "bad"}>{project.name} | {project.available ? "Available" : "Unavailable"}</Box>)} buttons={(
                   <Fragment>
                     <Box inline bold>Assigned CPU:&nbsp;</Box>
-                    <NumberInput value={0} minValue={0} maxValue={data.current_cpu} onChange={(e, value) => act('allocate_cpu', {
-                      project: project.name,
+                    <NumberInput value={project.assigned_cpu} minValue={0} maxValue={data.current_cpu} onChange={(e, value) => act('allocate_cpu', {
+                      project_name: project.name,
                       amount: value,
                       })}></NumberInput>
                     <Box inline bold>&nbsp;THz</Box>
                   </Fragment>
                 )}>
                   <Box bold>Research Cost: {project.research_cost} THz</Box>
-                  <Box bold>RAM Requiremnt: {project.ram_required} TB</Box>
+                  <Box bold>RAM Requirement: {project.ram_required} TB</Box>
                   <Box bold>Research Requirements: <Box inline>{project.research_requirements}</Box></Box>
                   <Box mb={1}>
                     {project.description}
                   </Box>
                   <ProgressBar value={project.research_progress / project.research_cost}></ProgressBar>
+                </Section>
+              ))}
+          </Section>
+        )}
+        {tab === 2 && (
+          <Section title="Completed Projects">
+              {data.completed_projects && data.completed_projects.map(project => (
+                <Section title={(<Box inline color={project.available ? "lightgreen" : "bad"}>{project.name} | {project.running ? "Running" : "Not Running"}</Box>)} buttons={(
+                    <Button icon={project.running ? "stop" : "play"} color={project.running ? "bad" : "good"} onClick={(e, value) => act(project.running ? "stop_project" : "run_project", {
+                      project_name: project.name,
+                      })}>{project.running ? "Stop" : "Run"}</Button>
+                )}>
+                  <Box bold>RAM Requirement: {project.ram_required} TB</Box>
+                  <Box mb={1}>
+                    {project.description}
+                  </Box>
                 </Section>
               ))}
           </Section>
