@@ -83,12 +83,13 @@ GLOBAL_LIST_EMPTY(expansion_card_holders)
 		installed_cards += W
 		GLOB.ai_os.update_hardware()
 		if(istype(W, /obj/item/processing_card))
-			total_cpu += W.tier
+			var/obj/item/processing_card/cpu_card = W
+			total_cpu += cpu_card.tier
 		return FALSE
 	if(W.tool_behaviour == TOOL_CROWBAR)
 		if(installed_cards.len)
 			var/turf/T = get_turf(src)
-			for(var/C in installed_cards)
+			for(var/obj/item/C in installed_cards)
 				C.forceMove(T)
 			total_cpu = 0
 			GLOB.ai_os.update_hardware()
