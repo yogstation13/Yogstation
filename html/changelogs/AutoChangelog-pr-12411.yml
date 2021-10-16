@@ -1,4 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - tweak: "tweaked the cryo lockout from first 30 minutes to gamma alert or higher"

@@ -1,6 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - rscadd: "added modular phones"
-  - tweak: "removed the ability for tablets to be stored in the ID slot, increased its weight to normal, and increased its max part size to normal"
-  - tweak: "tweaked many of the weight values for modular computer parts and allowed programs"
