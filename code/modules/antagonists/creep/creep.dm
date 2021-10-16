@@ -231,6 +231,8 @@
 		explanation_text = "Free Objective"
 
 /datum/objective/spendtime/check_completion()
+	if(..())
+		return TRUE
 	return timer <= 0 || explanation_text == "Free Objective"
 
 
@@ -249,6 +251,8 @@
 		explanation_text = "Free Objective"
 
 /datum/objective/hug/check_completion()
+	if(..())
+		return TRUE
 	var/datum/antagonist/obsessed/creeper = owner.has_antag_datum(/datum/antagonist/obsessed)
 	if(!creeper || !creeper.trauma || !hugs_needed)
 		return TRUE//free objective
@@ -265,6 +269,8 @@
 		explanation_text = "Free Objective"
 
 /datum/objective/polaroid/check_completion()
+	if(..())
+		return TRUE
 	var/list/datum/mind/owners = get_owners()
 	for(var/datum/mind/M in owners)
 		if(!isliving(M.current))

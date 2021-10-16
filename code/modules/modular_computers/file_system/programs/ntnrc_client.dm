@@ -36,6 +36,12 @@
 			var/message = reject_bad_text(params["message"])
 			if(!message)
 				return
+			//yogs start
+			if(isnotpretty(message))
+				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+				message_admins("[key_name(usr)] just tripped a pretty filter: '[message]'.")
+				return
+			//yogs end
 			if(channel.password && !(src in channel.clients))
 				if(channel.password == message)
 					channel.add_client(src)
@@ -68,6 +74,12 @@
 			var/channel_title = reject_bad_text(params["new_channel_name"])
 			if(!channel_title)
 				return
+			//yogs start
+			if(isnotpretty(channel_title))
+				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+				message_admins("[key_name(usr)] just tripped a pretty filter: '[channel_title]'.")
+				return
+			//yogs end
 			var/datum/ntnet_conversation/C = new /datum/ntnet_conversation()
 			C.add_client(src)
 			C.operator = src
@@ -91,6 +103,12 @@
 			var/newname = sanitize(params["new_name"])
 			if(!newname)
 				return
+			//yogs start
+			if(isnotpretty(newname))
+				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+				message_admins("[key_name(usr)] just tripped a pretty filter: '[newname]'.")
+				return
+			//yogs end
 			for(var/C in SSnetworks.station_network.chat_channels)
 				var/datum/ntnet_conversation/chan = C
 				if(src in chan.clients)
@@ -127,6 +145,12 @@
 			var/newname = reject_bad_text(params["new_name"])
 			if(!newname || !channel)
 				return
+			//yogs start
+			if(isnotpretty(newname))
+				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+				message_admins("[key_name(usr)] just tripped a pretty filter: '[newname]'.")
+				return
+			//yogs end
 			channel.add_status_message("Channel renamed from [channel.title] to [newname] by operator.")
 			channel.title = newname
 			return TRUE
@@ -143,6 +167,12 @@
 			if(!authed)
 				return
 
+			//yogs start
+			if(isnotpretty(new_password))
+				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+				message_admins("[key_name(usr)] just tripped a pretty filter: '[new_password]'.")
+				return
+			//yogs end
 			channel.password = new_password
 			return TRUE
 

@@ -46,3 +46,34 @@
 	install_component(new /obj/item/computer_hardware/network_card)
 	install_component(new /obj/item/computer_hardware/card_slot)
 	install_component(new /obj/item/computer_hardware/printer/mini)
+
+//Phone Presets//
+
+// This is literally the worst possible cheap phone
+/obj/item/modular_computer/tablet/phone/preset/cheap
+	desc = "A low-end tablet often seen among low ranked station personnel."
+
+/obj/item/modular_computer/tablet/phone/preset/cheap/Initialize()
+	. = ..()
+	install_component(new /obj/item/computer_hardware/processor_unit/small)
+	install_component(new /obj/item/computer_hardware/battery(src, /obj/item/stock_parts/cell/computer/micro))
+	install_component(new /obj/item/computer_hardware/hard_drive/small)
+	install_component(new /obj/item/computer_hardware/network_card)
+
+// Alternative version, an average one, for higher ranked positions mostly
+/obj/item/modular_computer/tablet/phone/preset/advanced/Initialize()
+	. = ..()
+	install_component(new /obj/item/computer_hardware/processor_unit/small)
+	install_component(new /obj/item/computer_hardware/battery(src, /obj/item/stock_parts/cell/computer))
+	install_component(new /obj/item/computer_hardware/hard_drive/small)
+	install_component(new /obj/item/computer_hardware/network_card)
+	install_component(new /obj/item/computer_hardware/card_slot)
+	install_component(new /obj/item/computer_hardware/printer/mini)
+
+/obj/item/modular_computer/tablet/phone/preset/cargo/Initialize()
+	. = ..()
+	install_component(new /obj/item/computer_hardware/processor_unit/small)
+	install_component(new /obj/item/computer_hardware/battery(src, /obj/item/stock_parts/cell/computer))
+	install_component(new /obj/item/computer_hardware/hard_drive/small)
+	install_component(new /obj/item/computer_hardware/network_card)
+	install_component(new /obj/item/computer_hardware/printer/mini)

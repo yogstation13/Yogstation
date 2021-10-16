@@ -141,11 +141,12 @@
 	..()
 
 /obj/item/clothing/head/kitty/dropped(mob/user)
+	..()
 	var/datum/language_holder/LH = user.get_language_holder()
 	if(LH.has_language(/datum/language/felinid) || LH.can_speak_language(/datum/language/felinid)) //sanity
 		to_chat(user, "You rid yourself of degeneracy.")
 		LH.remove_language(/datum/language/felinid,TRUE,TRUE,LANGUAGE_CATEARS)
-	..()
+	
 
 /obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user)
 	if(ishuman(user))

@@ -659,7 +659,7 @@
 			playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
 		else
 			return
-		if(do_after(user, 100, target = user))
+		if(do_after(user, 10 SECONDS, target = user))
 			finish_roasting(user, target)
 		else
 			QDEL_NULL(beam)
