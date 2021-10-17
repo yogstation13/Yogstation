@@ -1,0 +1,5 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "added new vampire roundstart ambient sound"
+  - tweak: "replaced old vampire roundstart sound with new vampire roundstart sound in antag datum"
