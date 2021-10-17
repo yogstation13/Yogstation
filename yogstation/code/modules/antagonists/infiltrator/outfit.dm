@@ -12,17 +12,14 @@
 	backpack_contents = list(/obj/item/storage/box/syndie=1,\
 		/obj/item/kitchen/knife/combat/survival=1,\
 		/obj/item/gun/ballistic/automatic/pistol=1)
-	l_pocket = /obj/item/pinpointer/infiltrator
 
 /datum/outfit/infiltrator/post_equip(mob/living/carbon/human/H)
 	var/obj/item/implant/weapons_auth/W = new/obj/item/implant/weapons_auth(H)
 	W.implant(H)
 	var/obj/item/implant/dusting/E = new/obj/item/implant/dusting(H)
 	E.implant(H)
-	var/obj/item/implant/uplink/infiltrator/U = new/obj/item/implant/uplink/infiltrator(H, H.key)
+	var/obj/item/implant/infiltrator/U = new/obj/item/implant/infiltrator(H, H.key)
 	U.implant(H)
-	var/datum/component/uplink/uplink = U.GetComponent(/datum/component/uplink)
-	uplink.set_gamemode(/datum/game_mode/infiltration)
 	var/obj/item/implant/radio/syndicate/S = new/obj/item/implant/radio/syndicate(H)
 	S.implant(H)
 	H.faction |= ROLE_SYNDICATE

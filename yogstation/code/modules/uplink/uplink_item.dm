@@ -170,12 +170,6 @@
 	include_modes = list(/datum/game_mode/infiltration)
 	surplus = 0
 
-/datum/uplink_item/infiltration/pinpointer_upgrade
-	name = "Pinpointer Upgrade"
-	desc = "An infiltration pinpointer upgrade that allows pinpointers to track objective targets."
-	item = /obj/item/infiltrator_pinpointer_upgrade
-	cost = 8
-
 /datum/uplink_item/infiltration/extra_stealthsuit
 	name = "Extra Chameleon Hardsuit"
 	desc = "An infiltration hardsuit, capable of changing it's appearance instantly."
