@@ -104,6 +104,8 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isAI(A) (istype(A, /mob/living/silicon/ai))
 
+#define isAIShell(A) (istype(A, /mob/living/silicon/robot/shell))
+
 #define ispAI(A) (istype(A, /mob/living/silicon/pai))
 
 //Simple animals

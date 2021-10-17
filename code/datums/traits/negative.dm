@@ -596,11 +596,11 @@
 
 /datum/quirk/sheltered
 	name = "Sheltered"
-	desc = "You never learned galactic common."
-	value = -3
+	desc = "You never learned to speak galactic common."
+	value = -1
 	mob_trait = TRAIT_SHELTERED
-	gain_text = span_danger("You do not understand galactic common.")
-	lose_text = span_notice("You start to put together what people are saying in galactic common.")
+	gain_text = span_danger("You do not speak galactic common.")
+	lose_text = span_notice("You start to put together how to speak galactic common.")
 	medical_record_text = "Patient looks perplexed when questioned in galactic common."
 
 

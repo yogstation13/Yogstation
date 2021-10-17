@@ -252,6 +252,11 @@ CHANGELING_SCALING_COEFF 8
 ## Set to 0 to disable scaling and use default numbers instead.
 SECURITY_SCALING_COEFF 7
 
+## Scales the number of forced security posistions based on population, this should probably be higher than the one above
+## Used as (Forced Security = Population / Coeff)
+## Set to 0 to disable forced security rolling
+MIN_SECURITY_SCALING_COEFF 10
+
 ## The number of objectives traitors get.
 ## Not including escaping/hijacking.
 TRAITOR_OBJECTIVES_AMOUNT 2

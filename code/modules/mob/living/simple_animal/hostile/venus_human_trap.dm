@@ -106,6 +106,9 @@
 		adjustHealth(5) 
 		if(prob(20))
 			to_chat(src, span_danger("You wither away without the support of the kudzu..."))
+	if(check_gas())
+		adjustHealth(6)
+		to_chat(src, span_danger("The gas reacts with you and starts to melt you away!"))
 	
 /mob/living/simple_animal/hostile/venus_human_trap/AttackingTarget()
 	. = ..()
@@ -205,4 +208,11 @@
 	for(var/obj/structure/spacevine/vine_found in view(3,src))
 		return TRUE
 	return FALSE
-		
+
+/mob/living/simple_animal/hostile/venus_human_trap/proc/check_gas()
+	for(var/contents in src.loc)
+		if(istype(contents, /obj/effect/particle_effect/smoke/chem))
+			var/obj/effect/particle_effect/smoke/chem/gas = contents
+			if(gas.reagents.has_reagent(/datum/reagent/toxin/plantbgone, 1))
+				return TRUE
+	return FALSE

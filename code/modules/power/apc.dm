@@ -606,7 +606,7 @@
 		user.visible_message("[user.name] adds cables to the APC frame.", \
 							span_notice("You start adding cables to the APC frame..."))
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
-		if(do_after(user, 20, target = src))
+		if(do_after(user, 2 SECONDS, target = src))
 			if (C.get_amount() < 10 || !C)
 				return
 			if (C.get_amount() >= 10 && !terminal && opened && has_electronics)
@@ -630,7 +630,7 @@
 		user.visible_message("[user.name] inserts the power control board into [src].", \
 							span_notice("You start to insert the power control board into the frame..."))
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
-		if(do_after(user, 10, target = src))
+		if(do_after(user, 1 SECONDS, target = src))
 			if(!has_electronics)
 				has_electronics = APC_ELECTRONICS_INSTALLED
 				locked = FALSE
@@ -671,7 +671,7 @@
 		if (!(stat & BROKEN) && opened==APC_COVER_REMOVED) // Cover is the only thing broken, we do not need to remove elctronicks to replace cover
 			user.visible_message("[user.name] replaces missing APC's cover.",\
 							span_notice("You begin to replace APC's cover..."))
-			if(do_after(user, 20, target = src)) // replacing cover is quicker than replacing whole frame
+			if(do_after(user, 2 SECONDS, target = src)) // replacing cover is quicker than replacing whole frame
 				to_chat(user, span_notice("You replace missing APC's cover."))
 				qdel(W)
 				opened = APC_COVER_OPENED
@@ -682,7 +682,7 @@
 			return
 		user.visible_message("[user.name] replaces the damaged APC frame with a new one.",\
 							span_notice("You begin to replace the damaged APC frame..."))
-		if(do_after(user, 50, target = src))
+		if(do_after(user, 5 SECONDS, target = src))
 			to_chat(user, span_notice("You replace the damaged APC frame with a new one."))
 			qdel(W)
 			stat &= ~BROKEN
@@ -1150,7 +1150,7 @@
 		return
 	to_chat(user, span_notice("AI accepted request. Transferring stored intelligence to [card]..."))
 	to_chat(occupier, span_notice("Transfer starting. You will be moved to [card] shortly."))
-	if(!do_after(user, 50, target = src))
+	if(!do_after(user, 5 SECONDS, target = src))
 		to_chat(occupier, span_warning("[user] was interrupted! Transfer canceled."))
 		transfer_in_progress = FALSE
 		return

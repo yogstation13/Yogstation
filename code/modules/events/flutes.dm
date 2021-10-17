@@ -35,6 +35,7 @@
 		C.playsound_local(C, 'sound/ambience/flutes.ogg', 20, FALSE, pressure_affected = FALSE)
 		pick_flute_scene(C)
 		chosen_players.Add(C)
+		announce_to_ghosts(C)
 		if(chosen_players.len >= target_amount)
 			break
 

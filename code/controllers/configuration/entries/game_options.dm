@@ -97,6 +97,8 @@
 	integer = FALSE
 	min_val = 1
 
+/datum/config_entry/number/min_security_scaling_coeff	//how much does the amount of players get divided by to determine forced security positions
+
 /datum/config_entry/number/abductor_scaling_coeff	//how many players per abductor team
 	config_entry_value = 15
 	integer = FALSE
@@ -399,3 +401,10 @@
 
 /datum/config_entry/number/engine_type
 	config_entry_value = 3
+
+//Shuttle size limiter
+/datum/config_entry/number/max_shuttle_count
+	config_entry_value = 6
+
+/datum/config_entry/number/max_shuttle_size
+	config_entry_value = 250
