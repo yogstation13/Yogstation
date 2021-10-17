@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "fixes auiri pill bottles not actually giving aiuri pills"
