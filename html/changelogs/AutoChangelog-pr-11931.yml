@@ -1,0 +1,4 @@
+author: "JamieD1"
+delete-after: true 
+changes: 
+  - rscadd: "Man eating plants take damage from plant b gone."
