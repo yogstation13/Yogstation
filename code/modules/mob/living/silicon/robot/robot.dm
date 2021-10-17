@@ -1203,10 +1203,10 @@
 			M.visible_message(span_boldwarning("Unfortunately, [M] just can't seem to hold onto [src]!"))
 			return
 	M.visible_message(span_warning("[M] begins to [M == usr ? "climb onto" : "be buckled to"] [src]..."))
-	if(!do_after(usr, 1.5 SECONDS, target = M))
-		visible_message(span_boldwarning("[M] was prevented from buckling to [src]!"))
+	if(!do_after(M, 0.75 SECONDS, target = src))
+		M.visible_message(span_boldwarning("[M] was prevented from buckling to [src]!"))
 		return
-
+		
 	if(iscarbon(M) && !M.incapacitated() && !riding_datum.equip_buckle_inhands(M, 1))
 		if(M.get_num_arms() <= 0)
 			M.visible_message(span_boldwarning("[M] can't climb onto [src] because [M.p_they()] don't have any usable arms!"))
