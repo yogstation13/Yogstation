@@ -1,6 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - tweak: "moved 1.5 second delay from buckling to spinning"
-  - tweak: "made 1.5 second delay into 2 second delay"
-  - soundadd: "adding borg flinging sounds, one for when it starts, finishes, fails, and fails (in a different way!)"
