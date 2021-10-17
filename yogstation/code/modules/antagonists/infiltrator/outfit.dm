@@ -18,7 +18,14 @@
 	W.implant(H)
 	var/obj/item/implant/dusting/E = new/obj/item/implant/dusting(H)
 	E.implant(H)
-	var/obj/item/implant/infiltrator/U = new/obj/item/implant/infiltrator(H, H.key)
+	var/datum/team/infiltrator/team
+	for (var/T in GLOB.antagonist_teams)
+		if (istype(T, /datum/team/infiltrator))
+			var/datum/team/infiltrator/infil_team = T
+			if (H.mind in infil_team.members)
+				team = infil_team
+				break
+	var/obj/item/implant/infiltrator/U = new/obj/item/implant/infiltrator(H, H.key, team)
 	U.implant(H)
 	var/obj/item/implant/radio/syndicate/S = new/obj/item/implant/radio/syndicate(H)
 	S.implant(H)

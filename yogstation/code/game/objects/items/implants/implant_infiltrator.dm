@@ -71,7 +71,7 @@
 					pinpointer.scan_target = SSshuttle.getShuttle("syndicatecutter")
 					to_chat(imp_in, span_notice("Pinpointer target set to the infiltration cruiser."))
 				else
-					pinpointer.scan_target = pinpointer_chosen
+					pinpointer.scan_target = targets[pinpointer_chosen]
 					to_chat(imp_in, span_notice("Pinpointer target set to [pinpointer.scan_target]"))
 				pinpointer.point_to_target()
 		if ("Send Ship Away")
