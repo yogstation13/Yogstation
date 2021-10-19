@@ -38,6 +38,7 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/utility/chief/full
+	glasses = /obj/item/clothing/glasses/sunglasses
 	l_pocket = /obj/item/pda/heads/ce
 	ears = /obj/item/radio/headset/heads/ce
 	uniform = /obj/item/clothing/under/rank/chief_engineer
