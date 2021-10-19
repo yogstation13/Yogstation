@@ -317,7 +317,7 @@
 
 /obj/item/reagent_containers/food/snacks/cheesewedge/bug
 	name = "bug cheese piece"
-	desc = "A piece of gutlunch "honey"."
+	desc = "A piece of gutlunch \"honey\"."
 	icon_state = "bug_piece"
 	filling_color = "#ddedd5"
 	foodtype = SUGAR | MEAT
