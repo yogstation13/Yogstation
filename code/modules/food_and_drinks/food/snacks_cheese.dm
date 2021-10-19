@@ -308,7 +308,7 @@
 //bug cheese
 /obj/item/reagent_containers/food/snacks/store/cheesewheel/bug
 	name = "bug cheese ball"
-	desc = "A big ball of gutlunch "honey", with a similar consistency to cheese."
+	desc = "A big ball of gutlunch \"honey\", with a similar consistency to cheese."
 	icon_state = "bug_ball"
 	foodtype = SUGAR | MEAT //honey made by a carnivorous scavenging bug
 	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge/bug
