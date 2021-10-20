@@ -1057,3 +1057,11 @@
 	build_path = /obj/item/clothing/neck/stethoscope
 	category = list("initial", "Medical", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/a762
+	name = "Stripper clip (7.62mm)"
+	id = "a762"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 20000)
+	build_path = /obj/item/ammo_box/a762
+	category = list("hacked", "Security")

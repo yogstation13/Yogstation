@@ -3,7 +3,7 @@
 	desc = "Computer-integrated printer with paper recycling module."
 	power_usage = 100
 	icon_state = "printer"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	device_type = MC_PRINT
 	var/stored_paper = 20
 	var/max_paper = 30
