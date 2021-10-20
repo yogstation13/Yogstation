@@ -64,7 +64,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	change_position_cooldown = CONFIG_GET(number/id_console_jobslot_delay)
 
 /obj/machinery/computer/card/attackby(obj/O, mob/user, params)//TODO:SANITY
-	if(istype(O, /obj/item/card/id))
+	if(isidcard(O))
 		var/obj/item/card/id/idcard = O
 		if(!modify)
 			if (!user.transferItemToLoc(idcard,src))
