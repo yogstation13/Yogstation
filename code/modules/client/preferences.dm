@@ -67,6 +67,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/hair_color = "000"				//Hair color
 	var/facial_hair_style = "Shaved"	//Face hair type
 	var/facial_hair_color = "000"		//Facial hair color
+	var/hair_gradient_style = "None"	//Hair gradient type
+	var/hair_gradient_color = "000"		//Hair gradient color
 	var/skin_tone = "caucasian1"		//Skin color
 	var/eye_color = "000"				//Eye color
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
@@ -365,6 +367,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Change</a>"
 				dat += "<a href ='?_src_=prefs;preference=facial_hair_style_color;task=lock'>[random_locks["facial"] ? "Unlock" : "Lock"]</a><BR>"
+
+				dat += "<h3>Hair Gradient</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=hair_gradient_style;task=input'>[hair_gradient_style]</a>"
+				dat += "<a href ='?_src_=prefs;preference=hair_gradient_style;task=lock'>[random_locks["hair_gradient_style"] ? "Unlock" : "Lock"]</a><BR>"
+
+				dat += "<a href='?_src_=prefs;preference=previous_hair_gradient_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_gradient_style;task=input'>&gt;</a><BR>"
+
+				dat += "<span style='border:1px solid #161616; background-color: #[hair_gradient_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_gradient;task=input'>Change</a>"
+				dat += "<a href ='?_src_=prefs;preference=hair_gradient_color;task=lock'>[random_locks["hair_gradient_color"] ? "Unlock" : "Lock"]</a><BR>"
 
 				dat += "</td>"
 
@@ -1493,6 +1505,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					else
 						facial_hair_style = previous_list_item(facial_hair_style, GLOB.facial_hair_styles_list)
 
+				if("hair_gradient")
+					var/new_hair_gradient_color = input(user, "Choose your character's hair gradient colour:", "Character Preference","#"+hair_gradient_color) as color|null
+					if(new_hair_gradient_color)
+						hair_gradient_color = sanitize_hexcolor(new_hair_gradient_color)
+
+				if("hair_gradient_style")
+					var/new_gradient_style
+					new_gradient_style = input(user, "Choose your character's hair gradient style:", "Character Preference")  as null|anything in GLOB.hair_gradients_list
+					if(new_gradient_style)
+						hair_gradient_style = new_gradient_style
+
+				if("next_hair_gradient_style")
+					hair_gradient_style = next_list_item(hair_gradient_style, GLOB.hair_gradients_list)
+
+				if("previous_hair_gradient_style")
+					hair_gradient_style = previous_list_item(hair_gradient_style, GLOB.hair_gradients_list)
+
 				if("underwear")
 					var/new_underwear
 					if(gender == MALE)
@@ -2001,10 +2030,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		organ_eyes.old_eye_color = eye_color
 	character.hair_color = hair_color
 	character.facial_hair_color = facial_hair_color
+	character.grad_color = hair_gradient_color
 
 	character.skin_tone = skin_tone
 	character.hair_style = hair_style
 	character.facial_hair_style = facial_hair_style
+	character.grad_style = hair_gradient_style
 	character.underwear = underwear
 	character.undershirt = undershirt
 	character.socks = socks
