@@ -105,9 +105,9 @@ export const NtosNetDownloader = (props, context) => {
           <Flex.Item grow={1} basis={0}>
             {items?.map(program => (
               <Program
-              key={program.filename}
-              program={program} />
-          ))}
+                key={program.filename}
+                program={program} />
+            ))}
           </Flex.Item>
         </Flex>
       </NtosWindow.Content>
