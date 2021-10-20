@@ -12,7 +12,7 @@
 
 /obj/item/book/granter/proc/turn_page(mob/user)
 	playsound(user, pick('sound/effects/pageturn1.ogg','sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg'), 30, 1)
-	if(do_after(user,50, user))
+	if(do_after(user, 5 SECONDS, user))
 		if(remarks.len)
 			to_chat(user, span_notice("[pick(remarks)]"))
 		else
@@ -56,7 +56,7 @@
 				on_reading_stopped()
 				reading = FALSE
 				return
-		if(do_after(user,50, user))
+		if(do_after(user, 5 SECONDS, user))
 			on_reading_finished(user)
 		reading = FALSE
 	return TRUE

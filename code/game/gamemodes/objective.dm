@@ -226,6 +226,8 @@ GLOBAL_LIST_EMPTY(objectives)
 	..()
 
 /datum/objective/mutiny/check_completion()
+	if(..())
+		return TRUE
 	if(!target || !considered_alive(target) || considered_afk(target))
 		return TRUE
 	var/turf/T = get_turf(target.current)
@@ -249,6 +251,8 @@ GLOBAL_LIST_EMPTY(objectives)
 	..()
 
 /datum/objective/maroon/check_completion()
+	if(..())
+		return TRUE
 	return !target || !considered_alive(target) || (!target.current.onCentCom() && !target.current.onSyndieBase())
 
 /datum/objective/maroon/update_explanation_text()
@@ -270,6 +274,8 @@ GLOBAL_LIST_EMPTY(objectives)
 	..()
 
 /datum/objective/debrain/check_completion()
+	if(..())
+		return TRUE
 	if(!target)//If it's a free objective.
 		return TRUE
 	if(!target.current || !isbrain(target.current))
@@ -307,6 +313,8 @@ GLOBAL_LIST_EMPTY(objectives)
 	return target
 
 /datum/objective/protect/check_completion()
+	if(..())
+		return TRUE
 	return !target || considered_alive(target, enforce_human = human_check)
 
 /datum/objective/protect/update_explanation_text()
@@ -335,6 +343,8 @@ GLOBAL_LIST_EMPTY(objectives)
 	return target
 
 /datum/objective/assist/check_completion()
+	if(..())
+		return TRUE
 	if(target)
 		for(var/datum/antagonist/antag in target.antag_datums)
 			for(var/datum/objective/O in antag.objectives)
@@ -361,6 +371,8 @@ GLOBAL_LIST_EMPTY(objectives)
 	martyr_compatible = 0 //Technically you won't get both anyway.
 
 /datum/objective/hijack/check_completion() // Requires all owners to escape.
+	if(..())
+		return TRUE
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
 		return FALSE
 	var/list/datum/mind/owners = get_owners()
@@ -375,6 +387,8 @@ GLOBAL_LIST_EMPTY(objectives)
 	martyr_compatible = 1
 
 /datum/objective/block/check_completion()
+	if(..())
+		return TRUE
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
 		return TRUE
 	for(var/mob/living/player in GLOB.player_list)
@@ -389,6 +403,8 @@ GLOBAL_LIST_EMPTY(objectives)
 	martyr_compatible = 1
 
 /datum/objective/purge/check_completion()
+	if(..())
+		return TRUE
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
 		return TRUE
 	for(var/mob/living/player in GLOB.player_list)
@@ -404,6 +420,8 @@ GLOBAL_LIST_EMPTY(objectives)
 	martyr_compatible = 0
 
 /datum/objective/robot_army/check_completion()
+	if(..())
+		return TRUE
 	var/counter = 0
 	var/list/datum/mind/owners = get_owners()
 	for(var/datum/mind/M in owners)
@@ -421,6 +439,8 @@ GLOBAL_LIST_EMPTY(objectives)
 	team_explanation_text = "Have all members of your team escape on a shuttle or pod alive, without being in custody."
 
 /datum/objective/escape/check_completion()
+	if(..())
+		return TRUE
 	// Require all owners escape safely.
 	var/list/datum/mind/owners = get_owners()
 	for(var/datum/mind/M in owners)
@@ -454,6 +474,8 @@ GLOBAL_LIST_EMPTY(objectives)
 		explanation_text = "Free Objective."
 
 /datum/objective/escape/escape_with_identity/check_completion()
+	if(..())
+		return TRUE
 	if(!target || !target_real_name)
 		return TRUE
 	var/list/datum/mind/owners = get_owners()
@@ -473,6 +495,8 @@ GLOBAL_LIST_EMPTY(objectives)
 	explanation_text = "Stay alive until the end."
 
 /datum/objective/survive/check_completion()
+	if(..())
+		return TRUE
 	var/list/datum/mind/owners = get_owners()
 	for(var/datum/mind/M in owners)
 		if(!considered_alive(M))
@@ -483,6 +507,8 @@ GLOBAL_LIST_EMPTY(objectives)
 	name = "survive nonhuman"
 
 /datum/objective/survive/exist/check_completion()
+	if(..())
+		return TRUE
 	var/list/datum/mind/owners = get_owners()
 	for(var/datum/mind/M in owners)
 		if(!considered_alive(M, FALSE))
@@ -494,6 +520,8 @@ GLOBAL_LIST_EMPTY(objectives)
 	explanation_text = "Die a glorious death."
 
 /datum/objective/martyr/check_completion()
+	if(..())
+		return TRUE
 	var/list/datum/mind/owners = get_owners()
 	for(var/datum/mind/M in owners)
 		if(considered_alive(M))
@@ -508,6 +536,8 @@ GLOBAL_LIST_EMPTY(objectives)
 	martyr_compatible = 1
 
 /datum/objective/nuclear/check_completion()
+	if(..())
+		return TRUE
 	if(SSticker && SSticker.mode && SSticker.mode.station_was_nuked)
 		return TRUE
 	return FALSE
@@ -577,6 +607,8 @@ GLOBAL_LIST_EMPTY(possible_items)
 		set_target(new_target)
 
 /datum/objective/steal/check_completion()
+	if(..())
+		return TRUE
 	var/list/datum/mind/owners = get_owners()
 	if(!steal_target)
 		return TRUE
@@ -661,6 +693,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	explanation_text = "Download [target_amount] research node\s."
 
 /datum/objective/download/check_completion()
+	if(..())
+		return TRUE
 	var/datum/techweb/checking = new
 	var/list/datum/mind/owners = get_owners()
 	for(var/datum/mind/owner in owners)
@@ -695,6 +729,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	explanation_text = "Capture [target_amount] lifeform\s with an energy net. Live, rare specimens are worth more."
 
 /datum/objective/capture/check_completion()//Basically runs through all the mobs in the area to determine how much they are worth.
+	if(..())
+		return TRUE
 	var/captured_amount = 0
 	var/area/centcom/holding/A = GLOB.areas_by_type[/area/centcom/holding]
 	for(var/mob/living/carbon/human/M in A)//Humans.
@@ -744,6 +780,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		explanation_text = "Free objective."
 
 /datum/objective/protect_object/check_completion()
+	if(..())
+		return TRUE
 	return !QDELETED(protect_target)
 
 //Changeling Objectives
@@ -779,6 +817,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	update_explanation_text()
 
 /datum/objective/absorb/check_completion()
+	if(..())
+		return TRUE
 	var/list/datum/mind/owners = get_owners()
 	var/absorbedcount = 0
 	for(var/datum/mind/M in owners)
@@ -795,6 +835,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	explanation_text = "Extract more compatible genomes than any other Changeling."
 
 /datum/objective/absorb_most/check_completion()
+	if(..())
+		return TRUE
 	var/list/datum/mind/owners = get_owners()
 	var/absorbedcount = 0
 	for(var/datum/mind/M in owners)
@@ -816,6 +858,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	explanation_text = "Absorb another Changeling."
 
 /datum/objective/absorb_changeling/check_completion()
+	if(..())
+		return TRUE
 	var/list/datum/mind/owners = get_owners()
 	for(var/datum/mind/M in owners)
 		if(!M)
@@ -846,6 +890,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	return target
 
 /datum/objective/destroy/check_completion()
+	if(..())
+		return TRUE
 	if(target && target.current)
 		return target.current.stat == DEAD || target.current.z > 6 || !target.current.ckey //Borgs/brains/AIs count as dead for traitor objectives.
 	return TRUE
@@ -1011,6 +1057,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 
 /datum/objective/changeling_team_objective/impersonate_department/check_completion()
+	if(..())
+		return TRUE
 	if(!department_real_names.len || !department_minds.len)
 		return TRUE //Something fucked up, give them a win
 
@@ -1095,6 +1143,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
   * Returns TRUE if there's no record, returns FALSE otherwise
   */
 /datum/objective/minor/secrecords/check_completion()
+	if(..())
+		return TRUE
 	return !record || !(record in GLOB.data_core.security)
 
 
@@ -1157,6 +1207,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
   * Check whether Pet is dead
   */
 /datum/objective/minor/pet/check_completion()
+	if(..())
+		return TRUE
 	return (!pet || pet.stat == DEAD)
 
 /**
@@ -1184,6 +1236,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
   * Ripped code straight from [/datum/objective/steal], checks all the owner's items for a picture with the dead target
   */
 /datum/objective/minor/deadpics/check_completion()
+	if(..())
+		return TRUE
 	var/list/all_items = owner.current.GetAllContents()
 	for(var/obj/item/photo/P in all_items)
 		for(var/mob/M in P.picture.dead_seen)
@@ -1204,6 +1258,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	return TRUE
 
 /datum/objective/minor/mindshield/check_completion()
+	if(..())
+		return TRUE
 	return HAS_TRAIT(owner.current, TRAIT_MINDSHIELD)
 
 /**
@@ -1232,6 +1288,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
   * return true if we escape with a picture of the head of staff
   */
 /datum/objective/minor/staffpics/check_completion()
+	if(..())
+		return TRUE
 	var/list/all_items = owner.current.GetAllContents()
 	for(var/obj/item/photo/P in all_items)
 		for(var/mob/M in P.picture.mobs_seen)
