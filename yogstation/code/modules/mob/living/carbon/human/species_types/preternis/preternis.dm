@@ -32,7 +32,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/draining = FALSE
 	screamsound = 'goon/sound/robot_scream.ogg'
 	wings_icon = "Robotic"
-	species_language_holder = /datum/language_holder/preternis
+	species_bilingual_language = /datum/language/machine
 
 /datum/species/preternis/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()

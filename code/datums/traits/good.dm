@@ -37,6 +37,19 @@
 		if(mood)
 			mood.mood_modifier += 0.2
 
+/datum/quirk/bilingual
+	name = "Bilingual"
+	desc = "You learned the langauge of your people"
+	value = 1
+	gain_text = span_notice("You begin to understand the native language of your people")
+	lose_text = span_notice("Your knowledge of the native language of your people slips away")
+
+/datum/quirk/bilingual/on_spawn()
+	. = ..()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/lang = H.dna.species.species_bilingual_language || /datum/language/japanese
+	H.grant_language(lang, TRUE, TRUE)
+
 /datum/quirk/drunkhealing
 	name = "Drunken Resilience"
 	desc = "Nothing like a good drink to make you feel on top of the world. Whenever you're drunk, you slowly recover from injuries."

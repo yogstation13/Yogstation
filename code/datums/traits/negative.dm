@@ -607,8 +607,8 @@
 /datum/quirk/sheltered/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.remove_language(/datum/language/common, FALSE, TRUE)
-	if(!H.get_selected_language())
-		H.grant_language(/datum/language/japanese)
+	var/lang = H.dna.species.species_bilingual_language || /datum/language/japanese
+	H.grant_language(lang, TRUE, TRUE)
 
 /datum/quirk/allergic
 	name = "Allergic Reaction"

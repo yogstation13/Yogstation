@@ -48,8 +48,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/nojumpsuit = FALSE
 	/// affects the speech message
 	var/say_mod = "says"
-	///Used if you want to give your species thier own language
+	/// Used if you want to always give your species thier own language
 	var/species_language_holder = /datum/language_holder
+	/// Used for the bilingual quirk
+	var/species_bilingual_language
 	/// Default mutant bodyparts for this species. Don't forget to set one for every mutant bodypart you allow this species to have.
 	var/list/default_features = list()
 	/// Visible CURRENT bodyparts that are unique to a species. DO NOT USE THIS AS A LIST OF ALL POSSIBLE BODYPARTS AS IT WILL FUCK SHIT UP! Changes to this list for non-species specific bodyparts (ie cat ears and tails) should be assigned at organ level if possible. Layer hiding is handled by handle_mutant_bodyparts() below.

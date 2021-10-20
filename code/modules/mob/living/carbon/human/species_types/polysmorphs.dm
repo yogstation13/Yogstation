@@ -7,7 +7,7 @@
 	liked_food = GROSS | MEAT
 	disliked_food = GRAIN | DAIRY | VEGETABLES | FRUIT
 	say_mod = "hisses"
-	species_language_holder = /datum/language_holder/polysmorph
+	species_bilingual_language = /datum/language/polysmorph
 	coldmod = 0.75
 	heatmod = 1.5
 	acidmod = 0.2 //Their blood is literally acid

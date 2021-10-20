@@ -26,7 +26,7 @@
 	deathsound = 'sound/voice/lizard/deathsound.ogg'
 	screamsound = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //yogs - lizard scream
 	wings_icon = "Dragon"
-	species_language_holder = /datum/language_holder/lizard
+	species_bilingual_language = /datum/language/draconic
 
 /datum/species/lizard/random_name(gender,unique,lastname)
 	if(unique)
