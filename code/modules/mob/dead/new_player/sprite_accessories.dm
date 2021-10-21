@@ -811,7 +811,7 @@
 	name = "Fade Down"
 	icon_state = "fadedown"
 
-/datum/sprite_accessory/hair_gradient/fadedown
+/datum/sprite_accessory/hair_gradient/fadevertical
 	name = "Fade Vertical"
 	icon_state = "fadevertical"
 
@@ -843,7 +843,7 @@
 	name = "Long Fade Down"
 	icon_state = "long_fade_down"
 
-/datum/sprite_accessory/hair_gradient/fadedown
+/datum/sprite_accessory/hair_gradient/long_fade_vertical
 	name = "Long Fade Vertical"
 	icon_state = "long_fade_vertical"
 
