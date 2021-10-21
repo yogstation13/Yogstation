@@ -46961,11 +46961,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
-"muT" = (
-/obj/structure/lattice,
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
 "muU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -49990,9 +49985,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"olO" = (
-/turf/open/space/bluespace,
-/area/space)
 "olU" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/light{
@@ -101971,15 +101963,15 @@ xgn
 mey
 pEf
 pEf
-muT
 pEf
 pEf
 pEf
-muT
 pEf
 pEf
 pEf
-muT
+pEf
+pEf
+pEf
 ucZ
 aaa
 aaa
@@ -123519,8 +123511,8 @@ aaa
 aaa
 aaa
 aaa
-olO
-olO
+aaa
+aaa
 aaa
 aaa
 aaf
