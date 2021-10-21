@@ -1,6 +1,7 @@
 #define SCREEN_MAINMENU 0
 #define SCREEN_SERVER 1
-#define SCREEN_CODING 2
+#define SCREEN_LOGS 2
+#define SCREEN_CODING 3
 
 #define TELECOMMS_SEARCH_RANGE 25 // The radius from which a traffic computer can perceive servers.
 
@@ -92,7 +93,7 @@
 		ui = new(user, src, "TrafficControl")
 		ui.open()
 
-/obj/machinery/computer/telecomms/traffic/ui_act(action, params)
+/obj/machinery/computer/telecomms/traffic/ui_act(action, list/params)
 	if(..())
 		return
 	switch(action)
@@ -110,7 +111,7 @@
 					return TRUE
 				else
 					screen_state = SCREEN_MAINMENU // Just to be sure
-					return
+					return TRUE
 		if("goto")
 			if(!isAuthorized(usr))
 				return
@@ -123,6 +124,9 @@
 					return TRUE
 				if(SCREEN_MAINMENU)
 					screen_state = SCREEN_MAINMENU
+					return TRUE
+				if(SCREEN_LOGS)
+					screen_state = SCREEN_LOGS
 					return TRUE
 			return
 		if("savecode")
@@ -152,22 +156,52 @@
 			if(!isAuthorized(usr))
 				return
 			if(cached_server_list.len > 0)
-				return
-			else
-				for(var/obj/machinery/telecomms/server/T in range(TELECOMMS_SEARCH_RANGE, src))
-					if(T.network == network)
-						cached_server_list.Add(T)
-				screen_state = SCREEN_MAINMENU
-				return TRUE
+				cached_server_list = list()
+			for(var/obj/machinery/telecomms/server/T in range(TELECOMMS_SEARCH_RANGE, src))
+				if(T.network == network)
+					cached_server_list.Add(T)
+			screen_state = SCREEN_MAINMENU
+			return TRUE
+		if("select")
+			for(var/s in cached_server_list)
+				var/obj/machinery/telecomms/server/server = s
+				if(server.id == params["server_id"])
+					serverSelected = server
+					return TRUE
+		if("toggle_code")
+			serverSelected.autoruncode = !(serverSelected.autoruncode)
+			return TRUE
 
 /obj/machinery/computer/telecomms/traffic/ui_data(mob/user)
 	var/data = list()
+
+	//Basic state variables
 	data["screen_state"] = screen_state
 	data["auth"] = auth ? auth.registered_name : FALSE
+	data["is_authorized"] = issilicon(user) || emagged || (auth ? TRUE : FALSE)
+	if(serverSelected)
+		data["serverSelected_id"] = serverSelected.id
+		data["serverSelected_enabledcode"] = serverSelected.autoruncode
+	else
+		data["serverSelected_id"] = -1
 
+	//Server data
+	if(screen_state == SCREEN_MAINMENU)
+	{
+		var/list/servers = list()
+		for(var/obj/machinery/telecomms/server/s in cached_server_list)
+			servers.Add(s.id)
+		data["servers"] = servers
+		
+	}
+	else if(screen_state == SCREEN_LOGS)
+	{
+		data["logs"] = access_log // Inshallah this will work
+	}
 	return data
 
 #undef SCREEN_MAINMENU
 #undef SCREEN_SERVER
+#undef SCREEN_LOGS
 #undef SCREEN_CODING
 #undef TELECOMMS_SEARCH_RANGE

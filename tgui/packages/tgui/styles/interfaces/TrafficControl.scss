@@ -7,7 +7,7 @@
     width: 500px;
     height: 1000px;
     
-    top: 0;
+    top: 50px;
     left: 0;
 
     font-size: 15pt;
@@ -17,19 +17,17 @@
 }
 #joao_textarea
 {
-    position: absolute;
     z-index: 1;
-  
+    position: absolute;
     color: transparent;
     background: transparent;
     background-color: transparent;
     caret-color: white;
+
 }
 #joao_code
 {
     position: absolute;
-    width: 500px;
-    top: -20px;
     text-overflow: false;
     overflow-wrap: break-word;
     word-wrap: break-word;
