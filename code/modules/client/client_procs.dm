@@ -931,7 +931,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(object.invisibility > src.mob.see_invisible)
 		message_admins("[ADMIN_LOOKUPFLW(src)] Has clicked an invisible atom, and is likely hacking.")
 		log_game("[key_name(src)] is using a hacked client to see invisible things")
-		GLOB.admin_datums["yogstation13bot"].create_ban(src.ckey, FALSE, "", TRUE, "", TRUE, FALSE, null, null, "Round [GLOB.round_id]: Hacking, clicked on invisible atom.", list())
+		var/datum/admins/yogbotdatum = GLOB.admin_datums["yogstation13bot"]
+		yogbotdatum.create_ban(src.ckey, FALSE, "", TRUE, "", TRUE, FALSE, null, null, "Round [GLOB.round_id]: Hacking, clicked on invisible atom.", list())
 		qdel(src)
 	
 	var/dragged = L["drag"]
