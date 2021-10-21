@@ -37455,20 +37455,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"fYQ" = (
-/obj/structure/table,
-/obj/structure/mirror{
-	pixel_x = 28
-	},
-/obj/item/lipstick/random{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plasteel/freezer,
-/area/crew_quarters/toilet)
 "fZp" = (
 /obj/machinery/light_switch{
 	pixel_x = 7;
@@ -46872,6 +46858,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"mqI" = (
+/obj/structure/table,
+/obj/structure/mirror{
+	pixel_x = 28
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/dyespray{
+	pixel_x = 7;
+	pixel_y = 8
+	},
+/obj/item/lipstick/random{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet)
 "mqO" = (
 /obj/structure/table,
 /obj/item/storage/box/lights/mixed{
@@ -104691,7 +104695,7 @@ arj
 uBx
 nnZ
 aAh
-fYQ
+mqI
 dxH
 aAh
 aAh
