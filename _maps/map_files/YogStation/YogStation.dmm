@@ -22284,15 +22284,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
-"bpZ" = (
-/obj/item/folder/white,
-/obj/structure/table,
-/obj/item/disk/tech_disk,
-/obj/item/disk/tech_disk,
-/obj/item/disk/design_disk,
-/obj/item/disk/design_disk,
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "bqb" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -51171,6 +51162,18 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/storage/tech)
+"oRC" = (
+/obj/item/folder/white,
+/obj/structure/table,
+/obj/item/disk/tech_disk,
+/obj/item/disk/tech_disk,
+/obj/item/disk/design_disk,
+/obj/item/disk/design_disk,
+/obj/item/paicard{
+	pixel_x = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "oRZ" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -113717,7 +113720,7 @@ bks
 blI
 bnn
 boA
-bpZ
+oRC
 abd
 bta
 bmU
