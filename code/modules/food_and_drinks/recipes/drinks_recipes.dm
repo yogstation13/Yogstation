@@ -25,6 +25,12 @@
 	results = list(/datum/reagent/consumable/ethanol/bilk/soy = 2)
 	required_reagents = list(/datum/reagent/consumable/soymilk = 1, /datum/reagent/consumable/ethanol/beer = 1)
 
+/datum/chemical_reaction/cilk
+	name = "Cilk"
+	id = /datum/reagent/consumable/cilk
+	results = list(/datum/reagent/consumable/cilk = 2)
+	required_reagents = list(/datum/reagent/consumable/milk = 1, /datum/reagent/consumable/space_cola = 1)
+
 /datum/chemical_reaction/icetea
 	name = "Iced Tea"
 	id = /datum/reagent/consumable/icetea
