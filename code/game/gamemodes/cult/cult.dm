@@ -180,9 +180,8 @@
 /datum/game_mode/proc/begin_bloodstone_phase()
 	var/list/stone_spawns = GLOB.generic_event_spawns.Copy()
 	for(var/i = 0, i < 4, i++) //four bloodstones
-		var/stone_spawn = pick(stone_spawns)
-		if(stone_spawn) stone_spawns -= stone_spawn
-		else stone_spawn = pick(GLOB.generic_event_spawns) // Fallback on all spawns
+		var/stone_spawn = pick_n_take(stone_spawns)
+		if(!stone_spawn) stone_spawn = pick(GLOB.generic_event_spawns) // Fallback on all spawns
 
 		var/spawnpoint = get_turf(stone_spawn)
 		new /obj/structure/destructible/cult/bloodstone(spawnpoint)
