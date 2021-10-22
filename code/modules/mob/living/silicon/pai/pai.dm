@@ -27,6 +27,8 @@
 	var/speakDoubleExclamation = "alarms"
 	var/speakQuery = "queries"
 
+	var/obj/inserted_device		// The cable we produce and use when door or camera jacking
+
 	var/obj/item/pai_cable/cable		// The cable we produce and use when door or camera jacking
 
 	var/master				// Name of the one who commands us
@@ -212,6 +214,18 @@
 /datum/action/innate/pai/software/Trigger()
 	..()
 	P.paiInterface()
+
+/datum/action/innate/pai/device
+	name = "Device Interface"
+	button_icon_state = "pai"
+	background_icon_state = "bg_tech"
+
+/datum/action/innate/pai/software/Trigger()
+	..()
+	if(istype(P.inserted_device, /obj/item/computer_hardware/pai_slot))
+		var/obj/item/computer_hardware/pai_slot/slot = P.inserted_device
+		var/obj/item/modular_computer/computer = slot.holder
+		computer.interact(P)
 
 /datum/action/innate/pai/shell
 	name = "Toggle Holoform"

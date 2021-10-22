@@ -23,6 +23,19 @@
 	var/mob/living/silicon/pai/pAI = usr
 	pAI.paiInterface()
 
+/obj/screen/pai/machine
+	name = "Machine Interface"
+	icon_state = "pai"
+
+/obj/screen/pai/device/Click()
+	if(!..())
+		return
+	var/mob/living/silicon/pai/pAI = usr
+	if(istype(pAI.inserted_device, /obj/item/computer_hardware/pai_slot))
+		var/obj/item/computer_hardware/pai_slot/slot = pAI.inserted_device
+		var/obj/item/modular_computer/computer = slot.holder
+		computer.interact(pAI)
+
 /obj/screen/pai/shell
 	name = "Toggle Holoform"
 	icon_state = "pai_holoform"
@@ -175,6 +188,11 @@
 // Software menu
 	using = new /obj/screen/pai/software
 	using.screen_loc = ui_pai_software
+	static_inventory += using
+
+// Machine Interface
+	using = new /obj/screen/pai/machine
+	using.screen_loc = ui_pai_machine
 	static_inventory += using
 
 // Holoform
