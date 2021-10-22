@@ -517,7 +517,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	uplink_spawn_loc = sanitize_inlist(uplink_spawn_loc, GLOB.uplink_spawn_loc_list, initial(uplink_spawn_loc))
 	features["mcolor"]	= sanitize_hexcolor(features["mcolor"], 3, 0)
 	features["gradientstyle"]			= sanitize_inlist(features["gradientstyle"], GLOB.hair_gradients_list)
-	features["gradientstyle"]		= sanitize_hexcolor(features["gradientstyle"], 3, 0)
+	features["gradientcolor"]		= sanitize_hexcolor(features["gradientcolor"], 3, 0)
 	features["ethcolor"]	= copytext_char(features["ethcolor"], 1, 7)
 	features["tail_lizard"]	= sanitize_inlist(features["tail_lizard"], GLOB.tails_list_lizard)
 	features["tail_polysmorph"]	= sanitize_inlist(features["tail_polysmorph"], GLOB.tails_list_polysmorph)
