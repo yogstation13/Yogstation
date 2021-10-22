@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Podpeople no longer passively heal toxin damage while heavily irradiated"
