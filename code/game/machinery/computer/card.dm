@@ -418,10 +418,11 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 					modify.access = ( istype(src, /obj/machinery/computer/card/centcom) ? get_centcom_access(t1) : jobdatum.get_access() )
 				if (modify)
 					log_game("[modify.registered_name]'s ID had its job changed to [t1] from [modify.assignment] by [usr.name]") // yogs - ID card change logging
+					modify.originalassignment = t1
 					modify.assignment = t1
 					playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 		if ("demote")
-			if(modify.assignment in head_subordinates || modify.assignment == "Assistant")
+			if(modify.assignment in head_subordinates || modify.originalassignment == "Assistant")
 				modify.assignment = "Unassigned"
 				playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 			else
