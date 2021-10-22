@@ -1,0 +1,5 @@
+author: "alexkar598"
+delete-after: true 
+changes: 
+  - tweak: "Squirt cider takes sugar instead of water nowsoundadd: added a new sound thingy"
+  - bugfix: "tomato soup no longer turns into alcohol"
