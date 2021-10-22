@@ -1512,7 +1512,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/new_gradient_style
 					new_gradient_style = input(user, "Choose your character's hair gradient style:", "Character Preference")  as null|anything in GLOB.hair_gradients_list
 					if(new_gradient_style)
-						features["gradientcolor"] = new_gradient_style
+						features["gradientstyle"] = new_gradient_style
 
 				if("next_hair_gradient_style")
 					features["gradientstyle"] = next_list_item(features["gradientstyle"], GLOB.hair_gradients_list)
