@@ -314,14 +314,14 @@
 	..()
 
 /datum/reagent/consumable/cream/bug
-	name = "Bug Cream"
-	description = "The very fatty, still liquid part of bug milk. It looks pretty gross."
+	name = "Gutlunch Honey"
+	description = "A sweet, creamy substance produced by gutlunches, functioning as a sort of strange honey."
 	color = "#800000"
 	nutriment_factor = 2
-	taste_description = "creamy bug milk"
+	taste_description = "excessively sugary cream"
 	glass_icon_state  = "chocolateglass"
 	glass_name = "glass of bug cream"
-	glass_desc = "Ewwwww!"
+	glass_desc = "This came from a WHAT?!"
 
 /datum/reagent/consumable/coffee
 	name = "Coffee"
