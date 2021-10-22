@@ -182,7 +182,8 @@
 	var/list/bloodstone_areas = list()
 	for(var/i = 0, i < 4, i++) //four bloodstones
 		var/stone_spawn = pick_n_take(stone_spawns)
-		if(!stone_spawn) stone_spawn = pick(GLOB.generic_event_spawns) // Fallback on all spawns
+		if(!stone_spawn)
+			stone_spawn = pick(GLOB.generic_event_spawns) // Fallback on all spawns
 		var/spawnpoint = get_turf(stone_spawn)
 		var/stone = new /obj/structure/destructible/cult/bloodstone(spawnpoint)
 		notify_ghosts("Bloodcult has an object of interest: [stone]!", source=stone, action=NOTIFY_ORBIT, header="Praise the Geometer!")
