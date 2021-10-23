@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "facial hair no longer takes gradient hair color instead of facial hair color"
