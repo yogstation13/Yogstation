@@ -321,7 +321,13 @@
 /datum/chemical_reaction/medsuture
 	name = "Medicated Suture"
 	id = "med_suture"
+	mix_message = "The solution solidifies into a thin purple string."
 	required_reagents = list(/datum/reagent/cellulose = 10, /datum/reagent/toxin/formaldehyde = 20, /datum/reagent/medicine/polypyr = 15)
+
+/datum/chemical_reaction/medsuture/alt
+	name = "Trek Suture"
+	id = "med_suture_alt"
+	required_reagents = list(/datum/reagent/medicine/bicaridine = 10, /datum/reagent/medicine/c2/probital = 20, /datum/reagent/medicine/spaceacillin  = 10)
 
 /datum/chemical_reaction/medsuture/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
@@ -331,7 +337,13 @@
 /datum/chemical_reaction/medmesh
 	name = "Advanced Mesh"
 	id = "adv_mesh"
+	mix_message = "The solution congeals into a small supply of easily portioned green gelatin."
 	required_reagents = list(/datum/reagent/cellulose = 20, /datum/reagent/consumable/aloejuice = 20, /datum/reagent/space_cleaner/sterilizine = 10)
+
+/datum/chemical_reaction/medmesh/alt
+	name = "Trek Mesh"
+	id = "adv_mesh_alt"
+	required_reagents = list(/datum/reagent/medicine/kelotane = 10, /datum/reagent/medicine/c2/lenturi = 20, /datum/reagent/space_cleaner/sterilizine = 10)
 
 /datum/chemical_reaction/medmesh/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
@@ -341,10 +353,11 @@
 /datum/chemical_reaction/poultice
 	name = "poultice"
 	id = "poultice"
+	mix_message = "The mixture produces an eerie green liquid."
 	required_reagents = list(/datum/reagent/toxin/amanitin = 10, /datum/reagent/cellulose = 20, /datum/reagent/consumable/aloejuice = 20)
 
 /datum/chemical_reaction/poultice/alt
-	name = "poultice"
+	name = "tribal poultice"
 	id = "poultice_alt"
 	required_reagents = list(/datum/reagent/consumable/entpoly = 15, /datum/reagent/cellulose = 20, /datum/reagent/consumable/tinlux = 12)
 
@@ -352,3 +365,15 @@
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/stack/medical/poultice(location)
+
+/datum/chemical_reaction/bone_gel
+	id = "bone_gel"
+	required_reagents = list(/datum/reagent/consumable/milk = 10, /datum/reagent/carbon = 10) //good for bones and calcium
+	required_temp = 630
+	mob_react = FALSE
+	mix_message = "The solution congeals into a blue gel."
+
+/datum/chemical_reaction/bone_gel/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i in 1 to created_volume)
+		new /obj/item/stack/medical/bone_gel(location)

@@ -632,7 +632,7 @@
 	name = "Squirt Cider"
 	id = /datum/reagent/consumable/ethanol/squirt_cider
 	results = list(/datum/reagent/consumable/ethanol/squirt_cider = 1)
-	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/consumable/tomatojuice = 1, /datum/reagent/consumable/nutriment = 1)
+	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/tomatojuice = 1, /datum/reagent/consumable/nutriment = 1)
 	mix_message = "The mix swirls and turns a bright red that reminds you of an apple's skin."
 
 /datum/chemical_reaction/fringe_weaver

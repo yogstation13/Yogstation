@@ -41,7 +41,9 @@
 			//yogs start
 			if(isnotpretty(message))
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
-				message_admins("[key_name(usr)] just tripped a pretty filter: '[message]'.")
+				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[message]'."
+				message_admins(log_message)
+				log_say(log_message)
 				return
 			//yogs end
 			if(channel.password && !(src in channel.clients))
@@ -79,7 +81,9 @@
 			//yogs start
 			if(isnotpretty(channel_title))
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
-				message_admins("[key_name(usr)] just tripped a pretty filter: '[channel_title]'.")
+				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[channel_title]'."
+				message_admins(log_message)
+				log_say(log_message)
 				return
 			//yogs end
 			var/datum/ntnet_conversation/C = new /datum/ntnet_conversation()
@@ -108,7 +112,9 @@
 			//yogs start
 			if(isnotpretty(newname))
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
-				message_admins("[key_name(usr)] just tripped a pretty filter: '[newname]'.")
+				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[newname]'."
+				message_admins(log_message)
+				log_say(log_message)
 				return
 			//yogs end
 			for(var/C in SSnetworks.station_network.chat_channels)
@@ -150,7 +156,9 @@
 			//yogs start
 			if(isnotpretty(newname))
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
-				message_admins("[key_name(usr)] just tripped a pretty filter: '[newname]'.")
+				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[newname]'."
+				message_admins(log_message)
+				log_say(log_message)
 				return
 			//yogs end
 			channel.add_status_message("Channel renamed from [channel.title] to [newname] by operator.")
@@ -172,7 +180,9 @@
 			//yogs start
 			if(isnotpretty(new_password))
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
-				message_admins("[key_name(usr)] just tripped a pretty filter: '[new_password]'.")
+				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[new_password]'."
+				message_admins(log_message)
+				log_say(log_message)
 				return
 			//yogs end
 			channel.password = new_password

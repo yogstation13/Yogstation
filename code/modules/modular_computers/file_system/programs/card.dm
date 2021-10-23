@@ -15,7 +15,7 @@
 	transfer_access = ACCESS_HEADS
 	requires_ntnet = 0
 	size = 8
-	usage_flags = PROGRAM_CONSOLE + PROGRAM_LAPTOP + PROGRAM_TABLET //Probably a more efficent way to do this
+	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET
 	tgui_id = "NtosCard"
 	program_icon = "id-card"
 
@@ -216,8 +216,10 @@
 					new_access = job.get_access()
 				target_id_card.access -= get_all_centcom_access() + get_all_accesses()
 				target_id_card.access |= new_access
+				target_id_card.originalassignment = target
 				target_id_card.assignment = target
 				target_id_card.update_label()
+
 			playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 			return TRUE
 		if("PRG_access")
