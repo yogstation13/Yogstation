@@ -1,4 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - bugfix: "fixed job changes not updating on for some things"
