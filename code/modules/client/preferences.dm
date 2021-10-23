@@ -2027,7 +2027,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			organ_eyes.eye_color = eye_color
 		organ_eyes.old_eye_color = eye_color
 	character.hair_color = hair_color
-	character.facial_hair_color = features["gradientcolor"]
+	character.facial_hair_color = facial_hair_color
 	character.grad_color = features["gradientcolor"]
 
 	character.skin_tone = skin_tone
