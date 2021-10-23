@@ -571,6 +571,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Supermatter Engine"
 	icon_state = "engine_sm"
 
+/area/engine/reactor_core
+	name = "Engineering Reactor Core"
+	icon_state = "engine_sm"
+
 /area/engine/foyer
 	name = "Engineering Foyer"
 	icon_state = "engine_foyer"
