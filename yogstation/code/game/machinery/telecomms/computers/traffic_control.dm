@@ -139,6 +139,9 @@
 				to_chat(usr, span_warning("You are banned from using scripting."))
 				return
 			codestr = params["code"]
+			if(!serverSelected) // Weird for this to be the case
+				return
+			serverSelected.setcode(codestr)
 			return TRUE
 		if("auth")
 			if(iscarbon(usr))

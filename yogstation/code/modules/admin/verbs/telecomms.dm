@@ -7,14 +7,12 @@
 		return
 
 	if(check_rights(R_ADMIN,1))
-		var/confirm = alert(src, "You sure you want to blank all NTSL scripts?", "Confirm", "Yes", "No")
+		var/confirm = alert(src, "You sure you want to blank all telecomms scripts?", "Confirm", "Yes", "No")
 		if(confirm !="Yes") return
 
 		for(var/obj/machinery/telecomms/server/S in GLOB.telecomms_list)
-			var/datum/TCS_Compiler/C = S.Compiler
-			S.rawcode = ""
+			S.codestr = ""
 			S.autoruncode = FALSE
-			C.Compile("")
 		for(var/obj/machinery/computer/telecomms/traffic/T in GLOB.traffic_comps)
 			T.codestr = ""
 		log_game("[key_name_admin(usr)] blanked all telecomms scripts.")

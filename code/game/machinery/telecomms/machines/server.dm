@@ -54,8 +54,14 @@
 	log.name = "data packet ([md5(identifier)])"
 	log_entries.Add(log)
 
-	if(Compiler && autoruncode)//Yogs -- NTSL
-		Compiler.Run(signal)// Yogs -- ditto
+	//Yogs start -- Joao
+	if(autoruncode && codestr && codestr != "")
+		var/datum/script_packet/packet = new(signal)
+		var/ret = run_script(codestr,packet)
+		if(!ret)
+			signal.data["reject"] = 1
+		signal = packet.signal // I'm not exactly sure if this is the case implicitly or not :(
+	//Yogs end
 
 	if(!relay_information(signal, /obj/machinery/telecomms/hub)) //yogs
 		relay_information(signal, /obj/machinery/telecomms/broadcaster)
