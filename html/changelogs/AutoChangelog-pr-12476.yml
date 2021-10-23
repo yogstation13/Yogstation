@@ -1,6 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - rscadd: "new fertilizer for ashwalkers made from gutlunch cream, vitrium froth, and entpoly which prevents plant mutations (like robust harvest but without the 30%  bonus yield)"
-  - tweak: "bug cheese and gutlunch cream are rebranded as bug products being \"honey\" (but not real honey)"
-  - tweak: "burning \"cellulose fibers (wood) in a beaker will now not show flavortext for bubbling and instead show something more akin to woodchips burning"

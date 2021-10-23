@@ -1,4 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - bugfix: "fixed bloodstones being able to spawn on top of each other"
