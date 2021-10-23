@@ -159,3 +159,8 @@
 	cost = 87500 // Whoa, momma.
 	unit_name = "captured mauler"
 	export_types = list(/obj/mecha/combat/marauder/mauler)
+
+/datum/export/plutonium_rod
+	cost = 20000
+	unit_name = "Plutonium Rod"
+	export_types = list(/obj/item/twohanded/required/fuel_rod/plutonium)
