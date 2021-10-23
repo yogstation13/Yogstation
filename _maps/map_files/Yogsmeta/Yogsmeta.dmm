@@ -75632,11 +75632,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"kZo" = (
-/obj/structure/closet/radiation,
-/obj/structure/closet/radiation,
-/turf/open/floor/plasteel/dark,
-/area/engine/atmos)
 "laa" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -123213,7 +123208,7 @@ bKr
 rpR
 aad
 bxd
-kZo
+jQA
 fRs
 cZy
 ygi
