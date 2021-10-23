@@ -85,7 +85,7 @@
 	if(!emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = TRUE
-		to_chat(user, span_notice("You you disable the security protocols."))
+		to_chat(user, span_notice("You disable the security protocols."))
 
 /obj/machinery/computer/telecomms/traffic/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -103,11 +103,11 @@
 			if(!isAuthorized(usr))
 				return
 			switch(screen_state)
-				if(SCREEN_SERVER)
+				if(SCREEN_LOGS)
 					screen_state = SCREEN_MAINMENU
 					return TRUE
 				if(SCREEN_CODING)
-					screen_state = SCREEN_SERVER
+					screen_state = SCREEN_MAINMENU
 					return TRUE
 				else
 					screen_state = SCREEN_MAINMENU // Just to be sure

@@ -10,61 +10,76 @@ export class JoaoBox extends Component {
     super(props, context);
     this.textareaRef = createRef();
     this.codeRef = createRef();
+    this.buttonRef = createRef();
     this.state = {
       text: "",
       cursorloc: 0,
     };
+    this.act = props.act;
     this.handleOnInput = e => {
       if(e.target.value !== "")
       {
         this.state.text = e.target.value;
       }
-
+      this.state.cursorloc = e.target.selectionStart;
       this.forceUpdate();
+      this.fixcursor(e.target);
     };
-    this.lexify = txt =>
+    this.fixcursor = (node) => {
+      //Hope to Allah you don't have IE8
+      node.selectionStart = this.state.cursorloc;
+      node.selectionEnd = this.state.cursorloc;
+    };
+    this.lexify = (txt) =>
     {
-      let normal = 'rgb(0,128,255';
+      let normal = 'rgb(0,128,255)';
       let classy = 'rgb(255,0,128)';
       let operator = 'rgb(255,128,0)';
-      let keywords = [
+      var keywords = [
         ["main", normal],
         ["return",normal],
         ["Value",classy],
         ["Object",classy],
+        ["\/",operator],
+        ["\{",operator],
+        ["\}",operator],
       ]
       function recurse(my_txt,lvl)
       {
+        if(!my_txt)
+        {
+          return;
+        }
         if(lvl >= keywords.length)
         {
-          return <Box inline preserveWhitespace >{my_txt}</Box>;
+          return my_txt;
         }
-        let rgx = new RegExp("(.*)(" + keywords[lvl][0] + ")(.*)");
-
-        let arr = my_txt.match(rgx);
-        if(!arr)
+        // I wanted to use regexes here like a sensible person but a certain flag I want doesn't work on my machine so, bollocks to that
+        let keyword = keywords[lvl][0];
+        let colour = keywords[lvl][1];
+        if(!keyword)
         {
-          return recurse(my_txt,lvl+1);
+          return (<pre>Couldn't understand what the keyword was!</pre>);
         }
-        /*
+        //Try to find our keyword
+        let index = my_txt.search(keyword);
+        if(index === -1) // if keyword not found
+          return recurse(my_txt,lvl+1);
+        
+        let header = my_txt.substring(0,index);
+        let footer = my_txt.substring(index+keyword.length);
         return (
-          <pre>
-          {recurse(arr[1],lvl+1)}
-          <span style={keywords[lvl][1]}>{arr[2]}</span>
-          {recurse(arr[3],lvl+1)}
-          </pre>
-        );
-        */
-        return (
-          <Box>
-          {recurse(arr[1],lvl+1)}
-          <Box color={keywords[lvl][1]} inline backgroundColor='rgba(255,255,255,0)'>{arr[2]}</Box>
-          {recurse(arr[3],lvl+1)}
-          </Box>
+          <font>
+          {recurse(header,lvl+1)}
+          <font color={colour}>{keyword}</font>
+          {recurse(footer,lvl+1)}
+          </font>
         );
       }
       
-      return recurse(txt,0);
+      return (
+      <pre>{recurse(txt,0)}</pre>
+      );
     }
   }
 
@@ -73,13 +88,15 @@ export class JoaoBox extends Component {
   }
 
   render() {
-    const { text, cursorloc } = this.state;
+    const { text } = this.state;
     return (
         <Box>
-        <textarea ref={this.textareaRef} onInput={this.handleOnInput} id='joao_textarea' maxlength='32000' scrollable={false}>{text}</textarea>
+        <textarea ref={this.textareaRef} onInput={this.handleOnInput} id='joao_textarea'
+         maxlength={32000} scrollable={false}>{text}</textarea>
         <code id='joao_code' ref={this.codeRef} scrollable={false}>
           {this.lexify(text)}
         </code>
+        <Button ref={this.buttonRef} onClick={() => {this.act('savecode',{"code": this.state.text})}}>Save Code</Button>
         </Box>
     );
   }
@@ -146,7 +163,6 @@ export const TrafficControl = (props, context) => {
       return (
         <Window resizable title="Traffic Control Computer">
             <Window.Content scrollable>
-                
                 Identification: <Button onClick={() => act('auth', {})} color={(auth)
                   ? 'good'
                   : 'bad'}><Icon name="address-card"></Icon>{cooler_auth}</Button>
@@ -191,6 +207,16 @@ export const TrafficControl = (props, context) => {
         </Tabs.Tab>
         </Tabs>
         {log_list}
+      </Window.Content>
+    </Window>);
+  }
+  if(screen_state == 3) // SCREEN_CODING
+  {
+    return (
+    <Window resizable title="Traffic Control Computer" theme="hackerman">
+      <Window.Content>
+        <JoaoBox act={act}>Input code here...</JoaoBox>
+        <Button onClick = {() => {act('back',{})}}>Back</Button>
       </Window.Content>
     </Window>);
   }

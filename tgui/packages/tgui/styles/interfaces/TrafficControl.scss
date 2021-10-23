@@ -3,22 +3,21 @@
 #joao_textarea, #joao_code {
     /* Both elements need the same text and space styling so they are directly on top of each other */
     border: 0;
-
-    width: 500px;
+    margin: 0em 0px;
+    width: 90%;
     height: 1000px;
-    
-    top: 50px;
-    left: 0;
-
+    top:50px;
+    left:0px;
     font-size: 15pt;
     font-family: monospace;
     line-height: 20pt;
+    position: absolute;
     tab-size: 2;
 }
 #joao_textarea
 {
     z-index: 1;
-    position: absolute;
+    top:70px;
     color: transparent;
     background: transparent;
     background-color: transparent;
@@ -27,10 +26,7 @@
 }
 #joao_code
 {
-    position: absolute;
-    text-overflow: false;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
+    text-overflow: none;
     z-index: 0;
     color: rgb(192, 192, 192);
 }
