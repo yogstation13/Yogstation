@@ -120,6 +120,9 @@
 					screen_state = SCREEN_SERVER
 					return TRUE
 				if(SCREEN_CODING)
+					if(is_banned_from(usr.ckey, "Signal Technician"))
+						to_chat(usr, span_warning("You are banned from using scripting."))
+						return
 					screen_state = SCREEN_CODING
 					return TRUE
 				if(SCREEN_MAINMENU)
@@ -131,6 +134,9 @@
 			return
 		if("savecode")
 			if(!isAuthorized(usr))
+				return
+			if(is_banned_from(usr.ckey, "Signal Technician"))
+				to_chat(usr, span_warning("You are banned from using scripting."))
 				return
 			codestr = params["code"]
 			return TRUE
@@ -169,6 +175,9 @@
 					serverSelected = server
 					return TRUE
 		if("toggle_code")
+			if(is_banned_from(usr.ckey, "Signal Technician"))
+				to_chat(usr, span_warning("You are banned from using scripting."))
+				return
 			serverSelected.autoruncode = !(serverSelected.autoruncode)
 			return TRUE
 
