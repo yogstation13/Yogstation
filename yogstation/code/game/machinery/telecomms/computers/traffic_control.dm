@@ -85,7 +85,7 @@
 	if(!emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = TRUE
-		to_chat(user, span_notice("You disable the security protocols."))
+		to_chat(user, span_notice("You disable the security protocols of the [src]."))
 
 /obj/machinery/computer/telecomms/traffic/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -102,34 +102,33 @@
 		if("back")
 			if(!isAuthorized(usr))
 				return
-			switch(screen_state)
-				if(SCREEN_LOGS)
-					screen_state = SCREEN_MAINMENU
-					return TRUE
-				if(SCREEN_CODING)
-					screen_state = SCREEN_MAINMENU
-					return TRUE
-				else
-					screen_state = SCREEN_MAINMENU // Just to be sure
-					return TRUE
+			screen_state = SCREEN_MAINMENU // Just to be sure
+			playsound(src, "terminal_type", 15, FALSE)
+			return TRUE
+					
 		if("goto")
 			if(!isAuthorized(usr))
 				return
 			switch(params["screen_state"])
 				if(SCREEN_SERVER)
 					screen_state = SCREEN_SERVER
+					playsound(src, "terminal_type", 15, FALSE)
 					return TRUE
 				if(SCREEN_CODING)
 					if(is_banned_from(usr.ckey, "Signal Technician"))
 						to_chat(usr, span_warning("You are banned from using scripting."))
 						return
 					screen_state = SCREEN_CODING
+					playsound(src, "terminal_type", 15, FALSE)
 					return TRUE
 				if(SCREEN_MAINMENU)
 					screen_state = SCREEN_MAINMENU
+					playsound(src, "terminal_type", 15, FALSE)
 					return TRUE
+					
 				if(SCREEN_LOGS)
 					screen_state = SCREEN_LOGS
+					playsound(src, "terminal_type", 15, FALSE)
 					return TRUE
 			return
 		if("savecode")
@@ -142,6 +141,7 @@
 			if(!serverSelected) // Weird for this to be the case
 				return
 			serverSelected.setcode(codestr)
+			playsound(src, "terminal_type", 15, FALSE)
 			return TRUE
 		if("auth")
 			if(iscarbon(usr))
@@ -154,11 +154,13 @@
 								return
 							auth = I
 							create_log("has logged in.", usr)
+							playsound(src, 'sound/machines/terminal_on.ogg', 25, FALSE)
 				else
 					create_log("has logged out.", usr)
 					auth.loc = src.loc
 					C.put_in_hands(auth)
 					auth = null
+					playsound(src, 'sound/machines/terminal_off.ogg', 25, FALSE)
 				return TRUE
 			return
 		if("scan")
@@ -170,18 +172,21 @@
 				if(T.network == network)
 					cached_server_list.Add(T)
 			screen_state = SCREEN_MAINMENU
+			playsound(src, "terminal_type", 15, FALSE)
 			return TRUE
 		if("select")
 			for(var/s in cached_server_list)
 				var/obj/machinery/telecomms/server/server = s
 				if(server.id == params["server_id"])
 					serverSelected = server
+					playsound(src, "terminal_type", 15, FALSE)
 					return TRUE
 		if("toggle_code")
 			if(is_banned_from(usr.ckey, "Signal Technician"))
 				to_chat(usr, span_warning("You are banned from using scripting."))
 				return
 			serverSelected.autoruncode = !(serverSelected.autoruncode)
+			playsound(src, "terminal_type", 15, FALSE)
 			return TRUE
 
 /obj/machinery/computer/telecomms/traffic/ui_data(mob/user)
