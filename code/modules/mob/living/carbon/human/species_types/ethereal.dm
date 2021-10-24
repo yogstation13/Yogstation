@@ -21,6 +21,7 @@
 	sexes = FALSE //no fetish content allowed
 	toxic_food = NONE
 	inert_mutation = SHOCKTOUCH
+	swimming_component = /datum/component/swimming/ethereal
 	var/current_color
 	var/EMPeffect = FALSE
 	var/emageffect = FALSE

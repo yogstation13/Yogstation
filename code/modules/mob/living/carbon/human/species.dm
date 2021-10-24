@@ -153,6 +153,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 	///Bitflag that controls what in game ways can select this species as a spawnable source. Think magic mirror and pride mirror, slime extract, ERT etc, see defines in __DEFINES/mobs.dm, defaults to NONE, so people actually have to think about it
 	var/changesource_flags = NONE
+
+	//The compnent to add when swimming
+	var/swimming_component = /datum/component/swimming
 ///////////
 // PROCS //
 ///////////
@@ -1465,7 +1468,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 		var/shove_dir = get_dir(user.loc, target.loc)
 		var/turf/target_shove_turf = get_step(target.loc, shove_dir)
-		var/mob/living/carbon/human/target_collateral_human
+		var/mob/living/carbon/human/target_collateral_human	
 		var/shove_blocked = FALSE //Used to check if a shove is blocked so that if it is knockdown logic can be applied
 
 		//Thank you based whoneedsspace
