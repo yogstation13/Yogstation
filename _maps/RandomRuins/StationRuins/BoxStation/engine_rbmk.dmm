@@ -137,18 +137,17 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"cr" = (
-/obj/item/twohanded/required/fuel_rod,
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/item/fuel_rod,
-/turf/open/indestructible/sound/pool{
-	id = 1
-	},
-/area/engine/engineering)
 "cA" = (
 /turf/open/floor/engine,
+/area/engine/engineering)
+"df" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/item/fuel_rod,
+/turf/open/indestructible/sound/pool/end{
+	id = 1
+	},
 /area/engine/engineering)
 "dp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -212,6 +211,15 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"eT" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/item/fuel_rod,
+/turf/open/indestructible/sound/pool{
+	id = 1
+	},
+/area/engine/engineering)
 "fY" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -257,6 +265,15 @@
 	dir = 6
 	},
 /turf/open/floor/engine,
+/area/engine/engineering)
+"gQ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/item/fuel_rod,
+/turf/open/indestructible/sound/pool{
+	id = 1
+	},
 /area/engine/engineering)
 "ht" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
@@ -305,29 +322,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/engine/engineering)
-"im" = (
-/obj/item/twohanded/required/fuel_rod,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/pool_filter{
-	id = 1
-	},
-/obj/item/fuel_rod,
-/turf/open/indestructible/sound/pool/end{
-	id = 1
-	},
-/area/engine/engineering)
-"it" = (
-/obj/item/twohanded/required/fuel_rod,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/item/fuel_rod,
-/turf/open/indestructible/sound/pool{
-	id = 1
-	},
-/area/engine/engineering)
 "iz" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -375,16 +369,6 @@
 	},
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/plating,
-/area/engine/engineering)
-"jf" = (
-/obj/item/twohanded/required/fuel_rod,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/item/fuel_rod,
-/turf/open/indestructible/sound/pool/end{
-	id = 1
-	},
 /area/engine/engineering)
 "ji" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -543,6 +527,18 @@
 /obj/machinery/atmospherics/pipe/simple/brown/visible,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"oJ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/pool_filter{
+	id = 1
+	},
+/obj/item/fuel_rod,
+/turf/open/indestructible/sound/pool/end{
+	id = 1
+	},
+/area/engine/engineering)
 "pe" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -570,13 +566,6 @@
 /obj/item/clothing/glasses/meson/engine,
 /obj/item/sealant,
 /turf/open/floor/plasteel/dark,
-/area/engine/engineering)
-"pN" = (
-/obj/item/twohanded/required/fuel_rod,
-/obj/item/fuel_rod,
-/turf/open/indestructible/sound/pool{
-	id = 1
-	},
 /area/engine/engineering)
 "qt" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -663,14 +652,6 @@
 /obj/structure/lattice,
 /turf/template_noop,
 /area/space/nearstation)
-"sW" = (
-/obj/item/twohanded/required/fuel_rod,
-/obj/effect/turf_decal/stripes/line,
-/obj/item/fuel_rod,
-/turf/open/indestructible/sound/pool{
-	id = 1
-	},
-/area/engine/engineering)
 "ti" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -932,6 +913,13 @@
 	pixel_x = 27
 	},
 /turf/open/floor/plasteel/dark,
+/area/engine/engineering)
+"Ei" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/item/fuel_rod,
+/turf/open/indestructible/sound/pool{
+	id = 1
+	},
 /area/engine/engineering)
 "Ep" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
@@ -1196,6 +1184,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"SK" = (
+/obj/item/fuel_rod,
+/turf/open/indestructible/sound/pool{
+	id = 1
+	},
 /area/engine/engineering)
 "Tb" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
@@ -1829,9 +1823,9 @@ Sr
 UG
 bp
 XD
-im
-pN
-sW
+oJ
+SK
+Ei
 cA
 Ad
 Ep
@@ -1857,9 +1851,9 @@ ow
 gw
 dp
 jX
-jf
-it
-cr
+df
+eT
+gQ
 cA
 Ad
 Ep
