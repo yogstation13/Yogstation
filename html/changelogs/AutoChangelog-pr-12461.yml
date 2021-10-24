@@ -1,0 +1,5 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - rscadd: "added a a Syndicate tablet preset"
+  - tweak: "comms agents now start with a syndicate tablet"

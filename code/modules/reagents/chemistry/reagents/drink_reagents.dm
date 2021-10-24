@@ -199,6 +199,15 @@
 	glass_name = "glass of milk"
 	glass_desc = "White and nutritious goodness!"
 
+/datum/reagent/consumable/cilk
+	name = "Cilk"
+	description = "A mixture of milk and.... cola? Who the fuck would do this?"
+	color = "#EAC7A4"
+	taste_description = "dairy and caffiene"
+	glass_icon_state = "glass_cilk"
+	glass_name = "glass of cilk"
+	glass_desc = "A mixture of milk and... cola? Who the fuck would do this?"
+
 /datum/reagent/consumable/milk/goat
 	name = "Goat Milk"
 	description = "An opaque white liquid produced by the mammary glands of goats."

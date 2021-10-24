@@ -1,6 +1,9 @@
 /datum/config_entry/flag/sql_enabled	// for sql switching
 	protection = CONFIG_ENTRY_LOCKED
 
+/datum/config_entry/flag/mfa_enabled
+	protection = CONFIG_ENTRY_LOCKED
+
 /datum/config_entry/string/address
 	config_entry_value = "localhost"
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN

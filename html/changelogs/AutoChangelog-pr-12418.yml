@@ -1,0 +1,6 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - imageadd: "Polysmorph mutant bodyparts now get properly colored"
+  - bugfix: "Hulk gene now updates mutant body parts properly"
+  - experiment: "One step closer to psychadelic xeno babes"

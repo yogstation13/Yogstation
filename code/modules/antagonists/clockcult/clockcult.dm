@@ -4,6 +4,7 @@
 	roundend_category = "clock cultists"
 	antagpanel_category = "Clockcult"
 	job_rank = ROLE_SERVANT_OF_RATVAR
+	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/cult
 	var/datum/action/innate/hierophant/hierophant_network = new()
 	var/datum/team/clockcult/clock_team
