@@ -1,0 +1,12 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Normal L6 round wound_bonus -50 -> -40"
+  - tweak: "AP L6 round damage 40 -> 35"
+  - tweak: "AP L6 round wound_bonus 0 -> -45"
+  - tweak: "AP L6 round armour_penetration 75 -> 60"
+  - tweak: "AP L6 round bare_wound_bonus 0 -> -10"
+  - tweak: "HP L6 round armour_penetration -60 -> -35"
+  - tweak: "HP L6 round wound_bonus -40 -> -35"
+  - tweak: "HP L6 round bare_wound_bonus 30 -> 35"
+  - tweak: "HP L6 round would_falloff_tile -8 -> 0"
