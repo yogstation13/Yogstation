@@ -119,6 +119,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/turf/pos
 	var/ijob
 	var/name
+	var/assignment_title
 	var/assignment
 	var/oxydam
 	var/toxdam
