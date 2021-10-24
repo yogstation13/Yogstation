@@ -112,13 +112,12 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 				return "Engine Singulo And Tesla"
 			if(prob(25))
 				return "Engine TEG"
-			if(prob25))
+			if(prob(25))
 				return "Engine RBMK"
 		if(4)
 			return "Engine TEG"
 		if(5)
 			return "Engine RBMK"
-
 
 /obj/effect/landmark/stationroom/box/testingsite
 	template_names = list("Bunker Bomb Range","Syndicate Bomb Range","Clown Bomb Range", "Clerk Bomb Range")
