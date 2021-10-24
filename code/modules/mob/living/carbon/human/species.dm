@@ -861,9 +861,11 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				if(!forced_colour)
 					switch(S.color_src)
 						if(MUTCOLORS)
-							if(fixed_mut_color)
+							if(H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK))			//HULK GO FIRST
+								accessory_overlay.color = "#00aa00" 
+							else if(fixed_mut_color)													//Then fixed color if applicable
 								accessory_overlay.color = "#[fixed_mut_color]"
-							else
+							else																		//Then snowflake color
 								accessory_overlay.color = "#[H.dna.features["mcolor"]]"
 						if(HAIR)
 							if(hair_color == "mutcolor")
