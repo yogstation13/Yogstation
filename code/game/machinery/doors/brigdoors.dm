@@ -110,7 +110,7 @@
 		say("Prisoner name set.")
 		desired_name = card.registered_name
 	else
-		return 
+		return FALSE
 
 //Main door timer loop, if it's timing and time is >0 reduce time by 1.
 // if it's less than 0, open door, reset timer
@@ -121,8 +121,7 @@
 
 	if(timing)
 		if(world.time - activation_time >= timer_duration)
-			timer_end()
-			 // open doors, reset timer, clear status screen
+			timer_end() // open doors, reset timer, clear status screen
 		update_icon()
 
 // open/closedoor checks if door_timer has power, if so it checks if the
@@ -156,7 +155,7 @@
 			investigate_log("New Crime: <strong>[desired_crime]</strong> | Added to [R.fields["name"]] by [key_name(user)]", INVESTIGATE_RECORDS)
 			say("Criminal record for [R.fields["name"]] successfully updated with inputted crime.")
 			playsound(loc, 'sound/machines/ping.ogg', 50, 1)
-		else if(desired_name == null)
+		else if(!desired_name)
 			say("No prisoner name inputted, security record not updated.")
 			
 	return 1
@@ -295,7 +294,7 @@
 			if(value)
 				. = set_timer(time_left()+value)
 		if("start")
-			timer_start()
+			timer_start(usr)
 			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 				H.sec_hud_set_security_status()
 		if("stop")
@@ -320,12 +319,16 @@
 				activation_time = world.time
 		if("prisoner_name")
 			var/prisoner_name = stripped_input(usr, "Input prisoner's name...", "Crimes", desired_name)
-			if(prisoner_name == null | !Adjacent(usr))
+			if(!prisoner_name | !Adjacent(usr))
 				return FALSE
 			desired_name = prisoner_name
 		if("presetCrime")
 			var/value = text2num(params["preset"])
-			var/preset_crime = params["crime"]
+			var/preset_crime = "N/A"
+			for(var/allcrimes in crimespetty + crimesminor + crimesmoderate + crimesmajor + crimessevere)
+				if(params["crime"] == allcrimes["name"])
+					preset_crime = params["crime"]
+					break
 			desired_crime += preset_crime + ", "
 			if(value)
 				. = set_timer(time_left()+value)
