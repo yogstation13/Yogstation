@@ -4,7 +4,6 @@
 GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(list(/area/engine/engineering,
 															    /area/engine/supermatter,
 															    /area/engine/atmospherics_engine,
-																/area/engine/reactor_core, 
 															    /area/ai_monitored/turret_protected/ai)))
 //Yogs end
 
