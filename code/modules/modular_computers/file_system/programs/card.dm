@@ -15,7 +15,6 @@
 	transfer_access = ACCESS_HEADS
 	requires_ntnet = 0
 	size = 8
-	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET
 	tgui_id = "NtosCard"
 	program_icon = "id-card"
 

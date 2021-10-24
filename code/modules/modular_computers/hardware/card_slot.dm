@@ -118,6 +118,5 @@
 /obj/item/computer_hardware/card_slot/secondary
 	name = "auxillary identification card authentication module"	// \improper breaks the find_hardware_by_name proc
 	desc = "A secondary identification card authentication module, allowing this computer to write data on ID cards. Necessary for some programs to run properly."
-	w_class = WEIGHT_CLASS_SMALL
 	device_type = MC_CARD2
 	expansion_hw = TRUE
