@@ -319,7 +319,7 @@
 				activation_time = world.time
 		if("prisoner_name")
 			var/prisoner_name = stripped_input(usr, "Input prisoner's name...", "Crimes", desired_name)
-			if(!prisoner_name | !Adjacent(usr))
+			if(!prisoner_name || !Adjacent(usr))
 				return FALSE
 			desired_name = prisoner_name
 		if("presetCrime")
