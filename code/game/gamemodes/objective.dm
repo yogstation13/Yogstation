@@ -767,10 +767,10 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/captured_amount = 0
 	var/area/centcom/holding/A = GLOB.areas_by_type[/area/centcom/holding]
 	for(var/mob/living/carbon/human/M in A)//Humans.
-		if(M.stat == DEAD)//Dead folks are worth less.
-			captured_amount+=0.5
-			continue
-		captured_amount+=1
+		if(!istype(src,/datum/objective/capture/living) && M.stat == DEAD)
+			captured_amount+= 0.5
+		else
+			captured_amount+= 1 //dont care if they are dead or alive in living capture because you shouldn't be able to capture them if they dead
 	for(var/mob/living/carbon/monkey/M in A)//Monkeys are almost worthless, you failure.
 		captured_amount+=0.1
 	for(var/mob/living/carbon/alien/larva/M in A)//Larva are important for research.
@@ -796,6 +796,13 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	if(count)
 		target_amount = count
 	update_explanation_text()
+
+/datum/objective/capture/living
+	name = "capture living"
+
+/datum/objective/capture/living/update_explanation_text()
+	. = ..()
+	explanation_text = "Capture [target_amount] living lifeform\s with an energy net. Only alive specimens count."
 
 /datum/objective/protect_object
 	name = "protect object"
