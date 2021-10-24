@@ -112,8 +112,9 @@
 	for(var/i in 1 to 2)
 		var/pck = pick("assassinate","protect")
 		switch(pck)
-			if("assassinate")
-				var/datum/objective/assassinate/A = new
+			if("assasinate")
+				var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
+				var/datum/objective/assassinate/A = new N
 				A.owner = owner
 				var/list/owners = A.get_owners()
 				A.find_target(owners,protection)
