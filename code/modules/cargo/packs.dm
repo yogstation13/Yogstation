@@ -2595,3 +2595,11 @@
 					/obj/item/toner,
 					/obj/item/toner)
 	crate_name = "toner crate"
+
+/datum/supply_pack/misc/jukebox
+	name = "Jukebox Crate"
+	desc = "Did the bartender not bring his jukebox? Your problem is solved with this ancient jukebox found in a junk pile."
+	cost = 5000
+	contains = list(/obj/machinery/jukebox)
+	crate_name = "jukebox crate"
+	crate_type = /obj/structure/closet/crate/large
