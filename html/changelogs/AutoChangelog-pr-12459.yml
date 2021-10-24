@@ -1,0 +1,7 @@
+author: "  Fikou for eye of god ability code theos for exposed status effect stuff"
+delete-after: true 
+changes: 
+  - rscdel: "eye of god no longer gives xray (this is so sad can we get 50 likes)"
+  - rscadd: "eye of god can now target a mob, causing all damage against them to be increased for a short duration"
+  - tweak: "attempting to make a triple eye of god will no longer delete the third eye and make you look stupid"
+  - tweak: "eye of god is now a colossus drop rather than a necro chest random loot. This is technically a mining buff now"

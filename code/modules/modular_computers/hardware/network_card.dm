@@ -76,4 +76,4 @@
 	ethernet = 1
 	power_usage = 100 // Better range but higher power usage.
 	icon_state = "net_wired"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY

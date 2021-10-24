@@ -188,7 +188,8 @@
 			maroon_objective.find_target()
 			add_objective(maroon_objective)
 		else
-			var/datum/objective/assassinate/kill_objective = new
+			var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
+			var/datum/objective/assassinate/kill_objective = new N
 			kill_objective.owner = owner
 			kill_objective.find_target()
 			add_objective(kill_objective)

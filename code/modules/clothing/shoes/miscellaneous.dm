@@ -406,7 +406,7 @@
 		to_chat(user, span_notice("[target] slithers into [src]"))
 
 /obj/item/clothing/shoes/cowboy/container_resist(mob/living/user)
-	if(!do_after(user, 10, target = user))
+	if(!do_after(user, 1 SECONDS, target = user))
 		return
 	user.forceMove(user.drop_location())
 	occupants -= user

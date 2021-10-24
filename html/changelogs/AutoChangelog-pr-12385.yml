@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscadd: "two new objectives that may take the place of assassinate objectives similarly to maroon, which function like assassinate objectives except they can succeed if the target has been cloned for one or has died at all for the other"
