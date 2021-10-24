@@ -49516,17 +49516,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
-"nWC" = (
-/obj/machinery/flasher{
-	id = "Cell 3";
-	pixel_x = -28
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/secure_closet/brig/cell{
-	id = "Cell 3"
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "nWK" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
@@ -50780,6 +50769,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"oGb" = (
+/obj/machinery/flasher{
+	id = "Cell 3";
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/variation/box/sec/brig_cell,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "oGe" = (
 /obj/structure/sign/warning/securearea{
 	pixel_y = -32
@@ -51580,12 +51578,6 @@
 /obj/effect/turf_decal/trimline/green/filled/line,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"plo" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/bed,
-/obj/item/bedsheet/prisoner,
-/turf/open/floor/plasteel,
-/area/security/brig)
 "plx" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 8
@@ -51619,6 +51611,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"pmh" = (
+/obj/machinery/flasher{
+	id = "Cell 2";
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/variation/box/sec/brig_cell,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "pmC" = (
 /obj/docking_port/stationary/public_mining_dock{
 	dir = 8
@@ -53631,20 +53632,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"qyZ" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/flasher{
-	id = "Cell 1";
-	pixel_x = -28
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/secure_closet/brig/cell{
-	id = "Cell 1"
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "qzJ" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/item/reagent_containers/food/drinks/bottle/vodka/badminka,
@@ -57336,6 +57323,18 @@
 /obj/effect/spawner/lootdrop/techstorage/RnD_secure,
 /turf/open/floor/plasteel/white,
 /area/storage/tech)
+"tbD" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/flasher{
+	id = "Cell 1";
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/variation/box/sec/brig_cell,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "tbW" = (
 /obj/machinery/blackbox_recorder,
 /obj/structure/cable/yellow{
@@ -59449,17 +59448,6 @@
 	},
 /turf/open/floor/engine/airless,
 /area/space)
-"uxQ" = (
-/obj/machinery/flasher{
-	id = "Cell 2";
-	pixel_x = -28
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/secure_closet/brig/cell{
-	id = "Cell 2"
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "uxT" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -93132,7 +93120,7 @@ ajy
 aki
 akM
 aor
-qyZ
+tbD
 amQ
 anw
 anz
@@ -93646,7 +93634,7 @@ auA
 akk
 akN
 aqn
-plo
+alx
 amR
 anw
 anc
@@ -94160,7 +94148,7 @@ ajA
 akm
 akV
 aqa
-uxQ
+pmh
 amR
 anw
 anz
@@ -94674,7 +94662,7 @@ ajH
 akk
 akN
 aqn
-plo
+alx
 amR
 anw
 anz
@@ -95188,7 +95176,7 @@ ajB
 akm
 akV
 aqa
-nWC
+oGb
 amR
 anw
 anz
@@ -95702,7 +95690,7 @@ ajH
 akk
 akV
 aqn
-plo
+alx
 amR
 anw
 anr
