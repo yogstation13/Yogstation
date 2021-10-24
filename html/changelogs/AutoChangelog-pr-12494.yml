@@ -1,0 +1,5 @@
+author: "N3D6"
+delete-after: true 
+changes: 
+  - rscadd: "Added cilk"
+  - imageadd: "Added sprites for cilk"

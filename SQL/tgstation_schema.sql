@@ -308,6 +308,14 @@ CREATE TABLE IF NOT EXISTS `messages` (
   KEY `idx_msg_type_ckey_time_odr` (`type`,`targetckey`,`timestamp`,`deleted`)
 ) ENGINE=InnoDB AUTO_INCREMENT=75629 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `mfa_logins`;
+CREATE TABLE IF NOT EXISTS `mfa_logins` (
+	`ckey` varchar(32) NOT NULL,
+	`ip` int(10) unsigned NOT NULL,
+	`cid` varchar(32) NOT NULL,
+	`datetime` timestamp NOT NULL DEFAULT current_timestamp(),
+	PRIMARY KEY (`ckey`,`ip`,`cid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `misc`;
 CREATE TABLE IF NOT EXISTS `misc` (
@@ -335,6 +343,8 @@ CREATE TABLE IF NOT EXISTS `player` (
   `credits` bigint(20) unsigned NOT NULL DEFAULT 0,
   `antag_weight` mediumint(8) unsigned NOT NULL DEFAULT 100,
   `job_whitelisted` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `totp_seed` varchar(20),
+  `mfa_backup` varchar(128),
   PRIMARY KEY (`ckey`),
   KEY `idx_player_cid_ckey` (`computerid`,`ckey`),
   KEY `idx_player_ip_ckey` (`ip`,`ckey`)

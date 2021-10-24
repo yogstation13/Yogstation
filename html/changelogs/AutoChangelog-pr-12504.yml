@@ -1,0 +1,4 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - tweak: "clock cultists are now visible on the orbit window for ghosts"
