@@ -27961,15 +27961,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"bdU" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard)
 "bdV" = (
 /obj/structure/table,
 /obj/item/stack/sheet/glass/fifty,
@@ -32081,15 +32072,6 @@
 /obj/structure/window/reinforced,
 /turf/open/space,
 /area/space/nearstation)
-"blz" = (
-/obj/item/crowbar,
-/obj/item/wrench,
-/obj/structure/table,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "blA" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -32622,16 +32604,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"bmx" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "bmz" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -70792,6 +70764,17 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"dRN" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/maintenance{
+	req_one_access_txt = "12;25;46"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/secondary)
 "dSi" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -70976,6 +70959,19 @@
 /obj/structure/sign/directions/evac,
 /turf/closed/wall,
 /area/maintenance/department/science/central)
+"edf" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/wrench,
+/obj/item/crowbar,
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "edk" = (
 /obj/machinery/door/airlock/external{
 	name = "Transport Airlock"
@@ -76285,18 +76281,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
-"mbe" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Hydroponics Maintenance";
-	req_access_txt = "35"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
-/area/maintenance/starboard/secondary)
 "mbS" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -81668,6 +81652,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"uCh" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/maintenance/starboard)
 "uGb" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -82672,6 +82667,18 @@
 /obj/structure/closet/secure_closet/medical1,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"vXr" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard)
 "vXP" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 4
@@ -83319,18 +83326,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
-"wXT" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard)
 "wYd" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bucket,
@@ -117560,7 +117555,7 @@ lAu
 lAu
 rZL
 toC
-mbe
+dRN
 xjM
 cgo
 diD
@@ -120875,7 +120870,7 @@ aTe
 bju
 aWe
 bfN
-gSl
+hUl
 byN
 nvJ
 lmE
@@ -121389,7 +121384,7 @@ aSE
 dlu
 aVK
 bfN
-hUl
+gSl
 byN
 wpK
 jcH
@@ -122173,7 +122168,7 @@ vHD
 byN
 byN
 byN
-wXT
+baM
 jyJ
 sEl
 aad
@@ -122419,15 +122414,15 @@ aVL
 aXp
 vxg
 aXo
+uCh
+pCV
+pCV
+pCV
 bcW
-bdU
 pCV
 nRn
-bcW
-pCV
-pCV
 eVe
-gDK
+vXr
 bKT
 gDK
 qzR
@@ -122677,14 +122672,14 @@ bjp
 bfN
 bfN
 bfN
+bfN
+bfN
+bfN
+bfN
+bfN
+bfN
+bfN
 bdW
-bfN
-bfN
-bfN
-bfN
-bfN
-bfN
-bfN
 bfN
 bKr
 bKr
@@ -122941,8 +122936,8 @@ cgM
 cgO
 cgP
 cgQ
-blz
-bmx
+aVK
+edf
 bKr
 bnA
 bNL
