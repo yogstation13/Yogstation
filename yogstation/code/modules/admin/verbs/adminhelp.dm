@@ -87,6 +87,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	src.text = text
 	src.text_admin = generate_admin_info(text)
 
+	var/datum/DBQuery/add_interaction_query = SSdbcore.NewQuery(
+		"INSERT INTO `admin_ticket_interactions` (`ticket_id`,`user`,`text`) VALUES (:ticket_id,:user,:text)",
+		list("ticket_id" = src.parent.db_id, "ckey" = src.user, "text" = src.text)
+	)
+	add_interaction_query.Execute()
+	qdel(add_interaction_query)
+
 /datum/ticket_log/proc/isAdminComment()
 	return istype(user, /client) && (for_admins && !(compare_ckey(parent.initiator_ckey, user) || compare_ckey(parent.handling_admin, user)) ? 1 : 0)
 
@@ -108,6 +115,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //
 
 /datum/admin_help
+	var/db_id
 	var/id
 	var/name
 	var/state = AHELP_ACTIVE
@@ -150,6 +158,17 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		initiator.current_ticket.AddInteraction("Ticket erroneously left open by code")
 		initiator.current_ticket.Close()
 	initiator.current_ticket = src
+
+	var/datum/DBQuery/add_ticket_query = SSdbcore.NewQuery(
+		"INSERT INTO `[format_table_name("admin_tickets")]` (round_id, ticket_id, ckey) VALUES (:round, :ticket, :ckey);",
+		list("round" = GLOB.round_id, "ticket" = id, "ckey" = initiator_ckey)
+	)
+
+	if(!add_ticket_query.Execute())
+		message_admins("Failed insert ticket into ticket DB. Check the SQL error logs for more details.")
+	else
+		db_id = add_ticket_query.last_insert_id
+	qdel(add_ticket_query)
 
 	TimeoutVerb()
 
