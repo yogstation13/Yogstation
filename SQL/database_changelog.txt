@@ -14,10 +14,10 @@ Modifies the admin_tickets table, and adds the admin_ticket_interactions table
 Do not forget to apply the prefix to the foreign key on the admin_ticket_interactions table
 
 ALTER TABLE `admin_tickets`
-DROP COLUMN `content`
-DROP COLUMN `rating`
-MODIFY `a_ckey` varchar(32)
-ADD INDEX `idx_round` (`round_id`)
+DROP COLUMN `content`,
+DROP COLUMN `rating`,
+MODIFY `a_ckey` varchar(32),
+ADD INDEX `idx_round` (`round_id`),
 ADD INDEX `idx_round_ticket` (`round_id`,`ticket_id`);
 
 DROP TABLE IF EXISTS `admin_ticket_interactions`;
