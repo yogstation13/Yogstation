@@ -1,7 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - rscadd: "Added new objective: Living Capture"
-  - rscadd: "NT ninja cant net dead people"
-  - rscadd: "put guide to ninja in ninja greet text"
-  - rscadd: "put specific calling to murderbone rule in NT ninja greet text"

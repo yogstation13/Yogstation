@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - tweak: "clothing now has a more generic proc to handle on equip/unequip with accessories on them"
