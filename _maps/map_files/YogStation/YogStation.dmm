@@ -38486,6 +38486,12 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"gMI" = (
+/obj/structure/grille,
+/obj/structure/lattice,
+/obj/structure/lattice,
+/turf/open/space,
+/area/space/nearstation)
 "gNi" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -41397,20 +41403,18 @@
 "iEt" = (
 /turf/open/floor/plasteel,
 /area/escapepodbay)
-"iFx" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/pipe/manifold/purple/visible{
-	dir = 1
+"iEP" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
+/obj/machinery/light/small{
+	dir = 4
 	},
-/turf/open/space/basic,
-/area/solar/port/fore)
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
 "iFI" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -54946,6 +54950,21 @@
 /obj/effect/spawner/structure/solars/solar_96,
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/port/fore)
+"rdR" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/components/binary/pump/layer2{
+	dir = 1;
+	name = "distro to shuttle"
+	},
+/obj/machinery/atmospherics/components/binary/pump/layer4{
+	name = "shuttle waste"
+	},
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 1;
+	name = "fuel to shuttle"
+	},
+/turf/open/space/basic,
+/area/solar/port/fore)
 "rea" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -55687,6 +55706,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"rFz" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/manifold/purple/visible{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/solar/port/fore)
 "rFH" = (
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
@@ -60786,22 +60818,6 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"uXH" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/components/binary/pump/layer2{
-	dir = 1;
-	name = "distro to shuttle"
-	},
-/obj/machinery/atmospherics/components/binary/pump/layer4{
-	name = "shuttle waste"
-	},
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 1;
-	name = "fuel to shuttle"
-	},
-/turf/open/space/basic,
-/area/solar/port/fore)
 "uXZ" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "QMLoad"
@@ -61396,15 +61412,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
-"vsp" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/turf/open/floor/plating,
-/area/construction/mining/aux_base)
 "vsP" = (
 /obj/effect/turf_decal/stripes/end,
 /turf/open/floor/plating,
@@ -62708,11 +62715,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"wiv" = (
-/obj/structure/grille,
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
 "wiA" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /obj/effect/turf_decal/loading_area{
@@ -76644,7 +76646,7 @@ naz
 adu
 rdN
 aaf
-aaf
+aaT
 aaa
 gXs
 gXs
@@ -77915,22 +77917,22 @@ aaa
 aaa
 aaa
 aaa
-wiv
-wiv
+tnK
+tnK
 gcm
 sHq
-wiv
-wiv
-wiv
+tnK
+tnK
+tnK
 aSD
-wiv
-wiv
-wiv
+tnK
+tnK
+tnK
 sHq
 eRz
-wiv
+tnK
 quT
-wiv
+tnK
 apJ
 kmy
 iGX
@@ -78172,7 +78174,7 @@ aaa
 aaa
 aaa
 aaa
-wiv
+tnK
 oCs
 ldm
 cLi
@@ -78429,7 +78431,7 @@ aaa
 aaa
 aaa
 aaa
-wiv
+tnK
 oCs
 aaa
 aaa
@@ -79711,8 +79713,8 @@ aaa
 aaa
 aaa
 aaa
-wiv
-wiv
+tnK
+tnK
 aaa
 aaa
 oCs
@@ -79971,7 +79973,7 @@ aaS
 aaS
 aaf
 aaf
-wiv
+tnK
 eNl
 aaa
 aaa
@@ -80228,7 +80230,7 @@ aaS
 aaa
 aoV
 aaa
-wiv
+tnK
 sHq
 aaa
 aaa
@@ -80742,7 +80744,7 @@ aaS
 aaa
 aoV
 aaa
-wiv
+tnK
 sHq
 aaa
 aaa
@@ -80999,7 +81001,7 @@ aaS
 aba
 aaf
 aaf
-wiv
+tnK
 rTw
 aaa
 aaa
@@ -81254,7 +81256,7 @@ aaa
 aaa
 aaa
 gcm
-wiv
+tnK
 aaa
 aaa
 oCs
@@ -82040,11 +82042,11 @@ aaa
 aaa
 aaa
 aaa
-iFx
-uXH
+rFz
+rdR
 tFK
 mym
-vsp
+iEP
 ibn
 xmv
 alF
@@ -82541,7 +82543,7 @@ aaa
 aaa
 aaa
 aaa
-wiv
+tnK
 oCs
 aaa
 aaa
@@ -82812,7 +82814,7 @@ gYj
 lPs
 qup
 sYk
-wiv
+tnK
 ali
 ali
 ali
@@ -83055,21 +83057,21 @@ aaa
 aaa
 aaa
 aaa
-wiv
-wiv
-wiv
+tnK
+tnK
+tnK
 sHq
 quT
-wiv
-wiv
+tnK
+tnK
 sHq
-wiv
-wiv
-wiv
+tnK
+tnK
+tnK
 sHq
 eRz
 quT
-wiv
+tnK
 aaa
 aaa
 ali
@@ -84611,7 +84613,7 @@ naz
 adA
 rdN
 aaa
-aaS
+gMI
 aaa
 aaa
 alU
