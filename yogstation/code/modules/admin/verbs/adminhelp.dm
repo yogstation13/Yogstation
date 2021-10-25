@@ -88,8 +88,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	src.text_admin = generate_admin_info(text)
 
 	var/datum/DBQuery/add_interaction_query = SSdbcore.NewQuery(
-		"INSERT INTO `admin_ticket_interactions` (`ticket_id`,`user`,`text`) VALUES (:ticket_id,:user,:text)",
-		list("ticket_id" = src.parent.db_id, "ckey" = src.user, "text" = src.text)
+		"INSERT INTO `[format_table_name("admin_ticket_interactions")]` (`ticket_id`,`user`,`text`) VALUES (:ticket_id,:user,:text)",
+		list("ticket_id" = src.parent.db_id, "user" = src.user, "text" = src.text)
 	)
 	add_interaction_query.Execute()
 	qdel(add_interaction_query)
@@ -573,6 +573,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(!usr.client)
 		return FALSE
 	handling_admin = usr.client
+
+	var/datum/DBQuery/set_admin_query = SSdbcore.NewQuery(
+		"UPDATE `[format_table_name("admin_tickets")]` SET `a_ckey` = :ckey WHERE `id` = :id;",
+		list("ckey" = usr.ckey, "id" = db_id)
+	)
+	set_admin_query.Execute();
+	qdel(set_admin_query);
 
 	var/msg = "[usr.ckey]/([usr]) has been assigned to [TicketHref("ticket #[id]")] as primary admin."
 	message_admins(msg)
