@@ -15106,14 +15106,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/storage/tools)
-"aSD" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/space/basic,
-/area/solar/port/fore)
 "aSG" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -36655,11 +36647,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"fvO" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/solar/port/fore)
 "fxr" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -38486,12 +38473,6 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"gMI" = (
-/obj/structure/grille,
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/open/space,
-/area/space/nearstation)
 "gNi" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -77924,7 +77905,7 @@ sHq
 tnK
 tnK
 tnK
-aSD
+sHq
 tnK
 tnK
 tnK
@@ -78187,7 +78168,7 @@ gYj
 gYj
 iSP
 oCs
-fvO
+oCs
 oCs
 eRz
 apJ
@@ -84613,7 +84594,7 @@ naz
 adA
 rdN
 aaa
-gMI
+aaS
 aaa
 aaa
 alU
