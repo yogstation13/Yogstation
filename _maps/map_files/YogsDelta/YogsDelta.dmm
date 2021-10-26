@@ -36630,24 +36630,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"bgs" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/bag/tray,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
-"bgt" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/glass/bowl,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
-"bgu" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
 "bgv" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -37663,26 +37645,6 @@
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/bot,
 /obj/item/book/manual/wiki/cooking_to_serve_man,
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
-"bhS" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/papersack{
-	icon_state = "paperbag_NanotrasenStandard_closed"
-	},
-/obj/item/storage/box/papersack{
-	icon_state = "paperbag_NanotrasenStandard_closed"
-	},
-/obj/item/storage/box/papersack{
-	icon_state = "paperbag_NanotrasenStandard_closed"
-	},
-/obj/item/storage/box/papersack{
-	icon_state = "paperbag_NanotrasenStandard_closed"
-	},
-/obj/item/storage/box/papersack{
-	icon_state = "paperbag_NanotrasenStandard_closed"
-	},
-/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "bhT" = (
@@ -124544,19 +124506,6 @@
 	},
 /turf/open/floor/plasteel/dark/corner,
 /area/engine/storage_shared)
-"fnf" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/dough{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/obj/effect/turf_decal/bot,
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 12;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
 "fyd" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -124739,6 +124688,16 @@
 /obj/item/pen,
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"fXK" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/bag/tray,
+/obj/effect/turf_decal/bot,
+/obj/item/reagent_containers/food/snacks/dough{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "gbI" = (
 /obj/structure/table/glass,
 /obj/structure/cable/white{
@@ -125684,6 +125643,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
+"lvG" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/bowl,
+/obj/effect/turf_decal/bot,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "lED" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -128034,6 +128003,27 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"wpQ" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/papersack{
+	icon_state = "paperbag_NanotrasenStandard_closed"
+	},
+/obj/item/storage/box/papersack{
+	icon_state = "paperbag_NanotrasenStandard_closed"
+	},
+/obj/item/storage/box/papersack{
+	icon_state = "paperbag_NanotrasenStandard_closed"
+	},
+/obj/item/storage/box/papersack{
+	icon_state = "paperbag_NanotrasenStandard_closed"
+	},
+/obj/item/storage/box/papersack{
+	icon_state = "paperbag_NanotrasenStandard_closed"
+	},
+/obj/effect/turf_decal/bot,
+/obj/item/reagent_containers/food/condiment/flour,
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "wrp" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/tile/neutral{
@@ -128249,6 +128239,11 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
+"xAi" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/griddle,
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "xDZ" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1
@@ -165577,8 +165572,8 @@ aKz
 bcj
 bdJ
 bfe
-bgs
-fnf
+fXK
+xAi
 aYI
 aJj
 aYD
@@ -165834,8 +165829,8 @@ aLL
 aYC
 bdK
 bff
-bgt
-bhR
+lvG
+xAi
 bjG
 aJs
 bnq
@@ -166091,8 +166086,8 @@ aKA
 bcj
 bdJ
 bfg
-bgu
-bhS
+bhR
+wpQ
 bjF
 blA
 bnq
