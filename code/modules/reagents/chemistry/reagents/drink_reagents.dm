@@ -57,7 +57,7 @@
 	glass_icon_state = "carrotjuice"
 	glass_name = "glass of  carrot juice"
 	glass_desc = "It's just like a carrot but without crunching."
-
+m
 /datum/reagent/consumable/carrotjuice/on_mob_life(mob/living/carbon/M)
 	M.adjust_blurriness(-1)
 	M.adjust_blindness(-1)
@@ -207,6 +207,15 @@
 	glass_icon_state = "glass_cilk"
 	glass_name = "glass of cilk"
 	glass_desc = "A mixture of milk and... cola? Who the fuck would do this?"
+
+/datum/reagent/consumable/cilk/soy
+	name = "Soy Cilk"
+	description = "A mixture of soy milk and.... cola? Who the fuck would do this?"
+	color = "#EAC7A4"
+	taste_description = "lactate free dairy and caffiene"
+	glass_icon_state = "glass_cilk"
+	glass_name = "glass of soy cilk"
+	glass_desc = "A mixture of soy milk and... cola? Who the fuck would do this?"
 
 /datum/reagent/consumable/milk/goat
 	name = "Goat Milk"
