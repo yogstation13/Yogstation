@@ -1009,8 +1009,8 @@
 							if(!chosen_id) //Get me out of here!
 								break
 							for(var/ID in reagent_options)
-								var/datum/reagent/selected = ID
-								if(reagent_options[selected].name == chosen_id) //apparently I have to do this because the other method wasn't WORKING
+								var/datum/reagent/selected = reagent_options[ID]
+								if(selected?.name == chosen_id) //apparently I have to do this because the other method wasn't WORKING
 									valid_id = TRUE
 									chosen_id = selected
 							if(!valid_id)
