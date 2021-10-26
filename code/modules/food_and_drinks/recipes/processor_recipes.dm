@@ -3,12 +3,10 @@
 	var/output
 	var/time = 40
 	var/required_machine = /obj/machinery/processor
-	var/multiplier = 1 //This multiplies the number of products produced per object processed.
 
 /datum/food_processor_process/meat
 	input = /obj/item/reagent_containers/food/snacks/meat/slab
 	output = /obj/item/reagent_containers/food/snacks/raw_meatball  //YOGS - Bigotry rule
-	multiplier = 3
 
 /datum/food_processor_process/cutlet
 	input = /obj/item/reagent_containers/food/snacks/meat/cutlet/plain
