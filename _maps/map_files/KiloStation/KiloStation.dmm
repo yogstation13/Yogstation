@@ -39769,17 +39769,6 @@
 /obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
-"bmT" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/item/storage/bag/tray,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/kitchen)
 "bmU" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/rack,
@@ -40932,24 +40921,6 @@
 "boC" = (
 /turf/closed/wall,
 /area/hallway/primary/port)
-"boD" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/item/book/manual/chef_recipes{
-	pixel_x = -4;
-	pixel_y = 6
-	},
-/obj/item/book/manual/chef_recipes{
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/kitchen)
 "boF" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/clothing/suit/hooded/wintercoat/engineering,
@@ -41109,26 +41080,6 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"boQ" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/microwave{
-	pixel_y = 5
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/kitchen)
 "boS" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -88019,6 +87970,14 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"fkV" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
 "flG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -88056,6 +88015,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/atmos)
+"fnv" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/item/storage/bag/tray,
+/obj/item/book/manual/chef_recipes{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
 "fnA" = (
 /obj/machinery/igniter{
 	id = "Incinerator"
@@ -88320,15 +88294,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
-"fBQ" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/reagentgrinder/kitchen,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/kitchen)
 "fDt" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -91562,6 +91527,24 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"jkA" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/machinery/reagentgrinder/kitchen,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
 "jmB" = (
 /obj/machinery/door/airlock/mining{
 	name = "Auxiliary Base";
@@ -95360,6 +95343,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"ntO" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
 "nuj" = (
 /obj/machinery/door/poddoor{
 	id = "toxinsdriver";
@@ -138950,7 +138944,7 @@ brM
 bmA
 aDh
 bmR
-fBQ
+fkV
 aGJ
 bmL
 bmF
@@ -139206,8 +139200,8 @@ brH
 brr
 ruL
 bqk
-bmT
-boD
+fnv
+ntO
 aGM
 boV
 bjn
@@ -139719,7 +139713,7 @@ brq
 brF
 brG
 ajt
-boQ
+jkA
 boH
 bqo
 aGP
