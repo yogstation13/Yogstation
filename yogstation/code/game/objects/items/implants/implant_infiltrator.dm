@@ -148,7 +148,7 @@
 		else if(dist > range_far)
 			linked_alert.add_overlay("pinonfar")
 
-/datum/status_effect/agent_pinpointer/tick()
+/datum/status_effect/infiltrator_pinpointer/tick()
 	if(!owner)
 		qdel(src)
 		return
