@@ -29103,6 +29103,16 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"hqI" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/item/reagent_containers/food/snacks/mint,
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "hqX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -32627,6 +32637,12 @@
 /obj/machinery/bounty_board,
 /turf/closed/wall,
 /area/quartermaster/storage)
+"kVk" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "kVM" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -32948,15 +32964,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"ljI" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "lkg" = (
 /obj/machinery/newscaster{
 	pixel_x = 32
@@ -33551,13 +33558,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"lSI" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "lTp" = (
 /obj/machinery/light{
 	dir = 8
@@ -90534,7 +90534,7 @@ hhR
 jTO
 ylL
 qbN
-ljI
+hqI
 jTO
 mYt
 ihJ
@@ -90791,7 +90791,7 @@ rjo
 bmk
 kiZ
 pYn
-lSI
+kVk
 miv
 aCe
 kzS
