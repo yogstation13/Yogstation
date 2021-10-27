@@ -275,9 +275,9 @@
 					to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. Book title stored in associated computer buffer.'")
 				if(2)
 					scanner.book = src
-					for(var/datum/borrowbook/b in scanner.computer.checkouts)
+					for(var/datum/cachedbook/borrowbook/b in GLOB.checkouts)
 						if(b.bookname == name)
-							scanner.computer.checkouts.Remove(b)
+							GLOB.checkouts.Remove(b)
 							to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. Book has been checked in.'")
 							return
 					to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. No active check-out record found for current title.'")
@@ -322,7 +322,7 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
-	var/obj/machinery/computer/libraryconsole/bookmanagement/computer	//Associated computer - Modes 1 to 3 use this
+	var/obj/machinery/computer/libraryconsole/computer	//Associated computer - Modes 1 to 3 use this
 	var/obj/item/book/book			//Currently scanned book
 	var/mode = 0							//0 - Scan only, 1 - Scan and Set Buffer, 2 - Scan and Attempt to Check In, 3 - Scan and Attempt to Add to Inventory
 
