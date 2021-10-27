@@ -44,7 +44,7 @@
 	U.armor = U.armor.attachArmor(armor)
 
 	if(isliving(user))
-		on_uniform_equip(U, user)
+		on_clothing_equip(U, user)
 
 	return TRUE
 
@@ -55,7 +55,7 @@
 	U.armor = U.armor.detachArmor(armor)
 
 	if(isliving(user))
-		on_uniform_dropped(U, user)
+		on_clothing_dropped(U, user)
 
 	if(minimize_when_attached)
 		transform *= 2
@@ -67,10 +67,10 @@
 	U.attached_accessory = null
 	U.accessory_overlay = null
 
-/obj/item/clothing/accessory/proc/on_uniform_equip(obj/item/clothing/under/U, user)
+/obj/item/clothing/accessory/proc/on_clothing_equip(obj/item/clothing/U, user)
 	return
 
-/obj/item/clothing/accessory/proc/on_uniform_dropped(obj/item/clothing/under/U, user)
+/obj/item/clothing/accessory/proc/on_clothing_dropped(obj/item/clothing/U, user)
 	return
 
 /obj/item/clothing/accessory/AltClick(mob/user)
@@ -308,12 +308,12 @@
 		user.say("The testimony contradicts the evidence!", forced = "attorney's badge")
 	user.visible_message("[user] shows [user.p_their()] attorney's badge.", span_notice("You show your attorney's badge."))
 
-/obj/item/clothing/accessory/lawyers_badge/on_uniform_equip(obj/item/clothing/under/U, user)
+/obj/item/clothing/accessory/lawyers_badge/on_clothing_equip(obj/item/clothing/U, user)
 	var/mob/living/L = user
 	if(L)
 		L.bubble_icon = "lawyer"
 
-/obj/item/clothing/accessory/lawyers_badge/on_uniform_dropped(obj/item/clothing/under/U, user)
+/obj/item/clothing/accessory/lawyers_badge/on_clothing_dropped(obj/item/clothing/U, user)
 	var/mob/living/L = user
 	if(L)
 		L.bubble_icon = initial(L.bubble_icon)
