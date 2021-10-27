@@ -67590,17 +67590,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"cZo" = (
-/obj/structure/easel,
-/obj/structure/rack,
-/obj/item/storage/belt{
-	desc = "Can hold quite a lot of stuff.";
-	name = "multi-belt"
-	},
-/obj/item/clothing/gloves/color/fyellow,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "cZr" = (
 /obj/structure/sign/poster/official/random{
 	pixel_x = -32
@@ -78315,6 +78304,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"pEE" = (
+/obj/structure/easel,
+/obj/structure/rack,
+/obj/item/storage/belt/multi,
+/obj/item/clothing/gloves/color/fyellow,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "pGf" = (
 /obj/machinery/light{
 	dir = 1
@@ -125202,7 +125199,7 @@ iWR
 mCZ
 uGU
 bfq
-cZo
+pEE
 dnS
 dnS
 eXf
