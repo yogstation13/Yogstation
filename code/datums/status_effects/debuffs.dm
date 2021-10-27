@@ -1024,3 +1024,106 @@
 /datum/status_effect/cloudstruck/Destroy()
 	. = ..()
 	QDEL_NULL(mob_overlay)
+
+#define HERETIC_SACRIFICE_EFFECT_THRESHOLD 3 //number of ticks per event, this will get cut off if it occurs at the same time the effect ends.
+#define LIMB_SPOOK "limb_skeletonification"
+#define WOUNDING "oof_ouch_my_bones"
+#define BRAIN_DAMAGE "shouldnt_have_done_that"
+
+/datum/status_effect/heretic_sacrifice
+	id = "heretic_sac"
+	alert_type = null
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 4 MINUTES
+	tick_interval = 15 SECONDS
+	var/list/unspooked_limbs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+	var/list/all_limbs = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_CHEST, BODY_ZONE_HEAD)
+	var/fuckywuckycounter = 0
+	var/list/limb_removal_flavor = list("The skin on your %LIMB falls off, revealing the skeleton beneath!")
+	var/dam_type = BRUTE
+	var/wound_type = /datum/wound/blunt/critical
+	var/list/wound_flavor = list("The bones in your %LIMB suddenly snap!")
+	var/list/brain_traumas = list(/datum/brain_trauma/mild/phobia/space, /datum/brain_trauma/mild/phobia/supernatural, /datum/brain_trauma/severe/monophobia, /datum/brain_trauma/special/death_whispers, /datum/brain_trauma/mild/phobia/clowns,/datum/brain_trauma/mild/phobia/robots,/datum/brain_trauma/mild/phobia/conspiracies) //if death whipsers is too stupid feel free to axe it
+	var/list/brain_damage_flavor = list("You see... nothing...? It hurts.", "The stars are wrong.", "One of the dark stars suddenly vanishes. You think? Your mind slips.", "You catch a glimpse of something of something of something- that shouldn't- that's too- that's... old. Then it's gone.")
+
+/datum/status_effect/heretic_sacrifice/on_apply()
+	owner.SetStun(60 MINUTES, ignore_canstun = TRUE)
+	to_chat(owner, "<span class='revenbignotice'>You find yourself floating in a strange, unfamiliar void. Are you dead? ... no ... that feels different... Maybe there's a way out?</span>")
+	for(var/i in GLOB.brazil_reception)
+		if(locate(/mob) in get_turf(i)) //there are actually 64 total spots at brazil to get teleported to so if this gets filled (unlikely) they just get returned as a failsafe
+			continue
+		owner.forceMove(get_turf(i))
+		return TRUE
+
+/datum/status_effect/heretic_sacrifice/tick()
+	owner.SetStun(60 MINUTES, ignore_canstun = TRUE) //not getting out of it that easy
+	if(!iscarbon(owner))
+		return
+	if(prob(20))
+		to_chat(owner, span_velvet(pick("The stars flicker in the distance.", "You faintly see movement.", "You feel something turn its gaze to you, then move on.", "This can't be it, can it?")))
+	fuckywuckycounter++
+	var/mob/living/carbon/C = owner
+	if(!(fuckywuckycounter % HERETIC_SACRIFICE_EFFECT_THRESHOLD))
+		if(prob(1)) //small chance of no effect
+			to_chat(owner, span_boldnotice("You float, The glow of the dark stars oddly relaxing. Everything feels alright for once.</span>"))
+			return
+		var/effect = pick(LIMB_SPOOK, WOUNDING, BRAIN_DAMAGE)
+		switch(effect)
+			if(LIMB_SPOOK)
+				var/obj/item/bodypart/BP
+				while(!BP)
+					if(!LAZYLEN(unspooked_limbs))
+						break
+					var/target_zone = pick_n_take(unspooked_limbs)
+					BP = C.get_bodypart(target_zone)
+					var/obj/item/bodypart/replacement_part = new BP.type
+					if(BP.species_id == "skeleton")
+						continue
+					var/msg = pick(limb_removal_flavor)
+					msg = replacetext(msg, "%LIMB", BP.name)
+					to_chat(owner, span_userdanger(msg))
+					replacement_part.species_id = "skeleton"
+					replacement_part.original_owner = "inside"
+					replacement_part.replace_limb(owner)
+					C.apply_damage(30, damagetype = dam_type, def_zone = target_zone, wound_bonus = CANT_WOUND)
+					owner.emote("scream")
+				if(BP)
+					qdel(BP)
+			if(WOUNDING)
+				var/obj/item/bodypart/BP
+				while(!BP)
+					if(!LAZYLEN(all_limbs))
+						break
+					BP = C.get_bodypart(pick_n_take(all_limbs))
+					BP.force_wound_upwards(wound_type)
+					var/msg = pick(wound_flavor)
+					msg = replacetext(msg, "%LIMB", BP.name)
+					to_chat(owner, span_userdanger(msg))
+			if(BRAIN_DAMAGE)
+				var/msg = pick(brain_damage_flavor)
+				to_chat(owner, span_userdanger(msg))
+				if(!owner.has_status_effect(STATUS_EFFECT_NECROPOLIS_CURSE) && prob(20)) //20% chance for a blinding necropolis curse instead of a permanent trauma (only happens once, lasts several minutes)
+					owner.apply_necropolis_curse(CURSE_BLINDING)
+				else
+					var/trauma = pick_n_take(brain_traumas)
+					var/datum/brain_trauma/T = new trauma
+					C.gain_trauma(T, TRAUMA_RESILIENCE_LOBOTOMY)
+
+/datum/status_effect/heretic_sacrifice/on_remove()
+	. = ..()
+	to_chat(owner, "<span class='revenbignotice'>You suddenly snap back to something familiar, with no recollection of the past few minutes, or any proof of it beyond your mangled state.</span>")
+	owner.SetStun(2 SECONDS, ignore_canstun = TRUE)
+	var/turf/open/floor/safe_turf = find_safe_turf(zlevels = 2)
+	if(safe_turf)
+		do_teleport(owner, safe_turf , 0, channel = TELEPORT_CHANNEL_FREE)
+
+/datum/status_effect/heretic_sacrifice/ash
+
+/datum/status_effect/heretic_sacrifice/flesh
+
+/datum/status_effect/heretic_sacrifice/rust
+
+#undef HERETIC_SACRIFICE_EFFECT_THRESHOLD
+#undef LIMB_SPOOK
+#undef WOUNDING
+#undef BRAIN_DAMAGE

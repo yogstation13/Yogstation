@@ -113,6 +113,8 @@
 
 #define STATUS_EFFECT_LIMP /datum/status_effect/limp //For when you have a busted leg (or two!) and want additional slowdown when walking on that leg
 
+#define STATUS_EFFECT_HERETIC_SACRIFICE /datum/status_effect/heretic_sacrifice //controls heretic sacrifice events
+
 /////////////
 // NEUTRAL //
 /////////////
