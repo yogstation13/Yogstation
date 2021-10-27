@@ -643,6 +643,14 @@
 /datum/chemical_reaction/cellulose_carbonization
 	name = "Cellulose_Carbonization"
 	id = /datum/reagent/carbon
+	mix_message = "The fibers char, producing a soft black powder."
 	results = list(/datum/reagent/carbon = 1)
 	required_reagents = list(/datum/reagent/cellulose = 1)
 	required_temp = 512
+
+/datum/chemical_reaction/tribalnutriment
+	name = "Mushroom Paste Congealation"
+	id = "mushroom_paste"
+	mix_message = "The mixture congeals into a foul smelling paste."
+	results = list(/datum/reagent/plantnutriment/tribalnutriment = 6)
+	required_reagents = list(/datum/reagent/consumable/cream/bug = 2, /datum/reagent/consumable/vitfro = 2, /datum/reagent/consumable/entpoly = 2)

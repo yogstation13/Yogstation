@@ -14,6 +14,7 @@
 	transfer_access = ACCESS_HEADS
 	requires_ntnet = 0
 	size = 8
+	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET
 	tgui_id = "NtosCard"
 
 	var/is_centcom = FALSE
@@ -214,6 +215,7 @@
 					new_access = job.get_access()
 				id_card.access -= get_all_centcom_access() + get_all_accesses()
 				id_card.access |= new_access
+				id_card.originalassignment = target
 				id_card.assignment = target
 				id_card.update_label()
 			playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)

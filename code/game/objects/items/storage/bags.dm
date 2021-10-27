@@ -391,3 +391,20 @@
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 	STR.insert_preposition = "in"
 	STR.set_holdable(list(/obj/item/stack/ore/bluespace_crystal, /obj/item/assembly, /obj/item/stock_parts, /obj/item/reagent_containers/glass/beaker, /obj/item/stack/cable_coil, /obj/item/circuitboard, /obj/item/electronics, /obj/item/organ, /obj/item/bodypart))
+
+
+/obj/item/storage/bag/construction/admin/full/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 1000
+	STR.max_items = 100
+	
+/obj/item/storage/bag/construction/admin/full/PopulateContents()
+	new /obj/item/stack/cable_coil(src,MAXCOIL,"red")
+	for(var/i in 1 to 10)
+		new /obj/item/stock_parts/capacitor/quadratic(src)
+		new /obj/item/stock_parts/scanning_module/triphasic(src)
+		new /obj/item/stock_parts/manipulator/femto(src)
+		new /obj/item/stock_parts/micro_laser/quadultra(src)
+		new /obj/item/stock_parts/matter_bin/bluespace(src)
+		new /obj/item/stock_parts/cell/infinite(src)
