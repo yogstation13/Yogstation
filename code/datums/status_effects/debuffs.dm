@@ -1047,6 +1047,9 @@
 	var/list/brain_damage_flavor = list("You see... nothing...? It hurts.", "The stars are wrong.", "One of the dark stars suddenly vanishes. You think? Your mind slips.", "You catch a glimpse of something of something of something- that shouldn't- that's too- that's... old. Then it's gone.")
 
 /datum/status_effect/heretic_sacrifice/on_apply()
+	owner.revive(full_heal = TRUE) //this totally won't be used to bypass stuff(tm)
+	owner.regenerate_organs()
+	owner.regenerate_limbs()
 	owner.SetStun(60 MINUTES, ignore_canstun = TRUE)
 	to_chat(owner, "<span class='revenbignotice'>You find yourself floating in a strange, unfamiliar void. Are you dead? ... no ... that feels different... Maybe there's a way out?</span>")
 	for(var/i in GLOB.brazil_reception)
@@ -1115,13 +1118,23 @@
 	owner.SetStun(2 SECONDS, ignore_canstun = TRUE)
 	var/turf/open/floor/safe_turf = find_safe_turf(zlevels = 2)
 	if(safe_turf)
-		do_teleport(owner, safe_turf , 0, channel = TELEPORT_CHANNEL_FREE)
+		owner.forceMove(safe_turf)
 
 /datum/status_effect/heretic_sacrifice/ash
+	limb_removal_flavor = list("The flesh on your %LIMB ignites and burns off, revealing the bones beneath!")
+	wound_type = /datum/wound/burn/critical
+	wound_flavor = list("You feel a stinging pain as the skin on your %LIMB suddenly bursts into flames!")
+	brain_damage_flavor = list("You see a fire, people, burning, screaming.", "Suddenly, two flaming eyes appear before you. Their stare burning into your eyes, your mind.", "For a moment, you are in the middle of a raging inferno, you can see your skin burn and melt, then you're back here.", "You see someone you know trapped in a fire, but you can't reach them. You can't help.")
 
 /datum/status_effect/heretic_sacrifice/flesh
+	limb_removal_flavor = list("The flesh on your %LIMB suddenly rots off, revealing the bones beneath!", "You feel a presence by your side, then a flash of pain. By the time you can turn, your %LIMB is already reduced to bones, and the presence is gone.")
+	wound_flavor = list("Your %LIMB's bones suddenly crumble beneath your skin!")
+	brain_damage_flavor = list("You see bodies. So many bodies...  The worst part is, you think you can recognize some of them.", "You see yourself, bleeding, dying.", "For a minute, you feel something... knitting? Your skin. But whenever you turn, it moves somewhere else.")
 
 /datum/status_effect/heretic_sacrifice/rust
+	limb_removal_flavor = list("The flesh on your %LIMB begins to flake off, revealing the bones beneath!")
+	wound_flavor = list("Your %LIMB's bones, brittle and aching at the joints, finally break!")
+	brain_damage_flavor = list("You see everything you've worked for reduced to dust before your eyes...", "You see an ending.", "You find yourself on the station for a moment, but it's rusted and derelict. You check the time... it's only been an hour?")
 
 #undef HERETIC_SACRIFICE_EFFECT_THRESHOLD
 #undef LIMB_SPOOK

@@ -115,6 +115,12 @@
 
 #define STATUS_EFFECT_HERETIC_SACRIFICE /datum/status_effect/heretic_sacrifice //controls heretic sacrifice events
 
+#define STATUS_EFFECT_HERETIC_SACRIFICE_ASH /datum/status_effect/heretic_sacrifice/ash
+
+#define STATUS_EFFECT_HERETIC_SACRIFICE_FLESH /datum/status_effect/heretic_sacrifice/flesh
+
+#define STATUS_EFFECT_HERETIC_SACRIFICE_RUST /datum/status_effect/heretic_sacrifice/rust
+
 /////////////
 // NEUTRAL //
 /////////////
