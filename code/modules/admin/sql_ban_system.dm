@@ -174,7 +174,7 @@
 		<div class='column'>
 			Reason
 			<br>
-			<textarea class='reason' name='reason'>[reason]</textarea>
+			<textarea class='reason' name='reason' maxlength='600'>[reason]</textarea>
 		</div>
 	</div>
 	"}
@@ -359,6 +359,8 @@
 	reason = href_list["reason"]
 	if(!reason)
 		error_state += "No reason was provided."
+	if(reason.len > 600)
+		error_state += "Reason cannot be more than 600 characters."
 	if(href_list["editid"])
 		edit_id = href_list["editid"]
 		if(href_list["mirroredit"])
@@ -393,10 +395,12 @@
 				roles_to_ban += "Server"
 			if("role")
 				href_list.Remove("Command", "Security", "Engineering", "Medical", "Science", "Supply", "Silicon", "Abstract", "Civilian", "Ghost and Other Roles", "Antagonist Positions") //remove the role banner hidden input values
-				if(href_list[href_list.len] == "roleban_delimiter")
+				var/delimiter_pos = href_list.Find("roleban_delimiter")
+				if(href_list.len == delimiter_pos)
 					error_state += "Role ban was selected but no roles to ban were selected."
+				else if(delimiter_pos == 0)
+					error_state += "roleban_delimiter not found in href. Report this to coders."
 				else
-					var/delimiter_pos = href_list.Find("roleban_delimiter")
 					href_list.Cut(1, delimiter_pos+1)//remove every list element before and including roleban_delimiter so we have a list of only the roles to ban
 					for(var/key in href_list) //flatten into a list of only unique keys
 						roles_to_ban |= key
