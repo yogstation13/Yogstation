@@ -537,6 +537,7 @@
 	. += span_info("[src] is set to [fridges_name_paths[build_path]]. You can use a screwdriver to reconfigure it.")
 
 
+
 /obj/item/circuitboard/machine/space_heater
 	name = "Space Heater (Machine Board)"
 	icon_state = "generic"
@@ -997,6 +998,11 @@
 	name = "Booze Dispenser (Machine Board)"
 	icon_state = "service"
 	build_path = /obj/machinery/chem_dispenser/drinks/beer
+
+/obj/item/circuitboard/machine/chem_dispenser/drinks/tea
+	name = "Coffee Machine (Machine Board)"
+	icon_state = "service"
+	build_path = /obj/machinery/chem_dispenser/drinks/tea
 
 /obj/item/circuitboard/machine/chem_master/condi
 	name = "CondiMaster 3000 (Machine Board)"

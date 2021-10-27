@@ -567,6 +567,41 @@
 	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
 	RefreshParts()
 
+/obj/machinery/chem_dispenser/drinks/tea
+	name = "tea dispenser"
+	desc = "Get your tea here, coffee included."
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "coffee_machine"
+	circuit = /obj/item/circuitboard/machine/chem_dispenser/drinks/tea //to do
+	dispensable_reagents = list(
+		/datum/reagent/consumable/tea,
+		/datum/reagent/consumable/tea/rice,
+		/datum/reagent/consumable/tea/green,
+		/datum/reagent/consumable/tea/mint,
+		/datum/reagent/consumable/tea/red,
+		/datum/reagent/consumable/cream,
+		/datum/reagent/consumable/sugar,
+	)
+	upgrade_reagents = list(
+		/datum/reagent/consumable/milk
+	)
+	emagged_reagents = null
+
+/obj/machinery/chem_dispenser/drinks/tea/Initialize()
+	. = ..()
+	component_parts = list()
+	component_parts += new /obj/item/circuitboard/machine/chem_dispenser(null)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
+	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
+	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
+	component_parts += new /obj/item/stack/sheet/glass(null)
+	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
+	RefreshParts()
+
+
+
+
 /obj/machinery/chem_dispenser/mutagen
 	name = "mutagen dispenser"
 	desc = "Creates and dispenses mutagen."
