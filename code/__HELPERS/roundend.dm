@@ -652,7 +652,10 @@
 			A = GLOB.deadmins[i]
 			if (!A)
 				continue
-		file_data["admins"]["[i]"] = A.rank.name
+		file_data["admins"]["[i]"] = list()
+		file_data["admins"]["[i]"]["rank"] = A.rank.name
+		file_data["admins"]["[i]"]["ip_cache"] = A.ip_cache
+		file_data["admins"]["[i]"]["cid_cache"] = A.cid_cache
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(file_data))
 

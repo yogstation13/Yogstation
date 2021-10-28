@@ -1024,3 +1024,44 @@
 /datum/status_effect/cloudstruck/Destroy()
 	. = ..()
 	QDEL_NULL(mob_overlay)
+
+/datum/status_effect/exposed
+	id = "exposed"
+	duration = 10 SECONDS
+	///damage multiplier
+	var/power = 1.15
+
+/datum/status_effect/exposed/on_apply()
+	. = ..()
+	if(.)
+		owner.add_filter("exposed", 2, list("type" = "outline", "color" = COLOR_YELLOW, "size" = 1))
+		if(ismegafauna(owner))
+			power = 1.30
+			duration *= 4
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			H.physiology.brute_mod *= power
+			H.physiology.burn_mod *= power
+			H.physiology.tox_mod *= power
+			H.physiology.oxy_mod *= power
+			H.physiology.clone_mod *= power
+			H.physiology.stamina_mod *= power
+		else if(isanimal(owner))
+			var/mob/living/simple_animal/S = owner
+			for(var/i in S.damage_coeff)
+				S.damage_coeff[i] *= power
+
+/datum/status_effect/exposed/on_remove()
+	owner.remove_filter("exposed")
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.brute_mod /= power
+		H.physiology.burn_mod /= power
+		H.physiology.tox_mod /= power
+		H.physiology.oxy_mod /= power
+		H.physiology.clone_mod /= power
+		H.physiology.stamina_mod /= power
+	else if(isanimal(owner))
+		var/mob/living/simple_animal/S = owner
+		for(var/i in S.damage_coeff)
+			S.damage_coeff[i] /= power

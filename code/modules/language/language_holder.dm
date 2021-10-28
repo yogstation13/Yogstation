@@ -382,3 +382,9 @@ Key procs
 								/datum/language/egg = list(LANGUAGE_ATOM),)
 	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 							/datum/language/egg = list(LANGUAGE_ATOM),)
+
+/datum/language_holder/english
+	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+								/datum/language/english = list(LANGUAGE_ATOM),)
+	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+							/datum/language/english = list(LANGUAGE_ATOM),)
