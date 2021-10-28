@@ -15058,14 +15058,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/storage/tools)
-"aSD" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/space/basic,
-/area/solar/port/fore)
 "aSG" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -36634,11 +36626,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"fvO" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/solar/port/fore)
 "fxr" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -41396,20 +41383,18 @@
 "iEt" = (
 /turf/open/floor/plasteel,
 /area/escapepodbay)
-"iFx" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/pipe/manifold/purple/visible{
-	dir = 1
+"iEP" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
+/obj/machinery/light/small{
+	dir = 4
 	},
-/turf/open/space/basic,
-/area/solar/port/fore)
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
 "iFI" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -44221,11 +44206,6 @@
 	},
 /turf/open/floor/carpet,
 /area/medical/psych)
-"ksi" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/turf/open/space,
-/area/space/nearstation)
 "kti" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/wood,
@@ -54939,6 +54919,21 @@
 /obj/effect/spawner/structure/solars/solar_96,
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/port/fore)
+"rdR" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/components/binary/pump/layer2{
+	dir = 1;
+	name = "distro to shuttle"
+	},
+/obj/machinery/atmospherics/components/binary/pump/layer4{
+	name = "shuttle waste"
+	},
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 1;
+	name = "fuel to shuttle"
+	},
+/turf/open/space/basic,
+/area/solar/port/fore)
 "rea" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -55680,6 +55675,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"rFz" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/manifold/purple/visible{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/solar/port/fore)
 "rFH" = (
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
@@ -60767,22 +60775,6 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"uXH" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/components/binary/pump/layer2{
-	dir = 1;
-	name = "distro to shuttle"
-	},
-/obj/machinery/atmospherics/components/binary/pump/layer4{
-	name = "shuttle waste"
-	},
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 1;
-	name = "fuel to shuttle"
-	},
-/turf/open/space/basic,
-/area/solar/port/fore)
 "uXZ" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "QMLoad"
@@ -61377,15 +61369,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
-"vsp" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/turf/open/floor/plating,
-/area/construction/mining/aux_base)
 "vsP" = (
 /obj/effect/turf_decal/stripes/end,
 /turf/open/floor/plating,
@@ -76620,7 +76603,7 @@ naz
 adu
 rdN
 aaf
-aaf
+aaT
 aaa
 gXs
 gXs
@@ -77898,7 +77881,7 @@ sHq
 tnK
 tnK
 tnK
-aSD
+sHq
 tnK
 tnK
 tnK
@@ -78161,7 +78144,7 @@ gYj
 gYj
 iSP
 oCs
-fvO
+oCs
 oCs
 eRz
 apJ
@@ -82016,11 +81999,11 @@ aaa
 aaa
 aaa
 aaa
-iFx
-uXH
+rFz
+rdR
 tFK
 mym
-vsp
+iEP
 ibn
 xmv
 alF
@@ -84330,7 +84313,7 @@ naz
 adz
 rdN
 aaf
-abY
+aaS
 gXs
 aaa
 alU
@@ -86645,7 +86628,7 @@ aaa
 aaa
 aaa
 aaa
-ksi
+aag
 cXq
 qBb
 qFW
