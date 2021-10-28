@@ -1,6 +1,0 @@
-author: "maxion12345"
-delete-after: true 
-changes: 
-  - rscadd: "Added preset crime buttons to brig timers"
-  - rscdel: "Removed brig cell variations due to breaking automatic locker locking"
-  - rscadd: "Turnstiles to brig"
