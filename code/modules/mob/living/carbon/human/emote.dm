@@ -37,7 +37,6 @@
 	message = "hisses."
 	emote_type = EMOTE_AUDIBLE
 	var/list/viable_tongues = list(/obj/item/organ/tongue/lizard, /obj/item/organ/tongue/polysmorph)
-	sound = 'sound/voice/lizard/hiss.ogg'
 
 /datum/emote/living/carbon/hiss/get_sound(mob/living/user)
 	if(!ishuman(user))
