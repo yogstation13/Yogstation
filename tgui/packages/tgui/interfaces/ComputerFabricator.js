@@ -9,7 +9,7 @@ export const ComputerFabricator = (props, context) => {
   return (
     <Window
       title="Personal Computer Vendor"
-      width={500}
+      width={540}
       height={400}
       resizable>
       <Window.Content>
@@ -80,6 +80,18 @@ const CfStep1 = (props, context) => {
               lineHeight={2}
               onClick={() => act('pick_device', {
                 pick: '2',
+              })} />
+          </Grid.Column>
+          <Grid.Column>
+            <Button
+              fluid
+              icon="mobile-alt"
+              content="Phone"
+              textAlign="center"
+              fontSize="30px"
+              lineHeight={2}
+              onClick={() => act('pick_device', {
+                pick: '3',
               })} />
           </Grid.Column>
         </Grid>
@@ -269,7 +281,7 @@ const CfStep2 = (props, context) => {
               })} />
           </Table.Cell>
         </Table.Row>
-        {data.devtype !== 2 && (
+        {data.devtype === 1 && (
           <Fragment>
             <Table.Row>
               <Table.Cell bold position="relative">

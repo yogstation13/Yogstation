@@ -92,6 +92,8 @@
 	master.force = max(0, master.force + quality)
 	master.throwforce = max(0, master.throwforce + quality)
 	master.armor = master.armor.modifyAllRatings(quality)
+	master.wound_bonus += quality
+	master.bare_wound_bonus += quality
 
 	var/newName = originalName
 	for(var/i in affixes)
@@ -103,7 +105,7 @@
 
 	if(canFail && prob((quality - 9)*10))
 		var/turf/place = get_turf(parent)
-		place.visible_message("<span class='danger'>[parent] <span class='inathneq_large'>violently glows blue</span> for a while, then evaporates.</span>")
+		place.visible_message(span_danger("[parent] [span_inathneq_large("violently glows blue")] for a while, then evaporates."))
 		master.burn()
 		return
 	else if(announce)
@@ -123,6 +125,8 @@
 	master.force = max(0, master.force - quality)
 	master.throwforce = max(0, master.throwforce - quality)
 	master.armor = master.armor.modifyAllRatings(-quality)
+	master.wound_bonus -= quality
+	master.bare_wound_bonus -= quality
 
 	master.name = originalName
 
@@ -132,9 +136,9 @@
 	var/effect_description
 	if(quality >= 0)
 		span = "<span class='notice'>"
-		effect_description = "<span class='heavy_brass'>shimmering golden glow</span>"
+		effect_description = "[span_heavy_brass("shimmering golden glow")]"
 	else
 		span = "<span class='danger'>"
-		effect_description = "<span class='umbra_emphasis'>mottled black glow</span>"
+		effect_description = "[span_umbra_emphasis("mottled black glow")]"
 
 	location.visible_message("[span][originalName] is covered by a [effect_description] and then transforms into [parent]!</span>")

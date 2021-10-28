@@ -13,10 +13,10 @@
 	if(istype(I, /obj/item/stack/sheet/mineral/bananium))
 		var/obj/item/stack/sheet/mineral/bananium/W = I
 		if(W.get_amount() < 1)
-			to_chat(user, "<span class='warning'>You need one bananium sheet to do this!</span>")
+			to_chat(user, span_warning("You need one bananium sheet to do this!"))
 			return
-		to_chat(user, "<span class='notice'>You start adding [W] to [src]...</span>")
-		if(do_after(user, 20, target = src) && W.use(1))
+		to_chat(user, span_notice("You start adding [W] to [src]..."))
+		if(do_after(user, 2 SECONDS, target = src) && W.use(1))
 			make_new_table(/obj/structure/table/bananium)
 	else
 		return ..()

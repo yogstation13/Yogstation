@@ -43,7 +43,7 @@
 
 /obj/machinery/igniter/attackby(obj/item/O, mob/user, params)
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, O))
-		to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of [src].</span>")
+		to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance hatch of [src]."))
 		return TRUE
 	if(default_deconstruction_crowbar(O))
 		return TRUE
@@ -51,7 +51,7 @@
 /obj/machinery/igniter/examine(mob/user)
 	. = ..()
 	if(panel_open)
-		. += "<span class='<span class='notice'>The maintenance panel is [panel_open ? "opened" : "closed"].</span>"
+		. += "<span class='[span_notice("The maintenance panel is [panel_open ? "opened" : "closed"].")]"
 
 /obj/machinery/igniter/process()	//ugh why is this even in process()?
 	if(safety || panel_open)
@@ -119,9 +119,9 @@
 		add_fingerprint(user)
 		src.disable = !src.disable
 		if (src.disable)
-			user.visible_message("<span class='notice'>[user] has disabled \the [src]!</span>", "<span class='notice'>You disable the connection to \the [src].</span>")
+			user.visible_message(span_notice("[user] has disabled \the [src]!"), span_notice("You disable the connection to \the [src]."))
 		if (!src.disable)
-			user.visible_message("<span class='notice'>[user] has reconnected \the [src]!</span>", "<span class='notice'>You fix the connection to \the [src].</span>")
+			user.visible_message(span_notice("[user] has reconnected \the [src]!"), span_notice("You fix the connection to \the [src]."))
 		update_icon()
 	else
 		return ..()

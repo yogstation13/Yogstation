@@ -223,7 +223,7 @@
 		LAZYREMOVE(M.do_afters, src)
 
 	targeted_by = null
-	
+
 	QDEL_NULL(light)
 
 	return ..()
@@ -491,11 +491,25 @@
 				. += "Nothing."
 		else if(reagents.flags & AMOUNT_VISIBLE)
 			if(reagents.total_volume)
-				. += "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>"
+				. += span_notice("It has [reagents.total_volume] unit\s left.")
 			else
-				. += "<span class='danger'>It's empty.</span>"
+				. += span_danger("It's empty.")
 
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+
+/**
+  * Called when a mob examines (shift click or verb) this atom twice (or more) within EXAMINE_MORE_TIME (default 1.5 seconds)
+  *
+  * This is where you can put extra information on something that may be superfluous or not important in critical gameplay
+  * moments, while allowing people to manually double-examine to take a closer look
+  *
+  * Produces a signal [COMSIG_PARENT_EXAMINE_MORE]
+  */
+/atom/proc/examine_more(mob/user)
+	. = list()
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE_MORE, user, .)
+	if(!LAZYLEN(.)) // lol ..length
+		return FALSE
 
 /**
   * An atom we are buckled or is contained within us has tried to move
@@ -506,7 +520,7 @@
 /atom/proc/relaymove(mob/user)
 	if(buckle_message_cooldown <= world.time)
 		buckle_message_cooldown = world.time + 50
-		to_chat(user, "<span class='warning'>You can't move while buckled to [src]!</span>")
+		to_chat(user, span_warning("You can't move while buckled to [src]!"))
 	return
 
 /// Handle what happens when your contents are exploded by a bomb
@@ -744,13 +758,13 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	//yogs start -- stops things from dumping into themselves
 	if(STR == src_object)
-		to_chat(user,"<span class='warning'>You can't dump the contents of [src_object.parent] into itself!</span>")
+		to_chat(user,span_warning("You can't dump the contents of [src_object.parent] into itself!"))
 		return
 	//yogs end
-	while (do_after(user, 10, TRUE, src, FALSE, CALLBACK(STR, /datum/component/storage.proc/handle_mass_item_insertion, things, src_object, user, progress)))
+	while (do_after(user, 1 SECONDS, TRUE, src, FALSE, CALLBACK(STR, /datum/component/storage.proc/handle_mass_item_insertion, things, src_object, user, progress)))
 		stoplag(1)
 	qdel(progress)
-	to_chat(user, "<span class='notice'>You dump as much of [src_object.parent]'s contents into [STR.insert_preposition]to [src] as you can.</span>")
+	to_chat(user, span_notice("You dump as much of [src_object.parent]'s contents into [STR.insert_preposition]to [src] as you can."))
 	STR.orient2hud(user)
 	src_object.orient2hud(user)
 	if(user.active_storage) //refresh the HUD to show the transfered contents
@@ -983,7 +997,7 @@
 /atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
 	if(!istype(I, /obj/item/multitool))
 		if(user && !silent)
-			to_chat(user, "<span class='warning'>[I] has no data buffer!</span>")
+			to_chat(user, span_warning("[I] has no data buffer!"))
 		return FALSE
 	return TRUE
 
@@ -1109,6 +1123,40 @@
 	if(user != target)
 		var/reverse_message = "has been [what_done] by [ssource][postfix]"
 		target.log_message(reverse_message, LOG_ATTACK, color="orange", log_globally=FALSE)
+
+/**
+  * log_wound() is for when someone is *attacked* and suffers a wound. Note that this only captures wounds from damage, so smites/forced wounds aren't logged, as well as demotions like cuts scabbing over
+  *
+  * Note that this has no info on the attack that dealt the wound: information about where damage came from isn't passed to the bodypart's damaged proc. When in doubt, check the attack log for attacks at that same time
+  * TODO later: Add logging for healed wounds, though that will require some rewriting of healing code to prevent admin heals from spamming the logs. Not high priority
+  *
+  * Arguments:
+  * * victim- The guy who got wounded
+  * * suffered_wound- The wound, already applied, that we're logging. It has to already be attached so we can get the limb from it
+  * * dealt_damage- How much damage is associated with the attack that dealt with this wound.
+  * * dealt_wound_bonus- The wound_bonus, if one was specified, of the wounding attack
+  * * dealt_bare_wound_bonus- The bare_wound_bonus, if one was specified *and applied*, of the wounding attack. Not shown if armor was present
+  * * base_roll- Base wounding ability of an attack is a random number from 1 to (dealt_damage ** WOUND_DAMAGE_EXPONENT). This is the number that was rolled in there, before mods
+  */
+/proc/log_wound(atom/victim, datum/wound/suffered_wound, dealt_damage, dealt_wound_bonus, dealt_bare_wound_bonus, base_roll)
+	if(QDELETED(victim) || !suffered_wound)
+		return
+	var/message = "has suffered: [suffered_wound][suffered_wound.limb ? " to [suffered_wound.limb.name]" : null]"// maybe indicate if it's a promote/demote?
+
+	if(dealt_damage)
+		message += " | Damage: [dealt_damage]"
+		// The base roll is useful since it can show how lucky someone got with the given attack. For example, dealing a cut
+		if(base_roll)
+			message += "(rolled [base_roll]/[dealt_damage ** WOUND_DAMAGE_EXPONENT])"
+
+	if(dealt_wound_bonus)
+		message += " | WB: [dealt_wound_bonus]"
+
+	if(dealt_bare_wound_bonus)
+		message += " | BWB: [dealt_bare_wound_bonus]"
+
+	victim.log_message(message, LOG_ATTACK, color="blue")
+
 
 /atom/movable/proc/add_filter(name,priority,list/params)
 	if(!filter_data)
