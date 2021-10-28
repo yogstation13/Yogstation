@@ -93,7 +93,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/structure/ethernet_cable/proc/handlecable(obj/item/W, mob/user, params)
 	var/turf/T = get_turf(src)
-	if(T.intact)
+	if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
 		return
 	if(W.tool_behaviour == TOOL_WIRECUTTER)
 		user.visible_message("[user] cuts the ethernet cable.", span_notice("You cut the ethernet cable."))
@@ -485,7 +485,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(!isturf(user.loc))
 		return
 
-	if(!isturf(T) || T.intact || !T.can_have_cabling())
+	if(!isturf(T) || T.underfloor_accessibility  || !T.can_have_cabling())
 		to_chat(user, span_warning("You can only lay cables on top of exterior catwalks and plating!"))
 		return
 
@@ -543,7 +543,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	var/turf/T = C.loc
 
-	if(!isturf(T) || T.intact)		// sanity checks, also stop use interacting with T-scanner revealed cable
+	if(!isturf(T) || T.underfloor_accessibility )		// sanity checks, also stop use interacting with T-scanner revealed cable
 		return
 
 	if(get_dist(C, user) > 1)		// make sure it's close enough
@@ -565,7 +565,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			if (showerror)
 				to_chat(user, span_warning("You can only lay cables on catwalks and plating!"))
 			return
-		if(U.intact)						//can't place a cable if it's a plating with a tile on it
+		if(U.underfloor_accessibility )						//can't place a cable if it's a plating with a tile on it
 			to_chat(user, span_warning("You can't lay cable there unless the floor tiles are removed!"))
 			return
 		else

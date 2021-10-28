@@ -63,7 +63,7 @@
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		if(mode == DISCONNECTED)
 			var/turf/T = loc
-			if(isturf(T) && !T.intact)
+			if(isturf(T) && T.underfloor_accessibility >= UNDERFLOOR_INTERACTABLE)
 				attached = locate() in T
 				if(!attached)
 					to_chat(user, span_warning("This device must be placed over an exposed, powered cable node!"))

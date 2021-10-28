@@ -18,6 +18,10 @@
 #define HOLODECK_CD 25
 #define HOLODECK_DMG_CD 500
 
+/// typecache for turfs that should be considered ok during floorchecks.
+/// A linked turf being anything not in this typecache will cause the holodeck to perform an emergency shutdown.
+GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf/open/floor/holofloor, /turf/closed)))
+
 /obj/machinery/computer/holodeck
 	name = "holodeck control console"
 	desc = "A computer used to control a nearby holodeck."
@@ -223,8 +227,9 @@
 
 /obj/machinery/computer/holodeck/proc/floorcheck()
 	for(var/turf/T in linked)
-		if(!T.intact || isspaceturf(T))
-			return FALSE
+		if (is_type_in_typecache(T, GLOB.typecache_holodeck_linked_floorcheck_ok))
+			continue
+		return FALSE
 	return TRUE
 
 /obj/machinery/computer/holodeck/proc/nerf(active)

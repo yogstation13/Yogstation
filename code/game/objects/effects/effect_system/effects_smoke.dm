@@ -230,7 +230,7 @@
 		for(var/atom/movable/AM in T)
 			if(AM.type == src.type)
 				continue
-			if(T.intact && AM.level == 1) //hidden under the floor
+			if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE && AM.level == 1) //hidden under the floor
 				continue
 			reagents.reaction(AM, TOUCH, fraction)
 

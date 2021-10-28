@@ -137,7 +137,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/structure/cable/proc/handlecable(obj/item/W, mob/user, params)
 	var/turf/T = get_turf(src)
-	if(T.intact)
+	if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
 		return
 	if(W.tool_behaviour == TOOL_WIRECUTTER)
 		if (shock(user, 50))
@@ -589,7 +589,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 	if(!isturf(user.loc))
 		return
 
-	if(!isturf(T) || T.intact || !T.can_have_cabling())
+	if(!isturf(T) || T.underfloor_accessibility  || !T.can_have_cabling())
 		to_chat(user, span_warning("You can only lay cables on top of exterior catwalks and plating!"))
 		return
 

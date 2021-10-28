@@ -146,7 +146,7 @@
 			continue
 		if(isturf(O.loc))
 			var/turf/T = O.loc
-			if(T.intact && O.level == 1) //hidden under the floor
+			if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE && O.level == 1) //hidden under the floor
 				continue
 		if(lifetime % reagent_divisor)
 			reagents.reaction(O, VAPOR, fraction)

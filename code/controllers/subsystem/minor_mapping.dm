@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(minor_mapping)
 	while(turfs.len && amount > 0)
 		var/turf/T = pick_n_take(turfs)
 		var/obj/item/storage/backpack/satchel/flat/S = new(T)
-		S.hide(intact=TRUE)
+		S.hide(intact=(T.underfloor_accessibility < UNDERFLOOR_VISIBLE))
 		amount--
 
 

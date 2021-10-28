@@ -86,8 +86,8 @@
 
 /obj/machinery/navbeacon/attackby(obj/item/I, mob/user, params)
 	var/turf/T = loc
-	if(T.intact)
-		return		// prevent intraction when T-scanner revealed
+	if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
+		return // prevent intraction when T-scanner revealed
 
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		open = !open
@@ -119,9 +119,8 @@
 	. = ..()
 	var/ai = isAI(user)
 	var/turf/T = loc
-	if(T.intact)
-		return		// prevent intraction when T-scanner revealed
-
+	if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
+		return // prevent intraction when T-scanner revealed
 	if(!open && !ai)	// can't alter controls if not open, unless you're an AI
 		to_chat(user, span_warning("The beacon's control cover is closed!"))
 		return

@@ -16,9 +16,11 @@
 	var/icon_plating = "plating"
 	thermal_conductivity = 0.040
 	heat_capacity = 10000
-	intact = 1
+
 	var/broken = 0
 	var/burnt = 0
+
+	overfloor_placed = TRUE
 	var/floor_tile = null //tile that this floor drops
 	var/list/broken_states
 	var/list/burnt_states
@@ -172,7 +174,7 @@
 		return 1
 	if(..())
 		return 1
-	if(intact && istype(C, /obj/item/stack/tile))
+	if(overfloor_placed  && istype(C, /obj/item/stack/tile))
 		try_replace_tile(C, user, params)
 	return 0
 
@@ -180,7 +182,7 @@
 	if(istype(I,/obj/item/jawsoflife/jimmy))
 		to_chat(user,"The [I] cannot pry tiles.")
 		return
-	return intact ? pry_tile(I, user) : FALSE
+	return overfloor_placed  ? pry_tile(I, user) : FALSE
 
 /turf/open/floor/proc/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
 	if(T.turf_type == type)
