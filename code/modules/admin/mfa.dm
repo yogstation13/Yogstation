@@ -52,12 +52,16 @@
 
 	if(!query_totp_seed.warn_execute())
 		qdel(query_totp_seed)
-		message_admins("SQL Error getting TOTP seed for [ckey]")
+		var/msg = "SQL Error getting TOTP seed for [ckey]"
+		message_admins(msg)
+		log_admin(msg)
 		return FALSE
 
 	if(!query_totp_seed.NextRow())
 		qdel(query_totp_seed)
-		message_admins("Cannot find DB entry for [ckey] who is attempting to use MFA, this shouldn't be possible.")
+		var/msg = "Cannot find DB entry for [ckey] who is attempting to use MFA, this shouldn't be possible."
+		message_admins(msg)
+		log_admin(msg)
 		return FALSE
 
 	var/seed = query_totp_seed.item[1]
@@ -71,7 +75,9 @@
 	if(code)
 		var/json_codes = rustg_hash_generate_totp_tolerance(seed, 1)
 		if(findtext(json_codes, "ERROR") != 0) // Something went wrong, exit
-			message_admins("Error with TOTP: [json_codes]")
+			var/msg = "Error with TOTP: [json_codes]"
+			message_admins(msg)
+			log_admin(msg)
 			return FALSE
 		var/generated_codes = json_decode(json_codes)
 		if(num2text(code) in generated_codes)
@@ -174,7 +180,9 @@
 		if(code)
 			var/json_codes = rustg_hash_generate_totp_tolerance(code_b16, "1")
 			if(findtext(json_codes, "ERROR") != 0) // Something went wrong, exit
-				message_admins("Error with TOTP: [json_codes]")
+				var/msg = "Error with TOTP: [json_codes]"
+				message_admins(msg)
+				log_admin(msg)
 				return FALSE
 			var/generated_codes = json_decode(json_codes)
 			if(num2text(code) in generated_codes)
@@ -207,14 +215,18 @@
 
 	if(!query_mfa_backup.warn_execute() || !query_mfa_backup.NextRow())
 		qdel(query_mfa_backup)
-		message_admins("Unable to fetch backup codes for [ckey]!")
+		var/msg = "Unable to fetch backup codes for [ckey]!"
+		message_admins(msg)
+		log_admin(msg)
 		to_chat(src, span_warning("Unable to fetch batckup codes"))
 		return FALSE
 
 	var/authed = query_mfa_backup.item[1] > 0
 	qdel(query_mfa_backup)
 	if(authed)
-		message_admins("[ckey] logged in with their backup code!")
+		var/msg = "[ckey] logged in with their backup code!"
+		message_admins(msg)
+		log_admin(msg)
 		mfa_reset(ckey)
 		return mfa_enroll()
 	else
@@ -263,7 +275,9 @@
 
 		if(!mfa_addverify.Execute())
 			qdel(mfa_addverify)
-			message_admins("Failed to add login info for [ckey], they will be unable to login")
+			var/msg = "Failed to add login info for [ckey], they will be unable to login"
+			message_admins(msg)
+			log_admin(msg)
 			return
 
 		qdel(mfa_addverify)
