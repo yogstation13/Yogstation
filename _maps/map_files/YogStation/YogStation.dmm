@@ -58754,6 +58754,14 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/aft)
+"tIu" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/medical/medbay/lobby)
 "tIN" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Custodial Maintenance";
@@ -60206,6 +60214,14 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
+"uBI" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/medical/medbay/lobby)
 "uCc" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/light,
@@ -60418,14 +60434,6 @@
 /obj/item/hand_labeler,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"uIT" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/medical/medbay/lobby)
 "uIZ" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -103379,7 +103387,7 @@ tdr
 dsr
 lFG
 pzx
-jQg
+tIu
 gID
 osp
 uAn
@@ -104921,7 +104929,7 @@ mGX
 xDH
 xfU
 fZs
-uIT
+uBI
 sxa
 kub
 hLI
