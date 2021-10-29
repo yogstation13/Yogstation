@@ -442,3 +442,4 @@
 	icon_living = "suspiciusgoat"
 	icon_dead = "suspiciusgoat_dead"
 	gold_core_spawnable = NO_SPAWN
+	ventcrawler = VENTCRAWLER_ALWAYS
