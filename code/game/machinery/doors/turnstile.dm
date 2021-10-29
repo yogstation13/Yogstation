@@ -32,7 +32,9 @@
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return TRUE
 	if(!isliving(mover))
-		return TRUE
+		flick("deny", src)
+		playsound(src,'sound/machines/deniedbeep.ogg',50,0,3)
+		return FALSE
 	var/allowed = allowed(mover)
 	//Sec can drag you out unceremoniously.
 	if(!allowed && mover.pulledby)
