@@ -31,7 +31,7 @@
 	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return TRUE
-	if(!isliving(mover))
+	if(!isliving(mover) || istype(mover, /mob/living/simple_animal/bot))
 		return TRUE
 	var/allowed = allowed(mover)
 	//Sec can drag you out unceremoniously.
