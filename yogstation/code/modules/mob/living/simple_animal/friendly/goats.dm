@@ -433,3 +433,12 @@
 	icon_dead = "spiffles_dead"
 	faction = list("goat")
 	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/retaliate/goat/suspicious
+    Name = "suspicious goat"
+    desc = "A suspicious looking goat"
+    icon = 'yogstation/icon/mob/goats/suspicious_goat.dmi'
+    icon_state = "suspiciusgoat"
+	icon_living = "suspiciusgoat"
+	icon_dead = "suspiciusgoat_dead"
+	gold_core_spawnable = NO_SPAWN
