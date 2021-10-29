@@ -55452,6 +55452,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"rxB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed,
+/obj/item/bedsheet/prisoner,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "ryf" = (
 /obj/structure/sign/departments/minsky/research/research,
 /turf/closed/wall/r_wall,
@@ -94339,7 +94345,7 @@ auA
 akk
 akN
 aqn
-alx
+rxB
 amR
 anw
 anc
@@ -95367,7 +95373,7 @@ ajH
 akk
 akN
 aqn
-alx
+rxB
 amR
 anw
 anz
@@ -96395,7 +96401,7 @@ ajH
 akk
 akV
 aqn
-alx
+rxB
 amR
 anw
 anr
