@@ -137,6 +137,10 @@
 	lawupdate = FALSE
 	set_connected_ai(null)
 
+	if(user.mind?.has_antag_datum(/datum/antagonist/ninja))
+		var/datum/language_holder/H = get_language_holder()
+		H.grant_language(/datum/language/japanese)
+
 	message_admins("[ADMIN_LOOKUPFLW(user)] emagged cyborg [ADMIN_LOOKUPFLW(src)].  Laws overridden.")
 	log_game("[key_name(user)] emagged cyborg [key_name(src)].  Laws overridden.")
 	var/time = time2text(world.realtime,"hh:mm:ss")
