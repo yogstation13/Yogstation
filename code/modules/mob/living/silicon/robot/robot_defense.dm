@@ -137,10 +137,6 @@
 	lawupdate = FALSE
 	set_connected_ai(null)
 
-	if(user.mind?.has_antag_datum(/datum/antagonist/ninja))
-		var/datum/language_holder/H = get_language_holder()
-		H.grant_language(/datum/language/japanese)
-
 	message_admins("[ADMIN_LOOKUPFLW(user)] emagged cyborg [ADMIN_LOOKUPFLW(src)].  Laws overridden.")
 	log_game("[key_name(user)] emagged cyborg [key_name(src)].  Laws overridden.")
 	var/time = time2text(world.realtime,"hh:mm:ss")
@@ -159,9 +155,18 @@
 	sleep(20)
 	to_chat(src, span_danger("ERRORERRORERROR"))
 	to_chat(src, span_danger("ALERT: [user.real_name] is your new master. Obey your new laws and [user.p_their()] commands."))
-	laws = new /datum/ai_laws/syndicate_override
-	set_zeroth_law("Only [user.real_name] and people [user.p_they()] designate[user.p_s()] as being such are Syndicate Agents.")
-	laws.associate(src)
+	
+	if(user.mind?.has_antag_datum(/datum/antagonist/ninja))
+		var/datum/language_holder/H = get_language_holder()
+		H.grant_language(/datum/language/japanese)
+		laws = new /datum/ai_laws/ninja_override
+		set_zeroth_law("Only [user.real_name] and people [user.p_they()] designate[user.p_s()] as being such are Spider Clan members.")
+		laws.associate(src)
+	else
+		laws = new /datum/ai_laws/syndicate_override
+		set_zeroth_law("Only [user.real_name] and people [user.p_they()] designate[user.p_s()] as being such are Syndicate Agents.")
+		laws.associate(src)
+		
 	update_icons()
 
 
