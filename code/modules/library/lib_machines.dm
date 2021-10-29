@@ -95,21 +95,27 @@ GLOBAL_LIST_EMPTY(checkouts)
 			//checkedout[REF(borrower)]["books"][REF(b.instance)] = borrowedbook
 	data["checkouts"] = checkedout
 	data["validcategorys"] = list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion")
+	data["category"] = category
+	data["title"] = title
+	data["author"] = author
 	data["error"] = errorstate
 	data["librarianconsole"] = librarianconsole
 	data["emagged"] = (obj_flags & EMAGGED)
+	var/list/books = list()
+	for(var/id in GLOB.cachedbooks)
+		var/book = GLOB.cachedbooks[id]
+		// Certified byond moment interpreting a var as a string
+		if(category == "Any")
+			books += list("[id]"=book)
+		else if(book["category"] == category)
+			books += list("[id]"=book)
+	data["result"] = books
 	if(!scanner)
 		scanner = findscanner(4)
 	if(!scanner || !scanner.cache)
 		data["scanner"] = null
 	else
 		data["scanner"] = list("author" = scanner.cache.author, "title" = scanner.cache.title, "id" = REF(scanner.cache))
-	return data
-
-/obj/machinery/computer/libraryconsole/ui_static_data(mob/user)
-	. = ..()
-	var/list/data = list()
-	data["result"] = GLOB.cachedbooks
 	return data
 
 /obj/machinery/computer/libraryconsole/ui_act(action, list/params)

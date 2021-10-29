@@ -2,6 +2,9 @@ import { useBackend, useSharedState } from '../backend';
 import { Button, Dropdown, LabeledList, Section, Table, Input, Tabs, NumberInput, Divider, Box } from '../components';
 import { Window } from '../layouts';
 
+var width = 500
+var height = 200
+
 export const LibraryConsole = (props, context) => {
   const { act, data } = useBackend(context);
   const [tab, setTab] = useSharedState(context, 'tab', 1);
@@ -10,7 +13,7 @@ export const LibraryConsole = (props, context) => {
     librarianconsole,
   } = data;
   return (
-    <Window resizable theme="hackerman">
+    <Window resizeable theme="hackerman" width={width} height={height}>
       <Window.Content scrollable>
         <Tabs>
           <Tabs.Tab
@@ -53,6 +56,8 @@ export const LibraryConsole = (props, context) => {
 };
 
 export const Search = (props, context) => {
+  width = 350;
+  height = 200;
   const { act, data } = useBackend(context);
   const [tab, setTab] = useSharedState(context, 'tab', 1);
   const {
@@ -96,12 +101,19 @@ export const Search = (props, context) => {
   ); };
 
 export const BookDB = (props, context) => {
+  width = 600;
+  height = 600;
+  var perPage = 10;
   const { act, data } = useBackend(context);
   const [tab, setTab] = useSharedState(context, 'tab', 2);
+  var [page, setPage] = useSharedState(context, 'page', 0);
   const {
     result,
     librarianconsole,
   } = data;
+  //var totalPages = Math.floor(result.length/10);
+  var totalPages = 1;
+  setPage(0)
   return (
     <Section>
       <Button
@@ -118,7 +130,7 @@ export const BookDB = (props, context) => {
               <Table.Cell textAlign="center">Print</Table.Cell>
             )}
           </Table.Row>
-          {Object.keys(result).map(key => (
+          {Object.keys(result).slice(page*perPage, (page*perPage)+perPage).map(key => (
             <Table.Row key={key}>
               <Table.Cell py={1.5} textAlign="center">{key}</Table.Cell>
               <Table.Cell textAlign="center">{result[key]["title"]}</Table.Cell>
@@ -137,6 +149,23 @@ export const BookDB = (props, context) => {
             </Table.Row>
           ))}
         </Table>
+        <Section textAlign="center">
+        <Button
+          content={0}
+          onClick={() => setPage(0)} />
+
+        {!page==0 &&
+          <Button
+              content={page}
+              onClick={(value) => setPage(value)} />
+        }
+
+        {!!totalPages &&
+          <Button
+            content={totalPages}
+            onClick={(value) => setPage(value)} />
+          }
+        </Section>
       </Box>
     </Section>
   ); };
