@@ -32,7 +32,7 @@
 /client/proc/cmd_mentor_pm(whom, msg, discord_id)
 	var/client/C
 	if(prefs.muted & MUTE_MENTORHELP)
-		to_chat(src,"<span class='danger'>Error: Mentor-PM: You are unable to use Mentor PM (muted).</span>", confidential = TRUE)
+		to_chat(src,span_danger("Error: Mentor-PM: You are unable to use Mentor PM (muted)."), confidential = TRUE)
 		return
 	if(ismob(whom))
 		var/mob/M = whom
@@ -53,12 +53,12 @@
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
-		if(mentor_datum)
+		if(is_mentor())
 			to_chat((GLOB.admins - GLOB.deadmins) | GLOB.mentors, "<b><span class='purple mentor'>[key_name_mentor(src)] has started answering [key_name_mentor(C)]'s mentorhelp.</span></b>", confidential=TRUE)
 		msg = input(src,"Message:", "Private message") as text|null
 
 		if(!msg)
-			if(mentor_datum)
+			if(is_mentor())
 				to_chat((GLOB.admins - GLOB.deadmins) | GLOB.mentors, "<b><span class='purple mentor'>[key_name_mentor(src)] has decided not to answer [key_name_mentor(C)]'s mentorhelp.</span></b>", confidential=TRUE)
 			return
 
@@ -79,7 +79,9 @@
 
 	if(mentor_datum && isnotpretty(msg)) // If this is, specifically, a mentor, and not an admin nor a normal player
 		to_chat(src,"<span class='danger mentor'>You cannot send bigoted language as a mentor.</span>", confidential=TRUE)
-		message_admins("[discord_id ? discord_id : key_name(src)] just tripped the pretty filter in a mentorpm: [msg]")
+		var/log_message = "[discord_id ? discord_id : key_name(src)] just tripped the pretty filter in a mentorpm: [msg]"
+		message_admins(log_message)
+		log_mentor(log_message)
 		return
 	msg = emoji_parse(msg)
 	if(C)

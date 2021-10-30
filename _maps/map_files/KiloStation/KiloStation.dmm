@@ -1958,10 +1958,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
-/mob/living/simple_animal/bot/secbot/pingsky,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/mob/living/simple_animal/bot/secbot/pingsky,
 /turf/open/floor/engine,
 /area/ai_monitored/turret_protected/aisat_interior)
 "adn" = (
@@ -3615,12 +3615,13 @@
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "agd" = (
-/obj/structure/bodycontainer/morgue,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/delivery,
+/obj/machinery/computer/operating{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
 "age" = (
@@ -6136,18 +6137,17 @@
 	},
 /area/maintenance/port/fore)
 "akT" = (
-/obj/structure/bed,
-/obj/machinery/iv_drip,
-/obj/item/bedsheet/medical,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/blood/old,
 /obj/machinery/light/small{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
+/obj/structure/chair/office{
+	dir = 1
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "akV" = (
@@ -7957,9 +7957,6 @@
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
 "anM" = (
-/obj/structure/table/glass,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/healthanalyzer,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -7969,15 +7966,7 @@
 	pixel_x = 26
 	},
 /obj/effect/turf_decal/tile/red,
-/obj/item/storage/box/bodybags,
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 5;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = -3;
-	pixel_y = 2
-	},
+/obj/structure/closet/secure_closet/physician,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "anN" = (
@@ -18191,13 +18180,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/genetics/cloning)
-"aFu" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Infirmary";
-	req_one_access_txt = "1;34"
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/main)
 "aFv" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Brig Control";
@@ -45307,6 +45289,12 @@
 /obj/effect/landmark/start/bartender,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"bvl" = (
+/obj/machinery/modular_computer/console/preset/curator{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/library)
 "bvm" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -68922,16 +68910,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"cjb" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plating,
-/area/security/brig)
 "cjd" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "brigfrontdoor";
@@ -72876,19 +72854,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/brig)
-"cpR" = (
-/obj/machinery/door/airlock/security/glass{
-	id_tag = null;
-	name = "Brig";
-	req_access_txt = "63"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/warden)
 "cpS" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/disposalpipe/segment{
@@ -76649,10 +76614,6 @@
 /turf/closed/wall/rust,
 /area/maintenance/port/fore)
 "cxu" = (
-/obj/structure/table/glass,
-/obj/item/storage/firstaid/regular,
-/obj/item/reagent_containers/glass/bottle/epinephrine,
-/obj/item/reagent_containers/syringe,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -76671,6 +76632,8 @@
 	pixel_x = 24
 	},
 /obj/effect/turf_decal/tile/red,
+/obj/machinery/iv_drip,
+/obj/structure/closet/crate/freezer/blood,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "cxv" = (
@@ -81527,21 +81490,6 @@
 	},
 /obj/machinery/light{
 	dir = 1
-	},
-/turf/open/floor/carpet/royalblue,
-/area/crew_quarters/heads/captain)
-"cIu" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 30
-	},
-/obj/machinery/camera{
-	c_tag = "Captain's Office";
-	name = "command camera"
-	},
-/obj/structure/chair/comfy/brown{
-	buildstackamount = 0;
-	color = "#c45c57";
-	dir = 8
 	},
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
@@ -87213,10 +87161,10 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/mob/living/simple_animal/spiffles,
 /obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
+/mob/living/simple_animal/spiffles,
 /turf/open/floor/plasteel,
 /area/clerk)
 "emk" = (
@@ -88590,6 +88538,15 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"fTJ" = (
+/obj/machinery/turnstile/brig{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
 "fTT" = (
 /obj/machinery/door/airlock/external{
 	name = "Labor Camp Shuttle Airlock";
@@ -90924,6 +90881,14 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/primary/fore)
+"iFa" = (
+/obj/machinery/door/airlock/medical/glass{
+	name = "Infirmary";
+	red_alert_access = 1;
+	req_access_txt = "5"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/main)
 "iGD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -91391,7 +91356,9 @@
 /area/maintenance/port/aft)
 "iZe" = (
 /obj/structure/table/glass,
-/obj/machinery/computer/med_data/laptop,
+/obj/machinery/computer/med_data/laptop{
+	pixel_x = -3
+	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -91408,6 +91375,14 @@
 	},
 /obj/machinery/vending/wallmed{
 	pixel_x = 24
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 10;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = 10;
+	pixel_y = 5
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
@@ -91783,6 +91758,9 @@
 /obj/item/radio/intercom{
 	pixel_x = -28
 	},
+/obj/effect/decal/cleanable/blood/old,
+/obj/structure/table/optable,
+/obj/item/storage/backpack/duffelbag/sec/surgery,
 /turf/open/floor/plasteel/dark,
 /area/security/warden)
 "jwf" = (
@@ -93092,10 +93070,10 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/prison)
 "kQv" = (
-/mob/living/simple_animal/hostile/asteroid/hivelord,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/asteroid/hivelord,
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
 "kQQ" = (
@@ -93240,8 +93218,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/mob/living/simple_animal/bot/cleanbot{
-	name = "Scrubs, MD";
+/mob/living/simple_animal/bot/cleanbot/medical{
 	on = 0
 	},
 /turf/open/floor/plasteel/dark,
@@ -93266,6 +93243,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/starboard/aft)
+"kTR" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/asteroid,
+/area/space/nearstation)
 "kUb" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "kitchen maintenance";
@@ -96550,18 +96531,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/space,
 /area/space/nearstation)
-"phd" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/airlock/medical/glass{
-	name = "Infirmary"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/dark,
-/area/security/warden)
 "pii" = (
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating,
@@ -97674,6 +97643,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/genetics)
+"qrw" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/airlock/medical/glass{
+	name = "Infirmary";
+	red_alert_access = 1;
+	req_access_txt = "5"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/security/warden)
 "qsW" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -100719,12 +100702,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/central)
-"tYo" = (
-/obj/machinery/modular_computer/console/preset/curator{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/library)
 "tYt" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -100844,6 +100821,17 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/disposal/incinerator)
+"ujk" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/turnstile/brig{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/warden)
 "ukm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -101531,6 +101519,20 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
+"uVx" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/obj/structure/chair/comfy/brown{
+	buildstackamount = 0;
+	color = "#c45c57";
+	dir = 8
+	},
+/obj/machinery/camera/motion{
+	c_tag = "Armory Motion Sensor"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/crew_quarters/heads/captain)
 "uWd" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12";
@@ -104038,6 +104040,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"xOK" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/landmark/start/yogs/brigphsyician,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "xOW" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -104368,10 +104375,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/disposal/incinerator)
-"ymm" = (
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating/asteroid,
-/area/space/nearstation)
 
 (1,1,1) = {"
 aaa
@@ -117606,7 +117609,7 @@ rJG
 rJG
 cwq
 aLZ
-ymm
+kTR
 xjU
 aLZ
 aLZ
@@ -123550,12 +123553,12 @@ aef
 aef
 bXp
 adz
-phd
+qrw
 cdp
-cnB
+xOK
 cnB
 crz
-aFu
+iFa
 aLi
 bxS
 bPI
@@ -126382,7 +126385,7 @@ agE
 ahq
 cjO
 crC
-cpR
+ujk
 cxM
 bHT
 cjM
@@ -126898,7 +126901,7 @@ bWL
 apq
 aef
 aGE
-cjb
+fTJ
 cjP
 aaj
 bpE
@@ -127669,7 +127672,7 @@ ain
 apr
 agX
 aHp
-cjb
+fTJ
 cjT
 aaf
 awk
@@ -128922,7 +128925,7 @@ buC
 rRJ
 bgY
 bjk
-tYo
+bvl
 bvb
 rve
 mfB
@@ -137154,7 +137157,7 @@ byy
 bvD
 bAA
 asx
-cIu
+uVx
 cIx
 bHG
 cIF

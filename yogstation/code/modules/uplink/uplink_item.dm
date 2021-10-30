@@ -71,11 +71,6 @@
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear)
 
-/datum/uplink_item/device_tools/arm/nuke
-	cost = 15
-	exclude_modes = list()
-	include_modes = list(/datum/game_mode/nuclear)
-
 /datum/uplink_item/device_tools/arm/spawn_item(spawn_item, mob/user)
 	var/limbs = user.held_items.len
 	user.change_number_of_hands(limbs+1)
@@ -131,3 +126,4 @@
 	item = /obj/item/melee/fryingpan/bananium
 	cost = 40
 	cant_discount = TRUE
+

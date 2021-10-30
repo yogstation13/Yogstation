@@ -105,22 +105,22 @@
 /obj/machinery/door/poddoor/attackby(obj/item/W, mob/user, params)
 	. = ..()
 	if(special && W.tool_behaviour == TOOL_SCREWDRIVER) // No Cheesing
-		to_chat(user, "<span class='warning'>This door appears to have a different screw.</span>")
+		to_chat(user, span_warning("This door appears to have a different screw."))
 		return
 
 
 	if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(density)
-			to_chat(user, "<span class='warning'>You need to open [src] before opening its maintenance panel.</span>")
+			to_chat(user, span_warning("You need to open [src] before opening its maintenance panel."))
 			return
 		else if(default_deconstruction_screwdriver(user, icon_state, icon_state, W))
-			to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of [src].</span>")
+			to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance hatch of [src]."))
 			return TRUE
 
 	if(panel_open)
 		if(W.tool_behaviour == TOOL_MULTITOOL && constructionstate == INTACT)
 			if(id != null)
-				to_chat(user, "<span class='warning'>This door is already linked. Unlink it first!</span>")
+				to_chat(user, span_warning("This door is already linked. Unlink it first!"))
 				return
 
 			if(!multitool_check_buffer(user, W))
@@ -128,34 +128,34 @@
 				
 			var/obj/item/multitool/P = W	
 			id = P.buffer
-			to_chat(user, "<span class='notice'>You link the button to the [src].</span>")
+			to_chat(user, span_notice("You link the button to the [src]."))
 			return
 
 		if(W.tool_behaviour == TOOL_WIRECUTTER)
 			if(id != null)
-				to_chat(user, "<span class='notice'>You start to unlink the door.</span>")
-				if(do_after(user, 10 SECONDS, target = src))
-					to_chat(user, "<span class='notice'>You unlink the door.</span>")
+				to_chat(user, span_notice("You start to unlink the door."))
+				if(do_after(user, 1 SECONDS SECONDS, target = src))
+					to_chat(user, span_notice("You unlink the door."))
 					id = null
 			else
-				to_chat(user, "<span class='warning'>This door is already unlinked.</span>")
+				to_chat(user, span_warning("This door is already unlinked."))
 
 			return
 
 		if(W.tool_behaviour == TOOL_WELDER && constructionstate == INTACT)
-			to_chat(user, "<span class='notice'>You start to remove the outer plasteel cover.</span>")
+			to_chat(user, span_notice("You start to remove the outer plasteel cover."))
 			playsound(src.loc, 'sound/items/welder.ogg', 50, 1)
-			if(do_after(user, 10 SECONDS, target = src))
-				to_chat(user, "<span class='notice'>You remove the outer plasteel cover.</span>")
+			if(do_after(user, 1 SECONDS SECONDS, target = src))
+				to_chat(user, span_notice("You remove the outer plasteel cover."))
 				constructionstate = CUT_COVER
 				id = null // Effectivley breaks the door
 				new /obj/item/stack/sheet/plasteel(loc, 5)
 				return
 		else
-			to_chat(user, "<span class='warning'>The cover is already off.</span>")
+			to_chat(user, span_warning("The cover is already off."))
 		
 		if(W.tool_behaviour == TOOL_CROWBAR && constructionstate == CUT_COVER)
-			to_chat(user, "<span class='notice'>You start to remove all of the internal components</span>")
+			to_chat(user, span_notice("You start to remove all of the internal components"))
 			if(do_after(user, 15 SECONDS, target = src))
 				if(istype(src, /obj/machinery/door/poddoor/shutters)) // Simplified Code 
 					new /obj/item/stack/sheet/plasteel(loc, 5)
@@ -171,7 +171,7 @@
 		if(istype(W, /obj/item/stack/sheet/plasteel))
 			var/obj/item/stack/sheet/plasteel/P = W
 			if(P.use(5))
-				to_chat(user, "<span class='warning'>You need 5 plasteel sheets to put the plating back on.</span>")
+				to_chat(user, span_warning("You need 5 plasteel sheets to put the plating back on."))
 				return
 			
 			constructionstate = INTACT
@@ -180,5 +180,5 @@
 /obj/machinery/door/poddoor/examine(mob/user)
 	. = ..()
 	if(panel_open)
-		. += "<span class='<span class='notice'>The maintenance panel is [panel_open ? "opened" : "closed"].</span>"
+		. += "<span class='[span_notice("The maintenance panel is [panel_open ? "opened" : "closed"].")]"
 		

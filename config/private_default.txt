@@ -44,7 +44,7 @@ ENABLE_LOCALHOST_RANK
 # WIKIURL https://wiki.yogstation.net
 
 ##Rules address
-# RULESURL http://forums.yogstation.net/index.php?pages/rules/
+# RULESURL http://forums.yogstation.net/help/rules/
 
 ##Github address
 # GITHUBURL https://www.github.com/yogstation13/yogstation
@@ -71,6 +71,9 @@ TICK_LIMIT_MC_INIT 500
 
 ## Should SQL be enabled? Uncomment to enable
 #SQL_ENABLED
+
+## Should discord based MFA be enabled for admins? Uncomment to enable
+#MFA_ENABLED
 
 ## Prefix to be added to the name of every table, older databases will require this be set to erro_
 ## Note, this does not change the table names in the database, you will have to do that yourself.

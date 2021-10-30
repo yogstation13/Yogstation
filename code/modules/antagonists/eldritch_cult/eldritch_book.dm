@@ -37,7 +37,7 @@
 ///Gives you a charge and destroys a corresponding influence
 /obj/item/forbidden_book/proc/get_power_from_influence(atom/target, mob/user)
 	var/obj/effect/reality_smash/RS = target
-	to_chat(user, "<span class='danger'>You start drawing power from influence...</span>")
+	to_chat(user, span_danger("You start drawing power from influence..."))
 	if(do_after(user,10 SECONDS,TRUE,RS))
 		qdel(RS)
 		var/datum/antagonist/heretic/H = user.mind?.has_antag_datum(/datum/antagonist/heretic)
@@ -48,10 +48,10 @@
 
 	for(var/turf/T in range(1,target))
 		if(is_type_in_typecache(T, blacklisted_turfs))
-			to_chat(user, "<span class='warning'>The terrain doesn't support runes!</span>")
+			to_chat(user, span_warning("The terrain doesn't support runes!"))
 			return
 	var/A = get_turf(target)
-	to_chat(user, "<span class='danger'>You start drawing a rune...</span>")
+	to_chat(user, span_danger("You start drawing a rune..."))
 
 	if(do_after(user,30 SECONDS, target = A))
 
@@ -59,7 +59,7 @@
 
 ///Removes runes from the selected turf
 /obj/item/forbidden_book/proc/remove_rune(atom/target,mob/user)
-	to_chat(user, "<span class='danger'>You start removing a rune...</span>")
+	to_chat(user, span_danger("You start removing a rune..."))
 	if(do_after(user,2 SECONDS, target = target))
 		qdel(target)
 
@@ -91,6 +91,7 @@
 		lore["type"] = EK.type
 		lore["name"] = EK.name
 		lore["cost"] = EK.cost
+		lore["progression"] = EK.tier == cultie.knowledge_tier
 		lore["disabled"] = EK.cost <= cultie.charge ? FALSE : TRUE
 		lore["path"] = EK.route
 		lore["state"] = "Research"

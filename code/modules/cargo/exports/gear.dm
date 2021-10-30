@@ -83,17 +83,20 @@
 	export_types = list(/obj/item/clothing/suit/bomb_suit)
 
 /datum/export/gear/lizardboots
-	cost = 350
+	cost = 3000
+	export_limit = 50
 	unit_name = "lizard skin boots"
 	export_types = list(/obj/item/clothing/shoes/cowboy/lizard)
 	include_subtypes = FALSE
 
 /datum/export/gear/lizardmasterwork
-	cost = 1000
+	cost = 5000
+	export_limit = 10
 	unit_name = "Hugs-the-Feet lizard boots"
 	export_types = list(/obj/item/clothing/shoes/cowboy/lizard/masterwork)
 
 /datum/export/gear/bilton
 	cost = 2500
+	export_limit = 40
 	unit_name = "bilton wrangler boots"
 	export_types = list(/obj/item/clothing/shoes/cowboy/fancy)

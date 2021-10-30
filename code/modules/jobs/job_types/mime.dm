@@ -11,6 +11,8 @@
 
 	outfit = /datum/outfit/job/mime
 
+	alt_titles = list("Mute Entertainer", "Silent Jokester", "Pantomimist")
+
 	access = list(ACCESS_THEATRE)
 	minimal_access = list(ACCESS_THEATRE)
 	paycheck = PAYCHECK_MINIMAL
@@ -86,5 +88,5 @@
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_chair(null))
 		if (href_list["invisible_box"])
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_box(null))
-	to_chat(usr, "<span class='notice'>The book disappears into thin air.</span>")
+	to_chat(usr, span_notice("The book disappears into thin air."))
 	qdel(src)

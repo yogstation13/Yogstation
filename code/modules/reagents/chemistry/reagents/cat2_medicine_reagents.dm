@@ -10,6 +10,7 @@
 	name = "Libital"
 	description = "A bruise reliever. Does minor liver damage."
 	color = "#ECEC8D" // rgb: 236 236 141
+	overdose_threshold = 30
 	taste_description = "bitter with a hint of alcohol"
 	reagent_state = SOLID
 
@@ -18,6 +19,12 @@
 	M.adjustBruteLoss(-3 * REM)
 	..()
 	return TRUE
+
+/datum/reagent/medicine/c2/libital/overdose_process(mob/living/M)
+	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 0.9 * REM)
+	M.adjustOrganLoss(ORGAN_SLOT_STOMACH, 0.5 * REM)
+	..()
+	. = TRUE
 
 /datum/reagent/medicine/c2/probital
 	name = "Probital"
@@ -45,7 +52,7 @@
 	if(M.getStaminaLoss() >= 80)
 		M.drowsyness += 1 * REM
 	if(M.getStaminaLoss() >= 100)
-		to_chat(M,"<span class='warning'>You feel more tired than you usually do, perhaps if you rest your eyes for a bit...</span>")
+		to_chat(M,span_warning("You feel more tired than you usually do, perhaps if you rest your eyes for a bit..."))
 		M.adjustStaminaLoss(-100, TRUE)
 		M.Sleeping(10 SECONDS)
 	..()
@@ -85,14 +92,22 @@
 /datum/reagent/medicine/c2/aiuri
 	name = "Aiuri"
 	description = "Used to treat burns. Does minor eye damage."
-	reagent_state = LIQUID
 	color = "#8C93FF"
+	overdose_threshold = 30
+	taste_description = "ammonia with a bit of acid"
+	reagent_state = LIQUID
 
 /datum/reagent/medicine/c2/aiuri/on_mob_life(mob/living/carbon/M)
 	M.adjustFireLoss(-2 * REM)
 	M.adjustOrganLoss(ORGAN_SLOT_EYES, 0.25 * REM)
 	..()
 	return TRUE
+
+/datum/reagent/medicine/c2/aiuri/overdose_process(mob/living/M)
+	M.adjustOrganLoss(ORGAN_SLOT_EYES, 0.75 * REM)
+	M.adjustOrganLoss(ORGAN_SLOT_STOMACH, 0.4 * REM)
+	..()
+	. = TRUE
 
 /datum/reagent/medicine/c2/rhigoxane
 	name = "Rhigoxane"

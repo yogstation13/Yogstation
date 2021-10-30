@@ -31,6 +31,8 @@
 /datum/objective/overthrow
 
 /datum/objective/overthrow/check_completion()
+	if(..())
+		return TRUE
 	return get_points() ? TRUE : FALSE
 
 /datum/objective/overthrow/proc/get_points()

@@ -2,14 +2,15 @@
 	name = "tablet computer"
 	icon = 'icons/obj/modular_tablet.dmi'
 	icon_state = "tablet-red"
+	var/icon_state_base = "tablet"
 	icon_state_unpowered = "tablet"
 	icon_state_powered = "tablet"
 	icon_state_menu = "menu"
 	hardware_flag = PROGRAM_TABLET
-	max_hardware_size = 1
-	w_class = WEIGHT_CLASS_SMALL
+	max_hardware_size = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_NORMAL
 	steel_sheet_cost = 1
-	slot_flags = ITEM_SLOT_ID | ITEM_SLOT_BELT
+	slot_flags = ITEM_SLOT_BELT
 	has_light = TRUE //LED flashlight!
 	comp_light_luminosity = 2.3 //Same as the PDA
 	var/has_variants = TRUE
@@ -20,9 +21,9 @@
 	if (has_variants)
 		if(!finish_color)
 			finish_color = pick("red","blue","brown","green","black")
-		icon_state = "tablet-[finish_color]"
-		icon_state_unpowered = "tablet-[finish_color]"
-		icon_state_powered = "tablet-[finish_color]"
+		icon_state = "[icon_state_base]-[finish_color]"
+		icon_state_unpowered = "[icon_state_base]-[finish_color]"
+		icon_state_powered = "[icon_state_base]-[finish_color]"
 
 /obj/item/modular_computer/tablet/syndicate_contract_uplink
 	name = "contractor tablet"
